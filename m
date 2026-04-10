@@ -2,80 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CJm/KDej3GkqUwkAu9opvQ
+	id gBkBLjij3GkqUwkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:03 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:04 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 495903E8B2F
+	by mail.lfdr.de (Postfix) with ESMTPS id F12BC3E8B44
 	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5D2910E35F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D276610E35B;
 	Mon, 13 Apr 2026 08:03:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OYiOli/F";
+	dkim=pass (2048-bit key; unprotected) header.d=jqluv-com.20251104.gappssmtp.com header.i=@jqluv-com.20251104.gappssmtp.com header.b="SP59giwo";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BFE010E8AA
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 07:06:56 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id
- 5b1f17b1804b1-488a29e6110so19295535e9.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 00:06:56 -0700 (PDT)
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com
+ [209.85.160.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADD3110E8B9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 07:08:00 +0000 (UTC)
+Received: by mail-qt1-f180.google.com with SMTP id
+ d75a77b69052e-506bcb23a78so13264761cf.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 00:08:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1775804879; cv=none;
+ d=google.com; s=arc-20240605;
+ b=Kvksfqzwt2RUcWEkmyL8Vw9EgbgRhxBpajR9HEUNFrdLMae6dItyx/tXXvKeBh1Hs6
+ e7c7wK4xxy6dsSmFUKOPBqI/Q6r69j+dc76p9g6p72xQo+KqtjTuygEHt+XFjbI3rRc1
+ lfQwdOp1NMoxCm5LFK0JnwO8Rt9QJEs1B8NDazswDHZSCIEW8MWPLNtuHEOksaASALYo
+ thX786VW0SF6iiI3eNWVLAuKFCMbjsv9G/BCpNnvF9qIEMz8TXOzeabP3g6/9s9pQH4R
+ rkauTzlC1Yti3yS+AubzT2Ws/yfdi2ucvbMEv9t+z1JiJjIzD3IWNa3za80X3fF5/18P
+ LGTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=Q4UcqDv+vhF4ZV/sYkxhvq9DUcuTGmXtfFg8SZtsPD4=;
+ fh=anGW/YpYxiiNwGvdrmH2Igexb180nP77g5J3PS7VJRQ=;
+ b=Pz70eTohFKVSO55PGwYUvMP+EaBmxNfJef4MSlbzZ6V9dwnSrd4UaSf1Nfwq8vvXu+
+ HkSBE1rJVs+K5ucANIj8ITdDnSabrkQS9ewdMcm6GZZoFOD93ud3lW0F2yHwBergnqrz
+ fD3X0tAQOE1mkmaoM33oGFe48jpPeUslDF7nCoagpUUSvib640MMQIgcM0HaIvuQN7bk
+ NiDUGrpLTvz979I3t0FChqt9I3AvvqoRKw5CdHtVO1rJKp/Wt4OK+7eovFEytxYMDOfM
+ 7cDrOSLB2ZO6IIoaxEGyWnuKfsphEVnHTw0nBbF8AwRZQNcrtEOb5FgSsy5n1g1bA9e4
+ u+TA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1775804815; x=1776409615; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-disposition:mime-version
- :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ d=jqluv-com.20251104.gappssmtp.com; s=20251104; t=1775804879; x=1776409679;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=0cOBE4Zk7Ie2nnzrPJPwRrqSdaHEJi977p/pY63odXY=;
- b=OYiOli/FgGthh5Odq8lGoEeqbgKosjURCYlhkPQ2NNw3us2dZQxegRQOjnNv0R4B+L
- jBlj974Dhl4DbqIKEWl385lCIoJS54g6ev+C8BCSsaDsfgCl6lTUnJiyDqz7tcvfhzmu
- OFEa839aSZBAklik2VBWrlb+u4mTX6WdAZBeEN9hen23Vii54gvN06AEBue5X7AZE1tc
- IyHLbG9g3haokQqc7cnkxBccWetQ+bBb3jToVSQXtZVHU/+fmPSFqCGSMgbuUAyFhmHL
- RL1v/J4PZdmQuSaAsWU2xhYKqWkdjpeyW5ks5QyHjYUoyg8F4wMXFQBBMhAx1c4Kvh4M
- Okuw==
+ bh=Q4UcqDv+vhF4ZV/sYkxhvq9DUcuTGmXtfFg8SZtsPD4=;
+ b=SP59giwo2qIuwrNneTFPwAjaECuN+3Xyc0G0yX/7TuuF5T6rFTsMtZ2Kufg0VxfENE
+ wHlgzgc1DpIM8bfDDx/sDqEZW5h6jZn8njkJMyp8eBoLRFTiW7UAiXml2j28L1G6baHZ
+ oF60GGhHncBuR0V534HPy9w0FiuAdtplV6JUEgubExcdGwNXX5bEaytLcr7m3d7rYAy4
+ pYeGhRKQb4Q/nqqDmojrju0Mr4XHsPmIcCjwFO1huUXviNVGizAYMXkkjSHJjL4eM+0d
+ 7NJLcVyXDTMYpKGHggQtaTh/QeNKBrBGqG0RN7eP342opCspxJphl7ejoSCVValwOmvw
+ fSlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1775804815; x=1776409615;
- h=content-transfer-encoding:content-disposition:mime-version
- :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
+ d=1e100.net; s=20251104; t=1775804879; x=1776409679;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=0cOBE4Zk7Ie2nnzrPJPwRrqSdaHEJi977p/pY63odXY=;
- b=kBa6jtwF/2WhImxfjc8cw94oxPuxW29bSHXfhNUULbcuZBLUiEz+ABWAw9ceO/d2x3
- anO//05UJT8Ywj2TA7pVkn698+OmdMqQVMboBO9FsFMeWGm5VPNXyoonTe1TYBSrDk6U
- PvRHe/sAmjkzNRadjjHF1nrR44WWAhC1vsCb/TeB+vgUmcd78FDniXvjUBElEC2o9lY+
- qO78IBqmWX+Wje3Pnw6nxDRbyWZgyfNZkJXrgmyTRDinccpX666mNA0Ww2JWD17NEW/Q
- qkeeANdoxM8dNmEhHSGZsqx6qkS7FdQp+mILoHdhZFQL4B5PovU4IfQHmH77cq/aboOg
- owmg==
-X-Gm-Message-State: AOJu0Yz0N/fl4+hrAekEOFvJFo+cKaTPddLmgTzEGkU4qIYGeIsyaPmc
- puFeenoREt/wVQDlOLKoGcuButoqgTpgd6jDZ8/48y1k0HUY+3o1CiehZpWvjg==
-X-Gm-Gg: AeBDievfVDx5k/CRzBHYPTuyvxwYQSaFkPBsy815IpWG4tkb2dnmWyzhDwvYcUsOSXe
- zc9nKXUphZOs78zUSVlVT6WA4WUIyQ4tv8faS4rMLgepVnu0oTBjNMb5p4g07kU+uOLIvuG/uum
- pR0OC2qypLlsHfjzqbqYTw/rd4Azp8SIYM1tgl4KvEK73p+pO9BOcXcE0B2cb8OcUKEejP6p5VK
- n1Co6dmmegqJK9DJhaJd9XsT4AAc3onLlFSAg8qwMFpTwSB3lPJL0MtwZK1TF9yP1lkXHJTkps9
- lUBDIuHUs1zPgRQGOgvNuWHYN6clIoZtnTW8ZS7b8ydFE/Djz6b8yc4YC0kDgtZwiryTCl8QV0x
- TYhC257I5ZKO1wAcDA8vk+J4iQ9wqG79HxvZ1xaYWTCbQyvpUObhYfMUeYrhz61WpLub9h7BlqY
- Oi5R6EbRVnZw0K3g9MuOs=
-X-Received: by 2002:a05:600c:a30b:b0:485:6e40:5584 with SMTP id
- 5b1f17b1804b1-488d67eb7e1mr17557915e9.6.1775804814786; 
- Fri, 10 Apr 2026 00:06:54 -0700 (PDT)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-488d5d85ae9sm19805735e9.3.2026.04.10.00.06.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Apr 2026 00:06:54 -0700 (PDT)
-Date: Fri, 10 Apr 2026 10:06:51 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org,
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
-Subject: [bug report] drm/amd/pm/smu7: Remove non-functional SMU7 voltage
- dependency on DAL
-Message-ID: <adihi9-97_oI3uBc@stanley.mountain>
+ bh=Q4UcqDv+vhF4ZV/sYkxhvq9DUcuTGmXtfFg8SZtsPD4=;
+ b=egeoFgh15UrvzOAYLdf6Win7k/OiSCXQ2Q3hX6QGeTp509GBSbzdswZi/Te+5zshDT
+ iXeJoiS2ong4+LxgyqGGIzZ8VrRsuIyqzKClp7DQDYrs1khudUYeWj9m1vFaYXAtU0zl
+ UKHOtvBUBBRrV13sYak9S62ZaU0c7UrBub4vBgw9GfQWC4b4Ofb8Ogw4j763lfDvmzBG
+ YPsYI3emN6p4JhKplP0fUsHIL+L2MqwJGT4OtvHxbKkTGNCXdz25SO8/uLBlhvWlwQdV
+ SSPcAdZMuL/NdmXFZWKjqMSkG9MgEQScZ9WV61fGa3A7NxECTJAKxVoIXHuXu4pSCyzC
+ ePqA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU0qBWVd8S78Is8S5FJq7oYCClwaIrNk0RGobrn7NPTJe7nBUkAigJxQaCZjRoZJ5pJcw9Npg6H@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyMHCcyjpC4Yv2n1oL7mZt9kJCzdp0QRfZEl20rx3sp90deBtx2
+ HMhh1M09ohJTCHAaaqzZyVwE5XRnDypCRHJpYrPAImVsU7+N/S0f689wIlbZKVclOJigIu0g0go
+ vAiRjTcOKkaktL9hhZ/ZHCYDqwUfo7vISckbR9/C2EQ==
+X-Gm-Gg: AeBDieu5qEhKE4HzuBV1wjX8ymNtf0g4uwLpqK6Vm4vUvQqfgoHadLIuF47y2h7DDky
+ 4hUykjKwVFD3/w2hhoFatPM2Z95iIz7mVtI59p7559lRjY5NbOyVrjpruQPkOAAJrj6rkQqPnqa
+ lyfLTvfEOMi+8DAlEAr8ay7z5gd929GMXQqMZ6ltJ7mAjiYlrqbxuRusT2B5KFn11n12VzRw+jy
+ oU1SedgMcDf1Aw1LE3MH4G/VguuvQ2osG/f+q/xjkQOodLiMSOkpGWpgIadvk4jwOH98YMsV/Iv
+ pWLKRrAMVBnlaB3SZkRzexfIfgjBc+mTCQ9IHaTP
+X-Received: by 2002:a05:622a:5e88:b0:50d:83e0:3216 with SMTP id
+ d75a77b69052e-50dd5bc33f1mr31236061cf.49.1775804879383; Fri, 10 Apr 2026
+ 00:07:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+References: <CAGpo2mebCaP4vFuTnn6jgu6OjjE_ssS7i8ENepuUjwwHXddCHA@mail.gmail.com>
+ <243af06e-912b-4915-bc64-5aa16dad7db0@amd.com>
+ <47306de6-cbf6-4b2d-847e-d1e5d933516d@amd.com>
+ <CAGpo2mfy+eWLrfYe2u=DEuP9xdY5pGedGEmpbGB4cetCVYWSAQ@mail.gmail.com>
+ <CAGpo2me6SjmijfQ_QyAvudaakB5zBOy47vALLqrtSXsP9yE3Vg@mail.gmail.com>
+In-Reply-To: <CAGpo2me6SjmijfQ_QyAvudaakB5zBOy47vALLqrtSXsP9yE3Vg@mail.gmail.com>
+From: Geramy Loveless <gloveless@jqluv.com>
+Date: Fri, 10 Apr 2026 00:07:48 -0700
+X-Gm-Features: AQROBzCvnitqQfHi8ejZCSCL0hgvvm0avnstbw9YiCzK-tEXlVuRmZy-bUWiglI
+Message-ID: <CAGpo2mcVChGFH_81t0z4rWMKM7VXoTvOP6aHKvsLdhO0aj4CPQ@mail.gmail.com>
+Subject: Re: [PATCH] amdgpu: recover Thunderbolt PCIe link after MODE1 GPU
+ reset
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 13 Apr 2026 08:02:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,133 +115,677 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	DATE_IN_PAST(1.00)[72];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[jqluv-com.20251104.gappssmtp.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:SRINIVASAN.SHANMUGAM@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[jqluv.com];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mario.limonciello@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[gloveless@jqluv.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gloveless@jqluv.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[jqluv-com.20251104.gappssmtp.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,stanley.mountain:mid]
-X-Rspamd-Queue-Id: 495903E8B2F
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,gitlab.freedesktop.org:url,jqluv-com.20251104.gappssmtp.com:dkim]
+X-Rspamd-Queue-Id: F12BC3E8B44
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello Timur Kristóf,
+ One last update, we are more stable but there is still something
+crashing the GPU somewhere please give guidance on where to look.
 
-Commit 9f49e3d4cb86 ("drm/amd/pm/smu7: Remove non-functional SMU7
-voltage dependency on DAL") from Mar 29, 2026 (linux-next), leads to
-the following Smatch static checker warning:
+## SMU Firmware Version
 
-	drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu7_hwmgr.c:3065 smu7_hwmgr_backend_init()
-	warn: duplicate zero check 'result' (previous on line 3054)
+```
+smu driver if version =3D 0x0000002e
+smu fw if version =3D 0x00000032
+smu fw program =3D 0
+smu fw version =3D 0x00684b00 (104.75.0)
+```
 
-drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/smu7_hwmgr.c
-    3024 static int smu7_hwmgr_backend_init(struct pp_hwmgr *hwmgr)
-    3025 {
-    3026         struct amdgpu_device *adev = hwmgr->adev;
-    3027         struct smu7_hwmgr *data;
-    3028         int result = 0;
-    3029 
-    3030         data = kzalloc_obj(struct smu7_hwmgr);
-    3031         if (data == NULL)
-    3032                 return -ENOMEM;
-    3033 
-    3034         hwmgr->backend = data;
-    3035         smu7_set_sclk_cap(hwmgr);
-    3036         smu7_patch_voltage_workaround(hwmgr);
-    3037         smu7_init_dpm_defaults(hwmgr);
-    3038 
-    3039         /* Get leakage voltage based on leakage ID. */
-    3040         if (phm_cap_enabled(hwmgr->platform_descriptor.platformCaps,
-    3041                         PHM_PlatformCaps_EVV)) {
-    3042                 result = smu7_get_evv_voltages(hwmgr);
-    3043                 if (result) {
-    3044                         pr_info("Get EVV Voltage Failed.  Abort Driver loading!\n");
-    3045                         kfree(hwmgr->backend);
-    3046                         hwmgr->backend = NULL;
-    3047                         return -EINVAL;
-    3048                 }
-    3049         } else {
-    3050                 smu7_get_elb_voltages(hwmgr);
-    3051         }
-    3052 
-    3053         result = smu7_init_voltage_dependency_on_display_clock_table(hwmgr);
-    3054         if (result)
-    3055                 goto fail;
-    3056 
-    3057         if (hwmgr->pp_table_version == PP_TABLE_V1) {
-    3058                 smu7_complete_dependency_tables(hwmgr);
-    3059                 smu7_set_private_data_based_on_pptable_v1(hwmgr);
-    3060         } else if (hwmgr->pp_table_version == PP_TABLE_V0) {
-    3061                 smu7_patch_dependency_tables_with_leakage(hwmgr);
-    3062                 smu7_set_private_data_based_on_pptable_v0(hwmgr);
-    3063         }
-    3064 
---> 3065         if (result)
-    3066                 goto fail;
+Note: Driver interface version (0x2e / 46) does not match firmware
+interface version (0x32 / 50).
 
-The commit deleted the function call but left the error checking.
+## PCI Topology
 
-    3067 
-    3068         data->is_tlu_enabled = false;
-    3069 
-    3070         hwmgr->platform_descriptor.hardwareActivityPerformanceLevels =
-    3071                                                         SMU7_MAX_HARDWARE_POWERLEVELS;
-    3072         hwmgr->platform_descriptor.hardwarePerformanceLevels = 2;
-    3073         hwmgr->platform_descriptor.minimumClocksReductionPercentage = 50;
-    3074 
-    3075         data->pcie_gen_cap = adev->pm.pcie_gen_mask;
-    3076         if (data->pcie_gen_cap & CAIL_PCIE_LINK_SPEED_SUPPORT_GEN3)
-    3077                 data->pcie_spc_cap = 20;
-    3078         else
-    3079                 data->pcie_spc_cap = 16;
-    3080         data->pcie_lane_cap = adev->pm.pcie_mlw_mask;
-    3081 
-    3082         hwmgr->platform_descriptor.vbiosInterruptId = 0x20000400; /* IRQ_SOURCE1_SW_INT */
-    3083         /* The true clock step depends on the frequency, typically 4.5 or 9 MHz. Here we use 5. */
-    3084         hwmgr->platform_descriptor.clockStep.engineClock = 500;
-    3085         hwmgr->platform_descriptor.clockStep.memoryClock = 500;
-    3086         smu7_thermal_parameter_init(hwmgr);
-    3087 
-    3088         result = smu7_update_edc_leakage_table(hwmgr);
-    3089         if (result)
-    3090                 goto fail;
-    3091 
-    3092         return 0;
-    3093 fail:
-    3094         smu7_hwmgr_backend_fini(hwmgr);
-    3095         return result;
-    3096 }
+```
+65:00.0 PCI bridge: Intel Barlow Ridge Host 80G (rev 84)
+66:00.0 PCI bridge: Intel Barlow Ridge Host 80G (rev 84) =E2=86=92 NHI
+66:01.0 PCI bridge: Intel Barlow Ridge Host 80G (rev 84) =E2=86=92 empty ho=
+tplug port
+66:02.0 PCI bridge: Intel Barlow Ridge Host 80G (rev 84) =E2=86=92 USB
+66:03.0 PCI bridge: Intel Barlow Ridge Host 80G (rev 84) =E2=86=92 dock
+93:00.0 PCI bridge: Intel Barlow Ridge Hub 80G (rev 85) =E2=86=92 dock swit=
+ch
+94:00.0 PCI bridge: Intel Barlow Ridge Hub 80G (rev 85) =E2=86=92 downstrea=
+m
+95:00.0 PCI bridge: AMD Navi 10 XL Upstream Port (rev 24)
+96:00.0 PCI bridge: AMD Navi 10 XL Downstream Port (rev 24)
+97:00.0 VGA: AMD [1002:7551] (rev c0) =E2=86=90 GPU
+97:00.1 Audio: AMD [1002:ab40]
+```
 
-This email is a free service from the Smatch-CI project [smatch.sf.net].
+## Workload
 
-regards,
-dan carpenter
+GPU compute via llama.cpp (ROCm/HIP backend), running
+Qwen3.5-35B-A3B-Q4_K_M.gguf model (20.49 GiB, fully offloaded to
+VRAM). Flash attention enabled, 128K context, 32 threads.
+
+## Crash Timeline
+
+All timestamps from `dmesg -T`, kernel boot-relative times in brackets.
+
+### GPU initialization (successful)
+
+```
+[603.644s] GPU probe: IP DISCOVERY 0x1002:0x7551
+[603.653s] Detected IP block: smu_v14_0_0, gfx_v12_0_0
+[603.771s] Detected VRAM RAM=3D32624M, BAR=3D32768M, RAM width 256bits GDDR=
+6
+[604.014s] SMU driver IF 0x2e, FW IF 0x32, FW version 104.75.0
+[604.049s] SMU is initialized successfully!
+[604.119s] Runtime PM manually disabled (amdgpu.runpm=3D0)
+[604.119s] Initialized amdgpu 3.64.0 for 0000:97:00.0
+```
+
+### SMU stops responding [T+4238s after init, ~70 minutes]
+
+```
+[4841.828s] SMU: No response msg_reg: 12 resp_reg: 0
+[4841.828s] [smu_v14_0_2_get_power_profile_mode] Failed to get activity mon=
+itor!
+[4849.393s] SMU: No response msg_reg: 12 resp_reg: 0
+[4849.393s] Failed to export SMU metrics table!
+```
+
+15 consecutive `SMU: No response` messages logged between [4841s] and
+[4948s], approximately every 7-8 seconds. All with `msg_reg: 12
+resp_reg: 0`. Failed operations include:
+- `smu_v14_0_2_get_power_profile_mode` =E2=80=94 Failed to get activity mon=
+itor
+- `Failed to export SMU metrics table`
+- `Failed to get current clock freq`
+
+### Page faults begin [T+4349s after init, ~111s after first SMU failure]
+
+```
+[4948.927s] [gfxhub] page fault (src_id:0 ring:40 vmid:9 pasid:108)
+Process llama-cli pid 35632
+GCVM_L2_PROTECTION_FAULT_STATUS: 0x00941051
+Faulty UTCL2 client ID: TCP (0x8)
+PERMISSION_FAULTS: 0x5
+WALKER_ERROR: 0x0
+MAPPING_ERROR: 0x0
+RW: 0x1 (write)
+```
+
+10 page faults logged at [4948s], all from TCP (Texture Cache Pipe),
+all PERMISSION_FAULTS=3D0x5, WALKER_ERROR=3D0x0, MAPPING_ERROR=3D0x0. 7
+unique faulting addresses:
+- 0x000072ce90828000
+- 0x000072ce90a88000
+- 0x000072ce90a89000
+- 0x000072ce90cde000
+- 0x000072ce90ce1000
+- 0x000072ce90f51000
+- 0x000072ce90f52000
+
+### MES failure and GPU reset [T+4349s]
+
+```
+[4952.809s] MES(0) failed to respond to msg=3DREMOVE_QUEUE
+[4952.809s] failed to remove hardware queue from MES, doorbell=3D0x1806
+[4952.809s] MES might be in unrecoverable state, issue a GPU reset
+[4952.809s] Failed to evict queue 4
+[4952.809s] Failed to evict process queues
+[4952.809s] GPU reset begin!. Source: 3
+```
+
+### GPU reset fails
+
+```
+[4953.121s] Failed to evict queue 4
+[4953.121s] Failed to suspend process pid 28552
+[4953.121s] remove_all_kfd_queues_mes: Failed to remove queue 3 for dev 625=
+36
+```
+
+6 MES(1) REMOVE_QUEUE failures, each timing out after ~2.5 seconds:
+```
+[4955.720s] MES(1) failed to respond to msg=3DREMOVE_QUEUE =E2=86=92 failed=
+ to
+unmap legacy queue
+[4958.283s] MES(1) failed to respond to msg=3DREMOVE_QUEUE =E2=86=92 failed=
+ to
+unmap legacy queue
+[4960.847s] MES(1) failed to respond to msg=3DREMOVE_QUEUE =E2=86=92 failed=
+ to
+unmap legacy queue
+[4963.411s] MES(1) failed to respond to msg=3DREMOVE_QUEUE =E2=86=92 failed=
+ to
+unmap legacy queue
+[4965.976s] MES(1) failed to respond to msg=3DREMOVE_QUEUE =E2=86=92 failed=
+ to
+unmap legacy queue
+[4968.540s] MES(1) failed to respond to msg=3DREMOVE_QUEUE =E2=86=92 failed=
+ to
+unmap legacy queue
+```
+
+### PSP suspend fails
+
+```
+[4971.164s] psp gfx command LOAD_IP_FW(0x6) failed and response status is (=
+0x0)
+[4971.164s] Failed to terminate ras ta
+[4971.164s] suspend of IP block <psp> failed -22
+```
+
+### Suspend unwind fails =E2=80=94 SMU not ready
+
+```
+[4971.164s] SMU is resuming...
+[4971.164s] SMC is not ready
+[4971.164s] SMC engine is not correctly up!
+[4971.164s] resume of IP block <smu> failed -5
+[4971.164s] amdgpu_device_ip_resume_phase2 failed during unwind: -5
+[4971.164s] GPU pre asic reset failed with err, -22 for drm dev, 0000:97:00=
+.0
+```
+
+### MODE1 reset =E2=80=94 SMU still dead
+
+```
+[4971.164s] MODE1 reset
+[4971.164s] GPU mode1 reset
+[4971.164s] GPU smu mode1 reset
+[4972.193s] GPU reset succeeded, trying to resume
+[4972.193s] VRAM is lost due to GPU reset!
+[4972.193s] SMU is resuming...
+[4972.193s] SMC is not ready
+[4972.193s] SMC engine is not correctly up!
+[4972.193s] resume of IP block <smu> failed -5
+[4972.193s] GPU reset end with ret =3D -5
+```
+
+
+
+Geramy L. Loveless
+Founder & Chief Innovation Officer
+
+JQluv.net, Inc.
+Site: JQluv.com
+Mobile: 559.999.1557
+Office: 1 (877) 44 JQluv
+
+
+
+
+On Thu, Apr 9, 2026 at 11:22=E2=80=AFPM Geramy Loveless <gloveless@jqluv.co=
+m> wrote:
+>
+> Before you guys waste your time reading all the below, dont.
+> I had made a mistake in my patch to PCI basically causing the entire
+> tree of devices to get released, I was using an unsafe version of the
+> pci API.
+> It has been corrected following suggestions by the reviewer on the
+> original patch.
+>
+> https://lore.kernel.org/linux-pci/20260410052918.5556-2-gloveless@jqluv.c=
+om/
+>
+> If you would like I still could submit some safety patch work as mario
+> was suggesting that its not a bad idea to have the ability
+> to handle edge case situations to prevent crashing in the future if
+> something goes awry. There was also one basically the GPU would not
+> get initialized correctly and it would attempt to access null
+> reference rings which never got filled.
+>
+> I appreciate the help and explanation of how the systems on the GPU
+> work and look forward to learning more but hopefully not because of a
+> bug that either
+> I cause or run across haha :) I am going to start backing out the
+> kernel parameters in hopes that everything is happy with the pci fix I
+> implemented and hopefully i dont need to set params.
+>
+>
+>
+> On Thu, Apr 9, 2026 at 5:12=E2=80=AFPM Geramy Loveless <gloveless@jqluv.c=
+om> wrote:
+> >
+> > Hey,
+> >
+> > I have nearly finished my patch, I need to double check some stuff
+> > first but here is a summary of the real cause that I can see.
+> > See below for a in depth in depth analysis. I am not sure technically
+> > if thunderbolt is at fault in this scenario or the amdgpu please let
+> > me know what your opinion is on this and where it should be patched
+> > at. Of course the patch i'm working on allows for a resolution path if
+> > it happens which is a nice recovery mode but it doesnt solve it
+> > occuring.
+> >
+> > ## Summary
+> >
+> > R9700 Pro [1002:7551] (gfx1201) connected via Thunderbolt 5 dock. GPU
+> > initializes fully but MMIO becomes unreachable while PCIe config space
+> > continues to work. MMIO becomes unresponsive,
+> > cascading into SDMA timeouts and GPU reset loops. Reproduced on two
+> > separate boots (10s and 96s after init).
+> >
+> > The split between working config space and dead MMIO points to the
+> > Thunderbolt PCIe tunnel selectively dropping memory transactions while
+> > continuing to pass configuration transactions.
+> >
+> > ## Hardware
+> >
+> > - Host: MSI MS-S1 MAX (Strix Halo), AMD IOMMU
+> > - Thunderbolt host controller: Intel Barlow Ridge TB5 [8086:5780] at 67=
+:00.0
+> > - Dock: Razer Core X V2 (TB4, FW 59.82)
+> > - GPU: AMD R9700 Pro [1002:7551] gfx1201, 32GB GDDR6
+> > - Connection: TB5 host =E2=86=92 TB4 dock, 40 Gb/s dual lane
+> > - TB tunnel: PCIe 0:10 <-> 3:9, extended encapsulation enabled
+> > - PCIe topology through dock:
+> > ```
+> > 66:03.0 TB bridge (32GB pref window)
+> > 93:00.0 Intel 5786 Upstream Switch
+> > 94:00.0 Intel 5786 Downstream Switch (Gen4 x4 to AMD switch)
+> > 95:00.0 AMD 1478 Upstream Switch
+> > 96:00.0 AMD 1479 Downstream Switch (Gen5 x16 to GPU)
+> > 97:00.0 GPU [1002:7551]
+> > ```
+> > - No display connected to eGPU
+> >
+> > ## Kernel
+> >
+> > ```
+> > Linux 7.0.0-rc7-egpu+ #7 SMP PREEMPT_DYNAMIC
+> > cmdline: pcie_port_pm=3Doff pcie_aspm=3Doff amdgpu.runpm=3D0
+> > ```
+> >
+> > ## The evidence
+> >
+> > ### 1. GPU initializes successfully on both boots
+> >
+> > Boot -1 (7.0.0-rc7-egpu+, journalctl, precise timestamps):
+> > ```
+> > 16:45:46.038 SMU is initialized successfully!
+> > 16:45:46.038 [drm] Display Core v3.2.369 initialized on DCN 4.0.1
+> > 16:45:46.131 runtime pm is manually disabled
+> > 16:45:46.131 [drm] Initialized amdgpu 3.64.0 for 0000:97:00.0 on minor =
+0
+> > ```
+> >
+> > Boot 0 (7.0.0-rc7-egpu+, dmesg):
+> > ```
+> > [9551.162] SMU is initialized successfully!
+> > [9551.163] [drm] Display Core v3.2.369 initialized on DCN 4.0.1
+> > [9551.248] runtime pm is manually disabled
+> > [9551.249] [drm] Initialized amdgpu 3.64.0 for 0000:97:00.0 on minor 0
+> > ```
+> >
+> > All IP blocks come up clean. 32624MB VRAM. 64 CUs. SMU responds to
+> > all init-time messages. No errors during initialization.
+> >
+> > ### 2. SMU becomes unreachable after variable delay
+> >
+> > Boot -1 =E2=80=94 **10 seconds** after init:
+> > ```
+> > 16:45:56.192 Failed to disable gfxoff!
+> > 16:45:56.192 SMU is in hanged state, failed to send smu message!
+> > 16:45:56.192 Failed to export SMU metrics table!
+> > (repeated ~30 times)
+> > ```
+> >
+> > Boot 0 =E2=80=94 **96 seconds** after init:
+> > ```
+> > [9647.872] Failed to export SMU metrics table!
+> > [9647.872] SMU is in hanged state, failed to send smu message!
+> > (repeated)
+> > [9661.567] Failed to disable gfxoff!
+> > ```
+> >
+> > The delay is not consistent (10s vs 96s), ruling out a fixed firmware
+> > timer. The first failing operation varies (gfxoff disable vs metrics
+> > export), suggesting the SMU itself isn't crashing =E2=80=94 the communi=
+cation
+> > path to it is dying.
+> >
+> > ### 3. Config space alive, MMIO dead (proved during boot 0 crash)
+> >
+> > Tested during the active crash with the GPU in "SMU hanged" state:
+> >
+> > **Config space (works):**
+> > ```
+> > $ sudo setpci -s 97:00.0 0x00.l
+> > 75511002 =E2=86=90 correct vendor/device ID
+> > $ sudo setpci -s 97:00.0 0x04.l
+> > 00100406 =E2=86=90 status/command register OK
+> > ```
+> >
+> > **MMIO BAR5 at 0xc4000000 =E2=80=94 SMU register space (dead):**
+> > ```python
+> > fd =3D os.open('/sys/bus/pci/devices/0000:97:00.0/resource5', os.O_RDON=
+LY)
+> > data =3D os.read(fd, 4)
+> > # OSError: [Errno 5] Input/output error
+> > ```
+> >
+> > **MMIO BAR0 at 0x8880000000 =E2=80=94 VRAM (dead):**
+> > ```python
+> > fd =3D os.open('/sys/bus/pci/devices/0000:97:00.0/resource0', os.O_RDON=
+LY)
+> > data =3D os.read(fd, 4)
+> > # OSError: [Errno 5] Input/output error
+> > ```
+> >
+> > Config transactions reach the device through the TB tunnel. Memory
+> > transactions do not. This is the root cause of the "SMU hanged state" =
+=E2=80=94
+> > the SMU firmware is likely fine, but the MMIO writes to its mailbox
+> > registers never arrive.
+> >
+> > ### 4. Thunderbolt host router and dock are runtime-suspended
+> >
+> > Monitored with 2-second polling during the crash:
+> > ```
+> > 16:54:06 host=3Dsuspended dock=3Dsuspended gpu_errors=3D1
+> > 16:54:09 host=3Dsuspended dock=3Dsuspended gpu_errors=3D3
+> > 16:54:11 host=3Dsuspended dock=3Dsuspended gpu_errors=3D5
+> > ...
+> > 16:54:57 host=3Dsuspended dock=3Dsuspended gpu_errors=3D119
+> > ```
+> >
+> > TB host router runtime PM configuration:
+> > ```
+> > /sys/bus/thunderbolt/devices/0-0/power/control =3D auto
+> > /sys/bus/thunderbolt/devices/0-0/power/autosuspend_delay_ms =3D 15000
+> > /sys/bus/thunderbolt/devices/0-0/power/runtime_status =3D suspended
+> > ```
+> >
+> > Both the TB host router and dock switch show `suspended` throughout
+> > the crash. The PCIe tunnel was activated while they were in this state.
+> >
+> > ### 5. Waking TB host router does not restore MMIO
+> >
+> > ```
+> > $ echo "on" > /sys/bus/thunderbolt/devices/0-0/power/control
+> > $ cat /sys/bus/thunderbolt/devices/0-0/power/runtime_status
+> > active
+> >
+> > $ python3 -c "os.read(os.open('/sys/bus/pci/devices/.../resource5', ...=
+), 4)"
+> > # OSError: [Errno 5] Input/output error =E2=86=90 still dead
+> > ```
+> >
+> > Once MMIO is lost, waking the TB host router doesn't recover it. The
+> > damage to the memory transaction path persists until device removal
+> > and re-enumeration (or reboot).
+> >
+> > ### 6. Full crash cascade (boot -1)
+> >
+> > ```
+> > 16:45:46 Init complete
+> > 16:45:56 SMU hanged (MMIO path dead)
+> > 16:45:58 SDMA ring timeout =E2=86=92 ring reset succeeds
+> > 16:46:00 SDMA ring timeout again =E2=86=92 ring reset succeeds
+> > 16:51:16 Full GPU reset (MODE1 via SMU)
+> > 16:51:33 GPU reset succeeded, SMU resumed
+> > GPU runs for 37 more minutes
+> > 17:28:17 SDMA timeout =E2=86=92 ring reset FAILS
+> > 17:28:17 GPU reset returns -ENODEV (device gone from bus)
+> > Infinite reset loop, system unusable
+> > ```
+> >
+> > MODE1 reset succeeds once (re-establishing the MMIO path temporarily)
+> > but the problem recurs, and the second MODE1 reset kills the PCIe link
+> > entirely (-ENODEV).
+> >
+> > ## Configuration notes
+> >
+> > - `amdgpu.runpm=3D0` is set and confirmed. GPU runtime PM (BOCO) is not
+> > active. This does not prevent the crash.
+> > - `pcie_port_pm=3Doff pcie_aspm=3Doff` are set. PCIe link power managem=
+ent
+> > is disabled. This does not prevent the crash.
+> > - TB host router runtime PM (`power/control=3Dauto`) is NOT disabled by
+> > any of the above kernel parameters.
+> > - SMU FW version mismatch: driver expects interface 0x2e, FW reports 0x=
+32.
+> > Init succeeds despite mismatch.
+> > - "PCIE atomic ops is not supported" =E2=80=94 TB bridge doesn't suppor=
+t AtomicOps.
+> >
+> > ## Related
+> >
+> > - GitLab issue: https://gitlab.freedesktop.org/drm/amd/-/work_items/497=
+8
+> > - Device: [1002:7551] (gfx1201, Navi 48, R9700 Pro)
+> > - SMU FW: smu_v14_0_2, version 0x00684a00 (104.74.0)
+> > - SMU driver if version 0x2e, fw if version 0x32 (mismatch)
+> > - TB host controller: Intel Barlow Ridge [8086:5780], FW 61.83
+> > - TB dock: Razer Core X V2, FW 59.82
+> >
+> >
+> >
+> >
+> > Geramy L. Loveless
+> > Founder & Chief Innovation Officer
+> >
+> > JQluv.net, Inc.
+> > Site: JQluv.com
+> > Mobile: 559.999.1557
+> > Office: 1 (877) 44 JQluv
+> >
+> >
+> >
+> >
+> > On Thu, Apr 9, 2026 at 11:12=E2=80=AFAM Mario Limonciello
+> > <mario.limonciello@amd.com> wrote:
+> > >
+> > >
+> > >
+> > > On 4/9/26 06:42, Christian K=C3=B6nig wrote:
+> > > > On 4/9/26 02:05, Geramy Loveless wrote:
+> > > >> When an AMD GPU behind a Thunderbolt PCIe tunnel undergoes a MODE1=
+ on
+> > > >> Thunderbolt the TB driver receives no notification and the tunnel
+> > > >> stays up while the endpoint is unreachable.
+> > > >
+> > > > IIRC a MODE1 reset should keep the bus active and so the endpoint s=
+hould still be reachable.
+> > > >
+> > > >> All subsequent PCIe
+> > > >> reads return 0xFFFFFFFF and MES firmware cannot reinitialize,
+> > > >> triggering an infinite reset loop that hangs the system.
+> > > >
+> > > > That sounds more like the MODE1 reset failed.
+> > > >
+> > > >> After MODE1 reset completes, check whether the PCIe endpoint is st=
+ill
+> > > >> reachable using pci_device_is_present(). If the device is behind
+> > > >> Thunderbolt and the link is dead, walk up parent bridges calling
+> > > >> pci_bridge_secondary_bus_reset() to retrain the physical PCIe link
+> > > >> inside the dock.
+> > > >
+> > > > Well that is then a bus reset.
+> > > >
+> > > > I mean that is a reasonable mitigation when a MODE1 reset failed, b=
+ut the question is rather why does the MODE1 reset fails in the first place=
+?
+> > > >
+> > > >> If recovery fails, return -ENODEV to prevent the
+> > > >> reset retry loop.
+> > > >>
+> > > >> This also causes the GPU fan to be at 100% and basically when it
+> > > >> happens and you are not there, you now have a GPU with fan at 100%=
+ and
+> > > >> cant reset it.
+> > > >> I wanted to notate some other things I am finding sometimes before
+> > > >> this adventure of patches to the kernel and amdgpu driver.
+> > > >> Sometimes a crash could happen in the drive and then the GPU fan s=
+peed
+> > > >> hits 100% and the air is hot coming out without any workload, othe=
+r
+> > > >> times
+> > > >> I have seen it have barely any fan speed at all and heat up more t=
+han
+> > > >> it should at the fan level its curently operating at. These are th=
+ings
+> > > >> I have seen with this gpu in a TB5 dock with the driver and
+> > > >> instability. I'm not sure exactly whats going on there but I figur=
+ed
+> > > >> since im communicating with these patches I might as well bring yo=
+u up
+> > > >> to speed and supermario has been great help throughout me trying t=
+o
+> > > >> get the AMD AI R9700 Pro working on my MS-S1 Halo Strix with a TB5=
+ /
+> > > >> USB4v2 dock!
+> > > >
+> > > > Adding Mario as well. That strongly sounds like you crashed the SMU=
+ which would also explain the failed MODE1 reset.
+> > > >
+> > > > But all of that are only symptoms. Question is what is actually goi=
+ng on here? e.g. what is the root cause?
+> > >
+> > > We don't spend a lot of time in recovery scenarios for when =F0=9F=92=
+=A9 hits the
+> > > fan.  I think in addition to finding and fixing the real root cause
+> > > having a reproducible workload to cause the crash is a good opportuni=
+ty
+> > > to try to put in place better recovery too.
+> > >
+> > > Generally speaking I like the idea of if a mode1 reset fails to do a
+> > > harder reset.  At least in the path that we have GPU recovery
+> > > (amdgpu.gpu_recovery module parameter) set, adding a fallback case to=
+ do
+> > > a full device reset makes sense to me.
+> > >
+> > > I think the placement is wrong though.  amdgpu_device_mode1_reset() h=
+as
+> > > a bunch of callers, and if you end up with a mode1 reset doing a full
+> > > reset that might be a surprise to those callers.
+> > >
+> > > So I think a more logical place to put this would be explicitly in th=
+e
+> > > GPU recovery path (amdgpu_device_gpu_recover).  Maybe as part of the
+> > > mode1 reset failure you can:
+> > >
+> > > set_bit(AMDGPU_NEED_FULL_RESET, &reset_context->flags);
+> > >
+> > > And then the GPU recovery path can jump right into a full reset?  Not
+> > > sure if that jives with your stack trace though.
+> > >
+> > > Furthermore; even though you reproduced this on Thunderbolt; I have n=
+o
+> > > reason to believe it's specific to thunderbolt.  An SMU crash can hap=
+pen
+> > > in any hardware.  We may as well try full reset for recovery for any
+> > > hardware.
+> > >
+> > > >
+> > > >>
+> > > >> It seems to be finally working with bar resizing after my kernel
+> > > >> patch. Which allows you to safely release a empty switch bridge at=
+ the
+> > > >> device end.
+> > > >> Then it rebuilds it afterwords with the increased bar. This was do=
+ne
+> > > >> on Kernel 7.0-rc7 i believe it is and latest changes from pci/reso=
+urce
+> > > >> branch with my patch here.
+> > > >>
+> > > >> https://lore.kernel.org/linux-pci/CAGpo2meKY6SXsESU-D0PGgbESLqdF8U=
+BF-tmThxOvk2XUDpEzw@mail.gmail.com/T/#u
+> > > >
+> > > > Where is the MMIO register BAR before and after the rebuild?
+> > > >
+> > > > Regards,
+> > > > Christian.
+> > > >
+> > > >>
+> > > >> Thank you!
+> > > >>
+> > > >> Signed-off-by: Geramy Loveless <gloveless@jqluv.com>
+> > > >> ---
+> > > >> drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 40 ++++++++++++++++++=
+++++
+> > > >> 1 file changed, 40 insertions(+)
+> > > >>
+> > > >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > > >> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > > >> index 31a60173c..91d01d538 100644
+> > > >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > > >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > > >> @@ -5770,6 +5770,46 @@ int amdgpu_device_mode1_reset(struct amdgpu=
+_device *adev)
+> > > >> /* ensure no_hw_access is updated before we access hw */
+> > > >> smp_mb();
+> > > >> + /*
+> > > >> + * On Thunderbolt-attached GPUs, MODE1 reset kills the PCIe
+> > > >> + * endpoint but the TB tunnel stays up unaware. Detect the
+> > > >> + * dead link and attempt recovery by resetting parent bridges
+> > > >> + * to retrain the physical PCIe link inside the dock.
+> > > >> + */
+> > > >> + if (!pci_device_is_present(adev->pdev) &&
+> > > >> + pci_is_thunderbolt_attached(adev->pdev)) {
+> > > >> + struct pci_dev *bridge;
+> > > >> + bool recovered =3D false;
+> > > >> +
+> > > >> + dev_info(adev->dev,
+> > > >> + "PCIe link lost after mode1 reset, attempting Thunderbolt recove=
+ry\n");
+> > > >> +
+> > > >> + bridge =3D pci_upstream_bridge(adev->pdev);
+> > > >> + while (bridge && !pci_is_root_bus(bridge->bus)) {
+> > > >> + dev_info(adev->dev,
+> > > >> + "attempting link recovery via %s\n",
+> > > >> + pci_name(bridge));
+> > > >> + pci_bridge_secondary_bus_reset(bridge);
+> > > >> + msleep(100);
+> > > >> + if (pci_device_is_present(adev->pdev)) {
+> > > >> + recovered =3D true;
+> > > >> + break;
+> > > >> + }
+> > > >> + bridge =3D pci_upstream_bridge(bridge);
+> > > >> + }
+> > > >> +
+> > > >> + if (!recovered) {
+> > > >> + dev_err(adev->dev,
+> > > >> + "Thunderbolt PCIe link recovery failed\n");
+> > > >> + ret =3D -ENODEV;
+> > > >> + goto mode1_reset_failed;
+> > > >> + }
+> > > >> +
+> > > >> + dev_info(adev->dev,
+> > > >> + "Thunderbolt PCIe link recovered via %s\n",
+> > > >> + pci_name(bridge));
+> > > >> + }
+> > > >> +
+> > > >> amdgpu_device_load_pci_state(adev->pdev);
+> > > >> ret =3D amdgpu_psp_wait_for_bootloader(adev);
+> > > >> if (ret)
+> > > >> --
+> > > >> 2.51.0
+> > > >
+> > >
