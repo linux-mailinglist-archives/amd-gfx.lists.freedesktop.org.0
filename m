@@ -2,77 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OBNpMjaj3GkEUgkAu9opvQ
+	id kU5+Lzij3GktUwkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:02 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:04 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F58B3E8B20
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1856B3E8B4A
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2BBB10E35C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C54C910E35A;
 	Mon, 13 Apr 2026 08:03:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="b6BYKUZr";
+	dkim=pass (2048-bit key; unprotected) header.d=jqluv-com.20251104.gappssmtp.com header.i=@jqluv-com.20251104.gappssmtp.com header.b="FfpJQ7Ur";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E69110E9E7
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 18:04:10 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id
- 5b1f17b1804b1-488a041eae5so16794655e9.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 11:04:10 -0700 (PDT)
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com
+ [209.85.160.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68DEA10E9C4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 19:18:08 +0000 (UTC)
+Received: by mail-qt1-f182.google.com with SMTP id
+ d75a77b69052e-50d876329bbso25386001cf.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 12:18:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1775848687; cv=none;
+ d=google.com; s=arc-20240605;
+ b=AoCl7/e8qeP+GlHPIM/dIqrd94cABAfVAwyCIuj1jkpONeUsmnvzOzuMxzEDeXD1t0
+ L4DYtDlUVsblQtPAQ8onwXOgpT2cFs/SVvpvwy8VyrnU7rxaOe0uyJ8STKJjUWANn6fO
+ xZ+s+5rbxWXfj0yWWYoc0x+LsMBi9lCwjvMvRcM/aztk7jl4bktU1xlLS4Z+3wFgN5y3
+ aVtVFRh5MHwTnA9gnXVdh5Oh+HQFhPv9uwUgS5RngvwsmDOToG+HPJ3dH5MuBZ+tbvu+
+ 5lDxibpOHSCbB+f83vyiFESag1rlzi+kJijA/YXI6QvH+325dLcDoEwL+KKp+TeepF7y
+ kLEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=31FEqE2Yo5rPZanPlKgVYvrw+i09p9M5WGMB8Y1/hl4=;
+ fh=/JHJBozUXm+pdtSjgn7bNtLzNBEJ+Sbb2nHfx1/yaCU=;
+ b=WHTADC73C+OYpQqoTHqyL+1G2kBgR/D176el78wliW6LEMJhQv4JFlkyIo49ttB4Z2
+ oNvf1M4ARHg92auWTRKU5Vo1l9pnrTBWpyv2rctB/bBypeX+J1X9qZe+BS7lqJiC6RF6
+ bJfHSAdz7Dvrjlf7d212u5fOmhxzDWtrvW4FsiUnKdpB69EToyFx0TWp/iGtNBY52hBd
+ fsoUhWIwvAEeJx8NQIRGkyUOVpFmAigZid3Uz+BbZ+2Nuu4esP3UHgdVu1RAD91C/ugp
+ nkdKwBXaCqFhSld8eNHsLWEjIc1XyYRnxVwYS5OmnhrbbkOMHBnHKw1v+yR2zpXFQfp7
+ 3IPQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1775844249; x=1776449049; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=9l/oix7dnYVXzfahKGR2Cy0MP70M99Q53kRWCfw0mow=;
- b=b6BYKUZrXt3hKCTly79qv3A6die8BH23OTSh4hHfLX5eI/OQ1s+bA9uo+y836Z498k
- UdgJ/Q8zmLx/p7eURr0TnR+yFHHqJVOempMztGW1jq+WvY+CHiqDw8e578JVt9aKX6kI
- BFGs+6iaqwP3vAGL8j9ZojT9fc/D75rE4mB8xQboGemZlOWO8P5JeKiFUgfzkxIdT1mQ
- gtfCu2iQjwrnIh9t+INB3Kc/YW9Mvh+4tLEe363iIAZwp4UpQW7tGp3/+9jasMUHXuDb
- 3TyD4sw9jnOfW5PNYVugCVmS9zT1GUvycSaKWh/ykQe8ym9JOy39QxCiHCRMeYJOn7Bd
- 0rGw==
+ d=jqluv-com.20251104.gappssmtp.com; s=20251104; t=1775848687; x=1776453487;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=31FEqE2Yo5rPZanPlKgVYvrw+i09p9M5WGMB8Y1/hl4=;
+ b=FfpJQ7UrsHimJ6V0UAz2sQ3XFbnIZ/vr7V01j8Mk/HiTcyTBBc8HzRdDFLrFStDZs8
+ VlY8astffLr7v6nDlwRaqzxVh3zkBPk9BKKpW/5308Rl1p4Dr/xmHZW3e8W2ZYpCKH6Z
+ 6Pe0lu9w5IXE5MHIaVYQO1cJHtMpDmCZIBltCcQPPLafaS0uLHnylAsoOkeF9VxwqNmA
+ i2lcLQH+q9XG0oFqCYG1Mj0fMTQ8Yv1OQ7GaTR7cR2clHW8kirSHwabPQY8NUQt0fMd3
+ Llm0EYPOlvcifKAoCwugBprUW2J24AFtl312sYL0P5yr9FrM8Q10rVQUsp+9beKJH/Ez
+ 8oZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1775844249; x=1776449049;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=9l/oix7dnYVXzfahKGR2Cy0MP70M99Q53kRWCfw0mow=;
- b=U6wDsZ64GxjKSOlCmLUjvPxsw13dOn8/ow0rqlbLKcRta794tfJlwd0jr6aMBzAJYG
- BIlJnOCXqVL7C6GKlXFbNJtpfUvdAy7uy8q5AI3F9rcLgE4aApGr2dv46oqxHTZO9pV+
- G5Lrb6h8f/fraxp2Rsy0WgrCl1HTcPAaLHFxpvfrpwoSCgJ9Xb1PBFULXS+bthBRHM2s
- S6cnQZe6xk5tGCl2CeZ3XhDr8Ymwei6TNfuezq8ywPWfOShzvPQOkdXq4a2JvSiPL5jd
- sUlTu43aU0SckAHnMW6YRaUydaynWlnaR4L9KOvyK47IcCD32fzhcMO4Loj2Ax+o5M96
- 0wkg==
-X-Gm-Message-State: AOJu0YxQ/RJizuy82UCdYWpQvY9fH8pWQExWFDUiNFYjPt/7/uLcaMYn
- XFExUN+9uEpzHrBnjBxqdavW/gaPkMJY9dS9yYzYg5CgiNbWO9kGrn+c
-X-Gm-Gg: AeBDietJIJ7bAA/+v+TkcX8DAH13pHFh62Tnzo6b+mG5pARJA9eDTQ/KHC4ZvE+l0vE
- lxAmi5Dzv8PcGTgMq4nYQ+T2XGpTvnLMrrCF3+bLwwIkRFX7UqbGPdgTsz9CAsX7cW8AGgHEWQ0
- y801eSKLM2/FJc4mhCE4mtXY8zfyjfmvaJuZRVdToJSS/NBNYTyqEKg2EuwbMarI5r3Slscq34b
- 71Fc6wAuQES3wzWkO6YwbXJlif6ygCctJzNBaa0CRObSOOy4izAvRFlPKVRTCH3CAFTAwd0Kw3m
- kTHPSueL5Go6h30XX/sUgyDiumUqcZYNLpvGLnOVEU7aY8OecKtAueIVv6UIpGtkTI9jGXLzCMh
- 8kzsePjG/UqfANmPCq289XDH4ZlAf/37/RDAkgRiXms8AkVt5CP6vP+ce5+y2mjak/AWNgQdr+S
- VhCbOAdSoaPaCl7SR7ots=
-X-Received: by 2002:a05:600c:5487:b0:488:ae26:435e with SMTP id
- 5b1f17b1804b1-488d683d4f0mr52241845e9.16.1775844248944; 
- Fri, 10 Apr 2026 11:04:08 -0700 (PDT)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-488d533e596sm93964575e9.6.2026.04.10.11.04.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Apr 2026 11:04:08 -0700 (PDT)
-Date: Fri, 10 Apr 2026 21:04:05 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: Rafal Ostrowski <rafal.ostrowski@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
-Subject: [bug report] drm/amd/display: Move FPU Guards From DML To DC - Part 1
-Message-ID: <adk7lVaJt_bX9LCs@stanley.mountain>
+ d=1e100.net; s=20251104; t=1775848687; x=1776453487;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=31FEqE2Yo5rPZanPlKgVYvrw+i09p9M5WGMB8Y1/hl4=;
+ b=ietURX3CJW89xmTbE2xFiERx2qZEX1LE87hatsnYBfZeGjLp09Ij2QCKlgL8Mt+pf/
+ SvJZ4/QJV0Iyrhzc1rkkPmDCX00GnGREtS9su2eauPd0vTx7ITnsmX5Og+7pR5ei3LX3
+ 2+HqEb2dmf88uJFc3sTr4Q9vkY9oa9f4aF8ddI4SYJgp9kxK+LRCiPsr9sKej2oP8EdV
+ qOM9BJse3++BMWuANT/l5gi3k1wCkzexIYAIuaqqdfV8Ouiop9e0hTf1yGuMQ0Kn8URX
+ 7bOyMjeQa/6HtdCh3sYVooQ7mpUOOi2bw6xwvGr5MbVn+4vRZlvfndPhn9XO8CLFAO3V
+ Xnlw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUMHJaLpYjEJHJ++ehGizW5gzn6KTYA3U+0Ng62HLW3Vm18uj9cLaz4RuYl1HW4s8Jm03QKAyaE@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzb9eD9GrLkxlg1AWhsy8aFU6YBQPBOBOpCSgty06VQDkIDeLWR
+ p0JzUPqSBjrIqay2BDX263nApomLjbt0aDL1DUEm917Aa/5Wlrl0mxvVdrlg7QqQq+qgqyE7WpS
+ epC8w6fCK7+HyuCS/9USjdhzcu2dDGBT6iNbfbqYpkQ==
+X-Gm-Gg: AeBDievT/h3AcCGX++SpaIvmipD4+PDGj5/gpfWG7gOxVsZq05rqlEi/LhDQsaT0Kd2
+ Ks6jikysAVBgCHC7pjbr0qxSHDi5P9hRS57CO6dVc/5GKhd14AoVToJGO1g2N28xxfF8bB3f16i
+ 3SmjRKAWXpyH0DRBTsk43nvX/gUIU6hCPiSZeYZm13fgZDOgk4dy+awY3nhHYm28aTcdpZpJhyG
+ 0HeMS2TZjMggWE0LOWbzJD1sjzLm0UhucyoDpHV0SWj9IwJzlHxV0YHJvoBEa3UF8/dwuGgB5KY
+ 27D4
+X-Received: by 2002:a05:622a:24c:b0:50b:4c64:4730 with SMTP id
+ d75a77b69052e-50dd5abce85mr66831251cf.15.1775848687026; Fri, 10 Apr 2026
+ 12:18:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <CAGpo2mebCaP4vFuTnn6jgu6OjjE_ssS7i8ENepuUjwwHXddCHA@mail.gmail.com>
+ <243af06e-912b-4915-bc64-5aa16dad7db0@amd.com>
+ <47306de6-cbf6-4b2d-847e-d1e5d933516d@amd.com>
+ <053100e2-fe23-4b9b-9b20-be5f0a49c22d@amd.com>
+In-Reply-To: <053100e2-fe23-4b9b-9b20-be5f0a49c22d@amd.com>
+From: Geramy Loveless <gloveless@jqluv.com>
+Date: Fri, 10 Apr 2026 12:17:55 -0700
+X-Gm-Features: AQROBzBUob0ErCRbW2Fob8jWHHOFRE468wGPn3kL3Q5v-ADCKqiRpgcKjisMmiU
+Message-ID: <CAGpo2mdhu3R73g6iEb66CODnwkcoDq3Wy4ReYBDvUgZcj7oLeA@mail.gmail.com>
+Subject: Re: [PATCH] amdgpu: recover Thunderbolt PCIe link after MODE1 GPU
+ reset
+To: "Lazar, Lijo" <lijo.lazar@amd.com>
+Cc: Mario Limonciello <mario.limonciello@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com, 
+ Cristian Cocos <cristi@ieee.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 13 Apr 2026 08:02:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,91 +116,247 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	DATE_IN_PAST(1.00)[61];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DATE_IN_PAST(1.00)[60];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[jqluv-com.20251104.gappssmtp.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:rafal.ostrowski@amd.com,m:SRINIVASAN.SHANMUGAM@amd.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[jqluv.com];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[gloveless@jqluv.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:lijo.lazar@amd.com,m:mario.limonciello@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:cristi@ieee.org,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gloveless@jqluv.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[jqluv-com.20251104.gappssmtp.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[stanley.mountain:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 6F58B3E8B20
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,jqluv-com.20251104.gappssmtp.com:dkim]
+X-Rspamd-Queue-Id: 1856B3E8B4A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello Rafal Ostrowski,
+It seems there is another person having the same problems im having or
+at least similar.
+I am going to loop his logs in here and add him maybe we can tackle
+this together and find the underlying problem easier or faster.
+Its always better to have two logs from too different points sometimes
+you get things in one you dont get in the other out of pure chance,
+haha.
 
-Commit 3539437f354b ("drm/amd/display: Move FPU Guards From DML To DC
-- Part 1") from Feb 24, 2026 (linux-next), leads to the following
-Smatch static checker warning:
+ https://pcforum.amd.com/s/question/0D5Pd00001S3Av9KAF/linux-9060xt-egpuove=
+rthunderbolt-bugs-galore
 
-	drivers/gpu/drm/amd/amdgpu/../display/dc/dml2_0/dml2_wrapper_fpu.c:558 dml2_destroy()
-	warn: sleeping in atomic context
+Let me know if I can be of use, or if you need extra bandwidth for
+making patches point my in the direction.
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml2_0/dml2_wrapper_fpu.c
-    551 void dml2_destroy(struct dml2_context *dml2)
-    552 {
-    553         if (!dml2)
-    554                 return;
-    555 
-    556         if (dml2->architecture == dml2_architecture_21)
-    557                 dml21_destroy(dml2);
---> 558         vfree(dml2);
+Thanks everyone!
 
-vfree() is a sleeping function (unless we're in an interrupt).
-
-    559 }
-
-drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_state.c   380  static void dc_state_free(struct kref *kref)
-   381  {
-   382          struct dc_state *state = container_of(kref, struct dc_state, refcount);
-   383  
-   384          dc_state_destruct(state);
-   385  
-   386  #ifdef CONFIG_DRM_AMD_DC_FP
-   387          DC_FP_START();
-                ^^^^^^^^^^^^^
-The patch adds this, which disables preemption
-
-   388          dml2_destroy(state->bw_ctx.dml2);
-   389          state->bw_ctx.dml2 = 0;
-   390  
-   391          dml2_destroy(state->bw_ctx.dml2_dc_power_source);
-   392          state->bw_ctx.dml2_dc_power_source = 0;
-   393          DC_FP_END();
-   394  #endif
-   395  
-   396          kvfree(state);
-   397  }
-
-
-This email is a free service from the Smatch-CI project [smatch.sf.net].
-
-regards,
-dan carpenter
+On Fri, Apr 10, 2026 at 4:25=E2=80=AFAM Lazar, Lijo <lijo.lazar@amd.com> wr=
+ote:
+>
+>
+>
+> On 09-Apr-26 11:42 PM, Mario Limonciello wrote:
+> >
+> >
+> > On 4/9/26 06:42, Christian K=C3=B6nig wrote:
+> >> On 4/9/26 02:05, Geramy Loveless wrote:
+> >>> When an AMD GPU behind a Thunderbolt PCIe tunnel undergoes a MODE1 on
+> >>> Thunderbolt the TB driver receives no notification and the tunnel
+> >>> stays up while the endpoint is unreachable.
+> >>
+> >> IIRC a MODE1 reset should keep the bus active and so the endpoint
+> >> should still be reachable.
+> >>
+> >>> All subsequent PCIe
+> >>> reads return 0xFFFFFFFF and MES firmware cannot reinitialize,
+> >>> triggering an infinite reset loop that hangs the system.
+> >>
+> >> That sounds more like the MODE1 reset failed.
+> >>
+> >>> After MODE1 reset completes, check whether the PCIe endpoint is still
+> >>> reachable using pci_device_is_present(). If the device is behind
+> >>> Thunderbolt and the link is dead, walk up parent bridges calling
+> >>> pci_bridge_secondary_bus_reset() to retrain the physical PCIe link
+> >>> inside the dock.
+> >>
+> >> Well that is then a bus reset.
+> >>
+> >> I mean that is a reasonable mitigation when a MODE1 reset failed, but
+> >> the question is rather why does the MODE1 reset fails in the first pla=
+ce?
+> >>
+> >>> If recovery fails, return -ENODEV to prevent the
+> >>> reset retry loop.
+> >>>
+> >>> This also causes the GPU fan to be at 100% and basically when it
+> >>> happens and you are not there, you now have a GPU with fan at 100% an=
+d
+> >>> cant reset it.
+> >>> I wanted to notate some other things I am finding sometimes before
+> >>> this adventure of patches to the kernel and amdgpu driver.
+> >>> Sometimes a crash could happen in the drive and then the GPU fan spee=
+d
+> >>> hits 100% and the air is hot coming out without any workload, other
+> >>> times
+> >>> I have seen it have barely any fan speed at all and heat up more than
+> >>> it should at the fan level its curently operating at. These are thing=
+s
+> >>> I have seen with this gpu in a TB5 dock with the driver and
+> >>> instability. I'm not sure exactly whats going on there but I figured
+> >>> since im communicating with these patches I might as well bring you u=
+p
+> >>> to speed and supermario has been great help throughout me trying to
+> >>> get the AMD AI R9700 Pro working on my MS-S1 Halo Strix with a TB5 /
+> >>> USB4v2 dock!
+> >>
+> >> Adding Mario as well. That strongly sounds like you crashed the SMU
+> >> which would also explain the failed MODE1 reset.
+> >>
+> >> But all of that are only symptoms. Question is what is actually going
+> >> on here? e.g. what is the root cause?
+> >
+> > We don't spend a lot of time in recovery scenarios for when =F0=9F=92=
+=A9 hits the
+> > fan.  I think in addition to finding and fixing the real root cause
+> > having a reproducible workload to cause the crash is a good opportunity
+> > to try to put in place better recovery too.
+> >
+> > Generally speaking I like the idea of if a mode1 reset fails to do a
+> > harder reset.  At least in the path that we have GPU recovery
+> > (amdgpu.gpu_recovery module parameter) set, adding a fallback case to d=
+o
+> > a full device reset makes sense to me.
+> >
+> > I think the placement is wrong though.  amdgpu_device_mode1_reset() has
+> > a bunch of callers, and if you end up with a mode1 reset doing a full
+> > reset that might be a surprise to those callers.
+> >
+> > So I think a more logical place to put this would be explicitly in the
+> > GPU recovery path (amdgpu_device_gpu_recover).  Maybe as part of the
+> > mode1 reset failure you can:
+> >
+> > set_bit(AMDGPU_NEED_FULL_RESET, &reset_context->flags);
+> >
+> > And then the GPU recovery path can jump right into a full reset?  Not
+> > sure if that jives with your stack trace though.
+> >
+> > Furthermore; even though you reproduced this on Thunderbolt; I have no
+> > reason to believe it's specific to thunderbolt.  An SMU crash can happe=
+n
+> > in any hardware.  We may as well try full reset for recovery for any
+> > hardware.
+>
+> FWIW, if SMU crashes then SBR also shouldn't work since SBR handling
+> needs some firmware support as well.
+>
+> A kernel module triggering chain-reset by going one level up and
+> resetting all devices under the bridge (in a while loop) also doesn't
+> look like an acceptable solution.
+>
+> Thanks,
+> Lijo
+>
+> >
+> >>
+> >>>
+> >>> It seems to be finally working with bar resizing after my kernel
+> >>> patch. Which allows you to safely release a empty switch bridge at th=
+e
+> >>> device end.
+> >>> Then it rebuilds it afterwords with the increased bar. This was done
+> >>> on Kernel 7.0-rc7 i believe it is and latest changes from pci/resourc=
+e
+> >>> branch with my patch here.
+> >>>
+> >>> https://lore.kernel.org/linux-pci/CAGpo2meKY6SXsESU-D0PGgbESLqdF8UBF-
+> >>> tmThxOvk2XUDpEzw@mail.gmail.com/T/#u
+> >>
+> >> Where is the MMIO register BAR before and after the rebuild?
+> >>
+> >> Regards,
+> >> Christian.
+> >>
+> >>>
+> >>> Thank you!
+> >>>
+> >>> Signed-off-by: Geramy Loveless <gloveless@jqluv.com>
+> >>> ---
+> >>> drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 40 +++++++++++++++++++++=
++
+> >>> 1 file changed, 40 insertions(+)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> >>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> >>> index 31a60173c..91d01d538 100644
+> >>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> >>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> >>> @@ -5770,6 +5770,46 @@ int amdgpu_device_mode1_reset(struct
+> >>> amdgpu_device *adev)
+> >>> /* ensure no_hw_access is updated before we access hw */
+> >>> smp_mb();
+> >>> + /*
+> >>> + * On Thunderbolt-attached GPUs, MODE1 reset kills the PCIe
+> >>> + * endpoint but the TB tunnel stays up unaware. Detect the
+> >>> + * dead link and attempt recovery by resetting parent bridges
+> >>> + * to retrain the physical PCIe link inside the dock.
+> >>> + */
+> >>> + if (!pci_device_is_present(adev->pdev) &&
+> >>> + pci_is_thunderbolt_attached(adev->pdev)) {
+> >>> + struct pci_dev *bridge;
+> >>> + bool recovered =3D false;
+> >>> +
+> >>> + dev_info(adev->dev,
+> >>> + "PCIe link lost after mode1 reset, attempting Thunderbolt
+> >>> recovery\n");
+> >>> +
+> >>> + bridge =3D pci_upstream_bridge(adev->pdev);
+> >>> + while (bridge && !pci_is_root_bus(bridge->bus)) {
+> >>> + dev_info(adev->dev,
+> >>> + "attempting link recovery via %s\n",
+> >>> + pci_name(bridge));
+> >>> + pci_bridge_secondary_bus_reset(bridge);
+> >>> + msleep(100);
+> >>> + if (pci_device_is_present(adev->pdev)) {
+> >>> + recovered =3D true;
+> >>> + break;
+> >>> + }
+> >>> + bridge =3D pci_upstream_bridge(bridge);
+> >>> + }
+> >>> +
+> >>> + if (!recovered) {
+> >>> + dev_err(adev->dev,
+> >>> + "Thunderbolt PCIe link recovery failed\n");
+> >>> + ret =3D -ENODEV;
+> >>> + goto mode1_reset_failed;
+> >>> + }
+> >>> +
+> >>> + dev_info(adev->dev,
+> >>> + "Thunderbolt PCIe link recovered via %s\n",
+> >>> + pci_name(bridge));
+> >>> + }
+> >>> +
+> >>> amdgpu_device_load_pci_state(adev->pdev);
+> >>> ret =3D amdgpu_psp_wait_for_bootloader(adev);
+> >>> if (ret)
+> >>> --
+> >>> 2.51.0
+> >>
+> >
+>
