@@ -2,84 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GKEzJzej3GkEUgkAu9opvQ
+	id EGj9FvET2Wm7lwgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:03 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 17:14:57 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1164B3E8B2D
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A68E83D90AC
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 17:14:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3ABF10E35D;
-	Mon, 13 Apr 2026 08:03:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20FEC10E13C;
+	Fri, 10 Apr 2026 15:14:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="CVwPR2Jj";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="k9DAjFNc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A17EC10E969;
- Fri, 10 Apr 2026 14:21:27 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1775830871; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=Jn/Tmj19i3gOK6f9TWANjUnYtLOPBQJNqcx0tOvjD6UpoX8CURmIgJHUNdecp8Pw0CljdDunOXYctaIxdBHusanURm0wQacxVoaGiqrv4X1c2DA8c8Y0+8I4KFWu1BkOG6EKYiSMzeB/aMXduHDEnhJaZkibDPCNqKz5tzzC2w0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1775830871;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=9zLHnTtMqw0wWzWI7j+3+Qz08IlRB+2G4Qkl+hxqDWo=; 
- b=YYqZ7rPD2KtIX1IkeI5KwpQUzCS1ufbR7X+rw1FRYUs1PdogLTcepHPQHDUFTuX4/XqMYUliTgNli96hFqCPikJoz7GZp8BfKi27RdJ/soknA9PpgKQ9gi/D846d2zCYSaUSm/Cc3/QnFgD5R/p82+/jayc8xDqUoa0hzflpqSg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1775830871; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=9zLHnTtMqw0wWzWI7j+3+Qz08IlRB+2G4Qkl+hxqDWo=;
- b=CVwPR2JjdsnnJHG3iLLKNbX4wAsiZCkL3NtXjldGLNGHKv8/5VoQA1Jn4biRiq67
- //9zWXRFyP5j6alWl4gj1F2804zm/gplOKweJwC3iihVZHcLBnJ1hRq5pRUvZc8NkjE
- dyhmroMYyfJueA+zxqQg6lsQ7hpMUqCrpzHbjqJ0=
-Received: by mx.zohomail.com with SMTPS id 1775830869992203.62896287388855;
- Fri, 10 Apr 2026 07:21:09 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH v12 04/25] drm/bridge: Act on the DRM color format property
-Date: Fri, 10 Apr 2026 16:21:00 +0200
-Message-ID: <4810558.ElGaqSPkdT@workhorse>
-In-Reply-To: <edeq6wxmwzvovfoo6pvih6dybwszf3tahg7nvqkjrw3qxllbfd@jwejh2sgb5eh>
-References: <20260409-color-format-v12-0-ce84e1817a27@collabora.com>
- <20260409-color-format-v12-4-ce84e1817a27@collabora.com>
- <edeq6wxmwzvovfoo6pvih6dybwszf3tahg7nvqkjrw3qxllbfd@jwejh2sgb5eh>
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012070.outbound.protection.outlook.com [52.101.53.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 607C710E13C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 15:14:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lD03rtPKXWjis0DIKX72cII/xMQ7UAtBSdkUygp0XYVUMh77VpE+Z8Tw/1fJF1FYH1ps2AHYx9gRFE+zbBqpxz1tbYi4ogB5p/JFiKjw0aI7nndG8rDb/4t7mGdSXZ/rGRyZOBT2rq2vak202umkWGu9xxVc084fwfN+ugBfeSQifWHB2O9i+DGJoewg5/bSJ9I2LOwngPkicL8xPE/VXBYDPuvG92FCzyvkZrDFytHtohrk79kNaqu90jiDhdWCnxRAQEhJMyGcTacxZu+4wIWcR0ifP7aMMLA/ndB1PXA7kSi5Ggyb+dSrhmpEMY6RRtMJDA4hJqp5yMYFjf9ieA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Zm6xddznFTTt8+DLfvYcjT9rev1LrZmd9xi3Y5MSu3o=;
+ b=gt7c2+z5/WRLMXuk6c9/6vfpKFVGt/xafk3+yNURcbioC8Krkqa6WZC4SawrSlmSj9Ia7ICa7BwR0PxC9shP9qeUaA+zOoD4h4Leh9SHmQJGHvz0RtiAD02fMeqFlFGLJyc+X/WaB1MVHf3exK2QxERIWFr+mef1cNMCnn5to4iruIOtvlc1wtJVZZwP5wK4lIXfeyuiKmA295nIxGwW6ptKu+HK4/qddKd1m8tMqK/aVILwK46tgpW/GIKLK0jAmMOeAjNVXT51hkFWfn6ewlcUvzOus1gy5Vw0HFzhMfMMw88Hw5qDkXX/RKHOkwS53fggC/sYiah79wEuLk289Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Zm6xddznFTTt8+DLfvYcjT9rev1LrZmd9xi3Y5MSu3o=;
+ b=k9DAjFNcwuR5GSYghH8TGUjI7RO5fJm7fYyLelwTm5kVHszKK8QNwxCvLG7/LLYizxkYdxj4llOPrQc4t4mspy0qxgioOPrJQqbE8XsIZ/9+CBUsOsTW1R4vHlDsQ3ei6KtTjHdBf70pK4gFoJmZwE+uoZccy+a07pRRf8TXiSM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB8476.namprd12.prod.outlook.com (2603:10b6:8:17e::15)
+ by CH8PR12MB9742.namprd12.prod.outlook.com (2603:10b6:610:27a::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.42; Fri, 10 Apr
+ 2026 15:14:51 +0000
+Received: from DM4PR12MB8476.namprd12.prod.outlook.com
+ ([fe80::2d79:122f:c62b:1cd8]) by DM4PR12MB8476.namprd12.prod.outlook.com
+ ([fe80::2d79:122f:c62b:1cd8%7]) with mapi id 15.20.9791.032; Fri, 10 Apr 2026
+ 15:14:51 +0000
+Message-ID: <a203c78f-6191-4713-b7fc-016ca2a04172@amd.com>
+Date: Fri, 10 Apr 2026 09:14:49 -0600
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/display: Remove redundant includes from DC
+To: Roman.Li@amd.com, amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, Harry.Wentland@amd.com, Sunpeng.Li@amd.com,
+ Aurabindo.Pillai@amd.com, Chuanyu.Tseng@amd.com,
+ Linus Probert <linus.probert@gmail.com>
+References: <20260409180654.1628589-1-Roman.Li@amd.com>
+Content-Language: en-US
+From: Alex Hung <alex.hung@amd.com>
+In-Reply-To: <20260409180654.1628589-1-Roman.Li@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MW4PR04CA0217.namprd04.prod.outlook.com
+ (2603:10b6:303:87::12) To DM4PR12MB8476.namprd12.prod.outlook.com
+ (2603:10b6:8:17e::15)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-Mailman-Approved-At: Mon, 13 Apr 2026 08:02:59 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB8476:EE_|CH8PR12MB9742:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1e1c9c80-1043-4336-7f45-08de9713e98e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|56012099003|22082099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: 58q3oyMDSZ/Mf3ii3tcdfcI9lnryiDmOrax8m4kwH6nJSj41GQrMlVC/oES9hQafERgS0eIARTF7J9eiS5te02WfpodgMqQJPt+JGavysGMAC0Nf43M+R/0ZQ4Gjb00ZlmkSRE3QI5oH7UG+F648yNkbz7/kuMXJdjT+QykGdWAi8efOLX8jFhSBTzI57TxO7h+WmebQhTmMbsn4iEkOZL0aQKOEt6gBince36UySNbprk1JwvNQecRnsV8xy9g3z8zPluLX9uKlNjs77hDXpjLSbRDSmHPAJwRVUM2MxniwwsiMqesrFXgFtvv5eq7HUsy5AF2cs8UwT9iBfMgia0KmhWZI4hpx/tLLhZyvWfyVyjxQv5CrbFQ0sLKUy7TB/5oQgAfNhkoA93m5muDY2yOJAr47V5k91OeJW3gA2lEgDmArIeMe1TXUaTBcY0XVI17Xx/hf7/FQ+p5cKxcpdNLFBy1mujCle2V+tmt7++D9acQmH72c11CyFtSI1ee7HJaaf4cKJSKDh9UtkZraORCNKnFipd5zVRjo74f1lYLnzlRQHHm2w70VvWSlDYCRLWxZ6IwkKf8HiQXtoWWb08GVdqo+9wz0hcpRqDGy3N9SwobkGvBfBWmhVfBngkQ/1V4jJ0rX6GM8LB8vvKXraohGO8Xt0XHhuJUs2NF2v2nGhEs4gH5K2XY0P3jsGHt1oOEQb33VoeygB7Gj0lpk0PBweCpMR+2nhtI1X5gAb48=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB8476.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(56012099003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NUthRVcvenpDZmo4aEFlSkl0STc4eXZSS1RHVEhlRkhPdm1DS0RTYVVnSWlw?=
+ =?utf-8?B?VlBMRzRTb1JEaVp2YXcyTGRtOTZpK3I3eWhyTWkraUxSWERKSWdwbXluQjU5?=
+ =?utf-8?B?RkRRclViWGN0SEZqcGhFQUJDTWxJeW5QbjVpN1kyMmgrR2lHbzFFRlZ3Njdo?=
+ =?utf-8?B?azVSYUVqczF0aVZNbExqajhCc0hRcEIrR3Ftd05LY0dydlcvT1pKTFdpWTJy?=
+ =?utf-8?B?bGF0aEJvYkV5MjlBTkYxbjgxSE9XMSt2d3RnSm5aT05GQ01NWnNIWU92T3l3?=
+ =?utf-8?B?MXRZbnljdFRoY2xUMnlRQTkwc0huMGZ0SVI1emE1V0Nxb3RVeEdoWnk1QjJY?=
+ =?utf-8?B?ejg1bWdTUGxxMlNyd1BxVENHa05mdWo1N3RKS2VCb1VvNE95bDVoanNnckpv?=
+ =?utf-8?B?Ykk0MXI0bkh4em1RdnBzNCtmendTcVhYWmtKYS84czJHclZpUEEvT3RieUpt?=
+ =?utf-8?B?RHl5K0Z6NHBmNjh0Q09hRHhwRTh1QXR6NUlzR3N1dFV0azlEc0ZTWUdFOFhX?=
+ =?utf-8?B?U2NHdzh4Q2NqZklQN1AzVnpNa21YWEpCKzVVZytZQUg5UzFHcHkvUFBET0lJ?=
+ =?utf-8?B?RHRHZEhaUkF0UCtJeVZlQzNERG5SSSt4UitLNTcrU2FSOTk4ZTg3bEdxWm81?=
+ =?utf-8?B?VzFNbGdxVzZEK1pIMVBtN0w0Slg2eDF3emphS3RaYnNGRGg5Sm5YMy8vK05k?=
+ =?utf-8?B?SjJtK3B2SVZQUzJ5d0FwYWs4WUtPQW1wQ240bEtOZ1BWMlh3MTVOQjUwaFVY?=
+ =?utf-8?B?S0ZhS0tjV1FFZ2hDTmVqVC85QWlIa0FnZnZIcm5XVEdwc2dETEJZOHFUVFkw?=
+ =?utf-8?B?dGJ6YTdNKzlXbkhVVGhITW11RzRiTXloRkxvOEcraDhPSGUxaWlBcGprQ3pW?=
+ =?utf-8?B?dWJCcisrMzFFN1FEMDlRbjFkOW1FOXpZMEFYZ3c2TTIwQ2paOTBpbWtOUFpn?=
+ =?utf-8?B?RnpGb1c1Q3JpQ3ZkMDFmUFIyNWIwY3R5K0pSK0kwQjFtdWh2Z2dZeUI4aS83?=
+ =?utf-8?B?c1Z3VnIxdC9yVUNzSHVpL0dMSmowdGNHY0dPM1M4RVdEcmZnZ2RGdGY0ZGM5?=
+ =?utf-8?B?dGR2ZG1HdnJjckFZVjBSUUY5UlFtcXFWMGJINUQyTUFWOTlpRTl5N1NsSStJ?=
+ =?utf-8?B?b2lEUmIyZUZYeFVEdUJhTDZ5WmFOKzIwOVJsbXpCN3h1aW5LRzZHbkR4bWE1?=
+ =?utf-8?B?djlzUVRCam1VSXZTdlN6Qy84Wi9BR1Z0cEUrS1k0MTFEeVJQL0dTVy9EbUU5?=
+ =?utf-8?B?aXpJRC9jQS9VWmJtWDc2alNxYkVGV1dEVHBXQ0pRNi8zU01iU2JjNUdSRVV5?=
+ =?utf-8?B?Tnkva0RqVDA2NmRveG9Bay9TNmFLeTUrcUVSVUQ4Z2xNYXJFWFJmaUdOd0cy?=
+ =?utf-8?B?c05pL2p5OGhvSlNxTnFGZWx3bE56UTVRTkh4LzNDYVpjSlpDNXlaUTByRE5m?=
+ =?utf-8?B?S00reG1MdzE4R2tnV2IrcFJEUHNzOGlwWXhldzk2NmlWTitSZDJFWnA2djVS?=
+ =?utf-8?B?QWtLZG1vSEpiNWV1Szl3WE54V0Y2L3U3N0xtdGFxbjAwb2dpRlc3Y3ZiZ21P?=
+ =?utf-8?B?a2phcjdySnJJcnZJZGd5cnYxTVBhRGZrN3F4QktkbVczdUpHQ2NZeUVQOUFH?=
+ =?utf-8?B?cG93bHlBVUd0MnNnN1FqdEM5ejNxSVZ6Qlc0aGpYbnYrYmNYcjhwWFU1WDV3?=
+ =?utf-8?B?aFVBMTFTNWRWWk5mZXVId2libXllUHF2QTJJQWdMNDBXaXZhYzBCUkhmaXBw?=
+ =?utf-8?B?dG5ZdGhLZDNDUWFPRzNkUWxXM3J6elRNcWVUekw3b1ZCaUNSM3RBYjR0Y0ZK?=
+ =?utf-8?B?ekhsS0VUSDBHTmloU2RzWmszMGllcmxJZDZxWm5mUDNMS3VpNnhmS0lwd2tB?=
+ =?utf-8?B?blp5RVErZm1iMjVoTWlMN1lLVWpmdWxOZEVCdW9iTCtYWFhkamY4bVRnUGZN?=
+ =?utf-8?B?akhaL1JJd3pyVGcrRCtqci9Ha0lMdkpUcld0eGRPRmxxb1BIQVpOU3ZXdUUz?=
+ =?utf-8?B?RTBiUDBtaU5iZldaTWpXc1U3cTUzaDJNQksyRnZXQndSY1YyU0pnMWRqQVlt?=
+ =?utf-8?B?WE5JUHhvOW1HYmRIa1k3MUUzTCtpcTdydTd5ZGk1QmxRdGNFV1E1NWpqa0dD?=
+ =?utf-8?B?Zlpxb0ZvMlRkVVhwdjB3d1RuQkY2ZEw2MkFSZWtGZFROelQvUDd0blhpVVQ2?=
+ =?utf-8?B?dnNjVXA3ZVFUVDE3YVNFeHlud3M3V1RITllDa1E5d1pmQ0poeFlndzVZd0pH?=
+ =?utf-8?B?c0NuQW1tWGl3YVBXZG9BNndMTkhBVnYyYzJHOFgzRVU4d0E0em9IY0Q3QXNK?=
+ =?utf-8?B?dTMrak5EaWhmVVM3R0lYZngxQ1RpamVtSngvU3N1YzR3ejBnYzV3dz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e1c9c80-1043-4336-7f45-08de9713e98e
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB8476.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2026 15:14:51.3458 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 843nkOHbbMSRmL/kzpeAqeSKfU0pd5JIGYQU5CEfGk/88RiCaKCqBWsMEbXCN9v2y/fSC/4DQPmIcpDvKGzmlg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH8PR12MB9742
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,219 +139,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[65];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	CTE_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[38];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[alex.hung@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:Roman.Li@amd.com,m:alexander.deucher@amd.com,m:Harry.Wentland@amd.com,m:Sunpeng.Li@amd.com,m:Aurabindo.Pillai@amd.com,m:Chuanyu.Tseng@amd.com,m:linus.probert@gmail.com,m:linusprobert@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:dkim,collabora.com:email]
-X-Rspamd-Queue-Id: 1164B3E8B2D
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alex.hung@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
+X-Rspamd-Queue-Id: A68E83D90AC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Friday, 10 April 2026 00:08:24 Central European Summer Time Dmitry Baryshkov wrote:
-> On Thu, Apr 09, 2026 at 05:44:54PM +0200, Nicolas Frattaroli wrote:
-> > The new DRM color format property allows userspace to request a specific
-> > color format on a connector. In turn, this fills the connector state's
-> > color_format member to switch color formats.
-> > 
-> > Make drm_bridges consider the color_format set in the connector state
-> > during the atomic bridge check. For bridges that represent HDMI bridges,
-> > rely on whatever format the HDMI logic set. Reject any output bus
-> > formats that do not correspond to the requested color format.
-> > 
-> > Non-HDMI last bridges with DRM_CONNECTOR_COLOR_FORMAT_AUTO set will end
-> > up choosing the first output format that functions to make a whole
-> > recursive bridge chain format selection succeed.
-> > 
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >  drivers/gpu/drm/drm_bridge.c | 89 +++++++++++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 88 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-> > index ba80bebb5685..7c1516864d96 100644
-> > --- a/drivers/gpu/drm/drm_bridge.c
-> > +++ b/drivers/gpu/drm/drm_bridge.c
-> > @@ -1150,6 +1150,47 @@ static int select_bus_fmt_recursive(struct drm_bridge *first_bridge,
-> >  	return ret;
-> >  }
-> >  
-> > +static bool __pure bus_format_is_color_fmt(u32 bus_fmt, enum drm_connector_color_format fmt)
-> > +{
-> > +	if (fmt == DRM_CONNECTOR_COLOR_FORMAT_AUTO)
-> > +		return true;
-> > +
-> > +	switch (bus_fmt) {
-> > +	case MEDIA_BUS_FMT_FIXED:
-> > +		return true;
-> > +	case MEDIA_BUS_FMT_RGB888_1X24:
-> > +	case MEDIA_BUS_FMT_RGB101010_1X30:
-> > +	case MEDIA_BUS_FMT_RGB121212_1X36:
-> > +	case MEDIA_BUS_FMT_RGB161616_1X48:
-> > +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_RGB444;
-> > +	case MEDIA_BUS_FMT_YUV8_1X24:
-> > +	case MEDIA_BUS_FMT_YUV10_1X30:
-> > +	case MEDIA_BUS_FMT_YUV12_1X36:
-> > +	case MEDIA_BUS_FMT_YUV16_1X48:
-> > +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR444;
-> > +	case MEDIA_BUS_FMT_UYVY8_1X16:
-> > +	case MEDIA_BUS_FMT_VYUY8_1X16:
-> > +	case MEDIA_BUS_FMT_YUYV8_1X16:
-> > +	case MEDIA_BUS_FMT_YVYU8_1X16:
-> > +	case MEDIA_BUS_FMT_UYVY10_1X20:
-> > +	case MEDIA_BUS_FMT_YUYV10_1X20:
-> > +	case MEDIA_BUS_FMT_VYUY10_1X20:
-> > +	case MEDIA_BUS_FMT_YVYU10_1X20:
-> > +	case MEDIA_BUS_FMT_UYVY12_1X24:
-> > +	case MEDIA_BUS_FMT_VYUY12_1X24:
-> > +	case MEDIA_BUS_FMT_YUYV12_1X24:
-> > +	case MEDIA_BUS_FMT_YVYU12_1X24:
-> > +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR422;
-> > +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-> > +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-> > +	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
-> > +	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
-> > +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR420;
-> > +	default:
-> > +		return false;
-> > +	}
-> > +}
-> > +
-> >  /*
-> >   * This function is called by &drm_atomic_bridge_chain_check() just before
-> >   * calling &drm_bridge_funcs.atomic_check() on all elements of the chain.
-> > @@ -1193,6 +1234,7 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
-> >  	struct drm_encoder *encoder = bridge->encoder;
-> >  	struct drm_bridge_state *last_bridge_state;
-> >  	unsigned int i, num_out_bus_fmts = 0;
-> > +	enum drm_connector_color_format fmt;
-> >  	u32 *out_bus_fmts;
-> >  	int ret = 0;
-> >  
-> > @@ -1234,13 +1276,58 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
-> >  			out_bus_fmts[0] = MEDIA_BUS_FMT_FIXED;
-> >  	}
-> >  
-> > +	/*
-> > +	 * On HDMI connectors, use the output format chosen by whatever does the
-> > +	 * HDMI logic. For everyone else, just trust that the bridge out_bus_fmts
-> > +	 * are sorted by preference for %DRM_CONNECTOR_COLOR_FORMAT_AUTO, as
-> > +	 * bus_format_is_color_fmt() always returns true for AUTO.
-> > +	 */
-> > +	if (last_bridge->type == DRM_MODE_CONNECTOR_HDMIA) {
+Reviewed-by: Alex Hung <alex.hung@amd.com>
+
+On 4/9/26 12:06, Roman.Li@amd.com wrote:
+> From: Roman Li <Roman.Li@amd.com>
 > 
-> I still think this is misplaced (and misidentified). Consider HDMI
-> bridge being routed to the DVI-D connector. The last bridge would have
-> different type, but the HDMI-specific logic must still be applied. The
-> bridge must use RGB444, but it must be handled in a generic way.
-
-Thanks for the review. I was hoping that an HDMI bridge chain going to
-a DVI connector would be a DRM_MODE_CONNECTOR_HDMIB thing, but apparently
-not. I also don't know however how doing this in the drm bridge connector
-helps us here. I guess we'd call into a drm_bridge_connector specific
-function with the connector format and connector, and get an output
-format in return, and said function checks that if any bridge in the
-bridge connector is HDMI it uses the HDMI logic? That would conflict
-with the following case from what I understand:
-
-> Or other way around, a DVI bridge being routed through the HDMI
-> connector (thinking about PandaBoard here). The combo should not go
-> through the HDMI-specific color format selection although the last
-> bridge in the chanin is the HDMI-A bridge.
-
-In that case, wouldn't the recursive bridge bus format selection
-take care of this? I assume the DVI bridge will only allow RGB444,
-and one of the bridges that follow it is an HDMI bridge for the
-HDMI connector that's physically on the board.
-
-In such a case, if the HDMI state helpers came up with something
-other than RGB444, the select_bus_fmt_recursive below would fail
-as expected, since it won't be able to find an output that
-satisfies the constraints given by the DVI bridge.
-
-> I think all these cases should be handled by the connector, which knows
-> if there is an OP_HDMI bridge in the chain or not.
-
-Kind regards,
-Nicolas Frattaroli
-
-> > +		drm_dbg_kms(last_bridge->dev,
-> > +			    "HDMI bridge requests format %s\n",
-> > +			    drm_hdmi_connector_get_output_format_name(
-> > +				    conn_state->hdmi.output_format));
-> > +		switch (conn_state->hdmi.output_format) {
-> > +		case DRM_OUTPUT_COLOR_FORMAT_RGB444:
-> > +			fmt = DRM_CONNECTOR_COLOR_FORMAT_RGB444;
-> > +			break;
-> > +		case DRM_OUTPUT_COLOR_FORMAT_YCBCR444:
-> > +			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR444;
-> > +			break;
-> > +		case DRM_OUTPUT_COLOR_FORMAT_YCBCR422:
-> > +			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR422;
-> > +			break;
-> > +		case DRM_OUTPUT_COLOR_FORMAT_YCBCR420:
-> > +			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR420;
-> > +			break;
-> > +		default:
-> > +			ret = -EINVAL;
-> > +			goto out_free_bus_fmts;
-> > +		}
-> > +	} else {
-> > +		fmt = conn_state->color_format;
-> > +		drm_dbg_kms(last_bridge->dev, "Non-HDMI bridge requests format %d\n", fmt);
-> > +	}
-> > +
-> >  	for (i = 0; i < num_out_bus_fmts; i++) {
-> > +		if (!bus_format_is_color_fmt(out_bus_fmts[i], fmt)) {
-> > +			drm_dbg_kms(last_bridge->dev,
-> > +				    "Skipping bus format 0x%04x as it doesn't match format %d\n",
-> > +				    out_bus_fmts[i], fmt);
-> > +			ret = -ENOTSUPP;
-> > +			continue;
-> > +		}
-> >  		ret = select_bus_fmt_recursive(bridge, last_bridge, crtc_state,
-> >  					       conn_state, out_bus_fmts[i]);
-> > -		if (ret != -ENOTSUPP)
-> > +		if (ret != -ENOTSUPP) {
-> > +			drm_dbg_kms(last_bridge->dev,
-> > +				    "Found bridge chain ending with bus format 0x%04x\n",
-> > +				    out_bus_fmts[i]);
-> >  			break;
-> > +		}
-> >  	}
-> >  
-> > +out_free_bus_fmts:
-> >  	kfree(out_bus_fmts);
-> >  
-> >  	return ret;
-> > 
+> [Why]
+> The explicit include of linux/array_size.h in Display Core (DC) is
+> redundant. The ARRAY_SIZE macro is already provided by dm_services.h
+> (via os_types.h) which DC includes.
 > 
+> [How]
+> Remove the unnecessary #include <linux/array_size.h> from
+> dc_hw_sequencer.c and dce_clock_source.c.
 > 
-
-
-
+> Fixes: 1e29080bfb8a ("drm/amd/display: Replace inline NUM_ELEMENTS macro with ARRAY_SIZE")
+> CC: Linus Probert <linus.probert@gmail.com>
+> Signed-off-by: Roman Li <Roman.Li@amd.com>
+> ---
+>   drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c | 2 --
+>   drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c | 2 --
+>   2 files changed, 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
+> index 952968ecd46e..7333f5905330 100644
+> --- a/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
+> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_hw_sequencer.c
+> @@ -23,8 +23,6 @@
+>    *
+>    */
+>   
+> -#include <linux/array_size.h>
+> -
+>   #include "dm_services.h"
+>   #include "core_types.h"
+>   #include "timing_generator.h"
+> diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
+> index eaeca4b4a042..321a012268b0 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
+> @@ -23,8 +23,6 @@
+>    *
+>    */
+>   
+> -#include <linux/array_size.h>
+> -
+>   #include "dm_services.h"
+>   
+>   
 
