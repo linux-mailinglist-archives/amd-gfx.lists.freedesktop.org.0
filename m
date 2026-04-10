@@ -2,107 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kU5+Lzij3GktUwkAu9opvQ
+	id sOPeLURT2WmooQgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:04 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 21:45:08 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1856B3E8B4A
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 10:03:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1D6E3DC162
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Apr 2026 21:45:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C54C910E35A;
-	Mon, 13 Apr 2026 08:03:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFE2010E9C4;
+	Fri, 10 Apr 2026 19:45:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=jqluv-com.20251104.gappssmtp.com header.i=@jqluv-com.20251104.gappssmtp.com header.b="FfpJQ7Ur";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QYUL1HsD";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com
- [209.85.160.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68DEA10E9C4
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 19:18:08 +0000 (UTC)
-Received: by mail-qt1-f182.google.com with SMTP id
- d75a77b69052e-50d876329bbso25386001cf.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 12:18:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1775848687; cv=none;
- d=google.com; s=arc-20240605;
- b=AoCl7/e8qeP+GlHPIM/dIqrd94cABAfVAwyCIuj1jkpONeUsmnvzOzuMxzEDeXD1t0
- L4DYtDlUVsblQtPAQ8onwXOgpT2cFs/SVvpvwy8VyrnU7rxaOe0uyJ8STKJjUWANn6fO
- xZ+s+5rbxWXfj0yWWYoc0x+LsMBi9lCwjvMvRcM/aztk7jl4bktU1xlLS4Z+3wFgN5y3
- aVtVFRh5MHwTnA9gnXVdh5Oh+HQFhPv9uwUgS5RngvwsmDOToG+HPJ3dH5MuBZ+tbvu+
- 5lDxibpOHSCbB+f83vyiFESag1rlzi+kJijA/YXI6QvH+325dLcDoEwL+KKp+TeepF7y
- kLEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=31FEqE2Yo5rPZanPlKgVYvrw+i09p9M5WGMB8Y1/hl4=;
- fh=/JHJBozUXm+pdtSjgn7bNtLzNBEJ+Sbb2nHfx1/yaCU=;
- b=WHTADC73C+OYpQqoTHqyL+1G2kBgR/D176el78wliW6LEMJhQv4JFlkyIo49ttB4Z2
- oNvf1M4ARHg92auWTRKU5Vo1l9pnrTBWpyv2rctB/bBypeX+J1X9qZe+BS7lqJiC6RF6
- bJfHSAdz7Dvrjlf7d212u5fOmhxzDWtrvW4FsiUnKdpB69EToyFx0TWp/iGtNBY52hBd
- fsoUhWIwvAEeJx8NQIRGkyUOVpFmAigZid3Uz+BbZ+2Nuu4esP3UHgdVu1RAD91C/ugp
- nkdKwBXaCqFhSld8eNHsLWEjIc1XyYRnxVwYS5OmnhrbbkOMHBnHKw1v+yR2zpXFQfp7
- 3IPQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jqluv-com.20251104.gappssmtp.com; s=20251104; t=1775848687; x=1776453487;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=31FEqE2Yo5rPZanPlKgVYvrw+i09p9M5WGMB8Y1/hl4=;
- b=FfpJQ7UrsHimJ6V0UAz2sQ3XFbnIZ/vr7V01j8Mk/HiTcyTBBc8HzRdDFLrFStDZs8
- VlY8astffLr7v6nDlwRaqzxVh3zkBPk9BKKpW/5308Rl1p4Dr/xmHZW3e8W2ZYpCKH6Z
- 6Pe0lu9w5IXE5MHIaVYQO1cJHtMpDmCZIBltCcQPPLafaS0uLHnylAsoOkeF9VxwqNmA
- i2lcLQH+q9XG0oFqCYG1Mj0fMTQ8Yv1OQ7GaTR7cR2clHW8kirSHwabPQY8NUQt0fMd3
- Llm0EYPOlvcifKAoCwugBprUW2J24AFtl312sYL0P5yr9FrM8Q10rVQUsp+9beKJH/Ez
- 8oZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1775848687; x=1776453487;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=31FEqE2Yo5rPZanPlKgVYvrw+i09p9M5WGMB8Y1/hl4=;
- b=ietURX3CJW89xmTbE2xFiERx2qZEX1LE87hatsnYBfZeGjLp09Ij2QCKlgL8Mt+pf/
- SvJZ4/QJV0Iyrhzc1rkkPmDCX00GnGREtS9su2eauPd0vTx7ITnsmX5Og+7pR5ei3LX3
- 2+HqEb2dmf88uJFc3sTr4Q9vkY9oa9f4aF8ddI4SYJgp9kxK+LRCiPsr9sKej2oP8EdV
- qOM9BJse3++BMWuANT/l5gi3k1wCkzexIYAIuaqqdfV8Ouiop9e0hTf1yGuMQ0Kn8URX
- 7bOyMjeQa/6HtdCh3sYVooQ7mpUOOi2bw6xwvGr5MbVn+4vRZlvfndPhn9XO8CLFAO3V
- Xnlw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUMHJaLpYjEJHJ++ehGizW5gzn6KTYA3U+0Ng62HLW3Vm18uj9cLaz4RuYl1HW4s8Jm03QKAyaE@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzb9eD9GrLkxlg1AWhsy8aFU6YBQPBOBOpCSgty06VQDkIDeLWR
- p0JzUPqSBjrIqay2BDX263nApomLjbt0aDL1DUEm917Aa/5Wlrl0mxvVdrlg7QqQq+qgqyE7WpS
- epC8w6fCK7+HyuCS/9USjdhzcu2dDGBT6iNbfbqYpkQ==
-X-Gm-Gg: AeBDievT/h3AcCGX++SpaIvmipD4+PDGj5/gpfWG7gOxVsZq05rqlEi/LhDQsaT0Kd2
- Ks6jikysAVBgCHC7pjbr0qxSHDi5P9hRS57CO6dVc/5GKhd14AoVToJGO1g2N28xxfF8bB3f16i
- 3SmjRKAWXpyH0DRBTsk43nvX/gUIU6hCPiSZeYZm13fgZDOgk4dy+awY3nhHYm28aTcdpZpJhyG
- 0HeMS2TZjMggWE0LOWbzJD1sjzLm0UhucyoDpHV0SWj9IwJzlHxV0YHJvoBEa3UF8/dwuGgB5KY
- 27D4
-X-Received: by 2002:a05:622a:24c:b0:50b:4c64:4730 with SMTP id
- d75a77b69052e-50dd5abce85mr66831251cf.15.1775848687026; Fri, 10 Apr 2026
- 12:18:07 -0700 (PDT)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010069.outbound.protection.outlook.com [52.101.61.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA1AF10E9C4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Apr 2026 19:45:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PZ3VCdgalkp0jG4WF2+AFaBnDB03y0a/qMRswkOBkh+nxTip4CTjcEkQfk+2h8QZK2MoSmqmB8mRuO1IovZj1j0gUYxMBoyH8YHxWHjb2oLAa9VO11gmJHbNCsyk4OIuxKpEPvn5fWGOCjnmDdxNuK5hD+IVezwdMXO6WUnnN/1hmG0v6cZ+1rBZ9EmWceXzMEYRcFYjmntDnQIrJQIpL6gzxqOTV/yOYAnWOUCxSVGaZjqZ1TnVVZMiClgE3NRfuKZhmlN6jo+p4gyGC+0JIRyrcSBdaoAm38jr0JZw6bSwZf7lw1FOo0HIcZs4Ltl5X6EX7HCQ2jAQ9x4nRuXUSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Qhssm0MJ8hvAmupnosEXDRoGGK008JEwO1Xbi7iMSO4=;
+ b=oKS+IWSmSLqsL64/fLYrmsu7H4s+MYGWaEtvD9OY7Y39HpPfCzXjLazWL61HBN1MrBa+J5IIZ5AmquzSZHBw3wK9BSWvJtdkPnave4/WmIqNVtLbCKiItgV4Pbzgnr69eiPMTnNTAQZeWGMgN/ATXhM/5o9Okyjv5Sj0mF+YCZoaZZPKoAcVfkOGmuC0oG0SBDdqKrsf3M2/Z1Tzib/+dxg8ofos9m2QQj6tASTmqSiTO+8HamR5FbIqkvOk6axLmICIZQIp24JpJJla7LRA2+beVD0npXMRcGjnehNfB2BCygU0Gl/5wVPDo/Kq1c5RjnW5/uSAgnp+7N10geX+Jw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Qhssm0MJ8hvAmupnosEXDRoGGK008JEwO1Xbi7iMSO4=;
+ b=QYUL1HsDylMX2zIrFUDrmh1c9OI6IG48LTtOuyRaBnhT/oaCakIpXsnOUYuDalpk6Wp3YOMelDe6+uXwCGllf7gZHc4SbpumVV5FkRIHryGxvoWhIcyMdxnufcE8LKFFGgcuBXm1siDtWfBG+k1zqV32EpO2MffBiIZfnKkZqe4=
+Received: from SA9PR13CA0142.namprd13.prod.outlook.com (2603:10b6:806:27::27)
+ by SJ1PR12MB6364.namprd12.prod.outlook.com (2603:10b6:a03:452::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.42; Fri, 10 Apr
+ 2026 19:44:58 +0000
+Received: from SN1PEPF000252A2.namprd05.prod.outlook.com
+ (2603:10b6:806:27:cafe::cc) by SA9PR13CA0142.outlook.office365.com
+ (2603:10b6:806:27::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.32 via Frontend Transport; Fri,
+ 10 Apr 2026 19:44:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SN1PEPF000252A2.mail.protection.outlook.com (10.167.242.9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.17 via Frontend Transport; Fri, 10 Apr 2026 19:44:58 +0000
+Received: from ram-Splinter.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 10 Apr
+ 2026 14:44:56 -0500
+From: "Ramalingeswara Reddy, Kanala" <Kanala.RamalingeswaraReddy@amd.com>
+To: <Alexander.Deucher@amd.com>, <amd-gfx@lists.freedesktop.org>,
+ <Pratik.Vishwakarma@amd.com>, <Suresh.Guttula@amd.com>
+CC: "Ramalingeswara Reddy, Kanala" <Kanala.RamalingeswaraReddy@amd.com>
+Subject: [PATCH] drm/amdgpu: [Medusa]- Fix Unified metrics average values
+ reporting
+Date: Sat, 11 Apr 2026 01:14:37 +0530
+Message-ID: <20260410194437.1461287-1-Kanala.RamalingeswaraReddy@amd.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-References: <CAGpo2mebCaP4vFuTnn6jgu6OjjE_ssS7i8ENepuUjwwHXddCHA@mail.gmail.com>
- <243af06e-912b-4915-bc64-5aa16dad7db0@amd.com>
- <47306de6-cbf6-4b2d-847e-d1e5d933516d@amd.com>
- <053100e2-fe23-4b9b-9b20-be5f0a49c22d@amd.com>
-In-Reply-To: <053100e2-fe23-4b9b-9b20-be5f0a49c22d@amd.com>
-From: Geramy Loveless <gloveless@jqluv.com>
-Date: Fri, 10 Apr 2026 12:17:55 -0700
-X-Gm-Features: AQROBzBUob0ErCRbW2Fob8jWHHOFRE468wGPn3kL3Q5v-ADCKqiRpgcKjisMmiU
-Message-ID: <CAGpo2mdhu3R73g6iEb66CODnwkcoDq3Wy4ReYBDvUgZcj7oLeA@mail.gmail.com>
-Subject: Re: [PATCH] amdgpu: recover Thunderbolt PCIe link after MODE1 GPU
- reset
-To: "Lazar, Lijo" <lijo.lazar@amd.com>
-Cc: Mario Limonciello <mario.limonciello@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com, 
- Cristian Cocos <cristi@ieee.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 13 Apr 2026 08:02:59 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF000252A2:EE_|SJ1PR12MB6364:EE_
+X-MS-Office365-Filtering-Correlation-Id: e54281b7-9411-4cd6-c551-08de9739a5b7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|36860700016|82310400026|1800799024|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: R7s/2H02SfsJuYe6jRMXA/IeJueWyVFx7V1juRoTtAS3J1kTD+4YzLJJp0E6Bra+YSmAt1bhEW3jQ24FyjXoMAzk05dUxzRwTi6z/bIvhl4I8kY7e8cZAbVgoaet5QOi9hDCI1XVs2B+eA7A/GAxDJtbsoDSQYvnDvSxFpdbCyVqrMLZZWZ7+2BccR4S27LzQbHbF6hDkpahHfA5O5Rsts/3ZrpCV4z9dDMnzWhXPtwk2A4igAcrq/Ie0jyEIuALb61aIgYadPtI7beApI24zItbUWigTOvp/rd3t9fL8icT8y0FtqEWMnRa4rpMLWUVXpjnAU0InY3BjJGfCzaXuu50MpsWCaat0Ikyp5vEuGeRSR2AwIIy1Lopj3bLY6cfYfp1IKCOwt7EkS1YpqmmmjbKL3gfJddqJrr8ki6MhpPmVEq1u+rDB4AnqFE6jDWG5b3YVHri2jOUKe072p6J5kKT6lf8RqaS/9eRm0toBhZQZLGa6SulrYqN0HO0OWbhYfqEHXKqAP4RZJCKaaAsYr4uPpHFLvEC/Jai1J9PluT4QkzLxWFmtxUHiXhD2clZcqU5xOz3/Oqk9bzTyfaWRizWqB3lIB+NmqGs4vZk38tEmdIKBCZZAnj4qSVbj/lBRMEY/py99yeDp86S6t9sPTPSc7hdBkgDgN0R4qYHeJ/ztCUjGzXUwYaiZiMhrhUtQj62nii98IejYVn9t+6a8pUKF0FwbHqNRo4mYgwpez3SOrVo/28DF3rpENPYcNj2/WClcymQmpueOQXJG/Objg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: YqBP2sCjaIdeNjyE5JwOq/FVbMJLiUTffiphWMcfyGR6G0ebCSoBkKhhajsG8fBH12wLFlWHeNLFNf0jYeO4Q5T0OBuhIq3NOtdz9k2DlAwqoTLXLcuwZpvza2zWGK5GxCkOwKSxyNs13OUlcj7ppjixvnKIdKmrqKp+CPelShxjsvrfJWplafQ3gb86HdQVySf7UXFIf0V+EfQ+Y9RX1GLQQnUBYuz7EBwROFpkZeKrcqxI4pOBTtYhz317W6hShBielj3yKF5n2xQJJcJ69M6ovL9/z/2W3DhTJvl3uHaqgQyDJ5PXAHhMQdxheHKHigNLo0gUnSNTgihRq+rCf4F/ZfetiW9eplZxCKfVMkgizCh7fSKJVTB0+OvPJZSpAi/NhE5rzZcaudSAXhPjHo1j+jqX8yHdkMPKHRvnww73JIGbO9jsoZrJMsDShyca
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Apr 2026 19:44:58.1787 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e54281b7-9411-4cd6-c551-08de9739a5b7
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000252A2.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6364
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,246 +114,242 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DATE_IN_PAST(1.00)[60];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[jqluv-com.20251104.gappssmtp.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	DMARC_NA(0.00)[jqluv.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[gloveless@jqluv.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:lijo.lazar@amd.com,m:mario.limonciello@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:cristi@ieee.org,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Alexander.Deucher@amd.com,m:Pratik.Vishwakarma@amd.com,m:Suresh.Guttula@amd.com,m:Kanala.RamalingeswaraReddy@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[Kanala.RamalingeswaraReddy@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gloveless@jqluv.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[jqluv-com.20251104.gappssmtp.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[Kanala.RamalingeswaraReddy@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_FIVE(0.00)[5];
+	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,jqluv-com.20251104.gappssmtp.com:dkim]
-X-Rspamd-Queue-Id: 1856B3E8B4A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid]
+X-Rspamd-Queue-Id: E1D6E3DC162
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-It seems there is another person having the same problems im having or
-at least similar.
-I am going to loop his logs in here and add him maybe we can tackle
-this together and find the underlying problem easier or faster.
-Its always better to have two logs from too different points sometimes
-you get things in one you dont get in the other out of pure chance,
-haha.
+SWDEV-577922:[Medusa]-SMU Metrics:New Unified metrics table support
+With new design SMU is sending accummulated metric values,
+and stop sending us average metrics, so needs to average metrics once read.
+If no changes metrics accumulation return previous metrics only.
 
- https://pcforum.amd.com/s/question/0D5Pd00001S3Av9KAF/linux-9060xt-egpuove=
-rthunderbolt-bugs-galore
+Signed-off-by: Ramalingeswara Reddy, Kanala <Kanala.RamalingeswaraReddy@amd.com>
+---
+ .../drm/amd/pm/swsmu/smu15/smu_v15_0_0_ppt.c  | 45 ++++++++++++++++---
+ 1 file changed, 40 insertions(+), 5 deletions(-)
 
-Let me know if I can be of use, or if you need extra bandwidth for
-making patches point my in the direction.
-
-Thanks everyone!
-
-On Fri, Apr 10, 2026 at 4:25=E2=80=AFAM Lazar, Lijo <lijo.lazar@amd.com> wr=
-ote:
->
->
->
-> On 09-Apr-26 11:42 PM, Mario Limonciello wrote:
-> >
-> >
-> > On 4/9/26 06:42, Christian K=C3=B6nig wrote:
-> >> On 4/9/26 02:05, Geramy Loveless wrote:
-> >>> When an AMD GPU behind a Thunderbolt PCIe tunnel undergoes a MODE1 on
-> >>> Thunderbolt the TB driver receives no notification and the tunnel
-> >>> stays up while the endpoint is unreachable.
-> >>
-> >> IIRC a MODE1 reset should keep the bus active and so the endpoint
-> >> should still be reachable.
-> >>
-> >>> All subsequent PCIe
-> >>> reads return 0xFFFFFFFF and MES firmware cannot reinitialize,
-> >>> triggering an infinite reset loop that hangs the system.
-> >>
-> >> That sounds more like the MODE1 reset failed.
-> >>
-> >>> After MODE1 reset completes, check whether the PCIe endpoint is still
-> >>> reachable using pci_device_is_present(). If the device is behind
-> >>> Thunderbolt and the link is dead, walk up parent bridges calling
-> >>> pci_bridge_secondary_bus_reset() to retrain the physical PCIe link
-> >>> inside the dock.
-> >>
-> >> Well that is then a bus reset.
-> >>
-> >> I mean that is a reasonable mitigation when a MODE1 reset failed, but
-> >> the question is rather why does the MODE1 reset fails in the first pla=
-ce?
-> >>
-> >>> If recovery fails, return -ENODEV to prevent the
-> >>> reset retry loop.
-> >>>
-> >>> This also causes the GPU fan to be at 100% and basically when it
-> >>> happens and you are not there, you now have a GPU with fan at 100% an=
-d
-> >>> cant reset it.
-> >>> I wanted to notate some other things I am finding sometimes before
-> >>> this adventure of patches to the kernel and amdgpu driver.
-> >>> Sometimes a crash could happen in the drive and then the GPU fan spee=
-d
-> >>> hits 100% and the air is hot coming out without any workload, other
-> >>> times
-> >>> I have seen it have barely any fan speed at all and heat up more than
-> >>> it should at the fan level its curently operating at. These are thing=
-s
-> >>> I have seen with this gpu in a TB5 dock with the driver and
-> >>> instability. I'm not sure exactly whats going on there but I figured
-> >>> since im communicating with these patches I might as well bring you u=
-p
-> >>> to speed and supermario has been great help throughout me trying to
-> >>> get the AMD AI R9700 Pro working on my MS-S1 Halo Strix with a TB5 /
-> >>> USB4v2 dock!
-> >>
-> >> Adding Mario as well. That strongly sounds like you crashed the SMU
-> >> which would also explain the failed MODE1 reset.
-> >>
-> >> But all of that are only symptoms. Question is what is actually going
-> >> on here? e.g. what is the root cause?
-> >
-> > We don't spend a lot of time in recovery scenarios for when =F0=9F=92=
-=A9 hits the
-> > fan.  I think in addition to finding and fixing the real root cause
-> > having a reproducible workload to cause the crash is a good opportunity
-> > to try to put in place better recovery too.
-> >
-> > Generally speaking I like the idea of if a mode1 reset fails to do a
-> > harder reset.  At least in the path that we have GPU recovery
-> > (amdgpu.gpu_recovery module parameter) set, adding a fallback case to d=
-o
-> > a full device reset makes sense to me.
-> >
-> > I think the placement is wrong though.  amdgpu_device_mode1_reset() has
-> > a bunch of callers, and if you end up with a mode1 reset doing a full
-> > reset that might be a surprise to those callers.
-> >
-> > So I think a more logical place to put this would be explicitly in the
-> > GPU recovery path (amdgpu_device_gpu_recover).  Maybe as part of the
-> > mode1 reset failure you can:
-> >
-> > set_bit(AMDGPU_NEED_FULL_RESET, &reset_context->flags);
-> >
-> > And then the GPU recovery path can jump right into a full reset?  Not
-> > sure if that jives with your stack trace though.
-> >
-> > Furthermore; even though you reproduced this on Thunderbolt; I have no
-> > reason to believe it's specific to thunderbolt.  An SMU crash can happe=
-n
-> > in any hardware.  We may as well try full reset for recovery for any
-> > hardware.
->
-> FWIW, if SMU crashes then SBR also shouldn't work since SBR handling
-> needs some firmware support as well.
->
-> A kernel module triggering chain-reset by going one level up and
-> resetting all devices under the bridge (in a while loop) also doesn't
-> look like an acceptable solution.
->
-> Thanks,
-> Lijo
->
-> >
-> >>
-> >>>
-> >>> It seems to be finally working with bar resizing after my kernel
-> >>> patch. Which allows you to safely release a empty switch bridge at th=
-e
-> >>> device end.
-> >>> Then it rebuilds it afterwords with the increased bar. This was done
-> >>> on Kernel 7.0-rc7 i believe it is and latest changes from pci/resourc=
-e
-> >>> branch with my patch here.
-> >>>
-> >>> https://lore.kernel.org/linux-pci/CAGpo2meKY6SXsESU-D0PGgbESLqdF8UBF-
-> >>> tmThxOvk2XUDpEzw@mail.gmail.com/T/#u
-> >>
-> >> Where is the MMIO register BAR before and after the rebuild?
-> >>
-> >> Regards,
-> >> Christian.
-> >>
-> >>>
-> >>> Thank you!
-> >>>
-> >>> Signed-off-by: Geramy Loveless <gloveless@jqluv.com>
-> >>> ---
-> >>> drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 40 +++++++++++++++++++++=
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_0_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_0_ppt.c
+index a6a7df683b7e..f0a798631903 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_0_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_0_ppt.c
+@@ -384,6 +384,7 @@ static int smu_v15_0_0_get_smu_metrics_data(struct smu_context *smu,
+ 	SmuMetrics_t *metrics = (SmuMetrics_t *)smu_table->metrics_table; //TBD
+ 
+ 	SMU_15_0_0_MetricsTable_t prev_metrics;
++	static uint32_t Avg_Metric_copy[METRICS_AVERAGE_NPUCLK+1] = {0};
+ 	uint64_t counter, val;
+ 	int ret;
+ 
+@@ -394,6 +395,12 @@ static int smu_v15_0_0_get_smu_metrics_data(struct smu_context *smu,
+ 	if (ret)
+ 		return ret;
+ 
++	if (prev_metrics.IOD.AccumulationCounter ==
++		((SMU_15_0_0_MetricsTable_t *)smu_table->metrics_table)->IOD.AccumulationCounter) {
++		*value = Avg_Metric_copy[member];
++		return 0;
++	}
 +
-> >>> 1 file changed, 40 insertions(+)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> >>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> >>> index 31a60173c..91d01d538 100644
-> >>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> >>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> >>> @@ -5770,6 +5770,46 @@ int amdgpu_device_mode1_reset(struct
-> >>> amdgpu_device *adev)
-> >>> /* ensure no_hw_access is updated before we access hw */
-> >>> smp_mb();
-> >>> + /*
-> >>> + * On Thunderbolt-attached GPUs, MODE1 reset kills the PCIe
-> >>> + * endpoint but the TB tunnel stays up unaware. Detect the
-> >>> + * dead link and attempt recovery by resetting parent bridges
-> >>> + * to retrain the physical PCIe link inside the dock.
-> >>> + */
-> >>> + if (!pci_device_is_present(adev->pdev) &&
-> >>> + pci_is_thunderbolt_attached(adev->pdev)) {
-> >>> + struct pci_dev *bridge;
-> >>> + bool recovered =3D false;
-> >>> +
-> >>> + dev_info(adev->dev,
-> >>> + "PCIe link lost after mode1 reset, attempting Thunderbolt
-> >>> recovery\n");
-> >>> +
-> >>> + bridge =3D pci_upstream_bridge(adev->pdev);
-> >>> + while (bridge && !pci_is_root_bus(bridge->bus)) {
-> >>> + dev_info(adev->dev,
-> >>> + "attempting link recovery via %s\n",
-> >>> + pci_name(bridge));
-> >>> + pci_bridge_secondary_bus_reset(bridge);
-> >>> + msleep(100);
-> >>> + if (pci_device_is_present(adev->pdev)) {
-> >>> + recovered =3D true;
-> >>> + break;
-> >>> + }
-> >>> + bridge =3D pci_upstream_bridge(bridge);
-> >>> + }
-> >>> +
-> >>> + if (!recovered) {
-> >>> + dev_err(adev->dev,
-> >>> + "Thunderbolt PCIe link recovery failed\n");
-> >>> + ret =3D -ENODEV;
-> >>> + goto mode1_reset_failed;
-> >>> + }
-> >>> +
-> >>> + dev_info(adev->dev,
-> >>> + "Thunderbolt PCIe link recovered via %s\n",
-> >>> + pci_name(bridge));
-> >>> + }
-> >>> +
-> >>> amdgpu_device_load_pci_state(adev->pdev);
-> >>> ret =3D amdgpu_psp_wait_for_bootloader(adev);
-> >>> if (ret)
-> >>> --
-> >>> 2.51.0
-> >>
-> >
->
+ 	switch (member) {
+ 	case METRICS_AVERAGE_GFXCLK:
+ 		counter = get_diff_count(prev_metrics.IOD.AccumulationCounter,
+@@ -401,6 +408,7 @@ static int smu_v15_0_0_get_smu_metrics_data(struct smu_context *smu,
+ 		val = get_diff_val(prev_metrics.IOD.GfxclkFreqEffAcc,
+ 		 ((SMU_15_0_0_MetricsTable_t *)smu_table->metrics_table)->IOD.GfxclkFreqEffAcc);
+ 		*value = counter ? (val/counter)/1024 : 0;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_AVERAGE_SOCCLK:
+ 		counter = get_diff_count(prev_metrics.IOD.AccumulationCounter,
+@@ -408,6 +416,7 @@ static int smu_v15_0_0_get_smu_metrics_data(struct smu_context *smu,
+ 		val = get_diff_val(prev_metrics.IOD.SocclkFreqEffAcc,
+ 		 ((SMU_15_0_0_MetricsTable_t *)smu_table->metrics_table)->IOD.SocclkFreqEffAcc);
+ 		*value = counter ? (val/counter)/1024 : 0;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_AVERAGE_VCLK:
+ 		counter = get_diff_count(prev_metrics.IOD.AccumulationCounter,
+@@ -415,9 +424,11 @@ static int smu_v15_0_0_get_smu_metrics_data(struct smu_context *smu,
+ 		val = get_diff_val(prev_metrics.IOD.VclkFreqEffAcc,
+ 		 ((SMU_15_0_0_MetricsTable_t *)smu_table->metrics_table)->IOD.VclkFreqEffAcc);
+ 		*value = counter ? (val/counter)/1024 : 0;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_AVERAGE_DCLK:
+ 		*value = 0;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_AVERAGE_UCLK:
+ 		counter = get_diff_count(prev_metrics.IOD.AccumulationCounter,
+@@ -425,6 +436,7 @@ static int smu_v15_0_0_get_smu_metrics_data(struct smu_context *smu,
+ 		val = get_diff_val(prev_metrics.IOD.MemclkFreqEffAcc,
+ 		 ((SMU_15_0_0_MetricsTable_t *)smu_table->metrics_table)->IOD.MemclkFreqEffAcc);
+ 		*value = counter ? (val/counter)/1024 : 0;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_AVERAGE_FCLK:
+ 		counter = get_diff_count(prev_metrics.IOD.AccumulationCounter,
+@@ -432,9 +444,11 @@ static int smu_v15_0_0_get_smu_metrics_data(struct smu_context *smu,
+ 		val = get_diff_val(prev_metrics.IOD.FclkFreqEffAcc,
+ 		 ((SMU_15_0_0_MetricsTable_t *)smu_table->metrics_table)->IOD.FclkFreqEffAcc);
+ 		*value = counter ? (val/counter)/1024 : 0;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_AVERAGE_VPECLK:
+ 		*value = metrics->VpeclkFrequency;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_AVERAGE_NPUCLK:
+ 		counter = get_diff_count(prev_metrics.IOD.AccumulationCounter,
+@@ -442,6 +456,7 @@ static int smu_v15_0_0_get_smu_metrics_data(struct smu_context *smu,
+ 		val = get_diff_val(prev_metrics.IOD.NpuhclkFreqEffAcc,
+ 		 ((SMU_15_0_0_MetricsTable_t *)smu_table->metrics_table)->IOD.NpuhclkFreqEffAcc);
+ 		*value = counter ? (val/counter)/1024 : 0;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_AVERAGE_GFXACTIVITY:
+ 		counter = get_diff_count(prev_metrics.IOD.AccumulationCounter,
+@@ -449,6 +464,7 @@ static int smu_v15_0_0_get_smu_metrics_data(struct smu_context *smu,
+ 		val = get_diff_val(prev_metrics.IOD.GfxBusyAcc,
+ 		 ((SMU_15_0_0_MetricsTable_t *)smu_table->metrics_table)->IOD.GfxBusyAcc);
+ 		*value = counter ? (val/counter)/1024 : 0;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_AVERAGE_VCNACTIVITY:
+ 		counter = get_diff_count(prev_metrics.IOD.AccumulationCounter,
+@@ -456,6 +472,7 @@ static int smu_v15_0_0_get_smu_metrics_data(struct smu_context *smu,
+ 		val = get_diff_val(prev_metrics.IOD.VcnBusyAcc,
+ 		 ((SMU_15_0_0_MetricsTable_t *)smu_table->metrics_table)->IOD.VcnBusyAcc);
+ 		*value = counter ? (val/counter)/1024 : 0;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_AVERAGE_SOCKETPOWER:
+ 		counter = get_diff_count(prev_metrics.IOD.AccumulationCounter,
+@@ -463,54 +480,68 @@ static int smu_v15_0_0_get_smu_metrics_data(struct smu_context *smu,
+ 		val = get_diff_val(prev_metrics.IOD.ApuPowerAcc,
+ 		 ((SMU_15_0_0_MetricsTable_t *)smu_table->metrics_table)->IOD.ApuPowerAcc);
+ 		*value = counter ? (val/counter)/1024 : 0;
++		Avg_Metric_copy[member] = *value;
+ 	case METRICS_CURR_SOCKETPOWER:
+ 		counter = get_diff_count(prev_metrics.IOD.AccumulationCounter,
+ 		 ((SMU_15_0_0_MetricsTable_t *)smu_table->metrics_table)->IOD.AccumulationCounter);
+ 		val = get_diff_val(prev_metrics.IOD.SystemPowerAcc,
+ 		 ((SMU_15_0_0_MetricsTable_t *)smu_table->metrics_table)->IOD.SystemPowerAcc);
+ 		*value = counter ? (val/counter)/1024 : 0;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_TEMPERATURE_EDGE:
+ 		counter = get_diff_count(prev_metrics.IOD.AccumulationCounter,
+ 		 ((SMU_15_0_0_MetricsTable_t *)smu_table->metrics_table)->IOD.AccumulationCounter);
+ 		val = get_diff_val(prev_metrics.IOD.GFX_TempAcc,
+ 		 ((SMU_15_0_0_MetricsTable_t *)smu_table->metrics_table)->IOD.GFX_TempAcc);
+-		*value = counter ? (val/counter)/1024 : 0;
++		*value = counter ? (val/counter) : 0;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_TEMPERATURE_HOTSPOT:
+ 		*value = metrics->SocTemperature / 100 *
+ 		SMU_TEMPERATURE_UNITS_PER_CENTIGRADES;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_THROTTLER_RESIDENCY_PROCHOT:
+ 		*value = metrics->ThrottleResidency_PROCHOT;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_THROTTLER_RESIDENCY_SPL:
+ 		*value = metrics->ThrottleResidency_SPL;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_THROTTLER_RESIDENCY_FPPT:
+ 		*value = metrics->ThrottleResidency_FPPT;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_THROTTLER_RESIDENCY_SPPT:
+ 		*value = metrics->ThrottleResidency_SPPT;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_THROTTLER_RESIDENCY_THM_SOC:
+ 		*value = metrics->ThrottleResidency_THM_SOC;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_VOLTAGE_VDDGFX:
+ 		*value = 0;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_VOLTAGE_VDDSOC:
+ 		*value = 0;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	case METRICS_SS_APU_SHARE:
+ 		/* return the percentage of APU power with respect to APU's power limit.
+ 		 * percentage is reported, this isn't boost value. Smartshift power
+ 		 * boost/shift is only when the percentage is more than 100.
+ 		 */
+-		if (metrics->StapmOpnLimit > 0)
++		if (metrics->StapmOpnLimit > 0) {
+ 			*value = (metrics->ApuPower * 100) / metrics->StapmOpnLimit;
+-		else
++			Avg_Metric_copy[member] = *value;
++		} else {
+ 			*value = 0;
++			Avg_Metric_copy[member] = *value;
++		}
+ 		break;
+ 	case METRICS_SS_DGPU_SHARE:
+ 		/* return the percentage of dGPU power with respect to dGPU's power limit.
+@@ -518,14 +549,18 @@ static int smu_v15_0_0_get_smu_metrics_data(struct smu_context *smu,
+ 		 * boost/shift is only when the percentage is more than 100.
+ 		 */
+ 		if ((metrics->dGpuPower > 0) &&
+-		    (metrics->StapmCurrentLimit > metrics->StapmOpnLimit))
++		    (metrics->StapmCurrentLimit > metrics->StapmOpnLimit)) {
+ 			*value = (metrics->dGpuPower * 100) /
+ 				 (metrics->StapmCurrentLimit - metrics->StapmOpnLimit);
+-		else
++			Avg_Metric_copy[member] = *value;
++		} else {
+ 			*value = 0;
++			Avg_Metric_copy[member] = *value;
++		}
+ 		break;
+ 	default:
+ 		*value = UINT_MAX;
++		Avg_Metric_copy[member] = *value;
+ 		break;
+ 	}
+ 
+-- 
+2.53.0
+
