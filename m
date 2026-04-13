@@ -2,35 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6BsBFI2L3GmeSgkAu9opvQ
+	id eMIZOY2L3GnoSgkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 08:22:05 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC50E3E7B18
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 08:22:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA20E3E7B2E
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 08:22:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07A3710E30B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C59910E316;
 	Mon, 13 Apr 2026 06:22:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BCDE10E31A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 730A310E31C
  for <amd-gfx@lists.freedesktop.org>; Mon, 13 Apr 2026 06:22:01 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 63D6LuBI4051040; Mon, 13 Apr 2026 11:51:56 +0530
+ 63D6Luiq4051045; Mon, 13 Apr 2026 11:51:56 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 63D6Lu6f4051039;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 63D6LuGl4051044;
  Mon, 13 Apr 2026 11:51:56 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v3 3/6] drm/amdgpu: add job->pasid in check as amdgpu_job
- could be NULL
-Date: Mon, 13 Apr 2026 11:51:50 +0530
-Message-Id: <20260413062153.4050981-4-sunil.khatri@amd.com>
+Subject: [PATCH v3 4/6] drm/amdgpu/userq: use pm_runtime_resume_and_get and
+ fix err handling
+Date: Mon, 13 Apr 2026 11:51:51 +0530
+Message-Id: <20260413062153.4050981-5-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260413062153.4050981-1-sunil.khatri@amd.com>
 References: <20260413062153.4050981-1-sunil.khatri@amd.com>
@@ -71,7 +71,7 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	NEURAL_HAM(-0.00)[-0.996];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
@@ -79,71 +79,64 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: BC50E3E7B18
+X-Rspamd-Queue-Id: BA20E3E7B2E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-In below stack job->pasid is accessed while job is NULL. Access it
-within the check when job is non NULL.
+Use pm_runtime_resume_and_get instead of pm_runtime_get_sync as it
+return error but put the reference in the function itself.
 
-Failure call stack.
-[  222.653622] BUG: kernel NULL pointer dereference, address: 000000000000014c
-[  222.653625] #PF: supervisor read access in kernel mode
-[  222.653628] #PF: error_code(0x0000) - not-present page
-[  222.653630] PGD 0 P4D 0
-[  222.653635] Oops: Oops: 0000 [#1] SMP NOPTI
-[  222.653639] CPU: 1 UID: 0 PID: 12 Comm: kworker/u96:0 Not tainted 6.19.0-amd-staging-drm-next #271 PREEMPT(voluntary)
-[  222.653644] Hardware name: Gigabyte Technology Co., Ltd. X570 AORUS ELITE/X570 AORUS ELITE, BIOS F37c 05/12/2022
-[  222.653646] Workqueue: amdgpu-reset-dev amdgpu_userq_reset_work [amdgpu]
-[  222.653961] RIP: 0010:amdgpu_coredump+0x8b/0x470 [amdgpu]
-[  222.654158] Code: 48 83 c4 20 5b 41 5c 41 5d 41 5e 41 5f 5d 31 c0 31 c9 31 ff 31 d2 31 f6 45 31 c0 45 31 db e9 8c a9 1a e2 88 58 48 44 88 68 49 <41> 8b b7 4c 01 00 00 89 b0 80 00 00 00 4d 85 ff 48 89 45 d0 0f 84
-[  222.654161] RSP: 0018:ffffce68c0147c00 EFLAGS: 00010282
-[  222.654165] RAX: ffff8bc337407740 RBX: 0000000000000000 RCX: 0000000000000000
-[  222.654167] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
-[  222.654170] RBP: ffffce68c0147c48 R08: 0000000000000000 R09: 0000000000000000
-[  222.654172] R10: ffff8bc337407740 R11: ffffffffc10dda10 R12: ffff8bc2d2e00000
-[  222.654174] R13: 0000000000000001 R14: ffff8bc2d2e5b368 R15: 0000000000000000
-[  222.654176] FS:  0000000000000000(0000) GS:ffff8bc64a5fe000(0000) knlGS:0000000000000000
-[  222.654179] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  222.654182] CR2: 000000000000014c CR3: 0000000135eca000 CR4: 0000000000350ef0
-[  222.654184] Call Trace:
-[  222.654187]  <TASK>
-[  222.654190]  ? amdgpu_ip_block_resume+0x28/0x70 [amdgpu]
-[  222.654376]  ? srso_return_thunk+0x5/0x5f
-[  222.654382]  amdgpu_device_reinit_after_reset+0x184/0x320 [amdgpu]
-[  222.654552]  amdgpu_do_asic_reset+0x129/0x160 [amdgpu]
-[  222.654720]  amdgpu_device_asic_reset+0x92/0x710 [amdgpu]
-[  222.654890]  amdgpu_device_gpu_recover+0x2ae/0x3d0 [amdgpu]
-[  222.655060]  amdgpu_userq_reset_work+0x76/0xa0 [amdgpu]
-[  222.655229]  process_scheduled_works+0x1f0/0x450
-[  222.655235]  worker_thread+0x27f/0x370
+In goto statements we need to drop the pm reference too.
 
-Fixes: f9839cc47e53d ("drm/amdgpu: store ib info for devcoredump")
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-index 3f1cc2265645..3d7aa6b09815 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
-@@ -511,7 +511,6 @@ void amdgpu_coredump(struct amdgpu_device *adev, bool skip_vram_check,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+index 76badb4d4a81..6a635bb8bb30 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+@@ -734,10 +734,9 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 	if (r)
+ 		return r;
  
- 	coredump->skip_vram_check = skip_vram_check;
- 	coredump->reset_vram_lost = vram_lost;
--	coredump->pasid = job->pasid;
+-	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
++	r = pm_runtime_resume_and_get(adev_to_drm(adev)->dev);
+ 	if (r < 0) {
+-		drm_file_err(uq_mgr->file, "pm_runtime_get_sync() failed for userqueue create\n");
+-		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
++		drm_file_err(uq_mgr->file, "pm_runtime_resume_and_get() failed for userqueue create\n");
+ 		return r;
+ 	}
  
- 	if (job && job->pasid) {
- 		struct amdgpu_task_info *ti;
-@@ -521,6 +520,7 @@ void amdgpu_coredump(struct amdgpu_device *adev, bool skip_vram_check,
- 			coredump->reset_task_info = *ti;
- 			amdgpu_vm_put_task_info(ti);
- 		}
-+		coredump->pasid = job->pasid;
- 		coredump->num_ibs = job->num_ibs;
- 		for (i = 0; i < job->num_ibs; ++i) {
- 			coredump->ibs[i].gpu_addr = job->ibs[i].gpu_addr;
+@@ -745,13 +744,15 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 	if (!uq_funcs) {
+ 		drm_file_err(uq_mgr->file, "Usermode queue is not supported for this IP (%u)\n",
+ 			     args->in.ip_type);
+-		return -EINVAL;
++		r = -EINVAL;
++		goto err_pm_runtime;
+ 	}
+ 
+ 	queue = kzalloc(sizeof(struct amdgpu_usermode_queue), GFP_KERNEL);
+ 	if (!queue) {
+ 		drm_file_err(uq_mgr->file, "Failed to allocate memory for queue\n");
+-		return -ENOMEM;
++		r = -ENOMEM;
++		goto err_pm_runtime;
+ 	}
+ 
+ 	INIT_LIST_HEAD(&queue->userq_va_list);
+@@ -865,6 +866,8 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 	amdgpu_bo_unreserve(fpriv->vm.root.bo);
+ free_queue:
+ 	kfree(queue);
++err_pm_runtime:
++	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
+ 	return r;
+ }
+ 
 -- 
 2.34.1
 
