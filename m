@@ -2,34 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aFymMNjf3GnrXgkAu9opvQ
+	id ALKaEgvo3GmUYAkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 14:21:44 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 14:56:43 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EF643EBD75
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 14:21:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2E803EC46A
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 14:56:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 452A110E437;
-	Mon, 13 Apr 2026 12:21:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 345F310E3C2;
+	Mon, 13 Apr 2026 12:56:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E28CE10E426
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Apr 2026 12:21:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63C5D10E3C2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Apr 2026 12:56:40 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 63DCLZet2070206; Mon, 13 Apr 2026 17:51:35 +0530
+ 63DCuUCQ2239459; Mon, 13 Apr 2026 18:26:30 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 63DCLZpT2070199;
- Mon, 13 Apr 2026 17:51:35 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 63DCuU0v2239458;
+ Mon, 13 Apr 2026 18:26:30 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v4] drm/amdgpu/userq: unmap_helper dont return the queue state
-Date: Mon, 13 Apr 2026 17:51:32 +0530
-Message-Id: <20260413122132.2070147-1-sunil.khatri@amd.com>
+Subject: [PATCH] drm/amdgpu/userq: unpin and unref doorbell and wptr outside
+ mutex
+Date: Mon, 13 Apr 2026 18:26:30 +0530
+Message-Id: <20260413125630.2239439-1-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -64,44 +65,70 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	URIBL_MULTI_FAIL(0.00)[amd.com:server fail,gabe.freedesktop.org:server fail];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.822];
+	NEURAL_HAM(-0.00)[-0.751];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 4EF643EBD75
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid]
+X-Rspamd-Queue-Id: B2E803EC46A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-We check for return value of amdgpu_userq_unmap_helper and
-compare it against the queue->state which is logically
-wrong and we should just check for failure and do the needfull.
+In amdgpu_userq_destroy once unmap_helpder is called within mutex
+there is no need to hold mutex.
+
+This helps in avoiding a deadlock between doorbell and wptr ww mutex
+and we could unpin and unref these bos outside mutex safely.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index 7f966fb98018..d4e18b57be80 100644
+index d4e18b57be80..d66ed81a3fd6 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -645,7 +645,7 @@ amdgpu_userq_destroy(struct amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermode_que
- 	amdgpu_userq_detect_and_reset_queues(uq_mgr);
- 	r = amdgpu_userq_unmap_helper(queue);
- 	/*TODO: It requires a reset for userq hw unmap error*/
--	if (unlikely(r != AMDGPU_USERQ_STATE_UNMAPPED)) {
-+	if (r) {
- 		drm_warn(adev_to_drm(uq_mgr->adev), "trying to destroy a HW mapping userq\n");
+@@ -444,7 +444,6 @@ static void amdgpu_userq_cleanup(struct amdgpu_usermode_queue *queue)
+ 	queue->fence_drv = NULL;
+ 	queue->userq_mgr = NULL;
+ 	list_del(&queue->userq_va_list);
+-	kfree(queue);
+ 
+ 	up_read(&adev->reset_domain->sem);
+ }
+@@ -650,6 +649,10 @@ amdgpu_userq_destroy(struct amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermode_que
  		queue->state = AMDGPU_USERQ_STATE_HUNG;
  	}
+ 
++	atomic_dec(&uq_mgr->userq_count[queue->queue_type]);
++	amdgpu_userq_cleanup(queue);
++	mutex_unlock(&uq_mgr->userq_mutex);
++
+ 	amdgpu_bo_reserve(queue->db_obj.obj, true);
+ 	amdgpu_bo_unpin(queue->db_obj.obj);
+ 	amdgpu_bo_unreserve(queue->db_obj.obj);
+@@ -659,11 +662,8 @@ amdgpu_userq_destroy(struct amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermode_que
+ 	amdgpu_bo_unpin(queue->wptr_obj.obj);
+ 	amdgpu_bo_unreserve(queue->wptr_obj.obj);
+ 	amdgpu_bo_unref(&queue->wptr_obj.obj);
++	kfree(queue);
+ 
+-	atomic_dec(&uq_mgr->userq_count[queue->queue_type]);
+-
+-	amdgpu_userq_cleanup(queue);
+-	mutex_unlock(&uq_mgr->userq_mutex);
+ 	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
+ 
+ 	return r;
 -- 
 2.34.1
 
