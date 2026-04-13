@@ -2,104 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mc4tE6GK3GmeSgkAu9opvQ
+	id kHJOBI+L3GnoSgkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 08:18:09 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 08:22:07 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0B073E7AD3
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 08:18:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7ECB3E7B3C
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 08:22:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C25E10E310;
-	Mon, 13 Apr 2026 06:18:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="bQCGSqwy";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7278410E31B;
+	Mon, 13 Apr 2026 06:22:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011010.outbound.protection.outlook.com [52.101.62.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 611CF10E30B
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Apr 2026 06:18:00 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=t5CHt/d1oirJ/oOBvciqpRY+nzpU485BM4ILovIIapovrW7TuVteZCW3Vao0y48j51WmXl3IA97adS0sAH/JZbi1aOITjBgECsEegk51oX7DB2dvy2QHHxUUM9Pv96vDCLHo7rexcUueG8qJPEdGwz1p3soyNUw/zmuq5SWuTOxSXDCBRs75clXJm2MEg3tw7lYctUmip31iXTihkH+cPyITkxboaOFLBkMgEfH9kGUcD2KrjOLukPKaLil2PM/biohG3V5hOtzEIR3wO2aHI/hoZBXHRaoJlwxq/yqG4hEn6Nfm6tYov/mBZ1/2r4jKMsgUvuR0vo7Hh2XErSpBsg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MAQAkKEZkf8uFUjM4nS2JBiCMQ2l1LBM3f3rT1vWgEM=;
- b=s4jryFCmhUgkjXpYeS2/txmuOqTEcbQkiZnnS8OINyUoJ2cvDhP0krsG2o6uoiI97rHu1gms18dzfgzvyBJpeNSq5XHqll2A+lwsj5n78ae7D1e29MEevgZyY1+q9T5EjYcJkUQqldo333stiEOm0JiffcQr4+lsYGtDSf29JwP2qsu+muCnphn2/MdeDMaPR2/bKBe7FrLQBIf+IS4ZtTBSklHdjSgJrt8xkc+Ir1Qgkp4Ty9ieCklU+kDpsxPjI+xsDHLhFzBJCPe5L6MhSMoAGx0BQG40gYxn6qXxzEQ3atkCypNglOK5Ad2Jis6eoo9vIn1KepStps6Z/90C2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MAQAkKEZkf8uFUjM4nS2JBiCMQ2l1LBM3f3rT1vWgEM=;
- b=bQCGSqwyERzt0Q5k0qq4aMebbQFicwyMb88hBmOfjjpHT9C+Ccb3uXDVpdxux1WQeghb6V8B2cP5xhfOTZ0LCYXfbmJaSELT3r6pWrWIWRmbHO3AvgA0djBsinpVgWAtEz/60nxPMnnVDK5HqrwN4BQbsAm0n173+rZGVqoRJds=
-Received: from CH0P221CA0022.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:11c::22)
- by BN7PPF9507C739C.namprd12.prod.outlook.com
- (2603:10b6:40f:fc02::6da) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9791.32; Mon, 13 Apr
- 2026 06:17:55 +0000
-Received: from CH3PEPF0000000F.namprd04.prod.outlook.com
- (2603:10b6:610:11c:cafe::c7) by CH0P221CA0022.outlook.office365.com
- (2603:10b6:610:11c::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.48 via Frontend Transport; Mon,
- 13 Apr 2026 06:17:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CH3PEPF0000000F.mail.protection.outlook.com (10.167.244.40) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9745.21 via Frontend Transport; Mon, 13 Apr 2026 06:17:54 +0000
-Received: from prike-code-pc.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 13 Apr
- 2026 01:17:53 -0500
-From: Prike Liang <Prike.Liang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, <Christian.Koenig@amd.com>, Prike Liang
- <Prike.Liang@amd.com>
-Subject: [PATCH] drm/amdgpu: drop userq fence driver refs out of fence
- process()
-Date: Mon, 13 Apr 2026 14:17:44 +0800
-Message-ID: <20260413061744.3458370-1-Prike.Liang@amd.com>
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C64310E316
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Apr 2026 06:22:01 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 63D6LumY4051019; Mon, 13 Apr 2026 11:51:56 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 63D6LuWp4051018;
+ Mon, 13 Apr 2026 11:51:56 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH v3 0/6] Never take root bo reservation locks with userq_mutex
+Date: Mon, 13 Apr 2026 11:51:47 +0530
+Message-Id: <20260413062153.4050981-1-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF0000000F:EE_|BN7PPF9507C739C:EE_
-X-MS-Office365-Filtering-Correlation-Id: 19120d4f-3b54-46f0-f254-08de99246659
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|376014|36860700016|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: FyU9pf1vItWZoyDIs7loLlEB4WbF/85yiSV3AaIQWbvZ3zaFArYMDwNnIhFzqxQi4o5nhwBcOtfK4U9bG9AT3a1/2shgTRs5mb9YGn9uaVyIg8wuAv2RcUUsyznofBs12btqp0D3HDiTBzLgx3FvbuRw3UohVHsR4ZKP48ji8+BM0DpPzPZTPT9z3AwTTEBzJ+XWjxeBDGVdr0OEjeKRj7/hyUcEid3wKds9w8SMOHHAcNQQcVx5I9F10ui5sfNXUEYor8EX7ZdDBTBV0bwX68fDf/OVnwPODZxE5jBqbG3hfWqoS+Ailn5qq2NrcvnVQ+akmUDaQDNUxQWb1C1GBaxe8jH8g5c2difqA8WUnSSpOZlrrKEN3nlvKnUqnpf0owO5LQra3D/P1qi2dJAnL87HXnjl7igPcxFa7KcHz0TFx62GnX0v2eUb+5AezeXnoChF1oJy6SNon6R9gw8hqi/3R5zk6eHYkVgRvlK6g9titX2rr4gOl6rpEcL8dRnu/MX86gqTgqT44dp6Ap9m8x3sGGDbEFZhJH5CWT59swQGdO8pEfAqw/amCVOT/CLixuR2SSsEF2QUNlzVxCKJqRlH0uSWVUPFKoJaulDIHvQlSvtgD8zS7qrz67GlfjY5bnlcry+V2AzQTfdiBb6hUk0wXVjgkUY138+sehXGdDXM4gDW/JjEx3XcpiT35eaknsNpvRgxddMdcr30jrCfDGbwgfz9a+a8/jV8qnSankIFO0orkEnlPd3Nr9Y7SzwtlTtcnYb608kMRyAs1TwuwA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(376014)(36860700016)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: X5Vee+77zK76+ge2Xus9mCbb4k/CvRJZYpfVmJET6fgG6hy7JPa/Tujsv/+VwyP7iwJIT8E5ismNQcCiA1dNYM9KvPmIIG6BHcgo14RczTUp1toNN5BHOhzgTCCBu0UvwAOuX8MH3vp8sTiOnfTW9C0J1gtuhcg0vSfB8TF1WL5TKsqglbnWgxQILAYjkqf/IvM7DB5qdubt0IKcZK49T3YmWvJX2yv/u/rECf3ciR2QsULQmX66eCyfG1xCZZmrSK5ub+PAhRy3CwX0uLtoK6eBAMkyIDEvVjtmKBz5c9nnafdqVsRi8WchVkoZSzgzlinhkYo0yk1lyo60u+3BMd1TFKk5I1+paVTkK4X4LatZ9t3DnXOrPPBCS16f2Z08/CSy7wqAZmzLgBugdRqOAXgMtgj9JOPJl5DLqnhYBqY1kR9VdS1IxBDKAjaQUMYI
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2026 06:17:54.7695 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19120d4f-3b54-46f0-f254-08de99246659
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH3PEPF0000000F.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PPF9507C739C
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,153 +46,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [2.39 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[Prike.Liang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	SEM_URIBL_FRESH15_UNKNOWN_FAIL(0.00)[amd.com:query timed out];
-	HAS_XOIP(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid]
-X-Rspamd-Queue-Id: E0B073E7AD3
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: D7ECB3E7B3C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-amdgpu_userq_wait_ioctl() takes extra references on waited-on fence
-drivers and stores them in waitq->fence_drv_xa. When a new userq fence is
-created, those references are transferred into userq_fence->fence_drv_array
-so they can be released when the fence completes.
+v1: Fixes the locks issue in all the places where userq_mutex is taken
+and then vm->root.bo reservation lock is next.
+v2: Fix the minor comment on the patches.
+v3: Add some more userq fixes found during testing
 
-However, those inherited references are currently only dropped from
-amdgpu_userq_fence_driver_process(). If a fence never reaches that path,
-such as it is already signaled when created, so we need to explicitly release
-those fences in that case.
+Sunil Khatri (6):
+  drm/amdgpu/userq: caller to take reserv lock for vas_list_cleanup
+  drm/amdgpu/userq: hold root bo lock in caller of input_va_validate
+  drm/amdgpu: add job->pasid in check as amdgpu_job could be NULL
+  drm/amdgpu/userq: use pm_runtime_resume_and_get and fix err handling
+  drm/amdgpu/userq: unmap is to be called before freeing doorbell/wptr
+    bo
+  drm/amdgpu/userq: unmap_helper dont return the queue state
 
-Signed-off-by: Prike Liang <Prike.Liang@amd.com>
----
- .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 54 +++++++++++++------
- 1 file changed, 38 insertions(+), 16 deletions(-)
+ .../gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c  |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c     | 86 ++++++++++---------
+ drivers/gpu/drm/amd/amdgpu/mes_userqueue.c    | 21 +++++
+ 3 files changed, 69 insertions(+), 40 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index 3be80a82788a..f132295890c0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -145,35 +145,52 @@ amdgpu_userq_fence_driver_free(struct amdgpu_usermode_queue *userq)
- 	amdgpu_userq_fence_driver_put(userq->fence_drv);
- }
- 
-+static void
-+amdgpu_userq_fence_put_fence_drv_array(struct amdgpu_userq_fence *userq_fence)
-+{
-+	unsigned long i;
-+	for (i = 0; i < userq_fence->fence_drv_array_count; i++)
-+		amdgpu_userq_fence_driver_put(userq_fence->fence_drv_array[i]);
-+	userq_fence->fence_drv_array_count = 0;
-+}
-+
- void amdgpu_userq_fence_driver_process(struct amdgpu_userq_fence_driver *fence_drv)
- {
- 	struct amdgpu_userq_fence *userq_fence, *tmp;
- 	struct dma_fence *fence;
- 	unsigned long flags;
- 	u64 rptr;
--	int i;
- 
- 	if (!fence_drv)
- 		return;
- 
--	spin_lock_irqsave(&fence_drv->fence_list_lock, flags);
--	rptr = amdgpu_userq_fence_read(fence_drv);
--
--	list_for_each_entry_safe(userq_fence, tmp, &fence_drv->fences, link) {
--		fence = &userq_fence->base;
-+	for (;;) {
-+		spin_lock_irqsave(&fence_drv->fence_list_lock, flags);
-+		rptr = amdgpu_userq_fence_read(fence_drv);
-+		userq_fence = NULL;
-+		fence = NULL;
- 
--		if (rptr < fence->seqno)
--			break;
-+		list_for_each_entry_safe(userq_fence, tmp, &fence_drv->fences, link) {
-+			fence = &userq_fence->base;
- 
--		dma_fence_signal(fence);
-+			if (rptr < fence->seqno) {
-+				userq_fence = NULL;
-+				fence = NULL;
-+				break;
-+			}
- 
--		for (i = 0; i < userq_fence->fence_drv_array_count; i++)
--			amdgpu_userq_fence_driver_put(userq_fence->fence_drv_array[i]);
-+			dma_fence_signal(fence);
-+			list_del(&userq_fence->link);
-+			break;
-+		}
-+		spin_unlock_irqrestore(&fence_drv->fence_list_lock, flags);
- 
--		list_del(&userq_fence->link);
-+		if (!fence)
-+			break;
-+		/* Drop fence_drv_array outside fence_list_lock to avoid the recursion lock. */
-+		amdgpu_userq_fence_put_fence_drv_array(userq_fence);
- 		dma_fence_put(fence);
- 	}
--	spin_unlock_irqrestore(&fence_drv->fence_list_lock, flags);
- }
- 
- void amdgpu_userq_fence_driver_destroy(struct kref *ref)
-@@ -228,6 +245,7 @@ static int amdgpu_userq_fence_create(struct amdgpu_usermode_queue *userq,
- 	struct amdgpu_userq_fence_driver *fence_drv;
- 	struct dma_fence *fence;
- 	unsigned long flags;
-+	bool signaled = false;
- 
- 	fence_drv = userq->fence_drv;
- 	if (!fence_drv)
-@@ -275,13 +293,17 @@ static int amdgpu_userq_fence_create(struct amdgpu_usermode_queue *userq,
- 
- 	/* Check if hardware has already processed the job */
- 	spin_lock_irqsave(&fence_drv->fence_list_lock, flags);
--	if (!dma_fence_is_signaled(fence))
-+	if (!dma_fence_is_signaled(fence)) {
- 		list_add_tail(&userq_fence->link, &fence_drv->fences);
--	else
-+	} else {
-+		signaled = true;
- 		dma_fence_put(fence);
--
-+	}
- 	spin_unlock_irqrestore(&fence_drv->fence_list_lock, flags);
- 
-+	if (signaled)
-+		amdgpu_userq_fence_put_fence_drv_array(userq_fence);
-+
- 	*f = fence;
- 
- 	return 0;
 -- 
 2.34.1
 
