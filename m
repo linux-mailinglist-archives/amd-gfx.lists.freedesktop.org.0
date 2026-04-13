@@ -2,51 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eCQSM9rF3Gn5VwkAu9opvQ
+	id yDnLGeDF3Gn5VwkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 12:30:50 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 12:30:56 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EEA93EAAA6
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 12:30:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13DA33EAABD
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Apr 2026 12:30:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8325F10E3F8;
-	Mon, 13 Apr 2026 10:30:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F9BE10E3FE;
+	Mon, 13 Apr 2026 10:30:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZHaGDlgC";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gyOPYN0z";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013052.outbound.protection.outlook.com
- [40.93.196.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7480510E3F3;
- Mon, 13 Apr 2026 10:30:46 +0000 (UTC)
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011043.outbound.protection.outlook.com [40.107.208.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01E3D10E400;
+ Mon, 13 Apr 2026 10:30:52 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N6ognKr8YTKm3FgbF/O7RjCpLwTutnNvbqmOJEPFsznAla3B0DVRgvVEGVX0it5hUXWRN90ivVVzERJY4g6Qx2q8qVNnxDnkRhxY2GbGRjx1dgWwjU0mWnOYOETmAtR/GK9GZcOyQQBYIqkSaQTj+tXpX9gk4lGOhf8VZVuiWNZhYEJXbgYmU2v/5S0KTavMdKaLYxnIYdL1//nnyUyGjNkV6a50emunc6UcEeMBDqqqpOm5QeGt4MuuawBH7ARzPtChY99P6znOL7cTuOzPGuk5fox6OjpMx7ptLsixugeRwncxmxLJIZ6lt5ETKDl6vawO5u6/kSZA0V5tZO8Qcw==
+ b=OFb+NhbginR8fpD5+YLQZmpInnItVnRFg+cfk6dAFhJAmAJiMALvICJFmGqOpgF3p6X3vYTozXPC0Qj4Ff1hLYNHhc/pyUpbMJGlMY2soi6DiRCEWwqc46iSi8NILEbj9DBzPaobSPTS6pfm8lMuFZubSqSlzmpLKpOMyTrMEXZbKOaMkyMHFlcr0awUAWwxmu5/wFaqnVQFQJ6TGOl9WjFsi8FP7bIvKIeawIqi9DOtbCWvuorFkmBjt0nqGzsYGGhAhpSrKnTMnRJhfqN3anAtbCPh05k4CqgHT0op1w70acIhglLamEW21fF1mt2d3TD3g9iV9nIOnCg8cLvL+w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VakaeL4RgmyM9a244vMMy9g5XRrM8Lnk4EV5MMgmzRg=;
- b=EeBAi7Ol+AWDkBu/ulV3U1gg2GuhiFWClE9HVe8DfIdchnIGpUQ027R8Dtym4LMRhFY0nz1Uj4ycOGjyXMMVkiRMUrAjyJ4mud2Ggd09HxGfectGwgPn7AdzbWIviKiwZwsRF52smSbxbts/3IicG+LXimNPdWVICDm/uTXzhJJDccj3ErRwERsgbINnTJwHgQETJ08xsyTkXIuOZtOi8HU70LRQJAQvMCF7tu6A6lqSlSr/zT0ocGk0LjqKp+A2tsv0x6TVXFg3F0EbXO5UNCMzRzgs+qQcAK+ivbvcGd8FJe4lDbUEgFnboVyLz7K7z+7vCsnTyM6AlPUHt4JbXQ==
+ bh=fBQEfbVBS0+cgbqzMbLTS734i0qpRWzXf9WVw6YjQMc=;
+ b=uQ0AlKKLXAqN0PjmrSqnn5fw4artnTcLsP6UI3bYnCXHAIZSmV2LKvf5yzFeUydCtgv3U5zBpaejyiFscZb9VJgun/Oa1HugwMpyOe4VNJaklk/13KySO+M6Kbs6bwBB/tSUdanzczZoiZCifCSKNw0qhFUmrsvYQzS0I/TB1EQycarZ2KbS6z64//yNOoG6yhoGnmPXN2e1HLdOHsM2H38rntxFb3xxAMWaJMs90eTGDjuhV4inXRLgXLdB/9aZpfK430GkaT9jjcRw1RpAjiVVDRvCXWShzBojj9CiDzp/WMXb9RsymjLSi+zQhauureC0SbWxmitPxHBo+9DjcQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VakaeL4RgmyM9a244vMMy9g5XRrM8Lnk4EV5MMgmzRg=;
- b=ZHaGDlgC78cGCVZhoFGYr52uj0cnnfk1qBPc/16Oy+8HaBip6LVaesV8zZKNvjFYdrP4J+QceG/Tg1vAM7j4/J7mr/O9/OhjY9Eu1XtKhkMJCgJT9+KpCRRmqWJuLBMWsV0s8PoJZYvjqqjJhHnBfUBDiYgZdut1/CKuL91eZxA=
-Received: from BYAPR06CA0015.namprd06.prod.outlook.com (2603:10b6:a03:d4::28)
- by LV2PR12MB999095.namprd12.prod.outlook.com (2603:10b6:408:353::12)
+ bh=fBQEfbVBS0+cgbqzMbLTS734i0qpRWzXf9WVw6YjQMc=;
+ b=gyOPYN0zRo03Bv2mxVUg1BNPxeJW7CX8Wpa1Kme2AuWaZgbPAOU0uRJ+c9VjxA6kQdXz+3XrbiQ6iPaM3iIt/fO0libTZ8te8FB0Jgj0b4D/YsfsLSXdjQmBluZ2xjMApvV6oVhgThMYxsnG4Xwl7Gm1jiknHLUjjvaSJ2Yv8EY=
+Received: from BY5PR17CA0054.namprd17.prod.outlook.com (2603:10b6:a03:167::31)
+ by IA1PR12MB6067.namprd12.prod.outlook.com (2603:10b6:208:3ed::10)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.20; Mon, 13 Apr
- 2026 10:30:40 +0000
-Received: from SJ5PEPF00000207.namprd05.prod.outlook.com
- (2603:10b6:a03:d4:cafe::bb) by BYAPR06CA0015.outlook.office365.com
- (2603:10b6:a03:d4::28) with Microsoft SMTP Server (version=TLS1_3,
+ 2026 10:30:43 +0000
+Received: from SJ5PEPF00000205.namprd05.prod.outlook.com
+ (2603:10b6:a03:167:cafe::e) by BY5PR17CA0054.outlook.office365.com
+ (2603:10b6:a03:167::31) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.48 via Frontend Transport; Mon,
- 13 Apr 2026 10:30:35 +0000
+ 13 Apr 2026 10:30:39 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -54,20 +53,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
 Received: from satlexmb08.amd.com (165.204.84.17) by
- SJ5PEPF00000207.mail.protection.outlook.com (10.167.244.40) with Microsoft
+ SJ5PEPF00000205.mail.protection.outlook.com (10.167.244.38) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17 via Frontend Transport; Mon, 13 Apr 2026 10:30:39 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb08.amd.com
+ 15.20.9769.17 via Frontend Transport; Mon, 13 Apr 2026 10:30:43 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Mon, 13 Apr
- 2026 05:30:39 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 13 Apr
- 2026 05:30:38 -0500
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 13 Apr
+ 2026 05:30:42 -0500
 Received: from junhua-PC.amd.com (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Mon, 13 Apr 2026 05:30:35 -0500
+ Transport; Mon, 13 Apr 2026 05:30:39 -0500
 From: Junhua Shen <Junhua.Shen@amd.com>
 To: <Alexander.Deucher@amd.com>, <Felix.Kuehling@amd.com>,
  <Christian.Koenig@amd.com>, <Oak.Zeng@amd.com>, <Jenny-Jing.Liu@amd.com>,
@@ -75,43 +70,41 @@ To: <Alexander.Deucher@amd.com>, <Felix.Kuehling@amd.com>,
  <honglei1.huang@amd.com>, <Lingshan.Zhu@amd.com>
 CC: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
  <junhshen@amd.com>, Junhua Shen <Junhua.Shen@amd.com>
-Subject: [PATCH v2 1/5] drm/amdgpu: introduce amdgpu_pagemap and kfd pgmap
- accessor
-Date: Mon, 13 Apr 2026 18:30:27 +0800
-Message-ID: <20260413103031.181953-2-Junhua.Shen@amd.com>
+Subject: [PATCH v2 2/5] drm/amdgpu: register ZONE_DEVICE for drm_pagemap SVM
+ migration
+Date: Mon, 13 Apr 2026 18:30:28 +0800
+Message-ID: <20260413103031.181953-3-Junhua.Shen@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260413103031.181953-1-Junhua.Shen@amd.com>
 References: <20260413103031.181953-1-Junhua.Shen@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Received-SPF: None (SATLEXMB04.amd.com: Junhua.Shen@amd.com does not designate
- permitted sender hosts)
+Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF00000207:EE_|LV2PR12MB999095:EE_
-X-MS-Office365-Filtering-Correlation-Id: 27665d03-b090-49b1-e7cf-08de9947b569
+X-MS-TrafficTypeDiagnostic: SJ5PEPF00000205:EE_|IA1PR12MB6067:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3ad03994-bd14-431b-0a77-08de9947b782
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|36860700016|82310400026|921020|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: TiydwQq4fUXq/4hY7/9XAYYOAYGPn31HeFhrnKVQwQkqye3qQ1dHdb/GWZ3KtGnyRRGgYGR3jxYfD08/BxNHS47OLqfAYrAIUovQD2kS81aMm5JMwm3/Qd64isObpujFWWQn1Wg916wmeMBy34Sn0AOHNyx3O1+/QgkRD3uw+D7W4uScQPskU7RssH/mUh8eU7eBKmDFGi4DOVCJq5JMCdsQkoR+G6nasXIKkXr4DXN7H67EfRoovm04yuyssioFMa+cA9H5+Jcj3sSlgy51M5EtrqWZrDlGEnmslBdwCB7rbecHvY1XQbpPuF4y2xUaHjQEv1+7PUHU1Zr09ilA3sXUJ0Zo7dmBCJymcL9XcLbF352CrwmxijkuM6/HWIEUxVd5/lFmhi7dUvnrrs66IUa83fUbgmEK77/ZshkWkOF6+Y0Uf7T/LZqKiUSXGbce71mnYOkjYTyoBNXHIpPPlMofqS8qiwQSjVG/vdKm3GDcVL/0IWsRHNxy+XbkMJLgZCjIad+kpuJKH5nKbOrR9VkT5ArozyfM8N25IcQblasuWXm6JzUPgbTDUFSgMDDKKVDxOMOFwF1mzvYbloYdiTCT9StiUNLRtt3b+Om2T6JzCCsYpcMTN3Oc92VBjb6W+XlQCaI9N8ljZPBunGM+r4+G4firM2hMO90aRc12BoOEwy3ZA5sgShbZID+jCPdH71GntFzpHkHWNJ/OhgPqkzTuEapinBXjOUbDFJ7cgCOXVd+ClFHL02lRBY07WSvvbojCYEOvmQknQF6Ck1uImajBzAXneICjPO1IFDNjE04Zfb43t6dFfjl4m1tvOhQb
+ ARA:13230040|36860700016|82310400026|376014|1800799024|921020|56012099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: 2Y9m/xe7DR+kYZ6uTACoSHib56BqVfuFwyVKheKoOicqLuSB8p3Qpvq8rD9uRlLxq3gtmM056bJRhnL8m/h3zjT58IBEen+vovz893lznJqGqq42ZAEUjCon8fOut/yhABRLPA4EG7n/61YpHnXDResi1UPtYtoGnKxnsVEmFoLytAG6hO8gGNMqNuGbjW7Hoz6cGzv0DzbIto255IW+lvJiVVCzBvED93Qq/XIHp2FAMOstOQWcEL9jsSRCFcJIhavlhNctMHH8eQatU95em7ytf+GMA3Bz+m/CZRQkJI3LkqcddIO2NL8j7T6EkgSTqz13ePP/5Xr2rTrig3mpXymQe/LOVkGhMltnla0KG2ys27sYm9ISso9EoxN1smDnM0PAcdm/PT3SD0myXjkO9/ylfDxt1iGDUm1BnXbW3M+VFw0YaW6RyZ5q+Joivb0VV6XK6kAEoINu8nbOFE/fVSx6S5zegRAeDKThr2b1ygHxbQfEZh0gNIZiqHLwSmavM6+79mY+hnyJZ01d1ZnK4NeX8Z3bU1TgqOfAMuV4dyOQ7cv0DQqmIPCj/HQGnisUDSP+mUdpVJXk6yGGQV27kZyrBUdr2t5bJ3HByw635Lc/AoxJRuJTz8DJvXhZu8GbpQIO/igdvk39BKPwKgOxY3FXKhN3FJStrLXTOEzywD0C3zC0SpAczxl3uLjpuWefoXVITGwlAtv396XE82UqGlhEGxXT+sMgtvzQGdMXQEPJmy9YSqj/UqUUMNHA+NJMgIxSoP8hfFcBqUFf9owi20uUYruqyLWMryM8jyMhzfqTZXSZ3tVt2kUzSIgSdRH+
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(36860700016)(82310400026)(921020)(18002099003)(22082099003)(56012099003);
+ SFS:(13230040)(36860700016)(82310400026)(376014)(1800799024)(921020)(56012099003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 4DKcxNWYKlcMCjfxeTKCjRNdJpCVGNgowCWZ8PvVBAF4tbm5iltARK/teDQwlZkRiZ1qMVPoFHuJdPfm6x5FtvzQW3GCezvm8IkTx4b8OviFhqFeTkG7X62facJGtLFMWvK9P1Rg4HS6h5N6482NNfTVp4/B9b4ChXlwCWBud+lYKTMUTMXEe4mrmPwCXAc9zlo6l0RnZgS+a1RZ3lU93LTm146+ZIdCPklke32LVVbDokVWuCHBYfAEhlfEQ02ztjG+SrsWcpd7dg6VAB1oyAVJyjb7Ed59ERaL84XWvUrU6koN5N3rz/URe/U7N9+/98JTiMuTH01jOPDu3LzK8OMLi+g8/lYuiMZSk5FXS9Hj3V26GJRvqfEsP/X4DN/wSNMEwKlpSVSknQf8DX2Cmc/2xE/DUFUTI/LihpXK87lw+mYYRVVyPlkxnPpxd0J1
+X-MS-Exchange-AntiSpam-MessageData-0: ih1bYZYhPtxAZnHmqxEDESqvQef8ZGBG/Qfgl3iEATfMoN6BF5ptMUSBVQOSIie6OW/bz/EDwwb+ElGFTveQjPnLTe09q1b+ZLwB5mT9BOeW75AMrrj5R9PnUucRi81i4CjrBVDADEclSw7Ondg1pNWgmHuXEa2FBBuNSaI5MzwlIewSz/tn8XPc1+6FASZCx0Jk1eC08b21HzxOkv5eqQzxKo4WjV8cmBHzJVVyGJxD/lq8Oy9tZew3QwY+H7qv9dXyvhrMgt85xtBWh0MVHA/4joljStcFqgnYm2fSTBmd5OpgMWGi4QxcEvoEwpYSupF+Xyz0/KUsmnbwDv7nIa1N6Ff0zzo9PVjal3k1m48s+OWE8k4i7hDITQAlabG35B+6EhOl36Y/pdXgUtzuyWfJdEMVfwF0+R4c7WnImLdMyEGWZiX4cQAPePKkp4i4
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2026 10:30:39.7190 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 27665d03-b090-49b1-e7cf-08de9947b569
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2026 10:30:43.2582 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ad03994-bd14-431b-0a77-08de9947b782
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000207.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000205.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB999095
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6067
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,173 +118,390 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	RCVD_COUNT_SEVEN(0.00)[8];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FROM_NEQ_ENVFROM(0.00)[Junhua.Shen@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[amd.com:+]
-X-Rspamd-Queue-Id: 7EEA93EAAA6
+	FROM_NEQ_ENVFROM(0.00)[Junhua.Shen@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 13DA33EAABD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Wrap the bare dev_pagemap inside a new struct amdgpu_pagemap that
-adds drm_pagemap state (dpagemap, adev back-pointer, hpa_base,
-initialized flag) needed by the DRM GPUSVM migration path.
+Register the GPU's VRAM as a ZONE_DEVICE region via devm_memremap_pages()
+and initialize the drm_pagemap (dpagemap) wrapper used by the DRM GPUSVM
+migration framework.
 
 Signed-off-by: Junhua Shen <Junhua.Shen@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h | 42 ++++++++++++++++++++--
- drivers/gpu/drm/amd/amdkfd/kfd_migrate.c   |  6 ++--
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c       |  2 +-
- drivers/gpu/drm/amd/amdkfd/kfd_svm.h       |  2 +-
- 4 files changed, 44 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/Makefile         |   6 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h  |  10 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |   9 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_migrate.c | 174 ++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_migrate.h |  67 ++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c   |   4 +
+ 6 files changed, 268 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_migrate.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_migrate.h
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
+index 7700f81a246e..e64abb5c8ab8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/Makefile
++++ b/drivers/gpu/drm/amd/amdgpu/Makefile
+@@ -323,12 +323,14 @@ amdgpu-$(CONFIG_HMM_MIRROR) += amdgpu_hmm.o
+ 
+ # svm support
+ amdgpu-$(CONFIG_DRM_AMDGPU_SVM) += amdgpu_svm.o amdgpu_svm_attr.o \
+-	amdgpu_svm_range.o
++	amdgpu_svm_range.o amdgpu_migrate.o
+ 
+ .PHONY: clean-svm
+ clean-svm:
+ 	rm -f $(obj)/amdgpu_svm.o $(obj)/amdgpu_svm_attr.o $(obj)/amdgpu_svm_range.o \
+-	      $(obj)/.amdgpu_svm.o.cmd $(obj)/.amdgpu_svm_attr.o.cmd $(obj)/.amdgpu_svm_range.o.cmd
++	      $(obj)/amdgpu_migrate.o \
++	      $(obj)/.amdgpu_svm.o.cmd $(obj)/.amdgpu_svm_attr.o.cmd $(obj)/.amdgpu_svm_range.o.cmd \
++	      $(obj)/.amdgpu_migrate.o.cmd
+ 
+ include $(FULL_AMD_PATH)/pm/Makefile
+ 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-index cdbab7f8cee8..844f622f55b0 100644
+index 844f622f55b0..c6d75d997cc7 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-@@ -38,6 +38,8 @@
- #include "amdgpu_vm.h"
- #include "amdgpu_xcp.h"
- #include "kfd_topology.h"
+@@ -444,6 +444,16 @@ int kgd2kfd_init_zone_device(struct amdgpu_device *adev)
+ }
+ #endif
+ 
++#if IS_ENABLED(CONFIG_DRM_AMDGPU_SVM)
++int amdgpu_svm_migration_init(struct amdgpu_device *adev);
++#else
++static inline
++int amdgpu_svm_migration_init(struct amdgpu_device *adev)
++{
++	return 0;
++}
++#endif
++
+ /* KGD2KFD callbacks */
+ int kgd2kfd_quiesce_mm(struct mm_struct *mm, uint32_t trigger);
+ int kgd2kfd_resume_mm(struct mm_struct *mm);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index fbe553c38583..14dd112a7298 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -2467,6 +2467,11 @@ static int amdgpu_device_ip_init(struct amdgpu_device *adev)
+ 
+ 	/* Don't init kfd if whole hive need to be reset during init */
+ 	if (adev->init_lvl->level != AMDGPU_INIT_LEVEL_MINIMAL_XGMI) {
++#if IS_ENABLED(CONFIG_DRM_AMDGPU_SVM)
++		amdgpu_svm_migration_init(adev);
++#else
++		kgd2kfd_init_zone_device(adev);
++#endif
+ 		amdgpu_amdkfd_device_init(adev);
+ 	}
+ 
+@@ -4076,7 +4081,11 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 
+ 	/* Don't init kfd if whole hive need to be reset during init */
+ 	if (adev->init_lvl->level != AMDGPU_INIT_LEVEL_MINIMAL_XGMI) {
++#if IS_ENABLED(CONFIG_DRM_AMDGPU_SVM)
++		amdgpu_svm_migration_init(adev);
++#else
+ 		kgd2kfd_init_zone_device(adev);
++#endif
+ 		kfd_update_svm_support_properties(adev);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_migrate.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_migrate.c
+new file mode 100644
+index 000000000000..58447d0d34bd
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_migrate.c
+@@ -0,0 +1,174 @@
++/* SPDX-License-Identifier: GPL-2.0 OR MIT */
++/*
++ * Copyright 2026 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++
++/**
++ * DOC: AMDGPU SVM Migration
++ *
++ * This file implements the drm_pagemap-based migration infrastructure for
++ * AMDGPU SVM. It provides the callbacks that the DRM GPUSVM / drm_pagemap
++ * framework needs to:
++ *
++ * 1. Map ZONE_DEVICE pages to GPU-visible VRAM MC addresses (device_map)
++ * 2. Allocate VRAM and migrate pages from system memory (populate_mm)
++ * 3. Copy data between RAM and VRAM using SDMA (copy_to_devmem / copy_to_ram)
++ * 4. Release VRAM backing when pages migrate back to system memory (devmem_release)
++ *
++ * Architecture overview::
++ *
++ *   adev->kfd.apagemap.dpagemap   (struct drm_pagemap)
++ *       .ops = &amdgpu_svm_drm_pagemap_ops
++ *           |
++ *       +---+-------------------+
++ *       |                       |
++ *  .populate_mm            .device_map
++ *  (alloc BO + migrate)    (page -> VRAM MC addr)
++ *       |
++ *       v
++ *   drm_pagemap_devmem_ops  (per-BO migration mechanics)
++ *       .populate_devmem_pfn  -> BO buddy blocks -> PFN array
++ *       .copy_to_devmem       -> SDMA copy RAM -> VRAM
++ *       .copy_to_ram          -> SDMA copy VRAM -> RAM
++ *       .devmem_release       -> release BO reference
++ *
++ * The three address spaces involved:
++ *
++ *   VRAM offset  [0, real_vram_size)     - buddy allocator managed
++ *       + hpa_base
++ *   HPA / PFN    [hpa_base, hpa_base+..) - ZONE_DEVICE struct page management
++ *       + vm_manager.vram_base_offset
++ *   PTE address  [vram_base_offset, ..]  - GPU page table entries (from MMHUB FB_OFFSET)
++ */
++
++#include <drm/drm_pagemap.h>
++#include <linux/memremap.h>
++#include <linux/migrate.h>
++
++#include "amdgpu_amdkfd.h"
++#include "amdgpu_migrate.h"
++#include "amdgpu.h"
++
++static inline struct amdgpu_pagemap *
++dpagemap_to_apagemap(struct drm_pagemap *dpagemap)
++{
++	return container_of(dpagemap, struct amdgpu_pagemap, dpagemap);
++}
++
++static inline struct amdgpu_device *
++dpagemap_to_adev(struct drm_pagemap *dpagemap)
++{
++	return drm_to_adev(dpagemap->drm);
++}
++
++/**
++ * amdgpu_svm_page_to_apagemap - Get amdgpu_pagemap from a ZONE_DEVICE page
++ * @page: A ZONE_DEVICE page backed by VRAM
++ *
++ * Follows: page -> pgmap -> container_of(apagemap)
++ */
++static inline struct amdgpu_pagemap *
++amdgpu_svm_page_to_apagemap(struct page *page)
++{
++	struct dev_pagemap *pgmap = page_pgmap(page);
++
++	return container_of(pgmap, struct amdgpu_pagemap, pgmap);
++}
++
++
++const struct drm_pagemap_ops amdgpu_svm_drm_pagemap_ops = { };
++
++/**
++ * amdgpu_svm_migration_init - Register ZONE_DEVICE and initialize drm_pagemap
++ * @adev: AMDGPU device to set up VRAM migration for
++ *
++ * Allocates a ZONE_DEVICE region covering the GPU's VRAM, registers it
++ * via devm_memremap_pages() with drm_pagemap's generic dev_pagemap_ops,
++ * and then initializes the drm_pagemap (dpagemap) that provides the
++ * device_map / populate_mm callbacks for the DRM GPUSVM migration path.
++ *
++ * For XGMI-connected CPUs, uses the device's aperture directly
++ * (MEMORY_DEVICE_COHERENT).  For discrete GPUs, requests a free
++ * iomem region for MEMORY_DEVICE_PRIVATE pages.
++ *
++ * Return: 0 on success, -EINVAL if GPU IP too old, negative error on failure
++ */
++int amdgpu_svm_migration_init(struct amdgpu_device *adev)
++{
++	struct amdgpu_pagemap *svm_dm = &adev->kfd.apagemap;
++	struct dev_pagemap *pgmap = &svm_dm->pgmap;
++	struct resource *res = NULL;
++	unsigned long size;
++	void *r;
++
++	if (amdgpu_ip_version(adev, GC_HWIP, 0) < IP_VERSION(9, 0, 1))
++		return -EINVAL;
++
++	if (adev->apu_prefer_gtt)
++		return 0;
++
++	if (svm_dm->initialized)
++		return 0;
++
++	memset(pgmap, 0, sizeof(*pgmap));
++
++	size = ALIGN(adev->gmc.real_vram_size, 2ULL << 20);
++	if (adev->gmc.xgmi.connected_to_cpu) {
++		pgmap->range.start = adev->gmc.aper_base;
++		pgmap->range.end = adev->gmc.aper_base + adev->gmc.aper_size - 1;
++		pgmap->type = MEMORY_DEVICE_COHERENT;
++	} else {
++		res = devm_request_free_mem_region(adev->dev, &iomem_resource, size);
++		if (IS_ERR(res))
++			return PTR_ERR(res);
++		pgmap->range.start = res->start;
++		pgmap->range.end = res->end;
++		pgmap->type = MEMORY_DEVICE_PRIVATE;
++	}
++
++	pgmap->nr_range = 1;
++	pgmap->flags = 0;
++	pgmap->ops = drm_pagemap_pagemap_ops_get();
++	pgmap->owner = AMDGPU_SVM_PGMAP_OWNER(adev);
++
++	r = devm_memremap_pages(adev->dev, pgmap);
++	if (IS_ERR(r)) {
++		dev_err(adev->dev, "SVM: failed to register HMM device memory\n");
++		if (pgmap->type == MEMORY_DEVICE_PRIVATE && res)
++			devm_release_mem_region(adev->dev, res->start, resource_size(res));
++		pgmap->type = 0;
++		return PTR_ERR(r);
++	}
++
++	if (drm_pagemap_init(&svm_dm->dpagemap, pgmap, adev_to_drm(adev),
++							&amdgpu_svm_drm_pagemap_ops)) {
++		dev_err(adev->dev, "SVM: failed to init drm_pagemap\n");
++		return -EINVAL;
++	}
++	svm_dm->adev = adev;
++	svm_dm->hpa_base = pgmap->range.start;
++	svm_dm->initialized = true;
++
++	dev_info(adev->dev, "SVM: registered %ldMB device memory, hpa_base=0x%llx\n",
++			size >> 20, svm_dm->hpa_base);
++	return 0;
++}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_migrate.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_migrate.h
+new file mode 100644
+index 000000000000..8cf177106163
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_migrate.h
+@@ -0,0 +1,67 @@
++/* SPDX-License-Identifier: GPL-2.0 OR MIT */
++/*
++ * Copyright 2026 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++
++#ifndef __AMDGPU_MIGRATE_H__
++#define __AMDGPU_MIGRATE_H__
++
 +#include <drm/drm_pagemap.h>
 +
- extern uint64_t amdgpu_amdkfd_total_mem_size;
- 
- enum TLB_FLUSH_TYPE {
-@@ -101,6 +103,29 @@ struct amdgpu_amdkfd_fence {
- 	uint16_t context_id;
- };
- 
-+/**
-+ * struct amdgpu_pagemap - VRAM migration infrastructure for drm_pagemap
-+ *
-+ * Wraps struct dev_pagemap with the additional drm_pagemap state needed
-+ * by the DRM GPUSVM migration path. Used in place of bare
-+ * dev_pagemap when CONFIG_DRM_AMDGPU_SVM is enabled.
-+ *
-+ * @dpagemap: drm_pagemap wrapper providing device_map / populate_mm callbacks
-+ * @adev: back-pointer to the owning amdgpu_device for fast lookup from
-+ *        ZONE_DEVICE pages (avoids traversing dpagemap->drm->drm_to_adev)
-+ * @hpa_base: HPA base of the ZONE_DEVICE region (== pgmap.range.start)
-+ * @initialized: true after successful devm_memremap_pages + dpagemap init
-+ * @pgmap: ZONE_DEVICE registration — must be last, contains flexible-array member
-+ */
-+struct amdgpu_pagemap {
-+	struct drm_pagemap dpagemap;
-+	struct amdgpu_device *adev;
-+	resource_size_t hpa_base;
-+	bool initialized;
-+	/* Must be last -- struct dev_pagemap ends in a flexible-array member */
-+	struct dev_pagemap pgmap;
-+};
++struct amdgpu_device;
 +
- struct amdgpu_kfd_dev {
- 	struct kfd_dev *dev;
- 	int64_t vram_used[MAX_XCP];
-@@ -111,12 +136,23 @@ struct amdgpu_kfd_dev {
- 	/* Client for KFD BO GEM handle allocations */
- 	struct drm_client_dev client;
- 
--	/* HMM page migration MEMORY_DEVICE_PRIVATE mapping
--	 * Must be last --ends in a flexible-array member.
--	 */
-+	/* HMM page migration MEMORY_DEVICE_PRIVATE mapping. */
-+#if IS_ENABLED(CONFIG_DRM_AMDGPU_SVM)
-+	struct amdgpu_pagemap apagemap;
-+#else
- 	struct dev_pagemap pgmap;
-+#endif
- };
- 
-+/**
-+ * amdgpu_kfd_pgmap - Get the dev_pagemap for HMM page migration
++/*
++ * AMDGPU_INTERCONNECT_VRAM - Protocol identifier for local VRAM access.
++ *
++ * Used in drm_pagemap_addr to distinguish device-local VRAM addresses from
++ * DMA-mapped system memory addresses.  drm_gpusvm_get_pages() uses this to
++ * identify pages that are already in device memory and need no DMA mapping.
++ *
++ * Value must be non-zero (0 == DRM_INTERCONNECT_SYSTEM).
 + */
-+#if IS_ENABLED(CONFIG_DRM_AMDGPU_SVM)
-+#define amdgpu_kfd_pgmap(adev)	(&(adev)->kfd.apagemap.pgmap)
-+#else
-+#define amdgpu_kfd_pgmap(adev)	(&(adev)->kfd.pgmap)
-+#endif
++#define AMDGPU_INTERCONNECT_VRAM	1
 +
- enum kgd_engine_type {
- 	KGD_ENGINE_PFP = 1,
- 	KGD_ENGINE_ME,
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-index 10bc81ce37cb..289683cabd79 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-@@ -212,7 +212,7 @@ svm_migrate_copy_done(struct amdgpu_device *adev, struct dma_fence *mfence)
- unsigned long
- svm_migrate_addr_to_pfn(struct amdgpu_device *adev, unsigned long addr)
- {
--	return (addr + adev->kfd.pgmap.range.start) >> PAGE_SHIFT;
-+	return (addr + amdgpu_kfd_pgmap(adev)->range.start) >> PAGE_SHIFT;
- }
- 
- static void
-@@ -242,7 +242,7 @@ svm_migrate_addr(struct amdgpu_device *adev, struct page *page)
- 	unsigned long addr;
- 
- 	addr = page_to_pfn(page) << PAGE_SHIFT;
--	return (addr - adev->kfd.pgmap.range.start);
-+	return (addr - amdgpu_kfd_pgmap(adev)->range.start);
- }
- 
- static struct page *
-@@ -1037,7 +1037,7 @@ int kgd2kfd_init_zone_device(struct amdgpu_device *adev)
- 	if (adev->apu_prefer_gtt)
- 		return 0;
- 
--	pgmap = &kfddev->pgmap;
-+	pgmap = amdgpu_kfd_pgmap(adev);
- 	memset(pgmap, 0, sizeof(*pgmap));
- 
- 	/* TODO: register all vram to HMM for now.
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 9b4143328371..4c11ed4e8ea3 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -185,7 +185,7 @@ svm_range_dma_map_dev(struct amdgpu_device *adev, struct svm_range *prange,
- 
- 			addr[i] = (hmm_pfns[i] << PAGE_SHIFT) +
- 				   bo_adev->vm_manager.vram_base_offset -
--				   bo_adev->kfd.pgmap.range.start;
-+				   amdgpu_kfd_pgmap(bo_adev)->range.start;
- 			addr[i] |= SVM_RANGE_VRAM_DOMAIN;
- 			pr_debug_ratelimited("vram address: 0x%llx\n", addr[i]);
- 			continue;
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.h b/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
-index a63dfc95b602..8059169c7e0d 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
-@@ -200,7 +200,7 @@ void svm_range_list_lock_and_flush_work(struct svm_range_list *svms, struct mm_s
- /* SVM API and HMM page migration work together, device memory type
-  * is initialized to not 0 when page migration register device memory.
-  */
--#define KFD_IS_SVM_API_SUPPORTED(adev) ((adev)->kfd.pgmap.type != 0 ||\
-+#define KFD_IS_SVM_API_SUPPORTED(adev) (amdgpu_kfd_pgmap(adev)->type != 0 ||\
- 					((adev)->apu_prefer_gtt))
- 
- void svm_range_bo_unref_async(struct svm_range_bo *svm_bo);
++/*
++ * AMDGPU_SVM_PGMAP_OWNER - Unique owner token for dev_pagemap registration.
++ *
++ * migrate_vma_setup() uses pgmap->owner to distinguish "own" device pages
++ * from "foreign" device pages (e.g., another GPU in an XGMI hive).
++ * Pages whose page->pgmap->owner matches the migration source are skipped
++ * (they're already in the right place).
++ *
++ * For XGMI hive: all GPUs in the hive share the same owner (the hive pointer)
++ * so intra-hive pages are treated as local.
++ * For standalone GPU: use the apagemap address as a unique per-device token.
++ */
++#define AMDGPU_SVM_PGMAP_OWNER(adev) \
++	((adev)->hive ? (void *)(adev)->hive : (void *)&(adev)->kfd.apagemap)
++
++/**
++ * amdgpu_svm_drm_pagemap_ops - drm_pagemap_ops for AMDGPU VRAM migration
++ *
++ * Provides:
++ *   .device_map  - Convert ZONE_DEVICE page to VRAM address
++ *   .populate_mm - Allocate VRAM BO and migrate pages from system memory
++ */
++extern const struct drm_pagemap_ops amdgpu_svm_drm_pagemap_ops;
++
++#endif /* __AMDGPU_MIGRATE_H__ */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
+index 28c4ad62f50e..2dfe0cb1c631 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
+@@ -87,7 +87,11 @@ static int amdgpu_reset_xgmi_reset_on_init_restore_hwctxt(
+ 		return r;
+ 	list_for_each_entry(tmp_adev, reset_device_list, reset_list) {
+ 		if (!tmp_adev->kfd.init_complete) {
++		#if IS_ENABLED(CONFIG_DRM_AMDGPU_SVM)
++			amdgpu_svm_migration_init(tmp_adev);
++		#else
+ 			kgd2kfd_init_zone_device(tmp_adev);
++		#endif
+ 			amdgpu_amdkfd_device_init(tmp_adev);
+ 			amdgpu_amdkfd_drm_client_create(tmp_adev);
+ 		}
 -- 
 2.34.1
 
