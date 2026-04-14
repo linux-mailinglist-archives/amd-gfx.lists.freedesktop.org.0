@@ -2,106 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MPTVFB9J3mkzqAkAu9opvQ
+	id QJjRAC9U3mlIqQkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Apr 2026 16:03:11 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Apr 2026 16:50:23 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 845BC3FAD78
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Apr 2026 16:03:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FB473FB7CA
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Apr 2026 16:50:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5119C10E239;
-	Tue, 14 Apr 2026 14:03:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A50B10E31E;
+	Tue, 14 Apr 2026 14:50:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WKOmTssR";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="W75qsxSE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f50.google.com (mail-dl1-f50.google.com [74.125.82.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2455310E239
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Apr 2026 14:03:06 +0000 (UTC)
-Received: by mail-dl1-f50.google.com with SMTP id
- a92af1059eb24-12714f01940so281315c88.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 14 Apr 2026 07:03:06 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1776175385; cv=none;
- d=google.com; s=arc-20240605;
- b=WVtiGLN9rU2aLZWy4eeFLC/8pOX0owWOy5SZlWHzDyQOm01S/oL2pV98fgNU9Ly06M
- 2TRMRXc7u4YVynwVHXjmzsIYCQ4cpForNLPaGd1Rs4wEG7msjMVTwGcC6elc17lKdp7L
- dfAMqp4YBRyydnDM2WDsgNzYvgPyoqRi0Xeqj3Fu1EvdaZ049exhnVFGZLqxVWZaZ/+V
- NF0rCYS4eDbFa6Uuh3VfO79JmRQOOox0imUYyiQ0hjUoIUlWRfjxm8vQ525vA9QohUT+
- ey9BCkxqCEBn4GkW6U0JitCz78gBok780jWWcCi62U3TbHlikhhKXqWbTYB0KIHHwm/K
- I0yw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=iaF/fBkX/7gnLRB/IP9DP6cQNuFeF5SktwmWO3OWG7k=;
- fh=MxQh+SlkoL1zXYOD1oJRjnIupgFL8FxibwjJLdsIDdo=;
- b=j5AgNL9Ra+VWe1ILBCeViakKQcJZD9KyLW4cIX7IZ6KhYYc/kJ9efn/EUtu82bO/uk
- YiWecgn4gnHEsn/opmaHskDFvwCXY8zr+9RhVJqbqsIGdcgVTB49WIzP35Q/uPzeul05
- FiXjLHA9t++ghBh2gzrnItLDZfKcCeqtnhGvBcwZYM2SqZ0KbaNOibAdJnFBeI5hPMeV
- ghSGra3mTvtWJ2B03tvO2/Pl82VbJp0FCQCx5leJmq4EjlKqEXFtKwXnbF5lVU31liJ1
- ed1iRsOBEWwB6N1bzOTwQ2JbNATuCTkr9lvX2seqj+XAQqgdtCU2vgQYfWEgBbkBF81g
- TfCw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776175385; x=1776780185; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=iaF/fBkX/7gnLRB/IP9DP6cQNuFeF5SktwmWO3OWG7k=;
- b=WKOmTssRi4wIe7lDY8UrLWoNjLEn1q4z0To84u511pKFjH9wwYP6BPCruuL6a1pcmx
- /h3Z7wbRcOd3/zEYLE9U73wxslvUwRAr3LBSIPldV0AJWngrdu9aMMbBkAN3lzJ/Q8Hx
- X3fbTiZ5hrI+FJqLJckWvctAjMICklty0WHrJFao+OXc8GDRr8/8uFUOF9rr9SXRJ43j
- W//iAyeWcC9dHe/FZvO24PzlbXU5tuVI8fpCYkMwalySvGoMQgzF2VkKEDrGYo5Qvbyf
- M+lq7jOVLuLwjvS5uvD01i+/jgjvtP6v74l7eGduAI7Bk0HWRTE/LsV0n6wNv9wL9RFP
- sEfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776175385; x=1776780185;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=iaF/fBkX/7gnLRB/IP9DP6cQNuFeF5SktwmWO3OWG7k=;
- b=QmXXXmtV92tMb6tgGyUOLcLmKDkKUg9RRBKvFK0x5MdCQP1nyonxMzB0BH1t1EHsto
- rsHeAtc/YyP25PUZRvweevYgVQtvLHSTpLZqXkS6Ux+00TQNsJafVU/isc7XM+FdF99c
- 8t8hKxW9NSmdJKSxrCw3oWgMi8+BsHpIbMcfCctEhSeaLMJ7SK6jWyUHJgtNAVmQN9QM
- SW38ZGh4rSPnoF6TL1LQwfsJ/A1emhkaXLiIY7dvQtqB8y9TbrfXJcFPSjWw+Yg2jkRY
- MYXshsSY8qNyNU/mImLyj3yEoavvjfRfbpLT//3I4f+DnqVU3iTQ0cTunjLbEbMnm60G
- 8Ifg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+AUicUQmpChGBbh/KZzamqF1MVpmLb/wZey583WP4IAzk6mMaQWFSpH9nij7K9tU+lMayx+hxh@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzdqaqjU8ajYWgaHdUf3Qtc6RdNCVvhHH7vVd5syjgjbfVK2lin
- 2/AC4jaeKb2RMFxf+gQKidY3JvCp6EdlqVQ8+nfCiSDRPnXDGzQkrMEPfebOW9deJZsK/tPSalt
- QJepKpQ3x5O3MdpXSE/212wLoH+HqLAU=
-X-Gm-Gg: AeBDieviloeOt0pOXTpmkyQqdAi7Z+O+Aq7I4diOUAXHFdEmiyaTPS71rvKMCXW9xll
- Q653I7cXlN+E8OEl6Pm5kT9x9IGyyQYFztHv5KVP/vIOPjsQO6d20Ld6cfn+HQuAI1SANRxduML
- Ec2EjVtCqDCzQwqy8wnpZUgDpjALRhScr93vKwbojqtA484nLGa+Rmfy0lGvy1aXKORC4dl8vry
- DAE0MEc0QuJhBwUjLYUkPdYqpMwoOLZg1l+UYthjR7w004zNyejFXmh3FjyIuKd/LB8f5lGgfH7
- xY3YrzKSSrPAxm2l6gVPVaYsZPjoy0zVpdCSD57MC5XBWjMaNzmteMUmU7EyjW1sHfW15LKEGUS
- AiD+U
-X-Received: by 2002:a05:7022:b92:b0:12c:33dd:fa28 with SMTP id
- a92af1059eb24-12c34e6b5c2mr4483565c88.2.1776175383371; Tue, 14 Apr 2026
- 07:03:03 -0700 (PDT)
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7705D10E31E
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Apr 2026 14:50:19 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4fw6dM6Dd5z9tLf;
+ Tue, 14 Apr 2026 16:50:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1776178215;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=uzso2jAfCRSfDhtXxNbyOXg9dD6yAxKr7TDUE5t33bY=;
+ b=W75qsxSEhTUH06wmkI/mPbWLJhHUVBXRHeFZZocpefPgynOSwy1JW77UtGjsjDm8LOOabJ
+ sx26EB/o4QrAlvT6sH/8ksQLJIfYcH9pdn7JgbCJkrtvS3Qq0LLxi+nMMCUAuGc1NaY8fz
+ WiKj6EhdoSxc5JvWqSkpd/vCvUrZ67bYIEP+bvyD7li/ccQgn1SFKpdyfGT2vG4OsghLjQ
+ r97MH8JhoBhGG3GJq0m8HypdEJqbBlUsq71xn5V8ZEdfS8ppDNwrDk0Bqp3RridhJ0dGgT
+ Sc+K5HeATfsUWAbxX/yHaa9CG/2hPUs/fLeRhBHEU0DRMgqGzghjBeXF+J4XqQ==
+Message-ID: <1cd26979-9b60-48cb-a0fa-308769245e38@mailbox.org>
+Date: Tue, 14 Apr 2026 16:50:07 +0200
 MIME-Version: 1.0
+Subject: Re: [PATCH] drm/amdgpu/userq: gnome shell uses max priority
+To: "Khatri, Sunil" <sukhatri@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Sunil Khatri <sunil.khatri@amd.com>, Alex Deucher
+ <alexander.deucher@amd.com>,
+ "Mohan Marimuthu, Yogesh" <yogesh.mohanmarimuthu@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
 References: <20260413084943.819126-1-sunil.khatri@amd.com>
  <5976d500-d768-4a63-8fbe-4e68e20fc0e6@amd.com>
  <4e862955-3437-40f4-bf04-2bdab7d84909@amd.com>
  <3e220f91-a89e-42fa-9186-c9658d41839b@mailbox.org>
  <9ad4a8a9-7888-4634-aa50-15d22e98dc1d@amd.com>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Language: en-CA
 In-Reply-To: <9ad4a8a9-7888-4634-aa50-15d22e98dc1d@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 14 Apr 2026 10:02:51 -0400
-X-Gm-Features: AQROBzBC9qUS5gF3ogE4ZmasvHDtA8PAUl6WSN-exbk87YM7KnvKrJYZMIDkESg
-Message-ID: <CADnq5_OGYawMqwVVyeB7hB0CqkzGC3wXdt_1RqKa3XG4XAQ=Gw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu/userq: gnome shell uses max priority
-To: "Khatri, Sunil" <sukhatri@amd.com>
-Cc: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Sunil Khatri <sunil.khatri@amd.com>, Alex Deucher <alexander.deucher@amd.com>, 
- "Mohan Marimuthu, Yogesh" <yogesh.mohanmarimuthu@amd.com>,
- amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: p7q1a7xmc4b4xdx4pso9s5wpfdt3955h
+X-MBO-RS-ID: 9f14a11de7428112fd2
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,111 +73,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:sukhatri@amd.com,m:michel.daenzer@mailbox.org,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,m:alexander.deucher@amd.com,m:yogesh.mohanmarimuthu@amd.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:sukhatri@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,m:alexander.deucher@amd.com,m:yogesh.mohanmarimuthu@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MISSING_XM_UA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 845BC3FAD78
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mailbox.org:dkim,mailbox.org:mid]
+X-Rspamd-Queue-Id: 4FB473FB7CA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Apr 14, 2026 at 9:59=E2=80=AFAM Khatri, Sunil <sukhatri@amd.com> wr=
-ote:
->
->
-> On 14-04-2026 07:12 pm, Michel D=C3=A4nzer wrote:
->
-> On 4/13/26 11:24, Khatri, Sunil wrote:
->
-> On 13-04-2026 02:32 pm, Christian K=C3=B6nig wrote:
->
-> On 4/13/26 10:49, Sunil Khatri wrote:
->
-> In function amdgpu_userq_priority_permit allow till
-> maximum priority i.e 3 which is seen for gnome shell.
->
-> This is needed to fix the issue of unable to create queue
-> for gnome shell.
->
-> logs:
-> [drm] *ERROR* comm: gnome-shell pid: 2802 client-id:10 client: Unset ... =
-SK: Priority 3
->
-> Clear NAK, as far as I can see the existing code is correct.
->
-> AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_HIGH is only allowed when you ha=
-ve CAP_SYS_NICE, e.g. you are root.
->
-> That is also documented in the UAPI. Question is why is gnome shell tryin=
-g to use that?
->
-> I see, let me add Yogesh for his inputs, @yogesh, why gnome shell is aski=
-ng for priority AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_HIGH. Based on the=
- code seems mesa is getting a flag set flags & PIPE_CONTEXT_HIGH_PRIORITY -=
-> this sets AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_HIGH for graphics queu=
-e.
->
-> For some background, mutter uses EGL_CONTEXT_PRIORITY_HIGH_IMG when EGL_I=
-MG_context_priority is supported, to try and prevent its GPU work from gett=
-ing starved by clients.
->
-> This works (or at least doesn't fail similarly) with kernel queues, presu=
-mably via DRM master status. I'd argue that should suffice with user queues=
- as well.
->
-> Below is the check that we have for userqueues during queue creation, and=
- for gnome it did not hit any of the condition and eventually return with -=
-EACCES that is wrong. It has to be maste or CAP_SYS_NICE capable.
-> if (priority < AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_HIGH)
->                 return 0;
->         if (capable(CAP_SYS_NICE))
->                 return 0;
->         if (drm_is_current_master(filp))
->                 return 0;
->         return -EACCES;
+On 4/14/26 15:51, Khatri, Sunil wrote:
+> On 14-04-2026 07:12 pm, Michel Dänzer wrote:
+>> On 4/13/26 11:24, Khatri, Sunil wrote:
+>>> On 13-04-2026 02:32 pm, Christian König wrote:
+>>>> On 4/13/26 10:49, Sunil Khatri wrote:
+>>>>> In function amdgpu_userq_priority_permit allow till
+>>>>> maximum priority i.e 3 which is seen for gnome shell.
+>>>>>
+>>>>> This is needed to fix the issue of unable to create queue
+>>>>> for gnome shell.
+>>>>>
+>>>>> logs:
+>>>>> [drm] *ERROR* comm: gnome-shell pid: 2802 client-id:10 client: Unset ... SK: Priority 3
+>>>> Clear NAK, as far as I can see the existing code is correct.
+>>>>
+>>>> AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_HIGH is only allowed when you have CAP_SYS_NICE, e.g. you are root.
+>>>>
+>>>> That is also documented in the UAPI. Question is why is gnome shell trying to use that?
+>>> I see, let me add Yogesh for his inputs, @yogesh, why gnome shell is asking for priority AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_HIGH. Based on the code seems mesa is getting a flag set flags & PIPE_CONTEXT_HIGH_PRIORITY -> this sets AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_HIGH for graphics queue.
+>> For some background, mutter uses EGL_CONTEXT_PRIORITY_HIGH_IMG when EGL_IMG_context_priority is supported, to try and prevent its GPU work from getting starved by clients.
+>>
+>> This works (or at least doesn't fail similarly) with kernel queues, presumably via DRM master status. I'd argue that should suffice with user queues as well.
+>>
+> Below is the check that we have for userqueues during queue creation, and for gnome it did not hit any of the condition and eventually return with -EACCES that is wrong. It has to be maste or CAP_SYS_NICE capable.
+> if(priority<AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_HIGH)
+>                 return0;
+>         if(capable(CAP_SYS_NICE))
+>                 return0;
+>         if(drm_is_current_master(filp))
+>                 return0;
+>         return-EACCES;
 
-This is the same logic as kernel queues:
+Indeed, looks like at least in some cases mutter creates the EGL context before it has DRM master status. I'll look into fixing this in mutter.
 
-        /* NORMAL and below are accessible by everyone */
-        if (priority <=3D AMDGPU_CTX_PRIORITY_NORMAL)
-                return 0;
+With kernel queues, radeonsi silently falls back to a normal-priority context in this case, but then still claims it's high priority. I filed https://gitlab.freedesktop.org/mesa/mesa/-/work_items/15282 about this.
 
-        if (capable(CAP_SYS_NICE))
-                return 0;
+Meanwhile, user queues should probably also fail without logging an error in this case.
 
-        if (drm_is_current_master(filp))
-                return 0;
 
-        return -EACCES;
-
-Maybe there is a timing difference?
-
-Alex
+-- 
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
