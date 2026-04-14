@@ -2,132 +2,113 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CPjKNPs632kLQwAAu9opvQ
+	id cK47LVK33mn6HgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Apr 2026 09:15:07 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Apr 2026 23:53:22 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 439A2401415
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Apr 2026 09:15:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ABFD3FEB7D
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Apr 2026 23:53:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C06610E689;
-	Wed, 15 Apr 2026 07:15:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD1ED10E05C;
+	Tue, 14 Apr 2026 21:53:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=verivus.ai header.i=@verivus.ai header.b="axLBG723";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WsV7KI99";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MEUPR01CU001.outbound.protection.outlook.com
- (mail-australiasoutheastazon11020088.outbound.protection.outlook.com
- [52.101.152.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB4C310E052;
- Tue, 14 Apr 2026 21:14:45 +0000 (UTC)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011038.outbound.protection.outlook.com
+ [40.93.194.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C80D110E05C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 14 Apr 2026 21:53:18 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RzdtWF4Di3wvOLA0g26F50mAdmKHdDBQCfQ6wi1VDJp7eNTIcx6pujtA0BDRZ/TQJDBNCbqqzbQ4Qr/AMuEnErNwXsTte9TcLhFW+As7P75OmT0B7EkN32SKDdff+h7V2GWFluJFF/jcJxH5MWbEoIcIVD6RuNzQkMDKJUHoOR2cnbn+qiIPzEx3q0WYsPMXu9f9JUxqSLC6a35awEAunT9CK0EYmjFmWigZRxrMLf7CoCjAF7ISjqnnyWTu4bq/Ur5tOw8yzLf+3izri6mYdUvj7SeLeJ5krFg6D1LDCX4GVac3X+AYLetPlPsgWabqRaGJiN7Lgl5LxG3T0qcQAQ==
+ b=R+ZJRcxfqsxHr6fOk6C4hCrmIiW/qDidz4eqvXO8+OGebTLxlgVrlNfphshR4c1MnMJrIGXx/QBMSsugZSXRUQ0edWVb7XP/tcstOUTkfryBN9Q4IOspoUOGgo/Lh/F4owssCaHO5eJZuPv+0XfYu9O4LKh36ploG+tjnA71Lssg7q5+Hr3q/FWDxJEy0xYmBycMSwgsP85aVKkDrcP+bYGxy2gE7OXF3zsyaJh6BcoSB9qAn6p0HSVNNwrZFQjxXD5Q6C+5T8oAQJNhHifEVq1DIAArcFqgyRL32/NcsKQ+GgW6r0dLSjOS7aLxXxQ73NkhlfUPm2v3yy8aNRrKQQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ayVwbGrlFXW8bwQ2gqiZBOC2Y8ZRHPJrBIq6FlPJ3Q0=;
- b=zJ7vVyEOZVDPiGQqqtOg8PDPFslJH80+2iEVOn+iH0FpRKjeXSn1JEuYyrYnz7vPOZuknSsiNF5o/bt2pt5NL4zuajWzisCnNG8/5EjaPYnkm///7rHi8lC15PfLJiHXqws2ZIVdOiluvA17H0zr6IdqduMnPFtl6jNE/3KwBH9R+5AT0uiLXJriQiCflLMpVLiY2qiZMhPIKcRyBJ9zhTdtl9QFkRlIxXhJhAP+fIdnI8NhKyaUe2MLvAC/4GDEkod9XoePGcU1BKN9Jv6BBP9ONlPxmQl4dWwoy3pX8Km176hjd1tQtP2/lDzOoF89qio5orzjak/DJqL3Sy1+gw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=verivus.ai; dmarc=pass action=none header.from=verivus.ai;
- dkim=pass header.d=verivus.ai; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verivus.ai;
- s=selector1;
+ bh=AWNR78oZ2F00N0Zuf/X5wzPwQrqQbtvHllrG7VTYqAI=;
+ b=ftEb783s8DbYRUxvgRJD8KjDuMo/RathWn9Y0ejaAMMs660KJJikMf64YltILGXPbIH5H/qYdf6BNLvh7KCcKcUYw6Z4O5RiM9NFt5+IoFXsWGNikD3xGeRJEKob7qqo1jIoQ/Jnf/QgAWxwI57VXARMNjpJSTQw2SdDSUMqIg81g3C79+XBuVFTphJhb25dsnvfMJ+PDHtUZkQRMxa9Hw1o/7J8LqkEyLBCelpCbucsHzl2nRpRM2ss8qFoM0Kfs35aWD1kQEE1SXwS9BHVsuiEDph72H/X7c4TVJZFIMM7DFfxf1CfnETSfkYB0ylGk45fTxZUB3KkzaaHJyti7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ayVwbGrlFXW8bwQ2gqiZBOC2Y8ZRHPJrBIq6FlPJ3Q0=;
- b=axLBG723D28ZzEEn7yCv+0q9uM8ZrU577w27sHT5H4fvrtL36Pwf79wTH5MRq3SG7Ic2zloSv4BLclcx7ZVjyev4R2jr71aXuZkLkol39IZVuGml6x4SlkhxcyVAjauMBThsgOX+l7DVyCXKgtq6PLOpRjYClyk5pqWEor+JBQwOXMuMn4bAOdoHeqVdoLvm8p7+5ufwpQRQ0PGSXto9D7wL9Y0STV6nHKeDbGWLdrh0D8FacE0O4uH2kz+7SgnEhZuuk2IRVaW1iBTzU40f35xqYAvkEDB80S2JLqVIvU+dPlK9kvK8sAK8difo3JMnqBhwmhBqq/3tedFiIK/4Rw==
-Received: from ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM (2603:10c6:220:22a::5)
- by MEUP300MB0221.AUSP300.PROD.OUTLOOK.COM (2603:10c6:220:21c::13) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=AWNR78oZ2F00N0Zuf/X5wzPwQrqQbtvHllrG7VTYqAI=;
+ b=WsV7KI9928LjFqos+1d0XV3g5Y0Wfx4Dna+5tPew15+hECPVomzSRXG4W4Sh4ZR1V5ZVx5zRStZ9DjUq/Y8Y9Pa9yU4qPLrLAE/GLNvaO8i/k2CyhLVKPaUIMwrTNILLQSWrt8QwpRgwbdi6pCT11JYYbPiHo91uzIRu9deLagQ=
+Received: from PH7P221CA0079.NAMP221.PROD.OUTLOOK.COM (2603:10b6:510:328::14)
+ by IA0PR12MB7529.namprd12.prod.outlook.com (2603:10b6:208:431::18)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.20; Tue, 14 Apr
- 2026 21:14:40 +0000
-Received: from ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM
- ([fe80::1e3f:9cb9:4a95:b5a2]) by ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM
- ([fe80::1e3f:9cb9:4a95:b5a2%5]) with mapi id 15.20.9818.017; Tue, 14 Apr 2026
- 21:14:40 +0000
-From: Werner Kasselman <werner@verivus.ai>
-To: "alexander.deucher@amd.com" <alexander.deucher@amd.com>
-CC: "christian.koenig@amd.com" <christian.koenig@amd.com>, "airlied@gmail.com"
- <airlied@gmail.com>, "simona@ffwll.ch" <simona@ffwll.ch>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "stable@vger.kernel.org"
- <stable@vger.kernel.org>, Werner Kasselman <werner@verivus.ai>
-Subject: [PATCH v2] drm/radeon: fix integer overflow in radeon_align_pitch()
-Thread-Topic: [PATCH v2] drm/radeon: fix integer overflow in
- radeon_align_pitch()
-Thread-Index: AQHczFO02DccrNv460y5pGbLVq+GrQ==
-Date: Tue, 14 Apr 2026 21:14:39 +0000
-Message-ID: <20260414211437.154315-1-werner@verivus.com>
-References: <CADnq5_OVN+uCioTWNeuHkGpkUU-VhEio_uMEBMVur6-hWXwtug@mail.gmail.com>
-In-Reply-To: <CADnq5_OVN+uCioTWNeuHkGpkUU-VhEio_uMEBMVur6-hWXwtug@mail.gmail.com>
-Accept-Language: en-AU, en-AT, en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.43.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=verivus.ai;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ME0P300MB0853:EE_|MEUP300MB0221:EE_
-x-ms-office365-filtering-correlation-id: 159baddc-6d17-4918-7933-08de9a6ad72a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|38070700021|18002099003|56012099003|22082099003;
-x-microsoft-antispam-message-info: xFC2T3DkaO9IZjVpVlFeRIWeEX1n6D7qRsw1Btn8diUzapYUI522z076+L8g9leuzi6aXj3sJLWCpfRBLIddTsFPP+xgi1ssZhsnViGwk/uYrNdVuRV8/+0hx+YuBkaIjzMd66KKIpiatmQMEEd7zcdWQtMcRJG7xQET04SHKrNSm1hivr4SWN9YEEqm1E35e+1vzRpQ9JTuX4IXUoareoq+Fww5HzL4RgRB6l0RIsEgQo9K73+SBH+vwiAkcYgzE6PKDJKcknLzPFP+iYl0jE4RsZ/hMUbQt5RRAzAvHY5s+/ADpRazS5+v3vtk8jG1KFHpoh+nrxR9DTJ+eQu8rx5AXJIUggDEA2Je0b8N8T6E3dI0R5V/N88uLdYl8bMPWSn1+t5yiGqrefMx/09X7SC9ujiy9eNoKvy++yHxzJ9X4qZvGxz2aS+1m8p+RMS5GwM55qc7XucmUVdeos7uXilEJOEyVCGlGEdZHQayy+agG1rvVBSAGYuSo3rDV6xGMWig9rUHDjy5lsRDLASXvvYna18uvPWVY3ZkwXJYvqHmiFHDDzc+rl4Gg5j2qkQw5Km61Z8aFgLmRqwzUwR7IhHxofIJTjwh1g5oSlGmZpTng39Ugwi43eATanq3ZR+0/ehqbFFsWTfI2XUJRRLpQLe0mOT1taQX0sQh3kh6kSGtkb4TXy4fov5iSd/7x5zkGjdfjlc1NcU9AH8gcWvk6P3MRqtTor/xK4hCCqZJRK0rfSJDa8hBAAtXJYDCWPIUzo5MqfD0cHp8yn75Whgy9+L7EYuam/7j5o5HOYJBvpM=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700021)(18002099003)(56012099003)(22082099003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?Ii7bXfXY4T8Z2y3O3bzeshS1LYFMyFlK1Floy8miCEwO1YdzX+fYhZzc/e?=
- =?iso-8859-1?Q?fddRTvfSmp9gW461VA5cWWDbQcyFDFtRWBQBYueEd9Oq7F0Fvc7xhRvj8U?=
- =?iso-8859-1?Q?+uDhNZxepBMwVabJfLL98/3sMswZe63UIrYYWp6aqiHn/R3nSyB6RGN5yZ?=
- =?iso-8859-1?Q?IetwlM4Iqa9IYTQhnYP/FzZxicuNvYlzqs3McodlJVcC8IvaR5DI7xbcDy?=
- =?iso-8859-1?Q?MOUxcqUqSyM2pwyXQY6YxjtsEjueUgXcc6JSAo2F7iqkDEgxR9ijE7gmdM?=
- =?iso-8859-1?Q?/H4qJgTPlMpqXmKOz339pregF1vAepk20alELh7OWlnoJoOWsuMIp9va3c?=
- =?iso-8859-1?Q?xnkGJSBYOf5Ewz07rZzV2tGVcZ97egtOHIy2D5GaKSFjrTHzynmk9oO1tG?=
- =?iso-8859-1?Q?3qDWLCxeJDhaDpCwkaLGqxfgdQUJCSM/vEUXXrcazKTHfcGXubI0minDJm?=
- =?iso-8859-1?Q?YfL3QlLlyW7gVwRSWHvPLlL0jzxj6ycHzFYp/4ANtoY12u1rKJ67kYPCmg?=
- =?iso-8859-1?Q?qsMR4jWS9hHvKWeRnr3D+GbPvhdkQU/MB6Br7fmsDiwJO5fzq4GV+nl1UT?=
- =?iso-8859-1?Q?u8MBc9HsdK2AeWqnGw3oeq6XqyRBgkBYAH6v3HIqOTkFbSoaivjnBcvAP8?=
- =?iso-8859-1?Q?IwOYf1wdsxZSB2pjnAyrRzfbqdygz3UXiMR0LmkYh/IVpTC2gsAfglSLz8?=
- =?iso-8859-1?Q?d9kzEKCiTlIhwNNt8GIAwTo9W+zWZxK6UkIxeO6mS+MB5X1Q0MG1oHfEj6?=
- =?iso-8859-1?Q?qQ6ZBUA5cnTC6DbNR2cUQXVFytxpPStCFVgYTMTNm0+xkC3avNAw1ERhsk?=
- =?iso-8859-1?Q?Ylp4KIzMiRr5j3E+nyDCmm7V+YGcDsOC/6N82bNFsT5hBaxMnjfVKbBCEu?=
- =?iso-8859-1?Q?6vTWf/4uBEucIrsFxwg6P/8kAu6XkDa+e3fGEUVtmX73Of8Q5t9GhAuJd1?=
- =?iso-8859-1?Q?MNsKcGiAcq/SqBL9io8V1WbaGWGyhCmIWWna+ZjTp7IFQfa1/7reFns6ps?=
- =?iso-8859-1?Q?4/lBtktb8Km99WWkJPJ2diDQPJpuF2Sy9Ghv0oWYh7UrQGB6U8PXA26FZC?=
- =?iso-8859-1?Q?lUx/MqLSp3KVrnUpkOXyBSlREhQ/WLlaPBAurZW57vxVuAInLEVJjoY8p+?=
- =?iso-8859-1?Q?QVxte4cVQx4Xy1IgaHpYAiVdCFxgmANvn3gAPdt+FrkKE13HbHFsR057tC?=
- =?iso-8859-1?Q?ylDH7uO5e9XGEJQ/ESeS53A0o77DFY5svM97gbWc6xpL58Bn8kNgbQ7GrU?=
- =?iso-8859-1?Q?1CzYLQ1rMZSrCZuqIfFFQCZgM4Bwmj22DcLRHydvO+ytEwNxavF1eYpLXV?=
- =?iso-8859-1?Q?g2ns5DYCcLUJcQHUXAgD2pre29FpP+b0WMQeHZfocGsKakc/bnVZMNJ3Gx?=
- =?iso-8859-1?Q?+6iMQq4d6K28BJGh9PIbIy0K5pcriQUTFr/et1SMejpZY4r4Csx9iNXp4e?=
- =?iso-8859-1?Q?qQfzP4brEu2qaCrYSVGoLxfKeQIPZA0bDdts+JvBZkBnRdyIpbnumGhVBY?=
- =?iso-8859-1?Q?mDJpXQ5pDPWyvLRx1X2LMjL8d4lT+O1H4mG7YIwB520pdjMmF8aJfTp6EI?=
- =?iso-8859-1?Q?FX1G53I8yp6ywkqb77zz6a3XOyBONwMaoEJ2AUnTFGgjrAEDgIR/OLP7px?=
- =?iso-8859-1?Q?gpMHkx9s6jfHPfEwY5L2/2rTbbSdriceUQ6uqrQkqK866RMgwOM8B1t+OA?=
- =?iso-8859-1?Q?B3A+eQTkcSirqq+3/3JzIvXfEYIhaiHhwzuDHsE+zj8GwJkJsGJvoEoqLz?=
- =?iso-8859-1?Q?CuBmg1JsOZ5kZ+gsWSoQAhNOer53aZbDm3XmKDstaA8AvqryRz0CD/dMwK?=
- =?iso-8859-1?Q?96Jk6KrGxw=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ 2026 21:53:07 +0000
+Received: from SJ1PEPF000023D3.namprd21.prod.outlook.com
+ (2603:10b6:510:328:cafe::c8) by PH7P221CA0079.outlook.office365.com
+ (2603:10b6:510:328::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.48 via Frontend Transport; Tue,
+ 14 Apr 2026 21:53:06 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ SJ1PEPF000023D3.mail.protection.outlook.com (10.167.244.68) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9846.0 via Frontend Transport; Tue, 14 Apr 2026 21:53:06 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 14 Apr
+ 2026 16:53:06 -0500
+Received: from [10.254.92.140] (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Tue, 14 Apr 2026 16:53:05 -0500
+Message-ID: <878f4072-dc5f-4fcf-b691-ae823961eb80@amd.com>
+Date: Tue, 14 Apr 2026 17:53:05 -0400
 MIME-Version: 1.0
-X-OriginatorOrg: verivus.ai
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 159baddc-6d17-4918-7933-08de9a6ad72a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Apr 2026 21:14:40.0192 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: ccdcedb0-4edc-4cc8-9791-c44ee6610030
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 887Bqg0uHgURISa4V8ttCxxwSCpFcRPuS+1uGrEY6fS4vihytmZB9wAHhUgVk/OYhU2aJ8fp1+ZL15eVxZcafA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MEUP300MB0221
-X-Mailman-Approved-At: Wed, 15 Apr 2026 07:15:04 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/display: Fix crash due to NULL dc dereference in
+ ISM during teardown
+To: "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>, "Hung, Alex"
+ <Alex.Hung@amd.com>, "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>
+CC: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Wu, Ray"
+ <Ray.Wu@amd.com>, "Li, Roman" <Roman.Li@amd.com>, "Chung, ChiaHsuan (Tom)"
+ <ChiaHsuan.Chung@amd.com>, "Wentland, Harry" <Harry.Wentland@amd.com>,
+ "Mario Limonciello" <superm1@kernel.org>
+References: <20260411043538.2304235-1-srinivasan.shanmugam@amd.com>
+ <5276d674-96a1-4650-8224-bb29cd1bd009@amd.com>
+ <IA0PR12MB82087F81E20FE6218209087F90252@IA0PR12MB8208.namprd12.prod.outlook.com>
+Content-Language: en-US
+From: Leo Li <sunpeng.li@amd.com>
+In-Reply-To: <IA0PR12MB82087F81E20FE6218209087F90252@IA0PR12MB8208.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D3:EE_|IA0PR12MB7529:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2b6bbe5b-de87-488c-aa67-08de9a7035ec
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|42112799006|376014|36860700016|82310400026|22082099003|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: epePRUvYjqac0vkQJ4DVlz1scaUITzZ4JxDa9osK2A9fGWSK3HW+Sr7SCo2w42qjvUWtSiPCWtQRLJ9Leeha9MIO4ixLUC4wENXePI2iRJKs5ubhKZTc0mh5F8L1VPqG0T76U7xoW9WIOtrpzlFcegHXdBuv1kQ5pcnxAPeOdnRx3ZGx19n/zPvjsAXPAY0yk+qlbAmuOScUd+cN6FDqNit1PEyJ2HFnpxb4OWgrkSuZyEz20jMB7I2LOPkzeLHyXVXWAI7u7OG7Cu/oiJxGP5MiCo5F0BS5wGHXGwNa49H+VNkqzQvNU7UPn/eXrDhdhf3ghvS4NWAL8/udeK6aPXUg+Smwt5ZaZ84wQZXJHmGdy+LnPN/1/tuh4rlZsSHehR9+F58112HULvxIvflf5OLfVbHjrtztDUQAIVyTBWq4uIRs9iRyWiwtZ/e63Y6u8Z6mNxlbxTWKRvZfr0E1QhbfdmMd4Ajr5chjMA/9GOouDG9w7B1A83+qZmhvgi9xCJddrPfP1/svzMdF8i0QBzmh02nK83wevirgfbUyc6IIOaUAfhIYTFshSyICSRVeT5crkyOopXe43LjW/7qUjtriadS2sjPDoJ9gAoaUWGl/YOoJzAb/WQJhNd6oTWxGoo3mEgsQ0F9DBFMLo02a0ZFyeqbsCjfLe9tdDWbmIi+1Zb/1fg/Qt9yu8FZ2MINzYK40333iv1L7psdVz+RpBX0TpvdUJUN02PsHxQ2yCE4iOf8ljNe48+I3FYIRgUgLAeSRtNuKZ+Kx2qPG84ISiw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(42112799006)(376014)(36860700016)(82310400026)(22082099003)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: aPopo4rUdfwvt8AlKos4B/0j99onvSBZKVtsK6KPvk48b+D3Wzok4GzblMCjyzWnvxs4VzleEpTsNvMDSq6haB/TBZRwmdRi8+Z6GVBASeFOw1lY8IvTMiRbrxjVoB/KcT2no6FIcG/iZiIb2vRWjhLPF+eiUnKw80mkLBZLM5lrIut+UXBtOD8zcNqOywUKBnt/sWj/1OHgXiYHepMkXwuWqQHhka8l7UwL2+/2RhZbwPZ871GyfyBCs0od8qDrl856310n/e4n8Bzlz0xgAsbL1PF/iLGnD3ON9nTjHh+qOqJReos7nInUTMg8OEHSVmiviIixUosnc7yY8nVZyJpcahy7MAq+6ri2SIoYjOWCauCr9QRsH20npWVbh7UtAhi4llOiTtyPTZXG3+KeCxITzs+N1rvl2FpcKXr1z1NkOo+wwOK8Y88vFtKzzdyO
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2026 21:53:06.4100 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b6bbe5b-de87-488c-aa67-08de9a7035ec
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000023D3.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7529
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,102 +122,282 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.51 / 15.00];
-	R_DKIM_REJECT(1.00)[verivus.ai:s=selector1];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	DMARC_POLICY_SOFTFAIL(0.10)[verivus.ai : SPF not aligned (relaxed),none];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:SRINIVASAN.SHANMUGAM@amd.com,m:Alex.Hung@amd.com,m:Aurabindo.Pillai@amd.com,m:Ray.Wu@amd.com,m:Roman.Li@amd.com,m:ChiaHsuan.Chung@amd.com,m:Harry.Wentland@amd.com,m:superm1@kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[werner@verivus.ai,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[verivus.ai:-];
-	NEURAL_HAM(-0.00)[-0.046];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,suse.de,lists.freedesktop.org,vger.kernel.org,verivus.ai];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER(0.00)[sunpeng.li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,verivus.com:mid,verivus.com:email]
-X-Rspamd-Queue-Id: 439A2401415
+	DKIM_TRACE(0.00)[amd.com:+];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[sunpeng.li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 0ABFD3FEB7D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-radeon_align_pitch() has the same kind of overflow issue as the old=0A=
-amdgpu helper: the alignment round-up add and the final 'aligned * cpp'=0A=
-calculation can overflow signed int.=0A=
-=0A=
-If that wraps to 0, radeon_mode_dumb_create() can end up with an invalid=0A=
-pitch value from DRM_IOCTL_MODE_CREATE_DUMB.=0A=
-=0A=
-Fix this by using check_add_overflow() for the alignment round-up and=0A=
-check_mul_overflow() for the final pitch calculation, returning 0 on=0A=
-overflow.=0A=
-=0A=
-Found via AST-based call-graph analysis using sqry.=0A=
-=0A=
-Fixes: ff72145badb8 ("drm: dumb scanout create/mmap for intel/radeon (v3)")=
-=0A=
-Cc: stable@vger.kernel.org=0A=
-Signed-off-by: Werner Kasselman <werner@verivus.com>=0A=
----=0A=
-v2:=0A=
-- Use overflow helpers like amdgpu.=0A=
-- Drop the stale zero pitch/size change from the original submission.=0A=
-- Fix the changelog wording around reachability.=0A=
-=0A=
- drivers/gpu/drm/radeon/radeon_gem.c | 12 ++++++------=0A=
- 1 file changed, 6 insertions(+), 6 deletions(-)=0A=
-=0A=
-diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/r=
-adeon_gem.c=0A=
-index 2cd179fef347..8ce180e22d1d 100644=0A=
---- a/drivers/gpu/drm/radeon/radeon_gem.c=0A=
-+++ b/drivers/gpu/drm/radeon/radeon_gem.c=0A=
-@@ -28,6 +28,7 @@=0A=
- =0A=
- #include <linux/debugfs.h>=0A=
- #include <linux/iosys-map.h>=0A=
-+#include <linux/overflow.h>=0A=
- #include <linux/pci.h>=0A=
- =0A=
- #include <drm/drm_device.h>=0A=
-@@ -812,6 +813,7 @@ int radeon_align_pitch(struct radeon_device *rdev, int =
-width, int cpp, bool tile=0A=
- 	int aligned =3D width;=0A=
- 	int align_large =3D (ASIC_IS_AVIVO(rdev)) || tiled;=0A=
- 	int pitch_mask =3D 0;=0A=
-+	int pitch;=0A=
- =0A=
- 	switch (cpp) {=0A=
- 	case 1:=0A=
-@@ -826,14 +828,12 @@ int radeon_align_pitch(struct radeon_device *rdev, in=
-t width, int cpp, bool tile=0A=
- 		break;=0A=
- 	}=0A=
- =0A=
--	aligned +=3D pitch_mask;=0A=
-+	if (check_add_overflow(aligned, pitch_mask, &aligned))=0A=
-+		return 0;=0A=
- 	aligned &=3D ~pitch_mask;=0A=
--=0A=
--	/* Guard against integer overflow in aligned * cpp. */=0A=
--	if (aligned > INT_MAX / (cpp ? cpp : 1) || aligned <=3D 0)=0A=
-+	if (check_mul_overflow(aligned, cpp, &pitch))=0A=
- 		return 0;=0A=
--=0A=
--	return aligned * cpp;=0A=
-+	return pitch;=0A=
- }=0A=
- =0A=
- int radeon_mode_dumb_create(struct drm_file *file_priv,=0A=
--- =0A=
-2.43.0=0A=
+
+
+On 2026-04-14 12:54, SHANMUGAM, SRINIVASAN wrote:
+> [Public]
+> 
+>> -----Original Message-----
+>> From: Leo Li <sunpeng.li@amd.com>
+>> Sent: Monday, April 13, 2026 8:14 PM
+>> To: SHANMUGAM, SRINIVASAN <SRINIVASAN.SHANMUGAM@amd.com>;
+>> Hung, Alex <Alex.Hung@amd.com>; Pillai, Aurabindo
+>> <Aurabindo.Pillai@amd.com>
+>> Cc: amd-gfx@lists.freedesktop.org; Wu, Ray <Ray.Wu@amd.com>; Li, Roman
+>> <Roman.Li@amd.com>; Chung, ChiaHsuan (Tom)
+>> <ChiaHsuan.Chung@amd.com>; Wentland, Harry <Harry.Wentland@amd.com>;
+>> Mario Limonciello <superm1@kernel.org>
+>> Subject: Re: [PATCH] drm/amd/display: Fix crash due to NULL dc dereference in
+>> ISM during teardown
+>>
+>>
+>>
+>> On 2026-04-11 00:35, Srinivasan Shanmugam wrote:
+>>> The Idle State Manager (ISM) uses delayed work to apply display idle
+>>> optimizations later, instead of immediately. This helps avoid rapid
+>>> idle transitions that can hurt power or performance.
+>>>
+>>> A crash was seen during driver teardown. The system boots normally and
+>>> the driver loads successfully. Later, when the GPU is being stopped,
+>>> the log shows:
+>>>
+>>>   amdgpu 0000:0e:00.0: finishing device.
+>>>   Workqueue: events_unbound dm_ism_sso_delayed_work_func [amdgpu]
+>>>
+>>> After this, delayed ISM work still runs and reaches:
+>>>
+>>>   dm_ism_sso_delayed_work_func()
+>>>     -> amdgpu_dm_ism_commit_event()
+>>>     -> dm_ism_commit_idle_optimization_state()
+>>>     -> dc_allow_idle_optimizations_internal()
+>>>
+>>> The crash report showed:
+>>>   KASAN: null-ptr-deref in range [0x690-0x697]
+>>>
+>>> GDB resolved dc_allow_idle_optimizations_internal+0xa6 to:
+>>>   struct dc_state *context = dc->current_state;
+>>>
+>>> The matching disassembly showed:
+>>>   mov %rdi, %r12
+>>>   mov 0x690(%r12), %r13
+>>>
+>>> where r12 holds the dc pointer. A GDB layout dump of struct dc also
+>>> showed:
+>>>
+>>>   /* 1680 | 8 */ struct dc_state *current_state;
+>>>
+>>> Since 1680 decimal is 0x690, this confirms that current_state is at
+>>> offset 0x690. The crash address (~0x690) shows that the access was:
+>>>
+>>>   dc + 0x690
+>>>
+>>> This means dc was NULL at the time of the dereference.
+>>>
+>>> So the issue is:
+>>>
+>>>   delayed work runs after dm->dc is cleared during teardown
+>>>   -> dc becomes NULL
+>>>   -> dc->current_state is accessed
+>>>   -> crash
+>>>
+>>> The current ISM code calls into the DC idle optimization path from the
+>>> delayed work handlers and from amdgpu_dm_ism_commit_event() without
+>>> checking whether dm->dc is still valid. In addition,
+>>> dm_ism_commit_idle_optimization_state() calls
+>>> dc_allow_idle_optimizations(dm->dc, ...) unconditionally.
+>>
+>> Hi Sirini, thanks for catching this.
+>>
+>> Regarding dc==null, I'd prefer the ISM to throw an ASSERT rather than failing
+>> silently, since the ISM should never run after dc is destroyed. If it does, it should be
+>> fixed as a bug.
+>>
+>> In addition, we only need to ASSERT(dc) in amdgpu_dm_ism_commit_event(), as
+>> the other functions (in regards to the ISM) are static and only reachable from
+>> amdgpu_dm_ism_commit_event().
+>>
+>>>
+>>> Also, amdgpu_dm_ism_commit_event() requires dc_lock to be held, but
+>>> amdgpu_dm_ism_disable() calls it without taking that lock.
+>>
+>> We're expecting the caller to hold the dc_lock, so maybe an ASSERT(dc_lock)
+>> should also be added in ism_disable() to make that clear. (Only the workqueue
+>> workers need to acquire their own dc_lock)
+>>
+>>>
+>>> Fix this by:
+>>> - checking dm->dc in delayed work paths
+>>> - checking dm->dc in the commit path
+>>> - checking dm->dc before entering the idle optimization path
+>>> - adding a defensive NULL check in
+>>>   dc_allow_idle_optimizations_internal()
+>>> - taking dc_lock in amdgpu_dm_ism_disable() before calling commit
+>>>
+>>> This prevents delayed ISM work from accessing an invalid dc pointer
+>>> during or after driver teardown.
+>>
+>> I was expecting the amdgpu_dm_fini > amdgpu_dm_ism_fini callpath to wait on any
+>> remaining work before destroying dc. But perahps there were additional items
+>> queued between amdgpu_dm_fini and dc_destroy.
+>>
+>> Could you give the below diff a try to see if it fixes the npd for you?
+>>
+>> - Leo
+>>
+>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> index 09121152b980a..0d10e048b6754 100644
+>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> @@ -2237,8 +2237,6 @@ static int amdgpu_dm_early_fini(struct amdgpu_ip_block
+>> *ip_block)  static void amdgpu_dm_fini(struct amdgpu_device *adev)  {
+>>       int i;
+>> -     struct drm_crtc *crtc;
+>> -     struct amdgpu_crtc *acrtc;
+>>
+>>       if (adev->dm.vblank_control_workqueue) {
+>>               destroy_workqueue(adev->dm.vblank_control_workqueue);
+>> @@ -2256,11 +2254,8 @@ static void amdgpu_dm_fini(struct amdgpu_device
+>> *adev)
+>>       }
+>>
+>>       /* Finalize ISM for each CRTC before dc_destroy() sets dm->dc to NULL */
+>> -     drm_for_each_crtc(crtc, adev_to_drm(adev)) {
+>> -             acrtc = to_amdgpu_crtc(crtc);
+>> -             amdgpu_dm_ism_fini(&acrtc->ism);
+>> -
+>> -     }
+>> +     scoped_guard(mutex, &adev->dm.dc_lock)
+>> +             amdgpu_dm_ism_disable(&adev->dm);
+>>
+>>       amdgpu_dm_destroy_drm_device(&adev->dm);
+>>
+>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+>> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+>> index a3ccb6fdc372e..3baee7aa71a9d 100644
+>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+>> @@ -545,6 +545,8 @@ void amdgpu_dm_ism_disable(struct
+>> amdgpu_display_manager *dm)
+>>       struct amdgpu_crtc *acrtc;
+>>       struct amdgpu_dm_ism *ism;
+>>
+>> +     ASSERT(mutex_is_locked(&dm->dc_lock));
+>> +
+>>       drm_for_each_crtc(crtc, dm->ddev) {
+>>               acrtc = to_amdgpu_crtc(crtc);
+>>               ism = &acrtc->ism;
+>>
+> 
+> 
+> Hi Leo,
+> 
+> Thanks for the feedbacks
+> 
+> I agree that ISM should not run after dc is destroyed, and that this is
+> better fixed by ordering/disable logic instead of silently returning on
+> NULL.
+> 
+> This issue is hard to reproduce consistently, but was observed during
+> driver unload when the driver was loaded with UI disabled. This suggests
+> there may still be a small timing window where delayed work can run after
+> dc is cleared.
+> 
+> I reworked the patch in the direction you suggested:
+> 
+> call amdgpu_dm_ism_disable() under dc_lock from amdgpu_dm_fini()
+> add ASSERT(mutex_is_locked(&dm->dc_lock)) in amdgpu_dm_ism_disable()
+> add ASSERT(dm->dc) in amdgpu_dm_ism_commit_event()
+> 
+> Please let me know if this approach looks good?
+
+It makes sense, feel free to add my r-b when sending it out.
+
+Reviewed-by: Leo Li <sunpeng.li@amd.com>
+
+Thanks,
+Leo
+
+> 
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 09121152b980a..0d10e048b6754 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -2237,8 +2237,6 @@ static int amdgpu_dm_early_fini(struct amdgpu_ip_block *ip_block)
+>  static void amdgpu_dm_fini(struct amdgpu_device *adev)
+>  {
+>         int i;
+> -       struct drm_crtc *crtc;
+> -       struct amdgpu_crtc *acrtc;
+> 
+>         if (adev->dm.vblank_control_workqueue) {
+>                 destroy_workqueue(adev->dm.vblank_control_workqueue);
+> @@ -2256,11 +2254,8 @@ static void amdgpu_dm_fini(struct amdgpu_device *adev)
+>                 adev->dm.idle_workqueue = NULL;
+>         }
+> 
+> -       /* Finalize ISM for each CRTC before dc_destroy() sets dm->dc to NULL */
+> -       drm_for_each_crtc(crtc, adev_to_drm(adev)) {
+> -               acrtc = to_amdgpu_crtc(crtc);
+> -               amdgpu_dm_ism_fini(&acrtc->ism);
+> -
+> -       }
+> +       /* Disable ISM before dc_destroy() invalidates dm->dc */
+> +       scoped_guard(mutex, &adev->dm.dc_lock)
+> +               amdgpu_dm_ism_disable(&adev->dm);
+> 
+>         amdgpu_dm_destroy_drm_device(&adev->dm);
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+> index a3ccb6fdc372e..3baee7aa71a9d 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+> @@ -472,6 +472,9 @@ void amdgpu_dm_ism_commit_event(struct amdgpu_dm_ism *ism,
+>         /* ISM transitions must be called with mutex acquired */
+>         ASSERT(mutex_is_locked(&dm->dc_lock));
+> 
+> +       /* ISM should not run after dc is destroyed */
+> +       ASSERT(dm->dc);
+> +
+>         if (!acrtc_state) {
+>                 trace_amdgpu_dm_ism_event(acrtc->crtc_id, "NO_STATE",
+>                                           "NO_STATE", "N/A");
+> @@ -545,6 +548,8 @@ void amdgpu_dm_ism_disable(struct amdgpu_display_manager *dm)
+>         struct amdgpu_crtc *acrtc;
+>         struct amdgpu_dm_ism *ism;
+> 
+> +       ASSERT(mutex_is_locked(&dm->dc_lock));
+> +
+>         drm_for_each_crtc(crtc, dm->ddev) {
+>                 acrtc = to_amdgpu_crtc(crtc);
+>                 ism = &acrtc->ism;
+> 
+> Thanks,
+> Srini
+
