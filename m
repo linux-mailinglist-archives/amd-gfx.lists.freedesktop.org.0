@@ -2,107 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qDkoMqqL32l5VAAAu9opvQ
+	id cG3dOu6h4GlukQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Apr 2026 14:59:22 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Apr 2026 10:46:38 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 295FC40499A
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Apr 2026 14:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 800DE40BC93
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Apr 2026 10:46:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20B2E10E6D8;
-	Wed, 15 Apr 2026 12:59:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD75B10E858;
+	Thu, 16 Apr 2026 08:46:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aadVevOC";
+	dkim=pass (2048-bit key; secure) header.d=posteo.de header.i=@posteo.de header.b="W5igBjuf";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f54.google.com (mail-dl1-f54.google.com [74.125.82.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BCE910E6D8
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 12:59:19 +0000 (UTC)
-Received: by mail-dl1-f54.google.com with SMTP id
- a92af1059eb24-12736a0147cso505800c88.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 05:59:19 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1776257958; cv=none;
- d=google.com; s=arc-20240605;
- b=U+EvynGnXPZezLXT1L6YpeBHTXVD2NVA+qh4gHq5NvIt9s/0ylyKeXs9i8NXghIrx7
- toyUCVguid3nFpKkaCiYhPVdo5oVB6OPyEMGv7islef4OS1k5nat1HPDbrG1D+z6Mx8t
- HX4wOdVT/PLj6PlV8yVDIpqRaIyCKvyBfzcdqd4gxYLnlsarvuoqXzNiNnL9fOt2WJI4
- iirtzUimE2fpRSAMFBHtzJEUMdiFrWBQxHvCL7sSBuwwdA1ftmzH0tJARGlCXlaV/RME
- m9J9SbiSaC3LW/VRXnK1KtS+i7NtjZ8tdtOYok2YZdulFL+u69e46GaHosWkM3cSMFzw
- DoTw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=YbAg75inuAX6qfe171ed5cAQ3ilGhu1WuPU93+xAM3I=;
- fh=R6Fmee1A4nD37QI/kpfDXuHAQy20vjQ77SHPjhidz1c=;
- b=Gv6Bi3ltFVWPt2vCCXY9fXAibUKekqhUMy50DEYafgfRWSx+G9cP3u/9TtDAsYybJ7
- +H4PgtI3X3tmv6moFmB7OTWPkYS+EfAWIMAVOpP6ZF6liteQjCLDDvZvywFeHw2LhniF
- zU3GJeTrkQ1zysKHbxE2cEHCtFJgiusOhGgX3yFVVmZlD2sUMUnsvxwOeiYPecvNqN0U
- B8Io6tncvYhkqNGBm4o70GyMboZEVYF9RYB8SQBbJPGGHqRPsW7qH0UxOmHj99Ok0jHd
- s9PWiALBDfToGRKxMwfOk5LQ9cYZ9AF3rO0RrPOvKSToe3zlm786VLINx7IdhAH60rqQ
- TyXg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776257958; x=1776862758; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=YbAg75inuAX6qfe171ed5cAQ3ilGhu1WuPU93+xAM3I=;
- b=aadVevOCeOwdfmbXK7v5CfA4evDlzDcqOZ755Sok2EvmVOFv5OHs5QpYCTS+6cxvpR
- 7rNvvTEQwlHNgluAvHjkIJ6vpaVer2KTd13rRoFkZ3SWfUvDySJ1RUeddsTZGxnScsue
- RK/wBwGVoMm6rHujzWuczz/528cZchfFpC3ipIxHAQu2oXCrGHY1PEl5hndpNJjx2dzB
- duzNaGtSqMn512CbQ+tfEkPnEQFEY9dtsfTHwBstzkKU/YlTRFmoAMHsTUGL7+Wi+4ey
- WaLXFYDHJhsnvrCTM0yQZltqGARMyO/Q+YYuA9qNryNTtHjz/yCYLUwbEFroaSofJHf9
- MrgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776257958; x=1776862758;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=YbAg75inuAX6qfe171ed5cAQ3ilGhu1WuPU93+xAM3I=;
- b=pbt1ESPnBnbYx4vJZQe6In4ddxwwP15LPUh8YrLXGtx3IqGwsqXWBQFy99JNUW3tIN
- 4icXrou/Yl69L2X8Q58P5el4Y2fkgFn5DorkKFIqaY9exmcNuEj/zFIifuazWEYwVBMA
- HktW1vMFeVCVuv2Z6gzaM85IpdWKKbJjJfFJjox9WF3LFtGvuV4t2eRzcnpkAewTbS7m
- qNNZXv1D69fKGtBooZbD/1DGUGeE8XRoidomqh/ipTPjZlzDT/7k72cmV1TTnoZpKbDS
- KseZtUjnJ2M9252nU8b0xEfI9yrU/vvq6ZmV27FOGMw5r0xo1tqy1arihu7ciXzjglR2
- l86w==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+dCsDoT3w0O/vJctNno7K8Q02t7PP8apK3D9+xOogVKOSX1D0Ry8EuhFsEvP46tLmianb3Y0Pe@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzkNK/4WCLEvhLW5UPWf49hZg6oQXM5CMXQNHS3a9nFSBOi29+C
- wE/VmZ+KGBEDyrb31aCXw2nsBTuWp1/nRioDX/PiLCgIVTNRWkjQVvOUd80zwKHq3amMwT0sn/X
- 2l3sVkCdj26A5psqGmAxXOs6hCm3CYIQ=
-X-Gm-Gg: AeBDieuJ9zzOxtBJKQhKF8axG+tplyC9PGhR2nLpnuE9Vx5OZGQhlg+d2BUpEPGbUga
- ZTThVR7bCQeeJxuhxUBTdwWn0QlGBzU9xmWRHrXPx/xgJ8qL0IJEbbmoIhZS9wRQDGngkKbhfoA
- ZkgOU6gzGAgzTsCDIq8qzcF6AgCu0Iomh/zBQ5etz7kKrm/dbQTB0C0AYvUkJ7+eLpH7sen81D/
- sOZ6Bg1p4lqcveCtpuOw24hqRDVCqgdOa7umPVdkitPnOVROdGbJhsO/JOc6gLUwB0iCWy8QdQ7
- akXucyvh9aibd0h3rmdwNI1+LFJIbX2rGs8bzvetVqvlM7iRzecVSxrKZJ2EkJRDxoGZHA==
-X-Received: by 2002:a05:7022:618c:b0:127:332d:63e with SMTP id
- a92af1059eb24-12c5d4d0c7dmr506525c88.5.1776257958465; Wed, 15 Apr 2026
- 05:59:18 -0700 (PDT)
+X-Greylist: delayed 493 seconds by postgrey-1.36 at gabe;
+ Wed, 15 Apr 2026 13:16:45 UTC
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE3E110E6DE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 13:16:45 +0000 (UTC)
+Received: from submission (posteo.de [185.67.36.169]) 
+ by mout01.posteo.de (Postfix) with ESMTPS id 5F8BA240027
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 15:08:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+ t=1776258510; bh=04ZcX92PpWxllNndeRKP5p8NWiOL24tDJbryhVFq4/A=;
+ h=MIME-Version:Date:From:To:Subject:Message-ID:Content-Type:
+ Content-Transfer-Encoding:From;
+ b=W5igBjufotCJbhrkJu3xXUlDVl7zYlXYaqXyEV+rI9hdoTOLEs882DjKgGkkT4zZR
+ rwOonogXt9wDCJlgL9V1YCGtFpancAP9KBnBboqPggU+RDVy8e+XJ5irgXpRaAxGnm
+ MecFxGY/Grqn7SlC2sFdxs7Fxw+a5u+LmS8aQmVVzC+FmIlYAiuKGxnMHYlXxOzSnn
+ QsEr8WY1/zEn00WRXGcJwFIOWGjcLSYO7b/Hgb2YYtfiPh2UypafdpuliNLQKfGc7U
+ 95cjcB/KDsLrOCCU2HI9YgFdsW6o8xh2rbQRE1MIgcxl61YfrNUoJM867dp2x895vG
+ RH3kqWZ6qlCkw==
+Received: from customer (localhost [127.0.0.1])
+ by submission (posteo.de) with ESMTPSA id 4fwhKT5RhGz6tsb
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 15:08:29 +0200 (CEST)
 MIME-Version: 1.0
-References: <CADnq5_OVN+uCioTWNeuHkGpkUU-VhEio_uMEBMVur6-hWXwtug@mail.gmail.com>
- <20260414211437.154315-1-werner@verivus.com>
-In-Reply-To: <20260414211437.154315-1-werner@verivus.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 15 Apr 2026 08:59:06 -0400
-X-Gm-Features: AQROBzAeYix9JIhJ4gNGCdBtQrUS7rMQvoooy6xeRQZh2Q7drV282ZxpZgFSuFU
-Message-ID: <CADnq5_Prw=X66ByOAutSV_jFCJ7guuRSMPWnEqttr+xe_j_Y4g@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/radeon: fix integer overflow in
- radeon_align_pitch()
-To: Werner Kasselman <werner@verivus.ai>
-Cc: "alexander.deucher@amd.com" <alexander.deucher@amd.com>, 
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "airlied@gmail.com" <airlied@gmail.com>, 
- "simona@ffwll.ch" <simona@ffwll.ch>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
- "stable@vger.kernel.org" <stable@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Wed, 15 Apr 2026 13:08:29 +0000
+From: a-development@posteo.de
+To: amd-gfx@lists.freedesktop.org
+Subject: [BUG] amdgpu: Mode1 resets and Link Training failure on RX 9070XT
+ via KVM
+Message-ID: <0f072e49eac0206de1ac795fd91bc32b@posteo.net>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Thu, 16 Apr 2026 08:46:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,119 +62,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
+	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:werner@verivus.ai,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:tzimmermann@suse.de,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:stable@vger.kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,suse.de,lists.freedesktop.org,vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_ONE(0.00)[1];
+	MIME_TRACE(0.00)[0:+];
 	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,verivus.ai:email]
-X-Rspamd-Queue-Id: 295FC40499A
+	NEURAL_HAM(-0.00)[-0.996];
+	ASN_FAIL(0.00)[177.210.252.131.asn.rspamd.com:server fail];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,posteo.net:mid,posteo.de:dkim];
+	FROM_NEQ_ENVFROM(0.00)[a-development@posteo.de,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_NONE(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[posteo.de:+]
+X-Rspamd-Queue-Id: 800DE40BC93
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Can you squash this with the previous radeon patch?  I only applied
-the amdgpu patch at this point.
+Hello,
 
-Alex
+I am experiencing a consistent display power-cycling issue with a new 
+AMD Radeon RX 9070XT (RDNA 4). I am looking for guidance on whether this 
+is a known regression in DCN (Display Core Next) or a specific hardware 
+compatibility issue.
 
-On Tue, Apr 14, 2026 at 5:14=E2=80=AFPM Werner Kasselman <werner@verivus.ai=
-> wrote:
->
-> radeon_align_pitch() has the same kind of overflow issue as the old
-> amdgpu helper: the alignment round-up add and the final 'aligned * cpp'
-> calculation can overflow signed int.
->
-> If that wraps to 0, radeon_mode_dumb_create() can end up with an invalid
-> pitch value from DRM_IOCTL_MODE_CREATE_DUMB.
->
-> Fix this by using check_add_overflow() for the alignment round-up and
-> check_mul_overflow() for the final pitch calculation, returning 0 on
-> overflow.
->
-> Found via AST-based call-graph analysis using sqry.
->
-> Fixes: ff72145badb8 ("drm: dumb scanout create/mmap for intel/radeon (v3)=
-")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Werner Kasselman <werner@verivus.com>
-> ---
-> v2:
-> - Use overflow helpers like amdgpu.
-> - Drop the stale zero pitch/size change from the original submission.
-> - Fix the changelog wording around reachability.
->
->  drivers/gpu/drm/radeon/radeon_gem.c | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon=
-/radeon_gem.c
-> index 2cd179fef347..8ce180e22d1d 100644
-> --- a/drivers/gpu/drm/radeon/radeon_gem.c
-> +++ b/drivers/gpu/drm/radeon/radeon_gem.c
-> @@ -28,6 +28,7 @@
->
->  #include <linux/debugfs.h>
->  #include <linux/iosys-map.h>
-> +#include <linux/overflow.h>
->  #include <linux/pci.h>
->
->  #include <drm/drm_device.h>
-> @@ -812,6 +813,7 @@ int radeon_align_pitch(struct radeon_device *rdev, in=
-t width, int cpp, bool tile
->         int aligned =3D width;
->         int align_large =3D (ASIC_IS_AVIVO(rdev)) || tiled;
->         int pitch_mask =3D 0;
-> +       int pitch;
->
->         switch (cpp) {
->         case 1:
-> @@ -826,14 +828,12 @@ int radeon_align_pitch(struct radeon_device *rdev, =
-int width, int cpp, bool tile
->                 break;
->         }
->
-> -       aligned +=3D pitch_mask;
-> +       if (check_add_overflow(aligned, pitch_mask, &aligned))
-> +               return 0;
->         aligned &=3D ~pitch_mask;
-> -
-> -       /* Guard against integer overflow in aligned * cpp. */
-> -       if (aligned > INT_MAX / (cpp ? cpp : 1) || aligned <=3D 0)
-> +       if (check_mul_overflow(aligned, cpp, &pitch))
->                 return 0;
-> -
-> -       return aligned * cpp;
-> +       return pitch;
->  }
->
->  int radeon_mode_dumb_create(struct drm_file *file_priv,
-> --
-> 2.43.0
+Hardware Environment:
+- GPU: AMD Radeon RX 9070XT
+- Comparison GPU: AMD Radeon W7500 (Works perfectly in the same setup)
+- Connection Chain: Multiple DP ports via CableMatters Dongle -> TeSmart 
+KVM.
+- Direct Port: HDMI-A-1 is connected without a dongle, yet also exhibits 
+failures.
+- Display: 1920x1080 @ 240Hz (Issue persists even when lowered to 60Hz)
+
+Kernel/Software Environment:
+- Distributions: Arch Linux
+- Kernels tested: 6.19.11-arch1-1.1 and Mainline 7.0-rc
+- Firmware: Tested with latest linux-firmware (up to 2026-04-15)
+- Compositors: Sway (constant cycling), Niri (intermittent), SDDM 
+(constant)
+- Troubleshooting: Tested multiple command-line options including 
+pcie_aspm=performance, amdgpu.abmlevel=0.
+
+EDID and Firmware Troubleshooting:
+I have attempted to bypass the EDID communication errors by manually 
+exporting the EDID and applying it via the 'drm.edid_firmware' 
+parameter. This did not resolve the power-cycling, suggesting the 
+failure occurs deeper in the link training or DCN power state transition 
+rather than just simple metadata acquisition.
+
+Furthermore, the logs indicate a potential SMU issue:
+"amdgpu: SMU driver if version not matched"
+
+Description of Behavior:
+Upon entering a graphical environment, any mouse movement triggers the 
+displays to power off and then back on again. While the 9070XT 
+successfully negotiates the 1920x1080 @ 240Hz link initially and can 
+render frames, it enters an immediate on-off cycle during active input.
+
+Critically, HDMI-A-1 (which does not use a dongle) also fails to read 
+EDID initially, and forced EDID overrides do not stabilize the link. 
+This behavior is unique to the 9070XT; the W7500 workstation card 
+functions without issue on the exact same cabling setup.
+
+Relevant journalctl output (amdgpu):
+amdgpu 0000:03:00.0: [drm] enabling link 0 failed: 15
+amdgpu 0000:03:00.0: [drm] enabling link 2 failed: 15
+[drm:dm_helpers_read_local_edid [amdgpu]] *ERROR* EDID err: 2, on 
+connector: HDMI-A-1
+amdgpu 0000:94:00.0: [drm] *ERROR* No EDID read.
+amdgpu 0000:03:00.0: amdgpu: SMU driver if version not matched
+amdgpu 0000:03:00.0: amdgpu: MODE1 reset
+amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset
+
+Analysis:
+Since forced EDID injection fails and the SMU reports a version 
+mismatch, I am concerned this is an issue with the SMU/DCN firmware 
+interaction on this new architecture or a driver-side link training 
+timeout.
+
+Could you provide insight on whether there are specific 'amdgpu' module 
+parameters I should use to debug the Display Core (DC) or if I should 
+provide a more verbose log with amdgpu.debug_mask?
+
+Thank you for your time and assistance.
+
+Best regards,
