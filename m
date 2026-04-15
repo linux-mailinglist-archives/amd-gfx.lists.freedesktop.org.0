@@ -2,132 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SDqaFe+h4GlukQAAu9opvQ
+	id sIdeNzwU4GmPcQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Apr 2026 10:46:39 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Apr 2026 00:42:04 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDEB240BC94
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Apr 2026 10:46:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22D3B408C15
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Apr 2026 00:42:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9488F10E853;
-	Thu, 16 Apr 2026 08:46:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1322A10E765;
+	Wed, 15 Apr 2026 22:42:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=verivus.ai header.i=@verivus.ai header.b="cQx+8WZ3";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="U5txCJLa";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SY5PR01CU010.outbound.protection.outlook.com
- (mail-australiaeastazon11022140.outbound.protection.outlook.com
- [40.107.40.140])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AEAE10E750;
- Wed, 15 Apr 2026 22:13:58 +0000 (UTC)
+Received: from DM5PR21CU001.outbound.protection.outlook.com
+ (mail-centralusazon11011025.outbound.protection.outlook.com [52.101.62.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37A0C10E765
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 22:42:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=q/rMoCv6gH1hYojm2zmdyZgye2tgt6L43+7TFc7+x7cXulFFub2AvzdEmEFJUSC4FXXlHas+1zsMokpD/1bG3ZiqQaBCaWuWyUvczp7f1ngDJtHK3y8c0nfSJ0A9b3+k4la4sf7+Sb3YZ90K0DV6SFOd6FviYl7yeb/eaDDjYPMfMz8Tiabny7DpQZUPCK1aYAXuu7jXlxRURzvUozPaFvlvTguqNrqB6RlPSDvwvxpUea2AMKUa3Tzub/ZyN4vMI+C91VWq67QGZG1cu2Ic+41ev8JylnIxXsyHS/KUdgPhjLc8Be2PzefQ/l33efU34YPS6Pyo0bNimQpO7ZxI9A==
+ b=U/WRqg9M3e3Sx8EwhqFO+m2dojz7JYHB4gcASh2NbwXns9A8LwHrSHejLCsGPCfLhJ8nWob6WgMEKz03ziv3xOFd0ePKvOZLTJj0emjTDpsbg3Y0QnaJUqG7VWxbnoA3LYXv3ryb+dplxtXcdgiaUxkld3g8ieMDJYuEA6Ye2nphaRGVGy5tP9RAQt+e0LbkOZ9yJudqfIoiIBklcs+x57vDLzt/c3RGZM0vC8zp90ykocV/+dk50HJdm/kj0Yc1732xtNANIj3INAn7ZWpSSpylJXSDvIXANKBCh6WpV+Kc+KX9VU5aSitQPd39qBlPdc54x+V0OglPBjS71pqJcA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jzRZCi3r6ShmFgtnLwQ9BxhAnhMetiEVRtksjNEe9GY=;
- b=krfjmPxRHUYfGjRNh8d0QhxfECXFmGJjNNSsd5lc8XaWVuJAkreKxcGKNemkbOFTcmVASe+gbG7PTUcDHSqRy8pFID2ounbYkKP0JbaP2jQ+XNHOtqnwmDT7xaz4GYh/krkdRODFjYo/dI83ELAwJ6R7TjlNphkT3TCqJ8Muj8HHEO8Hnhzhwk6SFdJydbQn/fF1VCQPbvL340LVXs5WsDYnvUFFQgQFEg8nE+2DKH8GbS5B7hwKBdnYN6UEM1Qc/jYjCudzvsEifPMp2h4ansjCI3OVUUCCzdjJMFoO5d9HdAB3GQ+PqYEADCyB7R+wQlvXOFgUMcEWwxyiI+sguQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=verivus.ai; dmarc=pass action=none header.from=verivus.ai;
- dkim=pass header.d=verivus.ai; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verivus.ai;
- s=selector1;
+ bh=VCZj0k40v3oFJxwwfDow6SXxncjyHjHze8/Nxj2Aw/g=;
+ b=CA1kl/EqbZ9evfg7uW0qqsCN0X00LLfDfbpMwy9aOeI2o3Ozm8tzlFn6VS1wcGPiioJzeiJPSDLqgAhPs5Rmm5U0YiF+irHUnFzxNiVatjZibvBSGYg1j+eLYKnPHsfVX++uKG4tBX+J5n/MVebHK2d10I7aANasHVe/pHnRo+z06DXsMutoeATd7+n7oiFeb+SA+attuYxaEoWErJ2sKoIGg7IdOwyCh98ptgdweTRKhwKb2fPUk+yjTJ1saqSd7RKVKrJk4t7k3mGalLww7GN/aqRVn2Ugl7HaK+kA9yFev0wM0O+BDIJ7SqrR/9I+3V69kfOiqgFzR4dsmYu7UA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jzRZCi3r6ShmFgtnLwQ9BxhAnhMetiEVRtksjNEe9GY=;
- b=cQx+8WZ3Tbt17TEg/EVqpHClHsO4RIaSsfvvpND/AmcId+Xf0XB7QqSGLMY2psieh8WQAYe9AdOTjjWutQm8pH4ERZMcjipB/r4Ze0/l4YUEaRXIfzb9PnvDnVqDkv+sx64yu2jIvW3D++SFMLup4PTxgs1+RSm1opjdfzUWhOzZVJZrR23beSyjl03E2f0iisB4oQbgSEwyzNqy79ZUT+SwRufSPBRNSOCJj1pF3N1Fu8SkQI+B6PhgemAnR/iJi97Yi/vbH0QiT6biFBqgxKIfGmHbJLnHhhTBRuv9zTpLznJiyJ56UWEDz/7Tn/3/qBFYn3GUHXnozu71hqmDyw==
-Received: from ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM (2603:10c6:220:22a::5)
- by SY7P300MB1372.AUSP300.PROD.OUTLOOK.COM (2603:10c6:10:2c4::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.21; Wed, 15 Apr
- 2026 22:13:53 +0000
-Received: from ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM
- ([fe80::1e3f:9cb9:4a95:b5a2]) by ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM
- ([fe80::1e3f:9cb9:4a95:b5a2%5]) with mapi id 15.20.9818.023; Wed, 15 Apr 2026
- 22:13:52 +0000
-From: Werner Kasselman <werner@verivus.ai>
-To: "alexander.deucher@amd.com" <alexander.deucher@amd.com>
-CC: "christian.koenig@amd.com" <christian.koenig@amd.com>, "airlied@gmail.com"
- <airlied@gmail.com>, "simona@ffwll.ch" <simona@ffwll.ch>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "stable@vger.kernel.org"
- <stable@vger.kernel.org>, Werner Kasselman <werner@verivus.ai>
-Subject: [PATCH v3] drm/radeon: fix integer overflow in radeon_align_pitch()
-Thread-Topic: [PATCH v3] drm/radeon: fix integer overflow in
- radeon_align_pitch()
-Thread-Index: AQHczSUkJTa8wbZqiEW2GRBD20v1TQ==
-Date: Wed, 15 Apr 2026 22:13:52 +0000
-Message-ID: <20260415221350.1178094-1-werner@verivus.com>
-References: <CADnq5_Prw=X66ByOAutSV_jFCJ7guuRSMPWnEqttr+xe_j_Y4g@mail.gmail.com>
-In-Reply-To: <CADnq5_Prw=X66ByOAutSV_jFCJ7guuRSMPWnEqttr+xe_j_Y4g@mail.gmail.com>
-Accept-Language: en-AU, en-AT, en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.43.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=verivus.ai;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ME0P300MB0853:EE_|SY7P300MB1372:EE_
-x-ms-office365-filtering-correlation-id: 5cb3099c-a7ec-413b-314d-08de9b3c4714
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|38070700021|22082099003|18002099003|56012099003;
-x-microsoft-antispam-message-info: mbWMNki+uW+FoZSdPbNz85usPtLju1VO5VLnar8SizLlo2zaTuJeYrUS+NOD2OtYGsp7T73D1/AgK3uAs1YmFJCXEwWjBXuTpsT1Nfd5l4VHKzM/8RUJv2OAEH1ophdUyP98XuKwF0oo80nOKLfkn62aD6qFUPFpCqLNR/bz1iBkR7e7Lzabu3Fzp45iybj4PFhx3LtYExgwZifSMVH3yig/IQZ2zi9afMzVK6eyUe1xEmHj1D6CtYF6Q99BJaehzG1QBPTs7i6p7b7Bny4STDVulm1hJcJdTEavMaXM7gKNWcCsPpZ+c/win7q+gHQR1sWb7DQvD6OMfBh4YLq9Dgii3Z1P0esOk93DBLEDexVdwFX2to5OzAES9Gu4YNA6FboUX0StaHpeY0k+fIXnOXJxGfzW0unvl+SdfEv1YagBwQl9qj2NFalqJ2FE6yRBHpXsF0h+Jek152bS0zrPMeHGdaHNhk67HpB9LiKxVj1BVK58DVkI2rh4UPbidGEYSvegCsACzx0k0/U40eztYQxMz4zVTxwNoAr0RoIaODjRW5OM4KIE0ZK0zbwb610iJ2V1sba8Biyq1hJ0XppDqzdDvoS2KUKKC4Gjjl3V9id/ZNrQFVsP9FuvX6BnAQ9oAWjAXqPXv1dyxezyEp1Z1mHuXuE6wY25SG3EZZXWvWXG9oxobqRboCl+Jg83COJA9/ZLuROgcqFtluF+ye5CYEUSo+VkBu1waeV5WyU/lT81FYW4h5ctZyDv4bfihNMmG5S96NqBGuvtxP7nm3EJThQFohktV3hFdHN2UpxTTpM=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700021)(22082099003)(18002099003)(56012099003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?y6Rza9Urk+6mMmudcKsii/wG+KnBK+9YP994TnSk3m3VUyB/8xowA6O6GJ?=
- =?iso-8859-1?Q?aXXkAIQoVeI7aQyQibgCYVS7YaqcGdtndg5wpKeYKO/afOhhMIXbIt93cA?=
- =?iso-8859-1?Q?FfJKvLxTdUOXfe48srMqLL1G1HMOp1vgKnCZHBl8J44L0LZleEgJSUjb6v?=
- =?iso-8859-1?Q?qOdaRqz/NeXdUlcwe4jbxkP0C/UOLt5QjdoyswaEAm7iRjsonNTKQ2xkWy?=
- =?iso-8859-1?Q?BZnT+1OzxrCA/VSeHpS+dVMW0/DKrtO618GR7SvwZNe5J1urV2ly8yJfxT?=
- =?iso-8859-1?Q?OyGgmn1Fmco+E+4hylcxwmYsqB04kv3j7q/D09Zs9BMa9mKTNISzQY58rc?=
- =?iso-8859-1?Q?8jwQvlqpAmPDQlS++wD3e+eHbSYlMH4FIJMB7rAreTdI4azj/FCJsiC9Zz?=
- =?iso-8859-1?Q?72mhDSyasHw1jmuoXiDZpqpd744XmaMLVt2N2o0aA8uMNtUFcXE7AoQGLz?=
- =?iso-8859-1?Q?p3SEnQQF6Z2POi1W5wWnVjG9p8uFH+PxnaxtSq4+M7sUzQHzY35DYPlvPg?=
- =?iso-8859-1?Q?cjSL1OF5Cetc7nN/6DPueje6VChZr94WrKJfBRMsXSVTpBwQlQ4E6v4jfD?=
- =?iso-8859-1?Q?XVlNsZlAn/okiNWFOLDK86kXSm5p5kDyQDhwsvC8iNHs2VfdU6E9UwEXcq?=
- =?iso-8859-1?Q?D4IHSRKR3/ORILL3eRDOQSFiYcY0hGYJx/Th9bval70DB59GGfi6uqrNMI?=
- =?iso-8859-1?Q?QkNB4ay0/BZnULMUEUiKv6Eqn/HtMiE3lu63jDLKdYWOYdOMchVz081fcd?=
- =?iso-8859-1?Q?YzEqZnqIMnl+hz9L6Mz6afzrZGvYVZwh5ojvARWUoc+2da0AnEiEcjotiU?=
- =?iso-8859-1?Q?JaZ1BFqZxmijaLrOB5dG2aqhZNhMH88Y+hF+YIPD7+1yha1HPxZywhZpgX?=
- =?iso-8859-1?Q?/3w5LZa8I5WKO8zpYFALPWL4yVXcjbjDPuBd2f+YDDy5RHZ8ysyahiigjw?=
- =?iso-8859-1?Q?Ic7SDjC9njXaXiYQjtTNOk0tXLWeeNsyabVr2byj/IV5nLaWNN0kvQqD74?=
- =?iso-8859-1?Q?5paY6smn7GODHabX8T9CVqii/dnIfKvfCIOmlAIt0izoiR9eC3M04IL10O?=
- =?iso-8859-1?Q?hYsTp2I4/MFAClDH4j4lhRtsL7HKl8+mDERwRKR2IWL40IZMRv7WoTDhpo?=
- =?iso-8859-1?Q?UISfMjXfM+LEFWbEIyDK/s8Jr/Koi5zXkYYctJK1AYCfpVnaqeyt6/rYto?=
- =?iso-8859-1?Q?4levqdoDgzVLCiDN+qfprd1Nz1oCwdV5lm9f1Mzfwo9qG1wQXelHI5hB8S?=
- =?iso-8859-1?Q?ehTTu1Ld0DN7s3aJY8TNv54HMlq0ZOZ2jTXX8zfTt8PsOlzs1OAB1QNB0k?=
- =?iso-8859-1?Q?zQ73s/DvYGAEGmdtFPWvCSZv/1Cr0Z+JWSUCp7BFs/Pn+BhrN7irYveDfR?=
- =?iso-8859-1?Q?KbOo0oPhqtu2kd456mJhess6uZDeSsu/PHDXwYF1HGfKpI//ne+BYCjrmT?=
- =?iso-8859-1?Q?Lqb/Mkmkugt48thmoapYTClQlnCcvhWrAnbIydXW1cAxQvUXX+lXU9nDD2?=
- =?iso-8859-1?Q?WxUo1teRS/2lQ7+UB2lf+jIq2CTT+pMnZKo0n8tYtJPWrSrPB5DozPLpDU?=
- =?iso-8859-1?Q?TK04CgqXAdZuP1ubcURY7GFbL7QvcUn0nkHMWZoVg8p/bJ+LNXPAV06llb?=
- =?iso-8859-1?Q?COOPI5+0J2N/Am6wLcpkWEdmPg0w4S5cgeMcU49XY+987fxSDZkwR5uKUV?=
- =?iso-8859-1?Q?IJxxxYmDAELUwSlFrdB+IcrLieAcTt5S83AFEbtcWNudphDRMUBG4T9iHG?=
- =?iso-8859-1?Q?+QTx95PKdDc6WaW+tqvhvHEm8p4bBn+8Xxcx5u0Y/8pPsiZvbsHSDsASkY?=
- =?iso-8859-1?Q?ZblyjIUCaw=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ bh=VCZj0k40v3oFJxwwfDow6SXxncjyHjHze8/Nxj2Aw/g=;
+ b=U5txCJLaQBofoMSNTp+hoIOLZvY+FST+Z+V34yDuzowQuFPsgfIsjfdz7pFsuQ02d2PwC+7pYxm4oZveXvZ31+RyDSESpkJUDqX/PZjJL6c2wOBLXL9Cv5+0SQxtW+Zeub+Nz+SBCc1UuwGkCqR9At/mrYGHqBlAAJeK7bDH2Zg=
+Received: from CH0PR03CA0065.namprd03.prod.outlook.com (2603:10b6:610:cc::10)
+ by LV3PR12MB9185.namprd12.prod.outlook.com (2603:10b6:408:199::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.20; Wed, 15 Apr
+ 2026 22:41:56 +0000
+Received: from DS3PEPF000099E2.namprd04.prod.outlook.com
+ (2603:10b6:610:cc:cafe::ef) by CH0PR03CA0065.outlook.office365.com
+ (2603:10b6:610:cc::10) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.49 via Frontend Transport; Wed,
+ 15 Apr 2026 22:41:56 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ DS3PEPF000099E2.mail.protection.outlook.com (10.167.17.201) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.17 via Frontend Transport; Wed, 15 Apr 2026 22:41:55 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 15 Apr
+ 2026 17:41:55 -0500
+Received: from roman-vdev.amd.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Wed, 15 Apr 2026 17:41:54 -0500
+From: <Roman.Li@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <alexander.deucher@amd.com>, <Harry.Wentland@amd.com>,
+ <Sunpeng.Li@amd.com>, <Aurabindo.Pillai@amd.com>, <alex.hung@amd.com>,
+ <timur.kristof@gmail.com>, Roman Li <Roman.Li@amd.com>
+Subject: [PATCH] drm/amd/display: Restore analog connector support
+Date: Wed, 15 Apr 2026 18:41:50 -0400
+Message-ID: <20260415224150.1807020-1-Roman.Li@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-OriginatorOrg: verivus.ai
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ME0P300MB0853.AUSP300.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5cb3099c-a7ec-413b-314d-08de9b3c4714
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Apr 2026 22:13:52.5571 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: ccdcedb0-4edc-4cc8-9791-c44ee6610030
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Hw3eLoKBgecIaKMKIoARjr9UZSXTZ0TiC2giSjtWihA0JDGHgkG5AenpJnLTzCHZO90wzJGMQWRFsSkG4dZGjQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SY7P300MB1372
-X-Mailman-Approved-At: Thu, 16 Apr 2026 08:46:30 +0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099E2:EE_|LV3PR12MB9185:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2895361d-7170-4b7f-3e3e-08de9b40326c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|36860700016|82310400026|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: C0QAACbak8UQnu3yhXy9e4L2DuWz0ouEzOef93Zs8eTDYoq0gDc6ois92iNrM37Gq652knScX8vBcf7c+ozrD94hu8UsdWidVGI3Okp3lvJWBfFef+9dYqmur1ntWYKNwK5BaAPoFZKzocmkeBzEITh7YAzFnw63vnwc80w8FwlEcWuxg0P8ezMFRYHSakgJKsQaii+Zvsq8N1Ht+vl2RfNYnlotHGvNXErBQZMbJZYiZdnaa2b/c3inioEZwQZwmf0NOOWRniM0pv045+zSIpczD05sKydjbHq22nkHQCPBzJiLtrrhYyFHhRFfy4duqxr7waIGKGWZoOgmwM1X1SOr2ZkZn+m/YNXlNN5G28GsKyrfEPe/TR8x/gR+eSXoz1czwrUDR9kXSzpozHPRIEgcsuSDA/RY2gzwnMsixN259kdSfdlALK3fHzc21ejyPholXGGyPskT6Qz8bKhSNCu+1niQ0Fopv4PqkvUeiwHyCLrYdfUnZXOHWPhpnAWbTzEz25/ohPmCOeYHg2WztZbs2iLc6FOzeLUm2tB4B0LOb8pjUNKZjUHEChCThU9Vlw9Yw+pfAIqrJz1ApMnNmnthiJyB8lKyNhMCjf2gm81rQDH3svfLtdthZa+83AIx/m+mk/25mDY3mz7ChYVmuHkdBK78myulo8873NRMsl8pOy8f3d+rH46tVBP8WaAyrU8rG9Y2ZWqEGO5Ik69jyQH+7VpMpTgP2i78KcxqfdMMMhoj+YmKpSo1902plIOU4IuqbiVwTb1zSLDou4VxVQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(36860700016)(82310400026)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 3woR7gYFlsqp79g/uKqIHCuxxCju017PJvYMDD6x6SMbf9aD1DPz+bNiCkhqpowEXvpUJmMELT6ppLjzIfzWEF/AuLZTHIld2cF6oi/aD0XEArzQdr+NP/TPRBM+VaAMe4g1m0bS2Riob8fLCqkfJjiMv+eS8ZmZ4dQ9CLHbhJo3RqqHCu46MaEcSZghnAEXvleq4n3PqhUnTkVLDAZErDCrGlwMQntoTatJdMTrHlXLmUqlBxhc1sRnhc/BbiBLSnnVWRv7rL+uQKaFs6ErfF8tnXm2Xxll2A9PFCGxjSDBJE1Fz7RsXwvhiARDvq5UKgBjI+XzuEbgskIfXLqhZDa7N/TaWtD8h/zeA9fqIpR7CxTq6lw7rlJ+o06B32CllEknhVaN5w0tqAPJSUQv3aR1TVSIBJAamqni1eBs2axIZ6X7rxBNiv+KR2PsgSyA
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2026 22:41:55.8553 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2895361d-7170-4b7f-3e3e-08de9b40326c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099E2.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9185
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,113 +113,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.51 / 15.00];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	R_DKIM_REJECT(1.00)[verivus.ai:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[verivus.ai : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN_FAIL(0.00)[177.210.252.131.asn.rspamd.com:server fail];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[verivus.ai:-];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FROM_NO_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.037];
-	FROM_NEQ_ENVFROM(0.00)[werner@verivus.ai,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,suse.de,lists.freedesktop.org,vger.kernel.org,verivus.ai];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[Roman.Li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: CDEB240BC94
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 22D3B408C15
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-radeon_align_pitch() has the same kind of overflow issue as the old=0A=
-amdgpu helper: both the alignment round-up add and the final=0A=
-'aligned * cpp' calculation can overflow signed int.=0A=
-=0A=
-If that wraps, radeon_mode_dumb_create() can end up returning an=0A=
-invalid pitch or creating a zero-sized dumb buffer.=0A=
-=0A=
-Fix this by using check_add_overflow() for the alignment round-up and=0A=
-check_mul_overflow() for the final pitch calculation, returning 0 on=0A=
-overflow. Also reject zero pitch and size in=0A=
-radeon_mode_dumb_create().=0A=
-=0A=
-Found via AST-based call-graph analysis using sqry.=0A=
-=0A=
-Fixes: ff72145badb8 ("drm: dumb scanout create/mmap for intel/radeon (v3)")=
-=0A=
-Cc: stable@vger.kernel.org=0A=
-Signed-off-by: Werner Kasselman <werner@verivus.com>=0A=
----=0A=
-v3:=0A=
-- Squash this fix with the earlier zero pitch/size validation change.=0A=
-- Use overflow helpers for both the alignment round-up and final=0A=
-  pitch calculation.=0A=
-=0A=
- drivers/gpu/drm/radeon/radeon_gem.c | 13 +++++++++++--=0A=
- 1 file changed, 11 insertions(+), 2 deletions(-)=0A=
-=0A=
-diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/r=
-adeon_gem.c=0A=
-index 20fc87409f2e..8ce180e22d1d 100644=0A=
---- a/drivers/gpu/drm/radeon/radeon_gem.c=0A=
-+++ b/drivers/gpu/drm/radeon/radeon_gem.c=0A=
-@@ -28,6 +28,7 @@=0A=
- =0A=
- #include <linux/debugfs.h>=0A=
- #include <linux/iosys-map.h>=0A=
-+#include <linux/overflow.h>=0A=
- #include <linux/pci.h>=0A=
- =0A=
- #include <drm/drm_device.h>=0A=
-@@ -812,6 +813,7 @@ int radeon_align_pitch(struct radeon_device *rdev, int =
-width, int cpp, bool tile=0A=
- 	int aligned =3D width;=0A=
- 	int align_large =3D (ASIC_IS_AVIVO(rdev)) || tiled;=0A=
- 	int pitch_mask =3D 0;=0A=
-+	int pitch;=0A=
- =0A=
- 	switch (cpp) {=0A=
- 	case 1:=0A=
-@@ -826,9 +828,12 @@ int radeon_align_pitch(struct radeon_device *rdev, int=
- width, int cpp, bool tile=0A=
- 		break;=0A=
- 	}=0A=
- =0A=
--	aligned +=3D pitch_mask;=0A=
-+	if (check_add_overflow(aligned, pitch_mask, &aligned))=0A=
-+		return 0;=0A=
- 	aligned &=3D ~pitch_mask;=0A=
--	return aligned * cpp;=0A=
-+	if (check_mul_overflow(aligned, cpp, &pitch))=0A=
-+		return 0;=0A=
-+	return pitch;=0A=
- }=0A=
- =0A=
- int radeon_mode_dumb_create(struct drm_file *file_priv,=0A=
-@@ -842,8 +847,12 @@ int radeon_mode_dumb_create(struct drm_file *file_priv=
-,=0A=
- =0A=
- 	args->pitch =3D radeon_align_pitch(rdev, args->width,=0A=
- 					 DIV_ROUND_UP(args->bpp, 8), 0);=0A=
-+	if (!args->pitch)=0A=
-+		return -EINVAL;=0A=
- 	args->size =3D (u64)args->pitch * args->height;=0A=
- 	args->size =3D ALIGN(args->size, PAGE_SIZE);=0A=
-+	if (!args->size)=0A=
-+		return -EINVAL;=0A=
- =0A=
- 	r =3D radeon_gem_object_create(rdev, args->size, 0,=0A=
- 				     RADEON_GEM_DOMAIN_VRAM, 0,=0A=
--- =0A=
-2.43.0=0A=
+From: Roman Li <Roman.Li@amd.com>
+
+[Why]
+The analog connector support was accidentally removed,
+causing a crash when connecting an analog monitor.
+
+[How]
+This patch restores the functions and pointers required for proper analog
+and DP bridge encoder support on legacy GPUs.
+
+Fixes: 66715fc0ecfd ("drm/amd/display: Sync dcn42 with DC 3.2.373")
+Cc: Timur Kristóf <timur.kristof@gmail.com>
+Signed-off-by: Roman Li <Roman.Li@amd.com>
+---
+ .../amd/display/dc/hwss/dce110/dce110_hwseq.c | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
+index 5273ca09fe12..e76abc877f4a 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
+@@ -677,6 +677,48 @@ dce110_dac_encoder_control(struct pipe_ctx *pipe_ctx, bool enable)
+ 	bios->funcs->encoder_control(bios, &encoder_control);
+ }
+ 
++static void
++dce110_external_encoder_control(enum bp_external_encoder_control_action action,
++				struct dc_link *link,
++				struct dc_crtc_timing *timing)
++{
++	struct dc *dc = link->ctx->dc;
++	struct dc_bios *bios = link->ctx->dc_bios;
++	const struct dc_link_settings *link_settings = &link->cur_link_settings;
++	enum bp_result bp_result = BP_RESULT_OK;
++	struct bp_external_encoder_control ext_cntl = {
++		.action = action,
++		.connector_obj_id = link->link_enc->connector,
++		.encoder_id = link->ext_enc_id,
++		.lanes_number = link_settings->lane_count,
++		.link_rate = link_settings->link_rate,
++
++		/* Use signal type of the real link encoder, ie. DP */
++		.signal = link->connector_signal,
++
++		/* We don't know the timing yet when executing the SETUP action,
++		 * so use a reasonably high default value. It seems that ENABLE
++		 * can change the actual pixel clock but doesn't work with higher
++		 * pixel clocks than what SETUP was called with.
++		 */
++		.pixel_clock = timing ? timing->pix_clk_100hz / 10 : 300000,
++		.color_depth = timing ? timing->display_color_depth : COLOR_DEPTH_888,
++	};
++	DC_LOGGER_INIT(dc->ctx);
++
++	bp_result = bios->funcs->external_encoder_control(bios, &ext_cntl);
++
++	if (bp_result != BP_RESULT_OK)
++		DC_LOG_ERROR("Failed to execute external encoder action: 0x%x\n", action);
++}
++
++static void
++dce110_prepare_ddc(struct dc_link *link)
++{
++	if (link->ext_enc_id.id)
++		dce110_external_encoder_control(EXTERNAL_ENCODER_CONTROL_DDC_SETUP, link, NULL);
++}
++
+ static bool
+ dce110_dac_load_detect(struct dc_link *link)
+ {
+@@ -3376,6 +3418,15 @@ void dce110_enable_tmds_link_output(struct dc_link *link,
+ 	link->phy_state.symclk_state = SYMCLK_ON_TX_ON;
+ }
+ 
++static void dce110_enable_analog_link_output(
++		struct dc_link *link,
++		uint32_t pix_clk_100hz)
++{
++	link->link_enc->funcs->enable_analog_output(
++			link->link_enc,
++			pix_clk_100hz);
++}
++
+ void dce110_enable_dp_link_output(
+ 		struct dc_link *link,
+ 		const struct link_resource *link_res,
+@@ -3513,8 +3564,10 @@ static const struct hw_sequencer_funcs dce110_funcs = {
+ 	.enable_lvds_link_output = dce110_enable_lvds_link_output,
+ 	.enable_tmds_link_output = dce110_enable_tmds_link_output,
+ 	.enable_dp_link_output = dce110_enable_dp_link_output,
++	.enable_analog_link_output = dce110_enable_analog_link_output,
+ 	.disable_link_output = dce110_disable_link_output,
+ 	.dac_load_detect = dce110_dac_load_detect,
++	.prepare_ddc = dce110_prepare_ddc,
+ };
+ 
+ static const struct hwseq_private_funcs dce110_private_funcs = {
+-- 
+2.34.1
+
