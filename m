@@ -2,139 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WOKOCQw34WlFqgAAu9opvQ
+	id 2Ob8Gxjc4WkXzAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Apr 2026 21:22:52 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 09:07:04 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 418FC414116
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Apr 2026 21:22:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 228CD417B2B
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 09:07:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2902710E1E3;
-	Thu, 16 Apr 2026 19:22:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A215610E980;
+	Fri, 17 Apr 2026 07:07:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="RJPiWnJ1";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KN2pJoBF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013062.outbound.protection.outlook.com
- [40.93.196.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29BB510E16B;
- Thu, 16 Apr 2026 19:22:48 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Q0wJ2zyWJirHpd12NGK3SADkx4zfbdr0e9121y9m6d4fXlEjAK7B+Itk0kAX3IGaLWScsysUROoT+Qwx7nIW/Y8SfVDd7LMjKWyTGf1RGgTkSxmumGftrOe2QKrD8qXGC0XYtZWLboqcqXmCojWzKL0clYJ6OR9Lh7/BkQz8fXQfdF7FtCEIkPdzSJX8+gZY5oOjLA+pWqaQkVnZWakKhWOB4X0DkK3uJLQToMFS8+cdn5FkTFpXCmjgw+pOm+NvPBfVa4TN9SbTYTynNBapuZ9j6yl1coHp7w+i6neTMVJ0Iv9o7EX5QID1GK0QwDlk4TWhpgefqnekRqtTRQT4gw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KItRsuzEVE7PvrJuLdM/ZkZNUlrU7dZFoalnaL53smY=;
- b=YWbWNuIRuqjm9k/lVxImkubO4+9yZdWo8d94c7BFxyY9lyr406EWNFgOR8hZ03GgD+UyShzErbCssoLSfr2w1lP099W08QeuNXD0n+z8VFpwTZRO+WcoCF+qh/zR3S0UvlNZxZlF3v+FyjM7rwDb4I1URaGsDgEAVy63ZvWTjg77wtqguLlOlKuhdIkXYZNL8EY4s0/vBu6uyikC7yukxuMQ/mQt/jShHlis0ReWuyYm3o6y9lfH939j8ACfmnD4PhMSmf1V9X9FYlLpXbjvXyMWB7VPew3kKSTx5K6JdXgBKswbyTWHNTaiTKmAdlMyNGB68RS0fu6sfFbOxtgY1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KItRsuzEVE7PvrJuLdM/ZkZNUlrU7dZFoalnaL53smY=;
- b=RJPiWnJ1jJSRCvTAtrnka49+99pmNtr/YuT1OJRuAGlX4zUTRCmSw0XhVGjQKOKh+OQKy85tBZMWTN0xLDEzxC+ARnuFygTNr/WZrI8zC1dUvhgqoS8fJoz31KaT3DR92G12r8/SRt2HjhI/weXXP3mG3CEcL6pa+cYyuic52G8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5213.namprd12.prod.outlook.com (2603:10b6:5:394::16)
- by SN7PR12MB6767.namprd12.prod.outlook.com (2603:10b6:806:269::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.20; Thu, 16 Apr
- 2026 19:22:42 +0000
-Received: from DM4PR12MB5213.namprd12.prod.outlook.com
- ([fe80::5d60:577:358f:89c4]) by DM4PR12MB5213.namprd12.prod.outlook.com
- ([fe80::5d60:577:358f:89c4%6]) with mapi id 15.20.9818.017; Thu, 16 Apr 2026
- 19:22:42 +0000
-Message-ID: <c030e9fc-d88e-47f9-afd7-9a4a0a53f4d3@amd.com>
-Date: Thu, 16 Apr 2026 15:22:39 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] drm/amd/display: use a separate helper to translate
- degamma curves
-To: Melissa Wen <mwen@igalia.com>, airlied@gmail.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, harry.wentland@amd.com,
- simona@ffwll.ch, siqueira@igalia.com, sunpeng.li@amd.com
-Cc: Krunoslav Kovac <Krunoslav.Kovac@amd.com>,
- "Dr . David Alan Gilbert" <linux@treblig.org>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, Alex Hung
- <alex.hung@amd.com>, Aurabindo Pillai <Aurabindo.Pillai@amd.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>, pekka.paalanen@collabora.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- kernel-dev@igalia.com
-References: <20260414220237.184289-1-mwen@igalia.com>
- <20260414220237.184289-3-mwen@igalia.com>
-Content-Language: en-US
-From: "Kovac, Krunoslav" <kkovac@amd.com>
-In-Reply-To: <20260414220237.184289-3-mwen@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YT4PR01CA0017.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:d1::28) To DM4PR12MB5213.namprd12.prod.outlook.com
- (2603:10b6:5:394::16)
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com
+ [209.85.219.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86CC510E21A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Apr 2026 19:55:42 +0000 (UTC)
+Received: by mail-qv1-f49.google.com with SMTP id
+ 6a1803df08f44-8a0323830beso67191716d6.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Apr 2026 12:55:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1776369341; x=1776974141; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=EVDa9MmHdKtXRSXwqrzO68IZv3ECM4LIzStEaRjKsNY=;
+ b=KN2pJoBFUyyPo1e/MtwgMPtqZid/8NrqmbLzTimWbAFkzBW6s4GfhnQKVJ194zt+jh
+ yx7QS/bg/KLHIlWSZwRugOd2GYtMi+lfPikmyRCkGA6x/RId92Ef4L0B1WrK1D54tAGH
+ SEHZfh6rnlAcJGM6Jkd/CGHBKQc10Du1ucLbn3Xqsx1Uy04vpQDOYI4igbCuJviQfk8K
+ fQVDwJDggKgRsmmhEGXSfgOmbb2xxQT8ub/2NjyDaiSJDcIrfQXnw1BFvEcYdxOtnLBd
+ 39I8+Qg25yf/7PUl1C58/7ww/td1+hSWFZkGSsPwx8o6TfuJEukD4Kd7OK+jvQEnYUou
+ KJ2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776369341; x=1776974141;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=EVDa9MmHdKtXRSXwqrzO68IZv3ECM4LIzStEaRjKsNY=;
+ b=DSv2DdtrvvzoBbsQK2R2jnS/hi09YoyjqvcemNX3YJ7CyLbQDCk+5MnUekZVQpY5Dx
+ TAx29CPFY9v4k2TKm95E6xa6+hBK1En1jmDB+ML+WChSo2M+Sn8iKaAO68y8Ri+423fi
+ kAun4g5MLv7oS69zoPNT8Ex0+oUbljAjC+Hjpj7pT8GTFuLQcUDA5hSFj3uXGGX7efM9
+ haxhWQ4KzEy9Nzzeps6P2rj37m7KF6KvmNCvOef/M5l/xVzv4D5GycbP3hK78Z/RpkwQ
+ x7VxWL28UUbe7zYr7toRXfJYMoB4n0HExfpeBZ6px31DXPq9M1ZjffNuYHeKGYwK4zyU
+ Vc2w==
+X-Gm-Message-State: AOJu0Yx/vYfaxnS+3BpzIgf4/+p+T/aTRrNxoq4oTTt05o0GgN8SDQ0K
+ 6S8MdaJdCbbAlYwaZQSpel2OYZJtsaeKNIvZhGjuQJhwBVPiL3XTUGgI
+X-Gm-Gg: AeBDiesCqeegA41cMiA/RF7SUKfzbI5ttS9LqAeCm2XkXXgyoDw9Rx7pFb7w+FFc3Y3
+ 42X4psc0R/FRUG+nqDoxCVoAnG2uaZN63he07v7LyTtDLl8JPDxVeNPzOiURp5x3wItcFS/xuCO
+ 94ja/+ov3O29vH7bZNObdvzGl+TVOOaIfedsyds9N7X4raskLaogMRXw0vYXyiIQgRrmPdf9xjL
+ KfG2iZwgwojG/WSCWKFmthntVChmq+GlH1pkkXIOsbtGBsO7WmT6t4I1aRvbR6bgct35ri9QJK6
+ zR7M47gRZew854s2TaKvBIM9Si9Jq9/TzZ08N9eSwAyKZgvIcRHkKRpx6J0rNFyRRjcLzMo/Ncd
+ VK8AcbLNRMNj9siKfWbBlBevEXZ5b/PLfDECa8PfTpL7oKpIWCwe31qZWMw7OqcsG7JRYx2YfK0
+ +ir5dB/qpDYgRWaNw9ZJ44b9uNkH6ZfSYqvYtUD44WK0yz8g5qPfdLOb87UKXV
+X-Received: by 2002:a05:6214:3d85:b0:8ac:ae21:46e with SMTP id
+ 6a1803df08f44-8b025eb184cmr11397316d6.31.1776369341477; 
+ Thu, 16 Apr 2026 12:55:41 -0700 (PDT)
+Received: from localhost.localdomain ([104.39.116.151])
+ by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-8ae6cb9eb66sm43769206d6.31.2026.04.16.12.55.40
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Thu, 16 Apr 2026 12:55:41 -0700 (PDT)
+From: Yuho Choi <dbgh9129@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Yuho Choi <dbgh9129@gmail.com>
+Subject: [PATCH v1] drm/radeon: fix memory leak in radeon_ring_restore() on
+ lock failure
+Date: Thu, 16 Apr 2026 15:55:37 -0400
+Message-ID: <20260416195537.3632-1-dbgh9129@gmail.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5213:EE_|SN7PR12MB6767:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5b267f2b-9bf6-4db7-e1c0-08de9bed87a0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|7416014|366016|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: E4ThOcKgJJ4ZRkRRqSBX4WsJ0EsyPTu2z4h0iDkfAMWLtrIFDCLL1LoJYN03ppAtEm538PpM5dIa/oOtmwfN1tgBiKGDUdEkGQk8Q24xSf45VjQWAYR+a8EUk2V2CBlp87kGoGRzMR7aMiV9OxF/ZZiHlzn/ru9jG7VmGIFUc9CWQ7/O4PnwRSMQWaCAIsmSyM6LLa8zvt6vSfyWZigmqDz+cW2VInqQ53+E6Wi3W+8LMQNg8uRSDbytn/czSPm7dJ5o5REJZ9Mdx+mx1aqvfklR4oz/Cl8AEE0c8Y6bhQfwXTFwTgfu3Faty9AnfikWn5LKdDE8ZpXKc3OtDc6g2lyK7k5c0Yv/+exw6olWLloerAK8Gt56tsozD8NwvQGBT03PLEexWsE4UUQVMWvVuMirot+LJtlenJr1AGqo1BE/3fQ2VftyRSCMMVl6OsSRQMFZ8dKzIudSRGgj3vHtA39CaPmpXJelyJchWaYDfEme4G9EHRwxnyNGN9BH7A10cueuPO4rzbuu0Ve+xoFg2IqMbKjjBGjLBOuwRxtHQ3orl0QvYdtS7/cz+wd9S/Ni0NpZ7aM3i728dgaRVAAc5zCYFXEy2/HxHkD+AyHTy9jQtWUVOzKJGu09VzXzaCKP5QNGKwFCP6aManp1Yd/8MG9kccihTlg681zo3PKJgHjMifYoJDY7GDxP8UO1PjXQS0AaYSA9PC9EczTU9FgW6izAHO3xPMHjUNVHqH6zVxU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5213.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(7416014)(366016)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M2JvSmMreUhxRTI4UzNzWEJjZWhyakdiMXczMUtHczN5OUVaS0xGTDhSS3Br?=
- =?utf-8?B?eVhOUEV1NzVaOEFIbjM4ckZKMHJvbzlJazIyNlJDank2dkNDdnpiZFpraGFh?=
- =?utf-8?B?Yk9RdiswRDVCUHZybTBCc0VZV2hJdG52VUJRRVhEWWRsZzlPNy8wY0VJVTdJ?=
- =?utf-8?B?czhaRkdXZ3JCQWl4ODRGOTRvSUw5ZFhZbkl5OFpZY0lvWWNyZWJJQnZBdG4r?=
- =?utf-8?B?SnVCb0VxbnA1WjlwMlBPVlhQNU43VzBDbmE3MEdoRU4zUWY1UFd0eEo5VW9I?=
- =?utf-8?B?S3RIakxIU3BSem14Y1UyWHZOOWJNdDdMYS9kR2tCRzhialVsNXY1WE51akwv?=
- =?utf-8?B?UW1yMDQyN3NxVjdJeWY5a3RCNC94Y2Y0TURNRFVYc1Q0dzVaQ2NqZE1tMWQw?=
- =?utf-8?B?cURCTkVZZTRvZ3pjTzIyMVUyRnFDTjlva2d3UkJRRjQwWUEwY3BEVWpHRnBz?=
- =?utf-8?B?eVYwdU15d20rKzQ0WUY0bTAxejVQQzVNUzg0QWM0ZmZoRkhjZS94ekF0Lzdp?=
- =?utf-8?B?RCtkT09YWXRGTXV0dkxsb21pTlFlSm9kVldGeXJ4Q2cwK3ptNUlEZkEvUWJM?=
- =?utf-8?B?WE54WFVYekN3RDhjajg5WEdPTUYrWDV1N0I3cFdocnR4T0ZRWmRKY2lYNG5r?=
- =?utf-8?B?VEx6ZGlUNTRzOVZHa2FNaDAyU0VLdzFCcEtaZ08zNzRRZXB6dHl3NFJVTXIx?=
- =?utf-8?B?dGlTZ01YdkFPTU5nRVRHNTNWR2pTVWZGbzRGQU1VTHU1WXhudmYxdVE1NU1T?=
- =?utf-8?B?VUNoUEYxYWEvODJHcml3RGtGRVpWTmxDMlZHb1VCaHgzZkhsMXJwdWxuYVNU?=
- =?utf-8?B?eUtrNE9LSng5clJyL3ovQ0VvUW9QZlVuazFxbUlBTDVHRGRCblhEZXkyZUNP?=
- =?utf-8?B?Z0RFRTFhR0hpL25nVHBRejJpUkgxS0oyMXVsSmVOWkx0aWJHMjlmNENFRGg0?=
- =?utf-8?B?TWs2d0dEa2NlZ05jWGFBWnM1TDVpOWtaaGh2c1BaNGdlZzJxQW11WWFjcjRk?=
- =?utf-8?B?MGFTTG1ubk5xWU0yVWZ2bW1Pb2t1OXpzRkV5RkVCM1VsTjBML0szOTJHYUtZ?=
- =?utf-8?B?ckJ0bkpFS2VZQVdwUkFZaUk4VC9telE5VkhzMlhOa3pScGJzYktIN1lWM21y?=
- =?utf-8?B?ODNKNUx1MFA4VXg1QjZReGxjeTVJZzQvNWNCdmh4MGsyREV6WW5KSCtxamZK?=
- =?utf-8?B?UEhaNUNPYmwyc2hIODVwSFJnM2lhNDJmNmVMSW9ZY3JMb1V2eWZ6WG0rOFhJ?=
- =?utf-8?B?RE1aTWk2MEZVL0hBZzBzL0grWWY4dHdVL29ucG0yNGJSbnNVUGpCQjhUVU8x?=
- =?utf-8?B?RzJCL1ZFV2hJSXY0N21MQ2lxS3k0RDNwWEErNy9QZitJWGhrTy9tdE44R0Q1?=
- =?utf-8?B?VjVmZ3l1MDY4STZFWmZCMFd4RnF4M1ExYjNpdkdjcFBubExrMTFaRFVwVy96?=
- =?utf-8?B?aWpxZWhKUFE3bDRiQnBORXhaNlhjSjNBbHpGNW9VeDNxWlQ5cGFIRzFaZDFt?=
- =?utf-8?B?QTROblF5Y2FuL1NlRlowMkwwY0gzYmYzdHNOYnZIR28zcTRXRnRXQTJwMEZQ?=
- =?utf-8?B?ekhiMlRyL2ZCOXBDWkVGeVB1eHo4bFRscHZ4SWpkd2ZYREpYODVWK1prYWl3?=
- =?utf-8?B?V0ZwTGxocTJNMitCcEVtcWNFYlJ6Nzd5SzF4anVLRStvSE12Tit4allDL1Vt?=
- =?utf-8?B?QjUxb2VDamZteHIvSmtidVFraHlkQlNaejFkZHdaQndscjdtd3AwZ29TTjh2?=
- =?utf-8?B?ZkJNVG1VZ01aU1RGQVV4T2JCY0M0ODdYeGpUT0JoSkRiNHljcE41a25KWUJs?=
- =?utf-8?B?ZHlOSFFPNktzMmxjaVJ0NWhOTzlVOHRFc3lwV2R1bU14SFhtR0c4dkMvWnVt?=
- =?utf-8?B?cEFNV2dBc2hJN3ljZzNydVJudUQyb1JhaVBvU0pQYUtNaVhGV000TCtvWUtw?=
- =?utf-8?B?SUpyNTA5dkJjN0U2TUhHejhwTUwxZmZMNGNRcitaUWMvRTdQZlBWUUo4TU9S?=
- =?utf-8?B?WTF2b2Y3ckVBQVdzSzl1TjA0SlluZ2FtMFZrOTN2Qnkva2o4U3p2TFRsYm03?=
- =?utf-8?B?UDFMUW1hallGejVUL0lBR1g1eEY4R1U1QmJsaWNabEFhY0tTc3RlRHBvNDhw?=
- =?utf-8?B?elJNblJXQWUvVHRzcEVkTTVNS3NFZmdxK05qMmIrS3lXTW5wcWxuRzIzM1Vo?=
- =?utf-8?B?d1JZa1FUT3czNnNTaFdvaG55TnlRUVJEQVFnQnZrTG0rczlzOStpT0RUeXFJ?=
- =?utf-8?B?Y3UvSkpRVUUxRkJqNzAyQ1FYS01GaWYxTGxsaWdHenBXeE5aVFA0bUhjNFN6?=
- =?utf-8?Q?VeqMx0Nh2HWo93rPkK?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b267f2b-9bf6-4db7-e1c0-08de9bed87a0
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5213.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2026 19:22:42.4914 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bkyflKcN/eL3SD2/wduBx+4qIH33C/4wRfBDIz5h8I7Fn7ukpNxa2hfWhmvoJm05
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6767
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 17 Apr 2026 07:06:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,85 +91,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:dbgh9129@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[igalia.com,gmail.com,amd.com,ffwll.ch];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[dbgh9129@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dbgh9129@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[kkovac@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,gmail.com];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 418FC414116
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 228CD417B2B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thanks Melissa for following up.
-I like the changes themselves, just some clarifications.
-We do have a LUT with predefined HW curve, but it has some limitations: it cannot be used with subsampled 4:2:0/4:2:2 formats and it affects the linearity of color space in which HW scaler operates. In your case, we use the LUT after tone mapping in 3D LUT; that LUT doesn't have predefined curve. So it's not uncommon that we need to program our own degamma.
+radeon_ring_restore() takes ownership of the data buffer allocated by
+radeon_ring_backup(). The caller (radeon_gpu_reset()) only frees it in
+the non-restore branch; in the restore branch it relies on
+radeon_ring_restore() to free it.
 
-The motivation for the new segment distribution is best explained with an 8-bit sRGB case. Input has 256 possible values and HW LUTs have 256 points. Ideally in this case we'd use the LUT as basically plain indexing with no interpolation. The new distribution accomplishes this, it aligns 256 HW points with 256 possible inputs. Due to float representations of input, it's not aligned perfectly, but LERP-ing between two HW entries where input is always within small epsilon from one of entries doesn't materially change things.
+If radeon_ring_lock() fails, the function returned early without calling
+kvfree(data), leaking the ring backup buffer on every GPU reset that
+fails at the lock stage. During repeated GPU resets this causes
+cumulative kernel memory exhaustion.
 
-On 4/14/2026 17:55, Melissa Wen wrote:
-> In newer DCN families, there is no hw predefined curves. So, when
-> setting predefined TFs to gamm_corr, shaper, blend and regamma, the
-> driver resorts to the color modules and program those predefined curves
-> using LUTs. The driver is using the same LUT segmentation when
-> translating EOTF and inverse EOTF to hw points by using the same color
-> management helper to translate curve to hw points, however, LUT
-> representing EOTF may not follow the same region/segment distributions
-> of inverse EOTF. This is causing banding on blend when PQ predefined
-> curve is set. Use different helpers when linearizing and delinearizing.
-> This is the first step to fix banding but already mitigates the issue by
-> increase the number of points per segment from 8 to 16.
-> 
-> Signed-off-by: Melissa Wen <mwen@igalia.com>
-> ---
->   .../gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c    | 10 ++++------
->   1 file changed, 4 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-> index b45ceb570a5c..17d54aadb5e1 100644
-> --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-> +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
-> @@ -493,9 +493,8 @@ bool dcn32_set_mcm_luts(
->   	if (plane_state->blend_tf.type == TF_TYPE_HWPWL)
->   		lut_params = &plane_state->blend_tf.pwl;
->   	else if (plane_state->blend_tf.type == TF_TYPE_DISTRIBUTED_POINTS) {
-> -		result = cm3_helper_translate_curve_to_hw_format(plane_state->ctx,
-> -								 &plane_state->blend_tf,
-> -								 &dpp_base->regamma_params, false);
-> +		result = cm3_helper_translate_curve_to_degamma_hw_format(&plane_state->blend_tf,
-> +									 &dpp_base->regamma_params);
->   		if (!result)
->   			return result;
->   
-> @@ -551,9 +550,8 @@ bool dcn32_set_input_transfer_func(struct dc *dc,
->   	if (plane_state->in_transfer_func.type == TF_TYPE_HWPWL)
->   		params = &plane_state->in_transfer_func.pwl;
->   	else if (plane_state->in_transfer_func.type == TF_TYPE_DISTRIBUTED_POINTS &&
-> -		cm3_helper_translate_curve_to_hw_format(plane_state->ctx,
-> -							&plane_state->in_transfer_func,
-> -							&dpp_base->degamma_params, false))
-> +		cm3_helper_translate_curve_to_degamma_hw_format(&plane_state->in_transfer_func,
-> +								&dpp_base->degamma_params))
->   		params = &dpp_base->degamma_params;
->   
->   	dpp_base->funcs->dpp_program_gamcor_lut(dpp_base, params);
+Free data before returning the error.
+
+Fixes: 55d7c22192be ("drm/radeon: implement ring saving on reset v4")
+Signed-off-by: Yuho Choi <dbgh9129@gmail.com>
+---
+ drivers/gpu/drm/radeon/radeon_ring.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/radeon/radeon_ring.c b/drivers/gpu/drm/radeon/radeon_ring.c
+index 581ae20c46e4b..a5dff072c1ac0 100644
+--- a/drivers/gpu/drm/radeon/radeon_ring.c
++++ b/drivers/gpu/drm/radeon/radeon_ring.c
+@@ -356,8 +356,10 @@ int radeon_ring_restore(struct radeon_device *rdev, struct radeon_ring *ring,
+ 
+ 	/* restore the saved ring content */
+ 	r = radeon_ring_lock(rdev, ring, size);
+-	if (r)
++	if (r) {
++		kvfree(data);
+ 		return r;
++	}
+ 
+ 	for (i = 0; i < size; ++i) {
+ 		radeon_ring_write(ring, data[i]);
+-- 
+2.50.1 (Apple Git-155)
 
