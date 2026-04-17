@@ -2,106 +2,132 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YBk7NwMk5mlBsgEAu9opvQ
+	id qETuKUNQ4mnx4QAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:02:59 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 17:22:43 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 750AF42B2A9
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:02:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4123B41C878
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 17:22:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 735AA10E5C0;
-	Mon, 20 Apr 2026 13:02:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A653B10EA61;
+	Fri, 17 Apr 2026 15:22:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="tB+tarb7";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="v3O4j7A/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
- [209.85.208.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44F2F10E032
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 14:51:08 +0000 (UTC)
-Received: by mail-ed1-f47.google.com with SMTP id
- 4fb4d7f45d1cf-6634bb959a2so1069937a12.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 07:51:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1776437467; cv=none;
- d=google.com; s=arc-20240605;
- b=kXC+QpX8SCoJ9rVZ9Gwj0RbYf9N+LKO6fG3LhEYFo/quUdVFhHBPrQMTaEJMhDOH0Z
- Qsk53m0hf1ECbcydc/p1n43lyJkHDxRd6D9Gec7c9pGEGYmDvKs/Ye7YbXxcCOG6fcxT
- wPGYCHy7YRVmFki1QsfdIJO2eqRWbU/80e7KlducMyb0uKanRW4cHnJ+MJ+WTzlBNgRW
- Vm0+1zbFprv8Z40jhJXIO2T/Jhmr6AKtIwnQ4XINRBW1KPhK8F1wugpEDp6oTy0Pq/iR
- 90UA+7VVkl2e/vapfibL7fM8QkHKbtXLJ2HV0MmPETmYBHhMLPOEpmm3aYpAh9wyZKSB
- 86YQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=GqspcooKgst7WD1YTyYSebsG6+WnjIGRXNERmo7wEPU=;
- fh=h8bOCy5Zboyj9VHfqNhCkMRxt1YJrf1mvUQ/9FWNKgw=;
- b=hTOKs+EQN8sW1gok3YlLd9bjDRoJEiHqWmQUiDCyByQ/A5lC3mVhXKTFHUh/rx60lX
- UKbh6aDLQDVdY8HfWz1pTzr2UwoizixuUkw4kwxzGFU2TkeJu9qQhN7Ssxr1aGfIxBFq
- aDmJBbcwlltOAMSDzDAL/GjLhWGKDylIxcybthEEO2qFRvdPG1JjrQFXwjgmQi31tcWR
- 2iW1tn7A7Jz61TRxFa5VcSghvR+7vO1xdksn6mspzQ8pD7VuT+wjnyvZX1esXnux1/5q
- lrMSl/qHqBS3vVaX1WHw68vz0f9K1o3Veeh+4ZBe7l1RMyUn5x5ASicqnwj0jcSzX+sx
- O1Pw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776437467; x=1777042267; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=GqspcooKgst7WD1YTyYSebsG6+WnjIGRXNERmo7wEPU=;
- b=tB+tarb7x7a9ZHzL09LlUJMvki6nFqHVGNwd9p/xSMVmV9LSDygpXaYcsyYSdqTZDQ
- 4HBMZReBwUdw+7NAWCtBRJUHsH1GvEupE/F2K1rlbSF06rV2oxLO68dSZ0EOZvs3UJ6w
- 6oJeN4avA/6hfYQRwocX80HfRDGS/0Plt1Z7L73ZzxGCGbfN8VFhcALuquEkxCJ7ZeGX
- kBlqo3vk7iEfdDqHpgJ7Hh/7GREILwq+87mxOMYu7t7/0xchu9BsNx0LizGfVeBSFvPG
- n9MLX2ATxtbbq2JS0mt56FRms5mwotjkpKU5cc6Y2rhHT03js/oYJeQrmaL+3FZsfIrC
- A6aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776437467; x=1777042267;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=GqspcooKgst7WD1YTyYSebsG6+WnjIGRXNERmo7wEPU=;
- b=fDXe320B2zqIIOThdSPtOSM81YFevlKtVaKsThaDPBaTihkeHwLMR31uHnYP2RkXFH
- N+x/1DaCvh8RhHILtcwlEPCi+7vdZ6yBUgqQeBGKNEdQpHq1jBKRFtxgXpJHU9ETP1EH
- E0L2Y6ezAye73qy4vuTYaNtDcYzDbK8OrbfGhH0fPBQT+PNWrWzo3GtL+kIohwi0mA3I
- WPo5gCsMH8PKx4+OwIEiy19kSRmHIjKP4kO9NY82hJLz3ZNuAyABHOUI26nKZywYgbN5
- S1q2aabkgvpV1fwzDkoWynIc7WSny/2g6/P0yiMTZyZ4Jnw2ALluJhXoIehz9cN07ZNk
- GNIA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ/sp/cM3lLklqaR9e/S3NYvexxhPi6I8k6YcUbqi8kV0swLC8Byh1PMjWmM6ktM0XQahrfxff4V@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwMtnUcDvb6YNAKcs5A5GFvAFLpIrG0eajJZDnmk+453JtOoaF6
- 4cHmqG6/jOBdB+dO6qfw6L2qMwZo2E0pR0dyLP1/Ve6pUBI1LgZz0mc6BDi4apifCfof9sS5NO8
- qU/EQcISNTJEi3ckV5wjEOYs9rS8UnXY=
-X-Gm-Gg: AeBDievpYlqdC+deJbtjZELEIpC4mur8mCVXQGV/R0aQr9Lt1cZpjLCwUSOvsOp64IP
- nlRdaQD11lMsSkZTHrKmLTlvplSmznChJfeP6UyK46r9bDyQY5v8AMN53y4eDMZrJtJvK0X1W2T
- r+meC087RbD8mZuRuHo8KcXxGicP1QSriuudlp2myMC0YESQFqITm36cRXRt8y7XnaX+W14VnwH
- kq4x3gTFNO1uZjw22isuj+ircv84S/ttDkqs+fjH2VaPVyZUi9T6VXYdfJBBmCp3/hdI+0AA0AW
- 2X1iYAvIzEV9UIeW
-X-Received: by 2002:a05:6402:2b99:b0:672:f75:5095 with SMTP id
- 4fb4d7f45d1cf-672bfd82182mr1549620a12.4.1776437466608; Fri, 17 Apr 2026
- 07:51:06 -0700 (PDT)
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013042.outbound.protection.outlook.com
+ [40.93.201.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C08D10EA61
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 15:22:36 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=d+vF6yD8RZ43qONFI3VpCHIUVyMzd0ODFuplI2IqQDXySjWhvtdhoZ1nB7WVBEWBZuq70Q501gN3OMsWvJMrvGEibcSKQfn8p4yDYxduTSTyE2iSGKwgxKGMYX6ynSsuFU7JqMRz/431lS0R2HdfNof+pSv9A6t+ggfTac5CZuGfmPyYTW1k3Qk/tYzj+D0ggMcYZSq55HgJl0bTXEmmwEohcF4WoG1K/4InjQyI43Pb0e3Zk6RlJDskmr0fDyHEj3Mlt821iGMjLiumZh+sDj7tgfuAVHDEW6fmTJ2J8sftnlJX7YUY//5xIexNdCUJ57hzOHVH5zaWn6va/kdjHA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zwb/+5EkCdm+cVVJv46K936+0yBKq024DesvR2F+NMg=;
+ b=Cx82KKXw+OwVmsZ7ntP0Yk/5Wn6QDBeQp9Sd/Gv96/Sy5/oGa975KBNMI1WFuiyoIxHfZN/2HW9kNOrWbSwCeafAFguK2BNSRk7k4GlKYdMNv7KqrQwesVH+Z8iyO3JP0h2WP3mFWlIbErwjswPrYdfu9AdzmL7r5N4t5Ca6PpA6GqbH7KACOlZlC27ks8YcH2JxeAf1xnsCkQgXukEpAp2iuJ9o1AbYIh5YLSTgVkuIYzwIE81K+plfrb/JiP6NTXJ99toTnKaZ9yOe8YpURQH3L5QPCA5+VdfDnmYLe9+iw+HJkZUxCxEKkaDZ8EXDoDUH094aXfy5VXswk/mzcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zwb/+5EkCdm+cVVJv46K936+0yBKq024DesvR2F+NMg=;
+ b=v3O4j7A//fs5LENB+dQmjJu8dia0Ga1gFKm0/RM2O4nbylUGGmJGqIqin9DIRWn6iTA1aAAFzbQK5vKO1NgnLSzrOX4ZyMS4uQ992tWgalHYuU7rLito0NANk00wW04ZTyi1p8V2/VZOsbdONACUF+bWhKQ6aYr4w9g/welvLpw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CY8PR12MB7195.namprd12.prod.outlook.com (2603:10b6:930:59::11)
+ by IA1PR12MB7757.namprd12.prod.outlook.com (2603:10b6:208:422::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.25; Fri, 17 Apr
+ 2026 15:22:30 +0000
+Received: from CY8PR12MB7195.namprd12.prod.outlook.com
+ ([fe80::e571:5f76:2b46:e0f8]) by CY8PR12MB7195.namprd12.prod.outlook.com
+ ([fe80::e571:5f76:2b46:e0f8%5]) with mapi id 15.20.9818.017; Fri, 17 Apr 2026
+ 15:22:30 +0000
+Content-Type: multipart/alternative;
+ boundary="------------2Ub3wR1yhyiAOW8TtMeEUs8Q"
+Message-ID: <3a365ca3-b2aa-418e-9eb6-9ac2a326a554@amd.com>
+Date: Fri, 17 Apr 2026 11:22:27 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/14] user queue support for VCN 4.0.5
+From: "Wu, David" <davidwu2@amd.com>
+To: "David (Ming Qiang) Wu" <David.Wu3@amd.com>,
+ amd-gfx@lists.freedesktop.org, Christian.Koenig@amd.com,
+ alexander.deucher@amd.com
+Cc: leo.liu@amd.com, Boyuan.Zhang@amd.com
+References: <20260210214729.80964-1-David.Wu3@amd.com>
+ <5427cf30-9c9d-4904-8058-3a6c9785e696@amd.com>
+Content-Language: en-US
+In-Reply-To: <5427cf30-9c9d-4904-8058-3a6c9785e696@amd.com>
+X-ClientProxiedBy: YT4PR01CA0160.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:ac::24) To CY8PR12MB7195.namprd12.prod.outlook.com
+ (2603:10b6:930:59::11)
 MIME-Version: 1.0
-References: <20260416195537.3632-1-dbgh9129@gmail.com>
- <CADnq5_NrVgGwAYbBGgGc9t-ke5xt_0iJNExXARb7LxdnHSwDQA@mail.gmail.com>
-In-Reply-To: <CADnq5_NrVgGwAYbBGgGc9t-ke5xt_0iJNExXARb7LxdnHSwDQA@mail.gmail.com>
-From: =?UTF-8?B?7LWc7Jyg7Zi4?= <dbgh9129@gmail.com>
-Date: Fri, 17 Apr 2026 10:50:54 -0400
-X-Gm-Features: AQROBzC7i9ei1CiJnYg6HROzf4GBLzx1H6GJ7IgyCxXJkBfyW-5LW2DspgZwtVg
-Message-ID: <CACrCO_VKvhA-zx1KPhDxbOR4HzDs87Hsbdtc5SZXgvLeK9ZX=A@mail.gmail.com>
-Subject: Re: [PATCH v1] drm/radeon: fix memory leak in radeon_ring_restore()
- on lock failure
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- "Kim, Taegyu" <tmk5904@psu.edu>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 20 Apr 2026 13:02:49 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY8PR12MB7195:EE_|IA1PR12MB7757:EE_
+X-MS-Office365-Filtering-Correlation-Id: 34c58146-4002-4250-bb79-08de9c95241a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|22082099003|56012099003|18002099003|8096899003;
+X-Microsoft-Antispam-Message-Info: 6RNZ3kGToGCUe2vrpLnC/bO9GzPXazyJVAPKiFPfsy9xRoKPJucjt1TXR4NF4sQOZyUESN9Q76GQHFRMKKiHWJVLC63YavuocWCRy6fvgbEUS2lu7UJ1Ywgtul6j5IYjuS/CQr32QUKmohA+JfjL4UG6/9DlqupA1F1syLQgEm94SPDzCSuz0AGZsSIppVTj5ukDP7mNbthFBwx9pN5c3+iuQjjRac7Zn6LC9J9omRdgkxfkqcTgs4FT2dLg5cWk6JV8MgUhm1qjdD4x/SFl2/TjBWueWk2a/RudcLU7NjrrDjCYfqz/SgFbVaqclbkr4u7bYWXDS+5flanpfexBvq+5ws39weyvSwnnPYIyJx5E/9bm7aO4iRTLLUdWcJSRiM94HbT2W1bHZwjFxtI0sRj3WRM7pE+5X416Ob9pg5yfYJEOB4i0cZ5x+x1j0WgW879g/8vS1gpTH9qi7+kro00exPpXseGXYZgeqNZHbLFfVzMS/vuVj4DLp0TPzWYSj0l1ejVhX1+xSIamdjIGdD0gsxsxSIocQ2WAa9YSyfETnwyluBWBfdmcvWUEMTqrDKTcuUJGfvoGESnQ5Z18uZQNYgm0Ww1f6+YxFHfqazpaWlvuZxaWeSf0DwXcwOF2MNiEEO9THdryyS3aZLAw4nZOaHqRH0eqWZ6Kr5qo6Easq9GtWnfh5Ekr4Cj0vzfG66A90VSWgH7OTetMsl5FbzHZemHrKxGg0O9Edv5K8DI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY8PR12MB7195.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(22082099003)(56012099003)(18002099003)(8096899003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M0szRFdVMGhRMFRTdFRuT0NxT1QwME9ETittRkdOZkx3N01Wd3pYT0hYdTdT?=
+ =?utf-8?B?V09RRTNFano0eHRoSHZtOWZLSHlJanJ5UHpvZXVSNGtCVHlYSmRzVDM4Nmhz?=
+ =?utf-8?B?YmdweWhOb3RqdEVTSGpUa1B1WVZqV3NlNXVwU2FsQzQ2bGNIL0RnQzQ2M0hF?=
+ =?utf-8?B?SzBsTTZYWVA4QmZ0cTUrN0hIYURST2NmbllxcVRod3g4WmZJc3IrZ1lBekpm?=
+ =?utf-8?B?V1BuTkdOZjF4LzJ4UEgwTG4zSGIvNHZ2OVAybGtKbVB5MVJiTCtrQ2NKY0Y3?=
+ =?utf-8?B?bFFXbXovZjZNNGNFT3hsZCtXdXRUb0F1K00xUENEbFAyN0k2R3VRUWlHZmhY?=
+ =?utf-8?B?SllMNlZrdUJvdTRwM3FsZ0hQdWkxRGpvNEE4VFlmR0o1cTBIR3RBOXViZTJa?=
+ =?utf-8?B?YnNVNzUwWU1hWjk5SjhvU0E2ZG1MdldHZXN3TVh6RmdLdnhEaW1oTDk3VGxE?=
+ =?utf-8?B?LzFWUEJpNFpqNDQ2UHFJSWlZU2hLVzFzSnBpNS9XWmJPQmRPY2R0dXlyK3g4?=
+ =?utf-8?B?ZFBJS2U5bnFXaVVmSkdtaFM4eUlNRFVOQTdWaTNOU0RYSGpDZ1llM040Y2FJ?=
+ =?utf-8?B?R2xWWmhCZjJaMXFrUTA5U2RqcTJmcWlGS1FxVFNUVW9Da0hGMk1rUU1JV0tQ?=
+ =?utf-8?B?TGFUdTFhK0hBYUszblRKNndmSkdSZkhNNFhWd212TklwNU5xeVFsNCtRNW1S?=
+ =?utf-8?B?SnBvcGQwa1oydVpWZExheW1xdGg5eGtqSDlrRFdFRGtNdGxUa0pzSzFxcDVM?=
+ =?utf-8?B?RGs3OEdWL2ZKZmdjR0lKWmFpSzFCVXJrNUNSTmRVeDdBZ1ZtRittQWdzOGE0?=
+ =?utf-8?B?c2RCK3pQcmZldS9GY3R3M3JnNFhIRkY2Qm1MTHhBbHpNTGxNUXhlM213Wm9k?=
+ =?utf-8?B?MjRick5PNW5wcUYzRXcwU1FNSHJ2NFBZeGxKcXU1dnVIT0RObFk5d1IwTHNm?=
+ =?utf-8?B?TGZJblV2NHh2Ym5DR25WMTBLYld5OTlZbWZWYXhvTUpTNnlwS3F5ZnlqeDJH?=
+ =?utf-8?B?SWhPMFRNQ0dlcFY1cVBta01OWlZaZUxoMlFQNCt0K3Y0cENnU3IybVZqTGNS?=
+ =?utf-8?B?THZhWjloazFTN0VrM1lPcnY4K1pGNFdPSm5KUEJVZzc0OFcyK2FTMHVpdGxG?=
+ =?utf-8?B?T0hWMnZCZktIQnF5NmYreWg0eDBIbmRjbXY4MmY0bDhrdG1xVk5GMURlWjJ6?=
+ =?utf-8?B?dmhOMTBUNlkrUWdHays1UWpNNlhmVGpMbzJJOFdFUFEvN1VlSkVLK2Rmamdk?=
+ =?utf-8?B?dmxxSXMxTjArTFNmK1FoWXF2MEtvM29yTkt2YWk1Y0FjUFl1ZWppd3hxQVFx?=
+ =?utf-8?B?VHJoMnhDd3JORUVFS081dUx4QmFJUDdJNHNrYWZvMFZwSkpLNGJ2Qkp0aXh6?=
+ =?utf-8?B?SFpVUmdlYmUzaHk4d2djOU14YjNjYk1nSWhSckFkckkrNWtnTU5jYWtEM094?=
+ =?utf-8?B?cTMyZ3doQUNiSVVJaVJrL3VsdjIyOWlEczdIc3NLZ1p5eUpHMjFJcEZrSytr?=
+ =?utf-8?B?Z050YklrOWxuZTJEbm83VDcyejVUSm5Rczc3T0p4b2tDZU1NRmhQTHZFQTN4?=
+ =?utf-8?B?eWZnbG1PVmlJVmZOQ24wbnA1c1FGc0I4WjFPbGUyYmZzNUdnOW5KUTNMZkdT?=
+ =?utf-8?B?NEdFeW5Yb1p1YWhYNTl6VmRvTHJEb0oxL3lINTVnd0ZCOHo4d1JlNkR6UXF6?=
+ =?utf-8?B?M0JIb1VQNDZBQUJaeXE1RXpBbjNQYTZmSVZsL0p1VlJ6TmFlMm45dDEwSzZS?=
+ =?utf-8?B?OTVQUGdJVE41SlYzK25CeWFyZGJVa0RXSUhYOWtXMjZldFRiUW1LK3VBRys1?=
+ =?utf-8?B?SjFyTVdRaEZLZWxVdjF4eU44NWJHbC9IdEZsQXpzZU1Ub1YxWHRvbFRmdmZW?=
+ =?utf-8?B?Z1ExbzNkQzNEMEZjNFZBWDE2UkVpNy9oK3dYNWtoWS9nSTNTRndqenB4R1ZX?=
+ =?utf-8?B?L3VoaldsNW5HYnJ2UjRoSFdLSUw5SGFBS2FGZ2RDVGRQdFRkNjIxekEwMUlO?=
+ =?utf-8?B?WExZcXV1blNGQVBKR1NoeCtmSVFQLzJGUDN1c3BJNVJISXFwV3JLRHplZkhh?=
+ =?utf-8?B?YXJoSVJxdXJ6TTNOTmRDd3l4MjhUVHZFNkRWa2lZU1JlaEw5SnJrV3BESm9p?=
+ =?utf-8?B?MmZQK3d1WFhmTTQ0NkZlZHQ4d3Y1WnpUYnB0bk9yd2I5OEFwV1liSitILzRE?=
+ =?utf-8?B?bkRzSkxSWHcwT0tOWTE4NUdkejR6RXJjTkxncDJGMExsdkVObzh0dVRueUxZ?=
+ =?utf-8?B?ZjUyMWhFRVRCQjIxSEtLaGxqaDAwT0szR3doV2JuSUxXazBDSXExZEliNGFi?=
+ =?utf-8?B?dUVLTEVBemdWd0lCVVo3bzZ1T2hRV01ZOUVFV1dNS010SXRkRks5QT09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 34c58146-4002-4250-bb79-08de9c95241a
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB7195.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2026 15:22:30.6333 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PJvGu2LbotwEWeKOcSyC2ciOvoNHDH2OPtpDGc6eoa5n0t4FAF4oi66CpalUqKWip3aoQTKywVPv2IR65vn44A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7757
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,96 +141,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DATE_IN_PAST(1.00)[70];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[dbgh9129@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:tmk5904@psu.edu,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:David.Wu3@amd.com,m:Christian.Koenig@amd.com,m:alexander.deucher@amd.com,m:leo.liu@amd.com,m:Boyuan.Zhang@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[davidwu2@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,psu.edu];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dbgh9129@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[davidwu2@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 750AF42B2A9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:mid]
+X-Rspamd-Queue-Id: 4123B41C878
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Dear Alex,
+--------------2Ub3wR1yhyiAOW8TtMeEUs8Q
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Thank you for applying the patch.
+ping...
 
-Best regards,
-Yuho Choi
-
-On Fri, 17 Apr 2026 at 10:05, Alex Deucher <alexdeucher@gmail.com> wrote:
+On 2/19/2026 1:00 PM, David Wu wrote:
+> ping...
 >
-> Applied.  Thanks!
->
-> On Fri, Apr 17, 2026 at 3:06=E2=80=AFAM Yuho Choi <dbgh9129@gmail.com> wr=
-ote:
-> >
-> > radeon_ring_restore() takes ownership of the data buffer allocated by
-> > radeon_ring_backup(). The caller (radeon_gpu_reset()) only frees it in
-> > the non-restore branch; in the restore branch it relies on
-> > radeon_ring_restore() to free it.
-> >
-> > If radeon_ring_lock() fails, the function returned early without callin=
-g
-> > kvfree(data), leaking the ring backup buffer on every GPU reset that
-> > fails at the lock stage. During repeated GPU resets this causes
-> > cumulative kernel memory exhaustion.
-> >
-> > Free data before returning the error.
-> >
-> > Fixes: 55d7c22192be ("drm/radeon: implement ring saving on reset v4")
-> > Signed-off-by: Yuho Choi <dbgh9129@gmail.com>
-> > ---
-> >  drivers/gpu/drm/radeon/radeon_ring.c | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/radeon/radeon_ring.c b/drivers/gpu/drm/rad=
-eon/radeon_ring.c
-> > index 581ae20c46e4b..a5dff072c1ac0 100644
-> > --- a/drivers/gpu/drm/radeon/radeon_ring.c
-> > +++ b/drivers/gpu/drm/radeon/radeon_ring.c
-> > @@ -356,8 +356,10 @@ int radeon_ring_restore(struct radeon_device *rdev=
-, struct radeon_ring *ring,
-> >
-> >         /* restore the saved ring content */
-> >         r =3D radeon_ring_lock(rdev, ring, size);
-> > -       if (r)
-> > +       if (r) {
-> > +               kvfree(data);
-> >                 return r;
-> > +       }
-> >
-> >         for (i =3D 0; i < size; ++i) {
-> >                 radeon_ring_write(ring, data[i]);
-> > --
-> > 2.50.1 (Apple Git-155)
-> >
+> On 2026-02-10 16:47, David (Ming Qiang) Wu wrote:
+>> add user queue support for VCN 4.0.5
+>>
+>> David (Ming Qiang) Wu (10):
+>>    amdgpu: add global aggregated doorbell bo
+>>    drm/amdgpu: add AMDGPU_GEM_GLOBAL_AGGREGATED_DOORBELL
+>>    drm/amdgpu/userq: add doorbell size for VCN and VPE
+>>    drm/amdgpu: use amdgpu_user_queue instead of amdgpu_umsch_mm
+>>    amdgpu/umsch: Add VCN IP init to umsch driver
+>>    drm/amdgpu/userq: change mes_userq_create_wptr_mapping() to be common
+>>    drm/amdgpu/userq: rework on amdgpu_userq_create_wptr_mapping
+>>    drm/amdgpu/umsch: user queue support for vcn
+>>    drm/amdgpu: add AMDGPU_INFO_DOORBELL
+>>    drm/amdgpu/umsch: userq suspend and resume context
+>>
+>> Saleemkhan Jamadar (4):
+>>    amdgpu/umsch: Update UMSCH interface and mqd structure
+>>    drm/amdgpu/vcn: changes when kernel queue is disabled
+>>    drm/amdgpu/vcn: handle interrupt received from fw
+>>    drm/amdgpu/vcn: handle the suspend context interrupt
+>>
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   4 +-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c   |   2 +-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |   2 +-
+>>   .../gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c  |  16 +
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  10 -
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       |   2 +
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       |  18 ++
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c  | 300 +++++++++++++++++-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.h  |  43 ++-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c     |  69 +++-
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h     |   4 +
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h       |   4 +
+>>   drivers/gpu/drm/amd/amdgpu/mes_userqueue.c    |  90 +-----
+>>   drivers/gpu/drm/amd/amdgpu/umsch_mm_v4_0.c    |  75 ++++-
+>>   drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c       | 122 +++++--
+>>   .../amd/include/ivsrcid/vcn/irqsrcs_vcn_4_0.h |  10 +
+>>   .../drm/amd/include/umsch_mm_4_0_api_def.h    |  12 +-
+>>   include/uapi/drm/amdgpu_drm.h                 |  14 +
+>>   18 files changed, 646 insertions(+), 151 deletions(-)
+>>
+
+--------------2Ub3wR1yhyiAOW8TtMeEUs8Q
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <font face="Helvetica, Arial, sans-serif">ping...</font><br>
+    <br>
+    <div class="moz-cite-prefix">On 2/19/2026 1:00 PM, David Wu wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:5427cf30-9c9d-4904-8058-3a6c9785e696@amd.com">ping...
+      <br>
+      <br>
+      On 2026-02-10 16:47, David (Ming Qiang) Wu wrote:
+      <br>
+      <blockquote type="cite">add user queue support for VCN 4.0.5
+        <br>
+        <br>
+        David (Ming Qiang) Wu (10):
+        <br>
+        &nbsp;&nbsp; amdgpu: add global aggregated doorbell bo
+        <br>
+        &nbsp;&nbsp; drm/amdgpu: add AMDGPU_GEM_GLOBAL_AGGREGATED_DOORBELL
+        <br>
+        &nbsp;&nbsp; drm/amdgpu/userq: add doorbell size for VCN and VPE
+        <br>
+        &nbsp;&nbsp; drm/amdgpu: use amdgpu_user_queue instead of amdgpu_umsch_mm
+        <br>
+        &nbsp;&nbsp; amdgpu/umsch: Add VCN IP init to umsch driver
+        <br>
+        &nbsp;&nbsp; drm/amdgpu/userq: change mes_userq_create_wptr_mapping() to
+        be common
+        <br>
+        &nbsp;&nbsp; drm/amdgpu/userq: rework on amdgpu_userq_create_wptr_mapping
+        <br>
+        &nbsp;&nbsp; drm/amdgpu/umsch: user queue support for vcn
+        <br>
+        &nbsp;&nbsp; drm/amdgpu: add AMDGPU_INFO_DOORBELL
+        <br>
+        &nbsp;&nbsp; drm/amdgpu/umsch: userq suspend and resume context
+        <br>
+        <br>
+        Saleemkhan Jamadar (4):
+        <br>
+        &nbsp;&nbsp; amdgpu/umsch: Update UMSCH interface and mqd structure
+        <br>
+        &nbsp;&nbsp; drm/amdgpu/vcn: changes when kernel queue is disabled
+        <br>
+        &nbsp;&nbsp; drm/amdgpu/vcn: handle interrupt received from fw
+        <br>
+        &nbsp;&nbsp; drm/amdgpu/vcn: handle the suspend context interrupt
+        <br>
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 4 +-
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c&nbsp;&nbsp; |&nbsp;&nbsp; 2 +-
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |&nbsp;&nbsp; 2 +-
+        <br>
+        &nbsp; .../gpu/drm/amd/amdgpu/amdgpu_doorbell_mgr.c&nbsp; |&nbsp; 16 +
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 10 -
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 2 +
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 18 ++
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.c&nbsp; | 300
+        +++++++++++++++++-
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_umsch_mm.h&nbsp; |&nbsp; 43 ++-
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 69 +++-
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 4 +
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp; 4 +
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdgpu/mes_userqueue.c&nbsp;&nbsp;&nbsp; |&nbsp; 90 +-----
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdgpu/umsch_mm_v4_0.c&nbsp;&nbsp;&nbsp; |&nbsp; 75 ++++-
+        <br>
+        &nbsp; drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 122 +++++--
+        <br>
+        &nbsp; .../amd/include/ivsrcid/vcn/irqsrcs_vcn_4_0.h |&nbsp; 10 +
+        <br>
+        &nbsp; .../drm/amd/include/umsch_mm_4_0_api_def.h&nbsp;&nbsp;&nbsp; |&nbsp; 12 +-
+        <br>
+        &nbsp; include/uapi/drm/amdgpu_drm.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 14 +
+        <br>
+        &nbsp; 18 files changed, 646 insertions(+), 151 deletions(-)
+        <br>
+        <br>
+      </blockquote>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------2Ub3wR1yhyiAOW8TtMeEUs8Q--
