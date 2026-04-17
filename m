@@ -2,53 +2,98 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2KaJKbV34mnh6AAAu9opvQ
+	id MB+pAqJ54mnh6AAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 20:11:01 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 20:19:14 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56F5E41DD7B
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 20:10:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C34341DEBB
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 20:19:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0AAE10E2CF;
-	Fri, 17 Apr 2026 18:10:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44CD910E242;
+	Fri, 17 Apr 2026 18:19:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Bdv8//eM";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="pjmgz64g";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C762F10E2CF
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 18:10:53 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 9A208402E5;
- Fri, 17 Apr 2026 18:10:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41B82C19425;
- Fri, 17 Apr 2026 18:10:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1776449453;
- bh=tuxiTGBuN+7rcgtfs/VhkNHSLxeOZIQ8KHTwryYGenM=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=Bdv8//eM4ZAxdDir2sIYKDgp/+9gDR/URXl3LXhioeys/it8erTwNtsrD7kpxgtHK
- 6AMd+CWdvxgTZzA0Zuaq5etZbBBANgUAAswOkUfTIOQm4YObIHkmkOwwI9uz4PB0G4
- Z9vpGi4Y41PQjAF6MN2aUX+ZprPap4lbc0ZHJzXQTuFVnx0IVLAmy7shBdxrfWPh7T
- KXXGBXd3lh/MJI0Y5l0QEjbdGmypgTSQsIgz2W113zGVRclNPC4jio2h9G5sZBixST
- kQOuT6zuEya+hWrOCT9A35nhoJyvkywjARqa9ydKzKVa3bFCRCOjaHdbv0lpugrfGy
- Dztf/1+pGOmUA==
-Message-ID: <7a32da73-2ac8-4edf-bcfc-4c10d30bf162@kernel.org>
-Date: Fri, 17 Apr 2026 13:10:51 -0500
+Received: from mail-dl1-f50.google.com (mail-dl1-f50.google.com [74.125.82.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B50510E242
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 18:19:10 +0000 (UTC)
+Received: by mail-dl1-f50.google.com with SMTP id
+ a92af1059eb24-124a7216c9cso56878c88.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 11:19:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1776449949; cv=none;
+ d=google.com; s=arc-20240605;
+ b=XmiqR48aVuejOJCiX7JZojffQkteD0VxFcSVJzp9fkZc9p1gGFq16jKQ8JhbTu9Dtv
+ XwOOTCWRnpeP/p8/D8OSzhEvFIQQNAc9oOVCnwxDC4k3Khq+jHeJ/O++qM26YvgUV1II
+ XMKM2CSjsVHlkVkuxFYtpkydDzYYw0/P13EynFEl4MLXmJz9gqVW9MXKrP/cpBDLPsvd
+ uXSsPLFgURjdmwzKVb5+ydN4K/C6rYKuVSlZrxl3o+70LTxCVcE1xlosTI+g9LvHbNUD
+ nVGI8M4btGZ07KG41dWqC5NkajDlRi72/zTALJ8/rWIx/lsDy6pTf18xX5BWq8fxm+Ah
+ rN7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=txOclYSC6zX9LYwuRA8pE9GKJ0EaAdBt+yCPe1oQGkk=;
+ fh=NV6aZkRhQcdAsrCXMQB33+zPVXa/qECin2dIvBig3jo=;
+ b=HDuOfSsJRuwbjdpL6hvzI78K7XW+NCDKxvHUq7ll3bPPmHB7JpdmTiQ6xX96NMhlIY
+ 3sbT3Rk0qLdzSBXbg06t3ITNIGFJ7uVfyrO+/fYYRu5ARVvR6iIni653B2KLDSFgnG9/
+ sAOT0GKCg9CSta/o27fwmH1f55nH3NBNTAF8R0gHc/nJhavix9+mULC4WAP9Nj9XHlRz
+ +b2xCcoyGIMa7t4q8HybxaNX8TXXgyvX8qBt71ZHe0bgWl7WLX2Qy6pM6Pst4/nKNnGr
+ FLuhcdWI676XUrFRhefB2sPE87JebWTuqDc/1T8gEh6OMGHPjC1/saleBrf9ns5RWpbS
+ q6RQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1776449949; x=1777054749; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=txOclYSC6zX9LYwuRA8pE9GKJ0EaAdBt+yCPe1oQGkk=;
+ b=pjmgz64gDV+gr8sjsZu1R1aVTqUPHklzYMZ8VqZgRuFQZBfzxtzkUzMx1B2xsfNYsM
+ UxGll3JTVlNZnpldkinwiL5ZLELialw+4rXXd7igO9CMTHEM8oBlaHeoikssBP8dUz2a
+ EyVaTgR2q8bOYdSai3+H3Czz3XjKbilhMxbitjrmQxyD1YW5G8YgJyCyDbnNiwaZOn+f
+ 94j/SeIKY9NSIqR6A0MElYodvCgpVBsb8L1sFM1sH0+9UPpe37VAuq66zZu9HSDeiH39
+ oS9XN1YmKZnQiLcX99d8qBg4BLb7nQLlhiV7ffzJMZNHYfx+VFcOHsJTk1Bdq8NFb+cC
+ 47yA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776449949; x=1777054749;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=txOclYSC6zX9LYwuRA8pE9GKJ0EaAdBt+yCPe1oQGkk=;
+ b=PISlS21aWbTUFqWW8oS9vlUqNHfz4V2U+4A1KTAjXEX4oTZinbLmooGjzCkw4ZimAy
+ 0dlf2C7KoicIzjO1pvk9dnVZh5KIaWSuRQHARO1VPlivv10SURkQDGWWd5tt5ifih0Vf
+ iFwVABDLh2KLETMFr+bjKR6PRVJyYHzxYZWSFBlysPaQQG5VXCeyR7fQbuMuNWdfSTRU
+ JgpmyliuTgNINMhqsaNBrm9VJJxGaJsp5DnbtWKrAOT/5cx5s8fq27C+63dzgBDo04CV
+ meE1Q7Xt1Y+zNmj8M5slozCT12Uqgl7TlHYoaq6fslMd4yv0bYg6dwDexNI+IdVWRzzc
+ P6lA==
+X-Gm-Message-State: AOJu0YyNVLKXUSlTah0UuAORlqHaN+Ng3wTcZm3X2Y8UE06MuylSIQ5Y
+ YxdSihHCkbh5vZ9X0HNai6uVU99920XpDCn20WBVR+Gbal0cy2BxycXLvf/cY12IOnfDa5wscaS
+ 5hv4Wf/QCLUpqgmm4EZncfPWXnKlO5/8=
+X-Gm-Gg: AeBDiet6n1xOcrQhk0//PPrw9etRBpJZlgRBOlq2bVatb+q7l1IhbFh/a0xka02HhbA
+ lEV5wlTHiuRARjyu0Obsugr0/j6otiey3pyNRTQuckszlzQvxhZw8xjVsxKOjjmbXEMouT56Zr3
+ ANk/R1R4zzS179ndhUsRW22j3adWZUHbD/Zasl6v9mKx5sawhZDv+xKTY8nm4OixdxzJo1NqWSZ
+ Mp1Iuc62ei3IZb3HafcfmV1mR/ss4o4U5p4WP3JPBy7mYnWc93/9tOsoBgqLPXGrRtLVlETwFp8
+ CQsl7n9JUk8Agk9VGMkyt+ZsLUbuJVdHxAJS82SK6BDuUjVfmdJj3lNEd8+FtnNgqA9X/9yx7PZ
+ a6+68
+X-Received: by 2002:a05:7022:6b97:b0:12c:3ef2:ef0b with SMTP id
+ a92af1059eb24-12c73f9b550mr633219c88.6.1776449949188; Fri, 17 Apr 2026
+ 11:19:09 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+References: <20260417175430.47434-1-sunpeng.li@amd.com>
+In-Reply-To: <20260417175430.47434-1-sunpeng.li@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 17 Apr 2026 14:18:56 -0400
+X-Gm-Features: AQROBzCVoROn-3NnyFmvoB98KApge-hgSBE_msMjvoO8uHM-RGcrOtFsuCWMb3U
+Message-ID: <CADnq5_M+DfU0_PO7DW-q3hCJzCWDa2kngG5onds_5XJqQO--tA@mail.gmail.com>
 Subject: Re: [PATCH] drm/amd/display: Undo accidental fix revert in
  amdgpu_dm_ism.c
-Content-Language: en-US
-To: sunpeng.li@amd.com, amd-gfx@lists.freedesktop.org
-Cc: Harry.Wentland@amd.com, Ray.Wu@amd.com
-References: <20260417175430.47434-1-sunpeng.li@amd.com>
-From: Mario Limonciello <superm1@kernel.org>
-In-Reply-To: <20260417175430.47434-1-sunpeng.li@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To: sunpeng.li@amd.com
+Cc: amd-gfx@lists.freedesktop.org, Harry.Wentland@amd.com, superm1@kernel.org, 
+ Ray.Wu@amd.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,96 +107,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:sunpeng.li@amd.com,m:Harry.Wentland@amd.com,m:Ray.Wu@amd.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[superm1@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:sunpeng.li@amd.com,m:Harry.Wentland@amd.com,m:superm1@kernel.org,m:Ray.Wu@amd.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	TO_DN_NONE(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[superm1@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 56F5E41DD7B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 5C34341DEBB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/17/26 12:54, sunpeng.li@amd.com wrote:
+On Fri, Apr 17, 2026 at 2:14=E2=80=AFPM <sunpeng.li@amd.com> wrote:
+>
 > From: Leo Li <sunpeng.li@amd.com>
-> 
+>
 > [Why]
-> 
+>
 > Pausing DPM power profiles during static screen caused a bunch of
 > audio/performance/clock issues that were addressed in this fix:
-> 1412482b7143 ("Revert "drm/amd/display: pause the workload setting in dm"")
-> 
+> 1412482b7143 ("Revert "drm/amd/display: pause the workload setting in dm"=
+")
+>
 > This logic in function amdgpu_dm_crtc_vblank_control_worker() was moved
 > to amdgpu_dm_ism.c, but the fix was lost in the process.
-> 
+
+Do you think ISM will fix this so we can re-enable pausing the power profil=
+e?
+
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+
+>
 > [How]
-> 
+>
 > Reapply the fix to amdgpu_dm_ism.c
-> 
+>
 > Fixes: 0b572a6bf04a ("drm/amd/display: Add Idle state manager(ISM)")
 > Signed-off-by: Leo Li <sunpeng.li@amd.com>
-
-Oh joy.  Well glad it's caught early in the kernel cycle.  Pretty much 
-identical revert to 1412482b714358ffa30d38fd3dd0b05795163648.
-
-Reviewed-by: Mario Limonciello (AMD) <superm1@kernel.org>
-
 > ---
->   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c | 10 ----------
->   1 file changed, 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c | 10 ----------
+>  1 file changed, 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c b/driv=
+ers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
 > index d2f47c69921d4..d03ea3bafd469 100644
 > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
 > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
-> @@ -270,7 +270,6 @@ static void dm_ism_commit_idle_optimization_state(struct amdgpu_dm_ism *ism,
->   	struct amdgpu_crtc *acrtc = ism_to_amdgpu_crtc(ism);
->   	struct amdgpu_device *adev = drm_to_adev(acrtc->base.dev);
->   	struct amdgpu_display_manager *dm = &adev->dm;
-> -	int r;
->   
->   	trace_amdgpu_dm_ism_commit(dm->active_vblank_irq_count,
->   				   vblank_enabled,
-> @@ -315,16 +314,7 @@ static void dm_ism_commit_idle_optimization_state(struct amdgpu_dm_ism *ism,
->   	 */
->   	if (!vblank_enabled && dm->active_vblank_irq_count == 0) {
->   		dc_post_update_surfaces_to_stream(dm->dc);
+> @@ -270,7 +270,6 @@ static void dm_ism_commit_idle_optimization_state(str=
+uct amdgpu_dm_ism *ism,
+>         struct amdgpu_crtc *acrtc =3D ism_to_amdgpu_crtc(ism);
+>         struct amdgpu_device *adev =3D drm_to_adev(acrtc->base.dev);
+>         struct amdgpu_display_manager *dm =3D &adev->dm;
+> -       int r;
+>
+>         trace_amdgpu_dm_ism_commit(dm->active_vblank_irq_count,
+>                                    vblank_enabled,
+> @@ -315,16 +314,7 @@ static void dm_ism_commit_idle_optimization_state(st=
+ruct amdgpu_dm_ism *ism,
+>          */
+>         if (!vblank_enabled && dm->active_vblank_irq_count =3D=3D 0) {
+>                 dc_post_update_surfaces_to_stream(dm->dc);
 > -
-> -		r = amdgpu_dpm_pause_power_profile(adev, true);
-> -		if (r)
-> -			dev_warn(adev->dev, "failed to set default power profile mode\n");
+> -               r =3D amdgpu_dpm_pause_power_profile(adev, true);
+> -               if (r)
+> -                       dev_warn(adev->dev, "failed to set default power =
+profile mode\n");
 > -
->   		dc_allow_idle_optimizations(dm->dc, true);
+>                 dc_allow_idle_optimizations(dm->dc, true);
 > -
-> -		r = amdgpu_dpm_pause_power_profile(adev, false);
-> -		if (r)
-> -			dev_warn(adev->dev, "failed to restore the power profile mode\n");
->   	}
->   }
->   
-
+> -               r =3D amdgpu_dpm_pause_power_profile(adev, false);
+> -               if (r)
+> -                       dev_warn(adev->dev, "failed to restore the power =
+profile mode\n");
+>         }
+>  }
+>
+> --
+> 2.53.0
+>
