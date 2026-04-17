@@ -2,95 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kEv9HO9z4mnh6AAAu9opvQ
+	id oD+WOf5z4mnh6AAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 19:54:55 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 19:55:10 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C72D641DB71
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 19:54:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 813EC41DB7F
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 19:55:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00B7E10E0D9;
-	Fri, 17 Apr 2026 17:54:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B38010E2CE;
+	Fri, 17 Apr 2026 17:55:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Nob5vw2a";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fvFcMGmg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f175.google.com (mail-dy1-f175.google.com
- [74.125.82.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1028F10E0D9
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 17:54:52 +0000 (UTC)
-Received: by mail-dy1-f175.google.com with SMTP id
- 5a478bee46e88-2e59d6b11e5so48895eec.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 10:54:52 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1776448491; cv=none;
+Received: from mail-dy1-f176.google.com (mail-dy1-f176.google.com
+ [74.125.82.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CB7010E2CE
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 17:55:04 +0000 (UTC)
+Received: by mail-dy1-f176.google.com with SMTP id
+ 5a478bee46e88-2bd5658b901so69299eec.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 10:55:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1776448503; cv=none;
  d=google.com; s=arc-20240605;
- b=QE5xhx4IuiN8InPwhj5d4O0nGGiKGiPafnINm3N3NYoPAcMf4/Ga4AZqSgV0s+O78S
- RmjeBcrXIRVKc55XxE3J/XinPNKNwJrEtZ9+MfmWBP037jxgQ8hiUuig6Wye9j2Z0Alc
- MgDiOw8dvJf2bvNVFjNrl4iTXjvWmOroFX5PJhNDAma0bH6PmcskrLwmfonzC2692M/T
- pT8mj2Jj4I/a3DT1f6V22Q5fqQyPGLeImhkOI0Hdnaq/qiGrR65kkQksfWYG8vKzMTHo
- Ebf1xdjdJrSWFQOtKxNS1PKRU67KjtN9II7JiC7YTRjWk3n25fvjRXfY/m0TPs8ZT8d8
- VY3w==
+ b=XAINnLU4DTfaLC0weznUExH/6cktx4+xYNq8rnQhcDiag1U6SGHOxvDRWcHQfUmvQB
+ a0E2Q0MgW2ukDIPn1woED4xaHrpG3KxApU59nLR1cITSf6aCALb6LJFuBrbPP+r4MZt4
+ S/9F1eoeOZDqp71WPuQnQ6jkEylUbLoQEwsy/NOOyYpheqy8uft60APALIbMAbC9M2hY
+ dxNOlGDKIceJGHbE3f/QLAzOArs7HYypBWqFjrJ0sCVDeGvsAmywSI5hUiwCEQKWeY9f
+ W9vfil2GNhZigjt1h2ozSGPOln/zpUTmDfkbnx93ovu5ypFeJbkvnZcTz6sB+GRV4SYj
+ zcFA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=ODWd0R+7gGwy0u0xVfZ5pMwHEbY1KoY+22G58Ak12XQ=;
+ bh=OAzTZ2F5t9v6aFIS4upkXrnAzCFynSK2YaiHo2R3Kiw=;
  fh=IY98SR0cNO93Tj0qH750yd04bAXFkNbDKtBTzSqo1Bw=;
- b=bg308tWxziALDN/XAqKLDn0E4H6aXYsX6D9JLfZdBFwf/tg45YWvt9Ku0400sREm+N
- Kr0k75WSr0KdW9ZwPpSKRPB+dBQswIx74Xv7eaZuqti7TU5E/ewGCGEmBHeQrtgrcxza
- YiMcokmbEHkZGMZQYHg+3Y6MlfjL9hqsJZ90dDAJoBP2GZj9fcK+42i5UqHJrEqO3z8C
- g081NN7goUjC4/+gUv9xqPHYJhZGHAshp6dKdLgrYdKFBwLf54FHmcYTDRUycXj/uu/3
- JAu9iCYaU7YoJqrhDuaEc8E/4ZwTOi8E7ojyJM4/PIF+/mmmOwrnocNFWC6LGEQatp2C
- Utdg==; darn=lists.freedesktop.org
+ b=QaUsVPoz06BwQuXpb2V/kEIJZgt40UUA+GXMYTyvybNNpbpxiyaf/ztpT7YAK+qDkr
+ v0+ylvsMCJXp7oQZZ77X2tnj6WQ0WHLU/3UCHP+Lsm50MTFbeBSWiFgS1OQlhKIW7Dfc
+ ltBsQ12qsNGiEhG5Ow5o9VmdigJrP4Zc+lAb5nn47ZemiSutzFaWSTc7am3/OPmQ3Q28
+ 9e/t+wWd+j96hr+wIiaRTIWoAuzPAvctUdpdM6ZSbG6yEVBla6+nDPbkRHNb2+RVVsGB
+ 611JL9+rNZzztkrwp3+pZymgJZCRTP5TuZ0OwJcmQ5VjAnImm8EVzFCCEy9TbnVt5jJr
+ Z7Dw==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776448491; x=1777053291; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1776448503; x=1777053303; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=ODWd0R+7gGwy0u0xVfZ5pMwHEbY1KoY+22G58Ak12XQ=;
- b=Nob5vw2aL/G0pB/vQ3Cl4cY8ElPsUEt5ebxFy9p3xDWPSVedDMnE1Jn1+pO4/JByyQ
- mSLyvTdmFcJwUwsUy+DtNvZvXGHsBiEcod27Dlfg+B0yBTG3NHU5+Cwt61R4D7wzwefr
- /dyN4cndra4UQI8djMeLt+uOD0Mt4QbFBTlajXLNrrluPgtHXZBUi1kf5PK5Nwu5MJGA
- 0jelz7G/nsKRNt5hwrENyGTcm+xKsBMF89I6+QjrX+f/DYhdYUPq7xJfFn+GbrcSlY0C
- pxJnpi6IM6MtAc9eSvymhjqxSdlxALUwfjFDNTD+vFlSsAPjDtakcI1XqYF3GZo7qIJt
- y7lA==
+ bh=OAzTZ2F5t9v6aFIS4upkXrnAzCFynSK2YaiHo2R3Kiw=;
+ b=fvFcMGmgIhK7fkChVn7Mf6+PR2OarfNaXdOJd5o+1s4I9s6n1mtUJfwikJLr3vK5jI
+ lntGPXKLgthoMqqLyItDqQK3gXN9ZoyWI0L+oL1hmjJWo+X7ZV4KkyVjij4m3ColUILy
+ g4fHm+SebPiRgSvgaLJXXZNBUJ8GXmtWjKsB43VbHoZ3VTF45hWuJd2JG2v75dwocr8x
+ BIoCxxxOEbKqAleM7kZDKnBH2A8ihnV+bRStKdCE6gO+J5q7bMllk5n8sVLFPFUbMdVz
+ ACWBUCySEeRxUXIsN8J3zoZ7zF0RgOzaOHhuUKIgrJJxmyH+pjMtVvkgrDUa4kU+1DZV
+ Lwtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776448491; x=1777053291;
+ d=1e100.net; s=20251104; t=1776448503; x=1777053303;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=ODWd0R+7gGwy0u0xVfZ5pMwHEbY1KoY+22G58Ak12XQ=;
- b=WPME2UbVPgoS0qLTVv4jF/SY4VcVNjQSv50fLD/R55/3XLu41xrjlVPtcN4buioXeV
- 3CfP69NFUrevmFcrnPdSI6GlqtGl6pOLNW9ljBtkDHajzdab1KxZOuL+wrrB4NhZ5RXB
- M7UDexSm5I/NR1/55cMZi5TyoygK2pNb1XUGpez39sUjuXjuRnLOuEJnz53U2fsQTzc/
- yPm0ecjLgh27Dxlv1SCPn0kjlebMSQOWhzcU85HvncYX2IuwNPtD6piBW4QNXlx4klj4
- /+D7RQnBnA0oq3rgP17aLg5Be4dJoMMTrNtO9llTkwwo1A94QnZY+uHzLMj3NdywpCGx
- C07A==
-X-Gm-Message-State: AOJu0Yz2m6pxjPTAKBuKjCujmvJ4eehU73O4iELXIwEQm0XDb9ZdQr/U
- 8QgCRaPGOgJLEYGITE/HQ+I69f7ydg09I/qP4Y3o/MaTcnLiNIawKhtLuuKdngAQAPle41sXGuG
- 5nyoZ2YYBaBiKGIXiXe3Zcb/NueN6jWdU1Q==
-X-Gm-Gg: AeBDietQNJdFjGq5xPoYkExlbgbp7CEeDBfb6Skd7pqF2L3E55Qht65zKXFTO5tEj0b
- ctEqMwbSHQzSzHAddbayKGtHrPzbH4iXIVv64jaEfNHjOnx411+6ZtkhU09rhlKvGfAmg2Fy1J6
- oY299RlhAJkohL7v1SNw4ZhMfgFFzrJie43nkZLs5qgLGyu37K9LawiCyWH/rDe3rpvboJJ7aJ4
- l+Q8BdtmdVdf8chUXLXkr7KUJA7ESo+a6UDfMrLjvvNEZIn5qUGMXCNVuBmBT27kzQJwrklk/e2
- FnmMf4JMNbqJzIDof0wGF3Oif+xSfDUW6GGMfBBXKfYaDxXPKNYCypSf4DFV9W7xPl4OfTCrqPN
- 1SfkN
-X-Received: by 2002:a05:7022:6289:b0:119:e56b:c3f3 with SMTP id
- a92af1059eb24-12c73f98f56mr725319c88.3.1776448490984; Fri, 17 Apr 2026
- 10:54:50 -0700 (PDT)
+ bh=OAzTZ2F5t9v6aFIS4upkXrnAzCFynSK2YaiHo2R3Kiw=;
+ b=TVTWgdVo2dLwC5xnI9imHArzODdXi8JGOW/SSAs9ArP0dTdxKptmrpP3EjdUBn+Imp
+ 2fuPNFK4Y43h8uSDkol3t3fMUkFOFNJWIQLtyBc7YyXfDXX4bUWgjXmvF16iqLAzApnh
+ wpFaqc9xlqJmPOZbP/jibUp6oMxmoHveNBRBdGGc9qPWtEfTSWwCChMFUbLy8EqPmHCO
+ mZdW/iTugyxoyzumnvIXCO72Z3kVkHEY3kW+WOdhH2PCN+bWWiPDryiuQrumffjgY77f
+ DSHwO8+5uoVD9UdmvuUA28chV8ITS6YGYPJTgH218oNbyxW/Pdz9gzuYQPVUZaxnqkFv
+ F4tQ==
+X-Gm-Message-State: AOJu0YykXvQBlP+vhS1uUyiJMqJdE1y7mWkbA91FsK49XyzeTU1wSZ1k
+ 89jCnjqEwbnuMU9Uu43Hh5CiLGuLzzN/Ts0VcoG0EOYpz8eqF3dxHKa4IXbiklCEbbyogGTor6H
+ ry2gCjveUTY+u5rO7WJdxV4/Uz/SRKm55sQ==
+X-Gm-Gg: AeBDiesqtvq/H1zqvOHrzrNvyRsz6N9BdGYpUsHYjgX1Wz5pLLGf459ibpTDeMmv2Ij
+ gp8grGJoaMNJFAHb+2uB+VBAezhW5BXQnxMjQUY7oAHe24oiBbca2jPcYfEILOTc4uPmJF9f/TQ
+ D/kZRf/aJ57SZlkEYu4BP1gxYG+61E13iMTKNM+YRkZUdl4RGbY2m89LlS2TO0B01ONJnQdLvf9
+ 8oek0ktyP4NEvZvHj0GiJZPZdF3CXCfFHk0YNMynGvU5wnJlyEIOuP5GFr/93wEaPbwggQpYla/
+ jVIvGwAzHyBrHD6DJWYVFXKjwy1y7xCNakFsEkCeduaISOzvvxnxGP0zxBOKfM1/v3r7aTCMPMM
+ VqM6h
+X-Received: by 2002:a05:7022:459e:b0:127:332d:63e with SMTP id
+ a92af1059eb24-12c73f9b5d7mr774561c88.5.1776448503417; Fri, 17 Apr 2026
+ 10:55:03 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260318140837.582776-1-alexander.deucher@amd.com>
- <20260318140837.582776-8-alexander.deucher@amd.com>
- <CADnq5_N-b61C4=n_L87J6Pyf_Tv7UCGse317qYzECPtK_OgnZw@mail.gmail.com>
-In-Reply-To: <CADnq5_N-b61C4=n_L87J6Pyf_Tv7UCGse317qYzECPtK_OgnZw@mail.gmail.com>
+ <20260318140837.582776-4-alexander.deucher@amd.com>
+ <CADnq5_Md5RSUKZyAq8edL4hbwc1r2uPA7jiC6zn+MKi9KzDY6w@mail.gmail.com>
+In-Reply-To: <CADnq5_Md5RSUKZyAq8edL4hbwc1r2uPA7jiC6zn+MKi9KzDY6w@mail.gmail.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 17 Apr 2026 13:54:38 -0400
-X-Gm-Features: AQROBzB99e5meANnntZwNvmcgvIfRUqzsu8hv4wV61Y6My2_W_NvweqOpIzoAVA
-Message-ID: <CADnq5_N-r_Y=p-n4BM3C_-KouuLkapiNbjYvcEcg2J3j512cXw@mail.gmail.com>
-Subject: Re: [PATCH 08/16] drm/amdgpu/gfx12.1: align mqd settings with KFD
+Date: Fri, 17 Apr 2026 13:54:51 -0400
+X-Gm-Features: AQROBzAIDz0N7-zlG00d6ay7rlJqaIqOyCjy5zAZypUNIUb6ALBKSuIJLV-qKN0
+Message-ID: <CADnq5_OV391Vj80-2xehYzqK0SLkf3f5dwsK0ybDYcxryBQ03w@mail.gmail.com>
+Subject: Re: [PATCH 04/16] drm/amdgpu/gfx9.4.3: align mqd settings with KFD
 To: Alex Deucher <alexander.deucher@amd.com>
 Cc: amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
@@ -139,19 +139,19 @@ X-Spamd-Result: default: False [-2.31 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,amd.com:email]
-X-Rspamd-Queue-Id: C72D641DB71
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 813EC41DB7F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-ping?
+Ping?
 
 On Fri, Apr 3, 2026 at 10:03=E2=80=AFAM Alex Deucher <alexdeucher@gmail.com=
 > wrote:
 >
-> Ping?
+> ping?
 >
-> On Wed, Mar 18, 2026 at 10:19=E2=80=AFAM Alex Deucher <alexander.deucher@=
+> On Wed, Mar 18, 2026 at 10:34=E2=80=AFAM Alex Deucher <alexander.deucher@=
 amd.com> wrote:
 > >
 > > Make sure to set the quantum bits in the compute MQD
@@ -159,30 +159,31 @@ amd.com> wrote:
 > >
 > > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 > > ---
-> >  drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c | 5 +++++
-> >  1 file changed, 5 insertions(+)
+> >  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 6 +++++-
+> >  1 file changed, 5 insertions(+), 1 deletion(-)
 > >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c b/drivers/gpu/drm/a=
-md/amdgpu/gfx_v12_1.c
-> > index db49582a211f7..98dc6582b7aa6 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-> > @@ -2246,6 +2246,11 @@ static int gfx_v12_1_compute_mqd_init(struct amd=
-gpu_device *adev, void *m,
-> >         mqd->cp_mqd_stride_size =3D prop->mqd_stride_size ? prop->mqd_s=
-tride_size :
-> >                 AMDGPU_MQD_SIZE_ALIGN(adev->mqds[AMDGPU_HW_IP_COMPUTE].=
-mqd_size);
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/=
+amd/amdgpu/gfx_v9_4_3.c
+> > index ad4d442e7345e..d0b8fb9317201 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> > @@ -1943,7 +1943,11 @@ static int gfx_v9_4_3_xcc_mqd_init(struct amdgpu=
+_ring *ring, int xcc_id)
 > >
-> > +       tmp =3D REG_SET_FIELD(0, CP_HQD_QUANTUM, QUANTUM_EN, 1);
+> >         /* set static priority for a queue/ring */
+> >         gfx_v9_4_3_mqd_set_priority(ring, mqd);
+> > -       mqd->cp_hqd_quantum =3D RREG32_SOC15(GC, GET_INST(GC, xcc_id), =
+regCP_HQD_QUANTUM);
+> > +       tmp =3D RREG32_SOC15(GC, GET_INST(GC, xcc_id), regCP_HQD_QUANTU=
+M);
+> > +       tmp =3D REG_SET_FIELD(tmp, CP_HQD_QUANTUM, QUANTUM_EN, 1);
 > > +       tmp =3D REG_SET_FIELD(tmp, CP_HQD_QUANTUM, QUANTUM_SCALE, 1);
 > > +       tmp =3D REG_SET_FIELD(tmp, CP_HQD_QUANTUM, QUANTUM_DURATION, 1)=
 ;
 > > +       mqd->cp_hqd_quantum =3D tmp;
-> > +
-> >         mqd->cp_hqd_active =3D prop->hqd_active;
 > >
-> >         return 0;
+> >         /* map_queues packet doesn't need activate the queue,
+> >          * so only kiq need set this field.
 > > --
 > > 2.53.0
 > >
