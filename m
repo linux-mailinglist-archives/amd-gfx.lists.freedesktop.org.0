@@ -2,131 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yPjTAR8u4ml22gAAu9opvQ
+	id iOHdDQEk5mlBsgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 14:57:03 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:02:57 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A54D41B620
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 14:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8AA642B29A
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:02:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA56710E2BD;
-	Fri, 17 Apr 2026 12:57:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7547510E5B9;
+	Mon, 20 Apr 2026 13:02:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="yHL649Y0";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="OuU/G+hV";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Kso4GLZs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012058.outbound.protection.outlook.com
- [40.93.195.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FD7210E2BD
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 12:56:59 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=b+raGpUxEXj6/t2WXdW9RLN/LfIHnWleUgro4zqCGy/NdGD/hZj4ldbUMe1zEzgEJ5Kh7D/y+8F0e16hWzwGqhNUJlel4b4GVbMlEnY3E0KJeemJxYn6P1zw9MGV1HRtj7g/SW5yarmQpbXLptHsD/zVgFqe6k567WBMSyfhQMiT7gAuzcFEB0jjNXrkpkDDGBTlVDm+AGDNvjpigAF/hhNX4TamwjuLuRSnrpw4MmvR6itDXFRcNw8Rfd3QVZSzYTFSYeSI0FUSrJUzck1gqbUFdAbF+VG6iECzLOUDE8c9Z+kanIgvkTr5XkvSwF91Fow/0SowJSQkax7AoWQcdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nqP6nOw3MW/+ps76fnwhO2bGYq2dTFOM75q7SzfQ6mE=;
- b=xjvo8j54WysrK7ozS0jHUymzHPtRjjRYcCcOZsJ0H3M3v2xCza9IZDVUWNtTQYSPUatqXWvr36FRbgqestTN32hHA9xg9fPchelNflppqZiIE1Rm9QQvnvx6Op9rUvK2PGipjnBhUK93WdX79q+TtgZCHe1Of5f1WdtHuT9FQbO/W6vAkkm/DT/BS9HsvR2s0DjJFEqVxAGNx4YekaghNiUNRlp0ZDc00BoJXsIyFcrqcXyKK7WQ1/Yq6MPv3vJklilm1E8z1ShVH+AcvYTPOyFr4j3tptg2lSGFmzVqCdD6DV743fWZ3DZK2T77hMmLRuzpyDPyFuvX94dXgLyKEA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nqP6nOw3MW/+ps76fnwhO2bGYq2dTFOM75q7SzfQ6mE=;
- b=yHL649Y0pBToleAybTLVpDosdpQTs4wcquWOWpCpgPX0bcTNxFGvYfjITkca1UMePYaRWrPG4SDy1X1YoVVOc2HLIlZW6/3wlZHJi++oePWkInWhXEuSkdSr94wx7b3g4mFn7YAqTyamGQl+ZwBdAb35Hp5TUrzA52E8n25OJVk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA5PPFB29794CA1.namprd12.prod.outlook.com
- (2603:10b6:80f:fc04::8dd) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.25; Fri, 17 Apr
- 2026 12:56:56 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9818.017; Fri, 17 Apr 2026
- 12:56:56 +0000
-Message-ID: <89ea2f13-57aa-4a9d-98b3-f5693e33c13a@amd.com>
-Date: Fri, 17 Apr 2026 14:56:51 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] drm/amdgpu/gfx6: Support harvested SI chips with
- disabled TCCs
-To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com
-References: <20260416202643.25350-1-timur.kristof@gmail.com>
- <20260416202643.25350-8-timur.kristof@gmail.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260416202643.25350-8-timur.kristof@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0246.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f5::15) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68A4310E2B8;
+ Fri, 17 Apr 2026 13:21:23 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4fxwWP49msz9v1l;
+ Fri, 17 Apr 2026 15:21:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1776432081; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=AvRXgzD6+ssvrwhuL/u05Ihx+sCA1sq60lkpNgmwME0=;
+ b=OuU/G+hVtWXLxRkLGaurEiJl9PDraLyC5LC10HxGHeM63vipZOTs3bsXztW8+Mcz6E9CLV
+ 1ndTvfOVPIP6sPvi38KZnH2oALLXIg+ZvfVm8M7Qq0Z8vR3FnVRmi35ZrUuidD7z9tqjV+
+ /kWhRuiij6Yl88jRW8vxa/JqaFE/kUTvn3ofta1xgJisal+sKYkCUOZ63ZqY9FBaLDAuzt
+ G8o1QrQBKCm/GMojOeiRXN9S06YYgPUHWCsHHHvcNioFCPbITpPzzY32wRMtX11IaMsXxW
+ lFyTUj7Hojy6Y44nH9B9fXkjzThTl2s7DSDpl3drXahVyo3GDIjoBzt0JSBNxQ==
+Message-ID: <b59eb5afb036b0357ce7d5f6d0c9fda7aee17bfa.camel@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1776432079; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=AvRXgzD6+ssvrwhuL/u05Ihx+sCA1sq60lkpNgmwME0=;
+ b=Kso4GLZseJPFIMAyms84QQMqb+KUJpl2Af+p4nGhll4LMEGmU9Iuun6Owd1ZfXakNgucPP
+ Ci6P/CQG/5Uh41QXDAf3ExhyR8SieXLzDPLuIiDUeXlr+4pO21ulTXUuhmodYN7OUIgvw2
+ 1RpNpMHM9ViQqAQiyqQ0ogzA+JEsXXrAsMkfT1mrYx6ObsWIMZlL/5KUlEQ5XnrEkhVF9d
+ DXErWucZ3cv4CE+kHHB4SFeQ0aBEyrJCJkVOUpC/3Edjzo2o8cXQBz1ybBF23bmKPcdmcL
+ ACLAnej7HumNm1N/aLObR1C59vOPPfXqNCyi4w/GoPVzLHOYTtd7ipSlzXzfGQ==
+Subject: Re: [PATCH v8 00/29] *Fair(er) DRM scheduler
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ amd-gfx@lists.freedesktop.org,  dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com, Danilo Krummrich
+ <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Leo Liu
+ <Leo.Liu@amd.com>, Lucas Stach <l.stach@pengutronix.de>, Matthew Brost
+ <matthew.brost@intel.com>,  Pierre-Eric Pelloux-Prayer
+ <pierre-eric.pelloux-prayer@amd.com>, Michel =?ISO-8859-1?Q?D=E4nzer?=
+ <michel.daenzer@mailbox.org>,  Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Boris
+ Brezillon <boris.brezillon@collabora.com>
+Date: Fri, 17 Apr 2026 15:21:11 +0200
+In-Reply-To: <20260417103744.76020-1-tvrtko.ursulin@igalia.com>
+References: <20260417103744.76020-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA5PPFB29794CA1:EE_
-X-MS-Office365-Filtering-Correlation-Id: 39df7659-6e22-4a88-2981-08de9c80cdf0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|56012099003|18002099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: Rgxb6iYeB18Uqh1QcwuwutLrVOFLx2t2mNz0jmjY472JmKq82gAnP8SX3huRjkF0Xj3S3BvSiu7vtDGMYMdhdR/mZxgDEhJlgEolv5GD5lub6tzK5Ub3kws23CKYpyaW+o9BYBEe5t/ATRv8lTJqogp5s9plfaqUbw9lSJeZtajF5OGyughigjcDZQjXDn1XPqvyerBWG0zBcbSZ4MVyqj3p+qfTXVUerejHzyeMmGO2lZlddU8SkZrHG/donzYgKPzZX3Ad5kuea7gbqnl744o9qjTl4d1PobS2iicy1AdblwAvwzaH6mK1wpK7CZOIwN5BwcCC9k9Z7wak4CA6foU/k4IH0VYSsIy4XZ0yJJytRzBa3UUA/oBEIz/0vKNxJemHlLZ5YIYyJ9kJChIP9rseM7hZCe46gsp7u62tx9huUyR29lEtxHEa4/2dQfm1ZHDV09uEag34NVME9/NZsTbTvQouyE6MY6Qyab2SIeMEmR4tfh7mq0dh+kdFvjHfCCcjs8RsLtU9mhkJLtuvHb7/vCQvaYsHaSP1oSvNBZPlv9K4Doo0oBuS7IOvCuEtLdVKOnB3yJxnVTAhuY6jS7IQ0w+s4Zanxt8P1URuyKHRDRb8Zm1sXDvLMEDlMu/kuibigfOwHVFS5EW0kh5qOucmb5749cDhcpby7ZYG15E8NR53aJ8wt0PK7LqKRUB7
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WGcybG5oeS9CODZiNGZVVGtXSDhSS2V3YmZsV1dBRUQ5MVcraXNjY1B0dm8y?=
- =?utf-8?B?WnMzcmxNa3Q4R3dzQTcvTG5va0pUUkl6c21WMkhhaGN2Wk1JQ1F4THdKRXVC?=
- =?utf-8?B?c3oydlJ1SGdEVzZ6RnV4aGhMMXFRL1hXb2swbTQraUthVUR3dGJtRlZaSkl5?=
- =?utf-8?B?ZXV0RFB1R3RBdnduWU0yd0kxMkJFaTZ5c3lkaCtkN0h5OEJkL2NxQ2JyWldC?=
- =?utf-8?B?c1NnbzlBRkhPdW84WmVTTnBlNTdoZmhOb0N3OUlWaSt5MnNUWDdUWnNtd3N2?=
- =?utf-8?B?Q05lYmRvV0N5RDVkUloxeVo5dVV6andVanRmN3A0ck12cFFyUE1VNXFjTjhE?=
- =?utf-8?B?NE5uSVdkNmF6L2NTM0hqSnpiK0RSa2pjWXBkUnQ5aUYyb1RmQVZuL1Y3ejVz?=
- =?utf-8?B?aWI0TXlPS0pGZTBpbjdqMVNqaDZZMzhZVGwvNm1EZk05WWxqYUcybENLU3p6?=
- =?utf-8?B?VllDZWhyNCsrTTJoUkQwM1Fvam5oWG95aCtiOE9md1hxN2Q2cnB4NjJoRzdJ?=
- =?utf-8?B?YUEwc2k2K3EveWk1WkJJK2JvTEZYVU9kSWRNMXkwTllsUStMRkpHR3FHVFlH?=
- =?utf-8?B?K2tJb3g1RktqMEZKWGY1bFcya0JXUExsMU9icUpPZWlaUG1vbTRJeFJ6cTAx?=
- =?utf-8?B?RHlIS05SOHByY1FCSjBQY01sRi9JMFFyREFlNFNGalVpOVYzMFZCQmN3N1pD?=
- =?utf-8?B?K0dpcXhJa0UyKzZpckxaOEUvbjd2cjNIaDZueUtRclV6MEx0cnNSSTdxNHdN?=
- =?utf-8?B?UituaVdDeUJrRENyc29jT05pbXZoYUJNb1lPREtmWjhsNzMyL0pSVFdVZ0hj?=
- =?utf-8?B?SnpxUHYvZzFuTWhpUjZHZWdBRitlMWIwb3hQVFQ2TEppQ1g5MEc5c1RhYkty?=
- =?utf-8?B?K2dLZTRxbUc3K2JxdFRvbGtKbHovSmVnMExyZnVXSTJWL1hkd3Mzb3VWUGp2?=
- =?utf-8?B?UVJnUG5zMkFRcmdlMHpLbWxhbFQwcjZEWTBGVHpTYnczTjJkQ09XRzMrTkRP?=
- =?utf-8?B?MEtvVWVOaGpkQzlrajl2NzJzMUMxbDRqaWFQSjVFUVFNcHNPRE1vN2xlaHNP?=
- =?utf-8?B?ZWJTeDVFcUdueWFkRzdZSkJ6VVVmZDhKbldtaTgwQkFkQ3dxS1JBUXA2dCt3?=
- =?utf-8?B?Wk1jNS9yTW9Qd2g4bytFRFY5MUVwKzFvNmNybDdmOVVFcmJMaFFkZS9YaWpy?=
- =?utf-8?B?eHpNdDRzOGo2dko0dU9aNEZjd2xIdEEvazh1MnBadzJBWVd5bWpGc3hOL0NK?=
- =?utf-8?B?OTdRaG5xdlhKcDNzVEFKUWlUUUszYVBObW1ra01nbFhqQm8vWFJIQ0xianps?=
- =?utf-8?B?cE9xa2UzYWdyc0FLSm1acmZVR1pUclh1YXZ1V0VFZHcwd1Z1WXR6b2hCcjJU?=
- =?utf-8?B?ZVY1OERleG9jbVpFZnBMb21BMktkZ0xmSVJJbG9QV0RtQjRLcExITm0wSkw3?=
- =?utf-8?B?L3NpZkZuNjFtdlJCc3ZLWDZmQlltTEdrZnBkQVAxbWZGUFk1SHg4TEtqb08w?=
- =?utf-8?B?cVdiUk0zeWhLVzhoaVhKQ0ZMU1hGUGFUK0xvenRWMVNmTTdYN2FmZFV1OTd1?=
- =?utf-8?B?Zk9wK0Jud1E4RHlHOE01MFlwazEvQ2R0T2d4c2I1TUM4ZmZpcDJBTmlFQ1JT?=
- =?utf-8?B?MWxDZlRub2RlL0w1WHk1Mzl5bXJpejYybHlHY0hZQ0pqNDdNQnpYRENWYzZu?=
- =?utf-8?B?TVJyeFYrZkhndys1cDl1eEhsSnZhNnYyRVliYVJmeGQ2Y0p4TkRmNzc3bVBq?=
- =?utf-8?B?WTlNSFIzZ2xza0dpWStzOW5wYkFJYjhRYWo2bnJEL2lXU2Q3N3FBWFFSN0V0?=
- =?utf-8?B?aGdsclJWQVpUTHBiMkptMUNUR1VEbFJPZDUzZnhrTm10cDI0WGZrd2lmWXpS?=
- =?utf-8?B?c1huN3ZrcmttaitNMnpDZ0EvZ3M3Rng1Nzh0eWhxR2cwNXE2OFFzK1RUaEs5?=
- =?utf-8?B?ZUVqak5NQTdPSUV4WnoxWGxQWEhtQ1BMTWVZWWs1Tll4Z1BsTGlEZmFUZ2ht?=
- =?utf-8?B?bkJrS2tJRmNqSEtKYUhYZytsaXlMTFFVL2p6ZDVXazI3cVZpY3FJYlloODMr?=
- =?utf-8?B?SHhsNy8zcStMVEk5NEhFSXdTUld1WFp1bk9yZm9mU1FhQjZYS0UvUFIzUENO?=
- =?utf-8?B?aWRxRlZHemdiTVlVWnQ5QUptMlJlMExOOXVMWi9KQkREYWZ1T1loZlNQbnF2?=
- =?utf-8?B?M2FUbVB1SWt0WkRrc01DV2tjVnBweXdIbExvNUNPZEZVR1JzbkdmRS9SN3FO?=
- =?utf-8?B?UGwwYzBDaFpoRjNHdi83QXZldEZjR3dxbEh0V2JYbmtEUTVwbzFPV0VYN0xR?=
- =?utf-8?Q?KTZdYjSunwRccjTyww?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 39df7659-6e22-4a88-2981-08de9c80cdf0
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2026 12:56:56.2215 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wVpWnvmUMy7dyuL9uW6Drps4Ypg50B3niqWETmOwEpxZR4slHqmKQ8mhkfIO5um0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPFB29794CA1
+X-MBO-RS-ID: 64c3f30d8a62795b568
+X-MBO-RS-META: 6xdzcz81hrwsu48ni489rd63se8mi3yh
+X-Mailman-Approved-At: Mon, 20 Apr 2026 13:02:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,166 +87,502 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	DATE_IN_PAST(1.00)[71];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,igalia.com,kernel.org,amd.com,pengutronix.de,intel.com,mailbox.org,suse.de,gmail.com,ffwll.ch,collabora.com];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[phasta@kernel.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[phasta@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,amd.com:email,amd.com:dkim,amd.com:mid]
-X-Rspamd-Queue-Id: 5A54D41B620
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:email,mailbox.org:dkim,mailbox.org:mid,igalia.com:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email]
+X-Rspamd-Queue-Id: B8AA642B29A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/16/26 22:26, Timur Kristóf wrote:
-> This commit fixes amdgpu to work on the Radeon HD 7870 XT
-> which has never worked with the Linux open source drivers before.
-> 
-> Some boards have "harvested" chips, meaning that some parts of
-> the chip are disabled and fused, and it's sold for cheaper and
-> under a different marketing name.
-> On a harvested chip, any of the following can be disabled:
-> - CUs (Compute Units)
-> - RBs (Render Backend, aka. ROP)
-> - Memory channels (ie. the chip has a lower bandwidth)
-> - TCCs (ie. less L2 cache)
-> 
-> Handle chips with harvested TCCs by patching the registers
-> that configure how TCCs are mapped.
-> 
-> If some TCCs are disabled, we need to make sure that
-> the disabled TCCs are not used, and the remaining TCCs
-> are used optimally.
-> 
-> TCP_CHAN_STEER_LO/HI control which TCC is used by TCP channels.
-> TCP_ADDR_CONFIG.NUM_TCC_BANKS controls how many channels are used.
-> 
-> Note that the TCC configuration is highly relevant to performance.
-> Suboptimal configuration (eg. CHAN_STEER=0) can significantly
-> reduce gaming performance.
-> 
-> For optimal performance:
-> - Rely on the CHAN_STEER from the golden registers table,
->   only skip disabled TCCs but keep the mapping order.
-> - Limit NUM_TCC_BANKS to number of active TCCs to avoid thrashing,
->   which performs better than using the same TCC twice.
-> 
-> Link: https://bugs.freedesktop.org/show_bug.cgi?id=60879
-> Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/2664
-> Fixes: 2cd46ad22383 ("drm/amdgpu: add graphic pipeline implementation for si v8")
-> Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+(intentional top-post since I refer everything below)
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
++Cc Thomas, Dave, Sima, Boris
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c | 63 +++++++++++++++++++++++++++
->  1 file changed, 63 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-> index 73223d97a87f5..baddb3aa7fa3c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-> @@ -1571,6 +1571,68 @@ static void gfx_v6_0_setup_spi(struct amdgpu_device *adev)
->  	mutex_unlock(&adev->grbm_idx_mutex);
->  }
->  
-> +/**
-> + * gfx_v6_0_setup_tcc() - setup which TCCs are used
-> + *
-> + * @adev: amdgpu_device pointer
-> + *
-> + * Verify whether the current GPU has any TCCs disabled,
-> + * which can happen when the GPU is harvested and some
-> + * memory channels are disabled, reducing the memory bus width.
-> + * For example, on the Radeon HD 7870 XT (Tahiti LE).
-> + *
-> + * If some TCCs are disabled, we need to make sure that
-> + * the disabled TCCs are not used, and the remaining TCCs
-> + * are used optimally.
-> + *
-> + * TCP_CHAN_STEER_LO/HI control which TCC is used by TCP channels.
-> + * TCP_ADDR_CONFIG.NUM_TCC_BANKS controls how many channels are used.
-> + *
-> + * For optimal performance:
-> + * - Rely on the CHAN_STEER from the golden registers table,
-> + *   only skip disabled TCCs but keep the mapping order.
-> + * - Limit NUM_TCC_BANKS to number of active TCCs to avoid thrashing,
-> + *   which performs better than using the same TCC twice.
-> + */
-> +static void gfx_v6_0_setup_tcc(struct amdgpu_device *adev)
-> +{
-> +	u32 i, tcc, tcp_addr_config, num_active_tcc = 0;
-> +	u64 chan_steer, patched_chan_steer = 0;
-> +	const u32 num_max_tcc = adev->gfx.config.max_texture_channel_caches;
-> +	const u32 dis_tcc_mask = amdgpu_gfx_create_bitmask(num_max_tcc) &
-> +				 REG_GET_FIELD(RREG32(mmCGTS_TCC_DISABLE),
-> +					       CGTS_TCC_DISABLE, TCC_DISABLE);
-> +
-> +	/* When no TCC is disabled, the golden registers table already has optimal TCC setup */
-> +	if (!dis_tcc_mask)
-> +		return;
-> +
-> +	/* Each 4-bit nibble contains the index of a TCC used by all TCPs */
-> +	chan_steer = RREG32(mmTCP_CHAN_STEER_LO) | ((u64)RREG32(mmTCP_CHAN_STEER_HI) << 32ull);
-> +
-> +	/* Patch the TCP to TCC mapping to skip disabled TCCs */
-> +	for (i = 0; i < num_max_tcc; ++i) {
-> +		tcc = (chan_steer >> (u64)(4 * i)) & 0xf;
-> +
-> +		if (!((1 << tcc) & dis_tcc_mask)) {
-> +			/* Copy enabled TCC indices to the patched register value. */
-> +			patched_chan_steer |= (u64)tcc << (u64)(4 * num_active_tcc);
-> +			++num_active_tcc;
-> +		}
-> +	}
-> +
-> +	WARN_ON(num_active_tcc != num_max_tcc - hweight32(dis_tcc_mask));
-> +
-> +	/* Patch number of TCCs used by TCPs */
-> +	tcp_addr_config = REG_SET_FIELD(RREG32(mmTCP_ADDR_CONFIG),
-> +					TCP_ADDR_CONFIG, NUM_TCC_BANKS,
-> +					num_active_tcc - 1);
-> +
-> +	WREG32(mmTCP_ADDR_CONFIG, tcp_addr_config);
-> +	WREG32(mmTCP_CHAN_STEER_HI, upper_32_bits(patched_chan_steer));
-> +	WREG32(mmTCP_CHAN_STEER_LO, lower_32_bits(patched_chan_steer));
-> +}
-> +
->  static void gfx_v6_0_config_init(struct amdgpu_device *adev)
->  {
->  	adev->gfx.config.double_offchip_lds_buf = 0;
-> @@ -1729,6 +1791,7 @@ static void gfx_v6_0_constants_init(struct amdgpu_device *adev)
->  	gfx_v6_0_tiling_mode_table_init(adev);
->  
->  	gfx_v6_0_setup_rb(adev);
-> +	gfx_v6_0_setup_tcc(adev);
->  
->  	gfx_v6_0_setup_spi(adev);
->  
+Pushed to drm-misc-next.
+
+Thanks a lot and congratulations for your hard work and endurance,
+Tvrtko! Good to finally get this significant cleanup in.
+
+
+dim, however, does report a merge conflict with drm-tip. I looked at
+the diff and at first and second glance it doesn't seem to be caused by
+this series? The diff I see circles around panthor_gem.c, drm_edid.c,
+amdgpu_dm.c.
+
+How can we help resolve it?
+
+
+P.
+
+
+On Fri, 2026-04-17 at 11:37 +0100, Tvrtko Ursulin wrote:
+> [disclaimer]
+> Please note that as this series includes patches which touch a good numbe=
+r of
+> drivers, I did not copy everyone on everything. Assumption is people are
+> subscribed to dri-devel and for context can look at the whole series ther=
+e.
+> [/disclaimer]
+>=20
+> As a summary, the new scheduling algorithm is insipired by the original L=
+inux
+> CFS and so far no scheduling regressions have been found relative to FIFO=
+.
+> There are improvements in fairness and scheduling of interactive clients =
+when
+> running in parallel with a heavy GPU load (for example Pierre-Eric has on=
+e
+> viewperf medical test which shows a nice improvement with amdgpu).
+>=20
+> On the high level main advantages of the series are:
+>=20
+> =C2=A01. Scheduling quality - schedules better than FIFO, solves priority=
+ starvation.
+> =C2=A02. Code simplification - no more multiple run queues and multiple a=
+lgorithms.
+> =C2=A03. Virtual GPU time based scheduling enables relatively simple addi=
+tion
+> =C2=A0=C2=A0=C2=A0 of a scheduling cgroup controller in the future.
+>=20
+> There is a little bit more detailed write up on the motivation and result=
+s in
+> the form of a blog post which may be easier to read:
+> https://blogs.igalia.com/tursulin/fair-er-drm-gpu-scheduler/
+>=20
+> First patches add some unit tests which allow for easy evaluation of sche=
+duling
+> behaviour against different client submission patterns. From there onward=
+s it is
+> hopefully a natural progression of cleanups, enablers, adding the fair po=
+licy,
+> and finally removing FIFO and RR and simplifying the code base due no mor=
+e need
+> for multiple run queues.
+>=20
+> Series is structured in a way where we could apply the first 12 patches (=
+up to
+> and including "drm/sched: Switch default policy to fair") in one kernel r=
+elease
+> and then follow up with the rest of the cleanups after a release or two i=
+f
+> things will be looking fine. Until the remainder of the series would be m=
+erged
+> it would be easy to flip the default algorithm back.
+>=20
+> Onto the performance evaluation. As a headline result I have tested three
+> simultaneous clients on the Steam Deck:
+>=20
+> One instance of a deferredmultisampling Vulkan demo running with low prio=
+rity,
+> one normal priority instance of the same demo, and the Unigine Heaven ben=
+chmark.
+>=20
+> With the FIFO scheduler we can see that the low priority client is comple=
+tely
+> starved and the GPU time distribution between the other two clients is un=
+even:
+>=20
+> https://people.igalia.com/tursulin/drm-sched-fair/fifo-starvation.png
+>=20
+> Switching to the fair scheduler, GPU time distribution is almost equal an=
+d the
+> low priority client does get a small share of the GPU:
+>=20
+> https://people.igalia.com/tursulin/drm-sched-fair/fair-no-starvation.png
+>=20
+> Moving onto the synthetic submission patterns, they are about two simulta=
+neous
+> clients which broadly cover the following categories:
+>=20
+> =C2=A0* Deep queue clients
+> =C2=A0* Hogs versus interactive
+> =C2=A0* Priority handling
+>=20
+> Lets look at the results:
+>=20
+> 1. Two normal priority deep queue clients.
+>=20
+> These ones submit one second worth of 8ms jobs. As fast as they can, no
+> dependencies etc. There is no difference in runtime between FIFO and fair=
+ but
+> the latter allows both clients to progress with work more evenly:
+>=20
+> https://people.igalia.com/tursulin/drm-sched-fair/normal-normal.png
+>=20
+> (X axis is time, Y is submitted queue-depth, hence lowering of qd corresp=
+onds
+> =C2=A0 with work progress for both clients, tested with both schedulers s=
+eparately.)
+>=20
+> Round-robin is the same as fair here.
+>=20
+> 2. Same two clients but one is now low priority.
+>=20
+> https://people.igalia.com/tursulin/drm-sched-fair/normal-low.png
+>=20
+> Normal priority client is a solid line, low priority dotted. We can see h=
+ow FIFO
+> completely starves the low priority client until the normal priority is f=
+ully
+> done. Only then the low priority client gets any GPU time.
+>=20
+> In constrast, fair scheduler allows some GPU time to the low priority cli=
+ent.
+>=20
+> Here round-robin flavours are the same as FIFO (same starvation issue).
+>=20
+> 3. Same clients but now high versus normal priority.
+>=20
+> Similar behaviour as in the previous one with normal a bit less de-priori=
+tised
+> relative to high, than low was against normal.
+>=20
+> https://people.igalia.com/tursulin/drm-sched-fair/high-normal.png
+>=20
+> And again round-robin flavours are the same as FIFO.
+>=20
+> 4. Heavy load vs interactive client.
+>=20
+> Heavy client emits a 75% GPU load in the format of 3x 2.5ms jobs followed=
+ by a
+> 2.5ms wait. Interactive client emits a 10% GPU load in the format of 1x 1=
+ms job
+> followed by a 9ms wait.
+>=20
+> This simulates an interactive graphical client used on top of a relativel=
+y heavy
+> background load but no GPU oversubscription.
+>=20
+> Graphs show the interactive client only and from now on, instead of looki=
+ng at
+> the client's queue depth, we look at its "fps".
+>=20
+> https://people.igalia.com/tursulin/drm-sched-fair/251008/4-heavy-vs-inter=
+active.png
+>=20
+> Here round-robin and round-robin rewritten on top of FIFO are best, with =
+the
+> fair algorithm being very close. FIFO is clearly the worst.
+>=20
+> 5. An even heavier load vs interactive client.
+>=20
+> This one is oversubscribing the GPU by submitting 4x 50ms jobs and waitin=
+g for
+> only one microsecond before repeating the cycle. Interactive client is th=
+e same
+> 10% as above.
+>=20
+> https://people.igalia.com/tursulin/drm-sched-fair/251008/4-very-heavy-vs-=
+interactive.png
+>=20
+> Here FIFO is even worse and fair is again almost as good as the two round=
+-robin
+> flavours.
+>=20
+> 6. Low priority GPU hog versus heavy-interactive.
+>=20
+> Low priority client: 3x 2.5ms jobs client followed by a 0.5ms wait.
+> Interactive client: 1x 0.5ms job followed by a 10ms wait.
+>=20
+> https://people.igalia.com/tursulin/drm-sched-fair/251008/4-low-hog-vs-int=
+eractive.png
+>=20
+> All schedulers appear to handle this almost equally well but FIFO could s=
+till be
+> the last while fair has a slight lead.
+>=20
+> As before, I am looking for feedback, ideas for what other kinds of submi=
+ssion
+> scenarios to test, testing on different GPUs and of course reviews.
+>=20
+> v2:
+> =C2=A0* Fixed many rebase errors.
+> =C2=A0* Added some new patches.
+> =C2=A0* Dropped single shot dependecy handling.
+>=20
+> v3:
+> =C2=A0* Added scheduling quality unit tests.
+> =C2=A0* Refined a tiny bit by adding some fairness.
+> =C2=A0* Dropped a few patches for now.
+>=20
+> v4:
+> =C2=A0* Replaced deadline with fair!
+> =C2=A0* Refined scheduling quality unit tests.
+> =C2=A0* Pulled one cleanup patch earlier.
+> =C2=A0* Fixed "drm/sched: Avoid double re-lock on the job free path".
+>=20
+> v5:
+> =C2=A0* Rebase on top of latest upstream DRM scheduler changes.
+> =C2=A0* Kerneldoc fixup.
+> =C2=A0* Improve commit message justification for one patch. (Philipp)
+> =C2=A0* Add comment in drm_sched_alloc_wq. (Christian)
+>=20
+> v6:
+> =C2=A0* Rebase for "drm/sched: De-clutter drm_sched_init" getting merged.
+> =C2=A0* Avoid NULL rq dereference from a bad rebase. (Maira)
+> =C2=A0* Added some kerneldoc throughout. (Maira)
+> =C2=A0* Removed some lockdep annotations not belonging to one patch. (Mai=
+ra)
+> =C2=A0* Use dma_fence_is_signaled in "drm/sched: Avoid double re-lock on =
+the job free path". (Maira, Philipp)
+>=20
+> v7:
+> =C2=A0* Rebase for some prep patches getting merged.
+> =C2=A0* Dropped submit all ready jobs patch.
+> =C2=A0* Fixed 64-bit division in unit tests.
+> =C2=A0* Fixed some more rebase and patch re-ordering mistakes.
+> =C2=A0* Preserve entity RR order when re-entering the queue.
+> =C2=A0* Fine tuned the queue re-enter logic for better behaviour with int=
+eractive
+> =C2=A0=C2=A0 clients.
+> =C2=A0* Removed some static inlines.
+> =C2=A0* Added more kerneldoc.
+> =C2=A0* Done some benchmarks in the round-robin scheduling modes.
+>=20
+> v8:
+> =C2=A0* Rebased for upstream changes.
+> =C2=A0* Added assert for reverse numerical order of DRM_SCHED_PRIORITY en=
+ums.
+> =C2=A0* Fixed head of rq priority updates.
+>=20
+> *** RFC -> PATCH change log version reset. ***
+>=20
+> v9 / v1:
+> =C2=A0* RFC -> PATCH for the series as agreed during the XDC.
+> =C2=A0* Updated interactive benchmark graphs.
+> =C2=A0* Improved handling of interactive clients by replacing the random =
+noise on tie
+> =C2=A0=C2=A0 approach with the average job duration statistics.
+> =C2=A0* Document in code why we track entity GPU stats in a reference cou=
+nted structures.
+> =C2=A0* Document the new structure fields added by the fair policy.
+> =C2=A0* Undo some tab vs spaces damage.
+> =C2=A0* More accurate wording in the fair policy commit message.
+> =C2=A0* Default to fair policy in a separate patch.
+> =C2=A0* Renamed drm_sched_rq_select_entity to drm_sched_select_entity and=
+ make it only take sched.
+> =C2=A0* Fixed kerneldoc after removing scheduling policies and renaming t=
+he rq.
+> =C2=A0* Reversed arguments of drm_sched_rq_init and cleanup callers. (New=
+ patch)
+> =C2=A0* Removed unused num_rqs from struct drm_sched_args. (New patches)
+> =C2=A0* Unit tests:
+> =C2=A0=C2=A0 * Added wait duration comments.
+> =C2=A0=C2=A0 * Data structure comments.
+> =C2=A0=C2=A0 * Better name for a local variable.
+> =C2=A0=C2=A0 * Added comment to the short job duration assert.
+> =C2=A0=C2=A0 * Added comment for cond_resched().
+> =C2=A0=C2=A0 * Tweaked some comments
+> =C2=A0=C2=A0 * Added client_done() helper and documented the READ_ONCE.
+> =C2=A0=C2=A0 * Clarified cycles per second calculation.
+>=20
+> v2:
+> =C2=A0* Dropped the sched_rq_init() argument re-order patch.
+> =C2=A0* Pulled run queue management consolidation patches to start of the=
+ series.
+> =C2=A0* Drm_sched_rq_get_rr_ts() renamed to drm_sched_rq_next_rr_ts().
+> =C2=A0* Added DRM_SCHED_PRIORITY_INVALID local define.
+> =C2=A0* Added locking around the ktime_t vruntime read.
+> =C2=A0* Expanded comment relating to the unlocked entity->priority read.
+> =C2=A0* Expanded comment relating to the unlocked scheduler average job d=
+uration read.
+> =C2=A0* Various kerneldoc tweaks.
+> =C2=A0* Undo some tab vs spaces damage harder.
+> =C2=A0* Undo one empty line rebase damage.
+> =C2=A0* Reworded commit message for the FIFO and RR removal patch.
+> =C2=A0* Various commit message spelling, grammar and typo fixes.
+> =C2=A0* Unit tests:
+> =C2=A0=C2=A0 * Various style changes.
+> =C2=A0=C2=A0 * More descriptive test names.
+> =C2=A0=C2=A0 * Print legend for measured metrics.
+> =C2=A0=C2=A0 * Check for memory allocation failures.
+>=20
+> v3:
+> =C2=A0* Marked fair policy as default in the correct patch.
+> =C2=A0* Further improved comment in drm_sched_rq_update_prio().
+> =C2=A0* Moved DRM_SCHED_PRIORITY_INVALID to gpu_scheduler.h.
+> =C2=A0* Added description of the GPU time to vruntime scaling factors.
+> =C2=A0* Recorded more collected acks.
+>=20
+> v4:
+> =C2=A0* Rebased, collect ackes and r-b-s receives so far.
+> =C2=A0* New patch in the series for handling the new ethosu accel driver.
+> =C2=A0* Bump lower priorities lower down in the run queue when they re-jo=
+in, in order
+> =C2=A0=C2=A0 to penalize them a bit more than simply making them second i=
+n the line to
+> =C2=A0=C2=A0 run as it was in v3.
+>=20
+> v5:
+> =C2=A0* Rebased, collect ackes and r-b-s received so far.
+> =C2=A0* Fix lost return statement introduced in v2 refactoring.
+> =C2=A0* Use virtual runtime based on average job durations when placing t=
+he re-
+> =C2=A0=C2=A0 joining lower priority entity in the run-queue.
+>=20
+> v6:
+> =C2=A0* Renamed drm_sched_entity_stats_alloc to drm_sched_entity_stats_ne=
+w.
+> =C2=A0* Moved drm_sched_entity_stats_job_add_gpu_time to sched_entity.c.
+> =C2=A0* Improved kerneldoc for struct drm_sched_entity_stats.
+> =C2=A0* Explained GPU accounting placement in the respective commit text.
+> =C2=A0* Removed duplicated sched list assignment int the embedding the ru=
+n-queue
+> =C2=A0=C2=A0 patch.
+>=20
+> v7:
+> =C2=A0* Rebased to catchup with upstream changes.
+> =C2=A0* Dropped the two amdgpu dependencies from the series - they have b=
+een merged
+> =C2=A0=C2=A0 and have propagated to drm-next and drm-tip.
+> =C2=A0* Applied acks/reviews received since v6.
+>=20
+> v8:
+> =C2=A0* Checkpatch special edition:
+> =C2=A0=C2=A0 * Typos, double blank lines, missing SPDX, broken line align=
+ment, kerneldoc,
+> =C2=A0=C2=A0=C2=A0=C2=A0 repeated words, bare unsigned type, kzalloc_obj.
+>=20
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> CC: Leo Liu <Leo.Liu@amd.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Philipp Stanner <phasta@kernel.org>
+> Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+> Cc: Michel D=C3=A4nzer <michel.daenzer@mailbox.org>
+>=20
+> Tvrtko Ursulin (29):
+> =C2=A0 drm/sched: Disallow initializing entities with no schedulers
+> =C2=A0 drm/sched: Consolidate entity run queue management
+> =C2=A0 drm/sched: Move run queue related code into a separate file
+> =C2=A0 drm/sched: Add some scheduling quality unit tests
+> =C2=A0 drm/sched: Add some more scheduling quality unit tests
+> =C2=A0 drm/sched: Implement RR via FIFO
+> =C2=A0 drm/sched: Free all finished jobs at once
+> =C2=A0 drm/sched: Account entity GPU time
+> =C2=A0 drm/sched: Remove idle entity from tree
+> =C2=A0 drm/sched: Add fair scheduling policy
+> =C2=A0 drm/sched: Favour interactive clients slightly
+> =C2=A0 drm/sched: Switch default policy to fair
+> =C2=A0 drm/sched: Remove FIFO and RR and simplify to a single run queue
+> =C2=A0 drm/sched: Embed run queue singleton into the scheduler
+> =C2=A0 accel/amdxdna: Remove drm_sched_init_args->num_rqs usage
+> =C2=A0 accel/rocket: Remove drm_sched_init_args->num_rqs usage
+> =C2=A0 accel/ethosu: Remove drm_sched_init_args->num_rqs usage
+> =C2=A0 drm/amdgpu: Remove drm_sched_init_args->num_rqs usage
+> =C2=A0 drm/etnaviv: Remove drm_sched_init_args->num_rqs usage
+> =C2=A0 drm/imagination: Remove drm_sched_init_args->num_rqs usage
+> =C2=A0 drm/lima: Remove drm_sched_init_args->num_rqs usage
+> =C2=A0 drm/msm: Remove drm_sched_init_args->num_rqs usage
+> =C2=A0 drm/nouveau: Remove drm_sched_init_args->num_rqs usage
+> =C2=A0 drm/panfrost: Remove drm_sched_init_args->num_rqs usage
+> =C2=A0 drm/panthor: Remove drm_sched_init_args->num_rqs usage
+> =C2=A0 drm/sched: Remove drm_sched_init_args->num_rqs usage
+> =C2=A0 drm/v3d: Remove drm_sched_init_args->num_rqs usage
+> =C2=A0 drm/xe: Remove drm_sched_init_args->num_rqs usage
+> =C2=A0 drm/sched: Remove drm_sched_init_args->num_rqs
+>=20
+> =C2=A0drivers/accel/amdxdna/aie2_ctx.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/accel/ethosu/ethosu_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/accel/rocket/rocket_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_device.c=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 27 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_job.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 5 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0=C2=A0 8 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c=C2=A0=C2=A0 |=C2=A0=C2=
+=A0 8 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 8 +-
+> =C2=A0drivers/gpu/drm/etnaviv/etnaviv_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/imagination/pvr_queue.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/lima/lima_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/msm/msm_gem_vma.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/msm/msm_ringbuffer.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/nouveau/nouveau_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/panfrost/panfrost_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/panthor/panthor_mmu.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/panthor/panthor_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/scheduler/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/scheduler/sched_entity.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 | 162 ++--
+> =C2=A0drivers/gpu/drm/scheduler/sched_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/scheduler/sched_internal.h=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 70 +-
+> =C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 351 +------
+> =C2=A0drivers/gpu/drm/scheduler/sched_rq.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 | 383 ++++++++
+> =C2=A0drivers/gpu/drm/scheduler/tests/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0.../gpu/drm/scheduler/tests/mock_scheduler.c=C2=A0 |=C2=A0=C2=A0 1 =
+-
+> =C2=A0.../gpu/drm/scheduler/tests/tests_scheduler.c | 882 +++++++++++++++=
++++
+> =C2=A0drivers/gpu/drm/v3d/v3d_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/xe/xe_dep_scheduler.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/xe/xe_execlist.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0drivers/gpu/drm/xe/xe_gpu_scheduler.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 -
+> =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 44 +-
+> =C2=A033 files changed, 1498 insertions(+), 481 deletions(-)
+> =C2=A0create mode 100644 drivers/gpu/drm/scheduler/sched_rq.c
+> =C2=A0create mode 100644 drivers/gpu/drm/scheduler/tests/tests_scheduler.=
+c
+>=20
 
