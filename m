@@ -2,23 +2,23 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wBgqL6cN4mnB1AAAu9opvQ
+	id KArnMa8N4mkg1AAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 12:38:31 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 12:38:39 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D69641A473
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 12:38:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DE8241A4C3
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 12:38:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE8A110EA2F;
-	Fri, 17 Apr 2026 10:38:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3CA510EA42;
+	Fri, 17 Apr 2026 10:38:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="qsh91YTK";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="phxPmLJi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D21A10EA17;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83ECD10E9E9;
  Fri, 17 Apr 2026 10:38:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
@@ -27,16 +27,16 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=9n87h33F8lNxHsAwSl/Ibkn/DX8ec1299/H0LQ2YhHA=; b=qsh91YTKAJurHIfcOReZq02o/2
- taM6m+tABjIjit1Jf41z15p/xvLfrEF8jU61xRgoh6NPLSHMbwQWSch8wikq+IxmV3YBgJtZ0mhm6
- 40taDqNSrZn5dfLSnuEsg0vukM01MpqIx1znbNOXOXDOww46zUrincfur+O3XGy77zka5ECWqyACW
- oB2fKv5/cmrCoeVxv3aoc1w7AFtSB1tWp3naTL3ZcNQUbyBNpvWOMNqXldTQa0DO1MpqiLqXA6HAq
- dUJscOB9zomEx1hw81R4lHZFgolL6RFwAQnkddD0tqeStcNa9d1Ft5h8kqvJgh5SIb8wb86Gjdjmt
- /IBIQiSw==;
+ bh=T7zpGkjamOntKuO+X4YF7sfzPNnUIhJMf4Lr3/V/0l0=; b=phxPmLJiOVOXVip2OFUr6gwGGl
+ ql9xYXxY9niyuWyjyZe3/mZJ9OVzBIUeKvnvyPNiiG8vmX5M61hy+PmecpF4WHMN/gWSaNojcit/7
+ RA1FOK63gn8fIsCo3DqV+MHebsoBfozxZQ+Gc2LzT8wL83vYeol7DLLCMoPkoxN8f9VXP5g2+FrpR
+ Kdd3w1AZFU1TXgWEegpzmUGDWr/bhM1tTrmIaiXglYIgUIYmNuYmlhDovEHXWxlffFglqra/gHZvi
+ 6FPjpzL1ht2S3l4R+fdCsjkNw2ik2SK6DxVJ8Xec7G6PWwViMzZHvVE2p/oShIgY7lx0f8PrW10Ej
+ em/bkQBg==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wDgaN-00HPUF-0d; Fri, 17 Apr 2026 12:38:07 +0200
+ id 1wDgaN-00HPUZ-Qu; Fri, 17 Apr 2026 12:38:07 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -44,11 +44,11 @@ Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
  Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Boris Brezillon <boris.brezillon@collabora.com>,
- Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>
-Subject: [PATCH v8 24/29] drm/panfrost: Remove drm_sched_init_args->num_rqs
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>
+Subject: [PATCH v8 25/29] drm/panthor: Remove drm_sched_init_args->num_rqs
  usage
-Date: Fri, 17 Apr 2026 11:37:39 +0100
-Message-ID: <20260417103744.76020-25-tvrtko.ursulin@igalia.com>
+Date: Fri, 17 Apr 2026 11:37:40 +0100
+Message-ID: <20260417103744.76020-26-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260417103744.76020-1-tvrtko.ursulin@igalia.com>
 References: <20260417103744.76020-1-tvrtko.ursulin@igalia.com>
@@ -84,7 +84,7 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.845];
+	NEURAL_HAM(-0.00)[-0.850];
 	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[igalia.com:-];
@@ -92,8 +92,8 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email,arm.com:email]
-X-Rspamd-Queue-Id: 7D69641A473
+	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:email,collabora.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
+X-Rspamd-Queue-Id: 9DE8241A4C3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -101,25 +101,40 @@ Remove member no longer used by the scheduler core.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: Rob Herring <robh@kernel.org>
+Cc: Steven Price <steven.price@arm.com>
+Cc: Liviu Dudau <liviu.dudau@arm.com>
 Cc: dri-devel@lists.freedesktop.org
 Reviewed-by: Steven Price <steven.price@arm.com>
+Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
 ---
- drivers/gpu/drm/panfrost/panfrost_job.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/panthor/panthor_mmu.c   | 1 -
+ drivers/gpu/drm/panthor/panthor_sched.c | 1 -
+ 2 files changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c b/drivers/gpu/drm/panfrost/panfrost_job.c
-index d59b4863b8ad..2d12b83e900a 100644
---- a/drivers/gpu/drm/panfrost/panfrost_job.c
-+++ b/drivers/gpu/drm/panfrost/panfrost_job.c
-@@ -850,7 +850,6 @@ int panfrost_jm_init(struct panfrost_device *pfdev)
- {
- 	struct drm_sched_init_args args = {
- 		.ops = &panfrost_sched_ops,
--		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
- 		.credit_limit = 2,
- 		.timeout = msecs_to_jiffies(JOB_TIMEOUT_MS),
- 		.dev = pfdev->base.dev,
+diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c b/drivers/gpu/drm/panthor/panthor_mmu.c
+index bd41c892beb7..fc930ee158a5 100644
+--- a/drivers/gpu/drm/panthor/panthor_mmu.c
++++ b/drivers/gpu/drm/panthor/panthor_mmu.c
+@@ -2719,7 +2719,6 @@ panthor_vm_create(struct panthor_device *ptdev, bool for_mcu,
+ 	const struct drm_sched_init_args sched_args = {
+ 		.ops = &panthor_vm_bind_ops,
+ 		.submit_wq = ptdev->mmu->vm.wq,
+-		.num_rqs = 1,
+ 		.credit_limit = 1,
+ 		/* Bind operations are synchronous for now, no timeout needed. */
+ 		.timeout = MAX_SCHEDULE_TIMEOUT,
+diff --git a/drivers/gpu/drm/panthor/panthor_sched.c b/drivers/gpu/drm/panthor/panthor_sched.c
+index a06d91875beb..41d6369fa9c0 100644
+--- a/drivers/gpu/drm/panthor/panthor_sched.c
++++ b/drivers/gpu/drm/panthor/panthor_sched.c
+@@ -3489,7 +3489,6 @@ group_create_queue(struct panthor_group *group,
+ 	struct drm_sched_init_args sched_args = {
+ 		.ops = &panthor_queue_sched_ops,
+ 		.submit_wq = group->ptdev->scheduler->wq,
+-		.num_rqs = 1,
+ 		/*
+ 		 * The credit limit argument tells us the total number of
+ 		 * instructions across all CS slots in the ringbuffer, with
 -- 
 2.52.0
 
