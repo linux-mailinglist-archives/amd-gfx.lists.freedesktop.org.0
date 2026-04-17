@@ -2,57 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KCBPJ6AN4mkg1AAAu9opvQ
+	id CKbYLaEN4mnB1AAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 12:38:24 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 12:38:25 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57B1741A3F3
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 12:38:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E9F841A40D
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 12:38:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 440A410EA1A;
-	Fri, 17 Apr 2026 10:38:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1428C10E9E0;
+	Fri, 17 Apr 2026 10:38:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="UUHXTyYb";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="D1+vpyIX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60D3110EA18;
- Fri, 17 Apr 2026 10:38:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B03DE10EA1E;
+ Fri, 17 Apr 2026 10:38:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=q1z+gZTYMM9IacUEKHXw1/ino5n+vrTajodXXsgZb34=; b=UUHXTyYbbZneCYMjCrmcpwa5xc
- G9n6Xit9D4qbK6qsDyGvS4g5NkH5N6d5++epX1SzW0WcSLefJvpqLVSpX0I81xuJJ03DU1cMvr7Ny
- sQxGe9FOY7o5GZCSZTdsKdep5YZTQRjVcBcv3M352D7d5163ofPLvIB3WVg8zBwkAJsh1kMcbrByR
- VMW4AmoWLDPOxf8S+UGw+ZXDVk0X/UDHCqrMNbw9L5wtM625mVDaZ73lEbizhfqlvST3LpTiCH7Qq
- Rxm8glFTpzsWd8iD0W06AamKGtRBLp3is0M7urQ1HoVB3RgQYwdfBIQKN32yqd/xggPVbPPpzqXfG
- XZ8qZioQ==;
+ bh=9L+qgbI6WvSblBO6w5zz8ByJQH6omQJDNqnBwOAmU/c=; b=D1+vpyIX0p5O+/l3t279Pnx8iX
+ Oo43CbIxOaOw4gRtGrmqSctgLR6citYKzr+R1CMvI8UKG+6pO0JZlgwfSOicpseVqsIhr5Lyv0NRG
+ 9lxHB0ELvrzk+PqzxiN0k6UNewfrLXjK0lcwQNMUk+P6wEzCOyIRLfdE7UjEUYpoqSNd6fGPQnpOs
+ nFKlcaRAyt6o2j+GySz2zBBMD7J9/hS68IKcHUyBiPBppiG5XSBIoUsWU5/uNBgPLlHvi5owOWjT4
+ dL9kHLz7PS6TLuziMndVJh3Gb96qOaqTdJ9QQUsJ0PSC4qIoKTdWs5FNlcPGfcCbhvkKmOre4O9F4
+ rSOVot2w==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wDgaI-00HPSp-M2; Fri, 17 Apr 2026 12:38:02 +0200
+ id 1wDgaJ-00HPT6-CN; Fri, 17 Apr 2026 12:38:03 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, kernel-dev@igalia.com,
  Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Subject: [PATCH v8 18/29] drm/amdgpu: Remove drm_sched_init_args->num_rqs usage
-Date: Fri, 17 Apr 2026 11:37:33 +0100
-Message-ID: <20260417103744.76020-19-tvrtko.ursulin@igalia.com>
+ Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ etnaviv@lists.freedesktop.org, Christian Gmeiner <cgmeiner@igalia.com>
+Subject: [PATCH v8 19/29] drm/etnaviv: Remove drm_sched_init_args->num_rqs
+ usage
+Date: Fri, 17 Apr 2026 11:37:34 +0100
+Message-ID: <20260417103744.76020-20-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260417103744.76020-1-tvrtko.ursulin@igalia.com>
 References: <20260417103744.76020-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,57 +69,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.49 / 15.00];
+X-Spamd-Result: default: False [1.99 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,igalia.com,kernel.org,pengutronix.de,armlinux.org.uk,gmail.com];
 	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.989];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[igalia.com:-];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	NEURAL_HAM(-0.00)[-0.995];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	TAGGED_RCPT(0.00)[amd-gfx,etnaviv];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: 57B1741A3F3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
+X-Rspamd-Queue-Id: 8E9F841A40D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Remove member no longer used by the scheduler core.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Russell King <linux+etnaviv@armlinux.org.uk>
+Cc: Christian Gmeiner <christian.gmeiner@gmail.com>
+Cc: etnaviv@lists.freedesktop.org
+Reviewed-by: Christian Gmeiner <cgmeiner@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 1 -
+ drivers/gpu/drm/etnaviv/etnaviv_sched.c | 1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 584c9ec28bf1..0f2cdb56ae74 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -2224,7 +2224,6 @@ static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/etnaviv/etnaviv_sched.c b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
+index df4232d7e135..63f672536516 100644
+--- a/drivers/gpu/drm/etnaviv/etnaviv_sched.c
++++ b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
+@@ -142,7 +142,6 @@ int etnaviv_sched_init(struct etnaviv_gpu *gpu)
  {
- 	struct drm_sched_init_args args = {
- 		.ops = &amdgpu_sched_ops,
+ 	const struct drm_sched_init_args args = {
+ 		.ops = &etnaviv_sched_ops,
 -		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
- 		.timeout_wq = adev->reset_domain->wq,
- 		.dev = adev->dev,
- 	};
+ 		.credit_limit = etnaviv_hw_jobs_limit,
+ 		.hang_limit = etnaviv_job_hang_limit,
+ 		.timeout = msecs_to_jiffies(500),
 -- 
 2.52.0
 
