@@ -2,100 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YD5FHNBD4mlh4AAAu9opvQ
+	id YBk7NwMk5mlBsgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 16:29:36 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:02:59 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E955941C0A4
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 16:29:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 750AF42B2A9
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:02:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E378510EA45;
-	Fri, 17 Apr 2026 14:29:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 735AA10E5C0;
+	Mon, 20 Apr 2026 13:02:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="J1tqW0Fk";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="tB+tarb7";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com
- [74.125.82.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C20A410EA45
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 14:29:28 +0000 (UTC)
-Received: by mail-dy1-f177.google.com with SMTP id
- 5a478bee46e88-2bda3b4318dso99392eec.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 07:29:28 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1776436168; cv=none;
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
+ [209.85.208.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44F2F10E032
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 14:51:08 +0000 (UTC)
+Received: by mail-ed1-f47.google.com with SMTP id
+ 4fb4d7f45d1cf-6634bb959a2so1069937a12.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 07:51:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1776437467; cv=none;
  d=google.com; s=arc-20240605;
- b=faRn9NqHfCEbDqe3E+K+C5TU5PaAh6OcUUGRKSrVpLG8/1W7yEP/i0NSWqAyrjKMcr
- AqBpQ7ecNm0BIQlAYYfgv7H2eIF2s4ILiTWMdWnTh7Hdejp6+UCWU88Nz16PwxJ4Ctpv
- aKA/JakYcx8LVEQGISD9c9+L91w9CFbikMFuaYYbRheDfC4JWXKPZjcJqwUpipqCb06j
- Z2gwhG53q1tNvwQ01RnLMnJjD5lIODqI0PsgqAvcBZOM16laPWXoMIOLpBoKTfBDH6k2
- FMoQhz45cYFMJSYXpECtVKpfSd7yA8RxG/DVj8eWLtAtJD1TlCG51gxzoBvGtWTJQ6oa
- +B5w==
+ b=kXC+QpX8SCoJ9rVZ9Gwj0RbYf9N+LKO6fG3LhEYFo/quUdVFhHBPrQMTaEJMhDOH0Z
+ Qsk53m0hf1ECbcydc/p1n43lyJkHDxRd6D9Gec7c9pGEGYmDvKs/Ye7YbXxcCOG6fcxT
+ wPGYCHy7YRVmFki1QsfdIJO2eqRWbU/80e7KlducMyb0uKanRW4cHnJ+MJ+WTzlBNgRW
+ Vm0+1zbFprv8Z40jhJXIO2T/Jhmr6AKtIwnQ4XINRBW1KPhK8F1wugpEDp6oTy0Pq/iR
+ 90UA+7VVkl2e/vapfibL7fM8QkHKbtXLJ2HV0MmPETmYBHhMLPOEpmm3aYpAh9wyZKSB
+ 86YQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=7U0qAFFPkGHTc+pBC8a4T4CGoeQZqx86T/1PPhsileI=;
- fh=ey/RHOY9hARdrKDYdcJkovMaVSc9t1Y8AQvC0Fown8g=;
- b=TmZBFTvro2sJyZrwn6WeruhJR+N6WPPaLeygmswIQ8TtFD0K7JbpZS2VPFMYjeuHsz
- Gl5dIHt3aIOfPJhISPAj4tkGBYX/nD8kJTj3Tc2u7i5ltxlWbPv9/ZN6ZBdHw6YdIYHz
- nHK0U1hXaFtG/Ll4AwhKWsyWvIik7juAKaZ2ckeihXEnqoKjXbBcQRsz99znmS4Xhhx2
- lH0Ay/BSlWgS7+jSetiEtNw+54PHxvfC4Tttdbo1iGnLIQ19wxj7CTDzh1rzt7GwnFps
- Dgb+Rd/N3CtrQyKH8Egb4I2bvW6aJ9JPHFk3ZZ+zUL7Zr0ySZtKdF/2vw4sJjs4+IxAw
- HoZA==; darn=lists.freedesktop.org
+ bh=GqspcooKgst7WD1YTyYSebsG6+WnjIGRXNERmo7wEPU=;
+ fh=h8bOCy5Zboyj9VHfqNhCkMRxt1YJrf1mvUQ/9FWNKgw=;
+ b=hTOKs+EQN8sW1gok3YlLd9bjDRoJEiHqWmQUiDCyByQ/A5lC3mVhXKTFHUh/rx60lX
+ UKbh6aDLQDVdY8HfWz1pTzr2UwoizixuUkw4kwxzGFU2TkeJu9qQhN7Ssxr1aGfIxBFq
+ aDmJBbcwlltOAMSDzDAL/GjLhWGKDylIxcybthEEO2qFRvdPG1JjrQFXwjgmQi31tcWR
+ 2iW1tn7A7Jz61TRxFa5VcSghvR+7vO1xdksn6mspzQ8pD7VuT+wjnyvZX1esXnux1/5q
+ lrMSl/qHqBS3vVaX1WHw68vz0f9K1o3Veeh+4ZBe7l1RMyUn5x5ASicqnwj0jcSzX+sx
+ O1Pw==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776436168; x=1777040968; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1776437467; x=1777042267; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=7U0qAFFPkGHTc+pBC8a4T4CGoeQZqx86T/1PPhsileI=;
- b=J1tqW0FkYQUlYTCTZGkhzO8LvtiKvEk/7Yg1SFBF+O1CcxK5SalaLgrjOF8ellqm21
- s03hnJDBA//AGCqpqBLxJwPsyaoSJMJxurpGvt1CV4wJoC2/5n5IXnHiBXLgS/EyruTz
- oNGT2zZkDicLdUfuySJEfxlF/9tCHuDY1hKeuGjjtZ7J2BJZxymuSQqsyjcBQWbrPogV
- Cfa02ubkXlQRrU/gJJ0NEY4p6XZ6JoY5o8+koo3GDKMkI4o894GmQz1ioLhqsK+YRorL
- RXq0NEkKpEvzC4gyafIGVaAD+mOU+uGwv8yFturqiVvzkj2XjRoNKYNOQ7EVC0RVOI4j
- s9wA==
+ bh=GqspcooKgst7WD1YTyYSebsG6+WnjIGRXNERmo7wEPU=;
+ b=tB+tarb7x7a9ZHzL09LlUJMvki6nFqHVGNwd9p/xSMVmV9LSDygpXaYcsyYSdqTZDQ
+ 4HBMZReBwUdw+7NAWCtBRJUHsH1GvEupE/F2K1rlbSF06rV2oxLO68dSZ0EOZvs3UJ6w
+ 6oJeN4avA/6hfYQRwocX80HfRDGS/0Plt1Z7L73ZzxGCGbfN8VFhcALuquEkxCJ7ZeGX
+ kBlqo3vk7iEfdDqHpgJ7Hh/7GREILwq+87mxOMYu7t7/0xchu9BsNx0LizGfVeBSFvPG
+ n9MLX2ATxtbbq2JS0mt56FRms5mwotjkpKU5cc6Y2rhHT03js/oYJeQrmaL+3FZsfIrC
+ A6aQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776436168; x=1777040968;
+ d=1e100.net; s=20251104; t=1776437467; x=1777042267;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=7U0qAFFPkGHTc+pBC8a4T4CGoeQZqx86T/1PPhsileI=;
- b=JWCa0AVIzXUKrzuwf1HZ8E5j/rm7DbM13REdgbwhY8xTM2kRSisl57u6DjDf9p/4Ng
- ktbDdZhdLsOBmkBMJsj2jVb5/CoCt6gyklH1xHknA2yzBX15kENoqgkSFJOMdZh1HGzs
- Y1hPNwNQGNM4reZUl2VbZaljDPowUTcJTwxJwfKxIFsNRnKK8VpjrfhXc00DefU7itVH
- q6zMsxNwo5nbY02DBc2BUgof9F3SK9+qLMuu3nbotzK1lgdYb3pTD8YAlJTV4EyInKoG
- caXYyF+7jSZfPzeO+BcX2jLA/b1s8aGk6QKUKTygknZb6XmYJNcbIISdGerfYV97zn7C
- HmhQ==
+ bh=GqspcooKgst7WD1YTyYSebsG6+WnjIGRXNERmo7wEPU=;
+ b=fDXe320B2zqIIOThdSPtOSM81YFevlKtVaKsThaDPBaTihkeHwLMR31uHnYP2RkXFH
+ N+x/1DaCvh8RhHILtcwlEPCi+7vdZ6yBUgqQeBGKNEdQpHq1jBKRFtxgXpJHU9ETP1EH
+ E0L2Y6ezAye73qy4vuTYaNtDcYzDbK8OrbfGhH0fPBQT+PNWrWzo3GtL+kIohwi0mA3I
+ WPo5gCsMH8PKx4+OwIEiy19kSRmHIjKP4kO9NY82hJLz3ZNuAyABHOUI26nKZywYgbN5
+ S1q2aabkgvpV1fwzDkoWynIc7WSny/2g6/P0yiMTZyZ4Jnw2ALluJhXoIehz9cN07ZNk
+ GNIA==
 X-Forwarded-Encrypted: i=1;
- AFNElJ9vH7xuF2E7lADc/z8qPHk4izN6M+1r0yquy4x7zuXdfz9v9lVkDGkYHrxqc95646LJ+jYoM5RU@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxPb8IsKn+ox6nkKfV88HDXINYAVDPQAAexVusURrelh/2rXNvC
- Y92F63VUM3+kXaQJrCm7A6SBPNAAa53hHjCiNQ6RaKRf00dqvxjeNnRm6vDo02oCvaxWNVXPKJc
- 42YDA9GzkK2xqRKiVgHyqQX+8F0gss4M=
-X-Gm-Gg: AeBDieuxDVSp2n6EjdbLftoPcZDhzsKrpw4fZ0XOZR3tbnshrfCKs2ot5oIq+iSArnb
- K1r13sQg7Sggbu2avfn+4Ql/h0gM+3Ipa/62Zch/6VIdMzHLs/Az76fS4amuymP7LEt0w0lB3tS
- b/zdKV5K8qRIHRfRsnG7G7YTj4KkmwjBsIPKgTRsk9TdMKghpVGyUjb4ToMp/FtnFYvN5iOTn8R
- zYXX+L7PAsRxTvijgqPzPdrZOvwkjO0hK5bN+7zpIZyhTT+ltmTiTaXZ+OldkrJJ/gt3gp2bazG
- eAcElfORrxvk4B35tNaJ/g6pwZgyWpPWu3bvvoHP0o+sCrgH0STaipPBytUxbVmt13L8PFxeRqp
- seAM5
-X-Received: by 2002:a05:7022:6889:b0:124:af80:9d0c with SMTP id
- a92af1059eb24-12c73d26cc4mr547799c88.0.1776436167906; Fri, 17 Apr 2026
- 07:29:27 -0700 (PDT)
+ AFNElJ/sp/cM3lLklqaR9e/S3NYvexxhPi6I8k6YcUbqi8kV0swLC8Byh1PMjWmM6ktM0XQahrfxff4V@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwMtnUcDvb6YNAKcs5A5GFvAFLpIrG0eajJZDnmk+453JtOoaF6
+ 4cHmqG6/jOBdB+dO6qfw6L2qMwZo2E0pR0dyLP1/Ve6pUBI1LgZz0mc6BDi4apifCfof9sS5NO8
+ qU/EQcISNTJEi3ckV5wjEOYs9rS8UnXY=
+X-Gm-Gg: AeBDievpYlqdC+deJbtjZELEIpC4mur8mCVXQGV/R0aQr9Lt1cZpjLCwUSOvsOp64IP
+ nlRdaQD11lMsSkZTHrKmLTlvplSmznChJfeP6UyK46r9bDyQY5v8AMN53y4eDMZrJtJvK0X1W2T
+ r+meC087RbD8mZuRuHo8KcXxGicP1QSriuudlp2myMC0YESQFqITm36cRXRt8y7XnaX+W14VnwH
+ kq4x3gTFNO1uZjw22isuj+ircv84S/ttDkqs+fjH2VaPVyZUi9T6VXYdfJBBmCp3/hdI+0AA0AW
+ 2X1iYAvIzEV9UIeW
+X-Received: by 2002:a05:6402:2b99:b0:672:f75:5095 with SMTP id
+ 4fb4d7f45d1cf-672bfd82182mr1549620a12.4.1776437466608; Fri, 17 Apr 2026
+ 07:51:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <20260417140632.1476-1-christian.koenig@amd.com>
-In-Reply-To: <20260417140632.1476-1-christian.koenig@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 17 Apr 2026 10:29:14 -0400
-X-Gm-Features: AQROBzA0G9tj8a30Pomw_wBFVA8mUrcrPrPr7olqnRgnM3OAdagjammR0PIrsVw
-Message-ID: <CADnq5_MPKbT-92RKJJFQhK26hhtVHt=i2_R2nV53wFZXEzDEOQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: fix AMDGPU_INFO_READ_MMR_REG
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Cc: victor.skvortsov@amd.com, alexander.deucher@amd.com, 
- amd-gfx@lists.freedesktop.org, christian.koenig@amd.com
+References: <20260416195537.3632-1-dbgh9129@gmail.com>
+ <CADnq5_NrVgGwAYbBGgGc9t-ke5xt_0iJNExXARb7LxdnHSwDQA@mail.gmail.com>
+In-Reply-To: <CADnq5_NrVgGwAYbBGgGc9t-ke5xt_0iJNExXARb7LxdnHSwDQA@mail.gmail.com>
+From: =?UTF-8?B?7LWc7Jyg7Zi4?= <dbgh9129@gmail.com>
+Date: Fri, 17 Apr 2026 10:50:54 -0400
+X-Gm-Features: AQROBzC7i9ei1CiJnYg6HROzf4GBLzx1H6GJ7IgyCxXJkBfyW-5LW2DspgZwtVg
+Message-ID: <CACrCO_VKvhA-zx1KPhDxbOR4HzDs87Hsbdtc5SZXgvLeK9ZX=A@mail.gmail.com>
+Subject: Re: [PATCH v1] drm/radeon: fix memory leak in radeon_ring_restore()
+ on lock failure
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ "Kim, Taegyu" <tmk5904@psu.edu>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 20 Apr 2026 13:02:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,171 +115,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DATE_IN_PAST(1.00)[70];
 	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:ckoenig.leichtzumerken@gmail.com,m:victor.skvortsov@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:ckoenigleichtzumerken@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[dbgh9129@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:tmk5904@psu.edu,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,psu.edu];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[dbgh9129@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: E955941C0A4
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 750AF42B2A9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 17, 2026 at 10:24=E2=80=AFAM Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> There were multiple issues in that code.
->
-> First of all the order between the reset semaphore and the mm_lock was
-> wrong (e.g. copy_to_user) was called while holding the lock.
->
-> Then we allocated memory while holding the reset semaphore which is also
-> a pretty big bug and can deadlock.
->
-> Then we used down_read_trylock() instead of waiting for the reset to
-> finish.
->
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Fixes: 9e823f307074 ("drm/amdgpu: Block MMR_READ IOCTL in reset")
+Dear Alex,
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Thank you for applying the patch.
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 57 +++++++++++--------------
->  1 file changed, 24 insertions(+), 33 deletions(-)
+Best regards,
+Yuho Choi
+
+On Fri, 17 Apr 2026 at 10:05, Alex Deucher <alexdeucher@gmail.com> wrote:
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_kms.c
-> index d88e4994c8c1..24526e92f9b8 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> @@ -873,68 +873,59 @@ int amdgpu_info_ioctl(struct drm_device *dev, void =
-*data, struct drm_file *filp)
->                                     ? -EFAULT : 0;
->         }
->         case AMDGPU_INFO_READ_MMR_REG: {
-> -               int ret =3D 0;
-> -               unsigned int n, alloc_size;
-> -               uint32_t *regs;
->                 unsigned int se_num =3D (info->read_mmr_reg.instance >>
->                                    AMDGPU_INFO_MMR_SE_INDEX_SHIFT) &
->                                   AMDGPU_INFO_MMR_SE_INDEX_MASK;
->                 unsigned int sh_num =3D (info->read_mmr_reg.instance >>
->                                    AMDGPU_INFO_MMR_SH_INDEX_SHIFT) &
->                                   AMDGPU_INFO_MMR_SH_INDEX_MASK;
-> -
-> -               if (!down_read_trylock(&adev->reset_domain->sem))
-> -                       return -ENOENT;
-> +               unsigned int alloc_size;
-> +               uint32_t *regs;
-> +               int ret;
+> Applied.  Thanks!
 >
->                 /* set full masks if the userspace set all bits
->                  * in the bitfields
->                  */
-> -               if (se_num =3D=3D AMDGPU_INFO_MMR_SE_INDEX_MASK) {
-> +               if (se_num =3D=3D AMDGPU_INFO_MMR_SE_INDEX_MASK)
->                         se_num =3D 0xffffffff;
-> -               } else if (se_num >=3D AMDGPU_GFX_MAX_SE) {
-> -                       ret =3D -EINVAL;
-> -                       goto out;
-> -               }
-> +               else if (se_num >=3D AMDGPU_GFX_MAX_SE)
-> +                       return -EINVAL;
->
-> -               if (sh_num =3D=3D AMDGPU_INFO_MMR_SH_INDEX_MASK) {
-> +               if (sh_num =3D=3D AMDGPU_INFO_MMR_SH_INDEX_MASK)
->                         sh_num =3D 0xffffffff;
-> -               } else if (sh_num >=3D AMDGPU_GFX_MAX_SH_PER_SE) {
-> -                       ret =3D -EINVAL;
-> -                       goto out;
-> -               }
-> +               else if (sh_num >=3D AMDGPU_GFX_MAX_SH_PER_SE)
-> +                       return -EINVAL;
->
-> -               if (info->read_mmr_reg.count > 128) {
-> -                       ret =3D -EINVAL;
-> -                       goto out;
-> -               }
-> +               if (info->read_mmr_reg.count > 128)
-> +                       return -EINVAL;
->
-> -               regs =3D kmalloc_array(info->read_mmr_reg.count, sizeof(*=
-regs), GFP_KERNEL);
-> -               if (!regs) {
-> -                       ret =3D -ENOMEM;
-> -                       goto out;
-> -               }
-> +               regs =3D kmalloc_array(info->read_mmr_reg.count, sizeof(*=
-regs),
-> +                                    GFP_KERNEL);
-> +               if (!regs)
-> +                       return -ENOMEM;
->
-> +               down_read(&adev->reset_domain->sem);
->                 alloc_size =3D info->read_mmr_reg.count * sizeof(*regs);
-> -
->                 amdgpu_gfx_off_ctrl(adev, false);
-> +               ret =3D 0;
->                 for (i =3D 0; i < info->read_mmr_reg.count; i++) {
->                         if (amdgpu_asic_read_register(adev, se_num, sh_nu=
-m,
->                                                       info->read_mmr_reg.=
-dword_offset + i,
->                                                       &regs[i])) {
->                                 DRM_DEBUG_KMS("unallowed offset %#x\n",
->                                               info->read_mmr_reg.dword_of=
-fset + i);
-> -                               kfree(regs);
-> -                               amdgpu_gfx_off_ctrl(adev, true);
->                                 ret =3D -EFAULT;
-> -                               goto out;
-> +                               break;
->                         }
->                 }
->                 amdgpu_gfx_off_ctrl(adev, true);
-> -               n =3D copy_to_user(out, regs, min(size, alloc_size));
-> -               kfree(regs);
-> -               ret =3D (n ? -EFAULT : 0);
-> -out:
->                 up_read(&adev->reset_domain->sem);
-> +
-> +               if (!ret) {
-> +                       ret =3D copy_to_user(out, regs, min(size, alloc_s=
-ize))
-> +                               ? -EFAULT : 0;
-> +               }
-> +               kfree(regs);
->                 return ret;
->         }
->         case AMDGPU_INFO_DEV_INFO: {
-> --
-> 2.43.0
->
+> On Fri, Apr 17, 2026 at 3:06=E2=80=AFAM Yuho Choi <dbgh9129@gmail.com> wr=
+ote:
+> >
+> > radeon_ring_restore() takes ownership of the data buffer allocated by
+> > radeon_ring_backup(). The caller (radeon_gpu_reset()) only frees it in
+> > the non-restore branch; in the restore branch it relies on
+> > radeon_ring_restore() to free it.
+> >
+> > If radeon_ring_lock() fails, the function returned early without callin=
+g
+> > kvfree(data), leaking the ring backup buffer on every GPU reset that
+> > fails at the lock stage. During repeated GPU resets this causes
+> > cumulative kernel memory exhaustion.
+> >
+> > Free data before returning the error.
+> >
+> > Fixes: 55d7c22192be ("drm/radeon: implement ring saving on reset v4")
+> > Signed-off-by: Yuho Choi <dbgh9129@gmail.com>
+> > ---
+> >  drivers/gpu/drm/radeon/radeon_ring.c | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/radeon/radeon_ring.c b/drivers/gpu/drm/rad=
+eon/radeon_ring.c
+> > index 581ae20c46e4b..a5dff072c1ac0 100644
+> > --- a/drivers/gpu/drm/radeon/radeon_ring.c
+> > +++ b/drivers/gpu/drm/radeon/radeon_ring.c
+> > @@ -356,8 +356,10 @@ int radeon_ring_restore(struct radeon_device *rdev=
+, struct radeon_ring *ring,
+> >
+> >         /* restore the saved ring content */
+> >         r =3D radeon_ring_lock(rdev, ring, size);
+> > -       if (r)
+> > +       if (r) {
+> > +               kvfree(data);
+> >                 return r;
+> > +       }
+> >
+> >         for (i =3D 0; i < size; ++i) {
+> >                 radeon_ring_write(ring, data[i]);
+> > --
+> > 2.50.1 (Apple Git-155)
+> >
