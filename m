@@ -2,162 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SLYzABXc4WkXzAAAu9opvQ
+	id ZYIbO5V74WlDtwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 09:07:01 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 02:15:17 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2412417B1A
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 09:07:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B2C415C7B
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 02:15:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C09B10E976;
-	Fri, 17 Apr 2026 07:06:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC13A10E0A7;
+	Fri, 17 Apr 2026 00:15:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="j2i8G3yy";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="c/2ICTXH";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012004.outbound.protection.outlook.com [52.101.43.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94F8310E24A;
- Thu, 16 Apr 2026 23:26:59 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=grueFMaoQYn/yGq1WEk9b/onXEV48n3I8tcgyf+6QbUJ6I1StvUXNV2RIM7WO4vDIKbLHPDWdHQoTUwaBiFh7E+241hwbK7QAJ09viz/UWqTYXNujfZmiBDz+6HT/pGWcYAwulVfvIrKwfKZOIImV0BZFOtHTSo5nollOOLWYi04E4jjKbhIs04dOSXs38FUigFlzaPqNkmVKYByLWV7q4zwaZ/76ubCK8wzXcoNRzUGi1fzRW4k6CG9zeiMV1kcxUaSOwtYfIBBCh7Ab95/5LAiHoPdXQOwNneD1sw62UrAGqvTm1LDJ86ccLh9NzkatwC9cGggLl/+Joe2pN/pqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bM5joRx2PKTYhPukBkzc60Vnv024VFiPvS/sD72ZAag=;
- b=UyJnjFj15NtZJTFZHkvQUz2I5hvC0gSIl1MHRRHlWkXuOtYP2/MFPwxKw/YTAwxZK9s5HLTTaXOw9ByPnpuEKALsAUrX2NRHCqhrJSmyBVglTzHVh8TUN2ZSCsHWuOLhOAeFFd2UhZrZHaZI47aA28ZqwJX+z/syJPb1u1kIdRHu9/L18KFCj949k/V4uP4Yi6fHacdoJy+mxa5hGTWnpiAlokxPbmUPSpxX4qUxsAcRq9WLcsNXAho5zV6nSxOlYbzryxofwSZEwPaxXH/BH8Gax17CCX9Ohh9fffOgl2klx1kmgepkqmIPGpTMxIfqvORFKFi8et2qfuRSbPDezA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bM5joRx2PKTYhPukBkzc60Vnv024VFiPvS/sD72ZAag=;
- b=j2i8G3yy0s2L1UUjPmgLxfGmlk2IL0iWAAwV7/kPYEsxBkO4DrXvSSJcmurvVC7R4ckrNen2YwBtL1zPwmBFnNN+RMQnfdzCPetdZbM67r3kCSyWVvce0OJHAjyhGYpyPYH1SjwABwbR05Jgtg1If/HuYPT8ytQQd5gzahey0OwJFaUd3csgVqvTjZ14MnJLPVx/D3M5fMX0CtyjNs34rNkF0NKKZcx5IY7Dc6ZmzaIHMKut/4ahABpfMaUXFw75WwLHOztappdosrAa8i1PmeCWMs6J9O34reVkkzPY2tsnw4KsWcF5atLyqRqcFSSXk4ODDqsjCFvtJ8vTLQ6j5Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM3PR12MB9416.namprd12.prod.outlook.com (2603:10b6:0:4b::8) by
- PH7PR12MB6787.namprd12.prod.outlook.com (2603:10b6:510:1ad::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.20; Thu, 16 Apr
- 2026 23:26:53 +0000
-Received: from DM3PR12MB9416.namprd12.prod.outlook.com
- ([fe80::8cdd:504c:7d2a:59c8]) by DM3PR12MB9416.namprd12.prod.outlook.com
- ([fe80::8cdd:504c:7d2a:59c8%5]) with mapi id 15.20.9818.023; Thu, 16 Apr 2026
- 23:26:53 +0000
-Message-ID: <b0c5267d-ea77-41c5-94d4-39c651761b3c@nvidia.com>
-Date: Thu, 16 Apr 2026 16:26:48 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 02/20] gpu: nova-core: gsp: Extract usable FB region
- from GSP
-To: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org
-Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Alistair Popple <apopple@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, Edwin Peer <epeer@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-References: <20260415210548.3776595-1-joelagnelf@nvidia.com>
- <20260415210548.3776595-2-joelagnelf@nvidia.com>
-Content-Language: en-US
-From: John Hubbard <jhubbard@nvidia.com>
-In-Reply-To: <20260415210548.3776595-2-joelagnelf@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BYAPR02CA0058.namprd02.prod.outlook.com
- (2603:10b6:a03:54::35) To DM3PR12MB9416.namprd12.prod.outlook.com
- (2603:10b6:0:4b::8)
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com
+ [209.85.167.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF7B210E24F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 00:15:14 +0000 (UTC)
+Received: by mail-lf1-f54.google.com with SMTP id
+ 2adb3069b0e04-5a402dea4a5so99786e87.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Apr 2026 17:15:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1776384913; x=1776989713; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=ZYFo5pjfQWejx/RnAQZuantyr8hBTxOsgdc4wrhteOo=;
+ b=c/2ICTXHqkWQldo1KVQ52X+4VVBEpjiUTWg0MUSWKvRj1andoFbwblrxoSUZbkcVxs
+ guScbIv0GCl8HfJX26AzWE22yRmWiXu2Zx0INgzmnQB7fJJw8kSXB9s762m1qQ8424Ui
+ dzOeaJy2SUdeFskLQrO+XTQVW8hxY0HMNv1BnIDQbAmURZp/61sFY2adtwHSlNeaHBkV
+ sykqU37QiQxcaCDUYGOMv0Ef6tdUbP9R/eZ5E71moXkinQtGgQD3qG8yM4NrWCIAIEfN
+ lRb4fFSVa9xRjHSGTSc4QxJtkrH9CjlkK6xVDRFb4CsHXk8vekFTeCxlYk++RaCWDfUp
+ 1Ejg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776384913; x=1776989713;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ZYFo5pjfQWejx/RnAQZuantyr8hBTxOsgdc4wrhteOo=;
+ b=EaF9sPKj2CeOIrykgd598M/8tQdjvOIVv57JjGsoVmUedKnlV6lLpcFIxGwNlNrjq2
+ brqeDp3ro7gOhySbA0DHnng+zx57m8yjy7pzEFvJEEmVysBbKk6r43puCZ/VY3qorESq
+ neRIPuZDCWe6SxONpKSnH+TPivH2CD90ImqK8hO+VaCTJfj7U+eMhGUEuGhnXdBnPUEM
+ u+SEYpqBoSJqkcF+4Q44ylykGvMhx9QJP3B1B53yoHH1LNcLVBMWn8qz/HI+Scc6gFRp
+ Ul/esUCBn0K8jBzwFY4KK9vrVb3afBCExRGwrlwu6Cf8Czr+2pzDTgv1Ky36m5cLHU64
+ ETqA==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ8JxedQQYylgc5Tw8S9aAa9nphk5iqF/TwsLOc2gqmcqmt4u4/UHn7dtNtyYk24r5xcsGl1v3xk@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwQri2ERmTZEFFq6mrmb/gmyXfvaC97HCRHZgl82EMZs7YyAsJJ
+ VYCqJLbukpSW2Y5HrHyaCUtAfG8YbkX/zUUlXPIji+WlTQaKZ87NVGlx
+X-Gm-Gg: AeBDievHNEYhKOApk2702+KFWcSiy50ht3uo6mGmV5XsxjqHmqvaYYIkNjT2qXSxCwa
+ bkKCjDil4Hr0BO/Wza6BcNJXYaIXMmwzVdll0ZLKs8zMJkMKBMWc7+6WT8dt5B+XVcOHn/TS0rM
+ id+5UHQYnpkKTr1ZTxAQvC4Cu3uMLJI8f7sdB4KmnX7YSavu3GaTHXcY0uCH4VST4jE35BM2J0S
+ kR+5bHddGUHwXr6hWMebhxlK+1arnSgtdjgMJxfdhi74378WzgVp7r3EeW8f0mLBxec9xmcQq7w
+ cGXzEqEPJdW0jSCPu13BBjtQ+Ip8oGx/9BihQAUD8eoxOgPNGhRL0F0K8aw4qvomLDiNK34arBc
+ eeNaN5Zyu9fq5ddfKtyVA63bbgYXnmZE1nP7HIiw74ovUlLaFcQdvK5V7FXVpbqWGBp2tboptan
+ z5crZJYFoQx/pUdXIqnz2kjKCfCKloa21N/V8LmQvvNK5i
+X-Received: by 2002:a05:6512:b86:b0:5a4:11e:5c70 with SMTP id
+ 2adb3069b0e04-5a4172d0312mr116683e87.14.1776384912616; 
+ Thu, 16 Apr 2026 17:15:12 -0700 (PDT)
+Received: from localhost ([188.234.148.119]) by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5a4178dc9a2sm66200e87.56.2026.04.16.17.15.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 16 Apr 2026 17:15:10 -0700 (PDT)
+From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Austin Zheng <austin.zheng@amd.com>, Jun Lei <jun.lei@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: Rodrigo Siqueira <siqueira@igalia.com>,
+ Rafal Ostrowski <rafal.ostrowski@amd.com>, Alex Hung <alex.hung@amd.com>,
+ Dillon Varone <dillon.varone@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+Subject: [PATCH] drm/amd/display: Add FPU guards around dcn31/315/316
+ update_bw_bounding_box
+Date: Fri, 17 Apr 2026 05:15:03 +0500
+Message-ID: <20260417001503.26147-1-mikhail.v.gavrilov@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM3PR12MB9416:EE_|PH7PR12MB6787:EE_
-X-MS-Office365-Filtering-Correlation-Id: a6f3ec1e-b186-4d13-48a5-08de9c0fa460
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|1800799024|366016|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: jt1S8HSfdMDQtbOqXTjcJaaCwpvyI55o1nSOSseyaNYR1sX/5xPgr3rzM1fP45yKSIL9S2+tiZmX+8CfEVmSV/NMXXIkIaUTEe6YoRujw6r8DmIv1Q5SPWAQHnf2kTbSNjuGRB2PLNUNPQ7htDDmo/rjdobIiey0n9xJDsC9Q3Xe6qYfCsYq7owILQe+b3cAVFYdZ6ayEtau4XbmDoEsw30NPW+CTdaRyQ6uWIsnr7K9A+jTxXV5/SO0VBwR37goYLPDKvozXVE8BU8XN2+D+J2FG4HNgLQTYgzBO5cbDpqSxYofnO5jTePrwjJkfk82J3IdSjOFT2D582j+22mk9oX76TDb5IsxKRo/yR/JGRpSNpf/UPtWEWpVswv+KCoEdf6FUWrtWbw7Eh0X9KaEmsDqzQhILkG6Jil2xYopMTZva7yo24soACBRYZhXnKZy+NNc48cHJCrWlt+Tf9GwyZuF5uggNQmSQ22vRRnSscWju+hXaBCRGXKNIlJPL4Ns4HZmLg9FjbA80qFOA/uw346bYGsAsOu27LgZm7a9URsI/wDwbhKxspgrB6HjXgJxoK/ldGvdd0y/8vsP1dtVraTJw1SZzxmk9VRt61vF1GBmKAkcvC5fzfjvgZ33+rZO1pnC5DTybhobRVtnXgd5J4YpUmjii0fRNS1XuHCjZVHr2pvYuaepfiSdQGXNPyyi0t2jVuVbcT7An2GGSOLi+1K0wCWFGlYWxpIN3Geur8w=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM3PR12MB9416.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YWN0WkZOQzFqWHhIeStzUTdSZ1c3YUxUZE1mazMrdWxnbkw2T0FacWlyZGky?=
- =?utf-8?B?RUpQU3p5OWFaY05RSjlLdXFuaXJ0TjVvTjkvTERkTW9zY2hvWUhGZEhKcjBx?=
- =?utf-8?B?QTBwZmloOVdGaUM2NzhsbzRtaCtPOVE1bmp3SHVFa0syaldLL2lEMmtFbWJp?=
- =?utf-8?B?ditva2RsU1FQRlVsTUhNM3drWWswSmtzL3ZzS3FhTXNBcnVyRkV2czJ3a1Q4?=
- =?utf-8?B?NFgrMmhyQlhIeGUrRXo0a2xOSlpSREh3S0ZpTEdhSWpqcE5ic3ZuMkhSTmxG?=
- =?utf-8?B?d0lCUGFNTVpYZWF4OHN2ZlE2NThsY3F2eWNUWnI5aHlRcVFmVkxxWnI0bGhG?=
- =?utf-8?B?dW0vSzF3cE8yRjl3ZXhMYU03WGFYQVU1UzZIWjN0RkNPOEk4WU9aQnFrUjgv?=
- =?utf-8?B?WnM2WlRFTlNIeVhWTGZTOEdZUXlWa01rVk1IdG84VW8wNzIrMkEzQlJIakpR?=
- =?utf-8?B?TkZhL3ozb29Va3hERmJuaGFmUWhIUHkvMDZaWE1GTHBvTmkwWXhQWUVmRGhB?=
- =?utf-8?B?YnV4bjlZQk5oQ1hoM24wKzN1d2h1eXlReElhVHRNaWJvN1FINFB0T1F5OWd3?=
- =?utf-8?B?VnU2ZDJQM2JHSGRXKzFWL0pTRG5Qdjk4WFB5QzBKdGN5YUZQSHFMWXk5YmxD?=
- =?utf-8?B?U1dGRGFmd0pDVysvNklDMEZkN29iNkdtVFJXKy85U0V1a01haEIzclBaWWZK?=
- =?utf-8?B?aVFWNXg4UDZpczFlY1cvV2FUaWlUa2tHUkdwOURrbi9uMXpTNWFsZUR4OVRU?=
- =?utf-8?B?MWtSNDdEeU8vWnpXdnNNNllyUWYxN2F4ekxzUWFIVzVoUzY1aloxZjZJMXRt?=
- =?utf-8?B?bkQzK3NkYUdnbFovbkhPZ09mbm9kSXc1TmRvdlB0eFhaUkFMN1dRMG4yTlZ3?=
- =?utf-8?B?VkhCcnpCWlVRVFhnZkJrNjJtRmtVWmhEbW54MlYzT1czb0JxeXkxcGpvQzBp?=
- =?utf-8?B?eGFTdm5JRjF1SmJHUHg4TFFBVDlwNXpYNTNJdkEwbDBFQ0pMb2dzTmw4T3RZ?=
- =?utf-8?B?V0o2MVU1MGk0aWJZeTg5a3ZHaGNHU3R0TFIrTzZEMElMTkRhekFnVFgvVGNI?=
- =?utf-8?B?by9NRzdUNXpQUThRRVZ0YXhDdCttUEFwcnBBd2M1MUR0QTkwRi9aV3VqVkY3?=
- =?utf-8?B?T0hXcUtVWUZSbCtSWVpTYWhjdnJkL3V3dXpRVDZFb0trQnZDUVVJcURMNW8z?=
- =?utf-8?B?SmJlemwxWVJhUXZJNStnRHVBcUw4VXVWTHFBcGxqVXEyTi9TOXk4dkxJcmpP?=
- =?utf-8?B?YVhxYXNmakxWMjgyOHFZNjE3MC9zTUhsU0lpSWZBcEY4RVlDSlRYL3RvMnIx?=
- =?utf-8?B?enVEUHVNcU9icS8vdlVZTkZXM3IwZUlYZ2N4aGVMZEpGZnFtR1VJcytTcGlL?=
- =?utf-8?B?SDhxUHIzdDA4YWg2aXJPQmVRZ0VqU1dCUjlZcW5tWlpJSFFhZE42RVVRc1BM?=
- =?utf-8?B?TmJaaUZkUHlnRUFIQUpaREJlVkFCRk53V2UyNVpQV3JrU2J1OHNXZlJnK1Yw?=
- =?utf-8?B?SlZiYk9iWmtETW5qU1VMVVpXVVV3K1NhajdEKzBxdkNCRk5zY3A1Mmx1dFF3?=
- =?utf-8?B?MDk5eVM5T3lhN0cySHpoRVlMbzUzZHcwMGZxWnlzRTNMMDlxend5bXBTU2RR?=
- =?utf-8?B?T2Fwa2hpcjZ0RFJMR3JNZmthOVNGTWhLNDQvaklybFowREtpdEJ5b1NyamY4?=
- =?utf-8?B?cERROUNOZm1CZnc5WnVrQXd2clZLODNUbVVDN2FJNkQyR3hxRjFwOG1ubGl5?=
- =?utf-8?B?VEZMeTN0UGt6QWU5QzM0UkIxZVcvcWQvUEpaTEE2Q3pJL3ZCRmM0Sjh3K0h2?=
- =?utf-8?B?Mzl5VWVaMnFRcFl3QmE1SnFmbjFSNEhwZURadExxTUhvMlQ3TUhKdVFkMVZi?=
- =?utf-8?B?WUo4eE9ncTdBWkN4MmVzZ2ZnTnhGUkd0QTNBeEo2RTE2ZUcvTmFtRHJzelJI?=
- =?utf-8?B?SUNsY3lEclp0a0tqNFBxUHVpK29XK2J5VlNOR3hPV3oya2U4T1g0SWdGb01U?=
- =?utf-8?B?UjZqTWNkWi9OdjNJbVpDVFFMTEdEQk5QSWVrY3BIK0tzSm9tekd4a2lONi9m?=
- =?utf-8?B?ZUU1b1dMR1YvWE1DU3ZoNHNYNnJHcEpaeFRYT21RVFlXSXFZOEdvRUtHdHp2?=
- =?utf-8?B?c1FtQ25mRjhmbkpZN0VqcWk5ejFidHNxQ2p3STIwUDBXQSt5V2hLaTFJM2hV?=
- =?utf-8?B?UDMxM3NuYWNydG5PWXd6MUZ2UVpTSkM5Yll3cFp2OEg0NXltbVlWeC9sc1JN?=
- =?utf-8?B?bGRsd0gzNXYyNmdnMmVmbEp2NjFnZC9uY1NHUm5mdXFIdFVxUnJQWnNDZTRU?=
- =?utf-8?B?a0JTVkVnRDZDSGV1U2xucmc1UG05ZS8wYnNiUkNoaGpqQnhMUEJFQT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6f3ec1e-b186-4d13-48a5-08de9c0fa460
-X-MS-Exchange-CrossTenant-AuthSource: DM3PR12MB9416.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2026 23:26:53.2013 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zQNhVPLwH3V/3RfMnXJU2/SKlRfDRANeSCYyuudDo1pVBzoPwOJyoIO1INO0Vn49Kkz0XvCNxS7An4KucWJkhQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6787
-X-Mailman-Approved-At: Fri, 17 Apr 2026 07:06:57 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,61 +96,200 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:austin.zheng@amd.com,m:jun.lei@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:rafal.ostrowski@amd.com,m:alex.hung@amd.com,m:dillon.varone@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:mikhail.v.gavrilov@gmail.com,m:mikhailvgavrilov@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,vger.kernel.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
+	FORGED_SENDER(0.00)[mikhailvgavrilov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[54];
-	FROM_NEQ_ENVFROM(0.00)[jhubbard@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[mikhailvgavrilov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: A2412417B1A
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[igalia.com,amd.com,lists.freedesktop.org,vger.kernel.org,gmail.com];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: 56B2C415C7B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 4/15/26 2:05 PM, Joel Fernandes wrote:
-...
+Commit 3539437f354b ("drm/amd/display: Move FPU Guards From DML To DC -
+Part 1") moved DC_FP_START/DC_FP_END out of the DML FPU units into the
+DC resource layer for dcn35, dcn351, dcn36, dcn401 and dcn42, but missed
+the dcn31 family: the dcn31, dcn315 and dcn316 resource pools still wire
+their .update_bw_bounding_box callback directly to the FPU-unit
+functions dcn31_update_bw_bounding_box(), dcn315_update_bw_bounding_box()
+and dcn316_update_bw_bounding_box() defined in dml/dcn31/dcn31_fpu.c.
+Those functions call dc_assert_fp_enabled() on entry, which now fires
+on every amdgpu probe on affected parts because no caller wraps them in
+DC_FP_START/DC_FP_END anymore.
 
-Apologies, I found one more minor thing, while looking at a
-subsequent patch in this series:
+Triggered on amdgpu probe on a Ryzen 7000 (Raphael) iGPU, which uses
+dcn315:
 
->  impl MessageFromGsp for GetGspStaticInfoReply {
->      const FUNCTION: MsgFunction = MsgFunction::GetGspStaticInfo;
->      type Message = GspStaticConfigInfo;
-> -    type InitError = Infallible;
-> +    type InitError = Error;
->  
->      fn read(
->          msg: &Self::Message,
-> @@ -205,6 +209,7 @@ fn read(
->      ) -> Result<Self, Self::InitError> {
->          Ok(GetGspStaticInfoReply {
->              gpu_name: msg.gpu_name_str(),
-> +            usable_fb_region: msg.first_usable_fb_region().ok_or(ENODEV)?,
+ WARNING: drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/dc_fpu.c:58
+          at dc_assert_fp_enabled+0x14/0x20 [amdgpu]
+ RIP: 0010:dc_assert_fp_enabled+0x14/0x20 [amdgpu]
+ Call Trace:
+  dcn315_update_bw_bounding_box+0x1c/0x17a0 [amdgpu]
+  dc_create_resource_pool+0x4a0/0x770 [amdgpu]
+  dc_construct+0xa0a/0x13b0 [amdgpu]
+  dc_create+0x6f/0x8b0 [amdgpu]
+  amdgpu_dm_init+0x740/0xc80 [amdgpu]
+  dm_hw_init+0x45/0x150 [amdgpu]
+  amdgpu_device_ip_init+0xe21/0x11e1 [amdgpu]
+  amdgpu_device_init.cold+0xc03/0x1819 [amdgpu]
+  amdgpu_driver_load_kms+0x19/0xa0 [amdgpu]
+  amdgpu_pci_probe+0x371/0xbc0 [amdgpu]
 
-OK, failing out is correct here. But in addition, we should also
-log this at dev_err!() level. This is rare, surprising, and actionable,
-so perfect for that level of logging.
+Apply the same pattern the offending commit used for dcn35 (and that
+dcn314 already followed before the commit): rename the FPU-unit entry
+points with an _fpu suffix and add non-FPU static wrappers in the
+resource files which provide DC_FP_START/DC_FP_END around the call.
 
+Fixes: 3539437f354b ("drm/amd/display: Move FPU Guards From DML To DC - Part 1")
+Signed-off-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+---
 
-thanks,
+Tested on Ryzen 7000 (Raphael) with RX 7900 XTX discrete GPU, debug
+kernel (KASAN + LOCKDEP + PREEMPT_FULL). Without the patch, the WARN
+fires on every boot during amdgpu probe for the iGPU (dcn315). With
+the patch applied, amdgpu probes cleanly and no dc_assert_fp_enabled
+warnings occur.
+
+ drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c       | 6 +++---
+ drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.h       | 6 +++---
+ .../gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c | 7 +++++++
+ .../drm/amd/display/dc/resource/dcn315/dcn315_resource.c   | 7 +++++++
+ .../drm/amd/display/dc/resource/dcn316/dcn316_resource.c   | 7 +++++++
+ 5 files changed, 27 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c
+index 1a28061bb9ff..ad23215da9f8 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c
+@@ -587,7 +587,7 @@ void dcn31_calculate_wm_and_dlg_fp(
+ 	context->bw_ctx.bw.dcn.compbuf_size_kb = context->bw_ctx.dml.ip.config_return_buffer_size_in_kbytes - total_det;
+ }
+ 
+-void dcn31_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params)
++void dcn31_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_params *bw_params)
+ {
+ 	struct _vcs_dpi_voltage_scaling_st *s = dc->scratch.update_bw_bounding_box.clock_limits;
+ 	struct clk_limit_table *clk_table = &bw_params->clk_table;
+@@ -665,7 +665,7 @@ void dcn31_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params
+ 	dml_init_instance(&dc->dml, &dcn3_1_soc, &dcn3_1_ip, DML_PROJECT_DCN31);
+ }
+ 
+-void dcn315_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params)
++void dcn315_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_params *bw_params)
+ {
+ 	struct clk_limit_table *clk_table = &bw_params->clk_table;
+ 	int i, max_dispclk_mhz = 0, max_dppclk_mhz = 0;
+@@ -726,7 +726,7 @@ void dcn315_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_param
+ 	dml_init_instance(&dc->dml, &dcn3_15_soc, &dcn3_15_ip, DML_PROJECT_DCN315);
+ }
+ 
+-void dcn316_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params)
++void dcn316_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_params *bw_params)
+ {
+ 	struct _vcs_dpi_voltage_scaling_st *s = dc->scratch.update_bw_bounding_box.clock_limits;
+ 	struct clk_limit_table *clk_table = &bw_params->clk_table;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.h b/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.h
+index dfcc5d50071e..0b7fcbbfd17b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.h
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.h
+@@ -44,9 +44,9 @@ void dcn31_calculate_wm_and_dlg_fp(
+ 		int pipe_cnt,
+ 		int vlevel);
+ 
+-void dcn31_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params);
+-void dcn315_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params);
+-void dcn316_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params);
++void dcn31_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_params *bw_params);
++void dcn315_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_params *bw_params);
++void dcn316_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_params *bw_params);
+ int dcn_get_max_non_odm_pix_rate_100hz(struct _vcs_dpi_soc_bounding_box_st *soc);
+ int dcn_get_approx_det_segs_required_for_pstate(
+ 		struct _vcs_dpi_soc_bounding_box_st *soc,
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
+index ee4bc2c2e73a..d5215a028626 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
+@@ -1854,6 +1854,13 @@ static struct dc_cap_funcs cap_funcs = {
+ 	.get_dcc_compression_cap = dcn20_get_dcc_compression_cap
+ };
+ 
++static void dcn31_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params)
++{
++	DC_FP_START();
++	dcn31_update_bw_bounding_box_fpu(dc, bw_params);
++	DC_FP_END();
++}
++
+ static struct resource_funcs dcn31_res_pool_funcs = {
+ 	.destroy = dcn31_destroy_resource_pool,
+ 	.link_enc_create = dcn31_link_encoder_create,
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
+index 2ca673114841..c48ac609ce7c 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
+@@ -1849,6 +1849,13 @@ static struct dc_cap_funcs cap_funcs = {
+ 	.get_dcc_compression_cap = dcn20_get_dcc_compression_cap
+ };
+ 
++static void dcn315_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params)
++{
++	DC_FP_START();
++	dcn315_update_bw_bounding_box_fpu(dc, bw_params);
++	DC_FP_END();
++}
++
+ static struct resource_funcs dcn315_res_pool_funcs = {
+ 	.destroy = dcn315_destroy_resource_pool,
+ 	.link_enc_create = dcn31_link_encoder_create,
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c
+index 2242df112a3f..914d91df174c 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c
+@@ -1725,6 +1725,13 @@ static struct dc_cap_funcs cap_funcs = {
+ 	.get_dcc_compression_cap = dcn20_get_dcc_compression_cap
+ };
+ 
++static void dcn316_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params)
++{
++	DC_FP_START();
++	dcn316_update_bw_bounding_box_fpu(dc, bw_params);
++	DC_FP_END();
++}
++
+ static struct resource_funcs dcn316_res_pool_funcs = {
+ 	.destroy = dcn316_destroy_resource_pool,
+ 	.link_enc_create = dcn31_link_encoder_create,
 -- 
-John Hubbard
+2.53.0
 
