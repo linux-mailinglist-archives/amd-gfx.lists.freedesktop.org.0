@@ -2,88 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OOs6H6OL4mlq7AAAu9opvQ
+	id EDEmKv8j5mlBsgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 21:36:03 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:02:55 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D912D41E509
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 21:36:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40CCB42B290
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:02:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1623910EA82;
-	Fri, 17 Apr 2026 19:36:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CC8C10E5B8;
+	Mon, 20 Apr 2026 13:02:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="J8Tf0dQG";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bf3+Wn14";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
- [209.85.221.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 063C110EA82
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 19:36:00 +0000 (UTC)
-Received: by mail-wr1-f53.google.com with SMTP id
- ffacd0b85a97d-43fe608cb92so624898f8f.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 12:35:59 -0700 (PDT)
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com
+ [209.85.167.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC3D10E07E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 19:48:52 +0000 (UTC)
+Received: by mail-lf1-f44.google.com with SMTP id
+ 2adb3069b0e04-5a415fd6bceso1286162e87.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 12:48:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776454558; x=1777059358; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=se5JFXi9hkfYAm6vnz6IfnclG6zuIDKJskwiqxro0Y8=;
- b=J8Tf0dQGpNEOAATWwfh5C4gXzrsw6MNQ8jX44KLG0NcBVbvKZvxu3FtkXwIYS3RkeY
- 7JLOgsCrE6vYyzT5P7WYVgW1T0ARX/QbuQ1gbab/BV8iYk4xTQkoyetxwdn2rbwGiC0g
- 5+Mqms3HdzpCowlWHdS38/DjFFdZoLVtXtN7pcN5QwIGjbzkscN5T6fCeW0FDNFFhO0a
- 1l7TSkIIcOH7zviQNSEjkPrNBQjZNe8Gs3feuiswDrkz7F1XR2L/S8Q5e+Wom7aH+gKT
- 20priWwFANgcutBZcBPsdMhHXGFSWmghWWfpKVuF1AnRgrzZ0Xc+5XsRMHxPzxyBB+zj
- 66Jg==
+ d=gmail.com; s=20251104; t=1776455330; x=1777060130; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=4RdytHEJNq2b8qwksSfnD+lzh/+ULx6ZcQWcNHRMd1E=;
+ b=bf3+Wn14ZOhAVaoIqO3vuCzYaC5SciybXNKi6q3J6yHRJSSwG19WbB6n+wu66KzqQH
+ MobfZS4paGkegxnliVcHUVFdmAI9fqRVqRO0vUJGZQfcdHVaULP0/2Fm5O7szpGad86H
+ jKYSIBl8Zc4AimrI8q0K4UpPESBUtJD++0vjaOQfB5RENGDXvh2CZBa5GQevlQwRoG0z
+ fbZv9M5F4+OM9wIHFxW8jHi8yDrpmqHzExRVxYhaDfwlYQg3hPZVOnEoQW5kQEGyDvPk
+ ufcRvZ/9PG7ZWIb38SBoD8PVyRGcXxSr+65h+4NPL6rns+1JLnAkotBE2foStj6bq9fJ
+ CHdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776454558; x=1777059358;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=se5JFXi9hkfYAm6vnz6IfnclG6zuIDKJskwiqxro0Y8=;
- b=dPKiMAowHCMp65b+Khr8EMoeSOHHBc7+rGhemr/phcEs8kUAsKXGjAzVsBA7gB1mqr
- IqZ5wMzNxVvNCvOsugQDcB2/U6oWlfir74vy+Xx478WYQOdbI3upxsTMPYuwwR/p16Cq
- G352P/bBZZC2gUvGxsO+ora5Lo5nOMwrZd1T4BjxH5h31VPLsvog52fB5D0fyM9ih9zR
- jPd6Vuv26vTF0nCgePU0eShZMwa+msEvW5eoNpqWJCDb/g0X9ohZn5PQYkxxPfKOlGYp
- J5V6er+hjEsRM3bEWm4dhe7JY6nwTaR59cmP1jP+0YDpBs0MphxhbhzoV9Myo2iuuiNq
- yqaA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+ylDZTEw9c4pPYhuvzoECyxk2PQXYm7CsXLfTclUgVTqYIcr4NDDr5ezBRs5ZeaSy5OKxHNT6L@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyQuE2CN8GF69qkc39HzzowG3g/MFS7j+JtuQCJdC/R3qEbH2Lo
- /bY8yOz/iZzhldsitiL88n//cDyt1t6s5ca6ZgDYAwpwlbwMdlP9a6KD
-X-Gm-Gg: AeBDieuOFTiaO5s/mQMqkiIwX2e7iXDjdwvAqODFIwhfLy/AexERabeSYxBmkRBWmGN
- pwSjvQ4qGbjMU6eVA0U0O5m5r7aUSBbLQq/Gm7o3uiShmIloN6czw1G2j/7HDAZv+r693SwbmlZ
- 1zNzHOPJ4+oyPgEygmxinVnkBQlyjT7QgEihnbAVi8z7k8cshCG0eRptCCDCqzlKsDJl7sLYXoS
- Eqs0rGojW6/7KiTZmPciUrecSkzxkP99tC93D8JP6ZTjrrDSHPbex767s4KMcmmqj9Un8PUsN/z
- kW9Qj70rmCfyqNkgRWHyBJC+FpSSeuuirW3/3Y3Q+SonbTQQNE6QWDSKIKgZClsk3xcU+kZ9jig
- +w4M0Cr66FECJuLr/NtaYSRphPJWTa6envGgdeZSlpsTcFyHUk3shnp8o7YEBtggP2tLnJlts9h
- VkrnRvQ5xni0OPTjUq3yQ6FSrVlUAiLEY42VVt8Pxg9SlUJTE1HpsTw5FvPT+Ku1Y6Ou3+LFNk5
- 9zqDpBrjkc=
-X-Received: by 2002:a05:6000:1ac9:b0:43d:6787:9934 with SMTP id
- ffacd0b85a97d-43fe3db39b2mr6469228f8f.9.1776454558190; 
- Fri, 17 Apr 2026 12:35:58 -0700 (PDT)
-Received: from timur-hyperion.localnet (5E1B98A2.dsl.pool.telekom.hu.
- [94.27.152.162]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-43fe4e3a18csm7750448f8f.20.2026.04.17.12.35.57
+ d=1e100.net; s=20251104; t=1776455330; x=1777060130;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=4RdytHEJNq2b8qwksSfnD+lzh/+ULx6ZcQWcNHRMd1E=;
+ b=etil7iHTlDJmDNQ/FymvbdJAsqXtTNp+JB7zWjQK7FhJvnKxKCOip3b9tipibh1gF4
+ OxJXjaTEMmElZU9KXaPBpWbaTrHxH8uxCU36xGvu+h3KHjvzpjHGqrfoRpTogfFyyeXJ
+ /al4g+kTzbWWEQZJN4Gcnx/Vnigb6jhrTH3zfFwIpSwaC/auN7Uo+TS2eeyISJgbsA99
+ TGU116v44UkB0jr6oRYsjFIRB03T6UkFrJsFS5EUYZKnz9CRxrUfCXroY928T13dLK09
+ +IeULSHlms6ASUUbT75KqAx3dBU+NLoCOYLGJACRNFM5EoeofdrdIpaXOMmWYpZgAgnq
+ PU8w==
+X-Gm-Message-State: AOJu0YyAP2DRE2Le5aYQC+h2Wk+dTqy1HVudGr2cLi1ocAo1yWeYz/VB
+ ZmF8WrPusJz6lit6vwpt3np8CALVJJsurn32Tz4tq3fUhuyUIU9uEE10weTYVUZL
+X-Gm-Gg: AeBDietvRBuodDdX89rx4CCrhpOo/PrmVx012CSChw3xMKhmFyUZU+gx/qsnW8qwLIT
+ Ym9KIMabOEf+Li/evYBUFHKNlO8gHLUNxvNhRNdzxMjvKVNkVKH2TxM+4FD2ScR7inxHmx6a+UV
+ kr5atPwq/kM+6En5xwoq6fCMBGkLUh6hcGR7c2FndsCEkQnApxNEaKzfbH/wVVzRfhcOEz8ZBCX
+ NM3vwjwUd2yZU2AmyU5OV0TQiY9e656BwZMkdCF/VMMly1RHKPf+8fAP8D6cIaDO1x3dXlgQ9hI
+ bwGP6sXAkm74Ol3fwxoBlE3dE/dD988v6gI5SN5D+3Y3qXpQNoMaNe65fwGXRlVZKmfPi2LBvr9
+ XwFbJ57p1nqmjjWtAKNVhR3C/00K+8FjoFdY3NvH8qoeOaMS/+M1pH8Mnrziza9n0/WtK2k7tvA
+ 9ZBJCtYZq+IAjI/nd9fM1eJb8R4QqjKYmCBrWmCTSRItUPAEEnuGMty3BhlR0e40DvkvIYHiA/j
+ 0+h+fNxm0wQT3Pnu2M+chCYI9JmRBRQpKTHJ7HdDvS8ZjLhXlHVxlmFC+HvARszMcoRCrgSe8Yn
+ qgZzQbFP9QwOJWrOhcN/TT3Wr5F2cg==
+X-Received: by 2002:a05:6512:3b0d:b0:5a3:f0a7:2f72 with SMTP id
+ 2adb3069b0e04-5a416f4c333mr1152842e87.0.1776455329659; 
+ Fri, 17 Apr 2026 12:48:49 -0700 (PDT)
+Received: from lilia.home ([46.205.200.78]) by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5a4185ad0d0sm667857e87.5.2026.04.17.12.48.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 17 Apr 2026 12:35:57 -0700 (PDT)
-From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
-To: Alex Hung <alex.hung@amd.com>
-Cc: Roman Li <Roman.Li@amd.com>, amd-gfx list <amd-gfx@lists.freedesktop.org>, 
- "Deucher, Alexander" <alexander.deucher@amd.com>,
- Harry Wentland <Harry.Wentland@amd.com>, Leo Li <Sunpeng.Li@amd.com>,
- Aurabindo Pillai <Aurabindo.Pillai@amd.com>
-Subject: Re: [PATCH] drm/amd/display: Restore analog connector support
-Date: Fri, 17 Apr 2026 21:35:56 +0200
-Message-ID: <2356837.vFx2qVVIhK@timur-hyperion>
-In-Reply-To: <CAFF-SiWw6vJR3uKO3Zw7XrmfF2Vx35dJRVMVviCu2gzhuT6RKw@mail.gmail.com>
-References: <20260415224150.1807020-1-Roman.Li@amd.com>
- <b6e52939-5593-4874-a8d0-010594d6a637@amd.com>
- <CAFF-SiWw6vJR3uKO3Zw7XrmfF2Vx35dJRVMVviCu2gzhuT6RKw@mail.gmail.com>
+ Fri, 17 Apr 2026 12:48:49 -0700 (PDT)
+From: mjgajda@gmail.com
+To: amd-gfx@lists.freedesktop.org
+Cc: Alexander.Deucher@amd.com, Christian.Koenig@amd.com,
+ dri-devel@lists.freedesktop.org, "M. Gajda" <mjgajda@gmail.com>
+Subject: [PATCH] drm/amdgpu: allow unprivileged read of GC_THROTTLE_STATUS
+Date: Fri, 17 Apr 2026 21:48:35 +0200
+Message-ID: <20260417194835.792023-1-mjgajda@gmail.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 20 Apr 2026 13:02:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,233 +89,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [1.19 / 15.00];
+	DATE_IN_PAST(1.00)[65];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alex.hung@amd.com,m:Roman.Li@amd.com,m:alexander.deucher@amd.com,m:Harry.Wentland@amd.com,m:Sunpeng.Li@amd.com,m:Aurabindo.Pillai@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_ALL(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	TAGGED_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[amd.com,lists.freedesktop.org,gmail.com];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[mjgajda@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_FIVE(0.00)[5];
+	HAS_WP_URI(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
-X-Rspamd-Queue-Id: D912D41E509
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 40CCB42B290
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
+From: "M. Gajda" <mjgajda@gmail.com>
 
-Tested this on the following:
-HD 7870 XT - works
-R9 280X (Tahiti) - works
-R9 380X (Tonga) - works
-A10-7850K (Kaveri) - broken
+GC_THROTTLE_STATUS is a read-only hardware status register present on all
+RDNA GPU generations (GFX10/11/12).  It reports the state of the GFX
+thermal throttle finite state machine:
 
-It seems that some other chunks of code were removed which were necessary f=
-or=20
-external DP bridge encoders to work properly. Those will need to be added b=
-ack=20
-too, otherwise we regress Kaveri APUs.
+  FSM_STATE    [3:0]  non-zero = GPU currently being throttled
+  PATTERN_INDEX [9:4]  active throttle duty-cycle pattern
 
-Best regards,
-Timur
+The register is never written by the driver.  No side-effects occur on
+read.  Add it to the per-ASIC allowed_read_registers[] tables so that
+unprivileged userspace can query it via the AMDGPU_INFO_READ_MMR_REG ioctl
+(libdrm: amdgpu_read_mm_registers(3)).
 
+This enables monitoring tools such as radeontop to display GPU thermal
+throttle status without root privileges -- information of the same
+sensitivity class as GPU temperature, which is already exposed via the
+AMDGPU_INFO_SENSOR_GPU_TEMP sensor ioctl.
 
-On Thursday, April 16, 2026 7:38:39=E2=80=AFPM Central European Summer Time=
- Timur=20
-Krist=C3=B3f wrote:
-> Hi,
->=20
-> I'll test this on a few different old GPUs and get back to you.
->=20
-> Thanks,
-> Timur
->=20
-> Alex Hung <alex.hung@amd.com> ezt =C3=ADrta (id=C5=91pont: 2026. =C3=A1pr=
-=2E 16., Cs=C3=BC 17:46):
-> > Reviewed-by: Alex Hung <alex.hung@amd.com>
-> >=20
-> > On 4/15/26 16:41, Roman.Li@amd.com wrote:
-> > > From: Roman Li <Roman.Li@amd.com>
-> > >=20
-> > > [Why]
-> > > The analog connector support was accidentally removed,
-> > > causing a crash when connecting an analog monitor.
-> > >=20
-> > > [How]
-> > > This patch restores the functions and pointers required for proper
-> > > analog
-> > > and DP bridge encoder support on legacy GPUs.
-> > >=20
-> > > Fixes: 66715fc0ecfd ("drm/amd/display: Sync dcn42 with DC 3.2.373")
-> > > Cc: Timur Krist=C3=B3f <timur.kristof@gmail.com>
-> > > Signed-off-by: Roman Li <Roman.Li@amd.com>
-> > > ---
-> > >=20
-> > >   .../amd/display/dc/hwss/dce110/dce110_hwseq.c | 53 ++++++++++++++++=
-+++
-> > >   1 file changed, 53 insertions(+)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-> >=20
-> > b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-> >=20
-> > > index 5273ca09fe12..e76abc877f4a 100644
-> > > --- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-> > > +++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-> > > @@ -677,6 +677,48 @@ dce110_dac_encoder_control(struct pipe_ctx
-> >=20
-> > *pipe_ctx, bool enable)
-> >=20
-> > >       bios->funcs->encoder_control(bios, &encoder_control);
-> > >  =20
-> > >   }
-> > >=20
-> > > +static void
-> > > +dce110_external_encoder_control(enum bp_external_encoder_control_act=
-ion
-> >=20
-> > action,
-> >=20
-> > > +                             struct dc_link *link,
-> > > +                             struct dc_crtc_timing *timing)
-> > > +{
-> > > +     struct dc *dc =3D link->ctx->dc;
-> > > +     struct dc_bios *bios =3D link->ctx->dc_bios;
-> > > +     const struct dc_link_settings *link_settings =3D
-> >=20
-> > &link->cur_link_settings;
-> >=20
-> > > +     enum bp_result bp_result =3D BP_RESULT_OK;
-> > > +     struct bp_external_encoder_control ext_cntl =3D {
-> > > +             .action =3D action,
-> > > +             .connector_obj_id =3D link->link_enc->connector,
-> > > +             .encoder_id =3D link->ext_enc_id,
-> > > +             .lanes_number =3D link_settings->lane_count,
-> > > +             .link_rate =3D link_settings->link_rate,
-> > > +
-> > > +             /* Use signal type of the real link encoder, ie. DP */
-> > > +             .signal =3D link->connector_signal,
-> > > +
-> > > +             /* We don't know the timing yet when executing the SETUP
-> >=20
-> > action,
-> >=20
-> > > +              * so use a reasonably high default value. It seems that
-> >=20
-> > ENABLE
-> >=20
-> > > +              * can change the actual pixel clock but doesn't work w=
-ith
-> >=20
-> > higher
-> >=20
-> > > +              * pixel clocks than what SETUP was called with.
-> > > +              */
-> >=20
-> > > +             .pixel_clock =3D timing ? timing->pix_clk_100hz / 10 :
-> > 300000,
-> >=20
-> > > +             .color_depth =3D timing ? timing->display_color_depth :
-> > COLOR_DEPTH_888,
-> >=20
-> > > +     };
-> > > +     DC_LOGGER_INIT(dc->ctx);
-> > > +
-> > > +     bp_result =3D bios->funcs->external_encoder_control(bios,
-> > > &ext_cntl);
-> > > +
-> > > +     if (bp_result !=3D BP_RESULT_OK)
-> >=20
-> > > +             DC_LOG_ERROR("Failed to execute external encoder action:
-> > 0x%x\n", action);
-> >=20
-> > > +}
-> > > +
-> > > +static void
-> > > +dce110_prepare_ddc(struct dc_link *link)
-> > > +{
-> > > +     if (link->ext_enc_id.id)
-> > > +
-> > =20
-> >  dce110_external_encoder_control(EXTERNAL_ENCODER_CONTROL_DDC_SETUP, li=
-nk,
-> >=20
-> > NULL);
-> >=20
-> > > +}
-> > > +
-> > >=20
-> > >   static bool
-> > >   dce110_dac_load_detect(struct dc_link *link)
-> > >   {
-> > >=20
-> > > @@ -3376,6 +3418,15 @@ void dce110_enable_tmds_link_output(struct
-> >=20
-> > dc_link *link,
-> >=20
-> > >       link->phy_state.symclk_state =3D SYMCLK_ON_TX_ON;
-> > >  =20
-> > >   }
-> > >=20
-> > > +static void dce110_enable_analog_link_output(
-> > > +             struct dc_link *link,
-> > > +             uint32_t pix_clk_100hz)
-> > > +{
-> > > +     link->link_enc->funcs->enable_analog_output(
-> > > +                     link->link_enc,
-> > > +                     pix_clk_100hz);
-> > > +}
-> > > +
-> > >=20
-> > >   void dce110_enable_dp_link_output(
-> > >  =20
-> > >               struct dc_link *link,
-> > >               const struct link_resource *link_res,
-> > >=20
-> > > @@ -3513,8 +3564,10 @@ static const struct hw_sequencer_funcs
-> >=20
-> > dce110_funcs =3D {
-> >=20
-> > >       .enable_lvds_link_output =3D dce110_enable_lvds_link_output,
-> > >       .enable_tmds_link_output =3D dce110_enable_tmds_link_output,
-> > >       .enable_dp_link_output =3D dce110_enable_dp_link_output,
-> > >=20
-> > > +     .enable_analog_link_output =3D dce110_enable_analog_link_output,
-> > >=20
-> > >       .disable_link_output =3D dce110_disable_link_output,
-> > >       .dac_load_detect =3D dce110_dac_load_detect,
-> > >=20
-> > > +     .prepare_ddc =3D dce110_prepare_ddc,
-> > >=20
-> > >   };
-> > >  =20
-> > >   static const struct hwseq_private_funcs dce110_private_funcs =3D {
+Register offsets per generation:
+  GFX10 (RDNA 1/2): mmGC_THROTTLE_STATUS  0x2032  BASE_IDX 0
+  GFX11 (RDNA 3):  regGC_THROTTLE_STATUS  0x1b0a  BASE_IDX 1
+  GFX12 (RDNA 4):  regGC_THROTTLE_STATUS  0x1b1c  BASE_IDX 1
 
+Source: drivers/gpu/drm/amd/include/asic_reg/gc/
+  gc_10_3_0_{offset,sh_mask}.h, gc_11_0_0_{offset,sh_mask}.h,
+  gc_12_0_0_{offset,sh_mask}.h
 
+Public ISA documentation:
+  RDNA 1: https://developer.amd.com/wp-content/resources/RDNA_Shader_ISA.pdf
+  RDNA 2: https://www.amd.com/content/dam/amd/en/documents/radeon-tech-docs/instruction-set-architectures/rdna2-shader-instruction-set-architecture.pdf
+  RDNA 3: https://docs.amd.com/v/u/en-US/rdna3-shader-instruction-set-architecture
+  RDNA 4: https://docs.amd.com/v/u/en-US/rdna4-instruction-set-architecture
 
+Signed-off-by: M. Gajda <mjgajda@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/nv.c    | 6 ++++++
+ drivers/gpu/drm/amd/amdgpu/soc21.c | 6 ++++++
+ drivers/gpu/drm/amd/amdgpu/soc24.c | 6 ++++++
+ 3 files changed, 18 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
+index 7ce1a1b95..80594c793 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+@@ -352,6 +352,12 @@ static struct soc15_allowed_register_entry nv_allowed_read_registers[] = {
+ 	{ SOC15_REG_ENTRY(GC, 0, mmCP_CPC_STALLED_STAT1)},
+ 	{ SOC15_REG_ENTRY(GC, 0, mmCP_CPC_STATUS)},
+ 	{ SOC15_REG_ENTRY(GC, 0, mmGB_ADDR_CONFIG)},
++	/*
++	 * GC_THROTTLE_STATUS (offset 0x2032): read-only thermal throttle FSM.
++	 * FSM_STATE [3:0] != 0 indicates the GPU is currently being throttled.
++	 * Defined in gc_10_3_0_offset.h / gc_10_3_0_sh_mask.h
++	 */
++	{ SOC15_REG_ENTRY(GC, 0, mmGC_THROTTLE_STATUS)},
+ };
+ 
+ static uint32_t nv_read_indexed_register(struct amdgpu_device *adev, u32 se_num,
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc21.c b/drivers/gpu/drm/amd/amdgpu/soc21.c
+index fbd1d97f3..8c2472bd0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc21.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc21.c
+@@ -304,6 +304,12 @@ static struct soc15_allowed_register_entry soc21_allowed_read_registers[] = {
+ 	{ SOC15_REG_ENTRY(GC, 0, regCP_CPC_STALLED_STAT1)},
+ 	{ SOC15_REG_ENTRY(GC, 0, regCP_CPC_STATUS)},
+ 	{ SOC15_REG_ENTRY(GC, 0, regGB_ADDR_CONFIG)},
++	/*
++	 * GC_THROTTLE_STATUS (offset 0x1b0a): read-only thermal throttle FSM.
++	 * FSM_STATE [3:0] != 0 indicates the GPU is currently being throttled.
++	 * Defined in gc_11_0_0_offset.h / gc_11_0_0_sh_mask.h
++	 */
++	{ SOC15_REG_ENTRY(GC, 0, regGC_THROTTLE_STATUS)},
+ };
+ 
+ static uint32_t soc21_read_indexed_register(struct amdgpu_device *adev, u32 se_num,
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc24.c b/drivers/gpu/drm/amd/amdgpu/soc24.c
+index d1adf19a5..617ee0a4d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc24.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc24.c
+@@ -130,6 +130,12 @@ static struct soc15_allowed_register_entry soc24_allowed_read_registers[] = {
+ 	{ SOC15_REG_ENTRY(GC, 0, regCP_CPC_STALLED_STAT1)},
+ 	{ SOC15_REG_ENTRY(GC, 0, regCP_CPC_STATUS)},
+ 	{ SOC15_REG_ENTRY(GC, 0, regGB_ADDR_CONFIG)},
++	/*
++	 * GC_THROTTLE_STATUS (offset 0x1b1c): read-only thermal throttle FSM.
++	 * FSM_STATE [3:0] != 0 indicates the GPU is currently being throttled.
++	 * Defined in gc_12_0_0_offset.h / gc_12_0_0_sh_mask.h
++	 */
++	{ SOC15_REG_ENTRY(GC, 0, regGC_THROTTLE_STATUS)},
+ };
+ 
+ static uint32_t soc24_read_indexed_register(struct amdgpu_device *adev,
+-- 
+2.51.0
 
