@@ -2,89 +2,103 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gBLVOMtf4mlM5QAAu9opvQ
+	id sK0uN/lz4mnh6AAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 18:28:59 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 19:55:05 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F73C41D202
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 18:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A23041DB78
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 19:55:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C42710E097;
-	Fri, 17 Apr 2026 16:28:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 082ED10E2CD;
+	Fri, 17 Apr 2026 17:55:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oh9mCKFJ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Js6Sqpwl";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50A3F10E097;
- Fri, 17 Apr 2026 16:28:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776443332; x=1807979332;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=5nXwJ1p+e+YdXF09wEe4PHC4FbUvtavabcxZ4YAKq2c=;
- b=Oh9mCKFJKZ7XONGRw5+Zx0tVSU8vreV8gN2HMASMC0dFB1syljnGLi8L
- CAQ4i0im8TcBjwu7/rdt6a0LTlfx7ySpa8arXAtKJWLy6nn5ivJPh+GL1
- l9+XbdqLpIqyxoi6ouzIpR3z/klatqsaGUhq5S4YQZ8ceGY5PLoqR6Dp6
- DOJfMKcxW6WENjMU7yW9aKDltyRn92DvfjHlpTh+IGEzIlwANzrr0sfgf
- yubPZ57OG4nBYb+FANIkenTp7i8enOx4VfltHl86FmAHbrAXX2NWpp2vy
- WLqAnJTul/gCv0CWlS49PLHiHCtLB9miO1GID+4tBsqZfKwqHxU9epYZM A==;
-X-CSE-ConnectionGUID: cB/M9RMzRO+ILtzoe584sQ==
-X-CSE-MsgGUID: q0vk4I5XSw60aa4lqwIvAw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="102921428"
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="102921428"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 09:28:52 -0700
-X-CSE-ConnectionGUID: gLKT2Z88Q3esgqpRIUGBzA==
-X-CSE-MsgGUID: CAyb2lqRSrS24TmUoPjLEg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="236043344"
-Received: from zzombora-mobl1 (HELO localhost) ([10.245.245.176])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 09:28:46 -0700
-Date: Fri, 17 Apr 2026 19:28:43 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Michel =?iso-8859-1?Q?D=E4nzer?= <michel.daenzer@mailbox.org>
-Cc: Hamza Mahfooz <someguy@effective-light.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Hung <alex.hung@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Ivan Lipski <ivan.lipski@amd.com>,
- Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
- Dominik Kaszewski <dominik.kaszewski@amd.com>,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] drm: introduce KMS recovery mechanism
-Message-ID: <aeJfu0CQwMGEsidC@intel.com>
-References: <2e359cd9-0192-44d0-886f-7f93a8b0a4fa@amd.com>
- <aY99D-yXVydpMdwy@hal-station>
- <85319290-4027-4eb8-95d1-9009d23f2294@mailbox.org>
- <aZD0W7V_6--2yqNK@hal-station>
- <7f4a86ad-d642-444c-a576-17ff9caaa934@mailbox.org>
- <aZULq2bDnZpdXvIg@hal-station>
- <8588dcbc-621e-43db-9d69-32398f75d9e6@mailbox.org>
- <dab8d21b-1d28-48c6-87bf-f2060e2d2f1e@mailbox.org>
- <d7c7a96e-1686-4878-8b96-92c3427b2f6d@mailbox.org>
- <07072379-32c8-4912-8539-7fa590abf544@mailbox.org>
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010044.outbound.protection.outlook.com [52.101.85.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01F4210E2CD
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 17:54:58 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=v9W9is8xjXaba/MnctbcJYZM4y2kC1ayewQpEB1ei6AXzXIRqliv4G7fiT38+bSCOFmeXZI40g5O0vq2fkaRUBz+0TdncrsfsALp+z0IHUX37yztLwZ6NwR5hvNuY1R0DPyr8PKaQ1W9Hn1c86E7Z9pOXKIpM2V6kKwBiRa9sn5sSQo/gHXW/cYsP2hEDTJhjs65rwQ31Zt0RKzlp3MX70tuP4MPKsAUxqnC/qOeRD81Hj9LPYzTxb5kSXM2W8oLARqjcleBvFNZXzU0yW+f98dIJgpHTwXbgnjMRdr0Wawo1hDAqyXPgYgYstkE+bbn9Bp+EXIxQPfeiqFszvJHCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BLITEeWbSqXemnkz3Uqmbw3/QadvypJ7NratyuihySM=;
+ b=JjpQlt8E7UTLEz/NcFGvwL+Sltpp/tj7DoVhH7CyhKEyCtFyad9jorE+IuOCTFfqHwiFfxWancES3jQiZj7SqUFBQWHwpRkftEvqRtJhaekQK+63xYBJxVxPeip3xv1k8utnP/y2JHeQhAbV9kyR1KTnRAYoaioa721xiXpdXACrtHrTJXNN2ylNGEQ9LjXVSykTku8FALx9E0mFQNdcogstI+AfxlWA5PVksz7kRhPIQp498WRzC8Fe0h5JjPbPRhnuryVgKClBD2du07td+07UNLq9PdYfnMipSGgpESo9p/A8OJ/rbUC56gXHfms0sFSVkSLh/+yNedOut50zdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BLITEeWbSqXemnkz3Uqmbw3/QadvypJ7NratyuihySM=;
+ b=Js6SqpwlGBgbeqdTLcIdrFdx09gSYsuw0/MCrrQ6GEKZIFJwBnPPlb7przG2JZCi2eDadY5Eoc00q+lLMkHxmsFVfWkIwpKs4G11SZLqn1p0tVFeyZ+ut0lKBRXXuBQJVTb3YgVdyaBMDS/oJZDh7U6vz44mwUZJLCmmE+Ph2Iw=
+Received: from BN9PR03CA0564.namprd03.prod.outlook.com (2603:10b6:408:138::29)
+ by MN6PR12MB8472.namprd12.prod.outlook.com (2603:10b6:208:46c::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.25; Fri, 17 Apr
+ 2026 17:54:55 +0000
+Received: from BN1PEPF00004683.namprd03.prod.outlook.com
+ (2603:10b6:408:138:cafe::95) by BN9PR03CA0564.outlook.office365.com
+ (2603:10b6:408:138::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.52 via Frontend Transport; Fri,
+ 17 Apr 2026 17:54:55 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ BN1PEPF00004683.mail.protection.outlook.com (10.167.243.89) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.17 via Frontend Transport; Fri, 17 Apr 2026 17:54:54 +0000
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 17 Apr
+ 2026 12:54:54 -0500
+Received: from thonkpad (10.180.168.240) by satlexmb07.amd.com (10.181.42.216)
+ with Microsoft SMTP Server id 15.2.2562.17 via Frontend Transport;
+ Fri, 17 Apr 2026 12:54:53 -0500
+From: <sunpeng.li@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Harry.Wentland@amd.com>, <superm1@kernel.org>, <Ray.Wu@amd.com>, Leo Li
+ <sunpeng.li@amd.com>
+Subject: [PATCH] drm/amd/display: Undo accidental fix revert in amdgpu_dm_ism.c
+Date: Fri, 17 Apr 2026 13:54:30 -0400
+Message-ID: <20260417175430.47434-1-sunpeng.li@amd.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <07072379-32c8-4912-8539-7fa590abf544@mailbox.org>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN1PEPF00004683:EE_|MN6PR12MB8472:EE_
+X-MS-Office365-Filtering-Correlation-Id: 25fd54af-4b31-49f2-7d27-08de9caa6ecb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|82310400026|376014|36860700016|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: QO/y5Bd0JCc+dXd8qsaWHkfYiJMfQw0mi7/Er2cyI6hRknOJJV852kfyhEAypxPXEDhuQrAI/Nicwiphfagnzo4OYVNPsYHt+KWpq+QrAxRwWsCAgnEB/Y7ldECmHRPGjhBWcsqpNUWSR6QBdkkJrNeV1WIZaB1cQxhUo2mR0nGRRFvmaUhak43vMxg/CQfqLhFyRbHRj7r7vj20lYTrgAKp1Nl7dbAXW1U34IKG9J5In/sG9o4rElFmnP+HIJ9oL6vco4cLmr5RePVS0/eSwuL9qc/uA2xKRRDAcNTRtg1zVMnve9BwaDQpEZkktz3aHL/eLLJVpinaBEkXLIMyT3j7tRO2ZOI7wJoMXhrOMCztnYVEhmSlGjrJlZ9B47+NHBwLVdd3MiiBwbHn+cFTBGB/7y/d0fWzMg7kdfgH3iG5dA4F9jmuEkIVHJm7CdKdlZxjhQI/s5vtT5JMeBGqpYiQ/wn4ASmdr2g1wdULSd8UzYZzDJ1HnQaLHXedTR4zoJ9X0+t0k+0pyl6llc9tcIU6LztFu6O/CVOR3YgxjY6zvcjImSCsPJVFOxXHgSC7GcCMK5qSlfY8Jg1NpVh15w5/E0FR505vtUS22ZKKti3458XgsglecHleX/8M6FCKhQcX9PFLly0ewXTL38Gq3sywA/bT0xMhJ7MBENXpPHmQFhQFvZrt+Nt7RLDQnr9iwKDb3yzPVRegtCh5wQEqoXeG3ISU10cw8Val9osUkJ5mOX9Aonp/I5jDNVshnp22ko8PHKQVxic+7fIb/+aq2g==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: y8z9uVIIU2e2/osai5wBX9A4HNHTrfPNM685FN2WhyO7F/G/0VfMZ7EkCs/ws5s0gjDoC/4ormTUrRN61Ey7Uq4zqKiWwxfJxercC7JTRCDDAOQdtxtUNSKJykoEbs77KjqW6Unlpa3wreGW6ZiFJA60yk9n7XsKRbwd3UmzbZHXmJFBFh9hI2tEOayJb8tpdNN3sEYrfrJZ8gkGHZnjXbd10vkvN7CiK23Qth1enfXWe7OAMgNH7XQE+hy0WLHHX9NlHpOHKhBxAhT6TxhiT3fySrT3AcxkZlXy1h8CnyCcJa8BxmHWYVItLC1VuRQn21HQmK2RNpGI+HmfIFQh9ufYREhCS0O+q0RsKzYx+hHG9zzj5mxJU2sEJCi43jiUhnGaWicdFHeALXk7IZJuYPS3T4m33vjmy+mhZ65lJivL6sJ6D4fX6qyJbaMjbORN
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2026 17:54:54.9960 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25fd54af-4b31-49f2-7d27-08de9caa6ecb
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF00004683.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR12MB8472
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,82 +112,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.96 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_MIXED_CHARSET(0.77)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_CC(0.00)[effective-light.com,amd.com,lists.freedesktop.org,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,vger.kernel.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid];
+	FROM_NEQ_ENVFROM(0.00)[sunpeng.li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 6F73C41D202
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 7A23041DB78
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 17, 2026 at 06:08:05PM +0200, Michel Dänzer wrote:
-> On 2/20/26 10:09, Michel Dänzer wrote:
-> > On 2/20/26 09:42, Michel Dänzer wrote:
-> >> On 2/18/26 10:22, Michel Dänzer wrote:
-> >>> On 2/18/26 01:45, Hamza Mahfooz wrote:
-> >>>> On Mon, Feb 16, 2026 at 10:28:13AM +0100, Michel Dänzer wrote:
-> >>>>> On 2/14/26 23:16, Hamza Mahfooz wrote:
-> >>>>>> On Sat, Feb 14, 2026 at 03:02:49PM +0100, Michel Dänzer wrote:
-> >>>>>>
-> >>>>>>> In principle it's possible to do (the equivalent of) a modeset with the current state for all CRTCs, no need to do it separately per CRTC.
-> >>>>>>
-> >>>>>> AFAIK that is what the uevent is already doing (unless I'm mistaken).
-> >>>>>
-> >>>>> This is about just doing a full modeset, which isn't something user space can do in response to a wedged event.
-> >>>>
-> >>>> I was referring to what compositors are doing in response to
-> >>>> `drm_kms_helper_hotplug_event()`. Perhaps, the enum constants should be
-> >>>> renamed, since the forced modeset is actually sent when the current
-> >>>> reset phase is DRM_KMS_RESET_NONE (the phase is updated before sending
-> >>>> out the event though).
-> >>>
-> >>> Ah, you're talking about the drm_kms_helper_hotplug_event call in drm_atomic_helper_wait_for_flip_done (I thought "uevent" referred to drm_dev_wedged_event in patch 2).
-> >>>
-> >>> I don't know about other compositors, but I don't think mutter will do a modeset in response to a hotplug event if no KMS state changed (because some monitors can generate spurious hotplug events).
-> >>
-> >> [...]
-> > 
-> > [...], a reason why the kernel can't just do a modeset itself occurred to me: A modeset might affect other CRTCs than the ones affected by the timed-out commit, which could interact badly with other pending commits affecting those other CRTCs.
-> 
-> In a different thread, Ville (added to Cc) said this shouldn't be an issue.
-> 
-> In which case this would seem like the simplest solution.
+From: Leo Li <sunpeng.li@amd.com>
 
-Yeah, so extra blocking commits will just make everything (including
-subsequent non-blocking commits) block on the modeset mutexes before
-the -EBUSY check even happens.
+[Why]
 
-On a somewhat relatd note, some time ago I proposed making blocking
-commits also do the commit_tail part locklessly. But realizing that
-something might depend on the current not-actually-nonblocking commit
-semantics I was careful to preserve that even while dropping the locks:
-https://lore.kernel.org/dri-devel/20220916163331.6849-1-ville.syrjala@linux.intel.com/
+Pausing DPM power profiles during static screen caused a bunch of
+audio/performance/clock issues that were addressed in this fix:
+1412482b7143 ("Revert "drm/amd/display: pause the workload setting in dm"")
 
+This logic in function amdgpu_dm_crtc_vblank_control_worker() was moved
+to amdgpu_dm_ism.c, but the fix was lost in the process.
+
+[How]
+
+Reapply the fix to amdgpu_dm_ism.c
+
+Fixes: 0b572a6bf04a ("drm/amd/display: Add Idle state manager(ISM)")
+Signed-off-by: Leo Li <sunpeng.li@amd.com>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c | 10 ----------
+ 1 file changed, 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+index d2f47c69921d4..d03ea3bafd469 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+@@ -270,7 +270,6 @@ static void dm_ism_commit_idle_optimization_state(struct amdgpu_dm_ism *ism,
+ 	struct amdgpu_crtc *acrtc = ism_to_amdgpu_crtc(ism);
+ 	struct amdgpu_device *adev = drm_to_adev(acrtc->base.dev);
+ 	struct amdgpu_display_manager *dm = &adev->dm;
+-	int r;
+ 
+ 	trace_amdgpu_dm_ism_commit(dm->active_vblank_irq_count,
+ 				   vblank_enabled,
+@@ -315,16 +314,7 @@ static void dm_ism_commit_idle_optimization_state(struct amdgpu_dm_ism *ism,
+ 	 */
+ 	if (!vblank_enabled && dm->active_vblank_irq_count == 0) {
+ 		dc_post_update_surfaces_to_stream(dm->dc);
+-
+-		r = amdgpu_dpm_pause_power_profile(adev, true);
+-		if (r)
+-			dev_warn(adev->dev, "failed to set default power profile mode\n");
+-
+ 		dc_allow_idle_optimizations(dm->dc, true);
+-
+-		r = amdgpu_dpm_pause_power_profile(adev, false);
+-		if (r)
+-			dev_warn(adev->dev, "failed to restore the power profile mode\n");
+ 	}
+ }
+ 
 -- 
-Ville Syrjälä
-Intel
+2.53.0
+
