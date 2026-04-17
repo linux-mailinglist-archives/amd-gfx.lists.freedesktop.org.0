@@ -2,138 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mLVHEB7Y4WkuywAAu9opvQ
+	id cBGJE3Hc4WmtzAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 08:50:06 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 09:08:33 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A1544178C9
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 08:50:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B16AD417B74
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Apr 2026 09:08:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E84BF10E95B;
-	Fri, 17 Apr 2026 06:50:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 403FA10E97E;
+	Fri, 17 Apr 2026 07:08:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="T7/Ur5kb";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="sL0nU2av";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010064.outbound.protection.outlook.com [52.101.46.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC43310E95A;
- Fri, 17 Apr 2026 06:50:02 +0000 (UTC)
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012057.outbound.protection.outlook.com [52.101.48.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E777510E97E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 07:08:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qK084BkDi4g3Hf3FKrWG8E5YwbTAGukuhNBbpER9m1zRvScM4/Zt7hLc/DK1/vG9d6vyUYTm+V+vh+az5YmA9ceJ01XlaHqzpnHBZhCIvXcgEsSeKOiYJWlCmIsfeEqjtis3k8dGK+bT8K5C44IOTWNZpZQsXaRcat3T6tXzkIAp7tU6hDWnKqt6cCgYwmRXVZ2UzF8O9APAZw01aOmM5pPaM2pYnY8w+lWhuOhr3xmxa9xE9xYcyvq13D1+xBcCoBNR/xDI5xUvzXoyRtrq73Doh7x+Xp0Ksv+LqU4yFuvuHRpQeXs3SIEWmhj0NzAUNk50Vv8Tzf8DII6776rrIw==
+ b=CyaNfdZ8v6itV4YWHgCAnoAPCLgwzeqmUCIz3T6TiqC7Op1FYd7BXbevBuNj7Ak2E0ktuZaKKkwjla7QobldciQsbbpFKQEtuZnipfpRlyxRTq2N8yOHV0iEpJqtVbA80PsOv299eni2DWEuDf8TZVN1zs+q1pw7Ai63n33VMXecZdN4EYGIs2HSe08dPleHv091hcd43/WmWffyTUnrfdd9nTsUvokTTGmp0GxNzspmTIIaDozLOY7JOhT7eD2ibK5FS7Ha/VUstzIbtdlI0kFhQ2KV/7X/X5sDj8vLDf5fUUU0uxC19gycO9nJBgh8y2LCLv5SP+0HSLI61wqcig==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qUYBkIgxtAxOVqVEGEyCm7yxQIaj3q1F5K7IZH8lXpo=;
- b=DzrFAqpk+rGhsrS+qCQHgxgaYhqaI+2WxqTSW7WlTFuAW4Jsi4daIMO6TZpi2mAWjdFjWOg7J7oL4ZDV67tR5t1UO5z5UOiyu+l74NAwlMqQprL9WTdhaV4+tFBErTV997BjqMTOH+SnmHTCP3cdTAMNg4zwQCg2jhcMIRQR3IAOna9fzqKcflmC2k9qcMD2mt+DJTk7Pq2HqMaxptsQ0Hco+bt5xFPlGtyRVTacNtsA4wxnk7LQZkbxJ+54WMvWJWPjE05qnXSY0jChXPDzDWDjPQhgW07wn9IXonnqvURLNaMejYdtrgP84Ikicu6OM583XICDy6EdZBAqLq4t2A==
+ bh=Lo5E2jr5WTQEyeeLRF52XQ+i2Pm/XA52uLvwJIXSl8Y=;
+ b=J+277CLExzEjQQFGTa2QSPPOLAarVrK+OiDw3FJ4BujrMWaDkb58stckHiOYzYVu+tLFnM4igTza/nVUb1rylJf5mRuuFbo0qe3Qh0609Y+T4sp8u6o9Grxzof/RxPV2O05iLNUmkJp2srQAUCfpKHRHb34+moMJW661ZNpg8oyDbvdh+HJRylLfAzqoFCYHftym8kKsh7zlELlloMFWqkC/cvTBoCL0ZvjMUVOMmgF7c7ePcilrfr0U2k763W00AwjQNY8t+i70sDuqAPpNwBVVvs5undV2RpsKBrJXP5SK3kZvYkJOjK82QGRCbuHHGmNB5eJGVW3RmP/tR/6rAg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qUYBkIgxtAxOVqVEGEyCm7yxQIaj3q1F5K7IZH8lXpo=;
- b=T7/Ur5kbm1qccLRF6KFXTO3+ef9PHKnFaPuPEx8GjYLF9v/108M8YPuvgA4spIjwWsPDcUzr7HuLvbjCDEr3GIgiUw1pomJzuUzDmnF6Lv/jBqcfPa6PlUqF5URlQ4itzpKQQrC9VTDFLHFXNatAxYyUxNANQkVSEFKTtCEkaTY=
-Received: from IA1PR12MB6307.namprd12.prod.outlook.com (2603:10b6:208:3e5::22)
- by DS7PR12MB5765.namprd12.prod.outlook.com (2603:10b6:8:74::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Fri, 17 Apr
- 2026 06:49:59 +0000
-Received: from IA1PR12MB6307.namprd12.prod.outlook.com
- ([fe80::4739:b181:8a2b:89b2]) by IA1PR12MB6307.namprd12.prod.outlook.com
- ([fe80::4739:b181:8a2b:89b2%3]) with mapi id 15.20.9818.023; Fri, 17 Apr 2026
- 06:49:58 +0000
-From: "Ostrowski, Rafal" <Rafal.Ostrowski@amd.com>
-To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>, "Koenig, Christian" <Christian.Koenig@amd.com>,
- "Wentland, Harry" <Harry.Wentland@amd.com>, "Li, Sun peng (Leo)"
- <Sunpeng.Li@amd.com>, "Zheng, Austin" <Austin.Zheng@amd.com>, "Lei, Jun"
- <Jun.Lei@amd.com>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>
-CC: Rodrigo Siqueira <siqueira@igalia.com>, "Hung, Alex" <Alex.Hung@amd.com>, 
- "Varone, Dillon" <Dillon.Varone@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] drm/amd/display: Add FPU guards around dcn31/315/316
- update_bw_bounding_box
-Thread-Topic: [PATCH] drm/amd/display: Add FPU guards around dcn31/315/316
- update_bw_bounding_box
-Thread-Index: AQHczf9IffLgUYQMxUOAoFws0FPyp7Xiz3cf
-Date: Fri, 17 Apr 2026 06:49:58 +0000
-Message-ID: <IA1PR12MB63074B99C20B81C7D5DFD7C5F8202@IA1PR12MB6307.namprd12.prod.outlook.com>
-References: <20260417001503.26147-1-mikhail.v.gavrilov@gmail.com>
-In-Reply-To: <20260417001503.26147-1-mikhail.v.gavrilov@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2026-04-17T06:49:58.877Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=1;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard; 
-authentication-results: dkim=none (message not signed)
+ bh=Lo5E2jr5WTQEyeeLRF52XQ+i2Pm/XA52uLvwJIXSl8Y=;
+ b=sL0nU2avJd5/1SmYk6Lp16rrI0yNLg5GzOFKXqAmUWUqTLeg8qEs0vAFNoAA82imo5ohggnBBXGhanvF/GnDBZx1yoMry1ylBIH1yXWGOY7SEL+ISlqQQCcb+UbcnFw2cxzZPZ97MFCjL3fDUCrKS3KH5UB8JOV1m3AFcRzRIJ0=
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR12MB6307:EE_|DS7PR12MB5765:EE_
-x-ms-office365-filtering-correlation-id: 6171ec7d-95b6-40f8-1e6a-08de9c4d8ad2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|38070700021|921020|22082099003|18002099003|56012099003;
-x-microsoft-antispam-message-info: mTMisTdEp57JQMg/8lsGVjh715UiyVr6666fzk6X2mU7LXv0qJqGXLf3iSLnE2iTsKbfLZ0kPu7qMkCTkzGl7FpvUIhqhQD4tjuAXtaB3qE67HBbKYSlRijb9KxvKkWyRN81mVhW+v93PnnPtb+qcH8kN1a7siJaCR80eaUZ9FUXs1jcORg3gVLD0aNsn2e5jYuDPXl8hoYsCrZZb1zs3663orHqt8OToZXdtrKoWWRo3hZGNKmgB2I3NajPa7yhBB3NZCkUMoorOhxumf5otx1KaXEa5Gb9D8BiiPZRu4OTN1YgzGFAjaOWSFnUnZmZ9RqaBXU+k1Z+UdjHIYkQGue2qLJ5ayTvPum1mSyIVTe7QdCMgj/+HV9zxQ9Wiy0JYf6gWF6Ao0tuzVuWTinE5EMbKp+d0IiG0LnpE3Ui4vNUux/SiCkAE32DWexNriYfIfq3PxYPMHfUvVuRqVZg8eGtVPqgsQbBd1lXElyKVV8CsMm5S3ccJ43ZTkSmFOt1f9INKtgXLEhBKnvOu8JPzlv3KozK16NLhw6bhcnYwh38/TptDygG5emxFnmDyrMPjYh1+6GNulADLFft8lJBOsnVdDkRUrl04TrFad+/g5yYCcPBQZUFmGU7C0P+ZatXo+4/swyQRAaMy4jDVh5UyuE+OWGjYs1eEwIydACElo19BWEfShd4o/GcCgdJ+8cFmJ5fROoKjVgGBj656kQFVgCE3UxMe6qV7JIbZ+fikrcAl8/CEjB/FXF9Ev6KGcPb
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR12MB6307.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700021)(921020)(22082099003)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?5ZRPfaCbWIAPSB2rCBOg95o9rTegHnZC5nyizRqIvZSJR5DMD/LIqqc61b?=
- =?iso-8859-1?Q?HedmGgZwiSFyQar8Y4+FVKTcJ7WHSJ+HuMo4JosPWZW+H14Isa0UU+Jo9O?=
- =?iso-8859-1?Q?z4IzxlMyQ5f8ZroV6dS78X9AvyHsZ62De8CGftLuWpg19Y1qk31bpv8EPf?=
- =?iso-8859-1?Q?P8X5HR/BoS9b0dG/UY6sXrjn4bRmBzJAc0srsvtkq0pXEX+atELFeNxRn6?=
- =?iso-8859-1?Q?TUc/1f99iKcHK0HC8HjXYHyamZoWglhaWlglCHZ44wEvXAWCR5fifnZvi4?=
- =?iso-8859-1?Q?eZ2zef2DiAfmKWATqcj4+zbkoGt3zjhRGKQUBIygYPvIY65W+e1tEjZH/Q?=
- =?iso-8859-1?Q?hcKdTY3LBt0SG1XkXXzjcqfHXVxITi1j1O6T1hi6j+g/nN4zqHZ3juI7uv?=
- =?iso-8859-1?Q?xq1gduVEr+qo6GKUnYfk4Etl1F7ew1chDPFa2k/EY8itnvLBg3TZFw/u54?=
- =?iso-8859-1?Q?c982sjNp9jFDmQllsW8YbWI3slm3EoFShxVXidFWfBmmtR/kge+qWELUW8?=
- =?iso-8859-1?Q?a+7b9izIrEEDwiI/rfzhoFPz8BxlLBqjmFHstzI/iodT5f5Q8CDuw2Vc8r?=
- =?iso-8859-1?Q?azsU02rzlicOU8TgypYVqf3CCL40bg6ogumFS1j0vOu/LA1tJoZTBjqB7z?=
- =?iso-8859-1?Q?q4HmuQ/9toyFsErl0lGXXRmDV9iPfJKosYxBxPoelINCGBT+l1JcQmU9fz?=
- =?iso-8859-1?Q?0e5TotS0/DuKWsaSSUicBFpCGMT3xz46eOujV7iUJYyFFF2/EWmtoDuf5W?=
- =?iso-8859-1?Q?J1RJhEdJt6ji1rDUgnjMB0jF22+REY/27snvxO2ufgR17rBWoPiBazTHWR?=
- =?iso-8859-1?Q?gu8Zud608DV03ZTr33jPqQUOx3GQ/+KpBx8li+NxYmii8VMcK/9+DY95FJ?=
- =?iso-8859-1?Q?6a6ldO3TBEbwsey76UekQKOjjjzz0zpx1AIhDBvnSAMEpiSet57OTMCMCb?=
- =?iso-8859-1?Q?qSxwInx8h/3+giZGBNY3baGvkjVff728ek1GE2cBJeEGYddY6rJPZivEx/?=
- =?iso-8859-1?Q?nLpjvTGmK23YAbpH4UWSV0mpmYNuvAL0LPnz8x2F7KrWbRlxyBa9aiavMn?=
- =?iso-8859-1?Q?tLuPoUY/IIZ2Oos4H9y8PjiPo5lxA6iGL4CGtw5NxQ5o4EhyKW7XhKHbGr?=
- =?iso-8859-1?Q?nNzoh6AoK5j1G6vG00nFXiC2j6upTZ79uhqRd1EHHxajRAugNeYprXF6LO?=
- =?iso-8859-1?Q?/SxMlzJPlfEAUV2EU7Jry7zKDpYat5VkUIcoi+9guE7MR7GPZK1my+UWsu?=
- =?iso-8859-1?Q?2M2G7LQaa2jA9S9JagJc1ubMXBKFB6ckK14Z3y+EpcHNzefQrdzQHvnP35?=
- =?iso-8859-1?Q?BVQYFt26bgvIIvKNi9o+5KylkfNh8bsaU/4uBdzNd3nkoqrIfZV+RQMvtV?=
- =?iso-8859-1?Q?w2PV8OHLXspp0BUlvFJd7z8N6A9Y7QerMVQlV7sIR67nLxyIx1/80ETFG9?=
- =?iso-8859-1?Q?yDCPOxVJDIJkE+SAUmtW5VzAxgZZ4SuVkpvzv/e7hVcV9JTjVkC4bp1nkF?=
- =?iso-8859-1?Q?Qckd3xu0w3zrELkQ2UyfdqqWaQqiqNrfjC1yAaR4dDdWCT31tM1qGUtmSs?=
- =?iso-8859-1?Q?n/XoSYIre1v/+5lEC5tQ4mYGODVZHb+Wb+zexT01Pk0NU0gQdn+XsirKbj?=
- =?iso-8859-1?Q?pVDyUF2Y3eAmsg2k4ZT0LAqTN91hJ5CqmgYj7YSa32lOZkUu47UUTf9ChB?=
- =?iso-8859-1?Q?uv1sTEU5pjBgxiDLxnYrb6mcyJmBLGhXTTNdI2dxbXmLCmB74IWjQxblSe?=
- =?iso-8859-1?Q?bg+ursyWJbIJYFGxdtNj3IxsJej95pqjiNsSAJfQiRj5Dr?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by DS2PR12MB9568.namprd12.prod.outlook.com (2603:10b6:8:27c::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.19; Fri, 17 Apr
+ 2026 07:08:25 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9818.017; Fri, 17 Apr 2026
+ 07:08:25 +0000
+Message-ID: <f03f1e3b-8356-4438-84e8-29d968550959@amd.com>
+Date: Fri, 17 Apr 2026 09:08:21 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/7] drm/amdgpu/vce: Align VCPU BO to a power of two
+ address
+To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com
+References: <20260416202643.25350-1-timur.kristof@gmail.com>
+ <20260416202643.25350-3-timur.kristof@gmail.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260416202643.25350-3-timur.kristof@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YT4PR01CA0394.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:108::23) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DS2PR12MB9568:EE_
+X-MS-Office365-Filtering-Correlation-Id: 48e92f39-aa5a-40f2-d2de-08de9c501e58
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|18002099003|22082099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: aB5v8PGaSsvICbh4Jpuk7LRW1wJKrLFSUCXHAPQp6L3u63HFfZQBdUZiwOJ5ddMuXDWfG8UR3saF6jJIleeEHV5gq/Y6STFbJykEH1U6KKQi4DaJ4K7Txd+V4uNY+GrbNTR0kPhrE0F4JskUCm+HHuwAyAO3lTnaEW8jUpI+ry+k7olI3noQZy8SY64g7nRhBOhEtStmwXASGaljgW8XP3/NYjF0UdPWhSD8kZxeGMlXXWvyWlQxnhyG5AHh7voPpFUwDazbuekTJ6HXQT0wocBrGNVVQPv+TN0fokINVJQTO7/TS8R8IRl6qbW69Hmj3xNM71OuvNEMXr7ZL4HmyTZ3ug7Ee0lyd0ME0Aml3ozNYD7NJ1qphoicmGPYgflQ++uTSS1rjzoORsx7mHMAzo6wNpqaWhoCgnZC6rYCniOueyLOapIK4QRugQqpsErC7VtGymOYWdRdHt/a5uX7TdcfrO1H46jJEQ259r7phU9fZBLuklQFqSsUIT8Z+Rmhgd3bETMlS06IDQ5yimsmTvao0gnIcBLa3+L8JJhFKUKg5T1/rXvDj12SGsvJDME1xMF+swhvyZPuuGHQVSEjupO8Gr3LAwIyacRN+rmBODnfka/hR5EBuEltHcoTt+QQi3vv3ivEfAM4TsjJNzW1In93mlSGVenA2nZ1FnnNYvb8yiE57cXG6cJLy72maweqP7WUWWByQvrrpXx4vdDLj0gHhh/VWa5NeaKf7f+HGis=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RnA0YXBuK3BRaEIvR2oyQUhxbUdnb2ViZ0RLc08xTVZFVEZKbWxKRENKMXF4?=
+ =?utf-8?B?WXN3QWFyWVNyazZ2STlTT2UwN1JuUENwSEh0NGxVRWlxUU0vV0VuY2JJWDN1?=
+ =?utf-8?B?emVBdklBemx2eEU2NDJXN3dIeFk0UWo4dzhaa2phNUk4Y2ozcUg1T0NWd3ps?=
+ =?utf-8?B?NGo3Zi9lWkNmWkxHRi9kNmFEWUlMZy92Zk5ETFZZWDBXQUFvSHNLRFJockRi?=
+ =?utf-8?B?VTBIUVl3ZnRienRNc3BnemozS1UrM3BwS1FVQ3hTY2dSakdMZmFvTGROMmwv?=
+ =?utf-8?B?OGxZNGJyWEF3eUZnY3NyaithMnNLVTliWkNuQWFNVVB6TjNJUUJKV0FQZ1Fs?=
+ =?utf-8?B?d1B3akRHY1FuOGJsdHhQSDZJUVhQV2lMS1VEQ2lSbmhNMUJFN1ZucnM5QTQw?=
+ =?utf-8?B?YVZiVTYvVTlXSk9Ja0VpaGU3OWtvekwwTlZqWWM2bGRVVy9lWk5TbVpWelBj?=
+ =?utf-8?B?N3Iwc0lONDNCZ2FLVU5YY1VDRjBIVVdjcFNZMHVzUVZTQ2NYWmg1OUhoZ2or?=
+ =?utf-8?B?ZmxkVFlBZ3lNRFlKaHZvQU5EczVkb25YVXdFb3ZaNU5KQnBLZHdIRjRYL3Z6?=
+ =?utf-8?B?RDlxVDl1UzRzMEpIMjdVV2wxNUdFZE01SVVIbWZRdXBKQnRvcnZuRTdsNjk1?=
+ =?utf-8?B?em1uNVpVVmlPZGJhcjVwL2RqZnlmRWRSdjlIc09ZTDllalpCbzFzNksvRFNS?=
+ =?utf-8?B?YXZqM2VqMzI4T0gxUTJDdU5aYkVJYklQWGNpZEZFZDJjclNMVTdHR2VLRUFm?=
+ =?utf-8?B?SHhXWkxNNVVQY090eFByaWliYzJ6U2t6R2hDMGVEUllxSmlMSWV3QVdmcncy?=
+ =?utf-8?B?UUdUeFkvd3NUOFQ1L29JYnp5UXlmZGFFTkNBM1pKdnNWY2ZRUm1YN1RGVFlT?=
+ =?utf-8?B?QzNUSnUzV2YwZnl6cDdRbmw4ZFh4VUxPYmx0ZGZ0WEdoWmpPWERnWDVSeGp1?=
+ =?utf-8?B?ZlcxTk9oekJ4WHMwVS9ZTHliLzVncUtjbmgwR3k1V2ZaTmRNaXd5c2hYK29m?=
+ =?utf-8?B?azhMVmc5MVFqcU5IaC8wKzJ5TSsvanZMRmdFTE9ib1FyZnNiWkxRM0IwSkNZ?=
+ =?utf-8?B?L1B1Njg0bW1mWDJ5cTlmSTROa1hGcEp6UFF0SFN1TkRIZ0VTei93Nk5HUzl0?=
+ =?utf-8?B?OG0wMm5qdHdGM1E3YTFpWVpuaE14eTlwdzZRN2RqVnE1clNjV0pRZDh1bjdS?=
+ =?utf-8?B?WnlJMnNpNHFmMGEwUUc2bmExanM1NFNHWURJSG5ucHBxb3R3M255UU9aL0ly?=
+ =?utf-8?B?aVJvSHM2Y0syUXI2cHdEdm9BQ1M0VTFYNldjUXNyNDM3RDZKQmpvaE1YSmlG?=
+ =?utf-8?B?SnFobUcxY1dEOGFFejd2UkgvWVpIbXBhRlhQeDhBeUdrQlh6NzRtc2o3M2lm?=
+ =?utf-8?B?alBHblpsWm81R1lKSXdqMGZnREdEbkhOUjRaR3U4c2VWcE05K1JTL0EyZmEr?=
+ =?utf-8?B?bmRJUVdLazEweGtzWmgxTWpPdFFuRTcvekdqaXhOSituU0ViMVo2d0NDbUt6?=
+ =?utf-8?B?dkhLY3NpMVVYdHdjWllxWGxrOU0reTR3SmRvZVo4Ym1iNHB6UThFaUdSYzB2?=
+ =?utf-8?B?T2dpYVBuWGNTa1lUK01ud1d6KytOdWRGSzlpWVZmSTRRbkJLeDk5amVndXFW?=
+ =?utf-8?B?OVBWbTMrRlltQVZIQlM2bkhxZWd5VlBiL2NNY1dwZ2FscEhwRW9TdDIydDdy?=
+ =?utf-8?B?Zzd6MFpoWi9zYlV2cFQyQmhLYU4xdXpFR2ZWc3EvZkhhK0l1N0hreTVDOUxM?=
+ =?utf-8?B?SUZQN01wZEVqYXJzamloc0IvMW5lazcvemYxUnorVUo1TkVFb3hiOHNsTWFi?=
+ =?utf-8?B?QzlLa0tkWmpYbDVkeEdhYUcvZ3FqSDhKNnVrZ0o1eFpJSmdrQVdTelArVzJ0?=
+ =?utf-8?B?clozSXBVMWc1U1RXUmtuZm9wZDlhMnI1WFJXZ05QcDdPMnkxQmIvR2xlT1lH?=
+ =?utf-8?B?Um5VVkFBc3dSWURKTjZjUk9YRHphalpEZUppMmI4bzVxc01uOU5iTDRQYjJk?=
+ =?utf-8?B?S2J3amdFNzR1Tis0T1RoSVVQbTdMN2R3eHdoeDY4YWM4aDk4ZG8wVXhlK0N3?=
+ =?utf-8?B?N1pXblJjWkxnMTAwNm8wTUdZT3FsaDBGRjB1VFJVMnlISEZuUnBrdHo0OHZj?=
+ =?utf-8?B?UnFnbi9Pd3hZZ1gwSUxLWWU1SlgzYXJPREU5enVlSzkrZmVhNmtCSGNwbDBa?=
+ =?utf-8?B?Zkw3WitCWVl3M2t5ald2aElmcTM3K1FKUWU2M1pkTjFSSEUwWE9hQVJUUlo5?=
+ =?utf-8?B?NldQbGNBdysyWVU2d01Gc0kzUTc4QmpKUWR1UzdxMFozRkpOcWwwdW4xUmFk?=
+ =?utf-8?B?WTRxUjdCejc1VDJ1Z1hHM1BIZDVQdEw3eWxSRWlRU3VkeUQrSFJ4QT09?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 48e92f39-aa5a-40f2-d2de-08de9c501e58
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB6307.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6171ec7d-95b6-40f8-1e6a-08de9c4d8ad2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Apr 2026 06:49:58.8152 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: NbaiH0rrIQ3nUyJb+L7Eb8Huah8jN1tV8pv01oqbqKBG9tvQq8CqqgRZqgLUr67Am6nAHzqRISNtrAXxoDRlWg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5765
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Apr 2026 07:08:25.5078 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rSw1Tnoo1mO43YULoT9HJ2d5DvOb3oH3VcvI6MqqvWriQG07DGF9Qqy+yJ6ACLGw
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS2PR12MB9568
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,270 +139,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com,ffwll.ch];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[Rafal.Ostrowski@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com];
+	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	DKIM_TRACE(0.00)[amd.com:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[3];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	REDIRECTOR_URL(0.00)[aka.ms];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 6A1544178C9
+X-Rspamd-Queue-Id: B16AD417B74
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Mikhail,=0A=
-=0A=
-Sorry for problems that occured on your platform.=0A=
-This issue is correctly fixed as part of this change: https://patchwork.fre=
-edesktop.org/patch/718415/=0A=
-Your change seems to be duplicate of above change.=0A=
-Please retest using mentioned patch. If it works correctly, please discard =
-your change. If problem still occurs please share me details and I will wor=
-k on resolving it.=0A=
-=0A=
-Kind Regards,=0A=
-Rafal Ostrowski=0A=
-=0A=
-> From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>=0A=
-> Sent: Friday, April 17, 2026 2:15 AM=0A=
-> To: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian <Ch=
-ristian.Koenig@amd.com>; Wentland, Harry <Harry.Wentland@amd.com>; Li, Sun =
-peng (Leo) <Sunpeng.Li@amd.com>; Zheng, Austin <Austin.Zheng@amd.com>; Lei,=
- Jun <Jun.Lei@amd.com>; David Airlie <airlied@gmail.com>; Simona Vetter <si=
-mona@ffwll.ch>=0A=
-> Cc: Rodrigo Siqueira <siqueira@igalia.com>; Ostrowski, Rafal <Rafal.Ostro=
-wski@amd.com>; Hung, Alex <Alex.Hung@amd.com>; Varone, Dillon <Dillon.Varon=
-e@amd.com>; amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; =
-dri-devel@lists.freedesktop.org <dri-devel@lists.freedesktop.org>; linux-ke=
-rnel@vger.kernel.org <linux-kernel@vger.kernel.org>; Mikhail Gavrilov <mikh=
-ail.v.gavrilov@gmail.com>=0A=
-> Subject: [PATCH] drm/amd/display: Add FPU guards around dcn31/315/316 upd=
-ate_bw_bounding_box=0A=
-> =0A=
-> =0A=
-> [You don't often get email from mikhail.v.gavrilov@gmail.com. Learn why t=
-his is important at https://aka.ms/LearnAboutSenderIdentification ]=0A=
-> =0A=
-> Commit 3539437f354b ("drm/amd/display: Move FPU Guards From DML To DC -=
-=0A=
-> Part 1") moved DC_FP_START/DC_FP_END out of the DML FPU units into the=0A=
-> DC resource layer for dcn35, dcn351, dcn36, dcn401 and dcn42, but missed=
-=0A=
-> the dcn31 family: the dcn31, dcn315 and dcn316 resource pools still wire=
-=0A=
-> their .update_bw_bounding_box callback directly to the FPU-unit=0A=
-> functions dcn31_update_bw_bounding_box(), dcn315_update_bw_bounding_box()=
-=0A=
-> and dcn316_update_bw_bounding_box() defined in dml/dcn31/dcn31_fpu.c.=0A=
-> Those functions call dc_assert_fp_enabled() on entry, which now fires=0A=
-> on every amdgpu probe on affected parts because no caller wraps them in=
-=0A=
-> DC_FP_START/DC_FP_END anymore.=0A=
-> =0A=
-> Triggered on amdgpu probe on a Ryzen 7000 (Raphael) iGPU, which uses=0A=
-> dcn315:=0A=
-> =0A=
-> =A0WARNING: drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/dc_fpu.c:58=
-=0A=
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0 at dc_assert_fp_enabled+0x14/0x20 [amdgpu]=0A=
-> =A0RIP: 0010:dc_assert_fp_enabled+0x14/0x20 [amdgpu]=0A=
-> =A0Call Trace:=0A=
-> =A0 dcn315_update_bw_bounding_box+0x1c/0x17a0 [amdgpu]=0A=
-> =A0 dc_create_resource_pool+0x4a0/0x770 [amdgpu]=0A=
-> =A0 dc_construct+0xa0a/0x13b0 [amdgpu]=0A=
-> =A0 dc_create+0x6f/0x8b0 [amdgpu]=0A=
-> =A0 amdgpu_dm_init+0x740/0xc80 [amdgpu]=0A=
-> =A0 dm_hw_init+0x45/0x150 [amdgpu]=0A=
-> =A0 amdgpu_device_ip_init+0xe21/0x11e1 [amdgpu]=0A=
-> =A0 amdgpu_device_init.cold+0xc03/0x1819 [amdgpu]=0A=
-> =A0 amdgpu_driver_load_kms+0x19/0xa0 [amdgpu]=0A=
-> =A0 amdgpu_pci_probe+0x371/0xbc0 [amdgpu]=0A=
-> =0A=
-> Apply the same pattern the offending commit used for dcn35 (and that=0A=
-> dcn314 already followed before the commit): rename the FPU-unit entry=0A=
-> points with an _fpu suffix and add non-FPU static wrappers in the=0A=
-> resource files which provide DC_FP_START/DC_FP_END around the call.=0A=
-> =0A=
-> Fixes: 3539437f354b ("drm/amd/display: Move FPU Guards From DML To DC - P=
-art 1")=0A=
-> Signed-off-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>=0A=
-> ---=0A=
-> =0A=
-> Tested on Ryzen 7000 (Raphael) with RX 7900 XTX discrete GPU, debug=0A=
-> kernel (KASAN + LOCKDEP + PREEMPT_FULL). Without the patch, the WARN=0A=
-> fires on every boot during amdgpu probe for the iGPU (dcn315). With=0A=
-> the patch applied, amdgpu probes cleanly and no dc_assert_fp_enabled=0A=
-> warnings occur.=0A=
-> =0A=
-> =A0drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c=A0=A0=A0=A0=A0=A0=
- | 6 +++---=0A=
-> =A0drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.h=A0=A0=A0=A0=A0=A0=
- | 6 +++---=0A=
-> =A0.../gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c | 7 +++++++=
-=0A=
-> =A0.../drm/amd/display/dc/resource/dcn315/dcn315_resource.c=A0=A0 | 7 +++=
-++++=0A=
-> =A0.../drm/amd/display/dc/resource/dcn316/dcn316_resource.c=A0=A0 | 7 +++=
-++++=0A=
-> =A05 files changed, 27 insertions(+), 6 deletions(-)=0A=
-> =0A=
-> diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c b/drive=
-rs/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c=0A=
-> index 1a28061bb9ff..ad23215da9f8 100644=0A=
-> --- a/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c=0A=
-> +++ b/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.c=0A=
-> @@ -587,7 +587,7 @@ void dcn31_calculate_wm_and_dlg_fp(=0A=
-> =A0=A0=A0=A0=A0=A0=A0 context->bw_ctx.bw.dcn.compbuf_size_kb =3D context-=
->bw_ctx.dml.ip.config_return_buffer_size_in_kbytes - total_det;=0A=
-> =A0}=0A=
-> =0A=
-> -void dcn31_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *b=
-w_params)=0A=
-> +void dcn31_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_param=
-s *bw_params)=0A=
-> =A0{=0A=
-> =A0=A0=A0=A0=A0=A0=A0 struct _vcs_dpi_voltage_scaling_st *s =3D dc->scrat=
-ch.update_bw_bounding_box.clock_limits;=0A=
-> =A0=A0=A0=A0=A0=A0=A0 struct clk_limit_table *clk_table =3D &bw_params->c=
-lk_table;=0A=
-> @@ -665,7 +665,7 @@ void dcn31_update_bw_bounding_box(struct dc *dc, stru=
-ct clk_bw_params *bw_params=0A=
-> =A0=A0=A0=A0=A0=A0=A0 dml_init_instance(&dc->dml, &dcn3_1_soc, &dcn3_1_ip=
-, DML_PROJECT_DCN31);=0A=
-> =A0}=0A=
-> =0A=
-> -void dcn315_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *=
-bw_params)=0A=
-> +void dcn315_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_para=
-ms *bw_params)=0A=
-> =A0{=0A=
-> =A0=A0=A0=A0=A0=A0=A0 struct clk_limit_table *clk_table =3D &bw_params->c=
-lk_table;=0A=
-> =A0=A0=A0=A0=A0=A0=A0 int i, max_dispclk_mhz =3D 0, max_dppclk_mhz =3D 0;=
-=0A=
-> @@ -726,7 +726,7 @@ void dcn315_update_bw_bounding_box(struct dc *dc, str=
-uct clk_bw_params *bw_param=0A=
-> =A0=A0=A0=A0=A0=A0=A0 dml_init_instance(&dc->dml, &dcn3_15_soc, &dcn3_15_=
-ip, DML_PROJECT_DCN315);=0A=
-> =A0}=0A=
-> =0A=
-> -void dcn316_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *=
-bw_params)=0A=
-> +void dcn316_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_para=
-ms *bw_params)=0A=
-> =A0{=0A=
-> =A0=A0=A0=A0=A0=A0=A0 struct _vcs_dpi_voltage_scaling_st *s =3D dc->scrat=
-ch.update_bw_bounding_box.clock_limits;=0A=
-> =A0=A0=A0=A0=A0=A0=A0 struct clk_limit_table *clk_table =3D &bw_params->c=
-lk_table;=0A=
-> diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.h b/drive=
-rs/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.h=0A=
-> index dfcc5d50071e..0b7fcbbfd17b 100644=0A=
-> --- a/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.h=0A=
-> +++ b/drivers/gpu/drm/amd/display/dc/dml/dcn31/dcn31_fpu.h=0A=
-> @@ -44,9 +44,9 @@ void dcn31_calculate_wm_and_dlg_fp(=0A=
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int pipe_cnt,=0A=
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int vlevel);=0A=
-> =0A=
-> -void dcn31_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *b=
-w_params);=0A=
-> -void dcn315_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *=
-bw_params);=0A=
-> -void dcn316_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *=
-bw_params);=0A=
-> +void dcn31_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_param=
-s *bw_params);=0A=
-> +void dcn315_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_para=
-ms *bw_params);=0A=
-> +void dcn316_update_bw_bounding_box_fpu(struct dc *dc, struct clk_bw_para=
-ms *bw_params);=0A=
-> =A0int dcn_get_max_non_odm_pix_rate_100hz(struct _vcs_dpi_soc_bounding_bo=
-x_st *soc);=0A=
-> =A0int dcn_get_approx_det_segs_required_for_pstate(=0A=
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct _vcs_dpi_soc_boundin=
-g_box_st *soc,=0A=
-> diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource=
-.c b/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c=0A=
-> index ee4bc2c2e73a..d5215a028626 100644=0A=
-> --- a/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c=0A=
-> +++ b/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c=0A=
-> @@ -1854,6 +1854,13 @@ static struct dc_cap_funcs cap_funcs =3D {=0A=
-> =A0=A0=A0=A0=A0=A0=A0 .get_dcc_compression_cap =3D dcn20_get_dcc_compress=
-ion_cap=0A=
-> =A0};=0A=
-> =0A=
-> +static void dcn31_update_bw_bounding_box(struct dc *dc, struct clk_bw_pa=
-rams *bw_params)=0A=
-> +{=0A=
-> +=A0=A0=A0=A0=A0=A0 DC_FP_START();=0A=
-> +=A0=A0=A0=A0=A0=A0 dcn31_update_bw_bounding_box_fpu(dc, bw_params);=0A=
-> +=A0=A0=A0=A0=A0=A0 DC_FP_END();=0A=
-> +}=0A=
-> +=0A=
-> =A0static struct resource_funcs dcn31_res_pool_funcs =3D {=0A=
-> =A0=A0=A0=A0=A0=A0=A0 .destroy =3D dcn31_destroy_resource_pool,=0A=
-> =A0=A0=A0=A0=A0=A0=A0 .link_enc_create =3D dcn31_link_encoder_create,=0A=
-> diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resour=
-ce.c b/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c=0A=
-> index 2ca673114841..c48ac609ce7c 100644=0A=
-> --- a/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c=0A=
-> +++ b/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c=0A=
-> @@ -1849,6 +1849,13 @@ static struct dc_cap_funcs cap_funcs =3D {=0A=
-> =A0=A0=A0=A0=A0=A0=A0 .get_dcc_compression_cap =3D dcn20_get_dcc_compress=
-ion_cap=0A=
-> =A0};=0A=
-> =0A=
-> +static void dcn315_update_bw_bounding_box(struct dc *dc, struct clk_bw_p=
-arams *bw_params)=0A=
-> +{=0A=
-> +=A0=A0=A0=A0=A0=A0 DC_FP_START();=0A=
-> +=A0=A0=A0=A0=A0=A0 dcn315_update_bw_bounding_box_fpu(dc, bw_params);=0A=
-> +=A0=A0=A0=A0=A0=A0 DC_FP_END();=0A=
-> +}=0A=
-> +=0A=
-> =A0static struct resource_funcs dcn315_res_pool_funcs =3D {=0A=
-> =A0=A0=A0=A0=A0=A0=A0 .destroy =3D dcn315_destroy_resource_pool,=0A=
-> =A0=A0=A0=A0=A0=A0=A0 .link_enc_create =3D dcn31_link_encoder_create,=0A=
-> diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resour=
-ce.c b/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c=0A=
-> index 2242df112a3f..914d91df174c 100644=0A=
-> --- a/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c=0A=
-> +++ b/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c=0A=
-> @@ -1725,6 +1725,13 @@ static struct dc_cap_funcs cap_funcs =3D {=0A=
-> =A0=A0=A0=A0=A0=A0=A0 .get_dcc_compression_cap =3D dcn20_get_dcc_compress=
-ion_cap=0A=
-> =A0};=0A=
-> =0A=
-> +static void dcn316_update_bw_bounding_box(struct dc *dc, struct clk_bw_p=
-arams *bw_params)=0A=
-> +{=0A=
-> +=A0=A0=A0=A0=A0=A0 DC_FP_START();=0A=
-> +=A0=A0=A0=A0=A0=A0 dcn316_update_bw_bounding_box_fpu(dc, bw_params);=0A=
-> +=A0=A0=A0=A0=A0=A0 DC_FP_END();=0A=
-> +}=0A=
-> +=0A=
-> =A0static struct resource_funcs dcn316_res_pool_funcs =3D {=0A=
-> =A0=A0=A0=A0=A0=A0=A0 .destroy =3D dcn316_destroy_resource_pool,=0A=
-> =A0=A0=A0=A0=A0=A0=A0 .link_enc_create =3D dcn31_link_encoder_create,=0A=
-> --=0A=
-> 2.53.0=
+On 4/16/26 22:26, Timur Kristóf wrote:
+> This is done to prevent the VCPU BO from crossing
+> a 256 MiB boundary.
+
+UVD was the one with the 256MiB segments, VCE had an issue with 4GiB segments.
+
+> 
+> Fixes: d38ceaf99ed0 ("drm/amdgpu: add core driver (v4)")
+> Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+> index efdebd9c0a1f3..ac25355539cb2 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+> @@ -218,7 +218,8 @@ int amdgpu_vce_sw_init(struct amdgpu_device *adev, unsigned long size)
+>  	if (!adev->vce.fw)
+>  		return -ENOENT;
+>  
+> -	r = amdgpu_bo_create_kernel(adev, size, PAGE_SIZE,
+> +	r = amdgpu_bo_create_kernel(adev, size,
+> +				    roundup_pow_of_two(ALIGN(size, PAGE_SIZE)),
+>  				    AMDGPU_GEM_DOMAIN_VRAM |
+>  				    AMDGPU_GEM_DOMAIN_GTT,
+
+Oh that is a really interesting find.
+
+For kernel BOs the alignment of VRAM allocations is always the power of two of the size because of the backend allocator.
+
+So that only matters for GTT allocation, but GTT allocated FW should only be used on VCE 4 and there the segments doesn't matter either.
+
+We should probably adjust that so that VCE version < 4 always only used VRAM.
+
+And by the way PAGE_SIZE alignment is nonsense as well, that parameter should either be 0 or AMDGPU_PAGE_SIZE.
+
+Regards,
+Christian.
+
+>  				    &adev->vce.vcpu_bo,
+
