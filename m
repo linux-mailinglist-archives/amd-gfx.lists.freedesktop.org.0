@@ -2,84 +2,89 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4MA6FXr842kpOAEAu9opvQ
+	id SB8rCf0j5mlBsgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 18 Apr 2026 23:49:46 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:02:53 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D93BB4224E7
-	for <lists+amd-gfx@lfdr.de>; Sat, 18 Apr 2026 23:49:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B70442B273
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:02:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A864D10E1F5;
-	Sat, 18 Apr 2026 21:49:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QPl1Cb3L";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2679810E5AC;
+	Mon, 20 Apr 2026 13:02:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39B9B10E17C
- for <amd-gfx@lists.freedesktop.org>; Sat, 18 Apr 2026 21:49:43 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-48334ee0aeaso17179155e9.1
- for <amd-gfx@lists.freedesktop.org>; Sat, 18 Apr 2026 14:49:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776548982; x=1777153782; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=iFssyEsx7i6kriqtBKGS3voK53oBGP2pg3PipZoqby8=;
- b=QPl1Cb3LkZYx2ebad6517LOBFVZKhWYphki4YVHLE9h2W3c58ZlfNQiRqVbAsreqtg
- IQqh+rOJgwT9G5t7/W0Dmdsw7RgPWtop4ka/cETTc4C1g/833Q5RqkqH/njdqTzKLjtl
- 24bNimNor/lQvGA1Xj/GXKo8rBLmBRNkleZwBpdBID2XWqthrillYPxK43jbGlI7sFp/
- tqAlZ/kL28GytSf8ld9aXZse/Mr6ktnEgsxm3fneGSPcorZjhx1A9CkT5rOAU22LDKLM
- 46tCYUyBkEqDkr0vxmCLPB/RACP7xTcAUFsxBiYTJoopq0ST1FfIBbqJHsHckRSyUTo5
- 1DVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776548982; x=1777153782;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=iFssyEsx7i6kriqtBKGS3voK53oBGP2pg3PipZoqby8=;
- b=SPpD5TcYE6liw4pDHfQoWB1+m9LmJwkPTe3CdBhojBq1l+8SE5kQmaZwRvXiQNdwj0
- +SUes0XGkBWDFW5NG6uU7bAmzWfKdaQ0NM9krozkxWw+k4A+09t4bLYEqoBNUKTyytqR
- aC+wbTYuSoZ/l2nDGCzXansmjkI3kriKUslXsFWxYrLfhk+zp+XJZEES4+jkUm6SJXOF
- vJMqKPU6zcgnidUxWBUGXQJnyJMjg5Xw7Q6E0PzVGFj2CnYLuaX7myhuzGQ4/409a/LC
- PaCCo3EEqKem9MaDFArucBKaQWHXU+2NSEaJ7LinTlkUjW6BPAmwP1Sg2vt4bcs12fLn
- pBWA==
-X-Gm-Message-State: AOJu0YwfUZm2WTkZFp4cZNWn5p2GOTbFwZ1X0nbcvS1c+0kpe3BC91dk
- ctf5WqlLrY8fj5KQdXBykdyCxWEEFn5OL68fv2MbiZKPTWKZo3Ajc9MOt6Pb6w==
-X-Gm-Gg: AeBDieteDTPoCLOE9IYh7t5tVG0hBkKuLqIsMg5FmIma/+UpETYTEUttW+sUiTpJ7go
- k4H88vnnl3zVpjg/hUKm3ajVmeIdklVRPPOU6XoyXXzQim9py5q6kxVNxKBVGihvcNbvhD5MDnF
- +KuPBO9qzZZ+wX5Xou00Qw7ZTym8pmEQcB7mZ3pHlvpx57Yp6sQycSqIqddFUFPR5YTiBXmht0A
- VBikV0e82hztRXrYnG/0LFt3As5SvOocD0DQDxWEsYOpeX4ai1Gg2ExT8XNGfRZyss9KrmYcehg
- /It44gIyEnpZGaPUQmGiJ/dRSUqij66+bKQjYtL5ZE/Nzlm7TyCTMl7Mjo598+LPkBoIlq916Hz
- Jul+098Ew5Bp1jg/NO89gEQR+Vylx7d3E5eCP9c/2uxzgsJIOaa9Cls4PaxGv89G4PisNq5qeQq
- OY9+G2d6MpRqfwWGeGX6QJujGtpCXTKQ7PQHUADkkMkBixKBdwFuceLh1WJrovmwQQMmMWYnjZ3
- ClHKA==
-X-Received: by 2002:a05:600c:4711:b0:485:6e40:5584 with SMTP id
- 5b1f17b1804b1-488fb745261mr115836865e9.6.1776548981636; 
- Sat, 18 Apr 2026 14:49:41 -0700 (PDT)
-Received: from Timur-Hyperion.home (5E1B98A2.dsl.pool.telekom.hu.
- [94.27.152.162]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-488fc0f8188sm171531905e9.2.2026.04.18.14.49.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 18 Apr 2026 14:49:41 -0700 (PDT)
-From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
- christian.koenig@amd.com
-Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 4/4] drm/amdgpu/gfx6: Support harvested SI chips with disabled
- TCCs (v2)
-Date: Sat, 18 Apr 2026 23:49:33 +0200
-Message-ID: <20260418214933.230912-5-timur.kristof@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260418214933.230912-1-timur.kristof@gmail.com>
-References: <20260418214933.230912-1-timur.kristof@gmail.com>
+Received: from relay.hostedemail.com (smtprelay0011.hostedemail.com
+ [216.40.44.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE00710E399
+ for <amd-gfx@lists.freedesktop.org>; Sat, 18 Apr 2026 23:05:39 +0000 (UTC)
+Received: from omf17.hostedemail.com (a10.router.float.18 [10.200.18.1])
+ by unirelay02.hostedemail.com (Postfix) with ESMTP id 3AF8813B3B7;
+ Sat, 18 Apr 2026 23:05:34 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by
+ omf17.hostedemail.com (Postfix) with ESMTPA id D63C017; 
+ Sat, 18 Apr 2026 23:05:02 +0000 (UTC)
+Date: Sat, 18 Apr 2026 19:04:56 -0400
+From: Steven Rostedt <rostedt@goodmis.org>
+To: "Vineeth Pillai (Google)" <vineeth@bitbyteword.org>
+Cc: Peter Zijlstra <peterz@infradead.org>, Dmitry Ilvokhin <d@ilvokhin.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>, Mathieu Desnoyers
+ <mathieu.desnoyers@efficios.com>, Ingo Molnar <mingo@redhat.com>, Jens
+ Axboe <axboe@kernel.dk>, io-uring@vger.kernel.org, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Alexei Starovoitov
+ <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>, Marcelo Ricardo
+ Leitner <marcelo.leitner@gmail.com>, Xin Long <lucien.xin@gmail.com>, Jon
+ Maloy <jmaloy@redhat.com>, Aaron Conole <aconole@redhat.com>, Eelco
+ Chaudron <echaudro@redhat.com>, Ilya Maximets <i.maximets@ovn.org>,
+ netdev@vger.kernel.org, bpf@vger.kernel.org, linux-sctp@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, dev@openvswitch.org, Jiri Pirko
+ <jiri@resnulli.us>, Oded Gabbay <ogabbay@kernel.org>, Koby Elbaz
+ <koby.elbaz@intel.com>, dri-devel@lists.freedesktop.org, "Rafael J.
+ Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+ "Gautham R. Shenoy" <gautham.shenoy@amd.com>, Huang Rui
+ <ray.huang@amd.com>, Mario Limonciello <mario.limonciello@amd.com>, Len
+ Brown <lenb@kernel.org>, Srinivas Pandruvada
+ <srinivas.pandruvada@linux.intel.com>, linux-pm@vger.kernel.org, MyungJoo
+ Ham <myungjoo.ham@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Christian =?UTF-8?B?S8O2bmln?=
+ <christian.koenig@amd.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ linaro-mm-sig@lists.linaro.org, Eddie James <eajames@linux.ibm.com>, Andrew
+ Jeffery <andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>,
+ linux-fsi@lists.ozlabs.org, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, Danilo
+ Krummrich <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
+ Philipp Stanner <phasta@kernel.org>, Harry Wentland
+ <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ amd-gfx@lists.freedesktop.org, Jiri Kosina <jikos@kernel.org>, Benjamin
+ Tissoires <bentiss@kernel.org>, linux-input@vger.kernel.org, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, linux-i2c@vger.kernel.org, Mark Brown
+ <broonie@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, linux-spi@vger.kernel.org,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, "Martin K.
+ Petersen" <martin.petersen@oracle.com>, linux-scsi@vger.kernel.org, Chris
+ Mason <clm@fb.com>, David Sterba <dsterba@suse.com>,
+ linux-btrfs@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>, Andrew
+ Morton <akpm@linux-foundation.org>, SeongJae Park <sj@kernel.org>,
+ linux-mm@kvack.org, Borislav Petkov <bp@alien8.de>, Dave Hansen
+ <dave.hansen@linux.intel.com>, x86@kernel.org,
+ linux-trace-kernel@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 00/19] tracepoint: Avoid double static_branch
+ evaluation at guarded call sites
+Message-ID: <20260418190456.631df6f3@fedora>
+In-Reply-To: <20260323160052.17528-1-vineeth@bitbyteword.org>
+References: <20260323160052.17528-1-vineeth@bitbyteword.org>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.52; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Stat-Signature: 14j39sducs3tg3aey13ys76m4wq4pf1a
+X-Spam-Status: No, score=1.91
+X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
+X-Session-ID: U2FsdGVkX18uI1/Yo7/rI1+CwnTJAuzOiDhDTcHCmFM=
+X-HE-Tag: 1776553502-227936
+X-HE-Meta: U2FsdGVkX19V5aRBuQVgNrwFYqJny3DiV29cPCLORtmFjnJgNsHv2iodpq+DK7eFwvzFvhgzZ+I=
+X-Mailman-Approved-At: Mon, 20 Apr 2026 13:02:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,166 +98,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [2.49 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DATE_IN_PAST(1.00)[37];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[goodmis.org : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[rostedt@goodmis.org,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:vineeth@bitbyteword.org,m:peterz@infradead.org,m:d@ilvokhin.com,m:mhiramat@kernel.org,m:mathieu.desnoyers@efficios.com,m:mingo@redhat.com,m:axboe@kernel.dk,m:io-uring@vger.kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:ast@kernel.org,m:daniel@iogearbox.net,m:marcelo.leitner@gmail.com,m:lucien.xin@gmail.com,m:jmaloy@redhat.com,m:aconole@redhat.com,m:echaudro@redhat.com,m:i.maximets@ovn.org,m:netdev@vger.kernel.org,m:bpf@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:dev@openvswitch.org,m:jiri@resnulli.us,m:ogabbay@kernel.org,m:koby.elbaz@intel.com,m:dri-devel@lists.freedesktop.org,m:rafael@kernel.org,m:viresh.kumar@linaro.org,m:gautham.shenoy@amd.com,m:ray.huang@amd.com,m:mario.limonciello@amd.com,m:lenb@kernel.org,m:srinivas.pandruvada@linux.intel.com,m:linux-pm@vger.kernel.org,m:myungjoo.ham@samsung.com,m:kyungmin.park@samsung.com,m:cw00.choi@samsung.com,m:christian.koe
+ nig@amd.com,m:sumit.semwal@linaro.org,m:linaro-mm-sig@lists.linaro.org,m:eajames@linux.ibm.com,m:andrew@codeconstruct.com.au,m:joel@jms.id.au,m:linux-fsi@lists.ozlabs.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:alexander.deucher@amd.com,m:dakr@kernel.org,m:matthew.brost@intel.com,m:phasta@kernel.org,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:jikos@kernel.org,m:bentiss@kernel.org,m:linux-input@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:linux-i2c@vger.kernel.org,m:broonie@kernel.org,m:michael.hennerich@analog.com,m:nuno.sa@analog.com,m:linux-spi@vger.kernel.org,m:James.Bottomley@HansenPartnership.com,m:martin.petersen@oracle.com,m:linux-scsi@vger.kernel.org,m:clm@fb.com,m:dsterba@suse.com,m:linux-btrfs@vger.kernel.org,m:tglx@linutronix.de,m:akpm@linux-foundation.org,m:sj@kernel.org,m:linux-mm@kvack.org,m:bp@alien8.de,m:dave.hansen@linux.intel.com,m:x86@kernel.org,m:linux-trace-kernel@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:marceloleitner@gmail.com,m:lucienxin@g
+ mail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_THREE(0.00)[4];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_GT_50(0.00)[80];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rostedt@goodmis.org,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[infradead.org,ilvokhin.com,kernel.org,efficios.com,redhat.com,kernel.dk,vger.kernel.org,davemloft.net,google.com,iogearbox.net,gmail.com,ovn.org,lists.sourceforge.net,openvswitch.org,resnulli.us,intel.com,lists.freedesktop.org,linaro.org,amd.com,linux.intel.com,samsung.com,lists.linaro.org,linux.ibm.com,codeconstruct.com.au,jms.id.au,lists.ozlabs.org,ffwll.ch,sang-engineering.com,analog.com,HansenPartnership.com,oracle.com,fb.com,suse.com,linutronix.de,linux-foundation.org,kvack.org,alien8.de];
+	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: D93BB4224E7
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 0B70442B273
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This commit fixes amdgpu to work on the Radeon HD 7870 XT
-which has never worked with the Linux open source drivers before.
+On Mon, 23 Mar 2026 12:00:19 -0400
+"Vineeth Pillai (Google)" <vineeth@bitbyteword.org> wrote:
 
-Some boards have "harvested" chips, meaning that some parts of
-the chip are disabled and fused, and it's sold for cheaper and
-under a different marketing name.
-On a harvested chip, any of the following can be disabled:
-- CUs (Compute Units)
-- RBs (Render Backend, aka. ROP)
-- Memory channels (ie. the chip has a lower bandwidth)
-- TCCs (ie. less L2 cache)
+>   if (trace_foo_enabled() && cond)
+>       trace_call__foo(args);   /* calls __do_trace_foo() directly */
 
-Handle chips with harvested TCCs by patching the registers
-that configure how TCCs are mapped.
+Hi Vineeth,
 
-If some TCCs are disabled, we need to make sure that
-the disabled TCCs are not used, and the remaining TCCs
-are used optimally.
+Could you rebase this series on top of 7.1-rc1 when it comes out?
+Several of these patches were accepted already. Obviously drop those.
+They were the patches that added the feature, and any where the
+maintainer acked the patch.
 
-TCP_CHAN_STEER_LO/HI control which TCC is used by TCP channels.
-TCP_ADDR_CONFIG.NUM_TCC_BANKS controls how many channels are used.
+Now that the feature has been accepted, if you post the patch series
+again after 7.1-rc1 with all the patches that haven't been accepted
+yet, then the maintainers can simply take them directly. As the feature
+is now accepted, there's no dependency on it, and they don't need to go
+through the tracing tree.
 
-Note that the TCC configuration is highly relevant to performance.
-Suboptimal configuration (eg. CHAN_STEER=0) can significantly
-reduce gaming performance.
+Thanks,
 
-For optimal performance:
-- Rely on the CHAN_STEER from the golden registers table,
-  only skip disabled TCCs but keep the mapping order.
-- Limit NUM_TCC_BANKS to number of active TCCs to avoid thrashing,
-  which performs better than using the same TCC twice.
-
-v2:
-- Also consider CGTS_USER_TCC_DISABLE for disabled TCCs.
-
-Link: https://bugs.freedesktop.org/show_bug.cgi?id=60879
-Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/2664
-Fixes: 2cd46ad22383 ("drm/amdgpu: add graphic pipeline implementation for si v8")
-Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c | 66 +++++++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-index 73223d97a87f5..ac90d8e9d86a8 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-@@ -1571,6 +1571,71 @@ static void gfx_v6_0_setup_spi(struct amdgpu_device *adev)
- 	mutex_unlock(&adev->grbm_idx_mutex);
- }
- 
-+/**
-+ * gfx_v6_0_setup_tcc() - setup which TCCs are used
-+ *
-+ * @adev: amdgpu_device pointer
-+ *
-+ * Verify whether the current GPU has any TCCs disabled,
-+ * which can happen when the GPU is harvested and some
-+ * memory channels are disabled, reducing the memory bus width.
-+ * For example, on the Radeon HD 7870 XT (Tahiti LE).
-+ *
-+ * If some TCCs are disabled, we need to make sure that
-+ * the disabled TCCs are not used, and the remaining TCCs
-+ * are used optimally.
-+ *
-+ * TCP_CHAN_STEER_LO/HI control which TCC is used by TCP channels.
-+ * TCP_ADDR_CONFIG.NUM_TCC_BANKS controls how many channels are used.
-+ *
-+ * For optimal performance:
-+ * - Rely on the CHAN_STEER from the golden registers table,
-+ *   only skip disabled TCCs but keep the mapping order.
-+ * - Limit NUM_TCC_BANKS to number of active TCCs to avoid thrashing,
-+ *   which performs better than using the same TCC twice.
-+ */
-+static void gfx_v6_0_setup_tcc(struct amdgpu_device *adev)
-+{
-+	u32 i, tcc, tcp_addr_config, num_active_tcc = 0;
-+	u64 chan_steer, patched_chan_steer = 0;
-+	const u32 num_max_tcc = adev->gfx.config.max_texture_channel_caches;
-+	const u32 dis_tcc_mask =
-+		amdgpu_gfx_create_bitmask(num_max_tcc) &
-+		(REG_GET_FIELD(RREG32(mmCGTS_TCC_DISABLE),
-+			       CGTS_TCC_DISABLE, TCC_DISABLE) |
-+		 REG_GET_FIELD(RREG32(mmCGTS_USER_TCC_DISABLE),
-+			       CGTS_USER_TCC_DISABLE, TCC_DISABLE));
-+
-+	/* When no TCC is disabled, the golden registers table already has optimal TCC setup */
-+	if (!dis_tcc_mask)
-+		return;
-+
-+	/* Each 4-bit nibble contains the index of a TCC used by all TCPs */
-+	chan_steer = RREG32(mmTCP_CHAN_STEER_LO) | ((u64)RREG32(mmTCP_CHAN_STEER_HI) << 32ull);
-+
-+	/* Patch the TCP to TCC mapping to skip disabled TCCs */
-+	for (i = 0; i < num_max_tcc; ++i) {
-+		tcc = (chan_steer >> (u64)(4 * i)) & 0xf;
-+
-+		if (!((1 << tcc) & dis_tcc_mask)) {
-+			/* Copy enabled TCC indices to the patched register value. */
-+			patched_chan_steer |= (u64)tcc << (u64)(4 * num_active_tcc);
-+			++num_active_tcc;
-+		}
-+	}
-+
-+	WARN_ON(num_active_tcc != num_max_tcc - hweight32(dis_tcc_mask));
-+
-+	/* Patch number of TCCs used by TCPs */
-+	tcp_addr_config = REG_SET_FIELD(RREG32(mmTCP_ADDR_CONFIG),
-+					TCP_ADDR_CONFIG, NUM_TCC_BANKS,
-+					num_active_tcc - 1);
-+
-+	WREG32(mmTCP_ADDR_CONFIG, tcp_addr_config);
-+	WREG32(mmTCP_CHAN_STEER_HI, upper_32_bits(patched_chan_steer));
-+	WREG32(mmTCP_CHAN_STEER_LO, lower_32_bits(patched_chan_steer));
-+}
-+
- static void gfx_v6_0_config_init(struct amdgpu_device *adev)
- {
- 	adev->gfx.config.double_offchip_lds_buf = 0;
-@@ -1729,6 +1794,7 @@ static void gfx_v6_0_constants_init(struct amdgpu_device *adev)
- 	gfx_v6_0_tiling_mode_table_init(adev);
- 
- 	gfx_v6_0_setup_rb(adev);
-+	gfx_v6_0_setup_tcc(adev);
- 
- 	gfx_v6_0_setup_spi(adev);
- 
--- 
-2.53.0
-
+-- Steve
