@@ -2,53 +2,148 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IN6yCP8j5mlBsgEAu9opvQ
+	id sCQyDQUk5mlBsgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:02:55 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:03:01 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A408942B288
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:02:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAE8542B2C3
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:03:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D2EB10E5B7;
-	Mon, 20 Apr 2026 13:02:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4314310E5BE;
+	Mon, 20 Apr 2026 13:02:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=cachyos.org header.i=@cachyos.org header.b="b0+5SpLV";
+	dkim=pass (2048-bit key; secure) header.d=bitbyteword.org header.i=@bitbyteword.org header.b="Jibs7OLh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 534 seconds by postgrey-1.36 at gabe;
- Sun, 19 Apr 2026 11:33:22 UTC
-Received: from mail.ptr1337.dev (mail.ptr1337.dev [202.61.224.105])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7594310E06D
- for <amd-gfx@lists.freedesktop.org>; Sun, 19 Apr 2026 11:33:22 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id ED6CD285DB7; Sun, 19 Apr 2026 13:24:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cachyos.org; s=dkim;
- t=1776597865; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=GENHOMCXf0w5u/POMUUD3Yx7lYEQlqPPi9Wo8eZS1VA=;
- b=b0+5SpLV2aHHHSq4XJefCJfoTfv090pQLEf9AW3dqipqaDcAXT+FFvWrvJiNz0TXQ44GFg
- lcFU+17imvHrM88iWQLse07/VhakPIL8bzRjzBjbqCY10rymiOE3ZwBC/v1TVj5H4MSrAV
- ZQk+Famr/T1jonJiOmmi8N/6hWXLA2pYlPFj4dBgPM8FCX5zfmYukHIsoUjKYwYETFsJUC
- PHjmCVXG7R7Wjv8PNYB+eMKxU+saXSnTsFwk3PZaAHC4PPlZP9UfuQS90sOge4fMGUAt6C
- EHuS+OKOHns1Hrcj6XAxl7Hxr3xa0A33eGJc6UuUrmpVIFokOSYluZ17E3uLtQ==
-Message-ID: <dea28da4-b49c-400a-9f1f-4a7e806d8b0d@cachyos.org>
-Date: Sun, 19 Apr 2026 11:24:00 +0000
+Received: from mail-yx1-f43.google.com (mail-yx1-f43.google.com
+ [74.125.224.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBB5610E3D2
+ for <amd-gfx@lists.freedesktop.org>; Sun, 19 Apr 2026 13:14:16 +0000 (UTC)
+Received: by mail-yx1-f43.google.com with SMTP id
+ 956f58d0204a3-651b0eb2564so2193169d50.3
+ for <amd-gfx@lists.freedesktop.org>; Sun, 19 Apr 2026 06:14:16 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1776604455; cv=none;
+ d=google.com; s=arc-20240605;
+ b=cl8T2wDBrao0XChL0f8EuuUQhAbyqnhwRdNN+/Hd3O5f1LX1ZCE6Q6DVA8dl0I3gTu
+ 3oGoNsdpM/JSyZ5Ht2O0EIxFXokKxmhhTAM70bevw6RW7r4TF6V3lgUM5mHDZs9YidIu
+ EdY4XHfJVQFCT62z+m2rgyaeHWzSFdEwp9+I2UenJyL+Kal5nyUeHhcRyoXZSHZPrlU7
+ tV6b8YG5AD9rMRuRY8PSWZwTIbX8WFGX36+YFpXcuM+OiiBs3AbxYAnwQh2h7sZTiisG
+ UGLzSYuRt4OY1Ah1P2ps2AX6NQabV1AUUmJaqHDvR8lUh8lJtEb0/4hjr36RUkmNm+UK
+ BM7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=X+WVMuAIY6fuTgPsvbyDiChtmsWhcTJteNRfYOEl4tw=;
+ fh=ZBXmyU2xEo1wJFaJB+Aye2lyItiPvz6ehHPc/PJAr9M=;
+ b=Q71UQM3nYBZN48wqppASyHW/PLl+j94Qsy1F3cJErdrfkQwK70znaLD518V3GPzY26
+ SGbNuwp1iuVHjgP41q8qjhYGt7L+OotNrTmRamYkogwgxsJcd8ZkJLq0qBvLfTs/SvwM
+ E0D58XV4RaJqLl0g/qgIVOBqgzyZUNOA84abJTvY0g6pBDY0gSYlMeBHavZCv58j/Skh
+ ZD7+ZEEVjkUVeaPBuJsGfAiniP504c3/LUTZVOpZFr9QwJjXUqkW21SSBny7bF8lUPxr
+ 5yM/2lpu6FKs1mKA0uMJjVz+CKWnBwBaP/bnRhT496RSh3/TI2CWWEPiTT/tcE00tO4N
+ tOuA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=bitbyteword.org; s=google; t=1776604455; x=1777209255;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=X+WVMuAIY6fuTgPsvbyDiChtmsWhcTJteNRfYOEl4tw=;
+ b=Jibs7OLhFfebc5PhEudnPbNm04xNAqNr9P6GkMSa9H76ARlC7dVOSWEmVP5CnCT9kp
+ EEzVxnXSqvSRLcADNbfWdOLBYymJLhhc4UIJYUTu8p4/gPcKEDLnZLFzPtdPPwY/+lMX
+ XldLFiRcoe6B2X81h3SHFAnGwwFU2upd0v9Dk8vW1VreBe2zw5mzgA+/y8BwgmFsqTuM
+ uOvAED39WhBjHDUpGAHlBHNI3XTvfe1N20wuzZ5sJR6Wq8nKx4+E8Ap2DaHOVp20DQpG
+ nYwHAoTRaIItSA6GqHssMR9DV+CkJAqI8auSyK9fw/qesIzBF8fCa/ya+NEF5xtccISb
+ OIeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776604455; x=1777209255;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=X+WVMuAIY6fuTgPsvbyDiChtmsWhcTJteNRfYOEl4tw=;
+ b=FZMY6R+DVvS31hg++6pmKsRWDHksTxs5xsgOCTWFn89OJbiddo6UqCaqIDxv7r8TKb
+ WY6UgfrzEr169HYR5YHWbZ3DzOJohGW7/lSFLuEJl1XNzt/Ml4jnmgiuqbxENknrkFWy
+ YUjv5DlCj8IpKQvujVVNTCDGUMIsIVMZaiepOIEN6D/GkfVDsdu5H4ONxM/QeidJMVTW
+ eFSjhn7qwFbDklIdfk4kYf4Tu9+Gz/Vq5FmTeciymm1fQC5CyIa7CF7WBP2iu4XGF7bs
+ YVYxmzJiaNhKAfDBnCsYm/46jyZVq6quqbNVOvZlRxKgWL5LA5H1pXDhDIlLV9Fm58Lv
+ fGbQ==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ+GaD9zTdH27NyYyMlvtlpdkcaQJ7r3rF8sw2WcSv6EwClqDE6WSrqGpF6oI0asFK8Jj7Tmgtb/@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxztS1P06xx6PH1XVybtNDYSuDzrZHpViO44lrwfEw4jlr4/lqz
+ iOo1LPEeyV/UN9FjusvWD/FWC/HD0Jq5TGfOyQuq9ShmZAe376I2AbinjaKOlSJN0HbFUKr9Q4p
+ 4X5kTEiQ41pDzgFoYPdwsZYTKckM8PVASGqIIEYKxOg==
+X-Gm-Gg: AeBDiev5lgvtgikU0d9TYm0+PCUCaHO7Etfb/WOfkuHPsomHuLHoAvUn66eCpli0JVK
+ UrsI1TdqM4dGDjLLgfQNBGkfAsb4kTDKI2yi84zNEGMek1Xq6E3SjStITTkpP3Qoo8OivlTYKG4
+ gZYYc3B8eASN1O4OqWXQy0G3kWpOxbZnCQFxM5wXqzKXafYOBLOs4hLBdTG5c4KUDNGwGw4xqMi
+ oQHTxDZ6PAjBBQGM75lk0sIJhJPoIavgLRSU+w3I2Yth+lB3ZzYUkCKIwTQ4+8IDeKuAJtA6u1Q
+ wSC59p18vOzAn28XNOtug2XgnYoR
+X-Received: by 2002:a05:690e:4811:b0:651:bcc9:50cd with SMTP id
+ 956f58d0204a3-653107ccddamr6102177d50.5.1776604455299; Sun, 19 Apr 2026
+ 06:14:15 -0700 (PDT)
 MIME-Version: 1.0
-From: Eric Naim <dnaim@cachyos.org>
-Subject: Re: 7.0-rc4 dcn31_program_compbuf_size trace
-To: Julian Wollrath <jwollrath@web.de>, amd-gfx@lists.freedesktop.org
-Cc: Martin Leung <martin.leung@amd.com>,
- Bhuvanachandra Pinninti <bpinnint@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Dan Wheeler <daniel.wheeler@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-References: <20260316094232.6bb6f0bf@schienar>
-In-Reply-To: <20260316094232.6bb6f0bf@schienar>
-Content-Type: text/plain; charset=UTF-8
+References: <20260323160052.17528-1-vineeth@bitbyteword.org>
+ <20260418190456.631df6f3@fedora>
+In-Reply-To: <20260418190456.631df6f3@fedora>
+From: Vineeth Remanan Pillai <vineeth@bitbyteword.org>
+Date: Sun, 19 Apr 2026 09:14:04 -0400
+X-Gm-Features: AQROBzCejbUFLEO14GEr24qqxXnlBQ97NPzS668jjkdcYvI-3kvv1xuemSCQk44
+Message-ID: <CAO7JXPh+__EWsW8fsKi4T+w0jdPxZEfCLQno_ukJk2=d2s0WKA@mail.gmail.com>
+Subject: Re: [PATCH v2 00/19] tracepoint: Avoid double static_branch
+ evaluation at guarded call sites
+To: Steven Rostedt <rostedt@goodmis.org>
+Cc: Peter Zijlstra <peterz@infradead.org>, Dmitry Ilvokhin <d@ilvokhin.com>, 
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
+ Ingo Molnar <mingo@redhat.com>, Jens Axboe <axboe@kernel.dk>,
+ io-uring@vger.kernel.org, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Alexei Starovoitov <ast@kernel.org>, 
+ Daniel Borkmann <daniel@iogearbox.net>,
+ Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>, 
+ Xin Long <lucien.xin@gmail.com>, Jon Maloy <jmaloy@redhat.com>, 
+ Aaron Conole <aconole@redhat.com>, Eelco Chaudron <echaudro@redhat.com>, 
+ Ilya Maximets <i.maximets@ovn.org>, netdev@vger.kernel.org, bpf@vger.kernel.org,
+ linux-sctp@vger.kernel.org, tipc-discussion@lists.sourceforge.net, 
+ dev@openvswitch.org, Jiri Pirko <jiri@resnulli.us>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Koby Elbaz <koby.elbaz@intel.com>, dri-devel@lists.freedesktop.org, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+ "Gautham R. Shenoy" <gautham.shenoy@amd.com>, Huang Rui <ray.huang@amd.com>, 
+ Mario Limonciello <mario.limonciello@amd.com>, Len Brown <lenb@kernel.org>, 
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ linux-pm@vger.kernel.org, MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org, 
+ Eddie James <eajames@linux.ibm.com>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Joel Stanley <joel@jms.id.au>, linux-fsi@lists.ozlabs.org, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Alex Deucher <alexander.deucher@amd.com>, Danilo Krummrich <dakr@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, Philipp Stanner <phasta@kernel.org>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ amd-gfx@lists.freedesktop.org, Jiri Kosina <jikos@kernel.org>, 
+ Benjamin Tissoires <bentiss@kernel.org>, linux-input@vger.kernel.org, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-i2c@vger.kernel.org, 
+ Mark Brown <broonie@kernel.org>,
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, linux-spi@vger.kernel.org, 
+ "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
+ "Martin K. Petersen" <martin.petersen@oracle.com>, linux-scsi@vger.kernel.org, 
+ Chris Mason <clm@fb.com>, David Sterba <dsterba@suse.com>,
+ linux-btrfs@vger.kernel.org, 
+ Thomas Gleixner <tglx@linutronix.de>, Andrew Morton <akpm@linux-foundation.org>,
+ SeongJae Park <sj@kernel.org>, linux-mm@kvack.org,
+ Borislav Petkov <bp@alien8.de>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+ linux-trace-kernel@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
 X-Mailman-Approved-At: Mon, 20 Apr 2026 13:02:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,186 +159,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.31 / 15.00];
-	DATE_IN_PAST(1.00)[25];
-	DMARC_POLICY_ALLOW(-0.50)[cachyos.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[cachyos.org:s=dkim];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[bitbyteword.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jwollrath@web.de,m:martin.leung@amd.com,m:bpinnint@amd.com,m:aurabindo.pillai@amd.com,m:daniel.wheeler@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[web.de,lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[dnaim@cachyos.org,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:rostedt@goodmis.org,m:peterz@infradead.org,m:d@ilvokhin.com,m:mhiramat@kernel.org,m:mathieu.desnoyers@efficios.com,m:mingo@redhat.com,m:axboe@kernel.dk,m:io-uring@vger.kernel.org,m:davem@davemloft.net,m:edumazet@google.com,m:kuba@kernel.org,m:pabeni@redhat.com,m:ast@kernel.org,m:daniel@iogearbox.net,m:marcelo.leitner@gmail.com,m:lucien.xin@gmail.com,m:jmaloy@redhat.com,m:aconole@redhat.com,m:echaudro@redhat.com,m:i.maximets@ovn.org,m:netdev@vger.kernel.org,m:bpf@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:dev@openvswitch.org,m:jiri@resnulli.us,m:ogabbay@kernel.org,m:koby.elbaz@intel.com,m:dri-devel@lists.freedesktop.org,m:rafael@kernel.org,m:viresh.kumar@linaro.org,m:gautham.shenoy@amd.com,m:ray.huang@amd.com,m:mario.limonciello@amd.com,m:lenb@kernel.org,m:srinivas.pandruvada@linux.intel.com,m:linux-pm@vger.kernel.org,m:myungjoo.ham@samsung.com,m:kyungmin.park@samsung.com,m:cw00.choi@samsung.com,m:christian.koenig@
+ amd.com,m:sumit.semwal@linaro.org,m:linaro-mm-sig@lists.linaro.org,m:eajames@linux.ibm.com,m:andrew@codeconstruct.com.au,m:joel@jms.id.au,m:linux-fsi@lists.ozlabs.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:alexander.deucher@amd.com,m:dakr@kernel.org,m:matthew.brost@intel.com,m:phasta@kernel.org,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:jikos@kernel.org,m:bentiss@kernel.org,m:linux-input@vger.kernel.org,m:wsa+renesas@sang-engineering.com,m:linux-i2c@vger.kernel.org,m:broonie@kernel.org,m:michael.hennerich@analog.com,m:nuno.sa@analog.com,m:linux-spi@vger.kernel.org,m:James.Bottomley@hansenpartnership.com,m:martin.petersen@oracle.com,m:linux-scsi@vger.kernel.org,m:clm@fb.com,m:dsterba@suse.com,m:linux-btrfs@vger.kernel.org,m:tglx@linutronix.de,m:akpm@linux-foundation.org,m:sj@kernel.org,m:linux-mm@kvack.org,m:bp@alien8.de,m:dave.hansen@linux.intel.com,m:x86@kernel.org,m:linux-trace-kernel@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:marceloleitner@gmail.com,m:lucienxin@gmail
+ .com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[bitbyteword.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_CC(0.00)[infradead.org,ilvokhin.com,kernel.org,efficios.com,redhat.com,kernel.dk,vger.kernel.org,davemloft.net,google.com,iogearbox.net,gmail.com,ovn.org,lists.sourceforge.net,openvswitch.org,resnulli.us,intel.com,lists.freedesktop.org,linaro.org,amd.com,linux.intel.com,samsung.com,lists.linaro.org,linux.ibm.com,codeconstruct.com.au,jms.id.au,lists.ozlabs.org,ffwll.ch,sang-engineering.com,analog.com,hansenpartnership.com,oracle.com,fb.com,suse.com,linutronix.de,linux-foundation.org,kvack.org,alien8.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[dnaim@cachyos.org,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_GT_50(0.00)[80];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[cachyos.org:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[bitbyteword.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[amd-gfx,renesas];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,cachyos.org:dkim,cachyos.org:mid]
-X-Rspamd-Queue-Id: A408942B288
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: AAE8542B2C3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/16/26 4:42 PM, Julian Wollrath wrote:
-> Dear maintainers,
->=20
-> when turning the display of via 'xset dpms force off' I observe the
-> following warning and trace under 7.0-rc4 with a AMD Ryzen 7 PRO 8840U
-> w/ Radeon 780M Graphics card. This I did not observe under 6.19.7.
->=20
-> kernel: amdgpu 0000:c4:00.0: [drm] REG_WAIT timeout 1us * 100 tries - d=
-cn31_program_compbuf_size line:142
-> kernel: ------------[ cut here ]------------
-> kernel: WARNING: drivers/gpu/drm/amd/amdgpu/../display/dc/hubbub/dcn31/=
-dcn31_hubbub.c:151 at dcn31_program_compbuf_size+0xd2/0x230 [amdgpu], CPU=
-#2: Xorg/1207
-> kernel: Modules linked in: r8153_ecm hid_apple apple_mfi_fastcharge usb=
-hid r8152 rfcomm snd_seq_dummy snd_hrtimer snd_seq snd_seq_device michael=
-_mic 8021q garp stp mrp llc uhid algif_hash algif_skcipher af_alg qrtr_mh=
-i bnep binfmt_misc nls_iso8859_1 nls_cp437 vfat fat edac_mce_amd edac_cor=
-e ext4 mbcache jbd2 ucsi_acpi typec_ucsi roles amd_atl typec spd5118 kvm_=
-amd snd_soc_ps_mach snd_soc_dmic snd_ps_pdm_dma regmap_i2c qrtr uvcvideo =
-videobuf2_vmalloc kvm videobuf2_memops ath11k_pci uvc mhi irqbypass video=
-buf2_v4l2 ghash_clmulni_intel think_lmi snd_ctl_led snd_sof_amd_acp63 ath=
-11k rapl cdc_mbim btusb snd_hda_codec_alc269 snd_sof_amd_acp qmi_helpers =
-videodev cdc_wdm btintel snd_sof_xtensa_dsp snd_hda_scodec_component amdg=
-pu snd_sof_pci firmware_attributes_class wmi_bmof cdc_ncm videobuf2_commo=
-n snd_hda_codec_realtek_lib bluetooth mc cdc_ether mac80211 snd_hda_codec=
-_generic snd_sof usbnet mii snd_sof_utils i2c_algo_bit libarc4 drm_ttm_he=
-lper snd_pci_ps snd_hda_codec_atihdmi k10temp ttm snd_soc_acpi_amd_match
-> kernel:  snd_hda_codec_hdmi agpgart snd_acp_config cfg80211 drm_exec sn=
-d_amd_sdw_acpi thunderbolt r8169 drm_suballoc_helper soundwire_amd mfd_co=
-re ac soundwire_generic_allocation drm_buddy snd_soc_acpi snd_hda_intel d=
-rm_panel_backlight_quirks snd_intel_dspcfg soundwire_bus amd_pmf gpu_sche=
-d snd_hda_codec amdtee amdxcp sp5100_tco snd_soc_core snd_hda_core amd_sf=
-h watchdog drm_display_helper snd_compress snd_hwdep tpm_crb tee button c=
-ec snd_pcm crc16 i2c_piix4 mousedev snd_timer amd_pmc i2c_smbus nft_ct nf=
-_conntrack nf_defrag_ipv6 nf_defrag_ipv4 nft_limit sch_fq_codel parport_p=
-c msr parport nf_tables fuse efi_pstore configfs nfnetlink efivarfs tpm l=
-ibaescfb ecdh_generic autofs4 xfs dm_crypt dm_mod hid_multitouch hid_gene=
-ric i2c_hid_acpi i2c_hid thinkpad_acpi input_leds nvme psmouse xhci_pci n=
-vram sparse_keymap atkbd nvme_core xhci_hcd i2c_designware_platform platf=
-orm_profile vivaldi_fmap evdev aesni_intel serio_raw snd nvme_keyring usb=
-core soundcore battery usb_common rfkill nvme_auth ccp hkdf rng_core fan =
-thermal
-> kernel:  i2c_designware_core simpledrm drm_client_lib drm_shmem_helper =
-drm_sysfb_helper drm_kms_helper drm
-> kernel: CPU: 2 UID: 0 PID: 1207 Comm: Xorg Not tainted 7.0.0-rc4 #1 PRE=
-EMPT
-> kernel: Hardware name: LENOVO 21MCS03F00/21MCS03F00, BIOS R2LET37W (1.1=
-8 ) 11/25/2025
-> kernel: RIP: 0010:dcn31_program_compbuf_size+0xd2/0x230 [amdgpu]
-> kernel: Code: 00 48 8b 43 28 8b 88 d8 01 00 00 48 8b 43 20 0f b6 50 76 =
-48 8b 43 18 8b b0 14 01 00 00 e8 b6 d3 0b 00 85 c0 0f 85 32 01 00 00 <0f>=
- 0b 48 8b 44 24 08 65 48 2b 05 6f 34 9f ce 0f 85 35 01 00 00 48
-> kernel: RSP: 0018:ffffd27ac33376e8 EFLAGS: 00010202
-> kernel: RAX: 0000000000000001 RBX: ffff8f3fa057c800 RCX: 00000000800416=
-19
-> kernel: RDX: ffffd27ac510e5e8 RSI: 000000000000397a RDI: ffff8f3eda1800=
-00
-> kernel: RBP: 0000000000000004 R08: 0000000080041619 R09: 00000000000039=
-7a
-> kernel: R10: 0000000000000064 R11: ffffd27ac33373f8 R12: ffff8f3ec5c000=
-00
-> kernel: R13: ffff8f3f61800000 R14: ffff8f3fa057c800 R15: 00000000000000=
-04
-> kernel: FS:  00007f505be98b80(0000) GS:ffff8f466e70c000(0000) knlGS:000=
-0000000000000
-> kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> kernel: CR2: 00007faaf46f5f40 CR3: 0000000106478000 CR4: 0000000000750e=
-f0
-> kernel: PKRU: 55555554
-> kernel: Call Trace:
-> kernel:  <TASK>
-> kernel:  dcn20_optimize_bandwidth+0xe6/0x220 [amdgpu]
-> kernel:  dc_commit_state_no_check+0xc1e/0xe90 [amdgpu]
-> kernel:  dc_commit_streams+0x2f9/0x4f0 [amdgpu]
-> kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
-> kernel:  ? dm_read_reg_func+0x5c/0x100 [amdgpu]
-> kernel:  amdgpu_dm_atomic_commit_tail+0x51f/0x34c0 [amdgpu]
-> kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
-> kernel:  ? dcn30_internal_validate_bw+0x890/0x960 [amdgpu]
-> kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
-> kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
-> kernel:  ? dcn314_validate_bandwidth+0xf7/0x2e0 [amdgpu]
-> kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
-> kernel:  ? dma_resv_get_fences+0xb2/0x290
-> kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
-> kernel:  ? dma_resv_get_singleton+0x43/0x130
-> kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
-> kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
-> kernel:  ? wait_for_completion_timeout+0xf7/0x130
-> kernel:  commit_tail+0x9d/0x130 [drm_kms_helper]
-> kernel:  drm_atomic_helper_commit+0x13c/0x180 [drm_kms_helper]
-> kernel:  drm_atomic_commit+0xb1/0xe0 [drm]
-> kernel:  ? drm_plane_create_color_pipeline_property.cold+0x29/0x29 [drm=
-]
-> kernel:  drm_atomic_connector_commit_dpms+0xfa/0x110 [drm]
-> kernel:  drm_mode_obj_set_property_ioctl+0x1b4/0x3b0 [drm]
-> kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
-> kernel:  ? drm_connector_set_obj_prop+0xa0/0xa0 [drm]
-> kernel:  drm_connector_property_set_ioctl+0x3c/0x60 [drm]
-> kernel:  drm_ioctl_kernel+0xae/0x100 [drm]
-> kernel:  drm_ioctl+0x29b/0x540 [drm]
-> kernel:  ? drm_connector_set_obj_prop+0xa0/0xa0 [drm]
-> kernel:  amdgpu_drm_ioctl+0x4a/0x80 [amdgpu]
-> kernel:  __x64_sys_ioctl+0x86/0xd0
-> kernel:  do_syscall_64+0xec/0x940
-> kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
-> kernel:  ? common_interrupt+0x3f/0xa0
-> kernel:  entry_SYSCALL_64_after_hwframe+0x55/0x5d
-> kernel: RIP: 0033:0x7f505c21dd3b
-> kernel: Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 =
-00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <89>=
- c2 3d 00 f0 ff ff 77 1c 48 8b 44 24 18 64 48 2b 04 25 28 00 00
-> kernel: RSP: 002b:00007ffda60126e0 EFLAGS: 00000246 ORIG_RAX: 000000000=
-0000010
-> kernel: RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f505c21dd=
-3b
-> kernel: RDX: 00007ffda6012770 RSI: 00000000c01064ab RDI: 00000000000000=
-0f
-> kernel: RBP: 00007ffda6012770 R08: 0000000000154eb5 R09: 7fffffffffffff=
-ff
-> kernel: R10: 00007f505bab9cb0 R11: 0000000000000246 R12: 00000000c01064=
-ab
-> kernel: R13: 000000000000000f R14: 000055ba642c5c60 R15: 00000000000000=
-00
-> kernel:  </TASK>
-> kernel: ---[ end trace 0000000000000000 ]---
->=20
->=20
->=20
-> Best regards,
-> Julian
->=20
+On Sat, Apr 18, 2026 at 7:05=E2=80=AFPM Steven Rostedt <rostedt@goodmis.org=
+> wrote:
+>
+> On Mon, 23 Mar 2026 12:00:19 -0400
+> "Vineeth Pillai (Google)" <vineeth@bitbyteword.org> wrote:
+>
+> >   if (trace_foo_enabled() && cond)
+> >       trace_call__foo(args);   /* calls __do_trace_foo() directly */
+>
+> Hi Vineeth,
+>
+> Could you rebase this series on top of 7.1-rc1 when it comes out?
+> Several of these patches were accepted already. Obviously drop those.
+> They were the patches that added the feature, and any where the
+> maintainer acked the patch.
+>
+> Now that the feature has been accepted, if you post the patch series
+> again after 7.1-rc1 with all the patches that haven't been accepted
+> yet, then the maintainers can simply take them directly. As the feature
+> is now accepted, there's no dependency on it, and they don't need to go
+> through the tracing tree.
+>
+Sure, will do. Thanks for merging this feature.
 
-Hi maintainers,
-
-Per [1], this seems to be caused by 592c5b80110d5e9e50873b5364818cb6f401e=
-26d.
-
-[1] https://github.com/CachyOS/linux-cachyos/issues/810#issuecomment-4275=
-280460
-
-
---=20
-Regards,
-  Eric
+Thanks,
+Vineeth
