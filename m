@@ -2,60 +2,109 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2GPeNYon5mm6sgEAu9opvQ
+	id GA4ZJY0m5mmgsgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:18:02 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:13:49 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 399D542B84A
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:18:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FA0D42B587
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:13:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEBA010E5EF;
-	Mon, 20 Apr 2026 13:18:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 934B210E5CA;
+	Mon, 20 Apr 2026 13:13:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lfA3/5Ah";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QCV3+bSD";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCF6F10E5EF;
- Mon, 20 Apr 2026 13:17:59 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id B09CB43EF6;
- Mon, 20 Apr 2026 13:17:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43381C19425;
- Mon, 20 Apr 2026 13:17:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1776691079;
- bh=ilHKaWdBK9xAIgteGoH8Gkqxmn+NqMVwZI2GHoTdqIE=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=lfA3/5AhfqJM6KL3UTL1aMM3ONO7MY8PyLbv9zM+n9rj8NH1alpdkho0xkijEdEv5
- W7078ZEm7iMGuQPRZ6CUHFOZoA3XwL4fgKo74w4A9UVh/RkYifD/kFPlbAjXrLbsX/
- Xl12++Ef9y7v7F13NiskPgHd8PFiZ+GgrfvquFfsOYYG96W8Bg41Lj8L+kVo+fIW6t
- AoF5lTJCWzexl85/MR6Z9LtFEpltOaWE52F3cw70UjhKoNaqWXiIeZNHaPy6UsY4I5
- g72TWfD0Clk+9+490WQmrnw+9LuJPPeQeZGdUO/sed/IIwl+4lxLP/rpT6eQIcGLGz
- FDnvPcI5f1gcA==
-From: Sasha Levin <sashal@kernel.org>
-To: patches@lists.linux.dev,
-	stable@vger.kernel.org
-Cc: Likun Gao <Likun.Gao@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
- christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 7.0-6.12] drm/amdgpu: fix DF NULL pointer issue for
- soc24
-Date: Mon, 20 Apr 2026 09:09:07 -0400
-Message-ID: <20260420131539.986432-81-sashal@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260420131539.986432-1-sashal@kernel.org>
-References: <20260420131539.986432-1-sashal@kernel.org>
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013005.outbound.protection.outlook.com
+ [40.93.196.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0752D10E5BB;
+ Mon, 20 Apr 2026 13:13:44 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oLgCTMJwt5+DWO9n9nWG8bUFEO0PKq9YWifVFTgiwYxnIm4M3g4uq/G4ObZWxp2RNOP5Z8qAUc6DDOBOdel2TD7exitDNmqhGURdBokrQsnKag32tWF7oPnyvMIXJGuASa3cQzQQevjiegNBUrIt9MhdTRSAMXRAyLt1HGmUlqNMFO/m+hYuwDzVvOz1mJqDwKXaUMmwxR4Lub43nZVuFDIxpRmbqYNuJ/DQ1TcV/GIIcvWA62nfLQPUJxLHrTzQIfg+qDwrGEWyW5Jwqkzm5948+MkUxOFuLPVSbUW2Iy/CR0i7p3+ZWcAzwRDAfJ2V93iwqj4Z31ySIN9HmqUGoA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wmwgzMVw8TrSrFnTvKQaApTJQNbG7YrtRDpjf8KlZHs=;
+ b=o6vmol7GinBhRQGosRwcQ+CzowTOdtZt+ILZ16q3Q2ecyoW9xpValPX7uFT1Z3NRcLikrMQY4WEmMSA8bGB9h8wwzBcoCa/WaEnGKLy8Nbjl6SFfclfsn12BejEvYolqe41L/fLJJwXlGZS7dTcZKP+Ls0k4Udxvuar/YiiiCF+MgkOcBReCLH+soQ7fjN8IGotkL73+Xo2Z5DrQS/3tjUqS6SrCQlVsHUm+rUeShOZUkjVFBQ9fGqtTYIlLyh302KD7AQzBJ1R3QkLC0Oa6Yl1JU0t1zXiTJ2h6Mv+o0at5qbDk5l2kJwtrTxhAB2GcXh2pW2PViHDJteJc+550/w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wmwgzMVw8TrSrFnTvKQaApTJQNbG7YrtRDpjf8KlZHs=;
+ b=QCV3+bSDk9sXrvoIhFcsiF95wuTqeVJSjAEYrSYG8LrNtFir0GwPNuEiVJNDaNTfXtLGR98C75eqqYdEs1qfpKB5USOL/1EGIVywfHg8gtehVyNfQ29ZPOyCAOizWOEKmyzM5rL8+4zBDiwNwQdwT/v/h2DfoF37+fkaAWU6vnU=
+Received: from CH0PR03CA0323.namprd03.prod.outlook.com (2603:10b6:610:118::6)
+ by PH7PR12MB8107.namprd12.prod.outlook.com (2603:10b6:510:2bb::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.20; Mon, 20 Apr
+ 2026 13:13:36 +0000
+Received: from CH1PEPF0000AD7A.namprd04.prod.outlook.com
+ (2603:10b6:610:118:cafe::c3) by CH0PR03CA0323.outlook.office365.com
+ (2603:10b6:610:118::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9791.48 via Frontend Transport; Mon,
+ 20 Apr 2026 13:13:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CH1PEPF0000AD7A.mail.protection.outlook.com (10.167.244.59) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9791.48 via Frontend Transport; Mon, 20 Apr 2026 13:13:35 +0000
+Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 20 Apr
+ 2026 08:13:31 -0500
+From: Honglei Huang <honglei1.huang@amd.com>
+To: <Alexander.Deucher@amd.com>, <Felix.Kuehling@amd.com>,
+ <Christian.Koenig@amd.com>, <Oak.Zeng@amd.com>, <Jenny-Jing.Liu@amd.com>,
+ <Philip.Yang@amd.com>, <Xiaogang.Chen@amd.com>, <Ray.Huang@amd.com>,
+ <Lingshan.Zhu@amd.com>, <Junhua.Shen@amd.com>, <matthew.brost@intel.com>,
+ <rodrigo.vivi@intel.com>, <thomas.hellstrom@linux.intel.com>,
+ <dakr@kernel.org>, <aliceryhl@google.com>
+CC: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <honghuan@amd.com>
+Subject: [RFC V3 00/12] drm/amdgpu: SVM implementation based on drm_gpusvm
+Date: Mon, 20 Apr 2026 21:12:55 +0800
+Message-ID: <20260420131307.1816671-1-honglei1.huang@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 7.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD7A:EE_|PH7PR12MB8107:EE_
+X-MS-Office365-Filtering-Correlation-Id: 812d6b01-d5d0-408d-a044-08de9edea113
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|82310400026|376014|36860700016|921020|13003099007|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: kl36nd30NFf5uMYf5mOBJbWU1hoasg/AMNcO3fN2L8wU1sb1VzyxX4g5gamTVeG/mn7XBl4TzSaY3jX60rhZ1QaTHsOAZ8eVDJF2w9WJbAys5ZW6Z5f+Sc4Puf+okUZnBiKbs92hM2ZbmqjMKapd5gamYpOGNd+IYsFWA0WoIjO3ovWD0pO2cMaso6vZTRFsiKpbYx8sLfv0Rcj7I0f5qX1zf4UevAiYYNed7OgQBVPYUQIPT+/TArUkb1Thsyt0iGtg9J1v2IGI9xokHQGYP+bk4HXVBeGRzlbSx+TsgzE4cFdgXS7XGMFSP8w+q59Bo+JG+XvZ08Dm6xCQUDCqxniNmG1NMkXvl89QTlmMD5f5Be6QHEqykM/q+S7azM1cJDGR69LNGSzn545Xtzci8ReUoDMEh6HSXgSq0rA1gdSx8+EuEhBX4nc5ca7OfQRQlYW53COAiYlnWdf1uKn71QW+bfYmQiG5pSm+cIvfo+BpgREAUwUzmcP9gN03t7ugzRrg/rgD/Xr1+a35xlhZkSRbMlIPXx/1tBaPvtx0oePOj33lgfPqzZKWv1IuM87m4I1/Og2Wcnxuggm8fHZE6/ZEmM+3c3Ekx7ezgD61VSHhXDNfaA4Mk1dyymlcGClamWEEsOB+RmsgEGyazczH9VgMmgp3EWzWRetyKmOkZ6Wp+MUlgpEQQlCFPNn9+m6zKJ0hOxjva76N3INoxyytsc/q3DYFyBj5Ex/GApFxPKvblj09IGTVPSsXW5Q0ab0umaxBGDhjCAnT68HUzbnqDPl7ihky36YBLLyvR5fETK+b2oofyK7f/IotidZAV8a8Jb5RaVWnDbI0X1shbIr+vw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(921020)(13003099007)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: j4bVi/nUvbFxsUbJvmw3FyAXp7ApazBIeVHYdiY5cbSN71IFpqaN8mAbBTPFO2rW5M4xNI0EvrGsqTokZ2eQlfontbfRxO32c/vcXaFyfR98nswWLPr++bDzv82ji7kLNoEqr65qcBX70kW0YmUPoNu/hUNDWcbLqyguKbBex15z3N5kmfnyBK1zIcjWsFGMarKxMHYBgj/b1KY4HDuADbfNnDQWPJCJ4gwy4si1eqOv1xycRcaGv7bRHnFYn5JwbnJtbR2twsLvyJiWOMgvv/c+2tXXdI6W6iZOcTjJS7IpC83LpvxvMnpWDVnUE+A0VwWsM203ARyt1jBw28+ULZzsOd0Pl4es6VDO3gfDB02I/7P4aG3nC77CNrvRUw62S+mxupcJ+78RkmgXVSIDbuO+LWmr2gOYGiRCjZ2QtYSb6f8ugKJslmYGy3I96IR2
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2026 13:13:35.5207 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 812d6b01-d5d0-408d-a044-08de9edea113
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD7A.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8107
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,384 +118,254 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 399D542B84A
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[honglei1.huang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-0.561];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 3FA0D42B587
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Likun Gao <Likun.Gao@amd.com>
+From: Honglei Huang <honghuan@amd.com>
+
+V3 of the SVM patch series for amdgpu based on the drm_gpusvm framework. 
+This revision incorporates feedback from V1, adds XNACK on GPU fault handling,
+improves code organization, and removes the XNACK off (no GPU fault) implementation
+to focus on the fault driven model that aligns with drm_gpusvm's design. 
+The implementation references extensively from xe_svm.
+
+This patch series implements SVM support with the following design:
+
+  1. Attributes separated from physical page management:
+
+    - Attribute layer (amdgpu_svm_attr_tree): a driver-side interval
+      tree storing per-range SVM attributes. Managed through SET_ATTR
+      ioctl and preserved across range lifecycle events.
+
+    - Physical page layer (drm_gpusvm ranges): managed by the
+      drm_gpusvm framework, representing HMM-backed DMA mappings
+      and GPU page table entries.
+
+    This separation ensures attributes survive when GPU ranges are
+    destroyed (partial munmap, attribute split, GC). The fault
+    handler recreates GPU ranges from the attribute tree on demand.
+
+  2. GPU fault driven mapping (XNACK on):
+
+    The core mapping path is driven by GPU page faults instead of ioctls.
+    amdgpu_svm_handle_fault() looks up SVM by PASID, runs GC,
+    resolves attributes, then maps via find_or_insert -> get_pages
+    -> GPU PTE update. For unregistered addresses, default
+    attributes are derived from VMA properties automatically.
+
+  3. MMU notifier invalidation:
+
+    Two-phase callback: event_begin() zaps GPU PTEs and flushes
+    TLB, event_end() unmaps DMA pages. UNMAP events queue ranges
+    to GC for deferred cleanup. Non-UNMAP events (eviction) rely
+    on GPU fault to remap.
+
+  4. Garbage collector:
+
+    GC workqueue processes unmapped ranges: removes them
+    from drm_gpusvm and clears corresponding attributes. No
+    rebuild or restore logic, GPU fault handles recreation.
+
+Changes since V2:
+  - Add version tittle in commit message.
+  - Fix some content mistaken.
+
+Changes since V1:
+  - Added GPU fault handler: amdgpu_svm_handle_fault with PASID-based
+    SVM lookup, following the standard flow: garbage collector ->
+    find or insert range -> check valid -> migrate (TODO) / get_pages
+    -> GPU bind/map.
+
+  - Removed the restore worker queue entirely. V1 had separate GC
+    and restore workers: restore workers were responsible for 
+    synchronously restore in queue stop/start cause no GPU fault support.
+    With XNACK on fault driven model, synchronous restore is unnecessary,
+    the GPU fault handler recreates ranges on demand. The GC worker in 
+    V2 is simplified to only discard ranges and clear their attributes, 
+    with no rebuild or restore logic. AMDGPU_SVM_FLAG_GPU_ALWAYS_MAPPED
+    support is removed as no restore worker.
+
+  - Reworked MMU notifier callback (amdgpu_svm_range_invalidate):
+    V1 had a monolithic dispatcher with flag combinations and
+    queue ops (CLEAR_PTE/QUEUE_INTERVAL, UNMAP/RESTORE) plus
+    begin_restore() to quiesce KFD queues. V2 uses a two-phase
+    model: event_begin() zaps GPU PTEs and flushes TLB,
+    event_end() unmaps DMA pages and queues UNMAP ranges to GC.
+    Non-UNMAP events (eviction) just zap PTEs and let GPU fault
+    remap. Removed begin_restore/end_restore callbacks,
+    has_always_mapped_range() check, and NOTIFIER flag dispatch.
+    Added checkpoint timestamp capture on UNMAP for fault dedup.
+
+  - Added amdgpu_svm_range_invalidate_interval(): when userspace
+    sets new attributes on a sub region of an existing attribute
+    range, the attribute tree splits the old range and the new
+    sub region gets different attributes. However, existing
+    drm_gpusvm ranges may across the new attribute boundary
+    (e.g., a 2M GPU range covers both the old and new attribute
+    regions). This function walks all gpusvm ranges in the
+    affected interval, zaps GPU PTEs and flushes TLB. Ranges
+    that cross the new boundary and old boundary are removed 
+    entirely so the GPU fault handler can recreate them with 
+    boundaries aligned to the updated attribute layout.
+
+  - On MMU_NOTIFY_UNMAP events, discard all affected gpusvm ranges
+    entirely without synchronous rebuild in v1. The unmap may destroy
+    more ranges than strictly necessary (e.g., a partial munmap
+    hits a 2M range that extends beyond the unmapped region), but
+    the attribute layer preserves the still valid attributes for
+    the remaining address space. When the GPU next accesses those
+    addresses, the fault handler automatically recreates the
+    ranges with correct boundaries from the surviving attributes.
+    This avoids the synchronous rebuild logic that V1 required 
+    (unmap -> rebuild in GC/restore worker).
+
+  - Add attribute creation for unregistered addresses:
+    amdgpu_svm_range_get_unregistered_attrs() derives default
+    SVM attributes from VMA properties and GPU IP capabilities
+    when the faulting address has no user attributes registered.
+    this feature is needed to pass ROCm user mode runtime tests:
+    kfd/rocr/hip. ROCm supports no registered virtual address access
+    with default SVM attributes before, so amdgpu svm needs to support.
+
+  - Explicitly returns -EOPNOTSUPP in amdgpu_svm_init when XNACK
+    is disabled. V1 attempted mixed XNACK on/off support with
+    complex KFD queue quiesce/resume callbacks and ioctl driven
+    mapping paths, which added substantial complexity. V2 drops
+    these implementations to focus on the fault driven model.
+
+  - Removed kgd2kfd_quiesce_mm()/resume_mm() dependency that V1
+    used for XNACK off queue control. For XNACK on, the GPU fault 
+    handler is the enterance for SVM range mapping, so no quiesce/resume
+    is needed for this version. 
+
+  - Added new change triggers: TRIGGER_RANGE_SPLIT, TRIGGER_PREFETCH.
+    for sub attr set and prefetch trigger support.
+
+  - Added helper functions: find_locked, get_bounds_locked,
+    set_default for GPU fault handling.
+
+  - Design questions section removed.
+
+TODO:
+  - Add multi GPU support.
+  - Add XNACK off mode.
+  - Add migration or prefetch. This part work is ongoing in:
+    https://lore.kernel.org/amd-gfx/20260410113146.146212-1-Junhua.Shen@amd.com/
+
+Test results:
+  Tested on gfx943 (MI300X) and gfx906 (MI60) with XNACK on:
+  - KFD test: 95%+ passed.
+  - ROCR test: all passed.
+  - HIP catch test: gfx943 (MI300X): 96% passed.
+                    gfx906 (MI60):99% passed.
+
+Patch overview:
+
+  01/12 UAPI: DRM_AMDGPU_GEM_SVM ioctl, SVM flags, SET_ATTR/GET_ATTR
+        operations, attribute types in amdgpu_drm.h.
+
+  02/12 Core header: amdgpu_svm wrapping drm_gpusvm with refcount,
+        attr_tree, GC struct, locks, and VM integration hooks.
+
+  03/12 Attribute types: amdgpu_svm_attrs, attr_range (interval tree
+        node), attr_tree, access enum, flag masks, change triggers.
+
+  04/12 Attribute tree ops: interval tree lookup, insert, remove,
+        find_locked, get_bounds_locked, set_default, and lifecycle.
+
+  05/12 Attribute set/get/clear: validate UAPI attributes, apply to
+        tree with head/tail splitting, change propagation, and query.
+
+  06/12 Range types: amdgpu_svm_range extending drm_gpusvm_range
+        with gpu_mapped state, pending ops, work queue linkage,
+        and op_ctx for batch processing.
+
+  07/12 Range GPU mapping: PTE flags computation with read_only
+        support, GPU page table update, range mapping loop.
+
+  08/12 Notifier and GC helpers: two-phase notifier events, range
+        removal, GC enqueue/add with dedicated workqueue.
+
+  09/12 Attribute change and invalidation: apply attribute triggers
+        to GPU ranges, invalidate_interval for boundary realignment,
+        work queue dequeue helpers, checkpoint timestamp.
+
+  10/12 Initialization and lifecycle: kmem_cache, drm_gpusvm_init
+        with chunk sizes (2M/64K/4K), XNACK detection, GC init,
+        PASID lookup, TLB flush, and init/close/fini lifecycle.
+
+  11/12 Ioctl, GC, and fault handler: ioctl dispatcher, GC worker,
+        and amdgpu_svm_fault.c/h with full fault path including
+        unregistered attribute derivation and retry logic.
+
+  12/12 Build integration: Kconfig (CONFIG_DRM_AMDGPU_SVM), Makefile
+        rules, ioctl registration, and amdgpu_vm fault dispatch.
+
+Honglei Huang (12):
+  drm/amdgpu: define SVM UAPI for GPU shared virtual memory
+  drm/amdgpu: introduce SVM core header and VM integration
+  drm/amdgpu: define SVM attribute subsystem types
+  drm/amdgpu: implement SVM attribute tree and helper functions
+  drm/amdgpu: implement SVM attribute set, get, and clear
+  drm/amdgpu: define SVM range types and work queue interface
+  drm/amdgpu: implement SVM range GPU mapping core
+  drm/amdgpu: implement SVM range notifier and GC helpers
+  drm/amdgpu: implement SVM attribute change and invalidation callback
+  drm/amdgpu: implement SVM initialization and lifecycle
+  drm/amdgpu: add SVM ioctl, garbage collector, and fault handler
+  drm/amdgpu: integrate SVM into build system and VM fault path
+
+ drivers/gpu/drm/amd/amdgpu/Kconfig            |  11 +
+ drivers/gpu/drm/amd/amdgpu/Makefile           |  13 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm.c       | 467 +++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm.h       | 162 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_attr.c  | 952 ++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_attr.h  | 144 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_fault.c | 368 +++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_fault.h |  39 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.c | 863 ++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.h | 148 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |  20 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |   4 +
+ include/uapi/drm/amdgpu_drm.h                 |  39 +
+ 14 files changed, 3231 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_attr.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_attr.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_fault.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_fault.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.h
 
-[ Upstream commit 50808826a64b4957b7088c789e539dd0a75a1560 ]
-
-If DF function not initialized, NULL pointer issue
-will happen on soc24.
-
-Signed-off-by: Likun Gao <Likun.Gao@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
-
-LLM Generated explanations, may be completely bogus:
-
-Now I have all the information I need. Let me compile the full analysis.
-
----
-
-## PHASE 1: COMMIT MESSAGE FORENSICS
-
-### Step 1.1: PARSE THE SUBJECT LINE
-- **Subsystem:** `drm/amdgpu` (AMD GPU driver)
-- **Action verb:** "fix" - explicitly a bug fix
-- **Summary:** Fix NULL pointer dereference when DF functions are not
-  initialized on soc24
-
-Record: [drm/amdgpu] [fix] [NULL pointer dereference when df.funcs is
-NULL in soc24_common_hw_init]
-
-### Step 1.2: PARSE ALL COMMIT MESSAGE TAGS
-- **Signed-off-by:** Likun Gao (author)
-- **Reviewed-by:** Hawking Zhang (AMD architect/maintainer for amdgpu)
-- **Signed-off-by:** Alex Deucher (amdgpu subsystem maintainer)
-- No Fixes: tag, no Cc: stable tag, no Reported-by (expected for manual
-  review)
-
-Record: Reviewed by Hawking Zhang (AMD subsystem architect) and merged
-by Alex Deucher (amdgpu maintainer). Strong trust signal.
-
-### Step 1.3: ANALYZE THE COMMIT BODY TEXT
-The body says: "If DF function not initialized, NULL pointer issue will
-happen on soc24." This describes a concrete crash scenario: when
-`adev->df.funcs` is NULL and code dereferences it to check `->hw_init`.
-
-Record: [Bug: NULL pointer dereference] [Symptom: kernel oops/crash
-during GPU hw_init or resume] [Root cause: missing NULL check before
-dereferencing df.funcs pointer]
-
-### Step 1.4: DETECT HIDDEN BUG FIXES
-Not hidden - this is an explicit "fix" for a NULL pointer dereference.
-
-Record: Not a hidden fix, explicitly labeled as a fix.
-
----
-
-## PHASE 2: DIFF ANALYSIS
-
-### Step 2.1: INVENTORY THE CHANGES
-- **Files:** 1 file changed (`drivers/gpu/drm/amd/amdgpu/soc24.c`)
-- **Lines:** 1 line modified (replacing one condition with a guarded
-  condition)
-- **Function:** `soc24_common_hw_init()`
-- **Scope:** Single-line surgical fix
-
-Record: [soc24.c: 1 line changed in soc24_common_hw_init()] [Scope:
-single-line surgical fix]
-
-### Step 2.2: UNDERSTAND THE CODE FLOW CHANGE
-Before:
-
-```481:481:drivers/gpu/drm/amd/amdgpu/soc24.c
-        if (adev->df.funcs->hw_init)
-```
-
-After:
-```c
-        if (adev->df.funcs && adev->df.funcs->hw_init)
-```
-
-The code was dereferencing `adev->df.funcs` (which can be NULL) to check
-`hw_init`. The fix adds a NULL guard.
-
-Record: [Before: unconditional dereference of df.funcs -> After: guarded
-dereference with NULL check first]
-
-### Step 2.3: IDENTIFY THE BUG MECHANISM
-**Category: NULL pointer dereference (d)**
-- `adev->df.funcs` can be NULL if the DF IP version doesn't match any
-  known version in `amdgpu_discovery.c`
-- The code dereferences this NULL pointer to check `->hw_init`
-- This causes a kernel oops
-
-Record: [NULL pointer dereference] [df.funcs can be NULL when DF IP
-version is unrecognized; the fix adds a standard guard consistent with
-soc15.c patterns]
-
-### Step 2.4: ASSESS THE FIX QUALITY
-- Obviously correct: the pattern `if (ptr && ptr->member)` is idiomatic
-  C null-guard
-- Consistent: `soc15.c` already uses `if (adev->df.funcs &&
-  adev->df.funcs->hw_init)` and `if (adev->df.funcs &&
-  adev->df.funcs->sw_init)` - the exact same pattern
-- Minimal: single condition addition, no behavior change when df.funcs
-  is non-NULL
-- Regression risk: zero - the only change is skipping the call when
-  funcs is NULL (which would crash otherwise)
-
-Record: [Obviously correct, minimal, zero regression risk. Matches
-existing patterns in soc15.c]
-
----
-
-## PHASE 3: GIT HISTORY INVESTIGATION
-
-### Step 3.1: BLAME THE CHANGED LINES
-The buggy line was introduced by commit `73048bda46c308` ("drm/amdgpu:
-Fix atomics on GFX12") by David Belanger on 2024-06-10. This commit
-added the DF hw_init call to soc24_common_hw_init but omitted the NULL
-check for `adev->df.funcs`, unlike how soc15.c handles it.
-
-Record: [Buggy code introduced by 73048bda46c308, present in v6.11+]
-
-### Step 3.2: FOLLOW THE FIXES TAG
-No Fixes: tag present (expected for review candidates).
-
-Record: [No Fixes: tag, but the implicit fix target is 73048bda46c308]
-
-### Step 3.3: CHECK FILE HISTORY
-soc24.c was created by `98b912c50e449` (first in v6.11). The buggy
-commit `73048bda46c308` was also added in v6.11. The file has had ~20
-subsequent commits (refactoring handle pointers, etc.), but none touched
-this specific df.funcs line.
-
-Record: [Standalone fix, no prerequisites beyond the original buggy
-commit]
-
-### Step 3.4: CHECK THE AUTHOR
-Likun Gao is a regular AMD GPU contributor with multiple recent commits
-to the amdgpu subsystem. The reviewer (Hawking Zhang) is the original
-soc24.c creator and AMD architect.
-
-Record: [Author is a regular AMD contributor; reviewer is the subsystem
-architect]
-
-### Step 3.5: DEPENDENCIES
-This fix has no dependencies. It simply adds a NULL check guard to an
-existing conditional. It will apply to any tree that contains commit
-`73048bda46c308`.
-
-Record: [No dependencies, standalone fix]
-
----
-
-## PHASE 4: MAILING LIST RESEARCH
-
-### Step 4.1: PATCH DISCUSSION
-Found the original submission at
-[spinics](https://www.spinics.net/lists/amd-gfx/msg138858.html).
-Submitted by Alex Deucher on March 6, 2026. No objections or NAKs
-visible. It was part of a batch of AMD GPU fixes.
-
-Record: [Found submission on amd-gfx list, no objections, submitted in a
-batch of fixes by the maintainer]
-
-### Step 4.2: REVIEWERS
-Reviewed by Hawking Zhang (AMD architect), signed off by Alex Deucher
-(subsystem maintainer). Both are the top-level amdgpu maintainers.
-
-Record: [Reviewed and merged by subsystem maintainers]
-
-### Step 4.3-4.5: BUG REPORT / RELATED PATCHES / STABLE HISTORY
-No syzbot report, no explicit bug report URL. This appears to be an
-internally-discovered issue at AMD.
-
-Record: [Internal AMD finding, no external bug report]
-
----
-
-## PHASE 5: CODE SEMANTIC ANALYSIS
-
-### Step 5.1-5.2: KEY FUNCTIONS AND CALLERS
-`soc24_common_hw_init()` is called:
-1. During GPU initialization via the `amd_ip_funcs` table (line 588:
-   `.hw_init = soc24_common_hw_init`)
-2. During resume via `soc24_common_resume()` (line 524-527)
-
-Both are common execution paths for any system with soc24 hardware.
-
-### Step 5.3-5.4: WHY df.funcs CAN BE NULL
-In `amdgpu_discovery.c`, `adev->df.funcs` is set in a switch on
-`DF_HWIP` version. The default case is `break` (no assignment). If a
-soc24 device has a DF IP version not in the list, `df.funcs` remains
-NULL. This is the exact trigger.
-
-### Step 5.5: SIMILAR PATTERNS
-Verified: `soc15.c` consistently uses the guarded pattern:
-- Line 1253: `if (adev->df.funcs && adev->df.funcs->sw_init)`
-- Line 1264: `if (adev->df.funcs && adev->df.funcs->sw_fini)`
-- Line 1498: `if (adev->df.funcs &&
-  adev->df.funcs->get_clockgating_state)`
-- `gmc_v9_0.c` also guards with `if (adev->df.funcs && ...)`
-
-soc24.c is the ONLY file missing this guard.
-
-Record: [All other callers guard df.funcs with NULL check; soc24.c is
-the sole exception]
-
----
-
-## PHASE 6: STABLE TREE ANALYSIS
-
-### Step 6.1: BUGGY CODE IN STABLE TREES
-- `soc24.c` first appeared in v6.11
-- The buggy commit `73048bda46c308` is in v6.11+
-- Therefore the bug exists in stable trees: **6.11.y, 6.12.y, 7.0.y**
-- Not present in 6.6.y or earlier (soc24.c doesn't exist there)
-
-Record: [Bug exists in 6.11.y, 6.12.y, 7.0.y]
-
-### Step 6.2: BACKPORT COMPLICATIONS
-The fix is a single-line change. No conflicting refactoring has touched
-this specific line. Clean apply expected.
-
-Record: [Expected clean apply to all affected stable trees]
-
----
-
-## PHASE 7: SUBSYSTEM AND MAINTAINER CONTEXT
-
-### Step 7.1: SUBSYSTEM CRITICALITY
-- **Subsystem:** GPU driver (drm/amdgpu) - IMPORTANT
-- AMD GPUs are extremely common in desktop and laptop systems
-- soc24 corresponds to RDNA4 generation (GC 12.0.x) - recent and
-  actively shipping hardware
-
-Record: [drm/amdgpu] [IMPORTANT - affects users of recent AMD GPUs]
-
----
-
-## PHASE 8: IMPACT AND RISK ASSESSMENT
-
-### Step 8.1: WHO IS AFFECTED
-All users with soc24 (RDNA4) AMD GPU hardware where the DF IP version
-doesn't match a listed version in discovery.
-
-### Step 8.2: TRIGGER CONDITIONS
-The crash triggers during:
-- GPU hardware initialization (every boot)
-- GPU resume from suspend (every suspend/resume cycle)
-These are unavoidable common paths.
-
-### Step 8.3: FAILURE MODE SEVERITY
-**CRITICAL** - NULL pointer dereference causes a kernel oops, crashing
-the system during boot or resume. The GPU driver is essential for
-display output.
-
-### Step 8.4: RISK-BENEFIT RATIO
-- **Benefit:** Prevents kernel oops on boot/resume for soc24 users -
-  VERY HIGH
-- **Risk:** 1-line addition of a NULL check, zero chance of regression -
-  VERY LOW
-- **Ratio:** Extremely favorable
-
-Record: [Benefit: VERY HIGH (prevents crash), Risk: VERY LOW (1-line
-NULL guard)]
-
----
-
-## PHASE 9: FINAL SYNTHESIS
-
-### Step 9.1: EVIDENCE COMPILATION
-
-**FOR backporting:**
-- Fixes a NULL pointer dereference (kernel oops/crash)
-- Affects GPU init and resume paths (common, unavoidable paths)
-- Single-line fix, obviously correct
-- Matches existing defensive patterns in soc15.c, gmc_v9_0.c,
-  amdgpu_ras.c
-- Reviewed by AMD architect (Hawking Zhang), merged by subsystem
-  maintainer (Alex Deucher)
-- Zero regression risk
-- Affects actively-shipping hardware (RDNA4)
-
-**AGAINST backporting:**
-- None identified
-
-### Step 9.2: STABLE RULES CHECKLIST
-1. Obviously correct and tested? **YES** - standard NULL guard, matches
-   existing patterns, reviewed by maintainers
-2. Fixes a real bug? **YES** - NULL pointer dereference → kernel oops
-3. Important issue? **YES** - system crash during GPU init/resume
-   (CRITICAL)
-4. Small and contained? **YES** - 1 line changed in 1 file
-5. No new features or APIs? **YES** - purely defensive check
-6. Can apply to stable? **YES** - clean apply expected for 6.11.y+
-
-### Step 9.3: EXCEPTION CATEGORIES
-Not an exception case; this is a standard bug fix that meets all normal
-criteria.
-
-### Step 9.4: DECISION
-This is a textbook stable backport candidate: a one-line NULL pointer
-check that prevents a kernel oops during GPU initialization and resume
-on recent AMD hardware.
-
----
-
-## Verification
-
-- [Phase 1] Parsed tags: Reviewed-by: Hawking Zhang, SOB: Likun Gao,
-  Alex Deucher
-- [Phase 2] Diff analysis: 1 line changed in soc24_common_hw_init(),
-  adds `adev->df.funcs &&` guard
-- [Phase 3] git blame: buggy code introduced in commit 73048bda46c308
-  (v6.11), "Fix atomics on GFX12"
-- [Phase 3] git merge-base: confirmed 73048bda46c308 is in v6.11+,
-  soc24.c first added in v6.11
-- [Phase 4] Found original submission at spinics amd-gfx list, no NAKs
-  or concerns
-- [Phase 5] Grep for `adev->df.funcs`: soc15.c, gmc_v9_0.c, amdgpu_ras.c
-  all use NULL guard; soc24.c is the only exception
-- [Phase 5] amdgpu_discovery.c: df.funcs assignment has a `default:
-  break` that leaves funcs NULL for unrecognized DF versions
-- [Phase 5] soc24_common_resume() calls soc24_common_hw_init(),
-  confirming crash on both init and resume
-- [Phase 6] Bug exists in 6.11.y, 6.12.y, 7.0.y; not in 6.6.y or earlier
-  (soc24.c not present)
-- [Phase 8] Failure mode: NULL deref -> kernel oops during GPU
-  init/resume, severity CRITICAL
-
-**YES**
-
- drivers/gpu/drm/amd/amdgpu/soc24.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc24.c b/drivers/gpu/drm/amd/amdgpu/soc24.c
-index ecb6c3fcfbd15..984262936545f 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc24.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc24.c
-@@ -484,7 +484,7 @@ static int soc24_common_hw_init(struct amdgpu_ip_block *ip_block)
- 	if (adev->nbio.funcs->remap_hdp_registers)
- 		adev->nbio.funcs->remap_hdp_registers(adev);
- 
--	if (adev->df.funcs->hw_init)
-+	if (adev->df.funcs && adev->df.funcs->hw_init)
- 		adev->df.funcs->hw_init(adev);
- 
- 	/* enable the doorbell aperture */
 -- 
-2.53.0
+2.34.1
 
