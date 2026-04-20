@@ -2,65 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qM72D+0i52ki4QEAu9opvQ
+	id IBrNAuG85mkW0QEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Apr 2026 09:10:37 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Apr 2026 01:55:13 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ED0F4375A5
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Apr 2026 09:10:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EB6443500F
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Apr 2026 01:55:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19C8210EB7A;
-	Tue, 21 Apr 2026 07:10:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71F3A10E0BA;
+	Mon, 20 Apr 2026 23:55:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hoy/ghY8";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="F9Jy3TS5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9D8E10E75A;
- Mon, 20 Apr 2026 21:55:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776722154; x=1808258154;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=w+3+7D8I1N+j2pOZG4/w/Tn5xMRqwYVSXrbz6iuzedM=;
- b=Hoy/ghY88MM67Nk2wgglA0rMSC/7in+tBv9ncqix+pb5fgk+CR7uoiC6
- cvvvgpMkPj+TuaaqtqzsCchPkvbSOznF+KyuPZvomdW9WYl2nJ5X8XPLx
- GORByubBAnAjVE098zlrg+1MK0P4o5uUL+iqIUqCqnh3Sq+kMt9IlfAVK
- YdxHxdF48cMu5IGvJMgxG1MNIYYFxPp44oAuWS2NRs4is1pne57czvrkB
- S3HQrOOE1ZCMTJlKSx8YECS+6KY1+7c+DK6rIGU9PVK6wDv2HaNhObwao
- WU9NblOWrnF/CLhuV89Qmraf6aO8+4S768kpVrnH5BrmUQWnzuGm8fMMI g==;
-X-CSE-ConnectionGUID: 6q60E86RRYi6XoT1WXZ6hw==
-X-CSE-MsgGUID: nJjs1YF+Tu+5RTrkU2Zxrg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="88348266"
-X-IronPort-AV: E=Sophos;i="6.23,190,1770624000"; d="scan'208";a="88348266"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2026 14:55:54 -0700
-X-CSE-ConnectionGUID: vIyOxeQSTKqfmJqE424eeQ==
-X-CSE-MsgGUID: wIc//DBMSIu+dULRm5/kvA==
-X-ExtLoop1: 1
-Received: from arjan-box.jf.intel.com ([10.88.27.153])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2026 14:55:54 -0700
-From: arjan@linux.intel.com
-To: amd-gfx@lists.freedesktop.org
-Cc: Arjan van de Ven <arjan@linux.intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/amdgpu: fix zero-size GDS range init on RDNA4
-Date: Mon, 20 Apr 2026 14:57:15 -0700
-Message-ID: <20260420215717.223372-1-arjan@linux.intel.com>
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59EC510E0BA
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 23:55:09 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-4891b0786beso14647845e9.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 16:55:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1776729307; x=1777334107; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=GpKnBihiQfiQkRK/QIHIlA0yF7t5TBoanxJLGFynGYM=;
+ b=F9Jy3TS5WTBq55Nb4fzM/zOPeETiKMoTUcNfHvA9jCDDLJNQ0bMm9fUd8jO3S/LbaF
+ kRwkoesRKO3BGMRV2PPC1SOIxxoFTObtkV6R76eUAShLl0bbx2fjV+U0Ks6NsqjUbUo4
+ Ojyz7Iu2TBzDHuD9TH4NYo5oTtG6FQmd9lG9LIFkx8xrK+LzVK6YGHY8mttLQeFLJGjW
+ JJrAF6Z20v52p2+M50lN+ecHxqQI4/1qrhq4wWIY87JScJuYMsSTReST9Nt0xKgF1iYE
+ HBPXGfb0o+o4EiWCAEPUAPI1vmy3slBWIRzg6onE7liuWCuohGmV78ROaxn86+LVQ5R7
+ 0hzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776729307; x=1777334107;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=GpKnBihiQfiQkRK/QIHIlA0yF7t5TBoanxJLGFynGYM=;
+ b=UOhNVUnwNPN+hDDLoug+YXMypRY6n5HWcz9so2atQT1HJfU4JKh9ZOUg0kt0AB/sPZ
+ xQ6D8o9pb78OI9zL6u9L6boCF9N2iKtLy5vkFmYp9c2RsZXK6CB5tqwHvlxUVcIBdYYc
+ g/9r+aPbNVuCT1cEmY0vO9F4NsTY6upLUQxbM1BTB7D/2dqON9M8YP6vwyxgLv5qe2uu
+ IRWSIiGULNcghDWHld+1UdZ0zRD2G+xRrWIXar1oDx/l+ZRgJoxCUc9dB7velGTY9Mb1
+ lmF+11WpFwX+1Wqv5Z1OJDQR1YMPvIDGdgSlCm5TZnnOZRFg/38ZHSvMbk91pOiKrQNZ
+ Vnbg==
+X-Gm-Message-State: AOJu0Yx4dF4gVpxapQQRrYpU0WOQiAU7tEmNKsSVwT3FCPQb1zDs8Ayv
+ arTJt++WRQYo6YVjFYtqpHrk2/yBviCzNksdDa/xu6VD/PEY/BO1dk4UnGGp/Q==
+X-Gm-Gg: AeBDiesTI8+WEbYnhSOfFlB0WpQ4dKzTp4q+lMhx6obQR7x57YgK6tB9e7ZKeKqzdTg
+ rNyK7pxtuwlkPqBou3gHEV4EjlUMYkjA94QVteSmqpn6Tj17Lc1iPd7Kdoq6+2J8OjeJZeI6VS4
+ QKWcyMqd4bUpKBTQfiI1MMgpIpKUxUtEihHLf0WrMOXza4jtsVCqTgGDwmUySzAY6cu7WV5PCT5
+ vOyU8fxgHr1OxmVedtPgdvCygsuqOxmhhECHJXg2K3FeKf1m5fk5tszwaNns4udWogUJxMlkR9D
+ 5r1y8RfsP7dF0SPxd6dA+wUangCd8Y2eA0rYx+Zuf0v1MRHli86esxsSqnR48I2bJLUFdHEwvjP
+ rT19GK6yPDrTMuNqSAv4keMiGUqt1JXnVhVUNEuRbwrVV5FcXj3++jr7I9s62vQUPSs1Wa7T8tL
+ WsTe1Z8Ed6gOQHwwJVQjJrfigbtJ7nEBPOMAppb7HlsHa4vdRcaRRY/RwCSwMduEuFVl0zs3ecw
+ qiCBw==
+X-Received: by 2002:a05:600c:33aa:b0:488:ae6c:42c0 with SMTP id
+ 5b1f17b1804b1-488fb742e7fmr139402645e9.7.1776729307243; 
+ Mon, 20 Apr 2026 16:55:07 -0700 (PDT)
+Received: from Timur-Hyperion.home (5E1B98A2.dsl.pool.telekom.hu.
+ [94.27.152.162]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-488fb75ab25sm102227135e9.11.2026.04.20.16.55.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 20 Apr 2026 16:55:06 -0700 (PDT)
+From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
+ Alex Hung <alex.hung@amd.com>, Harry Wentland <Harry.Wentland@amd.com>,
+ Roman Li <Roman.Li@amd.com>
+Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+Subject: [PATCH] drm/amd/display: Disable 10-bit truncation and dithering on
+ DCE 6.x
+Date: Tue, 21 Apr 2026 01:55:04 +0200
+Message-ID: <20260420235504.17998-1-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <bug-221376-2300@https.bugzilla.kernel.org/>
-References: <bug-221376-2300@https.bugzilla.kernel.org/>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 21 Apr 2026 07:10:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,79 +91,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ARC_NA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,fenrus.org:url,linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NO_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[arjan@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 9ED0F4375A5
+	NEURAL_HAM(-0.00)[-1.000];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_FIVE(0.00)[6]
+X-Rspamd-Queue-Id: 5EB6443500F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Arjan van de Ven <arjan@linux.intel.com>
+DCE 6.x doesn't support 10-bit truncation and 10-bit dithering
+because the following fields are 1-bit only:
+FMT_TEMPORAL_DITHER_DEPTH
+FMT_SPATIAL_DITHER_DEPTH
+FMT_TRUNCATE_DEPTH
+Programming these fields to "2" will program them as if the
+dithering option was 6-bit, resulting in sub-par picture
+quality and an ugly "color banding" effect.
 
-RDNA4 (GFX 12) hardware removes the GDS, GWS, and OA on-chip memory
-resources. The gfx_v12_0 initialisation code correctly leaves
-adev->gds.gds_size, adev->gds.gws_size, and adev->gds.oa_size at
-zero to reflect this.
+Note that a recent commit changed the default 10-bit dithering
+option to DITHER_OPTION_SPATIAL10 which improves the picture
+quality because it happens to look better, but is still not
+actually supported by DCE 6.x versions.
 
-amdgpu_ttm_init() unconditionally calls amdgpu_ttm_init_on_chip() for
-each of these resources regardless of size. When the size is zero,
-amdgpu_ttm_init_on_chip() forwards the call to ttm_range_man_init(),
-which calls drm_mm_init(mm, 0, 0). drm_mm_init() immediately fires
-DRM_MM_BUG_ON(start + size <= start) -- trivially true when size is
-zero -- crashing the kernel during modprobe of amdgpu on an RX 9070 XT.
+When the color depth is 10-bit or more, just disable
+any kind of dithering options on DCE 6.x.
 
-Guard against this by returning 0 early from
-amdgpu_ttm_init_on_chip() when size_in_page is zero. This skips TTM
-resource manager registration for hardware resources that are absent,
-without affecting any other GPU type.
-
-Link: https://lore.kernel.org/all/bug-221376-2300@https.bugzilla.kernel.org%2F/
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=221376
-Oops-Analysis: http://oops.fenrus.org/reports/bugzilla.korg/221376/report.html
-Assisted-by: GitHub Copilot:Claude Sonnet 4.6 linux-kernel-oops-x86.
-Signed-off-by: Arjan van de Ven <arjan@linux.intel.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-
+Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/5151
+Fixes: 529cad0f945c ("drm/amd/display: Add function to set dither option")
+Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |    3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index afaaab6496def..8075ac735321e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -75,6 +75,9 @@ static int amdgpu_ttm_init_on_chip(struct amdgpu_device *adev,
- 				    unsigned int type,
- 				    uint64_t size_in_page)
- {
-+	if (!size_in_page)
-+		return 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 19526a278b2a5..1ab76c2d0f723 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -5069,6 +5069,12 @@ void resource_build_bit_depth_reduction_params(struct dc_stream_state *stream,
+ 		}
+ 	}
+ 
++	if (stream->ctx->dce_version < DCE_VERSION_8_0 &&
++	    stream->timing.display_color_depth >= COLOR_DEPTH_101010) {
++		/* DCE 6.x doesn't support 10-bit truncation or dither options. */
++		option = DITHER_OPTION_DISABLE;
++	}
 +
- 	return ttm_range_man_init(&adev->mman.bdev, type,
- 				  false, size_in_page);
- }
+ 	if (option == DITHER_OPTION_DISABLE)
+ 		return;
+ 
+-- 
+2.53.0
+
