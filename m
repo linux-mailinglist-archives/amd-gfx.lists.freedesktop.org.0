@@ -2,78 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WOxXBM0X5mkprgEAu9opvQ
+	id CC/BB88X5mnCrQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 14:10:53 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 14:10:55 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69B6F42A7DF
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 14:10:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3C3E42A7E8
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 14:10:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAD1610E555;
-	Mon, 20 Apr 2026 12:10:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 567B610E55A;
+	Mon, 20 Apr 2026 12:10:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YPKDgyyQ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ga9Kt50w";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
- [209.85.128.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29BD910E555
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF04C10E557
  for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 12:10:50 +0000 (UTC)
-Received: by mail-wm1-f42.google.com with SMTP id
- 5b1f17b1804b1-488a88aeec9so43768375e9.2
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-488a14c31eeso22527475e9.0
  for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 05:10:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20251104; t=1776687049; x=1777291849; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=WI6kmFXsVfxWjWvKG528ZR2T2CYTGPMvVKdaVnFMWKE=;
- b=YPKDgyyQ3b5befk2hw5JI0+XN3VOKLV6UYMazLXnm/Vrw8JbVzWxcWAxhJIzYBYnYX
- jl/qeWgrMY+bwkft84IH38iwIhjEKjkL3ojvpO7q6+2wY5twkq2qf06Gan2BPJzVEdNX
- NRKmXKWHG5Zb6eCgQX4KmW0ABLNvdNBoSeYAbTN20s88suokVj3wrXVtMQVOtoW+EBOy
- 5pLnZi1Z4Tnnz+cRvljKpOFPIakg5c7SpKks6YpIakAJk3WE6vCjA65kjlv5LXUdazf9
- mJjCxly7P57KOT7y3gPEU9swxnM0STMpayerYPCO+Ykg9ZqE0owupH9kXgw4sjgs+sfK
- lqhA==
+ bh=ZEXZbEAN9MmJ4xUJ5/ssK0F2ECKH9ynQWVCAOYRBOrQ=;
+ b=ga9Kt50wy7Lf4aMd9RhJvRNSaaNriG6e4O5/qbTE8JOnuIA1fV9Nv9V4QmhjNI1tIt
+ XktQmVqn/HsqhvujBptDE6sfaxFTi9bMtF/Qwi0NHtnqeMkOdxMuyD+DpzdeIIxUTteN
+ b0VY3UkHSoQ3x30oCl/dKzGY1Er/uAYqh68Oy28CTvyUteafH7PQKUWWZAVb9o8pnzv7
+ wwBO0pCadKCgqKG2+xn9FHVcrDSa6c3VDfAmO9D7d336QD8GOHn4Aemoa8PfRzpr0GLx
+ qKjWudN7SebFvtA82UrgsdqjGvIUDj3MEmzVoG3NbaLCrVRmAep/eSG2a7KVbBZGXzB7
+ UZ5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20251104; t=1776687049; x=1777291849;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=WI6kmFXsVfxWjWvKG528ZR2T2CYTGPMvVKdaVnFMWKE=;
- b=UxePOTufBTw82wlFcA3h6Gx+g5hnhpJSM3Nqy2aMyxXRwFq+0a5XFvKPIMcdpoP5xZ
- JOCPmJZscboSbXZc+ovydldGiDQXhrIg96+VAW1nlpdSBsbTCHRIOrjNulRecQgQ9/L8
- rQe+Pqn+KMXlyKhs4hMTiUuHGBYSF2f9HSlBqjufHfbk+NcgQlOqwpduyqL2J0hWM3PA
- RFLld/O157J1vrHait+AFsQdTIvbh2qROGF6znbgjbu5bYDrTnCVu8t1NuqN6XFzf/eL
- mURX4HbaSOOYrZZN9DTWVcPRY+AkEKVtDraF1sp4yiAXaU3n6WszC9QqIukD7VLvJew0
- 4dQA==
-X-Gm-Message-State: AOJu0YyocW4G3H1gh2LHJC4B/RayGpoRZIu57cEn47gMhbg13ijtx8z+
- 6jG7A+MIctfMA1xPm7YANmoJEDijfk9nLMC4wrtdK3UY7VIJA+CzeKYJQ9TXWA==
-X-Gm-Gg: AeBDieseADqpdJaxoHlwypHEEMuMknEBg7+Xge+eJxLjtggLOIHfiPKrUtQPQlGPh0g
- WTjzgJib/gyM1C8TSqJecssxwhv6I61k4UMToLuSWTJ5F4X94jTKBlHRas0tGwd89vpfz7yg7ul
- Etj3F/fIiNyECym4HtenRGGf3DhebTO3q8I2dcLy/HLs/hpf82/YUEEpQ1CpXz6qtUf6GpXVoSi
- wYfu7BgLb85lyJ+6TBIVI6seII3KjH/2BnTbFYH0esYA0ITQseyXMcJObjx31ydEG7dl4FoP3Cs
- fqo73Aynzwj9TRJneiHeO8Nuj7xw9L9vKUGa2Qh/hFd3xYExSCq5L+P9P5StbSGI2gsT/41Kbuo
- 69sHKYcx92hBsA5JurGfTWAB3v7XVjI7LkSoJgz8Cn3rd+bR1NQjm2oEv3o4Ig1LvVcTh5Yykp/
- yo4QdWbaey0ZchDZxQqWXfc9D3Ko1fWrDXbdAOIiF+X793x9gm+kqHQNwLOim0VSctuV11tsifx
- 7GGfQ==
-X-Received: by 2002:a05:600c:888b:b0:480:1d0b:2d32 with SMTP id
- 5b1f17b1804b1-488fb74bccbmr154710665e9.12.1776687048524; 
- Mon, 20 Apr 2026 05:10:48 -0700 (PDT)
+ bh=ZEXZbEAN9MmJ4xUJ5/ssK0F2ECKH9ynQWVCAOYRBOrQ=;
+ b=lkTsQCpDNWAnDfT6U5Lzgq5qwBJiSX6wUSknVkUe8GTZvF6Ydw2gbV4wnU/VeQRjJA
+ 2TMSEY7QHxbX9Q8sJFgy5dtVl5c9mv/HWpT8fvWLlZgY4GV4/qAiYXN5Dh9wmEVpgt6O
+ lBRTBEjx8FDIWUppjkiUDz7Oke1RJHE42rGvrMoBJmg0stmw+azOaUFF1C2BdblCtClx
+ 3Kt2T0JjTso2RV7tTOJZXeJxTxtehgzU4668H2x0FqamOcLQRxLe4nuploqObLZd1tK6
+ l/C9yQTgLIzIDuQL8ZPwWC9UDyuZuBmT7HB3iCtX2H2o991qvvVj8iQMtGUp4UKAfl4n
+ rLlA==
+X-Gm-Message-State: AOJu0YyRv4mmk27ISTdajLHoU6NPgmLRrzpLcmYrR3gsgQPDbWSlE/n3
+ GrS+pTNcgvJpawXjcBwS31fQUqKbD5KCk91unnnsUWDwc1DEwmxtqeDNAyxvjQ==
+X-Gm-Gg: AeBDievULcq1zJ73wRm1lxSPyCQm0XjFhw2nruc9OFZSpD7i+mCQdxoj5Oz1xT46MTt
+ mCXPE0AmB133Hzuj0PhGO4lEAEY11KjmWzL3C+j0ArOCal487dY3DDqQ/kUtqMCGNxIAYmcjjdH
+ 5oceerbC5737XpMTGYYr8oniOZRwSRYIa1f1pIDSpsc9NFbbeFejUyB33oIxPYelYVGxKuz8XLN
+ loGOWMjcC+sWABVhwG/SzoOMMwbMTantMccDqRUknqoRPw4E7FJlxTOLSQTH/NJm54Xyrm7NY7l
+ f3NHcDS1UApWVVxw2yQ6VSe3O9LzVNl9pqRBgteoVYAYjKTMKCx22LUvW8ps4KIttKhHhDsovBH
+ 7mzXJBP6LYmQYK55+sGafdJTmR1RxpNjAmal5cKrl7DLTuCWR3ewX45QM+bua4RG1JVlvJ4BQqu
+ 12DgEQagVjaQ6O2EKMFX0B2ibFgjFuaIWJbsTzb7g2jOA1DAJmXP/sVyYPP5Q/OtaeofEJU1qED
+ V5Kdw==
+X-Received: by 2002:a05:600c:c0db:b0:485:3eba:ab96 with SMTP id
+ 5b1f17b1804b1-488fb73b259mr139440085e9.3.1776687049334; 
+ Mon, 20 Apr 2026 05:10:49 -0700 (PDT)
 Received: from Timur-Hyperion.home (5E1B98A2.dsl.pool.telekom.hu.
  [94.27.152.162]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-488fb78becdsm129632265e9.5.2026.04.20.05.10.47
+ 5b1f17b1804b1-488fb78becdsm129632265e9.5.2026.04.20.05.10.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Mon, 20 Apr 2026 05:10:48 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
  christian.koenig@amd.com
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 1/7] drm/amdgpu: Add alignment to
- amdgpu_gtt_mgr_alloc_entries()
-Date: Mon, 20 Apr 2026 14:10:38 +0200
-Message-ID: <20260420121044.155030-2-timur.kristof@gmail.com>
+Subject: [PATCH 2/7] drm/amdgpu/vce: Align VCPU BO to nearest power of two
+Date: Mon, 20 Apr 2026 14:10:39 +0200
+Message-ID: <20260420121044.155030-3-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260420121044.155030-1-timur.kristof@gmail.com>
 References: <20260420121044.155030-1-timur.kristof@gmail.com>
@@ -122,94 +121,39 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	RCPT_COUNT_THREE(0.00)[4];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 69B6F42A7DF
+X-Rspamd-Queue-Id: C3C3E42A7E8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add an argument to amdgpu_gtt_mgr_alloc_entries() so that
-the caller can specify an alignment.
+VCE accesses memory, including its firmware, through a BAR.
+It works slightly differently on each generation.
+In case of VCE1, the start address of this BAR is zero
+and we can't change it due to the firmware validation mechanism.
 
-This is a pre-requisite for fixing the workaround for
-ensuring that the VCE1 VCPU BO has a low 32-bit address.
+Align the VCE VCPU BO to the nearest power of two after the
+byte size of the BO in order to prevent it from crossing the
+boundaries of its BAR.
 
-Fixes: 66a80158aa2a ("amdgpu/vce: use amdgpu_gtt_mgr_alloc_entries")
+Fixes: d38ceaf99ed0 ("drm/amdgpu: add core driver (v4)")
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c | 5 +++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c     | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h     | 2 +-
- drivers/gpu/drm/amd/amdgpu/vce_v1_0.c       | 2 +-
- 4 files changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
-index 9b0bcf6aca445..4fea81479264f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
-@@ -188,6 +188,7 @@ static void amdgpu_gtt_mgr_del(struct ttm_resource_manager *man,
-  * @mgr: The GTT manager object
-  * @mm_node: The drm mm node to return the new allocation node information
-  * @num_pages: The number of pages for the new allocation
-+ * @alignment: Alignment of the allocation (in pages)
-  * @mode: The new allocation mode
-  *
-  * Helper to dynamic alloc GART entries to map memory not accociated with
-@@ -195,7 +196,7 @@ static void amdgpu_gtt_mgr_del(struct ttm_resource_manager *man,
-  */
- int amdgpu_gtt_mgr_alloc_entries(struct amdgpu_gtt_mgr *mgr,
- 				 struct drm_mm_node *mm_node,
--				 u64 num_pages,
-+				 u64 num_pages, u64 alignment,
- 				 enum drm_mm_insert_mode mode)
- {
- 	struct amdgpu_device *adev = container_of(mgr, typeof(*adev), mman.gtt_mgr);
-@@ -203,7 +204,7 @@ int amdgpu_gtt_mgr_alloc_entries(struct amdgpu_gtt_mgr *mgr,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+index efdebd9c0a1f3..0658f13f0bdf7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+@@ -218,7 +218,8 @@ int amdgpu_vce_sw_init(struct amdgpu_device *adev, unsigned long size)
+ 	if (!adev->vce.fw)
+ 		return -ENOENT;
  
- 	spin_lock(&mgr->lock);
- 	r = drm_mm_insert_node_in_range(&mgr->mm, mm_node, num_pages,
--					0, GART_ENTRY_WITHOUT_BO_COLOR, 0,
-+					alignment, GART_ENTRY_WITHOUT_BO_COLOR, 0,
- 					adev->gmc.gart_size >> PAGE_SHIFT,
- 					mode);
- 	spin_unlock(&mgr->lock);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 4c7d1917d9bb1..b7b6c4469937b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -2026,7 +2026,7 @@ static int amdgpu_ttm_buffer_entity_init(struct amdgpu_gtt_mgr *mgr,
- 		return 0;
- 
- 	num_pages = num_gart_windows * AMDGPU_GTT_MAX_TRANSFER_SIZE;
--	r = amdgpu_gtt_mgr_alloc_entries(mgr, &entity->gart_node, num_pages,
-+	r = amdgpu_gtt_mgr_alloc_entries(mgr, &entity->gart_node, num_pages, 0,
- 					 DRM_MM_INSERT_BEST);
- 	if (r) {
- 		drm_sched_entity_destroy(&entity->base);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-index 2d72fa2172745..09a524be64c3d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-@@ -148,7 +148,7 @@ void amdgpu_gtt_mgr_recover(struct amdgpu_gtt_mgr *mgr);
- 
- int amdgpu_gtt_mgr_alloc_entries(struct amdgpu_gtt_mgr *mgr,
- 				 struct drm_mm_node *mm_node,
--				 u64 num_pages,
-+				 u64 num_pages, u64 alignment,
- 				 enum drm_mm_insert_mode mode);
- void amdgpu_gtt_mgr_free_entries(struct amdgpu_gtt_mgr *mgr,
- 				 struct drm_mm_node *mm_node);
-diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c
-index 5b7b46d242c6d..2fe931366985a 100644
---- a/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c
-@@ -539,7 +539,7 @@ static int vce_v1_0_ensure_vcpu_bo_32bit_addr(struct amdgpu_device *adev)
- 	int r;
- 
- 	r = amdgpu_gtt_mgr_alloc_entries(&adev->mman.gtt_mgr,
--					 &adev->vce.gart_node, num_pages,
-+					 &adev->vce.gart_node, num_pages, 0,
- 					 DRM_MM_INSERT_LOW);
- 	if (r)
- 		return r;
+-	r = amdgpu_bo_create_kernel(adev, size, PAGE_SIZE,
++	r = amdgpu_bo_create_kernel(adev, size,
++				    roundup_pow_of_two(size),
+ 				    AMDGPU_GEM_DOMAIN_VRAM |
+ 				    AMDGPU_GEM_DOMAIN_GTT,
+ 				    &adev->vce.vcpu_bo,
 -- 
 2.53.0
 
