@@ -2,60 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gBTVMYYq5mkDswEAu9opvQ
+	id uMPyGJEq5mnesgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:30:46 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:30:57 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4176D42BDD5
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:30:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A786B42BDFC
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:30:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE19010E63B;
-	Mon, 20 Apr 2026 13:30:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CDB410E645;
+	Mon, 20 Apr 2026 13:30:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="FYWdt0+Q";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dY7JVugp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 824B510E63B;
- Mon, 20 Apr 2026 13:30:44 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E35E110E645;
+ Mon, 20 Apr 2026 13:30:53 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 4D166435DE;
- Mon, 20 Apr 2026 13:30:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B90CC19425;
- Mon, 20 Apr 2026 13:30:42 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 2831860141;
+ Mon, 20 Apr 2026 13:30:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60CB4C19425;
+ Mon, 20 Apr 2026 13:30:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1776691844;
- bh=LDBsa2lH87nC/8hnNwfaUBqp4kitb5/tu/BziOxOUlQ=;
+ s=k20201202; t=1776691852;
+ bh=4xiw5v4GHgFwfDMt4EGl/NU/LMF7cjo7fJz6cVUfIqU=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=FYWdt0+Qtt132laXdPORMRHt8zo7/aIpD82A2khBySo8QBQbYXwTpPvIEyN6BORiA
- Tp2/P/spwpZvXwKAW810R44S/1Dd0L3mDAtWXFEafMwGMZ4yySWOS0DjuGsWarz2Vs
- 5jSsFg6vYr4f5sPs8jDMuua0ebXkkys96UiidLkTYpOLc4dTzbIDgWItg76xzESwx1
- 13PyCmKBAmmcqNQ6UmmOF5FWfIUJhnfcHKMy3RxPxY9+PVfhnSJjTQxzea9HI63Iyo
- HAVsv0SL/CmXYIQ/WMr/qvNYNsMeeeAziS1ak+Hpf0GwC6r0h/m9yVGFuYsSUq5tFL
- Hde/9Vz0VzQew==
+ b=dY7JVugpjsAyMhWviSBKV3MNPuSy8IWnJprkOX4G7A+KgTlXGOFdrO+Ht7KyRaA8f
+ DSnjCQIyB9BAMJrIVl5s6j62EXBe2jGbEo9IoSh6hHcFOXb89a3qM6FtZxQCS9jR/M
+ 7RNdgN+ndOWT8RFYloTlcLwBuQbbeo61siu6v9zmshdfInqg5MQRRP9o32x5J+tG7E
+ XUomDRxOVx2aGVxQ0OgDAYpkGuMLAV5kNBcG9/8xfUclg29UojZBF4WAmP2GBIq4or
+ QQ/8J34tSlzc5uwSK7Av7KBiME22/oCdF/aM7D1y6RZKp4eWm4E/tZxh4FsgyrRkpO
+ nb8i/pF6dZ9hg==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Sunil Khatri <sunil.khatri@amd.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+Cc: Jesse Zhang <Jesse.Zhang@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ Jesse Zhang <jesse.zhang@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
- airlied@gmail.com, simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 7.0-6.18] drm/amdgpu/userq: fix dma_fence refcount
- underflow in userq path
-Date: Mon, 20 Apr 2026 09:20:21 -0400
-Message-ID: <20260420132314.1023554-227-sashal@kernel.org>
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH AUTOSEL 7.0-6.12] drm/amdgpu: guard atom_context in
+ devcoredump VBIOS dump
+Date: Mon, 20 Apr 2026 09:20:26 -0400
+Message-ID: <20260420132314.1023554-232-sashal@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260420132314.1023554-1-sashal@kernel.org>
 References: <20260420132314.1023554-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 7.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -85,406 +85,424 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,kernel.org,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	FREEMAIL_CC(0.00)[amd.com,kernel.org,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 4176D42BDD5
+X-Rspamd-Queue-Id: A786B42BDFC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Sunil Khatri <sunil.khatri@amd.com>
+From: Jesse Zhang <Jesse.Zhang@amd.com>
 
-[ Upstream commit 7a14a4e9b3fda05b907d0445a3be9e7c0e887f4e ]
+[ Upstream commit 557fa5a453c9ccb49a22f30a7ad0545573d434b7 ]
 
-An extra dma_fence_put() can drop the last reference to a fence while it is
-still attached to a dma_resv object. This frees the fence prematurely via
-dma_fence_release() while other users still hold the pointer.
+During GPU reset coredump generation, amdgpu_devcoredump_fw_info() unconditionally
+dereferences adev->mode_info.atom_context to print VBIOS fields. On reset/teardown
+paths this pointer can be NULL, causing a kernel page fault from the deferred
+coredump workqueue.
 
-Later accesses through dma_resv iteration may then operate on the freed
-fence object, leading to refcount underflow warnings and potential hangs
-when walking reservation fences.
+Fix by checking ctx before printing VBIOS fields:
 
-Fix this by correcting the fence lifetime so the dma_resv object retains a
-valid reference until it is done with the fence.i
+if ctx is valid, print full VBIOS information as before;
+This prevents NULL-dereference crashes while preserving coredump output.
 
-[   31.133803] refcount_t: underflow; use-after-free.
-[   31.133805] WARNING: lib/refcount.c:28 at refcount_warn_saturate+0x58/0x90, CPU#18: kworker/u96:1/188
+Observed page fault log:
+[  667.933329] RIP: 0010:amdgpu_devcoredump_format+0x780/0xc00 [amdgpu]
+[  667.941517] amdgpu 0002:01:00.0: Dumping IP State
+[  667.949660] Code: 8d 57 74 48 c7 c6 01 65 9f c2 48 8d 7d 98 e8 97 96 7a ff 49 8d 97 b4 00 00 00 48 c7 c6 18 65 9f c2 48 8d 7d 98 e8 80 96 7a ff <41> 8b 97 f4 00 00 00 48 c7 c6 2f 65 9f c2 48 8d 7d 98 e8 69 96 7a
+[  667.949666] RSP: 0018:ffffc9002302bd50 EFLAGS: 00010246
+[  667.949673] RAX: 0000000000000000 RBX: ffff888110600000 RCX: 0000000000000000
+[  667.949676] RDX: 000000000000a9b5 RSI: 0000000000000405 RDI: 000000000000a999
+[  667.949680] RBP: ffffc9002302be00 R08: ffffffffc09c3084 R09: ffffffffc09c3085
+[  667.949684] R10: 0000000000000000 R11: 0000000000000004 R12: 00000000000048e0
+[  667.993908] amdgpu 0002:01:00.0: Dumping IP State Completed
+[  667.994229] R13: 0000000000000025 R14: 000000000000000c R15: 0000000000000000
+[  667.994233] FS:  0000000000000000(0000) GS:ffff88c44c2c9000(0000) knlGS:0000000000000000
+[  668.000076] amdgpu 0002:01:00.0: [drm] AMDGPU device coredump file has been created
+[  668.008025] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  668.008030] CR2: 00000000000000f4 CR3: 000000011195f001 CR4: 0000000000770ef0
+[  668.008035] PKRU: 55555554
+[  668.008040] Call Trace:
+[  668.008045]  <TASK>
+[  668.016010] amdgpu 0002:01:00.0: [drm] Check your /sys/class/drm/card16/device/devcoredump/data
+[  668.023967]  ? srso_alias_return_thunk+0x5/0xfbef5
+[  668.023988]  ? __pfx___drm_printfn_coredump+0x10/0x10 [drm]
+[  668.031950] amdgpu 0003:01:00.0: Dumping IP State
+[  668.038159]  ? __pfx___drm_puts_coredump+0x10/0x10 [drm]
+[  668.083017] amdgpu 0003:01:00.0: Dumping IP State Completed
+[  668.083824]  amdgpu_devcoredump_deferred_work+0x26/0xc0 [amdgpu]
+[  668.086163] amdgpu 0003:01:00.0: [drm] AMDGPU device coredump file has been created
+[  668.095863]  process_scheduled_works+0xa6/0x420
+[  668.095880]  worker_thread+0x12a/0x270
+[  668.101223] amdgpu 0003:01:00.0: [drm] Check your /sys/class/drm/card24/device/devcoredump/data
+[  668.107441]  kthread+0x10d/0x230
+[  668.107451]  ? __pfx_worker_thread+0x10/0x10
+[  668.107458]  ? __pfx_kthread+0x10/0x10
+[  668.112709] amdgpu 0000:01:00.0: ring vcn_unified_1 timeout, signaled seq=9, emitted seq=10
+[  668.118630]  ret_from_fork+0x17c/0x1f0
+[  668.118640]  ? __pfx_kthread+0x10/0x10
+[  668.118647]  ret_from_fork_asm+0x1a/0x30
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
+Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+Suggested-by: Lijo Lazar <lijo.lazar@amd.com>
+Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
 LLM Generated explanations, may be completely bogus:
 
-Now I have all the information needed. Let me compile the full analysis.
+Now I have all the information needed for a comprehensive analysis. Let
+me compile the findings.
 
 ---
 
 ## PHASE 1: COMMIT MESSAGE FORENSICS
 
-### Step 1.1: PARSE THE SUBJECT LINE
-- **Subsystem**: drm/amdgpu/userq (AMD GPU user queue fence handling)
-- **Action verb**: "fix" - explicitly states it's a bug fix
-- **Summary**: Fixes dma_fence refcount underflow (double-put) in the
-  userqueue wait ioctl path
+**Step 1.1: Subject Line**
+- Subsystem: `drm/amdgpu`
+- Action verb: "guard" — implies adding a missing safety check, which is
+  a bug fix pattern
+- Summary: Guard `atom_context` in devcoredump VBIOS dump to prevent
+  NULL dereference
 
-### Step 1.2: PARSE ALL COMMIT MESSAGE TAGS
-- **Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>** - Author, AMD
-  employee, regular contributor to amdgpu
-- **Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>** - Major
-  DRM subsystem contributor
-- **Reviewed-by: Christian König <christian.koenig@amd.com>** - AMD DRM
-  maintainer, very strong endorsement
-- **Signed-off-by: Alex Deucher <alexander.deucher@amd.com>** - amdgpu
+**Step 1.2: Tags**
+- `Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>` — AMD GPU subsystem
+  reviewer
+- `Suggested-by: Lijo Lazar <lijo.lazar@amd.com>` — the fix approach was
+  suggested by a maintainer
+- `Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>` — author, regular
+  AMD GPU contributor
+- `Signed-off-by: Alex Deucher <alexander.deucher@amd.com>` — AMD GPU
   subsystem maintainer who committed it
-- **No Fixes: tag** - expected for AUTOSEL candidates; the mailing list
-  discussion confirmed it should be `Fixes: bea29bb0dd29
-  ("drm/amdgpu/userq: Consolidate wait ioctl exit path")`
-- **No explicit Cc: stable** - expected for AUTOSEL
+- No Fixes: tag (expected for autosel candidates)
+- No Cc: stable (expected)
 
-### Step 1.3: ANALYZE THE COMMIT BODY TEXT
-- **Bug description**: An extra `dma_fence_put()` drops the last
-  reference to a fence still attached to a `dma_resv` object, freeing it
-  prematurely
-- **Symptom**: refcount underflow warnings (`refcount_t: underflow; use-
-  after-free`) followed by soft lockup (`watchdog: BUG: soft lockup -
-  CPU#9 stuck for 26s!`)
-- **Root cause**: After the "Consolidate wait ioctl exit path" commit
-  merged both exit paths into one, fences get double-put: once inside
-  the processing loop and once in the shared cleanup path
-- **Stack traces**: Two crash traces provided - the refcount underflow
-  in `drm_sched_entity_pop_job` and a 26s soft lockup in
-  `dma_resv_iter_walk_unlocked` from `amdgpu_bo_kmap`
+**Step 1.3: Commit Body**
+- Bug: During GPU reset coredump generation,
+  `amdgpu_devcoredump_fw_info()` unconditionally dereferences
+  `adev->mode_info.atom_context` (via local `ctx` variable) to print
+  VBIOS fields. On reset/teardown paths, this pointer can be NULL.
+- Symptom: Kernel page fault from deferred coredump workqueue. The crash
+  log with `CR2: 00000000000000f4` confirms access at offset 0xf4 from a
+  NULL pointer.
+- The RIP points to `amdgpu_devcoredump_format+0x780` and the call trace
+  shows `amdgpu_devcoredump_deferred_work` → `process_scheduled_works` →
+  `worker_thread`.
 
-### Step 1.4: DETECT HIDDEN BUG FIXES
-This is a clear, explicit bug fix, not a hidden one.
+**Step 1.4: Hidden Bug Fix Detection**
+- Not hidden — this is an explicit, documented crash fix with a full
+  kernel oops log.
 
-Record: This is a direct fix for a use-after-free / refcount underflow
-caused by double `dma_fence_put()`.
+Record: This is a clear NULL pointer dereference fix with observed crash
+evidence.
 
 ---
 
-## PHASE 2: DIFF ANALYSIS - LINE BY LINE
+## PHASE 2: DIFF ANALYSIS
 
-### Step 2.1: INVENTORY THE CHANGES
-- **Files changed**: 1
-  (`drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c`)
-- **Lines removed**: 5 (three `dma_fence_put(fences[i])` calls and
-  associated braces)
-- **Lines added**: 1 (reformatting `if (r)` to single line)
-- **Net change**: -4 lines
-- **Functions modified**: `amdgpu_userq_wait_ioctl()`
-- **Scope**: Single-file, single-function surgical fix
+**Step 2.1: Inventory**
+- Files changed: 1 (`drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c`)
+- Lines: +10, -6 (net +4 lines)
+- Functions modified: `amdgpu_devcoredump_fw_info()`
+- Scope: Single-file surgical fix
 
-### Step 2.2: UNDERSTAND THE CODE FLOW CHANGE
-**Hunk 1 (non-userq fence path)**: Removes `dma_fence_put(fences[i])` on
-both the error and success branches of the `dma_fence_wait()` call for
-non-userq fences.
+**Step 2.2: Code Flow Change**
+- BEFORE: Lines 190-195 unconditionally dereference `ctx->name`,
+  `ctx->vbios_pn`, `ctx->version`, `ctx->vbios_ver_str`, `ctx->date`
+- AFTER: Wrapped in `if (adev->bios)` — if BIOS is available, print full
+  VBIOS info; if not, print "VBIOS Information: NA"
 
-**Hunk 2 (userq fence path)**: Removes `dma_fence_put(fences[i])` after
-extracting fence_info for userq fences.
+**Step 2.3: Bug Mechanism**
+Category: **Memory safety — NULL pointer dereference**
+- `ctx` is assigned at line 79: `struct atom_context *ctx =
+  adev->mode_info.atom_context;`
+- `atom_context` is set to NULL by `amdgpu_atombios_fini()` (line 1882
+  of `amdgpu_atombios.c`) during teardown
+- `adev->bios` is set to NULL by `amdgpu_bios_release()` (line 90 of
+  `amdgpu_bios.c`)
+- Both are called from `amdgpu_device_fini_sw()` at lines 4984-4988 of
+  `amdgpu_device.c`
+- The guard uses `adev->bios` because Lijo explained that if BIOS is
+  unavailable (skip_bios platforms), atom_context won't exist — this is
+  a non-error case
 
-**Cleanup path** (unchanged): The `free_fences:` label at the end
-already iterates through ALL fences and puts them:
-```c
-while (num_fences-- > 0)
-    dma_fence_put(fences[num_fences]);
-```
+**Step 2.4: Fix Quality**
+- Obviously correct: simple NULL guard
+- Minimal and surgical: only the VBIOS section is wrapped
+- No regression risk: doesn't change any logic, just prevents access to
+  NULL pointer
+- The `adev->bios` check is the correct proxy per maintainer guidance
 
-**Before**: Fences were put inside the loop (3 locations) AND again in
-the cleanup loop = double-put.
-**After**: Fences are only put in the cleanup loop = correct single put.
-
-### Step 2.3: IDENTIFY THE BUG MECHANISM
-- **Category**: Reference counting bug / double-free / use-after-free
-- **Mechanism**: The `fences[]` array holds references obtained via
-  `dma_fence_get()`. After the exit path consolidation (commit
-  bea29bb0dd29), all exits go through `free_fences` which puts every
-  fence. But the loop was also putting fences individually, resulting in
-  each processed fence getting put twice. This drops the refcount below
-  zero, triggering `refcount_warn_saturate()`, and may free the fence
-  while `dma_resv` still holds the pointer, leading to use-after-free
-  and hangs.
-
-### Step 2.4: ASSESS THE FIX QUALITY
-- **Obviously correct**: Yes. The cleanup loop handles all fence puts
-  correctly. Removing the in-loop puts ensures exactly one put per get.
-- **Minimal/surgical**: Yes, -4 net lines, only removing erroneous calls
-- **Regression risk**: Extremely low - this purely removes double-puts.
-  No new logic introduced.
-- **Red flags**: None
+Record: Clean NULL guard fix, 4 net lines added, zero regression risk.
 
 ---
 
 ## PHASE 3: GIT HISTORY INVESTIGATION
 
-### Step 3.1: BLAME THE CHANGED LINES
-- The in-loop `dma_fence_put` calls originated in commit
-  `15e30a6e479282` (Arunpravin Paneer Selvam, 2024-10-30) - "Add wait
-  IOCTL timeline syncobj support"
-- The cleanup loop `free_fences` was modified by commit `048c1c4e51715`
-  (Tvrtko Ursulin, 2026-02-23) - "Consolidate wait ioctl exit path",
-  cherry-picked from mainline `bea29bb0dd29`
-- The consolidation commit merged the success and error exit paths into
-  one, creating the double-put
+**Step 3.1: Blame**
+- Lines 190 (header print) introduced by commit `6a0e1bafd70fe5` (Sunil
+  Khatri, 2024-03-26) — "drm/amdgpu: add IP's FW information to
+  devcoredump"
+- Lines 191-195 (ctx dereferences) introduced by commit `3c858cf65e9a2c`
+  (Sunil Khatri, 2024-04-12) — "drm/amdgpu: add missing vbios version
+  from devcoredump"
+- Both first appeared in `v6.10-rc1`
 
-### Step 3.2: FOLLOW THE FIXES: TAG
-The mailing list discussion confirms `Fixes: bea29bb0dd29
-("drm/amdgpu/userq: Consolidate wait ioctl exit path")`. This commit is
-present in the 7.0 stable tree as `048c1c4e51715`.
+**Step 3.2: Fixes tag**
+- No Fixes: tag present. Based on analysis, would fix `3c858cf65e9a2c`
+  which added the `ctx->*` dereferences.
 
-### Step 3.3: CHECK FILE HISTORY FOR RELATED CHANGES
-Only one commit after the consolidation: `65b5c326ce410` (refcount
-userqueues), which modifies different parts of the function (queue
-lookup, not the fence loop). The fix is standalone.
+**Step 3.3: File History**
+- 14 commits to this file since `6a0e1bafd70fe5`, mostly feature
+  additions (IP dump, ring buffer info, device info)
+- No prior fix for this specific NULL dereference
 
-### Step 3.4: CHECK THE AUTHOR'S OTHER COMMITS
-Sunil Khatri is a regular AMD contributor with multiple commits to the
-amdgpu userq subsystem. He authored the refcount userqueues commit and
-multiple input validation fixes.
+**Step 3.4: Author**
+- Jesse Zhang is a regular AMD GPU contributor (10 recent commits to
+  amdgpu subsystem found)
+- Fix was suggested and reviewed by Lijo Lazar (AMD GPU maintainer)
 
-### Step 3.5: CHECK FOR DEPENDENT/PREREQUISITE COMMITS
-This is patch 3/3 in a series, but it is self-contained. Patch 1/3 deals
-with gem object lookup optimization and patch 2/3 with kvfree usage -
-neither affects the same code or is needed for this fix.
+**Step 3.5: Dependencies**
+- Standalone fix, no dependencies on other patches
+
+Record: Buggy code from v6.10-rc1. Fix is standalone with no
+prerequisites.
 
 ---
 
-## PHASE 4: MAILING LIST AND EXTERNAL RESEARCH
+## PHASE 4: MAILING LIST RESEARCH
 
-### Step 4.1: FIND THE ORIGINAL PATCH DISCUSSION
-Found at: https://lists.freedesktop.org/archives/amd-
-gfx/2026-March/140504.html
+**Step 4.1: Patch Discussion**
+Found the full evolution on amd-gfx mailing list:
+- **V1**: Checked `ctx` directly before VBIOS access
+- **V2** (mail-archive.com/amd-
+  gfx@lists.freedesktop.org/msg139678.html): Still checked `ctx`, added
+  `!adev->bios` check per Lijo's initial feedback
+- **Lijo's V2 review**: "On a second check, this cannot happen when
+  vbios is available. Driver load will fail in that case. In other
+  cases, we operate without VBIOS. For them, probably this may be
+  avoided altogether (preferred) or mark the section as NA." Suggested
+  `drm_printf(p, "\nVBIOS Information: NA\n");`
+- **V3 (committed)**: Jesse incorporated Lijo's feedback — checks
+  `adev->bios` and prints "VBIOS Information: NA"
 
-**Tvrtko Ursulin** (the author of the commit that introduced the bug)
-reviewed the fix, confirmed it's correct, and acknowledged he introduced
-the bug:
-> "I have to say the commit message confused me a bit, but the fix looks
-correct. I say confused because isn't it a simple case of
-amdgpu_userq_wait_ioctl() doing a potential double put? First one when
-the dma_fence_wait() above fails or succeeds, and the second one in the
-unwind loop. Which means it was me who broke it yet again."
+**Step 4.2: Reviewers**
+- Lijo Lazar (AMD GPU reviewer) reviewed all versions and provided the
+  fix approach
+- Alex Deucher (AMD GPU maintainer) signed off and committed
 
-He provided: `Fixes: bea29bb0dd29 ("drm/amdgpu/userq: Consolidate wait
-ioctl exit path")` and added his `Reviewed-by`.
+**Step 4.3: Bug Report**
+- No external bug report link, but the commit includes a complete kernel
+  oops log, confirming reproduction
 
-### Step 4.2: REVIEWER ANALYSIS
-- **Tvrtko Ursulin** (Reviewed-by) - major DRM contributor and the
-  author of the bug-introducing commit
-- **Christian König** (Reviewed-by) - AMD DRM co-maintainer
-- **Alex Deucher** (Signed-off-by) - amdgpu maintainer who applied the
-  fix
-- All key stakeholders reviewed and approved
-
-### Step 4.3: BUG REPORT
-The commit message includes a full kernel stack trace showing the actual
-crash on real hardware (X570 AORUS ELITE with AMD GPU, running
-6.19.0-amd-staging-drm-next). The bug was found through actual testing,
-not just code review.
-
-### Step 4.4/4.5: SERIES AND STABLE CONTEXT
-The other patches in the series (1/3 and 2/3) are unrelated
-optimizations. This patch is fully standalone.
+Record: Patch went through 3 revisions with constructive review. Final
+version incorporates maintainer's preferred approach.
 
 ---
 
 ## PHASE 5: CODE SEMANTIC ANALYSIS
 
-### Step 5.1-5.4: FUNCTION AND CALL CHAIN ANALYSIS
-- **Modified function**: `amdgpu_userq_wait_ioctl()` - a DRM ioctl
-  handler
-- **Call chain**: `__se_sys_ioctl` -> `drm_ioctl` -> `amdgpu_drm_ioctl`
-  -> `amdgpu_userq_wait_ioctl`
-- **Reachability**: Directly reachable from userspace via ioctl syscall
-  - any userspace GPU application using userqueues can trigger this
-- **Impact**: The crash occurs in the GPU scheduler workqueue
-  (`drm_sched_run_job_work`) when it encounters the freed fence, and
-  causes a 26-second soft lockup
+**Step 5.1: Functions Modified**
+- `amdgpu_devcoredump_fw_info()` — static helper to print firmware info
+  in coredump
+
+**Step 5.2: Callers**
+- Called from `amdgpu_devcoredump_read()` (line 266 in 7.0 tree), which
+  is the devcoredump read callback passed to `dev_coredumpm()`
+- Triggered when the devcoredump deferred work runs or when userspace
+  reads `/sys/class/drm/cardN/device/devcoredump/data`
+
+**Step 5.3: Trigger Path**
+- GPU reset → `amdgpu_coredump()` → `dev_coredumpm()` → (later) deferred
+  work or userspace read → `amdgpu_devcoredump_read()` →
+  `amdgpu_devcoredump_fw_info()` → **CRASH** if atom_context is NULL
+
+**Step 5.4: Reachability**
+- GPU resets happen automatically on GPU hang recovery — very common for
+  AMDGPU users
+- The coredump path is always active when `CONFIG_DEV_COREDUMP` is
+  enabled (default in most distros)
+
+Record: The crash path is reachable from normal GPU hang recovery
+operations.
 
 ---
 
-## PHASE 6: CROSS-REFERENCING AND STABLE TREE ANALYSIS
+## PHASE 6: STABLE TREE ANALYSIS
 
-### Step 6.1: DOES THE BUGGY CODE EXIST IN STABLE TREES?
-Yes. The buggy "Consolidate wait ioctl exit path" commit was cherry-
-picked into the 7.0 stable tree as `048c1c4e51715`. The double-put is
-confirmed present in the current code at lines 949-977 and 991-995.
+**Step 6.1: Buggy Code in Stable**
+- The buggy code was introduced in v6.10-rc1
+- Affects all stable trees from 6.10 onwards: 6.10.y, 6.11.y, 6.12.y,
+  6.13.y, 6.14.y, and this 7.0 tree
 
-### Step 6.2: BACKPORT COMPLICATIONS
-The diff should apply cleanly or with minimal offset. The code context
-matches the current tree state. The intervening `65b5c326ce410` commit
-modifies different parts of the function.
+**Step 6.2: Backport Complications**
+- The actual changed code (VBIOS section in
+  `amdgpu_devcoredump_fw_info()`) is identical in the 7.0 tree and the
+  upstream version
+- The diff's trailing context shows `amdgpu_devcoredump_format` but the
+  7.0 tree has `amdgpu_devcoredump_read` — this is just context, not the
+  changed hunk, so it only requires minor fuzz adjustment
 
-### Step 6.3: RELATED FIXES IN STABLE
-No other fix for this specific double-put issue exists in the stable
-tree.
+**Step 6.3: Related Fixes Already in Stable**
+- No related fixes found for this specific issue
+
+Record: Fix applies to all stable trees 6.10+. Minor context adjustment
+needed for 7.0 tree.
 
 ---
 
-## PHASE 7: SUBSYSTEM AND MAINTAINER CONTEXT
+## PHASE 7: SUBSYSTEM CONTEXT
 
-### Step 7.1: SUBSYSTEM CRITICALITY
-- **Subsystem**: drm/amdgpu (AMD GPU driver) - IMPORTANT
-- **Sub-component**: userqueue fence handling - used by userspace GPU
-  workloads
-- **Impact scope**: All AMD GPU users running userqueue-enabled
-  applications
+**Step 7.1: Subsystem**
+- `drm/amdgpu` — AMD GPU driver
+- Criticality: **IMPORTANT** — AMDGPU is one of the most widely used GPU
+  drivers (all AMD Radeon GPUs, both discrete and integrated)
 
-### Step 7.2: SUBSYSTEM ACTIVITY
-The file has 48 commits and is actively developed. The userqueue feature
-is relatively new (introduced late 2024), so this is actively used by
-new GPU workloads.
+**Step 7.2: Activity**
+- Very actively developed subsystem with frequent commits
+
+Record: IMPORTANT subsystem affecting a large user base.
 
 ---
 
 ## PHASE 8: IMPACT AND RISK ASSESSMENT
 
-### Step 8.1: WHO IS AFFECTED
-All users with AMD GPUs that use the userqueue IOCTL path (driver-
-specific, but a major driver).
+**Step 8.1: Affected Users**
+- All users with AMD GPUs running kernels 6.10+ with
+  `CONFIG_DEV_COREDUMP` enabled (most distros)
 
-### Step 8.2: TRIGGER CONDITIONS
-The bug triggers during normal GPU operations - the stack trace shows it
-happening during `glxgears:cs0` workload via the signal ioctl path
-walking reservation fences. Any userspace application exercising the
-wait/signal ioctl path can trigger this.
+**Step 8.2: Trigger Conditions**
+- GPU hang → automatic reset → coredump generation with `atom_context`
+  already freed
+- GPU hangs and resets are common real-world events
+- Does not require unprivileged user action (happens automatically)
 
-### Step 8.3: FAILURE MODE SEVERITY
-- **Primary**: `refcount_t: underflow; use-after-free` WARNING
-- **Secondary**: Soft lockup (CPU stuck for 26s) in
-  `dma_resv_iter_walk_unlocked`
-- **Severity**: CRITICAL - system hang/lockup, potential data corruption
-  from use-after-free
+**Step 8.3: Failure Mode**
+- Kernel page fault (oops) from workqueue context
+- CR2: 0xf4 — NULL pointer dereference at struct offset 0xf4
+- Severity: **HIGH** (kernel oops, system instability)
 
-### Step 8.4: RISK-BENEFIT RATIO
-- **BENEFIT**: Very high - prevents use-after-free, refcount underflow,
-  and system hangs for AMD GPU users
-- **RISK**: Very low - 4 net lines removed, no new logic, obviously
-  correct, reviewed by the person who introduced the bug and by the
-  subsystem maintainer
-- **Ratio**: Extremely favorable
+**Step 8.4: Risk-Benefit Ratio**
+- **Benefit**: HIGH — prevents kernel crash during GPU reset recovery
+- **Risk**: VERY LOW — 10-line NULL guard, single function, reviewed by
+  maintainer, obviously correct
+- **Ratio**: Strongly favorable for backporting
 
 ---
 
 ## PHASE 9: FINAL SYNTHESIS
 
-### Step 9.1: EVIDENCE COMPILATION
+**Step 9.1: Evidence Summary**
 
-**FOR backporting:**
-- Fixes a real, reproducible use-after-free and refcount underflow
-- Causes system soft lockup (26 seconds) - CRITICAL severity
-- Triggered via normal GPU ioctl usage path
-- Extremely small and surgical (-4 net lines)
-- Reviewed by 2 DRM experts (Tvrtko Ursulin, Christian König)
-- Applied by subsystem maintainer (Alex Deucher)
-- Bug-introducing commit (bea29bb0dd29/048c1c4e51715) is already in this
-  stable tree
-- Full stack trace demonstrating the crash on real hardware
-- Standalone fix with no dependencies on other patches
+FOR backporting:
+- Fixes a real, observed kernel oops (full stack trace provided)
+- Small, surgical fix (4 net lines changed in one function)
+- Reviewed and suggested by AMD GPU maintainer (Lijo Lazar)
+- Signed off by subsystem maintainer (Alex Deucher)
+- Went through 3 review revisions — well-vetted
+- Affects widely-used AMDGPU driver
+- Bug present since v6.10 — affects all active stable trees
+- Zero regression risk — just a NULL guard
+- Standalone fix with no dependencies
 
-**AGAINST backporting:**
+AGAINST backporting:
 - None identified
+- Minor context adjustment may be needed for backport (function name in
+  trailing context differs)
 
-### Step 9.2: STABLE RULES CHECKLIST
-1. **Obviously correct and tested?** YES - confirmed by author,
-   reviewers, and the person who introduced the bug; tested on real
-   hardware
-2. **Fixes a real bug?** YES - double dma_fence_put causing use-after-
-   free and soft lockup
-3. **Important issue?** YES - system hang (soft lockup), use-after-free,
-   refcount underflow
-4. **Small and contained?** YES - 4 net lines removed in a single
-   file/function
-5. **No new features or APIs?** CORRECT - purely removes erroneous calls
-6. **Can apply to stable trees?** YES - the buggy commit is present in
-   this tree
+**Step 9.2: Stable Rules Checklist**
+1. Obviously correct and tested? **YES** — simple NULL guard, reviewed
+   by maintainer
+2. Fixes a real bug? **YES** — kernel oops during GPU reset
+3. Important issue? **YES** — kernel crash (oops)
+4. Small and contained? **YES** — 10 lines changed, single file, single
+   function
+5. No new features or APIs? **YES** — only adds a safety check
+6. Can apply to stable? **YES** — with minor context adjustment
 
-### Step 9.3: EXCEPTION CATEGORIES
-Not applicable - this is a standard critical bug fix.
-
-### Step 9.4: DECISION
-This is a textbook stable backport candidate: a small, obviously correct
-fix for a critical bug (use-after-free + system hang) that was
-introduced by a commit already present in the stable tree.
+**Step 9.3: Exception Categories**
+- Not an exception category; this is a standard bug fix that qualifies
+  on its own merits.
 
 ---
 
 ## Verification
 
-- [Phase 1] Parsed commit message: explicit "fix" in subject, refcount
-  underflow description, stack traces showing soft lockup and use-after-
-  free warning
-- [Phase 1] Tags: Reviewed-by Tvrtko Ursulin and Christian König;
-  Signed-off-by Alex Deucher (maintainer)
-- [Phase 2] Diff: removes 3 `dma_fence_put(fences[i])` calls from loop
-  in `amdgpu_userq_wait_ioctl()`, -4 net lines
-- [Phase 2] Cleanup path at `free_fences:` already calls
-  `dma_fence_put()` on all fences, confirmed at lines 991-995
-- [Phase 3] git blame: in-loop puts from commit 15e30a6e479282
-  (2024-10-30); cleanup loop modified by 048c1c4e51715 (consolidation)
-- [Phase 3] Consolidation commit `048c1c4e51715` confirmed present in
-  7.0 tree (cherry-picked from bea29bb0dd29)
-- [Phase 3] Current code at lines 949-977 confirmed still has the
-  double-put (fix not yet applied)
-- [Phase 3] Only one intervening commit (65b5c326ce410, refcount
-  userqueues) which touches different code areas
-- [Phase 4] Mailing list discussion found at
-  https://lists.freedesktop.org/archives/amd-gfx/2026-March/140504.html
-- [Phase 4] Tvrtko Ursulin confirmed the fix is correct and acknowledged
-  he introduced the bug
-- [Phase 4] Tvrtko provided the Fixes tag: `Fixes: bea29bb0dd29`
-- [Phase 4] No NAKs, no objections; unanimous approval from reviewers
-- [Phase 5] `amdgpu_userq_wait_ioctl()` is reachable from userspace
-  ioctl syscall path
-- [Phase 6] Bug-introducing commit IS in this stable tree
-  (048c1c4e51715)
-- [Phase 6] Fix should apply cleanly - code context matches
-- [Phase 7] amdgpu is an IMPORTANT subsystem; userqueue fence code is
-  actively developed
-- [Phase 8] Failure: use-after-free + 26s soft lockup; severity
-  CRITICAL; triggered during normal GPU operations
+- [Phase 1] Parsed tags: Reviewed-by and Suggested-by from Lijo Lazar
+  (AMD reviewer), Signed-off-by from Alex Deucher (maintainer)
+- [Phase 2] Diff analysis: wraps 6 `ctx->*` dereferences with `if
+  (adev->bios)` guard in `amdgpu_devcoredump_fw_info()`
+- [Phase 3] git blame: buggy dereferences introduced in commits
+  `6a0e1bafd70fe5` and `3c858cf65e9a2c`, both in v6.10-rc1
+- [Phase 3] `git describe --contains 6a0e1bafd70fe5`: confirmed
+  `v6.10-rc1~148^2~21^2~118`
+- [Phase 3] `git describe --contains 3c858cf65e9a2c`: confirmed
+  `v6.10-rc1~148^2~19^2~49`
+- [Phase 4] mail-archive.com V2 thread: Lijo reviewed, suggested
+  `adev->bios` check and "NA" fallback
+- [Phase 4] mail-archive.com Jesse's response: confirmed V3 incorporates
+  Lijo's feedback
+- [Phase 5] Grep for `amdgpu_devcoredump_fw_info` callers: called from
+  `amdgpu_devcoredump_read()` line 266
+- [Phase 5] Grep for `amdgpu_atombios_fini`: confirmed `atom_context =
+  NULL` at line 1882 of `amdgpu_atombios.c`
+- [Phase 5] Grep for `amdgpu_bios_release`: confirmed `adev->bios =
+  NULL` at line 90 of `amdgpu_bios.c`
+- [Phase 5] Confirmed both called from `amdgpu_device.c` lines 4984-4988
+  during teardown
+- [Phase 6] Code exists in 7.0 tree — lines 190-195 of
+  `amdgpu_dev_coredump.c` show identical buggy code
+- [Phase 6] Function name difference in context (`format` vs `read`) is
+  only in trailing context, not the changed hunk
+- [Phase 8] Failure mode: NULL deref → kernel oops from workqueue during
+  GPU reset, severity HIGH
+
+---
+
+The fix is small, surgical, obviously correct, well-reviewed by AMD GPU
+maintainers, and prevents a real kernel oops triggered during normal GPU
+reset recovery. It meets all stable kernel criteria with minimal risk.
 
 **YES**
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index 5239b06b9ab03..bb390067c26ef 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -947,12 +947,9 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
- 				 * be good for now
- 				 */
- 				r = dma_fence_wait(fences[i], true);
--				if (r) {
--					dma_fence_put(fences[i]);
-+				if (r)
- 					goto free_fences;
--				}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
+index c38e7371bafce..fed4e73d3492f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
+@@ -187,12 +187,16 @@ static void amdgpu_devcoredump_fw_info(struct amdgpu_device *adev,
+ 	drm_printf(p, "VPE feature version: %u, fw version: 0x%08x\n",
+ 		   adev->vpe.feature_version, adev->vpe.fw_version);
  
--				dma_fence_put(fences[i]);
- 				continue;
- 			}
+-	drm_printf(p, "\nVBIOS Information\n");
+-	drm_printf(p, "vbios name       : %s\n", ctx->name);
+-	drm_printf(p, "vbios pn         : %s\n", ctx->vbios_pn);
+-	drm_printf(p, "vbios version    : %d\n", ctx->version);
+-	drm_printf(p, "vbios ver_str    : %s\n", ctx->vbios_ver_str);
+-	drm_printf(p, "vbios date       : %s\n", ctx->date);
++	if (adev->bios) {
++		drm_printf(p, "\nVBIOS Information\n");
++		drm_printf(p, "vbios name       : %s\n", ctx->name);
++		drm_printf(p, "vbios pn         : %s\n", ctx->vbios_pn);
++		drm_printf(p, "vbios version    : %d\n", ctx->version);
++		drm_printf(p, "vbios ver_str    : %s\n", ctx->vbios_ver_str);
++		drm_printf(p, "vbios date       : %s\n", ctx->date);
++	}else {
++		drm_printf(p, "\nVBIOS Information: NA\n");
++	}
+ }
  
-@@ -974,7 +971,6 @@ int amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
- 			fence_info[cnt].va = fence_drv->va;
- 			fence_info[cnt].value = fences[i]->seqno;
- 
--			dma_fence_put(fences[i]);
- 			/* Increment the actual userq fence count */
- 			cnt++;
- 		}
+ static ssize_t
 -- 
 2.53.0
 
