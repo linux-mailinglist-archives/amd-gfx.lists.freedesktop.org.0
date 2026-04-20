@@ -2,133 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WAp2Exsi5mkMsAEAu9opvQ
+	id yGRLAFkn5mm6sgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 14:54:51 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:17:13 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B183042B082
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 14:54:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54DBC42B775
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:17:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAFA210E5A1;
-	Mon, 20 Apr 2026 12:54:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D22E710E5E7;
+	Mon, 20 Apr 2026 13:17:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="BkOJ7ddc";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="llYjXabH";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011006.outbound.protection.outlook.com [52.101.62.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C42C810E5A3
- for <amd-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 12:54:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WhVkt7GNQglsk2sOY5q3HUnPe7qcYdokiA7j/v6SSn4QZTlCQSF/szFetVgrCYS7F+FHyeoqeCKbtonfsNz1Dk93NnqYMGfxt1PfcnB85zqFzTxbwelbOQHjrmNi8g1MPmskHIqCn6OIdx98dKmy50dCfetu9loEb0p/hQzm1SKHBX+hIeNkDdwWdObZw1WeQ6Yfgu/9cEpz9DTVw5sSMcX9LIvm0MprJ8d7WtwR29djqw6IBilGp6CzOSAuxPy78DNUs5/ahI9RRHu2nAc4hk0p7O4wmIoMKHEz2zsFuRMR1ypfD3I/hCUs4Dbqdrv2gKZO4t1E3n8qGOmIZAT8Rg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LH2PXflvBw15kDhku2J3Jg2zkk0eRsu4B66DmNSr7Ao=;
- b=c84oZNq3Ht4Z2QJtcWSNU2UEWzg0VkiQ8ZfKQKKgotbfjS7vVXx/OyjeH4n7Hm69CgOOhVeTtw36b1qzK/bJyVXm2XbuQg6vihXrwGMyhHaLoXZeYC2l859/miw/7EOV7NxG0xDYD5VuqUlZzVS5rWpFFzIsdBO52muhP6pM1KT4fqEJz9HRuhIkiRn2/QMfZ5gi5IRpzOv0yW9fSwZ3A4hbdTcb+w+hqZ1lHws04qSfuz3yqdYisrLd3xnoh/tjha+rrcEg/K2gOCdq68RNHvLCiqsLh+nORI0GIsYNX7FQGJYvwlGt58rj1GwqV1+MqDbht4fhKE/88Q5fseRT7w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LH2PXflvBw15kDhku2J3Jg2zkk0eRsu4B66DmNSr7Ao=;
- b=BkOJ7ddcPULqPyzCayikEfsD9tiPfG47jj0UiIEf+zp2vKhE9f4Ui6dNZdQ38dZRcAXjm4T4VsFMikge7hzNW4bFZaWfL3aHQHgC+16m4y6ivVmtg5nt1XRKzDIo8T1Y/pTIRZjO8dh/hbSTIN4AA67rHyGSBkfANloQk79ygYk=
-Received: from DS0PR12MB6534.namprd12.prod.outlook.com (2603:10b6:8:c1::19) by
- IA0PR12MB8696.namprd12.prod.outlook.com (2603:10b6:208:48f::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.15; Mon, 20 Apr
- 2026 12:54:39 +0000
-Received: from DS0PR12MB6534.namprd12.prod.outlook.com
- ([fe80::b2e1:64e5:3b9e:738a]) by DS0PR12MB6534.namprd12.prod.outlook.com
- ([fe80::b2e1:64e5:3b9e:738a%4]) with mapi id 15.20.9846.007; Mon, 20 Apr 2026
- 12:54:38 +0000
-From: "Wheeler, Daniel" <Daniel.Wheeler@amd.com>
-To: "Chen, Chen-Yu" <Chen-Yu.Chen@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Wentland, Harry" <Harry.Wentland@amd.com>, "Li, Sun peng (Leo)"
- <Sunpeng.Li@amd.com>, "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>, "Li,
- Roman" <Roman.Li@amd.com>, "Lin, Wayne" <Wayne.Lin@amd.com>, "Chung,
- ChiaHsuan (Tom)" <ChiaHsuan.Chung@amd.com>, "Zuo, Jerry" <Jerry.Zuo@amd.com>, 
- "Wu, Ray" <Ray.Wu@amd.com>, "LIPSKI, IVAN" <IVAN.LIPSKI@amd.com>, "Hung,
- Alex" <Alex.Hung@amd.com>, "Tseng, Chuan Yu (Max)" <ChuanYu.Tseng@amd.com>,
- "Chen, Chen-Yu" <Chen-Yu.Chen@amd.com>
-Subject: RE: [PATCH 00/19] DC Patches Apr 20 2026
-Thread-Topic: [PATCH 00/19] DC Patches Apr 20 2026
-Thread-Index: AQHczKtvSOT7oe7FXU2+zXOIwkKxiLXn8CjQ
-Date: Mon, 20 Apr 2026 12:54:38 +0000
-Message-ID: <DS0PR12MB65347B18A90D5C5F5317DE619C2F2@DS0PR12MB6534.namprd12.prod.outlook.com>
-References: <20260415074223.34848-1-chen-yu.chen@amd.com>
-In-Reply-To: <20260415074223.34848-1-chen-yu.chen@amd.com>
-Accept-Language: en-CA, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2026-04-20T12:54:10.0000000Z;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
- Source; MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR12MB6534:EE_|IA0PR12MB8696:EE_
-x-ms-office365-filtering-correlation-id: 1213880a-487d-4500-1964-08de9edbfb90
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|38070700021|56012099003|18002099003|22082099003;
-x-microsoft-antispam-message-info: 0JTzaBzlmpK5NWdEh0YKAbgGEMGKo1zbdDdh2YfM5u6KLy2FXfaFKWJE+9eh5w5Z7TsIcTAzFehNMDR79n7fx8iZe8CPmjoA4KtToxF/CQYsNxpMWAu5LRvK7QEAdR7W05T0AvOjKL9a81LjRj2uF5X9jRIxWoxzfpJcvdfGtPoe9i6Wv+o8YGsRpSjFE/HsuynJmizUTS/znu6j81wiuq5NQOdHhBcjVe6LC46eh/RVmJj/hKWI2byyEqFhRRJWYReu03yk9kORncSii9SZzUVFJOrE41KUtCdxJwy6YLEUpeQp3KI3cJEySirNbyYz9cM/rBeRLLblNBTTT7qNKrW70nOKJHjLMrM8ny751kV7hZqNSvT0X4GwPolEN78SPa3z4OEBjyIjHIgRhH571mZ2XlJOJYZoo5FvdWKLi3qo5K30R1nYfjCF9I3AU/VX6RONYYl12HK9UdmeYlLlzAta4RGw0tBSyojNfhat/G/HrCQUQC+Ec5SYvQld64p0UShsl0y5gEqbitPXQ3HR+0y5Hvct8jXptUZ/Z+Hoteec5120rlBc6xjMkjaKumXszN+wmhHjwPzbAfhdeAnXtuuxj0zssj0Q3aMMifhFha6IkoNqjrvRP9OoMmFgBIGoYouQ+o85iUi5nx2TemmYC4JpEWlMwAGcy4QbDVkytKaDa1ixFwEyg/BJ6vOw5YU6s3fB8S5Bd4gZ8afixFqFAoTg6aRV+eFUOESPnoDCxjlpiU8xMA19h7EuL33K4m/SmVV7yg+70F9KCewqbCzuX4INjaKPzGMVQFgNd4TPftY=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6534.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(38070700021)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?XOcg5lFa4kuNiahX+XnK3hBzLcsDsNpm4jQt5tXVsukoB4j47q63VWn5Ea?=
- =?iso-8859-1?Q?NKrT+DWyXsyhMUWnrJbf9AJa2ILi4gkoPoler8byMmvGVuTqdhPPKJli+p?=
- =?iso-8859-1?Q?+8ndEW67e5px204cdJHN3se8WQOWsVs/leov68aq1Wp9kVI3kcWAdesSQQ?=
- =?iso-8859-1?Q?1sX1Kz9pVmg6Dp21PqA8Vp+fqFdRcF2FI5z6ep40HQJJ/2maToG9uXOXpA?=
- =?iso-8859-1?Q?W3Y4jD3Zku3PAqyQMd4TdGfKUJlzIiA+PCIBthD+Xwpsb1FyHWxhA9GLNk?=
- =?iso-8859-1?Q?693zHbnKC/q4N7XRaiLmRv7o6tBNEOiOd4G/R3xvn8F9XSjditBch/6CJ7?=
- =?iso-8859-1?Q?cZsk3NaTjbRrQDp5Xbr5GNx7t2yW2yVeAmKcdeC99hYv83LZ0Ip0HPkPXc?=
- =?iso-8859-1?Q?ZROvuMzjTaLznnnbHhyPv2gc746U/m/Fzz5829GrHD6He/3xd1EyU1Ep+h?=
- =?iso-8859-1?Q?ELmOmiz9mm6IVYN8e0I2y4eTYbmaLLNsKVymZkadank0GzRc/hKece/6sl?=
- =?iso-8859-1?Q?tdZuJIPl7jHJBWFQsWy9q/+xSTjFMiQILHoRKrJL+LR20Rza8gX8OxXRF6?=
- =?iso-8859-1?Q?KVKlmh/U1UB30fx9FJQzte/58U0HaEDMriJUs0jgRtbhr6oT8/mmUkLxUm?=
- =?iso-8859-1?Q?+iubyGd7LPuXwWWXaa05TSSl53nPVXW8P/eZoSc2a5yurxInPsTF8JWE1D?=
- =?iso-8859-1?Q?YZbRzyzXlga9cQImgl+edhIDhRdZcZWkZdnP11ykbgmcsTBC8xQNlq0nl2?=
- =?iso-8859-1?Q?m0d12HFTEsbrw+g6P+SYw2anizm+4aSKOPR9FNa4Zvn/45eM49uAOrpJCk?=
- =?iso-8859-1?Q?CuB8qNIbBPMyFsV8NWltc54HvilXdlIB+LQ3D1mZ12vRTJxj3qwpEIq4fG?=
- =?iso-8859-1?Q?/oYoW3+0qew8StToWh549lCyGYtcnd/o2qweE7J77ReVke5b8/JayZLxDl?=
- =?iso-8859-1?Q?Q7XT5IKxNlILVmJf7ceIkty7Oc4K4KCj24pONJe5ifkBa6Eed2nktRgR5b?=
- =?iso-8859-1?Q?wJwWNtdNXh0KQJNMUXhESsoMZGy1OWjy2cuIGJzNggvsII5XbJYHky8AFL?=
- =?iso-8859-1?Q?hJ7wkApo4UhSDNUg2L6zwgmXrb12LzfvFSXt8yJRGGptbr+bVFTkCMuMKj?=
- =?iso-8859-1?Q?ai521XMk3h6dHC/fRdztDkjRekPHGb3mqIuDqxaOR4F7g9KRXclpBc/I3u?=
- =?iso-8859-1?Q?tPYhjuLN6nUDrj4kIi1tJkkSy2cGAecvo0VKIOybUnRY8MLSB8UBtKF2Ab?=
- =?iso-8859-1?Q?9ZNWskJrFpcStJptf6oiFdH9Vwn6F1VP7gjYW8YfQOsaoik5XDf3tluAk3?=
- =?iso-8859-1?Q?9doz4TeJN7lUaAxbNppILHQuF+5OVf+F4t7htaKjxx4Fz6HpGF5XyCZC9O?=
- =?iso-8859-1?Q?RsH9H3ZjIy1f4iASBh6+Wea+ceHWLjISI0HobEgwM3wCB6GM7vofHmbuXp?=
- =?iso-8859-1?Q?jGb8KiUTvGuNqenRImBBHnOfiepD08Q6X5gyx99ykFoZq5M02FA4An2l42?=
- =?iso-8859-1?Q?CEnW7Yislu7T9hhE8N0vl6+ZvDhaRJ5aLe6Mmxnw6FkIJFjbfKuXNYTAwY?=
- =?iso-8859-1?Q?IW2eLJpjGhEaeQa5CzECWGezFENyo/hKWXAZSwS5ntHQEYitxPtuwg8ydO?=
- =?iso-8859-1?Q?aprETXOXNRzmBDeeZi/s2xMGMX6WnRVZIEGZPH2YplDOyRB1KThk2ooYp0?=
- =?iso-8859-1?Q?VtrKlU6X/NFWv6y8ZVJWYF6JkfXJkmKdpaHx8isuFWUklaJ9mFnYhfWtg5?=
- =?iso-8859-1?Q?BvttCL6yCivo667yhPWDnNN2Dq+dOiJYsFuoeD59osTGC0?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8255E10E5E7;
+ Mon, 20 Apr 2026 13:17:09 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 53789404C3;
+ Mon, 20 Apr 2026 13:17:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3893C2BCB7;
+ Mon, 20 Apr 2026 13:17:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1776691029;
+ bh=DZpahuMZuqCNd1jPzatGrPOZ6xoX1xfgs8kTTvQ4FCY=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=llYjXabHDskLhCbjyt9SsLoJD/RT91NY5yvJwD7Yo1Z5qRudNzlyZ5whtb2v2hmif
+ q/662MZE6KP7Sfm/Hc9lLV6yGJPjpMbMJiDIfTkBK/gPq5ZASMM+SPIH6kxqVrXL3W
+ rqOhUxxBRNpuY2RnAKGrcbVgNZB0mGM0tya+vdvgOV1hpNjidhCk6S0dWprwXj2u6X
+ H7K6cTxObAP5emlbNN7X1051e+9HCdby1WwvoWZj/6K76dJuZL0m3zD/3a6lgJNhbY
+ Y9SaPXyxdOirSIf4D0uECRa78XaJ4Gz+6dmQEbhYcTA1+9oPk9Os336gFWboaCWDIb
+ cejOkaVGCqgrA==
+From: Sasha Levin <sashal@kernel.org>
+To: patches@lists.linux.dev,
+	stable@vger.kernel.org
+Cc: Sunil Khatri <sunil.khatri@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
+ airlied@gmail.com, simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH AUTOSEL 7.0] drm/amdgpu/userq: remove queue from doorbell
+ xarray
+Date: Mon, 20 Apr 2026 09:08:38 -0400
+Message-ID: <20260420131539.986432-52-sashal@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260420131539.986432-1-sashal@kernel.org>
+References: <20260420131539.986432-1-sashal@kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6534.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1213880a-487d-4500-1964-08de9edbfb90
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Apr 2026 12:54:38.8544 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 79PMhUHunh9GldnfHIKl/fxT5P1kwcrfL+0LHT+QHirrdvMcGFmqk4Tn8JdjaCH2qLblyyCcrp8r3PU9ZQ1sBQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8696
+Content-Type: text/plain; charset=UTF-8
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 7.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,374 +69,301 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Chen-Yu.Chen@amd.com,m:Harry.Wentland@amd.com,m:Sunpeng.Li@amd.com,m:Aurabindo.Pillai@amd.com,m:Roman.Li@amd.com,m:Wayne.Lin@amd.com,m:ChiaHsuan.Chung@amd.com,m:Jerry.Zuo@amd.com,m:Ray.Wu@amd.com,m:IVAN.LIPSKI@amd.com,m:Alex.Hung@amd.com,m:ChuanYu.Tseng@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER(0.00)[Daniel.Wheeler@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[amd.com,kernel.org,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[Daniel.Wheeler@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,readme.md:url,DS0PR12MB6534.namprd12.prod.outlook.com:mid]
-X-Rspamd-Queue-Id: B183042B082
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+X-Rspamd-Queue-Id: 54DBC42B775
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-[Public]
+From: Sunil Khatri <sunil.khatri@amd.com>
 
-Hi all,
+[ Upstream commit f0e46fd06c3f7590b0f06aea3c877f441c2cbccc ]
 
-This week this patchset was tested on 4 systems, two dGPU and two APU based=
-, and tested across multiple display and connection types.
+In case of failure in xa_alloc, remove the queue during
+clean up from the userq_doorbell_xa.
 
-APU
-        * Single Display eDP -> 1080p 60hz, 1920x1200 165hz, 3840x2400 60hz
-        * Single Display DP (SST DSC) -> 4k144hz, 4k240hz
-        * Multi display -> eDP + DP/HDMI/USB-C -> 1080p 60hz eDP + 4k 144hz=
-, 4k 240hz (Includes USB-C to DP/HDMI adapters)
-        * Thunderbolt -> LG Ultrafine 5k
-        * MST DSC -> Cable Matters 101075 (DP to 3x DP) with 3x 4k60hz disp=
-lays, HP Hook G2 with 2x 4k60hz displays
-        * USB 4 -> HP Hook G4, Lenovo Thunderbolt Dock, both with 2x 4k60hz=
- DP and 1x 4k60hz HDMI displays
-        * SST PCON -> Club3D CAC-1085 + 1x 4k 144hz, FRL3, at a max resolut=
-ion supported by the dongle of 4k 120hz YUV420 12bpc.
-        * MST PCON -> 1x 4k 144hz, FRL3, at a max resolution supported by t=
-he adapter of 4k 120hz RGB 8bpc.
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
 
-DGPU
-        * Single Display DP (SST DSC) -> 4k144hz, 4k240hz
-        * Multiple Display DP -> 4k240hz + 4k144hz
-        * MST (Startech MST14DP123DP [DP to 3x DP] and 2x 4k 60hz displays)
-        * MST DSC (with Cable Matters 101075 [DP to 3x DP] with 3x 4k60hz d=
-isplays)
+LLM Generated explanations, may be completely bogus:
 
-The testing is a mix of automated and manual tests. Manual testing includes=
- (but is not limited to)
-        * Changing display configurations and settings
-        * Video/Audio playback
-        * Benchmark testing
-        * Suspend/Resume testing
-        * Feature testing (Freesync, HDCP, etc.)
+Here is my complete analysis:
 
-Automated testing includes (but is not limited to)
-        * Script testing (scripts to automate some of the manual checks)
-        * IGT testing
+---
 
-The testing is mainly tested on the following displays, but occasionally th=
-ere are tests with other displays
-        * Samsung G8 Neo 4k240hz
-        * Samsung QN55QN95B 4k 120hz
-        * Acer XV322QKKV 4k144hz
-        * HP U27 4k Wireless 4k60hz
-        * LG 27UD58B 4k60hz
-        * LG 32UN650WA 4k60hz
-        * LG Ultrafine 5k 5k60hz
-        * AU Optronics B140HAN01.1 1080p 60hz eDP
-        * AU Optronics B160UAN01.J 1920x1200 165hz eDP
-        * Samsung ATNA60YV02-0 3840x2400 60Hz OLED eDP
+## PHASE 1: COMMIT MESSAGE FORENSICS
 
+**Step 1.1: Subject Line**
+- Subsystem: `drm/amdgpu/userq`
+- Action verb: "remove" (corrective: removing a stale entry from data
+  structure on error path)
+- Summary: Remove queue from doorbell xarray during cleanup when
+  xa_alloc fails
 
-The patchset consists of the amd-staging-drm-next branch (Head commit - 5fc=
-862467a34397739ce66733b6344c4e671ef50 -> drm/amdgpu/userq: unmap_helper don=
-t return the queue state) with new patches added on top of it.
+**Step 1.2: Tags**
+- `Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>` - author, regular
+  AMD GPU contributor
+- `Reviewed-by: Christian König <christian.koenig@amd.com>` - AMD GPU
+  subsystem co-maintainer
+- `Signed-off-by: Alex Deucher <alexander.deucher@amd.com>` - AMD GPU
+  subsystem maintainer
+- No Fixes: tag (expected for manual review candidates)
+- No Cc: stable tag
 
-Tested on Ubuntu 24.04.3, on Wayland and X11, using Gnome.
+**Step 1.3: Commit Body Analysis**
+The message says: "In case of failure in xa_alloc, remove the queue
+during clean up from the userq_doorbell_xa." This clearly describes a
+missing cleanup in an error path: the queue gets stored in
+`userq_doorbell_xa` but is not removed if the subsequent `xa_alloc`
+fails.
 
-Tested-by: Dan Wheeler <daniel.wheeler@amd.com>
+**Step 1.4: Hidden Bug Fix Detection**
+This is not hidden - it's straightforwardly described as an error path
+cleanup fix. However, the severity is greater than the commit message
+suggests. It's actually a **use-after-free**: the queue is freed
+(`kfree(queue)`) but its pointer remains in the doorbell xarray.
 
+## PHASE 2: DIFF ANALYSIS
 
+**Step 2.1: Inventory**
+- Single file: `drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c`
+- 1 line added: `xa_erase_irq(&adev->userq_doorbell_xa, index);`
+- Function modified: `amdgpu_userq_create()`
+- Scope: Single-file surgical fix, error path only
 
-Thank you,
+**Step 2.2: Code Flow Change**
+In `amdgpu_userq_create()`:
 
-Dan Wheeler
-Sr. Technologist | AMD
-SW Display
----------------------------------------------------------------------------=
----------------------------------------
-1 Commerce Valley Dr E, Thornhill, ON L3T 7X6
-amd.com
+1. Line 863: `xa_store_irq(&adev->userq_doorbell_xa, index, queue,
+   GFP_KERNEL)` - stores queue in global doorbell xarray
+2. Line 870: `xa_alloc(&uq_mgr->userq_xa, &qid, queue, ...)` - attempts
+   to allocate a queue ID
+3. If xa_alloc fails (line 872): error path calls
+   `amdgpu_userq_fence_driver_free()`, `mqd_destroy()`, `kfree(queue)` -
+   but did NOT remove the entry from `userq_doorbell_xa`
+4. Fix adds `xa_erase_irq(&adev->userq_doorbell_xa, index)` before the
+   kfree
 
-Thank you,
+**Step 2.3: Bug Mechanism**
+This is a **use-after-free** caused by a missing cleanup on error path.
+After `kfree(queue)`, the freed pointer remains in `userq_doorbell_xa`.
+Six functions in the same file iterate `userq_doorbell_xa` with
+`xa_for_each()` and dereference the queue pointer:
+- `amdgpu_userq_suspend()` (line 1445)
+- `amdgpu_userq_resume()` (line 1471)
+- `amdgpu_userq_stop_sched_for_enforce_isolation()` (line 1501)
+- `amdgpu_userq_start_sched_for_enforce_isolation()` (line 1535)
+- `amdgpu_userq_pre_reset()` (line 1589)
+- `amdgpu_userq_post_reset()` (line 1617)
 
-Dan Wheeler
-Sr. Technologist | AMD
-SW Display
----------------------------------------------------------------------------=
----------------------------------------
-1 Commerce Valley Dr E, Thornhill, ON L3T 7X6
-amd.com
+All would crash or corrupt memory by accessing `queue->userq_mgr`,
+`queue->state`, etc.
 
+**Step 2.4: Fix Quality**
+The fix is obviously correct: it mirrors the cleanup in the normal
+destroy path (`amdgpu_userq_cleanup()` at line 463 already calls
+`xa_erase_irq(&adev->userq_doorbell_xa, queue->doorbell_index)`). The
+fix uses `xa_erase_irq()` matching the `xa_store_irq()` used during
+insertion. No regression risk.
 
------Original Message-----
-From: Chenyu Chen <chen-yu.chen@amd.com>
-Sent: Wednesday, April 15, 2026 3:40 AM
-To: amd-gfx@lists.freedesktop.org
-Cc: Wentland, Harry <Harry.Wentland@amd.com>; Li, Sun peng (Leo) <Sunpeng.L=
-i@amd.com>; Pillai, Aurabindo <Aurabindo.Pillai@amd.com>; Li, Roman <Roman.=
-Li@amd.com>; Lin, Wayne <Wayne.Lin@amd.com>; Chung, ChiaHsuan (Tom) <ChiaHs=
-uan.Chung@amd.com>; Zuo, Jerry <Jerry.Zuo@amd.com>; Wheeler, Daniel <Daniel=
-.Wheeler@amd.com>; Wu, Ray <Ray.Wu@amd.com>; LIPSKI, IVAN <IVAN.LIPSKI@amd.=
-com>; Hung, Alex <Alex.Hung@amd.com>; Tseng, Chuan Yu (Max) <ChuanYu.Tseng@=
-amd.com>; Chen, Chen-Yu <Chen-Yu.Chen@amd.com>
-Subject: [PATCH 00/19] DC Patches Apr 20 2026
+## PHASE 3: GIT HISTORY
 
-This DC patchset brings improvements in multiple areas. In summary, we high=
-light:
+**Step 3.1: Blame**
+The buggy error path (xa_alloc failure without doorbell cleanup) was
+introduced by commit `f18719ef4bb7b` (Jesse.Zhang, October 2025) which
+converted IDR to XArray. When the XArray conversion added
+`xa_store_irq(&adev->userq_doorbell_xa, ...)` before `xa_alloc`, the
+error cleanup for `xa_alloc` failure was not updated to remove the
+doorbell entry.
 
- - Add allow_clock_gating to dcn42 dccg.
- - Bypass post csc for additional color spaces in dcn42.
- - Remove unused dml2_project.
- - Unset Replay desync error verification by default.
- - Align HWSS fast commit path with legacy path.
- - Fix implicit narrowing conversion warnings.
- - Enable driver power gating.
- - Fix double free.
- - Introduce power module on Linux.
- - Add power module on Linux.
- - Fix fpu guard warning.
- - Add Replay/PSR active check in link loss status check.
- - Remove SYMCLK F and G values from link encoder and MANUAL_FLOW_CONTROL f=
-rom optc.
- - Add minimum vfp requirement.
- - Fix narrowing boundaries and eDP parser assignment.
- - Fix dml2_0 narrowing boundaries.
- - Add README.md file to DML2_0 repository.
- - Fix DPMS using partially updated pipe context.
- - Move dml2_destroy to non-FPU compilation unit.
+**Step 3.2: Fixes Target**
+No Fixes: tag present. The bug was introduced by f18719ef4bb7b.
 
-Cc: Daniel Wheeler <daniel.wheeler@amd.com>
+**Step 3.3: Related Changes**
+The companion commit `65b5c326ce410` ("refcount userqueues to avoid race
+conditions") was cherry-picked with `Cc: stable@vger.kernel.org`,
+showing this area is actively being stabilized for stable trees.
 
-Allen Li (2):
-  drm/amd/display: Unset Replay desync error verification by default
-  drm/amd/display: Add Replay/PSR active check in link loss status check
+**Step 3.4: Author**
+Sunil Khatri is a regular AMD GPU contributor with 11 commits to this
+file alone. He also authored the refcount fix.
 
-Andrew Lichmanov (1):
-  drm/amd/display: Remove SYMCLK F and G values from link encoder and
-    MANUAL_FLOW_CONTROL from optc
+**Step 3.5: Dependencies**
+This fix is standalone - it requires only that the doorbell xarray code
+(from f18719ef4bb7b) exists, which it does in 7.0.
 
-Dillon Varone (1):
-  drm/amd/display: Add minimum vfp requirement
+## PHASE 4: MAILING LIST RESEARCH
 
-Dominik Kaszewski (1):
-  drm/amd/display: Fix DPMS using partially updated pipe context
+The exact commit "remove queue from doorbell xarray" was not found
+independently on lore.kernel.org. However, the v2 series of the refcount
+patchset (20260302180852) was a 2-patch series that included related
+doorbell cleanup work. The patch was reviewed by Christian König (AMD
+GPU co-maintainer) and committed through Alex Deucher (AMD GPU
+maintainer).
 
-Gaghik Khachatrian (3):
-  drm/amd/display: Fix implicit narrowing conversion warnings
-  drm/amd/display: Fix narrowing boundaries and eDP parser assignment
-  drm/amd/display: Fix dml2_0 narrowing boundaries
+## PHASE 5: CODE SEMANTIC ANALYSIS
 
-Ilya Bakoulin (1):
-  drm/amd/display: Fix double free
+**Step 5.1: Modified Function**
+`amdgpu_userq_create()` - creates usermode queues for AMD GPU userspace
+queue submission.
 
-Rafal Ostrowski (2):
-  drm/amd/display: Align HWSS fast commit path with legacy path
-  drm/amd/display: Move dml2_destroy to non-FPU compilation unit
+**Step 5.2: Callers**
+`amdgpu_userq_create()` is called from `amdgpu_userq_ioctl()` via
+`AMDGPU_USERQ_OP_CREATE`, which is a DRM IOCTL callable from userspace.
+This is a user-triggerable code path.
 
-Ray Wu (2):
-  drm/amd/display: Introduce power module on Linux
-  drm/amd/display: Add power module on Linux
+**Step 5.3-5.4: Impact Surface**
+The stale entry in `userq_doorbell_xa` will be accessed by any
+subsequent suspend, resume, reset, or isolation enforcement operation on
+the GPU device. These are triggered by:
+- System suspend/resume (S3, S0ix) - common laptop operation
+- GPU reset (triggered by hang detection)
+- Enforce isolation mode changes
 
-Roman Li (3):
-  drm/amd/display: Add allow_clock_gating to dcn42 dccg
-  drm/amd/display: bypass post csc for additional color spaces in dcn42
-  drm/amd/display: Remove unused dml2_project
+## PHASE 6: STABLE TREE ANALYSIS
 
-Samson Tam (1):
-  drm/amd/display: Add README.md file to DML2_0 repository
+**Step 6.1: Code in Stable Trees**
+The file `amdgpu_userq.c` was first added in the v6.16/6.17 timeframe.
+The `userq_doorbell_xa` was introduced by f18719ef4bb7b in the kernel
+7.0 development cycle. This code exists in the 7.0 stable tree.
 
-Taimur Hassan (1):
-  drm/amd/display: Promote DC to 3.2.379
+**Step 6.2: Backport Complexity**
+This is a clean 1-line addition with no context conflicts expected.
 
-Wayne Lin (1):
-  drm/amd/display: Fix fpu guard warning
+## PHASE 7: SUBSYSTEM CONTEXT
 
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  344 +-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |   10 +
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c |   36 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |   74 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_crtc.h    |    5 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c |   60 +-
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c |   26 +-
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c |  242 +-
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_psr.h |   13 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_replay.c  |  143 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_replay.h  |   28 +-
- .../display/amdgpu_dm/amdgpu_dm_services.c    |   27 +
- .../drm/amd/display/dc/basics/custom_float.c  |    2 +-
- .../gpu/drm/amd/display/dc/basics/dce_calcs.c |    2 +-
- .../gpu/drm/amd/display/dc/bios/bios_parser.c |    6 +-
- .../drm/amd/display/dc/bios/bios_parser2.c    |   21 +-
- .../drm/amd/display/dc/bios/command_table.c   |   12 +-
- .../drm/amd/display/dc/bios/command_table2.c  |    4 +-
- .../dc/clk_mgr/dce110/dce110_clk_mgr.c        |    6 +-
- .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c |   12 +-
- .../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c  |   39 +-
- .../display/dc/clk_mgr/dcn301/vg_clk_mgr.c    |   13 +-
- .../display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c  |   14 +-
- .../dc/clk_mgr/dcn314/dcn314_clk_mgr.c        |   14 +-
- .../dc/clk_mgr/dcn315/dcn315_clk_mgr.c        |   15 +-
- .../dc/clk_mgr/dcn316/dcn316_clk_mgr.c        |   15 +-
- .../display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c  |   43 +-
- .../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c  |   16 +-
- .../dc/clk_mgr/dcn401/dcn401_clk_mgr.c        |   40 +-
- .../display/dc/clk_mgr/dcn42/dcn42_clk_mgr.c  |   22 +-
- .../amd/display/dc/clk_mgr/dcn42/dcn42_smu.c  |    1 -
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  206 +-
- .../drm/amd/display/dc/core/dc_hw_sequencer.c |  565 ++-
- .../gpu/drm/amd/display/dc/core/dc_resource.c |   66 +-
- .../gpu/drm/amd/display/dc/core/dc_stream.c   |   26 +-
- .../gpu/drm/amd/display/dc/core/dc_surface.c  |    2 +-
- drivers/gpu/drm/amd/display/dc/dc.h           |   17 +-
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  |  137 +-
- drivers/gpu/drm/amd/display/dc/dc_fused_io.c  |    6 +-
- drivers/gpu/drm/amd/display/dc/dc_helper.c    |   12 +-
- drivers/gpu/drm/amd/display/dc/dc_stream.h    |   38 +-
- drivers/gpu/drm/amd/display/dc/dc_types.h     |   30 +
- .../amd/display/dc/dccg/dcn31/dcn31_dccg.c    |    4 +-
- .../amd/display/dc/dccg/dcn401/dcn401_dccg.c  |   20 +-
- .../amd/display/dc/dccg/dcn42/dcn42_dccg.c    |    2 +
- drivers/gpu/drm/amd/display/dc/dce/dce_aux.c  |    4 +-
- .../drm/amd/display/dc/dce/dce_clock_source.c |   24 +-
- .../gpu/drm/amd/display/dc/dce/dce_i2c_hw.c   |    2 +-
- .../gpu/drm/amd/display/dc/dce/dce_i2c_sw.c   |   16 +-
- .../drm/amd/display/dc/dce/dce_panel_cntl.c   |    4 +-
- .../drm/amd/display/dc/dce/dce_transform.c    |    8 +-
- .../gpu/drm/amd/display/dc/dce/dmub_abm_lcd.c |   14 +-
- drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c |   12 +-
- .../gpu/drm/amd/display/dc/dce/dmub_replay.c  |   23 +-
- .../display/dc/dce80/dce80_timing_generator.c |    2 +-
- .../amd/display/dc/dcn10/dcn10_cm_common.c    |    4 +-
- .../drm/amd/display/dc/dcn30/dcn30_mmhubbub.c |   16 +-
- .../dc/dio/dcn401/dcn401_dio_stream_encoder.c |    2 +-
- .../dc/dio/dcn42/dcn42_dio_link_encoder.h     |    2 -
- .../dc/dio/dcn42/dcn42_dio_stream_encoder.c   |    4 +-
- .../drm/amd/display/dc/dml/calcs/dcn_calcs.c  |    5 +-
- .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.c  |    9 +-
- .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.h  |    2 +-
- .../drm/amd/display/dc/dml/dcn30/dcn30_fpu.c  |    2 +-
- .../drm/amd/display/dc/dml/dcn31/dcn31_fpu.c  |    6 +-
- .../drm/amd/display/dc/dml/dcn31/dcn31_fpu.h  |    6 +-
- .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.c  |   37 +-
- .../gpu/drm/amd/display/dc/dml2_0/README.md   |   31 +
- .../amd/display/dc/dml2_0/display_mode_core.c |   14 +-
- .../amd/display/dc/dml2_0/display_mode_util.c |   20 +-
- .../dml2_0/dml21/dml21_translation_helper.c   |   15 +-
- .../amd/display/dc/dml2_0/dml21/dml21_utils.c |    2 +-
- .../display/dc/dml2_0/dml21/dml21_wrapper.c   |    4 +-
- .../dc/dml2_0/dml21/inc/dml_top_types.h       |    1 -
- .../dml21/src/dml2_core/dml2_core_factory.c   |    1 -
- .../dml21/src/dml2_dpmm/dml2_dpmm_factory.c   |    1 -
- .../dml21/src/dml2_mcg/dml2_mcg_factory.c     |    1 -
- .../dml21/src/dml2_pmo/dml2_pmo_factory.c     |    3 +-
- .../dml21/src/dml2_top/dml2_top_interfaces.c  |    1 -
- .../amd/display/dc/dml2_0/dml2_mall_phantom.c |  100 +-
- .../drm/amd/display/dc/dml2_0/dml2_policy.c   |    6 +-
- .../dc/dml2_0/dml2_translation_helper.c       |    4 +-
- .../drm/amd/display/dc/dml2_0/dml2_utils.c    |   40 +-
- .../drm/amd/display/dc/dml2_0/dml2_wrapper.c  |   11 +
- .../amd/display/dc/dml2_0/dml2_wrapper_fpu.c  |   10 -
- .../drm/amd/display/dc/dpp/dcn42/dcn42_dpp.c  |    6 +-
- .../drm/amd/display/dc/dsc/dcn20/dcn20_dsc.c  |   16 +-
- .../gpu/drm/amd/display/dc/dsc/rc_calc_dpi.c  |   33 +-
- drivers/gpu/drm/amd/display/dc/gpio/hw_ddc.c  |    2 +-
- .../gpu/drm/amd/display/dc/gpio/hw_generic.c  |    2 +-
- drivers/gpu/drm/amd/display/dc/gpio/hw_gpio.c |    2 +-
- drivers/gpu/drm/amd/display/dc/gpio/hw_gpio.h |    9 +
- drivers/gpu/drm/amd/display/dc/gpio/hw_hpd.c  |    2 +-
- .../display/dc/hubbub/dcn10/dcn10_hubbub.c    |   16 +-
- .../display/dc/hubbub/dcn20/dcn20_hubbub.c    |   28 +-
- .../display/dc/hubbub/dcn20/dcn20_hubbub.h    |    3 +
- .../display/dc/hubbub/dcn21/dcn21_hubbub.c    |   12 +-
- .../display/dc/hubbub/dcn30/dcn30_hubbub.c    |   12 +-
- .../display/dc/hubbub/dcn31/dcn31_hubbub.c    |   12 +-
- .../amd/display/dc/hubp/dcn20/dcn20_hubp.c    |    4 +-
- .../amd/display/dc/hubp/dcn21/dcn21_hubp.c    |    4 +-
- .../amd/display/dc/hubp/dcn30/dcn30_hubp.c    |    4 +-
- .../amd/display/dc/hwss/dce110/dce110_hwseq.c |   33 +-
- .../amd/display/dc/hwss/dce120/dce120_hwseq.c |   12 +-
- .../amd/display/dc/hwss/dcn10/dcn10_hwseq.c   |   12 +-
- .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   |   13 +-
- .../amd/display/dc/hwss/dcn21/dcn21_hwseq.c   |    8 +-
- .../amd/display/dc/hwss/dcn30/dcn30_hwseq.c   |   16 +-
- .../amd/display/dc/hwss/dcn314/dcn314_hwseq.c |    4 +-
- .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   |    4 +-
- .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   |    6 +-
- .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c |   18 +-
- .../drm/amd/display/dc/hwss/hw_sequencer.h    |  138 +
- drivers/gpu/drm/amd/display/dc/inc/bw_fixed.h |    2 +-
- .../dc/irq/dce110/irq_service_dce110.c        |    2 +-
- .../display/dc/link/accessories/link_dp_cts.c |   37 +-
- .../display/dc/link/hwss/link_hwss_hpo_dp.c   |    4 +-
- .../drm/amd/display/dc/link/link_detection.c  |    4 +-
- .../gpu/drm/amd/display/dc/link/link_dpms.c   |   16 +-
- .../drm/amd/display/dc/link/link_factory.c    |    6 +-
- .../amd/display/dc/link/protocols/link_ddc.c  |    5 +-
- .../dc/link/protocols/link_dp_capability.c    |    2 +-
- .../display/dc/link/protocols/link_dp_dpia.c  |    2 +-
- .../dc/link/protocols/link_dp_dpia_bw.c       |   10 +-
- .../dc/link/protocols/link_dp_irq_handler.c   |   57 +-
- .../dc/link/protocols/link_dp_panel_replay.c  |   27 +-
- .../link/protocols/link_dp_training_8b_10b.c  |   10 +-
- .../link/protocols/link_edp_panel_control.c   |   41 +-
- .../dc/mmhubbub/dcn20/dcn20_mmhubbub.c        |    4 +-
- .../dc/mmhubbub/dcn32/dcn32_mmhubbub.c        |    4 +-
- .../amd/display/dc/optc/dcn20/dcn20_optc.c    |    4 +-
- .../amd/display/dc/optc/dcn42/dcn42_optc.h    |    1 -
- .../dc/resource/dce110/dce110_resource.c      |    4 +-
- .../dc/resource/dcn10/dcn10_resource.c        |    4 +-
- .../dc/resource/dcn20/dcn20_resource.c        |   24 +-
- .../dc/resource/dcn21/dcn21_resource.c        |    9 +-
- .../dc/resource/dcn30/dcn30_resource.c        |   14 +-
- .../dc/resource/dcn301/dcn301_resource.c      |    8 +-
- .../dc/resource/dcn302/dcn302_resource.c      |    4 +-
- .../dc/resource/dcn303/dcn303_resource.c      |    4 +-
- .../dc/resource/dcn31/dcn31_resource.c        |   11 +-
- .../dc/resource/dcn314/dcn314_resource.c      |    4 +-
- .../dc/resource/dcn315/dcn315_resource.c      |   11 +-
- .../dc/resource/dcn316/dcn316_resource.c      |   11 +-
- .../dc/resource/dcn32/dcn32_resource.c        |   20 +-
- .../resource/dcn32/dcn32_resource_helpers.c   |    2 +-
- .../dc/resource/dcn321/dcn321_resource.c      |    4 +-
- .../dc/resource/dcn35/dcn35_resource.c        |    4 +-
- .../dc/resource/dcn351/dcn351_resource.c      |    4 +-
- .../dc/resource/dcn36/dcn36_resource.c        |    4 +-
- .../dc/resource/dcn401/dcn401_resource.c      |    4 +-
- .../dc/resource/dcn42/dcn42_resource.c        |    4 +-
- .../dcn401/dcn401_soc_and_ip_translator.c     |   42 +-
- .../dcn42/dcn42_soc_and_ip_translator.c       |   14 +-
- .../drm/amd/display/modules/inc/mod_power.h   |  415 +++
- .../display/modules/info_packet/info_packet.c |    2 +-
- .../drm/amd/display/modules/power/Makefile    |    2 +-
- .../gpu/drm/amd/display/modules/power/power.c | 3030 +++++++++++++++++
- .../amd/display/modules/power/power_helpers.c |   16 +-
- 159 files changed, 5833 insertions(+), 1416 deletions(-)  create mode 1006=
-44 drivers/gpu/drm/amd/display/dc/dml2_0/README.md
- create mode 100644 drivers/gpu/drm/amd/display/modules/inc/mod_power.h
- create mode 100644 drivers/gpu/drm/amd/display/modules/power/power.c
+- Subsystem: `drivers/gpu/drm/amd/amdgpu` - AMD GPU driver
+- Criticality: IMPORTANT - widely used GPU driver on desktop/laptop
+  systems
+- Actively developed subsystem with heavy recent churn
 
---
-2.43.0
+## PHASE 8: IMPACT AND RISK ASSESSMENT
+
+**Step 8.1: Who is Affected**
+Users with AMD GPUs using the usermode queue feature (GFX/Compute/DMA
+queues).
+
+**Step 8.2: Trigger Conditions**
+The bug requires:
+1. A userqueue creation attempt where `xa_store_irq` succeeds but
+   `xa_alloc` fails (e.g., hitting `AMDGPU_MAX_USERQ_COUNT` limit or
+   memory pressure)
+2. Followed by any suspend, resume, reset, or isolation operation
+
+The `xa_alloc` failure can be triggered by resource exhaustion or
+concurrent queue creation under memory pressure.
+
+**Step 8.3: Failure Mode Severity**
+- **CRITICAL**: Use-after-free on freed queue pointer leads to kernel
+  crash (oops/panic), potential memory corruption, or security
+  vulnerability. The freed pointer is dereferenced to access
+  `queue->userq_mgr`, `queue->state`, etc.
+
+**Step 8.4: Risk-Benefit Ratio**
+- BENEFIT: Very high - prevents UAF crash on a common GPU driver
+- RISK: Very low - single line addition, mirrors existing cleanup
+  pattern, obviously correct
+- Ratio: Strongly favorable
+
+## PHASE 9: FINAL SYNTHESIS
+
+**Evidence FOR backporting:**
+- Fixes a real use-after-free bug (stale pointer in xarray after kfree)
+- Single-line fix, surgically targeted to one error path
+- Reviewed by Christian König (AMD GPU co-maintainer)
+- Obviously correct (mirrors cleanup in normal destroy path)
+- Related refcount commit already tagged Cc: stable
+- User-triggerable code path (IOCTL)
+- Failure mode is kernel crash or memory corruption
+
+**Evidence AGAINST backporting:**
+- Relatively new code (userq feature added in v6.16-7.0 timeframe)
+- Trigger requires specific failure condition (xa_alloc failure)
+
+**Stable Rules Checklist:**
+1. Obviously correct and tested? YES - mirrors existing cleanup,
+   reviewed by maintainer
+2. Fixes a real bug? YES - use-after-free
+3. Important issue? YES - potential crash, memory corruption, security
+4. Small and contained? YES - 1 line added
+5. No new features? YES - pure bug fix
+6. Can apply to stable? YES - clean 1-line addition
+
+## Verification
+
+- [Phase 1] Parsed tags: Reviewed-by Christian König, Signed-off-by Alex
+  Deucher and Sunil Khatri
+- [Phase 2] Diff analysis: 1 line added in xa_alloc error path of
+  amdgpu_userq_create(), adds missing xa_erase_irq() for doorbell xarray
+- [Phase 3] git blame: buggy code introduced in f18719ef4bb7b (Oct
+  2025), XArray conversion commit
+- [Phase 3] git show f18719ef4bb7b: confirmed it added xa_store_irq to
+  doorbell_xa without corresponding xa_erase_irq in xa_alloc failure
+  path
+- [Phase 3] Related commit 65b5c326ce410 already has Cc: stable
+  (confirmed via git show)
+- [Phase 4] b4 dig -c 65b5c326ce410: found patch at
+  https://patch.msgid.link/20260303120849.2583663-1-sunil.khatri@amd.com
+- [Phase 4] Mailing list archive: found v2 series and review discussion,
+  Christian König reviewed
+- [Phase 5] Grep for userq_doorbell_xa: found 6 xa_for_each iteration
+  sites that would dereference the freed pointer
+- [Phase 5] amdgpu_userq_create called from amdgpu_userq_ioctl (user-
+  triggerable via DRM IOCTL)
+- [Phase 6] amdgpu_userq.c first added around v6.16, doorbell_xa added
+  in v7.0 cycle
+- [Phase 8] Failure mode: UAF -> kernel crash/memory corruption,
+  severity CRITICAL
+
+This is a small, surgical, obviously correct fix for a real use-after-
+free bug in the AMD GPU driver's error handling path. It was reviewed by
+the subsystem co-maintainer and carries essentially zero regression
+risk.
+
+**YES**
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+index 0a1b93259887a..819c4c26416c3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+@@ -872,6 +872,7 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 	if (r) {
+ 		drm_file_err(uq_mgr->file, "Failed to allocate a queue id\n");
+ 		amdgpu_userq_fence_driver_free(queue);
++		xa_erase_irq(&adev->userq_doorbell_xa, index);
+ 		uq_funcs->mqd_destroy(queue);
+ 		kfree(queue);
+ 		r = -ENOMEM;
+-- 
+2.53.0
 
