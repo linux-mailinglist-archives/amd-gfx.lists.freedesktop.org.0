@@ -2,60 +2,135 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aD5fExwr5mkDswEAu9opvQ
+	id gBN6Gokq5mnesgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:33:16 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:30:49 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF74242BF7B
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:33:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2D6342BDE3
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Apr 2026 15:30:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7082710E65C;
-	Mon, 20 Apr 2026 13:33:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C3F710E63E;
+	Mon, 20 Apr 2026 13:30:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Y62ICUO0";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="uteaJHAw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94B8D10E65C;
- Mon, 20 Apr 2026 13:33:12 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 78958406C9;
- Mon, 20 Apr 2026 13:33:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5222C2BCB4;
- Mon, 20 Apr 2026 13:33:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1776691992;
- bh=+vmSndEVp52wvblAv5m1xmOuZHtwy8gjJ84CcLtYM4I=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Y62ICUO0k4+SZ+bHd6QSwaZrh4x//XnnZzu2fQSpondy2bi3Ua0G80bOVk/Ds4AIQ
- uODeikWA6WExqzxHyK2XIJ9kGi/6Q99kDuIE/mOFawQnxYyd4XEHK2NYWadgPHPJtm
- d2WJoKfOULPDHt96qff8bAXiXKTxJ1iMq2p6BD5qyx3mY+daszk+z4QvKm2q0gHS9q
- zB9iZiGUtOfTbp/Lw3+96u+A7M7uaGn4D3Ln8tSk4LDwTvEYv0T5QZlchl6/t88G5v
- ghSPGaNIryjHCHRyuwAb4rvQwZ7cx+pTukMSPQIJCXPOfCr7siC+ECKulaYCz5o2i1
- Ue3ZEEZvd8jMg==
-From: Sasha Levin <sashal@kernel.org>
-To: patches@lists.linux.dev,
-	stable@vger.kernel.org
-Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Sunil Khatri <sunil.khatri@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
- airlied@gmail.com, simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 7.0-6.18] drm/amdgpu: fix some more bug in
- amdgpu_gem_va_ioctl
-Date: Mon, 20 Apr 2026 09:21:44 -0400
-Message-ID: <20260420132314.1023554-310-sashal@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260420132314.1023554-1-sashal@kernel.org>
-References: <20260420132314.1023554-1-sashal@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 7.0
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011045.outbound.protection.outlook.com [40.107.208.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47DCA10E642;
+ Mon, 20 Apr 2026 13:30:46 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=h0ncuuHX0dXMZlK1ICdqurywAUsY5qwCQEEqqh7TU5ZgnyAItmn8xM87Bb8AqvNfpx/8asWqfByHLxZMDYERrvtx8obGYp9Dxn3Sf/1Mj2JZXKa1WvoIxgHs40bbSTfHEgh5+4VUOQavh/TF21/5+E54zdaQVmnoEN0ayFE/doD61gyZ8Jilr3PO2NwwedroAVx00lklVd2OZQq5kKcY/lXVVrdLtLVknc9nLgVqcwAOTuDN4khffWRWJW+gOhdGdP877jD+k/hbkAxspnKW4oeHZtX4VIbAznRlLPgiinVnkwr7pyfH/G3PfzGxkvNoi6Q1cDRg4hlGZcbw0IyeiQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HSR4Dt0DMbjTiBcQuhyG6YL0SMSyFZpks+YxFuV0rOk=;
+ b=VmIaacZp7zv2MGnEA51YQG3EUJlQraE2vXXfp8ZfAF3RdT2adumCxlYCjdpaF1GcQnuKPyWSmtu7OxgI998AP0/FOIKXHBWvCKNRE5fwAUgRzFYqK75iN2/zecFARAXlDdb+MlCaCjrjXQFuNZeAgLiSguASMhWZ6npi4xeSv66yHLIjJpp7fqhLaHg0TZd4/4LPYWnkvjc62KDva5W3Z4UzP9hU7KUWbxIKTY4X+/OobcUJ1kQSBmSIsQdabnc8KMthvRfXmER493q3zKeTcSpz0VT96a/SIsLoW81iUvdMo9yPFAGYkM84n4MO5/+rvkqWXosE2rlfk+XTe5tzIg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HSR4Dt0DMbjTiBcQuhyG6YL0SMSyFZpks+YxFuV0rOk=;
+ b=uteaJHAwR0cPQ1QBynYwoxf8IRos7uRSVqYGuS6vOkZyh2zSaoI5P3bgrRtdWq6C8nUWhKz+c7P5GLLzlYTCYlX1YrQH/WJAluuYyXb29fTD5opud8X1FwmuiKCb7aC/v18j/EzMnRpyTddIMGytcCOdpmeZQuidOY5DaQGfhQI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from IA1PR12MB6435.namprd12.prod.outlook.com (2603:10b6:208:3ad::10)
+ by CYYPR12MB8962.namprd12.prod.outlook.com (2603:10b6:930:c4::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.16; Mon, 20 Apr
+ 2026 13:30:38 +0000
+Received: from IA1PR12MB6435.namprd12.prod.outlook.com
+ ([fe80::8b77:7cdb:b17a:a8e2]) by IA1PR12MB6435.namprd12.prod.outlook.com
+ ([fe80::8b77:7cdb:b17a:a8e2%5]) with mapi id 15.20.9846.007; Mon, 20 Apr 2026
+ 13:30:38 +0000
+Message-ID: <50d13ae3-be27-4b79-91ef-e1b386054943@amd.com>
+Date: Mon, 20 Apr 2026 21:30:26 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC/POC PATCH 01/12] drm/amdgpu: add SVM UAPI definitions
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+References: <20260420120739.1811731-1-honglei1.huang@amd.com>
+ <20260420120739.1811731-2-honglei1.huang@amd.com>
+ <cda09d5d-4cca-46a1-8625-fe9fa687e5a2@amd.com>
+Content-Language: en-US
+From: "Huang, Honglei1" <honghuan@amd.com>
+Cc: Alexander.Deucher@amd.com, Felix.Kuehling@amd.com, Oak.Zeng@amd.com,
+ Jenny-Jing.Liu@amd.com, Philip.Yang@amd.com, Xiaogang.Chen@amd.com,
+ Ray.Huang@amd.com, Lingshan.Zhu@amd.com, Junhua.Shen@amd.com,
+ matthew.brost@intel.com, rodrigo.vivi@intel.com,
+ thomas.hellstrom@linux.intel.com, dakr@kernel.org, aliceryhl@google.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <cda09d5d-4cca-46a1-8625-fe9fa687e5a2@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2PR02CA0018.apcprd02.prod.outlook.com
+ (2603:1096:4:194::18) To IA1PR12MB6435.namprd12.prod.outlook.com
+ (2603:10b6:208:3ad::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR12MB6435:EE_|CYYPR12MB8962:EE_
+X-MS-Office365-Filtering-Correlation-Id: a59f9ea2-2867-4857-9e1b-08de9ee10291
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|18002099003|22082099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: 5tlzkJ90JzCZ8BG3N3v3mDN4HetcBga9uNhvfn91CmZseCzipLGBaZ3gKH7t8DlfD3gtaOOPJnbK9jdWImP5j1CFcBln00KnF/S+J2Sd9po9Hpt5IgQTpgrJKL+vCjReyRHGKiXiLSs3QW4Sw6/HM1+mcHSMli8hACV6hf58FFrHqvTfqSHLyi87J6MJlDSTNa1/vvTDGvCIuvS+a03FbFgDhcIGxJlyd6fdN4LkfYUMX5etrkMCLLprguSJA3W7Wej8O1yIBk8rpOdUPC7478XUUN/0Fs6Y437SA55R2QFA4EwhAIvf0ajvEJAp/H+cRbG+udz98YtjbWY/I8nrAmF0SEHtFYtGAJvAq7df0hqAxIjzNexkfxBrEGE3s+M5Db97nb0YqPJOlL5uVEYS0lotoGkel0k4QghT61zqJ8ZC0JE7jWwwKSqbjRqY8uDVRufkuBHZacopjmISebmfdgrPOt8qiI6NsjeYefeSw0z48Ryj5yHTVnzmVolovCysn2QoZIAG8z3k1jJFc5Qn/UTytA16Fv+XhZXZ1o4LkUnMLUrDZYW/dIOi1q0jUuNZoV9UEgUI+lXZT/5BWZdYvwGhWadkgV3jVoWlZddE2uOzLlExpc72WsMfajbJTCEey+7IQZsQeH7xBvPILgwcuGo9F/Gowg4lj/8NMY5lJMI7jX32raAkN2C6vKaHi0gPUYGzwRl4eEG8n4VVo+pQpUchc/atPYP2hyNnMeqdNE8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR12MB6435.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cTFFaWE4MVdqR2xUcjRFbC85MUgvVHpmOFFjU0VuY3FkTlJKdFkwZnFab29G?=
+ =?utf-8?B?N1BNalduNjFPbEppd0lraGx3RGljZXlVNmNOckx4LzBtNnBRbk5xdGpRQWZO?=
+ =?utf-8?B?YVlWd0NBL3NvT0VCUGtjSmRtVjZOUVJVM0JTQWpmZXJmQnN1Sks5eUNNVkxK?=
+ =?utf-8?B?U2x3SDJKdFhOdEtJYzRDR3RON2NDd3ZZWTJqNmVyRElQTjhUSG5kWlkxQTlG?=
+ =?utf-8?B?Vy9KT05Wc2hwaGdhYmdkVXpONEt5NS96MmRGU1I5VHB1aUYzZTA3amlMcG1H?=
+ =?utf-8?B?UjdhaDJYSFN6Q0xuZ2xDMFdJQ21Beno4dFVRRFA0cTdta2ZTYjQzaFV0VGZE?=
+ =?utf-8?B?MzRjZk1EWkx4UU05Q1ZZRnB3ZG9DazlyZytUOXJUKyt0WXZBRDFnc0U3SzMr?=
+ =?utf-8?B?RzV3ZmVoV1BBRkF4MEtoaStmcU95VXR3QU5pMnc2UGNQSzFrdE5LbXA0OHJi?=
+ =?utf-8?B?dnhObWlWK1E2S2ZNMmRxYzFwZ0ZHTWp6UHNEck9QcWRMekwvb09XdVhvZnBp?=
+ =?utf-8?B?MXF5bDl1MnB6b2RHSTJ4RW1VcERUNU8zSmRkdTNuYnVkZVVRYy84Q21tdFVC?=
+ =?utf-8?B?cHpoNm1FdUFsdkovbEVPUXljejFVTllLWDJ5SXE5dmpjTnE5NG1yTnVpcXkr?=
+ =?utf-8?B?dW5Ra0N6MFgrQXJiRXJYbkpEVnRTZXJJTFlTOU91QlBHWm1sUjk5aEVLTFZB?=
+ =?utf-8?B?YXpKTlc4aVJoU1FuSFFBc25pSDdxbzNKcmw4d0ovL0JPTklFZ1puMkZpbVVE?=
+ =?utf-8?B?ekd3dXFiSGpMSWJ4Vlk3ajBKc3Vld25tUmliRGEvWFhIMUlQQ3BuRS8vY0pu?=
+ =?utf-8?B?aUV2M0docm9GbXpEb2RXcDkxNG5SbS9Dc1dVN283NnpqTTUrQUp2VGFEM1RR?=
+ =?utf-8?B?RGxlVUhHMXNyaGR0dnBvTXB2VjZhdDJNRzdGSURiZGp2L3RhSE4xaUsrY1Z0?=
+ =?utf-8?B?MTNtcmwrYkVLeEVXQzJCZVlhR0NZVlpzMkdMOU9MN2l2bEx3SmljdUtwUzVa?=
+ =?utf-8?B?eHpoVWFySWtkMTZhcTNuQ2gwZDk2ejZVV1JZQ2pBNE8wL3lmeXBnYUFpQ05i?=
+ =?utf-8?B?V0NEaFFGNUlJeEl5R2ExRFEzWTRTVVJnSWlGSUszU0VsQmNWZzd1WUVnRWIy?=
+ =?utf-8?B?Y3NOUWhocndwUTNWVWpCSnY2czQ2bmtYYXhJeWZ2akxjZndSc1hBdWR5K0Fj?=
+ =?utf-8?B?RmJpbmVUbStpbzdyNjIySlVlS2NzNXJXbVB4cjM0WGc1RzFXS3RtTFg1bEpT?=
+ =?utf-8?B?UTkxSFp6dmdlSmRRRzdibElBbzBDRjladDBWcUoxRWUrdmNCMlFabVNBZSs5?=
+ =?utf-8?B?UXpKUXV0bHp3YlZwblBUVng3ejZIK05Pa2RCTVFJcm02a081MXRPWXdROUhk?=
+ =?utf-8?B?a05od2N6VFJNNGxoU2pnRlgwdjMyQmFIR253aFlCNGJHb242Y3BqNERoWWs4?=
+ =?utf-8?B?YnR0UFRIV2gydzhOaHQ4SkpWYktRc1FMcldFYy9DVUl3dngyenRxUkhWOTFz?=
+ =?utf-8?B?QkltZTVtblZ2VEgxRXN3VEVlZDlIWXdsdE5pOFc3U2lnaVczQTBBZjdkTmxm?=
+ =?utf-8?B?SFNlVzUxaXFVc2VwM0lnNDRKcG5qUmhyZTJ1a2FwNTVlVCtMSEJlK2libnFo?=
+ =?utf-8?B?czJrdDRDSXA3UmtiS0t4VXNuS3dWZ1JzUU1ET3hjaE9FOFZValI0enVKdHk3?=
+ =?utf-8?B?NnowTjRkZjh6T0g5eEtURFhpdGtZZXNrcVNVR1hZUVJRb2hTTHFKWkZaYlV6?=
+ =?utf-8?B?OE1zWU1VWnZRM1YyR3JjQ3lJc0I3RWw2RzFqbW1WbUR5emN2aldzdzhIWnV4?=
+ =?utf-8?B?ei8xVFhUOGNzOS9TVEpQRjk3U1NoUldqaHZnUnBLTUZQRFNHZDIwN0JoS2hy?=
+ =?utf-8?B?aFZxdCtBNmxweklUOGpPTVJORzVrazhxUGFveXJCaHhmMGYvaHc5RDB1aFRi?=
+ =?utf-8?B?eVN2VEpjN0xJa2h3OXlSdTMrMGtEMGtzcjEyeS9PWFVQUHBMODNpK2Z1Rkw5?=
+ =?utf-8?B?d3FFTHBkS3JCMDlJOG1xSXlBSTJRSEppbi9TYWVoZ1Bta21DYXBSMGw2SFMr?=
+ =?utf-8?B?RUlxN1dxWWRPRzhkNEpKWThQWHF6OU5vc1daZ1NHcE9EbndPOUEyY2c5OUtX?=
+ =?utf-8?B?Zmg4NDdZQ0FIZStvTk5JNzI1K1NYN25GQUJJYUozUjhNZmJMMDVXMGduNUJ1?=
+ =?utf-8?B?OWs2YlMyeDNzbXRScDFzbDBtVE5LS3QyYTExT0ZYVVh4VllwNS9ETG5ya2Ux?=
+ =?utf-8?B?TEs0Yy9rdkhYUWpZeVVzdXRlUm85bmI5cFdIVVNyZEN3N0F1OWJROGpUVURC?=
+ =?utf-8?Q?+mlZizd8QMwMkoHNai?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a59f9ea2-2867-4857-9e1b-08de9ee10291
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB6435.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2026 13:30:38.3625 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VP5WJKt/OglnyPxAwhHBB0jouzHh3YO0ut4aoS9yRyGN/aEDshsIZDx29NjnIQjk7+GdGGZqBckEecRigLH/aA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8962
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,596 +144,168 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[amd.com,kernel.org,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	ARC_NA(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
-X-Rspamd-Queue-Id: EF74242BF7B
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[honghuan@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+]
+X-Rspamd-Queue-Id: F2D6342BDE3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Christian König <christian.koenig@amd.com>
 
-[ Upstream commit 68bd4f6b8310f309eb63b41e15088690c9cec0a9 ]
 
-Some illegal combination of input flags were not checked and we need to
-take the PDEs into account when returning the fence as well.
-
-Signed-off-by: Christian König <christian.koenig@amd.com>
-Acked-by: Sunil Khatri <sunil.khatri@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
-
-LLM Generated explanations, may be completely bogus:
-
-Now I have all the information needed. Here is my complete analysis.
-
----
-
-## PHASE 1: COMMIT MESSAGE FORENSICS
-
-### Step 1.1: Subject Line
-- **Subsystem**: drm/amdgpu
-- **Action verb**: "fix" (explicit bug fix)
-- **Summary**: Fix multiple bugs in the `amdgpu_gem_va_ioctl` function
-  related to input flag validation and fence handling for PDE updates.
-
-Record: [drm/amdgpu] [fix] [Multiple bugs in gem VA ioctl: illegal flag
-combinations and missing PDE fence]
-
-### Step 1.2: Tags
-- **Signed-off-by**: Christian König (author, AMD DRM subsystem co-
-  maintainer)
-- **Acked-by**: Sunil Khatri (AMD developer)
-- **Signed-off-by**: Alex Deucher (AMD DRM maintainer, committer)
-- No Fixes: tag, no Reported-by, no Link: tag
-
-Record: Author is Christian König, one of the primary amdgpu/drm
-maintainers. Acked by AMD colleague, committed by the AMD DRM
-maintainer.
-
-### Step 1.3: Commit Body
-The body says: "Some illegal combination of input flags were not checked
-and we need to take the PDEs into account when returning the fence as
-well."
-
-Two distinct bugs identified:
-1. Missing input validation for contradictory flag combinations
-2. Missing PDE (Page Directory Entry) fence in the returned fence to
-   userspace
-
-Record: [Bug 1: invalid flag combinations not rejected] [Bug 2: PDE
-updates missing from returned fence, could cause premature GPU memory
-access] [No version info given] [Root cause: incomplete validation and
-incomplete fence merging]
-
-### Step 1.4: Hidden Bug Fix Detection
-This is an explicit "fix" commit, not disguised as cleanup.
-
-Record: This is explicitly labeled as a bug fix. No hidden intent.
-
----
-
-## PHASE 2: DIFF ANALYSIS
-
-### Step 2.1: Inventory
-- **File**: `drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c` (1 file)
-- **Added**: `#include <linux/dma-fence-unwrap.h>` (1 line)
-- **Functions modified**: `amdgpu_gem_va_update_vm()`,
-  `amdgpu_gem_va_ioctl()`
-- **Scope**: ~35 lines removed, ~30 lines added in
-  `amdgpu_gem_va_update_vm`; ~10 lines changed in `amdgpu_gem_va_ioctl`
-
-Record: [1 file, ~45 lines changed, 2 functions modified] [Single-file
-contained fix]
-
-### Step 2.2: Code Flow Changes
-
-**Hunk 1 - `amdgpu_gem_va_update_vm` - VM-not-ready path**:
-- Before: `fence = dma_fence_get(vm->last_update)` then if not ready,
-  return that fence
-- After: If not ready, return `dma_fence_get_stub()` immediately
-- Effect: Cleaner early return; stub fence is sufficient when VM isn't
-  ready
-
-**Hunk 2 - `amdgpu_vm_clear_freed` argument**:
-- Before: `amdgpu_vm_clear_freed(adev, vm, &fence)` (local variable)
-- After: `amdgpu_vm_clear_freed(adev, vm, &vm->last_update)` (VM state
-  directly)
-- Effect: `vm->last_update` is kept current after clearing freed
-  mappings, so subsequent `amdgpu_vm_update_pdes` properly syncs
-
-**Hunk 3 - Fence return logic**:
-- Before: Switch/case returning either `vm->last_update` or
-  `bo_va->last_pt_update` (but NOT both)
-- After: For non-always-valid MAP/REPLACE, merges both `vm->last_update`
-  and `bo_va->last_pt_update` using `dma_fence_unwrap_merge()`; includes
-  OOM fallback; for other cases returns `vm->last_update`
-- Effect: Returned fence now accounts for both PTE and PDE updates
-
-**Hunk 4 - Error path**:
-- Before: Falls through from normal path to error label, always returns
-  local fence
-- After: Normal path returns fence via explicit `return`; error path
-  returns `dma_fence_get(vm->last_update)`
-- Effect: Cleaner separation of normal and error paths
-
-**Hunk 5 - `amdgpu_gem_va_ioctl` - flag validation**:
-- Added check: `AMDGPU_VM_DELAY_UPDATE && vm_timeline_syncobj_out`
-  returns -EINVAL
-- Effect: Rejects contradictory flags (delay + immediate fence request)
-
-**Hunk 6 - `amdgpu_gem_va_ioctl` - update condition**:
-- Before: `!adev->debug_vm`
-- After: `(!adev->debug_vm || timeline_syncobj)`
-- Effect: When timeline syncobj is requested, update happens even in
-  debug mode
-
-Record: [6 distinct hunks, all fixing correctness issues]
-
-### Step 2.3: Bug Mechanism
-This is a **logic/correctness fix** with two aspects:
-1. **Missing fence merge**: `amdgpu_vm_update_pdes()` stores its fence
-   into `vm->last_update` (verified at `amdgpu_vm.c:1006`). For non-
-   always-valid BOs on MAP/REPLACE, the old code returned only
-   `bo_va->last_pt_update`, missing the PDE fence. Userspace could start
-   using the mapping before PDE updates complete.
-2. **Input validation gap**: DELAY_UPDATE + syncobj_out is contradictory
-   and wasn't rejected.
-
-Record: [Logic/correctness fix] [Missing PDE fence could cause premature
-GPU memory access; missing input validation for contradictory flags]
-
-### Step 2.4: Fix Quality
-- The fix uses `dma_fence_unwrap_merge()` which is the correct API for
-  merging fences
-- OOM fallback with `dma_fence_wait` + `dma_fence_get_stub()` is
-  reasonable
-- The flag validation check is trivially correct
-- The debug_vm condition change is obviously correct
-- Low regression risk: the fence merge is strictly more conservative
-  (waits for more work)
-
-Record: [Fix is well-designed with proper fallback] [Low regression risk
-- waits for MORE work, not less]
-
----
-
-## PHASE 3: GIT HISTORY INVESTIGATION
-
-### Step 3.1: Blame
-The code being modified was primarily introduced by:
-- `efdc66fe12b07` (2026-01-09) - "Refactor amdgpu_gem_va_ioctl v7"
-- `bd8150a1b3370` (2025-12-11) - "Refactor amdgpu_gem_va_ioctl v4"
-
-Both are in v7.0-rc1/v7.0. The bugs were introduced in the v7.0 cycle.
-
-Record: [Buggy code from efdc66fe12b07 and bd8150a1b3370, both v7.0
-cycle]
-
-### Step 3.2: Fixes tag
-No Fixes: tag present. The bugs were introduced by `bd8150a1b3370` and
-partially addressed by `efdc66fe12b07`, but this commit fixes remaining
-issues in `efdc66fe12b07`.
-
-Record: [No explicit Fixes: tag; fixes bugs remaining from
-efdc66fe12b07]
-
-### Step 3.3: File History
-44 commits changed this file since v6.12. The specific area
-(va_update_vm, va_ioctl) has been actively modified in the v7.0 cycle
-with bd8150a1b3370 and efdc66fe12b07.
-
-Record: [Active development area; this is a follow-up fix for recent
-refactoring]
-
-### Step 3.4: Author
-Christian König is one of the primary amdgpu/drm TTM maintainers. He
-authored many critical fixes in this subsystem. He also
-suggested/reviewed the v7 refactor that this commit fixes further. His
-fixes carry high weight.
-
-Record: [Author is subsystem co-maintainer with deep expertise]
-
-### Step 3.5: Dependencies
-- Depends on `efdc66fe12b07` (present in tree as v7.0)
-- Requires `dma_fence_unwrap_merge` (present in tree via
-  `include/linux/dma-fence-unwrap.h`)
-- Requires `amdgpu_vm_is_bo_always_valid` (present in tree)
-- The patch context matches the current tree state exactly - clean apply
-  expected
-
-Record: [All dependencies present in 7.0 tree; should apply cleanly]
-
----
-
-## PHASE 4: MAILING LIST RESEARCH
-
-### Step 4.1: Original Discussion
-lore.kernel.org blocked automated access. However, I found via b4 dig
-that the predecessor commit (`efdc66fe12b07`) was submitted as v7 of the
-refactoring series, meaning the fence handling went through 7 iterations
-of review. The current fix is by Christian König himself who guided the
-entire refactoring.
-
-Record: [Unable to access lore directly; predecessor went through 7
-review iterations]
-
-### Step 4.2: Reviewers
-- Christian König (author) - AMD DRM co-maintainer
-- Sunil Khatri (acker) - AMD developer
-- Alex Deucher (committer) - AMD DRM maintainer
-
-Record: [Reviewed by top AMD DRM maintainers]
-
-### Step 4.3-4.5: Bug Reports / Related Patches / Stable Discussion
-The predecessor commits (`bd8150a1b3370`) had a documented crash
-signature (refcount underflow, use-after-free, kernel panic). While
-`efdc66fe12b07` fixed the worst of it, this commit addresses remaining
-correctness issues.
-
-Record: [Predecessor had kernel panic crash signature; this fixes
-remaining issues]
-
----
-
-## PHASE 5: CODE SEMANTIC ANALYSIS
-
-### Step 5.1: Key Functions
-- `amdgpu_gem_va_update_vm()` - updates VM page tables after VA
-  operation
-- `amdgpu_gem_va_ioctl()` - userspace-facing ioctl handler
-
-### Step 5.2: Callers
-`amdgpu_gem_va_ioctl` is the DRM ioctl handler called via
-`DRM_IOCTL_DEF_DRV(AMDGPU_GEM_VA, ...)` at `amdgpu_drv.c:3082`. It's
-callable by any process with DRM_AUTH|DRM_RENDER_ALLOW. This is a hot
-path for all AMD GPU userspace (Mesa, ROCm, etc.).
-
-`amdgpu_gem_va_update_vm` is called only from `amdgpu_gem_va_ioctl`.
-
-Record: [Directly callable from userspace; affects all AMD GPU users]
-
-### Step 5.4: Reachability
-The buggy code path is reachable from any unprivileged process that
-opens a DRM render node and performs VM address space management
-(standard GPU operation).
-
-Record: [Reachable from unprivileged userspace; common GPU operation
-path]
-
----
-
-## PHASE 6: STABLE TREE ANALYSIS
-
-### Step 6.1: Code in Stable Trees
-`bd8150a1b3370` first appears in v7.0-rc1. It does NOT exist in v6.14 or
-earlier stable trees. The timeline syncobj support
-(`vm_timeline_syncobj_out`, `AMDGPU_VM_DELAY_UPDATE` in this context) is
-v7.0-only functionality. The fix is relevant ONLY for the 7.0.y stable
-tree.
-
-Record: [Buggy code only in 7.0.y; not in 6.12.y or earlier]
-
-### Step 6.2: Backport Complications
-The diff context matches the current tree state perfectly. Clean apply
-expected.
-
-Record: [Clean apply expected for 7.0.y]
-
-### Step 6.3: Related Fixes Already in Stable
-`efdc66fe12b07` (the v7 refactor fix) is already in the 7.0 tree, but
-this commit fixes remaining issues.
-
-Record: [Predecessor fix present; this addresses additional bugs]
-
----
-
-## PHASE 7: SUBSYSTEM CONTEXT
-
-### Step 7.1: Subsystem
-- **Subsystem**: drivers/gpu/drm/amd/amdgpu (GPU driver)
-- **Criticality**: IMPORTANT - AMD GPU driver is used by millions of
-  users (desktop Linux, server compute, embedded)
-
-Record: [GPU driver, IMPORTANT criticality, affects all AMD GPU users]
-
-### Step 7.2: Subsystem Activity
-Very actively developed - 44 changes to this file since v6.12. The VA
-ioctl area specifically is being stabilized after recent refactoring.
-
-Record: [Very active; area being stabilized after v7.0 refactoring]
-
----
-
-## PHASE 8: IMPACT AND RISK ASSESSMENT
-
-### Step 8.1: Who Is Affected
-All users of AMD GPUs on kernel 7.0.y. This includes desktop,
-workstation, and compute users.
-
-Record: [All AMD GPU users on 7.0.y]
-
-### Step 8.2: Trigger Conditions
-The missing PDE fence bug triggers during MAP/REPLACE operations on non-
-always-valid BOs, which is the normal case for application-managed GPU
-memory. This is the common path for all GPU applications. The invalid
-flag combination requires specific userspace to pass contradictory
-flags.
-
-Record: [PDE fence bug: common GPU operation; flag validation: requires
-specific bad input]
-
-### Step 8.3: Failure Mode Severity
-- **Missing PDE fence**: Userspace sees mapping as ready before PDE
-  updates complete. Could lead to GPU page faults, incorrect GPU memory
-  access, or visual corruption. Severity: **HIGH**
-- **Invalid flag combination**: Unexpected behavior with contradictory
-  flags. Severity: **MEDIUM**
-- **debug_vm condition**: Timeline syncobj never signals in debug mode.
-  Severity: **MEDIUM** (only affects debug configs)
-
-Record: [HIGH severity for PDE fence bug; MEDIUM for others]
-
-### Step 8.4: Risk-Benefit
-- **BENEFIT**: Prevents GPU page faults and incorrect memory access in
-  common GPU operations; validates contradictory input flags
-- **RISK**: Medium-sized change (~45 lines); restructures fence return
-  logic; adds `dma_fence_unwrap_merge` dependency. However, the new
-  logic is strictly more conservative (waits for more work) so
-  regression risk is low.
-
-Record: [High benefit, low-medium risk; net positive]
-
----
-
-## PHASE 9: FINAL SYNTHESIS
-
-### Step 9.1: Evidence Compilation
-
-**FOR backporting**:
-- Fixes real correctness bugs: missing PDE fence, invalid input not
-  rejected
-- Author is Christian König, AMD DRM co-maintainer with deep expertise
-- Acked by AMD developer, committed by AMD DRM maintainer
-- Single file change, well-contained
-- Userspace-facing ioctl - affects all AMD GPU applications
-- The missing PDE fence could cause GPU page faults or incorrect memory
-  access
-- All dependencies present in 7.0 tree
-- Clean apply expected
-- The fence merge is strictly more conservative (lower regression risk)
-
-**AGAINST backporting**:
-- Medium-sized change (~45 lines), not a tiny surgical fix
-- Restructures fence return logic in `amdgpu_gem_va_update_vm`
-- Adds new API usage (`dma_fence_unwrap_merge`)
-- Bugs only exist in 7.0 code (limited affected trees)
-- Area is under active development and may see more changes
-
-### Step 9.2: Stable Rules Checklist
-1. Obviously correct and tested? **Yes** - from subsystem maintainer,
-   well-reviewed
-2. Fixes a real bug? **Yes** - missing PDE fence, invalid input not
-   rejected
-3. Important issue? **Yes** - GPU page faults, incorrect memory access
-   (HIGH severity)
-4. Small and contained? **Yes** - single file, ~45 lines, 2 functions
-5. No new features or APIs? **Correct** - no new features
-6. Can apply to stable? **Yes** - context matches exactly for 7.0.y
-
-### Step 9.3: Exception Categories
-Not an exception category; standard bug fix.
-
-### Step 9.4: Decision
-The bugs are real and affect all AMD GPU users on 7.0.y. The missing PDE
-fence is a correctness issue that can cause GPU page faults during
-normal operations. The fix is from the subsystem maintainer, well-
-reviewed, contained to a single file, and all dependencies are met.
-
----
-
-## Verification
-
-- [Phase 1] Parsed tags: Author Christian König (AMD DRM co-maintainer),
-  Acked-by Sunil Khatri, committed by Alex Deucher
-- [Phase 2] Diff analysis: ~45 lines changed in `amdgpu_gem.c`, modifies
-  `amdgpu_gem_va_update_vm` and `amdgpu_gem_va_ioctl`
-- [Phase 2] Verified `amdgpu_vm_update_pdes` stores its fence in
-  `vm->last_update` (amdgpu_vm.c:1006) - confirms PDE fence is missed
-  without the merge
-- [Phase 2] Verified `amdgpu_vm_clear_freed` replaces `*fence` when work
-  is done (amdgpu_vm.c:1583-1588) - confirms changing argument from
-  `&fence` to `&vm->last_update` keeps VM state current
-- [Phase 3] git blame: buggy code from `efdc66fe12b07` (2026-01-09) and
-  `bd8150a1b3370` (2025-12-11)
-- [Phase 3] git tag --contains: both commits first appear in
-  v7.0-rc1/v7.0
-- [Phase 3] Author's recent commits: 15 commits in amdgpu, including
-  multiple critical fixes
-- [Phase 4] b4 dig -c efdc66fe12b07: found v7 submission thread
-- [Phase 4] b4 dig -a: patch went through v6->v7 iterations
-- [Phase 5] `amdgpu_gem_va_ioctl` is registered as DRM ioctl at
-  amdgpu_drv.c:3082 (DRM_AUTH|DRM_RENDER_ALLOW)
-- [Phase 6] `bd8150a1b3370` NOT in v6.14 (verified via git log
-  v6.12..v6.14); only in v7.0+
-- [Phase 6] `dma_fence_unwrap_merge` exists in tree (include/linux/dma-
-  fence-unwrap.h:69)
-- [Phase 6] Current file state matches diff context exactly - clean
-  apply expected
-- [Phase 8] PDE fence bug: triggers on all MAP/REPLACE of non-always-
-  valid BOs (common path)
-- UNVERIFIED: Could not verify lore.kernel.org discussion for the
-  specific commit under analysis (bot protection blocked access)
-
-**YES**
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 76 +++++++++++--------------
- 1 file changed, 34 insertions(+), 42 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index a6107109a2b86..c4839cf2dce37 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -30,6 +30,7 @@
- #include <linux/pagemap.h>
- #include <linux/pci.h>
- #include <linux/dma-buf.h>
-+#include <linux/dma-fence-unwrap.h>
- 
- #include <drm/amdgpu_drm.h>
- #include <drm/drm_drv.h>
-@@ -744,11 +745,10 @@ amdgpu_gem_va_update_vm(struct amdgpu_device *adev,
- 	struct dma_fence *fence;
- 	int r = 0;
- 
--	/* Always start from the VM's existing last update fence. */
--	fence = dma_fence_get(vm->last_update);
--
-+	/* If the VM is not ready return only a stub. */
- 	if (!amdgpu_vm_ready(vm))
--		return fence;
-+		return dma_fence_get_stub();
-+
- 
- 	/*
- 	 * First clean up any freed mappings in the VM.
-@@ -757,7 +757,7 @@ amdgpu_gem_va_update_vm(struct amdgpu_device *adev,
- 	 * schedules GPU work. If nothing needs clearing, @fence can remain as
- 	 * the original vm->last_update.
- 	 */
--	r = amdgpu_vm_clear_freed(adev, vm, &fence);
-+	r = amdgpu_vm_clear_freed(adev, vm, &vm->last_update);
- 	if (r)
- 		goto error;
- 
-@@ -774,47 +774,34 @@ amdgpu_gem_va_update_vm(struct amdgpu_device *adev,
- 	if (r)
- 		goto error;
- 
--	/*
--	 * Decide which fence best represents the last update:
--	 *
--	 * MAP/REPLACE:
--	 *   - For always-valid mappings, use vm->last_update.
--	 *   - Otherwise, export bo_va->last_pt_update.
--	 *
--	 * UNMAP/CLEAR:
--	 *   Keep the fence returned by amdgpu_vm_clear_freed(). If no work was
--	 *   needed, it can remain as vm->last_pt_update.
--	 *
--	 * The VM and BO update fences are always initialized to a valid value.
--	 * vm->last_update and bo_va->last_pt_update always start as valid fences.
--	 * and are never expected to be NULL.
--	 */
--	switch (operation) {
--	case AMDGPU_VA_OP_MAP:
--	case AMDGPU_VA_OP_REPLACE:
-+	if ((operation == AMDGPU_VA_OP_MAP ||
-+	     operation == AMDGPU_VA_OP_REPLACE) &&
-+	    !amdgpu_vm_is_bo_always_valid(vm, bo_va->base.bo)) {
-+
- 		/*
--		 * For MAP/REPLACE, return the page table update fence for the
--		 * mapping we just modified. bo_va is expected to be valid here.
-+		 * For MAP/REPLACE of non per-VM BOs we need to sync to both the
-+		 * bo_va->last_pt_update and vm->last_update or otherwise we
-+		 * potentially miss the PDE updates.
- 		 */
--		dma_fence_put(fence);
--
--		if (amdgpu_vm_is_bo_always_valid(vm, bo_va->base.bo))
--			fence = dma_fence_get(vm->last_update);
--		else
--			fence = dma_fence_get(bo_va->last_pt_update);
--		break;
--	case AMDGPU_VA_OP_UNMAP:
--	case AMDGPU_VA_OP_CLEAR:
--	default:
--		/* keep @fence as returned by amdgpu_vm_clear_freed() */
--		break;
-+		fence = dma_fence_unwrap_merge(vm->last_update,
-+					       bo_va->last_pt_update);
-+		if (!fence) {
-+			/* As fallback in OOM situations */
-+			dma_fence_wait(vm->last_update, false);
-+			dma_fence_wait(bo_va->last_pt_update, false);
-+			fence = dma_fence_get_stub();
-+		}
-+	} else {
-+		fence = dma_fence_get(vm->last_update);
- 	}
- 
-+	return fence;
-+
- error:
- 	if (r && r != -ERESTARTSYS)
- 		DRM_ERROR("Couldn't update BO_VA (%d)\n", r);
- 
--	return fence;
-+	return dma_fence_get(vm->last_update);
- }
- 
- int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
-@@ -835,7 +822,6 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
- 	struct amdgpu_bo_va *bo_va;
- 	struct drm_syncobj *timeline_syncobj = NULL;
- 	struct dma_fence_chain *timeline_chain = NULL;
--	struct dma_fence *fence;
- 	struct drm_exec exec;
- 	uint64_t vm_size;
- 	int r = 0;
-@@ -887,6 +873,10 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
- 		return -EINVAL;
- 	}
- 
-+	if (args->flags & AMDGPU_VM_DELAY_UPDATE &&
-+	    args->vm_timeline_syncobj_out)
-+		return -EINVAL;
-+
- 	if ((args->operation != AMDGPU_VA_OP_CLEAR) &&
- 	    !(args->flags & AMDGPU_VM_PAGE_PRT)) {
- 		gobj = drm_gem_object_lookup(filp, args->handle);
-@@ -976,11 +966,13 @@ int amdgpu_gem_va_ioctl(struct drm_device *dev, void *data,
- 	 * that represents the last relevant update for this mapping. This
- 	 * fence can then be exported to the user-visible VM timeline.
- 	 */
--	if (!r && !(args->flags & AMDGPU_VM_DELAY_UPDATE) && !adev->debug_vm) {
-+	if (!r && !(args->flags & AMDGPU_VM_DELAY_UPDATE) &&
-+	    (!adev->debug_vm || timeline_syncobj)) {
-+		struct dma_fence *fence;
-+
- 		fence = amdgpu_gem_va_update_vm(adev, &fpriv->vm, bo_va,
- 						args->operation);
--
--		if (timeline_syncobj && fence) {
-+		if (timeline_syncobj) {
- 			if (!args->vm_timeline_point) {
- 				/* Replace the existing fence when no point is given. */
- 				drm_syncobj_replace_fence(timeline_syncobj,
--- 
-2.53.0
+On 4/20/2026 8:15 PM, Christian König wrote:
+> 
+> 
+> On 4/20/26 14:07, Honglei Huang wrote:
+>> From: Honglei Huang <honghuan@amd.com>
+>>
+>> Add amdgpu drm SVM API definitions built on the
+>> DRM GPUSVM framework.
+>>
+>> This includes:
+>> - DRM_AMDGPU_GEM_SVM ioctl
+>> - AMDGPU_SVM_FLAG_* flags
+>> - AMDGPU_SVM_OP_SET_ATTR / AMDGPU_SVM_OP_GET_ATTR operations
+>> - AMDGPU_SVM_ATTR_* attribute types
+>> - AMDGPU_SVM_LOCATION_SYSMEM / AMDGPU_SVM_LOCATION_UNDEFINED
+>> - struct drm_amdgpu_svm_attribute and struct drm_amdgpu_gem_svm
+>>
+>> Signed-off-by: Honglei Huang <honghuan@amd.com>
+>> ---
+>>   include/uapi/drm/amdgpu_drm.h | 39 +++++++++++++++++++++++++++++++++++
+>>   1 file changed, 39 insertions(+)
+>>
+>> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
+>> index 406a42be4..bed71ed9b 100644
+>> --- a/include/uapi/drm/amdgpu_drm.h
+>> +++ b/include/uapi/drm/amdgpu_drm.h
+>> @@ -58,6 +58,7 @@ extern "C" {
+>>   #define DRM_AMDGPU_USERQ_SIGNAL		0x17
+>>   #define DRM_AMDGPU_USERQ_WAIT		0x18
+>>   #define DRM_AMDGPU_GEM_LIST_HANDLES	0x19
+>> +#define DRM_AMDGPU_GEM_SVM		0x1a
+>>   
+>>   #define DRM_IOCTL_AMDGPU_GEM_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
+>>   #define DRM_IOCTL_AMDGPU_GEM_MMAP	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
+>> @@ -79,6 +80,7 @@ extern "C" {
+>>   #define DRM_IOCTL_AMDGPU_USERQ_SIGNAL	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_SIGNAL, struct drm_amdgpu_userq_signal)
+>>   #define DRM_IOCTL_AMDGPU_USERQ_WAIT	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, struct drm_amdgpu_userq_wait)
+>>   #define DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_HANDLES, struct drm_amdgpu_gem_list_handles)
+>> +#define DRM_IOCTL_AMDGPU_GEM_SVM	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_SVM, struct drm_amdgpu_gem_svm)
+>>   
+>>   /**
+>>    * DOC: memory domains
+>> @@ -1665,6 +1667,43 @@ struct drm_color_ctm_3x4 {
+>>   	__u64 matrix[12];
+>>   };
+>>   
+>> +#define AMDGPU_SVM_FLAG_HOST_ACCESS		0x00000001
+>> +#define AMDGPU_SVM_FLAG_COHERENT		0x00000002
+>> +#define AMDGPU_SVM_FLAG_HIVE_LOCAL		0x00000004
+>> +#define AMDGPU_SVM_FLAG_GPU_RO			0x00000008
+>> +#define AMDGPU_SVM_FLAG_GPU_EXEC		0x00000010
+>> +#define AMDGPU_SVM_FLAG_GPU_READ_MOSTLY		0x00000020
+>> +#define AMDGPU_SVM_FLAG_GPU_ALWAYS_MAPPED	0x00000040
+>> +#define AMDGPU_SVM_FLAG_EXT_COHERENT		0x00000080
+>> +
+>> +#define AMDGPU_SVM_OP_SET_ATTR		0
+>> +#define AMDGPU_SVM_OP_GET_ATTR		1
+>> +
+>> +#define AMDGPU_SVM_ATTR_PREFERRED_LOC		0
+>> +#define AMDGPU_SVM_ATTR_PREFETCH_LOC		1
+> 
+> Up till here the interface makes perfect sense, but then it becomes a bit fuzzy.
+> 
+>> +#define AMDGPU_SVM_ATTR_ACCESS			2
+>> +#define AMDGPU_SVM_ATTR_ACCESS_IN_PLACE		3
+>> +#define AMDGPU_SVM_ATTR_NO_ACCESS		4
+> 
+> Why are those separate attributes? What is the difference between those?
+
+Really thanks for the comments, I have some content mistaken in V2, so I 
+updated the V3 to fix that. For the header they are same. for other 
+content please review the V3, sorry about that. And will fix the concern 
+you raised in next version.
+
+So the meaning of AMDGPU_SVM_ATTR_ACCESS and AMDGPU_SVM_ATTR_NO_ACCESS 
+are clear, GPU can access it or not, and the SVM can set the preferred 
+location, it can be in VRAM or system, for AMDGPU_SVM_ATTR_ACCESS it can 
+be migrated between RAM and VRAM. For AMDGPU_SVM_ATTR_ACCESS_IN_PLACE,
+it can not migrate, GPU only can access it in the initial place.
+
+> 
+>> +#define AMDGPU_SVM_ATTR_SET_FLAGS		5
+>> +#define AMDGPU_SVM_ATTR_CLR_FLAGS		6
+> 
+> Why is that separated into set and clear flags?
+
+This method inherits from KFD and is also designed to be compatible with 
+upper layer applications such as ROCR.
+
+
+> 
+>> +#define AMDGPU_SVM_ATTR_GRANULARITY		7
+>> +
+>> +#define AMDGPU_SVM_LOCATION_SYSMEM		0
+>> +#define AMDGPU_SVM_LOCATION_UNDEFINED		0xffffffff
+> 
+> No location for device local memory?
+
+Vaule > 0 means for device memory, in xe_svm, it seems like it uses fd 
+for device local memory.
+
+> 
+>> +
+>> +struct drm_amdgpu_svm_attribute {
+>> +	__u32 type;
+>> +	__u32 value;
+>> +};
+>> +
+>> +struct drm_amdgpu_gem_svm {
+>> +	__u64 start_addr;
+>> +	__u64 size;
+>> +	__u32 operation;
+>> +	__u32 nattr;
+>> +	__u64 attrs_ptr;
+>> +};
+> 
+> Those struct make perfect sense but clearly need documentation. Preferable as kerneldoc.
+> 
+> And we usually use unions in this header to separate the input from the output parameters.
+
+Got it will add documentation for it and will use unions in next 
+version. Really thanks for the comments.
+
+Regards,
+Honglei
+
+> 
+> Regards,
+> Christian.
+> 
+>> +
+>>   #if defined(__cplusplus)
+>>   }
+>>   #endif
+> 
 
