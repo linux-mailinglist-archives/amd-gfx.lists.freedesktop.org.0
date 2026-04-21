@@ -2,87 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0+OKIcZz52lE9AEAu9opvQ
+	id OPX2MHeG6GnsLQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Apr 2026 14:55:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 Apr 2026 10:27:35 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 303A943AEB4
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Apr 2026 14:55:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 358BC443726
+	for <lists+amd-gfx@lfdr.de>; Wed, 22 Apr 2026 10:27:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B491910E897;
-	Tue, 21 Apr 2026 12:55:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="B63pjvRe";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70EAA10E978;
+	Wed, 22 Apr 2026 08:27:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
- [209.85.128.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C19610EC91
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 12:55:31 +0000 (UTC)
-Received: by mail-wm1-f42.google.com with SMTP id
- 5b1f17b1804b1-4852a9c6309so37632625e9.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 05:55:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776776130; x=1777380930; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=BfCRylRFQ5Cz4IhdE+8OiwYfz1E71aUntkRQVnnAv9E=;
- b=B63pjvReg/OBmBVDW4XR3EWXUjMAcKEwT2BMMgdJMIYEyNLy1FynzqGJeeiLGzkajA
- cYHgSB2dMRTMgDMctA2B5LHPvS+A72svpYDxwPpM7fXJ41MeR5266uP3rT0qRBwle0TM
- dTv5oibRqf9h7pe9qTmBg9W+TYaUdRtfeE9kZzJa55EeQo53IZZdwye79Ep9K1L+iyTa
- U1IBaGUo2ilqrn6s6kJpA+9KRBGxmux5E9guBGaRvN0bP4KM7qyGlH5Nf9GdXwC99+oa
- TC0joNn/QhpdjHLeClsl58IhQxDZn/hGFbOjYcK5FZECx8DzCv2attSDCDF3gT9SVhXs
- Og5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776776130; x=1777380930;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=BfCRylRFQ5Cz4IhdE+8OiwYfz1E71aUntkRQVnnAv9E=;
- b=MTirWnPr4JQuiW4XPljXqm90/i6qUNaAVsJ3E1A915snVqZvPkydMOJg3W8K/cyEjj
- TtYNz/lAyvU58oyhRov3CL+0xX8p3NQQnnDtlXNqFJVCpoqsfdNSi/DJfYj54/+JFi6Q
- hj610XeapqdedZhv0oj5HY2M+nVotxQvUO6TTQr0tIZsxR5M/Z64OfPHBKLkYcEbjm7e
- CojntoQDEmIZqErVL2cpzzbVfPdD69WW0FHygz06khTN3i546SSSKjZ5ihwUixfXiVUY
- 67o02N6Qe+pSdWlIQ9TC93m/t19maH3Gv4IcrpVXHVxgw2fFMjB7zWFPic4whxMhAfRU
- uhKw==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+HSJl6brtyvDrzSzVFc/hpao8fkYSysIYe5X57M+SNqEi8X/S2MxTSxX8ncVzgZkDCw1hyimOU@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwM4hyl37vQR31v8gQd7dhOf7kp5VWlDCqf2kzwnyNRlRvSpSE6
- hgJIWznzy3qDctkaMn2LCK0cZdiqAkCpOeZTfSSvZYjnF9j3LwLXXJ/F
-X-Gm-Gg: AeBDieu6QOKDLgfkYXSKdb1qYAxnLu2rZWaUDI9mqMsGgel+avx0wrZY5qrhVDeOoKT
- gpwFBdIzPSMQXyBg843vxKh/EE18CWS1HahcPtCZuDLzFRtpOWlmyfayh87CMapmXucX/oDPh8Z
- rrKFh3NmKJp4D17ryFr2gdAGnVlwmVcuAATUf87qc/ECcuAwPxoafSYtOm8xBv471w+UOURZkx7
- sv1Rxacm1U0J9KhEOFtJRcCLMRBroIWjlvQ4T+OcczwRZ4e3Oogf2JrFWx5LfexNOLUiPPJjSpn
- CYesejUULcNncmwtMLXseyLYxlKLNOaN6iVUHwycqCu5aHUjZKO20jnEPXfwaOrFXYWUdpgyGtJ
- y0mnvnuhlHD/lWqGcr/P1Ccm8I3IJCpszQutiEoAnbjDnRxE59A4ognUrYOUD94jKVgLpIDrSO6
- WzbN+CVjSUbtl82jnCH100ha31/qRPeFSrLRuYGlEamor9BSM=
-X-Received: by 2002:a05:600c:3110:b0:485:3abe:ab86 with SMTP id
- 5b1f17b1804b1-488fb739ce4mr254012975e9.4.1776776129555; 
- Tue, 21 Apr 2026 05:55:29 -0700 (PDT)
-Received: from able.fritz.box ([2a00:e180:15aa:5a00:935c:42ec:dfce:89a2])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-488fb79ecb9sm154777915e9.8.2026.04.21.05.55.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Apr 2026 05:55:29 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: alexander.deucher@amd.com, Prike.Liang@amd.com, sukhatri@amd.com,
- amd-gfx@lists.freedesktop.org
-Cc: christian.koenig@amd.com
-Subject: [PATCH 11/11] drm/amdgpu: WIP sync amdgpu_ttm_fill_mem only to kernel
- fences
-Date: Tue, 21 Apr 2026 14:55:13 +0200
-Message-ID: <20260421125513.4545-11-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260421125513.4545-1-christian.koenig@amd.com>
-References: <20260421125513.4545-1-christian.koenig@amd.com>
+X-Greylist: delayed 468 seconds by postgrey-1.36 at gabe;
+ Tue, 21 Apr 2026 13:30:02 UTC
+Received: from air.basealt.ru (air.basealt.ru [193.43.8.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EDF010E1E1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 13:30:02 +0000 (UTC)
+Received: from altlinux.ipa.basealt.ru (unknown [193.43.11.2])
+ (Authenticated sender: kovalevvv)
+ by air.basealt.ru (Postfix) with ESMTPSA id 448DA2338E;
+ Tue, 21 Apr 2026 16:22:11 +0300 (MSK)
+From: Vasiliy Kovalev <kovalev@altlinux.org>
+To: stable@vger.kernel.org
+Cc: Alex Deucher <alexander.deucher@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ amd-gfx@lists.freedesktop.org, lvc-project@linuxtesting.org,
+ kovalev@altlinux.org
+Subject: [PATCH 5.10.y] drm/amd/display: Fix memory leak
+Date: Tue, 21 Apr 2026 16:22:10 +0300
+Message-Id: <20260421132210.38325-1-kovalev@altlinux.org>
+X-Mailer: git-send-email 2.33.8
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 22 Apr 2026 08:27:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,102 +48,283 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [0.89 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:Prike.Liang@amd.com,m:sukhatri@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:stable@vger.kernel.org,m:alexander.deucher@amd.com,m:sunpeng.li@amd.com,m:lvc-project@linuxtesting.org,m:kovalev@altlinux.org,s:lists@lfdr.de];
+	DMARC_NA(0.00)[altlinux.org];
+	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[ckoenigleichtzumerken@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[131.252.210.177:from];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	TO_DN_NONE(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ckoenigleichtzumerken@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[209.85.128.42:received];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[kovalev@altlinux.org,amd-gfx-bounces@lists.freedesktop.org];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[kovalev@altlinux.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.993];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 303A943AEB4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,pku.edu.cn:email]
+X-Rspamd-Queue-Id: 358BC443726
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-That's not even remotely correct, but should unblock testing for now.
+From: Yongzhi Liu <lyz_cs@pku.edu.cn>
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
+commit 5d5c6dba2b43e28845d7d7ed32a36802329a5f52 upstream.
+
+[why]
+Resource release is needed on the error handling path
+to prevent memory leak.
+
+[how]
+Fix this by adding kfree on the error handling path.
+
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+Signed-off-by: Yongzhi Liu <lyz_cs@pku.edu.cn>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Fixes: f8ac2cf78f27 ("drm/amd/display: Linux set/read lane settings through debugfs")
+Fixes: c06e09b76639 ("drm/amd/display: Add DSC parameters logging to debugfs")
+[ kovalev: bp to fix CVE-2022-49135; added Fixes tags ]
+Signed-off-by: Vasiliy Kovalev <kovalev@altlinux.org>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 72 ++++++++++++++-----
+ 1 file changed, 54 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 4c7d1917d9bb..5130f77b7543 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -2417,12 +2417,14 @@ static int amdgpu_ttm_prepare_job(struct amdgpu_device *adev,
- 				  struct amdgpu_ttm_buffer_entity *entity,
- 				  unsigned int num_dw,
- 				  struct dma_resv *resv,
-+				  enum dma_resv_usage usage,
- 				  bool vm_needs_flush,
- 				  struct amdgpu_job **job,
- 				  u64 k_job_id)
- {
- 	enum amdgpu_ib_pool_type pool = AMDGPU_IB_POOL_DELAYED;
- 	int r;
-+
- 	r = amdgpu_job_alloc_with_ib(adev, &entity->base,
- 				     AMDGPU_FENCE_OWNER_UNDEFINED,
- 				     num_dw * 4, pool, job, k_job_id);
-@@ -2438,8 +2440,7 @@ static int amdgpu_ttm_prepare_job(struct amdgpu_device *adev,
- 	if (!resv)
- 		return 0;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+index 6914738f0275..f4a1ad8959b7 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+@@ -229,8 +229,10 @@ static ssize_t dp_link_settings_read(struct file *f, char __user *buf,
+ 			break;
  
--	return drm_sched_job_add_resv_dependencies(&(*job)->base, resv,
--						   DMA_RESV_USAGE_BOOKKEEP);
-+	return drm_sched_job_add_resv_dependencies(&(*job)->base, resv, usage);
- }
+ 		r = put_user(*(rd_buf + result), buf);
+-		if (r)
++		if (r) {
++			kfree(rd_buf);
+ 			return r; /* r = -EFAULT */
++		}
  
- int amdgpu_copy_buffer(struct amdgpu_device *adev,
-@@ -2468,9 +2469,9 @@ int amdgpu_copy_buffer(struct amdgpu_device *adev,
- 	max_bytes = adev->mman.buffer_funcs->copy_max_bytes;
- 	num_loops = DIV_ROUND_UP(byte_count, max_bytes);
- 	num_dw = ALIGN(num_loops * adev->mman.buffer_funcs->copy_num_dw, 8);
--	r = amdgpu_ttm_prepare_job(adev, entity, num_dw,
--				   resv, vm_needs_flush, &job,
--				   AMDGPU_KERNEL_JOB_ID_TTM_COPY_BUFFER);
-+	r = amdgpu_ttm_prepare_job(adev, entity, num_dw, resv,
-+				   DMA_RESV_USAGE_BOOKKEEP, vm_needs_flush,
-+				   &job, AMDGPU_KERNEL_JOB_ID_TTM_COPY_BUFFER);
- 	if (r)
- 		goto error_free;
+ 		buf += 1;
+ 		size -= 1;
+@@ -388,8 +390,10 @@ static ssize_t dp_phy_settings_read(struct file *f, char __user *buf,
+ 			break;
  
-@@ -2513,6 +2514,7 @@ static int amdgpu_ttm_fill_mem(struct amdgpu_device *adev,
- 	num_loops = DIV_ROUND_UP_ULL(byte_count, max_bytes);
- 	num_dw = ALIGN(num_loops * adev->mman.buffer_funcs->fill_num_dw, 8);
- 	r = amdgpu_ttm_prepare_job(adev, entity, num_dw, resv,
-+				   DMA_RESV_USAGE_KERNEL,
- 				   vm_needs_flush, &job, k_job_id);
- 	if (r)
- 		return r;
+ 		r = put_user((*(rd_buf + result)), buf);
+-		if (r)
++		if (r) {
++			kfree(rd_buf);
+ 			return r; /* r = -EFAULT */
++		}
+ 
+ 		buf += 1;
+ 		size -= 1;
+@@ -1195,8 +1199,10 @@ static ssize_t dp_dsc_clock_en_read(struct file *f, char __user *buf,
+ 				break;
+ 	}
+ 
+-	if (!pipe_ctx)
++	if (!pipe_ctx) {
++		kfree(rd_buf);
+ 		return -ENXIO;
++	}
+ 
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+@@ -1212,8 +1218,10 @@ static ssize_t dp_dsc_clock_en_read(struct file *f, char __user *buf,
+ 			break;
+ 
+ 		r = put_user(*(rd_buf + result), buf);
+-		if (r)
++		if (r) {
++			kfree(rd_buf);
+ 			return r; /* r = -EFAULT */
++		}
+ 
+ 		buf += 1;
+ 		size -= 1;
+@@ -1351,8 +1359,10 @@ static ssize_t dp_dsc_slice_width_read(struct file *f, char __user *buf,
+ 				break;
+ 	}
+ 
+-	if (!pipe_ctx)
++	if (!pipe_ctx) {
++		kfree(rd_buf);
+ 		return -ENXIO;
++	}
+ 
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+@@ -1368,8 +1378,10 @@ static ssize_t dp_dsc_slice_width_read(struct file *f, char __user *buf,
+ 			break;
+ 
+ 		r = put_user(*(rd_buf + result), buf);
+-		if (r)
++		if (r) {
++			kfree(rd_buf);
+ 			return r; /* r = -EFAULT */
++		}
+ 
+ 		buf += 1;
+ 		size -= 1;
+@@ -1505,8 +1517,10 @@ static ssize_t dp_dsc_slice_height_read(struct file *f, char __user *buf,
+ 				break;
+ 	}
+ 
+-	if (!pipe_ctx)
++	if (!pipe_ctx) {
++		kfree(rd_buf);
+ 		return -ENXIO;
++	}
+ 
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+@@ -1522,8 +1536,10 @@ static ssize_t dp_dsc_slice_height_read(struct file *f, char __user *buf,
+ 			break;
+ 
+ 		r = put_user(*(rd_buf + result), buf);
+-		if (r)
++		if (r) {
++			kfree(rd_buf);
+ 			return r; /* r = -EFAULT */
++		}
+ 
+ 		buf += 1;
+ 		size -= 1;
+@@ -1655,8 +1671,10 @@ static ssize_t dp_dsc_bits_per_pixel_read(struct file *f, char __user *buf,
+ 				break;
+ 	}
+ 
+-	if (!pipe_ctx)
++	if (!pipe_ctx) {
++		kfree(rd_buf);
+ 		return -ENXIO;
++	}
+ 
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+@@ -1672,8 +1690,10 @@ static ssize_t dp_dsc_bits_per_pixel_read(struct file *f, char __user *buf,
+ 			break;
+ 
+ 		r = put_user(*(rd_buf + result), buf);
+-		if (r)
++		if (r) {
++			kfree(rd_buf);
+ 			return r; /* r = -EFAULT */
++		}
+ 
+ 		buf += 1;
+ 		size -= 1;
+@@ -1800,8 +1820,10 @@ static ssize_t dp_dsc_pic_width_read(struct file *f, char __user *buf,
+ 				break;
+ 	}
+ 
+-	if (!pipe_ctx)
++	if (!pipe_ctx) {
++		kfree(rd_buf);
+ 		return -ENXIO;
++	}
+ 
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+@@ -1817,8 +1839,10 @@ static ssize_t dp_dsc_pic_width_read(struct file *f, char __user *buf,
+ 			break;
+ 
+ 		r = put_user(*(rd_buf + result), buf);
+-		if (r)
++		if (r) {
++			kfree(rd_buf);
+ 			return r; /* r = -EFAULT */
++		}
+ 
+ 		buf += 1;
+ 		size -= 1;
+@@ -1857,8 +1881,10 @@ static ssize_t dp_dsc_pic_height_read(struct file *f, char __user *buf,
+ 				break;
+ 	}
+ 
+-	if (!pipe_ctx)
++	if (!pipe_ctx) {
++		kfree(rd_buf);
+ 		return -ENXIO;
++	}
+ 
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+@@ -1874,8 +1900,10 @@ static ssize_t dp_dsc_pic_height_read(struct file *f, char __user *buf,
+ 			break;
+ 
+ 		r = put_user(*(rd_buf + result), buf);
+-		if (r)
++		if (r) {
++			kfree(rd_buf);
+ 			return r; /* r = -EFAULT */
++		}
+ 
+ 		buf += 1;
+ 		size -= 1;
+@@ -1929,8 +1957,10 @@ static ssize_t dp_dsc_chunk_size_read(struct file *f, char __user *buf,
+ 				break;
+ 	}
+ 
+-	if (!pipe_ctx)
++	if (!pipe_ctx) {
++		kfree(rd_buf);
+ 		return -ENXIO;
++	}
+ 
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+@@ -1946,8 +1976,10 @@ static ssize_t dp_dsc_chunk_size_read(struct file *f, char __user *buf,
+ 			break;
+ 
+ 		r = put_user(*(rd_buf + result), buf);
+-		if (r)
++		if (r) {
++			kfree(rd_buf);
+ 			return r; /* r = -EFAULT */
++		}
+ 
+ 		buf += 1;
+ 		size -= 1;
+@@ -2001,8 +2033,10 @@ static ssize_t dp_dsc_slice_bpg_offset_read(struct file *f, char __user *buf,
+ 				break;
+ 	}
+ 
+-	if (!pipe_ctx)
++	if (!pipe_ctx) {
++		kfree(rd_buf);
+ 		return -ENXIO;
++	}
+ 
+ 	dsc = pipe_ctx->stream_res.dsc;
+ 	if (dsc)
+@@ -2018,8 +2052,10 @@ static ssize_t dp_dsc_slice_bpg_offset_read(struct file *f, char __user *buf,
+ 			break;
+ 
+ 		r = put_user(*(rd_buf + result), buf);
+-		if (r)
++		if (r) {
++			kfree(rd_buf);
+ 			return r; /* r = -EFAULT */
++		}
+ 
+ 		buf += 1;
+ 		size -= 1;
 -- 
-2.43.0
+2.50.1
 
