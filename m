@@ -2,156 +2,133 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CAGwGXmG6GkNLQIAu9opvQ
+	id 6PWgKxiR52n69wEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 Apr 2026 10:27:37 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Apr 2026 17:00:40 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDFAE443745
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 Apr 2026 10:27:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1489C43C765
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Apr 2026 17:00:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E992A10E97D;
-	Wed, 22 Apr 2026 08:27:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 861E410ECC2;
+	Tue, 21 Apr 2026 15:00:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="WXHwi7Hh";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="CzQ+Zqxc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011062.outbound.protection.outlook.com [52.101.52.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FF8189135;
- Tue, 21 Apr 2026 14:55:34 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010068.outbound.protection.outlook.com [52.101.46.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 114B510ECC2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 15:00:37 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BT/4B1mpaiWr6mO/Yl4YEW5ToymEramNMI87Vy19HQUiSH9f67o3EmrC2QVKHEfWdcUggaYigZe7YNEa97SYQOOkZoopwjq/wsygIo3u80XIBq7JJuJthQqXg+yMhHzGbZYklVBb/hkf5zMGuP29eWZeAHtkM6+M0C9N4ZJNwSJkYrtJPwM+ZSBzI6ymFjl9HS3E6rWh+Hq/i1fWLXnnjS4/Vwq+f+xEyT8A2wi19h7dBfGmwcfkS9lPHqnH8kjKkNTASuz8S1euC8rQSO+VPqUxaXko7saYdOjuj0mBPUIUUVQnPvHmavujwbkTouyQzwQwkexHWk448NnuV5D95A==
+ b=Lzmb+DTJ+7jGdqvaZhEXNYXralB0dUTSKff9SvIFZ4PX8pu2w5G+Uv4PB4zKOnKTu0NySu/vp4ke3defdlhsPxEzFmSAYlELwtzj4ufd0jA2pdEJDWjtKoM2UI56HtVaSd7X3fIr7nXZhFeapnZoj4WbUNjvaiXOHfKVfPpVx42E6lt/HI5/JIifjJSv0NIZlLLnd6x977yUEaYozV9HfRvwobdk3Wt8fcL6zfmVBslplR8V+AbSomrKY1Sw8P43jkK9DsXlAMEFr4s8bDMztDwoOrA7l69FyzP+jCOyZiTr8T+nKKjAkMCx2hqqG4l9eiO38cgriZPJ6398AwCpjg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p183JymaxpjJcX0/clF7DkYJ+v2/MFXGwhWfTHeoMnQ=;
- b=G841LuM26Q1cwhhF5PAvWlZjAqSg20bKFteZ+WpVDrcv07xN09oIf/n5XjFomlr09E96wbNkJAXREJsK8VYlqkc5cDFXMcL2Pyuji67hJuIV8m1X8nwtYieS9Zo/Ws9FOsEiaOhBSadlTBuRhE30H4ayW3rsnWmUXQvevz9nScUpNqLMOfiNdvyOXNTj/kAqmnSjU8/Xl0TlYII3AvvXbE1DhsOUnBCjOy9wOxkMk5k9vc5rgex3QQZXFARJ77Ww5WcrX3nqjo1QFvY3K99nNSJLx/yNIreuPMYTZ2RTRE6i8GzW8q0eae5HOANDeV6TYYQp7EuxCeU7mKtxtpTuzw==
+ bh=swtvyWn4Meao+HB4u7UPD5VtoFAV+RQVV0qeHMWUh9c=;
+ b=KVdQQMNabQ0sh3+i097MeA+kitgAgyzVsS7bQFcRvEcdi2T52VkA4MU+TK9uksWTHL6pS3vfoW9JxYiNoqHZeoGdXK2EI+uVmt+jtT8tUvnod6wYHBHZomS18JYWqXosqQpGLRkOmMDvA8zxzzihX2vBwCLzR9k9C31ZvJNHh3IPzuHSNrnJX+wBsKQS0olx/vJFUzR0miuywLfAFSbJTIMkX5BfwahAdcrpakxvgGd8N1y3V9I9IUoQia2XrLvRfR0QxbMVGIJvnx9yrPbWl1VfaGwyIyWB5WZr2MbC9Fv1sfZfcLgRp4+m1R9Jt7CkXZAqvQ63BNL+W6ihcbdVPA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p183JymaxpjJcX0/clF7DkYJ+v2/MFXGwhWfTHeoMnQ=;
- b=WXHwi7Hhfp7bIEE2268jhZO5KJn9ipRPYWSHTpnTnhfTWVMUu/g0ymByrWRN28/8lkjnFW9r5sFJ2ONDCyf91dRAksNqFSgA9kdQ5ndteoPyxnVag9vG1MbBg9nqa3066P0tLQWsZXFeZ17omS4r3OLeCtl6heXfM4TM4pbjfBUvPd2E4ujwnatAG8IVoMNZV+w+nlq//p12svgy94VyctQwNPguw20vUnW7j5Ibmjomi2wcRUXwE+CuFNqkuAm+VNWSByEnOsCHxDZFG+kCC1Nwh4rgXfx7YtUEnv65pxvM2NrUFpcHrNCZP52WGHv376O6v87rdr03GukG3lu8hA==
+ bh=swtvyWn4Meao+HB4u7UPD5VtoFAV+RQVV0qeHMWUh9c=;
+ b=CzQ+ZqxcdcR1m05DBdzcgTsCJzHWMCi+GsiCQb1D5b0/RVTVRWN169psHy0fiAJwAkcM8T+uMdnf7pVdEFUxIR1t2kLiLpAK3SYiwJaBIzjid+o4xUuyXL6tfJ+8dt/dZ3LpMxB+1ttWB9VtHj+XMiM7zSQac8n6Lx+OJBtZ1cM=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- PH7PR12MB6666.namprd12.prod.outlook.com (2603:10b6:510:1a8::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9846.16; Tue, 21 Apr 2026 14:55:23 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9846.016; Tue, 21 Apr 2026
- 14:55:23 +0000
-Date: Tue, 21 Apr 2026 10:55:21 -0400
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: John Hubbard <jhubbard@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
- Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>,
- dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v11 02/20] gpu: nova-core: gsp: Extract usable FB region
- from GSP
-Message-ID: <20260421145521.GA51176@joelbox2>
-References: <20260415210548.3776595-1-joelagnelf@nvidia.com>
- <20260415210548.3776595-2-joelagnelf@nvidia.com>
- <b0c5267d-ea77-41c5-94d4-39c651761b3c@nvidia.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b0c5267d-ea77-41c5-94d4-39c651761b3c@nvidia.com>
-X-ClientProxiedBy: MN2PR11CA0009.namprd11.prod.outlook.com
- (2603:10b6:208:23b::14) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SA0PR12MB4416.namprd12.prod.outlook.com (2603:10b6:806:99::8)
+ by DS7PR12MB6286.namprd12.prod.outlook.com (2603:10b6:8:95::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.16; Tue, 21 Apr
+ 2026 15:00:33 +0000
+Received: from SA0PR12MB4416.namprd12.prod.outlook.com
+ ([fe80::6901:6c89:2155:ea8]) by SA0PR12MB4416.namprd12.prod.outlook.com
+ ([fe80::6901:6c89:2155:ea8%7]) with mapi id 15.20.9846.016; Tue, 21 Apr 2026
+ 15:00:33 +0000
+Message-ID: <5fc35475-e7a2-483e-84d8-1de7226e1e59@amd.com>
+Date: Tue, 21 Apr 2026 10:00:30 -0500
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdkfd: Terminate queues on surprise unplug with
+ running processes
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ Mario Limonciello <superm1@kernel.org>, amd-gfx@lists.freedesktop.org,
+ Felix Kuehling <Felix.Kuehling@amd.com>
+Cc: Kent Russell <kent.russell@amd.com>
+References: <20260112182925.347303-1-mario.limonciello@amd.com>
+ <2b4d4476-97a6-42f8-b5cf-5599ac8d0035@kernel.org>
+ <60e1e12d-7705-4531-ba15-c956f4d268d4@amd.com>
+Content-Language: en-US
+From: "Chen, Xiaogang" <xiaogang.chen@amd.com>
+In-Reply-To: <60e1e12d-7705-4531-ba15-c956f4d268d4@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: CH5P222CA0012.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:610:1ee::7) To SA0PR12MB4416.namprd12.prod.outlook.com
+ (2603:10b6:806:99::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|PH7PR12MB6666:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9d561f29-e738-443f-05ff-08de9fb603be
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4416:EE_|DS7PR12MB6286:EE_
+X-MS-Office365-Filtering-Correlation-Id: 53aae75c-b520-4265-c030-08de9fb6bc8d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|1800799024|366016|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info: YF0ovLmn59BOrQrZUOpHTCqmpyYX79efgMR2lL5oDAfD8n2/mDo9nZeQoEwzvSljzRTeXFGJe11n3vqOjabI2rmVgLoybFE2uvnHCzsrsS429XWOS62hoTqvvG1xKuoHz6aW493ImYi3rd5+W+OQbYxg7H/mRpRiRN9knZEWD4TcM1YwgYqyrX7JoyBiOR9NPQRARvYYL+Y5+eyzLBKgbiDfomVDmP47eJPUwJuIB9tyDxc0KC/uBIX01VURXBGgH5QZM9bxJWOPVEnYUI0VsYRxnCwbtcDvJv6lvCKh7A4gMn6G6eYP1lhQyygQuPjXC4ryJlFEJJlsLDW4o4a0XTIY58Oe4ip9OeesPgAKv4eFW36M3fK6PEt6fgRteoGeQ/0lawo+d58N96owRXpHkTKI4k8vnhXqU2W+CLUXkaJyCFlTmkcKhcd+vh/o3nuM0TVeQ29xpVnzOUMCiORQ9EDxeV5+N3iIhizWe4EaQpMdHeK0ROLeohJV+nQBR9+gIdtg93peX6Yb6a4TZMg/1BDd7xQI5Sv9YSTyYi9K3kYPIAuXDlVMMDQdou3MChyzBkBX19TXjRdmIqc1CeJIdFymT0NIfyeD0v1mVGfAStjQa49mbRxMHz0HNFrE290w6CHaNdmqwt5Ma5tEgf/drReDDQhPni/+YnElFG3Ku3iepubzI2n/74K+SZIdLmsoDuw52lO1syuUwoARL41sAnKyOe4GisBX3rkaJ50hi4s=
+ ARA:13230040|1800799024|366016|376014|56012099003|18002099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: rP+OVjizK1Xptc+uCbn2R10hKxhDKw/nSeFl1QgIOHzFhDy8oMziUbmFh6yODMyj2dptGECE+OHMATmMMC/CfkspbJ4/UT8OVFDevDVPLuPGaWR3K4zOQ+d3qJ+UuOC+ffZ53t0sP+1Ofn3m6vpM79um8Zz7CFL3A6vYDdwRSw7LmG2gMhejUO3cXz6hQ2wWXi0D8LeQOjFQwplCHtDpBSmSf1c3d+IlWeOW60c6X1qxvWsLzV1R0Vh9HQHL9hEDaI+NtLzUfMbBuFL/yf8eD+1H4g5KvER9RFcY8MSGyNWGuJjLmux8eq7fP4pWFZrjVVo5+XoegiSxlg6+M/mlhIsuKmNT/1m0rysh0GynhuQa20tMu7HmzAWwiQSvGBgWh+sSHcGYxSQwSPI+4rBE1WHjyIH42AyhDrOKe8xd+sii+/oNFPNOuqcYabE83lPWbFMch+rmEuHC4ElgA8VYAXTXwycrv/OVuxM2622eFQSlvc0sOti1GxWnd1aBXoyNrDjxFXKu+vePBYZPVXqsQ3Z7lMEGbjYsXbk8Q5HxbBE7wuzZEdqrP89h420tONaksus+1JL/EaM6imJqVWWAF1HJ6f+RP6RQpK5YNmLLX8G00JSZS/oZwaqKDDy1pbz8sfcTY5eG5AqFHe6rT5VNV1Lij0LTJOYFHTJQ47qAHTGaJqPoLei3j1MLdY9k641elxb0YW9lSu4wBUNcAfxyv7GvvQnD0yco+5oCDqFe02I=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(366016)(18002099003)(56012099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:SA0PR12MB4416.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(56012099003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2Fuv9QpYY6oPoyZbXD23coDJ2zrvlwkBK68KPi7Z/45UMLSnlEZKWLZDquKk?=
- =?us-ascii?Q?N+90kbf0EsfWes07rK1izTmSbqNXGVdGDukE3cUQ1GgZmmAsCHp1X3kA0Qkf?=
- =?us-ascii?Q?pMUcQk22HTmfDcVVtpTdpNeMZ7L1i1s90DOOOtLYIdE6eiPHffBTBKmbnA/w?=
- =?us-ascii?Q?T025mPPGPw5almf9+tcQ0lzyIkAcDsUdJVbwoUFbr9oO5zdMD17S9S/AgknO?=
- =?us-ascii?Q?y2O/8kqonNoAIK9XOW4kQ3lasf5L+aJv9Xiep7SbsXTA1Krzyz6LD0UswWeM?=
- =?us-ascii?Q?piJsdvI9pnN+zUf6RxQRCS0dkRt9idiYrCsZ5+v5o6CV6kmpJckkD4XkBbrC?=
- =?us-ascii?Q?Uht8Hg9HxkVu+iSzcGBHnF0owkd46tctBUQxjH0FB4GEtqap65309skeRazj?=
- =?us-ascii?Q?CjTie79ApcpfQ6o0IXNhpE+2WbM7yvYdKgm/2AAAzgio1cD3ztC2jnT6+nAc?=
- =?us-ascii?Q?2pzLnpwzcIdaok5YrZ6YzKSW8TCEhVl5SUVhKDZ1gz3BcVPyE44WMP76lv43?=
- =?us-ascii?Q?vcKZNUN9p6lFVHduwVLLsyD2Pg4LH9DFCxOicq2n51ZCcznnSq/Cp7TSmIWI?=
- =?us-ascii?Q?jc1xeKRB8U3N3EGz/5l6aAQr2Nf1tXPXSyspFbDni87O6oW0lstlAPrDUGBm?=
- =?us-ascii?Q?/BYNVdaL9ux0i0u2FC9DABDuaG4EnEVv4KpXZBvWlaJm9pW6jM6xLb48fydg?=
- =?us-ascii?Q?/ndkKwevMZnUzS044T5ViLhQmBCtmznydNixYUwszhO8Q0fNfHMZCEqjkOi6?=
- =?us-ascii?Q?Gtq25zMBFdkvLD2Dsg6zBOomwrPAVhvhTU91v6hlpagpf1pmjHJ1a3SDnEC6?=
- =?us-ascii?Q?RTXX7JdZu/5PMUSl26hlW20bK18y3GV5+17bdZoUWVbw6eO1kXgY0F7SRN1Z?=
- =?us-ascii?Q?eIr+focKFdP/2ZB0RmCMmyF1heDOnhBQY109+mMH0Q6erMTOV5csx0vMghqG?=
- =?us-ascii?Q?47f6sA5bP51ECdvxYwkkv7EdAeZFzDNAAejKUEdJzOciNJhh38SNF0NEGwFM?=
- =?us-ascii?Q?qoNqQMnC40N5RhKpYYjJhH3W3lWoSQ1LubKTU5ZRbnecnia0utmjY6a6rVvZ?=
- =?us-ascii?Q?VxTZqtiNFX8484MDoJ3ARRY6ajcPM1BKxcbbTrjquJPCnb53AeKPc+5/1x+p?=
- =?us-ascii?Q?vwMf8YZ9gsepM7GcqV96InF5oiX6e+Nslu3YUc6EzqxuoJLpDHmHD/PmvLOD?=
- =?us-ascii?Q?KAyVB1XNsS0znLDiiFfyjs4mmuNM2UVKQnqXQePQgmnheDdA3u7oVNJ/4Gl1?=
- =?us-ascii?Q?42DOq/+qSSVfyktPYX8MOfQUkKDIyhidikDmnv6lMWT89XUVXtkfSqUtyg/8?=
- =?us-ascii?Q?mCYbWSUZp7C0cxNVSUg2hz1UVVdHr8Rop3czZ2MwpTOroNFmPJYrSxbutUOj?=
- =?us-ascii?Q?Q4naeD8SskomrHx551FdVhFXr2ytLuKkQa7DX3yerxmMGIOtVTyGoG5ZTEU7?=
- =?us-ascii?Q?zwtulsTA13rPgTFK0LYT7ksNR2zS96pEurP5QH9RmLsTCcz8pOZn7+RXncDN?=
- =?us-ascii?Q?jd7KcOwyG+qL0IRIVzIBjXqCpfPyVWM5uKVzrIFrU3vtDpkPdtY3l5Gaifuk?=
- =?us-ascii?Q?zUI/Kj/Aj/jcBfIosybLHCqZTS62j+rFevgGC+LMpqefbgj5TJMUwoRobLcg?=
- =?us-ascii?Q?u6drkfVMCSOnE8pEkdyIJvBH1deoxpgo4U5USm2mlTAq4p7gtKfqDZ9+cZYn?=
- =?us-ascii?Q?o1hbCCrItbOWo1roq5XJ4kjn1t7D0fMxAwfczf7csAlzcJZrKdYGWu2+0Frr?=
- =?us-ascii?Q?EH390tyzog=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9d561f29-e738-443f-05ff-08de9fb603be
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z2pGdzdUSFc1SHRrVVVPbWxuQkcwZTh4U05VazlXQU1BQ2t3dS9iZjBLTFk5?=
+ =?utf-8?B?M2hXVkt4aWNGdzcwMFFxSFBOcGc3cFVQQ29zdmFZbUx4R2RUUHF3cGQyemMw?=
+ =?utf-8?B?dkMveFhRbVlSTmozVFl4RzhJYXJNWDZYbDBxM052Y2Z2T2JIZXd6WVlNZDVj?=
+ =?utf-8?B?aG80eXl1NUZreXpISkVwYXFSbUFBQUhUVC9JUGdxMVJlakpwa2krdFlQYXM4?=
+ =?utf-8?B?ekNBK2FwZSswTCtub0I4RnBXRFR4c3dmZWNlUDNGbHNjbmJDY2RLMks5ZitF?=
+ =?utf-8?B?bjZkL2REa3pzWTJjbzNjZUhWT2tydFJ6cU85MW10TXdOMVdOTE44QW02TTVK?=
+ =?utf-8?B?V2RKaU9SZXBpOEQvZGxEL2ZJZXRjMHNxRG13KzhRanBEdkZTRUlpZEhRb2NF?=
+ =?utf-8?B?VFpCOHpWTTE2MmtDVEloMnBIV2VBS1B0bXIwV3FlZlYzYk03RjZGMWNicGVZ?=
+ =?utf-8?B?dzB5RytHNjZZSytreEZWN2ZGWWp4ckJVcElvd1g0R3pWbTFJV28vWUsyQ3Fm?=
+ =?utf-8?B?dSttWEJUWU41MUdsMER2VFFWSnFWZDFXTjJ6MEVoTUM1bHlEMlRBWUhlandj?=
+ =?utf-8?B?WEdUWjcrakY4QTVUdXZXcnp4cTVnR2VGaGNucXdZYzZFWmpWZ2d5S2FSN2Za?=
+ =?utf-8?B?T0lxamlrUFpzbVZXRVJ1NlovYjRHMFpYTXQxT0svdjVMZHIrd2hUY0VjdnVi?=
+ =?utf-8?B?YTVDOCtSY1kyN0ZKUHRSYURsbk9ydmVmTjVyUm9NQVlCQWdJdDRXNUE0andZ?=
+ =?utf-8?B?dlc5VlA3SU5qeVJmMUxUUDZBWG1paHFDYVlEV3o2SGs2dlRlSmJGUUUvcWwy?=
+ =?utf-8?B?cUlqZ3NUNzB1ZlRNSTE5OVZQcXdnNXE0cEFIUVFzZjVQWGYxNzJDWW9YbXNR?=
+ =?utf-8?B?UU5MR0dnS2t5NlUzOEoxbUozckc0ZmEvaDBNa2o5Qm1wUHFpRVFBMzFwRHZK?=
+ =?utf-8?B?MWFVTzRicy9vWjRvckhqL0JjQVNBSitZS3pUczN4TE90czI0ZkpVMFlFbkdq?=
+ =?utf-8?B?dFRaQkNWQVZReUJIT1NieGduSVJrclpCNGp2WC81K1RubWI4bzI0bVJpL01U?=
+ =?utf-8?B?eWE3RlBYSG9EOUd6b1N5SVBlR0hQQkxNSDYrNERYOFhWNStReWF5SXh4cVhG?=
+ =?utf-8?B?VVlReVhBdHZxaGdUUVYrQUNod2g1L2E5OVJWNWRlczhaTUVlTG5wZGs2QjF6?=
+ =?utf-8?B?Wmd2Lzc2Skg5aDl3N0NKdStLSkQwS2tlY2lWaW1yZjRvT25pa3hNbjVxWHdZ?=
+ =?utf-8?B?amhGT3NqcXo2ZFBWY2lkK0oyZ0VESy9QODhTczJjUGI3WDdHc2diRzNyZlNW?=
+ =?utf-8?B?ZVkxMmd0dDk1Tm0xaXJITm94Z1oxZ0RmTDNTc1BhaFFpTWs2Tm5SRzA1Zy9j?=
+ =?utf-8?B?Nkhac1Rqa0krTjBqeDhYZmQzcFk5dGd0ejQ4Y1ArSEEzdU5hZkVKOFBmM0E5?=
+ =?utf-8?B?UE9NaWd0RHJQYXNlcm1iaEx6VXUwZjFpZ1NHWmY0VmF1M29IRFRvc09VcC9u?=
+ =?utf-8?B?dzh2bFd4ZGMvZndYRkVvYUh3Z2g0UktBTmNmdmJZejJvRWo4WjlIUTc2b0ZB?=
+ =?utf-8?B?Z0ZNMkVKbktkRkJLa3BFTGx2TlZSaE54bkVuQ05mdElHQWovMnI5QnVZS202?=
+ =?utf-8?B?ajlDVTk4V1I5dmsxTVVwbG1Ceko0azBFTXF2VWhEaVRkYWtnTGRXdEZBNVgv?=
+ =?utf-8?B?M25hc2hFMXN0bzVpcEJ5TW9NTm54eXVoblRYcldTL083ekYrSkRiZ1dBYkky?=
+ =?utf-8?B?cm5kRDd5alJGRmtqRWV3bU1vU3BwV2pBVnl2ZE9xaW9wWEJGUUZTN3Z3SFI5?=
+ =?utf-8?B?UnJncDFycG9ZNFU4WHB4WS9kZVN4TS8zb1FEYzVDV2xlQzQ1WkRWOE1SS1c0?=
+ =?utf-8?B?TnBxNWs4UjNpYkZVdTFkNW9DVFFZOHFhaTlrOUU4YWVBWU1lcHNuWWd0ZnNZ?=
+ =?utf-8?B?aHo0NUVCUFpiRXNSQmhVbzZqKzR4OVNxYVFXQW8rTlJ2V09uQmkwUHl3dDl4?=
+ =?utf-8?B?RG9Va0hhU3h5Q0tPUFhvSmpkWWxvZE5Lbk8vL1R0SGZvWG5OMmpzQkJTRXFs?=
+ =?utf-8?B?cUlaSUZNZm10dnMzMHc1SW5KM2VIZEdNMzZTaU9vRzFHdVFKVE11VE9odVBm?=
+ =?utf-8?B?bHFtVXNTeGhvcGZlQnJUT0dKaU9FbTIrSnRtUVF1eVVFd1pRdDdtQTZ5cHdh?=
+ =?utf-8?B?Smh3WXdqMy9aWUF5NzRZaXFnNXRpTmJlU2ZNdWJBc2VwVHg0R3pJTy9ySjYz?=
+ =?utf-8?B?K2IrWWNtM3UyWVpVQU1HWU1WSEhBTG1mTWlLWHIwY1A2azZIUHVCTkZBeFky?=
+ =?utf-8?Q?pyW3OWZCAvv5wSwEAv?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53aae75c-b520-4265-c030-08de9fb6bc8d
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB4416.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2026 14:55:23.0900 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2026 15:00:33.1739 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mJR/hGlKXCfhAwlU6r2h6H4ZV0TUEYeQ6T0WFcwlP+aJXHBh36PabnoWAhK5JiCdOXadcoLoxQqFjDUx2PlkyQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6666
-X-Mailman-Approved-At: Wed, 22 Apr 2026 08:27:32 +0000
+X-MS-Exchange-CrossTenant-UserPrincipalName: qjR3yS1xg08nDtbCYs4gsd0PHZzE54yM24lQC5iIamEx/XC3MjboQUtynxpFJMs9
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6286
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,66 +142,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mario.limonciello@amd.com,m:superm1@kernel.org,m:Felix.Kuehling@amd.com,m:kent.russell@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[xiaogang.chen@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[54];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[xiaogang.chen@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: BDFAE443745
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 1489C43C765
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 16, 2026 at 04:26:48PM -0700, John Hubbard wrote:
-> On 4/15/26 2:05 PM, Joel Fernandes wrote:
-> ...
-> 
-> Apologies, I found one more minor thing, while looking at a
-> subsequent patch in this series:
-> 
-> >  impl MessageFromGsp for GetGspStaticInfoReply {
-> >      const FUNCTION: MsgFunction = MsgFunction::GetGspStaticInfo;
-> >      type Message = GspStaticConfigInfo;
-> > -    type InitError = Infallible;
-> > +    type InitError = Error;
-> >  
-> >      fn read(
-> >          msg: &Self::Message,
-> > @@ -205,6 +209,7 @@ fn read(
-> >      ) -> Result<Self, Self::InitError> {
-> >          Ok(GetGspStaticInfoReply {
-> >              gpu_name: msg.gpu_name_str(),
-> > +            usable_fb_region: msg.first_usable_fb_region().ok_or(ENODEV)?,
-> 
-> OK, failing out is correct here. But in addition, we should also
-> log this at dev_err!() level. This is rare, surprising, and actionable,
-> so perfect for that level of logging.
 
-Sure, that works for me. Will add it in for v12.
+On 4/20/2026 4:25 PM, Mario Limonciello wrote:
+>
+>
+> On 3/7/26 06:49, Mario Limonciello wrote:
+>>
+>>
+>> On 1/12/26 12:29 PM, Mario Limonciello wrote:
+>>> When a surprise unplug occurs while a process has active KFD queues,
+>>> userspace never gets a chance to call kfd_ioctl_destroy_queue() to
+>>> properly clean them up. This leads to a WARN_ON in uninitialize()
+>>> complaining about active_queue_count or processes_count being non-zero.
+>>>
+During hot-unplug driver sends SIGBUS signal to all processes who are 
+using the unplugged device. It is expected that affected processes will 
+clean their workloads when get this signal.
 
-thanks,
+When a device got removed physically all sources from it will be 
+removed. It is unnecessary(in theory) to clean them up. I am not 
+surprised to see some software warnings due to hardware got physically 
+removed since it is unexpected behavior at run time.
 
---
-Joel Fernandes
+I think what we need worry about is if there is memory leak. Driver also 
+waits when an affected device is idle(by 
+kgd2kfd_check_device_idle(adev)) by checking/waiting if there is process 
+still using it. If there is no process using the being removed device 
+the processes should have been terminated by same process termination 
+logic from driver.
 
+Regards
+
+Xiaogang
+
+>>> The issue is that during surprise unplug:
+>>> 1. amdgpu_device_fini_hw() checks drm_dev_is_unplugged()
+>>> 2. It calls amdgpu_amdkfd_device_fini_sw()
+>>> 3. This leads to kfd_cleanup_nodes() -> device_queue_manager_uninit()
+>>> 4. uninitialize() has: WARN_ON(dqm->active_queue_count > 0 ||
+>>>     dqm->processes_count > 0)
+>>>
+>>> The warning triggers because the queues were never destroyed - 
+>>> userspace
+>>> had no opportunity to clean them up before the device disappeared.
+>>>
+>>> Fix this by checking for device unplug in kfd_cleanup_nodes() and
+>>> calling process_termination for each affected process before
+>>> uninitializing the DQM. This mirrors what happens during normal process
+>>> shutdown (kfd_process_notifier_release_internal), ensuring queues are
+>>> properly cleaned up even during surprise removal.
+>>>
+>>> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+>>> Cc: Kent Russell <kent.russell@amd.com>
+>>> Cc: Xiaogang.chen@amd.com
+>>> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+>>
+>> Ping?
+> Ping?
+>>
+>>> ---
+>>>   drivers/gpu/drm/amd/amdkfd/kfd_device.c | 32 ++++++++++++++++++++++++
+>>>   1 file changed, 32 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/ 
+>>> drm/amd/amdkfd/kfd_device.c
+>>> index e9cfb80bd436..7727b66e6afb 100644
+>>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+>>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+>>> @@ -664,6 +664,38 @@ static void kfd_cleanup_nodes(struct kfd_dev 
+>>> *kfd, unsigned int num_nodes)
+>>>       flush_workqueue(kfd->ih_wq);
+>>>       destroy_workqueue(kfd->ih_wq);
+>>> +    /*
+>>> +     * For surprise unplugs with running processes, we need to 
+>>> clean up
+>>> +     * queues before uninitializing the DQM to avoid WARN in 
+>>> uninitialize.
+>>> +     * This handles the case where userspace can't destroy queues 
+>>> normally.
+>>> +     */
+>>> +    if (drm_dev_is_unplugged(adev_to_drm(kfd->adev))) {
+>>> +        struct kfd_process *p;
+>>> +        unsigned int temp;
+>>> +        int idx;
+>>> +
+>>> +        idx = srcu_read_lock(&kfd_processes_srcu);
+>>> +        hash_for_each_rcu(kfd_processes_table, temp, p, 
+>>> kfd_processes) {
+>>> +            int j;
+>>> +
+>>> +            for (j = 0; j < p->n_pdds; j++) {
+>>> +                struct kfd_process_device *pdd = p->pdds[j];
+>>> +
+>>> +                if (pdd->dev->kfd != kfd)
+>>> +                    continue;
+>>> +
+>>> +                dev_info(kfd_device,
+>>> +                     "Terminating queues for process %d on 
+>>> unplugged device\n",
+>>> +                     p->lead_thread->pid);
+>>> +
+>>> + pdd->dev->dqm->ops.process_termination(pdd->dev->dqm,
+>>> +                                       &pdd->qpd);
+>>> +                pdd->already_dequeued = true;
+>>> +            }
+>>> +        }
+>>> +        srcu_read_unlock(&kfd_processes_srcu, idx);
+>>> +    }
+>>> +
+>>>       for (i = 0; i < num_nodes; i++) {
+>>>           knode = kfd->nodes[i];
+>>>           device_queue_manager_uninit(knode->dqm);
+>>
+>>
+>
