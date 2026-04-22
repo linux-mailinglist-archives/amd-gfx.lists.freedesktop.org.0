@@ -2,99 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OAaHHD466WnFWAIAu9opvQ
+	id EBwDJsXd6Wm9mAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 Apr 2026 23:14:38 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 10:52:21 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C79A444AD4E
-	for <lists+amd-gfx@lfdr.de>; Wed, 22 Apr 2026 23:14:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 332E244ECCB
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 10:52:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A6FD10E0AA;
-	Wed, 22 Apr 2026 21:14:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB0DC10EFF1;
+	Thu, 23 Apr 2026 08:52:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jdu84wI1";
+	dkim=pass (2048-bit key; secure) header.d=protonmail.com header.i=@protonmail.com header.b="bqQYdI7d";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f51.google.com (mail-dl1-f51.google.com [74.125.82.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD6D610E097
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 Apr 2026 21:14:34 +0000 (UTC)
-Received: by mail-dl1-f51.google.com with SMTP id
- a92af1059eb24-12c8ed67dccso331997c88.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 Apr 2026 14:14:34 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1776892474; cv=none;
- d=google.com; s=arc-20240605;
- b=C1eH+mvIPRR6axibNm7cFgYfHJMssCfrSJf1XR2yjlreXkqF505qK/LibVvTkLg2pM
- jFoSv4zHvqi4tnVQJfcbTrw30RRTwvz70G+0T3VbkbHNJS5zX1vEDFVyzfrdrTs6YCeA
- cGhDgNavUuBb3tCV7GzxPiK7Uihv3eiSLF+bjEiMZaUbuKFGp4QxMP5i2PGSudkqbt+X
- EC/RERRyKdFQ+LEYDAZwU95GHeR0j5Mt3mdk9Qhoe+km3LjIVnWD8yJHfvfedrnh0m4F
- ujhKS9G1/qMjUs1tjNmdvOTy+sT5LkWZP3I1iLZDF7IGGAS4ay4qX5O1bIDREg4RexDU
- Eb1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=djwb1PByaTQ5JHTQ0MugKJ3pAoBUXuZckSepTgVond0=;
- fh=q79erz+LYRjWqw08ZhVGwK3VbiUe+72MSYGxQoxKG8I=;
- b=Bc9fo2xaTpCvzjlq8W9UclpdA/mlqohQUGoE1vxKUx5ypadoRV7P4fs0XT39Nz+/Ty
- 0XYEGqqcXYpTM17p4TJ7DZKW5xb1/ve+D7L/Q84QhcajFKXmxLyaEgxVqHhAlLMz0Y43
- OgwKuxPjMJlJ/W56J+E2P47G9N7Kexv4hnnObMnHD4rI7C+ts82b3XVzGB6b+2oxkznG
- /qjJK4asdyaudYW1US3lF4PmI9Dhv3IiAEmiqaXfaYoA7QRgwHb1pT5WZijWI8iTOHQK
- 0I6R9TAObUbhXIblb576b6osOhdfoAus0Z6j+KHL/fLv2levsMhk5y96XZBce284eK9H
- MGeA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776892474; x=1777497274; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=djwb1PByaTQ5JHTQ0MugKJ3pAoBUXuZckSepTgVond0=;
- b=jdu84wI1El49AUCq7McPQoV2z37CeBnPS5MMaUSCVny3KD1APGGiRWGJJ5CZJ0d0oa
- YrJweSQ2eSj/pNC76wp2x8EKrGE8CA+LaWqSRNLcF+t6UD3zB9LylCXkTZ/NmClQr4an
- gnJL4VcjD9feFGxjWx9DuJ9RRxBA3adlfN8Trw5tnYGEt1Yz5AbyHQIUu8V0ONzICkFi
- i0OscHE4YJL7Qfms+rTDQFRfqF66RB1b1XwsUhxAvvFOOpcbesMLB3BjD9Rv6v1hC9He
- T1nwgWarLTg4K9g2YBqr9lKcBnibRhLty5A4IpLkIL7w5DxWh08M7OcYsnPptsO+RssK
- 1FNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776892474; x=1777497274;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=djwb1PByaTQ5JHTQ0MugKJ3pAoBUXuZckSepTgVond0=;
- b=Bey+HqST1C9a5fhiBgQNZo2F26nxcooTqJwBZULJKD7X+FQz73MDvazEe5HU7GvUuJ
- NpMHg+AGJGb1sqwipe8jdAeA73sQ+K1oFgvvWFKSAa2pZZRsQOtTROKSNuruRoO38Fp2
- OO5G7oHCfgukCIhbx/LNfqxYciahB/Of1Q2TJiRBPbCfjeScYLSAV8xx7GIXwOk51knW
- X7f5cnMp8xH3k82Qmb4txv8SEUioq7LLGZxCpuLLB88J1/wx6MNBqMSuGbGNOL54CZrs
- u2af/FJ9OmPKAQ3/7idItdk3YRjhbZU0QFEi88T1DO9K6/cUj569BNWJsoAW9tQsAEaO
- qcXQ==
-X-Gm-Message-State: AOJu0Yzdi6hiOTC2V9L18NGN7zo+CmqivtKR5LWGY0Vn1hWxAt4KCX5E
- 49VPZ5782vlCdBbP9bXJiOF0oPnB7Ue6wZdBYI1a00Mw7OEuXKbK/kCIWGjXeJ1xIDaco1Hg7gE
- s+geEF9KtUXfuL7PlzwbUCAZd61H9Irk=
-X-Gm-Gg: AeBDiesdBB4VrKHSZaXI043BGKnL7pg0h408Ap4viv2FAJah02xk8gDt/2OOPR77lVP
- I3MNoeO2m17pOphDjVJC9Q7ulyBt95MBSGdk7M4DMok8I1abP6IqqvaZ82wsdaefDYGA/kHpDPi
- zQgBzkfLKvGeciUJtSWqsYcacLi/5s4cVhFy/lF+MLwpor4rC4LS2prtCp4Sk8Ix5JPwrWkUixj
- 7sfDTFqgqXzX0mTOKw3k7Ko5Izdzks3J+tux8NcRnOuHYPei6pvMWCBu9h/IJH3KoSmn1o2BOlQ
- SVVfc9OlTfbu/3IuIa0ySlBvYiUeRqD038Ep8KKhAyq1AR5R+s083+19/TMNsNWYZHQ7qP9fmKO
- 1ExDY
-X-Received: by 2002:a05:7022:6988:b0:12b:f899:7178 with SMTP id
- a92af1059eb24-12c73fac164mr4651299c88.7.1776892473955; Wed, 22 Apr 2026
- 14:14:33 -0700 (PDT)
+Received: from mail-4327.protonmail.ch (mail-4327.protonmail.ch [185.70.43.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61DC310E16A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 Apr 2026 21:29:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+ s=protonmail3; t=1776893264; x=1777152464;
+ bh=hNuKgalmnoGfnIXopd2mRVdLZ+BpFCeJ4dh9y0wW2pE=;
+ h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+ Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+ b=bqQYdI7d8dFMSQQIInef6ujtBuqj1acLRbAVNyHfCINRlxAX1ulJpJZh7eNzwbbG+
+ LWjn0SkXQw5eW/g/aBBjsgA4xSnNsrXAM8fLxRnzuU9iV75oE2vbN5foTjAw1YzHa5
+ KDXhEld6xaejNKqJ+L8LtrtJxsomz5k5kOr7UC2RoUeKXCKULRklvGpI5MDVJJIjWQ
+ kvhzvVGP7Uct9uAiNghKW6ZJFUzwXP/tMuFtDeMd/NXf+SgT+aOAvaNGIOf63E2N8G
+ 91KUtkRadZAub3O1+cIztqHcxuqP7+RtB7ltbL+dUgBWl7hQebA9Sa19Vqwwx37jH7
+ CYKBZmCVMzFpg==
+Date: Wed, 22 Apr 2026 21:27:38 +0000
+To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+From: Kostadin Shishmanov <kostadinshishmanov@protonmail.com>
+Subject: BUG: sleeping function called from invalid context at
+ ./include/linux/sched/mm.h:323 during DC initialization
+Message-ID: <7t2m9N9vWRP5ulx1qQDLmZlw1qIep3cLDd54ZVPDBxsEeUtWX1r4VTsKCbz1QbZEjw0jbsT3cmgfwv1D1XtZtyikC9qlvLmj6KBkjuFsy3s=@protonmail.com>
+Feedback-ID: 25269289:user:proton
+X-Pm-Message-ID: d1d42383f0a200c0ecbd58778ed5d76cb5dbc169
 MIME-Version: 1.0
-References: <20260418214933.230912-1-timur.kristof@gmail.com>
- <20260418214933.230912-5-timur.kristof@gmail.com>
-In-Reply-To: <20260418214933.230912-5-timur.kristof@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 22 Apr 2026 17:14:22 -0400
-X-Gm-Features: AQROBzDXpbxQyRj2_qTWHkRue7GMoLiLBbCt6WMRIrgTrgr1Qe_xpVYint2_sh0
-Message-ID: <CADnq5_Mh6TgU6uRJF_ie5DJxoXxWA08tzC9qzv4aS4=f8hmDzA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] drm/amdgpu/gfx6: Support harvested SI chips with
- disabled TCCs (v2)
-To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com, 
- christian.koenig@amd.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Thu, 23 Apr 2026 08:52:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,186 +56,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_ONE(0.00)[1];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_ALL(0.00)[];
+	ARC_NA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[protonmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[kostadinshishmanov@protonmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[protonmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FREEMAIL_FROM(0.00)[gmail.com]
-X-Rspamd-Queue-Id: C79A444AD4E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,protonmail.com:dkim,protonmail.com:mid]
+X-Rspamd-Queue-Id: 332E244ECCB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Applied the series.  Thanks!
+It only seems to show up if CONFIG_DEBUG_ATOMIC_SLEEP is enabled, but thoug=
+ht I should report it anyway. The kernel is built from drm-next today.
 
-On Sat, Apr 18, 2026 at 6:09=E2=80=AFPM Timur Krist=C3=B3f <timur.kristof@g=
-mail.com> wrote:
->
-> This commit fixes amdgpu to work on the Radeon HD 7870 XT
-> which has never worked with the Linux open source drivers before.
->
-> Some boards have "harvested" chips, meaning that some parts of
-> the chip are disabled and fused, and it's sold for cheaper and
-> under a different marketing name.
-> On a harvested chip, any of the following can be disabled:
-> - CUs (Compute Units)
-> - RBs (Render Backend, aka. ROP)
-> - Memory channels (ie. the chip has a lower bandwidth)
-> - TCCs (ie. less L2 cache)
->
-> Handle chips with harvested TCCs by patching the registers
-> that configure how TCCs are mapped.
->
-> If some TCCs are disabled, we need to make sure that
-> the disabled TCCs are not used, and the remaining TCCs
-> are used optimally.
->
-> TCP_CHAN_STEER_LO/HI control which TCC is used by TCP channels.
-> TCP_ADDR_CONFIG.NUM_TCC_BANKS controls how many channels are used.
->
-> Note that the TCC configuration is highly relevant to performance.
-> Suboptimal configuration (eg. CHAN_STEER=3D0) can significantly
-> reduce gaming performance.
->
-> For optimal performance:
-> - Rely on the CHAN_STEER from the golden registers table,
->   only skip disabled TCCs but keep the mapping order.
-> - Limit NUM_TCC_BANKS to number of active TCCs to avoid thrashing,
->   which performs better than using the same TCC twice.
->
-> v2:
-> - Also consider CGTS_USER_TCC_DISABLE for disabled TCCs.
->
-> Link: https://bugs.freedesktop.org/show_bug.cgi?id=3D60879
-> Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/2664
-> Fixes: 2cd46ad22383 ("drm/amdgpu: add graphic pipeline implementation for=
- si v8")
-> Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
-> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c | 66 +++++++++++++++++++++++++++
->  1 file changed, 66 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c b/drivers/gpu/drm/amd/=
-amdgpu/gfx_v6_0.c
-> index 73223d97a87f5..ac90d8e9d86a8 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v6_0.c
-> @@ -1571,6 +1571,71 @@ static void gfx_v6_0_setup_spi(struct amdgpu_devic=
-e *adev)
->         mutex_unlock(&adev->grbm_idx_mutex);
->  }
->
-> +/**
-> + * gfx_v6_0_setup_tcc() - setup which TCCs are used
-> + *
-> + * @adev: amdgpu_device pointer
-> + *
-> + * Verify whether the current GPU has any TCCs disabled,
-> + * which can happen when the GPU is harvested and some
-> + * memory channels are disabled, reducing the memory bus width.
-> + * For example, on the Radeon HD 7870 XT (Tahiti LE).
-> + *
-> + * If some TCCs are disabled, we need to make sure that
-> + * the disabled TCCs are not used, and the remaining TCCs
-> + * are used optimally.
-> + *
-> + * TCP_CHAN_STEER_LO/HI control which TCC is used by TCP channels.
-> + * TCP_ADDR_CONFIG.NUM_TCC_BANKS controls how many channels are used.
-> + *
-> + * For optimal performance:
-> + * - Rely on the CHAN_STEER from the golden registers table,
-> + *   only skip disabled TCCs but keep the mapping order.
-> + * - Limit NUM_TCC_BANKS to number of active TCCs to avoid thrashing,
-> + *   which performs better than using the same TCC twice.
-> + */
-> +static void gfx_v6_0_setup_tcc(struct amdgpu_device *adev)
-> +{
-> +       u32 i, tcc, tcp_addr_config, num_active_tcc =3D 0;
-> +       u64 chan_steer, patched_chan_steer =3D 0;
-> +       const u32 num_max_tcc =3D adev->gfx.config.max_texture_channel_ca=
-ches;
-> +       const u32 dis_tcc_mask =3D
-> +               amdgpu_gfx_create_bitmask(num_max_tcc) &
-> +               (REG_GET_FIELD(RREG32(mmCGTS_TCC_DISABLE),
-> +                              CGTS_TCC_DISABLE, TCC_DISABLE) |
-> +                REG_GET_FIELD(RREG32(mmCGTS_USER_TCC_DISABLE),
-> +                              CGTS_USER_TCC_DISABLE, TCC_DISABLE));
-> +
-> +       /* When no TCC is disabled, the golden registers table already ha=
-s optimal TCC setup */
-> +       if (!dis_tcc_mask)
-> +               return;
-> +
-> +       /* Each 4-bit nibble contains the index of a TCC used by all TCPs=
- */
-> +       chan_steer =3D RREG32(mmTCP_CHAN_STEER_LO) | ((u64)RREG32(mmTCP_C=
-HAN_STEER_HI) << 32ull);
-> +
-> +       /* Patch the TCP to TCC mapping to skip disabled TCCs */
-> +       for (i =3D 0; i < num_max_tcc; ++i) {
-> +               tcc =3D (chan_steer >> (u64)(4 * i)) & 0xf;
-> +
-> +               if (!((1 << tcc) & dis_tcc_mask)) {
-> +                       /* Copy enabled TCC indices to the patched regist=
-er value. */
-> +                       patched_chan_steer |=3D (u64)tcc << (u64)(4 * num=
-_active_tcc);
-> +                       ++num_active_tcc;
-> +               }
-> +       }
-> +
-> +       WARN_ON(num_active_tcc !=3D num_max_tcc - hweight32(dis_tcc_mask)=
-);
-> +
-> +       /* Patch number of TCCs used by TCPs */
-> +       tcp_addr_config =3D REG_SET_FIELD(RREG32(mmTCP_ADDR_CONFIG),
-> +                                       TCP_ADDR_CONFIG, NUM_TCC_BANKS,
-> +                                       num_active_tcc - 1);
-> +
-> +       WREG32(mmTCP_ADDR_CONFIG, tcp_addr_config);
-> +       WREG32(mmTCP_CHAN_STEER_HI, upper_32_bits(patched_chan_steer));
-> +       WREG32(mmTCP_CHAN_STEER_LO, lower_32_bits(patched_chan_steer));
-> +}
-> +
->  static void gfx_v6_0_config_init(struct amdgpu_device *adev)
->  {
->         adev->gfx.config.double_offchip_lds_buf =3D 0;
-> @@ -1729,6 +1794,7 @@ static void gfx_v6_0_constants_init(struct amdgpu_d=
-evice *adev)
->         gfx_v6_0_tiling_mode_table_init(adev);
->
->         gfx_v6_0_setup_rb(adev);
-> +       gfx_v6_0_setup_tcc(adev);
->
->         gfx_v6_0_setup_spi(adev);
->
-> --
-> 2.53.0
->
+The trace disappears if I boot with nomodeset or amdgpu.dc=3D0
+
+[    7.167550] amdgpu 0000:03:00.0: STB initialized to 2048 entries
+[    7.167693] amdgpu 0000:03:00.0: [drm] Loading DMUB firmware via PSP: ve=
+rsion=3D0x02020021
+[    7.167987] amdgpu 0000:03:00.0: [drm] use_doorbell being set to: [true]
+[    7.168002] amdgpu 0000:03:00.0: [drm] use_doorbell being set to: [true]
+[    7.168015] amdgpu 0000:03:00.0: [drm] use_doorbell being set to: [true]
+[    7.168027] amdgpu 0000:03:00.0: [drm] use_doorbell being set to: [true]
+[    7.168045] amdgpu 0000:03:00.0: [VCN instance 0] Found VCN firmware Ver=
+sion ENC: 1.33 DEC: 4 VEP: 0 Revision: 14
+[    7.168142] amdgpu 0000:03:00.0: [VCN instance 1] Found VCN firmware Ver=
+sion ENC: 1.33 DEC: 4 VEP: 0 Revision: 14
+[    7.233699] amdgpu 0000:03:00.0: reserve 0xa00000 from 0x83fd000000 for =
+PSP TMR
+[    7.376763] amdgpu 0000:03:00.0: SECUREDISPLAY: optional securedisplay t=
+a ucode is not available
+[    7.376807] amdgpu 0000:03:00.0: smu driver if version =3D 0x00000040, s=
+mu fw if version =3D 0x00000041, smu fw program =3D 0, smu fw version =3D 0=
+x003a5b00 (58.91.0)
+[    7.376837] amdgpu 0000:03:00.0: use vbios provided pptable
+[    7.451657] amdgpu 0000:03:00.0: SMU is initialized successfully!
+[    7.451766] BUG: sleeping function called from invalid context at ./incl=
+ude/linux/sched/mm.h:323
+[    7.451776] in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 327, =
+name: (udev-worker)
+[    7.451783] preempt_count: 201, expected: 0
+[    7.451786] RCU nest depth: 0, expected: 0
+[    7.451789] 1 lock held by (udev-worker)/327:
+[    7.451790]  #0: ffff8c7bc1eb4200 (&dev->mutex){....}-{4:4}, at: __drive=
+r_attach+0xb5/0x200
+[    7.451797] CPU: 8 UID: 0 PID: 327 Comm: (udev-worker) Not tainted 7.0.0=
+-rc7 #1 PREEMPT(full)  3ea630ac936a7123d6bffb42972bc5d75ccd9b07
+[    7.451799] Hardware name: ASRock B650M-HDV/M.2/B650M-HDV/M.2, BIOS 4.10=
+ 02/09/2026
+[    7.451799] Call Trace:
+[    7.451800]  <TASK>
+[    7.451801]  dump_stack_lvl+0x59/0x80
+[    7.451803]  ? dcn30_clock_source_create+0x34/0xb0 [amdgpu 2841543364449=
+4137702b25fd9f49d37d365a3cc]
+[    7.452023]  __might_resched.cold+0xec/0xfe
+[    7.452025]  __kmalloc_cache_noprof+0x3a9/0x6e0
+[    7.452029]  dcn30_clock_source_create+0x34/0xb0 [amdgpu 284154336444941=
+37702b25fd9f49d37d365a3cc]
+[    7.452193]  dcn30_create_resource_pool+0x2ea/0x17f0 [amdgpu 28415433644=
+494137702b25fd9f49d37d365a3cc]
+[    7.452317]  ? amdgpu_dm_init+0x510/0x510 [amdgpu 28415433644494137702b2=
+5fd9f49d37d365a3cc]
+[    7.452492]  dc_create_resource_pool+0x166/0x210 [amdgpu 284154336444941=
+37702b25fd9f49d37d365a3cc]
+[    7.452683]  dc_create+0x1e1/0x670 [amdgpu 28415433644494137702b25fd9f49=
+d37d365a3cc]
+[    7.452846]  amdgpu_dm_init+0x305/0x510 [amdgpu 28415433644494137702b25f=
+d9f49d37d365a3cc]
+[    7.453008]  ? __irq_work_queue_local+0x4e/0x150
+[    7.453010]  ? console_unlock+0x94/0x120
+[    7.453012]  ? irq_work_queue+0x29/0x50
+[    7.453013]  ? __wake_up_klogd+0x4e/0x70
+[    7.453014]  ? vprintk_emit+0x260/0x340
+[    7.453019]  ? amdgpu_dm_init+0x510/0x510 [amdgpu 28415433644494137702b2=
+5fd9f49d37d365a3cc]
+[    7.453145]  dm_hw_init+0x17/0x80 [amdgpu 28415433644494137702b25fd9f49d=
+37d365a3cc]
+[    7.453258]  amdgpu_device_init.cold+0x13dc/0x2072 [amdgpu 2841543364449=
+4137702b25fd9f49d37d365a3cc]
+[    7.453445]  ? pci_bus_read_config_word+0x42/0x70
+[    7.453448]  amdgpu_driver_load_kms+0x15/0x80 [amdgpu 284154336444941377=
+02b25fd9f49d37d365a3cc]
+[    7.453577]  amdgpu_pci_probe+0x231/0x540 [amdgpu 28415433644494137702b2=
+5fd9f49d37d365a3cc]
+[    7.453688]  ? _raw_spin_unlock_irqrestore+0x3c/0x50
+[    7.453691]  local_pci_probe+0x39/0x80
+[    7.453694]  pci_call_probe+0x56/0x300
+[    7.453696]  ? _raw_spin_unlock+0x1f/0x40
+[    7.453697]  ? pci_match_device+0xf9/0x120
+[    7.453699]  pci_device_probe+0x91/0x130
+[    7.453701]  really_probe+0xd5/0x370
+[    7.453702]  __driver_probe_device+0x78/0x140
+[    7.453703]  driver_probe_device+0x1f/0xa0
+[    7.453704]  ? __device_attach_driver+0x110/0x110
+[    7.453705]  __driver_attach+0xc0/0x200
+[    7.453706]  bus_for_each_dev+0x81/0xd0
+[    7.453708]  bus_add_driver+0x113/0x200
+[    7.453709]  ? crc16+0x1000/0x1000 [crc16 23fab5f78db1f9f2d12b1a145d6cfe=
+f916d4b62e]
+[    7.453710]  driver_register+0x71/0xd0
+[    7.453711]  ? __pci_register_driver+0x58/0x80
+[    7.453712]  do_one_initcall+0x68/0x3d0
+[    7.453715]  do_init_module+0x62/0x230
+[    7.453717]  __do_sys_init_module+0x192/0x1c0
+[    7.453719]  do_syscall_64+0xe2/0x950
+[    7.453721]  ? trace_hardirqs_off+0x46/0xf0
+[    7.453722]  ? trace_hardirqs_on_prepare+0xd0/0xf0
+[    7.453723]  ? lockdep_hardirqs_on_prepare+0xcf/0x160
+[    7.453725]  ? irqentry_exit+0xf2/0x780
+[    7.453727]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
+[    7.453727] RIP: 0033:0x7f0f3c94afba
+[    7.453729] Code: 48 8b 0d 41 9e 0d 00 f7 d8 64 89 01 48 83 c8 ff c3 66 =
+2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 49 89 ca b8 af 00 00 00 0f 05 <48=
+> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 0e 9e 0d 00 f7 d8 64 89 01 48
+[    7.453729] RSP: 002b:00007fffaca4d538 EFLAGS: 00000246 ORIG_RAX: 000000=
+00000000af
+[    7.453730] RAX: ffffffffffffffda RBX: 000055a774508700 RCX: 00007f0f3c9=
+4afba
+[    7.453731] RDX: 00007f0f3d1344ce RSI: 000000001a2330d0 RDI: 00007f0f171=
+cc010
+[    7.453731] RBP: 00007fffaca4d5d0 R08: 00007f0f171cc010 R09: 000055a7745=
+70530
+[    7.453732] R10: 00007f0f3c946087 R11: 0000000000000246 R12: 00007f0f3d1=
+344ce
+[    7.453732] R13: 000055a77440a4d0 R14: 0000000000000000 R15: 00000000000=
+00000
+[    7.453734]  </TASK>
+[    7.453893] amdgpu 0000:03:00.0: [drm] Display Core v3.2.378 initialized=
+ on DCN 3.0
+
+Regards,
+Kostadin
