@@ -2,78 +2,138 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KO7TN8Td6Wm9mAIAu9opvQ
+	id OEJlIJG66WlJigIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 10:52:20 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 08:22:09 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7622F44ECBA
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 10:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDA5744D950
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 08:22:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C44FF10EFEA;
-	Thu, 23 Apr 2026 08:52:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B782410EAEE;
+	Thu, 23 Apr 2026 06:22:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mMkEppB3";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="gr73+IDO";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com
- [209.85.128.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77C3210E2FB
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 06:13:16 +0000 (UTC)
-Received: by mail-yw1-f178.google.com with SMTP id
- 00721157ae682-78fc4425b6bso53826237b3.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 Apr 2026 23:13:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776924795; x=1777529595; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=U3/MOmdOLroD9p85e7US4YLluRFmhxlSnYcY4Fdalac=;
- b=mMkEppB38dNMlknZ4d4vCNCY1YKjitcrunaMh22ATcjPmr2bsg0PLEoul0NfzXD98x
- TiABNyEtCBe+VCdx62sEbxirlDptU3HxUPMccQmGO4L/2wf4rU83d2yFzedTQ7DjMwEY
- IPBntFeKBpGuaN5eJhZwZD1IrLRbNEEoxMdkIaidmlINil7LxQUBgELMG+AwYMqX6TP/
- 2ROcDlBITPoTLF4YIW32qygp9C1ba9E2wYoOQdmBEAHeJ1arSwntjaMcfzvZwObb8Hkz
- YTY7VIlMBJiVx+yZjaaWcB1BFQUaVKOtYzfzIQi8N+bq2aUQlgS1NF47L9v4MtTpi/7w
- b0Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776924795; x=1777529595;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=U3/MOmdOLroD9p85e7US4YLluRFmhxlSnYcY4Fdalac=;
- b=bzu62s7jDk3o9Q649YsaQe5yOLmX6FzblmH0SDXMdhSiKmQSHZXShHhk+y8AWyatVz
- wEth57Cydw+QkNFERo3M1cDVnZmCTnDlyiyyRINq2rqZ3VTs542HFRygpsuiuGMsCMc8
- 9/Jmxmzye3sfJfWzfdLeC9cgTI4EAdJI4rDKb1jLli/WTEUNZaXlTJQezAhvV+Sk1Nc8
- zRN3scyo31ztPlqxikI1InWq12gGFvTIqGfitbrEj+kH6Wmg8Z5687pjJyVpInaeUu9E
- G8GGZHVmcxDL/u8PPQjnAEOjPGxy0uB7nGfGyr//gmhWDpNb3vNLMppCXjA2jxVogTUo
- ZXqQ==
-X-Gm-Message-State: AOJu0YzfBqU3fDdVlY8Ckaj/eKER+3kKiLSzxSRV1FZvWmOy/Nb50bWd
- bAKBdpKgzxkdfSMbUNURHkc8Md1coK7vHybvsVYOPN1YvMYMa/f4Q0gl
-X-Gm-Gg: AeBDiesntZT+hWE+QSkRsExhTd8wv6r7Xuum96jE6ZI2p3I34T/InjazFiqctw1MNuY
- oDy+VuUT0YazLxooNbLfuGzDUE9w5okLxlhoS4j8Oj9juKMDtIv3V3HNZFo06zb2vs3veKb/7El
- 4WmisxBfRjHKcJkTenQnZtlfjU+Soidsa3fYaHs/wfLgeyoOsoSKArHBUVK4l0b7UCO1lnE0XSi
- txvwRxQtteK/DWo0Tx6Jtzg/j5IfUKisD3qeQP5+RS5BOaBef6iKE2sH0U2h1BzeqdYIptZRPZH
- esq2x9u/rSTPdZfjOU54NvGFnX5II87KfH4RUeZthddOdlbCIeWpcQVd2WIQtXNpPV0PxogpIPX
- 7uyRHQkcZCFJJFx9a8wGjbu55lJBOBAAqq1DnwumZCWVJDLLXJbi23SM9maCd/eCIUYZ40jKSbc
- ziQI3U74NyjNyOIIODRbEaChrkl3Yh
-X-Received: by 2002:a05:690c:ed5:b0:7b9:b31:8361 with SMTP id
- 00721157ae682-7b9ece6a6e6mr270428607b3.1.1776924795363; 
- Wed, 22 Apr 2026 23:13:15 -0700 (PDT)
-Received: from localhost ([172.216.252.33]) by smtp.gmail.com with ESMTPSA id
- 00721157ae682-7b9ee9b28a9sm76619487b3.39.2026.04.22.23.13.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 22 Apr 2026 23:13:14 -0700 (PDT)
-Date: Thu, 23 Apr 2026 09:13:08 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: David Yat Sin <david.yatsin@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
-Subject: [bug report] drm/amdkfd: CRIU checkpoint and restore events
-Message-ID: <aem4dADjR-Q7Wduj@stanley.mountain>
+Received: from BN8PR05CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11011046.outbound.protection.outlook.com [52.101.57.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52AB210E06A;
+ Thu, 23 Apr 2026 06:22:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OqIs40TsUCNIjzcX7M4Ejn7k4MORjLMF90Se6wXQr2/SUpUF/P/N6b4oQgexI8rrNzaR8EDfjNwcknqu+9urHZSmmRTsEZCwJIrUOcyA6tEQPMwvFwb2U72pXWisiCTyG5XihxhL1iFxoLnYSE5dxz0XUm6NMzBVZXAbfCpQ7Nt8b/jFD+NNrXiuECpMhV1THlG0naVXPs7elOf/tzslD+kdDD3EddP8V3gi6pp7k993CptGIO+eC1HpKt3uQzyfF3U4RMRY96+NgBfBRBaFgslDjcdOKPzBxEjDtYMMDtg24ycl94xf+876q8Jv6wyyVes5ZMNAa4wGbBuapprMwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Nb8PSV5BtqPKr2jjMvPI1lLPG4l9haM0Rs55C+b5q44=;
+ b=ckqNJtHQzeVmmcYJbqQBQo4f0ux/Y4GkGssfJWCdYOAG9wIBsvEbKyXqZVq3MM/EnpB0B410qc/bZTRpuPq+iZbs/Il/E9iR6yXOsU1qO0oihtA51Ue9zywRhdufxP4Jn2DU+98pTUqLW4IJUnt1d0KLFsY5j/M39qDw7PdO1/SVTnbdaG1655nFp9Pbd4P1Mr0zYjLv4A3XBbcED7eWQ1k3Ihh7SioE+Pp2S2kNVXky9x96pvm2BhplX3c2Br9hqHFkk8IEjhq2d3WrZc20HYM4PzN4vU6SGTvsVeGZSVhTbITY7B8DH/QIne7R7TMaTn3OXly1Otpeg9RiY2rvtQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Nb8PSV5BtqPKr2jjMvPI1lLPG4l9haM0Rs55C+b5q44=;
+ b=gr73+IDO5Cbmmubj2W+qttWLGh2Ef6PfFkMeUmHtpJIe6lnA4sfukdCllSX2efuS0k8m/TDKx8/xymABA2a4zEtCLE2x5uK+TjbZJvadnW+vsp/phkAiUYVLRomJLPSJqrfuL+eYmPQ0iVNSvRh6abKi4VzTmGkZEueWVdirF6k=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from IA1PR12MB6435.namprd12.prod.outlook.com (2603:10b6:208:3ad::10)
+ by PH7PR12MB6468.namprd12.prod.outlook.com (2603:10b6:510:1f4::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.12; Thu, 23 Apr
+ 2026 06:22:00 +0000
+Received: from IA1PR12MB6435.namprd12.prod.outlook.com
+ ([fe80::8b77:7cdb:b17a:a8e2]) by IA1PR12MB6435.namprd12.prod.outlook.com
+ ([fe80::8b77:7cdb:b17a:a8e2%5]) with mapi id 15.20.9846.019; Thu, 23 Apr 2026
+ 06:21:59 +0000
+Message-ID: <9e2bee93-306a-4ef0-80be-daed33c8bbb5@amd.com>
+Date: Thu, 23 Apr 2026 14:21:39 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC/POC PATCH 01/12] drm/amdgpu: add SVM UAPI definitions
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Felix.Kuehling@amd.com
+Cc: Alexander.Deucher@amd.com, Oak.Zeng@amd.com, Jenny-Jing.Liu@amd.com,
+ Philip.Yang@amd.com, Xiaogang.Chen@amd.com, Ray.Huang@amd.com,
+ Lingshan.Zhu@amd.com, Junhua.Shen@amd.com, matthew.brost@intel.com,
+ rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com, dakr@kernel.org,
+ aliceryhl@google.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20260420120739.1811731-1-honglei1.huang@amd.com>
+ <20260420120739.1811731-2-honglei1.huang@amd.com>
+ <cda09d5d-4cca-46a1-8625-fe9fa687e5a2@amd.com>
+ <50d13ae3-be27-4b79-91ef-e1b386054943@amd.com>
+ <54bb7286-2ffb-47f0-b37d-83b5c39ad9a0@amd.com>
+Content-Language: en-US
+From: "Huang, Honglei1" <honghuan@amd.com>
+In-Reply-To: <54bb7286-2ffb-47f0-b37d-83b5c39ad9a0@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2PR01CA0035.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:192::13) To IA1PR12MB6435.namprd12.prod.outlook.com
+ (2603:10b6:208:3ad::10)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Thu, 23 Apr 2026 08:52:16 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR12MB6435:EE_|PH7PR12MB6468:EE_
+X-MS-Office365-Filtering-Correlation-Id: 121dde75-f1b9-498b-e0aa-08dea1009fc8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|18002099003|22082099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: wqwvNPAlnTM3I3qqsauq5PSr+JxCilDpY3fDBLMg6PGm+Sruuxm9IY2lU74VYqWCDEhZgiYW0kfTbEehiprQm6Gq/WdSlf1oWu8QvPSpde4RevfsRIh1hya+piDoFYuvWdCw5g8uaVfSaf+osO1TT9OQlsimakS42JXEHdamZiZafA29TUitWCJsqPF38oVHhsV+3ArvHya8FpjrEUTqWuYnJfLcf0I/a61aUm57vEOqSorCCiaR6jq/sZG09WHXNKfRfY3FLzkFr+miM+n69CxzGVYMX2VW3+6nCnETJGI3s9JhwOM1Z8r3vYnelGA4D3UCZR51SHr2LL8gdXbe3sqvFy76g60H/0Z0yVk88qYcwwZxgr0m3W7ubXVLchCx+8eVqERdA3LnduFVTXDlazy2m52fTsF71egZieSkJoSYIEPHrUAj3YHmtas5wgqi9b34quiNyB9+Lx3HSejUdniDx0f7jf3Q5cWt36PZoi9prSQmKnkiYRV2YM+uxGk8OoMECPsvse5lEZjChDil8u0v2DwdsHYLzgX6xtvMHj9oj6QKMwDC/QxuQTpqQ5QrzkfxzfCzlp+NR5jyJt5eomgUYOjRFv5yRqRxADiZ0ngXM4C/C3S6vaEOGmPPsl2bBFmq29o8HlI5BTulzPoEamrZBJGd2Xxe1eRW6/2fNI+tHFg2TPSqZyYBweVa3Rgm8fyguHB/rb/QA6WufxZ+s9YqE5MmYQWjRjeFTHikq4s=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR12MB6435.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NDdPbWpqN1ZueVJWK0oyWjRTSFR3K1NxNDRONENaa3RQRzY2T2V6eFB0U0Yz?=
+ =?utf-8?B?TlJxNDRMd1VhaWVnMk9VWENQT0F4alhLaDg0bjBDLy92dllEbExJT2pWZzh4?=
+ =?utf-8?B?MGh0eGUxck43bFdTa3hmaXExUG9vNTBRdUYySVFEbm9jeTRCcFl0NURiT1E2?=
+ =?utf-8?B?RHlVYUYyeFEzUk54QmFGc0cxZCszVlpLazlsOVVscFVrdXZxaWIrMEQ2VUZH?=
+ =?utf-8?B?Mzh2NGV1ZWxVN01KK3NxemlGZTBDbE9YR2JxaFAwdDRMOXFUMm5IQXZTdUxr?=
+ =?utf-8?B?QkFORXhOR0c4cjBNV21oNDhUTkJGQUx1QjdNUW1qK2JZcWlJd0FJVUpSSndW?=
+ =?utf-8?B?K1dod2J3RXVGTTVxSHNzN3BEeDRYWVJsMFRoZWJKM2JqRzh3Ty9zNVZJM1A1?=
+ =?utf-8?B?em95QmVkSkFUN1Z2dEdHenYySm85ek1JT2RhSmZoL0N0ZVZHMjVySzdiK2tQ?=
+ =?utf-8?B?OEVVYlhxeDJKMlZiNG1DQXU2QzhUalpsc2RtcHlVSlNXRU9rQ3VmQ3NvRDZG?=
+ =?utf-8?B?S1o3WlBDcFNmV2RhMFRmUC83K2lMelB1YXJwTjRuL1dKVWtnVGIrbDZzWXBn?=
+ =?utf-8?B?ak4wakdnT1dvVHRNODJKbUZsY1FzVDV1eVczUTRBOVRCQTRaYkcvNkU0SnVE?=
+ =?utf-8?B?QURrNkNGOXlHSTJvYk1CaXRHdXhmTGR1Q3BOTXpERlVtTEdEUzROWXJGZG02?=
+ =?utf-8?B?NEZOZmVMZlpuYzVrVk5DWHFZRUllL3MvTXJmZ0ZCTVE5bDF0eGJ4YkVqYW5y?=
+ =?utf-8?B?cXMyUE5UOWp4U1J3ZnU2TGN0ZGxJdjkrQUo1ME5UOWY3b1MxMkRQUHV4MHdI?=
+ =?utf-8?B?cE9mdk1XYlEwa2x5NjlmSW4xWXRXWm1kMmVJR3NNY0NJRVZQZjRPMWZlODlN?=
+ =?utf-8?B?Q21LbUc1Qm8zVFQ2M1RxWWRWY2t4Q3pCZVE5K3J0ZHBSc0tja0N1RVJSdlh4?=
+ =?utf-8?B?Yk55YnpyTlArejdhMUxSQkZ4bThDbFR2TGhOWmg3MEVtQVAxREROck5lWmQ4?=
+ =?utf-8?B?N3BTb0ZKTUphMWxrTkVmKytCSnZnQlhuSTY2SW50c0twUzk5SXFSOGc0aXA4?=
+ =?utf-8?B?dTAzTWlWbzk3U1pobEdFTnhzcXcyVHR2NER1QktuSEZnY1dFQTdNckEzZXdO?=
+ =?utf-8?B?Z3pGN2diOHFzUlRBV0ZwQUJ6ZlM5NGNtYjA5R2dmWmp4R3R4blNBNHJVNC9p?=
+ =?utf-8?B?YVFhTkpKV05KYjduSVY3bzZ6UW1PbUFKY1M1ODFrVitseDY4TWdGUGlMSVJG?=
+ =?utf-8?B?NHF1SFhpWVpNMTdleUU5LzA2TkozZDRpbGtvVzBqdG1QZHBFOW54eENId0dM?=
+ =?utf-8?B?MmhCbVBXUTVDN3RtYXZaeUp4NG1rVEZjMmNqMDBYMFRnNmozZFhmQnVtWXVT?=
+ =?utf-8?B?Um45NTRPLzVibGw1a0YvOHUyVDNMU0VVc1ZxVnhvaWNYdFNlQXZOSnFTSTlI?=
+ =?utf-8?B?cGRpcWVNU3NpbHhxRUVyWFlndk1oalZnc2lPWWJ6cW42QVVMNjNaSDZVZTE0?=
+ =?utf-8?B?cDAwQ21OZGU4N1F1dFpySWlIRVpIZS9pMUlReS8rSVYyNTQ0WE1lZEt4SFVt?=
+ =?utf-8?B?RUpnc1MwUG83WUhWdks0MzlldHlGUWJHV1RQU1AzY0EvOWNlN1BFVm1hNU5v?=
+ =?utf-8?B?YzV5eTIvakFOdjA2OHBiTVlmQlhjOEprRDJFNnJZVGtsY1lqV3JWc3BybXpN?=
+ =?utf-8?B?OElnVW5sUXhkakNiV084NVhpb3pxUlUrbVpTVnpwNjhraG9pTm4xdEN4MDZG?=
+ =?utf-8?B?eldFekFxZ0RyeWRZQTVBWXFDVGtMelpsOExWVWZqV3N3OUpIdXJyL2ZnTDFL?=
+ =?utf-8?B?SW5kQ1M1Ry96bUtGY3JLV3ZhcEtRSFZOSTdtdzh3THJiejNKdHlRV0ZZWmYw?=
+ =?utf-8?B?czBtMnJucWIrRWpYVnMxcGc4dm9tdEo0SThMQ1dBRWdtUFE0RWZNUllsYUMv?=
+ =?utf-8?B?ZXJ0YXUwdUFtMEhlcEwxOUFGY1ZsY0dqZFdnYlFORkNjbTN1K2Y4ekV6SlBx?=
+ =?utf-8?B?bEtnYU5BUUFnNHpONEJhZXQ1ZGxWb2NpdEo3VU4xNUhqQW11Q0hFNGV5K0hZ?=
+ =?utf-8?B?K2gvc21iTnk4eWlMTXBORE9PaVZLVStHbTlIYlVUbmZ6K3NXWkxSZ0lYQW1K?=
+ =?utf-8?B?Y3VwN1UzdE44aFBYYUFMYWhyYzRwUXNHemRHSkgyejREem8yWGtkbVRNeDk2?=
+ =?utf-8?B?UFVRNWdxRWp0QnNjbTdScWZQb08yRTU1K2RHaFFHR0thbnl1cmFqa2doU1k1?=
+ =?utf-8?B?ZXk5bVAzOFlza1hjWEQrb0lmcWtXMmRCRC8zMmtvT2RaK05KSjFzMUJ1aVNC?=
+ =?utf-8?Q?o9KmyIN7918rttoUrN?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 121dde75-f1b9-498b-e0aa-08dea1009fc8
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB6435.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2026 06:21:58.8234 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wg5ULwCkz8fB+I4Q3CPNmG7lE97dnl7tj+kQlZQ0tkUbQPvBLb7Il65A+mPvcywBVQYHOBA9SgaHW8q/ImT54g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6468
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,212 +147,210 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:david.yatsin@amd.com,m:SRINIVASAN.SHANMUGAM@amd.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,stanley.mountain:mid]
-X-Rspamd-Queue-Id: 7622F44ECBA
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid];
+	FROM_NEQ_ENVFROM(0.00)[honghuan@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[amd.com:+]
+X-Rspamd-Queue-Id: CDA5744D950
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello David Yat Sin,
-
-Commit 40e8a766a761 ("drm/amdkfd: CRIU checkpoint and restore
-events") from Mar 5, 2021 (linux-next), leads to the following Smatch
-static checker warning:
-
-drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_events.c:110 allocate_event_notification_slot() warn: idr_alloc start value from user can be < 0
-
-[ There are a couple older warnings as well ]
-
-drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_events.c:226 create_other_event() warn: idr_alloc start value from user can be < 0
-drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_chardev.c:2367 criu_restore_memory_of_gpu() warn: idr_alloc start value from user can be < 0
-
-drivers/gpu/drm/amd/amdkfd/kfd_events.c
-   454  int kfd_criu_restore_event(struct file *devkfd,
-   455                             struct kfd_process *p,
-   456                             uint8_t __user *user_priv_ptr,
-   457                             uint64_t *priv_data_offset,
-   458                             uint64_t max_priv_data_size)
-   459  {
-   460          struct kfd_criu_event_priv_data *ev_priv;
-   461          struct kfd_event *ev = NULL;
-   462          int ret = 0;
-   463  
-   464          ev_priv = kmalloc_obj(*ev_priv);
-   465          if (!ev_priv)
-   466                  return -ENOMEM;
-   467  
-   468          ev = kzalloc_obj(*ev);
-   469          if (!ev) {
-   470                  ret = -ENOMEM;
-   471                  goto exit;
-   472          }
-   473  
-   474          if (*priv_data_offset + sizeof(*ev_priv) > max_priv_data_size) {
-   475                  ret = -EINVAL;
-   476                  goto exit;
-   477          }
-   478  
-   479          ret = copy_from_user(ev_priv, user_priv_ptr + *priv_data_offset, sizeof(*ev_priv));
-   480          if (ret) {
-   481                  ret = -EFAULT;
-   482                  goto exit;
-   483          }
-   484          *priv_data_offset += sizeof(*ev_priv);
-   485  
-   486          if (ev_priv->user_handle) {
-   487                  ret = kfd_kmap_event_page(p, ev_priv->user_handle);
-   488                  if (ret)
-   489                          goto exit;
-   490          }
-   491  
-   492          ev->type = ev_priv->type;
-   493          ev->auto_reset = ev_priv->auto_reset;
-   494          ev->signaled = ev_priv->signaled;
-   495  
-   496          spin_lock_init(&ev->lock);
-   497          init_waitqueue_head(&ev->wq);
-   498  
-   499          mutex_lock(&p->event_mutex);
-   500          switch (ev->type) {
-   501          case KFD_EVENT_TYPE_SIGNAL:
-   502          case KFD_EVENT_TYPE_DEBUG:
-   503                  ret = create_signal_event(devkfd, p, ev, &ev_priv->event_id);
-                                                                  ^^^^^^^^^^^^^^^^^
-If this is more than INT_MAX then it triggers a WARN() at the start of
-idr_alloc().  Greg KH always points out that technically most linux users
-have reboot on WARN() enabled so this is a quite bad bug.
-
-   504                  break;
-
-The other warnings come from;
-drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-   841  static int kfd_ioctl_create_event(struct file *filp, struct kfd_process *p,
-   842                                          void *data)
-   843  {
-   844          struct kfd_ioctl_create_event_args *args = data;
-   845          int err;
-   846  
-   847          /* For dGPUs the event page is allocated in user mode. The
-   848           * handle is passed to KFD with the first call to this IOCTL
-   849           * through the event_page_offset field.
-   850           */
-   851          if (args->event_page_offset) {
-   852                  mutex_lock(&p->mutex);
-   853                  err = kfd_kmap_event_page(p, args->event_page_offset);
-   854                  mutex_unlock(&p->mutex);
-   855                  if (err)
-   856                          return err;
-   857          }
-   858  
-   859          err = kfd_event_create(filp, p, args->event_type,
-   860                                  args->auto_reset != 0, args->node_id,
-   861                                  &args->event_id, &args->event_trigger_data,
-                                        ^^^^^^^^^^^^^^^
-Not checked.
-
-   862                                  &args->event_page_offset,
-   863                                  &args->event_slot_index);
-   864  
-   865          pr_debug("Created event (id:0x%08x) (%s)\n", args->event_id, __func__);
-   866          return err;
-   867  }
-
-drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-  2456  static int criu_restore_bos(struct kfd_process *p,
-  2457                              struct kfd_ioctl_criu_args *args,
-  2458                              uint64_t *priv_offset,
-  2459                              uint64_t max_priv_data_size)
-  2460  {
-  2461          struct kfd_criu_bo_bucket *bo_buckets = NULL;
-  2462          struct kfd_criu_bo_priv_data *bo_privs = NULL;
-  2463          struct file **files = NULL;
-  2464          int ret = 0;
-  2465          uint32_t i = 0;
-  2466  
-  2467          if (*priv_offset + (args->num_bos * sizeof(*bo_privs)) > max_priv_data_size)
-  2468                  return -EINVAL;
-  2469  
-  2470          /* Prevent MMU notifications until stage-4 IOCTL (CRIU_RESUME) is received */
-  2471          amdgpu_amdkfd_block_mmu_notifications(p->kgd_process_info);
-  2472  
-  2473          bo_buckets = kvmalloc_objs(*bo_buckets, args->num_bos);
-  2474          if (!bo_buckets)
-  2475                  return -ENOMEM;
-  2476  
-  2477          files = kvzalloc(args->num_bos * sizeof(struct file *), GFP_KERNEL);
-  2478          if (!files) {
-  2479                  ret = -ENOMEM;
-  2480                  goto exit;
-  2481          }
-  2482  
-  2483          ret = copy_from_user(bo_buckets, (void __user *)args->bos,
-  2484                               args->num_bos * sizeof(*bo_buckets));
-  2485          if (ret) {
-  2486                  pr_err("Failed to copy BOs information from user\n");
-  2487                  ret = -EFAULT;
-  2488                  goto exit;
-  2489          }
-  2490  
-  2491          bo_privs = kvmalloc_objs(*bo_privs, args->num_bos);
-  2492          if (!bo_privs) {
-  2493                  ret = -ENOMEM;
-  2494                  goto exit;
-  2495          }
-  2496  
-  2497          ret = copy_from_user(bo_privs, (void __user *)args->priv_data + *priv_offset,
-  2498                               args->num_bos * sizeof(*bo_privs));
-  2499          if (ret) {
-  2500                  pr_err("Failed to copy BOs information from user\n");
-  2501                  ret = -EFAULT;
-  2502                  goto exit;
-  2503          }
-  2504          *priv_offset += args->num_bos * sizeof(*bo_privs);
-  2505  
-  2506          /* Create and map new BOs */
-  2507          for (; i < args->num_bos; i++) {
-  2508                  ret = criu_restore_bo(p, &bo_buckets[i], &bo_privs[i], &files[i]);
-                                                                 ^^^^^^^^^^^^
-Unchecked event_ids.
-
-  2509                  if (ret) {
-  2510                          pr_debug("Failed to restore BO[%d] ret%d\n", i, ret);
-  2511                          goto exit;
-  2512                  }
-  2513          } /* done */
 
 
-This email is a free service from the Smatch-CI project [smatch.sf.net].
+On 4/20/2026 11:37 PM, Christian König wrote:
+> On 4/20/26 15:30, Huang, Honglei1 wrote:
+>> On 4/20/2026 8:15 PM, Christian König wrote:
+>>>
+>>>
+>>> On 4/20/26 14:07, Honglei Huang wrote:
+>>>> From: Honglei Huang <honghuan@amd.com>
+>>>>
+>>>> Add amdgpu drm SVM API definitions built on the
+>>>> DRM GPUSVM framework.
+>>>>
+>>>> This includes:
+>>>> - DRM_AMDGPU_GEM_SVM ioctl
+>>>> - AMDGPU_SVM_FLAG_* flags
+>>>> - AMDGPU_SVM_OP_SET_ATTR / AMDGPU_SVM_OP_GET_ATTR operations
+>>>> - AMDGPU_SVM_ATTR_* attribute types
+>>>> - AMDGPU_SVM_LOCATION_SYSMEM / AMDGPU_SVM_LOCATION_UNDEFINED
+>>>> - struct drm_amdgpu_svm_attribute and struct drm_amdgpu_gem_svm
+>>>>
+>>>> Signed-off-by: Honglei Huang <honghuan@amd.com>
+>>>> ---
+>>>>    include/uapi/drm/amdgpu_drm.h | 39 +++++++++++++++++++++++++++++++++++
+>>>>    1 file changed, 39 insertions(+)
+>>>>
+>>>> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
+>>>> index 406a42be4..bed71ed9b 100644
+>>>> --- a/include/uapi/drm/amdgpu_drm.h
+>>>> +++ b/include/uapi/drm/amdgpu_drm.h
+>>>> @@ -58,6 +58,7 @@ extern "C" {
+>>>>    #define DRM_AMDGPU_USERQ_SIGNAL        0x17
+>>>>    #define DRM_AMDGPU_USERQ_WAIT        0x18
+>>>>    #define DRM_AMDGPU_GEM_LIST_HANDLES    0x19
+>>>> +#define DRM_AMDGPU_GEM_SVM        0x1a
+>>>>      #define DRM_IOCTL_AMDGPU_GEM_CREATE    DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
+>>>>    #define DRM_IOCTL_AMDGPU_GEM_MMAP    DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
+>>>> @@ -79,6 +80,7 @@ extern "C" {
+>>>>    #define DRM_IOCTL_AMDGPU_USERQ_SIGNAL    DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_SIGNAL, struct drm_amdgpu_userq_signal)
+>>>>    #define DRM_IOCTL_AMDGPU_USERQ_WAIT    DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, struct drm_amdgpu_userq_wait)
+>>>>    #define DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_HANDLES, struct drm_amdgpu_gem_list_handles)
+>>>> +#define DRM_IOCTL_AMDGPU_GEM_SVM    DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_SVM, struct drm_amdgpu_gem_svm)
+>>>>      /**
+>>>>     * DOC: memory domains
+>>>> @@ -1665,6 +1667,43 @@ struct drm_color_ctm_3x4 {
+>>>>        __u64 matrix[12];
+>>>>    };
+>>>>    +#define AMDGPU_SVM_FLAG_HOST_ACCESS        0x00000001
+>>>> +#define AMDGPU_SVM_FLAG_COHERENT        0x00000002
+>>>> +#define AMDGPU_SVM_FLAG_HIVE_LOCAL        0x00000004
+>>>> +#define AMDGPU_SVM_FLAG_GPU_RO            0x00000008
+>>>> +#define AMDGPU_SVM_FLAG_GPU_EXEC        0x00000010
+>>>> +#define AMDGPU_SVM_FLAG_GPU_READ_MOSTLY        0x00000020
+>>>> +#define AMDGPU_SVM_FLAG_GPU_ALWAYS_MAPPED    0x00000040
+>>>> +#define AMDGPU_SVM_FLAG_EXT_COHERENT        0x00000080
+>>>> +
+>>>> +#define AMDGPU_SVM_OP_SET_ATTR        0
+>>>> +#define AMDGPU_SVM_OP_GET_ATTR        1
+>>>> +
+>>>> +#define AMDGPU_SVM_ATTR_PREFERRED_LOC        0
+>>>> +#define AMDGPU_SVM_ATTR_PREFETCH_LOC        1
+>>>
+>>> Up till here the interface makes perfect sense, but then it becomes a bit fuzzy.
+>>>
+>>>> +#define AMDGPU_SVM_ATTR_ACCESS            2
+>>>> +#define AMDGPU_SVM_ATTR_ACCESS_IN_PLACE        3
+>>>> +#define AMDGPU_SVM_ATTR_NO_ACCESS        4
+>>>
+>>> Why are those separate attributes? What is the difference between those?
+>>
+>> Really thanks for the comments, I have some content mistaken in V2, so I updated the V3 to fix that. For the header they are same. for other content please review the V3, sorry about that. And will fix the concern you raised in next version.
+>>
+>> So the meaning of AMDGPU_SVM_ATTR_ACCESS and AMDGPU_SVM_ATTR_NO_ACCESS are clear, GPU can access it or not, and the SVM can set the preferred location, it can be in VRAM or system, for AMDGPU_SVM_ATTR_ACCESS it can be migrated between RAM and VRAM. For AMDGPU_SVM_ATTR_ACCESS_IN_PLACE,
+>> it can not migrate, GPU only can access it in the initial place.
+> 
+> Yeah but that doesn't then the interface doesn't seem to make sense since such states are mutual exclusive.
+> 
+> It would make sense when you have some attribute which is named (for example) AMDGPU_SVM_ATTR_ACCESS which can have the values INACCESSIBLE, IN_PLACE, MIGRATE.
 
-regards,
-dan carpenter
+Got it so can I change the UAPI to the following format?
+
+enum amdgpu_ioctl_svm_attr_type {
+     AMDGPU_IOCTL_SVM_ATTR_PREFERRED_LOC,
+     AMDGPU_IOCTL_SVM_ATTR_PREFETCH_LOC,
+     AMDGPU_IOCTL_SVM_ATTR_ACCESS,
+     AMDGPU_IOCTL_SVM_ATTR_SET_FLAGS,
+     AMDGPU_IOCTL_SVM_ATTR_CLR_FLAGS,
+     AMDGPU_IOCTL_SVM_ATTR_GRANULARITY
+};
+
+enum amdgpu_ioctl_svm_location {
+     AMDGPU_SVM_ACCESS_INACCESSIBLE = 1,
+     AMDGPU_SVM_ACCESS_IN_PLACE = 2,
+     AMDGPU_SVM_ACCESS_MIGRATE = 3,
+};
+
+> 
+>>>> +#define AMDGPU_SVM_ATTR_SET_FLAGS        5
+>>>> +#define AMDGPU_SVM_ATTR_CLR_FLAGS        6
+>>>
+>>> Why is that separated into set and clear flags?
+>>
+>> This method inherits from KFD and is also designed to be compatible with upper layer applications such as ROCR.
+> 
+> That is *not* sufficient as justification. We need to document why that is necessary and *not* just say ROCR works that way.
+> 
+> As far as I can see just a SET_FLAGS should be sufficient.
+
+Accoding to the reply form Felix, CLR_FLAGS provides a convenient method 
+for deleting large-scale flags, do we need to redesign this part?
+
+
+> 
+>>>> +#define AMDGPU_SVM_ATTR_GRANULARITY        7
+>>>> +
+>>>> +#define AMDGPU_SVM_LOCATION_SYSMEM        0
+>>>> +#define AMDGPU_SVM_LOCATION_UNDEFINED        0xffffffff
+>>>
+>>> No location for device local memory?
+>>
+>> Vaule > 0 means for device memory, in xe_svm, it seems like it uses fd for device local memory.
+> 
+> Absolute clear NAK for that approach. This interface is per FD!
+> 
+> We need some value AMDGPU_SVM_LOCATION_DEVICE which means that the memory should be migrated to the current device.
+> 
+> We also need to make sure that setting attributes for different devices doesn't affect each other.
+
+
+I Totally agreed with your thoughts, but according to the reply from 
+matt, it seems like we need to consider the P2P/multi GPU situation.
+
+So do I need to add a AMDGPU_SVM_LOCATION_DEVICE  flag or do I need to 
+modify the UAPI to align with xe_svm?
+
+Regards,
+Honglei
+
+> 
+> Regards,
+> Christian.
+> 
+>>
+>>>
+>>>> +
+>>>> +struct drm_amdgpu_svm_attribute {
+>>>> +    __u32 type;
+>>>> +    __u32 value;
+>>>> +};
+>>>> +
+>>>> +struct drm_amdgpu_gem_svm {
+>>>> +    __u64 start_addr;
+>>>> +    __u64 size;
+>>>> +    __u32 operation;
+>>>> +    __u32 nattr;
+>>>> +    __u64 attrs_ptr;
+>>>> +};
+>>>
+>>> Those struct make perfect sense but clearly need documentation. Preferable as kerneldoc.
+>>>
+>>> And we usually use unions in this header to separate the input from the output parameters.
+>>
+>> Got it will add documentation for it and will use unions in next version. Really thanks for the comments.
+>>
+>> Regards,
+>> Honglei
+>>
+>>>
+>>> Regards,
+>>> Christian.
+>>>
+>>>> +
+>>>>    #if defined(__cplusplus)
+>>>>    }
+>>>>    #endif
+>>>
+>>
+> 
+
