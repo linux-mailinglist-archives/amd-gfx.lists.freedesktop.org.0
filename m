@@ -2,77 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QBcvKTsk62kcJAAAu9opvQ
+	id iPilLjck62kcJAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Apr 2026 10:05:15 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Apr 2026 10:05:11 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5692A45B227
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Apr 2026 10:05:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69CA845B1BE
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Apr 2026 10:05:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 173B510F416;
-	Fri, 24 Apr 2026 08:05:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A756710F410;
+	Fri, 24 Apr 2026 08:05:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="V+lnKaGH";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qNOATfap";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com
  [209.85.167.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C248E10F2A1
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 20:54:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8CEC10F2A1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 20:54:38 +0000 (UTC)
 Received: by mail-oi1-f172.google.com with SMTP id
- 5614622812f47-479fc1fc048so1991662b6e.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 13:54:33 -0700 (PDT)
+ 5614622812f47-470145d7df5so4423324b6e.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 13:54:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776977673; x=1777582473; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1776977678; x=1777582478; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=9bGJ7z/H2igvBo422MeRtnHn2LDlfxtz4FMju+TOrdc=;
- b=V+lnKaGHD1r+RIEzd8fetvFsdL8ey2dEhKIHFFOM63q9QmnMS45NpCpwDepxdxdOE8
- CUJbSzbW/ZMOmuObSO9zm0z0gSRhoZ370ePrDu5fAqHmPndgsJWLnm2+q402zubhIQHb
- 9MObV/WS4sUkp5RLVHqC8Uarju8MIPqYCT54/zfct8RAMsJO1UHtTkUijDxdUVSCoCYk
- 9c9KuzKd1To/EvHYpYgLDCu5DM9SGXlz0y5Hab+vI4QO/pDDlmQiQahRJlGKETFP/SPX
- yyJLvzXYMcDGrnSkmenW07Nr9hQ+MH4V4f2iQo0XXPiIAnCSyZuC2eHIglGWT58M7cui
- XqYg==
+ :reply-to; bh=mJr2/Y7a9Z56nZcPhFHsPKIdw2ZGjJ+UXlDP2b9GwxI=;
+ b=qNOATfapIfOLyBcLtzwyAP7gEGnOJ1LNORfkfQDQn0E8v9sMesfuL8Q8aWbVCjH4m9
+ EQdZx0h8MMQeYRke/VNv+4DWpN2BOzJl0W3miTBor4gAOHc/StKjEO5IHemGGPQuFU2K
+ yLXC6mIU0B8A/w+BAjYiEJMPrQCCCMJJ3fbWXbMV7DqUQnwRuqluINwmMekAsE5SoDzb
+ GURAl9myddv4NUqcH/3Ef+6F31ZvUhqR2Y7rPPnDK9eALPQl/D2bioEpJxOAAFCp6tur
+ 63n0QLVaY1eBH0NylK7w071LNsMph2ih19phyx67Wyg3NXARs1ndtbBtSL+4grMILcbT
+ rhsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776977673; x=1777582473;
+ d=1e100.net; s=20251104; t=1776977678; x=1777582478;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
  :cc:subject:date:message-id:reply-to;
- bh=9bGJ7z/H2igvBo422MeRtnHn2LDlfxtz4FMju+TOrdc=;
- b=AYberF9BvVwfS0KWkeoxyzUpm6ux62bsJQ7wIpiGEcQNQFnktnui0qBsoPD688RSbD
- /dbTxWJc1L2KCtedWelIyATpTEJBKyiwgi3uH0mmpEBoO9J0gb7DAtP0pnGSycwEFCRf
- GJIGve/NVJfQI8fpEvhm034iHe3Ha1Dx7guZtGb3T5oTZlO6EwS5NQcooYDvPTGkWQv7
- uCQD2YVZbABZXyERCu7uSmFoCAUqiaU2BFnLsDM9L2apzbqPP/0t6Qyau9SvMnSjxEXP
- j5X/mTrjgyGh4+tmI+RKt01CMObbJslqVI1tNvh1cHiH0fsxDfMp/z0is57jjxNocQ56
- fNaQ==
+ bh=mJr2/Y7a9Z56nZcPhFHsPKIdw2ZGjJ+UXlDP2b9GwxI=;
+ b=X93JogTg6YjfkJc6KvcnWDjow1DBiSrOE/o5Fov12qO2IZ6sFgkUtoSlAjPjErb0di
+ F5KUeAZH2sSUdxfqy3q5kbrgcJ7f4qwvIcuUgK4//t/iTHnuXMImT8a8FaTRNLJ+RfFf
+ lxQCOOLjg5MtaICSB9qA1ZCJ/S8BkPxo1DK3358EsymtINkR7vAsdS1F50BEclHYwyO/
+ VfusM0/wS3cBblpUNLAu6zc03I/B8XZ2r1aOopSVu/DTXIzBdv7CsB76hXl3nhfsJigN
+ jjMpnVo4c86cuQ3mx1X2zENcH4DYw+hB8z+SwL5stm+MqOf884y4AAkqJ0V+4oHKEBQ2
+ ScGA==
 X-Forwarded-Encrypted: i=1;
- AFNElJ891RfNcTsXrfv+pnGReTQDZ3LV5mD3136pCUwDKRK/XYTlBWi51OKc/EJRHz3+hLxfLnOx6wm5@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyq5qOEadq8Q4iCRceR6LOnJhJieJpTVHgo9Jb4lv7/4kW0FdCw
- 9q9DDUCxudTqPIAonFuGAeHmFjFnAMX9yyg+p5/tpE2Bl70qVaDWq8UQ
-X-Gm-Gg: AeBDiesVpSb5rMNatC3uCFqeZiyQ3vzGFO66lNUCV+uCld+F2Z+/nnRark9lfqk0PfN
- eFN7fTgmrSzyfBty3Go2HYPXOFYAN9aB94WoksdIM4WWTR/E5OfIDOXxAXgCXc7MibhuMD5SGT9
- OsJGGsRc/xwh6dwnnYM8CpwqUQc2s8u3H3rZUc/kN1L9x9yifzwRiXrXUUBojW+LTtM4n8wKORj
- mgugHgcB8/r+TllzQAzYtP0I2hKrtQ46vwep2XHD5sXMERiG90vGUvlWhZQQ7c/fKRc9w0U4/dH
- u24c9n/qFqfxWcyktcZLKUMyZ5gUVSFHq82RfN1zK0n2kdq6L3jNNgk8W3liVdTAw2k1gFD4X1N
- W8Ek3fHCzgiSA7gx0PMb9kS6H9V0tcm1AoMY+NA6KZ8pctjKEbQkZALHRirkXfUuWlIHdwDE8vr
- AOvWyjSWUSszqpXJQ+6+gWE/dqT0MXjYFS9kkaju6Lp0XdEFZOMzdMZeVVsVlSvSsfxmAwuWKi
-X-Received: by 2002:a05:6808:1513:b0:47b:2b67:71ab with SMTP id
- 5614622812f47-47b2b678371mr3602419b6e.17.1776977672897; 
- Thu, 23 Apr 2026 13:54:32 -0700 (PDT)
+ AFNElJ8BS6VuIMiEBp/i7su5huTy4+YAqWoV6l/k6uzK78UpGbKRK27Xz2iBdoSKukmC7glCkpYqVyrv@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwwtMzXTyojK+wBWD2+3o/GRl/p6mmYjsq82eWlmXKoNCaviIjc
+ ivaYV7qyvp0K71zese8uCwBq4R+bgUMpeSCmJUpynrml5RGKvhrqWKdc
+X-Gm-Gg: AeBDieuJp7WMz5RxWeccW6cEuLeynHw3QIdeFG1VUwTkm/9YOi9t48gU/8lCLkVTjGo
+ oaK7Ox/duSqsG5lpopf6eiqT1HVfwSEpx41VUzHfrlllVmESVhG9+7GuvT0iOjjokAyasFY7PBT
+ mH69NMvB2RI8K9o2NaI10H6kalJoX4tqrn4Fld8Sge+b8FGK17/0gTze4fZlxlZrY341uCW0aed
+ cllGvx7VMKcrf8/ehzmesm7OF6QmrrLrld+fQMJmEuj/dwaBBJEL5QTrNFj7lDGYxoHxT2vCiA2
+ 25RYo6UAlVLa6mo6EtJgtGhSYY2dQvVSVjcv5PpSr9Iut3em5U+YjdouevLGZnYi+ZBK6mApov5
+ eQIRLiTmDWEpKiBae0PC5mkslqpJvrjw0u6+VZiFtW6XAJGPkIz/zUYV1eOsqvYjtkm6nc8wjTE
+ FeMBtr1d9PEEp81XlKkzWBkS5cp9NxLHk+Qv9Y9DgRTiabMb6UCQK1eiJCfrdKgiM3gzCxgu+h
+X-Received: by 2002:a05:6808:d51:b0:466:f60b:19d7 with SMTP id
+ 5614622812f47-4799c8febffmr15113908b6e.1.1776977677733; 
+ Thu, 23 Apr 2026 13:54:37 -0700 (PDT)
 Received: from [192.168.0.245] (c-98-38-17-99.hsd1.co.comcast.net.
  [98.38.17.99]) by smtp.googlemail.com with ESMTPSA id
- 5614622812f47-4799fead505sm14329744b6e.2.2026.04.23.13.54.28
+ 5614622812f47-4799fead505sm14329744b6e.2.2026.04.23.13.54.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Apr 2026 13:54:32 -0700 (PDT)
+ Thu, 23 Apr 2026 13:54:37 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
-Date: Thu, 23 Apr 2026 14:53:47 -0600
-Subject: [PATCH v14 06/92] dyndbg: add stub macro for DECLARE_DYNDBG_CLASSMAP
+Date: Thu, 23 Apr 2026 14:53:48 -0600
+Subject: [PATCH v14 07/92] docs/dyndbg: update examples \012 to \n
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260423-submit-dyndbg-classmap-foundation-v14-6-2b809a8019d0@gmail.com>
+Message-Id: <20260423-submit-dyndbg-classmap-foundation-v14-7-2b809a8019d0@gmail.com>
 References: <20260423-submit-dyndbg-classmap-foundation-v14-0-2b809a8019d0@gmail.com>
 In-Reply-To: <20260423-submit-dyndbg-classmap-foundation-v14-0-2b809a8019d0@gmail.com>
 To: Arnd Bergmann <arnd@arndb.de>, Jason Baron <jbaron@akamai.com>, 
@@ -167,14 +167,14 @@ Cc: linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, linux-renesas-soc@vger.kernel.org, 
  etnaviv@lists.freedesktop.org, Jim Cromie <jim.cromie@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1776977636; l=3163;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776977636; l=2677;
  i=jim.cromie@gmail.com; s=20260203; h=from:subject:message-id;
- bh=oEsmtxZpy1nA6cwG/GlCHHZozIXv5uvGK/7t8FuqEsQ=;
- b=lJFEKrs7OI72yEbcHyyGRZPIfwBYftyO/2B8JWO8raLEp4blxfP1T+epq6F6qyKAJo6t2pR2/
- sDkfqbYlJtSAFIt3rUWIfc7dHV5sl2JqqN/oqEmXSoIrgPE9+4Ux3y1
+ bh=siK3DbSjtbdXIzp+rb57NbLxo/EWi9u81nppU4wsdus=;
+ b=ePiF0EDWwi/oQY3TXS9i+qRl3hbaq3feRkC0e2PDbzK0sheeYllu5PZJlb5eUbhbmthqySsq4
+ IoWvb2TDFhCDz/i/TjB+nfqMjI3xELvbI8eTQStIQFj10HRY4dVJV1a
 X-Developer-Key: i=jim.cromie@gmail.com; a=ed25519;
  pk=C6E5ODlPQo7ZBynATXH9wg7K6HxP0pIXyf4s38Qw0XE=
-X-Mailman-Approved-At: Fri, 24 Apr 2026 08:04:49 +0000
+X-Mailman-Approved-At: Fri, 24 Apr 2026 08:04:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -188,7 +188,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 5692A45B227
+X-Rspamd-Queue-Id: 69CA845B1BE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -228,85 +228,57 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:email]
 
-Add the stub macro for !DYNAMIC_DEBUG builds, after moving the
-original macro-defn down under the big ifdef.  Do it now so future
-changes have a cleaner starting point.
+commit 47ea6f99d06e ("dyndbg: use ESCAPE_SPACE for cat control")
+changed the control-file to display format strings with "\n" rather
+than "\012".  Update the docs to match the new reality.
 
+Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
+Tested-by: Louis Chauvet <louis.chauvet@bootlin.com>
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- include/linux/dynamic_debug.h | 43 ++++++++++++++++++++++---------------------
- 1 file changed, 22 insertions(+), 21 deletions(-)
+ Documentation/admin-guide/dynamic-debug-howto.rst | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debug.h
-index 05743900a116..a10adac8e8f0 100644
---- a/include/linux/dynamic_debug.h
-+++ b/include/linux/dynamic_debug.h
-@@ -93,27 +93,6 @@ struct ddebug_class_map {
- 	enum class_map_type map_type;
- };
+diff --git a/Documentation/admin-guide/dynamic-debug-howto.rst b/Documentation/admin-guide/dynamic-debug-howto.rst
+index 095a63892257..4b14d9fd0300 100644
+--- a/Documentation/admin-guide/dynamic-debug-howto.rst
++++ b/Documentation/admin-guide/dynamic-debug-howto.rst
+@@ -38,12 +38,12 @@ You can view the currently configured behaviour in the *prdbg* catalog::
  
--/**
-- * DECLARE_DYNDBG_CLASSMAP - declare classnames known by a module
-- * @_var:   a struct ddebug_class_map, passed to module_param_cb
-- * @_type:  enum class_map_type, chooses bits/verbose, numeric/symbolic
-- * @_base:  offset of 1st class-name. splits .class_id space
-- * @classes: class-names used to control class'd prdbgs
-- */
--#define DECLARE_DYNDBG_CLASSMAP(_var, _maptype, _base, ...)		\
--	static const char *_var##_classnames[] = { __VA_ARGS__ };	\
--	static struct ddebug_class_map __aligned(8) __used		\
--		__section("__dyndbg_classes") _var = {			\
--		.mod = THIS_MODULE,					\
--		.mod_name = KBUILD_MODNAME,				\
--		.base = _base,						\
--		.map_type = _maptype,					\
--		.length = NUM_TYPE_ARGS(char*, __VA_ARGS__),		\
--		.class_names = _var##_classnames,			\
--	}
--#define NUM_TYPE_ARGS(eltype, ...)				\
--        (sizeof((eltype[]){__VA_ARGS__}) / sizeof(eltype))
--
- /* encapsulate linker provided built-in (or module) dyndbg data */
- struct _ddebug_info {
- 	struct _ddebug *descs;
-@@ -138,6 +117,27 @@ struct ddebug_class_param {
- #if defined(CONFIG_DYNAMIC_DEBUG) || \
- 	(defined(CONFIG_DYNAMIC_DEBUG_CORE) && defined(DYNAMIC_DEBUG_MODULE))
+   :#> head -n7 /proc/dynamic_debug/control
+   # filename:lineno [module]function flags format
+-  init/main.c:1179 [main]initcall_blacklist =_ "blacklisting initcall %s\012
+-  init/main.c:1218 [main]initcall_blacklisted =_ "initcall %s blacklisted\012"
+-  init/main.c:1424 [main]run_init_process =_ "  with arguments:\012"
+-  init/main.c:1426 [main]run_init_process =_ "    %s\012"
+-  init/main.c:1427 [main]run_init_process =_ "  with environment:\012"
+-  init/main.c:1429 [main]run_init_process =_ "    %s\012"
++  init/main.c:1179 [main]initcall_blacklist =_ "blacklisting initcall %s\n"
++  init/main.c:1218 [main]initcall_blacklisted =_ "initcall %s blacklisted\n"
++  init/main.c:1424 [main]run_init_process =_ "  with arguments:\n"
++  init/main.c:1426 [main]run_init_process =_ "    %s\n"
++  init/main.c:1427 [main]run_init_process =_ "  with environment:\n"
++  init/main.c:1429 [main]run_init_process =_ "    %s\n"
  
-+/**
-+ * DECLARE_DYNDBG_CLASSMAP - declare classnames known by a module
-+ * @_var:   a struct ddebug_class_map, passed to module_param_cb
-+ * @_type:  enum class_map_type, chooses bits/verbose, numeric/symbolic
-+ * @_base:  offset of 1st class-name. splits .class_id space
-+ * @classes: class-names used to control class'd prdbgs
-+ */
-+#define DECLARE_DYNDBG_CLASSMAP(_var, _maptype, _base, ...)		\
-+	static const char *_var##_classnames[] = { __VA_ARGS__ };	\
-+	static struct ddebug_class_map __aligned(8) __used		\
-+		__section("__dyndbg_classes") _var = {			\
-+		.mod = THIS_MODULE,					\
-+		.mod_name = KBUILD_MODNAME,				\
-+		.base = _base,						\
-+		.map_type = _maptype,					\
-+		.length = NUM_TYPE_ARGS(char*, __VA_ARGS__),		\
-+		.class_names = _var##_classnames,			\
-+	}
-+#define NUM_TYPE_ARGS(eltype, ...)				\
-+	(sizeof((eltype[]) {__VA_ARGS__}) / sizeof(eltype))
-+
- extern __printf(2, 3)
- void __dynamic_pr_debug(struct _ddebug *descriptor, const char *fmt, ...);
+ The 3rd space-delimited column shows the current flags, preceded by
+ a ``=`` for easy use with grep/cut. ``=p`` shows enabled callsites.
+@@ -59,10 +59,10 @@ query/commands to the control file.  Example::
  
-@@ -314,6 +314,7 @@ void __dynamic_ibdev_dbg(struct _ddebug *descriptor,
+   :#> ddcmd '-p; module main func run* +p'
+   :#> grep =p /proc/dynamic_debug/control
+-  init/main.c:1424 [main]run_init_process =p "  with arguments:\012"
+-  init/main.c:1426 [main]run_init_process =p "    %s\012"
+-  init/main.c:1427 [main]run_init_process =p "  with environment:\012"
+-  init/main.c:1429 [main]run_init_process =p "    %s\012"
++  init/main.c:1424 [main]run_init_process =p "  with arguments:\n"
++  init/main.c:1426 [main]run_init_process =p "    %s\n"
++  init/main.c:1427 [main]run_init_process =p "  with environment:\n"
++  init/main.c:1429 [main]run_init_process =p "    %s\n"
  
- #define DEFINE_DYNAMIC_DEBUG_METADATA(name, fmt)
- #define DYNAMIC_DEBUG_BRANCH(descriptor) false
-+#define DECLARE_DYNDBG_CLASSMAP(...)
+ Error messages go to console/syslog::
  
- #define dynamic_pr_debug(fmt, ...)					\
- 	no_printk(KERN_DEBUG pr_fmt(fmt), ##__VA_ARGS__)
 
 -- 
 2.53.0
