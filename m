@@ -2,54 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QN+eCjok62kYJAAAu9opvQ
+	id 6GWVHFkk62kYJAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Apr 2026 10:05:14 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Apr 2026 10:05:45 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD42345B1FD
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Apr 2026 10:05:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0A3545B270
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Apr 2026 10:05:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79D4A10F40B;
-	Fri, 24 Apr 2026 08:05:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15A1C10F3B6;
+	Fri, 24 Apr 2026 08:05:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Fw+r1suW";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="STsgN8xj";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
  [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98F5710F232;
- Thu, 23 Apr 2026 19:05:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1776971096; cv=none; 
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA96810F2BA;
+ Thu, 23 Apr 2026 19:05:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1776971104; cv=none; 
  d=zohomail.com; s=zohoarc; 
- b=iYSaLATXcF1nQ9uw+DQMeskCQXUWTOFfBHFDMGl0P9PMmxmwZG+OewyhVyfvAowNM02esv87eDSwa8Fj6qpMX+mQFduI2rxKK0FNlNs/qNzwye6Jt7eBy6WERidpCt6FkzOs5aPxLhWkmHRNbThOhp308t2hnwBc6aabQRKUk+A=
+ b=RQB1uHbMvObsYiGKjTeBoSzj0t1fQICMOielOnZV7fw/Yvj6HGzU9V9viQNz4D/iNF1OoD2/K0/yl4aKGhKSEchps/4oG0jPdL6Uo6mgMqsgN9Wme/c5dfE7sOfVYg8AkeJ/fZq+RrDODzMT65sqhGc01LCmMvbCZbsZUa/7Ryo=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1776971096;
+ s=zohoarc; t=1776971104;
  h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=5k1vlW62iXZjcOaFsSXyeVWlBMQFrsYlNjKb9M5MyLE=; 
- b=YuBR8fOBbfxAnYv+5DPk5R7tIEjeoc2I5zYR5wA3bC3tPV8QwML7wAK8wFPdo1OSD7U42tA6PeqOCI0thbJYzEk590ML4m7G2IvKSq6HjzzSKfGdQLHezlSiztVWlD5isjfs30Bjv/Oh1DVi22TzNp5923vd9pf/P392B9UkUdk=
+ bh=MC7m65enPeoK56w15mZU/jnX37Exa8SW0qeHJO7INHM=; 
+ b=KbF5dHlVQxVJnD2Kxv4iMmcIuUrUoxRGj4WL66/WzH8EBg7rgBX/toa4kARuu/pCY2zDMxNymS7snkraZXKQy/RX/p77ih4XtSpQWlSTAHxpTJJSUQ3eXHZKVhB3+5EYq/1gg7gL7h1u9ew4AwzqwCFA7c98u16I+Xld2M5R9d8=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
  dkim=pass  header.i=collabora.com;
  spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
  dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1776971095; 
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1776971104; 
  s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
  h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=5k1vlW62iXZjcOaFsSXyeVWlBMQFrsYlNjKb9M5MyLE=;
- b=Fw+r1suWIOoBIdxvbwl38Dw+vKKHz89GbgtvAUR8sboveymUX0OIqXL6+kKM6+l+
- QeqmLa702SGB+kP5lYx4R9pcknr+XR30RTuqpsc7Rv8aouQxcInHeg48dIHWPbMsgyC
- flRPD7jGzCvPldsauve1FwmPFLwxogfDhmlXVpRY=
-Received: by mx.zohomail.com with SMTPS id 1776971094703164.3612840189653;
- Thu, 23 Apr 2026 12:04:54 -0700 (PDT)
+ bh=MC7m65enPeoK56w15mZU/jnX37Exa8SW0qeHJO7INHM=;
+ b=STsgN8xjDl5zaEmJt3gmo8VE0qCcb1cRfaP36y3J82oVoZXIw+aXXih51+eA/HKV
+ MMMGmL3ZXb2nY31CalnkaHzpaL1dHfwusfb8uyNZ9iYnGHVUwWe8kLjqIiD48CuHg6F
+ LuibRMEFLyvlpr+QizCpi3fW8SIDcf8nBmfIOshs=
+Received: by mx.zohomail.com with SMTPS id 1776971102374473.2371328803696;
+ Thu, 23 Apr 2026 12:05:02 -0700 (PDT)
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Thu, 23 Apr 2026 21:03:31 +0200
-Subject: [PATCH v14 08/28] drm/display: hdmi-state-helper: Act on color
- format DRM property
+Date: Thu, 23 Apr 2026 21:03:32 +0200
+Subject: [PATCH v14 09/28] drm/display: hdmi-state-helper: Try subsampling
+ in mode_valid
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260423-color-format-v14-8-449a419ccbd4@collabora.com>
+Message-Id: <20260423-color-format-v14-9-449a419ccbd4@collabora.com>
 References: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
 In-Reply-To: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
@@ -94,96 +94,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: CD42345B1FD
+X-Rspamd-Queue-Id: E0A3545B270
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [-0.71 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[40];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[40];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
+	MAILSPIKE_FAIL(0.00)[131.252.210.177:query timed out];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:email,collabora.com:dkim,collabora.com:mid,qualcomm.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,collabora.com:dkim,collabora.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,qualcomm.com:email]
 
-With the introduction of the "color format" DRM property, which allows
-userspace to request a specific color format, the HDMI state helper
-should implement this.
+drm_hdmi_connector_mode_valid assumes modes are only valid if they work
+with RGB. The reality is more complex however: YCbCr 4:2:0
+chroma-subsampled modes only require half the pixel clock that the same
+mode would require in RGB.
 
-Implement it by translating the requested drm_connector_color_format to
-a drm_output_color_format enum value as per the logic HDMI should use
-for this: Auto is translated to RGB, and a fallback to YUV420 is only
-performed if the original color format was auto.
+This leads to drm_hdmi_connector_mode_valid rejecting perfectly valid
+420-only or 420-also modes.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Fix this by checking whether the mode is 420-capable first. If so, then
+proceed by checking it with DRM_OUTPUT_COLOR_FORMAT_YCBCR420 so long as
+the connector has legalized 420, otherwise error out. If the mode is not
+420-capable, check with RGB as was previously always the case.
+
+Fixes: 47368ab437fd ("drm/display: hdmi: add generic mode_valid helper")
 Reviewed-by: Maxime Ripard <mripard@kernel.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 ---
- drivers/gpu/drm/display/drm_hdmi_state_helper.c | 31 +++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-index a0d88701d236..954f8b2973fc 100644
+index 954f8b2973fc..5cc30da30989 100644
 --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
 +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-@@ -670,8 +670,39 @@ hdmi_compute_config(const struct drm_connector *connector,
- 	unsigned int max_bpc = clamp_t(unsigned int,
- 				       conn_state->max_bpc,
- 				       8, connector->max_bpc);
+@@ -942,8 +942,21 @@ drm_hdmi_connector_mode_valid(struct drm_connector *connector,
+ 			      const struct drm_display_mode *mode)
+ {
+ 	unsigned long long clock;
 +	enum drm_output_color_format fmt;
- 	int ret;
- 
-+	if (conn_state->color_format != DRM_CONNECTOR_COLOR_FORMAT_AUTO) {
-+		switch (conn_state->color_format) {
-+		case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-+			drm_warn(connector->dev, "AUTO format in non-AUTO path.\n");
-+			fallthrough;
-+		case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-+			fmt = DRM_OUTPUT_COLOR_FORMAT_RGB444;
-+			break;
-+		case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
-+			fmt = DRM_OUTPUT_COLOR_FORMAT_YCBCR444;
-+			break;
-+		case DRM_CONNECTOR_COLOR_FORMAT_YCBCR422:
-+			fmt = DRM_OUTPUT_COLOR_FORMAT_YCBCR422;
-+			break;
-+		case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
++
++	if (drm_mode_is_420_only(&connector->display_info, mode)) {
++		if (connector->ycbcr_420_allowed)
 +			fmt = DRM_OUTPUT_COLOR_FORMAT_YCBCR420;
-+			break;
-+		default:
-+			drm_dbg_kms(connector->dev, "HDMI does not support color format '%d'.\n",
-+				conn_state->color_format);
-+			return -EINVAL;
-+		}
-+
-+		return hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, fmt);
++		else
++			return MODE_NO_420;
++	} else if (drm_mode_is_420_also(&connector->display_info, mode) &&
++		   connector->ycbcr_420_allowed) {
++		fmt = DRM_OUTPUT_COLOR_FORMAT_YCBCR420;
++	} else {
++		fmt = DRM_OUTPUT_COLOR_FORMAT_RGB444;
 +	}
-+
-+	/*
-+	 * For %DRM_CONNECTOR_COLOR_FORMAT_AUTO, try RGB first, and fall back
-+	 * to the less bandwidth-intensive YCBCR420 if RGB fails.
-+	 */
- 	ret = hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
- 				      DRM_OUTPUT_COLOR_FORMAT_RGB444);
- 	if (ret) {
+ 
+-	clock = drm_hdmi_compute_mode_clock(mode, 8, DRM_OUTPUT_COLOR_FORMAT_RGB444);
++	clock = drm_hdmi_compute_mode_clock(mode, 8, fmt);
+ 	if (!clock)
+ 		return MODE_ERROR;
+ 
 
 -- 
 2.53.0
