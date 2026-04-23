@@ -2,70 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oDQUDdZv6mlBzQIAu9opvQ
+	id 6M3uLdhv6mlBzQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 21:15:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 21:15:36 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D9D45693B
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 21:15:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60266456955
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 21:15:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E61B10F23D;
-	Thu, 23 Apr 2026 19:15:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A013B10F27C;
+	Thu, 23 Apr 2026 19:15:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hlu3IWYL";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="C6kE4b8a";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
- [209.85.128.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DEC710F260
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 19:15:28 +0000 (UTC)
-Received: by mail-wm1-f48.google.com with SMTP id
- 5b1f17b1804b1-4852a9c6309so65232505e9.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 12:15:28 -0700 (PDT)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+ [209.85.128.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6517510F260
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 19:15:29 +0000 (UTC)
+Received: by mail-wm1-f43.google.com with SMTP id
+ 5b1f17b1804b1-488b0e1b870so114898635e9.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 12:15:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776971727; x=1777576527; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1776971728; x=1777576528; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=kH2+DlnnCebjQvrHZXndnaYPOlTI4jsFVXyrwjdQqPQ=;
- b=hlu3IWYLBT5vKLbb2ipcpuHZY17bQNaZ/2H1eOsp5gm/GYKOMO5I0/Cs3fnwDsySv6
- OY2s/+dA6ZSoVJJvQVpjKdR26yw+SCX+a+c3OY93AJBVaayZDAPpjHBH27oMpsenwbj3
- UBEwONQ6gclmrKOmWNqm/wq4IWL3K/zpi5CcERhYPOBjXbI587+ws8FOJXykN7RU1Bgp
- 7gMIhYOgbtXkpoZiKjxww/iaDz3i9U+NRlRi3293vAEAmvF2mBVyg68UIlI1hQaSndpg
- bDf6+KdBmervjF5QZsT+fS9SoE6RsNEO/VGdhRxGgHzXIcLD8RANjM4qLBgjYI2fj8Uw
- VEOg==
+ bh=DGBypz7KjMRiprMNN1ArhcF5SuS8vqhuh2C5+Uj/zuc=;
+ b=C6kE4b8aESwVreNJZBzEh+YFArbv7teVu5SMB3U4prdUphHNYjKJcN5yg4qnY9Zppi
+ 2yYwfKwbqkY83PbwrGUkHT5hNDdEtyxtUHG5OneHaIjAbAMWBVN/WfNNmXCP5q+AcPEh
+ ChBntu7xRg3C7NM0xe+6eEGqJgD8HRAX4UDepuXg8qmnixdcGQkdbMEIrJiJvpt9tVEp
+ +Z5XXh9NZI6ubpqn5QJ7PN76hUsGQpyugNeBsT0vBnondidmlpb4V7A/dU2z6loG9muS
+ jZ9+eP3449fp1ZrW2Y5v1IMpl2Cfa3wk+N5PYCAHQ9EaP3dVOZ5Sbp9evM1wWDmkbYlw
+ ampg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776971727; x=1777576527;
+ d=1e100.net; s=20251104; t=1776971728; x=1777576528;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=kH2+DlnnCebjQvrHZXndnaYPOlTI4jsFVXyrwjdQqPQ=;
- b=XRPQH4BZyx/Vzh4QOKIsXxBYZ0421flnfkch4fJ4iyZfejSyo+QxAiMfdNOPA+adZi
- TEBYSkp+VV4XNc1mRSYGhRLWaDXcOS2Gx8dWa12jhW001C2zHthLLso3nkRc7pTKA1pU
- e+LsYM37PQifybiRhi+jtLP2B+6sap0XcFaz488LWvcNA97fFSyNbjNA4o24iHjgBD2A
- RqDh5uaHeESeXTjNSPZm8RY4IbN5OLVCazL/A95jia/sIw5VdpGsXNzVFzEguCBJakVB
- y0dJarc06SgmHm3t+4hkDtIZxs2TIEldY5ZwvnN7tYHn4HGmJrQk640ioEXak4gMokZA
- 1jSg==
-X-Gm-Message-State: AOJu0YwRC5j/1Ccm3Ut1sqcGJK/lA+hxy9vGl2x40zFbrkxY9+SPacwA
- NaH7rKbB1XEnG0vG1Vt0e4LhfTmxDCwrp3PcC6cY8EKMZj6MTaFxoEkopTKW5yrq
-X-Gm-Gg: AeBDietficILZwlzPq1aDctN5tq3LI0zMaNO8BLDTs0q0AasrrfrpjXLCl+RQdQYv0R
- 9X9KRv+SPENgMEZe2XPzRcyCAgNWJrli4HNc+TJ9NBkZhUK35GL8RIDjEuQV/D3evZ5T4Z2ED5W
- PWAduM59nbQctBtGVzm/HZsDKMBsdS6SzveDSELtSIJQfRDyldvcsFL+9vBrwRG6c9YCv21g5Gi
- DMx1ym0UW7yYuywXWavw2L2ov9LzchKnzi4AQB4lwLHPTqCIokulxRtY92a9HUNGCqe32UZQitG
- vdpukUXKXa85hD8iKpA6CeoBB/3V+bx0Xd1IYbhmHjpgefNVGeLgwgqB7LHuBwcEEL69cVmhmV5
- QxGFh6yWMqBW7+9dcJqKf9wnMOmI2duF7qC7tkT79PuLgLyqq9riQx6Ko7uLFT/ZhbFilJgd2p5
- 5W6qZdecywrQ2Y8kerxkDU5IkmH7RwRIUMq5reICl0FzbqAoF3dV5sBbIFqJpHKtyOblOFRp101
- ZQb0A==
-X-Received: by 2002:a05:600c:1da1:b0:488:79a3:f04c with SMTP id
- 5b1f17b1804b1-488fb7863femr429336715e9.27.1776971726757; 
- Thu, 23 Apr 2026 12:15:26 -0700 (PDT)
+ bh=DGBypz7KjMRiprMNN1ArhcF5SuS8vqhuh2C5+Uj/zuc=;
+ b=sqcKtJ8WQU980IUBpmIvmwcrrnAzAJT7iDPhB/CAUvZMGpaUrQtm7vmSfRXQAG+yPk
+ nRO0eMQqRMMDO60B+9KmsTd7pwSz5XGiAPukCe0dDvlY7kbMPOZHxnQ6/3t7xNVOb5HG
+ EHeIWb7dAvliSIq/CQs2gcpBx6lhyaKftqqsybzF7+H1QSmO7ZhN3Xp2DT9Vgyj/QQ7E
+ sMwSXNgZ33eDy47nUrfLzUpq5oh2lUAg7YWfFS7aPf8vFaQjnRSdI9u+vdBN48F5Edho
+ okdJ93tPQYZqtADDvd60QuPKlzdXgiqrC4sqLawtp/pJbC7QdW05FMdjt7PyNQAHZI75
+ ROAg==
+X-Gm-Message-State: AOJu0YzY7c4QzHzk1wh7Jmgfu+MW/wcyQFkVG2kp6tiqUWJSu8zdP7QC
+ vOSmJ0dTUjxMekUSE4NmCdDE0WeLMcOXtWvWoIGaOk6Ee/yHTifJCs24AidtnXdW
+X-Gm-Gg: AeBDiesUtpyEXXXcro8E3uTKc+vmWcw4Y3xRdV/Cm6TBEtdraPETL+jJ5qoE8Wnp2SE
+ bGeCPR0VY/BhY3XlE9DZ0Q/6vGBwYzNH6ZzefuAT3G5JGstubcquW4RlzqEyAZfAxAAVvW2LKlW
+ fh73SB+bD9K1dGCNV2TiKPz8CWQMerQwprM0UvGHgVP7+oUXT4hloCBzYZVBsBfrMnbQpIZviz6
+ /djvXg8J7incelP4Q8BtAx9y5zv/diUDDU+zfakebljtRburDgR4qnhUptlcq3Zxb1NVFElJZ/8
+ WN6i9oqdXmchbjmlBWmV4HCJ6P/azOW3GZgF+saN116mDCN71DAN7hYOUcaGrGjAoplXORNfG2U
+ XkLeH5KrMT6s9qIsWEfwhNRCyRRUMIOF3+qmrQfzc5P11GjoobLBYi3hRhkCo9kC8qaXZSXt8Ay
+ Mw2uySHjKGRaf+RaGjL4Y9F2aFyvXCZUIOjPmsDAvHVwDN865fahcosb+mrkGQ4tkITrv5uwbgv
+ uLV+A==
+X-Received: by 2002:a05:600d:8408:b0:485:46fd:7887 with SMTP id
+ 5b1f17b1804b1-488fb74c61fmr315370925e9.13.1776971727838; 
+ Thu, 23 Apr 2026 12:15:27 -0700 (PDT)
 Received: from Timur-Hyperion.home (5E1B98A2.dsl.pool.telekom.hu.
  [94.27.152.162]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-44123d23e0bsm15792782f8f.15.2026.04.23.12.15.25
+ ffacd0b85a97d-44123d23e0bsm15792782f8f.15.2026.04.23.12.15.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Apr 2026 12:15:26 -0700 (PDT)
+ Thu, 23 Apr 2026 12:15:27 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
  Alex Hung <alex.hung@amd.com>, Harry Wentland <Harry.Wentland@amd.com>,
@@ -74,10 +74,10 @@ To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
  Mario Limonciello <mario.limonciello@amd.com>,
  Ivan Lipski <ivan.lipski@amd.com>, Melissa Wen <mwen@igalia.com>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 04/14] drm/amd/display: Delete max_clocks_state from
- dm_pp_static_clock_info
-Date: Thu, 23 Apr 2026 21:15:09 +0200
-Message-ID: <20260423191519.73127-5-timur.kristof@gmail.com>
+Subject: [PATCH 05/14] drm/amd/display: Set max supported display clock
+ without max_clks_by_state
+Date: Thu, 23 Apr 2026 21:15:10 +0200
+Message-ID: <20260423191519.73127-6-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260423191519.73127-1-timur.kristof@gmail.com>
 References: <20260423191519.73127-1-timur.kristof@gmail.com>
@@ -128,78 +128,53 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: D6D9D45693B
+X-Rspamd-Queue-Id: 60266456955
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-It's not used by anything anymore.
+The max_clks_by_state was based on hardcoded values, which are
+not really used anywhere, only to know the maximum clock.
+Just hardcode the same maximum clock for each DCE version.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c  | 28 -------------------
- .../drm/amd/display/dc/dm_services_types.h    |  3 --
- 2 files changed, 31 deletions(-)
+ .../amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c  | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
-index 17f42201ab862..2247969aa9acb 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
-@@ -183,33 +183,6 @@ static enum amd_pp_clock_type dc_to_pp_clock_type(
- 	return amd_pp_clk_type;
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
+index 2ba341df7fffd..bef9a72f3382f 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
+@@ -391,9 +391,7 @@ static void dce_update_clocks(struct clk_mgr *clk_mgr_base,
+ 			struct dc_state *context,
+ 			bool safe_to_lower)
+ {
+-	struct clk_mgr_internal *clk_mgr_dce = TO_CLK_MGR_INTERNAL(clk_mgr_base);
+-	const int max_disp_clk =
+-		clk_mgr_dce->max_clks_by_state[DM_PP_CLOCKS_STATE_PERFORMANCE].display_clk_khz;
++	const int max_disp_clk = clk_mgr_base->clks.max_supported_dispclk_khz;
+ 	int patched_disp_clk = MIN(max_disp_clk, context->bw_ctx.bw.dce.dispclk_khz);
  
--static enum dm_pp_clocks_state pp_to_dc_powerlevel_state(
--			enum PP_DAL_POWERLEVEL max_clocks_state)
--{
--	switch (max_clocks_state) {
--	case PP_DAL_POWERLEVEL_0:
--		return DM_PP_CLOCKS_DPM_STATE_LEVEL_0;
--	case PP_DAL_POWERLEVEL_1:
--		return DM_PP_CLOCKS_DPM_STATE_LEVEL_1;
--	case PP_DAL_POWERLEVEL_2:
--		return DM_PP_CLOCKS_DPM_STATE_LEVEL_2;
--	case PP_DAL_POWERLEVEL_3:
--		return DM_PP_CLOCKS_DPM_STATE_LEVEL_3;
--	case PP_DAL_POWERLEVEL_4:
--		return DM_PP_CLOCKS_DPM_STATE_LEVEL_4;
--	case PP_DAL_POWERLEVEL_5:
--		return DM_PP_CLOCKS_DPM_STATE_LEVEL_5;
--	case PP_DAL_POWERLEVEL_6:
--		return DM_PP_CLOCKS_DPM_STATE_LEVEL_6;
--	case PP_DAL_POWERLEVEL_7:
--		return DM_PP_CLOCKS_DPM_STATE_LEVEL_7;
--	default:
--		DRM_ERROR("DM_PPLIB: invalid powerlevel state: %d!\n",
--				max_clocks_state);
--		return DM_PP_CLOCKS_STATE_INVALID;
--	}
--}
--
- static void pp_to_dc_clock_levels(
- 		const struct amd_pp_clocks *pp_clks,
- 		struct dm_pp_clock_levels *dc_clks,
-@@ -448,7 +421,6 @@ bool dm_pp_get_static_clocks(
- 	if (amdgpu_dpm_get_current_clocks(adev, &pp_clk_info))
- 		return false;
+ 	if (should_set_clock(safe_to_lower, patched_disp_clk, clk_mgr_base->clks.dispclk_khz)) {
+@@ -445,8 +443,16 @@ void dce_clk_mgr_construct(
+ 	clk_mgr->dprefclk_ss_divider = 1000;
+ 	clk_mgr->ss_on_dprefclk = false;
  
--	static_clk_info->max_clocks_state = pp_to_dc_powerlevel_state(pp_clk_info.max_clocks_state);
- 	static_clk_info->max_mclk_khz = pp_clk_info.max_memory_clock * 10;
- 	static_clk_info->max_sclk_khz = pp_clk_info.max_engine_clock * 10;
+-	base->clks.max_supported_dispclk_khz =
+-		clk_mgr->max_clks_by_state[DM_PP_CLOCKS_STATE_PERFORMANCE].display_clk_khz;
++	if (ctx->dce_version >= DCE_VERSION_12_0)
++		base->clks.max_supported_dispclk_khz = 1133000;
++	else if (ctx->dce_version >= DCE_VERSION_11_2)
++		base->clks.max_supported_dispclk_khz = 1108000;
++	else if (ctx->dce_version >= DCE_VERSION_11_0)
++		base->clks.max_supported_dispclk_khz = 643000;
++	else if (ctx->dce_version >= DCE_VERSION_8_0)
++		base->clks.max_supported_dispclk_khz = 625000;
++	else
++		base->clks.max_supported_dispclk_khz = 600000;
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dm_services_types.h b/drivers/gpu/drm/amd/display/dc/dm_services_types.h
-index 3b093b8699abd..44aa8d213d386 100644
---- a/drivers/gpu/drm/amd/display/dc/dm_services_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dm_services_types.h
-@@ -258,9 +258,6 @@ struct dm_pp_clock_for_voltage_req {
- struct dm_pp_static_clock_info {
- 	uint32_t max_sclk_khz;
- 	uint32_t max_mclk_khz;
--
--	/* max possible display block clocks state */
--	enum dm_pp_clocks_state max_clocks_state;
- };
- 
- struct dtn_min_clk_info {
+ 	dce_clock_read_integrated_info(clk_mgr);
+ 	dce_clock_read_ss_info(clk_mgr);
 -- 
 2.53.0
 
