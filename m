@@ -2,84 +2,84 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OLJ9CzYk62kYJAAAu9opvQ
+	id gG0dJ9Bv6mlBzQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Apr 2026 10:05:10 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 21:15:28 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B485E45B190
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Apr 2026 10:05:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDF7D45691A
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 21:15:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BF5010F408;
-	Fri, 24 Apr 2026 08:05:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F6C010F236;
+	Thu, 23 Apr 2026 19:15:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="JrVoh0ra";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YGDCrm/N";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5840410F3B9;
- Thu, 23 Apr 2026 19:07:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1776971246; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=C5vUuAtEWb/6gVXNhucnzAgKJC4cjGy3XDfuRvmyZ0FaDyPQHKkInxRvM+m6xJuCjBV8tXklapczrZ4+WZecmpQXirisB709mBZLq6TYHtPVb4eemoUtfUVGSdNxFAGCESUsiuPiwiN52rr1LD6MbCQP3Hf7lPfMRGbiW4e+X4w=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1776971246;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=fWW+fCd6NdbM2KrptCAGlUgGhewIwRtQJLb67KPR+Qk=; 
- b=bZ/iDKiSmpThaKMZF8DJwOT4FFJ9FVTcx8aHXZQOuPNBAYb1F2o95rhNqmTACiEyyh5ia/9jOSW81zTTx/6oEJXVwcHpG5dIUWEzWTPcl+9zGeNxSM7IWAoWw1m5rGoy0rocTd+kTycQxqSDwXQbP6TTubucH13Z6SSDmnmc0sk=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1776971246; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=fWW+fCd6NdbM2KrptCAGlUgGhewIwRtQJLb67KPR+Qk=;
- b=JrVoh0raEMxJ5w7vb1aWo58o9plRtxvr8liiRm5CZwZ/gDjHEE/LSGBkyekMNsvB
- 4cmRn/YRlgvggHwJGzR3UQozPU/PvGlQdsrwtoYZxdSSsvKm3CB+++IBr5BYHU4velM
- nPAIXmZo/HEMOpXOmztcaSo5qYjD3tXQQvQ7hxNQ=
-Received: by mx.zohomail.com with SMTPS id 177697124400182.1090326347678;
- Thu, 23 Apr 2026 12:07:24 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Thu, 23 Apr 2026 21:03:51 +0200
-Subject: [PATCH v14 28/28] drm/connector: Update docs of "colorspace" for
- color format prop
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com
+ [209.85.221.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 618B510F236
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 19:15:24 +0000 (UTC)
+Received: by mail-wr1-f42.google.com with SMTP id
+ ffacd0b85a97d-4411e1eba51so3589225f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 12:15:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1776971723; x=1777576523; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=XD9YqW1ZhBfWVo9tTfxBp7CNJmkjnAPhJ+3R1hcOLYk=;
+ b=YGDCrm/NpNuhLa/EJPZ5ryGM9ywW3nEqqI6qRYxHpEndhzu/U2+KsBjvcc/w/MkRDf
+ Naf1QC/E20qVVj5gijI/Phs4rsvyoFdfwxJBN5j1fr648Nzm7g1FZ9zVIbLDbBhBvj9w
+ aQECW0qKOQQygeFEzr2cEfJTvHxsPSuE7sK+ljZGOqxYQDgXpfU12e8erRH7Ea89ae6v
+ wQmsAnP1jNjD4d7QLThsfSgWnN/K+26lhmuUL6cZAoALx9pT+WUBHeVuD7e4vhB9UhVb
+ +eJudeGttB6TdfoxwrZDZFUHklQYvC1f3f/RmSro1HbkD4XgSkg8HJeMc/ZE8j6aP/Kf
+ H9qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776971723; x=1777576523;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=XD9YqW1ZhBfWVo9tTfxBp7CNJmkjnAPhJ+3R1hcOLYk=;
+ b=hMKe+yYhwN6y4mXsCxVdQ7zKA4q3g9/KLUMcbi3P+1DHcSORZWPZGqSiGm1S/+X1d0
+ wCtoeRfW4SZihWGh68oADzalVAmECDG+0kZiK1+k2D6qP+SzAfTMNfi4Zc1KE7VvEGdd
+ A0EtQ+cPDhD0/UrfvjC389BXrwOaFghQ+aXOmGUoVzFvOV/bX7sNRLCSnn4GsCtHL6P6
+ YEppzZQnrN6da+8hDYdPnkGNezTpD5wIohDSzCHTB0EbCFXzDDFwA0QelqP703haWqlH
+ XSkyQ3//ol3zslTDuh51PLKEH9yTXsMTLd8bANID4oqQXh8hzwwCb040I5KJajZzwW0r
+ KgTw==
+X-Gm-Message-State: AOJu0YzC5A92WbSrisP1Z2cgBTLjaFz+5otBRLEWen6IB6eO6et/oSYG
+ FBoiDEqeppnG6cd30z07Hld8w/k/OSxP0O7BsQ5Cfd7bKhpsUWuzA7gzauOxjR6/
+X-Gm-Gg: AeBDieuexy4tdpcCnwEhXc4E5cdCP2Pm0s85k3wKW+NQ5I5HyVX/UuGcw/ymjrZuJVs
+ SzKqakwHM0yXNReu2PxAYHk9Xv5bUK25LHiT8qn9YAZ18jQPK/nxo+xSpzI8l/BH3dHyoe+4eSL
+ A9B9xM6j1b5hLZ5Fe7ntRZ4QPjJJw9EROxfRe2T4bzk/SuOyo0bXo+ewK8OLY2dZ39k2SI/XRon
+ NUKvsi8INCiN6U8Y23t/sj9Hdvf4VpbORk/9/KQKDAGgedtcHsfqyOKNQrIGK2kG5SRw9WHvEAB
+ gr+0EPNzCgg5ycqMDwvB6h2Ve5xvo8slKnFswBuJobJhx8Psc5yjlgm2/VdbiQBTVszW/STq7zI
+ CopV4Yx/BMCJROGbY8zOyh11QWDW0bZ1eR6PzaFWkgWU2wI8DWJT5ieEiczmT9Rr7xrx7f7csQ1
+ qx1WWaxln11KdmIznQ4Hr4a8XuqEBI9XF1BLR/giQhv8E4e+KClvN83xnVsq8nc8oTVpfrDWG0H
+ CgdhQ==
+X-Received: by 2002:a05:6000:220c:b0:43b:498f:dceb with SMTP id
+ ffacd0b85a97d-43fe3db9c7cmr43578149f8f.9.1776971722610; 
+ Thu, 23 Apr 2026 12:15:22 -0700 (PDT)
+Received: from Timur-Hyperion.home (5E1B98A2.dsl.pool.telekom.hu.
+ [94.27.152.162]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-44123d23e0bsm15792782f8f.15.2026.04.23.12.15.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 23 Apr 2026 12:15:21 -0700 (PDT)
+From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
+ Alex Hung <alex.hung@amd.com>, Harry Wentland <Harry.Wentland@amd.com>,
+ Roman Li <Roman.Li@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ David Airlie <airlied@gmail.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Ivan Lipski <ivan.lipski@amd.com>, Melissa Wen <mwen@igalia.com>
+Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+Subject: [PATCH 00/14] drm/amd: Delete defunct DAL power level code
+Date: Thu, 23 Apr 2026 21:15:05 +0200
+Message-ID: <20260423191519.73127-1-timur.kristof@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260423-color-format-v14-28-449a419ccbd4@collabora.com>
-References: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
-In-Reply-To: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-doc@vger.kernel.org, wayland-devel@lists.freedesktop.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.15.2
-X-Mailman-Approved-At: Fri, 24 Apr 2026 08:04:49 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,65 +93,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: B485E45B190
-X-Rspamd-Action: no action
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[39];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	TAGGED_FROM(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,gmail.com,igalia.com];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:email,collabora.com:dkim,collabora.com:mid]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: CDF7D45691A
+X-Rspamd-Action: no action
+X-Rspamd-Server: lfdr
 
-The colorspace property's documentation states that BT2020_RGB and
-BT2020_YCC are equivalent, and the output format depends on the driver.
+Delete unused code related to DAL power levels.
+It seems that the DAL power level concept has been
+never fully implemented and was thus non-functional
+in amdgpu.
 
-Now that there is a "color format" property that userspace can use to
-explicitly set a format, update the colorspace docs to mention this.
+DCE 11.0 and 11.2 never actually relied on the
+power level because they calculate all necessary
+power requirements in dce_calcs and communicate
+that using dm_pp_apply_display_requirements() to
+the power management code.
 
-The behaviour here is not changed for userspace that doesn't know about
-the color format property yet, as the color format property defaults to
-"AUTO", where the choice of output format is left up to drivers.
+DCE 6, 8 and 10 also didn't rely on power levels
+because they always just set the maximum possible
+display clock and the power management code
+already takes that into account when setting the
+power state. This was somewhat improved recently
+by also using dm_pp_apply_display_requirements()
+on these DCE versions.
 
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/gpu/drm/drm_connector.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+The code base for newer GPUs doesn't use the
+concept of power levels anymore either, so
+this change reduces the maintenance burden
+of the old DCE code.
 
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-index b91c1f76355e..52f9a6a8daf7 100644
---- a/drivers/gpu/drm/drm_connector.c
-+++ b/drivers/gpu/drm/drm_connector.c
-@@ -2573,7 +2573,8 @@ EXPORT_SYMBOL(drm_mode_create_aspect_ratio_property);
-  *		conversion matrix and convert to the appropriate quantization
-  *		range.
-  *		The variants BT2020_RGB and BT2020_YCC are equivalent and the
-- *		driver chooses between RGB and YCbCr on its own.
-+ *		driver chooses between RGB and YCbCr based on the color format
-+ *		property.
-  *
-  *	SMPTE_170M_YCC:
-  *	BT709_YCC:
+On the DC side:
+
+dm_pp_apply_power_level_change_request() was never
+implemented in amdgpu_dm, and DC has been working
+fine for years without it. Let's delete the dummy
+function and the code that calls it.
+
+With that, we can also delete the power levels
+and the static arrays containing hardcoded power
+level values. These were never used for anything,
+only for finding the maximum supported display clock.
+
+On the AMDGPU PM side:
+
+The get_dal_power_level() implementations were
+dummy on SMU10, Vega10, Vega12 and Vega20 meaning
+that they didn't return an actual DAL power level,
+and were non-functional on SMU8 which always
+returned the highest possible power level.
+Nothing actually relied on the power level
+returned by these functions. Let's delete them.
+
+What's next:
+
+After this code cleanup lands, I have plans to
+further improve display power management on old DCE.
+
+Timur Kristóf (14):
+  drm/amd/display: Delete unimplemented
+    dm_pp_apply_power_level_change_request()
+  drm/amd/display: Delete dce_get_required_clocks_state()
+  drm/amd/display: Remove min/max clock levels from clk_mgr
+  drm/amd/display: Delete max_clocks_state from dm_pp_static_clock_info
+  drm/amd/display: Set max supported display clock without
+    max_clks_by_state
+  drm/amd/display: Delete max_clks_by_state from DCE clock manager
+  drm/amd/display: Delete disp_clk_voltage from integrated info
+  drm/amd/display: Delete dm_pp_clocks_state
+  drm/amd/pm: Delete unused get_display_power_level() function
+  drm/amd/pm: Delete dummy get_dal_power_level implementations
+  drm/amd/pm: Delete non-functional SMU8 get_dal_power_level
+    implementation
+  drm/amd/pm: Delete vddc_dep_on_dal_pwrl
+  drm/amd/pm: Delete get_dal_power_level
+  drm/amd/pm: Delete PP_DAL_POWERLEVEL
+
+ .../amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c  |  39 -----
+ .../gpu/drm/amd/display/dc/bios/bios_parser.c |  36 -----
+ .../drm/amd/display/dc/bios/bios_parser2.c    |   9 --
+ .../display/dc/clk_mgr/dce100/dce_clk_mgr.c   | 144 ++----------------
+ .../display/dc/clk_mgr/dce100/dce_clk_mgr.h   |   3 -
+ .../dc/clk_mgr/dce110/dce110_clk_mgr.c        |  25 ---
+ .../dc/clk_mgr/dce112/dce112_clk_mgr.c        |  41 -----
+ .../dc/clk_mgr/dce120/dce120_clk_mgr.c        |  16 --
+ drivers/gpu/drm/amd/display/dc/dm_services.h  |   4 -
+ .../drm/amd/display/dc/dm_services_types.h    |  30 ----
+ .../amd/display/dc/inc/hw/clk_mgr_internal.h  |   4 -
+ .../display/include/grph_object_ctrl_defs.h   |   9 --
+ drivers/gpu/drm/amd/include/dm_pp_interface.h |  19 ---
+ .../gpu/drm/amd/include/kgd_pp_interface.h    |   2 -
+ .../gpu/drm/amd/pm/powerplay/amd_powerplay.c  |  22 ---
+ .../amd/pm/powerplay/hwmgr/hardwaremanager.c  |  10 --
+ .../amd/pm/powerplay/hwmgr/processpptables.c  |   1 -
+ .../drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c  |  48 ------
+ .../drm/amd/pm/powerplay/hwmgr/smu8_hwmgr.c   |  64 --------
+ .../drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c |  18 ---
+ .../drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c |  16 --
+ .../drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c |  17 ---
+ .../amd/pm/powerplay/inc/hardwaremanager.h    |   3 -
+ drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h  |   4 -
+ 24 files changed, 11 insertions(+), 573 deletions(-)
 
 -- 
 2.53.0
