@@ -2,58 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CNzoFFQV6mmVtgIAu9opvQ
+	id GGOSC3oH6mlCsQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 14:49:24 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 13:50:18 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E4D04524A9
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 14:49:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF19B4517C6
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 13:50:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89E2110F0F6;
-	Thu, 23 Apr 2026 12:42:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E143710F0BE;
+	Thu, 23 Apr 2026 11:50:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="A9zIJ8W5";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RpGzZBar";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EAEE10F0B7;
- Thu, 23 Apr 2026 11:40:42 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id D18D7406C6;
- Thu, 23 Apr 2026 11:40:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60D82C2BCAF;
- Thu, 23 Apr 2026 11:40:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1776944441;
- bh=XWpyzthTDl8osOJZCyGUAdA1IW4nOmyc8fO7wAVzzhk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=A9zIJ8W5rUljqWcYOM2NMB8yCRv5QyRJso61Dr+oylA1kSt3a58vGL9WIEFRWn75I
- bPSFsVbGzQhg9+HByVx9r2XzSY1cjq3g/jexNuy/h4HkRV34294O5bRNUa5rlLt+Eg
- l544Jm3OVB4hk49omkplHMkr9Lg6RM4ONxWHrD6A=
-Date: Thu, 23 Apr 2026 13:40:39 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>
-Cc: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- stable@vger.kernel.org, Robert Garcia <rob_garcia@163.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Yifan Zha <Yifan.Zha@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6.1.y] drm/amdgpu: remove two invalid BUG_ON()s
-Message-ID: <2026042330-washhouse-amusement-db9e@gregkh>
-References: <20260417074010.1607496-1-rob_garcia@163.com>
- <6064b45a-b8de-4848-856f-383d2d06680d@amd.com>
- <2026042335-probation-heftiness-7399@gregkh>
- <4885687.vXUDI8C0e8@timur-hyperion>
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44FBC10F0BE
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 11:50:14 +0000 (UTC)
+Received: by mail-wm1-f54.google.com with SMTP id
+ 5b1f17b1804b1-4890d945eb4so30044165e9.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 04:50:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1776945013; x=1777549813; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=4hmkBXXtPne2QFgo3zsPfHScxB26k0qBduR7GJjhrDQ=;
+ b=RpGzZBarGOTXY9rFYYb/e+4O0ScPQCGB4CrNX7nZ7YIUXxfRYF7mu8qDrNSiY/7cET
+ Ga1wKTx0a/gX14hzwIcaD7qvSucGNfe+PBSZTlP38Hw78+ABCnAilb3cC6A2X4Y3wqJV
+ Fq+0+iUKTIR4LRSVg96zrwfwD9qcqhMZ5rnLyk9rZuw6p9e23FVY7Il/VnhK+lQu9Xm8
+ 9CO3cdLY4pkBsHtskib3EVkQdU8we52HoOCITAWLR3/7ZQKdd11nHpajgar4N2DmvNk1
+ H6Z/HV15JKaYAU3B8mtDnShGi+F1X8C1se6OV5XOGrsj0/6N/sc0FUZB28Wkx+bx2kwh
+ mmpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776945013; x=1777549813;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=4hmkBXXtPne2QFgo3zsPfHScxB26k0qBduR7GJjhrDQ=;
+ b=D2DBL8qFEPWaoc6rdFkbCKpQ35t7hIwFBYnaXMvBOqP8fK3KDk6LhtSh5uLWn21drq
+ +zkCpW4EfMN0rQF28KFzdZKc6yMPbmmykcdyl0Ql9B6OdTrfThsTEVuDr2F9fjFztTNH
+ 4v+ok3L0JO7O/nk8SkGiOilfJsCCF3q6OojCi7t97KK/HC6moaJ1ei/MIQCjm9Inul90
+ tOROFvdZermAxJKXEfuA38G17Wf4DlGI2o+8JvruKwR2xfO+JRpkqyN3EhkNB2Nr7Yf3
+ tsv0J7BObry4Q3IHd7fAgNJKJCqrB7DLflanQoQMbYpQ9T8OQTuoH3HCBNzux5A0MCZd
+ pEyQ==
+X-Gm-Message-State: AOJu0Yz27WV63+PI2qFuxMc79L/j/qOc0FL0zC38hrek3vWJjPyloeQY
+ ZasZHcqbp0Q+iCUKIi6yTOa2XuSIQrMPj/SrCLXWfnhtd1RESYwQjCn1e0woxXow
+X-Gm-Gg: AeBDievqQ5ajLvQQ19IFtWAp+8pKgeKkd1lQ8Qi5x3aVSFFRj4BSNmKSBe6l9ol8bKS
+ CV+sJ6whoFkzV2pqxanklxwxlpp6qlDSXd7ZMe7cFhceUcn4OSwGGA0zY8HY/H25TFTLInVe8nd
+ MRBZdhM0vAQsGiK01kuVjbL7mLspP5CjMwm4J1reWigHcn/iJahIKy1DDfIkApJbVcFuqvG+PvP
+ ryL6j2HA8PrilzwwsVqHs1b5RLFdhLPWCdYN7qOFm3+xnAI8FHeJZcSeodnJ7hwLV+LjObqKaov
+ TiDRjjsfltMoyWVjWv0qhy7nFj3JasXRtZxIYwUpvtSaF/tAZrTqpZvzMm9Ltwz0rnkOe4MxWag
+ zbV1oCsnP/MtzLFxmDV58NZ4hntZXVFZm0myiWoMv0v+DsYWebivR3TAgkoomUgczqS5H+B7mlD
+ es25FNBqsdqZBUO/SNvkBdqIq8FHW+qQflYaul3/med4hm3tHilvQpK9XlXktv16sVaegPYGVDh
+ AXWzL25WYY=
+X-Received: by 2002:a05:600c:c112:b0:486:fe83:861c with SMTP id
+ 5b1f17b1804b1-488fb896910mr307430685e9.7.1776945012597; 
+ Thu, 23 Apr 2026 04:50:12 -0700 (PDT)
+Received: from timur-hyperion.localnet (5E1B98A2.dsl.pool.telekom.hu.
+ [94.27.152.162]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-488fc14a61asm478879875e9.15.2026.04.23.04.50.11
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 23 Apr 2026 04:50:12 -0700 (PDT)
+From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
+To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
+ John Olender <john.olender@gmail.com>, "Liu, Leo" <Leo.Liu@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Subject: Re: [PATCH 11/11] drm/amdgpu/vce4: Fix VCE 4 firmware size and offsets
+Date: Thu, 23 Apr 2026 13:50:11 +0200
+Message-ID: <2603876.XAFRqVoOGU@timur-hyperion>
+In-Reply-To: <4d9390ee-cfc3-42cb-bee3-df6b9539078b@amd.com>
+References: <20260423011614.309180-1-timur.kristof@gmail.com>
+ <20260423011614.309180-12-timur.kristof@gmail.com>
+ <4d9390ee-cfc3-42cb-bee3-df6b9539078b@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4885687.vXUDI8C0e8@timur-hyperion>
-X-Mailman-Approved-At: Thu, 23 Apr 2026 12:42:22 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,72 +92,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [4.79 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MAILLIST(-0.20)[mailman];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	GREYLIST(0.00)[pass,body];
-	ARC_NA(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[amd.com,vger.kernel.org,163.com,gmail.com,ffwll.ch,lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MAILSPIKE_FAIL(0.00)[131.252.210.177:server fail];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linuxfoundation.org:+];
+	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	TAGGED_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linuxfoundation.org:dkim]
-X-Rspamd-Queue-Id: 8E4D04524A9
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: AF19B4517C6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 23, 2026 at 01:34:42PM +0200, Timur Kristóf wrote:
-> On Thursday, April 23, 2026 1:22:22 PM Central European Summer Time Greg 
-> Kroah-Hartman wrote:
-> > On Wed, Apr 22, 2026 at 04:11:15PM +0200, Christian König wrote:
-> > > Those points are certainly valid.
-> > > 
-> > > I've also up-streamed a patch which completely rejects userspace
-> > > submissions who try to use the CE.
-> > > 
-> > > The problem is that those BUG_ON() can lead to a deny of service because
-> > > they crash the whole kernel.
-> > > 
-> > > A BUG_ON() is only justified if it prevents even worse things to happen,
-> > > e.g. data corruption or it would crash later on anyway just not so
-> > > obvious on what is wrong.
-> > > 
-> > > Otherwise we should use WARN_ON().
-> > 
-> > WARN_ON() crashes the kernel as well when panic-on-warn is enabled, as
-> > it is in a few billion Linux systems :(
-> > 
-> > As this commit is upstream, and in other stable trees, I'll apply this
-> > as it's not nice to have a simple way for userspace to crash the system.
-> > 
-> > thanks,
-> > 
-> > greg k-h
-> 
-> Sounds reasonable, if you feel this improves stability.
-> 
-> That being said, there are many other ways besides this one for userspace to 
-> crash the system equally easily.
+On Thursday, April 23, 2026 1:31:03=E2=80=AFPM Central European Summer Time=
+ Christian=20
+K=C3=B6nig wrote:
+> On 4/23/26 03:16, Timur Krist=C3=B3f wrote:
+> > The VCPU BO contains the actual FW at an offset, but
+> > it was not calculated into the VCPU BO size.
+> > Subtract this from the FW size to make sure there is
+> > no out of bounds access.
+> >=20
+> > This may fix VM faults when using VCE 4.
+> >=20
+> > Cc: John Olender <john.olender@gmail.com>
+> > Fixes: c1dc356a116c ("drm/amdgpu: add initial vce 4.0 support for vega1=
+0")
+> > Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
+>=20
+> Leo can you take a look at this? VCE4 doesn't use the classic VCE FW
+> validation any more.
+>=20
+> So I'm not sure we have nor need that here.
+>=20
+> Regards,
+> Christian.
 
-Great, please fix up those as well :)
+Hi  Leo & Christian,
+
+If you take a look at vce_v4_0_mc_resume() you can see that it initializes =
+the=20
+firmware offset like this:
+
+offset =3D AMDGPU_VCE_FIRMWARE_OFFSET;
+
+Specifically for the non-PSP code path, this triggers exactly the same issu=
+e as=20
+VCE2-3, that this causes the STACK and DATA to be also offset, and hence th=
+e=20
+DATA will be out of bounds of the VCPU BO.
+
+=46or the PSP code path, the STACK and DATA no longer depend on the firmwar=
+e=20
+offset and size, so that is fortunately not an issue anymore. In that case=
+=20
+however the driver still uses the same offset for the ucode.
+
+Best regards,
+Timur
+
+>=20
+> > ---
+> >=20
+> >  drivers/gpu/drm/amd/amdgpu/vce_v4_0.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
+> > b/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c index
+> > 3309e7b8f2a2e..eaa3e05a52e59 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
+> > @@ -281,7 +281,7 @@ static int vce_v4_0_sriov_start(struct amdgpu_device
+> > *adev)>=20
+> >  					=09
+mmVCE_LMI_VCPU_CACHE_64BIT_BAR2),
+> >  						(adev-
+>vce.gpu_addr >> 40) & 0xff);
+> >=20
+> > -		size =3D VCE_V4_0_FW_SIZE;
+> > +		size =3D VCE_V4_0_FW_SIZE - AMDGPU_VCE_FIRMWARE_OFFSET;
+> >=20
+> >  		MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0,
+> >  		mmVCE_VCPU_CACHE_SIZE0), size);
+> >  	=09
+> >  		offset =3D (adev->firmware.load_type !=3D AMDGPU_FW_LOAD_PSP)=20
+? offset +
+> >  		size : 0;
+
+
+
+
