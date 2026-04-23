@@ -2,77 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QNulAvFy6WmkZwIAu9opvQ
+	id 0Lv3OvNy6WmkZwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 03:16:33 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 03:16:35 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA14544C136
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 03:16:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D00744C144
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 03:16:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3635110EAD2;
-	Thu, 23 Apr 2026 01:16:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3239210EAD7;
+	Thu, 23 Apr 2026 01:16:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RlCB8Ur8";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dUanzwCN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B72A810EAC0
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 01:16:29 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id
- 5b1f17b1804b1-48a3e9862f0so26107315e9.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 22 Apr 2026 18:16:29 -0700 (PDT)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
+ [209.85.128.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 925A910EAC0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 01:16:30 +0000 (UTC)
+Received: by mail-wm1-f44.google.com with SMTP id
+ 5b1f17b1804b1-488b3f8fa2bso62789265e9.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 Apr 2026 18:16:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776906988; x=1777511788; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1776906989; x=1777511789; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=gp+WOAQVpMscIEdxQZDgT3tXKBjcAfoYHuwrNh22FxA=;
- b=RlCB8Ur8GJZ/AJWYOcNF8vBirKRSZkgkv+Z7UpLEM9grZF/95yDKZo7zJCEqlzOK2S
- lsHd/27SZplLygKYZvFoyA8k30FDspGyyi5tb9Gv99WTRz+lVnN1ai+jxAnyU4SM9atd
- PSnlw+suBj9kpPOfyxSeaTqveFOI/BEGvUsQf+sVxEQwSNUwkLfb0EjoJ9bATal+wI5h
- tvdV1+8qc9Yjq9hJfJPf+OocgWZFRlZY3G2n++xzQzmL4dVFAGjzBFi2UISMQ+kUyYC/
- S9KzTxv/UTOXfIpreU0PkaYWB9gJkZstnDVD+/36HpIJpwNlxUf2WcGexcP+7uMm2A6H
- 4ogw==
+ bh=JNrFiRiS0C+430H85dlcsvf8l8wIKdv0ty614aws/oo=;
+ b=dUanzwCN0BxhbV2GqHIk+tiWLyOYLCH6v2xbImT67BVuMh5nepvPYTEhEzk3FmMvT1
+ uhDRzB1dDst/BdVurbWvzrr3UwrNeNCGcamwSyEk5FeLhD9fnhJySYdnkUHUzZSARNO0
+ VDp0tyhq9CejMPYCLnSyNgrp/efsJba6H/cbtKmo1jj/TPkmCDkeDYyk3B9A5aidJKzl
+ gdS8qNHc84GUY3lkePyxHfQqgBrqqAEaWB8c/jEt53M777zje6j+EHP70hFDaWB4A5OL
+ LcXENdac66Ce9Mqnus3+L5b6lA3ZoBo/NW0eZTrYqjEpX5Uh34yQxmWnaZIAsOdKof7+
+ MwZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776906988; x=1777511788;
+ d=1e100.net; s=20251104; t=1776906989; x=1777511789;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=gp+WOAQVpMscIEdxQZDgT3tXKBjcAfoYHuwrNh22FxA=;
- b=Jrz+vVzotOmwVqIjS3hzS02ULltw5TBRYKqOXnslFfZr3Zz/zN5wxa8cF1o41Lt80S
- LINFakoegg5lubA/NEYMwSOHqerR2+BUKXj5+bP/yhasdiaw5dNlKjqNBg7GPAev3xHa
- 4NHDnkpn7DdTindc1Uf0s+SmEibcVbw3clpcDsf8gM7uUOO+OvOwDgn8TPzWnEU8/iZj
- R78EJbsHDGsWRk7lUBolp5BOt6pyegppATEVNs03b7t6DZ8ZYGfejlfmXF7r98iXjfCH
- gumCvIJnM+WD3TIgs6O8SEH4Alf26Bj8enAzXRfOqtMXEZCKufuFgV58YwAbJaWCvhzJ
- KeUw==
-X-Gm-Message-State: AOJu0YxY2D9vFdEx+kLjzLWdnYrwsWJGJkgBqEfHxViryvH3yhfYiSkf
- HXadhhtOoTRWNqtk5LrWMqwhnNXFQo9+WRX1Vx/03mpWoT+MEKTIAKDinkp2NQ==
-X-Gm-Gg: AeBDieuBDtsUHjHMUaYzNSoZqXaVdNkQFAilzLK3LDBCNuJA+lsI05JTKIlBZLV3RLK
- 8B3pm3ItuU4oRv4WmWyxPSBocK7KjOoL+WYhSVaiasVAN3RGQZ7EgVtbAq3O8ylsSH6rPy2M3mk
- M2zuwKxEm2cxZeqb+zRWYLdCVMBolT6mcY5bv5Tx1LSpzJ9+OFjeuchECsdY2VnoSQOunvkJmw5
- clvq9mkPWq5YGJjj1dRTY0ve+tCADqJkdGHRTq8XwT3YWcfuvwCVJ3iZeup1ErWCzCznsXdl2/z
- 3WlLxV7bB7BenlgSiiB1tXu0z3P0leRvihM1R5+NTaTeazGN8kvJcwmOcY7xhyFEZ65fYZjlUHU
- 4k9gT+dofzXZzV0AoFS5563i/iEC8/gBIZnVXJzkrbrT7NP7fEdLF7455qh1Wvx/CWn8fM3cEUO
- +1ukuETL2q/LUbp/BCvMKOHbtBE121g5/SBRos7vMFOFBjA3d9sXhl478YcvqZrqt/rRz5wz8XT
- Xtryw==
-X-Received: by 2002:a05:600c:b96:b0:48a:5339:a46 with SMTP id
- 5b1f17b1804b1-48a53390f6cmr155733305e9.9.1776906988097; 
- Wed, 22 Apr 2026 18:16:28 -0700 (PDT)
+ bh=JNrFiRiS0C+430H85dlcsvf8l8wIKdv0ty614aws/oo=;
+ b=dNsbh7ocDILGQ6o/zEXrWN8w/jEAM+MBlwKXP3jSvflJsU36FkDFGm81O2yfLeY0rb
+ HaXmrXIF82jTJYygt5vachX+tU2Z1UHBNPV9zQNRSZv1tr4vktBNQD2aX5Cq3S2fGnpe
+ YRKWX0gLny4cBmCbxLTLdPSCoL5Exj3qcs6iJs7KxyHCoB8JEd2FADxeBCulqlRpBJXW
+ y7CgSrZDQ77fG/PIttq5D6vGPVdfp6lTjIQdOZqiW8o+xE5dYpST/bXnAzQmz3eIb4rP
+ uLCj79DRy1wGwDBJtwsCcusR0EMF7Rew9OUn/NNdeU6Kz5tISZICjUVG9A8zMPdvV6+Y
+ IivQ==
+X-Gm-Message-State: AOJu0YwCUmCnVIgVuHVHQSfOufxM7Vri+qc7Xu/c8yjtVhACMZkKHhs8
+ 9dzSI1sX1K5AHqjGVmotXnVXvzH7H+ugq8iorgIWO8SgsyLU9nBOy6gTD2LsPQ==
+X-Gm-Gg: AeBDieu47l+10ssaBXp9yz5XvI3bsqOSRKoek00qxdcfwgwAGYofkuGq3RIG8NjnVeC
+ RGV3dHxMcmepxbeKjG2oN1SytEAHYWmI1fM0aMFcdZP0NfnDOFXlYPX2VWLfsug4fMezxUcc/EB
+ ttkuzSLPL47EsKSo/7PwU7r0Y8CG9hG0/gO8lvplKHhumxcaqFe8/q/qmYx4Cctbuk/ZyFw5HaG
+ O8umMTODXiHKvJvEUry84NsOkIQj0IlSZ57t4tKjX8a3R4ZKKIrpIhtCm8f3iNFnzkZ1sHK6GaO
+ czgRUnsdp8tgcff9ludKGJAp4xv2P1lG4ntpBnSnXH+a+WllD3JIX0N4RyIKkN877kNhtXZJvjC
+ tu4TFELdbBrxw15bOMQeHE9M8jDwdEFTBaW0SvhGN/CZM7qUrliRtuHEoNl4LIqe//O1l95/Eiq
+ 0Nc3ZqGnbsnblaPQVgki7CaHpmIQab0qGX/29Eo3yzpnCCx7MK9Aq3GbrZcJyvU2ZWAqg6co9LH
+ 4lNKA==
+X-Received: by 2002:a05:600d:8447:b0:486:f893:56c6 with SMTP id
+ 5b1f17b1804b1-488fb8b18d1mr243816185e9.10.1776906989060; 
+ Wed, 22 Apr 2026 18:16:29 -0700 (PDT)
 Received: from Timur-Hyperion.home (5E1B98A2.dsl.pool.telekom.hu.
  [94.27.152.162]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48a4b329542sm370664435e9.3.2026.04.22.18.16.27
+ 5b1f17b1804b1-48a4b329542sm370664435e9.3.2026.04.22.18.16.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 22 Apr 2026 18:16:27 -0700 (PDT)
+ Wed, 22 Apr 2026 18:16:28 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
  christian.koenig@amd.com, John Olender <john.olender@gmail.com>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 10/11] drm/amdgpu/vce3: Fix VCE 3 firmware size and offsets
-Date: Thu, 23 Apr 2026 03:16:13 +0200
-Message-ID: <20260423011614.309180-11-timur.kristof@gmail.com>
+Subject: [PATCH 11/11] drm/amdgpu/vce4: Fix VCE 4 firmware size and offsets
+Date: Thu, 23 Apr 2026 03:16:14 +0200
+Message-ID: <20260423011614.309180-12-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260423011614.309180-1-timur.kristof@gmail.com>
 References: <20260423011614.309180-1-timur.kristof@gmail.com>
@@ -122,7 +122,7 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: AA14544C136
+X-Rspamd-Queue-Id: 9D00744C144
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -131,28 +131,28 @@ it was not calculated into the VCPU BO size.
 Subtract this from the FW size to make sure there is
 no out of bounds access.
 
-This may fix VM faults when using VCE 3.
+This may fix VM faults when using VCE 4.
 
 Cc: John Olender <john.olender@gmail.com>
-Fixes: e98226221467 ("drm/amdgpu: recalculate VCE firmware BO size")
+Fixes: c1dc356a116c ("drm/amdgpu: add initial vce 4.0 support for vega10")
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/vce_v3_0.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/vce_v4_0.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
-index 2e97376ff30e5..2b6ddb6bec3b0 100644
---- a/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
-@@ -574,7 +574,7 @@ static void vce_v3_0_mc_resume(struct amdgpu_device *adev, int idx)
- 	} else
- 		WREG32(mmVCE_LMI_VCPU_CACHE_40BIT_BAR, (adev->vce.gpu_addr >> 8));
- 	offset = AMDGPU_VCE_FIRMWARE_OFFSET;
--	size = VCE_V3_0_FW_SIZE;
-+	size = VCE_V3_0_FW_SIZE - AMDGPU_VCE_FIRMWARE_OFFSET;
- 	WREG32(mmVCE_VCPU_CACHE_OFFSET0, offset & 0x7fffffff);
- 	WREG32(mmVCE_VCPU_CACHE_SIZE0, size);
+diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
+index 3309e7b8f2a2e..eaa3e05a52e59 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
+@@ -281,7 +281,7 @@ static int vce_v4_0_sriov_start(struct amdgpu_device *adev)
+ 						mmVCE_LMI_VCPU_CACHE_64BIT_BAR2),
+ 						(adev->vce.gpu_addr >> 40) & 0xff);
  
+-		size = VCE_V4_0_FW_SIZE;
++		size = VCE_V4_0_FW_SIZE - AMDGPU_VCE_FIRMWARE_OFFSET;
+ 		MMSCH_V1_0_INSERT_DIRECT_WT(SOC15_REG_OFFSET(VCE, 0, mmVCE_VCPU_CACHE_SIZE0), size);
+ 
+ 		offset = (adev->firmware.load_type != AMDGPU_FW_LOAD_PSP) ? offset + size : 0;
 -- 
 2.53.0
 
