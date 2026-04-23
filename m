@@ -2,70 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +LUgHdxv6mlBzQIAu9opvQ
+	id MAE8Fdhv6mmizQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 21:15:40 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 21:15:36 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25EDA45697D
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 21:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 052D6456950
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 21:15:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80BF010F296;
-	Thu, 23 Apr 2026 19:15:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C77D10F27A;
+	Thu, 23 Apr 2026 19:15:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="juXPsUrq";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PoyJ/rBB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
- [209.85.221.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A8A210F23D
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 19:15:32 +0000 (UTC)
-Received: by mail-wr1-f43.google.com with SMTP id
- ffacd0b85a97d-43cfce3a195so4115133f8f.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 12:15:32 -0700 (PDT)
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
+ [209.85.221.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6855010F26D
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 19:15:33 +0000 (UTC)
+Received: by mail-wr1-f41.google.com with SMTP id
+ ffacd0b85a97d-43d7213b6ebso4664329f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 12:15:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776971731; x=1777576531; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1776971732; x=1777576532; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=fUH28T2FA9Ddfx4PgnFrSifOGtQskH0QOOs8VhQ9W+k=;
- b=juXPsUrq2AbKTqwakf9xVHYqj7rX7ojmcbmHwKTUgLgjhhfs9xqGIcOzJTKCcKxhCa
- vvG37mO7w5LasJPeWf8ZWaDVdrihIbwKPa6vgltTU6k3XcFTOA8NQXbWubUnixJO3JrP
- Drt3ExVGZlF5BcJB/n815Wk7WerHB4UbcEXLshKVHB/dIiG6iTvilQIe3x0X1hH4sq/z
- GDcoe8xEuCl0NJuNvMkvfm78R9iqpCV9wulh/n0E3B8BRStagz/OyattXS8+ErRIbYks
- xwjCH4PNdTd6XRq93MKmSerADDsjbZGbq1N+F4uuRZRDD+Jpan3Y9VrLvQ3UH31nnnXX
- tePg==
+ bh=MFzZGWTWjsjyhqWZ2KMfEiEIPmR0JlBKklkPEOf0qMM=;
+ b=PoyJ/rBBFAijKgq4X5gt7vV2/yeXxs7LAWxPuegDKrtoaDXjp4Aw7LPzaQV8amJ9yv
+ BOpIOll0T3DHMcMEAg7YU7oaQtESWMnFhte5TOTuJXb4gBLtWpR96Qb+U1fCAjMEB4U0
+ +E4pUYfPvJx9FM5NZTRVifQbgGUEyEh6kQX843MqO5+IszPS6FBxwG7ztk6wZxa4xfJR
+ hDJbvhBYurO66Ntt0VwmWci7qJX4WvVR2NFO3Ovkv/F81E74DYKnegbsBhEdVl0PRLL3
+ OQJD1CLjsjzi97SoIGZNZFxKELCQBMNWpWkAnMUAWXx2+AJOeMAzu2TZN5/Ngy67rMqV
+ vuXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776971731; x=1777576531;
+ d=1e100.net; s=20251104; t=1776971732; x=1777576532;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=fUH28T2FA9Ddfx4PgnFrSifOGtQskH0QOOs8VhQ9W+k=;
- b=F1tyaBchcbs/UkCAtbAbeN85Jel7khqXiGUUBlZSoFOQKXD0R48O5NCSMoDalPv//4
- foFpDP+qkCI454jJtmOCBGtifVgSo7ud5VWqtKis9RMmLGTfyRVWgm+LXwO5CzY8qQwh
- XuiTOuNvDjuxzKmYGhRsa+aOOAeIP1FhBhFq3p4dGQOiqYSkmVZw+Ao9/tqEFwpHCxVx
- txP2XnyiKFq261o2h7LGvsJq+pIkNKICJOBf+/pf1ikxvb5xr4khgeNbKrb7n9U5Ccdv
- TQqoQJXjjO31f1S5E6EsgR0+umubUJqonXtEzhXDntJVzFItLNA9KNAbn5aP6ucjEwzz
- Q/hg==
-X-Gm-Message-State: AOJu0YyTaMfg+LtMT6u+norr9s5jRN4enaZ0NkTAtaYjEbQC/e9yeZmo
- ha8nHP0BPmefF52ZEZxqc+CquKZ2v67/S5u3b//3d+/OgdJFX0fD02dJyrkIelTx
-X-Gm-Gg: AeBDiesAzNtJ9ENNfUWjRfQlJNXd0D0dkG5RFfQS1EZE2TBIHu/woXD0lRBmSbOZzs7
- Ky9kfaDXVUW8dBgKM6vDa+O7aZ/EDHhSQBFkbv+72EMxSDcrYhVvV79fOrs1oLqWzJdbDtFBP7V
- YsmMACwr23gPBv+zbvgTHD/R5K+BRslJbiQ04qSegWaRMvR5zQ1QAJk14hg/MuXfmqW4+6kYV7C
- Wu5zj691PxiPoLr/k32pODS/+0lA6rKLqCbnHta2/dWXfaxiq3Gw/xGndRLVE7SywZ/Pgts4WXi
- m8271b+VopldR+2jrqdo3kaot1jIuO2h9m+lFgAEU4hwtE+URY69R8frYz2a2sJpKE/INdmu5WZ
- j1OMjrDfJn6GxYah9K7c2KP8NvZaAJ//z6LPs5yK2QwATGLHWHim3beHsHqJOCoOA71JTMCsBNS
- urCwTMD2Kq3e7s9ge2UPzRSXKuM4ye28373hHLzDqrJ7ZaLP3H6IU+7zwxLpiPRY27l6+3Sm8yQ
- a5LZSyV690S9rOJ
-X-Received: by 2002:a05:6000:1785:b0:43c:fc5c:a9fe with SMTP id
- ffacd0b85a97d-43fe3dbf4e7mr43836826f8f.20.1776971730707; 
- Thu, 23 Apr 2026 12:15:30 -0700 (PDT)
+ bh=MFzZGWTWjsjyhqWZ2KMfEiEIPmR0JlBKklkPEOf0qMM=;
+ b=QAPiXJ84vFPIaR3z8eukCH/WSNeLin0P2RRa29exwL5X0gRRFnELHATwYIHqJqT6gw
+ je+mMbEol5YPhJ7yIB0XXvbWiSbgu0CBjH7x3/C5PIsu+IlYpy+cp5QWQfqeaUvSHA00
+ VWSCWj4Vo6musIbf6YGOUA76GT4u3Km3V3WFgACey7sI42T+xuC3W6QyN38EoHbgUm3q
+ DOR04rct90qdERu2MQMoX0hyl8HLwhJITFbDuMATE6yzn9ZfuJZXBytVZoAEdrdqCZUz
+ JltVHEg+OwpyeycAb5zLKV7oZ3KDdzWrT5V9WL6WtaE4ec+tGI1OE73qZWZYix/DRcR5
+ mOog==
+X-Gm-Message-State: AOJu0YxjYKWAnWoULEZX9dczDbSxNaThWgtKzZ91hIebK7ANcO/xtvKP
+ YSuHymfnzsG6LChYqnf8LFlrp8xoQ5xpvSWREb27Z+Xfnr39NqvBkTTw8expIznM
+X-Gm-Gg: AeBDietSFOh5Xz3J2enm8lBzJBmQU7DTaXBC7nihKwHNI7ITcjaaR2uW9VbLy6hFYfR
+ jeZAkY3kVPTw21egjR2HWQCkSpsYdmsI3VRk9PXQCr5iUaDvJ4oJ65hf1kWnP2Gpi8cRLH5b3Gx
+ um0CbPSJqsOmPgsOa1ZtsZWaxQW+yO6IO+qlAPrwtL0nyn1Qe5SmhrHEdJXHpUgE7e68S23WUND
+ SQragCQfWbheE/hzk9Rj19X3PAqDIbgEq7XijRP8gbZYXNwZEbfXCZ3EZrJfjcpawWML5JNpw8V
+ 4JMRvNU209l6aREUn2P1aflKHJnTO64ojSj/7kCeDAR7A81M+B4WYgTBD3Fky21pkqi2HgK/t5a
+ MTNfJ6GF9+5/k2aBahPU0u6sIG4gx1Xfr604WeKOmC02aJbYg6+LGxnChioPkzE8IZd+59Fer0j
+ 1kHo7AWXbYVw9cdVjHcPAcv8vMwTsmOn6khp9dcVoNAvOdp2+/RG4QwK7iMPmHKdxjjwuQfv1/J
+ wLbwg==
+X-Received: by 2002:a05:6000:2008:b0:43d:71f4:7ed4 with SMTP id
+ ffacd0b85a97d-43fe3dcafb7mr45708337f8f.15.1776971731829; 
+ Thu, 23 Apr 2026 12:15:31 -0700 (PDT)
 Received: from Timur-Hyperion.home (5E1B98A2.dsl.pool.telekom.hu.
  [94.27.152.162]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-44123d23e0bsm15792782f8f.15.2026.04.23.12.15.29
+ ffacd0b85a97d-44123d23e0bsm15792782f8f.15.2026.04.23.12.15.30
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Apr 2026 12:15:30 -0700 (PDT)
+ Thu, 23 Apr 2026 12:15:31 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
  Alex Hung <alex.hung@amd.com>, Harry Wentland <Harry.Wentland@amd.com>,
@@ -74,9 +74,10 @@ To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
  Mario Limonciello <mario.limonciello@amd.com>,
  Ivan Lipski <ivan.lipski@amd.com>, Melissa Wen <mwen@igalia.com>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 08/14] drm/amd/display: Delete dm_pp_clocks_state
-Date: Thu, 23 Apr 2026 21:15:13 +0200
-Message-ID: <20260423191519.73127-9-timur.kristof@gmail.com>
+Subject: [PATCH 09/14] drm/amd/pm: Delete unused get_display_power_level()
+ function
+Date: Thu, 23 Apr 2026 21:15:14 +0200
+Message-ID: <20260423191519.73127-10-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260423191519.73127-1-timur.kristof@gmail.com>
 References: <20260423191519.73127-1-timur.kristof@gmail.com>
@@ -127,63 +128,61 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 25EDA45697D
+X-Rspamd-Queue-Id: 052D6456950
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-It isn't used by anything anymore.
+Was not called from anywhere.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- .../drm/amd/display/dc/dm_services_types.h    | 27 -------------------
- 1 file changed, 27 deletions(-)
+ drivers/gpu/drm/amd/include/kgd_pp_interface.h   |  2 --
+ drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c | 12 ------------
+ 2 files changed, 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dm_services_types.h b/drivers/gpu/drm/amd/display/dc/dm_services_types.h
-index 44aa8d213d386..b3505d93503fd 100644
---- a/drivers/gpu/drm/amd/display/dc/dm_services_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dm_services_types.h
-@@ -36,30 +36,7 @@ struct dm_pp_clock_range {
- 	int max_khz;
- };
+diff --git a/drivers/gpu/drm/amd/include/kgd_pp_interface.h b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
+index 1bbf531de5ed7..ac05a12e71bdf 100644
+--- a/drivers/gpu/drm/amd/include/kgd_pp_interface.h
++++ b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
+@@ -476,8 +476,6 @@ struct amd_pm_funcs {
+ 	u32 (*get_mclk)(void *handle, bool low);
+ 	int (*display_configuration_change)(void *handle,
+ 		const struct amd_pp_display_configuration *input);
+-	int (*get_display_power_level)(void *handle,
+-		struct amd_pp_simple_clock_info *output);
+ 	int (*get_current_clocks)(void *handle,
+ 		struct amd_pp_clock_info *clocks);
+ 	int (*get_clock_by_type)(void *handle,
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
+index 0bbb89788335e..4c2c40e8123bf 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
+@@ -1020,17 +1020,6 @@ static int pp_display_configuration_change(void *handle,
+ 	return 0;
+ }
  
--enum dm_pp_clocks_state {
--	DM_PP_CLOCKS_STATE_INVALID,
--	DM_PP_CLOCKS_STATE_ULTRA_LOW,
--	DM_PP_CLOCKS_STATE_LOW,
--	DM_PP_CLOCKS_STATE_NOMINAL,
--	DM_PP_CLOCKS_STATE_PERFORMANCE,
+-static int pp_get_display_power_level(void *handle,
+-		struct amd_pp_simple_clock_info *output)
+-{
+-	struct pp_hwmgr *hwmgr = handle;
 -
--	/* Starting from DCE11, Max 8 levels of DPM state supported. */
--	DM_PP_CLOCKS_DPM_STATE_LEVEL_INVALID = DM_PP_CLOCKS_STATE_INVALID,
--	DM_PP_CLOCKS_DPM_STATE_LEVEL_0,
--	DM_PP_CLOCKS_DPM_STATE_LEVEL_1,
--	DM_PP_CLOCKS_DPM_STATE_LEVEL_2,
--	/* to be backward compatible */
--	DM_PP_CLOCKS_DPM_STATE_LEVEL_3,
--	DM_PP_CLOCKS_DPM_STATE_LEVEL_4,
--	DM_PP_CLOCKS_DPM_STATE_LEVEL_5,
--	DM_PP_CLOCKS_DPM_STATE_LEVEL_6,
--	DM_PP_CLOCKS_DPM_STATE_LEVEL_7,
+-	if (!hwmgr || !hwmgr->pm_en || !output)
+-		return -EINVAL;
 -
--	DM_PP_CLOCKS_MAX_STATES
--};
+-	return phm_get_dal_power_level(hwmgr, output);
+-}
 -
- struct dm_pp_gpu_clock_range {
--	enum dm_pp_clocks_state clock_state;
- 	struct dm_pp_clock_range sclk;
- 	struct dm_pp_clock_range mclk;
- 	struct dm_pp_clock_range eclk;
-@@ -246,10 +223,6 @@ enum dm_acpi_display_type {
- 	AcpiDisplayType_DFP6 = 12
- };
- 
--struct dm_pp_power_level_change_request {
--	enum dm_pp_clocks_state power_level;
--};
--
- struct dm_pp_clock_for_voltage_req {
- 	enum dm_pp_clock_type clk_type;
- 	uint32_t clocks_in_khz;
+ static int pp_get_current_clocks(void *handle,
+ 		struct amd_pp_clock_info *clocks)
+ {
+@@ -1588,7 +1577,6 @@ static const struct amd_pm_funcs pp_dpm_funcs = {
+ 	.get_sclk = pp_dpm_get_sclk,
+ 	.get_mclk = pp_dpm_get_mclk,
+ 	.display_configuration_change = pp_display_configuration_change,
+-	.get_display_power_level = pp_get_display_power_level,
+ 	.get_current_clocks = pp_get_current_clocks,
+ 	.get_clock_by_type = pp_get_clock_by_type,
+ 	.get_clock_by_type_with_latency = pp_get_clock_by_type_with_latency,
 -- 
 2.53.0
 
