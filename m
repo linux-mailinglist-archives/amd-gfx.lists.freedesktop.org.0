@@ -2,57 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AMnTNbET6mmytQIAu9opvQ
+	id IBoODYgC6mk/rQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 14:42:25 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 13:29:12 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06E3C452218
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 14:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C445451476
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 13:29:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E96110F0F5;
-	Thu, 23 Apr 2026 12:42:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA07110EBF4;
+	Thu, 23 Apr 2026 11:29:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="dyVdK1ub";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="d1E03fvt";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B01A310E404;
- Thu, 23 Apr 2026 11:22:26 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 4BB056001A;
- Thu, 23 Apr 2026 11:22:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC05EC2BCAF;
- Thu, 23 Apr 2026 11:22:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1776943345;
- bh=v5vX1VJ6hD3zefByaEKuGLyZr08vT7W1KOhrYxlfQpg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=dyVdK1ubOcAXp+YKP2Nghh5b/q+AZL8CUbkno1W4J6qFNzaRqb5Q/cGxj/9xWlcd8
- 7AxDYHjbbuAeZ602YL4l7KQtxwNJV5hiOAXeP+xksDwbqUadzxLW1nwN09P+rAPuXm
- mH4xhcZbwkWaUlxpVc7/06VwsgosoKeUjjkzTOoo=
-Date: Thu, 23 Apr 2026 13:22:22 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
- stable@vger.kernel.org, Robert Garcia <rob_garcia@163.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Yifan Zha <Yifan.Zha@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6.1.y] drm/amdgpu: remove two invalid BUG_ON()s
-Message-ID: <2026042335-probation-heftiness-7399@gregkh>
-References: <20260417074010.1607496-1-rob_garcia@163.com>
- <7260936.9J7NaK4W3v@timur-hyperion>
- <6064b45a-b8de-4848-856f-383d2d06680d@amd.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010046.outbound.protection.outlook.com [52.101.201.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B57F10EBF4
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 11:29:08 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gWCzXhenF0GkIiat2syXtZ0zKF26+fb9BTkU+xyY1vI6ckYE1w3KX8EAdtX5FWeivMMVixWxHD9JzdPqxqngprpRuKszZQPFlm5PEAK4PHwGhwJGVFrNnTtQLwg7EgUVymRuf5jGSxIp/9w4H2yNAJEj8BtNNGpbcjjyY3yUw5Cqn6NzoFC8TKwcXCCz1D7txWHiRHbpizBRi1gWJntY9cb1Isaf6tmRIKzXQ0xv4poLwivMvRrooNfUNXL/kLVRiOBnSOE6Nm87fw6D2HduF/AFlIFXdUuHOHHWEb48I5wP1c3q9YKhDtLzGYt3c8o1sWcUDu0SGvo10PG/R82JBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ilpIBveyGbXqWgaymLgX/sklskAWV4iLJa5Empc9kU0=;
+ b=Qr/4skdZVjH7W078Y144H3EGba+rodDN1e8n4ItOi3p4EG8wHYbepDX/pQCTP6evHL6Jhfj3OLDnoi9VYEq32WaYIQDj0OwKyUji8O69iEqKhJkPtCckb0d9kh2aGL0pAmx7xYRYo+OGDKJ+8KDVhWAOex/we/fOh19uR/l+Q2jJ3Z/ijvi2LlMBbDDiD/31o/xfMvkLWYcvGcsxVFD7bYoxCmNT5LDZQlBQDnTV1h+YqbbIyOXcZ8679UW6N/Snun6TuKbEXzTJSI3FuyIWITrh78/eOIIy1Ee8nM4xzI0KtM6d3Y1u2n4YsuCSi/gM0V22w1JtS6EJF30kGLuyqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ilpIBveyGbXqWgaymLgX/sklskAWV4iLJa5Empc9kU0=;
+ b=d1E03fvtKciIREYhUEMDFs+1OBQy/XrDA9iOsCMIekvvj/cfLGRmbFzUQ4tfn9ZdHgUxZl7JGt0FGtgOz6BO0npgHouQeWFEXi3gj1X7X403Ui8RjDvxpSXgogPXF3KInwBVzCD4GwWYOX8CapJe6w+D9rrv/EMmU5oDPsRm+I8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SN7PR12MB7346.namprd12.prod.outlook.com (2603:10b6:806:299::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.21; Thu, 23 Apr
+ 2026 11:29:02 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9846.016; Thu, 23 Apr 2026
+ 11:29:01 +0000
+Message-ID: <acfa3233-6aa0-4fe5-9fc6-d17d821a1593@amd.com>
+Date: Thu, 23 Apr 2026 13:28:51 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 09/11] drm/amdgpu/vce2: Fix VCE 2 firmware size and offsets
+To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
+ John Olender <john.olender@gmail.com>
+References: <20260423011614.309180-1-timur.kristof@gmail.com>
+ <20260423011614.309180-10-timur.kristof@gmail.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260423011614.309180-10-timur.kristof@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <6064b45a-b8de-4848-856f-383d2d06680d@amd.com>
-X-Mailman-Approved-At: Thu, 23 Apr 2026 12:42:22 +0000
+X-ClientProxiedBy: FR4P281CA0089.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:cd::18) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SN7PR12MB7346:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8f59b67c-38c1-4f7c-06e3-08dea12b84a7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|18002099003|22082099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: 3wWPrge+Vt8eqpYDfzjBmrVGs8b5bHaThiLSX6w2ElUXo7ZMLcEctU76T4+KY1IbB2bBAks+hT8edd9soysJ0wIjoxnGiiusyqsjg088WQ5ne8xEH0i0u6Uwcuttqb3+8DBjSfFw1QWsaL9jQcr+UE2CoT6MK4qigzA8nMdyeTKwO7EQr94WkkNl1PetRQHV/1Xr/9IehX5/uNZ+erQTVSFISmnWCjCEjkVY+gkKJPE7fJsdirg8Ecm4iqsCfit/68dgbRUErXH+hRjmTKhPeLvRHY8iR4mdAT38XdCZh36oe6oHPzWdXve7yKslTD15XDHkrkYUc0Oj7UfrTQyKveakee1T0CkWhW8yc1+HaKRvFznEnowSLyRlOgZb2VJGOlFU7fAH2axO+u1gX2eN7/no34Iw1vSYIpdOs1YeKzjgk8jhTHeMfhDxcUsPWyxnUfSXpKo/AP7zRfLIsfNt8yY8sybe1FuaYAPe+vpOLcPQv3Eti5S9u1Nz6PGEW/bATbqnMsUIQwpkxBLqD1UYFdQCJyj/kZcuEWAs5OAATHNlybqHpuXKi3LJ1N11gOWT/SHZR9CZ8jovbSg7B9pqi6Q91mY74Ukr7Fga4CmuOpjC5T2N6NvV0m+Mjua+/3UoxmlkHw9kq9bz1lZZs6/+BX+7N5MkWgELaPANDZtpB+gBahDzeutdERCDjl/icmmL
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eFN5M0xKaHpsNkNhUlVubzZIb0xkcS9aOVlYeTBTYmRMOXFPL1R4KzFaN3py?=
+ =?utf-8?B?T1hTRXZWY0UzZ2l3bmV3NTlEQmFQTjJUL1dnZE84TzVVNE9pTjZvaThxZlp3?=
+ =?utf-8?B?RWtOdVYzemIvcnVPbS9RajRWUG5GZ0hFbmFFY1g4L2xyM2pUUzNjeHRjeWhq?=
+ =?utf-8?B?NzZJbjNJWnhuaGVPRXJzTjdCR1g4dTVjQnNNQUsvV3NQeDJKakxxa3dxenEy?=
+ =?utf-8?B?MDA2Mk9JcFc4SXd4aHRoeUhWT2xTQzQ2Ymt4REVzMktXQm9FcVpGSDR4UkFY?=
+ =?utf-8?B?MXhvL05zMURaOUZ3SnFKQ083V3NFUFlub2lqRWJBSWFNZ05QMzB2U0lJcTdh?=
+ =?utf-8?B?ZnBKSUtPQSsybWdEWGVKSG1BMm5qWWRCZHB1VFdhUlBSU2UxQTVyMXVvTTVF?=
+ =?utf-8?B?Um1QSjFiQ0pyT3EydEtxTkNzVVhnbFlVcGFVOW43NzFKRUl2aG9uZmFNcURz?=
+ =?utf-8?B?cWl1VDhPTlQ2NTdUUTFiY3BwTXlPeXhHZEUxV3ZoR2VlbzRUQW5tejZhd0d5?=
+ =?utf-8?B?SW1LVW15Z2FlMG9aWWlnaVdtTVRRUC9GTXIveklIalpTSXN0cFR5MlRFZ1M3?=
+ =?utf-8?B?QXNPSU1KcFR2WURtQ3hEd1VRbXZqWTExUEpiaVoydFhaNm9kWVFjODdwMnRI?=
+ =?utf-8?B?Y3MzNUFVcnVFY3RMUUF1ZFdGYTN6VjhaeU1FclhadWhvaXhjWTcvUWx0ZUJN?=
+ =?utf-8?B?TlAzTVIydS9kcnhSS3lPU2trcjBUTEYzNG9VWklYQnkyWi9sZU9qZmd0U2lF?=
+ =?utf-8?B?dGNqMHo0Si95K3dERDczVGhkZmtib1A1OGpHV0VXYTZZMFZSWEZ4T0h4dXYw?=
+ =?utf-8?B?RTdRYSs2ZnpCT2ZOQUdhVWxDVlhnWlVNTDZyLzdaQ2tkVXZJT25jeU5XdFNj?=
+ =?utf-8?B?K2JyVnREckZXUkF2ZzJSMnJnbE5tMzgwYXo0ZVlYWmZKT2hLblNCSzZJbDRG?=
+ =?utf-8?B?VXJ6cGx2S29CUHNTTzdueDUvOE9ZdW1sTHQzUjQ1eEo2ZFh0SDEwa0l0RURa?=
+ =?utf-8?B?MVFhalZjU3NZYWIvRlNXaDlFUUdrbGRMcVR3Q3dDZ2RwTVJhektkL0J3RWFN?=
+ =?utf-8?B?NDNabjJjbU1FSnplanNxeDBpT1BKOVZRV3NvR1NNU3E0aElHeHRzWS9rVHlL?=
+ =?utf-8?B?Yk5IRWNNZU1pTWE0WWZZV3JlSXRKdjJ1dTZqN3lZbFdCc0tYWCt2aEtvQXNI?=
+ =?utf-8?B?N00xVitSRk9qYmpVd2xGb2RqaGZxT2dBdEFiZDBCZFMvUlkvUE9PWDJFOUFx?=
+ =?utf-8?B?L3FTeitEcTd4WXd6Q0Fsblh0QlpybGZRTmxsaC9NRnowOEt2VWoxclY2bnJa?=
+ =?utf-8?B?Y052SVFPQXY3dDNkNzMweWsxb0FCK0l1OWxFQlcxRjQ0ZVVsemxHb1FmTTVi?=
+ =?utf-8?B?K2FkMC9jMVYvc255WG8rdFBVQit4SEJkejBKK3lObjhDRloyZGFxYitGYUNa?=
+ =?utf-8?B?UzR4Rld1bk1iemhoaDQzNlVOOGgxeFB5bTNrUE84QldoTDZjNzcvaEttR1R5?=
+ =?utf-8?B?TTlFK3g2akdMaXFPZnU0UFlTKzAvM3NHcjFtSUduN2VFZkFlK09OMVhWaWFl?=
+ =?utf-8?B?Q0E2bFdMR0RtZmtBcnBOR1NCcGFKRy9JMk5SbGw1RDFlQVBML2ZCcVEwc1Fl?=
+ =?utf-8?B?T0F4bmx6T1diTXZUMHNPNlFOSHhXdVlEVHF4NVdhSS93S0wzbHc4aG1pS2Ni?=
+ =?utf-8?B?RU9DbHkyT0JCU3RaNW5wYmk0K0lINDJCRzNzTHQ1N2JwMXlvQUhROWtvMkU2?=
+ =?utf-8?B?YnpkeGlNbytoOW9Jb3h0SDhacHBTdHF2QzFSS1dUVjFMdXpsajZlM2FaWFhz?=
+ =?utf-8?B?WExFMDhkYjkwZFhlK1RKbjFNME9tQzcrOWdobGlqa0NjN3NYZ2NBK3ZrNUd0?=
+ =?utf-8?B?b2V5MTNkUWZhcGU0NzhyMENtMWRJM3QzV2YyS1NCMUVRTVluYzhUTUJ3YWdp?=
+ =?utf-8?B?eDBUVEtyNjdUcU9tR1ltbkFNTXphZDd6SVh5ZjJ6QThCQ1Z0Z1JVbDREM08y?=
+ =?utf-8?B?OFpUWUVmTzVMbVVIMDRuQVhBcDFzT0Y4cXFGUXJQOStSU2MrK0ovY2RFdWdX?=
+ =?utf-8?B?VjhyM241Y3ZaRld4K0lKWitnaXVQWXRvVHJxbi81R1FpaGpzQnhzeGFVNThQ?=
+ =?utf-8?B?MXIvL3JlZVB1UHlnUjhidS9vMUhtYU9zeDVGdldNaWdWb081N3IyaS8zdnh2?=
+ =?utf-8?B?WHhFWjYrdFA0cVFXRVlkWjZENkc4SHQ2b2UxZHdBeEdXQ1U0OVkyaDFEaUMw?=
+ =?utf-8?B?ZEFua1crZ2EzdWpyQ1JJcXYwcWozNjNOcytIVzQ0ZHdUT3RnaTE4MnVEb1Ey?=
+ =?utf-8?Q?d6oho7Ev+JMLBBYunL?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f59b67c-38c1-4f7c-06e3-08dea12b84a7
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2026 11:29:01.8078 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /w5mS9/pAOwIZUPpZ6r6ZIxHLOVdzcUwmU5RDGrTSgxR/f7pWebrKUqSh1NkKUgk
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7346
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,57 +139,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [4.69 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	GREYLIST(0.00)[pass,body];
+	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com];
+	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:john.olender@gmail.com,m:timurkristof@gmail.com,m:johnolender@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[linuxfoundation.org:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,163.com,amd.com,ffwll.ch,lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linuxfoundation.org:dkim]
-X-Rspamd-Queue-Id: 06E3C452218
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: 8C445451476
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Apr 22, 2026 at 04:11:15PM +0200, Christian K�nig wrote:
-> Those points are certainly valid.
+On 4/23/26 03:16, Timur Kristóf wrote:
+> The VCPU BO contains the actual FW at an offset, but
+> it was not calculated into the VCPU BO size.
+> Subtract this from the FW size to make sure there is
+> no out of bounds access.
 > 
-> I've also up-streamed a patch which completely rejects userspace submissions who try to use the CE.
+> This may fix VM faults when using VCE 2.
 > 
-> The problem is that those BUG_ON() can lead to a deny of service because they crash the whole kernel.
+> Cc: John Olender <john.olender@gmail.com>
+> Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/4802
+> Fixes: e98226221467 ("drm/amdgpu: recalculate VCE firmware BO size")
+> Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+
+Reviewed-by: Christian König <christian.koenig@amd.com>
+
+> ---
+>  drivers/gpu/drm/amd/amdgpu/vce_v2_0.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> A BUG_ON() is only justified if it prevents even worse things to happen, e.g. data corruption or it would crash later on anyway just not so obvious on what is wrong.
-> 
-> Otherwise we should use WARN_ON().
+> diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
+> index 00b4037d4bc89..3b493a2e94dd0 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
+> @@ -183,7 +183,7 @@ static void vce_v2_0_mc_resume(struct amdgpu_device *adev)
+>  	WREG32(mmVCE_LMI_VCPU_CACHE_40BIT_BAR, (adev->vce.gpu_addr >> 8));
+>  
+>  	offset = AMDGPU_VCE_FIRMWARE_OFFSET;
+> -	size = VCE_V2_0_FW_SIZE;
+> +	size = VCE_V2_0_FW_SIZE - AMDGPU_VCE_FIRMWARE_OFFSET;
+>  	WREG32(mmVCE_VCPU_CACHE_OFFSET0, offset & 0x7fffffff);
+>  	WREG32(mmVCE_VCPU_CACHE_SIZE0, size);
+>  
 
-WARN_ON() crashes the kernel as well when panic-on-warn is enabled, as
-it is in a few billion Linux systems :(
-
-As this commit is upstream, and in other stable trees, I'll apply this
-as it's not nice to have a simple way for userspace to crash the system.
-
-thanks,
-
-greg k-h
