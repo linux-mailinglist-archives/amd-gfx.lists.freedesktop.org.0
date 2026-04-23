@@ -2,128 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id E20KL0uh6WkifwIAu9opvQ
+	id uPomNcTd6WmNlwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 06:34:19 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 10:52:20 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E146644CF69
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 06:34:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5595644ECB9
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 10:52:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A39DD10E27E;
-	Thu, 23 Apr 2026 04:34:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C57E410EFF0;
+	Thu, 23 Apr 2026 08:52:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="iiAQZ/WF";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YK/wdg6a";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013041.outbound.protection.outlook.com
- [40.107.201.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5463E10E27E
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 04:34:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N4PeDuUc7bEuahHK5V8fJcg7UucY6Et+bVOif5d9Os746LQpYmGATD3m2+kfLPUHerDowSyVhMITPCr4eOH3ebAzlUihtUY5EjuQI/H3XYqagfhmTJI9SSEnlU4SlCBu704KEOIIhKVwU+/yFBWycUs0vnYAUsKpgptjVumRShP6xbF4tjv3RdEBWT+7rqssfh+AJGE5ztkEhZIQ2hH/8bGkZmCbpp5nPubGrzTRQAQqb/0kST+iC/ff0Fzfa5wHGtJNlVzEjjS6Gu84XgRqr0xqOmzbxlPk3DCHwLLSkrd24jv+N3KPdcm4X43dJ08WOAxbSpTzdZEJMKAOEfJ/Hw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uq2zPKIcQqEMkxe9g26a/ydgfj3AKzIkgYQv2b09tMs=;
- b=TSeK42K6I0f1FEBl+XCzL/CsI+VuSY3U61ZUXvUVYjhiXO8snnNNYdIt5HOhz1X2IdiBWinu12yLc56hRvpqkXq23OyBLUnha+EdJez4YbVroZiDpBMUfxCQJK2X46yZ0+T5iVJhVsHT0eFKp9d3q7xuHAbDTbXIdG/GYU/bdnX3NPS+ybNUooZ6J5ewjIYtCJt/FF8tACwYjOx9FQkIqB4+5klzMh+W6oVBDTMTuJQh3o45226gybbJ8ReFBc6af61wrieSRb8bbAIWrO1b0Ohh7uBx3MNsRgfbZRedbPeENCHSSiNHuoYzaiQruj9gYU2Vyerd09/9rreBk1RdFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uq2zPKIcQqEMkxe9g26a/ydgfj3AKzIkgYQv2b09tMs=;
- b=iiAQZ/WFyRj0wSffCVZjVsJTi7iEeYOEMeFTZzmj48BX82iH0RjloafPSJx+jYUZ7PArxiHEyBFcI9/j53dr7c+iXW/EseFiHUi6QnifRqt4OgBoabgkXXeUjCi6l7WLXyZ9Oq/VaFJjBXyiAW/Ja+Dci0hvj4Hp8HyGhEdWljU=
-Received: from PH7PR12MB8796.namprd12.prod.outlook.com (2603:10b6:510:272::22)
- by DS4PR12MB9633.namprd12.prod.outlook.com (2603:10b6:8:27f::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.20; Thu, 23 Apr
- 2026 04:34:08 +0000
-Received: from PH7PR12MB8796.namprd12.prod.outlook.com
- ([fe80::716d:8670:35b1:27a9]) by PH7PR12MB8796.namprd12.prod.outlook.com
- ([fe80::716d:8670:35b1:27a9%4]) with mapi id 15.20.9846.019; Thu, 23 Apr 2026
- 04:34:08 +0000
-From: "Zhou1, Tao" <Tao.Zhou1@amd.com>
-To: "Russell, Kent" <Kent.Russell@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Russell, Kent" <Kent.Russell@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: Only send RMA CPER when threshold is exceeded
-Thread-Topic: [PATCH] drm/amdgpu: Only send RMA CPER when threshold is exceeded
-Thread-Index: AQHc0l0DFzBLfQ/M5EmRom8HrywCy7XsEBaA
-Date: Thu, 23 Apr 2026 04:34:07 +0000
-Message-ID: <PH7PR12MB8796000A70711D471F956112B02A2@PH7PR12MB8796.namprd12.prod.outlook.com>
-References: <20260422133551.654582-1-kent.russell@amd.com>
-In-Reply-To: <20260422133551.654582-1-kent.russell@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Enabled=True;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_SetDate=2026-04-23T04:34:00.0000000Z;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Name=AMD
- Internal Distribution
- Only; MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_ContentBits=3;
- MSIP_Label_dce362fe-1558-4fb5-9f64-8a6240d76441_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR12MB8796:EE_|DS4PR12MB9633:EE_
-x-ms-office365-filtering-correlation-id: 53097984-add0-4c28-4db4-08dea0f18f15
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|38070700021|56012099003|22082099003|18002099003;
-x-microsoft-antispam-message-info: BdoyNAZNCDqvXQ08r4plCCzLS1YyNoII3yQy+SeBrAfh1UpTl+c4d4hXOU007OpozbdTpBDUM1wf9ToA5OcbGbfCcQ86UZJ16BTnAkNPqw1vwomNMSY9ePRAUMlI738PiSrjeVjQZbCaLpUomTFheJkluoCNhQwHDoknEUFaJYtNM9olS6rn8dUgB1gFOq/4ZYk3EZajRuhqwUPRL/g78Cpypw/vDnigBXz8eHbu4OXuy6V7Yi9DAqUxcwGKH5cPv5O9Q2jNWDAlV9xwR/espY/BOcQaUymaYyFNq8oAGfF/tipEWyV6cvQgI+ZaRVQN8OFtvePac999mpWxabpBEQwUoQrbheGqauyuYZqwqUmBdO0ZBkFOSLPeAkC6KdDdCpTi7uXFxZiUtKWRLdS27bIxQ50d9apZYCHZ3ExrREokuJ7tWzDUxqdxalC/DZRTH1ZawcxC8U+RULmTTErIba7Ibu10k7HkMKNrmUi0iuknWodFT45kIzlI5YYNBYLX3hxGuvnkI6YtNFt2GYbWB2q5YhfBPWBDl8p2ek8FvhCQGM7xd2RzWxlWwVQipUpTFaNGzMWzgwdTE1TLEeuOACdKJWcPRbiIjKPv6B2u0nJE14VegqlDVYzFdznw8K124cfms/jt5/r1KEnmltdTxdluZp2V2/0ixBLJN/t2KfTpkGs3SaR+BC6/m/QxtrhwMntz0QA4FnkVeQ8qt2G2bXKn7HUIYEEB70Bn5+jGjbhVJbL1PYHrhoTVASVYsxB57M5y/YDiQdM0/CoqBr/T84ybRgUSCKWzBofMZ7dfBXA=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB8796.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?JI8gyIYNIFgDBY4j0V8PtfoKRG5KQ5WJT2ToGUoadezQSM4fe+KRUgH/uKrT?=
- =?us-ascii?Q?InMOXDp/loqO/u8ZjuX4r+Ff14WvQVyGoxSnj3qedc8qQMPE5IOIMeLnOGh1?=
- =?us-ascii?Q?ZlhzDG2qwnOwG5MiMDjAkVfrznTRbiSP2XBadkM0pFNzFedCDROINF8PHL3p?=
- =?us-ascii?Q?sa1YQ/1gOZBRIALLyAM1ElVQHAd8ERpAscRenVOXSPJOI4kjCRIx++g4RX8v?=
- =?us-ascii?Q?8y+y1TKXoA/43gayL0wkGXWCaaojBXk1w+nO1oPDPIdkcDMG3aS1spPpEAHZ?=
- =?us-ascii?Q?ln4jhAyHbS+EKO8NuQR8QIEA0R2NoxdHUIGEBfKpQGNPfWBQnJv6plHo+hoN?=
- =?us-ascii?Q?/dFLiRHDPmGuqUM2B5X0BsrMMyidjDyUVyYQ0ugQXUNKRId3KiH0kOfBzlaB?=
- =?us-ascii?Q?2816kQ3zXFTH5531PmEc9k0tckoN8groOD+0pMBW+HBNVXy8+NYgGU5fzcvu?=
- =?us-ascii?Q?CmaXLIy+QXi0+z0hL4PATjDAk5e7B61CnYxcAk/D2haAQlSSXsGbHqOqGYcv?=
- =?us-ascii?Q?Vc4xOvVlHvC6jQrEaPeLO/cPWW5bfxt4IOFbrqnk4H8IL1/0CO2A47DBlgE4?=
- =?us-ascii?Q?YWYezezzE+X/mXvE4qwVuJ011xufoQhwKYAriM7R2EPLeByKJFmvb1kVyyGJ?=
- =?us-ascii?Q?J/UlZ5BdzesBsaK0Jqz33eXTvaIbRnTLraweN2n68qQdX/PWotucGVIt4Yqp?=
- =?us-ascii?Q?JU5rX1JhtTQDZ4RhKngBuNhu2nvRZIbrNhPDkfCOQJ6mEH9E2T5vAW+Hzla7?=
- =?us-ascii?Q?KlykBmNaMW9ZdJMvMpr13wu/qM6FP7N13W3qVOzci9qALkJgRFsBzE/Jsu77?=
- =?us-ascii?Q?+5nAHea6MD7h3xQtpNXCA0hhoxj5bjvJ78LWknvm3GrjYEIw9dmJkLPRb3f5?=
- =?us-ascii?Q?Q7NfC1xkXBnIJqbFiljX7q0ONDcBrt6RdBcGFSvwHSCUiZ5Q2KMZ5BKdHb1Q?=
- =?us-ascii?Q?qv8QwWzRBRL+IFyAp2NwPxcXjDYVtcXdbUIVNnKKJkCDkzuQPuRAuGCySRti?=
- =?us-ascii?Q?ji5vwsoXuRe8GZGh4z/GKi0rD9TPNqzJZ/FKJ/fk0X+wwfJGRI8MEB0E6YpC?=
- =?us-ascii?Q?t/cK6qrvpYXfMs2SX9aYTBrseLBZsO1ksOwDPsm89ahOZ10Mv6pNLaJNoMQ2?=
- =?us-ascii?Q?yQ9amAuEGvqSNr96kD3gn/MMPKWZlrn51enddo8UNG8KgBtRo1YCYdlaaXUc?=
- =?us-ascii?Q?SjeFqJJX8mYQDLRFrmGCi7BlRrX6xzHE+Yvk7AfvQ7+elLx4qWxmjQSFdCXR?=
- =?us-ascii?Q?+FwR6XFvVt7WKHZgTGbHIoIR3nkB9B1wsYgXBSyIYKZ3cBV9zOyMpETJL1RM?=
- =?us-ascii?Q?fP94ZOSeJeCpAJRb1Fh11uz0hjjRIdZGLqZNXIcZ4Vl09i87f1vqwFsVYguG?=
- =?us-ascii?Q?6oRAEaNLEWpelUnLetAbOOh98sY3SKWBjIazfAUbD95Cd1o+duZAYiTlXjzd?=
- =?us-ascii?Q?Ty9jLh6tXjW7Fbt4yFhbrkDj4OAEWvzrETFIk3tTzqva2G2aef9xC0wcSyzo?=
- =?us-ascii?Q?i/Ev07uaabfTRVonnoHhZL6KTJDKueFoaCdZqknMZRHN6paJ+ZhlAR4YD1fp?=
- =?us-ascii?Q?fA5/QfTcbTT/n9TIAw1IcGpI9dfAkZyCf1WP4EoRwFnPjeQLQ8dWdac1v7+O?=
- =?us-ascii?Q?78GA58IqNDk6TnmpsqsUQ0kh1FoFsEnitDcoY7oV4oqgH8cMV7It7IPZbxmy?=
- =?us-ascii?Q?NEWUsrppniSgelh07cQLU7yYjsE3ybaCPqPWbF8zLD9bqbwb?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com
+ [209.85.128.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0187D10EA59
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 05:20:15 +0000 (UTC)
+Received: by mail-yw1-f182.google.com with SMTP id
+ 00721157ae682-7baee75f874so40335147b3.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 22 Apr 2026 22:20:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1776921615; x=1777526415; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=CKkkHL/8l1d68NjGtJB0lC7kW7ZwMKC813R/A4iR9Bk=;
+ b=YK/wdg6atSRnjUzafLTYZ0mAEmGaKkH8hnh5BtEZzMFigPAAy0FzLg7yNEvMENS2Vx
+ DjelSLB7fG0AmNh7pgLqL+cxJz1bBgC7P7Btk3/G5bOPDAUrBwgAoZ4G16hnTKMeFmDO
+ 1jX/LBC7JHRPvpKoUKrU7DH+zEfFYNL98oI/8X24wdTKjqdi62EpqzONBmvCOlwhZOow
+ UTkhpk5qeNPt7EuGRiSjRbnxFfTiqABKSLnDpfkyRwZx5sfGuiYCsY+vjpNW2c+yPYto
+ CmgOSbW+e1Bi0oC4Sgj6XFtdN7IhVLgiBN8LIkZQKXUvKTwLd1BFc0hOfXnUL42vWVhs
+ UZXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776921615; x=1777526415;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=CKkkHL/8l1d68NjGtJB0lC7kW7ZwMKC813R/A4iR9Bk=;
+ b=rhEi/4a9Ug8fQudZEhvuQMq+bTVoXjynkrCDmzKcjwlY7jYb3rW+YaWgg9bD4ZFWXm
+ WhmSTXpANhWNhKy0+SGiO+IZzO/eEpobe8yo+EtoABFkkHcmyK1awvPPEQD13H9G0y+K
+ ywjd4084OfT6W++Je/2CQ5KMfo8dFn+0SheOj8JwYCAec1id2Wgf7sQff/Rb0VwMMQc1
+ PKaYyx3JQ13/hZRIRcn0/3jNXoV/UOywI53gufRjlFowMN+EjWXDZXDLn7gvRH4iuS9E
+ HYZgiDa0kDV6NGzKF1pwtS8mUWKFKimxsmm/RcuyaHiq5k6VAoEu81qCSVhOSdkWVnLi
+ qw8Q==
+X-Gm-Message-State: AOJu0Yzyh8ykrVwL6pFCMvzAnX6K00ZOcdRXZMR+7Gf+urd5sAvk3lUx
+ 5p0DvND3CS6jN9RfcpCo+vlWFZBsYylIIgVLAM2h+pjwvjfbAzCJAP1P
+X-Gm-Gg: AeBDieucNwSriLnGbDwbal2gpQrJ9TNcgat/ZC44KxQWpEcGKH/w69Hm3cSA0hBYgaK
+ AE0X8TUzWsKimJAEkNqWyYcTJpoKnginxTnscM3p0PFo000heGPvMFAdHxwFxLWxtcFhfTQ5aax
+ 1oWFxP1wA/3Ur7alJDvvhf46HyG3jJIC/NTXoF237yS6CJUsOC6uis0L8qf4JPQGB9qkbcbpXs9
+ 5DzW0as67STkgWVGFL0xENDyQlrsLgjG2PaEdEpBfqB0NeNTcDhGd+swKE2KaTxz+OtDm0yNQRC
+ 2l+JpmnARXD25M3FoHus00aFGO/Jql94FnHxgPuTspWyEBdowcxNz3CjaleXKd8w45ZaT+alKPp
+ bf5YyXv6yKaVZD/7OZ8pZnywtlq5l+IBf7eywYss2g30dxOk5IJxt5U3IrIRd5Epe5aSVD626BR
+ sGO4LfW0cYjye4J7wpQP+JpZK4wzpf
+X-Received: by 2002:a05:690c:6612:b0:7ba:f0ed:c5ea with SMTP id
+ 00721157ae682-7baf0edf39cmr162817197b3.39.1776921614995; 
+ Wed, 22 Apr 2026 22:20:14 -0700 (PDT)
+Received: from localhost ([172.216.252.33]) by smtp.gmail.com with ESMTPSA id
+ 00721157ae682-7b9ee99bd34sm75680347b3.26.2026.04.22.22.20.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 22 Apr 2026 22:20:13 -0700 (PDT)
+Date: Thu, 23 Apr 2026 08:20:07 +0300
+From: Dan Carpenter <error27@gmail.com>
+To: Gaghik Khachatrian <gaghik.khachatrian@amd.com>
+Cc: amd-gfx@lists.freedesktop.org,
+ "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
+Subject: [bug report] drm/amd/display: Fix dml2_0 narrowing boundaries
+Message-ID: <aemsBzdb8aMwFSQi@stanley.mountain>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB8796.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53097984-add0-4c28-4db4-08dea0f18f15
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Apr 2026 04:34:08.0806 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: soHpccXsbpSKuNIgJ5dfG6uKyKebFHHdviSmLp56y6noVV3bNEgdxWLGpLgEs3Kt
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB9633
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Thu, 23 Apr 2026 08:52:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,80 +87,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Kent.Russell@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:gaghik.khachatrian@amd.com,m:SRINIVASAN.SHANMUGAM@amd.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[Tao.Zhou1@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Tao.Zhou1@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: E146644CF69
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,stanley.mountain:mid]
+X-Rspamd-Queue-Id: 5595644ECB9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-[AMD Official Use Only - AMD Internal Distribution Only]
+Hello Gaghik Khachatrian,
 
-Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
+Commit 11236ac905e7 ("drm/amd/display: Fix dml2_0 narrowing
+boundaries") from Apr 9, 2026 (linux-next), leads to the following
+Smatch static checker warning:
 
-> -----Original Message-----
-> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Kent
-> Russell
-> Sent: Wednesday, April 22, 2026 9:36 PM
-> To: amd-gfx@lists.freedesktop.org
-> Cc: Russell, Kent <Kent.Russell@amd.com>
-> Subject: [PATCH] drm/amdgpu: Only send RMA CPER when threshold is
-> exceeded
->
-> According to our documentation, the RMA should only occur when the
-> threshold has been exceeded, not met.
->
-> Fixes: 6c470a9bb431 ("drm/amdgpu: Send applicable RMA CPERs at end of
-> RAS init")
-> Signed-off-by: Kent Russell <kent.russell@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-> index cdf4909592d2..0c57fe259894 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-> @@ -1950,7 +1950,7 @@ void amdgpu_ras_check_bad_page_status(struct
-> amdgpu_device *adev)
->       if (!control || amdgpu_bad_page_threshold =3D=3D 0)
->               return;
->
-> -     if (control->ras_num_bad_pages >=3D ras->bad_page_cnt_threshold) {
-> +     if (control->ras_num_bad_pages > ras->bad_page_cnt_threshold) {
->               if (amdgpu_dpm_send_rma_reason(adev))
->                       dev_warn(adev->dev, "Unable to send out-of-band
-> RMA CPER");
->               else
-> --
-> 2.43.0
+	drivers/gpu/drm/amd/amdgpu/../display/dc/dml2_0/dml2_mall_phantom.c:601 subvp_vblank_schedulable()
+	warn: unsigned subtraction: 'subvp_active_us - prefetch_us - vblank_frame_us - max_vblank_mallregion' use '!='
 
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml2_0/dml2_mall_phantom.c
+    521 static bool subvp_vblank_schedulable(struct dml2_context *ctx, struct dc_state *context)
+    522 {
+    523         struct pipe_ctx *pipe = NULL;
+    524         struct pipe_ctx *subvp_pipe = NULL;
+    525         bool found = false;
+    526         bool schedulable = false;
+    527         uint32_t i = 0;
+    528         uint8_t vblank_index = 0;
+    529         uint32_t prefetch_us = 0;
+    530         uint32_t mall_region_us = 0;
+    531         uint32_t vblank_frame_us = 0;
+    532         uint32_t subvp_active_us = 0;
+    533         uint32_t vblank_blank_us = 0;
+
+Originally these were u16 but the commit changed them to u32.
+
+    534         uint32_t max_vblank_mallregion = 0;
+    535         struct dc_crtc_timing *main_timing = NULL;
+    536         struct dc_crtc_timing *phantom_timing = NULL;
+    537         struct dc_crtc_timing *vblank_timing = NULL;
+    538         struct dc_stream_state *phantom_stream;
+    539         enum mall_stream_type pipe_mall_type;
+    540 
+    541         /* For SubVP + VBLANK/DRR cases, we assume there can only be
+    542          * a single VBLANK/DRR display. If DML outputs SubVP + VBLANK
+    543          * is supported, it is either a single VBLANK case or two VBLANK
+
+[ snip ]
+
+    573         // Use ignore_msa_timing_param flag to identify as DRR
+    574         if (found && context->res_ctx.pipe_ctx[vblank_index].stream->ignore_msa_timing_param) {
+    575                 // SUBVP + DRR case
+    576                 schedulable = dml2_svp_drr_schedulable(ctx, context, &context->res_ctx.pipe_ctx[vblank_index].stream->timing);
+    577         } else if (found) {
+    578                 phantom_stream = ctx->config.svp_pstate.callbacks.get_paired_subvp_stream(context, subvp_pipe->stream);
+    579                 main_timing = &subvp_pipe->stream->timing;
+    580                 phantom_timing = &phantom_stream->timing;
+    581                 vblank_timing = &context->res_ctx.pipe_ctx[vblank_index].stream->timing;
+    582                 // Prefetch time is equal to VACTIVE + BP + VSYNC of the phantom pipe
+    583                 // Also include the prefetch end to mallstart delay time
+    584                 prefetch_us = (uint32_t)((phantom_timing->v_total - phantom_timing->v_front_porch) * phantom_timing->h_total /
+    585                                 (double)(phantom_timing->pix_clk_100hz * 100) * 1000000 +
+    586                                 ctx->config.svp_pstate.subvp_prefetch_end_to_mall_start_us);
+    587                 // P-State allow width and FW delays already included phantom_timing->v_addressable
+    588                 mall_region_us = (uint32_t)(phantom_timing->v_addressable * phantom_timing->h_total /
+    589                                 (double)(phantom_timing->pix_clk_100hz * 100) * 1000000);
+    590                 vblank_frame_us = (uint32_t)(vblank_timing->v_total * vblank_timing->h_total /
+    591                                 (double)(vblank_timing->pix_clk_100hz * 100) * 1000000);
+    592                 vblank_blank_us = (uint32_t)((vblank_timing->v_total - vblank_timing->v_addressable) * vblank_timing->h_total /
+    593                                 (double)(vblank_timing->pix_clk_100hz * 100) * 1000000);
+    594                 subvp_active_us = (uint32_t)(main_timing->v_addressable * main_timing->h_total /
+    595                                 (double)(main_timing->pix_clk_100hz * 100) * 1000000);
+    596                 max_vblank_mallregion = vblank_blank_us > mall_region_us ? vblank_blank_us : mall_region_us;
+    597 
+    598                 // Schedulable if VACTIVE region of the SubVP pipe can fit the MALL prefetch, VBLANK frame time,
+    599                 // and the max of (VBLANK blanking time, MALL region)
+    600                 // TODO: Possibly add some margin (i.e. the below conditions should be [...] > X instead of [...] > 0)
+--> 601                 if (subvp_active_us - prefetch_us - vblank_frame_us - max_vblank_mallregion > 0)
+
+With u16 types this was type promoted to int so the result could be
+negative, but now it's u32 and the result can never be negative.
+
+
+    602                         schedulable = true;
+    603         }
+    604         return schedulable;
+    605 }
+
+This email is a free service from the Smatch-CI project [smatch.sf.net].
+
+regards,
+dan carpenter
