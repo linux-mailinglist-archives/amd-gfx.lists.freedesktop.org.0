@@ -2,52 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id hvSDFlQV6mkatwIAu9opvQ
+	id mBLEGGEZ6mmzuAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 14:49:24 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 15:06:41 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8F2C4524AA
-	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 14:49:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5FEB452783
+	for <lists+amd-gfx@lfdr.de>; Thu, 23 Apr 2026 15:06:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C01A10F0F4;
-	Thu, 23 Apr 2026 12:42:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACD5910E2C1;
+	Thu, 23 Apr 2026 13:06:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="k+5Y0+/r";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="oE9ZYjCJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D617810F0E2
- for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 12:35:27 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 1274E6014C;
- Thu, 23 Apr 2026 12:35:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E18CC2BCAF;
- Thu, 23 Apr 2026 12:35:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1776947726;
- bh=Y512Lp+aCd1q+GGPtG90KD7iKKkxfsyPd0izY2TQyjo=;
- h=Subject:To:Cc:From:Date:In-Reply-To:From;
- b=k+5Y0+/rK57iiMoRju4bRDvlvXOTem2gmzXY2200u0unvUm5+2RsVvX+mKVumtDQ1
- 02iWZr6wpo1iuRqP3G0+Nz59gQMtYl0SI93ZKJLGW3pUOSyT9BScAbo2T9To5rqYai
- g6JhXo2WlCNfi7pZl1gOfwOAv0MkCWMg/wamB9Ek=
-Subject: Patch "drm/amd/display: Do not add '-mhard-float' to calcs, dsc,
- and dcn30 FP files for clang" has been added to the 5.10-stable tree
-To: amd-gfx@lists.freedesktop.org, gregkh@linuxfoundation.org,
- llvm@lists.linux.dev, nathan@kernel.org, ndesaulniers@google.com,
- sashal@kernel.org
-Cc: <stable-commits@vger.kernel.org>
-From: <gregkh@linuxfoundation.org>
-Date: Thu, 23 Apr 2026 14:35:06 +0200
-In-Reply-To: <20260406-5-10-clang-amdgpu-hard-float-errors-v1-1-09c4c045f848@kernel.org>
-Message-ID: <2026042306-fool-ergonomic-bb0e@gregkh>
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010047.outbound.protection.outlook.com
+ [40.93.198.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3E5E10E2C1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 13:06:35 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=r+eHNk7sRN+aaZnNvPjrg7t7qcdXFXvUDDtmNERox9c3LiyQuDP3MGGGykEcuYa+8wzEen3l1KtOgMkyUOVRGLzg7zXERghFdjigKAFMHI1E53RhYjSZCo1yTwFz/a8GDdMsPv97ZyRo9f5MHd+bnj1f2XXBGrkLOgDo6djOXBBl4Nx3rAgTgFuxOKHkb4wD01Kx3tsm7ySDOa5dq9j9lwhqqn4NxaUkcKVUiJmIucL6npHhQJ+zMgRDDGIJwaR2q9d12Dw8ZFsnZZZqOINixHTMiq8EnTkFIdLccNA/XT22IHqTq6i+MZuy0kHS/4Fs44EUD7SCxzKR3JCYfgAY0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xRD4oSwbvzwdJr8aqfXWt0PVrz7JKDjjohSy1eXhgC4=;
+ b=YWKX04JLJqOCY3cWg8YsQwN3815eEz46W71xgjOithGqe/GITjHPp/KAOS6llCStdr8mgxAk8dTE+YN6WYgtap0co4LL0U3284x9B0FBb/M1FRVjU8gnLmTK1srvAGk4JA6HSHK7IaFkLxqqCHmgnlFwxy///Q3PFTS/COskn4R3GJ+QY9PqR+1swjvlaweCC1tSnFjbHJnF2ZxL+oeHwk6P/XfMpvwmT0eWJIXKxrzpYBoGS/80z+QvI1XAC7PuW3nVGpAYJAkSAzOyzw143K5hN0jVa+xd6Bp1RCs4eKbIB5YnP0ovDLlQSen0AidOlBlWoy1CAh4bdk3yPs3D5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xRD4oSwbvzwdJr8aqfXWt0PVrz7JKDjjohSy1eXhgC4=;
+ b=oE9ZYjCJOJtWZcn4AF02a0QI87ShULS+BGYdnEnQreddo8k0VJi/vuxUKettofIpawBRJGNkWuhcbIahRNQw/fXLIefJzT4s3l70wdXHMvVI1HB/rgWPS8C/Mhi6AHHSWswTJjIfsXNQFAsmDfrXb7bmV3jutezUHCdUsIkI2xE=
+Received: from PH8PR05CA0008.namprd05.prod.outlook.com (2603:10b6:510:2cc::19)
+ by MN0PR12MB5715.namprd12.prod.outlook.com (2603:10b6:208:372::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.22; Thu, 23 Apr
+ 2026 13:06:27 +0000
+Received: from CY4PEPF0000EE37.namprd05.prod.outlook.com
+ (2603:10b6:510:2cc:cafe::e8) by PH8PR05CA0008.outlook.office365.com
+ (2603:10b6:510:2cc::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.22 via Frontend Transport; Thu,
+ 23 Apr 2026 13:06:26 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CY4PEPF0000EE37.mail.protection.outlook.com (10.167.242.43) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9846.18 via Frontend Transport; Thu, 23 Apr 2026 13:06:26 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.17; Thu, 23 Apr 2026 08:06:24 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: David Yat Sin <david.yatsin@amd.com>, Rajneesh Bhardwaj
+ <rajneesh.bhardwaj@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>, Dan Carpenter <error27@gmail.com>, "Felix
+ Kuehling" <Felix.Kuehling@amd.com>
+Subject: [PATCH] drm/amdkfd: Validate CRIU-restored IDs before idr_alloc
+Date: Thu, 23 Apr 2026 18:36:11 +0530
+Message-ID: <20260423130611.2439580-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=ANSI_X3.4-1968
 Content-Transfer-Encoding: 8bit
-X-stable: commit
-X-Patchwork-Hint: ignore 
-X-Mailman-Approved-At: Thu, 23 Apr 2026 12:42:22 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE37:EE_|MN0PR12MB5715:EE_
+X-MS-Office365-Filtering-Correlation-Id: e290513d-70df-4164-3bbe-08dea13920ae
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700016|376014|82310400026|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: gR0X2eYTqs05JdjFhBs0Lc14Rz1ZGdyFF9zgj86D98q8bRg8/RW3AbgzAYQ+rozx65ZBLrtfcbb3H3NI40127mMg7u1r8mNJsdwo91r/EfVm3RsSDzR8LI7mmWdHg8TZ1t9fKsIRDzS5OhrV4gUstX1xS2uh41QsEMvvAtT1avWEbdi7LrBQMnoSJQU7DKD5YcZa9aKp9TMH+5LPM7jw4mDYQR79kM3lhSzMIHbW58aZyjH6O6xPLTEilmVLMDCDoAmfgTM+B1lCXBDfE8jZWYlMPdmgrSJT8wSElZNDlvLzdKFuNuPbycj/n1OB4RWg2OzCnCgGowy0i2EJbP8AH8kGIucfLl8M/rZVtVvPTVhbWSX1X3fZGFeZeoBA2HoO1hIKR1Htoo6mG6LX3UES93a6IOTjj7tl60WXZZFFIH1awEGCur4aDT1TEdRbZ6Ny0hrp51vHmZIuNdd7S9r/KGo/TCEsIjq/GhYOunrBCki+RaHE/8sTQ62QqarnfXBBZBJqjXUdHR9c3+C91/qY83mcdN6XeyHzIoIY8w60I2kw60s28Ybzrm+cWKN3pZGLrSPT+YIdPElYQLAAF8DatGVMm05/um4nZwuM/Q/WV3XJr3XUDsN8i0w9OJYiZu+3lh5SaAhOpRGH6VQkeGEcG5K3XY8j79mp6Bq8wNCRsEdSi1qr/DrnxOrZihy08/6e0vJrRfxb3uFJrygxqDsUNJ8aSZFynIfIFvTL1oahH/faCaRkd4HU2t3mj4LGooGqrFawioBCRqbTRkW83S4Qxw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700016)(376014)(82310400026)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: /rEgkqng5tXSOieRdZ9dKh8ev5KRMNxqlb1LjLwoqg/Cpk2F5sjV15rIS9H1mcCWxQJ2XPuLe8GY40A+eRna4gWJ+zu8rPrLUFfWbOD42saflxDrxR/mlsfYL0Oaj4aqrgq3Q9hijLuybxGkuarFgw311A+AjNYCXPFXdtVEWuMIfs/W6yGfre79omBKZgkzjaMUDwHBUVFyIm1JFH+LrkCK1B3n5inh3nuII+FRlBWz1YUoxb+EzAkNqaCxPvoHdFqRx4UnF4lkBmIgRaVS3/7s/ztnOYYXpq9BY0l2dRDq1fsS0sJhWTH0UuliRlJce47EBIOF1taAonNPhWIo0K5is4FCiXAGPNJUbJCUxEigfAopp1+MK5kKi+2MAau6+n4DqtHTEVl+VDr22UcjsOO0FyhzR+GMxZPnfqNcmdqevlelEN8sJfTLdPJl18mf
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2026 13:06:26.5813 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e290513d-70df-4164-3bbe-08dea13920ae
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE37.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5715
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,143 +115,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [5.09 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
-	R_DKIM_REJECT(1.00)[linuxfoundation.org:s=korg];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-0.71 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	DMARC_POLICY_SOFTFAIL(0.10)[linuxfoundation.org : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[linuxfoundation.org:-];
+	FORGED_RECIPIENTS(0.00)[m:david.yatsin@amd.com,m:rajneesh.bhardwaj@amd.com,m:srinivasan.shanmugam@amd.com,m:error27@gmail.com,m:Felix.Kuehling@amd.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	GREYLIST(0.00)[pass,body];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FROM_NO_DN(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	TO_DN_NONE(0.00)[];
-	MAILSPIKE_FAIL(0.00)[131.252.210.177:server fail];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.951];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linuxfoundation.org:email,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: D8F2C4524AA
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_FIVE(0.00)[6];
+	MAILSPIKE_FAIL(0.00)[131.252.210.177:server fail];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid]
+X-Rspamd-Queue-Id: C5FEB452783
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+The KFD CRIU restore flow restores previously saved object IDs from
+userspace.
 
-This is a note to let you know that I've just added the patch titled
+For event restore:
 
-    drm/amd/display: Do not add '-mhard-float' to calcs, dsc, and dcn30 FP files for clang
+  kfd_criu_restore_event()
+      -> create_signal_event() / create_other_event()
+          -> allocate_event_notification_slot()
+              -> idr_alloc(..., *restore_id, *restore_id + 1, ...)
 
-to the 5.10-stable tree which can be found at:
-    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
+For BO restore:
 
-The filename of the patch is:
-     drm-amd-display-do-not-add-mhard-float-to-calcs-dsc-and-dcn30-fp-files-for-clang.patch
-and it can be found in the queue-5.10 subdirectory.
+  criu_restore_memory_of_gpu()
+      -> idr_alloc(..., bo_priv->idr_handle, ...)
 
-If you, or anyone else, feels it should not be added to the stable tree,
-please let <stable@vger.kernel.org> know about it.
+In both cases, the restored ID comes from userspace-provided CRIU data.
 
+idr_alloc() expects the ID range values to fit within signed int
+limits. If a restored ID is larger than INT_MAX, it can trigger a WARN
+in the IDR layer.
 
-From stable+bounces-233477-greg=kroah.com@vger.kernel.org Tue Apr  7 02:49:29 2026
-From: Nathan Chancellor <nathan@kernel.org>
-Date: Mon, 06 Apr 2026 17:49:08 -0700
-Subject: drm/amd/display: Do not add '-mhard-float' to calcs, dsc, and dcn30 FP files for clang
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,  Sasha Levin <sashal@kernel.org>
-Cc: stable@vger.kernel.org, Nick Desaulniers <ndesaulniers@google.com>,  amd-gfx@lists.freedesktop.org, llvm@lists.linux.dev,  Nathan Chancellor <nathan@kernel.org>
-Message-ID: <20260406-5-10-clang-amdgpu-hard-float-errors-v1-1-09c4c045f848@kernel.org>
+A kernel WARN is undesirable because it prints a warning trace and may
+cause a panic or reboot on systems with panic_on_warn enabled.
 
-From: Nathan Chancellor <nathan@kernel.org>
+Smatch reported these paths as allowing unchecked userspace values to
+reach idr_alloc().
 
-This patch is for linux-5.10.y only. It is functionally equivalent to
-upstream commit 7db038d9790e ("drm/amd/display: Do not add
-'-mhard-float' to dml_ccflags for clang"), which was created after all
-files that require '-mhard-float' were moved under the dml folder. In
-linux-5.10.y, which does not contain upstream commits
+Add INT_MAX validation before using restored IDs in:
 
-  b4bab46400a0 ("drm/amd/display: move calcs folder into DML")
-  27e01f10d183 ("drm/amd/display: move FPU associated DSC code to DML folder")
-  40b31e5355ba ("drm/amd/display: Remove FPU flags from DCN30 Makefile")
+- kfd_criu_restore_event()
+- criu_restore_memory_of_gpu()
 
-clang-21 or newer errors with
+If the restored ID is invalid, return -EINVAL.
 
-  clang: error: unsupported option '-mhard-float' for target 'x86_64-pc-linux-gnu'
-  make[6]: *** [scripts/Makefile.build:286: drivers/gpu/drm/amd/amdgpu/../display/dc/calcs/dcn_calc_math.o] Error 1
-  clang: error: unsupported option '-mhard-float' for target 'x86_64-pc-linux-gnu'
-  make[6]: *** [scripts/Makefile.build:286: drivers/gpu/drm/amd/amdgpu/../display/dc/calcs/dcn_calcs.o] Error 1
-  clang: error: unsupported option '-mhard-float' for target 'x86_64-pc-linux-gnu'
-  make[6]: *** [scripts/Makefile.build:286: drivers/gpu/drm/amd/amdgpu/../display/dc/calcs/dcn_calc_auto.o] Error 1
-  clang: error: unsupported option '-mhard-float' for target 'x86_64-pc-linux-gnu'
-  make[6]: *** [scripts/Makefile.build:286: drivers/gpu/drm/amd/amdgpu/../display/dc/dsc/rc_calc.o] Error 1
-  clang: error: unsupported option '-mhard-float' for target 'x86_64-pc-linux-gnu'
-  make[6]: *** [scripts/Makefile.build:286: drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_optc.o] Error 1
-  clang: error: unsupported option '-mhard-float' for target 'x86_64-pc-linux-gnu'
-  make[6]: *** [scripts/Makefile.build:286: drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_resource.o] Error 1
+This prevents invalid restore data from reaching the IDR layer and
+avoids WARN-triggering paths, while keeping valid restore behavior
+unchanged.
 
-Apply a functionally equivalent change to prevent adding '-mhard-float'
-with clang for these files.
-
-Closes: https://github.com/ClangBuiltLinux/linux/issues/2156
-Signed-off-by: Nathan Chancellor <nathan@kernel.org>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Fixes: 40e8a766a761 ("drm/amdkfd: CRIU checkpoint and restore events")
+Reported-by: Dan Carpenter <error27@gmail.com>
+Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+Cc: David Yat Sin <david.yatsin@amd.com>
+Cc: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/calcs/Makefile |    3 ++-
- drivers/gpu/drm/amd/display/dc/dcn30/Makefile |    4 ++--
- drivers/gpu/drm/amd/display/dc/dsc/Makefile   |    3 ++-
- 3 files changed, 6 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 3 +++
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c  | 5 +++++
+ 2 files changed, 8 insertions(+)
 
---- a/drivers/gpu/drm/amd/display/dc/calcs/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/calcs/Makefile
-@@ -26,7 +26,8 @@
- #
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+index ce27a23977d1..880c115dbff7 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+@@ -2433,6 +2433,9 @@ static int criu_restore_memory_of_gpu(struct kfd_process_device *pdd,
+ 	const bool criu_resume = true;
+ 	u64 offset;
  
- ifdef CONFIG_X86
--calcs_ccflags := -mhard-float -msse
-+calcs_ccflags-$(CONFIG_CC_IS_GCC) := -mhard-float
-+calcs_ccflags := $(calcs_ccflags-y) -msse
- endif
++	if (bo_priv->idr_handle > INT_MAX)
++		return -EINVAL;
++
+ 	if (bo_bucket->alloc_flags & KFD_IOC_ALLOC_MEM_FLAGS_DOORBELL) {
+ 		if (bo_bucket->size !=
+ 				kfd_doorbell_process_slice(pdd->dev->kfd))
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+index ee70eb4b6319..e9be798c0a2b 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_events.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+@@ -483,6 +483,11 @@ int kfd_criu_restore_event(struct file *devkfd,
+ 	}
+ 	*priv_data_offset += sizeof(*ev_priv);
  
- ifdef CONFIG_PPC64
---- a/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
-@@ -32,8 +32,8 @@ DCN30 = dcn30_init.o dcn30_hubbub.o dcn3
- 
- 
- ifdef CONFIG_X86
--CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_resource.o := -mhard-float -msse
--CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_optc.o := -mhard-float -msse
-+CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_resource.o := $(if $(CONFIG_CC_IS_GCC),-mhard-float) -msse
-+CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_optc.o := $(if $(CONFIG_CC_IS_GCC),-mhard-float) -msse
- endif
- 
- ifdef CONFIG_PPC64
---- a/drivers/gpu/drm/amd/display/dc/dsc/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dsc/Makefile
-@@ -3,7 +3,8 @@
- # Makefile for the 'dsc' sub-component of DAL.
- 
- ifdef CONFIG_X86
--dsc_ccflags := -mhard-float -msse
-+dsc_ccflags-$(CONFIG_CC_IS_GCC) := -mhard-float
-+dsc_ccflags := $(dsc_ccflags-y) -msse
- endif
- 
- ifdef CONFIG_PPC64
++	if (ev_priv->event_id > INT_MAX) {
++		ret = -EINVAL;
++		goto exit;
++	}
++
+ 	if (ev_priv->user_handle) {
+ 		ret = kfd_kmap_event_page(p, ev_priv->user_handle);
+ 		if (ret)
+-- 
+2.34.1
 
-
-Patches currently in stable-queue which might be from nathan@kernel.org are
-
-queue-5.10/acpi-property-constify-stubs-for-config_acpi-n-case.patch
-queue-5.10/scripts-dtc-remove-unused-dts_version-in-dtc-lexer.l.patch
-queue-5.10/drm-amd-display-do-not-add-mhard-float-to-calcs-dsc-and-dcn30-fp-files-for-clang.patch
