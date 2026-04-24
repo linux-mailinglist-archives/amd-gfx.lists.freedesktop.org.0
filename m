@@ -2,87 +2,103 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id VUTJNUia62nAPAAAu9opvQ
+	id SNLNK0Ig72lv7QAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Apr 2026 18:28:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:22 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37FB84614DD
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Apr 2026 18:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A4E746F329
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A017110E402;
-	Fri, 24 Apr 2026 16:28:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8382410E627;
+	Mon, 27 Apr 2026 08:37:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="A50wq11k";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="MpeN7uA0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC12C10E402
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Apr 2026 16:28:53 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id
- 5b1f17b1804b1-48334ee0aeaso83878545e9.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Apr 2026 09:28:53 -0700 (PDT)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5498510E408
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Apr 2026 16:33:28 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-48374014a77so104902935e9.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Apr 2026 09:33:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777048132; x=1777652932; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=8O6I+hq683VBQwlRSKnFzEs1zN65e2/VVYAazZL5GNk=;
- b=A50wq11k3AffLypQvPXxcQY9jmOaEJsWgJtM0cWq/QOCAXElW86psGDCrwimPdoOGq
- jctArgNMfy+7xi6D2domOxc1XP7yfbbDt7KyTk8wupDBYyMi8pDt1PL7VLr38myZTKfn
- PeklOMKG+vZ6JK3LSHpiLOrvTXAwSKZV0iNC7+OoldQat2ephemgU4Cxpo7DxpumMkse
- nUVb5LfSGOVHrJlysorACm/djHX4B/mC5mZWHCtr6IiHlmSve1fr7jpno8Cn+ObeJMHs
- aI8sYdGX3uQzxAc8c/Acx7yaQ9tTNpjOUILjbIUVAMrm9eUbOLFWPM+Ghi8lKdqMercs
- Debw==
+ d=suse.com; s=google; t=1777048407; x=1777653207; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=rigkqYAlhoqFqeCkHJ7xy8GFb3SiN14JzSLZL9wmVyo=;
+ b=MpeN7uA0ovuhwgxNHdX/E81XG0oUWtMlL3XIy3B3pXjmPD6sQobgfC147vnatpUfAI
+ U7PNYL4tvV8np1hUVp4LnM9WMx3sR356T0b1CbaHfBHnAAUSyWWiu0PfMWhsjAi93DK0
+ w3VJTcaM+j81yXX1z8t3tcT80dL+r44E8GSxpk9n6lkXtLNX/XebIGO50HgBjuJGSXmY
+ qa4SH4XVm2fxQCz3EHGsQWFV5pUTPyzMWJ2zj5rjKY0cLywx6e2DKN4Ptbynk7TOceD3
+ AhOYMUj+cWstCiTmH79TGMZozvMA+aaNq07EQmOOfPacTne7isFBmxLuzE/eKLIyEzW3
+ Ss3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777048132; x=1777652932;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=8O6I+hq683VBQwlRSKnFzEs1zN65e2/VVYAazZL5GNk=;
- b=EuI20HvJNYq8g95aiwfREB8tn9n62wvUBPa6udj5eBnaeY8uFsJ5OcwEFoZRRuezjN
- avQbbime4S/CO+m83dV8EFwVIvB0DNOXdKPkROtdP+ivhl77EDqnarAYkXUM5kk1p6/o
- QcDENA8gjXMWeTgYevgBpaIqwVi8Sue9mL+xq9AHKTuOiZeC4k13CdIQtPH8OxdTR4ki
- lDPFqCevK9CzEBFsWURy0i142aRFOa+9RnwaUQae3y6xGVp3wPUOW5PvmIaWys9GyHUo
- s9IAWRRq+44GGu5ikNCgpE//HiFAICVt7nKtbGTgGyPJD2BgcsnlOUHijWNPmBxGl7PV
- gkAg==
-X-Gm-Message-State: AOJu0Yw2zdAoCyhDkXMOXWevNP4eeLZtapKwqUKO0vs/49WB58oqbUgX
- VGBkhlc6EWQWkWyX+qEMqhLza3COUXJYIp9zqnBeE2F38wSdOjZKRbbaP05uQ1IF
-X-Gm-Gg: AeBDietJAtoJXwTJYRtsjzSVQz/j+G/IFnsdYGc1nptbJyRU5ljFXul6RMOOEjlRpb6
- TSHh6E2rECpvrmHb5qgOBEOOVVmiaiQGd5hm4OSa5a9Q66I0X+eF19IaHOI8h2CbGK7OWe+4EVO
- kqoGYiw28Y5L+RFFXeUiRP36aNo9xYvbuVYZVijmyQQMqDbhshMSsBMwQZAi8lG21rkdxF8l/Se
- ozeORbsfzIE410ezlSv/TZJrMqOeuEoiIy/czDNQJ4JbjifTsBkWHBnfeqHIbbFV1ORsXlvfV1I
- 7yeBZP4jbIcYKHGYIwlu2nfG9dkhdQlCsS7ApjWkKGHW5Hk/Ez85Nm04qHkPj2RrEUObAc61sHt
- bs6rX274IabjdHtmLKTGMupCaDBega2QFU14vBdjaA6BJjziy2/WNVexWX9IOmhNbdOGJgxJgyL
- ZIzUHd0G+nwJgeVjUKROsnWWpM/3vDdwRxbi1NOmeBBRXF7HqsJjYGL6w3BdWW8zzoo0iLNbe0J
- lyNtsfVwA==
-X-Received: by 2002:a05:600c:3483:b0:488:af7f:775f with SMTP id
- 5b1f17b1804b1-488fb77d343mr448046555e9.18.1777048132201; 
- Fri, 24 Apr 2026 09:28:52 -0700 (PDT)
-Received: from timur-hyperion.localnet (5401DFC2.dsl.pool.telekom.hu.
- [84.1.223.194]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-488fc0f82bbsm1025761145e9.3.2026.04.24.09.28.51
+ d=1e100.net; s=20251104; t=1777048407; x=1777653207;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=rigkqYAlhoqFqeCkHJ7xy8GFb3SiN14JzSLZL9wmVyo=;
+ b=IzJ2HSW9cmXEGH9OxMoXfDpzqQv3tMsY2fpzRNhXoUyOLwL2f/pgWi5a4rZrTggKRg
+ /41IR5pWQpjsT5/7GlMwNFLJVP4OaihcaymMj2NECNU2RozavUjg3V6ITGAzLkl8lcFc
+ gwV6XKS6LvL4ZzGZo4p71bkdmEuAcXr/uOIdJ8uEKnod6eq4xCF6Ubdc1OqZZM8YDmYB
+ BYAX8L7wW+bVi1Uv0BuFs7EKCeLegmuVH1orntJL0eoShMRQmEq2rLa65/iFLiKfykET
+ 2DgKEGLia7bInwVApyhT6dUfJHp/DH0LezGxjWpg/wWBVtDfJAClQnX3104T3lTWKZld
+ o5pg==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ9Bi2p8bmmoEzR4EeobwMaekfy7tmcvFTTNVlGNnvbLFiMQbij7bcOiM4D1QbwS9bj1yJ7yyDSZ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxnkhERbG1RCSuZNC7xPh9nbSlAxjObUdaVSwwG9Jnhk6QjQDqg
+ HjLubUdBTSnfz9WuroehMndy5zPoN/JRaHFCweoC9/73njBXPlnbFGv/xNByEfpuuiQ=
+X-Gm-Gg: AeBDieunxs6YedewgNcKd9JXekrli7ACwMuRZMz7KTSN+Kk9nmQUvpwx7petx81BVbi
+ EKJXOckuhiL2Qioc/58Kpfe0tFkScA26vxDwn1HxU1c6vy9DnXiYuMPFwTGaSS59GV68iSczJ7j
+ SBDkgdcePUuB1QGJEyrTzltnJeE+MusMIkEto4HQy8dxxwkcItJP8ayRE7cQURGV5dadp+4S+Ci
+ ATxOd+a0+lCEFBp8VEMQVqVeYN4sj4DD2lQOB1Uve309gNmwQRwnca1wswTy/zeZhKdCdWjnQUd
+ Dp3zc1mEl65/BgBE+XK04IgC2fxZ1R/GzQz6huzfTWGFH2cXPjac2Mtpwem/+T5NCtwrmMDrZLH
+ NiNtJ6MC74yauheav7ECgct78DWSCnYeJiIYAJ9f8MqeH77p17IeP4oohymdxTnnPZtZAmuMhU0
+ A/6UIfUc/SD0EvSla0UTeWgbpDjhmXTH8Sbt/F1Kol/BE56IL3w9lu9w==
+X-Received: by 2002:a05:600c:c0c8:b0:487:21c7:2885 with SMTP id
+ 5b1f17b1804b1-488fb73d9ffmr351003145e9.5.1777048406745; 
+ Fri, 24 Apr 2026 09:33:26 -0700 (PDT)
+Received: from blackdock.suse.cz (nat2.prg.suse.com. [195.250.132.146])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4891c08faffsm702405535e9.1.2026.04.24.09.33.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Apr 2026 09:28:51 -0700 (PDT)
-From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
-To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
- Alex Hung <alex.hung@amd.com>, Harry Wentland <Harry.Wentland@amd.com>,
- Roman Li <Roman.Li@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Fri, 24 Apr 2026 09:33:26 -0700 (PDT)
+Date: Fri, 24 Apr 2026 18:33:24 +0200
+From: Michal =?utf-8?Q?Koutn=C3=BD?= <mkoutny@suse.com>
+To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ intel-xe@lists.freedesktop.org, Natalie Vock <natalie.vock@gmx.de>, 
+ Johannes Weiner <hannes@cmpxchg.org>, Tejun Heo <tj@kernel.org>,
+ cgroups@vger.kernel.org, 
+ Huang Rui <ray.huang@amd.com>, Matthew Brost <matthew.brost@intel.com>, 
+ Matthew Auld <matthew.auld@intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
  David Airlie <airlied@gmail.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Ivan Lipski <ivan.lipski@amd.com>, Melissa Wen <mwen@igalia.com>
-Subject: Re: [PATCH 03/14] drm/amd/display: Remove min/max clock levels from
- clk_mgr
-Date: Fri, 24 Apr 2026 18:28:50 +0200
-Message-ID: <3592022.LZWGnKmheA@timur-hyperion>
-In-Reply-To: <5132be76-3565-4b4d-8703-8fa49e652ea0@igalia.com>
-References: <20260423191519.73127-1-timur.kristof@gmail.com>
- <20260423191519.73127-4-timur.kristof@gmail.com>
- <5132be76-3565-4b4d-8703-8fa49e652ea0@igalia.com>
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+Subject: Re: [PATCH 2/5] cgroup/dmem: Add reclaim callback for lowering max
+ below current usage
+Message-ID: <soifu3hpmugejzevzggs57dreexuoammqkufegpjfvr6dzkt7u@7chmb3ppce6d>
+References: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
+ <20260327081600.4885-3-thomas.hellstrom@linux.intel.com>
+ <4b647952-0038-4878-b67e-6c7fc7ab27a6@linux.intel.com>
+ <398623a092c65ce4e53d1713112fa39ac0979fd7.camel@linux.intel.com>
+ <8ecda206-d290-4895-bf57-346419afdc3c@linux.intel.com>
+ <3b662522e17e380953d9b981d8c2febecf42455e.camel@linux.intel.com>
+ <4f74cacc-ff98-426f-ac31-c25e6cbec314@linux.intel.com>
+ <fb353b64e9084bc8fff01f8d5cc45701a2a60a60.camel@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="dosxmscoevitfoas"
+Content-Disposition: inline
+In-Reply-To: <fb353b64e9084bc8fff01f8d5cc45701a2a60a60.camel@linux.intel.com>
+X-Mailman-Approved-At: Mon, 27 Apr 2026 08:37:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,191 +112,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 37FB84614DD
+X-Rspamd-Queue-Id: 3A4E746F329
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-1.91 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	DATE_IN_PAST(1.00)[64];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,gmail.com,igalia.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[mkoutny@suse.com,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	TAGGED_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FORGED_RECIPIENTS(0.00)[m:thomas.hellstrom@linux.intel.com,m:maarten.lankhorst@linux.intel.com,m:intel-xe@lists.freedesktop.org,m:natalie.vock@gmx.de,m:hannes@cmpxchg.org,m:tj@kernel.org,m:cgroups@vger.kernel.org,m:ray.huang@amd.com,m:matthew.brost@intel.com,m:matthew.auld@intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:airlied@gmail.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:rodrigo.vivi@intel.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:cascardo@igalia.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linux.intel.com,lists.freedesktop.org,gmx.de,cmpxchg.org,kernel.org,vger.kernel.org,amd.com,intel.com,suse.de,ffwll.ch,gmail.com,igalia.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mkoutny@suse.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[suse.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.com:dkim,intel.com:email]
 
-On Friday, April 24, 2026 4:21:54=E2=80=AFPM Central European Summer Time M=
-elissa Wen=20
-wrote:
-> On 23/04/2026 16:15, Timur Krist=C3=B3f wrote:
-> > These fields are not used by anything anymore.
-> >=20
-> > Signed-off-by: Timur Krist=C3=B3f<timur.kristof@gmail.com>
-> > ---
-> >=20
-> >   .../amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c   | 14 --------------
-> >   .../display/dc/clk_mgr/dce112/dce112_clk_mgr.c    | 15 ---------------
-> >   .../drm/amd/display/dc/inc/hw/clk_mgr_internal.h  |  2 --
-> >   3 files changed, 31 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
-> > b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c index
-> > 988eb6f841f54..2ba341df7fffd 100644
-> > --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
-> > +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
-> > @@ -257,11 +257,6 @@ int dce_set_clock(
-> >=20
-> >   		actual_clock =3D=20
-pxl_clk_params.dfs_bypass_display_clock;
-> >   =09
-> >   	}
-> >=20
-> > -	/* from power down, we need mark the clock state as=20
-ClocksStateNominal
-> > -	 * from HWReset, so when resume we will call pplib voltage=20
-regulator.*/
-> > -	if (requested_clk_khz =3D=3D 0)
-> > -		clk_mgr_dce->cur_min_clks_state =3D=20
-DM_PP_CLOCKS_STATE_NOMINAL;
-> > -
-> >=20
-> >   	if (dmcu && dmcu->funcs->is_dmcu_initialized(dmcu))
-> >   =09
-> >   		dmcu->funcs->set_psr_wait_loop(dmcu, actual_clock /=20
-1000 / 7);
-> >=20
-> > @@ -425,7 +420,6 @@ void dce_clk_mgr_construct(
-> >=20
-> >   		struct clk_mgr_internal *clk_mgr)
-> >  =20
-> >   {
-> >  =20
-> >   	struct clk_mgr *base =3D &clk_mgr->base;
-> >=20
-> > -	struct dm_pp_static_clock_info static_clk_info =3D {0};
-> >=20
-> >   	if (ctx->dce_version <=3D DCE_VERSION_6_4)
-> >   =09
-> >   		memcpy(clk_mgr->max_clks_by_state,
-> >=20
-> > @@ -451,14 +445,6 @@ void dce_clk_mgr_construct(
-> >=20
-> >   	clk_mgr->dprefclk_ss_divider =3D 1000;
-> >   	clk_mgr->ss_on_dprefclk =3D false;
-> >=20
-> > -	if (ctx->dce_version >=3D DCE_VERSION_8_0) {
-> > -		if (dm_pp_get_static_clocks(ctx, &static_clk_info))
+
+--dosxmscoevitfoas
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 2/5] cgroup/dmem: Add reclaim callback for lowering max
+ below current usage
+MIME-Version: 1.0
+
+On Wed, Apr 22, 2026 at 12:36:50PM +0200, Thomas Hellstr=F6m <thomas.hellst=
+rom@linux.intel.com> wrote:
+> > The task writing to max will not trigger a reclaim,
+> > only set the new max value.
 >=20
-> and `dm_pp_get_static_clocks` becomes unused, right?
-
-Looks like nothing else is using dm_pp_get_static_clocks() so that can be=20
-deleted as well. I can do that in a follow-up series if that's OK.
-
+> I still read *synchronous* reclaim.
 >=20
-> > -			clk_mgr->max_clks_state =3D=20
-static_clk_info.max_clocks_state;
-> > -		else
-> > -			clk_mgr->max_clks_state =3D=20
-DM_PP_CLOCKS_STATE_NOMINAL;
-> > -		clk_mgr->cur_min_clks_state =3D=20
-DM_PP_CLOCKS_STATE_INVALID;
-> > -	}
-> > -
 > >=20
-> >   	base->clks.max_supported_dispclk_khz =3D
-> >   =09
-> >   		clk_mgr-
->max_clks_by_state[DM_PP_CLOCKS_STATE_PERFORMANCE].display_clk
-> >   		_khz;
+> > But when a process, part of the affected cgroup, tries to allocate
+> > memory,
+> > it will be forced to reclaim memory until below max again.=20
 > >=20
-> > diff --git
-> > a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce112/dce112_clk_mgr.c
-> > b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce112/dce112_clk_mgr.c index
-> > 48393c69735b6..0f3f8df4df96a 100644
-> > --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce112/dce112_clk_mgr.c
-> > +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce112/dce112_clk_mgr.c
-> > @@ -89,13 +89,6 @@ int dce112_set_clock(struct clk_mgr *clk_mgr_base, i=
-nt
-> > requested_clk_khz)>=20
-> >   	bp->funcs->set_dce_clock(bp, &dce_clk_params);
-> >   	actual_clock =3D dce_clk_params.target_clock_frequency;
-> >=20
-> > -	/*
-> > -	 * from power down, we need mark the clock state as=20
-ClocksStateNominal
-> > -	 * from HWReset, so when resume we will call pplib voltage=20
-regulator.
-> > -	 */
-> > -	if (requested_clk_khz =3D=3D 0)
-> > -		clk_mgr_dce->cur_min_clks_state =3D=20
-DM_PP_CLOCKS_STATE_NOMINAL;
-> > -
-> >=20
-> >   	/*Program DP ref Clock*/
-> >   	/*VBIOS will determine DPREFCLK frequency, so we don't set it*/
-> >   	dce_clk_params.target_clock_frequency =3D 0;
-> >=20
-> > @@ -143,14 +136,6 @@ int dce112_set_dispclk(struct clk_mgr_internal
-> > *clk_mgr, int requested_clk_khz)>=20
-> >   	bp->funcs->set_dce_clock(bp, &dce_clk_params);
-> >   	actual_clock =3D dce_clk_params.target_clock_frequency;
-> >=20
-> > -	/*
-> > -	 * from power down, we need mark the clock state as=20
-ClocksStateNominal
-> > -	 * from HWReset, so when resume we will call pplib voltage=20
-regulator.
-> > -	 */
-> > -	if (requested_clk_khz =3D=3D 0)
-> > -		clk_mgr->cur_min_clks_state =3D=20
-DM_PP_CLOCKS_STATE_NOMINAL;
-> > -
-> > -
-> >=20
-> >   	if (dmcu && dmcu->funcs->is_dmcu_initialized(dmcu)) {
-> >   =09
-> >   		if (clk_mgr->dfs_bypass_disp_clk !=3D actual_clock)
-> >   	=09
-> >   			dmcu->funcs->set_psr_wait_loop(dmcu,
-> >=20
-> > diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
-> > b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h index
-> > c69ccfcebeb5a..e01bf6bd7f3f4 100644
-> > --- a/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
-> > +++ b/drivers/gpu/drm/amd/display/dc/inc/hw/clk_mgr_internal.h
-> > @@ -477,8 +477,6 @@ struct clk_mgr_internal {
-> >=20
-> >   	 */
-> >   =09
-> >   	int dprefclk_ss_divider;
-> >=20
-> > -	enum dm_pp_clocks_state max_clks_state;
-> > -	enum dm_pp_clocks_state cur_min_clks_state;
-> >=20
-> >   	bool periodic_retraining_disabled;
-> >   =09
-> >   	unsigned int cur_phyclk_req_table[MAX_LINKS];
+> > This is a workflow where instead of the updater doing all
+> > the evictions, the evictions handled by a process in the cgroup
+> > itself.
+>=20
+> But kswapd is still used to do background per-cgroup reclaim in this
+> case, right?
 
+kswapd is driven by the global zone watermarks, it would only reclaim in
+the cgroup proportionally to its usage to fulfill that global "limit".
+The actual memcg's memory.max doesn't affect kswapd, it's really when
+reclaim is triggered upon hitting the limit from within the memcg.
 
+(The background per-cgroup analogy of kswapd for memcgs is proactive
+memory.reclaim but there's no dedicated kthread, it's up to the user to
+decide when and what to write into memory.reclaim.)
 
+HTH,
+Michal
 
+--dosxmscoevitfoas
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJEEABYKADkWIQRCE24Fn/AcRjnLivR+PQLnlNv4CAUCaeubUBsUgAAAAAAEAA5t
+YW51MiwyLjUrMS4xMiwyLDIACgkQfj0C55Tb+Ai0HQD+Jgif2K031TYm0YfdjAty
+B0TzqcqwBBNpvrgnUgC67EkA/14ZknnuVjDttRPWZYhls33OFy1aAPEoFVVOc+Zd
+XuMF
+=AICI
+-----END PGP SIGNATURE-----
+
+--dosxmscoevitfoas--
