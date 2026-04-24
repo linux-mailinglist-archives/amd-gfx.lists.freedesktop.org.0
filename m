@@ -2,81 +2,84 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oHa0L0Ig72lu7QAAu9opvQ
+	id cDQ+Ik0g72ml6wAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:22 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:33 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BE6C46F32A
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E65046F358
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D516010E628;
-	Mon, 27 Apr 2026 08:37:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CE0910E633;
+	Mon, 27 Apr 2026 08:37:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="C6dTGwlj";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="a7dCTalx";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com
- [209.85.210.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1FF110F5AA
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Apr 2026 14:08:18 +0000 (UTC)
-Received: by mail-ot1-f45.google.com with SMTP id
- 46e09a7af769-7dccb8644c4so2502799a34.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Apr 2026 07:08:18 -0700 (PDT)
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com
+ [209.85.210.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDBE310F5AB
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Apr 2026 14:08:19 +0000 (UTC)
+Received: by mail-ot1-f47.google.com with SMTP id
+ 46e09a7af769-7dbd23bc684so4435144a34.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Apr 2026 07:08:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777039698; x=1777644498; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=9YAH8g2v2vBsoZmgPxB7XwrigYCMZajRhN5tYq8MvnA=;
- b=C6dTGwljJ3iu3qjJ3QV0ce4eTHjRI+vTOocAx1H6wHQsPrAOc0jcyGrlRKCqgm28DC
- SyFesGWiZ5ZHNZO3wuj0QzYnrs80NkG8xHoo49Y4GNU5Hds96F6DAaihKTWz5WFmaUKO
- fi9xvKihqs2pxdomz7dYpHDMs7xp+rBj6kUZtt+8dYCSf5eeI3RiMFsx0Iv1q/7u2nQK
- tth8X6EzVVwFtl62yHCA3AH4QvPzvG5cEIUMTHxlVOazUqc8cxDDYPCZ86t3QAhHi9V2
- C5qTgz0r8vpWZihlC15LaVY7oAl19aTaZJzQKNi0Hfz7v32R2+USkrxUx9QRmQ36IDno
- //Kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777039698; x=1777644498;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20251104; t=1777039699; x=1777644499; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=9YAH8g2v2vBsoZmgPxB7XwrigYCMZajRhN5tYq8MvnA=;
- b=Enm1cihBCKu3HWWs1dgMASxH0zHR62xt56N5iWXbhQjBQfPowbQSPLsQ5aCU14rEzf
- fT2eS+xvg0ebCub6A6mPArUYKqLIxT6MQI2ymXPXOdpQAJPWhcOqpsEPn+IAwd5x6FBW
- UiCCKg/0WFA5UGQsMwvvhlx/OYqbJ1jShjypHslY8tsIrOyvxq9FSZ7aGaO1+j17O894
- iuoo1ZXaH3cla7qnz7KVLKZepUqrJhhPcg/q8WuRSy8tM++yYwy7vpzCF22Rrw6P4/uD
- 8WGfFf9zXqoI2VwjjRdY9jrRZxIivmCkLHEqKmOlUmXCkQyzFHnaCGXC92c1br98VZJI
- KZHA==
-X-Gm-Message-State: AOJu0YzOtF+OKGhlxMzY0MNehADevvqQ13H1S4IMPW3bjUPZHcs+7xGG
- PNFDvJD7GV9xEDu+Eby1SF9B3UINsnuSCVjgsXUCkn0XWPO4u4gC6wg=
-X-Gm-Gg: AeBDievg6kPJ0A2j7X6g8bx20621fAgHSbR4PwRvQiaZOM/f9uLIDaanuKnq959KyeQ
- Da+GHsqVTBwbkKftRZmN4lSWB6ydd9kHh8h6rLi/ZyzJSc8pGFflcEH5wwOb9JJj3Patoxgogsq
- mgEZ1vG1YOSKY4/xiqFc4sVk1Gn61JBc0fnHFMau4nuWj5EWneCtVDXDddtuYRwogwikiXCrtRF
- 7QYMYDKW2W9LyBv3zlfretrwCH/s4/DRODEoif06ZOxjDyGX7zOzWEuUtozcG3TIvaXWwsb1iFX
- G6OTNoMZhna3DxKu0wJ9AiQEwZVOqP62NO9nSHOAcd4USjz0fZrujkdaKBX8K9bXmUe4zOFa9Ig
- HG4fiLATSA1coLLdLesQOk8uqkbSboMk1C0+aeOqoYKQEsK5TMIZ857iykG8g3xWjZJNx8G1lAJ
- PnpMLwpJNBO3r0o/e6XkhLzkHs/q/GL9fbhkGYEGLCaS/yWNxztl800GS8EDI1/CqFYdYpU1zwE
- XxOFDfvgYrWRiFIcoxzOqnljlUx9Gzdpl+YNbH8RwczGQ==
-X-Received: by 2002:a05:6830:6483:b0:7d7:4639:43ee with SMTP id
- 46e09a7af769-7dc94f97a1amr21338986a34.3.1777039698033; 
- Fri, 24 Apr 2026 07:08:18 -0700 (PDT)
+ bh=QCyLy6DDJKSoLzccYLKiC2rCMua8OU8Lv96sFiOKNFg=;
+ b=a7dCTalxbGgbrx5tJuoRarIHQe7SES//NfHJiV12MmUEXeCWflq9gNGYqnvLrCLpQI
+ ro9lGmIcqQilKbEgzYv0UOnz0J+EDsYoyzL1LsshqUAo/Q4Wa9LezJ4zO++RQ554uqWn
+ 6ZiwbXPKiHw/guy71t0zs7Exaq6CRtWf9tzEoewB1DxJvR+bWzPJTKphKEy8gZetLy1o
+ 8nLpvd58NgUrKwx94uYDo3w92ehmeDtBj2pI6vQZ3FrLdMARCPuXE3+gTXrUAMss7TFH
+ omX9d+jPpGbMDNnNo/XcDCDBaTqvNpFDq9s7+fF8L65z8vpytYuFlVrdScSDa2CYWSZ8
+ FMpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777039699; x=1777644499;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=QCyLy6DDJKSoLzccYLKiC2rCMua8OU8Lv96sFiOKNFg=;
+ b=MjSxgJ22QCQn/UHjV5reiVdwJdmnVs8K/38zmPvTHXHFHevSVMmDps0dAAgW2xM2jb
+ yxfKnebAwl2Wbn+YiidXVZUcHZEZ2JqV0uXemL0kfczHNLq3L1JiTmbyneeg66LtrhJn
+ YvAvXIOLTIZmrvBaWvdpxch3qD6ktxWO+Okb9I9SQJHGfFLX4/KAbeTGI3eeUHsRtq5y
+ wGlneqFee7KOCq45RoMohBAvIFKBQRVFvfZz4+t5MwYdTr8XZF3LnlvaRH/74+wdnSBZ
+ taTcOp/JSe5L9VsGpo21ZKdPDYhDu3bVqfT3kRo/LBP/ZQhDZGgQ8DYjutHNM99irJNh
+ Jq8g==
+X-Gm-Message-State: AOJu0Yx9YzpP9nZ/J+YwNE/7iREa1N0gRgso4rA6mD5B07fARJPg7qvR
+ Nsrt6BmP6JaWm3MbZ1l5rC1xG0O7Sod9kVC7JJjfJYQ1t+I4kD6HRnCNziEnGIs=
+X-Gm-Gg: AeBDietsBUUF+R0qMBhBUMjwVEk8yqJtAH0OFnE0r1XkrL1sWb9HyjcpvaPhLYdMKYB
+ V2eYPUQmtoNj2sTa0vKr9D+O7Z6mYV0J164QN+DUve3x9vfRa8hPyovj+U1eJ1EXwMDGxAomx6m
+ D67O/ntWcBjdHJvmMjBugWd420VhpXLq/QQkCsF9YV47j48VixCTX7Xp5pyNBEhbPF/SxELa+ZI
+ BUIcD3fd2omEVZtn/EfO6ZWXV9A0ztsDt6em7L2YpVuNW0xqypyAsxhT1+Qynp3MUEbhWyQ4E6M
+ VnFjjTUYJ9hWPR4qMtyNv32kFD6148ddsTi6Nnh4+E8RUYZJNEsHErtOd9LvRPNS6yHb0aanaKY
+ CqL9/F/jKIBF2y5ATM4GC5VG5SCjpQan4a6OjrhP5p5533oxUHeDpXk3IaXi5CbuPKSmDcGzAz6
+ iU9b6YzbBEdLwJrooVBoG3yWaUzdJE/YEE9A8nkeOf9pGUuuBe9/f9MvoTcuqvUg1Gur2odHicg
+ feIxFZNu0DSfrPeL8ddK+2CtnGIevz78xM=
+X-Received: by 2002:a05:6830:490e:b0:7dc:dd19:7f69 with SMTP id
+ 46e09a7af769-7dcdd198242mr9266087a34.17.1777039699009; 
+ Fri, 24 Apr 2026 07:08:19 -0700 (PDT)
 Received: from localhost.localdomain ([47.188.191.104])
  by smtp.gmail.com with ESMTPSA id
- 586e51a60fabf-42b934a2dd1sm22228653fac.9.2026.04.24.07.08.17
+ 586e51a60fabf-42b934a2dd1sm22228653fac.9.2026.04.24.07.08.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Apr 2026 07:08:17 -0700 (PDT)
+ Fri, 24 Apr 2026 07:08:18 -0700 (PDT)
 From: "John B. Moore" <jbmoore61@gmail.com>
 To: alexander.deucher@amd.com,
 	christian.koenig@amd.com
 Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, stable@vger.kernel.org,
  "John B. Moore" <jbmoore61@gmail.com>
-Subject: [PATCH v2 0/2] drm/amdgpu: reject misaligned IB addresses in CS parser
-Date: Fri, 24 Apr 2026 09:08:14 -0500
-Message-ID: <20260424140816.43766-1-jbmoore61@gmail.com>
+Subject: [PATCH v2 1/2] drm/amdgpu: reject IB addresses with reserved
+ byte-swap bits
+Date: Fri, 24 Apr 2026 09:08:15 -0500
+Message-ID: <20260424140816.43766-2-jbmoore61@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260424140816.43766-1-jbmoore61@gmail.com>
+References: <20260424140816.43766-1-jbmoore61@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 27 Apr 2026 08:37:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -92,81 +95,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6BE6C46F32A
+X-Rspamd-Queue-Id: 0E65046F358
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
-	DATE_IN_PAST(1.00)[66];
+X-Spamd-Result: default: False [1.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	DATE_IN_PAST(1.00)[66];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:dri-devel@lists.freedesktop.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:stable@vger.kernel.org,m:jbmoore61@gmail.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:dri-devel@lists.freedesktop.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:stable@vger.kernel.org,m:jbmoore61@gmail.com,s:lists@lfdr.de];
 	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com,ffwll.ch,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-Userspace can submit command streams with IB addresses whose low two
-bits are set.  On all hardware that amdgpu supports, those bits are
-reserved (they encoded byte-swap mode on pre-amdgpu legacy HW).
-Today these addresses pass through the CS parser unchecked and hit
-BUG_ON(addr & 0x3) assertions in ring emission callbacks across
-gfx_v9 through gfx_v12 and sdma_v4 through sdma_v7 (35 call sites),
-crashing the kernel.
+Reject IB GPU addresses with bits [1:0] set early in the CS parser,
+before they reach ring emission callbacks. On legacy AMD hardware
+(pre-amdgpu era), these two bits encoded byte-swap mode for IB memory
+fetches. That feature was dropped on all hardware that amdgpu supports,
+but the ring emission paths still contain BUG_ON(addr & 0x3) assertions
+that crash the kernel if userspace submits a misaligned IB address.
 
-Patch 1 adds an early -EINVAL rejection in the CS parser before the
-IB is allocated, plus a defense-in-depth WARN_ON_ONCE in
-amdgpu_ib_schedule() to catch any that slip through from other code
-paths.
+Add an early check in amdgpu_cs_p2_ib() to reject such submissions
+with -EINVAL before the IB is allocated, and a defense-in-depth
+WARN_ON_ONCE in amdgpu_ib_schedule() to catch any that slip through
+from other code paths.
 
-Patch 2 is a trivial cleanup: removing a dead BUG_ON(!bo_va) in
-amdgpu_cs_vm_handling() that is unreachable due to the NULL check on
-the line above.
-
-A follow-up series could convert the 35 downstream BUG_ON(addr & 0x3)
-assertions in the ring emit_ib callbacks to WARN_ON_ONCE, but that is
-a larger change and is not included here.
-
-v2:
- - Rebased onto amd-staging-drm-next (was incorrectly based on a
-   local branch in v1 — thanks Christian for catching this)
- - Split the dead-code BUG_ON removal into a separate patch
- - Moved the check before amdgpu_ib_get() to avoid unnecessary
-   IB allocation on bad input
- - Added Fixes: tag and Cc: stable
-
-John B. Moore (2):
-  drm/amdgpu: reject IB addresses with reserved byte-swap bits
-  drm/amdgpu: remove superfluous BUG_ON in amdgpu_cs_vm_handling
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c |  9 ++++++++-
+Fixes: b0635e808290 ("drm/amdgpu: implement GFX 9.0 support (v2)")
+Cc: stable@vger.kernel.org
+Signed-off-by: John B. Moore <jbmoore61@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c |  8 ++++++++
  drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c | 10 ++++++++++
- 2 files changed, 18 insertions(+), 1 deletion(-)
+ 2 files changed, 18 insertions(+)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+index 10d8dcc3a..53f537f3e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+@@ -379,6 +379,14 @@ static int amdgpu_cs_p2_ib(struct amdgpu_cs_parser *p,
+ 	if (chunk_ib->flags & AMDGPU_IB_FLAG_PREAMBLE)
+ 		job->preamble_status |= AMDGPU_PREAMBLE_IB_PRESENT;
+ 
++	/* Reject IB addresses with reserved byte-swap bits set.
++	 * On legacy HW (pre-amdgpu), bits [1:0] encoded byte-swap mode
++	 * for IB fetches. That feature is deprecated on all HW that
++	 * amdgpu supports, so these bits must be zero.
++	 */
++	if (chunk_ib->va_start & 0x3)
++		return -EINVAL;
++
+ 	r =  amdgpu_ib_get(p->adev, vm, ring->funcs->parse_cs ?
+ 			   chunk_ib->ib_bytes : 0,
+ 			   AMDGPU_IB_POOL_DELAYED, ib);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+index f1ed4a436..3111d2c7e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+@@ -272,6 +272,16 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsigned int num_ibs,
+ 	for (i = 0; i < num_ibs; ++i) {
+ 		ib = &ibs[i];
+ 
++		/* Defense-in-depth: the CS parser rejects misaligned IB
++		 * addresses, but catch any that slip through before they
++		 * hit BUG_ON(addr & 0x3) in ring emission callbacks.
++		 */
++		if (WARN_ON_ONCE(ib->gpu_addr & 0x3)) {
++			r = -EINVAL;
++			amdgpu_ring_undo(ring);
++			goto free_fence;
++		}
++
+ 		if (job && ring->funcs->emit_frame_cntl) {
+ 			if (secure != !!(ib->flags & AMDGPU_IB_FLAGS_SECURE)) {
+ 				amdgpu_ring_emit_frame_cntl(ring, false, secure);
 -- 
 2.43.0
 
