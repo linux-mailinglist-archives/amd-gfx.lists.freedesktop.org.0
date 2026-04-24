@@ -2,86 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 19ceCUQg72ma7QAAu9opvQ
+	id AAD0AQN862npNAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:24 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Apr 2026 16:19:47 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E69B346F347
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B97A4601C4
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Apr 2026 16:19:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CFFA10E62C;
-	Mon, 27 Apr 2026 08:37:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB22B10F5A8;
+	Fri, 24 Apr 2026 14:19:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IFbcKvXa";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="lHLeo3k6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com
- [209.85.160.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B680710F5AA
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Apr 2026 14:08:20 +0000 (UTC)
-Received: by mail-oa1-f46.google.com with SMTP id
- 586e51a60fabf-4233e152457so5588174fac.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Apr 2026 07:08:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777039700; x=1777644500; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Awi4viU8NvHRlCqV4pUg2d0xyjRYURsNTCZSqlhhrUI=;
- b=IFbcKvXaihoQFRtDhH4tAzVc3IeWELWNGdThrJwq9l8J/mJtpo9tUbSEHg7kik18KY
- ueTr5bvAitQMiYXldukBjUiIGTllXXvrvazTxzSOh85qcthjCWY5pSQioCnyvrn2zkAg
- aHDpXDliYIF1heIAm8WSL13jmWne5JBTY1p6Cs8wiNhXCI027EoSMcatYpYGR6Ociv3j
- oOIEEw5D+sJo9sSYoOy6toKzb6N8URwrQwLkVQ+sc8B3zAgLE2iNEy3rYRCSMc/VVzrU
- U+fWG3kf9ixPSAbwmIFpL6JsLEVM9BpSJIWxRVXJDRQu1jr1PHzz90jSCtUV34oePREc
- D9Fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777039700; x=1777644500;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=Awi4viU8NvHRlCqV4pUg2d0xyjRYURsNTCZSqlhhrUI=;
- b=A7C5FoD2ksw3s8JJFW1/mTWU5xzhwtlgpBhtriDfix+PYWA7Db9v9JPXZVKKk2EzkK
- bzJLHv40rnmOv8K7pYJqLuNGok2DS1ZqQZ6BqWruiel63dgGxlL/BRtXYpoI2V128zDK
- 9KLp/ErUKCS7xqoZ3GOXMWkZNRstAyl0sg/ldkcIdxv4aCTVwlRUhsGey5piOHMqb2wM
- Jcyv1LnSGhBFxglSKuQ0jcAIGJkX15voBan0ojjacu3EJp1uCBmI+d4jzW1GBeqC3o4N
- AdkaXBpnReLuKTNXGBCbCm7l44O0yGMWz2KjmWRYdSabBGFZ7Eeiq7nIiVE71KGTmTtO
- BSqg==
-X-Gm-Message-State: AOJu0Yx6mGS7uj5BLWdFF4CUZnCbyvB7qBXrqE114ZNA29q28b/kE/NR
- iPlQVI1ZUE8PhtGgn0+735Lbolzd4bn/bWkAiAUU/pFz5YXWqqWtgPY=
-X-Gm-Gg: AeBDietw6qIvgyTgZiDQVyYd1D5IBrT1uG7bhty2NdaMbfsnPSUauxZ4wKFWEwHXJib
- yQ76gsTx53BW/PR52EoqXOuMFyOlNaoKd150IMYaMfty6TY9qrg/XY4dJSbo5/lOGnvknNhpVOX
- SQE0Eatkfb+pCj6zpY7NQC8ZfyhJ4oaOvYXb/fSIbF4yeaSozQSq1Cendz88mWlsmJW7WkaI5Q0
- wac3rNc+cxbfwN80iIavvr9wV/bnK/UtH83Gc2jbsOm0OYeM3o78a9Wtxpye3xNe4OUG4hSiNsF
- yNL+9kTiU7/B9/VrFrNDDwkZWAcaz3sjnR9ma/de0Ht1/MvItGZ7Dcn5VeOfhxXXmQBiW0gFBoc
- hjxhRJnp+E/pZ/5A818KYZxRI6GnQ8wQWcWOx1NEeGb85D9p4cvcEK3TEEV6/b2FkAAZJL61vp/
- VMe+qnqn2prdaSsbbASQibxW9NiPQ5sQF0FWF35vVa0Nu7csx4GWCoiK77Z/BD4mtlz1VySC59R
- EwBX/FOejA4Pe77C2SP/jwMoomxG/RhjAg=
-X-Received: by 2002:a05:6870:9109:b0:42c:f89:7555 with SMTP id
- 586e51a60fabf-42c0f89783cmr10667903fac.11.1777039699909; 
- Fri, 24 Apr 2026 07:08:19 -0700 (PDT)
-Received: from localhost.localdomain ([47.188.191.104])
- by smtp.gmail.com with ESMTPSA id
- 586e51a60fabf-42b934a2dd1sm22228653fac.9.2026.04.24.07.08.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Apr 2026 07:08:19 -0700 (PDT)
-From: "John B. Moore" <jbmoore61@gmail.com>
-To: alexander.deucher@amd.com,
-	christian.koenig@amd.com
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- airlied@gmail.com, simona@ffwll.ch, stable@vger.kernel.org,
- "John B. Moore" <jbmoore61@gmail.com>
-Subject: [PATCH v2 2/2] drm/amdgpu: remove superfluous BUG_ON in
- amdgpu_cs_vm_handling
-Date: Fri, 24 Apr 2026 09:08:16 -0500
-Message-ID: <20260424140816.43766-3-jbmoore61@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260424140816.43766-1-jbmoore61@gmail.com>
-References: <20260424140816.43766-1-jbmoore61@gmail.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30C7910F5A8
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Apr 2026 14:19:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:
+ To:Subject:From:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=oEFEPo1h9NXVrcr8a8UK8q/4AoIr3Tz99mdMHrhUp2o=; b=lHLeo3k6Oe2bLXuW57ExCZZRQt
+ aGMSCaEe6A2aTkd2R72CLLsykph6vYE1Dozxs+vyp0kuu4fE9nvpML7cKbMYk1Qkzu3a+U9Yk7Gow
+ jhQkxz3neg0n2+f6p2h6UU+7cAtWN58JotxbXIK5psRNG5mG+NZHJXbOngO/qaSs3yQnjvyJqUH9V
+ PdwDk6Whz0dDmna5TpelTfHAfM15G0JWwDX8wXmQOj00gfnOqd13ik1MRdRFmdKXK8pVkBE1VSOHh
+ W9fxHDwwyOqwLrNrS1ve8I9QD9726BNTs/UkBVfx1Im+t8E+3pjsz2Kl6HiZJgrIdd9xEte50SYui
+ 3eapi/xw==;
+Received: from [186.208.73.228] (helo=[192.168.18.14])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1wGHNc-001d6c-Gi; Fri, 24 Apr 2026 16:19:39 +0200
+Message-ID: <1abaa821-5477-4bfb-9731-9820f303f22f@igalia.com>
+Date: Fri, 24 Apr 2026 11:19:34 -0300
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Melissa Wen <mwen@igalia.com>
+Subject: Re: [PATCH 01/14] drm/amd/display: Delete unimplemented
+ dm_pp_apply_power_level_change_request()
+To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
+ Alex Hung <alex.hung@amd.com>, Harry Wentland <Harry.Wentland@amd.com>,
+ Roman Li <Roman.Li@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ David Airlie <airlied@gmail.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Ivan Lipski <ivan.lipski@amd.com>
+References: <20260423191519.73127-1-timur.kristof@gmail.com>
+ <20260423191519.73127-2-timur.kristof@gmail.com>
+Content-Language: en-US
+In-Reply-To: <20260423191519.73127-2-timur.kristof@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 27 Apr 2026 08:37:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,67 +70,179 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: E69B346F347
+X-Rspamd-Queue-Id: 6B97A4601C4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DATE_IN_PAST(1.00)[66];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [0.49 / 15.00];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:alex.hung@amd.com,m:Harry.Wentland@amd.com,m:Roman.Li@amd.com,m:sunpeng.li@amd.com,m:airlied@gmail.com,m:mario.limonciello@amd.com,m:ivan.lipski@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com];
 	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:dri-devel@lists.freedesktop.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:stable@vger.kernel.org,m:jbmoore61@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com,ffwll.ch,vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.986];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[igalia.com:-];
+	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-Remove the BUG_ON(!bo_va) in amdgpu_cs_vm_handling() that is
-unreachable: bo_va is assigned from fpriv->csa_va on the line
-directly above, inside an if (fpriv->csa_va) block, so it is
-guaranteed to be non-NULL at that point.
 
-Signed-off-by: John B. Moore <jbmoore61@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 1 -
- 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index 53f537f3e..556c62948 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -1137,7 +1137,6 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
- 
- 	if (fpriv->csa_va) {
- 		bo_va = fpriv->csa_va;
--		BUG_ON(!bo_va);
- 		r = amdgpu_vm_bo_update(adev, bo_va, false);
- 		if (r)
- 			return r;
--- 
-2.43.0
+On 23/04/2026 16:15, Timur Kristóf wrote:
+> dm_pp_apply_power_level_change_request() was called from old
+> DCE clock manager implementations on DCE6, 8, 10, 11.2
+> but has not been implemented ever since the beginning of DC.
+>
+> Affected GPUs have been working fine without that implementation
+> for many years. Let's delete it now.
+>
+> Signed-off-by: Timur Kristóf<timur.kristof@gmail.com>
+> ---
+>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c | 8 --------
+>   .../gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c  | 9 ---------
+>   .../drm/amd/display/dc/clk_mgr/dce110/dce110_clk_mgr.c   | 9 ---------
+>   .../drm/amd/display/dc/clk_mgr/dce112/dce112_clk_mgr.c   | 9 ---------
+>   drivers/gpu/drm/amd/display/dc/dm_services.h             | 4 ----
+>   5 files changed, 39 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
+> index 11b2ea6edf953..17f42201ab862 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
+> @@ -417,14 +417,6 @@ bool dm_pp_notify_wm_clock_changes(
+>   	return false;
+>   }
+>   
+> -bool dm_pp_apply_power_level_change_request(
+> -	const struct dc_context *ctx,
+> -	struct dm_pp_power_level_change_request *level_change_req)
+Hi Timur,
+> -{
+> -	/* TODO: to be implemented */
+I feel a little uneasy about removing all this infrastructure with this 
+series, as AFAIU, it could be avoided by implementing this TODO (?)
+Any idea if AMD has this code somewhere that could be upstreamed, or did 
+it end up in the firmware?
+
+BTW, Looks like `struct dm_pp_power_level_change_request` also becomes 
+unused with this change, right?
+
+Melissa
+> -	return false;
+> -}
+> -
+>   bool dm_pp_apply_clock_for_voltage_request(
+>   	const struct dc_context *ctx,
+>   	struct dm_pp_clock_for_voltage_req *clock_for_voltage_req)
+> diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
+> index 6d41df52d7c9b..ffb70120362e7 100644
+> --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
+> +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
+> @@ -431,19 +431,10 @@ static void dce_update_clocks(struct clk_mgr *clk_mgr_base,
+>   			bool safe_to_lower)
+>   {
+>   	struct clk_mgr_internal *clk_mgr_dce = TO_CLK_MGR_INTERNAL(clk_mgr_base);
+> -	struct dm_pp_power_level_change_request level_change_req;
+>   	const int max_disp_clk =
+>   		clk_mgr_dce->max_clks_by_state[DM_PP_CLOCKS_STATE_PERFORMANCE].display_clk_khz;
+>   	int patched_disp_clk = MIN(max_disp_clk, context->bw_ctx.bw.dce.dispclk_khz);
+>   
+> -	level_change_req.power_level = dce_get_required_clocks_state(clk_mgr_base, context);
+> -	/* get max clock state from PPLIB */
+> -	if ((level_change_req.power_level < clk_mgr_dce->cur_min_clks_state && safe_to_lower)
+> -			|| level_change_req.power_level > clk_mgr_dce->cur_min_clks_state) {
+> -		if (dm_pp_apply_power_level_change_request(clk_mgr_base->ctx, &level_change_req))
+> -			clk_mgr_dce->cur_min_clks_state = level_change_req.power_level;
+> -	}
+> -
+>   	if (should_set_clock(safe_to_lower, patched_disp_clk, clk_mgr_base->clks.dispclk_khz)) {
+>   		patched_disp_clk = dce_set_clock(clk_mgr_base, patched_disp_clk);
+>   		clk_mgr_base->clks.dispclk_khz = patched_disp_clk;
+> diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce110/dce110_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce110/dce110_clk_mgr.c
+> index 13296c6ec08f4..ae922f1a31ff8 100644
+> --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce110/dce110_clk_mgr.c
+> +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce110/dce110_clk_mgr.c
+> @@ -257,21 +257,12 @@ static void dce11_update_clocks(struct clk_mgr *clk_mgr_base,
+>   			bool safe_to_lower)
+>   {
+>   	struct clk_mgr_internal *clk_mgr_dce = TO_CLK_MGR_INTERNAL(clk_mgr_base);
+> -	struct dm_pp_power_level_change_request level_change_req;
+>   	int patched_disp_clk = context->bw_ctx.bw.dce.dispclk_khz;
+>   
+>   	/*TODO: W/A for dal3 linux, investigate why this works */
+>   	if (!clk_mgr_dce->dfs_bypass_active)
+>   		patched_disp_clk = patched_disp_clk * 115 / 100;
+>   
+> -	level_change_req.power_level = dce_get_required_clocks_state(clk_mgr_base, context);
+> -	/* get max clock state from PPLIB */
+> -	if ((level_change_req.power_level < clk_mgr_dce->cur_min_clks_state && safe_to_lower)
+> -			|| level_change_req.power_level > clk_mgr_dce->cur_min_clks_state) {
+> -		if (dm_pp_apply_power_level_change_request(clk_mgr_base->ctx, &level_change_req))
+> -			clk_mgr_dce->cur_min_clks_state = level_change_req.power_level;
+> -	}
+> -
+>   	if (should_set_clock(safe_to_lower, patched_disp_clk, clk_mgr_base->clks.dispclk_khz)) {
+>   		context->bw_ctx.bw.dce.dispclk_khz = dce_set_clock(clk_mgr_base, patched_disp_clk);
+>   		clk_mgr_base->clks.dispclk_khz = patched_disp_clk;
+> diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce112/dce112_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce112/dce112_clk_mgr.c
+> index 1f36ad8a7de46..48393c69735b6 100644
+> --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce112/dce112_clk_mgr.c
+> +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce112/dce112_clk_mgr.c
+> @@ -193,21 +193,12 @@ static void dce112_update_clocks(struct clk_mgr *clk_mgr_base,
+>   			bool safe_to_lower)
+>   {
+>   	struct clk_mgr_internal *clk_mgr_dce = TO_CLK_MGR_INTERNAL(clk_mgr_base);
+> -	struct dm_pp_power_level_change_request level_change_req;
+>   	int patched_disp_clk = context->bw_ctx.bw.dce.dispclk_khz;
+>   
+>   	/*TODO: W/A for dal3 linux, investigate why this works */
+>   	if (!clk_mgr_dce->dfs_bypass_active)
+>   		patched_disp_clk = patched_disp_clk * 115 / 100;
+>   
+> -	level_change_req.power_level = dce_get_required_clocks_state(clk_mgr_base, context);
+> -	/* get max clock state from PPLIB */
+> -	if ((level_change_req.power_level < clk_mgr_dce->cur_min_clks_state && safe_to_lower)
+> -			|| level_change_req.power_level > clk_mgr_dce->cur_min_clks_state) {
+> -		if (dm_pp_apply_power_level_change_request(clk_mgr_base->ctx, &level_change_req))
+> -			clk_mgr_dce->cur_min_clks_state = level_change_req.power_level;
+> -	}
+> -
+>   	if (should_set_clock(safe_to_lower, patched_disp_clk, clk_mgr_base->clks.dispclk_khz)) {
+>   		patched_disp_clk = dce112_set_clock(clk_mgr_base, patched_disp_clk);
+>   		clk_mgr_base->clks.dispclk_khz = patched_disp_clk;
+> diff --git a/drivers/gpu/drm/amd/display/dc/dm_services.h b/drivers/gpu/drm/amd/display/dc/dm_services.h
+> index fbbf9c757b3c3..1395d36bfabe9 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dm_services.h
+> +++ b/drivers/gpu/drm/amd/display/dc/dm_services.h
+> @@ -224,10 +224,6 @@ bool dm_pp_apply_display_requirements(
+>   	const struct dc_context *ctx,
+>   	const struct dm_pp_display_configuration *pp_display_cfg);
+>   
+> -bool dm_pp_apply_power_level_change_request(
+> -	const struct dc_context *ctx,
+> -	struct dm_pp_power_level_change_request *level_change_req);
+> -
+>   bool dm_pp_apply_clock_for_voltage_request(
+>   	const struct dc_context *ctx,
+>   	struct dm_pp_clock_for_voltage_req *clock_for_voltage_req);
 
