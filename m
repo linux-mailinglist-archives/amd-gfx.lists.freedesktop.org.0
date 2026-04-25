@@ -2,104 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cOXiIWLq62khTAAAu9opvQ
+	id cIW9FU4g72lv7QAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 25 Apr 2026 00:10:42 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:34 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0145C463B78
-	for <lists+amd-gfx@lfdr.de>; Sat, 25 Apr 2026 00:10:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8875B46F35A
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BAD210F6DE;
-	Fri, 24 Apr 2026 22:10:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wR8qB00A";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE5DF10E634;
+	Mon, 27 Apr 2026 08:37:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010047.outbound.protection.outlook.com
- [52.101.193.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3C8F10F6DE;
- Fri, 24 Apr 2026 22:10:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nr0AXiRr/2lfjGUoCTQzD/Ie7h7yzNgLHczBKDrSeSSmDuA7MLHvJ7beSRSNG0jcTAc6FULsT42RgMuVWVu4CrJcOWMpYksGfPJwJue7GKnGg/SLIXbRmHvzdZFphzr87DjN4C8U5KUFoU8kmD1byxirGxd0n3cBNR/NdMO2BBeWwtvVgVF3wruVav2WXHi2DMmHOQ0/tGEpNqkdGkFp2MAeTItUlHru8Zwy5pAtv7fS1HQtu308JujMhGs8Hd/X0ehwVr8quXD6OUtkRegpOAW7WSpIjgSAmKUAR72J/CwCN1pX+JFghFl3RADSfds6ccyE+gmZer33yT80TmZB8w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kaatD0hhAl1jTCJMwjTexp5WaNCYfZle8a6aEZ1PJ/k=;
- b=JkGuh7XnIo9wisD78MIDyYbD6KnLWm2zWpbyckok6k04VIiLph//PWrNt6un8rnKUN+hAgOVqeFf+3kfalcZEbosZNGEoBfNZZ0+rnatfXgi2dUN7iv/2Nj3OEEUkg0wgED1J1MSaMakbv5eIqkCwoqFWlxzBgcSkM+LdlDo0oJ+lucX+RBnb/bWUHInj7z+rp/TrII2h6m6ZMj2k2jjyd2HpQ9U/erUG0df++3HTczrQo+idVd8DOUGrJnM0gokgPfBCAFTHnv5KNfpydvKts7oMFnVJUd2+gTbAnl2r4Jruom5WeEed08A5JiNQPiDX2eBf9/8pRmwDOkInUNqQA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kaatD0hhAl1jTCJMwjTexp5WaNCYfZle8a6aEZ1PJ/k=;
- b=wR8qB00Ag5P+naTRc+A+sijRHCx3Xnv7TEWMiMDfAlr2OFUoSknRFKtwxOGxYr0XZ2PvPDOGyJZSTGShYk1TzJ41kj66Du2LYfvdTRwk4Ptkm3aBh0gIcXf++03i5u9sfLtzzNl2+bXkSa9tp1yyTrLUOGmWcu/P7gQ3OdPJZDc=
-Received: from CY5PR19CA0001.namprd19.prod.outlook.com (2603:10b6:930:15::15)
- by BL3PR12MB9051.namprd12.prod.outlook.com (2603:10b6:208:3ba::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.22; Fri, 24 Apr
- 2026 22:10:33 +0000
-Received: from CH2PEPF0000009E.namprd02.prod.outlook.com
- (2603:10b6:930:15:cafe::54) by CY5PR19CA0001.outlook.office365.com
- (2603:10b6:930:15::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.22 via Frontend Transport; Fri,
- 24 Apr 2026 22:10:32 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CH2PEPF0000009E.mail.protection.outlook.com (10.167.244.27) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9846.18 via Frontend Transport; Fri, 24 Apr 2026 22:10:32 +0000
-Received: from ausmlimonci-lx1.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 24 Apr
- 2026 17:10:31 -0500
-From: Mario Limonciello <mario.limonciello@amd.com>
-To: <dri-devel@lists.freedesktop.org>
-CC: <harry.wentland@amd.com>, Xaver Hugl <xaver.hugl@gmail.com>,
- <amd-gfx@lists.freedesktop.org>, Mario Limonciello <superm1@kernel.org>
-Subject: [PATCH] IGT: Add a luminance test
-Date: Fri, 24 Apr 2026 17:10:19 -0500
-Message-ID: <20260424221021.167179-1-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.43.0
+X-Greylist: delayed 984 seconds by postgrey-1.36 at gabe;
+ Sat, 25 Apr 2026 06:59:06 UTC
+Received: from dggsgout12.his.huawei.com (dggsgout12.his.huawei.com
+ [45.249.212.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5ED9910E0D6;
+ Sat, 25 Apr 2026 06:59:06 +0000 (UTC)
+Received: from mail.maildlp.com (unknown [172.19.163.198])
+ by dggsgout12.his.huawei.com (SkyGuard) with ESMTPS id 4g2gHC1b9YzKHMXJ;
+ Sat, 25 Apr 2026 14:42:15 +0800 (CST)
+Received: from mail02.huawei.com (unknown [10.116.40.128])
+ by mail.maildlp.com (Postfix) with ESMTP id 4AC9640574;
+ Sat, 25 Apr 2026 14:42:40 +0800 (CST)
+Received: from [10.67.111.176] (unknown [10.67.111.176])
+ by APP4 (Coremail) with SMTP id gCh0CgA3HrxeYuxpzYCiBg--.33183S2;
+ Sat, 25 Apr 2026 14:42:40 +0800 (CST)
+Message-ID: <220aadd9-0d92-44ce-8a70-bd30030defa9@huaweicloud.com>
+Date: Sat, 25 Apr 2026 14:42:38 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] cgroup/dmem: Add reclaim callback for lowering max
+ below current usage
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>, 
+ Tejun Heo <tj@kernel.org>, =?UTF-8?Q?Michal_Koutn=C3=BD?=
+ <mkoutny@suse.com>, cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
+ <20260327081600.4885-3-thomas.hellstrom@linux.intel.com>
+Content-Language: en-US
+From: Chen Ridong <chenridong@huaweicloud.com>
+In-Reply-To: <20260327081600.4885-3-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF0000009E:EE_|BL3PR12MB9051:EE_
-X-MS-Office365-Filtering-Correlation-Id: 959d6ab4-0eea-4ae1-fff7-08dea24e4d65
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|376014|36860700016|18002099003|56012099003|18096099003|11006099003;
-X-Microsoft-Antispam-Message-Info: pPJ3FwMvRasF9Hmk3G9kWJ48wA+yC9VnU/rU8jTVwg9S4EMJ1C4bnKcooxD8EMD0Zy6g9e3toU2O4XUZY8hJKi9+sQMKZJO+6mpHf+qyAOZ+nRMATgVys806dHkstePAaJFIwVSHVtJ13OZ0QCjCVtJ1p6LyUpLMwJukNK4AHnLUxDpcqfSZVqD8scH9ish0kppjx7EQsezP8Z9/pQznwimG2sL2mmwJtR3oDlg7k9lHhTge++tB4ZSxM9BAI5nOclHul67O60unL8Xu++bOvyomyoCmSXIyWgpBi6+w1auEk1sWu6qQPG/Xn5HWkx2WFVJia90InP8Vj5+Ub7wNi4RrobOaL0puTtRHkU8dVpKVNqUBwh+lnYnrrSLQCa1SrekeFAEzkuqHwMWClLWPbxb4V2iwCtwSTsIomW1QKzZtgN2Kh39c3/xM+0E28Aidjd/MztcuekdA+oNLLp957zSCi9ga6eB1k5cm3CQ4BeDDc18FejIJATPAIATyVhJ2+A+f1pj+xzQIOT4Gw1nHsNak7itf5y9egnr3o8vkv31w5bY9TaB6DKVEYwYMYup1RT8MQT9TfNeDSV3LOc3rhTzQGySAXqrWma2D62vltPzxMwn8/biATriVJhWJQtv7vhLjI8ntpT+zyjoOr8cqancg8Y1ssve5oZmHl88yOo2krrxBTL7fUNubH0wr4RpjtseDsCTQjIbGsKkbjy/eVFxR/A6xnS7EypkalGv9cgOjE8s7m4J36ct+Akoljn625lug+PL+UVO/7xe1z7krVA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(18002099003)(56012099003)(18096099003)(11006099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: p0jbodQUBf9jIeYabikzOT3mOSPIKCbrtEkne0kE7xLuhWapjnOqwzmiXOnKas4rh4Wq2SGkSg0R8KYVHDPNjow46mRs/4B+Xk/g84bpsNG8g2wemgoDD7uDh6JdSc8vESTwx6gWkmY16nNFx9wrfv3Y3OxuI+5UOjTugudCitN78WxuMObjAPb4WJoIOFQ2cKXc5EG6SYP4p1QQgBR8XoJQYR7UGP+R2I2VPYG5M6abaxeAp/0JOHjjW6s1wDfqPXcS6d00+7+TUvBOtRIThMQDqjG/8HaQSNznV+M4YpAvyyypsjFzDZUCSOett/jNIZdyE/ES7Zdkdj929Ln86mSXur0rX5YdDBGPILkKpT9TKqsmpuY69dUelOPPjoy0OQIbyq+R69CL8ylgQ0vgGaWixUKtBKLp2XP6Cb06hwzuOsYC5UgMEcawV/ATV4xf
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2026 22:10:32.2607 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 959d6ab4-0eea-4ae1-fff7-08dea24e4d65
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000009E.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB9051
+X-CM-TRANSID: gCh0CgA3HrxeYuxpzYCiBg--.33183S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3Jr4kKr4xGFWxCr47Ar1DKFg_yoW3XrykpF
+ ZrCr13Kw4rXrW7Zrsay3W8uF93u3Wvgr45W34xGw4fuFsrJw1Yyr4qk3yYyF1UCF9rGr1f
+ Xan0krnruFWjyrDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUUvjb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I20VC2zVCF04k2
+ 6cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4
+ vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7Cj
+ xVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I
+ 0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40E
+ x7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x
+ 0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1lc7CjxVAaw2AF
+ wI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4
+ xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5
+ MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I
+ 0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWU
+ JVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUIa
+ 0PDUUUU
+X-CM-SenderInfo: hfkh02xlgr0w46kxt4xhlfz01xgou0bp/
+X-Mailman-Approved-At: Mon, 27 Apr 2026 08:37:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,461 +88,244 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 0145C463B78
+X-Rspamd-Queue-Id: 8875B46F35A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [0.39 / 15.00];
+	DATE_IN_PAST(1.00)[49];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,lists.freedesktop.org,kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[huaweicloud.com];
 	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[gmx.de,cmpxchg.org,kernel.org,suse.com,vger.kernel.org,amd.com,intel.com,linux.intel.com,suse.de,ffwll.ch,gmail.com,lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[mario.limonciello@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	HAS_XOIP(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[5]
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[chenridong@huaweicloud.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.987];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-From: Mario Limonciello (AMD) <superm1@kernel.org>
 
-This will make sure that luminance can be changed from DRM master
-and that it stays in sync with sysfs.
 
-Assisted-by: Claude Sonnet
-Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
----
- tests/kms_luminance.c | 393 ++++++++++++++++++++++++++++++++++++++++++
- tests/meson.build     |   1 +
- 2 files changed, 394 insertions(+)
- create mode 100644 tests/kms_luminance.c
+On 2026/3/27 16:15, Thomas Hellström wrote:
+> Add an optional reclaim callback to struct dmem_cgroup_region.  When
+> dmem.max is set below current usage, invoke the callback to evict memory
+> and retry setting the limit rather than failing immediately.  Signal
+> interruptions propagate back to the write() caller.
+> 
+> RFC:
+> Due to us updating the max limit _after_ the usage has been
+> sufficiently lowered, this should be prone to failures if there are
+> aggressive allocators running in parallel to the reclaim.
+> So can we somehow enforce the new limit while the eviction is
+> happening?
+> 
+> Assisted-by: GitHub Copilot:claude-sonnet-4.6
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>  include/linux/cgroup_dmem.h | 11 +++++
+>  kernel/cgroup/dmem.c        | 94 +++++++++++++++++++++++++++++++++----
+>  2 files changed, 96 insertions(+), 9 deletions(-)
+> 
+> diff --git a/include/linux/cgroup_dmem.h b/include/linux/cgroup_dmem.h
+> index dd4869f1d736..61520a431740 100644
+> --- a/include/linux/cgroup_dmem.h
+> +++ b/include/linux/cgroup_dmem.h
+> @@ -26,6 +26,10 @@ bool dmem_cgroup_state_evict_valuable(struct dmem_cgroup_pool_state *limit_pool,
+>  				      bool ignore_low, bool *ret_hit_low);
+>  
+>  void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state *pool);
+> +void dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
+> +				    int (*reclaim)(struct dmem_cgroup_pool_state *pool,
+> +						   u64 target_bytes, void *priv),
+> +				    void *priv);
+>  #else
+>  static inline __printf(2,3) struct dmem_cgroup_region *
+>  dmem_cgroup_register_region(u64 size, const char *name_fmt, ...)
+> @@ -62,5 +66,12 @@ bool dmem_cgroup_state_evict_valuable(struct dmem_cgroup_pool_state *limit_pool,
+>  static inline void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state *pool)
+>  { }
+>  
+> +static inline void
+> +dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
+> +			       int (*reclaim)(struct dmem_cgroup_pool_state *pool,
+> +					      u64 target_bytes, void *priv),
+> +			       void *priv)
+> +{ }
+> +
+>  #endif
+>  #endif	/* _CGROUP_DMEM_H */
+> diff --git a/kernel/cgroup/dmem.c b/kernel/cgroup/dmem.c
+> index 3e6d4c0b26a1..f993fb058b74 100644
+> --- a/kernel/cgroup/dmem.c
+> +++ b/kernel/cgroup/dmem.c
+> @@ -51,6 +51,18 @@ struct dmem_cgroup_region {
+>  	 * No new pools should be added to the region afterwards.
+>  	 */
+>  	bool unregistered;
+> +
+> +	/**
+> +	 * @reclaim: Optional callback invoked when dmem.max is set below the
+> +	 * current usage of a pool. The driver should attempt to free at least
+> +	 * @target_bytes from @pool. May be called multiple times if usage
+> +	 * remains above the limit after returning.
+> +	 */
+> +	int (*reclaim)(struct dmem_cgroup_pool_state *pool, u64 target_bytes,
+> +		       void *priv);
+> +
+> +	/** @reclaim_priv: Private data passed to @reclaim. */
+> +	void *reclaim_priv;
+>  };
+>  
+>  struct dmemcg_state {
+> @@ -145,23 +157,59 @@ static void free_cg_pool(struct dmem_cgroup_pool_state *pool)
+>  }
+>  
+>  static int
+> -set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val)
+> +set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val,
+> +		 struct dmem_cgroup_region *region)
+>  {
+>  	page_counter_set_min(&pool->cnt, val);
+>  	return 0;
+>  }
+>  
+>  static int
+> -set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val)
+> +set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val,
+> +		 struct dmem_cgroup_region *region)
+>  {
+>  	page_counter_set_low(&pool->cnt, val);
+>  	return 0;
+>  }
+>  
+>  static int
+> -set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val)
+> +set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val,
 
-diff --git a/tests/kms_luminance.c b/tests/kms_luminance.c
-new file mode 100644
-index 000000000..9e4499eac
---- /dev/null
-+++ b/tests/kms_luminance.c
-@@ -0,0 +1,393 @@
-+/*
-+ * Copyright © 2026 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice (including the next
-+ * paragraph) shall be included in all copies or substantial portions of the
-+ * Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-+ * IN THE SOFTWARE.
-+ */
-+
-+/**
-+ * TEST: kms luminance
-+ * Category: Display
-+ * Description: Test LUMINANCE connector property and backlight synchronization
-+ * Driver requirement: any
-+ * Mega feature: General Display Features
-+ */
-+
-+#include "igt.h"
-+#include <dirent.h>
-+#include <errno.h>
-+#include <stdbool.h>
-+#include <stdio.h>
-+#include <string.h>
-+#include <fcntl.h>
-+#include <unistd.h>
-+#include <stdlib.h>
-+
-+#define BACKLIGHT_PATH "/sys/class/backlight"
-+
-+/**
-+ * SUBTEST: luminance-basic
-+ * Description: Verify LUMINANCE property exists and has correct range
-+ */
-+
-+/**
-+ * SUBTEST: luminance-dpms-coordination
-+ * Description: Verify LUMINANCE is forced to 0 when DPMS is off
-+ */
-+
-+/**
-+ * SUBTEST: luminance-sysfs-to-drm
-+ * Description: Test sysfs brightness changes synchronize to DRM LUMINANCE property
-+ */
-+
-+/**
-+ * SUBTEST: luminance-drm-to-sysfs
-+ * Description: Test DRM LUMINANCE property changes synchronize to sysfs brightness
-+ */
-+
-+typedef struct {
-+	int drm_fd;
-+	igt_display_t display;
-+	igt_output_t *output;
-+	char backlight_path[256];
-+	int max_brightness;
-+} data_t;
-+
-+static bool find_backlight_for_connector(igt_output_t *output, char *path, size_t path_len)
-+{
-+	char link_path[512];
-+	char backlight_name[256];
-+	ssize_t len;
-+	DIR *dir;
-+	struct dirent *entry;
-+	char *slash;
-+
-+	/* Try to find backlight linked to this connector via sysfs */
-+	snprintf(link_path, sizeof(link_path),
-+		 "/sys/class/drm/card%d-%s/backlight",
-+		 output->display->drm_fd,
-+		 igt_output_name(output));
-+
-+	len = readlink(link_path, backlight_name, sizeof(backlight_name) - 1);
-+	if (len > 0) {
-+		backlight_name[len] = '\0';
-+		/* Extract just the backlight device name */
-+		slash = strrchr(backlight_name, '/');
-+		if (slash)
-+			snprintf(path, path_len, "%s/%s", BACKLIGHT_PATH, slash + 1);
-+		else
-+			snprintf(path, path_len, "%s/%s", BACKLIGHT_PATH, backlight_name);
-+		return true;
-+	}
-+
-+	/* Fallback: look for any backlight device (common case: single panel) */
-+	dir = opendir(BACKLIGHT_PATH);
-+
-+	if (!dir)
-+		return false;
-+
-+	while ((entry = readdir(dir)) != NULL) {
-+		if (entry->d_name[0] == '.')
-+			continue;
-+
-+		snprintf(path, path_len, "%s/%s", BACKLIGHT_PATH, entry->d_name);
-+		closedir(dir);
-+		return true;
-+	}
-+
-+	closedir(dir);
-+	return false;
-+}
-+
-+static int read_sysfs_int(const char *path)
-+{
-+	FILE *f;
-+	int value = -1;
-+
-+	f = fopen(path, "r");
-+	if (!f)
-+		return -1;
-+
-+	if (fscanf(f, "%d", &value) != 1)
-+		value = -1;
-+
-+	fclose(f);
-+	return value;
-+}
-+
-+static bool write_sysfs_int(const char *path, int value)
-+{
-+	FILE *f;
-+
-+	f = fopen(path, "w");
-+	if (!f)
-+		return false;
-+
-+	fprintf(f, "%d\n", value);
-+	fclose(f);
-+	return true;
-+}
-+
-+static void require_luminance_support(data_t *data)
-+{
-+	uint64_t value;
-+
-+	igt_require(igt_has_drm_cap(data->drm_fd, DRM_CLIENT_CAP_ATOMIC));
-+	igt_require(drmSetClientCap(data->drm_fd, DRM_CLIENT_CAP_ATOMIC, 1) == 0);
-+
-+	/* Check if LUMINANCE capability is supported */
-+	igt_require(drmSetClientCap(data->drm_fd, 8 /* DRM_CLIENT_CAP_LUMINANCE */, 1) == 0);
-+
-+	/* Find eDP output with LUMINANCE property */
-+	for_each_connected_output(&data->display, data->output) {
-+		if (data->output->config.connector->connector_type == DRM_MODE_CONNECTOR_eDP) {
-+			if (kmstest_get_property(data->drm_fd,
-+						 data->output->config.connector->connector_id,
-+						 DRM_MODE_OBJECT_CONNECTOR,
-+						 "LUMINANCE",
-+						 NULL, &value, NULL)) {
-+				/* Found eDP with LUMINANCE */
-+				igt_require(find_backlight_for_connector(data->output,
-+									  data->backlight_path,
-+									  sizeof(data->backlight_path)));
-+				return;
-+			}
-+		}
-+	}
-+
-+	igt_skip("No eDP connector with LUMINANCE property found\n");
-+}
-+
-+static void test_luminance_basic(data_t *data)
-+{
-+	uint32_t prop_id;
-+	uint64_t value, range_min, range_max;
-+	bool is_atomic;
-+	drmModePropertyPtr prop;
-+
-+	igt_info("Testing LUMINANCE property on %s\n", igt_output_name(data->output));
-+
-+	igt_assert(kmstest_get_property(data->drm_fd,
-+					data->output->config.connector->connector_id,
-+					DRM_MODE_OBJECT_CONNECTOR,
-+					"LUMINANCE",
-+					&prop_id, &value, NULL));
-+
-+	/* Verify property is atomic */
-+	prop = drmModeGetProperty(data->drm_fd, prop_id);
-+	igt_assert(prop);
-+	is_atomic = !!(prop->flags & DRM_MODE_PROP_ATOMIC);
-+	igt_assert_f(is_atomic, "LUMINANCE property must be atomic\n");
-+
-+	/* Verify range is [0, 65535] */
-+	igt_assert_f(prop->count_values == 2, "LUMINANCE must be a range property\n");
-+	range_min = prop->values[0];
-+	range_max = prop->values[1];
-+	igt_assert_f(range_min == 0, "LUMINANCE min must be 0, got %lu\n", range_min);
-+	igt_assert_f(range_max == 65535, "LUMINANCE max must be 65535, got %lu\n", range_max);
-+
-+	igt_info("LUMINANCE property: id=%u, value=%lu, range=[%lu, %lu]\n",
-+		 prop_id, value, range_min, range_max);
-+
-+	drmModeFreeProperty(prop);
-+}
-+
-+static void test_luminance_sysfs_to_drm(data_t *data)
-+{
-+	char brightness_path[512];
-+	char max_brightness_path[512];
-+	int original_brightness, new_brightness, max_brightness;
-+	uint64_t original_luminance, new_luminance, expected_luminance;
-+
-+	snprintf(brightness_path, sizeof(brightness_path), "%s/brightness", data->backlight_path);
-+	snprintf(max_brightness_path, sizeof(max_brightness_path), "%s/max_brightness", data->backlight_path);
-+
-+	max_brightness = read_sysfs_int(max_brightness_path);
-+	igt_assert_f(max_brightness > 0, "Failed to read max_brightness\n");
-+
-+	/* Read original values */
-+	original_brightness = read_sysfs_int(brightness_path);
-+	igt_assert_f(original_brightness >= 0, "Failed to read brightness\n");
-+
-+	kmstest_get_property(data->drm_fd,
-+			     data->output->config.connector->connector_id,
-+			     DRM_MODE_OBJECT_CONNECTOR,
-+			     "LUMINANCE",
-+			     NULL, &original_luminance, NULL);
-+
-+	igt_info("Initial: sysfs=%d/%d, LUMINANCE=%lu\n",
-+		 original_brightness, max_brightness, original_luminance);
-+
-+	/* Test multiple values: min, 25%, 50%, 75%, max */
-+	int test_values[] = {0, max_brightness / 4, max_brightness / 2,
-+			     max_brightness * 3 / 4, max_brightness};
-+
-+	for (int i = 0; i < 5; i++) {
-+		new_brightness = test_values[i];
-+		igt_assert(write_sysfs_int(brightness_path, new_brightness));
-+
-+		/* Give kernel time to propagate notification */
-+		usleep(300000); /* 300ms */
-+
-+		/* Read back DRM property */
-+		kmstest_get_property(data->drm_fd,
-+				     data->output->config.connector->connector_id,
-+				     DRM_MODE_OBJECT_CONNECTOR,
-+				     "LUMINANCE",
-+				     NULL, &new_luminance, NULL);
-+
-+		/* Calculate expected LUMINANCE value using kernel's formula:
-+		 * set = (v * U16_MAX) / max
-+		 */
-+		expected_luminance = ((uint64_t)new_brightness * 65535) / max_brightness;
-+
-+		igt_info("Test %d: sysfs=%d, LUMINANCE=%lu (expected %lu)\n",
-+			 i, new_brightness, new_luminance, expected_luminance);
-+
-+		/* Allow for small rounding differences - at most 2 to catch formula bugs */
-+		igt_assert_f(abs((int)(new_luminance - expected_luminance)) <= 2,
-+			     "LUMINANCE not synchronized: expected %lu, got %lu (diff: %d)\n",
-+			     expected_luminance, new_luminance, abs((int)(new_luminance - expected_luminance)));
-+	}
-+
-+	/* Restore original brightness */
-+	write_sysfs_int(brightness_path, original_brightness);
-+	usleep(100000);
-+}
-+
-+static void test_luminance_drm_to_sysfs(data_t *data)
-+{
-+	char brightness_path[512];
-+	char max_brightness_path[512];
-+	int original_brightness, new_brightness, max_brightness, expected_brightness;
-+	uint64_t original_luminance, new_luminance, luminance_max;
-+	drmModeAtomicReqPtr req;
-+	drmModePropertyPtr prop;
-+	uint32_t prop_id;
-+	int ret;
-+
-+	snprintf(brightness_path, sizeof(brightness_path), "%s/brightness", data->backlight_path);
-+	snprintf(max_brightness_path, sizeof(max_brightness_path), "%s/max_brightness", data->backlight_path);
-+
-+	max_brightness = read_sysfs_int(max_brightness_path);
-+	igt_assert_f(max_brightness > 0, "Failed to read max_brightness\n");
-+
-+	/* Read original values */
-+	original_brightness = read_sysfs_int(brightness_path);
-+	igt_assert_f(original_brightness >= 0, "Failed to read brightness\n");
-+
-+	kmstest_get_property(data->drm_fd,
-+			     data->output->config.connector->connector_id,
-+			     DRM_MODE_OBJECT_CONNECTOR,
-+			     "LUMINANCE",
-+			     &prop_id, &original_luminance, NULL);
-+
-+	/* Get LUMINANCE property range */
-+	prop = drmModeGetProperty(data->drm_fd, prop_id);
-+	igt_assert(prop);
-+	igt_assert(prop->count_values == 2);
-+	luminance_max = prop->values[1];
-+	drmModeFreeProperty(prop);
-+
-+	igt_info("Initial: sysfs=%d/%d, LUMINANCE=%lu/%lu\n",
-+		 original_brightness, max_brightness, original_luminance, luminance_max);
-+
-+	/* Test multiple values: min, 25%, 50%, 75%, max of the LUMINANCE range */
-+	uint64_t test_luminance[] = {0, luminance_max / 4, luminance_max / 2,
-+				     luminance_max * 3 / 4, luminance_max};
-+
-+	for (int i = 0; i < 5; i++) {
-+		new_luminance = test_luminance[i];
-+
-+		req = drmModeAtomicAlloc();
-+		igt_assert(req);
-+
-+		ret = drmModeAtomicAddProperty(req, data->output->config.connector->connector_id,
-+					       prop_id, new_luminance);
-+		igt_assert(ret >= 0);
-+
-+		ret = drmModeAtomicCommit(data->drm_fd, req, DRM_MODE_ATOMIC_ALLOW_MODESET, NULL);
-+		igt_assert_f(ret == 0, "Atomic commit failed: %s\n", strerror(errno));
-+
-+		drmModeAtomicFree(req);
-+
-+		/* Give kernel time to update sysfs */
-+		usleep(300000); /* 300ms */
-+
-+		/* Read back sysfs brightness */
-+		new_brightness = read_sysfs_int(brightness_path);
-+		igt_assert_f(new_brightness >= 0, "Failed to read brightness after DRM change\n");
-+
-+		/* Calculate expected sysfs value using kernel's formula:
-+		 * brightness = (luminance * max_brightness) / luminance_max
-+		 */
-+		expected_brightness = (new_luminance * max_brightness) / luminance_max;
-+
-+		igt_info("Test %d: LUMINANCE=%lu, sysfs=%d (expected %d)\n",
-+			 i, new_luminance, new_brightness, expected_brightness);
-+
-+		/* Allow for small rounding differences - at most 2 to catch formula bugs */
-+		igt_assert_f(abs(new_brightness - expected_brightness) <= 2,
-+			     "sysfs not synchronized: expected %d, got %d (diff: %d)\n",
-+			     expected_brightness, new_brightness, abs(new_brightness - expected_brightness));
-+	}
-+
-+	/* Restore original value */
-+	req = drmModeAtomicAlloc();
-+	igt_assert(req);
-+	drmModeAtomicAddProperty(req, data->output->config.connector->connector_id,
-+				 prop_id, original_luminance);
-+	drmModeAtomicCommit(data->drm_fd, req, DRM_MODE_ATOMIC_ALLOW_MODESET, NULL);
-+	drmModeAtomicFree(req);
-+	usleep(100000);
-+}
-+
-+int igt_main()
-+{
-+	data_t data = {};
-+
-+	igt_fixture() {
-+		data.drm_fd = drm_open_driver_master(DRIVER_ANY);
-+		igt_require(data.drm_fd >= 0);
-+
-+		kmstest_set_vt_graphics_mode();
-+
-+		igt_display_require(&data.display, data.drm_fd);
-+		require_luminance_support(&data);
-+
-+		igt_info("Using backlight: %s\n", data.backlight_path);
-+	}
-+
-+	igt_describe("Verify LUMINANCE property exists and has correct range");
-+	igt_subtest("luminance-basic")
-+		test_luminance_basic(&data);
-+
-+	igt_describe("Test sysfs brightness changes synchronize to DRM LUMINANCE property");
-+	igt_subtest("luminance-sysfs-to-drm")
-+		test_luminance_sysfs_to_drm(&data);
-+
-+	igt_describe("Test DRM LUMINANCE property changes synchronize to sysfs brightness");
-+	igt_subtest("luminance-drm-to-sysfs")
-+		test_luminance_drm_to_sysfs(&data);
-+
-+	igt_fixture() {
-+		igt_display_fini(&data.display);
-+		drm_close_driver(data.drm_fd);
-+	}
-+}
-diff --git a/tests/meson.build b/tests/meson.build
-index 60cea3aa8..0fe7caf48 100644
---- a/tests/meson.build
-+++ b/tests/meson.build
-@@ -46,6 +46,7 @@ test_progs = [
- 	'kms_hdr',
- 	'kms_invalid_mode',
- 	'kms_lease',
-+	'kms_luminance',
- 	'kms_multipipe_modeset',
- 	'kms_panel_fitting',
- 	'kms_pipe_crc_basic',
+Though we are discussing how to set the maximum, renaming 'val' to 'max' would
+improve readability in the next version.
+
+> +		 struct dmem_cgroup_region *region)
+>  {
+> -	return page_counter_set_max(&pool->cnt, val);
+> +	int err = page_counter_set_max(&pool->cnt, val);
+> +
+> +	if (err != -EBUSY || !region || !region->reclaim)
+> +		return err;
+> +
+> +	/*
+> +	 * The new max is below current usage.  Ask the driver to evict memory
+> +	 * and retry, up to a bounded number of times.  Signal interruptions are
+> +	 * propagated back to the write() caller; other reclaim failures leave
+> +	 * -EBUSY as the result.
+> +	 */
+> +	for (int retries = 5; retries > 0; retries--) {
+> +		u64 usage = page_counter_read(&pool->cnt);
+> +		u64 target = usage > val ? usage - val : 0;
+> +		int reclaim_err;
+> +
+> +		if (!target) {
+> +			err = page_counter_set_max(&pool->cnt, val);
+> +			break;
+> +		}
+> +
+> +		reclaim_err = region->reclaim(pool, target, region->reclaim_priv);
+> +		if (reclaim_err) {
+> +			if (reclaim_err == -EINTR || reclaim_err == -ERESTARTSYS)
+> +				err = reclaim_err;
+> +			break;
+> +		}
+> +
+> +		err = page_counter_set_max(&pool->cnt, val);
+> +		if (err != -EBUSY)
+> +			break;
+> +	}
+> +
+> +	return err;
+>  }
+>  
+>  static u64 get_resource_low(struct dmem_cgroup_pool_state *pool)
+> @@ -186,9 +234,9 @@ static u64 get_resource_current(struct dmem_cgroup_pool_state *pool)
+>  
+>  static void reset_all_resource_limits(struct dmem_cgroup_pool_state *rpool)
+>  {
+> -	set_resource_min(rpool, 0);
+> -	set_resource_low(rpool, 0);
+> -	set_resource_max(rpool, PAGE_COUNTER_MAX);
+> +	set_resource_min(rpool, 0, NULL);
+> +	set_resource_low(rpool, 0, NULL);
+> +	set_resource_max(rpool, PAGE_COUNTER_MAX, NULL);
+>  }
+>  
+>  static void dmemcs_offline(struct cgroup_subsys_state *css)
+> @@ -570,6 +618,32 @@ void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state *pool)
+>  }
+>  EXPORT_SYMBOL_GPL(dmem_cgroup_pool_state_put);
+>  
+> +/**
+> + * dmem_cgroup_region_set_reclaim - Register a reclaim callback on a region.
+> + * @region: The region to register the callback for.
+> + * @reclaim: Callback to invoke when dmem.max is set below current usage.
+> + *           Called with the pool that needs reclaiming and the number of
+> + *           bytes to free. Returns 0 on progress, negative on failure.
+> + * @priv: Opaque pointer passed back to @reclaim.
+> + *
+> + * When dmem.max is lowered below the current usage of a cgroup pool, the
+> + * dmem controller will call @reclaim with a target number of bytes to free.
+> + * After @reclaim returns the controller retries setting the limit; if usage
+> + * is still too high it calls @reclaim again, up to a bounded retry count.
+> + */
+> +void dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
+> +				    int (*reclaim)(struct dmem_cgroup_pool_state *pool,
+> +						   u64 target_bytes, void *priv),
+> +				    void *priv)
+> +{
+> +	if (!region)
+> +		return;
+> +
+> +	region->reclaim = reclaim;
+> +	region->reclaim_priv = priv;
+> +}
+> +EXPORT_SYMBOL_GPL(dmem_cgroup_region_set_reclaim);
+> +
+>  static struct dmem_cgroup_pool_state *
+>  get_cg_pool_unlocked(struct dmemcg_state *cg, struct dmem_cgroup_region *region)
+>  {
+> @@ -728,7 +802,8 @@ static int dmemcg_parse_limit(char *options, struct dmem_cgroup_region *region,
+>  
+>  static ssize_t dmemcg_limit_write(struct kernfs_open_file *of,
+>  				 char *buf, size_t nbytes, loff_t off,
+> -				 int (*apply)(struct dmem_cgroup_pool_state *, u64))
+> +				 int (*apply)(struct dmem_cgroup_pool_state *, u64,
+> +					      struct dmem_cgroup_region *))
+>  {
+>  	struct dmemcg_state *dmemcs = css_to_dmemcs(of_css(of));
+>  	int err = 0;
+> @@ -775,7 +850,8 @@ static ssize_t dmemcg_limit_write(struct kernfs_open_file *of,
+>  		}
+>  
+>  		/* And commit */
+> -		err = apply(pool, new_limit);
+> +		err = apply(pool, new_limit, region);
+> +
+>  		dmemcg_pool_put(pool);
+>  
+>  out_put:
+
 -- 
-2.53.0
+Best regards,
+Ridong
 
