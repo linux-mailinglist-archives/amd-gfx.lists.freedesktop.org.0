@@ -2,157 +2,134 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SCqFEkQg72ml6wAAu9opvQ
+	id oOcFDk827WlRgwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:24 +0200
+	for <lists+amd-gfx@lfdr.de>; Sat, 25 Apr 2026 23:46:55 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E39CA46F345
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E8EF467E78
+	for <lists+amd-gfx@lfdr.de>; Sat, 25 Apr 2026 23:46:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB13D10E631;
-	Mon, 27 Apr 2026 08:37:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1110110E1CB;
+	Sat, 25 Apr 2026 21:46:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Ua6Jupsz";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="ILN9yDMw";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="M2ZROIvZ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011051.outbound.protection.outlook.com [52.101.52.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DB0F10E201;
- Sat, 25 Apr 2026 20:57:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ry1gRdP7CzFYht5dY+x976cA/2ygYOu+xsZGLkieqshyWpLJvb/8TD2L46CQJ9d1JR2mxHwnRlgjO+hVKi5Dm9EGTWIY2qiRnnm5Pl1osIyajN+7AG1QppfBfSWKeUEjdS6kIoNUQgyjscL24al+tgQN3MPRcLwOL5QgennfFFhzQ6bXnpnkDPWBcj+O0CFbf7+P0I3+Dpw5ZDGPw6t1Angb2jKDJ+sONYIVx1XgAoV/CNcUhyPyjRVrw8Mnc+l4tMHehXx5jIgwa+qRdkpV7JmEkwjOKjTvBdomiUZCq67qZAo5is3uWr2afww6oPgM9xDDOYq+LBFW9mvwkzsP7g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3kCDLJrzbGvosey2wmX0bNeuDHlO0iCZmi+LRb4NG0A=;
- b=plWSg/E9atNmGXRR/hRT8kRgQ5Rg/JJnXck5GA4hLcVPQ4+f7i8fUE5gDEd8OumNVfsG0soPQJdbL1mxd+7t5YAKB3aXVaH4WHmxKYiAJ4m4PXdAKp8W1dFYbXtGEI/xICxQbF+6jbbAd9/vmprqpI6yHN7HmXvxBuyME1kPzsSmm1b0McVSIBRK4d3U+pEk8zRBPcK3C4bGK4Met2cZ6m+C6g/IOCNRz0bxnfnic65vvh7MELr404o/7Blsg/ke8zFWigvrjhuwyNt2fsio34HDsjZiDlCiekfeOJYoxotiJZXLz+3/xrOknZXNzg/5tdqYvVk7hyr7eSg+vtt6jw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3kCDLJrzbGvosey2wmX0bNeuDHlO0iCZmi+LRb4NG0A=;
- b=Ua6JupszyxSBwYh4VD4Vfq5SL+c+cLN6v/e2pHwzyZvHq7WDCrI4cGluZDaCzbJB+1yLgMvU2WENqyiuGWu8aVzZu0wrU7mrx4UVmcg4fmebAssJmrlAI9U7U4iBRRbzxfiOojXduXsgdBPmo2zV9cIAzkZroLj3U8SKBFM0/ukKmyXGWawQ10fTwbh9ffCA7cRZOgNK/RfXwYJOli6b05fExZnignO/3RdoP3yPdVFEEhLLi6sinHUzAITwk0tOckws3B3io9KmBlgBcmpRWT/w34IfvfWdFRioYTAwFUnk0jnHVe1jcQrbmDgYy6VL3mFyUaMqinav2Og8ytD20A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- SA1PR12MB7344.namprd12.prod.outlook.com (2603:10b6:806:2b7::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.12; Sat, 25 Apr
- 2026 20:57:33 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9870.012; Sat, 25 Apr 2026
- 20:57:33 +0000
-Date: Sat, 25 Apr 2026 16:57:30 -0400
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: John Hubbard <jhubbard@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
- Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>,
- dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v11 02/20] gpu: nova-core: gsp: Extract usable FB region
- from GSP
-Message-ID: <20260425205730.GA4071848@joelbox2>
-References: <20260415210548.3776595-1-joelagnelf@nvidia.com>
- <20260415210548.3776595-2-joelagnelf@nvidia.com>
- <b0c5267d-ea77-41c5-94d4-39c651761b3c@nvidia.com>
- <20260421145521.GA51176@joelbox2>
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C1F010E49E
+ for <amd-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 21:46:51 +0000 (UTC)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 63PLe2rA1392432
+ for <amd-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 21:46:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=janQVdjbdXtAjA0DFdCMJpfH
+ QpM66VqlFeO9eJvVBI4=; b=ILN9yDMwF8wUHsCGp+pNUzVbMv3oTD4SDxW+tjqD
+ miakJ6elDDagBjyVKs5AFTUHXMZ1IibLBC6FLk12oRLzVYA/e6BvgEfZoV4p0qpn
+ lhVeZBstYy2o0aKc9TUWX4him591jM5FBzhwo2V5E8zw1xyCd6cNJbGJpfwqTTRk
+ tF5+OqpUfzH7Vc0yCdBEd2q9EzfJWl+NiS8wao84FYZyodrjnyssHkfwucbzWpWD
+ 7ZXZT3uCCxHBa9d6iVv8MWNPD9b0YCC9Q+a5M9vY3yWdTYTKftyfz5cMWkRTwW7B
+ r7OXUbC436wUrvi+3i7EIiWmKBlXrveIOwtC0hNB1I+DvQ==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4drnqrhqnu-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <amd-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 21:46:50 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id
+ d75a77b69052e-50d8e8c47a3so239645691cf.0
+ for <amd-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 14:46:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oss.qualcomm.com; s=google; t=1777153609; x=1777758409;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=janQVdjbdXtAjA0DFdCMJpfHQpM66VqlFeO9eJvVBI4=;
+ b=M2ZROIvZxLNV+P/tw++AtrtSGruHJuUjy4SNMTz9r9HDhNKc/36RvwBnWVwT9xCxNt
+ mNzPXWOsvxIi0HQH5B/r+M42FI2fryExvXnZz272DX6gbWRdOQm5OMqqA7nRaHHC9o7w
+ tTAXloQroIeM4l6MCsn4MnJuF8nYNoQgYWA5SpaR3VO50rCs0aWUK0n8K1BBaF0xfZkQ
+ R5sbjOkkknIb/tjiOAYJpstmkndym4sNu7v4837r76AqO8SsAj3p4V9FMwwy+6MoUo+k
+ 69SEjr1Ji/I4a0D3dYMqbarkyDSowQXcJs11LgP/ccWKuGStVndwLvXxxxlnbmIgTVf2
+ rIVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777153609; x=1777758409;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=janQVdjbdXtAjA0DFdCMJpfHQpM66VqlFeO9eJvVBI4=;
+ b=IwGeEQJ3Szo+lXmDKjXIG+n6+yB7/OU1C3sBQTGSOSKgyh60thx4WlXKAEgSkzpkmH
+ QLzxGIGdB2vHV8w0AqMkTtdqPhdy0+peDBBgkFjVFklSkV4NRfT28ef7CkvAvFnNU0xT
+ wvHQmXbevaGUe3SGRwy5zwDNPM9cB7Jc7g0h9yqutVTtICxvEt6vs72IXSik4YUyIB2p
+ XB+miX2AQcOGg2UZOcFE7SYlGZs/5JzCmpLaV3vR6Sfy3vh3hEk7Hr18+W3EYPtBGlr7
+ L3RXe/earXX91/F0EH6h13aMWWofgFBpZd2a12fwPtJelSSJxy1iAhat/QDwaHmCye79
+ kedA==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ8M2E+2GmisnSRJAcQB1OgnvGr0JHGzM5HZvpvvvFNtz3yBiecew0kQ+rh/Yo7GCj02TkQ6KCjX@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YweodiploC10Vp0w9jmKKHCyf8GLoToVA1DDnJE5pa/RrQ0a/ax
+ +0pezTZPwt+r79QiU7hv4yzxx8kxmFYB1p6nTkBE+NQwAgRKRpz4IHi4H5B6py93wxzRzKMegbd
+ EZLr1yLITnzrYjvPZlL0yg5A98K/M585Xvp4Iko+GHOvoxlCTznBCIN9yjwNu7iKQ8xd2
+X-Gm-Gg: AeBDietihC5/VhxnoKhMorCS6Otr4J8ukqzNrAiURYxrFroB1sG693+G2Y6gj+kzMB5
+ aLW7A57qtChOdAS31kCoQUHAcr55VO5nNv3de41Bu8boku2cLNma/snaNo12lU/ZrxGoXzyOjco
+ +ukNtdN3m6OE2C5gM2c1Zez2zgm4SGJS95jKt4E2KxPueaPzJ3lsrTOCqWO60qbqs/WNtSn/nou
+ O9wnhiyRpGVUyd1pToyU8W2FVTzdspAMBZMKK2yeyGffV6hpBbAPqPyUj4U0hLWQPDlOzQPw9iH
+ 1GAn4hVvtjkdXP5Df5sULOME5CC/uCioEUyrGBqH3EHwVd+Vqnvsd9t2WaiIyZ2BWjDAxppIBZy
+ ZTcyKXjx/pCxiDqOGhRaX//hgKjCEvU2L4Q+wBxn2BF0kv3n31WVRSHXfKPLNXtRtivKARUXl8V
+ uYpFsZQwDLgGvA71LwqMNFwhMmfKxDhWRkdBZsn7GoU1Y3Vw==
+X-Received: by 2002:ac8:7d4a:0:b0:50f:aeaf:b127 with SMTP id
+ d75a77b69052e-50faeafc0a0mr353887181cf.53.1777153609566; 
+ Sat, 25 Apr 2026 14:46:49 -0700 (PDT)
+X-Received: by 2002:ac8:7d4a:0:b0:50f:aeaf:b127 with SMTP id
+ d75a77b69052e-50faeafc0a0mr353887021cf.53.1777153609140; 
+ Sat, 25 Apr 2026 14:46:49 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5a41a238563sm6801345e87.55.2026.04.25.14.46.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 25 Apr 2026 14:46:46 -0700 (PDT)
+Date: Sun, 26 Apr 2026 00:46:45 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: dri-devel@lists.freedesktop.org, harry.wentland@amd.com,
+ Xaver Hugl <xaver.hugl@gmail.com>, amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v3 3/8] drm: link connectors to backlight devices
+Message-ID: <ngcy43m43k2e7wfvngmpdlefwr4i6l7z2ipk2p6frtd4itpxbi@yvod57mmsxdq>
+References: <20260424220953.167058-1-mario.limonciello@amd.com>
+ <20260424220953.167058-4-mario.limonciello@amd.com>
+ <k632yfxvm4od52pnnbclclffo4l73c3ztwysrwnkp5lfgpddfq@4ddwbap7o7vt>
+ <bec9ab80-cbb5-4e2f-afcc-e20221a365a2@amd.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260421145521.GA51176@joelbox2>
-X-ClientProxiedBy: CYXPR03CA0071.namprd03.prod.outlook.com
- (2603:10b6:930:d1::12) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|SA1PR12MB7344:EE_
-X-MS-Office365-Filtering-Correlation-Id: a937c324-4312-4e7c-c0ab-08dea30d455e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7416014|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: LEWcHncFqiY/x6lFwdxWNfy1v//L5jWb/OGcMV6QkaUlkJ0AiUdmh3zJ44h815t0QI5KTCQ2BDCdy88BMg6bfllo956hzHEt4RrNzo4ijlkrID6ymD3lKezah5dLh3YKr+1FFSQ8zg9yUCjgwo1B8Ig4byVZASMEKnXo0u7/HDKbufWYaR0fUSzTWJTyfTQH5nlbjgZ/J1sRNgZZ96VuU3L+QYzQZGwJuMLZhLBI3kz8DxjTceCqh+Kxk5auLfOWj70+KQ/HMiyqGf1NZk5PKTs8SnzvF/+JMnc9I63Zs3J+5NTgzcGymrs89BUlhf6ztcobxFFO9Pl6CgF6Hrnbk5XZXzD6tMiaof+0LmIIU0itZL4Q4ERlocEtQqGsgqf27nAr/pJDur/h59JLRsiWNAitWTJD7Ftq3i9dRJpjMTFOKY6aL+JYTea1Xpf5ZzsfmNQAipzcNVLxTEenGobwvfcronWDHy7472bITdhGvfpNw5ZXvWG5rGUX8Yt/uaFJqthzjHvuSZts/LJd3QjYTZlrqgQVohI7n4SBY73IK46IYb4lQhTA91PzP2PB56n3jNWpcd7npFQaDOHoNbvoOiQNVhEY+wjl4cQ+5GWRJFLVP60pcXnqvAdko/FJtKaOIwsL5nbj3SWmcrQXFEvFuIfcY3PiZAuDpCqvM0q+f7e/TgO1l7FRwEOTJxcG+mHLZ8kBctI2aN7BrpLjLe1DbAapnabFVqkEy7bBv6QqrMg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7416014)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?HG9niSUZoeUnhvlzIuT5wG4HcLvUCjgUaRxRc9eks47rx3sAE6TLFvwR64MP?=
- =?us-ascii?Q?6N0UZqyuG23n5Iti5+msZCDDpR4Poknpx+Tnc+a9GS6nNMTX6R+xYQhfrvMF?=
- =?us-ascii?Q?LI3inpvw39C/VLQORyfIhReMWCJOa+rGK0rKISkwMQ92+TIWRaW/2PkSchka?=
- =?us-ascii?Q?zo8jkiCD3WX8pFXsOYv+dzc38OVKIELJRPqqTaw9D8J8PMu1KYDFYE0o2gK+?=
- =?us-ascii?Q?ykzfMSA0/fWdPCNcXo9hz148UG/xE3DIvJyYsoRHQ3NhBxJFBTHR26wnEjHr?=
- =?us-ascii?Q?qDy0t8TGPiNPxpGgE3Uss/eL8dctDegZv2INmFc59Jhih/eZXudBK+79YTg3?=
- =?us-ascii?Q?fU88zmES0Vy64IzIa7O6KoDei2e6JbGG8nGIIuf2v9dgcDxl+x129jWPWh3D?=
- =?us-ascii?Q?bBNvJ2ZURyize/fxY23XC0ft+JQ03hN81bOlRp+ODh6rnkd4hGR/PbFX7VSi?=
- =?us-ascii?Q?IEMTewin98OtBenKbJqzc/dBTu8eaDtK82Y6Bqez5h1m3RtLhtSV3NCJ1CDn?=
- =?us-ascii?Q?pxryVMnWRALVoLSm/1eJAhW2lgvpKWUM5UjTS+C7ub7+2udGQaDvoWKTqKsy?=
- =?us-ascii?Q?7r++MC05YAiX+X5YtqnMQi5rqYvRjuhYm6WCEbkv7Wjfwg5SVK6x4KvS/fLL?=
- =?us-ascii?Q?5lL/Y1VIJXsc5sCMt+VItgOjRj+XdEB7W/7rVgZUtNp1tMryF6sp2xVIeWbK?=
- =?us-ascii?Q?+l8LqBai7V2qd0f117t4Zb20ZIkAURefqzC5fTeMobNT14OZ6IGys1gATFG6?=
- =?us-ascii?Q?smBgFgnz723PevbcGEjdlNocTuESh9mPWIKThDXrK4LMwui6tn6YhgZUj1LW?=
- =?us-ascii?Q?DyUGdPX/9tj71UvfzbdqY6SdnboYnC5CQyiLCdBhJkSV2Z/gbBpfLud+zesg?=
- =?us-ascii?Q?8pRcKIIO+qc2G9nT/NVMR5Y/4yTmuuvUvRIhwmF9hDjgrQCN4Ov1rTHmaeNX?=
- =?us-ascii?Q?3EoEyw1oNo4x/4qKpRImGClSzqmob7m6Wb7LmC0gCbXDheYtzW4NYlX0lL9z?=
- =?us-ascii?Q?8oMsxYRymz86yOpFmQl6veUvxOPE3MEqF+LkfQAXssST4REOBUCzURYLKCAB?=
- =?us-ascii?Q?rjYUbTSOK/qxU2DKpha7yrtopH8byaT0y6Ag3tLa/DdGPKgk1rHjfbF5792X?=
- =?us-ascii?Q?9pV3ySp9xgYKZqv+fBEbnc7tSX4MNH+EaFNTT9hi11oL50DpJmhWruqjLjcZ?=
- =?us-ascii?Q?BWjMwo+WS31mm0heoAOo0r9y4GaMGgl5jTWJDq8YX/0TPsQFi3ONAsYL1jBB?=
- =?us-ascii?Q?FPksODKLIaI80cD43XliIHDslA3/QGkIU2ewuD2Zf7Edo2RAE/5DOmJVvNTw?=
- =?us-ascii?Q?azdT8YaD8Y3PhXhVLXdIxSMP+UcSzIfBz6M4nD2kgP4/IaIZVxpscWgL3zwP?=
- =?us-ascii?Q?XPBWDmwBDeF5j2s8XYhgsEhgpvElYWIO0FrQo2CBSxjo7HFUJYUbq1ZRVeNi?=
- =?us-ascii?Q?wIsjShXpthohppvh3ynH9IgSMRry8kM4mmu5E/p5mzwYDh4gxGHGVVx8AdzO?=
- =?us-ascii?Q?zwus31ahrOFn83ZCrQTSUE7kFuz2JOepUHOo38BAgBOpdpwxRaXSyN4BUaAU?=
- =?us-ascii?Q?T5McmAeXJcQeilq/Ly+7aquOTZGPDTG4qAoMiV45p5xZCSnuXjLzVpOz5+4y?=
- =?us-ascii?Q?cvZmnUgjFYzD8lES/lbz+YpzeLJkVt7ouBENAxlbfHB+nzkUr/cdHGVPdLll?=
- =?us-ascii?Q?I5uAkKYjdrgZNyrV3wxUUV7kNyluhl+V9nQfplHBZ2G//tXAd3E3FoDEHRrz?=
- =?us-ascii?Q?hXH4qCWL4w=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a937c324-4312-4e7c-c0ab-08dea30d455e
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2026 20:57:32.9350 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: c4pA7PyLeqZjPZob0FqyAjR49KJPki19p6hn3YtfcT2+UJZgtNmeIgSAs/fNRY88QK3l9njK/JqybSh7bDBZuw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7344
-X-Mailman-Approved-At: Mon, 27 Apr 2026 08:37:19 +0000
+In-Reply-To: <bec9ab80-cbb5-4e2f-afcc-e20221a365a2@amd.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI1MDIyNyBTYWx0ZWRfX/tfPg5CDGF9s
+ VcTkVI1wQ+yTFLZmjM47bM5P1xt8hIClvepLabM5MY74EoSOLSaKNjTWzTY1HPNZf8qGjya9y5O
+ tVdW+/+uzJEnM1DH1nSEFphQMl7s1zrt7ib9kUct0OQHzuCq9HGz9Hpn8EMyCMbUDXfowgLjl4F
+ yyCPFvOVRmo1y3O5qww3lT/rVzyaYbbQkZJc/wvDmEMAJhrD0/85GeuyEKA+DoKqW4TywBG585k
+ xkaUc4tqg02QNhwZqpDJPkEGGHjpCVGhyvWcMAqS/UMr/BVjxcgPDcx1TjiWQqTuA7hDEJlno99
+ 0HcA+Waq4b5zyJ8WCjKpEfMkmR1bnhvoatGtQ5RsFb4Wxbc1qm7k8I1WZdJOOrnnZDTkA1s4s2Q
+ NTKql5GO+jwwA/7s2u3vRN/8CZjxCla7PBLFNreX98+fcKOQPv4J17QMEU17ExFbbpRKzhVkTZX
+ dobo5d7foYMOaST1/5Q==
+X-Proofpoint-ORIG-GUID: ncNvH3g8bn-T_YLT7SGTyLyyobglMDLl
+X-Proofpoint-GUID: ncNvH3g8bn-T_YLT7SGTyLyyobglMDLl
+X-Authority-Analysis: v=2.4 cv=UcthjqSN c=1 sm=1 tr=0 ts=69ed364a cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=zd2uoN0lAAAA:8
+ a=tMRYVEbYVSoKfAMIh7oA:9 a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-25_06,2026-04-21_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 malwarescore=0 spamscore=0 lowpriorityscore=0 impostorscore=0
+ adultscore=0 priorityscore=1501 bulkscore=0 suspectscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604250227
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,77 +143,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: E39CA46F345
+X-Rspamd-Queue-Id: 8E8EF467E78
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DATE_IN_PAST(1.00)[35];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:mario.limonciello@amd.com,m:dri-devel@lists.freedesktop.org,m:harry.wentland@amd.com,m:xaver.hugl@gmail.com,m:xaverhugl@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_GT_50(0.00)[54];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,Nvidia.com:dkim]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,qualcomm.com:dkim,oss.qualcomm.com:dkim]
 
-On Tue, Apr 21, 2026 at 10:55:21AM -0400, Joel Fernandes wrote:
-> On Thu, Apr 16, 2026 at 04:26:48PM -0700, John Hubbard wrote:
-> > On 4/15/26 2:05 PM, Joel Fernandes wrote:
-> > ...
-> > 
-> > Apologies, I found one more minor thing, while looking at a
-> > subsequent patch in this series:
-> > 
-> > >  impl MessageFromGsp for GetGspStaticInfoReply {
-> > >      const FUNCTION: MsgFunction = MsgFunction::GetGspStaticInfo;
-> > >      type Message = GspStaticConfigInfo;
-> > > -    type InitError = Infallible;
-> > > +    type InitError = Error;
-> > >  
-> > >      fn read(
-> > >          msg: &Self::Message,
-> > > @@ -205,6 +209,7 @@ fn read(
-> > >      ) -> Result<Self, Self::InitError> {
-> > >          Ok(GetGspStaticInfoReply {
-> > >              gpu_name: msg.gpu_name_str(),
-> > > +            usable_fb_region: msg.first_usable_fb_region().ok_or(ENODEV)?,
-> > 
-> > OK, failing out is correct here. But in addition, we should also
-> > log this at dev_err!() level. This is rare, surprising, and actionable,
-> > so perfect for that level of logging.
+On Sat, Apr 25, 2026 at 09:40:50AM -0500, Mario Limonciello wrote:
 > 
-> Sure, that works for me. Will add it in for v12.
+> 
+> On 4/25/26 07:41, Dmitry Baryshkov wrote:
+> > On Fri, Apr 24, 2026 at 05:09:48PM -0500, Mario Limonciello wrote:
+> > > This adds generic backlight-device support to DRM connectors. Drivers
+> > > that need to link backlight devices to DRM connectors can use the new
+> > > helpers to create a backlight property and link them at runtime.
+> > > 
+> > > Also add a brightness changed notification so that sysfs and DRM connector
+> > > can stay in sync and handle property updates around DPMS.
+> > > 
+> > > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> > > ---
+> > >   drivers/gpu/drm/Kconfig             |   1 +
+> > >   drivers/gpu/drm/Makefile            |   2 +
+> > >   drivers/gpu/drm/drm_backlight.c     | 406 ++++++++++++++++++++++++++++
+> > >   drivers/gpu/drm/drm_connector.c     |  12 +
+> > >   drivers/gpu/drm/drm_drv.c           |   8 +
+> > >   drivers/gpu/drm/drm_mode_config.c   |   7 +
+> > >   drivers/gpu/drm/drm_mode_object.c   |  66 ++++-
+> > >   drivers/gpu/drm/drm_sysfs.c         |  54 ++++
+> > >   drivers/video/backlight/backlight.c |  17 ++
+> > >   include/drm/drm_backlight.h         |  45 +++
+> > >   include/drm/drm_connector.h         |   3 +
+> > >   include/drm/drm_mode_config.h       |   5 +
+> > >   include/linux/backlight.h           |  13 +
+> > >   13 files changed, 637 insertions(+), 2 deletions(-)
+> > >   create mode 100644 drivers/gpu/drm/drm_backlight.c
+> > >   create mode 100644 include/drm/drm_backlight.h
+> > > 
+> > > diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> > > index 8f5a8d3012e41..8c00f534d50b8 100644
+> > > --- a/drivers/gpu/drm/Kconfig
+> > > +++ b/drivers/gpu/drm/Kconfig
+> > > @@ -17,6 +17,7 @@ menuconfig DRM
+> > >   # device and dmabuf fd. Let's make sure that is available for our userspace.
+> > >   	select KCMP
+> > >   	select VIDEO
+> > > +	select BACKLIGHT_CLASS_DEVICE
+> > >   	help
+> > >   	  Kernel-level support for the Direct Rendering Infrastructure (DRI)
+> > >   	  introduced in XFree86 4.0. If you say Y here, you need to select
+> > > diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> > > index e97faabcd7830..9912306e94950 100644
+> > > --- a/drivers/gpu/drm/Makefile
+> > > +++ b/drivers/gpu/drm/Makefile
+> > > @@ -78,6 +78,8 @@ drm-$(CONFIG_DRM_CLIENT) += \
+> > >   	drm_client_event.o \
+> > >   	drm_client_modeset.o \
+> > >   	drm_client_sysrq.o
+> > > +drm-y += drm_backlight.o
+> > > +drm-$(CONFIG_DRM_LIB_RANDOM) += lib/drm_random.o
+> > >   drm-$(CONFIG_COMPAT) += drm_ioc32.o
+> > >   drm-$(CONFIG_DRM_PANEL) += drm_panel.o
+> > >   drm-$(CONFIG_OF) += drm_of.o
+> > > diff --git a/drivers/gpu/drm/drm_backlight.c b/drivers/gpu/drm/drm_backlight.c
+> > > new file mode 100644
+> > > index 0000000000000..cbc6a855ed332
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/drm_backlight.c
+> > > @@ -0,0 +1,406 @@
+> > > +// SPDX-License-Identifier: MIT
+> > > +/*
+> > > + * DRM Backlight Helpers
+> > > + * Copyright (c) 2014 David Herrmann
+> > > + * Copyright (c) 2026 Advanced Micro Devices, Inc.
+> > > + */
+> > > +
+> > > +#include <linux/backlight.h>
+> > > +#include <linux/fs.h>
+> > > +#include <linux/list.h>
+> > > +#include <linux/math64.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/mutex.h>
+> > > +#include <linux/notifier.h>
+> > > +#include <linux/slab.h>
+> > > +#include <linux/spinlock.h>
+> > > +#include <drm/drm_backlight.h>
+> > > +#include <drm/drm_connector.h>
+> > > +#include <drm/drm_device.h>
+> > > +#include <drm/drm_mode_config.h>
+> > > +
+> > > +/**
+> > > + * DOC: Backlight Devices
+> > > + *
+> > > + * Backlight devices have always been managed as a separate subsystem,
+> > > + * independent of DRM. They are usually controlled via separate hardware
+> > > + * interfaces than the display controller, so the split works out fine.
+> > > + * However, backlight brightness is a property of a display, and thus a
+> > > + * property of a DRM connector. We already manage DPMS states via connector
+> > > + * properties, so it is natural to keep brightness control at the same place.
+> > > + *
+> > > + * This DRM backlight interface implements generic backlight properties on
+> > > + * connectors. It does not handle any hardware backends but simply forwards
+> > > + * the requests to an available and linked backlight device. The links between
+> > > + * connectors and backlight devices have to be established by DRM drivers and
+> > > + * can be modified by user-space via sysfs (and udev rules). The name of the
+> > > + * backlight device can be written to a sysfs attribute called 'backlight'.
+> > > + * The device is looked up and linked to the connector (replacing a possible
+> > > + * previous backlight device). A 'change' uevent is sent whenever a link is
+> > > + * modified.
+> > > + *
+> > > + * Drivers have to call drm_backlight_alloc() after allocating a connector via
+> > > + * drm_connector_init(). This will automatically add a backlight device to the
+> > 
+> > I'd like to point out another kind of devices which might have been left
+> > w/o notice here: the panels. In a plenty of cases the driver creating
+> > the drm_connector (frequently through drm_bridge_connector_init())
+> > doesn't even know if there is a panel on the other side of the chain or
+> > not. Likewise connector creation doesn't involve any panel-related
+> > operation. Some panels provide backlight controls. Others don't and rely
+> > on the external backlight controls (see drm_panel_of_backlight() for
+> > example).
+> > 
+> > Can we work towards simplifying possible support for DRM backlights to
+> > the setups with drm_panel in place?
+> 
+> But to userspace it would interact with a connector not a panel directly
+> right?
+> 
+> So doesn't the current design work well enough for this?  When there is a
+> panel backlight control it could be added; and if there isn't just do
+> nothing.
 
-dev_err unfortunately requires passing dev into MessageFromGsp::read()
-which it doesn't today. Doing so modifies all other implementations of read()
-as well, not just GspStaticInfo. For v12 I will leave it as is, but lets
-discuss for future versions.
+No, I wrote in the other email, why. 
 
-Also, note that the error does not go undetected because it will result in
-the following dev_err firing anyway, perhaps its sufficient?
-  dev_err!(pdev, "Failed to obtain GSP static info ({:?})\n", e)
+> 
+> > 
+> > > + * given connector. No hardware device is linked to the connector by default.
+> > > + * Drivers can set up a default device via drm_backlight_set_name(), but are
+> > > + * free to leave it empty. User-space will then have to set up the link.
+> > 
+> > This sounds like a definite no-go. Think about any phone or any laptop.
+> > Do we need to involve userspace to let the kernel know that there is a
+> > connection between the DRM connector and the backlight present in the
+> > system?
+> > 
+> > What is the usescase for having dynamic connector<->link connections?
+> > 
+> 
+> Allowing userspace to setup the link was something in the original series by
+> David and Marta that I left in place.  I don't have a problem with dropping
+> that concept and requiring the driver to do the linking.
 
-thanks,
+Well, I don't want to loose something actually useful. That's why I'm
+trying to understand the usecase.
 
---
-Joel Fernandes
-
+-- 
+With best wishes
+Dmitry
