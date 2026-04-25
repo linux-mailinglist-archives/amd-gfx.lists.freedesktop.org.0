@@ -2,79 +2,159 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cIW9FU4g72lv7QAAu9opvQ
+	id kLh+AUuf7GmtagAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Sat, 25 Apr 2026 13:02:35 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8875B46F35A
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60CBB466092
+	for <lists+amd-gfx@lfdr.de>; Sat, 25 Apr 2026 13:02:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE5DF10E634;
-	Mon, 27 Apr 2026 08:37:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAF5110E158;
+	Sat, 25 Apr 2026 11:02:31 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="HQaWP/zU";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="UTOLPRxl";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 984 seconds by postgrey-1.36 at gabe;
- Sat, 25 Apr 2026 06:59:06 UTC
-Received: from dggsgout12.his.huawei.com (dggsgout12.his.huawei.com
- [45.249.212.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5ED9910E0D6;
- Sat, 25 Apr 2026 06:59:06 +0000 (UTC)
-Received: from mail.maildlp.com (unknown [172.19.163.198])
- by dggsgout12.his.huawei.com (SkyGuard) with ESMTPS id 4g2gHC1b9YzKHMXJ;
- Sat, 25 Apr 2026 14:42:15 +0800 (CST)
-Received: from mail02.huawei.com (unknown [10.116.40.128])
- by mail.maildlp.com (Postfix) with ESMTP id 4AC9640574;
- Sat, 25 Apr 2026 14:42:40 +0800 (CST)
-Received: from [10.67.111.176] (unknown [10.67.111.176])
- by APP4 (Coremail) with SMTP id gCh0CgA3HrxeYuxpzYCiBg--.33183S2;
- Sat, 25 Apr 2026 14:42:40 +0800 (CST)
-Message-ID: <220aadd9-0d92-44ce-8a70-bd30030defa9@huaweicloud.com>
-Date: Sat, 25 Apr 2026 14:42:38 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] cgroup/dmem: Add reclaim callback for lowering max
- below current usage
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>, 
- Tejun Heo <tj@kernel.org>, =?UTF-8?Q?Michal_Koutn=C3=BD?=
- <mkoutny@suse.com>, cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 074E510E156
+ for <amd-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 11:02:30 +0000 (UTC)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 63P3LJsC945188
+ for <amd-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 11:02:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=LuIbxZ4UGkr2MNHoHHNNbGJq
+ U9tVlBHwrX/08rcaVp8=; b=HQaWP/zUUv16lKqJeof414zvjCEHqwtLTwHORYrc
+ uuNXKoXfW5xGdbfm7Ul2EKQS01bgJCvGTn7tFrXPUj4NBCTi90rDrtl3v8QyNe50
+ DtQQN7s1AB4G21yOz+YImxfApS9x3qvQrARYn096MMbdRHlaPG/xoinPcHGIKf1E
+ tmgDhWBQPAxLVP1SypmeoVoGibGc1VCqey3Loy4wTxCvMMvPDs/U99gKAHIOz7Gr
+ nZCj7rWqTMAhcuLCqlUsZzsm3E9TEDKRIyEkHrEZ51znwV/lYgZDnpM02rejVviM
+ 8MXPjmeovoPfg7Q6u7PSJEljEZglSRT34jMwkCOUNjnZEA==
+Received: from mail-ua1-f70.google.com (mail-ua1-f70.google.com
+ [209.85.222.70])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4drnmr0s05-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <amd-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 11:02:29 +0000 (GMT)
+Received: by mail-ua1-f70.google.com with SMTP id
+ a1e0cc1a2514c-956804755faso10008009241.0
+ for <amd-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 04:02:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oss.qualcomm.com; s=google; t=1777114949; x=1777719749;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=LuIbxZ4UGkr2MNHoHHNNbGJqU9tVlBHwrX/08rcaVp8=;
+ b=UTOLPRxlHyRHNPIp3cPRVlVBYf2cwANu6vGr7n9RE27rg0o7W3pTEKsnluyyuKC47x
+ agr5WEfU0Sc3YTPM2khoRK7xLPORRRCByOQLy17xWOpwwMKn/kN8Ow2xCO5zMhzCW4zV
+ Q4Iaz/aYv+2YdACmwT+d8ti5cLHajWfrjGiSI84EjgC5qJvDpelaIRsOTThL0OHTYFaH
+ LM10vO1l9zydXWRJg7oJcFjxlij7Q33sOyRvnV1wGNBsdQW8zvTretFLplCFr0YLQul5
+ sdMWmUumA8fH7DUx6DgsRtPLHJ3w0PzKUg/4NPK2D5IxDRkyByQEqpnmB0+N9+ggRGHl
+ i2dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777114949; x=1777719749;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=LuIbxZ4UGkr2MNHoHHNNbGJqU9tVlBHwrX/08rcaVp8=;
+ b=ZOumucIccTFL/oSI4zNgL0cv15AwPgNSy7pKtbf7wCqo5vHXeJKp4YT3weHrkoMKBI
+ W9MGjdLTKNmD/4q/a6CpnIhusbgeih+AREUpkjgkrzwMt644UVCH9pUf6iIoUf1A24lH
+ Na7R3h6ID+x1QOBCyR2fsyYE/x8v2GFsr8mml8E+lLf5GWAZqsuWSb/NFJXptj9io6ph
+ AsBxqTZCv1heoRRhacTgNvNPIB267zK9k5YDAaYzNMe39EFI6tKsCzpztJJk49J/m/Zg
+ bD06V+qGVt+1C6HcBU2ngYnngK8mCBVcI3iE/sP0X3XVq7i9rauLxV+v0exfRbi4TF3B
+ 1GGw==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ8sF9CrBRGCcCl8gNhDqJGPlB5F8/BGfGLzIdAxbt14Ke/oR3Gm/EGJsMhKSeR0K9xzjjAw8NxF@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzetMQk0uINblMlHRaNgYSntdyDws9Ksy2z+7Op2iBZHQJYBrsE
+ TtnssoQnVn4Ki7HecOkOkdTxnzSFS2bMgLz3MUio9mcRjb4ods8GW/rlGzQgg8RBQZ3MoGAwNZx
+ JD+Tl2mOPmhgmUFNxl/Kwn2fxSokw7V1Cj5xlR3i+dwV0N31fD3d+CB0HefH5ZmOsTN1u
+X-Gm-Gg: AeBDieu6Uv8WYA+93GdZIlpf2bs1Y5YJLRwUOWVu4/zSt0Xwu20GNuReJiJa875CfPk
+ THCC0X0pm/t2TpbCgKdBmtgF/wiYdNWjlzx5JDvh4H9ozHatl4UguFoCANIe6fKSFiQsqjuOLC/
+ /+6dadbOv5gVOUwR+p7uMFlSL6RutvYDIuN5VcZb+sf+GTphT8Ap3Dah/ej4rGE5TerObV923as
+ uxF9jXrh0Gw6URcnRrs1G2Qus22N1WpMO+JqWLykWUbE9Twh2hHfGOVFQytNoRXWmVP2/g/lMb8
+ DhDM9hYSRkkNmVBT4zu/9BWAxgG81/ydux9iRXJVu7Vs/yEQvAq2QYSIgcEn1ANWIAsd9XjiihS
+ 4hLrCfgXTwy8sYQ2t0EAfn/IGNSjBT/obWkfrtzHy39YPsQjQyQSN6KWca6cJw1StrsMfMmmDuj
+ ruqrKi7vquQVgfJHfgQp9Ihw8VjhDhaLAomBfyEPHCaoDMGg==
+X-Received: by 2002:a05:6102:6a85:b0:607:ccde:5c00 with SMTP id
+ ada2fe7eead31-616feb7be9cmr12845688137.21.1777114949260; 
+ Sat, 25 Apr 2026 04:02:29 -0700 (PDT)
+X-Received: by 2002:a05:6102:6a85:b0:607:ccde:5c00 with SMTP id
+ ada2fe7eead31-616feb7be9cmr12845654137.21.1777114948825; 
+ Sat, 25 Apr 2026 04:02:28 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5a4187ebfd6sm6609501e87.78.2026.04.25.04.02.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 25 Apr 2026 04:02:26 -0700 (PDT)
+Date: Sat, 25 Apr 2026 14:02:24 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
  Alex Deucher <alexander.deucher@amd.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-References: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
- <20260327081600.4885-3-thomas.hellstrom@linux.intel.com>
-Content-Language: en-US
-From: Chen Ridong <chenridong@huaweicloud.com>
-In-Reply-To: <20260327081600.4885-3-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: gCh0CgA3HrxeYuxpzYCiBg--.33183S2
-X-Coremail-Antispam: 1UD129KBjvJXoW3Jr4kKr4xGFWxCr47Ar1DKFg_yoW3XrykpF
- ZrCr13Kw4rXrW7Zrsay3W8uF93u3Wvgr45W34xGw4fuFsrJw1Yyr4qk3yYyF1UCF9rGr1f
- Xan0krnruFWjyrDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUvjb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I20VC2zVCF04k2
- 6cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4
- vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7Cj
- xVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I
- 0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40E
- x7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x
- 0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1lc7CjxVAaw2AF
- wI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4
- xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5
- MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I
- 0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWU
- JVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUIa
- 0PDUUUU
-X-CM-SenderInfo: hfkh02xlgr0w46kxt4xhlfz01xgou0bp/
-X-Mailman-Approved-At: Mon, 27 Apr 2026 08:37:19 +0000
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ wayland-devel@lists.freedesktop.org
+Subject: Re: [PATCH v14 05/28] drm/display: bridge_connector: Use HDMI color
+ format for HDMI conns
+Message-ID: <uwmhvmgnhge2vez5yussn3swgkqb4scfir7ls7iy35v4ewifmp@br3ynryrptzb>
+References: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
+ <20260423-color-format-v14-5-449a419ccbd4@collabora.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260423-color-format-v14-5-449a419ccbd4@collabora.com>
+X-Authority-Analysis: v=2.4 cv=aqCCzyZV c=1 sm=1 tr=0 ts=69ec9f45 cx=c_pps
+ a=R6oCqFB+Yf/t2GF8e0/dFg==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=QX4gbG5DAAAA:8
+ a=EUspDBNiAAAA:8 a=gN0RDaQLg4mAccs6Ca8A:9 a=CjuIK1q_8ugA:10
+ a=TD8TdBvy0hsOASGTdmB-:22 a=AbAUZ8qAyYyZVLSsDulk:22
+X-Proofpoint-GUID: 7Zv1Vxl__eADItxCv9Kjgt8d_Uw6p3WK
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI1MDExMCBTYWx0ZWRfX5ZkhowU/byFx
+ sk7RALMleTkwSif2frAItxkdQSXiFA8aHryG/RlFSjwTZpwTj4aRkEmvqLtdHmuLKix4uOR/f5R
+ UyR/dXOLjx5PP/StVVpl5obdGcjinvgWLc0bo3rN/s92OgH6UqkzCny1dOcHzJQPyGU35GZ/jw9
+ YHH9LS0FvGODg+XJ+XBiYFVB+LqJDXmFs5ZhgUCzLzwZ7SNSWOJ5aRvPkTCvNqz0M0i9Z6Dc/54
+ +n/b6fGWvKipOBhXkx7NQlNLb8TZrS0D9TCl2slvAe7ZroHrjLcbgWtepEVnaDutloxsEhZQxrK
+ lId4XKylGPaSdDqWwwUBzvI+bWzJcHkum1IUpfwzFag8S2uiB/c98UyX50rrjjQDt2sC+/2FY1s
+ TZicyi7zJfy3geDEkucuYwkZhOVKAVf/VqZ9CtvYu9JcxnLH+YxjRAzKdZzD3m9TgxvA9rC0mqt
+ hIHCCbcw9Tr3CvHrYIA==
+X-Proofpoint-ORIG-GUID: 7Zv1Vxl__eADItxCv9Kjgt8d_Uw6p3WK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-25_02,2026-04-21_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 phishscore=0 spamscore=0 adultscore=0
+ suspectscore=0 malwarescore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604250110
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,244 +168,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 8875B46F35A
+X-Rspamd-Queue-Id: 60CBB466092
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.39 / 15.00];
-	DATE_IN_PAST(1.00)[49];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[huaweicloud.com];
 	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
-	FREEMAIL_CC(0.00)[gmx.de,cmpxchg.org,kernel.org,suse.com,vger.kernel.org,amd.com,intel.com,linux.intel.com,suse.de,ffwll.ch,gmail.com,lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_TWELVE(0.00)[39];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[chenridong@huaweicloud.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:lumag@kernel.org,m:s.hauer@pengutronix.de,m:robh@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kernel@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:intel-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m
+ :wayland-devel@lists.freedesktop.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.987];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,qualcomm.com:dkim,qualcomm.com:email,collabora.com:email]
 
-
-
-On 2026/3/27 16:15, Thomas Hellström wrote:
-> Add an optional reclaim callback to struct dmem_cgroup_region.  When
-> dmem.max is set below current usage, invoke the callback to evict memory
-> and retry setting the limit rather than failing immediately.  Signal
-> interruptions propagate back to the write() caller.
+On Thu, Apr 23, 2026 at 09:03:28PM +0200, Nicolas Frattaroli wrote:
+> For bridge connectors which contain an HDMI bridge at some stage, the
+> HDMI state helpers' format selection logic should be involved.
 > 
-> RFC:
-> Due to us updating the max limit _after_ the usage has been
-> sufficiently lowered, this should be prone to failures if there are
-> aggressive allocators running in parallel to the reclaim.
-> So can we somehow enforce the new limit while the eviction is
-> happening?
+> Add an implementation for the drm_bridge_funcs color_format function,
+> which translates from the HDMI state's output format to a connector
+> format for bridge connectors involving an HDMI bridge, but return the
+> connector state's color_format member unchanged otherwise.
 > 
-> Assisted-by: GitHub Copilot:claude-sonnet-4.6
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > ---
->  include/linux/cgroup_dmem.h | 11 +++++
->  kernel/cgroup/dmem.c        | 94 +++++++++++++++++++++++++++++++++----
->  2 files changed, 96 insertions(+), 9 deletions(-)
-> 
-> diff --git a/include/linux/cgroup_dmem.h b/include/linux/cgroup_dmem.h
-> index dd4869f1d736..61520a431740 100644
-> --- a/include/linux/cgroup_dmem.h
-> +++ b/include/linux/cgroup_dmem.h
-> @@ -26,6 +26,10 @@ bool dmem_cgroup_state_evict_valuable(struct dmem_cgroup_pool_state *limit_pool,
->  				      bool ignore_low, bool *ret_hit_low);
->  
->  void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state *pool);
-> +void dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
-> +				    int (*reclaim)(struct dmem_cgroup_pool_state *pool,
-> +						   u64 target_bytes, void *priv),
-> +				    void *priv);
->  #else
->  static inline __printf(2,3) struct dmem_cgroup_region *
->  dmem_cgroup_register_region(u64 size, const char *name_fmt, ...)
-> @@ -62,5 +66,12 @@ bool dmem_cgroup_state_evict_valuable(struct dmem_cgroup_pool_state *limit_pool,
->  static inline void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state *pool)
->  { }
->  
-> +static inline void
-> +dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
-> +			       int (*reclaim)(struct dmem_cgroup_pool_state *pool,
-> +					      u64 target_bytes, void *priv),
-> +			       void *priv)
-> +{ }
-> +
->  #endif
->  #endif	/* _CGROUP_DMEM_H */
-> diff --git a/kernel/cgroup/dmem.c b/kernel/cgroup/dmem.c
-> index 3e6d4c0b26a1..f993fb058b74 100644
-> --- a/kernel/cgroup/dmem.c
-> +++ b/kernel/cgroup/dmem.c
-> @@ -51,6 +51,18 @@ struct dmem_cgroup_region {
->  	 * No new pools should be added to the region afterwards.
->  	 */
->  	bool unregistered;
-> +
-> +	/**
-> +	 * @reclaim: Optional callback invoked when dmem.max is set below the
-> +	 * current usage of a pool. The driver should attempt to free at least
-> +	 * @target_bytes from @pool. May be called multiple times if usage
-> +	 * remains above the limit after returning.
-> +	 */
-> +	int (*reclaim)(struct dmem_cgroup_pool_state *pool, u64 target_bytes,
-> +		       void *priv);
-> +
-> +	/** @reclaim_priv: Private data passed to @reclaim. */
-> +	void *reclaim_priv;
->  };
->  
->  struct dmemcg_state {
-> @@ -145,23 +157,59 @@ static void free_cg_pool(struct dmem_cgroup_pool_state *pool)
->  }
->  
->  static int
-> -set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val)
-> +set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val,
-> +		 struct dmem_cgroup_region *region)
->  {
->  	page_counter_set_min(&pool->cnt, val);
->  	return 0;
->  }
->  
->  static int
-> -set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val)
-> +set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val,
-> +		 struct dmem_cgroup_region *region)
->  {
->  	page_counter_set_low(&pool->cnt, val);
->  	return 0;
->  }
->  
->  static int
-> -set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val)
-> +set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val,
+>  drivers/gpu/drm/display/drm_bridge_connector.c | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 
-Though we are discussing how to set the maximum, renaming 'val' to 'max' would
-improve readability in the next version.
+Thanks! I like how it ended up looking.
 
-> +		 struct dmem_cgroup_region *region)
->  {
-> -	return page_counter_set_max(&pool->cnt, val);
-> +	int err = page_counter_set_max(&pool->cnt, val);
-> +
-> +	if (err != -EBUSY || !region || !region->reclaim)
-> +		return err;
-> +
-> +	/*
-> +	 * The new max is below current usage.  Ask the driver to evict memory
-> +	 * and retry, up to a bounded number of times.  Signal interruptions are
-> +	 * propagated back to the write() caller; other reclaim failures leave
-> +	 * -EBUSY as the result.
-> +	 */
-> +	for (int retries = 5; retries > 0; retries--) {
-> +		u64 usage = page_counter_read(&pool->cnt);
-> +		u64 target = usage > val ? usage - val : 0;
-> +		int reclaim_err;
-> +
-> +		if (!target) {
-> +			err = page_counter_set_max(&pool->cnt, val);
-> +			break;
-> +		}
-> +
-> +		reclaim_err = region->reclaim(pool, target, region->reclaim_priv);
-> +		if (reclaim_err) {
-> +			if (reclaim_err == -EINTR || reclaim_err == -ERESTARTSYS)
-> +				err = reclaim_err;
-> +			break;
-> +		}
-> +
-> +		err = page_counter_set_max(&pool->cnt, val);
-> +		if (err != -EBUSY)
-> +			break;
-> +	}
-> +
-> +	return err;
->  }
->  
->  static u64 get_resource_low(struct dmem_cgroup_pool_state *pool)
-> @@ -186,9 +234,9 @@ static u64 get_resource_current(struct dmem_cgroup_pool_state *pool)
->  
->  static void reset_all_resource_limits(struct dmem_cgroup_pool_state *rpool)
->  {
-> -	set_resource_min(rpool, 0);
-> -	set_resource_low(rpool, 0);
-> -	set_resource_max(rpool, PAGE_COUNTER_MAX);
-> +	set_resource_min(rpool, 0, NULL);
-> +	set_resource_low(rpool, 0, NULL);
-> +	set_resource_max(rpool, PAGE_COUNTER_MAX, NULL);
->  }
->  
->  static void dmemcs_offline(struct cgroup_subsys_state *css)
-> @@ -570,6 +618,32 @@ void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state *pool)
->  }
->  EXPORT_SYMBOL_GPL(dmem_cgroup_pool_state_put);
->  
-> +/**
-> + * dmem_cgroup_region_set_reclaim - Register a reclaim callback on a region.
-> + * @region: The region to register the callback for.
-> + * @reclaim: Callback to invoke when dmem.max is set below current usage.
-> + *           Called with the pool that needs reclaiming and the number of
-> + *           bytes to free. Returns 0 on progress, negative on failure.
-> + * @priv: Opaque pointer passed back to @reclaim.
-> + *
-> + * When dmem.max is lowered below the current usage of a cgroup pool, the
-> + * dmem controller will call @reclaim with a target number of bytes to free.
-> + * After @reclaim returns the controller retries setting the limit; if usage
-> + * is still too high it calls @reclaim again, up to a bounded retry count.
-> + */
-> +void dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
-> +				    int (*reclaim)(struct dmem_cgroup_pool_state *pool,
-> +						   u64 target_bytes, void *priv),
-> +				    void *priv)
-> +{
-> +	if (!region)
-> +		return;
-> +
-> +	region->reclaim = reclaim;
-> +	region->reclaim_priv = priv;
-> +}
-> +EXPORT_SYMBOL_GPL(dmem_cgroup_region_set_reclaim);
-> +
->  static struct dmem_cgroup_pool_state *
->  get_cg_pool_unlocked(struct dmemcg_state *cg, struct dmem_cgroup_region *region)
->  {
-> @@ -728,7 +802,8 @@ static int dmemcg_parse_limit(char *options, struct dmem_cgroup_region *region,
->  
->  static ssize_t dmemcg_limit_write(struct kernfs_open_file *of,
->  				 char *buf, size_t nbytes, loff_t off,
-> -				 int (*apply)(struct dmem_cgroup_pool_state *, u64))
-> +				 int (*apply)(struct dmem_cgroup_pool_state *, u64,
-> +					      struct dmem_cgroup_region *))
->  {
->  	struct dmemcg_state *dmemcs = css_to_dmemcs(of_css(of));
->  	int err = 0;
-> @@ -775,7 +850,8 @@ static ssize_t dmemcg_limit_write(struct kernfs_open_file *of,
->  		}
->  
->  		/* And commit */
-> -		err = apply(pool, new_limit);
-> +		err = apply(pool, new_limit, region);
-> +
->  		dmemcg_pool_put(pool);
->  
->  out_put:
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+
 
 -- 
-Best regards,
-Ridong
-
+With best wishes
+Dmitry
