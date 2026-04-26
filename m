@@ -2,136 +2,151 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ECAsJllC7WlhhQAAu9opvQ
+	id cI3GNk0g72lu7QAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 26 Apr 2026 00:38:17 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:33 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6E2F468112
-	for <lists+amd-gfx@lfdr.de>; Sun, 26 Apr 2026 00:38:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74B8746F359
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 10:37:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3B8D10E4B4;
-	Sat, 25 Apr 2026 22:38:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8517610E632;
+	Mon, 27 Apr 2026 08:37:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="VEKPH/3G";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="eECBD+Lu";
+	dkim=pass (2048-bit key; secure) header.d=web.de header.i=spasswolf@web.de header.b="phh3wcIp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D69410E044
- for <amd-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 22:38:13 +0000 (UTC)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 63PLs3fh3985572
- for <amd-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 22:38:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=loyhz1y0SFqYlxKzVEQwQ1IC
- pNq/7m+Badw7tgFbFeo=; b=VEKPH/3GSPHeYjXKm82JY5NMXM1N096rx0ts4oaE
- tJ7SsCNlj7jUq16Xz+Rc8h8m9fn5t/RT8PjsOhHOlUF1HK+YJl7nQlx9c9tEKbjn
- WL+AXqrjOD73liPdA8cT8Vost/LSouQ5NqyTgtDMpyq/HHYW6aNlm36L3+AI9LwB
- cQYNm/TYjbyYc0BhCxWo0DVej6TOnLPNxoVjUkCBUEhL9+Fq7wp9I+8nNKx5b2v0
- Onor1khWPrAjpv7GcVHEtVXS7pfgPFrAI9a8WxDNN3lcXFJ+O/X/JkUuqxMzrebQ
- TVcEa7UKXdkQo5NL7hrvxMyCOcTQl1XdCpiY5A4c+PREvg==
-Received: from mail-vk1-f199.google.com (mail-vk1-f199.google.com
- [209.85.221.199])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4drnkx9tng-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <amd-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 22:38:12 +0000 (GMT)
-Received: by mail-vk1-f199.google.com with SMTP id
- 71dfb90a1353d-56f4a1cc334so6751725e0c.3
- for <amd-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 15:38:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1777156691; x=1777761491;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=loyhz1y0SFqYlxKzVEQwQ1ICpNq/7m+Badw7tgFbFeo=;
- b=eECBD+LuzMrzCewXW/xZ4yXicMOF0uOqo0hqqWapkczaJj1uHkayKwb3OwIjhYI21S
- Kya9tsa5x7iFed3bvxlBRZT/0FWfZ2t/FrfvZUcbR3N8ax3+bJAYM020UGl2gSghzMjN
- hCUjNnlGw2HRHue9kiFwWKSDSNTR5wDWwH362Tr+UKdrDguB9DTUihI18lTKFluMbkRo
- 8BhN6fpBnHt0eLFjGs2uTG9NBsyw46/3tHYTiRoNrMzV82vZvzK1AL7JOCYtVc45NHXD
- BiAa+EpRkpzSRaUx3gtobbB2OYY3zjJHl8aJuknM5yt7XHflAQbYSoOt/jkA/Bojle1H
- bXJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777156691; x=1777761491;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=loyhz1y0SFqYlxKzVEQwQ1ICpNq/7m+Badw7tgFbFeo=;
- b=p5s9kG67G/Y2ch5Kd1bogOqjxzfHmraHMLacWDdTWW5/BCw0x7iwrgTuhDvbtsZNIr
- TNfXFP12itLlU1sOOUfgoYlPl7sW3cBHlCMge8OOr8r5impT649MU3owXycVX3kQ2lxK
- l4nOpONErv1lrNRaYnqpM1NRD80TkPCoIVr5ELfcCcK+AUGNzPsZLxfiYcwqJ2DahNkb
- awInQng4cvWJmVJYB/0hoZCS1KAxmWr+KZRe7tsAvtlUz8ngsIJoTRMZm2V2F9087kjs
- hsEVnCFv41+tnFDCR0nP3ryVVH6bQUo0O6EkzzT/zrXOJVkJiai7oqPvEGnTqN7+Qt39
- 8rXA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+gISz+9XBC7QiS9YMv4QWT3QefOyX8yFKoGoDeTjJ6tqMos3xAfG6WyNX/mKFosCFTslwO8nya@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxg76AtMhuONlRIszoNrvjX5EepCT+uplgS6WznK4hxdHIC7H1U
- OuZd03C32k1x7Yitp4+FxYS+FMVIMlkUy1p38TrBC/Mzmxa2J7Na5oj4fiGeN6a8C+axMcm4K27
- GGIh23b5/7eSk1O6rm5doGh2u0jl8cXBG4w2xfBt3U17SM22C4EazVvTCmXksskUyQKp1
-X-Gm-Gg: AeBDiesChPEY2qONBTZ8hYRFRHbRmE98z+lBa9cEXihwpDAQKYEpJzntHPIxkoj1/zL
- iomiqTX3u40KkqZJWRtqWQ568C/R2EjT+ZF7ZdfzXDwsuu3BUmMLoEzfyXG+reTHoGpTUWvN2Gt
- ByxIsc9e4SmsPAzSWENToj2tAxwIoZufffYPqxYO+OlsnYuS4P0gnUgoH37ciOkRsx63sS/mjc8
- aX6oSnvip5gUdqXXA2D5m65YfQmugumTsfrzljO4s2nzuuqh8BcBP0T7ae41RoJOv1pvuDqrSBF
- q4KFXp99uzCJC0Rcyx2WJ8jaztfCUytirwOlewRXI1NRJd5nSUWrAfu/lp5BGKDQGzULScrMzQp
- QfIOOy9rdtWj23CyyO5klRNZAfywQ29+KAQyRQ1dP4wYh1tRV4D+2V+wqSg1Su4OYmMUCEfflFC
- iDVi4IA8h0IdwZtPdGzKwIQR0Sjd0D1TGybATUN8WatU60nA==
-X-Received: by 2002:a05:6102:4496:b0:605:4ff8:fc21 with SMTP id
- ada2fe7eead31-616f4d6dee8mr18177086137.8.1777156691390; 
- Sat, 25 Apr 2026 15:38:11 -0700 (PDT)
-X-Received: by 2002:a05:6102:4496:b0:605:4ff8:fc21 with SMTP id
- ada2fe7eead31-616f4d6dee8mr18177076137.8.1777156690889; 
- Sat, 25 Apr 2026 15:38:10 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-38ecb5f669dsm58246391fa.14.2026.04.25.15.38.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 25 Apr 2026 15:38:08 -0700 (PDT)
-Date: Sun, 26 Apr 2026 01:38:06 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Mario Limonciello <mario.limonciello@amd.com>
-Cc: dri-devel@lists.freedesktop.org, harry.wentland@amd.com,
- Xaver Hugl <xaver.hugl@gmail.com>, amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v3 4/8] DRM: Add support for client and driver indicating
- support for luminance
-Message-ID: <36yykzt74yblmvomo2v6vvjrwd4cabyizvrotgqlz7pyhdujmt@ovawnnjsu44k>
-References: <20260424220953.167058-1-mario.limonciello@amd.com>
- <20260424220953.167058-5-mario.limonciello@amd.com>
- <5trcw3bcadvk2ltmat5axlezuznylsgm5xr7dmo66o5ijcrpdz@fhv7yhmlklub>
- <cb1ab06a-630b-4bd7-95a3-5f679b84dbe2@amd.com>
+X-Greylist: delayed 319 seconds by postgrey-1.36 at gabe;
+ Sun, 26 Apr 2026 08:34:38 UTC
+Received: from mout.web.de (mout.web.de [217.72.192.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF61B10E527
+ for <amd-gfx@lists.freedesktop.org>; Sun, 26 Apr 2026 08:34:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1777192477; x=1777797277; i=spasswolf@web.de;
+ bh=HKdkkZxhzWhSZNCuALP3j01kwxKX3ukZguHj7H7aQXg=;
+ h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+ References:Content-Type:MIME-Version:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=phh3wcIpaP2t1cYsaj/FFmltzU633HQ9wW9qy3AwSkx8W9vDa3427NysBMC+XNfr
+ yqtwv/Ukj6JwVE0rESzuIPaih8ykmneGIcz0e/1gcSFL9xfj0iJ+HOfYukoSAi4Av
+ qaG3OwIX05BuYglzFePwNUVRwlmtQyEa0yPAK7zwUXFyG65X8W1b8cNZyr/AU2Kjo
+ 19sy7vpyy1uSryFiFfa5h4ie8ym777hwC/jSg2IhaOUgm0OvIgrwqSdtCk5ybFu1c
+ Wj+F8V2Bluh6yBjP6JTriEGg9JfgOV3D/Gk15q+DcwPNlbr0U1n71oOGgYwNxJ/rv
+ 72TeFE5CDmclsWBOag==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from client.hidden.invalid by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MVrg7-1vp6a70IL7-00OI9q; Sun, 26
+ Apr 2026 10:28:58 +0200
+Message-ID: <a1c86a3b83e26d86f95068e8005ce4b2efdca23a.camel@web.de>
+Subject: Re: kernel panic when resuming from hibernate in next-20260406 with
+ PREEMPT_RT
+From: Bert Karwatzki <spasswolf@web.de>
+To: "Ostrowski, Rafal" <Rafal.Ostrowski@amd.com>
+Cc: "Varone, Dillon" <Dillon.Varone@amd.com>, spasswolf@web.de, "Hung, Alex"
+ <Alex.Hung@amd.com>, "Deucher, Alexander" <Alexander.Deucher@amd.com>, 
+ Sebastian Andrzej Siewior
+ <bigeasy@linutronix.de>, Thomas Gleixner <tglx@linutronix.de>, 
+ "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "linux-next@vger.kernel.org"
+ <linux-next@vger.kernel.org>, "linux-rt-devel@lists.linux.dev"
+ <linux-rt-devel@lists.linux.dev>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Date: Sun, 26 Apr 2026 10:28:57 +0200
+In-Reply-To: <IA1PR12MB630789B32C2104D1FAC2B761F8592@IA1PR12MB6307.namprd12.prod.outlook.com>
+References: <20260409131411.10598-1-spasswolf@web.de>
+ <IA1PR12MB6307858BAECC7CC3AE8AA958F8582@IA1PR12MB6307.namprd12.prod.outlook.com>
+ <a67b9159f69e8788a598fb459d8e6d99d1776f2f.camel@web.de>
+ <IA1PR12MB6307AC51F4C6E4A77BCB5EDDF8582@IA1PR12MB6307.namprd12.prod.outlook.com>
+ <IA1PR12MB630789B32C2104D1FAC2B761F8592@IA1PR12MB6307.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.56.2-0+deb13u1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cb1ab06a-630b-4bd7-95a3-5f679b84dbe2@amd.com>
-X-Proofpoint-GUID: fLdM665GiDF0afBdR4EYQVAzv2crPKB5
-X-Proofpoint-ORIG-GUID: fLdM665GiDF0afBdR4EYQVAzv2crPKB5
-X-Authority-Analysis: v=2.4 cv=TuPWQjXh c=1 sm=1 tr=0 ts=69ed4254 cx=c_pps
- a=+D9SDfe9YZWTjADjLiQY5g==:117 a=ws1xHSm7LW_IKOyM:21 a=xqWC_Br6kY4A:10
- a=kj9zAlcOel0A:10 a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
- a=zd2uoN0lAAAA:8 a=DhcKTTyXoQiyAYNTDQMA:9 a=CjuIK1q_8ugA:10
- a=vmgOmaN-Xu0dpDh8OwbV:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI1MDI0MCBTYWx0ZWRfXxoP2Eb26Ma2l
- K3my8qShm/vNXn79TwzLyrgZED/PIsUGS9+FHY2ycZC8MfDeyZTE+CO4w7mIEK8CvAh5KQQDIQl
- PlL9uaTdOCcD+hUAvl1cY6Vj/bCP7kVd6xHkm5RxXklIGw6y/xJtRDvz88KlvpJFu4Ie80q0CYJ
- fHcD9P6YJEakTJ8Qvxg7XmzaR5OzmGzfYDnlWnyguYqEZGt3NGZ3p7ou+EL5DBuUOBKNnUtZ0Zx
- UlU0NkENKrle+usPaYPLdd2yt+Zt3loFLwnal/a6ehu5lGb/P7DqvoAek+QTj++erlbY80AP278
- YFQ5GO3mJA1T45v3DfPRlIana06hsbhAPJGiGx7XBdZ+DVCRSYYXB8ufIm6SaooTkrmPxlNlal9
- s3+nNRivQOMIjvk9VEx6L7GOGFlm+PAV6/LoTOCOp4ctLKDQdDGs+KgeOYyQCQDIn6HIlIbItAg
- Harqzb59CN+7R1WdYbA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-25_06,2026-04-21_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0
- impostorscore=0 clxscore=1015 suspectscore=0 phishscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2604250240
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:kQcTY/3PUzonPXpbQyWw2UThw3wqIb8voXSQJLLomU3am6FJDtR
+ jZEP7YjWtr84o9Yl8q0+X5GrTyAG3qmGq3XCH8ntrf/Qermk+r/+kQwmlbZGZFG0LpAlsqq
+ DzTZ25+xm1GEcinLjcrK0xqw5JmKojq2GYVPKBIIGO0j0rYGcTJfg7GeJ4+i9FqQ+btJE8m
+ NFSIttFCnUI4EoF1sh+9g==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:BQjYTB6cc+s=;Jk4SPeur+K1R2pZmrzCYIHw0jgO
+ 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
+ mbmSBMk0/K30MAdCmtzjLPZQ==
+X-Mailman-Approved-At: Mon, 27 Apr 2026 08:37:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,153 +160,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D6E2F468112
+X-Rspamd-Queue-Id: 74B8746F359
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	DATE_IN_PAST(1.00)[24];
+	DMARC_POLICY_ALLOW(-0.50)[web.de,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[web.de:s=s29768273];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:mario.limonciello@amd.com,m:dri-devel@lists.freedesktop.org,m:harry.wentland@amd.com,m:xaver.hugl@gmail.com,m:xaverhugl@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:Rafal.Ostrowski@amd.com,m:Dillon.Varone@amd.com,m:spasswolf@web.de,m:Alex.Hung@amd.com,m:Alexander.Deucher@amd.com,m:bigeasy@linutronix.de,m:tglx@linutronix.de,m:linux-kernel@vger.kernel.org,m:linux-next@vger.kernel.org,m:linux-rt-devel@lists.linux.dev,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER(0.00)[spasswolf@web.de,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[web.de];
+	FREEMAIL_CC(0.00)[amd.com,web.de,linutronix.de,vger.kernel.org,lists.linux.dev,lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_COUNT_FIVE(0.00)[6];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[spasswolf@web.de,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[web.de:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On Sat, Apr 25, 2026 at 09:45:30AM -0500, Mario Limonciello wrote:
-> 
-> 
-> On 4/25/26 07:17, Dmitry Baryshkov wrote:
-> > On Fri, Apr 24, 2026 at 05:09:49PM -0500, Mario Limonciello wrote:
-> > > The legacy backlight control interface can only be disabled when both
-> > > the client and driver have agreed that the luminance can be set during
-> > > a modeset. Add capability for the client to register and for the driver
-> > > to indicate support.
-> > 
-> > Please describe, why do we need DRM_CLIENT_CAP_LUMINANCE.
-> > 
-> > > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> > > ---
-> > >   drivers/gpu/drm/drm_atomic_uapi.c | 24 ++++++++++++++++++++++++
-> > >   drivers/gpu/drm/drm_connector.c   |  4 ++--
-> > >   drivers/gpu/drm/drm_ioctl.c       | 10 ++++++++++
-> > >   include/drm/drm_connector.h       |  5 +++++
-> > >   include/drm/drm_drv.h             |  7 +++++++
-> > >   include/drm/drm_file.h            |  8 ++++++++
-> > >   include/uapi/drm/drm.h            | 10 ++++++++++
-> > >   7 files changed, 66 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/include/uapi/drm/drm.h b/include/uapi/drm/drm.h
-> > > index 27cc159c1d275..b5e6d940f2816 100644
-> > > --- a/include/uapi/drm/drm.h
-> > > +++ b/include/uapi/drm/drm.h
-> > > @@ -921,6 +921,16 @@ struct drm_get_cap {
-> > >    */
-> > >   #define DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE	7
-> > > +/**
-> > > + * DRM_CLIENT_CAP_LUMINANCE
-> > > + *
-> > > + * If set to 1, legacy sysfs interface for controlling backlight brightness will
-> > > + * be disabled.  The client will include luminance values as part of the modeset.
-> > 
-> > I don't think this is accurate (anymore?). The sysfs doesn't seem to be
-> > disabled. Rather the DRM updates it internally. Which might mean that we
-> > don't need an extra client cap.
-> 
-> I had code in my tree for doing it and decided to defer that (see cover
-> letter) but forgot to drop the cap.
-> 
-> I suppose this is an area that would be good to discuss if it's worth
-> getting some of it done in the same series or should be deferred.
-> 
-> The overally idea I have is:
-> 
-> 1) Allow both sysfs and DRM master to do writes initially (allow
-> transitioning and PoC)
-> 2) Userspace changes to DRM master
-> 3) Introduce client cap for it and block off sysfs writes when DRM master
-> indicates it.
-> 4) Move sysfs compat behind a kconfig
-> 5) Drop Kconfig
-> 
-> The timescale between steps 3 and 5 is "many kernel cycles".
+Am Freitag, dem 10.04.2026 um 13:20 +0000 schrieb Ostrowski, Rafal:
+> Hi Bert,
+>=20
+> I identified root cause of problem. I had to do modifications to mention=
+ed patches to work well with PREEMPT_RT enabled. I tested it on my local m=
+achine and it seems to fix the problem. Now it has to go through internal =
+processes. I will let you know if I know when fix will be available to you=
+.
+>=20
+> Kind Regards,
+> Rafal Ostrowski
 
-I like the idea of controlling the backlight through the connector API,
-but frankly speaking, I think that the implementation is somewhat
-strange. After checking the AMD driver, I'd really like to propose the
-following plan (again, unless I miss something, please feel free to
-point me to discussions or other patches describing the reasons):
+So it seems that commit
+8bf0cb97edb6 ("drm/amd/display: Move dml2_destroy to non-FPU compilation u=
+nit")
+is the commit that fixes the issue, but is missing the appropriate tags:
 
-1. Establish a way to link connectors to the backlight devices. For the
-   userspace this might be visible as a symlink in sysfs, for the kernel
-   drivers it should be drm_connector::backlight link to struct
-   backlight_device.
+Reported-By: Bert Karwatzki <spasswolf@web.de>
+Fixes: 3539437f354b ("drm/amd/display: Move FPU Guards From DML To DC - Pa=
+rt 3")
 
-   Three major cases. Maybe four.
-   - Native backlight in the "big" drivers: amdgpu, i915 nouveau,
-     radeon, gma500, gud, solomon.
+Please fix this.
 
-   - ACPI backlight (here the kernel would need to find the mapping. See
-     ACPI DSDT standard and USB-C mapping code for the inspiration)
-
-   - backlight supported by the drm_panel
-
-   - backlight provided by the separate device and identified via the
-     link in OF.
-
-   present around the time the drm_connector is created, maybe right
-   after the connector is created (AMD does it in late_register, which
-   sounds matching this description).
-
-   I can help you with the "embedded" systems. Keeping the word in
-   quotes as, for example, I'm currently writing from the Snapdragon
-   laptop (X13s), which uses drm_panel and all the stuff.
-
-2. Find a good way to turn the backlight on and off. I see that you have
-   hooked it into the drm_atomic_connector_commit_dpms(), but the
-   problem is that it is only called when userspace toggles the DPMS
-   property. There are other ways to turn the output off and on.
-
-   I _think_ the correct place would be
-   drm_atomic_helper_commit_encoder_bridge_enable(). and corresponding
-   dsiable() function. This is the place where the output chain gets
-   enabled or disabled, no matter why is it happening.
-
-3. Implement the client property. I don't think there is a need for the
-   client capability or anything comples. The major design decision here
-   should be if the property is always from 0 to 65535 or whether it
-   takes backlight's max_brightness into the account and registers only
-   relevant values. I don't have a strong opinion here.
-
-   There is no need to store the brightness level, calls to
-   backlight_disable() / backlight_enable() (used in the previous
-   step) should do the trick.
-
-
--- 
-With best wishes
-Dmitry
+Bert Karwatzki
