@@ -2,98 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AMlAD0aC72nmBwEAu9opvQ
+	id 0KqfHPaH72mCCQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 17:35:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 17:59:50 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D585475499
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 17:35:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 228DF475CB7
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 17:59:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2C4A10E079;
-	Mon, 27 Apr 2026 15:35:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 830F410E7D5;
+	Mon, 27 Apr 2026 15:59:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YrMOKJep";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="pg01mjf4";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C523A10E079
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 15:35:30 +0000 (UTC)
-Received: by mail-dl1-f52.google.com with SMTP id
- a92af1059eb24-12c7288cfb9so253450c88.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 08:35:30 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1777304130; cv=none;
- d=google.com; s=arc-20240605;
- b=BsddYUnCDLr+/SStqv4keDhU6xhzbV9HMhBp8xwxCEfeu7eZldvP16MGJee3H6mN7f
- A95lfpwN87UPueOfd2Hpy53xzWbMQg/qG0OZlo7ZBSU6kdvYHGW9+SIsBt7v+2IxFkfg
- ONqr7HPc64Jb03us5C0ZVtNmMEWZ0w0+qaTUIfsgqjyBzBl1Qfm2uUUsfhJXzlCQcJJC
- Qzsg9FNn7UcSzeQJf4O8GQj9357OufMj97G2DxScS2ZDVagKYSbH2TvyVfULwEX7pUjw
- iB5YdboqM3zZpvEpniUCIUq+kREGLmibKw2kYMEV5Y8bglww2XvaV4Tim+pMgOP2kE21
- T1Mw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=dUG1owCtdaqvig85KQ2IbO2Vel9OdhWCiDXK2J0e7Ag=;
- fh=s6Kc2U++VwxK292YD97FYJXbuW+ltm04ITpsis9l5mw=;
- b=XGkgNBT7VTWkOC88xnchOveT5ag1vhoWKr9B7gaNl1RC9/9trHhto65p7eyTji6vMP
- Pat9yYopobx8SpFSamELAXrKAdSlt3PoaruJKW5Jnpr+8nHe38eSZmiqJMTG6bTp86Wq
- 7HslVZiU4X4DTjnxOG2PjTN8WZy+2/hfuXOfTnXurXgqCIJSW3VKo83QCzS03OGGZF8C
- Lt0/+DADivYxupUY2FivChGqsrMhENxOELPAHw+DWnn+Z6Z31MgphW/fSDRECvTYyJKR
- Ij8i+V3KDfyT9JvYHJzMeZpu5H8p8CxKjokK5pLD98cfDcbplhL1fWt41rO+oQvk58hN
- U9zg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777304130; x=1777908930; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=dUG1owCtdaqvig85KQ2IbO2Vel9OdhWCiDXK2J0e7Ag=;
- b=YrMOKJeprzmzLF3ajmaRguRSNAwh6dEsMC9TYazuXO06iQyhKm9a8dVfu0h9M5nRll
- /15FlVqRVVqS273JGaUvaPalcOUAI3ELcjoTySW5pibag22RnWFw5D5YnuuuPKAOEevZ
- LObT+aKb+VwvTqyBVztz2OfrLQYhtxjzL32CrOPUUxb35itHdzDgSZFe2LIHwl8Tte3m
- TlqCzKUkQkYJsViczB7Ed+ht8XVRDOfhYXi8g6bvGvPQOko5v9f6qiCMBdwIAA7K8nuN
- YWW0+hc2sCQtLYuMuSzsFMKe4MnQnSKJHczOGjLcDMUekn89rQFusibJ8sWp2L6du7ww
- vEJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777304130; x=1777908930;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=dUG1owCtdaqvig85KQ2IbO2Vel9OdhWCiDXK2J0e7Ag=;
- b=O1D83o74Yo2kJLGWXjszWPNDLTA8yKp67F0Sxtww5xwH/wAlH0K9h3TRevxF0juCkQ
- JLEDClnOBkenxUbjrLMssZsmaGssgTkCPaRYeybsurkM1wBf3g40BcrepAaQD+FtWHHy
- awsLfgWmQj4SBBiMdmrdSDgOuZkU7qJ2jOzwG2xsYZ1g/bn8TaV7+vEAS3/i9fIgbczf
- g+CgLJwUEF7aOfCInnTZ7l5AbIwN4QgDiRdPzmNquFSNqzM9eI1mMBulTecdlqSGKwUt
- 8X7xugfho5Rd2C7jO08wtNAH/4ZH7gNeVwmgIBUgKC5riU6yy2TkQqoUQZmEZX6Qv1oK
- ucgg==
-X-Gm-Message-State: AOJu0Yxe0b/DzSUm3DNhL/rPHxDEhw+Qd6kvV/xHVawAZU6cjX3jyBSQ
- sHmSE97YefZ1Zqp3wvVuFCyt3/uWjOGCyVVFV7oHiETRtxmCY/oGI2dtCFzZ9M6PTyB77SI0JPh
- uxgyJRgJYp2UpgogYNcikRADRjbd5lZc=
-X-Gm-Gg: AeBDieucI/+KAsJY1oa0nsX6DZlVeCZg2A5upiqHaYaTmoPU0bLC+pbVF+DXMhTIz74
- l4WobGOUvDY+cyrcolmNB08AVMTvV74dpTPpa7PQ3PlTDzrTSty9nCJZ1blQCMjmvjd/68dIGDF
- cWqKtnjrla/SYURasUcLq+eLiZclV0pJ6NLL7dZiqsO1lrFc5EnwTYpiT/WenhfWaEwcHGrMHMi
- vouDgATHj9fRI8deES42OgzHssZ1yx7jmEz0JW92OzzdR73K0Iqm3yAQ9MIjooqx9j7C5PF1q5W
- 17Y3du6yAMRMTko1STDQK5XSChMSG65rYeMWhsTVM5aO6D1sP1rQ/sStc+WKuk3NfQoArpeGDiV
- sOVj0
-X-Received: by 2002:a05:7022:2527:b0:12c:897a:5219 with SMTP id
- a92af1059eb24-12c897a58a8mr7198254c88.5.1777304129734; Mon, 27 Apr 2026
- 08:35:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260427152248.1349143-1-yinjie.yao@amd.com>
-In-Reply-To: <20260427152248.1349143-1-yinjie.yao@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 27 Apr 2026 11:35:18 -0400
-X-Gm-Features: AVHnY4Lu5VCcO95yGsSF7-j-HmqE83Qh5RlejX1PyrO8ZqCVsZE7P5rwmP60yPw
-Message-ID: <CADnq5_MPJG=S+B4kg6v64xD+8pDEbG5z1Q7j-2A+CfStmuejTg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drm/amdgpu/vcn: set no_user_fence for VCN v2-v5
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010066.outbound.protection.outlook.com [52.101.85.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADA2310E7D5
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 15:59:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=haqzecHNYqquRNWbdt2jWyh+SD+fNxvs9MOtCucs8nBSuYcog/NxaRU+aO9r3HnO+j4dAjLTGkkTH+v6+GUD3hDoR014bFYsYHn3NAiQRw0HfxpGM2n48S3VQ65dasUk2WqAVt7P+TN03dDsTY99Ya+jrVamWGSOUIStlD32ffjraGfdFgCBv15xopaHLxiJ1fksRhsZcoyOLB6E35HyC+kMJzll5xklFbAOEDvHOM4j8+BKGxAC5joYEBSfbCpm71h5G18b0qbMXPt3HjyYTYKId5Ni/c0YVBtoQl1+Z0snPQHJudd29Cj/1aKkty2yk4QjB/O8Nm78cJlLyqcMWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WtG1cwA1lMWej7xWdb/6/kNy39TVN8KltxpsebH6nr4=;
+ b=LwS0FN+msqvM/em/2dNP+uUmwtPO776RA/ZtUJmiQPrshDPXXXXkedGga8PglsZJ+a47PVKrP8FOnTIjzPjeR28ehYD6QrTodbzjlF8rXZ+dt5ELykTPq+E9OZvV5L0Hfv8Fo7GyXnQhbdYMcekiRhnE613qTawbgI30Wx0Ht53VMcqFl/PTnox+X/xzIrarFsuV48LJICBlydYV2XdPKiml/JhdSm2111AhzYRE2gJAoW+J2QI2MucZbN/+ZaYCmYdRJtSVJpsdHQfG0HzQraHvQ8kkVngYvdnyZ7kFkiqk0/qBySUYpPPQ0KrZwHwvcrdv6TYx15rLJ+tcNZSmnQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WtG1cwA1lMWej7xWdb/6/kNy39TVN8KltxpsebH6nr4=;
+ b=pg01mjf4bytAJdXI+w7JIRcESDVx+S+Wix380ti1V7QKEAqAVZfSbiYEHUNAZm9DIJM7XS56PcPizd49SZVKk8VuhavnXzqB3MOLkywHLMOp1ZwB/tRhqb69fmt2gqd8Y36wjqoBIasH/nm14QIMAbKGlmL9ioXRFrmV88C3ZZ0=
+Received: from BN9PR03CA0732.namprd03.prod.outlook.com (2603:10b6:408:110::17)
+ by CH3PR12MB7737.namprd12.prod.outlook.com (2603:10b6:610:14d::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.15; Mon, 27 Apr
+ 2026 15:59:39 +0000
+Received: from BN3PEPF0000B06E.namprd21.prod.outlook.com
+ (2603:10b6:408:110:cafe::d2) by BN9PR03CA0732.outlook.office365.com
+ (2603:10b6:408:110::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.26 via Frontend Transport; Mon,
+ 27 Apr 2026 15:59:39 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BN3PEPF0000B06E.mail.protection.outlook.com (10.167.243.73) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9891.0 via Frontend Transport; Mon, 27 Apr 2026 15:59:39 +0000
+Received: from yinjiyao-dev24.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 27 Apr
+ 2026 10:59:38 -0500
+From: Yinjie Yao <yinjie.yao@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <christian.koenig@amd.com>, <alexander.deucher@amd.com>,
+ <leo.liu@amd.com>, <ruijing.dong@amd.com>, Yinjie Yao <yinjie.yao@amd.com>
+Subject: [PATCH v2 01/19] drm/amdgpu/vcn: set no_user_fence for VCN v2.0
  enc/dec rings
-To: Yinjie Yao <yinjie.yao@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Leo.Liu@amd.com, Alexander.Deucher@amd.com, 
- Ruijing.Dong@amd.com, Christian.Koenig@amd.com
+Date: Mon, 27 Apr 2026 11:58:39 -0400
+Message-ID: <20260427155857.1370151-1-yinjie.yao@amd.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <CADnq5_MPJG=S+B4kg6v64xD+8pDEbG5z1Q7j-2A+CfStmuejTg@mail.gmail.com>
+References: <CADnq5_MPJG=S+B4kg6v64xD+8pDEbG5z1Q7j-2A+CfStmuejTg@mail.gmail.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B06E:EE_|CH3PR12MB7737:EE_
+X-MS-Office365-Filtering-Correlation-Id: 43aa4949-01fd-480d-a097-08dea475fcb1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700016|82310400026|376014|1800799024|56012099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: Z26EQcv8VP2XCFekkD82Anu5epJnEDMoByXGMeV4hylqeFqgN2SKWcUkLe8iILRVnJau0jhqFtcFCEWEl9oe6CK71r0+WVmC2j32b2yfsnp+kx9wG4AKygLB17WWZLvMvKcZVYwv4+lUAhS5+QoVU0EZAYBSuFFtvmRraoGokRWAbK66MYhd5VuS40FrzaFSd7B+Bd1S2yztzNIFKhdI3xhb3V5P4R2hUJku7ml8x+TTt9ssanjBhWGF7p2TJhegKdhb36fHTaz95MTKUtKa0z33E2BMtN4rgZO3M/tYvgurWtEGYXmUrA2pCdZVtrpmnk5+ovOft/YK4PCAlDSI+FykbnAjFVwDdi/Un/Z3s45LWVw/q+/NIxsXAs17jjdj21BGeBCUcZn4Ec6YZG1yRgt3WX+6m/nR+VIw90nOSxR/SlOcTt54ZPUtj7TGtkwoD+Hv5wP5ufjE3yEQ1dDqpx7XyavD5B6nlv8dCHNGcT1kkjimM8hR/3Hs+TYOcCL0ux2MkG5e0WsG8KlXhE0crgHUdfMfboumgEYNz5+bM9S0SD6tV+4WjoCa/haIY4SZe5lYezfas7D8T4Y8lCBLaHUk4PnSlQhGdtBLIKQca5DEqDdbB6bkdLdgvRghjyszWNOGvR7PdhVS/IhDWq/S1th5xP0GYnblk4NZSbcv5Ly3+bipIiDzJSRrHUGtWu2flV/bQgJ0T5xiUQoO90Kc9dIO1Xet6i0WV3qmz5S9l05mOwQ9qFzsrnXwqx79fYgblSBYMF5Oh9iFZrpAcdooEg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700016)(82310400026)(376014)(1800799024)(56012099003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: tHQCBTD999Obb66wDl6ariEQtYaC0lJ30mRhFv8Dgo3yspuFyhDx3OXRp858LWlLM7ZtjwK2a67ZZlruVaANuR4HeCCLtdphdY4XsBIQoyKC024XITt7/tqCdLWP5F7nH4rgg0SW684RD+TrmjIQjAWexfuISxk1e7JTD7tiHgyoNQRo0yu+yhLp3tr6ihgf85GKz5UM9cnQK1XwZl/PP9aa/YTFoR6XOl7UJ2XZhFi50aK5dwRGa18QiWKicmVAbAYdS8pC0Z9sEYfwgP+ViW5n9HBFezAdsPG1GuJ9zeTEMI2DYbXZ+zvlXJ+h6jB2oHY9HfMSp66kUyUZIy0Kw0Lt2DO/sDbnWA8i1XNO+JfTtDEyHceIaAfWwB/DjliEKKxP98+vefCjw2wXFWbO4GY9peNfmsXpA9MZOJKR6ft5RnEx/mPAY7oPEj2O0VVv
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2026 15:59:39.0386 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43aa4949-01fd-480d-a097-08dea475fcb1
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B06E.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7737
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,229 +115,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 7D585475499
+X-Rspamd-Queue-Id: 228DF475CB7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:yinjie.yao@amd.com,m:Leo.Liu@amd.com,m:Alexander.Deucher@amd.com,m:Ruijing.Dong@amd.com,m:Christian.Koenig@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[yinjie.yao@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On Mon, Apr 27, 2026 at 11:24=E2=80=AFAM Yinjie Yao <yinjie.yao@amd.com> wr=
-ote:
->
-> VCN encoder and decoder rings do not support 64-bit user fence writes,
-> reject CS submissions with user fences.
->
-> Signed-off-by: Yinjie Yao <yinjie.yao@amd.com>
+VCN encoder and decoder rings do not support 64-bit user fence writes,
+reject CS submissions with user fences.
 
-Can you split these per IP version?  That will make it easier to
-backport.  Same for the JPEG changes.  Ideally also with a Fixes tag.
-WIth that fixed, the patches are:
+Fixes: 1b61de45dfaf ("drm/amdgpu: add initial VCN2.0 support (v2)")
+Reviewed-by: Christian König <christian.koenig@amd.com>
 Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Yinjie Yao <yinjie.yao@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c   | 2 ++
->  drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c   | 2 ++
->  drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c   | 3 +++
->  drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c   | 1 +
->  drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c | 1 +
->  drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c | 1 +
->  drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c | 1 +
->  drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c | 1 +
->  drivers/gpu/drm/amd/amdgpu/vcn_v5_0_2.c | 1 +
->  9 files changed, 13 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c b/drivers/gpu/drm/amd/=
-amdgpu/vcn_v2_0.c
-> index e35fae9cdaf6..0442bfcfd384 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-> @@ -2113,6 +2113,7 @@ static const struct amd_ip_funcs vcn_v2_0_ip_funcs =
-=3D {
->  static const struct amdgpu_ring_funcs vcn_v2_0_dec_ring_vm_funcs =3D {
->         .type =3D AMDGPU_RING_TYPE_VCN_DEC,
->         .align_mask =3D 0xf,
-> +       .no_user_fence =3D true,
->         .secure_submission_supported =3D true,
->         .get_rptr =3D vcn_v2_0_dec_ring_get_rptr,
->         .get_wptr =3D vcn_v2_0_dec_ring_get_wptr,
-> @@ -2145,6 +2146,7 @@ static const struct amdgpu_ring_funcs vcn_v2_0_enc_=
-ring_vm_funcs =3D {
->         .type =3D AMDGPU_RING_TYPE_VCN_ENC,
->         .align_mask =3D 0x3f,
->         .nop =3D VCN_ENC_CMD_NO_OP,
-> +       .no_user_fence =3D true,
->         .get_rptr =3D vcn_v2_0_enc_ring_get_rptr,
->         .get_wptr =3D vcn_v2_0_enc_ring_get_wptr,
->         .set_wptr =3D vcn_v2_0_enc_ring_set_wptr,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c b/drivers/gpu/drm/amd/=
-amdgpu/vcn_v2_5.c
-> index 006a15451197..8b8184fe6764 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
-> @@ -1778,6 +1778,7 @@ static void vcn_v2_5_dec_ring_set_wptr(struct amdgp=
-u_ring *ring)
->  static const struct amdgpu_ring_funcs vcn_v2_5_dec_ring_vm_funcs =3D {
->         .type =3D AMDGPU_RING_TYPE_VCN_DEC,
->         .align_mask =3D 0xf,
-> +       .no_user_fence =3D true,
->         .secure_submission_supported =3D true,
->         .get_rptr =3D vcn_v2_5_dec_ring_get_rptr,
->         .get_wptr =3D vcn_v2_5_dec_ring_get_wptr,
-> @@ -1879,6 +1880,7 @@ static const struct amdgpu_ring_funcs vcn_v2_5_enc_=
-ring_vm_funcs =3D {
->         .type =3D AMDGPU_RING_TYPE_VCN_ENC,
->         .align_mask =3D 0x3f,
->         .nop =3D VCN_ENC_CMD_NO_OP,
-> +       .no_user_fence =3D true,
->         .get_rptr =3D vcn_v2_5_enc_ring_get_rptr,
->         .get_wptr =3D vcn_v2_5_enc_ring_get_wptr,
->         .set_wptr =3D vcn_v2_5_enc_ring_set_wptr,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/=
-amdgpu/vcn_v3_0.c
-> index 6fb4fcdbba4f..4924da5af5e7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-> @@ -1856,6 +1856,7 @@ static const struct amdgpu_ring_funcs vcn_v3_0_dec_=
-sw_ring_vm_funcs =3D {
->         .type =3D AMDGPU_RING_TYPE_VCN_DEC,
->         .align_mask =3D 0x3f,
->         .nop =3D VCN_DEC_SW_CMD_NO_OP,
-> +       .no_user_fence =3D true,
->         .secure_submission_supported =3D true,
->         .get_rptr =3D vcn_v3_0_dec_ring_get_rptr,
->         .get_wptr =3D vcn_v3_0_dec_ring_get_wptr,
-> @@ -2036,6 +2037,7 @@ static int vcn_v3_0_ring_patch_cs_in_place(struct a=
-mdgpu_cs_parser *p,
->  static const struct amdgpu_ring_funcs vcn_v3_0_dec_ring_vm_funcs =3D {
->         .type =3D AMDGPU_RING_TYPE_VCN_DEC,
->         .align_mask =3D 0xf,
-> +       .no_user_fence =3D true,
->         .secure_submission_supported =3D true,
->         .get_rptr =3D vcn_v3_0_dec_ring_get_rptr,
->         .get_wptr =3D vcn_v3_0_dec_ring_get_wptr,
-> @@ -2138,6 +2140,7 @@ static const struct amdgpu_ring_funcs vcn_v3_0_enc_=
-ring_vm_funcs =3D {
->         .type =3D AMDGPU_RING_TYPE_VCN_ENC,
->         .align_mask =3D 0x3f,
->         .nop =3D VCN_ENC_CMD_NO_OP,
-> +       .no_user_fence =3D true,
->         .get_rptr =3D vcn_v3_0_enc_ring_get_rptr,
->         .get_wptr =3D vcn_v3_0_enc_ring_get_wptr,
->         .set_wptr =3D vcn_v3_0_enc_ring_set_wptr,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c b/drivers/gpu/drm/amd/=
-amdgpu/vcn_v4_0.c
-> index 5dec92691f73..bbdd017cbafb 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0.c
-> @@ -1994,6 +1994,7 @@ static struct amdgpu_ring_funcs vcn_v4_0_unified_ri=
-ng_vm_funcs =3D {
->         .type =3D AMDGPU_RING_TYPE_VCN_ENC,
->         .align_mask =3D 0x3f,
->         .nop =3D VCN_ENC_CMD_NO_OP,
-> +       .no_user_fence =3D true,
->         .extra_bytes =3D sizeof(struct amdgpu_vcn_rb_metadata),
->         .get_rptr =3D vcn_v4_0_unified_ring_get_rptr,
->         .get_wptr =3D vcn_v4_0_unified_ring_get_wptr,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c b/drivers/gpu/drm/am=
-d/amdgpu/vcn_v4_0_3.c
-> index ff3013b97abd..10e8fc2821f3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_3.c
-> @@ -1775,6 +1775,7 @@ static const struct amdgpu_ring_funcs vcn_v4_0_3_un=
-ified_ring_vm_funcs =3D {
->         .type =3D AMDGPU_RING_TYPE_VCN_ENC,
->         .align_mask =3D 0x3f,
->         .nop =3D VCN_ENC_CMD_NO_OP,
-> +       .no_user_fence =3D true,
->         .get_rptr =3D vcn_v4_0_3_unified_ring_get_rptr,
->         .get_wptr =3D vcn_v4_0_3_unified_ring_get_wptr,
->         .set_wptr =3D vcn_v4_0_3_unified_ring_set_wptr,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c b/drivers/gpu/drm/am=
-d/amdgpu/vcn_v4_0_5.c
-> index 1f6a22983c0d..1571cc5a148c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v4_0_5.c
-> @@ -1483,6 +1483,7 @@ static struct amdgpu_ring_funcs vcn_v4_0_5_unified_=
-ring_vm_funcs =3D {
->         .type =3D AMDGPU_RING_TYPE_VCN_ENC,
->         .align_mask =3D 0x3f,
->         .nop =3D VCN_ENC_CMD_NO_OP,
-> +       .no_user_fence =3D true,
->         .get_rptr =3D vcn_v4_0_5_unified_ring_get_rptr,
->         .get_wptr =3D vcn_v4_0_5_unified_ring_get_wptr,
->         .set_wptr =3D vcn_v4_0_5_unified_ring_set_wptr,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c b/drivers/gpu/drm/am=
-d/amdgpu/vcn_v5_0_0.c
-> index 6109124f852e..d5f49fa33bee 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_0.c
-> @@ -1207,6 +1207,7 @@ static const struct amdgpu_ring_funcs vcn_v5_0_0_un=
-ified_ring_vm_funcs =3D {
->         .type =3D AMDGPU_RING_TYPE_VCN_ENC,
->         .align_mask =3D 0x3f,
->         .nop =3D VCN_ENC_CMD_NO_OP,
-> +       .no_user_fence =3D true,
->         .get_rptr =3D vcn_v5_0_0_unified_ring_get_rptr,
->         .get_wptr =3D vcn_v5_0_0_unified_ring_get_wptr,
->         .set_wptr =3D vcn_v5_0_0_unified_ring_set_wptr,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c b/drivers/gpu/drm/am=
-d/amdgpu/vcn_v5_0_1.c
-> index c28c6aff17aa..54fbf8d73ca6 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c
-> @@ -1419,6 +1419,7 @@ static const struct amdgpu_ring_funcs vcn_v5_0_1_un=
-ified_ring_vm_funcs =3D {
->         .type =3D AMDGPU_RING_TYPE_VCN_ENC,
->         .align_mask =3D 0x3f,
->         .nop =3D VCN_ENC_CMD_NO_OP,
-> +       .no_user_fence =3D true,
->         .get_rptr =3D vcn_v5_0_1_unified_ring_get_rptr,
->         .get_wptr =3D vcn_v5_0_1_unified_ring_get_wptr,
->         .set_wptr =3D vcn_v5_0_1_unified_ring_set_wptr,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_2.c b/drivers/gpu/drm/am=
-d/amdgpu/vcn_v5_0_2.c
-> index c3d3cc023058..bbc172db91a1 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_2.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_2.c
-> @@ -994,6 +994,7 @@ static const struct amdgpu_ring_funcs vcn_v5_0_2_unif=
-ied_ring_vm_funcs =3D {
->         .type =3D AMDGPU_RING_TYPE_VCN_ENC,
->         .align_mask =3D 0x3f,
->         .nop =3D VCN_ENC_CMD_NO_OP,
-> +       .no_user_fence =3D true,
->         .get_rptr =3D vcn_v5_0_2_unified_ring_get_rptr,
->         .get_wptr =3D vcn_v5_0_2_unified_ring_get_wptr,
->         .set_wptr =3D vcn_v5_0_2_unified_ring_set_wptr,
-> --
-> 2.43.0
->
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
+index e35fae9cdaf6..0442bfcfd384 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
+@@ -2113,6 +2113,7 @@ static const struct amd_ip_funcs vcn_v2_0_ip_funcs = {
+ static const struct amdgpu_ring_funcs vcn_v2_0_dec_ring_vm_funcs = {
+ 	.type = AMDGPU_RING_TYPE_VCN_DEC,
+ 	.align_mask = 0xf,
++	.no_user_fence = true,
+ 	.secure_submission_supported = true,
+ 	.get_rptr = vcn_v2_0_dec_ring_get_rptr,
+ 	.get_wptr = vcn_v2_0_dec_ring_get_wptr,
+@@ -2145,6 +2146,7 @@ static const struct amdgpu_ring_funcs vcn_v2_0_enc_ring_vm_funcs = {
+ 	.type = AMDGPU_RING_TYPE_VCN_ENC,
+ 	.align_mask = 0x3f,
+ 	.nop = VCN_ENC_CMD_NO_OP,
++	.no_user_fence = true,
+ 	.get_rptr = vcn_v2_0_enc_ring_get_rptr,
+ 	.get_wptr = vcn_v2_0_enc_ring_get_wptr,
+ 	.set_wptr = vcn_v2_0_enc_ring_set_wptr,
+-- 
+2.43.0
+
