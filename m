@@ -2,59 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id vGIPFhau8GkGXQEAu9opvQ:T3
+	id eBphNAOu8GnOWwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:49 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:27 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D22048542C
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71945485353
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0755E10EBEF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2381910EBF2;
 	Tue, 28 Apr 2026 12:54:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="gdKjbtj1";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="RQEGFp9o";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAB8710E951;
- Mon, 27 Apr 2026 21:41:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
- To:From:Sender:Reply-To:Content-ID:Content-Description;
- bh=qslmqTqWbkCvg1OPvraTWpbg89eE83xCleC2USj8oko=; b=gdKjbtj1xl8pKadfdR1+km7F4a
- ZjWkVT/ivNSiHmT7SbIWzkpWphekCCkYjz1GM3eyO0tFWWTmbCLSLy4gEu6MUYpb/VInwQPtL8Sr0
- Dc9H1ssMSSc9rI/8/z+yoZdpHezgcIDuayntGc2CsVIC3Gluer4+zc+ZnwmqUKnRDNpvx9z0BgWuO
- 4tlvFWJ2gi/ZLIjfqQ+Y4MBvFs3SjQg0P2os5HQvE4RsCaqNmJhgwN5ZUz5kFsZeYFDrEoccRMndz
- CLp8otcrG3pS5vWMG9yPE8EAkxqUMma/pASPsd7lbozq8LYpB7CcFEQD8+0DxwDdExHblfqqmwM7s
- 6Cp7X7xQ==;
-Received: from [50.53.43.113] (helo=bombadil.infradead.org)
- by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
- id 1wHThl-00000000BoX-2jgA; Mon, 27 Apr 2026 21:41:25 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: dri-devel@lists.freedesktop.org
-Cc: Randy Dunlap <rdunlap@infradead.org>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 3/3 v2] drm/amd/display: dmub_cmd.h: add missing kernel-doc
- for enums
-Date: Mon, 27 Apr 2026 14:41:21 -0700
-Message-ID: <20260427214122.784024-3-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260427214122.784024-1-rdunlap@infradead.org>
-References: <20260427214122.784024-1-rdunlap@infradead.org>
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
+ [209.85.218.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8CFF10E96D
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 21:52:26 +0000 (UTC)
+Received: by mail-ej1-f54.google.com with SMTP id
+ a640c23a62f3a-ba7a1cc0380so1769897066b.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 14:52:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google; t=1777326745; x=1777931545;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=eodThUBj1SnOvacXe/3ftYxEWQMFbYqc4B0FCa9Alx4=;
+ b=RQEGFp9odf24Yt/w+kqr1+LS3ScvAZjzhvsZmvmnlnZs/81FuhxwIBx2VAIzK/WgZx
+ UuBBhqtNpPqk1CaUtGOVbblXSS21Z55+neZa1b5RMM8RxMoICRycTZYiLavD+T8r92J/
+ O+r9fPnlEKRxQHmKPV3/4nVJ/oYDaqZhN3yjM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777326745; x=1777931545;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=eodThUBj1SnOvacXe/3ftYxEWQMFbYqc4B0FCa9Alx4=;
+ b=Qajc8rA+98cJRKt1otIahg6MlDdujLXQ/2/vlwGnJzzJIUBjZW6MOTW+APm8aPEUXe
+ jNyuSH5L96xVnowjj0mcnnOI8j0D86OY3Tc9N7zDg6EBS0TprcSW5kzQahV1v/J13P9V
+ 2dFFAipTzzCjoYUu5WC6TRzgyza0I+XETYGwo2M/tt5GiEoYS/up+9GE73YIG+wjRjGc
+ tXBB7jdOQeBrlmW0+0+tsBjFyxCZAMOgs2epl+ODjFuSNdL7dCZT9Z9Rcy6DloEyauQT
+ fTybHvYnPOHYLOkEaDe7si/yyfjN/N3HctPJhzERnDRvbNWEP7qFxt3fLR5b5wSOg+Iy
+ Uy6A==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ+p478s4UzkkaFaoMdvh5JSNfqob/JMrI4QT7sde8liPzeeSHmeXgNJvELuKlRQgxrS+HK9NXWJ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwZ9s6EmBrVbzUaV4AFtOEs/Ib84xP/bk/yNTd5ccIr6FfUqVdn
+ 9Ke3aUXKyjPBX1S4TUM+1CuAQcCwRe68RwL0yVKf9acSe6hbFFsTMID33sHQQfm3WEvuMfdq+FP
+ /zHikj49+Fw==
+X-Gm-Gg: AeBDiev6X0ooWpk1v/839DFDF6m8vGhhCj9WTkjNPVGF06wxFkZcO1CALdSLa4Ms9r9
+ nIwXS/UqvERridsi3eYpu1W6wHWL+dXheq4AEhD3mSHv0Dk3yuQpZreAg3OjURLRkgybb+fj9S8
+ +j5an97gCnTECA13l4eDU40VwR7AjV1PZQb/jbMxTD5mC+iqLiA1LUeuSZCpXX1ojOnNMaouoAJ
+ eP0azHcPSpElKr4AdzcNNkhpySk6t7AZmFUMIhZc67jF2Lg4+Z5IAyPSE1PFOUgz6TLxP/IdIWX
+ mjrfcIASHKEBroDDtWSLl03+cBhMHXc2anpTpPsxU/44cukn7dFbqxabvXLJW3EANdkpECugE2i
+ Dydi6/fgwMMY7JiJtthn2JrKqsbUKJgAdJ/gIULM3yonTeAmCv8aHjGOD8wr9sc7FXqjdCt5D58
+ ohi0bDdpjrBIoWkWP80sw74Ej6qnPXOHRWUHhrZug4s4HRZFa1qu4ocT7+uF1+Kzq8aE1uEbYqF
+ rCiyWNEvqs=
+X-Received: by 2002:a17:907:a191:b0:bac:707f:494a with SMTP id
+ a640c23a62f3a-bb804440fc2mr19944666b.47.1777326744684; 
+ Mon, 27 Apr 2026 14:52:24 -0700 (PDT)
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com.
+ [209.85.208.54]) by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-bb80c57f559sm9784966b.61.2026.04.27.14.52.22
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 27 Apr 2026 14:52:23 -0700 (PDT)
+Received: by mail-ed1-f54.google.com with SMTP id
+ 4fb4d7f45d1cf-677f7c29af6so9392458a12.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 14:52:22 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AFNElJ+R3uj5VkIx0qSBCpUWL8R/Au5YMjdn4p3dQKF14HTz1xzyeW0HfE9i2isrdwjz6bLg3RZX0g/4@lists.freedesktop.org
+X-Received: by 2002:a05:6402:35c2:b0:677:270f:6f4b with SMTP id
+ 4fb4d7f45d1cf-679bb04a8a7mr185115a12.1.1777326742385; Mon, 27 Apr 2026
+ 14:52:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:19 +0000
+References: <cover.1777306795.git.chleroy@kernel.org>
+ <0ee46bb228d97163fbdc14f2a7c52b93d8bc34ce.1777306795.git.chleroy@kernel.org>
+ <ae-j2_QirCySZD02@yury> <63a4d0f6-0eb3-48cd-9f98-bf7b223b2606@kernel.org>
+ <ae-2yLWSGnfeTvh1@yury>
+In-Reply-To: <ae-2yLWSGnfeTvh1@yury>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Mon, 27 Apr 2026 14:52:05 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wgPrLy0FR3sEWBYQuNAac1axDASYMnTuPuxEU0WytzL7w@mail.gmail.com>
+X-Gm-Features: AVHnY4LQUFWo9ODz4M3q2vZC9Gn8nsdYr95Nd4ky5ERVHHxIyN_9ZXY5zjebfdc
+Message-ID: <CAHk-=wgPrLy0FR3sEWBYQuNAac1axDASYMnTuPuxEU0WytzL7w@mail.gmail.com>
+Subject: Re: [RFC PATCH v1 7/9] x86: Add unsafe_copy_from_user()
+To: Yury Norov <ynorov@nvidia.com>
+Cc: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>, 
+ David Laight <david.laight.linux@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, 
+ linux-alpha@vger.kernel.org, Yury Norov <yury.norov@gmail.com>, 
+ linux-kernel@vger.kernel.org, linux-snps-arc@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
+ sparclinux@vger.kernel.org, linux-um@lists.infradead.org, 
+ dmaengine@vger.kernel.org, linux-efi@vger.kernel.org, 
+ linux-fsi@lists.ozlabs.org, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ linux-wpan@vger.kernel.org, netdev@vger.kernel.org, 
+ linux-wireless@vger.kernel.org, linux-spi@vger.kernel.org, 
+ linux-media@vger.kernel.org, linux-staging@lists.linux.dev, 
+ linux-serial@vger.kernel.org, linux-usb@vger.kernel.org, 
+ xen-devel@lists.xenproject.org, linux-fsdevel@vger.kernel.org, 
+ ocfs2-devel@lists.linux.dev, bpf@vger.kernel.org, kasan-dev@googlegroups.com, 
+ linux-mm@kvack.org, linux-x25@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ linux-sound@vger.kernel.org, sound-open-firmware@alsa-project.org, 
+ linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org, 
+ loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org, 
+ linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org, 
+ linux-sh@vger.kernel.org, linux-arch@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,449 +128,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 2D22048542C
+X-Rspamd-Queue-Id: 71945485353
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.59 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_REJECT(1.00)[infradead.org:s=bombadil.20210309];
-	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MAILLIST(-0.20)[mailman];
-	DMARC_POLICY_SOFTFAIL(0.10)[infradead.org : SPF not aligned (relaxed),none];
+	R_DKIM_ALLOW(-0.20)[linux-foundation.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ARC_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.de:email];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	NEURAL_HAM(-0.00)[-0.944];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[linux-foundation.org];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[infradead.org:-]
+	FORGED_RECIPIENTS(0.00)[m:ynorov@nvidia.com,m:chleroy@kernel.org,m:akpm@linux-foundation.org,m:david.laight.linux@gmail.com,m:tglx@linutronix.de,m:linux-alpha@vger.kernel.org,m:yury.norov@gmail.com,m:linux-kernel@vger.kernel.org,m:linux-snps-arc@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mips@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:kvm@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-s390@vger.kernel.org,m:sparclinux@vger.kernel.org,m:linux-um@lists.infradead.org,m:dmaengine@vger.kernel.org,m:linux-efi@vger.kernel.org,m:linux-fsi@lists.ozlabs.org,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:linux-wpan@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:linux-spi@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-staging@lists.linux.dev,m:linux-serial@vger.kernel.org,m:linux-usb@vger.kernel.org,m:xen-devel@lists.xenproject.org,m:linux-fsdevel@vger.kernel.org,m:ocfs2-devel@lists.linux.dev,m:
+ bpf@vger.kernel.org,m:kasan-dev@googlegroups.com,m:linux-mm@kvack.org,m:linux-x25@vger.kernel.org,m:rust-for-linux@vger.kernel.org,m:linux-sound@vger.kernel.org,m:sound-open-firmware@alsa-project.org,m:linux-csky@vger.kernel.org,m:linux-hexagon@vger.kernel.org,m:loongarch@lists.linux.dev,m:linux-m68k@lists.linux-m68k.org,m:linux-openrisc@vger.kernel.org,m:linux-parisc@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-arch@vger.kernel.org,m:davidlaightlinux@gmail.com,m:yurynorov@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[torvalds@linux-foundation.org,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[49];
+	FREEMAIL_CC(0.00)[kernel.org,linux-foundation.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org,lists.linux-m68k.org];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[linux-foundation.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[torvalds@linux-foundation.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-0.953];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,linux-foundation.org:dkim,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-For enums that have a kernel-doc ("/**") comment block, add or correct
-their kernel-doc to eliminate all kernel-doc enum warnings.
+On Mon, 27 Apr 2026 at 12:19, Yury Norov <ynorov@nvidia.com> wrote:
+>
+> This is what Linus said when added x86 implementation for copy_from_user()
+> in c512c69187197:
 
-Some of these needed "struct" changed to "enum" in the kernel-doc header.
-For a few of them, I changed the "/**" comment to a plain "/*"
-comment since there was no kernel-doc content there.
+Note that some things have happily changed in the six+ years since...
 
-Example:
+>   That's partly because we have no current users of it, but also partly
+>   because the copy_from_user() case is slightly different and cannot
+>   efficiently be implemented in terms of a unsafe_get_user() loop (because
+>   gcc can't do asm goto with outputs).
 
-Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:2673 Enum value 'FAMS2_ALLOW_DELAY_CHECK_NONE' not described in enum 'dmub_fams2_allow_delay_check_mode'
-Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:2673 Enum value 'FAMS2_ALLOW_DELAY_CHECK_FROM_START' not described in enum 'dmub_fams2_allow_delay_check_mode'
-Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:2673 Enum value 'FAMS2_ALLOW_DELAY_CHECK_FROM_PREPARE' not described in enum 'dmub_fams2_allow_delay_check_mode'
+now everybody can do asm goto with outputs.
 
-All .o files are the same with or without this patch.
+Yes, it's disabled on older versions, so it's not *always* available,
+but all modern versions do it. And if you care about performance, you
+won't be using an old compiler.
 
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
----
-v2: rebase & resend
-
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Leo Li <sunpeng.li@amd.com>
-Cc: Rodrigo Siqueira <siqueira@igalia.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-
- drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h |  156 +++++++++-----
- 1 file changed, 108 insertions(+), 48 deletions(-)
-
---- linux-next-20260427.orig/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ linux-next-20260427/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -1008,15 +1008,30 @@ union dmub_fw_boot_status {
-  * enum dmub_fw_boot_status_bit - Enum bit definitions for SCRATCH0.
-  */
- enum dmub_fw_boot_status_bit {
--	DMUB_FW_BOOT_STATUS_BIT_DAL_FIRMWARE = (1 << 0), /**< 1 if DAL FW */
--	DMUB_FW_BOOT_STATUS_BIT_MAILBOX_READY = (1 << 1), /**< 1 if mailbox ready */
--	DMUB_FW_BOOT_STATUS_BIT_OPTIMIZED_INIT_DONE = (1 << 2), /**< 1 if init done */
--	DMUB_FW_BOOT_STATUS_BIT_RESTORE_REQUIRED = (1 << 3), /**< 1 if driver should call restore */
--	DMUB_FW_BOOT_STATUS_BIT_DEFERRED_LOADED = (1 << 4), /**< 1 if VBIOS data is deferred programmed */
--	DMUB_FW_BOOT_STATUS_BIT_FAMS_ENABLED = (1 << 5), /**< 1 if FAMS is enabled*/
--	DMUB_FW_BOOT_STATUS_BIT_DETECTION_REQUIRED = (1 << 6), /**< 1 if detection need to be triggered by driver*/
--	DMUB_FW_BOOT_STATUS_BIT_HW_POWER_INIT_DONE = (1 << 7), /**< 1 if hw power init is completed */
--	DMUB_FW_BOOT_STATUS_BIT_ONO_REGIONS_ENABLED = (1 << 8), /**< 1 if ONO regions are enabled */
-+	/** @DMUB_FW_BOOT_STATUS_BIT_DAL_FIRMWARE: 1 if DAL FW */
-+	DMUB_FW_BOOT_STATUS_BIT_DAL_FIRMWARE = (1 << 0),
-+	/** @DMUB_FW_BOOT_STATUS_BIT_MAILBOX_READY: 1 if mailbox ready */
-+	DMUB_FW_BOOT_STATUS_BIT_MAILBOX_READY = (1 << 1),
-+	/** @DMUB_FW_BOOT_STATUS_BIT_OPTIMIZED_INIT_DONE: 1 if init done */
-+	DMUB_FW_BOOT_STATUS_BIT_OPTIMIZED_INIT_DONE = (1 << 2),
-+	/** @DMUB_FW_BOOT_STATUS_BIT_RESTORE_REQUIRED: 1 if driver should call restore */
-+	DMUB_FW_BOOT_STATUS_BIT_RESTORE_REQUIRED = (1 << 3),
-+	/**
-+	 * @DMUB_FW_BOOT_STATUS_BIT_DEFERRED_LOADED: 1 if VBIOS data is
-+	 * deferred programmed
-+	 */
-+	DMUB_FW_BOOT_STATUS_BIT_DEFERRED_LOADED = (1 << 4),
-+	/** @DMUB_FW_BOOT_STATUS_BIT_FAMS_ENABLED: 1 if FAMS is enabled */
-+	DMUB_FW_BOOT_STATUS_BIT_FAMS_ENABLED = (1 << 5),
-+	/**
-+	 * @DMUB_FW_BOOT_STATUS_BIT_DETECTION_REQUIRED: 1 if detection needs
-+	 * to be triggered by driver
-+	 */
-+	DMUB_FW_BOOT_STATUS_BIT_DETECTION_REQUIRED = (1 << 6),
-+	/** @DMUB_FW_BOOT_STATUS_BIT_HW_POWER_INIT_DONE: 1 if hw power init is completed */
-+	DMUB_FW_BOOT_STATUS_BIT_HW_POWER_INIT_DONE = (1 << 7),
-+	/** @DMUB_FW_BOOT_STATUS_BIT_ONO_REGIONS_ENABLED: if ONO regions are enabled */
-+	DMUB_FW_BOOT_STATUS_BIT_ONO_REGIONS_ENABLED = (1 << 8),
- };
- 
- /* Register bit definition for SCRATCH5 */
-@@ -1080,18 +1095,22 @@ enum dmub_ips_comand_type {
-  */
- enum dmub_cursor_offload_comand_type {
- 	/**
-+	 * @DMUB_CMD__CURSOR_OFFLOAD_INIT:
- 	 * Initializes the cursor offload feature.
- 	 */
- 	DMUB_CMD__CURSOR_OFFLOAD_INIT = 0,
- 	/**
--	 * Enables cursor offloading for a stream and updates the timing parameters.
-+	 * @DMUB_CMD__CURSOR_OFFLOAD_STREAM_ENABLE: Enables cursor offloading
-+	 * for a stream and updates the timing parameters.
- 	 */
- 	DMUB_CMD__CURSOR_OFFLOAD_STREAM_ENABLE = 1,
- 	/**
-+	 * @DMUB_CMD__CURSOR_OFFLOAD_STREAM_DISABLE:
- 	 * Disables cursor offloading for a given stream.
- 	 */
- 	DMUB_CMD__CURSOR_OFFLOAD_STREAM_DISABLE = 2,
- 	/**
-+	 * @DMUB_CMD__CURSOR_OFFLOAD_STREAM_PROGRAM:
- 	 * Programs the latest data for a given stream.
- 	 */
- 	DMUB_CMD__CURSOR_OFFLOAD_STREAM_PROGRAM = 3,
-@@ -1157,7 +1176,7 @@ enum dmub_fw_boot_options_bit {
-  * [Header (256 Bytes)][Feature 1 (256 Bytes)][Feature 2 (256 Bytes)]...
-  */
- 
--/**
-+/*
-  * enum dmub_shared_state_feature_id - List of shared state features.
-  */
- enum dmub_shared_state_feature_id {
-@@ -1908,30 +1927,36 @@ enum dmub_cmd_type {
-  */
- enum dmub_out_cmd_type {
- 	/**
--	 * Invalid outbox command, ignored.
-+	 * @DMUB_OUT_CMD__NULL: Invalid outbox command, ignored.
- 	 */
- 	DMUB_OUT_CMD__NULL = 0,
- 	/**
-+	 * @DMUB_OUT_CMD__DP_AUX_REPLY:
- 	 * Command type used for DP AUX Reply data notification
- 	 */
- 	DMUB_OUT_CMD__DP_AUX_REPLY = 1,
- 	/**
-+	 * @DMUB_OUT_CMD__DP_HPD_NOTIFY:
- 	 * Command type used for DP HPD event notification
- 	 */
- 	DMUB_OUT_CMD__DP_HPD_NOTIFY = 2,
- 	/**
-+	 * @DMUB_OUT_CMD__SET_CONFIG_REPLY:
- 	 * Command type used for SET_CONFIG Reply notification
- 	 */
- 	DMUB_OUT_CMD__SET_CONFIG_REPLY = 3,
- 	/**
-+	 * @DMUB_OUT_CMD__DPIA_NOTIFICATION:
- 	 * Command type used for USB4 DPIA notification
- 	 */
- 	DMUB_OUT_CMD__DPIA_NOTIFICATION = 5,
- 	/**
-+	 * @DMUB_OUT_CMD__HPD_SENSE_NOTIFY:
- 	 * Command type used for HPD redetect notification
- 	 */
- 	DMUB_OUT_CMD__HPD_SENSE_NOTIFY = 6,
- 	/**
-+	 * @DMUB_OUT_CMD__FUSED_IO:
- 	 * Command type used for Fused IO notification
- 	 */
- 	DMUB_OUT_CMD__FUSED_IO = 7,
-@@ -2123,19 +2148,19 @@ struct dmub_rb_cmd_PLAT_54186_wa {
-  */
- enum dmub_cmd_mall_type {
- 	/**
--	 * Allows display refresh from MALL.
-+	 * @DMUB_CMD__MALL_ACTION_ALLOW: Allows display refresh from MALL.
- 	 */
- 	DMUB_CMD__MALL_ACTION_ALLOW = 0,
- 	/**
--	 * Disallows display refresh from MALL.
-+	 * @DMUB_CMD__MALL_ACTION_DISALLOW: Disallows display refresh from MALL.
- 	 */
- 	DMUB_CMD__MALL_ACTION_DISALLOW = 1,
- 	/**
--	 * Cursor copy for MALL.
-+	 * @DMUB_CMD__MALL_ACTION_COPY_CURSOR: Cursor copy for MALL.
- 	 */
- 	DMUB_CMD__MALL_ACTION_COPY_CURSOR = 2,
- 	/**
--	 * Controls DF requests.
-+	 * @DMUB_CMD__MALL_ACTION_NO_DF_REQ: Controls DF requests.
- 	 */
- 	DMUB_CMD__MALL_ACTION_NO_DF_REQ = 3,
- };
-@@ -2164,18 +2189,21 @@ struct dmub_rb_cmd_mall {
-  */
- enum dmub_cmd_cab_type {
- 	/**
-+	 * @DMUB_CMD__CAB_NO_IDLE_OPTIMIZATION:
- 	 * No idle optimizations (i.e. no CAB)
- 	 */
- 	DMUB_CMD__CAB_NO_IDLE_OPTIMIZATION = 0,
- 	/**
--	 * No DCN requests for memory
-+	 * @DMUB_CMD__CAB_NO_DCN_REQ: No DCN requests for memory
- 	 */
- 	DMUB_CMD__CAB_NO_DCN_REQ = 1,
- 	/**
-+	 * @DMUB_CMD__CAB_DCN_SS_FIT_IN_CAB:
- 	 * Fit surfaces in CAB (i.e. CAB enable)
- 	 */
- 	DMUB_CMD__CAB_DCN_SS_FIT_IN_CAB = 2,
- 	/**
-+	 * @DMUB_CMD__CAB_DCN_SS_NOT_FIT_IN_CAB:
- 	 * Do not fit surfaces in CAB (i.e. no CAB)
- 	 */
- 	DMUB_CMD__CAB_DCN_SS_NOT_FIT_IN_CAB = 3,
-@@ -2190,7 +2218,7 @@ struct dmub_rb_cmd_cab_for_ss {
- 	uint8_t debug_bits;     /* debug bits */
- };
- 
--/**
-+/*
-  * Enum for indicating which MCLK switch mode per pipe
-  */
- enum mclk_switch_mode {
-@@ -2664,11 +2692,18 @@ struct dmub_fams2_stream_static_state_v1
-  * p-state request to allow latency
-  */
- enum dmub_fams2_allow_delay_check_mode {
--	/* No check for request to allow delay */
-+	/**
-+	 * @FAMS2_ALLOW_DELAY_CHECK_NONE: No check for request to allow delay
-+	 */
- 	FAMS2_ALLOW_DELAY_CHECK_NONE = 0,
--	/* Check for request to allow delay */
-+	/**
-+	 * @FAMS2_ALLOW_DELAY_CHECK_FROM_START: Check for request to allow delay
-+	 */
- 	FAMS2_ALLOW_DELAY_CHECK_FROM_START = 1,
--	/* Check for prepare to allow delay */
-+	/**
-+	 * @FAMS2_ALLOW_DELAY_CHECK_FROM_PREPARE:
-+	 * Check for prepare to allow delay
-+	 */
- 	FAMS2_ALLOW_DELAY_CHECK_FROM_PREPARE = 2,
- };
- 
-@@ -2740,27 +2775,28 @@ struct dmub_rb_cmd_ib {
-  */
- enum dmub_cmd_idle_opt_type {
- 	/**
--	 * DCN hardware restore.
-+	 * @DMUB_CMD__IDLE_OPT_DCN_RESTORE: DCN hardware restore.
- 	 */
- 	DMUB_CMD__IDLE_OPT_DCN_RESTORE = 0,
- 
- 	/**
--	 * DCN hardware save.
-+	 * @DMUB_CMD__IDLE_OPT_DCN_SAVE_INIT: DCN hardware save.
- 	 */
- 	DMUB_CMD__IDLE_OPT_DCN_SAVE_INIT = 1,
- 
- 	/**
--	 * DCN hardware notify idle.
-+	 * @DMUB_CMD__IDLE_OPT_DCN_NOTIFY_IDLE: DCN hardware notify idle.
- 	 */
- 	DMUB_CMD__IDLE_OPT_DCN_NOTIFY_IDLE = 2,
- 
- 	/**
-+	 * @DMUB_CMD__IDLE_OPT_SET_DC_POWER_STATE:
- 	 * DCN hardware notify power state.
- 	 */
- 	DMUB_CMD__IDLE_OPT_SET_DC_POWER_STATE = 3,
- 
- 	/**
--	 * DCN notify to release HW.
-+	 * @DMUB_CMD__IDLE_OPT_RELEASE_HW: DCN notify to release HW.
- 	 */
- 	 DMUB_CMD__IDLE_OPT_RELEASE_HW = 4,
- };
-@@ -2789,7 +2825,7 @@ struct dmub_rb_cmd_idle_opt_dcn_notify_i
- 	struct dmub_dcn_notify_idle_cntl_data cntl_data;
- };
- 
--/**
-+/*
-  * enum dmub_idle_opt_dc_power_state - DC power states.
-  */
- enum dmub_idle_opt_dc_power_state {
-@@ -2831,7 +2867,7 @@ struct dmub_clocks {
-  */
- enum dmub_cmd_clk_mgr_type {
- 	/**
--	 * Notify DMCUB of clock update.
-+	 * @DMUB_CMD__CLK_MGR_NOTIFY_CLOCKS: Notify DMCUB of clock update.
- 	 */
- 	DMUB_CMD__CLK_MGR_NOTIFY_CLOCKS = 0,
- };
-@@ -3076,21 +3112,40 @@ struct dmub_rb_cmd_dpphy_init {
-  * 4 AUX request command bits are shifted to high nibble.
-  */
- enum dp_aux_request_action {
--	/** I2C-over-AUX write request */
-+	/**
-+	 * @DP_AUX_REQ_ACTION_I2C_WRITE: I2C-over-AUX write request
-+	 */
- 	DP_AUX_REQ_ACTION_I2C_WRITE		= 0x00,
--	/** I2C-over-AUX read request */
-+	/**
-+	 * @DP_AUX_REQ_ACTION_I2C_READ: I2C-over-AUX read request
-+	 */
- 	DP_AUX_REQ_ACTION_I2C_READ		= 0x10,
--	/** I2C-over-AUX write status request */
-+	/**
-+	 * @DP_AUX_REQ_ACTION_I2C_STATUS_REQ: I2C-over-AUX write status request
-+	 */
- 	DP_AUX_REQ_ACTION_I2C_STATUS_REQ	= 0x20,
--	/** I2C-over-AUX write request with MOT=1 */
-+	/**
-+	 * @DP_AUX_REQ_ACTION_I2C_WRITE_MOT:
-+	 * I2C-over-AUX write request with MOT=1
-+	 */
- 	DP_AUX_REQ_ACTION_I2C_WRITE_MOT		= 0x40,
--	/** I2C-over-AUX read request with MOT=1 */
-+	/**
-+	 * @DP_AUX_REQ_ACTION_I2C_READ_MOT:
-+	 * I2C-over-AUX read request with MOT=1
-+	 */
- 	DP_AUX_REQ_ACTION_I2C_READ_MOT		= 0x50,
--	/** I2C-over-AUX write status request with MOT=1 */
-+	/**
-+	 * @DP_AUX_REQ_ACTION_I2C_STATUS_REQ_MOT:
-+	 * I2C-over-AUX write status request with MOT=1
-+	 */
- 	DP_AUX_REQ_ACTION_I2C_STATUS_REQ_MOT	= 0x60,
--	/** Native AUX write request */
-+	/**
-+	 * @DP_AUX_REQ_ACTION_DPCD_WRITE: Native AUX write request
-+	 */
- 	DP_AUX_REQ_ACTION_DPCD_WRITE		= 0x80,
--	/** Native AUX read request */
-+	/**
-+	 * @DP_AUX_REQ_ACTION_DPCD_READ: Native AUX read request
-+	 */
- 	DP_AUX_REQ_ACTION_DPCD_READ		= 0x90
- };
- 
-@@ -3098,21 +3153,21 @@ enum dp_aux_request_action {
-  * enum aux_return_code_type - DP AUX process return code listing.
-  */
- enum aux_return_code_type {
--	/** AUX process succeeded */
-+	/** @AUX_RET_SUCCESS: AUX process succeeded */
- 	AUX_RET_SUCCESS = 0,
--	/** AUX process failed with unknown reason */
-+	/** @AUX_RET_ERROR_UNKNOWN: AUX process failed with unknown reason */
- 	AUX_RET_ERROR_UNKNOWN,
--	/** AUX process completed with invalid reply */
-+	/** @AUX_RET_ERROR_INVALID_REPLY: AUX process completed with invalid reply */
- 	AUX_RET_ERROR_INVALID_REPLY,
--	/** AUX process timed out */
-+	/** @AUX_RET_ERROR_TIMEOUT: AUX process timed out */
- 	AUX_RET_ERROR_TIMEOUT,
--	/** HPD was low during AUX process */
-+	/** @AUX_RET_ERROR_HPD_DISCON: HPD was low during AUX process */
- 	AUX_RET_ERROR_HPD_DISCON,
--	/** Failed to acquire AUX engine */
-+	/** @AUX_RET_ERROR_ENGINE_ACQUIRE: Failed to acquire AUX engine */
- 	AUX_RET_ERROR_ENGINE_ACQUIRE,
--	/** AUX request not supported */
-+	/** @AUX_RET_ERROR_INVALID_OPERATION: AUX request not supported */
- 	AUX_RET_ERROR_INVALID_OPERATION,
--	/** AUX process not available */
-+	/** @AUX_RET_ERROR_PROTOCOL_ERROR: AUX process not available */
- 	AUX_RET_ERROR_PROTOCOL_ERROR,
- };
- 
-@@ -3120,9 +3175,9 @@ enum aux_return_code_type {
-  * enum aux_channel_type - DP AUX channel type listing.
-  */
- enum aux_channel_type {
--	/** AUX thru Legacy DP AUX */
-+	/** @AUX_CHANNEL_LEGACY_DDC: AUX thru Legacy DP AUX */
- 	AUX_CHANNEL_LEGACY_DDC,
--	/** AUX thru DPIA DP tunneling */
-+	/** @AUX_CHANNEL_DPIA: AUX thru DPIA DP tunneling */
- 	AUX_CHANNEL_DPIA
- };
- 
-@@ -3607,7 +3662,7 @@ enum phy_link_rate {
- 	 */
- };
- 
--/**
-+/*
-  * enum dmub_phy_fsm_state - PHY FSM states.
-  * PHY FSM state to transit to during PSR enable/disable.
-  */
-@@ -5884,10 +5939,11 @@ struct dmub_rb_cmd_abm_query_caps {
-  */
- enum dmub_abm_ace_curve_type {
- 	/**
--	 * ACE curve as defined by the SW layer.
-+	 * @ABM_ACE_CURVE_TYPE__SW: ACE curve as defined by the SW layer.
- 	 */
- 	ABM_ACE_CURVE_TYPE__SW = 0,
- 	/**
-+	 * @ABM_ACE_CURVE_TYPE__SW_IF:
- 	 * ACE curve as defined by the SW to HW translation interface layer.
- 	 */
- 	ABM_ACE_CURVE_TYPE__SW_IF = 1,
-@@ -5898,10 +5954,11 @@ enum dmub_abm_ace_curve_type {
-  */
- enum dmub_abm_histogram_type {
- 	/**
--	 * ACE curve as defined by the SW layer.
-+	 * @ABM_HISTOGRAM_TYPE__SW: ACE curve as defined by the SW layer.
- 	 */
- 	ABM_HISTOGRAM_TYPE__SW = 0,
- 	/**
-+	 * @ABM_HISTOGRAM_TYPE__SW_IF:
- 	 * ACE curve as defined by the SW to HW translation interface layer.
- 	 */
- 	ABM_HISTOGRAM_TYPE__SW_IF = 1,
-@@ -6107,14 +6164,17 @@ struct dmub_rb_cmd_get_visual_confirm_co
-  */
- enum dmub_cmd_panel_cntl_type {
- 	/**
-+	 * @DMUB_CMD__PANEL_CNTL_HW_INIT:
- 	 * Initializes embedded panel hardware blocks.
- 	 */
- 	DMUB_CMD__PANEL_CNTL_HW_INIT = 0,
- 	/**
-+	 * @DMUB_CMD__PANEL_CNTL_QUERY_BACKLIGHT_INFO:
- 	 * Queries backlight info for the embedded panel.
- 	 */
- 	DMUB_CMD__PANEL_CNTL_QUERY_BACKLIGHT_INFO = 1,
- 	/**
-+	 * @DMUB_CMD__PANEL_DEBUG_PWM_FREQ:
- 	 * Sets the PWM Freq as per user's requirement.
- 	 */
- 	DMUB_CMD__PANEL_DEBUG_PWM_FREQ = 2,
+             Linus
