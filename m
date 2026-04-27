@@ -2,131 +2,144 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YIKUBoih72kcDgEAu9opvQ
+	id sGzSGv6t8GnBXAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 19:48:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:22 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79978477E78
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 19:48:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE88548531B
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D89D10E883;
-	Mon, 27 Apr 2026 17:48:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BE9F10EBE8;
+	Tue, 28 Apr 2026 12:54:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZjGRZh5n";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="JEzvcYXQ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011048.outbound.protection.outlook.com
- [40.93.194.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7FE810E87E
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 17:48:52 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010050.outbound.protection.outlook.com [52.101.61.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B19E610E879;
+ Mon, 27 Apr 2026 17:59:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uDO+gYmQAEXeDq4LhwXGxf3RjQA1jQDHrCpbvhruPTWcHewKbvHWV9jLxTNINCFVQhJo3FHiK7Q4E+T2PnCZITuMB+dNjyccQHgmHNy00DQofUZwFY1GQODOZc0rpeG8D4bEjDJFwiW6BfzwMdEJsev4XqWJz85xWDvjbAVPP32Z2jlw55rnU8r4TVhww1cICZVxmmJJZnBrYNhTC41Lja8Ku2OZMcyQIcu7vg2SwaCk08LwE1q+p7BriE+zHL51G18cfGlQ16hO7ef94JuHDWrl5BJpOT5qTaK9MMK+QuQoVJLh/l4VGpPi7XCgVEeyXd3tZXUle7WXKwmauG/foA==
+ b=dwpVDJgRLpkyPrfWdsCpP94nHFQqYhYYfzZrq3/Y3eNMNV9kiDiO/lbPQcnh84Kc9KV6mYkk8nn970vbv0+7s6iPEYVW6K4EoChbQ41Qt789Udh9qXYG0iRgkAlDfrPUTQ8sayrAf1ja/JDhQMouPOkZWD58nKWYqpFBMo1DDNj8wVNgDK9FxRdlDaJopLZdzHGxZYNJ5taZ4f+3AlBWDxckohAjQSiNvLpxdNeatx21GsEOk2kuIxck61/13uzdWjKAIWRN7lHpHYgB1JwAWYdhnI0JhIPLSMLkKBOcW0uKNe5jsqRdVec4b90SQh3bBTkUz0ka/PlhmT5JsiSnTg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=doBuYpy8bfsO6mQ9sx4VORYE4CIko4LecnjmqiN+Dog=;
- b=zFHW6yg1sRnLjXed/XTMakTN6pHOylQSOGuuc8GPRUgcEtMG5ReSZnjedO1q+f6+8EKzJ1J348gsKH0Sp5JZymmzIsL4rJZRwHc9ZXryCFg6CY/+PmF0Id7YwQnUr6piNy0RLxV6mRHJtfrssdvsZdAfZmFOqKIw6CffBsX4AdVO+GgWDp8kiYDOEm+jb2DD8ExfpebmmY73tf0HPg4T12PVN50iRf7+EKpPeFu0VpbvpGSLGsgNcI9pb+74EiOP4YVL/038SDZdOlc36NENqWDa5I8ZoaGZQhJvACwkQm8B4R69qoHKisx51gpaGGFghl7mjPsaQsKXLeW6pT3Zvg==
+ bh=YWBdJXFvUsRNS535pCc24v4leweSht+XdLI4YB0XzRQ=;
+ b=JzUtnzYfifHT4anVN/U1LZ+ey7uTRcx8Nn6Nm2hS9ao6k8XZlQLiaLdpmpmADTsoF0ln9yrZ43mTgzp40gS4qmCP3SHZse2kmq2eYIeYuMuHwoWEH5Vv7fhlfZ2f/diNwlwlNxlMKsTb0izAMGGMQ4cYn6SIIE/MJoDjMtlx4eVbTb6wUFNjAz0H8mGu6ee9kYZLwb1h4NdHsUxdFPnysIwTjLgK6AvD73khRL2k8fi7iymz8mICE66X711dcKdxGAaSE87cWJD8y89JkEkcX+zpl2DCijx6ZDalEAkq61Vdd/L+W8dfRfgTksTcDbvv+E+khdr+3nyDPvxgL3L9HA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=doBuYpy8bfsO6mQ9sx4VORYE4CIko4LecnjmqiN+Dog=;
- b=ZjGRZh5nxieENdkvoXJmUVw+PMsXHQnrjypMhGWMK9II/F6pbeGQ+9GOrEN6nFkGQ+MK4iM2Vghpkp/5StnUAcqMsGuLAL53IpxcYxEUiHkxE0RAcWEDzVf1v/c1VP8qC5hnP9bLf1tYlEUXkE6+Ad2fbR9KGjwz0u5+eETr07A=
+ bh=YWBdJXFvUsRNS535pCc24v4leweSht+XdLI4YB0XzRQ=;
+ b=JEzvcYXQdwVjYZQlnStgbJQRfUGE245OkUv62d/erL7f0QOnr7fp+plL1zfa5mv2O11r5j+JLE5qQdINthQPR+Bj7wYWw46AWrQu/eYz6ED1n8xbwCAyvlDxh9XEzqZC2g1/3KWQVSH/DH18jJwgAfYkttpt/Blmd/pUHyEDc3Wkd3edhlrvX1h1qaZ6ZPmQk/87myHHQ3TrQ1ak0Xvkilcg5V0KT50UAZqYfZ39xcshyA39b5FsO98OY/S/YtJ/myHG6I+ftEFEH6NVP/B7k+6+4RVku7Lrcmp3zsQ+ArtGrvl5bXoyxfgJj2OT6m5rwYJbHAOe8gpGdj72kjww1Q==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5112.namprd12.prod.outlook.com (2603:10b6:208:316::16)
- by DM4PR12MB8474.namprd12.prod.outlook.com (2603:10b6:8:181::13) with
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CY8PR12MB8300.namprd12.prod.outlook.com (2603:10b6:930:7d::16)
+ by SA0PR12MB4352.namprd12.prod.outlook.com (2603:10b6:806:9c::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.15; Mon, 27 Apr
- 2026 17:48:49 +0000
-Received: from BL1PR12MB5112.namprd12.prod.outlook.com
- ([fe80::d977:95c9:e89:ff27]) by BL1PR12MB5112.namprd12.prod.outlook.com
- ([fe80::d977:95c9:e89:ff27%6]) with mapi id 15.20.9870.013; Mon, 27 Apr 2026
- 17:48:49 +0000
-Message-ID: <a663fedf-0c41-4d4d-ab6a-f85c3d46a129@amd.com>
-Date: Mon, 27 Apr 2026 13:48:47 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdkfd: Make all TLB-flushes heavy-weight
-To: Philip Yang <yangp@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: philip.yang@amd.com, christian.koenig@amd.com
-References: <20260420155822.718805-1-felix.kuehling@amd.com>
- <f2f17b8e-ce73-4d96-b5df-29d235f9ffca@amd.com>
-Content-Language: en-US
-From: Felix Kuehling <felix.kuehling@amd.com>
-Organization: AMD Inc.
-In-Reply-To: <f2f17b8e-ce73-4d96-b5df-29d235f9ffca@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YQBPR01CA0141.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:1::41) To BL1PR12MB5112.namprd12.prod.outlook.com
- (2603:10b6:208:316::16)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.16; Mon, 27 Apr
+ 2026 17:58:53 +0000
+Received: from CY8PR12MB8300.namprd12.prod.outlook.com
+ ([fe80::ce75:8187:3ac3:c5de]) by CY8PR12MB8300.namprd12.prod.outlook.com
+ ([fe80::ce75:8187:3ac3:c5de%3]) with mapi id 15.20.9870.013; Mon, 27 Apr 2026
+ 17:58:53 +0000
+Date: Mon, 27 Apr 2026 13:58:51 -0400
+From: Yury Norov <ynorov@nvidia.com>
+To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ David Laight <david.laight.linux@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-alpha@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-um@lists.infradead.org,
+ dmaengine@vger.kernel.org, linux-efi@vger.kernel.org,
+ linux-fsi@lists.ozlabs.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-fsdevel@vger.kernel.org,
+ ocfs2-devel@lists.linux.dev, bpf@vger.kernel.org,
+ kasan-dev@googlegroups.com, linux-mm@kvack.org,
+ linux-x25@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ linux-sound@vger.kernel.org, sound-open-firmware@alsa-project.org,
+ linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org,
+ loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org,
+ linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
+ linux-sh@vger.kernel.org, linux-arch@vger.kernel.org
+Subject: Re: [RFC PATCH v1 7/9] x86: Add unsafe_copy_from_user()
+Message-ID: <ae-j2_QirCySZD02@yury>
+References: <cover.1777306795.git.chleroy@kernel.org>
+ <0ee46bb228d97163fbdc14f2a7c52b93d8bc34ce.1777306795.git.chleroy@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0ee46bb228d97163fbdc14f2a7c52b93d8bc34ce.1777306795.git.chleroy@kernel.org>
+X-ClientProxiedBy: BN1PR13CA0008.namprd13.prod.outlook.com
+ (2603:10b6:408:e2::13) To CY8PR12MB8300.namprd12.prod.outlook.com
+ (2603:10b6:930:7d::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5112:EE_|DM4PR12MB8474:EE_
-X-MS-Office365-Filtering-Correlation-Id: 062a71b6-d56f-437b-21e6-08dea4853caa
+X-MS-TrafficTypeDiagnostic: CY8PR12MB8300:EE_|SA0PR12MB4352:EE_
+X-MS-Office365-Filtering-Correlation-Id: 33128524-511f-440c-0040-08dea486a4e3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|56012099003|22082099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: 7rE9v4KLRxiSDE/w09WpEXCd4zKBpl2+js32iGrVeC1h/bMwdNodifYi+gmrQJ7bVIvaLB90LNsJzWhtBItAHrvscBtefMZw2gRC2AosQN0OXqDHqHrzg/3NuU4wqrBO2rh33WAykdiSUmDCEkaSVCchvOFtSFhTBiTAJ3YiUOXnLirigVbsiKdQCwAULrlnbmTTQz1vn0vMcQudFH0PExCqEZ2g8YbDzJU5KqWyZ92v86x1C9UIgsgHyMm/81y5UOGfdPpUT8o77pJ2VlYfA2yBS8T9oCOwQ5nEv8ctf5uBZOhWAp+nuAzpUMNwCc8A0UfAz6mJLWmyfBPUcan2fqnmys7K/evGrAHcPeTfOhu+qmJijqLkmxrqmwHHJYV6ODFr2kWg5F15ngSh8o0WU1GNoe7+PClW2pvcTF7F+LCPbe/aIyllpDWifm4KWvpRA3Tv+TtpjynwVRLbIS65jrr6iFHOVtGqWFRJXwVQfYA/0FHM3K9br7c2ZpZiowGIKGmiAcMdLkbA35TjoaEqdxYnppjV8poQMy+DqcBBnPgltDt/68Z5bsbQGPbkrPLpOF9TbJRh20JM4ktQjwWmicLJRAbQGovqVUeUfQWrFVqvLqJUG5FW0+GCAVswz8OOBob458BIiCwnm7KESNAOdC1EfLkffp7ejypdCZ76383iSN+bTs7BNkw8OCthvSeAINRrGJyxo824FlXhDzuXa66z/WtMndUNZdWjYF8wpqA=
+ ARA:13230040|10070799003|366016|376014|7416014|1800799024|56012099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: T80DamO5jzLhtBsxTULWy0efzaMbF8i7bT0PZKZ+UW4Z1vXusNNCyeFtPNKLbujbu9HADo2BygF39wi6lx74qp3NIinqoXF6o8xZWMAAFsZmucFOM22V5xO7kTuoG3Q6DbZQuR99ud23XQ2FkmrxQgMHmfI3XdFsqYAVjCS9aGVDF45G53+B/x+14PhezRjA9hqQvcw9EvJb6nHARdhsgHJSbcoZorjI9T48oVUEponu+eLNKghANZW7qOCu576IfZ6NRYzsY8ql1Bj8uCnhHA2nhVrKxbbZHG6LptctXV/l6KubZ/U3ZJxrPqPY1X92d625k4fagqEvx268olGcNZDaxDxTtIunEves9hFv+KACk+0uW+ma5OsqtlX5HthzXN6Acbz5tPRPmIKZ/YCyosbcqxLc7ZwX6TI/oKUfq/0tyKExxJEp/Vfc/ZG4cPWp456yUxuQQ7c0zO0EIJ+8b2gQDonWZCvn2KJzNH3N0drPOUzCQcDDQjndG2yh9Ke573Rkt//8VoZT4MTwoNB6z6b1QOagadBkLNDtxDt0AE1XfaIibN7XpAHe5nsEIn2aXs/8ZEHWz0Zv0D5+n5iwRxATzlfDoLqw+IUuN8nm7pwCMHkXF52Sms8QQtJ2rJZUXeJqLYfMQUF/D3X8mn4B7tCVxc1mKoVLz9/1oBAf2bseKRBX0rfB9ZeVX7GBdP+qZAYwkxdtBveQtq9fZ/UIGHDRO8YYxr5lavOVhUA40rc=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5112.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(56012099003)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:CY8PR12MB8300.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(366016)(376014)(7416014)(1800799024)(56012099003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R2xONkpydEFFVTg2a0N1bGNRUWJreEU4Q2V3N3RRaWQrMGo1ZXl2bk9tQTNF?=
- =?utf-8?B?aFN2eiszNmFzVE91N09HYUkzM3FPRDYvY2drSWxMK1BRTTNpRGxUMFpNdXhj?=
- =?utf-8?B?UVB5SERRcmtKZFJTOWhJYWxOT2I0SGxDclNkZVNxT0JWWVBJWTFhODRSV0NF?=
- =?utf-8?B?anJhWC9hNTM3TTJmVXhxbzN2VmxqZzVNU0hUeTNpN3E2emJHWElHc3BwNTdp?=
- =?utf-8?B?ME5UTWFKdHE4WE1uU1FwVllyck9EM0oyNG1kN2twYjR6dnYxZ0NOSGNERmxU?=
- =?utf-8?B?TU02a3JsVG9lVExOUlJoeXdRM0Ztam0yUXBLcVNPRUF5NjA3bUNVR0orUVVH?=
- =?utf-8?B?azBLWmlteE80MHBjVVZ2ZWhLdmhFR29GSEtGSk45L1VYNUEwVnorSDU0cmNO?=
- =?utf-8?B?UXp3Vlc0OXNuejR5b0czSTFDZ3kvbldkV1c0UXVhc1h4YWRFa1RuNkhuNzJ6?=
- =?utf-8?B?MzBCdGJMZlFMWHNEcVREODdLOFZhUzRNUTRKSW9kRjFHbVRGcEswQ2FhNzFl?=
- =?utf-8?B?VzJCa29kc3pIQjcwMTkyYjd1UzZISWhwZk9IUFNDR2l4V3Vib0F6c1pGVVJR?=
- =?utf-8?B?bmpDaTZvWDNEb1NWYjJSOHk3ZFgvNmVySlViMjRuZ29mNnlja0QzamVsNHpU?=
- =?utf-8?B?YmxnY0FJcEFTczhiL01pUExHUHZHalZCZmxzYjRGSEw1aS83R2Q1ajZ0TlZ2?=
- =?utf-8?B?MXNYUHhIL0V6b2ViSzRhc21FNHZKdGxpaE8yTTRZQjd6Rld5c2pDQWhxb2Nk?=
- =?utf-8?B?WmhSVHZ2UEVwMlFZYzVPMnY1NFRqOEFVOXBNckcrVzBlYVRpdXhUMDJXQXFj?=
- =?utf-8?B?cFBNQm5FU3QwVXFPQ0IwdUVWYldFM3I5OHZxU2FvK255U2FrckFod0YyeERa?=
- =?utf-8?B?Y0pVQVBzV3VkR1FXR0YydVVjL2ZqUWhLZ3pxa1FtbmRBeE9kU3dwTDUyZFhv?=
- =?utf-8?B?d1JlRlhNZ3dvenp6T01kOHM5QkllRHJTRUwrREtVcHhFK0VxNGFtUHdJWllT?=
- =?utf-8?B?SldEYWF6NFR2RG9vdFhway9HODhqanRYTDN3YzNRTlVhN2FrcnV3KzhFNTFh?=
- =?utf-8?B?R2ZVZVc1bWFBUzVPOWJxbWZIQU1xcTd1eDE4UnlDbFhFQ0pvcktDc1pydS8v?=
- =?utf-8?B?ZkNJSXZ1ZWJYTXpyZHp6ME1XWmw5L1JlV29aVkY5bmtKaGhxSTZDNXdDeVpu?=
- =?utf-8?B?cExSdk9UK0xXKzNQRWwxcTlIanV0N2V5dWNlMTlraXR4TWsreUpiTXNkTTl4?=
- =?utf-8?B?aldUMldwY1NIWUtlL3ZULzh5aVZtZ3ovczhDdmpoNW1mYWV5ajVsR3FoZkJr?=
- =?utf-8?B?M3lNZlVSU1NzanZ0eG1sTG5WTEM0MFZIeDhMRzZMSkhzcUpLaThicHU3NXh5?=
- =?utf-8?B?b2FpekZlL1lQdmRyV2JWQjlqdWFhbjRrTmhrQVF2MFE5bWtQUXA5dnppUTYv?=
- =?utf-8?B?ZjI5YXVYWHFrQUFWdzRQejFWbURvRXRwdXlqSkM5YmpScU1jalM3WVliem8z?=
- =?utf-8?B?a3RjWXNKU01vcjdPMDRudlZuSlNCeTJUaTl3aHUzdSt2NG5rbS82L1B5SHdj?=
- =?utf-8?B?R29kdmdkK1hFbVlSZEkxOUMwQXkvTHNSc3pRbUJVRzA5a3dDMkJJTDBrbzBB?=
- =?utf-8?B?eEp4U0xYZm5EWmdSUy9na2NoLzFrVmhqN0tEMU41SHZXNWtVVmtDd3pLK0N6?=
- =?utf-8?B?bHA3WVFQTU1xL0RXbHhQbVhxaVBHSm9VZmxGcUZaK0padnM3SEhUeUx1eGVq?=
- =?utf-8?B?MHd1dlJKYXVnT1hCcFJqVW5pdWkvSERaOWtqbVVKL3gvZzBUSlZmQkJzdXY3?=
- =?utf-8?B?VE52YkJrRzJSSXc1WGpOK2swN2Nrcmk5Yms0d04zaStqTjBmVVpDenNxdkVk?=
- =?utf-8?B?bXBzUm5YWi9rd1hUTjd6Zkl5RGF5ME0wK0x6RUNhWmlFZ1lZazhITlFrR2M3?=
- =?utf-8?B?V3d2OGJGait6ZG5aY1BiLzRPVzhwRnBGQUNGOHVraFBhTGNKdG9vcHp4aWFH?=
- =?utf-8?B?bTBVSlZkaFFKZUdtQkZybDhKelppUzgwRnBRU0NWYkYwNE5hK0dVZnlyaTI4?=
- =?utf-8?B?Tisxd2F3QzNtZTRZeUNEczNHOVRLNFdBYktEQktSdlhhSHBZcVBWSU1mVEtr?=
- =?utf-8?B?OWdhak5DajEwTXBhbW50SGtUQWdTZkZ2cmtidEhHcXBnaU53eWZLbnZubFYv?=
- =?utf-8?B?YVVhMDNObENwOEhkTU9Yc0ExVnVSZlpRM2lYcGJ5dSt0T1NHWTlLMDErbXR3?=
- =?utf-8?B?ZDZ5K0FwL2lXdTBVVXlNRUt0Zkhvb1l4ZHFmU2NEOGZmUWNrd0cvVHF6SDYx?=
- =?utf-8?B?QXlqU1VYQXhyaTl5VjhMZ21UQ2M3ZDJwalZGL2xGUFVGUkM2MnNFUT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 062a71b6-d56f-437b-21e6-08dea4853caa
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5112.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6ev31P6fGlLQLOmFhG9wf+2ZENF2CJrasImnLdTMkk4B07wVpIqdqcEhUwVr?=
+ =?us-ascii?Q?VcuKpfWBww+Qglw6NKPvrbqw/iKodwZS6hoQ2ezn6gKQJTXowcVzIMKKmPVI?=
+ =?us-ascii?Q?CaGe2PzzTfbrd+1/kBuQd5inX41eLfMXGSMB4El+/BGeY7LidWaO2U6MXIZl?=
+ =?us-ascii?Q?To5KMHCCmaxaSW+0abx+uHxslGaDNGAxlD0ajEnVCyj2PyGw8gfavgZvUBeC?=
+ =?us-ascii?Q?31Pn2vGdNJPTEao0o8nkBbqzRysmZBZFRsyFAwtcHiF+LMJewEDkGWcf3C7D?=
+ =?us-ascii?Q?MhvHUO7rY2T4Gp8yOxYlhdkCQq0m4ykawDCJw9P3w79tbrFqeU7DKZcc6Svj?=
+ =?us-ascii?Q?gpUdDiMP1u+wbi6ktqsa2/SBsCawL8yd85/gdX8JeS4P5U//2zVMdqlbS5oF?=
+ =?us-ascii?Q?Om8kn23qHMWd1W0xp+L9zqhhURuKBI3C8K6/P0P2OiLTdsZ7lPLULvDBkdZf?=
+ =?us-ascii?Q?UKjydMyY/3pcrF3sadi8xEKK6PbOoyabovH4OGdbUvrwD7GG4qRTd8pK59oC?=
+ =?us-ascii?Q?snIKpVz1xKnwCa6xY5VnFP5/u/JjDPLADrD/WslKg8YXRFtCzAtBrdImcj0f?=
+ =?us-ascii?Q?8yOAh4lyWUDPVX2WM00ySuZhGhvO+v6NJ73vz9XlsUfOsWyYZ9DOEzjUfhbH?=
+ =?us-ascii?Q?0YLtM7C7LxhLfanXFKSW+D7acdbl8uANIv2lLYjkqPUxgpfNe8f+7W2LB5Nn?=
+ =?us-ascii?Q?7Np0MclwQhDcY1GLCNhmF+qQmAOMVCLRhyHjLhLWkRHgj+alwIysbQ3EuYLN?=
+ =?us-ascii?Q?5yHcsNNjsFo0wDyhRUVx5wyCMlW+Z4NGoPr32ydxiktuCQaON6kbvoanfM01?=
+ =?us-ascii?Q?VM4/fS2+speM2tcePSAnjiQa5qjOFuYZ0VtZfeGTBIZ1yXD2cHpN1ixZN0Rz?=
+ =?us-ascii?Q?L/dQY0op7e/9Yk5F3A4lFGTivTaixUSEIjTezh3qI+wT/tBYEl0Z0XCO2hjU?=
+ =?us-ascii?Q?sFOU7EJ1CIL6HbyGijpDH3Yp4I8rMW9VuNbKDzbyWnaJJg9tVdo0/XIJrdAh?=
+ =?us-ascii?Q?vVKIJZb+31gwlMVE1kXLTM4rt1jmj4rcA1rNCuw4fD++YKU0KqxirVrsn6kC?=
+ =?us-ascii?Q?lZa0X05s4hYIlo7g4DALYttelKqcNX1HEGU6vO71rQrVfydGtRIQzA8hZ8rQ?=
+ =?us-ascii?Q?O80VU2eqMYB7eYpBItWytqLFV33JZ/cuulFCjhdnG06CQcNI6/4ovyhT3Aa8?=
+ =?us-ascii?Q?PiZXBZphvtTKhhJqQ1c7RRKZs8niebQgxVT+NqLMFlyPhkta2YjjpBXgNIIx?=
+ =?us-ascii?Q?h+iPSpkL/BZ7G18/IWgE5T5t9GEq5s5xWwSmey7027/BRYe03neS8L78GvQZ?=
+ =?us-ascii?Q?5ceRI/ymV7A6xiSGKp4h0GdJvHPIvbvLvAXTNPJXPyEy/lkYzUg06m/F5Ppx?=
+ =?us-ascii?Q?Ucqpyqpi7uPkJEjc3424leqnNg3d1TwAm//hlnXAadNRP0K+njbmTw4CpTe2?=
+ =?us-ascii?Q?4HHWlSZ9YpBEw+Ohv14Uf9RwjiFvVAghctOlWmh5sz2AhDjQMGMs8VSWcPgV?=
+ =?us-ascii?Q?CT54kkzGd7BsoQ2aPoLVEhjPxQJKnRuZKDOQB6HL77e6jo+Karv0u6QI8scU?=
+ =?us-ascii?Q?/P+zWIUoY7Vp26Mnav/FMyG/vDm64Qhe7JrRNaXxdZN6cKMY0RccPxeEvM6K?=
+ =?us-ascii?Q?cokd+q0bbXdS3sEK+pM8MrC/A2+EernBjELOWvLW6UNcdosIRiZXx3jxfYAW?=
+ =?us-ascii?Q?NoTKA/lHF00/AFzSuUQZeA/Bt64WCRihJQrbIN0bhLrfQCWWaLbXoiNjdnxt?=
+ =?us-ascii?Q?OgQB96s+EfSA5RhJu/4bwnEHg5Lb6TZfXmPjZN7/WMw6zB/yunPn?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 33128524-511f-440c-0040-08dea486a4e3
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB8300.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2026 17:48:49.6645 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2026 17:58:53.4408 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Pf2zajQtBB58c+jV7+uOsLLJP0EQqOreIwO+pQ5cAubGIRHLCiTqXnO26SdGp2eIMRv9zgAZ6EypnobzffzIAg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB8474
+X-MS-Exchange-CrossTenant-UserPrincipalName: DFLDrWxkcKDSdWjcRZ0FWTXyKov5/udW2ySQZAiU/0h1WJYCpRdFgW8eHZBY8qsOSQ9+hnLtwBfn4bjMnIR9OQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4352
+X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,175 +153,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 79978477E78
+X-Rspamd-Queue-Id: BE88548531B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCPT_COUNT_TWELVE(0.00)[48];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[felix.kuehling@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:yangp@amd.com,m:philip.yang@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[felix.kuehling@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[ynorov@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linux-foundation.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org,lists.linux-m68k.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On 2026-04-20 17:32, Philip Yang wrote:
->
->
-> On 2026-04-20 11:58, Felix Kuehling wrote:
->> With only one sequence number we cannot track the need for legacy vs
->> heavy-weight flushes reliably. Always use heavy-weight.
->>
->> Signed-off-by: Felix Kuehling<felix.kuehling@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdkfd/kfd_chardev.c              | 4 ++--
->>   drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 6 +++---
->>   drivers/gpu/drm/amd/amdkfd/kfd_priv.h                 | 6 +++---
->>   drivers/gpu/drm/amd/amdkfd/kfd_svm.c                  | 4 ++--
->>   4 files changed, 10 insertions(+), 10 deletions(-)
-> Probably change to heavy-weight flush in this path, other changes look 
-> good to me.
->
-> amdgpu_gem_va_update_vm()
->  {
->   ....
->           if (vm->is_compute_context) {
->             .....
->                                r = amdgpu_vm_flush_compute_tlb(adev, vm,
->                             TLB_FLUSH_LEGACY,
->                             xcc_mask);
+On Mon, Apr 27, 2026 at 07:13:48PM +0200, Christophe Leroy (CS GROUP) wrote:
+> At the time being, x86 and arm64 are missing unsafe_copy_from_user().
 
-This code doesn't exist on the amd-staging-drm-next branch that this 
-patch is intended for. I'll need to make a separate patch for the DKMS 
-branch that includes this one.
+No, they don't. They (should) rely on a generic implementation from
+linux/uaccess.h, like every other arch, except for  PPC and RISCV.
 
-Can I get your R-b for this patch?
+But they #define arch_unsafe_get_user, and the unsafe_copy_from_user()
+becomes undefined conditionally on that.
+
+So please, fix that bug instead of introducing another arch flavor.
+We'd always choose generic version, unless there's strong evidence
+that arch one is better.  
+
 
 Thanks,
-   Felix
-
-
-> }
->
-> Regards,
-> Philip
->> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
->> index 16fb39259911..0625104a7693 100644
->> --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
->> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
->> @@ -1358,7 +1358,7 @@ static int kfd_ioctl_map_memory_to_gpu(struct file *filep,
->>   		peer_pdd = kfd_process_device_data_by_id(p, devices_arr[i]);
->>   		if (WARN_ON_ONCE(!peer_pdd))
->>   			continue;
->> -		kfd_flush_tlb(peer_pdd, TLB_FLUSH_LEGACY);
->> +		kfd_flush_tlb(peer_pdd);
->>   	}
->>   	kfree(devices_arr);
->>   
->> @@ -1453,7 +1453,7 @@ static int kfd_ioctl_unmap_memory_from_gpu(struct file *filep,
->>   		if (WARN_ON_ONCE(!peer_pdd))
->>   			continue;
->>   		if (flush_tlb)
->> -			kfd_flush_tlb(peer_pdd, TLB_FLUSH_HEAVYWEIGHT);
->> +			kfd_flush_tlb(peer_pdd);
->>   
->>   		/* Remove dma mapping after tlb flush to avoid IO_PAGE_FAULT */
->>   		err = amdgpu_amdkfd_gpuvm_dmaunmap_mem(mem, peer_pdd->drm_priv);
->> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
->> index c1f668f12732..8d9bf4334090 100644
->> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
->> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
->> @@ -595,7 +595,7 @@ static int allocate_vmid(struct device_queue_manager *dqm,
->>   			qpd->vmid,
->>   			qpd->page_table_base);
->>   	/* invalidate the VM context after pasid and vmid mapping is set up */
->> -	kfd_flush_tlb(qpd_to_pdd(qpd), TLB_FLUSH_LEGACY);
->> +	kfd_flush_tlb(qpd_to_pdd(qpd));
->>   
->>   	if (dqm->dev->kfd2kgd->set_scratch_backing_va)
->>   		dqm->dev->kfd2kgd->set_scratch_backing_va(dqm->dev->adev,
->> @@ -633,7 +633,7 @@ static void deallocate_vmid(struct device_queue_manager *dqm,
->>   		if (flush_texture_cache_nocpsch(q->device, qpd))
->>   			dev_err(dev, "Failed to flush TC\n");
->>   
->> -	kfd_flush_tlb(qpd_to_pdd(qpd), TLB_FLUSH_LEGACY);
->> +	kfd_flush_tlb(qpd_to_pdd(qpd));
->>   
->>   	/* Release the vmid mapping */
->>   	set_pasid_vmid_mapping(dqm, 0, qpd->vmid);
->> @@ -1307,7 +1307,7 @@ static int restore_process_queues_nocpsch(struct device_queue_manager *dqm,
->>   				dqm->dev->adev,
->>   				qpd->vmid,
->>   				qpd->page_table_base);
->> -		kfd_flush_tlb(pdd, TLB_FLUSH_LEGACY);
->> +		kfd_flush_tlb(pdd);
->>   	}
->>   
->>   	/* Take a safe reference to the mm_struct, which may otherwise
->> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
->> index 53c26b1a25ca..dc8787dc399b 100644
->> --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
->> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
->> @@ -1559,13 +1559,13 @@ void kfd_signal_reset_event(struct kfd_node *dev);
->>   void kfd_signal_poison_consumed_event(struct kfd_node *dev, u32 pasid);
->>   void kfd_signal_process_terminate_event(struct kfd_process *p);
->>   
->> -static inline void kfd_flush_tlb(struct kfd_process_device *pdd,
->> -				 enum TLB_FLUSH_TYPE type)
->> +static inline void kfd_flush_tlb(struct kfd_process_device *pdd)
->>   {
->>   	struct amdgpu_device *adev = pdd->dev->adev;
->>   	struct amdgpu_vm *vm = drm_priv_to_vm(pdd->drm_priv);
->>   
->> -	amdgpu_vm_flush_compute_tlb(adev, vm, type, pdd->dev->xcc_mask);
->> +	amdgpu_vm_flush_compute_tlb(adev, vm, TLB_FLUSH_HEAVYWEIGHT,
->> +				    pdd->dev->xcc_mask);
->>   }
->>   
->>   static inline bool kfd_flush_tlb_after_unmap(struct kfd_dev *dev)
->> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->> index 015eb61f3440..5090f8c15428 100644
->> --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
->> @@ -1418,7 +1418,7 @@ svm_range_unmap_from_gpus(struct svm_range *prange, unsigned long start,
->>   			if (r)
->>   				break;
->>   		}
->> -		kfd_flush_tlb(pdd, TLB_FLUSH_HEAVYWEIGHT);
->> +		kfd_flush_tlb(pdd);
->>   	}
->>   
->>   	return r;
->> @@ -1560,7 +1560,7 @@ svm_range_map_to_gpus(struct svm_range *prange, unsigned long offset,
->>   			}
->>   		}
->>   
->> -		kfd_flush_tlb(pdd, TLB_FLUSH_LEGACY);
->> +		kfd_flush_tlb(pdd);
->>   	}
->>   
->>   	return r;
->
+Yury
+ 
+> Add it.
+> 
+> Signed-off-by: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
+> ---
+>  arch/x86/include/asm/uaccess.h | 29 ++++++++++++++++++++++++-----
+>  1 file changed, 24 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/x86/include/asm/uaccess.h b/arch/x86/include/asm/uaccess.h
+> index 3a0dd3c2b233..10c458ffa399 100644
+> --- a/arch/x86/include/asm/uaccess.h
+> +++ b/arch/x86/include/asm/uaccess.h
+> @@ -598,7 +598,7 @@ _label:									\
+>   * We want the unsafe accessors to always be inlined and use
+>   * the error labels - thus the macro games.
+>   */
+> -#define unsafe_copy_loop(dst, src, len, type, label)				\
+> +#define unsafe_put_loop(dst, src, len, type, label)				\
+>  	while (len >= sizeof(type)) {						\
+>  		unsafe_put_user(*(type *)(src),(type __user *)(dst),label);	\
+>  		dst += sizeof(type);						\
+> @@ -611,10 +611,29 @@ do {									\
+>  	char __user *__ucu_dst = (_dst);				\
+>  	const char *__ucu_src = (_src);					\
+>  	size_t __ucu_len = (_len);					\
+> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u64, label);	\
+> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u32, label);	\
+> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u16, label);	\
+> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u8, label);	\
+> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u64, label);	\
+> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u32, label);	\
+> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u16, label);	\
+> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u8, label);	\
+> +} while (0)
+> +
+> +#define unsafe_get_loop(dst, src, len, type, label)				\
+> +	while (len >= sizeof(type)) {						\
+> +		unsafe_get_user(*(type __user *)(src),(type *)(dst),label);	\
+> +		dst += sizeof(type);						\
+> +		src += sizeof(type);						\
+> +		len -= sizeof(type);						\
+> +	}
+> +
+> +#define unsafe_copy_from_user(_dst,_src,_len,label)			\
+> +do {									\
+> +	char *__ucu_dst = (_dst);					\
+> +	const char __user *__ucu_src = (_src);				\
+> +	size_t __ucu_len = (_len);					\
+> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u64, label);	\
+> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u32, label);	\
+> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u16, label);	\
+> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u8, label);	\
+>  } while (0)
+>  
+>  #ifdef CONFIG_CC_HAS_ASM_GOTO_OUTPUT
+> -- 
+> 2.49.0
+> 
