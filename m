@@ -2,119 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qK9QLxuu8GkfXQEAu9opvQ
+	id ptQBOxeu8GkWXQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:51 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:47 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67AE84854BB
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDD71485411
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DD2C8911F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E92E10EC0E;
 	Tue, 28 Apr 2026 12:54:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="Ad+betp0";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="UsUVIDOJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
- [209.85.218.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07A2E10E027
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 21:39:39 +0000 (UTC)
-Received: by mail-ej1-f54.google.com with SMTP id
- a640c23a62f3a-b9c01854477so696012466b.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 14:39:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1777325978; x=1777930778;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=DjF1Jdn4Kp6xFyaBmAP2391GfFF2q7kuOVlruTChM90=;
- b=Ad+betp0zFZlIbtGBFWAso51GwA+oeW4XoBDIakDga8l2bD0BCz8nx6pQDu6+lMlvE
- rjCcuZbVezydlpYGUjOuJqy+Kmh+7B8/q70WRNRTfnRvdha+3/YzlYbDZEURM7+XML+n
- Z9QE9sZT85x2zka6SoGj0B8N1C5RXfcQ8iuZ4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777325978; x=1777930778;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=DjF1Jdn4Kp6xFyaBmAP2391GfFF2q7kuOVlruTChM90=;
- b=DdZyV3PmZWv5yNA25NYMWd29c3woAL37e7cVgxSehkoOpYDc4KOyok39PdjmsplSfM
- 5Fl0rxpfuYCzfkOCN+9YroA0CIIiK6M9FgpXsFhOoVcQIBi1CqYksCgpIZy4g+pL4rzE
- EKVfYLC6gz4ZWAPT3tjEcbWJojwOk18eGFVUZWa70M5lbgaj+zXrrIP7/dWR/FTqCF/l
- L24lytqNUaGe7Ff4UswB29UIPTXsz1SsXOEjuebnZyE1XgMMg74WKDtlM9c4fV2UhzRw
- 5ZYZk2GL4rH0hN/FfZaaFJ9ss6tbnU87w0d8oasZaNiI9DraxCKpAl4p9QXuT2U0qAc2
- yYxA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ9PLSRhDjFc2iSZ/kP7kYAoFt7LnXcgdJkcRtXeZTVgPZohRp4R1l4PSxjteguQOTW9YKqJytZ2@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwYpGV/JYrBILnHXf6XnAvsaVqI6Ozap0qWWVIAH/p2MFwQsznL
- o3mLEtBLb/vH/tZ6IYtIxbG3FbPTHL3Zqvce/sW4dtuI4kN9fq/RZNuS6M4oMwWcLcSa9leymVd
- cHJC8+hgGng==
-X-Gm-Gg: AeBDieuTWKRwwJNflBD80mXW4YY5GaLkflSQEU7Lz5EVQykcRG+5RF5nrXoHBXRok+Z
- I7IZUf/KPf1YLURiIL8gFBjlgtWw7UpBv+/S5ViS53KJ3Na1FlO7jZ4iyVxx5x3HI6hJx3Js+jW
- 2tFMe89P/L5CVGtEkRCjc+siMI+IdZZpVqk7OPidUpwvUREbVKTNEnxzgUAKXnZ9BuaOlk7CSr0
- kixcbrdu8VYEu7FDx1SMOJrtcbUPkWA05RPiKuCPT0FKkxISxy7xVaxrGey1ep2pZ6FTC0cCcBf
- JkcMVMI4v+iI+xdNIf6Egj+A1S0dKA63f+yPSfTli7TWfOLKWzoowtGUiFkEXp+X5Uu9sUnePsa
- 3FvUO8YrVMsIPa92yTaI6/w0pQ2DMOJxqwwlUb7B66twSfe9XZfTqly9M7UWOTlhFfNup9zo6Ap
- eFWLdsQcv9NAbHD0wrzBDS9derGsKDU2+5y2PuLjTSIDvCQZ0nr8mUZ6+VOIpFk7hnwvjgx910Z
- VvTpVzeEHU=
-X-Received: by 2002:a17:906:f588:b0:bab:cab:c372 with SMTP id
- a640c23a62f3a-bb802da8f8emr31295866b.22.1777325977751; 
- Mon, 27 Apr 2026 14:39:37 -0700 (PDT)
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com.
- [209.85.208.43]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-bb80b2adeaesm9083566b.32.2026.04.27.14.39.37
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 27 Apr 2026 14:39:37 -0700 (PDT)
-Received: by mail-ed1-f43.google.com with SMTP id
- 4fb4d7f45d1cf-65c4152313fso14716971a12.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 14:39:37 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AFNElJ9Y1dMWdrV+hwBskmZbJwL1ifsz7X0KiA+UMjmL7z04cf1eWWlxu03hYa2Hrmf49t07+fhNuKAf@lists.freedesktop.org
-X-Received: by 2002:a05:6402:5216:b0:679:1f4f:9d30 with SMTP id
- 4fb4d7f45d1cf-679bb04c1a2mr179970a12.4.1777325976937; Mon, 27 Apr 2026
- 14:39:36 -0700 (PDT)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC8CB10E948;
+ Mon, 27 Apr 2026 21:41:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=uA71jEWx+4ZJFtOSm0w69X/YNfuN3y9/1tr88NG3p7I=; b=UsUVIDOJiaSKRMosjcwiWURPQO
+ 4H0dX2mxJ8tMMdH0XhspJwtTvdMNk9vez0kuML2YqlYAbrjdi+i4Iy7LRTifjWUIaxHwdAjm0FHW6
+ NJQTQwuO0HSALimyAvWXMg8TL9ET36jzV2VjVAWNvqgjpor6s7/woFGsNOkpRqglisHmPnH5w8sN4
+ vHEH0Lc4KVp7Gi/lZ+WjRJjJSpk+PjJczrbHliPJCVT9g09gc4Hsnc4NVrn3XsDuq6CTQQknD0XHa
+ clD3xTJAEQcWb1+ljuvGpKfGfRWpvE2VvRFeO7sfKj6+I1x6o3gjjHdC5BD3qjU9SbCzSoapNN3L0
+ EDHIxJ+Q==;
+Received: from [50.53.43.113] (helo=bombadil.infradead.org)
+ by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+ id 1wHThk-00000000BoX-3XFP; Mon, 27 Apr 2026 21:41:24 +0000
+From: Randy Dunlap <rdunlap@infradead.org>
+To: dri-devel@lists.freedesktop.org
+Cc: Randy Dunlap <rdunlap@infradead.org>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH 1/3 v2] drm/amd/display: dmub_cmd.h: correct typos and spellos
+Date: Mon, 27 Apr 2026 14:41:19 -0700
+Message-ID: <20260427214122.784024-1-rdunlap@infradead.org>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-References: <cover.1777306795.git.chleroy@kernel.org>
- <289b424e243ba2c4139ea04009cf8b9c448a87ff.1777306795.git.chleroy@kernel.org>
- <CAHk-=whC1DZojwdMB1=sJWG2=dsCdfyU8N6tDE1qx50HRZ-WJQ@mail.gmail.com>
- <20260427222914.1cb2dd3b@pumpkin>
-In-Reply-To: <20260427222914.1cb2dd3b@pumpkin>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 27 Apr 2026 14:39:20 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wg0SGbRYhdZ1kvJUTv1HEvmRJyQauFtBGV_fMcZVF8UpQ@mail.gmail.com>
-X-Gm-Features: AVHnY4I-AxqvQRk42MegvhKMp_z4sSEpEzhzpgw2GyV2bV8dezSPoI0JTlwB18Y
-Message-ID: <CAHk-=wg0SGbRYhdZ1kvJUTv1HEvmRJyQauFtBGV_fMcZVF8UpQ@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 5/9] uaccess: Switch to
- copy_{to/from}_user_partial() when relevant
-To: David Laight <david.laight.linux@gmail.com>
-Cc: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Yury Norov <ynorov@nvidia.com>, 
- Andrew Morton <akpm@linux-foundation.org>, Thomas Gleixner <tglx@linutronix.de>,
- linux-alpha@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-snps-arc@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- kvm@vger.kernel.org, linux-riscv@lists.infradead.org, 
- linux-s390@vger.kernel.org, sparclinux@vger.kernel.org, 
- linux-um@lists.infradead.org, dmaengine@vger.kernel.org, 
- linux-efi@vger.kernel.org, linux-fsi@lists.ozlabs.org, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, linux-wpan@vger.kernel.org, 
- netdev@vger.kernel.org, linux-wireless@vger.kernel.org, 
- linux-spi@vger.kernel.org, linux-media@vger.kernel.org, 
- linux-staging@lists.linux.dev, linux-serial@vger.kernel.org, 
- linux-usb@vger.kernel.org, xen-devel@lists.xenproject.org, 
- linux-fsdevel@vger.kernel.org, ocfs2-devel@lists.linux.dev, 
- bpf@vger.kernel.org, kasan-dev@googlegroups.com, linux-mm@kvack.org, 
- linux-x25@vger.kernel.org, rust-for-linux@vger.kernel.org, 
- linux-sound@vger.kernel.org, sound-open-firmware@alsa-project.org, 
- linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org, 
- loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org, 
- linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org, 
- linux-sh@vger.kernel.org, linux-arch@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:20 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,52 +65,354 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 67AE84854BB
+X-Rspamd-Queue-Id: EDD71485411
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.79 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[linux-foundation.org:s=google];
+X-Spamd-Result: default: False [1.59 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_DKIM_REJECT(1.00)[infradead.org:s=bombadil.20210309];
 	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_SOFTFAIL(0.10)[infradead.org : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:david.laight.linux@gmail.com,m:chleroy@kernel.org,m:ynorov@nvidia.com,m:akpm@linux-foundation.org,m:tglx@linutronix.de,m:linux-alpha@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-snps-arc@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mips@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:kvm@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-s390@vger.kernel.org,m:sparclinux@vger.kernel.org,m:linux-um@lists.infradead.org,m:dmaengine@vger.kernel.org,m:linux-efi@vger.kernel.org,m:linux-fsi@lists.ozlabs.org,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:linux-wpan@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:linux-spi@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-staging@lists.linux.dev,m:linux-serial@vger.kernel.org,m:linux-usb@vger.kernel.org,m:xen-devel@lists.xenproject.org,m:linux-fsdevel@vger.kernel.org,m:ocfs2-devel@lists.linux.dev,m:bpf@vger.kernel.org,m:k
- asan-dev@googlegroups.com,m:linux-mm@kvack.org,m:linux-x25@vger.kernel.org,m:rust-for-linux@vger.kernel.org,m:linux-sound@vger.kernel.org,m:sound-open-firmware@alsa-project.org,m:linux-csky@vger.kernel.org,m:linux-hexagon@vger.kernel.org,m:loongarch@lists.linux.dev,m:linux-m68k@lists.linux-m68k.org,m:linux-openrisc@vger.kernel.org,m:linux-parisc@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-arch@vger.kernel.org,m:davidlaightlinux@gmail.com,s:lists@lfdr.de];
-	DMARC_NA(0.00)[linux-foundation.org];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[48];
-	FORGED_SENDER(0.00)[torvalds@linux-foundation.org,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[linux-foundation.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[torvalds@linux-foundation.org,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
-	NEURAL_HAM(-0.00)[-0.990];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ARC_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux-foundation.org:dkim]
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,suse.de:email,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	NEURAL_HAM(-0.00)[-0.921];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[infradead.org:-]
 
-On Mon, 27 Apr 2026 at 14:29, David Laight <david.laight.linux@gmail.com> wrote:
->
-> I think there is a slight difference in that the normal copy_to_user()
-> will determine the exact offset of the error by retrying with byte copies.
+Fix spelling issues that are reported by codespell:
 
-I have this dim memory that we decided that you can't reply on byte
-exactness anyway, because not all architectures gave that guarantee
-for the user copies.
+dmub_cmd.h:332: alighment ==> alignment
+dmub_cmd.h:2029: sequeunce ==> sequence
+dmub_cmd.h:3684: optimzations ==> optimizations
+dmub_cmd.h:4491: isntance ==> instance
+dmub_cmd.h:4514: optimzations ==> optimizations
+dmub_cmd.h:4604: isntance ==> instance
+dmub_cmd.h:4643: isntance ==> instance
+dmub_cmd.h:4679: isntance ==> instance
+dmub_cmd.h:4699: isntance ==> instance
+dmub_cmd.h:4719: isntance ==> instance
+dmub_cmd.h:4735: isntance ==> instance
+dmub_cmd.h:4749: isntance ==> instance
+dmub_cmd.h:4795: isntance ==> instance
+dmub_cmd.h:4903: isntance ==> instance
+dmub_cmd.h:4936: isntance ==> instance
+dmub_cmd.h:5066: re-use ==> reuse
+dmub_cmd.h:6552: isntance ==> instance
+dmub_cmd.h:6630: isntance ==> instance
+dmub_cmd.h:6639: optimzations ==> optimizations
+dmub_cmd.h:6720: isntance ==> instance
+dmub_cmd.h:6742: isntance ==> instance
 
-But that thing came up many years ago, I might mis-remember.
+and fix a few that I found:
 
-            Linus
+dicated		==> dictated (7x)
+afftet		==> after (is this correct?)
+
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+---
+v2: fix one more typo; rebase & resend
+
+Questions:
+(a) Is one of "negative" or "pos" incorrect?
+
+	/**
+	 * Dark negative gain.
+	 */
+	uint8_t dark_pos_gain[NUM_AMBI_LEVEL][NUM_AGGR_LEVEL];   // 184B
+
+(b) Is one of "min" or "Maximum" incorrect?
+
+	uint16_t min_frame_rate;	/**< Maximum frame rate */
+
+(c) Is one of "max" or "Minimum" incorrect?
+
+	uint16_t max_frame_rate;	/**< Minimum frame rate */
+
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Leo Li <sunpeng.li@amd.com>
+Cc: Rodrigo Siqueira <siqueira@igalia.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+
+
+ drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h |   58 +++++++-------
+ 1 file changed, 29 insertions(+), 29 deletions(-)
+
+--- linux-next-20260427.orig/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ linux-next-20260427/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -329,7 +329,7 @@ union dmub_addr {
+ 
+ /* Flattened structure containing SOC BB parameters stored in the VBIOS
+  * It is not practical to store the entire bounding box in VBIOS since the bounding box struct can gain new parameters.
+- * This also prevents alighment issues when new parameters are added to the SoC BB.
++ * This also prevents alignment issues when new parameters are added to the SoC BB.
+  * The following parameters should be added since these values can't be obtained elsewhere:
+  * -dml2_soc_power_management_parameters
+  * -dml2_soc_vmin_clock_limits
+@@ -2001,7 +2001,7 @@ struct dmub_rb_cmd_read_modify_write {
+ };
+ 
+ /*
+- * Update a register with specified masks and values sequeunce
++ * Update a register with specified masks and values sequence
+  *
+  * 60 payload bytes can hold address + up to 7 sets of mask/value combo, each take 2 dword
+  *
+@@ -3483,7 +3483,7 @@ enum dmub_cmd_psr_type {
+ 
+ 	/**
+ 	 * Set PSR level.
+-	 * PSR level is a 16-bit value dicated by driver that
++	 * PSR level is a 16-bit value dictated by driver that
+ 	 * will enable/disable different functionality.
+ 	 */
+ 	DMUB_CMD__PSR_SET_LEVEL			= 4,
+@@ -3640,7 +3640,7 @@ struct dmub_cmd_psr_copy_settings_data {
+ 	 */
+ 	union dmub_psr_debug_flags debug;
+ 	/**
+-	 * 16-bit value dicated by driver that will enable/disable different functionality.
++	 * 16-bit value dictated by driver that will enable/disable different functionality.
+ 	 */
+ 	uint16_t psr_level;
+ 	/**
+@@ -3680,7 +3680,7 @@ struct dmub_cmd_psr_copy_settings_data {
+ 	 */
+ 	uint8_t aux_inst;
+ 	/**
+-	 * Determines if SMU optimzations are enabled/disabled.
++	 * Determines if SMU optimizations are enabled/disabled.
+ 	 */
+ 	uint8_t smu_optimizations_en;
+ 	/**
+@@ -3797,7 +3797,7 @@ struct dmub_rb_cmd_psr_copy_settings {
+  */
+ struct dmub_cmd_psr_set_level_data {
+ 	/**
+-	 * 16-bit value dicated by driver that will enable/disable different functionality.
++	 * 16-bit value dictated by driver that will enable/disable different functionality.
+ 	 */
+ 	uint16_t psr_level;
+ 	/**
+@@ -4175,7 +4175,7 @@ struct dmub_rb_cmd_update_cursor_info {
+  */
+ struct dmub_cmd_psr_set_vtotal_data {
+ 	/**
+-	 * 16-bit value dicated by driver that indicates the vtotal in PSR active requirement when screen idle..
++	 * 16-bit value dictated by driver that indicates the vtotal in PSR active requirement when screen idle..
+ 	 */
+ 	uint16_t psr_vtotal_idle;
+ 	/**
+@@ -4189,7 +4189,7 @@ struct dmub_cmd_psr_set_vtotal_data {
+ 	 */
+ 	uint8_t panel_inst;
+ 	/*
+-	 * 16-bit value dicated by driver that indicates the vtotal in PSR active requirement when doing SU/FFU.
++	 * 16-bit value dictated by driver that indicates the vtotal in PSR active requirement when doing SU/FFU.
+ 	 */
+ 	uint16_t psr_vtotal_su;
+ 	/**
+@@ -4489,7 +4489,7 @@ struct dmub_cmd_replay_copy_settings_dat
+ 	uint8_t aux_inst;
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which psr_state to use
++	 * Panel instance to identify which psr_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
+@@ -4512,7 +4512,7 @@ struct dmub_cmd_replay_copy_settings_dat
+ 	 */
+ 	uint8_t dpphy_inst;
+ 	/**
+-	 * Determines if SMU optimzations are enabled/disabled.
++	 * Determines if SMU optimizations are enabled/disabled.
+ 	 */
+ 	uint8_t smu_optimizations_en;
+ 	/**
+@@ -4602,7 +4602,7 @@ struct dmub_rb_cmd_smart_power_oled_enab
+ 	uint8_t enable;
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which replay_state to use
++	 * Panel instance to identify which replay_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
+@@ -4641,7 +4641,7 @@ struct dmub_rb_cmd_replay_enable_data {
+ 	uint8_t enable;
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which replay_state to use
++	 * Panel instance to identify which replay_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
+@@ -4689,7 +4689,7 @@ struct dmub_rb_cmd_replay_enable {
+ struct dmub_cmd_replay_set_power_opt_data {
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which replay_state to use
++	 * Panel instance to identify which replay_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
+@@ -4709,7 +4709,7 @@ struct dmub_cmd_replay_set_power_opt_dat
+ struct dmub_cmd_replay_set_timing_sync_data {
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which replay_state to use
++	 * Panel instance to identify which replay_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
+@@ -4729,7 +4729,7 @@ struct dmub_cmd_replay_set_timing_sync_d
+ struct dmub_cmd_replay_set_pseudo_vtotal {
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which replay_state to use
++	 * Panel instance to identify which replay_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
+@@ -4745,7 +4745,7 @@ struct dmub_cmd_replay_set_pseudo_vtotal
+ struct dmub_cmd_replay_disabled_adaptive_sync_sdp_data {
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which replay_state to use
++	 * Panel instance to identify which replay_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
+@@ -4759,7 +4759,7 @@ struct dmub_cmd_replay_disabled_adaptive
+ struct dmub_cmd_replay_set_general_cmd_data {
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which replay_state to use
++	 * Panel instance to identify which replay_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
+@@ -4796,7 +4796,7 @@ struct dmub_rb_cmd_replay_set_power_opt
+  */
+ struct dmub_cmd_replay_set_coasting_vtotal_data {
+ 	/**
+-	 * 16-bit value dicated by driver that indicates the coasting vtotal.
++	 * 16-bit value dictated by driver that indicates the coasting vtotal.
+ 	 */
+ 	uint16_t coasting_vtotal;
+ 	/**
+@@ -4805,12 +4805,12 @@ struct dmub_cmd_replay_set_coasting_vtot
+ 	uint8_t cmd_version;
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which replay_state to use
++	 * Panel instance to identify which replay_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
+ 	/**
+-	 * 16-bit value dicated by driver that indicates the coasting vtotal high byte part.
++	 * 16-bit value dictated by driver that indicates the coasting vtotal high byte part.
+ 	 */
+ 	uint16_t coasting_vtotal_high;
+ 	/**
+@@ -4913,7 +4913,7 @@ struct dmub_rb_cmd_replay_set_general_cm
+ struct dmub_cmd_replay_frameupdate_timer_data {
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which replay_state to use
++	 * Panel instance to identify which replay_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
+@@ -4946,7 +4946,7 @@ struct dmub_rb_cmd_replay_set_frameupdat
+ union dmub_replay_cmd_set {
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which replay_state to use
++	 * Panel instance to identify which replay_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
+@@ -5122,7 +5122,7 @@ struct dmub_hw_lock_inst_flags {
+ 	uint8_t opp_inst;
+ 	/**
+ 	 * OTG HW instance for global update lock.
+-	 * TODO: Remove, and re-use otg_inst.
++	 * TODO: Remove, and reuse otg_inst.
+ 	 */
+ 	uint8_t dig_inst;
+ 	/**
+@@ -6609,7 +6609,7 @@ struct dmub_cmd_pr_enable_data {
+ 	uint8_t enable;
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which replay_state to use
++	 * Panel instance to identify which replay_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
+@@ -6687,7 +6687,7 @@ struct dmub_cmd_pr_copy_settings_data {
+ 	uint8_t aux_inst;
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which psr_state to use
++	 * Panel instance to identify which psr_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
+@@ -6696,7 +6696,7 @@ struct dmub_cmd_pr_copy_settings_data {
+ 	 */
+ 	uint8_t dpphy_inst;
+ 	/**
+-	 * Determines if SMU optimzations are enabled/disabled.
++	 * Determines if SMU optimizations are enabled/disabled.
+ 	 */
+ 	uint8_t smu_optimizations_en;
+ 	/**
+@@ -6704,7 +6704,7 @@ struct dmub_cmd_pr_copy_settings_data {
+ 	 */
+ 	uint32_t line_time_in_ns;
+ 	/*
+-	 * Use FSFT afftet pixel clk
++	 * Use FSFT after pixel clk
+ 	 */
+ 	uint32_t pix_clk_100hz;
+ 	/*
+@@ -6777,7 +6777,7 @@ union dmub_pr_runtime_flags {
+ struct dmub_cmd_pr_update_state_data {
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which psr_state to use
++	 * Panel instance to identify which psr_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
+@@ -6799,7 +6799,7 @@ struct dmub_cmd_pr_update_state_data {
+ struct dmub_cmd_pr_general_cmd_data {
+ 	/**
+ 	 * Panel Instance.
+-	 * Panel isntance to identify which psr_state to use
++	 * Panel instance to identify which psr_state to use
+ 	 * Currently the support is only for 0 or 1
+ 	 */
+ 	uint8_t panel_inst;
