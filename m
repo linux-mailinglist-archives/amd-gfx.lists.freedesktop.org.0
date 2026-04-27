@@ -2,141 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SACvISEr72n98gAAu9opvQ
+	id oIGGJWtZ72n5AQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 11:23:45 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 14:41:15 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E718246FD70
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 11:23:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2A33472A41
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 14:41:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B1B510E644;
-	Mon, 27 Apr 2026 09:23:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 894E910E726;
+	Mon, 27 Apr 2026 12:41:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="IDvs47VW";
+	dkim=pass (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="QPoHYnKp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010004.outbound.protection.outlook.com
- [40.93.198.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BC8710E644
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 09:23:42 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yDdCwhm2I3iqih1Dm1wenGjMQO94nHvxwN0OiZkuzbYizTdrAJjsNvmdJo0fLuWPCI6MXj/lDPUYbYX9NBfflphKFyPqpBtnsCgfnBEnQFYZFPFxWdvJvAc3/aiCDdGqMPzTJmtEEsGGbfKe7fqW6LQgikTVfnUghiV+kEqkxcybnpAM/uqfTwKtNc8nOqMK2AtSH48tog8q792TbzGIhxMg33JKOURLqUY1HDXkPmzR5phENUUGL9Py3a02r/2Jq6LDXJs6gHKCM79FKPFr6mo9w5QE9RZR9eSB9U/RaHkwND9CkT1P7s27P4yavmhkWwXnWmpyJYzSCdxiPLbqoQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xPz+UF7hxLsDRthFAMlm/CrJ4ivUaulTVx24h2nvkx4=;
- b=LAm86CtJ/DGTIGCa8fgtusPWjk651YpV1BsIez5E7z2JEQ+HZ5OQyrYzUhL7VleGPuqu2XLWPxPJ8QBz3Q13xlkbw7p/j3vRP1sGT60bTLbwGIO4++DKAkj6mg2rhiEpir3AcpTPzDODRvVhlJNdsJOygVNOmeH2WHe1Vq2d2ws4DcYc74pWc/YM6ZMQxTNB/OQFFEVdgOjFW/ceR1pU2lQftaoIT50/fo+8XZJAtvVIbpkYqvOhvgbj5B3w1c7OfBu8q8/F7WCgrbxkPIe5DNIBXoevo/KqUl8Qp8c4e+S7kPJQy4oqS7lHej/4mp1oHbBDbpcPRHYLxU0UjAHXrQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xPz+UF7hxLsDRthFAMlm/CrJ4ivUaulTVx24h2nvkx4=;
- b=IDvs47VWbyEgElmU5nZXZur9+ulOJSfPE32n+ZMa6oMZLeGSokFjyGM8Ony4+8BcChN6Dxy/WEtVOSJ8QsD6/lJFMMcaot41lwrmreU8sQbxMPR47VsXz43LdnMVH0/Yi1mgTSCBmNaVBq+QaPY0O834uR4WEhAlnjG2/mRNTFs=
-Received: from IA1PR12MB6307.namprd12.prod.outlook.com (2603:10b6:208:3e5::22)
- by DS0PR12MB7780.namprd12.prod.outlook.com (2603:10b6:8:152::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.15; Mon, 27 Apr
- 2026 09:23:38 +0000
-Received: from IA1PR12MB6307.namprd12.prod.outlook.com
- ([fe80::4739:b181:8a2b:89b2]) by IA1PR12MB6307.namprd12.prod.outlook.com
- ([fe80::4739:b181:8a2b:89b2%3]) with mapi id 15.20.9870.013; Mon, 27 Apr 2026
- 09:23:33 +0000
-From: "Ostrowski, Rafal" <Rafal.Ostrowski@amd.com>
-To: Bert Karwatzki <spasswolf@web.de>
-CC: "Varone, Dillon" <Dillon.Varone@amd.com>, "Hung, Alex"
- <Alex.Hung@amd.com>, "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>, Thomas Gleixner
- <tglx@linutronix.de>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "linux-next@vger.kernel.org"
- <linux-next@vger.kernel.org>, "linux-rt-devel@lists.linux.dev"
- <linux-rt-devel@lists.linux.dev>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: kernel panic when resuming from hibernate in next-20260406 with
- PREEMPT_RT
-Thread-Topic: kernel panic when resuming from hibernate in next-20260406 with
- PREEMPT_RT
-Thread-Index: AQHcyCLT+fim4XOC0kmlAbF0I1GUirXWuPGTgAAB0YCAAF84wIABLwbTgBjULYCAAaF9CA==
-Date: Mon, 27 Apr 2026 09:23:32 +0000
-Message-ID: <IA1PR12MB630726FFADF30847A8496012F8362@IA1PR12MB6307.namprd12.prod.outlook.com>
-References: <20260409131411.10598-1-spasswolf@web.de>
- <IA1PR12MB6307858BAECC7CC3AE8AA958F8582@IA1PR12MB6307.namprd12.prod.outlook.com>
- <a67b9159f69e8788a598fb459d8e6d99d1776f2f.camel@web.de>
- <IA1PR12MB6307AC51F4C6E4A77BCB5EDDF8582@IA1PR12MB6307.namprd12.prod.outlook.com>
- <IA1PR12MB630789B32C2104D1FAC2B761F8592@IA1PR12MB6307.namprd12.prod.outlook.com>
- <a1c86a3b83e26d86f95068e8005ce4b2efdca23a.camel@web.de>
-In-Reply-To: <a1c86a3b83e26d86f95068e8005ce4b2efdca23a.camel@web.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-04-27T09:23:32.645Z;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD
- General; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=1;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard; 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR12MB6307:EE_|DS0PR12MB7780:EE_
-x-ms-office365-filtering-correlation-id: a17b4bac-f66d-42b1-499d-08dea43ea6fb
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|38070700021|56012099003|22082099003|18002099003;
-x-microsoft-antispam-message-info: GCLtmb/9GobH6oxxrr/g9wQEEW7ON8a1gE2n7mWaxJ2AECIOzkC332a6fUEYaKEu3N3ozNy8zkinPDpIzSC6EFLDm1k2+WtKN0AyImZJFyhF5pKQc3gNJRJh8ZzOGhpXwMwc/rWV+lln2NmlmFCySRdoDZl69cspdRmk+MNcYBhKn5MLMGruXIZrcs+V7dI6FQyE5j2AWJAhi/buQwpZg4zecy4hXZWaCfOsHuS2vdaPEJWBtp1YYZRzBinumuaNmCH5UGv7L+ey06NoTu+mYu4vFcouMedPVB7EHRHjIpUgJd22eaTreFL08ZSWaeLGPGEuIEMNOd+vNwS8DY3WXtbQeADccOeznKR5lB/PNc1QRDsbiwKSxJMCJwrWsZiPSWqEA5tFLtXWeckj3NcTHcl7iBVTdL+tX4LKKBIQz2HqQ6FPRu5d/tlhDilq6HGDdbd9txpd0iYY3J4/Zd9ParhUe86zhNO9VTygoplaM66qClFmuPjvNet/NW+gVUS3ndty0Ior8QxjfNlk7WFM9fLPX+1kt5pdxtYmcAt0Ls7GT4Y7XbAPai3RYK4Y/+Vg1sPU0vMhaZuPg+UhsZmZjLJdir+rSAua1PE9L9bTVZBRFCsLLOxoj/iKXD+KT41DAOBy6ul47iUCL2XMLIgjXlc/sQExhq9QLJvHdke2kUEtncxNB0Ez6sN/lQ8dAHI3hkm2oPtkvacA0g7qBeEzq5RyjflhJNVNWH2zVHKPYEjXpCYEQOsRT6gpujIOTNWN+SP5mTqsxD3BTZet7h7/IJAj3PpRnqZCFpaqVM+PXnc=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR12MB6307.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?OiMhnR00wbXuGhbSrS/uE50HgTSnZnvgezWqz5HCFWaV8+nrGhfpJpSKDs?=
- =?iso-8859-1?Q?earahL2exJTtAh5Wg31FLjiJkx72T/c1rr427M4+W89QR6JElzTkC2xUR1?=
- =?iso-8859-1?Q?6HgOKVI7DtQbiWK8xKK/rMIwRHfAkJ56OJm49uWELC0Y3p9Io+QEtUaIK/?=
- =?iso-8859-1?Q?KEtLYfexMRiULFuY7DLMUUqNtpC6pBzb2BYw24Y+cua3SI+kMOKt1HEocz?=
- =?iso-8859-1?Q?uAOl30/I65btpkrNConE004s+2iUMgrIABYx+gauvFq6fFWm0EVso/wPIb?=
- =?iso-8859-1?Q?wwwPRJQn/fZXfhQdJF8TTzo9QYr5ICgp+nzj6sATVyFtHSLlhXab/I1fMn?=
- =?iso-8859-1?Q?lNDnOXMlne/pdGhDjFThbLk9wbm/DhSlnLAsCqRsvZFJkM3+pfxeZ4SU2d?=
- =?iso-8859-1?Q?TpLz1MrB+jbRX8FcBV93cotLR9VDv81PQKxuHLgJ/Tx4cZK0/h9aXn10yG?=
- =?iso-8859-1?Q?9c2AsVJQ4IP+3QP/bqEG/dIVDl+BUfkM5p872/GZRYIKRbAvd2NIJngaIW?=
- =?iso-8859-1?Q?BMvpYnm+KrcWPe8gxEOTzOEUs9P4wKlPVQu/1m2L2GS4FtrfSxPQeITjoI?=
- =?iso-8859-1?Q?Ln0eHJnprfyM5YRNY/e2/A0u1xSTwTbtZp0hzsCbkn+GzMnrZIIl+fcLfD?=
- =?iso-8859-1?Q?pCAtyJrRPvL74LMJqjXhSBkOWsR5z8lafaWMBShCf1cgAaEwwLsKIW03jp?=
- =?iso-8859-1?Q?lf8bMT1xjOGzRQdqcUlmMGRAW3D3gH+1S8zQ6RrrbO4t51n0DFY9Z/xY+0?=
- =?iso-8859-1?Q?xsbOoc6WXrObpCws8pEya5bTv/+kMaXJnwqsTucaW8X9S8dCK1GkiS8GO8?=
- =?iso-8859-1?Q?bT1gMdXUo1wizHgNMtmeLyvxRuqX+vv1b4hEpwgc2EfdLQVkLvnr+nQ1Nk?=
- =?iso-8859-1?Q?CTq3RbhAJX5b+5mwcjzIqRwJVZbrFG8Sx0WDn0UaJMPbtF0+X2krRfR6A4?=
- =?iso-8859-1?Q?dK3pfli7iZrR7no1CU9j4+PKLJ0qFqmi5fiPrmsi43By5uAPumYwb6j8Os?=
- =?iso-8859-1?Q?iSpMoas+OKIHYMNkTFbrgPr7I5/oJZKq+3+s5qKNAEPa1sD+aee9z0uDoN?=
- =?iso-8859-1?Q?SwNPTwXXDZNxWWwMnBLoliMgx/bghZhvnCdlRGHaOt8R6Kx9tX+J+EI1Aq?=
- =?iso-8859-1?Q?oGM5tIQZolctz+Mt3LXQUEbBrJ6HhqbQiGE500dILlnu21x2lK7b+mxqGK?=
- =?iso-8859-1?Q?i0NS0uwXfl1NDB8umKUwygTQy+19++YuiSvU6uBc0HNghN6Mbq9QnZttOO?=
- =?iso-8859-1?Q?hD8vUYU9GaVqW8LIEZNLUflk7ZhYjN66+U6TXquxYC2caial5fXLCc68Ky?=
- =?iso-8859-1?Q?W7nixhvmJ8t87EFTIYlBzLwjcoowxfO4Fm8IswTy+MAdupyiqWyaBT5GeK?=
- =?iso-8859-1?Q?p7swdDWZ17dYIaJFWuRsA6bdmoJ2eQyzmb1xTAEoHUpsxMVsfGrXMzgEHA?=
- =?iso-8859-1?Q?Q/sgk7ZGt9h3lBGTVCAMuEMmUCIUMsjw8DugK7DmMsoXIaxlxd1ywAHfPq?=
- =?iso-8859-1?Q?XX995cuDFPkw/zWFXv/WsD5W5XpyYmyBAMt1GrBa7iTS2Ts4U0bGm9Esvn?=
- =?iso-8859-1?Q?lEhxXG4sZxJfC0vJLu6nRxJ4oAdOHdfXO4ZTlQOtkVFm2d1/xr/QFTLlDB?=
- =?iso-8859-1?Q?nmQKeKSeFT46/1idZHrTpuRSy3HrkCKB35EfmLqFQttDpnNvVzvkYDjp6d?=
- =?iso-8859-1?Q?tu5RG9/VTBRKWPiKPHUMbSe1MbF5wvn//KQk4QqBgYUGbrWRRA0Jc6EXlF?=
- =?iso-8859-1?Q?tASnGBQZacViMITZWOCWLF588Hz0mPTw9p1qexGD8RgHZT?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-Greylist: delayed 535 seconds by postgrey-1.36 at gabe;
+ Mon, 27 Apr 2026 09:44:40 UTC
+Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
+ [188.68.61.107])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 295A810E652
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 09:44:40 +0000 (UTC)
+Received: from mors-relay-8405.netcup.net (localhost [127.0.0.1])
+ by mors-relay-8405.netcup.net (Postfix) with ESMTPS id 4g3z2R48WVz71Rl;
+ Mon, 27 Apr 2026 11:35:43 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
+ s=key2; t=1777282543;
+ bh=WAZl2h4jDPwyDStFG5RaQK5OkI2VUxN4Ha5YU0wrxNU=;
+ h=Date:Subject:To:References:From:Cc:Reply-To:In-Reply-To:From;
+ b=QPoHYnKpfVBaPOc5UWoNMSH4LNGLk+EnLKw2CqVa0HMdrowXkFHJ+VhxtJZTIIS8z
+ aR1W6YK8AbD0NYjnXeCCvFpL4yfGKH8VTCgGr3GHYIdZpNOkWP/Yt74IboqiBQlNa8
+ Hg2PC6N32L90uy0Oj/Ys2ANvlBG9RnZ5OzsRhfiVAezsW17Wp7E1Yex0NUWB/hSjrM
+ ciESgFugKCo0m5OprzVRI3c9QZesVaxQtkIhGgYSQoexVzcodxwZ98VCkw1C9bBUuS
+ ViVy7qkgK7VcHr8BFu8J1Z8529StnfjUvDBxEKP4b8RBS1c2yiFgp9bzO44KhFJBwy
+ cJP94MJfLw3tw==
+Received: from policy02-mors.netcup.net (unknown [46.38.225.35])
+ by mors-relay-8405.netcup.net (Postfix) with ESMTPS id 4g3z2R3SLWz71R1;
+ Mon, 27 Apr 2026 11:35:43 +0200 (CEST)
+Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by policy02-mors.netcup.net (Postfix) with ESMTPS id 4g3z2Q3HFjz8sZh;
+ Mon, 27 Apr 2026 11:35:42 +0200 (CEST)
+Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
+ [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
+ by mxe9fb.netcup.net (Postfix) with ESMTPSA id A8262632B7;
+ Mon, 27 Apr 2026 11:35:41 +0200 (CEST)
+Authentication-Results: mxe9fb;
+ spf=pass (sender IP is 2a02:8108:8984:1d00:a0cf:1912:4be:477f)
+ smtp.mailfrom=regressions@leemhuis.info
+ smtp.helo=[IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f]
+Received-SPF: pass (mxe9fb: connection is authenticated)
+Message-ID: <6c48aff5-b6ee-40af-98f0-c26ded3095bc@leemhuis.info>
+Date: Mon, 27 Apr 2026 11:35:40 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB6307.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a17b4bac-f66d-42b1-499d-08dea43ea6fb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Apr 2026 09:23:32.9216 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xQ6Vg0JDCQlX1Mj2JmvO9vwga/OKUiFBhWpHjHj6YE6opBIb0TdRLxy3hpbIIC/tubxo7rMFcfAbSmuG8mWUbQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7780
+User-Agent: Mozilla Thunderbird
+Subject: Re: [REGRESSION] amdgpu error -22 first encountered in kernel 6.19,
+ not fixed in 7.0
+To: Brandon Taylor <br.ta.2818@gmail.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <CAMYTvdA+yCqU4_9mzMUkX_3S=myExKMBCyB88dYWCMwA1edsrw@mail.gmail.com>
+From: "Linux regression tracking (Thorsten Leemhuis)"
+ <regressions@leemhuis.info>
+Content-Language: de-DE, en-US
+Cc: Linux kernel regressions list <regressions@lists.linux.dev>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Timo Lindfors <timo.lindfors@iki.fi>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <CAMYTvdA+yCqU4_9mzMUkX_3S=myExKMBCyB88dYWCMwA1edsrw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-PPP-Message-ID: <177728254204.278230.6479635209091071276@mxe9fb.netcup.net>
+X-NC-CID: oDMoUf7EhfuY0SViidsRx00FAG2iO8Bu/2zx3SOezkW25uKD0uU=
+X-Mailman-Approved-At: Mon, 27 Apr 2026 12:41:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,66 +88,98 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: E718246FD70
+X-Rspamd-Queue-Id: F2A33472A41
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:spasswolf@web.de,m:Dillon.Varone@amd.com,m:Alex.Hung@amd.com,m:Alexander.Deucher@amd.com,m:bigeasy@linutronix.de,m:tglx@linutronix.de,m:linux-kernel@vger.kernel.org,m:linux-next@vger.kernel.org,m:linux-rt-devel@lists.linux.dev,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[Rafal.Ostrowski@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DMARC_NA(0.00)[leemhuis.info];
+	FORGED_RECIPIENTS(0.00)[m:br.ta.2818@gmail.com,m:linux-kernel@vger.kernel.org,m:regressions@lists.linux.dev,m:alexander.deucher@amd.com,m:timo.lindfors@iki.fi,m:christian.koenig@amd.com,m:brta2818@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[web.de];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[leemhuis.info:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[regressions@lists.linux.dev];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Rafal.Ostrowski@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,IA1PR12MB6307.namprd12.prod.outlook.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.linux.dev:replyto]
 
-27.04.2026, Bert Karwatzki wrote:=0A=
-> So it seems that commit=0A=
-> 8bf0cb97edb6 ("drm/amd/display: Move dml2_destroy to non-FPU compilation =
-unit")=0A=
-> is the commit that fixes the issue, but is missing the appropriate tags:=
-=0A=
-> =0A=
-> Reported-By: Bert Karwatzki <spasswolf@web.de>=0A=
-> Fixes: 3539437f354b ("drm/amd/display: Move FPU Guards From DML To DC - P=
-art 3")=0A=
-> =0A=
-> Please fix this.=0A=
-> =0A=
-> Bert Karwatzki=0A=
-=0A=
-Hi Bert,=0A=
-=0A=
-I am glad to hear that mentioned patch fixed your issue.=0A=
-Small clarification - amdgpu is not designed to support=0A=
-PREEMPT_RT flag, but it was still worth to fix as obvious regression.=0A=
-Sorry for missing tags. Unfortunately change is already merged.=0A=
-I will keep that in mind to add these tags for future changes.=0A=
-=0A=
-Kind Regards,=0A=
-Rafal Ostrowski=
+On 4/26/26 01:22, Brandon Taylor wrote:
+> I have an AMD Radeon R9 270X GPU (yes, I know it's old) which used to
+> default to the `radeon` firmware
+
+FYI, as using the wrong terms can lead to confusion while dealing with
+bugs: that's not a firmware, that's the driver (sometimes also called
+kernel module)
+
+> on kernel versions up to and
+> including 6.18. I could manually change this behavior to use the new
+> `amdgpu` firmware by setting `radeon.si_support=0 amdgpu.si_support=1`
+> as kernel parameters in the GRUB bootloader. Everything worked fine,
+> and I was able to play my Windows games without any problems.
+> 
+> That was, until kernel version 6.19 came out.>
+> 6.19, from what I was able to Google, was supposed to have AMD GPUs to
+> default to the new `amdgpu` firmware. Unfortunately, when I updated
+> the kernel and rebooted, I got a black screen.
+> 
+> Further Google searches led me to reboot, set `nomodeset` in the
+> kernel parameters, switch to a TTY, login, and investigate the output
+> of a `dmesg` command — and what I saw ... Well, let's just say it's
+> the kind of thing that would make Linus go Chernobyl:
+> 
+> `amdgpu: probe with driver amdgpu failed with error -22`
+
+Please provide a full kernel log, this is needed to full understand the
+problem
+
+> And this issue has not been fixed in kernel version 7.0, which I guess
+> is set to be the next LTS kernel.
+
+No, it's not.
+
+> Now, I hope to God that this email finds whoever is responsible for
+> breaking this `amdgpu` firmware before the same thing happens to Linus
+> via Fedora 44, and he goes berserk. I realize that's not a heck of a
+> lot of time, but God only knows HOW many Linux users with AMD GPUs are
+> pissed off by this kind of issue — and I for one can only imagine how
+> Linus' reaction will compare when it happens to HIM!
+
+FWIW, you seem to assume that the problem hits everyone with a AMD GPUs.
+That's not the case, we'd know this by now. Maybe it's not even
+something that hits everyone with a card/gpu like yours, as some falires
+only show up in certain environments, for example in combination with a
+specific mainboard chipset or firmware.
+
+Anyway: I CCed a few people that might be able to help. But they likely
+will need at least the full kernel log mentioned above .
+
+Ciao, Thorsten
