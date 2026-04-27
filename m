@@ -2,117 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0PyjIP+t8GnOWwEAu9opvQ
+	id MDEhNhKu8GnwXAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:23 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:42 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D97EE485324
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6206D4853AE
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B2E410EBEA;
-	Tue, 28 Apr 2026 12:54:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 328F210EBF3;
+	Tue, 28 Apr 2026 12:54:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="hp54kPp8";
+	dkim=pass (2048-bit key; secure) header.d=usp.br header.i=@usp.br header.b="ANz+d50p";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com
- [209.85.167.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BB2A10E8F8
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 19:08:24 +0000 (UTC)
-Received: by mail-lf1-f45.google.com with SMTP id
- 2adb3069b0e04-5a2c7427ad9so10205210e87.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 12:08:24 -0700 (PDT)
+Received: from mail-dl1-f54.google.com (mail-dl1-f54.google.com [74.125.82.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0466310E2CC
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 19:16:11 +0000 (UTC)
+Received: by mail-dl1-f54.google.com with SMTP id
+ a92af1059eb24-12714f01940so779798c88.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 12:16:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1777316902; x=1777921702;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=eo95+vxRQveZjyTXx2nQjz3zXl5qvV2nK5Gunw4PJlE=;
- b=hp54kPp8YnanxPxOAJyD9GH4TWxPaKlyozbBzfFqmnnxwHuDxeWzdGR0BM5sal2Zfm
- x2bj7B6YbkhcRTAAch6ko6G+015Us+N/a+JJsjb6comth2W5SsbojmR/M1LlvPeLQUNW
- lUmuNnbjQAziRxCBgIA12DveoGl9sY5XN8lXI=
+ d=usp.br; s=usp-google; t=1777317371; x=1777922171; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=/gnG/TV4QlirwEhC4yr5r/hW1goyUy/VqJ4SZeh+gDg=;
+ b=ANz+d50pEOgqZW9ADk7BlDe4vHVc5v1KgJrI70JjWOciAvfrDOQFHVnnXef0T4eqiT
+ T8+gAzvVasxJQye+bM/rSvdc1zIpVrClD7ulntQIjPHroxez1zf/+X/BK2Mh/kv2X60j
+ 4g+HUlivWnm21k1pb8wqDzBh1lyDwJ6V75z6E6JemCa3m4K9H2Z1sFe/xK43aLdwtOG/
+ LCIDrs1B5/0BUglNzlsPW7E+bdVJSukR/OAF8p7tPPepJjSo2D4sXlxFulohAEQvCFpM
+ Si+HF3XNa/9G7/LAzE0e9nQhz1hv8dpMI5gGZb2xIfXGIuYm+EXTemp2gZhnph0qZXaP
+ CAGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777316902; x=1777921702;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=1e100.net; s=20251104; t=1777317371; x=1777922171;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=eo95+vxRQveZjyTXx2nQjz3zXl5qvV2nK5Gunw4PJlE=;
- b=H2ARw95cdIeV3q+Gp44vEYQdHXmTS5ZuUsIYyna11YjutnIto1ZhZUdCdsvRab+xai
- WAskkns/gbxUHIO5CN8P3SOldQkgtxYX5W7LTW8Hp1AlNghh7WhPJgVPPffzlrf/BKhb
- lAwHqTRYnUV9CisjVY/r3VjfmN9UsxbTjEAg7CJ3gczbAxTuCDQZQB/uZVtlI/YyaKxi
- hwne4Gksv49WwackhQeqhf3Uh5VaHVMmwktU9hWDsxioxou7YHqltsLhnhiQe+HEmA+R
- ndA/lXbGOH9p6vv1C52GIWEAVe65B9tauoG21WXNk7ib47zmUhQSah8s0qrK54rzQsVc
- KI2Q==
+ bh=/gnG/TV4QlirwEhC4yr5r/hW1goyUy/VqJ4SZeh+gDg=;
+ b=nD3X9hVPS5MmjNNDITWXlitz2Orbhp6woMD6P+PZiHt/y7zP/Pfjf7lP52EXnnD3Yt
+ KMjiC5O3XMYaDBGa3taar0gZ0GicGSnZq/nEpA4iQyD7u9QAqtEE01qx6dEgHk27xGTB
+ pK7f1Z5ThIELHIoUJxniIKgMOUQcbzxUn2S78E2caQ/XN5EnTAwX3SO2/1D4AxC6lkBZ
+ srafop6ddxiuTVdcqoprc87KkXZ5KVeiUFejlJ+UddTGW33dDUtDYH/ktjmmYkm2hZKi
+ gaI6PJdFnC0Oa4OWWdYhTWbduER6oHBbQXxJHAf63kSRcbJGW0EhG6SiztKvJkAGNFtz
+ FawA==
 X-Forwarded-Encrypted: i=1;
- AFNElJ+NYdoAkkHef4AT5JJ56YIi30mWxF3UtxMs0/v/k8P/lyfyJVbUl8ETSkcPy2cImxmZNdP4tQ8Z@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywb0ABUYgJtsQsRj2S3xn49SloHFap5D1liAM3QxwsDTRUKsnBk
- pUl9pur/WxfXIZzRMG9Zvildimc7FJPxNmLO7N9p4Ov35QQP8DjTTGlZZ2sRiqfFMq7K13xb1x8
- qQKkzIx/3SA==
-X-Gm-Gg: AeBDiesxaUXMgHavv00ncKBwSJAhFmmsLURzz6dxLx7q46XCegxnZs7aC5RtpNGtW8C
- V7gNkS9njSIcVmHz1iUMR1CpcUV6njJbNFlyCQlRjbDY2wEg2uv/t7mI5DiGOy6b+zTx6Mtem3I
- cAe7+2ic36XtNHM9tcHdJoJzn2kytPLNGqSG05IUbAom5hpxqhxJhCnwwj20HqUaSIdJjaQbjSc
- l6WcdZvEgdZ2Y7kREAk1NJGGLIBAXqwBvZd5hNIyHPir7xI9nh9rLM3VKR8fb729PR+S8DLVauH
- o12P1LnL3eObaN5GMg7tbGFjk83EYmPKSlLFBemL/1DooZ7jg8isOihs/rL2doM4kftPMudRd94
- Nv3jCprgI7ekESr0TEjiB4pBt1KSoUS+QEL6sUNfRDnzT6jjPWvAQyXRt43hKXHzgR4VKtBHru0
- r0iqyo1VsELoOq3QLcfccjVRBsgY3R0rYgjXlk19ACbCkT5uCOVrqHmH0/n1R1RFk4QK1tT2YBD
- IT2mROV4+4=
-X-Received: by 2002:a05:6512:33cf:b0:5a2:ca1d:8ea8 with SMTP id
- 2adb3069b0e04-5a7466238a4mr39300e87.25.1777316902217; 
- Mon, 27 Apr 2026 12:08:22 -0700 (PDT)
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com.
- [209.85.167.54]) by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a7463f5f4bsm17508e87.49.2026.04.27.12.08.21
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 27 Apr 2026 12:08:21 -0700 (PDT)
-Received: by mail-lf1-f54.google.com with SMTP id
- 2adb3069b0e04-5a2c7427ad9so10205186e87.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 12:08:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AFNElJ/Gp7Hn/hHPp1SMqsh+BxS2HUkX8x0pONrrs3sCysRyMHU77PteWbZwCHgMgIt/xnxGODzfcFVA@lists.freedesktop.org
-X-Received: by 2002:a17:907:9495:b0:ba3:a8ef:3597 with SMTP id
- a640c23a62f3a-bb80443c92emr2812866b.25.1777316502372; Mon, 27 Apr 2026
- 12:01:42 -0700 (PDT)
+ AFNElJ/A8lV+iC8Yz155386giHj0nSnME/OXECo8hU5zEUbMpXCYgc4oTMTIZgcm0G5G7UGizKBDWNsK@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzCJHWkZbxJT78rlCMqYyouK5wAbsw9jDZbRLVl30nEDChVHpoC
+ QyZthvkOkxDpg9zNUFFt9hKtvzuDMAleyoiYqKU9Fpa+vv5XizOM7q8UutDFT7Em/xQ=
+X-Gm-Gg: AeBDietuYMdAI78wh4r4bvuKhYXYDeO9OzlhCFJ6t6jiCXmSte0dAGIQD4BeZIZvhSP
+ bX4Zkx46MAfJv/wisOClFxtW6NPtbB9tkbwLr+HOwe6RIowNPjnTYD7E8Sm3yG4stoyxXl/hRb5
+ Nu4fR+/JkhD+UhOqep21c7I7MgrxiZaKE2ypoaabF7r4/1fqPPiZ+Erw3HumrJu9aD9JZsx6daV
+ A0w7MJE1DIu2/NA85uLHhul8uEo1obQTCyB/XY1hFOXf6B2W/1D1RYKzYLe7oltk3dw6ZVKa+cG
+ 7cFtFQMvg/wuNAhgCpGn5Y24pZwGneCefftWeVnEbm3KQt69Knkp/k21CYiQxv+ekq6D+GrxMKw
+ nyIE2C5HZDk4gHU9u9rkuhrS0AE1lJAtMAdh5cJj6e+nCgbutq8u7MUgnSXwWpr1FMBQwhhxqiI
+ QkOCbCLjkbtZmIJrmi6ZXFUForwPk3M3yMcdwG9Gq4VhNRW49v3oVpUax4hZFe
+X-Received: by 2002:a05:7022:f8c:b0:12d:b4e2:f566 with SMTP id
+ a92af1059eb24-12ddd539d5cmr109672c88.4.1777317370737; 
+ Mon, 27 Apr 2026 12:16:10 -0700 (PDT)
+Received: from Haru.. ([2804:1b1:f983:1702:93e0:14bb:90e7:dc5e])
+ by smtp.gmail.com with ESMTPSA id
+ a92af1059eb24-12ddd9b1e3bsm144583c88.13.2026.04.27.12.16.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 27 Apr 2026 12:16:09 -0700 (PDT)
+From: Leonardo Cesar <leonardocesar@usp.br>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: Leonardo Cesar <leonardocesar@usp.br>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v3] drm/amdgpu: deduplicate ring preempt ib function
+Date: Mon, 27 Apr 2026 16:15:19 -0300
+Message-ID: <20260427191556.9672-1-leonardocesar@usp.br>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <cover.1777306795.git.chleroy@kernel.org>
- <289b424e243ba2c4139ea04009cf8b9c448a87ff.1777306795.git.chleroy@kernel.org>
-In-Reply-To: <289b424e243ba2c4139ea04009cf8b9c448a87ff.1777306795.git.chleroy@kernel.org>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 27 Apr 2026 12:01:23 -0700
-X-Gmail-Original-Message-ID: <CAHk-=whC1DZojwdMB1=sJWG2=dsCdfyU8N6tDE1qx50HRZ-WJQ@mail.gmail.com>
-X-Gm-Features: AVHnY4JOOuu1ghb35GF5M7sO3SAfkj4A7WtLiFNY579kWyh92WWRKfW5QE_KjRI
-Message-ID: <CAHk-=whC1DZojwdMB1=sJWG2=dsCdfyU8N6tDE1qx50HRZ-WJQ@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 5/9] uaccess: Switch to
- copy_{to/from}_user_partial() when relevant
-To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-Cc: Yury Norov <ynorov@nvidia.com>, Andrew Morton <akpm@linux-foundation.org>, 
- David Laight <david.laight.linux@gmail.com>,
- Thomas Gleixner <tglx@linutronix.de>, 
- linux-alpha@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-snps-arc@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- kvm@vger.kernel.org, linux-riscv@lists.infradead.org, 
- linux-s390@vger.kernel.org, sparclinux@vger.kernel.org, 
- linux-um@lists.infradead.org, dmaengine@vger.kernel.org, 
- linux-efi@vger.kernel.org, linux-fsi@lists.ozlabs.org, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, linux-wpan@vger.kernel.org, 
- netdev@vger.kernel.org, linux-wireless@vger.kernel.org, 
- linux-spi@vger.kernel.org, linux-media@vger.kernel.org, 
- linux-staging@lists.linux.dev, linux-serial@vger.kernel.org, 
- linux-usb@vger.kernel.org, xen-devel@lists.xenproject.org, 
- linux-fsdevel@vger.kernel.org, ocfs2-devel@lists.linux.dev, 
- bpf@vger.kernel.org, kasan-dev@googlegroups.com, linux-mm@kvack.org, 
- linux-x25@vger.kernel.org, rust-for-linux@vger.kernel.org, 
- linux-sound@vger.kernel.org, sound-open-firmware@alsa-project.org, 
- linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org, 
- loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org, 
- linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org, 
- linux-sh@vger.kernel.org, linux-arch@vger.kernel.org
-Content-Type: multipart/mixed; boundary="000000000000c765e2065075bee2"
-X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:20 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,282 +90,275 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D97EE485324
+X-Rspamd-Queue-Id: 6206D4853AE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.79 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	R_DKIM_ALLOW(-0.20)[linux-foundation.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.29 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_BASE64_TEXT(0.10)[];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain,text/x-patch];
+	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:chleroy@kernel.org,m:ynorov@nvidia.com,m:akpm@linux-foundation.org,m:david.laight.linux@gmail.com,m:tglx@linutronix.de,m:linux-alpha@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-snps-arc@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mips@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:kvm@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-s390@vger.kernel.org,m:sparclinux@vger.kernel.org,m:linux-um@lists.infradead.org,m:dmaengine@vger.kernel.org,m:linux-efi@vger.kernel.org,m:linux-fsi@lists.ozlabs.org,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:linux-wpan@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:linux-spi@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-staging@lists.linux.dev,m:linux-serial@vger.kernel.org,m:linux-usb@vger.kernel.org,m:xen-devel@lists.xenproject.org,m:linux-fsdevel@vger.kernel.org,m:ocfs2-devel@lists.linux.dev,m:bpf@vger.kernel.org,m:k
- asan-dev@googlegroups.com,m:linux-mm@kvack.org,m:linux-x25@vger.kernel.org,m:rust-for-linux@vger.kernel.org,m:linux-sound@vger.kernel.org,m:sound-open-firmware@alsa-project.org,m:linux-csky@vger.kernel.org,m:linux-hexagon@vger.kernel.org,m:loongarch@lists.linux.dev,m:linux-m68k@lists.linux-m68k.org,m:linux-openrisc@vger.kernel.org,m:linux-parisc@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-arch@vger.kernel.org,m:davidlaightlinux@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[linux-foundation.org];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[48];
-	FORGED_SENDER(0.00)[torvalds@linux-foundation.org,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[nvidia.com,linux-foundation.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org,lists.linux-m68k.org];
-	HAS_ATTACHMENT(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:leonardocesar@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[torvalds@linux-foundation.org,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[linux-foundation.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER(0.00)[leonardocesar@usp.br,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[leonardocesar@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[usp.br:+];
+	NEURAL_HAM(-0.00)[-0.977];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux-foundation.org:dkim]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,usp.br:email,usp.br:dkim,usp.br:mid]
 
---000000000000c765e2065075bee2
-Content-Type: text/plain; charset="UTF-8"
+The ring preemption function is identical for both gfx_v11_0 and
+gfx_v12_0. This patch refactors the code by moving the core logic
+into a generic function inside amdgpu_gfx.c to reduce code
+duplication and simplify future maintenance.
 
-On Mon, 27 Apr 2026 at 10:18, Christophe Leroy (CS GROUP)
-<chleroy@kernel.org> wrote:
->
-> In a subsequent patch, copy_{to/from}_user() will be modified to
-> return -EFAULT when copy fails.
+Signed-off-by: Leonardo Cesar <leonardocesar@usp.br>
 
-Please don't do this.
+---
+v2 -> v3:
+- Style fix: Move variable declarations to follow reverse christmas tree and do not initialize 'r' on definition.
 
-This is a maintenance nightmare, and changes pretty much three decades
-of semantics, and will cause *very* subtle backporting issues if
-somebody happens to rely on the old / new behavior.
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | ...
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 53 +++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 +
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 52 +-----------------------
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  | 52 +-----------------------
+ 4 files changed, 57 insertions(+), 102 deletions(-)
 
-I understand the reasoning for the change, but I really don't think
-the pain of creating yet another user copy interface is worth it.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index 2956e45c9..45d41f24d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -2684,3 +2684,56 @@ void amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev)
+ #endif
+ }
+ 
++int amdgpu_gfx_ring_preempt_ib(struct amdgpu_ring *ring)
++{
++	struct amdgpu_device *adev = ring->adev;
++	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
++	struct amdgpu_ring *kiq_ring = &kiq->ring;
++	unsigned long flags;
++	int i, r;
++
++	r = 0;
++
++	if (adev->enable_mes)
++		return -EINVAL;
++
++	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
++		return -EINVAL;
++
++	spin_lock_irqsave(&kiq->ring_lock, flags);
++
++	if (amdgpu_ring_alloc(kiq_ring, kiq->pmf->unmap_queues_size)) {
++		spin_unlock_irqrestore(&kiq->ring_lock, flags);
++		return -ENOMEM;
++	}
++
++	/* assert preemption condition */
++	amdgpu_ring_set_preempt_cond_exec(ring, false);
++
++	/* assert IB preemption, emit the trailing fence */
++	kiq->pmf->kiq_unmap_queues(kiq_ring, ring, PREEMPT_QUEUES_NO_UNMAP,
++					ring->trail_fence_gpu_addr,
++					++ring->trail_seq);
++	amdgpu_ring_commit(kiq_ring);
++
++	spin_unlock_irqrestore(&kiq->ring_lock, flags);
++
++	/* poll the trailing fence */
++	for (i = 0; i < adev->usec_timeout; i++) {
++		if (ring->trail_seq ==
++			le32_to_cpu(*(ring->trail_fence_cpu_addr)))
++			break;
++		udelay(1);
++	}
++
++	if (i >= adev->usec_timeout) {
++		r = -EINVAL;
++		DRM_ERROR("ring %d failed to preempt ib\n", ring->idx);
++	}
++
++	/* deassert preemption condition */
++	amdgpu_ring_set_preempt_cond_exec(ring, true);
++	return r;
++}
++
++
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index a0cf0a3b4..77050f988 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -664,6 +664,8 @@ void amdgpu_gfx_csb_preamble_end(u32 *buffer, u32 count);
+ void amdgpu_debugfs_gfx_sched_mask_init(struct amdgpu_device *adev);
+ void amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev);
+ 
++int amdgpu_gfx_ring_preempt_ib(struct amdgpu_ring *ring);
++
+ static inline const char *amdgpu_gfx_compute_mode_desc(int mode)
+ {
+ 	switch (mode) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+index 5097de940..1ba848bfa 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+@@ -6206,56 +6206,6 @@ static void gfx_v11_0_ring_emit_gfx_shadow(struct amdgpu_ring *ring,
+ 	ring->set_q_mode_offs = offs;
+ }
+ 
+-static int gfx_v11_0_ring_preempt_ib(struct amdgpu_ring *ring)
+-{
+-	int i, r = 0;
+-	struct amdgpu_device *adev = ring->adev;
+-	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
+-	struct amdgpu_ring *kiq_ring = &kiq->ring;
+-	unsigned long flags;
+-
+-	if (adev->enable_mes)
+-		return -EINVAL;
+-
+-	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
+-		return -EINVAL;
+-
+-	spin_lock_irqsave(&kiq->ring_lock, flags);
+-
+-	if (amdgpu_ring_alloc(kiq_ring, kiq->pmf->unmap_queues_size)) {
+-		spin_unlock_irqrestore(&kiq->ring_lock, flags);
+-		return -ENOMEM;
+-	}
+-
+-	/* assert preemption condition */
+-	amdgpu_ring_set_preempt_cond_exec(ring, false);
+-
+-	/* assert IB preemption, emit the trailing fence */
+-	kiq->pmf->kiq_unmap_queues(kiq_ring, ring, PREEMPT_QUEUES_NO_UNMAP,
+-				   ring->trail_fence_gpu_addr,
+-				   ++ring->trail_seq);
+-	amdgpu_ring_commit(kiq_ring);
+-
+-	spin_unlock_irqrestore(&kiq->ring_lock, flags);
+-
+-	/* poll the trailing fence */
+-	for (i = 0; i < adev->usec_timeout; i++) {
+-		if (ring->trail_seq ==
+-		    le32_to_cpu(*(ring->trail_fence_cpu_addr)))
+-			break;
+-		udelay(1);
+-	}
+-
+-	if (i >= adev->usec_timeout) {
+-		r = -EINVAL;
+-		DRM_ERROR("ring %d failed to preempt ib\n", ring->idx);
+-	}
+-
+-	/* deassert preemption condition */
+-	amdgpu_ring_set_preempt_cond_exec(ring, true);
+-	return r;
+-}
+-
+ static void gfx_v11_0_ring_emit_de_meta(struct amdgpu_ring *ring, bool resume)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+@@ -7295,7 +7245,7 @@ static const struct amdgpu_ring_funcs gfx_v11_0_ring_funcs_gfx = {
+ 	.emit_cntxcntl = gfx_v11_0_ring_emit_cntxcntl,
+ 	.emit_gfx_shadow = gfx_v11_0_ring_emit_gfx_shadow,
+ 	.init_cond_exec = gfx_v11_0_ring_emit_init_cond_exec,
+-	.preempt_ib = gfx_v11_0_ring_preempt_ib,
++	.preempt_ib = amdgpu_gfx_ring_preempt_ib,
+ 	.emit_frame_cntl = gfx_v11_0_ring_emit_frame_cntl,
+ 	.emit_wreg = gfx_v11_0_ring_emit_wreg,
+ 	.emit_reg_wait = gfx_v11_0_ring_emit_reg_wait,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+index 65c33823a..6cf244349 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+@@ -4611,56 +4611,6 @@ static unsigned gfx_v12_0_ring_emit_init_cond_exec(struct amdgpu_ring *ring,
+ 	return ret;
+ }
+ 
+-static int gfx_v12_0_ring_preempt_ib(struct amdgpu_ring *ring)
+-{
+-	int i, r = 0;
+-	struct amdgpu_device *adev = ring->adev;
+-	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
+-	struct amdgpu_ring *kiq_ring = &kiq->ring;
+-	unsigned long flags;
+-
+-	if (adev->enable_mes)
+-		return -EINVAL;
+-
+-	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
+-		return -EINVAL;
+-
+-	spin_lock_irqsave(&kiq->ring_lock, flags);
+-
+-	if (amdgpu_ring_alloc(kiq_ring, kiq->pmf->unmap_queues_size)) {
+-		spin_unlock_irqrestore(&kiq->ring_lock, flags);
+-		return -ENOMEM;
+-	}
+-
+-	/* assert preemption condition */
+-	amdgpu_ring_set_preempt_cond_exec(ring, false);
+-
+-	/* assert IB preemption, emit the trailing fence */
+-	kiq->pmf->kiq_unmap_queues(kiq_ring, ring, PREEMPT_QUEUES_NO_UNMAP,
+-				   ring->trail_fence_gpu_addr,
+-				   ++ring->trail_seq);
+-	amdgpu_ring_commit(kiq_ring);
+-
+-	spin_unlock_irqrestore(&kiq->ring_lock, flags);
+-
+-	/* poll the trailing fence */
+-	for (i = 0; i < adev->usec_timeout; i++) {
+-		if (ring->trail_seq ==
+-		    le32_to_cpu(*(ring->trail_fence_cpu_addr)))
+-			break;
+-		udelay(1);
+-	}
+-
+-	if (i >= adev->usec_timeout) {
+-		r = -EINVAL;
+-		DRM_ERROR("ring %d failed to preempt ib\n", ring->idx);
+-	}
+-
+-	/* deassert preemption condition */
+-	amdgpu_ring_set_preempt_cond_exec(ring, true);
+-	return r;
+-}
+-
+ static void gfx_v12_0_ring_emit_rreg(struct amdgpu_ring *ring, uint32_t reg,
+ 				     uint32_t reg_val_offs)
+ {
+@@ -5539,7 +5489,7 @@ static const struct amdgpu_ring_funcs gfx_v12_0_ring_funcs_gfx = {
+ 	.pad_ib = amdgpu_ring_generic_pad_ib,
+ 	.emit_cntxcntl = gfx_v12_0_ring_emit_cntxcntl,
+ 	.init_cond_exec = gfx_v12_0_ring_emit_init_cond_exec,
+-	.preempt_ib = gfx_v12_0_ring_preempt_ib,
++	.preempt_ib = amdgpu_gfx_ring_preempt_ib,
+ 	.emit_wreg = gfx_v12_0_ring_emit_wreg,
+ 	.emit_reg_wait = gfx_v12_0_ring_emit_reg_wait,
+ 	.emit_reg_write_reg_wait = gfx_v12_0_ring_emit_reg_write_reg_wait,
+-- 
+2.43.0
 
-We already have a lot of different versions of user copies for
-different reasons, and while they all tend to have a good reason (and
-some not-so-good, but historical reasons) for existing, this one
-doesn't seem worth it.
-
-The main - perhaps only - reason for this "partial" version is that
-you want to do that "automatically inlined and optimized fixed-sized
-case".
-
-But here's the thing: I think you can already do that. Yes, it
-requires some improvements to unsafe_copy_from_user(), but *that*
-interface doesn't have three decades of history associated with it,
-_and_ you're extending on that one anyway in this series.
-
-"unsafe_copy_from_user()" is very odd, is meant only for small simple
-copies that can be inlined and it's special-cased for 'objtool' anyway
-(because objtool would have complained about an out-of-line call,
-although it could have been special-cased other ways).
-
-In other words: unsafe_copy_from_user() is *very* close to what you
-want for that "Oh, I noticed that it's a small fixed-size copy, so I
-want to special-case copy-from-user for that".
-
-The _only_ issue with unsafe_copy_from_user() is that you can't see
-that there were partial successes. But if *that* was fixed, then this
-whole "create a new copy_from_user interface" issue would just go
-away.
-
-So please - let's just change unsafe_copy_from_user() to be usable for
-the partial case.
-
-And the thing is, all the existing unsafe_copy_from_user()
-implementations already effectively *have* the "how much did I not
-copy" internally, and they actually do extra work to hide it, ie they
-have things like that
-
-        int _i;
-
-that is "how many bytes have I copied" in the powerpc implementation,
-or the x86 code does
-
-        size_t __ucu_len = (_len);
-
-where that "ucu_len" is updated as you go along and is literally the
-"how many bytes are left to copy" return value that is missing from
-this interface.
-
-So what I would suggest is
-
- - introduce a new user accessor helper that is used for *both*
-unsafe_copy_to/from_user() *and* the "inline small constant-sized
-normal copy_to/from_user()" calls
-
- - it's the same thing as the existing  unsafe_copy_to/from_user()
-implementation, except it exposes how many bytes are left to be copied
-to the exception label.
-
-IOW, it would look something like
-
-     #define unsafe_copy_to_user_outlen(_dst,_src,_len,label)...
-
-which is exactly the same as the current unsafe_copy_to_user(),
-*except* it changes "_len" as it does along.
-
-And then you use that for both the "real" unsafe_copy_user and for the
-"small constant values" case.
-
-Just as an example, attached is a completely stupid rough draft of a
-patch that does this for x86 and only for unsafe_copy_to_user().
-
-And I made a very very hacky change to kernel/sys.c to see what the
-code generation looks like.
-
-This is what it results in on x86 with clang (with all the magic
-.section data edited out):
-
-        ... edited out the code to generate the times
-        ... this is the actual user copy:
-        # HERE!
-        movabsq $81985529216486895, %rcx        # imm = 0x123456789ABCDEF
-        cmpq    %rcx, %rbx
-        cmovaq  %rcx, %rbx
-        stac
-        movq    %r13, (%rbx)                    # exception to .LBB45_8
-        movq    %r14, 8(%rbx)                   # exception to .LBB45_8
-        movq    %r15, 16(%rbx)                  # exception to .LBB45_8
-        movq    %rax, 24(%rbx)                  # exception to .LBB45_8
-        clac
-.LBB45_6:
-        movq    jiffies(%rip), %rdi
-        callq   jiffies_64_to_clock_t
-.LBB45_7:
-        addq    $16, %rsp
-        popq    %rbx
-        popq    %r12
-        popq    %r13
-        popq    %r14
-        popq    %r15
-        retq
-.LBB45_8:
-        clac
-        movq    $-14, %rax
-        jmp     .LBB45_7
-
-and notice how the compiler noticed that the 'outlen' isn't actually
-used, and turned the exception label into just a "return -EFAULT" and
-never actually generated any code for updating remaining lengths?
-
-That actually looks pretty much optimal for a 32-byte user copy.
-
-And it didn't involve changing the semantics at all.
-
-Just to check, I changed that "times()" system call to return the
-number of bytes uncopied instead (to emulate the "I actually want to
-know what's left" case), and it generated this:
-
-        # HERE!
-        movabsq $81985529216486895, %rcx        # imm = 0x123456789ABCDEF
-        cmpq    %rcx, %rbx
-        cmovaq  %rcx, %rbx
-        stac
-        movl    $32, %ecx
-        movq    %r13, (%rbx)                    # exception to .LBB45_7
-        movl    $24, %ecx
-        movq    %r15, 8(%rbx)                   # exception to .LBB45_7
-        movl    $16, %ecx
-        movq    %r14, 16(%rbx)                  # exception to .LBB45_7
-        movl    $8, %ecx
-        movq    %rax, 24(%rbx)                  # exception to .LBB45_7
-        clac
-        xorl    %ecx, %ecx
-.LBB45_8:
-        movq    %rcx, %rax
-        addq    $16, %rsp
-        popq    %rbx
-        popq    %r12
-        popq    %r13
-        popq    %r14
-        popq    %r15
-        retq
-.LBB45_6:
-        movq    jiffies(%rip), %rdi
-        jmp     jiffies_64_to_clock_t           # TAILCALL
-.LBB45_7:
-        clac
-        jmp     .LBB45_8
-
-so it all seems to work - although obviously the above is *not* the normal case.
-
-NOTE NOTE NOTE! The attached patch is entirely untested. I obviously
-did some "test code generation" with it, but I only *looked* at the
-result, and maybe it has some fundamental problem that I just didn't
-notice. So treat this as a "how about this approach" patch, not as
-anything more serious than that.
-
-And the kerrnel/sys.c hack is very obviously just that: a complate
-hack for testing.
-
-A real patch would do that "for small constant-sized copies, turn
-copy_to_user() automatically into "_small_copy_to_user()".
-
-The attached is *not* a real patch. Treat it with the contempt it deserves.
-
-             Linus
-
---000000000000c765e2065075bee2
-Content-Type: text/x-patch; charset="US-ASCII"; name="patch.diff"
-Content-Disposition: attachment; filename="patch.diff"
-Content-Transfer-Encoding: base64
-Content-ID: <f_mohk3mm10>
-X-Attachment-Id: f_mohk3mm10
-
-IGFyY2gveDg2L2luY2x1ZGUvYXNtL3VhY2Nlc3MuaCB8IDE3ICsrKysrKysrKysrLS0tLS0tCiBp
-bmNsdWRlL2xpbnV4L3VhY2Nlc3MuaCAgICAgICAgfCAxNiArKysrKysrKysrKysrKysrCiBrZXJu
-ZWwvc3lzLmMgICAgICAgICAgICAgICAgICAgfCAgMyArKy0KIDMgZmlsZXMgY2hhbmdlZCwgMjkg
-aW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9hcmNoL3g4Ni9pbmNs
-dWRlL2FzbS91YWNjZXNzLmggYi9hcmNoL3g4Ni9pbmNsdWRlL2FzbS91YWNjZXNzLmgKaW5kZXgg
-M2EwZGQzYzJiMjMzLi4zYjJjNTdjOTE0MTggMTAwNjQ0Ci0tLSBhL2FyY2gveDg2L2luY2x1ZGUv
-YXNtL3VhY2Nlc3MuaAorKysgYi9hcmNoL3g4Ni9pbmNsdWRlL2FzbS91YWNjZXNzLmgKQEAgLTYw
-NiwxNSArNjA2LDIwIEBAIF9sYWJlbDoJCQkJCQkJCQlcCiAJCWxlbiAtPSBzaXplb2YodHlwZSk7
-CQkJCQkJXAogCX0KIAotI2RlZmluZSB1bnNhZmVfY29weV90b191c2VyKF9kc3QsX3NyYyxfbGVu
-LGxhYmVsKQkJCVwKKyNkZWZpbmUgdW5zYWZlX2NvcHlfdG9fdXNlcl9vdXRsZW4oX2RzdCxfc3Jj
-LF9sZW4sbGFiZWwpCVwKIGRvIHsJCQkJCQkJCQlcCiAJY2hhciBfX3VzZXIgKl9fdWN1X2RzdCA9
-IChfZHN0KTsJCQkJXAogCWNvbnN0IGNoYXIgKl9fdWN1X3NyYyA9IChfc3JjKTsJCQkJCVwKLQlz
-aXplX3QgX191Y3VfbGVuID0gKF9sZW4pOwkJCQkJXAotCXVuc2FmZV9jb3B5X2xvb3AoX191Y3Vf
-ZHN0LCBfX3VjdV9zcmMsIF9fdWN1X2xlbiwgdTY0LCBsYWJlbCk7CVwKLQl1bnNhZmVfY29weV9s
-b29wKF9fdWN1X2RzdCwgX191Y3Vfc3JjLCBfX3VjdV9sZW4sIHUzMiwgbGFiZWwpOwlcCi0JdW5z
-YWZlX2NvcHlfbG9vcChfX3VjdV9kc3QsIF9fdWN1X3NyYywgX191Y3VfbGVuLCB1MTYsIGxhYmVs
-KTsJXAotCXVuc2FmZV9jb3B5X2xvb3AoX191Y3VfZHN0LCBfX3VjdV9zcmMsIF9fdWN1X2xlbiwg
-dTgsIGxhYmVsKTsJXAorCXVuc2FmZV9jb3B5X2xvb3AoX191Y3VfZHN0LCBfX3VjdV9zcmMsIF9s
-ZW4sIHU2NCwgbGFiZWwpOwlcCisJdW5zYWZlX2NvcHlfbG9vcChfX3VjdV9kc3QsIF9fdWN1X3Ny
-YywgX2xlbiwgdTMyLCBsYWJlbCk7CVwKKwl1bnNhZmVfY29weV9sb29wKF9fdWN1X2RzdCwgX191
-Y3Vfc3JjLCBfbGVuLCB1MTYsIGxhYmVsKTsJXAorCXVuc2FmZV9jb3B5X2xvb3AoX191Y3VfZHN0
-LCBfX3VjdV9zcmMsIF9sZW4sIHU4LCBsYWJlbCk7CVwKK30gd2hpbGUgKDApCisKKyNkZWZpbmUg
-dW5zYWZlX2NvcHlfdG9fdXNlcihfZHN0LF9zcmMsX2xlbixsYWJlbCkJCQlcCitkbyB7CQkJCQkJ
-CQkJXAorCXNpemVfdCBfX3VjdV9sZW4gPSBfbGVuOwkJCQkJXAorCXVuc2FmZV9jb3B5X3RvX3Vz
-ZXJfb3V0bGVuKF9kc3QsX3NyYyxfX3VjdV9sZW4sbGFiZWwpOwkJXAogfSB3aGlsZSAoMCkKIAog
-I2lmZGVmIENPTkZJR19DQ19IQVNfQVNNX0dPVE9fT1VUUFVUCmRpZmYgLS1naXQgYS9pbmNsdWRl
-L2xpbnV4L3VhY2Nlc3MuaCBiL2luY2x1ZGUvbGludXgvdWFjY2Vzcy5oCmluZGV4IDU2MzI4NjAx
-MjE4Yy4uMWE3MGVmNzA3ODRjIDEwMDY0NAotLS0gYS9pbmNsdWRlL2xpbnV4L3VhY2Nlc3MuaAor
-KysgYi9pbmNsdWRlL2xpbnV4L3VhY2Nlc3MuaApAQCAtODc0LDQgKzg3NCwyMCBAQCB2b2lkIF9f
-bm9yZXR1cm4gdXNlcmNvcHlfYWJvcnQoY29uc3QgY2hhciAqbmFtZSwgY29uc3QgY2hhciAqZGV0
-YWlsLAogCQkJICAgICAgIHVuc2lnbmVkIGxvbmcgbGVuKTsKICNlbmRpZgogCitzdGF0aWMgX19h
-bHdheXNfaW5saW5lIF9fbXVzdF9jaGVjayB1bnNpZ25lZCBsb25nCitfc21hbGxfY29weV90b191
-c2VyKHZvaWQgX191c2VyICp0bywgY29uc3Qgdm9pZCAqZnJvbSwgdW5zaWduZWQgbG9uZyBuKQor
-eworCXNpemVfdCB1bmNvcGllZCA9IG47CisKKwltaWdodF9mYXVsdCgpOworCWlmIChzaG91bGRf
-ZmFpbF91c2VyY29weSgpKQorCQlyZXR1cm4gbjsKKwlpbnN0cnVtZW50X2NvcHlfdG9fdXNlcih0
-bywgZnJvbSwgbik7CisJc2NvcGVkX3VzZXJfd3JpdGVfYWNjZXNzX3NpemUodG8sIG4sIGZhaWxl
-ZCkKKwkJdW5zYWZlX2NvcHlfdG9fdXNlcl9vdXRsZW4odG8sIGZyb20sIHVuY29waWVkLCBmYWls
-ZWQpOworCXJldHVybiAwOworZmFpbGVkOgorICAgICAgIHJldHVybiB1bmNvcGllZDsKK30KKwog
-I2VuZGlmCQkvKiBfX0xJTlVYX1VBQ0NFU1NfSF9fICovCmRpZmYgLS1naXQgYS9rZXJuZWwvc3lz
-LmMgYi9rZXJuZWwvc3lzLmMKaW5kZXggNjJlODQyMDU1Y2M5Li42NWIyZDAxMDNhNzMgMTAwNjQ0
-Ci0tLSBhL2tlcm5lbC9zeXMuYworKysgYi9rZXJuZWwvc3lzLmMKQEAgLTEwNjcsNyArMTA2Nyw4
-IEBAIFNZU0NBTExfREVGSU5FMSh0aW1lcywgc3RydWN0IHRtcyBfX3VzZXIgKiwgdGJ1ZikKIAkJ
-c3RydWN0IHRtcyB0bXA7CiAKIAkJZG9fc3lzX3RpbWVzKCZ0bXApOwotCQlpZiAoY29weV90b191
-c2VyKHRidWYsICZ0bXAsIHNpemVvZihzdHJ1Y3QgdG1zKSkpCisJCWFzbSB2b2xhdGlsZSgiIyBI
-RVJFISIpOworCQlpZiAoX3NtYWxsX2NvcHlfdG9fdXNlcih0YnVmLCAmdG1wLCBzaXplb2Yoc3Ry
-dWN0IHRtcykpKQogCQkJcmV0dXJuIC1FRkFVTFQ7CiAJfQogCWZvcmNlX3N1Y2Nlc3NmdWxfc3lz
-Y2FsbF9yZXR1cm4oKTsK
---000000000000c765e2065075bee2--
