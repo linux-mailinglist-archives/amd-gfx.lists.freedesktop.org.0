@@ -2,80 +2,111 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QFSHKmtZ72n5AQEAu9opvQ
+	id yK3hIPk072kw+AAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 14:41:15 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 12:05:45 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C021472A42
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 14:41:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4DAB470821
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 12:05:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCC3E10E72A;
-	Mon, 27 Apr 2026 12:41:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C8C410E682;
+	Mon, 27 Apr 2026 10:05:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="XbJ7JEvD";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="XXLGeZHh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
- [188.68.63.98])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C1D310E64B
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 09:37:56 +0000 (UTC)
-Received: from mors-relay-2501.netcup.net (localhost [127.0.0.1])
- by mors-relay-2501.netcup.net (Postfix) with ESMTPS id 4g3z4y62dpz66Bc;
- Mon, 27 Apr 2026 11:37:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
- s=key2; t=1777282674;
- bh=ofNF5C7Ug4dk2ZiNcdA825bSUg2IVrEKLOPUt5sOPEo=;
- h=Date:Subject:From:To:Cc:Reply-To:References:In-Reply-To:From;
- b=XbJ7JEvDAEf49zY+0mXxAqAcKFSa5521gAyCKZh0qNAJxgPw/aA5RYomIYjsIM05F
- nA0CmSfmkkW6uSb7znaHUrpzsm5CF7mCbTGQgS3xUEEFSUYwYH1N6iGUn5Yvoma8KS
- rZQ+ChxV6M0D/XIH4X/nPYKT9RgyzkXLhvCetxxTb0JoIinRykSLttNaSuPIWT3+eP
- Ha3L1UmlW0mVfBudWSfxoW0kIUzlxWSCVFJDjvHTAGKj6osOUxYwmC+0QfHGySLb3J
- bKQH4Brel0IWc8V6KJasFMSu9ihFMWTPRjywuXiPNGKJiwrBdS4Q32zmz5spk0yNbJ
- Pnox/TDNmathA==
-Received: from policy02-mors.netcup.net (unknown [46.38.225.35])
- by mors-relay-2501.netcup.net (Postfix) with ESMTPS id 4g3z4y5JxLz4xD3;
- Mon, 27 Apr 2026 11:37:54 +0200 (CEST)
-Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
- SHA256) (No client certificate requested)
- by policy02-mors.netcup.net (Postfix) with ESMTPS id 4g3z4y0KD8z8sgT;
- Mon, 27 Apr 2026 11:37:54 +0200 (CEST)
-Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
- [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
- by mxe9fb.netcup.net (Postfix) with ESMTPSA id 70EC3632B7;
- Mon, 27 Apr 2026 11:37:53 +0200 (CEST)
-Authentication-Results: mxe9fb;
- spf=pass (sender IP is 2a02:8108:8984:1d00:a0cf:1912:4be:477f)
- smtp.mailfrom=regressions@leemhuis.info
- smtp.helo=[IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f]
-Received-SPF: pass (mxe9fb: connection is authenticated)
-Message-ID: <ed3171ef-eda8-4907-a35b-2e2b8185e574@leemhuis.info>
-Date: Mon, 27 Apr 2026 11:37:53 +0200
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013024.outbound.protection.outlook.com
+ [40.93.196.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63B4E10E683;
+ Mon, 27 Apr 2026 10:05:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HhXnuHD7Ysa2+px0vpdgbjeqc0+y5WHc4apjN7tlhxxhiPeGfa5eltTSv2T+S+FYSHIicwLsLFhdZenevHM6QKktmV9xLIwux9O6E0UpzEGxnPO3H8AUpTquooArWeCM1EXpGx2LkZSc4XkvUSyJG2wVeN94vbjjRPjn3x8b8LAT6h3Fd/Y4iKpubbcwwtK3WzAhDyslCuFXrJOJpIdaN3oiVIWUl92x+YwMAqs52qUQ8SGgp7Rm5rj6N0tEgm7E7He61YI0VXmyhQxhpsDzYLdm2KSXukaGFxPGIGSue6qgug7KHwKwzV/KX32urwGjTtOMs35jw4qDzRCPAPAyyQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=a/5rNWxgs3bM1roRQEfIrRVwNQfgp8rDDF0lw54xkqU=;
+ b=I+d6RDD7FPS0uPdasOhWCr+OnJqkOOxC2z9oaOvD7aA2CxnVvFRWJS8Z3caP5QoKQGiAfhbNmbgr0aWagy83HpoR7niEVSW83N35+O9ayJHKzhO0uIb2e8QnMucsuOKFWaDzTpBR+uh6gzN9OUkfNKjsTcOWYakb3nzT9dYY3SEOJRNp4OtcWCYkktKqT25tg1jsBJ0tco/dJN2eJVBRrBh1mtW2LXDfz2YGm7iu/JPLkgNTn/Pge8vDkMv1/DtgnHSJOSdm5WF7IxsYSDUGryxW5PRaRaxs90OSP+DwC5xjTkkwliPDkA/Z8t+4/CEHJUBE3L8U7emKgjOnoPXCYQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a/5rNWxgs3bM1roRQEfIrRVwNQfgp8rDDF0lw54xkqU=;
+ b=XXLGeZHhQuIuEcPf0tt5HXIyy2FKEvZ2yrH3x0OTFk2N+7tCekBHyGE5Y4Kr4UAT/MhqJewapYWuoKTrqLv7R3GvBtSAO5RJ7IRJS0gkCgBPzr7V7vm1MG24gL1lfo+bLcDBVrQKiO9/kuz+fzSlY6HhOaiqP1NrCfc1BRnMe80=
+Received: from PH7P220CA0094.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:32d::30)
+ by CH3PR12MB8186.namprd12.prod.outlook.com (2603:10b6:610:129::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.12; Mon, 27 Apr
+ 2026 10:05:32 +0000
+Received: from MW1PEPF0001615B.namprd21.prod.outlook.com
+ (2603:10b6:510:32d:cafe::58) by PH7P220CA0094.outlook.office365.com
+ (2603:10b6:510:32d::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.26 via Frontend Transport; Mon,
+ 27 Apr 2026 10:05:31 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ MW1PEPF0001615B.mail.protection.outlook.com (10.167.249.86) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9891.0 via Frontend Transport; Mon, 27 Apr 2026 10:05:31 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 27 Apr
+ 2026 05:05:31 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 27 Apr
+ 2026 05:05:30 -0500
+Received: from junhua-PC.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Mon, 27 Apr 2026 05:05:28 -0500
+From: Junhua Shen <Junhua.Shen@amd.com>
+To: <Alexander.Deucher@amd.com>, <Felix.Kuehling@amd.com>,
+ <Christian.Koenig@amd.com>, <Oak.Zeng@amd.com>, <Jenny-Jing.Liu@amd.com>,
+ <Philip.Yang@amd.com>, <Xiaogang.Chen@amd.com>, <Ray.Huang@amd.com>,
+ <honglei1.huang@amd.com>, <Lingshan.Zhu@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, Junhua
+ Shen <Junhua.Shen@amd.com>
+Subject: [PATCH v3 0/5] drm/amdgpu: SVM VRAM migration via drm_pagemap
+Date: Mon, 27 Apr 2026 18:05:17 +0800
+Message-ID: <20260427100522.7014-1-Junhua.Shen@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [REGRESSION] amdgpu error -22 first encountered in kernel 6.19,
- not fixed in 7.0
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-To: Brandon Taylor <br.ta.2818@gmail.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc: Linux kernel regressions list <regressions@lists.linux.dev>,
- Alex Deucher <alexander.deucher@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Timo Lindfors <timo.lindfors@iki.fi>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
-References: <CAMYTvdA+yCqU4_9mzMUkX_3S=myExKMBCyB88dYWCMwA1edsrw@mail.gmail.com>
- <6c48aff5-b6ee-40af-98f0-c26ded3095bc@leemhuis.info>
-Content-Language: de-DE, en-US
-In-Reply-To: <6c48aff5-b6ee-40af-98f0-c26ded3095bc@leemhuis.info>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-PPP-Message-ID: <177728267378.279541.17168315814522822753@mxe9fb.netcup.net>
-X-NC-CID: exb88VKTz+PlWa+wzr8qsiERlTM7i2TLbBJx2nuWy+7sQEOlb1U=
-X-Mailman-Approved-At: Mon, 27 Apr 2026 12:41:11 +0000
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MW1PEPF0001615B:EE_|CH3PR12MB8186:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6978fdde-bd59-40b6-b1d2-08dea444843e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|82310400026|36860700016|921020|13003099007|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: BbVztE5mtOd1a0HWlHbL6FPscaHs1bTkB9St/IH2fRs3Z00LZ+KW0epj3WumM/UA0mS9K8a4L40TSsQUMQA5hEwfL7P0w+SSHideFRyRVHzLXNBHbZCOhPgMGudN5TsKVAo+rrDlMghecteS03kd5u+BjLnuZohsxBO1/xGBbZ1AMlVr0ZomGbvAPO4qkya0SA/sNx95tFMhK4sn8Qj84RTnOwYw4hR/iVeLO4X1O4C2FygoxPqQn/aPqZMZAZw7OyUH2SMeeESES80uL3n2gG3nsTdqltuZFoSFZEhaW2M52l3EkZsrwQ2s46fnr7YLUL1/i+Nf0rTVGfjiIIYmA1vf2z7GvduEnGnFe1JYMKmm8stXZtWyyqE23dwTLEhS5ZFUnx/+e8Yv7nyCaQNF1RXY8705LJ2S2O1cXzR1p+0Y7KRl3cmqqFBLLSyI1PI2cUQFGKdGNZ9/fEvpJ2ihXg2pPOfZ2xVnWtxKX99ClvlJFm5OjF7iiVBqeUksSRbFJt/a31SGAJXXV+BzfoojZGlCITwpKUcMkKPB9PzXbExSE/5VuAbvjbtL1KEBNxmAEkNtyK1UjjjGkW1FGZ35zOvzM6S91xTks9FXOYCnDCmLrgfY5pYUSIMRcmsd5WwzurjlqyY2rAJiH/3TXB97H273XuyqtibtOpg5PYPBmPdMWVoExnmrJx9fNpOSZbLfmDnOE4Oqj9wNTozuAQCYtOCBc3wxYKt2zMLYxPfXyF2Yq4e24L7u2FSVD79uW+3dFZPQ0XH7Dp+w/LY/CqrnhJwTdTC1/PjuPJv/eZHD1HM2nLmNH0DisjvPTpnvVz5ZMVq1PCIs27mft/egD17abw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(82310400026)(36860700016)(921020)(13003099007)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: PoiCv60fdvySigvh4HJHLIYLc9fhHYyY2AcbCNCn5Hl+vL+wVisBMFqte186HUuELPbJyZC3sz3udsDppvPPDoA5aNrtSuqB1ukVfLGptTO1w9EM73TCxJUdOuoeIZ3uBtJrO6orApEqA6j+ogwFkosQK1OR5pGIDJ0338hu5H9y1lTPXkzKKKcdrKeRT5NxoaP3nHu/n/EEF5Cxqw09Xpm3MvPWf7YfL8Zl3m56zbp2sT5PxiTn76I+XCdUcZ9HNl4HrBtN0/VrOx7QwqepwPYL7UokVeKqhOGDh1XmO8M7YR/zToasxPdo6uO8T5ITcLTnxbFufGOR7klZGCE+cD1/ViLjzyGD12h7JrRJwJxvD6qQTkBNCeZPeaL6IX+FsVXhd2yKvSJ9TpP2pohxzVWdW5Gw/4GgHzAf7qB5VU3JHU4v4GMupV+7FUazRJoU
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2026 10:05:31.5813 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6978fdde-bd59-40b6-b1d2-08dea444843e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MW1PEPF0001615B.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8186
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,105 +118,109 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 5C021472A42
+X-Rspamd-Queue-Id: E4DAB470821
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[leemhuis.info];
-	FORGED_RECIPIENTS(0.00)[m:br.ta.2818@gmail.com,m:linux-kernel@vger.kernel.org,m:regressions@lists.linux.dev,m:alexander.deucher@amd.com,m:timo.lindfors@iki.fi,m:christian.koenig@amd.com,m:timur.kristof@gmail.com,m:brta2818@gmail.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,amd.com,lists.freedesktop.org,iki.fi,gmail.com];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_TO(0.00)[gmail.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[regressions@lists.linux.dev];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[leemhuis.info:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:mid];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.linux.dev:replyto]
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Junhua.Shen@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
 
-[note: please remove Timo Lindfors when replying to this mail and
-include Timur Kristóf – sorry everyone and especially Timo, my mailers
-address book tricked me]
+This series adds VRAM migration support to the amdgpu SVM (Shared
+Virtual Memory) subsystem, built on top of the drm_pagemap
+infrastructure [1].
 
-On 4/27/26 11:35, Linux regression tracking (Thorsten Leemhuis) wrote:
-> On 4/26/26 01:22, Brandon Taylor wrote:
->> I have an AMD Radeon R9 270X GPU (yes, I know it's old) which used to
->> default to the `radeon` firmware
-> 
-> FYI, as using the wrong terms can lead to confusion while dealing with
-> bugs: that's not a firmware, that's the driver (sometimes also called
-> kernel module)
-> 
->> on kernel versions up to and
->> including 6.18. I could manually change this behavior to use the new
->> `amdgpu` firmware by setting `radeon.si_support=0 amdgpu.si_support=1`
->> as kernel parameters in the GRUB bootloader. Everything worked fine,
->> and I was able to play my Windows games without any problems.
->>
->> That was, until kernel version 6.19 came out.>
->> 6.19, from what I was able to Google, was supposed to have AMD GPUs to
->> default to the new `amdgpu` firmware. Unfortunately, when I updated
->> the kernel and rebooted, I got a black screen.
->>
->> Further Google searches led me to reboot, set `nomodeset` in the
->> kernel parameters, switch to a TTY, login, and investigate the output
->> of a `dmesg` command — and what I saw ... Well, let's just say it's
->> the kind of thing that would make Linus go Chernobyl:
->>
->> `amdgpu: probe with driver amdgpu failed with error -22`
-> 
-> Please provide a full kernel log, this is needed to full understand the
-> problem
-> 
->> And this issue has not been fixed in kernel version 7.0, which I guess
->> is set to be the next LTS kernel.
-> 
-> No, it's not.
-> 
->> Now, I hope to God that this email finds whoever is responsible for
->> breaking this `amdgpu` firmware before the same thing happens to Linus
->> via Fedora 44, and he goes berserk. I realize that's not a heck of a
->> lot of time, but God only knows HOW many Linux users with AMD GPUs are
->> pissed off by this kind of issue — and I for one can only imagine how
->> Linus' reaction will compare when it happens to HIM!
-> 
-> FWIW, you seem to assume that the problem hits everyone with a AMD GPUs.
-> That's not the case, we'd know this by now. Maybe it's not even
-> something that hits everyone with a card/gpu like yours, as some falires
-> only show up in certain environments, for example in combination with a
-> specific mainboard chipset or firmware.
-> 
-> Anyway: I CCed a few people that might be able to help. But they likely
-> will need at least the full kernel log mentioned above .
-> 
-> Ciao, Thorsten
+It enables transparent page migration between system RAM and device
+VRAM using SDMA, driven by userspace SVM attribute hints (prefetch
+location, access attributes) through the existing AMDGPU SVM ioctl
+interface.
+
+Limitations:
+
+  - Single GPU only; multi-GPU migration is not addressed
+  - No XNACK-on GPU fault-driven migration (XNACK-off ioctl
+    path only)
+  - No VRAM-to-VRAM (peer GPU) migration
+  - No eviction fence / VRAM overcommit handling yet
+
+Design highlights:
+  - ZONE_DEVICE pages managed via devm_memremap_pages / drm_pagemap
+  - SDMA-based migration with proper DMA fence synchronization
+  - Migration decision layer that evaluates SVM attributes to
+    determine when and where to migrate
+  - Zero modifications to the KFD subsystem
+
+Patch breakdown:
+  1. Core VRAM migration infrastructure (ZONE_DEVICE, drm_pagemap_ops)
+  2. SDMA migration callbacks (copy_to_ram / copy_to_dev)
+  3. Migration decision layer (policy evaluation)
+  4. SVM attribute extensions (prefetch force-trigger)
+  5. Integration into SVM range map path + ZONE_DEVICE registration
+
+Built on top of the drm_pagemap SVM series [1].
+
+Changes since v2:
+  - Moved amdgpu_pagemap entirely to amdgpu side, eliminating all KFD
+    modifications
+  - Split commits for better reviewability: separated infrastructure
+    from SDMA callbacks, decision layer from integration
+  - Merged ZONE_DEVICE registration hook into the integration patch
+
+Changes since v1:
+  - Dropped the eviction fence patch per Christian König's review
+    (violates dma_fence contract)
+
+[1] https://lore.kernel.org/all/20260317-drm-svm-v2-0-4bceef04e41e@amd.com/
+v1: https://lore.kernel.org/all/20260410113146.146212-1-Junhua.Shen@amd.com/
+v2: https://lore.kernel.org/all/20260413103031.181953-1-Junhua.Shen@amd.com/
+
+Junhua Shen (5):
+  drm/amdgpu: add VRAM migration infrastructure for drm_pagemap
+  drm/amdgpu: implement drm_pagemap SDMA migration callbacks
+  drm/amdgpu: introduce SVM range migration decision layer
+  drm/amdgpu: add SVM attr prefetch/force-trigger functionality
+  drm/amdgpu: integrate VRAM migration into SVM range map path
+
+ drivers/gpu/drm/amd/amdgpu/Makefile           |   6 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   8 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |   4 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_migrate.c   | 789 ++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_migrate.h   |  98 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c     |   4 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm.c       |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_attr.c  |  34 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.c | 136 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.h |   5 +-
+ .../drm/amd/amdgpu/amdgpu_svm_range_migrate.c | 140 ++++
+ .../drm/amd/amdgpu/amdgpu_svm_range_migrate.h |  60 ++
+ 12 files changed, 1212 insertions(+), 76 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_migrate.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_migrate.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range_migrate.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range_migrate.h
+
+-- 
+2.34.1
 
