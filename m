@@ -2,144 +2,111 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EFYkEYnP72nxGQEAu9opvQ
+	id +IPQCBKu8GnOWwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 23:05:13 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:42 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E81D247A7F4
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 23:05:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CC234853A3
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8DE910E93A;
-	Mon, 27 Apr 2026 21:05:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA4FE10EBFF;
+	Tue, 28 Apr 2026 12:54:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WHWe1nQQ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eyRVoFH1";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013042.outbound.protection.outlook.com
- [40.93.201.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74C8310E933;
- Mon, 27 Apr 2026 21:05:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vkW8x4nCs54ww5TJSHNj0cDQW8LByj3aKUeHfRhqE3xsBKhLFvilRRNSQ7H7/R/2iH4QcW3kzkddU1wcHUtiNjd0hWVMBoqqMy8bQ0uFl8GRJCzZ/MkL9dE7W08FY7EQY+a+zHpbW0teyXltqDv2Ny8/q9vhnBiLRze4QQfFVtrIwM1zCk0Hy9m0koxRxVrRXZSekJHa7IkJqPXaYPjqt11Hza3Ogr40YAg8VAQ9ffphDgeIdv0G0Vcb/fAtaT2MSiQleq/PV5MFPZdWpg62pM0HDrL/L4wgUCY3o7JoZDvs9kp+g8gqyewHSgyakOoAdiOd+AhQkGJteGl+zS9XdQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lLOGAUp5VuNuZMFX8y1lcSOiRQMu9ywRllnavtH2gJw=;
- b=kfF/H9JNm3wfmDK1KWIfHOaK201S2egif9jJrdXYp3pCeXwzdDX1CKkQne1uY1+hskZ+tiXskfyGDhgYqJrLYRlf2xvtp8iua0Z7yQh5iCguHwAf7uyGw/GHOQGuM78UZMlrnD9DqeU1oPy7Ebxh7eHf9TRuPPs7cU47gFAtgN9dRXI1qX7ffJR5P9F9K4dZLS8VJwWbWSRy9CiUdRL7YrjzoCh2GFnOdwD8J6jh6fmEQa3qnsUCSw8j8AiWlwGKcT2J7mSqzRumqzgDsNlvG0VifJFrBuENE/Nu6QSY8GXxnDwSzeXtF6rbBQYxYyNUZnUogEyh1xdaWNgzUCF5WA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lLOGAUp5VuNuZMFX8y1lcSOiRQMu9ywRllnavtH2gJw=;
- b=WHWe1nQQ+Jm5JJ360U7EvEyGUBR65E454Pq3oj6zq263QGEeB9NS3eFsbN5QdLmfUB2D1Kvmu3h3XUuEfl6GZhYvDTD5XbiRzy70zuK0OntbRnoF1R2QiWfnaDCI5iVYn3enGCp5p6/wodYLZJJw5IO4bS2x8XSzBm18wfrBIUM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5112.namprd12.prod.outlook.com (2603:10b6:208:316::16)
- by LV3PR12MB9332.namprd12.prod.outlook.com (2603:10b6:408:20f::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.15; Mon, 27 Apr
- 2026 21:05:05 +0000
-Received: from BL1PR12MB5112.namprd12.prod.outlook.com
- ([fe80::d977:95c9:e89:ff27]) by BL1PR12MB5112.namprd12.prod.outlook.com
- ([fe80::d977:95c9:e89:ff27%6]) with mapi id 15.20.9870.013; Mon, 27 Apr 2026
- 21:05:05 +0000
-Message-ID: <67e190b3-deb9-44c0-a3a1-d269de677c21@amd.com>
-Date: Mon, 27 Apr 2026 17:05:02 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC/POC PATCH 01/12] drm/amdgpu: add SVM UAPI definitions
-To: "Huang, Honglei1" <honghuan@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Alexander.Deucher@amd.com, Oak.Zeng@amd.com, Jenny-Jing.Liu@amd.com,
- Philip.Yang@amd.com, Xiaogang.Chen@amd.com, Ray.Huang@amd.com,
- Lingshan.Zhu@amd.com, Junhua.Shen@amd.com, matthew.brost@intel.com,
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com, dakr@kernel.org,
- aliceryhl@google.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20260420120739.1811731-1-honglei1.huang@amd.com>
- <20260420120739.1811731-2-honglei1.huang@amd.com>
- <cda09d5d-4cca-46a1-8625-fe9fa687e5a2@amd.com>
- <50d13ae3-be27-4b79-91ef-e1b386054943@amd.com>
- <54bb7286-2ffb-47f0-b37d-83b5c39ad9a0@amd.com>
- <9e2bee93-306a-4ef0-80be-daed33c8bbb5@amd.com>
- <7a3ebad2-839a-4a88-911f-c9bb7be3b00e@amd.com>
- <daa7239f-7fc9-492d-849f-2d46bd84999b@amd.com>
- <9c5afd4b-f9f0-445a-9b39-35f56fa2bea4@amd.com>
-Content-Language: en-US
-From: Felix Kuehling <felix.kuehling@amd.com>
-Organization: AMD Inc.
-In-Reply-To: <9c5afd4b-f9f0-445a-9b39-35f56fa2bea4@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YQZPR01CA0102.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:83::24) To BL1PR12MB5112.namprd12.prod.outlook.com
- (2603:10b6:208:316::16)
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
+ [209.85.221.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E236B10E093
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 21:29:19 +0000 (UTC)
+Received: by mail-wr1-f41.google.com with SMTP id
+ ffacd0b85a97d-43d0deb7ad5so8838785f8f.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 14:29:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1777325358; x=1777930158; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Ebg5+i/pOUuQx7xxuERTUppaj1qL6vIxTxgv86V/NC0=;
+ b=eyRVoFH1LG4KKQJuS7sWrndWcKdWn69XhcNEUT+LANvlHTpj5RhhEV0Z+3ZtlH4ZjN
+ FLIt20SFBi35AW/7fAjQ2RMVAu/9y97RMKz+QkQvJYbrEFb626rs3Nnxs9U18yVUiBel
+ DT/HNhZ2iolKtM/NRUTHgYLxvuyoXnMcGcumRmWQLj2mOaf/DJhDTI8iKzKs+XIcJUlb
+ y42FUCgPl20W5qYAGXus4kmuUrnjAZxvUCZ8DgB/rcHhscmmHPdCRtAHGWUGX/Erm3lW
+ Tk20R5umfR9W1pQEaIIO69wd+Ks8MIPN1POXriTsvH4J51kVGTWlTyZhdet+L0pCTToL
+ 1Hjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777325358; x=1777930158;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=Ebg5+i/pOUuQx7xxuERTUppaj1qL6vIxTxgv86V/NC0=;
+ b=d+jLLewSvzz28ZFNKEEh4u/KBQnT2BWFTSv7xC8Tw9iDls1xGwiAuOfvLM8AnJy470
+ DtsdsosJ5ld1Bl0BYSJTIk69GrhZcv0m9E0d099+gzlHpygpRx91QtmnVUn97FygKZjZ
+ +b8Y4LsaNkfQCi/KetN2yx5aSLqE1XOpHzJtqUPrmBxR0ycdH9u95uoJLBzj05/F+8A9
+ /rs8ifsH8xfKMx0kQXX1FLZ12JNEn3n/klPZqANHScgI32qQ9FLt9H70yv648m2yNUYB
+ brJtNDYH4bOI6ix5+QynK3caXFIoLnQWF+aQDgju83h1ayjrFq7MJH8lkjL1B29QCi+H
+ FKZw==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ+aCjf5m9P3c04lNMECFuyfMLtTYnmBQXQQsAjSiaZHCvbMI4qwTieDgU0LEDxLS/OZR0KiaECR@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzSucciH721HgiT270e7MK3WJZ9IfTX1gLwG2mh3yUt0EVnYutZ
+ AGWJFAGfk4Jv9m/7k44+gS7quhcr71cJ98uQoFCELlxX3xuQqkIaBTIJ
+X-Gm-Gg: AeBDievEbemP9vLjj2iGSmrP3KdnPPEQXlMKtx6Tc9SXFSanLVGH/UclOTvsUsa8xBT
+ IXxzhgUBx9t2+4DHhAgfj7rNIEeh3kuiT9cZv/TO3VgPF/2sEymA6NUnQVcHCz7wOd9102TG/3K
+ eVKPgEuo1m7+1y6F1p2D0RTEvCpq82ZoDrIPyXBk6AhkLjazuG9yECOI9I7Y0e/VFgjHDFLVKsF
+ dmSIAtNgnCaJrY17eCP+BDnrEfbRQNwpW4jzT7Ck56zAu2FsKhx4ydAgxAM8I/ccJ/+aJQQi4is
+ fWsT26Lno0vbcfHI29/1iHjfK5ni3FbEJPkY+Rcl1uRcxmo2sWp1TVSfKeABfa0EW2EYLjExN/4
+ 7hrKqA/Lilm9WG3ZNO9GFLkH5ARND5+fiz9VBEQP1Hdh3G7leF+9o25Jevf8lgL+lTJCOlpgXwJ
+ hjEu1JBRgeFVpRoL8lYcYtdLrQjO968jRmXrhwBbs4sM1HgClSscNB4FdZSrlbZl3ewTO//O1/U
+ mCvK6H03vf1kw==
+X-Received: by 2002:a05:6000:3109:b0:43d:7d6f:f531 with SMTP id
+ ffacd0b85a97d-44649ba1f4amr816127f8f.30.1777325358072; 
+ Mon, 27 Apr 2026 14:29:18 -0700 (PDT)
+Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-4463d02f270sm1120515f8f.9.2026.04.27.14.29.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 27 Apr 2026 14:29:17 -0700 (PDT)
+Date: Mon, 27 Apr 2026 22:29:14 +0100
+From: David Laight <david.laight.linux@gmail.com>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Yury Norov
+ <ynorov@nvidia.com>, Andrew Morton <akpm@linux-foundation.org>, Thomas
+ Gleixner <tglx@linutronix.de>, linux-alpha@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-um@lists.infradead.org,
+ dmaengine@vger.kernel.org, linux-efi@vger.kernel.org,
+ linux-fsi@lists.ozlabs.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-fsdevel@vger.kernel.org,
+ ocfs2-devel@lists.linux.dev, bpf@vger.kernel.org,
+ kasan-dev@googlegroups.com, linux-mm@kvack.org, linux-x25@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, linux-sound@vger.kernel.org,
+ sound-open-firmware@alsa-project.org, linux-csky@vger.kernel.org,
+ linux-hexagon@vger.kernel.org, loongarch@lists.linux.dev,
+ linux-m68k@lists.linux-m68k.org, linux-openrisc@vger.kernel.org,
+ linux-parisc@vger.kernel.org, linux-sh@vger.kernel.org,
+ linux-arch@vger.kernel.org
+Subject: Re: [RFC PATCH v1 5/9] uaccess: Switch to
+ copy_{to/from}_user_partial() when relevant
+Message-ID: <20260427222914.1cb2dd3b@pumpkin>
+In-Reply-To: <CAHk-=whC1DZojwdMB1=sJWG2=dsCdfyU8N6tDE1qx50HRZ-WJQ@mail.gmail.com>
+References: <cover.1777306795.git.chleroy@kernel.org>
+ <289b424e243ba2c4139ea04009cf8b9c448a87ff.1777306795.git.chleroy@kernel.org>
+ <CAHk-=whC1DZojwdMB1=sJWG2=dsCdfyU8N6tDE1qx50HRZ-WJQ@mail.gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5112:EE_|LV3PR12MB9332:EE_
-X-MS-Office365-Filtering-Correlation-Id: fa57bbe2-c0f8-439c-fe31-08dea4a0a7a6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|56012099003|18002099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: KhuLqiUdhW5ftRIHkJytdJ99ayoaZx/C3Vn8MFBdLPAfYdbXYYYBwViLfOqwU/fml1ZqAdN1ib5GLvAmDe9xCO+w/YQu/7fGMw7zVl96+23n5lNY/NKnlD+7M3XCgYB8+a9PIeH2D5KzFsRsFdCp3Yqr4S1wKa3LOzbAirMbjjc+HqNHXqYex4dlfBQcNuP0HO8iJxDsrJflpA9XeC2/Ua+nh0Tl8gfuNWx7ykEoW2ElX9Z/XRJpfec+tyhtRS5R7s7GAKnXPj30xQLVgyiXu1CnDeJXXeM6POG12tY3H3fOBxKmd4Jh9z3LkGjnGKYBydmeafu8RuqyANH4XPseHS+noz8InhKSz3SxFhEfPOP+Jj21kGIsuSzJnB2fJMud57sRFskJISIql4OSiWp8UwdRlUdafnC8XCIS7auxZZf5JPKYZK/69HKr/O2Br3PPt+Zf/cof1Wc0yDpkH9dAXJGXRTiwh5bBBMz6dQZSHGy5Qh7XvitZvZs9MTEwGtTpif2FPlgPNhOxNtcIwD15oqaznQqJN2L/iHj0FASflk+KIJtHV0kEwSO9quEiU8m3wGH4or/QrsNCMl0c9GAIzIsyXEyGCTI0d0wULHjd4L0IaEh7/o681TkRhoFrSBmaiokp6P2K7FegTyfOns+ZpqNxZhCspsV90mileR8I0jGf6D6/K2xU5n6GETcaQsFEsY6s++u/zNKICvUCEev8uj4qQQcq2J2ZkAG7Bu9h/NY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5112.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WHF0OTd5eUZLZ1NjMlEvcFF4QTZqRlU4Qm0vNmlHNW5uT2xCK052djBZSUtS?=
- =?utf-8?B?M0M3MEw1ZFRmS3dPYUN6Nk1qTERpdFhia3lYaEt6UWU2Z3lQM0FJeGM4a1No?=
- =?utf-8?B?TGdiNk0rS3VXbUJkMk9GcEhBUWE4VExxa0J0L1E3U05DQmdKRXdVTWU2Y0Ri?=
- =?utf-8?B?amU0S3lTbDluS0ZBSGJraDVMTXhnYkxaUHdXUU81dThHcjZzUmFnWHJpeTNQ?=
- =?utf-8?B?N3dqNWt2dnIzR2xxZTlhWWZHU0QvN0orOHNiV2wzakdpaHNwM0hheTNvY0tV?=
- =?utf-8?B?L3RSVEwzRm54eWh1UVpJSElSelc4OXJ2NEQ2aXplaHlzTFZzWHN3OHl2eXBo?=
- =?utf-8?B?RFFBSHJ5Vm5RM1dmeE1odFRQZW10alNCRGxUUStUeTYyWW9wWUxlWW1nNkJy?=
- =?utf-8?B?RDYxMEdPd1NvWWVzQ3V5MUtVVENrUlcxNDEvYU1QYngyN1dXd1FwOEpkNE1H?=
- =?utf-8?B?a1RabTBuaVlxRXVHRGZkYU9GaVowMkZnS1krbVh1VEdoQ0ZZeXBSbWRuejNY?=
- =?utf-8?B?VFRnVWFVUWtocnhHZEZnaUo3dXZkM2VKcVZza3NlUFh6RjVBUlU1S3R0S3NI?=
- =?utf-8?B?ZWtmZG9WNks2QU5LL2VLVHM4dUlxUzBtYVVvbnh0SUlhRDJFWkxjVFdwZ0hi?=
- =?utf-8?B?YXhjMHN4cmF4bEw4Y3NySEZrNjZTcHVmNGNIN3NlU3paNWo0ZkRPUjhDUSsw?=
- =?utf-8?B?OXlsRVNsdERscTI2QW1qUUp1YVQrclUvbXNUTmM4bGtaaDhWTkF2czI3L2ll?=
- =?utf-8?B?WVErZElwVmVXVVJLVmc1ZTU1ajloVklIT2hzYkNjcnNPWjd5eitWaGZXaVNZ?=
- =?utf-8?B?R1EyOHg0ZXV4U2hjWnc2MC8vSHVRQmdKTm5jdHd5SExNUWE4Zm5WMlBpdkRv?=
- =?utf-8?B?ZWE1V05MM0NTd2NESGNLZ3VrdXE2YXUzREIxc3NmUjFrb3dTblpweWtoV2hJ?=
- =?utf-8?B?TXZUUEtMWTlHcGptMkl1eGVBWXBJYXAyMG1yRGQrSUh4TG9GdHdpQjFJb2lK?=
- =?utf-8?B?ZGQ4WEhzL3FrUm92NVUyd0dudDFKV09QSFEwemlPTXNNR2dML2hLYk5NdzdC?=
- =?utf-8?B?cmNMRDR1ZzRlM245VW90ZnZUQ2pXRTlFV1JaWi9xZkc0eERtczRtYjU4dEJa?=
- =?utf-8?B?ZGhSNlBpN2M3cDRsVlg1U0g1Si9INjZSWmw1RVlHZHdxQ2Q5ODZ2dXFCS3Jt?=
- =?utf-8?B?K0NyVkNGa3MxZXYzM2xHYThOZzZSMmg0aFRSb1d6S0dkUnpuckZFQ2I5emo3?=
- =?utf-8?B?WWo0cStmSmVTR01tVmV5YXlKS01VbFhidHRrMXJJQmdBL2VkcTF3ZnJITjc4?=
- =?utf-8?B?eHhXdDg1cjVmaGJNY2dZK00wbnRRdTVpTlExNzRWbjNDNlV2dGdqeTYvS0VW?=
- =?utf-8?B?djFqQnZITmtJVmNyL09la1dvcjR5ZkRNeHBsM2k5ZC81aUxCYi82b01EMzU0?=
- =?utf-8?B?WDBvSXBSaGVHREI3Znl1eDI3eXZDZ2NOUUdEUFBZVm55dUZJVDF5L1JxTElr?=
- =?utf-8?B?WDk3NjVxYmlMd1RUcW5lQnNGTVB0MUN0ZEZJdnJIR2RZYUVQdC96UUR1Vnd2?=
- =?utf-8?B?SHd1Zmo2dG5nclgrWUV1UEZCZHdpL2JVNkJVQnRlVkhrNm5TWVp5Wlp1OGxk?=
- =?utf-8?B?TmNzZFVLNC9FeWZ4S1FFekt4MzdJR3BHSGdadnNLRUViYi8wM3M0VDFZbUM1?=
- =?utf-8?B?cHBzYVpzVFNIVllNbVZJK1RsNTRYV00yUnhvVVZHamRGQ0sxdkIrK29rUW56?=
- =?utf-8?B?WndURHl5U2NFOHBEaDFvMm44NytaT05pUk9IZ0JjRXM4UTZoUkVzTjd1NGlQ?=
- =?utf-8?B?UTVJSjBwYy8yZ09JamJlOGp5TVorSGdPWWVrc3Z4SWRHRTlxK3NJSWFKTVo3?=
- =?utf-8?B?eHFaeER1VlU0M0pOSXRNak5yQUpPdTNCdFVOdVZPVTM0V2RGOTFlaktUbmRO?=
- =?utf-8?B?endoMW5SejBQNjNMTzhmcUdaUGFVKzRjNXVDVGY0aVY2aXdlZkJCNFMwNGhp?=
- =?utf-8?B?NG9haHNVc0tybjJiZWJaL3IwTmgrNEpHQklUbmFUZHZGUGdpcjd2cnB1aTNr?=
- =?utf-8?B?Uzc2VXEyZ2pMdytTcFI5VWFSeThuWWRNT2RXLzFYbVdpcjVrZmZkUnhLRFA2?=
- =?utf-8?B?SFJjMnYrbWNLUlB1VFJRc3VxQkNmeE1rMXlIQmZ6REhIenhFVE5aOUJXS3ly?=
- =?utf-8?B?bDArbkY0aVhHcFVxblozVGZwZitmM29rQUN0clBLZjdyWGgwdXY3TzVtNm5M?=
- =?utf-8?B?akx0cXI1a3lrZXJ1M0NZRTlYNDRIaHZPNnNzeDNCS0VOUThUTVJyVFI1bVpI?=
- =?utf-8?B?SDZlWU9FcVRHdGpnSUFDbTVnSWlSYWNNTjRKTEJZRnRVSFJyK3R3dz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa57bbe2-c0f8-439c-fe31-08dea4a0a7a6
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5112.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2026 21:05:05.0431 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0xqCVPeIEm7OSuMFiTDKKyG5ms9oBPsVo2B9Fw6JbQzJnfwejaE32bmHfVXk/tuS8ASoE98WeXe7b1WJALsV/g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9332
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,355 +120,236 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: E81D247A7F4
+X-Rspamd-Queue-Id: 4CC234853A3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-0.71 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MIME_GOOD(-0.10)[text/plain];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:torvalds@linux-foundation.org,m:chleroy@kernel.org,m:ynorov@nvidia.com,m:akpm@linux-foundation.org,m:tglx@linutronix.de,m:linux-alpha@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-snps-arc@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mips@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:kvm@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-s390@vger.kernel.org,m:sparclinux@vger.kernel.org,m:linux-um@lists.infradead.org,m:dmaengine@vger.kernel.org,m:linux-efi@vger.kernel.org,m:linux-fsi@lists.ozlabs.org,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:linux-wpan@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:linux-spi@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-staging@lists.linux.dev,m:linux-serial@vger.kernel.org,m:linux-usb@vger.kernel.org,m:xen-devel@lists.xenproject.org,m:linux-fsdevel@vger.kernel.org,m:ocfs2-devel@lists.linux.dev,m:bpf@vger.kernel.org,m:
+ kasan-dev@googlegroups.com,m:linux-mm@kvack.org,m:linux-x25@vger.kernel.org,m:rust-for-linux@vger.kernel.org,m:linux-sound@vger.kernel.org,m:sound-open-firmware@alsa-project.org,m:linux-csky@vger.kernel.org,m:linux-hexagon@vger.kernel.org,m:loongarch@lists.linux.dev,m:linux-m68k@lists.linux-m68k.org,m:linux-openrisc@vger.kernel.org,m:linux-parisc@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-arch@vger.kernel.org,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[davidlaightlinux@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[48];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[felix.kuehling@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[davidlaightlinux@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux-foundation.org:email]
 
+On Mon, 27 Apr 2026 12:01:23 -0700
+Linus Torvalds <torvalds@linux-foundation.org> wrote:
 
-On 2026-04-24 06:12, Huang, Honglei1 wrote:
->
->
-> On 4/23/2026 7:06 PM, Huang, Honglei1 wrote:
->>
->>
->> On 4/23/2026 6:39 PM, Christian König wrote:
->>> On 4/23/26 08:21, Huang, Honglei1 wrote:
->>>>
->>>>
->>>> On 4/20/2026 11:37 PM, Christian König wrote:
->>>>> On 4/20/26 15:30, Huang, Honglei1 wrote:
->>>>>> On 4/20/2026 8:15 PM, Christian König wrote:
->>>>>>>
->>>>>>>
->>>>>>> On 4/20/26 14:07, Honglei Huang wrote:
->>>>>>>> From: Honglei Huang <honghuan@amd.com>
->>>>>>>>
->>>>>>>> Add amdgpu drm SVM API definitions built on the
->>>>>>>> DRM GPUSVM framework.
->>>>>>>>
->>>>>>>> This includes:
->>>>>>>> - DRM_AMDGPU_GEM_SVM ioctl
->>>>>>>> - AMDGPU_SVM_FLAG_* flags
->>>>>>>> - AMDGPU_SVM_OP_SET_ATTR / AMDGPU_SVM_OP_GET_ATTR operations
->>>>>>>> - AMDGPU_SVM_ATTR_* attribute types
->>>>>>>> - AMDGPU_SVM_LOCATION_SYSMEM / AMDGPU_SVM_LOCATION_UNDEFINED
->>>>>>>> - struct drm_amdgpu_svm_attribute and struct drm_amdgpu_gem_svm
->>>>>>>>
->>>>>>>> Signed-off-by: Honglei Huang <honghuan@amd.com>
->>>>>>>> ---
->>>>>>>>     include/uapi/drm/amdgpu_drm.h | 39 
->>>>>>>> ++++++++++++++++++++++++++ +++++++++
->>>>>>>>     1 file changed, 39 insertions(+)
->>>>>>>>
->>>>>>>> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/ 
->>>>>>>> amdgpu_drm.h
->>>>>>>> index 406a42be4..bed71ed9b 100644
->>>>>>>> --- a/include/uapi/drm/amdgpu_drm.h
->>>>>>>> +++ b/include/uapi/drm/amdgpu_drm.h
->>>>>>>> @@ -58,6 +58,7 @@ extern "C" {
->>>>>>>>     #define DRM_AMDGPU_USERQ_SIGNAL        0x17
->>>>>>>>     #define DRM_AMDGPU_USERQ_WAIT        0x18
->>>>>>>>     #define DRM_AMDGPU_GEM_LIST_HANDLES    0x19
->>>>>>>> +#define DRM_AMDGPU_GEM_SVM        0x1a
->>>>>>>>       #define DRM_IOCTL_AMDGPU_GEM_CREATE 
->>>>>>>> DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union 
->>>>>>>> drm_amdgpu_gem_create)
->>>>>>>>     #define DRM_IOCTL_AMDGPU_GEM_MMAP DRM_IOWR(DRM_COMMAND_BASE 
->>>>>>>> + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
->>>>>>>> @@ -79,6 +80,7 @@ extern "C" {
->>>>>>>>     #define DRM_IOCTL_AMDGPU_USERQ_SIGNAL 
->>>>>>>> DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_SIGNAL, struct 
->>>>>>>> drm_amdgpu_userq_signal)
->>>>>>>>     #define DRM_IOCTL_AMDGPU_USERQ_WAIT 
->>>>>>>> DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, struct 
->>>>>>>> drm_amdgpu_userq_wait)
->>>>>>>>     #define DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES 
->>>>>>>> DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_HANDLES, struct 
->>>>>>>> drm_amdgpu_gem_list_handles)
->>>>>>>> +#define DRM_IOCTL_AMDGPU_GEM_SVM DRM_IOWR(DRM_COMMAND_BASE + 
->>>>>>>> DRM_AMDGPU_GEM_SVM, struct drm_amdgpu_gem_svm)
->>>>>>>>       /**
->>>>>>>>      * DOC: memory domains
->>>>>>>> @@ -1665,6 +1667,43 @@ struct drm_color_ctm_3x4 {
->>>>>>>>         __u64 matrix[12];
->>>>>>>>     };
->>>>>>>>     +#define AMDGPU_SVM_FLAG_HOST_ACCESS 0x00000001
->>>>>>>> +#define AMDGPU_SVM_FLAG_COHERENT        0x00000002
->>>>>>>> +#define AMDGPU_SVM_FLAG_HIVE_LOCAL 0x00000004
->>>>>>>> +#define AMDGPU_SVM_FLAG_GPU_RO 0x00000008
->>>>>>>> +#define AMDGPU_SVM_FLAG_GPU_EXEC        0x00000010
->>>>>>>> +#define AMDGPU_SVM_FLAG_GPU_READ_MOSTLY 0x00000020
->>>>>>>> +#define AMDGPU_SVM_FLAG_GPU_ALWAYS_MAPPED 0x00000040
->>>>>>>> +#define AMDGPU_SVM_FLAG_EXT_COHERENT 0x00000080
->>>>>>>> +
->>>>>>>> +#define AMDGPU_SVM_OP_SET_ATTR        0
->>>>>>>> +#define AMDGPU_SVM_OP_GET_ATTR        1
->>>>>>>> +
->>>>>>>> +#define AMDGPU_SVM_ATTR_PREFERRED_LOC        0
->>>>>>>> +#define AMDGPU_SVM_ATTR_PREFETCH_LOC        1
->>>>>>>
->>>>>>> Up till here the interface makes perfect sense, but then it 
->>>>>>> becomes a bit fuzzy.
->>>>>>>
->>>>>>>> +#define AMDGPU_SVM_ATTR_ACCESS            2
->>>>>>>> +#define AMDGPU_SVM_ATTR_ACCESS_IN_PLACE        3
->>>>>>>> +#define AMDGPU_SVM_ATTR_NO_ACCESS        4
->>>>>>>
->>>>>>> Why are those separate attributes? What is the difference 
->>>>>>> between those?
->>>>>>
->>>>>> Really thanks for the comments, I have some content mistaken in 
->>>>>> V2, so I updated the V3 to fix that. For the header they are 
->>>>>> same. for other content please review the V3, sorry about that. 
->>>>>> And will fix the concern you raised in next version.
->>>>>>
->>>>>> So the meaning of AMDGPU_SVM_ATTR_ACCESS and 
->>>>>> AMDGPU_SVM_ATTR_NO_ACCESS are clear, GPU can access it or not, 
->>>>>> and the SVM can set the preferred location, it can be in VRAM or 
->>>>>> system, for AMDGPU_SVM_ATTR_ACCESS it can be migrated between RAM 
->>>>>> and VRAM. For AMDGPU_SVM_ATTR_ACCESS_IN_PLACE,
->>>>>> it can not migrate, GPU only can access it in the initial place.
->>>>>
->>>>> Yeah but that doesn't then the interface doesn't seem to make 
->>>>> sense since such states are mutual exclusive.
->>>>>
->>>>> It would make sense when you have some attribute which is named 
->>>>> (for example) AMDGPU_SVM_ATTR_ACCESS which can have the values 
->>>>> INACCESSIBLE, IN_PLACE, MIGRATE.
->>>>
->>>> Got it so can I change the UAPI to the following format?
->>>>
->>>> enum amdgpu_ioctl_svm_attr_type {
->>>>      AMDGPU_IOCTL_SVM_ATTR_PREFERRED_LOC,
->>>>      AMDGPU_IOCTL_SVM_ATTR_PREFETCH_LOC,
->>>>      AMDGPU_IOCTL_SVM_ATTR_ACCESS,
->>>>      AMDGPU_IOCTL_SVM_ATTR_SET_FLAGS,
->>>>      AMDGPU_IOCTL_SVM_ATTR_CLR_FLAGS,
->>>>      AMDGPU_IOCTL_SVM_ATTR_GRANULARITY
->>>> };
->>>>
->>>> enum amdgpu_ioctl_svm_location {
->>>
->>> The enum name could probably be improved, but apart from that looks 
->>> reasonable to me.
->>
->> Will improve the name.
->>>
->>>>      AMDGPU_SVM_ACCESS_INACCESSIBLE = 1,
->>>>      AMDGPU_SVM_ACCESS_IN_PLACE = 2,
->>>>      AMDGPU_SVM_ACCESS_MIGRATE = 3,
->>>> };
->>>>
->>>>>
->>>>>>>> +#define AMDGPU_SVM_ATTR_SET_FLAGS        5
->>>>>>>> +#define AMDGPU_SVM_ATTR_CLR_FLAGS        6
->>>>>>>
->>>>>>> Why is that separated into set and clear flags?
->>>>>>
->>>>>> This method inherits from KFD and is also designed to be 
->>>>>> compatible with upper layer applications such as ROCR.
->>>>>
->>>>> That is *not* sufficient as justification. We need to document why 
->>>>> that is necessary and *not* just say ROCR works that way.
->>>>>
->>>>> As far as I can see just a SET_FLAGS should be sufficient.
->>>>
->>>> Accoding to the reply form Felix, CLR_FLAGS provides a convenient 
->>>> method for deleting large-scale flags, do we need to redesign this 
->>>> part?
->>>
->>> I think we should expose those flags as individual attributes then.
->>
->> Got it will do.
->>
->>>
->>>>>
->>>>>>>> +#define AMDGPU_SVM_ATTR_GRANULARITY        7
->>>>>>>> +
->>>>>>>> +#define AMDGPU_SVM_LOCATION_SYSMEM        0
->>>>>>>> +#define AMDGPU_SVM_LOCATION_UNDEFINED 0xffffffff
->>>>>>>
->>>>>>> No location for device local memory?
->>>>>>
->>>>>> Vaule > 0 means for device memory, in xe_svm, it seems like it 
->>>>>> uses fd for device local memory.
->>>>>
->>>>> Absolute clear NAK for that approach. This interface is per FD!
->>>>>
->>>>> We need some value AMDGPU_SVM_LOCATION_DEVICE which means that the 
->>>>> memory should be migrated to the current device.
->>>>>
->>>>> We also need to make sure that setting attributes for different 
->>>>> devices doesn't affect each other.
->>>>
->>>>
->>>> I Totally agreed with your thoughts, but according to the reply 
->>>> from matt, it seems like we need to consider the P2P/multi GPU 
->>>> situation.
->>>
->>> When the drm_svm or pagemap component has already code to deal with 
->>> that then it is probably ok to have the same interface.
->>>
->>> When when XE only hacked that together on their own then that is a 
->>> bit questionable because getting the lifetime right is usually tricky.
->>>
->>>>
->>>> So do I need to add a AMDGPU_SVM_LOCATION_DEVICE  flag or do I need 
->>>> to modify the UAPI to align with xe_svm?
->>>
->>> I think we need to full clarify how XE works here. E.g. that you can 
->>> specify both 0 as well as give the fd to get the memory migrated to 
->>> the local device sounds odd.
->>
->> Got it, for this part maybe require more discussion and time to fully 
->> understand, so this part will remain unchanged in the next version.
->>
->
-> Hi Christian, Felix,
->
-> Based on the v3 review, I've reworked the SVM UAPI. Please let me know 
-> if anything still looks off before I post v4.
->
-> Changes with v3 UAPI:
->   - OP / ATTR_TYPE / ACCESS / LOCATION converted to documented enums.
->   - Three ACCESS_* attribute types collapsed into a single
->     AMDGPU_SVM_ATTR_ACCESS carrying enum amdgpu_ioctl_svm_access.
->   - ACCESS/MIGRATE renamed to ALLOW_MIGRATE to means permitted, not 
-> required
->   - SET_FLAGS / CLR_FLAGS removed; each former flag is now its own
->     attribute carrying enum amdgpu_ioctl_svm_flag_value: CLR / SET
->
->
->   enum amdgpu_ioctl_svm_op {
->           AMDGPU_SVM_OP_SET_ATTR = 0,
->           AMDGPU_SVM_OP_GET_ATTR = 1,
->   };
->
->   enum amdgpu_ioctl_svm_attr_type {
->           AMDGPU_SVM_ATTR_PREFERRED_LOC           = 0,
->           AMDGPU_SVM_ATTR_PREFETCH_LOC            = 1,
->           AMDGPU_SVM_ATTR_ACCESS                  = 2,
->           AMDGPU_SVM_ATTR_GRANULARITY             = 3,
->           AMDGPU_SVM_ATTR_HOST_ACCESS             = 4,
->           AMDGPU_SVM_ATTR_COHERENT                = 5,
->           AMDGPU_SVM_ATTR_EXT_COHERENT            = 6,
->           AMDGPU_SVM_ATTR_HIVE_LOCAL              = 7,
->           AMDGPU_SVM_ATTR_GPU_RO                  = 8,
->           AMDGPU_SVM_ATTR_GPU_EXEC                = 9,
->           AMDGPU_SVM_ATTR_GPU_READ_MOSTLY         = 10,
->           AMDGPU_SVM_ATTR_GPU_ALWAYS_MAPPED       = 11,
->   };
->
->   enum amdgpu_ioctl_svm_access {
->           AMDGPU_SVM_ACCESS_INACCESSIBLE          = 0,
->           AMDGPU_SVM_ACCESS_IN_PLACE              = 1,
->           AMDGPU_SVM_ACCESS_ALLOW_MIGRATE         = 2,
->   };
->
->   enum amdgpu_ioctl_svm_location {
->           AMDGPU_SVM_LOCATION_SYSMEM              = 0,
->           AMDGPU_SVM_LOCATION_UNDEFINED           = 0xffffffff,
->   };
->
->   enum amdgpu_ioctl_svm_flag_value {
->           AMDGPU_SVM_FLAG_CLR                     = 0,
->           AMDGPU_SVM_FLAG_SET                     = 1,
->   };
+> On Mon, 27 Apr 2026 at 10:18, Christophe Leroy (CS GROUP)
+> <chleroy@kernel.org> wrote:
+> >
+> > In a subsequent patch, copy_{to/from}_user() will be modified to
+> > return -EFAULT when copy fails.  
+> 
+> Please don't do this.
+> 
+> This is a maintenance nightmare, and changes pretty much three decades
+> of semantics, and will cause *very* subtle backporting issues if
+> somebody happens to rely on the old / new behavior.
+> 
+> I understand the reasoning for the change, but I really don't think
+> the pain of creating yet another user copy interface is worth it.
+> 
+> We already have a lot of different versions of user copies for
+> different reasons, and while they all tend to have a good reason (and
+> some not-so-good, but historical reasons) for existing, this one
+> doesn't seem worth it.
+> 
+> The main - perhaps only - reason for this "partial" version is that
+> you want to do that "automatically inlined and optimized fixed-sized
+> case".
+> 
+> But here's the thing: I think you can already do that. Yes, it
+> requires some improvements to unsafe_copy_from_user(), but *that*
+> interface doesn't have three decades of history associated with it,
+> _and_ you're extending on that one anyway in this series.
+> 
+> "unsafe_copy_from_user()" is very odd, is meant only for small simple
+> copies that can be inlined and it's special-cased for 'objtool' anyway
+> (because objtool would have complained about an out-of-line call,
+> although it could have been special-cased other ways).
+> 
+> In other words: unsafe_copy_from_user() is *very* close to what you
+> want for that "Oh, I noticed that it's a small fixed-size copy, so I
+> want to special-case copy-from-user for that".
+> 
+> The _only_ issue with unsafe_copy_from_user() is that you can't see
+> that there were partial successes. But if *that* was fixed, then this
+> whole "create a new copy_from_user interface" issue would just go
+> away.
+> 
+> So please - let's just change unsafe_copy_from_user() to be usable for
+> the partial case.
+> 
+> And the thing is, all the existing unsafe_copy_from_user()
+> implementations already effectively *have* the "how much did I not
+> copy" internally, and they actually do extra work to hide it, ie they
+> have things like that
+> 
+>         int _i;
+> 
+> that is "how many bytes have I copied" in the powerpc implementation,
+> or the x86 code does
+> 
+>         size_t __ucu_len = (_len);
+> 
+> where that "ucu_len" is updated as you go along and is literally the
+> "how many bytes are left to copy" return value that is missing from
+> this interface.
+> 
+> So what I would suggest is
+> 
+>  - introduce a new user accessor helper that is used for *both*
+> unsafe_copy_to/from_user() *and* the "inline small constant-sized
+> normal copy_to/from_user()" calls
+> 
+>  - it's the same thing as the existing  unsafe_copy_to/from_user()
+> implementation, except it exposes how many bytes are left to be copied
+> to the exception label.
 
-Looks reasonable to me. But I'm not sure you really need enum 
-amdgpu_ioctl_svm_flag_value. I'd just use 0 and non-zero to mean false 
-and true.
+I think there is a slight difference in that the normal copy_to_user()
+will determine the exact offset of the error by retrying with byte copies.
 
-Regards,
-   Felix
+There is also the issue of misaligned copies.
 
+Then there is the 'bugbear' of hardened user copies.
+Chasing down the stack to find whether the kernel buffer crosses
+a stack frame is probably more expensive than the copy for the typically
+small copies that will use on-stack buffers.
 
->
->
-> Regards,
-> Honglei
->
->> Regards,
->> Honglei
->>
->>>
->>> Regards,
->>> Christian.
->>>
->>>>
->>>> Regards,
->>>> Honglei
->>>>
->>>>>
->>>>> Regards,
->>>>> Christian.
->>>>>
->>>>>>
->>>>>>>
->>>>>>>> +
->>>>>>>> +struct drm_amdgpu_svm_attribute {
->>>>>>>> +    __u32 type;
->>>>>>>> +    __u32 value;
->>>>>>>> +};
->>>>>>>> +
->>>>>>>> +struct drm_amdgpu_gem_svm {
->>>>>>>> +    __u64 start_addr;
->>>>>>>> +    __u64 size;
->>>>>>>> +    __u32 operation;
->>>>>>>> +    __u32 nattr;
->>>>>>>> +    __u64 attrs_ptr;
->>>>>>>> +};
->>>>>>>
->>>>>>> Those struct make perfect sense but clearly need documentation. 
->>>>>>> Preferable as kerneldoc.
->>>>>>>
->>>>>>> And we usually use unions in this header to separate the input 
->>>>>>> from the output parameters.
->>>>>>
->>>>>> Got it will add documentation for it and will use unions in next 
->>>>>> version. Really thanks for the comments.
->>>>>>
->>>>>> Regards,
->>>>>> Honglei
->>>>>>
->>>>>>>
->>>>>>> Regards,
->>>>>>> Christian.
->>>>>>>
->>>>>>>> +
->>>>>>>>     #if defined(__cplusplus)
->>>>>>>>     }
->>>>>>>>     #endif
->>>>>>>
->>>>>>
->>>>>
->>>>
->>>
->>
->
+	David
+
+> 
+> IOW, it would look something like
+> 
+>      #define unsafe_copy_to_user_outlen(_dst,_src,_len,label)...
+> 
+> which is exactly the same as the current unsafe_copy_to_user(),
+> *except* it changes "_len" as it does along.
+> 
+> And then you use that for both the "real" unsafe_copy_user and for the
+> "small constant values" case.
+> 
+> Just as an example, attached is a completely stupid rough draft of a
+> patch that does this for x86 and only for unsafe_copy_to_user().
+> 
+> And I made a very very hacky change to kernel/sys.c to see what the
+> code generation looks like.
+> 
+> This is what it results in on x86 with clang (with all the magic
+> .section data edited out):
+> 
+>         ... edited out the code to generate the times
+>         ... this is the actual user copy:
+>         # HERE!
+>         movabsq $81985529216486895, %rcx        # imm = 0x123456789ABCDEF
+>         cmpq    %rcx, %rbx
+>         cmovaq  %rcx, %rbx
+>         stac
+>         movq    %r13, (%rbx)                    # exception to .LBB45_8
+>         movq    %r14, 8(%rbx)                   # exception to .LBB45_8
+>         movq    %r15, 16(%rbx)                  # exception to .LBB45_8
+>         movq    %rax, 24(%rbx)                  # exception to .LBB45_8
+>         clac
+> .LBB45_6:
+>         movq    jiffies(%rip), %rdi
+>         callq   jiffies_64_to_clock_t
+> .LBB45_7:
+>         addq    $16, %rsp
+>         popq    %rbx
+>         popq    %r12
+>         popq    %r13
+>         popq    %r14
+>         popq    %r15
+>         retq
+> .LBB45_8:
+>         clac
+>         movq    $-14, %rax
+>         jmp     .LBB45_7
+> 
+> and notice how the compiler noticed that the 'outlen' isn't actually
+> used, and turned the exception label into just a "return -EFAULT" and
+> never actually generated any code for updating remaining lengths?
+> 
+> That actually looks pretty much optimal for a 32-byte user copy.
+> 
+> And it didn't involve changing the semantics at all.
+> 
+> Just to check, I changed that "times()" system call to return the
+> number of bytes uncopied instead (to emulate the "I actually want to
+> know what's left" case), and it generated this:
+> 
+>         # HERE!
+>         movabsq $81985529216486895, %rcx        # imm = 0x123456789ABCDEF
+>         cmpq    %rcx, %rbx
+>         cmovaq  %rcx, %rbx
+>         stac
+>         movl    $32, %ecx
+>         movq    %r13, (%rbx)                    # exception to .LBB45_7
+>         movl    $24, %ecx
+>         movq    %r15, 8(%rbx)                   # exception to .LBB45_7
+>         movl    $16, %ecx
+>         movq    %r14, 16(%rbx)                  # exception to .LBB45_7
+>         movl    $8, %ecx
+>         movq    %rax, 24(%rbx)                  # exception to .LBB45_7
+>         clac
+>         xorl    %ecx, %ecx
+> .LBB45_8:
+>         movq    %rcx, %rax
+>         addq    $16, %rsp
+>         popq    %rbx
+>         popq    %r12
+>         popq    %r13
+>         popq    %r14
+>         popq    %r15
+>         retq
+> .LBB45_6:
+>         movq    jiffies(%rip), %rdi
+>         jmp     jiffies_64_to_clock_t           # TAILCALL
+> .LBB45_7:
+>         clac
+>         jmp     .LBB45_8
+> 
+> so it all seems to work - although obviously the above is *not* the normal case.
+> 
+> NOTE NOTE NOTE! The attached patch is entirely untested. I obviously
+> did some "test code generation" with it, but I only *looked* at the
+> result, and maybe it has some fundamental problem that I just didn't
+> notice. So treat this as a "how about this approach" patch, not as
+> anything more serious than that.
+> 
+> And the kerrnel/sys.c hack is very obviously just that: a complate
+> hack for testing.
+> 
+> A real patch would do that "for small constant-sized copies, turn
+> copy_to_user() automatically into "_small_copy_to_user()".
+> 
+> The attached is *not* a real patch. Treat it with the contempt it deserves.
+> 
+>              Linus
+
