@@ -2,38 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ptQBOxeu8GkWXQEAu9opvQ
+	id QL+dEhuu8GkfXQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:47 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:51 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDD71485411
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1F5048549F
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E92E10EC0E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FECE10EC07;
 	Tue, 28 Apr 2026 12:54:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="UsUVIDOJ";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="RKRi/tD/";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from bombadil.infradead.org (bombadil.infradead.org
  [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC8CB10E948;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACB5210E94D;
  Mon, 27 Apr 2026 21:41:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-ID:Content-Description:In-Reply-To:References;
- bh=uA71jEWx+4ZJFtOSm0w69X/YNfuN3y9/1tr88NG3p7I=; b=UsUVIDOJiaSKRMosjcwiWURPQO
- 4H0dX2mxJ8tMMdH0XhspJwtTvdMNk9vez0kuML2YqlYAbrjdi+i4Iy7LRTifjWUIaxHwdAjm0FHW6
- NJQTQwuO0HSALimyAvWXMg8TL9ET36jzV2VjVAWNvqgjpor6s7/woFGsNOkpRqglisHmPnH5w8sN4
- vHEH0Lc4KVp7Gi/lZ+WjRJjJSpk+PjJczrbHliPJCVT9g09gc4Hsnc4NVrn3XsDuq6CTQQknD0XHa
- clD3xTJAEQcWb1+ljuvGpKfGfRWpvE2VvRFeO7sfKj6+I1x6o3gjjHdC5BD3qjU9SbCzSoapNN3L0
- EDHIxJ+Q==;
+ Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+ To:From:Sender:Reply-To:Content-ID:Content-Description;
+ bh=wfCWRNqlZezMxFMCv0tqtbKuZJLO2xtkjSupxx5nIf4=; b=RKRi/tD/qwm0U6+H4oQtnhNH6S
+ ACAK8ntdmAhMyxafmCSaITYdAk2nMrlrNxGqHhW6b5eP0QTkzf9+sa7Kw11Zmuyt8Joe9x6L6UPNi
+ LEE+PhYMFF0ac1wOHyidVqkuzJCgTe3Jj0Sl812KdALNrS/LEqd0AEmxjoh+8r+9ynOZ2NMw7EXRN
+ 27IfOyE5No78OWGF7EgYs0+7Hy8rgp2KiDUyNFa73W24TojB/9O310jsbEY9VzJWc0ov1cdrqPbLY
+ U0NIalvFc86MZHhvkg+Rv0XP2k4lIVW2JFRRHdpfHQI2quCGH1mzUifW+IWMlrCWy7Yce5QAa8et2
+ NddinQFg==;
 Received: from [50.53.43.113] (helo=bombadil.infradead.org)
  by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
- id 1wHThk-00000000BoX-3XFP; Mon, 27 Apr 2026 21:41:24 +0000
+ id 1wHThl-00000000BoX-109a; Mon, 27 Apr 2026 21:41:25 +0000
 From: Randy Dunlap <rdunlap@infradead.org>
 To: dri-devel@lists.freedesktop.org
 Cc: Randy Dunlap <rdunlap@infradead.org>,
@@ -44,10 +44,13 @@ Cc: Randy Dunlap <rdunlap@infradead.org>,
  amd-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 1/3 v2] drm/amd/display: dmub_cmd.h: correct typos and spellos
-Date: Mon, 27 Apr 2026 14:41:19 -0700
-Message-ID: <20260427214122.784024-1-rdunlap@infradead.org>
+Subject: [PATCH 2/3 v2] drm/amd/display: dmub_cmd.h: correct all kernel-doc
+ prototype warnings
+Date: Mon, 27 Apr 2026 14:41:20 -0700
+Message-ID: <20260427214122.784024-2-rdunlap@infradead.org>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260427214122.784024-1-rdunlap@infradead.org>
+References: <20260427214122.784024-1-rdunlap@infradead.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -65,7 +68,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: EDD71485411
+X-Rspamd-Queue-Id: E1F5048549F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.59 / 15.00];
@@ -82,65 +85,39 @@ X-Spamd-Result: default: False [1.59 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,suse.de:email,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	NEURAL_HAM(-0.00)[-0.921];
+	NEURAL_HAM(-0.00)[-0.940];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[infradead.org:-]
 
-Fix spelling issues that are reported by codespell:
+Correct all typedef, struct, and union prototype warnings in
+dmub_cmd.h by using the matching names or "typedef" keyword:
 
-dmub_cmd.h:332: alighment ==> alignment
-dmub_cmd.h:2029: sequeunce ==> sequence
-dmub_cmd.h:3684: optimzations ==> optimizations
-dmub_cmd.h:4491: isntance ==> instance
-dmub_cmd.h:4514: optimzations ==> optimizations
-dmub_cmd.h:4604: isntance ==> instance
-dmub_cmd.h:4643: isntance ==> instance
-dmub_cmd.h:4679: isntance ==> instance
-dmub_cmd.h:4699: isntance ==> instance
-dmub_cmd.h:4719: isntance ==> instance
-dmub_cmd.h:4735: isntance ==> instance
-dmub_cmd.h:4749: isntance ==> instance
-dmub_cmd.h:4795: isntance ==> instance
-dmub_cmd.h:4903: isntance ==> instance
-dmub_cmd.h:4936: isntance ==> instance
-dmub_cmd.h:5066: re-use ==> reuse
-dmub_cmd.h:6552: isntance ==> instance
-dmub_cmd.h:6630: isntance ==> instance
-dmub_cmd.h:6639: optimzations ==> optimizations
-dmub_cmd.h:6720: isntance ==> instance
-dmub_cmd.h:6742: isntance ==> instance
-
-and fix a few that I found:
-
-dicated		==> dictated (7x)
-afftet		==> after (is this correct?)
+Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:961 cannot understand function prototype: 'typedef uint32_t dmub_trace_code_t;'
+Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:1183 expecting prototype for union dmub_shared_state_ips_fw. Prototype was for union dmub_shared_state_ips_fw_signals instead
+Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:1203 expecting prototype for union dmub_shared_state_ips_signals. Prototype was for union dmub_shared_state_ips_driver_signals instead
+Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:1253 expecting prototype for struct dmub_shared_state_cursor_offload_v1. Prototype was for struct dmub_shared_state_cursor_offload_stream_v1 instead
+Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:1269 struct dmub_shared
+_state_feature_common { uint32_t padding[62]; };: error: Cannot parse enum!
+Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:1278 struct dmub_shared
+_state_feature_header { uint16_t id;  uint16_t version;  uint32_t reserved;  };:
+ error: Cannot parse enum!
+Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:2001 expecting prototype for struct dmub_cmd_read_modify_write_sequence. Prototype was for struct dmub_rb_cmd_read_modify_write instead
+Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:2191 expecting prototype for struct dmub_rb_cmd_cab. Prototype was for struct dmub_rb_cmd_cab_for_ss instead
+Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:2875 expecting prototype for struct dmub_cmd_set_pixel_clock_data. Prototype was for struct dmub_rb_cmd_set_pixel_clock instead
+Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:3398 expecting prototype for union dpia_notify_data_type. Prototype was for union dpia_notification_data instead
+Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:3447 expecting prototype for struct dmub_rb_cmd_hpd_sense_notify. Prototype was for struct dmub_rb_cmd_hpd_sense_notify_data instead
+Warning: drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h:6267 expecting prototype for struct dmub_cmd_cable_id_input. Prototype was for struct dmub_cmd_cable_id_output instead
 
 Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
 ---
-v2: fix one more typo; rebase & resend
-
-Questions:
-(a) Is one of "negative" or "pos" incorrect?
-
-	/**
-	 * Dark negative gain.
-	 */
-	uint8_t dark_pos_gain[NUM_AMBI_LEVEL][NUM_AGGR_LEVEL];   // 184B
-
-(b) Is one of "min" or "Maximum" incorrect?
-
-	uint16_t min_frame_rate;	/**< Maximum frame rate */
-
-(c) Is one of "max" or "Minimum" incorrect?
-
-	uint16_t max_frame_rate;	/**< Minimum frame rate */
+v2: fix more warnings; rebase & resend
 
 Cc: Harry Wentland <harry.wentland@amd.com>
 Cc: Leo Li <sunpeng.li@amd.com>
@@ -152,267 +129,115 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Cc: Maxime Ripard <mripard@kernel.org>
 Cc: Thomas Zimmermann <tzimmermann@suse.de>
 
-
- drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h |   58 +++++++-------
- 1 file changed, 29 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h |   24 +++++++-------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
 --- linux-next-20260427.orig/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
 +++ linux-next-20260427/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -329,7 +329,7 @@ union dmub_addr {
+@@ -958,7 +958,7 @@ union dmub_fw_meta {
+ //==============================================================================
+ #if !defined(TENSILICA) && !defined(DMUB_TRACE_ENTRY_DEFINED)
+ /**
+- * dmub_trace_code_t - firmware trace code, 32-bits
++ * typedef dmub_trace_code_t - firmware trace code, 32-bits
+  */
+ typedef uint32_t dmub_trace_code_t;
  
- /* Flattened structure containing SOC BB parameters stored in the VBIOS
-  * It is not practical to store the entire bounding box in VBIOS since the bounding box struct can gain new parameters.
-- * This also prevents alighment issues when new parameters are added to the SoC BB.
-+ * This also prevents alignment issues when new parameters are added to the SoC BB.
-  * The following parameters should be added since these values can't be obtained elsewhere:
-  * -dml2_soc_power_management_parameters
-  * -dml2_soc_vmin_clock_limits
-@@ -2001,7 +2001,7 @@ struct dmub_rb_cmd_read_modify_write {
+@@ -1170,7 +1170,7 @@ enum dmub_shared_state_feature_id {
  };
  
- /*
-- * Update a register with specified masks and values sequeunce
-+ * Update a register with specified masks and values sequence
-  *
-  * 60 payload bytes can hold address + up to 7 sets of mask/value combo, each take 2 dword
-  *
-@@ -3483,7 +3483,7 @@ enum dmub_cmd_psr_type {
+ /**
+- * struct dmub_shared_state_ips_fw - Firmware signals for IPS.
++ * struct dmub_shared_state_ips_fw_signals - Firmware signals for IPS.
+  */
+ union dmub_shared_state_ips_fw_signals {
+ 	struct {
+@@ -1185,7 +1185,7 @@ union dmub_shared_state_ips_fw_signals {
+ };
  
- 	/**
- 	 * Set PSR level.
--	 * PSR level is a 16-bit value dicated by driver that
-+	 * PSR level is a 16-bit value dictated by driver that
- 	 * will enable/disable different functionality.
- 	 */
- 	DMUB_CMD__PSR_SET_LEVEL			= 4,
-@@ -3640,7 +3640,7 @@ struct dmub_cmd_psr_copy_settings_data {
- 	 */
- 	union dmub_psr_debug_flags debug;
- 	/**
--	 * 16-bit value dicated by driver that will enable/disable different functionality.
-+	 * 16-bit value dictated by driver that will enable/disable different functionality.
- 	 */
- 	uint16_t psr_level;
- 	/**
-@@ -3680,7 +3680,7 @@ struct dmub_cmd_psr_copy_settings_data {
- 	 */
- 	uint8_t aux_inst;
- 	/**
--	 * Determines if SMU optimzations are enabled/disabled.
-+	 * Determines if SMU optimizations are enabled/disabled.
- 	 */
- 	uint8_t smu_optimizations_en;
- 	/**
-@@ -3797,7 +3797,7 @@ struct dmub_rb_cmd_psr_copy_settings {
+ /**
+- * struct dmub_shared_state_ips_signals - Firmware signals for IPS.
++ * struct dmub_shared_state_ips_driver_signals - Firmware signals for IPS.
   */
- struct dmub_cmd_psr_set_level_data {
- 	/**
--	 * 16-bit value dicated by driver that will enable/disable different functionality.
-+	 * 16-bit value dictated by driver that will enable/disable different functionality.
- 	 */
- 	uint16_t psr_level;
- 	/**
-@@ -4175,7 +4175,7 @@ struct dmub_rb_cmd_update_cursor_info {
+ union dmub_shared_state_ips_driver_signals {
+ 	struct {
+@@ -1247,7 +1247,7 @@ struct dmub_shared_state_ips_driver {
+ }; /* 248-bytes, fixed */
+ 
+ /**
+- * struct dmub_shared_state_cursor_offload_v1 - Header metadata for cursor offload.
++ * struct dmub_shared_state_cursor_offload_stream_v1 - Header metadata for cursor offload.
   */
- struct dmub_cmd_psr_set_vtotal_data {
- 	/**
--	 * 16-bit value dicated by driver that indicates the vtotal in PSR active requirement when screen idle..
-+	 * 16-bit value dictated by driver that indicates the vtotal in PSR active requirement when screen idle..
- 	 */
- 	uint16_t psr_vtotal_idle;
- 	/**
-@@ -4189,7 +4189,7 @@ struct dmub_cmd_psr_set_vtotal_data {
- 	 */
- 	uint8_t panel_inst;
- 	/*
--	 * 16-bit value dicated by driver that indicates the vtotal in PSR active requirement when doing SU/FFU.
-+	 * 16-bit value dictated by driver that indicates the vtotal in PSR active requirement when doing SU/FFU.
- 	 */
- 	uint16_t psr_vtotal_su;
- 	/**
-@@ -4489,7 +4489,7 @@ struct dmub_cmd_replay_copy_settings_dat
- 	uint8_t aux_inst;
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which psr_state to use
-+	 * Panel instance to identify which psr_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-@@ -4512,7 +4512,7 @@ struct dmub_cmd_replay_copy_settings_dat
- 	 */
- 	uint8_t dpphy_inst;
- 	/**
--	 * Determines if SMU optimzations are enabled/disabled.
-+	 * Determines if SMU optimizations are enabled/disabled.
- 	 */
- 	uint8_t smu_optimizations_en;
- 	/**
-@@ -4602,7 +4602,7 @@ struct dmub_rb_cmd_smart_power_oled_enab
- 	uint8_t enable;
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which replay_state to use
-+	 * Panel instance to identify which replay_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-@@ -4641,7 +4641,7 @@ struct dmub_rb_cmd_replay_enable_data {
- 	uint8_t enable;
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which replay_state to use
-+	 * Panel instance to identify which replay_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-@@ -4689,7 +4689,7 @@ struct dmub_rb_cmd_replay_enable {
- struct dmub_cmd_replay_set_power_opt_data {
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which replay_state to use
-+	 * Panel instance to identify which replay_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-@@ -4709,7 +4709,7 @@ struct dmub_cmd_replay_set_power_opt_dat
- struct dmub_cmd_replay_set_timing_sync_data {
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which replay_state to use
-+	 * Panel instance to identify which replay_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-@@ -4729,7 +4729,7 @@ struct dmub_cmd_replay_set_timing_sync_d
- struct dmub_cmd_replay_set_pseudo_vtotal {
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which replay_state to use
-+	 * Panel instance to identify which replay_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-@@ -4745,7 +4745,7 @@ struct dmub_cmd_replay_set_pseudo_vtotal
- struct dmub_cmd_replay_disabled_adaptive_sync_sdp_data {
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which replay_state to use
-+	 * Panel instance to identify which replay_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-@@ -4759,7 +4759,7 @@ struct dmub_cmd_replay_disabled_adaptive
- struct dmub_cmd_replay_set_general_cmd_data {
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which replay_state to use
-+	 * Panel instance to identify which replay_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-@@ -4796,7 +4796,7 @@ struct dmub_rb_cmd_replay_set_power_opt
+ struct dmub_shared_state_cursor_offload_stream_v1 {
+ 	uint32_t last_write_idx; /**< Last write index */
+@@ -1263,14 +1263,14 @@ struct dmub_shared_state_cursor_offload_
+ }; /* 248-bytes, fixed */
+ 
+ /**
+- * enum dmub_shared_state_feature_common - Generic payload.
++ * struct dmub_shared_state_feature_common - Generic payload.
   */
- struct dmub_cmd_replay_set_coasting_vtotal_data {
+ struct dmub_shared_state_feature_common {
+ 	uint32_t padding[62];
+ }; /* 248-bytes, fixed */
+ 
+ /**
+- * enum dmub_shared_state_feature_header - Feature description.
++ * struct dmub_shared_state_feature_header - Feature description.
+  */
+ struct dmub_shared_state_feature_header {
+ 	uint16_t id; /**< Feature ID */
+@@ -1990,7 +1990,7 @@ struct dmub_cmd_read_modify_write_sequen
+ #define DMUB_READ_MODIFY_WRITE_SEQ__MAX 5
+ 
+ /**
+- * struct dmub_cmd_read_modify_write_sequence - Read modify write command.
++ * struct dmub_rb_cmd_read_modify_write - Read modify write command.
+  */
+ struct dmub_rb_cmd_read_modify_write {
+ 	struct dmub_cmd_header header;  /**< command header */
+@@ -2182,7 +2182,7 @@ enum dmub_cmd_cab_type {
+ };
+ 
+ /**
+- * struct dmub_rb_cmd_cab - CAB command data.
++ * struct dmub_rb_cmd_cab_for_ss - CAB command data.
+  */
+ struct dmub_rb_cmd_cab_for_ss {
+ 	struct dmub_cmd_header header;
+@@ -2867,7 +2867,7 @@ struct dmub_cmd_set_pixel_clock_data {
+ };
+ 
+ /**
+- * struct dmub_cmd_set_pixel_clock_data - Set pixel clock command.
++ * struct dmub_rb_cmd_set_pixel_clock - Set pixel clock command.
+  */
+ struct dmub_rb_cmd_set_pixel_clock {
+ 	struct dmub_cmd_header header; /**< header */
+@@ -3383,7 +3383,7 @@ struct dpia_bw_allocation_notify_data {
+ };
+ 
+ /**
+- * union dpia_notify_data_type - DPIA Notification in Outbox command
++ * union dpia_notification_data - DPIA Notification in Outbox command
+  */
+ union dpia_notification_data {
  	/**
--	 * 16-bit value dicated by driver that indicates the coasting vtotal.
-+	 * 16-bit value dictated by driver that indicates the coasting vtotal.
- 	 */
- 	uint16_t coasting_vtotal;
- 	/**
-@@ -4805,12 +4805,12 @@ struct dmub_cmd_replay_set_coasting_vtot
- 	uint8_t cmd_version;
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which replay_state to use
-+	 * Panel instance to identify which replay_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
- 	/**
--	 * 16-bit value dicated by driver that indicates the coasting vtotal high byte part.
-+	 * 16-bit value dictated by driver that indicates the coasting vtotal high byte part.
- 	 */
- 	uint16_t coasting_vtotal_high;
- 	/**
-@@ -4913,7 +4913,7 @@ struct dmub_rb_cmd_replay_set_general_cm
- struct dmub_cmd_replay_frameupdate_timer_data {
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which replay_state to use
-+	 * Panel instance to identify which replay_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-@@ -4946,7 +4946,7 @@ struct dmub_rb_cmd_replay_set_frameupdat
- union dmub_replay_cmd_set {
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which replay_state to use
-+	 * Panel instance to identify which replay_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-@@ -5122,7 +5122,7 @@ struct dmub_hw_lock_inst_flags {
- 	uint8_t opp_inst;
- 	/**
- 	 * OTG HW instance for global update lock.
--	 * TODO: Remove, and re-use otg_inst.
-+	 * TODO: Remove, and reuse otg_inst.
- 	 */
- 	uint8_t dig_inst;
- 	/**
-@@ -6609,7 +6609,7 @@ struct dmub_cmd_pr_enable_data {
- 	uint8_t enable;
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which replay_state to use
-+	 * Panel instance to identify which replay_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-@@ -6687,7 +6687,7 @@ struct dmub_cmd_pr_copy_settings_data {
- 	uint8_t aux_inst;
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which psr_state to use
-+	 * Panel instance to identify which psr_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-@@ -6696,7 +6696,7 @@ struct dmub_cmd_pr_copy_settings_data {
- 	 */
- 	uint8_t dpphy_inst;
- 	/**
--	 * Determines if SMU optimzations are enabled/disabled.
-+	 * Determines if SMU optimizations are enabled/disabled.
- 	 */
- 	uint8_t smu_optimizations_en;
- 	/**
-@@ -6704,7 +6704,7 @@ struct dmub_cmd_pr_copy_settings_data {
- 	 */
- 	uint32_t line_time_in_ns;
- 	/*
--	 * Use FSFT afftet pixel clk
-+	 * Use FSFT after pixel clk
- 	 */
- 	uint32_t pix_clk_100hz;
- 	/*
-@@ -6777,7 +6777,7 @@ union dmub_pr_runtime_flags {
- struct dmub_cmd_pr_update_state_data {
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which psr_state to use
-+	 * Panel instance to identify which psr_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-@@ -6799,7 +6799,7 @@ struct dmub_cmd_pr_update_state_data {
- struct dmub_cmd_pr_general_cmd_data {
- 	/**
- 	 * Panel Instance.
--	 * Panel isntance to identify which psr_state to use
-+	 * Panel instance to identify which psr_state to use
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
+@@ -3439,7 +3439,7 @@ struct dmub_rb_cmd_query_hpd_state {
+ };
+ 
+ /**
+- * struct dmub_rb_cmd_hpd_sense_notify - HPD sense notification data.
++ * struct dmub_rb_cmd_hpd_sense_notify_data - HPD sense notification data.
+  */
+ struct dmub_rb_cmd_hpd_sense_notify_data {
+ 	uint32_t old_hpd_sense_mask; /**< Old HPD sense mask */
+@@ -6318,7 +6318,7 @@ struct dmub_cmd_cable_id_input {
+ };
+ 
+ /**
+- * struct dmub_cmd_cable_id_input - Defines the output of DMUB_CMD_GET_USBC_CABLE_ID command.
++ * struct dmub_cmd_cable_id_output - Defines the output of DMUB_CMD_GET_USBC_CABLE_ID command.
+  */
+ struct dmub_cmd_cable_id_output {
+ 	uint8_t UHBR10_20_CAPABILITY	:2; /**< b'01 for UHBR10 support, b'10 for both UHBR10 and UHBR20 support */
