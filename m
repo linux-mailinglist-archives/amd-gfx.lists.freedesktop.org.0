@@ -2,97 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QKHXHgWu8GnOWwEAu9opvQ
+	id YOj/Gyap72mpDgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 20:21:26 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E01F485370
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBF02478739
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 20:21:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1E5210EBF5;
-	Tue, 28 Apr 2026 12:54:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AF7910E8AB;
+	Mon, 27 Apr 2026 18:21:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="MDstamMX";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="J2scZpbK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f74.google.com (mail-wr1-f74.google.com
- [209.85.221.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A50EC10E8A4
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 18:07:31 +0000 (UTC)
-Received: by mail-wr1-f74.google.com with SMTP id
- ffacd0b85a97d-43d1fec59c9so6958386f8f.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 11:07:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1777313250; x=1777918050;
- darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=HxkgeF4LNZGOlYkWj+Rbzgew6yzkspsu2lszfChr6II=;
- b=MDstamMXoYtgZM+AIHetO15cwSAKNTGBy0XR0YK+RWA3oNdUV92KDBznEzW3pQA9D6
- 51p1VOzgujlP6NFjHtZ5oZYxuhzPxqAJNH7MC2LuoQ/r7Nw7L15dVO95jh1lEZFbgKEr
- 9LklWwrt5dJn8RwFmpkhqxEfDu001+QvWLN4irp20qgosEvJPUbqEr9EzPGr2vdixe/X
- TwBEWTwyYfD5iZXup+8lql4BqpxI1kQJerObeFDpkSykU7Q7XH6lu2MXo2C8lpzJciu8
- ccXB1uYOQsjOIutmU3rfJHtuHeudZMeTIrNldTXTZ2nWQ26QoqMZmzJbxWFwUy29L+W+
- W8FA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777313250; x=1777918050;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=HxkgeF4LNZGOlYkWj+Rbzgew6yzkspsu2lszfChr6II=;
- b=OEipXQxhTPltg+PTBlRMVH/NzGksECoyCRTLNXst81HBlYPeKUCRwcIF0+DAbc6rni
- xx9HAKpJUTvx3iF/AW/EAewufrxv0ahdZOc2ieIToIAuvOenRmNy4RxFdXkAZn723QEZ
- wfdZ+aaTItJ2ArIys5OnpCtRbFsTtMEKuHHUx0IjxDvP6TXrbmRG/ba9LKX64InBRMSB
- /O+7PfTOe9hpr/WRrxDm5VltWL80lSd1qNEqpzgIgZUCpMCKMej2h6AMgWlIyH2zV9Yd
- Lrgle3OX4Gy46ngUfnGcQQLZmE8W2QYTwwaMeH40JUSk2AMp4m0jrzeFZkVVkK8peBjk
- FOVQ==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+PGgvg+Jz6ZTHfjxp9GzRC0cp9fn/3lciqqr3uyWgwtmeOIMBeWiFM/ekysZmsmh7eACZgImie@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyLoSRqdcIMfwsf8h0XB53fmS0KwkPkgv1XOnhlBx1el1eXJRiD
- VNJFt6MuKddhyvloj2Ik8JKfC68WLf9NroSLUKqFzwqFb8Utvzr1D+2CKHHrm9yNotdZteohS7s
- H0xQYVCvAIgCS+0YEXA==
-X-Received: from wrmd3.prod.google.com ([2002:adf:e883:0:b0:43d:7940:a11b])
- (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6000:41c7:b0:43d:799c:b2cb with SMTP id
- ffacd0b85a97d-44636a393e7mr256856f8f.24.1777313249648; 
- Mon, 27 Apr 2026 11:07:29 -0700 (PDT)
-Date: Mon, 27 Apr 2026 18:07:28 +0000
-In-Reply-To: <289b424e243ba2c4139ea04009cf8b9c448a87ff.1777306795.git.chleroy@kernel.org>
-Mime-Version: 1.0
-References: <cover.1777306795.git.chleroy@kernel.org>
- <289b424e243ba2c4139ea04009cf8b9c448a87ff.1777306795.git.chleroy@kernel.org>
-Message-ID: <ae-l4FGDPLwBuDXM@google.com>
-Subject: Re: [RFC PATCH v1 5/9] uaccess: Switch to
- copy_{to/from}_user_partial() when relevant
-From: Alice Ryhl <aliceryhl@google.com>
-To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-Cc: Yury Norov <ynorov@nvidia.com>, Andrew Morton <akpm@linux-foundation.org>, 
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1538910E8AB;
+ Mon, 27 Apr 2026 18:21:23 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 46E9540246;
+ Mon, 27 Apr 2026 18:20:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CCCFC2BCB5;
+ Mon, 27 Apr 2026 18:20:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1777314053;
+ bh=fSfdZ5/fBIJBn92+lTQ8RknrFiSruKk4Zm5FPbyuhQI=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=J2scZpbKenpOejPaCkxdr8Fr6c4RornKyxLjF0dKFYhSlw+matCdj3SDWlLeqEo9E
+ a373XI9Iold2YwxLkAFI1OVkbxbR9JLgxu/comiCZJeBJjQK8IiPFbF3a0OQIu5zFJ
+ z32D8XDVz5Fo00XfpR09lc3WO+fPx7ont3FOA+TL4jxGM7w1J5Z2cHWcv2Vi05coRU
+ 6lIPjD/Eh4XtMiOh4PUlJfQ+hbcnF50oIaF0Y5is14Jb9Uy7pNbq6e4WVWxwPn3QZF
+ F5175xYuXBtUSK+HvgeuPZTDTXog5e6524IUP62vgqpWl/U/vR5Pqvo+DbOYeGkne+
+ cSOzK+yVIhXWw==
+Message-ID: <63a4d0f6-0eb3-48cd-9f98-bf7b223b2606@kernel.org>
+Date: Mon, 27 Apr 2026 20:20:38 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v1 7/9] x86: Add unsafe_copy_from_user()
+To: Yury Norov <ynorov@nvidia.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
  Linus Torvalds <torvalds@linux-foundation.org>,
- David Laight <david.laight.linux@gmail.com>, 
- Thomas Gleixner <tglx@linutronix.de>, linux-alpha@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-snps-arc@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org, 
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
- sparclinux@vger.kernel.org, linux-um@lists.infradead.org, 
- dmaengine@vger.kernel.org, linux-efi@vger.kernel.org, 
- linux-fsi@lists.ozlabs.org, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- linux-wpan@vger.kernel.org, netdev@vger.kernel.org, 
- linux-wireless@vger.kernel.org, linux-spi@vger.kernel.org, 
- linux-media@vger.kernel.org, linux-staging@lists.linux.dev, 
- linux-serial@vger.kernel.org, linux-usb@vger.kernel.org, 
- xen-devel@lists.xenproject.org, linux-fsdevel@vger.kernel.org, 
- ocfs2-devel@lists.linux.dev, bpf@vger.kernel.org, kasan-dev@googlegroups.com, 
- linux-mm@kvack.org, linux-x25@vger.kernel.org, rust-for-linux@vger.kernel.org, 
- linux-sound@vger.kernel.org, sound-open-firmware@alsa-project.org, 
- linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org, 
- loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org, 
- linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org, 
- linux-sh@vger.kernel.org, linux-arch@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:19 +0000
+ David Laight <david.laight.linux@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-alpha@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-um@lists.infradead.org,
+ dmaengine@vger.kernel.org, linux-efi@vger.kernel.org,
+ linux-fsi@lists.ozlabs.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-fsdevel@vger.kernel.org,
+ ocfs2-devel@lists.linux.dev, bpf@vger.kernel.org,
+ kasan-dev@googlegroups.com, linux-mm@kvack.org, linux-x25@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, linux-sound@vger.kernel.org,
+ sound-open-firmware@alsa-project.org, linux-csky@vger.kernel.org,
+ linux-hexagon@vger.kernel.org, loongarch@lists.linux.dev,
+ linux-m68k@lists.linux-m68k.org, linux-openrisc@vger.kernel.org,
+ linux-parisc@vger.kernel.org, linux-sh@vger.kernel.org,
+ linux-arch@vger.kernel.org
+References: <cover.1777306795.git.chleroy@kernel.org>
+ <0ee46bb228d97163fbdc14f2a7c52b93d8bc34ce.1777306795.git.chleroy@kernel.org>
+ <ae-j2_QirCySZD02@yury>
+Content-Language: fr-FR
+From: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+In-Reply-To: <ae-j2_QirCySZD02@yury>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,67 +87,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 2E01F485370
+X-Rspamd-Queue-Id: CBF02478739
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
-	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[google.com:s=20251104];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:chleroy@kernel.org,m:ynorov@nvidia.com,m:akpm@linux-foundation.org,m:torvalds@linux-foundation.org,m:david.laight.linux@gmail.com,m:tglx@linutronix.de,m:linux-alpha@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-snps-arc@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mips@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:kvm@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-s390@vger.kernel.org,m:sparclinux@vger.kernel.org,m:linux-um@lists.infradead.org,m:dmaengine@vger.kernel.org,m:linux-efi@vger.kernel.org,m:linux-fsi@lists.ozlabs.org,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:linux-wpan@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:linux-spi@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-staging@lists.linux.dev,m:linux-serial@vger.kernel.org,m:linux-usb@vger.kernel.org,m:xen-devel@lists.xenproject.org,m:linux-fsdevel@vger.kernel.org,m:ocfs2-devel@lists.lin
- ux.dev,m:bpf@vger.kernel.org,m:kasan-dev@googlegroups.com,m:linux-mm@kvack.org,m:linux-x25@vger.kernel.org,m:rust-for-linux@vger.kernel.org,m:linux-sound@vger.kernel.org,m:sound-open-firmware@alsa-project.org,m:linux-csky@vger.kernel.org,m:linux-hexagon@vger.kernel.org,m:loongarch@lists.linux.dev,m:linux-m68k@lists.linux-m68k.org,m:linux-openrisc@vger.kernel.org,m:linux-parisc@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-arch@vger.kernel.org,m:davidlaightlinux@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[aliceryhl@google.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[48];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[49];
-	FREEMAIL_CC(0.00)[nvidia.com,linux-foundation.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org,lists.linux-m68k.org];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linux-foundation.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org,lists.linux-m68k.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[aliceryhl@google.com,amd-gfx-bounces@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[chleroy@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[google.com:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.371];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On Mon, Apr 27, 2026 at 07:13:46PM +0200, Christophe Leroy (CS GROUP) wrote:
-> diff --git a/rust/helpers/uaccess.c b/rust/helpers/uaccess.c
-> index 01de4fbbcc84..710e07cd60ae 100644
-> --- a/rust/helpers/uaccess.c
-> +++ b/rust/helpers/uaccess.c
-> @@ -5,13 +5,13 @@
->  __rust_helper unsigned long
->  rust_helper_copy_from_user(void *to, const void __user *from, unsigned long n)
->  {
-> -	return copy_from_user(to, from, n);
-> +	return copy_from_user_partial(to, from, n);
->  }
->  
->  __rust_helper unsigned long
->  rust_helper_copy_to_user(void __user *to, const void *from, unsigned long n)
->  {
-> -	return copy_to_user(to, from, n);
-> +	return copy_to_user_partial(to, from, n);
->  }
 
-No Rust code uses the return value for anything other than comparing it
-with zero, so you can keep these as copy_[from|to]_user() without
-issues.
 
-Thanks, Alice
+Le 27/04/2026 à 19:58, Yury Norov a écrit :
+> On Mon, Apr 27, 2026 at 07:13:48PM +0200, Christophe Leroy (CS GROUP) wrote:
+>> At the time being, x86 and arm64 are missing unsafe_copy_from_user().
+> 
+> No, they don't. They (should) rely on a generic implementation from
+> linux/uaccess.h, like every other arch, except for  PPC and RISCV.
+> 
+> But they #define arch_unsafe_get_user, and the unsafe_copy_from_user()
+> becomes undefined conditionally on that.
+> 
+> So please, fix that bug instead of introducing another arch flavor.
+> We'd always choose generic version, unless there's strong evidence
+> that arch one is better.
+
+But they both implement the exact same unsafe_copy_to_user(). What is 
+the difference here ?
+
+Should that function become generic too ?
+
+Christophe
+
+> 
+> 
+> Thanks,
+> Yury
+>   
+>> Add it.
+>>
+>> Signed-off-by: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
+>> ---
+>>   arch/x86/include/asm/uaccess.h | 29 ++++++++++++++++++++++++-----
+>>   1 file changed, 24 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/arch/x86/include/asm/uaccess.h b/arch/x86/include/asm/uaccess.h
+>> index 3a0dd3c2b233..10c458ffa399 100644
+>> --- a/arch/x86/include/asm/uaccess.h
+>> +++ b/arch/x86/include/asm/uaccess.h
+>> @@ -598,7 +598,7 @@ _label:									\
+>>    * We want the unsafe accessors to always be inlined and use
+>>    * the error labels - thus the macro games.
+>>    */
+>> -#define unsafe_copy_loop(dst, src, len, type, label)				\
+>> +#define unsafe_put_loop(dst, src, len, type, label)				\
+>>   	while (len >= sizeof(type)) {						\
+>>   		unsafe_put_user(*(type *)(src),(type __user *)(dst),label);	\
+>>   		dst += sizeof(type);						\
+>> @@ -611,10 +611,29 @@ do {									\
+>>   	char __user *__ucu_dst = (_dst);				\
+>>   	const char *__ucu_src = (_src);					\
+>>   	size_t __ucu_len = (_len);					\
+>> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u64, label);	\
+>> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u32, label);	\
+>> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u16, label);	\
+>> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u8, label);	\
+>> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u64, label);	\
+>> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u32, label);	\
+>> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u16, label);	\
+>> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u8, label);	\
+>> +} while (0)
+>> +
+>> +#define unsafe_get_loop(dst, src, len, type, label)				\
+>> +	while (len >= sizeof(type)) {						\
+>> +		unsafe_get_user(*(type __user *)(src),(type *)(dst),label);	\
+>> +		dst += sizeof(type);						\
+>> +		src += sizeof(type);						\
+>> +		len -= sizeof(type);						\
+>> +	}
+>> +
+>> +#define unsafe_copy_from_user(_dst,_src,_len,label)			\
+>> +do {									\
+>> +	char *__ucu_dst = (_dst);					\
+>> +	const char __user *__ucu_src = (_src);				\
+>> +	size_t __ucu_len = (_len);					\
+>> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u64, label);	\
+>> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u32, label);	\
+>> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u16, label);	\
+>> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u8, label);	\
+>>   } while (0)
+>>   
+>>   #ifdef CONFIG_CC_HAS_ASM_GOTO_OUTPUT
+>> -- 
+>> 2.49.0
+>>
+
