@@ -2,67 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iHqADpWq72kCDwEAu9opvQ
+	id iJohFp2q72kCDwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 20:27:33 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 20:27:41 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A554D4788F7
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 20:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD93D47891C
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 20:27:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1341210E8BC;
-	Mon, 27 Apr 2026 18:27:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 723D210E8C1;
+	Mon, 27 Apr 2026 18:27:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JyDXLjH+";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Mh/A7k6M";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BFEE10E8BC
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1F9B10E8BC
  for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 18:27:30 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-48909558b3aso105759485e9.0
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-4890098abbaso83870575e9.0
  for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 11:27:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20251104; t=1777314449; x=1777919249; darn=lists.freedesktop.org;
  h=content-transfer-encoding:reply-to:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
  :date:message-id:reply-to;
- bh=sV4/iVjPPR499XzkH2vzTp6cQOwkXuP+MzvFPExzNgQ=;
- b=JyDXLjH+bUGISEdBGEB1Lwf0/CYVENmHgAYrgBKCcTo8Yek9bib04lRE8oH1QSheS/
- 7RbTqOGfdaRvZQXA9VxCNIUjm9K7crB8FNNPq8yKQjPGt5RlH52lzIJbd6f5sY/ZliPm
- DQYS4XzCni0rHeHTUF1swUTE0hyTHk+lbLkvOz6lQuHIQWufIpwHcWRhYwgJ71KQlrmD
- x7lsFjPrJAafWIFOjznPbc3o0RB21BmHyPqPC36Q3S8oRMTfh81QfAxAdJiuM2eA/6l/
- lrGmXhyjXh3L1I8DNl+BZy+JfO7EB+aXDKhVsUAVrEMpxPicFGKP8HO/ILvcvyrmwX+I
- qgzA==
+ bh=FXOIxAVnbDqcBbL8Oow0AZzgIVnEysY5ba/JO00V+ak=;
+ b=Mh/A7k6MCa7r/eIMfncDVoGlUTJ/6cO6dk6d/I6Ri0jhv65QkQvKi/aWoQp46m+dKH
+ ECYCcRpXw4lAuOcS7qVEjbQY7IQUMk03c7yj2DC7jrCsYX+QbGB+vSyP9ajQokQUVgor
+ 7OPzJXlelOtALNOmQM5XD3nLy32tY8gReQlMo6YQ3VdOGs7q4PXIIeYIn5R1u+gIEEGb
+ D9A1nozqD9EGAd1F3Yeh8W+8VzP5VTXIHpFWW0fEav2mWGRBg7UskV/5uI1rBvXFhnVS
+ c8ymT1+I25dYK4VNhdooovZb3YZZZStus3oUSlCCFCPJy5tRX4vV2qWgicKBi1lHCWk7
+ GR/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20251104; t=1777314449; x=1777919249;
  h=content-transfer-encoding:reply-to:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=sV4/iVjPPR499XzkH2vzTp6cQOwkXuP+MzvFPExzNgQ=;
- b=Blq6ST1gQPF1227lC68YS1s/FQirqmsb2JUvMhvpCqFsuCwk5qkre7Z4KLBtLLWPay
- /hoNmF2aj4/DgWkAnNJx3Pn+v3RSgEKk+OAiI0ynWSaZuoHxaLwNsoNFtcHUBfYRuuSD
- jry9zq582Z6RYOrn8m9vT9gzqJ/DGm86YWwCsysWyZ/VJSUN0FuJSoO5Tz7bzfJaN/8n
- URBTSN0TNPuy3mHo7bdF9ejQyJ1sXSEJBUenfuMJacI9PjBiApjL4jmPPcbxLr6WuWSD
- 7JzZx6F7VoSXjoO855hFKmWUzNEdmCu6KG4ivYGvTUwzmWiYJ6I9wVvz+wDgUpWDjDkX
- hDGA==
-X-Gm-Message-State: AOJu0YwOKHlb9ie2VExaR96SJrj9jMyOawdjOonWXf4Zq+UAGbbRTd3B
- TUjEOPwQRZ1MkvbQIPcnOgdMTKN0umfqbfN5rDvjyBMjNKG2fdyjk8X1v1LYJduY
-X-Gm-Gg: AeBDieugZ/pkd+VPmcOdEv5JD7WYD3Ocns+L9o+45NkhtmrsUxERLOg5jUiW/rnU+lh
- s2O3ajguy1dqGak1TfztKTOtMRnGNbgl4t+Le+SapGC0DT7DGErIXTJdKgP5cy7apV1cxckv11D
- BQHxljAQUYiJhz//J/0fi5BW4k2hAupXmwxLAnUaRVs7VDQ9ClQrmIErkYj5z1zIbBOhlC+yBFW
- vVkIhGFC3FZEQk/24MbaJ2T7lMdowC09VmUOQxZiSc2nIkelv/dS3a7ltlWOMvoN6yKwgQBs1IG
- k2lrW0Frg7SDDuy55DGlGnMt4uxuw0c3dyGVIDW3XI50964iHHZCCYCP83IIj6C8iLPC8yYzv6O
- GwEalCnWJL4N7F8f17m7x7gf0KOVweflVR5PD4T/vDRzgnJNNznd85EuHIAiUHSJS2kTHiZOm5t
- fa5A5EDZf7iRzJIHpBddYzqIAyGszT+wLFO4p+uPmaCI1+uQ==
-X-Received: by 2002:a05:600c:5492:b0:485:46fd:7887 with SMTP id
- 5b1f17b1804b1-48a76f59564mr7113765e9.13.1777314448533; 
- Mon, 27 Apr 2026 11:27:28 -0700 (PDT)
+ bh=FXOIxAVnbDqcBbL8Oow0AZzgIVnEysY5ba/JO00V+ak=;
+ b=YKQSVh1KT2a5d2BitOv35Ono1VDpz3fGHeV5sJ6KWnjT+TTNoCRbVrCapgntRkzn1b
+ l9+niUhjQ9DqMhqxDHsVBG2S26k+a5apydluJgdzTpUwXgJ9OXZG6LT+Tthh/ZmE03OR
+ tOi61g6Z87tnWKegudSQaOoBDg0fljczMaQ29bTiXEpzicQc1Q8aDG7f+b8dxWhAgIR3
+ xqJVMLRwN1yXtPIgTFCHyeLcc41ijLawMZPKKTh6+a4xFTeOGgqDIMc3W22C3i8yDIal
+ Vl8E/p8GTeVfoR2OH05RxWuhEABavC3aWNFtet7vkIgOYaimACYklaCyMSuAYIlfasMq
+ T20g==
+X-Gm-Message-State: AOJu0YwG3M4j92B3a9bLthLKYCyI0wRcXdqk8DaBu8SjEZCvrYnVovFT
+ aK5DwTdlsGdUP4G/9/GdlCBf6lrzM4HXlMRM8zb3Xk+WEQYVcbwVISKt
+X-Gm-Gg: AeBDieuCmUJdQuidcXlxVRSxvVcsJaG1YaF6x1cDhtuEeKhaLAyBd0neAQHg73P/Gv2
+ x6k0u+i2P3BQqSI7MOUxEdFAu3UflGDEmvSId1TAnTkoD4Emuz9EznUBepH3Ohx8Ir1A9tE7xhw
+ svlDa8u3sjrlv8KfZBRTVdKo2uF3cS14BlyT5lK8jCorKy3xYp0n9sqL4UCSUncdifNghrMFEUG
+ 6tYNOqpqBgJowGVSHKfMfs3wQNUy+r4D5zizbgYHhJxssNY1fZoo0S7XA/iP7IAPRf6RHhtv0rm
+ AHy0LSo9zNrLEP93bLWLX3Sj0nm2dnRrZykEihrzczalgPJt/ZDFU61F0ub6FjbM9kOR5c9ihSC
+ lQ+ONNl6J3veWSHSoPHP1L7sSNAIfc5fu+Q+RGrMiy6nXqXAMoQddWxt7EoGGqxOhGLq0P8+gUJ
+ JapI90UALzGModEmAFHk3yRFrAUT+IzLX8iYZSbpO/ithlRQ==
+X-Received: by 2002:a05:600c:470a:b0:48a:7772:c26b with SMTP id
+ 5b1f17b1804b1-48a7772c28emr234845e9.26.1777314449209; 
+ Mon, 27 Apr 2026 11:27:29 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:153b:d200:96aa:46be:4d7:72d2])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48a773af5c5sm6046165e9.5.2026.04.27.11.27.27
+ 5b1f17b1804b1-48a773af5c5sm6046165e9.5.2026.04.27.11.27.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Mon, 27 Apr 2026 11:27:28 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
@@ -71,9 +71,9 @@ X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
 To: alexander.deucher@amd.com, Prike.Liang@amd.com, sukhatri@amd.com,
  jesse.zhang@amd.com
 Cc: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 6/8] drm/amdgpu: rework userq reset work handling
-Date: Mon, 27 Apr 2026 20:27:21 +0200
-Message-ID: <20260427182723.1715-6-christian.koenig@amd.com>
+Subject: [PATCH 7/8] drm/amdgpu: fix handling in amdgpu_userq_create
+Date: Mon, 27 Apr 2026 20:27:22 +0200
+Message-ID: <20260427182723.1715-7-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260427182723.1715-1-christian.koenig@amd.com>
 References: <20260427182723.1715-1-christian.koenig@amd.com>
@@ -94,7 +94,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Reply-To: christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: A554D4788F7
+X-Rspamd-Queue-Id: DD93D47891C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
@@ -109,7 +109,7 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	REPLYTO_DOM_EQ_TO_DOM(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:replyto,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,hang_detect_work.work:url];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:replyto,amd.com:mid];
 	ARC_NA(0.00)[];
 	FORGED_SENDER(0.00)[ckoenigleichtzumerken@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -134,251 +134,221 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5]
 
-It is illegal to schedule reset work from another reset work!
+Well mostly the same issues the other code had as well:
 
-Fix this by scheduling the userq reset work directly on the work queue
-of the reset domain.
-
-Not fully tested, I leave that to the IGT test cases.
+1. Memory allocation while holding the userq_mutex lock is forbidden!
+2. Things were created/started/published in the wrong order.
+3. Error messages on invalid input parameters can spam the logs.
+4. Error messages on memory allocation failures are usually superflous
+   as well.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  | 84 +++++++++++-----------
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  | 16 ++++-
- 4 files changed, 60 insertions(+), 44 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 118 ++++++++++------------
+ 1 file changed, 52 insertions(+), 66 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 39894e38fee4..17341e384caf 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -1191,7 +1191,6 @@ struct amdgpu_device {
- 	bool                            apu_prefer_gtt;
- 
- 	bool                            userq_halt_for_enforce_isolation;
--	struct work_struct              userq_reset_work;
- 	struct amdgpu_uid *uid_info;
- 
- 	struct amdgpu_uma_carveout_info uma_info;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 4bb8c34d2dd9..c400b4c5dda3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3790,7 +3790,6 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 	}
- 
- 	INIT_WORK(&adev->xgmi_reset_work, amdgpu_device_xgmi_reset_func);
--	INIT_WORK(&adev->userq_reset_work, amdgpu_userq_reset_work);
- 
- 	amdgpu_coredump_init(adev);
- 
-@@ -5481,7 +5480,7 @@ static inline void amdgpu_device_stop_pending_resets(struct amdgpu_device *adev)
- 	if (!amdgpu_sriov_vf(adev))
- 		cancel_work(&adev->reset_work);
- #endif
--	cancel_work(&adev->userq_reset_work);
-+	amdgpu_userq_mgr_cancel_reset_work(adev);
- 
- 	if (adev->kfd.dev)
- 		cancel_work(&adev->kfd.reset_work);
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index b2c64a05d03a..0374a70b631c 100644
+index 0374a70b631c..28e0695b53e7 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -82,19 +82,11 @@ static bool amdgpu_userq_is_reset_type_supported(struct amdgpu_device *adev,
- 	return false;
- }
- 
--static void amdgpu_userq_gpu_reset(struct amdgpu_device *adev)
--{
--	if (amdgpu_device_should_recover_gpu(adev)) {
--		amdgpu_reset_domain_schedule(adev->reset_domain,
--					     &adev->userq_reset_work);
--		/* Wait for the reset job to complete */
--		flush_work(&adev->userq_reset_work);
--	}
--}
--
--static int
--amdgpu_userq_detect_and_reset_queues(struct amdgpu_userq_mgr *uq_mgr)
-+static void amdgpu_userq_mgr_reset_work(struct work_struct *work)
- {
-+	struct amdgpu_userq_mgr *uq_mgr =
-+		container_of(work, struct amdgpu_userq_mgr,
-+			     reset_work);
- 	struct amdgpu_device *adev = uq_mgr->adev;
- 	const int queue_types[] = {
- 		AMDGPU_RING_TYPE_COMPUTE,
-@@ -103,12 +95,11 @@ amdgpu_userq_detect_and_reset_queues(struct amdgpu_userq_mgr *uq_mgr)
- 	};
- 	const int num_queue_types = ARRAY_SIZE(queue_types);
- 	bool gpu_reset = false;
+@@ -718,14 +718,14 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 	const struct amdgpu_userq_funcs *uq_funcs;
+ 	struct amdgpu_usermode_queue *queue;
+ 	struct amdgpu_db_info db_info;
+-	bool skip_map_queue;
+-	u32 qid;
+ 	uint64_t index;
 -	int r = 0;
--	int i;
-+	int i, r;
+-	int priority =
+-		(args->in.flags & AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_MASK) >>
+-		AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_SHIFT;
++	int priority;
++	u32 qid;
++	int r;
  
- 	if (unlikely(adev->debug_disable_gpu_ring_reset)) {
- 		dev_err(adev->dev, "userq reset disabled by debug mask\n");
--		return 0;
-+		return;
++	priority =
++		(args->in.flags & AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_MASK)
++		>> AMDGPU_USERQ_CREATE_FLAGS_QUEUE_PRIORITY_SHIFT;
+ 	r = amdgpu_userq_priority_permit(filp, priority);
+ 	if (r)
+ 		return r;
+@@ -738,40 +738,43 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 
+ 	uq_funcs = adev->userq_funcs[args->in.ip_type];
+ 	if (!uq_funcs) {
+-		drm_file_err(uq_mgr->file, "Usermode queue is not supported for this IP (%u)\n",
+-			     args->in.ip_type);
+ 		r = -EINVAL;
+ 		goto err_pm_runtime;
  	}
  
- 	/*
-@@ -116,7 +107,7 @@ amdgpu_userq_detect_and_reset_queues(struct amdgpu_userq_mgr *uq_mgr)
- 	 * skip all reset detection logic
- 	 */
- 	if (!amdgpu_gpu_recovery)
--		return 0;
-+		return;
+ 	queue = kzalloc(sizeof(struct amdgpu_usermode_queue), GFP_KERNEL);
+ 	if (!queue) {
+-		drm_file_err(uq_mgr->file, "Failed to allocate memory for queue\n");
+ 		r = -ENOMEM;
+ 		goto err_pm_runtime;
+ 	}
  
- 	/*
- 	 * Iterate through all queue types to detect and reset problematic queues
-@@ -141,10 +132,19 @@ amdgpu_userq_detect_and_reset_queues(struct amdgpu_userq_mgr *uq_mgr)
++	kref_init(&queue->refcount);
+ 	INIT_LIST_HEAD(&queue->userq_va_list);
+ 	queue->doorbell_handle = args->in.doorbell_handle;
+ 	queue->queue_type = args->in.ip_type;
+ 	queue->vm = &fpriv->vm;
+ 	queue->priority = priority;
+-
+-	db_info.queue_type = queue->queue_type;
+-	db_info.doorbell_handle = queue->doorbell_handle;
+-	db_info.db_obj = &queue->db_obj;
+-	db_info.doorbell_offset = args->in.doorbell_offset;
+-
+ 	queue->userq_mgr = uq_mgr;
++	INIT_DELAYED_WORK(&queue->hang_detect_work,
++			  amdgpu_userq_hang_detect_work);
+ 
+-	/* Validate the userq virtual address.*/
+-	r = amdgpu_bo_reserve(fpriv->vm.root.bo, false);
++	mutex_init(&queue->fence_drv_lock);
++	xa_init_flags(&queue->fence_drv_xa, XA_FLAGS_ALLOC);
++	r = amdgpu_userq_fence_driver_alloc(adev, &queue->fence_drv);
+ 	if (r)
+ 		goto free_queue;
+ 
+-	if (amdgpu_userq_input_va_validate(adev, queue, args->in.queue_va, args->in.queue_size) ||
+-	    amdgpu_userq_input_va_validate(adev, queue, args->in.rptr_va, AMDGPU_GPU_PAGE_SIZE) ||
+-	    amdgpu_userq_input_va_validate(adev, queue, args->in.wptr_va, AMDGPU_GPU_PAGE_SIZE)) {
++	/* Make sure the queue can actually run with those virtual addresses. */
++	r = amdgpu_bo_reserve(fpriv->vm.root.bo, false);
++	if (r)
++		goto free_fence_drv;
++
++	if (amdgpu_userq_input_va_validate(adev, queue, args->in.queue_va,
++					   args->in.queue_size) ||
++	    amdgpu_userq_input_va_validate(adev, queue, args->in.rptr_va,
++					   AMDGPU_GPU_PAGE_SIZE) ||
++	    amdgpu_userq_input_va_validate(adev, queue, args->in.wptr_va,
++					   AMDGPU_GPU_PAGE_SIZE)) {
+ 		r = -EINVAL;
+ 		amdgpu_bo_unreserve(fpriv->vm.root.bo);
+ 		goto clean_mapping;
+@@ -779,6 +782,10 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 	amdgpu_bo_unreserve(fpriv->vm.root.bo);
+ 
+ 	/* Convert relative doorbell offset into absolute doorbell index */
++	db_info.queue_type = queue->queue_type;
++	db_info.doorbell_handle = queue->doorbell_handle;
++	db_info.db_obj = &queue->db_obj;
++	db_info.doorbell_offset = args->in.doorbell_offset;
+ 	index = amdgpu_userq_get_doorbell_index(uq_mgr, &db_info, filp);
+ 	if (index == (uint64_t)-EINVAL) {
+ 		drm_file_err(uq_mgr->file, "Failed to get doorbell for queue\n");
+@@ -787,82 +794,61 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 	}
+ 
+ 	queue->doorbell_index = index;
+-	mutex_init(&queue->fence_drv_lock);
+-	xa_init_flags(&queue->fence_drv_xa, XA_FLAGS_ALLOC);
+-	r = amdgpu_userq_fence_driver_alloc(adev, &queue->fence_drv);
+-	if (r) {
+-		drm_file_err(uq_mgr->file, "Failed to alloc fence driver\n");
+-		goto clean_mapping;
+-	}
+-
+ 	r = uq_funcs->mqd_create(queue, &args->in);
+ 	if (r) {
+ 		drm_file_err(uq_mgr->file, "Failed to create Queue\n");
+-		goto clean_fence_driver;
++		goto clean_mapping;
+ 	}
+ 
++	r = xa_err(xa_store_irq(&adev->userq_doorbell_xa, index, queue,
++				GFP_KERNEL));
++	if (r)
++		goto clean_mqd;
++
+ 	amdgpu_userq_ensure_ev_fence(&fpriv->userq_mgr, &fpriv->evf_mgr);
+ 
+ 	/* don't map the queue if scheduling is halted */
+-	if (adev->userq_halt_for_enforce_isolation &&
+-	    ((queue->queue_type == AMDGPU_HW_IP_GFX) ||
+-	     (queue->queue_type == AMDGPU_HW_IP_COMPUTE)))
+-		skip_map_queue = true;
+-	else
+-		skip_map_queue = false;
+-	if (!skip_map_queue) {
++	if (!adev->userq_halt_for_enforce_isolation ||
++	    ((queue->queue_type != AMDGPU_HW_IP_GFX) &&
++	     (queue->queue_type != AMDGPU_HW_IP_COMPUTE))) {
+ 		r = amdgpu_userq_map_helper(queue);
+ 		if (r) {
+ 			drm_file_err(uq_mgr->file, "Failed to map Queue\n");
+-			goto clean_mqd;
++			mutex_unlock(&uq_mgr->userq_mutex);
++			goto clean_doorbell;
  		}
  	}
  
--	if (gpu_reset)
--		amdgpu_userq_gpu_reset(adev);
-+	if (gpu_reset) {
-+		struct amdgpu_reset_context reset_context;
+-	/* drop this refcount during queue destroy */
+-	kref_init(&queue->refcount);
+-
+-	/* Wait for mode-1 reset to complete */
+-	down_read(&adev->reset_domain->sem);
++	atomic_inc(&uq_mgr->userq_count[queue->queue_type]);
++	mutex_unlock(&uq_mgr->userq_mutex);
  
--	return r;
-+		memset(&reset_context, 0, sizeof(reset_context));
-+
-+		reset_context.method = AMD_RESET_METHOD_NONE;
-+		reset_context.reset_req_dev = adev;
-+		reset_context.src = AMDGPU_RESET_SRC_USERQ;
-+		set_bit(AMDGPU_NEED_FULL_RESET, &reset_context.flags);
-+		/*set_bit(AMDGPU_SKIP_COREDUMP, &reset_context.flags);*/
-+
-+		amdgpu_device_gpu_recover(adev, NULL, &reset_context);
-+	}
- }
- 
- static void amdgpu_userq_hang_detect_work(struct work_struct *work)
-@@ -153,7 +153,11 @@ static void amdgpu_userq_hang_detect_work(struct work_struct *work)
- 		container_of(work, struct amdgpu_usermode_queue,
- 			     hang_detect_work.work);
- 
--	amdgpu_userq_detect_and_reset_queues(queue->userq_mgr);
-+	/*
-+	 * Don't schedule the work here! Scheduling or queue work from one reset
-+	 * handler to another is illegal if you don't take extra precautions!
-+	 */
-+	amdgpu_userq_mgr_reset_work(&queue->userq_mgr->reset_work);
- }
- 
- /*
-@@ -182,8 +186,8 @@ void amdgpu_userq_start_hang_detect_work(struct amdgpu_usermode_queue *queue)
- 		break;
+ 	r = xa_alloc(&uq_mgr->userq_xa, &qid, queue,
+-		     XA_LIMIT(1, AMDGPU_MAX_USERQ_COUNT), GFP_KERNEL);
+-	if (r) {
+-		if (!skip_map_queue)
+-			amdgpu_userq_unmap_helper(queue);
+-		r = -ENOMEM;
+-		goto clean_reset_domain;
+-	}
+-
+-	r = xa_err(xa_store_irq(&adev->userq_doorbell_xa, index, queue, GFP_KERNEL));
++		     XA_LIMIT(1, AMDGPU_MAX_USERQ_COUNT),
++		     GFP_KERNEL);
+ 	if (r) {
+-		xa_erase(&uq_mgr->userq_xa, qid);
+-		if (!skip_map_queue)
+-			amdgpu_userq_unmap_helper(queue);
+-		goto clean_reset_domain;
++		/*
++		 * This drops the last reference which should take care of
++		 * all cleanup.
++		 */
++		amdgpu_userq_put(queue);
++		return r;
  	}
+-	up_read(&adev->reset_domain->sem);
  
--	schedule_delayed_work(&queue->hang_detect_work,
--		     msecs_to_jiffies(timeout_ms));
-+	queue_delayed_work(adev->reset_domain->wq, &queue->hang_detect_work,
-+			   msecs_to_jiffies(timeout_ms));
- }
- 
- void amdgpu_userq_process_fence_irq(struct amdgpu_device *adev, u32 doorbell)
-@@ -1258,28 +1262,13 @@ amdgpu_userq_evict_all(struct amdgpu_userq_mgr *uq_mgr)
- 	if (ret) {
- 		drm_file_err(uq_mgr->file,
- 			     "Couldn't unmap all the queues, eviction failed ret=%d\n", ret);
--		amdgpu_userq_detect_and_reset_queues(uq_mgr);
-+		amdgpu_reset_domain_schedule(uq_mgr->adev->reset_domain,
-+					     &uq_mgr->reset_work);
-+		flush_work(&uq_mgr->reset_work);
- 	}
- 	return ret;
- }
- 
--void amdgpu_userq_reset_work(struct work_struct *work)
--{
--	struct amdgpu_device *adev = container_of(work, struct amdgpu_device,
--						  userq_reset_work);
--	struct amdgpu_reset_context reset_context;
+ 	amdgpu_debugfs_userq_init(filp, queue, qid);
+-	INIT_DELAYED_WORK(&queue->hang_detect_work,
+-			  amdgpu_userq_hang_detect_work);
 -
--	memset(&reset_context, 0, sizeof(reset_context));
--
--	reset_context.method = AMD_RESET_METHOD_NONE;
--	reset_context.reset_req_dev = adev;
--	reset_context.src = AMDGPU_RESET_SRC_USERQ;
--	set_bit(AMDGPU_NEED_FULL_RESET, &reset_context.flags);
--	/*set_bit(AMDGPU_SKIP_COREDUMP, &reset_context.flags);*/
--
--	amdgpu_device_gpu_recover(adev, NULL, &reset_context);
--}
--
- static void
- amdgpu_userq_wait_for_signal(struct amdgpu_userq_mgr *uq_mgr)
- {
-@@ -1313,9 +1302,24 @@ int amdgpu_userq_mgr_init(struct amdgpu_userq_mgr *userq_mgr, struct drm_file *f
- 	userq_mgr->file = file_priv;
- 
- 	INIT_DELAYED_WORK(&userq_mgr->resume_work, amdgpu_userq_restore_worker);
-+	INIT_WORK(&userq_mgr->reset_work, amdgpu_userq_mgr_reset_work);
+ 	args->out.queue_id = qid;
+-	atomic_inc(&uq_mgr->userq_count[queue->queue_type]);
+-	mutex_unlock(&uq_mgr->userq_mutex);
  	return 0;
- }
  
-+void amdgpu_userq_mgr_cancel_reset_work(struct amdgpu_device *adev)
-+{
-+	struct xarray *xa = &adev->userq_doorbell_xa;
-+	struct amdgpu_usermode_queue *queue;
-+	unsigned long flags, queue_id;
-+
-+	xa_lock_irqsave(xa, flags);
-+	xa_for_each(xa, queue_id, queue) {
-+		cancel_delayed_work(&queue->hang_detect_work);
-+		cancel_work(&queue->userq_mgr->reset_work);
-+	}
-+	xa_unlock_irqrestore(xa, flags);
-+}
-+
- void amdgpu_userq_mgr_cancel_resume(struct amdgpu_userq_mgr *userq_mgr)
- {
- 	cancel_delayed_work_sync(&userq_mgr->resume_work);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-index 85f460e7c31b..49b33e2d6932 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-@@ -84,7 +84,13 @@ struct amdgpu_usermode_queue {
- 	u32			xcp_id;
- 	int			priority;
- 	struct dentry		*debugfs_queue;
--	struct delayed_work hang_detect_work;
-+
-+	/**
-+	 * @hang_detect_work:
-+	 *
-+	 * Delayed work which runs when userq_fences time out.
-+	 */
-+	struct delayed_work	hang_detect_work;
- 	struct kref		refcount;
- 
- 	struct list_head	userq_va_list;
-@@ -116,6 +122,13 @@ struct amdgpu_userq_mgr {
- 	struct amdgpu_device		*adev;
- 	struct delayed_work		resume_work;
- 	struct drm_file			*file;
-+
-+	/**
-+	 * @reset_work:
-+	 *
-+	 * Reset work which is used when eviction fails.
-+	 */
-+	struct work_struct		reset_work;
- 	atomic_t                        userq_count[AMDGPU_RING_TYPE_MAX];
- };
- 
-@@ -134,6 +147,7 @@ int amdgpu_userq_ioctl(struct drm_device *dev, void *data, struct drm_file *filp
- int amdgpu_userq_mgr_init(struct amdgpu_userq_mgr *userq_mgr, struct drm_file *file_priv,
- 			  struct amdgpu_device *adev);
- 
-+void amdgpu_userq_mgr_cancel_reset_work(struct amdgpu_device *adev);
- void amdgpu_userq_mgr_cancel_resume(struct amdgpu_userq_mgr *userq_mgr);
- void amdgpu_userq_mgr_fini(struct amdgpu_userq_mgr *userq_mgr);
- 
+-clean_reset_domain:
+-	up_read(&adev->reset_domain->sem);
++clean_doorbell:
++	xa_erase_irq(&adev->userq_doorbell_xa, index);
+ clean_mqd:
+-	mutex_unlock(&uq_mgr->userq_mutex);
+ 	uq_funcs->mqd_destroy(queue);
+-clean_fence_driver:
+-	amdgpu_userq_fence_driver_free(queue);
+ clean_mapping:
+ 	amdgpu_bo_reserve(fpriv->vm.root.bo, true);
+ 	amdgpu_userq_buffer_vas_list_cleanup(adev, queue);
+ 	amdgpu_bo_unreserve(fpriv->vm.root.bo);
+ 	mutex_destroy(&queue->fence_drv_lock);
++free_fence_drv:
++	amdgpu_userq_fence_driver_free(queue);
+ free_queue:
+ 	kfree(queue);
+ err_pm_runtime:
 -- 
 2.43.0
 
