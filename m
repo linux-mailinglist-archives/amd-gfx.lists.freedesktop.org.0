@@ -2,145 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qNTFFwOu8GnOWwEAu9opvQ
+	id kMO6DxKu8GnBXAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:27 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:42 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2CA948534C
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BFEF4853AD
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1730110EBF1;
-	Tue, 28 Apr 2026 12:54:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 117CB10EC03;
+	Tue, 28 Apr 2026 12:54:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="pmvWhp/o";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mvuGjftL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010014.outbound.protection.outlook.com [52.101.201.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E94B210E8CA;
- Mon, 27 Apr 2026 18:39:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IQeGa+YdNTuEb823qdZS8Hpotu2r72E0T7L133DkAjYdxm4sXHNsSUmdDgfuLqSgZ8ptJqXAaawtnWfzbuYE9JgTht/7aoE/UBY4fb8CsN7gCBIZfgKE1at/fpNpM0xSdAZJWuaUqRa0tqhI+N/yx9xph7PK0K68mzfAl3ULUBoKMqt7kO8SmQqIRPQp/EyHUjaf8pVm2IKhXkERYsuE6sazi1OyFGe8w6Tpyc067R/wsyQcV3mHt7zG29uYi1UdlBEBwV7zkb5+etoOikaMn5emW16FR/V0uWFWi+xABha/3wJBSOsptBb5XuUEJ0gI46UsoZZATZeItdPD4X+E7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nALNUxvPaXzFesZYqSMaFrytkX4CgELDa/JWTp7Lw8s=;
- b=px9mAWIgpW1g8A++4bB0b0HuBTVzWQKUHx38Lv15RAJgY6RPeHYUnILh/TwEOgn2886PJ4HV1v36kbLLG0HxUFAomMviDfWTHNqC74F0NXfW2B6flkUGEtIYX1KuG62cISJfxDrgdMABrDWp6xVA2MUygcqCtHSOnaMZ5ZNilmoI++yqNmdF0OaD0k2KfXGmE6cSPLaiwtfXftefCRmJeENOcw80UlNkg4EMTulJcftI1iU27D4XyjUiX2sDWu2PtYSLmYIgPWNxczRp1XfiNZwvXibbYm5a4muPrwHvEBOL77eyyAZhWYd43uPx0Y5scO9gl7o17mc1PxH3v/Hq8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nALNUxvPaXzFesZYqSMaFrytkX4CgELDa/JWTp7Lw8s=;
- b=pmvWhp/oxEcxQMryFRvqYtTB0A/GaOLun2mURAQK9jJXjqt4Nrc84ZfAfdVzaosEdXMWAP59oi4+UbMy4mec1KbzWHAyoF57I8DflvmrAbfhIb57bYv5qY2FGaPKUQk1zJRQQp9CqnyFj5VocFwyiXwUgS9FNTnrrFLeiZOJ1G9JrF4fAHR8lxFNj5/FwsIq3FU1ajVbQb2H+3//9zc7t+U20kMXMalri61t8NRsJ5k3/mDo4BdG+GEoyoHOcMDJdBMl8UX3LCr93JIqZbyQOPZZ1D/mW+4NjIfkYIV4DzD/8KPPzEEOg0Q59M3wKfLfO1wJ1sZJFQP38+wbciAclw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CY8PR12MB8300.namprd12.prod.outlook.com (2603:10b6:930:7d::16)
- by CH3PR12MB8969.namprd12.prod.outlook.com (2603:10b6:610:17c::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.15; Mon, 27 Apr
- 2026 18:39:19 +0000
-Received: from CY8PR12MB8300.namprd12.prod.outlook.com
- ([fe80::ce75:8187:3ac3:c5de]) by CY8PR12MB8300.namprd12.prod.outlook.com
- ([fe80::ce75:8187:3ac3:c5de%3]) with mapi id 15.20.9870.013; Mon, 27 Apr 2026
- 18:39:19 +0000
-Date: Mon, 27 Apr 2026 14:39:16 -0400
-From: Yury Norov <ynorov@nvidia.com>
-To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- David Laight <david.laight.linux@gmail.com>,
- Thomas Gleixner <tglx@linutronix.de>, linux-alpha@vger.kernel.org,
- Yury Norov <yury.norov@gmail.com>, linux-kernel@vger.kernel.org,
- linux-snps-arc@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
- sparclinux@vger.kernel.org, linux-um@lists.infradead.org,
- dmaengine@vger.kernel.org, linux-efi@vger.kernel.org,
- linux-fsi@lists.ozlabs.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
- linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
- xen-devel@lists.xenproject.org, linux-fsdevel@vger.kernel.org,
- ocfs2-devel@lists.linux.dev, bpf@vger.kernel.org,
- kasan-dev@googlegroups.com, linux-mm@kvack.org,
- linux-x25@vger.kernel.org, rust-for-linux@vger.kernel.org,
- linux-sound@vger.kernel.org, sound-open-firmware@alsa-project.org,
- linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org,
- loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org,
- linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
- linux-sh@vger.kernel.org, linux-arch@vger.kernel.org
-Subject: Re: [RFC PATCH v1 2/9] uaccess: Convert INLINE_COPY_{TO/FROM}_USER
- to kconfig and reduce ifdefery
-Message-ID: <ae-tVFVfx72oCC_i@yury>
-References: <cover.1777306795.git.chleroy@kernel.org>
- <9fe875d2f55af59c12708336c571a46038528678.1777306795.git.chleroy@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9fe875d2f55af59c12708336c571a46038528678.1777306795.git.chleroy@kernel.org>
-X-ClientProxiedBy: BN9PR03CA0924.namprd03.prod.outlook.com
- (2603:10b6:408:107::29) To CY8PR12MB8300.namprd12.prod.outlook.com
- (2603:10b6:930:7d::16)
+Received: from mail-dl1-f50.google.com (mail-dl1-f50.google.com [74.125.82.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9626D10E8D4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 18:43:37 +0000 (UTC)
+Received: by mail-dl1-f50.google.com with SMTP id
+ a92af1059eb24-12c726f46baso13290272c88.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 11:43:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1777315417; cv=none;
+ d=google.com; s=arc-20240605;
+ b=S7Qlv4TtPqSIEwZGZelOVpLass5+G+gBma31h2m2h4/mYnubBS4dREtOAwuW3lEAeE
+ xJc8c1sgv2YfHyZMM3Ali6xNx4fr3C3Oz9UDtgKH8WtBoeOIumlHiQxWyjCZZC+LOnAv
+ jv3NasqNRPcwINkPILAOwiBW2moiW31aHz+Gu8wqSmolMR5BrR56vO6OLdy29jPx+iy4
+ TaY4wCcvlbyCpnVYMLEt/VGwRIeKl2cCpjgMJMT9gVi19EhvELs/G6IWbH0QyhYuw/bT
+ TeQm8s7VnRY4N6WxnPMbmeZb+Oh6pUtVEdQuIctUxXb5Xn+V0eBj+ab+idhy16DBz4b5
+ mKJw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=OYBOTrPcD4VwGJB8VC+hyleunBq5Kx/G47TfslKHNM4=;
+ fh=WPPTvEVtOCp8jvE+zV0Bk6ewAcFBSSW6d8hg4sHuvh8=;
+ b=HK1E7iqcMlLv0az2SNPP4QREmgsXJcbsbmBadBsdHHX4tYobabUkQErml7jdBY0sKF
+ diuFp2KHhrFEydrEsRzV/59F874JxlTFdHcmYOhaDe8N0CeSnXJSmgvBA6eyXdUDxZfb
+ knclLtVD7+NKer3RVattnk/tq8dYtt5sSf+15RbEd4aw37eya4lQboo1eEbRUkWtPggH
+ KgWu/ZBvFINZ0P31HCa56cok3UNvmz0ISxXAj0kB5iRFRrytGP0FS2x66EiQYWfvbv7f
+ 0w7Mz/r33PTa69pKeZ5tt/vEbbysQ/Jl0GJqbnw+MTQWJ99D/u7qdS1HEBvdGAn4KPGi
+ a08A==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1777315417; x=1777920217; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=OYBOTrPcD4VwGJB8VC+hyleunBq5Kx/G47TfslKHNM4=;
+ b=mvuGjftLkqGsrxxJVFgjInN+L0aRwIvWZCag0y5wOXo8vGUQ0Nk3hPLQ2VSwB+tihu
+ sRUBXUsphvthTZVeD4xa12digHaP9HAbzocgJWMmDINPUsYK7DSFPkqWlswvVYu31fuN
+ RDr7tppAgHluVa+8i57bSG7kAy68i3dV2O41nqOFjIDJnJH3uXccc0t1mQZFicXN3mjw
+ e6iyFP5EvFtul6MMYyWgfMSywvE5EkEiWSXqeD/7fWzarbiRMOMrrTzObN0+6wrbBAS3
+ /O/olBNa9qYDPWU+8qFbE53QvSsJ3j0wz53k8f0yMm1ttgs4qwdxGoV7ZrTCuh1DOp0T
+ DQBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777315417; x=1777920217;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=OYBOTrPcD4VwGJB8VC+hyleunBq5Kx/G47TfslKHNM4=;
+ b=bmtpOC4TmG73F4AE0GVQNFSZYgefmrURf1vGnkBXhmysERBmzZIkr6KuBnk/E+Kmxr
+ uWostt6m8PzaA/z7kRxNrKyqqMSt6ed4eRxR6ATs7ap6JXoC35f19QxRtiINYyQyG+86
+ D94CKRhLNcf8ljoZVGvyEG2Dkam6G+cyKel6vnYlC9QflHQNzrNZzOX4gxZv7gCezqd9
+ ferPmsTZ4jhXfeq+VfSYE3a9b2/t9mKh6km/hOquC+yvQmwnd2LurdiuPH+WdyYjpX5K
+ HgVs/sY/oXzooA/5PvvngAn4NMr35C4guhBCHSfcoFVbm3yUXs+JiG5XEKSRh1j6t9e1
+ NXpg==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ9wlu9cZ+/nqgC7O+2cNMWpzBxtsSPdMA64bbtjt0oAcwqBuok6QT7ZB3nM7fR0Bo63K8fr6Dez@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy+PXeJK/o0B9FzCpGx+RkXZjM3w6NDmSSzBc3abCgs4VDZwXp7
+ WtHK0Ib2eaGlVLxxUA+uQZ/CPVSmi72yuK1GNkkdVak3zOYbHYF4vlc7CknDkg8MWIuN8Njfo5E
+ P4D7kAwiePWnJcpH41CZvYYYuTpLjmeg=
+X-Gm-Gg: AeBDietZgawGlG4aIRpMGfG82Kqwj022DI+jGDI3cZPbRP//Cpki1PZbR10rI5qfsdy
+ Xhq/HUdohcXh9n4BQJOyuFNkt1ibqcJ4IXGn2u+BEKW0Rp+RFrChLgnktcyXfhapnb/8TvnZ1gQ
+ 54CsEsnUL+vZUeAQIXreRq+hYgMbjuX+KBPiuMkywrioMi7XOPvBEIKXQoKooEBAgtdysphJTSQ
+ zkMGdw6jV81yKHAnWitTW/V6uVHVL8P3FdM13Y9xKCL1xoBNrFsP3a3zyP8D+l+L+iKRVdka11S
+ TAyiYItNUXXQ//5ysubhnnsHoZWH6uZiy8M=
+X-Received: by 2002:a05:7022:6607:b0:12d:b8e5:5ee with SMTP id
+ a92af1059eb24-12ddd995dc2mr21859c88.23.1777315416649; Mon, 27 Apr 2026
+ 11:43:36 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR12MB8300:EE_|CH3PR12MB8969:EE_
-X-MS-Office365-Filtering-Correlation-Id: 88d3e4e6-a43d-4919-49fd-08dea48c4adf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|10070799003|366016|376014|7416014|1800799024|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: TPoVweG6k+dJJz5MfIFVzAwybwz2jm9fSNM7cxd69vHJE9UR7v6gWyNzsADjvW7ykt1GxFh4Loi1ek62Aro4GaYSpAgmWTn2FafAKuzv9brpXCmKrPkRpx9DEAPIV+O5dQy3egB7SEzayZhdD/hWFuNZI6/aSgi9lHWX7gRMsSsQ+hETpWZ33SUUr8PWk26gfuJDFv6mOEW2uC2BXHmIXUBpyDzOLTJkWEZLidp+7/nea6eckeX0OWVi4bEZfR9vET0pIew0s/JD7Zz/RgAl3L1OS3LR+WDk0Cj+9xRSjoZt6hvaQHTWsroBoiVTErBG9cZcE6iDBPvkBn6JALg+xzh67RQUZnSxe3dpsNnBDx7CyfIbDUoxU3lAu9QNZYDT1pjKtmsR0xUxypUJz8heZAAejUX+cI5zyhEOMCfbZhYDfC8lL5HRKEb55UhgnG1W7/6v/FhxkMwqKMlyWokoOjOY4UTekvoZ2YoBlTz/0SexmXJCV8GlzzJCCy3Y1wJ/gnGl1oiAmGAyfo29/0sdy3H4BAYwxQB+IiP82ASQGpLESNwitwXe5+qlNSYOiiNPhvXQr7YPxg9TQ20Ipo3dS/oLszmjrr6IMeWdSIzAycLxAjM4ybcGKoHCvx/iHvz1ya1/Lu6sN7VNJ7G92kgR4XUfztSnUa/+T4Ty1oGleBPJ/1/eGU/xx0C11jRZy6aMFQ1qLzVFXPf+Rw3f5XbXFGlI7ibkCm1ybi3SLvQHJsk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR12MB8300.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(10070799003)(366016)(376014)(7416014)(1800799024)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oib4bKcV8LA5vdjLqJ8bgcxtg+HiGQmptbpLOggOnOXMP8WzMNQrzTBLxW0t?=
- =?us-ascii?Q?J/O13Po8omZAsmm/pQpy/oqttV579odYMQrIVxXSjgf18STek1XRrKGwVmp0?=
- =?us-ascii?Q?l0BU1ufe1EiXFQOU6+6botm2sdTbVj9guzWn35tmDPDQr3Dwwmyjq5n/e4XI?=
- =?us-ascii?Q?SzRjxH/T3DI21r6vl4cCl334Ew2ij5/yQJC8A/DRNX+V7pyzPYuZovSr9F/H?=
- =?us-ascii?Q?Wgm4eMo8ZKAXBaCC+JcutRhN7eAH9v+cW52Q3ahFRH6xBK3C4/Z3i735rmIV?=
- =?us-ascii?Q?aMfpxHZ0SFW7fKav66AdZnuwM6sLZ9JgRxdV6lUM7BH/+pQ+3Pt5OuxuIF7P?=
- =?us-ascii?Q?wOEzXGgLg/FCQyv3W40kHRzWP2soqwyli3M0yrSc+NSjlNU55HajGFi1JvaI?=
- =?us-ascii?Q?tiNl9ri9lNxc+qE7KdAVPFL/2e+CEWg2vZahotUnAp3114m5sQG/4rVIg4gm?=
- =?us-ascii?Q?gd9zXeVaEsINZnTiz1qVCTLSKFcxLzulAejw8jMwtJRbeGBzK4ZC1e7VOCW+?=
- =?us-ascii?Q?aKVYJaES/nOjEprimIme29LeOa01vmBbY6+qz+yCseVYOQCq9CdDX7e1deoV?=
- =?us-ascii?Q?zaTnta1O/6L4nX1080PXzmu9mTtYtJNQO3DF9ovWHiONsmGP4U11bu49laOs?=
- =?us-ascii?Q?B0UU9IxLtWutiJxYBVD0KN4xfooNicHXXZR6LrmeOgPpcSsKDeGO2BnYG9lv?=
- =?us-ascii?Q?jdgN60ENdKBvmSOFTzCRkCByFYt+/x7RaSBTKsrsbJl8Enat/5Q9rpxaSuYv?=
- =?us-ascii?Q?Hk0QJmiBMLq/XaaCVVftv/lOLZiG1rfq9bJc6AGkJ7Be2P6481HfBvkVoSKm?=
- =?us-ascii?Q?7dS46V0SCDnMF6O9L5WMOGcQF3/JmPJwDC3bbG0KXyXraugzFpO2I2A/zirX?=
- =?us-ascii?Q?a/CdkcxQ4G6IILYhs8aeRubhtiJ4TjMT/T5Mn38f6As5actrgh5OSaby7k/P?=
- =?us-ascii?Q?p/eP1WrTDycIQ7kQbNn0vPkAk/h7ELW35FbH3Phz+HVj/qsyPVuI3ZrMXUag?=
- =?us-ascii?Q?WAN4DeGhJIVi4hPoLtGwda6uakBNXByYqWFG6Y8WSZFrAuFMwEgvc3vSyFyl?=
- =?us-ascii?Q?Dx5n3nRrxw1RgZUiiAKDP0rwsC7WGhhl7rCLYH8tGf3cooY4z46us5fwXFjC?=
- =?us-ascii?Q?wNTDl7f7oWOaDilXo0Jux13wM3eh0BtH51CgLCN9tDrJnzsW7ZyZvcKQk5Tn?=
- =?us-ascii?Q?O9ixfPU/YHVSwPfjb9gBof+EiT69zyPNYsZE4X2O8CyU4Z8XVVbkKhgMngy9?=
- =?us-ascii?Q?YRDPa867pPjQhJc3j8j98MgOVgWGheyih5q5W+m9AMvdBEneu+a9dnByQyMn?=
- =?us-ascii?Q?qCLgefyIDgxtIR+PcNMkMkPhjugjUNVEanta6lIV/gHJ2JE334rR3ZB3QcoQ?=
- =?us-ascii?Q?NbJNKCyplpSmz2mdkoBN9xHWSzQA2d2/nRHmtmEYPxzVHY+pAEBbGSLUGA+G?=
- =?us-ascii?Q?n7hhnzbzDtnl+NVWD79E8VDdTdq6sg4VE3PrKKvMdORAmzEkarJh1RDPehzr?=
- =?us-ascii?Q?rf0jUwl/4QGQHSZRpxkK/lDw7l5CdWKgWv1KnfHZnVpP43iLu8DuyVVHQL2R?=
- =?us-ascii?Q?VCkeADDpChtUpYBLJdlINE5FPPK7QdiOkkbRoLE8VBbhAFo5vAXH2E7YlciW?=
- =?us-ascii?Q?k0gtUjR84c84anx2yV2+7D9n2SuoEUaYGM1OOv9cl/uolZtt2Je3yiYv7HTI?=
- =?us-ascii?Q?yD9W0nKiIOg27gfW0ZUuL7Zq68OzdAmeaqD7+UqqyPO6Vm6rjH2beLlolKD3?=
- =?us-ascii?Q?NnU9q5OrFzP7EEzyxKROJwYEahtrjRNUQfGufTekFC1cKWXYO/DQ?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 88d3e4e6-a43d-4919-49fd-08dea48c4adf
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB8300.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2026 18:39:19.3919 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1EMi8W1U4wKLqFUR+2jNWxP3McH9TdZjJFX+Py1zekodl7uM/ruq8Dm5SoHnnrACMPwMaK2iGgbUgpHPN2cF6A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8969
+References: <CAMYTvdA+yCqU4_9mzMUkX_3S=myExKMBCyB88dYWCMwA1edsrw@mail.gmail.com>
+ <6c48aff5-b6ee-40af-98f0-c26ded3095bc@leemhuis.info>
+ <ed3171ef-eda8-4907-a35b-2e2b8185e574@leemhuis.info>
+ <2730559.vYhyI6sBWr@timur-hyperion>
+ <CAMYTvdCtpKsHAjBtZOK8MK4dYJUTUMCwgsur50Np3+yJhnic+A@mail.gmail.com>
+In-Reply-To: <CAMYTvdCtpKsHAjBtZOK8MK4dYJUTUMCwgsur50Np3+yJhnic+A@mail.gmail.com>
+From: Brandon Taylor <br.ta.2818@gmail.com>
+Date: Mon, 27 Apr 2026 13:43:23 -0500
+X-Gm-Features: AVHnY4I1Jl8m3BPMFboy5tVgTNawO9HU13LZsAhZ41TMCKnEf3IgIoCyGDroImk
+Message-ID: <CAMYTvdAV763Sq_WDhWRj0r-OHiiO9Os7kOdusNgh8xM8AhQPmQ@mail.gmail.com>
+Subject: Re: [REGRESSION] amdgpu error -22 first encountered in kernel 6.19,
+ not fixed in 7.0
+To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
+Cc: linux-kernel@vger.kernel.org, 
+ Linux regressions mailing list <regressions@lists.linux.dev>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Content-Type: multipart/alternative; boundary="0000000000001032cc0650757ec9"
 X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -155,63 +114,331 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: E2CA948534C
+X-Rspamd-Queue-Id: 5BFEF4853AD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [-0.71 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[49];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:linux-kernel@vger.kernel.org,m:regressions@lists.linux.dev,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
+	FORGED_SENDER(0.00)[brta2818@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	FROM_NEQ_ENVFROM(0.00)[ynorov@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[linux-foundation.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org,lists.linux-m68k.org];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.998];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brta2818@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	TAGGED_FROM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,gitlab.freedesktop.org:url]
 
-On Mon, Apr 27, 2026 at 07:13:43PM +0200, Christophe Leroy (CS GROUP) wrote:
-> Among the 21 architectures supported by the kernel, 16 define both
-> INLINE_COPY_TO_USER and INLINE_COPY_FROM_USER while the 5 other ones
-> don't define any of the two.
-> 
-> To simplify and reduce risk of mistakes, convert them to a single
-> kconfig item named CONFIG_ARCH_WANTS_NOINLINE_COPY which will be
+--0000000000001032cc0650757ec9
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-We've got a special word for it: outline. Can you name it
-CONFIG_OUTLINE_USERCOPY, or similar?
+Sometimes I hate copy-and-paste with a passion... Here's the correct link.
+https://gitlab.freedesktop.org/drm/amd/-/work_items?show=3DeyJpaWQiOiI1MjIw=
+IiwiZnVsbF9wYXRoIjoiZHJtL2FtZCIsImlkIjoxNTAxNzl9
 
-> selected by the 5 architectures that don't want inlined copy.
-> 
-> To minimise complication in a later patch, also remove
-> ifdefery and replace it with IS_ENABLED().
-> 
-> Signed-off-by: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
+On Mon, Apr 27, 2026, 12:17 PM Brandon Taylor <br.ta.2818@gmail.com> wrote:
 
-Andrew has taken my consolidation patch for INLINE_COPY_USER:
+> > I'm happy to help, there is no need for personal insults.
+>
+> Sorry if I came across as insulting; that was most definitely not my
+> intention. I simply know Linus' penchant for going insane when an
+> error is found in his kernel. But I'm thinking Timur's probably right;
+> this may merely be a "me" problem, with my particular GPU.
+>
+> At any rate, I've created the issue ticket as requested, and here it
+> is. https://gitlab.freedesktop.org/drm/amd/-/work-items/5220
+>
+> Brandon Taylor
+>
+> On Mon, Apr 27, 2026 at 9:01=E2=80=AFAM Timur Krist=C3=B3f <timur.kristof=
+@gmail.com>
+> wrote:
+> >
+> > Hi,
+> >
+> > Thank you Thorsten for forwarding this to me, indeed I am working on
+> improving
+> > the driver for these GPUs. See my replies below.
+> >
+> > On Monday, April 27, 2026 11:37:53=E2=80=AFAM Central European Summer T=
+ime
+> Thorsten
+> > Leemhuis wrote:
+> > > [note: please remove Timo Lindfors when replying to this mail and
+> > > include Timur Krist=C3=B3f =E2=80=93 sorry everyone and especially Ti=
+mo, my mailers
+> > > address book tricked me]
+> > >
+> > > On 4/27/26 11:35, Linux regression tracking (Thorsten Leemhuis) wrote=
+:
+> > > > On 4/26/26 01:22, Brandon Taylor wrote:
+> > > >> I have an AMD Radeon R9 270X GPU (yes, I know it's old) which used
+> to
+> > > >> default to the `radeon` firmware
+> > > >
+> > > > FYI, as using the wrong terms can lead to confusion while dealing
+> with
+> > > > bugs: that's not a firmware, that's the driver (sometimes also call=
+ed
+> > > > kernel module)
+> >
+> > - "radeon" is the old kernel driver for these GPUs that didn't support
+> Vulkan
+> > and therefore was mostly useless for gaming.
+> > - "amdgpu" is the new driver, which supports Vulkan and offers better
+> perf,
+> > this is the default since Linux 6.19.
+> >
+> > I don't think this is a firmware issue.
+> >
+> > > >
+> > > >> on kernel versions up to and
+> > > >> including 6.18. I could manually change this behavior to use the n=
+ew
+> > > >> `amdgpu` firmware by setting `radeon.si_support=3D0
+> amdgpu.si_support=3D1`
+> > > >> as kernel parameters in the GRUB bootloader. Everything worked fin=
+e,
+> > > >> and I was able to play my Windows games without any problems.
+> > > >>
+> > > >> That was, until kernel version 6.19 came out.>
+> > > >> 6.19, from what I was able to Google, was supposed to have AMD GPU=
+s
+> to
+> > > >> default to the new `amdgpu` firmware. Unfortunately, when I update=
+d
+> > > >> the kernel and rebooted, I got a black screen.
+> > > >>
+> > > >> Further Google searches led me to reboot, set `nomodeset` in the
+> > > >> kernel parameters, switch to a TTY, login, and investigate the
+> output
+> > > >> of a `dmesg` command =E2=80=94 and what I saw ... Well, let's just=
+ say it's
+> > > >> the kind of thing that would make Linus go Chernobyl:
+> > > >>
+> > > >> `amdgpu: probe with driver amdgpu failed with error -22`
+> > > >
+> >
+> > I am sorry this happened and understand the frustration.
+> >
+> > Please open an issue here:
+> > https://gitlab.freedesktop.org/drm/amd/-/work_items/new
+> > and upload your full dmesg log. Please ping me personally @Venemo on th=
+at
+> > issue after you opened it so we can start investigating what is wrong
+> there.
+> >
+> > I got curious so I plugged in my R9 270X right now. I am typing this
+> email on
+> > a computer with a Radeon R9 270X using Linux 6.19.12 on Fedora 43 and i=
+t
+> works
+> > fine. We are going to need to need more details in order to diagnose
+> what the
+> > problem really is. We might ask you to test some proposed fixes,
+> considering
+> > that the issue doesn't happen on my R9 270X, I don't have a way to
+> verify it.
+> >
+> > > >> Now, I hope to God that this email finds whoever is responsible fo=
+r
+> > > >> breaking this `amdgpu` firmware before the same thing happens to
+> Linus
+> > > >> via Fedora 44, and he goes berserk. I realize that's not a heck of=
+ a
+> > > >> lot of time, but God only knows HOW many Linux users with AMD GPUs
+> are
+> > > >> pissed off by this kind of issue =E2=80=94 and I for one can only =
+imagine
+> how
+> > > >> Linus' reaction will compare when it happens to HIM!
+> >
+> > I'm happy to help, there is no need for personal insults.
+> >
+> > (Note that the issue clearly doesn't affect all AMD GPUs and it clearly
+> doesn't
+> > even affect all R9 270X GPUs.)
+> >
+> > Thanks & best regards,
+> > Timur
+> >
+> >
+> >
+>
 
-https://lore.kernel.org/all/20260427085814.7ca0b134603b8d5813e23396@linux-foundation.org/
+--0000000000001032cc0650757ec9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Please base your series on top of it.
+<div dir=3D"auto">Sometimes I hate copy-and-paste with a passion... Here&#3=
+9;s the correct link. <a href=3D"https://gitlab.freedesktop.org/drm/amd/-/w=
+ork_items?show=3DeyJpaWQiOiI1MjIwIiwiZnVsbF9wYXRoIjoiZHJtL2FtZCIsImlkIjoxNT=
+AxNzl9">https://gitlab.freedesktop.org/drm/amd/-/work_items?show=3DeyJpaWQi=
+OiI1MjIwIiwiZnVsbF9wYXRoIjoiZHJtL2FtZCIsImlkIjoxNTAxNzl9</a></div><br><div =
+class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Mon, Apr 27, 2026, 12:17 PM Brandon Taylor &lt;<a href=3D"mailto:=
+br.ta.2818@gmail.com">br.ta.2818@gmail.com</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc s=
+olid;padding-left:1ex">&gt; I&#39;m happy to help, there is no need for per=
+sonal insults.<br>
+<br>
+Sorry if I came across as insulting; that was most definitely not my<br>
+intention. I simply know Linus&#39; penchant for going insane when an<br>
+error is found in his kernel. But I&#39;m thinking Timur&#39;s probably rig=
+ht;<br>
+this may merely be a &quot;me&quot; problem, with my particular GPU.<br>
+<br>
+At any rate, I&#39;ve created the issue ticket as requested, and here it<br=
+>
+is. <a href=3D"https://gitlab.freedesktop.org/drm/amd/-/work-items/5220" re=
+l=3D"noreferrer noreferrer" target=3D"_blank">https://gitlab.freedesktop.or=
+g/drm/amd/-/work-items/5220</a><br>
+<br>
+Brandon Taylor<br>
+<br>
+On Mon, Apr 27, 2026 at 9:01=E2=80=AFAM Timur Krist=C3=B3f &lt;<a href=3D"m=
+ailto:timur.kristof@gmail.com" target=3D"_blank" rel=3D"noreferrer">timur.k=
+ristof@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; Thank you Thorsten for forwarding this to me, indeed I am working on i=
+mproving<br>
+&gt; the driver for these GPUs. See my replies below.<br>
+&gt;<br>
+&gt; On Monday, April 27, 2026 11:37:53=E2=80=AFAM Central European Summer =
+Time Thorsten<br>
+&gt; Leemhuis wrote:<br>
+&gt; &gt; [note: please remove Timo Lindfors when replying to this mail and=
+<br>
+&gt; &gt; include Timur Krist=C3=B3f =E2=80=93 sorry everyone and especiall=
+y Timo, my mailers<br>
+&gt; &gt; address book tricked me]<br>
+&gt; &gt;<br>
+&gt; &gt; On 4/27/26 11:35, Linux regression tracking (Thorsten Leemhuis) w=
+rote:<br>
+&gt; &gt; &gt; On 4/26/26 01:22, Brandon Taylor wrote:<br>
+&gt; &gt; &gt;&gt; I have an AMD Radeon R9 270X GPU (yes, I know it&#39;s o=
+ld) which used to<br>
+&gt; &gt; &gt;&gt; default to the `radeon` firmware<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt; FYI, as using the wrong terms can lead to confusion while de=
+aling with<br>
+&gt; &gt; &gt; bugs: that&#39;s not a firmware, that&#39;s the driver (some=
+times also called<br>
+&gt; &gt; &gt; kernel module)<br>
+&gt;<br>
+&gt; - &quot;radeon&quot; is the old kernel driver for these GPUs that didn=
+&#39;t support Vulkan<br>
+&gt; and therefore was mostly useless for gaming.<br>
+&gt; - &quot;amdgpu&quot; is the new driver, which supports Vulkan and offe=
+rs better perf,<br>
+&gt; this is the default since Linux 6.19.<br>
+&gt;<br>
+&gt; I don&#39;t think this is a firmware issue.<br>
+&gt;<br>
+&gt; &gt; &gt;<br>
+&gt; &gt; &gt;&gt; on kernel versions up to and<br>
+&gt; &gt; &gt;&gt; including 6.18. I could manually change this behavior to=
+ use the new<br>
+&gt; &gt; &gt;&gt; `amdgpu` firmware by setting `radeon.si_support=3D0 amdg=
+pu.si_support=3D1`<br>
+&gt; &gt; &gt;&gt; as kernel parameters in the GRUB bootloader. Everything =
+worked fine,<br>
+&gt; &gt; &gt;&gt; and I was able to play my Windows games without any prob=
+lems.<br>
+&gt; &gt; &gt;&gt;<br>
+&gt; &gt; &gt;&gt; That was, until kernel version 6.19 came out.&gt;<br>
+&gt; &gt; &gt;&gt; 6.19, from what I was able to Google, was supposed to ha=
+ve AMD GPUs to<br>
+&gt; &gt; &gt;&gt; default to the new `amdgpu` firmware. Unfortunately, whe=
+n I updated<br>
+&gt; &gt; &gt;&gt; the kernel and rebooted, I got a black screen.<br>
+&gt; &gt; &gt;&gt;<br>
+&gt; &gt; &gt;&gt; Further Google searches led me to reboot, set `nomodeset=
+` in the<br>
+&gt; &gt; &gt;&gt; kernel parameters, switch to a TTY, login, and investiga=
+te the output<br>
+&gt; &gt; &gt;&gt; of a `dmesg` command =E2=80=94 and what I saw ... Well, =
+let&#39;s just say it&#39;s<br>
+&gt; &gt; &gt;&gt; the kind of thing that would make Linus go Chernobyl:<br=
+>
+&gt; &gt; &gt;&gt;<br>
+&gt; &gt; &gt;&gt; `amdgpu: probe with driver amdgpu failed with error -22`=
+<br>
+&gt; &gt; &gt;<br>
+&gt;<br>
+&gt; I am sorry this happened and understand the frustration.<br>
+&gt;<br>
+&gt; Please open an issue here:<br>
+&gt; <a href=3D"https://gitlab.freedesktop.org/drm/amd/-/work_items/new" re=
+l=3D"noreferrer noreferrer" target=3D"_blank">https://gitlab.freedesktop.or=
+g/drm/amd/-/work_items/new</a><br>
+&gt; and upload your full dmesg log. Please ping me personally @Venemo on t=
+hat<br>
+&gt; issue after you opened it so we can start investigating what is wrong =
+there.<br>
+&gt;<br>
+&gt; I got curious so I plugged in my R9 270X right now. I am typing this e=
+mail on<br>
+&gt; a computer with a Radeon R9 270X using Linux 6.19.12 on Fedora 43 and =
+it works<br>
+&gt; fine. We are going to need to need more details in order to diagnose w=
+hat the<br>
+&gt; problem really is. We might ask you to test some proposed fixes, consi=
+dering<br>
+&gt; that the issue doesn&#39;t happen on my R9 270X, I don&#39;t have a wa=
+y to verify it.<br>
+&gt;<br>
+&gt; &gt; &gt;&gt; Now, I hope to God that this email finds whoever is resp=
+onsible for<br>
+&gt; &gt; &gt;&gt; breaking this `amdgpu` firmware before the same thing ha=
+ppens to Linus<br>
+&gt; &gt; &gt;&gt; via Fedora 44, and he goes berserk. I realize that&#39;s=
+ not a heck of a<br>
+&gt; &gt; &gt;&gt; lot of time, but God only knows HOW many Linux users wit=
+h AMD GPUs are<br>
+&gt; &gt; &gt;&gt; pissed off by this kind of issue =E2=80=94 and I for one=
+ can only imagine how<br>
+&gt; &gt; &gt;&gt; Linus&#39; reaction will compare when it happens to HIM!=
+<br>
+&gt;<br>
+&gt; I&#39;m happy to help, there is no need for personal insults.<br>
+&gt;<br>
+&gt; (Note that the issue clearly doesn&#39;t affect all AMD GPUs and it cl=
+early doesn&#39;t<br>
+&gt; even affect all R9 270X GPUs.)<br>
+&gt;<br>
+&gt; Thanks &amp; best regards,<br>
+&gt; Timur<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+</blockquote></div>
 
-I'm not sure this patch is relevant to the goal of your series. Maybe
-send it separately?
-
-Thanks,
-Yury
+--0000000000001032cc0650757ec9--
