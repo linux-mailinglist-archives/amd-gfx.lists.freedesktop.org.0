@@ -2,80 +2,149 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MDEhNhKu8GnwXAEAu9opvQ
+	id ptQBOxeu8GkWXQEAu9opvQ:T2
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:42 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:49 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6206D4853AE
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07AD548542A
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 328F210EBF3;
-	Tue, 28 Apr 2026 12:54:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC39A10EC0B;
+	Tue, 28 Apr 2026 12:54:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=usp.br header.i=@usp.br header.b="ANz+d50p";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="YPchTHpL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f54.google.com (mail-dl1-f54.google.com [74.125.82.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0466310E2CC
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 19:16:11 +0000 (UTC)
-Received: by mail-dl1-f54.google.com with SMTP id
- a92af1059eb24-12714f01940so779798c88.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 12:16:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=usp.br; s=usp-google; t=1777317371; x=1777922171; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=/gnG/TV4QlirwEhC4yr5r/hW1goyUy/VqJ4SZeh+gDg=;
- b=ANz+d50pEOgqZW9ADk7BlDe4vHVc5v1KgJrI70JjWOciAvfrDOQFHVnnXef0T4eqiT
- T8+gAzvVasxJQye+bM/rSvdc1zIpVrClD7ulntQIjPHroxez1zf/+X/BK2Mh/kv2X60j
- 4g+HUlivWnm21k1pb8wqDzBh1lyDwJ6V75z6E6JemCa3m4K9H2Z1sFe/xK43aLdwtOG/
- LCIDrs1B5/0BUglNzlsPW7E+bdVJSukR/OAF8p7tPPepJjSo2D4sXlxFulohAEQvCFpM
- Si+HF3XNa/9G7/LAzE0e9nQhz1hv8dpMI5gGZb2xIfXGIuYm+EXTemp2gZhnph0qZXaP
- CAGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777317371; x=1777922171;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=/gnG/TV4QlirwEhC4yr5r/hW1goyUy/VqJ4SZeh+gDg=;
- b=nD3X9hVPS5MmjNNDITWXlitz2Orbhp6woMD6P+PZiHt/y7zP/Pfjf7lP52EXnnD3Yt
- KMjiC5O3XMYaDBGa3taar0gZ0GicGSnZq/nEpA4iQyD7u9QAqtEE01qx6dEgHk27xGTB
- pK7f1Z5ThIELHIoUJxniIKgMOUQcbzxUn2S78E2caQ/XN5EnTAwX3SO2/1D4AxC6lkBZ
- srafop6ddxiuTVdcqoprc87KkXZ5KVeiUFejlJ+UddTGW33dDUtDYH/ktjmmYkm2hZKi
- gaI6PJdFnC0Oa4OWWdYhTWbduER6oHBbQXxJHAf63kSRcbJGW0EhG6SiztKvJkAGNFtz
- FawA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ/A8lV+iC8Yz155386giHj0nSnME/OXECo8hU5zEUbMpXCYgc4oTMTIZgcm0G5G7UGizKBDWNsK@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzCJHWkZbxJT78rlCMqYyouK5wAbsw9jDZbRLVl30nEDChVHpoC
- QyZthvkOkxDpg9zNUFFt9hKtvzuDMAleyoiYqKU9Fpa+vv5XizOM7q8UutDFT7Em/xQ=
-X-Gm-Gg: AeBDietuYMdAI78wh4r4bvuKhYXYDeO9OzlhCFJ6t6jiCXmSte0dAGIQD4BeZIZvhSP
- bX4Zkx46MAfJv/wisOClFxtW6NPtbB9tkbwLr+HOwe6RIowNPjnTYD7E8Sm3yG4stoyxXl/hRb5
- Nu4fR+/JkhD+UhOqep21c7I7MgrxiZaKE2ypoaabF7r4/1fqPPiZ+Erw3HumrJu9aD9JZsx6daV
- A0w7MJE1DIu2/NA85uLHhul8uEo1obQTCyB/XY1hFOXf6B2W/1D1RYKzYLe7oltk3dw6ZVKa+cG
- 7cFtFQMvg/wuNAhgCpGn5Y24pZwGneCefftWeVnEbm3KQt69Knkp/k21CYiQxv+ekq6D+GrxMKw
- nyIE2C5HZDk4gHU9u9rkuhrS0AE1lJAtMAdh5cJj6e+nCgbutq8u7MUgnSXwWpr1FMBQwhhxqiI
- QkOCbCLjkbtZmIJrmi6ZXFUForwPk3M3yMcdwG9Gq4VhNRW49v3oVpUax4hZFe
-X-Received: by 2002:a05:7022:f8c:b0:12d:b4e2:f566 with SMTP id
- a92af1059eb24-12ddd539d5cmr109672c88.4.1777317370737; 
- Mon, 27 Apr 2026 12:16:10 -0700 (PDT)
-Received: from Haru.. ([2804:1b1:f983:1702:93e0:14bb:90e7:dc5e])
- by smtp.gmail.com with ESMTPSA id
- a92af1059eb24-12ddd9b1e3bsm144583c88.13.2026.04.27.12.16.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 27 Apr 2026 12:16:09 -0700 (PDT)
-From: Leonardo Cesar <leonardocesar@usp.br>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch
-Cc: Leonardo Cesar <leonardocesar@usp.br>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH v3] drm/amdgpu: deduplicate ring preempt ib function
-Date: Mon, 27 Apr 2026 16:15:19 -0300
-Message-ID: <20260427191556.9672-1-leonardocesar@usp.br>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012060.outbound.protection.outlook.com
+ [40.107.200.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FC3F10E2CF;
+ Mon, 27 Apr 2026 19:19:51 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DVhEHbKse9FapnN2cz2aJUX+HTxcItqfquBUQFwLCiP5WPrtNQiNPTnGI4MIon3AgmkAQl5HhYuSQnuQt8IDeRYhgInyB/AOQdBwrpUiHITV3f694UVLHuUrOiv9b2cfG6r3+auR6MSVkkcLuQ4Y+tF/rhfDNeBCXess0F+F/TkXrV+dz92vsSLlL5tn1Ynl2fbpcNoIAef0KBxuv6gcdjE4t82LvHJAaDNASNUKyKFm7x4T0BsLAz0/sYnIg36y560VeNc7zOL4T4Ud5AI185ZovsKb5e37aJIb1I3/TkqG0ULl2gwnmAIb6WWT/tvMtVulTJ6c/93Ndgr0CuF4fg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/kehAw/qIO6D93HVE5am8hZKsLTTbdaFhcjGhCC5rQk=;
+ b=barriPy2JoAhTOU2YWoiBczra9jgxyFIS6Vn5fMeLmZuoQbamS7hXIudelNBWOJlYCTT4fz6sLrJvnhUdW9BOtoGyJggKAsOzpYbdXTAoZYuiChGWVjjK4zj5T6ViLKFtxvsysAksVjZEfM7DJVmWiyYI9e45cpEy9i20IgZjrl32t2DE427qEOO5vlB9eYx56Yl/nXGgL4VLYapDOlIgCcuJftQuYsdND79AhJHc1YvPlUNuHXQ+n3CfukGLrY/uuf3W2l/Yujue6iK9C39RkCuvxgHmU04+3GeYVYQvrsxPBRvQZHz5V/LPu92hWZsyj93vuK0RwQezDTTJlGlNw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/kehAw/qIO6D93HVE5am8hZKsLTTbdaFhcjGhCC5rQk=;
+ b=YPchTHpLT9QyaGFbz/V/HaxoYwml60CPwBCohwTGccSxQF5xp4aCWy87+9L75FNFxG+fxrmiBfrijK9S2U71MhRFySlXZXPcGWovjvdfkNvvp25q1PAB1mr+HmzjdR2xRedKx7NR5nzOddAsQnNEGyggXH0WqDfgUQo8MCzVvhQJIRQ9THI7KbDluLzImajEqpi/FOh1jFu/Gzsx5Px0K5iD8tBWuFPua2hJduhxINK682Oc8hT1rNV3ppOrrAFmrK5A2egSfIVt/1zbLX+OPjABfYsc675DnlpFoxG5tXvBSDdEGGHoW1lpS7Myqc3PGBqojvAzWyzSfMH/AHuVBg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CY8PR12MB8300.namprd12.prod.outlook.com (2603:10b6:930:7d::16)
+ by CY3PR12MB9678.namprd12.prod.outlook.com (2603:10b6:930:101::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.12; Mon, 27 Apr
+ 2026 19:19:39 +0000
+Received: from CY8PR12MB8300.namprd12.prod.outlook.com
+ ([fe80::ce75:8187:3ac3:c5de]) by CY8PR12MB8300.namprd12.prod.outlook.com
+ ([fe80::ce75:8187:3ac3:c5de%3]) with mapi id 15.20.9870.013; Mon, 27 Apr 2026
+ 19:19:39 +0000
+Date: Mon, 27 Apr 2026 15:19:36 -0400
+From: Yury Norov <ynorov@nvidia.com>
+To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ David Laight <david.laight.linux@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-alpha@vger.kernel.org,
+ Yury Norov <yury.norov@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-um@lists.infradead.org,
+ dmaengine@vger.kernel.org, linux-efi@vger.kernel.org,
+ linux-fsi@lists.ozlabs.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-fsdevel@vger.kernel.org,
+ ocfs2-devel@lists.linux.dev, bpf@vger.kernel.org,
+ kasan-dev@googlegroups.com, linux-mm@kvack.org,
+ linux-x25@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ linux-sound@vger.kernel.org, sound-open-firmware@alsa-project.org,
+ linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org,
+ loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org,
+ linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
+ linux-sh@vger.kernel.org, linux-arch@vger.kernel.org
+Subject: Re: [RFC PATCH v1 7/9] x86: Add unsafe_copy_from_user()
+Message-ID: <ae-2yLWSGnfeTvh1@yury>
+References: <cover.1777306795.git.chleroy@kernel.org>
+ <0ee46bb228d97163fbdc14f2a7c52b93d8bc34ce.1777306795.git.chleroy@kernel.org>
+ <ae-j2_QirCySZD02@yury>
+ <63a4d0f6-0eb3-48cd-9f98-bf7b223b2606@kernel.org>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <63a4d0f6-0eb3-48cd-9f98-bf7b223b2606@kernel.org>
+X-ClientProxiedBy: BLAPR03CA0031.namprd03.prod.outlook.com
+ (2603:10b6:208:32d::6) To CY8PR12MB8300.namprd12.prod.outlook.com
+ (2603:10b6:930:7d::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY8PR12MB8300:EE_|CY3PR12MB9678:EE_
+X-MS-Office365-Filtering-Correlation-Id: c742778b-fa9b-44f9-51b3-08dea491ed5d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|7416014|10070799003|1800799024|56012099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: shZ1u0REr6wDLRLPyyEdIcR7HSBaBLI9bkPwQrtikVH2FtKB2JxFo1blEpu1cI3NJl8SRfbhAKLYIVGCuUMzmvBnxw+FuY/TWQm+eDHPdr22c6rn1JUuzt3nYVxIbuuLTVTRWsq+e+SUyzbYaEEs9iTQJbTfJiMIr1QcnMs7HyZ09hEYM4Y4qXo4Dqr7nhb5zdIkE0fiLtqy/Zisxe0E2yKOvU4HmFcaFOiR7Aq6DJwZzTG+BR733bn5EC71RBcWvOANFgJM2znxVv/dOuQYufc4G4dUHtXgydGyNUS+fngDUjvyX5MkmDLhOMznjZqXlYqgeu5lMUCpG8HffRFHlOXhBcrYgf+ovMMHaCYbFuDT66UC1VDFvb4rz83Hk2Lnl6vSSpPTv8rxpTSPpx4cdJdNmo0Mn5Mi/3x46vGIX9O5JTAct5Ir50zvkKLZe7/Kp1qSfB39msc26Lzz7LD733/o3mPnQXyAGLurnHZgJ5jM3FLt650dCqhJcZlPMaXHq6+AjtwJTG6y+mX2JUt2792E1LYJn7KjXVu8/xqn/7IpL5oC4IQQUgghT221wDL3lrh3xCL1IuqFJShNLP2kKxWwgFBJzIfU0pnScVGPPU9YsipaXNEtmsuD5RQqnXWq43E7KCoMjIP73gvWalBIhJkqTKcX6NUkX7ot5JSYyuNq1A833Lgaec6O0C//zC9ubi3rz9CymfV/P6BrxHZIhmtQ5semmv0gY0c6C5hRnqM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY8PR12MB8300.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(7416014)(10070799003)(1800799024)(56012099003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?T8W6XhUXwT9dv5kuj9kFMa1Pc+caKbpom/7i+ro0mWLEx/WsMCf7Uv+yLt?=
+ =?iso-8859-1?Q?gAyF6hz8bSDC1bWR1FTEkkI65aMUmC7iyx7e6/xfNDa3Fqe7SiC1j77stI?=
+ =?iso-8859-1?Q?LrG24onu6fFBF8DWYf6MIuIlkdgrbAd2EiVVGxnofgYgHTQhw5136OB8qO?=
+ =?iso-8859-1?Q?CnzmyDAwjI33B1CjeJnNBBJkCzrksdZvxIcHW0uIe6E0PZHf537RLpIETM?=
+ =?iso-8859-1?Q?s+cBh7JvH4GNxPjZACl7GXrozKiFqXSwFIzHaU9Zd4jSjyzd0KPJpIHPKf?=
+ =?iso-8859-1?Q?8h/I+NEnIGw4Lnjlmh9mYKMwd0qS2GIHpVaOy1bH5MCjGmjowRaXjQ79be?=
+ =?iso-8859-1?Q?jGRLn+Oomml9guRrsFzOQ7DbbOlFy8pqy9R+D9ZnGVn8wEgYSRw75xgmry?=
+ =?iso-8859-1?Q?2ACNauoKPoUzpnRmfqW3sPF9JS/tvt2t2PPNVTZJLV6vuJBnNmyWilx/9u?=
+ =?iso-8859-1?Q?SrlYzTyazTZWIZbUeG2soKD4eNVokxFYJQoBgEsGEV2njiNv6HUubbi0pF?=
+ =?iso-8859-1?Q?Vqp14jJqz5sSfFayA6WZcArZ+USE5vjanuqRtNQfdkNsKj0R4pEMc493o0?=
+ =?iso-8859-1?Q?NCXeFBw/ojt6aGg8g6h7tHIHZcYuw7ohhZUMOvg3ffhlK9u79tO7oKpC3u?=
+ =?iso-8859-1?Q?wiPOjYl6brt/0GKfD3iRNbrV6TRbbioNcjuDS7LZqgWxe6vMy7NndX+woA?=
+ =?iso-8859-1?Q?uRdr5blnc5k3cJWHAzCHgJ5WF2JWGApq1uyN9UWgvqNw083HRffGg6P5ix?=
+ =?iso-8859-1?Q?cG24FhHq+kscs9DSxIC+Aujk67lP+3jqbld/7XWy8cKm8qvSHwRqhWblhk?=
+ =?iso-8859-1?Q?2okcTJPbDNOuvYYOSGTPE+vmAEFbkK1UHPvMUY9ATxehETfXPZs7yjb3aq?=
+ =?iso-8859-1?Q?w3hdW7xtyg3/7tDEWG7+fOEy9FFT/gEBpvxotxF6oySrb2HXqp/fqrjhbq?=
+ =?iso-8859-1?Q?+CZwwgugua6eO4UL5qPz9hiIFbMAfNaGqRykJRiykn+pL+t1YHattmJ89+?=
+ =?iso-8859-1?Q?zMjzPmRht5LCTdelXGsXfPIKJiFXD3T9vDfN3lmWj4Ts7wlilxpgiOpMaL?=
+ =?iso-8859-1?Q?p7E3h5ji6cLKiR9cNwmzJTNOGBx5zvsEG4+PNQXhBDGMpxOVgOl+EeAV9d?=
+ =?iso-8859-1?Q?2s3FGgMUZVYPP9cV5NsthWoh6iNfuRN7NkopE2q3yxMVZlN6dt7HdpbO1Y?=
+ =?iso-8859-1?Q?0fu25Ra/a3yy2XE0TtJPHqDm12P85rdM3CgNkUv822FbtecXgL64Qkuo5p?=
+ =?iso-8859-1?Q?bU1qrEG+LOPjM/jMvPhwRHc5ppnq/gaXYhFU5FH0G3K5d4d0ixkRyi37Wv?=
+ =?iso-8859-1?Q?QFsdW6QrX/SrL3DsdbaAqQnL1rxC0EQG3YCsMUYGRLPRYd9ad5xPY0x+Rq?=
+ =?iso-8859-1?Q?pi74xEsiw9PrH9X+6nGn6Y3d7VcpnV6Av8/J+hqLZLRt6W9B7IXfCaTIAV?=
+ =?iso-8859-1?Q?8KCRWdm4ExrgkDdvMYea8olZLEBlvgMeZtCVoxZ810+OR4vZKUUMbB37Ha?=
+ =?iso-8859-1?Q?gwC1ZTD4TpsWjGJNj5Ry/c9tX5RkpCdCKRBegPQIrqdU1WX41QArSPS9fb?=
+ =?iso-8859-1?Q?xDEYSUCFDpxyHnIl4mh4MFcUHTIxFSpQAIB1z5w75JzJg+rYBE9y0Z0uA2?=
+ =?iso-8859-1?Q?hx89znOZLi5+tvIZldfaxSE1Dk0RrYzkMtqQuuDh61/I6rksRc2kt6jYug?=
+ =?iso-8859-1?Q?hvJgjrdcklYMst8NSnorft9iaeq41s5Z02Our3r1w88xwCK/RrRq8aIdSR?=
+ =?iso-8859-1?Q?gpisMPDwKRAml31b4cWNg8wz9VF+bGszAp5BtKObcEufaeReWjiKmyXNV3?=
+ =?iso-8859-1?Q?qbI4euw+Po2OswoqiwgiX8xIAeThU5sXrO2JRJTwu37/nYFGOi2s?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c742778b-fa9b-44f9-51b3-08dea491ed5d
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB8300.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2026 19:19:39.4410 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 40kb2lLpGDA1U6OK1K/FxB8sAmuWJ+U6w4mJNOJ6ae5Bq52M+Y3YVxXlUqHMzI9liQk01DjxzLicYADua7DWLw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9678
 X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,275 +159,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6206D4853AE
+X-Rspamd-Queue-Id: 07AD548542A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.29 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
+X-Spamd-Result: default: False [5.39 / 15.00];
+	DMARC_POLICY_REJECT(2.00)[nvidia.com : SPF not aligned (relaxed),reject];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	R_DKIM_REJECT(1.00)[Nvidia.com:s=selector2];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
-	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
+	GREYLIST(0.00)[pass,body];
+	RCPT_COUNT_TWELVE(0.00)[49];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:leonardocesar@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[leonardocesar@usp.br,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[leonardocesar@usp.br,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[usp.br:+];
-	NEURAL_HAM(-0.00)[-0.977];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linux-foundation.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org,lists.linux-m68k.org];
+	DKIM_TRACE(0.00)[Nvidia.com:-];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,usp.br:email,usp.br:dkim,usp.br:mid]
+	FROM_NEQ_ENVFROM(0.00)[ynorov@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_SPAM(0.00)[0.204];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-The ring preemption function is identical for both gfx_v11_0 and
-gfx_v12_0. This patch refactors the code by moving the core logic
-into a generic function inside amdgpu_gfx.c to reduce code
-duplication and simplify future maintenance.
+On Mon, Apr 27, 2026 at 08:20:38PM +0200, Christophe Leroy (CS GROUP) wrote:
+> 
+> 
+> Le 27/04/2026 à 19:58, Yury Norov a écrit :
+> > On Mon, Apr 27, 2026 at 07:13:48PM +0200, Christophe Leroy (CS GROUP) wrote:
+> > > At the time being, x86 and arm64 are missing unsafe_copy_from_user().
+> > 
+> > No, they don't. They (should) rely on a generic implementation from
+> > linux/uaccess.h, like every other arch, except for  PPC and RISCV.
+> > 
+> > But they #define arch_unsafe_get_user, and the unsafe_copy_from_user()
+> > becomes undefined conditionally on that.
+> > 
+> > So please, fix that bug instead of introducing another arch flavor.
+> > We'd always choose generic version, unless there's strong evidence
+> > that arch one is better.
+> 
+> But they both implement the exact same unsafe_copy_to_user(). What is the
+> difference here ?
+>
+> Should that function become generic too ?
 
-Signed-off-by: Leonardo Cesar <leonardocesar@usp.br>
+This is what Linus said when added x86 implementation for copy_from_user()
+in c512c69187197:
 
----
-v2 -> v3:
-- Style fix: Move variable declarations to follow reverse christmas tree and do not initialize 'r' on definition.
+  Note that it only does this [arch version] for the copying _to_ user space,
+  and we still don't have a unsafe version of copy_from_user().
+  
+  That's partly because we have no current users of it, but also partly
+  because the copy_from_user() case is slightly different and cannot
+  efficiently be implemented in terms of a unsafe_get_user() loop (because
+  gcc can't do asm goto with outputs).
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | ...
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 53 +++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 +
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 52 +-----------------------
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  | 52 +-----------------------
- 4 files changed, 57 insertions(+), 102 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index 2956e45c9..45d41f24d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -2684,3 +2684,56 @@ void amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev)
- #endif
- }
- 
-+int amdgpu_gfx_ring_preempt_ib(struct amdgpu_ring *ring)
-+{
-+	struct amdgpu_device *adev = ring->adev;
-+	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
-+	struct amdgpu_ring *kiq_ring = &kiq->ring;
-+	unsigned long flags;
-+	int i, r;
-+
-+	r = 0;
-+
-+	if (adev->enable_mes)
-+		return -EINVAL;
-+
-+	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
-+		return -EINVAL;
-+
-+	spin_lock_irqsave(&kiq->ring_lock, flags);
-+
-+	if (amdgpu_ring_alloc(kiq_ring, kiq->pmf->unmap_queues_size)) {
-+		spin_unlock_irqrestore(&kiq->ring_lock, flags);
-+		return -ENOMEM;
-+	}
-+
-+	/* assert preemption condition */
-+	amdgpu_ring_set_preempt_cond_exec(ring, false);
-+
-+	/* assert IB preemption, emit the trailing fence */
-+	kiq->pmf->kiq_unmap_queues(kiq_ring, ring, PREEMPT_QUEUES_NO_UNMAP,
-+					ring->trail_fence_gpu_addr,
-+					++ring->trail_seq);
-+	amdgpu_ring_commit(kiq_ring);
-+
-+	spin_unlock_irqrestore(&kiq->ring_lock, flags);
-+
-+	/* poll the trailing fence */
-+	for (i = 0; i < adev->usec_timeout; i++) {
-+		if (ring->trail_seq ==
-+			le32_to_cpu(*(ring->trail_fence_cpu_addr)))
-+			break;
-+		udelay(1);
-+	}
-+
-+	if (i >= adev->usec_timeout) {
-+		r = -EINVAL;
-+		DRM_ERROR("ring %d failed to preempt ib\n", ring->idx);
-+	}
-+
-+	/* deassert preemption condition */
-+	amdgpu_ring_set_preempt_cond_exec(ring, true);
-+	return r;
-+}
-+
-+
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-index a0cf0a3b4..77050f988 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-@@ -664,6 +664,8 @@ void amdgpu_gfx_csb_preamble_end(u32 *buffer, u32 count);
- void amdgpu_debugfs_gfx_sched_mask_init(struct amdgpu_device *adev);
- void amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev);
- 
-+int amdgpu_gfx_ring_preempt_ib(struct amdgpu_ring *ring);
-+
- static inline const char *amdgpu_gfx_compute_mode_desc(int mode)
- {
- 	switch (mode) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index 5097de940..1ba848bfa 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -6206,56 +6206,6 @@ static void gfx_v11_0_ring_emit_gfx_shadow(struct amdgpu_ring *ring,
- 	ring->set_q_mode_offs = offs;
- }
- 
--static int gfx_v11_0_ring_preempt_ib(struct amdgpu_ring *ring)
--{
--	int i, r = 0;
--	struct amdgpu_device *adev = ring->adev;
--	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
--	struct amdgpu_ring *kiq_ring = &kiq->ring;
--	unsigned long flags;
--
--	if (adev->enable_mes)
--		return -EINVAL;
--
--	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
--		return -EINVAL;
--
--	spin_lock_irqsave(&kiq->ring_lock, flags);
--
--	if (amdgpu_ring_alloc(kiq_ring, kiq->pmf->unmap_queues_size)) {
--		spin_unlock_irqrestore(&kiq->ring_lock, flags);
--		return -ENOMEM;
--	}
--
--	/* assert preemption condition */
--	amdgpu_ring_set_preempt_cond_exec(ring, false);
--
--	/* assert IB preemption, emit the trailing fence */
--	kiq->pmf->kiq_unmap_queues(kiq_ring, ring, PREEMPT_QUEUES_NO_UNMAP,
--				   ring->trail_fence_gpu_addr,
--				   ++ring->trail_seq);
--	amdgpu_ring_commit(kiq_ring);
--
--	spin_unlock_irqrestore(&kiq->ring_lock, flags);
--
--	/* poll the trailing fence */
--	for (i = 0; i < adev->usec_timeout; i++) {
--		if (ring->trail_seq ==
--		    le32_to_cpu(*(ring->trail_fence_cpu_addr)))
--			break;
--		udelay(1);
--	}
--
--	if (i >= adev->usec_timeout) {
--		r = -EINVAL;
--		DRM_ERROR("ring %d failed to preempt ib\n", ring->idx);
--	}
--
--	/* deassert preemption condition */
--	amdgpu_ring_set_preempt_cond_exec(ring, true);
--	return r;
--}
--
- static void gfx_v11_0_ring_emit_de_meta(struct amdgpu_ring *ring, bool resume)
- {
- 	struct amdgpu_device *adev = ring->adev;
-@@ -7295,7 +7245,7 @@ static const struct amdgpu_ring_funcs gfx_v11_0_ring_funcs_gfx = {
- 	.emit_cntxcntl = gfx_v11_0_ring_emit_cntxcntl,
- 	.emit_gfx_shadow = gfx_v11_0_ring_emit_gfx_shadow,
- 	.init_cond_exec = gfx_v11_0_ring_emit_init_cond_exec,
--	.preempt_ib = gfx_v11_0_ring_preempt_ib,
-+	.preempt_ib = amdgpu_gfx_ring_preempt_ib,
- 	.emit_frame_cntl = gfx_v11_0_ring_emit_frame_cntl,
- 	.emit_wreg = gfx_v11_0_ring_emit_wreg,
- 	.emit_reg_wait = gfx_v11_0_ring_emit_reg_wait,
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-index 65c33823a..6cf244349 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -4611,56 +4611,6 @@ static unsigned gfx_v12_0_ring_emit_init_cond_exec(struct amdgpu_ring *ring,
- 	return ret;
- }
- 
--static int gfx_v12_0_ring_preempt_ib(struct amdgpu_ring *ring)
--{
--	int i, r = 0;
--	struct amdgpu_device *adev = ring->adev;
--	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
--	struct amdgpu_ring *kiq_ring = &kiq->ring;
--	unsigned long flags;
--
--	if (adev->enable_mes)
--		return -EINVAL;
--
--	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
--		return -EINVAL;
--
--	spin_lock_irqsave(&kiq->ring_lock, flags);
--
--	if (amdgpu_ring_alloc(kiq_ring, kiq->pmf->unmap_queues_size)) {
--		spin_unlock_irqrestore(&kiq->ring_lock, flags);
--		return -ENOMEM;
--	}
--
--	/* assert preemption condition */
--	amdgpu_ring_set_preempt_cond_exec(ring, false);
--
--	/* assert IB preemption, emit the trailing fence */
--	kiq->pmf->kiq_unmap_queues(kiq_ring, ring, PREEMPT_QUEUES_NO_UNMAP,
--				   ring->trail_fence_gpu_addr,
--				   ++ring->trail_seq);
--	amdgpu_ring_commit(kiq_ring);
--
--	spin_unlock_irqrestore(&kiq->ring_lock, flags);
--
--	/* poll the trailing fence */
--	for (i = 0; i < adev->usec_timeout; i++) {
--		if (ring->trail_seq ==
--		    le32_to_cpu(*(ring->trail_fence_cpu_addr)))
--			break;
--		udelay(1);
--	}
--
--	if (i >= adev->usec_timeout) {
--		r = -EINVAL;
--		DRM_ERROR("ring %d failed to preempt ib\n", ring->idx);
--	}
--
--	/* deassert preemption condition */
--	amdgpu_ring_set_preempt_cond_exec(ring, true);
--	return r;
--}
--
- static void gfx_v12_0_ring_emit_rreg(struct amdgpu_ring *ring, uint32_t reg,
- 				     uint32_t reg_val_offs)
- {
-@@ -5539,7 +5489,7 @@ static const struct amdgpu_ring_funcs gfx_v12_0_ring_funcs_gfx = {
- 	.pad_ib = amdgpu_ring_generic_pad_ib,
- 	.emit_cntxcntl = gfx_v12_0_ring_emit_cntxcntl,
- 	.init_cond_exec = gfx_v12_0_ring_emit_init_cond_exec,
--	.preempt_ib = gfx_v12_0_ring_preempt_ib,
-+	.preempt_ib = amdgpu_gfx_ring_preempt_ib,
- 	.emit_wreg = gfx_v12_0_ring_emit_wreg,
- 	.emit_reg_wait = gfx_v12_0_ring_emit_reg_wait,
- 	.emit_reg_write_reg_wait = gfx_v12_0_ring_emit_reg_write_reg_wait,
--- 
-2.43.0
-
+In the unsafe_copy_to_user case, arch versions were justified. Just as
+said, I'm not against arch version for unsafe_copy_from_user(), but it
+should be explained very well.
