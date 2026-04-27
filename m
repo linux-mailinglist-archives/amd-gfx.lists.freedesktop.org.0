@@ -2,78 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IKEqD5Gq72kCDwEAu9opvQ
+	id uPHwHpaq72kCDwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 20:27:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 20:27:34 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B7624788E8
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 20:27:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FD6B4788FE
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Apr 2026 20:27:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A805D10E8B8;
-	Mon, 27 Apr 2026 18:27:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B75BC10E8BE;
+	Mon, 27 Apr 2026 18:27:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OSGPYmde";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qNeE+idA";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
- [209.85.128.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D47B10E8B8
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F41AB10E8BA
  for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 18:27:26 +0000 (UTC)
-Received: by mail-wm1-f45.google.com with SMTP id
- 5b1f17b1804b1-488ff90d6c7so90437765e9.2
+Received: by mail-wm1-f54.google.com with SMTP id
+ 5b1f17b1804b1-48984d29fe3so127020955e9.0
  for <amd-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 11:27:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20251104; t=1777314445; x=1777919245; darn=lists.freedesktop.org;
- h=content-transfer-encoding:reply-to:mime-version:message-id:date
- :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=AGXRhlWXwUTArAX2IbHc1SZiTU1nrW9t0bpXvIWFEDU=;
- b=OSGPYmde/9CdZgXkDW/fgq/OF77Ih8VNPYm/POht7RZ1BySwQGyKs0/3En/znB4TRP
- D35z9C9r7rDvU2IO/u65oyxg0O+VSTI8UY2TsJuJMxH8r57kBXs/+umcxRQaCiaHVONs
- 7DbJ4z+Z0JuJcmDS1AoKuKuavLYhFmqY99A0VZguKdK6fJY4VlCPkAvlMguXf1BRSBw3
- WAETZbvkQAZtMOxYRkKfD+oqUTOmw3Bz0VSCNb5Qi0e0+ijJOy94ukuZezW9uUQeYOl7
- S/W3WC+P445qY/IKHIGDRW/BlAdsn5CwXuBWOB+BUZoyUmRjSdSbJYTv1+iPpJEg6RCM
- xpqw==
+ h=content-transfer-encoding:reply-to:mime-version:references
+ :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=efa/Nf5VaqVSS7sFfizXzcVpgmfDr73rqlHWioRm2Sg=;
+ b=qNeE+idADxAPzG2fqY+Ow4fUBpNQf7RvuFT9oaBUpKRdh5kDgQ1Nqwyj/K0qaeM6Ru
+ qP7fNUfYKgfMJ/m1a6pJtWVV6NDk8RqvwXPO+/PYVOlUHH2hWC3xr2z1M/SIv15Dd/Ce
+ +snqAnI8hdiJttSQ4OLuhhSph808A7VwPiRV7NqmlZ6BUlPT4kvHhl317Vk6BdUHu7tN
+ QotKRsUBFZ/WNGaJQ/EwXdsnZ2b6+aK8lOeoH61id7QX18LuO4Xj2E5UMQH2+3Ub7xIx
+ 6WWAQyzfcO0DwvPK9UzD9f1yv3zybs8/kE5Mlfg3kWI4VqW6RmMtnABe3gscbObIeGSp
+ HMMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20251104; t=1777314445; x=1777919245;
- h=content-transfer-encoding:reply-to:mime-version:message-id:date
- :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=AGXRhlWXwUTArAX2IbHc1SZiTU1nrW9t0bpXvIWFEDU=;
- b=K9keGz+O4znDM/cuShia9IAzWf/0qsOqnPTbnq8aTRybz9MM1sRRi4EQVHej27Ks4K
- qhnldGE7/MQSorZXq2TTdA8uRlybA+8nvH4+mlujg0Y/RqX3BzKMtLW4jnz5MHMrSpkQ
- FJDgOTeS70T26b1Vp00D6a5wzoM52Xq3UyiD9XG2oeV8a+q15QEpxRuBA6JS+8Z/fJxe
- VizfNKLE6FBuMsfGne+9DwB+ht5xb/0LVgudB1xX0qlUeAeY1JH65Gx7hlrgYblBJm6n
- /jB2hLepdpSMU7m3yylUec2nnHApeSxwa5lxjNBTw+57D6zhM8h//VBZn1qwtioCfaO1
- d16w==
-X-Gm-Message-State: AOJu0YwaPoNrARbLwJNAZVtvBIjc6lqBIrZlTscOensMq8lVWFYXq1kd
- +FT+d7414kOLNM9XKoVrLLUiQpUbMNC2ZpSF3261diNRMz5Irah7GBVSMNym23b1
-X-Gm-Gg: AeBDiesGY2KTaiIHaTJ2TYuq9g+FiIQCCmKRoEVLFjZlD8IIXNf92dAPW6yDjnwKpVt
- 8GhqhTUK1whNmOVmnNR3yW10rdlqf69ViQRDzWzmWdauRbJUH/MzX4rTXPEKsgQoNKBk4oFZqCS
- 1uVcmE3nkKXZ2bRRLwhCavkxK2tsPKm88paJ/871mORPQr6Cv6O0eN8tq7vixs73+7KmgPHOA6z
- iHoABs86ZWyP68bOOGXEeznnO0Ng6KXPNPIr/xHqAliY6ZNTHMSbNEViegDILKLOF3aQTLKCwmq
- MMK6X2jxvJxTqJongMroPJ6/YKkUdgJMsY1COWHT4BR5xHu9wexaIXp0zGLITuYXfupti1WecyG
- d9Jj5RyYldS0J8Hrj+E5riTXZRqEWkS7d8b/t1XLjzHXgwSs/PMkuQCP54ekDYjt2iAAHV5gf9V
- bx7nzn35+YETSTHR12cC5P8+BNfZMDID/7tt4xbQ2E37bBZg==
-X-Received: by 2002:a05:600c:c4a5:b0:48a:52d4:888c with SMTP id
- 5b1f17b1804b1-48a76f4d4d4mr6947455e9.3.1777314444686; 
- Mon, 27 Apr 2026 11:27:24 -0700 (PDT)
+ h=content-transfer-encoding:reply-to:mime-version:references
+ :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=efa/Nf5VaqVSS7sFfizXzcVpgmfDr73rqlHWioRm2Sg=;
+ b=SJuMNd2PjPXsg5oZ4y5SDgkUu5WxSuNER1XI933sdKNajxdEZ+h/LcgXxwXUkhzpbR
+ CYOHQcAUwDRRzJsIXwjGLM6F4NPxndcQiVa9JYDNIizUIRJi6CDGtEcAvi6bEDKAPJAs
+ 13TlMpZ3ieQ4tHUT/ybJQPyRVSKQMauZ5vd7dAUkQOnuwXWHdzuGGoqgUNyYkdAwwFHC
+ 1I8wAE6fI02Ma67kxoFteEIE40NOEu+mg8scOnufcIhLzd4YdBZd9FAC3Zbu98l2qSVV
+ 2JGoIxZ96cbXobD2yUMpUgBCWRtJGOLTKye+OtV9CEoO7VfswgpIoSF0uLi08MwdzDZz
+ a4dg==
+X-Gm-Message-State: AOJu0YzGPYU9arrVmU0HqanJ/27DSf1j9zqbi0Afci32t2STdYtApwnW
+ F2FgFcJTTROpMVGlqHHKpqp2UEWMArPW7+AYcTD9zzxUTDK1Cx0qQ+ud
+X-Gm-Gg: AeBDievVpC+W4E3B+BGMLr+exSB53jFbTrSGjnUrzKZw/g/MoZ2LzJDrAZqm2GPwFtu
+ xdCMCjuGBuHHQTOgsddsXn3qeOeMdxV8GKf7cLAEPAqY2aMmFuDUAJDRDaWYVYhwxYrilX6MG6+
+ I9VuU3gBe2x025f452msSHFLBt47QMgIDu0DgGCIHJRgiZrpZ/UPlJ6wVJZX0Vtw75bN1HVRmab
+ gJ2YrXzj5ZUeXzHxOrjqTEVGDjx5lCfjlRjZnrBhCavjZ1m5btjtQkk9RkKQBDhuMwdiwVeZ2qV
+ /SFfB6ojeZqjhLRMlYs0Hp6DBhIuDrLwizNGM+2ANo5XTe1MweI+nQgsjeg52K4k5PPf5CpCssp
+ RGcG3wenJQNn1Tp8gSbjD5twa4LC9TdPyrfC5bCC713jPYQa8IPga2feKhTKbu54W61pvCp6hE5
+ njjlp+O0QYp3AHMtKpU42BvN2kb111NOLMz7i6Hp9UhT9OyTlAnOw5rsrd
+X-Received: by 2002:a05:600c:a101:b0:48a:53ea:13df with SMTP id
+ 5b1f17b1804b1-48a76f45f59mr6410775e9.2.1777314445414; 
+ Mon, 27 Apr 2026 11:27:25 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:153b:d200:96aa:46be:4d7:72d2])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48a773af5c5sm6046165e9.5.2026.04.27.11.27.23
+ 5b1f17b1804b1-48a773af5c5sm6046165e9.5.2026.04.27.11.27.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 27 Apr 2026 11:27:24 -0700 (PDT)
+ Mon, 27 Apr 2026 11:27:25 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: alexander.deucher@amd.com, Prike.Liang@amd.com, sukhatri@amd.com,
  jesse.zhang@amd.com
 Cc: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/8] drm/amdgpu: nuke amdgpu_userq_fence_slab
-Date: Mon, 27 Apr 2026 20:27:16 +0200
-Message-ID: <20260427182723.1715-1-christian.koenig@amd.com>
+Subject: [PATCH 2/8] drm/amdgpu: remove deadlocks from amdgpu_userq_pre_reset
+Date: Mon, 27 Apr 2026 20:27:17 +0200
+Message-ID: <20260427182723.1715-2-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260427182723.1715-1-christian.koenig@amd.com>
+References: <20260427182723.1715-1-christian.koenig@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -91,7 +94,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Reply-To: christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 9B7624788E8
+X-Rspamd-Queue-Id: 2FD6B4788FE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
@@ -104,19 +107,19 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	REPLYTO_DOM_EQ_TO_DOM(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:Prike.Liang@amd.com,m:sukhatri@amd.com,m:jesse.zhang@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:replyto,amd.com:mid];
-	FORGED_SENDER(0.00)[ckoenigleichtzumerken@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[ckoenigleichtzumerken@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:Prike.Liang@amd.com,m:sukhatri@amd.com,m:jesse.zhang@amd.com,s:lists@lfdr.de];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
 	TAGGED_FROM(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_FIVE(0.00)[5];
+	HAS_REPLYTO(0.00)[christian.koenig@amd.com];
 	TO_DN_NONE(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
@@ -129,143 +132,59 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	HAS_REPLYTO(0.00)[christian.koenig@amd.com]
+	RCPT_COUNT_FIVE(0.00)[5]
 
-As preparation for independent fences remove the extra slab, kmalloc
-should do just fine.
+The purpose of a GPU reset is to make sure that fence can be signaled
+again and the signal and resume workers can make progress again.
+
+So waiting for the resume worker or any fence in the GPU reset path is
+just utterly nonsense.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       | 17 ++++-------
- .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 28 +++----------------
- .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.h   |  3 --
- 3 files changed, 9 insertions(+), 39 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 26 +++++++++++------------
+ 1 file changed, 12 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 8f66f197f645..2b268cdf076b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -3162,11 +3162,7 @@ static int __init amdgpu_init(void)
- 
- 	r = amdgpu_sync_init();
- 	if (r)
--		goto error_sync;
--
--	r = amdgpu_userq_fence_slab_init();
--	if (r)
--		goto error_fence;
-+		return r;
- 
- 	amdgpu_register_atpx_handler();
- 	amdgpu_acpi_detect();
-@@ -3174,7 +3170,7 @@ static int __init amdgpu_init(void)
- 	/* Ignore KFD init failures when CONFIG_HSA_AMD is not set. */
- 	r = amdgpu_amdkfd_init();
- 	if (r && r != -ENOENT)
--		goto error_fence;
-+		goto error_fini_sync;
- 
- 	if (amdgpu_pp_feature_mask & PP_OVERDRIVE_MASK) {
- 		add_taint(TAINT_CPU_OUT_OF_SPEC, LOCKDEP_STILL_OK);
-@@ -3185,11 +3181,9 @@ static int __init amdgpu_init(void)
- 	/* let modprobe override vga console setting */
- 	return pci_register_driver(&amdgpu_kms_pci_driver);
- 
--error_fence:
--	amdgpu_sync_fini();
--
--error_sync:
--	return r;
-+error_fini_sync:
-+       amdgpu_sync_fini();
-+       return r;
- }
- 
- static void __exit amdgpu_exit(void)
-@@ -3199,7 +3193,6 @@ static void __exit amdgpu_exit(void)
- 	amdgpu_unregister_atpx_handler();
- 	amdgpu_acpi_release();
- 	amdgpu_sync_fini();
--	amdgpu_userq_fence_slab_fini();
- 	mmu_notifier_synchronize();
- 	amdgpu_xcp_drv_release();
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index a58342c2ac44..f3d0595e3e61 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -32,29 +32,9 @@
- #include "amdgpu.h"
- #include "amdgpu_userq_fence.h"
- 
--static const struct dma_fence_ops amdgpu_userq_fence_ops;
--static struct kmem_cache *amdgpu_userq_fence_slab;
--
- #define AMDGPU_USERQ_MAX_HANDLES	(1U << 16)
- 
--int amdgpu_userq_fence_slab_init(void)
--{
--	amdgpu_userq_fence_slab = kmem_cache_create("amdgpu_userq_fence",
--						    sizeof(struct amdgpu_userq_fence),
--						    0,
--						    SLAB_HWCACHE_ALIGN,
--						    NULL);
--	if (!amdgpu_userq_fence_slab)
--		return -ENOMEM;
--
--	return 0;
--}
--
--void amdgpu_userq_fence_slab_fini(void)
--{
--	rcu_barrier();
--	kmem_cache_destroy(amdgpu_userq_fence_slab);
--}
-+static const struct dma_fence_ops amdgpu_userq_fence_ops;
- 
- static inline struct amdgpu_userq_fence *to_amdgpu_userq_fence(struct dma_fence *f)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+index 58b9477c0346..a34b1df513d3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+@@ -1510,23 +1510,21 @@ void amdgpu_userq_pre_reset(struct amdgpu_device *adev)
  {
-@@ -231,7 +211,7 @@ void amdgpu_userq_fence_driver_put(struct amdgpu_userq_fence_driver *fence_drv)
+ 	const struct amdgpu_userq_funcs *userq_funcs;
+ 	struct amdgpu_usermode_queue *queue;
+-	struct amdgpu_userq_mgr *uqm;
+ 	unsigned long queue_id;
  
- static int amdgpu_userq_fence_alloc(struct amdgpu_userq_fence **userq_fence)
- {
--	*userq_fence = kmem_cache_alloc(amdgpu_userq_fence_slab, GFP_ATOMIC);
-+	*userq_fence = kmalloc(sizeof(**userq_fence), GFP_ATOMIC);
- 	return *userq_fence ? 0 : -ENOMEM;
- }
- 
-@@ -343,7 +323,7 @@ static void amdgpu_userq_fence_free(struct rcu_head *rcu)
- 	amdgpu_userq_fence_driver_put(fence_drv);
- 
- 	kvfree(userq_fence->fence_drv_array);
--	kmem_cache_free(amdgpu_userq_fence_slab, userq_fence);
-+	kfree(userq_fence);
- }
- 
- static void amdgpu_userq_fence_release(struct dma_fence *f)
-@@ -546,7 +526,7 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
- 	r = amdgpu_userq_fence_create(queue, userq_fence, wptr, &fence);
- 	if (r) {
- 		mutex_unlock(&userq_mgr->userq_mutex);
--		kmem_cache_free(amdgpu_userq_fence_slab, userq_fence);
-+		kfree(userq_fence);
- 		goto put_gobj_write;
++	/* TODO: We probably need a new lock for the queue state */
+ 	xa_for_each(&adev->userq_doorbell_xa, queue_id, queue) {
+-		uqm = queue->userq_mgr;
+-		cancel_delayed_work_sync(&uqm->resume_work);
+-		if (queue->state == AMDGPU_USERQ_STATE_MAPPED) {
+-			amdgpu_userq_wait_for_last_fence(queue);
+-			userq_funcs = adev->userq_funcs[queue->queue_type];
+-			userq_funcs->unmap(queue);
+-			/* just mark all queues as hung at this point.
+-			 * if unmap succeeds, we could map again
+-			 * in amdgpu_userq_post_reset() if vram is not lost
+-			 */
+-			queue->state = AMDGPU_USERQ_STATE_HUNG;
+-			amdgpu_userq_fence_driver_force_completion(queue);
+-		}
++		if (queue->state != AMDGPU_USERQ_STATE_MAPPED)
++			continue;
++
++		userq_funcs = adev->userq_funcs[queue->queue_type];
++		userq_funcs->unmap(queue);
++		/* just mark all queues as hung at this point.
++		 * if unmap succeeds, we could map again
++		 * in amdgpu_userq_post_reset() if vram is not lost
++		 */
++		queue->state = AMDGPU_USERQ_STATE_HUNG;
++		amdgpu_userq_fence_driver_force_completion(queue);
  	}
+ }
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.h
-index d56246ad8c26..d355a0eecc07 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.h
-@@ -58,9 +58,6 @@ struct amdgpu_userq_fence_driver {
- 	char timeline_name[TASK_COMM_LEN];
- };
- 
--int amdgpu_userq_fence_slab_init(void);
--void amdgpu_userq_fence_slab_fini(void);
--
- void amdgpu_userq_fence_driver_get(struct amdgpu_userq_fence_driver *fence_drv);
- void amdgpu_userq_fence_driver_put(struct amdgpu_userq_fence_driver *fence_drv);
- int amdgpu_userq_fence_driver_alloc(struct amdgpu_device *adev,
 -- 
 2.43.0
 
