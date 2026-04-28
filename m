@@ -2,113 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IMJEKRCG8GnhUQEAu9opvQ
+	id iHsENAGu8GnOWwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 12:04:00 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:25 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 929E74822A4
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 12:03:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16131485337
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25C3410EAFA;
-	Tue, 28 Apr 2026 10:03:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F338310EBED;
+	Tue, 28 Apr 2026 12:54:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Mxj0a0WF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qanm2UHm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013069.outbound.protection.outlook.com
- [40.107.201.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E89F10EAFA
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 10:03:56 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=m0NPrUVEIQZGgenB0epTnGFyy1oy7K98WwHzDjFLGrltFqHuar7x/NvyWTzbJGaKxtxgBRmU8f0ewvevh5p+HLRKccppTeqQCV3A1bcWl/lsn84bP1ySx9y4jrDX62WkpSveYHxgp2fZ7hluPaK3/J7sqagfHI88+sCTmsqkIjAWM1M2GZfifxWKFOAWB/Q2M1Om/p/mHFMJlxy0uErngOt6Gg8ALvydvNvh9R+xWtESscH9qSnJ0GsDgLrb/bzsBppjhTShnYQZHKg6CEmmwmj43ZqqG/fvVKfa0+/VN+NRTdESv3kqcX/tpXt8M9VEhni1MSLuM4tPI71DkPz4BA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Bo75OJb0HNlz/Ka6Fs/iNnbT+8adowWq8iibooWIsrA=;
- b=RqIPzPL1E3MNryodIlOrHGx6lXDT50R3s1vY972fmaAM/3s5Tt5fDiT2MpTozdfiJnT2Qf0nIbElhfqh5JsLgRvIuIlwrOnweiI+S88dhjkII6arM4jj71LTzysBIu8c6UwaytiNbSBO6NT4aZSr0useC+IYacXpgxc9+CuUScHSwGh4HAfJUgTuj6uFNkrq9DnjQ9CBEDd+eMOoArsvuYrgzxujyFWVYC3pZVXLWmYRDz3L1UdF+5MCW003sTqpuNsq/0qh0kDeQK4SaZFpkX7wFuFfWH0gHHHRWF/sV/1dPeeCS5WAxEwgTf1UHTqoCOB1H29RlGxCVHOc+RfSbg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Bo75OJb0HNlz/Ka6Fs/iNnbT+8adowWq8iibooWIsrA=;
- b=Mxj0a0WFo8elXqFX+FWmhXFKqAXr+uh8PNTTbumXdwI89ObyiOw6JRrsiYYehwvDIvg2mupO3p/rhtqjH/T2Ef55Sg5WdFyBHFSXPVP/PJkMRA79hEEdwSlHc99RgxDweeWNmKv+kmugXrQbDyJdlFiv98J0KTFxdIuJYh8oMoE=
-Received: from CH0P221CA0032.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:11d::11)
- by CH3PR12MB7716.namprd12.prod.outlook.com (2603:10b6:610:145::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.16; Tue, 28 Apr
- 2026 10:03:52 +0000
-Received: from CH1PEPF0000AD76.namprd04.prod.outlook.com
- (2603:10b6:610:11d:cafe::fb) by CH0P221CA0032.outlook.office365.com
- (2603:10b6:610:11d::11) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.28 via Frontend Transport; Tue,
- 28 Apr 2026 10:03:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CH1PEPF0000AD76.mail.protection.outlook.com (10.167.244.53) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9846.18 via Frontend Transport; Tue, 28 Apr 2026 10:03:52 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Tue, 28 Apr
- 2026 05:03:49 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Tue, 28 Apr
- 2026 05:03:49 -0500
-Received: from JesseDEV.amd.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Tue, 28 Apr 2026 05:03:43 -0500
-From: Jesse Zhang <Jesse.Zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
- Jesse.zhang <Jesse.zhang@amd.com>, Jesse Zhang <Jesse.Zhang@amd.com>
-Subject: [PATCH v3 11/11] drm/amdgpu/userq_fence: workaround SDMA UMQ
- first-submit doorbell race
-Date: Tue, 28 Apr 2026 17:58:52 +0800
-Message-ID: <20260428100239.1609179-11-Jesse.Zhang@amd.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20260428100239.1609179-1-Jesse.Zhang@amd.com>
-References: <20260428100239.1609179-1-Jesse.Zhang@amd.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF4DB10EAE7;
+ Tue, 28 Apr 2026 10:02:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777370563; x=1808906563;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=O/fX+/fwObLkLagIKKIXphtPD052eF9ODtQPNirPNA4=;
+ b=Qanm2UHm798g8zlTJ0quh04VdDYKcHH6U/7qjnsW5GtMN0bJR4bCdDY9
+ 7d917Dah+OVWHv57ieqqJpRqVWiAW3zPOEuMRPzJaX7giIMfCulNG9SRo
+ jsLElrMQabZN+xAR2SPzia9v96L+XlFGtHFqYSNo0XPuJ+1UsHDdkR/M9
+ 1fxAp/3XDAf64+6kHQYOPst60QIvqz+T7kFyf/fITxx+o9ZUE0eeWCw/S
+ /Z7vbZ+1DeWfdKP94+lPHc0ogRyrg3ZrxmZ1vHG5Pn1ivIXxPM3mqi9SV
+ Eh5E4fWe8kMxhKav4x9eeDBRnnDRcoBigRPPZ0HjrwKyyAJyI16B7P+qV g==;
+X-CSE-ConnectionGUID: yjSq9uIpRY6AuB9hoyFfNg==
+X-CSE-MsgGUID: QWiSH3wzTIem6jFoD/4nmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="89654111"
+X-IronPort-AV: E=Sophos;i="6.23,203,1770624000"; d="scan'208";a="89654111"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 03:02:40 -0700
+X-CSE-ConnectionGUID: 0QLQBZ8kQU2MR6y1L+2CLQ==
+X-CSE-MsgGUID: zz6QLTN/RV2NA1bgXxOy0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,203,1770624000"; d="scan'208";a="257222117"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.245.33])
+ ([10.245.245.33])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 03:02:36 -0700
+Message-ID: <5d36326b1b9c009cd544fe5ca195ae484dbbc915.camel@linux.intel.com>
+Subject: Re: [PATCH v2 3/4] drm/xe: Wire up dmem cgroup reclaim for VRAM
+ manager
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner
+ <hannes@cmpxchg.org>,  Tejun Heo <tj@kernel.org>, Michal
+ =?ISO-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>, 	cgroups@vger.kernel.org,
+ Huang Rui <ray.huang@amd.com>, Matthew Brost	 <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Maxime Ripard	 <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter	 <simona@ffwll.ch>,
+ David Airlie <airlied@gmail.com>, Christian =?ISO-8859-1?Q?K=F6nig?=	
+ <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, 	linux-kernel@vger.kernel.org
+Date: Tue, 28 Apr 2026 12:02:31 +0200
+In-Reply-To: <84473cbe-79ad-421e-8c8a-171e5784105f@linux.intel.com>
+References: <20260428073116.15687-1-thomas.hellstrom@linux.intel.com>
+ <20260428073116.15687-4-thomas.hellstrom@linux.intel.com>
+ <84473cbe-79ad-421e-8c8a-171e5784105f@linux.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: Jesse.Zhang@amd.com does not designate
- permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD76:EE_|CH3PR12MB7716:EE_
-X-MS-Office365-Filtering-Correlation-Id: 811096e0-6fd7-44da-d485-08dea50d7378
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700016|376014|1800799024|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: o/NUWDPxJrryPLDk4kPOZy7Vg25cul38wc9uuqdiSTGBXmBSVpoGvgjhmDvsYOD4TIOxeHjlASC/K/SxObjMnvllO9oL8EAeO+YEJkcYecDEWzjr3RtNarAKf++aUSubA8l4ZgtV40v2l0NMUxSG73oQIwbJRTOVsBOS99oZRDqUsOsUnX1Rr5V+FlfgEe7EWStzA7AeZ/nMofdWBycml3twjdSAT0iezS0tYqQsETdWECFc/neqTG/y9dmPcnXo5evIw7VIO+LH+HhxmfVDFrl7XPcWBzJ84cUkGlD+mEwzIJYCz/GuFZE75mA8Vh9RX3ePNqPf1ECPSuLTHaPhrUZw3iRdYv3UDijpoOl04KLwED16L/ZGZnmOthG8HBw67us/6w65g0NMLTyshuxTumOUYWgFgUms1+VuHq7D5uwbqvbMIuAJbn5KPT1mn4+JpgW8L13TFu2SdyM9Lm1o8DNNaEYf6Gr2D0uHXSN1VC6j83/OQc4v033ypA+CYJMRMxODMsmouEDA7eoJdxXm3jFvU/6Rl78tOhdq2NVi+nVsb+uzex374f+0I9K93z39/DCwEVQT94YNvLTTc659/FSk9EAQ4+S2qsPdjKjKGLsx6QskoZd/56MnhCxy2jOLsl9IOry7HOzgDpjGYNYA75CeEe9BkvKqubjm6aid3W1FYXxjRMf/lMcrEPAV8OCuzVGh/PDL/8bUIJ5sk53enaR5ih+L4GvVh55E7AkEgOKr24wz1KmEA41H3rq9FoDw5X3sYJEdJBbF4EMssikTTw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: feyFyDQsJ0F3PkKYg+31HWPupLC4pv+d3pUgLGHWqkhaobKoZ7OelrC/1DzD7tHVrt8mNhuL1OJY0KApe6zN9GFiM/OohfEtw3QE/OcsGdFDgi4rfYRwAsbvuCUMiukyaJSmK7qWebRUxOKLdmQXTU/qG+sJXQzUW1NzNFYPbqi9oezWAxFoxAlYHB8zF+yu6l4JfU/ZPtED9PcoMUz8rU311WpYUTIH9TLutCwDTQ4pZBM8cYJfbeUHfCC5jXexpF3Xi8hZdKSfjgO8z/4BNb5h8gLUGRCqcXb3tYAZNMpV8BL+VCtkgWcZOhiDeaXaO2NXiLnKDNzv+cESflkDvaz5cWxJ0LUd4w/k3zgZWtgD2LPZ9ksu1boZPxhhtYhBfamgjkMmrUCgCJ5rS+r9cYKGPz30VfJjwkHsO+KyLp2aRc2/qsJjPxzfQijZo1Yu
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 10:03:52.3381 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 811096e0-6fd7-44da-d485-08dea50d7378
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000AD76.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7716
+X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,73 +87,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 929E74822A4
+X-Rspamd-Queue-Id: 16131485337
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[Jesse.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[gmx.de,cmpxchg.org,kernel.org,suse.com,vger.kernel.org,amd.com,intel.com,suse.de,ffwll.ch,gmail.com,lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid];
-	NEURAL_HAM(-0.00)[-0.999];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,patchwork.freedesktop.org:url]
 
-From: "Jesse.zhang" <Jesse.zhang@amd.com>
+On Tue, 2026-04-28 at 11:50 +0200, Maarten Lankhorst wrote:
+>=20
+>=20
+> Den 2026-04-28 kl. 09:31, skrev Thomas Hellstr=C3=B6m:
+> > Register the VRAM manager with the dmem cgroup reclaim
+> > infrastructure
+> > so that lowering dmem.max below current VRAM usage triggers TTM
+> > eviction rather than failing with -EBUSY.
+> >=20
+> > Assisted-by: GitHub Copilot:claude-sonnet-4.6
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 19 ++++++++++++-------
+> > =C2=A01 file changed, 12 insertions(+), 7 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > index 5fd0d5506a7e..1bdcb3fee901 100644
+> > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> > @@ -303,13 +303,6 @@ int __xe_ttm_vram_mgr_init(struct xe_device
+> > *xe, struct xe_ttm_vram_mgr *mgr,
+> > =C2=A0	struct ttm_resource_manager *man =3D &mgr->manager;
+> > =C2=A0	int err;
+> > =C2=A0
+> > -	if (mem_type !=3D XE_PL_STOLEN) {
+> > -		const char *name =3D mem_type =3D=3D XE_PL_VRAM0 ?
+> > "vram0" : "vram1";
+> > -		man->cg =3D drmm_cgroup_register_region(&xe->drm,
+> > name, size);
+> > -		if (IS_ERR(man->cg))
+> > -			return PTR_ERR(man->cg);
+> > -	}
+> > -
+> > =C2=A0	man->func =3D &xe_ttm_vram_mgr_func;
+> > =C2=A0	mgr->mem_type =3D mem_type;
+> > =C2=A0	mutex_init(&mgr->lock);
+> > @@ -318,6 +311,18 @@ int __xe_ttm_vram_mgr_init(struct xe_device
+> > *xe, struct xe_ttm_vram_mgr *mgr,
+> > =C2=A0	mgr->visible_avail =3D io_size;
+> > =C2=A0
+> > =C2=A0	ttm_resource_manager_init(man, &xe->ttm, size);
+> > +
+> > +	if (mem_type !=3D XE_PL_STOLEN) {
+> > +		const char *name =3D mem_type =3D=3D XE_PL_VRAM0 ?
+> > "vram0" : "vram1";
+> > +		struct dmem_cgroup_region *cg =3D
+> > +			drmm_cgroup_register_region(&xe->drm,
+> > name, size);
+> > +
+> > +		if (IS_ERR(cg))
+> > +			return PTR_ERR(cg);
+> > +
+> > +		ttm_resource_manager_set_dmem_region(man, cg);
+> > +	}
+> > +
+> > =C2=A0	err =3D gpu_buddy_init(&mgr->mm, man->size,
+> > default_page_size);
+> > =C2=A0	if (err)
+> > =C2=A0		return err;
+>=20
+> This patch will conflict with=20
+> https://patchwork.freedesktop.org/series/164694/=C2=A0which removes
+> stolen support, can we merge that patch first while we wait for AMD
+> acks?
 
-SDMA UMQ can hang on the first submission after creation because
-userspace may ring the doorbell before LSDMA has programmed the HQD
-doorbell offset. The doorbell write is silently dropped, and SDMA's
-subsequent MCU_WPTR_POLL leaves the trailing PROTECTED_FENCE unread,
-so the fence never fires.
+Sure, np.
 
-Re-ring the doorbell from amdgpu_userq_signal_ioctl() after updating
-wptr to ensure SDMA switches to burst-read mode and consumes all
-packets. This is a workaround; remove it once the firmware issue is
-fixed.
+>=20
+> Do I need an ack to get the series through drm-misc?
 
-Verified by 100/100 successful iterations of
-amd_basic --run-subtest cs-sdma-with-IP-DMA-UMQ run back-to-back on
-navi48; previously hung intermittently between iter 7 and
-iter 30+.
+Which series? The stolen support or this cgroup series?
 
-Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c | 3 +++
- 1 file changed, 3 insertions(+)
+Thanks,
+Thomas
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-index 6ef4cbd5d5da..d00ed5d4bbc3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-@@ -535,6 +535,9 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
- 	if (r)
- 		goto put_gobj_write;
- 
-+	if (queue->queue_type == AMDGPU_HW_IP_DMA && queue->doorbell_index)
-+		WDOORBELL64(queue->doorbell_index, wptr);
-+
- 	r = amdgpu_userq_fence_alloc(&userq_fence);
- 	if (r)
- 		goto put_gobj_write;
--- 
-2.49.0
 
+>=20
+> Kind regards,
+> ~Maarten Lankhorst
