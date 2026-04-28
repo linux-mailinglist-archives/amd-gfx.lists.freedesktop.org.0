@@ -2,50 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2DD3Ex/m8Gm+awEAu9opvQ
+	id /UJjAsHc8Wn6kwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 18:53:51 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:09 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E71848963E
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 18:53:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E662492D29
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48BD110EBDB;
-	Tue, 28 Apr 2026 16:53:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 915DD10EF76;
+	Wed, 29 Apr 2026 10:26:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=xwax.org header.i=@xwax.org header.b="clXwujdL";
+	dkim=pass (1024-bit key; unprotected) header.d=yandex.ru header.i=@yandex.ru header.b="aNrmgChc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from disco.pogo.org.uk (disco.pogo.org.uk [93.93.128.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74A1D10EBDB
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 16:53:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=xwax.org;
- s=swing; h=Content-Type:MIME-Version:References:Message-ID:In-Reply-To:
- Subject:cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description; bh=pkC0TMhSk8sVwi6d06/aJ6hWhX0USnbqNfZ0R99DDAI=; b=clXwu
- jdLyHFdjvnOK8oMmnB72XcX6Yg5KIMjKTQX80ixUYWKKiAvKqAndERF6MAJn0/lAL0smAyu+ekoyq
- RWZKrwDuUoHCn85wfKZ7KgKrrJtsKmcH55dbxy+icchiQCziby3CtehIDm5pUPm5dMcMPFp3A39ez
- obkATJWFNBMk=;
-Received: from cpc93786-hari17-2-0-cust786.20-2.cable.virginm.net
- ([82.36.99.19] helo=tamla)
- by disco.pogo.org.uk with esmtps  (TLS1.3) tls TLS_AES_256_GCM_SHA384
- (Exim 4.98.2 (FreeBSD)) (envelope-from <mark@xwax.org>)
- id 1wHlgu-000000001cB-0Le5; Tue, 28 Apr 2026 17:53:44 +0100
-Received: from localhost (tamla.pogo.org.uk [local])
- by tamla.pogo.org.uk (OpenSMTPD) with ESMTPA id e1092892;
- Tue, 28 Apr 2026 17:53:42 +0100 (BST)
-Date: Tue, 28 Apr 2026 17:53:42 +0100 (BST)
-From: Mark Hills <mark@xwax.org>
-To: Alex Deucher <alexdeucher@gmail.com>
-cc: amd-gfx@lists.freedesktop.org
-Subject: Re: Radeon Pro WX7100 regression since v6.19, no display
-In-Reply-To: <CADnq5_Px_vh0OLLjT9vohcp07yK9m_5NNLPvHz=KMfo564gJTQ@mail.gmail.com>
-Message-ID: <b9eae938-a558-8614-7fea-aa25cceea3f1@xwax.org>
-References: <832b0927-fff2-90b3-538c-8e1890f3f42c@xwax.org>
- <CADnq5_Px_vh0OLLjT9vohcp07yK9m_5NNLPvHz=KMfo564gJTQ@mail.gmail.com>
+X-Greylist: delayed 314 seconds by postgrey-1.36 at gabe;
+ Tue, 28 Apr 2026 19:09:19 UTC
+Received: from forward203a.mail.yandex.net (forward203a.mail.yandex.net
+ [178.154.239.90])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EADB410E377;
+ Tue, 28 Apr 2026 19:09:19 +0000 (UTC)
+Received: from forward103a.mail.yandex.net (forward103a.mail.yandex.net
+ [IPv6:2a02:6b8:c0e:500:1:45:d181:d103])
+ by forward203a.mail.yandex.net (Yandex) with ESMTPS id 9F2A9869C3;
+ Tue, 28 Apr 2026 22:04:05 +0300 (MSK)
+Received: from mail-nwsmtp-smtp-production-main-68.vla.yp-c.yandex.net
+ (mail-nwsmtp-smtp-production-main-68.vla.yp-c.yandex.net
+ [IPv6:2a02:6b8:c1d:6281:0:640:c935:0])
+ by forward103a.mail.yandex.net (Yandex) with ESMTPS id 52E1F806AD;
+ Tue, 28 Apr 2026 22:04:02 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-68.vla.yp-c.yandex.net (smtp)
+ with ESMTPSA id i3f98gObjmI0-kMIkEECX; 
+ Tue, 28 Apr 2026 22:04:01 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
+ t=1777403041; bh=tr9ncHDLQsp/htwG5JIQTALMzIL3/WgOspiEBUJqEko=;
+ h=Message-ID:Date:Cc:Subject:To:From;
+ b=aNrmgChc8Uj4xd9AlRNV1rVyvXv1Hfj3u7RQtuXI6XNxd+/rZZ1L8vTcz1MPo4b+U
+ cvOBt3o6gp8fam6uxhWXtahexc2YMgVue1Rg4ewLQRSFlwO0MbiEHYuSHHTDfgkDJU
+ MmPzkwJv8XBbR0r9rUou8K1BsQfy0C9webtLwmG4=
+Authentication-Results: mail-nwsmtp-smtp-production-main-68.vla.yp-c.yandex.net;
+ dkim=pass header.i=@yandex.ru
+From: Evgenii Burenchev <evg28bur@yandex.ru>
+To: stable@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Evgenii Burenchev <evg28bur@yandex.ru>, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/radeon/rs780: prevent division by zero in refresh rate
+ calculation
+Date: Tue, 28 Apr 2026 22:03:18 +0300
+Message-ID: <20260428190318.34413-1-evg28bur@yandex.ru>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary=0894690600177739522214211
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 29 Apr 2026 10:25:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,146 +72,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 8E71848963E
+X-Rspamd-Queue-Id: 9E662492D29
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	CTYPE_MIXED_BOGUS(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[xwax.org,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[xwax.org:s=swing];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[yandex.ru,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[yandex.ru:s=mail];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[mark@xwax.org,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[yandex.ru,amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[yandex.ru];
+	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.999];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mark@xwax.org,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[xwax.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[evg28bur@yandex.ru,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[yandex.ru:+];
+	NEURAL_HAM(-0.00)[-0.997];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,xwax.org:email,xwax.org:dkim,xwax.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linuxtesting.org:url]
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+drm_mode_vrefresh() may return zero when mode clock is zero even if
+htotal and vtotal are non-zero. Current code checks only htotal and
+vtotal, allowing refresh_rate to become zero and subsequently causing
+division by zero in rs780_program_at().
 
---0894690600177739522214211
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+Fix by adding mode clock validation and fallback to default 60Hz in
+rs780_get_pm_mode_parameters(). Add WARN_ON in rs780_program_at() to
+catch such cases during development, ensuring safe fallback in all
+scenarios.
 
-On Tue, 28 Apr 2026, Alex Deucher wrote:
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
 
-> On Tue, Apr 28, 2026 at 7:44=E2=80=AFAM Mark Hills <mark@xwax.org> wrote:
-> >
-> > The last kernel I have been able to use is v6.19.3, because shortly aft=
-er
-> > I lose functionality of my Radeon Pro WX7100.
-> >
-> > Normally around the point udevd is run, I see a switch from "BIOS"-styl=
-e
-> > console to some kind of framebuffer one, followed by launching Xorg.
-> >
-> > With later kernels, around the time of udevd the displays (LG DualUp,
-> > DisplayPort) freeze and swich to "no signal". The host is alive to SSH.
-[...]
-> Looks like you built your kernel without CONFIG_DRM_AMD_DC=3Dy.  That is
-> necessary for the display hardware support to be built into your
-> kernel.  7.0.x dropped support for the old legacy display support
-> since it's deprecated for years and has much less functionality
-> compared to DC.
+Signed-off-by: Evgenii Burenchev <evg28bur@yandex.ru>
+---
+ drivers/gpu/drm/radeon/rs780_dpm.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Thanks, guess I'm behind the times by assuming a GPU implies there=20
-is some display hardware :-)
+diff --git a/drivers/gpu/drm/radeon/rs780_dpm.c b/drivers/gpu/drm/radeon/rs780_dpm.c
+index 64bb4cafb8b5..fe45b7dac9f4 100644
+--- a/drivers/gpu/drm/radeon/rs780_dpm.c
++++ b/drivers/gpu/drm/radeon/rs780_dpm.c
+@@ -65,6 +65,8 @@ static void rs780_get_pm_mode_parameters(struct radeon_device *rdev)
+ 			pi->crtc_id = radeon_crtc->crtc_id;
+ 			if (crtc->mode.htotal && crtc->mode.vtotal)
+ 				pi->refresh_rate = drm_mode_vrefresh(&crtc->mode);
++				if (pi->refresh_rate == 0)
++					pi->refresh_rate = 60;
+ 			break;
+ 		}
+ 	}
+@@ -363,6 +365,8 @@ static void rs780_program_at(struct radeon_device *rdev)
+ {
+ 	struct igp_power_info *pi = rs780_get_pi(rdev);
+ 
++	WARN_ON(pi->refresh_rate == 0);
++
+ 	WREG32(FVTHROT_TARGET_REG, 30000000 / pi->refresh_rate);
+ 	WREG32(FVTHROT_CB1, 1000000 * 5 / pi->refresh_rate);
+ 	WREG32(FVTHROT_CB2, 1000000 * 10 / pi->refresh_rate);
+-- 
+2.43.0
 
-More seriously, I carried the .config forward and so probably carried=20
-these defaults. I note that /dev/fb0 was a red-herring as this was never=20
-present. FWIW it was pre 7.0 that it stopped working.
-
-But yes, that fixed the problem. Thank you.
-
-The new dmesg is below for reference. I note that there is no longer any=20
-conector information, but I expect this is intended.
-
---=20
-Mark
-
-
-$ dmesg | cut -c 16-1000 | grep -E '(amdgpu|drm|fb|fbcon)'
-Command line: root=3D/dev/sda2 fbcon=3Drotate_all:1 BOOT_IMAGE=3Dvmlinuz=20
-Kernel command line: root=3D/dev/sda2 fbcon=3Drotate_all:1 BOOT_IMAGE=3Dvml=
-inuz=20
-Unknown kernel command line parameters "fbcon=3Drotate_all:1", will be pass=
-ed to user space.
-pci 0000:00:1c.4:   bridge window [mem 0xefb00000-0xefbfffff]
-pci 0000:0b:00.0: BAR 0 [mem 0xefb00000-0xefb03fff 64bit]
-pci 0000:00:1c.4:   bridge window [mem 0xefb00000-0xefbfffff]
-pci_bus 0000:0b: resource 1 [mem 0xefb00000-0xefbfffff]
-    fbcon=3Drotate_all:1
-ACPI: bus type drm_connector registered
-amdgpu 0000:01:00.0: initializing kernel modesetting (POLARIS10 0x1002:0x67=
-C4 0x1002:0x0B0D 0x00).
-amdgpu 0000:01:00.0: register mmio base: 0xEFE00000
-amdgpu 0000:01:00.0: register mmio size: 262144
-amdgpu 0000:01:00.0: detected ip block number 0 <common_v1_0_0> (vi_common)
-amdgpu 0000:01:00.0: detected ip block number 1 <gmc_v8_1_0> (gmc_v8_0)
-amdgpu 0000:01:00.0: detected ip block number 2 <ih_v3_0_0> (tonga_ih)
-amdgpu 0000:01:00.0: detected ip block number 3 <gfx_v8_0_0> (gfx_v8_0)
-amdgpu 0000:01:00.0: detected ip block number 4 <sdma_v3_1_0> (sdma_v3_0)
-amdgpu 0000:01:00.0: detected ip block number 5 <smu_v1_0_0> (powerplay)
-amdgpu 0000:01:00.0: detected ip block number 6 <dce_v1_0_0> (dm)
-amdgpu 0000:01:00.0: detected ip block number 7 <uvd_v6_3_0> (uvd_v6_0)
-amdgpu 0000:01:00.0: detected ip block number 8 <vce_v3_4_0> (vce_v3_0)
-amdgpu 0000:01:00.0: No more image in the PCI ROM
-amdgpu 0000:01:00.0: Fetched VBIOS from ROM BAR
-amdgpu 0000:01:00.0: [drm] ATOM BIOS: 113-C9540101-103
-amdgpu 0000:01:00.0: [drm] UVD is enabled in VM mode
-amdgpu 0000:01:00.0: [drm] UVD ENC is enabled in VM mode
-amdgpu 0000:01:00.0: Found VCE firmware Version: 53.26 Binary ID: 3
-amdgpu 0000:01:00.0: [drm] VCE enabled in VM mode
-amdgpu 0000:01:00.0: vgaarb: deactivate vga console
-amdgpu 0000:01:00.0: Trusted Memory Zone (TMZ) feature not supported
-amdgpu 0000:01:00.0: vm size is 128 GB, 2 levels, block size is 10-bit, fra=
-gment size is 9-bit
-amdgpu 0000:01:00.0: System can't access extended configuration space, plea=
-se check!!
-amdgpu 0000:01:00.0: VRAM: 8192M 0x000000F400000000 - 0x000000F5FFFFFFFF (8=
-192M used)
-amdgpu 0000:01:00.0: GART: 256M 0x000000FF00000000 - 0x000000FF0FFFFFFF
-amdgpu 0000:01:00.0: [drm] Detected VRAM RAM=3D8192M, BAR=3D256M
-amdgpu 0000:01:00.0: [drm] RAM width 256bits GDDR5
-amdgpu 0000:01:00.0:  8192M of VRAM memory ready
-amdgpu 0000:01:00.0:  20047M of GTT memory ready.
-amdgpu 0000:01:00.0: [drm] GART: num cpu pages 65536, num gpu pages 65536
-amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F400=
-900000).
-amdgpu 0000:01:00.0: [drm] Chained IB support enabled!
-amdgpu: hwmgr_sw_init smu backed is polaris10_smu
-amdgpu 0000:01:00.0: [drm] Found UVD firmware Version: 1.130 Family ID: 16
-amdgpu 0000:01:00.0: [drm] Display Core v3.2.369 initialized on DCE 11.2
-amdgpu 0000:01:00.0: [drm] UVD and UVD ENC initialized successfully.
-amdgpu 0000:01:00.0: [drm] VCE initialized successfully.
-amdgpu 0000:01:00.0: SE 4, SH per SE 1, CU per SH 9, active_cu_number 36
-amdgpu 0000:01:00.0: Using BACO for runtime pm
-[drm] Initialized amdgpu 3.64.0 for 0000:01:00.0 on minor 0
-fbcon: amdgpudrmfb (fb0) is primary device
-amdgpu 0000:01:00.0: [drm] fb0: amdgpudrmfb frame buffer device
---0894690600177739522214211--
