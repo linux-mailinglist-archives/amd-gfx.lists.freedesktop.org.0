@@ -2,82 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cLlEBcLc8WnKkwEAu9opvQ
+	id 2DD3Ex/m8Gm+awEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:10 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 18:53:51 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5FEE492D76
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E71848963E
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 18:53:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38D1A10EF79;
-	Wed, 29 Apr 2026 10:26:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48BD110EBDB;
+	Tue, 28 Apr 2026 16:53:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aTDlW4Vw";
+	dkim=pass (1024-bit key; unprotected) header.d=xwax.org header.i=@xwax.org header.b="clXwujdL";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
- [209.85.210.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E06D10E2F8
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 16:35:15 +0000 (UTC)
-Received: by mail-ot1-f44.google.com with SMTP id
- 46e09a7af769-7d1872504cbso19427a34.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 09:35:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777394114; x=1777998914; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=FX9gjca0wE7x4ubEH7lGJVHSowFseyP1beU7HKsoxh0=;
- b=aTDlW4VwybctiCyXVeJPFKlLTA4V1iY4UMaWRKx0uymuXG9yl9RG6cJXDGkF9dRcc0
- DTg1qdszaMfd25uMeujuHVbytjS4+zahuExzIjh65GCsIqYjEPK6qocRP049ceL12ZZe
- B3pdSX7CSA5rjYRFONRXrlhyVZvrh/4qv40YF/1CbWQS5Bf3oHOy0P6gVmphIwOzBbBa
- uAcNZkJmYpzktTa9qt7me9wDKUf+UKz/+sKtfIg5s2QpwqVFem7THspsYT99Dv8xyFqK
- 824l4deK2dfeIgz3qtr6oYU/NksJrXLpfkMK3mrPF/uSRNd73JijEzjCoI6VaxTCFYk+
- o0bQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777394114; x=1777998914;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=FX9gjca0wE7x4ubEH7lGJVHSowFseyP1beU7HKsoxh0=;
- b=qR2v2nM20U2YXy/lWCGs8EkwTJ94YL3tiWdFTxsc0pP9Xg0wPhwGUz8dS/6ylL2mgj
- mM1XfLae/pw3POtrsduSWkPDQnlew7Dm4QcV7Io65O+NbN5pXLAcPpIJvkexP+fEuJPc
- a3tVsN2KVZ1lwQMEqf+zoLxttOYlA2jb5BVQkogqwv+oU4TLjiy/9NPphYjHPYrx0oIz
- GsY+hVQ92Mt2hyIVH8s9gBEqXvwiVeTG8sZ1tX2Kvf+7mq+aRUNnVZpnzB0TAYuZsAhS
- 2PTVuk5lBarKAjzfn6lUuSWV/GLP57QMUqcwCZ7bU7dhd4fmBPdp89ikjXdZ6ix5oZ/q
- bdYg==
-X-Gm-Message-State: AOJu0YwFJNsYIJYHj6YhLyDBIrpKX93N1pE9rNEQpKvX5nEXWRCNVM2J
- xc4OSTpaYAeQJdOpCsWXsziLyWOSDScKjvESLP4vvPSssDqAX9LF99bnbPGitcI=
-X-Gm-Gg: AeBDiesdByzhkssCYVAfGURtNZunVO/ne2YfeQi7FdH7NnqUMcJ7fy++56on2kKKtGq
- Ze/PQXxwzQm0VIHwJze+AUszFgKTCScJjfBWvi/EGGambjz8JDWsQ9QuHyWHoZsbh4ldN7wtsJ0
- DThwNR93xagghtJvK5Mr/fJJmShmDZo7qZpwv2zI5XhftplqcXM7BcLKjHSgh6VJ3F0y/P3BZvK
- 7fysaN9bqCHxAmbTb3ghEO34SVM8YPps24BLeo4ldnnktMsSWGqVe6xLAJ0f6R/s4jrwjeNJgL9
- LbFWD7sFyTFlXSSRzE3EcYJxT8EKOc6rkF4vEud/htpL4Jwcw2kMeILbuo5AcwIOCQ7ifLxSHJT
- yKeFn4p3KcZ1VCnOOkpP5X8TP64VLWT9PxC+ThRijLoeeF2RoKy6ZwAZeDISTnIFhkXCZb0iAG4
- s+KDg1Q7t8pgdU/7+4tsYfdBMJv+SM+/s+NKPtmZEZuXGZtpGvSj21sdfEM4QFu85nRPZYEFdYj
- 60HEIbw5aEZRA3sCDK7eeviTApcygyMzRY=
-X-Received: by 2002:a4a:c011:0:b0:687:5a16:dea1 with SMTP id
- 006d021491bc7-6965c3a6eb1mr1553345eaf.28.1777394114353; 
- Tue, 28 Apr 2026 09:35:14 -0700 (PDT)
-Received: from localhost.localdomain ([47.188.191.104])
- by smtp.gmail.com with ESMTPSA id
- 586e51a60fabf-433efbf1d8dsm2232322fac.6.2026.04.28.09.35.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Apr 2026 09:35:13 -0700 (PDT)
-From: "John B. Moore" <jbmoore61@gmail.com>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alexander Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
-	"John B. Moore" <jbmoore61@gmail.com>
-Subject: [PATCH v3] drm/amdgpu/gfx9: drop unnecessary 64-bit fence flag check
- in KIQ
-Date: Tue, 28 Apr 2026 11:35:12 -0500
-Message-ID: <20260428163512.9504-1-jbmoore61@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Received: from disco.pogo.org.uk (disco.pogo.org.uk [93.93.128.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74A1D10EBDB
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 16:53:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=xwax.org;
+ s=swing; h=Content-Type:MIME-Version:References:Message-ID:In-Reply-To:
+ Subject:cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description; bh=pkC0TMhSk8sVwi6d06/aJ6hWhX0USnbqNfZ0R99DDAI=; b=clXwu
+ jdLyHFdjvnOK8oMmnB72XcX6Yg5KIMjKTQX80ixUYWKKiAvKqAndERF6MAJn0/lAL0smAyu+ekoyq
+ RWZKrwDuUoHCn85wfKZ7KgKrrJtsKmcH55dbxy+icchiQCziby3CtehIDm5pUPm5dMcMPFp3A39ez
+ obkATJWFNBMk=;
+Received: from cpc93786-hari17-2-0-cust786.20-2.cable.virginm.net
+ ([82.36.99.19] helo=tamla)
+ by disco.pogo.org.uk with esmtps  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+ (Exim 4.98.2 (FreeBSD)) (envelope-from <mark@xwax.org>)
+ id 1wHlgu-000000001cB-0Le5; Tue, 28 Apr 2026 17:53:44 +0100
+Received: from localhost (tamla.pogo.org.uk [local])
+ by tamla.pogo.org.uk (OpenSMTPD) with ESMTPA id e1092892;
+ Tue, 28 Apr 2026 17:53:42 +0100 (BST)
+Date: Tue, 28 Apr 2026 17:53:42 +0100 (BST)
+From: Mark Hills <mark@xwax.org>
+To: Alex Deucher <alexdeucher@gmail.com>
+cc: amd-gfx@lists.freedesktop.org
+Subject: Re: Radeon Pro WX7100 regression since v6.19, no display
+In-Reply-To: <CADnq5_Px_vh0OLLjT9vohcp07yK9m_5NNLPvHz=KMfo564gJTQ@mail.gmail.com>
+Message-ID: <b9eae938-a558-8614-7fea-aa25cceea3f1@xwax.org>
+References: <832b0927-fff2-90b3-538c-8e1890f3f42c@xwax.org>
+ <CADnq5_Px_vh0OLLjT9vohcp07yK9m_5NNLPvHz=KMfo564gJTQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 29 Apr 2026 10:25:59 +0000
+Content-Type: multipart/mixed; boundary=0894690600177739522214211
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,71 +59,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: B5FEE492D76
+X-Rspamd-Queue-Id: 8E71848963E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	CTYPE_MIXED_BOGUS(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[xwax.org,none];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[xwax.org:s=swing];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:jbmoore61@gmail.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-0.957];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER(0.00)[mark@xwax.org,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+,1:+];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mark@xwax.org,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[xwax.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,xwax.org:email,xwax.org:dkim,xwax.org:mid]
 
-Remove the BUG_ON(flags & AMDGPU_FENCE_FLAG_64BIT) assertion from
-gfx_v9_0_ring_emit_fence_kiq().  The KIQ hardware supports 64-bit
-fence writes; the 32-bit writeback address constraint is an
-upper-layer convention, not a hardware limitation.  The check serves
-no purpose and should not be present.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Found by code inspection while investigating related BUG_ON
-assertions in the GFX and compute ring emission paths.
+--0894690600177739522214211
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
-Signed-off-by: John B. Moore <jbmoore61@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 3 ---
- 1 file changed, 3 deletions(-)
+On Tue, 28 Apr 2026, Alex Deucher wrote:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 47e81c33d..fb2a0f1af 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -5679,9 +5679,6 @@ static void gfx_v9_0_ring_emit_fence_kiq(struct amdgpu_ring *ring, u64 addr,
- 	struct amdgpu_device *adev = ring->adev;
- 
--	/* we only allocate 32bit for each seq wb address */
--	BUG_ON(flags & AMDGPU_FENCE_FLAG_64BIT);
--
- 	/* write fence seq to the "addr" */
- 	amdgpu_ring_write(ring, PACKET3(PACKET3_WRITE_DATA, 3));
- 	amdgpu_ring_write(ring, (WRITE_DATA_ENGINE_SEL(0) |
--- 
-2.43.0
+> On Tue, Apr 28, 2026 at 7:44=E2=80=AFAM Mark Hills <mark@xwax.org> wrote:
+> >
+> > The last kernel I have been able to use is v6.19.3, because shortly aft=
+er
+> > I lose functionality of my Radeon Pro WX7100.
+> >
+> > Normally around the point udevd is run, I see a switch from "BIOS"-styl=
+e
+> > console to some kind of framebuffer one, followed by launching Xorg.
+> >
+> > With later kernels, around the time of udevd the displays (LG DualUp,
+> > DisplayPort) freeze and swich to "no signal". The host is alive to SSH.
+[...]
+> Looks like you built your kernel without CONFIG_DRM_AMD_DC=3Dy.  That is
+> necessary for the display hardware support to be built into your
+> kernel.  7.0.x dropped support for the old legacy display support
+> since it's deprecated for years and has much less functionality
+> compared to DC.
 
+Thanks, guess I'm behind the times by assuming a GPU implies there=20
+is some display hardware :-)
+
+More seriously, I carried the .config forward and so probably carried=20
+these defaults. I note that /dev/fb0 was a red-herring as this was never=20
+present. FWIW it was pre 7.0 that it stopped working.
+
+But yes, that fixed the problem. Thank you.
+
+The new dmesg is below for reference. I note that there is no longer any=20
+conector information, but I expect this is intended.
+
+--=20
+Mark
+
+
+$ dmesg | cut -c 16-1000 | grep -E '(amdgpu|drm|fb|fbcon)'
+Command line: root=3D/dev/sda2 fbcon=3Drotate_all:1 BOOT_IMAGE=3Dvmlinuz=20
+Kernel command line: root=3D/dev/sda2 fbcon=3Drotate_all:1 BOOT_IMAGE=3Dvml=
+inuz=20
+Unknown kernel command line parameters "fbcon=3Drotate_all:1", will be pass=
+ed to user space.
+pci 0000:00:1c.4:   bridge window [mem 0xefb00000-0xefbfffff]
+pci 0000:0b:00.0: BAR 0 [mem 0xefb00000-0xefb03fff 64bit]
+pci 0000:00:1c.4:   bridge window [mem 0xefb00000-0xefbfffff]
+pci_bus 0000:0b: resource 1 [mem 0xefb00000-0xefbfffff]
+    fbcon=3Drotate_all:1
+ACPI: bus type drm_connector registered
+amdgpu 0000:01:00.0: initializing kernel modesetting (POLARIS10 0x1002:0x67=
+C4 0x1002:0x0B0D 0x00).
+amdgpu 0000:01:00.0: register mmio base: 0xEFE00000
+amdgpu 0000:01:00.0: register mmio size: 262144
+amdgpu 0000:01:00.0: detected ip block number 0 <common_v1_0_0> (vi_common)
+amdgpu 0000:01:00.0: detected ip block number 1 <gmc_v8_1_0> (gmc_v8_0)
+amdgpu 0000:01:00.0: detected ip block number 2 <ih_v3_0_0> (tonga_ih)
+amdgpu 0000:01:00.0: detected ip block number 3 <gfx_v8_0_0> (gfx_v8_0)
+amdgpu 0000:01:00.0: detected ip block number 4 <sdma_v3_1_0> (sdma_v3_0)
+amdgpu 0000:01:00.0: detected ip block number 5 <smu_v1_0_0> (powerplay)
+amdgpu 0000:01:00.0: detected ip block number 6 <dce_v1_0_0> (dm)
+amdgpu 0000:01:00.0: detected ip block number 7 <uvd_v6_3_0> (uvd_v6_0)
+amdgpu 0000:01:00.0: detected ip block number 8 <vce_v3_4_0> (vce_v3_0)
+amdgpu 0000:01:00.0: No more image in the PCI ROM
+amdgpu 0000:01:00.0: Fetched VBIOS from ROM BAR
+amdgpu 0000:01:00.0: [drm] ATOM BIOS: 113-C9540101-103
+amdgpu 0000:01:00.0: [drm] UVD is enabled in VM mode
+amdgpu 0000:01:00.0: [drm] UVD ENC is enabled in VM mode
+amdgpu 0000:01:00.0: Found VCE firmware Version: 53.26 Binary ID: 3
+amdgpu 0000:01:00.0: [drm] VCE enabled in VM mode
+amdgpu 0000:01:00.0: vgaarb: deactivate vga console
+amdgpu 0000:01:00.0: Trusted Memory Zone (TMZ) feature not supported
+amdgpu 0000:01:00.0: vm size is 128 GB, 2 levels, block size is 10-bit, fra=
+gment size is 9-bit
+amdgpu 0000:01:00.0: System can't access extended configuration space, plea=
+se check!!
+amdgpu 0000:01:00.0: VRAM: 8192M 0x000000F400000000 - 0x000000F5FFFFFFFF (8=
+192M used)
+amdgpu 0000:01:00.0: GART: 256M 0x000000FF00000000 - 0x000000FF0FFFFFFF
+amdgpu 0000:01:00.0: [drm] Detected VRAM RAM=3D8192M, BAR=3D256M
+amdgpu 0000:01:00.0: [drm] RAM width 256bits GDDR5
+amdgpu 0000:01:00.0:  8192M of VRAM memory ready
+amdgpu 0000:01:00.0:  20047M of GTT memory ready.
+amdgpu 0000:01:00.0: [drm] GART: num cpu pages 65536, num gpu pages 65536
+amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F400=
+900000).
+amdgpu 0000:01:00.0: [drm] Chained IB support enabled!
+amdgpu: hwmgr_sw_init smu backed is polaris10_smu
+amdgpu 0000:01:00.0: [drm] Found UVD firmware Version: 1.130 Family ID: 16
+amdgpu 0000:01:00.0: [drm] Display Core v3.2.369 initialized on DCE 11.2
+amdgpu 0000:01:00.0: [drm] UVD and UVD ENC initialized successfully.
+amdgpu 0000:01:00.0: [drm] VCE initialized successfully.
+amdgpu 0000:01:00.0: SE 4, SH per SE 1, CU per SH 9, active_cu_number 36
+amdgpu 0000:01:00.0: Using BACO for runtime pm
+[drm] Initialized amdgpu 3.64.0 for 0000:01:00.0 on minor 0
+fbcon: amdgpudrmfb (fb0) is primary device
+amdgpu 0000:01:00.0: [drm] fb0: amdgpudrmfb frame buffer device
+--0894690600177739522214211--
