@@ -2,102 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gPBvLk2W8GmrVQEAu9opvQ
+	id YOboERau8GnOWwEAu9opvQ:T2
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 13:13:17 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:47 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36C5C4836E1
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 13:13:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBC1248540D
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A7CE10EB06;
-	Tue, 28 Apr 2026 11:13:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="0vj1M3o7";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CF2C10EC06;
+	Tue, 28 Apr 2026 12:54:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010011.outbound.protection.outlook.com [52.101.46.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC01010EB06
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 11:13:13 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Fa/jciARQGxjRktYC6bOZRc6IGPRwnxaWhWYhTdsq/gaYsTqis0rqAbFGuvoyxFRHyfQTy7yTsJSExMPUOReMwU7fa7RIcqh3uAKL1ZcTdH0HiWezjEJ7B4bdWPKsHPC83IvIL2/qzYonD5iLaWJ6Ctfd3QBCIizl73rRqDJCY4aRLFt6YbqMPw01ucKEiz8+L6y9JzDdSA5L92w5sDk2/sSEMQXL5Iu3vwUlKXv7k6eAtthZ/Tm5ZZ337MLsgY3fkL+3T34ViI9DU1QLvck39juszclBBOCP7CaY4Dgsw0VhA9UXJfHOM1Wanenuv2Wlr/mkA+bjULFQ4VpXakokg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qwvorouXOu7+H14ema1wNPGXAYJk+uX4BrJNsMTsz7o=;
- b=MtiBB34lNgf2sTDs3lNOIyS7iQv5JzLY+cqlHb69lMb9NIHTcpmrl+zZrNqYJw8MPcwK2xFOztEnJENvJWRWcXjr5XrWwL8xrzG/AKRUVr+ZB/FKDGC65Ja9bAtmd8eaAfqEhBbqWaH1HtyNjr/eNc4t3Axw0e+JlwBgDr8UWJoTsIu6zfjfWtSym8C/Fwyxflr5L9G7ZK4ov6SB3Ea7yTX+QB3Akbe/xxLDaNOXJjXjMsvt87cC6YVcxD3IXdb9Le8B3JI4DzAk62K2gykiwCjStPIMPw/MbrFVKfhxWMTzGfEFRasiHx1VFSZ9XH7Xi8YE8FysM/YZQuwgHa4N6Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qwvorouXOu7+H14ema1wNPGXAYJk+uX4BrJNsMTsz7o=;
- b=0vj1M3o7nT58SNqxN17g8v7AiYoiyn7Ip7GzpiyX/5k1CyFFLNNuwVjqjc9aBNJi8BZDafs4abMINr6bbZHPqWBLVuNbgrw5VdL8G781j0z4T3u4b8LwqcTTDMjjheQYlS510r4kqdlm6lbPYaS8pH1P8qEpHlIGhDldrk5nge4=
-Received: from SA0PR11CA0108.namprd11.prod.outlook.com (2603:10b6:806:d1::23)
- by DS0PR12MB6632.namprd12.prod.outlook.com (2603:10b6:8:d0::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9870.16; Tue, 28 Apr 2026 11:13:06 +0000
-Received: from SN1PEPF0002529F.namprd05.prod.outlook.com
- (2603:10b6:806:d1:cafe::78) by SA0PR11CA0108.outlook.office365.com
- (2603:10b6:806:d1::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.26 via Frontend Transport; Tue,
- 28 Apr 2026 11:13:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SN1PEPF0002529F.mail.protection.outlook.com (10.167.242.6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9846.18 via Frontend Transport; Tue, 28 Apr 2026 11:13:04 +0000
-Received: from chonglidebug.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 28 Apr
- 2026 06:12:50 -0500
-From: chong li <chongli2@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Emily.Deng@amd.com>, <haijun.chang@amd.com>, chong li <chongli2@amd.com>
-Subject: [PATCH] drm/amdgpu: Sync the pf2vf structure between guest and host
-Date: Tue, 28 Apr 2026 19:12:39 +0800
-Message-ID: <20260428111239.431728-1-chongli2@amd.com>
-X-Mailer: git-send-email 2.48.1
+X-Greylist: delayed 537 seconds by postgrey-1.36 at gabe;
+ Tue, 28 Apr 2026 11:29:53 UTC
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0591210E6D1;
+ Tue, 28 Apr 2026 11:29:52 +0000 (UTC)
+Received: from gate.crashing.org (localhost [127.0.0.1])
+ by gate.crashing.org (8.18.1/8.18.1/Debian-2) with ESMTP id 63SBKIxF1057213;
+ Tue, 28 Apr 2026 06:20:18 -0500
+Received: (from segher@localhost)
+ by gate.crashing.org (8.18.1/8.18.1/Submit) id 63SBKHXo1057211;
+ Tue, 28 Apr 2026 06:20:17 -0500
+X-Authentication-Warning: gate.crashing.org: segher set sender to
+ segher@kernel.crashing.org using -f
+Date: Tue, 28 Apr 2026 06:20:17 -0500
+From: Segher Boessenkool <segher@kernel.crashing.org>
+To: Yury Norov <ynorov@nvidia.com>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ David Laight <david.laight.linux@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-alpha@vger.kernel.org,
+ Yury Norov <yury.norov@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-um@lists.infradead.org,
+ dmaengine@vger.kernel.org, linux-efi@vger.kernel.org,
+ linux-fsi@lists.ozlabs.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-fsdevel@vger.kernel.org,
+ ocfs2-devel@lists.linux.dev, bpf@vger.kernel.org,
+ kasan-dev@googlegroups.com, linux-mm@kvack.org,
+ linux-x25@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ linux-sound@vger.kernel.org, sound-open-firmware@alsa-project.org,
+ linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org,
+ loongarch@lists.linux.dev, linux-m68k@vger.kernel.org,
+ linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
+ linux-sh@vger.kernel.org, linux-arch@vger.kernel.org
+Subject: Re: [RFC PATCH v1 7/9] x86: Add unsafe_copy_from_user()
+Message-ID: <afCX8WlnEFUei1y6@gate>
+References: <cover.1777306795.git.chleroy@kernel.org>
+ <0ee46bb228d97163fbdc14f2a7c52b93d8bc34ce.1777306795.git.chleroy@kernel.org>
+ <ae-j2_QirCySZD02@yury>
+ <63a4d0f6-0eb3-48cd-9f98-bf7b223b2606@kernel.org>
+ <ae-2yLWSGnfeTvh1@yury>
+ <CAHk-=wgPrLy0FR3sEWBYQuNAac1axDASYMnTuPuxEU0WytzL7w@mail.gmail.com>
+ <ae_jeJLlVWjJ4sOY@yury>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002529F:EE_|DS0PR12MB6632:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2d1c1ff7-0253-4fe3-ab5a-08dea5171e1b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|36860700016|376014|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: fNCwG+ib/HHPw4Ky5K1OYtHl+8DPxSCv+GKi2PWq/o41So6o0nvW6BjvUuClO1duR6+m15sXFVb5RaxMUCsFEZ/DPnm3k7uhcP54YGqpHXikWiYSvTLqapvLCpuv9uykUsIyCZ9Ocuk5jeBXuii8uzfOtWzTv72Ub9g4E0MwFSs3o099WkrT7kFtbrIMTN5Zzis8iMZLEN+u4kIMzvyF3A+7O4pQJK4kOWl2nJNngC3aK+o/qJaaNycyUY8s2MvAKUQfYisBDe9PqZA1wlT93C7tlFkr9UlH6/K5AU5qRKO3WKmfqDPin9xaC4Iqg6bGm5ZI6LBRqwS+sLktQjqDZ+y5PkvfC4dSCQccb8mntXtSOqQMEBOH/7/tvHEvmXw/KQaHWTxx9dMp5XtDk4lkYbl1jxBRZpYJDVAJJALcz+DvYKXtndL0tSStgqIR3DQ1DYBfvN9O2S5RfcUYtTGbr+0v3c3FNUbZYGVkTz9S3GV/lwRTAjzsMKGLi/zRfcOLhP6Hb6ZBbood1vRs16M1EQHYVUd1UywyHtBMqUvnpRruJ2MnZN2Rj2U+c70qXJ4yX6YiKdaPqAX5depoCkWapNA0qQoT3CbedCxOHirYLpxXQVaytjl7y9uR/GRRKOSx0EcKyZTdvXihhfkAgB9ocGcJ7oWkl4M8ZxeeE167jM/18qBdtl+sLN3OlihT6q+uH7D7KbrXkc+u/E8yD1X+Lt/RwvdonMU7dn4AObZh/76W7YGskHgefBMf/4Czq8WjJDnSTY3v9DIUSme6qdj+2g==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(36860700016)(376014)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: iRMeHTRxWFtlld3dom1C/oBLf836hmStP6tn2jlKr5GQVGSy4MNk3PuMa+JZNEsUzLRDIJVcKKful+ofPeJN+WL3ws0goUJczPlc2oqeeQU0V1u3Iwm6jr9znI7wRJmUUP5Z9Z5lC7H3xX1eja20vHl0iGO/9EddLF/weJvP2aM1m6d8YvRX8g/dfClj+82wcow+nN2En01eJatM3RW4C+UTcAweHWLDZTIq2dC1oiR7t6UcSxEFXY4VYKPPAyV1fI/2dhxGIVOsgwj9gemaHBdIbPUCWX2W44wYbnAXXt/3596gyt//UxbTAvPr4JkbNYed4KyJX9JyCkr8QImzNOvSkIqzmDpAqksr+h8Tm7Z8XOheMV/xW9WLOMk8PdJ9N7S310K065t/I1MZ6PCjGusPCx4Hbmb/BnRTW2WzzkOMxbSqVSg2cNeqwsVnlY0s
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 11:13:04.0757 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2d1c1ff7-0253-4fe3-ab5a-08dea5171e1b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002529F.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6632
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ae_jeJLlVWjJ4sOY@yury>
+X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,109 +84,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 36C5C4836E1
+X-Rspamd-Queue-Id: DBC1248540D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [1.49 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[chongli2@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DMARC_NA(0.00)[crashing.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	HAS_XOIP(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linux-foundation.org,kernel.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[50];
+	HAS_XAW(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[segher@kernel.crashing.org,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.151];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid]
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-There are gaps in the pf2vf message structure
-between the guest driver and the host driver.
-The pf2vf message info structure must be kept in sync
-between both sides to ensure correct interpretation of fields.
+Hi!
 
-Signed-off-by: chong li <chongli2@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h    |  4 ++++
- drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h | 13 +++++++++++--
- 2 files changed, 15 insertions(+), 2 deletions(-)
+On Mon, Apr 27, 2026 at 06:30:16PM -0400, Yury Norov wrote:
+> On Mon, Apr 27, 2026 at 02:52:05PM -0700, Linus Torvalds wrote:
+> > On Mon, 27 Apr 2026 at 12:19, Yury Norov <ynorov@nvidia.com> wrote:
+> > >
+> > > This is what Linus said when added x86 implementation for copy_from_user()
+> > > in c512c69187197:
+> > 
+> > Note that some things have happily changed in the six+ years since...
+> > 
+> > >   That's partly because we have no current users of it, but also partly
+> > >   because the copy_from_user() case is slightly different and cannot
+> > >   efficiently be implemented in terms of a unsafe_get_user() loop (because
+> > >   gcc can't do asm goto with outputs).
+> > 
+> > now everybody can do asm goto with outputs.
+> > 
+> > Yes, it's disabled on older versions, so it's not *always* available,
+> > but all modern versions do it. And if you care about performance, you
+> > won't be using an old compiler.
+> 
+> The minimal GCC version is 8.1, and asm goto with outputs is supported
+> since GCC-11. That would brake the build, if we just switch to using it
+> without "CC_IS_GCC && (GCC_VERSION >= 110100)" guard.
+> 
+> Is it worth to maintain 2 version of the function? I don't know...
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-index 9da0c6e9b869..d563deec0916 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-@@ -163,6 +163,8 @@ enum AMDGIM_FEATURE_FLAG {
- 	AMDGIM_FEATURE_RAS_CPER = (1 << 11),
- 	AMDGIM_FEATURE_XGMI_TA_EXT_PEER_LINK = (1 << 12),
- 	AMDGIM_FEATURE_XGMI_CONNECTED_TO_CPU = (1 << 13),
-+	AMDGIM_FEATURE_PTL_SUPPORT = (1 << 14),
-+	AMDGIM_FEATURE_UNITID_SUPPORT = (1 << 15),
- };
- 
- enum AMDGIM_REG_ACCESS_FLAG {
-@@ -441,6 +443,8 @@ static inline bool is_virtual_machine(void)
- 	((adev)->virt.gim_feature & AMDGIM_FEATURE_VCN_RB_DECOUPLE)
- #define amdgpu_sriov_is_mes_info_enable(adev) \
- 	((adev)->virt.gim_feature & AMDGIM_FEATURE_MES_INFO_ENABLE)
-+#define amdgpu_sriov_is_unitid_support(adev) \
-+	((adev)->virt.gim_feature & AMDGIM_FEATURE_UNITID_SUPPORT)
- 
- #define amdgpu_virt_xgmi_migrate_enabled(adev) \
- 	((adev)->virt.is_xgmi_node_migrate_enabled && (adev)->gmc.xgmi.node_segment_size != 0)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-index 847cfd1fd004..9dcf0b07d513 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-@@ -162,7 +162,9 @@ union amd_sriov_msg_feature_flags {
- 		uint32_t ras_cper		: 1;
- 		uint32_t xgmi_ta_ext_peer_link	: 1;
- 		uint32_t xgmi_connected_to_cpu  : 1;
--		uint32_t reserved		: 18;
-+		uint32_t ptl_support		: 1;
-+		uint32_t unitid_support		: 1;
-+		uint32_t reserved		: 16;
- 	} flags;
- 	uint32_t all;
- };
-@@ -256,7 +258,7 @@ struct amd_sriov_msg_pf2vf_info_header {
- 	uint32_t reserved[2];
- };
- 
--#define AMD_SRIOV_MSG_PF2VF_INFO_FILLED_SIZE (55)
-+#define AMD_SRIOV_MSG_PF2VF_INFO_FILLED_SIZE (59)
- struct amd_sriov_msg_pf2vf_info {
- 	/* header contains size and version */
- 	struct amd_sriov_msg_pf2vf_info_header header;
-@@ -314,6 +316,13 @@ struct amd_sriov_msg_pf2vf_info {
- 	uint32_t more_bp;	//Reserved for future use.
- 	union amd_sriov_ras_caps ras_en_caps;
- 	union amd_sriov_ras_caps ras_telemetry_en_caps;
-+	/* PTL status response for guest */
-+	uint32_t ptl_enabled;        // PTL enable status: 0=disabled, 1=enabled
-+	uint32_t ptl_pref_format1;   // Current preferred format 1
-+	uint32_t ptl_pref_format2;   // Current preferred format 2
-+	/* unit ID assigned by host; vf_idx [0..254] maps to unitid [1..255] (0 = pf) */
-+	uint8_t unitid;
-+	uint8_t padding[3];  //use the 3 bytes to align
- 
- 	/* reserved */
- 	uint32_t reserved[256 - AMD_SRIOV_MSG_PF2VF_INFO_FILLED_SIZE];
--- 
-2.48.1
+GCC 11 was released five years and a day ago.  The last GCC 11 release
+(that of 11.5) is not even two years ago though (but there will be no
+more!)
 
+So it would be not conservative at all to require GCC 11 as minimum now,
+some people might even call it a bit aggressive.  But in a year (or
+maybe two) the lay of the land will be rather different.
+
+
+Segher
