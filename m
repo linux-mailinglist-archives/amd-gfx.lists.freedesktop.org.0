@@ -2,70 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GPrPDsqc8GmGVwEAu9opvQ
+	id QJutOsyc8GmGVwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 13:40:58 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 13:41:00 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D982148406F
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 13:40:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9836B48407E
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 13:41:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06A4510E404;
-	Tue, 28 Apr 2026 11:40:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DAEB10EB21;
+	Tue, 28 Apr 2026 11:40:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KN66ZuEb";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XKT7O6gb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
- [209.85.128.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00C4D10EB48
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 11:40:53 +0000 (UTC)
-Received: by mail-wm1-f51.google.com with SMTP id
- 5b1f17b1804b1-488af96f6b2so149370495e9.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 04:40:53 -0700 (PDT)
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
+ [209.85.128.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43E3110EB38
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 11:40:55 +0000 (UTC)
+Received: by mail-wm1-f45.google.com with SMTP id
+ 5b1f17b1804b1-488b3f8fa2bso115205275e9.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 04:40:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777376452; x=1777981252; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1777376454; x=1777981254; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=SdhUEt8WdezyJn2O98A0/2SXStsM9qK5vkIGE0GCskA=;
- b=KN66ZuEb5+FCjs9vu7nmvF68aQ1ebqpOJio4OMIoerGRz5k6Q1fvevZZWKvx/UNNCN
- YCsNTr11JfnTAx2MxuUCnQasGN/qgeqFvK88OsS7iIQejUNwe6U7QWo2qIGqwga+jFEB
- vW4utVk84u5BPMtm0mvecCx0XFv08kNs6ije6EXaaw5PT2dbl9AzaDZip3AX79zBmmrb
- 4A/90r1Ayi6OS8xE4JzyR6hS3j8kzU4QFA0AmatpCFPhgOpr90kIexwerOgiruUtndZS
- sjF2l63laCecPIDRHFwPG2H5nqWxWLF94knM8vfX3KWZhb+ViM09K5hPwJQe9nOnxMrL
- zeFQ==
+ bh=870u0ACvWUgOS7tRZnIzo07v6hi9BLEIdZIQdyC7hBc=;
+ b=XKT7O6gbIWuo27Xk0vdiQWDR2HTtG4f+q1N3LfdWqMn9wYtMpYnbzvBh6RJpcw4CY/
+ DYn17m2MD7ynxddMGb91x2kAuyxl3R2bahq3KmQ3EUg82XpzxtLFfIviigAT5xwNQhFF
+ h+yjW4Jm/0ncTbc3la19rCmSLrZ387FZiwsrfan/kJPn6s0JIFYebRQPMqlfkZmXhNor
+ t9WFtMnAjy8qJmBnjXdH4gyOJfIDrzz2t4oN6a+GgLIPEA/pgIEg2jBjYXtA152v79zy
+ SA6Aqyjbiq5cu7w0NVYh1LRPjJvydFPn3CeeCLIRnr9plOmCC6jJnhBStiyrvTc0NGqT
+ aZgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777376452; x=1777981252;
+ d=1e100.net; s=20251104; t=1777376454; x=1777981254;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=SdhUEt8WdezyJn2O98A0/2SXStsM9qK5vkIGE0GCskA=;
- b=FSAAAfOTHQ77lJ34I3/Sqe+Zh4y7yT3k5vhh1FYd2jKDGfju/scuJs+BJS12DnqE4u
- l5oX5Hj2lO7Uf5J7G+DF3IynUk9lQ9YYiD5ZPcGXylVJE62vn1/kBEXwjoffH9hYg6fs
- cyKtF88LPn52H+K5j6cjY98MFL2QPR6z1qhjH+cdd4qok7SY3N8ht+cXG08fPzlEdRT/
- ltPJIVzqD425neNwfx3PN3Xh1rnBHE83ykfXBCKjCxpBYtMyFW5vdEocxyF6X7afYrxB
- yzE+QMH90UD3tveIVwoPS9i/z+wdcp0Gtf653T599kUofXOIVtAazbLyc3uUHts+Zicm
- EV1A==
-X-Gm-Message-State: AOJu0YxKSUN5ZGvEXfAEQoWSVwviRtmyIfArP7OrfEZcUZZPWxYd10Cj
- 5m/hLjZEmB5KGqj0a3N6q3dqAG/ZIiBJbATtkIOh+Z9YIZ41hzGmlM5XSXy2fbLR
-X-Gm-Gg: AeBDietmZzDfkGCLR/ct66VqhpIFv5PopPo9eWchG0+Upet3PKKkXbVE7YMXchmkVZu
- ngvALLLMOhGu5Y7N46oOVcpcbsbHFHVMUt0zLcculNrbIRePnfDNu6qLYR9E2tV1VaVaBO2f8mA
- ZHQX4CtP5WH3RxmavzdMYEdi14FYbMV7dVlAAbO21zPjTMO3w8io4w9sAMFeUn+kf8MbW6Cu5vt
- vrf6GKeyfmyxJwOSL947X0w9JH5FIqI5FC2WbYnJfW65A0Kp4V7VDbU8H50sFhCVbMRUeD+iynY
- MZUekZcsuaT1WclvdVFZt7bZgCFnNuBS6rUEok7Otj99EPzO1g6leghfC0L5kil+l8T68sUjj44
- fENfY+dQw7JiGyJrtcdc/A52jzz3ZyJFOj60PwAr/mxnJ6AabBtXFfBW+DROUGAiPVtNsvqg+Lu
- XvIKZkL3dm4jUc1uZO4nn3PZzNInElzD47+GrptgtyEcW4bvd8La5db6IdmPIk6kMNPqqa6tgu2
- OzE
-X-Received: by 2002:a05:600c:c4a5:b0:489:1c5f:3a9e with SMTP id
- 5b1f17b1804b1-48a77aea521mr41570355e9.13.1777376452051; 
- Tue, 28 Apr 2026 04:40:52 -0700 (PDT)
+ bh=870u0ACvWUgOS7tRZnIzo07v6hi9BLEIdZIQdyC7hBc=;
+ b=tR1iAGLCBC1FQ7kkxYhZZFc0JQJG/Ty3Siz4tPHZMtv3xioDqjMdxTceX5zKcjD67U
+ 3Ak3sAEsOPWJdFNjkLqOahwF5nVx3FwMBBPU6kl1NNh2DXFobDuPxnavahs0Dh2Dcv7F
+ gsdB9448CjCKUGEcaJEqMUEwv2RX6R5jDSSCdOf3N+qJOmZyywsaXrHfKO6vXf7CzQHk
+ 5vkHiKxWfMF72M2rgZC0hb7J4sDBnj5bL/4kzhIpSI0cjUz23JWE9e3Vd8qDXkLjviAW
+ FMOS6aVQV9+VhMn1rPuIu+BSo/fKFPrSsBUREQNEplYZkrQMDtFStJ7kxuuSAjMe9yJd
+ ZjTA==
+X-Gm-Message-State: AOJu0Yxn2vUmQ/FO6RZUpA0EO1xaq9b4V9W3rvrc9U5ZmCLvV/REc8fn
+ oiP+AOMyU6Jck5gtut3BTUhOiSo6t+N37YoL9pEr8EfLb5Fn0RZNQ3j25Y/htDOx
+X-Gm-Gg: AeBDiesUFQpGnKTPv+rvZHmDeanUjjJXFhtcR3aEX+QuHl1625rGhBXBgmUDi9udK2V
+ KJwkIpt2+PRHmIKNJL/fx1qu0mQRd+ciTD/zpFa+Z4HZlhGwkJwrPLJ/ioDlcCG3RSnzKMv9TyN
+ udza13DO7Jt77nECmIuP/yEnRSyz7YDFUAzYLpJ/zvy+oRAdMw8gLcUSnX7TaccnfXyrn2RDwun
+ Pw1mu3W2BLtSwC6LSWVg2/43h9vsJui6JDfhzkOG5af3qmSClqIoBzb/U9PnuG6IPsYhPpqUd5o
+ 9GHTfHHFXYMxQ9Pg1hR863P7T/OlR3/dAKQq4mybHtkJK1LpWNY209kRLsfgtQ7FXWNUiBZf6//
+ aCTfB+4J+VmFP3T8yCPUYKtF/GuHm6Mo75qoDtL7qRrOmsLBWCLJFcP+1VeHrUMc0pqBFvzLZ/b
+ TnVrCnhqOnpo6iGVCJNK+3HAaVwKSpFNTGHhKCnNt+BFn+UAvQo0OqsPdCpt4GUJObw17Amuzcc
+ ViaEBW3Q521GmQ=
+X-Received: by 2002:a05:600c:3ba6:b0:489:1baf:8c03 with SMTP id
+ 5b1f17b1804b1-48a78a43734mr34630755e9.11.1777376453744; 
+ Tue, 28 Apr 2026 04:40:53 -0700 (PDT)
 Received: from Timur-Hyperion.home (5401DFC2.dsl.pool.telekom.hu.
  [84.1.223.194]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48a775e4bd0sm25048275e9.8.2026.04.28.04.40.50
+ 5b1f17b1804b1-48a775e4bd0sm25048275e9.8.2026.04.28.04.40.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Apr 2026 04:40:51 -0700 (PDT)
+ Tue, 28 Apr 2026 04:40:53 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
  Alex Hung <alex.hung@amd.com>, Harry Wentland <Harry.Wentland@amd.com>,
@@ -73,10 +73,10 @@ To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
  Mario Limonciello <mario.limonciello@amd.com>,
  Ivan Lipski <ivan.lipski@amd.com>, Melissa Wen <mwen@igalia.com>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 3/6] drm/amd/display: Allow constructing DCE6 link encoder
+Subject: [PATCH 4/6] drm/amd/display: Allow constructing DCE8 link encoder
  without DDC
-Date: Tue, 28 Apr 2026 13:40:42 +0200
-Message-ID: <20260428114045.40710-4-timur.kristof@gmail.com>
+Date: Tue, 28 Apr 2026 13:40:43 +0200
+Message-ID: <20260428114045.40710-5-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260428114045.40710-1-timur.kristof@gmail.com>
 References: <20260428114045.40710-1-timur.kristof@gmail.com>
@@ -96,7 +96,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D982148406F
+X-Rspamd-Queue-Id: 9836B48407E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -135,26 +135,26 @@ pass NULL to the AUX regs array.
 
 This is necessary to support embedded connectors without DDC.
 
-Fixes: 7c15fd86aaec ("drm/amd/display: dc/dce: add initial DCE6 support (v10)")
+Fixes: 4562236b3bc0 ("drm/amd/dc: Add dc display driver (v2)")
 Link: https://gitlab.freedesktop.org/drm/amd/-/work_items/5192
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c | 3 ++-
+ drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c
-index 2f5ee9d8536af..9bc97e708478c 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dce60/dce60_resource.c
-@@ -754,7 +754,8 @@ static struct link_encoder *dce60_link_encoder_create(
- 				     enc_init_data,
- 				     &link_enc_feature,
- 				     &link_enc_regs[link_regs_id],
--				     &link_enc_aux_regs[enc_init_data->channel - 1],
-+				     enc_init_data->channel == CHANNEL_ID_UNKNOWN ?
-+				     NULL : &link_enc_aux_regs[enc_init_data->channel - 1],
- 				     enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs) ?
- 				     NULL : &link_enc_hpd_regs[enc_init_data->hpd_source]);
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
+index edc4cc560539c..22d6ad298a3b8 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dce80/dce80_resource.c
+@@ -761,7 +761,8 @@ static struct link_encoder *dce80_link_encoder_create(
+ 				      enc_init_data,
+ 				      &link_enc_feature,
+ 				      &link_enc_regs[link_regs_id],
+-				      &link_enc_aux_regs[enc_init_data->channel - 1],
++				      enc_init_data->channel == CHANNEL_ID_UNKNOWN ?
++				      NULL : &link_enc_aux_regs[enc_init_data->channel - 1],
+ 				      enc_init_data->hpd_source >= ARRAY_SIZE(link_enc_hpd_regs) ?
+ 				      NULL : &link_enc_hpd_regs[enc_init_data->hpd_source]);
  	return &enc110->base;
 -- 
 2.53.0
