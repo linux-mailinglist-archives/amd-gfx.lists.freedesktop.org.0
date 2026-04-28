@@ -2,100 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SHzRCo/E8GloYQEAu9opvQ
+	id O6CqMcDc8Wn1kwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 16:30:39 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:08 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E88D486FEE
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 16:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38672492D52
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8E0910EBD1;
-	Tue, 28 Apr 2026 14:30:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34F7C10EF78;
+	Wed, 29 Apr 2026 10:26:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UpNvYXdv";
+	dkim=pass (2048-bit key; unprotected) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="z872g9Zm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f43.google.com (mail-dl1-f43.google.com [74.125.82.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AD4310EB1E
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 14:30:35 +0000 (UTC)
-Received: by mail-dl1-f43.google.com with SMTP id
- a92af1059eb24-12db2e9b5a7so412841c88.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 07:30:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1777386634; cv=none;
- d=google.com; s=arc-20240605;
- b=LRCllNRCCgZuhuvoTdRdPI6QflWgZIsDtIb7ujqeWoUdNVqHzP7veYqtxQiJjnk4S4
- Zmuy3gzQhy3rRezaFbJrN2u+hFT7hAeDJIY8FvPu9F1XW0zv8SwAPaxKdDK6FDIOkvE4
- ycz+FvTJlLD9ez3luuJzBdBja9LFkuqk6j90l3QZaik0l5u7ruuoJ6UUIMzHANsNqtLR
- ZNfhRJt7Wf8vmR909wE46LfqTFz8lafOze2yRnprD8Kud1fEFKbOoooglPwI2/VDcTKT
- S/FUWgZBkZDJifPqGfJ4QtB31bu9OOc9uxzjtojUS2xEFVMYuBAoHAG2Zs22TjiDwOER
- 88pg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=mhJ0rsbgpKdN9xRBdPO4qGQxRdlZh6yNC6k39eXiAj8=;
- fh=yHFYpFndtpdPEIg7fV37Vod4i/Y44VDVqnexdcURHTo=;
- b=W2yUho9QBmGP9KpFAQOmgpFV1c2ij7f2plhLMZhX7epvfLVZXHMCR9BeiWQt2idZS+
- Uwe/nlkUQVPC+4PDz/sObTdF1DhiIfBq16gY5EdtQsf6Zgbo8iIB4dOJAdPEFKPP3hQW
- fmW4KY+D8jyCZ/pvF1gnOTDIC7QdUciwX+ffFRPpbkOgKKMHf7zEQqlgWLGkVWyTwT98
- nxr+3PYZg5OVfOjaC9tSsVbfPlFJONzBogI0dv7gdLz4hkJduq/28O1OgL2OBmZsstnj
- q4mnidhHmZuKQOWopRSVtp1OtxfuHhXCUSSJiNiK2dBFQul9/fboDGfhGoCImC/0hSHk
- uUsw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
+ [209.85.221.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 281FC10ECF8
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 14:47:17 +0000 (UTC)
+Received: by mail-wr1-f45.google.com with SMTP id
+ ffacd0b85a97d-43d76dd4ee8so10236486f8f.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 07:47:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777386634; x=1777991434; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=mhJ0rsbgpKdN9xRBdPO4qGQxRdlZh6yNC6k39eXiAj8=;
- b=UpNvYXdvZfjItuY07Nk2el91OPGm45eT9gHBmqDTB/T9x/fksGcaA2DIqxL0UEr4jq
- P1Tg7Laiq/aRo3qSXnrgY+8L9IqRp6fl8FfUd85NTFS3vUTDp1tg7CW/fjAX4WHbC77A
- orKlqAQIZ1QW1ENr91s+tq1A6TDEoCrtcNBRj2+c3FtODMebLF4uXMYuTCzqiBVsZlg7
- 17Yg309k8c+yt4QyWBbhSRUTxIc7f40X3I7sNTmnq4jJP9BS0YaUW00Jpoz4syazc0HP
- NVODJiGca7YrI4Pc261m9t1/YlK7aAz/kExzlbBdn+OflmwzzzF1crjDY8suMfWI0uLW
- cOeQ==
+ d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1777387635; x=1777992435;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=ctIsKyjLGAxorg+U+rmNLCdOJMyrX/ml0WoUktvYWis=;
+ b=z872g9Zmd0iwVJxrJUmAvMdLRsNPyv3kwDa06ZmW+NgTaLAoQ/Ae+VmOOVhTCulaHZ
+ 3D3u9l4Eqckq3qvbx5Jldy8UjiGoLUnzQn8808PO2SrN6eO/+/wHMljzvAwKUaGCr2dB
+ lVJCC6R2yn49vx3KA6Y9SGyghpxMk9kRywkuMj5jpUBiZxOc31+L51f4JT3ZrWQ1zrpk
+ 2vAJRsbefNumXCbpJN97WyDwNxTBTZYiC7wQihtVi1n+lwAKfeWje5WzlUxv67L9nGat
+ Y+lpechD02o23xr8hXJtb/JPeR2u2NY4kHj7htHUF5nrJ89vp38IRU4hG32i4gnfCF2P
+ fwfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777386634; x=1777991434;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=mhJ0rsbgpKdN9xRBdPO4qGQxRdlZh6yNC6k39eXiAj8=;
- b=M0JG5NcITlErvTrp3sl/V+vsDUXm7/8l9ol0P8qkeJtf1dKGZ/LGmRoyag5XS/IsjQ
- TVI7xlS911jRh+CdL81sBdzETU+UvUYLgmeJWPJ17jvfZPAMfI3yYnJaPWfJfcboN0a0
- Lfkw3kNi6jBuGMZ4wPjrNEZaDi9k1wjEi26XU9p5prKoECqLhvxDmFBxb8IMkfj2/d4Y
- zZU06fNHT1ZIVy3Hl20A5bUFY5rp+GnC/tbwqeScBGrqZglxWmAa14ptO2W7mdNGx6o4
- j1fpXpuJEMmswPMoDg+t9+1vlApnJ5D2lxXTW6yFK5OlENgagX+Ee8GYVwrhdveu5Oll
- qpFw==
+ d=1e100.net; s=20251104; t=1777387635; x=1777992435;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ctIsKyjLGAxorg+U+rmNLCdOJMyrX/ml0WoUktvYWis=;
+ b=Nmfk9hkipYjvaGyb7gHFn3immEMWxGJ+cj/4wTNJBL7nGFHGeTPFiRrwcJLFQ3wVGJ
+ HCfjHH8ZYBhX+VRfqLLMW6ODsZ56ORBMpfFBCQKHoZFL6Smswb6DVL43lFnFl6dIGOkP
+ 1k2xXfRNOzbczGKUtAiYTDqN+hcc4NuAur05tfU4S5Fnj4vFuXMB69C05VsAiruPpYcQ
+ 3Nvvcod/QUUc5/zd9qbgwxCD4KHDbuXY2IJAexGIkIP4a9OaXEiqSUSFYI3M0UUq4Ejh
+ 3eEWbRlF5Iw+c9kCB9uCkZFZ5QN1BE63CdT2uZSQn5MfYY3mrrFisj9rawXBNuWB2dSs
+ PfCw==
 X-Forwarded-Encrypted: i=1;
- AFNElJ9S2h8/nfIzaoNMvsZdcExd752f0sONBMFnKZntQOs23mfQ6TJuhCeCKwoXHxW/6+ANgu39n8fG@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzOCE1PZpAmQqLnBljvH+zCZqbcFrPVPGOZ86N2ZAyV8fY4e+Dr
- LFSUQr4IRw31WfnhIIW+N00fSD8NJagRarxRf/LumORXvaQnTVi6csqd3bdfw/ly+b5kYhzTatX
- l+wR7XKwmhPXik0ThBudWYYEtakwNXaY=
-X-Gm-Gg: AeBDieutp3C7YvhX07bjyZdKjc847uJjLgFZXL9Ov0qmroxyhpJ2dDJ2rUyXvE0FnI7
- sCacqb8vZS2AwlXOC4Hi+7//uAel/YmKYdHHRe/gLZDTn4tDjvdABOB0ttQwcVGE55Gxn7tg/Jk
- yGEhtaNK59SrOaTFIh/2Qv3l9AzXkiA7MdGcn8il2YkKAXx8vRAIdzSyyiHtG+IErWzKOZeAiCk
- S9nvH9rYIOvKKKFq9Fbfb+aQtTqkXwJsSTSM6ZyHn118DStHzQnHS9ROMoaDesmOaMfmcOZ+5vS
- JFZvQbxKoyWBkQveKAKspYuYWCNlRkcCBcxanTPsTrhOXzhL6znp/Y4HaLSNqzXYIbTGw8mVPks
- p31JVzgyFOFtdG4E=
-X-Received: by 2002:a05:7022:2383:b0:12b:f616:1a31 with SMTP id
- a92af1059eb24-12ddd54063emr841603c88.6.1777386634082; Tue, 28 Apr 2026
- 07:30:34 -0700 (PDT)
+ AFNElJ8fhWD2nZLQq9YM8fygUwHd8E8W6Tcc0GUo9yA/w3njcXNkfm3YCkRtv4LAupD9NAfth/SHxjCj@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzGJ/bOSD++YnewyH1E/ad03Je/obtdl86BobEKpDlvOtHMb1Nh
+ DR7wF2+O2yb806toGHjdJ5zfCEonLLSyZX8jwocAdrint8Zb5q96UyW3RbEmAQjM7d8=
+X-Gm-Gg: AeBDietZVpa8RQbmReXjMBXl/t1OGyiH80Scpz4q+TdGFrOJ7F+ZsWklbbhtBHhHMbJ
+ yhYfJiT2tm65mS+YDwAVyp/yv3OXsZ0vdJCyqEraZ6AvFad21V4Ec+mP+GrGQVMq9Np+rDUyzgV
+ GYeBDktHJmV+SkTq5mEYIuR09oUTF5/P3L5n6rIeNtEunNnE0DQ/0Cz6u8SXsJQcK+YACRTPlx6
+ 0YPlkIOriWvpj5qzliFqQnOMmak9YtU82M+dJWK6xjsffcdyXh7POQt/ckI2YfU5U+Ef0hiTEz9
+ iFf4VwRMPylQ7JGqBsfHSFrqcGtjVCEj0QGW+m6Cmmn+sTsVwhkSQB6aNPOfZgU089zJKKUeFKs
+ 3Uk7C46q0UATOWbLl+4JMvIIJ/Q9G7A+isc7hbHMxq4Mqo8jy/cJOt9byPBehh5Fns2JNnMRTv5
+ cKm3l2xZif55LHbM1sH6YSEWBedobtbbz0XQDLmVfXBRJEUZc/PzxFJdIn56xRabmmtkWyowO7s
+ 5kDbesTzCSGN4HYeRB+8qJBrA==
+X-Received: by 2002:a05:6000:3107:b0:43b:5b25:67f8 with SMTP id
+ ffacd0b85a97d-44648963af5mr6294818f8f.20.1777387635558; 
+ Tue, 28 Apr 2026 07:47:15 -0700 (PDT)
+Received: from localhost
+ (p200300f65f114e083adbfb3674088b9a.dip0.t-ipconnect.de.
+ [2003:f6:5f11:4e08:3adb:fb36:7408:8b9a])
+ by smtp.gmail.com with UTF8SMTPSA id
+ ffacd0b85a97d-4463cb59e65sm7467306f8f.1.2026.04.28.07.47.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 28 Apr 2026 07:47:14 -0700 (PDT)
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?=
+ <u.kleine-koenig@baylibre.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Jesse Zhang <Jesse.Zhang@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>, Kees Cook <kees@kernel.org>,
+ =?utf-8?q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
+ "Mario Limonciello (AMD)" <superm1@kernel.org>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amdgpu: Don't use UTS_RELEASE directly
+Date: Tue, 28 Apr 2026 16:47:03 +0200
+Message-ID: <20260428144704.1114562-2-u.kleine-koenig@baylibre.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-References: <20260428030238.1012922-1-nichen@iscas.ac.cn>
-In-Reply-To: <20260428030238.1012922-1-nichen@iscas.ac.cn>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 28 Apr 2026 10:30:21 -0400
-X-Gm-Features: AVHnY4Jy7n89_YBurjUKgHvfb7bYf2ARJpn_E1kgV-_zmnuaR81OWOt52reW4aA
-Message-ID: <CADnq5_M4SO0b6GDfDTOy+hsV4PahyUBRFdXDJ=824DV7=NjPQQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: Remove duplicate include of
- dce/dmub_hw_lock_mgr.h
-To: Chen Ni <nichen@iscas.ac.cn>
-Cc: harry.wentland@amd.com, sunpeng.li@amd.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1607;
+ i=u.kleine-koenig@baylibre.com; h=from:subject;
+ bh=T/ApXNSXXSl6FROM6HS9+qFlZCnlOYwqQBBavKeuaVg=;
+ b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBp8MhozzAn6fh0oyFbng3DD+O55AKxKYvMEvAX0
+ fNJRcIZd52JATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCafDIaAAKCRCPgPtYfRL+
+ TsF0B/9wmHtE3j+P3DMorqCIPp2H5O0klH3BBl5IqPL608ZWjPOoYQx4q+H15H36JxjFRz1m02n
+ q6j03BUVSvrDEqZQy7oAF+hub7dL/giJv3xM3k+sfnc5RKQWFwMpvUc+gpAwapy3wXQxneyEdE1
+ HDWEkU9qD1EfDDWGOPAPjNrYFlqEsdfBOBjfLFNkMOQZfqYf6iMFrIbrjDtrY2DwK9S1YL5Wpue
+ Xkz81bhbjI7ibXVqC64R66M+L/50hpY3m5Uiicnrnn10UpFO8E5t97FC/H8zjlsZYdSyM2O927h
+ DLyI72a2bghslevEdLu6Hq3DrHt4BZuqE/ax0kebn6r66Poz
+X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp;
+ fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 29 Apr 2026 10:25:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,70 +115,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6E88D486FEE
+X-Rspamd-Queue-Id: 38672492D52
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:nichen@iscas.ac.cn,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DMARC_NA(0.00)[baylibre.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[u.kleine-koenig@baylibre.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:pierre-eric.pelloux-prayer@amd.com,m:Jesse.Zhang@amd.com,m:lijo.lazar@amd.com,m:vitaly.prosyak@amd.com,m:kees@kernel.org,m:andrealmeid@igalia.com,m:superm1@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.997];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[u.kleine-koenig@baylibre.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,amd.com,kernel.org,igalia.com,lists.freedesktop.org,vger.kernel.org];
+	NEURAL_HAM(-0.00)[-0.991];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,iscas.ac.cn:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre-com.20251104.gappssmtp.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,baylibre.com:mid,baylibre.com:email]
 
-Applied.  Thanks!
+UTS_RELEASE evaluates to a static string and changes quite easily (e.g.
+uncommitted changes in the source tree or new commits). So when checking
+if a patch introduces changes to the resulting binary each usage of
+UTS_RELEASE is source of annoyance.
 
-Alex
+Instead of using UTS_RELEASE directly use init_utsname()->release which
+evaluates to the same string but with that a change of UTS_RELEASE
+doesn't affect amdgpu_dev_coredump.o.
 
-On Mon, Apr 27, 2026 at 11:10=E2=80=AFPM Chen Ni <nichen@iscas.ac.cn> wrote=
-:
->
-> Remove duplicate inclusion of dce/dmub_hw_lock_mgr.h in dcn42_hwseq.c to
-> clean up redundant code.
->
-> Signed-off-by: Chen Ni <nichen@iscas.ac.cn>
-> ---
->  drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c b/dr=
-ivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c
-> index 46f2f9833d9e..3c28a840c17c 100644
-> --- a/drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c
-> +++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c
-> @@ -35,7 +35,6 @@
->  #include "dc_stream_priv.h"
->  #include "dcn35/dcn35_hwseq.h"
->  #include "dcn42/dcn42_hwseq.h"
-> -#include "dce/dmub_hw_lock_mgr.h"
->  #include "dio/dcn10/dcn10_dio.h"
->
->  #define DC_LOGGER \
-> --
-> 2.25.1
->
+Signed-off-by: Uwe Kleine-König (The Capable Hub) <u.kleine-koenig@baylibre.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
+index d386bc775d03..20ae2bd4617a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c
+@@ -22,8 +22,8 @@
+  *
+  */
+ 
+-#include <generated/utsrelease.h>
+ #include <linux/devcoredump.h>
++#include <linux/utsname.h>
+ #include "amdgpu_dev_coredump.h"
+ #include "atom.h"
+ 
+@@ -236,7 +236,7 @@ amdgpu_devcoredump_format(char *buffer, size_t count, struct amdgpu_coredump_inf
+ 
+ 	drm_printf(&p, "**** AMDGPU Device Coredump ****\n");
+ 	drm_printf(&p, "version: " AMDGPU_COREDUMP_VERSION "\n");
+-	drm_printf(&p, "kernel: " UTS_RELEASE "\n");
++	drm_printf(&p, "kernel: %s\n", init_utsname()->release);
+ 	drm_printf(&p, "module: " KBUILD_MODNAME "\n");
+ 	drm_printf(&p, "time: %ptSp\n", &coredump->reset_time);
+ 
+
+base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
+-- 
+2.47.3
+
