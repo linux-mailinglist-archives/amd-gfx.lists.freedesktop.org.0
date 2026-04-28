@@ -2,62 +2,103 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6NFsC0CP8GnKUwEAu9opvQ
+	id IOgaKDCP8GnKUwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 12:43:12 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 12:42:56 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87A6C482DAD
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 12:43:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A66D482D81
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 12:42:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FD7610EAE1;
-	Tue, 28 Apr 2026 10:43:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4A7A10EAE4;
+	Tue, 28 Apr 2026 10:42:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="c4jthecS";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="snr5N5Si";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7309510EAE1;
- Tue, 28 Apr 2026 10:43:08 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 35A44448EE;
- Tue, 28 Apr 2026 10:43:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76C8EC2BCB5;
- Tue, 28 Apr 2026 10:43:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1777372988;
- bh=z+ubNEiGkyTvzeK84mlK5De1vxwPNmN3CCbIYOlyWaE=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=c4jthecS94mhXjzorhQRDoB6Lc3gquagydnFHUhJv8mcNsYFHrPWQ7V3E9D9OlRdk
- kyq87+nN/Xzvi1GYv+rE+muLjgUblU4nY4paGXNt2rnV/YI71ocmyk4ff04VyjqhDe
- GZs/I7rKbvC9ZlssFivPZiCEAoUUyk3umpTgaYgnJFRBHtlg24DjG5AeNsE4QpAz+1
- egX3ZioUOXL+rh3lXrNJhXvROouWtNh9ffJzNW9l+4tFvjPPseMGPY10ALe3s3WiEt
- bRRQ7y6ET3BX1V+wW/iBJvywhqp/tGK4eNb/4YoCRQY4oQyiveDAnGV+FiDG9iXMkn
- BU4u0Mwy3wG1w==
-From: Sasha Levin <sashal@kernel.org>
-To: patches@lists.linux.dev,
-	stable@vger.kernel.org
-Cc: Alex Hung <alex.hung@amd.com>, "Sun peng (Leo) Li" <sunpeng.li@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Dan Wheeler <daniel.wheeler@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
- harry.wentland@amd.com, Rodrigo.Siqueira@amd.com, christian.koenig@amd.com,
- Xinhui.Pan@amd.com, airlied@gmail.com, daniel@ffwll.ch,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 7.0] drm/amd/display: Use overlay cursor when color
- pipeline is active
-Date: Tue, 28 Apr 2026 06:41:16 -0400
-Message-ID: <20260428104133.2858589-65-sashal@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260428104133.2858589-1-sashal@kernel.org>
-References: <20260428104133.2858589-1-sashal@kernel.org>
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010069.outbound.protection.outlook.com
+ [40.93.198.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6550210EAE3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 10:42:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=w+gNiG0lDFU+DLuZqg0Jc+ppsJjGzaNQRNilpNfs+ozRu5DcHwNsmwP+Q+jP+1zC/09cJGriN5WFeWN+d34aXY3cxerYxvhO5RF2wTDOh/DeDzgl1cVnCEhHqdOzWskqRyxX0BlLXRqJ20YaWzqZA+ge1ztpswz9+UQh7Rbt59b7y3m+MkQD/LbGASw+jx64NnmDsGRJSGZj7iUAFG8q/+YlU62cnBSgTh5WoNPAhx970OgzDbC8K6yGXP80py8/GxkAx0hIMx4nRRz85E0j6uql8qoGeB7Y1kwYAibpHeUKkQG7AJxM2NHZTiCn9pYlUc1xEJwfEDDbkvCbOu8jrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3/rNNqpZOZqguVVE9NacgtK48/gmmNVpQVE1V8wz24Y=;
+ b=tk61s3fexn0IuMi+Qv2/1r514EJcxvSZYRAmB8FVs6UI7iP/0cNqvBlQzQ5t6AlCVrQ6GRyv4NspTofN5bCfsf+qk0c+FHK4THDMs+rdGz4i2lO8baGcaXORAGVUb6o8+M/Yz6dUj0UfgDayU7qFMf6vDBkHgRA3bsDZ/l1CUNGDq+yrcR5eAxr/ufTYQUmERpI9Evfp4xcNxfFov6frt+oVRXfev3I6fCO2VInikBduGgHahhmHYugwkdomh5NSW1euYMC61UhE1Ic0u3Q7Ic2EP4dO4ue+dRqdiUJuRga3sAvhSigCiuUfIOCZLpAQn51V78qIV9G96gptRhVE1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3/rNNqpZOZqguVVE9NacgtK48/gmmNVpQVE1V8wz24Y=;
+ b=snr5N5Si0gnGvkLHvS/iP/C+Ti25jUNU4j7P5zsCllpnjU4afIKBtRlD3Y1AX+hw+d8PuBrR0z4cpyKKKZpSKbX3jO1heN0xYIrPnrHJv5oyibz1Mb7S3dIsPJhr+oNm5Ar5yjJ7oPvjX+6inSLZnGi62RfHeLrsuMi4B6qjEnQ=
+Received: from BYAPR06CA0037.namprd06.prod.outlook.com (2603:10b6:a03:14b::14)
+ by PH0PR12MB8125.namprd12.prod.outlook.com (2603:10b6:510:293::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.17; Tue, 28 Apr
+ 2026 10:42:49 +0000
+Received: from SJ1PEPF00002316.namprd03.prod.outlook.com
+ (2603:10b6:a03:14b:cafe::57) by BYAPR06CA0037.outlook.office365.com
+ (2603:10b6:a03:14b::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.26 via Frontend Transport; Tue,
+ 28 Apr 2026 10:42:48 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ1PEPF00002316.mail.protection.outlook.com (10.167.242.170) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9846.18 via Frontend Transport; Tue, 28 Apr 2026 10:42:48 +0000
+Received: from chonglidebug.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 28 Apr
+ 2026 05:42:46 -0500
+From: chong li <chongli2@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Emily.Deng@amd.com>, <haijun.chang@amd.com>, chong li <chongli2@amd.com>
+Subject: [PATCH] drm/amdgpu: Sync the pf2vf message info structure
+Date: Tue, 28 Apr 2026 18:42:34 +0800
+Message-ID: <20260428104234.428945-1-chongli2@amd.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 7.0.2
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002316:EE_|PH0PR12MB8125:EE_
+X-MS-Office365-Filtering-Correlation-Id: f17b6461-0518-4c48-b5cf-08dea512e40f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|82310400026|36860700016|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: yvA67Nj3ZPdRiPRBeym3fy9aJAnLSrRournTDGmA1usRmPQr3ALPI4cwIWCdHjfdVsHpkv4dLWJatAaanu+rQCPbpwq2/O4+zB4bi9YVXSTfRyeqglD04Dz4BlDSuu1TQUB3mwWhmXTeSVNdEPWv1wpcCSFviWoXWO7CL0ga+sfBobZT7vIIOcSqrAPj7AfOtOI86eyCTWsMgo9Cg2N8xIggBEpZ9LWzzK7Fy4cyW9sV4o7VW8DuGcsTncLuULcsUcWWxc7J6oWP51z8p9Zl2ObL3/8Us1C3VT+SmiXeFNKoDyFIYyW6sgflfVSpo4WaDgQDCaQsUEREJu0WB/5h1nMyRvCHPiPrMQepvo1LrrpLihXxwnas+K+idyLCeitIa2O6XEh88R6lWScaK5Zfp1ar5LVBGcuwsJZ1XiqVgUhGki9WqXzJb+UvsgwdVoCFEdgGX3qb0+TlYqYEmmggdIUtE6+dIkZeH++mmU+txVP7eWUfALU1D7Dg95u6QVouYHke0qIkgag387DkRfcjWPD7CmH5MYXmUaQruKJy5d3JCcdvg9WQMmEYN1aiK+J9wOo/BU30+4j37ZQlsw2vfucGLciFMWWcoOyni5nN3S26LpfoY8Xapme4Mv0YU7Dm3cXuhZnK81Hl20tcEjkGDiNRzVcukLByoJCUlmc+MTRT2edMEmT/PpYfpWS2jYqBJVckE/1Ob8jiWTm9pB9k8tx9pGeV4cRBo7HvG+4hn7gdcIYAu4Gg0doGXcRf/yNOF5uYKbTZ8cWBCUeih1Eo0w==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700016)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: /38y6X4PdDlsk3pWmlt79FDg2oHakRhB2q2UVMBI/I+6ZdIYw0d91jEzmGW1xuTUbV6fxt+P3FxYST52/FNNnPywpEpgEzuoEZWoP38qkDHjsyt/sj/GuJWW+7ou04r918x13nqPe/SqcSAqUwWxGtKKT4imJ9t3Kvjd4aMf9dK3CyiVNKLLYP53eknd7LErsMKt8g7A1cTLrv47ZH56zBXLBD4gxwnI9vLHXlDzUjHJCjIDHWCzhtw8BbjDXxCJLHsUaYKa9QnMFgnrU7YNDolosfSbt/+SKqsriwbBcIuA0wdjolStgmPUCyp4cqmSkUfIANEKjXFgQvswzWfHfSDGRwX5iD8sIDXWTdUfacnSSjIpq8vhRt/jLPxi30+ljd/2mg1Ly/mWxD6IewA7F76M22JTmzQhU6HkeBX5MM3i/Slw2TW2mi3scREm//6U
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 10:42:48.6080 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f17b6461-0518-4c48-b5cf-08dea512e40f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002316.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8125
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,510 +112,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 87A6C482DAD
+X-Rspamd-Queue-Id: 3A66D482D81
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[amd.com,kernel.org,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.983];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:url,amd.com:email]
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[chongli2@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid]
 
-From: Alex Hung <alex.hung@amd.com>
+There are gaps in the pf2vf message structure
+betiween the guest driver and the host driver.
+The pf2vf message info structure must be kept in sync
+between both sides to ensure correct interpretation of fields.
 
-[ Upstream commit d3a549f4df7864bca8612c8bcfce1ec72b2874fb ]
-
-Force overlay cursor mode when an underlying plane has a non-bypassed
-color pipeline to avoid incorrect cursor transformation.
-
-Reviewed-by: Sun peng (Leo) Li <sunpeng.li@amd.com>
-Signed-off-by: Alex Hung <alex.hung@amd.com>
-Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Tested-by: Dan Wheeler <daniel.wheeler@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: chong li <chongli2@amd.com>
 ---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h    |  4 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h | 12 ++++++++++--
+ 2 files changed, 14 insertions(+), 2 deletions(-)
 
-LLM Generated explanations, may be completely bogus:
-
-Now I have enough information for a comprehensive analysis.
-
-## Phase 1: COMMIT MESSAGE FORENSICS
-
-**Step 1.1: Subject line parsing**
-- Subsystem: `drm/amd/display`
-- Action verb: "Use" (implicit "fix" through "to avoid incorrect cursor
-  transformation")
-- Record: drm/amd/display - changes cursor mode selection logic when
-  underlying plane has active color pipeline
-
-**Step 1.2: Tag parsing**
-- Reviewed-by: Sun peng (Leo) Li <sunpeng.li@amd.com> (AMD display
-  maintainer)
-- Signed-off-by: Alex Hung <alex.hung@amd.com> (author)
-- Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com> (AMD)
-- Tested-by: Dan Wheeler <daniel.wheeler@amd.com> (AMD)
-- Signed-off-by: Alex Deucher <alexander.deucher@amd.com> (subsystem
-  maintainer)
-- NO Fixes: tag, NO Cc: stable, NO Reported-by, NO Link
-- Record: Standard AMD development chain, reviewed and tested
-  internally, no external bug report references
-
-**Step 1.3: Commit body analysis**
-- Bug described: Cursor in NATIVE mode is subjected to color pipeline
-  transformation of underlying plane, causing "incorrect cursor
-  transformation"
-- Solution: Force OVERLAY cursor mode (which uses dedicated DCN pipe)
-  when underlying plane has non-bypassed color pipeline
-- No version info, no stack traces, no reproduction steps
-- Record: Bug = visual incorrectness in cursor color rendering when
-  color pipeline is active. Symptom is described conceptually, not
-  concretely.
-
-**Step 1.4: Hidden bug fix detection**
-- "Use overlay cursor when..." -> "to avoid incorrect cursor
-  transformation" reveals this IS a fix, but described as enhancement
-- Record: Fixes a real correctness issue, but framed as adding new code
-  path rather than emergency fix.
-
-## Phase 2: DIFF ANALYSIS
-
-**Step 2.1: Inventory**
-- Single file: `drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c`
-- ~49 lines added, ~4 lines deleted
-- Functions modified: `dm_crtc_get_cursor_mode()`,
-  `amdgpu_dm_atomic_check()` (debug message)
-- New helper: `dm_plane_color_pipeline_active()` (static)
-- Adds `#include <drm/drm_colorop.h>`
-- Record: Surgical, single-file fix, contained.
-
-**Step 2.2: Code flow change**
-- Before: `dm_crtc_get_cursor_mode()` only checked YUV format and scale
-  differences for overlay cursor decision
-- After: Also checks if any plane in z-order has an active (non-
-  bypassed) color pipeline
-- Two checks added: (1) trigger consider_mode_change if color pipeline
-  activity changes between old/new, (2) force OVERLAY mode when
-  underlying plane has active pipeline
-- Record: Adds new condition for selecting OVERLAY cursor mode.
-
-**Step 2.3: Bug mechanism**
-- Category: Logic/correctness fix - missing condition check
-- The native cursor (integrated in DCN hw plane) was being subjected to
-  color pipeline transformations meant for the underlying plane; this
-  corrupts cursor visual rendering
-- Fix forces overlay (separate DCN pipe) which is not subject to
-  underlying plane's color pipeline
-- Record: Visual correctness bug; not a crash/UAF/race/leak
-
-**Step 2.4: Fix quality**
-- Obviously correct: Yes, mirrors existing YUV/scaling check pattern
-- Minimal/surgical: Yes
-- Regression risk: Low - only changes cursor mode selection on a
-  specific narrow condition (active color pipeline)
-- Record: High quality, well-contained.
-
-## Phase 3: GIT HISTORY INVESTIGATION
-
-**Step 3.1: Blame analysis**
-- The `dm_crtc_get_cursor_mode()` function was introduced in commit
-  `1b04dcca4fb1` (drm/amd/display: Introduce overlay cursor mode),
-  pre-v6.18
-- The drm_colorop infrastructure was introduced in commit
-  `cfc27680ee208` (Nov 26, 2025), present from v6.19
-- Record: The function exists since pre-6.18, but the bug only triggers
-  when color pipeline (v6.19+) is active.
-
-**Step 3.2: Fixes: tag - N/A, no Fixes: tag**
-
-**Step 3.3: Recent file history**
-- Active development on color pipeline in AMD display driver
-- Several recent color pipeline fixes: `b49814033cb52` (Fix gamma 2.2
-  colorop TFs), `a4fa2355e0add` (Enable DEGAMMA and reject
-  COLOR_PIPELINE+DEGAMMA_LUT), `18a4127e93156` (Disable CRTC degamma
-  when color pipeline is enabled)
-- Standalone fix; not part of an explicit X/Y series
-- Record: Standalone correctness fix in actively developed area
-
-**Step 3.4: Author**
-- Alex Hung is a regular AMD display contributor; numerous recent
-  commits in this area
-- Record: Trusted developer, area maintainer chain present
-
-**Step 3.5: Dependencies**
-- Requires: `<drm/drm_colorop.h>`, `for_each_oldnew_colorop_in_state`
-  macro, `drm_colorop_state` struct with `colorop`/`bypass` fields,
-  `drm_colorop` struct with `plane` field
-- All present in v6.19.14 and v7.0.1 stable trees - verified by direct
-  inspection
-- Record: All dependencies present in v6.19.y and v7.0.y; will apply
-  cleanly.
-
-## Phase 4: MAILING LIST RESEARCH
-
-**Step 4.1: b4 dig results**
-- `b4 dig -c d3a549f4df786`: "Could not find anything matching commit"
-- `b4 dig -c 5d09aac12d5be`: "Could not find anything matching commit"
-- Manual lore search via search engine: did not find direct submission
-  of this exact patch
-- BUT found relevant prior discussion: lists.freedesktop.org dri-devel
-  April 2025 thread - Harry Wentland confirmed: "Yes, AMD driver is
-  using the overlay cursor (entire dedicated HW pipe) for the cursor
-  when the cursor scaling doesn't match the underlying plane. **The same
-  thing can be done for color operations but it's not implemented
-  yet.**"
-- Record: This commit IMPLEMENTS the missing functionality identified
-  during the original color pipeline patch series review.
-
-**Step 4.2: Reviewers**
-- Reviewed-by: Leo Li (AMD display maintainer)
-- Tested-by: Dan Wheeler (AMD QA)
-- Record: Properly reviewed by relevant maintainer.
-
-**Step 4.3: Bug report - N/A** (no Reported-by, no Link)
-
-**Step 4.4: Series context**
-- Standalone patch (not part of X/Y series)
-- Builds upon entire color pipeline infrastructure already in v6.19+
-- Record: Self-contained; depends only on v6.19+ infrastructure.
-
-**Step 4.5: Stable list - no specific discussion found**
-
-## Phase 5: CODE SEMANTIC ANALYSIS
-
-**Step 5.1: Key functions**
-- New: `dm_plane_color_pipeline_active(state, plane, use_old)` - checks
-  for non-bypassed colorops on a plane
-- Modified: `dm_crtc_get_cursor_mode()` - cursor mode selection
-- Modified: debug message in `amdgpu_dm_atomic_check()`
-
-**Step 5.2: Callers**
-- `dm_crtc_get_cursor_mode()` is called from `amdgpu_dm_atomic_check()`
-  for every atomic commit when cursor configuration may change on AMD
-  DCN hardware
-- Affects: Every modeset/cursor update path on supported AMD DCN
-  hardware
-- Record: Reachable from userspace via DRM atomic commit syscalls
-
-**Step 5.3: Callees**
-- `for_each_oldnew_colorop_in_state` (DRM core macro from v6.19+)
-- `drm_atomic_get_plane_state`, `drm_atomic_plane_enabling/disabling`
-- Record: Standard DRM atomic helpers
-
-**Step 5.4: Reachability**
-- User triggers: opt-in to `DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE` AND
-  configure non-bypassed colorop on a primary plane
-- Modern Wayland compositors are adopting color pipeline API
-- Record: Reachable but requires opt-in to relatively new API
-
-**Step 5.5: Similar patterns**
-- Existing YUV format check and scaling check follow same pattern
-- The fix is the third "underlying plane property" check, parallel to
-  the existing two
-- Record: Consistent with established pattern.
-
-## Phase 6: CROSS-REFERENCING AND STABLE TREE ANALYSIS
-
-**Step 6.1: Code in stable trees**
-- `drm_colorop` infrastructure: NOT in v6.18 or earlier; PRESENT in
-  v6.19.14 and v7.0.1 (verified by `git cat-file -e`)
-- `dm_crtc_get_cursor_mode()`: present in v6.18, v6.19.14, v7.0.1
-  (verified by direct inspection)
-- The bug only manifests in v6.19+ (where colorop is operational on AMD)
-- Record: Stable trees affected: v6.19.y and v7.0.y only. Older stables
-  (v6.18, v6.12, v6.6, v6.1, v5.15, v5.10) DO NOT have the buggy code
-  path because color pipeline didn't exist.
-
-**Step 6.2: Backport difficulty**
-- `dm_crtc_get_cursor_mode()` structure identical between mainline and
-  v6.19.14/v7.0.1
-- All required infrastructure (`for_each_oldnew_colorop_in_state`,
-  `drm_colorop_state.colorop`, `drm_colorop_state.bypass`,
-  `drm_colorop.plane`) is present in v6.19.14 - verified
-- Record: Expected clean apply to v6.19.y and v7.0.y stable trees.
-
-**Step 6.3: Related fixes already in stable**
-- `e180b2af2725c` (drm/amd/display: Fix gamma 2.2 colorop TFs)
-  backported to 6.19.y
-- `083f1f71a9291` (drm/amd/display: Enable DEGAMMA and reject
-  COLOR_PIPELINE+DEGAMMA_LUT) backported to 6.19.y
-- `0b26c7e819c40` (drm/atomic: convert drm_atomic_get_{old,
-  new}_colorop_state() into proper functions) backported to 6.19.y
-- Record: Strong precedent of color pipeline correctness fixes
-  backported to 6.19.y stable.
-
-## Phase 7: SUBSYSTEM AND MAINTAINER CONTEXT
-
-**Step 7.1: Subsystem**
-- DRM/AMD display - graphics driver
-- Criticality: PERIPHERAL/IMPORTANT - affects many AMD GPU users but
-  only those using new color pipeline feature
-- Record: AMD display driver - impacts user-visible rendering for users
-  who opt-in to color pipeline
-
-**Step 7.2: Activity**
-- Heavy activity on color pipeline area; multiple recent fixes
-- Record: Very active subsystem; AMD display team actively maintaining
-  color pipeline
-
-## Phase 8: IMPACT AND RISK ASSESSMENT
-
-**Step 8.1: Affected users**
-- AMD GPU users with DCN hardware (DCN1+, except DCN401/420 which are
-  exempt)
-- Who use compositors that opt-in to
-  `DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE`
-- Modern Wayland compositors increasingly use the new API
-- Record: Driver-specific (AMD) AND opt-in feature dependent
-
-**Step 8.2: Trigger conditions**
-- Userspace must enable `DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE`
-- A non-cursor plane must have an active (non-bypassed) colorop
-- Cursor must be enabled on the same CRTC
-- Triggerable by unprivileged users via DRM atomic commit
-- Record: Relatively narrow but reachable from userspace
-
-**Step 8.3: Failure mode severity**
-- Cursor undergoes incorrect color transformation -> cursor renders with
-  wrong colors/visual artifacts
-- No crash, no data corruption, no security implications, no system hang
-- Severity: MEDIUM (visual correctness only)
-- Record: Visual bug only - severity MEDIUM
-
-**Step 8.4: Risk-benefit**
-- BENEFIT: Correct cursor rendering for users of color pipeline; small
-  but real correctness improvement
-- RISK: Very low - single file, ~50 lines, well-contained, reviewed by
-  AMD maintainer, tested
-- Ratio: Low-risk, moderate-benefit fix
-- Record: Favorable risk/benefit for a correctness fix
-
-## Phase 9: FINAL SYNTHESIS
-
-**Step 9.1: Evidence compilation**
-
-Evidence FOR backporting:
-- Real bug fix (incorrect cursor color rendering when color pipeline
-  active)
-- Small (~49 lines), single file, surgical change
-- Reviewed-by AMD display maintainer (Leo Li)
-- Tested-by AMD QA (Dan Wheeler)
-- Clean apply to v6.19.y and v7.0.y stable (all dependencies verified
-  present)
-- Strong precedent: similar color pipeline correctness fixes already
-  backported to 6.19.y
-- Reachable from userspace via standard DRM atomic API
-- Implements functionality explicitly identified as missing during
-  original color pipeline review
-
-Evidence AGAINST backporting:
-- No Fixes: tag, no Cc: stable
-- No Reported-by from external users (only AMD internal Tested-by)
-- Color pipeline is documented under Documentation/gpu/rfc/ (RFC status)
-- Opt-in feature requiring `DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE`
-- Bug is visual-only (no crash, corruption, security)
-- Commit reads as feature enhancement rather than fix
-
-**Step 9.2: Stable rules checklist**
-1. Obviously correct and tested? YES (Reviewed/Tested by AMD)
-2. Fixes a real bug affecting users? YES (visual correctness)
-3. Important issue? BORDERLINE (visual only, but real)
-4. Small and contained? YES (single file, ~50 lines)
-5. No new features/APIs? YES (uses existing APIs)
-6. Can apply to stable trees? YES (verified for v6.19.y and v7.0.y)
-
-**Step 9.3: Exception categories - N/A**
-
-**Step 9.4: Decision**
-The patch represents a small, well-reviewed correctness fix for cursor
-rendering on AMD hardware when the color pipeline feature is in use.
-While the bug is visual-only (no crashes/corruption/security), the fix
-is exactly the type that has been backported to v6.19.y stable for the
-same color pipeline area (e180b2af2725c, 083f1f71a9291). The fix applies
-cleanly, has appropriate review/test signoffs, and implements a behavior
-that was explicitly identified as needed during the original color
-pipeline review. Affected stable trees are limited to v6.19.y and v7.0.y
-where the colorop infrastructure exists.
-
-## Verification
-
-- [Phase 1] Parsed tags: Reviewed-by (AMD maintainer), Tested-by (AMD),
-  Signed-off-by chain through AMD maintainers; NO Fixes:, NO Cc: stable,
-  NO Reported-by, NO Link
-- [Phase 1] Commit body: describes "incorrect cursor transformation" -
-  confirms this is a fix despite enhancement-style subject
-- [Phase 2] Diff inventory verified: 1 file, ~49 insertions, ~4
-  deletions, adds `dm_plane_color_pipeline_active()` helper and modifies
-  `dm_crtc_get_cursor_mode()`
-- [Phase 2] Bug mechanism: native cursor subject to underlying plane's
-  color pipeline transformation -> wrong cursor colors; fix forces
-  overlay mode (separate DCN pipe)
-- [Phase 3] git log on file: confirmed `dm_crtc_get_cursor_mode()`
-  exists in v6.18 and forward
-- [Phase 3] git log search: identified colorop infra introduced by
-  `cfc27680ee208` (Nov 26, 2025), tagged v6.19+
-- [Phase 4] b4 dig -c d3a549f4df786: did not find lore submission
-  directly
-- [Phase 4] Web search: found prior discussion on dri-devel April 2025
-  confirming this functionality was deferred during original color
-  pipeline review
-- [Phase 5] Modified function `dm_crtc_get_cursor_mode()` callable via
-  amdgpu_dm_atomic_check from DRM atomic commit syscall
-- [Phase 6] git cat-file -e v6.19.14:include/drm/drm_colorop.h: EXISTS
-  (bug applicable)
-- [Phase 6] git cat-file -e v7.0.1:include/drm/drm_colorop.h: EXISTS
-  (bug applicable)
-- [Phase 6] git cat-file -e v6.18.24:include/drm/drm_colorop.h: NOT
-  EXISTS (bug N/A for older stables)
-- [Phase 6] Verified `for_each_oldnew_colorop_in_state` macro and
-  `drm_colorop_state.{colorop,bypass}`, `drm_colorop.plane` all present
-  in v6.19.14
-- [Phase 6] git log v6.19..v6.19.14: found e180b2af2725c, 083f1f71a9291,
-  0b26c7e819c40 already backported (precedent for color pipeline fixes)
-- [Phase 8] Failure mode: visual cursor color rendering incorrect; no
-  crash/corruption/security
-- UNVERIFIED: Could not find direct lore submission via b4 dig (commit
-  has not yet appeared in lore search index, possibly because it is a
-  recent merge)
-
-The fix targets a real correctness issue limited to v6.19+ stable trees,
-applies cleanly, follows the same pattern as previously backported color
-pipeline fixes, and has appropriate review/test signoffs from AMD
-maintainers.
-
-**YES**
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 53 +++++++++++++++++--
- 1 file changed, 49 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 2328c1aa0ead1..853e62c67375e 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -94,6 +94,7 @@
- #include <drm/drm_utils.h>
- #include <drm/drm_vblank.h>
- #include <drm/drm_audio_component.h>
-+#include <drm/drm_colorop.h>
- #include <drm/drm_gem_atomic_helper.h>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
+index 9da0c6e9b869..5f889382fe4a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
+@@ -163,6 +163,8 @@ enum AMDGIM_FEATURE_FLAG {
+ 	AMDGIM_FEATURE_RAS_CPER = (1 << 11),
+ 	AMDGIM_FEATURE_XGMI_TA_EXT_PEER_LINK = (1 << 12),
+ 	AMDGIM_FEATURE_XGMI_CONNECTED_TO_CPU = (1 << 13),
++	AMDGIM_FEATURE_PTL_SUPPORT = (1 << 14),
++	AMDGIM_FEATURE_UNITID = (1 << 15),
+ };
  
- #include <media/cec-notifier.h>
-@@ -12278,6 +12279,38 @@ static int add_affected_mst_dsc_crtcs(struct drm_atomic_state *state, struct drm
-  * available.
-  */
+ enum AMDGIM_REG_ACCESS_FLAG {
+@@ -441,6 +443,8 @@ static inline bool is_virtual_machine(void)
+ 	((adev)->virt.gim_feature & AMDGIM_FEATURE_VCN_RB_DECOUPLE)
+ #define amdgpu_sriov_is_mes_info_enable(adev) \
+ 	((adev)->virt.gim_feature & AMDGIM_FEATURE_MES_INFO_ENABLE)
++#define amdgpu_sriov_is_unitid_support(adev) \
++	((adev)->virt.gim_feature & AMDGIM_FEATURE_UNITID)
  
-+/**
-+ * dm_plane_color_pipeline_active() - Check if a plane's color pipeline active.
-+ * @state: DRM atomic state
-+ * @plane: DRM plane to check
-+ * @use_old: if true, inspect the old colorop states; otherwise the new ones
-+ *
-+ * A color pipeline may be selected (color_pipeline != NULL) but still is
-+ * inactive if every colorop in the chain is bypassed.  Only return
-+ * true when at least one colorop has bypass == false, meaning the cursor
-+ * would be subjected to the transformation in native mode.
-+ *
-+ * Return: true if the pipeline modifies pixels, false otherwise.
-+ */
-+static bool dm_plane_color_pipeline_active(struct drm_atomic_state *state,
-+					   struct drm_plane *plane,
-+					   bool use_old)
-+{
-+	struct drm_colorop *colorop;
-+	struct drm_colorop_state *old_colorop_state, *new_colorop_state;
-+	int i;
-+
-+	for_each_oldnew_colorop_in_state(state, colorop, old_colorop_state, new_colorop_state, i) {
-+		struct drm_colorop_state *cstate = use_old ? old_colorop_state : new_colorop_state;
-+
-+		if (cstate->colorop->plane != plane)
-+			continue;
-+		if (!cstate->bypass)
-+			return true;
-+	}
-+	return false;
-+}
-+
- /**
-  * dm_crtc_get_cursor_mode() - Determine the required cursor mode on crtc
-  * @adev: amdgpu device
-@@ -12289,8 +12322,8 @@ static int add_affected_mst_dsc_crtcs(struct drm_atomic_state *state, struct drm
-  * the dm_crtc_state.
-  *
-  * The cursor should be enabled in overlay mode if there exists an underlying
-- * plane - on which the cursor may be blended - that is either YUV formatted, or
-- * scaled differently from the cursor.
-+ * plane - on which the cursor may be blended - that is either YUV formatted,
-+ * scaled differently from the cursor, or has a color pipeline active.
-  *
-  * Since zpos info is required, drm_atomic_normalize_zpos must be called before
-  * calling this function.
-@@ -12327,7 +12360,7 @@ static int dm_crtc_get_cursor_mode(struct amdgpu_device *adev,
+ #define amdgpu_virt_xgmi_migrate_enabled(adev) \
+ 	((adev)->virt.is_xgmi_node_migrate_enabled && (adev)->gmc.xgmi.node_segment_size != 0)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
+index 847cfd1fd004..7af60c704722 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
+@@ -162,7 +162,9 @@ union amd_sriov_msg_feature_flags {
+ 		uint32_t ras_cper		: 1;
+ 		uint32_t xgmi_ta_ext_peer_link	: 1;
+ 		uint32_t xgmi_connected_to_cpu  : 1;
+-		uint32_t reserved		: 18;
++		uint32_t ptl_support		: 1;
++		uint32_t unitid_support		: 1;
++		uint32_t reserved		: 16;
+ 	} flags;
+ 	uint32_t all;
+ };
+@@ -256,7 +258,7 @@ struct amd_sriov_msg_pf2vf_info_header {
+ 	uint32_t reserved[2];
+ };
  
- 	/*
- 	 * Cursor mode can change if a plane's format changes, scale changes, is
--	 * enabled/disabled, or z-order changes.
-+	 * enabled/disabled, z-order changes, or color management properties change.
- 	 */
- 	for_each_oldnew_plane_in_state(state, plane, old_plane_state, plane_state, i) {
- 		int new_scale_w, new_scale_h, old_scale_w, old_scale_h;
-@@ -12352,6 +12385,12 @@ static int dm_crtc_get_cursor_mode(struct amdgpu_device *adev,
- 			consider_mode_change = true;
- 			break;
- 		}
-+
-+		if (dm_plane_color_pipeline_active(state, plane, true) !=
-+		    dm_plane_color_pipeline_active(state, plane, false)) {
-+			consider_mode_change = true;
-+			break;
-+		}
- 	}
+-#define AMD_SRIOV_MSG_PF2VF_INFO_FILLED_SIZE (55)
++#define AMD_SRIOV_MSG_PF2VF_INFO_FILLED_SIZE (59)
+ struct amd_sriov_msg_pf2vf_info {
+ 	/* header contains size and version */
+ 	struct amd_sriov_msg_pf2vf_info_header header;
+@@ -314,6 +316,12 @@ struct amd_sriov_msg_pf2vf_info {
+ 	uint32_t more_bp;	//Reserved for future use.
+ 	union amd_sriov_ras_caps ras_en_caps;
+ 	union amd_sriov_ras_caps ras_telemetry_en_caps;
++	/* PTL status response for guest */
++	uint32_t ptl_enabled;        // PTL enable status: 0=disabled, 1=enabled
++	uint32_t ptl_pref_format1;   // Current preferred format 1
++	uint32_t ptl_pref_format2;   // Current preferred format 2
++	uint8_t unitid;
++	uint8_t padding[3];  //use the 3 bytes to align
  
- 	if (!consider_mode_change && !crtc_state->zpos_changed)
-@@ -12392,6 +12431,12 @@ static int dm_crtc_get_cursor_mode(struct amdgpu_device *adev,
- 			return 0;
- 		}
- 
-+		/* Underlying plane has an active color pipeline - cursor would be transformed */
-+		if (dm_plane_color_pipeline_active(state, plane, false)) {
-+			*cursor_mode = DM_CURSOR_OVERLAY_MODE;
-+			return 0;
-+		}
-+
- 		dm_get_plane_scale(plane_state,
- 				   &underlying_scale_w, &underlying_scale_h);
- 		dm_get_plane_scale(cursor_state,
-@@ -12770,7 +12815,7 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
- 			goto fail;
- 		} else if (required_cursor_mode == DM_CURSOR_OVERLAY_MODE) {
- 			drm_dbg_driver(crtc->dev,
--				       "[CRTC:%d:%s] Cannot enable native cursor due to scaling or YUV restrictions\n",
-+				       "[CRTC:%d:%s] Cannot enable native cursor due to scaling, YUV, or color pipeline restrictions\n",
- 				       crtc->base.id, crtc->name);
- 			ret = -EINVAL;
- 			goto fail;
+ 	/* reserved */
+ 	uint32_t reserved[256 - AMD_SRIOV_MSG_PF2VF_INFO_FILLED_SIZE];
 -- 
-2.53.0
+2.48.1
 
