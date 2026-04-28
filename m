@@ -2,103 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IOgaKDCP8GnKUwEAu9opvQ
+	id uBhlFQGc8GmGVwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 12:42:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 13:37:37 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A66D482D81
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 12:42:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E89E483F4E
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 13:37:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4A7A10EAE4;
-	Tue, 28 Apr 2026 10:42:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 325BC10E66E;
+	Tue, 28 Apr 2026 11:37:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="snr5N5Si";
+	dkim=pass (1024-bit key; unprotected) header.d=xwax.org header.i=@xwax.org header.b="s1F6ilM0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010069.outbound.protection.outlook.com
- [40.93.198.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6550210EAE3
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 10:42:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=w+gNiG0lDFU+DLuZqg0Jc+ppsJjGzaNQRNilpNfs+ozRu5DcHwNsmwP+Q+jP+1zC/09cJGriN5WFeWN+d34aXY3cxerYxvhO5RF2wTDOh/DeDzgl1cVnCEhHqdOzWskqRyxX0BlLXRqJ20YaWzqZA+ge1ztpswz9+UQh7Rbt59b7y3m+MkQD/LbGASw+jx64NnmDsGRJSGZj7iUAFG8q/+YlU62cnBSgTh5WoNPAhx970OgzDbC8K6yGXP80py8/GxkAx0hIMx4nRRz85E0j6uql8qoGeB7Y1kwYAibpHeUKkQG7AJxM2NHZTiCn9pYlUc1xEJwfEDDbkvCbOu8jrA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3/rNNqpZOZqguVVE9NacgtK48/gmmNVpQVE1V8wz24Y=;
- b=tk61s3fexn0IuMi+Qv2/1r514EJcxvSZYRAmB8FVs6UI7iP/0cNqvBlQzQ5t6AlCVrQ6GRyv4NspTofN5bCfsf+qk0c+FHK4THDMs+rdGz4i2lO8baGcaXORAGVUb6o8+M/Yz6dUj0UfgDayU7qFMf6vDBkHgRA3bsDZ/l1CUNGDq+yrcR5eAxr/ufTYQUmERpI9Evfp4xcNxfFov6frt+oVRXfev3I6fCO2VInikBduGgHahhmHYugwkdomh5NSW1euYMC61UhE1Ic0u3Q7Ic2EP4dO4ue+dRqdiUJuRga3sAvhSigCiuUfIOCZLpAQn51V78qIV9G96gptRhVE1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3/rNNqpZOZqguVVE9NacgtK48/gmmNVpQVE1V8wz24Y=;
- b=snr5N5Si0gnGvkLHvS/iP/C+Ti25jUNU4j7P5zsCllpnjU4afIKBtRlD3Y1AX+hw+d8PuBrR0z4cpyKKKZpSKbX3jO1heN0xYIrPnrHJv5oyibz1Mb7S3dIsPJhr+oNm5Ar5yjJ7oPvjX+6inSLZnGi62RfHeLrsuMi4B6qjEnQ=
-Received: from BYAPR06CA0037.namprd06.prod.outlook.com (2603:10b6:a03:14b::14)
- by PH0PR12MB8125.namprd12.prod.outlook.com (2603:10b6:510:293::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.17; Tue, 28 Apr
- 2026 10:42:49 +0000
-Received: from SJ1PEPF00002316.namprd03.prod.outlook.com
- (2603:10b6:a03:14b:cafe::57) by BYAPR06CA0037.outlook.office365.com
- (2603:10b6:a03:14b::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.26 via Frontend Transport; Tue,
- 28 Apr 2026 10:42:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ1PEPF00002316.mail.protection.outlook.com (10.167.242.170) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9846.18 via Frontend Transport; Tue, 28 Apr 2026 10:42:48 +0000
-Received: from chonglidebug.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 28 Apr
- 2026 05:42:46 -0500
-From: chong li <chongli2@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Emily.Deng@amd.com>, <haijun.chang@amd.com>, chong li <chongli2@amd.com>
-Subject: [PATCH] drm/amdgpu: Sync the pf2vf message info structure
-Date: Tue, 28 Apr 2026 18:42:34 +0800
-Message-ID: <20260428104234.428945-1-chongli2@amd.com>
-X-Mailer: git-send-email 2.48.1
+X-Greylist: delayed 2671 seconds by postgrey-1.36 at gabe;
+ Tue, 28 Apr 2026 11:37:33 UTC
+Received: from disco.pogo.org.uk (disco.pogo.org.uk [93.93.128.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BFA210E66E
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 11:37:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=xwax.org;
+ s=swing; h=Content-Type:MIME-Version:Message-ID:Subject:To:From:Date:Cc:
+ Reply-To:In-Reply-To:References:Content-Transfer-Encoding:Content-ID:
+ Content-Description; bh=DlDopI+ygQu0E70M/ZjOva5igy+Loxq8RWt6Q+BYRmA=; b=s1F6i
+ lM0i8uPog5bcjWK4kfdlXA+Ju8zw79Vv+rWz0JT4r4F4jkIwgP3R+jtBS6KN+h1IeoA8j3eYuuaaw
+ BSpFC70tNG3K7aW/Fx5ty5NKTiTTVhAO1ermcOdyUh2b5HjuWTidGw04i5JDz7RqVWa6gF0KeNsgi
+ Q5GIZRDDrF+k=;
+Received: from cpc93786-hari17-2-0-cust786.20-2.cable.virginm.net
+ ([82.36.99.19] helo=tamla)
+ by disco.pogo.org.uk with esmtps  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+ (Exim 4.98.2 (FreeBSD)) (envelope-from <mark@xwax.org>)
+ id 1wHg3n-00000000Pfq-3QTD for amd-gfx@lists.freedesktop.org;
+ Tue, 28 Apr 2026 11:52:59 +0100
+Received: from localhost (tamla.pogo.org.uk [local])
+ by tamla.pogo.org.uk (OpenSMTPD) with ESMTPA id 3ff335aa
+ for <amd-gfx@lists.freedesktop.org>;
+ Tue, 28 Apr 2026 11:52:59 +0100 (BST)
+Date: Tue, 28 Apr 2026 11:52:59 +0100 (BST)
+From: Mark Hills <mark@xwax.org>
+To: amd-gfx@lists.freedesktop.org
+Subject: Radeon Pro WX7100 regression since v6.19, no display
+Message-ID: <832b0927-fff2-90b3-538c-8e1890f3f42c@xwax.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00002316:EE_|PH0PR12MB8125:EE_
-X-MS-Office365-Filtering-Correlation-Id: f17b6461-0518-4c48-b5cf-08dea512e40f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700016|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: yvA67Nj3ZPdRiPRBeym3fy9aJAnLSrRournTDGmA1usRmPQr3ALPI4cwIWCdHjfdVsHpkv4dLWJatAaanu+rQCPbpwq2/O4+zB4bi9YVXSTfRyeqglD04Dz4BlDSuu1TQUB3mwWhmXTeSVNdEPWv1wpcCSFviWoXWO7CL0ga+sfBobZT7vIIOcSqrAPj7AfOtOI86eyCTWsMgo9Cg2N8xIggBEpZ9LWzzK7Fy4cyW9sV4o7VW8DuGcsTncLuULcsUcWWxc7J6oWP51z8p9Zl2ObL3/8Us1C3VT+SmiXeFNKoDyFIYyW6sgflfVSpo4WaDgQDCaQsUEREJu0WB/5h1nMyRvCHPiPrMQepvo1LrrpLihXxwnas+K+idyLCeitIa2O6XEh88R6lWScaK5Zfp1ar5LVBGcuwsJZ1XiqVgUhGki9WqXzJb+UvsgwdVoCFEdgGX3qb0+TlYqYEmmggdIUtE6+dIkZeH++mmU+txVP7eWUfALU1D7Dg95u6QVouYHke0qIkgag387DkRfcjWPD7CmH5MYXmUaQruKJy5d3JCcdvg9WQMmEYN1aiK+J9wOo/BU30+4j37ZQlsw2vfucGLciFMWWcoOyni5nN3S26LpfoY8Xapme4Mv0YU7Dm3cXuhZnK81Hl20tcEjkGDiNRzVcukLByoJCUlmc+MTRT2edMEmT/PpYfpWS2jYqBJVckE/1Ob8jiWTm9pB9k8tx9pGeV4cRBo7HvG+4hn7gdcIYAu4Gg0doGXcRf/yNOF5uYKbTZ8cWBCUeih1Eo0w==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700016)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: /38y6X4PdDlsk3pWmlt79FDg2oHakRhB2q2UVMBI/I+6ZdIYw0d91jEzmGW1xuTUbV6fxt+P3FxYST52/FNNnPywpEpgEzuoEZWoP38qkDHjsyt/sj/GuJWW+7ou04r918x13nqPe/SqcSAqUwWxGtKKT4imJ9t3Kvjd4aMf9dK3CyiVNKLLYP53eknd7LErsMKt8g7A1cTLrv47ZH56zBXLBD4gxwnI9vLHXlDzUjHJCjIDHWCzhtw8BbjDXxCJLHsUaYKa9QnMFgnrU7YNDolosfSbt/+SKqsriwbBcIuA0wdjolStgmPUCyp4cqmSkUfIANEKjXFgQvswzWfHfSDGRwX5iD8sIDXWTdUfacnSSjIpq8vhRt/jLPxi30+ljd/2mg1Ly/mWxD6IewA7F76M22JTmzQhU6HkeBX5MM3i/Slw2TW2mi3scREm//6U
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 10:42:48.6080 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f17b6461-0518-4c48-b5cf-08dea512e40f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002316.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8125
+Content-Type: text/plain; charset=us-ascii
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,108 +59,337 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 3A66D482D81
+X-Rspamd-Queue-Id: 9E89E483F4E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[xwax.org,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[xwax.org:s=swing];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[chongli2@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[xwax.org:+];
+	RCPT_COUNT_ONE(0.00)[1];
+	ARC_NA(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mark@xwax.org,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,xwax.org:dkim,xwax.org:mid]
 
-There are gaps in the pf2vf message structure
-betiween the guest driver and the host driver.
-The pf2vf message info structure must be kept in sync
-between both sides to ensure correct interpretation of fields.
+The last kernel I have been able to use is v6.19.3, because shortly after 
+I lose functionality of my Radeon Pro WX7100.
 
-Signed-off-by: chong li <chongli2@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h    |  4 ++++
- drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h | 12 ++++++++++--
- 2 files changed, 14 insertions(+), 2 deletions(-)
+Normally around the point udevd is run, I see a switch from "BIOS"-style 
+console to some kind of framebuffer one, followed by launching Xorg.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-index 9da0c6e9b869..5f889382fe4a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-@@ -163,6 +163,8 @@ enum AMDGIM_FEATURE_FLAG {
- 	AMDGIM_FEATURE_RAS_CPER = (1 << 11),
- 	AMDGIM_FEATURE_XGMI_TA_EXT_PEER_LINK = (1 << 12),
- 	AMDGIM_FEATURE_XGMI_CONNECTED_TO_CPU = (1 << 13),
-+	AMDGIM_FEATURE_PTL_SUPPORT = (1 << 14),
-+	AMDGIM_FEATURE_UNITID = (1 << 15),
- };
- 
- enum AMDGIM_REG_ACCESS_FLAG {
-@@ -441,6 +443,8 @@ static inline bool is_virtual_machine(void)
- 	((adev)->virt.gim_feature & AMDGIM_FEATURE_VCN_RB_DECOUPLE)
- #define amdgpu_sriov_is_mes_info_enable(adev) \
- 	((adev)->virt.gim_feature & AMDGIM_FEATURE_MES_INFO_ENABLE)
-+#define amdgpu_sriov_is_unitid_support(adev) \
-+	((adev)->virt.gim_feature & AMDGIM_FEATURE_UNITID)
- 
- #define amdgpu_virt_xgmi_migrate_enabled(adev) \
- 	((adev)->virt.is_xgmi_node_migrate_enabled && (adev)->gmc.xgmi.node_segment_size != 0)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-index 847cfd1fd004..7af60c704722 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-@@ -162,7 +162,9 @@ union amd_sriov_msg_feature_flags {
- 		uint32_t ras_cper		: 1;
- 		uint32_t xgmi_ta_ext_peer_link	: 1;
- 		uint32_t xgmi_connected_to_cpu  : 1;
--		uint32_t reserved		: 18;
-+		uint32_t ptl_support		: 1;
-+		uint32_t unitid_support		: 1;
-+		uint32_t reserved		: 16;
- 	} flags;
- 	uint32_t all;
- };
-@@ -256,7 +258,7 @@ struct amd_sriov_msg_pf2vf_info_header {
- 	uint32_t reserved[2];
- };
- 
--#define AMD_SRIOV_MSG_PF2VF_INFO_FILLED_SIZE (55)
-+#define AMD_SRIOV_MSG_PF2VF_INFO_FILLED_SIZE (59)
- struct amd_sriov_msg_pf2vf_info {
- 	/* header contains size and version */
- 	struct amd_sriov_msg_pf2vf_info_header header;
-@@ -314,6 +316,12 @@ struct amd_sriov_msg_pf2vf_info {
- 	uint32_t more_bp;	//Reserved for future use.
- 	union amd_sriov_ras_caps ras_en_caps;
- 	union amd_sriov_ras_caps ras_telemetry_en_caps;
-+	/* PTL status response for guest */
-+	uint32_t ptl_enabled;        // PTL enable status: 0=disabled, 1=enabled
-+	uint32_t ptl_pref_format1;   // Current preferred format 1
-+	uint32_t ptl_pref_format2;   // Current preferred format 2
-+	uint8_t unitid;
-+	uint8_t padding[3];  //use the 3 bytes to align
- 
- 	/* reserved */
- 	uint32_t reserved[256 - AMD_SRIOV_MSG_PF2VF_INFO_FILLED_SIZE];
+With later kernels, around the time of udevd the displays (LG DualUp, 
+DisplayPort) freeze and swich to "no signal". The host is alive to SSH.
+
+I can boot the last 'good' kernel (v6.19.3) and today (v7.0.1), with the 
+diff shown below.
+
+There doesn't seem to be an obvious or visible error to investigate, 
+mostly:
+
+* No longer any information printed about connected displays
+
+* The bad kernel is printing initialisation "successful" messages in a
+  slow loop, which I presume is Xorg re-starting
+
+* The missing "fb0: amdgpudrmfb frame buffer device" which is
+  presumably by Xorg complains about no /dev/fb0
+
+I hope this is a credible bug report and perhaps clear what's going on to 
+those who understand how the parts (drm,amdgpu,fb,fbcon,modesetting) fit 
+together.
+
+At this stage a "bisect" would be quite involved, but not ruled out.
+
+System is i5-6500, losely based on Slackware-current, I run my own kernel 
+and rc scripts, with no initrd.
+
+Thanks
+
 -- 
-2.48.1
+Mark
+
+
+$ diff -up <(grep -E '(amdgpu|drm|fb|fbcon)' dmesg.good) <(grep -E '(amdgpu|drm|fb|fbcon)' dmesg.bad)
+--- /dev/fd/63	2026-04-28 11:18:51.152662564 +0100
++++ /dev/fd/62	2026-04-28 11:18:51.152662564 +0100
+@@ -1,77 +1,75 @@
++Command line: root=/dev/sda2 fbcon=rotate_all:1 BOOT_IMAGE=vmlinuz 
++Kernel command line: root=/dev/sda2 fbcon=rotate_all:1 BOOT_IMAGE=vmlinuz 
++Unknown kernel command line parameters "fbcon=rotate_all:1", will be passed to user space.
+ pci 0000:00:1c.4:   bridge window [mem 0xefb00000-0xefbfffff]
+ pci 0000:0b:00.0: BAR 0 [mem 0xefb00000-0xefb03fff 64bit]
+ pci 0000:00:1c.4:   bridge window [mem 0xefb00000-0xefbfffff]
+ pci_bus 0000:0b: resource 1 [mem 0xefb00000-0xefbfffff]
++    fbcon=rotate_all:1
+ ACPI: bus type drm_connector registered
+-[drm] amdgpu kernel modesetting enabled.
+-[drm] initializing kernel modesetting (POLARIS10 0x1002:0x67C4 0x1002:0x0B0D 0x00).
+-[drm] register mmio base: 0xEFE00000
+-[drm] register mmio size: 262144
+-amdgpu 0000:01:00.0: amdgpu: detected ip block number 0 <vi_common>
+-amdgpu 0000:01:00.0: amdgpu: detected ip block number 1 <gmc_v8_0>
+-amdgpu 0000:01:00.0: amdgpu: detected ip block number 2 <tonga_ih>
+-amdgpu 0000:01:00.0: amdgpu: detected ip block number 3 <gfx_v8_0>
+-amdgpu 0000:01:00.0: amdgpu: detected ip block number 4 <sdma_v3_0>
+-amdgpu 0000:01:00.0: amdgpu: detected ip block number 5 <powerplay>
+-amdgpu 0000:01:00.0: amdgpu: detected ip block number 6 <dce_v11_0>
+-amdgpu 0000:01:00.0: amdgpu: detected ip block number 7 <uvd_v6_0>
+-amdgpu 0000:01:00.0: amdgpu: detected ip block number 8 <vce_v3_0>
++amdgpu 0000:01:00.0: initializing kernel modesetting (POLARIS10 0x1002:0x67C4 0x1002:0x0B0D 0x00).
++amdgpu 0000:01:00.0: register mmio base: 0xEFE00000
++amdgpu 0000:01:00.0: register mmio size: 262144
++amdgpu 0000:01:00.0: detected ip block number 0 <common_v1_0_0> (vi_common)
++amdgpu 0000:01:00.0: detected ip block number 1 <gmc_v8_1_0> (gmc_v8_0)
++amdgpu 0000:01:00.0: detected ip block number 2 <ih_v3_0_0> (tonga_ih)
++amdgpu 0000:01:00.0: detected ip block number 3 <gfx_v8_0_0> (gfx_v8_0)
++amdgpu 0000:01:00.0: detected ip block number 4 <sdma_v3_1_0> (sdma_v3_0)
++amdgpu 0000:01:00.0: detected ip block number 5 <smu_v1_0_0> (powerplay)
++amdgpu 0000:01:00.0: detected ip block number 6 <uvd_v6_3_0> (uvd_v6_0)
++amdgpu 0000:01:00.0: detected ip block number 7 <vce_v3_4_0> (vce_v3_0)
+ amdgpu 0000:01:00.0: No more image in the PCI ROM
+-amdgpu 0000:01:00.0: amdgpu: Fetched VBIOS from ROM BAR
+-amdgpu: ATOM BIOS: 113-C9540101-103
+-[drm] UVD is enabled in VM mode
+-[drm] UVD ENC is enabled in VM mode
+-[drm] VCE enabled in VM mode
++amdgpu 0000:01:00.0: Fetched VBIOS from ROM BAR
++amdgpu 0000:01:00.0: [drm] ATOM BIOS: 113-C9540101-103
++amdgpu 0000:01:00.0: [drm] UVD is enabled in VM mode
++amdgpu 0000:01:00.0: [drm] UVD ENC is enabled in VM mode
++amdgpu 0000:01:00.0: Found VCE firmware Version: 53.26 Binary ID: 3
++amdgpu 0000:01:00.0: [drm] VCE enabled in VM mode
+ amdgpu 0000:01:00.0: vgaarb: deactivate vga console
+-amdgpu 0000:01:00.0: amdgpu: Trusted Memory Zone (TMZ) feature not supported
+-[drm] vm size is 128 GB, 2 levels, block size is 10-bit, fragment size is 9-bit
+-[drm] System can't access extended configuration space, please check!!
+-amdgpu 0000:01:00.0: BAR 2 [mem 0xe0000000-0xe01fffff 64bit pref]: releasing
+-amdgpu 0000:01:00.0: BAR 0 [mem 0xd0000000-0xdfffffff 64bit pref]: releasing
+-amdgpu 0000:01:00.0: BAR 0 [mem 0xd0000000-0xdfffffff 64bit pref]: assigned
+-amdgpu 0000:01:00.0: BAR 2 [mem 0xe0000000-0xe01fffff 64bit pref]: assigned
+-amdgpu 0000:01:00.0: amdgpu: VRAM: 8192M 0x000000F400000000 - 0x000000F5FFFFFFFF (8192M used)
+-amdgpu 0000:01:00.0: amdgpu: GART: 256M 0x000000FF00000000 - 0x000000FF0FFFFFFF
+-[drm] Detected VRAM RAM=8192M, BAR=256M
+-[drm] RAM width 256bits GDDR5
+-[drm] amdgpu: 8192M of VRAM memory ready
+-[drm] amdgpu: 20047M of GTT memory ready.
+-[drm] GART: num cpu pages 65536, num gpu pages 65536
+-[drm] PCIE GART of 256M enabled (table at 0x000000F400900000).
+-[drm] Chained IB support enabled!
++amdgpu 0000:01:00.0: Trusted Memory Zone (TMZ) feature not supported
++amdgpu 0000:01:00.0: vm size is 128 GB, 2 levels, block size is 10-bit, fragment size is 9-bit
++amdgpu 0000:01:00.0: System can't access extended configuration space, please check!!
++amdgpu 0000:01:00.0: VRAM: 8192M 0x000000F400000000 - 0x000000F5FFFFFFFF (8192M used)
++amdgpu 0000:01:00.0: GART: 256M 0x000000FF00000000 - 0x000000FF0FFFFFFF
++amdgpu 0000:01:00.0: [drm] Detected VRAM RAM=8192M, BAR=256M
++amdgpu 0000:01:00.0: [drm] RAM width 256bits GDDR5
++amdgpu 0000:01:00.0:  8192M of VRAM memory ready
++amdgpu 0000:01:00.0:  20047M of GTT memory ready.
++amdgpu 0000:01:00.0: [drm] GART: num cpu pages 65536, num gpu pages 65536
++amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F400900000).
++amdgpu 0000:01:00.0: [drm] Chained IB support enabled!
+ amdgpu: hwmgr_sw_init smu backed is polaris10_smu
+-[drm] AMDGPU Display Connectors
+-[drm] Connector 0:
+-[drm]   DP-1
+-[drm]   HPD6
+-[drm]   DDC: 0x4868 0x4868 0x4869 0x4869 0x486a 0x486a 0x486b 0x486b
+-[drm]   Encoders:
+-[drm]     DFP1: INTERNAL_UNIPHY2
+-[drm] Connector 1:
+-[drm]   DP-2
+-[drm]   HPD4
+-[drm]   DDC: 0x4870 0x4870 0x4871 0x4871 0x4872 0x4872 0x4873 0x4873
+-[drm]   Encoders:
+-[drm]     DFP2: INTERNAL_UNIPHY2
+-[drm] Connector 2:
+-[drm]   DP-3
+-[drm]   HPD1
+-[drm]   DDC: 0x486c 0x486c 0x486d 0x486d 0x486e 0x486e 0x486f 0x486f
+-[drm]   Encoders:
+-[drm]     DFP3: INTERNAL_UNIPHY1
+-[drm] Connector 3:
+-[drm]   DP-4
+-[drm]   HPD3
+-[drm]   DDC: 0x4874 0x4874 0x4875 0x4875 0x4876 0x4876 0x4877 0x4877
+-[drm]   Encoders:
+-[drm]     DFP4: INTERNAL_UNIPHY
+-[drm] Found UVD firmware Version: 1.130 Family ID: 16
+-[drm] Found VCE firmware Version: 53.26 Binary ID: 3
+-[drm] UVD and UVD ENC initialized successfully.
+-[drm] VCE initialized successfully.
+-amdgpu 0000:01:00.0: amdgpu: SE 4, SH per SE 1, CU per SH 9, active_cu_number 36
+-amdgpu 0000:01:00.0: amdgpu: Using BACO for runtime pm
++amdgpu 0000:01:00.0: [drm] Found UVD firmware Version: 1.130 Family ID: 16
++amdgpu 0000:01:00.0: [drm] UVD and UVD ENC initialized successfully.
++amdgpu 0000:01:00.0: [drm] VCE initialized successfully.
++amdgpu 0000:01:00.0: SE 4, SH per SE 1, CU per SH 9, active_cu_number 36
++amdgpu 0000:01:00.0: Using BACO for runtime pm
+ [drm] Initialized amdgpu 3.64.0 for 0000:01:00.0 on minor 0
+-fbcon: amdgpudrmfb (fb0) is primary device
+-amdgpu 0000:01:00.0: [drm] fb0: amdgpudrmfb frame buffer device
+ EXT4-fs (dm-9): mounted filesystem 21691fb4-85ac-422e-b598-3443874357d4 r/w with ordered data mode. Quota mode: disabled.
++amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F400900000).
++amdgpu 0000:01:00.0: [drm] UVD and UVD ENC initialized successfully.
++amdgpu 0000:01:00.0: [drm] VCE initialized successfully.
++amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F400900000).
++amdgpu 0000:01:00.0: [drm] UVD and UVD ENC initialized successfully.
++amdgpu 0000:01:00.0: [drm] VCE initialized successfully.
++amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F400900000).
++amdgpu 0000:01:00.0: [drm] UVD and UVD ENC initialized successfully.
++amdgpu 0000:01:00.0: [drm] VCE initialized successfully.
++amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F400900000).
++amdgpu 0000:01:00.0: [drm] UVD and UVD ENC initialized successfully.
++amdgpu 0000:01:00.0: [drm] VCE initialized successfully.
++amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F400900000).
++amdgpu 0000:01:00.0: [drm] UVD and UVD ENC initialized successfully.
++amdgpu 0000:01:00.0: [drm] VCE initialized successfully.
++amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F400900000).
++amdgpu 0000:01:00.0: [drm] UVD and UVD ENC initialized successfully.
++amdgpu 0000:01:00.0: [drm] VCE initialized successfully.
++amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F400900000).
++amdgpu 0000:01:00.0: [drm] UVD and UVD ENC initialized successfully.
++amdgpu 0000:01:00.0: [drm] VCE initialized successfully.
++amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F400900000).
++amdgpu 0000:01:00.0: [drm] UVD and UVD ENC initialized successfully.
++amdgpu 0000:01:00.0: [drm] VCE initialized successfully.
++amdgpu 0000:01:00.0: [drm] PCIE GART of 256M enabled (table at 0x000000F400900000).
++amdgpu 0000:01:00.0: [drm] UVD and UVD ENC initialized successfully.
++amdgpu 0000:01:00.0: [drm] VCE initialized successfully.
+
+
+$ grep -E '(amdgpu|EE|modeset)' /var/log/Xorg.0.log
+[  1537.962] Current Operating System: Linux stax 7.0.2-mh #187 SMP PREEMPT Tue Apr 28 10:05:44 BST 2026 x86_64
+        (WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+[  1537.963] (EE) dbus-core: error connecting to system bus: org.freedesktop.DBus.Error.NoServer (Failed to connect to socket /var/run/dbus/system_bus_socket: Connection refused)
+[  1537.965] (==) Matched modesetting as autoconfigured driver 1
+[  1537.966] (II) LoadModule: "amdgpu"
+[  1537.966] (WW) Warning, couldn't open module amdgpu
+[  1537.966] (EE) Failed to load module "amdgpu" (module does not exist, 0)
+[  1537.966] (II) LoadModule: "modesetting"
+[  1537.966] (II) Loading /usr/lib64/xorg/modules/drivers/modesetting_drv.so
+[  1537.966] (II) Module modesetting: vendor="X.Org Foundation"
+[  1537.966] (II) modesetting: Driver for Modesetting Kernel Drivers: kms
+[  1537.966] (II) modeset(0): using drv /dev/dri/card0
+[  1537.967] (EE) open /dev/fb0: No such file or directory
+[  1537.967] (II) modeset(0): Using 24bpp hw front buffer with 32bpp shadow
+[  1537.967] (II) modeset(0): Creating default Display subsection in Screen section
+[  1537.967] (==) modeset(0): Depth 24, (==) framebuffer bpp 32
+[  1537.967] (==) modeset(0): RGB weight 888
+[  1537.967] (==) modeset(0): Default visual is TrueColor
+[  1537.967] (**) modeset(0): Cannot use glamor with 24bpp packed fb
+[  1537.967] (II) modeset(0): ShadowFB: preferred YES, enabled FORCE
+[  1537.967] (II) modeset(0): Double-buffered shadow updates: off
+[  1537.967] (WW) modeset(0): TearFree requires Glamor acceleration
+[  1537.967] (WW) modeset(0): No outputs definitely connected, trying again...
+[  1537.967] (WW) modeset(0): Unable to find connected outputs - setting 1024x768 initial framebuffer
+[  1537.967] (==) modeset(0): Using gamma correction (1.0, 1.0, 1.0)
+[  1537.967] (EE) modeset(0): No modes.
+[  1537.967] (II) UnloadModule: "modesetting"
+[  1537.967] (EE) Screen(s) found, but none have a usable configuration.
+[  1537.967] (EE)
+[  1537.967] (EE) no screens found(EE)
+[  1537.967] (EE)
+[  1537.967] (EE) Please also check the log file at "/var/log/Xorg.0.log" for additional information.
+[  1537.967] (EE)
+[  1537.967] (EE) Server terminated with error (1). Closing log file.
+
+
+stax$ lsmod | grep -E '(amdgpu|fb|drm)'
+amdgpu               5550080  0
+drm_ttm_helper         16384  1 amdgpu
+syscopyarea            12288  1 drm_ttm_helper
+ttm                    77824  2 amdgpu,drm_ttm_helper
+sysfillrect            12288  1 drm_ttm_helper
+sysimgblt              12288  1 drm_ttm_helper
+fb_sys_fops            12288  1 drm_ttm_helper
+drm_client_lib         16384  1 amdgpu
+amdxcp                 12288  1 amdgpu
+drm_exec               12288  1 amdgpu
+gpu_sched              49152  1 amdgpu
+drm_buddy              16384  1 amdgpu
+drm_suballoc_helper    16384  1 amdgpu
+drm_display_helper    155648  1 amdgpu
+drm_kms_helper        151552  4 drm_display_helper,amdgpu,drm_ttm_helper,drm_client_lib
+drm                   524288  12 gpu_sched,drm_kms_helper,drm_exec,drm_suballoc_helper,drm_display_helper,drm_buddy,amdgpu,drm_ttm_helper,drm_client_lib,ttm,amdxcp
+drm_panel_orientation_quirks    32768  1 drm
+i2c_algo_bit           12288  1 amdgpu
+fb                    114688  2 drm_kms_helper,drm_ttm_helper
+video                  69632  1 amdgpu
+font                   16384  1 fb
+backlight              16384  4 video,drm_display_helper,amdgpu,drm
+i2c_core               81920  6 i2c_algo_bit,drm_display_helper,i2c_smbus,amdgpu,i2c_i801,drm
+
+
+$ zcat /proc/config.gz | grep -iE '(amdgpu|drm|fb)' | grep -v 'not set'
+CONFIG_DRM=m
+# DRM debugging options
+# end of DRM debugging options
+CONFIG_DRM_KMS_HELPER=m
+CONFIG_DRM_CLIENT=y
+CONFIG_DRM_CLIENT_LIB=m
+CONFIG_DRM_CLIENT_SELECTION=m
+CONFIG_DRM_CLIENT_SETUP=y
+# Supported DRM clients
+CONFIG_DRM_FBDEV_EMULATION=y
+CONFIG_DRM_FBDEV_OVERALLOC=100
+CONFIG_DRM_CLIENT_DEFAULT_FBDEV=y
+CONFIG_DRM_CLIENT_DEFAULT="fbdev"
+# end of Supported DRM clients
+CONFIG_DRM_DISPLAY_HELPER=m
+CONFIG_DRM_DISPLAY_DP_HELPER=y
+CONFIG_DRM_DISPLAY_DSC_HELPER=y
+CONFIG_DRM_DISPLAY_HDCP_HELPER=y
+CONFIG_DRM_DISPLAY_HDMI_HELPER=y
+CONFIG_DRM_TTM=m
+CONFIG_DRM_EXEC=m
+CONFIG_DRM_BUDDY=m
+CONFIG_DRM_TTM_HELPER=m
+CONFIG_DRM_SUBALLOC_HELPER=m
+CONFIG_DRM_SCHED=m
+CONFIG_DRM_PANEL_BACKLIGHT_QUIRKS=m
+CONFIG_DRM_AMDGPU=m
+CONFIG_DRM_AMDGPU_CIK=y
+CONFIG_DRM_BRIDGE=y
+CONFIG_DRM_PANEL_BRIDGE=y
+CONFIG_DRM_PANEL=y
+CONFIG_DRM_PANEL_ORIENTATION_QUIRKS=m
+CONFIG_FB=m
+CONFIG_FB_RADEON=m
+CONFIG_FB_RADEON_I2C=y
+CONFIG_FB_CORE=m
+CONFIG_FB_NOTIFY=y
+CONFIG_FB_DDC=m
+CONFIG_FB_CFB_FILLRECT=m
+CONFIG_FB_CFB_COPYAREA=m
+CONFIG_FB_CFB_IMAGEBLIT=m
+CONFIG_FB_SYS_FILLRECT=m
+CONFIG_FB_SYS_COPYAREA=m
+CONFIG_FB_SYS_IMAGEBLIT=m
+CONFIG_FB_SYSMEM_FOPS=m
+CONFIG_FB_DEFERRED_IO=y
+CONFIG_FB_IOMEM_FOPS=m
+CONFIG_FB_IOMEM_HELPERS=y
+CONFIG_FB_SYSMEM_HELPERS=y
+CONFIG_FB_SYSMEM_HELPERS_DEFERRED=y
+CONFIG_FB_MODE_HELPERS=y
+CONFIG_CRYPTO_LIB_AESCFB=m
 
