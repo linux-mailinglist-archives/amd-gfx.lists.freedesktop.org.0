@@ -2,70 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CIKqDMyc8GmGVwEAu9opvQ
+	id mO2RENCc8GmGVwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 13:41:00 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 13:41:04 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3025484076
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 13:40:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B29AE48408C
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 13:41:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62CFF10EB24;
-	Tue, 28 Apr 2026 11:40:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3282310EB20;
+	Tue, 28 Apr 2026 11:41:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VvZbsSO4";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="creKIdfJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41D1A10EB24
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 11:40:56 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-483487335c2so109946715e9.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 04:40:56 -0700 (PDT)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+ [209.85.128.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 538C610EB21
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 11:40:58 +0000 (UTC)
+Received: by mail-wm1-f48.google.com with SMTP id
+ 5b1f17b1804b1-4891c00e7aeso86368035e9.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 04:40:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777376455; x=1777981255; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1777376457; x=1777981257; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=5Obo47vWzK513jTqhVyHxfM4FTDmAMMJkHC1WqmEqkA=;
- b=VvZbsSO4YAWLu+2P6ntN5aooRKTNO8QlhY9HiyGm7eGYf05Y0OgN791Goijq9dMSmE
- FA9oU0sSlLBYoX0Nn2G3GfxsIFUW0YHe5P0QwIFXkxq1k6tjU2WBBOuSmeRzBWL+Ddhi
- PQIu1of4R8F8JXFbM8Fec2ToP7lrWHJdlAiwDAhOYara9DherXC0D+Im1+NpE0I1pD34
- cWSCSU2rPqUZKSgOYDS4JgBGTT7M7AsmU3HRbx9RHLrZUVaSU8osaJeylnk3r7IYsrkm
- s+w9stblFP5F6q5iNH+9mSFYOwE6r9dsj+/dAzEh2l9k8CqA653JdAeVdL2LbJOEfC6P
- xe2g==
+ bh=k9znm/Hx+qgO3TCVZIvNRzqBAOrjfULJb7WpuY3j6cM=;
+ b=creKIdfJmwdDgKJ3uBuV6DfLiHf+ja5IW4GDmTNeiIdyhLFcOQTC/I9kc3ypdfn70v
+ ZqB8QxfdXiB9z3EheYzDfvV7DkZM2TzTudNH2lhEGlCHsG4Ie0Rk1KkuTCxBQZZ8LwKM
+ AkjX3fjGtKA5HAgsGX8OJYS/o8exhoXK649D9gUiRsExAjMc1Q9Vl0A5ffZ6PbuShPb/
+ JJobQcWXzlhiXBjru5lp6jQ3JDkyi28Miry1xZc6mJvjx2crIE/F5n7bSV9ZUsTz2j8V
+ 7zCQlP0hxCPd28zyk+D2iSI9kUE6k2Itg5hU1DVFmpsT/TKjcibbS0h0ykiq86eh8x/U
+ DAdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777376455; x=1777981255;
+ d=1e100.net; s=20251104; t=1777376457; x=1777981257;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=5Obo47vWzK513jTqhVyHxfM4FTDmAMMJkHC1WqmEqkA=;
- b=V90JWdui9AuX/KYTX/EYwlV0MLFnhBDzjeE5BT2DiYk2zqpxLNPZZlby647vNFPGxu
- CqJJ/XqO6Bmvy6Gw6cztKGUlqnKtiURB+lU5h5a1/WMUYKXshc3hYHZ54YaKncfyJvK6
- g2URRzBbLYzvuc2eowTe2Z/5Mk+Zl5CH9XMBcMf1C3qmyez+dSl+vfpC5XJPzykNNaZ8
- IcP1e3nAWI5ECuLmBfYjUuNgl9n8RUDZ8FiJIaCgrKZcVYYLFRvXvjXtWrDy6XXGRCpB
- ZgRj4SlTFH8sdLpXSud0bisRNYTHLNoZoSmSjHxBIHudq5qds8I5fgLbQ3/dhwGQ/iWQ
- lQKQ==
-X-Gm-Message-State: AOJu0YxEgijQiUISb2Zb6cLTYdofkm6VB2aldIpqF5I2dbeudObLe4JJ
- Z9c53DMZ8xkKAiG6+ubTgWYHAK3+DjhQB6duYdohXkML86+GAqeIHZWuJXuOUY4b
-X-Gm-Gg: AeBDievCBYscgiIO+eVM8vJXfeIXAWyEKOS21VTnBEhEL0SEA12x6VvxgCcKZ8ZyN3N
- biMcg6HCsgg9CPs0mo0/i05ztFRiyNqIDphdy/YG0aodt2C/5RZSZLuutdaGI593S0aC6Tu1oRz
- cI0O1RSoqRYrUo0rNvhpQAgGQgA7KAxDAamRFl/oljUSAFrgDCqIsV3C6otY31XKiotGhlkLpNC
- WEo3G+VzJQmIgzGGhNFP6YjL0PCzmAkPECUKSTmjO0CG8mNk6Ody7nNVKmFG2mYmo1JSLAe3VRJ
- pQ61ZFjIeJMQlYzFTR3cNNtEZ1XCtEBeZYo2BRB9BKCUkq7Gwxs1LX+5m3BT3hlwSRtMrELhTMH
- RU5uXTrp34h2Cfxe9VfcSYv/Ch5Gf5UFUjZWHyKnF8VRum5d0UOZ8gLqoRu5Pmwfy/6HvaaP8An
- qxMZsrpFUz/jpqSR4tbCPGPOC+/izuvepYRCt4k4Hx9X0JHn4PaxJv/W7khvsi74ppSX/cG92cY
- Cpj
-X-Received: by 2002:a05:600c:c048:b0:485:39b2:a47c with SMTP id
- 5b1f17b1804b1-48a77b22dedmr31925835e9.25.1777376454670; 
- Tue, 28 Apr 2026 04:40:54 -0700 (PDT)
+ bh=k9znm/Hx+qgO3TCVZIvNRzqBAOrjfULJb7WpuY3j6cM=;
+ b=tAVTkz/PZne/XAuo0sTn1Tr36MRTP++YhcS/PVlAhvImEUHlzg8X6Q+ESo1ckhWcQ0
+ Mo0E6/Il1N6/0m+tqZ16mKcLWlQzZNb8lPpKgNp0v+juf4h1S3KM2swqw+eQkhrDoAFI
+ DjwbRR8LmIx5fMF8Q85ZteU9KRgIm8YESFI7qBI41tkPd96CHG4Fwpicia06h5i9hxDi
+ C6k2h7ClorFkzbHPhe0b9R1S+BWPXvKFmFDdffWGaJJB9s5blj8RcH9AbbmZIOizy29N
+ 1qS9SHue+k2YQdBNUSyoOWe3wieJdRKqPrF+6p3G3Mvatn7IIslr/H6oijKivxPdPhMd
+ aAkQ==
+X-Gm-Message-State: AOJu0Yye8vcabRo6yCYisi0n9ZRN1ojaGRO0yfC4KSJdgiZL0Ad99TZq
+ /CKcYn8Tnq3fdF3GXeyFyuvBba2uNrYtkFRxnoTrFKc5R+CUKpWQjMmW2E4874GF
+X-Gm-Gg: AeBDietPL/Gz4ZX1u3BwM6yb7vtrBYWUF/mctV4Lo8xL5+FqSjpdNHjN52HBKOoX1++
+ QIs6hdPuLDgj4otEuAG4EwdZi/BaIAGj8hzHMyiD+rhZM1idi2vqpVdn9NEACpzsgIszfMMQ58o
+ INkcyPIz1lcAjkWs6TbZgGDm6MfqvSHsQdsWb6FWg4EbaUAbSEX2v1kw7n3S05hO0R8IyKtyIu1
+ 7hV9r0mb+mEJAetjMlpmhlmRqnlmk7gDJ+MjMCvGA5kSSSE8f76HViThzrHGQyn5KjWPIyJlrgc
+ LsUE1iqCMN8Dd9tMvKkVe95Pu8age8+sfVCLneSJc/XLe1mkR1Lltc+XJWWZabLxcQMkzCB0fly
+ cSQVraWGA34+3jvbVEdAK/e+bMVzwBebLcD2Ss8C/Z2CT+593SUP59h8/B8oTS5kETTFnqF4KGz
+ Vh3XhHQ3qqRMQKFk4FOybxpjZmNPAcu8iu/0jM/IXyVfsGAka54vbX0y984Rfj1rtoNVPvojHwW
+ /sq
+X-Received: by 2002:a05:600c:c114:b0:487:1108:48b8 with SMTP id
+ 5b1f17b1804b1-48a77af3d5bmr33879355e9.2.1777376456798; 
+ Tue, 28 Apr 2026 04:40:56 -0700 (PDT)
 Received: from Timur-Hyperion.home (5401DFC2.dsl.pool.telekom.hu.
  [84.1.223.194]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48a775e4bd0sm25048275e9.8.2026.04.28.04.40.53
+ 5b1f17b1804b1-48a775e4bd0sm25048275e9.8.2026.04.28.04.40.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Apr 2026 04:40:54 -0700 (PDT)
+ Tue, 28 Apr 2026 04:40:55 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
  Alex Hung <alex.hung@amd.com>, Harry Wentland <Harry.Wentland@amd.com>,
@@ -73,9 +73,9 @@ To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
  Mario Limonciello <mario.limonciello@amd.com>,
  Ivan Lipski <ivan.lipski@amd.com>, Melissa Wen <mwen@igalia.com>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 5/6] drm/amd/display: Read EDID from VBIOS embedded panel info
-Date: Tue, 28 Apr 2026 13:40:44 +0200
-Message-ID: <20260428114045.40710-6-timur.kristof@gmail.com>
+Subject: [PATCH 6/6] drm/amd/display: Use EDID from VBIOS embedded panel info
+Date: Tue, 28 Apr 2026 13:40:45 +0200
+Message-ID: <20260428114045.40710-7-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260428114045.40710-1-timur.kristof@gmail.com>
 References: <20260428114045.40710-1-timur.kristof@gmail.com>
@@ -95,7 +95,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D3025484076
+X-Rspamd-Queue-Id: B29AE48408C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -118,7 +118,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FREEMAIL_CC(0.00)[gmail.com];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
+	NEURAL_HAM(-0.00)[-0.996];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -129,125 +129,85 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
 
-Some board manufacturers hardcode the EDID for the embedded
-panel in the VBIOS. This EDID should be used when the panel
-doesn't have a DDC.
+When an embedded panel has no DDC, read the EDID from
+the VBIOS embedded panel info and use that.
 
-For reference, see the legacy non-DC display code:
-amdgpu_atombios_encoder_get_lcd_info()
-
-This is necessary to support embedded connectors without DDC.
-
-Fixes: 4562236b3bc0 ("drm/amd/dc: Add dc display driver (v2)")
+Fixes: 7c7f5b15be65 ("drm/amd/display: Refactor edid read.")
 Link: https://gitlab.freedesktop.org/drm/amd/-/work_items/5192
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- .../gpu/drm/amd/display/dc/bios/bios_parser.c | 62 +++++++++++++++++++
- .../display/include/grph_object_ctrl_defs.h   |  4 ++
- 2 files changed, 66 insertions(+)
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 44 +++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-index ec75882ac4777..05f299ec5463d 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-@@ -1313,6 +1313,60 @@ static enum bp_result bios_parser_get_embedded_panel_info(
- 	return BP_RESULT_FAILURE;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+index c53230cdfdc57..c491af21a34c6 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+@@ -1032,6 +1032,45 @@ dm_helpers_read_acpi_edid(struct amdgpu_dm_connector *aconnector)
+ 	return drm_edid_read_custom(connector, dm_helpers_probe_acpi_edid, connector);
  }
  
-+static enum bp_result get_embedded_panel_extra_info(
-+	struct bios_parser *bp,
-+	struct embedded_panel_info *info,
-+	const uint32_t table_offset)
++static const struct drm_edid *
++dm_helpers_read_vbios_hardcoded_edid(struct dc_link *link, struct amdgpu_dm_connector *aconnector)
 +{
-+	uint8_t *record = bios_get_image(&bp->base, table_offset, 1);
-+	ATOM_PANEL_RESOLUTION_PATCH_RECORD *panel_res_record;
-+	ATOM_FAKE_EDID_PATCH_RECORD *fake_edid_record;
++	struct dc_bios *bios = link->ctx->dc_bios;
++	struct embedded_panel_info info;
++	const struct drm_edid *edid;
++	enum bp_result r;
 +
-+	while (*record != ATOM_RECORD_END_TYPE) {
-+		switch (*record) {
-+		case LCD_MODE_PATCH_RECORD_MODE_TYPE:
-+			record += sizeof(ATOM_PATCH_RECORD_MODE);
-+			break;
-+		case LCD_RTS_RECORD_TYPE:
-+			record += sizeof(ATOM_LCD_RTS_RECORD);
-+			break;
-+		case LCD_CAP_RECORD_TYPE:
-+			record += sizeof(ATOM_LCD_MODE_CONTROL_CAP);
-+			break;
-+		case LCD_FAKE_EDID_PATCH_RECORD_TYPE:
-+			fake_edid_record = (ATOM_FAKE_EDID_PATCH_RECORD *)record;
-+			if (fake_edid_record->ucFakeEDIDLength) {
-+				if (fake_edid_record->ucFakeEDIDLength == 128)
-+					info->fake_edid_size =
-+						fake_edid_record->ucFakeEDIDLength;
-+				else
-+					info->fake_edid_size =
-+						fake_edid_record->ucFakeEDIDLength * 128;
++	if (!dc_is_embedded_signal(link->connector_signal) ||
++	    !bios->funcs->get_embedded_panel_info)
++		return NULL;
 +
-+				info->fake_edid = fake_edid_record->ucFakeEDIDString;
++	memset(&info, 0, sizeof(info));
++	r = bios->funcs->get_embedded_panel_info(bios, &info);
 +
-+				record += struct_size(fake_edid_record,
-+						      ucFakeEDIDString,
-+						      info->fake_edid_size);
-+			} else {
-+				/* empty fake edid record must be 3 bytes long */
-+				record += sizeof(ATOM_FAKE_EDID_PATCH_RECORD) + 1;
-+			}
-+			break;
-+		case LCD_PANEL_RESOLUTION_RECORD_TYPE:
-+			panel_res_record = (ATOM_PANEL_RESOLUTION_PATCH_RECORD *)record;
-+			info->panel_width_mm = panel_res_record->usHSize;
-+			info->panel_height_mm = panel_res_record->usVSize;
-+			record += sizeof(ATOM_PANEL_RESOLUTION_PATCH_RECORD);
-+			break;
-+		default:
-+			return BP_RESULT_BADBIOSTABLE;
-+		}
++	if (r != BP_RESULT_OK) {
++		dm_error("Error when reading embedded panel info: %u\n", r);
++		return NULL;
 +	}
 +
-+	return BP_RESULT_OK;
++	if (!info.fake_edid || !info.fake_edid_size) {
++		dm_error("Embedded panel info doesn't contain an EDID\n");
++		return NULL;
++	}
++
++	edid = drm_edid_alloc(info.fake_edid, info.fake_edid_size);
++
++	if (!drm_edid_valid(edid)) {
++		dm_error("EDID from embedded panel info is invalid\n");
++		drm_edid_free(edid);
++		return NULL;
++	}
++
++	aconnector->base.display_info.width_mm = info.panel_width_mm;
++	aconnector->base.display_info.height_mm = info.panel_height_mm;
++
++	return edid;
 +}
 +
- static enum bp_result get_embedded_panel_info_v1_2(
- 	struct bios_parser *bp,
- 	struct embedded_panel_info *info)
-@@ -1429,6 +1483,10 @@ static enum bp_result get_embedded_panel_info_v1_2(
- 	if (ATOM_PANEL_MISC_API_ENABLED & lvds->ucLVDS_Misc)
- 		info->lcd_timing.misc_info.API_ENABLED = true;
+ void populate_hdmi_info_from_connector(struct drm_hdmi_info *hdmi, struct dc_edid_caps *edid_caps)
+ {
+ 	edid_caps->scdc_present = hdmi->scdc.supported;
+@@ -1052,6 +1091,9 @@ enum dc_edid_status dm_helpers_read_local_edid(
  
-+	if (lvds->usExtInfoTableOffset)
-+		return get_embedded_panel_extra_info(bp, info,
-+			le16_to_cpu(lvds->usExtInfoTableOffset) + DATA_TABLES(LCD_Info));
-+
- 	return BP_RESULT_OK;
- }
+ 	if (link->aux_mode)
+ 		ddc = &aconnector->dm_dp_aux.aux.ddc;
++	else if (link->ddc_hw_inst == GPIO_DDC_LINE_UNKNOWN &&
++		 dc_is_embedded_signal(link->connector_signal))
++		ddc = NULL;
+ 	else
+ 		ddc = &aconnector->i2c->base;
  
-@@ -1554,6 +1612,10 @@ static enum bp_result get_embedded_panel_info_v1_3(
- 			(uint32_t) (ATOM_PANEL_MISC_V13_GREY_LEVEL &
- 				lvds->ucLCD_Misc) >> ATOM_PANEL_MISC_V13_GREY_LEVEL_SHIFT;
- 
-+	if (lvds->usExtInfoTableOffset)
-+		return get_embedded_panel_extra_info(bp, info,
-+			le16_to_cpu(lvds->usExtInfoTableOffset) + DATA_TABLES(LCD_Info));
-+
- 	return BP_RESULT_OK;
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h b/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
-index 38a77fa9b4afd..a0f03fb67605e 100644
---- a/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
-+++ b/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
-@@ -153,6 +153,10 @@ struct embedded_panel_info {
- 	uint32_t drr_enabled;
- 	uint32_t min_drr_refresh_rate;
- 	bool realtek_eDPToLVDS;
-+	uint16_t panel_width_mm;
-+	uint16_t panel_height_mm;
-+	uint16_t fake_edid_size;
-+	const uint8_t *fake_edid;
- };
- 
- struct dc_firmware_info {
+@@ -1065,6 +1107,8 @@ enum dc_edid_status dm_helpers_read_local_edid(
+ 		drm_edid = dm_helpers_read_acpi_edid(aconnector);
+ 		if (drm_edid)
+ 			drm_info(connector->dev, "Using ACPI provided EDID for %s\n", connector->name);
++		else if (!ddc)
++			drm_edid = dm_helpers_read_vbios_hardcoded_edid(link, aconnector);
+ 		else
+ 			drm_edid = drm_edid_read_ddc(connector, ddc);
+ 		drm_edid_connector_update(connector, drm_edid);
 -- 
 2.53.0
 
