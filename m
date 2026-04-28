@@ -2,77 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4ElhOPSF8GnhUQEAu9opvQ
+	id sKGcJQWK8GloUgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 12:03:32 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 12:20:53 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A961482241
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 12:03:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBD414827DF
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 12:20:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E00B310EAF2;
-	Tue, 28 Apr 2026 10:03:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39FC510E32D;
+	Tue, 28 Apr 2026 10:20:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W/Sy5Wnu";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="oCcPm1gH";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC45410EAF2;
- Tue, 28 Apr 2026 10:03:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777370610; x=1808906610;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=+ECWrTj6T9nXyizFcGHRHwRi9kfPiNkkeLvnXcmcBbs=;
- b=W/Sy5Wnu6tOgFKWuRYklDqVYUpQVsAsm7WdX6BzVg5a32d+W1RaKWJv+
- kkoOjz7UTjTd6vaQIXmzCVwNHJNko++Oxv8kztHkc5KnMFrB2r/zoG0mN
- BNuxaOnBnvoazPIHLuyhC3yzwRznEUjeG3dXSuC8Ucukt5pMHQJXq9nvv
- qBYOrj7MEYttWAFFt+XhjiD7HKDmvqF6tgTLP2oHTcfie09bdhaUs81Gf
- oAPUPM1PaJL/vgg5YiJqMZ5nUwn3pkB5SgxcfK/X+Usb5037EJ1t5FUS2
- 4sx6+MnWiYAV4BnQAuEFWx9INnOb3ar2XXELq58TudXpdYlEhUfaeYAkG g==;
-X-CSE-ConnectionGUID: 9OIo7rPLSeWTljMb2ELnUQ==
-X-CSE-MsgGUID: uxUHt90bRt+u8cFnjt3quw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="89364214"
-X-IronPort-AV: E=Sophos;i="6.23,203,1770624000"; d="scan'208";a="89364214"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 03:03:30 -0700
-X-CSE-ConnectionGUID: RbzKJ2OCQxukaTrtiIiKNg==
-X-CSE-MsgGUID: yJKBYizaSuqthFAadQ2HUg==
-X-ExtLoop1: 1
-Received: from vpanait-mobl.ger.corp.intel.com (HELO [10.245.244.230])
- ([10.245.244.230])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 03:03:24 -0700
-Message-ID: <be6168a0-38b2-41ac-94d8-cfc2b19dec2e@linux.intel.com>
-Date: Tue, 28 Apr 2026 12:03:23 +0200
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
+ [209.85.218.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DB5110E32D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 10:20:50 +0000 (UTC)
+Received: by mail-ej1-f45.google.com with SMTP id
+ a640c23a62f3a-b8f97c626aaso939991266b.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 03:20:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1777371649; x=1777976449; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=rEcSM6duMh0crQ17Olr83ZKHna1cjEFoGG+FAN8fjUg=;
+ b=oCcPm1gHfEZ3B0sJIaOkBwBizGqsBmL4qQZUYFuKXRu6+Sc8nlgzEDCZm9nrf9dIbV
+ VAXztzIKzs9lREF65qdxuhsgaoBYsTH5jSkUcGH83XtvqrjxS/zZ4X/xe+H9PL3M5cXr
+ VLR+OaHnwUhvof5w+pq5vhXdWmAPcFBWNb62vB6VRanROFzLlM1njeI/TV4MxixpvmF9
+ O+Wkx8D4Mx5vU4jbkMmpJJ5ZxLw1G1bLFXMHUtGuLiPLAa7QfKhn6hgEBxWO3TJ2NN/F
+ UOzvjo+11Xg6UgofnVXGoxNIs/ejFAZ5dSY/jr3N3V4/Y6RRVX8CKUeWClYJVlIWAW1y
+ +GHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777371649; x=1777976449;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=rEcSM6duMh0crQ17Olr83ZKHna1cjEFoGG+FAN8fjUg=;
+ b=TLJlCvTsNP9ERgU7U/AAy/qCIra/HndQkaW9G90/r26JvEDoYWlcah9rbV0KQbIA3L
+ Pxck5ru8Ro7g9ix0Dh3d3Ci0pZpnWGTDvdVv7Pkj9VvU6rtwLmAWP9dDTUIs/jKE0dr2
+ xrwIWot9/3NiT/7R3Ya+5me27mdf1IHpTXwTI6aDjfYq0fSsYuTWMxTYuh4enYJdvDGW
+ 7nV7I8xYjikCFo+5jpG7kh33G1Ok/bsr+M/PCfe5hsyHrkoK0hCPyWe4ahJh0KS0TB/V
+ lKsyc1s+ONdw6XJbBnopCFfY5CKm0/gV20Oidvp7i3gvbmuPbtRv+l9XUooG6JKiZ8Rf
+ XuSQ==
+X-Gm-Message-State: AOJu0Yxj6FKLIRrjW/XgokmFVhnwwS6z9kQr6oqyAlKHYPBeGF2W2jTM
+ 6BY6zdqGW9cOYytJGLX3mNhiC1bDVIaCgdO9O+pSDN3n0h3/uHR1sEScbJJzqw==
+X-Gm-Gg: AeBDies6QXCHpb0Lw/3alkKrKFNCTiMIhG03kTfJEPvFUW3tkK9QC/fd6iW6ETAWb2p
+ zcwAQI9Ye4l1lQyCK6SaGIbm0SV1FAN829dXCi0LE5fhnD1H819NIXZo2gxp8eU/EQHhS0zk3Cf
+ 46gyH5dar3uvaeDQ0chsTIW18ikFaG3hQN0IUdDeawt6wErAuQb001FjBUawOTXAvbo3WHH8mAX
+ kd3FNnBPzcQAKR2SDvsAH/qXDzL6lSEuPmRt8yR8YJHcxDNP22HJdVSDvzrASTiydHIPKKTT8gD
+ YT9Asje88CyaOOAL3uedMDOezW35xkXkGHw8CWpRBIxxi5cRPQVu2p2/hs1CvDOqVXPYYaqmD1g
+ 5l5GPI1rXbIN1gGlXF/cvYcdONtoMJx+jpvtn37L+s/XMjMJ4GRwd3kbSeLEUTb3CRzl4X08KhR
+ x1bxg+wI6Jjfrl+NknwEdAcGBNSGOMIUt4PHKKRN62HrxWFZvhVRL/5yF39lVSzwo5Abc4puIYn
+ 66SBT2HKGmp4GJ5lJsb
+X-Received: by 2002:a17:906:ef05:b0:bad:8491:85f3 with SMTP id
+ a640c23a62f3a-bb804c32754mr132989166b.34.1777371648287; 
+ Tue, 28 Apr 2026 03:20:48 -0700 (PDT)
+Received: from timur-hyperion.localnet (5401DFC2.dsl.pool.telekom.hu.
+ [84.1.223.194]) by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-679b6843509sm565723a12.18.2026.04.28.03.20.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 28 Apr 2026 03:20:47 -0700 (PDT)
+From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Subject: Re: [PATCH 1/2] drm/amdgpu/pm: add missing revision check for CI
+Date: Tue, 28 Apr 2026 12:20:46 +0200
+Message-ID: <3692901.dWV9SEqChM@timur-hyperion>
+In-Reply-To: <20260427173103.1020723-1-alexander.deucher@amd.com>
+References: <20260427173103.1020723-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] drm/xe: Wire up dmem cgroup reclaim for VRAM
- manager
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>, 
- Tejun Heo <tj@kernel.org>, =?UTF-8?Q?Michal_Koutn=C3=BD?=
- <mkoutny@suse.com>, cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
- David Airlie <airlied@gmail.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-References: <20260428073116.15687-1-thomas.hellstrom@linux.intel.com>
- <20260428073116.15687-4-thomas.hellstrom@linux.intel.com>
- <84473cbe-79ad-421e-8c8a-171e5784105f@linux.intel.com>
- <5d36326b1b9c009cd544fe5ca195ae484dbbc915.camel@linux.intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <5d36326b1b9c009cd544fe5ca195ae484dbbc915.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,109 +91,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 5A961482241
+X-Rspamd-Queue-Id: EBD414827DF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[maarten.lankhorst@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[gmx.de,cmpxchg.org,kernel.org,suse.com,vger.kernel.org,amd.com,intel.com,suse.de,ffwll.ch,gmail.com,lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,patchwork.freedesktop.org:url,intel.com:dkim,intel.com:email,linux.intel.com:mid]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
 
-Hey,
+Hi Alex,
 
-Den 2026-04-28 kl. 12:02, skrev Thomas Hellström:
-> On Tue, 2026-04-28 at 11:50 +0200, Maarten Lankhorst wrote:
->>
->>
->> Den 2026-04-28 kl. 09:31, skrev Thomas Hellström:
->>> Register the VRAM manager with the dmem cgroup reclaim
->>> infrastructure
->>> so that lowering dmem.max below current VRAM usage triggers TTM
->>> eviction rather than failing with -EBUSY.
->>>
->>> Assisted-by: GitHub Copilot:claude-sonnet-4.6
->>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> ---
->>>  drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 19 ++++++++++++-------
->>>  1 file changed, 12 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
->>> b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
->>> index 5fd0d5506a7e..1bdcb3fee901 100644
->>> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
->>> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
->>> @@ -303,13 +303,6 @@ int __xe_ttm_vram_mgr_init(struct xe_device
->>> *xe, struct xe_ttm_vram_mgr *mgr,
->>>  	struct ttm_resource_manager *man = &mgr->manager;
->>>  	int err;
->>>  
->>> -	if (mem_type != XE_PL_STOLEN) {
->>> -		const char *name = mem_type == XE_PL_VRAM0 ?
->>> "vram0" : "vram1";
->>> -		man->cg = drmm_cgroup_register_region(&xe->drm,
->>> name, size);
->>> -		if (IS_ERR(man->cg))
->>> -			return PTR_ERR(man->cg);
->>> -	}
->>> -
->>>  	man->func = &xe_ttm_vram_mgr_func;
->>>  	mgr->mem_type = mem_type;
->>>  	mutex_init(&mgr->lock);
->>> @@ -318,6 +311,18 @@ int __xe_ttm_vram_mgr_init(struct xe_device
->>> *xe, struct xe_ttm_vram_mgr *mgr,
->>>  	mgr->visible_avail = io_size;
->>>  
->>>  	ttm_resource_manager_init(man, &xe->ttm, size);
->>> +
->>> +	if (mem_type != XE_PL_STOLEN) {
->>> +		const char *name = mem_type == XE_PL_VRAM0 ?
->>> "vram0" : "vram1";
->>> +		struct dmem_cgroup_region *cg =
->>> +			drmm_cgroup_register_region(&xe->drm,
->>> name, size);
->>> +
->>> +		if (IS_ERR(cg))
->>> +			return PTR_ERR(cg);
->>> +
->>> +		ttm_resource_manager_set_dmem_region(man, cg);
->>> +	}
->>> +
->>>  	err = gpu_buddy_init(&mgr->mm, man->size,
->>> default_page_size);
->>>  	if (err)
->>>  		return err;
->>
->> This patch will conflict with 
->> https://patchwork.freedesktop.org/series/164694/ which removes
->> stolen support, can we merge that patch first while we wait for AMD
->> acks?
-> 
-> Sure, np.
-> 
->>
->> Do I need an ack to get the series through drm-misc?
-> 
-> Which series? The stolen support or this cgroup series?
-This one, I think it might be easiest to just merge stolen through xe,
-and then backmerge into drm-misc.
+On Monday, April 27, 2026 7:31:02=E2=80=AFPM Central European Summer Time A=
+lex Deucher=20
+wrote:
+> The ci_populate_all_memory_levels() workaround only
+> applies to revision 0 SKUs.
+
+This makes good sense. Looking at issue 1816, seems that the affected GPU i=
+s=20
+revision 80, and looking at my Hawaii card, it seems to be also 80:
+
+01:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/
+ATI] Hawaii XT / Grenada XT [Radeon R9 290X/390X] [1002:67b0] (rev 80) (pro=
+g-
+if 00 [VGA controller])
+
+Can you please add a few tags for additional context?
+Link: https://gitlab.freedesktop.org/drm/amd/-/work_items/1816
+=46ixes: 9f4b35411cfe ("drm/amd/powerplay: add CI asics support to smumgr (=
+v3)")
+
+>=20
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c
+> b/drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c index
+> 69d8b05ef2457..6e89a032e3dcf 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c
+> @@ -1333,8 +1333,9 @@ static int ci_populate_all_memory_levels(struct
+> pp_hwmgr *hwmgr)
+>=20
+>  	dev_id =3D adev->pdev->device;
+>=20
+> -	if ((dpm_table->mclk_table.count >=3D 2)
+> -		&& ((dev_id =3D=3D 0x67B0) ||  (dev_id =3D=3D 0x67B1))) {
+> +	if ((dpm_table->mclk_table.count >=3D 2) &&
+> +	    ((dev_id =3D=3D 0x67B0) ||  (dev_id =3D=3D 0x67B1)) &&
+> +	    (adev->pdev->revision =3D=3D 0)) {
+>  		smu_data->smc_state_table.MemoryLevel[1].MinVddci =3D
+>  				smu_data-
+>smc_state_table.MemoryLevel[0].MinVddci;
+>  		smu_data->smc_state_table.MemoryLevel[1].MinMvdd =3D
+
+It looks like amdgpu and radeon behave differently here: radeon overwrites =
+the=20
+MinVddc and MinVddcPhases vs. amdgpu overwrites MinVddci and MinMvdd.
+
+Without knowing more details of what the workaround was trying to achieve,=
+=20
+it's hard to judge whether radeon or amdgpu was correct, but it would be ni=
+ce=20
+to make them consistent. If radeon was correct, could you adjust the amdgpu=
+=20
+code here to do the same? (Or vice versa if amdgpu was correct.)
+
+With that, the series is:
+Reviewed-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
+
+Thanks & best regards,
+Timur
+
+
+
