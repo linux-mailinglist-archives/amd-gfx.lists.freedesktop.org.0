@@ -2,130 +2,205 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kJk9JX1/8GlSUAEAu9opvQ
+	id 0IfGExKu8GnrXAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 11:35:57 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:42 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 001BC4818A1
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 11:35:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66C2A4853AF
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81F7A10E2A3;
-	Tue, 28 Apr 2026 09:35:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8199110EBFC;
+	Tue, 28 Apr 2026 12:54:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="yf7e/L8x";
+	dkim=pass (1024-bit key; unprotected) header.d=citrix.com header.i=@citrix.com header.b="yjaJCj7S";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010004.outbound.protection.outlook.com [52.101.56.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79E0010E2A3
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 09:35:53 +0000 (UTC)
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010051.outbound.protection.outlook.com
+ [52.101.193.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05F5910E2FE;
+ Tue, 28 Apr 2026 09:36:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LDQq+gD8WdtNfmLG2UDohNajwhw0cU3ORNIkspagVfkqRtTSWWA+txb65Etgz7uzHxTEv0CiKYknwIWcrI6wcjSglgaB2k3dBc5ofPBlvtdjUYMTCecHxTyq3HWQsr9+7pKyEce2AnXeS7J8OhvHIfM/SMzfJ/W18BZUF50NVnA4+S8MjX+hFVP1N2HLFMc8EqDUXHxGrgTcrfZhzac+/hV0jnao5LTaUNevjsq+rdgY/JdbCXwzcQMCUwDOdalY35bmr+TXgNevYnaX4p2BLi9azx2kxM2O/gvmnMGx2Kvp9vXOcs7qMzqbMXBYEu7NKyoDT1A5pEXjApwUH77pmw==
+ b=ccKCcxHVgqechrGsirY7Hast0tX64WTHNBglbWndvpdSe9VcH9SIFMGkWSRfviVDwFKWm52p0Gg3ZbZFMR8p7xxKqriwmdgnKu79W9VhzOxXa6MymGP2VD8yOYzjgQ6WSTba8ICzTpBcoboYJo/Nx9OKTB8AZLRThl4u2PSmh+FS7d7O7S6mIQlm/5ai5FY6rP+LQwAgAl7vLfveOY1RPpi+hTXq0TuxwaY+17BKuUmD6kQtyYDbQbplsVWn46Mqnwxn4ySEzOU6MxbW6A8D/GC/zLeBarFNuMZ+fptAGpFpIg2FSC1lPqUDLs1kKn2RnvJvb7WzhNiNgFHxg3od+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1LZQ0SltZRggNGRezJRnoCJhBlnmDi+IgxpSdvdPxgE=;
- b=YvIDuqK6ufzScSaRWrUlvPDL4rwFG0lLQIhI5RnwknqW1rrhr2vq2vPV2KCfstilafGbDd2kKsKRuj+m+xrsXRgdnkUARRPOqi5hEgEIV3MSCFx2e5NX3FS1UMh4OMimaWgmxAdKzr8uSP7J/d7NnZaq1kMH9JEx3ggEJypIkDaSRJzmvffdtTmDn/S+FlnVov4YZn+oFxJCEEfSuoBghmveSSY18ivURnFjWYI5xBYG+Cp60GH1miZNecqy7VavUt6DahqvHMO3ca0JwmyAlf8naT2Hfua/TVSgJ9c/dA8ypbLMCyWPhAWQVpa2fqt9AbndO5nCpdMfvLHttvuFIQ==
+ bh=mpdOSyAx9rtZPwk8svxWZWLLaqX5YpnW5mDeAwGhp70=;
+ b=K5DTrABlW49NIkaVt7N0ZYSeIwCDGz95EDNGXbBTiChwAeLow8UU8g+ASwGiDhriB9+juNZ2XFhNNi973guRffj2wGcMeULdKxcmueJevcf2+0ghUtWBeYTVZZfydmMf5B/4yxi73MyAW1iCnI5Sq1JtDYJKPr04neaTQmsWJ0+X22qf5yM1OdCdOR6GRO0/z+1K6oFtrCYv2pUgen/J0sS7JgGNvkpHkXumiUXRbs1le1YmjJbTsJB+/SgjTvkeGB3Bw0kD8ayrIYzmvYcnqzVrZv2xkBTmLIswdPmEIdYMM4jHsJW/46hAA6XVTKP5NzYEOcbmGEIxLT3NW/ZXVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ smtp.mailfrom=citrix.com; dmarc=pass action=none header.from=citrix.com;
+ dkim=pass header.d=citrix.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=citrix.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1LZQ0SltZRggNGRezJRnoCJhBlnmDi+IgxpSdvdPxgE=;
- b=yf7e/L8x+6d+hqaRQQjGKKF5P0R+ZWdjD0X78iiS3QXmBiCk5b3efR8lmYr22FvC5WmSCDdOClwTAL86OjlgaIqib+0bpCgFyibs4E0BGoPUtfhmmlp7UkaRxeNbBaeW4R0MBj0mDHcw+5KwHvoQdtvIz6Va15nqVo6HruPyuFo=
+ bh=mpdOSyAx9rtZPwk8svxWZWLLaqX5YpnW5mDeAwGhp70=;
+ b=yjaJCj7S2UVmodB9FLz9FDsi53mVdV80mRkxXiiiIOGoqv3nCUQjFEVJs6h/cyJkE2BD1cgl4gPaC3neNJmde/SwYoZkRlSXSHMRBHqcrsGyZ7kxzP6WQp+7qiiFig8lUcobWLHEmP5+BiwKFg2JHVRXp8ygAPT18ELiHjBE7Co=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5753.namprd12.prod.outlook.com (2603:10b6:208:390::15)
- by CY5PR12MB6647.namprd12.prod.outlook.com (2603:10b6:930:40::11)
+ header.d=none;dmarc=none action=none header.from=citrix.com;
+Received: from CH8PR03MB8275.namprd03.prod.outlook.com (2603:10b6:610:2b9::7)
+ by BL1PR03MB6102.namprd03.prod.outlook.com (2603:10b6:208:31c::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.17; Tue, 28 Apr
- 2026 09:35:50 +0000
-Received: from BL1PR12MB5753.namprd12.prod.outlook.com
- ([fe80::81e6:908a:a59b:87e2]) by BL1PR12MB5753.namprd12.prod.outlook.com
- ([fe80::81e6:908a:a59b:87e2%6]) with mapi id 15.20.9870.013; Tue, 28 Apr 2026
- 09:35:49 +0000
-Message-ID: <5e0a9edc-2225-4e02-a587-3f64d2b67e0a@amd.com>
-Date: Tue, 28 Apr 2026 15:05:42 +0530
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.26; Tue, 28 Apr
+ 2026 09:36:18 +0000
+Received: from CH8PR03MB8275.namprd03.prod.outlook.com
+ ([fe80::a70d:dc32:bba8:ce37]) by CH8PR03MB8275.namprd03.prod.outlook.com
+ ([fe80::a70d:dc32:bba8:ce37%6]) with mapi id 15.20.9846.025; Tue, 28 Apr 2026
+ 09:36:18 +0000
+Message-ID: <82e4eb62-4226-40b6-a1ef-4711f29a5e4f@citrix.com>
+Date: Tue, 28 Apr 2026 10:36:09 +0100
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/8] drm/amdgpu: rework amdgpu_userq_signal_ioctl v2
-To: christian.koenig@amd.com, alexander.deucher@amd.com, Prike.Liang@amd.com, 
- jesse.zhang@amd.com
-Cc: amd-gfx@lists.freedesktop.org
-References: <20260427182723.1715-1-christian.koenig@amd.com>
- <20260427182723.1715-3-christian.koenig@amd.com>
-Content-Language: en-US
-From: "Khatri, Sunil" <sukhatri@amd.com>
-In-Reply-To: <20260427182723.1715-3-christian.koenig@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Cc: Andrew Cooper <andrew.cooper3@citrix.com>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ David Laight <david.laight.linux@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-alpha@vger.kernel.org,
+ Yury Norov <yury.norov@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-snps-arc@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ kvm@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-s390@vger.kernel.org, sparclinux@vger.kernel.org,
+ linux-um@lists.infradead.org, dmaengine@vger.kernel.org,
+ linux-efi@vger.kernel.org, linux-fsi@lists.ozlabs.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-wpan@vger.kernel.org,
+ netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-staging@lists.linux.dev, linux-serial@vger.kernel.org,
+ linux-usb@vger.kernel.org, xen-devel@lists.xenproject.org,
+ linux-fsdevel@vger.kernel.org, ocfs2-devel@lists.linux.dev,
+ bpf@vger.kernel.org, kasan-dev@googlegroups.com, linux-mm@kvack.org,
+ linux-x25@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ linux-sound@vger.kernel.org, sound-open-firmware@alsa-project.org,
+ linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org,
+ loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org,
+ linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
+ linux-sh@vger.kernel.org, linux-arch@vger.kernel.org
+Subject: Re: [RFC PATCH v1 2/9] uaccess: Convert INLINE_COPY_{TO/FROM}_USER to
+ kconfig and reduce ifdefery
+To: Yury Norov <ynorov@nvidia.com>
+References: <cover.1777306795.git.chleroy@kernel.org>
+ <9fe875d2f55af59c12708336c571a46038528678.1777306795.git.chleroy@kernel.org>
+ <ae-tVFVfx72oCC_i@yury> <f54c3c2b-33da-42a0-80b7-0f6615d930ce@citrix.com>
+ <ae_LeSk7XDEseaZb@yury>
+Content-Language: en-GB
+From: Andrew Cooper <andrew.cooper3@citrix.com>
+Autocrypt: addr=andrew.cooper3@citrix.com; keydata=
+ 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
+ 6+ahAA==
+In-Reply-To: <ae_LeSk7XDEseaZb@yury>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0162.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1ba::17) To BL1PR12MB5753.namprd12.prod.outlook.com
- (2603:10b6:208:390::15)
+X-ClientProxiedBy: PR3P191CA0014.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:102:54::19) To CH8PR03MB8275.namprd03.prod.outlook.com
+ (2603:10b6:610:2b9::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5753:EE_|CY5PR12MB6647:EE_
-X-MS-Office365-Filtering-Correlation-Id: 841f0284-a281-47f8-5fcc-08dea509884c
+X-MS-TrafficTypeDiagnostic: CH8PR03MB8275:EE_|BL1PR03MB6102:EE_
+X-MS-Office365-Filtering-Correlation-Id: 27671459-4f10-4786-8cff-08dea50999ba
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|56012099003|18002099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: MhZsndwOtFNFIebg9/0/Cfniu3tAWmzj9+lOlZ3qTxT9UVQNfQ6CB28u6Qr60yerxNZL9nDVQvKSqO+OtKWAJFQNuAFntWRU6ZLr9gH/JObolY/15+dMurVQAUEMl3ofZ/3+Dv5/689vZjLKhOwLMe+554CmghRMn+fMnNVpW0WN+Lrrd7/amn2Y2wMciJ4afBU+rf2GR3nA8RluB0gcZ5cWVdY3m9KG4/a50FH9C02N+0WkFKWRrd2ZVlg/2WP3NKawZll4ReiG0qtJBWQfNUXTltfjIWwdoNfFN2Ruf2U6ZZ93N20OiY489LqW6GSV5RxlSvmbTwsiMfIEBuS88xVJ9xINu0zXpyxcnisZvJF09rseovCB5j/kbuE1P4sG54dR6RnuEMozbJYr0zLFyZDNqSoc13PFdLBiwdSt2+cXLNNQpsGTeifw0nEyQZVLDGzwJRGgpNRZB4PCtlzcyYCmOzV5XLOJ4t8v14wCyPNQvCoJK0C3l4QOxggnIr61c+UmBQTHgvD5GALGmuvEOii/OpYrikbkJ44a7JMzdkn2hBPP25x0Q/WDlzGV/ufCpsJIAuTkQ0m+zkjGeiMcPeDAJq0D15UWjNWogh+QZzbgwhaCp4yvRg0NwAgK5QlacHED9TCsU9oROwR5Y8PveSoUg0Syu/OMq59MSUXt2+znl/ejIm1pGWW6s/TYPyRWP6Ilz1TBraUZYa8alj0pY0eCjWYRXHVpvMHJfgqRLew=
+ ARA:13230040|1800799024|366016|376014|7416014|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: Fr2SaARcp/30JjWhQQJ55I1GRZonpmNdylsCWtvAP0iLi3fW8ZUvuFhK0s4B36VBurCZDpfzVPFq6rLx3X1PD1Kz35WTE6S81hlCopCD8pxNfXzddX4/u4dtAvIVV3+dse65UYV54WEPb9m40Wjjn3bHzaqhi5kXQt+QCerhqJvdqH//K3YBfJ3eHu4T502cM87h+5Wk64juS3ow0KcjEOrJiWG8zZtCB1zX/Zx9W+k31hKZWyU5JugE5BecKPv83c14/YMl0NlQo6wFBRUmoTmKu5q+BJ0edgjyC7MNoiJOa062R5+vQdJQm7n67DG6OFhXCui25vN24b+JEFjbMJ8I5gDyS6Pqlh1zGk+tSpPIX5sSTy93SH1THmcafkZxA/zcOtIfBXA5D4BtEZi3z7jrFmLebbEjRBeAZ4mXjOUsa0tdIA0f6ylDW3/kKbCBc2+3QCsGH2auk9QrEoz8Qehl/c2IdC5Jrp1FHy5sbgm1kO91QggdcLgX+7RDBQ1w2WivvacJ5+GA7VwN3eqYcQCchnubiGLOAKifSYUE5mgJ1MtvIP4mVz9MycwuTW1le7C0ze96+eweGDr2GRC7b4Y6Nu/5PUig49u28f0pS10LV8wLIvDRRy/8GhGTlJzQnCP9mRhy1qcYhsiyrYLbGoinMTZRP35bST2/CDKe5vbaqXTn1sWv/Q5t0sltDyceEL5w6qfuHh/xS4aeDEwNDl9teKE1dnyByfr3exuVxtk=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5753.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(56012099003)(18002099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:CH8PR03MB8275.namprd03.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(7416014)(18002099003)(22082099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OTl1ZTJTOW9DSTRUUVJ0WDBMRGVjTEVFTEtrQjZPN3RzYW4xSGtubXg0Vlc5?=
- =?utf-8?B?ZVVxc0FkelN2RGp6MytTQ1NucWptbHltOFdHQXdET1JpbGVtbEVBTjRuVTE0?=
- =?utf-8?B?UmM1LzRKTXp4VExJRDhDUWVHMFcrK0dwTTBDRktBOTFCNHZHd0pTNFEzeWk1?=
- =?utf-8?B?QVlXWDcxVjNPbklBVjFjOEpqYXJBd3lKVDN6N0FDUXdpeHQwaUxvQnBNKzB3?=
- =?utf-8?B?akt3bVlhM3NFR1ZDeSt1L3RZZS93RXdGZkpvSjN0YUdzRDVPY09CZE9UeFNz?=
- =?utf-8?B?UUJtRXhHdXU2SmpUL1B6OEhMSysrOGVTMDJOSEpRcWNBaEh2N2trdXRUN1V6?=
- =?utf-8?B?SUwzRmxGY2JqRzRiaUJNZ2YyNXVQaHhZbnBod2NIM3V2WTB5MnRiYWRyUFBO?=
- =?utf-8?B?UGpROENQaHlNbDA2SVZUY2lYUHhPVHg0N3ZCci9FSFZMTU5lRDBTYnQweTdr?=
- =?utf-8?B?UjVZVDQrbysrTWgxZ3JIRmdrV1NqNDZLN3hHNk03bnpmNWVFbVJQOUs0dkhI?=
- =?utf-8?B?SzNQS2FIUVQ3WTlhOHNiMXB6SlJWKzd1MHArdDV0bGxWOHozaGFxakYzWGVS?=
- =?utf-8?B?aldqN0Q5RndRTGVPdW5sVjlKOGs4OFU2SUtJMTkyL0E1OFIwU29reGZ0bDlx?=
- =?utf-8?B?RFpVL0RBSUd5dlJQZjZ5QVFXSDdUMnhmOHV6R1FvMlJ3MlN0S2JzRmxiWTlj?=
- =?utf-8?B?a0JQaFpZSnlhUWdtT0lzYndPMVVsNmw1M2lhVjhPeDU4L2Q1bVBDM3liRmFF?=
- =?utf-8?B?VStSZDBCRWVSVG90blFwaW5WL0kxcDdaV1NlODdDTjhSbGptRnAzRGZVVEUw?=
- =?utf-8?B?WDg2MGVyNElZSi9VNVREVnExWkxpcXpVVC9KOVNRUXVOTjFIeG1DVnF2QlNK?=
- =?utf-8?B?WTkvQlB6MERGN2ZYMjZBWXFyL1hCSDVLYytKQ0dDUW1YcFBWL2pOVjVYU3M1?=
- =?utf-8?B?TmtSZ1EyT05ub3lDa1RUdnlpTkR6bytYTTlxVzdjKzhNWE4rSmNpVnFPdGwy?=
- =?utf-8?B?cjcyMFY1Tk9pMmkwZFNMc0tJL3hvTGgxeFA0U2RHMjZuczQ3bmVobitTNWcv?=
- =?utf-8?B?Z01aZmdDOVlsYSt5TFc2T1V1QWFHYklKMUdpSWd0eWlZZFY5MHZhODEyblNZ?=
- =?utf-8?B?NEVxZU8zVjhrOXhjSEozSUhVQnB4dDhyOStCY0c1M0h3c3dQUnpKbDg0OXFW?=
- =?utf-8?B?a0g4eGJUc2xlSHZGWnJkci9xdEVBK0dlU3lsZVBUYTZDSDJIVFRUdnZLREhm?=
- =?utf-8?B?SkFTcjNXb1A3MjBXcHZmTFVPekZUUkoySnNkbzlOdUpSTnNTalh5Smg2TkQz?=
- =?utf-8?B?czZMNkRZemdYUGhscmJxZ2tkZEI5TFpRSXZqNTFSNFhxcWlZbFFOaHRCRHBU?=
- =?utf-8?B?MmtDcWJaMHBJNWdSZ0JITTk0ZWhtUU9JZ2hYeTV2am5xZ1YyeS9Hbk9iVEd4?=
- =?utf-8?B?Sy9haG53L1RhMkx4OGp4UExvMVRNZ3JtaC9sNUxNZW51UlVMcE4zaGlRcVBY?=
- =?utf-8?B?TlorSEtGSWg5Vm83a3V3ZHlaSDNsTlZvNWZuOVZwaFVLdnF1a0VyRVpzZTNS?=
- =?utf-8?B?Z01xakpidWIvd1F4UXl1UkFhciswcEgrSEFMMXc0T0lwcXlqK01vSjExVlZz?=
- =?utf-8?B?WVhGYUZ5ZVJpYytMQVRCNDhFNUtiVkpWRzdkZEFYNzJuaTJWM0VTanNFRFRK?=
- =?utf-8?B?QWVuQURLQUdXU2dSOC92Uk0wY2tLOEh3YXY4VHp0ODhJMG04Q1prNS8zWVpL?=
- =?utf-8?B?ZUpPYWt3U3FBM3Z3elU1eFhLaldHYzN3Y2MrVFpJcGJIWGJxL1JzVjh2ZVYv?=
- =?utf-8?B?aVJYSXNuemloY2JWbjQzWXdSbjRtNVQrcGRUM3kxUmpLUzFVN01jV0hrL0Ew?=
- =?utf-8?B?OTgzb2VBOXFEeTdPMENad3lwblAveTU0eDNxOVV5dGhteU9rUkdpNnY5Tzlt?=
- =?utf-8?B?eHhhdTRxNHRISTRMME1JYUR6UDZMMkFtL1hJWjdhak40emgxTnkzSndOSCtL?=
- =?utf-8?B?VGF6TUdaQklpQVgzVWdRQUV0ekZNSi9pSHlja0dtWWlIMm4rdHhDV3JvWUhB?=
- =?utf-8?B?QnpHYVBjdUZWWGpjQmNJSGJqcnNrOENMT2xNRmJFYlkvZjlwck4veG9HK1ZU?=
- =?utf-8?B?WE11djRCNkNLdGRtTmhWRWNUMW1OVGVGVUJPQUFXeWcyQWZWdTR0YmdUcE0x?=
- =?utf-8?B?NVFWbEQxZnBZeGFPb0RaV2d4YmVYaWc1M3ZQSzZuRGczQ3dBdUF6OXZZVVBK?=
- =?utf-8?B?aWxuVUtwMndoalZsNWZFQVQwNFd3ZnJPRlZjY2Jaa3d1dVkvOFlicTlGSEls?=
- =?utf-8?B?NGVTQmhYN0M4MzRKZXJmS1ZCVXB6M2M1RXFhR0t4M3Y4WmwzQnJkdz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 841f0284-a281-47f8-5fcc-08dea509884c
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5753.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cXlrSzBLUUNTNVZEWWtHUFh0VWlZYVFER3Ara1hZNkJxcytqVGExRGJseE82?=
+ =?utf-8?B?SEdqNitGYmc4eWJsa0daVmNxTm1WUy9xTzNQOFgxMHNDZ0pDWmI2ZkN3eHZJ?=
+ =?utf-8?B?N2M5WXZCMDQwNFNFNDR3WFhSTWJwRHM3WEJjVERGSmJyVFNhV0NHbDY3MUw3?=
+ =?utf-8?B?QkZ6bXFoK1hTZTRCeXVMT2lYbXEydmZERmxLdkIydXBBNTBuWC9RNkdFVjE1?=
+ =?utf-8?B?K2dyZ0tnQXZsemcyMjk3UE5jNXV4alA0WG0wVzMzd3pzRHUrMVlOdSszNXpK?=
+ =?utf-8?B?OWpVTmxHdDRZT1JZNzlabTZUY1JhL1hpVDlNZS9OU3p1K0lPeW1VVVoxSWFI?=
+ =?utf-8?B?dWlVZXN2MWFTWi9lZ2VsbTVhU29OanU0cHV2L3JNNUxoalZ2NWMyaXFnVmpS?=
+ =?utf-8?B?R3NvSVBwY3pPeEZmSTh6MndjQzBDZTFSaDdnd2djTjdqeDF3SlpIVE42blBP?=
+ =?utf-8?B?M2sySFFhdElhQ3EySUZHdFNjaU1YbHRhYXNGbmNSWDlGTGpwSUoydkU4S2R5?=
+ =?utf-8?B?L0NiMDB2Y0dtQ1BPUCtNTElxeklWUlNna3dybHRwWUVtajA5ejhPbGJOQng5?=
+ =?utf-8?B?cHA5ai95K2xBNjlOeUFXdmpieWFWQWttQ01TTGhnRmJmTDVlL0diU1lZK2lm?=
+ =?utf-8?B?anlNY1o5SUxPaXdsZGk4RnVyem95Ry9NdWdKT083YnBERHIvQUZETVc2NE9V?=
+ =?utf-8?B?bVZYQ085U29MZUpBb1AyMDVuejlBWFRzSTl2NVZlWkE2OCtwUGRXc01HOSt3?=
+ =?utf-8?B?NXJyUXZmcEtvRTdUSEZRaXRiRVducUthVmZ1cSs5WUlwVGpMaUF6TjNoc2dL?=
+ =?utf-8?B?ck9iQ3VmVXowU09vc1JUMHNieEVUTW1lWFdSeG9QbGZEMDJTaXR1MWRqazhi?=
+ =?utf-8?B?d0l2V3dzQzBIV0F6bzg0a250TmttZTZFYkZXZmwxTlFrVEpMUnBNaENqVUpj?=
+ =?utf-8?B?VkplZXpWWjR3QThKTDZSaTBvbS9UOCtwYm8zQnlTbVVhbWczMExGdTJWQ1ph?=
+ =?utf-8?B?UkhjUEF6djRZYUNDQitzMHM5YkNEaG5OT3htMEl6NWlWU0dYZHNTdm5FYTk5?=
+ =?utf-8?B?RDA3Nm9nVW9IeUFTeHJtMTcwUmxFMlhYbmc5V1FwSlZGZmcxK0h5OUwxWXI0?=
+ =?utf-8?B?Qk9GbG1EcG85cWhkSUE0aW1IQk5sa0Q3MzZFdGx1UzU2eFhaaThkL3F3eGZu?=
+ =?utf-8?B?a0grdGtEckJiLzdBMnV0NUcxLy9BN3V4V0lETi9tYSthUk5NUjduclNDRG9r?=
+ =?utf-8?B?ZmFYR1FIOWRNVUVIV1E2dlVONGZVQ0ZBQ2I5MVFvMGlZUDRLTU5rVVc2dzVn?=
+ =?utf-8?B?ZmtDREdLYXJDL3JjTnZ2VTkvQlJCZE4rV3VXazBFUlFPQmx4Y3VYb0Z1T01S?=
+ =?utf-8?B?VE90SUcwc0RjWXBLcU9lM3MxYWowa25VakxFd1lOMnBSUGltc0JjTWM1aDJP?=
+ =?utf-8?B?Y29pQ1dhSTgwZTlPZkhEYXJHdFZLRkszWjBSa1lUK2xhZjBFc1JSMXYwcFVK?=
+ =?utf-8?B?M0tKWUZ1ZGUrcEdncXpRazd6UFpib09hb3JIQmVjbEJVSDAvNXgxREI1akxZ?=
+ =?utf-8?B?cXFMOGN3TkZjd2RiNkZvMGc2endCM0JwWEJ0T0czZUFBVHorTDhIcGFpVkpX?=
+ =?utf-8?B?UHhLd1doQTlwSEl2TGlGd1B1T3YzMkhTUkdLU1pZMkNIVHNiYjJSbjBOTnVa?=
+ =?utf-8?B?U3VlU0lWMW90QUJ3K3ZLNTJ6UHF4WmpjWVR3T0xMWWtSUVZlaVdNakRmQ2FK?=
+ =?utf-8?B?dlBGQ0h6anRZMGNJSER4UFNjWGFaZnhFbDBrSjNaaEd0RVJhRDNyWjZSNHJK?=
+ =?utf-8?B?SXl4Y2hURkhEd3Z5NnN1Zi9TT2tsMlN1T283dVoxUUxYN3JqOVBWWTVsOUhp?=
+ =?utf-8?B?c2JNWEtUa3N3bnlTWVdqODk2Z0huV3VYdG9PM2tCV2tuYysyeWY5L1JHYXBJ?=
+ =?utf-8?B?Yy9oV1NLMk5Yc1ZER0RNVWxLOWZINEhCV3JmWkxITTlTcEpEQk5Lazk5S2Fm?=
+ =?utf-8?B?YU9qN0IzODUreWtZL25RbTdZbEhCMzB2ZzRhejVxTkN5UCtNMUZhNXpZUHJv?=
+ =?utf-8?B?c2ZzaHk5c0c2WDdCV0c2ZklENVd1QXJSZERWNGd0MWZGOXVlRFBIbjBCYUVp?=
+ =?utf-8?B?c1g5QnRIenRtUExSQ21QRnNQZjZHVDI3NWl4dDZCRHVrRnlsZm5MeUg5Lzhj?=
+ =?utf-8?B?WmJrSDdFUmxOYlQrZ1NGRXFDQ1lvSjl3eFpjZ3Nzc21PeVUvK0dCMHVUcDlV?=
+ =?utf-8?B?OC9zMjY2TUNrcXhhMGpOVUtBWmdFSXNLWEgyR2s1VEE1djEwRE5PRkFnYUVQ?=
+ =?utf-8?B?Yi9Vb29kSWlZMWZ6NVNXU2lLSHh3cUhhVFR4NXU4eGtGZEpGbVpYelYwNFJ5?=
+ =?utf-8?Q?ffVmgnSYCsz39lbY=3D?=
+X-OriginatorOrg: citrix.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27671459-4f10-4786-8cff-08dea50999ba
+X-MS-Exchange-CrossTenant-AuthSource: CH8PR03MB8275.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 09:35:49.7841 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 09:36:18.6733 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 335836de-42ef-43a2-b145-348c2ee9ca5b
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9vDM4fdH170YcPpTj75fV/iLMcZhSArJJyw/jIZOwyaKYyGuUw7RvQAFsS98TIU/UoPzbLxBFt2uPe/NpJeDsA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6647
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8FETUR2bT/yBq230FXCqFNsiU0Ggu57p4Jp697qQVSZUPucNrAQZOGv7iEP1mcxKrRIFdBtpW+GgV17hrhOPkaPlgmSk7r3wIBztNDkjsJk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR03MB6102
+X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,472 +214,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 001BC4818A1
+X-Rspamd-Queue-Id: 66C2A4853AF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
+X-Spamd-Result: default: False [-0.71 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	DMARC_POLICY_ALLOW(-0.50)[citrix.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+	R_DKIM_ALLOW(-0.20)[citrix.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[sukhatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:Prike.Liang@amd.com,m:jesse.zhang@amd.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[5];
-	TO_DN_NONE(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sukhatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[citrix.com,kernel.org,linux-foundation.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org,lists.linux-m68k.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[andrew.cooper3@citrix.com,amd-gfx-bounces@lists.freedesktop.org];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_GT_50(0.00)[51];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[citrix.com:+];
+	NEURAL_HAM(-0.00)[-0.997];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid]
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,citrix.com:dkim,citrix.com:mid]
 
+On 27/04/2026 9:47 pm, Yury Norov wrote:
+> On Mon, Apr 27, 2026 at 09:39:33PM +0100, Andrew Cooper wrote:
+>> On 27/04/2026 7:39 pm, Yury Norov wrote:
+>>> On Mon, Apr 27, 2026 at 07:13:43PM +0200, Christophe Leroy (CS GROUP) wrote:
+>>>> Among the 21 architectures supported by the kernel, 16 define both
+>>>> INLINE_COPY_TO_USER and INLINE_COPY_FROM_USER while the 5 other ones
+>>>> don't define any of the two.
+>>>>
+>>>> To simplify and reduce risk of mistakes, convert them to a single
+>>>> kconfig item named CONFIG_ARCH_WANTS_NOINLINE_COPY which will be
+>>> We've got a special word for it: outline. Can you name it
+>>> CONFIG_OUTLINE_USERCOPY, or similar?
+>> You can't swap the "in" for "out" like this.  "out of line" is the
+>> opposite of "inline" in this context, while "outline" means something
+>> different and unrelated.
+> Check KASAN_OUTLINE vs KASAN_INLINE for example
 
-On 27-04-2026 11:57 pm, Christian König wrote:
-> This one was fortunately not looking so bad as the wait ioctl path, but
-> there were still a few things which could be fixed/improved:
->
-> 1. Allocating with GFP_ATOMIC was quite unecessary, we can do that
->     before taking the userq_lock.
-> 2. Use a new mutex as protection for the fence_drv_xa so that we can do
->     memory allocations while holding it.
-> 3. Starting the reset timer is unecessary when the fence is already
->     signaled when we create it.
-> 4. Cleanup error handling, avoid trying to free the queue when we don't
->     even got one.
->
-> v2: fix incorrect usage of xa_find, destroy the new mutex on error
->
-> Signed-off-by: Christian König <christian.koenig@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c     |   2 +
->   drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h     |  12 +
->   .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 227 ++++++++----------
->   3 files changed, 119 insertions(+), 122 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> index a34b1df513d3..62d155d6e4ed 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> @@ -806,6 +806,7 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
->   	}
->   
->   	queue->doorbell_index = index;
-> +	mutex_init(&queue->fence_drv_lock);
->   	xa_init_flags(&queue->fence_drv_xa, XA_FLAGS_ALLOC);
->   	r = amdgpu_userq_fence_driver_alloc(adev, &queue->fence_drv);
->   	if (r) {
-> @@ -879,6 +880,7 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
->   	amdgpu_bo_reserve(fpriv->vm.root.bo, true);
->   	amdgpu_userq_buffer_vas_list_cleanup(adev, queue);
->   	amdgpu_bo_unreserve(fpriv->vm.root.bo);
-> +	mutex_destroy(&queue->fence_drv_lock);
->   free_queue:
->   	kfree(queue);
->   err_pm_runtime:
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-> index 8b8f345b60b6..843ea8ecc5d7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-> @@ -66,6 +66,18 @@ struct amdgpu_usermode_queue {
->   	struct amdgpu_userq_obj	db_obj;
->   	struct amdgpu_userq_obj fw_obj;
->   	struct amdgpu_userq_obj wptr_obj;
-> +
-> +	/**
-> +	 * @fence_drv_lock: Protecting @fence_drv_xa.
-> +	 */
-> +	struct mutex		fence_drv_lock;
-> +
-> +	/**
-> +	 * @fence_drv_xa:
-> +	 *
-> +	 * References to the external fence drivers returned by wait_ioctl.
-> +	 * Dropped on the next signaled dma_fence or queue destruction.
-> +	 */
->   	struct xarray		fence_drv_xa;
->   	struct amdgpu_userq_fence_driver *fence_drv;
->   	struct dma_fence	*last_fence;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-> index f3d0595e3e61..a2792f05b670 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
-> @@ -121,6 +121,7 @@ amdgpu_userq_fence_driver_free(struct amdgpu_usermode_queue *userq)
->   	userq->last_fence = NULL;
->   	amdgpu_userq_walk_and_drop_fence_drv(&userq->fence_drv_xa);
->   	xa_destroy(&userq->fence_drv_xa);
-> +	mutex_destroy(&userq->fence_drv_lock);
->   	/* Drop the queue's ownership reference to fence_drv explicitly */
->   	amdgpu_userq_fence_driver_put(userq->fence_drv);
->   }
-> @@ -209,81 +210,84 @@ void amdgpu_userq_fence_driver_put(struct amdgpu_userq_fence_driver *fence_drv)
->   	kref_put(&fence_drv->refcount, amdgpu_userq_fence_driver_destroy);
->   }
->   
-> -static int amdgpu_userq_fence_alloc(struct amdgpu_userq_fence **userq_fence)
-> +static int amdgpu_userq_fence_alloc(struct amdgpu_usermode_queue *userq,
-> +				    struct amdgpu_userq_fence **pfence)
->   {
-> -	*userq_fence = kmalloc(sizeof(**userq_fence), GFP_ATOMIC);
-> -	return *userq_fence ? 0 : -ENOMEM;
-> +	struct amdgpu_userq_fence_driver *fence_drv = userq->fence_drv;
-> +	struct amdgpu_userq_fence *userq_fence;
-> +	void * entry;
-> +
-> +	userq_fence = kmalloc(sizeof(*userq_fence), GFP_KERNEL);
-> +	if (!userq_fence)
-> +		return -ENOMEM;
-> +
-> +	/*
-> +	 * Get the next unused entry, since we fill from the start this can be
-> +	 * used as size to allocate the array.
-> +	 */
-> +	mutex_lock(&userq->fence_drv_lock);
-> +	XA_STATE(xas, &userq->fence_drv_xa, 0);
-> +
-> +	rcu_read_lock();
-> +	do {
-> +		entry = xas_find_marked(&xas, ULONG_MAX, XA_FREE_MARK);
-> +	} while (xas_retry(&xas, entry));
-> +	rcu_read_unlock();
-Functionally its correct but Using xa_for_each to count the no of 
-entries should suffice for what we need?  why doing more work or this 
-approach is fixing something which xa_for_each does not ?
-> +
-> +	userq_fence->fence_drv_array = kvmalloc_array(xas.xa_index,
-> +						      sizeof(fence_drv),
-> +						      GFP_KERNEL);
-> +	if (!userq_fence->fence_drv_array) {
-> +		mutex_unlock(&userq->fence_drv_lock);
-> +		kfree(userq_fence);
-> +		return -ENOMEM;
-> +	}
-> +
-> +	userq_fence->fence_drv_array_count = xas.xa_index;
-> +	xa_extract(&userq->fence_drv_xa, (void **)userq_fence->fence_drv_array,
-> +		   0, ULONG_MAX, xas.xa_index, XA_PRESENT);
-same count could be used here also to copy, just open questions but the 
-current code is good to go.
-Irrespective of the change the code is Reviewed-by: Sunil Khatri 
-<sunil.khatri@amd.com>
+Then I suggest it gets corrected before more examples try to copy this
+non-english.
 
-Regards
-Sunil Khatri
-> +	xa_destroy(&userq->fence_drv_xa);
-> +
-> +	mutex_unlock(&userq->fence_drv_lock);
-> +
-> +	userq_fence->fence_drv = fence_drv;
-> +	amdgpu_userq_fence_driver_get(fence_drv);
-> +
-> +	*pfence = userq_fence;
-> +	return 0;
->   }
->   
-> -static int amdgpu_userq_fence_create(struct amdgpu_usermode_queue *userq,
-> -				     struct amdgpu_userq_fence *userq_fence,
-> -				     u64 seq, struct dma_fence **f)
-> +static void amdgpu_userq_fence_init(struct amdgpu_usermode_queue *userq,
-> +				    struct amdgpu_userq_fence *fence,
-> +				    u64 seq)
->   {
-> -	struct amdgpu_userq_fence_driver *fence_drv;
-> -	struct dma_fence *fence;
-> +	struct amdgpu_userq_fence_driver *fence_drv = userq->fence_drv;
->   	unsigned long flags;
->   	bool signaled = false;
->   
-> -	fence_drv = userq->fence_drv;
-> -	if (!fence_drv)
-> -		return -EINVAL;
-> -
-> -	spin_lock_init(&userq_fence->lock);
-> -	INIT_LIST_HEAD(&userq_fence->link);
-> -	fence = &userq_fence->base;
-> -	userq_fence->fence_drv = fence_drv;
-> -
-> -	dma_fence_init64(fence, &amdgpu_userq_fence_ops, &userq_fence->lock,
-> +	spin_lock_init(&fence->lock);
-> +	dma_fence_init64(&fence->base, &amdgpu_userq_fence_ops, &fence->lock,
->   			 fence_drv->context, seq);
->   
-> -	amdgpu_userq_fence_driver_get(fence_drv);
-> -	dma_fence_get(fence);
-> -
-> -	if (!xa_empty(&userq->fence_drv_xa)) {
-> -		struct amdgpu_userq_fence_driver *stored_fence_drv;
-> -		unsigned long index, count = 0;
-> -		int i = 0;
-> -
-> -		xa_lock(&userq->fence_drv_xa);
-> -		xa_for_each(&userq->fence_drv_xa, index, stored_fence_drv)
-> -			count++;
-> -
-> -		userq_fence->fence_drv_array =
-> -			kvmalloc_array(count,
-> -				       sizeof(struct amdgpu_userq_fence_driver *),
-> -				       GFP_ATOMIC);
-> -
-> -		if (userq_fence->fence_drv_array) {
-> -			xa_for_each(&userq->fence_drv_xa, index, stored_fence_drv) {
-> -				userq_fence->fence_drv_array[i] = stored_fence_drv;
-> -				__xa_erase(&userq->fence_drv_xa, index);
-> -				i++;
-> -			}
-> -		}
-> -
-> -		userq_fence->fence_drv_array_count = i;
-> -		xa_unlock(&userq->fence_drv_xa);
-> -	} else {
-> -		userq_fence->fence_drv_array = NULL;
-> -		userq_fence->fence_drv_array_count = 0;
-> -	}
-> +	/* Make sure the fence is visible to the hang detect worker */
-> +	dma_fence_put(userq->last_fence);
-> +	userq->last_fence = dma_fence_get(&fence->base);
->   
-> -	/* Check if hardware has already processed the job */
-> +	/* Check if hardware has already processed the fence */
->   	spin_lock_irqsave(&fence_drv->fence_list_lock, flags);
-> -	if (!dma_fence_is_signaled(fence)) {
-> -		list_add_tail(&userq_fence->link, &fence_drv->fences);
-> +	if (!dma_fence_is_signaled(&fence->base)) {
-> +		dma_fence_get(&fence->base);
-> +		list_add_tail(&fence->link, &fence_drv->fences);
->   	} else {
-> +		INIT_LIST_HEAD(&fence->link);
->   		signaled = true;
-> -		dma_fence_put(fence);
->   	}
->   	spin_unlock_irqrestore(&fence_drv->fence_list_lock, flags);
->   
->   	if (signaled)
-> -		amdgpu_userq_fence_put_fence_drv_array(userq_fence);
-> -
-> -	*f = fence;
-> -
-> -	return 0;
-> +		amdgpu_userq_fence_put_fence_drv_array(fence);
-> +	else
-> +		amdgpu_userq_start_hang_detect_work(userq);
->   }
->   
->   static const char *amdgpu_userq_fence_get_driver_name(struct dma_fence *f)
-> @@ -404,11 +408,6 @@ static int amdgpu_userq_fence_read_wptr(struct amdgpu_device *adev,
->   	return r;
->   }
->   
-> -static void amdgpu_userq_fence_cleanup(struct dma_fence *fence)
-> -{
-> -	dma_fence_put(fence);
-> -}
-> -
->   static void
->   amdgpu_userq_fence_driver_set_error(struct amdgpu_userq_fence *fence,
->   				    int error)
-> @@ -452,13 +451,14 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
->   	const unsigned int num_read_bo_handles = args->num_bo_read_handles;
->   	struct amdgpu_fpriv *fpriv = filp->driver_priv;
->   	struct amdgpu_userq_mgr *userq_mgr = &fpriv->userq_mgr;
-> +
->   	struct drm_gem_object **gobj_write, **gobj_read;
->   	u32 *syncobj_handles, num_syncobj_handles;
-> -	struct amdgpu_userq_fence *userq_fence;
-> -	struct amdgpu_usermode_queue *queue = NULL;
-> -	struct drm_syncobj **syncobj = NULL;
-> -	struct dma_fence *fence;
-> +	struct amdgpu_usermode_queue *queue;
-> +	struct amdgpu_userq_fence *fence;
-> +	struct drm_syncobj **syncobj;
->   	struct drm_exec exec;
-> +	void __user *ptr;
->   	int r, i, entry;
->   	u64 wptr;
->   
-> @@ -470,13 +470,14 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
->   		return -EINVAL;
->   
->   	num_syncobj_handles = args->num_syncobj_handles;
-> -	syncobj_handles = memdup_array_user(u64_to_user_ptr(args->syncobj_handles),
-> -					    num_syncobj_handles, sizeof(u32));
-> +	ptr = u64_to_user_ptr(args->syncobj_handles);
-> +	syncobj_handles = memdup_array_user(ptr, num_syncobj_handles,
-> +					    sizeof(u32));
->   	if (IS_ERR(syncobj_handles))
->   		return PTR_ERR(syncobj_handles);
->   
-> -	/* Array of pointers to the looked up syncobjs */
-> -	syncobj = kmalloc_array(num_syncobj_handles, sizeof(*syncobj), GFP_KERNEL);
-> +	syncobj = kmalloc_array(num_syncobj_handles, sizeof(*syncobj),
-> +				GFP_KERNEL);
->   	if (!syncobj) {
->   		r = -ENOMEM;
->   		goto free_syncobj_handles;
-> @@ -490,21 +491,17 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
->   		}
->   	}
->   
-> -	r = drm_gem_objects_lookup(filp,
-> -				   u64_to_user_ptr(args->bo_read_handles),
-> -				   num_read_bo_handles,
-> -				   &gobj_read);
-> +	ptr = u64_to_user_ptr(args->bo_read_handles);
-> +	r = drm_gem_objects_lookup(filp, ptr, num_read_bo_handles, &gobj_read);
->   	if (r)
->   		goto free_syncobj;
->   
-> -	r = drm_gem_objects_lookup(filp,
-> -				   u64_to_user_ptr(args->bo_write_handles),
-> -				   num_write_bo_handles,
-> +	ptr = u64_to_user_ptr(args->bo_write_handles);
-> +	r = drm_gem_objects_lookup(filp, ptr, num_write_bo_handles,
->   				   &gobj_write);
->   	if (r)
->   		goto put_gobj_read;
->   
-> -	/* Retrieve the user queue */
->   	queue = amdgpu_userq_get(userq_mgr, args->queue_id);
->   	if (!queue) {
->   		r = -ENOENT;
-> @@ -513,73 +510,61 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
->   
->   	r = amdgpu_userq_fence_read_wptr(adev, queue, &wptr);
->   	if (r)
-> -		goto put_gobj_write;
-> +		goto put_queue;
->   
-> -	r = amdgpu_userq_fence_alloc(&userq_fence);
-> +	r = amdgpu_userq_fence_alloc(queue, &fence);
->   	if (r)
-> -		goto put_gobj_write;
-> +		goto put_queue;
->   
->   	/* We are here means UQ is active, make sure the eviction fence is valid */
->   	amdgpu_userq_ensure_ev_fence(&fpriv->userq_mgr, &fpriv->evf_mgr);
->   
-> -	/* Create a new fence */
-> -	r = amdgpu_userq_fence_create(queue, userq_fence, wptr, &fence);
-> -	if (r) {
-> -		mutex_unlock(&userq_mgr->userq_mutex);
-> -		kfree(userq_fence);
-> -		goto put_gobj_write;
-> -	}
-> +	/* Create the new fence */
-> +	amdgpu_userq_fence_init(queue, fence, wptr);
->   
-> -	dma_fence_put(queue->last_fence);
-> -	queue->last_fence = dma_fence_get(fence);
-> -	amdgpu_userq_start_hang_detect_work(queue);
->   	mutex_unlock(&userq_mgr->userq_mutex);
->   
-> +	/*
-> +	 * This needs to come after the fence is created since
-> +	 * amdgpu_userq_ensure_ev_fence() can't be called while holding the resv
-> +	 * locks.
-> +	 */
->   	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT,
->   		      (num_read_bo_handles + num_write_bo_handles));
->   
-> -	/* Lock all BOs with retry handling */
->   	drm_exec_until_all_locked(&exec) {
-> -		r = drm_exec_prepare_array(&exec, gobj_read, num_read_bo_handles, 1);
-> +		r = drm_exec_prepare_array(&exec, gobj_read,
-> +					   num_read_bo_handles, 1);
->   		drm_exec_retry_on_contention(&exec);
-> -		if (r) {
-> -			amdgpu_userq_fence_cleanup(fence);
-> +		if (r)
->   			goto exec_fini;
-> -		}
->   
-> -		r = drm_exec_prepare_array(&exec, gobj_write, num_write_bo_handles, 1);
-> +		r = drm_exec_prepare_array(&exec, gobj_write,
-> +					   num_write_bo_handles, 1);
->   		drm_exec_retry_on_contention(&exec);
-> -		if (r) {
-> -			amdgpu_userq_fence_cleanup(fence);
-> +		if (r)
->   			goto exec_fini;
-> -		}
->   	}
->   
-> -	for (i = 0; i < num_read_bo_handles; i++) {
-> -		if (!gobj_read || !gobj_read[i]->resv)
-> -			continue;
-> -
-> -		dma_resv_add_fence(gobj_read[i]->resv, fence,
-> +	/* And publish the new fence in the BOs and syncobj */
-> +	for (i = 0; i < num_read_bo_handles; i++)
-> +		dma_resv_add_fence(gobj_read[i]->resv, &fence->base,
->   				   DMA_RESV_USAGE_READ);
-> -	}
->   
-> -	for (i = 0; i < num_write_bo_handles; i++) {
-> -		if (!gobj_write || !gobj_write[i]->resv)
-> -			continue;
-> -
-> -		dma_resv_add_fence(gobj_write[i]->resv, fence,
-> +	for (i = 0; i < num_write_bo_handles; i++)
-> +		dma_resv_add_fence(gobj_write[i]->resv, &fence->base,
->   				   DMA_RESV_USAGE_WRITE);
-> -	}
->   
-> -	/* Add the created fence to syncobj/BO's */
->   	for (i = 0; i < num_syncobj_handles; i++)
-> -		drm_syncobj_replace_fence(syncobj[i], fence);
-> +		drm_syncobj_replace_fence(syncobj[i], &fence->base);
->   
-> +exec_fini:
->   	/* drop the reference acquired in fence creation function */
-> -	dma_fence_put(fence);
-> +	dma_fence_put(&fence->base);
->   
-> -exec_fini:
->   	drm_exec_fini(&exec);
-> +put_queue:
-> +	amdgpu_userq_put(queue);
->   put_gobj_write:
->   	for (i = 0; i < num_write_bo_handles; i++)
->   		drm_gem_object_put(gobj_write[i]);
-> @@ -590,15 +575,11 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev, void *data,
->   	kvfree(gobj_read);
->   free_syncobj:
->   	while (entry-- > 0)
-> -		if (syncobj[entry])
-> -			drm_syncobj_put(syncobj[entry]);
-> +		drm_syncobj_put(syncobj[entry]);
->   	kfree(syncobj);
->   free_syncobj_handles:
->   	kfree(syncobj_handles);
->   
-> -	if (queue)
-> -		amdgpu_userq_put(queue);
-> -
->   	return r;
->   }
->   
-> @@ -873,8 +854,10 @@ amdgpu_userq_wait_return_fence_info(struct drm_file *filp,
->   		 * Otherwise, we would gather those references until we don't
->   		 * have any more space left and crash.
->   		 */
-> +		mutex_lock(&waitq->fence_drv_lock);
->   		r = xa_alloc(&waitq->fence_drv_xa, &index, fence_drv,
->   			     xa_limit_32b, GFP_KERNEL);
-> +		mutex_unlock(&waitq->fence_drv_lock);
->   		if (r)
->   			goto put_waitq;
->   
+~Andrew
