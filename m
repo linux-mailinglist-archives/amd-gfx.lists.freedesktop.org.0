@@ -2,103 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uPUZH9ve8Gl5agEAu9opvQ
+	id cLlEBcLc8WnKkwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 18:22:51 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:10 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B502488C83
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 18:22:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5FEE492D76
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DEC810E33A;
-	Tue, 28 Apr 2026 16:22:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38D1A10EF79;
+	Wed, 29 Apr 2026 10:26:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="zTWLl01i";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aTDlW4Vw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010010.outbound.protection.outlook.com [52.101.46.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6991A10E33A
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 16:22:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=V3/HL9L9AZ3/l0rbibMrxLnq1gUIQGq6SqQNsyZhp2T5aL7muWGRUtwebiWiwTZhveAiAqYJdQfm2iD2N1uQ+e2T52Sg90im+xE8O6KJ3DJgpE6flfLydRkSOABJlAqsH4mZ5fhrlafX57sUQ6WiKzffA7OpkU2dZ2CZLXFgmT82CjNEM00g6D05G6HMe0lhEQhS0R+L0eCD/Eu8kaVkcVZH7bATuP+2os5BcRfKnZk1Dv6sSzU7ooFHEO7S924lNAX3Cw9Rrm08aC4bawoeRc+w388VBA/+PUCEDLPhIKCdNjZG3KR2w8q0yiVvjb9qbLVb/gG0jyY796kQ/OrotQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Gz+4VnFvQnR3u9rdTWhdC7y94WmtJDjwe8EDIMuirAc=;
- b=v/IBh4U4sqjI471Sq3NMbEjkC/wNovUbpoi1HYdcEeTaaIf3CgSj+1k7XECMmaz2QiD7qtBbjyGRyXo7+ERiEuDK42KBkoy/Hq18c4JZ50E1blYk+xfxJvJ4SYN2pCVLnPoLYC+Gh0JsEYI2YU87lM/nOFdfHefEUP2QU4qWSwRzTj7NEC7iMGNEpra5Frh5hyVNO0nNmLTXZ1MtAySDGWPH3BvpdV9xNWvC83tY9kEBx5dKk5OBM0+O+7cfrPuuQIUqSWs0tf64Aj9J+2+OYCR2YrPInDZvcRQg/apGJT9tW68ebHHhGpcirhzwKciQ+ZN0uACYa+viWtamzLxXoA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gz+4VnFvQnR3u9rdTWhdC7y94WmtJDjwe8EDIMuirAc=;
- b=zTWLl01iUvk+z7FwAAFDQo+f4jB3bQfZl51OrZ1deuPYovjSHp0MmE2R62OhRHcDJe5iBzuShwNvBw+WrQoSSNr1EUsDoAQ900ySGzHraYfEwE+Z7KtFvNpFqYNrExtnPu0ZwJ2oONclTfsvXKBdcWUONxl+XTmNr6tud/pv7Lc=
-Received: from CH2PR17CA0026.namprd17.prod.outlook.com (2603:10b6:610:53::36)
- by SJ5PPF28EF61683.namprd12.prod.outlook.com
- (2603:10b6:a0f:fc02::98e) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.26; Tue, 28 Apr
- 2026 16:22:39 +0000
-Received: from CY4PEPF0000E9D0.namprd03.prod.outlook.com
- (2603:10b6:610:53:cafe::a9) by CH2PR17CA0026.outlook.office365.com
- (2603:10b6:610:53::36) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.29 via Frontend Transport; Tue,
- 28 Apr 2026 16:22:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CY4PEPF0000E9D0.mail.protection.outlook.com (10.167.241.135) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9846.18 via Frontend Transport; Tue, 28 Apr 2026 16:22:37 +0000
-Received: from Philip-Dev.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 28 Apr
- 2026 11:22:36 -0500
-From: Philip Yang <Philip.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <christian.koenig@amd.com>, <felix.kuehling@amd.com>, Philip Yang
- <Philip.Yang@amd.com>
-Subject: [PATCH] drm/amdgpu: zero-initialize GART table on allocation
-Date: Tue, 28 Apr 2026 12:22:19 -0400
-Message-ID: <20260428162219.3761327-1-Philip.Yang@amd.com>
-X-Mailer: git-send-email 2.50.1
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
+ [209.85.210.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E06D10E2F8
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 16:35:15 +0000 (UTC)
+Received: by mail-ot1-f44.google.com with SMTP id
+ 46e09a7af769-7d1872504cbso19427a34.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 09:35:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1777394114; x=1777998914; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=FX9gjca0wE7x4ubEH7lGJVHSowFseyP1beU7HKsoxh0=;
+ b=aTDlW4VwybctiCyXVeJPFKlLTA4V1iY4UMaWRKx0uymuXG9yl9RG6cJXDGkF9dRcc0
+ DTg1qdszaMfd25uMeujuHVbytjS4+zahuExzIjh65GCsIqYjEPK6qocRP049ceL12ZZe
+ B3pdSX7CSA5rjYRFONRXrlhyVZvrh/4qv40YF/1CbWQS5Bf3oHOy0P6gVmphIwOzBbBa
+ uAcNZkJmYpzktTa9qt7me9wDKUf+UKz/+sKtfIg5s2QpwqVFem7THspsYT99Dv8xyFqK
+ 824l4deK2dfeIgz3qtr6oYU/NksJrXLpfkMK3mrPF/uSRNd73JijEzjCoI6VaxTCFYk+
+ o0bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777394114; x=1777998914;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=FX9gjca0wE7x4ubEH7lGJVHSowFseyP1beU7HKsoxh0=;
+ b=qR2v2nM20U2YXy/lWCGs8EkwTJ94YL3tiWdFTxsc0pP9Xg0wPhwGUz8dS/6ylL2mgj
+ mM1XfLae/pw3POtrsduSWkPDQnlew7Dm4QcV7Io65O+NbN5pXLAcPpIJvkexP+fEuJPc
+ a3tVsN2KVZ1lwQMEqf+zoLxttOYlA2jb5BVQkogqwv+oU4TLjiy/9NPphYjHPYrx0oIz
+ GsY+hVQ92Mt2hyIVH8s9gBEqXvwiVeTG8sZ1tX2Kvf+7mq+aRUNnVZpnzB0TAYuZsAhS
+ 2PTVuk5lBarKAjzfn6lUuSWV/GLP57QMUqcwCZ7bU7dhd4fmBPdp89ikjXdZ6ix5oZ/q
+ bdYg==
+X-Gm-Message-State: AOJu0YwFJNsYIJYHj6YhLyDBIrpKX93N1pE9rNEQpKvX5nEXWRCNVM2J
+ xc4OSTpaYAeQJdOpCsWXsziLyWOSDScKjvESLP4vvPSssDqAX9LF99bnbPGitcI=
+X-Gm-Gg: AeBDiesdByzhkssCYVAfGURtNZunVO/ne2YfeQi7FdH7NnqUMcJ7fy++56on2kKKtGq
+ Ze/PQXxwzQm0VIHwJze+AUszFgKTCScJjfBWvi/EGGambjz8JDWsQ9QuHyWHoZsbh4ldN7wtsJ0
+ DThwNR93xagghtJvK5Mr/fJJmShmDZo7qZpwv2zI5XhftplqcXM7BcLKjHSgh6VJ3F0y/P3BZvK
+ 7fysaN9bqCHxAmbTb3ghEO34SVM8YPps24BLeo4ldnnktMsSWGqVe6xLAJ0f6R/s4jrwjeNJgL9
+ LbFWD7sFyTFlXSSRzE3EcYJxT8EKOc6rkF4vEud/htpL4Jwcw2kMeILbuo5AcwIOCQ7ifLxSHJT
+ yKeFn4p3KcZ1VCnOOkpP5X8TP64VLWT9PxC+ThRijLoeeF2RoKy6ZwAZeDISTnIFhkXCZb0iAG4
+ s+KDg1Q7t8pgdU/7+4tsYfdBMJv+SM+/s+NKPtmZEZuXGZtpGvSj21sdfEM4QFu85nRPZYEFdYj
+ 60HEIbw5aEZRA3sCDK7eeviTApcygyMzRY=
+X-Received: by 2002:a4a:c011:0:b0:687:5a16:dea1 with SMTP id
+ 006d021491bc7-6965c3a6eb1mr1553345eaf.28.1777394114353; 
+ Tue, 28 Apr 2026 09:35:14 -0700 (PDT)
+Received: from localhost.localdomain ([47.188.191.104])
+ by smtp.gmail.com with ESMTPSA id
+ 586e51a60fabf-433efbf1d8dsm2232322fac.6.2026.04.28.09.35.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 28 Apr 2026 09:35:13 -0700 (PDT)
+From: "John B. Moore" <jbmoore61@gmail.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alexander Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org,
+	"John B. Moore" <jbmoore61@gmail.com>
+Subject: [PATCH v3] drm/amdgpu/gfx9: drop unnecessary 64-bit fence flag check
+ in KIQ
+Date: Tue, 28 Apr 2026 11:35:12 -0500
+Message-ID: <20260428163512.9504-1-jbmoore61@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D0:EE_|SJ5PPF28EF61683:EE_
-X-MS-Office365-Filtering-Correlation-Id: a57fa4e8-cffd-4a34-17de-08dea5425cac
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|36860700016|82310400026|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: LlwXSx4AQE9+64vdE6aPSry7L/bcXgmvwpVL2oWM6kFOoYUU2m615kXtpc/97faaBBYjVBio5rVNYHOLbu/lTuFahllmD7GQP4wlK0cjqPBxYZr44Wf4c9m04ZbJFtqRMNALE+/ZGoub/rnIAsLsgiTBu3dOVGLlrmz3zbc0IpJJbQS/FFz7gdtkj1ix7sBuZWuQPRdFeGE5zsDf5fTmJxjfUHlhkk2BWBaD7UG/h2oNpPM44phRnWoz8myo50VYgvuZZIPFR6BM5XkS2dB52fHcXbcGn+CbQIEUTuSU/h0sHgBPcIGWRV6gpsG2VrHMr7M5kGh7afCDMYVttRMXONgPkEv06tqspAmjCn40APdLQQx1qlzAccB81sx5MJL0LA85PWzLXxiJcSJKVRcscIFU59dgU2pE1wGp3KSv5i3ahUERAFS9+P1FQjF3ddZZMfSmDqfbADOSddvSrKdIgx+cjCzms9LPSVSD7Jje90rwv1JVniMeoj0bl2S3pJPkVV+ajKpnmp5Q4ol2JeAQ9wv/jZzVal5JuwTmlEfSk4b5Fpu+dcXSDAK3thsvYtYDTbfzPRPRetrWGoC0R765aHrBvHtg86WSedZ92nkOv/GjRLmvCvTlpmZY1rnzR3N4hczzXOEu6vK3AWXdkumjLv+pCrbxX+MHR2S2IEtUgpMZOQOIM2lV3lv6WHQci6PkH78+RODPTYhoy4SKyR7xLfa/um7RpK5DNtUO4ruSj+WK7Dv73iQW6GRhPcAFSDgRiG2bO5wlOrS5fcgCKZ2qvA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(36860700016)(82310400026)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: PliVWIzCPlhc1QZ7GzQ1QdI8bZjb6L95dNTNWHKkE2wsVlUyUvrqtOF0inUx4Wof0HkOcp7KLaJw+S1Ra91nq6Z1xrpvRkt1ZHQ/tT/eYUV+m/OwYNha5j+T4SqUybECetogi1bok0/zap2F+HOtFP9NsOnMhTO5M/74OjreNjBYt0m6Ek8B+cfLq7tiawZdASot4dUY+p1UW2HoJuxtgzqOI7DUkRx2ciXrypcbW4emR3pI7jufQ7bkdNSD4uzFa4TrzylrOwtQOUcIpemePLJPkQ6ZL6PMpA26Flz5u4h2OgicJE7eWDLjEXH+jxGJ1ZQp5GQWpzNlRJ69P//91rEdhFIQr+1HfQfkdrl5x6KDvXEDT3azG78eG71tTmWrT2rL20zHKt6t9qwEJ5z5VPKTlAUHRBb5CMVT1VOevU9geSSncVg3OmjelfSjSy+u
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 16:22:37.3507 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a57fa4e8-cffd-4a34-17de-08dea5425cac
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D0.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF28EF61683
+X-Mailman-Approved-At: Wed, 29 Apr 2026 10:25:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,83 +91,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 1B502488C83
+X-Rspamd-Queue-Id: B5FEE492D76
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:jbmoore61@gmail.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[Philip.Yang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	HAS_XOIP(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid]
+	NEURAL_HAM(-0.00)[-0.957];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-GART TLB is flushed after unmapping but not after mapping. Since
-amdgpu_bo_create_kernel() does not zero-initialize the buffer, when a
-single PTE is written the TLB may speculatively load other uninitialized
-entries from the same cacheline. Those garbage entries can appear valid,
-and a subsequent write to another PTE in the same cacheline may cause the
-GPU to use a stale garbage PTE from the TLB.
+Remove the BUG_ON(flags & AMDGPU_FENCE_FLAG_64BIT) assertion from
+gfx_v9_0_ring_emit_fence_kiq().  The KIQ hardware supports 64-bit
+fence writes; the 32-bit writeback address constraint is an
+upper-layer convention, not a hardware limitation.  The check serves
+no purpose and should not be present.
 
-Fix this by calling memset() to zero-initialize the GART table with
-gart_pte_flags immediately after allocation.
+Found by code inspection while investigating related BUG_ON
+assertions in the GFX and compute ring emission paths.
 
-Using AMDGPU_GEM_CREATE_VRAM_CLEARED (SDMA-based clear) was considered,
-but is overkill here: the table is only ~1MB and initialized only once.
-
-Signed-off-by: Philip Yang <Philip.Yang@amd.com>
+Signed-off-by: John B. Moore <jbmoore61@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
-index 4d884180cf61..f09337bac0e5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
-@@ -262,12 +262,19 @@ void amdgpu_gart_table_ram_free(struct amdgpu_device *adev)
-  */
- int amdgpu_gart_table_vram_alloc(struct amdgpu_device *adev)
- {
-+	int r;
-+
- 	if (adev->gart.bo != NULL)
- 		return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index 47e81c33d..fb2a0f1af 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -5679,9 +5679,6 @@ static void gfx_v9_0_ring_emit_fence_kiq(struct amdgpu_ring *ring, u64 addr,
+ 	struct amdgpu_device *adev = ring->adev;
  
--	return amdgpu_bo_create_kernel(adev,  adev->gart.table_size, PAGE_SIZE,
--				       AMDGPU_GEM_DOMAIN_VRAM, &adev->gart.bo,
--				       NULL, (void *)&adev->gart.ptr);
-+	r = amdgpu_bo_create_kernel(adev,  adev->gart.table_size, PAGE_SIZE,
-+				    AMDGPU_GEM_DOMAIN_VRAM, &adev->gart.bo,
-+				    NULL, (void *)&adev->gart.ptr);
-+	if (r)
-+		return r;
-+
-+	memset(adev->gart.ptr, adev->gart.gart_pte_flags, adev->gart.table_size);
-+	return 0;
- }
- 
- /**
+-	/* we only allocate 32bit for each seq wb address */
+-	BUG_ON(flags & AMDGPU_FENCE_FLAG_64BIT);
+-
+ 	/* write fence seq to the "addr" */
+ 	amdgpu_ring_write(ring, PACKET3(PACKET3_WRITE_DATA, 3));
+ 	amdgpu_ring_write(ring, (WRITE_DATA_ENGINE_SEL(0) |
 -- 
-2.50.1
+2.43.0
 
