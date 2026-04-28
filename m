@@ -2,63 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id /UJjAsHc8Wn6kwEAu9opvQ
+	id GEjPDMIf8WmRdgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:09 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 22:59:46 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E662492D29
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F5C248C217
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 22:59:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 915DD10EF76;
-	Wed, 29 Apr 2026 10:26:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FB2710E0DB;
+	Tue, 28 Apr 2026 20:59:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=yandex.ru header.i=@yandex.ru header.b="aNrmgChc";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fdiA/DKN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 314 seconds by postgrey-1.36 at gabe;
- Tue, 28 Apr 2026 19:09:19 UTC
-Received: from forward203a.mail.yandex.net (forward203a.mail.yandex.net
- [178.154.239.90])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EADB410E377;
- Tue, 28 Apr 2026 19:09:19 +0000 (UTC)
-Received: from forward103a.mail.yandex.net (forward103a.mail.yandex.net
- [IPv6:2a02:6b8:c0e:500:1:45:d181:d103])
- by forward203a.mail.yandex.net (Yandex) with ESMTPS id 9F2A9869C3;
- Tue, 28 Apr 2026 22:04:05 +0300 (MSK)
-Received: from mail-nwsmtp-smtp-production-main-68.vla.yp-c.yandex.net
- (mail-nwsmtp-smtp-production-main-68.vla.yp-c.yandex.net
- [IPv6:2a02:6b8:c1d:6281:0:640:c935:0])
- by forward103a.mail.yandex.net (Yandex) with ESMTPS id 52E1F806AD;
- Tue, 28 Apr 2026 22:04:02 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-68.vla.yp-c.yandex.net (smtp)
- with ESMTPSA id i3f98gObjmI0-kMIkEECX; 
- Tue, 28 Apr 2026 22:04:01 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
- t=1777403041; bh=tr9ncHDLQsp/htwG5JIQTALMzIL3/WgOspiEBUJqEko=;
- h=Message-ID:Date:Cc:Subject:To:From;
- b=aNrmgChc8Uj4xd9AlRNV1rVyvXv1Hfj3u7RQtuXI6XNxd+/rZZ1L8vTcz1MPo4b+U
- cvOBt3o6gp8fam6uxhWXtahexc2YMgVue1Rg4ewLQRSFlwO0MbiEHYuSHHTDfgkDJU
- MmPzkwJv8XBbR0r9rUou8K1BsQfy0C9webtLwmG4=
-Authentication-Results: mail-nwsmtp-smtp-production-main-68.vla.yp-c.yandex.net;
- dkim=pass header.i=@yandex.ru
-From: Evgenii Burenchev <evg28bur@yandex.ru>
-To: stable@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Evgenii Burenchev <evg28bur@yandex.ru>, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/radeon/rs780: prevent division by zero in refresh rate
- calculation
-Date: Tue, 28 Apr 2026 22:03:18 +0300
-Message-ID: <20260428190318.34413-1-evg28bur@yandex.ru>
-X-Mailer: git-send-email 2.43.0
+Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com
+ [74.125.82.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94CCA10E0DB
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 20:59:42 +0000 (UTC)
+Received: by mail-dy1-f173.google.com with SMTP id
+ 5a478bee46e88-2e59d6b11e5so456792eec.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 13:59:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1777409982; cv=none;
+ d=google.com; s=arc-20240605;
+ b=BNb0WQm7ROAALRhQpRETQ2bBvSPhxGcxHFf37HfviskT7kfjdj5wz2lnIUbmv8SUsF
+ m+6f6kM6m23kTweu3y5FaqJmKqxfGWOEVK3CB4t6aVdQ2ELHnArTZcV1Zt8qU+8Y0QH0
+ IoHXhuWKZN6CA7wrx1AGlU80ROJWwf7Y//iN2mFUgI3X/tI9vQebimWmtujqq7xn3X4n
+ 2AafhHvoC+VUyByHv1RFvrnjLfae1zhtsOjBibDpT1Ev+38lPBLbrPbIR81PNoN5jztq
+ c6pFDjIK8xLKcyOa5g8QtRq+tE37oxDLmhPj2v/qOTjnvvdM0W2m2M1YTOtbHZMGbWPQ
+ +DYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=Dd2PviXpTrO61GEMEfbf5WqfAv6KopI9Qa5OnOzf8yg=;
+ fh=wtcw9Fa5tc+Mo9ejfCU0nyipgvWitsHNZaPCL1cyU28=;
+ b=A8sZ1Tvyf95BsQWhECsIeEnBBF8VRY6xk4e/v9TP+tfHGRs3laSj+rVCWOQF38Ohzx
+ 3R1/QPdA2MqeAax1WleVbt6ATdp0PlDRYb4cX1JZiEXVGwtiocQNH/brk2qZ95IxUz1Y
+ irxXqFvHyZgf6fhbUjfxRbMM8zpF1OU9fqAU4DQ/si+1J0n2BPac10Qc/bXDenkTtcnX
+ UexqeB0pqNh0i5Fysx0bdjq89uIRMVXZmjI6Kiz2qLKC5n5A9d/ZGdIgkRXdLPbOgade
+ iiw5VTVNoQEJ5NbU78X+A72iXBEeQlbB/h0PLmojdpYFcZnkRxE9UOdg7biFptb3ZIwe
+ CDYg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1777409982; x=1778014782; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Dd2PviXpTrO61GEMEfbf5WqfAv6KopI9Qa5OnOzf8yg=;
+ b=fdiA/DKNOyxjk/C6KuoJx/sZ6X3zGHUT2KCAH8UtzakvELRwJwk7yK0waMQT689L3z
+ oe4eS0K4F4uoRZdDw/dvgkiH56z0rzmZ+/Cg6s/o7JeNdGczBwvQe7pobUen5WkP7m2x
+ LDgY0JZVIIuQlrWrLtw9Df84tqT/VguPRGwrKGPzxw6wxspolIXHuVa4mKLRJeJbCLnC
+ +bhS0T9qFKm4CK3V3KAvLiIqWxPOLcOzZEWAH7No0eRBitVmnBqye4Vr7ZhbEiEBjkXf
+ GWEyZujYD7yy4R9UZYLBD4E8b+M8QEuK95kvg9m3Uy2FXnRQZkIIcV16uxibT+VsCET3
+ tsnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777409982; x=1778014782;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=Dd2PviXpTrO61GEMEfbf5WqfAv6KopI9Qa5OnOzf8yg=;
+ b=iT7mPaVXzYaUl96CQhaGLo6wPZuHee0+alu5n8VWWU0d8v/7bizhBp9F3OeI3QTtan
+ qHBVqxBvFAftmVdQPAQJBUeeKUgOGtfB+McmupQzK31iooR8/no6eL3UuaG/dOQBTESG
+ ONhfxO8V4DQKOSoQh8dZxYsbpFZePZ04YzRoBmBwTg1zNVe9w8Bxa71sFOMG401WeOWY
+ 49aRcN+A6d+DeianC6s4VMHthxOPdVym2EZ1wUj4lZ3xtbwgvhh4CG3jY4bkmzECi4ZW
+ GstPG2g4xmK5yghm4dN8PHJCN2soM+KSuLIyR7cFyMv1BedZR/c2sszn/ON59T1SD5P4
+ 8R7g==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ+8Kza/AHTnNRS69/GYN0F11tSC3aD+jwECoJnkwJDhGt28b3CS/eOR6eBIdGQJSNbSyLVCriBu@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxAEdh1xR45QvdXT1yayF/wgro7c/HW+PvS/ldD1L94R5uqVh6R
+ BSfV+kmyob9C17hRw5bolan2IW9A0YzHqyvbCBq0ZzhGOFoqa0KXjlKurnfWJ28IxamLU52s2Ox
+ MLDWCYwHce9NQbvljIwbULusoZwQ+pAk=
+X-Gm-Gg: AeBDievEraBggYTYLqsBiRN3r7WeBUXw68bbL+q589mcIoOH6+9H/iVkPiHWJu9TT9I
+ sLob6+YdCqDFG90U2fjQt7IpgIxtBjqeky2FK66LnNi7W59dw/0qjaG5fYOJ+wGtPX2BG14tZgI
+ 1oNiKOe+TaOUVq/hapIZHl6Vt2MkcohvfZzqYxE3eBdk8cxixcjqj/v45LYIAJOona2Ds7qk45J
+ 5laHJKc82VT63wr87zz6owlu+06EfBDEwWzIHH0wqSQyQvqwnF86wO7kBHy4At+bNPvKZZLwXFN
+ sSDxXakWbZn5aIi4k4R0zLuhbEGj/fG6RftqzlwRAMOXMHwCWLG4b/akcXqF+jBOXxqESrSgxS4
+ DJ/xU
+X-Received: by 2002:a05:7022:6290:b0:128:e6e2:0 with SMTP id
+ a92af1059eb24-12ddd54e7d0mr1034535c88.6.1777409981634; Tue, 28 Apr 2026
+ 13:59:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 29 Apr 2026 10:25:59 +0000
+References: <20260427183854.672967-1-rdunlap@infradead.org>
+ <9ad1c4bd-6f12-41b6-b6a0-979a0de32e16@amd.com>
+In-Reply-To: <9ad1c4bd-6f12-41b6-b6a0-979a0de32e16@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 28 Apr 2026 16:59:29 -0400
+X-Gm-Features: AVHnY4Kc4F9tFfSbmQ-2NALAJAvwPREYCp2svP_K4DjkjWDSZGPqhSdOB4c-VgA
+Message-ID: <CADnq5_OSHYyEgpZzMjUzQX804a=zb3DPkkn1J3R-Q5W70_QLrQ@mail.gmail.com>
+Subject: Re: [PATCH v3] drm/amdgpu: amdgpu{_reset}.h: fix all kernel-doc
+ warnings
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Randy Dunlap <rdunlap@infradead.org>, dri-devel@lists.freedesktop.org, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,77 +115,303 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 9E662492D29
+X-Rspamd-Queue-Id: 5F5C248C217
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[yandex.ru,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[yandex.ru:s=mail];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[yandex.ru,amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:rdunlap@infradead.org,m:dri-devel@lists.freedesktop.org,m:alexander.deucher@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[yandex.ru];
+	RCVD_COUNT_THREE(0.00)[3];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[infradead.org,lists.freedesktop.org,amd.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[evg28bur@yandex.ru,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[yandex.ru:+];
-	NEURAL_HAM(-0.00)[-0.997];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.945];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linuxtesting.org:url]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,intel.com:email,infradead.org:email,ffwll.ch:email]
 
-drm_mode_vrefresh() may return zero when mode clock is zero even if
-htotal and vtotal are non-zero. Current code checks only htotal and
-vtotal, allowing refresh_rate to become zero and subsequently causing
-division by zero in rs780_program_at().
+Applied.  Thanks!
 
-Fix by adding mode clock validation and fallback to default 60Hz in
-rs780_get_pm_mode_parameters(). Add WARN_ON in rs780_program_at() to
-catch such cases during development, ensuring safe fallback in all
-scenarios.
-
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
-
-Signed-off-by: Evgenii Burenchev <evg28bur@yandex.ru>
----
- drivers/gpu/drm/radeon/rs780_dpm.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/gpu/drm/radeon/rs780_dpm.c b/drivers/gpu/drm/radeon/rs780_dpm.c
-index 64bb4cafb8b5..fe45b7dac9f4 100644
---- a/drivers/gpu/drm/radeon/rs780_dpm.c
-+++ b/drivers/gpu/drm/radeon/rs780_dpm.c
-@@ -65,6 +65,8 @@ static void rs780_get_pm_mode_parameters(struct radeon_device *rdev)
- 			pi->crtc_id = radeon_crtc->crtc_id;
- 			if (crtc->mode.htotal && crtc->mode.vtotal)
- 				pi->refresh_rate = drm_mode_vrefresh(&crtc->mode);
-+				if (pi->refresh_rate == 0)
-+					pi->refresh_rate = 60;
- 			break;
- 		}
- 	}
-@@ -363,6 +365,8 @@ static void rs780_program_at(struct radeon_device *rdev)
- {
- 	struct igp_power_info *pi = rs780_get_pi(rdev);
- 
-+	WARN_ON(pi->refresh_rate == 0);
-+
- 	WREG32(FVTHROT_TARGET_REG, 30000000 / pi->refresh_rate);
- 	WREG32(FVTHROT_CB1, 1000000 * 5 / pi->refresh_rate);
- 	WREG32(FVTHROT_CB2, 1000000 * 10 / pi->refresh_rate);
--- 
-2.43.0
-
+On Mon, Apr 27, 2026 at 3:09=E2=80=AFPM Christian K=C3=B6nig
+<christian.koenig@amd.com> wrote:
+>
+>
+>
+> On 4/27/26 20:38, Randy Dunlap wrote:
+> > Fix all kernel-doc warnings in amdgpu.h and amdgpu_reset.h:
+> > - Use the struct keyword for kernel-doc struct comments.
+> > - Use the correct enum names in enum amd_reset_method.
+> >
+> > This eliminates these warnings:
+> >
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:477 cannot understand
+> >  function prototype: 'struct amdgpu_wb'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Enum value
+> >  'AMD_RESET_METHOD_LEGACY' not described in enum 'amd_reset_method'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Enum value
+> >  'AMD_RESET_METHOD_MODE0' not described in enum 'amd_reset_method'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Enum value
+> >  'AMD_RESET_METHOD_MODE1' not described in enum 'amd_reset_method'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Enum value
+> >  'AMD_RESET_METHOD_MODE2' not described in enum 'amd_reset_method'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Enum value
+> >  'AMD_RESET_METHOD_LINK' not described in enum 'amd_reset_method'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Enum value
+> >  'AMD_RESET_METHOD_BACO' not described in enum 'amd_reset_method'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Enum value
+> >  'AMD_RESET_METHOD_PCI' not described in enum 'amd_reset_method'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Enum value
+> >  'AMD_RESET_METHOD_ON_INIT' not described in enum 'amd_reset_method'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Excess enum value
+> >  '@AMD_RESET_LEGACY' description in 'amd_reset_method'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Excess enum value
+> >  '@AMD_RESET_MODE0' description in 'amd_reset_method'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Excess enum value
+> >  '@AMD_RESET_MODE1' description in 'amd_reset_method'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Excess enum value
+> >  '@AMD_RESET_MODE2' description in 'amd_reset_method'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Excess enum value
+> >  '@AMD_RESET_LINK' description in 'amd_reset_method'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Excess enum value
+> >  '@AMD_RESET_BACO' description in 'amd_reset_method'
+> > Warning: drivers/gpu/drm/amd/amdgpu/amdgpu.h:576 Excess enum value
+> >  '@AMD_RESET_PCI' description in 'amd_reset_method'
+> >
+> > Also move the enum to amdgpu_reset.h and eventually only forward declar=
+e
+> > it in amdgpu.h. (Christian)
+> >
+> > Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+>
+> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+>
+> > ---
+> > v2: I moved the enum to amdgpu_reset.h and then #included amdgpu_reset.=
+h
+> >     in amdgpu.h. The simpler method causes build errors.
+> > v3: rebase and resend
+> >
+> > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > Cc: amd-gfx@lists.freedesktop.org
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Maxime Ripard <mripard@kernel.org>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: David Airlie <airlied@gmail.com>
+> > Cc: Simona Vetter <simona@ffwll.ch>
+> >
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu.h       |   42 ------------
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_reset.h |   69 +++++++++++++++-----
+> >  2 files changed, 58 insertions(+), 53 deletions(-)
+> >
+> > --- linux-next-20260427.orig/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > +++ linux-next-20260427/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > @@ -464,7 +464,7 @@ int amdgpu_file_to_fpriv(struct file *fi
+> >  #define AMDGPU_MAX_WB 1024   /* Reserve at most 1024 WB slots for amdg=
+pu-owned rings. */
+> >
+> >  /**
+> > - * amdgpu_wb - This struct is used for small GPU memory allocation.
+> > + * struct amdgpu_wb - This struct is used for small GPU memory allocat=
+ion.
+> >   *
+> >   * This struct is used to allocate a small amount of GPU memory that c=
+an be
+> >   * used to shadow certain states into the memory. This is especially u=
+seful for
+> > @@ -538,44 +538,6 @@ struct amdgpu_allowed_register_entry {
+> >       bool grbm_indexed;
+> >  };
+> >
+> > -/**
+> > - * enum amd_reset_method - Methods for resetting AMD GPU devices
+> > - *
+> > - * @AMD_RESET_METHOD_NONE: The device will not be reset.
+> > - * @AMD_RESET_LEGACY: Method reserved for SI, CIK and VI ASICs.
+> > - * @AMD_RESET_MODE0: Reset the entire ASIC. Not currently available fo=
+r the
+> > - *                   any device.
+> > - * @AMD_RESET_MODE1: Resets all IP blocks on the ASIC (SDMA, GFX, VCN,=
+ etc.)
+> > - *                   individually. Suitable only for some discrete GPU=
+, not
+> > - *                   available for all ASICs.
+> > - * @AMD_RESET_MODE2: Resets a lesser level of IPs compared to MODE1. W=
+hich IPs
+> > - *                   are reset depends on the ASIC. Notably doesn't re=
+set IPs
+> > - *                   shared with the CPU on APUs or the memory control=
+lers (so
+> > - *                   VRAM is not lost). Not available on all ASICs.
+> > - * @AMD_RESET_LINK: Triggers SW-UP link reset on other GPUs
+> > - * @AMD_RESET_BACO: BACO (Bus Alive, Chip Off) method powers off and o=
+n the card
+> > - *                  but without powering off the PCI bus. Suitable onl=
+y for
+> > - *                  discrete GPUs.
+> > - * @AMD_RESET_PCI: Does a full bus reset using core Linux subsystem PC=
+I reset
+> > - *                 and does a secondary bus reset or FLR, depending on=
+ what the
+> > - *                 underlying hardware supports.
+> > - *
+> > - * Methods available for AMD GPU driver for resetting the device. Not =
+all
+> > - * methods are suitable for every device. User can override the method=
+ using
+> > - * module parameter `reset_method`.
+> > - */
+> > -enum amd_reset_method {
+> > -     AMD_RESET_METHOD_NONE =3D -1,
+> > -     AMD_RESET_METHOD_LEGACY =3D 0,
+> > -     AMD_RESET_METHOD_MODE0,
+> > -     AMD_RESET_METHOD_MODE1,
+> > -     AMD_RESET_METHOD_MODE2,
+> > -     AMD_RESET_METHOD_LINK,
+> > -     AMD_RESET_METHOD_BACO,
+> > -     AMD_RESET_METHOD_PCI,
+> > -     AMD_RESET_METHOD_ON_INIT,
+> > -};
+> > -
+> >  struct amdgpu_video_codec_info {
+> >       u32 codec_type;
+> >       u32 max_width;
+> > @@ -1373,6 +1335,8 @@ int emu_soc_asic_init(struct amdgpu_devi
+> >  #define RBIOS16(i) (RBIOS8(i) | (RBIOS8((i)+1) << 8))
+> >  #define RBIOS32(i) ((RBIOS16(i)) | (RBIOS16((i)+2) << 16))
+> >
+> > +#include "amdgpu_reset.h"
+> > +
+> >  /*
+> >   * ASICs macro.
+> >   */
+> > --- linux-next-20260427.orig/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.h
+> > +++ linux-next-20260427/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.h
+> > @@ -46,6 +46,47 @@ enum AMDGPU_RESET_SRCS {
+> >       AMDGPU_RESET_SRC_USERQ,
+> >  };
+> >
+> > +/**
+> > + * enum amd_reset_method - Methods for resetting AMD GPU devices
+> > + *
+> > + * @AMD_RESET_METHOD_NONE: The device will not be reset.
+> > + * @AMD_RESET_METHOD_LEGACY: Method reserved for SI, CIK and VI ASICs.
+> > + * @AMD_RESET_METHOD_MODE0: Reset the entire ASIC. Not currently avail=
+able for
+> > + *                          the any device.
+> > + * @AMD_RESET_METHOD_MODE1: Resets all IP blocks on the ASIC (SDMA, GF=
+X, VCN,
+> > + *                   etc.) individually. Suitable only for some discre=
+te GPU,
+> > + *                   not available for all ASICs.
+> > + * @AMD_RESET_METHOD_MODE2: Resets a lesser level of IPs compared to M=
+ODE1.
+> > + *                   Which IPs are reset depends on the ASIC. Notably =
+doesn't
+> > + *                   reset IPs shared with the CPU on APUs or the memo=
+ry
+> > + *                   controllers (so VRAM is not lost). Not available =
+on all
+> > + *                   ASICs.
+> > + * @AMD_RESET_METHOD_LINK: Triggers SW-UP link reset on other GPUs
+> > + * @AMD_RESET_METHOD_BACO: BACO (Bus Alive, Chip Off) method powers of=
+f and on
+> > + *                   the card but without powering off the PCI bus. Su=
+itable
+> > + *                   only for discrete GPUs.
+> > + * @AMD_RESET_METHOD_PCI: Does a full bus reset using core Linux subsy=
+stem
+> > + *                   PCI reset and does a secondary bus reset or FLR,
+> > + *                   depending on what the underlying hardware support=
+s.
+> > + * @AMD_RESET_METHOD_ON_INIT: Does a device reset during the driver in=
+it
+> > + *                   sequence.
+> > + *
+> > + * Methods available for AMD GPU driver for resetting the device. Not =
+all
+> > + * methods are suitable for every device. User can override the method=
+ using
+> > + * module parameter `reset_method`.
+> > + */
+> > +enum amd_reset_method {
+> > +     AMD_RESET_METHOD_NONE =3D -1,
+> > +     AMD_RESET_METHOD_LEGACY =3D 0,
+> > +     AMD_RESET_METHOD_MODE0,
+> > +     AMD_RESET_METHOD_MODE1,
+> > +     AMD_RESET_METHOD_MODE2,
+> > +     AMD_RESET_METHOD_LINK,
+> > +     AMD_RESET_METHOD_BACO,
+> > +     AMD_RESET_METHOD_PCI,
+> > +     AMD_RESET_METHOD_ON_INIT,
+> > +};
+> > +
+> >  struct amdgpu_reset_context {
+> >       enum amd_reset_method method;
+> >       struct amdgpu_device *reset_req_dev;
+> > @@ -56,6 +97,20 @@ struct amdgpu_reset_context {
+> >       enum AMDGPU_RESET_SRCS src;
+> >  };
+> >
+> > +struct amdgpu_reset_control {
+> > +     void *handle;
+> > +     struct work_struct reset_work;
+> > +     struct mutex reset_lock;
+> > +     struct amdgpu_reset_handler *(
+> > +             *reset_handlers)[AMDGPU_RESET_MAX_HANDLERS];
+> > +     atomic_t in_reset;
+> > +     enum amd_reset_method active_reset;
+> > +     struct amdgpu_reset_handler *(*get_reset_handler)(
+> > +             struct amdgpu_reset_control *reset_ctl,
+> > +             struct amdgpu_reset_context *context);
+> > +     void (*async_reset)(struct work_struct *work);
+> > +};
+> > +
+> >  struct amdgpu_reset_handler {
+> >       enum amd_reset_method reset_method;
+> >       int (*prepare_env)(struct amdgpu_reset_control *reset_ctl,
+> > @@ -72,20 +127,6 @@ struct amdgpu_reset_handler {
+> >       int (*do_reset)(struct amdgpu_device *adev);
+> >  };
+> >
+> > -struct amdgpu_reset_control {
+> > -     void *handle;
+> > -     struct work_struct reset_work;
+> > -     struct mutex reset_lock;
+> > -     struct amdgpu_reset_handler *(
+> > -             *reset_handlers)[AMDGPU_RESET_MAX_HANDLERS];
+> > -     atomic_t in_reset;
+> > -     enum amd_reset_method active_reset;
+> > -     struct amdgpu_reset_handler *(*get_reset_handler)(
+> > -             struct amdgpu_reset_control *reset_ctl,
+> > -             struct amdgpu_reset_context *context);
+> > -     void (*async_reset)(struct work_struct *work);
+> > -};
+> > -
+> >
+> >  enum amdgpu_reset_domain_type {
+> >       SINGLE_DEVICE,
+>
