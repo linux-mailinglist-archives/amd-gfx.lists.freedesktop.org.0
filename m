@@ -2,86 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mO2RENCc8GmGVwEAu9opvQ
+	id KM8HAQKu8GnOWwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 13:41:04 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:26 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B29AE48408C
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 13:41:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E1C4485338
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Apr 2026 14:54:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3282310EB20;
-	Tue, 28 Apr 2026 11:41:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02A7C10EBEE;
+	Tue, 28 Apr 2026 12:54:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="creKIdfJ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Dj6Zrweg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
- [209.85.128.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 538C610EB21
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 11:40:58 +0000 (UTC)
-Received: by mail-wm1-f48.google.com with SMTP id
- 5b1f17b1804b1-4891c00e7aeso86368035e9.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 04:40:58 -0700 (PDT)
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
+ [209.85.216.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B36CC10E6A2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 11:45:37 +0000 (UTC)
+Received: by mail-pj1-f52.google.com with SMTP id
+ 98e67ed59e1d1-362bb3260f1so5472472a91.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 04:45:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777376457; x=1777981257; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=k9znm/Hx+qgO3TCVZIvNRzqBAOrjfULJb7WpuY3j6cM=;
- b=creKIdfJmwdDgKJ3uBuV6DfLiHf+ja5IW4GDmTNeiIdyhLFcOQTC/I9kc3ypdfn70v
- ZqB8QxfdXiB9z3EheYzDfvV7DkZM2TzTudNH2lhEGlCHsG4Ie0Rk1KkuTCxBQZZ8LwKM
- AkjX3fjGtKA5HAgsGX8OJYS/o8exhoXK649D9gUiRsExAjMc1Q9Vl0A5ffZ6PbuShPb/
- JJobQcWXzlhiXBjru5lp6jQ3JDkyi28Miry1xZc6mJvjx2crIE/F5n7bSV9ZUsTz2j8V
- 7zCQlP0hxCPd28zyk+D2iSI9kUE6k2Itg5hU1DVFmpsT/TKjcibbS0h0ykiq86eh8x/U
- DAdQ==
+ d=gmail.com; s=20251104; t=1777376737; x=1777981537; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=1pkP0/dDsbN7BRJkxdoTN59hq9O2Teltgpo/B86M5m4=;
+ b=Dj6ZrwegSiiEUwFFUD82QQ5j7GLoCtiPArU6C+VlAhzcK78/Pt39QhICQX7esGvXE7
+ jTv1dl9eGgcaFLdQZSs0VJBjbZz1xOSCr1tFJnAw8jo7yaAFdBpKy6aTud/vZ1ZZ1rno
+ 71sg41xm5MS+t+uCnupxzOlx2afq36/adc1k/dMSeIz5ECkPI4Ol4Zesdp9wUPKLByoL
+ mXgn5XPGZYlpfhgoFPe01REdAEOzphUMX1wtPOvhoXXMtElTTaVfvZn1IHm+eW7rrxhR
+ Sbu7r/D09tYVuXha2w1psyseqZ73jbMDnGjgC6YWfC3+idveMuRPec1asC9dHW0uldIj
+ D0Zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777376457; x=1777981257;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=k9znm/Hx+qgO3TCVZIvNRzqBAOrjfULJb7WpuY3j6cM=;
- b=tAVTkz/PZne/XAuo0sTn1Tr36MRTP++YhcS/PVlAhvImEUHlzg8X6Q+ESo1ckhWcQ0
- Mo0E6/Il1N6/0m+tqZ16mKcLWlQzZNb8lPpKgNp0v+juf4h1S3KM2swqw+eQkhrDoAFI
- DjwbRR8LmIx5fMF8Q85ZteU9KRgIm8YESFI7qBI41tkPd96CHG4Fwpicia06h5i9hxDi
- C6k2h7ClorFkzbHPhe0b9R1S+BWPXvKFmFDdffWGaJJB9s5blj8RcH9AbbmZIOizy29N
- 1qS9SHue+k2YQdBNUSyoOWe3wieJdRKqPrF+6p3G3Mvatn7IIslr/H6oijKivxPdPhMd
- aAkQ==
-X-Gm-Message-State: AOJu0Yye8vcabRo6yCYisi0n9ZRN1ojaGRO0yfC4KSJdgiZL0Ad99TZq
- /CKcYn8Tnq3fdF3GXeyFyuvBba2uNrYtkFRxnoTrFKc5R+CUKpWQjMmW2E4874GF
-X-Gm-Gg: AeBDietPL/Gz4ZX1u3BwM6yb7vtrBYWUF/mctV4Lo8xL5+FqSjpdNHjN52HBKOoX1++
- QIs6hdPuLDgj4otEuAG4EwdZi/BaIAGj8hzHMyiD+rhZM1idi2vqpVdn9NEACpzsgIszfMMQ58o
- INkcyPIz1lcAjkWs6TbZgGDm6MfqvSHsQdsWb6FWg4EbaUAbSEX2v1kw7n3S05hO0R8IyKtyIu1
- 7hV9r0mb+mEJAetjMlpmhlmRqnlmk7gDJ+MjMCvGA5kSSSE8f76HViThzrHGQyn5KjWPIyJlrgc
- LsUE1iqCMN8Dd9tMvKkVe95Pu8age8+sfVCLneSJc/XLe1mkR1Lltc+XJWWZabLxcQMkzCB0fly
- cSQVraWGA34+3jvbVEdAK/e+bMVzwBebLcD2Ss8C/Z2CT+593SUP59h8/B8oTS5kETTFnqF4KGz
- Vh3XhHQ3qqRMQKFk4FOybxpjZmNPAcu8iu/0jM/IXyVfsGAka54vbX0y984Rfj1rtoNVPvojHwW
- /sq
-X-Received: by 2002:a05:600c:c114:b0:487:1108:48b8 with SMTP id
- 5b1f17b1804b1-48a77af3d5bmr33879355e9.2.1777376456798; 
- Tue, 28 Apr 2026 04:40:56 -0700 (PDT)
-Received: from Timur-Hyperion.home (5401DFC2.dsl.pool.telekom.hu.
- [84.1.223.194]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48a775e4bd0sm25048275e9.8.2026.04.28.04.40.54
+ d=1e100.net; s=20251104; t=1777376737; x=1777981537;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=1pkP0/dDsbN7BRJkxdoTN59hq9O2Teltgpo/B86M5m4=;
+ b=KMQlAcixqg43ZZ8JgPir8Q0+sBLW7h/NAZLMa0KCyYU58K2rg18fa1ikqCoYgKH0t6
+ h2CU2YmMeT9L8KBu425ZZ+8nzLfP0jolBcAPIQnZtLXzFrN59jiY/qT2TKG99CAwyZMA
+ SUbUkFS5BQFvJHbTVCtN8HEF4S8MgR7zgX5P/haW8Nnf/dKQw2q8NEvnlTVc41VCvva1
+ gW7REU2ts/tq2X96y1SiozpMEkhLwXoFRuIvSQkIMXvm/1grEjmZNX3HLmROq9fmTIn3
+ KjdnC1JdETHdKGg+PuhuYF2BjhRH9D+141AXPGuqUlaAZRBgT+elQQrwHBerwa5tUd6E
+ c99Q==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ9o23eEtxABLqBhz/Y9lIgtGgurC0y1Z49Y0N3jkgW1LigZj/f6tEyKF+4/SHxyMu1NubCcLiVD@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwHKssxXPv/d0SX4oSmqIriAlLf7wL4ravhrz0ludoGxzc1cdh6
+ KK5kvBtVsM8tLZ6Kl8Zqk8fF+E6J1qcN1W6efC7hGd20CUTiI00CCUPE
+X-Gm-Gg: AeBDiesEDYmawt4+oWimZhqb5cf2yHxPuQhyWph3CneyejtDRHgbyob8LumZ7Av2GZ2
+ dsIOh2Rb/plL5pJVFK8PSUWcIw8uC+88J4B/W1Ocop38dghlVJWbudgGQ8BbOdyy9ze94zf5xQo
+ 17zAzu1ZP65koDupDzPH19Kh5nJJSAMBBFqNg6tdkLMHFEn7l1j32X7LmSreJ3aTaIONuqfFAo2
+ ei+1ryoMqxUKFKqifX/KrAe3l2AVIwDtK0VB7ti3MAgUKI7QBrE78lzjxrD0w5eUdCDekgPWx3X
+ STQwK5axzK4eitGgWIkP0L2oVMSZ5c2mrItzgseMWiUqSFgZn8gukj3h3SLRPPxl6PjWYLQDdu6
+ tTyodO+krGr+mjm3rDE/8Jry5eGiGBpZhd6+jtqm1bKwbkcS9cgQyMiXGUBKAvT8/JocMw822eN
+ uisFpisgTBepCxAyOvMpv8G9c=
+X-Received: by 2002:a17:90a:d64e:b0:35d:8fdb:4f26 with SMTP id
+ 98e67ed59e1d1-36491f89e50mr2890066a91.1.1777376737142; 
+ Tue, 28 Apr 2026 04:45:37 -0700 (PDT)
+Received: from lgs.. ([101.36.111.22]) by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-36490fbfccesm2690890a91.14.2026.04.28.04.45.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Apr 2026 04:40:55 -0700 (PDT)
-From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
- Alex Hung <alex.hung@amd.com>, Harry Wentland <Harry.Wentland@amd.com>,
- Roman Li <Roman.Li@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Ivan Lipski <ivan.lipski@amd.com>, Melissa Wen <mwen@igalia.com>
-Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 6/6] drm/amd/display: Use EDID from VBIOS embedded panel info
-Date: Tue, 28 Apr 2026 13:40:45 +0200
-Message-ID: <20260428114045.40710-7-timur.kristof@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260428114045.40710-1-timur.kristof@gmail.com>
-References: <20260428114045.40710-1-timur.kristof@gmail.com>
+ Tue, 28 Apr 2026 04:45:36 -0700 (PDT)
+From: Guangshuo Li <lgs201920130244@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Lijo Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ Likun Gao <Likun.Gao@amd.com>, Asad Kamal <asad.kamal@amd.com>,
+ Ce Sun <cesun102@amd.com>, Kees Cook <kees@kernel.org>,
+ Meng Li <li.meng@amd.com>, Guangshuo Li <lgs201920130244@gmail.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amdgpu: Fix error handling in amdgpu_xcp_cfg_sysfs_init()
+Date: Tue, 28 Apr 2026 19:45:21 +0800
+Message-ID: <20260428114521.364863-1-lgs201920130244@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 28 Apr 2026 12:54:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,119 +95,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: B29AE48408C
+X-Rspamd-Queue-Id: 9E1C4485338
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:lijo.lazar@amd.com,m:Hawking.Zhang@amd.com,m:Likun.Gao@amd.com,m:asad.kamal@amd.com,m:cesun102@amd.com,m:kees@kernel.org,m:li.meng@amd.com,m:lgs201920130244@gmail.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,kernel.org,lists.freedesktop.org,vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[lgs201920130244@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FROM_NEQ_ENVFROM(0.00)[lgs201920130244@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-0.988];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-When an embedded panel has no DDC, read the EDID from
-the VBIOS embedded panel info and use that.
+Once kobject_init_and_add() fails for an XCP resource kobject, we
+should call kobject_put() to decrement the reference count for cleanup.
+Otherwise, it could cause a memory leak.
 
-Fixes: 7c7f5b15be65 ("drm/amd/display: Refactor edid read.")
-Link: https://gitlab.freedesktop.org/drm/amd/-/work_items/5192
-Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+The error handling loop also uses xcp_res[i] instead of xcp_res[j],
+so it fails to put the previously added resource kobjects and may put
+the failed kobject more than once.
+
+Fix this by putting the failed resource kobject before jumping to the
+error path, and by using the correct loop index when putting the
+previously added resource kobjects.
+
+Found by code review.
+
+Fixes: 4ae86dc87850 ("drm/amdgpu: Add sysfs nodes to get xcp details")
+Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index c53230cdfdc57..c491af21a34c6 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@ -1032,6 +1032,45 @@ dm_helpers_read_acpi_edid(struct amdgpu_dm_connector *aconnector)
- 	return drm_edid_read_custom(connector, dm_helpers_probe_acpi_edid, connector);
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+index cc5f4e01e38f..315e33a9d7c9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+@@ -948,15 +948,17 @@ static void amdgpu_xcp_cfg_sysfs_init(struct amdgpu_device *adev)
+ 					 &xcp_cfg_res_sysfs_ktype,
+ 					 &xcp_cfg->kobj, "%s",
+ 					 xcp_res_names[rid]);
+-		if (r)
++		if (r) {
++			kobject_put(&xcp_res->kobj);
+ 			goto err;
++		}
+ 	}
  
-+static const struct drm_edid *
-+dm_helpers_read_vbios_hardcoded_edid(struct dc_link *link, struct amdgpu_dm_connector *aconnector)
-+{
-+	struct dc_bios *bios = link->ctx->dc_bios;
-+	struct embedded_panel_info info;
-+	const struct drm_edid *edid;
-+	enum bp_result r;
-+
-+	if (!dc_is_embedded_signal(link->connector_signal) ||
-+	    !bios->funcs->get_embedded_panel_info)
-+		return NULL;
-+
-+	memset(&info, 0, sizeof(info));
-+	r = bios->funcs->get_embedded_panel_info(bios, &info);
-+
-+	if (r != BP_RESULT_OK) {
-+		dm_error("Error when reading embedded panel info: %u\n", r);
-+		return NULL;
-+	}
-+
-+	if (!info.fake_edid || !info.fake_edid_size) {
-+		dm_error("Embedded panel info doesn't contain an EDID\n");
-+		return NULL;
-+	}
-+
-+	edid = drm_edid_alloc(info.fake_edid, info.fake_edid_size);
-+
-+	if (!drm_edid_valid(edid)) {
-+		dm_error("EDID from embedded panel info is invalid\n");
-+		drm_edid_free(edid);
-+		return NULL;
-+	}
-+
-+	aconnector->base.display_info.width_mm = info.panel_width_mm;
-+	aconnector->base.display_info.height_mm = info.panel_height_mm;
-+
-+	return edid;
-+}
-+
- void populate_hdmi_info_from_connector(struct drm_hdmi_info *hdmi, struct dc_edid_caps *edid_caps)
- {
- 	edid_caps->scdc_present = hdmi->scdc.supported;
-@@ -1052,6 +1091,9 @@ enum dc_edid_status dm_helpers_read_local_edid(
+ 	adev->xcp_mgr->xcp_cfg = xcp_cfg;
+ 	return;
+ err:
+ 	for (j = 0; j < i; j++) {
+-		xcp_res = &xcp_cfg->xcp_res[i];
++		xcp_res = &xcp_cfg->xcp_res[j];
+ 		kobject_put(&xcp_res->kobj);
+ 	}
  
- 	if (link->aux_mode)
- 		ddc = &aconnector->dm_dp_aux.aux.ddc;
-+	else if (link->ddc_hw_inst == GPIO_DDC_LINE_UNKNOWN &&
-+		 dc_is_embedded_signal(link->connector_signal))
-+		ddc = NULL;
- 	else
- 		ddc = &aconnector->i2c->base;
- 
-@@ -1065,6 +1107,8 @@ enum dc_edid_status dm_helpers_read_local_edid(
- 		drm_edid = dm_helpers_read_acpi_edid(aconnector);
- 		if (drm_edid)
- 			drm_info(connector->dev, "Using ACPI provided EDID for %s\n", connector->name);
-+		else if (!ddc)
-+			drm_edid = dm_helpers_read_vbios_hardcoded_edid(link, aconnector);
- 		else
- 			drm_edid = drm_edid_read_ddc(connector, ddc);
- 		drm_edid_connector_update(connector, drm_edid);
 -- 
-2.53.0
+2.43.0
 
