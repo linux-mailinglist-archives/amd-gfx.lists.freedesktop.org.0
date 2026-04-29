@@ -2,82 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4DgtFOoG82lBwwEAu9opvQ
+	id JL2NI1d88ml2rwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 09:38:18 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 23:47:03 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F32A949EB6A
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 09:38:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E20FF49AAE8
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 23:47:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B63FD10F26B;
-	Thu, 30 Apr 2026 07:38:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F25A10E11E;
+	Wed, 29 Apr 2026 21:47:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hhC/g2v5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R97ggd10";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com
- [209.85.167.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A73DB10E125
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2026 21:31:39 +0000 (UTC)
-Received: by mail-oi1-f175.google.com with SMTP id
- 5614622812f47-4670464029eso161022b6e.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2026 14:31:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777498298; x=1778103098; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=2IPgbTOPZpwRo/kCSObN2KGrGrefkasNwYZ5DgDYCDA=;
- b=hhC/g2v55b9HWahtRrsFnJYBdgqkjBT92kYq1+dk1S6gxNA10bCe4vU85zuCJyk4Dr
- Jd4aO+n1iTP0vhpEQps/P1+eJpi/itDC148lDZ7Fmfl4yQQ+0/PC8mFDKLTY61r7MViI
- 5fq4c4+ttlMnwtexkqEJ54yUzgaCnLGs8AGmcKYws49ioJhRUfr6/8jcZ4Rgv17GiyEo
- drZ22A/ZLVL0tfEDqLUPyZb+vQR6LL1yi4AsZQucnJvc3NAVmMM1d25g9EiG1mQNosjM
- CbKQhYzvXlIngI5uD7R2h/2GBlnNKnys3O7RaWDeW6S11F1ZRupYoT8cFhzM+HvDcCMe
- G1tA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777498298; x=1778103098;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=2IPgbTOPZpwRo/kCSObN2KGrGrefkasNwYZ5DgDYCDA=;
- b=rHIrYCrTpc9lbDc+OiAxiuuCY9yNGIjtvEYSdug7GxFlWlZijBX6L2jMYEO+U9GK+m
- QRq4ntfJrSOsrLQqfmfGdaKjuKC8UKimLWO6Fq5Fz7qklnDoob/zov7NMU1yyjq5+rpS
- EcTAX1d/sdgZzkVThTD5xLjrFBDHKMoGaM2BnnmXBJ6LZXHR7DJVcfn41k0e9r3Jrbap
- R7je52+2PJ8UEKsVH0IrGezPPojwXdJRZlRzxIfEi3fyitQ0rKSjRi0V7KbU2k/eW3js
- JxSaFC5t+JZE7295S8DPA+pLu3+QNz8Okj91JLJY6Ryrk2DSGHpW+jiuxxUvk1Gh3m0L
- HWWw==
-X-Gm-Message-State: AOJu0YwoZeQXSMvUq9X4BTMYkYO/UgOSKNfvMS5pDFyomnuttpJzPPxX
- 86HS2WmP/X4+mZVaWa9r+gusK+GazAJyhFm3/6zyJCJWCwSrkpUbWdM=
-X-Gm-Gg: AeBDies9Mi4EXBw7lZdrwkOUyrTmZE7j+FrNWUGf3RozHMCY1EKK7lwjJpFJyQfSU84
- DUxP2bpUTOVSpGktRw4a00wib0F3Y3Chu0z1gSmTPWx5Ct646b5g/KhdrRxkJkVKTEcd05eaALY
- X4q0B7LmHqGhwpubXksSeEBNyZhyabaQOJC7Nplpe1k/+Akq92jBhcJ/mxZvPg4UgV/8g2fkg7+
- yPE6K2KAYphJ261Kl6dWv+kiwgsMKt9UePnaoRWvyqlwCMKgOZw7JkqQOJNnGR8pi3fdVtkiSTL
- 3aAwNBZaKjCxqafD73EBpCTUQuDm3WXXyLIhjxyioFZAlJAMHaHN0pkWIWm0RD+7dmxnRWbwhWs
- u2oMLzqr/vQ0JM4coVayMD/AXr7MZMfDXSDGqA/kBBDy0g0JiiMkpVPYh159v2VoBfKuV4GqI67
- /2N7SJyShefB2Mw3RkjX88B/Sekv3H1nWiTSh9oyI6lDuphjbf6xVw3jq/7ac9vsCTpwp6du5Vd
- A4AMEuXVdBWgDPEes3rdh2sdEiWM7TGEzs=
-X-Received: by 2002:a05:6808:2f0e:b0:479:d4b5:c1a2 with SMTP id
- 5614622812f47-47c5fb7c752mr271838b6e.4.1777498298150; 
- Wed, 29 Apr 2026 14:31:38 -0700 (PDT)
-Received: from localhost.localdomain ([47.188.191.104])
- by smtp.gmail.com with ESMTPSA id
- 5614622812f47-47c43e6aeb2sm1733690b6e.4.2026.04.29.14.31.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 Apr 2026 14:31:37 -0700 (PDT)
-From: "John B. Moore" <jbmoore61@gmail.com>
-To: Alexander Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
-	John Moore <jbmoore61@gmail.com>
-Subject: [PATCH] drm/amdgpu/gfx: extract common doorbell wptr helpers to
- amdgpu_gfx.c
-Date: Wed, 29 Apr 2026 16:31:36 -0500
-Message-ID: <20260429213136.21274-1-jbmoore61@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4E5310E11E;
+ Wed, 29 Apr 2026 21:46:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777499219; x=1809035219;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=71tGufHLVIhR0fNvIFCqJV7iDKZTxt3CByNLikQkMms=;
+ b=R97ggd10HZc4WM3hy2PZ0tgdgNmbNYHCTaNRV3ZvGSAIsZCZKVKEspse
+ BGAIDok1XhnfGv/dCzSQO6HwgkMdmpVMeNPyJ0KZLyDJL4/xOYvcbLwc7
+ zN7eGXhU3fL79XyWuUk4T2C3cNi9MCn7YfiiqoMOWZt2C6454gNNAUL2f
+ Ha3p9Ep65+ytMbVqhiHdQgD0bIMNUVhREyll55lqFWEBMGVv5Vw0CAvNI
+ 1Ev7lukKy6V+fC9Vc57jNczUdHvqMJ0HqBCV958M/HPha00B1tMGvX48Q
+ /cC0mgEBHB33NBuNLr47D97onCS/ticpHe8VRhHAD5yeNdfWjODoCpDCK g==;
+X-CSE-ConnectionGUID: lWshXW9STNOOkqZzgsWB0w==
+X-CSE-MsgGUID: GKlSJR43QXSp5JlG/sSaKQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="77605820"
+X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="77605820"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2026 14:46:58 -0700
+X-CSE-ConnectionGUID: +s3H4it+QXiQB+LfIGOC2Q==
+X-CSE-MsgGUID: 8kWWS6+1QTWaDfj6KbDk9w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="272509355"
+Received: from lkp-server01.sh.intel.com (HELO aa799cca880d) ([10.239.97.150])
+ by orviesa001.jf.intel.com with ESMTP; 29 Apr 2026 14:46:55 -0700
+Received: from kbuild by aa799cca880d with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1wICk8-00000000BZU-0a6Q;
+ Wed, 29 Apr 2026 21:46:52 +0000
+Date: Thu, 30 Apr 2026 05:46:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Evgenii Burenchev <evg28bur@yandex.ru>, stable@vger.kernel.org,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ Evgenii Burenchev <evg28bur@yandex.ru>, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/radeon/rs780: prevent division by zero in refresh
+ rate calculation
+Message-ID: <202604300508.yXci8rey-lkp@intel.com>
+References: <20260428190318.34413-1-evg28bur@yandex.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 30 Apr 2026 07:38:12 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260428190318.34413-1-evg28bur@yandex.ru>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,425 +78,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: F32A949EB6A
+X-Rspamd-Queue-Id: E20FF49AAE8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jbmoore61@gmail.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[lists.linux.dev,yandex.ru,amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	FREEMAIL_TO(0.00)[yandex.ru,vger.kernel.org,linuxfoundation.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-0.957];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,01.org:url]
 
-From: John Moore <jbmoore61@gmail.com>
+Hi Evgenii,
 
-The get_wptr and set_wptr implementations for doorbell-based compute
-rings are duplicated identically across gfx_v9_0, gfx_v10_0,
-gfx_v11_0, gfx_v12_0, and gfx_v12_1.  Extract them into common
-helpers amdgpu_gfx_get_wptr_doorbell() and
-amdgpu_gfx_set_wptr_doorbell() in amdgpu_gfx.c.
+kernel test robot noticed the following build warnings:
 
-The helpers are named _doorbell rather than _compute because
-there is nothing compute-specific about the implementation --
-they read/write the wptr via the doorbell-mapped writeback
-address.
+[auto build test WARNING on drm-misc/drm-misc-next]
+[also build test WARNING on linus/master v7.1-rc1 next-20260429]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Also replaces BUG() in the non-doorbell fallback path with
-WARN_ON_ONCE(), since crashing the kernel is not an appropriate
-response to a programming error.
+url:    https://github.com/intel-lab-lkp/linux/commits/Evgenii-Burenchev/drm-radeon-rs780-prevent-division-by-zero-in-refresh-rate-calculation/20260429-055830
+base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
+patch link:    https://lore.kernel.org/r/20260428190318.34413-1-evg28bur%40yandex.ru
+patch subject: [PATCH] drm/radeon/rs780: prevent division by zero in refresh rate calculation
+config: riscv-defconfig (https://download.01.org/0day-ci/archive/20260430/202604300508.yXci8rey-lkp@intel.com/config)
+compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project 5bac06718f502014fade905512f1d26d578a18f3)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260430/202604300508.yXci8rey-lkp@intel.com/reproduce)
 
-gfx_v9_4_3 is intentionally left unconverted because it uses a
-different memory access pattern (wb.wb[wptr_offs] instead of
-wptr_cpu_addr).
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202604300508.yXci8rey-lkp@intel.com/
 
-Signed-off-by: John Moore <jbmoore61@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 39 +++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  3 ++
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c  | 32 +++-----------------
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 33 +++------------------
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  | 33 +++------------------
- drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c  | 33 +++------------------
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c   | 32 +++-----------------
- 7 files changed, 62 insertions(+), 143 deletions(-)
+All warnings (new ones prefixed by >>):
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index b8ca87669..a4ffb8156 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -2686,3 +2686,42 @@ void amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev)
- #endif
- }
- 
-+/**
-+ * amdgpu_gfx_get_wptr_doorbell - common get_wptr for rings using doorbells
-+ * @ring: amdgpu_ring pointer
-+ *
-+ * Read the write pointer from the doorbell-mapped writeback address.
-+ * This is HW-agnostic and shared across GFX generations that use
-+ * doorbell-based queue management.
-+ */
-+u64 amdgpu_gfx_get_wptr_doorbell(struct amdgpu_ring *ring)
-+{
-+	/* XXX check if swapping is necessary on BE */
-+	if (ring->use_doorbell)
-+		return atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
-+
-+	WARN_ON_ONCE(1);
-+	return 0;
-+}
-+
-+/**
-+ * amdgpu_gfx_set_wptr_doorbell - common set_wptr for rings using doorbells
-+ * @ring: amdgpu_ring pointer
-+ *
-+ * Write the write pointer to the doorbell-mapped writeback address and
-+ * ring the doorbell.  This is HW-agnostic and shared across GFX
-+ * generations that use doorbell-based queue management.
-+ */
-+void amdgpu_gfx_set_wptr_doorbell(struct amdgpu_ring *ring)
-+{
-+	struct amdgpu_device *adev = ring->adev;
-+
-+	/* XXX check if swapping is necessary on BE */
-+	if (ring->use_doorbell) {
-+		atomic64_set((atomic64_t *)ring->wptr_cpu_addr, ring->wptr);
-+		WDOORBELL64(ring->doorbell_index, ring->wptr);
-+	} else {
-+		WARN_ON_ONCE(1);
-+	}
-+}
-+
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-index a0cf0a3b4..64578241c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-@@ -661,6 +661,9 @@ u32 amdgpu_gfx_csb_preamble_start(u32 *buffer);
- u32 amdgpu_gfx_csb_data_parser(struct amdgpu_device *adev, u32 *buffer, u32 count);
- void amdgpu_gfx_csb_preamble_end(u32 *buffer, u32 count);
- 
-+u64 amdgpu_gfx_get_wptr_doorbell(struct amdgpu_ring *ring);
-+void amdgpu_gfx_set_wptr_doorbell(struct amdgpu_ring *ring);
-+
- void amdgpu_debugfs_gfx_sched_mask_init(struct amdgpu_device *adev);
- void amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-index 58c69dcb5..070b89179 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -8591,30 +8591,6 @@ static u64 gfx_v10_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
- 	return *(uint32_t *)ring->rptr_cpu_addr;
- }
- 
--static u64 gfx_v10_0_ring_get_wptr_compute(struct amdgpu_ring *ring)
--{
--	u64 wptr;
--
--	/* XXX check if swapping is necessary on BE */
--	if (ring->use_doorbell)
--		wptr = atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
--	else
--		BUG();
--	return wptr;
--}
--
--static void gfx_v10_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
--{
--	struct amdgpu_device *adev = ring->adev;
--
--	if (ring->use_doorbell) {
--		atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
--			     ring->wptr);
--		WDOORBELL64(ring->doorbell_index, ring->wptr);
--	} else {
--		BUG(); /* only DOORBELL method supported on gfx10 now */
--	}
--}
- 
- static void gfx_v10_0_ring_emit_hdp_flush(struct amdgpu_ring *ring)
- {
-@@ -9886,8 +9862,8 @@ static const struct amdgpu_ring_funcs gfx_v10_0_ring_funcs_compute = {
- 	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
- 	.support_64bit_ptrs = true,
- 	.get_rptr = gfx_v10_0_ring_get_rptr_compute,
--	.get_wptr = gfx_v10_0_ring_get_wptr_compute,
--	.set_wptr = gfx_v10_0_ring_set_wptr_compute,
-+	.get_wptr = amdgpu_gfx_get_wptr_doorbell,
-+	.set_wptr = amdgpu_gfx_set_wptr_doorbell,
- 	.emit_frame_size =
- 		20 + /* gfx_v10_0_ring_emit_gds_switch */
- 		7 + /* gfx_v10_0_ring_emit_hdp_flush */
-@@ -9926,8 +9902,8 @@ static const struct amdgpu_ring_funcs gfx_v10_0_ring_funcs_kiq = {
- 	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
- 	.support_64bit_ptrs = true,
- 	.get_rptr = gfx_v10_0_ring_get_rptr_compute,
--	.get_wptr = gfx_v10_0_ring_get_wptr_compute,
--	.set_wptr = gfx_v10_0_ring_set_wptr_compute,
-+	.get_wptr = amdgpu_gfx_get_wptr_doorbell,
-+	.set_wptr = amdgpu_gfx_set_wptr_doorbell,
- 	.emit_frame_size =
- 		20 + /* gfx_v10_0_ring_emit_gds_switch */
- 		7 + /* gfx_v10_0_ring_emit_hdp_flush */
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index 2c6f1e25c..8aa425b15 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -5891,31 +5891,6 @@ static u64 gfx_v11_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
- 	return *(uint32_t *)ring->rptr_cpu_addr;
- }
- 
--static u64 gfx_v11_0_ring_get_wptr_compute(struct amdgpu_ring *ring)
--{
--	u64 wptr;
--
--	/* XXX check if swapping is necessary on BE */
--	if (ring->use_doorbell)
--		wptr = atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
--	else
--		BUG();
--	return wptr;
--}
--
--static void gfx_v11_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
--{
--	struct amdgpu_device *adev = ring->adev;
--
--	/* XXX check if swapping is necessary on BE */
--	if (ring->use_doorbell) {
--		atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
--			     ring->wptr);
--		WDOORBELL64(ring->doorbell_index, ring->wptr);
--	} else {
--		BUG(); /* only DOORBELL method supported on gfx11 now */
--	}
--}
- 
- static void gfx_v11_0_ring_emit_hdp_flush(struct amdgpu_ring *ring)
- {
-@@ -7331,8 +7306,8 @@ static const struct amdgpu_ring_funcs gfx_v11_0_ring_funcs_compute = {
- 	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
- 	.support_64bit_ptrs = true,
- 	.get_rptr = gfx_v11_0_ring_get_rptr_compute,
--	.get_wptr = gfx_v11_0_ring_get_wptr_compute,
--	.set_wptr = gfx_v11_0_ring_set_wptr_compute,
-+	.get_wptr = amdgpu_gfx_get_wptr_doorbell,
-+	.set_wptr = amdgpu_gfx_set_wptr_doorbell,
- 	.emit_frame_size =
- 		5 + /* update_spm_vmid */
- 		20 + /* gfx_v11_0_ring_emit_gds_switch */
-@@ -7372,8 +7347,8 @@ static const struct amdgpu_ring_funcs gfx_v11_0_ring_funcs_kiq = {
- 	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
- 	.support_64bit_ptrs = true,
- 	.get_rptr = gfx_v11_0_ring_get_rptr_compute,
--	.get_wptr = gfx_v11_0_ring_get_wptr_compute,
--	.set_wptr = gfx_v11_0_ring_set_wptr_compute,
-+	.get_wptr = amdgpu_gfx_get_wptr_doorbell,
-+	.set_wptr = amdgpu_gfx_set_wptr_doorbell,
- 	.emit_frame_size =
- 		20 + /* gfx_v11_0_ring_emit_gds_switch */
- 		7 + /* gfx_v11_0_ring_emit_hdp_flush */
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-index 6baac533a..7e1ec4e3e 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -4401,31 +4401,6 @@ static u64 gfx_v12_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
- 	return *(uint32_t *)ring->rptr_cpu_addr;
- }
- 
--static u64 gfx_v12_0_ring_get_wptr_compute(struct amdgpu_ring *ring)
--{
--	u64 wptr;
--
--	/* XXX check if swapping is necessary on BE */
--	if (ring->use_doorbell)
--		wptr = atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
--	else
--		BUG();
--	return wptr;
--}
--
--static void gfx_v12_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
--{
--	struct amdgpu_device *adev = ring->adev;
--
--	/* XXX check if swapping is necessary on BE */
--	if (ring->use_doorbell) {
--		atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
--			     ring->wptr);
--		WDOORBELL64(ring->doorbell_index, ring->wptr);
--	} else {
--		BUG(); /* only DOORBELL method supported on gfx12 now */
--	}
--}
- 
- static void gfx_v12_0_ring_emit_hdp_flush(struct amdgpu_ring *ring)
- {
-@@ -5553,8 +5528,8 @@ static const struct amdgpu_ring_funcs gfx_v12_0_ring_funcs_compute = {
- 	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
- 	.support_64bit_ptrs = true,
- 	.get_rptr = gfx_v12_0_ring_get_rptr_compute,
--	.get_wptr = gfx_v12_0_ring_get_wptr_compute,
--	.set_wptr = gfx_v12_0_ring_set_wptr_compute,
-+	.get_wptr = amdgpu_gfx_get_wptr_doorbell,
-+	.set_wptr = amdgpu_gfx_set_wptr_doorbell,
- 	.emit_frame_size =
- 		7 + /* gfx_v12_0_ring_emit_hdp_flush */
- 		5 + /* hdp invalidate */
-@@ -5591,8 +5566,8 @@ static const struct amdgpu_ring_funcs gfx_v12_0_ring_funcs_kiq = {
- 	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
- 	.support_64bit_ptrs = true,
- 	.get_rptr = gfx_v12_0_ring_get_rptr_compute,
--	.get_wptr = gfx_v12_0_ring_get_wptr_compute,
--	.set_wptr = gfx_v12_0_ring_set_wptr_compute,
-+	.get_wptr = amdgpu_gfx_get_wptr_doorbell,
-+	.set_wptr = amdgpu_gfx_set_wptr_doorbell,
- 	.emit_frame_size =
- 		7 + /* gfx_v12_0_ring_emit_hdp_flush */
- 		5 + /*hdp invalidate */
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-index 033f15e21..47fae6c33 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-@@ -3368,31 +3368,6 @@ static u64 gfx_v12_1_ring_get_rptr_compute(struct amdgpu_ring *ring)
- 	return *(uint32_t *)ring->rptr_cpu_addr;
- }
- 
--static u64 gfx_v12_1_ring_get_wptr_compute(struct amdgpu_ring *ring)
--{
--	u64 wptr;
--
--	/* XXX check if swapping is necessary on BE */
--	if (ring->use_doorbell)
--		wptr = atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
--	else
--		BUG();
--	return wptr;
--}
--
--static void gfx_v12_1_ring_set_wptr_compute(struct amdgpu_ring *ring)
--{
--	struct amdgpu_device *adev = ring->adev;
--
--	/* XXX check if swapping is necessary on BE */
--	if (ring->use_doorbell) {
--		atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
--			     ring->wptr);
--		WDOORBELL64(ring->doorbell_index, ring->wptr);
--	} else {
--		BUG(); /* only DOORBELL method supported on gfx12 now */
--	}
--}
- 
- static void gfx_v12_1_ring_emit_ib_compute(struct amdgpu_ring *ring,
- 					   struct amdgpu_job *job,
-@@ -3896,8 +3871,8 @@ static const struct amdgpu_ring_funcs gfx_v12_1_ring_funcs_compute = {
- 	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
- 	.support_64bit_ptrs = true,
- 	.get_rptr = gfx_v12_1_ring_get_rptr_compute,
--	.get_wptr = gfx_v12_1_ring_get_wptr_compute,
--	.set_wptr = gfx_v12_1_ring_set_wptr_compute,
-+	.get_wptr = amdgpu_gfx_get_wptr_doorbell,
-+	.set_wptr = amdgpu_gfx_set_wptr_doorbell,
- 	.emit_frame_size =
- 		7 + /* gfx_v12_1_ring_emit_pipeline_sync */
- 		SOC15_FLUSH_GPU_TLB_NUM_WREG * 5 +
-@@ -3926,8 +3901,8 @@ static const struct amdgpu_ring_funcs gfx_v12_1_ring_funcs_kiq = {
- 	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
- 	.support_64bit_ptrs = true,
- 	.get_rptr = gfx_v12_1_ring_get_rptr_compute,
--	.get_wptr = gfx_v12_1_ring_get_wptr_compute,
--	.set_wptr = gfx_v12_1_ring_set_wptr_compute,
-+	.get_wptr = amdgpu_gfx_get_wptr_doorbell,
-+	.set_wptr = amdgpu_gfx_set_wptr_doorbell,
- 	.emit_frame_size =
- 		7 + /* gfx_v12_1_ring_emit_pipeline_sync */
- 		SOC15_FLUSH_GPU_TLB_NUM_WREG * 5 +
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 2eb32f92a..657aff0b3 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -5634,30 +5634,6 @@ static u64 gfx_v9_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
- 	return *ring->rptr_cpu_addr; /* gfx9 hardware is 32bit rptr */
- }
- 
--static u64 gfx_v9_0_ring_get_wptr_compute(struct amdgpu_ring *ring)
--{
--	u64 wptr;
--
--	/* XXX check if swapping is necessary on BE */
--	if (ring->use_doorbell)
--		wptr = atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
--	else
--		BUG();
--	return wptr;
--}
--
--static void gfx_v9_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
--{
--	struct amdgpu_device *adev = ring->adev;
--
--	/* XXX check if swapping is necessary on BE */
--	if (ring->use_doorbell) {
--		atomic64_set((atomic64_t *)ring->wptr_cpu_addr, ring->wptr);
--		WDOORBELL64(ring->doorbell_index, ring->wptr);
--	} else{
--		BUG(); /* only DOORBELL method supported on gfx9 now */
--	}
--}
- 
- static void gfx_v9_0_ring_emit_fence_kiq(struct amdgpu_ring *ring, u64 addr,
- 					 u64 seq, unsigned int flags)
-@@ -7614,8 +7590,8 @@ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_compute = {
- 	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
- 	.support_64bit_ptrs = true,
- 	.get_rptr = gfx_v9_0_ring_get_rptr_compute,
--	.get_wptr = gfx_v9_0_ring_get_wptr_compute,
--	.set_wptr = gfx_v9_0_ring_set_wptr_compute,
-+	.get_wptr = amdgpu_gfx_get_wptr_doorbell,
-+	.set_wptr = amdgpu_gfx_set_wptr_doorbell,
- 	.emit_frame_size =
- 		20 + /* gfx_v9_0_ring_emit_gds_switch */
- 		7 + /* gfx_v9_0_ring_emit_hdp_flush */
-@@ -7656,8 +7632,8 @@ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_kiq = {
- 	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
- 	.support_64bit_ptrs = true,
- 	.get_rptr = gfx_v9_0_ring_get_rptr_compute,
--	.get_wptr = gfx_v9_0_ring_get_wptr_compute,
--	.set_wptr = gfx_v9_0_ring_set_wptr_compute,
-+	.get_wptr = amdgpu_gfx_get_wptr_doorbell,
-+	.set_wptr = amdgpu_gfx_set_wptr_doorbell,
- 	.emit_frame_size =
- 		20 + /* gfx_v9_0_ring_emit_gds_switch */
- 		7 + /* gfx_v9_0_ring_emit_hdp_flush */
+>> drivers/gpu/drm/radeon/rs780_dpm.c:68:5: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+      68 |                                 if (pi->refresh_rate == 0)
+         |                                 ^
+   drivers/gpu/drm/radeon/rs780_dpm.c:66:4: note: previous statement is here
+      66 |                         if (crtc->mode.htotal && crtc->mode.vtotal)
+         |                         ^
+   1 warning generated.
+
+
+vim +/if +68 drivers/gpu/drm/radeon/rs780_dpm.c
+
+    48	
+    49	static void rs780_get_pm_mode_parameters(struct radeon_device *rdev)
+    50	{
+    51		struct igp_power_info *pi = rs780_get_pi(rdev);
+    52		struct radeon_mode_info *minfo = &rdev->mode_info;
+    53		struct drm_crtc *crtc;
+    54		struct radeon_crtc *radeon_crtc;
+    55		int i;
+    56	
+    57		/* defaults */
+    58		pi->crtc_id = 0;
+    59		pi->refresh_rate = 60;
+    60	
+    61		for (i = 0; i < rdev->num_crtc; i++) {
+    62			crtc = (struct drm_crtc *)minfo->crtcs[i];
+    63			if (crtc && crtc->enabled) {
+    64				radeon_crtc = to_radeon_crtc(crtc);
+    65				pi->crtc_id = radeon_crtc->crtc_id;
+    66				if (crtc->mode.htotal && crtc->mode.vtotal)
+    67					pi->refresh_rate = drm_mode_vrefresh(&crtc->mode);
+  > 68					if (pi->refresh_rate == 0)
+    69						pi->refresh_rate = 60;
+    70				break;
+    71			}
+    72		}
+    73	}
+    74	
+
 -- 
-2.43.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
