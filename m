@@ -2,82 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wDcKMOgG82lBwwEAu9opvQ
+	id UK/TDlJW8mkTpwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 09:38:16 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 21:04:50 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 641AC49EB53
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 09:38:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E6694997A3
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 21:04:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 240C610F25F;
-	Thu, 30 Apr 2026 07:38:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B47010E3F4;
+	Wed, 29 Apr 2026 19:04:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=usp.br header.i=@usp.br header.b="AGz8tEj7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k2QUmowe";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com
- [209.85.222.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE4CE10F0CF
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2026 17:37:10 +0000 (UTC)
-Received: by mail-ua1-f50.google.com with SMTP id
- a1e0cc1a2514c-94ab69af6c8so698864241.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2026 10:37:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=usp.br; s=usp-google; t=1777484229; x=1778089029; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=9jIAgqmNQYvaI7Z1F5IA3p1ashE9xvLiL45a/VfhazQ=;
- b=AGz8tEj7LCvd0qmhBww4UeHOJjveUQFjIg63SOEfXi1qYlMM6lW2hAkUEgNz5tJfaB
- Iu61kzU2miuE5Bu9L1XDo6Id2Sb3UZ8y0nELvbmR1ew9RptSGwBSc0A/LKPbRkPjw2z1
- xytsm6Bw2JEJpvjIdmkZ0LJIW1UrTCTsvTlqIKyHWu/M3PPLqj9GhZJbNu3o39jwKYDZ
- my/mwvPJV87awSsPonrcftAUO/f9lun2j334aRmht/CAmJwtNeQEODjDP6bYx7onrTwm
- WAe0u94yeHLxVtnkdXhiR9CKy6PLrWVET5ZNw57P10ptl086qXiE6dck1vvZmW/975Ba
- b2kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777484229; x=1778089029;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=9jIAgqmNQYvaI7Z1F5IA3p1ashE9xvLiL45a/VfhazQ=;
- b=aYg/Glmq1R46kxhtjlStzDJlvgP35SOyIdvVW4oQJsU/vUnC4nvIdFAvBX81ypP/my
- DsDOijEP/pL6lwe0LdVhSo+jQ51LF64MueSsXkB3CPocd8PmYlNvV1BJRy8t5dQaChK0
- Xbp0cUjnZey+M0zayNLUWOkBq82lGhfFKT8Wy/yWzrqYA+LfuPMmbYBxHPTgRkpSDjwS
- KX4u1o3Pv9rwPUo2ErkwCw61XJUH60JcYsnTAlMFZ5gKsZg0lrojvI5Q17MUJOPV9yFl
- Rqyu7iv9F1hDKfQ04RVTUyUN5IlQxzkT0lNf+NepdJ0LSou8wK1MTAu4yD7VGo2Ax9jB
- k5sw==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+XbIwa1eb+SM07wy2B3Nt1o2V8S0QJLnSf2bjDtz47uJ4SpY3EZQaMsEDEL5idlNVUoaqPeWES@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwUrzIIlYNa6oBYEi7M2IZX6dAodg0O1X2a9cVs3MtW2Chqmf08
- hF68WifJJmYERg2MBKIlGPw1Uxk/iWDHW4dTA7mLF5GK7AfKfnt0UTyZ3hSLVk+j3Qo=
-X-Gm-Gg: AeBDievsLsqX6sHUMaxuRGEvOQ3rR0Ii5eDtZFwT1A08Z7gh9erkMc1Z/j5NgpsmXZ4
- p/dXoo3K1QwRExgXlzeFtXRMnjNALselDlnErBGIVToAlLl3fhIC0ccKO2+ech3GMi4hvqHE5mK
- ukeVQ1ik+qd+CNt5K37MFK1C2Q+upnOmpPirgmToHsE/YH9nlpsket0EwUOUwmWUP9rUv/y02+h
- b5lSc6MWjryFD7I8H3eBognjvi4fI9rdaKdX89ofqkQTjJPJpjB1G6JXmkj1K4U6VET4fcUPaCb
- 6r7tZKaENwwClIbFkqE2jY0CyKvhd/2HUCbhInTLILFvcobo+qVMYDRr9tJs0kH8G1e+aASyw06
- Ma495Xfm2+9+wE0Ms+PWNYUKEmUpkuqob4gaq1PLdZTXGCNCJUu6yKLmNC2dfJIC8/y69yN39ig
- IxY4kX2X6X1TjE8kf8bn0DJ0gvGIU/ak00VyUBDPdqA2i1wBQ=
-X-Received: by 2002:a67:c512:0:b0:610:347f:9f3b with SMTP id
- ada2fe7eead31-6296a37b409mr1241963137.3.1777484228886; 
- Wed, 29 Apr 2026 10:37:08 -0700 (PDT)
-Received: from localhost.localdomain ([152.234.115.70])
- by smtp.gmail.com with ESMTPSA id
- a1e0cc1a2514c-95cb760fbe7sm1389109241.7.2026.04.29.10.37.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 Apr 2026 10:37:08 -0700 (PDT)
-From: Ulisses Paixao <ulissespaixao@usp.br>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch
-Cc: Ulisses Paixao <ulissespaixao@usp.br>, Felipe Sousa <felipesousa@usp.br>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/amd/amdgpu: remove duplicated code in gfx_v11 and gfx_v12
-Date: Wed, 29 Apr 2026 14:36:46 -0300
-Message-Id: <20260429173646.7653-1-ulissespaixao@usp.br>
-X-Mailer: git-send-email 2.34.1
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52C6310E3F4;
+ Wed, 29 Apr 2026 19:04:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777489486; x=1809025486;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=tsidYZBHseBKOISqltd/eKHnliZi9ZyEiXutHjbxvS0=;
+ b=k2QUmowePQJYtexxH//yyHi8DUMMJF/dHdT01a7gK0DIdqkmM9J6XjC9
+ /iEjVdMSCyxW1JuaCyD11ST3CIxh1i84mJP9oqkSNirrhao/LxUKVWsQr
+ Pp9yH6vTlhLsxUrJzJ4++H7zaKuOdG1QWQR1d0FbPF/cJOc/XVsXdkAas
+ By3cZv6YUQ30kng1fi0CACMzc9h4tIGVs3++8b9T4mpSTUzvD1eSj5hh5
+ 23G0vts2pj4jxs1rkLxkrIe/9QwRUZM0+57vISpXPz9niCerdbuupHQ4c
+ 5PbKIRsxo7augUoimnjisWGZb7Fmin2JuJZyCPz7vbH6vcYwjP4enTKSI w==;
+X-CSE-ConnectionGUID: Mjdtlg9+Q7qm2hRJHWCKwA==
+X-CSE-MsgGUID: 7pXjNAXEQ62fPmaxGEr6RQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="78536924"
+X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="78536924"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2026 12:04:45 -0700
+X-CSE-ConnectionGUID: wUoF0Hs8Tr2pd2NJYUbiCg==
+X-CSE-MsgGUID: 1aNgzHMcQSSPenipv5Uycg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="272481706"
+Received: from lkp-server01.sh.intel.com (HELO aa799cca880d) ([10.239.97.150])
+ by orviesa001.jf.intel.com with ESMTP; 29 Apr 2026 12:04:42 -0700
+Received: from kbuild by aa799cca880d with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1wIAD7-00000000BRA-48UD;
+ Wed, 29 Apr 2026 19:04:37 +0000
+Date: Thu, 30 Apr 2026 03:04:13 +0800
+From: kernel test robot <lkp@intel.com>
+To: Evgenii Burenchev <evg28bur@yandex.ru>, stable@vger.kernel.org,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: oe-kbuild-all@lists.linux.dev, Evgenii Burenchev <evg28bur@yandex.ru>,
+ alexander.deucher@amd.com, christian.koenig@amd.com,
+ airlied@gmail.com, simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/radeon/rs780: prevent division by zero in refresh
+ rate calculation
+Message-ID: <202604300247.Gzeia1bh-lkp@intel.com>
+References: <20260428190318.34413-1-evg28bur@yandex.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 30 Apr 2026 07:38:12 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260428190318.34413-1-evg28bur@yandex.ru>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,274 +77,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 641AC49EB53
+X-Rspamd-Queue-Id: 1E6694997A3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:ulissespaixao@usp.br,m:felipesousa@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
+	FREEMAIL_CC(0.00)[lists.linux.dev,yandex.ru,amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	FREEMAIL_TO(0.00)[yandex.ru,vger.kernel.org,linuxfoundation.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[ulissespaixao@usp.br,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[ulissespaixao@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[usp.br:+];
-	NEURAL_HAM(-0.00)[-0.974];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
 
-The functions gfx_v11_0_handle_priv_fault and gfx_v12_0_handle_priv_fault
-are identical. This patch replaces them with a single implementation in
-amdgpu_gfx, called amdgpu_gfx_handle_priv_fault, to reduce code
-duplication.
+Hi Evgenii,
 
-Signed-off-by: Ulisses Paixao <ulissespaixao@usp.br>
-Co-developed-by: Felipe Sousa <felipesousa@usp.br>
-Signed-off-by: Felipe Sousa <felipesousa@usp.br>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 46 +++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 ++
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 43 ++---------------------
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  | 43 ++---------------------
- 4 files changed, 54 insertions(+), 80 deletions(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index b8ca87669..c8d769cb0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -830,6 +830,52 @@ int amdgpu_gfx_enable_kgq(struct amdgpu_device *adev, int xcc_id)
- 	return r;
- }
- 
-+/**
-+ * amdgpu_gfx_handle_priv_fault - Handle privileged instruction fault
-+ * 
-+ * @adev: amdgpu_device pointer
-+ * @entry: interrupt vector entry from the hardware
-+ * 
-+ * This function handles privileged instruction faults by identifying 
-+ * the faulty ring (gfx or compute) and triggering a scheduler fault.
-+ */
-+void amdgpu_gfx_handle_priv_fault(struct amdgpu_device *adev,
-+					struct amdgpu_iv_entry *entry)
-+{
-+	u8 me_id, pipe_id, queue_id;
-+	struct amdgpu_ring *ring;
-+	int i;
-+
-+	me_id = (entry->ring_id & 0x0c) >> 2;
-+	pipe_id = (entry->ring_id & 0x03) >> 0;
-+	queue_id = (entry->ring_id & 0x70) >> 4;
-+
-+	if (!adev->gfx.disable_kq) {
-+		switch (me_id) {
-+		case 0:
-+			for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
-+				ring = &adev->gfx.gfx_ring[i];
-+				if (ring->me == me_id && ring->pipe == pipe_id &&
-+				    ring->queue == queue_id)
-+					drm_sched_fault(&ring->sched);
-+			}
-+			break;
-+		case 1:
-+		case 2:
-+			for (i = 0; i < adev->gfx.num_compute_rings; i++) {
-+				ring = &adev->gfx.compute_ring[i];
-+				if (ring->me == me_id && ring->pipe == pipe_id &&
-+				    ring->queue == queue_id)
-+					drm_sched_fault(&ring->sched);
-+			}
-+			break;
-+		default:
-+			BUG();
-+			break;
-+		}
-+	}
-+}
-+
- static void amdgpu_gfx_do_off_ctrl(struct amdgpu_device *adev, bool enable,
- 				   bool no_delay)
- {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-index a0cf0a3b4..5655af43d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-@@ -611,6 +611,8 @@ bool amdgpu_gfx_is_high_priority_graphics_queue(struct amdgpu_device *adev,
- 						struct amdgpu_ring *ring);
- bool amdgpu_gfx_is_me_queue_enabled(struct amdgpu_device *adev, int me,
- 				    int pipe, int queue);
-+void amdgpu_gfx_handle_priv_fault(struct amdgpu_device *adev,
-+					struct amdgpu_iv_entry *entry);
- void amdgpu_gfx_off_ctrl(struct amdgpu_device *adev, bool enable);
- void amdgpu_gfx_off_ctrl_immediate(struct amdgpu_device *adev, bool enable);
- int amdgpu_get_gfx_off_status(struct amdgpu_device *adev, uint32_t *value);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index 2c6f1e25c..da869f928 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -6684,49 +6684,12 @@ static int gfx_v11_0_set_priv_inst_fault_state(struct amdgpu_device *adev,
- 	return 0;
- }
- 
--static void gfx_v11_0_handle_priv_fault(struct amdgpu_device *adev,
--					struct amdgpu_iv_entry *entry)
--{
--	u8 me_id, pipe_id, queue_id;
--	struct amdgpu_ring *ring;
--	int i;
--
--	me_id = (entry->ring_id & 0x0c) >> 2;
--	pipe_id = (entry->ring_id & 0x03) >> 0;
--	queue_id = (entry->ring_id & 0x70) >> 4;
--
--	if (!adev->gfx.disable_kq) {
--		switch (me_id) {
--		case 0:
--			for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
--				ring = &adev->gfx.gfx_ring[i];
--				if (ring->me == me_id && ring->pipe == pipe_id &&
--				    ring->queue == queue_id)
--					drm_sched_fault(&ring->sched);
--			}
--			break;
--		case 1:
--		case 2:
--			for (i = 0; i < adev->gfx.num_compute_rings; i++) {
--				ring = &adev->gfx.compute_ring[i];
--				if (ring->me == me_id && ring->pipe == pipe_id &&
--				    ring->queue == queue_id)
--					drm_sched_fault(&ring->sched);
--			}
--			break;
--		default:
--			BUG();
--			break;
--		}
--	}
--}
--
- static int gfx_v11_0_priv_reg_irq(struct amdgpu_device *adev,
- 				  struct amdgpu_irq_src *source,
- 				  struct amdgpu_iv_entry *entry)
- {
- 	DRM_ERROR("Illegal register access in command stream\n");
--	gfx_v11_0_handle_priv_fault(adev, entry);
-+	amdgpu_gfx_handle_priv_fault(adev, entry);
- 	return 0;
- }
- 
-@@ -6735,7 +6698,7 @@ static int gfx_v11_0_bad_op_irq(struct amdgpu_device *adev,
- 				struct amdgpu_iv_entry *entry)
- {
- 	DRM_ERROR("Illegal opcode in command stream\n");
--	gfx_v11_0_handle_priv_fault(adev, entry);
-+	amdgpu_gfx_handle_priv_fault(adev, entry);
- 	return 0;
- }
- 
-@@ -6744,7 +6707,7 @@ static int gfx_v11_0_priv_inst_irq(struct amdgpu_device *adev,
- 				   struct amdgpu_iv_entry *entry)
- {
- 	DRM_ERROR("Illegal instruction in command stream\n");
--	gfx_v11_0_handle_priv_fault(adev, entry);
-+	amdgpu_gfx_handle_priv_fault(adev, entry);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-index 6baac533a..883878e23 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -5015,49 +5015,12 @@ static int gfx_v12_0_set_priv_inst_fault_state(struct amdgpu_device *adev,
- 	return 0;
- }
- 
--static void gfx_v12_0_handle_priv_fault(struct amdgpu_device *adev,
--					struct amdgpu_iv_entry *entry)
--{
--	u8 me_id, pipe_id, queue_id;
--	struct amdgpu_ring *ring;
--	int i;
--
--	me_id = (entry->ring_id & 0x0c) >> 2;
--	pipe_id = (entry->ring_id & 0x03) >> 0;
--	queue_id = (entry->ring_id & 0x70) >> 4;
--
--	if (!adev->gfx.disable_kq) {
--		switch (me_id) {
--		case 0:
--			for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
--				ring = &adev->gfx.gfx_ring[i];
--				if (ring->me == me_id && ring->pipe == pipe_id &&
--				    ring->queue == queue_id)
--					drm_sched_fault(&ring->sched);
--			}
--			break;
--		case 1:
--		case 2:
--			for (i = 0; i < adev->gfx.num_compute_rings; i++) {
--				ring = &adev->gfx.compute_ring[i];
--				if (ring->me == me_id && ring->pipe == pipe_id &&
--				    ring->queue == queue_id)
--					drm_sched_fault(&ring->sched);
--			}
--			break;
--		default:
--			BUG();
--			break;
--		}
--	}
--}
--
- static int gfx_v12_0_priv_reg_irq(struct amdgpu_device *adev,
- 				  struct amdgpu_irq_src *source,
- 				  struct amdgpu_iv_entry *entry)
- {
- 	DRM_ERROR("Illegal register access in command stream\n");
--	gfx_v12_0_handle_priv_fault(adev, entry);
-+	amdgpu_gfx_handle_priv_fault(adev, entry);
- 	return 0;
- }
- 
-@@ -5066,7 +5029,7 @@ static int gfx_v12_0_bad_op_irq(struct amdgpu_device *adev,
- 				struct amdgpu_iv_entry *entry)
- {
- 	DRM_ERROR("Illegal opcode in command stream\n");
--	gfx_v12_0_handle_priv_fault(adev, entry);
-+	amdgpu_gfx_handle_priv_fault(adev, entry);
- 	return 0;
- }
- 
-@@ -5075,7 +5038,7 @@ static int gfx_v12_0_priv_inst_irq(struct amdgpu_device *adev,
- 				   struct amdgpu_iv_entry *entry)
- {
- 	DRM_ERROR("Illegal instruction in command stream\n");
--	gfx_v12_0_handle_priv_fault(adev, entry);
-+	amdgpu_gfx_handle_priv_fault(adev, entry);
- 	return 0;
- }
- 
+[auto build test WARNING on drm-misc/drm-misc-next]
+[also build test WARNING on linus/master v7.1-rc1 next-20260428]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Evgenii-Burenchev/drm-radeon-rs780-prevent-division-by-zero-in-refresh-rate-calculation/20260429-055830
+base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
+patch link:    https://lore.kernel.org/r/20260428190318.34413-1-evg28bur%40yandex.ru
+patch subject: [PATCH] drm/radeon/rs780: prevent division by zero in refresh rate calculation
+config: parisc-defconfig (https://download.01.org/0day-ci/archive/20260430/202604300247.Gzeia1bh-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260430/202604300247.Gzeia1bh-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202604300247.Gzeia1bh-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/gpu/drm/radeon/rs780_dpm.c: In function 'rs780_get_pm_mode_parameters':
+>> drivers/gpu/drm/radeon/rs780_dpm.c:66:25: warning: this 'if' clause does not guard... [-Wmisleading-indentation]
+      66 |                         if (crtc->mode.htotal && crtc->mode.vtotal)
+         |                         ^~
+   drivers/gpu/drm/radeon/rs780_dpm.c:68:33: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+      68 |                                 if (pi->refresh_rate == 0)
+         |                                 ^~
+
+
+vim +/if +66 drivers/gpu/drm/radeon/rs780_dpm.c
+
+9d67006e6ebc6c Alex Deucher      2013-04-12  48  
+9d67006e6ebc6c Alex Deucher      2013-04-12  49  static void rs780_get_pm_mode_parameters(struct radeon_device *rdev)
+9d67006e6ebc6c Alex Deucher      2013-04-12  50  {
+9d67006e6ebc6c Alex Deucher      2013-04-12  51  	struct igp_power_info *pi = rs780_get_pi(rdev);
+9d67006e6ebc6c Alex Deucher      2013-04-12  52  	struct radeon_mode_info *minfo = &rdev->mode_info;
+9d67006e6ebc6c Alex Deucher      2013-04-12  53  	struct drm_crtc *crtc;
+9d67006e6ebc6c Alex Deucher      2013-04-12  54  	struct radeon_crtc *radeon_crtc;
+9d67006e6ebc6c Alex Deucher      2013-04-12  55  	int i;
+9d67006e6ebc6c Alex Deucher      2013-04-12  56  
+9d67006e6ebc6c Alex Deucher      2013-04-12  57  	/* defaults */
+9d67006e6ebc6c Alex Deucher      2013-04-12  58  	pi->crtc_id = 0;
+9d67006e6ebc6c Alex Deucher      2013-04-12  59  	pi->refresh_rate = 60;
+9d67006e6ebc6c Alex Deucher      2013-04-12  60  
+9d67006e6ebc6c Alex Deucher      2013-04-12  61  	for (i = 0; i < rdev->num_crtc; i++) {
+9d67006e6ebc6c Alex Deucher      2013-04-12  62  		crtc = (struct drm_crtc *)minfo->crtcs[i];
+9d67006e6ebc6c Alex Deucher      2013-04-12  63  		if (crtc && crtc->enabled) {
+9d67006e6ebc6c Alex Deucher      2013-04-12  64  			radeon_crtc = to_radeon_crtc(crtc);
+9d67006e6ebc6c Alex Deucher      2013-04-12  65  			pi->crtc_id = radeon_crtc->crtc_id;
+9d67006e6ebc6c Alex Deucher      2013-04-12 @66  			if (crtc->mode.htotal && crtc->mode.vtotal)
+c3eaa088277709 Alex Deucher      2013-09-13  67  				pi->refresh_rate = drm_mode_vrefresh(&crtc->mode);
+0d99a77de43b3f Evgenii Burenchev 2026-04-28  68  				if (pi->refresh_rate == 0)
+0d99a77de43b3f Evgenii Burenchev 2026-04-28  69  					pi->refresh_rate = 60;
+9d67006e6ebc6c Alex Deucher      2013-04-12  70  			break;
+9d67006e6ebc6c Alex Deucher      2013-04-12  71  		}
+9d67006e6ebc6c Alex Deucher      2013-04-12  72  	}
+9d67006e6ebc6c Alex Deucher      2013-04-12  73  }
+9d67006e6ebc6c Alex Deucher      2013-04-12  74  
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
