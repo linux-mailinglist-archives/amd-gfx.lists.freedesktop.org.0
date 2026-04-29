@@ -2,127 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sJojKLz18WmElwEAu9opvQ
+	id cJ8qERQC8mmElwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 14:12:44 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 15:05:24 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 213E8493EBF
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 14:12:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D54F149472D
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 15:05:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46DD310E3CA;
-	Wed, 29 Apr 2026 12:12:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4AF710EFDE;
+	Wed, 29 Apr 2026 13:05:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="D4E01Vzx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b0GyIgnc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010051.outbound.protection.outlook.com [52.101.56.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A4ED10E3CA
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2026 12:12:37 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rTPBmTxdfhnYlXebNjxY/xC0b/xrj1GvPfJvkt4H73fCcJq+aof3JzquylUWt3alVbEN9y/K/sC0EqdOFV8X2zqCiNgpEe64DXceM088ldnkCzHNm+d0DTwqr/P9gLYW40FXZSllMxgzoRPh05mLvHanhWbccRZnjWZ628q1KLw3VInkGETsgdFB6SjveqtDftP5dQLd2Mi+92Jtz0pPYw0gOOQGPjQ+BmbtDR3qyBwwPznYg21juNdTr3KHYPs4tQB1s0WgHXsGfPHluJ1lBhnwzx6HNqef/Z9SEgiplcE5yTBljreDhoKJ5dMyK8lJ57RpT9+NV51/7brcQ+QkqQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yapiXdnwc47/PUAobeOzWrqww2aFpLX0NRNzogpl5vE=;
- b=TgaKW1McZi7oPu2jeANPqrsek8XUXFxWuHuh5s3q/bijZR9H1nZMfMOb1FNZbtmi62OT/MtxeVnWbGv8q+X6KeZpGxU62OSIX3KY6bn9OI3UiEeB29N+6yWU0B+YJ03wgXxu8vISWAO8oy+NZQKkcjANC5ixuJJpATzHF/5JuvZjc/7LH1nTd5u+KW7Kv0KW0iJ8xeYNx0pQDd6qGgcK2N/O8Ax4WcszhXmdlikg16A0W7ADBnRLbyCDngbD3dKj1bmj8/KIlmf9umG1eP7k+rzvS24DB8wFdxWa3RhlO9UthGMsNYHNJjdTviYeSn9JcaSlcySNA7dAKobmSD86jQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yapiXdnwc47/PUAobeOzWrqww2aFpLX0NRNzogpl5vE=;
- b=D4E01VzxTvA+zkEobnPxzoaG8JVlPfT/vQblIytLyD/9U8Z1mzE0D683W1oy/72HgwDNUPYq2GZJO5739lJssPlcV62MjZs416T8T368+s6oYmo9cm8fYx+qThH4wrZn8YU7NVPvkrAByg/ACMbzAYxhGfDWCrMuZ17uhxC/vcQ=
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
- by SA1PR12MB7222.namprd12.prod.outlook.com (2603:10b6:806:2bf::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.20; Wed, 29 Apr
- 2026 12:12:32 +0000
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::1aeb:47e6:faf1:5f13]) by BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::1aeb:47e6:faf1:5f13%4]) with mapi id 15.20.9870.020; Wed, 29 Apr 2026
- 12:12:32 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: "Lazar, Lijo" <Lijo.Lazar@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Li, Candice"
- <Candice.Li@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: Prefer ROM BAR for default VGA device
-Thread-Topic: [PATCH] drm/amdgpu: Prefer ROM BAR for default VGA device
-Thread-Index: AQHc18CIwGzOEocHKUWIcENWlqLr+rX181Tg
-Date: Wed, 29 Apr 2026 12:12:32 +0000
-Message-ID: <BN9PR12MB5257627DE606672951FD25CEFC342@BN9PR12MB5257.namprd12.prod.outlook.com>
-References: <20260429101100.3893004-1-lijo.lazar@amd.com>
-In-Reply-To: <20260429101100.3893004-1-lijo.lazar@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-04-29T12:12:15.0000000Z;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD General
- v26; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=3;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|SA1PR12MB7222:EE_
-x-ms-office365-filtering-correlation-id: 46c4e8c7-9e23-43b9-c054-08dea5e8976a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|38070700021|22082099003|18002099003|56012099003;
-x-microsoft-antispam-message-info: A3N55WdhzVg6vNCs3Gr+ZrU9vT6fu/u4jvoFhdXSAB5lgQZKUUhc7CSzI0IoB0nfhlpZE9wwhq+p8W56qJey27tUXA6M75oQ1HVcs65GYOSH3zGJcawbW+7VbjVRz4S8dQlpzFQnPRijN3oWzO+gBzht0hWUK8ABVJ92P1ONGYvGL0zjgX2IoYOpbaXQa/hUpJeDPWJ+Dq7VGzRQTd4YXFfgLFQOHOA93Wp4C2VcKp3D/Qdr2JfmHwDHD9YsZAFuA6zrHRQN6tTZXvbXo3+rtOXWkyjKlF17MXxIy/gv6k3qxCjn1+CsCOUxvMUoGyO3yDcpvr21nOWpO5jnJoRPbE/yz33SkGRI11qxWV5lr3u3S5t8fN5TJ7fTnssdim8xxQyykOmV8RLSNpW7d/fG3LPvGN7WmHWstTXRhNh8pndUXJ4NNnlmhC31j+cYeT/CprE34s8PMJKR+qIlRs3siSgsUWGI5wggoihSZZk4JcvZL0QCUBJ+pzDIsu605QYsz9dFcuUnwCS/267iGILZoCryS0OVgniV7XQic/SJd+vCh98oKfqzMhtVTVxw66D+KqHTWK0jW1w8SaV4Zwy0DP1y5NNH7voTPkJO2OeuWlCn8mZAQAMhOr7j4flhCU6ryog4HLQd7O0CPQyM4Ci92leyNmQHVviJMfFaPbfXdNuUQqExYjC4fn0PMOvuOVNt1kBPUKx2K7MkQxYfptEYTH4N6197lP6R8HAmvgESqwQH7dFT+QUhtYXgw7Np5XPeM9JGGbmmYNX/vj4WKEDHosgirEDjMUCt1HbENSJnUi4=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700021)(22082099003)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?GoFuNrCJ3WF8J9hM8flR5ouC0jaMmItPZxbbmSKFsFpZXMxRppA3YPyzNFeT?=
- =?us-ascii?Q?jl5OuFRlGiS5cJhGTgH+TpXCfh4vcK0saBd36FDohnTO3jqaZeWPTHh/69TY?=
- =?us-ascii?Q?f8r9aKkS32jkLAHt1IHzN19/GAeNlzQSTCxH225k7PfNaTV1tNMZ0+HwymiP?=
- =?us-ascii?Q?0yQFLd8YuYIS+Gy8fzC8lLeweXvgAE67ovN+XJQGys85JP4fZcsgSYbsI4t9?=
- =?us-ascii?Q?55F3i7w5N1r3tjwaG7q6OmQIqOiRxB8AxiQDSi2ewZNyUHsYPBZPwIwsZYuY?=
- =?us-ascii?Q?uIycF1gbf4KtPkhgd+2RBX+NbErP/+G01uz9evSG4h9QROLlATN+S/Nqry9g?=
- =?us-ascii?Q?lylistdph9Lhi5B7eKA41dhheg7Az3Et1GorT5FgPCh/MwLel/A+NIDuKy45?=
- =?us-ascii?Q?/NEINPUkYcgSqvpBU6Qfr9Yihyx8NIHcFDRNgqHeLZn8MP/i/zIQHrWAoodX?=
- =?us-ascii?Q?MsabgBX+SYGQQkJBT1GwAgXvJbl0FtYrfKZddGOTvSYoKNKUqWxzLXhrL8+K?=
- =?us-ascii?Q?abKzo94nSS3yy29zHFtIsAg0xUfxT9pMGtyoeF7UZg4ZWpoidZpYQlolXT7Q?=
- =?us-ascii?Q?qYz62rPvfQV/uEKYWCIfks1xMvik7e49yJTXUTg+EbX5bMS6qpQTFSNKE9h1?=
- =?us-ascii?Q?eiGTh+Gvs1dvRAxqhmiIFGH93ByCfg16QgkPxDHbeZaAVkVTLENgsX5rwCLv?=
- =?us-ascii?Q?0cptN06Rk1Jl1ZSULkWgTyjb7CDUFsjfgaPNWlph0Df93ezxXizfuohTcI/8?=
- =?us-ascii?Q?t2+SUeoreTeyOOwToJdaZZheSSFit5TwvPe5F2vdMe8ZpC37HU+c4WAiUaJF?=
- =?us-ascii?Q?PPTWymthwl6ZM9zycdYPWSoxf4BMTdMDaiWlme/OMya5TyhWtr5av4Mx/IJE?=
- =?us-ascii?Q?6Pw6gyl+je4ZE+uV7PfO55Whm2wILvdr4OU//SJrTHApqXREsfTw8auHwBzO?=
- =?us-ascii?Q?cHlzfX6sRJutVtcj/n5jhovArCXIObdnFNdpIVN8PitUVUm7f8bFvtS4IVlj?=
- =?us-ascii?Q?KL2jPojTd6A+FbyO2HviTlY1A68sqcJ6P60+bhxQxqhVF1mFYbmbca4JV98i?=
- =?us-ascii?Q?cfkYrBi01JkD5GMC4Jm6cmdOI6WNMy0ONhhpXT2DZvesm6afCQsiEIB8s76F?=
- =?us-ascii?Q?hcG8DaKpmqzZ8aOTQIuvm9yf2mze9pxLFlkrDGPWZdJrl0jUJMhpCzUqMvxR?=
- =?us-ascii?Q?lHXrY+5s5x15zTe9ho3qvwFIljtaTDnaIjgaqOtpoOZl6VxLgVdwPlwRvrZc?=
- =?us-ascii?Q?ac5+bXAdklizk5oBzqhdB8IktfJPSLfTPIXdpowOftuABTiWVnpEK4CHYsq9?=
- =?us-ascii?Q?9II/Vsnm48LA1BqXe17yUR3FEPX4P7aHJoRFCbDn+ayZTEknomBEnmXt+BRK?=
- =?us-ascii?Q?GPLItOYmSrO8b52u4cCKjbLMmnvNJjjTyc8cySRMMZfOEFIwMzVWcS5B+/bk?=
- =?us-ascii?Q?TeOMZ3zEafElnCg7ng98gRvHZfDRevMJHN4PWLLC7iBBq7Tt+nOvzTZDU9wX?=
- =?us-ascii?Q?eiEFBxCwdOxLSWC7unJBXV2sGJTLj/gmLd0VHoKvGhfVx+9Sc0ZltNJyj44Q?=
- =?us-ascii?Q?Q655QB8LCjGxmNLKTBUdRuJzMVpqO5fs3IH/bb4G89lHiZe66Jg4bFAcC6eH?=
- =?us-ascii?Q?8cp7IwBap1Ugy90fVIc7bf2EHN77DlCieqeRnxWuI/PH0/qZEqdqAng/jRJV?=
- =?us-ascii?Q?Y2Urla0Lodda7pbhtM4F582vRJWfm0Lr8H5gm+Vmfo4PEnIc?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68FFD10E3FC;
+ Wed, 29 Apr 2026 12:37:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777466270; x=1809002270;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uvwwTlw8sSux4mzuMJdXdxSeijg5A5rmaU45lNpT88M=;
+ b=b0GyIgnckw7YMihfo9HlFm9YYsVdtrHRKrICzY+kjpWAZqNxTWHYrQ6L
+ 6n0FtvIRaoCYNxWibY/j4DR2V3g+bm4uKIA8DIwYdP5+Iw6IN6odX6JyP
+ g3XtFzsRH9a+1fKQHmY54U5rrLwBJqLZ2n2uGjSysiXNDhhqm/be92LHy
+ Dzlrj1L7aHV5QX4jbI2r72CyC15UQ5GmEG9Fu50r9/g472RSUdPJ6bvg7
+ W394fq2DVgjVj1tqB8YJahKAOibCAsiHtXj2lt4HkeMKcWFoYJVqr+XOf
+ QRtMN3gigLHLSddpqxR2MZOWjgC2jCqJ3PXf7tKeAHtobft5Ocey3SvHl A==;
+X-CSE-ConnectionGUID: HZO5k5jcSOCelXwlysXzqw==
+X-CSE-MsgGUID: a+J4xmGySXmM3aPjrCcDsQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="89769023"
+X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="89769023"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2026 05:37:49 -0700
+X-CSE-ConnectionGUID: RxaHgfOSSQWJ8mcL5BYD/g==
+X-CSE-MsgGUID: pvMLky3BRWSeuPjvwN+Qrw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="234123509"
+Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
+ ([10.190.239.37])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2026 05:37:46 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.auld@intel.com, Arunpravin.PaneerSelvam@amd.com,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH] drm/buddy: Integrate lockdep annotations for gpu buddy manager
+Date: Wed, 29 Apr 2026 18:07:15 +0530
+Message-ID: <20260429123714.3913374-2-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46c4e8c7-9e23-43b9-c054-08dea5e8976a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Apr 2026 12:12:32.4302 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: uimIL3acm4seBWY95dff6nfkhkI6hC/VZAX6yIBu1gbZn+3detlRLFVU+2XottLIMnBG5F7iiaKOgE6ALHBoUw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7222
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 29 Apr 2026 13:05:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,86 +72,206 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 213E8493EBF
+X-Rspamd-Queue-Id: D54F149472D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Lijo.Lazar@amd.com,m:Alexander.Deucher@amd.com,m:Candice.Li@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tejas.upadhyay@intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[Hawking.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Hawking.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[intel.com:+]
 
-AMD General
+gpu_buddy APIs are expected to be called with the driver-provided lock
+held, but there is no runtime enforcement of this contract. Add lockdep
+annotations to catch locking violations early.
 
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Introduce gpu_buddy_driver_set_lock() for the driver to register the
+lock that protects the buddy manager. Add gpu_buddy_driver_lock_held()
+assertions to all exported gpu_buddy and drm_buddy APIs that
+access/modify the manager state. The lock_dep_map field is only compiled
+in when CONFIG_LOCKDEP is enabled, adding zero overhead to production
+builds.
 
-Regards,
-Hawking
------Original Message-----
-From: Lazar, Lijo <Lijo.Lazar@amd.com>
-Sent: Wednesday, April 29, 2026 6:11 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Deucher, Alexander <Alexander.D=
-eucher@amd.com>; Li, Candice <Candice.Li@amd.com>
-Subject: [PATCH] drm/amdgpu: Prefer ROM BAR for default VGA device
+Wire up xe_ttm_vram_mgr to register its mutex with the buddy manager
+after initialization.
 
-Fetching from platform ROM doesn't work with hybrid ROM images. For default=
- VGA devices also prefer ROM BAR.
-
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+Assisted-by: Claude:claude-opus-4.6
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/buddy.c                  | 11 ++++++++
+ drivers/gpu/drm/drm_buddy.c          |  1 +
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  1 +
+ include/linux/gpu_buddy.h            | 41 ++++++++++++++++++++++++++++
+ 4 files changed, 54 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu_bios.c
-index 35d04e69aec0..aa039e148a5e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-@@ -33,6 +33,7 @@
- #include <linux/pci.h>
- #include <linux/slab.h>
- #include <linux/acpi.h>
-+#include <linux/vgaarb.h>
- /*
-  * BIOS.
-  */
-@@ -467,7 +468,8 @@ static bool amdgpu_prefer_rom_resource(struct amdgpu_de=
-vice *adev)  {
-        struct resource *res =3D &adev->pdev->resource[PCI_ROM_RESOURCE];
-
--       return (res->flags & IORESOURCE_ROM_SHADOW);
-+       return (res->flags & IORESOURCE_ROM_SHADOW) ||
-+              adev->pdev =3D=3D vga_default_device();
+diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+index 52686672e99f..eb1457376307 100644
+--- a/drivers/gpu/buddy.c
++++ b/drivers/gpu/buddy.c
+@@ -437,6 +437,9 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
+ 		root_count++;
+ 	} while (size);
+ 
++#ifdef CONFIG_LOCKDEP
++	mm->lock_dep_map = NULL;
++#endif
+ 	return 0;
+ 
+ out_free_roots:
+@@ -538,6 +541,7 @@ void gpu_buddy_reset_clear(struct gpu_buddy *mm, bool is_clear)
+ 	unsigned int order;
+ 	int i;
+ 
++	gpu_buddy_driver_lock_held(mm);
+ 	size = mm->size;
+ 	for (i = 0; i < mm->n_roots; ++i) {
+ 		order = ilog2(size) - ilog2(mm->chunk_size);
+@@ -580,6 +584,7 @@ EXPORT_SYMBOL(gpu_buddy_reset_clear);
+ void gpu_buddy_free_block(struct gpu_buddy *mm,
+ 			  struct gpu_buddy_block *block)
+ {
++	gpu_buddy_driver_lock_held(mm);
+ 	BUG_ON(!gpu_buddy_block_is_allocated(block));
+ 	mm->avail += gpu_buddy_block_size(mm, block);
+ 	if (gpu_buddy_block_is_clear(block))
+@@ -633,6 +638,7 @@ void gpu_buddy_free_list(struct gpu_buddy *mm,
+ {
+ 	bool mark_clear = flags & GPU_BUDDY_CLEARED;
+ 
++	gpu_buddy_driver_lock_held(mm);
+ 	__gpu_buddy_free_list(mm, objects, mark_clear, !mark_clear);
  }
-
- static bool amdgpu_get_bios_dgpu(struct amdgpu_device *adev)
---
-2.49.0
+ EXPORT_SYMBOL(gpu_buddy_free_list);
+@@ -1172,6 +1178,8 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
+ 	u64 new_start;
+ 	int err;
+ 
++	gpu_buddy_driver_lock_held(mm);
++
+ 	if (!list_is_singular(blocks))
+ 		return -EINVAL;
+ 
+@@ -1287,6 +1295,8 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+ 	unsigned long pages;
+ 	int err;
+ 
++	gpu_buddy_driver_lock_held(mm);
++
+ 	if (size < mm->chunk_size)
+ 		return -EINVAL;
+ 
+@@ -1475,6 +1485,7 @@ void gpu_buddy_print(struct gpu_buddy *mm)
+ {
+ 	int order;
+ 
++	gpu_buddy_driver_lock_held(mm);
+ 	pr_info("chunk_size: %lluKiB, total: %lluMiB, free: %lluMiB, clear_free: %lluMiB\n",
+ 		mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
+ 
+diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+index 841f3de5f307..faa025498de4 100644
+--- a/drivers/gpu/drm/drm_buddy.c
++++ b/drivers/gpu/drm/drm_buddy.c
+@@ -42,6 +42,7 @@ void drm_buddy_print(struct gpu_buddy *mm, struct drm_printer *p)
+ {
+ 	int order;
+ 
++	gpu_buddy_driver_lock_held(mm);
+ 	drm_printf(p, "chunk_size: %lluKiB, total: %lluMiB, free: %lluMiB, clear_free: %lluMiB\n",
+ 		   mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 5fd0d5506a7e..7ebc4d278c3b 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -322,6 +322,7 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+ 	if (err)
+ 		return err;
+ 
++	gpu_buddy_driver_set_lock(&mgr->mm, &mgr->lock);
+ 	ttm_set_driver_manager(&xe->ttm, mem_type, &mgr->manager);
+ 	ttm_resource_manager_set_used(&mgr->manager, true);
+ 
+diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
+index 5fa917ba5450..71941a039648 100644
+--- a/include/linux/gpu_buddy.h
++++ b/include/linux/gpu_buddy.h
+@@ -154,6 +154,7 @@ struct gpu_buddy_block {
+  * @avail: Total free space currently available for allocation in bytes.
+  * @clear_avail: Free space available in the clear tree (zeroed memory) in bytes.
+  *               This is a subset of @avail.
++ * @lock_dep_map: Annotates gpu_buddy API with a driver provided lock.
+  */
+ struct gpu_buddy {
+ /* private: */
+@@ -179,8 +180,48 @@ struct gpu_buddy {
+ 	u64 size;
+ 	u64 avail;
+ 	u64 clear_avail;
++#ifdef CONFIG_LOCKDEP
++	struct lockdep_map *lock_dep_map;
++#endif
+ };
+ 
++#ifdef CONFIG_LOCKDEP
++/**
++ * gpu_buddy_driver_set_lock() - Set the lock protecting accesses to GPU BUDDY
++ * @mm: Pointer to GPU buddy structure.
++ * @lock: the lock used to protect the gpu buddy. The locking primitive
++ * must contain a dep_map field.
++ *
++ * Call this to annotate gpu_buddy APIs which access/modify gpu_buddy manager
++ */
++#define gpu_buddy_driver_set_lock(mm, lock) \
++	do { \
++		struct gpu_buddy *__mm = (mm); \
++		if (!WARN(__mm->lock_dep_map, "GPU BUDDY MM lock should be set only once.")) \
++			__mm->lock_dep_map = &(lock)->dep_map; \
++	} while (0)
++#else
++#define gpu_buddy_driver_set_lock(mm, lock) do { (void)(mm); (void)(lock); } while (0)
++#endif
++
++#ifdef CONFIG_LOCKDEP
++/**
++ * gpu_buddy_driver_lock_held() - Assert GPU BUDDY manager lock is held
++ * @mm: Pointer to the GPU BUDDY structure.
++ *
++ * Ensure driver lock is held.
++ */
++static inline void gpu_buddy_driver_lock_held(struct gpu_buddy *mm)
++{
++	if (mm->lock_dep_map)
++		lockdep_assert(lock_is_held_type(mm->lock_dep_map, 0));
++}
++#else
++static inline void gpu_buddy_driver_lock_held(struct gpu_buddy *mm)
++{
++}
++#endif
++
+ static inline u64
+ gpu_buddy_block_offset(const struct gpu_buddy_block *block)
+ {
+-- 
+2.52.0
 
