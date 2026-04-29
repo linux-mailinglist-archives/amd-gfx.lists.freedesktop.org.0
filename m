@@ -2,78 +2,78 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qJzfMMHc8WnKkwEAu9opvQ
+	id cLdyLr/c8WnvkwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:09 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:07 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 760A1492D6D
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44777492D27
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D22AC10EF7E;
-	Wed, 29 Apr 2026 10:26:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5621510EF73;
+	Wed, 29 Apr 2026 10:26:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gcQOMDwf";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="N8nLTKXb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com
- [209.85.161.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83A3610ED0C
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2026 02:07:26 +0000 (UTC)
-Received: by mail-oo1-f44.google.com with SMTP id
- 006d021491bc7-662efd1bdd4so203328eaf.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 19:07:26 -0700 (PDT)
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com
+ [209.85.167.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E95A10EE2A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2026 02:09:43 +0000 (UTC)
+Received: by mail-oi1-f182.google.com with SMTP id
+ 5614622812f47-47bfa080d93so1985987b6e.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 19:09:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777428445; x=1778033245; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1777428582; x=1778033382; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=y2w0ci/3nfogT9TVWzSGKqAaPzS8O2uQ/Ty6gdAnz4I=;
- b=gcQOMDwf7QjiBlEGQjkGc8qF2GO7TPKkLDvnDT13jUJA76++8JsAmsJLjnfE/EUm+u
- zr6pYsTU/YjJfnhUHuM3LY1AEPfOPLSoFZG0jLdgCKBXstlyuiHCL4UZ38Yv+t2MM5By
- DepfKQt8CRWFmlmkiFgIISjrLYW4kRjYX7664wKIbPL/XZVhY+PVISZs1CAhkJxB9BA1
- kUQnCW5NlEteBBr9KpBJ8jwgtUYZ80jfY2NKqk9X+UZ2OlL030RmzOg66rdEE/VFptiJ
- iBk3El8UZcSjEHpse6lBQoekxjzEgwfd1l5Ha/6tim0IP/smB//APTkZHzmk0Odi1l57
- nc9g==
+ bh=nswOFEXs658sWrvLAvjXZ4RGUs1F9xaugJk5+hXxT0M=;
+ b=N8nLTKXbgblxat1YCdA59EoPJgTdr/Q0ad7HCQY29bKIXPyfbGjtciMezzBtF/oIE4
+ sRpCEij5jWU604bgJ+dU99bMdIsYIJ+WWPmoALHUTVZKlJQ44/pdwAJZ8mNkeWy3bLiA
+ DnRgIPusVkmiIHsw027DqvdAWGesz1RXQ+DVtKGlKcxGwEiSAkUEVtCVUj2fxki6wMQi
+ k1kc1iD/ONFAduuRf/flIdjV+/CtOznIoscvzIVI/BOg+QQKaGzLUsSAtY++76f6ODWZ
+ BnEqUfxRYZ/UBb55i7rfrCtz8jj0OqCYrMo7aJoRBYNI4jNIuMma5zc16Km+dFne7GI3
+ kGig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777428445; x=1778033245;
+ d=1e100.net; s=20251104; t=1777428582; x=1778033382;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=y2w0ci/3nfogT9TVWzSGKqAaPzS8O2uQ/Ty6gdAnz4I=;
- b=tXshEQgeVHLnnOHaSp0QrKrGylaBDLSSOgmbxzXMfZuQm7uJKrZhQ7XjZQ30P//dRe
- Q7obvM5XjfCqEMob9MXJDgBz7tqBxmBulEryhlTWYSwGZvDq21NkCjg/R+ZiPq3ePAG+
- W2u/KvEGic+fc7DuLLwAKgG1DoYhCIgd7v4ydUwbJ/qx3E5ezgFzGR372NPrIXktZ5zT
- h3rJ0moVP6oRK2X3ctm7v1ygLVvz/efjG7NCHJowHsgx5QFimclDI4HnqBiSMDdHYl6H
- t7/dGyN6H53gG6v9SgqriVSL5enoZJHSyM2BZpDD54L8GtSow1Vi82AzvucUF69cUT+x
- GkDg==
-X-Gm-Message-State: AOJu0YxAlppCyoU8/ds1L+OqZ+PtrVUNBKKH1LrPu01vsMSaknca//gL
- XBfL1RuoZxD7QRt9Z4RpyNT6sZNh/1Om33upexIoezMBxG2dlivyBCI=
-X-Gm-Gg: AeBDietkOPwSjy81Qzbh0nHGyNnARyiTTZYCFfEEeCRRqCc1nPTbL4DEu7d5a5RAa0Q
- wfvphCnd0U/Kjfx6y4ysCmyIoi+Ir1WxvaeaKtrzVLJr4ykzSWS77GCOQXzr6tMYZmBb92uLGuB
- bpeHdB90qwn/SMXMoMJRwQzoHNlFieeDU28FFVyF2PmhWqTJnbMY4ukfrmJuYJnKWXea/J0/hHo
- aOEsYglbJnrNex8u3N7auIIkrCF0a3k09Z8x7HpepkBGSEub98hYh/Bh7yDrHwEtlgE03uxaq9M
- D3rdxC+MuWYK6FdNASO+fahUyI5tmgxYVxLAASMamfeh5O/L6czzc3XLX62pdCcBHFFvMbAmWl2
- lBvquofPsW3XjvL+erFb16nWf2UJLNW72r9m1y+eP/m/PTQOPdrug3mHfjmt+Aqq2t70kYpXdaC
- QOPCNlsCV2bVqMWorDJAjyB0oacs1rLemV654zBqqkbNOaEEAIm4D8mkmb6N5tsyNHTwSdQkjPy
- rzd8XrE6IL5rTArQu+bMpckh2URIH5Hbd0=
-X-Received: by 2002:a05:6820:1388:b0:694:8e28:fd7a with SMTP id
- 006d021491bc7-696699fa5afmr593877eaf.25.1777428445461; 
- Tue, 28 Apr 2026 19:07:25 -0700 (PDT)
+ bh=nswOFEXs658sWrvLAvjXZ4RGUs1F9xaugJk5+hXxT0M=;
+ b=rMBWogsoZQYf9twQmW3Cw4NT7CIlSIq33fqFnUOfRLnGW6AtLsyc7r1Vk2cxzMJ+Qd
+ +ZK1jXoiDBMzOrn3IRqfqKAn5CClivHVT8IXL5Z3zfprsoo2N9/DHie+NB3KCa5d6IxP
+ n5c09Gh180hVeJMHcDn1lyoJyRrjAY89WgtgCU5zylstrRZ5xRMchMXpEaH54uT/4Taz
+ 4cS4b3bEYtJPJlu+uGY4K04GLTqgCSC60Pk/xWOFWJqICz+7lZpj3Y09zNVwbPthrUAe
+ e0F7QQps6j+43Gwp7SoG4ldKrOy8T14FbdWQpkt73EU0nyYsW4nNb+18GO8jIcZvUep9
+ Xz/Q==
+X-Gm-Message-State: AOJu0Yy/RywiHYfm74BE9UOzBvtRtGgcko3F0oGrhs4m1pkA+NN9lMLT
+ WYK0/Fne8kVilfy8jMpzfg58Lrtbwnna5OUFTv9Nis8uGTpkojLWHqk=
+X-Gm-Gg: AeBDietzG2dpRNGDsFdp55xY6P5SIg6JHqwY3Low8lM39I7lq0xlU9iGoYuWhUdTPd1
+ cQ1jcMnTZPVdVgLlKqkv2MKZTfZ71SlwhPSOQXQDuid/zTL9inlKjVFb/8/eb1BFNYiYBwFUx0C
+ SFBQ7wzA+DqfAxhUC0fGvTY2iWW3gyFNdoA4t+RgRNc0JEpF1J+34m9l5iPFooD3OdVzamIX+Lo
+ D/lwUyH7Vf7uq9tuVtLqlL3HnHLyf8Z2UABm5w0aoHYp9+69ImfV/sb6v5XikHbS2i6ykjFQRZH
+ eKj0SZ/kIlRm+Mp3+5c7lldWoP+3Nj5xzrPZ0xQSzCsaXzxNEXB4/lr2ITFozLZGZCrNJJ6lm2i
+ Au9scp3tH2QmU9gGjE1LvskethbATWVR0iQA9oV5xJRYBxeqKzye/81AK6O4/iH797YqIMGD15C
+ pz6TCbxzw2tijQnSVmriROXBzn2aEP9+0rOXzMj2xTnep2OR0WD9nNR5yLaec8BOvvCPW1AAUd3
+ PnoUdxA1m0fu+joG2f8Pz61DItGBfXEuxjO+HhBU+yT7g==
+X-Received: by 2002:a05:6808:178a:b0:463:efb4:f9a2 with SMTP id
+ 5614622812f47-47c28f641a2mr3316095b6e.28.1777428582200; 
+ Tue, 28 Apr 2026 19:09:42 -0700 (PDT)
 Received: from localhost.localdomain ([47.188.191.104])
  by smtp.gmail.com with ESMTPSA id
- 006d021491bc7-6966bdefcf5sm290243eaf.11.2026.04.28.19.07.24
+ 5614622812f47-47c43edfd3csm293627b6e.5.2026.04.28.19.09.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Apr 2026 19:07:24 -0700 (PDT)
+ Tue, 28 Apr 2026 19:09:41 -0700 (PDT)
 From: "John B. Moore" <jbmoore61@gmail.com>
 To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Alexander Deucher <alexander.deucher@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, "John B. Moore" <jbmoore61@gmail.com>,
  stable@vger.kernel.org
-Subject: [PATCH v3] drm/amdgpu/gfx9: replace BUG_ON/BUG with WARN_ON_ONCE in
+Subject: [PATCH v4] drm/amdgpu/gfx9: replace BUG_ON/BUG with WARN_ON_ONCE in
  ring emission
-Date: Tue, 28 Apr 2026 21:07:23 -0500
-Message-ID: <20260429020723.33301-1-jbmoore61@gmail.com>
+Date: Tue, 28 Apr 2026 21:09:41 -0500
+Message-ID: <20260429020941.33422-1-jbmoore61@gmail.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -92,7 +92,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 760A1492D6D
+X-Rspamd-Queue-Id: 44777492D27
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
@@ -161,6 +161,9 @@ Found by a custom amdgpu DRM ioctl fuzzer.
 Signed-off-by: John B. Moore <jbmoore61@gmail.com>
 Cc: stable@vger.kernel.org
 ---
+Changes v3 -> v4:
+  - Fixed malformed patch (v3 had wrong hunk line count)
+
 Changes v2 -> v3:
   - Dropped kiq_read_clock hunk (separate refactor per review)
   - init_rlc_save_restore_list: return -EINVAL instead of break,
@@ -273,7 +276,7 @@ index 2eb32f92a..47e81c33d 100644
  	return wptr;
  }
  
-@@ -5654,8 +5666,8 @@ static void gfx_v9_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
+@@ -5654,8 +5666,9 @@ static void gfx_v9_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
  	if (ring->use_doorbell) {
  		atomic64_set((atomic64_t *)ring->wptr_cpu_addr, ring->wptr);
  		WDOORBELL64(ring->doorbell_index, ring->wptr);
