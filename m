@@ -2,102 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +F1dOE7Z8WmLkwEAu9opvQ
+	id MN2sGBIC8mmElwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:11:26 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 15:05:22 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41CFD492AB2
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:11:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE45849472B
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 15:05:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4DF410EF43;
-	Wed, 29 Apr 2026 10:11:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B10E10EE75;
+	Wed, 29 Apr 2026 13:05:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="uSEc8r5v";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="syDuJ2eb";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH0PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11011066.outbound.protection.outlook.com [40.107.208.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 177E510EF43
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2026 10:11:24 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=r8+6sscd1OEgd0RgLD17Sb0LYjVB0e6fjwZ7DUKaJRQn1QBNPnqIAdUVSW0Ghh7wJeNeotgv6uDUSNTWgTcilGE/iV9jyYYmYYsywK5Y5e/HT+RvwBL06nmOy2aJ+JkvtxihkiBu8RYBGKITOwmb54RUi7B6j3sy+azLAzXEuEDQXS11XLM812yC4yyn5Rph1FPTcqzkfPkr6G5fSGPjjD8Tv3y5XR6BRgqdEb9sP8WS/jMaO4gFCYNG1hlCbMcXZSiivs3KOwisXV+SZevcdQzbnGkf4u15pMyiNyRyr8G6gUTEvkxqqtaldDAPOx9s0r0+m5OEQEzfuJ+NDWDycg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iNrqjgVfCSsmz81+52+TxjXD2FuKXgROIzE1RGQQz3A=;
- b=HbMKahWh6ACb+WOSCBjwtB5KuIMkB9a/6Ewe0cbUDOwVNQDSGXqC6PkNLNue+GPiye6XkHQGWrbc1KtXkPl58plKAoswc8NP1tUk1Kl0D8xamXlDB/xjYD+kuoj42qxazMgQQFGMeyJl4dhMlXv9lwrILsr8SZo9DSa7xlDJMYQ7lvnG5hKVgeuhBRI4qt95Krn7fmGf+kDgNK6iIsD7vbqDkdTbWrgMGXscqxECldFV0NQPmbQJglznak4+QuMPWnIk5eaHkF648ySEuNQtiL86OaC8SSSI4nb6c1QqlEbJkxlpT38Z+THQ/FJscjW7mASIhHJojuUZ9OjsU/HAfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iNrqjgVfCSsmz81+52+TxjXD2FuKXgROIzE1RGQQz3A=;
- b=uSEc8r5vnu7yDXqZUVSLfmjcYGxUrI9x/hLz9K1pR92JunFGkhnIzat9KD+EBzHQM4aV+jeFMUYZyhGo5WhXPMrB/ENeMehcVO1ZS1iO9Fx16WRzVlVRYQ1Mt2CZAViQ8BPL/RXq/rClme1ieB37xdWXqh2GpSVDqEqZYyxS3TI=
-Received: from BLAPR05CA0032.namprd05.prod.outlook.com (2603:10b6:208:335::13)
- by DS7PR12MB5767.namprd12.prod.outlook.com (2603:10b6:8:76::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.20; Wed, 29 Apr
- 2026 10:11:20 +0000
-Received: from BL02EPF0002992A.namprd02.prod.outlook.com
- (2603:10b6:208:335:cafe::eb) by BLAPR05CA0032.outlook.office365.com
- (2603:10b6:208:335::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9870.20 via Frontend Transport; Wed,
- 29 Apr 2026 10:11:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0002992A.mail.protection.outlook.com (10.167.249.55) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9846.18 via Frontend Transport; Wed, 29 Apr 2026 10:11:19 +0000
-Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 29 Apr
- 2026 05:11:18 -0500
-From: Lijo Lazar <lijo.lazar@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>, <candice.li@amd.com>
-Subject: [PATCH] drm/amdgpu: Prefer ROM BAR for default VGA device
-Date: Wed, 29 Apr 2026 15:41:00 +0530
-Message-ID: <20260429101100.3893004-1-lijo.lazar@amd.com>
-X-Mailer: git-send-email 2.49.0
+X-Greylist: delayed 714 seconds by postgrey-1.36 at gabe;
+ Wed, 29 Apr 2026 10:37:39 UTC
+Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com
+ [95.215.58.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB73E10EF55;
+ Wed, 29 Apr 2026 10:37:39 +0000 (UTC)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1777458333;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=0ubnPqyEuUH+bb9tWP9+TOUp+n6C5onOR58LCuBDEiw=;
+ b=syDuJ2ebh9z2sjffREH58o0aT6Ajjew8W5I8ReEUtvp2EQkdghmYv8iT9JcU1iX87oMIbX
+ D+xmbMoFNHgWVKDoL6XEe6kPFjJgAeA5FQrv1tK/6uUbSyjmFqItMdxDS/n3eJA5ihtrWC
+ pDy1LXDxeyfrSgRVjezaD0bM6Fa+Scc=
+From: Usama Arif <usama.arif@linux.dev>
+To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+Cc: Usama Arif <usama.arif@linux.dev>, Yury Norov <ynorov@nvidia.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ David Laight <david.laight.linux@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-alpha@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-um@lists.infradead.org,
+ dmaengine@vger.kernel.org, linux-efi@vger.kernel.org,
+ linux-fsi@lists.ozlabs.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-fsdevel@vger.kernel.org,
+ ocfs2-devel@lists.linux.dev, bpf@vger.kernel.org,
+ kasan-dev@googlegroups.com, linux-mm@kvack.org, linux-x25@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, linux-sound@vger.kernel.org,
+ sound-open-firmware@alsa-project.org, linux-csky@vger.kernel.org,
+ linux-hexagon@vger.kernel.org, loongarch@lists.linux.dev,
+ linux-m68k@lists.linux-m68k.org, linux-openrisc@vger.kernel.org,
+ linux-parisc@vger.kernel.org, linux-sh@vger.kernel.org,
+ linux-arch@vger.kernel.org
+Subject: Re: [RFC PATCH v1 7/9] x86: Add unsafe_copy_from_user()
+Date: Wed, 29 Apr 2026 03:25:19 -0700
+Message-ID: <20260429102520.1617327-1-usama.arif@linux.dev>
+In-Reply-To: <0ee46bb228d97163fbdc14f2a7c52b93d8bc34ce.1777306795.git.chleroy@kernel.org>
+References: 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0002992A:EE_|DS7PR12MB5767:EE_
-X-MS-Office365-Filtering-Correlation-Id: 10a7677f-7983-4551-814b-08dea5d7a8a5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|36860700016|1800799024|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: NDxkwWfH9jNO8+n5QKp4il/IoGkoRGDBrb0Z6V6VkkpEJXSrc8FPC7vvCYsxy0JbCSCw1y4QdeklhcXkTyVQxU2iwTbqctBoL8r6wTQYPWacugXkrkpPMOEndvq+pIpDbetNpSerMu4gufqTCutkXFM8Q5y0eUcvcofu3ouIOUt+wN7H1JLKlt6+pjyvao+AtAJiIDDZhtq1odT72OxFORNaijRBPs5P96fMHjDAwl60/YULpFF7PdYl9uDiQ3hXU0ghJm1O2fr9Of04ldxto97OCFZiHTGa5un7vD6/hKYfmg6KTnf/y0nxyUnUvkpY+UNBUPJlJDVgy/O621Pr47LeL4HFATbh+3ggExBBNJeff7A/oMmZh/O1TzsUuEhz89CBlILhdiE8Y5xmNQlrDSA+A7k79ZzD85LZWOvWL+SLKcveE8BxxZ+eJWtgQXAQWsYZsx99jQvPRgJujcc55ZAc0qwZ9agnaNF+bLxUR+EBzCKVHD8g1Ez+xbGTTr1oKaP/W5O1raj3jVPBMFK7FoMXQWbKItW8/iUH+SLGri7tpYLDDVwNypfCSVkMTvg6uvhwWUuNI5Pm1eq0SKpD0CQJo+hj9XIeZZb3OlMsRYOB16y+QcTdnO6YEnHG7emNEPi8Iu/Qc7mV/bpXjKu+4shN+N0eFZFUrATeAQZtmXoT0yubYlOuv2ltPDdlXwP7sfwgLKNpW5+i5g0tg+x0t4vPiFrX+v+DuLU9BeYlEdStVqueZVF3ygOJe8CHP65kewBkXdLJR4uIiWdy3mlcvQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(36860700016)(1800799024)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: GYyM0HyfRMMehW3VAHydnB/x2B8Ry9uzMX5zb1TdLulXmX9Se3qTQtwZJ72teWFtieVoA42G7bAz++GBF2NOdz8tHm1AzsZV7WjHlUv0w58VhgzG4V0u/T43wM/uOflnDII/LWP6pzbCEOGgREAblSVC3tEaqwJZ+kJ4LbgsX/K7EttlrL/QBd7OPsbqh/dxOGr0tQAWVG9uYf12ReYhcx3lZGrIOtsgeI52EK4jKG1+fqOLm9fWXgEgFJBAvG/g1BACaI0qqelrvz8x2I0bh00wTl6tqJCHkpB6J60ykwC3+6GtMmBywBmylOoYtdR1n/d/UYtOWhR+iFtfHyAmhT5fNHEYUn+5ZnSsm0BPt2tbwqf3++axEh2Qh9tEacPYVFONrT2OZmVDa/ny+sf4Xy8Ne8eQWlRIGRpnIJ3Awr/wBN568jNvPTk+0LCl+u3P
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2026 10:11:19.8802 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10a7677f-7983-4551-814b-08dea5d7a8a5
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0002992A.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5767
+X-Migadu-Flow: FLOW_OUT
+X-Mailman-Approved-At: Wed, 29 Apr 2026 13:05:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,68 +85,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 41CFD492AB2
+X-Rspamd-Queue-Id: EE45849472B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [1.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	RCVD_COUNT_FIVE(0.00)[6];
-	HAS_XOIP(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_CC(0.00)[linux.dev,nvidia.com,linux-foundation.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org,lists.linux-m68k.org];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[50];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[usama.arif@linux.dev,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	NEURAL_HAM(-0.00)[-0.970];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[]
 
-Fetching from platform ROM doesn't work with hybrid ROM images. For
-default VGA devices also prefer ROM BAR.
+On Mon, 27 Apr 2026 19:13:48 +0200 "Christophe Leroy (CS GROUP)" <chleroy@kernel.org> wrote:
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+> At the time being, x86 and arm64 are missing unsafe_copy_from_user().
+> 
+> Add it.
+> 
+> Signed-off-by: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
+> ---
+>  arch/x86/include/asm/uaccess.h | 29 ++++++++++++++++++++++++-----
+>  1 file changed, 24 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/x86/include/asm/uaccess.h b/arch/x86/include/asm/uaccess.h
+> index 3a0dd3c2b233..10c458ffa399 100644
+> --- a/arch/x86/include/asm/uaccess.h
+> +++ b/arch/x86/include/asm/uaccess.h
+> @@ -598,7 +598,7 @@ _label:									\
+>   * We want the unsafe accessors to always be inlined and use
+>   * the error labels - thus the macro games.
+>   */
+> -#define unsafe_copy_loop(dst, src, len, type, label)				\
+> +#define unsafe_put_loop(dst, src, len, type, label)				\
+>  	while (len >= sizeof(type)) {						\
+>  		unsafe_put_user(*(type *)(src),(type __user *)(dst),label);	\
+>  		dst += sizeof(type);						\
+> @@ -611,10 +611,29 @@ do {									\
+>  	char __user *__ucu_dst = (_dst);				\
+>  	const char *__ucu_src = (_src);					\
+>  	size_t __ucu_len = (_len);					\
+> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u64, label);	\
+> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u32, label);	\
+> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u16, label);	\
+> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u8, label);	\
+> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u64, label);	\
+> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u32, label);	\
+> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u16, label);	\
+> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u8, label);	\
+> +} while (0)
+> +
+> +#define unsafe_get_loop(dst, src, len, type, label)				\
+> +	while (len >= sizeof(type)) {						\
+> +		unsafe_get_user(*(type __user *)(src),(type *)(dst),label);	\
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-index 35d04e69aec0..aa039e148a5e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-@@ -33,6 +33,7 @@
- #include <linux/pci.h>
- #include <linux/slab.h>
- #include <linux/acpi.h>
-+#include <linux/vgaarb.h>
- /*
-  * BIOS.
-  */
-@@ -467,7 +468,8 @@ static bool amdgpu_prefer_rom_resource(struct amdgpu_device *adev)
- {
- 	struct resource *res = &adev->pdev->resource[PCI_ROM_RESOURCE];
- 
--	return (res->flags & IORESOURCE_ROM_SHADOW);
-+	return (res->flags & IORESOURCE_ROM_SHADOW) ||
-+	       adev->pdev == vga_default_device();
- }
- 
- static bool amdgpu_get_bios_dgpu(struct amdgpu_device *adev)
--- 
-2.49.0
+Hi,
 
+Just wanted to check if src and dst need to be swapped? Same for arm64 patch.
+
+> +		dst += sizeof(type);						\
+> +		src += sizeof(type);						\
+> +		len -= sizeof(type);						\
+> +	}
+> +
+> +#define unsafe_copy_from_user(_dst,_src,_len,label)			\
+> +do {									\
+> +	char *__ucu_dst = (_dst);					\
+> +	const char __user *__ucu_src = (_src);				\
+> +	size_t __ucu_len = (_len);					\
+> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u64, label);	\
+> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u32, label);	\
+> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u16, label);	\
+> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u8, label);	\
+>  } while (0)
+>  
+>  #ifdef CONFIG_CC_HAS_ASM_GOTO_OUTPUT
+> -- 
+> 2.49.0
+> 
+> 
