@@ -2,86 +2,112 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wLpGEb7c8WnKkwEAu9opvQ
+	id 6MHOCc+E8WkyhgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:06 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 06:10:55 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BED41492D24
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1BE448EF88
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 06:10:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EEE610EF70;
-	Wed, 29 Apr 2026 10:26:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1298A10ED2D;
+	Wed, 29 Apr 2026 04:10:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nNUI5PFk";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="mzU0qNNV";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com
- [209.85.161.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E4AE10E03A
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2026 03:26:25 +0000 (UTC)
-Received: by mail-oo1-f44.google.com with SMTP id
- 006d021491bc7-679b072ed3aso5772495eaf.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 20:26:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777433185; x=1778037985; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=fDq0+Om8CwqznPOpM1JgAcMFcBij3v4uN7yEeX42s6A=;
- b=nNUI5PFkp7GDroM81vNLdzGbR76BIF+mNcfng9kan3zzgAtlLl+ctk/kND8DoCdKxO
- nF5cDVc8gTbr5yFdLLgJi9L6kKvp6sti/ZoaBCrcCt3VLaubuZZNnzKuf960ZWyR9P/8
- NaX+hbv8pygD2FEGTK1m4canmjPaNYhiv6j/1egdKtkUBL13x+tBEsl6rKyZSAiBUwXD
- XtNjdRs26ogmMWikvB1Lt082HNZEYCDO0XbBnLmw2R7AnvZUtwzEpiHS829bCvoqKJ3e
- COScVA1aYAqO63ThiOx53JkQuOZNznCRdCYCyg2Ebl8kqp31djMNlTVPVGKHOKiAikJV
- bYWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777433185; x=1778037985;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=fDq0+Om8CwqznPOpM1JgAcMFcBij3v4uN7yEeX42s6A=;
- b=qPPcJLuXMXAP7J3CuqmGVzyN3SsaE8yh4tx0jIV1+QqwSusjEIs/FahQzjpEGL2+zs
- mWcrSLw8X8GxdCRX2ii5kFXiAeTs0VC2pk485itxFlU6NaIP1YPzHv8JakPZ+8GN06BR
- GqFBss4zFXa1igTdKQWF0KJO4aKjWCX8ZllWpcY0vDDfUFIZu3t5pa1rJilZKAt4z9XU
- UKMliOoRD/uAfV9Dy52LHlP/qzqJArr1G0NDvJ06+TF8dS3baUNa/pPQ06UkweGrZTJ7
- jGkqNE/j5qc/sa+YZ40GFFlN+dbmqpnk3v6gnW27JQhDLaEigO04QuzW7Iroe6JTOCNR
- kFdw==
-X-Gm-Message-State: AOJu0YwrZkmq3aC67lEr42kgzTeLPDY9PNqSUixWIBNHSO++8F8vlQGD
- XG5+cEUPtKzA1qMwGpb1WV9jDBWDkgoHyPlaNfkPURuowaSEQkvkvQs=
-X-Gm-Gg: AeBDiesW3B7hzQekjS8K97SdISPwFxBDA2vW5N3av6e3PxqLf8E8/kKLtYWDTonE+oR
- zfj8T+IEzgtJVbcRMWvUxixxfaB0QRrg1zcjxv1mJnbfW8Lv9B57JM6TzYTSIt+m6lddEwtYZqV
- FuAYdTn35x9Ve/Day1PPauEvPq32g9qOuF1xTQa8OgI9C08APeNNRG5RoPyugtsNiS48LEtAmPq
- jvl2+2VOVWEe3IooUMSWdq+7JzJ5rCt8TDMd4RYlBkzdc+Q3b/G2b/AHqb4GefCAVbAMgH4LRD/
- 1Z+l5aTegJmI7jQPuYUwWjk/nu9mh0U6fIHg7KskWTDOtiB2DgKnh16F1cI230dOLUwYvX6c3fQ
- VL9UaKkPmLAv2MrUhxIg3CL7I3Q7FQgmROQADHosbmftkMjPKmYJIa8J5aqcyWZZvKaeOcR8yCJ
- /afQT5EgOuj7UdMOQ6dr4+wN5habl1RG2DGAcGWEAte+b23eFox51QF0qOwk9PucxkM53Wvv42p
- 3AAE3TdSml6wXnKCAc7W20+M9ag9Zn45l4=
-X-Received: by 2002:a4a:e903:0:b0:696:1413:496a with SMTP id
- 006d021491bc7-6965ca8527dmr3146109eaf.17.1777433184671; 
- Tue, 28 Apr 2026 20:26:24 -0700 (PDT)
-Received: from localhost.localdomain ([47.188.191.104])
- by smtp.gmail.com with ESMTPSA id
- 006d021491bc7-6966bc3be04sm405156eaf.8.2026.04.28.20.26.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Apr 2026 20:26:24 -0700 (PDT)
-From: "John B. Moore" <jbmoore61@gmail.com>
-To: christian.koenig@amd.com,
-	alexander.deucher@amd.com
-Cc: amd-gfx@lists.freedesktop.org,
-	jbmoore61@gmail.com
-Subject: [PATCH v4 2/2] drm/amdgpu/ring: extract kiq_read_clock to common
- HW-agnostic code
-Date: Tue, 28 Apr 2026 22:26:21 -0500
-Message-ID: <20260429032621.10888-2-jbmoore61@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260429032621.10888-1-jbmoore61@gmail.com>
-References: <20260429032621.10888-1-jbmoore61@gmail.com>
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010002.outbound.protection.outlook.com [52.101.85.2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60B4C10EB7D;
+ Wed, 29 Apr 2026 04:10:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UXhgQAwtY00mqI0T1HkpnS69jDRfZ3iSWsitZh+Plm8MiEXsNSbgzGKVmthO2FRn7L9c1qOR96kAzRv1yLL7kgjqN0PMAA7Gp74SuXNjV/V0MKsrjO7ZysyYsc9+1iausVi5Q8l1A/i+Pc0dhSrXK/It7LpVypQtzgXZumPEDDyyvgSRtJNX7R9WH3ANjCrQuuCVgZBFVgMdEQpTQSIycC9Y74fY4mGVJCbvBobD4O3FwMfRRRIdnidGV2BbsvhJbJG6OcLtiZO+TvQnknEPiXF0i3FmnXJuUCQVId2W85HwB9U6/L7wYUO1WoMq/jvyYleSDscfn4txBUCjR0deFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4jyrqM6BYdq4/tGGCsEYs7I3KoZT/7i4eaLyhesxBGQ=;
+ b=Rt7l15hKMGPzOqNmTIUEYEZXt9h+tw+L/M5GuPd8fhgNGuxm3xYUHi4v2D3Wh5DxhmPzRidD/8JM2Dzho6yXQS8+k0/0uvlbvW6Qi7J9mbDCTgox5lWkp0gVlAVYJoEycfbD/eBjd0LnMqdSOkcgX5ikXTTkIGqKVqE7N2jZYTSJsGgIP3AQ6gBAYKNL0Ypoq25F4OmXJOsOZYrYQylef3JUTYzhPuRtUwSQPwDp3wYxNvNBl3UVizWbFqE98j0gESVij/ivmpkiiZWqKPia/cHGkVZaxmgOGjsoCFP0nkQkrOQzzQSqk7e6yuuXrBxegN+DsVW/4agOXBhw1CA8jg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=ffwll.ch smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4jyrqM6BYdq4/tGGCsEYs7I3KoZT/7i4eaLyhesxBGQ=;
+ b=mzU0qNNVPDYGKdUqKxXIoGxAFySsq5XbZTguv0FNHmTUogYYN3i3omq8pVv70Gl+XwaZ5TSjSx8naWSvvpJkij2d4MxOnmhttXyB0Y9LqMrnA0fHmVTqlp1depClJKEddHnO8Q7I5xXIV2YmsCKM9R3BNUMJq8zne+Wvg+HWMN8=
+Received: from SN7PR04CA0165.namprd04.prod.outlook.com (2603:10b6:806:125::20)
+ by MW4PR12MB7285.namprd12.prod.outlook.com (2603:10b6:303:22e::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.17; Wed, 29 Apr
+ 2026 04:10:40 +0000
+Received: from SA2PEPF00003F68.namprd04.prod.outlook.com
+ (2603:10b6:806:125:cafe::ee) by SN7PR04CA0165.outlook.office365.com
+ (2603:10b6:806:125::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.30 via Frontend Transport; Wed,
+ 29 Apr 2026 04:10:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SA2PEPF00003F68.mail.protection.outlook.com (10.167.248.43) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9846.18 via Frontend Transport; Wed, 29 Apr 2026 04:10:40 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 28 Apr
+ 2026 23:10:35 -0500
+Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 28 Apr
+ 2026 21:06:46 -0700
+From: Honglei Huang <honglei1.huang@amd.com>
+To: <Alexander.Deucher@amd.com>, <Felix.Kuehling@amd.com>,
+ <Christian.Koenig@amd.com>, <Oak.Zeng@amd.com>, <Jenny-Jing.Liu@amd.com>,
+ <Philip.Yang@amd.com>, <Xiaogang.Chen@amd.com>, <Ray.Huang@amd.com>,
+ <Lingshan.Zhu@amd.com>, <Junhua.Shen@amd.com>, <sima@ffwll.ch>,
+ <matthew.brost@intel.com>, <rodrigo.vivi@intel.com>,
+ <thomas.hellstrom@linux.intel.com>, <dakr@kernel.org>, <aliceryhl@google.com>
+CC: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <honghuan@amd.com>
+Subject: [RFC V4 00/12] drm/amdgpu: SVM implementation based on drm_gpusvm
+Date: Wed, 29 Apr 2026 12:06:16 +0800
+Message-ID: <20260429040628.853079-1-honglei1.huang@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 29 Apr 2026 10:25:59 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb09.amd.com
+ (10.181.42.218)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003F68:EE_|MW4PR12MB7285:EE_
+X-MS-Office365-Filtering-Correlation-Id: f452c8ed-87db-4d16-a2cc-08dea5a5465f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|36860700016|82310400026|1800799024|13003099007|921020|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: uQ/nQ3tCE/uJiYTKzf+Tsd9gjzi8RET6Sk2BdvdhK6Rn3F9RRP4Zot5Aeo/F8GG8kMwz8v9fQEBs4yHObw2U4bGATEA0KSxpSomutNTmtn8N2TtYJO2misU6sUYkv+na7d/re+ZVkF4jcoCx9B+aceYnEau6ETw4ZUp7fYhMai2e6lwQEXTT1x51F6I3dJyorwCNPXv6BF2NxXlkRRopC1bCWFVzndT2ZC966IwLkpxcUb0O6pvc8qShoeRCoOnH4RmweW66wIgU8ZH9kRMnagNOMwAi/4ZD63P81xpAGjUmJetKAPk3Vhx9RsdvlEibypWtJoIDwrYguMmoQT6eHKdEBl1OeQNt2zy9gfFOkPFBj4MU4GFl7EA7SfqdTh8ox12w/YlgQ0VuelrqkdE4kSuYUIPpwFCopTRpy8gm1fq6jCrooQ6aOv0a2vsnpFl3oc2dqFrBMMS15lbxBGs4wYoWLst2O7iLE9jd1sNotpX/YU6mOi2L7+r6sKMo/GvCdfk54gorvMrSnsaH/JgGlLL94ekDypi+bZnZdOVGH2Tx/TJKIv7VUggJQqKNAzgNsWeefu6WXgWjA6Lt8tGWB1XpVp2FNJLjY4NCu/aisx3oohPiL8sTUGNFGj5P+BC8tVAMy9zqbizt650erapbncojWxf5YATJp84557doVPxwor4nJZhHBo+CdCPpoL2U/gEAYgk4LMIMxuqyp1It6IkC0KmDszEMzsDAFFDTjiwkvrAJ91xr0vplN0V/uH8vCb+zsiuysbe1yDwpEULvZbDCM7NFaL6R/ALBiXuAKOQMj4gEzMyKrtkOuh4F/lcBWwzm9+XZ4pTDvvG+XIdlgQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(13003099007)(921020)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: jwAWsHxdKsRsNTIyCrLqgJOWonwj2uYZyyoW75g6ufKnCVSTUQ0WZxQTwMugfd67aGHfXuRikSW0vKLKogxlPeayZ/1IpMoF5jyjbyWB7JxBjDDYU363b0+XmxUQVqqlpl7fcB4fGPbssa4Hnvh1hkgQIcap8709Gw8vYt0jjZM/V3tR0rorD5X0Phfks/1zf4Q9CcXfZuanc24sHewnVN1qIvDY9WWXdWeDg1sJ8fm/a467RgWoVdoc9k72U1ssAVOdg7TQYDQQ8lFWLgjUqCIIgMgw7RCzQ2ZYSgGHoSxjt+mTspO+RuRpRs+EhT3WfDF+821/VxY4Zb/+lxEGR7oDOPvb3cjAuJjuJb/q8puAdXwHnF6vqv0XAevzjpTGMcK9cBs9WVyhKStslDh8pdyGQizxxEVDSQKkd32qVd0YYILnPFIfqKq3+Yr4kGjg
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2026 04:10:40.1435 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f452c8ed-87db-4d16-a2cc-08dea5a5465f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F68.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7285
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,264 +121,212 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: BED41492D24
+X-Rspamd-Queue-Id: B1BE448EF88
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:jbmoore61@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_THREE(0.00)[4];
-	TO_DN_NONE(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FROM_NEQ_ENVFROM(0.00)[honglei1.huang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_SEVEN(0.00)[7]
 
-Move gfx_v9_0_kiq_read_clock() from gfx_v9_0.c to amdgpu_ring.c
-as amdgpu_kiq_read_clock(). The function uses PACKET3_COPY_DATA to
-read the GPU clock counter via the KIQ ring and is not in any way
-HW generation dependent -- it can be reused by any GFX IP version
-that needs KIQ-based clock reads in SRIOV environments.
+From: Honglei Huang <honghuan@amd.com>
 
-Preserve the original block comment explaining the gpu_recover()
-deadlock avoidance logic for the reset-path bail-out.
+V4 of the SVM patch series for amdgpu based on the drm_gpusvm framework. 
+This revision focuses on UAPI redesign based on review feedback from V3.
 
-Requested-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: John B. Moore <jbmoore61@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu.h      |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c | 85 ++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c    | 74 +--------------------
- 3 files changed, 88 insertions(+), 72 deletions(-)
+This patch series implements SVM support with the following design:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 447e734c3..75e200211 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -524,6 +524,7 @@ struct amdgpu_wb {
- 
- int amdgpu_device_wb_get(struct amdgpu_device *adev, u32 *wb);
- void amdgpu_device_wb_free(struct amdgpu_device *adev, u32 wb);
-+uint64_t amdgpu_kiq_read_clock(struct amdgpu_device *adev);
- 
- /*
-  * Benchmarking
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-index 4638a686a..6049215ce 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-@@ -35,6 +35,7 @@
- #include "amdgpu.h"
- #include "amdgpu_ras_mgr.h"
- #include "atom.h"
-+#include "sid.h"
- 
- /*
-  * Rings
-@@ -926,3 +927,87 @@ bool amdgpu_ring_is_reset_type_supported(struct amdgpu_ring *ring,
- 	}
- 	return false;
- }
-+
-+/**
-+ * amdgpu_kiq_read_clock - read GPU clock via KIQ ring
-+ *
-+ * @adev: amdgpu_device pointer
-+ *
-+ * Use the KIQ (Kernel Interface Queue) to issue a COPY_DATA packet
-+ * that reads the GPU clock counter into a writeback buffer.
-+ * This is HW-generation agnostic and can be used by any IP that
-+ * needs to read the GPU clock via KIQ in SRIOV environments.
-+ *
-+ * Returns the 64-bit GPU clock value, or ~0 on failure.
-+ */
-+uint64_t amdgpu_kiq_read_clock(struct amdgpu_device *adev)
-+{
-+	signed long r, cnt = 0;
-+	unsigned long flags;
-+	uint32_t seq, reg_val_offs = 0;
-+	uint64_t value = 0;
-+	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
-+	struct amdgpu_ring *ring = &kiq->ring;
-+
-+	spin_lock_irqsave(&kiq->ring_lock, flags);
-+	if (amdgpu_device_wb_get(adev, &reg_val_offs)) {
-+		pr_err("critical bug! too many kiq readers\n");
-+		goto failed_unlock;
-+	}
-+	amdgpu_ring_alloc(ring, 32);
-+	amdgpu_ring_write(ring, PACKET3(PACKET3_COPY_DATA, 4));
-+	amdgpu_ring_write(ring, 9 |		/* src: GPU clock */
-+				(5 << 8) |	/* dst: memory */
-+				(1 << 16) |	/* count sel */
-+				(1 << 20));	/* write confirm */
-+	amdgpu_ring_write(ring, 0);
-+	amdgpu_ring_write(ring, 0);
-+	amdgpu_ring_write(ring, lower_32_bits(adev->wb.gpu_addr +
-+				reg_val_offs * 4));
-+	amdgpu_ring_write(ring, upper_32_bits(adev->wb.gpu_addr +
-+				reg_val_offs * 4));
-+	r = amdgpu_fence_emit_polling(ring, &seq, MAX_KIQ_REG_WAIT);
-+	if (r)
-+		goto failed_undo;
-+
-+	amdgpu_ring_commit(ring);
-+	spin_unlock_irqrestore(&kiq->ring_lock, flags);
-+
-+	r = amdgpu_fence_wait_polling(ring, seq, MAX_KIQ_REG_WAIT);
-+
-+	/* don't wait anymore for gpu reset case because this way may
-+	 * block gpu_recover() routine forever, e.g. this virt_kiq_rreg
-+	 * is triggered in TTM and ttm_bo_lock_delayed_workqueue() will
-+	 * never return if we keep waiting in virt_kiq_rreg, which cause
-+	 * gpu_recover() hang there.
-+	 *
-+	 * also don't wait anymore for IRQ context
-+	 * */
-+	if (r < 1 && (amdgpu_in_reset(adev)))
-+		goto failed_kiq_read;
-+
-+	might_sleep();
-+	while (r < 1 && cnt++ < MAX_KIQ_REG_TRY) {
-+		msleep(MAX_KIQ_REG_BAILOUT_INTERVAL);
-+		r = amdgpu_fence_wait_polling(ring, seq, MAX_KIQ_REG_WAIT);
-+	}
-+
-+	if (cnt > MAX_KIQ_REG_TRY)
-+		goto failed_kiq_read;
-+
-+	mb();
-+	value = (uint64_t)adev->wb.wb[reg_val_offs] |
-+		(uint64_t)adev->wb.wb[reg_val_offs + 1] << 32ULL;
-+	amdgpu_device_wb_free(adev, reg_val_offs);
-+	return value;
-+
-+failed_undo:
-+	amdgpu_ring_undo(ring);
-+failed_unlock:
-+	spin_unlock_irqrestore(&kiq->ring_lock, flags);
-+failed_kiq_read:
-+	if (reg_val_offs)
-+		amdgpu_device_wb_free(adev, reg_val_offs);
-+	pr_err("failed to read gpu clock\n");
-+	return ~0;
-+}
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 1153121e0..9ae55b060 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -4205,77 +4205,7 @@ static int gfx_v9_0_soft_reset(struct amdgpu_ip_block *ip_block)
- 	return 0;
- }
- 
--static uint64_t gfx_v9_0_kiq_read_clock(struct amdgpu_device *adev)
--{
--	signed long r, cnt = 0;
--	unsigned long flags;
--	uint32_t seq, reg_val_offs = 0;
--	uint64_t value = 0;
--	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
--	struct amdgpu_ring *ring = &kiq->ring;
--
--	spin_lock_irqsave(&kiq->ring_lock, flags);
--	if (amdgpu_device_wb_get(adev, &reg_val_offs)) {
--		pr_err("critical bug! too many kiq readers\n");
--		goto failed_unlock;
--	}
--	amdgpu_ring_alloc(ring, 32);
--	amdgpu_ring_write(ring, PACKET3(PACKET3_COPY_DATA, 4));
--	amdgpu_ring_write(ring, 9 |	/* src: register*/
--				(5 << 8) |	/* dst: memory */
--				(1 << 16) |	/* count sel */
--				(1 << 20));	/* write confirm */
--	amdgpu_ring_write(ring, 0);
--	amdgpu_ring_write(ring, 0);
--	amdgpu_ring_write(ring, lower_32_bits(adev->wb.gpu_addr +
--				reg_val_offs * 4));
--	amdgpu_ring_write(ring, upper_32_bits(adev->wb.gpu_addr +
--				reg_val_offs * 4));
--	r = amdgpu_fence_emit_polling(ring, &seq, MAX_KIQ_REG_WAIT);
--	if (r)
--		goto failed_undo;
--
--	amdgpu_ring_commit(ring);
--	spin_unlock_irqrestore(&kiq->ring_lock, flags);
--
--	r = amdgpu_fence_wait_polling(ring, seq, MAX_KIQ_REG_WAIT);
--
--	/* don't wait anymore for gpu reset case because this way may
--	 * block gpu_recover() routine forever, e.g. this virt_kiq_rreg
--	 * is triggered in TTM and ttm_bo_lock_delayed_workqueue() will
--	 * never return if we keep waiting in virt_kiq_rreg, which cause
--	 * gpu_recover() hang there.
--	 *
--	 * also don't wait anymore for IRQ context
--	 * */
--	if (r < 1 && (amdgpu_in_reset(adev)))
--		goto failed_kiq_read;
--
--	might_sleep();
--	while (r < 1 && cnt++ < MAX_KIQ_REG_TRY) {
--		msleep(MAX_KIQ_REG_BAILOUT_INTERVAL);
--		r = amdgpu_fence_wait_polling(ring, seq, MAX_KIQ_REG_WAIT);
--	}
--
--	if (cnt > MAX_KIQ_REG_TRY)
--		goto failed_kiq_read;
--
--	mb();
--	value = (uint64_t)adev->wb.wb[reg_val_offs] |
--		(uint64_t)adev->wb.wb[reg_val_offs + 1 ] << 32ULL;
--	amdgpu_device_wb_free(adev, reg_val_offs);
--	return value;
--
--failed_undo:
--	amdgpu_ring_undo(ring);
--failed_unlock:
--	spin_unlock_irqrestore(&kiq->ring_lock, flags);
--failed_kiq_read:
--	if (reg_val_offs)
--		amdgpu_device_wb_free(adev, reg_val_offs);
--	pr_err("failed to read gpu clock\n");
--	return ~0;
--}
-+/* kiq_read_clock moved to amdgpu_ring.c as amdgpu_kiq_read_clock() */
- 
- static uint64_t gfx_v9_0_get_gpu_clock_counter(struct amdgpu_device *adev)
- {
-@@ -4303,7 +4233,7 @@ static uint64_t gfx_v9_0_get_gpu_clock_counter(struct amdgpu_device *adev)
- 		if (amdgpu_ip_version(adev, GC_HWIP, 0) ==
- 			    IP_VERSION(9, 0, 1) &&
- 		    amdgpu_sriov_runtime(adev)) {
--			clock = gfx_v9_0_kiq_read_clock(adev);
-+			clock = amdgpu_kiq_read_clock(adev);
- 		} else {
- 			WREG32_SOC15(GC, 0, mmRLC_CAPTURE_GPU_CLOCK_COUNT, 1);
- 			clock = (uint64_t)RREG32_SOC15(GC, 0, mmRLC_GPU_CLOCK_COUNT_LSB) |
+  1. Attributes separated from physical page management:
+
+    - Attribute layer (amdgpu_svm_attr_tree): a driver-side interval
+      tree storing per-range SVM attributes. Managed through SET_ATTR
+      ioctl and preserved across range lifecycle events.
+
+    - Physical page layer (drm_gpusvm ranges): managed by the
+      drm_gpusvm framework, representing HMM-backed DMA mappings
+      and GPU page table entries.
+
+  2. GPU fault driven mapping (XNACK on):
+
+    The core mapping path is driven by GPU page faults instead of ioctls.
+    amdgpu_svm_handle_fault() looks up SVM by PASID, runs GC,
+    resolves attributes, then maps via find_or_insert -> get_pages
+    -> GPU PTE update. For unregistered addresses, default
+    attributes are derived from VMA properties automatically.
+
+  3. MMU notifier invalidation:
+
+    Two-phase callback: event_begin() zaps GPU PTEs and flushes
+    TLB, event_end() unmaps DMA pages. UNMAP events queue ranges
+    to GC for deferred cleanup. Non-UNMAP events (eviction) rely
+    on GPU fault to remap.
+
+  4. Garbage collector:
+
+    GC workqueue processes unmapped ranges: removes them
+    from drm_gpusvm and clears corresponding attributes. No
+    rebuild or restore logic, GPU fault handles recreation.
+
+Changes since V3:
+  - UAPI: Merge ACCESS/ACCESS_IN_PLACE/NO_ACCESS into a single
+    AMDGPU_SVM_ATTR_ACCESS attribute with enum amdgpu_ioctl_svm_access
+    (INACCESSIBLE/IN_PLACE/ALLOW_MIGRATE).
+  - UAPI: Replaced SET_FLAGS/CLR_FLAGS with per-flag boolean attribute
+    types: HOST_ACCESS, COHERENT, EXT_COHERENT, HIVE_LOCAL, GPU_RO,
+    GPU_EXEC, GPU_READ_MOSTLY, GPU_ALWAYS_MAPPED.
+  - UAPI: Replaced all #define constants with C enums.
+  - Add UAPI documentation with kerneldoc comments in amdgpu_drm.h.
+  - Moved flag bits from UAPI AMDGPU_SVM_FLAG_* to internal
+    AMDGPU_SVM_ATTR_BIT_* bitmap. Added attr_flag_type_to_bit() helper.
+  - Removed AMDGPU_SVM_VALID_FLAG_MASK and flags_or.
+  - Condensed commit messages and cover letter content.
+
+Changes since V2:
+  - Add version tittle in commit message.
+  - Fix some content mistaken.
+
+Changes since V1:
+  - Added GPU fault handler (amdgpu_svm_handle_fault) with PASID-based
+    SVM lookup: GC -> find_or_insert -> get_pages -> GPU map.
+  - Removed restore worker queue; GPU fault recreates ranges on demand.
+    GC simplified to discard-only, no rebuild/restore logic.
+  - Reworked MMU notifier to two-phase model: event_begin() zaps PTEs
+    and flushes TLB, event_end() unmaps DMA and queues UNMAP to GC.
+    Removed begin_restore/end_restore and NOTIFIER flag dispatch.
+  - Added invalidate_interval() for attribute boundary realignment
+    when sub-region attribute changes cross existing GPU ranges.
+  - On MMU_NOTIFY_UNMAP, discard all affected ranges entirely;
+    attribute layer preserves valid attrs, fault recreates on demand.
+  - Added unregistered address attribute derivation from VMA properties
+    for ROCm compatibility (kfd/rocr/hip tests).
+  - Dropped XNACK off support; returns -EOPNOTSUPP when disabled.
+    Removed kgd2kfd_quiesce_mm()/resume_mm() dependency.
+  - Added TRIGGER_RANGE_SPLIT, TRIGGER_PREFETCH change triggers.
+  - Added helpers: find_locked, get_bounds_locked, set_default.
+
+TODO:
+  - Add multi GPU support.
+  - Add XNACK off mode.
+
+Related work:
+  - SVM migration and prefetch support is being developed in:
+    https://lore.kernel.org/amd-gfx/20260427100522.7014-1-Junhua.Shen@amd.com/
+  - ROCm UMD interface adaptation for the new drm SVM API is being developed in:
+    https://github.com/ROCm/rocm-systems/pull/4364
+
+
+Test results:
+  Tested on gfx943 (MI300X) and gfx906 (MI60) with XNACK on:
+  - KFD test: 95%+ passed.
+  - ROCR test: all passed.
+  - HIP catch test: gfx943 (MI300X): 96% passed.
+                    gfx906 (MI60):99% passed.
+
+Patch overview:
+
+  01/12 UAPI: DRM_AMDGPU_GEM_SVM ioctl, enum-based SVM operations,
+        access modes, location values, attribute types with kerneldoc
+        in amdgpu_drm.h.
+
+  02/12 Core header: amdgpu_svm wrapping drm_gpusvm with refcount,
+        attr_tree, GC struct, locks, and VM integration hooks.
+
+  03/12 Attribute types: amdgpu_svm_attrs, attr_range (interval tree
+        node), attr_tree, internal ATTR_BIT flag bitmap, change triggers.
+
+  04/12 Attribute tree ops: interval tree lookup, insert, remove,
+        find_locked, get_bounds_locked, set_default, and lifecycle.
+
+  05/12 Attribute set/get/clear: validate UAPI attributes including
+        new boolean flag types, apply to tree with head/tail splitting,
+        attr_flag_type_to_bit mapping, change propagation, and query.
+
+  06/12 Range types: amdgpu_svm_range extending drm_gpusvm_range
+        with gpu_mapped state, pending ops, work queue linkage,
+        and op_ctx for batch processing.
+
+  07/12 Range GPU mapping: PTE flags computation with read_only
+        support, GPU page table update, range mapping loop.
+
+  08/12 Notifier and GC helpers: two-phase notifier events, range
+        removal, GC enqueue/add with dedicated workqueue.
+
+  09/12 Attribute change and invalidation: apply attribute triggers
+        to GPU ranges, invalidate_interval for boundary realignment,
+        work queue dequeue helpers, checkpoint timestamp.
+
+  10/12 Initialization and lifecycle: kmem_cache, drm_gpusvm_init
+        with chunk sizes (2M/64K/4K), XNACK detection, GC init,
+        PASID lookup, TLB flush, and init/close/fini lifecycle.
+
+  11/12 Ioctl entry and fault handler: ioctl dispatcher
+        (op_set_attr/op_get_attr), GC worker, and amdgpu_svm_fault.c
+        with full fault path including unregistered attribute
+        derivation and retry logic.
+
+  12/12 Build integration: Kconfig (CONFIG_DRM_AMDGPU_SVM), Makefile
+        rules, ioctl registration, and amdgpu_vm fault dispatch.
+
+Honglei Huang (12):
+  drm/amdgpu: define SVM UAPI for GPU shared virtual memory
+  drm/amdgpu: introduce SVM core header and VM integration
+  drm/amdgpu: define SVM attribute subsystem types
+  drm/amdgpu: implement SVM attribute tree and helper functions
+  drm/amdgpu: implement SVM attribute set/get/clear operations
+  drm/amdgpu: define SVM range types and work queue interface
+  drm/amdgpu: implement SVM range GPU mapping core
+  drm/amdgpu: implement SVM range notifier and GC helpers
+  drm/amdgpu: implement SVM attribute change and invalidation
+  drm/amdgpu: implement SVM initialization and lifecycle
+  drm/amdgpu: add SVM ioctl entry and fault handler module
+  drm/amdgpu: integrate SVM into build system and VM fault path
+
+ drivers/gpu/drm/amd/amdgpu/Kconfig            |  11 +
+ drivers/gpu/drm/amd/amdgpu/Makefile           |  13 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm.c       | 467 ++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm.h       | 162 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_attr.c  | 994 ++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_attr.h  | 144 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_fault.c | 368 +++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_fault.h |  39 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.c | 861 +++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.h | 146 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |  20 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |   4 +
+ include/uapi/drm/amdgpu_drm.h                 | 106 ++
+ 14 files changed, 3336 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_attr.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_attr.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_fault.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_fault.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_svm_range.h
+
 -- 
-2.43.0
+2.34.1
 
