@@ -2,82 +2,113 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EBl+HMDc8WnvkwEAu9opvQ
+	id KEjMGEZk8WnhgQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:08 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 03:52:06 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F361C492D28
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4D6348E1A8
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 03:52:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 914DE10EF75;
-	Wed, 29 Apr 2026 10:26:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F59510E0C2;
+	Wed, 29 Apr 2026 01:51:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=usp.br header.i=@usp.br header.b="SWMyYraZ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="cNG3lHuq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yx1-f53.google.com (mail-yx1-f53.google.com
- [74.125.224.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55BFC10E107
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 23:20:20 +0000 (UTC)
-Received: by mail-yx1-f53.google.com with SMTP id
- 956f58d0204a3-650140d4886so1414559d50.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 16:20:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=usp.br; s=usp-google; t=1777418419; x=1778023219; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=+rH+HukFVVKTSyLtA3CLcCCBO3teYBV/5ae/ix8Fdr0=;
- b=SWMyYraZAkATDKFrE+NrQ1T7Kpf5JkfWkL+IU7a6WrfrtXNR/7wMOb5wb8QEeM/sHp
- ek+SsVeOVNAMginqToLMAOxCLobexREmXqC6cNwkvsQlgxXDNWLmuAQ2vNLTds3+14Ki
- Oky4vdFhZgLV8/q+njYNiAtmLxshll6TASasCzDrXoFERea+ds/mG9bk/y4KUXVn/P7O
- 6Jg85BGNFQaoAXdusGnT9UBh4PGt80jDOCahq7yHKqz72eNeCrQyAiJxIjhRy8mxeiQl
- 3L//gBFmA+AxNpskcdspwDQlYRKg0z0fH57gbO5kDn56ygoItaY6pm1Ok1/YVcm1RDuy
- yUDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777418419; x=1778023219;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=+rH+HukFVVKTSyLtA3CLcCCBO3teYBV/5ae/ix8Fdr0=;
- b=Ost2bs5QCjLN8wXR3V54gFuzGId1nUJ/ZwPwIEv+QbTU2O+SsdPt2Cn5TP6Av/2BPL
- hJxXUGB8Y0JeDOTYhP09oZ52pUL5javI6b0lMXtm1PMqTS21mpeLLO0OBlXWcyUl1PME
- +2dA6voMaQwZwkQXMZMpi21VPf2ljxRrX3+qYihloVzPm3cJplnk+1tUa3dNrngskJop
- 8mHoqlnBnnuTSUZsvWQkiWbk3MsW0Pb6zq3wBuOciSeHYSJ4JVi9It+Z5AkKjaLxBQ7M
- Olc6ZY2dC4Y6XRY77HljGqN1pB1OcLpiFhgLMX6xqT7YNSLBZvSnYAxC3uqbltPzb6G1
- gYWA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ/GYXbJlBlnxYQK/9rdvr/udVkOMPBNCojeDemUm0ZQwPfzfdjitigFHt93xes+fKR18cZRrWFc@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yznp42m84YIGAxfqqJn1n5TUw0am4STvIOH90nRceeQRA62bgvR
- PHhtl8nLx5wfKqjdx4ajliAJdQ33sgGCsKi62m0EQZfZpEh6LOAJQXN4XlJX9TIIJrw=
-X-Gm-Gg: AeBDieseKoVdhnJikI3Whh7VJq90IEc9e1FwkgGuXlRkJzvr4pNTZRt45vXhyGEG0jD
- yCeJqZ5nRxoHyArAHq1T97Nhr68fZHO24ACiD0h0rJpxPISBXQ9VuBiN9ojFLS3G9O78aPulOf0
- zWykGnRxGCyWS/jDleaHvIUbXSRqDn1z7uTPULP542NjbtTRj4GNSf09UDfILbVnPGKbVnHLs2y
- PgN996B7L8lr+579kL9kF5YDyA6g+dqykW0/Tpn+vEGqk38CQlAK5dm6VgWgc0H2t4iwYE91no4
- Dzobo1q0SG49ngA/tZEG6DD+F+h+J9z40WXuPIJw71ibCi3I2RqeomwXbIH7higlhXsfz2LsUB2
- lPVPBOq8tXMdwrhAsjYcRXloFqJhzN81ZyIA50g1dVlOFLyobrnuJjBFkY0z3x5yTHcs9pwJJxo
- 5xKwaJkJ8DGKeucEjv4bojb85GUl40Z0K6hKIWlGfrYt2uSbom+9h9Tzuo9G4=
-X-Received: by 2002:a05:690c:1d:b0:7a0:5979:8d9c with SMTP id
- 00721157ae682-7bceddd9463mr39695897b3.6.1777418418990; 
- Tue, 28 Apr 2026 16:20:18 -0700 (PDT)
-Received: from Haru.. ([2804:1b1:f983:86f3:700:20fe:a71d:1f36])
- by smtp.gmail.com with ESMTPSA id
- 00721157ae682-7bd252a5a9esm5299417b3.14.2026.04.28.16.20.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 Apr 2026 16:20:18 -0700 (PDT)
-From: Leonardo Cesar <leonardocesar@usp.br>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch
-Cc: Leonardo Cesar <leonardocesar@usp.br>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH v4] drm/amdgpu: deduplicate ring preempt ib function
-Date: Tue, 28 Apr 2026 20:19:44 -0300
-Message-ID: <20260428232009.10737-1-leonardocesar@usp.br>
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010055.outbound.protection.outlook.com
+ [52.101.193.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DAEF10E0C2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2026 01:51:57 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KVTSi6zJTd/lGt9lP1sSnpbum79dpeqJw4SQgEm+Eem97QXCU+f1V3s+vzP7315on3VQYxxjC7mkijSyLvHXYRjZcgfOYV0QZqsQhbvLGQ1tzqMgLlBrtM6Rq2KE6H6JBrH9InIFI9BHTCq7140F4U9RLO2cOhbjXC4GvhJqJi6mO/ROYwS5mF8SLg0D9OMpb4wsDX6d6EzPh0FcKV1KNly6pYseT7FSRMsBU9T1rgWdD5h1Kwu1MFJ2GbRXyBb3fIsvrdlc2Z2WRmFwKkuiaVUvzlS21L1TWRmrlZaMCF/GceDXkJaS3Z92wL0h7umvTGRT61yjfrsyvtpgZqj9Bw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=o/3eB0sJpRcEbRQn7X4V7xnoM7ws1usMggHuqKbL8j4=;
+ b=pirTNYGnQ3BmQBv2G87jP/zv6tWwVtxMYESDB4576ZSiPjUoRLEQ/ikTtHDVFwSa2xuypDfTapjgyqCq3phAIOHTyOrtK4lff81VP8Nyvp21mxqC1ZWn3c5ylvr/ONB++l8buORhKVxg5bSaBjirg6bbkjEwiAf96clrQLBY7MXTrxqXTnbEJFoD8zGtnDpY4BVQJelAk23Zqn6vb6PCc/oloJ7jp4H/0eybfx/Yih63x32sGBPYQbMklyHtMVeJPT4iWnenDJaT1l+soSzW7BjinU+pVsOjh57/SwTaYhKjT++RoK2R5Tkt6P9AQR3JdjL7NViBpaJBLRSXURXL/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o/3eB0sJpRcEbRQn7X4V7xnoM7ws1usMggHuqKbL8j4=;
+ b=cNG3lHuqSHADGYTQsCI/f6Jc0EWalPBjsyv06ZY6B/jpWqyjD4a0r0JBHs6kU+wz2MKNuSPibVjOgHUqoQ/K6ysT9AwCrBJ7UJCpDh69DKwCoSU617vo2DKLk5NtptdNAGV41Xna/JenR2KpXHE52sbKB8SHTXuq9IeeH6PGwCs=
+Received: from BL1PR13CA0076.namprd13.prod.outlook.com (2603:10b6:208:2b8::21)
+ by SA6PR12MB999201.namprd12.prod.outlook.com (2603:10b6:806:450::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.26; Wed, 29 Apr
+ 2026 01:51:51 +0000
+Received: from BN2PEPF000044A5.namprd04.prod.outlook.com
+ (2603:10b6:208:2b8:cafe::ed) by BL1PR13CA0076.outlook.office365.com
+ (2603:10b6:208:2b8::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.28 via Frontend Transport; Wed,
+ 29 Apr 2026 01:51:51 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ BN2PEPF000044A5.mail.protection.outlook.com (10.167.243.104) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9846.18 via Frontend Transport; Wed, 29 Apr 2026 01:51:51 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 28 Apr
+ 2026 20:51:50 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 28 Apr
+ 2026 20:51:50 -0500
+Received: from james-Birman-PHX.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via
+ Frontend Transport; Tue, 28 Apr 2026 20:51:47 -0500
+From: James Lin <PingLei.Lin@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
+ Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
+ Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
+ <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
+ <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
+ <Chen-Yu.Chen@amd.com>
+Subject: [PATCH 00/17] DC Patches May 4 2026
+Date: Wed, 29 Apr 2026 09:19:09 +0800
+Message-ID: <20260429012055.2065869-1-PingLei.Lin@amd.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 29 Apr 2026 10:25:59 +0000
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF000044A5:EE_|SA6PR12MB999201:EE_
+X-MS-Office365-Filtering-Correlation-Id: 49bf0ad0-b0fe-44fa-d5fd-08dea591e1e9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|1800799024|36860700016|376014|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: vhgWVSxK98srQx54sDL7n4UrOrUAzI7DV6ZGgLaFTnt1MJIR6+BVJT0jJeJTjoidQpXvB0VkSzKuwj7gRZNPx4WRiOQjgdDuAbdbJOqsOWkBx/sSezhEq7/eAwNTjHN8tI6A2eORCT6jwC153IZhLmR3SlGnn9qwlAfqUskYDCV6lAGgMtGusRUskBf/sQfDdwGqqL+/ZO0RHqNm1h903cygxu3l2YBZvuYSi/Fq5puhml19dkdMQHpKwRKzhQcWhW2y8W4N1/R7IOX92/YlmLOiGLfWgAv4JblsAhTYzSrB42mW6seK8eB0XWylizHfA9YBJRmZ2VDCs4wYCygpHkcexBhRShQW5g4NFk40j6OdOgaxVPOLO9GxqzmPL/NGK+7NJwyQtENfGLNZprkVmO372HyxborRDS5245G5cppzGLrG0QM+tHzk0CqvBFN86CyoAwEjOQa01ukYfEATX1yYDlGX+tcoonxjxmVO/VL7gcHTNkcqlMfnZnZcWUrndVGQ5ZicC3S3GlXqD3rYeV17h8kKKBhTGV/ZQjLWKpX4pR8fM6CT5Inxf6eQ5/mSF4YAaOEk8BeLrO7bDUSlzivLQV4b3idm+yVNpXvMWO96Buv5b6KEsA9M3swPipe7i70fsCwG/pKH5VydI70aacIpTlMcj4d54hIOObBjpemCb2eogO5vozqJy43OEl6tioaDzhbVTgjV30SK2M0lB8z8f/qhNPgaWYj+ZmlBSlQXgpobqlzpt74A0ziZASQNIglAut+kaow/TE/xkpaAew==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(36860700016)(376014)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: oCM+c/sdyZ6vHTspajI3/7Gf4NEp7M42jc0PAQYmv0Dq3OirfhKafdxDHvNA/dpzR2AeeSrWqUf4ptH2jOs03+xXuIjmHPHBAg6gAWQZa4fQaXlg5Fp2Q8Jn7g/iLO1BjfbfTIw8YUVorIiyGLJvr+BVqIuoo+RoKXrqlb35AE65FONO48I8ksUgn6Lx+xffjFiwhOorr+Bzxi8CppjEZdDNf/qVpgOjpxhxlf9TiQuQo9iVdB1YPcZrRjqXybC/5BKDzmngi2s1HzAc1A9rX1qwKDYeST1fz0t2JZuRMmPjeA3b8RNWf/7vfmBxZwkPavD+MVumHTR82AcP5BecMZIIPluYV7LV7u4nSyf4hXmILYbP0wht/clhv9DYHqFVwrEGVk+DxR+m/mK/pOYRaIsd1gDM5/oA13mYh2RCLyoLs3bMn9J9WlsEaXFs1Zc1
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2026 01:51:51.1801 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49bf0ad0-b0fe-44fa-d5fd-08dea591e1e9
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000044A5.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA6PR12MB999201
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,275 +122,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: F361C492D28
+X-Rspamd-Queue-Id: D4D6348E1A8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:leonardocesar@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[leonardocesar@usp.br,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[leonardocesar@usp.br,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[usp.br:+];
-	NEURAL_HAM(-0.00)[-0.977];
-	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[PingLei.Lin@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,usp.br:email,usp.br:dkim,usp.br:mid]
+	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
 
-The ring preemption function is identical for both gfx_v11_0 and
-gfx_v12_0. This patch refactors the code by moving the core logic
-into a generic function inside amdgpu_gfx.c to reduce code
-duplication and simplify future maintenance.
+Start from:
+3bba7c80f8576f0cf68753abe25c1ca2a0f17018
+SWDEV-553782 - test/diags: tcd-tts mapping - keyword search (#28664)
 
-Signed-off-by: Leonardo Cesar <leonardocesar@usp.br>
+Stopped at:
+6ee9f5160ad6e0bf672329f7680398e718fc56f5
+SWDEV-114487 - modules: [BACKPORT] drm/amd/display: Fix divide by zero in calc_psr_num_static_frames
 
----
-v3 -> v4:
-- Dropped 'r' variable by reordering the return logic
+This version brings along following update:
+-add max bandwidth budget to QoS interface -Update tmz field for LSDMA -fix buffer overruns warnings -add memory bandwidth override debug interface -Find link encoder for flexible DIG mapping cases -Fix type mismatches using guards and explicit casts -Fix type mismatches in DC and DMUB modules -Skip HDR metadata update when Smart Power OLED enabled -Rename backlight_properties to pwr_backlight_properties -remove watermark range notify -Clean Up Legacy DML Content -Implement block sequencing infrastructure for modular hardware operations. -Do DML float narrowing explicit -Fix type mismatches in DML and normalize loop bounds -Remove unused state param from enable_link_analog -Fix Color Manager (3DLUT, Shaper, Blend)
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | ...
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 52 +++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 +
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 52 +------------------------
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  | 52 +------------------------
- 4 files changed, 56 insertions(+), 102 deletions(-)
+Alex Hung (1):
+  drm/amd/display: Remove unused state param from enable_link_analog
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index 2956e45c9..f7ebead09 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -2684,3 +2684,55 @@ void amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev)
- #endif
- }
- 
-+int amdgpu_gfx_ring_preempt_ib(struct amdgpu_ring *ring)
-+{
-+	struct amdgpu_device *adev = ring->adev;
-+	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
-+	struct amdgpu_ring *kiq_ring = &kiq->ring;
-+	unsigned long flags;
-+	int i;
-+
-+	if (adev->enable_mes)
-+		return -EINVAL;
-+
-+	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
-+		return -EINVAL;
-+
-+	spin_lock_irqsave(&kiq->ring_lock, flags);
-+
-+	if (amdgpu_ring_alloc(kiq_ring, kiq->pmf->unmap_queues_size)) {
-+		spin_unlock_irqrestore(&kiq->ring_lock, flags);
-+		return -ENOMEM;
-+	}
-+
-+	/* assert preemption condition */
-+	amdgpu_ring_set_preempt_cond_exec(ring, false);
-+
-+	/* assert IB preemption, emit the trailing fence */
-+	kiq->pmf->kiq_unmap_queues(kiq_ring, ring, PREEMPT_QUEUES_NO_UNMAP,
-+					ring->trail_fence_gpu_addr,
-+					++ring->trail_seq);
-+	amdgpu_ring_commit(kiq_ring);
-+
-+	spin_unlock_irqrestore(&kiq->ring_lock, flags);
-+
-+	/* poll the trailing fence */
-+	for (i = 0; i < adev->usec_timeout; i++) {
-+		if (ring->trail_seq ==
-+			le32_to_cpu(*(ring->trail_fence_cpu_addr)))
-+			break;
-+		udelay(1);
-+	}
-+
-+	/* deassert preemption condition */
-+    amdgpu_ring_set_preempt_cond_exec(ring, true);
-+
-+	if (i >= adev->usec_timeout) {
-+		DRM_ERROR("ring %d failed to preempt ib\n", ring->idx);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-index a0cf0a3b4..77050f988 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-@@ -664,6 +664,8 @@ void amdgpu_gfx_csb_preamble_end(u32 *buffer, u32 count);
- void amdgpu_debugfs_gfx_sched_mask_init(struct amdgpu_device *adev);
- void amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev);
- 
-+int amdgpu_gfx_ring_preempt_ib(struct amdgpu_ring *ring);
-+
- static inline const char *amdgpu_gfx_compute_mode_desc(int mode)
- {
- 	switch (mode) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index 5097de940..1ba848bfa 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -6206,56 +6206,6 @@ static void gfx_v11_0_ring_emit_gfx_shadow(struct amdgpu_ring *ring,
- 	ring->set_q_mode_offs = offs;
- }
- 
--static int gfx_v11_0_ring_preempt_ib(struct amdgpu_ring *ring)
--{
--	int i, r = 0;
--	struct amdgpu_device *adev = ring->adev;
--	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
--	struct amdgpu_ring *kiq_ring = &kiq->ring;
--	unsigned long flags;
--
--	if (adev->enable_mes)
--		return -EINVAL;
--
--	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
--		return -EINVAL;
--
--	spin_lock_irqsave(&kiq->ring_lock, flags);
--
--	if (amdgpu_ring_alloc(kiq_ring, kiq->pmf->unmap_queues_size)) {
--		spin_unlock_irqrestore(&kiq->ring_lock, flags);
--		return -ENOMEM;
--	}
--
--	/* assert preemption condition */
--	amdgpu_ring_set_preempt_cond_exec(ring, false);
--
--	/* assert IB preemption, emit the trailing fence */
--	kiq->pmf->kiq_unmap_queues(kiq_ring, ring, PREEMPT_QUEUES_NO_UNMAP,
--				   ring->trail_fence_gpu_addr,
--				   ++ring->trail_seq);
--	amdgpu_ring_commit(kiq_ring);
--
--	spin_unlock_irqrestore(&kiq->ring_lock, flags);
--
--	/* poll the trailing fence */
--	for (i = 0; i < adev->usec_timeout; i++) {
--		if (ring->trail_seq ==
--		    le32_to_cpu(*(ring->trail_fence_cpu_addr)))
--			break;
--		udelay(1);
--	}
--
--	if (i >= adev->usec_timeout) {
--		r = -EINVAL;
--		DRM_ERROR("ring %d failed to preempt ib\n", ring->idx);
--	}
--
--	/* deassert preemption condition */
--	amdgpu_ring_set_preempt_cond_exec(ring, true);
--	return r;
--}
--
- static void gfx_v11_0_ring_emit_de_meta(struct amdgpu_ring *ring, bool resume)
- {
- 	struct amdgpu_device *adev = ring->adev;
-@@ -7295,7 +7245,7 @@ static const struct amdgpu_ring_funcs gfx_v11_0_ring_funcs_gfx = {
- 	.emit_cntxcntl = gfx_v11_0_ring_emit_cntxcntl,
- 	.emit_gfx_shadow = gfx_v11_0_ring_emit_gfx_shadow,
- 	.init_cond_exec = gfx_v11_0_ring_emit_init_cond_exec,
--	.preempt_ib = gfx_v11_0_ring_preempt_ib,
-+	.preempt_ib = amdgpu_gfx_ring_preempt_ib,
- 	.emit_frame_cntl = gfx_v11_0_ring_emit_frame_cntl,
- 	.emit_wreg = gfx_v11_0_ring_emit_wreg,
- 	.emit_reg_wait = gfx_v11_0_ring_emit_reg_wait,
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-index 65c33823a..6cf244349 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -4611,56 +4611,6 @@ static unsigned gfx_v12_0_ring_emit_init_cond_exec(struct amdgpu_ring *ring,
- 	return ret;
- }
- 
--static int gfx_v12_0_ring_preempt_ib(struct amdgpu_ring *ring)
--{
--	int i, r = 0;
--	struct amdgpu_device *adev = ring->adev;
--	struct amdgpu_kiq *kiq = &adev->gfx.kiq[0];
--	struct amdgpu_ring *kiq_ring = &kiq->ring;
--	unsigned long flags;
--
--	if (adev->enable_mes)
--		return -EINVAL;
--
--	if (!kiq->pmf || !kiq->pmf->kiq_unmap_queues)
--		return -EINVAL;
--
--	spin_lock_irqsave(&kiq->ring_lock, flags);
--
--	if (amdgpu_ring_alloc(kiq_ring, kiq->pmf->unmap_queues_size)) {
--		spin_unlock_irqrestore(&kiq->ring_lock, flags);
--		return -ENOMEM;
--	}
--
--	/* assert preemption condition */
--	amdgpu_ring_set_preempt_cond_exec(ring, false);
--
--	/* assert IB preemption, emit the trailing fence */
--	kiq->pmf->kiq_unmap_queues(kiq_ring, ring, PREEMPT_QUEUES_NO_UNMAP,
--				   ring->trail_fence_gpu_addr,
--				   ++ring->trail_seq);
--	amdgpu_ring_commit(kiq_ring);
--
--	spin_unlock_irqrestore(&kiq->ring_lock, flags);
--
--	/* poll the trailing fence */
--	for (i = 0; i < adev->usec_timeout; i++) {
--		if (ring->trail_seq ==
--		    le32_to_cpu(*(ring->trail_fence_cpu_addr)))
--			break;
--		udelay(1);
--	}
--
--	if (i >= adev->usec_timeout) {
--		r = -EINVAL;
--		DRM_ERROR("ring %d failed to preempt ib\n", ring->idx);
--	}
--
--	/* deassert preemption condition */
--	amdgpu_ring_set_preempt_cond_exec(ring, true);
--	return r;
--}
--
- static void gfx_v12_0_ring_emit_rreg(struct amdgpu_ring *ring, uint32_t reg,
- 				     uint32_t reg_val_offs)
- {
-@@ -5539,7 +5489,7 @@ static const struct amdgpu_ring_funcs gfx_v12_0_ring_funcs_gfx = {
- 	.pad_ib = amdgpu_ring_generic_pad_ib,
- 	.emit_cntxcntl = gfx_v12_0_ring_emit_cntxcntl,
- 	.init_cond_exec = gfx_v12_0_ring_emit_init_cond_exec,
--	.preempt_ib = gfx_v12_0_ring_preempt_ib,
-+	.preempt_ib = amdgpu_gfx_ring_preempt_ib,
- 	.emit_wreg = gfx_v12_0_ring_emit_wreg,
- 	.emit_reg_wait = gfx_v12_0_ring_emit_reg_wait,
- 	.emit_reg_write_reg_wait = gfx_v12_0_ring_emit_reg_write_reg_wait,
+Alvin Lee (1):
+  drm/amd/display: Update tmz field for LSDMA
+
+Bhuvanachandra Pinninti (1):
+  drm/amd/display: Implement block sequencing infrastructure for modular
+    hardware operations.
+
+Charlene Liu (1):
+  drm/amd/display: remove watermark range notify
+
+Dillon Varone (1):
+  drm/amd/display: Fix Color Manager (3DLUT, Shaper, Blend)
+
+Gaghik Khachatrian (5):
+  drm/amd/display: Fix type mismatches in DML and normalize loop bounds
+  drm/amd/display: Do DML float narrowing explicit
+  drm/amd/display: Fix type mismatches in DC and DMUB modules
+  drm/amd/display: Fix type mismatches using guards and explicit casts
+  drm/amd/display: fix buffer overruns warnings
+
+Ian Chen (1):
+  drm/amd/display: Skip HDR metadata update when Smart Power OLED
+    enabled
+
+Ovidiu Bunea (1):
+  drm/amd/display: Find link encoder for flexible DIG mapping cases
+
+Ray Wu (1):
+  drm/amd/display: Rename backlight_properties to
+    pwr_backlight_properties
+
+Taimur Hassan (1):
+  drm/amd/display: Promote DC to 3.2.381
+
+Wenjing Liu (2):
+  drm/amd/display: add memory bandwidth override debug interface
+  drm/amd/display: add max bandwidth budget to QoS interface
+
+Zheng, Austin (1):
+  drm/amd/display: Clean Up Legacy DML Content
+
+ .../drm/amd/display/dc/basics/conversion.c    |   2 +-
+ .../gpu/drm/amd/display/dc/basics/dce_calcs.c |   4 +-
+ .../dc/clk_mgr/dce110/dce110_clk_mgr.c        |   6 +-
+ .../display/dc/clk_mgr/dcn10/rv1_clk_mgr.c    |   2 +-
+ .../display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c  |  11 +-
+ .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c |  30 +-
+ .../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c  |  17 +-
+ .../display/dc/clk_mgr/dcn301/vg_clk_mgr.c    |  30 +-
+ .../display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c  |  41 +-
+ .../dc/clk_mgr/dcn314/dcn314_clk_mgr.c        |  55 +-
+ .../dc/clk_mgr/dcn315/dcn315_clk_mgr.c        |  53 +-
+ .../dc/clk_mgr/dcn316/dcn316_clk_mgr.c        |  43 +-
+ .../display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c  |  21 +-
+ .../display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c  | 111 +--
+ .../dc/clk_mgr/dcn401/dcn401_clk_mgr.c        |  19 +-
+ .../display/dc/clk_mgr/dcn42/dcn42_clk_mgr.c  |  26 +-
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 643 +++++++++++++++---
+ .../drm/amd/display/dc/core/dc_hw_sequencer.c | 597 ++++++++++++++--
+ .../drm/amd/display/dc/core/dc_link_enc_cfg.c |  11 +-
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |  67 +-
+ .../gpu/drm/amd/display/dc/core/dc_state.c    |   4 +-
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   |  14 +-
+ .../gpu/drm/amd/display/dc/core/dc_surface.c  |   6 +-
+ drivers/gpu/drm/amd/display/dc/dc.h           |  74 +-
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  |  11 +-
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h  |   9 +-
+ drivers/gpu/drm/amd/display/dc/dc_helper.c    |   4 +-
+ drivers/gpu/drm/amd/display/dc/dc_stream.h    |   1 +
+ drivers/gpu/drm/amd/display/dc/dc_types.h     |  24 -
+ drivers/gpu/drm/amd/display/dc/dce/dce_ipp.c  |   2 +-
+ .../drm/amd/display/dc/dce/dce_link_encoder.c |   3 +-
+ .../drm/amd/display/dc/dce/dce_transform.c    |   4 +-
+ .../gpu/drm/amd/display/dc/dce/dmub_abm_lcd.c |   2 +-
+ .../amd/display/dc/dcn10/dcn10_cm_common.c    |  12 +-
+ .../dc/dcn10/dcn10_hw_sequencer_debug.c       |  22 +-
+ .../drm/amd/display/dc/dcn20/dcn20_dwb_scl.c  |   2 +-
+ .../amd/display/dc/dcn30/dcn30_cm_common.c    |   8 +-
+ .../display/dc/dio/dcn10/dcn10_link_encoder.c |  11 +-
+ .../dc/dio/dcn30/dcn30_dio_stream_encoder.c   |   6 +-
+ .../drm/amd/display/dc/dml/calcs/dcn_calcs.c  |   9 +-
+ .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.c  |  34 +-
+ .../dc/dml/dcn20/display_mode_vba_20.c        |  36 +-
+ .../dc/dml/dcn20/display_mode_vba_20v2.c      |  36 +-
+ .../dc/dml/dcn21/display_mode_vba_21.c        |  36 +-
+ .../drm/amd/display/dc/dml/dcn30/dcn30_fpu.c  |  14 +-
+ .../dc/dml/dcn30/display_mode_vba_30.c        |  83 +--
+ .../amd/display/dc/dml/dcn301/dcn301_fpu.c    |   5 +-
+ .../amd/display/dc/dml/dcn302/dcn302_fpu.c    |   2 +-
+ .../amd/display/dc/dml/dcn303/dcn303_fpu.c    |   2 +-
+ .../drm/amd/display/dc/dml/dcn31/dcn31_fpu.c  |  15 +-
+ .../dc/dml/dcn31/display_mode_vba_31.c        | 121 ++--
+ .../amd/display/dc/dml/dcn314/dcn314_fpu.c    |   5 +-
+ .../dc/dml/dcn314/display_mode_vba_314.c      | 129 ++--
+ .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.c  |  75 +-
+ .../dc/dml/dcn32/display_mode_vba_32.c        |  21 +-
+ .../dc/dml/dcn32/display_mode_vba_util_32.c   |   2 +-
+ .../amd/display/dc/dml/dcn321/dcn321_fpu.c    |  46 +-
+ .../drm/amd/display/dc/dml/dcn35/dcn35_fpu.c  |   5 +-
+ .../amd/display/dc/dml/dcn351/dcn351_fpu.c    |   5 +-
+ .../drm/amd/display/dc/dml/display_mode_vba.c |   4 +-
+ .../drm/amd/display/dc/dml/dml_inline_defs.h  |  18 +-
+ .../dml21/src/dml2_mcg/dml2_mcg_dcn42.c       |   2 +-
+ .../dml21/src/dml2_top/dml2_top_legacy.h      |   9 -
+ .../amd/display/dc/dpp/dcn10/dcn10_dpp_cm.c   |   2 +-
+ .../amd/display/dc/dpp/dcn10/dcn10_dpp_dscl.c |   2 +-
+ .../drm/amd/display/dc/dpp/dcn30/dcn30_dpp.c  |  13 +-
+ .../amd/display/dc/dpp/dcn401/dcn401_dpp_cm.c |   2 +-
+ .../display/dc/dpp/dcn401/dcn401_dpp_dscl.c   |   2 +-
+ drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c   |  13 +-
+ .../drm/amd/display/dc/dsc/dcn20/dcn20_dsc.c  |   3 +-
+ .../amd/display/dc/dsc/dcn401/dcn401_dsc.c    |   3 +-
+ .../hpo/dcn31/dcn31_hpo_dp_stream_encoder.c   |   2 +-
+ .../display/dc/hubbub/dcn401/dcn401_hubbub.c  |   7 +-
+ .../display/dc/hubbub/dcn42/dcn42_hubbub.c    |   5 +-
+ .../amd/display/dc/hubp/dcn20/dcn20_hubp.c    |   2 +-
+ .../amd/display/dc/hubp/dcn401/dcn401_hubp.c  | 201 ++----
+ .../amd/display/dc/hubp/dcn401/dcn401_hubp.h  |  23 +-
+ .../amd/display/dc/hubp/dcn42/dcn42_hubp.c    |  78 +--
+ .../amd/display/dc/hubp/dcn42/dcn42_hubp.h    |  10 +-
+ .../amd/display/dc/hwss/dce110/dce110_hwseq.c |  38 +-
+ .../amd/display/dc/hwss/dcn10/dcn10_hwseq.c   |  55 +-
+ .../amd/display/dc/hwss/dcn20/dcn20_hwseq.c   |  34 +-
+ .../amd/display/dc/hwss/dcn21/dcn21_hwseq.c   |   2 +-
+ .../amd/display/dc/hwss/dcn30/dcn30_hwseq.c   |  15 +-
+ .../amd/display/dc/hwss/dcn31/dcn31_hwseq.c   |  12 +-
+ .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   |  32 +-
+ .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   |  68 +-
+ .../amd/display/dc/hwss/dcn351/dcn351_hwseq.c |   2 +-
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c | 432 ++++++++----
+ .../amd/display/dc/hwss/dcn42/dcn42_hwseq.c   | 520 ++++++++++++--
+ .../amd/display/dc/hwss/dcn42/dcn42_hwseq.h   |   9 +-
+ .../drm/amd/display/dc/hwss/hw_sequencer.h    | 353 ++++++++--
+ .../gpu/drm/amd/display/dc/inc/core_types.h   |  10 +-
+ .../gpu/drm/amd/display/dc/inc/hw/clk_mgr.h   |  22 +
+ drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h  |  35 +-
+ drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h   |  79 +--
+ .../amd/display/dc/inc/hw/stream_encoder.h    |   1 +
+ .../display/dc/inc/soc_and_ip_translator.h    |  19 +-
+ .../drm/amd/display/dc/link/link_detection.c  |   6 +-
+ .../gpu/drm/amd/display/dc/link/link_dpms.c   |  10 +-
+ .../drm/amd/display/dc/link/link_factory.c    |   2 +-
+ .../drm/amd/display/dc/link/link_validation.c |   4 +-
+ .../dc/link/protocols/link_dp_capability.c    |   4 +-
+ .../dc/link/protocols/link_dp_dpia_bw.c       |   2 +-
+ .../dc/link/protocols/link_dp_irq_handler.c   |   2 +-
+ .../dc/link/protocols/link_dp_training.c      |   4 +-
+ .../drm/amd/display/dc/mpc/dcn10/dcn10_mpc.c  |   2 +-
+ .../amd/display/dc/mpc/dcn401/dcn401_mpc.c    | 177 +++--
+ .../amd/display/dc/mpc/dcn401/dcn401_mpc.h    |  25 +-
+ .../drm/amd/display/dc/mpc/dcn42/dcn42_mpc.c  | 388 ++++++++++-
+ .../drm/amd/display/dc/mpc/dcn42/dcn42_mpc.h  |  49 +-
+ .../amd/display/dc/optc/dcn10/dcn10_optc.c    |   2 +-
+ .../amd/display/dc/pg/dcn35/dcn35_pg_cntl.c   |   6 +-
+ .../amd/display/dc/pg/dcn42/dcn42_pg_cntl.c   |   4 +-
+ .../dc/resource/dcn42/dcn42_resource.c        |   1 -
+ .../dcn42/dcn42_soc_and_ip_translator.c       |   6 +-
+ .../drm/amd/display/dmub/src/dmub_dcn401.c    |   2 +-
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn42.c |   2 +-
+ .../amd/display/modules/color/color_gamma.c   |  12 +-
+ .../gpu/drm/amd/display/modules/power/power.c |  28 +-
+ .../gpu/drm/amd/display/modules/vmid/vmid.c   |   6 +-
+ 121 files changed, 3870 insertions(+), 1702 deletions(-)
+ delete mode 100644 drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_top/dml2_top_legacy.h
+
 -- 
 2.43.0
 
