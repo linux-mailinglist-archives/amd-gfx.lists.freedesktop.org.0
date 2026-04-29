@@ -2,60 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YFKPHR1s8mkMrAEAu9opvQ
+	id aO1jCukG82lBwwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 22:37:49 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 09:38:17 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1951549A321
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 22:37:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE1149EB56
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 09:38:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9BFD10E0E7;
-	Wed, 29 Apr 2026 20:37:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 146DB10F263;
+	Thu, 30 Apr 2026 07:38:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="QF2t5hwN";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PiBZtVYu";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1881D10E0E7
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2026 20:37:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=h9Ew1y7b+0WtYeT6egQWgy2HkJwye9X4QtF/an2ihs4=; b=QF2t5hwNCi1jIoLGwIKv7ChEHT
- VsimvnkIqrkTSgv8fqCTxIuasIPkykXqmIU3wKl1btwRpWIz5uLCP//vedIqQEAToQoemsVl+J8sP
- Y4EKbkgDQ+k2NlSaF8nQgPh6+Pa+PB5jnAhv4hPju/oMGr28hmYRKsBAvBf00G/H4b1VLEcTAf1qy
- yaUNOgdidprELf/ESmK7WcuaEgGJsLSfS9YHyJUKrLU5lgVqs21VT0DFZqiDr9N7FdI2CPR87+sHu
- oRWmNEc7iCCX7vrLjXrMG/LVEjrGY8BQUVw8wnjpxDNcOuDyM0MUdpdBUIvJI3MeGT878+WZ1hqYN
- VbLks4cw==;
-Received: from [186.208.73.228] (helo=[192.168.18.14])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1wIBfD-0047NO-H7; Wed, 29 Apr 2026 22:37:42 +0200
-Message-ID: <d271711c-0d8e-416d-9fa1-75e161ba82aa@igalia.com>
-Date: Wed, 29 Apr 2026 17:37:38 -0300
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
+ [209.85.128.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BE3510E41B
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2026 21:04:12 +0000 (UTC)
+Received: by mail-wm1-f52.google.com with SMTP id
+ 5b1f17b1804b1-4852a9c6309so1561105e9.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2026 14:04:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1777496651; x=1778101451; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=87wY3atp/xRru7rN04VKTsllcBHojWcPtTLSUldgpCk=;
+ b=PiBZtVYuH/rnZ3sS+HxPVlpQ8UlAE1jqfCGt1JC8x5nQO/r7E5TrMmXQC3coDGYAyl
+ ZGUg5Fx533xpMDZEqfcTZwMjLGJmsqJmlpveMfNvlcXdQfhLnzYeqygX0JCcif5G+g8P
+ zIMWnBi4wKvsXlL2KLzxnvdnqN4bZ43F2afJ7oywTtBHKZRTEaN7P+L1CqZtGlYXm3DO
+ xF70m0laJLTQlLau5sHRWmznrU5sbaHCxiwPnSbalx4lsXCVkCxP1p0llqYVqkNju3LQ
+ nFBprIsVNy6AQ+yhs/LF0w2DZvfKmI4hecDK666KiC/MR024GEHXlfzmNWFx/zYmOBwn
+ KZhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777496651; x=1778101451;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=87wY3atp/xRru7rN04VKTsllcBHojWcPtTLSUldgpCk=;
+ b=YrxM8eLaSFEYxim6Y0OcAd+E0GoBSY7LUnPTdVV2S59R5b78nYb94H1m8oe4k75sYt
+ D4kiPH44qFuChtTfqQ2NJOkAAyJyloXMMx1eic2so1L/XjohR5HQiRg1r+k3eyOrmiMh
+ zXIbUPTBPNIApFMnH43cOtdR5E/7MhmFd58WKr9znQ35vmYwnokEw7uoUu62ZGkETlop
+ 9/JDgw38ZneCHwEZPD3tQOrEBJdJG7DW3myKzUbdCg/Un2L8g41WVQe0ipRkJv6nOzej
+ RxUDnlWeJCUmLBEf/djsySUpyIf0gcoadfzbpmID+qpEpQ51pbs/OU9pJFfzAVbzo+cC
+ wlJQ==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/xp2K88nb/J1tupFJAbRnuD06c8Nr/CFVxnwRMRghsxd4nJ0u5iMw/RHB0OghpS5FRYzUMOVgW@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyqgcivM+/7jMiOLBtJhcdtMR90gYFpaPuIsNvazIVzf9st4t3E
+ 20dH+37Dm677z/7VeS8PVd8y/pFshBLAMDjCUB7pC9kc72sMeVOmZRy3
+X-Gm-Gg: AeBDievGSpuXBrbfnS63E2YZkxiEw4cPwC9foyBWotazXQb8vgoJ/7I3PAd/3+hcuTp
+ SiJRAQnilNAkG5I3XvaKr7KxUWuRdyYkBj4qYoqMO8iwYzA6xscUHu+AP0qub4Ljo4gufuE1fnj
+ t8OK6gFuuIaB7+8FNaXKnYuvIeqEkvXZ8dxGHl4KG32u5e0XsKZ9tQ70YtENQc69wXde4yQdtY3
+ fKYzxMA60LO+hTrQ7j34fHhz/KY1a/VKa76HHnHttuLXF2M/oxvxHCllkAU/NztytWae6UghtKm
+ LXBYkwKMO2FKjFFf2hVMMzhEigJL+OJ2gsSo+QPoFxj4JGOuLPlYrTFhQxWsKd0Bi0Z6KXHYXtR
+ 0qp7OTsdu5FUTkKJHMlGlNjHG8GRMo8smBIolxkzYeVqEORHPdvoSEscpQZWo7b5wyTeWmpBuNE
+ 3iISvOT5cTAlT92A+wHHWW26gcIzqmwwLXC/eJGxKaTl+U0uIqJDn6WT7nidmE/FwGxJb7j537j
+ jcVSYvT0jQTN4odj13bVVrRzQxK4Q8PNDu8xdCKnPGQSA==
+X-Received: by 2002:a05:600c:5254:b0:486:fbdb:b718 with SMTP id
+ 5b1f17b1804b1-48a8445f451mr3880135e9.25.1777496650606; 
+ Wed, 29 Apr 2026 14:04:10 -0700 (PDT)
+Received: from fedora.homenet.telecomitalia.it
+ (host-79-27-7-133.retail.telecomitalia.it. [79.27.7.133])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-48a7b91b2bdsm29382575e9.7.2026.04.29.14.04.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 29 Apr 2026 14:04:10 -0700 (PDT)
+From: Adriano Vero <adri.vero.dev@gmail.com>
+To: austin.zheng@amd.com, jun.lei@amd.com, harry.wentland@amd.com,
+ sunpeng.li@amd.com
+Cc: siqueira@igalia.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ airlied@gmail.com, simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Adriano Vero <adri.vero.dev@gmail.com>
+Subject: [PATCH] drm/amd/display: clean up reversed type specifiers in
+ dml2_core
+Date: Wed, 29 Apr 2026 23:02:09 +0200
+Message-ID: <20260429210209.42737-1-adri.vero.dev@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/14] drm/amd/display: Delete dm_pp_clocks_state
-To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
- Alex Hung <alex.hung@amd.com>, Harry Wentland <Harry.Wentland@amd.com>,
- Roman Li <Roman.Li@amd.com>, Leo Li <sunpeng.li@amd.com>,
- David Airlie <airlied@gmail.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Ivan Lipski <ivan.lipski@amd.com>
-References: <20260423191519.73127-1-timur.kristof@gmail.com>
- <20260423191519.73127-9-timur.kristof@gmail.com>
-Content-Language: en-US
-From: Melissa Wen <mwen@igalia.com>
-In-Reply-To: <20260423191519.73127-9-timur.kristof@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 30 Apr 2026 07:38:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,101 +96,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 1951549A321
+X-Rspamd-Queue-Id: CAE1149EB56
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.49 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:alex.hung@amd.com,m:Harry.Wentland@amd.com,m:Roman.Li@amd.com,m:sunpeng.li@amd.com,m:airlied@gmail.com,m:mario.limonciello@amd.com,m:ivan.lipski@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com];
-	FORGED_SENDER(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[adriverodev@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:austin.zheng@amd.com,m:jun.lei@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:adri.vero.dev@gmail.com,m:adriverodev@gmail.com,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	NEURAL_SPAM(0.00)[0.639];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[igalia.com,amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[adriverodev@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.535];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
+Replace non-standard reversed type specifiers with canonical C ordering:
+- 'int unsigned' -> 'unsigned int'
+- 'long int unsigned' cast -> 'unsigned long'
 
+Affected sites:
+- dml2_core_utils.c: function return type, parameter type, local
+  variable, and two viewport height casts
+- dml2_core_utils.h: matching declarations for the above functions
+- dml2_core_dcn4.c: two viewport height casts and one local variable
 
-On 23/04/2026 16:15, Timur Kristóf wrote:
-> It isn't used by anything anymore.
->
-> Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
-> ---
->   .../drm/amd/display/dc/dm_services_types.h    | 27 -------------------
->   1 file changed, 27 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/dm_services_types.h b/drivers/gpu/drm/amd/display/dc/dm_services_types.h
-> index 44aa8d213d386..b3505d93503fd 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dm_services_types.h
-> +++ b/drivers/gpu/drm/amd/display/dc/dm_services_types.h
-> @@ -36,30 +36,7 @@ struct dm_pp_clock_range {
->   	int max_khz;
->   };
->   
-> -enum dm_pp_clocks_state {
-> -	DM_PP_CLOCKS_STATE_INVALID,
-> -	DM_PP_CLOCKS_STATE_ULTRA_LOW,
-> -	DM_PP_CLOCKS_STATE_LOW,
-> -	DM_PP_CLOCKS_STATE_NOMINAL,
-> -	DM_PP_CLOCKS_STATE_PERFORMANCE,
-> -
-> -	/* Starting from DCE11, Max 8 levels of DPM state supported. */
-> -	DM_PP_CLOCKS_DPM_STATE_LEVEL_INVALID = DM_PP_CLOCKS_STATE_INVALID,
-> -	DM_PP_CLOCKS_DPM_STATE_LEVEL_0,
-> -	DM_PP_CLOCKS_DPM_STATE_LEVEL_1,
-> -	DM_PP_CLOCKS_DPM_STATE_LEVEL_2,
-> -	/* to be backward compatible */
-> -	DM_PP_CLOCKS_DPM_STATE_LEVEL_3,
-> -	DM_PP_CLOCKS_DPM_STATE_LEVEL_4,
-> -	DM_PP_CLOCKS_DPM_STATE_LEVEL_5,
-> -	DM_PP_CLOCKS_DPM_STATE_LEVEL_6,
-> -	DM_PP_CLOCKS_DPM_STATE_LEVEL_7,
-> -
-> -	DM_PP_CLOCKS_MAX_STATES
-> -};
-> -
->   struct dm_pp_gpu_clock_range {
-> -	enum dm_pp_clocks_state clock_state;
->   	struct dm_pp_clock_range sclk;
->   	struct dm_pp_clock_range mclk;
->   	struct dm_pp_clock_range eclk;
-> @@ -246,10 +223,6 @@ enum dm_acpi_display_type {
->   	AcpiDisplayType_DFP6 = 12
->   };
->   
-> -struct dm_pp_power_level_change_request {
-> -	enum dm_pp_clocks_state power_level;
-> -};
-Ah, okay, here is the dm_pp_power_level_change_request removal.
-I think it should be removed earlier.
+No functional change.
 
-Apart from that,
+Signed-off-by: Adriano Vero <adri.vero.dev@gmail.com>
+---
+ .../dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4.c   |  6 +++---
+ .../dc/dml2_0/dml21/src/dml2_core/dml2_core_utils.c  | 12 +++++++-----
+ .../dc/dml2_0/dml21/src/dml2_core/dml2_core_utils.h  |  6 ++++--
+ 3 files changed, 14 insertions(+), 10 deletions(-)
 
-Reviewed-by: Melissa Wen <mwen@igalia.com>
-> -
->   struct dm_pp_clock_for_voltage_req {
->   	enum dm_pp_clock_type clk_type;
->   	uint32_t clocks_in_khz;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4.c
+index 858e7bbc511f..ad03e66f963d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4.c
+@@ -287,10 +287,10 @@ static void create_phantom_plane_from_main_plane(struct dml2_plane_parameters *p
+ 	phantom->stream_index = phantom_stream_index;
+ 	phantom->overrides.refresh_from_mall = dml2_refresh_from_mall_mode_override_force_disable;
+ 	phantom->overrides.legacy_svp_config = dml2_svp_mode_override_phantom_pipe_no_data_return;
+-	phantom->composition.viewport.plane0.height = (long int unsigned) math_min2(math_ceil2(
++	phantom->composition.viewport.plane0.height = (unsigned long) math_min2(math_ceil2(
+ 		(double)main->composition.scaler_info.plane0.v_ratio * (double)phantom_stream->timing.v_active, 16.0),
+ 		(double)main->composition.viewport.plane0.height);
+-	phantom->composition.viewport.plane1.height = (long int unsigned) math_min2(math_ceil2(
++	phantom->composition.viewport.plane1.height = (unsigned long) math_min2(math_ceil2(
+ 		(double)main->composition.scaler_info.plane1.v_ratio * (double)phantom_stream->timing.v_active, 16.0),
+ 		(double)main->composition.viewport.plane1.height);
+ 	phantom->immediate_flip = false;
+@@ -527,7 +527,7 @@ bool core_dcn4_mode_support(struct dml2_core_mode_support_in_out *in_out)
+ 
+ 	bool result;
+ 	unsigned int i, stream_index, stream_bitmask;
+-	int unsigned odm_count, num_odm_output_segments, dpp_count;
++	unsigned int odm_count, num_odm_output_segments, dpp_count;
+ 
+ 	expand_implict_subvp(in_out->display_cfg, &l->svp_expanded_display_cfg, &core->scratch);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_utils.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_utils.c
+index 4f5533dc0430..77044c77fa44 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_utils.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_utils.c
+@@ -384,7 +384,9 @@ unsigned int dml2_core_utils_round_to_multiple(unsigned int num, unsigned int mu
+ 		return (num - remainder);
+ }
+ 
+-unsigned int dml2_core_util_get_num_active_pipes(int unsigned num_planes, const struct core_display_cfg_support_info *cfg_support_info)
++unsigned int
++dml2_core_util_get_num_active_pipes(unsigned int num_planes,
++				    const struct core_display_cfg_support_info *cfg_support_info)
+ {
+ 	unsigned int num_active_pipes = 0;
+ 
+@@ -480,9 +482,9 @@ bool dml2_core_utils_is_vertical_rotation(enum dml2_rotation_angle Scan)
+ 	return is_vert;
+ }
+ 
+-int unsigned dml2_core_utils_get_gfx_version(enum dml2_swizzle_mode sw_mode)
++unsigned int dml2_core_utils_get_gfx_version(enum dml2_swizzle_mode sw_mode)
+ {
+-	int unsigned version = 0;
++	unsigned int version = 0;
+ 
+ 	if (sw_mode == dml2_sw_linear ||
+ 		sw_mode == dml2_sw_256b_2d ||
+@@ -594,10 +596,10 @@ static void create_phantom_plane_from_main_plane(struct dml2_plane_parameters *p
+ 	phantom->stream_index = phantom_stream_index;
+ 	phantom->overrides.refresh_from_mall = dml2_refresh_from_mall_mode_override_force_disable;
+ 	phantom->overrides.legacy_svp_config = dml2_svp_mode_override_phantom_pipe_no_data_return;
+-	phantom->composition.viewport.plane0.height = (long int unsigned) math_min2(math_ceil2(
++	phantom->composition.viewport.plane0.height = (unsigned long) math_min2(math_ceil2(
+ 		(double)main->composition.scaler_info.plane0.v_ratio * (double)phantom_stream->timing.v_active, 16.0),
+ 		(double)main->composition.viewport.plane0.height);
+-	phantom->composition.viewport.plane1.height = (long int unsigned) math_min2(math_ceil2(
++	phantom->composition.viewport.plane1.height = (unsigned long) math_min2(math_ceil2(
+ 		(double)main->composition.scaler_info.plane1.v_ratio * (double)phantom_stream->timing.v_active, 16.0),
+ 		(double)main->composition.viewport.plane1.height);
+ 	phantom->immediate_flip = false;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_utils.h b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_utils.h
+index 60fa2abfef85..2a2177ad7cd9 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_utils.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_utils.h
+@@ -17,14 +17,16 @@ void dml2_core_utils_print_mode_support_info(const struct dml2_core_internal_mod
+ const char *dml2_core_utils_internal_soc_state_type_str(enum dml2_core_internal_soc_state_type dml2_core_internal_soc_state_type);
+ void dml2_core_utils_get_stream_output_bpp(double *out_bpp, const struct dml2_display_cfg *display_cfg);
+ unsigned int dml2_core_utils_round_to_multiple(unsigned int num, unsigned int multiple, bool up);
+-unsigned int dml2_core_util_get_num_active_pipes(int unsigned num_planes, const struct core_display_cfg_support_info *cfg_support_info);
++unsigned int
++dml2_core_util_get_num_active_pipes(unsigned int num_planes,
++				    const struct core_display_cfg_support_info *cfg_support_info);
+ void dml2_core_utils_pipe_plane_mapping(const struct core_display_cfg_support_info *cfg_support_info, unsigned int *pipe_plane);
+ bool dml2_core_utils_is_phantom_pipe(const struct dml2_plane_parameters *plane_cfg);
+ unsigned int dml2_core_utils_get_tile_block_size_bytes(enum dml2_swizzle_mode sw_mode, unsigned int byte_per_pixel);
+ bool dml2_core_utils_get_segment_horizontal_contiguous(enum dml2_swizzle_mode sw_mode, unsigned int byte_per_pixel);
+ bool dml2_core_utils_is_vertical_rotation(enum dml2_rotation_angle Scan);
+ bool dml2_core_utils_is_linear(enum dml2_swizzle_mode sw_mode);
+-int unsigned dml2_core_utils_get_gfx_version(enum dml2_swizzle_mode sw_mode);
++unsigned int dml2_core_utils_get_gfx_version(enum dml2_swizzle_mode sw_mode);
+ unsigned int dml2_core_utils_get_qos_param_index(unsigned long uclk_freq_khz, const struct dml2_dcn4_uclk_dpm_dependent_qos_params *per_uclk_dpm_params);
+ unsigned int dml2_core_utils_get_active_min_uclk_dpm_index(unsigned long uclk_freq_khz, const struct dml2_soc_state_table *clk_table);
+ bool dml2_core_utils_is_dual_plane(enum dml2_source_format_class source_format);
+-- 
+2.53.0
 
