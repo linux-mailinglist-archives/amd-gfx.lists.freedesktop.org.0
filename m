@@ -2,63 +2,103 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cJ8qERQC8mmElwEAu9opvQ
+	id QO0TBb378WmElwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 15:05:24 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 14:38:21 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D54F149472D
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 15:05:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A30C149429B
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Apr 2026 14:38:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4AF710EFDE;
-	Wed, 29 Apr 2026 13:05:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 305DE10E3FC;
+	Wed, 29 Apr 2026 12:38:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b0GyIgnc";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Uu4ryHrJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68FFD10E3FC;
- Wed, 29 Apr 2026 12:37:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777466270; x=1809002270;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=uvwwTlw8sSux4mzuMJdXdxSeijg5A5rmaU45lNpT88M=;
- b=b0GyIgnckw7YMihfo9HlFm9YYsVdtrHRKrICzY+kjpWAZqNxTWHYrQ6L
- 6n0FtvIRaoCYNxWibY/j4DR2V3g+bm4uKIA8DIwYdP5+Iw6IN6odX6JyP
- g3XtFzsRH9a+1fKQHmY54U5rrLwBJqLZ2n2uGjSysiXNDhhqm/be92LHy
- Dzlrj1L7aHV5QX4jbI2r72CyC15UQ5GmEG9Fu50r9/g472RSUdPJ6bvg7
- W394fq2DVgjVj1tqB8YJahKAOibCAsiHtXj2lt4HkeMKcWFoYJVqr+XOf
- QRtMN3gigLHLSddpqxR2MZOWjgC2jCqJ3PXf7tKeAHtobft5Ocey3SvHl A==;
-X-CSE-ConnectionGUID: HZO5k5jcSOCelXwlysXzqw==
-X-CSE-MsgGUID: a+J4xmGySXmM3aPjrCcDsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="89769023"
-X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="89769023"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 05:37:49 -0700
-X-CSE-ConnectionGUID: RxaHgfOSSQWJ8mcL5BYD/g==
-X-CSE-MsgGUID: pvMLky3BRWSeuPjvwN+Qrw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="234123509"
-Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
- ([10.190.239.37])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 05:37:46 -0700
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.auld@intel.com, Arunpravin.PaneerSelvam@amd.com,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH] drm/buddy: Integrate lockdep annotations for gpu buddy manager
-Date: Wed, 29 Apr 2026 18:07:15 +0530
-Message-ID: <20260429123714.3913374-2-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.52.0
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012034.outbound.protection.outlook.com [52.101.48.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 129AC10E3FC
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Apr 2026 12:38:14 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xo6UMbWmiNIf2uuF3izEBTEN6neq1KUc5Dllw05O0I39+NFMvN9j9zkBGQcG1X/5k9zpgHdBX7kD98LfoS9y840V2F+ysv9l7TPu7t+ZjDU2lNL+ptYgUWAZbaiFZFylwExHbBfPIDA77Y0Xoe90UFNahxR8zwfzl6cp2S/NcFZ3hTGOLZgfI0aEGJ56zVQgfu0XjOuMhFMMVS+lNjRXyWUAi9WghN/CQlFd3R029qcwt+rR3gduw5xwQD8ElyMrfzwg6hPm+MJJVCG2Drg0vtXC3w86FPJAQofVGgq+bh1tusA7g8ncTCBO0FV6MY4X/ySqpEN+dR0ng38WlnYjGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DDGAHg0pw3OP5W6ahd/wcWQ1SpEvF/f3W8Y3Di9vuSc=;
+ b=HL/pUBikwJSwmrQpz15VUef3FF93Or49KnmMdNR8D8cXKrt9Azc2QY1hPLncjAODIMSC4kXPZwNre+VU1xo4+FFjWZmiDDbOZ7X8sefkHLAwnAjepbrsdXLOMR0ACoy/WBBSFX+2lfHUucb3YKgcRF3JUvQOPp4J0TjAP6fqt4xiQqEnyR1AZo7r7okXpHRMceirHm8GQwYn8wQEB8MsZSdyNuCna5krIAv1qLjWc1cnFim4PvperbB0UPNwwt7daHsr1DfAUfux+ZB2yfOtqwJugXP8Ex/dzg55okqlNc37iXSPrfoeA70cnP7fRn2IgDjKyi0IgFgMUOOQPORq1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DDGAHg0pw3OP5W6ahd/wcWQ1SpEvF/f3W8Y3Di9vuSc=;
+ b=Uu4ryHrJ00mTN78FRUWXimdMDSi4KLVvn9ExEhDIbq5VMTiyz/f1aA5vphp4HdCmRK5fvDdpqxsQnVptc88psTwDOYB+fRQn/og8qsffFT57RyclSYys1cyPmUg+p2yHZmURqfle9oheWpeCeHm4gYkCApaE0oQJnbqg2CvQvA0=
+Received: from SJ0PR05CA0131.namprd05.prod.outlook.com (2603:10b6:a03:33d::16)
+ by DS0PR12MB7926.namprd12.prod.outlook.com (2603:10b6:8:14a::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.20; Wed, 29 Apr
+ 2026 12:38:06 +0000
+Received: from SJ5PEPF000001D2.namprd05.prod.outlook.com
+ (2603:10b6:a03:33d:cafe::a7) by SJ0PR05CA0131.outlook.office365.com
+ (2603:10b6:a03:33d::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9846.26 via Frontend Transport; Wed,
+ 29 Apr 2026 12:38:06 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ5PEPF000001D2.mail.protection.outlook.com (10.167.242.54) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9846.18 via Frontend Transport; Wed, 29 Apr 2026 12:38:05 +0000
+Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 29 Apr
+ 2026 07:38:03 -0500
+From: Lijo Lazar <lijo.lazar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
+ <Asad.Kamal@amd.com>, <candice.li@amd.com>
+Subject: [PATCH] drm/amdgpu: Adjust GMCv10/11/12 gart size
+Date: Wed, 29 Apr 2026 18:07:45 +0530
+Message-ID: <20260429123745.3930780-1-lijo.lazar@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 29 Apr 2026 13:05:13 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001D2:EE_|DS0PR12MB7926:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6a023ee1-0c59-4988-c6af-08dea5ec2963
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|82310400026|36860700016|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: Zx9CWksOQLB+OyBeRHA5gGTefcw2SF2l80pSvqvs/AO7vmN/uTANYpqzoJ+XBO2Lmfzvbbl30Di5iYFV0WGoFAP7CB2RWaV709XRpITR4MEmfCmpEV1mzWYjeHKH6AbsZIhi1vmtNLOqsFdrRjq/htI2CXod057xUNNvyyyxvIyKjkNJzpNpElcZEUufo6wDRQ+yBfagHksdsmkxj50xeHXllOiKk1eYkOvrzB4qICn0JTHsIYXPlrh+FbGUnbDwaJwF4yOXnvf2FUXdQnqYDB7QCVuipITeiLDNo7mGnv4O4vi3Ew7KaRHe6F2xzMmuD6hAkJVqwV27ubQx4eDiDv9FdosZC21QV7aeMith8Dn3FXp9bUlwczaaryerPvpXr057UN6sS35/9Ct1CJI3yPhJJbevYajghGP5vnLhyQiYvvY7XaSorLh8ucwfUdf8VpG+fqTiABUO+YsdR2qEQkMUIPOIRZXJMUbxXWKU8WHKf/zqdt1BKHgfnWLBucUxMc1m9HPXpgYbXMHfLLlQNnP+r6MpFzSBo2/TOM2q7ssEfxkQ2e7mqCadBCNOJx5OiAcOkRZChJR/4Bq78c8WVfq6nia50SUz13fy+SwK/8CzZSYeiPl4fx53pXrgc4gwZ+qW3ERV2an4mGIq5azwd1x6H7lN+mBQ1vdRRL287aVSW6PtT3kDTfC2T3FKbzsM8MiAUcVO4o8/4OvcY0TPZgAWJ73IN0qZayUSP0iYs9OrKg/ASTarmPJ83mN9a9+xrO7ZfLqTHnvEUraITbYJ7Q==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(82310400026)(36860700016)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: m+w+a2J6v7rSKrRpADlpOyeagEuJLknjoJaPLTG6azWEAeuaWEyWqWkVrqtlSow+BDA5MiPNtjcbJHTGyUAVYCYFzam0UeZdvJXkaOJsUmgNcK8Bi/syIc1sndrJXwYWSSoTorKwFC4H/pOmZqm/fexqrAS9treeUp3W3t7esRbglJVIFxU4XuPetS4a3JzV6pevFXjTkjF9t4TKhAgM3CqG6qdjlUY5qvCHuNen0nPFCPwoeF2Ihh5OcC9LipWWTSE7pjrLorLYFQrdPI8319hMfXbMKh9iaBagScVqvBWQnj8mmkSj2cgKwg2r4aUH8iPI5MSkpCl4jAjgr2LFaYZLUsH6IoSrUtrp95nowoINfjrKCmBhTIUtMnpamNgzB4+Au6AzrAeij4AHUZtaEJKDmtkWbSPnpTFECbqy87punORDdqB01acYEBCSUEGI
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2026 12:38:05.7111 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a023ee1-0c59-4988-c6af-08dea5ec2963
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001D2.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7926
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,206 +112,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D54F149472D
+X-Rspamd-Queue-Id: A30C149429B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[tejas.upadhyay@intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	HAS_XOIP(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[intel.com:+]
+	RCPT_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-gpu_buddy APIs are expected to be called with the driver-provided lock
-held, but there is no runtime enforcement of this contract. Add lockdep
-annotations to catch locking violations early.
+Adjust gart size to account for space required for firmware private
+buffer allocation, if any.
 
-Introduce gpu_buddy_driver_set_lock() for the driver to register the
-lock that protects the buddy manager. Add gpu_buddy_driver_lock_held()
-assertions to all exported gpu_buddy and drm_buddy APIs that
-access/modify the manager state. The lock_dep_map field is only compiled
-in when CONFIG_LOCKDEP is enabled, adding zero overhead to production
-builds.
-
-Wire up xe_ttm_vram_mgr to register its mutex with the buddy manager
-after initialization.
-
-Assisted-by: Claude:claude-opus-4.6
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 ---
- drivers/gpu/buddy.c                  | 11 ++++++++
- drivers/gpu/drm/drm_buddy.c          |  1 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  1 +
- include/linux/gpu_buddy.h            | 41 ++++++++++++++++++++++++++++
- 4 files changed, 54 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c | 2 ++
+ drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c | 2 ++
+ drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c | 2 ++
+ 3 files changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-index 52686672e99f..eb1457376307 100644
---- a/drivers/gpu/buddy.c
-+++ b/drivers/gpu/buddy.c
-@@ -437,6 +437,9 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
- 		root_count++;
- 	} while (size);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+index e1ace7d44ffd..1c32e653a9ad 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+@@ -723,6 +723,8 @@ static int gmc_v10_0_mc_init(struct amdgpu_device *adev)
+ 		adev->gmc.gart_size = (u64)amdgpu_gart_size << 20;
+ 	}
  
-+#ifdef CONFIG_LOCKDEP
-+	mm->lock_dep_map = NULL;
-+#endif
++	adev->gmc.gart_size += adev->pm.smu_prv_buffer_size;
++
+ 	gmc_v10_0_vram_gtt_location(adev, &adev->gmc);
+ 
  	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+index 94d6631ce0bc..2f6e338f2a35 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+@@ -714,6 +714,8 @@ static int gmc_v11_0_mc_init(struct amdgpu_device *adev)
+ 	else
+ 		adev->gmc.gart_size = (u64)amdgpu_gart_size << 20;
  
- out_free_roots:
-@@ -538,6 +541,7 @@ void gpu_buddy_reset_clear(struct gpu_buddy *mm, bool is_clear)
- 	unsigned int order;
- 	int i;
- 
-+	gpu_buddy_driver_lock_held(mm);
- 	size = mm->size;
- 	for (i = 0; i < mm->n_roots; ++i) {
- 		order = ilog2(size) - ilog2(mm->chunk_size);
-@@ -580,6 +584,7 @@ EXPORT_SYMBOL(gpu_buddy_reset_clear);
- void gpu_buddy_free_block(struct gpu_buddy *mm,
- 			  struct gpu_buddy_block *block)
- {
-+	gpu_buddy_driver_lock_held(mm);
- 	BUG_ON(!gpu_buddy_block_is_allocated(block));
- 	mm->avail += gpu_buddy_block_size(mm, block);
- 	if (gpu_buddy_block_is_clear(block))
-@@ -633,6 +638,7 @@ void gpu_buddy_free_list(struct gpu_buddy *mm,
- {
- 	bool mark_clear = flags & GPU_BUDDY_CLEARED;
- 
-+	gpu_buddy_driver_lock_held(mm);
- 	__gpu_buddy_free_list(mm, objects, mark_clear, !mark_clear);
- }
- EXPORT_SYMBOL(gpu_buddy_free_list);
-@@ -1172,6 +1178,8 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
- 	u64 new_start;
- 	int err;
- 
-+	gpu_buddy_driver_lock_held(mm);
++	adev->gmc.gart_size += adev->pm.smu_prv_buffer_size;
 +
- 	if (!list_is_singular(blocks))
- 		return -EINVAL;
+ 	gmc_v11_0_vram_gtt_location(adev, &adev->gmc);
  
-@@ -1287,6 +1295,8 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 	unsigned long pages;
- 	int err;
+ 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+index 5bdd4b9b7893..e5096b9cdf50 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+@@ -770,6 +770,8 @@ static int gmc_v12_0_mc_init(struct amdgpu_device *adev)
+ 	} else
+ 		adev->gmc.gart_size = (u64)amdgpu_gart_size << 20;
  
-+	gpu_buddy_driver_lock_held(mm);
++	adev->gmc.gart_size += adev->pm.smu_prv_buffer_size;
 +
- 	if (size < mm->chunk_size)
- 		return -EINVAL;
+ 	gmc_v12_0_vram_gtt_location(adev, &adev->gmc);
  
-@@ -1475,6 +1485,7 @@ void gpu_buddy_print(struct gpu_buddy *mm)
- {
- 	int order;
- 
-+	gpu_buddy_driver_lock_held(mm);
- 	pr_info("chunk_size: %lluKiB, total: %lluMiB, free: %lluMiB, clear_free: %lluMiB\n",
- 		mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
- 
-diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-index 841f3de5f307..faa025498de4 100644
---- a/drivers/gpu/drm/drm_buddy.c
-+++ b/drivers/gpu/drm/drm_buddy.c
-@@ -42,6 +42,7 @@ void drm_buddy_print(struct gpu_buddy *mm, struct drm_printer *p)
- {
- 	int order;
- 
-+	gpu_buddy_driver_lock_held(mm);
- 	drm_printf(p, "chunk_size: %lluKiB, total: %lluMiB, free: %lluMiB, clear_free: %lluMiB\n",
- 		   mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
- 
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 5fd0d5506a7e..7ebc4d278c3b 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -322,6 +322,7 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
- 	if (err)
- 		return err;
- 
-+	gpu_buddy_driver_set_lock(&mgr->mm, &mgr->lock);
- 	ttm_set_driver_manager(&xe->ttm, mem_type, &mgr->manager);
- 	ttm_resource_manager_set_used(&mgr->manager, true);
- 
-diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
-index 5fa917ba5450..71941a039648 100644
---- a/include/linux/gpu_buddy.h
-+++ b/include/linux/gpu_buddy.h
-@@ -154,6 +154,7 @@ struct gpu_buddy_block {
-  * @avail: Total free space currently available for allocation in bytes.
-  * @clear_avail: Free space available in the clear tree (zeroed memory) in bytes.
-  *               This is a subset of @avail.
-+ * @lock_dep_map: Annotates gpu_buddy API with a driver provided lock.
-  */
- struct gpu_buddy {
- /* private: */
-@@ -179,8 +180,48 @@ struct gpu_buddy {
- 	u64 size;
- 	u64 avail;
- 	u64 clear_avail;
-+#ifdef CONFIG_LOCKDEP
-+	struct lockdep_map *lock_dep_map;
-+#endif
- };
- 
-+#ifdef CONFIG_LOCKDEP
-+/**
-+ * gpu_buddy_driver_set_lock() - Set the lock protecting accesses to GPU BUDDY
-+ * @mm: Pointer to GPU buddy structure.
-+ * @lock: the lock used to protect the gpu buddy. The locking primitive
-+ * must contain a dep_map field.
-+ *
-+ * Call this to annotate gpu_buddy APIs which access/modify gpu_buddy manager
-+ */
-+#define gpu_buddy_driver_set_lock(mm, lock) \
-+	do { \
-+		struct gpu_buddy *__mm = (mm); \
-+		if (!WARN(__mm->lock_dep_map, "GPU BUDDY MM lock should be set only once.")) \
-+			__mm->lock_dep_map = &(lock)->dep_map; \
-+	} while (0)
-+#else
-+#define gpu_buddy_driver_set_lock(mm, lock) do { (void)(mm); (void)(lock); } while (0)
-+#endif
-+
-+#ifdef CONFIG_LOCKDEP
-+/**
-+ * gpu_buddy_driver_lock_held() - Assert GPU BUDDY manager lock is held
-+ * @mm: Pointer to the GPU BUDDY structure.
-+ *
-+ * Ensure driver lock is held.
-+ */
-+static inline void gpu_buddy_driver_lock_held(struct gpu_buddy *mm)
-+{
-+	if (mm->lock_dep_map)
-+		lockdep_assert(lock_is_held_type(mm->lock_dep_map, 0));
-+}
-+#else
-+static inline void gpu_buddy_driver_lock_held(struct gpu_buddy *mm)
-+{
-+}
-+#endif
-+
- static inline u64
- gpu_buddy_block_offset(const struct gpu_buddy_block *block)
- {
+ 	return 0;
 -- 
-2.52.0
+2.49.0
 
