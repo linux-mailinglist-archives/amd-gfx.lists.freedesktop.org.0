@@ -2,129 +2,99 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4EagOHkt82mwxgEAu9opvQ
+	id GGWKLyRS9GmKAgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 12:22:49 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 09:11:32 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E50E4A0C0D
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 12:22:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBEB14AACE6
+	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 09:11:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D4D010E122;
-	Thu, 30 Apr 2026 10:22:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E76E10E36E;
+	Fri,  1 May 2026 07:11:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="5Zaz/Kp1";
+	dkim=pass (2048-bit key; unprotected) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="FTl7lK2i";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010036.outbound.protection.outlook.com [52.101.46.36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B19010E122
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 10:22:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ul0jTrPBSclxRNqPwd82JR9gFfube63K9eb1BWcQ3edg1mrsRVHdqQjVATVA8xJsFle5OEK2v/jZCQYecpQ3ZulCGBtWD6iWOJw6UYvkiDSQmjJUvj5OlTKDbqwnpHaW2gzT+UYXGcvhaprqSj9ZUkdY+muUy9Mn2lbfFwFsPT5Ef/vJ0fRP5MBQrbtFUIwmGzyw7/oE/2Maoi9VlpcEtM6N7v+V1pvRJ9mYD/2SrE3qsIQhg5ZklDE9ELqev4sVjPtPoaKwtZiXtzNhHsJE57gQ+uyX4KLWDyeqGd2Qr4SO+RIY/jNRB1CJCBLV5apLJx2JCpTAMtA6p7zByKZYaQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HaZ2EGpbK3MR+JrPnv6YOAOIOmn+xHajD3yvq+M25nA=;
- b=x2gg4xgYyhwqk32jghGBKNKJ11FeQmcuVIVSKttrZkkwFIjzQqGVtq/3hTKb2klNQLZ5oC7aNnHNlYC6n/bDOA5iWccI8K38IkPCup0eulAgq/EYA25lP05+BpjILZ2lEBFVYZB0ZgfN2OMEYvVhPQn7VIdQtWXJ6URyEd2a1Xa10CTirllqsQjWIbJeM2GLIMzhzdPJKbKyyj3e9lZBrlLmJuzPVHfwlQ0uK0MX2QbxrlBMaToJwDxdH4T71kYie9PJTnNgWgIQs3iCtC9LSBAXWSlET+HEHTYRq577ilWPZfSKonfSp2oV56qCTsUaY41yeTh3aSAW7iIqQ7Y1Eg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HaZ2EGpbK3MR+JrPnv6YOAOIOmn+xHajD3yvq+M25nA=;
- b=5Zaz/Kp1/CupgUB6VW8d4k3TXwNoeNJgufYZOj50r2g5t9eq3ka3MUhXm2uoIK+JJvfODB+skE+8208U6Lzgo3k+AsWauIzDq6uUmSl1Y443vTw7k1EaT1G2b7l8JzYHrOihia7+RtdqgYuj1KkeSfekwqLOur408M1H+rRqgtw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
- by DS0PR12MB9038.namprd12.prod.outlook.com (2603:10b6:8:f2::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.22; Thu, 30 Apr
- 2026 10:22:39 +0000
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc%3]) with mapi id 15.20.9870.020; Thu, 30 Apr 2026
- 10:22:39 +0000
-Message-ID: <87d5b981-51ac-4e4f-8b68-2bcdd808aa4f@amd.com>
-Date: Thu, 30 Apr 2026 15:52:33 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd/pm: Relax manual min/max clock check
-To: Asad Kamal <asad.kamal@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: hawking.zhang@amd.com, le.ma@amd.com, shiwu.zhang@amd.com,
- alexander.deucher@amd.com, kevinyang.wang@amd.com
-References: <20260430102057.4186555-1-asad.kamal@amd.com>
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20260430102057.4186555-1-asad.kamal@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0132.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d2::15) To SA0PR12MB7091.namprd12.prod.outlook.com
- (2603:10b6:806:2d5::17)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
+ [209.85.128.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C49B610F2DF
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 10:30:09 +0000 (UTC)
+Received: by mail-wm1-f42.google.com with SMTP id
+ 5b1f17b1804b1-4891c0620bcso5325345e9.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 03:30:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1777545008; x=1778149808;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=RwOV57DW2tHOgF1JDS3GgR1aOlouRJph7CMHQgtMBd0=;
+ b=FTl7lK2iv0EpN6PCSPSGY+2xn9AXfzkoUFSXITIpyiTJdThGoE1nD/NyLWQRqc988W
+ eiFux83C+BifZBfGlOUbvRFkWMJskOlCoKYpy/Xy/7fmEv/xPlh0wzvJfiWTw1FVKBoj
+ W0mMhHciXZshMwh5TygzgWofxiSsDeCedfePbr5pdY3kM+1+abMZzKXtUJBa2t2eN49l
+ RdEiZP0a6ViyUSu8Kr3YrKcVU3eDMRpr2pl+atftVqyIMh8nNyHkSDtmYaeVSBxMgeLO
+ guvPYClbNsaIQABrm2dDITbtlRkRXMzb4yp7J/DRUKxUCgNQjnhsmDIBqLpkmX/8BhpS
+ L7UQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777545008; x=1778149808;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=RwOV57DW2tHOgF1JDS3GgR1aOlouRJph7CMHQgtMBd0=;
+ b=U5Nbi1CPclbgCHq0/yfBtjD5ftStazqoDNlJaDS/JNMHE8lLMoItiGUL7QOLQFAVnZ
+ fXKcFWG3RFuurYfnQx4Axw7/pVLxAvA6xINf/wEtgPrZgrSvcQ2k9M9yLSwhSJ4OZfUK
+ zF0SltscZAMMz7x+7mqM8LtdFw9JTwQ+5dQeGFeE75HrYZshwku+mUpsIjzNIP5mAvx3
+ WFI4QlJDNUuQ5i0u266XKMhP9NISlaBJrbJQ5ZCUhiFY/Ru9Hw/sKJVGTeSf7KxAjPJc
+ qguiCvSQR55iJE8dfXJeiaX82CzZcRsp1bhUMQkF9w5s3qz/7iqFpX4J6cbDXN+1xhfx
+ UYAA==
+X-Gm-Message-State: AOJu0YyGHflL+tbu34N3aIV7bvDNHM9n27clLX2W0ym/N4veyUOJmioL
+ rimZOAFpeBeehqPLiUTxD4LQcoX9GUsq9z8X4gvZmpZdn6MvIrHrxPnOk1Kg9wI48HQ=
+X-Gm-Gg: AeBDiesubl4FJHkG3uXv8uHLnxlQo78Vg9ThQaT3XuwhsVo+c0fY0WmVP+8y1U/smlf
+ nrDhw79CnQVdTDVAh3RAOt7PhRwqRaJETQ54RtAYMFOLatIDkSD51vVHO9YKUhB5xr2/HE8NWVF
+ L2LxmvxOsElahF938lPmJv6gckxFxRni843qbyQSnVqkba+y3RrVNhCbGZyjs+OHGRZRLaRTCIi
+ 6o0JIvYAgHB5vGEvk1UegWBrLLKb75fxrMFehIT8/89kcDQwH4Q63KqbYbeUGo6QOTReWEYd8pC
+ BdWWkIdySlLkcPhnkj7fzIpFVvY3NQsnkjQOPupm2RgBSCcov+2NFrxTpZO/8FyCryN5Z8vGrPX
+ 0yLpbJjoMBIgSJuV0q1kaABHZj4XqhA73Vi8u3ocRflBt49VfirJYOpzKqaA6/jElfHDfswkuug
+ 6+eb4WXYSnZ4AiP01dJNPy2rtvMrL/yXZsBN8OzgUOwIQbXmJ4SO4m0Ued5mmb9DOamNvu5oZMh
+ +/lL29EutLeGo/+1VODS4oJuA==
+X-Received: by 2002:a05:600c:6994:b0:488:a916:14a8 with SMTP id
+ 5b1f17b1804b1-48a844ebae7mr35706415e9.10.1777545006752; 
+ Thu, 30 Apr 2026 03:30:06 -0700 (PDT)
+Received: from localhost
+ (p200300f65f114e08c77bcc4a3b99186a.dip0.t-ipconnect.de.
+ [2003:f6:5f11:4e08:c77b:cc4a:3b99:186a])
+ by smtp.gmail.com with UTF8SMTPSA id
+ ffacd0b85a97d-447b4216ed6sm13327234f8f.16.2026.04.30.03.30.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 30 Apr 2026 03:30:05 -0700 (PDT)
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?=
+ <u.kleine-koenig@baylibre.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Markus Schneider-Pargmann <msp@baylibre.com>
+Subject: [PATCH] drm/radeon: Consistently define pci_device_ids using named
+ initializers
+Date: Thu, 30 Apr 2026 12:29:57 +0200
+Message-ID: <20260430102958.136859-2-u.kleine-koenig@baylibre.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|DS0PR12MB9038:EE_
-X-MS-Office365-Filtering-Correlation-Id: f18b467c-b176-41f2-9c97-08dea6a26803
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|18002099003|56012099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: 85qQ94pLQi7taq50pIp3Dkho/WqTr6UIvI8MssQuXHI36loDd9zZ9r5wt2F6nh8rpJtMfTSJ0IB5wIWUI8M+5gQIFnpJT+Oum7Fe/Lsup8JIfyEiGGigApQJ3v5/Z51W/AHz2wS3Ho5iFKiBhJW9V2q5TyxLAQVN7wz6i7X3gbx+tnGfyRZPZ1HdjaLsKQcYevpq1PZWTyXeCzoYm+QyoQBuACod/Vdawx2k3Ju7IO9sGrRmSjzdt40IJXqnX0YSx32XvoBbZsUdspkxoo0hxTtc7H/EqJedgJ+n6yTDe/sSAmSunhbl3dIG3FIL6S3UcEZ5tG+3m93+7JmUs26xXWGqD4VO6vT2Ay8zYpnPnLyF2vtTYo8VgKA2x0hJwLWbygFMUcljpGNXnqQEpT5wG/79zhKr6ttoLq0sz39JIKGoAnXYhOJEybf9lvS7ArXYtf+cX7eWUovLXVsrVH1mVwo/BZKOwpz9tzU+hZ6v4VB1dewUsRtxwbrv+2bU7uAx57eaHoQSwgjzlR1+ye0q3N96lSW9Th06Klwv/XsuaNa1Cp8LF+wq+iVa8RBYyU1gki3YgovQcedZy4JKYtvmD0qWcjWdnTSHBTYpgLtJ8J2lyDb47xRjpew8q2JPFZVN+zMT5dSiLtUOVC4ik0MnG/RDvoaZt99G16coWk0tat7e5VWIt67Z4xpKePVbuF8bA4N3oqMmUMWdCuTRKXisy932RLR3/04g2meC7wQ6hHc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(56012099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eURJdVRMQzBNS3lLVzhBSHE3bjhkSFFsTzhhMDNIVWRtdGFkSnV6UWhlYmVU?=
- =?utf-8?B?dXhvdExDWmVpZklKUVBwSUhHWFhUTVkwS0xQUWJCMDM1K2xPZ25oVG92Z2FE?=
- =?utf-8?B?NnJzSkxtY0l2ZHFLZEFkZXZoeVE0dkt3Q2lpOStOYkgydFZUck1MOHhXV3l2?=
- =?utf-8?B?Z0NFZzFwS2RKUXprMXZpUksyakRBSjBRdS9Fb3JNeUtuOWphcW1xRUZuWnNK?=
- =?utf-8?B?TjBKam52bzFWTHJBK2lNLzBYdFZ4SjhNTlBmbzlxYU55MG84V29XR0NJODhk?=
- =?utf-8?B?dGlYUzUwK2pzYWlqT0pzcU5OM2NDYmYxaG5jWS9VWEZXalNubFVSQUljeW5i?=
- =?utf-8?B?dVVDN2NKQi9yL3NCa1luY1ZhclFhUEh4cmhxK2xHMURwKzZCTnJFb3A5NDVJ?=
- =?utf-8?B?Ry9MVkJPeUV5RmVXUlpOcjZZenV4SlNuT0JWTVROMkZJZGlMaUIyeWhrL2h2?=
- =?utf-8?B?OG5XeUlwc3ovM2JOUVZIcDlTYkU1SHFlZ0dqcmR2WCszSU8zZWpUN3dpeEI5?=
- =?utf-8?B?TXZabEppOFRKWEVBRlNDYStYbitKRWVaVFNUQWZsVHArZkw4blRYR2g3eTFy?=
- =?utf-8?B?Tm50ZG01Y0Y0MEZxSEM1Uy8wUDdITVFnbmtSTjh2ME92WTFRMytBUlFZTHRs?=
- =?utf-8?B?YWVRZW9acW12ek5CMDFFeG5QU1ZwV0xCbE9KeGt0dlpLNHZlaVBnUU5BcDBF?=
- =?utf-8?B?Z0EvNEU2NmM2Q1Y5aHk0QkY1Z2dIWEF3d3BZdW9ONkM2Mm1xTDNRRTlici9R?=
- =?utf-8?B?bllpQk5pcXExbUNIUlhvWUNueEZQTTRaVEVnSGpCY1V6L3hERU5oMWFsZ0JK?=
- =?utf-8?B?R1dOT2xmK2luaU9XUVYxd0dQU1lSMndqL2M1V2hKV1p1Z0c1WWZ6NkxBM1ND?=
- =?utf-8?B?dlNJbmE4Um4xTURCcFZTai93NHpGR1hvVjVSUUlneENjeldocndBb1ByQzRr?=
- =?utf-8?B?Q1lBeVl1Zkgra1ZmWndpeWNyZkVQVWlIUlg5Z2ZLbnNVQWxhaTIrRGgvdEFx?=
- =?utf-8?B?SFJCcURFeU1ZTU12WGo1RWxaazJzV01xTW1oL3JpSDlzUjNSdnE4QWZOQlkr?=
- =?utf-8?B?cDZXNHRtY0dyQ1RYOXFMRXl5WFpOZmxHVml2bGRDVFNaRUdaN2szd05xVURH?=
- =?utf-8?B?N2V3WGYvTDkyMmxVUVlibXRXUm1uODYrdkY4ZVRneXpVdFN5QUJXandQOTNy?=
- =?utf-8?B?d1BuUEcvNDJMMVhoWlRZRzdMcW1MNTNCRFpOM0svQ1ZXVUpENkZuMk9WSm9x?=
- =?utf-8?B?YmJBRG5TSzhITDd6ZWlpVGZhaFUyUU9rdTc2aTlqSy9NeHc3WThnQklEMGxs?=
- =?utf-8?B?NFlZKzJQdURRWDFrZmo0Z1BhM1FlNVNOM1ZWdWE1cTh1Q2VZWVhTa01hd2Vq?=
- =?utf-8?B?QVVBQ3lEc1BRT2pHMXBYckpyTkRicUMvRm50QlNmQ3pPOFBKWFJ6Z2pnTHdW?=
- =?utf-8?B?ZWw4TmNqbUQwNCsxMTdXTVd4c0VBWmo2Q3lpZUNHUTI4Wkt4SGs2S1lyUnN5?=
- =?utf-8?B?cWI0YVZoMklRcXpqa05jNndWdWFTdjRQSC80WEwzVU9NU25wY3dTdlR2SEZ2?=
- =?utf-8?B?anFNd3JtcTlEVFcrb3psOStLTjdnc0ZjTTR3TEphMWhuOUZHUDZ0VEx1K2tx?=
- =?utf-8?B?d0V3U25OYVdMSlJ2MnZTdENvakJjdnU2MG5wWmUyVW1VOS9FcDNnSXFkZkEy?=
- =?utf-8?B?NS83bVQvWlQxRk5Ub2I1MTlBNXdVbzFFV1pYa2JQekZJNk5RTnpUQS9oUWtJ?=
- =?utf-8?B?NzJMQnM5Mk1oMDVOREVCVHQzNnp3MzRzSTZMUWdWVGFVV3VEU2xkL0h1ZzJq?=
- =?utf-8?B?Ukt3WmJ6NFFkd2xDWXBCZGk1dkw5UVlONWwzVURVSHBrOUhjOC9yc1BFR2k3?=
- =?utf-8?B?SXdLclZubEFDZUxCUlI0aW1CeW9qaUx6L0ExOXJzaEhZYS9kNDlTYURaUGlS?=
- =?utf-8?B?bUhYWUxPYzVocEhaM2k3N3VIY1V1M3l2WWlYdjhBOWxPUFRMb28zandHT1BQ?=
- =?utf-8?B?T3JVTTh6d0pYcmE1eFV3UlpKZnRVM1Z1OTF0aHFZaTh0bk1EZkl3Tjd3NXpr?=
- =?utf-8?B?KzJvc0lpbEc2T1A0TDJwcTNGY0VWYkY4RWc5Rk1oelJzcTJveFNLYWdINGZx?=
- =?utf-8?B?cWFkMzRRQ0FjZUY5RFdYNE1yWFA3UHl0RFZnS3B3clNCbjNuTUU5OXBuNVNo?=
- =?utf-8?B?UWkzU3psWXZodnJHSlJEeXROOFI0T2IwWDB0TW5ac3hWWmFEcC9LMnNvQk9Y?=
- =?utf-8?B?U1RvYVdmOHc3aFlHOUdzOEI0K2JEOHFwZVUwOG1YK25GN0MvMWNpejZIZEVo?=
- =?utf-8?B?WEVQZUtvZW4ydFNsRFNSWEU2cjVwbVErU21EQ2ZRcUdIVUZrbEFGQT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f18b467c-b176-41f2-9c97-08dea6a26803
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2026 10:22:39.7012 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4tXAOi2WrjoxgrU+QDVjoMPhK/NgI04/6/12ZZCIEXLuuJgHBre8/ZUYmEi/EfYd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9038
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=129723;
+ i=u.kleine-koenig@baylibre.com; h=from:subject;
+ bh=TSiXBJhG6kj6HYr8I1W+zbdyrwJRkRGjjY4SWZuXwQ8=;
+ b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBp8y8macHX7hWkhu2RMpnOgmW7bYqkQwIkz4A5a
+ 84T6EdrsdqJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCafMvJgAKCRCPgPtYfRL+
+ Tlx8B/4m3zNLtLTt/bB7P2JYwPeAJQJ/dH/lOQCnd7w+remaC8pC/126dzHOvt5y6GGwpTGhorW
+ GkWE0Ad1cGVuKdXBUGDGXlNCfuOZWe9wwDG+n3/uKa7Br+cwV4RItG1SX2Fpihz5c51pxXYnjTW
+ 8sZowtQKiZGgC/dVLflTtebZsliDBuP2dAKbRnDVqBitpAMumAQVBqu9e9e74txKHWoFTLDXUim
+ UCyt2YPvf36ER7fba1brUOPSKBVxWhGLa1ZSSS+LXA2wq360NmHqxNuf9OVV3VV3tn7K09qjEZ7
+ zAisz16BtUgm1pDTpn/jx1OpOfTv8VSpMLNHmg3HIWn+XfES
+X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp;
+ fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 01 May 2026 07:11:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,71 +108,1513 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 4E50E4A0C0D
+X-Rspamd-Queue-Id: BBEB14AACE6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:asad.kamal@amd.com,m:hawking.zhang@amd.com,m:le.ma@amd.com,m:shiwu.zhang@amd.com,m:alexander.deucher@amd.com,m:kevinyang.wang@amd.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:msp@baylibre.com,s:lists@lfdr.de];
+	DMARC_NA(0.00)[baylibre.com];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[u.kleine-koenig@baylibre.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_NEQ_ENVFROM(0.00)[u.kleine-koenig@baylibre.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:mid,baylibre.com:email,baylibre-com.20251104.gappssmtp.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
+... and PCI device helpers.
 
+The struct pci_device_id array of supported device was initialized
+by list expressions. This isn't easily readable if you're not into PCI.
 
-On 30-Apr-26 3:50 PM, Asad Kamal wrote:
-> Allow min == max for the soft frequency limit when
-> AMD_DPM_FORCED_LEVEL_MANUAL is used on SMU v13.0.6
-> 
-> Signed-off-by: Asad Kamal <asad.kamal@amd.com>
+Use PCI_DEVICE* helper macros and named initializers which is more
+explicit and thus easier to parse. Also skip explicit assignments of 0
+(which the compiler then takes care of).
 
-Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+The secret plan is to make struct pci_device_id::driver_data an
+anonymous union (similar to
+https://lore.kernel.org/all/cover.1776579304.git.u.kleine-koenig@baylibre.com/)
+and that requires named initializers. But it's also a nice cleanup on
+its own.
 
-Thanks,
-Lijo
+This change doesn't introduce changes to the compiled pci_device_id
+array. Tested on x86 and arm64.
 
-> ---
->   drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-> index 8d04f6e73fd7..ce520f43ab94 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c
-> @@ -2075,9 +2075,9 @@ static int smu_v13_0_6_set_soft_freq_limited_range(struct smu_context *smu,
->   		return -EINVAL;
->   
->   	if (smu_dpm->dpm_level == AMD_DPM_FORCED_LEVEL_MANUAL) {
-> -		if (min >= max) {
-> +		if (min > max) {
->   			dev_err(smu->adev->dev,
-> -				"Minimum clk should be less than the maximum allowed clock\n");
-> +				"Minimum clk should be less/equal to the maximum allowed clock\n");
->   			return -EINVAL;
->   		}
->   
+Signed-off-by: Uwe Kleine-König (The Capable Hub) <u.kleine-koenig@baylibre.com>
+---
+Hello,
+
+this patch triggers several checkpatch warnings of the type:
+
+	WARNING: line length of 119 exceeds 100 columns
+
+I consider that ok as the replaced lines are still longer. But if you
+consider it a good opportunity to add line breaks in the array, I can do
+that, something like:
+
+-	{ PCI_DEVICE(0x1002, 0x1304), .driver_data = CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x1304),
++	  .driver_data = CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
+
+or
+
+-	{ PCI_DEVICE(0x1002, 0x1304), .driver_data = CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
+-	{ PCI_DEVICE(0x1002, 0x1305), .driver_data = CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{
++		PCI_DEVICE(0x1002, 0x1304),
++	+	.driver_data = CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP, \
++	}, { \
++		PCI_DEVICE(0x1002, 0x1305), \
++		.driver_data = CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP \
++	},...
+
+. Tell me which one you prefer in that case.
+
+There is no benefit for radeon of the mentioned follow up quest as it
+doesn't use pointers in .driver_data. Other drivers benefit from
+
+	-	{ PCI_VDEVICE(TTI, 0x3220), .driver_data = (kernel_ulong_t)&hptiop_itl_ops },
+	+	{ PCI_VDEVICE(TTI, 0x3220), .driver_data_ptr = &hptiop_itl_ops },
+
+which gets rid of a bunch of casts and so brings a little bit more type
+safety. This patch is a preparation for that.
+
+Best regards
+Uwe
+
+ include/drm/drm_pciids.h | 1400 +++++++++++++++++++-------------------
+ 1 file changed, 700 insertions(+), 700 deletions(-)
+
+diff --git a/include/drm/drm_pciids.h b/include/drm/drm_pciids.h
+index 90e8abc08653..95eb407d8011 100644
+--- a/include/drm/drm_pciids.h
++++ b/include/drm/drm_pciids.h
+@@ -1,702 +1,702 @@
+ /* SPDX-License-Identifier: MIT */
+ #define radeon_PCI_IDS \
+-	{0x1002, 0x1304, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x1305, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x1306, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x1307, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x1309, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x130A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x130B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x130C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x130D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x130E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x130F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x1310, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x1311, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x1312, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x1313, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x1315, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x1316, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x1317, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x1318, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x131B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x131C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x131D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x3150, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x3151, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x3152, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x3154, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x3155, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x3E50, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x3E54, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4136, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS100|RADEON_IS_IGP}, \
+-	{0x1002, 0x4137, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS200|RADEON_IS_IGP}, \
+-	{0x1002, 0x4144, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R300}, \
+-	{0x1002, 0x4145, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R300}, \
+-	{0x1002, 0x4146, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R300}, \
+-	{0x1002, 0x4147, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R300}, \
+-	{0x1002, 0x4148, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R350}, \
+-	{0x1002, 0x4149, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R350}, \
+-	{0x1002, 0x414A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R350}, \
+-	{0x1002, 0x414B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R350}, \
+-	{0x1002, 0x4150, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV350}, \
+-	{0x1002, 0x4151, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV350}, \
+-	{0x1002, 0x4152, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV350}, \
+-	{0x1002, 0x4153, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV350}, \
+-	{0x1002, 0x4154, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV350}, \
+-	{0x1002, 0x4155, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV350}, \
+-	{0x1002, 0x4156, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV350}, \
+-	{0x1002, 0x4237, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS200|RADEON_IS_IGP}, \
+-	{0x1002, 0x4242, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R200}, \
+-	{0x1002, 0x4336, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS100|RADEON_IS_IGP|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4337, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS200|RADEON_IS_IGP|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4437, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS200|RADEON_IS_IGP|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4966, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV250}, \
+-	{0x1002, 0x4967, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV250}, \
+-	{0x1002, 0x4A48, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4A49, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4A4A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4A4B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4A4C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4A4D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4A4E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4A4F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4A50, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4A54, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4B48, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4B49, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4B4A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4B4B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4B4C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R420|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x4C57, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV200|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4C58, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV200|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4C59, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV100|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4C5A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV100|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4C64, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV250|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4C66, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV250|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4C67, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV250|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4E44, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R300}, \
+-	{0x1002, 0x4E45, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R300}, \
+-	{0x1002, 0x4E46, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R300}, \
+-	{0x1002, 0x4E47, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R300}, \
+-	{0x1002, 0x4E48, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R350}, \
+-	{0x1002, 0x4E49, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R350}, \
+-	{0x1002, 0x4E4A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R350}, \
+-	{0x1002, 0x4E4B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R350}, \
+-	{0x1002, 0x4E50, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV350|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4E51, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV350|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4E52, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV350|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4E53, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV350|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4E54, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV350|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x4E56, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV350|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x5144, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R100|RADEON_SINGLE_CRTC}, \
+-	{0x1002, 0x5145, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R100|RADEON_SINGLE_CRTC}, \
+-	{0x1002, 0x5146, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R100|RADEON_SINGLE_CRTC}, \
+-	{0x1002, 0x5147, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R100|RADEON_SINGLE_CRTC}, \
+-	{0x1002, 0x5148, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R200}, \
+-	{0x1002, 0x514C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R200}, \
+-	{0x1002, 0x514D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R200}, \
+-	{0x1002, 0x5157, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV200}, \
+-	{0x1002, 0x5158, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV200}, \
+-	{0x1002, 0x5159, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV100}, \
+-	{0x1002, 0x515A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV100}, \
+-	{0x1002, 0x515E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV100|RADEON_SINGLE_CRTC}, \
+-	{0x1002, 0x5460, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x5462, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x5464, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x5548, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5549, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x554A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x554B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x554C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x554D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x554E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x554F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5550, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5551, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5552, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5554, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x564A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV410|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x564B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV410|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x564F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV410|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5652, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV410|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5653, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV410|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5657, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV410|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5834, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS300|RADEON_IS_IGP}, \
+-	{0x1002, 0x5835, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS300|RADEON_IS_IGP|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x5954, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS480|RADEON_IS_IGP|RADEON_IS_MOBILITY|RADEON_IS_IGPGART}, \
+-	{0x1002, 0x5955, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS480|RADEON_IS_IGP|RADEON_IS_MOBILITY|RADEON_IS_IGPGART}, \
+-	{0x1002, 0x5974, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS480|RADEON_IS_IGP|RADEON_IS_MOBILITY|RADEON_IS_IGPGART}, \
+-	{0x1002, 0x5975, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS480|RADEON_IS_IGP|RADEON_IS_MOBILITY|RADEON_IS_IGPGART}, \
+-	{0x1002, 0x5960, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV280}, \
+-	{0x1002, 0x5961, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV280}, \
+-	{0x1002, 0x5962, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV280}, \
+-	{0x1002, 0x5964, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV280}, \
+-	{0x1002, 0x5965, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV280}, \
+-	{0x1002, 0x5969, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV100|RADEON_SINGLE_CRTC}, \
+-	{0x1002, 0x5a41, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS400|RADEON_IS_IGP|RADEON_IS_IGPGART}, \
+-	{0x1002, 0x5a42, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS400|RADEON_IS_IGP|RADEON_IS_MOBILITY|RADEON_IS_IGPGART}, \
+-	{0x1002, 0x5a61, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS400|RADEON_IS_IGP|RADEON_IS_IGPGART}, \
+-	{0x1002, 0x5a62, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS400|RADEON_IS_IGP|RADEON_IS_MOBILITY|RADEON_IS_IGPGART}, \
+-	{0x1002, 0x5b60, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5b62, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5b63, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5b64, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5b65, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV380|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5c61, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV280|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x5c63, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV280|RADEON_IS_MOBILITY}, \
+-	{0x1002, 0x5d48, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5d49, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5d4a, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5d4c, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5d4d, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5d4e, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5d4f, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5d50, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5d52, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5d57, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R423|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5e48, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV410|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5e4a, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV410|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5e4b, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV410|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5e4c, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV410|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5e4d, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV410|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x5e4f, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV410|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6600, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6601, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6602, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6603, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6604, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6605, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6606, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6607, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6608, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6610, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6611, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6613, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6617, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6620, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6621, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6623, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6631, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_OLAND|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6640, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BONAIRE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6641, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BONAIRE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6646, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BONAIRE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6647, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BONAIRE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6649, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BONAIRE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6650, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BONAIRE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6651, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BONAIRE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6658, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BONAIRE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x665c, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BONAIRE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x665d, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BONAIRE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x665f, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BONAIRE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6660, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAINAN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6663, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAINAN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6664, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAINAN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6665, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAINAN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6667, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAINAN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x666F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAINAN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6700, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6701, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6702, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6703, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6704, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6705, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6706, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6707, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6708, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6709, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6718, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6719, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x671c, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x671d, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x671f, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAYMAN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6720, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BARTS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6721, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BARTS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6722, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BARTS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6723, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BARTS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6724, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BARTS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6725, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BARTS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6726, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BARTS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6727, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BARTS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6728, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BARTS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6729, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BARTS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6738, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BARTS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6739, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BARTS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x673e, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_BARTS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6740, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6741, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6742, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6743, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6744, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6745, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6746, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6747, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6748, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6749, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x674A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6750, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6751, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6758, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6759, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x675B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x675D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x675F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6760, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6761, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6762, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6763, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6764, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6765, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6766, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6767, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6768, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6770, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6771, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6772, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6778, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6779, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x677B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CAICOS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6780, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6784, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6788, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x678A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6790, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6791, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6792, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6798, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6799, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x679A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x679B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x679E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x679F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x67A0, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAWAII|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x67A1, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAWAII|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x67A2, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAWAII|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x67A8, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAWAII|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x67A9, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAWAII|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x67AA, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAWAII|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x67B0, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAWAII|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x67B1, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAWAII|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x67B8, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAWAII|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x67B9, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAWAII|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x67BA, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAWAII|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x67BE, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HAWAII|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6800, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PITCAIRN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6801, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PITCAIRN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6802, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PITCAIRN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6806, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PITCAIRN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6808, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PITCAIRN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6809, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PITCAIRN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6810, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PITCAIRN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6811, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PITCAIRN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6816, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PITCAIRN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6817, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PITCAIRN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6818, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PITCAIRN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6819, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PITCAIRN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6820, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6821, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6822, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6823, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6824, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6825, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6826, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6827, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6828, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6829, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x682A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x682B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x682C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x682D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x682F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6830, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6831, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6835, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6837, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6838, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6839, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x683B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x683D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x683F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_VERDE|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6840, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6841, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6842, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6843, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6849, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x684C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PITCAIRN|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6850, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6858, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6859, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TURKS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6880, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYPRESS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6888, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYPRESS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6889, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYPRESS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x688A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYPRESS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x688C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYPRESS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x688D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYPRESS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6898, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYPRESS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x6899, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYPRESS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x689b, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYPRESS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x689c, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HEMLOCK|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x689d, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_HEMLOCK|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x689e, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CYPRESS|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68a0, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_JUNIPER|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68a1, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_JUNIPER|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68a8, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_JUNIPER|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68a9, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_JUNIPER|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68b0, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_JUNIPER|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68b8, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_JUNIPER|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68b9, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_JUNIPER|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68ba, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_JUNIPER|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68be, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_JUNIPER|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68bf, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_JUNIPER|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68c0, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_REDWOOD|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68c1, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_REDWOOD|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68c7, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_REDWOOD|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68c8, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_REDWOOD|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68c9, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_REDWOOD|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68d8, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_REDWOOD|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68d9, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_REDWOOD|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68da, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_REDWOOD|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68de, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_REDWOOD|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68e0, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CEDAR|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68e1, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CEDAR|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68e4, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CEDAR|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68e5, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CEDAR|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68e8, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CEDAR|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68e9, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CEDAR|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68f1, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CEDAR|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68f2, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CEDAR|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68f8, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CEDAR|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68f9, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CEDAR|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68fa, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CEDAR|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x68fe, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_CEDAR|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7100, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R520|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7101, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R520|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7102, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R520|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7103, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R520|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7104, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R520|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7105, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R520|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7106, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R520|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7108, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R520|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7109, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R520|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x710A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R520|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x710B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R520|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x710C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R520|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x710E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R520|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x710F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R520|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7140, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7141, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7142, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7143, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7144, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7145, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7146, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7147, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7149, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x714A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x714B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x714C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x714D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x714E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x714F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7151, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7152, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7153, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x715E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x715F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7180, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7181, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7183, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7186, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7187, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7188, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x718A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x718B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x718C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x718D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x718F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7193, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7196, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x719B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x719F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71C0, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71C1, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71C2, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71C3, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71C4, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71C5, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71C6, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71C7, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71CD, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71CE, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71D2, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71D4, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71D5, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71D6, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71DA, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x71DE, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV530|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7200, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7210, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7211, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7240, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7243, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7244, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7245, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7246, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7247, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7248, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7249, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x724A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x724B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x724C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x724D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x724E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x724F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7280, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV570|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7281, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV560|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7283, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV560|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7284, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R580|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7287, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV560|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7288, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV570|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7289, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV570|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x728B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV570|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x728C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV570|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7290, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV560|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7291, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV560|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7293, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV560|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7297, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV560|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7834, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS300|RADEON_IS_IGP|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7835, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS300|RADEON_IS_IGP|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x791e, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS690|RADEON_IS_IGP|RADEON_NEW_MEMMAP|RADEON_IS_IGPGART}, \
+-	{0x1002, 0x791f, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS690|RADEON_IS_IGP|RADEON_NEW_MEMMAP|RADEON_IS_IGPGART}, \
+-	{0x1002, 0x793f, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS600|RADEON_IS_IGP|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7941, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS600|RADEON_IS_IGP|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x7942, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS600|RADEON_IS_IGP|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x796c, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS740|RADEON_IS_IGP|RADEON_NEW_MEMMAP|RADEON_IS_IGPGART}, \
+-	{0x1002, 0x796d, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS740|RADEON_IS_IGP|RADEON_NEW_MEMMAP|RADEON_IS_IGPGART}, \
+-	{0x1002, 0x796e, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS740|RADEON_IS_IGP|RADEON_NEW_MEMMAP|RADEON_IS_IGPGART}, \
+-	{0x1002, 0x796f, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS740|RADEON_IS_IGP|RADEON_NEW_MEMMAP|RADEON_IS_IGPGART}, \
+-	{0x1002, 0x9400, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R600|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9401, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R600|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9402, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R600|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9403, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R600|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9405, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R600|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x940A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R600|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x940B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R600|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x940F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_R600|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94A0, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV740|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94A1, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV740|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94A3, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV740|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94B1, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV740|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94B3, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV740|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94B4, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV740|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94B5, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV740|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94B9, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV740|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9440, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9441, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9442, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9443, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9444, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9446, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x944A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x944B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x944C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x944E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9450, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9452, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9456, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x945A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x945B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x945E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9460, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9462, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x946A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x946B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x947A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x947B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9480, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV730|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9487, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV730|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9488, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV730|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9489, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV730|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x948A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV730|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x948F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV730|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9490, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV730|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9491, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV730|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9495, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV730|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9498, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV730|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x949C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV730|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x949E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV730|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x949F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV730|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94C0, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV610|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94C1, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV610|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94C3, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV610|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94C4, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV610|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94C5, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV610|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94C6, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV610|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94C7, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV610|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94C8, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV610|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94C9, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV610|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94CB, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV610|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94CC, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV610|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x94CD, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV610|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9500, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV670|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9501, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV670|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9504, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV670|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9505, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV670|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9506, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV670|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9507, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV670|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9508, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV670|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9509, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV670|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x950F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV670|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9511, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV670|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9515, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV670|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9517, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV670|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9519, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV670|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9540, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV710|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9541, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV710|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9542, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV710|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x954E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV710|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x954F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV710|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9552, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV710|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9553, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV710|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9555, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV710|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9557, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV710|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x955f, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV710|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9580, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV630|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9581, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV630|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9583, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV630|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9586, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV630|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9587, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV630|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9588, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV630|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9589, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV630|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x958A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV630|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x958B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV630|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x958C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV630|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x958D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV630|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x958E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV630|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x958F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV630|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9590, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV635|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9591, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV635|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9593, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV635|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9595, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV635|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9596, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV635|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9597, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV635|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9598, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV635|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9599, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV635|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x959B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV635|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x95C0, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV620|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x95C2, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV620|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x95C4, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV620|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x95C5, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV620|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x95C6, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV620|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x95C7, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV620|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x95C9, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV620|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x95CC, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV620|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x95CD, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV620|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x95CE, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV620|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x95CF, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RV620|RADEON_NEW_MEMMAP}, \
+-	{0x1002, 0x9610, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS780|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9611, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS780|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9612, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS780|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9613, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS780|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9614, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS780|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9615, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS780|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9616, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS780|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9640, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_SUMO|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9641, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_SUMO|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9642, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_SUMO2|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9643, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_SUMO2|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9644, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_SUMO2|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9645, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_SUMO2|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9647, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_SUMO|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP},\
+-	{0x1002, 0x9648, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_SUMO|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP},\
+-	{0x1002, 0x9649, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_SUMO2|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP},\
+-	{0x1002, 0x964a, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_SUMO|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x964b, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_SUMO|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x964c, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_SUMO|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x964e, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_SUMO|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP},\
+-	{0x1002, 0x964f, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_SUMO|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP},\
+-	{0x1002, 0x9710, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS880|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9711, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS880|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9712, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS880|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9713, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS880|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9714, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS880|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9715, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_RS880|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9802, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9803, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9804, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9805, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9806, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9807, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9808, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9809, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x980A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9830, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9831, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9832, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9833, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9834, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9835, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9836, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9837, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9838, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9839, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x983a, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x983b, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x983c, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x983d, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x983e, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x983f, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9850, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9851, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9852, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9853, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9854, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9855, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9856, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9857, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9858, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9859, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x985A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x985B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x985C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x985D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x985E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x985F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9900, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9901, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9903, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9904, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9905, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9906, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9907, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9908, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9909, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x990A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x990B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x990C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x990D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x990E, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x990F, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9910, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9913, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9917, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9918, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9919, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9990, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9991, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9992, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9993, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9994, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9995, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9996, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9997, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9998, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x9999, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x999A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x999B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x999C, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x999D, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x99A0, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x99A2, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0x1002, 0x99A4, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP}, \
+-	{0, 0, 0}
++	{ PCI_DEVICE(0x1002, 0x1304), .driver_data = CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x1305), .driver_data = CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x1306), .driver_data = CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x1307), .driver_data = CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x1309), .driver_data = CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x130A), .driver_data = CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x130B), .driver_data = CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x130C), .driver_data = CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x130D), .driver_data = CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x130E), .driver_data = CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x130F), .driver_data = CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x1310), .driver_data = CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x1311), .driver_data = CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x1312), .driver_data = CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x1313), .driver_data = CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x1315), .driver_data = CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x1316), .driver_data = CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x1317), .driver_data = CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x1318), .driver_data = CHIP_KAVERI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x131B), .driver_data = CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x131C), .driver_data = CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x131D), .driver_data = CHIP_KAVERI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x3150), .driver_data = CHIP_RV380|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x3151), .driver_data = CHIP_RV380|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x3152), .driver_data = CHIP_RV380|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x3154), .driver_data = CHIP_RV380|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x3155), .driver_data = CHIP_RV380|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x3E50), .driver_data = CHIP_RV380|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x3E54), .driver_data = CHIP_RV380|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4136), .driver_data = CHIP_RS100|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x4137), .driver_data = CHIP_RS200|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x4144), .driver_data = CHIP_R300 }, \
++	{ PCI_DEVICE(0x1002, 0x4145), .driver_data = CHIP_R300 }, \
++	{ PCI_DEVICE(0x1002, 0x4146), .driver_data = CHIP_R300 }, \
++	{ PCI_DEVICE(0x1002, 0x4147), .driver_data = CHIP_R300 }, \
++	{ PCI_DEVICE(0x1002, 0x4148), .driver_data = CHIP_R350 }, \
++	{ PCI_DEVICE(0x1002, 0x4149), .driver_data = CHIP_R350 }, \
++	{ PCI_DEVICE(0x1002, 0x414A), .driver_data = CHIP_R350 }, \
++	{ PCI_DEVICE(0x1002, 0x414B), .driver_data = CHIP_R350 }, \
++	{ PCI_DEVICE(0x1002, 0x4150), .driver_data = CHIP_RV350 }, \
++	{ PCI_DEVICE(0x1002, 0x4151), .driver_data = CHIP_RV350 }, \
++	{ PCI_DEVICE(0x1002, 0x4152), .driver_data = CHIP_RV350 }, \
++	{ PCI_DEVICE(0x1002, 0x4153), .driver_data = CHIP_RV350 }, \
++	{ PCI_DEVICE(0x1002, 0x4154), .driver_data = CHIP_RV350 }, \
++	{ PCI_DEVICE(0x1002, 0x4155), .driver_data = CHIP_RV350 }, \
++	{ PCI_DEVICE(0x1002, 0x4156), .driver_data = CHIP_RV350 }, \
++	{ PCI_DEVICE(0x1002, 0x4237), .driver_data = CHIP_RS200|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x4242), .driver_data = CHIP_R200 }, \
++	{ PCI_DEVICE(0x1002, 0x4336), .driver_data = CHIP_RS100|RADEON_IS_IGP|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4337), .driver_data = CHIP_RS200|RADEON_IS_IGP|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4437), .driver_data = CHIP_RS200|RADEON_IS_IGP|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4966), .driver_data = CHIP_RV250 }, \
++	{ PCI_DEVICE(0x1002, 0x4967), .driver_data = CHIP_RV250 }, \
++	{ PCI_DEVICE(0x1002, 0x4A48), .driver_data = CHIP_R420|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4A49), .driver_data = CHIP_R420|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4A4A), .driver_data = CHIP_R420|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4A4B), .driver_data = CHIP_R420|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4A4C), .driver_data = CHIP_R420|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4A4D), .driver_data = CHIP_R420|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4A4E), .driver_data = CHIP_R420|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4A4F), .driver_data = CHIP_R420|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4A50), .driver_data = CHIP_R420|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4A54), .driver_data = CHIP_R420|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4B48), .driver_data = CHIP_R420|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4B49), .driver_data = CHIP_R420|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4B4A), .driver_data = CHIP_R420|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4B4B), .driver_data = CHIP_R420|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4B4C), .driver_data = CHIP_R420|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x4C57), .driver_data = CHIP_RV200|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4C58), .driver_data = CHIP_RV200|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4C59), .driver_data = CHIP_RV100|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4C5A), .driver_data = CHIP_RV100|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4C64), .driver_data = CHIP_RV250|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4C66), .driver_data = CHIP_RV250|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4C67), .driver_data = CHIP_RV250|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4E44), .driver_data = CHIP_R300 }, \
++	{ PCI_DEVICE(0x1002, 0x4E45), .driver_data = CHIP_R300 }, \
++	{ PCI_DEVICE(0x1002, 0x4E46), .driver_data = CHIP_R300 }, \
++	{ PCI_DEVICE(0x1002, 0x4E47), .driver_data = CHIP_R300 }, \
++	{ PCI_DEVICE(0x1002, 0x4E48), .driver_data = CHIP_R350 }, \
++	{ PCI_DEVICE(0x1002, 0x4E49), .driver_data = CHIP_R350 }, \
++	{ PCI_DEVICE(0x1002, 0x4E4A), .driver_data = CHIP_R350 }, \
++	{ PCI_DEVICE(0x1002, 0x4E4B), .driver_data = CHIP_R350 }, \
++	{ PCI_DEVICE(0x1002, 0x4E50), .driver_data = CHIP_RV350|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4E51), .driver_data = CHIP_RV350|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4E52), .driver_data = CHIP_RV350|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4E53), .driver_data = CHIP_RV350|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4E54), .driver_data = CHIP_RV350|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x4E56), .driver_data = CHIP_RV350|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x5144), .driver_data = CHIP_R100|RADEON_SINGLE_CRTC }, \
++	{ PCI_DEVICE(0x1002, 0x5145), .driver_data = CHIP_R100|RADEON_SINGLE_CRTC }, \
++	{ PCI_DEVICE(0x1002, 0x5146), .driver_data = CHIP_R100|RADEON_SINGLE_CRTC }, \
++	{ PCI_DEVICE(0x1002, 0x5147), .driver_data = CHIP_R100|RADEON_SINGLE_CRTC }, \
++	{ PCI_DEVICE(0x1002, 0x5148), .driver_data = CHIP_R200 }, \
++	{ PCI_DEVICE(0x1002, 0x514C), .driver_data = CHIP_R200 }, \
++	{ PCI_DEVICE(0x1002, 0x514D), .driver_data = CHIP_R200 }, \
++	{ PCI_DEVICE(0x1002, 0x5157), .driver_data = CHIP_RV200 }, \
++	{ PCI_DEVICE(0x1002, 0x5158), .driver_data = CHIP_RV200 }, \
++	{ PCI_DEVICE(0x1002, 0x5159), .driver_data = CHIP_RV100 }, \
++	{ PCI_DEVICE(0x1002, 0x515A), .driver_data = CHIP_RV100 }, \
++	{ PCI_DEVICE(0x1002, 0x515E), .driver_data = CHIP_RV100|RADEON_SINGLE_CRTC }, \
++	{ PCI_DEVICE(0x1002, 0x5460), .driver_data = CHIP_RV380|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x5462), .driver_data = CHIP_RV380|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x5464), .driver_data = CHIP_RV380|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x5548), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5549), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x554A), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x554B), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x554C), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x554D), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x554E), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x554F), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5550), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5551), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5552), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5554), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x564A), .driver_data = CHIP_RV410|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x564B), .driver_data = CHIP_RV410|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x564F), .driver_data = CHIP_RV410|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5652), .driver_data = CHIP_RV410|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5653), .driver_data = CHIP_RV410|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5657), .driver_data = CHIP_RV410|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5834), .driver_data = CHIP_RS300|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x5835), .driver_data = CHIP_RS300|RADEON_IS_IGP|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x5954), .driver_data = CHIP_RS480|RADEON_IS_IGP|RADEON_IS_MOBILITY|RADEON_IS_IGPGART }, \
++	{ PCI_DEVICE(0x1002, 0x5955), .driver_data = CHIP_RS480|RADEON_IS_IGP|RADEON_IS_MOBILITY|RADEON_IS_IGPGART }, \
++	{ PCI_DEVICE(0x1002, 0x5974), .driver_data = CHIP_RS480|RADEON_IS_IGP|RADEON_IS_MOBILITY|RADEON_IS_IGPGART }, \
++	{ PCI_DEVICE(0x1002, 0x5975), .driver_data = CHIP_RS480|RADEON_IS_IGP|RADEON_IS_MOBILITY|RADEON_IS_IGPGART }, \
++	{ PCI_DEVICE(0x1002, 0x5960), .driver_data = CHIP_RV280 }, \
++	{ PCI_DEVICE(0x1002, 0x5961), .driver_data = CHIP_RV280 }, \
++	{ PCI_DEVICE(0x1002, 0x5962), .driver_data = CHIP_RV280 }, \
++	{ PCI_DEVICE(0x1002, 0x5964), .driver_data = CHIP_RV280 }, \
++	{ PCI_DEVICE(0x1002, 0x5965), .driver_data = CHIP_RV280 }, \
++	{ PCI_DEVICE(0x1002, 0x5969), .driver_data = CHIP_RV100|RADEON_SINGLE_CRTC }, \
++	{ PCI_DEVICE(0x1002, 0x5a41), .driver_data = CHIP_RS400|RADEON_IS_IGP|RADEON_IS_IGPGART }, \
++	{ PCI_DEVICE(0x1002, 0x5a42), .driver_data = CHIP_RS400|RADEON_IS_IGP|RADEON_IS_MOBILITY|RADEON_IS_IGPGART }, \
++	{ PCI_DEVICE(0x1002, 0x5a61), .driver_data = CHIP_RS400|RADEON_IS_IGP|RADEON_IS_IGPGART }, \
++	{ PCI_DEVICE(0x1002, 0x5a62), .driver_data = CHIP_RS400|RADEON_IS_IGP|RADEON_IS_MOBILITY|RADEON_IS_IGPGART }, \
++	{ PCI_DEVICE(0x1002, 0x5b60), .driver_data = CHIP_RV380|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5b62), .driver_data = CHIP_RV380|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5b63), .driver_data = CHIP_RV380|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5b64), .driver_data = CHIP_RV380|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5b65), .driver_data = CHIP_RV380|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5c61), .driver_data = CHIP_RV280|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x5c63), .driver_data = CHIP_RV280|RADEON_IS_MOBILITY }, \
++	{ PCI_DEVICE(0x1002, 0x5d48), .driver_data = CHIP_R423|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5d49), .driver_data = CHIP_R423|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5d4a), .driver_data = CHIP_R423|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5d4c), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5d4d), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5d4e), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5d4f), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5d50), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5d52), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5d57), .driver_data = CHIP_R423|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5e48), .driver_data = CHIP_RV410|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5e4a), .driver_data = CHIP_RV410|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5e4b), .driver_data = CHIP_RV410|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5e4c), .driver_data = CHIP_RV410|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5e4d), .driver_data = CHIP_RV410|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x5e4f), .driver_data = CHIP_RV410|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6600), .driver_data = CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6601), .driver_data = CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6602), .driver_data = CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6603), .driver_data = CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6604), .driver_data = CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6605), .driver_data = CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6606), .driver_data = CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6607), .driver_data = CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6608), .driver_data = CHIP_OLAND|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6610), .driver_data = CHIP_OLAND|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6611), .driver_data = CHIP_OLAND|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6613), .driver_data = CHIP_OLAND|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6617), .driver_data = CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6620), .driver_data = CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6621), .driver_data = CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6623), .driver_data = CHIP_OLAND|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6631), .driver_data = CHIP_OLAND|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6640), .driver_data = CHIP_BONAIRE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6641), .driver_data = CHIP_BONAIRE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6646), .driver_data = CHIP_BONAIRE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6647), .driver_data = CHIP_BONAIRE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6649), .driver_data = CHIP_BONAIRE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6650), .driver_data = CHIP_BONAIRE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6651), .driver_data = CHIP_BONAIRE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6658), .driver_data = CHIP_BONAIRE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x665c), .driver_data = CHIP_BONAIRE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x665d), .driver_data = CHIP_BONAIRE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x665f), .driver_data = CHIP_BONAIRE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6660), .driver_data = CHIP_HAINAN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6663), .driver_data = CHIP_HAINAN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6664), .driver_data = CHIP_HAINAN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6665), .driver_data = CHIP_HAINAN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6667), .driver_data = CHIP_HAINAN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x666F), .driver_data = CHIP_HAINAN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6700), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6701), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6702), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6703), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6704), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6705), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6706), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6707), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6708), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6709), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6718), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6719), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x671c), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x671d), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x671f), .driver_data = CHIP_CAYMAN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6720), .driver_data = CHIP_BARTS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6721), .driver_data = CHIP_BARTS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6722), .driver_data = CHIP_BARTS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6723), .driver_data = CHIP_BARTS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6724), .driver_data = CHIP_BARTS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6725), .driver_data = CHIP_BARTS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6726), .driver_data = CHIP_BARTS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6727), .driver_data = CHIP_BARTS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6728), .driver_data = CHIP_BARTS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6729), .driver_data = CHIP_BARTS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6738), .driver_data = CHIP_BARTS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6739), .driver_data = CHIP_BARTS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x673e), .driver_data = CHIP_BARTS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6740), .driver_data = CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6741), .driver_data = CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6742), .driver_data = CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6743), .driver_data = CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6744), .driver_data = CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6745), .driver_data = CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6746), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6747), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6748), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6749), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x674A), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6750), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6751), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6758), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6759), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x675B), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x675D), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x675F), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6760), .driver_data = CHIP_CAICOS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6761), .driver_data = CHIP_CAICOS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6762), .driver_data = CHIP_CAICOS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6763), .driver_data = CHIP_CAICOS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6764), .driver_data = CHIP_CAICOS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6765), .driver_data = CHIP_CAICOS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6766), .driver_data = CHIP_CAICOS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6767), .driver_data = CHIP_CAICOS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6768), .driver_data = CHIP_CAICOS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6770), .driver_data = CHIP_CAICOS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6771), .driver_data = CHIP_CAICOS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6772), .driver_data = CHIP_CAICOS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6778), .driver_data = CHIP_CAICOS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6779), .driver_data = CHIP_CAICOS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x677B), .driver_data = CHIP_CAICOS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6780), .driver_data = CHIP_TAHITI|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6784), .driver_data = CHIP_TAHITI|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6788), .driver_data = CHIP_TAHITI|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x678A), .driver_data = CHIP_TAHITI|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6790), .driver_data = CHIP_TAHITI|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6791), .driver_data = CHIP_TAHITI|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6792), .driver_data = CHIP_TAHITI|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6798), .driver_data = CHIP_TAHITI|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6799), .driver_data = CHIP_TAHITI|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x679A), .driver_data = CHIP_TAHITI|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x679B), .driver_data = CHIP_TAHITI|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x679E), .driver_data = CHIP_TAHITI|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x679F), .driver_data = CHIP_TAHITI|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x67A0), .driver_data = CHIP_HAWAII|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x67A1), .driver_data = CHIP_HAWAII|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x67A2), .driver_data = CHIP_HAWAII|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x67A8), .driver_data = CHIP_HAWAII|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x67A9), .driver_data = CHIP_HAWAII|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x67AA), .driver_data = CHIP_HAWAII|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x67B0), .driver_data = CHIP_HAWAII|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x67B1), .driver_data = CHIP_HAWAII|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x67B8), .driver_data = CHIP_HAWAII|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x67B9), .driver_data = CHIP_HAWAII|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x67BA), .driver_data = CHIP_HAWAII|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x67BE), .driver_data = CHIP_HAWAII|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6800), .driver_data = CHIP_PITCAIRN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6801), .driver_data = CHIP_PITCAIRN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6802), .driver_data = CHIP_PITCAIRN|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6806), .driver_data = CHIP_PITCAIRN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6808), .driver_data = CHIP_PITCAIRN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6809), .driver_data = CHIP_PITCAIRN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6810), .driver_data = CHIP_PITCAIRN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6811), .driver_data = CHIP_PITCAIRN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6816), .driver_data = CHIP_PITCAIRN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6817), .driver_data = CHIP_PITCAIRN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6818), .driver_data = CHIP_PITCAIRN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6819), .driver_data = CHIP_PITCAIRN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6820), .driver_data = CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6821), .driver_data = CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6822), .driver_data = CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6823), .driver_data = CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6824), .driver_data = CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6825), .driver_data = CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6826), .driver_data = CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6827), .driver_data = CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6828), .driver_data = CHIP_VERDE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6829), .driver_data = CHIP_VERDE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x682A), .driver_data = CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x682B), .driver_data = CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x682C), .driver_data = CHIP_VERDE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x682D), .driver_data = CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x682F), .driver_data = CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6830), .driver_data = CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6831), .driver_data = CHIP_VERDE|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6835), .driver_data = CHIP_VERDE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6837), .driver_data = CHIP_VERDE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6838), .driver_data = CHIP_VERDE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6839), .driver_data = CHIP_VERDE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x683B), .driver_data = CHIP_VERDE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x683D), .driver_data = CHIP_VERDE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x683F), .driver_data = CHIP_VERDE|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6840), .driver_data = CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6841), .driver_data = CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6842), .driver_data = CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6843), .driver_data = CHIP_TURKS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6849), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x684C), .driver_data = CHIP_PITCAIRN|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6850), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6858), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6859), .driver_data = CHIP_TURKS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6880), .driver_data = CHIP_CYPRESS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6888), .driver_data = CHIP_CYPRESS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6889), .driver_data = CHIP_CYPRESS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x688A), .driver_data = CHIP_CYPRESS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x688C), .driver_data = CHIP_CYPRESS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x688D), .driver_data = CHIP_CYPRESS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6898), .driver_data = CHIP_CYPRESS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x6899), .driver_data = CHIP_CYPRESS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x689b), .driver_data = CHIP_CYPRESS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x689c), .driver_data = CHIP_HEMLOCK|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x689d), .driver_data = CHIP_HEMLOCK|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x689e), .driver_data = CHIP_CYPRESS|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68a0), .driver_data = CHIP_JUNIPER|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68a1), .driver_data = CHIP_JUNIPER|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68a8), .driver_data = CHIP_JUNIPER|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68a9), .driver_data = CHIP_JUNIPER|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68b0), .driver_data = CHIP_JUNIPER|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68b8), .driver_data = CHIP_JUNIPER|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68b9), .driver_data = CHIP_JUNIPER|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68ba), .driver_data = CHIP_JUNIPER|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68be), .driver_data = CHIP_JUNIPER|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68bf), .driver_data = CHIP_JUNIPER|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68c0), .driver_data = CHIP_REDWOOD|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68c1), .driver_data = CHIP_REDWOOD|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68c7), .driver_data = CHIP_REDWOOD|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68c8), .driver_data = CHIP_REDWOOD|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68c9), .driver_data = CHIP_REDWOOD|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68d8), .driver_data = CHIP_REDWOOD|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68d9), .driver_data = CHIP_REDWOOD|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68da), .driver_data = CHIP_REDWOOD|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68de), .driver_data = CHIP_REDWOOD|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68e0), .driver_data = CHIP_CEDAR|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68e1), .driver_data = CHIP_CEDAR|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68e4), .driver_data = CHIP_CEDAR|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68e5), .driver_data = CHIP_CEDAR|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68e8), .driver_data = CHIP_CEDAR|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68e9), .driver_data = CHIP_CEDAR|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68f1), .driver_data = CHIP_CEDAR|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68f2), .driver_data = CHIP_CEDAR|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68f8), .driver_data = CHIP_CEDAR|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68f9), .driver_data = CHIP_CEDAR|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68fa), .driver_data = CHIP_CEDAR|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x68fe), .driver_data = CHIP_CEDAR|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7100), .driver_data = CHIP_R520|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7101), .driver_data = CHIP_R520|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7102), .driver_data = CHIP_R520|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7103), .driver_data = CHIP_R520|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7104), .driver_data = CHIP_R520|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7105), .driver_data = CHIP_R520|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7106), .driver_data = CHIP_R520|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7108), .driver_data = CHIP_R520|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7109), .driver_data = CHIP_R520|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x710A), .driver_data = CHIP_R520|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x710B), .driver_data = CHIP_R520|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x710C), .driver_data = CHIP_R520|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x710E), .driver_data = CHIP_R520|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x710F), .driver_data = CHIP_R520|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7140), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7141), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7142), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7143), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7144), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7145), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7146), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7147), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7149), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x714A), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x714B), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x714C), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x714D), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x714E), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x714F), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7151), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7152), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7153), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x715E), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x715F), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7180), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7181), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7183), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7186), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7187), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7188), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x718A), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x718B), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x718C), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x718D), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x718F), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7193), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7196), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x719B), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x719F), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71C0), .driver_data = CHIP_RV530|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71C1), .driver_data = CHIP_RV530|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71C2), .driver_data = CHIP_RV530|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71C3), .driver_data = CHIP_RV530|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71C4), .driver_data = CHIP_RV530|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71C5), .driver_data = CHIP_RV530|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71C6), .driver_data = CHIP_RV530|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71C7), .driver_data = CHIP_RV530|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71CD), .driver_data = CHIP_RV530|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71CE), .driver_data = CHIP_RV530|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71D2), .driver_data = CHIP_RV530|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71D4), .driver_data = CHIP_RV530|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71D5), .driver_data = CHIP_RV530|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71D6), .driver_data = CHIP_RV530|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71DA), .driver_data = CHIP_RV530|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x71DE), .driver_data = CHIP_RV530|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7200), .driver_data = CHIP_RV515|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7210), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7211), .driver_data = CHIP_RV515|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7240), .driver_data = CHIP_R580|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7243), .driver_data = CHIP_R580|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7244), .driver_data = CHIP_R580|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7245), .driver_data = CHIP_R580|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7246), .driver_data = CHIP_R580|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7247), .driver_data = CHIP_R580|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7248), .driver_data = CHIP_R580|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7249), .driver_data = CHIP_R580|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x724A), .driver_data = CHIP_R580|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x724B), .driver_data = CHIP_R580|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x724C), .driver_data = CHIP_R580|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x724D), .driver_data = CHIP_R580|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x724E), .driver_data = CHIP_R580|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x724F), .driver_data = CHIP_R580|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7280), .driver_data = CHIP_RV570|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7281), .driver_data = CHIP_RV560|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7283), .driver_data = CHIP_RV560|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7284), .driver_data = CHIP_R580|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7287), .driver_data = CHIP_RV560|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7288), .driver_data = CHIP_RV570|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7289), .driver_data = CHIP_RV570|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x728B), .driver_data = CHIP_RV570|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x728C), .driver_data = CHIP_RV570|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7290), .driver_data = CHIP_RV560|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7291), .driver_data = CHIP_RV560|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7293), .driver_data = CHIP_RV560|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7297), .driver_data = CHIP_RV560|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7834), .driver_data = CHIP_RS300|RADEON_IS_IGP|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7835), .driver_data = CHIP_RS300|RADEON_IS_IGP|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x791e), .driver_data = CHIP_RS690|RADEON_IS_IGP|RADEON_NEW_MEMMAP|RADEON_IS_IGPGART }, \
++	{ PCI_DEVICE(0x1002, 0x791f), .driver_data = CHIP_RS690|RADEON_IS_IGP|RADEON_NEW_MEMMAP|RADEON_IS_IGPGART }, \
++	{ PCI_DEVICE(0x1002, 0x793f), .driver_data = CHIP_RS600|RADEON_IS_IGP|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7941), .driver_data = CHIP_RS600|RADEON_IS_IGP|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x7942), .driver_data = CHIP_RS600|RADEON_IS_IGP|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x796c), .driver_data = CHIP_RS740|RADEON_IS_IGP|RADEON_NEW_MEMMAP|RADEON_IS_IGPGART }, \
++	{ PCI_DEVICE(0x1002, 0x796d), .driver_data = CHIP_RS740|RADEON_IS_IGP|RADEON_NEW_MEMMAP|RADEON_IS_IGPGART }, \
++	{ PCI_DEVICE(0x1002, 0x796e), .driver_data = CHIP_RS740|RADEON_IS_IGP|RADEON_NEW_MEMMAP|RADEON_IS_IGPGART }, \
++	{ PCI_DEVICE(0x1002, 0x796f), .driver_data = CHIP_RS740|RADEON_IS_IGP|RADEON_NEW_MEMMAP|RADEON_IS_IGPGART }, \
++	{ PCI_DEVICE(0x1002, 0x9400), .driver_data = CHIP_R600|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9401), .driver_data = CHIP_R600|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9402), .driver_data = CHIP_R600|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9403), .driver_data = CHIP_R600|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9405), .driver_data = CHIP_R600|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x940A), .driver_data = CHIP_R600|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x940B), .driver_data = CHIP_R600|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x940F), .driver_data = CHIP_R600|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94A0), .driver_data = CHIP_RV740|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94A1), .driver_data = CHIP_RV740|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94A3), .driver_data = CHIP_RV740|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94B1), .driver_data = CHIP_RV740|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94B3), .driver_data = CHIP_RV740|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94B4), .driver_data = CHIP_RV740|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94B5), .driver_data = CHIP_RV740|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94B9), .driver_data = CHIP_RV740|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9440), .driver_data = CHIP_RV770|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9441), .driver_data = CHIP_RV770|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9442), .driver_data = CHIP_RV770|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9443), .driver_data = CHIP_RV770|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9444), .driver_data = CHIP_RV770|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9446), .driver_data = CHIP_RV770|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x944A), .driver_data = CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x944B), .driver_data = CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x944C), .driver_data = CHIP_RV770|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x944E), .driver_data = CHIP_RV770|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9450), .driver_data = CHIP_RV770|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9452), .driver_data = CHIP_RV770|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9456), .driver_data = CHIP_RV770|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x945A), .driver_data = CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x945B), .driver_data = CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x945E), .driver_data = CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9460), .driver_data = CHIP_RV770|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9462), .driver_data = CHIP_RV770|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x946A), .driver_data = CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x946B), .driver_data = CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x947A), .driver_data = CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x947B), .driver_data = CHIP_RV770|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9480), .driver_data = CHIP_RV730|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9487), .driver_data = CHIP_RV730|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9488), .driver_data = CHIP_RV730|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9489), .driver_data = CHIP_RV730|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x948A), .driver_data = CHIP_RV730|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x948F), .driver_data = CHIP_RV730|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9490), .driver_data = CHIP_RV730|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9491), .driver_data = CHIP_RV730|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9495), .driver_data = CHIP_RV730|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9498), .driver_data = CHIP_RV730|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x949C), .driver_data = CHIP_RV730|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x949E), .driver_data = CHIP_RV730|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x949F), .driver_data = CHIP_RV730|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94C0), .driver_data = CHIP_RV610|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94C1), .driver_data = CHIP_RV610|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94C3), .driver_data = CHIP_RV610|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94C4), .driver_data = CHIP_RV610|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94C5), .driver_data = CHIP_RV610|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94C6), .driver_data = CHIP_RV610|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94C7), .driver_data = CHIP_RV610|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94C8), .driver_data = CHIP_RV610|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94C9), .driver_data = CHIP_RV610|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94CB), .driver_data = CHIP_RV610|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94CC), .driver_data = CHIP_RV610|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x94CD), .driver_data = CHIP_RV610|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9500), .driver_data = CHIP_RV670|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9501), .driver_data = CHIP_RV670|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9504), .driver_data = CHIP_RV670|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9505), .driver_data = CHIP_RV670|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9506), .driver_data = CHIP_RV670|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9507), .driver_data = CHIP_RV670|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9508), .driver_data = CHIP_RV670|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9509), .driver_data = CHIP_RV670|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x950F), .driver_data = CHIP_RV670|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9511), .driver_data = CHIP_RV670|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9515), .driver_data = CHIP_RV670|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9517), .driver_data = CHIP_RV670|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9519), .driver_data = CHIP_RV670|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9540), .driver_data = CHIP_RV710|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9541), .driver_data = CHIP_RV710|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9542), .driver_data = CHIP_RV710|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x954E), .driver_data = CHIP_RV710|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x954F), .driver_data = CHIP_RV710|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9552), .driver_data = CHIP_RV710|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9553), .driver_data = CHIP_RV710|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9555), .driver_data = CHIP_RV710|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9557), .driver_data = CHIP_RV710|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x955f), .driver_data = CHIP_RV710|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9580), .driver_data = CHIP_RV630|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9581), .driver_data = CHIP_RV630|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9583), .driver_data = CHIP_RV630|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9586), .driver_data = CHIP_RV630|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9587), .driver_data = CHIP_RV630|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9588), .driver_data = CHIP_RV630|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9589), .driver_data = CHIP_RV630|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x958A), .driver_data = CHIP_RV630|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x958B), .driver_data = CHIP_RV630|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x958C), .driver_data = CHIP_RV630|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x958D), .driver_data = CHIP_RV630|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x958E), .driver_data = CHIP_RV630|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x958F), .driver_data = CHIP_RV630|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9590), .driver_data = CHIP_RV635|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9591), .driver_data = CHIP_RV635|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9593), .driver_data = CHIP_RV635|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9595), .driver_data = CHIP_RV635|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9596), .driver_data = CHIP_RV635|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9597), .driver_data = CHIP_RV635|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9598), .driver_data = CHIP_RV635|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9599), .driver_data = CHIP_RV635|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x959B), .driver_data = CHIP_RV635|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x95C0), .driver_data = CHIP_RV620|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x95C2), .driver_data = CHIP_RV620|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x95C4), .driver_data = CHIP_RV620|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x95C5), .driver_data = CHIP_RV620|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x95C6), .driver_data = CHIP_RV620|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x95C7), .driver_data = CHIP_RV620|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x95C9), .driver_data = CHIP_RV620|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x95CC), .driver_data = CHIP_RV620|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x95CD), .driver_data = CHIP_RV620|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x95CE), .driver_data = CHIP_RV620|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x95CF), .driver_data = CHIP_RV620|RADEON_NEW_MEMMAP }, \
++	{ PCI_DEVICE(0x1002, 0x9610), .driver_data = CHIP_RS780|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9611), .driver_data = CHIP_RS780|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9612), .driver_data = CHIP_RS780|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9613), .driver_data = CHIP_RS780|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9614), .driver_data = CHIP_RS780|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9615), .driver_data = CHIP_RS780|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9616), .driver_data = CHIP_RS780|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9640), .driver_data = CHIP_SUMO|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9641), .driver_data = CHIP_SUMO|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9642), .driver_data = CHIP_SUMO2|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9643), .driver_data = CHIP_SUMO2|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9644), .driver_data = CHIP_SUMO2|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9645), .driver_data = CHIP_SUMO2|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9647), .driver_data = CHIP_SUMO|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP },\
++	{ PCI_DEVICE(0x1002, 0x9648), .driver_data = CHIP_SUMO|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP },\
++	{ PCI_DEVICE(0x1002, 0x9649), .driver_data = CHIP_SUMO2|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP },\
++	{ PCI_DEVICE(0x1002, 0x964a), .driver_data = CHIP_SUMO|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x964b), .driver_data = CHIP_SUMO|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x964c), .driver_data = CHIP_SUMO|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x964e), .driver_data = CHIP_SUMO|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP },\
++	{ PCI_DEVICE(0x1002, 0x964f), .driver_data = CHIP_SUMO|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP },\
++	{ PCI_DEVICE(0x1002, 0x9710), .driver_data = CHIP_RS880|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9711), .driver_data = CHIP_RS880|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9712), .driver_data = CHIP_RS880|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9713), .driver_data = CHIP_RS880|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9714), .driver_data = CHIP_RS880|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9715), .driver_data = CHIP_RS880|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9802), .driver_data = CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9803), .driver_data = CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9804), .driver_data = CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9805), .driver_data = CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9806), .driver_data = CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9807), .driver_data = CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9808), .driver_data = CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9809), .driver_data = CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x980A), .driver_data = CHIP_PALM|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9830), .driver_data = CHIP_KABINI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9831), .driver_data = CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9832), .driver_data = CHIP_KABINI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9833), .driver_data = CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9834), .driver_data = CHIP_KABINI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9835), .driver_data = CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9836), .driver_data = CHIP_KABINI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9837), .driver_data = CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9838), .driver_data = CHIP_KABINI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9839), .driver_data = CHIP_KABINI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x983a), .driver_data = CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x983b), .driver_data = CHIP_KABINI|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x983c), .driver_data = CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x983d), .driver_data = CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x983e), .driver_data = CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x983f), .driver_data = CHIP_KABINI|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9850), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9851), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9852), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9853), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9854), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9855), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9856), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9857), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9858), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9859), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x985A), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x985B), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x985C), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x985D), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x985E), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x985F), .driver_data = CHIP_MULLINS|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9900), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9901), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9903), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9904), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9905), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9906), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9907), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9908), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9909), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x990A), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x990B), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x990C), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x990D), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x990E), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x990F), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9910), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9913), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9917), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9918), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9919), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9990), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9991), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9992), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9993), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9994), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9995), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9996), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9997), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9998), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x9999), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x999A), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x999B), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x999C), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x999D), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x99A0), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x99A2), .driver_data = CHIP_ARUBA|RADEON_IS_MOBILITY|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ PCI_DEVICE(0x1002, 0x99A4), .driver_data = CHIP_ARUBA|RADEON_NEW_MEMMAP|RADEON_IS_IGP }, \
++	{ }
+
+base-commit: 254f49634ee16a731174d2ae34bc50bd5f45e731
+-- 
+2.47.3
 
