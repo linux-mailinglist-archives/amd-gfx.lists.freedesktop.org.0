@@ -2,79 +2,84 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YHzUOvNW82mLzgEAu9opvQ
+	id iBNHCfBW82mLzgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 15:19:47 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 15:19:44 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57FC84A3566
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 15:19:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8F904A355F
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 15:19:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94C9C10F332;
-	Thu, 30 Apr 2026 13:19:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3192410F316;
+	Thu, 30 Apr 2026 13:19:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dZQFEAu5";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YMXZ6YB6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2BBF10F332
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 13:19:43 +0000 (UTC)
-Received: by mail-wr1-f50.google.com with SMTP id
- ffacd0b85a97d-43cfd1f9fd1so606058f8f.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 06:19:43 -0700 (PDT)
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
+ [209.85.128.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF7B910F315
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 13:19:40 +0000 (UTC)
+Received: by mail-wm1-f52.google.com with SMTP id
+ 5b1f17b1804b1-48909558b3aso10100145e9.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 06:19:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777555182; x=1778159982; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1777555179; x=1778159979; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=L/4v1r8MF7GDXD4pKlMtYyt2PHC0hli42HFWXrDxv5g=;
- b=dZQFEAu5noFY7MNQLuEM1zpxVqDDnLVfcYAupj4Q/t82vKpcMNm0TX20iKWElZzpz3
- DuDvbeE0Q9KpEg25D7fdUiZMPGXFmNcIZkJj4adjdIaHcFkv3WWnFv/cIWx7zx8KuaVp
- cnK99zj5MNAnDWfCw/MgU9Ekx+60CML5GRidH8uoEpO8V7JmoyddkeyeB74w52UpmPZy
- 3LWia5+fT5CULZRS3erRd8rofdZr3MiiO+mTDOz/ezXcEw/h1NViO65sRmiBDzCqApiI
- 6nX0+pnP7myOPqAs8Q0AoFgRNrKbNK+YcuGd0rJwKx15ciYOOLyZ/hbIJ8Pk+cACpbcn
- yESA==
+ :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=c/9Gsw7aEDLJz813g8vd3M59fwoYkF+qi6k8FuOTT3Q=;
+ b=YMXZ6YB6ZVlOr1G2KmjV8LnRdkj1I1KOGxfX5EfnHjpDLBXJYRu+x2bK9lSPL4A6WG
+ uq5cHwYefgPlxnfOJMKpOdOFPKH584PDHcyjs/HnhtCHVB+z/L8KYT4sZvydS0994wbM
+ w9XSWMMWC8KClsAwqTXK1PiBT0HSG73nTxT4GHIV//KsQUAZDaFtF6lJrUBDAZ+ujXvI
+ 3xjESnt1sFq+pt3Kh+3hFqCwjQjoEiEq4RXjjMWjCkPXAA3CZEiPsK7Sy6RUTDkjrzbn
+ QexGalCAWchv38Y50/W4kBVKI3HjJTdGCHQ8Os6GEyiPYxPwc2ioiid/PYO9WBEHsmxv
+ d/8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777555182; x=1778159982;
+ d=1e100.net; s=20251104; t=1777555179; x=1778159979;
  h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=L/4v1r8MF7GDXD4pKlMtYyt2PHC0hli42HFWXrDxv5g=;
- b=WhWGEr1hIekGZfvyQhJ0a0nENhxA9KHJ/VGCbadO8XgJK3DKxOQTpb0494nYLVazsa
- Dk4Hj93iK5BYI6OmyaXl36bTGGajcLkr/9T+tQeJJ/5FQBpvJBftfGMdvz5nhDgOFPnR
- YAFnLljN0yPVhpxlh8SS9bCMViFS152pVpCvcfA5rz5bmOLHL5fZcGcCBEFedf9uI7mE
- Ay55R7zD22ENdNURAfpxfmjVp8s6obZag7kucEQcIbEbEhAgIz+jQa3LxdgykGVVQLyn
- 07qJbt9RRaGSsPsldcE7SgDB6SKtiBeUydfjxpc2pYpgWam0ObAzKxhPvgSvGVtA09iU
- VNMA==
-X-Gm-Message-State: AOJu0YxXifDSvdglFBkOGqFwVpqozP0ZJTw3oQqOJcbMZ0qa5K7aIxT9
- 9gEV38pWpD8c44eWrPhDf6P4KJrWP3QRxeB4EPu9aBIF/dZzlcC9rwEUfKGqxA==
-X-Gm-Gg: AeBDieu1oUgfcQCqfjYSqSkYSn8icRcalzGBsvQUG4xNdewgdM63peRnboLKiDXqI6u
- T5X0Yl6geYvtGLYjLcZ1QfKMWcX7JrosLBUY52HLutjBk1Ua3tiUNEV1rJrYonvgO3aUs6OOlqL
- Q7EZds8fE+uYu+1wJvuFfXvRn70tyMjxyUZU6X/7SCxDfX6upzD6PXO/jBDvBpod13velsMxPor
- Pdgq6TwLFlkYcMFfWJXSlW+7IZyyTbHOueE/v9tF9uPTkc12MBIrJhOSegtp0Wjo8eIuGWe7I8p
- 0QeRoF6I5ad/2DizqOKyFN1OJxNOWq6QlHHbrJtoJqFBuQmdp5frQNc8msmdETQgJ1AuoLckbO8
- mEkvksFy4CRuap9/D128Yb2z9yWAlygoLkSh40XV1ceNmvVOWhEE6h1n0mosKItFadgvqQrxcmO
- a3gosgF22fPuF902bYspMAbdD9EedhGPTYjpSPWjt/fXhSbkM+FTEE1C+bemckQ6E3JziJrocyl
- J48xh7SOInWl3g=
-X-Received: by 2002:a5d:5d10:0:b0:448:9299:14bc with SMTP id
- ffacd0b85a97d-4493a45dd1bmr4716991f8f.0.1777555182199; 
- Thu, 30 Apr 2026 06:19:42 -0700 (PDT)
+ :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=c/9Gsw7aEDLJz813g8vd3M59fwoYkF+qi6k8FuOTT3Q=;
+ b=IzHmLofjR/5+1mOqhY0L/hY8J3vvT2l7rG6zqCt8a5aEnKyKafSbPvpAGceyf8GjPn
+ bLXUKRlsRMxHySjZMate26cH6QkqOFbeRL+xtxDFNwj1Rc7wCFmAl8OLCRVkxUvSHqIC
+ wCVxxyoPSzKz6xjdoYp9W3O2EqwjS9QDpJkA7ifEUdDhDy/ljH5BZ0pVbbZ7yFfZFz5H
+ M41mCQgNdNaGbGgVX8aqs5z+ZtyMYmWi0XDMIKw+6k4oiyG5mDkH13k58BE9COV+IAWw
+ vf9ytGeYQPLqSVM/p3QTK5vR+0zJHsL3OHyClMU5gtsUYbKQ6p7u5DQfUR0UO8+NJ421
+ iozQ==
+X-Gm-Message-State: AOJu0YxoEMAE1x9Fl5Wo4PXeScmiVka3v98f8AkwakSliRtUcPd/2nam
+ VWmN9YF+WIPLveZ3eHchuMAAGiyPbf9NObziegsLUKI/kiUJSWyosMQB5KtYuv5R
+X-Gm-Gg: AeBDiesCdcNm5Cr9NAav9F7DvGVQCqbXWSAzvyWTwR9D4iCUzieWlz2uA/DnUv8g/JR
+ bUpK//gXEI6aDLFbFUGMDhx1MtplTbREvfMNRHlujDpQA2I0mJbWCAL7nApNt7fxGAS9REWlgkq
+ JRB3ts0x7V/oYl3k5Qr3xt5uz4yG932xNw2VlGTAJJ/5LEfTlsbUY/N9PhrJqYuPPdA6G9TGBCV
+ JpZ1GgGYi7czG5V5aJpP4PpN9fTRfEqoyo9CQ06ZckeHgygvWEuS0L0lCaK93e6UGzLAX1Zi4mS
+ JlDf6V7+4zkiJgOYZadTVrKLluDvLlzKARwLRaRnGRq/XyBgw4ztNXWL7rn1HW+turcIqml9v9L
+ MmcVJS1U8X9Pg/o8dcB+P/nekW8VYvjsDBJPDg16X5C9S0H2yaLlcwqKrCUXyKAc8vnPqYnDeeI
+ WZnzchJc4gCtOcdC61OzXLvE8ev4p7tEQm8H51nHnSc7qGU9nGcDKFZpogFnn7T2UfkvgjMTKcC
+ 6Uw5p9tem/MQY4wRPk5j/0WCw==
+X-Received: by 2002:a05:600c:4f44:b0:487:2439:b7be with SMTP id
+ 5b1f17b1804b1-48a842566a4mr52159325e9.6.1777555179238; 
+ Thu, 30 Apr 2026 06:19:39 -0700 (PDT)
 Received: from timur-max.localnet (netacc-gpn-7-154-214.pool.yettel.hu.
  [176.77.154.214]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-447b7218622sm13052432f8f.21.2026.04.30.06.19.40
+ 5b1f17b1804b1-48a822bf3ffsm71712115e9.7.2026.04.30.06.19.36
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Apr 2026 06:19:41 -0700 (PDT)
+ Thu, 30 Apr 2026 06:19:38 -0700 (PDT)
 From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
-To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Kent Russell <kent.russell@amd.com>
-Subject: Re: [PATCH 1/3] drm/amdgpu/pm: add missing revision check for CI
-Date: Thu, 30 Apr 2026 14:20:52 +0200
-Message-ID: <2343400.vFx2qVVIhK@timur-max>
-In-Reply-To: <20260428145620.1480646-1-alexander.deucher@amd.com>
-References: <20260428145620.1480646-1-alexander.deucher@amd.com>
+To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
+ Alex Hung <alex.hung@amd.com>, Harry Wentland <Harry.Wentland@amd.com>,
+ Roman Li <Roman.Li@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ David Airlie <airlied@gmail.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Ivan Lipski <ivan.lipski@amd.com>, Melissa Wen <mwen@igalia.com>
+Subject: Re: [PATCH 05/14] drm/amd/display: Set max supported display clock
+ without max_clks_by_state
+Date: Thu, 30 Apr 2026 14:28:27 +0200
+Message-ID: <3591364.LZWGnKmheA@timur-max>
+In-Reply-To: <a16bce0b-6d7c-49a8-85c0-77458dd4bacb@igalia.com>
+References: <20260423191519.73127-1-timur.kristof@gmail.com>
+ <20260423191519.73127-6-timur.kristof@gmail.com>
+ <a16bce0b-6d7c-49a8-85c0-77458dd4bacb@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
@@ -91,79 +96,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 57FC84A3566
+X-Rspamd-Queue-Id: C8F904A355F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,gmail.com,igalia.com];
 	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
 	TAGGED_FROM(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,amd.com:email]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On 2026. =C3=A1prilis 28., kedd 16:56:18 k=C3=B6z=C3=A9p-eur=C3=B3pai ny=C3=
-=A1ri id=C5=91 Alex Deucher=20
+On 2026. =C3=A1prilis 29., szerda 22:24:38 k=C3=B6z=C3=A9p-eur=C3=B3pai ny=
+=C3=A1ri id=C5=91 Melissa Wen=20
 wrote:
-> The ci_populate_all_memory_levels() workaround only
-> applies to revision 0 SKUs.
+> On 23/04/2026 16:15, Timur Krist=C3=B3f wrote:
+> > The max_clks_by_state was based on hardcoded values, which are
+> > not really used anywhere, only to know the maximum clock.
+> > Just hardcode the same maximum clock for each DCE version.
+> >=20
+> > Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
+> > ---
+> >=20
+> >   .../amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c  | 16 +++++++++++-----
+> >   1 file changed, 11 insertions(+), 5 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
+> > b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c index
+> > 2ba341df7fffd..bef9a72f3382f 100644
+> > --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
+> > +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dce100/dce_clk_mgr.c
+> > @@ -391,9 +391,7 @@ static void dce_update_clocks(struct clk_mgr
+> > *clk_mgr_base,>=20
+> >   			struct dc_state *context,
+> >   			bool safe_to_lower)
+> >  =20
+> >   {
+> >=20
+> > -	struct clk_mgr_internal *clk_mgr_dce =3D
+> > TO_CLK_MGR_INTERNAL(clk_mgr_base);
+> > -	const int max_disp_clk =3D
+> > -		clk_mgr_dce-
+>max_clks_by_state[DM_PP_CLOCKS_STATE_PERFORMANCE].display_
+> > clk_khz; +	const int max_disp_clk =3D
+> > clk_mgr_base->clks.max_supported_dispclk_khz;>=20
+> >   	int patched_disp_clk =3D MIN(max_disp_clk,
+> >   	context->bw_ctx.bw.dce.dispclk_khz);
+> >   =09
+> >   	if (should_set_clock(safe_to_lower, patched_disp_clk,
+> >   	clk_mgr_base->clks.dispclk_khz)) {>=20
+> > @@ -445,8 +443,16 @@ void dce_clk_mgr_construct(
+> >=20
+> >   	clk_mgr->dprefclk_ss_divider =3D 1000;
+> >   	clk_mgr->ss_on_dprefclk =3D false;
+> >=20
+> > -	base->clks.max_supported_dispclk_khz =3D
+> > -		clk_mgr-
+>max_clks_by_state[DM_PP_CLOCKS_STATE_PERFORMANCE].display_clk_
+> > khz; +	if (ctx->dce_version >=3D DCE_VERSION_12_0)
+> > +		base->clks.max_supported_dispclk_khz =3D 1133000;
+> > +	else if (ctx->dce_version >=3D DCE_VERSION_11_2)
+> > +		base->clks.max_supported_dispclk_khz =3D 1108000;
 >=20
-> Link: https://gitlab.freedesktop.org/drm/amd/-/work_items/1816
-> Fixes: 9f4b35411cfe ("drm/amd/powerplay: add CI asics support to smumgr
-> (v3)") Reviewed-by: Kent Russell <kent.russell@amd.com>
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> For DCE 11.2, I see ClocksStatePerformance is 1132000 instead of
+> 1108000, right?
 
-Thank you Alex!
+Hi Melissa,
 
-Reviewed-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
-for all 3 patches in this series
+=46or DCE11.2, nobody really knows what the maximum supported display clock=
+ is.
+There are different values hardcoded in different parts of the code base.
+
+dce112_max_clks_by_state says it's 1132 MHz
+bw_calcs says it's 1108 MHz
+and dce112_update_clocks() adds 15%
+
+In this patch, I chose to go for 1108 MHz to match bw_calcs, but I can edit=
+=20
+that if you feel that 1132 MHz is better. What do you think?
+
+Thanks,
+Timur
 
 
-> ---
->  drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c
-> b/drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c index
-> 69d8b05ef2457..6e89a032e3dcf 100644
-> --- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c
-> +++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/ci_smumgr.c
-> @@ -1333,8 +1333,9 @@ static int ci_populate_all_memory_levels(struct
-> pp_hwmgr *hwmgr)
+> With the value fixed, this is:
 >=20
->  	dev_id =3D adev->pdev->device;
+> Reviewed-by: Melissa Wen <mwen@igalia.com>
 >=20
-> -	if ((dpm_table->mclk_table.count >=3D 2)
-> -		&& ((dev_id =3D=3D 0x67B0) ||  (dev_id =3D=3D 0x67B1))) {
-> +	if ((dpm_table->mclk_table.count >=3D 2) &&
-> +	    ((dev_id =3D=3D 0x67B0) ||  (dev_id =3D=3D 0x67B1)) &&
-> +	    (adev->pdev->revision =3D=3D 0)) {
->  		smu_data->smc_state_table.MemoryLevel[1].MinVddci =3D
->  				smu_data-
->smc_state_table.MemoryLevel[0].MinVddci;
->  		smu_data->smc_state_table.MemoryLevel[1].MinMvdd =3D
+> > +	else if (ctx->dce_version >=3D DCE_VERSION_11_0)
+> > +		base->clks.max_supported_dispclk_khz =3D 643000;
+> > +	else if (ctx->dce_version >=3D DCE_VERSION_8_0)
+> > +		base->clks.max_supported_dispclk_khz =3D 625000;
+> > +	else
+> > +		base->clks.max_supported_dispclk_khz =3D 600000;
+> >=20
+> >   	dce_clock_read_integrated_info(clk_mgr);
+> >   	dce_clock_read_ss_info(clk_mgr);
 
 
 
