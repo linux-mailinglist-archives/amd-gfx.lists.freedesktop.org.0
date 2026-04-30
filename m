@@ -2,130 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2MabM4cC82lswgEAu9opvQ
+	id qLyTIPYG82lBwwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 09:19:35 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 09:38:30 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 420BD49E885
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 09:19:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1805F49EB89
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 09:38:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDF2410E150;
-	Thu, 30 Apr 2026 07:19:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5EE210F24A;
+	Thu, 30 Apr 2026 07:38:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="g1Yh/eXX";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="F0ikFd2k";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013006.outbound.protection.outlook.com
- [40.93.196.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42FA410E150
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 07:19:32 +0000 (UTC)
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013066.outbound.protection.outlook.com
+ [40.93.201.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7C9710F274
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 07:38:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oHaCkaX+i9jJh/v/bhKwjFoUvsPrrA9W1ZOfAEly6MwCyOiAIBrr/WLeUP07cH8qyEkvHSWYAMd5cjlEcE6coOdh9cB0MpdzisXg7t4fDtluuRNoxBGk2XWM/MhxBCGuyrJHByIA7vctzBcWN4S+gM12VExnL1piGiZpEGrV3XqhAwOqasqdx0Q0cuAG5F2jz4hku1U2SWiIPe8vPUqGHio6IkU+UBsQbXadf3X22SGmfRo84ZMT1tCV6ewJ7Lxy0NbHoSDSbU+pcJBd+QDm1lM25bqxEyowZny4I/Ev2TjBsavP1pP5TSHFzk5ZV9BDFBLDA6H6rSb541vAgLc/Fw==
+ b=ayFKgVUyqPzabZZveRYPCGAekBPoWFAQot97OJjg7apq+vQwa52JW46ebDXMahuq3mJiAoEdn2EUEfqUcn+n+DTjDjYaTuPxoeLb1GGPel8/PdmhcieVKcdofTpnk/3bRQR0DfQZlrdRXEdFKUuTgsc5oXgkr+GMfN2AeX2aHh5CZTi2EaBNa2qODrWHWvQ5GvhAcsdi8oBSUl7G62g/wqjliFVwu5n9pdRiqaKpyl8xrQseTnRE03HU2QYG1uNE07/QNkHIf1IqWGuMf3gqjodn7PCsG/8WHNF8mZYV0TeBWJJiHtVZ+ULGxwgdmb1nE6aJPu4BBr/Q9MAHp99giw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LzX6NA8jNXo2+ABRl38wGoqfKBchcMbleXU6KUGsdLE=;
- b=Q+voygherqaL3WTfwgpUvZOoZ/tzFAG4Zeri+awe9tS2L95NheROYQ/cAcF4az86nkuh8LA8QPYyHcBfbgaeQFnPzZsh70fJenRo+zzXFfSkbgYJjyd0tn0waLFzHkLF2lUIgpGnfQGNdMtHYo39HfOWmygY0NDBWl4cHuIKjTkJjgp4NwZ3pl8d6atPxVUMZEyidubHOvqQhli7qKmpOsU1BF2hrSz/V1wFI1gMS+6LhoTLkvTuAH1mscPbJ0KdcbORal2JCD5Er86KdwPubMp0sployv9kR27qVpGnnLac1UQseMrs1eA5N1tqNiA+kLljAZpTwe5KnP2xPGxPcg==
+ bh=VXtMvW9JS2qtW5YpVU6uN9DIC/ijKT06qPNT51EvjmM=;
+ b=Sxoxnig+nhsGNPhQKDhVKD4Ci1aZGFhIpB5Rh9LTbK+CFAleTBK1vqJFwnF3e7EtZlVkrasYsBIFbB2YZdxWjhrPZHdhOczCtYLAQHm5pI5UyLebcz/4XHdbq+R32tgmJGb1OvRNWlK6qVhLFsaeKgXhJhZMBwbYmV+ZBP38Ob38qp6MTRQNyC84RuTcsZv/GxByEwLiRol7jTEF9Z9T35icfsD9Ze+mWIoRX0uvg+coldx46spLjdU3i5Lu/E57OPxcEbZYiSG86NXM5MM4onY1i3YCv/K3o9TMJESTOirM/SeHZDt8K09i/NA3xBMacCrIwXuktsvGBGcUhVQ0/g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LzX6NA8jNXo2+ABRl38wGoqfKBchcMbleXU6KUGsdLE=;
- b=g1Yh/eXXzPFAJMoIbDfCHeyNK86uuMpR/E5/goPC/+33PT83cVxhZqTjU4Uttq/LfAM+6qSmxlKoF7FNgfH1cfLzuFPoYpJhe989jIvEfFOtfiiTNfJf9LCLjNBkgfEw7rwoyvArdn+FSpVcYWM/xQjW6OCkPY8xRsZEsBaIXZ8=
+ bh=VXtMvW9JS2qtW5YpVU6uN9DIC/ijKT06qPNT51EvjmM=;
+ b=F0ikFd2kLI0eNV0m7RBm5Ga22vyl5l9uQQs20Eoa6xWw8Oh3LipO8GROAUA7RurOwi0xModjAphWqsYTtNIFnAKS+tCXOp3ZNgLLJyfPrWvKuJYPf8YtD4dwqDIsm40cfh2FjyeOZdSZqRWBGDp9ZibyKFHILsY4e9dUMzSZGVo=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by DM6PR12MB4092.namprd12.prod.outlook.com (2603:10b6:5:214::14) with
- Microsoft SMTP Server (version=TLS1_2,
+ by IA1PR12MB8080.namprd12.prod.outlook.com (2603:10b6:208:3fd::6)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.20; Thu, 30 Apr
- 2026 07:19:29 +0000
+ 2026 07:38:20 +0000
 Received: from PH7PR12MB5685.namprd12.prod.outlook.com
  ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
  ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9870.020; Thu, 30 Apr 2026
- 07:19:29 +0000
-Message-ID: <6266086d-15d4-476d-a992-503509032dd7@amd.com>
-Date: Thu, 30 Apr 2026 09:19:24 +0200
+ 07:38:20 +0000
+Message-ID: <3635373c-7ace-4b8d-ac7a-c478607bd99d@amd.com>
+Date: Thu, 30 Apr 2026 09:38:15 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu/gfx: extract compute wptr doorbell helpers to
- amdgpu_gfx.c
-To: "John B. Moore" <jbmoore61@gmail.com>, alexdeucher@gmail.com
-Cc: alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org
-References: <20260429202042.21718-1-jbmoore61@gmail.com>
+Subject: Re: [PATCH 2/2] drm/amdgpu: Use helper to set gart size
+To: Lijo Lazar <lijo.lazar@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Hawking.Zhang@amd.com, Alexander.Deucher@amd.com, Asad.Kamal@amd.com
+References: <20260430055527.4026042-1-lijo.lazar@amd.com>
+ <20260430055527.4026042-2-lijo.lazar@amd.com>
 Content-Language: en-US
 From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260429202042.21718-1-jbmoore61@gmail.com>
+In-Reply-To: <20260430055527.4026042-2-lijo.lazar@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BN9PR03CA0703.namprd03.prod.outlook.com
- (2603:10b6:408:ef::18) To PH7PR12MB5685.namprd12.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR3P281CA0108.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a3::11) To PH7PR12MB5685.namprd12.prod.outlook.com
  (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DM6PR12MB4092:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0c88a7d2-d39d-4612-4fa2-08dea688d136
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA1PR12MB8080:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0d944cc3-a94b-4b7f-2416-08dea68b7381
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|22082099003|56012099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: bMOPZW2Tp0xuNJEciQnu7HRCkvsf6CAy4bJ8gRUI4TBaiJp6JGIi1jg0izWoXLW+iN2LtMzEMlp8VCXjyhLo+VEEuiWLDNCjQHJlHN7CSzIXylCha5FG3LvKOCwWPwhlAPxhZsXoB+TUt9OYQG+4vj37BaROWwmX7Zdo7kf4fYSvQtuH7lW5yvYgxBwW1dFjG4RTODi35jYvfPvfyYcuWCTMCMQAF4OlcYNTQZMQXoeJ79Q11npFdaJPr6ll8EhaQLhFq14I1enq+hnnrQDmBeH3r3YdfrDWVh+VxeEq2CKXE56/9ZPXK5tVmvv1I7Wbe2WWaU6kQRR0bmcgXvELmR9h6QYTafSQIFj2mFuyvoCNqRw+gF3rppMtXH+rDXVtJtOF9qiUKhlFtcPKnI1BLA5l9neSGMPbYc5KV+eeyZTFLAqSGbF1evxtoQHm+e4rfOvtqtuKwoMzQy2bIQdRGtVBy+DBXNarl7lKW1ps7I2bWr7UrGWQJYq2obPBr7Yg8RWQFnxJ+3T6i7L0lhsLj92O/ajN1ipp8irVgAH552mcWk11wrR1HIkqDBiLsORyTVvJQbzozodE5yzUcJ3EbutzJv7r8Ehoc26c16ziR1pcTDq7NcKJsyt+Prbx+duZHBZ/6+lf/nmsa+kxTzdnvSNMkh27qOobNVnRz23kseHWDk2hGTIs8LU01X6hWDptiq6Y+Xzq1kc8gchq/JZCNEc9VT/ptwdS32WV8bqajkE=
+ ARA:13230040|366016|1800799024|376014|18002099003|22082099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: 62RPmqsDySFOYJHXzOkalyU3908UJ7Dh+gphHyum0eRAIuL6iYKRBA7fp/34XmX/tTMcvO8V00P7U6il97KJqVm+fvtLkLAUjfx7WKMwa/wHlleefW+R/cTjEJVbHtvD2Pg1sPU0v75pHFY5hRCSsazMcCxjs9q9FmB02KOHKrk+dcFP6s41l6bKWt+2y1jybQ+w/4aUj/A9j//Vh7QMXfn/C0aGi+EHyliGHG9Lm1uTu1KoDjH9VAqgtSglrreEFH4Cuxl+UPyubgLzc2GK1aFKhFqTTDdzSCNN99kEdVD/W3GK0p1q+OyvACzl4q6rqVxI24MPEZF04u+0hfahlfwgsVXgV+uD4o1NHOVgz1/w0NGtlTJPfZNHsVUZb5Wq0yzePqmQ1S8zVnrfNE7l1PRi+UfSOuPRVbaF7jg+2fHUKITHEtgQJstvZu96xAM8apcqCxPOe7kIX7nC5NKhlggxh6xz4mSZz0EMHztORYtT0UCPGZNnVCJbN3+fLav39hItIjfCZTbUpqkApMrDFHbDvGRHaZYYwbSQ0geDLfAvMuocEwdZUKAjJw1T5Ov5E4bAuegK+6UAv8jt50NuIjhwopPvoeNFK0vBUpWjxwjHmksn92C8nQSGYP9jHOnRr+3/xPAlbjSucpWsYJPLB5SwayByU3JiQEukmEcUy4FdAbirLrcibMjW68ESQF1MC7MtNuXGr4OBftS28r7rNMOU95GSqu2nHyqLvsCCYDE=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(22082099003)(56012099003)(18002099003);
+ SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(22082099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cUpSMWN4eUxhQ3Bad1VQMnBIUnc0VlZVTHl6bzZPSWNpczM3Q0Q0TS9nWWlF?=
- =?utf-8?B?Y291eGFweDI0VGhLL3hNSXNESFlYelgyMGgrbTBpWDNtSndxWkdneDBJdWRy?=
- =?utf-8?B?ZkhPNVhjeE94OUJ3bHBPaE92V3lCZlVkMWFGVFhMbjhVL2hmV0ZjWGVEK1ZW?=
- =?utf-8?B?QjBWdldMQm1XSVB6NGlvaWdIejYrMEh2OVFOS0J3UzVwSjdYcVBPajNubnFx?=
- =?utf-8?B?MGpjWm1yWmJWdTNGWEszcEJ4cWhXTzhkSmRldnNWNzArbzlDbjR1UVMySHpL?=
- =?utf-8?B?TnN5OG1mcDRwWU1Kdks0MXd0TW16RHVSVGUyT1dWSkJxbVJ0bkhKTWpISTRi?=
- =?utf-8?B?Ump1dk56RTNIS25vSzFBTnFscXRyQ3hja2RhaHRKZWtXVlRWNkRsSW0wMHBn?=
- =?utf-8?B?eUNyNyt4Z0ZacE9ndldRRWE0ZWNkL1Jid1dqME9zZlQweitYMXNWNGtrUGFs?=
- =?utf-8?B?ejlJYVI2U0lVaW13QUVKditsNjdFbFpjVy9VWHFjQnRHRUpQSytyTzY0RWw3?=
- =?utf-8?B?Ykt6ZkRvajdVUDNtM2ZFK3d4ZHl4YUd1LzB5WUJMNk80ckNuRnV6V003WXNs?=
- =?utf-8?B?OGxMU3Z4OXBZTElUU3E3YUpHUzluUUtKelVpSkpOaitJc2NUcWh5aGEycVlX?=
- =?utf-8?B?U3h0dzJGZ2M2U0poQXh1TU1Nb1hQOThRaUZBWk1MMDVwVnhrRVFST3hWOGlD?=
- =?utf-8?B?dGlRZ2lMdWc5NjFRd3d0YklPUGVIVWt4TCt4SUJObGhGQ1hOUVJ3dEFQRS9Y?=
- =?utf-8?B?dVJLanByUnlDUHBsdGZiMkJsUDNFNmxOSDNzQlpKWCtDRjBaNWFSYUdJS2tH?=
- =?utf-8?B?blA5VnJaR1RsOE1PS0dueGxUcW1VaTAzUWlJd0VOOWR4OUVhUUYrZHk5bzh6?=
- =?utf-8?B?THFvZHRvMjRVVFJrbUx3L3NCc1AxV3J0V25hdkFPck9KbFo1WmMzcE9uaXhR?=
- =?utf-8?B?YWdNQWtkNlBPcWUyTXFkRDFkMUNDZFplTXBmbFpmM2RVRTBycWlPVzdXeEZp?=
- =?utf-8?B?WU5zNThTaVN0ZkI5bDBiL09sT3dpQUlHb0xDRDRXcGlvVjdlV3J4d1NmMTVC?=
- =?utf-8?B?bTJMZFlWMkFTVDAwakNySkRBbUY4SlV2N2FEMXp6RXdJbzU4OHU5V05vT2NE?=
- =?utf-8?B?QUNqQjh2THdXVEhpRDN1bGtzdmVpb255M01OVzBjWWRkMTdrcWhWQStranI3?=
- =?utf-8?B?cXgxQ3dnc055YVpQUG5vbnNYRVBPbmNUcjl4VDJuaXlna2krUDhySlBzSzRk?=
- =?utf-8?B?MDlweDNZdzZTNHpyT2c3WUZNamhtMVo3NmhzaHFzTTljbTloekxuYjM2MXd6?=
- =?utf-8?B?SWdRa1pFdXNKbWUwd3BCYzA1TENucE43S0M3UFR0MmVSZmZDWHZkKzcrK3l3?=
- =?utf-8?B?dnNia21BcThXNnVZMk1iOUhVTUVmRTgvdjJud3VZUnFyeWlPakMyYjFSZHlj?=
- =?utf-8?B?aGZhSEMrVUhuWHhhbFZ6WEE1Y2FVdGhCNC9FenQ2SHR5ZlFJRW81UHQrejlm?=
- =?utf-8?B?UXl2U0RSN3BLVHlsVmpSemk3bWlobGhtMm15SDVKc0NLd0NPbWN2TzhPdUhV?=
- =?utf-8?B?L210OW9LNjRtTHVtS0V1ajNlWFQxUjBDdFJETTV0azNvd2ZHd1p2MjhnMHBL?=
- =?utf-8?B?Z1kyQVFONnNuNmhwSDY4ajlINHIvMVB0aFhoSURmVThiV1ZkQ3kvYWd4Vm4w?=
- =?utf-8?B?QkdTbm5rWDBkTkhGOXU3N3RzQUJTcE1ldkhQVW5ObEdzUWdiNjhQckZESUJG?=
- =?utf-8?B?clFjTUdmZGVOZ2lVdjhkS0xQL1FabGhQVUdEWUM5YWJtU2tYT0M4LzdMTFRS?=
- =?utf-8?B?YXY0eTZOejliK25WSytmbnU0Tzd0emxQTG5EWFNEZ0o1WGdOdlJuK08xVlpI?=
- =?utf-8?B?T3lFTVlpaW8rNkxKeGJwQ1Fma3ZEMGRaWVMwbUJBME9saG9lWGVXZ2JGMjQ1?=
- =?utf-8?B?cWhHUU1TcXNNSHRBN25GSm9hdW5ZUVQ1SWdlRDcwWDNGYjRzQWw5UVJDWXp2?=
- =?utf-8?B?ZGVhUWlHZEsyMktFLzdtek5zY1JDZG9aMXNMeitZcWY5cC9MNHo3R3ZjZ045?=
- =?utf-8?B?SkZLVjlMSXc0cmpjMFZUN2pLMXBrV3picmNWVFg4c01sQTBDd0NwRmN5dDU4?=
- =?utf-8?B?ZU1GU3dYQ0EyOHRzaWZjS0FrazF1SEZ5VWl6RUx1TmQ3NDBqY0xTSDhYZXNS?=
- =?utf-8?B?cStLY3Ivc3pIL1VBOU91UnJQTzNsZEp0RWU2RmhXYXZvSDlNM0c2bzJFM0Z0?=
- =?utf-8?B?cW5lRUVxWHNMaUl3cWpjeGVYNVZ2SFB5R2JsWlY1Zm9aS2JzR0FHVGJybzJ4?=
- =?utf-8?Q?kE4MHa97tQyKSdak4q?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VHY3ckxSc2RUeHE3VVgzc1d2MFVpRTJ6ck9VUk9VZHJzT0phMFYwTXNLOFFS?=
+ =?utf-8?B?Yk44aEU5NGwzMllSL2twOUI4c01PN0pERnY2ZVh2R09kRUlxWllwU0VjUDhK?=
+ =?utf-8?B?YVFSYWFzQ2xvUStCaWZrWm5oNUxFanNRQnhZb3V0OWtoNnhRMXpFTjdrd0RL?=
+ =?utf-8?B?NWpFQkF4bUhZOHFMZmxMd080NjY5RXZYODZVUSt1NW9yTkFJQ0J2TENvd055?=
+ =?utf-8?B?SFI0VWlTNlhhUGdKMkZkcVZIcmtFckZhd2kxd1A1VUFWZ2M2ZTFyZEtyaTdv?=
+ =?utf-8?B?czczSkhncDh1cDRzbjk4dDlpejRlczBNQ3ZFUzBpd2JrcURNeXkyNXE1bk9l?=
+ =?utf-8?B?WFJVeUJLa202ZEd5dEM1aWhsVVUza0ZBb1p2cUVITU9OWFlGeTUyM0RJSFdO?=
+ =?utf-8?B?QU13ejdxWEdDLzdHdUJ2LzNFQ2lKbk42RXoyTU43dkgrM2YvTnZ6WkFnM3V1?=
+ =?utf-8?B?OHJqR0F0bUducU01Zkg2aVFIM0YxdEduRnNMc0NTYU9ZSngreTNXb3BOWUYz?=
+ =?utf-8?B?TDVabGVrbmV6YXRaaWROVndyNjAxQTczWEQ5YVZYTkhISnVuSXJwa0NDUU9O?=
+ =?utf-8?B?ekpkbXFPSzA2bksvQmVOeDRDOXJyamlqRUV3bWZjN1lDbURIN1JvSnM0U2ZR?=
+ =?utf-8?B?WTUyZWFCajI0aTlEa3dINVNVUk0xUk8yNzhta1cyNUNMcmFhbzVaQXJRZEla?=
+ =?utf-8?B?Vi9icUZ1SjhXMnBLNm9lcHZtdUNRbVlKK0pYODdiNy9aVnB6ODhLZWgxMUR4?=
+ =?utf-8?B?L1R0cTg2SGI5OHhEZmcvYSsrWDBmdGRkcHdEZ0orYWxJRkV5ZU4xeHV5eU1r?=
+ =?utf-8?B?d013QzVrdXc0WTNjcFhIUUh3RGFMdDQwYVBWNTNCc1JOWksrcUJsaGRuS1ha?=
+ =?utf-8?B?S0U1T0lOdCtJZS9wa0lGZjljTHlDQmFDMTZrZlhtZXRWS0tPWm14UXkweDlJ?=
+ =?utf-8?B?b2ZJVEgxY09mSFc5OEdzdUtMQUkzaEtQWEN2RVlhQzJyZ3hMMlUyR3lIQkw0?=
+ =?utf-8?B?RVczQzFncTdkeFBCQUtrM0E0ckdZOGEzVW5lLy9NL3Q4aFJoSWZMWGJGNlFT?=
+ =?utf-8?B?ZHcrOWRhTkRjNkIycmZGanJMMDdNQlIwZnVWZmtmemVXZGdRcmpYeXFlWUFN?=
+ =?utf-8?B?KzkxN2MycDVIWmY4bS92N2w3cllpMHJPNWtnMDVVazU5MVRqbzJWdGhLZXpq?=
+ =?utf-8?B?VDJ4WE5Qei9kSVZRVmUzeEovQTRIeVZsOTh4TS9tUDJrd1A4Uk9TQTRwUytk?=
+ =?utf-8?B?TjNCWFg2UDlyWDFldXhjd0VWM2J6RDV0RnlGS1JjWUdWTTc5VVB4SWI2VXpp?=
+ =?utf-8?B?TThiekNKWW1TQ2xsSm1VQ25SelRjWnBHU1RQZW1EalhYVUpTdW1LNGZLUGJO?=
+ =?utf-8?B?YWdNL3BJRzlITVFOaDNVcytna3ppMVlWR2h3OFlYemJzc0lRa2dkUGlxaFk5?=
+ =?utf-8?B?UDlLeGlSNDhBVmNjM05HY1BXSExwZlRmYTkyZmlsdEd1L1FNN0FyaUM3UTBn?=
+ =?utf-8?B?Wmx4YzdCcjArdlNIWW8xZThOV3JZRklkbEk4WTlGVmF6R3JxWVAvL05uT25U?=
+ =?utf-8?B?QitzOGM5dkFIUWFKN1hOeUwrMU9yUW9zRTlZa29ubHArOFI0OUlZTVVQSEEv?=
+ =?utf-8?B?MmlRVTJ4T2FVYWltR0ZWRGsrTE42SVE5Wm1hN2p2S3loeWZaYUs3blo1dVpY?=
+ =?utf-8?B?aEZMMERpdTIyazNRYytwblNwNUhteHozUmVCVmt5YjRtcXl6cnFqR3h0WWRU?=
+ =?utf-8?B?emhJdmZ5eVFLY2t0a0dJY2J4VFVhK2FUSm03VUVSOFhHK21ZY250ckMrdUFP?=
+ =?utf-8?B?MUVvV1dnQ1U5K3NXSTM3VERmYnBjQUZqZUVhbHhZL3lUY2hFbnJqQk9ZWWtB?=
+ =?utf-8?B?cUdnTm94cE1rMXNsNEFJMGE0RE9FN2pLMlBkUWZ6WWc3MlRGTll4ZUNGUktS?=
+ =?utf-8?B?MFBtYmhYT2VNQVVnV0NhT2Qrei9UN3oyTUd4dFY0eXUrN2tZYWx5VDdZU3la?=
+ =?utf-8?B?QTdsclJRY3ZReHRSbHdqb2dNQ1JqMVRZSm9XSTFObEJMa3lzQk1oOVhUaEtI?=
+ =?utf-8?B?cXlqakdRNXBEeGdFTFgrbmJqeEZ1emhGcjYyUjFTUDh0Z2swbTlGU0R0Sk1r?=
+ =?utf-8?B?V1ZVWks2TFFCY0d0ZkF2Y2VuS2tQc0VuRVoza1N6QnUyOFVaU2M1QmJPNUZY?=
+ =?utf-8?B?emlWbWM5Wi9hdE1WRWs1a0drNmRhcmRZbXYwRmdOUjQvV1hGZGtvVnlvZ1pt?=
+ =?utf-8?B?K2gzczd5VXJVOWJmdm9uNFhHM0dEZ1luNGdnYnEweVlGdXZyaWRvZjRDNzFR?=
+ =?utf-8?Q?P+9W7q6vb98hYqq+j+?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c88a7d2-d39d-4612-4fa2-08dea688d136
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d944cc3-a94b-4b7f-2416-08dea68b7381
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2026 07:19:29.0734 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2026 07:38:20.3498 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pRwIxPaXEZinCC1hKbvHW6WHRG+PKdBy9398BBw4K646tGqlku+Fj260uCAI6jrW
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4092
+X-MS-Exchange-CrossTenant-UserPrincipalName: wYtBpzdyuGAK/Y9pQ4yZ3+NhxiLFaEdZcqGesm0lmpj5IGWbZBN7QZ7mEpMM+8Vc
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8080
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,389 +139,311 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 420BD49E885
+X-Rspamd-Queue-Id: 1805F49EB89
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:lijo.lazar@amd.com,m:Hawking.Zhang@amd.com,m:Alexander.Deucher@amd.com,m:Asad.Kamal@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:jbmoore61@gmail.com,m:alexdeucher@gmail.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-0.997];
+	NEURAL_HAM(-0.00)[-0.998];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,amd.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid]
 
-On 4/29/26 22:20, John B. Moore wrote:
-> Move the duplicated doorbell-based get_wptr/set_wptr functions from
-> gfx_v9_0.c, gfx_v10_0.c, gfx_v11_0.c, and gfx_v12_0.c into common
-> helpers amdgpu_gfx_get_wptr_compute() and amdgpu_gfx_set_wptr_compute()
-> in amdgpu_gfx.c.
+On 4/30/26 07:55, Lijo Lazar wrote:
+> Find the default size required and use the helper funcction to set gart size.
 > 
-> These functions are not HW generation dependent -- the doorbell path is
-> identical across all four GFX versions:
-> 
->   get: atomic64_read(ring->wptr_cpu_addr)
->   set: atomic64_set(ring->wptr_cpu_addr) + WDOORBELL64()
-> 
-> The non-doorbell fallback is replaced with WARN_ON_ONCE instead of BUG()
-> since doorbell is the only supported method on gfx9+ compute rings.
-> 
-> Not touched: gfx_v7_0, gfx_v8_0, gfx_v9_4_3 -- these have different
-> wptr access patterns (MMIO registers or wb.wb[] offsets).
-> 
-> Suggested-by: Alex Deucher <alexander.deucher@amd.com>
-> Signed-off-by: John Moore <jbmoore61@gmail.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 39 +++++++++++++++++++++++++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  3 ++
->  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c  | 33 +++------------------
->  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 34 +++------------------
->  drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  | 34 +++------------------
->  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c   | 39 +++----------------------
->  6 files changed, 58 insertions(+), 124 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> index 77578ecc6..9e9c5cb81 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> @@ -2596,3 +2596,42 @@ void amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev)
->  #endif
->  }
->  
-> +/**
-> + * amdgpu_gfx_get_wptr_compute - common get_wptr for compute rings using doorbells
-> + * @ring: amdgpu_ring pointer
-> + *
-> + * Read the write pointer from the doorbell-mapped writeback address.
-> + * This is HW-agnostic and shared across GFX generations that use
-> + * doorbell-based compute queue management.
-> + */
-> +u64 amdgpu_gfx_get_wptr_compute(struct amdgpu_ring *ring)
-> +{
-> +	/* XXX check if swapping is necessary on BE */
-> +	if (ring->use_doorbell)
-> +		return atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
+> Suggested-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 
-That should probably be readq() instead of this horrible and not portable cast to atomic64_t.
+I'm fine with how it is but could be that Alex says that we should split that into separate patches for each gmc file.
 
-Alternatively we could just normally read the pointer with a memory barrier since this is just system memory.
+Reviewed-by: Christian König <christian.koenig@amd.com> for the entire series.
 
-> +
-> +	WARN_ON_ONCE(1);
-
-Pre-requisite/error checking first please.
-
-Make that a if (WARN_ON(!ring->use_doorbell)) return.
-
-And please don't use WARN_ON_ONCE() that is just to reduce the amount of warnings printed into the logs on real HW errors.
-
-On functional coding errors like this one here it doesn't make sense and is often overlooked.
-
-> +	return 0;
-> +}
-> +
-> +/**
-> + * amdgpu_gfx_set_wptr_compute - common set_wptr for compute rings using doorbells
-> + * @ring: amdgpu_ring pointer
-> + *
-> + * Write the write pointer to the doorbell-mapped writeback address and
-> + * ring the doorbell.  This is HW-agnostic and shared across GFX
-> + * generations that use doorbell-based compute queue management.
-> + */
-> +void amdgpu_gfx_set_wptr_compute(struct amdgpu_ring *ring)
-> +{
-> +	struct amdgpu_device *adev = ring->adev;
-> +
-> +	/* XXX check if swapping is necessary on BE */
-> +	if (ring->use_doorbell) {
-> +		atomic64_set((atomic64_t *)ring->wptr_cpu_addr, ring->wptr);
-
-Same here the case to atomic64_t is extremely questionable.
-
-Regards,
+Thanks,
 Christian.
 
-> +		WDOORBELL64(ring->doorbell_index, ring->wptr);
-> +	} else {
-> +		WARN_ON_ONCE(1);
-> +	}
-> +}
-> +
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> index 585cc8e81..27f6beafb 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> @@ -653,6 +653,9 @@ u32 amdgpu_gfx_csb_preamble_start(u32 *buffer);
->  u32 amdgpu_gfx_csb_data_parser(struct amdgpu_device *adev, u32 *buffer, u32 count);
->  void amdgpu_gfx_csb_preamble_end(u32 *buffer, u32 count);
+> ---
+>  drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c | 24 +++++++---------
+>  drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c |  5 +---
+>  drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c |  5 +---
+>  drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c  | 28 +++++++-----------
+>  drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c  | 30 ++++++++-----------
+>  drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c  | 34 +++++++++-------------
+>  drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c  | 40 +++++++++++---------------
+>  7 files changed, 66 insertions(+), 100 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+> index e1ace7d44ffd..8523833a74fb 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+> @@ -707,20 +707,16 @@ static int gmc_v10_0_mc_init(struct amdgpu_device *adev)
+>  	adev->gmc.visible_vram_size = adev->gmc.aper_size;
 >  
-> +u64 amdgpu_gfx_get_wptr_compute(struct amdgpu_ring *ring);
-> +void amdgpu_gfx_set_wptr_compute(struct amdgpu_ring *ring);
-> +
->  void amdgpu_debugfs_gfx_sched_mask_init(struct amdgpu_device *adev);
->  void amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev);
+>  	/* set the gart size */
+> -	if (amdgpu_gart_size == -1) {
+> -		switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
+> -		default:
+> -			adev->gmc.gart_size = 512ULL << 20;
+> -			break;
+> -		case IP_VERSION(10, 3, 1):   /* DCE SG support */
+> -		case IP_VERSION(10, 3, 3):   /* DCE SG support */
+> -		case IP_VERSION(10, 3, 6):   /* DCE SG support */
+> -		case IP_VERSION(10, 3, 7):   /* DCE SG support */
+> -			adev->gmc.gart_size = 1024ULL << 20;
+> -			break;
+> -		}
+> -	} else {
+> -		adev->gmc.gart_size = (u64)amdgpu_gart_size << 20;
+> +	switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
+> +	case IP_VERSION(10, 3, 1):   /* DCE SG support */
+> +	case IP_VERSION(10, 3, 3):   /* DCE SG support */
+> +	case IP_VERSION(10, 3, 6):   /* DCE SG support */
+> +	case IP_VERSION(10, 3, 7):   /* DCE SG support */
+> +		amdgpu_gmc_set_gart_size(adev, SZ_1G);
+> +		break;
+> +	default:
+> +		amdgpu_gmc_set_gart_size(adev, SZ_512M);
+> +		break;
+>  	}
 >  
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> index 1893ceeeb..4c0272cba 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> @@ -8586,31 +8586,6 @@ static u64 gfx_v10_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
->  	return *(uint32_t *)ring->rptr_cpu_addr;
->  }
+>  	gmc_v10_0_vram_gtt_location(adev, &adev->gmc);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+> index 94d6631ce0bc..16388e3caea3 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+> @@ -709,10 +709,7 @@ static int gmc_v11_0_mc_init(struct amdgpu_device *adev)
+>  		adev->gmc.visible_vram_size = adev->gmc.real_vram_size;
 >  
-> -static u64 gfx_v10_0_ring_get_wptr_compute(struct amdgpu_ring *ring)
-> -{
-> -	u64 wptr;
-> -
-> -	/* XXX check if swapping is necessary on BE */
-> -	if (ring->use_doorbell)
-> -		wptr = atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
+>  	/* set the gart size */
+> -	if (amdgpu_gart_size == -1)
+> -		adev->gmc.gart_size = 512ULL << 20;
 > -	else
-> -		BUG();
-> -	return wptr;
-> -}
-> -
-> -static void gfx_v10_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
-> -{
-> -	struct amdgpu_device *adev = ring->adev;
-> -
-> -	if (ring->use_doorbell) {
-> -		atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
-> -			     ring->wptr);
-> -		WDOORBELL64(ring->doorbell_index, ring->wptr);
-> -	} else {
-> -		BUG(); /* only DOORBELL method supported on gfx10 now */
-> -	}
-> -}
-> -
->  static void gfx_v10_0_ring_emit_hdp_flush(struct amdgpu_ring *ring)
->  {
->  	struct amdgpu_device *adev = ring->adev;
-> @@ -9881,8 +9856,8 @@ static const struct amdgpu_ring_funcs gfx_v10_0_ring_funcs_compute = {
->  	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
->  	.support_64bit_ptrs = true,
->  	.get_rptr = gfx_v10_0_ring_get_rptr_compute,
-> -	.get_wptr = gfx_v10_0_ring_get_wptr_compute,
-> -	.set_wptr = gfx_v10_0_ring_set_wptr_compute,
-> +	.get_wptr = amdgpu_gfx_get_wptr_compute,
-> +	.set_wptr = amdgpu_gfx_set_wptr_compute,
->  	.emit_frame_size =
->  		20 + /* gfx_v10_0_ring_emit_gds_switch */
->  		7 + /* gfx_v10_0_ring_emit_hdp_flush */
-> @@ -9921,8 +9896,8 @@ static const struct amdgpu_ring_funcs gfx_v10_0_ring_funcs_kiq = {
->  	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
->  	.support_64bit_ptrs = true,
->  	.get_rptr = gfx_v10_0_ring_get_rptr_compute,
-> -	.get_wptr = gfx_v10_0_ring_get_wptr_compute,
-> -	.set_wptr = gfx_v10_0_ring_set_wptr_compute,
-> +	.get_wptr = amdgpu_gfx_get_wptr_compute,
-> +	.set_wptr = amdgpu_gfx_set_wptr_compute,
->  	.emit_frame_size =
->  		20 + /* gfx_v10_0_ring_emit_gds_switch */
->  		7 + /* gfx_v10_0_ring_emit_hdp_flush */
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> index 427975b5a..404604f2d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> @@ -5818,32 +5818,6 @@ static u64 gfx_v11_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
->  	return *(uint32_t *)ring->rptr_cpu_addr;
->  }
+> -		adev->gmc.gart_size = (u64)amdgpu_gart_size << 20;
+> +	amdgpu_gmc_set_gart_size(adev, SZ_512M);
 >  
-> -static u64 gfx_v11_0_ring_get_wptr_compute(struct amdgpu_ring *ring)
-> -{
-> -	u64 wptr;
-> -
-> -	/* XXX check if swapping is necessary on BE */
-> -	if (ring->use_doorbell)
-> -		wptr = atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
-> -	else
-> -		BUG();
-> -	return wptr;
-> -}
-> -
-> -static void gfx_v11_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
-> -{
-> -	struct amdgpu_device *adev = ring->adev;
-> -
-> -	/* XXX check if swapping is necessary on BE */
-> -	if (ring->use_doorbell) {
-> -		atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
-> -			     ring->wptr);
-> -		WDOORBELL64(ring->doorbell_index, ring->wptr);
-> -	} else {
-> -		BUG(); /* only DOORBELL method supported on gfx11 now */
-> -	}
-> -}
-> -
->  static void gfx_v11_0_ring_emit_hdp_flush(struct amdgpu_ring *ring)
->  {
->  	struct amdgpu_device *adev = ring->adev;
-> @@ -7266,8 +7240,8 @@ static const struct amdgpu_ring_funcs gfx_v11_0_ring_funcs_compute = {
->  	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
->  	.support_64bit_ptrs = true,
->  	.get_rptr = gfx_v11_0_ring_get_rptr_compute,
-> -	.get_wptr = gfx_v11_0_ring_get_wptr_compute,
-> -	.set_wptr = gfx_v11_0_ring_set_wptr_compute,
-> +	.get_wptr = amdgpu_gfx_get_wptr_compute,
-> +	.set_wptr = amdgpu_gfx_set_wptr_compute,
->  	.emit_frame_size =
->  		5 + /* update_spm_vmid */
->  		20 + /* gfx_v11_0_ring_emit_gds_switch */
-> @@ -7307,8 +7281,8 @@ static const struct amdgpu_ring_funcs gfx_v11_0_ring_funcs_kiq = {
->  	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
->  	.support_64bit_ptrs = true,
->  	.get_rptr = gfx_v11_0_ring_get_rptr_compute,
-> -	.get_wptr = gfx_v11_0_ring_get_wptr_compute,
-> -	.set_wptr = gfx_v11_0_ring_set_wptr_compute,
-> +	.get_wptr = amdgpu_gfx_get_wptr_compute,
-> +	.set_wptr = amdgpu_gfx_set_wptr_compute,
->  	.emit_frame_size =
->  		20 + /* gfx_v11_0_ring_emit_gds_switch */
->  		7 + /* gfx_v11_0_ring_emit_hdp_flush */
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> index 79ea1af36..7ba436444 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> @@ -4363,32 +4363,6 @@ static u64 gfx_v12_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
->  	return *(uint32_t *)ring->rptr_cpu_addr;
->  }
+>  	gmc_v11_0_vram_gtt_location(adev, &adev->gmc);
 >  
-> -static u64 gfx_v12_0_ring_get_wptr_compute(struct amdgpu_ring *ring)
-> -{
-> -	u64 wptr;
-> -
-> -	/* XXX check if swapping is necessary on BE */
-> -	if (ring->use_doorbell)
-> -		wptr = atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
-> -	else
-> -		BUG();
-> -	return wptr;
-> -}
-> -
-> -static void gfx_v12_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
-> -{
-> -	struct amdgpu_device *adev = ring->adev;
-> -
-> -	/* XXX check if swapping is necessary on BE */
-> -	if (ring->use_doorbell) {
-> -		atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
-> -			     ring->wptr);
-> -		WDOORBELL64(ring->doorbell_index, ring->wptr);
-> -	} else {
-> -		BUG(); /* only DOORBELL method supported on gfx12 now */
-> -	}
-> -}
-> -
->  static void gfx_v12_0_ring_emit_hdp_flush(struct amdgpu_ring *ring)
->  {
->  	struct amdgpu_device *adev = ring->adev;
-> @@ -5523,8 +5497,8 @@ static const struct amdgpu_ring_funcs gfx_v12_0_ring_funcs_compute = {
->  	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
->  	.support_64bit_ptrs = true,
->  	.get_rptr = gfx_v12_0_ring_get_rptr_compute,
-> -	.get_wptr = gfx_v12_0_ring_get_wptr_compute,
-> -	.set_wptr = gfx_v12_0_ring_set_wptr_compute,
-> +	.get_wptr = amdgpu_gfx_get_wptr_compute,
-> +	.set_wptr = amdgpu_gfx_set_wptr_compute,
->  	.emit_frame_size =
->  		7 + /* gfx_v12_0_ring_emit_hdp_flush */
->  		5 + /* hdp invalidate */
-> @@ -5561,8 +5535,8 @@ static const struct amdgpu_ring_funcs gfx_v12_0_ring_funcs_kiq = {
->  	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
->  	.support_64bit_ptrs = true,
->  	.get_rptr = gfx_v12_0_ring_get_rptr_compute,
-> -	.get_wptr = gfx_v12_0_ring_get_wptr_compute,
-> -	.set_wptr = gfx_v12_0_ring_set_wptr_compute,
-> +	.get_wptr = amdgpu_gfx_get_wptr_compute,
-> +	.set_wptr = amdgpu_gfx_set_wptr_compute,
->  	.emit_frame_size =
->  		7 + /* gfx_v12_0_ring_emit_hdp_flush */
->  		5 + /*hdp invalidate */
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> index 8249135d7..798f94bca 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> @@ -5640,37 +5640,6 @@ static u64 gfx_v9_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
->  	return *ring->rptr_cpu_addr; /* gfx9 hardware is 32bit rptr */
->  }
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+> index 5bdd4b9b7893..586703ec0dfa 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+> @@ -765,10 +765,7 @@ static int gmc_v12_0_mc_init(struct amdgpu_device *adev)
+>  		adev->gmc.visible_vram_size = adev->gmc.real_vram_size;
 >  
-> -static u64 gfx_v9_0_ring_get_wptr_compute(struct amdgpu_ring *ring)
-> -{
-> -	u64 wptr;
-> -
-> -	/* XXX check if swapping is necessary on BE */
-> -	if (ring->use_doorbell) {
-> -		wptr = atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
+>  	/* set the gart size */
+> -	if (amdgpu_gart_size == -1) {
+> -		adev->gmc.gart_size = 512ULL << 20;
+> -	} else
+> -		adev->gmc.gart_size = (u64)amdgpu_gart_size << 20;
+> +	amdgpu_gmc_set_gart_size(adev, SZ_512M);
+>  
+>  	gmc_v12_0_vram_gtt_location(adev, &adev->gmc);
+>  
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
+> index cc272a96fcef..af6944d2d330 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
+> @@ -328,24 +328,18 @@ static int gmc_v6_0_mc_init(struct amdgpu_device *adev)
+>  	adev->gmc.visible_vram_size = adev->gmc.aper_size;
+>  
+>  	/* set the gart size */
+> -	if (amdgpu_gart_size == -1) {
+> -		switch (adev->asic_type) {
+> -		case CHIP_HAINAN:    /* no MM engines */
+> -		default:
+> -			adev->gmc.gart_size = 256ULL << 20;
+> -			break;
+> -		case CHIP_VERDE:    /* UVD, VCE do not support GPUVM */
+> -		case CHIP_TAHITI:   /* UVD, VCE do not support GPUVM */
+> -		case CHIP_PITCAIRN: /* UVD, VCE do not support GPUVM */
+> -		case CHIP_OLAND:    /* UVD, VCE do not support GPUVM */
+> -			adev->gmc.gart_size = 1024ULL << 20;
+> -			break;
+> -		}
 > -	} else {
-> -		WARN_ONCE(1, "gfx_v9_0: non-doorbell wptr read on ring %s, "
-> -			  "only doorbell method supported on gfx9\n",
-> -			  ring->name);
-> -		wptr = 0;
-> -	}
-> -	return wptr;
-> -}
+> -		adev->gmc.gart_size = (u64)amdgpu_gart_size << 20;
+> +	switch (adev->asic_type) {
+> +	case CHIP_VERDE:    /* UVD, VCE do not support GPUVM */
+> +	case CHIP_TAHITI:   /* UVD, VCE do not support GPUVM */
+> +	case CHIP_PITCAIRN: /* UVD, VCE do not support GPUVM */
+> +	case CHIP_OLAND:    /* UVD, VCE do not support GPUVM */
+> +		amdgpu_gmc_set_gart_size(adev, SZ_1G);
+> +		break;
+> +	case CHIP_HAINAN:    /* no MM engines */
+> +	default:
+> +		amdgpu_gmc_set_gart_size(adev, SZ_256M);
+> +		break;
+>  	}
 > -
-> -static void gfx_v9_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
-> -{
-> -	struct amdgpu_device *adev = ring->adev;
-> -
-> -	/* XXX check if swapping is necessary on BE */
-> -	if (ring->use_doorbell) {
-> -		atomic64_set((atomic64_t *)ring->wptr_cpu_addr, ring->wptr);
-> -		WDOORBELL64(ring->doorbell_index, ring->wptr);
+> -	adev->gmc.gart_size += adev->pm.smu_prv_buffer_size;
+>  	gmc_v6_0_vram_gtt_location(adev, &adev->gmc);
+>  
+>  	return 0;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+> index fb5e33c8a5ee..93cf283191fa 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+> @@ -394,27 +394,21 @@ static int gmc_v7_0_mc_init(struct amdgpu_device *adev)
+>  	adev->gmc.visible_vram_size = adev->gmc.aper_size;
+>  
+>  	/* set the gart size */
+> -	if (amdgpu_gart_size == -1) {
+> -		switch (adev->asic_type) {
+> -		case CHIP_TOPAZ:     /* no MM engines */
+> -		default:
+> -			adev->gmc.gart_size = 256ULL << 20;
+> -			break;
+> +	switch (adev->asic_type) {
+>  #ifdef CONFIG_DRM_AMDGPU_CIK
+> -		case CHIP_BONAIRE: /* UVD, VCE do not support GPUVM */
+> -		case CHIP_HAWAII:  /* UVD, VCE do not support GPUVM */
+> -		case CHIP_KAVERI:  /* UVD, VCE do not support GPUVM */
+> -		case CHIP_KABINI:  /* UVD, VCE do not support GPUVM */
+> -		case CHIP_MULLINS: /* UVD, VCE do not support GPUVM */
+> -			adev->gmc.gart_size = 1024ULL << 20;
+> -			break;
+> +	case CHIP_BONAIRE: /* UVD, VCE do not support GPUVM */
+> +	case CHIP_HAWAII:  /* UVD, VCE do not support GPUVM */
+> +	case CHIP_KAVERI:  /* UVD, VCE do not support GPUVM */
+> +	case CHIP_KABINI:  /* UVD, VCE do not support GPUVM */
+> +	case CHIP_MULLINS: /* UVD, VCE do not support GPUVM */
+> +		amdgpu_gmc_set_gart_size(adev, SZ_1G);
+> +		break;
+>  #endif
+> -		}
 > -	} else {
-> -		WARN_ONCE(1, "gfx_v9_0: non-doorbell wptr write on ring %s, "
-> -			  "only doorbell method supported on gfx9\n",
-> -			  ring->name);
-> -	}
-> -}
+> -		adev->gmc.gart_size = (u64)amdgpu_gart_size << 20;
+> +	case CHIP_TOPAZ:     /* no MM engines */
+> +	default:
+> +		amdgpu_gmc_set_gart_size(adev, SZ_256M);
+> +		break;
+>  	}
 > -
->  static void gfx_v9_0_ring_emit_fence_kiq(struct amdgpu_ring *ring, u64 addr,
->  					 u64 seq, unsigned int flags)
->  {
-> @@ -7627,8 +7596,8 @@ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_compute = {
->  	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
->  	.support_64bit_ptrs = true,
->  	.get_rptr = gfx_v9_0_ring_get_rptr_compute,
-> -	.get_wptr = gfx_v9_0_ring_get_wptr_compute,
-> -	.set_wptr = gfx_v9_0_ring_set_wptr_compute,
-> +	.get_wptr = amdgpu_gfx_get_wptr_compute,
-> +	.set_wptr = amdgpu_gfx_set_wptr_compute,
->  	.emit_frame_size =
->  		20 + /* gfx_v9_0_ring_emit_gds_switch */
->  		7 + /* gfx_v9_0_ring_emit_hdp_flush */
-> @@ -7669,8 +7638,8 @@ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_kiq = {
->  	.nop = PACKET3(PACKET3_NOP, 0x3FFF),
->  	.support_64bit_ptrs = true,
->  	.get_rptr = gfx_v9_0_ring_get_rptr_compute,
-> -	.get_wptr = gfx_v9_0_ring_get_wptr_compute,
-> -	.set_wptr = gfx_v9_0_ring_set_wptr_compute,
-> +	.get_wptr = amdgpu_gfx_get_wptr_compute,
-> +	.set_wptr = amdgpu_gfx_set_wptr_compute,
->  	.emit_frame_size =
->  		20 + /* gfx_v9_0_ring_emit_gds_switch */
->  		7 + /* gfx_v9_0_ring_emit_hdp_flush */
+> -	adev->gmc.gart_size += adev->pm.smu_prv_buffer_size;
+>  	gmc_v7_0_vram_gtt_location(adev, &adev->gmc);
+>  
+>  	return 0;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+> index 963d5b0fa87b..1d3ddffd5a11 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+> @@ -585,27 +585,21 @@ static int gmc_v8_0_mc_init(struct amdgpu_device *adev)
+>  	adev->gmc.visible_vram_size = adev->gmc.aper_size;
+>  
+>  	/* set the gart size */
+> -	if (amdgpu_gart_size == -1) {
+> -		switch (adev->asic_type) {
+> -		case CHIP_POLARIS10: /* all engines support GPUVM */
+> -		case CHIP_POLARIS11: /* all engines support GPUVM */
+> -		case CHIP_POLARIS12: /* all engines support GPUVM */
+> -		case CHIP_VEGAM:     /* all engines support GPUVM */
+> -		default:
+> -			adev->gmc.gart_size = 256ULL << 20;
+> -			break;
+> -		case CHIP_TONGA:   /* UVD, VCE do not support GPUVM */
+> -		case CHIP_FIJI:    /* UVD, VCE do not support GPUVM */
+> -		case CHIP_CARRIZO: /* UVD, VCE do not support GPUVM, DCE SG support */
+> -		case CHIP_STONEY:  /* UVD does not support GPUVM, DCE SG support */
+> -			adev->gmc.gart_size = 1024ULL << 20;
+> -			break;
+> -		}
+> -	} else {
+> -		adev->gmc.gart_size = (u64)amdgpu_gart_size << 20;
+> +	switch (adev->asic_type) {
+> +	case CHIP_TONGA:   /* UVD, VCE do not support GPUVM */
+> +	case CHIP_FIJI:    /* UVD, VCE do not support GPUVM */
+> +	case CHIP_CARRIZO: /* UVD, VCE do not support GPUVM, DCE SG support */
+> +	case CHIP_STONEY:  /* UVD does not support GPUVM, DCE SG support */
+> +		amdgpu_gmc_set_gart_size(adev, SZ_1G);
+> +		break;
+> +	case CHIP_POLARIS10: /* all engines support GPUVM */
+> +	case CHIP_POLARIS11: /* all engines support GPUVM */
+> +	case CHIP_POLARIS12: /* all engines support GPUVM */
+> +	case CHIP_VEGAM:     /* all engines support GPUVM */
+> +	default:
+> +		amdgpu_gmc_set_gart_size(adev, SZ_256M);
+> +		break;
+>  	}
+> -
+> -	adev->gmc.gart_size += adev->pm.smu_prv_buffer_size;
+>  	gmc_v8_0_vram_gtt_location(adev, &adev->gmc);
+>  
+>  	return 0;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+> index aca7841173f3..ced0f3941863 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+> @@ -1731,31 +1731,25 @@ static int gmc_v9_0_mc_init(struct amdgpu_device *adev)
+>  	adev->gmc.visible_vram_size = adev->gmc.aper_size;
+>  
+>  	/* set the gart size */
+> -	if (amdgpu_gart_size == -1) {
+> -		switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
+> -		case IP_VERSION(9, 0, 1):  /* all engines support GPUVM */
+> -		case IP_VERSION(9, 2, 1):  /* all engines support GPUVM */
+> -		case IP_VERSION(9, 4, 0):
+> -		case IP_VERSION(9, 4, 1):
+> -		case IP_VERSION(9, 4, 2):
+> -		case IP_VERSION(9, 4, 3):
+> -		case IP_VERSION(9, 4, 4):
+> -		case IP_VERSION(9, 5, 0):
+> -		default:
+> -			adev->gmc.gart_size = 512ULL << 20;
+> -			break;
+> -		case IP_VERSION(9, 1, 0):   /* DCE SG support */
+> -		case IP_VERSION(9, 2, 2):   /* DCE SG support */
+> -		case IP_VERSION(9, 3, 0):
+> -			adev->gmc.gart_size = 1024ULL << 20;
+> -			break;
+> -		}
+> -	} else {
+> -		adev->gmc.gart_size = (u64)amdgpu_gart_size << 20;
+> +	switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
+> +	case IP_VERSION(9, 1, 0):   /* DCE SG support */
+> +	case IP_VERSION(9, 2, 2):   /* DCE SG support */
+> +	case IP_VERSION(9, 3, 0):
+> +		amdgpu_gmc_set_gart_size(adev, SZ_1G);
+> +		break;
+> +	case IP_VERSION(9, 0, 1):  /* all engines support GPUVM */
+> +	case IP_VERSION(9, 2, 1):  /* all engines support GPUVM */
+> +	case IP_VERSION(9, 4, 0):
+> +	case IP_VERSION(9, 4, 1):
+> +	case IP_VERSION(9, 4, 2):
+> +	case IP_VERSION(9, 4, 3):
+> +	case IP_VERSION(9, 4, 4):
+> +	case IP_VERSION(9, 5, 0):
+> +	default:
+> +		amdgpu_gmc_set_gart_size(adev, SZ_512M);
+> +		break;
+>  	}
+>  
+> -	adev->gmc.gart_size += adev->pm.smu_prv_buffer_size;
+> -
+>  	gmc_v9_0_vram_gtt_location(adev, &adev->gmc);
+>  
+>  	return 0;
 
