@@ -2,172 +2,133 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eCBKDiZS9GmKAgIAu9opvQ
+	id eGEHBqBX82lfzwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 09:11:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 15:22:40 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 955074AACFC
-	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 09:11:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 278624A3622
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 15:22:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F2D510E50A;
-	Fri,  1 May 2026 07:11:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B9B010F336;
+	Thu, 30 Apr 2026 13:22:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XISeb2rX";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Ddq8UQGm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 840E810E1C2;
- Thu, 30 Apr 2026 13:13:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777554784; x=1809090784;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=/QIhW1krHJk5WmJ+IBEYv+S7gwGIdTD7F40PdnrRmww=;
- b=XISeb2rXHeJefl5odqHkOkbYxr/Z2imNm2G9g96rPNGeyHcpr2QQSD78
- a4DOm4WYaXoxI3gLe6pZaPx5XJY71bgymbLmFGe3gqA1UU6A7tk0r7WkL
- GUc/bjRwhJ+2tft2Rl+MFmql/xs78WkXbh55DjSQDcr081eD/qUSk+LW2
- OZt9OnebJMx6kkWjt8oCizdND7OTDTv+5EvZ0HXfrN5ev1G/UUIH/0tOT
- UwYoHqz/YkR07svA4ZzB2KAlxcFb+PVZuR2OYjToS1wPDG+H4uf0PQsDr
- 4EvX6w8eFCvdjrq8iUCsXSgfo6AQFctVscyw4zdOT2gxuQPP/dPE5sQbQ w==;
-X-CSE-ConnectionGUID: 2cMD6cNpRpSiABUUN3Os7g==
-X-CSE-MsgGUID: T7wwRZljQxaJ+Y8MxFMUZg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="89596832"
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="89596832"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 06:12:59 -0700
-X-CSE-ConnectionGUID: aAnISaabQIyNXw0VXe/W0w==
-X-CSE-MsgGUID: YMiWM+cbTDC8nZoMjELBLA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="258158784"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 06:12:59 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 30 Apr 2026 06:12:58 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 30 Apr 2026 06:12:58 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.28) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 30 Apr 2026 06:12:57 -0700
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010039.outbound.protection.outlook.com
+ [52.101.193.39])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EE7710F336
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 13:22:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ilJ4DOgtSVKWe4lwZ6OoHDGjVUz8vW5joXLO3OBzt5qg8KPLkASozW8BoNIs/TIEzAPMJFWt8YhhGLvQVSbWoMaYTOeDAfJKeYQmYKyLVjCt9r/1ujsOEM69poKAa/BcvXHMTi3GMTXW1QUljojyR4u7LMCRpMGqBy8LUYw9PGzYOzZyfqTOdsWC9qp5McKXrBVe312kfIeGip9Wxw3di7BMgRcvvWzULP69100j5l+3UdJ+61RaebLY3BqZUZkatwQ9jOVnn1SzO0dGSQEfgSeqhw4mAld4+3XKeFrUqWZB2rLHi7Mk2L7myD+tRRejSFLXOlX/O1pAUE9V/sqzAw==
+ b=eNqCgwdjkHaGJcZRYVYVyGcXrvWDfGOZ2RqZEFBW9bJu1c0fA9Usg9hxDbmrfgKRCexNpvooAPg5xKFGRP8tRrmAGXpBuKQzrLlxb8xMuchPSpKgNAiltrrW9u5fx7TCl2iXD9lQ6MC7OZJIXy1cD1tm7r3CRlmaZ/tBHNlYWRGg19t5rq5TfC2P/gMSCqrXh6qxS/ikvF9VHsF2K7xB+Dj11f9hlQW8lSQ+STvwKwa+sZyzGpkpo1IlKS5eBZ15Z0HfS5QAuEa4xjrl7wFD7t9i8G0cji6o/Ukk0Hh1AzPTee6iF1C13S13j1LR8X2GXCmfqSWJgH4oZ7BoCr800g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/QIhW1krHJk5WmJ+IBEYv+S7gwGIdTD7F40PdnrRmww=;
- b=bg4tidZicn6mF1IaW2n+HO70ByI9AxiiDlKF/FzAFzL1GfCrJMElAOJ8LZiq2hIzbvbberO1Pgai9JTtJSabl/3bwvsiz+3Cu670YAGdTKs1klF/l8C0OZ8sajhLpOQwKeQEF7tWftLvh8xYNKUcVTYAZpCKAp1YyXmGExuy9O9ZCrQ9ThHjMVxATAVJtt7OZlpt/Z9mBTWgi79TwchcfLi3tg3RTTJT76tItoRXJlNDPVdJHbGG5iAfb0/GvF1hvuDLWnu2FOP3UZcMwQV6tE07+iL2UwfuQxMyAURHOlaxXeEjBNB8ad+S+IP3aqr2XEaSRtEiJfU727esGM1x2g==
+ bh=7kRIUaasvca+hp2PQQ475OjuMRUn7n5M8zCPcdGwiXA=;
+ b=wKz21ig7UinB1+OJwOwO0lJFzf9lamiixNRMrvTvLzuSFBz9xzP6de+VSwgW5+eSwGui1nNzOILVCAGxG5svY9QY/O2w0hHRRtRppIEla8xIl8eErF0q26i6UtO54zQl3jPb9G3IIZsNjk92Soc2XqKfUAAZ6IiObPQ5MEvYuySrHW5qRrXXRi6OuKvoTVaGRfb0COyrRyjvLvmVZCVptz8q6PNQfOr2ibb7WIQqNYa/SyIvePA6YDd+uWekgkcSN+RcQFpLxfhdoHwIKl5C9ZmWCZqz5VCEXzpdyveEmp1On2p8TpFlidnc8/g8xczMz65v8cIMSe3lFnEgja7LiQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN6PR11MB3232.namprd11.prod.outlook.com (2603:10b6:805:be::14)
- by SA2PR11MB5130.namprd11.prod.outlook.com (2603:10b6:806:11d::19)
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7kRIUaasvca+hp2PQQ475OjuMRUn7n5M8zCPcdGwiXA=;
+ b=Ddq8UQGmBdGTcUBtLSoAIomvauBqA+qb6XkgnD0xyzbBTHeTzadbTixYp1D9LnT3wHw3v0rJMa0m/S3jemfHqpXWbjXD1kiCWSCnfwoDKuGBVPxmqPXKFsZ/hu62BkDOevClOnG2hA6BeH5UEyenFCBfhoD6uNfoItFEoCdk0Xo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by PH0PR12MB8030.namprd12.prod.outlook.com (2603:10b6:510:28d::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.22; Thu, 30 Apr
- 2026 13:12:54 +0000
-Received: from SN6PR11MB3232.namprd11.prod.outlook.com
- ([fe80::bf74:5777:8849:5c00]) by SN6PR11MB3232.namprd11.prod.outlook.com
- ([fe80::bf74:5777:8849:5c00%5]) with mapi id 15.20.9870.020; Thu, 30 Apr 2026
- 13:12:54 +0000
-From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-To: "Auld, Matthew" <matthew.auld@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Arunpravin.PaneerSelvam@amd.com" <Arunpravin.PaneerSelvam@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/buddy: Integrate lockdep annotations for gpu buddy
- manager
-Thread-Topic: [PATCH] drm/buddy: Integrate lockdep annotations for gpu buddy
- manager
-Thread-Index: AQHc19UBxAjbdwjIT0+T5iBjAqiAT7X3U+WAgABCJAA=
-Date: Thu, 30 Apr 2026 13:12:54 +0000
-Message-ID: <SN6PR11MB3232A69655EB743710B6C9FE81352@SN6PR11MB3232.namprd11.prod.outlook.com>
-References: <20260429123714.3913374-2-tejas.upadhyay@intel.com>
- <4dea1e78-da81-4c5b-ab8d-62d6f99e4889@intel.com>
-In-Reply-To: <4dea1e78-da81-4c5b-ab8d-62d6f99e4889@intel.com>
-Accept-Language: en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.21; Thu, 30 Apr
+ 2026 13:22:32 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9870.020; Thu, 30 Apr 2026
+ 13:22:32 +0000
+Message-ID: <acb467cf-0b2d-4733-8df2-23f1ed18b4fd@amd.com>
+Date: Thu, 30 Apr 2026 15:22:25 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu/gfx: extract compute wptr doorbell helpers to
+ amdgpu_gfx.c
+To: John Moore <jbmoore61@gmail.com>
+Cc: alexdeucher@gmail.com, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org
+References: <20260429202042.21718-1-jbmoore61@gmail.com>
+ <6266086d-15d4-476d-a992-503509032dd7@amd.com>
+ <CAPUYzBf8EBynRij60SR+EFg1Kn22cyykSOOPxo709bq0xhjpLw@mail.gmail.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN6PR11MB3232:EE_|SA2PR11MB5130:EE_
-x-ms-office365-filtering-correlation-id: fe146527-20a0-4ef8-a505-08dea6ba3081
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|10070799003|366016|376014|1800799024|38070700021|18002099003|22082099003|56012099003;
-x-microsoft-antispam-message-info: s2z8YsOyHEjRwoPVWqAjYzjKannuEzHELFNAmfrKX31XM/YKES1PZ2Qhr6OBPsh1N3qEHNuZTqBfzLzijYolqNmv/VaD//kSfrHlHIoWXFSdjMgW7Fr6s7UwcNCA7oquK4RzzSAYL7daYD8cbqeEjAbTSXT5wEkB/sKid5t4xgmp+NY+96ZHXcxEQghoU7/cgBhz6N17z8b2KK2f9tK/KHyghY8ZuXSlDb1/m7KaTOrKeTSeb5P0iSv9np7HqJxpPXJbCpmn3xdx4eKnZRAVD6XE2SmVpq36sazhNLjFU+xs101kMMpsYxsIXWxlfNBG2XKZX+lTwuaW1BpbdJBsI+/B3+xqe5RslrA2Jz8P1FmhjGjdotPUPyFOLNigr6/97+ajmTBz+5qWS1O608Dy/T6fos5IlKOz8vAIGKtU18Hoo3BaSrjwHbQHNcM4qPIZ4iWra7LJaVj3cRl4Xg8Que2VnH/p1sBht7AadJ9fvTNEHTCAgdh1eD5oxsCjbAtw58G26Velqn/oMaXKl5GFW11IPPMAjt+JP+cBB4hc/hO/Xty6fT2AuqLHrBa25/up7uqWXcGedf6Ajwra42FYwqr9JS1izOC4yi5UgXXKfSZykzt2iQz0rPgJCV5U/qzRQ5fU4h65MJ0CNj2LSE0jDKNnleDeh015stkFeHuHWDwTN2OOQNN9U7A1EO0FkC+p/cVPVzdcWYkxTdeXDwBV9rrWYqSmEUx6oj5NmMRhcKy54T8aDnrGZU7d8cKb1ZI6
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN6PR11MB3232.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(10070799003)(366016)(376014)(1800799024)(38070700021)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ektrcjhzUG5OVzFnTmViVEw4Tk9xTzBCbW9LUlp2M1N0OVM0RzZSb0h5SGhY?=
- =?utf-8?B?QktUZUdLYTkwYkNSTTd0VHVQOTNZT09BWGN6R3hydkxHd1FYY0FwM2JNTG1q?=
- =?utf-8?B?b0UxVXgya25OUjVyK1NNUE14dXpzNWNVeWMxamRHMHhoSXZPM3pSMm9QNkpT?=
- =?utf-8?B?UUNXUzdwc0FPSDlBZEgvOTBpUVNyYW9nREVlM003c1k3ZHBiQ0sraVB6Y2Ev?=
- =?utf-8?B?K0RDUU11Rmd0Q0ZFc3g0YUdpMHhwSW9XUkVJbnpuTC9XOUwrSXVkWHB2OTRi?=
- =?utf-8?B?NzBUaWhtT2tUbkpaaDI4Y21aaFpnRk9YUGh1L0F3aGVScUFNWUJKT2YvMVhm?=
- =?utf-8?B?bnFCb1VGaXdiK2srMC8yYWY3YUlvYjVWQ213ZzJGZCtNRkJDb2lWeW0zbzhk?=
- =?utf-8?B?VHMwVWJnSEJ3ek1vWFpER05RelVPZEtER2xCRjIwM1h3cjMrby92cXFTdmlY?=
- =?utf-8?B?WUFJaE5ZV1M1a3prbG1Ca2xNOHJrYkoyZlI1WG1QcVZaUGExVW13QTJRLzI1?=
- =?utf-8?B?WnpVbXVVTysyNXFCektPanZYNjZZdVZaeFBKc3o5ajJLM3p1WW9VMVpsV1lO?=
- =?utf-8?B?N09BRE5OUGpCLy94bkdJVk80YXNIZUJFcG5sOVNNOFM5ZnFjS1BKSVVVNnlC?=
- =?utf-8?B?ZmdvWGN4L2s4WkZ5c25TUlJuaXpwVzdiSVFrWC90TFBoQVhSSlVRVGRMSVgx?=
- =?utf-8?B?ampNQ1NTMmEvSDJJeFpaWTBOcnljSEJMSXdsdFJwbVNxWDU1TzFFcjBUNHha?=
- =?utf-8?B?ZlIrcGs2eitkR1dlYkoyY2lWSXdsOGZ4MEc2WlNJamMwSmsxZmdpTnZJTXpi?=
- =?utf-8?B?M3VyUktYSVNyQ1BmcVVnb3hNbkVjb3pMcE1XRjllZU5UbWtDbWIrMWNJMGgv?=
- =?utf-8?B?Y3lTZ0FEWGNtMTY2M0kzdUM1VVE5Y1VlSnQwSDNNYStEeUF4UzZpc21SQTBO?=
- =?utf-8?B?Qk96L3Q2d3lZMDJxMmVBS3hlUjErSFNGYVdhQldKbjFFRXI5RGFqZkJkWDVK?=
- =?utf-8?B?QmYzT2JIVjVGNHAxeEpEUGVibHArRWs1VTJvOGl4U1ZuLzZtQW44TFF4VHhK?=
- =?utf-8?B?S0tIS1g1U0Y2Q0h0R0JNZ1NBVlNoa1hldE01dnVtYnV0dWhPRWI4Q0dRQS9M?=
- =?utf-8?B?M0puazlHOTdVUGFJUWtoOEI2Y2kzUndjdnNPM0FJUVVuT3RLalhtd1V1N2hx?=
- =?utf-8?B?M2haN2dKVlVSY2VTajAwNGx1d1JFSWtoczNPN0M2aENlQ2dhRm5xQnZSNS81?=
- =?utf-8?B?c3d4SHF6L243Rm1Udkk5ei9DbWdTRUxIc0NNalNxeTZNNXM0WGMyR1hHaUlH?=
- =?utf-8?B?U3FDVFhYcUExZk9SaWVTYzZqR2ZsdDVWN1RSL0VBVEpTWnVXV3hoTWtxZ3Ri?=
- =?utf-8?B?R1kwRnB4dW1oMXc2eHlCSjRWQnNvVmpWN1YvQmxhb09WdlZEZWhLWXNaRnlQ?=
- =?utf-8?B?SHg1UXlzREIrbnJNWkxXUi9uN09kWTJJSXRrai9KL3RBTnB0QkROTUVxU2RQ?=
- =?utf-8?B?VDNTNmpnOUcyQzliait3VzB3K29hV0dGbFEvSE1lZy9OanVBTnhaUW4ydyt0?=
- =?utf-8?B?cVluV2JvUTczZmFiMGZlSzFjc3ZCTTJxeEhPUm5GcTZrMTVhS1RtYjkybkxY?=
- =?utf-8?B?MytCeVIyTkZvMnhkeDNaVmRkeEV3ZVQ3L05ua0lhVVQ4SFZpZ2RQT3pjempF?=
- =?utf-8?B?YXdYWHBkQXFueTFycFhXSlArK0xoL2FNU2lZV1RKSVlUaVhCNVEvemhFcjJQ?=
- =?utf-8?B?dXA0TWZKREpNS0trYUtmL0JoQUVWdzlaaE4wT083bEt4ZU9kVkEvTjdld1Ro?=
- =?utf-8?B?ZW9xSEo4czcxb0RvVktnSDI0bkZ1WmZzSXQ0bDBVbHEvOU9wMVc4Um5ucm8x?=
- =?utf-8?B?bzdsV1RVdzNsUUFKSDEyZDNhV0xkdHpMclo5TjNjcWJkR3hqMlRkRW9SZld6?=
- =?utf-8?B?YktoMlMzLzcvNk5KUnJRMG45UVZhTU13NFc0c0E4VkZjOXRrdDdqSUxxWTlZ?=
- =?utf-8?B?YlE3YUVZK1hHek5pL0FBVHlqQkhnRHVGMnNtdkZxNGs0V0RsaVd2a2d2dVBi?=
- =?utf-8?B?RFdpd3BlNnBBSEJJNitxU0xFaVgyNGtZa3BtK1ZKZm9IK0NldStzV2l1RUJz?=
- =?utf-8?B?bTVKTVNjQ04wcG52dlZmY29HM0FxL08vc1NYMHdNSUtLcVhCU1hJVXM3b0Fu?=
- =?utf-8?B?ZmUrRFRIZGV5RkZjaFJvYjM1bko0K0JXaDVXeG93aU1CaXJJRHBLMDhHc2U1?=
- =?utf-8?B?YnRHSHU0OFFNWXpoWEhDdXUrcW4yNXhFbkVxazI5M1lGRkJUTzY5K3hTMlU4?=
- =?utf-8?B?R2o4bWZYR1BGYXp4VXhFMml2d1NsWE9USEpLM2VidzlRV01aTmltaThsd2VY?=
- =?utf-8?Q?iSfuHsZZXdZzwmHhT+i0g2hQM7i8RdvpCzYfaZFgDrvrI?=
-x-ms-exchange-antispam-messagedata-1: fKsThB3Ms8bbTw==
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <CAPUYzBf8EBynRij60SR+EFg1Kn22cyykSOOPxo709bq0xhjpLw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR3P281CA0016.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1d::21) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: cBTw1c+joYEUe5v2fy71vyrz4K3LB724v21pZPGJZQdWkP6DnXkgoNGRmGbvbEz2gOQvy8Nv2xZTGBHl5CThbi0tWMkgjBIKVYu9S7pQD+SWn7HQFizMkSQQMIdQtJUisnj4bvSdEkDx5ox2MzyocpD9okOQOgh9spLh4XCt/NDvsDWn8U/VWdyTltDrPExL+VPsZBh+kRDPBNlpRV4g/v+Sp0P4cjPGXUA6hSHkzaIl6c9xln9sEWh9eENoW5pKpza1z8UYIOjJtc9TPlVlSjWEed5V3f5MU+S8UpG/cJQFuZjvvvWDjiK0Dpu5KzO6fFE6v1gTGuLzrDxGH+pMQQ==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH0PR12MB8030:EE_
+X-MS-Office365-Filtering-Correlation-Id: 40f71312-3934-4fe5-24d4-08dea6bb88be
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|18002099003|22082099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: sM9774ccu1xZCY1Mt4sJRb2gU834CMoNCQdXJiVjkQw67qTJwS+ICw0UijFm3dCdzoaimhmMhxBmTLcd7iScPgHmhK7Pg+V8+S3AlOehkMrkW21l/adFtZt8+IHhdl7YMlWa8V5p1oeAhK+90DXlmZn/BjoUZcT2npQMJQt5529tkGlwawq9j+/X8DfbZb45TuGMDWHcNO7xM5H2vtzxLyALlP3Cw8asVub0Z+8FAOqAXCOsVrrvWB/pE8Umc0aB11NPCjzgoz2a6qKYdH/xCKD3Bsk1yDm8J1c0LSUuElEI4YfOMQy1GgrMRFYsQzKZoePXQF0GiBI9SWwFInNKeNAqHeeDXMNt9aH/PUq2B1QXRTM78/ZRGRGT5wslZ10KugbxWEp7+umfPMASN8q4XGUFvdcoAXeMegKG8JNOhLACi6go6LacAlkLENCizKmI5pSSxIrrXgC8YYGkbayV4yFox2KEsoxlPdozDmrr3nZuXk1AdXvuXhfm9KPAyJoLBl0ma6E9agbEcKapqoQTKsDoF6nYchXeEVODem1H+4tBOuZ/U4xPQaEK+SR6l22HL60fMkcczH0RxHZNw2QORUob2c4nCfCYjkOEIjz0ZKW7Wtvn+WGbKDsiKzDemKDEWyTNr0vpN7nM5K/iwb9R28FoBT1ezGmb+iODWeKb2tb3ZqKn5vZ8Rf+um4zl3rSogOBG7fQ1eC0Iro2Ruujek/rH9oY4ed81nnf5jPmv11w=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U1FZMHRTZ0ZnSWx3bUhVRTJUV2ZtWTB2OENLMzBTYnpwUEsxL0MrOEhLdnRD?=
+ =?utf-8?B?VlJhMUhhUUNOMllsUGdNblBSaXhmUUE0ekFyOGpFOWR0U2xWMVdwRm5qZmI3?=
+ =?utf-8?B?NUdBeEQ2Rko0bytpOFowbERlbzdjbVVxcDhySXg3U0xVWVpZOWJmZVNIdFZt?=
+ =?utf-8?B?MVhCakc4K0hJOVFNcStSQzdZa1ZZdnFuV3NBZDVMekJBbDZxNXJ6b21kWit3?=
+ =?utf-8?B?WjRoZnNQYmFQS0ozTXNLRHhDQkpQdU9VZE1tdVBKNjdnd1psSnJyNHVPQ3Nl?=
+ =?utf-8?B?dnQ1eGxvbFY5eTdnVGtUcUJIVUNSRkdQTHVwQkFSL1BtYjFXTWFUQ2JaTDR0?=
+ =?utf-8?B?d2ZEbnhtNGRCT2ZOT1UvT21hL25nMSthR21NV1pDWWNOTkViV0hsVDBaU2Uz?=
+ =?utf-8?B?Q1hVaG1OQUdDNDBqWXN1UldiS0hzMEVIcy9SV1JKVCs1OWYxd1A0UUZnZ3hP?=
+ =?utf-8?B?ZjMzYmtzSlk2RUs1cWhuSXdCL3BQNk9qdE0zN3diMHhBTG1pdlk4UDNaSUVE?=
+ =?utf-8?B?bVpuWUMrWmRmSjEyN1ZCVkc0NTJWdTR4SWcwRTNQdlNFZ0tDd3ZXRVpDOUpk?=
+ =?utf-8?B?N0dSU2JtMmZUWXR6TzI3dFllQWRDcXE1TnZFWWhqZStBczRGM1R3ZnVEYnVN?=
+ =?utf-8?B?MVhlTVZnZ1h0a0liSzJZejNpZzRCZzJ1QmJVVzU5alBiYUtDb1BCNXBOU1NW?=
+ =?utf-8?B?SURNSTRVV0twZ0lYck5WSHFWbFpVd2dJVFJ2SWt3cERKdTVVN3A4M3FEOXZs?=
+ =?utf-8?B?KzgwenJpZU1aSGtxRWd3SnpkbDc4MTBQbHQ2OGswQ3pieDZ2OERyVnd5aC9U?=
+ =?utf-8?B?TXJmZE9MTkl6Z2tCRWFlSHVkZWxwMWhobjlaeXdwWjF6Nm9JRndnRVhZUFJR?=
+ =?utf-8?B?S0FONFJDUzdNQmU1LzVoQkRmSTV3QVZYSHN2aDFRK29lTStTd3Rjd0hRRDdn?=
+ =?utf-8?B?Wk13aUJ6bWhDNk1FeHpTMmlvOXZINXB1YnVSVlFMTENpc0lRaER1b1V3NmlH?=
+ =?utf-8?B?OGpxbFRxSE5XSlROM2RLMUY0cE1ZeUhOekpmRFZFcHB1ZUgySjFiM1BKa0Vq?=
+ =?utf-8?B?b05wZ1NkUTQyZERSWDVqLzFUSnNncVUrQ1dYdERabXo2SUVJd0JPek04NUFW?=
+ =?utf-8?B?ZFg4QU56NmdmV2lZM3djQmJTY1dTVjlSQ21jeGRYaWdHY25Zck95bmR4WGg1?=
+ =?utf-8?B?SzByTm91K3k0eVpqSWxuOGQxc2VuM3JGRHJMSHc4MnVLL25wenR6bWcvbWd6?=
+ =?utf-8?B?VjQ1c251ZVBnRlQzNDQ0RVJlQzh5c25xeEh4NU5EY3R6UFRlSm1xOWV0dFZ3?=
+ =?utf-8?B?OGhPNEt4emVFNlk0OUt2Y2t2ZTl2MTdXU3lRUlZBOVZseWNVdGtTMGU0SjJX?=
+ =?utf-8?B?S1VidWVhQVNkQXptc1pQbktGMVFITlpXOHRNZVZ2WUFZMk8yY29nVlJxREtH?=
+ =?utf-8?B?REE3My80T1dsVFFJRHNXcm9zSTNiN1JKL2oyUk41KzlYVzZzWWpoK1FWUUJY?=
+ =?utf-8?B?M0EwTWtKcFFmNUI1WEFNUnV0aVBmWVdJTU8zdjhlSmpNbWJodWluMEd6Ty96?=
+ =?utf-8?B?K0FwNnAzZkk1RVFrVDM4N3gzQkw1UnNhQ1JEb0pwRlFZbFJSOWxRSFhUaVJH?=
+ =?utf-8?B?MkJiSHg3ejBmT0pHVm12RmhJTHlFdFlsUTl5djd2QmFlejV6OW9IdWc5eW9M?=
+ =?utf-8?B?UTdqVFNrODBPMkNUdlA4anN3SkJRZTRGQzN4WnpVdmZsOVNCNm1TNFAwYm4r?=
+ =?utf-8?B?dkExN2FESS9uRXNTdlJjTk5QTE1QUG5NZFF2OGowRitVQnVhdUFzUWFYSjN5?=
+ =?utf-8?B?Z1VxQWdhNFYrOVZ0RS9LSlkyUlZhYVQwK3JpMWhjSktqWkluTzZqVFVWRlR5?=
+ =?utf-8?B?c1lic25jTUNGcTZjTTlRaWV1TUxqT2pJN05XU0ZjcFVab0RjRlJLaHFDVVNV?=
+ =?utf-8?B?eXBPK1JyOHFSUEJ3Y081TmVFaGlpM1JlNXBPMWg1ZVBidFdoVndHMnBaTndX?=
+ =?utf-8?B?ZHFPY1pXdE1NTHlBTGtTcUVCaGhVV2pzVTFGNWtPQVN4Q2UxVk1hMDR5Smcx?=
+ =?utf-8?B?UC9keThidmtWNzBxUzVTdFNmZHBJOE5tbUViUlBxUkYvcXZKL1FseFoveTRI?=
+ =?utf-8?B?RWtsU3pYWXRLaERyRXBab0dJNGhUQjdpUWdHOHRVVTNhSWJnVVRIT2Exa3BG?=
+ =?utf-8?B?bTdkdEduZkc4QWhxSE9WRjBnOEErQTBORUNOOGVZNHE5OXY2c3h6aFR4MXkx?=
+ =?utf-8?B?ZWt1RGYwdTJuRHNZbElTYnZ1VzVrUXdSejNTMWttd3BlWkpoN01oMXFXNFVC?=
+ =?utf-8?Q?jPGpeQHbyDA/OitsR1?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 40f71312-3934-4fe5-24d4-08dea6bb88be
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB3232.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe146527-20a0-4ef8-a505-08dea6ba3081
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2026 13:12:54.1052 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: K0yHl1yYb2B06XoDoAiCCN8Yx6bRCg8UP6sGQ+OtLXMu1Sb2EmWBl0wHz5W8A5R5Pj9XqCsbYd4u52XdlAVn/adzWcadARHpCbJN71XuN4g=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5130
-X-OriginatorOrg: intel.com
-X-Mailman-Approved-At: Fri, 01 May 2026 07:11:25 +0000
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2026 13:22:31.9377 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aDykd/TAuao9Bl8nu7LQtvy8UfVkhIOf/kjl/lIs3k+/PBDnLqchNfGdc6/xn7AS
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8030
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -181,61 +142,481 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 955074AACFC
+X-Rspamd-Queue-Id: 278624A3622
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.21 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	MIME_BASE64_TEXT(0.10)[];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[SN6PR11MB3232.namprd11.prod.outlook.com:mid,intel.com:dkim,intel.com:email,lists.freedesktop.org:email,patchwork.freedesktop.org:url,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tejas.upadhyay@intel.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:jbmoore61@gmail.com,m:alexdeucher@gmail.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,amd.com,lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid]
 
-RmFpbHVyZXMgaXNu4oCZdCByZWxhdGVkIHRvIGNoYW5nZSBodHRwczovL3BhdGNod29yay5mcmVl
-ZGVza3RvcC5vcmcvc2VyaWVzLzE2NTcyMC8jcmV2MS4gV2lsbCBtZXJnZSBpdCBsYXRlci4gUGxl
-YXNlIGxldCBtZSBrbm93IGluIGNhc2Ugb2YgYW55IGNvbmNlcm5zLg0KDQpUZWphcw0KDQo+IC0t
-LS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEF1bGQsIE1hdHRoZXcgPG1hdHRoZXcu
-YXVsZEBpbnRlbC5jb20+DQo+IFNlbnQ6IDMwIEFwcmlsIDIwMjYgMTQ6NDUNCj4gVG86IFVwYWRo
-eWF5LCBUZWphcyA8dGVqYXMudXBhZGh5YXlAaW50ZWwuY29tPjsgaW50ZWwtDQo+IHhlQGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogQXJ1bnByYXZpbi5QYW5lZXJTZWx2YW1AYW1kLmNvbTsg
-ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsNCj4gYW1kLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcNCj4gU3ViamVjdDogUmU6IFtQQVRDSF0gZHJtL2J1ZGR5OiBJbnRlZ3JhdGUgbG9j
-a2RlcCBhbm5vdGF0aW9ucyBmb3IgZ3B1DQo+IGJ1ZGR5IG1hbmFnZXINCj4gDQo+IE9uIDI5LzA0
-LzIwMjYgMTM6MzcsIFRlamFzIFVwYWRoeWF5IHdyb3RlOg0KPiA+IGdwdV9idWRkeSBBUElzIGFy
-ZSBleHBlY3RlZCB0byBiZSBjYWxsZWQgd2l0aCB0aGUgZHJpdmVyLXByb3ZpZGVkIGxvY2sNCj4g
-PiBoZWxkLCBidXQgdGhlcmUgaXMgbm8gcnVudGltZSBlbmZvcmNlbWVudCBvZiB0aGlzIGNvbnRy
-YWN0LiBBZGQNCj4gPiBsb2NrZGVwIGFubm90YXRpb25zIHRvIGNhdGNoIGxvY2tpbmcgdmlvbGF0
-aW9ucyBlYXJseS4NCj4gPg0KPiA+IEludHJvZHVjZSBncHVfYnVkZHlfZHJpdmVyX3NldF9sb2Nr
-KCkgZm9yIHRoZSBkcml2ZXIgdG8gcmVnaXN0ZXIgdGhlDQo+ID4gbG9jayB0aGF0IHByb3RlY3Rz
-IHRoZSBidWRkeSBtYW5hZ2VyLiBBZGQgZ3B1X2J1ZGR5X2RyaXZlcl9sb2NrX2hlbGQoKQ0KPiA+
-IGFzc2VydGlvbnMgdG8gYWxsIGV4cG9ydGVkIGdwdV9idWRkeSBhbmQgZHJtX2J1ZGR5IEFQSXMg
-dGhhdA0KPiA+IGFjY2Vzcy9tb2RpZnkgdGhlIG1hbmFnZXIgc3RhdGUuIFRoZSBsb2NrX2RlcF9t
-YXAgZmllbGQgaXMgb25seQ0KPiA+IGNvbXBpbGVkIGluIHdoZW4gQ09ORklHX0xPQ0tERVAgaXMg
-ZW5hYmxlZCwgYWRkaW5nIHplcm8gb3ZlcmhlYWQgdG8NCj4gPiBwcm9kdWN0aW9uIGJ1aWxkcy4N
-Cj4gPg0KPiA+IFdpcmUgdXAgeGVfdHRtX3ZyYW1fbWdyIHRvIHJlZ2lzdGVyIGl0cyBtdXRleCB3
-aXRoIHRoZSBidWRkeSBtYW5hZ2VyDQo+ID4gYWZ0ZXIgaW5pdGlhbGl6YXRpb24uDQo+ID4NCj4g
-PiBBc3Npc3RlZC1ieTogQ2xhdWRlOmNsYXVkZS1vcHVzLTQuNg0KPiANCj4gSSB0aGluayBhZGQ6
-DQo+IA0KPiBTdWdnZXN0ZWQtYnk6IE1hdHRoZXcgQnJvc3QgPG1hdHRoZXcuYnJvc3RAaW50ZWwu
-Y29tPg0KPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBUZWphcyBVcGFkaHlheSA8dGVqYXMudXBhZGh5
-YXlAaW50ZWwuY29tPg0KPiANCj4gUmV2aWV3ZWQtYnk6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5h
-dWxkQGludGVsLmNvbT4NCg==
+Hi John,
+
+On 4/30/26 14:32, John Moore wrote:
+> Hi Christian,
+> 
+> Thanks for the review. All points addressed below.
+> 
+>> That should probably be readq() instead of this horrible and not
+>> portable cast to atomic64_t.
+>>
+>> Alternatively we could just normally read the pointer with a memory
+>> barrier since this is just system memory.
+> 
+> I went with the second option — this is system memory (writeback via
+> GTT), not MMIO, so readq() felt semantically wrong. The v2 uses:
+> 
+>   get:  wptr = READ_ONCE(*(u64 *)ring->wptr_cpu_addr);
+>         smp_rmb();
+
+This needs to be rmb() and not smp_rmb(); smp_rmb() is only for CPU<->CPU synchronization but here we need CPU<->device synchronization.
+
+And it needs to come *before* the read!
+
+> 
+>   set:  WRITE_ONCE(*(u64 *)ring->wptr_cpu_addr, ring->wptr);
+>         smp_wmb();
+
+Same here, but this time least the barrier ordering is correct.
+
+>         WDOORBELL64(ring->doorbell_index, ring->wptr);
+> 
+> The alignment is safe — amdgpu_device_wb_get() returns offsets in
+> multiples of 8 dwords (32 bytes), so the u64* cast always lands on
+> a naturally-aligned address.
+> 
+> One question: READ_ONCE on a u64 is not atomic on 32-bit
+> architectures (unlike atomic64_read which uses cmpxchg8b). DRM_AMDGPU
+> has no formal CONFIG_64BIT dependency in Kconfig, though in practice
+> nobody runs it on 32-bit.
+
+We still have some people trying to use it on 32bit kernels. We should maybe consider to drop the 32bit support.
+
+> Is READ_ONCE acceptable here, or would you
+> prefer readq() to keep the atomicity guarantee?
+
+Yeah good question I don't really know what to do here.
+
+On the one hand you are right, writeq()/readq() are not correct because this isn't MMIO but system memory.
+
+On the other hand I don't think Linux has an architecture independent way to guarantee that a write to system memory is done as an atomic 64bit write.
+
+What we need to guarantee is that the device never sees an incomplete value because the write is done as two 32bit writes.  That is probably the reason why we used the atomic64_t hack in the first place.
+
+Regards,
+Christian.
+
+> 
+>> Pre-requisite/error checking first please.
+>> Make that a if (WARN_ON(!ring->use_doorbell)) return.
+> 
+> Done. Both functions now have the guard at the top:
+> 
+>   if (WARN_ON(!ring->use_doorbell))
+>       return 0;  /* or return; for set_wptr */
+> 
+>> And please don't use WARN_ON_ONCE() that is just to reduce the
+>> amount of warnings printed into the logs on real HW errors.
+>>
+>> On functional coding errors like this one here it doesn't make sense
+>> and is often overlooked.
+> 
+> Understood — changed to WARN_ON.
+> 
+>> Same here the case to atomic64_t is extremely questionable.
+> 
+> Fixed in set_wptr as well, same READ_ONCE/WRITE_ONCE approach.
+> 
+> v2 incoming once I hear back on the readq vs READ_ONCE question.
+> 
+> Thanks,
+> John
+> 
+> "I will not be pushed, filed, stamped, indexed, briefed, debriefed, or numbered."
+> ~ The Prisoner
+> 
+> 
+> 
+> 
+> On Thu, Apr 30, 2026 at 2:19 AM Christian König <christian.koenig@amd.com <mailto:christian.koenig@amd.com>> wrote:
+> 
+>     On 4/29/26 22:20, John B. Moore wrote:
+>     > Move the duplicated doorbell-based get_wptr/set_wptr functions from
+>     > gfx_v9_0.c, gfx_v10_0.c, gfx_v11_0.c, and gfx_v12_0.c into common
+>     > helpers amdgpu_gfx_get_wptr_compute() and amdgpu_gfx_set_wptr_compute()
+>     > in amdgpu_gfx.c.
+>     >
+>     > These functions are not HW generation dependent -- the doorbell path is
+>     > identical across all four GFX versions:
+>     >
+>     >   get: atomic64_read(ring->wptr_cpu_addr)
+>     >   set: atomic64_set(ring->wptr_cpu_addr) + WDOORBELL64()
+>     >
+>     > The non-doorbell fallback is replaced with WARN_ON_ONCE instead of BUG()
+>     > since doorbell is the only supported method on gfx9+ compute rings.
+>     >
+>     > Not touched: gfx_v7_0, gfx_v8_0, gfx_v9_4_3 -- these have different
+>     > wptr access patterns (MMIO registers or wb.wb[] offsets).
+>     >
+>     > Suggested-by: Alex Deucher <alexander.deucher@amd.com <mailto:alexander.deucher@amd.com>>
+>     > Signed-off-by: John Moore <jbmoore61@gmail.com <mailto:jbmoore61@gmail.com>>
+>     > ---
+>     >  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 39 +++++++++++++++++++++++++
+>     >  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  3 ++
+>     >  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c  | 33 +++------------------
+>     >  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 34 +++------------------
+>     >  drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  | 34 +++------------------
+>     >  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c   | 39 +++----------------------
+>     >  6 files changed, 58 insertions(+), 124 deletions(-)
+>     >
+>     > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+>     > index 77578ecc6..9e9c5cb81 100644
+>     > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+>     > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+>     > @@ -2596,3 +2596,42 @@ void amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev)
+>     >  #endif
+>     >  }
+>     > 
+>     > +/**
+>     > + * amdgpu_gfx_get_wptr_compute - common get_wptr for compute rings using doorbells
+>     > + * @ring: amdgpu_ring pointer
+>     > + *
+>     > + * Read the write pointer from the doorbell-mapped writeback address.
+>     > + * This is HW-agnostic and shared across GFX generations that use
+>     > + * doorbell-based compute queue management.
+>     > + */
+>     > +u64 amdgpu_gfx_get_wptr_compute(struct amdgpu_ring *ring)
+>     > +{
+>     > +     /* XXX check if swapping is necessary on BE */
+>     > +     if (ring->use_doorbell)
+>     > +             return atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
+> 
+>     That should probably be readq() instead of this horrible and not portable cast to atomic64_t.
+> 
+>     Alternatively we could just normally read the pointer with a memory barrier since this is just system memory.
+> 
+>     > +
+>     > +     WARN_ON_ONCE(1);
+> 
+>     Pre-requisite/error checking first please.
+> 
+>     Make that a if (WARN_ON(!ring->use_doorbell)) return.
+> 
+>     And please don't use WARN_ON_ONCE() that is just to reduce the amount of warnings printed into the logs on real HW errors.
+> 
+>     On functional coding errors like this one here it doesn't make sense and is often overlooked.
+> 
+>     > +     return 0;
+>     > +}
+>     > +
+>     > +/**
+>     > + * amdgpu_gfx_set_wptr_compute - common set_wptr for compute rings using doorbells
+>     > + * @ring: amdgpu_ring pointer
+>     > + *
+>     > + * Write the write pointer to the doorbell-mapped writeback address and
+>     > + * ring the doorbell.  This is HW-agnostic and shared across GFX
+>     > + * generations that use doorbell-based compute queue management.
+>     > + */
+>     > +void amdgpu_gfx_set_wptr_compute(struct amdgpu_ring *ring)
+>     > +{
+>     > +     struct amdgpu_device *adev = ring->adev;
+>     > +
+>     > +     /* XXX check if swapping is necessary on BE */
+>     > +     if (ring->use_doorbell) {
+>     > +             atomic64_set((atomic64_t *)ring->wptr_cpu_addr, ring->wptr);
+> 
+>     Same here the case to atomic64_t is extremely questionable.
+> 
+>     Regards,
+>     Christian.
+> 
+>     > +             WDOORBELL64(ring->doorbell_index, ring->wptr);
+>     > +     } else {
+>     > +             WARN_ON_ONCE(1);
+>     > +     }
+>     > +}
+>     > +
+>     > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+>     > index 585cc8e81..27f6beafb 100644
+>     > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+>     > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+>     > @@ -653,6 +653,9 @@ u32 amdgpu_gfx_csb_preamble_start(u32 *buffer);
+>     >  u32 amdgpu_gfx_csb_data_parser(struct amdgpu_device *adev, u32 *buffer, u32 count);
+>     >  void amdgpu_gfx_csb_preamble_end(u32 *buffer, u32 count);
+>     > 
+>     > +u64 amdgpu_gfx_get_wptr_compute(struct amdgpu_ring *ring);
+>     > +void amdgpu_gfx_set_wptr_compute(struct amdgpu_ring *ring);
+>     > +
+>     >  void amdgpu_debugfs_gfx_sched_mask_init(struct amdgpu_device *adev);
+>     >  void amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev);
+>     > 
+>     > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+>     > index 1893ceeeb..4c0272cba 100644
+>     > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+>     > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+>     > @@ -8586,31 +8586,6 @@ static u64 gfx_v10_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
+>     >       return *(uint32_t *)ring->rptr_cpu_addr;
+>     >  }
+>     > 
+>     > -static u64 gfx_v10_0_ring_get_wptr_compute(struct amdgpu_ring *ring)
+>     > -{
+>     > -     u64 wptr;
+>     > -
+>     > -     /* XXX check if swapping is necessary on BE */
+>     > -     if (ring->use_doorbell)
+>     > -             wptr = atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
+>     > -     else
+>     > -             BUG();
+>     > -     return wptr;
+>     > -}
+>     > -
+>     > -static void gfx_v10_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
+>     > -{
+>     > -     struct amdgpu_device *adev = ring->adev;
+>     > -
+>     > -     if (ring->use_doorbell) {
+>     > -             atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
+>     > -                          ring->wptr);
+>     > -             WDOORBELL64(ring->doorbell_index, ring->wptr);
+>     > -     } else {
+>     > -             BUG(); /* only DOORBELL method supported on gfx10 now */
+>     > -     }
+>     > -}
+>     > -
+>     >  static void gfx_v10_0_ring_emit_hdp_flush(struct amdgpu_ring *ring)
+>     >  {
+>     >       struct amdgpu_device *adev = ring->adev;
+>     > @@ -9881,8 +9856,8 @@ static const struct amdgpu_ring_funcs gfx_v10_0_ring_funcs_compute = {
+>     >       .nop = PACKET3(PACKET3_NOP, 0x3FFF),
+>     >       .support_64bit_ptrs = true,
+>     >       .get_rptr = gfx_v10_0_ring_get_rptr_compute,
+>     > -     .get_wptr = gfx_v10_0_ring_get_wptr_compute,
+>     > -     .set_wptr = gfx_v10_0_ring_set_wptr_compute,
+>     > +     .get_wptr = amdgpu_gfx_get_wptr_compute,
+>     > +     .set_wptr = amdgpu_gfx_set_wptr_compute,
+>     >       .emit_frame_size =
+>     >               20 + /* gfx_v10_0_ring_emit_gds_switch */
+>     >               7 + /* gfx_v10_0_ring_emit_hdp_flush */
+>     > @@ -9921,8 +9896,8 @@ static const struct amdgpu_ring_funcs gfx_v10_0_ring_funcs_kiq = {
+>     >       .nop = PACKET3(PACKET3_NOP, 0x3FFF),
+>     >       .support_64bit_ptrs = true,
+>     >       .get_rptr = gfx_v10_0_ring_get_rptr_compute,
+>     > -     .get_wptr = gfx_v10_0_ring_get_wptr_compute,
+>     > -     .set_wptr = gfx_v10_0_ring_set_wptr_compute,
+>     > +     .get_wptr = amdgpu_gfx_get_wptr_compute,
+>     > +     .set_wptr = amdgpu_gfx_set_wptr_compute,
+>     >       .emit_frame_size =
+>     >               20 + /* gfx_v10_0_ring_emit_gds_switch */
+>     >               7 + /* gfx_v10_0_ring_emit_hdp_flush */
+>     > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+>     > index 427975b5a..404604f2d 100644
+>     > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+>     > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+>     > @@ -5818,32 +5818,6 @@ static u64 gfx_v11_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
+>     >       return *(uint32_t *)ring->rptr_cpu_addr;
+>     >  }
+>     > 
+>     > -static u64 gfx_v11_0_ring_get_wptr_compute(struct amdgpu_ring *ring)
+>     > -{
+>     > -     u64 wptr;
+>     > -
+>     > -     /* XXX check if swapping is necessary on BE */
+>     > -     if (ring->use_doorbell)
+>     > -             wptr = atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
+>     > -     else
+>     > -             BUG();
+>     > -     return wptr;
+>     > -}
+>     > -
+>     > -static void gfx_v11_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
+>     > -{
+>     > -     struct amdgpu_device *adev = ring->adev;
+>     > -
+>     > -     /* XXX check if swapping is necessary on BE */
+>     > -     if (ring->use_doorbell) {
+>     > -             atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
+>     > -                          ring->wptr);
+>     > -             WDOORBELL64(ring->doorbell_index, ring->wptr);
+>     > -     } else {
+>     > -             BUG(); /* only DOORBELL method supported on gfx11 now */
+>     > -     }
+>     > -}
+>     > -
+>     >  static void gfx_v11_0_ring_emit_hdp_flush(struct amdgpu_ring *ring)
+>     >  {
+>     >       struct amdgpu_device *adev = ring->adev;
+>     > @@ -7266,8 +7240,8 @@ static const struct amdgpu_ring_funcs gfx_v11_0_ring_funcs_compute = {
+>     >       .nop = PACKET3(PACKET3_NOP, 0x3FFF),
+>     >       .support_64bit_ptrs = true,
+>     >       .get_rptr = gfx_v11_0_ring_get_rptr_compute,
+>     > -     .get_wptr = gfx_v11_0_ring_get_wptr_compute,
+>     > -     .set_wptr = gfx_v11_0_ring_set_wptr_compute,
+>     > +     .get_wptr = amdgpu_gfx_get_wptr_compute,
+>     > +     .set_wptr = amdgpu_gfx_set_wptr_compute,
+>     >       .emit_frame_size =
+>     >               5 + /* update_spm_vmid */
+>     >               20 + /* gfx_v11_0_ring_emit_gds_switch */
+>     > @@ -7307,8 +7281,8 @@ static const struct amdgpu_ring_funcs gfx_v11_0_ring_funcs_kiq = {
+>     >       .nop = PACKET3(PACKET3_NOP, 0x3FFF),
+>     >       .support_64bit_ptrs = true,
+>     >       .get_rptr = gfx_v11_0_ring_get_rptr_compute,
+>     > -     .get_wptr = gfx_v11_0_ring_get_wptr_compute,
+>     > -     .set_wptr = gfx_v11_0_ring_set_wptr_compute,
+>     > +     .get_wptr = amdgpu_gfx_get_wptr_compute,
+>     > +     .set_wptr = amdgpu_gfx_set_wptr_compute,
+>     >       .emit_frame_size =
+>     >               20 + /* gfx_v11_0_ring_emit_gds_switch */
+>     >               7 + /* gfx_v11_0_ring_emit_hdp_flush */
+>     > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+>     > index 79ea1af36..7ba436444 100644
+>     > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+>     > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+>     > @@ -4363,32 +4363,6 @@ static u64 gfx_v12_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
+>     >       return *(uint32_t *)ring->rptr_cpu_addr;
+>     >  }
+>     > 
+>     > -static u64 gfx_v12_0_ring_get_wptr_compute(struct amdgpu_ring *ring)
+>     > -{
+>     > -     u64 wptr;
+>     > -
+>     > -     /* XXX check if swapping is necessary on BE */
+>     > -     if (ring->use_doorbell)
+>     > -             wptr = atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
+>     > -     else
+>     > -             BUG();
+>     > -     return wptr;
+>     > -}
+>     > -
+>     > -static void gfx_v12_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
+>     > -{
+>     > -     struct amdgpu_device *adev = ring->adev;
+>     > -
+>     > -     /* XXX check if swapping is necessary on BE */
+>     > -     if (ring->use_doorbell) {
+>     > -             atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
+>     > -                          ring->wptr);
+>     > -             WDOORBELL64(ring->doorbell_index, ring->wptr);
+>     > -     } else {
+>     > -             BUG(); /* only DOORBELL method supported on gfx12 now */
+>     > -     }
+>     > -}
+>     > -
+>     >  static void gfx_v12_0_ring_emit_hdp_flush(struct amdgpu_ring *ring)
+>     >  {
+>     >       struct amdgpu_device *adev = ring->adev;
+>     > @@ -5523,8 +5497,8 @@ static const struct amdgpu_ring_funcs gfx_v12_0_ring_funcs_compute = {
+>     >       .nop = PACKET3(PACKET3_NOP, 0x3FFF),
+>     >       .support_64bit_ptrs = true,
+>     >       .get_rptr = gfx_v12_0_ring_get_rptr_compute,
+>     > -     .get_wptr = gfx_v12_0_ring_get_wptr_compute,
+>     > -     .set_wptr = gfx_v12_0_ring_set_wptr_compute,
+>     > +     .get_wptr = amdgpu_gfx_get_wptr_compute,
+>     > +     .set_wptr = amdgpu_gfx_set_wptr_compute,
+>     >       .emit_frame_size =
+>     >               7 + /* gfx_v12_0_ring_emit_hdp_flush */
+>     >               5 + /* hdp invalidate */
+>     > @@ -5561,8 +5535,8 @@ static const struct amdgpu_ring_funcs gfx_v12_0_ring_funcs_kiq = {
+>     >       .nop = PACKET3(PACKET3_NOP, 0x3FFF),
+>     >       .support_64bit_ptrs = true,
+>     >       .get_rptr = gfx_v12_0_ring_get_rptr_compute,
+>     > -     .get_wptr = gfx_v12_0_ring_get_wptr_compute,
+>     > -     .set_wptr = gfx_v12_0_ring_set_wptr_compute,
+>     > +     .get_wptr = amdgpu_gfx_get_wptr_compute,
+>     > +     .set_wptr = amdgpu_gfx_set_wptr_compute,
+>     >       .emit_frame_size =
+>     >               7 + /* gfx_v12_0_ring_emit_hdp_flush */
+>     >               5 + /*hdp invalidate */
+>     > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+>     > index 8249135d7..798f94bca 100644
+>     > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+>     > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+>     > @@ -5640,37 +5640,6 @@ static u64 gfx_v9_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
+>     >       return *ring->rptr_cpu_addr; /* gfx9 hardware is 32bit rptr */
+>     >  }
+>     > 
+>     > -static u64 gfx_v9_0_ring_get_wptr_compute(struct amdgpu_ring *ring)
+>     > -{
+>     > -     u64 wptr;
+>     > -
+>     > -     /* XXX check if swapping is necessary on BE */
+>     > -     if (ring->use_doorbell) {
+>     > -             wptr = atomic64_read((atomic64_t *)ring->wptr_cpu_addr);
+>     > -     } else {
+>     > -             WARN_ONCE(1, "gfx_v9_0: non-doorbell wptr read on ring %s, "
+>     > -                       "only doorbell method supported on gfx9\n",
+>     > -                       ring->name);
+>     > -             wptr = 0;
+>     > -     }
+>     > -     return wptr;
+>     > -}
+>     > -
+>     > -static void gfx_v9_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
+>     > -{
+>     > -     struct amdgpu_device *adev = ring->adev;
+>     > -
+>     > -     /* XXX check if swapping is necessary on BE */
+>     > -     if (ring->use_doorbell) {
+>     > -             atomic64_set((atomic64_t *)ring->wptr_cpu_addr, ring->wptr);
+>     > -             WDOORBELL64(ring->doorbell_index, ring->wptr);
+>     > -     } else {
+>     > -             WARN_ONCE(1, "gfx_v9_0: non-doorbell wptr write on ring %s, "
+>     > -                       "only doorbell method supported on gfx9\n",
+>     > -                       ring->name);
+>     > -     }
+>     > -}
+>     > -
+>     >  static void gfx_v9_0_ring_emit_fence_kiq(struct amdgpu_ring *ring, u64 addr,
+>     >                                        u64 seq, unsigned int flags)
+>     >  {
+>     > @@ -7627,8 +7596,8 @@ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_compute = {
+>     >       .nop = PACKET3(PACKET3_NOP, 0x3FFF),
+>     >       .support_64bit_ptrs = true,
+>     >       .get_rptr = gfx_v9_0_ring_get_rptr_compute,
+>     > -     .get_wptr = gfx_v9_0_ring_get_wptr_compute,
+>     > -     .set_wptr = gfx_v9_0_ring_set_wptr_compute,
+>     > +     .get_wptr = amdgpu_gfx_get_wptr_compute,
+>     > +     .set_wptr = amdgpu_gfx_set_wptr_compute,
+>     >       .emit_frame_size =
+>     >               20 + /* gfx_v9_0_ring_emit_gds_switch */
+>     >               7 + /* gfx_v9_0_ring_emit_hdp_flush */
+>     > @@ -7669,8 +7638,8 @@ static const struct amdgpu_ring_funcs gfx_v9_0_ring_funcs_kiq = {
+>     >       .nop = PACKET3(PACKET3_NOP, 0x3FFF),
+>     >       .support_64bit_ptrs = true,
+>     >       .get_rptr = gfx_v9_0_ring_get_rptr_compute,
+>     > -     .get_wptr = gfx_v9_0_ring_get_wptr_compute,
+>     > -     .set_wptr = gfx_v9_0_ring_set_wptr_compute,
+>     > +     .get_wptr = amdgpu_gfx_get_wptr_compute,
+>     > +     .set_wptr = amdgpu_gfx_set_wptr_compute,
+>     >       .emit_frame_size =
+>     >               20 + /* gfx_v9_0_ring_emit_gds_switch */
+>     >               7 + /* gfx_v9_0_ring_emit_hdp_flush */
+> 
+
