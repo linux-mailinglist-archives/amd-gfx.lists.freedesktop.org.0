@@ -2,105 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MMJ9KyRS9GmKAgIAu9opvQ
+	id QM0qCbxh82le2AEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 09:11:32 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 16:05:48 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDDE24AACE7
-	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 09:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F8574A3D46
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 16:05:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8291510E4BB;
-	Fri,  1 May 2026 07:11:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9940610F1B8;
+	Thu, 30 Apr 2026 14:05:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="s5q7qN+u";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="W+edVzvg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
- [209.85.216.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0955F10ED07
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 13:57:23 +0000 (UTC)
-Received: by mail-pj1-f49.google.com with SMTP id
- 98e67ed59e1d1-35e576110adso706197a91.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 06:57:23 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1777557443; cv=none;
- d=google.com; s=arc-20240605;
- b=Dm9OfBTYYC+5nN0SsPCTwCK1P8EeEOWEJcyPvUOdqWIpgl3USvhzVcF4pv0M7NM1Dn
- 5YRRNDjsPCLcJqaD6GZh229cYpPgarv9F9CJEgrnYR9LPg0aWfjOl5rVLaKiUXIfyIqd
- 8qlQyBacjGTKyTJyObbaUSu2AOwEJ+rE9xNb7ly2YKpi/Aaq6GnnJ4RSprYwrNYeIID/
- R8orfFF6DyTKAtbZK4zv22d9vCCwIWXPtrInFnzDK+BaXkloDzFpY2nRrwballkWWMdP
- 8J3OojuOhuMEhRuaqecWyl+cS8RgeiKLkU+9J2vGtCEtGzl10rncgLup0NN8jcy9eCqz
- l/CQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=XXKnX7EpVMaRomE5jykrWnevdMv+dWtNhNUGXr9SmRA=;
- fh=ERmXp5WWNp3AKAzbaf22Z7bs3Me/DinZuzVutm3DexM=;
- b=GEcoqkZ7uxhZZzuOgajOcLS7TLM+Gfxi4Jioqd7AUCvQl9pHPtHmwlXGi/WR8eHTw7
- VboVY+gR/Gze28KrSXc9fesJzGRP3N9e5z6PnYwD5aEuhZKw0gfmbMhvAPg+i+GIG4hG
- 8F+MbMTEFFHAahgvBb/lOMrgEKZ/eShuL/jvIXeyCuvCGtdpKHOnFh+uvIwkVfShzskx
- PcNdn3Z/iv+t4n5C2g104O+YcXAx7pIp5h+fIFzqT4zFYQq2pFSdDG7pfDnF4EZYfcSi
- x5aK66Wa9xIvnuNzjUQrlSoK+UKKIdQMtOyAwey8xYukJJFwjEeaCvttxBwd6WTkptzL
- bJjw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777557443; x=1778162243; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=XXKnX7EpVMaRomE5jykrWnevdMv+dWtNhNUGXr9SmRA=;
- b=s5q7qN+uHVOgw85ZiQ31oFwhHDe3ollOTs9WVxq9XzxgafH1I6Xce5OpGfFoIsIrBU
- 0Fl+xfuI79p/P7Il0GyRm+ztUv+ef2qheLf93zcvLaGPejF37WCDOKxcVkh0UwCMvf78
- vPbjLN7djl9VrJtKS2cOkUdcpauijkPDlgZay7haVJaqe6n6O82Tnn7NVkDs6ug0ZTQc
- EDFUxF9TjP4BrIcCEX2jyhAI3RYVm80R4xqPsbQ9OXPpjGh4MdVCrU6/pW71+ULcT/ui
- /koW5RoSHP1pNBx0DxbSf1NG/303168fUK9Xk/vIGZIazn8bQNPwGfLvOdJBIYstan9y
- jlVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777557443; x=1778162243;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=XXKnX7EpVMaRomE5jykrWnevdMv+dWtNhNUGXr9SmRA=;
- b=KoiKek4WTw2SiHZLRW0kdvNcoEKcAZLU1JVtO+Remx3Xv+KugUa1aUOWpmmsF7H7Zi
- +WOQg/lUgWi0INMt3RYdjZfRY+Qe4NRXxwH5SCtqDZTOfNxmibR4v85tBUSidI4LhHPn
- m+D5f5P0JwkfwFYSUFq0Uvv2VReuB5cUFEZmWqP9gALhNPglAl9mgEuhAB9u3JDfgMl1
- XBi/3N+SRKl/qOoJI7Zwa6tP7Yxjjs//Qx0mgh9Q11dCWo9bW6HXbl7oJlXB3zxUIgav
- pjbRVfkYl9GYQYXld0vtN00Zwfc5mqvtnljpLlNq4NXgIOuDlXuNI9Q03NEl7RU8KEk2
- mzpA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ87+IyClMckY5ng7uuJbRL4p1dz2ONmCXOdf0/39ZPW8gx9QBGhw+eENIj9nl0a3nbbKrhfHstQ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx3/vFYo62fbwDNIAh/Ve9ydD6TpXDedna6sHw0CxLnbT6UP1GQ
- terL67aANUw+NHWm1olHy/NLqEZGfTKJ1cB2LlcqLQinYuXPf4e0jYXJpaPF7Rtw9V4ZdII53N7
- AubS9CaZ+DIjCuOkMGstCVhf9KYWysQ==
-X-Gm-Gg: AeBDietrf10SlkT9LWpsMo/j1zrSyzg24Scx/jKUH9PF2YRwowjMkxXi8XJ16XffaBP
- Yh1TmgkTf2cx9e/XZP5Nxdai/xDgW0Ftb9dygRmgbY6IWLpJUDk3i+1hksGpGbMlsHGhAFGHUkE
- PbPFgXI75y4953LIWRGYsE3CEhkH9aBlcGiBbklGzhTu8NNnQGtRXSXEgPywjbSmeAvI9kieR2S
- FLeKpKzeFmuDklcZ9TzGsIfJ7u2ierwfmJI5PWUA6f9bQ2EXv6iPlgVwm34NNql36PpZcAAOLNE
- rTLn52AoJfENfbUG5mrurD9D8oK4O+rakdUJ/4Z9zpyMqL1hdyAFcHzcyZIUC5gS1CfrBV8QRsN
- JXiI=
-X-Received: by 2002:a17:90b:254a:b0:364:a497:db8f with SMTP id
- 98e67ed59e1d1-364c49a00b6mr2583957a91.9.1777557443216; Thu, 30 Apr 2026
- 06:57:23 -0700 (PDT)
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013060.outbound.protection.outlook.com
+ [40.107.201.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD2A210EDAE;
+ Thu, 30 Apr 2026 14:05:39 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=MC7cvElJ0CbRCg5OIo4kLcP/6emoXaoPFNOunIYRtnAEZzqqQcN6BiL9grkYmtBIhnIfi4sN1JWMG87TWOKAzfZN1eqsu+1NfPEnXYUurvAuGnS7sL9NAaXwKUHSHOhHqfkHgouJDZNdP8nV7h01qw9oV3R6tOYLYmcNLB1WpyKrBPvJtHJOYVdZQq/ZACeFS6MI09K7aWfdZPdEzk/oRIEVX+0GH6Kd05Wb3AE4/6+lDhlUEFsEvN+t5UTeXpgzBuO6Dmbfo9XCS63UnrErKnlezTL1Ae/ufwOVYHfZsHuJSkrVQU+Rp04C051tXvJ6OGqTOYqmvpH5rKxJwl+z8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kQ3br3aPyn3iBUIUGso8APQgbnGhzxrdyr7GGq0k1SQ=;
+ b=xVOvtd54PwPFp85zwvxL1yVHttMNlRaLnXu3pZ2zD8yHXnF+dX5c+7CcCjKhf1nTde+lWDVGgJw7hD2BcoDRFkWriN6QkVtSWpST34YnHTJ676N6Q1oCvO5YezR+o7y5T02H4dk5Wxwun/zxrkbe77AtZRkDnv7WcYAnC2csIsiNWFK4xYswjL8D4OppwwJbsfGcoTeTyNzbgMbOa88s8zh3V7utJ5+ntzvmu1z0QE2XDV5QGNXN4A2rYciKhQ2RbTF8a6a1XaruI4Q/oRlqSLq+Hot8WYcnqvR9D71WWE/UczDSdjd8UIHhFb/OCFAUsc14YatGjQEUPE5QBIN37Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kQ3br3aPyn3iBUIUGso8APQgbnGhzxrdyr7GGq0k1SQ=;
+ b=W+edVzvgkTpqoUjmdkymsRtzPku3d9XqXkZIWjEFVsu3gXOgcVfzQcNZqRhHbOBFZQcdW889cQdxGNVeAjHcb907TlhAneBDVZwYtcQ6p33t/OWvr6cq2CO9L2bbwgNDKWNzN5+TSY5B56eyQc4UyWLmMlRLjXQfej/9Fkm3kW4=
+Received: from DS2PEPF0000455B.namprd21.prod.outlook.com
+ (2603:10b6:f:fc00::518) by DM6PR12MB4169.namprd12.prod.outlook.com
+ (2603:10b6:5:215::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.22; Thu, 30 Apr
+ 2026 14:05:33 +0000
+Received: from SN1PEPF0002BA50.namprd03.prod.outlook.com
+ (2603:10b6:82c:400:0:1006:0:9) by DS2PEPF0000455B.outlook.office365.com
+ (2603:10b6:f:fc00::518) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.2 via Frontend Transport; Thu,
+ 30 Apr 2026 14:05:33 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SN1PEPF0002BA50.mail.protection.outlook.com (10.167.242.73) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9846.18 via Frontend Transport; Thu, 30 Apr 2026 14:05:32 +0000
+Received: from arun-nv33.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 30 Apr
+ 2026 09:05:26 -0500
+From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+To: <matthew.auld@intel.com>, <christian.koenig@amd.com>,
+ <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
+CC: <alexander.deucher@amd.com>, Arunpravin Paneer Selvam
+ <Arunpravin.PaneerSelvam@amd.com>
+Subject: [PATCH 1/2] gpu/buddy: replace dual-tree/force_merge with decoupled
+ clear tracker
+Date: Thu, 30 Apr 2026 19:35:13 +0530
+Message-ID: <20260430140514.1850417-1-Arunpravin.PaneerSelvam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20260429202042.21718-1-jbmoore61@gmail.com>
- <6266086d-15d4-476d-a992-503509032dd7@amd.com>
- <CAPUYzBf8EBynRij60SR+EFg1Kn22cyykSOOPxo709bq0xhjpLw@mail.gmail.com>
- <acb467cf-0b2d-4733-8df2-23f1ed18b4fd@amd.com>
- <CADnq5_O=Yt+NZLYykwmHSC6Q7p7G86hpDaFKm5TzRFxd_jndpA@mail.gmail.com>
- <dfc8935f-99c7-4666-bb34-0d01ad3bb8a8@amd.com>
-In-Reply-To: <dfc8935f-99c7-4666-bb34-0d01ad3bb8a8@amd.com>
-From: John Moore <jbmoore61@gmail.com>
-Date: Thu, 30 Apr 2026 08:57:11 -0500
-X-Gm-Features: AVHnY4KPGjyYn-VSzc382ARVbj2yKekR6lToFZ6k5ymT5CZ8DjG72UWAA-g4AbM
-Message-ID: <CAPUYzBdKXTnj1caAFMWz0dt7jsDTpNaunhC=rqOZEVHKW3--OQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu/gfx: extract compute wptr doorbell helpers to
- amdgpu_gfx.c
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Alex Deucher <alexdeucher@gmail.com>, alexander.deucher@amd.com, 
- amd-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="000000000000f89fc70650add7e2"
-X-Mailman-Approved-At: Fri, 01 May 2026 07:11:25 +0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA50:EE_|DM6PR12MB4169:EE_
+X-MS-Office365-Filtering-Correlation-Id: a4797c2b-9eb8-4936-019b-08dea6c18b50
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|1800799024|36860700016|376014|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: zo7Z3+N1Wk24DS4fwUEPtesosc62wwmcfeDeE+kZWZXj3xhDGYx95cdn4nIMbV/ykMRtjpQctSYY3q5Vu8UPdK7Tla6IghcxVSuc0qUKbS5TF5B/WdohCMo13VAwj8pJYnNGz+p2n376034P4kPUPVLCZzYMcVDKZKNfJzXc8HmTmKygG1sJVUZkfA/8YXiL6kSPCSc64phpm6SVLHZS7o2GIh8hS3jtPOBUzNCcEGrlgGUZeTlxq614hsv2R+bQhdPig6ah45chbmiEoYFdQ3sCULihH4NmBa2fjJoNjSVQzj9W2b+rb7gTTH+80FKUqq6F28rqQnLyJCDhKbZouEnE7pnwWL67tQ/e0OhtrG1VWLL3BSEyG8jGgqPtT9EKPDgs7Y2nJZPfaCP8nrYnyxbhB069VUZBBXodMRv2RNIUYJPIC07QUM/vD1oWYTWed8pgQxZiCR5SDrOOftPBdwcuYPbBHLgEbQnAqUkS1INeR2wtHhy11k1TAYcnaL0wyiNBtFbwdi2zKE8wga0NG4lghStAAqaKRjgBLVTjwIxgEKqURh7Adl8ux4KoQb5v1obegmgptZUj/z30WtCsqV5vox0SgWJqD6qfN7///r+wh1ylmOp7mvcENtE2zBA4TIAYY/tuVG1yGQN+KXV80oaIDeruF4aBvaB/sBkr8GR2lVUNziTRtNFm4/u+VmR1Ymw8fPQmmD0STNuBHIQT8CMhpw+S654OUFPTjXywWKsNGLXUAb/0lw7o1GSbRxOIKApIsrlZb1UmfSXn8xcS0Q==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(36860700016)(376014)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: XYQYRaKNk6q0hlgr5CcV6bDZUngQm+E9owIYfp8GUjuoaVn/7TM4kI0O9kMd4cnop+fJ5ADY3DbreINkTCUwKdSi4O7q/zoQQNGMAOjrSfKUpQpjL1y5D2stbq9BgFL+eHw7ISbnOhiSllmWvWmmJkM/szpbXeNJQ9ct3OvcKtkL4KITCjuYV9exPzia6eJW82zFpoCDlheazP10NuICt1Pyd9FKej9UdFGHxFzKvJcYA0RMUUFr66t3xH+s3u0WJ/1rh7xbskEH/3Hpz1wJMLOKfn9ZiYJ+wozonYOe7UafAwsaOOblmp6ZZ7ucW8NlBeYpGNzyn8b/prTduczfwIi17LOx0d5rs1aypfwvCG5917kNlrADYF6lwOAa2VGVVQpSJmGKWS4Y6KSL5kWkkLnAR4rDx33ilNuOfJ7pWRxjACD9ctQfeswrAh1FZC4m
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2026 14:05:32.8764 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4797c2b-9eb8-4936-019b-08dea6c18b50
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA50.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4169
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,1938 +116,1669 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: DDDE24AACE7
+X-Rspamd-Queue-Id: 9F8574A3D46
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.59 / 15.00];
-	R_DKIM_REJECT(1.00)[gmail.com:s=20251104];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	MIME_BASE64_TEXT(0.10)[];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain,text/x-patch];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+,5:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexdeucher@gmail.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:-];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	NEURAL_HAM(-0.00)[-0.963];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[jbmoore61@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,amd.com,lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	HAS_ATTACHMENT(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[Arunpravin.PaneerSelvam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_XOIP(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_THREE(0.00)[4];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,amd.com:email,amd.com:dkim,amd.com:mid]
 
---000000000000f89fc70650add7e2
-Content-Type: multipart/alternative; boundary="000000000000f89fc70650add7e0"
+The old design maintained two separate rbtrees per order — clear_tree[]
+and dirty_tree[] — with a merge barrier preventing a cleared block from
+coalescing with its dirty buddy.  When freed blocks were split across the
+two trees, buddy pairs could not merge during free(); contiguous memory
+could only be recovered by calling __force_merge() inside the allocation
+path.
 
---000000000000f89fc70650add7e0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This causes allocation failures for large contiguous requests even when
+sufficient total free memory is available.  Back-to-back workloads (e.g.
+a memory-intensive job followed by a large allocation) frequently trigger
+this: freed blocks fragment across the two trees after the first job exits,
+and the next alloc's __force_merge() must walk every split pair — O(N x
+max_order) ops — under the allocator lock, producing latency spikes and
+leaving large contiguous ranges unrecoverable until the next alloc attempt.
 
-Hi Christian,
+Replace the dual-tree architecture with a single dirty_tree[order] rbtree
+plus a lightweight out-of-band clear tracker (gpu_clear_tracker).  Fully
+cleared free blocks float outside dirty_tree[] and are tracked by an
+augmented interval rbtree that enables O(log E) search for the largest
+cleared extent.  __gpu_buddy_free() merges buddy pairs unconditionally
+regardless of clear/dirty state, eliminating __force_merge() and the
+cross-tree merge barrier entirely.
 
-I completely understand the issue and that you are stuck due to the
-hardware architectures.
-Thanks for the corrections on the barriers =E2=80=94 both fixed:
+This provides:
+- Correct contiguous allocation after mixed clear/dirty workloads without
+  requiring an explicit force_merge step
+- Elimination of O(N x max_order) force_merge cost from the alloc path
+- O(log E) clear-extent lookup replacing O(N) tree scans
+- Predictable allocation latency under fragmentation
+- Reduced code complexity: one tree per order instead of two
 
-  get:  rmb();
-        wptr =3D <read>(ring->wptr_cpu_addr);
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Christian König <christian.koenig@amd.com>
+Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+---
+ drivers/gpu/buddy.c         | 972 ++++++++++++++++++++++--------------
+ drivers/gpu/drm/drm_buddy.c |  12 +-
+ include/linux/gpu_buddy.h   |  64 ++-
+ 3 files changed, 636 insertions(+), 412 deletions(-)
 
-  set:  <write>(ring->wptr_cpu_addr, ring->wptr);
-        wmb();
-        WDOORBELL64(ring->doorbell_index, ring->wptr);
+diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+index 52686672e99f5..b4b01989e4ae6 100644
+--- a/drivers/gpu/buddy.c
++++ b/drivers/gpu/buddy.c
+@@ -34,6 +34,271 @@
+ #endif
+ 
+ static struct kmem_cache *slab_blocks;
++static struct kmem_cache *slab_extents;
++
++static u64 clear_extent_size(struct gpu_clear_extent *e)
++{
++	return e->end - e->start;
++}
++
++RB_DECLARE_CALLBACKS_MAX(static, gpu_clear_augment_cb,
++			 struct gpu_clear_extent, rb,
++			 u64, subtree_max_size,
++			 clear_extent_size)
++
++static struct gpu_clear_extent *extent_alloc(void)
++{
++	return kmem_cache_zalloc(slab_extents, GFP_KERNEL);
++}
++
++static void extent_free(struct gpu_clear_extent *e)
++{
++	kmem_cache_free(slab_extents, e);
++}
++
++static struct gpu_clear_extent *
++prev_extent(struct gpu_clear_tracker *ct, u64 offset)
++{
++	struct rb_node *rb = ct->root.rb_node;
++	struct gpu_clear_extent *best = NULL;
++
++	while (rb) {
++		struct gpu_clear_extent *e =
++			rb_entry(rb, struct gpu_clear_extent, rb);
++
++		if (e->start < offset) {
++			best = e;
++			rb = rb->rb_right;
++		} else {
++			rb = rb->rb_left;
++		}
++	}
++	return best;
++}
++
++static struct gpu_clear_extent *
++next_extent(struct gpu_clear_tracker *ct, u64 offset)
++{
++	struct rb_node *rb = ct->root.rb_node;
++	struct gpu_clear_extent *best = NULL;
++
++	while (rb) {
++		struct gpu_clear_extent *e =
++			rb_entry(rb, struct gpu_clear_extent, rb);
++
++		if (e->start >= offset) {
++			best = e;
++			rb = rb->rb_left;
++		} else {
++			rb = rb->rb_right;
++		}
++	}
++	return best;
++}
++
++static void insert_extent(struct gpu_clear_tracker *ct,
++			  struct gpu_clear_extent *ins)
++{
++	struct rb_node **link = &ct->root.rb_node;
++	u64 ins_size = ins->end - ins->start;
++	struct rb_node *parent = NULL;
++
++	while (*link) {
++		struct gpu_clear_extent *e;
++
++		parent = *link;
++		e = rb_entry(parent, struct gpu_clear_extent, rb);
++
++		if (ins->start < e->start)
++			link = &parent->rb_left;
++		else
++			link = &parent->rb_right;
++	}
++
++	ins->subtree_max_size = ins_size;
++	rb_link_node(&ins->rb, parent, link);
++	rb_insert_augmented(&ins->rb, &ct->root, &gpu_clear_augment_cb);
++}
++
++static void remove_extent(struct gpu_clear_tracker *ct,
++			  struct gpu_clear_extent *e)
++{
++	rb_erase_augmented(&e->rb, &ct->root, &gpu_clear_augment_cb);
++	RB_CLEAR_NODE(&e->rb);
++}
++
++static void gpu_clear_tracker_init(struct gpu_clear_tracker *ct)
++{
++	ct->root = RB_ROOT;
++	ct->total_clear = 0;
++}
++
++static void gpu_clear_tracker_fini(struct gpu_clear_tracker *ct)
++{
++	struct rb_node *rb;
++
++	while ((rb = rb_first(&ct->root))) {
++		struct gpu_clear_extent *e =
++			rb_entry(rb, struct gpu_clear_extent, rb);
++		remove_extent(ct, e);
++		extent_free(e);
++	}
++	ct->total_clear = 0;
++}
++
++static void gpu_clear_tracker_mark_clear(struct gpu_clear_tracker *ct,
++					 u64 start, u64 size)
++{
++	struct gpu_clear_extent *left, *right, *e;
++	u64 end = start + size;
++
++	if (WARN_ON_ONCE(!size))
++		return;
++
++	left = prev_extent(ct, start);
++	if (left && left->end != start)
++		left = NULL;
++
++	right = next_extent(ct, end);
++	if (right && right->start != end)
++		right = NULL;
++
++	if (left && right) {
++		remove_extent(ct, left);
++		remove_extent(ct, right);
++		left->end = right->end;
++		extent_free(right);
++		insert_extent(ct, left);
++	} else if (left) {
++		remove_extent(ct, left);
++		left->end = end;
++		insert_extent(ct, left);
++	} else if (right) {
++		remove_extent(ct, right);
++		right->start = start;
++		insert_extent(ct, right);
++	} else {
++		e = extent_alloc();
++		/* OOM: skip insert and total_clear bump. */
++		if (WARN_ON_ONCE(!e))
++			return;
++		e->start = start;
++		e->end   = end;
++		insert_extent(ct, e);
++	}
++
++	ct->total_clear += size;
++}
++
++static void gpu_clear_tracker_mark_dirty(struct gpu_clear_tracker *ct,
++					 u64 start, u64 size)
++{
++	struct gpu_clear_extent *e, *next;
++	u64 end = start + size;
++
++	if (WARN_ON_ONCE(!size))
++		return;
++
++	e = prev_extent(ct, start + 1);
++	if (!e)
++		e = next_extent(ct, start);
++
++	while (e && e->start < end) {
++		u64 e_start = e->start, e_end = e->end;
++		struct rb_node *n = rb_next(&e->rb);
++
++		next = n ? rb_entry(n, struct gpu_clear_extent, rb) : NULL;
++
++		/* prev_extent() may return a non-overlapping extent; skip it. */
++		if (e_end <= start) {
++			e = next;
++			continue;
++		}
++
++		if (e_start >= start && e_end <= end) {
++			ct->total_clear -= (e_end - e_start);
++			remove_extent(ct, e);
++			extent_free(e);
++		} else if (e_start < start && e_end > end) {
++			struct gpu_clear_extent *right = extent_alloc();
++
++			ct->total_clear -= size;
++			remove_extent(ct, e);
++			e->end = start;
++			/* OOM: drop the lost right fragment from total_clear. */
++			if (WARN_ON_ONCE(!right)) {
++				ct->total_clear -= (e_end - end);
++			} else {
++				right->start = end;
++				right->end   = e_end;
++				insert_extent(ct, right);
++			}
++			insert_extent(ct, e);
++		} else if (e_start < start) {
++			ct->total_clear -= (e_end - start);
++			remove_extent(ct, e);
++			e->end = start;
++			insert_extent(ct, e);
++		} else {
++			ct->total_clear -= (end - e_start);
++			remove_extent(ct, e);
++			e->start = end;
++			insert_extent(ct, e);
++		}
++
++		e = next;
++	}
++}
++
++static bool gpu_clear_tracker_is_clear(struct gpu_clear_tracker *ct,
++				       u64 start, u64 size)
++{
++	struct gpu_clear_extent *e = prev_extent(ct, start + 1);
++
++	if (!e)
++		return false;
++	return e->start <= start && e->end >= start + size;
++}
++
++static struct gpu_clear_extent *
++gpu_clear_tracker_find(struct gpu_clear_tracker *ct, u64 min_size)
++{
++	struct rb_node *rb = ct->root.rb_node;
++
++	while (rb) {
++		struct gpu_clear_extent *e =
++			rb_entry(rb, struct gpu_clear_extent, rb);
++		struct rb_node *right = rb->rb_right;
++		struct rb_node *left  = rb->rb_left;
++
++		if (right) {
++			struct gpu_clear_extent *r =
++				rb_entry(right, struct gpu_clear_extent, rb);
++
++			if (r->subtree_max_size >= min_size) {
++				rb = right;
++				continue;
++			}
++		}
++
++		if (e->end - e->start >= min_size)
++			return e;
++
++		if (left) {
++			struct gpu_clear_extent *l =
++				rb_entry(left, struct gpu_clear_extent, rb);
++
++			if (l->subtree_max_size >= min_size) {
++				rb = left;
++				continue;
++			}
++		}
++
++		break;
++	}
++
++	return NULL;
++}
+ 
+ static unsigned int
+ gpu_buddy_block_state(struct gpu_buddy_block *block)
+@@ -101,13 +366,6 @@ static void gpu_block_free(struct gpu_buddy *mm,
+ 	kmem_cache_free(slab_blocks, block);
+ }
+ 
+-static enum gpu_buddy_free_tree
+-get_block_tree(struct gpu_buddy_block *block)
+-{
+-	return gpu_buddy_block_is_clear(block) ?
+-	       GPU_BUDDY_CLEAR_TREE : GPU_BUDDY_DIRTY_TREE;
+-}
+-
+ static struct gpu_buddy_block *
+ rbtree_get_free_block(const struct rb_node *node)
+ {
+@@ -120,14 +378,8 @@ rbtree_last_free_block(struct rb_root *root)
+ 	return rbtree_get_free_block(rb_last(root));
+ }
+ 
+-static bool rbtree_is_empty(struct rb_root *root)
+-{
+-	return RB_EMPTY_ROOT(root);
+-}
+-
+ static void rbtree_insert(struct gpu_buddy *mm,
+-			  struct gpu_buddy_block *block,
+-			  enum gpu_buddy_free_tree tree)
++			  struct gpu_buddy_block *block)
+ {
+ 	struct rb_node **link, *parent = NULL;
+ 	unsigned int block_alignment, order;
+@@ -137,7 +389,7 @@ static void rbtree_insert(struct gpu_buddy *mm,
+ 	order = gpu_buddy_block_order(block);
+ 	block_alignment = gpu_buddy_block_offset_alignment(block);
+ 
+-	root = &mm->free_trees[tree][order];
++	root = &mm->dirty_tree[order];
+ 	link = &root->rb_node;
+ 
+ 	while (*link) {
+@@ -167,26 +419,14 @@ static void rbtree_remove(struct gpu_buddy *mm,
+ 			  struct gpu_buddy_block *block)
+ {
+ 	unsigned int order = gpu_buddy_block_order(block);
+-	enum gpu_buddy_free_tree tree;
+-	struct rb_root *root;
+ 
+-	tree = get_block_tree(block);
+-	root = &mm->free_trees[tree][order];
++	if (gpu_buddy_block_is_clear(block))
++		return;
+ 
+-	rb_erase_augmented(&block->rb, root, &gpu_buddy_augment_cb);
++	rb_erase_augmented(&block->rb, &mm->dirty_tree[order], &gpu_buddy_augment_cb);
+ 	RB_CLEAR_NODE(&block->rb);
+ }
+ 
+-static void clear_reset(struct gpu_buddy_block *block)
+-{
+-	block->header &= ~GPU_BUDDY_HEADER_CLEAR;
+-}
+-
+-static void mark_cleared(struct gpu_buddy_block *block)
+-{
+-	block->header |= GPU_BUDDY_HEADER_CLEAR;
+-}
+-
+ static void mark_allocated(struct gpu_buddy *mm,
+ 			   struct gpu_buddy_block *block)
+ {
+@@ -199,13 +439,18 @@ static void mark_allocated(struct gpu_buddy *mm,
+ static void mark_free(struct gpu_buddy *mm,
+ 		      struct gpu_buddy_block *block)
+ {
+-	enum gpu_buddy_free_tree tree;
+-
+ 	block->header &= ~GPU_BUDDY_HEADER_STATE;
+ 	block->header |= GPU_BUDDY_FREE;
+ 
+-	tree = get_block_tree(block);
+-	rbtree_insert(mm, block, tree);
++	if (gpu_clear_tracker_is_clear(&mm->clear,
++				       gpu_buddy_block_offset(block),
++				       gpu_buddy_block_size(mm, block))) {
++		block->header |= GPU_BUDDY_HEADER_CLEAR;
++		RB_CLEAR_NODE(&block->rb);
++	} else {
++		block->header &= ~GPU_BUDDY_HEADER_CLEAR;
++		rbtree_insert(mm, block);
++	}
+ }
+ 
+ static void mark_split(struct gpu_buddy *mm,
+@@ -243,36 +488,18 @@ __get_buddy(struct gpu_buddy_block *block)
+ }
+ 
+ static unsigned int __gpu_buddy_free(struct gpu_buddy *mm,
+-				     struct gpu_buddy_block *block,
+-				     bool force_merge)
++				     struct gpu_buddy_block *block)
+ {
+ 	struct gpu_buddy_block *parent;
+ 	unsigned int order;
+ 
+ 	while ((parent = block->parent)) {
+-		struct gpu_buddy_block *buddy;
+-
+-		buddy = __get_buddy(block);
++		struct gpu_buddy_block *buddy = __get_buddy(block);
+ 
+ 		if (!gpu_buddy_block_is_free(buddy))
+ 			break;
+ 
+-		if (!force_merge) {
+-			/*
+-			 * Check the block and its buddy clear state and exit
+-			 * the loop if they both have the dissimilar state.
+-			 */
+-			if (gpu_buddy_block_is_clear(block) !=
+-			    gpu_buddy_block_is_clear(buddy))
+-				break;
+-
+-			if (gpu_buddy_block_is_clear(block))
+-				mark_cleared(parent);
+-		}
+-
+ 		rbtree_remove(mm, buddy);
+-		if (force_merge && gpu_buddy_block_is_clear(buddy))
+-			mm->clear_avail -= gpu_buddy_block_size(mm, buddy);
+ 
+ 		gpu_block_free(mm, block);
+ 		gpu_block_free(mm, buddy);
+@@ -286,66 +513,15 @@ static unsigned int __gpu_buddy_free(struct gpu_buddy *mm,
+ 	return order;
+ }
+ 
+-static int __force_merge(struct gpu_buddy *mm,
+-			 u64 start,
+-			 u64 end,
+-			 unsigned int min_order)
++static void undo_partial_split(struct gpu_buddy *mm,
++			       struct gpu_buddy_block *block)
+ {
+-	unsigned int tree, order;
+-	int i;
+-
+-	if (!min_order)
+-		return -ENOMEM;
+-
+-	if (min_order > mm->max_order)
+-		return -EINVAL;
+-
+-	for_each_free_tree(tree) {
+-		for (i = min_order - 1; i >= 0; i--) {
+-			struct rb_node *iter = rb_last(&mm->free_trees[tree][i]);
++	struct gpu_buddy_block *buddy = __get_buddy(block);
+ 
+-			while (iter) {
+-				struct gpu_buddy_block *block, *buddy;
+-				u64 block_start, block_end;
+-
+-				block = rbtree_get_free_block(iter);
+-				iter = rb_prev(iter);
+-
+-				if (!block || !block->parent)
+-					continue;
+-
+-				block_start = gpu_buddy_block_offset(block);
+-				block_end = block_start + gpu_buddy_block_size(mm, block) - 1;
+-
+-				if (!contains(start, end, block_start, block_end))
+-					continue;
+-
+-				buddy = __get_buddy(block);
+-				if (!gpu_buddy_block_is_free(buddy))
+-					continue;
+-
+-				gpu_buddy_assert(gpu_buddy_block_is_clear(block) !=
+-						 gpu_buddy_block_is_clear(buddy));
+-
+-				/*
+-				 * Advance to the next node when the current node is the buddy,
+-				 * as freeing the block will also remove its buddy from the tree.
+-				 */
+-				if (iter == &buddy->rb)
+-					iter = rb_prev(iter);
+-
+-				rbtree_remove(mm, block);
+-				if (gpu_buddy_block_is_clear(block))
+-					mm->clear_avail -= gpu_buddy_block_size(mm, block);
+-
+-				order = __gpu_buddy_free(mm, block, true);
+-				if (order >= min_order)
+-					return 0;
+-			}
+-		}
+-	}
+-
+-	return -ENOMEM;
++	if (buddy &&
++	    gpu_buddy_block_is_free(block) &&
++	    gpu_buddy_block_is_free(buddy))
++		__gpu_buddy_free(mm, block);
+ }
+ 
+ /**
+@@ -362,7 +538,7 @@ static int __force_merge(struct gpu_buddy *mm,
+  */
+ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
+ {
+-	unsigned int i, j, root_count = 0;
++	unsigned int root_count = 0;
+ 	u64 offset = 0;
+ 
+ 	if (size < chunk_size)
+@@ -384,22 +560,13 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
+ 
+ 	BUG_ON(mm->max_order > GPU_BUDDY_MAX_ORDER);
+ 
+-	mm->free_trees = kmalloc_array(GPU_BUDDY_MAX_FREE_TREES,
+-				       sizeof(*mm->free_trees),
+-				       GFP_KERNEL);
+-	if (!mm->free_trees)
++	mm->dirty_tree = kcalloc(mm->max_order + 1,
++				 sizeof(struct rb_root),
++				 GFP_KERNEL);
++	if (!mm->dirty_tree)
+ 		return -ENOMEM;
+ 
+-	for_each_free_tree(i) {
+-		mm->free_trees[i] = kmalloc_array(mm->max_order + 1,
+-						  sizeof(struct rb_root),
+-						  GFP_KERNEL);
+-		if (!mm->free_trees[i])
+-			goto out_free_tree;
+-
+-		for (j = 0; j <= mm->max_order; ++j)
+-			mm->free_trees[i][j] = RB_ROOT;
+-	}
++	gpu_clear_tracker_init(&mm->clear);
+ 
+ 	mm->n_roots = hweight64(size);
+ 
+@@ -444,9 +611,8 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
+ 		gpu_block_free(mm, mm->roots[root_count]);
+ 	kfree(mm->roots);
+ out_free_tree:
+-	while (i--)
+-		kfree(mm->free_trees[i]);
+-	kfree(mm->free_trees);
++	gpu_clear_tracker_fini(&mm->clear);
++	kfree(mm->dirty_tree);
+ 	return -ENOMEM;
+ }
+ EXPORT_SYMBOL(gpu_buddy_init);
+@@ -460,7 +626,7 @@ EXPORT_SYMBOL(gpu_buddy_init);
+  */
+ void gpu_buddy_fini(struct gpu_buddy *mm)
+ {
+-	u64 root_size, size, start;
++	u64 root_size, size;
+ 	unsigned int order;
+ 	int i;
+ 
+@@ -468,22 +634,17 @@ void gpu_buddy_fini(struct gpu_buddy *mm)
+ 
+ 	for (i = 0; i < mm->n_roots; ++i) {
+ 		order = ilog2(size) - ilog2(mm->chunk_size);
+-		start = gpu_buddy_block_offset(mm->roots[i]);
+-		__force_merge(mm, start, start + size, order);
++		root_size = mm->chunk_size << order;
+ 
+ 		gpu_buddy_assert(gpu_buddy_block_is_free(mm->roots[i]));
+-
+ 		gpu_block_free(mm, mm->roots[i]);
+-
+-		root_size = mm->chunk_size << order;
+ 		size -= root_size;
+ 	}
+ 
+ 	gpu_buddy_assert(mm->avail == mm->size);
+ 
+-	for_each_free_tree(i)
+-		kfree(mm->free_trees[i]);
+-	kfree(mm->free_trees);
++	gpu_clear_tracker_fini(&mm->clear);
++	kfree(mm->dirty_tree);
+ 	kfree(mm->roots);
+ }
+ EXPORT_SYMBOL(gpu_buddy_fini);
+@@ -509,13 +670,6 @@ static int split_block(struct gpu_buddy *mm,
+ 	}
+ 
+ 	mark_split(mm, block);
+-
+-	if (gpu_buddy_block_is_clear(block)) {
+-		mark_cleared(block->left);
+-		mark_cleared(block->right);
+-		clear_reset(block);
+-	}
+-
+ 	mark_free(mm, block->left);
+ 	mark_free(mm, block->right);
+ 
+@@ -533,41 +687,55 @@ static int split_block(struct gpu_buddy *mm,
+  */
+ void gpu_buddy_reset_clear(struct gpu_buddy *mm, bool is_clear)
+ {
+-	enum gpu_buddy_free_tree src_tree, dst_tree;
+-	u64 root_size, size, start;
+-	unsigned int order;
+-	int i;
++	unsigned int i;
+ 
+-	size = mm->size;
+-	for (i = 0; i < mm->n_roots; ++i) {
+-		order = ilog2(size) - ilog2(mm->chunk_size);
+-		start = gpu_buddy_block_offset(mm->roots[i]);
+-		__force_merge(mm, start, start + size, order);
++	gpu_clear_tracker_fini(&mm->clear);
++	gpu_clear_tracker_init(&mm->clear);
++
++	if (is_clear) {
++		for (i = 0; i <= mm->max_order; ++i) {
++			struct rb_node *node;
++
++			node = rb_first(&mm->dirty_tree[i]);
++			while (node) {
++				struct gpu_buddy_block *block =
++					rb_entry(node, struct gpu_buddy_block, rb);
++
++				node = rb_next(node);
++				rb_erase_augmented(&block->rb, &mm->dirty_tree[i], &gpu_buddy_augment_cb);
++				RB_CLEAR_NODE(&block->rb);
++				block->header |= GPU_BUDDY_HEADER_CLEAR;
++				gpu_clear_tracker_mark_clear(&mm->clear,
++							     gpu_buddy_block_offset(block),
++							     gpu_buddy_block_size(mm, block));
++			}
++		}
++	} else {
++		LIST_HEAD(dfs);
+ 
+-		root_size = mm->chunk_size << order;
+-		size -= root_size;
+-	}
++		for (i = 0; i < mm->n_roots; ++i)
++			list_add(&mm->roots[i]->tmp_link, &dfs);
+ 
+-	src_tree = is_clear ? GPU_BUDDY_DIRTY_TREE : GPU_BUDDY_CLEAR_TREE;
+-	dst_tree = is_clear ? GPU_BUDDY_CLEAR_TREE : GPU_BUDDY_DIRTY_TREE;
++		while (!list_empty(&dfs)) {
++			struct gpu_buddy_block *block =
++				list_first_entry(&dfs, struct gpu_buddy_block, tmp_link);
+ 
+-	for (i = 0; i <= mm->max_order; ++i) {
+-		struct rb_root *root = &mm->free_trees[src_tree][i];
+-		struct gpu_buddy_block *block, *tmp;
++			list_del(&block->tmp_link);
+ 
+-		rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
+-			rbtree_remove(mm, block);
+-			if (is_clear) {
+-				mark_cleared(block);
+-				mm->clear_avail += gpu_buddy_block_size(mm, block);
+-			} else {
+-				clear_reset(block);
+-				mm->clear_avail -= gpu_buddy_block_size(mm, block);
++			if (gpu_buddy_block_is_split(block)) {
++				list_add(&block->right->tmp_link, &dfs);
++				list_add(&block->left->tmp_link, &dfs);
++				continue;
+ 			}
+ 
+-			rbtree_insert(mm, block, dst_tree);
++			if (gpu_buddy_block_is_free(block) && gpu_buddy_block_is_clear(block)) {
++				block->header &= ~GPU_BUDDY_HEADER_CLEAR;
++				rbtree_insert(mm, block);
++			}
+ 		}
+ 	}
++
++	mm->clear_avail = mm->clear.total_clear;
+ }
+ EXPORT_SYMBOL(gpu_buddy_reset_clear);
+ 
+@@ -580,12 +748,21 @@ EXPORT_SYMBOL(gpu_buddy_reset_clear);
+ void gpu_buddy_free_block(struct gpu_buddy *mm,
+ 			  struct gpu_buddy_block *block)
+ {
++	bool was_clear = gpu_buddy_block_is_clear(block);
++	u64 size   = gpu_buddy_block_size(mm, block);
++	u64 offset = gpu_buddy_block_offset(block);
++
+ 	BUG_ON(!gpu_buddy_block_is_allocated(block));
+-	mm->avail += gpu_buddy_block_size(mm, block);
+-	if (gpu_buddy_block_is_clear(block))
+-		mm->clear_avail += gpu_buddy_block_size(mm, block);
+ 
+-	__gpu_buddy_free(mm, block, false);
++	block->header &= ~GPU_BUDDY_HEADER_CLEAR;
++	mm->avail += size;
++
++	if (was_clear) {
++		gpu_clear_tracker_mark_clear(&mm->clear, offset, size);
++		mm->clear_avail = mm->clear.total_clear;
++	}
++
++	__gpu_buddy_free(mm, block);
+ }
+ EXPORT_SYMBOL(gpu_buddy_free_block);
+ 
+@@ -599,10 +776,15 @@ static void __gpu_buddy_free_list(struct gpu_buddy *mm,
+ 	gpu_buddy_assert(!(mark_dirty && mark_clear));
+ 
+ 	list_for_each_entry_safe(block, on, objects, link) {
++		/*
++		 * Propagate the caller's clear/dirty intent onto the block header
++		 * before handing it to gpu_buddy_free_block(), which will then
++		 * update the clear tracker accordingly.
++		 */
+ 		if (mark_clear)
+-			mark_cleared(block);
++			block->header |= GPU_BUDDY_HEADER_CLEAR;
+ 		else if (mark_dirty)
+-			clear_reset(block);
++			block->header &= ~GPU_BUDDY_HEADER_CLEAR;
+ 		gpu_buddy_free_block(mm, block);
+ 		cond_resched();
+ 	}
+@@ -637,23 +819,14 @@ void gpu_buddy_free_list(struct gpu_buddy *mm,
+ }
+ EXPORT_SYMBOL(gpu_buddy_free_list);
+ 
+-static bool block_incompatible(struct gpu_buddy_block *block, unsigned int flags)
+-{
+-	bool needs_clear = flags & GPU_BUDDY_CLEAR_ALLOCATION;
+-
+-	return needs_clear != gpu_buddy_block_is_clear(block);
+-}
+-
+ static struct gpu_buddy_block *
+ __alloc_range_bias(struct gpu_buddy *mm,
+ 		   u64 start, u64 end,
+ 		   unsigned int order,
+-		   unsigned long flags,
+-		   bool fallback)
++		   unsigned long flags)
+ {
+ 	u64 req_size = mm->chunk_size << order;
+ 	struct gpu_buddy_block *block;
+-	struct gpu_buddy_block *buddy;
+ 	LIST_HEAD(dfs);
+ 	int err;
+ 	int i;
+@@ -696,9 +869,6 @@ __alloc_range_bias(struct gpu_buddy *mm,
+ 				continue;
+ 		}
+ 
+-		if (!fallback && block_incompatible(block, flags))
+-			continue;
+-
+ 		if (contains(start, end, block_start, block_end) &&
+ 		    order == gpu_buddy_block_order(block)) {
+ 			/*
+@@ -716,68 +886,32 @@ __alloc_range_bias(struct gpu_buddy *mm,
+ 				goto err_undo;
+ 		}
+ 
+-		list_add(&block->right->tmp_link, &dfs);
+ 		list_add(&block->left->tmp_link, &dfs);
++		list_add(&block->right->tmp_link, &dfs);
+ 	} while (1);
+ 
+ 	return ERR_PTR(-ENOSPC);
+ 
+ err_undo:
+-	/*
+-	 * We really don't want to leave around a bunch of split blocks, since
+-	 * bigger is better, so make sure we merge everything back before we
+-	 * free the allocated blocks.
+-	 */
+-	buddy = __get_buddy(block);
+-	if (buddy &&
+-	    (gpu_buddy_block_is_free(block) &&
+-	     gpu_buddy_block_is_free(buddy)))
+-		__gpu_buddy_free(mm, block, false);
++	undo_partial_split(mm, block);
+ 	return ERR_PTR(err);
+ }
+ 
+-static struct gpu_buddy_block *
+-__gpu_buddy_alloc_range_bias(struct gpu_buddy *mm,
+-			     u64 start, u64 end,
+-			     unsigned int order,
+-			     unsigned long flags)
+-{
+-	struct gpu_buddy_block *block;
+-	bool fallback = false;
+-
+-	block = __alloc_range_bias(mm, start, end, order,
+-				   flags, fallback);
+-	if (IS_ERR(block))
+-		return __alloc_range_bias(mm, start, end, order,
+-					  flags, !fallback);
+-
+-	return block;
+-}
+-
+ static struct gpu_buddy_block *
+ get_maxblock(struct gpu_buddy *mm,
+ 	     unsigned int order,
+-	     enum gpu_buddy_free_tree tree)
++	     unsigned long flags)
+ {
+-	struct gpu_buddy_block *max_block = NULL, *block = NULL;
+-	struct rb_root *root;
++	struct gpu_buddy_block *max_block = NULL, *block;
+ 	unsigned int i;
+ 
+ 	for (i = order; i <= mm->max_order; ++i) {
+-		root = &mm->free_trees[tree][i];
+-		block = rbtree_last_free_block(root);
++		block = rbtree_last_free_block(&mm->dirty_tree[i]);
+ 		if (!block)
+ 			continue;
+-
+-		if (!max_block) {
++		if (!max_block ||
++		    gpu_buddy_block_offset(block) > gpu_buddy_block_offset(max_block))
+ 			max_block = block;
+-			continue;
+-		}
+-
+-		if (gpu_buddy_block_offset(block) >
+-		    gpu_buddy_block_offset(max_block)) {
+-			max_block = block;
+-		}
+ 	}
+ 
+ 	return max_block;
+@@ -789,44 +923,23 @@ alloc_from_freetree(struct gpu_buddy *mm,
+ 		    unsigned long flags)
+ {
+ 	struct gpu_buddy_block *block = NULL;
+-	struct rb_root *root;
+-	enum gpu_buddy_free_tree tree;
+ 	unsigned int tmp;
+ 	int err;
+ 
+-	tree = (flags & GPU_BUDDY_CLEAR_ALLOCATION) ?
+-		GPU_BUDDY_CLEAR_TREE : GPU_BUDDY_DIRTY_TREE;
+-
+ 	if (flags & GPU_BUDDY_TOPDOWN_ALLOCATION) {
+-		block = get_maxblock(mm, order, tree);
++		block = get_maxblock(mm, order, flags);
+ 		if (block)
+-			/* Store the obtained block order */
+ 			tmp = gpu_buddy_block_order(block);
+ 	} else {
+ 		for (tmp = order; tmp <= mm->max_order; ++tmp) {
+-			/* Get RB tree root for this order and tree */
+-			root = &mm->free_trees[tree][tmp];
+-			block = rbtree_last_free_block(root);
++			block = rbtree_last_free_block(&mm->dirty_tree[tmp]);
+ 			if (block)
+ 				break;
+ 		}
+ 	}
+ 
+-	if (!block) {
+-		/* Try allocating from the other tree */
+-		tree = (tree == GPU_BUDDY_CLEAR_TREE) ?
+-			GPU_BUDDY_DIRTY_TREE : GPU_BUDDY_CLEAR_TREE;
+-
+-		for (tmp = order; tmp <= mm->max_order; ++tmp) {
+-			root = &mm->free_trees[tree][tmp];
+-			block = rbtree_last_free_block(root);
+-			if (block)
+-				break;
+-		}
+-
+-		if (!block)
+-			return ERR_PTR(-ENOSPC);
+-	}
++	if (!block)
++		return ERR_PTR(-ENOSPC);
+ 
+ 	BUG_ON(!gpu_buddy_block_is_free(block));
+ 
+@@ -835,14 +948,18 @@ alloc_from_freetree(struct gpu_buddy *mm,
+ 		if (unlikely(err))
+ 			goto err_undo;
+ 
+-		block = block->right;
++		if (!(flags & GPU_BUDDY_CLEAR_ALLOCATION) &&
++		    gpu_buddy_block_is_clear(block->right))
++			block = block->left;
++		else
++			block = block->right;
+ 		tmp--;
+ 	}
+ 	return block;
+ 
+ err_undo:
+ 	if (tmp != order)
+-		__gpu_buddy_free(mm, block, false);
++		__gpu_buddy_free(mm, block);
+ 	return ERR_PTR(err);
+ }
+ 
+@@ -863,12 +980,11 @@ static bool gpu_buddy_subtree_can_satisfy(struct rb_node *node,
+ 
+ static struct gpu_buddy_block *
+ gpu_buddy_find_block_aligned(struct gpu_buddy *mm,
+-			     enum gpu_buddy_free_tree tree,
+ 			     unsigned int order,
+ 			     unsigned int alignment,
+ 			     unsigned long flags)
+ {
+-	struct rb_root *root = &mm->free_trees[tree][order];
++	struct rb_root *root = &mm->dirty_tree[order];
+ 	struct rb_node *rb = root->rb_node;
+ 
+ 	while (rb) {
+@@ -906,8 +1022,6 @@ gpu_buddy_offset_aligned_allocation(struct gpu_buddy *mm,
+ {
+ 	struct gpu_buddy_block *block = NULL;
+ 	unsigned int order, tmp, alignment;
+-	struct gpu_buddy_block *buddy;
+-	enum gpu_buddy_free_tree tree;
+ 	unsigned long pages;
+ 	int err;
+ 
+@@ -915,19 +1029,8 @@ gpu_buddy_offset_aligned_allocation(struct gpu_buddy *mm,
+ 	pages = size >> ilog2(mm->chunk_size);
+ 	order = fls(pages) - 1;
+ 
+-	tree = (flags & GPU_BUDDY_CLEAR_ALLOCATION) ?
+-		GPU_BUDDY_CLEAR_TREE : GPU_BUDDY_DIRTY_TREE;
+-
+ 	for (tmp = order; tmp <= mm->max_order; ++tmp) {
+-		block = gpu_buddy_find_block_aligned(mm, tree, tmp,
+-						     alignment, flags);
+-		if (!block) {
+-			tree = (tree == GPU_BUDDY_CLEAR_TREE) ?
+-				GPU_BUDDY_DIRTY_TREE : GPU_BUDDY_CLEAR_TREE;
+-			block = gpu_buddy_find_block_aligned(mm, tree, tmp,
+-							     alignment, flags);
+-		}
+-
++		block = gpu_buddy_find_block_aligned(mm, tmp, alignment, flags);
+ 		if (block)
+ 			break;
+ 	}
+@@ -954,27 +1057,18 @@ gpu_buddy_offset_aligned_allocation(struct gpu_buddy *mm,
+ 	return block;
+ 
+ err_undo:
+-	/*
+-	 * We really don't want to leave around a bunch of split blocks, since
+-	 * bigger is better, so make sure we merge everything back before we
+-	 * free the allocated blocks.
+-	 */
+-	buddy = __get_buddy(block);
+-	if (buddy &&
+-	    (gpu_buddy_block_is_free(block) &&
+-	     gpu_buddy_block_is_free(buddy)))
+-		__gpu_buddy_free(mm, block, false);
++	undo_partial_split(mm, block);
+ 	return ERR_PTR(err);
+ }
+ 
+ static int __alloc_range(struct gpu_buddy *mm,
+ 			 struct list_head *dfs,
+ 			 u64 start, u64 size,
++			 unsigned long flags,
+ 			 struct list_head *blocks,
+ 			 u64 *total_allocated_on_err)
+ {
+ 	struct gpu_buddy_block *block;
+-	struct gpu_buddy_block *buddy;
+ 	u64 total_allocated = 0;
+ 	LIST_HEAD(allocated);
+ 	u64 end;
+@@ -1007,16 +1101,24 @@ static int __alloc_range(struct gpu_buddy *mm,
+ 
+ 		if (contains(start, end, block_start, block_end)) {
+ 			if (gpu_buddy_block_is_free(block)) {
++				u64 bsize = gpu_buddy_block_size(mm, block);
++				u64 boff  = gpu_buddy_block_offset(block);
++
+ 				mark_allocated(mm, block);
+-				total_allocated += gpu_buddy_block_size(mm, block);
+-				mm->avail -= gpu_buddy_block_size(mm, block);
+-				if (gpu_buddy_block_is_clear(block))
+-					mm->clear_avail -= gpu_buddy_block_size(mm, block);
++				total_allocated += bsize;
++				mm->avail -= bsize;
++
++				if (gpu_clear_tracker_is_clear(&mm->clear,
++							       boff, bsize)) {
++					if (flags & GPU_BUDDY_CLEAR_ALLOCATION)
++						block->header |= GPU_BUDDY_HEADER_CLEAR;
++				}
++				gpu_clear_tracker_mark_dirty(&mm->clear,
++							     boff, bsize);
++				mm->clear_avail = mm->clear.total_clear;
++
+ 				list_add_tail(&block->link, &allocated);
+ 				continue;
+-			} else if (!mm->clear_avail) {
+-				err = -ENOSPC;
+-				goto err_free;
+ 			}
+ 		}
+ 
+@@ -1040,16 +1142,7 @@ static int __alloc_range(struct gpu_buddy *mm,
+ 	return 0;
+ 
+ err_undo:
+-	/*
+-	 * We really don't want to leave around a bunch of split blocks, since
+-	 * bigger is better, so make sure we merge everything back before we
+-	 * free the allocated blocks.
+-	 */
+-	buddy = __get_buddy(block);
+-	if (buddy &&
+-	    (gpu_buddy_block_is_free(block) &&
+-	     gpu_buddy_block_is_free(buddy)))
+-		__gpu_buddy_free(mm, block, false);
++	undo_partial_split(mm, block);
+ 
+ err_free:
+ 	if (err == -ENOSPC && total_allocated_on_err) {
+@@ -1065,6 +1158,7 @@ static int __alloc_range(struct gpu_buddy *mm,
+ static int __gpu_buddy_alloc_range(struct gpu_buddy *mm,
+ 				   u64 start,
+ 				   u64 size,
++				   unsigned long flags,
+ 				   u64 *total_allocated_on_err,
+ 				   struct list_head *blocks)
+ {
+@@ -1074,20 +1168,23 @@ static int __gpu_buddy_alloc_range(struct gpu_buddy *mm,
+ 	for (i = 0; i < mm->n_roots; ++i)
+ 		list_add_tail(&mm->roots[i]->tmp_link, &dfs);
+ 
+-	return __alloc_range(mm, &dfs, start, size,
++	return __alloc_range(mm, &dfs, start, size, flags,
+ 			     blocks, total_allocated_on_err);
+ }
+ 
+ static int __alloc_contig_try_harder(struct gpu_buddy *mm,
+ 				     u64 size,
+ 				     u64 min_block_size,
++				     unsigned long flags,
+ 				     struct list_head *blocks)
+ {
+ 	u64 rhs_offset, lhs_offset, lhs_size, filled;
+ 	struct gpu_buddy_block *block;
+-	unsigned int tree, order;
+ 	LIST_HEAD(blocks_lhs);
++	struct rb_root *root;
++	struct rb_node *iter;
+ 	unsigned long pages;
++	unsigned int order;
+ 	u64 modify_size;
+ 	int err;
+ 
+@@ -1097,45 +1194,40 @@ static int __alloc_contig_try_harder(struct gpu_buddy *mm,
+ 	if (order == 0)
+ 		return -ENOSPC;
+ 
+-	for_each_free_tree(tree) {
+-		struct rb_root *root;
+-		struct rb_node *iter;
+-
+-		root = &mm->free_trees[tree][order];
+-		if (rbtree_is_empty(root))
+-			continue;
++	root = &mm->dirty_tree[order];
++	if (RB_EMPTY_ROOT(root))
++		return -ENOSPC;
+ 
+-		iter = rb_last(root);
+-		while (iter) {
+-			block = rbtree_get_free_block(iter);
+-
+-			/* Allocate blocks traversing RHS */
+-			rhs_offset = gpu_buddy_block_offset(block);
+-			err =  __gpu_buddy_alloc_range(mm, rhs_offset, size,
+-						       &filled, blocks);
+-			if (!err || err != -ENOSPC)
+-				return err;
+-
+-			lhs_size = max((size - filled), min_block_size);
+-			if (!IS_ALIGNED(lhs_size, min_block_size))
+-				lhs_size = round_up(lhs_size, min_block_size);
+-
+-			/* Allocate blocks traversing LHS */
+-			lhs_offset = gpu_buddy_block_offset(block) - lhs_size;
+-			err =  __gpu_buddy_alloc_range(mm, lhs_offset, lhs_size,
+-						       NULL, &blocks_lhs);
+-			if (!err) {
+-				list_splice(&blocks_lhs, blocks);
+-				return 0;
+-			} else if (err != -ENOSPC) {
+-				gpu_buddy_free_list_internal(mm, blocks);
+-				return err;
+-			}
+-			/* Free blocks for the next iteration */
++	iter = rb_last(root);
++	while (iter) {
++		block = rbtree_get_free_block(iter);
++
++		/* Allocate blocks traversing RHS */
++		rhs_offset = gpu_buddy_block_offset(block);
++		err =  __gpu_buddy_alloc_range(mm, rhs_offset, size,
++					       flags, &filled, blocks);
++		if (!err || err != -ENOSPC)
++			return err;
++
++		lhs_size = max((size - filled), min_block_size);
++		if (!IS_ALIGNED(lhs_size, min_block_size))
++			lhs_size = round_up(lhs_size, min_block_size);
++
++		/* Allocate blocks traversing LHS */
++		lhs_offset = gpu_buddy_block_offset(block) - lhs_size;
++		err =  __gpu_buddy_alloc_range(mm, lhs_offset, lhs_size,
++					       flags, NULL, &blocks_lhs);
++		if (!err) {
++			list_splice(&blocks_lhs, blocks);
++			return 0;
++		} else if (err != -ENOSPC) {
+ 			gpu_buddy_free_list_internal(mm, blocks);
+-
+-			iter = rb_prev(iter);
++			return err;
+ 		}
++		/* Free blocks for the next iteration */
++		gpu_buddy_free_list_internal(mm, blocks);
++
++		iter = rb_prev(iter);
+ 	}
+ 
+ 	return -ENOSPC;
+@@ -1169,6 +1261,7 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
+ 	struct gpu_buddy_block *block;
+ 	u64 block_start, block_end;
+ 	LIST_HEAD(dfs);
++	bool was_clear;
+ 	u64 new_start;
+ 	int err;
+ 
+@@ -1209,22 +1302,38 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
+ 	}
+ 
+ 	list_del(&block->link);
++
++	was_clear = gpu_buddy_block_is_clear(block);
++	block->header &= ~GPU_BUDDY_HEADER_CLEAR;
++
++	if (was_clear) {
++		gpu_clear_tracker_mark_clear(&mm->clear,
++					     gpu_buddy_block_offset(block),
++					     gpu_buddy_block_size(mm, block));
++		mm->clear_avail = mm->clear.total_clear;
++	}
++
+ 	mark_free(mm, block);
+ 	mm->avail += gpu_buddy_block_size(mm, block);
+-	if (gpu_buddy_block_is_clear(block))
+-		mm->clear_avail += gpu_buddy_block_size(mm, block);
+ 
+ 	/* Prevent recursively freeing this node */
+ 	parent = block->parent;
+ 	block->parent = NULL;
+ 
+ 	list_add(&block->tmp_link, &dfs);
+-	err =  __alloc_range(mm, &dfs, new_start, new_size, blocks, NULL);
++	err =  __alloc_range(mm, &dfs, new_start, new_size,
++			     was_clear ? GPU_BUDDY_CLEAR_ALLOCATION : 0,
++			     blocks, NULL);
+ 	if (err) {
+ 		mark_allocated(mm, block);
+ 		mm->avail -= gpu_buddy_block_size(mm, block);
+-		if (gpu_buddy_block_is_clear(block))
+-			mm->clear_avail -= gpu_buddy_block_size(mm, block);
++		if (was_clear) {
++			gpu_clear_tracker_mark_dirty(&mm->clear,
++						     gpu_buddy_block_offset(block),
++						     gpu_buddy_block_size(mm, block));
++			mm->clear_avail = mm->clear.total_clear;
++			block->header |= GPU_BUDDY_HEADER_CLEAR;
++		}
+ 		list_add(&block->link, blocks);
+ 	}
+ 
+@@ -1241,9 +1350,7 @@ __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+ 			 unsigned long flags)
+ {
+ 	if (flags & GPU_BUDDY_RANGE_ALLOCATION)
+-		/* Allocate traversing within the range */
+-		return  __gpu_buddy_alloc_range_bias(mm, start, end,
+-						     order, flags);
++		return __alloc_range_bias(mm, start, end, order, flags);
+ 	else if (size < min_block_size)
+ 		/* Allocate from an offset-aligned region without size rounding */
+ 		return gpu_buddy_offset_aligned_allocation(mm, size,
+@@ -1254,6 +1361,21 @@ __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+ 		return alloc_from_freetree(mm, order, flags);
+ }
+ 
++static bool clear_steer_window(struct gpu_buddy *mm, u64 min_sz,
++			       u64 *start, u64 *end, unsigned long *flags)
++{
++	struct gpu_clear_extent *ext =
++		gpu_clear_tracker_find(&mm->clear, min_sz);
++
++	if (!ext)
++		return false;
++
++	*start  = ext->start;
++	*end    = ext->end;
++	*flags |= GPU_BUDDY_RANGE_ALLOCATION;
++	return true;
++}
++
+ /**
+  * gpu_buddy_alloc_blocks - allocate power-of-two blocks
+  *
+@@ -1280,11 +1402,14 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+ 			   struct list_head *blocks,
+ 			   unsigned long flags)
+ {
++	unsigned int min_order, order, initial_order;
++	bool range_requested, per_iter_steer = false;
+ 	struct gpu_buddy_block *block = NULL;
+ 	u64 original_size, original_min_size;
+-	unsigned int min_order, order;
++	unsigned long pages, initial_pages;
++	bool clear_steered = false;
++	u64 base_start, base_end;
+ 	LIST_HEAD(allocated);
+-	unsigned long pages;
+ 	int err;
+ 
+ 	if (size < mm->chunk_size)
+@@ -1310,7 +1435,7 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+ 		if (!IS_ALIGNED(start | end, min_block_size))
+ 			return -EINVAL;
+ 
+-		return __gpu_buddy_alloc_range(mm, start, size, NULL, blocks);
++		return __gpu_buddy_alloc_range(mm, start, size, flags, NULL, blocks);
+ 	}
+ 
+ 	original_size = size;
+@@ -1332,17 +1457,50 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+ 	order = fls(pages) - 1;
+ 	min_order = ilog2(min_block_size) - ilog2(mm->chunk_size);
+ 
+-	if (order > mm->max_order || size > mm->size) {
++	if (order > mm->max_order) {
+ 		if ((flags & GPU_BUDDY_CONTIGUOUS_ALLOCATION) &&
+ 		    !(flags & GPU_BUDDY_RANGE_ALLOCATION))
+ 			return __alloc_contig_try_harder(mm, original_size,
+-							 original_min_size, blocks);
++							 original_min_size, flags, blocks);
+ 
+ 		return -EINVAL;
+ 	}
+ 
++	initial_pages = pages;
++	initial_order = order;
++
++	base_start   = start;
++	base_end     = end;
++	range_requested = !!(flags & GPU_BUDDY_RANGE_ALLOCATION);
++
++	/*
++	 * Pick a cleared extent for this request.  If one extent fits the
++	 * whole size, lock it as the window; otherwise re-query per block.
++	 * Falls back to dirty blocks when no cleared memory is available.
++	 */
++	if ((flags & GPU_BUDDY_CLEAR_ALLOCATION) && !range_requested) {
++		if (clear_steer_window(mm, size, &start, &end, &flags)) {
++			/* Fast path: single extent covers full request */
++			clear_steered = true;
++		} else if (mm->clear_avail) {
++			/* Fragmented path: steer per block in the outer loop */
++			per_iter_steer = true;
++			clear_steered  = true;
++		}
++	}
++
++retry_dirty:
+ 	do {
+ 		order = min(order, (unsigned int)fls(pages) - 1);
++
++		if (per_iter_steer &&
++		    !clear_steer_window(mm, mm->chunk_size << min_order,
++					&start, &end, &flags)) {
++			per_iter_steer = false;
++			flags &= ~(GPU_BUDDY_CLEAR_ALLOCATION | GPU_BUDDY_RANGE_ALLOCATION);
++			start = base_start;
++			end   = base_end;
++		}
+ 		BUG_ON(order > mm->max_order);
+ 		/*
+ 		 * Regular allocations must not allocate blocks smaller than min_block_size.
+@@ -1351,8 +1509,6 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+ 		BUG_ON(size >= min_block_size && order < min_order);
+ 
+ 		do {
+-			unsigned int fallback_order;
+-
+ 			block = __gpu_buddy_alloc_blocks(mm, start,
+ 							 end,
+ 							 size,
+@@ -1362,30 +1518,11 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+ 			if (!IS_ERR(block))
+ 				break;
+ 
+-			if (size < min_block_size) {
+-				fallback_order = order;
+-			} else if (order == min_order) {
+-				fallback_order = min_order;
+-			} else {
++			if (size >= min_block_size && order > min_order) {
+ 				order--;
+ 				continue;
+ 			}
+ 
+-			/* Try allocation through force merge method */
+-			if (mm->clear_avail &&
+-			    !__force_merge(mm, start, end, fallback_order)) {
+-				block = __gpu_buddy_alloc_blocks(mm, start,
+-								 end,
+-								 size,
+-								 min_block_size,
+-								 fallback_order,
+-								 flags);
+-				if (!IS_ERR(block)) {
+-					order = fallback_order;
+-					break;
+-				}
+-			}
+-
+ 			/*
+ 			 * Try contiguous block allocation through
+ 			 * try harder method.
+@@ -1395,6 +1532,7 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+ 				return __alloc_contig_try_harder(mm,
+ 								 original_size,
+ 								 original_min_size,
++								 flags,
+ 								 blocks);
+ 			err = -ENOSPC;
+ 			goto err_free;
+@@ -1402,8 +1540,23 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+ 
+ 		mark_allocated(mm, block);
+ 		mm->avail -= gpu_buddy_block_size(mm, block);
+-		if (gpu_buddy_block_is_clear(block))
+-			mm->clear_avail -= gpu_buddy_block_size(mm, block);
++
++		/*
++		 * Tag the block CLEAR only when the caller asked for cleared
++		 * memory and the whole block is cleared.  The tracker is
++		 * always updated to drop any cleared sub-ranges this block
++		 * just consumed.
++		 */
++		if (flags & GPU_BUDDY_CLEAR_ALLOCATION &&
++		    gpu_clear_tracker_is_clear(&mm->clear,
++					       gpu_buddy_block_offset(block),
++					       gpu_buddy_block_size(mm, block)))
++			block->header |= GPU_BUDDY_HEADER_CLEAR;
++
++		gpu_clear_tracker_mark_dirty(&mm->clear,
++					     gpu_buddy_block_offset(block),
++					     gpu_buddy_block_size(mm, block));
++		mm->clear_avail = mm->clear.total_clear;
+ 		kmemleak_update_trace(block);
+ 		list_add_tail(&block->link, &allocated);
+ 
+@@ -1445,6 +1598,16 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+ 
+ err_free:
+ 	gpu_buddy_free_list_internal(mm, &allocated);
++	if (err == -ENOSPC && clear_steered) {
++		clear_steered  = false;
++		per_iter_steer = false;
++		start = base_start;
++		end   = base_end;
++		flags &= ~(GPU_BUDDY_CLEAR_ALLOCATION | GPU_BUDDY_RANGE_ALLOCATION);
++		pages = initial_pages;
++		order = initial_order;
++		goto retry_dirty;
++	}
+ 	return err;
+ }
+ EXPORT_SYMBOL(gpu_buddy_alloc_blocks);
+@@ -1473,26 +1636,52 @@ EXPORT_SYMBOL(gpu_buddy_block_print);
+  */
+ void gpu_buddy_print(struct gpu_buddy *mm)
+ {
++	u64 *clear_count;
+ 	int order;
++	unsigned int i;
+ 
+ 	pr_info("chunk_size: %lluKiB, total: %lluMiB, free: %lluMiB, clear_free: %lluMiB\n",
+ 		mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
+ 
++	clear_count = kcalloc(mm->max_order + 1, sizeof(*clear_count), GFP_KERNEL);
++
++	if (clear_count) {
++		LIST_HEAD(dfs);
++
++		for (i = 0; i < mm->n_roots; i++)
++			list_add_tail(&mm->roots[i]->tmp_link, &dfs);
++
++		while (!list_empty(&dfs)) {
++			struct gpu_buddy_block *block =
++				list_first_entry(&dfs, struct gpu_buddy_block, tmp_link);
++
++			list_del(&block->tmp_link);
++
++			if (gpu_buddy_block_is_split(block)) {
++				list_add(&block->right->tmp_link, &dfs);
++				list_add(&block->left->tmp_link, &dfs);
++			} else if (gpu_buddy_block_is_free(block) &&
++				   gpu_buddy_block_is_clear(block)) {
++				clear_count[gpu_buddy_block_order(block)]++;
++			}
++		}
++	}
++
+ 	for (order = mm->max_order; order >= 0; order--) {
+ 		struct gpu_buddy_block *block, *tmp;
+ 		struct rb_root *root;
+ 		u64 count = 0, free;
+-		unsigned int tree;
+ 
+-		for_each_free_tree(tree) {
+-			root = &mm->free_trees[tree][order];
++		root = &mm->dirty_tree[order];
+ 
+-			rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
+-				BUG_ON(!gpu_buddy_block_is_free(block));
+-				count++;
+-			}
++		rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
++			BUG_ON(!gpu_buddy_block_is_free(block));
++			count++;
+ 		}
+ 
++		if (clear_count)
++			count += clear_count[order];
++
+ 		free = count * (mm->chunk_size << order);
+ 		if (free < SZ_1M)
+ 			pr_info("order-%2d free: %8llu KiB, blocks: %llu\n",
+@@ -1501,11 +1690,14 @@ void gpu_buddy_print(struct gpu_buddy *mm)
+ 			pr_info("order-%2d free: %8llu MiB, blocks: %llu\n",
+ 				order, free >> 20, count);
+ 	}
++
++	kfree(clear_count);
+ }
+ EXPORT_SYMBOL(gpu_buddy_print);
+ 
+ static void gpu_buddy_module_exit(void)
+ {
++	kmem_cache_destroy(slab_extents);
+ 	kmem_cache_destroy(slab_blocks);
+ }
+ 
+@@ -1515,6 +1707,12 @@ static int __init gpu_buddy_module_init(void)
+ 	if (!slab_blocks)
+ 		return -ENOMEM;
+ 
++	slab_extents = KMEM_CACHE(gpu_clear_extent, 0);
++	if (!slab_extents) {
++		kmem_cache_destroy(slab_blocks);
++		return -ENOMEM;
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+index 841f3de5f307a..67ad6ba8bd7b3 100644
+--- a/drivers/gpu/drm/drm_buddy.c
++++ b/drivers/gpu/drm/drm_buddy.c
+@@ -49,15 +49,11 @@ void drm_buddy_print(struct gpu_buddy *mm, struct drm_printer *p)
+ 		struct gpu_buddy_block *block, *tmp;
+ 		struct rb_root *root;
+ 		u64 count = 0, free;
+-		unsigned int tree;
+ 
+-		for_each_free_tree(tree) {
+-			root = &mm->free_trees[tree][order];
+-
+-			rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
+-				BUG_ON(!gpu_buddy_block_is_free(block));
+-				count++;
+-			}
++		root = &mm->dirty_tree[order];
++		rbtree_postorder_for_each_entry_safe(block, tmp, root, rb) {
++			BUG_ON(!gpu_buddy_block_is_free(block));
++			count++;
+ 		}
+ 
+ 		drm_printf(p, "order-%2d ", order);
+diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
+index 5fa917ba5450b..510dd735d2843 100644
+--- a/include/linux/gpu_buddy.h
++++ b/include/linux/gpu_buddy.h
+@@ -67,15 +67,6 @@
+  */
+ #define GPU_BUDDY_TRIM_DISABLE			BIT(5)
+ 
+-enum gpu_buddy_free_tree {
+-	GPU_BUDDY_CLEAR_TREE = 0,
+-	GPU_BUDDY_DIRTY_TREE,
+-	GPU_BUDDY_MAX_FREE_TREES,
+-};
+-
+-#define for_each_free_tree(tree) \
+-	for ((tree) = 0; (tree) < GPU_BUDDY_MAX_FREE_TREES; (tree)++)
+-
+ /**
+  * struct gpu_buddy_block - Block within a buddy allocator
+  *
+@@ -104,6 +95,14 @@ struct gpu_buddy_block {
+ #define   GPU_BUDDY_FREE	   (2 << 10)
+ #define   GPU_BUDDY_SPLIT	   (3 << 10)
+ #define GPU_BUDDY_HEADER_CLEAR  GENMASK_ULL(9, 9)
++/*
++ * GPU_BUDDY_HEADER_CLEAR has two roles:
++ *  - FREE state:      set when the block's full range is cleared (tracker
++ *                     confirmed).  Cleared free blocks float in the buddy
++ *                     tree and are NOT inserted into dirty_tree[].
++ *  - ALLOCATED state: set when the block was served from cleared memory,
++ *                     informing the caller that no GPU clear pass is needed.
++ */
+ /* Free to be used, if needed in the future */
+ #define GPU_BUDDY_HEADER_UNUSED GENMASK_ULL(8, 6)
+ #define GPU_BUDDY_HEADER_ORDER  GENMASK_ULL(5, 0)
+@@ -135,6 +134,38 @@ struct gpu_buddy_block {
+ /* Order-zero must be at least SZ_4K */
+ #define GPU_BUDDY_MAX_ORDER (63 - 12)
+ 
++/**
++ * struct gpu_clear_extent - a contiguous cleared (zeroed) address range
++ *
++ * Tracks a single contiguous address range whose memory content is known
++ * to be zeroed.  Extents are non-overlapping and stored in an augmented
++ * red-black tree sorted by @start.  The augmented value @subtree_max_size
++ * allows O(log N) search for an extent of at least a given size.
++ */
++struct gpu_clear_extent {
++/* private: */
++	struct rb_node	rb;
++	u64		start;
++	u64		end;
++	u64		subtree_max_size;
++};
++
++/**
++ * struct gpu_clear_tracker - tracks cleared (zeroed) address intervals
++ *
++ * Maintains a set of non-overlapping cleared extents as an augmented
++ * red-black tree.  The tracker is embedded inside struct gpu_buddy and
++ * replaces the former dual (clear/dirty) free-tree scheme.
++ *
++ * @total_clear: Total bytes of cleared memory currently tracked.
++ */
++struct gpu_clear_tracker {
++/* private: */
++	struct rb_root	root;
++/* public: */
++	u64		total_clear;
++};
++
+ /**
+  * struct gpu_buddy - GPU binary buddy allocator
+  *
+@@ -158,20 +189,19 @@ struct gpu_buddy_block {
+ struct gpu_buddy {
+ /* private: */
+ 	/*
+-	 * Array of red-black trees for free block management.
+-	 * Indexed as free_trees[clear/dirty][order] where:
+-	 * - Index 0 (GPU_BUDDY_CLEAR_TREE): blocks with zeroed content
+-	 * - Index 1 (GPU_BUDDY_DIRTY_TREE): blocks with unknown content
+-	 * Each tree holds free blocks of the corresponding order.
++	 * One RB-tree per order containing only dirty/mixed free blocks.
++	 * Cleared free blocks are NOT inserted here; they float in the buddy
++	 * tree and are located exclusively via the @clear tracker.
+ 	 */
+-	struct rb_root **free_trees;
++	struct rb_root *dirty_tree;
++
+ 	/*
+ 	 * Array of root blocks representing the top-level blocks of the
+ 	 * binary tree(s). Multiple roots exist when the total size is not
+-	 * a power of two, with each root being the largest power-of-two
+-	 * that fits in the remaining space.
++	 * a power of two.
+ 	 */
+ 	struct gpu_buddy_block **roots;
++	struct gpu_clear_tracker clear;
+ /* public: */
+ 	unsigned int n_roots;
+ 	unsigned int max_order;
 
-rmb()/wmb() for CPU<->device, and the read barrier now comes before
-the read.
+base-commit: d37690b5e02418a2365548300628ef3895a24ed2
+-- 
+2.34.1
 
-On the 32-bit atomicity question =E2=80=94 understood, that's exactly why
-the atomic64_t hack exists.  Since there's no clean arch-independent
-way to do atomic 64-bit writes to system memory, I've prepared both
-options as complete patches against amd-staging-drm-next so you can
-pick whichever you prefer:
-
-  Option A (attached): Keep atomic64_set()/atomic64_read() with the
-  cast hidden behind a static inline helper (wptr_as_atomic).
-  Preserves 32-bit atomicity.  Not pretty, but honest.
-
-  Option B (attached): Use writeq()/readq() instead.  Atomic on all
-  architectures, but semantically these are MMIO accessors being
-  used on system memory.  Documented in comments.
-
-Both patches compile clean, address all your review feedback (WARN_ON
-at top, rmb/wmb, no WARN_ON_ONCE), and are identical except for the
-read/write mechanism.
-
-Regards,
-John
-"I will not be pushed, filed, stamped, indexed, briefed, debriefed, or
-numbered."
-~ The Prisoner
-
-
-
-
-On Thu, Apr 30, 2026 at 8:49=E2=80=AFAM Christian K=C3=B6nig <christian.koe=
-nig@amd.com>
-wrote:
-
-> On 4/30/26 15:26, Alex Deucher wrote:
-> > On Thu, Apr 30, 2026 at 9:22=E2=80=AFAM Christian K=C3=B6nig
-> > <christian.koenig@amd.com> wrote:
-> >>
-> >> Hi John,
-> >>
-> >> On 4/30/26 14:32, John Moore wrote:
-> >>> Hi Christian,
-> >>>
-> >>> Thanks for the review. All points addressed below.
-> >>>
-> >>>> That should probably be readq() instead of this horrible and not
-> >>>> portable cast to atomic64_t.
-> >>>>
-> >>>> Alternatively we could just normally read the pointer with a memory
-> >>>> barrier since this is just system memory.
-> >>>
-> >>> I went with the second option =E2=80=94 this is system memory (writeb=
-ack via
-> >>> GTT), not MMIO, so readq() felt semantically wrong. The v2 uses:
-> >>>
-> >>>   get:  wptr =3D READ_ONCE(*(u64 *)ring->wptr_cpu_addr);
-> >>>         smp_rmb();
-> >>
-> >> This needs to be rmb() and not smp_rmb(); smp_rmb() is only for
-> CPU<->CPU synchronization but here we need CPU<->device synchronization.
-> >>
-> >> And it needs to come *before* the read!
-> >>
-> >>>
-> >>>   set:  WRITE_ONCE(*(u64 *)ring->wptr_cpu_addr, ring->wptr);
-> >>>         smp_wmb();
-> >>
-> >> Same here, but this time least the barrier ordering is correct.
-> >>
-> >>>         WDOORBELL64(ring->doorbell_index, ring->wptr);
-> >>>
-> >>> The alignment is safe =E2=80=94 amdgpu_device_wb_get() returns offset=
-s in
-> >>> multiples of 8 dwords (32 bytes), so the u64* cast always lands on
-> >>> a naturally-aligned address.
-> >>>
-> >>> One question: READ_ONCE on a u64 is not atomic on 32-bit
-> >>> architectures (unlike atomic64_read which uses cmpxchg8b). DRM_AMDGPU
-> >>> has no formal CONFIG_64BIT dependency in Kconfig, though in practice
-> >>> nobody runs it on 32-bit.
-> >>
-> >> We still have some people trying to use it on 32bit kernels. We should
-> maybe consider to drop the 32bit support.
-> >
-> > 32 bit support is the reason we used the atomic stuff in the first plac=
-e.
->
-> Yeah the problem is that is just and extremely ugly hack.
->
-> IIRC there are architecture who can't do 64bit writes at all, on those
-> systems an atomic_64 is implemented by using a lock.
->
-> On the other hand I don't think anybody would be able to use HW AMDGPU
-> supports on a SPARC, Alpha or +20 year old MIPS system because of the lac=
-k
-> of PCIe bus.
->
-> My educated guess is that the correct answer is to have a config
-> dependency to prevent AMDGPU from even compiling on such architectures an=
-d
-> then using a WRITE_ONCE()/READ_ONCE() with appropriate memory barriers.
->
-> But of hand I don't know how that stuff is abstracted on the architecture
-> side and which config option to depend on.
->
-> Regards,
-> Christian.
->
-> >
-> > Alex
-> >
-> >>
-> >>> Is READ_ONCE acceptable here, or would you
-> >>> prefer readq() to keep the atomicity guarantee?
-> >>
-> >> Yeah good question I don't really know what to do here.
-> >>
-> >> On the one hand you are right, writeq()/readq() are not correct becaus=
-e
-> this isn't MMIO but system memory.
-> >>
-> >> On the other hand I don't think Linux has an architecture independent
-> way to guarantee that a write to system memory is done as an atomic 64bit
-> write.
-> >>
-> >> What we need to guarantee is that the device never sees an incomplete
-> value because the write is done as two 32bit writes.  That is probably th=
-e
-> reason why we used the atomic64_t hack in the first place.
-> >>
-> >> Regards,
-> >> Christian.
-> >>
-> >>>
-> >>>> Pre-requisite/error checking first please.
-> >>>> Make that a if (WARN_ON(!ring->use_doorbell)) return.
-> >>>
-> >>> Done. Both functions now have the guard at the top:
-> >>>
-> >>>   if (WARN_ON(!ring->use_doorbell))
-> >>>       return 0;  /* or return; for set_wptr */
-> >>>
-> >>>> And please don't use WARN_ON_ONCE() that is just to reduce the
-> >>>> amount of warnings printed into the logs on real HW errors.
-> >>>>
-> >>>> On functional coding errors like this one here it doesn't make sense
-> >>>> and is often overlooked.
-> >>>
-> >>> Understood =E2=80=94 changed to WARN_ON.
-> >>>
-> >>>> Same here the case to atomic64_t is extremely questionable.
-> >>>
-> >>> Fixed in set_wptr as well, same READ_ONCE/WRITE_ONCE approach.
-> >>>
-> >>> v2 incoming once I hear back on the readq vs READ_ONCE question.
-> >>>
-> >>> Thanks,
-> >>> John
-> >>>
-> >>> "I will not be pushed, filed, stamped, indexed, briefed, debriefed, o=
-r
-> numbered."
-> >>> ~ The Prisoner
-> >>>
-> >>>
-> >>>
-> >>>
-> >>> On Thu, Apr 30, 2026 at 2:19=E2=80=AFAM Christian K=C3=B6nig <
-> christian.koenig@amd.com <mailto:christian.koenig@amd.com>> wrote:
-> >>>
-> >>>     On 4/29/26 22:20, John B. Moore wrote:
-> >>>     > Move the duplicated doorbell-based get_wptr/set_wptr functions
-> from
-> >>>     > gfx_v9_0.c, gfx_v10_0.c, gfx_v11_0.c, and gfx_v12_0.c into comm=
-on
-> >>>     > helpers amdgpu_gfx_get_wptr_compute() and
-> amdgpu_gfx_set_wptr_compute()
-> >>>     > in amdgpu_gfx.c.
-> >>>     >
-> >>>     > These functions are not HW generation dependent -- the doorbell
-> path is
-> >>>     > identical across all four GFX versions:
-> >>>     >
-> >>>     >   get: atomic64_read(ring->wptr_cpu_addr)
-> >>>     >   set: atomic64_set(ring->wptr_cpu_addr) + WDOORBELL64()
-> >>>     >
-> >>>     > The non-doorbell fallback is replaced with WARN_ON_ONCE instead
-> of BUG()
-> >>>     > since doorbell is the only supported method on gfx9+ compute
-> rings.
-> >>>     >
-> >>>     > Not touched: gfx_v7_0, gfx_v8_0, gfx_v9_4_3 -- these have
-> different
-> >>>     > wptr access patterns (MMIO registers or wb.wb[] offsets).
-> >>>     >
-> >>>     > Suggested-by: Alex Deucher <alexander.deucher@amd.com <mailto:
-> alexander.deucher@amd.com>>
-> >>>     > Signed-off-by: John Moore <jbmoore61@gmail.com <mailto:
-> jbmoore61@gmail.com>>
-> >>>     > ---
-> >>>     >  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 39
-> +++++++++++++++++++++++++
-> >>>     >  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  3 ++
-> >>>     >  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c  | 33
-> +++------------------
-> >>>     >  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 34
-> +++------------------
-> >>>     >  drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  | 34
-> +++------------------
-> >>>     >  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c   | 39
-> +++----------------------
-> >>>     >  6 files changed, 58 insertions(+), 124 deletions(-)
-> >>>     >
-> >>>     > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> >>>     > index 77578ecc6..9e9c5cb81 100644
-> >>>     > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> >>>     > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> >>>     > @@ -2596,3 +2596,42 @@ void
-> amdgpu_debugfs_compute_sched_mask_init(struct amdgpu_device *adev)
-> >>>     >  #endif
-> >>>     >  }
-> >>>     >
-> >>>     > +/**
-> >>>     > + * amdgpu_gfx_get_wptr_compute - common get_wptr for compute
-> rings using doorbells
-> >>>     > + * @ring: amdgpu_ring pointer
-> >>>     > + *
-> >>>     > + * Read the write pointer from the doorbell-mapped writeback
-> address.
-> >>>     > + * This is HW-agnostic and shared across GFX generations that
-> use
-> >>>     > + * doorbell-based compute queue management.
-> >>>     > + */
-> >>>     > +u64 amdgpu_gfx_get_wptr_compute(struct amdgpu_ring *ring)
-> >>>     > +{
-> >>>     > +     /* XXX check if swapping is necessary on BE */
-> >>>     > +     if (ring->use_doorbell)
-> >>>     > +             return atomic64_read((atomic64_t
-> *)ring->wptr_cpu_addr);
-> >>>
-> >>>     That should probably be readq() instead of this horrible and not
-> portable cast to atomic64_t.
-> >>>
-> >>>     Alternatively we could just normally read the pointer with a
-> memory barrier since this is just system memory.
-> >>>
-> >>>     > +
-> >>>     > +     WARN_ON_ONCE(1);
-> >>>
-> >>>     Pre-requisite/error checking first please.
-> >>>
-> >>>     Make that a if (WARN_ON(!ring->use_doorbell)) return.
-> >>>
-> >>>     And please don't use WARN_ON_ONCE() that is just to reduce the
-> amount of warnings printed into the logs on real HW errors.
-> >>>
-> >>>     On functional coding errors like this one here it doesn't make
-> sense and is often overlooked.
-> >>>
-> >>>     > +     return 0;
-> >>>     > +}
-> >>>     > +
-> >>>     > +/**
-> >>>     > + * amdgpu_gfx_set_wptr_compute - common set_wptr for compute
-> rings using doorbells
-> >>>     > + * @ring: amdgpu_ring pointer
-> >>>     > + *
-> >>>     > + * Write the write pointer to the doorbell-mapped writeback
-> address and
-> >>>     > + * ring the doorbell.  This is HW-agnostic and shared across G=
-FX
-> >>>     > + * generations that use doorbell-based compute queue managemen=
-t.
-> >>>     > + */
-> >>>     > +void amdgpu_gfx_set_wptr_compute(struct amdgpu_ring *ring)
-> >>>     > +{
-> >>>     > +     struct amdgpu_device *adev =3D ring->adev;
-> >>>     > +
-> >>>     > +     /* XXX check if swapping is necessary on BE */
-> >>>     > +     if (ring->use_doorbell) {
-> >>>     > +             atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
-> ring->wptr);
-> >>>
-> >>>     Same here the case to atomic64_t is extremely questionable.
-> >>>
-> >>>     Regards,
-> >>>     Christian.
-> >>>
-> >>>     > +             WDOORBELL64(ring->doorbell_index, ring->wptr);
-> >>>     > +     } else {
-> >>>     > +             WARN_ON_ONCE(1);
-> >>>     > +     }
-> >>>     > +}
-> >>>     > +
-> >>>     > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> >>>     > index 585cc8e81..27f6beafb 100644
-> >>>     > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> >>>     > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> >>>     > @@ -653,6 +653,9 @@ u32 amdgpu_gfx_csb_preamble_start(u32
-> *buffer);
-> >>>     >  u32 amdgpu_gfx_csb_data_parser(struct amdgpu_device *adev, u32
-> *buffer, u32 count);
-> >>>     >  void amdgpu_gfx_csb_preamble_end(u32 *buffer, u32 count);
-> >>>     >
-> >>>     > +u64 amdgpu_gfx_get_wptr_compute(struct amdgpu_ring *ring);
-> >>>     > +void amdgpu_gfx_set_wptr_compute(struct amdgpu_ring *ring);
-> >>>     > +
-> >>>     >  void amdgpu_debugfs_gfx_sched_mask_init(struct amdgpu_device
-> *adev);
-> >>>     >  void amdgpu_debugfs_compute_sched_mask_init(struct
-> amdgpu_device *adev);
-> >>>     >
-> >>>     > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> >>>     > index 1893ceeeb..4c0272cba 100644
-> >>>     > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> >>>     > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> >>>     > @@ -8586,31 +8586,6 @@ static u64
-> gfx_v10_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
-> >>>     >       return *(uint32_t *)ring->rptr_cpu_addr;
-> >>>     >  }
-> >>>     >
-> >>>     > -static u64 gfx_v10_0_ring_get_wptr_compute(struct amdgpu_ring
-> *ring)
-> >>>     > -{
-> >>>     > -     u64 wptr;
-> >>>     > -
-> >>>     > -     /* XXX check if swapping is necessary on BE */
-> >>>     > -     if (ring->use_doorbell)
-> >>>     > -             wptr =3D atomic64_read((atomic64_t
-> *)ring->wptr_cpu_addr);
-> >>>     > -     else
-> >>>     > -             BUG();
-> >>>     > -     return wptr;
-> >>>     > -}
-> >>>     > -
-> >>>     > -static void gfx_v10_0_ring_set_wptr_compute(struct amdgpu_ring
-> *ring)
-> >>>     > -{
-> >>>     > -     struct amdgpu_device *adev =3D ring->adev;
-> >>>     > -
-> >>>     > -     if (ring->use_doorbell) {
-> >>>     > -             atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
-> >>>     > -                          ring->wptr);
-> >>>     > -             WDOORBELL64(ring->doorbell_index, ring->wptr);
-> >>>     > -     } else {
-> >>>     > -             BUG(); /* only DOORBELL method supported on gfx10
-> now */
-> >>>     > -     }
-> >>>     > -}
-> >>>     > -
-> >>>     >  static void gfx_v10_0_ring_emit_hdp_flush(struct amdgpu_ring
-> *ring)
-> >>>     >  {
-> >>>     >       struct amdgpu_device *adev =3D ring->adev;
-> >>>     > @@ -9881,8 +9856,8 @@ static const struct amdgpu_ring_funcs
-> gfx_v10_0_ring_funcs_compute =3D {
-> >>>     >       .nop =3D PACKET3(PACKET3_NOP, 0x3FFF),
-> >>>     >       .support_64bit_ptrs =3D true,
-> >>>     >       .get_rptr =3D gfx_v10_0_ring_get_rptr_compute,
-> >>>     > -     .get_wptr =3D gfx_v10_0_ring_get_wptr_compute,
-> >>>     > -     .set_wptr =3D gfx_v10_0_ring_set_wptr_compute,
-> >>>     > +     .get_wptr =3D amdgpu_gfx_get_wptr_compute,
-> >>>     > +     .set_wptr =3D amdgpu_gfx_set_wptr_compute,
-> >>>     >       .emit_frame_size =3D
-> >>>     >               20 + /* gfx_v10_0_ring_emit_gds_switch */
-> >>>     >               7 + /* gfx_v10_0_ring_emit_hdp_flush */
-> >>>     > @@ -9921,8 +9896,8 @@ static const struct amdgpu_ring_funcs
-> gfx_v10_0_ring_funcs_kiq =3D {
-> >>>     >       .nop =3D PACKET3(PACKET3_NOP, 0x3FFF),
-> >>>     >       .support_64bit_ptrs =3D true,
-> >>>     >       .get_rptr =3D gfx_v10_0_ring_get_rptr_compute,
-> >>>     > -     .get_wptr =3D gfx_v10_0_ring_get_wptr_compute,
-> >>>     > -     .set_wptr =3D gfx_v10_0_ring_set_wptr_compute,
-> >>>     > +     .get_wptr =3D amdgpu_gfx_get_wptr_compute,
-> >>>     > +     .set_wptr =3D amdgpu_gfx_set_wptr_compute,
-> >>>     >       .emit_frame_size =3D
-> >>>     >               20 + /* gfx_v10_0_ring_emit_gds_switch */
-> >>>     >               7 + /* gfx_v10_0_ring_emit_hdp_flush */
-> >>>     > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> >>>     > index 427975b5a..404604f2d 100644
-> >>>     > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> >>>     > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> >>>     > @@ -5818,32 +5818,6 @@ static u64
-> gfx_v11_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
-> >>>     >       return *(uint32_t *)ring->rptr_cpu_addr;
-> >>>     >  }
-> >>>     >
-> >>>     > -static u64 gfx_v11_0_ring_get_wptr_compute(struct amdgpu_ring
-> *ring)
-> >>>     > -{
-> >>>     > -     u64 wptr;
-> >>>     > -
-> >>>     > -     /* XXX check if swapping is necessary on BE */
-> >>>     > -     if (ring->use_doorbell)
-> >>>     > -             wptr =3D atomic64_read((atomic64_t
-> *)ring->wptr_cpu_addr);
-> >>>     > -     else
-> >>>     > -             BUG();
-> >>>     > -     return wptr;
-> >>>     > -}
-> >>>     > -
-> >>>     > -static void gfx_v11_0_ring_set_wptr_compute(struct amdgpu_ring
-> *ring)
-> >>>     > -{
-> >>>     > -     struct amdgpu_device *adev =3D ring->adev;
-> >>>     > -
-> >>>     > -     /* XXX check if swapping is necessary on BE */
-> >>>     > -     if (ring->use_doorbell) {
-> >>>     > -             atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
-> >>>     > -                          ring->wptr);
-> >>>     > -             WDOORBELL64(ring->doorbell_index, ring->wptr);
-> >>>     > -     } else {
-> >>>     > -             BUG(); /* only DOORBELL method supported on gfx11
-> now */
-> >>>     > -     }
-> >>>     > -}
-> >>>     > -
-> >>>     >  static void gfx_v11_0_ring_emit_hdp_flush(struct amdgpu_ring
-> *ring)
-> >>>     >  {
-> >>>     >       struct amdgpu_device *adev =3D ring->adev;
-> >>>     > @@ -7266,8 +7240,8 @@ static const struct amdgpu_ring_funcs
-> gfx_v11_0_ring_funcs_compute =3D {
-> >>>     >       .nop =3D PACKET3(PACKET3_NOP, 0x3FFF),
-> >>>     >       .support_64bit_ptrs =3D true,
-> >>>     >       .get_rptr =3D gfx_v11_0_ring_get_rptr_compute,
-> >>>     > -     .get_wptr =3D gfx_v11_0_ring_get_wptr_compute,
-> >>>     > -     .set_wptr =3D gfx_v11_0_ring_set_wptr_compute,
-> >>>     > +     .get_wptr =3D amdgpu_gfx_get_wptr_compute,
-> >>>     > +     .set_wptr =3D amdgpu_gfx_set_wptr_compute,
-> >>>     >       .emit_frame_size =3D
-> >>>     >               5 + /* update_spm_vmid */
-> >>>     >               20 + /* gfx_v11_0_ring_emit_gds_switch */
-> >>>     > @@ -7307,8 +7281,8 @@ static const struct amdgpu_ring_funcs
-> gfx_v11_0_ring_funcs_kiq =3D {
-> >>>     >       .nop =3D PACKET3(PACKET3_NOP, 0x3FFF),
-> >>>     >       .support_64bit_ptrs =3D true,
-> >>>     >       .get_rptr =3D gfx_v11_0_ring_get_rptr_compute,
-> >>>     > -     .get_wptr =3D gfx_v11_0_ring_get_wptr_compute,
-> >>>     > -     .set_wptr =3D gfx_v11_0_ring_set_wptr_compute,
-> >>>     > +     .get_wptr =3D amdgpu_gfx_get_wptr_compute,
-> >>>     > +     .set_wptr =3D amdgpu_gfx_set_wptr_compute,
-> >>>     >       .emit_frame_size =3D
-> >>>     >               20 + /* gfx_v11_0_ring_emit_gds_switch */
-> >>>     >               7 + /* gfx_v11_0_ring_emit_hdp_flush */
-> >>>     > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> >>>     > index 79ea1af36..7ba436444 100644
-> >>>     > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> >>>     > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> >>>     > @@ -4363,32 +4363,6 @@ static u64
-> gfx_v12_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
-> >>>     >       return *(uint32_t *)ring->rptr_cpu_addr;
-> >>>     >  }
-> >>>     >
-> >>>     > -static u64 gfx_v12_0_ring_get_wptr_compute(struct amdgpu_ring
-> *ring)
-> >>>     > -{
-> >>>     > -     u64 wptr;
-> >>>     > -
-> >>>     > -     /* XXX check if swapping is necessary on BE */
-> >>>     > -     if (ring->use_doorbell)
-> >>>     > -             wptr =3D atomic64_read((atomic64_t
-> *)ring->wptr_cpu_addr);
-> >>>     > -     else
-> >>>     > -             BUG();
-> >>>     > -     return wptr;
-> >>>     > -}
-> >>>     > -
-> >>>     > -static void gfx_v12_0_ring_set_wptr_compute(struct amdgpu_ring
-> *ring)
-> >>>     > -{
-> >>>     > -     struct amdgpu_device *adev =3D ring->adev;
-> >>>     > -
-> >>>     > -     /* XXX check if swapping is necessary on BE */
-> >>>     > -     if (ring->use_doorbell) {
-> >>>     > -             atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
-> >>>     > -                          ring->wptr);
-> >>>     > -             WDOORBELL64(ring->doorbell_index, ring->wptr);
-> >>>     > -     } else {
-> >>>     > -             BUG(); /* only DOORBELL method supported on gfx12
-> now */
-> >>>     > -     }
-> >>>     > -}
-> >>>     > -
-> >>>     >  static void gfx_v12_0_ring_emit_hdp_flush(struct amdgpu_ring
-> *ring)
-> >>>     >  {
-> >>>     >       struct amdgpu_device *adev =3D ring->adev;
-> >>>     > @@ -5523,8 +5497,8 @@ static const struct amdgpu_ring_funcs
-> gfx_v12_0_ring_funcs_compute =3D {
-> >>>     >       .nop =3D PACKET3(PACKET3_NOP, 0x3FFF),
-> >>>     >       .support_64bit_ptrs =3D true,
-> >>>     >       .get_rptr =3D gfx_v12_0_ring_get_rptr_compute,
-> >>>     > -     .get_wptr =3D gfx_v12_0_ring_get_wptr_compute,
-> >>>     > -     .set_wptr =3D gfx_v12_0_ring_set_wptr_compute,
-> >>>     > +     .get_wptr =3D amdgpu_gfx_get_wptr_compute,
-> >>>     > +     .set_wptr =3D amdgpu_gfx_set_wptr_compute,
-> >>>     >       .emit_frame_size =3D
-> >>>     >               7 + /* gfx_v12_0_ring_emit_hdp_flush */
-> >>>     >               5 + /* hdp invalidate */
-> >>>     > @@ -5561,8 +5535,8 @@ static const struct amdgpu_ring_funcs
-> gfx_v12_0_ring_funcs_kiq =3D {
-> >>>     >       .nop =3D PACKET3(PACKET3_NOP, 0x3FFF),
-> >>>     >       .support_64bit_ptrs =3D true,
-> >>>     >       .get_rptr =3D gfx_v12_0_ring_get_rptr_compute,
-> >>>     > -     .get_wptr =3D gfx_v12_0_ring_get_wptr_compute,
-> >>>     > -     .set_wptr =3D gfx_v12_0_ring_set_wptr_compute,
-> >>>     > +     .get_wptr =3D amdgpu_gfx_get_wptr_compute,
-> >>>     > +     .set_wptr =3D amdgpu_gfx_set_wptr_compute,
-> >>>     >       .emit_frame_size =3D
-> >>>     >               7 + /* gfx_v12_0_ring_emit_hdp_flush */
-> >>>     >               5 + /*hdp invalidate */
-> >>>     > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> >>>     > index 8249135d7..798f94bca 100644
-> >>>     > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> >>>     > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> >>>     > @@ -5640,37 +5640,6 @@ static u64
-> gfx_v9_0_ring_get_rptr_compute(struct amdgpu_ring *ring)
-> >>>     >       return *ring->rptr_cpu_addr; /* gfx9 hardware is 32bit
-> rptr */
-> >>>     >  }
-> >>>     >
-> >>>     > -static u64 gfx_v9_0_ring_get_wptr_compute(struct amdgpu_ring
-> *ring)
-> >>>     > -{
-> >>>     > -     u64 wptr;
-> >>>     > -
-> >>>     > -     /* XXX check if swapping is necessary on BE */
-> >>>     > -     if (ring->use_doorbell) {
-> >>>     > -             wptr =3D atomic64_read((atomic64_t
-> *)ring->wptr_cpu_addr);
-> >>>     > -     } else {
-> >>>     > -             WARN_ONCE(1, "gfx_v9_0: non-doorbell wptr read on
-> ring %s, "
-> >>>     > -                       "only doorbell method supported on
-> gfx9\n",
-> >>>     > -                       ring->name);
-> >>>     > -             wptr =3D 0;
-> >>>     > -     }
-> >>>     > -     return wptr;
-> >>>     > -}
-> >>>     > -
-> >>>     > -static void gfx_v9_0_ring_set_wptr_compute(struct amdgpu_ring
-> *ring)
-> >>>     > -{
-> >>>     > -     struct amdgpu_device *adev =3D ring->adev;
-> >>>     > -
-> >>>     > -     /* XXX check if swapping is necessary on BE */
-> >>>     > -     if (ring->use_doorbell) {
-> >>>     > -             atomic64_set((atomic64_t *)ring->wptr_cpu_addr,
-> ring->wptr);
-> >>>     > -             WDOORBELL64(ring->doorbell_index, ring->wptr);
-> >>>     > -     } else {
-> >>>     > -             WARN_ONCE(1, "gfx_v9_0: non-doorbell wptr write o=
-n
-> ring %s, "
-> >>>     > -                       "only doorbell method supported on
-> gfx9\n",
-> >>>     > -                       ring->name);
-> >>>     > -     }
-> >>>     > -}
-> >>>     > -
-> >>>     >  static void gfx_v9_0_ring_emit_fence_kiq(struct amdgpu_ring
-> *ring, u64 addr,
-> >>>     >                                        u64 seq, unsigned int
-> flags)
-> >>>     >  {
-> >>>     > @@ -7627,8 +7596,8 @@ static const struct amdgpu_ring_funcs
-> gfx_v9_0_ring_funcs_compute =3D {
-> >>>     >       .nop =3D PACKET3(PACKET3_NOP, 0x3FFF),
-> >>>     >       .support_64bit_ptrs =3D true,
-> >>>     >       .get_rptr =3D gfx_v9_0_ring_get_rptr_compute,
-> >>>     > -     .get_wptr =3D gfx_v9_0_ring_get_wptr_compute,
-> >>>     > -     .set_wptr =3D gfx_v9_0_ring_set_wptr_compute,
-> >>>     > +     .get_wptr =3D amdgpu_gfx_get_wptr_compute,
-> >>>     > +     .set_wptr =3D amdgpu_gfx_set_wptr_compute,
-> >>>     >       .emit_frame_size =3D
-> >>>     >               20 + /* gfx_v9_0_ring_emit_gds_switch */
-> >>>     >               7 + /* gfx_v9_0_ring_emit_hdp_flush */
-> >>>     > @@ -7669,8 +7638,8 @@ static const struct amdgpu_ring_funcs
-> gfx_v9_0_ring_funcs_kiq =3D {
-> >>>     >       .nop =3D PACKET3(PACKET3_NOP, 0x3FFF),
-> >>>     >       .support_64bit_ptrs =3D true,
-> >>>     >       .get_rptr =3D gfx_v9_0_ring_get_rptr_compute,
-> >>>     > -     .get_wptr =3D gfx_v9_0_ring_get_wptr_compute,
-> >>>     > -     .set_wptr =3D gfx_v9_0_ring_set_wptr_compute,
-> >>>     > +     .get_wptr =3D amdgpu_gfx_get_wptr_compute,
-> >>>     > +     .set_wptr =3D amdgpu_gfx_set_wptr_compute,
-> >>>     >       .emit_frame_size =3D
-> >>>     >               20 + /* gfx_v9_0_ring_emit_gds_switch */
-> >>>     >               7 + /* gfx_v9_0_ring_emit_hdp_flush */
-> >>>
-> >>
->
->
-
---000000000000f89fc70650add7e0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi Christian,<br><br>I completely un=
-derstand the issue and that you are stuck due to the hardware architectures=
-.<br>Thanks for the corrections on the barriers =E2=80=94 both fixed:<br><b=
-r>=C2=A0 get: =C2=A0rmb();<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 wptr =3D &lt;read=
-&gt;(ring-&gt;wptr_cpu_addr);<br><br>=C2=A0 set: =C2=A0&lt;write&gt;(ring-&=
-gt;wptr_cpu_addr, ring-&gt;wptr);<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 wmb();<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 WDOORBELL64(ring-&gt;doorbell_index, ring-&gt;w=
-ptr);<br><br>rmb()/wmb() for CPU&lt;-&gt;device, and the read barrier now c=
-omes before<br>the read.<br><br>On the 32-bit atomicity question =E2=80=94 =
-understood, that&#39;s exactly why<br>the atomic64_t hack exists.=C2=A0 Sin=
-ce there&#39;s no clean arch-independent<br>way to do atomic 64-bit writes =
-to system memory, I&#39;ve prepared both<br>options as complete patches aga=
-inst amd-staging-drm-next so you can<br>pick whichever you prefer:<br><br>=
-=C2=A0 Option A (attached): Keep atomic64_set()/atomic64_read() with the<br=
->=C2=A0 cast hidden behind a static inline helper (wptr_as_atomic).<br>=C2=
-=A0 Preserves 32-bit atomicity.=C2=A0 Not pretty, but honest.<br><br>=C2=A0=
- Option B (attached): Use writeq()/readq() instead.=C2=A0 Atomic on all<br>=
-=C2=A0 architectures, but semantically these are MMIO accessors being<br>=
-=C2=A0 used on system memory.=C2=A0 Documented in comments.<br><br>Both pat=
-ches compile clean, address all your review feedback (WARN_ON<br>at top, rm=
-b/wmb, no WARN_ON_ONCE), and are identical except for the<br>read/write mec=
-hanism.<br><br>Regards,<br>John</div><div><div dir=3D"ltr" class=3D"gmail_s=
-ignature">&quot;I will not be pushed, filed, stamped, indexed, briefed, deb=
-riefed, or numbered.&quot;<br>~ The Prisoner<br><br><br></div></div><br></d=
-iv><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" cl=
-ass=3D"gmail_attr">On Thu, Apr 30, 2026 at 8:49=E2=80=AFAM Christian K=C3=
-=B6nig &lt;<a href=3D"mailto:christian.koenig@amd.com">christian.koenig@amd=
-.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex">On 4/30/26 15:26, Alex Deucher wrote:<br>
-&gt; On Thu, Apr 30, 2026 at 9:22=E2=80=AFAM Christian K=C3=B6nig<br>
-&gt; &lt;<a href=3D"mailto:christian.koenig@amd.com" target=3D"_blank">chri=
-stian.koenig@amd.com</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; Hi John,<br>
-&gt;&gt;<br>
-&gt;&gt; On 4/30/26 14:32, John Moore wrote:<br>
-&gt;&gt;&gt; Hi Christian,<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Thanks for the review. All points addressed below.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; That should probably be readq() instead of this horrible a=
-nd not<br>
-&gt;&gt;&gt;&gt; portable cast to atomic64_t.<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Alternatively we could just normally read the pointer with=
- a memory<br>
-&gt;&gt;&gt;&gt; barrier since this is just system memory.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; I went with the second option =E2=80=94 this is system memory =
-(writeback via<br>
-&gt;&gt;&gt; GTT), not MMIO, so readq() felt semantically wrong. The v2 use=
-s:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0get:=C2=A0 wptr =3D READ_ONCE(*(u64 *)ring-&gt;wpt=
-r_cpu_addr);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0smp_rmb();<br>
-&gt;&gt;<br>
-&gt;&gt; This needs to be rmb() and not smp_rmb(); smp_rmb() is only for CP=
-U&lt;-&gt;CPU synchronization but here we need CPU&lt;-&gt;device synchroni=
-zation.<br>
-&gt;&gt;<br>
-&gt;&gt; And it needs to come *before* the read!<br>
-&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0set:=C2=A0 WRITE_ONCE(*(u64 *)ring-&gt;wptr_cpu_ad=
-dr, ring-&gt;wptr);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0smp_wmb();<br>
-&gt;&gt;<br>
-&gt;&gt; Same here, but this time least the barrier ordering is correct.<br=
->
-&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0WDOORBELL64(ring-&gt;doorbell=
-_index, ring-&gt;wptr);<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; The alignment is safe =E2=80=94 amdgpu_device_wb_get() returns=
- offsets in<br>
-&gt;&gt;&gt; multiples of 8 dwords (32 bytes), so the u64* cast always land=
-s on<br>
-&gt;&gt;&gt; a naturally-aligned address.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; One question: READ_ONCE on a u64 is not atomic on 32-bit<br>
-&gt;&gt;&gt; architectures (unlike atomic64_read which uses cmpxchg8b). DRM=
-_AMDGPU<br>
-&gt;&gt;&gt; has no formal CONFIG_64BIT dependency in Kconfig, though in pr=
-actice<br>
-&gt;&gt;&gt; nobody runs it on 32-bit.<br>
-&gt;&gt;<br>
-&gt;&gt; We still have some people trying to use it on 32bit kernels. We sh=
-ould maybe consider to drop the 32bit support.<br>
-&gt; <br>
-&gt; 32 bit support is the reason we used the atomic stuff in the first pla=
-ce.<br>
-<br>
-Yeah the problem is that is just and extremely ugly hack.<br>
-<br>
-IIRC there are architecture who can&#39;t do 64bit writes at all, on those =
-systems an atomic_64 is implemented by using a lock.<br>
-<br>
-On the other hand I don&#39;t think anybody would be able to use HW AMDGPU =
-supports on a SPARC, Alpha or +20 year old MIPS system because of the lack =
-of PCIe bus.<br>
-<br>
-My educated guess is that the correct answer is to have a config dependency=
- to prevent AMDGPU from even compiling on such architectures and then using=
- a WRITE_ONCE()/READ_ONCE() with appropriate memory barriers.<br>
-<br>
-But of hand I don&#39;t know how that stuff is abstracted on the architectu=
-re side and which config option to depend on.<br>
-<br>
-Regards,<br>
-Christian.<br>
-<br>
-&gt; <br>
-&gt; Alex<br>
-&gt; <br>
-&gt;&gt;<br>
-&gt;&gt;&gt; Is READ_ONCE acceptable here, or would you<br>
-&gt;&gt;&gt; prefer readq() to keep the atomicity guarantee?<br>
-&gt;&gt;<br>
-&gt;&gt; Yeah good question I don&#39;t really know what to do here.<br>
-&gt;&gt;<br>
-&gt;&gt; On the one hand you are right, writeq()/readq() are not correct be=
-cause this isn&#39;t MMIO but system memory.<br>
-&gt;&gt;<br>
-&gt;&gt; On the other hand I don&#39;t think Linux has an architecture inde=
-pendent way to guarantee that a write to system memory is done as an atomic=
- 64bit write.<br>
-&gt;&gt;<br>
-&gt;&gt; What we need to guarantee is that the device never sees an incompl=
-ete value because the write is done as two 32bit writes.=C2=A0 That is prob=
-ably the reason why we used the atomic64_t hack in the first place.<br>
-&gt;&gt;<br>
-&gt;&gt; Regards,<br>
-&gt;&gt; Christian.<br>
-&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Pre-requisite/error checking first please.<br>
-&gt;&gt;&gt;&gt; Make that a if (WARN_ON(!ring-&gt;use_doorbell)) return.<b=
-r>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Done. Both functions now have the guard at the top:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0if (WARN_ON(!ring-&gt;use_doorbell))<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;=C2=A0 /* or return; for se=
-t_wptr */<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; And please don&#39;t use WARN_ON_ONCE() that is just to re=
-duce the<br>
-&gt;&gt;&gt;&gt; amount of warnings printed into the logs on real HW errors=
-.<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; On functional coding errors like this one here it doesn&#3=
-9;t make sense<br>
-&gt;&gt;&gt;&gt; and is often overlooked.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Understood =E2=80=94 changed to WARN_ON.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Same here the case to atomic64_t is extremely questionable=
-.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Fixed in set_wptr as well, same READ_ONCE/WRITE_ONCE approach.=
-<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; v2 incoming once I hear back on the readq vs READ_ONCE questio=
-n.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Thanks,<br>
-&gt;&gt;&gt; John<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; &quot;I will not be pushed, filed, stamped, indexed, briefed, =
-debriefed, or numbered.&quot;<br>
-&gt;&gt;&gt; ~ The Prisoner<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; On Thu, Apr 30, 2026 at 2:19=E2=80=AFAM Christian K=C3=B6nig &=
-lt;<a href=3D"mailto:christian.koenig@amd.com" target=3D"_blank">christian.=
-koenig@amd.com</a> &lt;mailto:<a href=3D"mailto:christian.koenig@amd.com" t=
-arget=3D"_blank">christian.koenig@amd.com</a>&gt;&gt; wrote:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0On 4/29/26 22:20, John B. Moore wrote:<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; Move the duplicated doorbell-based get=
-_wptr/set_wptr functions from<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; gfx_v9_0.c, gfx_v10_0.c, gfx_v11_0.c, =
-and gfx_v12_0.c into common<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; helpers amdgpu_gfx_get_wptr_compute() =
-and amdgpu_gfx_set_wptr_compute()<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; in amdgpu_gfx.c.<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; These functions are not HW generation =
-dependent -- the doorbell path is<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; identical across all four GFX versions=
-:<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0get: atomic64_read(ring-&g=
-t;wptr_cpu_addr)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0set: atomic64_set(ring-&gt=
-;wptr_cpu_addr) + WDOORBELL64()<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; The non-doorbell fallback is replaced =
-with WARN_ON_ONCE instead of BUG()<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; since doorbell is the only supported m=
-ethod on gfx9+ compute rings.<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; Not touched: gfx_v7_0, gfx_v8_0, gfx_v=
-9_4_3 -- these have different<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; wptr access patterns (MMIO registers o=
-r wb.wb[] offsets).<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; Suggested-by: Alex Deucher &lt;<a href=
-=3D"mailto:alexander.deucher@amd.com" target=3D"_blank">alexander.deucher@a=
-md.com</a> &lt;mailto:<a href=3D"mailto:alexander.deucher@amd.com" target=
-=3D"_blank">alexander.deucher@amd.com</a>&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; Signed-off-by: John Moore &lt;<a href=
-=3D"mailto:jbmoore61@gmail.com" target=3D"_blank">jbmoore61@gmail.com</a> &=
-lt;mailto:<a href=3D"mailto:jbmoore61@gmail.com" target=3D"_blank">jbmoore6=
-1@gmail.com</a>&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; ---<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 drivers/gpu/drm/amd/amdgpu/amdgp=
-u_gfx.c | 39 +++++++++++++++++++++++++<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 drivers/gpu/drm/amd/amdgpu/amdgp=
-u_gfx.h |=C2=A0 3 ++<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 drivers/gpu/drm/amd/amdgpu/gfx_v=
-10_0.c=C2=A0 | 33 +++------------------<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 drivers/gpu/drm/amd/amdgpu/gfx_v=
-11_0.c=C2=A0 | 34 +++------------------<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 drivers/gpu/drm/amd/amdgpu/gfx_v=
-12_0.c=C2=A0 | 34 +++------------------<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 drivers/gpu/drm/amd/amdgpu/gfx_v=
-9_0.c=C2=A0 =C2=A0| 39 +++----------------------<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 6 files changed, 58 insertions(+=
-), 124 deletions(-)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; diff --git a/drivers/gpu/drm/amd/amdgp=
-u/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; index 77578ecc6..9e9c5cb81 100644<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgp=
-u_gfx.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgp=
-u_gfx.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -2596,3 +2596,42 @@ void amdgpu_deb=
-ugfs_compute_sched_mask_init(struct amdgpu_device *adev)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 #endif<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 }<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +/**<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; + * amdgpu_gfx_get_wptr_compute - comm=
-on get_wptr for compute rings using doorbells<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; + * @ring: amdgpu_ring pointer<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; + *<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; + * Read the write pointer from the do=
-orbell-mapped writeback address.<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; + * This is HW-agnostic and shared acr=
-oss GFX generations that use<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; + * doorbell-based compute queue manag=
-ement.<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; + */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +u64 amdgpu_gfx_get_wptr_compute(struc=
-t amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +{<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0/* XXX check if s=
-wapping is necessary on BE */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0if (ring-&gt;use_=
-doorbell)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0return atomic64_read((atomic64_t *)ring-&gt;wptr_cpu_addr);<br=
->
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0That should probably be readq() instead of =
-this horrible and not portable cast to atomic64_t.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Alternatively we could just normally read t=
-he pointer with a memory barrier since this is just system memory.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0WARN_ON_ONCE(1);<=
-br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Pre-requisite/error checking first please.<=
-br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Make that a if (WARN_ON(!ring-&gt;use_doorb=
-ell)) return.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0And please don&#39;t use WARN_ON_ONCE() tha=
-t is just to reduce the amount of warnings printed into the logs on real HW=
- errors.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0On functional coding errors like this one h=
-ere it doesn&#39;t make sense and is often overlooked.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0return 0;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +/**<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; + * amdgpu_gfx_set_wptr_compute - comm=
-on set_wptr for compute rings using doorbells<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; + * @ring: amdgpu_ring pointer<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; + *<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; + * Write the write pointer to the doo=
-rbell-mapped writeback address and<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; + * ring the doorbell.=C2=A0 This is H=
-W-agnostic and shared across GFX<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; + * generations that use doorbell-base=
-d compute queue management.<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; + */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +void amdgpu_gfx_set_wptr_compute(stru=
-ct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +{<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0struct amdgpu_dev=
-ice *adev =3D ring-&gt;adev;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0/* XXX check if s=
-wapping is necessary on BE */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0if (ring-&gt;use_=
-doorbell) {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0atomic64_set((atomic64_t *)ring-&gt;wptr_cpu_addr, ring-&gt;wp=
-tr);<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Same here the case to atomic64_t is extreme=
-ly questionable.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Regards,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Christian.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0WDOORBELL64(ring-&gt;doorbell_index, ring-&gt;wptr);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0} else {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0WARN_ON_ONCE(1);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; diff --git a/drivers/gpu/drm/amd/amdgp=
-u/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; index 585cc8e81..27f6beafb 100644<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgp=
-u_gfx.h<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgp=
-u_gfx.h<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -653,6 +653,9 @@ u32 amdgpu_gfx_csb=
-_preamble_start(u32 *buffer);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 u32 amdgpu_gfx_csb_data_parser(s=
-truct amdgpu_device *adev, u32 *buffer, u32 count);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 void amdgpu_gfx_csb_preamble_end=
-(u32 *buffer, u32 count);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +u64 amdgpu_gfx_get_wptr_compute(struc=
-t amdgpu_ring *ring);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +void amdgpu_gfx_set_wptr_compute(stru=
-ct amdgpu_ring *ring);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 void amdgpu_debugfs_gfx_sched_ma=
-sk_init(struct amdgpu_device *adev);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 void amdgpu_debugfs_compute_sche=
-d_mask_init(struct amdgpu_device *adev);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; diff --git a/drivers/gpu/drm/amd/amdgp=
-u/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; index 1893ceeeb..4c0272cba 100644<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; --- a/drivers/gpu/drm/amd/amdgpu/gfx_v=
-10_0.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v=
-10_0.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -8586,31 +8586,6 @@ static u64 gfx_=
-v10_0_ring_get_rptr_compute(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0return *(uin=
-t32_t *)ring-&gt;rptr_cpu_addr;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 }<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -static u64 gfx_v10_0_ring_get_wptr_co=
-mpute(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -{<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0u64 wptr;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0/* XXX check if s=
-wapping is necessary on BE */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0if (ring-&gt;use_=
-doorbell)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0wptr =3D atomic64_read((atomic64_t *)ring-&gt;wptr_cpu_addr);<=
-br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0else<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0BUG();<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0return wptr;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -static void gfx_v10_0_ring_set_wptr_c=
-ompute(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -{<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0struct amdgpu_dev=
-ice *adev =3D ring-&gt;adev;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0if (ring-&gt;use_=
-doorbell) {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0atomic64_set((atomic64_t *)ring-&gt;wptr_cpu_addr,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ring-&gt;wptr);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0WDOORBELL64(ring-&gt;doorbell_index, ring-&gt;wptr);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0} else {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0BUG(); /* only DOORBELL method supported on gfx10 now */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 static void gfx_v10_0_ring_emit_=
-hdp_flush(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct amdgp=
-u_device *adev =3D ring-&gt;adev;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -9881,8 +9856,8 @@ static const str=
-uct amdgpu_ring_funcs gfx_v10_0_ring_funcs_compute =3D {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.nop =3D PAC=
-KET3(PACKET3_NOP, 0x3FFF),<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.support_64b=
-it_ptrs =3D true,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.get_rptr =
-=3D gfx_v10_0_ring_get_rptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.get_wptr =3D gfx=
-_v10_0_ring_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.set_wptr =3D gfx=
-_v10_0_ring_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.get_wptr =3D amd=
-gpu_gfx_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.set_wptr =3D amd=
-gpu_gfx_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.emit_frame_=
-size =3D<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A020 + /* gfx_v10_0_ring_emit_gds_switch */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A07 + /* gfx_v10_0_ring_emit_hdp_flush */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -9921,8 +9896,8 @@ static const str=
-uct amdgpu_ring_funcs gfx_v10_0_ring_funcs_kiq =3D {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.nop =3D PAC=
-KET3(PACKET3_NOP, 0x3FFF),<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.support_64b=
-it_ptrs =3D true,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.get_rptr =
-=3D gfx_v10_0_ring_get_rptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.get_wptr =3D gfx=
-_v10_0_ring_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.set_wptr =3D gfx=
-_v10_0_ring_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.get_wptr =3D amd=
-gpu_gfx_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.set_wptr =3D amd=
-gpu_gfx_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.emit_frame_=
-size =3D<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A020 + /* gfx_v10_0_ring_emit_gds_switch */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A07 + /* gfx_v10_0_ring_emit_hdp_flush */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; diff --git a/drivers/gpu/drm/amd/amdgp=
-u/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; index 427975b5a..404604f2d 100644<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; --- a/drivers/gpu/drm/amd/amdgpu/gfx_v=
-11_0.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v=
-11_0.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -5818,32 +5818,6 @@ static u64 gfx_=
-v11_0_ring_get_rptr_compute(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0return *(uin=
-t32_t *)ring-&gt;rptr_cpu_addr;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 }<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -static u64 gfx_v11_0_ring_get_wptr_co=
-mpute(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -{<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0u64 wptr;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0/* XXX check if s=
-wapping is necessary on BE */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0if (ring-&gt;use_=
-doorbell)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0wptr =3D atomic64_read((atomic64_t *)ring-&gt;wptr_cpu_addr);<=
-br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0else<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0BUG();<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0return wptr;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -static void gfx_v11_0_ring_set_wptr_c=
-ompute(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -{<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0struct amdgpu_dev=
-ice *adev =3D ring-&gt;adev;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0/* XXX check if s=
-wapping is necessary on BE */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0if (ring-&gt;use_=
-doorbell) {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0atomic64_set((atomic64_t *)ring-&gt;wptr_cpu_addr,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ring-&gt;wptr);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0WDOORBELL64(ring-&gt;doorbell_index, ring-&gt;wptr);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0} else {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0BUG(); /* only DOORBELL method supported on gfx11 now */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 static void gfx_v11_0_ring_emit_=
-hdp_flush(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct amdgp=
-u_device *adev =3D ring-&gt;adev;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -7266,8 +7240,8 @@ static const str=
-uct amdgpu_ring_funcs gfx_v11_0_ring_funcs_compute =3D {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.nop =3D PAC=
-KET3(PACKET3_NOP, 0x3FFF),<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.support_64b=
-it_ptrs =3D true,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.get_rptr =
-=3D gfx_v11_0_ring_get_rptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.get_wptr =3D gfx=
-_v11_0_ring_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.set_wptr =3D gfx=
-_v11_0_ring_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.get_wptr =3D amd=
-gpu_gfx_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.set_wptr =3D amd=
-gpu_gfx_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.emit_frame_=
-size =3D<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A05 + /* update_spm_vmid */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A020 + /* gfx_v11_0_ring_emit_gds_switch */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -7307,8 +7281,8 @@ static const str=
-uct amdgpu_ring_funcs gfx_v11_0_ring_funcs_kiq =3D {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.nop =3D PAC=
-KET3(PACKET3_NOP, 0x3FFF),<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.support_64b=
-it_ptrs =3D true,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.get_rptr =
-=3D gfx_v11_0_ring_get_rptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.get_wptr =3D gfx=
-_v11_0_ring_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.set_wptr =3D gfx=
-_v11_0_ring_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.get_wptr =3D amd=
-gpu_gfx_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.set_wptr =3D amd=
-gpu_gfx_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.emit_frame_=
-size =3D<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A020 + /* gfx_v11_0_ring_emit_gds_switch */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A07 + /* gfx_v11_0_ring_emit_hdp_flush */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; diff --git a/drivers/gpu/drm/amd/amdgp=
-u/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; index 79ea1af36..7ba436444 100644<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; --- a/drivers/gpu/drm/amd/amdgpu/gfx_v=
-12_0.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v=
-12_0.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -4363,32 +4363,6 @@ static u64 gfx_=
-v12_0_ring_get_rptr_compute(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0return *(uin=
-t32_t *)ring-&gt;rptr_cpu_addr;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 }<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -static u64 gfx_v12_0_ring_get_wptr_co=
-mpute(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -{<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0u64 wptr;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0/* XXX check if s=
-wapping is necessary on BE */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0if (ring-&gt;use_=
-doorbell)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0wptr =3D atomic64_read((atomic64_t *)ring-&gt;wptr_cpu_addr);<=
-br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0else<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0BUG();<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0return wptr;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -static void gfx_v12_0_ring_set_wptr_c=
-ompute(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -{<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0struct amdgpu_dev=
-ice *adev =3D ring-&gt;adev;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0/* XXX check if s=
-wapping is necessary on BE */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0if (ring-&gt;use_=
-doorbell) {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0atomic64_set((atomic64_t *)ring-&gt;wptr_cpu_addr,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ring-&gt;wptr);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0WDOORBELL64(ring-&gt;doorbell_index, ring-&gt;wptr);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0} else {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0BUG(); /* only DOORBELL method supported on gfx12 now */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 static void gfx_v12_0_ring_emit_=
-hdp_flush(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct amdgp=
-u_device *adev =3D ring-&gt;adev;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -5523,8 +5497,8 @@ static const str=
-uct amdgpu_ring_funcs gfx_v12_0_ring_funcs_compute =3D {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.nop =3D PAC=
-KET3(PACKET3_NOP, 0x3FFF),<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.support_64b=
-it_ptrs =3D true,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.get_rptr =
-=3D gfx_v12_0_ring_get_rptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.get_wptr =3D gfx=
-_v12_0_ring_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.set_wptr =3D gfx=
-_v12_0_ring_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.get_wptr =3D amd=
-gpu_gfx_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.set_wptr =3D amd=
-gpu_gfx_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.emit_frame_=
-size =3D<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A07 + /* gfx_v12_0_ring_emit_hdp_flush */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A05 + /* hdp invalidate */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -5561,8 +5535,8 @@ static const str=
-uct amdgpu_ring_funcs gfx_v12_0_ring_funcs_kiq =3D {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.nop =3D PAC=
-KET3(PACKET3_NOP, 0x3FFF),<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.support_64b=
-it_ptrs =3D true,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.get_rptr =
-=3D gfx_v12_0_ring_get_rptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.get_wptr =3D gfx=
-_v12_0_ring_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.set_wptr =3D gfx=
-_v12_0_ring_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.get_wptr =3D amd=
-gpu_gfx_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.set_wptr =3D amd=
-gpu_gfx_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.emit_frame_=
-size =3D<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A07 + /* gfx_v12_0_ring_emit_hdp_flush */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A05 + /*hdp invalidate */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; diff --git a/drivers/gpu/drm/amd/amdgp=
-u/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; index 8249135d7..798f94bca 100644<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; --- a/drivers/gpu/drm/amd/amdgpu/gfx_v=
-9_0.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v=
-9_0.c<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -5640,37 +5640,6 @@ static u64 gfx_=
-v9_0_ring_get_rptr_compute(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0return *ring=
--&gt;rptr_cpu_addr; /* gfx9 hardware is 32bit rptr */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 }<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -static u64 gfx_v9_0_ring_get_wptr_com=
-pute(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -{<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0u64 wptr;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0/* XXX check if s=
-wapping is necessary on BE */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0if (ring-&gt;use_=
-doorbell) {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0wptr =3D atomic64_read((atomic64_t *)ring-&gt;wptr_cpu_addr);<=
-br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0} else {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0WARN_ONCE(1, &quot;gfx_v9_0: non-doorbell wptr read on ring %s=
-, &quot;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;only doorbell method =
-supported on gfx9\n&quot;,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ring-&gt;name);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0wptr =3D 0;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0return wptr;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -static void gfx_v9_0_ring_set_wptr_co=
-mpute(struct amdgpu_ring *ring)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -{<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0struct amdgpu_dev=
-ice *adev =3D ring-&gt;adev;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0/* XXX check if s=
-wapping is necessary on BE */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0if (ring-&gt;use_=
-doorbell) {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0atomic64_set((atomic64_t *)ring-&gt;wptr_cpu_addr, ring-&gt;wp=
-tr);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0WDOORBELL64(ring-&gt;doorbell_index, ring-&gt;wptr);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0} else {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0WARN_ONCE(1, &quot;gfx_v9_0: non-doorbell wptr write on ring %=
-s, &quot;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;only doorbell method =
-supported on gfx9\n&quot;,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ring-&gt;name);<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -}<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 static void gfx_v9_0_ring_emit_f=
-ence_kiq(struct amdgpu_ring *ring, u64 addr,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 u64 seq, unsigned int flags)<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -7627,8 +7596,8 @@ static const str=
-uct amdgpu_ring_funcs gfx_v9_0_ring_funcs_compute =3D {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.nop =3D PAC=
-KET3(PACKET3_NOP, 0x3FFF),<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.support_64b=
-it_ptrs =3D true,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.get_rptr =
-=3D gfx_v9_0_ring_get_rptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.get_wptr =3D gfx=
-_v9_0_ring_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.set_wptr =3D gfx=
-_v9_0_ring_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.get_wptr =3D amd=
-gpu_gfx_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.set_wptr =3D amd=
-gpu_gfx_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.emit_frame_=
-size =3D<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A020 + /* gfx_v9_0_ring_emit_gds_switch */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A07 + /* gfx_v9_0_ring_emit_hdp_flush */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -7669,8 +7638,8 @@ static const str=
-uct amdgpu_ring_funcs gfx_v9_0_ring_funcs_kiq =3D {<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.nop =3D PAC=
-KET3(PACKET3_NOP, 0x3FFF),<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.support_64b=
-it_ptrs =3D true,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.get_rptr =
-=3D gfx_v9_0_ring_get_rptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.get_wptr =3D gfx=
-_v9_0_ring_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0.set_wptr =3D gfx=
-_v9_0_ring_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.get_wptr =3D amd=
-gpu_gfx_get_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0.set_wptr =3D amd=
-gpu_gfx_set_wptr_compute,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0.emit_frame_=
-size =3D<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A020 + /* gfx_v9_0_ring_emit_gds_switch */<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A07 + /* gfx_v9_0_ring_emit_hdp_flush */<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;<br>
-<br>
-</blockquote></div></div>
-
---000000000000f89fc70650add7e0--
-
---000000000000f89fc70650add7e2
-Content-Type: text/x-patch; charset="UTF-8"; 
-	name="0001-drm-amdgpu-gfx-extract-compute-wptr-doorbell-helpers.patch"
-Content-Disposition: attachment; 
-	filename="0001-drm-amdgpu-gfx-extract-compute-wptr-doorbell-helpers.patch"
-Content-Transfer-Encoding: base64
-Content-ID: <f_moljrtok0>
-X-Attachment-Id: f_moljrtok0
-
-RnJvbSA4N2VlNmY2MTI4OTZkZjdmODY2NWFiZTdkYTFhNjg2MjhmOGJhMzc5IE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiAiSm9obiBCLiBNb29yZSIgPGpibW9vcmU2MUBnbWFpbC5jb20+
-CkRhdGU6IFRodSwgMzAgQXByIDIwMjYgMDg6NDc6MDkgLTA1MDAKU3ViamVjdDogW1BBVENIXSBk
-cm0vYW1kZ3B1L2dmeDogZXh0cmFjdCBjb21wdXRlIHdwdHIgZG9vcmJlbGwgaGVscGVycyB0bwog
-YW1kZ3B1X2dmeC5jCk1JTUUtVmVyc2lvbjogMS4wCkNvbnRlbnQtVHlwZTogdGV4dC9wbGFpbjsg
-Y2hhcnNldD1VVEYtOApDb250ZW50LVRyYW5zZmVyLUVuY29kaW5nOiA4Yml0CgpNb3ZlIHRoZSBk
-dXBsaWNhdGVkIGRvb3JiZWxsLWJhc2VkIGdldF93cHRyL3NldF93cHRyIGZ1bmN0aW9ucyBmcm9t
-CmdmeF92OV8wLmMsIGdmeF92MTBfMC5jLCBnZnhfdjExXzAuYywgYW5kIGdmeF92MTJfMC5jIGlu
-dG8gY29tbW9uCmhlbHBlcnMgYW1kZ3B1X2dmeF9nZXRfd3B0cl9jb21wdXRlKCkgYW5kIGFtZGdw
-dV9nZnhfc2V0X3dwdHJfY29tcHV0ZSgpCmluIGFtZGdwdV9nZnguYy4KClRoZXNlIGZ1bmN0aW9u
-cyBhcmUgbm90IEhXIGdlbmVyYXRpb24gZGVwZW5kZW50IC0tIHRoZSBkb29yYmVsbCBwYXRoIGlz
-CmlkZW50aWNhbCBhY3Jvc3MgYWxsIGZvdXIgR0ZYIHZlcnNpb25zLgoKVGhlIGF0b21pYzY0X3Qg
-Y2FzdCBpcyByZXRhaW5lZCB2aWEgYSBzdGF0aWMgaW5saW5lIGhlbHBlcgood3B0cl9hc19hdG9t
-aWMpIHRvIHByZXNlcnZlIDMyLWJpdCBhdG9taWNpdHkgZ3VhcmFudGVlcywgc2luY2UKRFJNX0FN
-REdQVSBzdGlsbCBzdXBwb3J0cyAzMi1iaXQga2VybmVscyB3aGVyZSBhIHBsYWluIDY0LWJpdAp3
-cml0ZSB3b3VsZCB0ZWFyIGludG8gdHdvIDMyLWJpdCB3cml0ZXMuCgpDaGFuZ2VzIGZyb20gdjEg
-KENocmlzdGlhbiBLw7ZuaWcgcmV2aWV3KToKICAtIE1vdmUgZG9vcmJlbGwgcHJlcmVxdWlzaXRl
-IGNoZWNrIHRvIHRoZSB0b3Agb2YgZWFjaCBmdW5jdGlvbiBhcwogICAgaWYgKFdBUk5fT04oIXJp
-bmctPnVzZV9kb29yYmVsbCkpIHJldHVybgogIC0gVXNlIFdBUk5fT04sIG5vdCBXQVJOX09OX09O
-Q0UgLS0gdGhpcyBpcyBhIGZ1bmN0aW9uYWwgY29kaW5nCiAgICBlcnJvciwgbm90IGEgSFcgZXJy
-b3IgdGhhdCB3b3VsZCBzcGFtIGxvZ3MKICAtIFVzZSBybWIoKS93bWIoKSBmb3IgQ1BVPC0+ZGV2
-aWNlIG9yZGVyaW5nLCBub3Qgc21wX3JtYigpL3NtcF93bWIoKQogICAgd2hpY2ggYXJlIENQVTwt
-PkNQVSBvbmx5CiAgLSBQbGFjZSBybWIoKSBiZWZvcmUgdGhlIHJlYWQsIG5vdCBhZnRlcgogIC0g
-V3JhcCB0aGUgYXRvbWljNjRfdCBjYXN0IGluIGEgaGVscGVyIHRvIGNvbnRhaW4gdGhlIHVnbGlu
-ZXNzCgpOb3QgdG91Y2hlZDogZ2Z4X3Y3XzAsIGdmeF92OF8wLCBnZnhfdjlfNF8zIC0tIHRoZXNl
-IGhhdmUgZGlmZmVyZW50CndwdHIgYWNjZXNzIHBhdHRlcm5zIChNTUlPIHJlZ2lzdGVycyBvciB3
-Yi53YltdIG9mZnNldHMpLgoKU3VnZ2VzdGVkLWJ5OiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5k
-ZXVjaGVyQGFtZC5jb20+ClNpZ25lZC1vZmYtYnk6IEpvaG4gTW9vcmUgPGpibW9vcmU2MUBnbWFp
-bC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2dmeC5jIHwgNTUg
-KysrKysrKysrKysrKysrKysrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
-Z3B1X2dmeC5oIHwgIDMgKysKIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92MTBfMC5j
-ICB8IDMzICsrLS0tLS0tLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Yx
-MV8wLmMgIHwgMzQgKystLS0tLS0tLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9n
-ZnhfdjEyXzAuYyAgfCAzNCArKy0tLS0tLS0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1L2dmeF92OV8wLmMgICB8IDMxICsrLS0tLS0tLS0tLS0tCiA2IGZpbGVzIGNoYW5nZWQsIDc0
-IGluc2VydGlvbnMoKyksIDExNiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZ2Z4LmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
-dS9hbWRncHVfZ2Z4LmMKaW5kZXggYjhjYTg3NjY5Li5lYjAzYmFmNWIgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9nZnguYworKysgYi9kcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9hbWRncHVfZ2Z4LmMKQEAgLTI2ODYsMyArMjY4Niw1OCBAQCB2b2lkIGFt
-ZGdwdV9kZWJ1Z2ZzX2NvbXB1dGVfc2NoZWRfbWFza19pbml0KHN0cnVjdCBhbWRncHVfZGV2aWNl
-ICphZGV2KQogI2VuZGlmCiB9CiAKKy8qCisgKiBIZWxwZXIgdG8gY2FzdCB0aGUgdTMyICp3cHRy
-X2NwdV9hZGRyIHRvIGF0b21pYzY0X3QgKiBmb3IgNjQtYml0CisgKiBhdG9taWMgYWNjZXNzLiAg
-V2UgbmVlZCBhdG9taWMgNjQtYml0IGxvYWRzL3N0b3JlcyBoZXJlIGJlY2F1c2UgdGhlCisgKiBH
-UFUgcmVhZHMvd3JpdGVzIHRoaXMgdmFsdWUgY29uY3VycmVudGx5IGFuZCBvbiAzMi1iaXQga2Vy
-bmVscyBhCisgKiBwbGFpbiA2NC1iaXQgd3JpdGUgd291bGQgdGVhciBpbnRvIHR3byAzMi1iaXQg
-d3JpdGVzLgorICovCitzdGF0aWMgaW5saW5lIGF0b21pYzY0X3QgKndwdHJfYXNfYXRvbWljKHN0
-cnVjdCBhbWRncHVfcmluZyAqcmluZykKK3sKKwlyZXR1cm4gKGF0b21pYzY0X3QgKilyaW5nLT53
-cHRyX2NwdV9hZGRyOworfQorCisvKioKKyAqIGFtZGdwdV9nZnhfZ2V0X3dwdHJfY29tcHV0ZSAt
-IGNvbW1vbiBnZXRfd3B0ciBmb3IgY29tcHV0ZSByaW5ncyB1c2luZyBkb29yYmVsbHMKKyAqIEBy
-aW5nOiBhbWRncHVfcmluZyBwb2ludGVyCisgKgorICogUmVhZCB0aGUgd3JpdGUgcG9pbnRlciBm
-cm9tIHRoZSBkb29yYmVsbC1tYXBwZWQgd3JpdGViYWNrIGFkZHJlc3MuCisgKiBUaGlzIGlzIEhX
-LWFnbm9zdGljIGFuZCBzaGFyZWQgYWNyb3NzIEdGWCBnZW5lcmF0aW9ucyB0aGF0IHVzZQorICog
-ZG9vcmJlbGwtYmFzZWQgY29tcHV0ZSBxdWV1ZSBtYW5hZ2VtZW50LgorICovCit1NjQgYW1kZ3B1
-X2dmeF9nZXRfd3B0cl9jb21wdXRlKHN0cnVjdCBhbWRncHVfcmluZyAqcmluZykKK3sKKwlpZiAo
-V0FSTl9PTighcmluZy0+dXNlX2Rvb3JiZWxsKSkKKwkJcmV0dXJuIDA7CisKKwkvKiBFbnN1cmUg
-d2Ugc2VlIHRoZSBsYXRlc3QgdmFsdWUgd3JpdHRlbiBieSB0aGUgZGV2aWNlICovCisJcm1iKCk7
-CisKKwkvKiBYWFggY2hlY2sgaWYgc3dhcHBpbmcgaXMgbmVjZXNzYXJ5IG9uIEJFICovCisJcmV0
-dXJuIGF0b21pYzY0X3JlYWQod3B0cl9hc19hdG9taWMocmluZykpOworfQorCisvKioKKyAqIGFt
-ZGdwdV9nZnhfc2V0X3dwdHJfY29tcHV0ZSAtIGNvbW1vbiBzZXRfd3B0ciBmb3IgY29tcHV0ZSBy
-aW5ncyB1c2luZyBkb29yYmVsbHMKKyAqIEByaW5nOiBhbWRncHVfcmluZyBwb2ludGVyCisgKgor
-ICogV3JpdGUgdGhlIHdyaXRlIHBvaW50ZXIgdG8gdGhlIGRvb3JiZWxsLW1hcHBlZCB3cml0ZWJh
-Y2sgYWRkcmVzcyBhbmQKKyAqIHJpbmcgdGhlIGRvb3JiZWxsLiAgVGhpcyBpcyBIVy1hZ25vc3Rp
-YyBhbmQgc2hhcmVkIGFjcm9zcyBHRlgKKyAqIGdlbmVyYXRpb25zIHRoYXQgdXNlIGRvb3JiZWxs
-LWJhc2VkIGNvbXB1dGUgcXVldWUgbWFuYWdlbWVudC4KKyAqLwordm9pZCBhbWRncHVfZ2Z4X3Nl
-dF93cHRyX2NvbXB1dGUoc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nKQoreworCXN0cnVjdCBhbWRn
-cHVfZGV2aWNlICphZGV2ID0gcmluZy0+YWRldjsKKworCWlmIChXQVJOX09OKCFyaW5nLT51c2Vf
-ZG9vcmJlbGwpKQorCQlyZXR1cm47CisKKwkvKiBYWFggY2hlY2sgaWYgc3dhcHBpbmcgaXMgbmVj
-ZXNzYXJ5IG9uIEJFICovCisJYXRvbWljNjRfc2V0KHdwdHJfYXNfYXRvbWljKHJpbmcpLCByaW5n
-LT53cHRyKTsKKworCS8qIEVuc3VyZSB0aGUgd3B0ciB3cml0ZSBpcyB2aXNpYmxlIHRvIHRoZSBk
-ZXZpY2UgYmVmb3JlIHJpbmdpbmcgdGhlIGRvb3JiZWxsICovCisJd21iKCk7CisKKwlXRE9PUkJF
-TEw2NChyaW5nLT5kb29yYmVsbF9pbmRleCwgcmluZy0+d3B0cik7Cit9CisKZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9nZnguaCBiL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2FtZGdwdV9nZnguaAppbmRleCBhMGNmMGEzYjQuLjdiZjE3N2Q1YSAxMDA2
-NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2dmeC5oCisrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9nZnguaApAQCAtNjYxLDYgKzY2MSw5IEBA
-IHUzMiBhbWRncHVfZ2Z4X2NzYl9wcmVhbWJsZV9zdGFydCh1MzIgKmJ1ZmZlcik7CiB1MzIgYW1k
-Z3B1X2dmeF9jc2JfZGF0YV9wYXJzZXIoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYsIHUzMiAq
-YnVmZmVyLCB1MzIgY291bnQpOwogdm9pZCBhbWRncHVfZ2Z4X2NzYl9wcmVhbWJsZV9lbmQodTMy
-ICpidWZmZXIsIHUzMiBjb3VudCk7CiAKK3U2NCBhbWRncHVfZ2Z4X2dldF93cHRyX2NvbXB1dGUo
-c3RydWN0IGFtZGdwdV9yaW5nICpyaW5nKTsKK3ZvaWQgYW1kZ3B1X2dmeF9zZXRfd3B0cl9jb21w
-dXRlKHN0cnVjdCBhbWRncHVfcmluZyAqcmluZyk7CisKIHZvaWQgYW1kZ3B1X2RlYnVnZnNfZ2Z4
-X3NjaGVkX21hc2tfaW5pdChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldik7CiB2b2lkIGFtZGdw
-dV9kZWJ1Z2ZzX2NvbXB1dGVfc2NoZWRfbWFza19pbml0KHN0cnVjdCBhbWRncHVfZGV2aWNlICph
-ZGV2KTsKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3YxMF8w
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEwXzAuYwppbmRleCA1OGM2OWRj
-YjUuLjRlZTdiNWE5MiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4
-X3YxMF8wLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3YxMF8wLmMKQEAg
-LTg1OTEsMzEgKzg1OTEsNiBAQCBzdGF0aWMgdTY0IGdmeF92MTBfMF9yaW5nX2dldF9ycHRyX2Nv
-bXB1dGUoc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nKQogCXJldHVybiAqKHVpbnQzMl90ICopcmlu
-Zy0+cnB0cl9jcHVfYWRkcjsKIH0KIAotc3RhdGljIHU2NCBnZnhfdjEwXzBfcmluZ19nZXRfd3B0
-cl9jb21wdXRlKHN0cnVjdCBhbWRncHVfcmluZyAqcmluZykKLXsKLQl1NjQgd3B0cjsKLQotCS8q
-IFhYWCBjaGVjayBpZiBzd2FwcGluZyBpcyBuZWNlc3Nhcnkgb24gQkUgKi8KLQlpZiAocmluZy0+
-dXNlX2Rvb3JiZWxsKQotCQl3cHRyID0gYXRvbWljNjRfcmVhZCgoYXRvbWljNjRfdCAqKXJpbmct
-PndwdHJfY3B1X2FkZHIpOwotCWVsc2UKLQkJQlVHKCk7Ci0JcmV0dXJuIHdwdHI7Ci19Ci0KLXN0
-YXRpYyB2b2lkIGdmeF92MTBfMF9yaW5nX3NldF93cHRyX2NvbXB1dGUoc3RydWN0IGFtZGdwdV9y
-aW5nICpyaW5nKQotewotCXN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2ID0gcmluZy0+YWRldjsK
-LQotCWlmIChyaW5nLT51c2VfZG9vcmJlbGwpIHsKLQkJYXRvbWljNjRfc2V0KChhdG9taWM2NF90
-ICopcmluZy0+d3B0cl9jcHVfYWRkciwKLQkJCSAgICAgcmluZy0+d3B0cik7Ci0JCVdET09SQkVM
-TDY0KHJpbmctPmRvb3JiZWxsX2luZGV4LCByaW5nLT53cHRyKTsKLQl9IGVsc2UgewotCQlCVUco
-KTsgLyogb25seSBET09SQkVMTCBtZXRob2Qgc3VwcG9ydGVkIG9uIGdmeDEwIG5vdyAqLwotCX0K
-LX0KLQogc3RhdGljIHZvaWQgZ2Z4X3YxMF8wX3JpbmdfZW1pdF9oZHBfZmx1c2goc3RydWN0IGFt
-ZGdwdV9yaW5nICpyaW5nKQogewogCXN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2ID0gcmluZy0+
-YWRldjsKQEAgLTk4ODYsOCArOTg2MSw4IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgYW1kZ3B1X3Jp
-bmdfZnVuY3MgZ2Z4X3YxMF8wX3JpbmdfZnVuY3NfY29tcHV0ZSA9IHsKIAkubm9wID0gUEFDS0VU
-MyhQQUNLRVQzX05PUCwgMHgzRkZGKSwKIAkuc3VwcG9ydF82NGJpdF9wdHJzID0gdHJ1ZSwKIAku
-Z2V0X3JwdHIgPSBnZnhfdjEwXzBfcmluZ19nZXRfcnB0cl9jb21wdXRlLAotCS5nZXRfd3B0ciA9
-IGdmeF92MTBfMF9yaW5nX2dldF93cHRyX2NvbXB1dGUsCi0JLnNldF93cHRyID0gZ2Z4X3YxMF8w
-X3Jpbmdfc2V0X3dwdHJfY29tcHV0ZSwKKwkuZ2V0X3dwdHIgPSBhbWRncHVfZ2Z4X2dldF93cHRy
-X2NvbXB1dGUsCisJLnNldF93cHRyID0gYW1kZ3B1X2dmeF9zZXRfd3B0cl9jb21wdXRlLAogCS5l
-bWl0X2ZyYW1lX3NpemUgPQogCQkyMCArIC8qIGdmeF92MTBfMF9yaW5nX2VtaXRfZ2RzX3N3aXRj
-aCAqLwogCQk3ICsgLyogZ2Z4X3YxMF8wX3JpbmdfZW1pdF9oZHBfZmx1c2ggKi8KQEAgLTk5MjYs
-OCArOTkwMSw4IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgYW1kZ3B1X3JpbmdfZnVuY3MgZ2Z4X3Yx
-MF8wX3JpbmdfZnVuY3Nfa2lxID0gewogCS5ub3AgPSBQQUNLRVQzKFBBQ0tFVDNfTk9QLCAweDNG
-RkYpLAogCS5zdXBwb3J0XzY0Yml0X3B0cnMgPSB0cnVlLAogCS5nZXRfcnB0ciA9IGdmeF92MTBf
-MF9yaW5nX2dldF9ycHRyX2NvbXB1dGUsCi0JLmdldF93cHRyID0gZ2Z4X3YxMF8wX3JpbmdfZ2V0
-X3dwdHJfY29tcHV0ZSwKLQkuc2V0X3dwdHIgPSBnZnhfdjEwXzBfcmluZ19zZXRfd3B0cl9jb21w
-dXRlLAorCS5nZXRfd3B0ciA9IGFtZGdwdV9nZnhfZ2V0X3dwdHJfY29tcHV0ZSwKKwkuc2V0X3dw
-dHIgPSBhbWRncHVfZ2Z4X3NldF93cHRyX2NvbXB1dGUsCiAJLmVtaXRfZnJhbWVfc2l6ZSA9CiAJ
-CTIwICsgLyogZ2Z4X3YxMF8wX3JpbmdfZW1pdF9nZHNfc3dpdGNoICovCiAJCTcgKyAvKiBnZnhf
-djEwXzBfcmluZ19lbWl0X2hkcF9mbHVzaCAqLwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2FtZC9hbWRncHUvZ2Z4X3YxMV8wLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhf
-djExXzAuYwppbmRleCAyYzZmMWUyNWMuLmMwNjliNzAwMSAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3YxMV8wLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvZ2Z4X3YxMV8wLmMKQEAgLTU4OTEsMzIgKzU4OTEsNiBAQCBzdGF0aWMgdTY0IGdmeF92
-MTFfMF9yaW5nX2dldF9ycHRyX2NvbXB1dGUoc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nKQogCXJl
-dHVybiAqKHVpbnQzMl90ICopcmluZy0+cnB0cl9jcHVfYWRkcjsKIH0KIAotc3RhdGljIHU2NCBn
-ZnhfdjExXzBfcmluZ19nZXRfd3B0cl9jb21wdXRlKHN0cnVjdCBhbWRncHVfcmluZyAqcmluZykK
-LXsKLQl1NjQgd3B0cjsKLQotCS8qIFhYWCBjaGVjayBpZiBzd2FwcGluZyBpcyBuZWNlc3Nhcnkg
-b24gQkUgKi8KLQlpZiAocmluZy0+dXNlX2Rvb3JiZWxsKQotCQl3cHRyID0gYXRvbWljNjRfcmVh
-ZCgoYXRvbWljNjRfdCAqKXJpbmctPndwdHJfY3B1X2FkZHIpOwotCWVsc2UKLQkJQlVHKCk7Ci0J
-cmV0dXJuIHdwdHI7Ci19Ci0KLXN0YXRpYyB2b2lkIGdmeF92MTFfMF9yaW5nX3NldF93cHRyX2Nv
-bXB1dGUoc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nKQotewotCXN0cnVjdCBhbWRncHVfZGV2aWNl
-ICphZGV2ID0gcmluZy0+YWRldjsKLQotCS8qIFhYWCBjaGVjayBpZiBzd2FwcGluZyBpcyBuZWNl
-c3Nhcnkgb24gQkUgKi8KLQlpZiAocmluZy0+dXNlX2Rvb3JiZWxsKSB7Ci0JCWF0b21pYzY0X3Nl
-dCgoYXRvbWljNjRfdCAqKXJpbmctPndwdHJfY3B1X2FkZHIsCi0JCQkgICAgIHJpbmctPndwdHIp
-OwotCQlXRE9PUkJFTEw2NChyaW5nLT5kb29yYmVsbF9pbmRleCwgcmluZy0+d3B0cik7Ci0JfSBl
-bHNlIHsKLQkJQlVHKCk7IC8qIG9ubHkgRE9PUkJFTEwgbWV0aG9kIHN1cHBvcnRlZCBvbiBnZngx
-MSBub3cgKi8KLQl9Ci19Ci0KIHN0YXRpYyB2b2lkIGdmeF92MTFfMF9yaW5nX2VtaXRfaGRwX2Zs
-dXNoKHN0cnVjdCBhbWRncHVfcmluZyAqcmluZykKIHsKIAlzdHJ1Y3QgYW1kZ3B1X2RldmljZSAq
-YWRldiA9IHJpbmctPmFkZXY7CkBAIC03MzMxLDggKzczMDUsOCBAQCBzdGF0aWMgY29uc3Qgc3Ry
-dWN0IGFtZGdwdV9yaW5nX2Z1bmNzIGdmeF92MTFfMF9yaW5nX2Z1bmNzX2NvbXB1dGUgPSB7CiAJ
-Lm5vcCA9IFBBQ0tFVDMoUEFDS0VUM19OT1AsIDB4M0ZGRiksCiAJLnN1cHBvcnRfNjRiaXRfcHRy
-cyA9IHRydWUsCiAJLmdldF9ycHRyID0gZ2Z4X3YxMV8wX3JpbmdfZ2V0X3JwdHJfY29tcHV0ZSwK
-LQkuZ2V0X3dwdHIgPSBnZnhfdjExXzBfcmluZ19nZXRfd3B0cl9jb21wdXRlLAotCS5zZXRfd3B0
-ciA9IGdmeF92MTFfMF9yaW5nX3NldF93cHRyX2NvbXB1dGUsCisJLmdldF93cHRyID0gYW1kZ3B1
-X2dmeF9nZXRfd3B0cl9jb21wdXRlLAorCS5zZXRfd3B0ciA9IGFtZGdwdV9nZnhfc2V0X3dwdHJf
-Y29tcHV0ZSwKIAkuZW1pdF9mcmFtZV9zaXplID0KIAkJNSArIC8qIHVwZGF0ZV9zcG1fdm1pZCAq
-LwogCQkyMCArIC8qIGdmeF92MTFfMF9yaW5nX2VtaXRfZ2RzX3N3aXRjaCAqLwpAQCAtNzM3Miw4
-ICs3MzQ2LDggQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBhbWRncHVfcmluZ19mdW5jcyBnZnhfdjEx
-XzBfcmluZ19mdW5jc19raXEgPSB7CiAJLm5vcCA9IFBBQ0tFVDMoUEFDS0VUM19OT1AsIDB4M0ZG
-RiksCiAJLnN1cHBvcnRfNjRiaXRfcHRycyA9IHRydWUsCiAJLmdldF9ycHRyID0gZ2Z4X3YxMV8w
-X3JpbmdfZ2V0X3JwdHJfY29tcHV0ZSwKLQkuZ2V0X3dwdHIgPSBnZnhfdjExXzBfcmluZ19nZXRf
-d3B0cl9jb21wdXRlLAotCS5zZXRfd3B0ciA9IGdmeF92MTFfMF9yaW5nX3NldF93cHRyX2NvbXB1
-dGUsCisJLmdldF93cHRyID0gYW1kZ3B1X2dmeF9nZXRfd3B0cl9jb21wdXRlLAorCS5zZXRfd3B0
-ciA9IGFtZGdwdV9nZnhfc2V0X3dwdHJfY29tcHV0ZSwKIAkuZW1pdF9mcmFtZV9zaXplID0KIAkJ
-MjAgKyAvKiBnZnhfdjExXzBfcmluZ19lbWl0X2dkc19zd2l0Y2ggKi8KIAkJNyArIC8qIGdmeF92
-MTFfMF9yaW5nX2VtaXRfaGRwX2ZsdXNoICovCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9nZnhfdjEyXzAuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92
-MTJfMC5jCmluZGV4IDZiYWFjNTMzYS4uMTc1OGE2MDUxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEyXzAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
-ZGdwdS9nZnhfdjEyXzAuYwpAQCAtNDQwMSwzMiArNDQwMSw2IEBAIHN0YXRpYyB1NjQgZ2Z4X3Yx
-Ml8wX3JpbmdfZ2V0X3JwdHJfY29tcHV0ZShzdHJ1Y3QgYW1kZ3B1X3JpbmcgKnJpbmcpCiAJcmV0
-dXJuICoodWludDMyX3QgKilyaW5nLT5ycHRyX2NwdV9hZGRyOwogfQogCi1zdGF0aWMgdTY0IGdm
-eF92MTJfMF9yaW5nX2dldF93cHRyX2NvbXB1dGUoc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nKQot
-ewotCXU2NCB3cHRyOwotCi0JLyogWFhYIGNoZWNrIGlmIHN3YXBwaW5nIGlzIG5lY2Vzc2FyeSBv
-biBCRSAqLwotCWlmIChyaW5nLT51c2VfZG9vcmJlbGwpCi0JCXdwdHIgPSBhdG9taWM2NF9yZWFk
-KChhdG9taWM2NF90ICopcmluZy0+d3B0cl9jcHVfYWRkcik7Ci0JZWxzZQotCQlCVUcoKTsKLQly
-ZXR1cm4gd3B0cjsKLX0KLQotc3RhdGljIHZvaWQgZ2Z4X3YxMl8wX3Jpbmdfc2V0X3dwdHJfY29t
-cHV0ZShzdHJ1Y3QgYW1kZ3B1X3JpbmcgKnJpbmcpCi17Ci0Jc3RydWN0IGFtZGdwdV9kZXZpY2Ug
-KmFkZXYgPSByaW5nLT5hZGV2OwotCi0JLyogWFhYIGNoZWNrIGlmIHN3YXBwaW5nIGlzIG5lY2Vz
-c2FyeSBvbiBCRSAqLwotCWlmIChyaW5nLT51c2VfZG9vcmJlbGwpIHsKLQkJYXRvbWljNjRfc2V0
-KChhdG9taWM2NF90ICopcmluZy0+d3B0cl9jcHVfYWRkciwKLQkJCSAgICAgcmluZy0+d3B0cik7
-Ci0JCVdET09SQkVMTDY0KHJpbmctPmRvb3JiZWxsX2luZGV4LCByaW5nLT53cHRyKTsKLQl9IGVs
-c2UgewotCQlCVUcoKTsgLyogb25seSBET09SQkVMTCBtZXRob2Qgc3VwcG9ydGVkIG9uIGdmeDEy
-IG5vdyAqLwotCX0KLX0KLQogc3RhdGljIHZvaWQgZ2Z4X3YxMl8wX3JpbmdfZW1pdF9oZHBfZmx1
-c2goc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nKQogewogCXN0cnVjdCBhbWRncHVfZGV2aWNlICph
-ZGV2ID0gcmluZy0+YWRldjsKQEAgLTU1NTMsOCArNTUyNyw4IEBAIHN0YXRpYyBjb25zdCBzdHJ1
-Y3QgYW1kZ3B1X3JpbmdfZnVuY3MgZ2Z4X3YxMl8wX3JpbmdfZnVuY3NfY29tcHV0ZSA9IHsKIAku
-bm9wID0gUEFDS0VUMyhQQUNLRVQzX05PUCwgMHgzRkZGKSwKIAkuc3VwcG9ydF82NGJpdF9wdHJz
-ID0gdHJ1ZSwKIAkuZ2V0X3JwdHIgPSBnZnhfdjEyXzBfcmluZ19nZXRfcnB0cl9jb21wdXRlLAot
-CS5nZXRfd3B0ciA9IGdmeF92MTJfMF9yaW5nX2dldF93cHRyX2NvbXB1dGUsCi0JLnNldF93cHRy
-ID0gZ2Z4X3YxMl8wX3Jpbmdfc2V0X3dwdHJfY29tcHV0ZSwKKwkuZ2V0X3dwdHIgPSBhbWRncHVf
-Z2Z4X2dldF93cHRyX2NvbXB1dGUsCisJLnNldF93cHRyID0gYW1kZ3B1X2dmeF9zZXRfd3B0cl9j
-b21wdXRlLAogCS5lbWl0X2ZyYW1lX3NpemUgPQogCQk3ICsgLyogZ2Z4X3YxMl8wX3JpbmdfZW1p
-dF9oZHBfZmx1c2ggKi8KIAkJNSArIC8qIGhkcCBpbnZhbGlkYXRlICovCkBAIC01NTkxLDggKzU1
-NjUsOCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGFtZGdwdV9yaW5nX2Z1bmNzIGdmeF92MTJfMF9y
-aW5nX2Z1bmNzX2tpcSA9IHsKIAkubm9wID0gUEFDS0VUMyhQQUNLRVQzX05PUCwgMHgzRkZGKSwK
-IAkuc3VwcG9ydF82NGJpdF9wdHJzID0gdHJ1ZSwKIAkuZ2V0X3JwdHIgPSBnZnhfdjEyXzBfcmlu
-Z19nZXRfcnB0cl9jb21wdXRlLAotCS5nZXRfd3B0ciA9IGdmeF92MTJfMF9yaW5nX2dldF93cHRy
-X2NvbXB1dGUsCi0JLnNldF93cHRyID0gZ2Z4X3YxMl8wX3Jpbmdfc2V0X3dwdHJfY29tcHV0ZSwK
-KwkuZ2V0X3dwdHIgPSBhbWRncHVfZ2Z4X2dldF93cHRyX2NvbXB1dGUsCisJLnNldF93cHRyID0g
-YW1kZ3B1X2dmeF9zZXRfd3B0cl9jb21wdXRlLAogCS5lbWl0X2ZyYW1lX3NpemUgPQogCQk3ICsg
-LyogZ2Z4X3YxMl8wX3JpbmdfZW1pdF9oZHBfZmx1c2ggKi8KIAkJNSArIC8qaGRwIGludmFsaWRh
-dGUgKi8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OV8wLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjlfMC5jCmluZGV4IDJlYjMyZjkyYS4u
-ZDUwMDE2ZTlhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjlf
-MC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92OV8wLmMKQEAgLTU2MzQs
-MzAgKzU2MzQsNyBAQCBzdGF0aWMgdTY0IGdmeF92OV8wX3JpbmdfZ2V0X3JwdHJfY29tcHV0ZShz
-dHJ1Y3QgYW1kZ3B1X3JpbmcgKnJpbmcpCiAJcmV0dXJuICpyaW5nLT5ycHRyX2NwdV9hZGRyOyAv
-KiBnZng5IGhhcmR3YXJlIGlzIDMyYml0IHJwdHIgKi8KIH0KIAotc3RhdGljIHU2NCBnZnhfdjlf
-MF9yaW5nX2dldF93cHRyX2NvbXB1dGUoc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nKQotewotCXU2
-NCB3cHRyOwotCi0JLyogWFhYIGNoZWNrIGlmIHN3YXBwaW5nIGlzIG5lY2Vzc2FyeSBvbiBCRSAq
-LwotCWlmIChyaW5nLT51c2VfZG9vcmJlbGwpCi0JCXdwdHIgPSBhdG9taWM2NF9yZWFkKChhdG9t
-aWM2NF90ICopcmluZy0+d3B0cl9jcHVfYWRkcik7Ci0JZWxzZQotCQlCVUcoKTsKLQlyZXR1cm4g
-d3B0cjsKLX0KIAotc3RhdGljIHZvaWQgZ2Z4X3Y5XzBfcmluZ19zZXRfd3B0cl9jb21wdXRlKHN0
-cnVjdCBhbWRncHVfcmluZyAqcmluZykKLXsKLQlzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiA9
-IHJpbmctPmFkZXY7Ci0KLQkvKiBYWFggY2hlY2sgaWYgc3dhcHBpbmcgaXMgbmVjZXNzYXJ5IG9u
-IEJFICovCi0JaWYgKHJpbmctPnVzZV9kb29yYmVsbCkgewotCQlhdG9taWM2NF9zZXQoKGF0b21p
-YzY0X3QgKilyaW5nLT53cHRyX2NwdV9hZGRyLCByaW5nLT53cHRyKTsKLQkJV0RPT1JCRUxMNjQo
-cmluZy0+ZG9vcmJlbGxfaW5kZXgsIHJpbmctPndwdHIpOwotCX0gZWxzZXsKLQkJQlVHKCk7IC8q
-IG9ubHkgRE9PUkJFTEwgbWV0aG9kIHN1cHBvcnRlZCBvbiBnZng5IG5vdyAqLwotCX0KLX0KIAog
-c3RhdGljIHZvaWQgZ2Z4X3Y5XzBfcmluZ19lbWl0X2ZlbmNlX2tpcShzdHJ1Y3QgYW1kZ3B1X3Jp
-bmcgKnJpbmcsIHU2NCBhZGRyLAogCQkJCQkgdTY0IHNlcSwgdW5zaWduZWQgaW50IGZsYWdzKQpA
-QCAtNzYxNCw4ICs3NTkxLDggQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBhbWRncHVfcmluZ19mdW5j
-cyBnZnhfdjlfMF9yaW5nX2Z1bmNzX2NvbXB1dGUgPSB7CiAJLm5vcCA9IFBBQ0tFVDMoUEFDS0VU
-M19OT1AsIDB4M0ZGRiksCiAJLnN1cHBvcnRfNjRiaXRfcHRycyA9IHRydWUsCiAJLmdldF9ycHRy
-ID0gZ2Z4X3Y5XzBfcmluZ19nZXRfcnB0cl9jb21wdXRlLAotCS5nZXRfd3B0ciA9IGdmeF92OV8w
-X3JpbmdfZ2V0X3dwdHJfY29tcHV0ZSwKLQkuc2V0X3dwdHIgPSBnZnhfdjlfMF9yaW5nX3NldF93
-cHRyX2NvbXB1dGUsCisJLmdldF93cHRyID0gYW1kZ3B1X2dmeF9nZXRfd3B0cl9jb21wdXRlLAor
-CS5zZXRfd3B0ciA9IGFtZGdwdV9nZnhfc2V0X3dwdHJfY29tcHV0ZSwKIAkuZW1pdF9mcmFtZV9z
-aXplID0KIAkJMjAgKyAvKiBnZnhfdjlfMF9yaW5nX2VtaXRfZ2RzX3N3aXRjaCAqLwogCQk3ICsg
-LyogZ2Z4X3Y5XzBfcmluZ19lbWl0X2hkcF9mbHVzaCAqLwpAQCAtNzY1Niw4ICs3NjMzLDggQEAg
-c3RhdGljIGNvbnN0IHN0cnVjdCBhbWRncHVfcmluZ19mdW5jcyBnZnhfdjlfMF9yaW5nX2Z1bmNz
-X2tpcSA9IHsKIAkubm9wID0gUEFDS0VUMyhQQUNLRVQzX05PUCwgMHgzRkZGKSwKIAkuc3VwcG9y
-dF82NGJpdF9wdHJzID0gdHJ1ZSwKIAkuZ2V0X3JwdHIgPSBnZnhfdjlfMF9yaW5nX2dldF9ycHRy
-X2NvbXB1dGUsCi0JLmdldF93cHRyID0gZ2Z4X3Y5XzBfcmluZ19nZXRfd3B0cl9jb21wdXRlLAot
-CS5zZXRfd3B0ciA9IGdmeF92OV8wX3Jpbmdfc2V0X3dwdHJfY29tcHV0ZSwKKwkuZ2V0X3dwdHIg
-PSBhbWRncHVfZ2Z4X2dldF93cHRyX2NvbXB1dGUsCisJLnNldF93cHRyID0gYW1kZ3B1X2dmeF9z
-ZXRfd3B0cl9jb21wdXRlLAogCS5lbWl0X2ZyYW1lX3NpemUgPQogCQkyMCArIC8qIGdmeF92OV8w
-X3JpbmdfZW1pdF9nZHNfc3dpdGNoICovCiAJCTcgKyAvKiBnZnhfdjlfMF9yaW5nX2VtaXRfaGRw
-X2ZsdXNoICovCi0tIAoyLjQzLjAKCg==
---000000000000f89fc70650add7e2
-Content-Type: text/x-patch; charset="UTF-8"; 
-	name="0001-drm-amdgpu-gfx-extract-compute-wptr-doorbel-option-b.patch"
-Content-Disposition: attachment; 
-	filename="0001-drm-amdgpu-gfx-extract-compute-wptr-doorbel-option-b.patch"
-Content-Transfer-Encoding: base64
-Content-ID: <f_moljry8n1>
-X-Attachment-Id: f_moljry8n1
-
-RnJvbSBiM2JhZDNiYzA3MjA0MWNkN2ZkZWJkYWQ3ODMxZTVlNzA0NTRlYzY4IE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiAiSm9obiBCLiBNb29yZSIgPGpibW9vcmU2MUBnbWFpbC5jb20+
-CkRhdGU6IFRodSwgMzAgQXByIDIwMjYgMDg6NDk6MzggLTA1MDAKU3ViamVjdDogW1BBVENIXSBk
-cm0vYW1kZ3B1L2dmeDogZXh0cmFjdCBjb21wdXRlIHdwdHIgZG9vcmJlbGwgaGVscGVycyB0bwog
-YW1kZ3B1X2dmeC5jCk1JTUUtVmVyc2lvbjogMS4wCkNvbnRlbnQtVHlwZTogdGV4dC9wbGFpbjsg
-Y2hhcnNldD1VVEYtOApDb250ZW50LVRyYW5zZmVyLUVuY29kaW5nOiA4Yml0CgpNb3ZlIHRoZSBk
-dXBsaWNhdGVkIGRvb3JiZWxsLWJhc2VkIGdldF93cHRyL3NldF93cHRyIGZ1bmN0aW9ucyBmcm9t
-CmdmeF92OV8wLmMsIGdmeF92MTBfMC5jLCBnZnhfdjExXzAuYywgYW5kIGdmeF92MTJfMC5jIGlu
-dG8gY29tbW9uCmhlbHBlcnMgYW1kZ3B1X2dmeF9nZXRfd3B0cl9jb21wdXRlKCkgYW5kIGFtZGdw
-dV9nZnhfc2V0X3dwdHJfY29tcHV0ZSgpCmluIGFtZGdwdV9nZnguYy4KClRoZXNlIGZ1bmN0aW9u
-cyBhcmUgbm90IEhXIGdlbmVyYXRpb24gZGVwZW5kZW50IC0tIHRoZSBkb29yYmVsbCBwYXRoIGlz
-CmlkZW50aWNhbCBhY3Jvc3MgYWxsIGZvdXIgR0ZYIHZlcnNpb25zLgoKcmVhZHEoKS93cml0ZXEo
-KSBhcmUgdXNlZCBkZXNwaXRlIHRoaXMgYmVpbmcgc3lzdGVtIG1lbW9yeSAobm90IE1NSU8pCmJl
-Y2F1c2Ugd2UgbmVlZCBhdG9taWMgNjQtYml0IHJlYWRzL3dyaXRlcyB0aGF0IHdpbGwgbm90IHRl
-YXIgb24KMzItYml0IGtlcm5lbHMuICBUaGUgc2VtYW50aWMgbWlzbWF0Y2ggd2l0aCBNTUlPIGFj
-Y2Vzc29ycyBpcwpkb2N1bWVudGVkIGluIHRoZSBmdW5jdGlvbiBjb21tZW50cy4KCkNoYW5nZXMg
-ZnJvbSB2MSAoQ2hyaXN0aWFuIEvDtm5pZyByZXZpZXcpOgogIC0gTW92ZSBkb29yYmVsbCBwcmVy
-ZXF1aXNpdGUgY2hlY2sgdG8gdGhlIHRvcCBvZiBlYWNoIGZ1bmN0aW9uIGFzCiAgICBpZiAoV0FS
-Tl9PTighcmluZy0+dXNlX2Rvb3JiZWxsKSkgcmV0dXJuCiAgLSBVc2UgV0FSTl9PTiwgbm90IFdB
-Uk5fT05fT05DRSAtLSB0aGlzIGlzIGEgZnVuY3Rpb25hbCBjb2RpbmcKICAgIGVycm9yLCBub3Qg
-YSBIVyBlcnJvciB0aGF0IHdvdWxkIHNwYW0gbG9ncwogIC0gVXNlIHJtYigpL3dtYigpIGZvciBD
-UFU8LT5kZXZpY2Ugb3JkZXJpbmcsIG5vdCBzbXBfcm1iKCkvc21wX3dtYigpCiAgICB3aGljaCBh
-cmUgQ1BVPC0+Q1BVIG9ubHkKICAtIFBsYWNlIHJtYigpIGJlZm9yZSB0aGUgcmVhZCwgbm90IGFm
-dGVyCiAgLSBSZXBsYWNlIGF0b21pYzY0X3QgY2FzdCB3aXRoIHJlYWRxKCkvd3JpdGVxKCkKCk5v
-dCB0b3VjaGVkOiBnZnhfdjdfMCwgZ2Z4X3Y4XzAsIGdmeF92OV80XzMgLS0gdGhlc2UgaGF2ZSBk
-aWZmZXJlbnQKd3B0ciBhY2Nlc3MgcGF0dGVybnMgKE1NSU8gcmVnaXN0ZXJzIG9yIHdiLndiW10g
-b2Zmc2V0cykuCgpTdWdnZXN0ZWQtYnk6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJA
-YW1kLmNvbT4KU2lnbmVkLW9mZi1ieTogSm9obiBNb29yZSA8amJtb29yZTYxQGdtYWlsLmNvbT4K
-LS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZ2Z4LmMgfCA1MiArKysrKysr
-KysrKysrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZ2Z4
-LmggfCAgMyArKwogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3YxMF8wLmMgIHwgMzMg
-KystLS0tLS0tLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3YxMV8wLmMg
-IHwgMzQgKystLS0tLS0tLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Yx
-Ml8wLmMgIHwgMzQgKystLS0tLS0tLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
-Z2Z4X3Y5XzAuYyAgIHwgMzMgKystLS0tLS0tLS0tLS0tLQogNiBmaWxlcyBjaGFuZ2VkLCA3MSBp
-bnNlcnRpb25zKCspLCAxMTggZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2dmeC5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
-YW1kZ3B1X2dmeC5jCmluZGV4IGI4Y2E4NzY2OS4uZjgxMjM1YTJjIDEwMDY0NAotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZ2Z4LmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2FtZC9hbWRncHUvYW1kZ3B1X2dmeC5jCkBAIC0yNjg2LDMgKzI2ODYsNTUgQEAgdm9pZCBhbWRn
-cHVfZGVidWdmc19jb21wdXRlX3NjaGVkX21hc2tfaW5pdChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAq
-YWRldikKICNlbmRpZgogfQogCisvKioKKyAqIGFtZGdwdV9nZnhfZ2V0X3dwdHJfY29tcHV0ZSAt
-IGNvbW1vbiBnZXRfd3B0ciBmb3IgY29tcHV0ZSByaW5ncyB1c2luZyBkb29yYmVsbHMKKyAqIEBy
-aW5nOiBhbWRncHVfcmluZyBwb2ludGVyCisgKgorICogUmVhZCB0aGUgd3JpdGUgcG9pbnRlciBm
-cm9tIHRoZSBkb29yYmVsbC1tYXBwZWQgd3JpdGViYWNrIGFkZHJlc3MuCisgKiBUaGlzIGlzIEhX
-LWFnbm9zdGljIGFuZCBzaGFyZWQgYWNyb3NzIEdGWCBnZW5lcmF0aW9ucyB0aGF0IHVzZQorICog
-ZG9vcmJlbGwtYmFzZWQgY29tcHV0ZSBxdWV1ZSBtYW5hZ2VtZW50LgorICoKKyAqIE5vdGU6IHJl
-YWRxKCkgaXMgdXNlZCBkZXNwaXRlIHRoaXMgYmVpbmcgc3lzdGVtIG1lbW9yeSAobm90IE1NSU8p
-CisgKiBiZWNhdXNlIHdlIG5lZWQgYW4gYXRvbWljIDY0LWJpdCByZWFkIHRoYXQgd29uJ3QgdGVh
-ciBvbiAzMi1iaXQKKyAqIGtlcm5lbHMuCisgKi8KK3U2NCBhbWRncHVfZ2Z4X2dldF93cHRyX2Nv
-bXB1dGUoc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nKQoreworCWlmIChXQVJOX09OKCFyaW5nLT51
-c2VfZG9vcmJlbGwpKQorCQlyZXR1cm4gMDsKKworCS8qIEVuc3VyZSB3ZSBzZWUgdGhlIGxhdGVz
-dCB2YWx1ZSB3cml0dGVuIGJ5IHRoZSBkZXZpY2UgKi8KKwlybWIoKTsKKworCS8qIFhYWCBjaGVj
-ayBpZiBzd2FwcGluZyBpcyBuZWNlc3Nhcnkgb24gQkUgKi8KKwlyZXR1cm4gcmVhZHEoKHZvaWQg
-X19pb21lbSAqKXJpbmctPndwdHJfY3B1X2FkZHIpOworfQorCisvKioKKyAqIGFtZGdwdV9nZnhf
-c2V0X3dwdHJfY29tcHV0ZSAtIGNvbW1vbiBzZXRfd3B0ciBmb3IgY29tcHV0ZSByaW5ncyB1c2lu
-ZyBkb29yYmVsbHMKKyAqIEByaW5nOiBhbWRncHVfcmluZyBwb2ludGVyCisgKgorICogV3JpdGUg
-dGhlIHdyaXRlIHBvaW50ZXIgdG8gdGhlIGRvb3JiZWxsLW1hcHBlZCB3cml0ZWJhY2sgYWRkcmVz
-cyBhbmQKKyAqIHJpbmcgdGhlIGRvb3JiZWxsLiAgVGhpcyBpcyBIVy1hZ25vc3RpYyBhbmQgc2hh
-cmVkIGFjcm9zcyBHRlgKKyAqIGdlbmVyYXRpb25zIHRoYXQgdXNlIGRvb3JiZWxsLWJhc2VkIGNv
-bXB1dGUgcXVldWUgbWFuYWdlbWVudC4KKyAqCisgKiBOb3RlOiB3cml0ZXEoKSBpcyB1c2VkIGRl
-c3BpdGUgdGhpcyBiZWluZyBzeXN0ZW0gbWVtb3J5IChub3QgTU1JTykKKyAqIGJlY2F1c2Ugd2Ug
-bmVlZCBhbiBhdG9taWMgNjQtYml0IHdyaXRlIHRoYXQgd29uJ3QgdGVhciBvbiAzMi1iaXQKKyAq
-IGtlcm5lbHMuCisgKi8KK3ZvaWQgYW1kZ3B1X2dmeF9zZXRfd3B0cl9jb21wdXRlKHN0cnVjdCBh
-bWRncHVfcmluZyAqcmluZykKK3sKKwlzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiA9IHJpbmct
-PmFkZXY7CisKKwlpZiAoV0FSTl9PTighcmluZy0+dXNlX2Rvb3JiZWxsKSkKKwkJcmV0dXJuOwor
-CisJLyogWFhYIGNoZWNrIGlmIHN3YXBwaW5nIGlzIG5lY2Vzc2FyeSBvbiBCRSAqLworCXdyaXRl
-cShyaW5nLT53cHRyLCAodm9pZCBfX2lvbWVtICopcmluZy0+d3B0cl9jcHVfYWRkcik7CisKKwkv
-KiBFbnN1cmUgdGhlIHdwdHIgd3JpdGUgaXMgdmlzaWJsZSB0byB0aGUgZGV2aWNlIGJlZm9yZSBy
-aW5naW5nIHRoZSBkb29yYmVsbCAqLworCXdtYigpOworCisJV0RPT1JCRUxMNjQocmluZy0+ZG9v
-cmJlbGxfaW5kZXgsIHJpbmctPndwdHIpOworfQorCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9hbWRncHVfZ2Z4LmggYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
-bWRncHVfZ2Z4LmgKaW5kZXggYTBjZjBhM2I0Li43YmYxNzdkNWEgMTAwNjQ0Ci0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9nZnguaAorKysgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hbWRncHVfZ2Z4LmgKQEAgLTY2MSw2ICs2NjEsOSBAQCB1MzIgYW1kZ3B1X2dm
-eF9jc2JfcHJlYW1ibGVfc3RhcnQodTMyICpidWZmZXIpOwogdTMyIGFtZGdwdV9nZnhfY3NiX2Rh
-dGFfcGFyc2VyKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LCB1MzIgKmJ1ZmZlciwgdTMyIGNv
-dW50KTsKIHZvaWQgYW1kZ3B1X2dmeF9jc2JfcHJlYW1ibGVfZW5kKHUzMiAqYnVmZmVyLCB1MzIg
-Y291bnQpOwogCit1NjQgYW1kZ3B1X2dmeF9nZXRfd3B0cl9jb21wdXRlKHN0cnVjdCBhbWRncHVf
-cmluZyAqcmluZyk7Cit2b2lkIGFtZGdwdV9nZnhfc2V0X3dwdHJfY29tcHV0ZShzdHJ1Y3QgYW1k
-Z3B1X3JpbmcgKnJpbmcpOworCiB2b2lkIGFtZGdwdV9kZWJ1Z2ZzX2dmeF9zY2hlZF9tYXNrX2lu
-aXQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpOwogdm9pZCBhbWRncHVfZGVidWdmc19jb21w
-dXRlX3NjaGVkX21hc2tfaW5pdChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldik7CiAKZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92MTBfMC5jIGIvZHJpdmVycy9n
-cHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3YxMF8wLmMKaW5kZXggNThjNjlkY2I1Li40ZWU3YjVhOTIg
-MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92MTBfMC5jCisrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92MTBfMC5jCkBAIC04NTkxLDMxICs4NTkx
-LDYgQEAgc3RhdGljIHU2NCBnZnhfdjEwXzBfcmluZ19nZXRfcnB0cl9jb21wdXRlKHN0cnVjdCBh
-bWRncHVfcmluZyAqcmluZykKIAlyZXR1cm4gKih1aW50MzJfdCAqKXJpbmctPnJwdHJfY3B1X2Fk
-ZHI7CiB9CiAKLXN0YXRpYyB1NjQgZ2Z4X3YxMF8wX3JpbmdfZ2V0X3dwdHJfY29tcHV0ZShzdHJ1
-Y3QgYW1kZ3B1X3JpbmcgKnJpbmcpCi17Ci0JdTY0IHdwdHI7Ci0KLQkvKiBYWFggY2hlY2sgaWYg
-c3dhcHBpbmcgaXMgbmVjZXNzYXJ5IG9uIEJFICovCi0JaWYgKHJpbmctPnVzZV9kb29yYmVsbCkK
-LQkJd3B0ciA9IGF0b21pYzY0X3JlYWQoKGF0b21pYzY0X3QgKilyaW5nLT53cHRyX2NwdV9hZGRy
-KTsKLQllbHNlCi0JCUJVRygpOwotCXJldHVybiB3cHRyOwotfQotCi1zdGF0aWMgdm9pZCBnZnhf
-djEwXzBfcmluZ19zZXRfd3B0cl9jb21wdXRlKHN0cnVjdCBhbWRncHVfcmluZyAqcmluZykKLXsK
-LQlzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiA9IHJpbmctPmFkZXY7Ci0KLQlpZiAocmluZy0+
-dXNlX2Rvb3JiZWxsKSB7Ci0JCWF0b21pYzY0X3NldCgoYXRvbWljNjRfdCAqKXJpbmctPndwdHJf
-Y3B1X2FkZHIsCi0JCQkgICAgIHJpbmctPndwdHIpOwotCQlXRE9PUkJFTEw2NChyaW5nLT5kb29y
-YmVsbF9pbmRleCwgcmluZy0+d3B0cik7Ci0JfSBlbHNlIHsKLQkJQlVHKCk7IC8qIG9ubHkgRE9P
-UkJFTEwgbWV0aG9kIHN1cHBvcnRlZCBvbiBnZngxMCBub3cgKi8KLQl9Ci19Ci0KIHN0YXRpYyB2
-b2lkIGdmeF92MTBfMF9yaW5nX2VtaXRfaGRwX2ZsdXNoKHN0cnVjdCBhbWRncHVfcmluZyAqcmlu
-ZykKIHsKIAlzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiA9IHJpbmctPmFkZXY7CkBAIC05ODg2
-LDggKzk4NjEsOCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGFtZGdwdV9yaW5nX2Z1bmNzIGdmeF92
-MTBfMF9yaW5nX2Z1bmNzX2NvbXB1dGUgPSB7CiAJLm5vcCA9IFBBQ0tFVDMoUEFDS0VUM19OT1As
-IDB4M0ZGRiksCiAJLnN1cHBvcnRfNjRiaXRfcHRycyA9IHRydWUsCiAJLmdldF9ycHRyID0gZ2Z4
-X3YxMF8wX3JpbmdfZ2V0X3JwdHJfY29tcHV0ZSwKLQkuZ2V0X3dwdHIgPSBnZnhfdjEwXzBfcmlu
-Z19nZXRfd3B0cl9jb21wdXRlLAotCS5zZXRfd3B0ciA9IGdmeF92MTBfMF9yaW5nX3NldF93cHRy
-X2NvbXB1dGUsCisJLmdldF93cHRyID0gYW1kZ3B1X2dmeF9nZXRfd3B0cl9jb21wdXRlLAorCS5z
-ZXRfd3B0ciA9IGFtZGdwdV9nZnhfc2V0X3dwdHJfY29tcHV0ZSwKIAkuZW1pdF9mcmFtZV9zaXpl
-ID0KIAkJMjAgKyAvKiBnZnhfdjEwXzBfcmluZ19lbWl0X2dkc19zd2l0Y2ggKi8KIAkJNyArIC8q
-IGdmeF92MTBfMF9yaW5nX2VtaXRfaGRwX2ZsdXNoICovCkBAIC05OTI2LDggKzk5MDEsOCBAQCBz
-dGF0aWMgY29uc3Qgc3RydWN0IGFtZGdwdV9yaW5nX2Z1bmNzIGdmeF92MTBfMF9yaW5nX2Z1bmNz
-X2tpcSA9IHsKIAkubm9wID0gUEFDS0VUMyhQQUNLRVQzX05PUCwgMHgzRkZGKSwKIAkuc3VwcG9y
-dF82NGJpdF9wdHJzID0gdHJ1ZSwKIAkuZ2V0X3JwdHIgPSBnZnhfdjEwXzBfcmluZ19nZXRfcnB0
-cl9jb21wdXRlLAotCS5nZXRfd3B0ciA9IGdmeF92MTBfMF9yaW5nX2dldF93cHRyX2NvbXB1dGUs
-Ci0JLnNldF93cHRyID0gZ2Z4X3YxMF8wX3Jpbmdfc2V0X3dwdHJfY29tcHV0ZSwKKwkuZ2V0X3dw
-dHIgPSBhbWRncHVfZ2Z4X2dldF93cHRyX2NvbXB1dGUsCisJLnNldF93cHRyID0gYW1kZ3B1X2dm
-eF9zZXRfd3B0cl9jb21wdXRlLAogCS5lbWl0X2ZyYW1lX3NpemUgPQogCQkyMCArIC8qIGdmeF92
-MTBfMF9yaW5nX2VtaXRfZ2RzX3N3aXRjaCAqLwogCQk3ICsgLyogZ2Z4X3YxMF8wX3JpbmdfZW1p
-dF9oZHBfZmx1c2ggKi8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dm
-eF92MTFfMC5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3YxMV8wLmMKaW5kZXgg
-MmM2ZjFlMjVjLi5jMDY5YjcwMDEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1L2dmeF92MTFfMC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2dmeF92MTFf
-MC5jCkBAIC01ODkxLDMyICs1ODkxLDYgQEAgc3RhdGljIHU2NCBnZnhfdjExXzBfcmluZ19nZXRf
-cnB0cl9jb21wdXRlKHN0cnVjdCBhbWRncHVfcmluZyAqcmluZykKIAlyZXR1cm4gKih1aW50MzJf
-dCAqKXJpbmctPnJwdHJfY3B1X2FkZHI7CiB9CiAKLXN0YXRpYyB1NjQgZ2Z4X3YxMV8wX3Jpbmdf
-Z2V0X3dwdHJfY29tcHV0ZShzdHJ1Y3QgYW1kZ3B1X3JpbmcgKnJpbmcpCi17Ci0JdTY0IHdwdHI7
-Ci0KLQkvKiBYWFggY2hlY2sgaWYgc3dhcHBpbmcgaXMgbmVjZXNzYXJ5IG9uIEJFICovCi0JaWYg
-KHJpbmctPnVzZV9kb29yYmVsbCkKLQkJd3B0ciA9IGF0b21pYzY0X3JlYWQoKGF0b21pYzY0X3Qg
-KilyaW5nLT53cHRyX2NwdV9hZGRyKTsKLQllbHNlCi0JCUJVRygpOwotCXJldHVybiB3cHRyOwot
-fQotCi1zdGF0aWMgdm9pZCBnZnhfdjExXzBfcmluZ19zZXRfd3B0cl9jb21wdXRlKHN0cnVjdCBh
-bWRncHVfcmluZyAqcmluZykKLXsKLQlzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiA9IHJpbmct
-PmFkZXY7Ci0KLQkvKiBYWFggY2hlY2sgaWYgc3dhcHBpbmcgaXMgbmVjZXNzYXJ5IG9uIEJFICov
-Ci0JaWYgKHJpbmctPnVzZV9kb29yYmVsbCkgewotCQlhdG9taWM2NF9zZXQoKGF0b21pYzY0X3Qg
-KilyaW5nLT53cHRyX2NwdV9hZGRyLAotCQkJICAgICByaW5nLT53cHRyKTsKLQkJV0RPT1JCRUxM
-NjQocmluZy0+ZG9vcmJlbGxfaW5kZXgsIHJpbmctPndwdHIpOwotCX0gZWxzZSB7Ci0JCUJVRygp
-OyAvKiBvbmx5IERPT1JCRUxMIG1ldGhvZCBzdXBwb3J0ZWQgb24gZ2Z4MTEgbm93ICovCi0JfQot
-fQotCiBzdGF0aWMgdm9pZCBnZnhfdjExXzBfcmluZ19lbWl0X2hkcF9mbHVzaChzdHJ1Y3QgYW1k
-Z3B1X3JpbmcgKnJpbmcpCiB7CiAJc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYgPSByaW5nLT5h
-ZGV2OwpAQCAtNzMzMSw4ICs3MzA1LDggQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBhbWRncHVfcmlu
-Z19mdW5jcyBnZnhfdjExXzBfcmluZ19mdW5jc19jb21wdXRlID0gewogCS5ub3AgPSBQQUNLRVQz
-KFBBQ0tFVDNfTk9QLCAweDNGRkYpLAogCS5zdXBwb3J0XzY0Yml0X3B0cnMgPSB0cnVlLAogCS5n
-ZXRfcnB0ciA9IGdmeF92MTFfMF9yaW5nX2dldF9ycHRyX2NvbXB1dGUsCi0JLmdldF93cHRyID0g
-Z2Z4X3YxMV8wX3JpbmdfZ2V0X3dwdHJfY29tcHV0ZSwKLQkuc2V0X3dwdHIgPSBnZnhfdjExXzBf
-cmluZ19zZXRfd3B0cl9jb21wdXRlLAorCS5nZXRfd3B0ciA9IGFtZGdwdV9nZnhfZ2V0X3dwdHJf
-Y29tcHV0ZSwKKwkuc2V0X3dwdHIgPSBhbWRncHVfZ2Z4X3NldF93cHRyX2NvbXB1dGUsCiAJLmVt
-aXRfZnJhbWVfc2l6ZSA9CiAJCTUgKyAvKiB1cGRhdGVfc3BtX3ZtaWQgKi8KIAkJMjAgKyAvKiBn
-ZnhfdjExXzBfcmluZ19lbWl0X2dkc19zd2l0Y2ggKi8KQEAgLTczNzIsOCArNzM0Niw4IEBAIHN0
-YXRpYyBjb25zdCBzdHJ1Y3QgYW1kZ3B1X3JpbmdfZnVuY3MgZ2Z4X3YxMV8wX3JpbmdfZnVuY3Nf
-a2lxID0gewogCS5ub3AgPSBQQUNLRVQzKFBBQ0tFVDNfTk9QLCAweDNGRkYpLAogCS5zdXBwb3J0
-XzY0Yml0X3B0cnMgPSB0cnVlLAogCS5nZXRfcnB0ciA9IGdmeF92MTFfMF9yaW5nX2dldF9ycHRy
-X2NvbXB1dGUsCi0JLmdldF93cHRyID0gZ2Z4X3YxMV8wX3JpbmdfZ2V0X3dwdHJfY29tcHV0ZSwK
-LQkuc2V0X3dwdHIgPSBnZnhfdjExXzBfcmluZ19zZXRfd3B0cl9jb21wdXRlLAorCS5nZXRfd3B0
-ciA9IGFtZGdwdV9nZnhfZ2V0X3dwdHJfY29tcHV0ZSwKKwkuc2V0X3dwdHIgPSBhbWRncHVfZ2Z4
-X3NldF93cHRyX2NvbXB1dGUsCiAJLmVtaXRfZnJhbWVfc2l6ZSA9CiAJCTIwICsgLyogZ2Z4X3Yx
-MV8wX3JpbmdfZW1pdF9nZHNfc3dpdGNoICovCiAJCTcgKyAvKiBnZnhfdjExXzBfcmluZ19lbWl0
-X2hkcF9mbHVzaCAqLwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4
-X3YxMl8wLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjEyXzAuYwppbmRleCA2
-YmFhYzUzM2EuLjE3NThhNjA1MSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvZ2Z4X3YxMl8wLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3YxMl8w
-LmMKQEAgLTQ0MDEsMzIgKzQ0MDEsNiBAQCBzdGF0aWMgdTY0IGdmeF92MTJfMF9yaW5nX2dldF9y
-cHRyX2NvbXB1dGUoc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nKQogCXJldHVybiAqKHVpbnQzMl90
-ICopcmluZy0+cnB0cl9jcHVfYWRkcjsKIH0KIAotc3RhdGljIHU2NCBnZnhfdjEyXzBfcmluZ19n
-ZXRfd3B0cl9jb21wdXRlKHN0cnVjdCBhbWRncHVfcmluZyAqcmluZykKLXsKLQl1NjQgd3B0cjsK
-LQotCS8qIFhYWCBjaGVjayBpZiBzd2FwcGluZyBpcyBuZWNlc3Nhcnkgb24gQkUgKi8KLQlpZiAo
-cmluZy0+dXNlX2Rvb3JiZWxsKQotCQl3cHRyID0gYXRvbWljNjRfcmVhZCgoYXRvbWljNjRfdCAq
-KXJpbmctPndwdHJfY3B1X2FkZHIpOwotCWVsc2UKLQkJQlVHKCk7Ci0JcmV0dXJuIHdwdHI7Ci19
-Ci0KLXN0YXRpYyB2b2lkIGdmeF92MTJfMF9yaW5nX3NldF93cHRyX2NvbXB1dGUoc3RydWN0IGFt
-ZGdwdV9yaW5nICpyaW5nKQotewotCXN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2ID0gcmluZy0+
-YWRldjsKLQotCS8qIFhYWCBjaGVjayBpZiBzd2FwcGluZyBpcyBuZWNlc3Nhcnkgb24gQkUgKi8K
-LQlpZiAocmluZy0+dXNlX2Rvb3JiZWxsKSB7Ci0JCWF0b21pYzY0X3NldCgoYXRvbWljNjRfdCAq
-KXJpbmctPndwdHJfY3B1X2FkZHIsCi0JCQkgICAgIHJpbmctPndwdHIpOwotCQlXRE9PUkJFTEw2
-NChyaW5nLT5kb29yYmVsbF9pbmRleCwgcmluZy0+d3B0cik7Ci0JfSBlbHNlIHsKLQkJQlVHKCk7
-IC8qIG9ubHkgRE9PUkJFTEwgbWV0aG9kIHN1cHBvcnRlZCBvbiBnZngxMiBub3cgKi8KLQl9Ci19
-Ci0KIHN0YXRpYyB2b2lkIGdmeF92MTJfMF9yaW5nX2VtaXRfaGRwX2ZsdXNoKHN0cnVjdCBhbWRn
-cHVfcmluZyAqcmluZykKIHsKIAlzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiA9IHJpbmctPmFk
-ZXY7CkBAIC01NTUzLDggKzU1MjcsOCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGFtZGdwdV9yaW5n
-X2Z1bmNzIGdmeF92MTJfMF9yaW5nX2Z1bmNzX2NvbXB1dGUgPSB7CiAJLm5vcCA9IFBBQ0tFVDMo
-UEFDS0VUM19OT1AsIDB4M0ZGRiksCiAJLnN1cHBvcnRfNjRiaXRfcHRycyA9IHRydWUsCiAJLmdl
-dF9ycHRyID0gZ2Z4X3YxMl8wX3JpbmdfZ2V0X3JwdHJfY29tcHV0ZSwKLQkuZ2V0X3dwdHIgPSBn
-ZnhfdjEyXzBfcmluZ19nZXRfd3B0cl9jb21wdXRlLAotCS5zZXRfd3B0ciA9IGdmeF92MTJfMF9y
-aW5nX3NldF93cHRyX2NvbXB1dGUsCisJLmdldF93cHRyID0gYW1kZ3B1X2dmeF9nZXRfd3B0cl9j
-b21wdXRlLAorCS5zZXRfd3B0ciA9IGFtZGdwdV9nZnhfc2V0X3dwdHJfY29tcHV0ZSwKIAkuZW1p
-dF9mcmFtZV9zaXplID0KIAkJNyArIC8qIGdmeF92MTJfMF9yaW5nX2VtaXRfaGRwX2ZsdXNoICov
-CiAJCTUgKyAvKiBoZHAgaW52YWxpZGF0ZSAqLwpAQCAtNTU5MSw4ICs1NTY1LDggQEAgc3RhdGlj
-IGNvbnN0IHN0cnVjdCBhbWRncHVfcmluZ19mdW5jcyBnZnhfdjEyXzBfcmluZ19mdW5jc19raXEg
-PSB7CiAJLm5vcCA9IFBBQ0tFVDMoUEFDS0VUM19OT1AsIDB4M0ZGRiksCiAJLnN1cHBvcnRfNjRi
-aXRfcHRycyA9IHRydWUsCiAJLmdldF9ycHRyID0gZ2Z4X3YxMl8wX3JpbmdfZ2V0X3JwdHJfY29t
-cHV0ZSwKLQkuZ2V0X3dwdHIgPSBnZnhfdjEyXzBfcmluZ19nZXRfd3B0cl9jb21wdXRlLAotCS5z
-ZXRfd3B0ciA9IGdmeF92MTJfMF9yaW5nX3NldF93cHRyX2NvbXB1dGUsCisJLmdldF93cHRyID0g
-YW1kZ3B1X2dmeF9nZXRfd3B0cl9jb21wdXRlLAorCS5zZXRfd3B0ciA9IGFtZGdwdV9nZnhfc2V0
-X3dwdHJfY29tcHV0ZSwKIAkuZW1pdF9mcmFtZV9zaXplID0KIAkJNyArIC8qIGdmeF92MTJfMF9y
-aW5nX2VtaXRfaGRwX2ZsdXNoICovCiAJCTUgKyAvKmhkcCBpbnZhbGlkYXRlICovCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjlfMC5jIGIvZHJpdmVycy9ncHUv
-ZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzAuYwppbmRleCAyZWIzMmY5MmEuLmNkOGM2MmI2ZCAxMDA2
-NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZ2Z4X3Y5XzAuYworKysgYi9kcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9nZnhfdjlfMC5jCkBAIC01NjM0LDMxICs1NjM0LDYgQEAg
-c3RhdGljIHU2NCBnZnhfdjlfMF9yaW5nX2dldF9ycHRyX2NvbXB1dGUoc3RydWN0IGFtZGdwdV9y
-aW5nICpyaW5nKQogCXJldHVybiAqcmluZy0+cnB0cl9jcHVfYWRkcjsgLyogZ2Z4OSBoYXJkd2Fy
-ZSBpcyAzMmJpdCBycHRyICovCiB9CiAKLXN0YXRpYyB1NjQgZ2Z4X3Y5XzBfcmluZ19nZXRfd3B0
-cl9jb21wdXRlKHN0cnVjdCBhbWRncHVfcmluZyAqcmluZykKLXsKLQl1NjQgd3B0cjsKLQotCS8q
-IFhYWCBjaGVjayBpZiBzd2FwcGluZyBpcyBuZWNlc3Nhcnkgb24gQkUgKi8KLQlpZiAocmluZy0+
-dXNlX2Rvb3JiZWxsKQotCQl3cHRyID0gYXRvbWljNjRfcmVhZCgoYXRvbWljNjRfdCAqKXJpbmct
-PndwdHJfY3B1X2FkZHIpOwotCWVsc2UKLQkJQlVHKCk7Ci0JcmV0dXJuIHdwdHI7Ci19Ci0KLXN0
-YXRpYyB2b2lkIGdmeF92OV8wX3Jpbmdfc2V0X3dwdHJfY29tcHV0ZShzdHJ1Y3QgYW1kZ3B1X3Jp
-bmcgKnJpbmcpCi17Ci0Jc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYgPSByaW5nLT5hZGV2Owot
-Ci0JLyogWFhYIGNoZWNrIGlmIHN3YXBwaW5nIGlzIG5lY2Vzc2FyeSBvbiBCRSAqLwotCWlmIChy
-aW5nLT51c2VfZG9vcmJlbGwpIHsKLQkJYXRvbWljNjRfc2V0KChhdG9taWM2NF90ICopcmluZy0+
-d3B0cl9jcHVfYWRkciwgcmluZy0+d3B0cik7Ci0JCVdET09SQkVMTDY0KHJpbmctPmRvb3JiZWxs
-X2luZGV4LCByaW5nLT53cHRyKTsKLQl9IGVsc2V7Ci0JCUJVRygpOyAvKiBvbmx5IERPT1JCRUxM
-IG1ldGhvZCBzdXBwb3J0ZWQgb24gZ2Z4OSBub3cgKi8KLQl9Ci19Ci0KIHN0YXRpYyB2b2lkIGdm
-eF92OV8wX3JpbmdfZW1pdF9mZW5jZV9raXEoc3RydWN0IGFtZGdwdV9yaW5nICpyaW5nLCB1NjQg
-YWRkciwKIAkJCQkJIHU2NCBzZXEsIHVuc2lnbmVkIGludCBmbGFncykKIHsKQEAgLTc2MTQsOCAr
-NzU4OSw4IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgYW1kZ3B1X3JpbmdfZnVuY3MgZ2Z4X3Y5XzBf
-cmluZ19mdW5jc19jb21wdXRlID0gewogCS5ub3AgPSBQQUNLRVQzKFBBQ0tFVDNfTk9QLCAweDNG
-RkYpLAogCS5zdXBwb3J0XzY0Yml0X3B0cnMgPSB0cnVlLAogCS5nZXRfcnB0ciA9IGdmeF92OV8w
-X3JpbmdfZ2V0X3JwdHJfY29tcHV0ZSwKLQkuZ2V0X3dwdHIgPSBnZnhfdjlfMF9yaW5nX2dldF93
-cHRyX2NvbXB1dGUsCi0JLnNldF93cHRyID0gZ2Z4X3Y5XzBfcmluZ19zZXRfd3B0cl9jb21wdXRl
-LAorCS5nZXRfd3B0ciA9IGFtZGdwdV9nZnhfZ2V0X3dwdHJfY29tcHV0ZSwKKwkuc2V0X3dwdHIg
-PSBhbWRncHVfZ2Z4X3NldF93cHRyX2NvbXB1dGUsCiAJLmVtaXRfZnJhbWVfc2l6ZSA9CiAJCTIw
-ICsgLyogZ2Z4X3Y5XzBfcmluZ19lbWl0X2dkc19zd2l0Y2ggKi8KIAkJNyArIC8qIGdmeF92OV8w
-X3JpbmdfZW1pdF9oZHBfZmx1c2ggKi8KQEAgLTc2NTYsOCArNzYzMSw4IEBAIHN0YXRpYyBjb25z
-dCBzdHJ1Y3QgYW1kZ3B1X3JpbmdfZnVuY3MgZ2Z4X3Y5XzBfcmluZ19mdW5jc19raXEgPSB7CiAJ
-Lm5vcCA9IFBBQ0tFVDMoUEFDS0VUM19OT1AsIDB4M0ZGRiksCiAJLnN1cHBvcnRfNjRiaXRfcHRy
-cyA9IHRydWUsCiAJLmdldF9ycHRyID0gZ2Z4X3Y5XzBfcmluZ19nZXRfcnB0cl9jb21wdXRlLAot
-CS5nZXRfd3B0ciA9IGdmeF92OV8wX3JpbmdfZ2V0X3dwdHJfY29tcHV0ZSwKLQkuc2V0X3dwdHIg
-PSBnZnhfdjlfMF9yaW5nX3NldF93cHRyX2NvbXB1dGUsCisJLmdldF93cHRyID0gYW1kZ3B1X2dm
-eF9nZXRfd3B0cl9jb21wdXRlLAorCS5zZXRfd3B0ciA9IGFtZGdwdV9nZnhfc2V0X3dwdHJfY29t
-cHV0ZSwKIAkuZW1pdF9mcmFtZV9zaXplID0KIAkJMjAgKyAvKiBnZnhfdjlfMF9yaW5nX2VtaXRf
-Z2RzX3N3aXRjaCAqLwogCQk3ICsgLyogZ2Z4X3Y5XzBfcmluZ19lbWl0X2hkcF9mbHVzaCAqLwot
-LSAKMi40My4wCgo=
---000000000000f89fc70650add7e2--
