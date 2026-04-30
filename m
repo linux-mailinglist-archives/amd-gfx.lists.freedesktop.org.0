@@ -2,99 +2,172 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WA6YKYtP82lnzQEAu9opvQ
+	id eCBKDiZS9GmKAgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 14:48:11 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 09:11:34 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39B3B4A2E24
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Apr 2026 14:48:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 955074AACFC
+	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 09:11:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B2B110E43F;
-	Thu, 30 Apr 2026 12:48:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F2D510E50A;
+	Fri,  1 May 2026 07:11:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UQ++gzsI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XISeb2rX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com
- [209.85.222.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E99CC10E43F
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 12:48:07 +0000 (UTC)
-Received: by mail-ua1-f42.google.com with SMTP id
- a1e0cc1a2514c-95c92e7151bso24013241.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 05:48:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1777553287; cv=none;
- d=google.com; s=arc-20240605;
- b=VZM7LkUY2L1wdWx4kqTgE1YAXqas0CfCprSmCEBIL68CfbmWAWvMbnwc1slWWazSHQ
- C3PrGOaD3R5FeKGtzozQtpvUfZ1xl1O+d24bTZjfgQ7mFeBxDkseSBZlFGVVXiQZr2v2
- jrKWZE2AaIFoszih5BO7sEEtc+PUStj8fmrmk4VTwCy9ncfix758dj50e46Fb785Cm05
- +MlVzUVFMXrzbl0Ep1dDjaDGNA+6UC5e9r9xPvM2FWVXrBPq0NINn0ucQrcEsl/EX3oQ
- wqCMx3tA2uN5spTWS+6QuT241y0MvnYNB3gHnrtr3BVj2+t7/9FlJ/0D+D1ekHi+nIlV
- 4dQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=GQZnpvCJ6kEvhdexmWAhzzMWBTp0HnMhiUpZs0FTA+Y=;
- fh=f3kMsUauhrfwQyAQBQowma7HlEsyKi3/UEGFB0/u9S0=;
- b=KfFfmpzvzn5aYJM1xU+r69g3W9oNkmUrIffeEwWB6h9oYIIFdOyHFF+UHGMdms2emC
- Xb2zg2QZ+tC77B1gl3jzi3RbgKBRmx8svJi8Zqz5bshGZXcS/DCOwo3nsvfAnlBSwgiR
- xMeMvL3ZwQeLZmSU4MxjMxasmNNwDOjATTizsM+gQObeEFAkIF0bbAtx3LRFh8iraNjT
- NtwSC0HbpHBvb2WJKXRVaxRYcNe3jMUH6np56tOe3+Q4EMB31LVN++pGzzWi5ZbG4Cs9
- H76PbiRA/Pt9DF5OokK4YuMynVBOY+eh1Xb9n2arBXXAVBk8hBm4tbX4l3uTzXqZ22pH
- 92JQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1777553287; x=1778158087; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=GQZnpvCJ6kEvhdexmWAhzzMWBTp0HnMhiUpZs0FTA+Y=;
- b=UQ++gzsIepXwxDJxfzjEAeSLUj4FqhIQhNSschjtUIElo0jyTMDx2QPN9D0KDz0lmL
- dTuMGW0Z3v3xXrA+WscJiTJb8mVk5v02hSY7vbt1BDdF52NMSBz01w61B2IOF6/9UIlM
- rz0/qHdpYHoZUXhrEDxD5+zQ3WirOqkoM06ee8OdLApL3HULWPxvWbfstEXVhud6KfVX
- 4K+NySQCUkc1O1yNVPIiQDFzWJdZ+AES29KQ4ikVrEttExeJKIFrsLxg9m4EregUHb9n
- nEjPWakIn9B7bWygd99orvMm5Fzevb71OyMjBrpuPFEHMUIa93sWO3SGA9lyoCz8cV1E
- lhzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777553287; x=1778158087;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=GQZnpvCJ6kEvhdexmWAhzzMWBTp0HnMhiUpZs0FTA+Y=;
- b=Od8+8M2+hjnoG3mn5S+E+qP8gszb0h/Pr1hn0vDANh8vVTRkghoI4amhacsVisOzn2
- BA0bg7BBjtHXnwo3jnpZTYgd0oOc97PI2va8w7vHPYz+A9j1wd1im5EkuhQdEJFbbzbb
- ZqeRas82uHlDxvos6oGSobdRdrgML5XCQu1cKSFw8qP4J6V+tCP1bly5W3f1lcmzqulK
- GWWxNvRc+rgBRlk/eU4W4ANgkpKKvnchWfY1tPOVQJgWvVA5EL7yL8YBgokJi3/y2Ikt
- CJkeKZwceFVgzOWECWRn87WNUVr2sTYXxMd6AD4iwT6UCpQHt8ouU1FrqI7bOUFUWVEz
- o4lQ==
-X-Gm-Message-State: AOJu0YwS47t+Nq5TpKLr/NQ2CqipFKDyxYj2frU5RXGAfnyaA/AN/gbN
- vQEXvshhJU+N9ZV0BbYe7ppg+6dRonNO9Isal983Zy+MKRypce7nCexSmVzCkBil5Cto6YS2GCy
- OTF64w27/ezl0tng09TeaPRsTK3k3eOQ=
-X-Gm-Gg: AeBDietJjCE8SG4jhRIqVXT3SAAAIuCIqzp0T44VwwUfOkmMia4u+xUc7hnQhEx84OU
- bSav5xlBuKnt8NFpWukKalJpd8fJi2ZEgaGWeR+71izo9QbmOulIdud0dF8QQwUPyetf9sN3k7R
- fND/rzqCk66AETUeE2Z8MLn/pF6s7bZ8B569eNdNL/mjOx0GlGLjTTRkl0X2zLj/ge16HDwMCY1
- cgYDD6u++bwRiJq8wHv8axyW1A1JiVCFvQX9P39YfQ8850JwYu3oOBBY6SfXU4tSVCDez6deTmC
- LOCjUDYvGUONRz+yRAV56bHvj1ntBajTyUQqcDjbRcgsuMsMHriWliynrGK3M2qZqNK1bCfSeWh
- p72H2
-X-Received: by 2002:a05:6102:30b6:b0:611:82b:add6 with SMTP id
- ada2fe7eead31-62ad5cef573mr313723137.8.1777553286508; Thu, 30 Apr 2026
- 05:48:06 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 840E810E1C2;
+ Thu, 30 Apr 2026 13:13:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777554784; x=1809090784;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=/QIhW1krHJk5WmJ+IBEYv+S7gwGIdTD7F40PdnrRmww=;
+ b=XISeb2rXHeJefl5odqHkOkbYxr/Z2imNm2G9g96rPNGeyHcpr2QQSD78
+ a4DOm4WYaXoxI3gLe6pZaPx5XJY71bgymbLmFGe3gqA1UU6A7tk0r7WkL
+ GUc/bjRwhJ+2tft2Rl+MFmql/xs78WkXbh55DjSQDcr081eD/qUSk+LW2
+ OZt9OnebJMx6kkWjt8oCizdND7OTDTv+5EvZ0HXfrN5ev1G/UUIH/0tOT
+ UwYoHqz/YkR07svA4ZzB2KAlxcFb+PVZuR2OYjToS1wPDG+H4uf0PQsDr
+ 4EvX6w8eFCvdjrq8iUCsXSgfo6AQFctVscyw4zdOT2gxuQPP/dPE5sQbQ w==;
+X-CSE-ConnectionGUID: 2cMD6cNpRpSiABUUN3Os7g==
+X-CSE-MsgGUID: T7wwRZljQxaJ+Y8MxFMUZg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="89596832"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="89596832"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2026 06:12:59 -0700
+X-CSE-ConnectionGUID: aAnISaabQIyNXw0VXe/W0w==
+X-CSE-MsgGUID: YMiWM+cbTDC8nZoMjELBLA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="258158784"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2026 06:12:59 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 30 Apr 2026 06:12:58 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 30 Apr 2026 06:12:58 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.28) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 30 Apr 2026 06:12:57 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ilJ4DOgtSVKWe4lwZ6OoHDGjVUz8vW5joXLO3OBzt5qg8KPLkASozW8BoNIs/TIEzAPMJFWt8YhhGLvQVSbWoMaYTOeDAfJKeYQmYKyLVjCt9r/1ujsOEM69poKAa/BcvXHMTi3GMTXW1QUljojyR4u7LMCRpMGqBy8LUYw9PGzYOzZyfqTOdsWC9qp5McKXrBVe312kfIeGip9Wxw3di7BMgRcvvWzULP69100j5l+3UdJ+61RaebLY3BqZUZkatwQ9jOVnn1SzO0dGSQEfgSeqhw4mAld4+3XKeFrUqWZB2rLHi7Mk2L7myD+tRRejSFLXOlX/O1pAUE9V/sqzAw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/QIhW1krHJk5WmJ+IBEYv+S7gwGIdTD7F40PdnrRmww=;
+ b=bg4tidZicn6mF1IaW2n+HO70ByI9AxiiDlKF/FzAFzL1GfCrJMElAOJ8LZiq2hIzbvbberO1Pgai9JTtJSabl/3bwvsiz+3Cu670YAGdTKs1klF/l8C0OZ8sajhLpOQwKeQEF7tWftLvh8xYNKUcVTYAZpCKAp1YyXmGExuy9O9ZCrQ9ThHjMVxATAVJtt7OZlpt/Z9mBTWgi79TwchcfLi3tg3RTTJT76tItoRXJlNDPVdJHbGG5iAfb0/GvF1hvuDLWnu2FOP3UZcMwQV6tE07+iL2UwfuQxMyAURHOlaxXeEjBNB8ad+S+IP3aqr2XEaSRtEiJfU727esGM1x2g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SN6PR11MB3232.namprd11.prod.outlook.com (2603:10b6:805:be::14)
+ by SA2PR11MB5130.namprd11.prod.outlook.com (2603:10b6:806:11d::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.22; Thu, 30 Apr
+ 2026 13:12:54 +0000
+Received: from SN6PR11MB3232.namprd11.prod.outlook.com
+ ([fe80::bf74:5777:8849:5c00]) by SN6PR11MB3232.namprd11.prod.outlook.com
+ ([fe80::bf74:5777:8849:5c00%5]) with mapi id 15.20.9870.020; Thu, 30 Apr 2026
+ 13:12:54 +0000
+From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+To: "Auld, Matthew" <matthew.auld@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+CC: "Arunpravin.PaneerSelvam@amd.com" <Arunpravin.PaneerSelvam@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/buddy: Integrate lockdep annotations for gpu buddy
+ manager
+Thread-Topic: [PATCH] drm/buddy: Integrate lockdep annotations for gpu buddy
+ manager
+Thread-Index: AQHc19UBxAjbdwjIT0+T5iBjAqiAT7X3U+WAgABCJAA=
+Date: Thu, 30 Apr 2026 13:12:54 +0000
+Message-ID: <SN6PR11MB3232A69655EB743710B6C9FE81352@SN6PR11MB3232.namprd11.prod.outlook.com>
+References: <20260429123714.3913374-2-tejas.upadhyay@intel.com>
+ <4dea1e78-da81-4c5b-ab8d-62d6f99e4889@intel.com>
+In-Reply-To: <4dea1e78-da81-4c5b-ab8d-62d6f99e4889@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN6PR11MB3232:EE_|SA2PR11MB5130:EE_
+x-ms-office365-filtering-correlation-id: fe146527-20a0-4ef8-a505-08dea6ba3081
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|10070799003|366016|376014|1800799024|38070700021|18002099003|22082099003|56012099003;
+x-microsoft-antispam-message-info: s2z8YsOyHEjRwoPVWqAjYzjKannuEzHELFNAmfrKX31XM/YKES1PZ2Qhr6OBPsh1N3qEHNuZTqBfzLzijYolqNmv/VaD//kSfrHlHIoWXFSdjMgW7Fr6s7UwcNCA7oquK4RzzSAYL7daYD8cbqeEjAbTSXT5wEkB/sKid5t4xgmp+NY+96ZHXcxEQghoU7/cgBhz6N17z8b2KK2f9tK/KHyghY8ZuXSlDb1/m7KaTOrKeTSeb5P0iSv9np7HqJxpPXJbCpmn3xdx4eKnZRAVD6XE2SmVpq36sazhNLjFU+xs101kMMpsYxsIXWxlfNBG2XKZX+lTwuaW1BpbdJBsI+/B3+xqe5RslrA2Jz8P1FmhjGjdotPUPyFOLNigr6/97+ajmTBz+5qWS1O608Dy/T6fos5IlKOz8vAIGKtU18Hoo3BaSrjwHbQHNcM4qPIZ4iWra7LJaVj3cRl4Xg8Que2VnH/p1sBht7AadJ9fvTNEHTCAgdh1eD5oxsCjbAtw58G26Velqn/oMaXKl5GFW11IPPMAjt+JP+cBB4hc/hO/Xty6fT2AuqLHrBa25/up7uqWXcGedf6Ajwra42FYwqr9JS1izOC4yi5UgXXKfSZykzt2iQz0rPgJCV5U/qzRQ5fU4h65MJ0CNj2LSE0jDKNnleDeh015stkFeHuHWDwTN2OOQNN9U7A1EO0FkC+p/cVPVzdcWYkxTdeXDwBV9rrWYqSmEUx6oj5NmMRhcKy54T8aDnrGZU7d8cKb1ZI6
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN6PR11MB3232.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(366016)(376014)(1800799024)(38070700021)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ektrcjhzUG5OVzFnTmViVEw4Tk9xTzBCbW9LUlp2M1N0OVM0RzZSb0h5SGhY?=
+ =?utf-8?B?QktUZUdLYTkwYkNSTTd0VHVQOTNZT09BWGN6R3hydkxHd1FYY0FwM2JNTG1q?=
+ =?utf-8?B?b0UxVXgya25OUjVyK1NNUE14dXpzNWNVeWMxamRHMHhoSXZPM3pSMm9QNkpT?=
+ =?utf-8?B?UUNXUzdwc0FPSDlBZEgvOTBpUVNyYW9nREVlM003c1k3ZHBiQ0sraVB6Y2Ev?=
+ =?utf-8?B?K0RDUU11Rmd0Q0ZFc3g0YUdpMHhwSW9XUkVJbnpuTC9XOUwrSXVkWHB2OTRi?=
+ =?utf-8?B?NzBUaWhtT2tUbkpaaDI4Y21aaFpnRk9YUGh1L0F3aGVScUFNWUJKT2YvMVhm?=
+ =?utf-8?B?bnFCb1VGaXdiK2srMC8yYWY3YUlvYjVWQ213ZzJGZCtNRkJDb2lWeW0zbzhk?=
+ =?utf-8?B?VHMwVWJnSEJ3ek1vWFpER05RelVPZEtER2xCRjIwM1h3cjMrby92cXFTdmlY?=
+ =?utf-8?B?WUFJaE5ZV1M1a3prbG1Ca2xNOHJrYkoyZlI1WG1QcVZaUGExVW13QTJRLzI1?=
+ =?utf-8?B?WnpVbXVVTysyNXFCektPanZYNjZZdVZaeFBKc3o5ajJLM3p1WW9VMVpsV1lO?=
+ =?utf-8?B?N09BRE5OUGpCLy94bkdJVk80YXNIZUJFcG5sOVNNOFM5ZnFjS1BKSVVVNnlC?=
+ =?utf-8?B?ZmdvWGN4L2s4WkZ5c25TUlJuaXpwVzdiSVFrWC90TFBoQVhSSlVRVGRMSVgx?=
+ =?utf-8?B?ampNQ1NTMmEvSDJJeFpaWTBOcnljSEJMSXdsdFJwbVNxWDU1TzFFcjBUNHha?=
+ =?utf-8?B?ZlIrcGs2eitkR1dlYkoyY2lWSXdsOGZ4MEc2WlNJamMwSmsxZmdpTnZJTXpi?=
+ =?utf-8?B?M3VyUktYSVNyQ1BmcVVnb3hNbkVjb3pMcE1XRjllZU5UbWtDbWIrMWNJMGgv?=
+ =?utf-8?B?Y3lTZ0FEWGNtMTY2M0kzdUM1VVE5Y1VlSnQwSDNNYStEeUF4UzZpc21SQTBO?=
+ =?utf-8?B?Qk96L3Q2d3lZMDJxMmVBS3hlUjErSFNGYVdhQldKbjFFRXI5RGFqZkJkWDVK?=
+ =?utf-8?B?QmYzT2JIVjVGNHAxeEpEUGVibHArRWs1VTJvOGl4U1ZuLzZtQW44TFF4VHhK?=
+ =?utf-8?B?S0tIS1g1U0Y2Q0h0R0JNZ1NBVlNoa1hldE01dnVtYnV0dWhPRWI4Q0dRQS9M?=
+ =?utf-8?B?M0puazlHOTdVUGFJUWtoOEI2Y2kzUndjdnNPM0FJUVVuT3RLalhtd1V1N2hx?=
+ =?utf-8?B?M2haN2dKVlVSY2VTajAwNGx1d1JFSWtoczNPN0M2aENlQ2dhRm5xQnZSNS81?=
+ =?utf-8?B?c3d4SHF6L243Rm1Udkk5ei9DbWdTRUxIc0NNalNxeTZNNXM0WGMyR1hHaUlH?=
+ =?utf-8?B?U3FDVFhYcUExZk9SaWVTYzZqR2ZsdDVWN1RSL0VBVEpTWnVXV3hoTWtxZ3Ri?=
+ =?utf-8?B?R1kwRnB4dW1oMXc2eHlCSjRWQnNvVmpWN1YvQmxhb09WdlZEZWhLWXNaRnlQ?=
+ =?utf-8?B?SHg1UXlzREIrbnJNWkxXUi9uN09kWTJJSXRrai9KL3RBTnB0QkROTUVxU2RQ?=
+ =?utf-8?B?VDNTNmpnOUcyQzliait3VzB3K29hV0dGbFEvSE1lZy9OanVBTnhaUW4ydyt0?=
+ =?utf-8?B?cVluV2JvUTczZmFiMGZlSzFjc3ZCTTJxeEhPUm5GcTZrMTVhS1RtYjkybkxY?=
+ =?utf-8?B?MytCeVIyTkZvMnhkeDNaVmRkeEV3ZVQ3L05ua0lhVVQ4SFZpZ2RQT3pjempF?=
+ =?utf-8?B?YXdYWHBkQXFueTFycFhXSlArK0xoL2FNU2lZV1RKSVlUaVhCNVEvemhFcjJQ?=
+ =?utf-8?B?dXA0TWZKREpNS0trYUtmL0JoQUVWdzlaaE4wT083bEt4ZU9kVkEvTjdld1Ro?=
+ =?utf-8?B?ZW9xSEo4czcxb0RvVktnSDI0bkZ1WmZzSXQ0bDBVbHEvOU9wMVc4Um5ucm8x?=
+ =?utf-8?B?bzdsV1RVdzNsUUFKSDEyZDNhV0xkdHpMclo5TjNjcWJkR3hqMlRkRW9SZld6?=
+ =?utf-8?B?YktoMlMzLzcvNk5KUnJRMG45UVZhTU13NFc0c0E4VkZjOXRrdDdqSUxxWTlZ?=
+ =?utf-8?B?YlE3YUVZK1hHek5pL0FBVHlqQkhnRHVGMnNtdkZxNGs0V0RsaVd2a2d2dVBi?=
+ =?utf-8?B?RFdpd3BlNnBBSEJJNitxU0xFaVgyNGtZa3BtK1ZKZm9IK0NldStzV2l1RUJz?=
+ =?utf-8?B?bTVKTVNjQ04wcG52dlZmY29HM0FxL08vc1NYMHdNSUtLcVhCU1hJVXM3b0Fu?=
+ =?utf-8?B?ZmUrRFRIZGV5RkZjaFJvYjM1bko0K0JXaDVXeG93aU1CaXJJRHBLMDhHc2U1?=
+ =?utf-8?B?YnRHSHU0OFFNWXpoWEhDdXUrcW4yNXhFbkVxazI5M1lGRkJUTzY5K3hTMlU4?=
+ =?utf-8?B?R2o4bWZYR1BGYXp4VXhFMml2d1NsWE9USEpLM2VidzlRV01aTmltaThsd2VY?=
+ =?utf-8?Q?iSfuHsZZXdZzwmHhT+i0g2hQM7i8RdvpCzYfaZFgDrvrI?=
+x-ms-exchange-antispam-messagedata-1: fKsThB3Ms8bbTw==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20260430055527.4026042-1-lijo.lazar@amd.com>
- <20260430055527.4026042-2-lijo.lazar@amd.com>
-In-Reply-To: <20260430055527.4026042-2-lijo.lazar@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 30 Apr 2026 08:47:53 -0400
-X-Gm-Features: AVHnY4IABSbGy9yZOK_rH4JqIGu8DEwTcKXiazqps_9OQB5NYZsz93SMap-vaic
-Message-ID: <CADnq5_M3=yCSv=+6j09iYp=YB2UivevVKAZY5iG1ku6bb38BqA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/amdgpu: Use helper to set gart size
-To: Lijo Lazar <lijo.lazar@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Hawking.Zhang@amd.com, 
- Alexander.Deucher@amd.com, Asad.Kamal@amd.com, Christian.Koenig@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Exchange-RoutingPolicyChecked: cBTw1c+joYEUe5v2fy71vyrz4K3LB724v21pZPGJZQdWkP6DnXkgoNGRmGbvbEz2gOQvy8Nv2xZTGBHl5CThbi0tWMkgjBIKVYu9S7pQD+SWn7HQFizMkSQQMIdQtJUisnj4bvSdEkDx5ox2MzyocpD9okOQOgh9spLh4XCt/NDvsDWn8U/VWdyTltDrPExL+VPsZBh+kRDPBNlpRV4g/v+Sp0P4cjPGXUA6hSHkzaIl6c9xln9sEWh9eENoW5pKpza1z8UYIOjJtc9TPlVlSjWEed5V3f5MU+S8UpG/cJQFuZjvvvWDjiK0Dpu5KzO6fFE6v1gTGuLzrDxGH+pMQQ==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB3232.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fe146527-20a0-4ef8-a505-08dea6ba3081
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Apr 2026 13:12:54.1052 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: K0yHl1yYb2B06XoDoAiCCN8Yx6bRCg8UP6sGQ+OtLXMu1Sb2EmWBl0wHz5W8A5R5Pj9XqCsbYd4u52XdlAVn/adzWcadARHpCbJN71XuN4g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5130
+X-OriginatorOrg: intel.com
+X-Mailman-Approved-At: Fri, 01 May 2026 07:11:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,334 +181,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 39B3B4A2E24
+X-Rspamd-Queue-Id: 955074AACFC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-0.21 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:lijo.lazar@amd.com,m:Hawking.Zhang@amd.com,m:Alexander.Deucher@amd.com,m:Asad.Kamal@amd.com,m:Christian.Koenig@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[SN6PR11MB3232.namprd11.prod.outlook.com:mid,intel.com:dkim,intel.com:email,lists.freedesktop.org:email,patchwork.freedesktop.org:url,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[tejas.upadhyay@intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[9]
 
-On Thu, Apr 30, 2026 at 2:04=E2=80=AFAM Lijo Lazar <lijo.lazar@amd.com> wro=
-te:
->
-> Find the default size required and use the helper funcction to set gart s=
-ize.
->
-> Suggested-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-
-Series is:
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-
-> ---
->  drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c | 24 +++++++---------
->  drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c |  5 +---
->  drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c |  5 +---
->  drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c  | 28 +++++++-----------
->  drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c  | 30 ++++++++-----------
->  drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c  | 34 +++++++++-------------
->  drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c  | 40 +++++++++++---------------
->  7 files changed, 66 insertions(+), 100 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gmc_v10_0.c
-> index e1ace7d44ffd..8523833a74fb 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-> @@ -707,20 +707,16 @@ static int gmc_v10_0_mc_init(struct amdgpu_device *=
-adev)
->         adev->gmc.visible_vram_size =3D adev->gmc.aper_size;
->
->         /* set the gart size */
-> -       if (amdgpu_gart_size =3D=3D -1) {
-> -               switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
-> -               default:
-> -                       adev->gmc.gart_size =3D 512ULL << 20;
-> -                       break;
-> -               case IP_VERSION(10, 3, 1):   /* DCE SG support */
-> -               case IP_VERSION(10, 3, 3):   /* DCE SG support */
-> -               case IP_VERSION(10, 3, 6):   /* DCE SG support */
-> -               case IP_VERSION(10, 3, 7):   /* DCE SG support */
-> -                       adev->gmc.gart_size =3D 1024ULL << 20;
-> -                       break;
-> -               }
-> -       } else {
-> -               adev->gmc.gart_size =3D (u64)amdgpu_gart_size << 20;
-> +       switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
-> +       case IP_VERSION(10, 3, 1):   /* DCE SG support */
-> +       case IP_VERSION(10, 3, 3):   /* DCE SG support */
-> +       case IP_VERSION(10, 3, 6):   /* DCE SG support */
-> +       case IP_VERSION(10, 3, 7):   /* DCE SG support */
-> +               amdgpu_gmc_set_gart_size(adev, SZ_1G);
-> +               break;
-> +       default:
-> +               amdgpu_gmc_set_gart_size(adev, SZ_512M);
-> +               break;
->         }
->
->         gmc_v10_0_vram_gtt_location(adev, &adev->gmc);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gmc_v11_0.c
-> index 94d6631ce0bc..16388e3caea3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-> @@ -709,10 +709,7 @@ static int gmc_v11_0_mc_init(struct amdgpu_device *a=
-dev)
->                 adev->gmc.visible_vram_size =3D adev->gmc.real_vram_size;
->
->         /* set the gart size */
-> -       if (amdgpu_gart_size =3D=3D -1)
-> -               adev->gmc.gart_size =3D 512ULL << 20;
-> -       else
-> -               adev->gmc.gart_size =3D (u64)amdgpu_gart_size << 20;
-> +       amdgpu_gmc_set_gart_size(adev, SZ_512M);
->
->         gmc_v11_0_vram_gtt_location(adev, &adev->gmc);
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gmc_v12_0.c
-> index 5bdd4b9b7893..586703ec0dfa 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-> @@ -765,10 +765,7 @@ static int gmc_v12_0_mc_init(struct amdgpu_device *a=
-dev)
->                 adev->gmc.visible_vram_size =3D adev->gmc.real_vram_size;
->
->         /* set the gart size */
-> -       if (amdgpu_gart_size =3D=3D -1) {
-> -               adev->gmc.gart_size =3D 512ULL << 20;
-> -       } else
-> -               adev->gmc.gart_size =3D (u64)amdgpu_gart_size << 20;
-> +       amdgpu_gmc_set_gart_size(adev, SZ_512M);
->
->         gmc_v12_0_vram_gtt_location(adev, &adev->gmc);
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c b/drivers/gpu/drm/amd/=
-amdgpu/gmc_v6_0.c
-> index cc272a96fcef..af6944d2d330 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
-> @@ -328,24 +328,18 @@ static int gmc_v6_0_mc_init(struct amdgpu_device *a=
-dev)
->         adev->gmc.visible_vram_size =3D adev->gmc.aper_size;
->
->         /* set the gart size */
-> -       if (amdgpu_gart_size =3D=3D -1) {
-> -               switch (adev->asic_type) {
-> -               case CHIP_HAINAN:    /* no MM engines */
-> -               default:
-> -                       adev->gmc.gart_size =3D 256ULL << 20;
-> -                       break;
-> -               case CHIP_VERDE:    /* UVD, VCE do not support GPUVM */
-> -               case CHIP_TAHITI:   /* UVD, VCE do not support GPUVM */
-> -               case CHIP_PITCAIRN: /* UVD, VCE do not support GPUVM */
-> -               case CHIP_OLAND:    /* UVD, VCE do not support GPUVM */
-> -                       adev->gmc.gart_size =3D 1024ULL << 20;
-> -                       break;
-> -               }
-> -       } else {
-> -               adev->gmc.gart_size =3D (u64)amdgpu_gart_size << 20;
-> +       switch (adev->asic_type) {
-> +       case CHIP_VERDE:    /* UVD, VCE do not support GPUVM */
-> +       case CHIP_TAHITI:   /* UVD, VCE do not support GPUVM */
-> +       case CHIP_PITCAIRN: /* UVD, VCE do not support GPUVM */
-> +       case CHIP_OLAND:    /* UVD, VCE do not support GPUVM */
-> +               amdgpu_gmc_set_gart_size(adev, SZ_1G);
-> +               break;
-> +       case CHIP_HAINAN:    /* no MM engines */
-> +       default:
-> +               amdgpu_gmc_set_gart_size(adev, SZ_256M);
-> +               break;
->         }
-> -
-> -       adev->gmc.gart_size +=3D adev->pm.smu_prv_buffer_size;
->         gmc_v6_0_vram_gtt_location(adev, &adev->gmc);
->
->         return 0;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c b/drivers/gpu/drm/amd/=
-amdgpu/gmc_v7_0.c
-> index fb5e33c8a5ee..93cf283191fa 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
-> @@ -394,27 +394,21 @@ static int gmc_v7_0_mc_init(struct amdgpu_device *a=
-dev)
->         adev->gmc.visible_vram_size =3D adev->gmc.aper_size;
->
->         /* set the gart size */
-> -       if (amdgpu_gart_size =3D=3D -1) {
-> -               switch (adev->asic_type) {
-> -               case CHIP_TOPAZ:     /* no MM engines */
-> -               default:
-> -                       adev->gmc.gart_size =3D 256ULL << 20;
-> -                       break;
-> +       switch (adev->asic_type) {
->  #ifdef CONFIG_DRM_AMDGPU_CIK
-> -               case CHIP_BONAIRE: /* UVD, VCE do not support GPUVM */
-> -               case CHIP_HAWAII:  /* UVD, VCE do not support GPUVM */
-> -               case CHIP_KAVERI:  /* UVD, VCE do not support GPUVM */
-> -               case CHIP_KABINI:  /* UVD, VCE do not support GPUVM */
-> -               case CHIP_MULLINS: /* UVD, VCE do not support GPUVM */
-> -                       adev->gmc.gart_size =3D 1024ULL << 20;
-> -                       break;
-> +       case CHIP_BONAIRE: /* UVD, VCE do not support GPUVM */
-> +       case CHIP_HAWAII:  /* UVD, VCE do not support GPUVM */
-> +       case CHIP_KAVERI:  /* UVD, VCE do not support GPUVM */
-> +       case CHIP_KABINI:  /* UVD, VCE do not support GPUVM */
-> +       case CHIP_MULLINS: /* UVD, VCE do not support GPUVM */
-> +               amdgpu_gmc_set_gart_size(adev, SZ_1G);
-> +               break;
->  #endif
-> -               }
-> -       } else {
-> -               adev->gmc.gart_size =3D (u64)amdgpu_gart_size << 20;
-> +       case CHIP_TOPAZ:     /* no MM engines */
-> +       default:
-> +               amdgpu_gmc_set_gart_size(adev, SZ_256M);
-> +               break;
->         }
-> -
-> -       adev->gmc.gart_size +=3D adev->pm.smu_prv_buffer_size;
->         gmc_v7_0_vram_gtt_location(adev, &adev->gmc);
->
->         return 0;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c b/drivers/gpu/drm/amd/=
-amdgpu/gmc_v8_0.c
-> index 963d5b0fa87b..1d3ddffd5a11 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-> @@ -585,27 +585,21 @@ static int gmc_v8_0_mc_init(struct amdgpu_device *a=
-dev)
->         adev->gmc.visible_vram_size =3D adev->gmc.aper_size;
->
->         /* set the gart size */
-> -       if (amdgpu_gart_size =3D=3D -1) {
-> -               switch (adev->asic_type) {
-> -               case CHIP_POLARIS10: /* all engines support GPUVM */
-> -               case CHIP_POLARIS11: /* all engines support GPUVM */
-> -               case CHIP_POLARIS12: /* all engines support GPUVM */
-> -               case CHIP_VEGAM:     /* all engines support GPUVM */
-> -               default:
-> -                       adev->gmc.gart_size =3D 256ULL << 20;
-> -                       break;
-> -               case CHIP_TONGA:   /* UVD, VCE do not support GPUVM */
-> -               case CHIP_FIJI:    /* UVD, VCE do not support GPUVM */
-> -               case CHIP_CARRIZO: /* UVD, VCE do not support GPUVM, DCE =
-SG support */
-> -               case CHIP_STONEY:  /* UVD does not support GPUVM, DCE SG =
-support */
-> -                       adev->gmc.gart_size =3D 1024ULL << 20;
-> -                       break;
-> -               }
-> -       } else {
-> -               adev->gmc.gart_size =3D (u64)amdgpu_gart_size << 20;
-> +       switch (adev->asic_type) {
-> +       case CHIP_TONGA:   /* UVD, VCE do not support GPUVM */
-> +       case CHIP_FIJI:    /* UVD, VCE do not support GPUVM */
-> +       case CHIP_CARRIZO: /* UVD, VCE do not support GPUVM, DCE SG suppo=
-rt */
-> +       case CHIP_STONEY:  /* UVD does not support GPUVM, DCE SG support =
-*/
-> +               amdgpu_gmc_set_gart_size(adev, SZ_1G);
-> +               break;
-> +       case CHIP_POLARIS10: /* all engines support GPUVM */
-> +       case CHIP_POLARIS11: /* all engines support GPUVM */
-> +       case CHIP_POLARIS12: /* all engines support GPUVM */
-> +       case CHIP_VEGAM:     /* all engines support GPUVM */
-> +       default:
-> +               amdgpu_gmc_set_gart_size(adev, SZ_256M);
-> +               break;
->         }
-> -
-> -       adev->gmc.gart_size +=3D adev->pm.smu_prv_buffer_size;
->         gmc_v8_0_vram_gtt_location(adev, &adev->gmc);
->
->         return 0;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/=
-amdgpu/gmc_v9_0.c
-> index aca7841173f3..ced0f3941863 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-> @@ -1731,31 +1731,25 @@ static int gmc_v9_0_mc_init(struct amdgpu_device =
-*adev)
->         adev->gmc.visible_vram_size =3D adev->gmc.aper_size;
->
->         /* set the gart size */
-> -       if (amdgpu_gart_size =3D=3D -1) {
-> -               switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
-> -               case IP_VERSION(9, 0, 1):  /* all engines support GPUVM *=
-/
-> -               case IP_VERSION(9, 2, 1):  /* all engines support GPUVM *=
-/
-> -               case IP_VERSION(9, 4, 0):
-> -               case IP_VERSION(9, 4, 1):
-> -               case IP_VERSION(9, 4, 2):
-> -               case IP_VERSION(9, 4, 3):
-> -               case IP_VERSION(9, 4, 4):
-> -               case IP_VERSION(9, 5, 0):
-> -               default:
-> -                       adev->gmc.gart_size =3D 512ULL << 20;
-> -                       break;
-> -               case IP_VERSION(9, 1, 0):   /* DCE SG support */
-> -               case IP_VERSION(9, 2, 2):   /* DCE SG support */
-> -               case IP_VERSION(9, 3, 0):
-> -                       adev->gmc.gart_size =3D 1024ULL << 20;
-> -                       break;
-> -               }
-> -       } else {
-> -               adev->gmc.gart_size =3D (u64)amdgpu_gart_size << 20;
-> +       switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
-> +       case IP_VERSION(9, 1, 0):   /* DCE SG support */
-> +       case IP_VERSION(9, 2, 2):   /* DCE SG support */
-> +       case IP_VERSION(9, 3, 0):
-> +               amdgpu_gmc_set_gart_size(adev, SZ_1G);
-> +               break;
-> +       case IP_VERSION(9, 0, 1):  /* all engines support GPUVM */
-> +       case IP_VERSION(9, 2, 1):  /* all engines support GPUVM */
-> +       case IP_VERSION(9, 4, 0):
-> +       case IP_VERSION(9, 4, 1):
-> +       case IP_VERSION(9, 4, 2):
-> +       case IP_VERSION(9, 4, 3):
-> +       case IP_VERSION(9, 4, 4):
-> +       case IP_VERSION(9, 5, 0):
-> +       default:
-> +               amdgpu_gmc_set_gart_size(adev, SZ_512M);
-> +               break;
->         }
->
-> -       adev->gmc.gart_size +=3D adev->pm.smu_prv_buffer_size;
-> -
->         gmc_v9_0_vram_gtt_location(adev, &adev->gmc);
->
->         return 0;
-> --
-> 2.49.0
->
+RmFpbHVyZXMgaXNu4oCZdCByZWxhdGVkIHRvIGNoYW5nZSBodHRwczovL3BhdGNod29yay5mcmVl
+ZGVza3RvcC5vcmcvc2VyaWVzLzE2NTcyMC8jcmV2MS4gV2lsbCBtZXJnZSBpdCBsYXRlci4gUGxl
+YXNlIGxldCBtZSBrbm93IGluIGNhc2Ugb2YgYW55IGNvbmNlcm5zLg0KDQpUZWphcw0KDQo+IC0t
+LS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEF1bGQsIE1hdHRoZXcgPG1hdHRoZXcu
+YXVsZEBpbnRlbC5jb20+DQo+IFNlbnQ6IDMwIEFwcmlsIDIwMjYgMTQ6NDUNCj4gVG86IFVwYWRo
+eWF5LCBUZWphcyA8dGVqYXMudXBhZGh5YXlAaW50ZWwuY29tPjsgaW50ZWwtDQo+IHhlQGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogQXJ1bnByYXZpbi5QYW5lZXJTZWx2YW1AYW1kLmNvbTsg
+ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsNCj4gYW1kLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcNCj4gU3ViamVjdDogUmU6IFtQQVRDSF0gZHJtL2J1ZGR5OiBJbnRlZ3JhdGUgbG9j
+a2RlcCBhbm5vdGF0aW9ucyBmb3IgZ3B1DQo+IGJ1ZGR5IG1hbmFnZXINCj4gDQo+IE9uIDI5LzA0
+LzIwMjYgMTM6MzcsIFRlamFzIFVwYWRoeWF5IHdyb3RlOg0KPiA+IGdwdV9idWRkeSBBUElzIGFy
+ZSBleHBlY3RlZCB0byBiZSBjYWxsZWQgd2l0aCB0aGUgZHJpdmVyLXByb3ZpZGVkIGxvY2sNCj4g
+PiBoZWxkLCBidXQgdGhlcmUgaXMgbm8gcnVudGltZSBlbmZvcmNlbWVudCBvZiB0aGlzIGNvbnRy
+YWN0LiBBZGQNCj4gPiBsb2NrZGVwIGFubm90YXRpb25zIHRvIGNhdGNoIGxvY2tpbmcgdmlvbGF0
+aW9ucyBlYXJseS4NCj4gPg0KPiA+IEludHJvZHVjZSBncHVfYnVkZHlfZHJpdmVyX3NldF9sb2Nr
+KCkgZm9yIHRoZSBkcml2ZXIgdG8gcmVnaXN0ZXIgdGhlDQo+ID4gbG9jayB0aGF0IHByb3RlY3Rz
+IHRoZSBidWRkeSBtYW5hZ2VyLiBBZGQgZ3B1X2J1ZGR5X2RyaXZlcl9sb2NrX2hlbGQoKQ0KPiA+
+IGFzc2VydGlvbnMgdG8gYWxsIGV4cG9ydGVkIGdwdV9idWRkeSBhbmQgZHJtX2J1ZGR5IEFQSXMg
+dGhhdA0KPiA+IGFjY2Vzcy9tb2RpZnkgdGhlIG1hbmFnZXIgc3RhdGUuIFRoZSBsb2NrX2RlcF9t
+YXAgZmllbGQgaXMgb25seQ0KPiA+IGNvbXBpbGVkIGluIHdoZW4gQ09ORklHX0xPQ0tERVAgaXMg
+ZW5hYmxlZCwgYWRkaW5nIHplcm8gb3ZlcmhlYWQgdG8NCj4gPiBwcm9kdWN0aW9uIGJ1aWxkcy4N
+Cj4gPg0KPiA+IFdpcmUgdXAgeGVfdHRtX3ZyYW1fbWdyIHRvIHJlZ2lzdGVyIGl0cyBtdXRleCB3
+aXRoIHRoZSBidWRkeSBtYW5hZ2VyDQo+ID4gYWZ0ZXIgaW5pdGlhbGl6YXRpb24uDQo+ID4NCj4g
+PiBBc3Npc3RlZC1ieTogQ2xhdWRlOmNsYXVkZS1vcHVzLTQuNg0KPiANCj4gSSB0aGluayBhZGQ6
+DQo+IA0KPiBTdWdnZXN0ZWQtYnk6IE1hdHRoZXcgQnJvc3QgPG1hdHRoZXcuYnJvc3RAaW50ZWwu
+Y29tPg0KPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBUZWphcyBVcGFkaHlheSA8dGVqYXMudXBhZGh5
+YXlAaW50ZWwuY29tPg0KPiANCj4gUmV2aWV3ZWQtYnk6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5h
+dWxkQGludGVsLmNvbT4NCg==
