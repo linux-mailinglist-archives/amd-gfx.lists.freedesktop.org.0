@@ -2,132 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mEKeHSFS9GmKAgIAu9opvQ
+	id UDzWKQOq9GlWDQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 09:11:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 15:26:27 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA1764AACD0
-	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 09:11:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 595C34ACA6A
+	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 15:26:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC04B10E0F6;
-	Fri,  1 May 2026 07:11:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D08210E9D1;
+	Fri,  1 May 2026 13:26:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="IsqwQunP";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="p4XUBcu1";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010038.outbound.protection.outlook.com [52.101.61.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A10EE10E4A1
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 May 2026 06:22:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=f/rna/0eMHfsBXxLO9naH+YyZEvhUo3NHhoeCtgftBptP4Y16eedOPBtjHiqxl/J5Gge+55Guw+W8m7jmagbSd+sCB7BZa7Pp35Rds6oKCLy+W8T9kT5vhES6vxefnN8BDr6sNnUUVF5/dmKJ3jzUv+UWdLLM4WFvowan8RZF5cmSjJGQsUoSh5OpqTh94MJTKGL90G4udpTxf6g++Id1aKK+OkWeLn1RtP7J36T0HgKsGB4njh8zdX2oKTFk7g8c/KkV1pbZVVFeD62lxa1A6Vcc5GiRcgpef8xXcAyQKDrq3A8KsqZhlsUH9HsJ8RJ2klrcPzWJURGVnh3wajn0A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h5H7NJBa6jmvF4PPoOr2geJZLxMAPTi0SfGrS+TDFMY=;
- b=xsVG5UTz/BTTbkplK75oXRI2Dv2nCYKx0OtCJg3PP4u2BJe00DOKBo9+AuTRGKzKKacAyR/i6MNqSrWe0P1aG8QNUzQ7a0b97jVWN8OVvT0bgxDJyk5ebZV92vhuShkYJWmYZDQw0ko6zIlIuCfDft6ywIKBN6O2OsyHiy0zKBhjyr+EGb61lBRdOgESyTIvXW5kehmqHH13YiIiiRAjRy9f3uFEOx41VBnChEo9Xx7dksNbVDicGbiLq0uudXhP2McRoDpBMMRHgViBoZIE3ykxYHqXQ21bV31KgALJn+E8Y9xUcmIA/ftZuK2xyYw0y8CKe5Ar1caycIr/FXc+6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h5H7NJBa6jmvF4PPoOr2geJZLxMAPTi0SfGrS+TDFMY=;
- b=IsqwQunP6KHKt2f7+/7HEK6sJahfw19fEZYmZhy785D1Fkab3PpZ2c1E0fmQycbBUqqV87BWNRoObL+B9FiCVPW1Ubae01I+uwyBqPCH+hr5IXhHxrwY3mSHXwkmnQb92xuWETxfkHe0XagGK8NBdAUM1EW/mRgmUrbh3gEKzpJrKe8bqLCTPZyRJo6vTrkB4CMLE2xRLVpP+lr5BampwbB59+tE1PpuKGazTWaJQFPkA8K5D3nY0P0Eh/wRQHnUYlgd7LdUIPKH8iTMjmhG1tQolSpchXvfEMlQLnUkQvMHYuMeckLTWUMRdjq4S9OseIj7CeqGdU4qOH7VteDPaw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CY8PR12MB7705.namprd12.prod.outlook.com (2603:10b6:930:84::9)
- by SJ0PR12MB8165.namprd12.prod.outlook.com (2603:10b6:a03:4e4::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.20; Fri, 1 May
- 2026 06:22:01 +0000
-Received: from CY8PR12MB7705.namprd12.prod.outlook.com
- ([fe80::4457:c7f7:6ed2:3dcf]) by CY8PR12MB7705.namprd12.prod.outlook.com
- ([fe80::4457:c7f7:6ed2:3dcf%6]) with mapi id 15.20.9870.020; Fri, 1 May 2026
- 06:22:01 +0000
-Date: Fri, 1 May 2026 16:21:36 +1000
-From: Alistair Popple <apopple@nvidia.com>
-To: Arsen =?utf-8?Q?Arsenovi=C4=87?= <aarsenovic@baylibre.com>
-Cc: amd-gfx@lists.freedesktop.org, linux-mm@kvack.org, 
- cs-tech-ext@baylibre.com
-Subject: Re: [BUG] Frequent hangs or WARNINGs when using heterogeneous memory
- with an AMD MI210 GPU
-Message-ID: <afREaF6hcka_cxnY@nvdebian.thelocal>
-References: <86ecjz2hhr.fsf@baylibre.com>
- <86tssu0w8p.fsf@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <86tssu0w8p.fsf@baylibre.com>
-X-ClientProxiedBy: SY5PR01CA0010.ausprd01.prod.outlook.com
- (2603:10c6:10:1fa::19) To DS0PR12MB7726.namprd12.prod.outlook.com
- (2603:10b6:8:130::6)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E03C10E9BD;
+ Fri,  1 May 2026 13:26:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=wmcjGeiGwP+T/j52axiQUaxIwjw6BJ8EKF+FW+LavvY=; b=p4XUBcu19dS/Pl5EijxnyR2Aej
+ 3ltdlLv+Law+vSFMKfH5y9UXex7b/ZqWRzBhyWScGrWd7xV5wl0KWMXjewFE0Ee08qUD1R34OZkUf
+ vHFwxIbjspTUHNLE+RrK/4dPwikJ3AySgS2EyQ6ArI8fgJvhLn1G2oNBntGoiFMhFmuigCEKaQbeX
+ LFPtt2het8WmVcLALsDp9H43X9OiO6pFNxTwX5sxipcwv6iCRAny9nrQt5BYER9Ecp0uGC001NBfn
+ NcuJs9Q/csIHm6RTD3AHZmgkF6YmHdYzcXh6Ay645K0hf0jreLI8v+LfVkmtfNA74IJ/OKnjZg8o9
+ 08VCgN8w==;
+Received: from [186.208.73.228] (helo=killbill.home)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wInsH-004r12-U6; Fri, 01 May 2026 15:25:45 +0200
+From: Melissa Wen <mwen@igalia.com>
+To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ harry.wentland@amd.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, simona@ffwll.ch, siqueira@igalia.com,
+ sunpeng.li@amd.com, tzimmermann@suse.de
+Cc: Alex Hung <alex.hung@amd.com>, Simon Ser <contact@emersion.fr>,
+ Uma Shankar <uma.shankar@intel.com>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Xaver Hugl <xaver.hugl@kde.org>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Matthew Schwartz <matthew.schwartz@linux.dev>,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v4 0/6] drm/atomic: track colorop changes of a given plane
+Date: Fri,  1 May 2026 10:06:46 -0300
+Message-ID: <20260501132527.522320-1-mwen@igalia.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR12MB7705:EE_|SJ0PR12MB8165:EE_
-X-MS-Office365-Filtering-Correlation-Id: d4da904e-6ce7-4914-9165-08dea749ed5a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|56012099003|18002099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: yGfYR8AOVetzkBd3uw9alADToltb9bTX7e63JO3qCowTAJatypeuUpDYeiJBo9CScVlYyOxOa9++oM1HH8yJv5yHakQ32PhOGp98iDMDK8chF/xJ7p8a/P0jlAfsjGDYEsY94HLvsu2GKQ+oH7M2BgQqhoFsgE7n6IyciiJVg0oQeS/e426x1vKO9AjZ40pYxbMjXYH9817PutZReadQlxdkSJmXPP4x7qqa88zHN+vOOVFYLcpVWmlp68JgXZsRybJ3C2R08c/Pas5bMV3TCfYLSVUWxOgaECNLGqGEf2XiJLjwdY+u7Z5W4/aKpQt7xfDc8WAcAAAA5jrrvigipVsdqowNo6ybbn7SECLsY8rHr3BeVIpJ/BzBBDZPvMdUqnyI3mmzWIO/NanTe++OnEdIpq4+mIvD9LKCLcDnUe97wyYkk8dPrtkBTWlnJS3IMnlcNQ3+WRGF2AFwuhRJ57iFF2X04CgBg/TBf8xbO2gN0fP30Mp3hCV9mVw5baWPjQG/SaDP62BUMNhlFQKkr9BReogRjfX8oYizgUBfgmCuFS+ELmdB5dhsE756YUKj2su6IjZOC4+CbWnORaOxi8aPJyWy0x7A+KwEFj4sRbDwrcVOGP6XmWB6Rf66Bu8HUlLlr6ea8MdZye4a3uHYGOHGEDpkqIKjlevlTg+5vWGAnLhUr9ADImcYn3qRLWCz
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR12MB7705.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZUtpZStrQ2cyYUxpVUNRY3ZiMWl0c3JTc1lja0NpWlNWRFFKMkozZ2IzMGFL?=
- =?utf-8?B?MUVERFd0N3E5Q2Rza00zTTV4NGpLT2ZTZDFjUmVsSUdhVy94TGFTWmJacGR6?=
- =?utf-8?B?Q2U2N1FzQWlocVhGNjFqNTN5c2o3T1l6Q0g1aEFrYlJVVEt2Y3loK2ZTbXEx?=
- =?utf-8?B?R2xoOHo1MURxR0ttWERuM0YzUFJBTGlYZis2RDZTWlJxWHZtdDZQdVhkWHdv?=
- =?utf-8?B?V1JqZGRGZk80aDBvV0Z6VWo0TkFJQTRzTktRWXpPTlAvaGJzUzF0cjhBMk9i?=
- =?utf-8?B?eElwSWlLVlNQTmhPRUV6UCtVRkxyRElLREZZTzQ1TEdCWnhSTnd4RFlHdjZo?=
- =?utf-8?B?UDBzVmVoRTZhcnA4aGpseDNmZ21IUzZ4bnZ2c0xaT0xCTkRRM1FrQ1hnKzBY?=
- =?utf-8?B?amt2RlNndjRvRTdrWUYyMVllVU1rZy92bVhyd3JtV2J6Tzh5M3NLc1Z1cUpH?=
- =?utf-8?B?bTlzK1duUmNiK1V0S1NGTjhpVjdWNVpNalRQMkg5eVhkWERSelJqaFNTSnZ6?=
- =?utf-8?B?SnNmcDJ0YWpyT1F1Uy9tSHhyWEIwRGNRMG5FNzlQazdPTWR6dFhTQXhQS2pF?=
- =?utf-8?B?ZDAwZU5MTlNzVnR3VW1yUmtTWnFRSGl5bXBIMVVIZHBDZzFJMDZhVkV1Qmo0?=
- =?utf-8?B?NjZ3NXVTa1FURm9KVXVOUlovNkdUR2lmZVlpUk9IdXZZOWNMdEUrNS9EK3Fi?=
- =?utf-8?B?N05lZTBPYmw3VFNSVWRIdDY4YnZtT2hXVkQ4NEtxTWNRaTZUTFlJSTZJSzVn?=
- =?utf-8?B?ZlhnQ3o3MUJnZVZqY0J3Z04zaWdaeDVORXNnM21XMldCTzVCODB5UWNIb2tL?=
- =?utf-8?B?N015akJCWWNqU0JZSWJsbk9ycS9DZWxPdGVpL1o0dlFXcXZzSEp3VU1KdkhV?=
- =?utf-8?B?bFFPbjIxbmMzRmxJN0RjRmZDdWcyVGw5Z0M1bXRtdDBxdTlZbXVBVEZMQXZ5?=
- =?utf-8?B?OG5MWnpOanJ5WkR4VjVqNmhmc254anhGTlBNVE1YM1VDYS9zNG9tZEkyV0Mx?=
- =?utf-8?B?cnAzcE5MVUk4MVJadkVYWXBIWmFTM1l1TnV6MW1mM0dJSmNvbm44VWJ2S2dI?=
- =?utf-8?B?VjVhcnZENk9zOERGWHJ6Zk82dFd3K25iMThSenBRR2FIQlViN0JwZ0N6UEhC?=
- =?utf-8?B?Q0Z4UE9Pd09xbk56a0dweVZ0aUxoaVE3cjFtL1NMU2lKZ0htMGJYZDk1ZlBo?=
- =?utf-8?B?aGoxdHJVV3ZDZnBhNlZURG1SblZUem4wNWdFNDI1QjI1VkJEaHVWTWpycXFh?=
- =?utf-8?B?dHJhWkNtL1I5T2NPK0JyRVI4S2tyUGJqb3JIWXRZSWp5Mk5RSmlSL2VZeW9h?=
- =?utf-8?B?R0JlOW4wcFQ0YnQwWjQxUDlNZUszSjc3Y1B5UnpHOFJwbHdjV0NhdE02SEtP?=
- =?utf-8?B?U24zYStBUEJDQTVMVG9iV3Nyek9CeHJsaWV2TkJsTWF4d0tOSHhlOUxqd0hw?=
- =?utf-8?B?TGQ5UFNDVDFRQWZBeEVFMmVZaXBZRVM4eGZtL1BrdUk3a04wQ2QxUm1lWGNM?=
- =?utf-8?B?cE5mVW9aNTV2eUZRYTdTT0FGc0xOUm5yWDFxY3VSMmVEcnA0dEc1Nitsb2FT?=
- =?utf-8?B?RWNxYjlFc2NmQjFjRkpNeklwcGF2eTlERms2T1B3NW0waTdLUldhL3FmT2tp?=
- =?utf-8?B?MUloMERVY2k2U2JqSmFUY1NTbnZiY0xud0NEREhlejVCK3p4WTFOSjhtQVg2?=
- =?utf-8?B?WUJUN2VMNTlGOFQ1cThhUTVkaGYzQmdXUlRlT05WQ01LNHNVQTV4Qi9Gdld4?=
- =?utf-8?B?V1RGUXpNYzlCdGwyWjQ0aGlXdWIyeE96ajF2NUVqc25BK0FqOWhxK3Jzbi84?=
- =?utf-8?B?Z3hQZ1RCdUthaG53R0tMdUNBc1ArcjA5ZWNZdWtxMUlIZW9vMng4V1lKVTNr?=
- =?utf-8?B?UVVTbi9KeVlSR3VvZVM0MXBKdFA1Z2ZxQ1g2V1dLQmNPa0QzN25IOXdMd0J4?=
- =?utf-8?B?cTMzdlJtVG1rYU9FWWZXdHVpZEd3Z3JSanlpcWc2R0YzWmdyNENGZFVNdXow?=
- =?utf-8?B?RTlFYVJ4SnFRaEM3bTAwUlZNZ0VwNWhhdmV2c3JRTjFSQWQ3VzJpLzRldEtK?=
- =?utf-8?B?VWlJN2s0ekYwSWF6anZnQnNVOGlXVmllTWR6bmliMDZ3V200Y2YrZjFNVUdN?=
- =?utf-8?B?SUFncVllM0lUaS9ML1JBbFdzQTVkTFArOTM4SmROaWYzOWJNblhkSGxibjdO?=
- =?utf-8?B?N29KZDZ6NE5meU8yMEsraGtIdkNXMmlkcGM0cGpzTlBKTWswYkpJOFJFMVZB?=
- =?utf-8?B?c2VBNk9uekh4YWorejhuYlRWYTk3TU80NTVINEpBRVdqVGpZbGtMdFhYckVt?=
- =?utf-8?B?d2R5TUorUjBrWm9MZjZWUFhLMnlEWVQvOVVZRUJqeXc5ZGExNjcvZz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d4da904e-6ce7-4914-9165-08dea749ed5a
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7726.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 May 2026 06:22:01.2451 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pfQPdY2ZESkT9M8ADMJkP3BRWOOIpMe8vPlSnrdEsRAlBC4OFMuqbv1rxvPlryCeXP0BF0K2SegOzpaLqcw7eA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB8165
-X-Mailman-Approved-At: Fri, 01 May 2026 07:11:26 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,188 +76,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: DA1764AACD0
+X-Rspamd-Queue-Id: 595C34ACA6A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+X-Spamd-Result: default: False [1.99 / 15.00];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER(0.00)[apopple@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:aarsenovic@baylibre.com,m:linux-mm@kvack.org,m:cs-tech-ext@baylibre.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,emersion.fr,intel.com,kde.org,collabora.com,bootlin.com,linux.dev,lists.freedesktop.org,igalia.com,oss.qualcomm.com,kernel.org,gmail.com,poorly.run,somainline.org,vger.kernel.org];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	FREEMAIL_TO(0.00)[gmail.com,amd.com,linux.intel.com,kernel.org,ffwll.ch,igalia.com,suse.de];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[apopple@nvidia.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.910];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,Nvidia.com:dkim,baylibre.com:email,nvdebian.thelocal:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On 2026-04-29 at 22:47 +1000, Arsen Arsenovi=C4=87 <aarsenovic@baylibre.com=
-> wrote...
-> Arsen Arsenovi=C4=87 <aarsenovic@baylibre.com> writes:
->=20
-> > We get this by running the following OpenMP program built for offloadin=
-g
-> > onto an AMD GPU:
-> >
-> >   https://gcc.gnu.org/cgit/gcc/tree/libgomp/testsuite/libgomp.c++/pr119=
-692-1-4.C
-> >
-> > ... built by:
-> >
-> >   x86_64-none-linux-gnu-g++ pr119692-1-4.C -foffload=3D-march=3Dgfx90a =
-\
-> >     -Wl,-rpath,/opt/rocm/lib -fopenmp -O2 \
-> >     -DDEFAULT=3D'defaultmap(firstprivate)' \
-> >     -lm -o ./pr119692-1-4.exe
-> >
-> > ... using trunk GCC configured for amdgcn-amdhsa offloading[1] and
-> > executed as:
-> >
-> >   timeout --verbose 10s env HSA_XNACK=3D1 LD_LIBRARY_PATH=3D. ./pr11969=
-2-1-4.exe
-> >
-> > ... when the timeout happens (i.e. the program gets stuck for 10 second=
-s
-> > and then, when 10 seconds pass, timeout sends a SIGTERM to a.out, and
-> > results in the crash above).
->=20
-> I've now confirmed that it is possible to reproduce this specific issue
-> also on bare metal, also with kernel 7.0.2 and ROCm 7.2.2 (using the
-> rocm/dev-ubuntu-22.04:7.2.2 Docker image):
->=20
->   [ 1171.959571] ------------[ cut here ]------------
->   [ 1171.959577] WARNING: mm/memory.c:1753 at unmap_page_range+0x10d5/0x1=
-bc0, CPU#247: pr119692-1-4.ex/143761
+This series aims to monitor updates for each individual color operation,
+allowing the driver to react accordingly.
 
-I don't know the AMD driver well enough to comment definitively but chances=
- are
-this warning is spurious. I have been meaning to put togeather a fix for it=
-.
-The problem is that migrate_vma_setup() etc. allow for migration of anonymo=
-us
-folios, which is subtly different from only allowing migration of anonymous
-VMA's.
+- Patches 1 and 2 make colorop update process more consistent and
+  optimized by only keeping colorop states from active color pipelines.
 
-Specifically migrate_vma checks for folio_test_anon() which returns true fo=
-r
-private file-backed VMAs while the warning is based on vma_is_anonymous()
-which is false for such mappings. So it is possible for the driver to migra=
-te a
-private filebacked mapping to GPU memory which will trigger this warning du=
-ring
-teardown if the page wasn't migrated back.
+- Patches 3 and 4 make lut1d_interpolation and lut3d_interpolation
+  colorops correctly behave as mutable, handling their changes via
+  drm_colorop_state.
 
- - Alistair
+- Finally, patches 5 and 6 track colorop updates of a given plane color
+  pipeline by setting plane `color_mgmt_changed` flag, similar to what
+  is done for tracking CRTC color mgmt property changes with CRTC
+  `color_mgmt_changed` flag. The flag also tracks when a different color
+  pipeline is set to a given plane. That way, the driver can react
+  accordingly and update their color blocks.
 
->   [ 1171.959613] Modules linked in: xt_iprange xt_LOG nf_log_syslog xt_co=
-mment amdgpu amdxcp drm_ttm_helper ttm drm_exec drm_panel_backlight_quirks =
-gpu_sched drm_suballoc_helper video drm_buddy drm_display_helper cec rc_cor=
-e iptable_nat iptable_filter vhost_vsock vmw_vsock_virtio_transport_common =
-vsock vhost vhost_iotlb nf_conntrack_netlink xt_nat veth vxlan ip6_udp_tunn=
-el udp_tunnel xt_policy xt_mark xt_bpf xt_tcpudp br_netfilter xt_conntrack =
-xt_MASQUERADE xfrm_user xfrm_algo xt_set ip_set nft_chain_nat nf_nat nf_con=
-ntrack nf_defrag_ipv6 nf_defrag_ipv4 xt_addrtype nft_compat nfsv3 nfs netfs=
- overlay 8021q garp mrp bridge stp llc bonding tls nf_tables nfnetlink binf=
-mt_misc nls_iso8859_1 intel_rapl_msr intel_rapl_common amd64_edac edac_mce_=
-amd kvm_amd ipmi_ssif kvm irqbypass rapl wmi_bmof pcspkr ccp input_leds joy=
-dev mac_hid acpi_ipmi ptdma ipmi_si k10temp ipmi_devintf ipmi_msghandler nf=
-sd auth_rpcgss nfs_acl lockd sch_fq_codel dm_multipath grace scsi_dh_rdac s=
-csi_dh_emc scsi_dh_alua sunrpc msr efi_pstore ip_tables x_tables
->   [ 1171.959847]  autofs4 btrfs libblake2b raid10 raid456 async_raid6_rec=
-ov async_memcpy async_pq async_xor async_tx xor raid6_pq raid1 raid0 hid_ge=
-neric usbmouse igb bnxt_en ghash_clmulni_intel usbhid ast rndis_host ahci c=
-dc_ether libahci dca usbnet hid i2c_algo_bit mii i2c_piix4 i2c_smbus wmi ae=
-sni_intel
->   [ 1171.959939] CPU: 247 UID: 0 PID: 143761 Comm: pr119692-1-4.ex Not ta=
-inted 7.0.2-instinct-arsen #3 PREEMPT(lazy)
->   [ 1171.959947] Hardware name: Supermicro AS -4124GS-TNR/H12DSG-O-CPU, B=
-IOS 2.8 01/26/2024
->   [ 1171.959951] RIP: 0010:unmap_page_range+0x10d5/0x1bc0
->   [ 1171.959959] Code: 2e 2e 2e 31 c0 4c 39 b5 50 ff ff ff 0f 85 72 f2 ff=
- ff e9 b1 fd ff ff 48 8b 45 90 48 8b 53 18 48 83 78 48 00 0f 84 28 f9 ff ff=
- <0f> 0b e9 21 f9 ff ff a9 ff 0f 00 00 0f 85 cb fb ff ff 48 8b 10 83
->   [ 1171.959964] RSP: 0018:ffffce40ffc87920 EFLAGS: 00010286
->   [ 1171.959969] RAX: ffff8e18cb2ee900 RBX: fffff3333ffb6a00 RCX: 0000000=
-000000000
->   [ 1171.959973] RDX: ffff8e18de1b18c9 RSI: 0000000000000005 RDI: 0000000=
-000000000
->   [ 1171.959976] RBP: ffffce40ffc87a30 R08: 0000000000000000 R09: 0000000=
-000000000
->   [ 1171.959979] R10: 0000000000000000 R11: 0000000000000000 R12: ffffce4=
-0ffc87b90
->   [ 1171.959983] R13: fffff3333ffb6a00 R14: 0000000000000001 R15: ffff8e1=
-8ba912018
->   [ 1171.959986] FS:  0000000000000000(0000) GS:ffff8e57ac3da000(0000) kn=
-lGS:0000000000000000
->   [ 1171.959990] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
->   [ 1171.959994] CR2: 000070d717bfe920 CR3: 0000004169a48002 CR4: 0000000=
-000f70ef0
->   [ 1171.960000] PKRU: 55555554
->   [ 1171.960004] Call Trace:
->   [ 1171.960008]  <TASK>
->   [ 1171.960022]  unmap_single_vma+0x96/0x110
->   [ 1171.960031]  unmap_vmas+0xa5/0x180
->   [ 1171.960041]  exit_mmap+0x13b/0x400
->   [ 1171.960060]  __mmput+0x45/0x170
->   [ 1171.960068]  mmput+0x31/0x40
->   [ 1171.960074]  do_exit+0x285/0xad0
->   [ 1171.960083]  do_group_exit+0x2d/0xb0
->   [ 1171.960090]  get_signal+0x86a/0x930
->   [ 1171.960099]  ? kfd_ioctl+0x4ad/0x5c0 [amdgpu]
->   [ 1171.960563]  ? srso_alias_return_thunk+0x5/0xfbef5
->   [ 1171.960570]  ? __x64_sys_ioctl+0xbd/0x100
->   [ 1171.960580]  arch_do_signal_or_restart+0x3a/0x250
->   [ 1171.960608]  exit_to_user_mode_loop+0x8f/0x500
->   [ 1171.960618]  do_syscall_64+0x2cd/0x14b0
->   [ 1171.960626]  ? srso_alias_return_thunk+0x5/0xfbef5
->   [ 1171.960631]  ? handle_mm_fault+0x1e8/0x2f0
->   [ 1171.960640]  ? srso_alias_return_thunk+0x5/0xfbef5
->   [ 1171.960646]  ? do_user_addr_fault+0x2ee/0x830
->   [ 1171.960655]  ? srso_alias_return_thunk+0x5/0xfbef5
->   [ 1171.960660]  ? irqentry_exit+0xa5/0x600
->   [ 1171.960670]  ? srso_alias_return_thunk+0x5/0xfbef5
->   [ 1171.960676]  ? exc_page_fault+0x94/0x1e0
->   [ 1171.960682]  ? ret_from_fork+0x1b2/0x3a0
->   [ 1171.960691]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
->   [ 1171.960697] RIP: 0033:0x70d718dab9cf
->   [ 1171.960704] Code: Unable to access opcode bytes at 0x70d718dab9a5.
->   [ 1171.960708] RSP: 002b:000070d717bfda90 EFLAGS: 00000246 ORIG_RAX: 00=
-00000000000010
->   [ 1171.960716] RAX: fffffffffffffffc RBX: 0000000000000003 RCX: 000070d=
-718dab9cf
->   [ 1171.960720] RDX: 000070d717bfdb60 RSI: 00000000c0184b0c RDI: 0000000=
-000000003
->   [ 1171.960725] RBP: 00000000c0184b0c R08: 0000000040000001 R09: 000070d=
-708000dd0
->   [ 1171.960728] R10: 000070d71902bc68 R11: 0000000000000246 R12: 000070d=
-717bfdc10
->   [ 1171.960732] R13: 000070d717bfdb60 R14: 0000000031050b60 R15: 000070d=
-708000dd0
->   [ 1171.960741]  </TASK>
->   [ 1171.960746] ---[ end trace 0000000000000000 ]---
->=20
-> I'll try the other testcase we had (omptests t-unified-* all running in
-> parallel) later also.
-> --=20
-> Arsen Arsenovi=C4=87
+This series fix shaper/3D LUT updates when changing night mode settings
+on gamescope with a custom branch that supports `COLOR_PIPELINE`[1].
 
+v1: https://lore.kernel.org/dri-devel/20260318162348.299807-1-mwen@igalia.com/
+Changes:
+- include linux types for function's bool return type (kernel bot on MSM
+  driver)
+- add Harry's r-b tags
+
+v2: https://lore.kernel.org/dri-devel/20260323131942.494217-1-mwen@igalia.com/
+Changes:
+- [NEW] two patches to only consider colorop updates from active color
+  pipelines (Chaitanya)
+- [NEW] make lut interpolation properties mutable + Alex H patch for
+  kernel docs
+- track lut(1/3)d_interpolation updates (Chaitanya)
+- rebase changes according to new patches
+
+v3: https://lore.kernel.org/dri-devel/20260403135909.214378-1-mwen@igalia.com/
+Changes: rebase on drm-misc-next
+
+[1] https://github.com/ValveSoftware/gamescope/pull/2113
+
+Melissa Wen
+
+Alex Hung (1):
+  drm/colorop: Remove read-only comments from interpolation fields
+
+Melissa Wen (5):
+  drm/atomic: only add colorop state from active color pipeline
+  drm/atomic: don't set colorop properties of inactive color pipelines
+  drm/colorop: make lut(1/3)d_interpolation mutable
+  drm/atomic: track individual colorop updates
+  drm/amd/display: use plane color_mgmt_changed to track colorop changes
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  6 +-
+ drivers/gpu/drm/drm_atomic.c                  | 43 +++++----
+ drivers/gpu/drm/drm_atomic_helper.c           |  9 +-
+ drivers/gpu/drm/drm_atomic_uapi.c             | 93 +++++++++++++++----
+ drivers/gpu/drm/drm_colorop.c                 | 16 +++-
+ include/drm/drm_atomic.h                      |  2 +-
+ include/drm/drm_atomic_uapi.h                 |  4 +-
+ include/drm/drm_colorop.h                     | 34 ++++---
+ 8 files changed, 136 insertions(+), 71 deletions(-)
+
+-- 
+2.53.0
 
