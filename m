@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uBMnHA2z9GnVDgIAu9opvQ
+	id 4GsgNBGz9GnVDgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 16:05:01 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 16:05:05 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B32404AD06D
-	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 16:05:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F7934AD07D
+	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 16:05:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 337E510F53E;
-	Fri,  1 May 2026 14:04:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F52510F542;
+	Fri,  1 May 2026 14:05:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="WxkgEgqq";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="U+E7tnJA";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010026.outbound.protection.outlook.com [52.101.61.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0036D10F53C
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 May 2026 14:04:57 +0000 (UTC)
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012048.outbound.protection.outlook.com [52.101.48.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4A5710F542
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 May 2026 14:05:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JnxsBiC8fu+nmYFSG3czhsEtO8yP6eoOvfsoOKFfFPkhU3p5qw/3zGQ1lA+KiK7UW9Vjtnt/m4uzdeDAFn+rGdBZGyMAsrM24iGIg/3zmwyCIaULk9CxOijrZ7jSFxgqENWydTOUkUd/R5q6r2b1u19Y+c0EXW9anlXkn3jxeBvfO5cUNDep9h2G1sl2CTG/Du3AdA+yoV9fLcLqptlF0+OMTo1LZrHCasD5jAV6K0oJ5/7k0569WyOVpHODi5e/vYK4A6z/8KKQpbBTxIIKbRcr9YEdl43r215AWNRqXnMX3RMhrBOm/CDoyL6mWnaZLgSMF/0s5SYfeo/CjyJsXg==
+ b=VMzq2Ei8Op61crhouOozqe/sNt4mDIBQBiFdNhZtyR+yoN44g43JN+cQ+pYZFgY9e1nQ8pesiyIBjZTNzRrHgAaVZqlbOOEdDsB5Bv8K5Bw40N6Z1aXKC+HyR1BEdSQRDPX7EJ7RTll9HTYXawYEKYJixS5SCwwiEUzz5eFP9hYU/CMPj70gofzXV49yDoCBZaoJgnq90u5uXmJg9NfmIoImWguaWaKBNreazC/mEAsi78sb9xQL4ae3g1cSmeCcE6u4XD5oXcUc3EnSE+SdU4KDh9ew/wkgAGOZ0LP9dS2f+1ZnXmgkAN1dd1nxcGmEVagJAhE00NxydP5TkDvBrg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iw40K8X4gg3CV683uzvQrjBEy5Ra3aIR5h6bD7850Jc=;
- b=m6MZ4asZx9OL4w5toOUXXUgJjH+jgMnBHnYja7M9V7d7kTUIBwpGUdOZVQCVfIKi9jKrTygnRb+bmdG8wlJp8eRm8VTfOi7NkzKQNUgAPn6d+6RAwDH69C0Ta559Ed31IuNDxDAyMlri1Ryd0CfePxXGOgbRFWY18Bzt9H+ImGkcZvqbXaKIsQOmShvLTST0Yg/kLP/QPG9UISOD35xCykACf4jyutPADLWOWqiOa+YVV7tBA3kYmZcJVSzkeePKvUKsFsCGG0sk+L9zNovIzsUtK8eHtJc/7pI03/1MggAVOVrB1+7RIsr8WTw7RvuCW9nXogz4Njn7YvWH0foKIQ==
+ bh=tOrg4fnCdqWF8fK3icFTXufeA9CYd3sdWpXk1wp81FA=;
+ b=kWJ8HC1n9YUgIiFQImaNmCzZlsYqvx+h/iVK92zggSnj9AJ7po7whVXgp78k8VBbcGIJ3O/sSMigGcIR/myKd7EqimSFa6NyCSgJB86JzvSlgwYKIVSP0uON+mSbXonL+QFhmNrQO77x094BsbzRwRNhFNLUpXHZ1qDYwXijRNLOXYZpE916wlGY1mnApZIPTeI3JdFh17jBzzyWas49euLBTOVEiZHHa92KfXC7c0pyBt8+KSe5dO5VHsBxLjGcKSC14RE7Ixbu3udiRIJCHbpjeqvRw/6YPzBfv/v+NjfSQwn7UI5sjz91jsnkTklQo7aoPhhk5LL3fZrgBR6ejQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iw40K8X4gg3CV683uzvQrjBEy5Ra3aIR5h6bD7850Jc=;
- b=WxkgEgqqf5b23LigwBDNVklb+iBkyrwSvhWf8nzaFaKJdLKn8cBcAleFGrlt/B7o/KwKMBxtO08Ypcv18hQ04hArOpoY/GA9CyhZwFeCArb9fs8RDKUwnNwMCvSnWYed06jh6oIBZEsYfRfqyhcUvMEm60voC9MAeGptDwd4wog=
-Received: from CYZPR17CA0013.namprd17.prod.outlook.com (2603:10b6:930:8c::14)
- by IA1PR12MB6140.namprd12.prod.outlook.com (2603:10b6:208:3e8::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.23; Fri, 1 May
- 2026 14:04:53 +0000
-Received: from CH2PEPF0000013E.namprd02.prod.outlook.com
- (2603:10b6:930:8c:cafe::77) by CYZPR17CA0013.outlook.office365.com
- (2603:10b6:930:8c::14) with Microsoft SMTP Server (version=TLS1_3,
+ bh=tOrg4fnCdqWF8fK3icFTXufeA9CYd3sdWpXk1wp81FA=;
+ b=U+E7tnJA8MdMbe0Q2ZjgmRn8bZ0CJyaKqXHvzI8CS6NCcssL+7YCu3ktADHbQP0gUgA5Qydvg41A5kaLmEC3NodUozv0Glf1iuYNSPOSrOl7SWZRC2oAvJQmEO5NdBGrX5oD2tlRfmg8OEsomtNu5wqsEBJSgNJJgO+Gfu/dGfM=
+Received: from CH5PR02CA0017.namprd02.prod.outlook.com (2603:10b6:610:1ed::19)
+ by CYYPR12MB8732.namprd12.prod.outlook.com (2603:10b6:930:c8::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.15; Fri, 1 May
+ 2026 14:04:54 +0000
+Received: from CH2PEPF00000141.namprd02.prod.outlook.com
+ (2603:10b6:610:1ed:cafe::89) by CH5PR02CA0017.outlook.office365.com
+ (2603:10b6:610:1ed::19) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9870.23 via Frontend Transport; Fri,
- 1 May 2026 14:04:52 +0000
+ 1 May 2026 14:04:54 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -53,17 +53,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
 Received: from satlexmb08.amd.com (165.204.84.17) by
- CH2PEPF0000013E.mail.protection.outlook.com (10.167.244.70) with Microsoft
+ CH2PEPF00000141.mail.protection.outlook.com (10.167.244.74) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9891.9 via Frontend Transport; Fri, 1 May 2026 14:04:52 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by satlexmb08.amd.com
+ 15.20.9891.9 via Frontend Transport; Fri, 1 May 2026 14:04:53 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Fri, 1 May
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 1 May
  2026 09:04:51 -0500
-Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 1 May
- 2026 09:04:50 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 1 May
+ 2026 07:04:51 -0700
 Received: from hwentlanryzen (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
  Transport; Fri, 1 May 2026 09:04:50 -0500
@@ -71,42 +71,40 @@ From: Harry Wentland <harry.wentland@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Harry Wentland
  <harry.wentland@amd.com>
-Subject: [PATCH 02/21] drm/amd/display: Add FRL registers for DCN30
-Date: Fri, 1 May 2026 10:04:18 -0400
-Message-ID: <20260501140441.41068-3-harry.wentland@amd.com>
+Subject: [PATCH 03/21] drm/amd/display: Add required FRL registers for DCN31
+Date: Fri, 1 May 2026 10:04:19 -0400
+Message-ID: <20260501140441.41068-4-harry.wentland@amd.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260501140441.41068-1-harry.wentland@amd.com>
 References: <20260501140441.41068-1-harry.wentland@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-Received-SPF: None (SATLEXMB03.amd.com: harry.wentland@amd.com does not
- designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF0000013E:EE_|IA1PR12MB6140:EE_
-X-MS-Office365-Filtering-Correlation-Id: 249cdde4-1476-4144-d96e-08dea78a9dbc
+X-MS-TrafficTypeDiagnostic: CH2PEPF00000141:EE_|CYYPR12MB8732:EE_
+X-MS-Office365-Filtering-Correlation-Id: c165d593-e455-47dd-59a6-08dea78a9e4b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|376014|1800799024|82310400026|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info: lz1eefmmbgPSLeCmtWTZfD4zApPYvY271NdYArwPHqMWeWS/8HYeQfQ4K4JX75Ee86IdhYq0hvTaC0lmBDZodphcG9HkG/IImy20S3T2umDg0lakfOnKmBz1yT+OgLnZBmBqs4+SupJB7vJC809HmZK20KgC8D7YK8Nvw+EcMVidohdkeXaI/NTNK8ZUFxHGIKBMKcoC7vyMCo4Tw+s5O42qxiMdscLM0TpYcYYJtUXl1CEv3Ph4x5Dmau+eJIbUkAaeLRJsVwbdFoA6fB6K1ZoZcaBOk9/0l2XccUCBFmbfmiGQbfvjCOOyV4znDYTN3pAdOxD5Sl2FoKMKvS/jj75MsmVcWQ5GJhAoxGcVN2BEyte2x/5NwPZIK/q3gnp0c/VTtL6W8p6ULzI500YvkOix3aPrSNyBZUjwXYZx2HAvmQTMMW0tTJihpHNeQOeUmnek/IY2jG6SLJS76lzb29HDIKm5dRPhC4LBp6nPHX30F7zFpIGo44mxWcHdga6y45YGuJ0VG5m8rxvmCkJrASmROEC4bej0uyMh1uv4rpwvjU/N/AFVbI5k0nmXL0PX5/1uSwzo80WaP8qNqFbCvoyYF5QAimfaMBtXoGfT57nEc2xfSLNRPRXhrpCFgWUyxrMDQlVthfkGeiWNLE8GiZLPLr45UdsdI2j+WlvSX+NQF/xzxZUPBlrYIKy6IQoca0FOd/0i6UEgqlCCPwPLUlqFATY958n68lYA/pQA2Fk=
+ ARA:13230040|82310400026|36860700016|376014|1800799024|22082099003|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: J8K8sml/W8Op2snn0RgDTMFXscfC0dE6bmzY0jliI1wpdo2YfWabAjjo2ElvYXHhe8qUr23N+GrR3KdCTnK6ZAD8msC2r/WoV0lT6vfo1eGAGtRIKm5VHBkbHoUg4PKCeGGdQr1AyclOYS9ADMJxpwFWm7u3yW/piXrBuKScEL/MWLxsFMtIx0MmcDH7Oz49kKO80kxGc6LoGEZ+zW6WzXcaDIRDW0241sZ/+9baOXLST1Bk3yBL67Jbgt2/lwefpOfLEhMBKR4FW01KcHlm+k59a+i4sMuM1zICn9B8AldVrldssF2TW+038jERPwLhqL5fLdZpRkSNSCedh9hmOzrbXjrCUFisYmnBfUHCFnzPgeJRI4//Z7GyBmUsk7c27/dsWCemUx8LMpV87x8V7K8OruBOiTvGyxivE4+3K3ViyM4bNi09E6yo7PQqKbkB4ibIE0vIpMH8akvGtMSs0g6xqXoTwjLCjTvWDJEbOq0LSqHe12oPieh2b27BibUcwmMK45dcwM2THuLPiVMV0BngO7mE4XudXirHGoTlohdsA4nw0pqfCFW4e4G63oPzyTV9QwyfknqjpUxuaKuYYxxdQ7DdL2wD5CQitSfE09gcse2AOjKp3Dyx9SDeEwT4cozgWgmRHtzpPM7ELAeMQ/cmX+PMDXT4jQ/YsaX2PfRQRTeY1LTsqSnVZ2sTtsG5+u/tl4PrCciSVBExNXv4EFSoPO7ItJ6OhWtsqlstcwQ=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(376014)(1800799024)(82310400026)(18002099003)(56012099003)(22082099003);
+ SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(22082099003)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: BnJhkJJjcb8aYQz+aPK9Z0p3ayK7128rbKmGCMpYt9GQ65AT0pSlirKGq2OiGoqmbiJOBOakmD4IyyrxeRJG6HNvRTrThzvjt2SyWPn7mM9LxSCKZ0wM8QkMwT+3KcuaWW6g0Ae9M4C01yUVvt2GSMqZaIAXjKabdgeP8qgrzHB9ye5V/xtgybYnh4UhnW0mcSyFWZV590gXHK+9xcPEkR7AnK8W1SKT2jA92EgDDsoddZn/tvOEEHQ3Z4xh25SZSrf/a5YV5SWqd4NRNZTXh/cjVZF5pgWvPPByJxuV4vhlDkcwyD53FVFeulR9Q/FSg1Rpdh5cEV0RhNkyNGGDGRu+QzleSwCNVR4HKm4VTCNXPNrGB7RnB4TQJFzfsLF2bvUa/7n7g6HSHCS+e93YLDHBbsyOX4RQxtkWFsal1TXobDfRVNsykDDO8JvY+Q41
+X-MS-Exchange-AntiSpam-MessageData-0: dOL4+BtkR76pBsOt1ZO7e+x/Z11mtEJEqzXa5ZFGbKS9lOlSCmn7ACM8ZwpuU3oEgxTJrtZIIdXrQI6kd6vVlURiRv07qZN0wZs+gknVtmaOWFlZO7Oa+Dy74lli/BauzWQujTaHXbzB+BVcqAU3ZcFlcuuMd5BmW3WSZVVa7PzmZ4JnnSnTeO+pIWfY+rAgQPNaAnDlkDTLhkz0OnLmcxQYozWKHtFM+2dTd7yZ8+WpBL2eAGpjGg6j/RoOo64UK4cfFXEcdBKgMyfQd8rPFKSvCDF9pvXbcs50HZthw1UGxbHk1ElIu7er2omhVDIuoCt4H8WgSg2COitUhqYjPT6C41BQC8aT6NdNeLTLDin2A2cmGJx0IegWoFvq7gEICuFB3ChkD+gMy9Kon1Hiqjnbp1igwyrkXGsEL6K3Ur8OsO+GS6xMePZBrtejHaEM
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 May 2026 14:04:52.6375 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 249cdde4-1476-4144-d96e-08dea78a9dbc
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 May 2026 14:04:53.5701 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c165d593-e455-47dd-59a6-08dea78a9e4b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000013E.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF00000141.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6140
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8732
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,7 +118,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: B32404AD06D
+X-Rspamd-Queue-Id: 2F7934AD07D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
@@ -152,171 +150,215 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 
-Introduce the stream creation function, which requires the FRL
-registers for DCN30.
+This commit introduces multiple hardware registers necessary to enable
+FRL on AMD devices.
 
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Signed-off-by: Harry Wentland <harry.wentland@amd.com>
 ---
- .../include/asic_reg/dcn/dcn_3_0_0_offset.h   | 129 ++++
- .../include/asic_reg/dcn/dcn_3_0_0_sh_mask.h  | 600 ++++++++++++++++++
- 2 files changed, 729 insertions(+)
+ .../include/asic_reg/dcn/dcn_3_1_2_offset.h   | 109 ++++
+ .../include/asic_reg/dcn/dcn_3_1_2_sh_mask.h  | 548 ++++++++++++++++++
+ 2 files changed, 657 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_offset.h
-index f32649047374..904518791b62 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_offset.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_offset.h
-@@ -15871,6 +15871,113 @@
- #define mmDC_PERFMON28_PERFMON_LOW                                                                     0x08cf
- #define mmDC_PERFMON28_PERFMON_LOW_BASE_IDX                                                            3
- 
-+// addressBlock: dce_dc_hpo_hdmi_stream_enc0_dispdec
-+// base address: 0x2634c
-+#define mmHDMI_STREAM_ENC_CLOCK_CONTROL                                                                0x08d3
-+#define mmHDMI_STREAM_ENC_CLOCK_CONTROL_BASE_IDX                                                       3
-+#define mmHDMI_STREAM_ENC_HDMISTREAMCLK_CONTROL                                                        0x08d4
-+#define mmHDMI_STREAM_ENC_HDMISTREAMCLK_CONTROL_BASE_IDX                                               3
-+#define mmHDMI_STREAM_ENC_INPUT_MUX_CONTROL                                                            0x08d5
-+#define mmHDMI_STREAM_ENC_INPUT_MUX_CONTROL_BASE_IDX                                                   3
-+#define mmHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL0                                     0x08d6
-+#define mmHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL0_BASE_IDX                            3
-+#define mmHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL1                                     0x08d7
-+#define mmHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL1_BASE_IDX                            3
-+#define mmHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2                                     0x08d8
-+#define mmHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2_BASE_IDX                            3
-+
-+// addressBlock: dce_dc_hpo_hdmi_stream_enc0_dispdec
-+// base address: 0x2634c
-+#define mmHDMI_STREAM_ENC_CLOCK_CONTROL                                                                0x08d3
-+#define mmHDMI_STREAM_ENC_CLOCK_CONTROL_BASE_IDX                                                       3
-+#define mmHDMI_STREAM_ENC_HDMISTREAMCLK_CONTROL                                                        0x08d4
-+#define mmHDMI_STREAM_ENC_HDMISTREAMCLK_CONTROL_BASE_IDX                                               3
-+#define mmHDMI_STREAM_ENC_INPUT_MUX_CONTROL                                                            0x08d5
-+#define mmHDMI_STREAM_ENC_INPUT_MUX_CONTROL_BASE_IDX                                                   3
-+#define mmHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL0                                     0x08d6
-+#define mmHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL0_BASE_IDX                            3
-+#define mmHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL1                                     0x08d7
-+#define mmHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL1_BASE_IDX                            3
-+#define mmHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2                                     0x08d8
-+#define mmHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2_BASE_IDX                            3
-+
-+// addressBlock: dce_dc_hpo_hdmi_tb_enc0_dispdec
-+// base address: 0x2637c
-+#define mmHDMI_TB_ENC_CONTROL                                                                          0x08df
-+#define mmHDMI_TB_ENC_CONTROL_BASE_IDX                                                                 3
-+#define mmHDMI_TB_ENC_PIXEL_FORMAT                                                                     0x08e0
-+#define mmHDMI_TB_ENC_PIXEL_FORMAT_BASE_IDX                                                            3
-+#define mmHDMI_TB_ENC_PACKET_CONTROL                                                                   0x08e1
-+#define mmHDMI_TB_ENC_PACKET_CONTROL_BASE_IDX                                                          3
-+#define mmHDMI_TB_ENC_ACR_PACKET_CONTROL                                                               0x08e2
-+#define mmHDMI_TB_ENC_ACR_PACKET_CONTROL_BASE_IDX                                                      3
-+#define mmHDMI_TB_ENC_VBI_PACKET_CONTROL1                                                              0x08e3
-+#define mmHDMI_TB_ENC_VBI_PACKET_CONTROL1_BASE_IDX                                                     3
-+#define mmHDMI_TB_ENC_VBI_PACKET_CONTROL2                                                              0x08e4
-+#define mmHDMI_TB_ENC_VBI_PACKET_CONTROL2_BASE_IDX                                                     3
-+#define mmHDMI_TB_ENC_GC_CONTROL                                                                       0x08e5
-+#define mmHDMI_TB_ENC_GC_CONTROL_BASE_IDX                                                              3
-+#define mmHDMI_TB_ENC_GENERIC_PACKET_CONTROL0                                                          0x08e6
-+#define mmHDMI_TB_ENC_GENERIC_PACKET_CONTROL0_BASE_IDX                                                 3
-+#define mmHDMI_TB_ENC_GENERIC_PACKET_CONTROL1                                                          0x08e7
-+#define mmHDMI_TB_ENC_GENERIC_PACKET_CONTROL1_BASE_IDX                                                 3
-+#define mmHDMI_TB_ENC_GENERIC_PACKET_CONTROL2                                                          0x08e8
-+#define mmHDMI_TB_ENC_GENERIC_PACKET_CONTROL2_BASE_IDX                                                 3
-+#define mmHDMI_TB_ENC_GENERIC_PACKET0_1_LINE                                                           0x08e9
-+#define mmHDMI_TB_ENC_GENERIC_PACKET0_1_LINE_BASE_IDX                                                  3
-+#define mmHDMI_TB_ENC_GENERIC_PACKET2_3_LINE                                                           0x08ea
-+#define mmHDMI_TB_ENC_GENERIC_PACKET2_3_LINE_BASE_IDX                                                  3
-+#define mmHDMI_TB_ENC_GENERIC_PACKET4_5_LINE                                                           0x08eb
-+#define mmHDMI_TB_ENC_GENERIC_PACKET4_5_LINE_BASE_IDX                                                  3
-+#define mmHDMI_TB_ENC_GENERIC_PACKET6_7_LINE                                                           0x08ec
-+#define mmHDMI_TB_ENC_GENERIC_PACKET6_7_LINE_BASE_IDX                                                  3
-+#define mmHDMI_TB_ENC_GENERIC_PACKET8_9_LINE                                                           0x08ed
-+#define mmHDMI_TB_ENC_GENERIC_PACKET8_9_LINE_BASE_IDX                                                  3
-+#define mmHDMI_TB_ENC_GENERIC_PACKET10_11_LINE                                                         0x08ee
-+#define mmHDMI_TB_ENC_GENERIC_PACKET10_11_LINE_BASE_IDX                                                3
-+#define mmHDMI_TB_ENC_GENERIC_PACKET12_13_LINE                                                         0x08ef
-+#define mmHDMI_TB_ENC_GENERIC_PACKET12_13_LINE_BASE_IDX                                                3
-+#define mmHDMI_TB_ENC_GENERIC_PACKET14_LINE                                                            0x08f0
-+#define mmHDMI_TB_ENC_GENERIC_PACKET14_LINE_BASE_IDX                                                   3
-+#define mmHDMI_TB_ENC_DB_CONTROL                                                                       0x08f1
-+#define mmHDMI_TB_ENC_DB_CONTROL_BASE_IDX                                                              3
-+#define mmHDMI_TB_ENC_ACR_32_0                                                                         0x08f2
-+#define mmHDMI_TB_ENC_ACR_32_0_BASE_IDX                                                                3
-+#define mmHDMI_TB_ENC_ACR_32_1                                                                         0x08f3
-+#define mmHDMI_TB_ENC_ACR_32_1_BASE_IDX                                                                3
-+#define mmHDMI_TB_ENC_ACR_44_0                                                                         0x08f4
-+#define mmHDMI_TB_ENC_ACR_44_0_BASE_IDX                                                                3
-+#define mmHDMI_TB_ENC_ACR_44_1                                                                         0x08f5
-+#define mmHDMI_TB_ENC_ACR_44_1_BASE_IDX                                                                3
-+#define mmHDMI_TB_ENC_ACR_48_0                                                                         0x08f6
-+#define mmHDMI_TB_ENC_ACR_48_0_BASE_IDX                                                                3
-+#define mmHDMI_TB_ENC_ACR_48_1                                                                         0x08f7
-+#define mmHDMI_TB_ENC_ACR_48_1_BASE_IDX                                                                3
-+#define mmHDMI_TB_ENC_ACR_STATUS_0                                                                     0x08f8
-+#define mmHDMI_TB_ENC_ACR_STATUS_0_BASE_IDX                                                            3
-+#define mmHDMI_TB_ENC_ACR_STATUS_1                                                                     0x08f9
-+#define mmHDMI_TB_ENC_ACR_STATUS_1_BASE_IDX                                                            3
-+#define mmHDMI_TB_ENC_BUFFER_CONTROL                                                                   0x08fb
-+#define mmHDMI_TB_ENC_BUFFER_CONTROL_BASE_IDX                                                          3
-+#define mmHDMI_TB_ENC_MEM_CTRL                                                                         0x08fe
-+#define mmHDMI_TB_ENC_MEM_CTRL_BASE_IDX                                                                3
-+#define mmHDMI_TB_ENC_METADATA_PACKET_CONTROL                                                          0x08ff
-+#define mmHDMI_TB_ENC_METADATA_PACKET_CONTROL_BASE_IDX                                                 3
-+#define mmHDMI_TB_ENC_H_ACTIVE_BLANK                                                                   0x0900
-+#define mmHDMI_TB_ENC_H_ACTIVE_BLANK_BASE_IDX                                                          3
-+#define mmHDMI_TB_ENC_HC_ACTIVE_BLANK                                                                  0x0901
-+#define mmHDMI_TB_ENC_HC_ACTIVE_BLANK_BASE_IDX                                                         3
-+#define mmHDMI_TB_ENC_CRC_CNTL                                                                         0x0903
-+#define mmHDMI_TB_ENC_CRC_CNTL_BASE_IDX                                                                3
-+#define mmHDMI_TB_ENC_CRC_RESULT_0                                                                     0x0904
-+#define mmHDMI_TB_ENC_CRC_RESULT_0_BASE_IDX                                                            3
-+#define mmHDMI_TB_ENC_MODE                                                                             0x0908
-+#define mmHDMI_TB_ENC_MODE_BASE_IDX                                                                    3
-+#define mmHDMI_TB_ENC_INPUT_FIFO_STATUS                                                                0x0909
-+#define mmHDMI_TB_ENC_INPUT_FIFO_STATUS_BASE_IDX                                                       3
-+#define mmHDMI_TB_ENC_CRC_RESULT_1                                                                     0x090a
-+#define mmHDMI_TB_ENC_CRC_RESULT_1_BASE_IDX                                                            3
-+
- // base address: 0x2646c
- #define mmAFMT6_AFMT_VBI_PACKET_CONTROL                                                                0x091c
- #define mmAFMT6_AFMT_VBI_PACKET_CONTROL_BASE_IDX                                                       3
-@@ -15934,6 +16041,28 @@
- #define mmVPG6_VPG_MPEG_INFO1                                                                          0x093a
- #define mmVPG6_VPG_MPEG_INFO1_BASE_IDX                                                                 3
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_offset.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_offset.h
+index 7fd906f10803..ad8c2dd480f2 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_offset.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_offset.h
+@@ -12907,9 +12907,41 @@
+ #define regDC_PERFMON22_PERFMON_LOW                                                                     0x0e6e
+ #define regDC_PERFMON22_PERFMON_LOW_BASE_IDX                                                            3
  
 +// addressBlock: dce_dc_hpo_hdmi_link_enc0_dispdec
 +// base address: 0x2656c
-+#define mmHDMI_LINK_ENC_CONTROL                                                                        0x095b
-+#define mmHDMI_LINK_ENC_CONTROL_BASE_IDX                                                               3
-+#define mmHDMI_LINK_ENC_CLK_CTRL                                                                       0x095c
-+#define mmHDMI_LINK_ENC_CLK_CTRL_BASE_IDX                                                              3
++#define regHDMI_LINK_ENC_CONTROL                                                                        0x095b
++#define regHDMI_LINK_ENC_CONTROL_BASE_IDX                                                               3
++#define regHDMI_LINK_ENC_CLK_CTRL                                                                       0x095c
++#define regHDMI_LINK_ENC_CLK_CTRL_BASE_IDX                                                              3
 +
 +// addressBlock: dce_dc_hpo_hdmi_frl_enc0_dispdec
 +// base address: 0x26594
-+#define mmHDMI_FRL_ENC_CONFIG                                                                          0x0965
-+#define mmHDMI_FRL_ENC_CONFIG_BASE_IDX                                                                 3
-+#define mmHDMI_FRL_ENC_CONFIG2                                                                         0x0966
-+#define mmHDMI_FRL_ENC_CONFIG2_BASE_IDX                                                                3
-+#define mmHDMI_FRL_ENC_METER_BUFFER_STATUS                                                             0x0967
-+#define mmHDMI_FRL_ENC_METER_BUFFER_STATUS_BASE_IDX                                                    3
-+#define mmHDMI_FRL_ENC_MEM_CTRL                                                                        0x0968
-+#define mmHDMI_FRL_ENC_MEM_CTRL_BASE_IDX                                                               3
++#define regHDMI_FRL_ENC_CONFIG                                                                          0x0965
++#define regHDMI_FRL_ENC_CONFIG_BASE_IDX                                                                 3
++#define regHDMI_FRL_ENC_CONFIG2                                                                         0x0966
++#define regHDMI_FRL_ENC_CONFIG2_BASE_IDX                                                                3
++#define regHDMI_FRL_ENC_METER_BUFFER_STATUS                                                             0x0967
++#define regHDMI_FRL_ENC_METER_BUFFER_STATUS_BASE_IDX                                                    3
++#define regHDMI_FRL_ENC_MEM_CTRL                                                                        0x0968
++#define regHDMI_FRL_ENC_MEM_CTRL_BASE_IDX                                                               3
 +
-+// addressBlock: dce_dc_hpo_hpo_top_dispdec
-+// base address: 0x0
-+#define mmHPO_TOP_CLOCK_CONTROL                                                                        0x0e43
-+#define mmHPO_TOP_CLOCK_CONTROL_BASE_IDX                                                               3
++// addressBlock: dce_dc_hpo_hdmi_stream_enc0_dispdec
++// base address: 0x2634c
++#define regHDMI_STREAM_ENC_CLOCK_CONTROL                                                                0x08d3
++#define regHDMI_STREAM_ENC_CLOCK_CONTROL_BASE_IDX                                                       3
++#define regHDMI_STREAM_ENC_INPUT_MUX_CONTROL                                                            0x08d5
++#define regHDMI_STREAM_ENC_INPUT_MUX_CONTROL_BASE_IDX                                                   3
++#define regHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL0                                     0x08d6
++#define regHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL0_BASE_IDX                            3
++#define regHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL1                                     0x08d7
++#define regHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL1_BASE_IDX                            3
++#define regHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2                                     0x08d8
++#define regHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2_BASE_IDX                            3
  
- // base address: 0x264f0
- #define mmDME6_DME_CONTROL                                                                             0x093c
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_sh_mask.h
-index 4005c73c2c9f..92c3ba54effa 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_sh_mask.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_0_sh_mask.h
-@@ -60370,6 +60370,496 @@
- #define DC_PERFMON28_PERFMON_LOW__PERFMON_LOW__SHIFT                                                          0x0
- #define DC_PERFMON28_PERFMON_LOW__PERFMON_LOW_MASK                                                            0xFFFFFFFFL
+ // addressBlock: dce_dc_hpo_hdmi_stream_enc0_afmt_afmt_dispdec
+ // base address: 0x2646c
++#define regAFMT5_AFMT_ACP                                                                               0x091b
++#define regAFMT5_AFMT_ACP_BASE_IDX                                                                      3
+ #define regAFMT5_AFMT_VBI_PACKET_CONTROL                                                                0x091c
+ #define regAFMT5_AFMT_VBI_PACKET_CONTROL_BASE_IDX                                                       3
+ #define regAFMT5_AFMT_AUDIO_PACKET_CONTROL2                                                             0x091d
+@@ -12981,6 +13013,83 @@
+ #define regVPG5_VPG_MPEG_INFO1                                                                          0x093a
+ #define regVPG5_VPG_MPEG_INFO1_BASE_IDX                                                                 3
  
++// addressBlock: dce_dc_hpo_hdmi_tb_enc0_dispdec
++// base address: 0x2637c
++#define regHDMI_TB_ENC_CONTROL                                                                          0x08df
++#define regHDMI_TB_ENC_CONTROL_BASE_IDX                                                                 3
++#define regHDMI_TB_ENC_PIXEL_FORMAT                                                                     0x08e0
++#define regHDMI_TB_ENC_PIXEL_FORMAT_BASE_IDX                                                            3
++#define regHDMI_TB_ENC_PACKET_CONTROL                                                                   0x08e1
++#define regHDMI_TB_ENC_PACKET_CONTROL_BASE_IDX                                                          3
++#define regHDMI_TB_ENC_ACR_PACKET_CONTROL                                                               0x08e2
++#define regHDMI_TB_ENC_ACR_PACKET_CONTROL_BASE_IDX                                                      3
++#define regHDMI_TB_ENC_VBI_PACKET_CONTROL1                                                              0x08e3
++#define regHDMI_TB_ENC_VBI_PACKET_CONTROL1_BASE_IDX                                                     3
++#define regHDMI_TB_ENC_VBI_PACKET_CONTROL2                                                              0x08e4
++#define regHDMI_TB_ENC_VBI_PACKET_CONTROL2_BASE_IDX                                                     3
++#define regHDMI_TB_ENC_GC_CONTROL                                                                       0x08e5
++#define regHDMI_TB_ENC_GC_CONTROL_BASE_IDX                                                              3
++#define regHDMI_TB_ENC_GENERIC_PACKET_CONTROL0                                                          0x08e6
++#define regHDMI_TB_ENC_GENERIC_PACKET_CONTROL0_BASE_IDX                                                 3
++#define regHDMI_TB_ENC_GENERIC_PACKET_CONTROL1                                                          0x08e7
++#define regHDMI_TB_ENC_GENERIC_PACKET_CONTROL1_BASE_IDX                                                 3
++#define regHDMI_TB_ENC_GENERIC_PACKET_CONTROL2                                                          0x08e8
++#define regHDMI_TB_ENC_GENERIC_PACKET_CONTROL2_BASE_IDX                                                 3
++#define regHDMI_TB_ENC_GENERIC_PACKET0_1_LINE                                                           0x08e9
++#define regHDMI_TB_ENC_GENERIC_PACKET0_1_LINE_BASE_IDX                                                  3
++#define regHDMI_TB_ENC_GENERIC_PACKET2_3_LINE                                                           0x08ea
++#define regHDMI_TB_ENC_GENERIC_PACKET2_3_LINE_BASE_IDX                                                  3
++#define regHDMI_TB_ENC_GENERIC_PACKET4_5_LINE                                                           0x08eb
++#define regHDMI_TB_ENC_GENERIC_PACKET4_5_LINE_BASE_IDX                                                  3
++#define regHDMI_TB_ENC_GENERIC_PACKET6_7_LINE                                                           0x08ec
++#define regHDMI_TB_ENC_GENERIC_PACKET6_7_LINE_BASE_IDX                                                  3
++#define regHDMI_TB_ENC_GENERIC_PACKET8_9_LINE                                                           0x08ed
++#define regHDMI_TB_ENC_GENERIC_PACKET8_9_LINE_BASE_IDX                                                  3
++#define regHDMI_TB_ENC_GENERIC_PACKET10_11_LINE                                                         0x08ee
++#define regHDMI_TB_ENC_GENERIC_PACKET10_11_LINE_BASE_IDX                                                3
++#define regHDMI_TB_ENC_GENERIC_PACKET12_13_LINE                                                         0x08ef
++#define regHDMI_TB_ENC_GENERIC_PACKET12_13_LINE_BASE_IDX                                                3
++#define regHDMI_TB_ENC_GENERIC_PACKET14_LINE                                                            0x08f0
++#define regHDMI_TB_ENC_GENERIC_PACKET14_LINE_BASE_IDX                                                   3
++#define regHDMI_TB_ENC_DB_CONTROL                                                                       0x08f1
++#define regHDMI_TB_ENC_DB_CONTROL_BASE_IDX                                                              3
++#define regHDMI_TB_ENC_ACR_32_0                                                                         0x08f2
++#define regHDMI_TB_ENC_ACR_32_0_BASE_IDX                                                                3
++#define regHDMI_TB_ENC_ACR_32_1                                                                         0x08f3
++#define regHDMI_TB_ENC_ACR_32_1_BASE_IDX                                                                3
++#define regHDMI_TB_ENC_ACR_44_0                                                                         0x08f4
++#define regHDMI_TB_ENC_ACR_44_0_BASE_IDX                                                                3
++#define regHDMI_TB_ENC_ACR_44_1                                                                         0x08f5
++#define regHDMI_TB_ENC_ACR_44_1_BASE_IDX                                                                3
++#define regHDMI_TB_ENC_ACR_48_0                                                                         0x08f6
++#define regHDMI_TB_ENC_ACR_48_0_BASE_IDX                                                                3
++#define regHDMI_TB_ENC_ACR_48_1                                                                         0x08f7
++#define regHDMI_TB_ENC_ACR_48_1_BASE_IDX                                                                3
++#define regHDMI_TB_ENC_ACR_STATUS_0                                                                     0x08f8
++#define regHDMI_TB_ENC_ACR_STATUS_0_BASE_IDX                                                            3
++#define regHDMI_TB_ENC_ACR_STATUS_1                                                                     0x08f9
++#define regHDMI_TB_ENC_ACR_STATUS_1_BASE_IDX                                                            3
++#define regHDMI_TB_ENC_BUFFER_CONTROL                                                                   0x08fb
++#define regHDMI_TB_ENC_BUFFER_CONTROL_BASE_IDX                                                          3
++#define regHDMI_TB_ENC_MEM_CTRL                                                                         0x08fe
++#define regHDMI_TB_ENC_MEM_CTRL_BASE_IDX                                                                3
++#define regHDMI_TB_ENC_METADATA_PACKET_CONTROL                                                          0x08ff
++#define regHDMI_TB_ENC_METADATA_PACKET_CONTROL_BASE_IDX                                                 3
++#define regHDMI_TB_ENC_H_ACTIVE_BLANK                                                                   0x0900
++#define regHDMI_TB_ENC_H_ACTIVE_BLANK_BASE_IDX                                                          3
++#define regHDMI_TB_ENC_HC_ACTIVE_BLANK                                                                  0x0901
++#define regHDMI_TB_ENC_HC_ACTIVE_BLANK_BASE_IDX                                                         3
++#define regHDMI_TB_ENC_CRC_CNTL                                                                         0x0903
++#define regHDMI_TB_ENC_CRC_CNTL_BASE_IDX                                                                3
++#define regHDMI_TB_ENC_CRC_RESULT_0                                                                     0x0904
++#define regHDMI_TB_ENC_CRC_RESULT_0_BASE_IDX                                                            3
++#define regHDMI_TB_ENC_MODE                                                                             0x0908
++#define regHDMI_TB_ENC_MODE_BASE_IDX                                                                    3
++#define regHDMI_TB_ENC_INPUT_FIFO_STATUS                                                                0x0909
++#define regHDMI_TB_ENC_INPUT_FIFO_STATUS_BASE_IDX                                                       3
++#define regHDMI_TB_ENC_CRC_RESULT_1                                                                     0x090a
++#define regHDMI_TB_ENC_CRC_RESULT_1_BASE_IDX                                                            3
++
+ 
+ // addressBlock: dce_dc_hpo_dp_stream_enc0_dispdec
+ // base address: 0x1ab8c
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_sh_mask.h
+index 07fbfafe6056..9c570d781c52 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_sh_mask.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_sh_mask.h
+@@ -48391,6 +48391,124 @@
+ #define DC_PERFMON22_PERFMON_LOW__PERFMON_LOW__SHIFT                                                          0x0
+ #define DC_PERFMON22_PERFMON_LOW__PERFMON_LOW_MASK                                                            0xFFFFFFFFL
+ 
++// addressBlock: dce_dc_hpo_hdmi_link_enc0_dispdec
++//HDMI_LINK_ENC_CONTROL
++#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_ENABLE__SHIFT                                                    0x0
++#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_SOFT_RESET__SHIFT                                                0x4
++#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_ENABLE_MASK                                                      0x00000001L
++#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_SOFT_RESET_MASK                                                  0x00000010L
++//HDMI_LINK_ENC_CLK_CTRL
++#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_EN__SHIFT                                                 0x0
++#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_ON_HDMICHARCLK__SHIFT                                     0x1
++#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_EN_MASK                                                   0x00000001L
++#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_ON_HDMICHARCLK_MASK                                       0x00000002L
++
++
++// addressBlock: dce_dc_hpo_hdmi_frl_enc0_dispdec
++//HDMI_FRL_ENC_CONFIG
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE_COUNT__SHIFT                                                      0x0
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_TRAINING_ENABLE__SHIFT                                                 0x1
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_SCRAMBLER_DISABLE__SHIFT                                               0x2
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE0_TRAINING_PATTERN__SHIFT                                          0x10
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE1_TRAINING_PATTERN__SHIFT                                          0x14
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE2_TRAINING_PATTERN__SHIFT                                          0x18
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE3_TRAINING_PATTERN__SHIFT                                          0x1c
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE_COUNT_MASK                                                        0x00000001L
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_TRAINING_ENABLE_MASK                                                   0x00000002L
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_SCRAMBLER_DISABLE_MASK                                                 0x00000004L
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE0_TRAINING_PATTERN_MASK                                            0x000F0000L
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE1_TRAINING_PATTERN_MASK                                            0x00F00000L
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE2_TRAINING_PATTERN_MASK                                            0x0F000000L
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE3_TRAINING_PATTERN_MASK                                            0xF0000000L
++//HDMI_FRL_ENC_CONFIG2
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE__SHIFT                                               0x0
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_THRESHOLD__SHIFT                                               0xc
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_CAL_EN__SHIFT                                                  0x18
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_RC_COMPRESS_DISABLE__SHIFT                                            0x19
++#define HDMI_FRL_ENC_CONFIG2__HDMI_FRL_HDMISTREAMCLK_DB_SEL__SHIFT                                            0x1a
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE_RESET__SHIFT                                         0x1c
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_EXCEED_STATUS__SHIFT                                           0x1d
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_METER_BUFFER_OVERFLOW_STATUS__SHIFT                                   0x1e
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE_MASK                                                 0x000001FFL
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_THRESHOLD_MASK                                                 0x001FF000L
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_CAL_EN_MASK                                                    0x01000000L
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_RC_COMPRESS_DISABLE_MASK                                              0x02000000L
++#define HDMI_FRL_ENC_CONFIG2__HDMI_FRL_HDMISTREAMCLK_DB_SEL_MASK                                              0x0C000000L
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE_RESET_MASK                                           0x10000000L
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_EXCEED_STATUS_MASK                                             0x20000000L
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_METER_BUFFER_OVERFLOW_STATUS_MASK                                     0x40000000L
++//HDMI_FRL_ENC_METER_BUFFER_STATUS
++#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_MAX_METER_BUFFER_LEVEL__SHIFT                             0x0
++#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_METER_BUFFER_MAX_LEVEL_RESET__SHIFT                       0x1f
++#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_MAX_METER_BUFFER_LEVEL_MASK                               0x0000007FL
++#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_METER_BUFFER_MAX_LEVEL_RESET_MASK                         0x80000000L
++//HDMI_FRL_ENC_MEM_CTRL
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_DIS__SHIFT                                                 0x0
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_FORCE__SHIFT                                               0x1
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_STATE__SHIFT                                               0x4
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_DEFAULT_MEM_LOW_POWER_STATE__SHIFT                             0x8
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_DIS_MASK                                                   0x00000001L
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_FORCE_MASK                                                 0x00000006L
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_STATE_MASK                                                 0x00000030L
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_DEFAULT_MEM_LOW_POWER_STATE_MASK                               0x00000300L
++
 +// addressBlock: dce_dc_hpo_hdmi_stream_enc0_dispdec
 +//HDMI_STREAM_ENC_CLOCK_CONTROL
 +#define HDMI_STREAM_ENC_CLOCK_CONTROL__HDMI_STREAM_ENC_CLOCK_EN__SHIFT                                        0x0
@@ -327,11 +369,6 @@ index 4005c73c2c9f..92c3ba54effa 100644
 +#define HDMI_STREAM_ENC_CLOCK_CONTROL__HDMI_STREAM_ENC_CLOCK_ON_DISPCLK_MASK                                  0x00000010L
 +#define HDMI_STREAM_ENC_CLOCK_CONTROL__HDMI_STREAM_ENC_CLOCK_ON_SOCCLK_MASK                                   0x00000100L
 +#define HDMI_STREAM_ENC_CLOCK_CONTROL__HDMI_STREAM_ENC_CLOCK_ON_HDMISTREAMCLK_MASK                            0x00001000L
-+//HDMI_STREAM_ENC_HDMISTREAMCLK_CONTROL
-+#define HDMI_STREAM_ENC_HDMISTREAMCLK_CONTROL__HDMI_STREAM_ENC_HDMISTREAMCLK_INCREMENT__SHIFT                 0x0
-+#define HDMI_STREAM_ENC_HDMISTREAMCLK_CONTROL__HDMI_STREAM_ENC_HDMISTREAMCLK_MODULO__SHIFT                    0x8
-+#define HDMI_STREAM_ENC_HDMISTREAMCLK_CONTROL__HDMI_STREAM_ENC_HDMISTREAMCLK_INCREMENT_MASK                   0x000000FFL
-+#define HDMI_STREAM_ENC_HDMISTREAMCLK_CONTROL__HDMI_STREAM_ENC_HDMISTREAMCLK_MODULO_MASK                      0x0000FF00L
 +//HDMI_STREAM_ENC_INPUT_MUX_CONTROL
 +#define HDMI_STREAM_ENC_INPUT_MUX_CONTROL__HDMI_STREAM_ENC_INPUT_MUX_SOURCE_SEL__SHIFT                        0x0
 +#define HDMI_STREAM_ENC_INPUT_MUX_CONTROL__HDMI_STREAM_ENC_INPUT_MUX_SOURCE_SEL_MASK                          0x00000007L
@@ -379,6 +416,13 @@ index 4005c73c2c9f..92c3ba54effa 100644
 +#define HDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2__FIFO_DB_PENDING_MASK                        0x00000100L
 +#define HDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2__FIFO_DB_DISABLE_MASK                        0x00001000L
 +
+ 
+ // addressBlock: dce_dc_hpo_hdmi_stream_enc0_afmt_afmt_dispdec
+ //AFMT5_AFMT_VBI_PACKET_CONTROL
+@@ -48765,6 +48883,436 @@
+ #define VPG5_VPG_MPEG_INFO1__VPG_MPEG_INFO_FR_MASK                                                            0x00001000L
+ #define VPG5_VPG_MPEG_INFO1__VPG_MPEG_INFO_UPDATE_MASK                                                        0x00010000L
+ 
 +// addressBlock: dce_dc_hpo_hdmi_tb_enc0_dispdec
 +//HDMI_TB_ENC_CONTROL
 +#define HDMI_TB_ENC_CONTROL__HDMI_TB_ENC_EN__SHIFT                                                            0x0
@@ -794,6 +838,9 @@ index 4005c73c2c9f..92c3ba54effa 100644
 +#define HDMI_TB_ENC_CRC_RESULT_0__CRC_TRIBYTE1__SHIFT                                                         0x10
 +#define HDMI_TB_ENC_CRC_RESULT_0__CRC_TRIBYTE0_MASK                                                           0x0000FFFFL
 +#define HDMI_TB_ENC_CRC_RESULT_0__CRC_TRIBYTE1_MASK                                                           0xFFFF0000L
++//HDMI_TB_ENC_DEBUG_DATA
++#define HDMI_TB_ENC_DEBUG_DATA__HDMI_DEBUG_DATA__SHIFT                                                        0x0
++#define HDMI_TB_ENC_DEBUG_DATA__HDMI_DEBUG_DATA_MASK                                                          0xFFFFFFFFL
 +//HDMI_TB_ENC_MODE
 +#define HDMI_TB_ENC_MODE__HDMI_BORROW_MODE__SHIFT                                                             0x0
 +#define HDMI_TB_ENC_MODE__HDMI_SKIP_FIRST_HBLANK__SHIFT                                                       0x8
@@ -806,131 +853,9 @@ index 4005c73c2c9f..92c3ba54effa 100644
 +#define HDMI_TB_ENC_CRC_RESULT_1__CRC_TRIBYTE2__SHIFT                                                         0x0
 +#define HDMI_TB_ENC_CRC_RESULT_1__CRC_TRIBYTE2_MASK                                                           0x0000FFFFL
 +
-+
- //AFMT6_AFMT_VBI_PACKET_CONTROL
- #define AFMT6_AFMT_VBI_PACKET_CONTROL__AFMT_HDMI_AUDIO_PACKETS_PER_LINE__SHIFT                                0x10
- #define AFMT6_AFMT_VBI_PACKET_CONTROL__AFMT_HDMI_AUDIO_SEND_MAX_PACKETS__SHIFT                                0x18
-@@ -60736,10 +61226,120 @@
- #define DME6_DME_MEMORY_CONTROL__DME_MEM_PWR_STATE_MASK                                                       0x00000300L
- #define DME6_DME_MEMORY_CONTROL__DME_MEM_DEFAULT_MEM_LOW_POWER_STATE_MASK                                     0x00003000L
  
-+// addressBlock: dce_dc_hpo_hdmi_stream_enc0_hdcp2_hdcp2_dispdec
-+//HDCP2_6_HDCP2_CONTROL
-+#define HDCP2_6_HDCP2_CONTROL__HDCP2_RESET__SHIFT                                                             0x4
-+#define HDCP2_6_HDCP2_CONTROL__HDCP2_TYPE__SHIFT                                                              0x8
-+#define HDCP2_6_HDCP2_CONTROL__HDCP2_EESS_WHEN_AVMUTE__SHIFT                                                  0x10
-+#define HDCP2_6_HDCP2_CONTROL__HDCP2_ESS_ENABLE__SHIFT                                                        0x14
-+#define HDCP2_6_HDCP2_CONTROL__HDCP2_ESS_TYPE__SHIFT                                                          0x18
-+#define HDCP2_6_HDCP2_CONTROL__HDCP2_RESET_MASK                                                               0x00000010L
-+#define HDCP2_6_HDCP2_CONTROL__HDCP2_TYPE_MASK                                                                0x00000300L
-+#define HDCP2_6_HDCP2_CONTROL__HDCP2_EESS_WHEN_AVMUTE_MASK                                                    0x00010000L
-+#define HDCP2_6_HDCP2_CONTROL__HDCP2_ESS_ENABLE_MASK                                                          0x00100000L
-+#define HDCP2_6_HDCP2_CONTROL__HDCP2_ESS_TYPE_MASK                                                            0x01000000L
-+//HDCP2_6_HDCP2_ENABLE_DELAY
-+#define HDCP2_6_HDCP2_ENABLE_DELAY__HDCP2_ENABLE_DELAY__SHIFT                                                 0x0
-+#define HDCP2_6_HDCP2_ENABLE_DELAY__HDCP2_ENABLE_DELAY_MASK                                                   0x000003FFL
-+//HDCP2_6_HDCP2_RIV0
-+#define HDCP2_6_HDCP2_RIV0__HDCP2_RIV0__SHIFT                                                                 0x0
-+#define HDCP2_6_HDCP2_RIV0__HDCP2_RIV0_MASK                                                                   0xFFFFFFFFL
-+//HDCP2_6_HDCP2_RIV1
-+#define HDCP2_6_HDCP2_RIV1__HDCP2_RIV1__SHIFT                                                                 0x0
-+#define HDCP2_6_HDCP2_RIV1__HDCP2_RIV1_MASK                                                                   0xFFFFFFFFL
-+//HDCP2_6_HDCP2_KS_XOR_LC128_0
-+#define HDCP2_6_HDCP2_KS_XOR_LC128_0__HDCP2_KS_XOR_LC128_0__SHIFT                                             0x0
-+#define HDCP2_6_HDCP2_KS_XOR_LC128_0__HDCP2_KS_XOR_LC128_0_MASK                                               0xFFFFFFFFL
-+//HDCP2_6_HDCP2_KS_XOR_LC128_1
-+#define HDCP2_6_HDCP2_KS_XOR_LC128_1__HDCP2_KS_XOR_LC128_1__SHIFT                                             0x0
-+#define HDCP2_6_HDCP2_KS_XOR_LC128_1__HDCP2_KS_XOR_LC128_1_MASK                                               0xFFFFFFFFL
-+//HDCP2_6_HDCP2_KS_XOR_LC128_2
-+#define HDCP2_6_HDCP2_KS_XOR_LC128_2__HDCP2_KS_XOR_LC128_2__SHIFT                                             0x0
-+#define HDCP2_6_HDCP2_KS_XOR_LC128_2__HDCP2_KS_XOR_LC128_2_MASK                                               0xFFFFFFFFL
-+//HDCP2_6_HDCP2_KS_XOR_LC128_3
-+#define HDCP2_6_HDCP2_KS_XOR_LC128_3__HDCP2_KS_XOR_LC128_3__SHIFT                                             0x0
-+#define HDCP2_6_HDCP2_KS_XOR_LC128_3__HDCP2_KS_XOR_LC128_3_MASK                                               0xFFFFFFFFL
-+
-+// addressBlock: dce_dc_hpo_hdmi_link_enc0_dispdec
-+//HDMI_LINK_ENC_CONTROL
-+#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_ENABLE__SHIFT                                                    0x0
-+#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_SOFT_RESET__SHIFT                                                0x4
-+#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_ENABLE_MASK                                                      0x00000001L
-+#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_SOFT_RESET_MASK                                                  0x00000010L
-+//HDMI_LINK_ENC_CLK_CTRL
-+#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_EN__SHIFT                                                 0x0
-+#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_ON_HDMICHARCLK__SHIFT                                     0x1
-+#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_EN_MASK                                                   0x00000001L
-+#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_ON_HDMICHARCLK_MASK                                       0x00000002L
-+
-+// addressBlock: dce_dc_hpo_hdmi_frl_enc0_dispdec
-+//HDMI_FRL_ENC_CONFIG
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE_COUNT__SHIFT                                                      0x0
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_TRAINING_ENABLE__SHIFT                                                 0x1
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_SCRAMBLER_DISABLE__SHIFT                                               0x2
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE0_TRAINING_PATTERN__SHIFT                                          0x10
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE1_TRAINING_PATTERN__SHIFT                                          0x14
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE2_TRAINING_PATTERN__SHIFT                                          0x18
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE3_TRAINING_PATTERN__SHIFT                                          0x1c
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE_COUNT_MASK                                                        0x00000001L
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_TRAINING_ENABLE_MASK                                                   0x00000002L
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_SCRAMBLER_DISABLE_MASK                                                 0x00000004L
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE0_TRAINING_PATTERN_MASK                                            0x000F0000L
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE1_TRAINING_PATTERN_MASK                                            0x00F00000L
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE2_TRAINING_PATTERN_MASK                                            0x0F000000L
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE3_TRAINING_PATTERN_MASK                                            0xF0000000L
-+//HDMI_FRL_ENC_CONFIG2
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE__SHIFT                                               0x0
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_THRESHOLD__SHIFT                                               0xc
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_CAL_EN__SHIFT                                                  0x18
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_RC_COMPRESS_DISABLE__SHIFT                                            0x19
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_FRL_HDMISTREAMCLK_DB_SEL__SHIFT                                            0x1a
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE_RESET__SHIFT                                         0x1c
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_EXCEED_STATUS__SHIFT                                           0x1d
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_METER_BUFFER_OVERFLOW_STATUS__SHIFT                                   0x1e
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE_MASK                                                 0x000001FFL
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_THRESHOLD_MASK                                                 0x001FF000L
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_CAL_EN_MASK                                                    0x01000000L
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_RC_COMPRESS_DISABLE_MASK                                              0x02000000L
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_FRL_HDMISTREAMCLK_DB_SEL_MASK                                              0x0C000000L
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE_RESET_MASK                                           0x10000000L
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_EXCEED_STATUS_MASK                                             0x20000000L
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_METER_BUFFER_OVERFLOW_STATUS_MASK                                     0x40000000L
-+//HDMI_FRL_ENC_METER_BUFFER_STATUS
-+#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_MAX_METER_BUFFER_LEVEL__SHIFT                             0x0
-+#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_METER_BUFFER_MAX_LEVEL_RESET__SHIFT                       0x1f
-+#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_MAX_METER_BUFFER_LEVEL_MASK                               0x0000007FL
-+#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_METER_BUFFER_MAX_LEVEL_RESET_MASK                         0x80000000L
-+//HDMI_FRL_ENC_MEM_CTRL
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_DIS__SHIFT                                                 0x0
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_FORCE__SHIFT                                               0x1
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_STATE__SHIFT                                               0x4
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_DEFAULT_MEM_LOW_POWER_STATE__SHIFT                             0x8
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_DIS_MASK                                                   0x00000001L
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_FORCE_MASK                                                 0x00000006L
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_STATE_MASK                                                 0x00000030L
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_DEFAULT_MEM_LOW_POWER_STATE_MASK                               0x00000300L
-+
- // addressBlock: dce_dc_hpo_hpo_top_dispdec
- //HPO_TOP_CLOCK_CONTROL
-+#define HPO_TOP_CLOCK_CONTROL__HPO_DISPCLK_R_GATE_DIS__SHIFT                                                  0x0
-+#define HPO_TOP_CLOCK_CONTROL__HPO_DISPCLK_GATE_DIS__SHIFT                                                    0x1
-+#define HPO_TOP_CLOCK_CONTROL__HPO_SOCCLK_R_GATE_DIS__SHIFT                                                   0x4
-+#define HPO_TOP_CLOCK_CONTROL__HPO_SOCCLK_GATE_DIS__SHIFT                                                     0x5
-+#define HPO_TOP_CLOCK_CONTROL__HPO_HDMISTREAMCLK_R_GATE_DIS__SHIFT                                            0x8
- #define HPO_TOP_CLOCK_CONTROL__HPO_HDMISTREAMCLK_GATE_DIS__SHIFT                                              0x9
-+#define HPO_TOP_CLOCK_CONTROL__HPO_HDMICHARCLK_R_GATE_DIS__SHIFT                                              0xc
-+#define HPO_TOP_CLOCK_CONTROL__HPO_HDMICHARCLK_GATE_DIS__SHIFT                                                0xd
-+#define HPO_TOP_CLOCK_CONTROL__HPO_TEST_CLK_SEL__SHIFT                                                        0x10
-+#define HPO_TOP_CLOCK_CONTROL__HPO_DISPCLK_R_GATE_DIS_MASK                                                    0x00000001L
-+#define HPO_TOP_CLOCK_CONTROL__HPO_DISPCLK_GATE_DIS_MASK                                                      0x00000002L
-+#define HPO_TOP_CLOCK_CONTROL__HPO_SOCCLK_R_GATE_DIS_MASK                                                     0x00000010L
-+#define HPO_TOP_CLOCK_CONTROL__HPO_SOCCLK_GATE_DIS_MASK                                                       0x00000020L
-+#define HPO_TOP_CLOCK_CONTROL__HPO_HDMISTREAMCLK_R_GATE_DIS_MASK                                              0x00000100L
- #define HPO_TOP_CLOCK_CONTROL__HPO_HDMISTREAMCLK_GATE_DIS_MASK                                                0x00000200L
-+#define HPO_TOP_CLOCK_CONTROL__HPO_HDMICHARCLK_R_GATE_DIS_MASK                                                0x00001000L
-+#define HPO_TOP_CLOCK_CONTROL__HPO_HDMICHARCLK_GATE_DIS_MASK                                                  0x00002000L
-+#define HPO_TOP_CLOCK_CONTROL__HPO_TEST_CLK_SEL_MASK                                                          0x003F0000L
- 
- // addressBlock: dce_dc_hpo_hpo_dcperfmon_dc_perfmon_dispdec
- //DC_PERFMON29_PERFCOUNTER_CNTL
+ // addressBlock: dce_dc_hpo_dp_stream_enc0_dispdec
+ //DP_STREAM_ENC0_DP_STREAM_ENC_CLOCK_CONTROL
 -- 
 2.54.0
 
