@@ -2,109 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wOwkOB6z9GnVDgIAu9opvQ
+	id CFASBDGU+GnRwgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 16:05:18 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 14:42:25 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 900934AD0ED
-	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 16:05:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EB6C4BD0E2
+	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 14:42:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6308210F546;
-	Fri,  1 May 2026 14:05:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B1C210E69C;
+	Mon,  4 May 2026 12:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="fORywa/n";
+	dkim=pass (2048-bit key; unprotected) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="KRD3pgMc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013006.outbound.protection.outlook.com
- [40.93.201.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C280310F552
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 May 2026 14:05:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VvRBZFRSBDJwxtgje8Oblp7qTRMZa1SillZsE9Ppx6AB45H8bjS0jTFa8HG7GJx3uI2Q4Q8fgtvlg88Y/5foX6vJW4H/07kQBPWxgNmPa4EQ/P7RIE8K225HS9CavuJDGxy5XJayl3M+SeTMojZtXEDXe7VgnexPipsweYS0cEr6SdMHnHkT3IimW6WrUnM0fwS3osvelb6Cursdd32kqj2nPSr5PZBv7AiSni17VZ/jtedL94L33hzThMuRSa5idlTHy9jHydSc3Zmbs0bZBoQT4ghRQu6bqbuwo8ur+zLwtQhLWUpcrhDxsKemqj+Djh1/Elhhk2FuMv0zEUr81A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aUXHHnL40wNduDLIX+uQ8jVKO/QlP8Un1IZkhCXV7L8=;
- b=LU5LNtum6M0PoLKfbbtZK+Mo9i3PaZN5EzlcxAi5aA3Ob0fEsifkpNXEggPXy009PeGH49XRuoeADugQxXd5xydDrScXD7XYciybVmBVwewxYg3HhFtDqCF1wq9MCG+yU0aRK/SdoYufXbB1vvTJQDHuK4BLRWepexQjvxMzXqnC70H+l2hpHTTNiFHjo/3Dwiy4zYK+5sOlXmxGDmkM6tyeTdjO3+MCE54LpPGThxDUy0ZyKAHt2iNIB1UjNG+ovWYVv1gsVqQZMGiq78L4nEcuDTpNjlQk/0klWb84zJixqB/CWn+3e33X6EGXukZPBwUVRW6KTihyAi/YRZ+Faw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aUXHHnL40wNduDLIX+uQ8jVKO/QlP8Un1IZkhCXV7L8=;
- b=fORywa/n8V7FT0pG9x/WiQ6UFrj8LgSWaAsjmDHe6HFOXCozYv/MM9Uhazur7noha80ZYBAqdRH+7ao0XP7jiJ//mkQIw10Ed8qNhJYwP9WA1fqniTfHqVss/bltyX0eQSAV2PukTPG0XHJEEdURsgqu21b7qM8k8rnOu0vtJpU=
-Received: from CH2PR08CA0023.namprd08.prod.outlook.com (2603:10b6:610:5a::33)
- by SA5PPFE494AA682.namprd12.prod.outlook.com
- (2603:10b6:80f:fc04::8e7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.26; Fri, 1 May
- 2026 14:05:11 +0000
-Received: from CH2PEPF00000140.namprd02.prod.outlook.com
- (2603:10b6:610:5a:cafe::70) by CH2PR08CA0023.outlook.office365.com
- (2603:10b6:610:5a::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.48 via Frontend Transport; Fri,
- 1 May 2026 14:05:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- CH2PEPF00000140.mail.protection.outlook.com (10.167.244.72) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9891.9 via Frontend Transport; Fri, 1 May 2026 14:05:11 +0000
-Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 1 May
- 2026 09:05:06 -0500
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
- (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 1 May
- 2026 07:05:03 -0700
-Received: from hwentlanryzen (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Fri, 1 May 2026 09:05:03 -0500
-From: Harry Wentland <harry.wentland@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Fangzhi Zuo <Jerry.Zuo@amd.com>
-Subject: [PATCH 21/21] drm/amd/display: add HDMI 2.1 Compliance Support
-Date: Fri, 1 May 2026 10:04:37 -0400
-Message-ID: <20260501140441.41068-22-harry.wentland@amd.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260501140441.41068-1-harry.wentland@amd.com>
-References: <20260501140441.41068-1-harry.wentland@amd.com>
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
+ [209.85.128.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B092C10E1D2
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 May 2026 14:25:58 +0000 (UTC)
+Received: by mail-wm1-f52.google.com with SMTP id
+ 5b1f17b1804b1-4852a9c6309so16246245e9.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 01 May 2026 07:25:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1777645557; x=1778250357;
+ darn=lists.freedesktop.org; 
+ h=mime-version:message-id:date:user-agent:references:organization
+ :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=DYv/GlnIowzYK/Y+vOhHbB/BH7X8bAFCbDKncVCH2Ls=;
+ b=KRD3pgMcyJWmTzUySZUJ88SGPbfcfIJHzlZatOJrKN/iddWj5hik40rTa2FFFevl/s
+ oejvEmbs8BM92YBhSS0DvFFLDdrQnFClbFh3e4nMZcYcSAE+GIEiz2AgVdftTGDbMEd7
+ qxFjJ72cY9jeL7qmwpbU7fhjY/a7Wm0lKonDBzH2CZRmc56CQn2ajnh+w49mvfAJUJkw
+ sdl8+fIy/SQj9M2vzHbEG66qRZrfNlrLcndfXvHgLg+kwK8z+YSXlTiVJA5AWX10kNGU
+ Gr68CeqAZ7hUDdzkYn3tc02eO3V4GzjOSDxBIwfBZDkokhEtEl+X09a+cKAk0m732dFY
+ iIMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777645557; x=1778250357;
+ h=mime-version:message-id:date:user-agent:references:organization
+ :in-reply-to:subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=DYv/GlnIowzYK/Y+vOhHbB/BH7X8bAFCbDKncVCH2Ls=;
+ b=Dw2Go2FOgRPSStl7ItHTSthSEGcrBZDdqOQZiSFYMMGC5QEE31M4yQ4Z10SWH1Czta
+ 1fdHiNsX5wCDk8sA39NJpANTTg9wbj2IeHW62E00YU5MdlBGfmsdc1IOgwBuqiSBf88h
+ V4s6wdlYM8QQC195rBjRrvvm1LvsAgFE106vaZnRixT73a5JYey5i81xZ4Tf9dY/APEP
+ ZQK+MlcHEQUSta7bF0HEuVwZ0xl9syn9rp+NFNIlp7g81YY5YvK7NCxVMvpj5ndrgbgu
+ 64s2hZ+D92ekJPSn3y00YerAUPirf5lc5L1nLDbPJo9jVbDOAMsbHiZFOx3dsdxQuRht
+ YAfg==
+X-Gm-Message-State: AOJu0Yw2HZypE00T8urACX+aeDp4o1yJxxH4lK2WuPzfwKByOEl3ExGP
+ umUlweKojNZy6saDqkJQrsAy48W3IR9FJKF6rr+8Dz/ZCYrye7ji+SzE4+8NkqmrZYw=
+X-Gm-Gg: AeBDievNGnXhzC4euTPuYNjy1NbpDTCdnjRFb/ii2BN3Z8JCjw1pDc4wuOJ1zZBvElH
+ TZ0oVRPytT7zovUtc/43jLa0zVQW2PMABck73cBS1P7LsAg/fjOAzx+AHThE1sfEeOeSEtHf2z6
+ ejW/jVBd1LrPsGNRt/H/Pfi/twknY2i9sKOz483uTmUjYxu3AyECARx+oqVGK44FUHfeRGDG9h+
+ +Op6LJvJatmjgESpJGPM5bHt+Uc9URkTHKrAItZe+mwvAyQP5LB6zhSxOThFmdFcZKNMvYWudfh
+ ZGcxx8xjPjCvFPQq+CZ6VbrKsM/6e2WU6/rApZXX3JzOcV/EnZRgjYHuUY/5Q1/BO7WVUrOBdoV
+ Q0qiVl88ugyjnxrJxVlvsAagK0hkh9Wa5dhU/9SPO7oEeGHHG69Hc357BEOYQ+jKqcsLl77Lw8T
+ lEEkBx9WIqRxXgdnMKS2HdX6jx2K1D
+X-Received: by 2002:a05:600c:1f83:b0:48a:674d:e756 with SMTP id
+ 5b1f17b1804b1-48a84458f63mr116689945e9.20.1777645556755; 
+ Fri, 01 May 2026 07:25:56 -0700 (PDT)
+Received: from bstg ([146.70.193.12]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-48a8eba8487sm51896485e9.11.2026.05.01.07.25.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 01 May 2026 07:25:56 -0700 (PDT)
+From: =?utf-8?Q?Arsen_Arsenovi=C4=87?= <aarsenovic@baylibre.com>
+To: Alistair Popple <apopple@nvidia.com>
+Cc: amd-gfx@lists.freedesktop.org,  linux-mm@kvack.org,
+ cs-tech-ext@baylibre.com
+Subject: Re: [BUG] Frequent hangs or WARNINGs when using heterogeneous
+ memory with an AMD MI210 GPU
+In-Reply-To: <afREaF6hcka_cxnY@nvdebian.thelocal>
+Organization: BayLibre
+References: <86ecjz2hhr.fsf@baylibre.com> <86tssu0w8p.fsf@baylibre.com>
+ <afREaF6hcka_cxnY@nvdebian.thelocal>
+User-Agent: mu4e 1.14.0; emacs 31.0.50
+Date: Fri, 01 May 2026 16:25:53 +0200
+Message-ID: <86340bp5ou.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF00000140:EE_|SA5PPFE494AA682:EE_
-X-MS-Office365-Filtering-Correlation-Id: d42e0d2c-de06-46eb-ae86-08dea78aa8ec
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|376014|36860700016|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: 4HkkUBnpagzHTAmld0a5he2j/ojhcBl/cTSBlQYy0Twu5RT15hO1H4mQ3ygcgE6QoyRBf+FTgg3DondQpA5e3MAYt4t1iX/uaN4p/0B5RFZu6F2QHpdrLj8ZPNC6kqsWgM+1p17v12uwK67/6gjDnvKdNqQYNReQTK77VQ5g/HSXxq+k2HHjZ9iXVypcfkQ0rdOnQxyw+2uhCwBeECBgfplNV8M4Utw4w7vLZNkQ4eYbRWc8Z7wlOCaRLTp1eUCvYnuUvC5gYq334ql4saQSNt8xeIWzQmoELv13lh7AAZcH4WgdMgM2vonV/IflRmArbqcNzaB/u3Qd+M9JpB62axCh7G14XiWNMSVSl7ZLuyH5LjaTlCS7/exiEiSuEB+NvHiMvlXwc6UYW8W1+rgiJ14CuzDDOxhxK3jOCa8DEP+6mQgVh5CKmJ/rrPqh2OhW2h/868UyQ7qZifNB7PVucAx26BA/lAZoscDcbaPqppgaYvlKzI+J5eB1QOo8UnIdCtC+ob1VCzVa3YKabK01+ZJRpXT22pykZdYhhCKLiy6VYskgR4sKullvt/W6hCWkMBvlgHKhF3cYoUeL/XAMFn1uOy5EMTHtWzEQYL+HmiI1rG7myMpQaSISOyqk4HNvbEppEz9PqsXoqMP5iN5u6Pa912/n5IYQnC70Ogvl7otNL7yozJnq3xONJ5TJqFg+TPIvduF5SZ9TQ3UMb1wctVII6Uqt9t3lGCXgWVTL5xQ=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(376014)(36860700016)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: T3ajD5t4sHj7GAL8qs5ogN1kkDu+j114sgwihwHPjrAVhTZ2hMmh3RlyAXSdHSPKmuIISlRgbOPSDfOuC1DJ9utvKgR9bdXYSH4MRid0Kb1IjMIpEWviho8pyoJDRX8K9w3+Bq4ijoo+MY+W/ZAveS1dySzCmfHz0VZzhfvNxP1ap0bcG4AWJX/4gA7TBKkRT0DPc8gh4YQ9xld44Y8WiJWrBQTamQTZbkBIK9C9XSyr39laQJr/zZSJX/0i5cyZGFzYfEO3RFjDRRMuWSXRcbqjCnbUWDfArpu8iKvl2pp3x9ZmntR2aX8KUgXDOXQTrQs1FG6kKbliYT3tDuP2kw2qg8lFZ673wLmxzFChKFVXbX308hho0tEaUHzc72D+F7vepnqYp7h1/SMLt4XeB6nOPuKs5U9cFwBk3KyPHDxVgU/eYd7neekdzATptFnv
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 May 2026 14:05:11.4057 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d42e0d2c-de06-46eb-ae86-08dea78aa8ec
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF00000140.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPFE494AA682
+Content-Type: multipart/signed; boundary="=-=-=";
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+X-Mailman-Approved-At: Mon, 04 May 2026 12:42:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,147 +94,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 900934AD0ED
+X-Rspamd-Queue-Id: 5EB6C4BD0E2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.91 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	DATE_IN_PAST(1.00)[70];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
+	FORGED_RECIPIENTS(0.00)[m:apopple@nvidia.com,m:linux-mm@kvack.org,m:cs-tech-ext@baylibre.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[baylibre.com];
+	FORGED_SENDER(0.00)[aarsenovic@baylibre.com,amd-gfx-bounces@lists.freedesktop.org];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid];
-	NEURAL_HAM(-0.00)[-0.999];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[aarsenovic@baylibre.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:email,baylibre.com:mid,baylibre-com.20251104.gappssmtp.com:dkim]
 
-From: Fangzhi Zuo <Jerry.Zuo@amd.com>
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Add force yuv format from igt for compliance test.
+Alistair Popple <apopple@nvidia.com> writes:
 
-Signed-off-by: Fangzhi Zuo <Jerry.Zuo@amd.com>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 16 ++++++++---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  1 +
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 28 +++++++++++++++++++
- 3 files changed, 41 insertions(+), 4 deletions(-)
+> I don't know the AMD driver well enough to comment definitively but
+> chances are this warning is spurious. I have been meaning to put
+> togeather a fix for it.  The problem is that migrate_vma_setup()
+> etc. allow for migration of anonymous folios, which is subtly
+> different from only allowing migration of anonymous VMA's.
+>
+> Specifically migrate_vma checks for folio_test_anon() which returns
+> true for private file-backed VMAs while the warning is based on
+> vma_is_anonymous() which is false for such mappings. So it is possible
+> for the driver to migrate a private filebacked mapping to GPU memory
+> which will trigger this warning during teardown if the page wasn't
+> migrated back.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index f998a22b88ef..a9b3aaff1b77 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6933,18 +6933,26 @@ static void fill_stream_properties_from_drm_display_mode(
- 	timing_out->v_border_bottom = 0;
- 	/* TODO: un-hardcode */
- 	if (drm_mode_is_420_only(info, mode_in)
--			&& stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
-+			&& (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A ||
-+			    stream->signal == SIGNAL_TYPE_HDMI_FRL)
-+			&& aconnector
-+			&& aconnector->force_yuv_pixel_format == PIXEL_ENCODING_YCBCR420)
- 		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
- 	else if (drm_mode_is_420_also(info, mode_in)
- 			&& aconnector
--			&& aconnector->force_yuv420_output)
-+			&& (aconnector->force_yuv_pixel_format == PIXEL_ENCODING_YCBCR420
-+			|| aconnector->force_yuv420_output))
- 		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
- 	else if ((connector->display_info.color_formats & DRM_COLOR_FORMAT_YCBCR422)
- 			&& aconnector
--			&& aconnector->force_yuv422_output)
-+			&& (aconnector->force_yuv_pixel_format == PIXEL_ENCODING_YCBCR422
-+			|| aconnector->force_yuv422_output))
- 		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR422;
- 	else if ((connector->display_info.color_formats & DRM_COLOR_FORMAT_YCBCR444)
--			&& stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
-+			&& (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A ||
-+			    stream->signal == SIGNAL_TYPE_HDMI_FRL)
-+			&& aconnector
-+			&& aconnector->force_yuv_pixel_format == PIXEL_ENCODING_YCBCR444)
- 		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR444;
- 	else
- 		timing_out->pixel_encoding = PIXEL_ENCODING_RGB;
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-index 8af11bfda6fe..d871f7f6b233 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-@@ -850,6 +850,7 @@ struct amdgpu_dm_connector {
- 	bool fake_enable;
- 	bool force_yuv420_output;
- 	bool force_yuv422_output;
-+	uint8_t force_yuv_pixel_format;
- 	struct dsc_preferred_settings dsc_settings;
- 	struct psr_caps psr_caps;
- 	union dp_downstream_port_present mst_downstream_port_present;
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index 49226d6d0311..f10188e567cd 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -3137,6 +3137,7 @@ static int force_yuv420_output_set(void *data, u64 val)
- 	struct amdgpu_dm_connector *connector = data;
- 
- 	connector->force_yuv420_output = (bool)val;
-+	connector->force_yuv_pixel_format = PIXEL_ENCODING_YCBCR420;
- 
- 	return 0;
- }
-@@ -3156,6 +3157,31 @@ static int force_yuv420_output_get(void *data, u64 *val)
- DEFINE_DEBUGFS_ATTRIBUTE(force_yuv420_output_fops, force_yuv420_output_get,
- 			 force_yuv420_output_set, "%llu\n");
- 
-+static int force_yuv422_output_set(void *data, u64 val)
-+{
-+      struct amdgpu_dm_connector *connector = data;
-+
-+      connector->force_yuv422_output = (bool)val;
-+      connector->force_yuv_pixel_format = PIXEL_ENCODING_YCBCR422;
-+
-+      return 0;
-+}
-+
-+DEFINE_DEBUGFS_ATTRIBUTE(force_yuv422_output_fops, NULL,
-+                       force_yuv422_output_set, "%llu\n");
-+
-+static int force_yuv444_output_set(void *data, u64 val)
-+{
-+      struct amdgpu_dm_connector *connector = data;
-+
-+      connector->force_yuv_pixel_format = PIXEL_ENCODING_YCBCR444;
-+
-+      return 0;
-+}
-+
-+DEFINE_DEBUGFS_ATTRIBUTE(force_yuv444_output_fops, NULL,
-+                       force_yuv444_output_set, "%llu\n");
-+
- /*
-  *  Read Replay state
-  */
-@@ -3528,6 +3554,8 @@ static const struct {
- 	const struct file_operations *fops;
- } connector_debugfs_entries[] = {
- 		{"force_yuv420_output", &force_yuv420_output_fops},
-+		{"force_yuv422_output", &force_yuv422_output_fops},
-+		{"force_yuv444_output", &force_yuv444_output_fops},
- 		{"trigger_hotplug", &trigger_hotplug_debugfs_fops},
- 		{"internal_display", &internal_display_fops},
- 		{"odm_combine_segments", &odm_combine_segments_fops}
--- 
-2.54.0
+Ah, if it is spurious, that is quite unfortunate.  We were hoping it's
+the same issue as the one the rest of the email was describing (those
+hangs, unkillable processes, and bad page states), since that means we
+have a good reproducer for it.
 
+FWIW, that sounds like a plausible explanation; the program is using
+dynamic_cast, so typeinfo will need to be accessed.  The typeinfo is
+mmap-ped from the executable, so it's file-backed.  I don't see any
+reason for this page to be thrown out of the GPU later, so it stays
+mapped until exit, and causes the warning.
+
+The trigger for the latter is significantly harder to reproduce, and far
+less self-contained.
+
+So, I suppose we're left with a bug for which the reproducer "run more
+than nproc of parallel AMDGPU&HMM-utilizing processes in a loop and
+cross fingers".  :/
+
+Thank you very much for fixing the WARN_ON!
+
+Have a lovely day.
+=2D-=20
+Arsen Arsenovi=C4=87
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEKBAEWCgCyFiEE/uKz0RP8AKMWLWBhUsKUMB6ixJMFAmn0t/EbFIAAAAAABAAO
+bWFudTIsMi41KzEuMTIsMiwyXxSAAAAAAC4AKGlzc3Vlci1mcHJAbm90YXRpb25z
+Lm9wZW5wZ3AuZmlmdGhob3JzZW1hbi5uZXRGRUUyQjNEMTEzRkMwMEEzMTYyRDYw
+NjE1MkMyOTQzMDFFQTJDNDkzGBxhYXJzZW5vdmljQGJheWxpYnJlLmNvbQAKCRBS
+wpQwHqLEk5KiAP9PMMBwrhXRhH/toIRa9Gd89OXC/klbJT/ORaNbQLu4ZAD/fjQY
+F8L55iUDPgzIF3dph1C7Td/BL6/SbmcILMaW4QY=
+=+HE3
+-----END PGP SIGNATURE-----
+--=-=-=--
