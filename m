@@ -2,85 +2,132 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CFASBDGU+GnRwgIAu9opvQ
+	id +PK0FPTO9GkYFQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 14:42:25 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 18:04:04 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EB6C4BD0E2
-	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 14:42:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A654A4ADE44
+	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 18:04:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B1C210E69C;
-	Mon,  4 May 2026 12:42:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8F6710E1E9;
+	Fri,  1 May 2026 16:04:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=baylibre-com.20251104.gappssmtp.com header.i=@baylibre-com.20251104.gappssmtp.com header.b="KRD3pgMc";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Pfx2SMgP";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B092C10E1D2
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 May 2026 14:25:58 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id
- 5b1f17b1804b1-4852a9c6309so16246245e9.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 01 May 2026 07:25:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20251104.gappssmtp.com; s=20251104; t=1777645557; x=1778250357;
- darn=lists.freedesktop.org; 
- h=mime-version:message-id:date:user-agent:references:organization
- :in-reply-to:subject:cc:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=DYv/GlnIowzYK/Y+vOhHbB/BH7X8bAFCbDKncVCH2Ls=;
- b=KRD3pgMcyJWmTzUySZUJ88SGPbfcfIJHzlZatOJrKN/iddWj5hik40rTa2FFFevl/s
- oejvEmbs8BM92YBhSS0DvFFLDdrQnFClbFh3e4nMZcYcSAE+GIEiz2AgVdftTGDbMEd7
- qxFjJ72cY9jeL7qmwpbU7fhjY/a7Wm0lKonDBzH2CZRmc56CQn2ajnh+w49mvfAJUJkw
- sdl8+fIy/SQj9M2vzHbEG66qRZrfNlrLcndfXvHgLg+kwK8z+YSXlTiVJA5AWX10kNGU
- Gr68CeqAZ7hUDdzkYn3tc02eO3V4GzjOSDxBIwfBZDkokhEtEl+X09a+cKAk0m732dFY
- iIMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777645557; x=1778250357;
- h=mime-version:message-id:date:user-agent:references:organization
- :in-reply-to:subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=DYv/GlnIowzYK/Y+vOhHbB/BH7X8bAFCbDKncVCH2Ls=;
- b=Dw2Go2FOgRPSStl7ItHTSthSEGcrBZDdqOQZiSFYMMGC5QEE31M4yQ4Z10SWH1Czta
- 1fdHiNsX5wCDk8sA39NJpANTTg9wbj2IeHW62E00YU5MdlBGfmsdc1IOgwBuqiSBf88h
- V4s6wdlYM8QQC195rBjRrvvm1LvsAgFE106vaZnRixT73a5JYey5i81xZ4Tf9dY/APEP
- ZQK+MlcHEQUSta7bF0HEuVwZ0xl9syn9rp+NFNIlp7g81YY5YvK7NCxVMvpj5ndrgbgu
- 64s2hZ+D92ekJPSn3y00YerAUPirf5lc5L1nLDbPJo9jVbDOAMsbHiZFOx3dsdxQuRht
- YAfg==
-X-Gm-Message-State: AOJu0Yw2HZypE00T8urACX+aeDp4o1yJxxH4lK2WuPzfwKByOEl3ExGP
- umUlweKojNZy6saDqkJQrsAy48W3IR9FJKF6rr+8Dz/ZCYrye7ji+SzE4+8NkqmrZYw=
-X-Gm-Gg: AeBDievNGnXhzC4euTPuYNjy1NbpDTCdnjRFb/ii2BN3Z8JCjw1pDc4wuOJ1zZBvElH
- TZ0oVRPytT7zovUtc/43jLa0zVQW2PMABck73cBS1P7LsAg/fjOAzx+AHThE1sfEeOeSEtHf2z6
- ejW/jVBd1LrPsGNRt/H/Pfi/twknY2i9sKOz483uTmUjYxu3AyECARx+oqVGK44FUHfeRGDG9h+
- +Op6LJvJatmjgESpJGPM5bHt+Uc9URkTHKrAItZe+mwvAyQP5LB6zhSxOThFmdFcZKNMvYWudfh
- ZGcxx8xjPjCvFPQq+CZ6VbrKsM/6e2WU6/rApZXX3JzOcV/EnZRgjYHuUY/5Q1/BO7WVUrOBdoV
- Q0qiVl88ugyjnxrJxVlvsAagK0hkh9Wa5dhU/9SPO7oEeGHHG69Hc357BEOYQ+jKqcsLl77Lw8T
- lEEkBx9WIqRxXgdnMKS2HdX6jx2K1D
-X-Received: by 2002:a05:600c:1f83:b0:48a:674d:e756 with SMTP id
- 5b1f17b1804b1-48a84458f63mr116689945e9.20.1777645556755; 
- Fri, 01 May 2026 07:25:56 -0700 (PDT)
-Received: from bstg ([146.70.193.12]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48a8eba8487sm51896485e9.11.2026.05.01.07.25.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 01 May 2026 07:25:56 -0700 (PDT)
-From: =?utf-8?Q?Arsen_Arsenovi=C4=87?= <aarsenovic@baylibre.com>
-To: Alistair Popple <apopple@nvidia.com>
-Cc: amd-gfx@lists.freedesktop.org,  linux-mm@kvack.org,
- cs-tech-ext@baylibre.com
-Subject: Re: [BUG] Frequent hangs or WARNINGs when using heterogeneous
- memory with an AMD MI210 GPU
-In-Reply-To: <afREaF6hcka_cxnY@nvdebian.thelocal>
-Organization: BayLibre
-References: <86ecjz2hhr.fsf@baylibre.com> <86tssu0w8p.fsf@baylibre.com>
- <afREaF6hcka_cxnY@nvdebian.thelocal>
-User-Agent: mu4e 1.14.0; emacs 31.0.50
-Date: Fri, 01 May 2026 16:25:53 +0200
-Message-ID: <86340bp5ou.fsf@baylibre.com>
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013056.outbound.protection.outlook.com
+ [40.93.196.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA1B910E1E4;
+ Fri,  1 May 2026 16:04:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mtlNnzD0aPzfFKV7OlN6HnaPJ59uGnRPBHv7T5sPYUp2RCqGEr3ZURtCX9CpYsbG4pZy1iPE+OJhabfOfcNONOXEULcdr6qovABkU2HLsPBVoS2enUksRdjs1AV/pof9SAfGEUmZhSvHijuVIkFBwK+g7Vq8PaZuPTz6MW23WmNQhc+AXt+2XD+udVZuQB1pRt2gyukLp+iKLr+givgRMMPk59MeXW94/pUXYN92ICbNbBKwmkaQ7kAq3L7hnUS8ulRidSlfRELZj5w/9hXqkzkBEehTqiDFxIu03JM79W90vSo9EkMHioqLaAXycXI01P0HZRAzLOQco4zIiXf6kw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=O7ZD0odp0ca/Hli8q7PK6SdPjGhsxnT7kh4N+uwa3lI=;
+ b=vwsLMyt9CsmE7WzZ1MoHdnUZ/EugU+h1HaPaO+RVw5F+0uuvH5iR9ANS/HvQ8ZPG+V8x37SrYtSAxkQ5gkJIPPyMeF2ThhT4ibvupzxW5aoK+Im2LpumoBeuXyJodzUPuTKv44hcsD0TSUOKSEqyxMoR+vGyyRW3aSB/NK7ZJiPYC1Ni4AAz/ZMYZdinJ716+UZvHCsUHP1BMaWHifrzSUTET4/0g7jVz/Ok223LnVnQF7t24pUoUn16IVnQvsLhINs64815NrkOurcTYaHqFeV+g8+NBw02HHkcRG5JOAafZp+WXh6ApTr40afA8IwDhDwyG6f+zQD+azX5IqFldg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=O7ZD0odp0ca/Hli8q7PK6SdPjGhsxnT7kh4N+uwa3lI=;
+ b=Pfx2SMgPHSORGwKlCES5YHqB29f5dL+ZkCHJI8QqqDtIe4/HXLWOXIatix6SHBinsrJW5zIkoCWVftgzsfbzJTGgKlPHeaqPmtYIpWbrjh1Rm6XzhdFlyUHMOxVpKAIXpZjSGuKRMPRfwi3+cHs5bxAsB52Fx8xX//77R+dB38g=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BL1PR12MB5126.namprd12.prod.outlook.com (2603:10b6:208:312::8)
+ by SA1PR12MB8885.namprd12.prod.outlook.com (2603:10b6:806:376::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.17; Fri, 1 May
+ 2026 16:03:56 +0000
+Received: from BL1PR12MB5126.namprd12.prod.outlook.com
+ ([fe80::c3e7:1bc5:2b91:1cfe]) by BL1PR12MB5126.namprd12.prod.outlook.com
+ ([fe80::c3e7:1bc5:2b91:1cfe%5]) with mapi id 15.20.9870.022; Fri, 1 May 2026
+ 16:03:56 +0000
+Message-ID: <8c3d52b7-6020-4905-9ef6-d141798b4caa@amd.com>
+Date: Fri, 1 May 2026 12:03:53 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2 8/9] drm/amd/display: Check actual state during
+ commit_tail
+To: Alex Hung <alex.hung@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+References: <20260330153451.99472-1-harry.wentland@amd.com>
+ <20260330153451.99472-9-harry.wentland@amd.com>
+ <b0e0af19-a7c4-483c-8e40-4ec1cae01b9b@amd.com>
+Content-Language: en-US
+From: Harry Wentland <harry.wentland@amd.com>
+In-Reply-To: <b0e0af19-a7c4-483c-8e40-4ec1cae01b9b@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YT4PR01CA0153.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:ac::12) To BL1PR12MB5126.namprd12.prod.outlook.com
+ (2603:10b6:208:312::8)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
- micalg=pgp-sha512; protocol="application/pgp-signature"
-X-Mailman-Approved-At: Mon, 04 May 2026 12:42:21 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5126:EE_|SA1PR12MB8885:EE_
+X-MS-Office365-Filtering-Correlation-Id: 850fda07-94d2-470e-737e-08dea79b3f7b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|22082099003|56012099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: 6jGa7LaI2bekop/ImmtcXKVTsrJHY3El411cPJCq/t7Z6FyBbI6w3lS5tv/lUJXbYchnPjrVvt1qNaLQxtYlPVcLJIgsDJnzRxgCEt+T+U5l+Zap6u9c6JAKNtj5uy+in5wdfLBvfeNd+Ic1XcM+19YKqZh83iBIbmZ7aTj7Ta5f+iBpA+VYb3YW8L1kgnV9yHCf+q2MrwAwDgS9FykAgUxBmZQSeknLGdVzV0XS5Pwtu5qbWsq/6cxvf2SD0dSfEuTT4uv4k4c8n73BTqk2Y9BpgSXoqj6pWoNyYpjShQdK41j3r/uHDnG2dbmXLRlq+mNFR1Cqivt6qKTftRz2dw0Oi21+ZtTvNu8sjL/hiPnVULiJGNWo1KUgx4CXkogZhtbSy4hWNmwK9pkYiDq/0nJFyRtieL1IPeE5xpVXS632iF8XyMCkNekhv+oq+O/77m4KaCkD9VYQd8OW3T+o+3XC49lguBtQBmo/ksKTQhkjCuFkPDFxkk2PM0LwKMXR1uF86RyP8nb8BMR9ztL1AlhRb1qJkVqJDpAdnsnCpvwQcM76+p6rQx2wvD6ScfVMmZmaZ16UzFkOHbpLicVp/t4aJckggffA8UnS0G/RAEaTcZrvsi70Mv8hWS8E5cI6ghiLqG3/RxIDcmUNR/sit0Zg72ho4REJEDq9RXGjcEVYcBsw198agT+vEg1GMPM9
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5126.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(22082099003)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?REkzK3ByWUlGU3hDZmlVdnlOVXNBLzF0czlpb0l5alpjSUh0d0VLTnJCK1Fk?=
+ =?utf-8?B?QVBLVnZYVGxHY3N4OHZRVy8xdTcxNTZQc0hOSTdhekdUZGw1NTZqZ2NsRlIx?=
+ =?utf-8?B?cTBvVUgxdWhoUysxNC9iNHhuQm1nUFQrQU96UjdRYTVvck5lbGdCbUVoL21w?=
+ =?utf-8?B?UHoyOWkyeVJRZ0R2QmpjRmkxWDhhd1lQdzBJSUg4ZmhhMXVNL2djTHFGQWRB?=
+ =?utf-8?B?VWNNSWRHaVpLZHlVVktzODJlcG02WXZSU3luUHlDdVM2aXgvd0VRKzhiNG5Y?=
+ =?utf-8?B?bzJrLzZ2ZjdHR2doNVFLMWdoYUNkNHBIUEJZRmNqdHpNME5sakttbnllN2NM?=
+ =?utf-8?B?U01Jd25sQ08vZHlFdjJiS2pyRWxjSHJOOWM1emdtSTRwK3ZSWkZ0NEVGSXU2?=
+ =?utf-8?B?bjEwTTkvdDZZSWl4Z2taSWs5bXdhUHl6NnpSVUtMSWpZNHh5T1lsVzFCRGht?=
+ =?utf-8?B?NXBiSGZYcmxuRDBla25Ibm84aVFNOEhyUFpEWjdQSUhWRkcraWFHL2R4RGND?=
+ =?utf-8?B?OHI2c1Jja3lVVFJBUFRodFNtb2pmVEFjbHlYWjlCVzg5T3RUQkJDOWZwNXBT?=
+ =?utf-8?B?anJ5R1dMSlRjZ0F1aGxHSmJtQTFVZzg5cjJBMTdhMk43OWxqNmFNcHlzalFP?=
+ =?utf-8?B?aEZXazZrQ3hLamtkS250WkVwK0taWGFGWHU0aUJvSGo1dzNQMm1nVk1JaldI?=
+ =?utf-8?B?dTIzUFJ6MVZ6R0xPamMvWTBHNmZaa1ZGRllyTnhna0hSZnVMczZLdnRPQmt1?=
+ =?utf-8?B?bEFqU0syTkFTMWNROVZwdzF3OHNFNjVDNEtOSWN1VXlJRS9uS0o1K0dKRlZS?=
+ =?utf-8?B?YUhiMTQxOEtKcTVGa2RyYW0rKzVlU2JLVWthb285RGxZTnVoa0s4MDExbmh3?=
+ =?utf-8?B?eE5SditQaVhTOUtiQmhjaDRSL2JwbFF6VTliOGU0UjJVNFBiUytST0hTQ09k?=
+ =?utf-8?B?RXZ2VElmNGdjTnQvRkMvcDJKMWNoSlhIVTZiY056aFduVGF6V0p1Tm04bkM5?=
+ =?utf-8?B?WlBQcXVUcFNJekNudHhHV2tWQXE3Nk05T2hQRldvdm8xdnJIZDFNeEFtRXpF?=
+ =?utf-8?B?dmFzUXpvUktOSGc5VnJ0SC9qenRHQ21YYlJYU0Y5eDVmUytCR0xkUW9ZQ0t4?=
+ =?utf-8?B?bWRlU0ZWaWhNYjhkRkxOMjUxUjdCSWhaYnJJNC9na3N0RGs2L0lWY3lSaUJw?=
+ =?utf-8?B?OGdObXA3SFA2bHVUaUlidEhqc2lLMXBXc3pDSmRZREE5MUpEbGdoYXdMQjlO?=
+ =?utf-8?B?ZFp2Snp0MTRubGl5STFaN2dyQ0l1L3h4OE1iUE5hN2REUi9rTlFWQXpXTXB3?=
+ =?utf-8?B?Y2tYSmh3cVdWVGp6bkd0eTdvR0RLUmVaNkZQdVhBayswVFBTdUQ5UjdzRVM0?=
+ =?utf-8?B?ZGJZUzdwMjlhRkNTNDJmWUFTb2hoUVNFY1BzMkFWUEovSXhXbUVrL1JsdWpn?=
+ =?utf-8?B?UXNWN1laR2Iwb1huenJBMkpiUCtxWnpreGJFbEVkNDQ0OGZXSDBmMnJVM1RQ?=
+ =?utf-8?B?dmxUWEhtTVVHT1pmdzAwdzdaR1RnOWRpdVNxSGd0eXFOKzVWRGU2QWs2VlRi?=
+ =?utf-8?B?RFZ5ay81ZG9KSzBHcVVDemtUYkZlby9OclR4U0p4Mnp2ajZ5ZHdHU0xQMjBE?=
+ =?utf-8?B?aTRIWjdnb0liQ1lRMVliWk5IV2xNOVVRMlF5ckc0d1JXRmhxdnhnbzZvTVla?=
+ =?utf-8?B?TEVOUWpaMFUvdDNLcGRjNjc5U0RTQXdKbkIwMTBnQ20wMjZhbHppVWhQZjh4?=
+ =?utf-8?B?NkFiQnUyV252ZDdkRlV4K1BJZUVmWlUxRUZabFQ3NXlhTlNFL0xSK3ptcWdO?=
+ =?utf-8?B?S2UrVWh3Y09OVkZoajRMR1NBVWR6N2w2RjJReDRjaDFJZU1hVm52UjlPaUJL?=
+ =?utf-8?B?UU4vS2Nzd25uUkZjbVlyb044eS9MYWttZmJSREJPS0VPYkxzQW8rd1Jvekkr?=
+ =?utf-8?B?UzQwV1JYalhLa1JIbEJtWDNyWk9vVytUWGRIVmt1a2RENkpPNWdjWTFNejRC?=
+ =?utf-8?B?NDJJcVl6ak9Tc0h0ZGM1UG4vUjQxUnd1MDBHZmxUYlRueXdlSVlQeTQ1NS85?=
+ =?utf-8?B?a083YjZvM3pHWmFHaGxHRWZZY0xHdFY0YXZtekgxRFUzanlRSmtZdXRvVWtm?=
+ =?utf-8?B?b0tFMGc0cldPTFVURFl5Y3lJbU16bzh0M0V5Q0tVT3hWeHZZMUxTdGR6VWZZ?=
+ =?utf-8?B?VGRHRlcwYzlDMW1ZVnFzZlREQ01rcGZobWhKOG5ucGJra0p4ci9tRG1oWHo0?=
+ =?utf-8?B?RzVGU1ZJait5d2VYdlAwc0p3eUdCdTFDLzFtMFpYTUZ2TlRZWHAwclNxWmtD?=
+ =?utf-8?B?SW9YVHk4VDBMUHp0ZjdEZSs1b2d1cDhMNXdRMEhmTnlsMVFxeHAydz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 850fda07-94d2-470e-737e-08dea79b3f7b
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5126.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 May 2026 16:03:56.1534 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: KnG+NDZSGQ2JsnSpjr6BWg3hOjFA49iH8+pTdn7W5nAH6XeYy9el05zaWyMm8XnIL96bLXZPL2kftIAcubO7Pw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8885
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,98 +141,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 5EB6C4BD0E2
+X-Rspamd-Queue-Id: A654A4ADE44
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.91 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	DATE_IN_PAST(1.00)[70];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20251104.gappssmtp.com:s=20251104];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:apopple@nvidia.com,m:linux-mm@kvack.org,m:cs-tech-ext@baylibre.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[baylibre.com];
-	FORGED_SENDER(0.00)[aarsenovic@baylibre.com,amd-gfx-bounces@lists.freedesktop.org];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[aarsenovic@baylibre.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[baylibre-com.20251104.gappssmtp.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:email,baylibre.com:mid,baylibre-com.20251104.gappssmtp.com:dkim]
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_THREE(0.00)[3];
+	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:dkim,amd.com:mid];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[amd.com:+]
 
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
 
-Alistair Popple <apopple@nvidia.com> writes:
 
-> I don't know the AMD driver well enough to comment definitively but
-> chances are this warning is spurious. I have been meaning to put
-> togeather a fix for it.  The problem is that migrate_vma_setup()
-> etc. allow for migration of anonymous folios, which is subtly
-> different from only allowing migration of anonymous VMA's.
->
-> Specifically migrate_vma checks for folio_test_anon() which returns
-> true for private file-backed VMAs while the warning is based on
-> vma_is_anonymous() which is false for such mappings. So it is possible
-> for the driver to migrate a private filebacked mapping to GPU memory
-> which will trigger this warning during teardown if the page wasn't
-> migrated back.
+On 2026-04-21 17:12, Alex Hung wrote:
+> 
+> 
+> On 3/30/26 09:34, Harry Wentland wrote:
+>> Previously we checked the plane_state->state's plane_color_pipeline
+>> client config when determining whether fill_plane_color_attributes
+>> should run, i.e., whether we had a plane color pipeline and should
+>> use that code for handling CSC properties, or whether we should
+>> look at legacy plane encoding and range.
+>>
+>> The problem is that we also call this during commit_tail, during
+>> which plane_state doesn't have the state backpointer. This meant
+>> that during commit_tail we'd look at the legacy plane COLOR_RANGE
+>> and COLOR_ENCODING values and overwrite what we pulled from the
+>> CSC colorop in atomic_check previously.
+> 
+> A nitpick - should this patch be squashed into earlier patch to address the problem earlier?
+> 
 
-Ah, if it is spurious, that is quite unfortunate.  We were hoping it's
-the same issue as the one the rest of the email was describing (those
-hangs, unkillable processes, and bad page states), since that means we
-have a good reproducer for it.
+That previous patch was merged with the initial color pipeline
+patchset. The problem only became apparent now when enabling
+YUV content.
 
-FWIW, that sounds like a plausible explanation; the program is using
-dynamic_cast, so typeinfo will need to be accessed.  The typeinfo is
-mmap-ped from the executable, so it's file-backed.  I don't see any
-reason for this page to be thrown out of the GPU later, so it stays
-mapped until exit, and causes the warning.
+> But that's not a real problem since the entire patchset will be merged together.
+> 
+> Reviewed-by: Alex Hung <alex.hung@amd.com>
+> 
 
-The trigger for the latter is significantly harder to reproduce, and far
-less self-contained.
+Thanks,
+Harry
 
-So, I suppose we're left with a bug for which the reproducer "run more
-than nproc of parallel AMDGPU&HMM-utilizing processes in a loop and
-cross fingers".  :/
+>>
+>> Instead pass the drm_atomic_state in explicitly and check that.
+>>
+>> Co-developed by Claude Sonnet 4.5.
+>>
+>> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 12 +++++++-----
+>>   1 file changed, 7 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> index a0d4ab4590e1..c3c6211d15cd 100644
+>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>> @@ -6006,7 +6006,8 @@ static const struct drm_encoder_funcs amdgpu_dm_encoder_funcs = {
+>>   };
+>>     static int
+>> -fill_plane_color_attributes(const struct drm_plane_state *plane_state,
+>> +fill_plane_color_attributes(struct drm_atomic_state *state,
+>> +                const struct drm_plane_state *plane_state,
+>>                   const enum surface_pixel_format format,
+>>                   enum dc_color_space *color_space)
+>>   {
+>> @@ -6015,7 +6016,7 @@ fill_plane_color_attributes(const struct drm_plane_state *plane_state,
+>>       *color_space = COLOR_SPACE_SRGB;
+>>         /* Ignore properties when DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE is set */
+>> -    if (plane_state->state && plane_state->state->plane_color_pipeline)
+>> +    if (state && state->plane_color_pipeline)
+>>           return 0;
+>>         /* DRM color properties only affect non-RGB formats. */
+>> @@ -6055,6 +6056,7 @@ fill_plane_color_attributes(const struct drm_plane_state *plane_state,
+>>     static int
+>>   fill_dc_plane_info_and_addr(struct amdgpu_device *adev,
+>> +                struct drm_atomic_state *state,
+>>                   const struct drm_plane_state *plane_state,
+>>                   const u64 tiling_flags,
+>>                   struct dc_plane_info *plane_info,
+>> @@ -6148,7 +6150,7 @@ fill_dc_plane_info_and_addr(struct amdgpu_device *adev,
+>>         plane_info->layer_index = plane_state->normalized_zpos;
+>>   -    ret = fill_plane_color_attributes(plane_state, plane_info->format,
+>> +    ret = fill_plane_color_attributes(state, plane_state, plane_info->format,
+>>                         &plane_info->color_space);
+>>       if (ret)
+>>           return ret;
+>> @@ -6189,7 +6191,7 @@ static int fill_dc_plane_attributes(struct amdgpu_device *adev,
+>>       dc_plane_state->clip_rect = scaling_info.clip_rect;
+>>       dc_plane_state->scaling_quality = scaling_info.scaling_quality;
+>>   -    ret = fill_dc_plane_info_and_addr(adev, plane_state,
+>> +    ret = fill_dc_plane_info_and_addr(adev, plane_state->state, plane_state,
+>>                         afb->tiling_flags,
+>>                         &plane_info,
+>>                         &dc_plane_state->address,
+>> @@ -9984,7 +9986,7 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
+>>           }
+>>             fill_dc_plane_info_and_addr(
+>> -            dm->adev, new_plane_state,
+>> +            dm->adev, state, new_plane_state,
+>>               afb->tiling_flags,
+>>               &bundle->plane_infos[planes_count],
+>>               &bundle->flip_addrs[planes_count].address,
+> 
 
-Thank you very much for fixing the WARN_ON!
-
-Have a lovely day.
-=2D-=20
-Arsen Arsenovi=C4=87
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEKBAEWCgCyFiEE/uKz0RP8AKMWLWBhUsKUMB6ixJMFAmn0t/EbFIAAAAAABAAO
-bWFudTIsMi41KzEuMTIsMiwyXxSAAAAAAC4AKGlzc3Vlci1mcHJAbm90YXRpb25z
-Lm9wZW5wZ3AuZmlmdGhob3JzZW1hbi5uZXRGRUUyQjNEMTEzRkMwMEEzMTYyRDYw
-NjE1MkMyOTQzMDFFQTJDNDkzGBxhYXJzZW5vdmljQGJheWxpYnJlLmNvbQAKCRBS
-wpQwHqLEk5KiAP9PMMBwrhXRhH/toIRa9Gd89OXC/klbJT/ORaNbQLu4ZAD/fjQY
-F8L55iUDPgzIF3dph1C7Td/BL6/SbmcILMaW4QY=
-=+HE3
------END PGP SIGNATURE-----
---=-=-=--
