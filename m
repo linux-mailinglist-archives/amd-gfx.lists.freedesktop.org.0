@@ -2,69 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eOeKJDGU+GnRwgIAu9opvQ
+	id EJ5kLjKU+GnRwgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 14:42:25 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 14:42:26 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DD8A4BD0E9
-	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 14:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D1154BD0FF
+	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 14:42:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31DFE10E6A3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A53710E6A4;
 	Mon,  4 May 2026 12:42:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SKor3FrM";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 717 seconds by postgrey-1.36 at gabe;
- Fri, 01 May 2026 20:49:00 UTC
-Received: from h7.fbrelay.privateemail.com (h7.fbrelay.privateemail.com
- [162.0.218.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2438810F5FB
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 May 2026 20:49:00 +0000 (UTC)
-Received: from MTA-08-4.privateemail.com (mta-08.privateemail.com
- [198.54.118.215])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by h7.fbrelay.privateemail.com (Postfix) with ESMTPSA id 4g6jXK4rqTz2xKS;
- Fri,  1 May 2026 16:37:37 -0400 (EDT)
-Received: from mta-08.privateemail.com (localhost [127.0.0.1])
- by mta-08.privateemail.com (Postfix) with ESMTP id 4g6jXH4kKxz3hhTp;
- Fri,  1 May 2026 16:37:35 -0400 (EDT)
-Received: from localhost.localdomain
- (bras-base-toroon4332w-grc-26-174-91-51-28.dsl.bell.ca [174.91.51.28])
- by mta-08.privateemail.com (Postfix) with ESMTPA;
- Fri,  1 May 2026 16:37:01 -0400 (EDT)
-From: Hamza Mahfooz <someguy@effective-light.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Hamza Mahfooz <someguy@effective-light.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Alex Hung <alex.hung@amd.com>, Ray Wu <ray.wu@amd.com>,
- Wayne Lin <Wayne.Lin@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Ivan Lipski <ivan.lipski@amd.com>, Chenyu Chen <chen-yu.chen@amd.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>,
- Yussuf Khalil <dev@pp3345.net>, Tom Chung <chiahsuan.chung@amd.com>,
- Colin Ian King <colin.i.king@gmail.com>,
- Charlene Liu <charlene.liu@amd.com>, amd-gfx@lists.freedesktop.org,
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com
+ [209.85.215.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1161710F5FB
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 May 2026 20:48:57 +0000 (UTC)
+Received: by mail-pg1-f172.google.com with SMTP id
+ 41be03b00d2f7-c7971d0d97dso1309674a12.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 01 May 2026 13:48:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1777668536; x=1778273336; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=TDTG+3/DnSLNqGWEZBCoD/zuD/bmDCvWNrNY2zLrKIk=;
+ b=SKor3FrMmrKkQ3hMO6dR0R6dxxfFx19eivvQsKQ5/3EERogtHty+l68OdlQ9alFUbh
+ nWuuB5FPUi6PS2kiLO3LJ/sARzsEJKVM61cE+o8n+c611x8vaLjIAtF8uYTts+o7u9R2
+ NwUBOvbNHldLaC9/tKQa/jbOv0dvFdKYJye8m8sybTj0FcJvui4n5PBRgMWeDG4EY9Q1
+ dmawA+z0Dq5u8wXZANPn7QasV7bZPprCqpUKpEINPmiO8KhnwvLriDc8RnwAibp/MIfm
+ zGyS2RjoXrSDMGBuDnLNIPbYUm2+1T2qlr/bLY89Bj41DoMHYu8FtnSOG/lAxf/1O3Wa
+ Bbqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777668536; x=1778273336;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=TDTG+3/DnSLNqGWEZBCoD/zuD/bmDCvWNrNY2zLrKIk=;
+ b=d2+mceihqWLJyGOOcM+DJ/R1awkk3QD9pitLRCVv5D5ClvHXh7SoeX1aRQY2lxGBiE
+ FAaZA50E0G6Jlmj4VUK2SCoV7djf/WPu1DnS8YINmRdLZ5W3IbeSF0o4nWOA4GclEJcr
+ ys4irGzZPJ9FgJIZtNWwOfHNyjbRoB1NFM5ayDD5sryMMK7GMLsjp8GO+XMlO6Fnc3W+
+ 0m3bzUvkcRpbrXFwC2yq7R/On3tDZHfaEl9OoBbFsEU5z9XcpxlJKU/1HeVTeDhajqIf
+ Qbdsk4RQ9SUJlnNRWpYHYNvJJ5jkrTwjHJrL63+xmulOQjrVfT3C//L4Gepido08v9Vx
+ mVAw==
+X-Gm-Message-State: AOJu0Yyl3cKitj1tZio34RRhzYdFteeLMAl76r+TSTzcV8TYq2suscyh
+ AE3El5rpF6xNDcbu3Z5ECl7xSZvorJs8MDEckQ8uXeqgXO8DJ0pNYyfcnT1Xrk3ezX4TLQ==
+X-Gm-Gg: AeBDievnKHnDKh3Ph7lCB6nK1sm2JH7moO0p18VGKXfrdsr7jE2Z1mtZuc5bbjAti+Q
+ fzfMh/U8poC2OgcHsvinFUUgViflwboY1UAKuGdwj3etO6d7+SwZleftQMMDB6sQt5TyFOJDceO
+ wbFkD3hTT21/mhqEPEYmHI7ZkkM9lZpYHJ9hIxHN79Fr9P2riwuUcNbMUuN9hz4oFJ1kw7asQIT
+ sgu7DWNgjUbilDLLqcrClj5GMzGOQAfCXD301eyBRMrW/M6d3rpDy1H8J8XDGNJuzVB2dfB2WLW
+ I0OTKWG+dN5M20D0siDQYR524HN7zueiwxQdPBlSfMdkKy5Ys4D1gkzUHuN8RuddDt9/Cd7FoPe
+ TksUPW7c0tmGsVhetkp3SNxDhV2+r9kcW/RDTG9eijp6yNn6Uv/VOTa4eMUtDs6DcTyeCgRiJAA
+ ZpMWyHFnV7J2HW04KgftTHtyxJlg6kG5GZ
+X-Received: by 2002:a05:6a21:6da2:b0:394:5513:ce5 with SMTP id
+ adf61e73a8af0-3a7f1fd1314mr559712637.51.1777668536068; 
+ Fri, 01 May 2026 13:48:56 -0700 (PDT)
+Received: from archbox ([2401:4900:1c0a:5b5d:d61f:366a:2e4:3109])
+ by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-c7ffbc6f511sm2878652a12.16.2026.05.01.13.48.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 01 May 2026 13:48:55 -0700 (PDT)
+From: Daksh Sahni <swizzguy76@gmail.com>
+To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH v5 2/2] drm/amd/display: add DMU timeout recovery support
-Date: Fri,  1 May 2026 16:35:44 -0400
-Message-ID: <20260501203552.749080-2-someguy@effective-light.com>
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, Daksh Sahni <swizzguy76@gmail.com>
+Subject: [PATCH] drm/amd: Fix spelling mistakes in comments
+Date: Fri,  1 May 2026 16:48:32 -0400
+Message-ID: <20260501204832.66251-1-swizzguy76@gmail.com>
 X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260501203552.749080-1-someguy@effective-light.com>
-References: <20260501203552.749080-1-someguy@effective-light.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
 X-Mailman-Approved-At: Mon, 04 May 2026 12:42:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,172 +89,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 2DD8A4BD0E9
+X-Rspamd-Queue-Id: 6D1154BD0FF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.39 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[64];
+X-Spamd-Result: default: False [1.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	DATE_IN_PAST(1.00)[63];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FREEMAIL_CC(0.00)[effective-light.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,linux.dev,pp3345.net,lists.freedesktop.org,vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:dri-devel@lists.freedesktop.org,m:someguy@effective-light.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:mario.limonciello@amd.com,m:alex.hung@amd.com,m:ray.wu@amd.com,m:Wayne.Lin@amd.com,m:aurabindo.pillai@amd.com,m:timur.kristof@gmail.com,m:superm1@kernel.org,m:ivan.lipski@amd.com,m:chen-yu.chen@amd.com,m:matthew.schwartz@linux.dev,m:dev@pp3345.net,m:chiahsuan.chung@amd.com,m:colin.i.king@gmail.com,m:charlene.liu@amd.com,m:linux-kernel@vger.kernel.org,m:timurkristof@gmail.com,m:coliniking@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DMARC_NA(0.00)[effective-light.com];
-	FORGED_SENDER(0.00)[someguy@effective-light.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[someguy@effective-light.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.771];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	R_DKIM_NA(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[swizzguy76@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,effective-light.com:mid,effective-light.com:email]
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-DMU already has robust hung state tracking, but timeout recovery
-was never hooked up, so do so now.
+Fix several instances of "occurred" and "separate" in comments.
 
-Signed-off-by: Hamza Mahfooz <someguy@effective-light.com>
+Signed-off-by: Daksh Sahni <swizzguy76@gmail.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 23 ++++++++++++++-----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  1 +
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 12 ++++++++--
- 3 files changed, 28 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c           | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c           | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.h           | 2 +-
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_vmid.c | 2 +-
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h       | 2 +-
+ 5 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index e96a12ff2d31..7be4ebee1cb7 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1246,7 +1246,7 @@ static  void amdgpu_dm_audio_eld_notify(struct amdgpu_device *adev, int pin)
- 	}
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+index 7af86a32c0c5..e5884bb4d63a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+@@ -564,7 +564,7 @@ static int amdgpu_ctx_query(struct amdgpu_device *adev,
+ 	out->state.flags = 0x0;
+ 	out->state.hangs = 0x0;
  
--static int dm_dmub_hw_init(struct amdgpu_device *adev)
-+int amdgpu_dm_dmub_hw_init(struct amdgpu_device *adev)
- {
- 	const struct dmcub_firmware_header_v1_0 *hdr;
- 	struct dmub_srv *dmub_srv = adev->dm.dmub_srv;
-@@ -1315,7 +1315,7 @@ static int dm_dmub_hw_init(struct amdgpu_device *adev)
- 	/* if adev->firmware.load_type == AMDGPU_FW_LOAD_PSP,
- 	 * amdgpu_ucode_init_single_fw will load dmub firmware
- 	 * fw_inst_const part to cw0; otherwise, the firmware back door load
--	 * will be done by dm_dmub_hw_init
-+	 * will be done by amdgpu_dm_dmub_hw_init().
+-	/* determine if a GPU reset has occured since the last call */
++	/* determine if a GPU reset has occurred since the last call */
+ 	reset_counter = atomic_read(&adev->gpu_reset_counter);
+ 	/* TODO: this should ideally return NO, GUILTY, or INNOCENT. */
+ 	if (ctx->reset_counter_query == reset_counter)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
+index 124fb38eb465..095ab609623f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
+@@ -161,12 +161,12 @@ void amdgpu_pasid_free_delayed(struct dma_resv *resv,
+  */
+ 
+ /**
+- * amdgpu_vmid_had_gpu_reset - check if reset occured since last use
++ * amdgpu_vmid_had_gpu_reset - check if reset occurred since last use
+  *
+  * @adev: amdgpu_device pointer
+  * @id: VMID structure
+  *
+- * Check if GPU reset occured since last use of the VMID.
++ * Check if GPU reset occurred since last use of the VMID.
+  */
+ bool amdgpu_vmid_had_gpu_reset(struct amdgpu_device *adev,
+ 			       struct amdgpu_vmid *id)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+index 56a88e14a044..bc011b4639f2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+@@ -31,7 +31,7 @@
+ #define AMDGPU_PREAMBLE_IB_PRESENT          (1 << 0)
+ /* bit set means preamble IB is first presented in belonging context */
+ #define AMDGPU_PREAMBLE_IB_PRESENT_FIRST    (1 << 1)
+-/* bit set means context switch occured */
++/* bit set means context switch occurred */
+ #define AMDGPU_HAVE_CTX_SWITCH              (1 << 2)
+ /* bit set means IB is preempted */
+ #define AMDGPU_IB_PREEMPTED                 (1 << 3)
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_vmid.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_vmid.c
+index 5bc3bc60a2ac..ebbe7900205e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_vmid.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_vmid.c
+@@ -46,7 +46,7 @@ static void dcn20_wait_for_vmid_ready(struct dcn20_vmid *vmid)
+ 	/* According the hardware spec, we need to poll for the lowest
+ 	 * bit of PAGE_TABLE_BASE_ADDR_LO32 = 1 any time a GPUVM
+ 	 * context is updated. We can't use REG_WAIT here since we
+-	 * don't have a seperate field to wait on.
++	 * don't have a separate field to wait on.
+ 	 *
+ 	 * TODO: Confirm timeout / poll interval with hardware team
  	 */
- 	if (adev->firmware.load_type != AMDGPU_FW_LOAD_PSP) {
- 		memcpy(fb_info->fb[DMUB_WINDOW_0_INST_CONST].cpu_addr, fw_inst_const,
-@@ -1457,7 +1457,7 @@ static void dm_dmub_hw_resume(struct amdgpu_device *adev)
- 			drm_warn(adev_to_drm(adev), "Wait for DMUB auto-load failed: %d\n", status);
- 	} else {
- 		/* Perform the full hardware initialization. */
--		r = dm_dmub_hw_init(adev);
-+		r = amdgpu_dm_dmub_hw_init(adev);
- 		if (r)
- 			drm_err(adev_to_drm(adev), "DMUB interface failed to initialize: status=%d\n", r);
- 	}
-@@ -2041,6 +2041,9 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
- 		goto error;
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+index c18ff8f00bb8..43b05e56679c 100644
+--- a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
++++ b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+@@ -355,7 +355,7 @@ struct dmub_srv_hw_params {
  
-+	adev->dm.dc->debug.enable_dmu_recovery =
-+		amdgpu_device_should_recover_gpu(adev);
-+
- 	if (amdgpu_dc_debug_mask & DC_DISABLE_PIPE_SPLIT) {
- 		adev->dm.dc->debug.force_single_disp_pipe_split = false;
- 		adev->dm.dc->debug.pipe_split_policy = MPC_SPLIT_AVOID;
-@@ -2090,7 +2093,7 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
- 	if (adev->dm.dc->caps.dp_hdmi21_pcon_support)
- 		drm_info(adev_to_drm(adev), "DP-HDMI FRL PCON supported\n");
- 
--	r = dm_dmub_hw_init(adev);
-+	r = amdgpu_dm_dmub_hw_init(adev);
- 	if (r) {
- 		drm_err(adev_to_drm(adev), "DMUB interface failed to initialize: status=%d\n", r);
- 		goto error;
-@@ -3604,7 +3607,7 @@ static int dm_resume(struct amdgpu_ip_block *ip_block)
- 		 */
- 		link_enc_cfg_copy(adev->dm.dc->current_state, dc_state);
- 
--		r = dm_dmub_hw_init(adev);
-+		r = amdgpu_dm_dmub_hw_init(adev);
- 		if (r) {
- 			drm_err(adev_to_drm(adev), "DMUB interface failed to initialize: status=%d\n", r);
- 			return r;
-@@ -9623,7 +9626,15 @@ static void prepare_flip_isr(struct amdgpu_crtc *acrtc)
- {
- 
- 	assert_spin_locked(&acrtc->base.dev->event_lock);
--	WARN_ON(acrtc->event);
-+
-+	/*
-+	 * Compositors will refuse to make forward progress unless we send
-+	 * the previous flip's completion event.
-+	 */
-+	if (WARN_ON(acrtc->event)) {
-+		drm_crtc_send_vblank_event(&acrtc->base, acrtc->event);
-+		drm_crtc_vblank_put(&acrtc->base);
-+	}
- 
- 	acrtc->event = acrtc->base.state->event;
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-index 74a8fe1a1999..dc808ee83c2a 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-@@ -1086,6 +1086,7 @@ int amdgpu_dm_verify_lut3d_size(struct amdgpu_device *adev,
- #define MAX_COLOR_LEGACY_LUT_ENTRIES 256
- 
- void amdgpu_dm_init_color_mod(void);
-+int amdgpu_dm_dmub_hw_init(struct amdgpu_device *adev);
- int amdgpu_dm_create_color_properties(struct amdgpu_device *adev);
- int amdgpu_dm_verify_lut_sizes(const struct drm_crtc_state *crtc_state);
- int amdgpu_dm_update_crtc_color_mgmt(struct dm_crtc_state *crtc);
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index 3b8ae7798a93..8f10117483e2 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@ -33,6 +33,7 @@
- #include <drm/drm_atomic.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/amdgpu_drm.h>
-+#include <drm/drm_drv.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_fixed.h>
- 
-@@ -1165,8 +1166,15 @@ void dm_set_dcn_clocks(struct dc_context *ctx, struct dc_clocks *clks)
- 
- void dm_helpers_dmu_timeout(struct dc_context *ctx)
- {
--	// TODO:
--	//amdgpu_device_gpu_recover(dc_context->driver-context, NULL);
-+	struct amdgpu_device *adev = ctx->driver_context;
-+
-+	lockdep_assert_held(&adev->dm.dc_lock);
-+
-+	drm_info(adev_to_drm(adev), "attempting firmware reset\n");
-+	if (amdgpu_dm_dmub_hw_init(adev))
-+		drm_dev_wedged_event(adev_to_drm(adev),
-+				     DRM_WEDGE_RECOVERY_REBIND |
-+				     DRM_WEDGE_RECOVERY_BUS_RESET, NULL);
- }
- 
- void dm_helpers_smu_timeout(struct dc_context *ctx, unsigned int msg_id, unsigned int param, unsigned int timeout_us)
+ /**
+  * struct dmub_srv_debug - Debug info for dmub_srv
+- * @timeout_occured: Indicates a timeout occured on any message from driver to dmub
++ * @timeout_occured: Indicates a timeout occurred on any message from driver to dmub
+  * @timeout_cmd: first cmd sent from driver that timed out - subsequent timeouts are not stored
+  */
+ struct dmub_timeout_info {
 -- 
 2.54.0
 
