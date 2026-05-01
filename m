@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2AyoNhez9GnVDgIAu9opvQ
+	id YOR2Kxyz9GnVDgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 16:05:11 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 16:05:16 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E34084AD09C
-	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 16:05:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26CA84AD0CA
+	for <lists+amd-gfx@lfdr.de>; Fri, 01 May 2026 16:05:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B2F110F543;
-	Fri,  1 May 2026 14:05:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECB2B10F54C;
+	Fri,  1 May 2026 14:05:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZohLWm62";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="sZCVgJoK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011037.outbound.protection.outlook.com [52.101.57.37])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A48F10F543
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 May 2026 14:05:08 +0000 (UTC)
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010070.outbound.protection.outlook.com [52.101.201.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45F8F10F54C
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 May 2026 14:05:13 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BmQCbnbWKxS5wIaw+pfEXlqcvI2Bt8t2jtFGzwGnNaILgTppu1FR6D7GkUgwWIrxTJCf4vJPLnyPo39jMwxL5ohE61NDzlcHdzRITN24jQ3bjflupnVEc1SnvgBZl9TCzm7vOYoAtFktuJSf7nE3btz7NpT9SjFU0I/xW1XQEoE/lXImvCmasZhf6Gp8Wg10fu2tlVWFYgjnFowJNkKuUxN1NpYMf6GoceMnZdScGVl8MoSqXyE7k9d6QvtWGrSwsC8X4VPbyzZmVzUYiBdcz/gBOq/rdM6Xdbl3NHcX3ZnO4MRMA3z8zPrYoTCl72JCN+N+AiqcB1qkMs4KZ9tykQ==
+ b=y4Ts6SqWu2hhReaOHTn0466VNSYFutK8GTLLUWNspTCCy9h0p9IwfkxiQA+crUuyOmfvAU2g8+pdt4fnqbWIzFyWmta06PZb7H1DXuQGMfuL6bs/c1IfI6MyF/i3zOCbZxejst6rFnLpgf6zfRVZpdQmJGgiioDfLw+PMKUPfscCgLKmxvK6ux7rEm1QAHGYOGG2TK+I/cKzvmca8a2iGW1Sf1N7XC65VfJ1lok+cOorWFZrZIUGbeI0yt/SP45bJ6t5S15GhyYu0WjDAbyI/73L3hA3/qayH9hcJ9nFMCbkVEo8uLi0BDKftLG8RL7P6cDaBWToGsvWF/TM6tSOsg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5qQ5ZXEgTzGfxN4rLNhIv9WXzz5XcxhVvzs3K1BFtmc=;
- b=RPljSVkpzgWkyxPTfh2t29J46F4pehV+8vmYvvsmUfB23eQh7IlY6F4aflyq5sD+qis2hyogFKzVBqExwNm8JhiZm4vF7VNEjC+sRpoI8FoND3dvcSpj37NJo4RES07jekMeg0bIOKxQivmzGPFfgEQE6YYssBEqOI11tmTpre0Zv2SDekvXBE+XFUyN+r1wbxkq7xAvrsc50S0B++azJceXZKvBwC+D7xb7rJ0+HZ90avljM/78gB8DN0Rd1FjeBFEJb/Kb8WgC+MtlBwqsBN7tj9sc/wZPC5BC93Pi4ogE6+KysS9UmmgP86p4SFTIdXDEtUMA94lDK1b135MObg==
+ bh=z/7gbpfIIj3KPznJzfEum9mJI7OwnO62K/DI9ZS+CRs=;
+ b=mb06/STl8hnttGWIU3k7/9vknxwb545P/2fiKLS2NLC9dtdO7J3yquh/sBppKbb7IPudooxbIK1KyJhR2HxgHrU/RJBv0kfsA9AVG5ZwgZRXk4rs3QEad0oN/IGivC8AaNknSnOMcZ1WPYCkfqe6EEuWyBXSuyZtSkMWOkcVjK09QSXOhjXjOfSbUOZqsaCdC0sMi04VNgK2hrfnyMGcFBPmBP4UBOiv7TcIkiVWxSFjb9BCmQtyJaDW1XGjCwKn1rIPu+zQ/H0sLK7aATnbvIqXbcePvKX2e41QX6KUMGGo+TFIeRowbVy7P8ydJBI+zjXgVXZClAcrjCzUZ/zvkw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5qQ5ZXEgTzGfxN4rLNhIv9WXzz5XcxhVvzs3K1BFtmc=;
- b=ZohLWm62Y76Ot2xwj3ILoavUJqmHBncIpTwvfodNYqVqehPeXRiH1CkAMPcqS4eoAWMOI3FpJpnVZIqN3Qpftx8eSO7DbMYeg93RFZ5pkK8B6VC51LFferdULWnVa7YLXWYn8OLALDbEvOloucsNVEnQDmp2Z5FsSsgworVdFMQ=
-Received: from CH0PR03CA0274.namprd03.prod.outlook.com (2603:10b6:610:e6::9)
- by IA1PR12MB6307.namprd12.prod.outlook.com (2603:10b6:208:3e5::22) with
+ bh=z/7gbpfIIj3KPznJzfEum9mJI7OwnO62K/DI9ZS+CRs=;
+ b=sZCVgJoKFhhZH8UJUbgC2ZBCCqLSuaN8n1aZ6NmhcKQbqbiDdFD3L6sOQa+tqm7WJrH8GfmEOwGiZNcKJWKl1K1PBPfg51M0jGNRrU4alwQCu9QcFo7fdwUGkSgbCcIV91fzDIlsButHtYKprYvM5X8SSguHy0ySiuUQo7ch0kE=
+Received: from CH2PR03CA0018.namprd03.prod.outlook.com (2603:10b6:610:59::28)
+ by DS0PR12MB7728.namprd12.prod.outlook.com (2603:10b6:8:13a::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.23; Fri, 1 May
  2026 14:05:01 +0000
-Received: from CH2PEPF0000013B.namprd02.prod.outlook.com
- (2603:10b6:610:e6:cafe::11) by CH0PR03CA0274.outlook.office365.com
- (2603:10b6:610:e6::9) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9870.23 via Frontend Transport; Fri,
- 1 May 2026 14:05:00 +0000
+Received: from CH2PEPF0000013F.namprd02.prod.outlook.com
+ (2603:10b6:610:59:cafe::ac) by CH2PR03CA0018.outlook.office365.com
+ (2603:10b6:610:59::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9870.22 via Frontend Transport; Fri,
+ 1 May 2026 14:05:01 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -53,27 +53,28 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
 Received: from satlexmb08.amd.com (165.204.84.17) by
- CH2PEPF0000013B.mail.protection.outlook.com (10.167.244.68) with Microsoft
+ CH2PEPF0000013F.mail.protection.outlook.com (10.167.244.71) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9891.9 via Frontend Transport; Fri, 1 May 2026 14:05:00 +0000
+ 15.20.9891.9 via Frontend Transport; Fri, 1 May 2026 14:05:01 +0000
 Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 1 May
- 2026 09:04:53 -0500
+ 2026 09:04:54 -0500
 Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
  (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 1 May
- 2026 07:04:52 -0700
+ 2026 07:04:53 -0700
 Received: from hwentlanryzen (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Fri, 1 May 2026 09:04:52 -0500
+ Transport; Fri, 1 May 2026 09:04:53 -0500
 From: Harry Wentland <harry.wentland@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Harry Wentland
  <harry.wentland@amd.com>
-Subject: [PATCH 05/21] drm/amd/display: Introduce FRL registers for DCN32
-Date: Fri, 1 May 2026 10:04:21 -0400
-Message-ID: <20260501140441.41068-6-harry.wentland@amd.com>
+Subject: [PATCH 06/21] drm/amd/display: Add the necessary FRL registers for
+ DCN314
+Date: Fri, 1 May 2026 10:04:22 -0400
+Message-ID: <20260501140441.41068-7-harry.wentland@amd.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260501140441.41068-1-harry.wentland@amd.com>
 References: <20260501140441.41068-1-harry.wentland@amd.com>
@@ -82,29 +83,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF0000013B:EE_|IA1PR12MB6307:EE_
-X-MS-Office365-Filtering-Correlation-Id: 569577a0-4632-40fa-b0c6-08dea78aa285
+X-MS-TrafficTypeDiagnostic: CH2PEPF0000013F:EE_|DS0PR12MB7728:EE_
+X-MS-Office365-Filtering-Correlation-Id: 02854e51-535c-4115-08b6-08dea78aa2cf
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|36860700016|1800799024|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: dW1ryPoTloBaUEF9wE4Pv+pHjzs8zbcClT7oaGrEM/KPbr8VGqKWd25lzeNDXr7AMY0Rn58f1cTuvsqg1fKAiaC/m2UnQAGoTUKHZeca8GdgUQdQ/iBl1Gx7iQo+BAtEXaqrvt2SF/eg2KLaw+eykgHwe9SlMtjpzzvWsjnHdv3eZ8g/0rVA8dxSm2xnFtU7MF6AWFhq54U8N2WhP2YrnkmSK+I5i839xY14cshdE897HgACUryw/G+YjisxPLE5KqMmPbHc8bU/7cSclzjOhW1W9WfihTd/YLrOYawWQLY0oHj/pUyNQNAO0K6+qXpcTPO3BSZk6k9QHAI3DfAD5qrgsxtLjtnMf0Knl43cUTBQpWcM9XEYZQAmHVFt/M5oT1T2EoXpEgYx8bfJz0Me3hK/3ItyJSJO39de3K5kRFOUK4AnncWg/3wenVNqNPnYv4LLrLafESb+21Zawm7jnrf6M6Pa24xODq7Li7X+0ZNSLRiZyCDwHkqEqCVwuDEUdA+jWl3gPQuqqpVRBTh01V0LUXcX/3sE/O8hb2cGKUVHpjQZRvBZzyOAcmExPvaKt4uNzSeLgCU9+cXpgltH46pZpREm550Fj1HzRQ2ytBReoi0GwfHqDXB82L6fsJ9wbLTlR4YhKyFln8SoQqF01DlL2PqU4LcVg0H3cnlrJSa8r2JkUgf8bqqgseQz1P9gtyeRgMznobwV+8qkiPL1bpXM2X/lnQjBfqehlnX7pZE=
+ ARA:13230040|1800799024|82310400026|36860700016|376014|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: xNMcAcWys2lYx6Vxuc95S3wMZ+zWJhQW4TbxjvDahyjXtbhlpkx1hmyEQtteclH8WSFICj5RPvF2VQPuuMiRae2l8O4LQRbR9pRDoAJJvypS5UP+7jbCT1N44EVavfvV+KJvADkU51nwMTlCWBGD+odQZwGWonndRsSLzTkDbf5AGvxN4yJKVAEpeVaE5NxMZfFFcLT+rk/C3TJ3+ifzd5cGo8+5T7uoTPfnc8+702pu+vHuDasQ4vsqSNH0MIWagKfsQsHMDyN2hbcdoJPrAEUsKm5GlAeVU7zXFOyPPQ8588/3uHi0QQd8CTM8QNliHcJa10NUkgVZSKaGPKd/898tf3verl+Yr2U+/SFuB+72sUOBfy3SbGYGwAD7ttCCpXgMeQCuZvJlMWKwhRcIfVeC00mAvco2mD2U0fH6ypVqUKLU0DDfTCXs5XnQZu/Z9Sz3cfgBdNHviVoTamEyOUn7ezCWEl5Kr+5NPsI3dJJalvArwF4tZ1aGWOzaMaYf3sg0oU0ySdPZIohUny7xRMkZE4PN7adWTciUKJhlriCk+w+zBNDJ3OsCnWeGvdf37d2Y3tXKJCV44wRR/Z2+LBZs/P+o+Tl6XVexrQ9y0GngrbaYAvGcvkoPE/QnJ9MKhG7axQKtPb/XyVzOFH7Dx/d+1uznnEqAo6Gr2RmBhJdgM8uCr7IfE+EkM/N2F3xT2I84yOFZWgzZar3jXSP1bLBaUiTyh1GgolUs1GxJZxc=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(36860700016)(1800799024)(56012099003)(18002099003)(22082099003);
+ SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(18002099003)(22082099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: tsyOi2kvbpMxHw2ece2eUY+xREjcLnKsksMN/9C7ekuwtlhtoIAJIyVp7+SBr1W1K8nFtnoYAfwTy3GqNLPhn2neBYJBzusHiNH5PDyYBZ8TWl8glfuir+HFLSsM5Zpu9SjYRqkHiUDMdOBQJLmmZ+U5+I70rDcOFUJV4Cx4UB4lUYiNkR9l+1FbTHF2qgJ/ZmLh6pj2BvhumKQXYqDVdfwjwqAXV0UEFXQCYB7VhiTDEqSj71YPvk4cLYm6NmJ1QORQPg4rErlOrZ4iA/KWVCWm8bRm9f1FGXi2BjDFvLhb49bIIZDBcnZffJzlMTKp2O7leLbWHqxNoIyQfmJxyBsf4NJ1I6EvIlGrLXAL4bEJ5Qx3vRHuCfk2ZSpfWIsfGlKTTtCGVEJzJDn2eaPgKYxl+t5XR8EF5PNjMxy81GlcEULDNcdLl7GEAR9FulZC
+X-MS-Exchange-AntiSpam-MessageData-0: oQ3/KepVDG6wMlnUpgr9nVUr7ghL83xsj/W4RbK60MhCQnxzcCeJ31oyvP2vK6+RJCKjaErpt7Nl3VKXGAI08+rNna4inO0LO7SqDTv46UroOJ3HERazxcPDGroByt0vuYGssvuLhRz6NA/pl3CoomS47eZconQA9CrKwXDBSy2XrqgF0ZVT3GXDXQO55oLb/kxB8R0aUJOnbxyEMWinjirbYuFEXWcEdHETPOqrOfu/8VPXfdrQ/npEjQgJ8JSmq1BPVCMUaCfwOF0JgPe5RvHigF0l6kkFIBfuqiM41p9HRPXsQIPdsrE1/PNe1po0qnBKlw03hLPtuRMqcPT5Xm3jRAF9/8hVyQmbVm0/Hc3Mdye5oN5++uNYMSdh30LU6ELfEXtt8TJEe7uMaCnUBTg5IJvTrUmEANyekGe8J4ZnZaklWJSJdldAtN/en1P/
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 May 2026 14:05:00.6562 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 569577a0-4632-40fa-b0c6-08dea78aa285
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 May 2026 14:05:01.1666 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 02854e51-535c-4115-08b6-08dea78aa2cf
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000013B.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000013F.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6307
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7728
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,7 +119,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: E34084AD09C
+X-Rspamd-Queue-Id: 26CA84AD0CA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
@@ -150,44 +151,24 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 
-This commit add the basic set of FRL registers associated with DCN32.
+Add all the required registers to support FRL on DCN314.
 
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Signed-off-by: Harry Wentland <harry.wentland@amd.com>
 ---
- .../include/asic_reg/dcn/dcn_3_2_0_offset.h   | 109 ++++
- .../include/asic_reg/dcn/dcn_3_2_0_sh_mask.h  | 544 ++++++++++++++++++
- 2 files changed, 653 insertions(+)
+ .../include/asic_reg/dcn/dcn_3_1_4_offset.h   | 108 ++++
+ .../include/asic_reg/dcn/dcn_3_1_4_sh_mask.h  | 544 ++++++++++++++++++
+ 2 files changed, 652 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_2_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_2_0_offset.h
-index 78cb61d5800a..bc4524f9b462 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_2_0_offset.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_2_0_offset.h
-@@ -12201,6 +12201,38 @@
- #define regDP_STREAM_MAPPER_CONTROL3                                                                    0x0e59
- #define regDP_STREAM_MAPPER_CONTROL3_BASE_IDX                                                           3
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_4_offset.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_4_offset.h
+index 20a6ee7adeef..3aeb01346c12 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_4_offset.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_4_offset.h
+@@ -14560,6 +14560,96 @@
+ #define regDC_PERFMON22_PERFMON_LOW                                                                     0x08cf
+ #define regDC_PERFMON22_PERFMON_LOW_BASE_IDX                                                            3
  
-+// addressBlock: dcn_dc_hpo_hdmi_link_enc0_dispdec
-+// base address: 0x2656c
-+#define regHDMI_LINK_ENC_CONTROL                                                                        0x095b
-+#define regHDMI_LINK_ENC_CONTROL_BASE_IDX                                                               3
-+#define regHDMI_LINK_ENC_CLK_CTRL                                                                       0x095c
-+#define regHDMI_LINK_ENC_CLK_CTRL_BASE_IDX                                                              3
-+
-+
-+// addressBlock: dcn_dc_hpo_hdmi_frl_enc0_dispdec
-+// base address: 0x26594
-+#define regHDMI_FRL_ENC_CONFIG                                                                          0x0965
-+#define regHDMI_FRL_ENC_CONFIG_BASE_IDX                                                                 3
-+#define regHDMI_FRL_ENC_CONFIG2                                                                         0x0966
-+#define regHDMI_FRL_ENC_CONFIG2_BASE_IDX                                                                3
-+#define regHDMI_FRL_ENC_METER_BUFFER_STATUS                                                             0x0967
-+#define regHDMI_FRL_ENC_METER_BUFFER_STATUS_BASE_IDX                                                    3
-+#define regHDMI_FRL_ENC_MEM_CTRL                                                                        0x0968
-+#define regHDMI_FRL_ENC_MEM_CTRL_BASE_IDX                                                               3
-+
-+
-+// addressBlock: dcn_dc_hpo_hdmi_stream_enc0_dispdec
++// addressBlock: dce_dc_hpo_hdmi_stream_enc0_dispdec
 +// base address: 0x2634c
 +#define regHDMI_STREAM_ENC_CLOCK_CONTROL                                                                0x08d3
 +#define regHDMI_STREAM_ENC_CLOCK_CONTROL_BASE_IDX                                                       3
@@ -199,14 +180,8 @@ index 78cb61d5800a..bc4524f9b462 100644
 +#define regHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL1_BASE_IDX                            3
 +#define regHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2                                     0x08d8
 +#define regHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2_BASE_IDX                            3
- 
- // addressBlock: dcn_dc_hpo_hdmi_stream_enc0_afmt_afmt_dispdec
- // base address: 0x2646c
-@@ -12275,6 +12307,83 @@
- #define regVPG5_VPG_MPEG_INFO1                                                                          0x093a
- #define regVPG5_VPG_MPEG_INFO1_BASE_IDX                                                                 3
- 
-+// addressBlock: dcn_dc_hpo_hdmi_tb_enc0_dispdec
++
++// addressBlock: dce_dc_hpo_hdmi_tb_enc0_dispdec
 +// base address: 0x2637c
 +#define regHDMI_TB_ENC_CONTROL                                                                          0x08df
 +#define regHDMI_TB_ENC_CONTROL_BASE_IDX                                                                 3
@@ -284,78 +259,42 @@ index 78cb61d5800a..bc4524f9b462 100644
 +#define regHDMI_TB_ENC_CRC_RESULT_1_BASE_IDX                                                            3
 +
  
- // addressBlock: dcn_dc_hpo_dp_stream_enc0_dispdec
- // base address: 0x1ab8c
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_2_0_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_2_0_sh_mask.h
-index c20bf730dc55..a89fe19c4c84 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_2_0_sh_mask.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_2_0_sh_mask.h
-@@ -43567,6 +43567,124 @@
- #define DP_STREAM_MAPPER_CONTROL3__DP_STREAM_LINK_TARGET__SHIFT                                               0x0
- #define DP_STREAM_MAPPER_CONTROL3__DP_STREAM_LINK_TARGET_MASK                                                 0x00000007L
+ // addressBlock: dce_dc_hpo_hdmi_stream_enc0_afmt_afmt_dispdec
+ // base address: 0x2646c
+@@ -14634,6 +14724,24 @@
+ #define regDME9_DME_MEMORY_CONTROL                                                                      0x093d
+ #define regDME9_DME_MEMORY_CONTROL_BASE_IDX                                                             3
  
-+// addressBlock: dcn_dc_hpo_hdmi_link_enc0_dispdec
-+//HDMI_LINK_ENC_CONTROL
-+#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_ENABLE__SHIFT                                                    0x0
-+#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_SOFT_RESET__SHIFT                                                0x4
-+#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_ENABLE_MASK                                                      0x00000001L
-+#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_SOFT_RESET_MASK                                                  0x00000010L
-+//HDMI_LINK_ENC_CLK_CTRL
-+#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_EN__SHIFT                                                 0x0
-+#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_ON_HDMICHARCLK__SHIFT                                     0x1
-+#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_EN_MASK                                                   0x00000001L
-+#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_ON_HDMICHARCLK_MASK                                       0x00000002L
++// addressBlock: dce_dc_hpo_hdmi_link_enc0_dispdec
++// base address: 0x2656c
++#define regHDMI_LINK_ENC_CONTROL                                                                        0x095b
++#define regHDMI_LINK_ENC_CONTROL_BASE_IDX                                                               3
++#define regHDMI_LINK_ENC_CLK_CTRL                                                                       0x095c
++#define regHDMI_LINK_ENC_CLK_CTRL_BASE_IDX                                                              3
 +
-+// addressBlock: dcn_dc_hpo_hdmi_frl_enc0_dispdec
-+//HDMI_FRL_ENC_CONFIG
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE_COUNT__SHIFT                                                      0x0
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_TRAINING_ENABLE__SHIFT                                                 0x1
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_SCRAMBLER_DISABLE__SHIFT                                               0x2
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE0_TRAINING_PATTERN__SHIFT                                          0x10
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE1_TRAINING_PATTERN__SHIFT                                          0x14
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE2_TRAINING_PATTERN__SHIFT                                          0x18
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE3_TRAINING_PATTERN__SHIFT                                          0x1c
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE_COUNT_MASK                                                        0x00000001L
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_TRAINING_ENABLE_MASK                                                   0x00000002L
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_SCRAMBLER_DISABLE_MASK                                                 0x00000004L
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE0_TRAINING_PATTERN_MASK                                            0x000F0000L
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE1_TRAINING_PATTERN_MASK                                            0x00F00000L
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE2_TRAINING_PATTERN_MASK                                            0x0F000000L
-+#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE3_TRAINING_PATTERN_MASK                                            0xF0000000L
-+//HDMI_FRL_ENC_CONFIG2
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE__SHIFT                                               0x0
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_THRESHOLD__SHIFT                                               0xc
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_CAL_EN__SHIFT                                                  0x18
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_RC_COMPRESS_DISABLE__SHIFT                                            0x19
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_FRL_HDMISTREAMCLK_DB_SEL__SHIFT                                            0x1a
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE_RESET__SHIFT                                         0x1c
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_EXCEED_STATUS__SHIFT                                           0x1d
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_METER_BUFFER_OVERFLOW_STATUS__SHIFT                                   0x1e
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE_MASK                                                 0x000001FFL
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_THRESHOLD_MASK                                                 0x001FF000L
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_CAL_EN_MASK                                                    0x01000000L
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_RC_COMPRESS_DISABLE_MASK                                              0x02000000L
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_FRL_HDMISTREAMCLK_DB_SEL_MASK                                              0x0C000000L
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE_RESET_MASK                                           0x10000000L
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_EXCEED_STATUS_MASK                                             0x20000000L
-+#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_METER_BUFFER_OVERFLOW_STATUS_MASK                                     0x40000000L
-+//HDMI_FRL_ENC_METER_BUFFER_STATUS
-+#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_MAX_METER_BUFFER_LEVEL__SHIFT                             0x0
-+#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_METER_BUFFER_MAX_LEVEL_RESET__SHIFT                       0x1f
-+#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_MAX_METER_BUFFER_LEVEL_MASK                               0x0000007FL
-+#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_METER_BUFFER_MAX_LEVEL_RESET_MASK                         0x80000000L
-+//HDMI_FRL_ENC_MEM_CTRL
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_DIS__SHIFT                                                 0x0
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_FORCE__SHIFT                                               0x1
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_STATE__SHIFT                                               0x4
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_DEFAULT_MEM_LOW_POWER_STATE__SHIFT                             0x8
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_DIS_MASK                                                   0x00000001L
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_FORCE_MASK                                                 0x00000006L
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_STATE_MASK                                                 0x00000030L
-+#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_DEFAULT_MEM_LOW_POWER_STATE_MASK                               0x00000300L
++// addressBlock: dce_dc_hpo_hdmi_frl_enc0_dispdec
++// base address: 0x26594
++#define regHDMI_FRL_ENC_CONFIG                                                                          0x0965
++#define regHDMI_FRL_ENC_CONFIG_BASE_IDX                                                                 3
++#define regHDMI_FRL_ENC_CONFIG2                                                                         0x0966
++#define regHDMI_FRL_ENC_CONFIG2_BASE_IDX                                                                3
++#define regHDMI_FRL_ENC_METER_BUFFER_STATUS                                                             0x0967
++#define regHDMI_FRL_ENC_METER_BUFFER_STATUS_BASE_IDX                                                    3
++#define regHDMI_FRL_ENC_MEM_CTRL                                                                        0x0968
++#define regHDMI_FRL_ENC_MEM_CTRL_BASE_IDX                                                               3
 +
-+
-+// addressBlock: dcn_dc_hpo_hdmi_stream_enc0_dispdec
+ 
+ // addressBlock: dce_dc_hpo_hpo_top_dispdec
+ // base address: 0x2790c
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_4_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_4_sh_mask.h
+index d3d98d43287c..4fd16249a2db 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_4_sh_mask.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_4_sh_mask.h
+@@ -59876,6 +59876,489 @@
+ #define DC_PERFMON22_PERFMON_LOW__PERFMON_LOW__SHIFT                                                          0x0
+ #define DC_PERFMON22_PERFMON_LOW__PERFMON_LOW_MASK                                                            0xFFFFFFFFL
+ 
++// addressBlock: dce_dc_hpo_hdmi_stream_enc0_dispdec
 +//HDMI_STREAM_ENC_CLOCK_CONTROL
 +#define HDMI_STREAM_ENC_CLOCK_CONTROL__HDMI_STREAM_ENC_CLOCK_EN__SHIFT                                        0x0
 +#define HDMI_STREAM_ENC_CLOCK_CONTROL__HDMI_STREAM_ENC_CLOCK_ON_DISPCLK__SHIFT                                0x4
@@ -412,14 +351,7 @@ index c20bf730dc55..a89fe19c4c84 100644
 +#define HDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2__FIFO_DB_PENDING_MASK                        0x00000100L
 +#define HDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2__FIFO_DB_DISABLE_MASK                        0x00001000L
 +
- 
- // addressBlock: dcn_dc_hpo_hdmi_stream_enc0_afmt_afmt_dispdec
- //AFMT5_AFMT_VBI_PACKET_CONTROL
-@@ -43943,6 +44061,432 @@
- #define VPG5_VPG_MPEG_INFO1__VPG_MPEG_INFO_FR_MASK                                                            0x00001000L
- #define VPG5_VPG_MPEG_INFO1__VPG_MPEG_INFO_UPDATE_MASK                                                        0x00010000L
- 
-+// addressBlock: dcn_dc_hpo_hdmi_tb_enc0_dispdec
++// addressBlock: dce_dc_hpo_hdmi_tb_enc0_dispdec
 +//HDMI_TB_ENC_CONTROL
 +#define HDMI_TB_ENC_CONTROL__HDMI_TB_ENC_EN__SHIFT                                                            0x0
 +#define HDMI_TB_ENC_CONTROL__HDMI_RESET__SHIFT                                                                0x4
@@ -846,8 +778,76 @@ index c20bf730dc55..a89fe19c4c84 100644
 +#define HDMI_TB_ENC_CRC_RESULT_1__CRC_TRIBYTE2__SHIFT                                                         0x0
 +#define HDMI_TB_ENC_CRC_RESULT_1__CRC_TRIBYTE2_MASK                                                           0x0000FFFFL
  
- // addressBlock: dcn_dc_hpo_dp_stream_enc0_dispdec
- //DP_STREAM_ENC0_DP_STREAM_ENC_CLOCK_CONTROL
+ // addressBlock: dce_dc_hpo_hdmi_stream_enc0_afmt_afmt_dispdec
+ //AFMT5_AFMT_VBI_PACKET_CONTROL
+@@ -60252,6 +60735,67 @@
+ #define DME9_DME_MEMORY_CONTROL__DME_MEM_PWR_STATE_MASK                                                       0x00000300L
+ #define DME9_DME_MEMORY_CONTROL__DME_MEM_DEFAULT_MEM_LOW_POWER_STATE_MASK                                     0x00003000L
+ 
++// addressBlock: dce_dc_hpo_hdmi_link_enc0_dispdec
++//HDMI_LINK_ENC_CONTROL
++#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_ENABLE__SHIFT                                                    0x0
++#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_SOFT_RESET__SHIFT                                                0x4
++#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_ENABLE_MASK                                                      0x00000001L
++#define HDMI_LINK_ENC_CONTROL__HDMI_LINK_ENC_SOFT_RESET_MASK                                                  0x00000010L
++//HDMI_LINK_ENC_CLK_CTRL
++#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_EN__SHIFT                                                 0x0
++#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_ON_HDMICHARCLK__SHIFT                                     0x1
++#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_EN_MASK                                                   0x00000001L
++#define HDMI_LINK_ENC_CLK_CTRL__HDMI_LINK_ENC_CLOCK_ON_HDMICHARCLK_MASK                                       0x00000002L
++
++
++// addressBlock: dce_dc_hpo_hdmi_frl_enc0_dispdec
++//HDMI_FRL_ENC_CONFIG
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE_COUNT__SHIFT                                                      0x0
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_TRAINING_ENABLE__SHIFT                                                 0x1
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_SCRAMBLER_DISABLE__SHIFT                                               0x2
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE0_TRAINING_PATTERN__SHIFT                                          0x10
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE1_TRAINING_PATTERN__SHIFT                                          0x14
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE2_TRAINING_PATTERN__SHIFT                                          0x18
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE3_TRAINING_PATTERN__SHIFT                                          0x1c
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE_COUNT_MASK                                                        0x00000001L
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_TRAINING_ENABLE_MASK                                                   0x00000002L
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_SCRAMBLER_DISABLE_MASK                                                 0x00000004L
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE0_TRAINING_PATTERN_MASK                                            0x000F0000L
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE1_TRAINING_PATTERN_MASK                                            0x00F00000L
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE2_TRAINING_PATTERN_MASK                                            0x0F000000L
++#define HDMI_FRL_ENC_CONFIG__HDMI_LINK_LANE3_TRAINING_PATTERN_MASK                                            0xF0000000L
++//HDMI_FRL_ENC_CONFIG2
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE__SHIFT                                               0x0
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_THRESHOLD__SHIFT                                               0xc
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_CAL_EN__SHIFT                                                  0x18
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_RC_COMPRESS_DISABLE__SHIFT                                            0x19
++#define HDMI_FRL_ENC_CONFIG2__HDMI_FRL_HDMISTREAMCLK_DB_SEL__SHIFT                                            0x1a
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE_RESET__SHIFT                                         0x1c
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_EXCEED_STATUS__SHIFT                                           0x1d
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_METER_BUFFER_OVERFLOW_STATUS__SHIFT                                   0x1e
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE_MASK                                                 0x000001FFL
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_THRESHOLD_MASK                                                 0x001FF000L
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_CAL_EN_MASK                                                    0x01000000L
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_RC_COMPRESS_DISABLE_MASK                                              0x02000000L
++#define HDMI_FRL_ENC_CONFIG2__HDMI_FRL_HDMISTREAMCLK_DB_SEL_MASK                                              0x0C000000L
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_MAX_JITTER_VALUE_RESET_MASK                                           0x10000000L
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_JITTER_EXCEED_STATUS_MASK                                             0x20000000L
++#define HDMI_FRL_ENC_CONFIG2__HDMI_LINK_METER_BUFFER_OVERFLOW_STATUS_MASK                                     0x40000000L
++//HDMI_FRL_ENC_METER_BUFFER_STATUS
++#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_MAX_METER_BUFFER_LEVEL__SHIFT                             0x0
++#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_METER_BUFFER_MAX_LEVEL_RESET__SHIFT                       0x1f
++#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_MAX_METER_BUFFER_LEVEL_MASK                               0x0000007FL
++#define HDMI_FRL_ENC_METER_BUFFER_STATUS__HDMI_LINK_METER_BUFFER_MAX_LEVEL_RESET_MASK                         0x80000000L
++//HDMI_FRL_ENC_MEM_CTRL
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_DIS__SHIFT                                                 0x0
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_FORCE__SHIFT                                               0x1
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_STATE__SHIFT                                               0x4
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_DEFAULT_MEM_LOW_POWER_STATE__SHIFT                             0x8
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_DIS_MASK                                                   0x00000001L
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_FORCE_MASK                                                 0x00000006L
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_PWR_STATE_MASK                                                 0x00000030L
++#define HDMI_FRL_ENC_MEM_CTRL__METERBUFFER_MEM_DEFAULT_MEM_LOW_POWER_STATE_MASK                               0x00000300L
++
+ 
+ // addressBlock: dce_dc_hpo_hpo_top_dispdec
+ //HPO_TOP_CLOCK_CONTROL
 -- 
 2.54.0
 
