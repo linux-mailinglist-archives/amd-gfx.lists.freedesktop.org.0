@@ -2,60 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cLFtL52l+GnQxQIAu9opvQ
+	id UJjkMiyb+WkS+QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 15:56:45 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:24:28 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91DC24BE281
-	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 15:56:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 394284C7D88
+	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:24:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1399310E70C;
-	Mon,  4 May 2026 13:56:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F152F10E996;
+	Tue,  5 May 2026 07:15:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="aOuouZxF";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="Asu1Po5B";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3BF610E70F
- for <amd-gfx@lists.freedesktop.org>; Mon,  4 May 2026 13:56:42 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-02.galae.net (Postfix) with ESMTPS id 909C81A350C;
- Mon,  4 May 2026 13:56:41 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 66D495FD5F;
- Mon,  4 May 2026 13:56:41 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 2F69411AD220E; 
- Mon,  4 May 2026 15:56:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1777903000; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:content-language:in-reply-to:references;
- bh=qgw6CpMOSFWIemSr8SVzTDICzBHegJK/gabMjw9JaVo=;
- b=aOuouZxFbEtc7NlEEX0YUd8ia4pq43moq6iDY1kdaPyir/76F0Spyzz87uuwstaMaPn7cB
- dt601R3j6NdnnwkysjkVlZUb+Dsy0XNLAPJxRLBm5gdfrnX2Q8y0SQsSIY9zEODPta8KPK
- shbpOZ6veFlapG+L6L9cmyly8aFP441LCn+rE/jIx8mEzfkjzQqfns1n0atkjxFoBgdlI0
- vgBCRH7OilJ2+Azp9LadSemjnOlXkNhJRE0kTJGRIsV4dualxDhQSElpXJiuQ+jHMh9dWt
- i5lhCJzElF2CH0NS84KfBRKmJsXDptRgisP3sdSR6jcU0Do5rZOKISTK44jsHQ==
-Message-ID: <58e0de7b-8c1b-4d93-848d-c5afebb678f7@bootlin.com>
-Date: Mon, 4 May 2026 15:55:59 +0200
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DEC810E7CD;
+ Mon,  4 May 2026 17:38:24 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4g8TQ44bTjz9vH6;
+ Mon,  4 May 2026 19:38:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1777916300;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=lMkI+6wKRH3GF4cNClZ9jGNJlW1S57uWnAf5Qy8LaKo=;
+ b=Asu1Po5BjRWsgjUVSRV6OfePzutfGMAVjRGBWDfRuHRX+QRCNTb1eaNiRDyvKAi+2QIDg9
+ PLyPT3nTw8oPyMH2WRkLev/JP6KXt+I/yKrC4rsa3HxeMJoPkCooXni60ZqiXFb6XoaWwr
+ tOvmso2+P5WD6INu+Q4TOQrHRJX8aJAF7CdipLn+v4WBtTljNEbGArZgTHSPQN+D0wF+hJ
+ 1bZYEH1o09VdMD1gk3XJCkNpYOGPu5dplHV+Q+HSOKNfSTpGWgymxdiO/NwwiBl51DqaZs
+ zlLaQiu0T26cNrcpKwwWsa6NE1v0CIsM+rkwldsg2lR/Xhy13pN6ms6gf8aPKw==
+From: Alexander Stein <alexander.stein@mailbox.org>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Subject: amdgpu: possible regression since 7.0
+Date: Mon, 04 May 2026 19:37:35 +0200
+Message-ID: <zUDAUERhT-Sr0bbeAVqwNQ@mailbox.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/8] backlight: expose the current brightness in the
- new kernel API
-To: Mario Limonciello <mario.limonciello@amd.com>,
- dri-devel@lists.freedesktop.org
-Cc: harry.wentland@amd.com, Xaver Hugl <xaver.hugl@gmail.com>,
- amd-gfx@lists.freedesktop.org, Marta Lofstedt <marta.lofstedt@intel.com>
-References: <20260424220953.167058-1-mario.limonciello@amd.com>
- <20260424220953.167058-3-mario.limonciello@amd.com>
-Content-Language: en-US
-From: Louis Chauvet <louis.chauvet@bootlin.com>
-In-Reply-To: <20260424220953.167058-3-mario.limonciello@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-MBO-RS-ID: 10813314e579eb03f68
+X-MBO-RS-META: jy7mbjkw5zqs6htq74swptkyaerj5w7r
+X-Mailman-Approved-At: Tue, 05 May 2026 07:15:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,96 +62,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 91DC24BE281
+X-Rspamd-Queue-Id: 394284C7D88
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	CTE_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:mario.limonciello@amd.com,m:dri-devel@lists.freedesktop.org,m:harry.wentland@amd.com,m:xaver.hugl@gmail.com,m:marta.lofstedt@intel.com,m:xaverhugl@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER(0.00)[louis.chauvet@bootlin.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,lists.freedesktop.org,intel.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.stein@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[louis.chauvet@bootlin.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mailbox.org:dkim,mailbox.org:mid]
 
+Hi,
 
+I'm running an Arch 7.0.3 kernel and I'm experiencing various lockups of the
+GPU. System still runs and I can shutdown using another VT.
+I haven't experienced that on a 6.19.x kernel before.
+If you need more information I can try, but it occurs more or less randomly.
+Below is the kernel log. My GPU is
+03:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Navi 
+48 [Radeon RX 9070/9070 XT/9070 GRE] (rev c0)
 
-On 4/25/26 00:09, Mario Limonciello wrote:
-> From: Marta Lofstedt <marta.lofstedt@intel.com>
-> 
-> Current brightness needs to be queried from drivers.
-> 
-> Signed-off-by: Marta Lofstedt <marta.lofstedt@intel.com>
-> v3:
->   * Rebase
->   * Add description
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> ---
->   drivers/video/backlight/backlight.c | 6 ++++++
->   include/linux/backlight.h           | 1 +
->   2 files changed, 7 insertions(+)
-> 
-> diff --git a/drivers/video/backlight/backlight.c b/drivers/video/backlight/backlight.c
-> index c3673bee6d9cf..9bbfc16cf2d74 100644
-> --- a/drivers/video/backlight/backlight.c
-> +++ b/drivers/video/backlight/backlight.c
-> @@ -206,6 +206,12 @@ int backlight_device_set_brightness(struct backlight_device *bd,
->   }
->   EXPORT_SYMBOL(backlight_device_set_brightness);
->   
-> +int backlight_device_get_brightness(struct backlight_device *bd)
-> +{
-> +	return bd->props.brightness;
+Best regards,
+Alexander
 
-Hello,
+amdgpu 0000:03:00.0: [drm] *ERROR* [CRTC:416:crtc-0] flip_done timed out
+amdgpu 0000:03:00.0: [drm] *ERROR* flip_done timed out
+amdgpu 0000:03:00.0: [drm] *ERROR* [CRTC:416:crtc-0] commit wait timed out
+amdgpu 0000:03:00.0: [drm] *ERROR* flip_done timed out
+amdgpu 0000:03:00.0: [drm] *ERROR* [PLANE:413:plane-7] commit wait timed out
+------------[ cut here ]------------
+acrtc->event
+WARNING: drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:9572 at 
+amdgpu_dm_atomic_commit_tail+0x38cf/0x3930 [amdgpu], CPU#3: systemd-logind/
+1063
+Modules linked in: cmac nls_utf8 cifs nls_ucs2_utils rdma_cm iw_cm ib_cm 
+ib_core cifs_md4 dns_resolver netfs snd_seq_dummy snd_hrtimer snd_seq vfat fat 
+snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_hda_codec_generic 
+snd_hda_codec_atihdmi snd_hda_codec_hdmi snd_hda_intel btusb mt7921e uvcvideo 
+snd_hda_codec btmtk mt7921_common snd_usb_audio videobuf2_vmalloc btrtl 
+snd_hda_core uvc mt792x_lib btbcm snd_usbmidi_lib videobuf2_memops 
+snd_intel_dspcfg mt76_connac_lib btintel videobuf2_v4l2 snd_ump amd_atl 
+snd_intel_sdw_acpi snd_rawmidi intel_rapl_msr videobuf2_common r8169 mt76 
+intel_rapl_common snd_hwdep snd_seq_device bluetooth videodev spd5118 joydev 
+mousedev realtek snd_pcm mdio_devres mac80211 snd_timer mc libphy eeepc_wmi 
+snd asus_wmi mdio_bus libarc4 ghash_clmulni_intel soundcore sp5100_tco 
+aesni_intel platform_profile sparse_keymap wmi_bmof rapl pcspkr i2c_piix4 
+gpio_amdpt k10temp i2c_smbus gpio_generic mac_hid cfg80211 rfkill 
+vboxnetflt(OE) vboxnetadp(OE) vboxdrv(OE) kvm_amd ccp kvm dm_mod
+ irqbypass i2c_dev crypto_user nfnetlink uas usb_storage amdgpu amdxcp 
+i2c_algo_bit drm_ttm_helper ttm drm_exec drm_panel_backlight_quirks gpu_sched 
+nvme drm_suballoc_helper drm_buddy nvme_core drm_display_helper nvme_keyring 
+video nvme_auth cec hkdf wmi
+CPU: 3 UID: 0 PID: 1063 Comm: systemd-logind Tainted: G           OE       
+7.0.3-arch1-1 #1 PREEMPT(full)  653fa807272d34162f0f7604ba64e0a2aa402e05
+Tainted: [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+Hardware name: ASUS System Product Name/TUF GAMING B850M-PLUS WIFI, BIOS 1644 
+03/10/2026
+RIP: 0010:amdgpu_dm_atomic_commit_tail+0x38cf/0x3930 [amdgpu]
+Code: 8d 84 24 20 5b 04 00 c6 85 18 fe ff ff 00 48 89 85 20 fe ff ff e9 b0 cd ff ff 
+0f 0b 0f 0b e9 9f f7 ff ff 0f 0b e9 f2 cd ff ff <0f> 0b e9 b0 f7 ff ff 48 c7 85 18 
+fe ff ff 00 00 00 00 48 c7 85 e8
+RSP: 0018:ffffcf07c5537418 EFLAGS: 00010082
+RAX: 0000000000000001 RBX: 0000000000000296 RCX: ffff8e36d56c6118
+RDX: 0000000000000001 RSI: 0000000000000286 RDI: ffff8e36d7980178
+RBP: ffffcf07c5537688 R08: ffffcf07c553730c R09: 0000000000000000
+R10: 0000000000000000 R11: ffffcf07c553737c R12: ffff8e36d56c6118
+R13: ffff8e3c0f7c7800 R14: 0000000000000000 R15: ffff8e36d56c6000
+FS:  00007f77aa5488c0(0000) GS:ffff8e3e69b52000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000024c6052cc000 CR3: 0000000134fe5000 CR4: 0000000000f50ef0
+PKRU: 55555554
+Call Trace:
+ <TASK>
+ commit_tail+0xc1/0x150
+ drm_atomic_helper_commit+0x13c/0x180
+ drm_atomic_commit+0xb1/0xe0
+ ? __pfx___drm_printfn_info+0x10/0x10
+ drm_client_modeset_commit_atomic+0x1ec/0x230
+ drm_client_modeset_commit_locked+0x58/0x160
+ ? mod_memcg_lruvec_state+0xc5/0x1f0
+ __drm_fb_helper_restore_fbdev_mode_unlocked.part.0+0x27/0x90
+ drm_fb_helper_set_par+0x57/0x70
+ fb_set_var+0x23c/0x430
+ ? update_cfs_rq_load_avg+0x1a/0x240
+ ? update_load_avg+0x73/0x210
+ ? psi_group_change+0x10c/0x2c0
+ ? set_next_entity+0xe7/0x270
+ fbcon_blank+0x1f2/0x310
+ do_unblank_screen+0xc8/0x1b0
+ complete_change_console+0x54/0x120
+ vt_ioctl+0xeca/0x1460
+ ? security_capable+0x7d/0x1a0
+ ? capable+0x32/0x60
+ ? kernel_termios_to_user_termios+0x13/0x20
+ ? tty_mode_ioctl+0x67a/0x6e0
+ tty_ioctl+0xe4/0x980
+ ? __seccomp_filter+0x42/0x5a0
+ __x64_sys_ioctl+0x97/0xe0
+ do_syscall_64+0x12b/0x15f0
+ ? __x64_sys_ioctl+0x97/0xe0
+ ? do_syscall_64+0x12b/0x15f0
+ ? do_syscall_64+0x12b/0x15f0
+ ? evdev_ioctl+0x6d/0xa0
+ ? __x64_sys_ioctl+0x97/0xe0
+ ? do_syscall_64+0x12b/0x15f0
+ ? do_syscall_64+0x12b/0x15f0
+ ? evdev_ioctl+0x6d/0xa0
+ ? __x64_sys_ioctl+0x97/0xe0
+ ? do_syscall_64+0x12b/0x15f0
+ ? do_syscall_64+0x12b/0x15f0
+ ? __x64_sys_close+0x3d/0x80
+ ? do_syscall_64+0x12b/0x15f0
+ ? __irq_exit_rcu+0x4c/0xf0
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+RIP: 0033:0x7f77a9d1604d
+Code: 04 25 28 00 00 00 48 89 45 c8 31 c0 48 8d 45 10 c7 45 b0 10 00 00 00 48 
+89 45 b8 48 8d 45 d0 48 89 45 c0 b8 10 00 00 00 0f 05 <89> c2 3d 00 f0 ff ff 77 
+1a 48 8b 45 c8 64 48 2b 04 25 28 00 00 00
+RSP: 002b:00007fffe582da10 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 000000000000001b RCX: 00007f77a9d1604d
+RDX: 0000000000000001 RSI: 0000000000005605 RDI: 000000000000001b
+RBP: 00007fffe582da60 R08: 00000000ffffffff R09: 00007fffe582da40
+R10: 00000000ffffffff R11: 0000000000000246 R12: 000055ae5d6c6e80
+R13: 0000000000000006 R14: 0000000000000000 R15: 0000000000000000
+ </TASK>
+amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero when 
+fini
+amdgpu 0000:03:00.0: VM memory stats for proc Xorg(1111) task Xorg:cs0(1106) 
+is non-zero when fini
+amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero when 
+fini
+amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero when 
+fini
+amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero when 
+fini
+amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero when 
+fini
+amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero when 
+fini
+-- 
 
-The function backlight_get_brightness already exists and is already 
-public, maybe you can use the existing function?
-
-Thanks,
-Louis Chauvet
-
-> +}
-> +EXPORT_SYMBOL(backlight_device_get_brightness);
-> +
->   static ssize_t brightness_store(struct device *dev,
->   		struct device_attribute *attr, const char *buf, size_t count)
->   {
-> diff --git a/include/linux/backlight.h b/include/linux/backlight.h
-> index 7e4fee65fddd9..851570b39d041 100644
-> --- a/include/linux/backlight.h
-> +++ b/include/linux/backlight.h
-> @@ -412,6 +412,7 @@ struct backlight_device *backlight_device_get_by_name(const char *name);
->   struct backlight_device *backlight_device_get_by_type(enum backlight_type type);
->   int backlight_device_set_brightness(struct backlight_device *bd,
->   				    unsigned long brightness);
-> +extern int backlight_device_get_brightness(struct backlight_device *bd);
->   
->   #if IS_REACHABLE(CONFIG_BACKLIGHT_CLASS_DEVICE)
->   void backlight_notify_blank(struct backlight_device *bd,
 
