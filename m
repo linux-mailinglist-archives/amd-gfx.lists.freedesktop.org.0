@@ -2,53 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UJjkMiyb+WkS+QIAu9opvQ
+	id IOdgCyfb+GnG2QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:24:28 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 19:45:11 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 394284C7D88
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:24:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F3344C2169
+	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 19:45:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F152F10E996;
-	Tue,  5 May 2026 07:15:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75BBF10E7E4;
+	Mon,  4 May 2026 17:45:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="Asu1Po5B";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="PLSjUWvN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DEC810E7CD;
- Mon,  4 May 2026 17:38:24 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org
- [IPv6:2001:67c:2050:b231:465::2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4g8TQ44bTjz9vH6;
- Mon,  4 May 2026 19:38:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1777916300;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=lMkI+6wKRH3GF4cNClZ9jGNJlW1S57uWnAf5Qy8LaKo=;
- b=Asu1Po5BjRWsgjUVSRV6OfePzutfGMAVjRGBWDfRuHRX+QRCNTb1eaNiRDyvKAi+2QIDg9
- PLyPT3nTw8oPyMH2WRkLev/JP6KXt+I/yKrC4rsa3HxeMJoPkCooXni60ZqiXFb6XoaWwr
- tOvmso2+P5WD6INu+Q4TOQrHRJX8aJAF7CdipLn+v4WBtTljNEbGArZgTHSPQN+D0wF+hJ
- 1bZYEH1o09VdMD1gk3XJCkNpYOGPu5dplHV+Q+HSOKNfSTpGWgymxdiO/NwwiBl51DqaZs
- zlLaQiu0T26cNrcpKwwWsa6NE1v0CIsM+rkwldsg2lR/Xhy13pN6ms6gf8aPKw==
-From: Alexander Stein <alexander.stein@mailbox.org>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: amdgpu: possible regression since 7.0
-Date: Mon, 04 May 2026 19:37:35 +0200
-Message-ID: <zUDAUERhT-Sr0bbeAVqwNQ@mailbox.org>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F44010E7CD;
+ Mon,  4 May 2026 17:45:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=XGVwr66Vi9lVU36BmLv82cEF6EQDWUaC7N6GArXjDQU=; b=PLSjUWvNabNJhBy8qSp0YMi5Mf
+ eqrTKaPZ84K1eRdjCLnMtblIU5HvQ0hFQK6TBccztkfdmxDwQkVh/5TB9bXEKk0/ojeeRliEMYEYc
+ SSel9IQiFV+OnVtPlB+uFcoIhD8+getFR/e4s/3BxSjUIw3CYgoxkXjK8X3mAXC0pO7YY8dJFP4lI
+ 4G8LT2vEJobc6ylEAtuEtsXYwrk+0W1+gMqYPw1p+rYECsZwP9AeWUNlZFU4l0wD9ADI1+3rssk0e
+ G6cScgwE80EA9RlvrrM5QHy2dwOHFP1R5Wwakda5MPAKalhqi6L/BfGohUw5DZJegWNAHZ9KgObUp
+ 7rkwoGsw==;
+Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
+ helo=[192.168.1.133]) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1wJxLo-0064To-75; Mon, 04 May 2026 19:44:59 +0200
+Message-ID: <9628ae91-a725-469b-976b-e66546d82214@Igalia.com>
+Date: Mon, 4 May 2026 10:44:42 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-MBO-RS-ID: 10813314e579eb03f68
-X-MBO-RS-META: jy7mbjkw5zqs6htq74swptkyaerj5w7r
-X-Mailman-Approved-At: Tue, 05 May 2026 07:15:38 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [v3,2/7] drm: writeback: Modify writeback init helpers
+To: Suraj Kandpal <suraj.kandpal@intel.com>, freedreno@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, kernel-list@raspberrypi.com,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
+ dmitry.baryshkov@oss.qualcomm.com, arun.r.murthy@intel.com,
+ jani.nikula@intel.com, harry.wentland@amd.com, siqueira@igalia.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, robin.clark@oss.qualcomm.com, abhinav.kumar@linux.dev,
+ tzimmermann@suse.de, sean@poorly.ru, marijn.suijten@somainline.org,
+ laurent.pinchart+renesas@ideasonboard.com, dave.stevenson@raspberrypi.com,
+ tomi.valkeinen+renesas@ideasonboard.com,
+ kieran.bingham+renesas@ideasonboard.com, kernel-dev@igalia.com
+References: <20260316083008.87466-3-suraj.kandpal@intel.com>
+Content-Language: en-GB
+From: John Harrison <John.Harrison@Igalia.com>
+In-Reply-To: <20260316083008.87466-3-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,164 +75,276 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 394284C7D88
+X-Rspamd-Queue-Id: 7F3344C2169
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	CTE_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [1.99 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[32];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexander.stein@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[intel.com,oss.qualcomm.com,amd.com,igalia.com,gmail.com,ffwll.ch,arm.com,linux.intel.com,kernel.org,linux.dev,suse.de,poorly.ru,somainline.org,ideasonboard.com,raspberrypi.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.916];
+	FROM_NEQ_ENVFROM(0.00)[John.Harrison@Igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx,renesas];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mailbox.org:dkim,mailbox.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email]
 
-Hi,
+On 3/16/26 01:30, Suraj Kandpal wrote:
+> Now with drm_writeback_connector moved to drm_connector it makes
+> more sense use drm_connector as an argument rather than
+> drm_writeback_connector. The writeback connector can easily be derived
+> from drm_connector.
+So this patch and all five subsequent patches are basically the same 
+search and replace of base_conn->wb_conn to base_conn in the DRM level 
+helper functions, yes? I would add a little more explanation of why "it 
+makes more sense". Something like: "Some of the writeback helper 
+functions require access to the parent drm_connector object as well as 
+the drm_writeback_connector object itself. So, pass in the top level 
+object and traverse down rather than passing in the lower level object 
+and traversing back up. Even where such is not the case, update to use 
+the top level object for consistency across the interface."
 
-I'm running an Arch 7.0.3 kernel and I'm experiencing various lockups of the
-GPU. System still runs and I can shutdown using another VT.
-I haven't experienced that on a 6.19.x kernel before.
-If you need more information I can try, but it occurs more or less randomly.
-Below is the kernel log. My GPU is
-03:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Navi 
-48 [Radeon RX 9070/9070 XT/9070 GRE] (rev c0)
+Also, there could be better consistency across these 'modify' patches. 
+First, the subject of patches 1-5 should be 'drm/writeback: ...' not 
+'drm: writeback: ...'. Then you have 'modify XXX helpers', 'modify XXX 
+params' and 'modify params for XXX'. It would be cleaner to pick a 
+single variant and use that for all the patches. Lastly, are the final 
+two patches really 'drm/connector:'? The header file with the function 
+declarations being updated is drm_modeset_helper_vtables.h. Which would 
+make the prefix 'drm/modeset'? Although, given that the declarations are 
+specific to writeback support, I would just stick with 'drm/writeback' 
+for all seven patches.
 
-Best regards,
-Alexander
+John.
 
-amdgpu 0000:03:00.0: [drm] *ERROR* [CRTC:416:crtc-0] flip_done timed out
-amdgpu 0000:03:00.0: [drm] *ERROR* flip_done timed out
-amdgpu 0000:03:00.0: [drm] *ERROR* [CRTC:416:crtc-0] commit wait timed out
-amdgpu 0000:03:00.0: [drm] *ERROR* flip_done timed out
-amdgpu 0000:03:00.0: [drm] *ERROR* [PLANE:413:plane-7] commit wait timed out
-------------[ cut here ]------------
-acrtc->event
-WARNING: drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:9572 at 
-amdgpu_dm_atomic_commit_tail+0x38cf/0x3930 [amdgpu], CPU#3: systemd-logind/
-1063
-Modules linked in: cmac nls_utf8 cifs nls_ucs2_utils rdma_cm iw_cm ib_cm 
-ib_core cifs_md4 dns_resolver netfs snd_seq_dummy snd_hrtimer snd_seq vfat fat 
-snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_hda_codec_generic 
-snd_hda_codec_atihdmi snd_hda_codec_hdmi snd_hda_intel btusb mt7921e uvcvideo 
-snd_hda_codec btmtk mt7921_common snd_usb_audio videobuf2_vmalloc btrtl 
-snd_hda_core uvc mt792x_lib btbcm snd_usbmidi_lib videobuf2_memops 
-snd_intel_dspcfg mt76_connac_lib btintel videobuf2_v4l2 snd_ump amd_atl 
-snd_intel_sdw_acpi snd_rawmidi intel_rapl_msr videobuf2_common r8169 mt76 
-intel_rapl_common snd_hwdep snd_seq_device bluetooth videodev spd5118 joydev 
-mousedev realtek snd_pcm mdio_devres mac80211 snd_timer mc libphy eeepc_wmi 
-snd asus_wmi mdio_bus libarc4 ghash_clmulni_intel soundcore sp5100_tco 
-aesni_intel platform_profile sparse_keymap wmi_bmof rapl pcspkr i2c_piix4 
-gpio_amdpt k10temp i2c_smbus gpio_generic mac_hid cfg80211 rfkill 
-vboxnetflt(OE) vboxnetadp(OE) vboxdrv(OE) kvm_amd ccp kvm dm_mod
- irqbypass i2c_dev crypto_user nfnetlink uas usb_storage amdgpu amdxcp 
-i2c_algo_bit drm_ttm_helper ttm drm_exec drm_panel_backlight_quirks gpu_sched 
-nvme drm_suballoc_helper drm_buddy nvme_core drm_display_helper nvme_keyring 
-video nvme_auth cec hkdf wmi
-CPU: 3 UID: 0 PID: 1063 Comm: systemd-logind Tainted: G           OE       
-7.0.3-arch1-1 #1 PREEMPT(full)  653fa807272d34162f0f7604ba64e0a2aa402e05
-Tainted: [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
-Hardware name: ASUS System Product Name/TUF GAMING B850M-PLUS WIFI, BIOS 1644 
-03/10/2026
-RIP: 0010:amdgpu_dm_atomic_commit_tail+0x38cf/0x3930 [amdgpu]
-Code: 8d 84 24 20 5b 04 00 c6 85 18 fe ff ff 00 48 89 85 20 fe ff ff e9 b0 cd ff ff 
-0f 0b 0f 0b e9 9f f7 ff ff 0f 0b e9 f2 cd ff ff <0f> 0b e9 b0 f7 ff ff 48 c7 85 18 
-fe ff ff 00 00 00 00 48 c7 85 e8
-RSP: 0018:ffffcf07c5537418 EFLAGS: 00010082
-RAX: 0000000000000001 RBX: 0000000000000296 RCX: ffff8e36d56c6118
-RDX: 0000000000000001 RSI: 0000000000000286 RDI: ffff8e36d7980178
-RBP: ffffcf07c5537688 R08: ffffcf07c553730c R09: 0000000000000000
-R10: 0000000000000000 R11: ffffcf07c553737c R12: ffff8e36d56c6118
-R13: ffff8e3c0f7c7800 R14: 0000000000000000 R15: ffff8e36d56c6000
-FS:  00007f77aa5488c0(0000) GS:ffff8e3e69b52000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 000024c6052cc000 CR3: 0000000134fe5000 CR4: 0000000000f50ef0
-PKRU: 55555554
-Call Trace:
- <TASK>
- commit_tail+0xc1/0x150
- drm_atomic_helper_commit+0x13c/0x180
- drm_atomic_commit+0xb1/0xe0
- ? __pfx___drm_printfn_info+0x10/0x10
- drm_client_modeset_commit_atomic+0x1ec/0x230
- drm_client_modeset_commit_locked+0x58/0x160
- ? mod_memcg_lruvec_state+0xc5/0x1f0
- __drm_fb_helper_restore_fbdev_mode_unlocked.part.0+0x27/0x90
- drm_fb_helper_set_par+0x57/0x70
- fb_set_var+0x23c/0x430
- ? update_cfs_rq_load_avg+0x1a/0x240
- ? update_load_avg+0x73/0x210
- ? psi_group_change+0x10c/0x2c0
- ? set_next_entity+0xe7/0x270
- fbcon_blank+0x1f2/0x310
- do_unblank_screen+0xc8/0x1b0
- complete_change_console+0x54/0x120
- vt_ioctl+0xeca/0x1460
- ? security_capable+0x7d/0x1a0
- ? capable+0x32/0x60
- ? kernel_termios_to_user_termios+0x13/0x20
- ? tty_mode_ioctl+0x67a/0x6e0
- tty_ioctl+0xe4/0x980
- ? __seccomp_filter+0x42/0x5a0
- __x64_sys_ioctl+0x97/0xe0
- do_syscall_64+0x12b/0x15f0
- ? __x64_sys_ioctl+0x97/0xe0
- ? do_syscall_64+0x12b/0x15f0
- ? do_syscall_64+0x12b/0x15f0
- ? evdev_ioctl+0x6d/0xa0
- ? __x64_sys_ioctl+0x97/0xe0
- ? do_syscall_64+0x12b/0x15f0
- ? do_syscall_64+0x12b/0x15f0
- ? evdev_ioctl+0x6d/0xa0
- ? __x64_sys_ioctl+0x97/0xe0
- ? do_syscall_64+0x12b/0x15f0
- ? do_syscall_64+0x12b/0x15f0
- ? __x64_sys_close+0x3d/0x80
- ? do_syscall_64+0x12b/0x15f0
- ? __irq_exit_rcu+0x4c/0xf0
- entry_SYSCALL_64_after_hwframe+0x76/0x7e
-RIP: 0033:0x7f77a9d1604d
-Code: 04 25 28 00 00 00 48 89 45 c8 31 c0 48 8d 45 10 c7 45 b0 10 00 00 00 48 
-89 45 b8 48 8d 45 d0 48 89 45 c0 b8 10 00 00 00 0f 05 <89> c2 3d 00 f0 ff ff 77 
-1a 48 8b 45 c8 64 48 2b 04 25 28 00 00 00
-RSP: 002b:00007fffe582da10 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-RAX: ffffffffffffffda RBX: 000000000000001b RCX: 00007f77a9d1604d
-RDX: 0000000000000001 RSI: 0000000000005605 RDI: 000000000000001b
-RBP: 00007fffe582da60 R08: 00000000ffffffff R09: 00007fffe582da40
-R10: 00000000ffffffff R11: 0000000000000246 R12: 000055ae5d6c6e80
-R13: 0000000000000006 R14: 0000000000000000 R15: 0000000000000000
- </TASK>
-amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero when 
-fini
-amdgpu 0000:03:00.0: VM memory stats for proc Xorg(1111) task Xorg:cs0(1106) 
-is non-zero when fini
-amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero when 
-fini
-amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero when 
-fini
-amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero when 
-fini
-amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero when 
-fini
-amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero when 
-fini
--- 
-
+>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c   |  2 +-
+>   .../drm/arm/display/komeda/komeda_wb_connector.c   |  5 +----
+>   drivers/gpu/drm/arm/malidp_mw.c                    |  2 +-
+>   drivers/gpu/drm/drm_writeback.c                    | 14 ++++++--------
+>   drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c      |  2 +-
+>   .../gpu/drm/renesas/rcar-du/rcar_du_writeback.c    |  3 +--
+>   drivers/gpu/drm/vc4/vc4_txp.c                      |  2 +-
+>   drivers/gpu/drm/vkms/vkms_writeback.c              |  4 ++--
+>   include/drm/drm_writeback.h                        |  4 ++--
+>   9 files changed, 16 insertions(+), 22 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
+> index 8fea29720989..84a9c1d2bd8e 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
+> @@ -204,7 +204,7 @@ int amdgpu_dm_wb_connector_init(struct amdgpu_display_manager *dm,
+>   
+>   	drm_connector_helper_add(&wbcon->base, &amdgpu_dm_wb_conn_helper_funcs);
+>   
+> -	res = drmm_writeback_connector_init(&dm->adev->ddev, &wbcon->base.writeback,
+> +	res = drmm_writeback_connector_init(&dm->adev->ddev, &wbcon->base,
+>   					    &amdgpu_dm_wb_connector_funcs,
+>   					    encoder,
+>   					    amdgpu_dm_wb_formats,
+> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c b/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
+> index fa2f63c142cd..85b34375d275 100644
+> --- a/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
+> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_wb_connector.c
+> @@ -135,7 +135,6 @@ static int komeda_wb_connector_add(struct komeda_kms_dev *kms,
+>   {
+>   	struct komeda_dev *mdev = kms->base.dev_private;
+>   	struct komeda_wb_connector *kwb_conn;
+> -	struct drm_writeback_connector *wb_conn;
+>   	struct drm_display_info *info;
+>   	struct drm_encoder *encoder;
+>   
+> @@ -151,8 +150,6 @@ static int komeda_wb_connector_add(struct komeda_kms_dev *kms,
+>   
+>   	kwb_conn->wb_layer = kcrtc->master->wb_layer;
+>   
+> -	wb_conn = &kwb_conn->base.writeback;
+> -
+>   	formats = komeda_get_layer_fourcc_list(&mdev->fmt_tbl,
+>   					       kwb_conn->wb_layer->layer_type,
+>   					       &n_formats);
+> @@ -170,7 +167,7 @@ static int komeda_wb_connector_add(struct komeda_kms_dev *kms,
+>   
+>   	encoder->possible_crtcs = drm_crtc_mask(&kcrtc->base);
+>   
+> -	err = drmm_writeback_connector_init(&kms->base, wb_conn,
+> +	err = drmm_writeback_connector_init(&kms->base, &kwb_conn->base,
+>   					    &komeda_wb_connector_funcs,
+>   					    encoder,
+>   					    formats, n_formats);
+> diff --git a/drivers/gpu/drm/arm/malidp_mw.c b/drivers/gpu/drm/arm/malidp_mw.c
+> index 472598b3e007..7d42b007ef19 100644
+> --- a/drivers/gpu/drm/arm/malidp_mw.c
+> +++ b/drivers/gpu/drm/arm/malidp_mw.c
+> @@ -228,7 +228,7 @@ int malidp_mw_connector_init(struct drm_device *drm)
+>   
+>   	encoder->possible_crtcs = drm_crtc_mask(&malidp->crtc);
+>   
+> -	ret = drmm_writeback_connector_init(drm, &malidp->mw_connector.writeback,
+> +	ret = drmm_writeback_connector_init(drm, &malidp->mw_connector,
+>   					    &malidp_mw_connector_funcs,
+>   					    encoder,
+>   					    formats, n_formats);
+> diff --git a/drivers/gpu/drm/drm_writeback.c b/drivers/gpu/drm/drm_writeback.c
+> index 7bf9f6374712..9a3037d11009 100644
+> --- a/drivers/gpu/drm/drm_writeback.c
+> +++ b/drivers/gpu/drm/drm_writeback.c
+> @@ -242,7 +242,7 @@ static int __drm_writeback_connector_init(struct drm_device *dev,
+>    * a custom encoder
+>    *
+>    * @dev: DRM device
+> - * @wb_connector: Writeback connector to initialize
+> + * @connector: Drm connector which contains the writeback connector to initialize
+>    * @enc: handle to the already initialized drm encoder
+>    * @con_funcs: Connector funcs vtable
+>    * @formats: Array of supported pixel formats for the writeback engine
+> @@ -267,13 +267,12 @@ static int __drm_writeback_connector_init(struct drm_device *dev,
+>    * Returns: 0 on success, or a negative error code
+>    */
+>   int drm_writeback_connector_init(struct drm_device *dev,
+> -				 struct drm_writeback_connector *wb_connector,
+> +				 struct drm_connector *connector,
+>   				 const struct drm_connector_funcs *con_funcs,
+>   				 struct drm_encoder *enc,
+>   				 const u32 *formats, int n_formats)
+>   {
+> -	struct drm_connector *connector =
+> -		drm_writeback_to_connector(wb_connector);
+> +	struct drm_writeback_connector *wb_connector = &connector->writeback;
+>   	int ret;
+>   
+>   	ret = drm_connector_init(dev, connector, con_funcs,
+> @@ -322,7 +321,7 @@ static void drm_writeback_connector_cleanup(struct drm_device *dev,
+>    * a custom encoder
+>    *
+>    * @dev: DRM device
+> - * @wb_connector: Writeback connector to initialize
+> + * @connector: Drm connector containing the writeback connector to initialize
+>    * @con_funcs: Connector funcs vtable
+>    * @enc: Encoder to connect this writeback connector
+>    * @formats: Array of supported pixel formats for the writeback engine
+> @@ -338,13 +337,12 @@ static void drm_writeback_connector_cleanup(struct drm_device *dev,
+>    * Returns: 0 on success, or a negative error code
+>    */
+>   int drmm_writeback_connector_init(struct drm_device *dev,
+> -				  struct drm_writeback_connector *wb_connector,
+> +				  struct drm_connector *connector,
+>   				  const struct drm_connector_funcs *con_funcs,
+>   				  struct drm_encoder *enc,
+>   				  const u32 *formats, int n_formats)
+>   {
+> -	struct drm_connector *connector =
+> -		drm_writeback_to_connector(wb_connector);
+> +	struct drm_writeback_connector *wb_connector = &connector->writeback;
+>   	int ret;
+>   
+>   	ret = drmm_connector_init(dev, connector, con_funcs,
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
+> index 930ba1ad777b..d4fc28951085 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
+> @@ -136,7 +136,7 @@ int dpu_writeback_init(struct drm_device *dev, struct drm_encoder *enc,
+>   
+>   	drm_connector_helper_add(&dpu_wb_conn->base, &dpu_wb_conn_helper_funcs);
+>   
+> -	rc = drmm_writeback_connector_init(dev, &dpu_wb_conn->base.writeback,
+> +	rc = drmm_writeback_connector_init(dev, &dpu_wb_conn->base,
+>   					   &dpu_wb_conn_funcs, enc,
+>   					   format_list, num_formats);
+>   
+> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
+> index cd09e0fbb030..1de8865fb751 100644
+> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c
+> @@ -203,7 +203,6 @@ static const u32 writeback_formats[] = {
+>   int rcar_du_writeback_init(struct rcar_du_device *rcdu,
+>   			   struct rcar_du_crtc *rcrtc)
+>   {
+> -	struct drm_writeback_connector *wb_conn = &rcrtc->writeback.writeback;
+>   	struct drm_encoder *encoder;
+>   
+>   	encoder = drmm_plain_encoder_alloc(&rcdu->ddev, NULL,
+> @@ -218,7 +217,7 @@ int rcar_du_writeback_init(struct rcar_du_device *rcdu,
+>   	drm_connector_helper_add(&rcrtc->writeback,
+>   				 &rcar_du_wb_conn_helper_funcs);
+>   
+> -	return drmm_writeback_connector_init(&rcdu->ddev, wb_conn,
+> +	return drmm_writeback_connector_init(&rcdu->ddev, &rcrtc->writeback,
+>   					     &rcar_du_wb_conn_funcs,
+>   					     encoder,
+>   					     writeback_formats,
+> diff --git a/drivers/gpu/drm/vc4/vc4_txp.c b/drivers/gpu/drm/vc4/vc4_txp.c
+> index de3db0834011..d08271142116 100644
+> --- a/drivers/gpu/drm/vc4/vc4_txp.c
+> +++ b/drivers/gpu/drm/vc4/vc4_txp.c
+> @@ -601,7 +601,7 @@ static int vc4_txp_bind(struct device *dev, struct device *master, void *data)
+>   
+>   	drm_connector_helper_add(&txp->connector,
+>   				 &vc4_txp_connector_helper_funcs);
+> -	ret = drmm_writeback_connector_init(drm, &txp->connector.writeback,
+> +	ret = drmm_writeback_connector_init(drm, &txp->connector,
+>   					    &vc4_txp_connector_funcs,
+>   					    encoder,
+>   					    drm_fmts, ARRAY_SIZE(drm_fmts));
+> diff --git a/drivers/gpu/drm/vkms/vkms_writeback.c b/drivers/gpu/drm/vkms/vkms_writeback.c
+> index cadb4cb372c5..b368c569cf0a 100644
+> --- a/drivers/gpu/drm/vkms/vkms_writeback.c
+> +++ b/drivers/gpu/drm/vkms/vkms_writeback.c
+> @@ -170,7 +170,6 @@ static const struct drm_connector_helper_funcs vkms_wb_conn_helper_funcs = {
+>   int vkms_enable_writeback_connector(struct vkms_device *vkmsdev,
+>   				    struct vkms_output *vkms_output)
+>   {
+> -	struct drm_writeback_connector *wb = &vkms_output->wb_connector.writeback;
+>   	int ret;
+>   
+>   	ret = drmm_encoder_init(&vkmsdev->drm, &vkms_output->wb_encoder,
+> @@ -183,7 +182,8 @@ int vkms_enable_writeback_connector(struct vkms_device *vkmsdev,
+>   
+>   	drm_connector_helper_add(&vkms_output->wb_connector, &vkms_wb_conn_helper_funcs);
+>   
+> -	return drmm_writeback_connector_init(&vkmsdev->drm, wb,
+> +	return drmm_writeback_connector_init(&vkmsdev->drm,
+> +					     &vkms_output->wb_connector,
+>   					     &vkms_wb_connector_funcs,
+>   					     &vkms_output->wb_encoder,
+>   					     vkms_wb_formats,
+> diff --git a/include/drm/drm_writeback.h b/include/drm/drm_writeback.h
+> index 702141099520..c6960c7e634e 100644
+> --- a/include/drm/drm_writeback.h
+> +++ b/include/drm/drm_writeback.h
+> @@ -78,13 +78,13 @@ drm_writeback_to_connector(struct drm_writeback_connector *wb_connector)
+>   }
+>   
+>   int drm_writeback_connector_init(struct drm_device *dev,
+> -				 struct drm_writeback_connector *wb_connector,
+> +				 struct drm_connector *connector,
+>   				 const struct drm_connector_funcs *con_funcs,
+>   				 struct drm_encoder *enc,
+>   				 const u32 *formats, int n_formats);
+>   
+>   int drmm_writeback_connector_init(struct drm_device *dev,
+> -				  struct drm_writeback_connector *wb_connector,
+> +				  struct drm_connector *connector,
+>   				  const struct drm_connector_funcs *con_funcs,
+>   				  struct drm_encoder *enc,
+>   				  const u32 *formats, int n_formats);
 
