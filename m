@@ -2,45 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OFePDi2b+Wkm+QIAu9opvQ
+	id cIBVIyyb+Wkn+QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:24:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:24:28 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA72D4C7D95
+	by mail.lfdr.de (Postfix) with ESMTPS id 397CD4C7D89
 	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:24:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D350B10E994;
-	Tue,  5 May 2026 07:15:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EC2110E998;
+	Tue,  5 May 2026 07:15:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="yebRzD6d";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Hq9pqa1y";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B22B10E3D1;
- Mon,  4 May 2026 13:25:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BA5010E3D1;
+ Mon,  4 May 2026 13:26:10 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id B742B6057A;
- Mon,  4 May 2026 13:25:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C77AC2BCB8;
- Mon,  4 May 2026 13:25:02 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 7C309600C3;
+ Mon,  4 May 2026 13:26:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7B5FC2BCB8;
+ Mon,  4 May 2026 13:26:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1777901103;
- bh=P7lv4FYjq8P8m1WsQwNR7cA7foZoYi7GRFOwU8jnBBA=;
+ s=korg; t=1777901169;
+ bh=IdR2BjfbFCZabEWFgJ6ovGF2slbHOCQbB6x+inVR0wI=;
  h=Subject:To:Cc:From:Date:From;
- b=yebRzD6dqgjkcWhKrPLoMtKdMesCxVnbMk3wkfjNwphOA34WJbP3VENkmC21FbCdo
- 3jg2yQGDga6MeuoJeFQnFKF/ups0S2OaMrzALteaXEtR8GdxonaxKNZ8mDpYP6gPlL
- TPJsLQoMdUEIenC6MO6TocBb82bNmIOzx5onWznY=
+ b=Hq9pqa1ytqPUHK7H008RVxwciSSvU17/ohJesqerRzwmY/SGXTLgKccPmFVr1Ujxp
+ K4q9uBcBdveaIWsLZUskvT8vTaxJX6tLj8/rQ0sMJFWbveamPvZaakumLUr+mC41Kk
+ 3OiXi4F8prCheKnRWSpMOfOGrM4BP6EcVJfnbvnY=
 Subject: Patch "drm/amdgpu: fix zero-size GDS range init on RDNA4" has been
- added to the 5.15-stable tree
+ added to the 6.1-stable tree
 To: alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
  arjan@linux.intel.com, christian.koenig@amd.com,
  dri-devel@lists.freedesktop.org, gregkh@linuxfoundation.org
 Cc: <stable-commits@vger.kernel.org>
 From: <gregkh@linuxfoundation.org>
-Date: Mon, 04 May 2026 15:24:59 +0200
-Message-ID: <2026050457-sputter-slam-37e2@gregkh>
+Date: Mon, 04 May 2026 15:26:01 +0200
+Message-ID: <2026050400-wannabe-chewable-85ad@gregkh>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -60,7 +60,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: DA72D4C7D95
+X-Rspamd-Queue-Id: 397CD4C7D89
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [4.99 / 15.00];
@@ -90,19 +90,19 @@ X-Spamd-Result: default: False [4.99 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,fenrus.org:url,amd.com:email,lists.freedesktop.org:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fenrus.org:url,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,intel.com:email]
 
 
 This is a note to let you know that I've just added the patch titled
 
     drm/amdgpu: fix zero-size GDS range init on RDNA4
 
-to the 5.15-stable tree which can be found at:
+to the 6.1-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      drm-amdgpu-fix-zero-size-gds-range-init-on-rdna4.patch
-and it can be found in the queue-5.15 subdirectory.
+and it can be found in the queue-6.1 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
@@ -162,7 +162,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -71,6 +71,9 @@ static int amdgpu_ttm_init_on_chip(struc
+@@ -76,6 +76,9 @@ static int amdgpu_ttm_init_on_chip(struc
  				    unsigned int type,
  				    uint64_t size_in_page)
  {
@@ -176,4 +176,4 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Patches currently in stable-queue which might be from arjan@linux.intel.com are
 
-queue-5.15/drm-amdgpu-fix-zero-size-gds-range-init-on-rdna4.patch
+queue-6.1/drm-amdgpu-fix-zero-size-gds-range-init-on-rdna4.patch
