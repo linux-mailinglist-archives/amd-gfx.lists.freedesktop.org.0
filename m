@@ -2,57 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ITYaMiqb+Wkm+QIAu9opvQ
+	id 4Ni0AJml+GnQxQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:24:26 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 15:56:41 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47C9F4C7D65
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:24:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E5CB4BE262
+	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 15:56:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8329110E99C;
-	Tue,  5 May 2026 07:15:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B81B10E6EF;
+	Mon,  4 May 2026 13:56:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="gy/TYIKo";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="pThgDbKm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCE4A10E71D;
- Mon,  4 May 2026 14:28:30 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id EE7C761119;
- Mon,  4 May 2026 14:28:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55965C2BCB8;
- Mon,  4 May 2026 14:28:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1777904909;
- bh=k8xvZoIidptCSrYPe5OMfqqKr0f2UR19oxWDoVxZ5ik=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=gy/TYIKoEqLn7BY/JRPtB6OoVO76sc02rlzKfxTTF0F8VWnA0xlVc6Pa0gTIsuOqL
- s0bzm1Ea/mlFuQUzbgfTjXwbkxHrherex9fEVyOKblsbJmBvdtnanPgsfOrrlcNwY0
- uIPLk8DfdE+Tfxl7hN9mrGF2Yttl7oResuJ4l+s4=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
- Arjan van de Ven <arjan@linux.intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH 6.12 212/215] drm/amdgpu: fix zero-size GDS range init on RDNA4
-Date: Mon,  4 May 2026 15:53:51 +0200
-Message-ID: <20260504135138.567903851@linuxfoundation.org>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260504135130.169210693@linuxfoundation.org>
-References: <20260504135130.169210693@linuxfoundation.org>
-User-Agent: quilt/0.69
-X-stable: review
-X-Patchwork-Hint: ignore
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE7A210E6EF
+ for <amd-gfx@lists.freedesktop.org>; Mon,  4 May 2026 13:56:36 +0000 (UTC)
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+ by smtpout-04.galae.net (Postfix) with ESMTPS id BB60DC5D72D;
+ Mon,  4 May 2026 13:57:21 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 516165FD5F;
+ Mon,  4 May 2026 13:56:35 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id 9DDF011AD220E; 
+ Mon,  4 May 2026 15:56:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+ t=1777902994; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ content-transfer-encoding:content-language:in-reply-to:references;
+ bh=j2hlp/6clsIxKcAavYQrD4NChynsESijBX8RXRMkRwA=;
+ b=pThgDbKms2NLA13+nZwLI0zzAbBOv4c7xNMChf/jBC1L3Ti+emr2sjMLS7nGTthUQGAwfX
+ p6v4gpem7omcsdsugaXdBttI8LwFWcni8wDNLJePTIwdCtenveRJLstlrMbCi1OxQf5b3O
+ mEuWLS56s81cXLPBRJaGwzMGR0VTl2DCfQGt3C3xfxsyqqcCjLvxfMquikkY0nL+XI0vfo
+ L62XI313cgOYk/ergTA27+RCHSTpHJPzf5rTtAHxHYO/admrH+ca/sXbD/H0vIxpn6OC56
+ xIwpA7odUJwMG6W6OHYTK/JNzvd7GaetxzSYCK6Vm5CPiClCf1lmhc+Mjg3zzw==
+Message-ID: <0f5cf41c-99d5-4427-86fe-18c4f1e2c95e@bootlin.com>
+Date: Mon, 4 May 2026 15:55:52 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 05 May 2026 07:15:38 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/8] Add support for a DRM backlight capability
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ dri-devel@lists.freedesktop.org
+Cc: harry.wentland@amd.com, Xaver Hugl <xaver.hugl@gmail.com>,
+ amd-gfx@lists.freedesktop.org, Mario Limonciello <superm1@kernel.org>
+References: <20260424220953.167058-1-mario.limonciello@amd.com>
+From: Louis Chauvet <louis.chauvet@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20260424220953.167058-1-mario.limonciello@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,94 +67,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 47C9F4C7D65
+X-Rspamd-Queue-Id: 5E5CB4BE262
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:mario.limonciello@amd.com,m:dri-devel@lists.freedesktop.org,m:harry.wentland@amd.com,m:xaver.hugl@gmail.com,m:superm1@kernel.org,m:xaverhugl@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER(0.00)[louis.chauvet@bootlin.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,lists.freedesktop.org,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linuxfoundation.org:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[louis.chauvet@bootlin.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linuxfoundation.org:email,linuxfoundation.org:dkim,linuxfoundation.org:mid,fenrus.org:url,amd.com:email,intel.com:email]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-6.12-stable review patch.  If anyone has any objections, please let me know.
 
-------------------
 
-From: Arjan van de Ven <arjan@linux.intel.com>
+On 4/25/26 00:09, Mario Limonciello wrote:
+> From: Mario Limonciello (AMD) <superm1@kernel.org>
+> 
+> At Display Next Hackfest 2025 we discussed the renewed need for moving
+> brightness control into the DRM connector properties.  I've taken the
+> previous efforts from David and Marta, rebased and adjusted for the
+> current kernel.
+> 
+> The legacy sysfs interface is synchronized with the DRM connector (although
+> the scale may be different as DRM connector property is u16).
+> 
+> Later after this has been adopted by enough userspace, it may make sense to
+> configure the legacy sysfs interface to be configurable so that only
+> DRM master controls backlight.
+> 
+> I've done a first implementation with amdgpu with eDP connectors; but
+> conceivably this can be extended to other connectors like DP for displays
+> that can be controlled via DDC as well later.
+> 
+> I have also used DRM review prompts to review this series and fix some bugs
+> which were caught with two different Claude models.  The fixes are squashed
+> into the patches.
+> 
+> Assisted-by: Claude Opus
+> Assisted-by: Claude Sonnet
+> 
+> For ease of testing; this series is also available on this branch:
+> https://git.kernel.org/pub/scm/linux/kernel/git/superm1/linux.git/log/?h=superm1/backlight-property-v3
 
-commit 095a8b0ad3c3b5cdc3850d961adb8a8f735220bb upstream.
+Hello,
 
-RDNA4 (GFX 12) hardware removes the GDS, GWS, and OA on-chip memory
-resources. The gfx_v12_0 initialisation code correctly leaves
-adev->gds.gds_size, adev->gds.gws_size, and adev->gds.oa_size at
-zero to reflect this.
+thanks for this work, I am very interested in this progress so I can 
+help you to test / implement more features.
 
-amdgpu_ttm_init() unconditionally calls amdgpu_ttm_init_on_chip() for
-each of these resources regardless of size. When the size is zero,
-amdgpu_ttm_init_on_chip() forwards the call to ttm_range_man_init(),
-which calls drm_mm_init(mm, 0, 0). drm_mm_init() immediately fires
-DRM_MM_BUG_ON(start + size <= start) -- trivially true when size is
-zero -- crashing the kernel during modprobe of amdgpu on an RX 9070 XT.
+I think you forgot to include the revert of "backlight: Remove notifier" 
+in your series, it can't be applied without it.
 
-Guard against this by returning 0 early from
-amdgpu_ttm_init_on_chip() when size_in_page is zero. This skips TTM
-resource manager registration for hardware resources that are absent,
-without affecting any other GPU type.
+I will take a look and see if I can create a VKMS implementation of your 
+work.
 
-DRM_MM_BUG_ON() only asserts if CONFIG_DRM_DEBUG_MM is enabled in
-the kernel config.  This is apparently rarely enabled as these chips
-have been in the market for over a year and this issue was only reported
-now.
+Thanks for this work,
 
-Link: https://lore.kernel.org/all/bug-221376-2300@https.bugzilla.kernel.org%2F/
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=221376
-Oops-Analysis: http://oops.fenrus.org/reports/bugzilla.korg/221376/report.html
-Assisted-by: GitHub Copilot:Claude Sonnet 4.6 linux-kernel-oops-x86.
-Signed-off-by: Arjan van de Ven <arjan@linux.intel.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-(cherry picked from commit 5719ce5865279cad4fd5f01011fe037168503f2d)
-Cc: stable@vger.kernel.org
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |    3 +++
- 1 file changed, 3 insertions(+)
-
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -75,6 +75,9 @@ static int amdgpu_ttm_init_on_chip(struc
- 				    unsigned int type,
- 				    uint64_t size_in_page)
- {
-+	if (!size_in_page)
-+		return 0;
-+
- 	return ttm_range_man_init(&adev->mman.bdev, type,
- 				  false, size_in_page);
- }
-
+> David Rheinsberg (1):
+>    backlight: add kernel-internal backlight API
+> 
+> Mario Limonciello (6):
+>    drm: link connectors to backlight devices
+>    DRM: Add support for client and driver indicating support for
+>      luminance
+>    drm/amd/display: Pass up errors reading actual brightness
+>    drm/amd: Indicate driver supports luminance
+>    drm/amd/display: Allow backlight registration to fail
+>    drm/amd/display: use drm backlight
+> 
+> Marta Lofstedt (1):
+>    backlight: expose the current brightness in the new kernel API
+> 
+>   drivers/gpu/drm/Kconfig                       |   1 +
+>   drivers/gpu/drm/Makefile                      |   2 +
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |   1 +
+>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  88 +++-
+>   drivers/gpu/drm/drm_atomic_uapi.c             |  24 ++
+>   drivers/gpu/drm/drm_backlight.c               | 406 ++++++++++++++++++
+>   drivers/gpu/drm/drm_connector.c               |  12 +
+>   drivers/gpu/drm/drm_drv.c                     |   8 +
+>   drivers/gpu/drm/drm_ioctl.c                   |  10 +
+>   drivers/gpu/drm/drm_mode_config.c             |   7 +
+>   drivers/gpu/drm/drm_mode_object.c             |  66 ++-
+>   drivers/gpu/drm/drm_sysfs.c                   |  54 +++
+>   drivers/video/backlight/backlight.c           |  83 ++++
+>   include/drm/drm_backlight.h                   |  45 ++
+>   include/drm/drm_connector.h                   |   8 +
+>   include/drm/drm_drv.h                         |   7 +
+>   include/drm/drm_file.h                        |   8 +
+>   include/drm/drm_mode_config.h                 |   5 +
+>   include/linux/backlight.h                     |  30 ++
+>   include/uapi/drm/drm.h                        |  10 +
+>   20 files changed, 852 insertions(+), 23 deletions(-)
+>   create mode 100644 drivers/gpu/drm/drm_backlight.c
+>   create mode 100644 include/drm/drm_backlight.h
+> 
 
