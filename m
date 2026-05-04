@@ -2,36 +2,36 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EGmOJSGZ+Wm2+AIAu9opvQ
+	id 4A8UAR6Z+Wm2+AIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:15:45 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:15:42 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FCE64C7B60
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:15:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB5EA4C7B4A
+	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:15:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7570010E98F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 286E110E986;
 	Tue,  5 May 2026 07:15:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="uC+9FDDi";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="GT4b9LWw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66FD710E704;
- Mon,  4 May 2026 14:06:46 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C6FB10E71B;
+ Mon,  4 May 2026 14:19:03 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 28BCF43614;
- Mon,  4 May 2026 14:06:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1CF2C2BCC4;
- Mon,  4 May 2026 14:06:45 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 452F460125;
+ Mon,  4 May 2026 14:19:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FE83C2BCF4;
+ Mon,  4 May 2026 14:19:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1777903606;
- bh=cR3+M8+MbJophmFoBl14/b26Yubs7IG3Cr6RDYbMG/Y=;
+ s=korg; t=1777904342;
+ bh=3BEwhVeiqqDJUwq+/MWE2vvkpswgOUxhFsToE6okebY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=uC+9FDDieYcqacMDrzgYLFSBaM3Wz67pdfEiJsLu/hGETxAknsflNGHWCW4tt2F5s
- qOq2zcZfqKHvgQzrkUg2roCPVV01ADnvFjI7kfQvTW+wwt+QBqll+oYF1s9+JGa7nP
- Faf6cuUrNiNd5TmtBBCQ8roJ9z4gtlujnQ1siyzc=
+ b=GT4b9LWwo+4Vm7Um8psCfEmNGupDWjl0uRFtnHcqtxOlbU3POOi8M/aGVXcIpUrRD
+ f6McQTu7rNdV96Lmm7g1BoS3/8GxjfJdqbcZOl+I7V2e131obD7vsmCzrZoqGT0omG
+ 9BYOYT3mbvkUxcj4ZfLnS7lvBw2CNu/ayAhRRZIw=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: stable@vger.kernel.org
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
@@ -40,12 +40,12 @@ Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH 7.0 299/307] drm/amdgpu: fix zero-size GDS range init on RDNA4
-Date: Mon,  4 May 2026 15:53:04 +0200
-Message-ID: <20260504135154.031873530@linuxfoundation.org>
+Subject: [PATCH 6.18 268/275] drm/amdgpu: fix zero-size GDS range init on RDNA4
+Date: Mon,  4 May 2026 15:53:28 +0200
+Message-ID: <20260504135152.992343209@linuxfoundation.org>
 X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260504135142.814938198@linuxfoundation.org>
-References: <20260504135142.814938198@linuxfoundation.org>
+In-Reply-To: <20260504135142.929052779@linuxfoundation.org>
+References: <20260504135142.929052779@linuxfoundation.org>
 User-Agent: quilt/0.69
 X-stable: review
 X-Patchwork-Hint: ignore
@@ -66,35 +66,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 4FCE64C7B60
+X-Rspamd-Queue-Id: AB5EA4C7B4A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.21 / 15.00];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
-	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	MAILLIST(-0.20)[mailman];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,linuxfoundation.org:email,linuxfoundation.org:dkim,linuxfoundation.org:mid,fenrus.org:url];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linuxfoundation.org:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	RCPT_COUNT_SEVEN(0.00)[9];
-	DKIM_TRACE(0.00)[linuxfoundation.org:+]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fenrus.org:url,intel.com:email,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
 
-7.0-stable review patch.  If anyone has any objections, please let me know.
+6.18-stable review patch.  If anyone has any objections, please let me know.
 
 ------------------
 
