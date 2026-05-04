@@ -2,51 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2CYhMCqb+WkS+QIAu9opvQ
+	id cIbLJJeX+GknwwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:24:26 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 14:56:55 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47B784C7D64
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:24:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFBF24BD4A9
+	for <lists+amd-gfx@lfdr.de>; Mon, 04 May 2026 14:56:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DE0F10E991;
-	Tue,  5 May 2026 07:15:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="mklxHqQK";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CC7510E3CF;
+	Mon,  4 May 2026 12:56:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E05E310E389;
- Mon,  4 May 2026 12:50:05 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id A2BF260126;
- Mon,  4 May 2026 12:50:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B37AC2BCB8;
- Mon,  4 May 2026 12:50:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1777899004;
- bh=ltySbE6omjecHMIWCv/GqNZm1TK5vXHGR5GZIhmqWTE=;
- h=Subject:To:Cc:From:Date:From;
- b=mklxHqQKE3MlhrZKKbxF/Ad9sCBifX31p4lpyNIT+ooH55/O72I+4289Oy+xckN08
- wb1vZMEqWoUoV2nwSyBMUImYhdQzyFRRxtzZoJ2JoE92TqA+3jZS1HPWwZgFlMgghb
- 0j0yqskjR0ZXfs9AhHNA8HoOv3YPQieQhOE2AbqY=
-Subject: Patch "drm/amdgpu: fix zero-size GDS range init on RDNA4" has been
- added to the 7.0-stable tree
-To: alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
- arjan@linux.intel.com, christian.koenig@amd.com,
- dri-devel@lists.freedesktop.org, gregkh@linuxfoundation.org
-Cc: <stable-commits@vger.kernel.org>
-From: <gregkh@linuxfoundation.org>
-Date: Mon, 04 May 2026 14:49:51 +0200
-Message-ID: <2026050451-dicing-ramp-9a3e@gregkh>
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B40C510E3CF
+ for <amd-gfx@lists.freedesktop.org>; Mon,  4 May 2026 12:56:51 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 644Cukk8091856; Mon, 4 May 2026 18:26:46 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 644CuklH091855;
+ Mon, 4 May 2026 18:26:46 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH] drm/amdgpu/userq: fix access to stale wptr mapping
+Date: Mon,  4 May 2026 18:26:45 +0530
+Message-Id: <20260504125645.91836-1-sunil.khatri@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-stable: commit
-X-Patchwork-Hint: ignore 
-X-Mailman-Approved-At: Tue, 05 May 2026 07:15:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,120 +46,204 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 47B784C7D64
+X-Rspamd-Queue-Id: EFBF24BD4A9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [4.99 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
-	R_DKIM_REJECT(1.00)[linuxfoundation.org:s=korg];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [2.39 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[linuxfoundation.org : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
-	GREYLIST(0.00)[pass,body];
-	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linuxfoundation.org:-];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	NEURAL_HAM(-0.00)[-0.192];
-	TO_DN_NONE(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.895];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,lists.freedesktop.org:email,linuxfoundation.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,fenrus.org:url]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
+Use drm_exec to take both locks i.e vm root bo and
+wptr_obj bo to access the mapping data properly.
 
-This is a note to let you know that I've just added the patch titled
+This fixes the security issue of unmap the wptr_obj while
+a queue creation is in progress and passing other
+bo at same address.
 
-    drm/amdgpu: fix zero-size GDS range init on RDNA4
-
-to the 7.0-stable tree which can be found at:
-    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
-
-The filename of the patch is:
-     drm-amdgpu-fix-zero-size-gds-range-init-on-rdna4.patch
-and it can be found in the queue-7.0 subdirectory.
-
-If you, or anyone else, feels it should not be added to the stable tree,
-please let <stable@vger.kernel.org> know about it.
-
-
-From 095a8b0ad3c3b5cdc3850d961adb8a8f735220bb Mon Sep 17 00:00:00 2001
-From: Arjan van de Ven <arjan@linux.intel.com>
-Date: Mon, 20 Apr 2026 14:57:15 -0700
-Subject: drm/amdgpu: fix zero-size GDS range init on RDNA4
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-From: Arjan van de Ven <arjan@linux.intel.com>
-
-commit 095a8b0ad3c3b5cdc3850d961adb8a8f735220bb upstream.
-
-RDNA4 (GFX 12) hardware removes the GDS, GWS, and OA on-chip memory
-resources. The gfx_v12_0 initialisation code correctly leaves
-adev->gds.gds_size, adev->gds.gws_size, and adev->gds.oa_size at
-zero to reflect this.
-
-amdgpu_ttm_init() unconditionally calls amdgpu_ttm_init_on_chip() for
-each of these resources regardless of size. When the size is zero,
-amdgpu_ttm_init_on_chip() forwards the call to ttm_range_man_init(),
-which calls drm_mm_init(mm, 0, 0). drm_mm_init() immediately fires
-DRM_MM_BUG_ON(start + size <= start) -- trivially true when size is
-zero -- crashing the kernel during modprobe of amdgpu on an RX 9070 XT.
-
-Guard against this by returning 0 early from
-amdgpu_ttm_init_on_chip() when size_in_page is zero. This skips TTM
-resource manager registration for hardware resources that are absent,
-without affecting any other GPU type.
-
-DRM_MM_BUG_ON() only asserts if CONFIG_DRM_DEBUG_MM is enabled in
-the kernel config.  This is apparently rarely enabled as these chips
-have been in the market for over a year and this issue was only reported
-now.
-
-Link: https://lore.kernel.org/all/bug-221376-2300@https.bugzilla.kernel.org%2F/
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=221376
-Oops-Analysis: http://oops.fenrus.org/reports/bugzilla.korg/221376/report.html
-Assisted-by: GitHub Copilot:Claude Sonnet 4.6 linux-kernel-oops-x86.
-Signed-off-by: Arjan van de Ven <arjan@linux.intel.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-(cherry picked from commit 5719ce5865279cad4fd5f01011fe037168503f2d)
-Cc: stable@vger.kernel.org
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |    3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 122 ++++++++++-----------
+ 1 file changed, 57 insertions(+), 65 deletions(-)
 
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -75,6 +75,9 @@ static int amdgpu_ttm_init_on_chip(struc
- 				    unsigned int type,
- 				    uint64_t size_in_page)
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+index 501e2e10b4a6..3d4f83015488 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+@@ -30,34 +30,6 @@
+ #define AMDGPU_USERQ_PROC_CTX_SZ PAGE_SIZE
+ #define AMDGPU_USERQ_GANG_CTX_SZ PAGE_SIZE
+ 
+-static int
+-mes_userq_map_gtt_bo_to_gart(struct amdgpu_bo *bo)
+-{
+-	int ret;
+-
+-	ret = amdgpu_bo_reserve(bo, true);
+-	if (ret) {
+-		DRM_ERROR("Failed to reserve bo. ret %d\n", ret);
+-		goto err_reserve_bo_failed;
+-	}
+-
+-	ret = amdgpu_ttm_alloc_gart(&bo->tbo);
+-	if (ret) {
+-		DRM_ERROR("Failed to bind bo to GART. ret %d\n", ret);
+-		goto err_map_bo_gart_failed;
+-	}
+-
+-	amdgpu_bo_unreserve(bo);
+-	bo = amdgpu_bo_ref(bo);
+-
+-	return 0;
+-
+-err_map_bo_gart_failed:
+-	amdgpu_bo_unreserve(bo);
+-err_reserve_bo_failed:
+-	return ret;
+-}
+-
+ static int
+ mes_userq_create_wptr_mapping(struct amdgpu_device *adev,
+ 			      struct amdgpu_userq_mgr *uq_mgr,
+@@ -65,55 +37,75 @@ mes_userq_create_wptr_mapping(struct amdgpu_device *adev,
+ 			      uint64_t wptr)
  {
-+	if (!size_in_page)
-+		return 0;
+ 	struct amdgpu_bo_va_mapping *wptr_mapping;
+-	struct amdgpu_vm *wptr_vm;
+ 	struct amdgpu_userq_obj *wptr_obj = &queue->wptr_obj;
++	struct amdgpu_bo *obj;
++	struct amdgpu_vm *vm = queue->vm;
++	struct drm_exec exec;
+ 	int ret;
+ 
+-	wptr_vm = queue->vm;
+-	ret = amdgpu_bo_reserve(wptr_vm->root.bo, false);
+-	if (ret)
+-		return ret;
+-
+ 	wptr &= AMDGPU_GMC_HOLE_MASK;
+-	wptr_mapping = amdgpu_vm_bo_lookup_mapping(wptr_vm, wptr >> PAGE_SHIFT);
+-	amdgpu_bo_unreserve(wptr_vm->root.bo);
+-	if (!wptr_mapping) {
+-		DRM_ERROR("Failed to lookup wptr bo\n");
+-		return -EINVAL;
+-	}
+ 
+-	wptr_obj->obj = wptr_mapping->bo_va->base.bo;
+-	if (wptr_obj->obj->tbo.base.size > PAGE_SIZE) {
+-		DRM_ERROR("Requested GART mapping for wptr bo larger than one page\n");
+-		return -EINVAL;
+-	}
++	drm_exec_init(&exec, DRM_EXEC_IGNORE_DUPLICATES, 0);
++	drm_exec_until_all_locked(&exec) {
++		ret = amdgpu_vm_lock_pd(vm, &exec, 1);
++		drm_exec_retry_on_contention(&exec);
++		if (unlikely(ret))
++			goto fail_lock;
 +
- 	return ttm_range_man_init(&adev->mman.bdev, type,
- 				  false, size_in_page);
++		wptr_mapping = amdgpu_vm_bo_lookup_mapping(vm, wptr >> PAGE_SHIFT);
++		if (!wptr_mapping) {
++			DRM_ERROR("Failed to lock up wptr bo\n");
++			ret = -EINVAL;
++			goto fail_lock;
++		}
+ 
+-	ret = mes_userq_map_gtt_bo_to_gart(wptr_obj->obj);
+-	if (ret) {
+-		DRM_ERROR("Failed to map wptr bo to GART\n");
+-		return ret;
+-	}
++		obj = wptr_mapping->bo_va->base.bo;
++		ret = drm_exec_prepare_obj(&exec, &obj->tbo.base, 1);
++		drm_exec_retry_on_contention(&exec);
++		if (unlikely(ret)) {
++			DRM_ERROR("Failed to prepare wptr bo\n");
++			goto fail_lock;
++		}
+ 
+-	ret = amdgpu_bo_reserve(wptr_obj->obj, true);
+-	if (ret) {
+-		DRM_ERROR("Failed to reserve wptr bo\n");
+-		return ret;
+-	}
++		/* mapping now should be stable since both the locks are held */
++		wptr_mapping = amdgpu_vm_bo_lookup_mapping(vm, wptr >> PAGE_SHIFT);
++		if (!wptr_mapping) {
++			DRM_ERROR("Failed to lock up wptr bo\n");
++			ret = -EINVAL;
++			goto fail_lock;
++		}
+ 
+-	/* TODO use eviction fence instead of pinning. */
+-	ret = amdgpu_bo_pin(wptr_obj->obj, AMDGPU_GEM_DOMAIN_GTT);
+-	if (ret) {
+-		drm_file_err(uq_mgr->file, "[Usermode queues] Failed to pin wptr bo\n");
+-		goto unresv_bo;
+-	}
++		wptr_obj->obj = amdgpu_bo_ref(wptr_mapping->bo_va->base.bo);
++
++		if (wptr_obj->obj->tbo.base.size > PAGE_SIZE) {
++			DRM_ERROR("Requested wptr bo size is larger than one page\n");
++			ret = -EINVAL;
++			goto fail_map;
++		}
++
++		ret = amdgpu_ttm_alloc_gart(&wptr_obj->obj->tbo);
++		if (ret) {
++			DRM_ERROR("Failed to bind bo to GART. ret %d\n", ret);
++			goto fail_map;
++		}
++
++		/* TODO use eviction fence instead of pinning. */
++		ret = amdgpu_bo_pin(wptr_obj->obj, AMDGPU_GEM_DOMAIN_GTT);
++		if (ret) {
++			DRM_ERROR("Failed to pin wptr bo. ret %d\n", ret);
++			goto fail_map;
++		}
+ 
+-	queue->wptr_obj.gpu_addr = amdgpu_bo_gpu_offset(wptr_obj->obj);
+-	amdgpu_bo_unreserve(wptr_obj->obj);
++		queue->wptr_obj.gpu_addr = amdgpu_bo_gpu_offset(wptr_obj->obj);
++	}
+ 
++	drm_exec_fini(&exec);
+ 	return 0;
+ 
+-unresv_bo:
+-	amdgpu_bo_unreserve(wptr_obj->obj);
++fail_map:
++	amdgpu_bo_unref(&wptr_obj->obj);
++fail_lock:
++	drm_exec_fini(&exec);
+ 	return ret;
+ 
  }
+-- 
+2.34.1
 
-
-Patches currently in stable-queue which might be from arjan@linux.intel.com are
-
-queue-7.0/drm-amdgpu-fix-zero-size-gds-range-init-on-rdna4.patch
