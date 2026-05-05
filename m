@@ -2,64 +2,98 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QHNjAnHn+Wl1FAMAu9opvQ
+	id GBqgI4Dr+WkLFQMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 14:49:53 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 15:07:12 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 899454CDE8F
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 14:49:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EACC94CE26B
+	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 15:07:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1051F10E1BC;
-	Tue,  5 May 2026 12:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75B1A10E19A;
+	Tue,  5 May 2026 13:07:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Uu+4v2yT";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from h6.fbrelay.privateemail.com (h6.fbrelay.privateemail.com
- [162.0.218.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DB8C10EA78;
- Tue,  5 May 2026 11:41:47 +0000 (UTC)
-Received: from MTA-05-3.privateemail.com (mta-05.privateemail.com
- [198.54.127.60])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by h5.fbrelay.privateemail.com (Postfix) with ESMTPSA id 4g8xS84Ndwz2xdt;
- Tue,  5 May 2026 11:41:44 +0000 (UTC)
-Received: from hal-station.localdomain
- (bras-base-toroon4332w-grc-26-174-91-51-28.dsl.bell.ca [174.91.51.28])
- by mta-05.privateemail.com (Postfix) with ESMTPA id 4g8xRR3Lb7z3hhTf;
- Tue,  5 May 2026 07:41:07 -0400 (EDT)
-Date: Tue, 5 May 2026 07:41:03 -0400
-From: Hamza Mahfooz <someguy@effective-light.com>
-To: Mario Limonciello <mario.limonciello@amd.com>
-Cc: dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Hung <alex.hung@amd.com>, Ray Wu <ray.wu@amd.com>,
- Wayne Lin <Wayne.Lin@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Ivan Lipski <ivan.lipski@amd.com>, Chenyu Chen <chen-yu.chen@amd.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>,
- Yussuf Khalil <dev@pp3345.net>, Tom Chung <chiahsuan.chung@amd.com>,
- Roman Li <Roman.Li@amd.com>, Colin Ian King <colin.i.king@gmail.com>,
- Charlene Liu <charlene.liu@amd.com>, Kees Cook <kees@kernel.org>,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] drm/atomic: attempt full modeset on page flip
- timeout
-Message-ID: <afnXTwKBfjBYdwgL@hal-station.localdomain>
-References: <20260501203552.749080-1-someguy@effective-light.com>
- <5dd93e29-a076-491b-9861-e08a0204c77d@amd.com>
+Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBE2010E349
+ for <amd-gfx@lists.freedesktop.org>; Tue,  5 May 2026 13:07:08 +0000 (UTC)
+Received: by mail-dl1-f52.google.com with SMTP id
+ a92af1059eb24-12c87f1f8c8so241769c88.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 05 May 2026 06:07:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1777986428; cv=none;
+ d=google.com; s=arc-20240605;
+ b=ZphlQHWang9WQEtOxuYOevJiSYSLDLhWs4gF3AWNesfqvpiWYZDM3qtZO2+uYjv5dE
+ V8lrJgljoNAH1NO41Tpy3FW8OHib7CP3FmWczyTBdQnEzyKRzPG9sGlod5wA5Ee9JGjz
+ AT/BdesFkFLuvC7rmTXDXOej6zDUqtqiJNVc3INqjbvwR99xVxq60xj9YXmyn6a5V6DP
+ gNazPLxMnTMqIPoK+jAZqcnQ4JemDVooiRLE5MdK08QBBZHqoIMHBnCtPbEez744Dfg+
+ ykOpxGavVEw/4CEOH7gP0tsmI+kK7SRFpb4cqnAtVuzRlhDCdQoyov2qZwwvaRVrfv1W
+ qU+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=Aiu6cYp4tFc0RwkVhgaM1Z6oSzZYZnl1hCv0pwiOPu4=;
+ fh=j9FR/r99NAnjSnXBUrB4bd0qOb64SMJGGTmfkysAvUg=;
+ b=YYo1IBkRqlDzh7HJS5fi4L1caMLMPK2lxQbLmJ6H3VGKEbMJ1D3l2aNekegpBlcOmP
+ gn7CdsYT+JmLzl8EMTg2ru20sWPj6FoVam++30W3MjPahcVG7ZG3lUCnn3IZDaUUBzZI
+ B4ZYbR+V9VqWXYP63wckGUmW+LgGcVsByNubYNO7aaIHtA3uGIzNr/2X+RoRDgj2AwEZ
+ 7/5b874FlxR5w/2xqotIGFLEKN+aGiKCvTKj9zc5hVdr4q8FJKCedeQZIaJULORxkdoW
+ NERnoD1kw43LtMbxEuAGFPv+ZYe2Iv/fs0AB3dugDQJAUDBTgoScG4TMHHuaAMuP4nLq
+ bLpQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1777986428; x=1778591228; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Aiu6cYp4tFc0RwkVhgaM1Z6oSzZYZnl1hCv0pwiOPu4=;
+ b=Uu+4v2yTd5pkuF3P2Dd/vaIKC4B3s3p+0PNHi0Bk0QoOf+AHeOgDMBTgQLk0ZRsozX
+ qTOjE35ChPLZgRHB06/5RgI5QZ9cc4UFWU+midDaUH8AQ7b7qfHGTTWkzc6bzlZAyfru
+ CDxeNnAHBolvRl8yNfmyjmxHtBQgG1Wm4xRdNooUIj83rceZy25XX3ygO464Gh/pVMp2
+ sTIoRiuETQzywBMX/xwLQAS9DbXAymHMaklePOPAQFaq3usRPozNXEsec1Wph35TGyQ4
+ 3TSG83OFrMQwE6Ki4skuELT7d09LYFj1un5iUIEf3RHQEYRJOa5xUA8sYQysFxH3o4cQ
+ L6gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1777986428; x=1778591228;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=Aiu6cYp4tFc0RwkVhgaM1Z6oSzZYZnl1hCv0pwiOPu4=;
+ b=K4RnAwsvIupPGiBCIoI9CgmjCEwnQfbzmk8Cu1T6wrehgPjVdkXPkj3jX/YpXsNjaL
+ ryjpSGHFuW0vQ2SJaRxsKSME5gbGNig4cpA+2C3R16pAXswgSC9L+OWZDKL3DcAtE+Er
+ cBuxKLSwD8ovBN5a0NcwxNf7Sntod8PEiJkPDpYh7/As50YKm5O0wbmG96B6hXcP043r
+ o60BPjIQVzjK/AoUrdmDFMlOHFNNS2aSzh2dHh4Cjpe/GKE04fUG2RZp+77gUkJcEu2l
+ 2Rn+nYl/YwogxS51tja3J0FbdjBJE4q4tuDn0HbtFB0lSmEYTJHuRfDOzB9wsuN7fqTv
+ r0mA==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/za0GWTIlFNb+pDhHLUWbJD7d/13kg76wU+1IQS5UKf3q5eBOizNJOVXfOb0AJnfXe5v4bYt8O@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx+21vVkpLXnQ4JGN53pALNM3f0IHXgnAehjTPj/G/91gZPZZbl
+ X+os2ItpzNvzuReValBLGByIyydGAigLSxMLxPq8wYWHcyvI1x54hoaGczrzkyxH79l3u2Vp+5s
+ 1kGQWavuTFA6qbsiBtd2IRwlK+unYk5s=
+X-Gm-Gg: AeBDietEQOubOkgFr0ASTpsJ/P+UZ0qxdAdbn44P//cmL3d/16hjmDkbJK34wbajqkU
+ kzKiayEBo1M9YWprWwCTwz4gABOP3/awlDf3GnPwdhOWchvOVGaHbtezEVUxfuKXA8ZhIkxCTqz
+ EkJdcDqSLlX8otcVbSb9FYpupKubz7dxxbYwN4gldFFFety4Fk2bR5r7/ek0CSe9Qepi8OnsyMB
+ mWE4pVu41kpmvHAIq3qrTOZ+95Z98jQrKl3+4IfgpqVQoBooZHR9dbzYnPL2Bf3g3cfT5JDr5g0
+ UOwFPZXfCmapD4TlD2PDtuXQ7Xl1VkvqaxX1Udq7Hf6eQI0f6XGJEt4yNl8MbvFSksN6gLfRmzK
+ LpV8i
+X-Received: by 2002:a05:7022:4391:b0:12c:900b:9dee with SMTP id
+ a92af1059eb24-12dfd7d1256mr2531393c88.1.1777986427924; Tue, 05 May 2026
+ 06:07:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5dd93e29-a076-491b-9861-e08a0204c77d@amd.com>
-X-Mailman-Approved-At: Tue, 05 May 2026 12:49:49 +0000
+References: <EPoORLxTThi7O4O6Mpq3ZQ@web.de>
+In-Reply-To: <EPoORLxTThi7O4O6Mpq3ZQ@web.de>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 5 May 2026 09:06:56 -0400
+X-Gm-Features: AVHnY4JmvnDwJdyyjfrEiDjmrikbkAzBVJCMv4069B6iYWwSTDF4IEe6J7FJl0w
+Message-ID: <CADnq5_N3OkOmsbv3zCbc5Kk1P1rAtngt5DQowUg8kKOb_2Divg@mail.gmail.com>
+Subject: Re: amdgpu: possible regression since 7.0
+To: Alexander Stein <alexanders83@web.de>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,47 +107,210 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 899454CDE8F
+X-Rspamd-Queue-Id: EACC94CE26B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.89 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[effective-light.com];
+	FORGED_RECIPIENTS(0.00)[m:alexanders83@web.de,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,linux.dev,pp3345.net,vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.985];
-	FROM_NEQ_ENVFROM(0.00)[someguy@effective-light.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[web.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,hal-station.localdomain:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On Mon, May 04, 2026 at 04:50:21PM -0500, Mario Limonciello wrote:
-> Do you actually need to set all 3 of these to true?
-> 
-> I would think you only need:
-> 
-> crtc_state->mode_changed = true;
-> 
+On Tue, May 5, 2026 at 3:34=E2=80=AFAM Alexander Stein <alexanders83@web.de=
+> wrote:
+>
+> Hi,
+>
+> I'm running an Arch 7.0.3 kernel and I'm experiencing various lockups of =
+the
+> GPU. System still runs and I can shutdown using another VT.
+> I haven't experienced that on a 6.19.x kernel before.
+> If you need more information I can try, but it occurs more or less random=
+ly.
+> Below is the kernel log. My GPU is
+> 03:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI]=
+ Navi
+> 48 [Radeon RX 9070/9070 XT/9070 GRE] (rev c0)
+>
 
-According to my testing `mode_changed` on it's own is sufficient for
-amdgpu and the documentation [1] seems to suggest that it should be fine
-more broadly. Though, it doesn't seem harmful to set all of them just
-for safe measure.
+Can you bisect?
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/drm/drm_crtc.h?h=v7.1-rc2#n118
+Thanks,
+
+Alex
+
+> Best regards,
+> Alexander
+>
+> amdgpu 0000:03:00.0: [drm] *ERROR* [CRTC:416:crtc-0] flip_done timed out
+> amdgpu 0000:03:00.0: [drm] *ERROR* flip_done timed out
+> amdgpu 0000:03:00.0: [drm] *ERROR* [CRTC:416:crtc-0] commit wait timed ou=
+t
+> amdgpu 0000:03:00.0: [drm] *ERROR* flip_done timed out
+> amdgpu 0000:03:00.0: [drm] *ERROR* [PLANE:413:plane-7] commit wait timed =
+out
+> ------------[ cut here ]------------
+> acrtc->event
+> WARNING: drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:9572=
+ at
+> amdgpu_dm_atomic_commit_tail+0x38cf/0x3930 [amdgpu], CPU#3: systemd-login=
+d/
+> 1063
+> Modules linked in: cmac nls_utf8 cifs nls_ucs2_utils rdma_cm iw_cm ib_cm
+> ib_core cifs_md4 dns_resolver netfs snd_seq_dummy snd_hrtimer snd_seq vfa=
+t fat
+> snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_hda_codec_generic
+> snd_hda_codec_atihdmi snd_hda_codec_hdmi snd_hda_intel btusb mt7921e uvcv=
+ideo
+> snd_hda_codec btmtk mt7921_common snd_usb_audio videobuf2_vmalloc btrtl
+> snd_hda_core uvc mt792x_lib btbcm snd_usbmidi_lib videobuf2_memops
+> snd_intel_dspcfg mt76_connac_lib btintel videobuf2_v4l2 snd_ump amd_atl
+> snd_intel_sdw_acpi snd_rawmidi intel_rapl_msr videobuf2_common r8169 mt76
+> intel_rapl_common snd_hwdep snd_seq_device bluetooth videodev spd5118 joy=
+dev
+> mousedev realtek snd_pcm mdio_devres mac80211 snd_timer mc libphy eeepc_w=
+mi
+> snd asus_wmi mdio_bus libarc4 ghash_clmulni_intel soundcore sp5100_tco
+> aesni_intel platform_profile sparse_keymap wmi_bmof rapl pcspkr i2c_piix4
+> gpio_amdpt k10temp i2c_smbus gpio_generic mac_hid cfg80211 rfkill
+> vboxnetflt(OE) vboxnetadp(OE) vboxdrv(OE) kvm_amd ccp kvm dm_mod
+>  irqbypass i2c_dev crypto_user nfnetlink uas usb_storage amdgpu amdxcp
+> i2c_algo_bit drm_ttm_helper ttm drm_exec drm_panel_backlight_quirks gpu_s=
+ched
+> nvme drm_suballoc_helper drm_buddy nvme_core drm_display_helper nvme_keyr=
+ing
+> video nvme_auth cec hkdf wmi
+> CPU: 3 UID: 0 PID: 1063 Comm: systemd-logind Tainted: G           OE
+> 7.0.3-arch1-1 #1 PREEMPT(full)  653fa807272d34162f0f7604ba64e0a2aa402e05
+> Tainted: [O]=3DOOT_MODULE, [E]=3DUNSIGNED_MODULE
+> Hardware name: ASUS System Product Name/TUF GAMING B850M-PLUS WIFI, BIOS =
+1644
+> 03/10/2026
+> RIP: 0010:amdgpu_dm_atomic_commit_tail+0x38cf/0x3930 [amdgpu]
+> Code: 8d 84 24 20 5b 04 00 c6 85 18 fe ff ff 00 48 89 85 20 fe ff ff e9 b=
+0 cd ff ff
+> 0f 0b 0f 0b e9 9f f7 ff ff 0f 0b e9 f2 cd ff ff <0f> 0b e9 b0 f7 ff ff 48=
+ c7 85 18
+> fe ff ff 00 00 00 00 48 c7 85 e8
+> RSP: 0018:ffffcf07c5537418 EFLAGS: 00010082
+> RAX: 0000000000000001 RBX: 0000000000000296 RCX: ffff8e36d56c6118
+> RDX: 0000000000000001 RSI: 0000000000000286 RDI: ffff8e36d7980178
+> RBP: ffffcf07c5537688 R08: ffffcf07c553730c R09: 0000000000000000
+> R10: 0000000000000000 R11: ffffcf07c553737c R12: ffff8e36d56c6118
+> R13: ffff8e3c0f7c7800 R14: 0000000000000000 R15: ffff8e36d56c6000
+> FS:  00007f77aa5488c0(0000) GS:ffff8e3e69b52000(0000) knlGS:0000000000000=
+000
+> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> CR2: 000024c6052cc000 CR3: 0000000134fe5000 CR4: 0000000000f50ef0
+> PKRU: 55555554
+> Call Trace:
+>  <TASK>
+>  commit_tail+0xc1/0x150
+>  drm_atomic_helper_commit+0x13c/0x180
+>  drm_atomic_commit+0xb1/0xe0
+>  ? __pfx___drm_printfn_info+0x10/0x10
+>  drm_client_modeset_commit_atomic+0x1ec/0x230
+>  drm_client_modeset_commit_locked+0x58/0x160
+>  ? mod_memcg_lruvec_state+0xc5/0x1f0
+>  __drm_fb_helper_restore_fbdev_mode_unlocked.part.0+0x27/0x90
+>  drm_fb_helper_set_par+0x57/0x70
+>  fb_set_var+0x23c/0x430
+>  ? update_cfs_rq_load_avg+0x1a/0x240
+>  ? update_load_avg+0x73/0x210
+>  ? psi_group_change+0x10c/0x2c0
+>  ? set_next_entity+0xe7/0x270
+>  fbcon_blank+0x1f2/0x310
+>  do_unblank_screen+0xc8/0x1b0
+>  complete_change_console+0x54/0x120
+>  vt_ioctl+0xeca/0x1460
+>  ? security_capable+0x7d/0x1a0
+>  ? capable+0x32/0x60
+>  ? kernel_termios_to_user_termios+0x13/0x20
+>  ? tty_mode_ioctl+0x67a/0x6e0
+>  tty_ioctl+0xe4/0x980
+>  ? __seccomp_filter+0x42/0x5a0
+>  __x64_sys_ioctl+0x97/0xe0
+>  do_syscall_64+0x12b/0x15f0
+>  ? __x64_sys_ioctl+0x97/0xe0
+>  ? do_syscall_64+0x12b/0x15f0
+>  ? do_syscall_64+0x12b/0x15f0
+>  ? evdev_ioctl+0x6d/0xa0
+>  ? __x64_sys_ioctl+0x97/0xe0
+>  ? do_syscall_64+0x12b/0x15f0
+>  ? do_syscall_64+0x12b/0x15f0
+>  ? evdev_ioctl+0x6d/0xa0
+>  ? __x64_sys_ioctl+0x97/0xe0
+>  ? do_syscall_64+0x12b/0x15f0
+>  ? do_syscall_64+0x12b/0x15f0
+>  ? __x64_sys_close+0x3d/0x80
+>  ? do_syscall_64+0x12b/0x15f0
+>  ? __irq_exit_rcu+0x4c/0xf0
+>  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> RIP: 0033:0x7f77a9d1604d
+> Code: 04 25 28 00 00 00 48 89 45 c8 31 c0 48 8d 45 10 c7 45 b0 10 00 00 0=
+0 48
+> 89 45 b8 48 8d 45 d0 48 89 45 c0 b8 10 00 00 00 0f 05 <89> c2 3d 00 f0 ff=
+ ff 77
+> 1a 48 8b 45 c8 64 48 2b 04 25 28 00 00 00
+> RSP: 002b:00007fffe582da10 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+> RAX: ffffffffffffffda RBX: 000000000000001b RCX: 00007f77a9d1604d
+> RDX: 0000000000000001 RSI: 0000000000005605 RDI: 000000000000001b
+> RBP: 00007fffe582da60 R08: 00000000ffffffff R09: 00007fffe582da40
+> R10: 00000000ffffffff R11: 0000000000000246 R12: 000055ae5d6c6e80
+> R13: 0000000000000006 R14: 0000000000000000 R15: 0000000000000000
+>  </TASK>
+> amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero wh=
+en
+> fini
+> amdgpu 0000:03:00.0: VM memory stats for proc Xorg(1111) task Xorg:cs0(11=
+06)
+> is non-zero when fini
+> amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero wh=
+en
+> fini
+> amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero wh=
+en
+> fini
+> amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero wh=
+en
+> fini
+> amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero wh=
+en
+> fini
+> amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non-zero wh=
+en
+> fini
+> --
+> Sorry if this hits the mailinglist twice. I sent it already days ago, but=
+ it
+> was not visible in the archives.
+>
+>
