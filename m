@@ -2,68 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id pEH6Csby+mnfUgMAu9opvQ
+	id SDkZLsTy+ml1UgMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 09:50:30 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 09:50:28 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D16F54D7733
-	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 09:50:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E28A4D7721
+	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 09:50:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFBC010E51E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7265310E518;
 	Wed,  6 May 2026 07:50:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from h6.fbrelay.privateemail.com (h6.fbrelay.privateemail.com
- [162.0.218.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C345310E0BB;
- Tue,  5 May 2026 18:13:29 +0000 (UTC)
-Received: from MTA-11-3.privateemail.com (mta-11.privateemail.com
- [198.54.118.200])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by h5.fbrelay.privateemail.com (Postfix) with ESMTPSA id 4g96872rLWz2xKZ;
- Tue,  5 May 2026 18:13:27 +0000 (UTC)
-Received: from mta-11.privateemail.com (localhost [127.0.0.1])
- by mta-11.privateemail.com (Postfix) with ESMTP id 4g96846HKYz3hhTh;
- Tue,  5 May 2026 14:13:24 -0400 (EDT)
-Received: from hal-station.localdomain
+X-Greylist: delayed 510 seconds by postgrey-1.36 at gabe;
+ Tue, 05 May 2026 18:21:55 UTC
+Received: from MTA-15-3.privateemail.com (MTA-15-3.privateemail.com
+ [198.54.122.111])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B94B10E13C;
+ Tue,  5 May 2026 18:21:55 +0000 (UTC)
+Received: from mta-15.privateemail.com (localhost [127.0.0.1])
+ by mta-15.privateemail.com (Postfix) with ESMTP id 4g96Kt5f6Mz3hhTm;
+ Tue,  5 May 2026 14:21:54 -0400 (EDT)
+Received: from localhost.localdomain
  (bras-base-toroon4332w-grc-26-174-91-51-28.dsl.bell.ca [174.91.51.28])
- by mta-11.privateemail.com (Postfix) with ESMTPA;
- Tue,  5 May 2026 14:12:50 -0400 (EDT)
-Date: Tue, 5 May 2026 14:12:47 -0400
+ by mta-15.privateemail.com (Postfix) with ESMTPA;
+ Tue,  5 May 2026 14:21:20 -0400 (EDT)
 From: Hamza Mahfooz <someguy@effective-light.com>
-To: Mario Limonciello <mario.limonciello@amd.com>
-Cc: dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+To: dri-devel@lists.freedesktop.org
+Cc: Hamza Mahfooz <someguy@effective-light.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
  Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Hung <alex.hung@amd.com>, Ray Wu <ray.wu@amd.com>,
- Wayne Lin <Wayne.Lin@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Alex Hung <alex.hung@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
+ =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
  "Mario Limonciello (AMD)" <superm1@kernel.org>,
  Ivan Lipski <ivan.lipski@amd.com>, Chenyu Chen <chen-yu.chen@amd.com>,
  Matthew Schwartz <matthew.schwartz@linux.dev>,
- Yussuf Khalil <dev@pp3345.net>, Tom Chung <chiahsuan.chung@amd.com>,
- Roman Li <Roman.Li@amd.com>, Colin Ian King <colin.i.king@gmail.com>,
+ Tom Chung <chiahsuan.chung@amd.com>, Roman Li <Roman.Li@amd.com>,
+ Takashi Iwai <tiwai@suse.de>, Colin Ian King <colin.i.king@gmail.com>,
  Charlene Liu <charlene.liu@amd.com>, Kees Cook <kees@kernel.org>,
  amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] drm/atomic: attempt full modeset on page flip
- timeout
-Message-ID: <afozH9lcganPCL4g@hal-station.localdomain>
-References: <20260501203552.749080-1-someguy@effective-light.com>
- <5dd93e29-a076-491b-9861-e08a0204c77d@amd.com>
- <afnXTwKBfjBYdwgL@hal-station.localdomain>
- <8de14305-b4bd-43eb-9025-f9d210ee125b@amd.com>
+Subject: [PATCH v6 1/2] drm/atomic: attempt full modeset on page flip timeout
+Date: Tue,  5 May 2026 14:20:57 -0400
+Message-ID: <20260505182105.420525-1-someguy@effective-light.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8de14305-b4bd-43eb-9025-f9d210ee125b@amd.com>
+Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: ClamAV using ClamSMTP
 X-Mailman-Approved-At: Wed, 06 May 2026 07:50:24 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -79,57 +70,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D16F54D7733
+X-Rspamd-Queue-Id: 8E28A4D7721
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.89 / 15.00];
+X-Spamd-Result: default: False [2.39 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[effective-light.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,linux.dev,pp3345.net,vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[29];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[effective-light.com];
+	FREEMAIL_CC(0.00)[effective-light.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,linux.dev,lists.freedesktop.org,vger.kernel.org];
+	ARC_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[someguy@effective-light.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.981];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,hal-station.localdomain:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On Tue, May 05, 2026 at 10:32:57AM -0500, Mario Limonciello wrote:
-> 
-> 
-> On 5/5/26 06:41, Hamza Mahfooz wrote:
-> > On Mon, May 04, 2026 at 04:50:21PM -0500, Mario Limonciello wrote:
-> > > Do you actually need to set all 3 of these to true?
-> > > 
-> > > I would think you only need:
-> > > 
-> > > crtc_state->mode_changed = true;
-> > > 
-> > 
-> > According to my testing `mode_changed` on it's own is sufficient for
-> > amdgpu and the documentation [1] seems to suggest that it should be fine
-> > more broadly. Though, it doesn't seem harmful to set all of them just
-> > for safe measure.
-> > 
-> > [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/drm/drm_crtc.h?h=v7.1-rc2#n118
-> 
-> My main concern was it's safe right now, but what if future changes to
-> atomic control flow mean it executes more code paths than needed; or worse
-> unexpected code paths.
+We should try to recover from page flip timeouts. Forcing
+a full modeset should be generic across all atomic KMS drivers,
+so try that first.
 
-Point taken, I'll respin this with them removed.
+Signed-off-by: Hamza Mahfooz <someguy@effective-light.com>
+---
+ drivers/gpu/drm/drm_atomic_helper.c | 49 +++++++++++++++++++++++++++--
+ 1 file changed, 46 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index a768398a1884..7ee9d52f63c5 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -1926,6 +1926,43 @@ drm_atomic_helper_wait_for_vblanks(struct drm_device *dev,
+ }
+ EXPORT_SYMBOL(drm_atomic_helper_wait_for_vblanks);
+ 
++static int force_full_modeset(struct drm_crtc *crtc)
++{
++	struct drm_modeset_acquire_ctx ctx;
++	struct drm_crtc_state *crtc_state;
++	struct drm_atomic_state *state;
++	int ret;
++	int err;
++
++	if (drm_atomic_crtc_needs_modeset(crtc->state))
++		return -EBUSY;
++
++	DRM_MODESET_LOCK_ALL_BEGIN(crtc->dev, ctx, 0, err);
++	state = drm_atomic_state_alloc(crtc->dev);
++	if (!state)
++		return -ENOMEM;
++
++	state->acquire_ctx = &ctx;
++
++	crtc_state = drm_atomic_get_crtc_state(state, crtc);
++	if (IS_ERR(crtc_state)) {
++		ret = PTR_ERR(crtc_state);
++		goto out;
++	}
++
++	crtc_state->mode_changed = true;
++
++	drm_info(crtc->dev,
++		 "[CRTC:%d:%s] Attempting force full modeset...\n",
++		 crtc->base.id, crtc->name);
++
++	ret = drm_atomic_commit(state);
++out:
++	drm_atomic_state_put(state);
++	DRM_MODESET_LOCK_ALL_END(crtc->dev, ctx, err);
++	return ret;
++}
++
+ /**
+  * drm_atomic_helper_wait_for_flip_done - wait for all page flips to be done
+  * @dev: DRM device
+@@ -1949,17 +1986,23 @@ void drm_atomic_helper_wait_for_flip_done(struct drm_device *dev,
+ 
+ 	for (i = 0; i < dev->mode_config.num_crtc; i++) {
+ 		struct drm_crtc_commit *commit = state->crtcs[i].commit;
+-		int ret;
+ 
+ 		crtc = state->crtcs[i].ptr;
+ 
+ 		if (!crtc || !commit)
+ 			continue;
+ 
+-		ret = wait_for_completion_timeout(&commit->flip_done, 10 * HZ);
+-		if (ret == 0)
++		if (!wait_for_completion_timeout(&commit->flip_done, 10 * HZ)) {
++			int ret;
+ 			drm_err(dev, "[CRTC:%d:%s] flip_done timed out\n",
+ 				crtc->base.id, crtc->name);
++
++			ret = force_full_modeset(crtc);
++			if (ret)
++				drm_err(dev,
++					"[CRTC:%d:%s] force full modeset failed! ret=%d\n",
++					crtc->base.id, crtc->name, ret);
++		}
+ 	}
+ 
+ 	if (state->fake_commit)
+-- 
+2.54.0
+
