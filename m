@@ -2,145 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0JGhC207+Wlm7AIAu9opvQ
+	id qMhRAS2b+Wkn+QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 02:35:57 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:24:29 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1D244C585F
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 02:35:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 390084C7D87
+	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 09:24:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 108D810E900;
-	Tue,  5 May 2026 00:35:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F02B110E99E;
+	Tue,  5 May 2026 07:15:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="UMZDiz0I";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NLqe/1Uv";
+	dkim=pass (2048-bit key; secure) header.d=usp.br header.i=@usp.br header.b="n+iIhMwk";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FA7010E05C
- for <amd-gfx@lists.freedesktop.org>; Tue,  5 May 2026 00:35:53 +0000 (UTC)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 644Lk0uJ1960499
- for <amd-gfx@lists.freedesktop.org>; Tue, 5 May 2026 00:35:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=NpX6cchQLSsH6LH2boJjUcfU
- CfkpNdpGQlSuk6n0mLw=; b=UMZDiz0I7lVUfm/VJb7KhVcl4ksimUeZ2YvWZemi
- gvyC9lm8YCaf93HJKZcXMKiH3bVfs2cC8kfLbOlgn12p0YG7rN5gbBkXSdkmHNsR
- k3BajHitAQWal8EG095jqVV4TQb9Uh0x7z35nkIxmk3ETMZqMYN9/Usl6HFCPqFu
- Dc4vQvTIYV3ERffkVHo3FZlik1dDnFmQ4g0O0vPkd1ZNm8nA3c2+4tS5Wunu89e1
- I9pFoVRPjsEm/6Ap4FSE8hYF1In9YYdhOwRnPwe5qpc5EC7mJI+RP1WgnUjzJ56q
- tb3EKQ8VElC15C6UTyOCY+g6FB8XTrmSyXZtLodOBmlxuQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dxw5dt233-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <amd-gfx@lists.freedesktop.org>; Tue, 05 May 2026 00:35:52 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id
- d75a77b69052e-50d84b5f73bso163591781cf.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 04 May 2026 17:35:52 -0700 (PDT)
+Received: from mail-dl1-f43.google.com (mail-dl1-f43.google.com [74.125.82.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0559910E035
+ for <amd-gfx@lists.freedesktop.org>; Tue,  5 May 2026 02:14:35 +0000 (UTC)
+Received: by mail-dl1-f43.google.com with SMTP id
+ a92af1059eb24-12c88e5f4aeso2757774c88.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 04 May 2026 19:14:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1777941351; x=1778546151;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=NpX6cchQLSsH6LH2boJjUcfUCfkpNdpGQlSuk6n0mLw=;
- b=NLqe/1UvwCvJG57z26zqiPGAzPLDEVLk0R3EalQxUWxdVY1KZujqZEA54pgz+Ya2Z8
- ctEbkqx9c//NsFIldhPt9AJ/EyzSTxDDRWv6zqIkjtW8c2bisWJeYncW3xyBeZ0MAaKO
- HLuZJIxS/gnBHUQ3qPu7J2Z4+25iQYUmJhhSuRA7tQWJzhHjIF827bdGugq83084wWRs
- rfMxXw9dD9/kY9GBmrLK4J1v5Z2t3ZzmvsWiSQGxFweWltpXujCYAca5iuU3zZ3Rg3lC
- bGvvC5RN4YUQ9blDqME0tzOfXqT+gB5CJJQiMKwwjX1BO3VrZkjMUvAvbtaLljYro0iw
- Gg+w==
+ d=usp.br; s=usp-google; t=1777947275; x=1778552075; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=DgBBX+Spc3GcSsocR+N3z63BxmLpev0+iIDdKrva0dY=;
+ b=n+iIhMwkR+m2r420PWPypyYeJlW9OuXGToFZpDNq9AeJsipTMCLu7twt/5NDH0SFHU
+ A4URVJorC+balU1L5pv/crpIzYkhwbPFowge44gZPG2akVq84crjzCGz7qPDAofuS01W
+ efib3mMI0u7cKycfRjRwgHLu7kx0DbtU3fTxSEKtBWd/OBzUSDGDtaRsWwByLITcau0h
+ awCC2mc9A0F/7G0LRIndtm4asn+rU+l686oFHl5r3PCHesTYjtfEPPgp5US/NVz7PGqP
+ de9HtboQoGdX9cfOUMIz0ws8IEOcmwIa8Iv+uM/TAQ3gxc51F99lJnPcMiGw4I9QlVQN
+ xyow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777941351; x=1778546151;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=NpX6cchQLSsH6LH2boJjUcfUCfkpNdpGQlSuk6n0mLw=;
- b=e/UHNu3d8C53699ZQTJNOkD2jFwadv0KZu4DupOzAthfi3BSwfVYG3mZi2vfCPHmAb
- 9JQvT63GAXbFkYM5R0izgzw64rrbGcyXhmj0WYhqCP8U+5smiooeowgGZsy1TZsjK5gg
- apH9VVRWwa5xAdujLlce1aoMp7NtETu6KLWFogXvEh+4rcRSKuDhl4eHd8V+prIXQhiL
- sUf8BnuQy4pLMtBLuqfD6sD1/M7k4oPdRf4jBrETUJCm5Vf0CH7STcCtQWbRkbYdcXwg
- vEHPsyGG/xtwq0kPFzov9P2JbDCOyxZMkSYm7aUDdUWwQoHrTSjAOXvbqv0faFqN0wrb
- +bxg==
+ d=1e100.net; s=20251104; t=1777947275; x=1778552075;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=DgBBX+Spc3GcSsocR+N3z63BxmLpev0+iIDdKrva0dY=;
+ b=p8m1J5UCxnPjbN4pPK9wIaccOKo5Yjb6a57ScFsdCHwPjKINZ35oeN1E9OIcxG8KNM
+ aGLZjAh1DefP1laIR/pM2ynn46gUYNJrQ5nalhHvyqnivM+vSw13DfjSiZgMfakfbkpN
+ Nx+blMQtMKXsX6eHdeD9KVs/LKYlwZcIG5uoFbjhfum5XOBJ8lhbk0PiCy8V+xg4HqF7
+ xqOEhooLs1Z7WqITLy8h5rY3QjG8jmvlJ59lE7gwfB5oYvLmi6uB9Kjpg3PHeTWk6jFN
+ Z3IVKzLf+PfCaD/h5PsLstAxKxgQATNagWqACim44HhSrfx3bPAjDyYLqnnOo70nROYe
+ 77TQ==
 X-Forwarded-Encrypted: i=1;
- AFNElJ8Fnc8AfgZ1/iYd5nDj4XSJ3KHBMs/FxLACBsOEpQIqT50h6DR7PnPbeKziZofqnBy28tIlLPpT@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyg2ybsXztJ9TTF7MhT+bIxTn33JvCBf059VUvvTF9Nvckjph8S
- AnLE6tktt+TDmI4vAUZjhFqyVStC/514hVmd6aNXb4J7rt61foKa5PrmJdlohMzSJPeLY06Dleq
- 0XsxsujZ7Wwd9LmzEfHAYMmfdkIP9UA/lfIaQ6Pf1vMbkENeGog15NuIJsLCLc7XatNyzU5GCs7
- xw
-X-Gm-Gg: AeBDievAZf1mqpGpsKSxz/a9obecKGH8XxcgskzDCLIPPlkyX3cXtUAsTNvZZ8Re2cE
- N2RUP05V7Vb/a+GNut+cnGPrhSYK/W1iSWOEu56hfdyquVKmyMKj3WjrkfSrmIvmyZWNSRSa3YH
- sLTeDcFYNa3SSxjPl0kPL6M8o8TutEpAsTCgty/xVcP46lP0cGsHdkvKVwMyYqm8XLJ6gGGF6OQ
- PAJx2jvV/5eyCvmCsH1galu7ktXRgPtcocCQHzP95oO1jBzPMI6QvMwPxcj95oDWx92pJbqq+yM
- AHDeX8nN0LsB4el8ZtsySkd85XlufSaVrZxcOMbob9+rfPdkVP1fwBQGajFKKSna4eD7lW22NJ+
- LovhlQoZ+DVGNQDnfpPLdIkXNTFfRxWUMVZjwHMwgg8hAaIZ6QbXwj3RLPd7U5c5wGi2TQ5FhtF
- Gy3lWTPGdFHISoC42qe3/0Wo1iW98SgFgiUMs1YQOS28DNGQ==
-X-Received: by 2002:a05:622a:4d8a:b0:509:238f:ad8f with SMTP id
- d75a77b69052e-5130698bfc5mr17753741cf.5.1777941351524; 
- Mon, 04 May 2026 17:35:51 -0700 (PDT)
-X-Received: by 2002:a05:622a:4d8a:b0:509:238f:ad8f with SMTP id
- d75a77b69052e-5130698bfc5mr17753151cf.5.1777941351115; 
- Mon, 04 May 2026 17:35:51 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+ AFNElJ+pseBMR052LfiM8+S2QNn3L4qzorhoy1sHuyb9HUTWVHcHgV9Lat9voKrIsCvZRHLn5YhypEPZ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwhgWso83dxiD7cX3uE0WMyPchYZEDynq7de9SlIXJ+UvkN1sue
+ +mWmjCwyecawi2VG7Ni1fCtGppZ24LqipJ6eQwbFYne5xf/dunu+glaGzO4tQC3u8XM=
+X-Gm-Gg: AeBDiettCLDNGT1ZMFyBI0LH8QM+ygTk3O0Z5S4ld2ZxOtiHqSZYm0gVaC12RV4cnSf
+ nT1bpB5xyBXeI8T5E7J2s5nD3Y2ZOFnEBPy5F+X8vKxT8YSVxsOf4NA2ALK9+eBkiWHvpzdDhZb
+ ZHwi3wFuitsPROlzLxFRhiwrSZnrRYfYHDT4Kl8XPUdSACfHcUX4KstsZfRnvqmYL9JE3Pfa6VJ
+ LdldIxoqxoUNMql3onwfrVPn0JDr4UY3+tqNAR//qoumoMl4/5r9Fsh9Iwo/VcOWePDCHYyz129
+ dJJpMro9cbioHcZTGZd+7TRObDsx621Dqbx43Z//WofELpqsoyhho/wI8GOSrvM3XKI0nf0nmfX
+ OvKXML9ZQry1yr5uvnN5ZsGlYSqHLc5zNVvc8PnexbYsSbj/VcYYy9bYvmVR9jJlCwL8jXIWIjP
+ F/CZ1xk0eR5sddX8QxL5fJkjRG21tzYwdtPkImX22KGx2T1ak=
+X-Received: by 2002:a05:7022:670c:b0:12d:b43e:435d with SMTP id
+ a92af1059eb24-130a9af04e7mr986271c88.5.1777947274744; 
+ Mon, 04 May 2026 19:14:34 -0700 (PDT)
+Received: from localhost.localdomain ([152.234.115.70])
  by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a85c3418b8sm3432152e87.64.2026.05.04.17.35.47
+ a92af1059eb24-12df8279e57sm17028963c88.3.2026.05.04.19.14.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 May 2026 17:35:48 -0700 (PDT)
-Date: Tue, 5 May 2026 03:35:45 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- kernel-list@raspberrypi.com, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
- uma.shankar@intel.com, arun.r.murthy@intel.com, jani.nikula@intel.com,
- harry.wentland@amd.com, siqueira@igalia.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
- liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, robin.clark@oss.qualcomm.com,
- abhinav.kumar@linux.dev, tzimmermann@suse.de, sean@poorly.ru,
- marijn.suijten@somainline.org, laurent.pinchart+renesas@ideasonboard.com,
- dave.stevenson@raspberrypi.com, tomi.valkeinen+renesas@ideasonboard.com,
- kieran.bingham+renesas@ideasonboard.com
-Subject: Re: [PATCH v3 7/7] drm/connector: Modify cleanup_writeback_job helper
-Message-ID: <nfxifrthux5hej4foawtavpiaegtnorai5j5l5hljmrvxwi34s@nryizbirf3lv>
-References: <20260316083008.87466-1-suraj.kandpal@intel.com>
- <20260316083008.87466-8-suraj.kandpal@intel.com>
+ Mon, 04 May 2026 19:14:34 -0700 (PDT)
+From: Ulisses Paixao <ulissespaixao@usp.br>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: Ulisses Paixao <ulissespaixao@usp.br>, Felipe Sousa <felipesousa@usp.br>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH v2] drm/amd/amdgpu: remove duplicated code in gfx_v11 and
+ gfx_v12
+Date: Mon,  4 May 2026 23:14:16 -0300
+Message-Id: <20260505021417.32520-1-ulissespaixao@usp.br>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <dda47c3b-1303-4f10-b375-1f3eab032ee5@amd.com>
+References: 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260316083008.87466-8-suraj.kandpal@intel.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTA1MDAwMyBTYWx0ZWRfX31KwwHiM3jT4
- DT9CS6igjZJApQCJunoU8aVRGn/QHOT3cyrl6OiScajU5m51DJt2vwTBrBIB5LXdsnMItO24SGA
- Vwe2FqagRBLO1hx8D0B3PiZy/Fh5aUv+lUZvFM31HnueZDEfMTh+NhllBTyd0XgH1G5seRw/2zn
- 7G2z6NIA34mSBLJ1f3YMog5cRkn+DlOQdo0E7tGxtACInwGBPDP/oLhpt+fIa4hFvFmzJ0gswKJ
- zEvClMMeowIYeG+GT1Vo/xxKnQ6ITxthqd9bSfTKXgvw62hKRIzXe8BQ6hIC2yaj+picFmaDaxP
- Owkhf5MLi9mXoJZG9f3gBd9v4ibfyIp7yzxQ4dhaAUT9Dpk6hxJxVgKS9P2tI/zP8sizG/cxzLr
- UjSQw45qqgX8r2GoK55SC5t10gA5NjrgsgZHgvQEUMHhqPpgv7Y2zYBtnpSolB5ftHrFlSsx65K
- Qx2yBWVRfYRhWjTt4Mw==
-X-Proofpoint-GUID: yZWOSftYGf-lf98Is4uVwVY902mPuUM0
-X-Proofpoint-ORIG-GUID: yZWOSftYGf-lf98Is4uVwVY902mPuUM0
-X-Authority-Analysis: v=2.4 cv=HpJG3UTS c=1 sm=1 tr=0 ts=69f93b68 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22 a=QyXUC8HyAAAA:8
- a=EUspDBNiAAAA:8 a=tQ94oCB4lqOImTN_oEMA:9 a=CjuIK1q_8ugA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-04_06,2026-04-30_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 spamscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0
- impostorscore=0 adultscore=0 clxscore=1015 phishscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2605050003
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 05 May 2026 07:15:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,68 +94,210 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D1D244C585F
+X-Rspamd-Queue-Id: 390084C7D87
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:suraj.kandpal@intel.com,m:freedreno@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:kernel-list@raspberrypi.com,m:linux-kernel@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:ankit.k.nautiyal@intel.com,m:uma.shankar@intel.com,m:arun.r.murthy@intel.com,m:jani.nikula@intel.com,m:harry.wentland@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:liviu.dudau@arm.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:robin.clark@oss.qualcomm.com,m:abhinav.kumar@linux.dev,m:tzimmermann@suse.de,m:sean@poorly.ru,m:marijn.suijten@somainline.org,m:laurent.pinchart+renesas@ideasonboard.com,m:dave.stevenson@raspberrypi.com,m:tomi.valkeinen+renesas@ideasonboard.com,m:kieran.bingham+renesas@ideasonboard.com,m:laurent.pinchart@ideasonboard.com,m:tomi.valkeinen@ideasonboard.com,m:kieran.bingham@ideasonboard.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,raspberrypi.com,vger.kernel.org,intel.com,amd.com,igalia.com,gmail.com,ffwll.ch,arm.com,linux.intel.com,kernel.org,oss.qualcomm.com,linux.dev,suse.de,poorly.ru,somainline.org,ideasonboard.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:ulissespaixao@usp.br,m:felipesousa@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[ulissespaixao@usp.br,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[ulissespaixao@usp.br,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	DKIM_TRACE(0.00)[usp.br:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx,renesas];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,oss.qualcomm.com:dkim,qualcomm.com:dkim,qualcomm.com:email]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,usp.br:email,usp.br:dkim,usp.br:mid]
 
-On Mon, Mar 16, 2026 at 02:00:09PM +0530, Suraj Kandpal wrote:
-> Pass drm_connector to prepare_writeback_job since
+The functions gfx_v11_0_handle_priv_fault and
+gfx_v12_0_handle_priv_fault share the same logic for searching and
+triggering a scheduler fault on a ring. This patch moves the shared
+ring-searching logic to a common function, amdgpu_gfx_handle_priv_fault,
+in amdgpu_gfx.c. The hardware-specific decoding of ring IDs remains in
+the version-specific files to maintain proper architectural separation.
 
-Typo: ... to cleanup_writeback_job callback ...
+Signed-off-by: Ulisses Paixao <ulissespaixao@usp.br>
+Co-developed-by: Felipe Sousa <felipesousa@usp.br>
+Signed-off-by: Felipe Sousa <felipesousa@usp.br>
 
-> drm_writeback_connector now resides within drm_connector.
-> It also makes it uniform with params passed to other
-> drm_connector_helper_funcs.
-> 
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c | 4 ++--
->  drivers/gpu/drm/drm_writeback.c                      | 2 +-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c        | 4 +---
->  drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c  | 6 ++----
->  drivers/gpu/drm/vkms/vkms_writeback.c                | 5 +----
->  include/drm/drm_modeset_helper_vtables.h             | 2 +-
->  6 files changed, 8 insertions(+), 15 deletions(-)
-> 
+---
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+v2:
+Keep the HW-specific decoding in gfx_v11_0.c and gfx_v12_0.c.
+Remove the redundant check for adev->gfx.disable_kq.
+Simplify the search loop in amdgpu_gfx_handle_priv_fault to iterate over
+all gfx and compute rings without a switch statement.
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 32 +++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 ++
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 27 +--------------------
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  | 27 +--------------------
+ 4 files changed, 36 insertions(+), 52 deletions(-)
 
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index b8ca87669..67a291781 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -830,6 +830,38 @@ int amdgpu_gfx_enable_kgq(struct amdgpu_device *adev, int xcc_id)
+ 	return r;
+ }
+ 
++/**
++ * amdgpu_gfx_handle_priv_fault - Handle privileged instruction fault
++ *
++ * @adev: amdgpu_device pointer
++ * @me_id: micro-engine ID of the faulty ring
++ * @pipe_id: pipe ID of the faulty ring
++ * @queue_id: queue ID of the faulty ring
++ *
++ * This function handles privileged instruction faults by identifying
++ * the faulty ring (gfx or compute) and triggering a scheduler fault.
++ */
++void amdgpu_gfx_handle_priv_fault(struct amdgpu_device *adev,
++					u8 me_id, u8 pipe_id, u8 queue_id)
++{
++	struct amdgpu_ring *ring;
++	int i;
++
++	for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
++		ring = &adev->gfx.gfx_ring[i];
++		if (ring->me == me_id && ring->pipe == pipe_id &&
++		    ring->queue == queue_id)
++			drm_sched_fault(&ring->sched);
++	}
++
++	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
++		ring = &adev->gfx.compute_ring[i];
++		if (ring->me == me_id && ring->pipe == pipe_id &&
++		    ring->queue == queue_id)
++			drm_sched_fault(&ring->sched);
++	}
++}
++
+ static void amdgpu_gfx_do_off_ctrl(struct amdgpu_device *adev, bool enable,
+ 				   bool no_delay)
+ {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index a0cf0a3b4..0b2f6ce85 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -611,6 +611,8 @@ bool amdgpu_gfx_is_high_priority_graphics_queue(struct amdgpu_device *adev,
+ 						struct amdgpu_ring *ring);
+ bool amdgpu_gfx_is_me_queue_enabled(struct amdgpu_device *adev, int me,
+ 				    int pipe, int queue);
++void amdgpu_gfx_handle_priv_fault(struct amdgpu_device *adev,
++					u8 me_id, u8 pipe_id, u8 queue_id);
+ void amdgpu_gfx_off_ctrl(struct amdgpu_device *adev, bool enable);
+ void amdgpu_gfx_off_ctrl_immediate(struct amdgpu_device *adev, bool enable);
+ int amdgpu_get_gfx_off_status(struct amdgpu_device *adev, uint32_t *value);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+index 2c6f1e25c..888c9f3c4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+@@ -6688,37 +6688,12 @@ static void gfx_v11_0_handle_priv_fault(struct amdgpu_device *adev,
+ 					struct amdgpu_iv_entry *entry)
+ {
+ 	u8 me_id, pipe_id, queue_id;
+-	struct amdgpu_ring *ring;
+-	int i;
+ 
+ 	me_id = (entry->ring_id & 0x0c) >> 2;
+ 	pipe_id = (entry->ring_id & 0x03) >> 0;
+ 	queue_id = (entry->ring_id & 0x70) >> 4;
+ 
+-	if (!adev->gfx.disable_kq) {
+-		switch (me_id) {
+-		case 0:
+-			for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
+-				ring = &adev->gfx.gfx_ring[i];
+-				if (ring->me == me_id && ring->pipe == pipe_id &&
+-				    ring->queue == queue_id)
+-					drm_sched_fault(&ring->sched);
+-			}
+-			break;
+-		case 1:
+-		case 2:
+-			for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+-				ring = &adev->gfx.compute_ring[i];
+-				if (ring->me == me_id && ring->pipe == pipe_id &&
+-				    ring->queue == queue_id)
+-					drm_sched_fault(&ring->sched);
+-			}
+-			break;
+-		default:
+-			BUG();
+-			break;
+-		}
+-	}
++	amdgpu_gfx_handle_priv_fault(adev, me_id, pipe_id, queue_id);
+ }
+ 
+ static int gfx_v11_0_priv_reg_irq(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+index 6baac533a..3f0d29372 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+@@ -5019,37 +5019,12 @@ static void gfx_v12_0_handle_priv_fault(struct amdgpu_device *adev,
+ 					struct amdgpu_iv_entry *entry)
+ {
+ 	u8 me_id, pipe_id, queue_id;
+-	struct amdgpu_ring *ring;
+-	int i;
+ 
+ 	me_id = (entry->ring_id & 0x0c) >> 2;
+ 	pipe_id = (entry->ring_id & 0x03) >> 0;
+ 	queue_id = (entry->ring_id & 0x70) >> 4;
+ 
+-	if (!adev->gfx.disable_kq) {
+-		switch (me_id) {
+-		case 0:
+-			for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
+-				ring = &adev->gfx.gfx_ring[i];
+-				if (ring->me == me_id && ring->pipe == pipe_id &&
+-				    ring->queue == queue_id)
+-					drm_sched_fault(&ring->sched);
+-			}
+-			break;
+-		case 1:
+-		case 2:
+-			for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+-				ring = &adev->gfx.compute_ring[i];
+-				if (ring->me == me_id && ring->pipe == pipe_id &&
+-				    ring->queue == queue_id)
+-					drm_sched_fault(&ring->sched);
+-			}
+-			break;
+-		default:
+-			BUG();
+-			break;
+-		}
+-	}
++	amdgpu_gfx_handle_priv_fault(adev, me_id, pipe_id, queue_id);
+ }
+ 
+ static int gfx_v12_0_priv_reg_irq(struct amdgpu_device *adev,
 -- 
-With best wishes
-Dmitry
+2.34.1
+
