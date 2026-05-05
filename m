@@ -2,107 +2,129 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IEPCG5qn+WnF+gIAu9opvQ
+	id gJRgOm6n+WnF+gIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 10:17:30 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 10:16:46 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC2F04C8891
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 10:17:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E4774C884E
+	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 10:16:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62B3610E9D3;
-	Tue,  5 May 2026 08:17:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 015BB10E9C2;
+	Tue,  5 May 2026 08:16:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3F8JikqW";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="D0ALUpW5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010037.outbound.protection.outlook.com [52.101.201.37])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EE6110E9D3
- for <amd-gfx@lists.freedesktop.org>; Tue,  5 May 2026 08:17:27 +0000 (UTC)
+ (mail-westus3azon11010010.outbound.protection.outlook.com [52.101.201.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3830510E9BB
+ for <amd-gfx@lists.freedesktop.org>; Tue,  5 May 2026 08:16:43 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aOD8OoxXTqkjCCdtcfp65x4VqC8IaasCQGve6Hsg35L+UYgzf767a69i8nJr3MOQ8pkqg+aWminl/HDEoetTUA1ASkgTgJCU4yGI8IvEQSdckdD5ZKOseLQscdUg1ySNkUOE8DQVmHyNnAeF9yBlb0OvbfguX7+8t3xBVhHXUUldj3hJYqLjD+XDUepYGPk2VTi+JcWz6p9a4R10eQP8vmOqh9qSCUeElGh76kMLcbZq+/qfY8KSXePKTjT+QBaquo/4LTyHg413ALT8fAld5AbNTMjFSDP9CvDfRlFlL9jqw6Y9knRCHvx3JvNpWHhr0nXXpYBDid12zPx3xAU5CQ==
+ b=SeuEKNXA7yk1fxTlCEXfqBVIE06PiOKgAzCtF1PS4/AXIkG1q4JMJhd6mC54jt/ZZssrQ5/gGtqKqh+zGQ3FYlNSyh11cVAcn0em34WpG3vnJEMxxo+x9EgCUnAsrVoLgV4FrZwySImcxZztGZTmppc9WRtf7m03bjq61DAEvXWfBX4NMA6YQdcODxMNWylm8mrzUGVX2PCnb2Z7cB5vRhekWLLsg09THRYsoQo6TB5TRRfrr7EtfWqmOHLho5yf4z/5pS17OoXEVOGNAYImNBrawFVZF3xjJ6F59i+wH6iZhXf2PJ+QH3x06x4BJENr7EfIQDwTOojXHYnyzOacmA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+lorJQVwZVe6foD+I+U9myLc8/X0DKi7j5dRMoYvhPg=;
- b=hM1G9e6vVcaSZUexZSuBaP0Y6S2kHYhvWbWKAVh0ggWt0MN653fjwQrq89HgWxMAy3GZ8HDu2QHvfitAhaJh3gyG7bTOOIHQVZ3I2UTHS9A4ZN0EDLb/vmzEhz2ASlVOryZnKNa6zX1iENSVMNra1qv7txzSm3MszT+4muO+NsysmfKJfNh5ug3cuVNDmGGkldH619jzzEdHGMQ+V5caOxUkqn0HbkKg9v8s2jJ9f4PQFaAubwPVouoDqFSZ6kKDwxfop56hq9jDy/B4FHbli4yAn1V84eB0UcwnWFw0XZQL2nuKMY4G/54MUrmQtn3KWfGjdA31UMckwDz9JqQeng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=619LzfUSBsMBsV/lmncQjUijbEVnQrxIOMAUiADXJSo=;
+ b=stv4WAlXQ3RJtF/wZD9Hn51SoDjYTqrp19g2aWWaCGCO/dn22dVG3BoRwjnUqc5QsFS285snc1471Pmxp3r5eZGD87WUTm3JsgcKHvyL8JNGateSilZ9FKYK0/+eritmk/RxavP1z+ouuSf44mcLZay5CJKstkdiDqQGpbA7CNXM61IgNsNE9ofKePHSeJCyg2kvOvzMfNgiL77Ki3p+nCFSaW0WNCboJIVVqLNvAxjtKNGOIY3/Hg4XfnJ5U8lxOjxxiyBA0sBmgUa6auQOy1Gn8CtSGbDpP4xAwdh8RuIJIRbamBOeDdNlkPCrFhjHuiXsISHMQ3J5wFa4nZXqjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+lorJQVwZVe6foD+I+U9myLc8/X0DKi7j5dRMoYvhPg=;
- b=3F8JikqWmkhRAumpNMLhnC977p004tllx/0XnDgtL2fGxf6rQ9r0bUUPIf6SIWAVzBWAC9GGOhZyxYg+ZZtn0R/EfJ9GDNBpe6fVV+HORdvbLTRZXLjoHadXA+uIO2behtMPb4t9b/HTkckos6g6TP1CeteY81S5gmzS4vuN6h8=
-Received: from BYAPR02CA0059.namprd02.prod.outlook.com (2603:10b6:a03:54::36)
- by PH0PR12MB8776.namprd12.prod.outlook.com (2603:10b6:510:26f::19)
+ bh=619LzfUSBsMBsV/lmncQjUijbEVnQrxIOMAUiADXJSo=;
+ b=D0ALUpW5m9Wj5xmtZPYgHLiQUW3zFGeuiKDvreNr2JmyxpEwWIkUipduCfP/+6+AyjyweQO0T2flwGLy2ZA5EDJnd35/IZDiGmWCCnjPmxRRk6YK4AvtzBCs3AjHZ5FxoeNV37iKiGfDc+puMPVzPPbmSkHYb6pDYBekyIRfo4k=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by CY8PR12MB8214.namprd12.prod.outlook.com (2603:10b6:930:76::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Tue, 5 May
- 2026 08:17:19 +0000
-Received: from MWH0EPF000C6185.namprd02.prod.outlook.com
- (2603:10b6:a03:54:cafe::2) by BYAPR02CA0059.outlook.office365.com
- (2603:10b6:a03:54::36) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9870.27 via Frontend Transport; Tue,
- 5 May 2026 08:17:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- MWH0EPF000C6185.mail.protection.outlook.com (10.167.249.117) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9891.9 via Frontend Transport; Tue, 5 May 2026 08:17:18 +0000
-Received: from caden-test (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 5 May
- 2026 03:17:14 -0500
-From: Caden Chien <chih-wei.chien@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <alexander.deucher@amd.com>,
- <christian.koenig@amd.com>
-CC: <HaoPing.Liu@amd.com>, <Solomon.Chiu@amd.com>, <Peyton.Lee@amd.com>,
- <Yu.Wang4@amd.com>, <Pratik.Vishwakarma@amd.com>, Caden Chien
- <chih-wei.chien@amd.com>, Roy Chan <Roy.Chan@amd.com>
-Subject: [PATCH 4/4] drm/amdgpu/vpe: add vpe v2.0.0 support
-Date: Tue, 5 May 2026 16:13:12 +0800
-Message-ID: <20260505081312.14047-5-chih-wei.chien@amd.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260505081312.14047-1-chih-wei.chien@amd.com>
-References: <20260505081312.14047-1-chih-wei.chien@amd.com>
-MIME-Version: 1.0
+ 2026 08:16:39 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9870.023; Tue, 5 May 2026
+ 08:16:39 +0000
+Message-ID: <3f770fe7-b76b-446a-998b-0d6acef1c5eb@amd.com>
+Date: Tue, 5 May 2026 10:16:32 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [[PATCH v2]] drm/amdgpu/userq: fix access to stale wptr mapping
+To: Sunil Khatri <sunil.khatri@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+References: <20260505080426.500411-1-sunil.khatri@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260505080426.500411-1-sunil.khatri@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: FR4P281CA0258.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:e8::12) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000C6185:EE_|PH0PR12MB8776:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9a5ddbe7-49a2-4017-8171-08deaa7eb99a
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CY8PR12MB8214:EE_
+X-MS-Office365-Filtering-Correlation-Id: cae5ba20-815a-4ae6-357a-08deaa7ea1e5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|376014|82310400026|1800799024|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: O8r1K/bMOEpIh/ccHpjT5Q04tvxnrG1zNWMqbPBwykxb+eSRfqaASZBU+c4iLJLg865FrGP4KkoV2+XI1PtmmsuMHYTqYW12k2lxjs+AlIRP3hpsPG8g7g+f2sC4xgNQcBhm7sSKOeZePtqa3fV6g269QZulsVrIspq3tUmOTqYBn054BTM3TiofN3IfwzeIpOYlP21x5HiVrKcVDrq885vhp8BbQ//kCqLCsCGqwNZBQ0AXTKZFERBvXOWnQKALj6E8MhdGgtJG2E1IbvB3YrACjawK/XyXnuY7Ot24uvqLWy8PoxdowJQYpGlWGyE0CRV95yDu98A5WyY8pC+vO813/RgqW/lDUZ+jh2wwfNKYt6d/wFqe+XEVOG3Bdp7EMQlg2duajbJTQat/a1jUzjUiTU3Ds3kn3mRZcVl2PFRvcpdDXI/B21IGnMy5tCms24UPyw2Ir8Hv9CUElu0T8A1+UwCDp/oQXUyj5nOyMOjlMYVZUc1WkP4PQ8SXSAF62GsCes2TFlZtAx/WAU0/+uWBeN0rFnv0htBaFAegwSl6NTarh4FbUp8my139YzOy/orLSIFGD2mVnn1mvC1xO4/b4Af0ghau4rqcbUJdRm4bg+4CLdfht3tXBN2lPtxUHMVOYE228hZ9dugAkN3tQXY5qXApRkLncUbyjVsAlg4Lm3CmkJJHXl8bdLTLMTaaCEIZIBah7DC2iupkDnMZ+2y1HHu0/CfT+p3g7QdFZ4U=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(376014)(82310400026)(1800799024)(22082099003)(18002099003)(56012099003);
+ ARA:13230040|376014|366016|1800799024|18002099003|56012099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: cVG5MehroO7/q04I2AJ2N1gUk4HPe3FH6ofJW+r5Hne/oU4B0RsOkm29QbCBhLKwizBNEPZk8oCH9TlAekWtsM1xG1Y+rbEBl8bIa0Tsh01p0bSIR27M+1LXt8CTQa3EwmZ6CxQB6JH8a7KpYUsCIpZ8si9U1+N6yoM/XX4yrF3Q5rWPqrqh5ty9mrO3+SpZfwSGZ1hQuCmfb9Vxf9UIDK+6e68KK98NIei6Fq9Uj7NIJoNDcKTe//H03DfHxwkFsy//2KlNjaJxSofs8Y8YWIMbO0j3wu80kZiaWuk63I1ey5m038x1l7Es5UBoz8NLhclFd6rmiwoOHBa3uIdXYVXbFaawMZzYksVqTBuPNyp9+dy28sGcCGgvc8+Vm2QbQcIc3rxRtV9MO+zkvNaOSHgGIv5drD/VlYLW3bGamFPXZBWXNyiDJaXHD1XXdOHIF7Rfu1Eet+g5GK7flFJsJfcGWG1ShJPP2blFFOoJvUVbDG1kwa5NjkQMZzVlnnQBFEuORInIrFcs14ZMpJ4/DsTgWFo8NY9hopZxmgDdupHU+dUTNfhjCo5aDdfAE3+tmsP7Xgq2Z/vwDpdfxA3aYvCHO4K6PCuB9DAN4fXOW5vpjBCndB8iiokOB3Ju+np2nNcvqLjdjN4A3vSsno3JJvb+81qIPCN7xEV3OxqERQzEj/R0UqYHT9kA3tVlnR6a
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: oXS8Lb8AH1QOekXJkAu5nXexOVZajCYHWaWFLmpecsnQHHiR4EZvHZaVGt9phhUNfq11+tgmg/jOTyAtkQNm4X6sEhjSaXDBTChThqwLmtwCWXM3L/0FqCEokp61INNIopPB9STjYiK2VfsOmosJK4M0jf/52kIveTe8xTj43OIP2AVB47InOUldrgWOzGaH3NvIkvFE13f37n+SWf7MsEMPvjWNc7xEaNJAMa5gGvSHk7kWRuwxPdXvjujzJ3NDN9hN1tY3H1b03K4vDi85UTdAfhv7IMtXQPF7kZEy+aDACURCtXLmOuadNOSVxXeZrr+v/ckYx/E0TrP5E94C8US0B0CqlZZIqCwhnlPAM0+R2ibmIAJu2S54SLgpke3FMdZvn5scDIlSEii48t+AJGRXFAqrxIvXz/g80reOlD6qO2Mize0Kbl+142hYf+N7
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TjlDdGNQeHBrU0Zab2dQY25rZE0xVFlpd1loR25udTBKYUwwMzZjamFyR0xH?=
+ =?utf-8?B?b1VBN082OGM5dUNEdkRVREl4T0p6MjdrWTVNT3V0WEE2UThkcU52WTFMbDFM?=
+ =?utf-8?B?Y1prRkhYQWx2aHQ3S0t6ZzFwWTFCTERjVDJSaEFDdFZydHcwYTBOQk5Gb0E0?=
+ =?utf-8?B?NUFyL1Y5YVhVamNOYkt4cFNTRjYrOGZjSFpKMHRTM0pUZUl2U3R1UmVBRjJx?=
+ =?utf-8?B?WGxEenRweEpvS3ZiUkp1RDVSZFdRNE9iR0dIWXM2R21qRUUyKzA5TUo5UG1a?=
+ =?utf-8?B?cDFGNGp5T01iV1pTZnpIZEpkVkVrQ3o5alFxNGtJZm40ZjZxOFlzNWVjSHlW?=
+ =?utf-8?B?UVdyRHNtS3pCZFNxbHp2MjgwaDF4T3dnSUpocmxwRXkwVy9tV2RrR0dSLzhI?=
+ =?utf-8?B?Qkh3ZVdjZEJuTHR6TXBoc3F4UExNbUNaRDNlZHlDblcrZ29wa2Ric2FYNDJZ?=
+ =?utf-8?B?ZnhjSHBwZzJCbEtHQW40V0t0S3I0ZzM2U2NqUFV6NnFpRDArYkcyVnltRTJw?=
+ =?utf-8?B?QUNtbXdibTR0ZHh0VVFVcndZc3ArMmRJZWorODg2VEJSNUQ3UXZwcG96SVZW?=
+ =?utf-8?B?cE8wdXhOaW16dU5Sb09zQlFhUDRsNmZ5SHJVcCtkSHB4TlplY1V2TENnaGtl?=
+ =?utf-8?B?WlI0TXNPbjZJV240QTVDTjI5RG5vYXpVNndnZnBhb0pmOWR1ZHAwdjR5bE4r?=
+ =?utf-8?B?ckxvMjlxQnpkZnJmLzlFYmdZUm1wQjdYYnpjM1hBOFRBMjhOL0ZVUjh5QU41?=
+ =?utf-8?B?WlF3dnhxY2ZSSnZHV00xU1hXclI3SG9uT2tjcUJ6cHZSeUVtNUprK0tYYmpP?=
+ =?utf-8?B?TlNRSTdXZHo5cFl5VWpqaWxKL2NqYVZKVzRVcGlzemtSUnhha1pRK2lGMkl4?=
+ =?utf-8?B?TmtMcWx3QStaOHM2M0c4Y3lsZVc3YTRSNmltNzJGdXNVU2R4bXl2L0l0L21R?=
+ =?utf-8?B?Mk5qVk9FdDJINzBlVlJPbFhIVG1xRzZkcEVJMVB5TklTUE9pbndEdnFZVHp2?=
+ =?utf-8?B?bDVhVm0wWDE3MWRaK3JPZEJ4M3NtdWdqcGd6WkFGTVJXQ0dRUzBIejN1UmpQ?=
+ =?utf-8?B?M0h6dzEzcFF2RjRHeXg3Q2NoaUVWTXFadE0rWk5EeDdybkRWa3NlS05kZUJE?=
+ =?utf-8?B?WDU5OHRGNlZpVm9WOHgxUlBWVDVQeGJVYVdrRHNJeXdyLytxbFlNOCtYUWdD?=
+ =?utf-8?B?VDdEbjlKazY1ZDByazE5TlVDeDRkejlRWVVyV2RaUTNWSmZ0d05sVEdBWW9m?=
+ =?utf-8?B?bHVHVi9qQUlLbDJ2V2RqK0QyWmFzY3diZXQ3OWYrc1d0ZmZ3em93bXZXalB2?=
+ =?utf-8?B?eEcxNXVndW5Tb25KQWYwSjRXTkt3cDZIVGF5MWZhaStPcGVhMDNKL2xnbGpv?=
+ =?utf-8?B?bE5UaWt6d0dVOHE1TWJYT1dxRjVweWp3TFUwVmFWR3U1dWFsZWRJK0NETHJZ?=
+ =?utf-8?B?M1ljWVR1M2V5cC84K1hQWnRLOVpnSWZZbUVNbUk0NVg0TTdVNzlTazIvZ1B6?=
+ =?utf-8?B?V0p2d1d5djltR2FpQ0hvd3JjdEZrdXBoT3dYelBDcFJrcy9yL2lXV0RRUjJR?=
+ =?utf-8?B?OVVMZGtPV1kvMitmVlR0V2s1eExhK0hCeXlWMHBUN0I1SXlHYy9mVjFSTytx?=
+ =?utf-8?B?YVkzU0NSb0pxam5kemczTEcxMGJKQXB1ejU3UXVrT2lkMlZjVHlvdFdyZUVK?=
+ =?utf-8?B?ZmdtMzhrTzNLNlFFamFMSGgzQzJFRzlONVJ0Q3lsT25vbTFyQ2Vrcno1ME5q?=
+ =?utf-8?B?SHZKWmdkaExpNUNBNzUyNTNJSXpOTmJyVXcyVU9yWk1weHg1dldNNjY4YVFn?=
+ =?utf-8?B?WER1eFhnNXZvbUtiL0pSaSsvTHN2bUd2NzRBb2RtYVo2UzRxOVV3KzRrUDRU?=
+ =?utf-8?B?dGRGcE83QXBYT0hHQzBWb3R6TjBjVWZENW5VNFNHcmF2a1hVRzNHTmUxOXI1?=
+ =?utf-8?B?NFp6MUErMmlIcy9BM2JtVThLNm5lSFFpTjcwZzl4S2pQdG5ud1ZCazdwaE5h?=
+ =?utf-8?B?Wjd0cGtFSVF6NGRLZjQyZUFHUXZPcktBMXhSYm0xVUlMVlBvN3lXVUM1ajJ2?=
+ =?utf-8?B?SzZvT2s5My9LU0NWRzhtWnlibkE2MXBmYm1EOTMwc2FkdUIvSWVPVjJ5cFZ5?=
+ =?utf-8?B?UDZERktlclV2VWtMMVRpMzRNMHUvMFM3VnRLQ3RtQ25tZ3NMa3U2clBhTkxo?=
+ =?utf-8?B?T21nYWg2U2owRDRmV0gxYnZWV1JCODhGa1VvSmZwY2FVUWxiSE10S0duaUg3?=
+ =?utf-8?B?SzRBVE9GNmFscDNqeXBCcWhYYlNhbGs5aURoTkRmanl5aHh3R1ZUbEpHU1dQ?=
+ =?utf-8?Q?jP0vMxwOvxsObfRFpk?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2026 08:17:18.8883 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a5ddbe7-49a2-4017-8171-08deaa7eb99a
+X-MS-Exchange-CrossTenant-Network-Message-Id: cae5ba20-815a-4ae6-357a-08deaa7ea1e5
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2026 08:16:39.5313 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000C6185.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8776
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QVO+T/fd/s5rdK4Kz3vHEjfeJ5Ems6G69jwsuxSS0EeN6wpFe284jsXhGZ40v3Eh
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8214
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,536 +138,185 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: CC2F04C8891
+X-Rspamd-Queue-Id: 6E4774C884E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chih-wei.chien@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_HAM(-0.00)[-1.000];
-	HAS_XOIP(0.00)[];
 	DKIM_TRACE(0.00)[amd.com:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:sunil.khatri@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[3];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FROM_HAS_DN(0.00)[]
+	TO_DN_SOME(0.00)[]
 
-This patch adds support for vpe v2.0.0 with new structs and ip functions
+On 5/5/26 10:04, Sunil Khatri wrote:
+> Use drm_exec to take both locks i.e vm root bo and
+> wptr_obj bo to access the mapping data properly.
+> 
+> This fixes the security issue of unmap the wptr_obj while
+> a queue creation is in progress and passing other
+> bo at same address.
+> 
+> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 
-Acked-by: Roy Chan <Roy.Chan@amd.com>
-Signed-off-by: Caden Chien <chih-wei.chien@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/Makefile           |   3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |   3 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c       |  25 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.h       |   1 +
- drivers/gpu/drm/amd/amdgpu/vpe_v2_0.c         | 350 ++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/vpe_v2_0.h         |  29 ++
- 6 files changed, 410 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/amd/amdgpu/vpe_v2_0.c
- create mode 100644 drivers/gpu/drm/amd/amdgpu/vpe_v2_0.h
+Reviewed-by: Christian König <christian.koenig@amd.com>
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
-index 154a60e22c70..ee3574797bc2 100644
---- a/drivers/gpu/drm/amd/amdgpu/Makefile
-+++ b/drivers/gpu/drm/amd/amdgpu/Makefile
-@@ -234,7 +234,8 @@ amdgpu-y += \
- # add VPE block
- amdgpu-y += \
- 	amdgpu_vpe.o \
--	vpe_v6_1.o
-+	vpe_v6_1.o \
-+	vpe_v2_0.o
- 
- # add UMSCH block
- amdgpu-y += \
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index ea221f96d170..bbb807a16a50 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -2739,6 +2739,9 @@ static int amdgpu_discovery_set_vpe_ip_blocks(struct amdgpu_device *adev)
- 	case IP_VERSION(6, 1, 3):
- 		amdgpu_device_ip_block_add(adev, &vpe_v6_1_ip_block);
- 		break;
-+	case IP_VERSION(2, 0, 0):
-+		amdgpu_device_ip_block_add(adev, &vpe_v2_0_ip_block);
-+		break;
- 	default:
- 		break;
- 	}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
-index fd881388d612..0a34a27d1106 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c
-@@ -29,6 +29,7 @@
- #include "amdgpu_smu.h"
- #include "soc15_common.h"
- #include "vpe_v6_1.h"
-+#include "vpe_v2_0.h"
- 
- #define AMDGPU_CSA_VPE_SIZE 	64
- /* VPE CSA resides in the 4th page of CSA */
-@@ -310,6 +311,9 @@ static int vpe_early_init(struct amdgpu_ip_block *ip_block)
- 		vpe_v6_1_set_funcs(vpe);
- 		vpe->collaborate_mode = true;
- 		break;
-+	case IP_VERSION(2, 0, 0):
-+		vpe_v2_0_set_funcs(vpe);
-+		break;
- 	default:
- 		return -EINVAL;
- 	}
-@@ -1009,6 +1013,19 @@ const struct amd_ip_funcs vpe_ip_funcs = {
- 	.set_powergating_state = vpe_set_powergating_state,
- };
- 
-+const struct amd_ip_funcs vpe2_ip_funcs = {
-+	.name = "vpe_v2_0",
-+	.early_init = vpe_early_init,
-+	.sw_init = vpe_sw_init,
-+	.sw_fini = vpe_sw_fini,
-+	.hw_init = vpe_hw_init,
-+	.hw_fini = vpe_hw_fini,
-+	.suspend = vpe_suspend,
-+	.resume = vpe_resume,
-+	.set_clockgating_state = vpe_set_clockgating_state,
-+	.set_powergating_state = vpe_set_powergating_state,
-+};
-+
- const struct amdgpu_ip_block_version vpe_v6_1_ip_block = {
- 	.type = AMD_IP_BLOCK_TYPE_VPE,
- 	.major = 6,
-@@ -1016,3 +1033,11 @@ const struct amdgpu_ip_block_version vpe_v6_1_ip_block = {
- 	.rev = 0,
- 	.funcs = &vpe_ip_funcs,
- };
-+
-+const struct amdgpu_ip_block_version vpe_v2_0_ip_block = {
-+	.type = AMD_IP_BLOCK_TYPE_VPE,
-+	.major = 2,
-+	.minor = 0,
-+	.rev = 0,
-+	.funcs = &vpe2_ip_funcs,
-+};
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.h
-index 695da740a97e..5c9a9f59a02b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.h
-@@ -107,5 +107,6 @@ int amdgpu_vpe_sysfs_reset_mask_init(struct amdgpu_device *adev);
- 		((vpe)->funcs->load_microcode ? (vpe)->funcs->load_microcode((vpe)) : 0)
- 
- extern const struct amdgpu_ip_block_version vpe_v6_1_ip_block;
-+extern const struct amdgpu_ip_block_version vpe_v2_0_ip_block;
- 
- #endif
-diff --git a/drivers/gpu/drm/amd/amdgpu/vpe_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vpe_v2_0.c
-new file mode 100644
-index 000000000000..0d91e01fbf3a
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/vpe_v2_0.c
-@@ -0,0 +1,350 @@
-+/*
-+ * Copyright 2025 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+
-+#include <linux/firmware.h>
-+#include "amdgpu.h"
-+#include "amdgpu_ucode.h"
-+#include "amdgpu_vpe.h"
-+#include "vpe_v2_0.h"
-+#include "soc15_common.h"
-+#include "ivsrcid/vpe/irqsrcs_vpe_6_1.h"
-+#include "vpe/vpe_2_0_0_offset.h"
-+#include "vpe/vpe_2_0_0_sh_mask.h"
-+
-+MODULE_FIRMWARE("amdgpu/vpe_2_0_0.bin");
-+
-+#define VPE_THREAD1_UCODE_OFFSET	0x8000
-+
-+static uint32_t vpe_v2_0_get_reg_offset(struct amdgpu_vpe *vpe, uint32_t inst, uint32_t offset)
-+{
-+	uint32_t base;
-+
-+	base = vpe->ring.adev->reg_offset[VPE_HWIP][inst][0];
-+
-+	return base + offset;
-+}
-+
-+static int vpe_v2_0_irq_init(struct amdgpu_vpe *vpe)
-+{
-+	struct amdgpu_device *adev = container_of(vpe, struct amdgpu_device, vpe);
-+	int ret;
-+
-+	ret = amdgpu_irq_add_id(adev, SOC21_IH_CLIENTID_VPE,
-+				VPE_6_1_SRCID__VPE_TRAP,
-+				&adev->vpe.trap_irq);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int vpe_v2_0_load_microcode(struct amdgpu_vpe *vpe)
-+{
-+	struct amdgpu_device *adev = vpe->ring.adev;
-+	const struct vpe_firmware_header_v1_0 *vpe_hdr;
-+	const __le32 *data;
-+	uint32_t ucode_offset[2], ucode_size[2], size_dw, ret;
-+	uint32_t f32_offset, f32_cntl, reg_data;
-+
-+	ret = RREG32(vpe_get_reg_offset(vpe, 0, regVPEC_CNTL));
-+	ret = REG_SET_FIELD(ret, VPEC_CNTL, UMSCH_INT_ENABLE, 0);
-+	WREG32(vpe_get_reg_offset(vpe, 0, regVPEC_CNTL), ret);
-+
-+	reg_data = RREG32(vpe_get_reg_offset(vpe, 0, regVPEC_CNTL2));
-+	reg_data = REG_SET_FIELD(reg_data, VPEC_CNTL2, IB_FIFO_WATERMARK, 1);
-+	WREG32(vpe_get_reg_offset(vpe, 0, regVPEC_CNTL2), reg_data);
-+
-+	if (amdgpu_vpe_configure_dpm(vpe))
-+		dev_warn(adev->dev, "VPE DPM not enabled.\n");
-+
-+	if (adev->firmware.load_type == AMDGPU_FW_LOAD_PSP) {
-+
-+		f32_offset = vpe_get_reg_offset(vpe, 0, regVPEC_F32_CNTL);
-+		f32_cntl = RREG32(f32_offset);
-+		f32_cntl = REG_SET_FIELD(f32_cntl, VPEC_F32_CNTL, HALT, 0);
-+		f32_cntl = REG_SET_FIELD(f32_cntl, VPEC_F32_CNTL, TH1_RESET, 0);
-+
-+		adev->vpe.cmdbuf_cpu_addr[0] = f32_offset;
-+		adev->vpe.cmdbuf_cpu_addr[1] = f32_cntl;
-+
-+		return amdgpu_vpe_psp_update_sram(adev);
-+	}
-+
-+	/* Halt and Check F32 cleaness */
-+	f32_offset = vpe_get_reg_offset(vpe, 0, regVPEC_F32_CNTL);
-+	f32_cntl = RREG32(f32_offset);
-+	f32_cntl = REG_SET_FIELD(f32_cntl, VPEC_F32_CNTL, HALT, 1);
-+	f32_cntl = REG_SET_FIELD(f32_cntl, VPEC_F32_CNTL, TH1_RESET, 1);
-+	f32_cntl = REG_SET_FIELD(f32_cntl, VPEC_F32_CNTL, TH1_CHECKSUM_CLR, 1);
-+	f32_cntl = REG_SET_FIELD(f32_cntl, VPEC_F32_CNTL, TH0_CHECKSUM_CLR, 1);
-+	WREG32(vpe_get_reg_offset(vpe, 0, regVPEC_F32_CNTL), f32_cntl);
-+
-+	f32_cntl = RREG32(f32_offset);
-+	if (!REG_GET_FIELD(f32_cntl, VPEC_F32_CNTL, HALT)) {
-+		dev_err(adev->dev, "VPEC is not halted");
-+		return -EBUSY;
-+	}
-+
-+	f32_cntl = REG_SET_FIELD(f32_cntl, VPEC_F32_CNTL, TH1_CHECKSUM_CLR, 0);
-+	f32_cntl = REG_SET_FIELD(f32_cntl, VPEC_F32_CNTL, TH0_CHECKSUM_CLR, 0);
-+	WREG32(vpe_get_reg_offset(vpe, 0, regVPEC_F32_CNTL), f32_cntl);
-+
-+	reg_data = RREG32(vpe_get_reg_offset(vpe, 0, regVPEC_UCODE_CHECKSUM));
-+	if (reg_data) {
-+		dev_err(adev->dev, "VPE FW checksum 0 not clean");
-+		return -EBUSY;
-+	}
-+	reg_data = RREG32(vpe_get_reg_offset(vpe, 0, regVPEC_UCODE1_CHECKSUM));
-+	if (reg_data) {
-+		dev_err(adev->dev, "VPE FW checksum 1 not clean");
-+		return -EBUSY;
-+	}
-+
-+	reg_data = RREG32(vpe_get_reg_offset(vpe, 0, regVPEC_STATUS2));
-+	if (REG_GET_FIELD(reg_data, VPEC_STATUS2, TH0F32_INSTR_PTR)) {
-+		dev_err(adev->dev, "VPE FW initial status not clean");
-+		return -EBUSY;
-+	}
-+
-+	reg_data = RREG32(vpe_get_reg_offset(vpe, 0, regVPEC_STATUS6));
-+	if (REG_GET_FIELD(reg_data, VPEC_STATUS6, TH1F32_INSTR_PTR)) {
-+		dev_err(adev->dev, "VPE FW initial status not clean");
-+		return -EBUSY;
-+	}
-+	/* end of F32 cleaness check */
-+
-+	vpe_hdr = (const struct vpe_firmware_header_v1_0 *)adev->vpe.fw->data;
-+
-+	/* Thread 0(command thread) ucode offset/size */
-+	ucode_offset[0] = le32_to_cpu(vpe_hdr->header.ucode_array_offset_bytes);
-+	ucode_size[0] = le32_to_cpu(vpe_hdr->ctx_ucode_size_bytes);
-+	/* Thread 1(control thread) ucode offset/size */
-+	ucode_offset[1] = le32_to_cpu(vpe_hdr->ctl_ucode_offset);
-+	ucode_size[1] = le32_to_cpu(vpe_hdr->ctl_ucode_size_bytes);
-+
-+	reg_data = RREG32(vpe_get_reg_offset(vpe, 0, regVPEC_PG_CNTL));
-+	reg_data = REG_SET_FIELD(reg_data, VPEC_PG_CNTL, PG_EN, 0);
-+	WREG32(vpe_get_reg_offset(vpe, 0, regVPEC_PG_CNTL), reg_data);
-+
-+	for (int j = 0; j < vpe->num_instances; j++) {
-+		for (int i = 0; i < 2; i++) {
-+			if (i > 0)
-+				WREG32(vpe_get_reg_offset(vpe, j, regVPEC_UCODE_ADDR), VPE_THREAD1_UCODE_OFFSET);
-+			else
-+				WREG32(vpe_get_reg_offset(vpe, j, regVPEC_UCODE_ADDR), 0);
-+
-+			data = (const __le32 *)(adev->vpe.fw->data + ucode_offset[i]);
-+			size_dw = ucode_size[i] / sizeof(__le32);
-+
-+			while (size_dw--) {
-+				if (amdgpu_emu_mode && size_dw % 500 == 0)
-+					msleep(1);
-+				WREG32(vpe_get_reg_offset(vpe, j, regVPEC_UCODE_DATA), le32_to_cpup(data++));
-+			}
-+		}
-+	}
-+
-+	reg_data = RREG32(vpe_get_reg_offset(vpe, 0, regVPEC_PG_CNTL));
-+	reg_data = REG_SET_FIELD(reg_data, VPEC_PG_CNTL, PG_EN, 1);
-+	WREG32(vpe_get_reg_offset(vpe, 0, regVPEC_PG_CNTL), reg_data);
-+
-+	/* Unhalt F32 */
-+	f32_cntl = RREG32(f32_offset);
-+	f32_cntl = REG_SET_FIELD(f32_cntl, VPEC_F32_CNTL, HALT, 0);
-+	f32_cntl = REG_SET_FIELD(f32_cntl, VPEC_F32_CNTL, TH1_RESET, 0);
-+	WREG32(vpe_get_reg_offset(vpe, 0, regVPEC_F32_CNTL), f32_cntl);
-+
-+	return 0;
-+}
-+
-+static int vpe_v2_0_ring_start(struct amdgpu_vpe *vpe)
-+{
-+	struct amdgpu_ring *ring = &vpe->ring;
-+	struct amdgpu_device *adev = ring->adev;
-+	uint32_t doorbell, doorbell_offset;
-+	uint32_t rb_bufsz, rb_cntl;
-+	uint32_t ib_cntl, i;
-+	int ret;
-+
-+	for (i = 0; i < vpe->num_instances; i++) {
-+		/* Set ring buffer size in dwords */
-+		rb_bufsz = order_base_2(ring->ring_size / 4);
-+		rb_cntl = RREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_RB_CNTL));
-+		rb_cntl = REG_SET_FIELD(rb_cntl, VPEC_QUEUE0_RB_CNTL, RB_SIZE, rb_bufsz);
-+		rb_cntl = REG_SET_FIELD(rb_cntl, VPEC_QUEUE0_RB_CNTL, RB_PRIV, 1);
-+		rb_cntl = REG_SET_FIELD(rb_cntl, VPEC_QUEUE0_RB_CNTL, RB_VMID, 0);
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_RB_CNTL), rb_cntl);
-+
-+		/* Initialize the ring buffer's read and write pointers */
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_RB_RPTR), 0);
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_RB_RPTR_HI), 0);
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_RB_WPTR), 0);
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_RB_WPTR_HI), 0);
-+
-+		/* set the wb address whether it's enabled or not */
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_RB_RPTR_ADDR_LO),
-+			lower_32_bits(ring->rptr_gpu_addr) & 0xFFFFFFFC);
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_RB_RPTR_ADDR_HI),
-+			upper_32_bits(ring->rptr_gpu_addr) & 0xFFFFFFFF);
-+
-+		rb_cntl = REG_SET_FIELD(rb_cntl, VPEC_QUEUE0_RB_CNTL, RPTR_WRITEBACK_ENABLE, 1);
-+
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_RB_BASE), ring->gpu_addr >> 8);
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_RB_BASE_HI), ring->gpu_addr >> 40);
-+
-+		ring->wptr = 0;
-+
-+		/* before programing wptr to a less value, need set minor_ptr_update first */
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_MINOR_PTR_UPDATE), 1);
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_RB_WPTR), lower_32_bits(ring->wptr) << 2);
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_RB_WPTR_HI), upper_32_bits(ring->wptr) << 2);
-+		/* set minor_ptr_update to 0 after wptr programed */
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_MINOR_PTR_UPDATE), 0);
-+
-+		doorbell_offset = RREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_DOORBELL_OFFSET));
-+		doorbell_offset = REG_SET_FIELD(doorbell_offset, VPEC_QUEUE0_DOORBELL_OFFSET, OFFSET, ring->doorbell_index + i*4);
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_DOORBELL_OFFSET), doorbell_offset);
-+
-+		doorbell = RREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_DOORBELL));
-+		doorbell = REG_SET_FIELD(doorbell, VPEC_QUEUE0_DOORBELL, ENABLE, ring->use_doorbell ? 1 : 0);
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_DOORBELL), doorbell);
-+
-+		adev->nbio.funcs->vpe_doorbell_range(adev, i, ring->use_doorbell, ring->doorbell_index + i*4, 4);
-+
-+		rb_cntl = REG_SET_FIELD(rb_cntl, VPEC_QUEUE0_RB_CNTL, RPTR_WRITEBACK_ENABLE, 1);
-+		rb_cntl = REG_SET_FIELD(rb_cntl, VPEC_QUEUE0_RB_CNTL, RB_ENABLE, 1);
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_RB_CNTL), rb_cntl);
-+
-+		ib_cntl = RREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_IB_CNTL));
-+		ib_cntl = REG_SET_FIELD(ib_cntl, VPEC_QUEUE0_IB_CNTL, IB_ENABLE, 1);
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE0_IB_CNTL), ib_cntl);
-+	}
-+
-+	ret = amdgpu_ring_test_helper(ring);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int vpe_v2_0_ring_stop(struct amdgpu_vpe *vpe)
-+{
-+	struct amdgpu_device *adev = vpe->ring.adev;
-+	uint32_t queue_reset, i;
-+	int ret;
-+
-+	for (i = 0; i < vpe->num_instances; i++) {
-+		queue_reset = RREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE_RESET_REQ));
-+
-+		queue_reset = REG_SET_FIELD(queue_reset, VPEC_QUEUE_RESET_REQ, QUEUE0_RESET, 1);
-+
-+		WREG32(vpe_get_reg_offset(vpe, i, regVPEC_QUEUE_RESET_REQ), queue_reset);
-+		/* timeout length is adev->timeout_usec */
-+		ret = SOC15_WAIT_ON_RREG(VPE, i, regVPEC_QUEUE_RESET_REQ, 0,
-+					 VPEC_QUEUE_RESET_REQ__QUEUE0_RESET_MASK);
-+
-+		if (ret)
-+			dev_err(adev->dev, "VPE queue reset failed\n");
-+	}
-+
-+	vpe->ring.sched.ready = false;
-+
-+	return ret;
-+}
-+
-+static int vpe_v2_0_set_trap_irq_state(struct amdgpu_device *adev,
-+				       struct amdgpu_irq_src *source,
-+				       unsigned int type,
-+				       enum amdgpu_interrupt_state state)
-+{
-+	struct amdgpu_vpe *vpe = &adev->vpe;
-+	uint32_t vpe_cntl;
-+
-+	vpe_cntl = RREG32(vpe_get_reg_offset(vpe, 0, regVPEC_CNTL));
-+	vpe_cntl = REG_SET_FIELD(vpe_cntl, VPEC_CNTL, TRAP_ENABLE,
-+				 state == AMDGPU_IRQ_STATE_ENABLE ? 1 : 0);
-+
-+	WREG32(vpe_get_reg_offset(vpe, 0, regVPEC_CNTL), vpe_cntl);
-+
-+	return 0;
-+}
-+
-+static int vpe_v2_0_process_trap_irq(struct amdgpu_device *adev,
-+				     struct amdgpu_irq_src *source,
-+				     struct amdgpu_iv_entry *entry)
-+{
-+
-+	DRM_DEBUG("IH: VPE trap\n");
-+
-+	switch (entry->client_id) {
-+	case SOC21_IH_CLIENTID_VPE:
-+		amdgpu_fence_process(&adev->vpe.ring);
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
-+static int vpe_v2_0_set_regs(struct amdgpu_vpe *vpe)
-+{
-+	vpe->regs.queue0_rb_rptr_lo = regVPEC_QUEUE0_RB_RPTR;
-+	vpe->regs.queue0_rb_rptr_hi = regVPEC_QUEUE0_RB_RPTR_HI;
-+	vpe->regs.queue0_rb_wptr_lo = regVPEC_QUEUE0_RB_WPTR;
-+	vpe->regs.queue0_rb_wptr_hi = regVPEC_QUEUE0_RB_WPTR_HI;
-+	vpe->regs.queue0_preempt = regVPEC_QUEUE0_PREEMPT;
-+	vpe->regs.dpm_enable = regVPEC_PUB_DUMMY2;
-+
-+	vpe->regs.dpm_pratio = regVPEC_QUEUE6_DUMMY4;
-+	vpe->regs.dpm_request_interval = regVPEC_QUEUE5_DUMMY3;
-+	vpe->regs.dpm_decision_threshold = regVPEC_QUEUE5_DUMMY4;
-+	vpe->regs.dpm_busy_clamp_threshold = regVPEC_QUEUE7_DUMMY2;
-+	vpe->regs.dpm_idle_clamp_threshold = regVPEC_QUEUE7_DUMMY3;
-+	vpe->regs.dpm_request_lv = regVPEC_QUEUE7_DUMMY1;
-+	vpe->regs.context_indicator = regVPEC_QUEUE6_DUMMY3;
-+
-+	return 0;
-+}
-+
-+static struct vpe_funcs vpe_v2_0_funcs = {
-+	.get_reg_offset = vpe_v2_0_get_reg_offset,
-+	.set_regs = vpe_v2_0_set_regs,
-+	.irq_init = vpe_v2_0_irq_init,
-+	.init_microcode = amdgpu_vpe_init_microcode,
-+	.load_microcode = vpe_v2_0_load_microcode,
-+	.ring_init = amdgpu_vpe_ring_init,
-+	.ring_start = vpe_v2_0_ring_start,
-+	.ring_stop = vpe_v2_0_ring_stop,
-+	.ring_fini = amdgpu_vpe_ring_fini,
-+};
-+
-+static const struct amdgpu_irq_src_funcs vpe_v2_0_trap_irq_funcs = {
-+	.set = vpe_v2_0_set_trap_irq_state,
-+	.process = vpe_v2_0_process_trap_irq,
-+};
-+
-+void vpe_v2_0_set_funcs(struct amdgpu_vpe *vpe)
-+{
-+	vpe->funcs = &vpe_v2_0_funcs;
-+	vpe->trap_irq.funcs = &vpe_v2_0_trap_irq_funcs;
-+}
-diff --git a/drivers/gpu/drm/amd/amdgpu/vpe_v2_0.h b/drivers/gpu/drm/amd/amdgpu/vpe_v2_0.h
-new file mode 100644
-index 000000000000..e9f2077bfdc2
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/vpe_v2_0.h
-@@ -0,0 +1,29 @@
-+/*
-+ * Copyright 2025 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+#ifndef __VPE_V2_0_H__
-+#define __VPE_V2_0_H__
-+
-+#include "amdgpu_vpe.h"
-+
-+void vpe_v2_0_set_funcs(struct amdgpu_vpe *vpe);
-+
-+#endif
--- 
-2.53.0
+> ---
+>  drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 95 +++++++++-------------
+>  1 file changed, 37 insertions(+), 58 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+> index 501e2e10b4a6..14db2124ff81 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+> @@ -30,34 +30,6 @@
+>  #define AMDGPU_USERQ_PROC_CTX_SZ PAGE_SIZE
+>  #define AMDGPU_USERQ_GANG_CTX_SZ PAGE_SIZE
+>  
+> -static int
+> -mes_userq_map_gtt_bo_to_gart(struct amdgpu_bo *bo)
+> -{
+> -	int ret;
+> -
+> -	ret = amdgpu_bo_reserve(bo, true);
+> -	if (ret) {
+> -		DRM_ERROR("Failed to reserve bo. ret %d\n", ret);
+> -		goto err_reserve_bo_failed;
+> -	}
+> -
+> -	ret = amdgpu_ttm_alloc_gart(&bo->tbo);
+> -	if (ret) {
+> -		DRM_ERROR("Failed to bind bo to GART. ret %d\n", ret);
+> -		goto err_map_bo_gart_failed;
+> -	}
+> -
+> -	amdgpu_bo_unreserve(bo);
+> -	bo = amdgpu_bo_ref(bo);
+> -
+> -	return 0;
+> -
+> -err_map_bo_gart_failed:
+> -	amdgpu_bo_unreserve(bo);
+> -err_reserve_bo_failed:
+> -	return ret;
+> -}
+> -
+>  static int
+>  mes_userq_create_wptr_mapping(struct amdgpu_device *adev,
+>  			      struct amdgpu_userq_mgr *uq_mgr,
+> @@ -65,55 +37,62 @@ mes_userq_create_wptr_mapping(struct amdgpu_device *adev,
+>  			      uint64_t wptr)
+>  {
+>  	struct amdgpu_bo_va_mapping *wptr_mapping;
+> -	struct amdgpu_vm *wptr_vm;
+>  	struct amdgpu_userq_obj *wptr_obj = &queue->wptr_obj;
+> +	struct amdgpu_bo *obj;
+> +	struct amdgpu_vm *vm = queue->vm;
+> +	struct drm_exec exec;
+>  	int ret;
+>  
+> -	wptr_vm = queue->vm;
+> -	ret = amdgpu_bo_reserve(wptr_vm->root.bo, false);
+> -	if (ret)
+> -		return ret;
+> -
+>  	wptr &= AMDGPU_GMC_HOLE_MASK;
+> -	wptr_mapping = amdgpu_vm_bo_lookup_mapping(wptr_vm, wptr >> PAGE_SHIFT);
+> -	amdgpu_bo_unreserve(wptr_vm->root.bo);
+> -	if (!wptr_mapping) {
+> -		DRM_ERROR("Failed to lookup wptr bo\n");
+> -		return -EINVAL;
+> -	}
+>  
+> -	wptr_obj->obj = wptr_mapping->bo_va->base.bo;
+> -	if (wptr_obj->obj->tbo.base.size > PAGE_SIZE) {
+> -		DRM_ERROR("Requested GART mapping for wptr bo larger than one page\n");
+> -		return -EINVAL;
+> -	}
+> +	drm_exec_init(&exec, DRM_EXEC_IGNORE_DUPLICATES, 2);
+> +	drm_exec_until_all_locked(&exec) {
+> +		ret = amdgpu_vm_lock_pd(vm, &exec, 1);
+> +		drm_exec_retry_on_contention(&exec);
+> +		if (unlikely(ret))
+> +			goto fail_lock;
+> +
+> +		wptr_mapping = amdgpu_vm_bo_lookup_mapping(vm, wptr >> PAGE_SHIFT);
+> +		if (!wptr_mapping) {
+> +			ret = -EINVAL;
+> +			goto fail_lock;
+> +		}
+>  
+> -	ret = mes_userq_map_gtt_bo_to_gart(wptr_obj->obj);
+> -	if (ret) {
+> -		DRM_ERROR("Failed to map wptr bo to GART\n");
+> -		return ret;
+> +		obj = wptr_mapping->bo_va->base.bo;
+> +		ret = drm_exec_lock_obj(&exec, &obj->tbo.base);
+> +		drm_exec_retry_on_contention(&exec);
+> +		if (unlikely(ret))
+> +			goto fail_lock;
+>  	}
+>  
+> -	ret = amdgpu_bo_reserve(wptr_obj->obj, true);
+> -	if (ret) {
+> -		DRM_ERROR("Failed to reserve wptr bo\n");
+> -		return ret;
+> +	wptr_obj->obj = amdgpu_bo_ref(wptr_mapping->bo_va->base.bo);
+> +	if (wptr_obj->obj->tbo.base.size > PAGE_SIZE) {
+> +		ret = -EINVAL;
+> +		goto fail_map;
+>  	}
+>  
+>  	/* TODO use eviction fence instead of pinning. */
+>  	ret = amdgpu_bo_pin(wptr_obj->obj, AMDGPU_GEM_DOMAIN_GTT);
+>  	if (ret) {
+> -		drm_file_err(uq_mgr->file, "[Usermode queues] Failed to pin wptr bo\n");
+> -		goto unresv_bo;
+> +		DRM_ERROR("Failed to pin wptr bo. ret %d\n", ret);
+> +		goto fail_map;
+> +	}
+> +
+> +	ret = amdgpu_ttm_alloc_gart(&wptr_obj->obj->tbo);
+> +	if (ret) {
+> +		DRM_ERROR("Failed to bind bo to GART. ret %d\n", ret);
+> +		goto fail_map;
+>  	}
+>  
+>  	queue->wptr_obj.gpu_addr = amdgpu_bo_gpu_offset(wptr_obj->obj);
+> -	amdgpu_bo_unreserve(wptr_obj->obj);
+>  
+> +	drm_exec_fini(&exec);
+>  	return 0;
+>  
+> -unresv_bo:
+> -	amdgpu_bo_unreserve(wptr_obj->obj);
+> +fail_map:
+> +	amdgpu_bo_unref(&wptr_obj->obj);
+> +fail_lock:
+> +	drm_exec_fini(&exec);
+>  	return ret;
+>  
+>  }
 
