@@ -2,129 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gJRgOm6n+WnF+gIAu9opvQ
+	id 6ElfCsS9+WkIDAMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 10:16:46 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 11:52:04 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E4774C884E
-	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 10:16:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BDDE4CA28C
+	for <lists+amd-gfx@lfdr.de>; Tue, 05 May 2026 11:52:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 015BB10E9C2;
-	Tue,  5 May 2026 08:16:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E794C10EA26;
+	Tue,  5 May 2026 09:52:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="D0ALUpW5";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CiQl8tax";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010010.outbound.protection.outlook.com [52.101.201.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3830510E9BB
- for <amd-gfx@lists.freedesktop.org>; Tue,  5 May 2026 08:16:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SeuEKNXA7yk1fxTlCEXfqBVIE06PiOKgAzCtF1PS4/AXIkG1q4JMJhd6mC54jt/ZZssrQ5/gGtqKqh+zGQ3FYlNSyh11cVAcn0em34WpG3vnJEMxxo+x9EgCUnAsrVoLgV4FrZwySImcxZztGZTmppc9WRtf7m03bjq61DAEvXWfBX4NMA6YQdcODxMNWylm8mrzUGVX2PCnb2Z7cB5vRhekWLLsg09THRYsoQo6TB5TRRfrr7EtfWqmOHLho5yf4z/5pS17OoXEVOGNAYImNBrawFVZF3xjJ6F59i+wH6iZhXf2PJ+QH3x06x4BJENr7EfIQDwTOojXHYnyzOacmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=619LzfUSBsMBsV/lmncQjUijbEVnQrxIOMAUiADXJSo=;
- b=stv4WAlXQ3RJtF/wZD9Hn51SoDjYTqrp19g2aWWaCGCO/dn22dVG3BoRwjnUqc5QsFS285snc1471Pmxp3r5eZGD87WUTm3JsgcKHvyL8JNGateSilZ9FKYK0/+eritmk/RxavP1z+ouuSf44mcLZay5CJKstkdiDqQGpbA7CNXM61IgNsNE9ofKePHSeJCyg2kvOvzMfNgiL77Ki3p+nCFSaW0WNCboJIVVqLNvAxjtKNGOIY3/Hg4XfnJ5U8lxOjxxiyBA0sBmgUa6auQOy1Gn8CtSGbDpP4xAwdh8RuIJIRbamBOeDdNlkPCrFhjHuiXsISHMQ3J5wFa4nZXqjg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=619LzfUSBsMBsV/lmncQjUijbEVnQrxIOMAUiADXJSo=;
- b=D0ALUpW5m9Wj5xmtZPYgHLiQUW3zFGeuiKDvreNr2JmyxpEwWIkUipduCfP/+6+AyjyweQO0T2flwGLy2ZA5EDJnd35/IZDiGmWCCnjPmxRRk6YK4AvtzBCs3AjHZ5FxoeNV37iKiGfDc+puMPVzPPbmSkHYb6pDYBekyIRfo4k=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by CY8PR12MB8214.namprd12.prod.outlook.com (2603:10b6:930:76::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Tue, 5 May
- 2026 08:16:39 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9870.023; Tue, 5 May 2026
- 08:16:39 +0000
-Message-ID: <3f770fe7-b76b-446a-998b-0d6acef1c5eb@amd.com>
-Date: Tue, 5 May 2026 10:16:32 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [[PATCH v2]] drm/amdgpu/userq: fix access to stale wptr mapping
-To: Sunil Khatri <sunil.khatri@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-References: <20260505080426.500411-1-sunil.khatri@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260505080426.500411-1-sunil.khatri@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0258.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:e8::12) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC6E210E10D;
+ Tue,  5 May 2026 09:52:00 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 3108360139;
+ Tue,  5 May 2026 09:52:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0517BC2BCB4;
+ Tue,  5 May 2026 09:51:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1777974720;
+ bh=0qV4cOztwSvvWGGKaqSmfSyQWpKz4dYQwUC37FZ5STg=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=CiQl8taxKU0fmnrf3fQ9S1MwRNL2Fvty49yYhxu/HTr1jUZT7JulOnsQmuN55QBKU
+ Miv97ef42Vm5cnjcrrDlJGk1hExO3jObYqHhCiUnU9lzbi3ByaFto8DS19+UnggCFt
+ s/5uO6cbMhs9dopu9heMaKcF+5VtK2gidI+HvAss6qWXLOi3xNmczvJtZs5/V6jB36
+ ShB18KtplzwNd0IW/7DxfZhI5OMcZ2jenLX6Ov+gWDk3F4hyz0Eac0vrs4ztod1Jwu
+ BSM+pvrqA7JoZ0ICc/MqJvCcTuTtYzyfu7RXmM/9I5+iYjHsYdj7wkWz5JByXmZZWa
+ xIUhj1Fv2FhBQ==
+From: Sasha Levin <sashal@kernel.org>
+To: patches@lists.linux.dev,
+	stable@vger.kernel.org
+Cc: Lijo Lazar <lijo.lazar@amd.com>, Asad Kamal <asad.kamal@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
+ kenneth.feng@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH AUTOSEL 7.0] drm/amd/pm: Update emit clock logic
+Date: Tue,  5 May 2026 05:51:19 -0400
+Message-ID: <20260505095149.512052-3-sashal@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260505095149.512052-1-sashal@kernel.org>
+References: <20260505095149.512052-1-sashal@kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CY8PR12MB8214:EE_
-X-MS-Office365-Filtering-Correlation-Id: cae5ba20-815a-4ae6-357a-08deaa7ea1e5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|18002099003|56012099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: cVG5MehroO7/q04I2AJ2N1gUk4HPe3FH6ofJW+r5Hne/oU4B0RsOkm29QbCBhLKwizBNEPZk8oCH9TlAekWtsM1xG1Y+rbEBl8bIa0Tsh01p0bSIR27M+1LXt8CTQa3EwmZ6CxQB6JH8a7KpYUsCIpZ8si9U1+N6yoM/XX4yrF3Q5rWPqrqh5ty9mrO3+SpZfwSGZ1hQuCmfb9Vxf9UIDK+6e68KK98NIei6Fq9Uj7NIJoNDcKTe//H03DfHxwkFsy//2KlNjaJxSofs8Y8YWIMbO0j3wu80kZiaWuk63I1ey5m038x1l7Es5UBoz8NLhclFd6rmiwoOHBa3uIdXYVXbFaawMZzYksVqTBuPNyp9+dy28sGcCGgvc8+Vm2QbQcIc3rxRtV9MO+zkvNaOSHgGIv5drD/VlYLW3bGamFPXZBWXNyiDJaXHD1XXdOHIF7Rfu1Eet+g5GK7flFJsJfcGWG1ShJPP2blFFOoJvUVbDG1kwa5NjkQMZzVlnnQBFEuORInIrFcs14ZMpJ4/DsTgWFo8NY9hopZxmgDdupHU+dUTNfhjCo5aDdfAE3+tmsP7Xgq2Z/vwDpdfxA3aYvCHO4K6PCuB9DAN4fXOW5vpjBCndB8iiokOB3Ju+np2nNcvqLjdjN4A3vSsno3JJvb+81qIPCN7xEV3OxqERQzEj/R0UqYHT9kA3tVlnR6a
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(18002099003)(56012099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TjlDdGNQeHBrU0Zab2dQY25rZE0xVFlpd1loR25udTBKYUwwMzZjamFyR0xH?=
- =?utf-8?B?b1VBN082OGM5dUNEdkRVREl4T0p6MjdrWTVNT3V0WEE2UThkcU52WTFMbDFM?=
- =?utf-8?B?Y1prRkhYQWx2aHQ3S0t6ZzFwWTFCTERjVDJSaEFDdFZydHcwYTBOQk5Gb0E0?=
- =?utf-8?B?NUFyL1Y5YVhVamNOYkt4cFNTRjYrOGZjSFpKMHRTM0pUZUl2U3R1UmVBRjJx?=
- =?utf-8?B?WGxEenRweEpvS3ZiUkp1RDVSZFdRNE9iR0dIWXM2R21qRUUyKzA5TUo5UG1a?=
- =?utf-8?B?cDFGNGp5T01iV1pTZnpIZEpkVkVrQ3o5alFxNGtJZm40ZjZxOFlzNWVjSHlW?=
- =?utf-8?B?UVdyRHNtS3pCZFNxbHp2MjgwaDF4T3dnSUpocmxwRXkwVy9tV2RrR0dSLzhI?=
- =?utf-8?B?Qkh3ZVdjZEJuTHR6TXBoc3F4UExNbUNaRDNlZHlDblcrZ29wa2Ric2FYNDJZ?=
- =?utf-8?B?ZnhjSHBwZzJCbEtHQW40V0t0S3I0ZzM2U2NqUFV6NnFpRDArYkcyVnltRTJw?=
- =?utf-8?B?QUNtbXdibTR0ZHh0VVFVcndZc3ArMmRJZWorODg2VEJSNUQ3UXZwcG96SVZW?=
- =?utf-8?B?cE8wdXhOaW16dU5Sb09zQlFhUDRsNmZ5SHJVcCtkSHB4TlplY1V2TENnaGtl?=
- =?utf-8?B?WlI0TXNPbjZJV240QTVDTjI5RG5vYXpVNndnZnBhb0pmOWR1ZHAwdjR5bE4r?=
- =?utf-8?B?ckxvMjlxQnpkZnJmLzlFYmdZUm1wQjdYYnpjM1hBOFRBMjhOL0ZVUjh5QU41?=
- =?utf-8?B?WlF3dnhxY2ZSSnZHV00xU1hXclI3SG9uT2tjcUJ6cHZSeUVtNUprK0tYYmpP?=
- =?utf-8?B?TlNRSTdXZHo5cFl5VWpqaWxKL2NqYVZKVzRVcGlzemtSUnhha1pRK2lGMkl4?=
- =?utf-8?B?TmtMcWx3QStaOHM2M0c4Y3lsZVc3YTRSNmltNzJGdXNVU2R4bXl2L0l0L21R?=
- =?utf-8?B?Mk5qVk9FdDJINzBlVlJPbFhIVG1xRzZkcEVJMVB5TklTUE9pbndEdnFZVHp2?=
- =?utf-8?B?bDVhVm0wWDE3MWRaK3JPZEJ4M3NtdWdqcGd6WkFGTVJXQ0dRUzBIejN1UmpQ?=
- =?utf-8?B?M0h6dzEzcFF2RjRHeXg3Q2NoaUVWTXFadE0rWk5EeDdybkRWa3NlS05kZUJE?=
- =?utf-8?B?WDU5OHRGNlZpVm9WOHgxUlBWVDVQeGJVYVdrRHNJeXdyLytxbFlNOCtYUWdD?=
- =?utf-8?B?VDdEbjlKazY1ZDByazE5TlVDeDRkejlRWVVyV2RaUTNWSmZ0d05sVEdBWW9m?=
- =?utf-8?B?bHVHVi9qQUlLbDJ2V2RqK0QyWmFzY3diZXQ3OWYrc1d0ZmZ3em93bXZXalB2?=
- =?utf-8?B?eEcxNXVndW5Tb25KQWYwSjRXTkt3cDZIVGF5MWZhaStPcGVhMDNKL2xnbGpv?=
- =?utf-8?B?bE5UaWt6d0dVOHE1TWJYT1dxRjVweWp3TFUwVmFWR3U1dWFsZWRJK0NETHJZ?=
- =?utf-8?B?M1ljWVR1M2V5cC84K1hQWnRLOVpnSWZZbUVNbUk0NVg0TTdVNzlTazIvZ1B6?=
- =?utf-8?B?V0p2d1d5djltR2FpQ0hvd3JjdEZrdXBoT3dYelBDcFJrcy9yL2lXV0RRUjJR?=
- =?utf-8?B?OVVMZGtPV1kvMitmVlR0V2s1eExhK0hCeXlWMHBUN0I1SXlHYy9mVjFSTytx?=
- =?utf-8?B?YVkzU0NSb0pxam5kemczTEcxMGJKQXB1ejU3UXVrT2lkMlZjVHlvdFdyZUVK?=
- =?utf-8?B?ZmdtMzhrTzNLNlFFamFMSGgzQzJFRzlONVJ0Q3lsT25vbTFyQ2Vrcno1ME5q?=
- =?utf-8?B?SHZKWmdkaExpNUNBNzUyNTNJSXpOTmJyVXcyVU9yWk1weHg1dldNNjY4YVFn?=
- =?utf-8?B?WER1eFhnNXZvbUtiL0pSaSsvTHN2bUd2NzRBb2RtYVo2UzRxOVV3KzRrUDRU?=
- =?utf-8?B?dGRGcE83QXBYT0hHQzBWb3R6TjBjVWZENW5VNFNHcmF2a1hVRzNHTmUxOXI1?=
- =?utf-8?B?NFp6MUErMmlIcy9BM2JtVThLNm5lSFFpTjcwZzl4S2pQdG5ud1ZCazdwaE5h?=
- =?utf-8?B?Wjd0cGtFSVF6NGRLZjQyZUFHUXZPcktBMXhSYm0xVUlMVlBvN3lXVUM1ajJ2?=
- =?utf-8?B?SzZvT2s5My9LU0NWRzhtWnlibkE2MXBmYm1EOTMwc2FkdUIvSWVPVjJ5cFZ5?=
- =?utf-8?B?UDZERktlclV2VWtMMVRpMzRNMHUvMFM3VnRLQ3RtQ25tZ3NMa3U2clBhTkxo?=
- =?utf-8?B?T21nYWg2U2owRDRmV0gxYnZWV1JCODhGa1VvSmZwY2FVUWxiSE10S0duaUg3?=
- =?utf-8?B?SzRBVE9GNmFscDNqeXBCcWhYYlNhbGs5aURoTkRmanl5aHh3R1ZUbEpHU1dQ?=
- =?utf-8?Q?jP0vMxwOvxsObfRFpk?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cae5ba20-815a-4ae6-357a-08deaa7ea1e5
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2026 08:16:39.5313 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QVO+T/fd/s5rdK4Kz3vHEjfeJ5Ems6G69jwsuxSS0EeN6wpFe284jsXhGZ40v3Eh
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8214
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 7.0.3
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,185 +67,277 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6E4774C884E
+X-Rspamd-Queue-Id: 7BDDE4CA28C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,kernel.org,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:sunil.khatri@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[3];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	TO_DN_SOME(0.00)[]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On 5/5/26 10:04, Sunil Khatri wrote:
-> Use drm_exec to take both locks i.e vm root bo and
-> wptr_obj bo to access the mapping data properly.
-> 
-> This fixes the security issue of unmap the wptr_obj while
-> a queue creation is in progress and passing other
-> bo at same address.
-> 
-> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+From: Lijo Lazar <lijo.lazar@amd.com>
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
+[ Upstream commit d6b99885b122528651d554a7bd907211a81579c2 ]
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 95 +++++++++-------------
->  1 file changed, 37 insertions(+), 58 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-> index 501e2e10b4a6..14db2124ff81 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-> @@ -30,34 +30,6 @@
->  #define AMDGPU_USERQ_PROC_CTX_SZ PAGE_SIZE
->  #define AMDGPU_USERQ_GANG_CTX_SZ PAGE_SIZE
->  
-> -static int
-> -mes_userq_map_gtt_bo_to_gart(struct amdgpu_bo *bo)
-> -{
-> -	int ret;
-> -
-> -	ret = amdgpu_bo_reserve(bo, true);
-> -	if (ret) {
-> -		DRM_ERROR("Failed to reserve bo. ret %d\n", ret);
-> -		goto err_reserve_bo_failed;
-> -	}
-> -
-> -	ret = amdgpu_ttm_alloc_gart(&bo->tbo);
-> -	if (ret) {
-> -		DRM_ERROR("Failed to bind bo to GART. ret %d\n", ret);
-> -		goto err_map_bo_gart_failed;
-> -	}
-> -
-> -	amdgpu_bo_unreserve(bo);
-> -	bo = amdgpu_bo_ref(bo);
-> -
-> -	return 0;
-> -
-> -err_map_bo_gart_failed:
-> -	amdgpu_bo_unreserve(bo);
-> -err_reserve_bo_failed:
-> -	return ret;
-> -}
-> -
->  static int
->  mes_userq_create_wptr_mapping(struct amdgpu_device *adev,
->  			      struct amdgpu_userq_mgr *uq_mgr,
-> @@ -65,55 +37,62 @@ mes_userq_create_wptr_mapping(struct amdgpu_device *adev,
->  			      uint64_t wptr)
->  {
->  	struct amdgpu_bo_va_mapping *wptr_mapping;
-> -	struct amdgpu_vm *wptr_vm;
->  	struct amdgpu_userq_obj *wptr_obj = &queue->wptr_obj;
-> +	struct amdgpu_bo *obj;
-> +	struct amdgpu_vm *vm = queue->vm;
-> +	struct drm_exec exec;
->  	int ret;
->  
-> -	wptr_vm = queue->vm;
-> -	ret = amdgpu_bo_reserve(wptr_vm->root.bo, false);
-> -	if (ret)
-> -		return ret;
-> -
->  	wptr &= AMDGPU_GMC_HOLE_MASK;
-> -	wptr_mapping = amdgpu_vm_bo_lookup_mapping(wptr_vm, wptr >> PAGE_SHIFT);
-> -	amdgpu_bo_unreserve(wptr_vm->root.bo);
-> -	if (!wptr_mapping) {
-> -		DRM_ERROR("Failed to lookup wptr bo\n");
-> -		return -EINVAL;
-> -	}
->  
-> -	wptr_obj->obj = wptr_mapping->bo_va->base.bo;
-> -	if (wptr_obj->obj->tbo.base.size > PAGE_SIZE) {
-> -		DRM_ERROR("Requested GART mapping for wptr bo larger than one page\n");
-> -		return -EINVAL;
-> -	}
-> +	drm_exec_init(&exec, DRM_EXEC_IGNORE_DUPLICATES, 2);
-> +	drm_exec_until_all_locked(&exec) {
-> +		ret = amdgpu_vm_lock_pd(vm, &exec, 1);
-> +		drm_exec_retry_on_contention(&exec);
-> +		if (unlikely(ret))
-> +			goto fail_lock;
-> +
-> +		wptr_mapping = amdgpu_vm_bo_lookup_mapping(vm, wptr >> PAGE_SHIFT);
-> +		if (!wptr_mapping) {
-> +			ret = -EINVAL;
-> +			goto fail_lock;
-> +		}
->  
-> -	ret = mes_userq_map_gtt_bo_to_gart(wptr_obj->obj);
-> -	if (ret) {
-> -		DRM_ERROR("Failed to map wptr bo to GART\n");
-> -		return ret;
-> +		obj = wptr_mapping->bo_va->base.bo;
-> +		ret = drm_exec_lock_obj(&exec, &obj->tbo.base);
-> +		drm_exec_retry_on_contention(&exec);
-> +		if (unlikely(ret))
-> +			goto fail_lock;
->  	}
->  
-> -	ret = amdgpu_bo_reserve(wptr_obj->obj, true);
-> -	if (ret) {
-> -		DRM_ERROR("Failed to reserve wptr bo\n");
-> -		return ret;
-> +	wptr_obj->obj = amdgpu_bo_ref(wptr_mapping->bo_va->base.bo);
-> +	if (wptr_obj->obj->tbo.base.size > PAGE_SIZE) {
-> +		ret = -EINVAL;
-> +		goto fail_map;
->  	}
->  
->  	/* TODO use eviction fence instead of pinning. */
->  	ret = amdgpu_bo_pin(wptr_obj->obj, AMDGPU_GEM_DOMAIN_GTT);
->  	if (ret) {
-> -		drm_file_err(uq_mgr->file, "[Usermode queues] Failed to pin wptr bo\n");
-> -		goto unresv_bo;
-> +		DRM_ERROR("Failed to pin wptr bo. ret %d\n", ret);
-> +		goto fail_map;
-> +	}
-> +
-> +	ret = amdgpu_ttm_alloc_gart(&wptr_obj->obj->tbo);
-> +	if (ret) {
-> +		DRM_ERROR("Failed to bind bo to GART. ret %d\n", ret);
-> +		goto fail_map;
->  	}
->  
->  	queue->wptr_obj.gpu_addr = amdgpu_bo_gpu_offset(wptr_obj->obj);
-> -	amdgpu_bo_unreserve(wptr_obj->obj);
->  
-> +	drm_exec_fini(&exec);
->  	return 0;
->  
-> -unresv_bo:
-> -	amdgpu_bo_unreserve(wptr_obj->obj);
-> +fail_map:
-> +	amdgpu_bo_unref(&wptr_obj->obj);
-> +fail_lock:
-> +	drm_exec_fini(&exec);
->  	return ret;
->  
->  }
+If only one level is enabled in clock table, there is no need to
+follow the fine grained clock logic which expects a minimum of
+two levels (min/max).
+
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+Reviewed-by: Asad Kamal <asad.kamal@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+(cherry picked from commit 7f19097af1496dd908a044ca95862f32d05f02df)
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+
+LLM Generated explanations, may be completely bogus:
+
+## Phase 1: Commit Message Forensics
+Step 1.1 Record: subsystem `drm/amd/pm`; action verb `Update`; claimed
+intent is to change AMD SMU clock-level sysfs emission when a DPM clock
+table has only one enabled level.
+
+Step 1.2 Record: tags present are `Signed-off-by: Lijo Lazar
+<lijo.lazar@amd.com>`, `Reviewed-by: Asad Kamal <asad.kamal@amd.com>`,
+`Signed-off-by: Alex Deucher <alexander.deucher@amd.com>`, and a cherry-
+pick marker for `7f19097af149...`. No `Fixes:`, `Reported-by:`, `Tested-
+by:`, `Link:`, or `Cc: stable@vger.kernel.org` tag was present in the
+supplied commit message.
+
+Step 1.3 Record: the body says fine-grained clock logic expects two
+levels, min and max, so it should not be used when the table has only
+one level. Symptom is incorrect sysfs clock-level emission for that one-
+level case; no crash, stack trace, affected version, or reproducer is
+described.
+
+Step 1.4 Record: this is a hidden logic/correctness bug fix, not a
+cleanup. The bug is that a one-level table can be treated as fine-
+grained min/max output.
+
+## Phase 2: Diff Analysis
+Step 2.1 Record: one file changed,
+`drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c`; one-line condition change in
+`smu_cmn_print_dpm_clk_levels()`. Scope is a single-file surgical driver
+fix.
+
+Step 2.2 Record: before, any table marked `SMU_DPM_TABLE_FINE_GRAINED`
+used the fine-grained path, which forces `count = 2` and emits min/max-
+style output. After, `count == 1` tables use the discrete-table path and
+emit exactly the real table entries.
+
+Step 2.3 Record: bug category is logic/correctness in user-visible sysfs
+output. The specific broken mechanism is the fine-grained display path
+assuming two levels even when `dpm_table->count` is one.
+
+Step 2.4 Record: fix quality is high: it preserves all existing behavior
+except the verified `is_fine_grained && count == 1` case. Regression
+risk is very low because non-fine-grained tables and fine-grained tables
+with more than one level are unchanged.
+
+## Phase 3: Git History Investigation
+Step 3.1 Record: `git blame` shows `smu_cmn_print_dpm_clk_levels()` and
+the original `if (!is_fine_grained)` condition came from
+`a08ea4bc7711f8` (`drm/amd/pm: Add a helper to show dpm table`). Later
+fine-grained formatting changes came from `d81e52fc61fb9` (`drm/amd/pm:
+fix issue of missing '*' on pp_dpm_xxx nodes`). `a08ea4bc7711f8` is
+contained in `v7.0`, `v7.0.1`, `v7.0.2`, and `v7.0.3`, but not `v6.19`.
+
+Step 3.2 Record: no `Fixes:` tag is present, so there was no Fixes
+target to follow. Related history identifies `a08ea4bc7711f8` as the
+likely introducing commit.
+
+Step 3.3 Record: recent file history shows a series of AMD PM
+helper/refactor commits, including `a08ea4bc7711f8` and `d81e52fc61fb9`.
+The target patch is standalone on top of code present in `v7.0.y`.
+
+Step 3.4 Record: Lijo Lazar authored the helper introduction and has
+multiple recent commits under `drivers/gpu/drm/amd/pm`, so the author is
+an active AMD PM contributor.
+
+Step 3.5 Record: dependency is the helper itself. The affected function
+is absent in `v6.19`, so older stable trees do not need this patch. For
+`v7.0.y`, the context exists and the backport should be trivial.
+
+## Phase 4: Mailing List And External Research
+Step 4.1 Record: `b4 dig -c 7f19097af149...`, `-a`, and `-w` all failed
+because the local repository does not contain that commit object.
+`WebFetch` to lore and git.kernel.org was blocked by Anubis. Web
+searches by exact subject/hash/body did not find the original target
+patch.
+
+Step 4.2 Record: b4 recipient data could not be obtained. The only
+verified review signal is the commit-message `Reviewed-by: Asad Kamal`.
+
+Step 4.3 Record: no bug-report link or reporter tag exists. No syzbot,
+Bugzilla, or user-report evidence was found.
+
+Step 4.4 Record: related external context found the earlier AMD PM
+`Remove print_clock_levels` series and a `Use one level table if dpm not
+enabled` patch, but not this exact patch. These support the broader area
+of clock table/sysfs work but are not direct evidence for this commit.
+
+Step 4.5 Record: stable-list search via lore was blocked; web search
+found no stable-specific discussion.
+
+## Phase 5: Code Semantic Analysis
+Step 5.1 Record: modified function is `smu_cmn_print_dpm_clk_levels()`.
+
+Step 5.2 Record: callers found in AMD SMU ppt files include
+`smu_v14_0_2_ppt.c`, `smu_v13_0_7_ppt.c`, `smu_v13_0_6_ppt.c`,
+`smu_v13_0_0_ppt.c`, `aldebaran_ppt.c`, `sienna_cichlid_ppt.c`,
+`navi10_ppt.c`, and `arcturus_ppt.c`.
+
+Step 5.3 Record: key callees/macros are `sysfs_emit_at()`,
+`smu_cmn_freqs_match()`, `SMU_DPM_TABLE_MIN()`, and
+`SMU_DPM_TABLE_MAX()`.
+
+Step 5.4 Record: verified call chain is sysfs read path
+`amdgpu_get_pp_dpm_clock()` / `amdgpu_get_pp_od_clk_voltage()` ->
+`amdgpu_dpm_emit_clock_levels()` -> `smu_emit_ppclk_levels()` -> ASIC-
+specific `emit_clk_levels()` -> `smu_cmn_print_dpm_clk_levels()`. The
+buggy path is reachable through AMDGPU PM sysfs clock-level reads.
+
+Step 5.5 Record: similar one-level DPM table setup exists in multiple
+AMD SMU ppt files, and fine-grained flags are set in several SMU
+generations. This verifies that `count == 1` and fine-grained clock-
+table handling are both real local patterns.
+
+## Phase 6: Stable Tree Analysis
+Step 6.1 Record: `git grep` confirmed `smu_cmn_print_dpm_clk_levels()`
+is absent from `v6.19` and present in `v7.0`. Tags containing the helper
+include `v7.0` through `v7.0.3`.
+
+Step 6.2 Record: expected backport difficulty to `v7.0.y` is clean or
+near-clean: the patch changes one existing condition in code verified
+present in `v7.0`.
+
+Step 6.3 Record: local `git log --grep` searches did not find this exact
+target commit in current, `stable/linux-7.0.y`, `master`, or `graphics-
+next`. Related fix `d81e52fc61fb9` is already in `v7.0`.
+
+## Phase 7: Subsystem Context
+Step 7.1 Record: subsystem is DRM AMDGPU power management. Criticality
+is driver-specific but important for affected AMD GPU users because it
+affects exported PM sysfs clock-level state.
+
+Step 7.2 Record: `drivers/gpu/drm/amd/pm/swsmu` is actively developed;
+recent history shows many AMD PM and SMU changes.
+
+## Phase 8: Impact And Risk
+Step 8.1 Record: affected users are AMDGPU users on SMU generations
+using `smu_cmn_print_dpm_clk_levels()` with a fine-grained DPM table
+whose count is one.
+
+Step 8.2 Record: trigger is reading relevant AMDGPU PM sysfs files such
+as `pp_dpm_*` / OD clock output. Whether unprivileged users can read
+every affected node was not verified.
+
+Step 8.3 Record: verified failure mode is incorrect sysfs clock-level
+reporting: the old code can emit min/max-style two-level output for a
+one-level table. I verified the paired write path parses numeric levels
+and some fine-grained force-clock paths clamp to level 0/1 without
+checking `count`, but I did not verify a concrete hardware failure from
+writing the falsely advertised level.
+
+Step 8.4 Record: benefit is moderate for affected AMD GPU users because
+it fixes misleading PM sysfs state. Risk is very low because the patch
+is one conditional change and leaves all other cases unchanged.
+
+## Phase 9: Final Synthesis
+Evidence for backporting: real user-visible logic bug, one-line fix,
+reviewed by an AMD PM developer, authored by the contributor who
+introduced the helper, code exists in `v7.0.y`, and regression risk is
+very low.
+
+Evidence against backporting: no verified crash, security issue, data
+corruption, deadlock, reporter, reproducer, `Fixes:` tag, `Cc: stable`,
+or accessible lore discussion. It is not relevant to stable trees older
+than `v7.0`.
+
+Stable rules checklist: obviously correct: yes by local code inspection.
+Tested: no `Tested-by`, but reviewed. Real bug: yes, wrong sysfs clock-
+level output. Important: borderline, but it affects a stable user-
+visible PM interface and can advertise a non-real level.
+Small/contained: yes, one line in one driver helper. No new
+features/APIs: yes. Applies to stable: yes for `v7.0.y`; no need for
+older stable trees lacking the helper.
+
+Exception category: none.
+
+## Verification
+- Phase 1: parsed supplied subject/body/tags; confirmed no reporter,
+  link, Fixes, Tested, or stable tag in the supplied message.
+- Phase 2: inspected the supplied diff and current
+  `smu_cmn_print_dpm_clk_levels()` implementation.
+- Phase 3: ran `git blame` on the affected lines; identified
+  `a08ea4bc7711f8` and `d81e52fc61fb9`.
+- Phase 3: ran `git show a08ea4bc7711f8` and `git show d81e52fc61fb9`;
+  confirmed helper introduction and related missing-star fix.
+- Phase 3/6: ran tag/ancestor checks; confirmed helper is in `v7.0*`
+  tags and not in `v6.19`.
+- Phase 4: ran `b4 dig` variants; all failed because the commit object
+  was not locally resolvable.
+- Phase 4: attempted lore/git.kernel.org fetches; blocked by Anubis.
+- Phase 4: searched web by exact subject/hash/body; did not find the
+  target discussion.
+- Phase 5: searched callers with `rg`; confirmed multiple AMD SMU ppt
+  callers.
+- Phase 5: read sysfs call chain in `amdgpu_pm.c`, `amdgpu_dpm.c`, and
+  `amdgpu_smu.c`.
+- Phase 5/8: inspected write-path parsing and force-clock logic;
+  verified possible level 0/1 handling, but not a concrete hardware
+  failure.
+- Phase 7: ran recent `git log` for `drivers/gpu/drm/amd/pm/swsmu`;
+  confirmed active subsystem churn.
+- UNVERIFIED: exact upstream lore discussion, all review comments, exact
+  commit date of `7f19097af149...`, and concrete hardware impact beyond
+  incorrect sysfs output.
+
+This should be backported to stable trees that contain the helper,
+especially `v7.0.y`; it should not be applied to older stable trees
+where the helper does not exist.
+
+**YES**
+
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+index 6fd50c2fd20e0..37de6022581ed 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+@@ -1310,7 +1310,7 @@ int smu_cmn_print_dpm_clk_levels(struct smu_context *smu,
+ 		level_index = 1;
+ 	}
+ 
+-	if (!is_fine_grained) {
++	if (!is_fine_grained || count == 1) {
+ 		for (i = 0; i < count; i++) {
+ 			freq_match = !is_deep_sleep &&
+ 				     smu_cmn_freqs_match(
+-- 
+2.53.0
 
