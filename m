@@ -2,34 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kIIVFM5l/GmpPgAAu9opvQ
+	id uDZIGbuM+2lEcgMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 12:13:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 20:47:23 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09A404E6922
-	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 12:13:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17D0B4DF806
+	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 20:47:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D09110F07C;
-	Thu,  7 May 2026 10:13:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA50F10E55F;
+	Wed,  6 May 2026 18:47:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZxXcdMC/";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MTA-11-3.privateemail.com (mta-11-3.privateemail.com
- [198.54.122.105])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA06D10E1FB;
- Wed,  6 May 2026 17:37:37 +0000 (UTC)
-Received: from mta-11.privateemail.com (localhost [127.0.0.1])
- by mta-11.privateemail.com (Postfix) with ESMTP id 4g9jJJ174jz3hhWZ;
- Wed,  6 May 2026 13:37:36 -0400 (EDT)
-Received: from hal-station.localdomain
- (bras-base-toroon4332w-grc-26-174-91-51-28.dsl.bell.ca [174.91.51.28])
- by mta-11.privateemail.com (Postfix) with ESMTPA;
- Wed,  6 May 2026 13:37:02 -0400 (EDT)
-Date: Wed, 6 May 2026 13:36:58 -0400
-From: Hamza Mahfooz <someguy@effective-light.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Leo Li <sunpeng.li@amd.com>, Harry Wentland <harry.wentland@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B90F10E1EE;
+ Wed,  6 May 2026 18:47:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778093237; x=1809629237;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=3xpbKJPzqoU1Z63eak0Nx7FiPMzzURfEUudld2qqJTU=;
+ b=ZxXcdMC/fatLn/BOtuZE5v7iCPX/572DkxaDDSPtG+Jzjas9GOVppDU2
+ BAR59Q7IgDGBBWi8H0bfaM6aXo+OAgQGZQ0mVlrfxngkAQsovugEDDMBx
+ 578Z4PNLw88LzBI5df7m3JzCxZIIQDBXQpC7LQaiFRGB0KhLKdkJVfSIR
+ i4c+grI9+NG9Xm7b8fttRjzvCLyUHDQxgLu40yj8ZWqmXwUK2t5FAlOXC
+ 9zLoIOZH7M5iRO1eETTZCA+5L3JpEGBlbbZOlmR4BA2I+XvO/9bCjt5Mk
+ en5ykbxoOF4/TjJ7Zhcj9oLVU5/GJlpebGY6rDZBSr3t0iF9sVP4wnerV A==;
+X-CSE-ConnectionGUID: HjhATKS+RC2ZdR2cBHTOVQ==
+X-CSE-MsgGUID: UxZudTMBR2y8r4JjiHU0pA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="66566774"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="66566774"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2026 11:47:16 -0700
+X-CSE-ConnectionGUID: h5WmaH2FTjeC1v/DIqpSdg==
+X-CSE-MsgGUID: wyaab4rqQyeoF1LpeBAujA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="236137464"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.47])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2026 11:47:09 -0700
+Date: Wed, 6 May 2026 21:47:05 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Hamza Mahfooz <someguy@effective-light.com>
+Cc: dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
@@ -38,8 +60,8 @@ Cc: Leo Li <sunpeng.li@amd.com>, Harry Wentland <harry.wentland@amd.com>,
  Thomas Zimmermann <tzimmermann@suse.de>,
  Mario Limonciello <mario.limonciello@amd.com>,
  Alex Hung <alex.hung@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
  Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
  "Mario Limonciello (AMD)" <superm1@kernel.org>,
  Ivan Lipski <ivan.lipski@amd.com>, Chenyu Chen <chen-yu.chen@amd.com>,
  Matthew Schwartz <matthew.schwartz@linux.dev>,
@@ -47,16 +69,18 @@ Cc: Leo Li <sunpeng.li@amd.com>, Harry Wentland <harry.wentland@amd.com>,
  Takashi Iwai <tiwai@suse.de>, Colin Ian King <colin.i.king@gmail.com>,
  Charlene Liu <charlene.liu@amd.com>, Kees Cook <kees@kernel.org>,
  amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] drm/amd/display: add DMU timeout recovery support
-Message-ID: <aft8Ogq3uG0FDBnV@hal-station.localdomain>
+Subject: Re: [PATCH v6 1/2] drm/atomic: attempt full modeset on page flip
+ timeout
+Message-ID: <afuMqXoBt2oIFRm9@intel.com>
 References: <20260505182105.420525-1-someguy@effective-light.com>
- <20260505182105.420525-2-someguy@effective-light.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20260505182105.420525-2-someguy@effective-light.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Mailman-Approved-At: Thu, 07 May 2026 10:13:28 +0000
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260505182105.420525-1-someguy@effective-light.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,41 +94,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 09A404E6922
+X-Rspamd-Queue-Id: 17D0B4DF806
+X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.89 / 15.00];
+X-Spamd-Result: default: False [0.78 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_MIXED_CHARSET(0.59)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[effective-light.com];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,linux.dev,lists.freedesktop.org,vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.976];
-	FROM_NEQ_ENVFROM(0.00)[someguy@effective-light.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,linux.dev,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,hal-station.localdomain:mid,effective-light.com:email]
-X-Rspamd-Action: no action
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[effective-light.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On Tue, May 05, 2026 at 02:20:58PM -0400, Hamza Mahfooz wrote:
-> DMU already has robust hung state tracking, but timeout recovery
-> was never hooked up, so do so now.
+On Tue, May 05, 2026 at 02:20:57PM -0400, Hamza Mahfooz wrote:
+> We should try to recover from page flip timeouts. Forcing
+> a full modeset should be generic across all atomic KMS drivers,
+> so try that first.
 > 
-> Reviewed-by: Leo Li <sunpeng.li@amd.com>
 > Signed-off-by: Hamza Mahfooz <someguy@effective-light.com>
+> ---
+>  drivers/gpu/drm/drm_atomic_helper.c | 49 +++++++++++++++++++++++++++--
+>  1 file changed, 46 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+> index a768398a1884..7ee9d52f63c5 100644
+> --- a/drivers/gpu/drm/drm_atomic_helper.c
+> +++ b/drivers/gpu/drm/drm_atomic_helper.c
+> @@ -1926,6 +1926,43 @@ drm_atomic_helper_wait_for_vblanks(struct drm_device *dev,
+>  }
+>  EXPORT_SYMBOL(drm_atomic_helper_wait_for_vblanks);
+>  
+> +static int force_full_modeset(struct drm_crtc *crtc)
+> +{
+> +	struct drm_modeset_acquire_ctx ctx;
+> +	struct drm_crtc_state *crtc_state;
+> +	struct drm_atomic_state *state;
+> +	int ret;
+> +	int err;
+> +
+> +	if (drm_atomic_crtc_needs_modeset(crtc->state))
+> +		return -EBUSY;
+> +
+> +	DRM_MODESET_LOCK_ALL_BEGIN(crtc->dev, ctx, 0, err);
+> +	state = drm_atomic_state_alloc(crtc->dev);
+> +	if (!state)
+> +		return -ENOMEM;
+> +
+> +	state->acquire_ctx = &ctx;
+> +
+> +	crtc_state = drm_atomic_get_crtc_state(state, crtc);
+> +	if (IS_ERR(crtc_state)) {
+> +		ret = PTR_ERR(crtc_state);
+> +		goto out;
+> +	}
+> +
+> +	crtc_state->mode_changed = true;
+> +
+> +	drm_info(crtc->dev,
+> +		 "[CRTC:%d:%s] Attempting force full modeset...\n",
+> +		 crtc->base.id, crtc->name);
+> +
+> +	ret = drm_atomic_commit(state);
+> +out:
+> +	drm_atomic_state_put(state);
+> +	DRM_MODESET_LOCK_ALL_END(crtc->dev, ctx, err);
+> +	return ret;
+> +}
+> +
+>  /**
+>   * drm_atomic_helper_wait_for_flip_done - wait for all page flips to be done
+>   * @dev: DRM device
+> @@ -1949,17 +1986,23 @@ void drm_atomic_helper_wait_for_flip_done(struct drm_device *dev,
+>  
+>  	for (i = 0; i < dev->mode_config.num_crtc; i++) {
+>  		struct drm_crtc_commit *commit = state->crtcs[i].commit;
+> -		int ret;
+>  
+>  		crtc = state->crtcs[i].ptr;
+>  
+>  		if (!crtc || !commit)
+>  			continue;
+>  
+> -		ret = wait_for_completion_timeout(&commit->flip_done, 10 * HZ);
+> -		if (ret == 0)
+> +		if (!wait_for_completion_timeout(&commit->flip_done, 10 * HZ)) {
+> +			int ret;
+>  			drm_err(dev, "[CRTC:%d:%s] flip_done timed out\n",
+>  				crtc->base.id, crtc->name);
+> +
+> +			ret = force_full_modeset(crtc);
 
-Does anyone mind if I merge this through drm-misc?
+This looks like some kind of ugly hack to paper over a driver bug.
+I really don't want this for i915/xe because all it'll end up doing
+is make it harder to debug any real issues.
+
+> +			if (ret)
+> +				drm_err(dev,
+> +					"[CRTC:%d:%s] force full modeset failed! ret=%d\n",
+> +					crtc->base.id, crtc->name, ret);
+> +		}
+>  	}
+>  
+>  	if (state->fake_commit)
+> -- 
+> 2.54.0
+
+-- 
+Ville Syrjälä
+Intel
