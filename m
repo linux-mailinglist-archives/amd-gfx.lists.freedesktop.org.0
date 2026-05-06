@@ -2,85 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uDZIGbuM+2lEcgMAu9opvQ
+	id EOluC5yT+2mrcwMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 20:47:23 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 21:16:44 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17D0B4DF806
-	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 20:47:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFF054DFA43
+	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 21:16:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA50F10E55F;
-	Wed,  6 May 2026 18:47:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D188A10E582;
+	Wed,  6 May 2026 19:16:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZxXcdMC/";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="XN3iL33f";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B90F10E1EE;
- Wed,  6 May 2026 18:47:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778093237; x=1809629237;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=3xpbKJPzqoU1Z63eak0Nx7FiPMzzURfEUudld2qqJTU=;
- b=ZxXcdMC/fatLn/BOtuZE5v7iCPX/572DkxaDDSPtG+Jzjas9GOVppDU2
- BAR59Q7IgDGBBWi8H0bfaM6aXo+OAgQGZQ0mVlrfxngkAQsovugEDDMBx
- 578Z4PNLw88LzBI5df7m3JzCxZIIQDBXQpC7LQaiFRGB0KhLKdkJVfSIR
- i4c+grI9+NG9Xm7b8fttRjzvCLyUHDQxgLu40yj8ZWqmXwUK2t5FAlOXC
- 9zLoIOZH7M5iRO1eETTZCA+5L3JpEGBlbbZOlmR4BA2I+XvO/9bCjt5Mk
- en5ykbxoOF4/TjJ7Zhcj9oLVU5/GJlpebGY6rDZBSr3t0iF9sVP4wnerV A==;
-X-CSE-ConnectionGUID: HjhATKS+RC2ZdR2cBHTOVQ==
-X-CSE-MsgGUID: UxZudTMBR2y8r4JjiHU0pA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="66566774"
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="66566774"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 11:47:16 -0700
-X-CSE-ConnectionGUID: h5WmaH2FTjeC1v/DIqpSdg==
-X-CSE-MsgGUID: wyaab4rqQyeoF1LpeBAujA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="236137464"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.47])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 11:47:09 -0700
-Date: Wed, 6 May 2026 21:47:05 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Hamza Mahfooz <someguy@effective-light.com>
-Cc: dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Alex Hung <alex.hung@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
- Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Ivan Lipski <ivan.lipski@amd.com>, Chenyu Chen <chen-yu.chen@amd.com>,
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E78610E57A;
+ Wed,  6 May 2026 19:16:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=kbh8Dx9ZT2NXbhoJFJ29DLjgkN9Znn/NHozEGfNgbuY=; b=XN3iL33fQkmeLlBxvghctZ+bqz
+ 9FOKDeb0obBCi1nino56lSN2l1+pweE6+P9mxTUR0XimiRwkbODoq4UoSrhhkysTVr8+BUqBeJ1fg
+ JX9SRFWv/m1v7kzBVG36lH2qVjWxPqGaHA0dxWxkcdtYmuBBOXwEI+Dqo5iznmNu4UNrUZy4C6prN
+ /RUHcLJRC+P9hrK056WZ754uFYW54bTpDsf9TZ2sdSv3r+J+DyhBVAbwzCAgHFcpCuYhd687k0tuJ
+ pcYm0QFEUe13/qR8VQzzurJ2BvVz68/Sn3Acb8J1jmSVgJa+sDg37OU67UytMUvUUAgHfu2IWiBbF
+ dP2RhuiQ==;
+Received: from [186.208.73.228] (helo=killbill.home)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wKhjJ-0072Pg-PM; Wed, 06 May 2026 21:16:21 +0200
+From: Melissa Wen <mwen@igalia.com>
+To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ harry.wentland@amd.com, simona@ffwll.ch, siqueira@igalia.com,
+ sunpeng.li@amd.com
+Cc: Krunoslav Kovac <Krunoslav.Kovac@amd.com>,
+ "Dr . David Alan Gilbert" <linux@treblig.org>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+ Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <Aurabindo.Pillai@amd.com>,
  Matthew Schwartz <matthew.schwartz@linux.dev>,
- Tom Chung <chiahsuan.chung@amd.com>, Roman Li <Roman.Li@amd.com>,
- Takashi Iwai <tiwai@suse.de>, Colin Ian King <colin.i.king@gmail.com>,
- Charlene Liu <charlene.liu@amd.com>, Kees Cook <kees@kernel.org>,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] drm/atomic: attempt full modeset on page flip
- timeout
-Message-ID: <afuMqXoBt2oIFRm9@intel.com>
-References: <20260505182105.420525-1-someguy@effective-light.com>
+ pekka.paalanen@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, kernel-dev@igalia.com
+Subject: [PATCH v2 0/5] better LUT segmentation for EOTFs
+Date: Wed,  6 May 2026 16:11:47 -0300
+Message-ID: <20260506191606.15022-1-mwen@igalia.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260505182105.420525-1-someguy@effective-light.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,132 +68,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 17D0B4DF806
+X-Rspamd-Queue-Id: CFF054DFA43
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.78 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_MIXED_CHARSET(0.59)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [1.49 / 15.00];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+	MID_CONTAINS_FROM(1.00)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,amd.com,ffwll.ch,igalia.com];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,linux.dev,vger.kernel.org];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.980];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[effective-light.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,igalia.com:mid]
 
-On Tue, May 05, 2026 at 02:20:57PM -0400, Hamza Mahfooz wrote:
-> We should try to recover from page flip timeouts. Forcing
-> a full modeset should be generic across all atomic KMS drivers,
-> so try that first.
-> 
-> Signed-off-by: Hamza Mahfooz <someguy@effective-light.com>
-> ---
->  drivers/gpu/drm/drm_atomic_helper.c | 49 +++++++++++++++++++++++++++--
->  1 file changed, 46 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-> index a768398a1884..7ee9d52f63c5 100644
-> --- a/drivers/gpu/drm/drm_atomic_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> @@ -1926,6 +1926,43 @@ drm_atomic_helper_wait_for_vblanks(struct drm_device *dev,
->  }
->  EXPORT_SYMBOL(drm_atomic_helper_wait_for_vblanks);
->  
-> +static int force_full_modeset(struct drm_crtc *crtc)
-> +{
-> +	struct drm_modeset_acquire_ctx ctx;
-> +	struct drm_crtc_state *crtc_state;
-> +	struct drm_atomic_state *state;
-> +	int ret;
-> +	int err;
-> +
-> +	if (drm_atomic_crtc_needs_modeset(crtc->state))
-> +		return -EBUSY;
-> +
-> +	DRM_MODESET_LOCK_ALL_BEGIN(crtc->dev, ctx, 0, err);
-> +	state = drm_atomic_state_alloc(crtc->dev);
-> +	if (!state)
-> +		return -ENOMEM;
-> +
-> +	state->acquire_ctx = &ctx;
-> +
-> +	crtc_state = drm_atomic_get_crtc_state(state, crtc);
-> +	if (IS_ERR(crtc_state)) {
-> +		ret = PTR_ERR(crtc_state);
-> +		goto out;
-> +	}
-> +
-> +	crtc_state->mode_changed = true;
-> +
-> +	drm_info(crtc->dev,
-> +		 "[CRTC:%d:%s] Attempting force full modeset...\n",
-> +		 crtc->base.id, crtc->name);
-> +
-> +	ret = drm_atomic_commit(state);
-> +out:
-> +	drm_atomic_state_put(state);
-> +	DRM_MODESET_LOCK_ALL_END(crtc->dev, ctx, err);
-> +	return ret;
-> +}
-> +
->  /**
->   * drm_atomic_helper_wait_for_flip_done - wait for all page flips to be done
->   * @dev: DRM device
-> @@ -1949,17 +1986,23 @@ void drm_atomic_helper_wait_for_flip_done(struct drm_device *dev,
->  
->  	for (i = 0; i < dev->mode_config.num_crtc; i++) {
->  		struct drm_crtc_commit *commit = state->crtcs[i].commit;
-> -		int ret;
->  
->  		crtc = state->crtcs[i].ptr;
->  
->  		if (!crtc || !commit)
->  			continue;
->  
-> -		ret = wait_for_completion_timeout(&commit->flip_done, 10 * HZ);
-> -		if (ret == 0)
-> +		if (!wait_for_completion_timeout(&commit->flip_done, 10 * HZ)) {
-> +			int ret;
->  			drm_err(dev, "[CRTC:%d:%s] flip_done timed out\n",
->  				crtc->base.id, crtc->name);
-> +
-> +			ret = force_full_modeset(crtc);
+Hi,
 
-This looks like some kind of ugly hack to paper over a driver bug.
-I really don't want this for i915/xe because all it'll end up doing
-is make it harder to debug any real issues.
+With an external HDR monitor, we can see gradient banding around the sun
+in the intro of Ori and the Will of the Wisps game on steamOS/Gamescope.
+Gamescope uses AMD predefined transfer functions for degamma,
+shaper/pre-3D-LUT and blend/post-3D-LUT plus CRTC regamma, however, only
+degamma block has hardware curves. Shaper, blend, regamma predefined TFs
+are software-computed by AMD color module into PWL LUTs. In addition, we
+cannot use hardware curves on PRE_DEGAM with subsampled format, so that,
+predefined TFs are also translated to LUTs in this situation, using
+GAMCOR block instead. For this translation, the driver originally used
+the same helper for EOTFs and inverse EOTFs, even though they differ in
+input domain, number of regions and number of TF points per region.
 
-> +			if (ret)
-> +				drm_err(dev,
-> +					"[CRTC:%d:%s] force full modeset failed! ret=%d\n",
-> +					crtc->base.id, crtc->name, ret);
-> +		}
->  	}
->  
->  	if (state->fake_commit)
-> -- 
-> 2.54.0
+Baring this in mind, patch 1 maps degamma predefined curves as LUT using
+GAMCOR block for AMD driver-specific property that are still in use by
+current gamescope. This was inspired by a similar patch from Harry for
+colorop [1]. Patch 2 reverts commit 8b89acc0b2ba ("drm/amd/display:
+Remove unused cm3_helper_translate_curve_to_degamma_hw_format") to
+reintroduce cm3_helper_translate_curve_to_degamma_hw_format() and patch
+3 wire it up for encoded -> linear-light LUTs (degamma/blend). With 16
+samples per region across 12 regions for blend LUT (where hardware
+fixed-function curves are not available and predefined TFs are
+software-computed into LUTs), banding becomes almost imperceptible.
+
+Patch 4 and 5 increase precision in the brightest half, where PQ/SRGB
+EOTFs are steeper, by enabling up to 256 samples per region and halving
+the per-region point count across 9 regions (128 in [0.5, 1], 64 in
+[0.25, 0.5], â€¦). This better matches the shape of PQ/SRGB EOTFs.
+Although patches 4 and 5 seem conceptually correct to me, I couldn't see
+clear improvement in the bright end with or without them.
+
+This series targets DCN3+ hw families. With this series:
+- degamma and blend LUTs use
+  cm3_helper_translate_curve_to_degamma_hw_format(): encoded input,
+  non-zero end slope, up to 256 points linearly interpolated between
+  adjacent TF pts, fitting [0,1] encoded input range.
+- shaper and regamma LUTs continue using
+  cm3_helper_translate_curve_to_hw_format(): linear-light input, zero
+  end slope, 16 points per region across 32 regions.
+
+[1] https://lore.kernel.org/dri-devel/20260330153451.99472-8-harry.wentland@amd.com/
+
+[v1] https://lore.kernel.org/dri-devel/20260414220237.184289-1-mwen@igalia.com/
+Changes:
+- new patch for GAMCOR usage in case of degamma predefined TF with subsampled formats
+- fix misleading information regarding degamma hw curves (Kruno)
+- clarify LUT segmentation choice using 8-bit sRGB as a reference (Kruno)
+
+Best Regards,
+
+Melissa
+
+Melissa Wen (5):
+  drm/amd/display: use GAMCOR for degamma private props in subsampled
+    format
+  Revert "drm/amd/display: Remove unused
+    cm3_helper_translate_curve_to_degamma_hw_format"
+  drm/amd/display: use a separate helper to translate degamma curves
+  drm/amd/display: support up to 256 samples per region in degamma/blend
+    LUT
+  drm/amd/display: use halving distribution for PQ/sRGB linearizing LUT
+
+ .../amd/display/amdgpu_dm/amdgpu_dm_color.c   |  16 +-
+ .../amd/display/dc/dcn30/dcn30_cm_common.c    | 184 ++++++++++++++++++
+ .../display/dc/dwb/dcn30/dcn30_cm_common.h    |   4 +
+ .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   |  10 +-
+ 4 files changed, 204 insertions(+), 10 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.53.0
+
