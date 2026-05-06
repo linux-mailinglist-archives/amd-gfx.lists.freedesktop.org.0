@@ -2,59 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WKuTIqiT+2nccwMAu9opvQ
+	id u+wMEiGW+2ladAMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 21:16:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 21:27:29 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 175504DFA7A
-	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 21:16:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF9354DFB7D
+	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 21:27:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63D0410EE71;
-	Wed,  6 May 2026 19:16:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0C3910EE73;
+	Wed,  6 May 2026 19:27:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="MQd1Iajb";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="GCMEKaL8";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BFD410EE6D;
- Wed,  6 May 2026 19:16:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76D0710EE73;
+ Wed,  6 May 2026 19:27:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=tZ3JzJ5JQU2GBZv6lygmD9K4XBQVXEkAzYW7c7jd/Cc=; b=MQd1IajbpBzGmXxfqVmnWgOS8H
- kXhwgGMEKW3mdY/1R3fQWaDITqE1vLyoL0H5n6mNfP32PZ69EFBtFimApz6mhy29FXyYoIcDg8gJQ
- 3wCl7HJVmyFO1/FGew9SEUpgfphi+fkDa3fkUFpBt0si3Mu9thfTch810FpcqvPtrx9UlbcQ6Ldv1
- le8RzSAX3On0i9W/zMvy16dY+Lg+LxcWienwbRAeH0AR1aMYJG/ITP2B7Q4j0/eDmsdom87YBrB9x
- l79AAXCtf8jsrs6VnsFlD4BLIRc9H38lRiGZeG9uFzePc7MbehLNu7bVSDQ1ilyb9vevaJhoNS6M0
- gcm+OCLQ==;
+ bh=bJqPJBF9SekaGU8cT1ZSfs50O5CZ6j8t03exIfnIX5g=; b=GCMEKaL8BImfivcNvz2qWGWCNU
+ 3ag8PoZDocq3DiBG+dLvm+gh/PMQpK2UeDzzn+KX8AlaBLMbO08ZXrgaz3FgSO23WlNRMV20EZ1Mx
+ y7BqQ9hWfuMzRHRQo+fVjEfxqwK4qoA4uVCCs3l+oDttuEDmHY6ky0+twzYNq/jFSnqDSyEQVTDp+
+ EXldSNHoQroC1oi3xGZoopFrdGQRFok4C1xdY3Ga4gSmS5h6VnN47pZetENXJSmxChNANkw6sqSHw
+ H3innj188AQd5inku2jK8gH+XUBhsokQezhDU7YldUZuc8BYINqYiU3Hktlv9x3nM8QJFKlUH9iuF
+ Bp5D+vXA==;
 Received: from [186.208.73.228] (helo=killbill.home)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wKhjg-0072Pg-Qd; Wed, 06 May 2026 21:16:44 +0200
+ id 1wKhtR-0072dZ-Q5; Wed, 06 May 2026 21:26:49 +0200
 From: Melissa Wen <mwen@igalia.com>
 To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
- harry.wentland@amd.com, simona@ffwll.ch, siqueira@igalia.com,
- sunpeng.li@amd.com
-Cc: Krunoslav Kovac <Krunoslav.Kovac@amd.com>,
- "Dr . David Alan Gilbert" <linux@treblig.org>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
- Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <Aurabindo.Pillai@amd.com>,
+ harry.wentland@amd.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, simona@ffwll.ch, siqueira@igalia.com,
+ sunpeng.li@amd.com, tzimmermann@suse.de
+Cc: Alex Hung <alex.hung@amd.com>, Simon Ser <contact@emersion.fr>,
+ Uma Shankar <uma.shankar@intel.com>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Xaver Hugl <xaver.hugl@kde.org>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
  Matthew Schwartz <matthew.schwartz@linux.dev>,
- pekka.paalanen@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, kernel-dev@igalia.com
-Subject: [PATCH v2 5/5] drm/amd/display: use halving distribution for PQ/sRGB
- linearizing LUT
-Date: Wed,  6 May 2026 16:11:52 -0300
-Message-ID: <20260506191606.15022-6-mwen@igalia.com>
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v5 0/6] drm/atomic: track individual colorop updates
+Date: Wed,  6 May 2026 16:23:46 -0300
+Message-ID: <20260506192633.16066-1-mwen@igalia.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260506191606.15022-1-mwen@igalia.com>
-References: <20260506191606.15022-1-mwen@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -70,116 +76,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 175504DFA7A
+X-Rspamd-Queue-Id: DF9354DFB7D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.99 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
 	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_CC(0.00)[amd.com,emersion.fr,intel.com,kde.org,collabora.com,bootlin.com,linux.dev,lists.freedesktop.org,igalia.com,oss.qualcomm.com,kernel.org,gmail.com,poorly.run,somainline.org,vger.kernel.org];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com,ffwll.ch,igalia.com];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	FREEMAIL_TO(0.00)[gmail.com,amd.com,linux.intel.com,kernel.org,ffwll.ch,igalia.com,suse.de];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	NEURAL_HAM(-0.00)[-0.972];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.901];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:mid,igalia.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,igalia.com:mid]
 
-When linearizing, the input is an encoded signal bounded to [0,1] and
-PQ/sRGB EOTFs are steepest near 1, requiring more precision near the
-bright end.
+This series aims to track updates for each individual color operation,
+allowing the driver to react accordingly.
 
-Take the 8-bit sRGB case as a reference: 256 possible inputs and 256 HW
-LUT points line up, so the LUT acts as plain indexing. Float
-representations don't land perfectly, but LERP-ing between two HW
-entries, when input is within a small epsilon of one of them, doesn't
-materially change the result.
+- Patches 1 and 2 make colorop update process more consistent and
+  optimized by only keeping colorop states from active color pipelines.
 
-Replace the uniform 12-region distribution (16 points each,
-192 total, range [2^-12, 1]) with a 9-region halving distribution for
-the PQ/sRGB pre-defined EOTF: 128 points in the top region [0.5, 1], 64
-in the next, 32 in the next, and so on, down to 1 point in each of the
-two darkest regions. Total samples grow from 192 to 256, with uniform
-1/256 spacing across [0, 1]. The dark tail below 2^-9 is no longer
-sampled separately, which is acceptable for PQ/sRGB.
+- Patches 3 and 4 make lut1d_interpolation and lut3d_interpolation
+  colorops correctly behave as mutable, handling their changes via
+  drm_colorop_state.
 
-Suggested-by: Krunoslav Kovac <Krunoslav.Kovac@amd.com>
-Signed-off-by: Melissa Wen <mwen@igalia.com>
----
- .../amd/display/dc/dcn30/dcn30_cm_common.c    | 33 ++++++++++++++-----
- 1 file changed, 24 insertions(+), 9 deletions(-)
+- Finally, patches 5 and 6 track colorop updates of a given plane color
+  pipeline by setting plane `color_mgmt_changed` flag, similar to what
+  is done for tracking CRTC color mgmt property changes with CRTC
+  `color_mgmt_changed` flag. The flag also tracks when a different color
+  pipeline is set to a given plane. That way, the driver can react
+  accordingly and update their color blocks.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_cm_common.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_cm_common.c
-index 70b7bc3494a2..66fe7f313ea3 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_cm_common.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_cm_common.c
-@@ -303,8 +303,6 @@ bool cm3_helper_translate_curve_to_hw_format(struct dc_context *ctx,
- 	return true;
- }
- 
--#define NUM_DEGAMMA_REGIONS    12
--
- /* Linear interpolation of tf_pts entries, where (i >> 4) is the integer tf_pts
-  * index, (i & 0xf) is the 1/16 sub-position.
-  */
-@@ -345,17 +343,34 @@ bool cm3_helper_translate_curve_to_degamma_hw_format(
- 	memset(lut_params, 0, sizeof(struct pwl_params));
- 	memset(seg_distr, 0, sizeof(seg_distr));
- 
--	region_start = -NUM_DEGAMMA_REGIONS;
--	region_end   = 0;
-+	if (output_tf->tf == TRANSFER_FUNCTION_PQ ||
-+	    output_tf->tf == TRANSFER_FUNCTION_SRGB) {
-+		/* 9 segments
-+		 * segments are from 2^-9 to 0
-+		 */
-+		const uint8_t SEG_COUNT = 9;
-+		seg_distr[0] = 0; // Since we only have one point in darkest region
-+		for (k = 1; k < SEG_COUNT; k++)
-+			seg_distr[k] = k - 1; // 2^(k-1) points per region; halves as k decreases
- 
-+		region_start = -SEG_COUNT;
-+		region_end = 0;
-+	} else {
-+		/* 12 segments
-+		 * segments are from 2^-12 to 2^0
-+		 * There are less than 256 points, for optimization
-+		 */
-+		const uint8_t SEG_COUNT = 12;
-+
-+		for (i = 0; i < SEG_COUNT; i++)
-+			seg_distr[i] = 4;
-+
-+		region_start = -SEG_COUNT;
-+		region_end = 0;
-+	}
- 
- 	for (i = region_end - region_start; i < MAX_REGIONS_NUMBER ; i++)
- 		seg_distr[i] = -1;
--	/* 12 segments
--	 * segments are from 2^-12 to 0
--	 */
--	for (i = 0; i < NUM_DEGAMMA_REGIONS ; i++)
--		seg_distr[i] = 4;
- 
- 	for (k = 0; k < MAX_REGIONS_NUMBER; k++) {
- 		if (seg_distr[k] != -1)
+It also fixes shaper/3D LUT updates when changing night mode settings on
+gamescope with a custom branch that supports `COLOR_PIPELINE`:
+- https://github.com/ValveSoftware/gamescope/pull/2113
+
+v1: https://lore.kernel.org/dri-devel/20260318162348.299807-1-mwen@igalia.com/
+Changes:
+- include linux types for function's bool return type (kernel bot on MSM
+  driver)
+- add Harry's r-b tags
+
+v2: https://lore.kernel.org/dri-devel/20260323131942.494217-1-mwen@igalia.com/
+Changes:
+- [NEW] two patches to only consider colorop updates from active color
+  pipelines (Chaitanya)
+- [NEW] make lut interpolation properties mutable + Alex H patch for
+  kernel docs
+- track lut(1/3)d_interpolation updates (Chaitanya)
+- rebase changes according to new patches
+
+v3: https://lore.kernel.org/dri-devel/20260403135909.214378-1-mwen@igalia.com/
+Changes: rebase on drm-misc-next
+
+v4: https://lore.kernel.org/dri-devel/20260501132527.522320-1-mwen@igalia.com/
+Changes: fix kernel doc (kernel bot)
+
+Melissa Wen
+
+Alex Hung (1):
+  drm/colorop: Remove read-only comments from interpolation fields
+
+Melissa Wen (5):
+  drm/atomic: only add colorop state from active color pipeline
+  drm/atomic: don't set colorop properties of inactive color pipelines
+  drm/colorop: make lut(1/3)d_interpolation mutable
+  drm/atomic: track individual colorop updates
+  drm/amd/display: use plane color_mgmt_changed to track colorop changes
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  6 +-
+ drivers/gpu/drm/drm_atomic.c                  | 43 +++++----
+ drivers/gpu/drm/drm_atomic_helper.c           |  9 +-
+ drivers/gpu/drm/drm_atomic_uapi.c             | 93 +++++++++++++++----
+ drivers/gpu/drm/drm_colorop.c                 | 16 +++-
+ include/drm/drm_atomic.h                      |  2 +-
+ include/drm/drm_atomic_uapi.h                 |  4 +-
+ include/drm/drm_colorop.h                     | 34 ++++---
+ 8 files changed, 136 insertions(+), 71 deletions(-)
+
 -- 
 2.53.0
 
