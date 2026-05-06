@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iHNfLCSW+2ladAMAu9opvQ
+	id wJqRNiiW+2lHdAMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 21:27:32 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 21:27:36 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C35F4DFB9C
-	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 21:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3F254DFBD2
+	for <lists+amd-gfx@lfdr.de>; Wed, 06 May 2026 21:27:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED04E10EE7E;
-	Wed,  6 May 2026 19:27:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0820C10EE82;
+	Wed,  6 May 2026 19:27:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="H8/W6XLa";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Nw7NbTCg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E65510EE7E;
- Wed,  6 May 2026 19:27:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD51F10EE87;
+ Wed,  6 May 2026 19:27:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -27,16 +27,16 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ODId+Puv+ksLM5ZeP1J/HwczMH5qfWb0nljTGmHwaLI=; b=H8/W6XLa41JzkcGaEfRluJFnjb
- OIkSAtQy7cmTFwEbiLtuTmgvnto79gBBmF2Pb9kX6tkwtvNUdVgKccWC5DPV9yHpvpHpQEamDHavI
- r5b3e3PeoAMq+Abi4dPLYTePnpF4eSj4WWdL3BquLavdIk9pxIEXO5ylNr6kZQ+GELxIuh/QN9PkX
- YYFqn/evZSZmHnq0lfFKiq4k5AfRSnlx7/uvYPQM8qeH2mUxmwktEK5eH6LDfUxDHJigDugQKTd1L
- /3QQfT6xB3MOOjAEB1epeFcO/U5yf4906pxgbYNaS+caKcq8GS428qbCOCrRguQeoJwWV+lpLk6sx
- yhZnqexA==;
+ bh=tLR8fOrH/XWlPxrLzyB6f4fqRweePSBKOoEQzJ38xk4=; b=Nw7NbTCgmKzf4C+wN8x0Uh8Ozr
+ gpCw+6z+po/92OKR1pqA3Khhio50aAi424i8teJ8zeGAqbOP4L+eovInUAFpCdT93XweQh/gQ3ZQc
+ 6TuFjcAiRh+2aWZFb7E3fXZkUVwSMLYtFaMnfdDTF+6E+JexDP6pcG0hTH368AwV39ZsblaZmyYEv
+ BvyCTV9Uyz4cxF+gtdYC3ybMt9qucJN73xiUEdpb2AMiyPAkTrg0r+u1E6qctAyDGB1BTxhl1yUiR
+ gr2V+KOgFeI2X/48z8QdrjvsqU/jR1+oKZW0Y9ug8I20kjjuiYFbSN8k8DMDCPURwX6DEPSx5vjK1
+ MY4JmFhg==;
 Received: from [186.208.73.228] (helo=killbill.home)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wKhtg-0072dZ-Ho; Wed, 06 May 2026 21:27:04 +0200
+ id 1wKhtn-0072dZ-NE; Wed, 06 May 2026 21:27:11 +0200
 From: Melissa Wen <mwen@igalia.com>
 To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
  harry.wentland@amd.com, maarten.lankhorst@linux.intel.com,
@@ -57,10 +57,10 @@ Cc: Alex Hung <alex.hung@amd.com>, Simon Ser <contact@emersion.fr>,
  Marijn Suijten <marijn.suijten@somainline.org>,
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH v5 2/6] drm/atomic: don't set colorop properties of inactive
- color pipelines
-Date: Wed,  6 May 2026 16:23:48 -0300
-Message-ID: <20260506192633.16066-3-mwen@igalia.com>
+Subject: [PATCH v5 3/6] drm/colorop: Remove read-only comments from
+ interpolation fields
+Date: Wed,  6 May 2026 16:23:49 -0300
+Message-ID: <20260506192633.16066-4-mwen@igalia.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260506192633.16066-1-mwen@igalia.com>
 References: <20260506192633.16066-1-mwen@igalia.com>
@@ -79,7 +79,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 4C35F4DFB9C
+X-Rspamd-Queue-Id: B3F254DFBD2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.99 / 15.00];
@@ -105,77 +105,61 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.919];
+	NEURAL_HAM(-0.00)[-0.922];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,igalia.com:mid,igalia.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,igalia.com:mid,amd.com:email]
 
-Reject attempts to change property values of a colorop that is not
-part of an active plane color pipeline.
+From: Alex Hung <alex.hung@amd.com>
 
-Suggested-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Signed-off-by: Melissa Wen <mwen@igalia.com>
+The lut1d_interpolation and lut3d_interpolation fields and their
+associated properties were marked as read-only, but userspace
+can set them via drm_atomic_colorop_set_property().
+
+Signed-off-by: Alex Hung <alex.hung@amd.com>
 ---
- drivers/gpu/drm/drm_atomic_uapi.c | 34 ++++++++++++++++++++++++++-----
- 1 file changed, 29 insertions(+), 5 deletions(-)
+ include/drm/drm_colorop.h | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-index 5bd5bf6661df..bff8d58f8f12 100644
---- a/drivers/gpu/drm/drm_atomic_uapi.c
-+++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -1275,15 +1275,38 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
- 		break;
- 	}
- 	case DRM_MODE_OBJECT_COLOROP: {
--		struct drm_colorop *colorop = obj_to_colorop(obj);
--		struct drm_colorop_state *colorop_state;
-+		struct drm_colorop *active_colorop, *colorop = obj_to_colorop(obj);
-+		struct drm_colorop_state *colorop_state = NULL;
-+		struct drm_plane_state *plane_state;
+diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
+index bd082854ca74..61cc8206b4c4 100644
+--- a/include/drm/drm_colorop.h
++++ b/include/drm/drm_colorop.h
+@@ -309,7 +309,6 @@ struct drm_colorop {
+ 	/**
+ 	 * @lut1d_interpolation:
+ 	 *
+-	 * Read-only
+ 	 * Interpolation for DRM_COLOROP_1D_LUT
+ 	 */
+ 	enum drm_colorop_lut1d_interpolation_type lut1d_interpolation;
+@@ -317,7 +316,6 @@ struct drm_colorop {
+ 	/**
+ 	 * @lut3d_interpolation:
+ 	 *
+-	 * Read-only
+ 	 * Interpolation for DRM_COLOROP_3D_LUT
+ 	 */
+ 	enum drm_colorop_lut3d_interpolation_type lut3d_interpolation;
+@@ -325,7 +323,7 @@ struct drm_colorop {
+ 	/**
+ 	 * @lut1d_interpolation_property:
+ 	 *
+-	 * Read-only property for DRM_COLOROP_1D_LUT interpolation
++	 * Property for DRM_COLOROP_1D_LUT interpolation
+ 	 */
+ 	struct drm_property *lut1d_interpolation_property;
  
--		colorop_state = drm_atomic_get_colorop_state(state, colorop);
--		if (IS_ERR(colorop_state)) {
--			ret = PTR_ERR(colorop_state);
-+		plane_state = drm_atomic_get_plane_state(state, colorop->plane);
-+		if (IS_ERR(plane_state)) {
-+			ret = PTR_ERR(plane_state);
- 			break;
- 		}
+@@ -353,7 +351,7 @@ struct drm_colorop {
+ 	/**
+ 	 * @lut3d_interpolation_property:
+ 	 *
+-	 * Read-only property for DRM_COLOROP_3D_LUT interpolation
++	 * Property for DRM_COLOROP_3D_LUT interpolation
+ 	 */
+ 	struct drm_property *lut3d_interpolation_property;
  
-+		/* Check if the colorop obj is part of an active color pipeline */
-+		for (active_colorop = plane_state->color_pipeline;
-+		     active_colorop;
-+		     active_colorop = active_colorop->next) {
-+			if (active_colorop == colorop) {
-+				colorop_state = drm_atomic_get_colorop_state(state, colorop);
-+				if (IS_ERR(colorop_state)) {
-+					ret = PTR_ERR(colorop_state);
-+					goto err;
-+				}
-+				break;
-+			}
-+		}
-+
-+		if (!colorop_state) {
-+			drm_dbg_atomic(prop->dev,
-+				       "[COLOROP:%d:%d] not part of the active pipeline\n",
-+					obj->id, colorop->type);
-+			ret = -EINVAL;
-+			goto err;
-+		}
-+
- 		ret = drm_atomic_colorop_set_property(colorop, colorop_state,
- 						      file_priv, prop, prop_value);
- 		break;
-@@ -1294,6 +1317,7 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
- 		break;
- 	}
- 
-+err:
- 	drm_property_change_valid_put(prop, ref);
- 	return ret;
- }
 -- 
 2.53.0
 
