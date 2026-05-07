@@ -2,82 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kBc1IwO++2nqEAAAu9opvQ
+	id kJHkOstl/GmGPgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 00:17:39 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 12:13:31 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 405514E129D
-	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 00:17:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E6574E68FC
+	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 12:13:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65ABA10EEEC;
-	Wed,  6 May 2026 22:17:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FYYVQUlU";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFD9110F049;
+	Thu,  7 May 2026 10:13:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D935C10EEE9;
- Wed,  6 May 2026 22:17:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778105854; x=1809641854;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=sSBdSxsfHapwhnk8JWsFU92IVShCY53vUe1hkAP78Xk=;
- b=FYYVQUlUuOdgu6QOMScu03H4VqahhfCgK8iUGrroFE3kHmH/N1ER7+mq
- iMX7/L3AvyXxUXa8boelSbeYNu8H+R5toB5MJdw4bbHyb/eu/EtYF7STK
- udJsvFXLHf+9UAGd2LUjf7GRZLlOSfIqig76nMMn4rxIt8L4RdbOreFVr
- 0AcVFQag1uLSXQEtKY2zY70+wDYszcEtVX3qlI0y5kdELX2hTnTLj3c1L
- 0L7IK60piEPjr+EEGC0X9MrndzHI7nGohIGsPkiiimQxeFSOGj6s38S2y
- 4FpfNOxA4wPdKU++tpPT5cnV97joS91Zu57LtoI8hFJT7IykWx8wVxpj4 w==;
-X-CSE-ConnectionGUID: rENedALCQO2uuvr/tNzeTg==
-X-CSE-MsgGUID: pekZhiNwRjelBQbOUtTrQQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="89638198"
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="89638198"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 15:16:42 -0700
-X-CSE-ConnectionGUID: JIThJWJVRKuSM5IItQBo2Q==
-X-CSE-MsgGUID: 8T928h7nSWWvXYEh0v5dug==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="238072298"
-Received: from lkp-server01.sh.intel.com (HELO 9ec114424ce8) ([10.239.97.150])
- by fmviesa004.fm.intel.com with ESMTP; 06 May 2026 15:16:36 -0700
-Received: from kbuild by 9ec114424ce8 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wKkXg-000000001Gz-27pO;
- Wed, 06 May 2026 22:16:32 +0000
-Date: Thu, 7 May 2026 06:15:55 +0800
-From: kernel test robot <lkp@intel.com>
-To: Melissa Wen <mwen@igalia.com>, airlied@gmail.com,
- alexander.deucher@amd.com, christian.koenig@amd.com,
- harry.wentland@amd.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, simona@ffwll.ch, siqueira@igalia.com,
- sunpeng.li@amd.com, tzimmermann@suse.de
-Cc: oe-kbuild-all@lists.linux.dev, Alex Hung <alex.hung@amd.com>,
- Simon Ser <contact@emersion.fr>, Uma Shankar <uma.shankar@intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Xaver Hugl <xaver.hugl@kde.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
+Received: from h6.fbrelay.privateemail.com (h6.fbrelay.privateemail.com
+ [162.0.218.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 456E110E21A;
+ Thu,  7 May 2026 00:23:12 +0000 (UTC)
+Received: from MTA-13-4.privateemail.com (mta-13-1.privateemail.com
+ [198.54.122.107])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by h5.fbrelay.privateemail.com (Postfix) with ESMTPSA id 4g9tJF5n7mz2xBd;
+ Thu,  7 May 2026 00:23:09 +0000 (UTC)
+Received: from mta-13.privateemail.com (localhost [127.0.0.1])
+ by mta-13.privateemail.com (Postfix) with ESMTP id 4g9tJB64Szz3hhTD;
+ Wed,  6 May 2026 20:23:06 -0400 (EDT)
+Received: from hal-station.localdomain (unknown [174.91.51.28])
+ by mta-13.privateemail.com (Postfix) with ESMTPA;
+ Wed,  6 May 2026 20:22:32 -0400 (EDT)
+Date: Wed, 6 May 2026 20:22:26 -0400
+From: Hamza Mahfooz <someguy@effective-light.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Alex Hung <alex.hung@amd.com>, Wayne Lin <Wayne.Lin@amd.com>,
+ Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ "Mario Limonciello (AMD)" <superm1@kernel.org>,
+ Ivan Lipski <ivan.lipski@amd.com>, Chenyu Chen <chen-yu.chen@amd.com>,
  Matthew Schwartz <matthew.schwartz@linux.dev>,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v4 6/6] drm/amd/display: use plane color_mgmt_changed to
- track colorop changes
-Message-ID: <202605070624.Fss9vEZt-lkp@intel.com>
-References: <20260501132527.522320-7-mwen@igalia.com>
+ Tom Chung <chiahsuan.chung@amd.com>, Roman Li <Roman.Li@amd.com>,
+ Takashi Iwai <tiwai@suse.de>, Colin Ian King <colin.i.king@gmail.com>,
+ Charlene Liu <charlene.liu@amd.com>, Kees Cook <kees@kernel.org>,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] drm/atomic: attempt full modeset on page flip
+ timeout
+Message-ID: <afvbQkKW3vo-d55q@hal-station.localdomain>
+References: <20260505182105.420525-1-someguy@effective-light.com>
+ <afuMqXoBt2oIFRm9@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20260501132527.522320-7-mwen@igalia.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <afuMqXoBt2oIFRm9@intel.com>
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Mailman-Approved-At: Thu, 07 May 2026 10:13:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,65 +78,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 405514E129D
+X-Rspamd-Queue-Id: 6E6574E68FC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [0.89 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,amd.com,emersion.fr,intel.com,kde.org,collabora.com,bootlin.com,linux.dev,lists.freedesktop.org,igalia.com,oss.qualcomm.com,kernel.org,gmail.com,poorly.run,somainline.org,vger.kernel.org];
+	DMARC_NA(0.00)[effective-light.com];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[igalia.com,gmail.com,amd.com,linux.intel.com,kernel.org,ffwll.ch,suse.de];
-	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,linux.dev,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[31];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[someguy@effective-light.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
+	NEURAL_HAM(-0.00)[-0.980];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,hal-station.localdomain:mid,effective-light.com:email]
 X-Rspamd-Action: no action
 
-Hi Melissa,
+On Wed, May 06, 2026 at 09:47:05PM +0300, Ville Syrjälä wrote:
+> On Tue, May 05, 2026 at 02:20:57PM -0400, Hamza Mahfooz wrote:
+> > We should try to recover from page flip timeouts. Forcing
+> > a full modeset should be generic across all atomic KMS drivers,
+> > so try that first.
+> > 
+> > Signed-off-by: Hamza Mahfooz <someguy@effective-light.com>
+> > ---
+> >  drivers/gpu/drm/drm_atomic_helper.c | 49 +++++++++++++++++++++++++++--
+> >  1 file changed, 46 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+> > index a768398a1884..7ee9d52f63c5 100644
+> > --- a/drivers/gpu/drm/drm_atomic_helper.c
+> > +++ b/drivers/gpu/drm/drm_atomic_helper.c
+> > @@ -1926,6 +1926,43 @@ drm_atomic_helper_wait_for_vblanks(struct drm_device *dev,
+> >  }
+> >  EXPORT_SYMBOL(drm_atomic_helper_wait_for_vblanks);
+> >  
+> > +static int force_full_modeset(struct drm_crtc *crtc)
+> > +{
+> > +	struct drm_modeset_acquire_ctx ctx;
+> > +	struct drm_crtc_state *crtc_state;
+> > +	struct drm_atomic_state *state;
+> > +	int ret;
+> > +	int err;
+> > +
+> > +	if (drm_atomic_crtc_needs_modeset(crtc->state))
+> > +		return -EBUSY;
+> > +
+> > +	DRM_MODESET_LOCK_ALL_BEGIN(crtc->dev, ctx, 0, err);
+> > +	state = drm_atomic_state_alloc(crtc->dev);
+> > +	if (!state)
+> > +		return -ENOMEM;
+> > +
+> > +	state->acquire_ctx = &ctx;
+> > +
+> > +	crtc_state = drm_atomic_get_crtc_state(state, crtc);
+> > +	if (IS_ERR(crtc_state)) {
+> > +		ret = PTR_ERR(crtc_state);
+> > +		goto out;
+> > +	}
+> > +
+> > +	crtc_state->mode_changed = true;
+> > +
+> > +	drm_info(crtc->dev,
+> > +		 "[CRTC:%d:%s] Attempting force full modeset...\n",
+> > +		 crtc->base.id, crtc->name);
+> > +
+> > +	ret = drm_atomic_commit(state);
+> > +out:
+> > +	drm_atomic_state_put(state);
+> > +	DRM_MODESET_LOCK_ALL_END(crtc->dev, ctx, err);
+> > +	return ret;
+> > +}
+> > +
+> >  /**
+> >   * drm_atomic_helper_wait_for_flip_done - wait for all page flips to be done
+> >   * @dev: DRM device
+> > @@ -1949,17 +1986,23 @@ void drm_atomic_helper_wait_for_flip_done(struct drm_device *dev,
+> >  
+> >  	for (i = 0; i < dev->mode_config.num_crtc; i++) {
+> >  		struct drm_crtc_commit *commit = state->crtcs[i].commit;
+> > -		int ret;
+> >  
+> >  		crtc = state->crtcs[i].ptr;
+> >  
+> >  		if (!crtc || !commit)
+> >  			continue;
+> >  
+> > -		ret = wait_for_completion_timeout(&commit->flip_done, 10 * HZ);
+> > -		if (ret == 0)
+> > +		if (!wait_for_completion_timeout(&commit->flip_done, 10 * HZ)) {
+> > +			int ret;
+> >  			drm_err(dev, "[CRTC:%d:%s] flip_done timed out\n",
+> >  				crtc->base.id, crtc->name);
+> > +
+> > +			ret = force_full_modeset(crtc);
+> 
+> This looks like some kind of ugly hack to paper over a driver bug.
+> I really don't want this for i915/xe because all it'll end up doing
+> is make it harder to debug any real issues.
 
-kernel test robot noticed the following build warnings:
+In that case, would you be okay with having
+drm_atomic_helper_wait_for_flip_done() return an error code, or did you
+have something else in mind?
 
-[auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on linus/master v7.1-rc2]
-[cannot apply to next-20260506]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Melissa-Wen/drm-atomic-only-add-colorop-state-from-active-color-pipeline/20260504-102820
-base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
-patch link:    https://lore.kernel.org/r/20260501132527.522320-7-mwen%40igalia.com
-patch subject: [PATCH v4 6/6] drm/amd/display: use plane color_mgmt_changed to track colorop changes
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20260507/202605070624.Fss9vEZt-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260507/202605070624.Fss9vEZt-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202605070624.Fss9vEZt-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: drivers/gpu/drm/drm_atomic.c:1625 function parameter 'plane_state' not described in 'drm_atomic_add_affected_colorops'
->> Warning: drivers/gpu/drm/drm_atomic.c:1625 function parameter 'plane_state' not described in 'drm_atomic_add_affected_colorops'
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+> > +			if (ret)
+> > +				drm_err(dev,
+> > +					"[CRTC:%d:%s] force full modeset failed! ret=%d\n",
+> > +					crtc->base.id, crtc->name, ret);
+> > +		}
+> >  	}
+> >  
+> >  	if (state->fake_commit)
+> > -- 
+> > 2.54.0
+> 
+> -- 
+> Ville Syrjälä
+> Intel
