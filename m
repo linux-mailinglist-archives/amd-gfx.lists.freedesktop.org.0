@@ -2,73 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uLHXHc9l/GmpPgAAu9opvQ
+	id GMcWDwxH/GkkNwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 12:13:35 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 10:02:20 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 137304E6932
-	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 12:13:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E63D04E4702
+	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 10:02:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC29110F099;
-	Thu,  7 May 2026 10:13:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAB1010E7B7;
+	Thu,  7 May 2026 08:02:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=qq.com header.i=@qq.com header.b="grJDMG22";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Hjf5Pd1D";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out162-62-57-210.mail.qq.com (out162-62-57-210.mail.qq.com
- [162.62.57.210])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1628910E1B5
- for <amd-gfx@lists.freedesktop.org>; Thu,  7 May 2026 07:07:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
- t=1778137673; bh=jhfMdr7ZuzPK+ksWRv7O9E7u4d/Szfr8t5hOhPrLLPQ=;
- h=From:To:Cc:Subject:Date;
- b=grJDMG22MtvdhF1WBJIa2REolhCbgBuU3lBHKdq0/8c7y9Hg5DcePjVKznICgg1NS
- wVqiI8S7M4fDPgb06Znxd/9eWsA06Nk6vcCnghW2jViQr+LaB1df7l96yT6BQp5Q6u
- hhz1BmswYb+Pzbzpd49gntxE8N7OAJ0cGaju0SIs=
-Received: from NTT-kernel-dev ([60.247.85.88])
- by newxmesmtplogicsvrszc56-0.qq.com (NewEsmtp) with SMTP
- id 1F10E06F; Thu, 07 May 2026 15:07:49 +0800
-X-QQ-mid: xmsmtpt1778137669txqd1xqw3
-Message-ID: <tencent_7AE3B3373BFCA4633D11AD72CF6897B3EB07@qq.com>
-X-QQ-XMAILINFO: NbgegmlEc3JuoJxuK2QvNBHzvgoB2/ycHaXZXV2LHoggvdBcWnfw8r2vTByxaT
- u+J1DSdyyTyTlM69lYD+epVJHWfpyWLIKJVGkMNYjURg6UmtQ6tdyrQtXA00ktMhWUWSExihz7c7
- kiLXms1uRWDYPi1Nq0y920MxCy6qE1gy283ORkru/mNySzuEnPRSYBQsrCySCVvRQmEwxrfc02sC
- vlsAeCLP3kWophnvQ7LaGEIp299Xd+rMPbYNpsTXNBCvU/2pOI3735/2d4kVqu85UnsGxR9t0KZ/
- ycPljMQUmRAFdpxIO8QYZ0NvGmMIMHYYFwa8bo2yfkEwYLz9NRyRWP6JuX2WKFJWT3n1Og6AOPR1
- vDWjZBvU02Ipfr5DDiKwP3ti0eVBjiYzMmwqU97m8XULFf3bJHNv5i3pAiv5+UfTM41aCbD9K9fJ
- LMPUbrF2GCLLA3IblmYJ6h9r8zKH+drOurzLu8X4rwB4Y+/d2q11vf2tWaqkXtF31kuo9ktlImgt
- xyL6Oatnmh6qU5q/tEG5gj54B4lHKgpbHRb3CFJXmzQeTcq7Cj868LmAUk1i9S64MLcigAhsAwKR
- KEBSUg1rTePGjo4YOPeirH4xquPMw6URZnc96HdcKHRUXNsirRDqTA6Qe0rwDjeaghWMqI+bFuBA
- ZnTIow+2krhPToHpdn0yJTSOLnar9Qlbw0Px/7gEw9Qoeh6ndSbvADcEIl7qVrX7osme7kU6Y447
- omS/AjOoe2yqZEefPndIB/ezyU5RmUTCYdUE80P3S3A1WkJ2wFkHXLFylgCI+xg+tzFCSMaHWu0g
- ZmQrUwHhGlHj1d5mX2P8Iq7Z9qoTkJTg424uaotirMyzRGSIbABZpDE5L9OLSyJaJ1/G6IMCQ/rK
- +OsGwiaPGpl+1sxnrzSmmbTFyjVn+Jc1sw583tcpMMOkZfjEY4qT5V5DAiEINoRjpHPnHAsepzHC
- 74aqs3tdHrefmpPL1J7JgjbovlrIg4Yz7XQneqjN5O4IXT4V1TVD7ppwhsvA3dkRXN+wGjXK+Wij
- Ll6TfY8KlGFQO16gNsbkCSjtDOLUkyCzBDpokxoy1yaRcfAAsCXQdYuVPO2mujFVlRXpa2dYv95F
- Q20PZ8RVahp75BVjxZHNrKJL98yQ==
-X-QQ-XMRINFO: MSVp+SPm3vtSI1QTLgDHQqIV1w2oNKDqfg==
-From: Fang Wang <32840572@qq.com>
-To: gregkh@linuxfoundation.org,
-	stable@vger.kernel.org,
-	dev@pp3345.net
-Cc: patches@lists.linux.dev, linux-kernel@vger.kernel.org,
- harry.wentland@amd.com, sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@gmail.com, daniel@ffwll.ch, ray.wu@amd.com, Wayne.Lin@amd.com,
- sashal@kernel.org, mario.limonciello@amd.com, aurabindo.pillai@amd.com,
- timur.kristof@gmail.com, jdhillon@amd.com, hersenwu@amd.com,
- Roman.Li@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH 6.1.y] drm/amd/display: Do not skip unrelated mode changes in
- DSC validation
-Date: Thu,  7 May 2026 15:07:49 +0800
-X-OQ-MSGID: <20260507070749.2299524-1-32840572@qq.com>
-X-Mailer: git-send-email 2.34.1
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010048.outbound.protection.outlook.com [52.101.201.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3919110E7B7
+ for <amd-gfx@lists.freedesktop.org>; Thu,  7 May 2026 08:02:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=izHBByQ7+kRLu6d6NpmvHQDEONfBYB/qMUwpMfTqFagddCSwBN1nvI7bL9w+0LfD7DcgLQda7o/ES94zFJqT3K3p9zWTNIDZPNdnDKSy1fRi4ESPFcaABbv9e2FCo8QSDy7aIZ60FACAGk813to2hM1DA08EhAkzSKTV7queAJomKYe8a1GZEs1/ZxZARgzYRCntaQC6JeHf/Q+P0aFYRZf5XnL0pJXxqgVg3c0HivcoQA045o56RQncPoUd/B1U1BsxzMGl58AZ25mrrKI+Fygd/8LQrkqToq869Wqdk1HAnmwn/dRK7syrotJfK/+PKDAC/Bt47ig+/OyyIQKtWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VuS76VP7IQWWzu+5aGqmqlom9zKmTDjFIh5Kaq90qoc=;
+ b=WLIt1lYZZpnTDeXLlUqsaSEn/wYCkZAAlQGwKRhrhYatIIR6xB64XE1wEmxx3dT0Jpv4WJN/jLTn2Z1r9Qsl187Zz/lxKeptK0E2vr0EdbBU29jfeEb17IkAxUY+J/Dy//K+e+qaqQnhc2RWCUem8n4N7jid/pNUuhbttABSIOrXj7uB5kL5dESA85qM84vbigzkWyCtQYhrH8nnd7OYGFgkKBSY7Fufv1r2VhDN2YY0+i8xVY7NqnMV9My5WOqgJB1qcMi4RqtfBySljjYcXHl2uIr4Z/+cWaFQOjD5EEyiwzqTY+HiMiqdGOrOCPX2Xecll+QVSIGAk/mY5hqdiA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VuS76VP7IQWWzu+5aGqmqlom9zKmTDjFIh5Kaq90qoc=;
+ b=Hjf5Pd1DexW99Co/dFT+opl4ArohBYmV1vds3t2IbUuuQKjVMKe71J59ZfwFgSSbzqk3CbnFTRISjswGsi5fJB1mP72Ify4oeF31UseqnSOe1jcrgzCpEwxJ1lHkZAi/YjbE7MZk+FzDVr9k5d7ilXs8+QCuz4v1/vHvDVbz/SQ=
+Received: from BN0PR04CA0117.namprd04.prod.outlook.com (2603:10b6:408:ec::32)
+ by LV8PR12MB9418.namprd12.prod.outlook.com (2603:10b6:408:202::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.15; Thu, 7 May
+ 2026 08:02:11 +0000
+Received: from BN1PEPF00005FFF.namprd05.prod.outlook.com
+ (2603:10b6:408:ec:cafe::dc) by BN0PR04CA0117.outlook.office365.com
+ (2603:10b6:408:ec::32) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.16 via Frontend Transport; Thu,
+ 7 May 2026 08:02:11 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BN1PEPF00005FFF.mail.protection.outlook.com (10.167.243.231) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9891.9 via Frontend Transport; Thu, 7 May 2026 08:02:11 +0000
+Received: from rtg-MAPLE.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 7 May
+ 2026 03:02:09 -0500
+From: Priya Hosur <Priya.Hosur@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <lijo.lazar@amd.com>,
+ <alexander.deucher@amd.com>, <christian.koenig@amd.com>
+CC: <Pratik.Vishwakarma@amd.com>, <Veerabadhran.Gopalakrishnan@amd.com>
+Subject: [PATCH 0/1] drm/amd/pm: smu_v14_0_0: fix thermal runaway under
+ force_performance_level=high
+Date: Thu, 7 May 2026 13:31:36 +0530
+Message-ID: <20260507080137.841442-1-Priya.Hosur@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 07 May 2026 10:13:28 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN1PEPF00005FFF:EE_|LV8PR12MB9418:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1c7457b8-1972-45a7-8f39-08deac0ef14a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700016|376014|82310400026|1800799024|56012099003|18002099003|3023799003;
+X-Microsoft-Antispam-Message-Info: np5kpdvzvZ4Qvs7/04g0tFEdKhDoPt/3aaNgq7ORz41IW6jFsdRjtU1ka4jbuJf8xUwhh9PJti+SDOaVfpzcEifVYCDcBSqOQI8AqRgTnxwBzuHRPBpvybifmhV6D70uDtxGLcJ5Rg2vCntw7pda9nK7MU6Z8mhCYZ7ZSuqEZkejwaLf1Kc5c1tLnVHgmSk+AYxhMjN5IKeWoMONA+Ww3AhoOG2Vej7R5GPcFqAWxBJxVPQ5036o+jZD28AlafqepqV4/6CnQJ+b92odki0uE1HPhyK1iKE62wP/8Kq5qyBdE12FxoPbS40Eh8nqLLWWPMadHMr6WqYI4TzBOuXJHo8yISGSvKSzb/aTZHedtX1DJFU3VMa2VgpF1v1135m6XDGSkpQeiOcsPnxEpKAy8Anz215fsrSiEhJdRkLbtPmzFN+tMb3ku0LEkGyHB5Bki/rtUSSGRByDTO1ymHrSX2jxZdHxOKGZJWnpV03BOpRKJkpTqU/jCmm+Y1O/Z9koWQtkVzzArScY1+u25feGCDKj74YK9QzgH2d4P1RUEBqFBG6/vq+vakSVyiI6TkWsygB40sJ+MhVoUv0BlRvMAYaM1ujHblmTG/Yf/jngdHZgU7ZsM/Ui/dfq/V0UOuixUwXF83luyy28abyeaaEKTUtIq1Qy//w85Km+YM445scq7epWSdFFafrtR11xwy0idu7GHY86tLbbyncYi1LQEafXyq6/DQbA8odPmZ9WeZg=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700016)(376014)(82310400026)(1800799024)(56012099003)(18002099003)(3023799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: vVRvx/fDRjZ4GBN4iUk7YPEpJ7A6UzbLh9MTC1AmY9JJ22foKFMyuxDm7P0W7RaIXM1k7rInjLlxJEfUUnBCTnoMDBt3rGHc7H8e6ywFRbkTYgJL0zv5nH8F2mzZc2Md6tkdRpp0Rf19xpqUwLhvZB9vGojNoYZiC9zkp4jegsSCNi5mDIo1nnaFDeuz7gN2ikaLnF3Z32HWukQ4TCgiibPozgAiOxPvFHPApLuCFdx18JtFiWfe4d7jS3CPEP7hEXyLJnpORrv5ooFzrYuFma+nKd5Gg6RLiNYkylzYoxurz9VAiZoiR2V2SjIYV4nvUY7fKzYkA+Ko+WT1vvEGIyUJhsoOV++FhqueMdUBILDUW/ITuuoETWXtIvIMNQrvLOsnwhGeBMjOdtOK/CFBrIi8UQqltCAbZxlx3YG4qw9O7XjVPzPHEnrPrgiFvden
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2026 08:02:11.0518 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c7457b8-1972-45a7-8f39-08deac0ef14a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF00005FFF.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9418
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,158 +113,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 137304E6932
+X-Rspamd-Queue-Id: E63D04E4702
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qq.com,quarantine];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[qq.com:s=s201512];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:gregkh@linuxfoundation.org,m:stable@vger.kernel.org,m:dev@pp3345.net,m:patches@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:Rodrigo.Siqueira@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:Xinhui.Pan@amd.com,m:airlied@gmail.com,m:daniel@ffwll.ch,m:ray.wu@amd.com,m:Wayne.Lin@amd.com,m:sashal@kernel.org,m:mario.limonciello@amd.com,m:aurabindo.pillai@amd.com,m:timur.kristof@gmail.com,m:jdhillon@amd.com,m:hersenwu@amd.com,m:Roman.Li@amd.com,m:dri-devel@lists.freedesktop.org,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[qq.com];
-	FORGED_SENDER(0.00)[32840572@qq.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lists.linux.dev,vger.kernel.org,amd.com,gmail.com,ffwll.ch,kernel.org,lists.freedesktop.org];
-	DKIM_TRACE(0.00)[qq.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[32840572@qq.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_HAM(-0.00)[-0.991];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Priya.Hosur@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	HAS_XOIP(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,pp3345.net:email,qq.com:email,qq.com:mid,qq.com:dkim,amd.com:email]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_FIVE(0.00)[6];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-From: Yussuf Khalil <dev@pp3345.net>
+Hi all,
 
-[ Upstream commit aed3d041ab061ec8a64f50a3edda0f4db7280025 ]
+This patch fixes a thermal runaway / emergency reboot observed on
+SMU IP 14.0.x APUs when power_dpm_force_performance_level is set to
+"high" and a sustained heavy compute workload is run.
 
-Starting with commit 17ce8a6907f7 ("drm/amd/display: Add dsc pre-validation in
-atomic check"), amdgpu resets the CRTC state mode_changed flag to false when
-recomputing the DSC configuration results in no timing change for a particular
-stream.
+Background
+----------
+Setting force_performance_level=high is meant to bias gfxclk towards
+its maximum while still allowing the firmware's thermal/PPT throttler
+to clamp the clock when limits are reached. The current driver
+implements this by sending SetHardMinGfxClk + SetSoftMaxGfxClk in
+smu_v14_0_0_set_soft_freq_limited_range(), pinning HardMin to peak
+gfxclk.
 
-However, this is incorrect in scenarios where a change in MST/DSC configuration
-happens in the same KMS commit as another (unrelated) mode change. For example,
-the integrated panel of a laptop may be configured differently (e.g., HDR
-enabled/disabled) depending on whether external screens are attached. In this
-case, plugging in external DP-MST screens may result in the mode_changed flag
-being dropped incorrectly for the integrated panel if its DSC configuration
-did not change during precomputation in pre_validate_dsc().
+In PMFW clock arbitration, however, HardMin has higher priority than
+SoftMax. Once HardMin is pinned to peak, the throttler's attempts to
+lower gfxclk through SoftMax are silently overridden. Throttling is
+effectively disabled for the duration of force_performance_level=high.
 
-At this point, however, dm_update_crtc_state() has already created new streams
-for CRTCs with DSC-independent mode changes. In turn,
-amdgpu_dm_commit_streams() will never release the old stream, resulting in a
-memory leak. amdgpu_dm_atomic_commit_tail() will never acquire a reference to
-the new stream either, which manifests as a use-after-free when the stream gets
-disabled later on:
+Symptom
+-------
+Under sustained heavy compute load, gfxclk stays at peak with no
+throttling headroom. GPU temperature climbs rapidly and on platforms
+with aggressive thermal trip behaviour the system enters an emergency
+shutdown / reboot before OS-level thermal handlers can react.
 
-BUG: KASAN: use-after-free in dc_stream_release+0x25/0x90 [amdgpu]
-Write of size 4 at addr ffff88813d836524 by task kworker/9:9/29977
-
-Workqueue: events drm_mode_rmfb_work_fn
-Call Trace:
- <TASK>
- dump_stack_lvl+0x6e/0xa0
- print_address_description.constprop.0+0x88/0x320
- ? dc_stream_release+0x25/0x90 [amdgpu]
- print_report+0xfc/0x1ff
- ? srso_alias_return_thunk+0x5/0xfbef5
- ? __virt_addr_valid+0x225/0x4e0
- ? dc_stream_release+0x25/0x90 [amdgpu]
- kasan_report+0xe1/0x180
- ? dc_stream_release+0x25/0x90 [amdgpu]
- kasan_check_range+0x125/0x200
- dc_stream_release+0x25/0x90 [amdgpu]
- dc_state_destruct+0x14d/0x5c0 [amdgpu]
- dc_state_release.part.0+0x4e/0x130 [amdgpu]
- dm_atomic_destroy_state+0x3f/0x70 [amdgpu]
- drm_atomic_state_default_clear+0x8ee/0xf30
- ? drm_mode_object_put.part.0+0xb1/0x130
- __drm_atomic_state_free+0x15c/0x2d0
- atomic_remove_fb+0x67e/0x980
-
-Since there is no reliable way of figuring out whether a CRTC has unrelated
-mode changes pending at the time of DSC validation, remember the value of the
-mode_changed flag from before the point where a CRTC was marked as potentially
-affected by a change in DSC configuration. Reset the mode_changed flag to this
-earlier value instead in pre_validate_dsc().
-
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/5004
-Fixes: 17ce8a6907f7 ("drm/amd/display: Add dsc pre-validation in atomic check")
-Signed-off-by: Yussuf Khalil <dev@pp3345.net>
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-(cherry picked from commit cc7c7121ae082b7b82891baa7280f1ff2608f22b)
-Signed-off-by: Fang Wang <32840572@qq.com>
+Fix
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c          | 5 +++++
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h          | 1 +
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    | 7 +++++--
- 3 files changed, 11 insertions(+), 2 deletions(-)
+Replace SetHardMinGfxClk with SetSoftMinGfxclk in the APU path. The
+driver still requests peak performance, but the firmware throttler is
+free to clamp gfxclk via SoftMax when thermal/PPT limits are reached.
+SoftMax handling is unchanged. No other clock domains are affected.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 7eff2b94ab66..bb5e3a6086f2 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -9908,6 +9908,11 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
- 
- #if defined(CONFIG_DRM_AMD_DC_DCN)
- 	if (dc_resource_is_dsc_encoding_supported(dc)) {
-+		for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
-+			dm_new_crtc_state = to_dm_crtc_state(new_crtc_state);
-+			dm_new_crtc_state->mode_changed_independent_from_dsc = new_crtc_state->mode_changed;
-+		}
-+
- 		for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
- 			if (drm_atomic_crtc_needs_modeset(new_crtc_state)) {
- 				ret = add_affected_mst_dsc_crtcs(state, crtc);
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-index df18b4df1f2c..12385b6f8443 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-@@ -698,6 +698,7 @@ struct dm_crtc_state {
- 
- 	bool freesync_vrr_info_changed;
- 
-+	bool mode_changed_independent_from_dsc;
- 	bool dsc_force_changed;
- 	bool vrr_supported;
- 	struct mod_freesync_config freesync_config;
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 495491decec1..94c83a707acc 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -1564,8 +1564,11 @@ int pre_validate_dsc(struct drm_atomic_state *state,
- 		} else {
- 			int ind = find_crtc_index_in_state_by_stream(state, stream);
- 
--			if (ind >= 0)
--				state->crtcs[ind].new_state->mode_changed = 0;
-+			if (ind >= 0) {
-+				struct dm_crtc_state *dm_new_crtc_state = to_dm_crtc_state(state->crtcs[ind].new_state);
-+
-+				dm_new_crtc_state->base.mode_changed = dm_new_crtc_state->mode_changed_independent_from_dsc;
-+			}
- 		}
- 	}
- clean_exit:
+Validation
+----------
+Tested on an SMU IP 14.0.x APU at force_performance_level=high with
+sustained heavy compute. Throttling now engages under load, gfxclk
+and temperature stay within safe operating limits, and the previously
+observed thermal runaway / reboot no longer occurs. Light and idle
+behaviour are unchanged.
+
+Review feedback welcome.
+
+Thanks,
+Priya
+
+Priya Hosur (1):
+  drm/amd/pm: smu_v14_0_0: use SoftMin for gfxclk in
+    set_soft_freq_limited_range
+
+ drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
 -- 
-2.34.1
+2.43.0
 
