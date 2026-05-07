@@ -2,51 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QLqJEjC1/Gm0SwAAu9opvQ
+	id 4HQSAjW1/Gm0SwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 17:52:16 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 17:52:21 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7B704EB6FD
-	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 17:52:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FABF4EB72B
+	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 17:52:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4833910F1ED;
-	Thu,  7 May 2026 15:52:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9930710F1DF;
+	Thu,  7 May 2026 15:52:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QPgq4yos";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="V4R90um0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013009.outbound.protection.outlook.com
- [40.93.201.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5E4310F1E6
- for <amd-gfx@lists.freedesktop.org>; Thu,  7 May 2026 15:52:10 +0000 (UTC)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011056.outbound.protection.outlook.com
+ [40.93.194.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E22110F1D9
+ for <amd-gfx@lists.freedesktop.org>; Thu,  7 May 2026 15:52:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ks5gKRQ3eedFUq7VJH+0OyYLaMkP+PnHbrvjEG7fK/xCy0GSpt3Vl1DjciyTJ1F2GbDvPZwfF8x8XKcr79bfgYVykR/An4XhUA1kAP7/lwkNUJ1C36Ld4Ia7VVhlhXKm5L0NEYzYlK235zUcTuVsgnJAvR9mQ0rtRao8FIMBcqwouhTAkrjlcdfu+4SE8SXVZTtzCJfnQ4AaLTy7IZ2Uf5k420Hk6ImH/YZbp49UYCUnLaFhHbA8u8ukY0WblUUbQZES+srJMqpHG6snoJUqsTFV6cbRpuNloJoIi/Nsrz7OSlcXDgkXCC82O7B2Io4hc1hHgyJpyCX7C0c3ID6GGw==
+ b=yjYMOAJWMZ9+h665apimO5aLrgS+pqyGoZXUzcuDYgGqYkOHDs4gxA4ZkU14Q5ar1Zx0GIi0qcBizM780fCEsHLbIEi6Ff61VLEAKlBpgmDX5PnLWG6ols/syLeFWSVm7IQyjuF8kMJR8az+EpNNM/dNTbi97AZcmXHUq8HRzuxE8LlIfoc0ZuuskaoKJcBd9K7hHoOCqnyE7ywUqMCTEMMuiXXNG1j8QeWR9IG5uJjLcvbpaObwk0KJwCNV/9p07Dl3Xjl1KlPwmTOrt9QO6GnMxeu1KeInJxgNAKEYCsS/z45Gg9eI4COOZDluaBDZt4xJuS7wNHseSgxy8Xy99w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S7UOc0JWyeXvYOrm56dYbQiylz5HIQktDR/N1J8/ISw=;
- b=H9cLFfj/j69oh+CUc/TbpR1nrLvafZAEScLHc9ZAg8qdMispLFuMUnAxGrrWyfGlmgQ9Ll+Cw6iwJh88XTL/G7kurDOqwZLxgfj8fQUmSBBE/n0eGCmSH/s6nEhOU3QQ+UkjXilE6b6Nd/am2SykKZSgmVTuzgXlacWKBBIjUn5JxfQ62Dbp+VpkYWF7WSaMEvjk8v5Qxb0DpYEKvFNfRXKWbHwq3XaFSInMa1QVdREELBjKjlp38ioJLlSduaGfYHSAqjyMzq9ym4WIbXDxHStf5U1vt7luD+9nszBy0rsjmvb+OTmK1z1ibTgzOhiBNK2Fsh8X7B7paMEchmRA4A==
+ bh=yZis2mD7frW1tOf567/c7dTp10Ejaa72/lij+M3ZReg=;
+ b=nbzRlnl3507FOxTEh1fwE89j8mzv6NiZnonUYcTocb0AgzKQdA/z+lkJ2EWZbgZ9oPjGY5V57fBzw2pPY1c/VtpHDhe/V9mXrCRISqSWrmH9a4UHuKQ2LUEPrh8iM4g4BJ4angD4AR6eVkXinIyOZ8562DLDelPrsRJdaOw8zJeM6HDbktp4E8gaF/4jkNKfU142EmbJ5DGjVwrNRxfFRJ8ixeHvs7wdixHn+uwcTVQ5sDFIbuC0yjqoqHtBD2dmAQnXjEJXBsAvt2hCX6/MYvJzPRG5KLwAO7qBbT0Ab9Klle8PoxXEZlxMdDU9uiwQrxBB2QFMrodoiOIoksnkSA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S7UOc0JWyeXvYOrm56dYbQiylz5HIQktDR/N1J8/ISw=;
- b=QPgq4yosCDOCm7mKu3bH5jMlpYjyFNLjeZ450MITQ2IalwlYKcGW2P7V1A6j6EzwrJKivqonC9eJFWMj63OSZlMEZXk2bO/3q0P/4smy3FeIoD7BOfBRGV1t4E5nnz0227LDAfKM0assTklgfFmiwtEeES9g9lr/YLepTI0cB1c=
-Received: from MW4PR03CA0037.namprd03.prod.outlook.com (2603:10b6:303:8e::12)
- by BL1PR12MB5996.namprd12.prod.outlook.com (2603:10b6:208:39c::14)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=yZis2mD7frW1tOf567/c7dTp10Ejaa72/lij+M3ZReg=;
+ b=V4R90um0YuuzDZCZ5i8IqXZ5F/Euhk7UYdueiLnpA5MW9t5rxLNqj2HX+BRGOGQhuQcS246bImEo9QZwjw0XN7rlZDFuY5pmpiOBIZ+pXh+/G6FwzzUkTXQ6GfFcCL/KsebJ5Thmb2sxuKVcyGksqosWWQpKFx1O6RPpDLddeGA=
+Received: from MW4PR03CA0304.namprd03.prod.outlook.com (2603:10b6:303:dd::9)
+ by LV5PR12MB9778.namprd12.prod.outlook.com (2603:10b6:408:300::9) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.15; Thu, 7 May
- 2026 15:52:02 +0000
-Received: from SJ5PEPF000001C9.namprd05.prod.outlook.com
- (2603:10b6:303:8e:cafe::ed) by MW4PR03CA0037.outlook.office365.com
- (2603:10b6:303:8e::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.17 via Frontend Transport; Thu,
- 7 May 2026 15:52:01 +0000
+ 2026 15:52:09 +0000
+Received: from SJ5PEPF000001CB.namprd05.prod.outlook.com
+ (2603:10b6:303:dd:cafe::23) by MW4PR03CA0304.outlook.office365.com
+ (2603:10b6:303:dd::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9870.23 via Frontend Transport; Thu,
+ 7 May 2026 15:52:08 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -54,58 +54,60 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
 Received: from satlexmb08.amd.com (165.204.84.17) by
- SJ5PEPF000001C9.mail.protection.outlook.com (10.167.242.37) with Microsoft
+ SJ5PEPF000001CB.mail.protection.outlook.com (10.167.242.40) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9891.9 via Frontend Transport; Thu, 7 May 2026 15:52:01 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
+ 15.20.9891.9 via Frontend Transport; Thu, 7 May 2026 15:52:08 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 7 May
- 2026 10:51:55 -0500
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 7 May
- 2026 10:51:55 -0500
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.17; Thu, 7 May
+ 2026 10:51:56 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 7 May
+ 2026 10:51:56 -0500
 Received: from hwentlanryzen (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
- Transport; Thu, 7 May 2026 10:51:54 -0500
+ Transport; Thu, 7 May 2026 10:51:55 -0500
 From: Harry Wentland <harry.wentland@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Harry Wentland
  <harry.wentland@amd.com>
-Subject: [PATCH v2 09/22] drm/amd/display: Add FRL registers for DCN315
-Date: Thu, 7 May 2026 11:51:31 -0400
-Message-ID: <20260507155147.182540-10-harry.wentland@amd.com>
+Subject: [PATCH v2 10/22] drm/amd/display: Add FRL registers for DCN316
+Date: Thu, 7 May 2026 11:51:32 -0400
+Message-ID: <20260507155147.182540-11-harry.wentland@amd.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260507155147.182540-1-harry.wentland@amd.com>
 References: <20260507155147.182540-1-harry.wentland@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: harry.wentland@amd.com does not
+ designate permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001C9:EE_|BL1PR12MB5996:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0f2119dc-f207-4d0e-96a4-08deac50940f
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CB:EE_|LV5PR12MB9778:EE_
+X-MS-Office365-Filtering-Correlation-Id: 79f2eefa-1a2d-493e-9b6b-08deac509803
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|82310400026|36860700016|22082099003|3023799003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: DEmIqAnx/uI6BzuQ+8wshe8cjrFZ1VWQNmXPd1mXRsEQBzopp+SMR9EaFbILLS7pqzp2gaSDT848ahAhxNIKNYQ2ENk1EPdtwcflD3lmEtFVetY+nyqcYjxPgKnHUE5ZAJxraIpwl9jmWuipEs3Pq+9HpzejSVG97PxTd41YoZFX0s655MobASuQTgAeAox+X08KpFCLVDX9yvsTaOz/p5MJGd9JT9S6wvDLvdepfE2ASzFlo5Hp8x7g2cuml8LLvuodcVIUniGTHE53aQwq9mEv9Q3zfsp7+gWPGFgeRD/4QyD2L/hH25EVVhjYekDAfoZFq1xsHUxv4uGTjhfozo6uzwxGtrwVybE9zS2OYz0D9lejPP6aBN6OlNxaCbHqPGeTLbkcWQwBNSyHmkkE+ciPvTkAG74bVb8UFaYt18s9tIfQ9PLi+EXQYSq/2RtOEo3XWHkdVadtYbX7R1ksblPG3rviFeNLojBKggieXw1bkaqp4mpAdkBWWhUYslN43+IR7cWYn9Pc9yFfco1oQ56gABwuPxRq2wt6ZEXR7rSxErsEVtZEeSUij6tNKm7Xl9mSOxaowc21lnb+SOxl6aXQHnUTJRteUPTEfSJ1NqN05Oxg06IEYxaAcPzEb6DzhCQRRYjyiUfoQkv5O5GZzG2oCvWy511EpDI5IOl4EmAmuEuvOOcIK/DkgRm3FJs2gvIAKZHMhKPhmGjHW3lqptXY44p92lBEqyJs2Aj7800=
+ ARA:13230040|36860700016|1800799024|376014|82310400026|56012099003|18002099003|3023799003|22082099003;
+X-Microsoft-Antispam-Message-Info: Q5CMZpE/Ci1BpYk31LwVYmIOxUXRGFe+ZgL8Maaf6H8rEtaxNf2O56UmudGDDRzVWBi+oIX3wgJ57b52Oxy0/xWCjCtm0hZS3BedtBvnLGGcd56mN1qXvHgT5uPXoJDkGEO8oDzuXWNpuA19+i03u+2RcX5hCLXmEpGkUGziOQHGVLtQ9ygXb2Lv7JMuUKQxFKty2iTirbezpkYZQRvcH1HMkZXzP5FwuAaxMAEDxRxXg/YmcG6jl5FCibjko4VhPAKOimSpZiE8ngeqT22/v0/lixj/QJcN7kUmqtIGx+Ol+p14TjsG+2ZKtaUqgFRD6N9dxmsA90ZKFcEmRJz559U+qn227h48P7vKN3qETJ5SwEBFcGLmfEjTdbI68h4HuS0aYQzxmUmOkH2SkY6wC3Wolir5IoEmFiFMT4xVl5FjXqNxUi8lhMkRSU+rHuJe/gev3z4+nTw0SygaibKcxiQ7hi50np9OpHhTPqM/s1KLNN6BMiuVvbvfziycWPqjXLy1m7Z3KIIAvHu9by6qHlEEHAVWksWC+duFybpLLR2tjOqM7+2JxMeHkbvNn0kjgF/d9wUoHc8qpl9lBNQjZHrf5GKWf9VRgb4xEE4vPUsjFMch3TlhACqYlKNDTUxxgvqihdHHDrDgdQOr3ClTwOojw5WTdiKDso60FAQXzrjPnWT6ESKzoBBU70LV3cfNWLHPNnhX4tmTzI4WKas95sqZaSbMHNGvmDOxXgMNZ9c=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(82310400026)(36860700016)(22082099003)(3023799003)(56012099003)(18002099003);
+ SFS:(13230040)(36860700016)(1800799024)(376014)(82310400026)(56012099003)(18002099003)(3023799003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: KOtUC7bKr161K+XsNjaHu+56kMcCi+z4nyZvmmqAkI7cLpnKU3Fziu5iLEFiTFpZtYsf1r9IIby+8NQBpY/CGoTsIgarh11Dz/fzSbc/9fsOMV8/4g/ckXfeuBdzw17yL2kq8oTihqCW9P5VGGnkMVjQATfXsdsArBeZ0wCeVgQZQiIPuZ1EY1WRr1p8BJllI3o1ncASQhzYU97H9JvaFpmoz8ELI+MPBDIYWf84iomsM7E3+wV62V4r6yHCcVlKSTOeOxeVDXqmh5FRWZNGajpKRnpd3CWtJFmRYcTTr9RsN8rKnXIfHW03HZQUtTLZLMp/KgrsP5OFQJu9NRlTiyPCQhMSy9WVUnJ27C/CY+bn+j3BFvNn+wum+kAeVB98G7paDhojOxDUbrPBV51zUqcNeTcI4JA4ni5i4rV0MENCpu3XgLOvDCgSmJBLKqwn
+X-MS-Exchange-AntiSpam-MessageData-0: xQVRkWHW8IhP3h6ZEkb818QmN9UWwJ8HAdCL61z84Bu2QVZAU5HTNZ+eO19J7qsiIymw3NpFpAfnGnGLf4pZI3Kqm23UUO/HE2mLqWyEepx+kIBHTqA522Zvo+z2EijKU7lMpl60c9bKB9ayh/VKCoOTOnqBEYS8tzTPNTABZHPxW6/r1U/nGXljH/vvdQFohvveRmHqVlW4mbjIm2pn/H578DEfBSc+eKYsOEbcqPKqeoYCnoXwME9xYLgO7ukSh7DTrb9E4QwVPUZcDaJlje4UU1erp60pIcBDBS3P9qBwpCyUNdNbKHgpWKZIjeWcL8cVMay7BI36zjTQsgyKfY3ufmLoJPIy/j3daofTnQXndfksIzg1JczDTyDMTBXuceDTRbSZLvOt3J0kQzImlQIF6cHZpGkjrA9xZBJg56PSf6bpcadBz2B9+8TuqaNn
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2026 15:52:01.3768 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f2119dc-f207-4d0e-96a4-08deac50940f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2026 15:52:08.0158 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79f2eefa-1a2d-493e-9b6b-08deac509803
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001C9.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CB.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5996
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV5PR12MB9778
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,7 +121,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: C7B704EB6FD
+X-Rspamd-Queue-Id: 5FABF4EB72B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
@@ -151,22 +153,22 @@ X-Rspamd-Action: no action
 
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 
-Add the required FRL registers for DCN315.
+Add the required FRL registers for DCN316.
 
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Signed-off-by: Harry Wentland <harry.wentland@amd.com>
 ---
- .../include/asic_reg/dcn/dcn_3_1_5_offset.h   | 111 ++++
- .../include/asic_reg/dcn/dcn_3_1_5_sh_mask.h  | 548 ++++++++++++++++++
- 2 files changed, 659 insertions(+)
+ .../include/asic_reg/dcn/dcn_3_1_6_offset.h   | 111 ++++
+ .../include/asic_reg/dcn/dcn_3_1_6_sh_mask.h  | 546 ++++++++++++++++++
+ 2 files changed, 657 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_offset.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_offset.h
-index 16a69d17bb1e..45ec5cb0f90c 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_offset.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_offset.h
-@@ -12773,6 +12773,39 @@
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_6_offset.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_6_offset.h
+index a05bf8e4f58d..d289d8356adf 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_6_offset.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_6_offset.h
+@@ -13503,6 +13503,39 @@
+ #define regDC_PERFMON22_PERFMON_LOW                                                                     0x0e6e
  #define regDC_PERFMON22_PERFMON_LOW_BASE_IDX                                                            3
- 
  
 +// addressBlock: dce_dc_hpo_hdmi_link_enc0_dispdec
 +// base address: 0x2656c
@@ -201,10 +203,10 @@ index 16a69d17bb1e..45ec5cb0f90c 100644
 +#define regHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2                                     0x08d8
 +#define regHDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2_BASE_IDX                            3
 +
+ 
  // addressBlock: dce_dc_hpo_hdmi_stream_enc0_afmt_afmt_dispdec
  // base address: 0x2646c
- #define regAFMT5_AFMT_VBI_PACKET_CONTROL                                                                0x091c
-@@ -12845,6 +12878,84 @@
+@@ -13578,6 +13611,84 @@
  #define regVPG5_VPG_MPEG_INFO1_BASE_IDX                                                                 3
  
  
@@ -289,13 +291,13 @@ index 16a69d17bb1e..45ec5cb0f90c 100644
  // addressBlock: dce_dc_hpo_dp_stream_enc0_dispdec
  // base address: 0x1ab8c
  #define regDP_STREAM_ENC0_DP_STREAM_ENC_CLOCK_CONTROL                                                   0x3623
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_sh_mask.h
-index 6473362e39a8..6bc91ae44682 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_sh_mask.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_5_sh_mask.h
-@@ -46664,6 +46664,126 @@
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_6_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_6_sh_mask.h
+index df84941bbe5b..dd98cd5582cf 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_6_sh_mask.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_6_sh_mask.h
+@@ -50009,6 +50009,125 @@
+ #define DC_PERFMON22_PERFMON_LOW__PERFMON_LOW__SHIFT                                                          0x0
  #define DC_PERFMON22_PERFMON_LOW__PERFMON_LOW_MASK                                                            0xFFFFFFFFL
- 
  
 +// addressBlock: dce_dc_hpo_hdmi_link_enc0_dispdec
 +//HDMI_LINK_ENC_CONTROL
@@ -416,13 +418,12 @@ index 6473362e39a8..6bc91ae44682 100644
 +#define HDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2__FIFO_DB_PENDING_MASK                        0x00000100L
 +#define HDMI_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL2__FIFO_DB_DISABLE_MASK                        0x00001000L
 +
-+
+ 
  // addressBlock: dce_dc_hpo_hdmi_stream_enc0_afmt_afmt_dispdec
  //AFMT5_AFMT_VBI_PACKET_CONTROL
- #define AFMT5_AFMT_VBI_PACKET_CONTROL__AFMT_ACP_SOURCE__SHIFT                                                 0xd
-@@ -47041,6 +47161,434 @@
+@@ -50386,6 +50505,433 @@
+ #define VPG5_VPG_MPEG_INFO1__VPG_MPEG_INFO_FR_MASK                                                            0x00001000L
  #define VPG5_VPG_MPEG_INFO1__VPG_MPEG_INFO_UPDATE_MASK                                                        0x00010000L
- 
  
 +// addressBlock: dce_dc_hpo_hdmi_tb_enc0_dispdec
 +//HDMI_TB_ENC_CONTROL
@@ -851,10 +852,9 @@ index 6473362e39a8..6bc91ae44682 100644
 +#define HDMI_TB_ENC_CRC_RESULT_1__CRC_TRIBYTE2__SHIFT                                                         0x0
 +#define HDMI_TB_ENC_CRC_RESULT_1__CRC_TRIBYTE2_MASK                                                           0x0000FFFFL
 +
-+
+ 
  // addressBlock: dce_dc_hpo_dp_stream_enc0_dispdec
  //DP_STREAM_ENC0_DP_STREAM_ENC_CLOCK_CONTROL
- #define DP_STREAM_ENC0_DP_STREAM_ENC_CLOCK_CONTROL__DP_STREAM_ENC_CLOCK_EN__SHIFT                             0x0
 -- 
 2.54.0
 
