@@ -2,178 +2,103 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uHWaFBKX/WnBgAAAu9opvQ
+	id kAwuISbM/GlhTwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 08 May 2026 09:56:02 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 19:30:14 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B96DE4F3631
-	for <lists+amd-gfx@lfdr.de>; Fri, 08 May 2026 09:56:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E47F84ECE56
+	for <lists+amd-gfx@lfdr.de>; Thu, 07 May 2026 19:30:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E138D10F3BF;
-	Fri,  8 May 2026 07:55:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BEC910F631;
+	Thu,  7 May 2026 17:30:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="Rdl4r/T5";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="eBnYbP2r";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="MCQTWRM0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC93C10F206
- for <amd-gfx@lists.freedesktop.org>; Thu,  7 May 2026 16:30:57 +0000 (UTC)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 647F1Qpe258772
- for <amd-gfx@lists.freedesktop.org>; Thu, 7 May 2026 16:30:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:reply-to:subject:to; s=
- qcppdkim1; bh=BsZKRUYByxu4l1012X9BuJO08mB3a5+PDVH3rrgpa+o=; b=Rd
- l4r/T54zzKLtFWtx02KlaRHA9qZF1yUfdhzU+NuMwe6VW1/5jZZc76xlX1I1myVA
- GUYR+93AvmVW5Pxb+1fOdiC3JhCz6RokwhUeg6HSJZ917Z4tu1v/dFgwezjzNIPq
- SO+gu5QTIT6C66TfsNpBHzBWtyC3qaESGyJMxBnlk3bojwsBTJ2KDeUPouy9YEeA
- do9fDE5TEp/TyK1sA7NCAosMHzzp6+o9LAhKfqudrN0dWiAiG9o5JeOOaY1/PEgC
- vOYWar+0RuxSNFAiHuq2pLVbQZXmt9PNdXXQG4ME/kVmTA2XC4MdbbXsblj+x8W3
- 1AKlD9dz2xrjmq/mdj/A==
-Received: from mail-oo1-f72.google.com (mail-oo1-f72.google.com
- [209.85.161.72])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4e0hr8u689-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <amd-gfx@lists.freedesktop.org>; Thu, 07 May 2026 16:30:57 +0000 (GMT)
-Received: by mail-oo1-f72.google.com with SMTP id
- 006d021491bc7-69996a2944dso2181004eaf.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 07 May 2026 09:30:57 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1778171456; cv=none;
- d=google.com; s=arc-20240605;
- b=F2at1KB2wzfcEFb3P+jQcqYS40aGSgcS1D9gOW6fjqCntLA3SO7HpIWunlJkXwRyxf
- g23zc2ItS71P3Xya4tPCQqGKn7UEHX0GBOrkCx4/VTCW/HPBbQGC+1RuiEqnubJFrETA
- nJtggdNWu1g/WfJzMn718uJoF8vqDWI85/Nbaeaf1+Wt8NUugNRqk9XgIupaUVAM3Irb
- CbYwMzwhu/bIMhXdqU0yM7iqtg+HpbjPndSj71CWEuTXOQdB6nI9SVhHpgoO9gHvWVeE
- XVjicXgoSxLJhifR3vBs94kIvEAuWOL9O9BIdpDJezSAKMAHVbhyM6I0QDqey1qNUk0O
- TTbA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :reply-to:in-reply-to:references:mime-version:dkim-signature;
- bh=BsZKRUYByxu4l1012X9BuJO08mB3a5+PDVH3rrgpa+o=;
- fh=t5pRIFARgvHG1zTp+e4JyWwUtD+PJW1zdgFhOx6N5rs=;
- b=GSZ4QgyIPaDBCPPpc2FsHPddXaa4Nd+li0VDNBFPOKV9P2yyj6dukiLB7LgDMsgV/v
- Lf6iUYn2C5JuK2LvYhyzVEdCTD8qd4IRY6aPcQEo7bYoNwz7poMs+CY1r/WiioKor2es
- 0k7ffL3Ju6m2v7U1Eo0UqYFjqvz6MpQR9DciEDu5++NzfPCfEkP0flHyziIyxz8JAYNC
- siv0bYW9ahfdGfuF2mieMkepzCDFylqbK0qunnyugwHDV+FqrBmT93M7hidj3+kjicv1
- mtWlwSTz4brPDCm7AI008kTvLQgRoEfVriKBUa97vH9QpIGZ9QRGjZ3fGawjsjju7fHu
- wbig==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1778171456; x=1778776256;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :reply-to:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=BsZKRUYByxu4l1012X9BuJO08mB3a5+PDVH3rrgpa+o=;
- b=eBnYbP2rSEX7uKD91Q6Hcc3l66xMljTbItAvHzA1ETwJn3k+MMT498XS/XXo326A44
- uOIcLF7l53JTgUBwce1Msk+PULKIb76GQ5Mi7nBH2ezp+r8rUn8mzi1N5b8/icTF0Sa4
- 6y56e0GAXnlN43/Pew0QgiYB3PcY3OFSpXWICYLOrTNIpKE/aCaB2ErZQwXmGJV4RfOS
- uVX/qEbayF7RXvTf+X9NVcRv/xYKLC83vbPdD/nGnrTGNdqmrSDoF7kHZhe0WmCq+apu
- DMByjGBj8ILXIOYl80pNm6fd0HDoTBq5G8A+fPX/PDDhbYRr0I8ydRCdno7PB4GWXqxI
- c04g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778171456; x=1778776256;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :reply-to:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=BsZKRUYByxu4l1012X9BuJO08mB3a5+PDVH3rrgpa+o=;
- b=glZVFW8lKh69VdUVmE0hwMPbSNQhRGJaGt46DQfVv3dUNl1GzuUy5jXCgpzjj4OjAz
- FF8q7CBy1MmXhpCWnt72QDk2WKqeV0nPq5DZGpuzfnQLdr6dku9TMZQhVopARzWiFwHG
- f/QLmAbtTeqIHc65cUoQQNuEMg0hqKvmNlA3ttAcose59+zwfo1dzUfAO/0D3GY8T/2K
- 1osPR5ulTqm/StEIDXMDvFkMJphNGjl5QcQOvl1YqlygN5wfw+KJwl4FGZtnLLg00m+9
- YAdB/xYra+dxEG8TODs7qJtgfez2fMuMRxg4QlD5NDto4AUnK/PXH3WLL1DT2Z1EMFIP
- 9l9A==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+CHM89cIQA9G+apY3JvpOukZD1OSxUtKnrU2rIb1AicS+waanALMFdhCatgrtRAsU+ht7Cw7Hk@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywfm/IQCAolhGEdPTlJt1yTJRYf5uRxKVovaIB4ND/mZ022Pkbp
- 9wuxg65/IOA+Ys2zeB4tFGZ8guvdpDzEeXetl8mXu+ruLDNp2jdtSU4/8YCViRe17zzAeAgTK3i
- +hR+BskbGWYCwZ9GVASDJF+lvdDTKv80hOZFiZ6eX7mIqZ0r2G5OgaO8HVQaWUMxxrw5z6sDSdJ
- IVdTKwh/PWo11Fs3wK9sKn03gUFmIDvEY9uh7u78l6LhY=
-X-Gm-Gg: AeBDieuyEQ928e3oSJycy9d6Ug8pKhPHBoeYCL7XSeWfOfYHQIQqwntowy1hhBnA3dr
- RLhP+mJmpFTgrhLPuI3eVbkFXHYorsFUn2rZYB6l6JOPhtEwxxoGb/pqTz1cUsYSNXmiP3yYPuV
- JgodTUgM12XanFj1fumiEQBva78Cad0eV9NhYrz0zI5KLKBieMgEJvRKPFztbJdz2A9z5JLyo+4
- BpZ7lxV5nQja7YiLLQR4TDtDVNTl5KT4TWroA==
-X-Received: by 2002:a05:6820:1610:b0:696:1a85:586b with SMTP id
- 006d021491bc7-69998d103cemr5072109eaf.35.1778171456205; 
- Thu, 07 May 2026 09:30:56 -0700 (PDT)
-X-Received: by 2002:a05:6820:1610:b0:696:1a85:586b with SMTP id
- 006d021491bc7-69998d103cemr5072031eaf.35.1778171455539; Thu, 07 May 2026
- 09:30:55 -0700 (PDT)
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012049.outbound.protection.outlook.com [52.101.53.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 353BE10F631
+ for <amd-gfx@lists.freedesktop.org>; Thu,  7 May 2026 17:30:11 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OYblU39Mu2+NsWXUrZ//nSxpnxejvU5alG0E9qUA+gMWHi8fwR6Vyhb8C4IkQQB7xbfDPfMdmcBRI28lOuCr2lXp4XRtfGpvwZkeNrczSxMfxaaIc+equt0iq+sTLPRlX9+lOnLABlm8N6elyeDc4atpSF/2YOM4cSByGcF+AB9IWzD6iOTvSMFpObEjj2eh29U6uXxqeiivvZN0jdOTRzGihopipLKmUL2X6IjWWUH7jDm4N8/7XmtB6IbTTwwTDX/mlJx6VbXrv+PWDd1X8Ax5ruOAutTMadGHH2FIH5XD1wIbrO5vMvUIDTN5z3ecWPmyTtoR15ahfX5gn6Xcxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OJffpvQLG8v/DQxqcUbr6R3llCMvfSjtWhwBYCOgkqY=;
+ b=dWJ4zQ7R9nf2/i+McUGafeG1Gm26ldqv2UXMODmxco36brKWzOhrYUvnpjeUvewcM+YkUg5blj+wSLsqFiZiX9EmiktM9stlRUfqB6EtberxEU8vkqyUgcFs8HQtZxfqm2VeRV3ZqN+xxDrAoZ7EvA3oqsYq/whaweWIgX+UsGyCPsw8VPjvU2qt2T8kYTVm8oE3sup29sxtLYX4wxPph9pl0eApJOSnUGEJ/XnS5rXIUYXy2iz+Dyu/Dez7D51l79B7M73YOERjTXwotl9VGLIWx4J/nVD1gu4DaqSryiez2ZQx2zy1dedy0VgsrrARyEZ8OwK3SG6LceBHiGd+Mg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OJffpvQLG8v/DQxqcUbr6R3llCMvfSjtWhwBYCOgkqY=;
+ b=MCQTWRM0a1B44gHXmyNOp1f+LZsrQGm3GMXXEWNyPW2OQ1Xr93dDcIgkJBqTE++GsVu/cYw9p9y4+9Kl+AVys9b8P9ZdDiUgQa6j3VhQmJDlvGT+XBw6gBZFS0fKt626emlvqQCFYytVOmVD1awoKZAAM6y7m8bwzHpHG7yCL/8=
+Received: from PH7P220CA0002.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:326::34)
+ by DM4PR12MB9070.namprd12.prod.outlook.com (2603:10b6:8:bc::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.25; Thu, 7 May
+ 2026 17:30:04 +0000
+Received: from CY4PEPF0000E9D8.namprd05.prod.outlook.com
+ (2603:10b6:510:326:cafe::4f) by PH7P220CA0002.outlook.office365.com
+ (2603:10b6:510:326::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.16 via Frontend Transport; Thu,
+ 7 May 2026 17:30:03 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CY4PEPF0000E9D8.mail.protection.outlook.com (10.167.241.71) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9891.9 via Frontend Transport; Thu, 7 May 2026 17:30:03 +0000
+Received: from amir-devpc.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 7 May
+ 2026 12:30:00 -0500
+From: Amir Shetaia <amir.shetaia@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <harish.kasiviswanathan@amd.com>, Amir Shetaia <Amir.Shetaia@amd.com>
+Subject: [PATCH] drm/amdgpu: reject non-user addresses early in GEM_USERPTR
+ ioctl
+Date: Thu, 7 May 2026 13:29:46 -0400
+Message-ID: <20260507172946.2048931-1-amir.shetaia@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <20260505-wb-drop-encoder-v5-0-42567b7c7af2@oss.qualcomm.com>
- <20260505-wb-drop-encoder-v5-1-42567b7c7af2@oss.qualcomm.com>
- <CACSVV00TsXn=yx2UeGpxvCWRkSdj0=_=3_s01wCaO1RDH8t_vA@mail.gmail.com>
- <f6d9e805-328d-4d9c-8a40-32b47fcedd51@Igalia.com>
-In-Reply-To: <f6d9e805-328d-4d9c-8a40-32b47fcedd51@Igalia.com>
-From: Rob Clark <rob.clark@oss.qualcomm.com>
-Date: Thu, 7 May 2026 09:30:44 -0700
-X-Gm-Features: AVHnY4ILuojm3YrKxuKRouawRWPTWPOauo6Ler8XHGih8TS8VtJV7DK7zmGptjA
-Message-ID: <CACSVV00zgV02t0CGaDUJyTGBceBk7MFaOQ7Uc6ynpRkxdBwZhA@mail.gmail.com>
-Subject: Re: [PATCH v5 1/8] drm/msm/dpu: don't mix devm and drmm functions
-To: John Harrison <John.Harrison@igalia.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?UTF-8?B?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Jessica Zhang <jesszhan0024@gmail.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-ORIG-GUID: n1KaxnODnau5Zp5RzGbxw1qHEv9RUGiK
-X-Authority-Analysis: v=2.4 cv=caHiaHDM c=1 sm=1 tr=0 ts=69fcbe41 cx=c_pps
- a=wURt19dY5n+H4uQbQt9s7g==:117 a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=yOCtJkima9RkubShWh1s:22 a=VwQbUJbxAAAA:8 a=V2sgnzSHAAAA:8 a=EUspDBNiAAAA:8
- a=IvufwBvwVn8Rb4eIr-0A:9 a=QEXdDO2ut3YA:10 a=-UhsvdU3ccFDOXFxFb4l:22
- a=Z31ocT7rh6aUJxSkT1EX:22
-X-Proofpoint-GUID: n1KaxnODnau5Zp5RzGbxw1qHEv9RUGiK
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTA3MDE2NiBTYWx0ZWRfX4V7r8RP3hY+K
- tSTmfMm/j7x+1TFBoF5I+ZjunAEjeusTjdouwXhg2AnzojjsXOiYq6MB65gHsMxYkIgfgixzDbV
- Z2iHQnP8+fwYDbbru5XTkVz/Q4WkELo+li7Oxf9OLVxvwhrshp8c2peCBpEr2fEMug10gg0muo8
- omtl38wv+R7a1TfQSYY05gf1CizHAXQH1pVGvaH9Dn//TEZqz9shU4acGKrIf80KQ00MPk2+7kH
- 4I0tDHijh6Lp/r8eN+DVSgKw0Nag+oj0ddeUJvSH5pz5IWY5pJ9dfD2k2pLFZBDKb2OOwz+ClH7
- hG5ehJI9vF+WdIqAMzqh87N14wSiWckDbC7uJgRv0TwocKwU0MVonlXH1wmZEpXR17KDZXBf9vZ
- PqJh9uVvGJY9/VX4zAllNkjS/8gwgMkJxtHYdr7LlSUEe6uPLOjjijpLvSymu8uRu4WsF8AuRi/
- 2AOwoiMhYtnTjSGc+nQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-07_02,2026-05-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 clxscore=1015 suspectscore=0 bulkscore=0 priorityscore=1501
- adultscore=0 lowpriorityscore=0 impostorscore=0 spamscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604200000 definitions=main-2605070166
-X-Mailman-Approved-At: Fri, 08 May 2026 07:55:58 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D8:EE_|DM4PR12MB9070:EE_
+X-MS-Office365-Filtering-Correlation-Id: 79f2aa82-4465-4ba4-d066-08deac5e45e3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700016|82310400026|1800799024|376014|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: Npd1qzmXvrp9lrOJr5qvLkiwFWSIg5izIJ0yr/a6wkGmOXTbKOaKnveIsCIg5oriBGRy+t7ff5GR+I4/IlNZRecaoTVaXy47WELvWOwJ6tvS7QnVX8N2dOKJk0WALAFsfvG7dqjq+Ed4d8ZJwNaLk0JD1OreQspua11kXGPn5bGmpuJ26I6G+HQoLnxBbUato0BsEprmlNq/UThH46Ok7/DGth9DOKc89QTzZjneRcIm1zfG8Z2n3jbBox8Mu9I5DufwN/TaBCzeTJZW5ws9UWJdOSDNOZq4tLeSiF/hxKL+RZy/fl06Whct0L0KFDgbKxKY//q2Z+TPP+3eKpPmBJ9/4ATCPcmbMRi1faEKHbfuoZ65EB2RG95HTk7nuStQtJylEHJ+0dG1F3m/j8t4pnXgTl/4moEQVx4TMDIzCN7vusvotFOQGWPPnIr0GSVEPAIsuF3iOuVrgtTrCKmAkOt16MT/RglsmtCePuy/DfcxtzkIV6Y5VsgKT7ywqoXd5IMu7iJbRk/MM0ZP4u1W9Kx98oxXszf+tCI6/uUt77FuEJTABldcPZMCuwW3Zzs3HVAoLItpWVtNdr3NC77LBI7EdN3hpYxKefQlwF2IJRKQbQNIuejmlYRP87MtSRzkH4kUF+yE4zdfztbV+NHVNFP4gwiejHZQXU/2xK7NeFBS90OefWOp2OZm5UBr2K8a9TPpac2mkUF8csg4GED69GkB3wjmTFfhjJrAs8Ukxsw=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: zdvPl7Nnf0R5Dk+rgwMZaPrrTFbTlmNzipEE1X/PxFf2RpxlDyhh69C9wF2CSQ3UhIDHC04DOFoWuR/GOMXhNK1tnrcX69x8yLpZO6L9fGS7J7T+EPvhLwqFocL/dpFwbN0XWqIPbK2c3AH8uJMMYnTtQ/iHRlulXhhf2WgksiD49DypOfmKy5hr+3Gn146KA80F/Tb6RZ96NZj11PHF4wLWQTYX0g39KmUcPxtdU40dBVC6M2pr1YAzlhWgTzcUICJMWY0+jgbbuE2cU58vxY7HuFeOsOikUxjpDMWul1jvF9mgI9PnJslRo74pl8rcsO4jnurE7df3MzSSxWJghNyB1+C+ZE1fJAFXIQY98q3Lg/2gtCqx5Ce0rRvKjiAI8xxwFNRjmHXucNqZLX/0hAyI86IIt34Uzz52iC0KYnWpvkJn2K/eHZH7B6aMqfBL
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2026 17:30:03.1712 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79f2aa82-4465-4ba4-d066-08deac5e45e3
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D8.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB9070
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -185,131 +110,89 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: rob.clark@oss.qualcomm.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: B96DE4F3631
+X-Rspamd-Queue-Id: E47F84ECE56
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:John.Harrison@igalia.com,m:dmitry.baryshkov@oss.qualcomm.com,m:jani.nikula@linux.intel.com,m:suraj.kandpal@intel.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:liviu.dudau@arm.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:lumag@kernel.org,m:abhinav.kumar@linux.dev,m:sean@poorly.run,m:marijn.suijten@somainline.org,m:laurent.pinchart+renesas@ideasonboard.com,m:tomi.valkeinen+renesas@ideasonboard.com,m:kieran.bingham+renesas@ideasonboard.com,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:dave.stevenson@raspberrypi.com,m:mcanal@igalia.com,m:kernel-list@raspberrypi.com,m:christophe.jaillet@wanadoo.fr,m:jesszhan0024@gmail.com,m:louis.chauvet@bootlin.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:freedreno@lists.freedesktop.org,m:linux-renesas-soc@
- vger.kernel.org,m:laurent.pinchart@ideasonboard.com,m:tomi.valkeinen@ideasonboard.com,m:kieran.bingham@ideasonboard.com,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[rob.clark@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[36];
+	RCPT_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,linux.intel.com,intel.com,amd.com,igalia.com,gmail.com,ffwll.ch,arm.com,kernel.org,suse.de,linux.dev,poorly.run,somainline.org,ideasonboard.com,glider.be,raspberrypi.com,wanadoo.fr,bootlin.com,lists.freedesktop.org,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[rob.clark@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[amd-gfx,renesas];
-	HAS_REPLYTO(0.00)[rob.clark@oss.qualcomm.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,qualcomm.com:email,qualcomm.com:dkim]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[amir.shetaia@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	NEURAL_HAM(-0.00)[-0.990];
+	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-On Thu, May 7, 2026 at 9:29=E2=80=AFAM John Harrison <John.Harrison@igalia.=
-com> wrote:
->
-> Resending because apparently it got sent as HTML and was rejected by the
-> mailing lists...
->
-> On 5/5/26 14:49, Rob Clark wrote:
-> > On Mon, May 4, 2026 at 5:25=E2=80=AFPM Dmitry Baryshkov
-> > <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> >> Mixing devm and drmm functions will result in a use-after-free on msm
-> >> driver teardown if userspace keeps a reference on the drm device:
-> >> The WB connector data will be destroyed because of the use of
-> >> devm_kzalloc()), while the usersoace still can try interacting with th=
-e
-> >> WB connector (which uses drmm_ functions).
-> >>
-> >> Change dpu_writeback_init() to use drmm_.
-> >  From [1] it doesn't sound like userspace holding the drm device open
-> > is the issue (if that were possible, it seems like it would go badly),
-> > but rather the order of managed cleanup?
-> >
-> > [1] https://web.git.kernel.org/pub/scm/linux/kernel/git/next/linux-next=
-.git/commit/drivers/gpu/drm/xe/xe_hwmon.c?id=3D3a13c2de442d6bfaef9c102cd109=
-2e6cae22b753
-> So is this not an actual issue that has been seen in the wild? It is
-> just a theoretical issue based on code observation?
->
-> If so, then maybe the comment should just be something like:
->
->     dpu_writeback_init() was mixing devm and drmm functions - allocating
->     using devm and then passing to drmm to manage. This creates the
->     potential for a use-after-free bug as drmm and devm have different
->     lifetimes. Fix that by consistently using drmm management.
->
+From: Amir Shetaia <Amir.Shetaia@amd.com>
 
-I've not seen this issue myself, but I guess Dmitry has.  That comment
-sounds more in-line with what I _think_ is happening..
+amdgpu_gem_userptr_ioctl() currently accepts any value of args->addr
+and only discovers an out-of-range pointer much later, inside
+amdgpu_gem_object_create() and the HMM mirror registration path.
+Userspace can drive that path with kernel-side virtual addresses;
+the get_user_pages() layer rejects them, but only after the driver
+has already allocated a GEM object and started wiring up notifier
+state that then has to be torn down on failure.
 
-BR,
--R
+Add an access_ok() guard at the top of the ioctl, right after the
+existing page-alignment check and before flag validation, so any
+address that does not lie within the calling task's user address
+range is rejected with -EFAULT before any allocation occurs. No
+legitimate ROCm/HSA userspace passes kernel-mode pointers through
+this interface, so this is defense-in-depth rather than a behaviour
+change for valid callers; -EFAULT matches the convention already
+used by other uaccess-style rejections in the kernel.
 
->
-> John.
->
-> >
-> >> Fixes: 0b37ac63fc9d ("drm/msm/dpu: use drmm_writeback_connector_init()=
-")
-> >> Reported-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-> >> Closes: https://lore.kernel.org/r/78c764b8-44cf-4db5-88e7-807a85954518=
-@wanadoo.fr
-> >> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> >> ---
-> >>   drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c | 3 ++-
-> >>   1 file changed, 2 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c b/drivers/g=
-pu/drm/msm/disp/dpu1/dpu_writeback.c
-> >> index 7545c0293efb..6f2370c9dd98 100644
-> >> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
-> >> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c
-> >> @@ -5,6 +5,7 @@
-> >>
-> >>   #include <drm/drm_edid.h>
-> >>   #include <drm/drm_framebuffer.h>
-> >> +#include <drm/drm_managed.h>
-> >>
-> >>   #include "dpu_writeback.h"
-> >>
-> >> @@ -125,7 +126,7 @@ int dpu_writeback_init(struct drm_device *dev, str=
-uct drm_encoder *enc,
-> >>          struct dpu_wb_connector *dpu_wb_conn;
-> >>          int rc =3D 0;
-> >>
-> >> -       dpu_wb_conn =3D devm_kzalloc(dev->dev, sizeof(*dpu_wb_conn), G=
-FP_KERNEL);
-> >> +       dpu_wb_conn =3D drmm_kzalloc(dev, sizeof(*dpu_wb_conn), GFP_KE=
-RNEL);
-> >>          if (!dpu_wb_conn)
-> >>                  return -ENOMEM;
-> >>
-> >>
-> >> --
-> >> 2.47.3
-> >>
->
+Also add an explicit #include <linux/uaccess.h>; access_ok() is
+otherwise only available transitively through other headers in
+this translation unit.
+
+Signed-off-by: Amir Shetaia <Amir.Shetaia@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+index 0071d6957828..ad3d371ad7b9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+@@ -32,6 +32,7 @@
+ #include <linux/pci.h>
+ #include <linux/dma-buf.h>
+ #include <linux/dma-fence-unwrap.h>
++#include <linux/uaccess.h>
+ 
+ #include <drm/amdgpu_drm.h>
+ #include <drm/drm_drv.h>
+@@ -509,6 +510,9 @@ int amdgpu_gem_userptr_ioctl(struct drm_device *dev, void *data,
+ 	if (offset_in_page(args->addr | args->size))
+ 		return -EINVAL;
+ 
++	if (!access_ok((void __user *)(uintptr_t)args->addr, args->size))
++		return -EFAULT;
++
+ 	/* reject unknown flag values */
+ 	if (args->flags & ~(AMDGPU_GEM_USERPTR_READONLY |
+ 	    AMDGPU_GEM_USERPTR_ANONONLY | AMDGPU_GEM_USERPTR_VALIDATE |
+-- 
+2.43.0
+
