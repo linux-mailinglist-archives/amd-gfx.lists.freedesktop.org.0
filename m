@@ -2,65 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qGzEIRGX/WnBgAAAu9opvQ
+	id cMTfGHCK/WnWfgAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 08 May 2026 09:56:01 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 08 May 2026 09:02:08 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A4234F362A
-	for <lists+amd-gfx@lfdr.de>; Fri, 08 May 2026 09:56:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E23744F2B99
+	for <lists+amd-gfx@lfdr.de>; Fri, 08 May 2026 09:02:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7036210E5D4;
-	Fri,  8 May 2026 07:55:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L8KHJCk6";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63F8010F369;
+	Fri,  8 May 2026 07:02:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EA1C10F369;
- Fri,  8 May 2026 06:56:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778223364; x=1809759364;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=47POBLVaUrXtK1fn5h2rHbXgKdBedhfQvXbum5KWZpY=;
- b=L8KHJCk6taFyMXyAoAmZyKAbRI4ljiOboWt1PV+cdcPFKuUcGU53eDZV
- OllX892Dwr9BU7Z5Es02CnlKmCKclnmduTUd6f/9cweldEN212jEgeikh
- u9wL3hIQunc34UypSq0M7a11w/sD2lueud9mDZOTsclPufA2Rdnrd4sxJ
- OlSMeIYI1+I7L+SUI4RRhMkIL4ZUJH0UqVQbNH6ABndjdH816jdQcnSzx
- uGorDDZduLCK0YV3pkn99HEhi6ai2SCtz4WIpkbipjDh9yms2u4JnBcId
- Gb50FdHeoWxczpf4q5IFWspdg0OAHxlR6pAn/nN/A/IWkPkGR0w728OKK w==;
-X-CSE-ConnectionGUID: z7a1qwv5SN6aQcp0zk+W/A==
-X-CSE-MsgGUID: RVvl4OzcTj6CRTRDvCAj/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="79373325"
-X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="79373325"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 23:56:03 -0700
-X-CSE-ConnectionGUID: F50X2WD0Tn6WkjwwFx5+Nw==
-X-CSE-MsgGUID: vHEYlSuQSi2eEDhF3COPEQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="232153647"
-Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
- ([10.190.239.37])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 23:56:00 -0700
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.auld@intel.com, Arunpravin.PaneerSelvam@amd.com,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH V2] drm/buddy: Integrate lockdep annotations for gpu buddy
- manager
-Date: Fri,  8 May 2026 12:25:45 +0530
-Message-ID: <20260508065544.4049240-2-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.52.0
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25CAA10F369
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 May 2026 07:02:04 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 64871p5o1504510; Fri, 8 May 2026 12:31:51 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64871pI11504503;
+ Fri, 8 May 2026 12:31:51 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH] drm/amdgpu/userq: use drm_exec in amdgpu_userq_fence_read_wptr
+Date: Fri,  8 May 2026 12:31:50 +0530
+Message-Id: <20260508070150.1504484-1-sunil.khatri@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 08 May 2026 07:55:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,209 +46,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 1A4234F362A
+X-Rspamd-Queue-Id: E23744F2B99
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [2.39 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tejas.upadhyay@intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.629];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:mid]
 X-Rspamd-Action: no action
 
-gpu_buddy APIs are expected to be called with the driver-provided lock
-held, but there is no runtime enforcement of this contract. Add lockdep
-annotations to catch locking violations early.
+To access the bo from vm mapping first lock the root bo and
+then the object bo of the mapping to make sure both locks
+are taken safely.
 
-Introduce gpu_buddy_driver_set_lock() for the driver to register the
-lock that protects the buddy manager. Add gpu_buddy_driver_lock_held()
-assertions to all exported gpu_buddy and drm_buddy APIs that
-access/modify the manager state. The lock_dep_map field is only compiled
-in when CONFIG_LOCKDEP is enabled, adding zero overhead to production
-builds.
-
-Wire up xe_ttm_vram_mgr to register its mutex with the buddy manager
-after initialization.
-
-Assisted-by: Copilot:claude-opus-4.6
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/buddy.c                  | 11 ++++++++
- drivers/gpu/drm/drm_buddy.c          |  1 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  1 +
- include/linux/gpu_buddy.h            | 41 ++++++++++++++++++++++++++++
- 4 files changed, 54 insertions(+)
+ .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   | 50 +++++++++----------
+ 1 file changed, 25 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-index 52686672e99f..eb1457376307 100644
---- a/drivers/gpu/buddy.c
-+++ b/drivers/gpu/buddy.c
-@@ -437,6 +437,9 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
- 		root_count++;
- 	} while (size);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+index 35ced3c26c8c..e5522e953edc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+@@ -370,34 +370,35 @@ static int amdgpu_userq_fence_read_wptr(struct amdgpu_device *adev,
+ {
+ 	struct amdgpu_bo_va_mapping *mapping;
+ 	struct amdgpu_bo *bo;
++	struct drm_exec exec;
+ 	u64 addr, *ptr;
+-	int r;
+-
+-	r = amdgpu_bo_reserve(queue->vm->root.bo, false);
+-	if (r)
+-		return r;
++	int ret;
  
-+#ifdef CONFIG_LOCKDEP
-+	mm->lock_dep_map = NULL;
-+#endif
+ 	addr = queue->userq_prop->wptr_gpu_addr;
+ 	addr &= AMDGPU_GMC_HOLE_MASK;
+ 
+-	mapping = amdgpu_vm_bo_lookup_mapping(queue->vm, addr >> PAGE_SHIFT);
+-	if (!mapping) {
+-		amdgpu_bo_unreserve(queue->vm->root.bo);
+-		DRM_ERROR("Failed to lookup amdgpu_bo_va_mapping\n");
+-		return -EINVAL;
+-	}
++	drm_exec_init(&exec, DRM_EXEC_IGNORE_DUPLICATES, 2);
++	drm_exec_until_all_locked(&exec) {
++		ret = amdgpu_vm_lock_pd(queue->vm, &exec, 1);
++		drm_exec_retry_on_contention(&exec);
++		if (unlikely(ret))
++			goto lock_error;
+ 
+-	bo = amdgpu_bo_ref(mapping->bo_va->base.bo);
+-	amdgpu_bo_unreserve(queue->vm->root.bo);
+-	r = amdgpu_bo_reserve(bo, true);
+-	if (r) {
+-		amdgpu_bo_unref(&bo);
+-		DRM_ERROR("Failed to reserve userqueue wptr bo");
+-		return r;
++		mapping = amdgpu_vm_bo_lookup_mapping(queue->vm, addr >> PAGE_SHIFT);
++		if (!mapping) {
++			ret = -EINVAL;
++			goto lock_error;
++		}
++
++		ret = drm_exec_lock_obj(&exec, &mapping->bo_va->base.bo->tbo.base);
++		drm_exec_retry_on_contention(&exec);
++		if (unlikely(ret))
++			goto lock_error;
+ 	}
+ 
+-	r = amdgpu_bo_kmap(bo, (void **)&ptr);
+-	if (r) {
++	bo = amdgpu_bo_ref(mapping->bo_va->base.bo);
++	ret = amdgpu_bo_kmap(bo, (void **)&ptr);
++	if (ret) {
+ 		DRM_ERROR("Failed mapping the userqueue wptr bo");
+ 		goto map_error;
+ 	}
+@@ -405,16 +406,15 @@ static int amdgpu_userq_fence_read_wptr(struct amdgpu_device *adev,
+ 	*wptr = le64_to_cpu(*ptr);
+ 
+ 	amdgpu_bo_kunmap(bo);
+-	amdgpu_bo_unreserve(bo);
+ 	amdgpu_bo_unref(&bo);
+-
++	drm_exec_fini(&exec);
  	return 0;
  
- out_free_roots:
-@@ -538,6 +541,7 @@ void gpu_buddy_reset_clear(struct gpu_buddy *mm, bool is_clear)
- 	unsigned int order;
- 	int i;
- 
-+	gpu_buddy_driver_lock_held(mm);
- 	size = mm->size;
- 	for (i = 0; i < mm->n_roots; ++i) {
- 		order = ilog2(size) - ilog2(mm->chunk_size);
-@@ -580,6 +584,7 @@ EXPORT_SYMBOL(gpu_buddy_reset_clear);
- void gpu_buddy_free_block(struct gpu_buddy *mm,
- 			  struct gpu_buddy_block *block)
- {
-+	gpu_buddy_driver_lock_held(mm);
- 	BUG_ON(!gpu_buddy_block_is_allocated(block));
- 	mm->avail += gpu_buddy_block_size(mm, block);
- 	if (gpu_buddy_block_is_clear(block))
-@@ -633,6 +638,7 @@ void gpu_buddy_free_list(struct gpu_buddy *mm,
- {
- 	bool mark_clear = flags & GPU_BUDDY_CLEARED;
- 
-+	gpu_buddy_driver_lock_held(mm);
- 	__gpu_buddy_free_list(mm, objects, mark_clear, !mark_clear);
+ map_error:
+-	amdgpu_bo_unreserve(bo);
+ 	amdgpu_bo_unref(&bo);
+-
+-	return r;
++lock_error:
++	drm_exec_fini(&exec);
++	return ret;
  }
- EXPORT_SYMBOL(gpu_buddy_free_list);
-@@ -1172,6 +1178,8 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
- 	u64 new_start;
- 	int err;
  
-+	gpu_buddy_driver_lock_held(mm);
-+
- 	if (!list_is_singular(blocks))
- 		return -EINVAL;
- 
-@@ -1287,6 +1295,8 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
- 	unsigned long pages;
- 	int err;
- 
-+	gpu_buddy_driver_lock_held(mm);
-+
- 	if (size < mm->chunk_size)
- 		return -EINVAL;
- 
-@@ -1475,6 +1485,7 @@ void gpu_buddy_print(struct gpu_buddy *mm)
- {
- 	int order;
- 
-+	gpu_buddy_driver_lock_held(mm);
- 	pr_info("chunk_size: %lluKiB, total: %lluMiB, free: %lluMiB, clear_free: %lluMiB\n",
- 		mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
- 
-diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-index 841f3de5f307..faa025498de4 100644
---- a/drivers/gpu/drm/drm_buddy.c
-+++ b/drivers/gpu/drm/drm_buddy.c
-@@ -42,6 +42,7 @@ void drm_buddy_print(struct gpu_buddy *mm, struct drm_printer *p)
- {
- 	int order;
- 
-+	gpu_buddy_driver_lock_held(mm);
- 	drm_printf(p, "chunk_size: %lluKiB, total: %lluMiB, free: %lluMiB, clear_free: %lluMiB\n",
- 		   mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
- 
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 6ba47996bc7c..9f67df646955 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -322,6 +322,7 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
- 	if (err)
- 		return err;
- 
-+	gpu_buddy_driver_set_lock(&mgr->mm, &mgr->lock);
- 	ttm_set_driver_manager(&xe->ttm, mem_type, &mgr->manager);
- 	ttm_resource_manager_set_used(&mgr->manager, true);
- 
-diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
-index 5fa917ba5450..71941a039648 100644
---- a/include/linux/gpu_buddy.h
-+++ b/include/linux/gpu_buddy.h
-@@ -154,6 +154,7 @@ struct gpu_buddy_block {
-  * @avail: Total free space currently available for allocation in bytes.
-  * @clear_avail: Free space available in the clear tree (zeroed memory) in bytes.
-  *               This is a subset of @avail.
-+ * @lock_dep_map: Annotates gpu_buddy API with a driver provided lock.
-  */
- struct gpu_buddy {
- /* private: */
-@@ -179,8 +180,48 @@ struct gpu_buddy {
- 	u64 size;
- 	u64 avail;
- 	u64 clear_avail;
-+#ifdef CONFIG_LOCKDEP
-+	struct lockdep_map *lock_dep_map;
-+#endif
- };
- 
-+#ifdef CONFIG_LOCKDEP
-+/**
-+ * gpu_buddy_driver_set_lock() - Set the lock protecting accesses to GPU BUDDY
-+ * @mm: Pointer to GPU buddy structure.
-+ * @lock: the lock used to protect the gpu buddy. The locking primitive
-+ * must contain a dep_map field.
-+ *
-+ * Call this to annotate gpu_buddy APIs which access/modify gpu_buddy manager
-+ */
-+#define gpu_buddy_driver_set_lock(mm, lock) \
-+	do { \
-+		struct gpu_buddy *__mm = (mm); \
-+		if (!WARN(__mm->lock_dep_map, "GPU BUDDY MM lock should be set only once.")) \
-+			__mm->lock_dep_map = &(lock)->dep_map; \
-+	} while (0)
-+#else
-+#define gpu_buddy_driver_set_lock(mm, lock) do { (void)(mm); (void)(lock); } while (0)
-+#endif
-+
-+#ifdef CONFIG_LOCKDEP
-+/**
-+ * gpu_buddy_driver_lock_held() - Assert GPU BUDDY manager lock is held
-+ * @mm: Pointer to the GPU BUDDY structure.
-+ *
-+ * Ensure driver lock is held.
-+ */
-+static inline void gpu_buddy_driver_lock_held(struct gpu_buddy *mm)
-+{
-+	if (mm->lock_dep_map)
-+		lockdep_assert(lock_is_held_type(mm->lock_dep_map, 0));
-+}
-+#else
-+static inline void gpu_buddy_driver_lock_held(struct gpu_buddy *mm)
-+{
-+}
-+#endif
-+
- static inline u64
- gpu_buddy_block_offset(const struct gpu_buddy_block *block)
- {
+ static void
 -- 
-2.52.0
+2.34.1
 
