@@ -2,61 +2,136 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OIt1A5eFAWoFcAEAu9opvQ
+	id 2KjYAMaa/WlcgQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 May 2026 09:30:31 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 08 May 2026 10:11:50 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E6CC509342
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 May 2026 09:30:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62B3F4F38B3
+	for <lists+amd-gfx@lfdr.de>; Fri, 08 May 2026 10:11:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F13AB10E4AC;
-	Mon, 11 May 2026 07:30:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4AF310E5D0;
+	Fri,  8 May 2026 08:11:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=xry111.site header.i=@xry111.site header.b="FBlrDdW5";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="VqhJfZ8L";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from xry111.site (xry111.site [89.208.246.23])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44E1C10F3EA
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 May 2026 08:11:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xry111.site;
- s=default; t=1778227882;
- bh=BJNs5GPK+NnrwTQipFNZw2RWaEJGs2bI5Vw8gHPnVjM=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=FBlrDdW5a9LeiLl1abY+7fcl7o/Ki5orZN7AcnN8DHnFxOIN+RwOH+EN7E1CtSNbM
- +i1/DRcr9EY3Zkhz0g/9eGMNsRNYfkXerGo+2ngn7wkuYGeArZyzse9NWoKsNbQAjD
- +am4AW0zO8JHSvnCfP4gAzWz1bJIFQfdToDBd2LA=
-Received: from [IPv6:2409:8a4c:e1f:d2d0:3663:3ffe:842d:4c31] (unknown
- [IPv6:2409:8a4c:e1f:d2d0:3663:3ffe:842d:4c31])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature ECDSA (secp384r1)
- server-digest SHA384) (Client did not present a certificate)
- (Authenticated sender: xry111@xry111.site)
- by xry111.site (Postfix) with ESMTPSA id A539865992;
- Fri,  8 May 2026 04:11:16 -0400 (EDT)
-Message-ID: <df24e57df62dc4d0a9385a20f6476808b133be71.camel@xry111.site>
-Subject: Re: [PATCH v2 24/30] drm/amd/display: Move FPU Guards From DML To
- DC - Part 2
-From: Xi Ruoyao <xry111@xry111.site>
-To: ChuanYu Tseng <ChuanYu.Tseng@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
- Wayne Lin <wayne.lin@amd.com>, Tom Chung	 <chiahsuan.chung@amd.com>,
- Fangzhi Zuo <jerry.zuo@amd.com>, Dan Wheeler	 <daniel.wheeler@amd.com>, Ray
- Wu <Ray.Wu@amd.com>, Ivan Lipski	 <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, Rafal Ostrowski	 <rafal.ostrowski@amd.com>, Dillon
- Varone <dillon.varone@amd.com>, Mingcong Bai	 <jeffbai@aosc.io>, xinmu
- <xinmu@xinmu.moe>
-Date: Fri, 08 May 2026 16:11:07 +0800
-In-Reply-To: <20260326030153.406612-25-ChuanYu.Tseng@amd.com>
-References: <20260326030153.406612-1-ChuanYu.Tseng@amd.com>
- <20260326030153.406612-25-ChuanYu.Tseng@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.60.1 
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011053.outbound.protection.outlook.com [40.107.208.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF86010E5D0
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 May 2026 08:11:46 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=A6u43bU3A7MET8iebFSvq/xdMW6rlPa+SQDPScxAawLQ3+P+DiMK1nP7I0lLnczl8ARmr4q7mH5797xw0+pFUsmJRfAd5MQV4RDJf5B51q1W4lJ68cLsdtooNoxlThqqCkkkR6dIMuWtuYmQ1NqURoRybzc2V6O+txQxGe2JB3DSBtLsaYXf36sHlK2JEAbb+gs0foHD2CyiDweJrfyEIF6d4PehQEH3hzEKutE15cgzKSqVM5PXijsgInNNj1AFxRngOHgfokMaa2g/pm52zXIWHZVu4u8NfO9OkuGgodiWyBnuUdpe6qevvav4oBUg+QP3GDOAv8goWTIKHSFAZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VvPc+RvkiGe2Qcnj1Sa77ffFEjdY2efmfiqUFmnTt6k=;
+ b=Av31Hp56fciLY27Lsy7jj4d9YgYLAkhpkONZnVokZSQIGwLBqFerwoayHnrrXz1Y62m/Imyqy0sAsZxBvlXh8alkSQh2XtnlhJ/Vd2VuDHMfa5RgDDAbZZ+hRq28nWo16HkvBizLg0sGBuDpESFb5VYoMsPo864fmOz8uJzn13m26P5PGI8fBuSkf264nqex6z0alhIGauX9tMGjhEnQZl2x0O7kZHjip/o2RkPtAKr1fw31imcmhpjfjPc7ltAR9K3vigjauwq1YtXM6h7MWt/+RwdWBta3Fbl5QTkBBMCCzWqOIIlsTmD/Ca9ewneCTplalAxAwiqNjeL2BQLb5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VvPc+RvkiGe2Qcnj1Sa77ffFEjdY2efmfiqUFmnTt6k=;
+ b=VqhJfZ8Lx6ZzUVCdk6xQmsWg0WOYQ/LMM3yQDRo4oqqK6ROizQQVkC13KFChON8qkajddLpzkC3eLH3+2ZJksi2Fap4HmEQ7YRwp/bZNCI4+Yv5yNEAZSRl1rsW9tpLrHkWgrDvCI8o+dQyouBf8ynaeA4AqGOV8pZbu4csNB20=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by DS2PR12MB9616.namprd12.prod.outlook.com (2603:10b6:8:275::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.19; Fri, 8 May
+ 2026 08:11:40 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9870.023; Fri, 8 May 2026
+ 08:11:40 +0000
+Message-ID: <6c7785d5-4619-4348-9772-9de8c30bce21@amd.com>
+Date: Fri, 8 May 2026 10:11:32 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: unmap all user mappings of framebuffer and
+ doorbell before mode1 reset
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: Yifan Zhang <yifan1.zhang@amd.com>, amd-gfx@lists.freedesktop.org,
+ "Kuehling, Felix" <Felix.Kuehling@amd.com>,
+ Philipp Stanner <phasta@kernel.org>,
+ "Honglei1.Huang@amd.com" <honghuan@amd.com>, Alexander.Deucher@amd.com,
+ Perry.Yuan@amd.com, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>
+References: <20260507140934.1001909-1-yifan1.zhang@amd.com>
+ <d1e60cfa-2e93-48ff-9af6-72366aba7e06@amd.com>
+ <CADnq5_P=UYFyxiFaxj2YQdfyaJCSYhHHT9shk4LxfPa+XMV-7Q@mail.gmail.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <CADnq5_P=UYFyxiFaxj2YQdfyaJCSYhHHT9shk4LxfPa+XMV-7Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BL1PR13CA0388.namprd13.prod.outlook.com
+ (2603:10b6:208:2c0::33) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 11 May 2026 07:30:27 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DS2PR12MB9616:EE_
+X-MS-Office365-Filtering-Correlation-Id: 58fbe5ec-8ca2-4b6e-9dae-08deacd96e9f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|56012099003|18002099003|22082099003|8126099003|3023799003;
+X-Microsoft-Antispam-Message-Info: 4teOAt2ckM9B5j2kEBm+iDCAPT5C00kRnxwR5rsvCJHxzTL9pcWa7CqUk9QEnaR9Vghe0FyZt6ueC60AjaMQm+T5ecxSRxKQfugMrU38LaZjUOcbw82/engacWga+Qa8f7wbrNzBAQiBKsNPwNQ+StEEtnDGhwJzhFzV9S9wBoZf0k+K/M2dgm4jzw6DrBgECeeRcIMbBJaI60q9FwFzwOF9AAI/NhCpDKirg3okiE5uvy0Svlv8dNt6vKfzIaa3K9FZnMH81L5eWoBI9AQKvD5HUVvR6GjZS/KBhvPHye4a/9mvLYIoYlB9N71/k82K6aEXu9ANGCHgw9xY6A4PE92tVUDl2werY3s2cwd4D1l/qoUoxLJ4GdCTfCbYKVLp2XAhKQR7VjMg7pv7QysY4FukODXP5lRFojMqpic3ocdVBd7dDVhS7HZlPC1BVUPJIqgQqNnZT/NiKPH+RcPgpMvkPAjN49gY5jpQyqtws/BNNAQqfZdpOo1HmWzkuSPxTA22RwqjuA92qTbYL+6H1qD3S8mUjaXJUuCMe2JdfZLTartTVbXq7Nph/nqJKFD8o/jCkMidYcSbnr77JX3x4hgtDK5mX74JBzz1k9S8zMI26RPBYi6c8TJZgsR29lMeiDCSg5UhpSdUpEDcBRr18Hhm6NxU2/m2eYYJsQNOFCIdmJZEGiFT0OkOWpV5dVX8
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(56012099003)(18002099003)(22082099003)(8126099003)(3023799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Rmgybjc0c2U1V002em5CUkxXeGNKR2NVRGhMTnlEa0prUUpVMWNCMG9mUHJx?=
+ =?utf-8?B?cS9qY1EvQ1hNblNlSUJpOWJrZHdGb05YNVdyUGhlZkkwSm8vTmJCNlNLeEx6?=
+ =?utf-8?B?WHpycGlDTkRVL1IwM3VjQ0JPZC8vNS96OHBWR2ZNRFh2REtzUCtONFZUUDVs?=
+ =?utf-8?B?TjlJdzRnOENVdHdnT1Rsb1dlOXVaTm5FelpTOERScmovMmMzTkNEYXJ1TnR4?=
+ =?utf-8?B?bWN0UHVSUk9FYmQ0K0lEbzduNjcxZVRsQkFlZGh1TnAvaWdNaS9ZTlNDOEI3?=
+ =?utf-8?B?T2ltZXR6M3ArUThTcXlyL251KzFLSmNUOUZpMmpOeHp6VG5TUitDT1RBYzI0?=
+ =?utf-8?B?aEEyM2tPakJ1d1Z0NkVzREd3YUFLYVlXb1dtTjVJL2k5M1dHNEJJa21uODc3?=
+ =?utf-8?B?cm9VbHNrU2xma1hHU0JzTTZ6VkJZaHpwRUpoZStrbmhJRGF5UlBKYm9ZelEr?=
+ =?utf-8?B?aTRhWCtpMFNJSGZJWDlSWlBaQVdyUGhndWdOSGNPWFc2NGtwa2hJUW91cmZN?=
+ =?utf-8?B?dmRTQnl5N0J6c0ZSZFhnY2NuMVhOdzU2Ly9uSjN5TERRSFR3RzNlSms3emhW?=
+ =?utf-8?B?UGlhV2swY29nL2dFeVNyS3BVSnRPU2FrK05LejJvZGxrK3liZlIzR3JGZWk0?=
+ =?utf-8?B?WVZTVEN6YTE3WjY5aUZyQTc1TlhpREg2d3lod3piLzlIZCtIamlJeEhQcmVF?=
+ =?utf-8?B?REVKVC8rT1E5V243NjdHeHhGYlRLNDZXOWR3aTg0UTFjQWw2MlJCTXQ3QlR2?=
+ =?utf-8?B?dG02Ri9pWVM4eHJieXRtQXlrNko1ckdYRTJtTlB5RndxL3V0bmRxUElRNDNp?=
+ =?utf-8?B?Y0o2R0U5Rmd6MEJiamhlV2hNSzFTd2ltVEh2TXpKWGo2QnoxS0FaeE9LZ0lr?=
+ =?utf-8?B?eXJYU2lCa3BDT3k3djJEYzU2VURHZUNvZW1JYStYS2pKb1J2UGp6VTJzaWYx?=
+ =?utf-8?B?WVlrTkh3dHRZSVZ5cDRYWUJ4MmVWSkZTZ29CS3RhWEZjYVpQSUVKK3F0Q0M3?=
+ =?utf-8?B?Nkw5SUk4dC9EWkNHSEhxVG53THNNd1htUVJqckdUTDE2WktSS1JSRUlvaWha?=
+ =?utf-8?B?N3J5NGdFeEc3MkEwQW1tcVphTkVmbUNNdlRHZUpkQmJQL3FwU1RSRUM5MzdP?=
+ =?utf-8?B?UTNGbHRhSUdzYzNlWEZqWWdDODl1elhVb1A3cTI5Q2hiTTFMRHo0aXFrNDF4?=
+ =?utf-8?B?U2NzYVZhNVNlT2FHUFlXcnFEbThnMFVuaTNZaUN5L2V2L2EwbW0yYm5PRU5n?=
+ =?utf-8?B?YUhCWUxCMEhqeXVPc2ZnaEp5SXRSS0lnY0RFQ244bVVKM3JHOUpqc0pWUTBD?=
+ =?utf-8?B?UnhqR1NBdVk5WFpZQnUzWEo1QUlJdWxHN0dzbEJsWmdwaVhuRGk5ekM3UXow?=
+ =?utf-8?B?cjA5U3M2YUtuWXV1Yk9KL084R3pSWmoxTmpzaytlQ0lQSCt0MGhkZjFtSnpy?=
+ =?utf-8?B?elZFcC9tSWtoaUQwNGptanVOQnFBRjhrVndMUmgzR2RubkFtckl4VXVFVzlJ?=
+ =?utf-8?B?RkFxUGdld24xTm5nSlhnTkhMbjlsdGxYeFo5RTJvQTdqUjY4a3BTQWdZK0VR?=
+ =?utf-8?B?K3Z5RDUxazJZUDNXY0tSMFRwZ05TZ3h5dk1yKzRZKzZrTHRoaDQwWkU5Y3BF?=
+ =?utf-8?B?aXhWOHN2SW5rdjZNMXNLenFsZ2VoUHdjNndkcGE2Z3o1MVBURjdzZVozaE5l?=
+ =?utf-8?B?SUVCTUJ1NmNWRitTa3BJL1IxcXVXRllLclV2OVVjRlR2eTZhSjJuVU4yZnNR?=
+ =?utf-8?B?OUlyRVVrZWJNT3hTSFBGdzRlY3p0am9ZazRkRHhtUXFZWmhJU1FtMmREU1VC?=
+ =?utf-8?B?VW1yMVhLdWR1QmFLVTZiWWlESFR3cUVJYjIvMG92Q3d2OUxjNEJNMnpJaG92?=
+ =?utf-8?B?ZFB5aUd5T0pyYkwvcEZuc0NLUzY5OFFkbWpVeFNxT3F3TXlCbmZXa0tLemxz?=
+ =?utf-8?B?eklVc2VlOG8zSThWb1RWODhaVWxRbCtyUmZPQi9nM1pxRHFzQW9MbE44QkQr?=
+ =?utf-8?B?cmZuckxRcUZ2dnJrNjFtdUJ0ODdHSEhnbW52Vld1NXBoRTRyaW5xNlVRcGI5?=
+ =?utf-8?B?S2hJQmlzS3lzTGFBeDhEVVNFcE4wdWU1cUtPMW1NM1JJNjdDeld5enVBOFJi?=
+ =?utf-8?B?TWZ0dnRJaGtaZ285NXZaUVZlVmVZYVEvNFpDNTNEVnIrSjI2S0FEMXFERWsy?=
+ =?utf-8?B?dlNxVklHaDRxdGNoaWc2blo1NVp5dVh2bitnejZFbmJIM3ppa2xuaTU1amRC?=
+ =?utf-8?B?MXV5ZW5ObFB0Ykd5bkFVOUlzOCtUZmsyMU85LzhwVWlGVjdNUDNiaVFtMTBY?=
+ =?utf-8?Q?OKB2qb4HWhug4rfJHW?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 58fbe5ec-8ca2-4b6e-9dae-08deacd96e9f
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2026 08:11:39.9446 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ujuijbtScj2FQv//LrTxZ/zPuX9/MpgCGIDq7YlOzXcAOsOUEEHJEombD/iATRcb
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS2PR12MB9616
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,201 +145,249 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6E6CC509342
+X-Rspamd-Queue-Id: 62B3F4F38B3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	DATE_IN_PAST(1.00)[71];
-	DMARC_POLICY_ALLOW(-0.50)[xry111.site,reject];
-	R_DKIM_ALLOW(-0.20)[xry111.site:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:ChuanYu.Tseng@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:aurabindo.pillai@amd.com,m:roman.li@amd.com,m:wayne.lin@amd.com,m:chiahsuan.chung@amd.com,m:jerry.zuo@amd.com,m:daniel.wheeler@amd.com,m:Ray.Wu@amd.com,m:ivan.lipski@amd.com,m:alex.hung@amd.com,m:rafal.ostrowski@amd.com,m:dillon.varone@amd.com,m:jeffbai@aosc.io,m:xinmu@xinmu.moe,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[xry111@xry111.site,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:yifan1.zhang@amd.com,m:Felix.Kuehling@amd.com,m:phasta@kernel.org,m:honghuan@amd.com,m:Alexander.Deucher@amd.com,m:Perry.Yuan@amd.com,m:thomas.hellstrom@linux.intel.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[xry111@xry111.site,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[xry111.site:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Action: no action
 
-On Thu, 2026-03-26 at 10:57 +0800, ChuanYu Tseng wrote:
+On 5/7/26 17:05, Alex Deucher wrote:
+> On Thu, May 7, 2026 at 10:54 AM Christian König
+> <christian.koenig@amd.com> wrote:
+>>
+>> On 5/7/26 16:09, Yifan Zhang wrote:
+>>> During Mode 1 reset, the ASIC undergoes a reset cycle and becomes temporarily
+>>> inaccessible via PCIe. Any attempt to access framebuffer or MMIO registers during
+>>> this window can result in uncompleted PCIe transactions, leading to NMI panics or
+>>> system hangs.
+>>>
+>>> To prevent this, Unmap all of the applications mappings of the framebuffer
+>>> and doorbell BARs before mode1 reset. Also prevent new mappings from coming in
+>>> during the reset process.
+>>
+>> I think putting the inode into the kfd_dev would break userspace, so that is a no-go and needs a different solution.
+>>
+>> But apart from that the patch looks like what I suggested before.
+>>
+>> Question is since when does that issue exists? Previously we didn't had to take care of that.
+> 
+> It's always existed, I guess generally there are not often CPU
+> accesses to VRAM during a reset.  It depends on the platform and what
+> level of PCIe error handling it enables.
 
-> FPU guards (DC_FP_START/DC_FP_END) are required to wrap around code that
-> can manipulates floats. To do this properly, the FPU guards must be used
-> in a file that is not compiled as a FPU unit. If the guards are used in
-> a file that is a FPU unit, other sections in the file that aren't guarded
-> may be end up being compiled to use FPU operations.
+Yeah I feared that. Yesterday I've gone through that step by step and came to the conclusion that our approach here won't work at all.
 
-/* snip */
+The problem is that vmf_insert_pfn_prot() can cycle back and wait for the GPU reset to complete.
 
-> diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c b/drive=
-rs/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c
+So when we are now holding adev->reset_domain->sem to prevent new mapping while calling vmf_insert_pfn_prot() we can run into a deadlock.
 
-We have:
+I don't see how we can solve this except for switching TTMs fault handling over to apply_to_page_range() and then holding the lock while calling set_pte().
 
-CFLAGS_$(AMDDALPATH)/dc/dml2_0/dml2_wrapper.o :=3D $(dml2_rcflags)
+I tried to do that a while back because it would also improve TTMs mapping performance quite a bit, but that was rejected from upstream because of restrictions around apply_to_page_range().
 
-and
+Anyway this can only be done with a *huge* change to TTM and KFD. I fear we will need multiple month for that.
 
-dml2_rcflags :=3D $(CC_FLAGS_NO_FPU)
+Regards,
+Christian.
 
-so this file isn't compiled as a FPU unit.  Why removing the guards
-here?
+> 
+> Alex
+> 
+>>
+>> Regards,
+>> Christian.
+>>
+>>>
+>>> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+>>> ---
+>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h      |  1 +
+>>>  .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c    | 12 ++++++++++++
+>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c      |  7 ++++++-
+>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c         | 17 +++++++++++++++--
+>>>  drivers/gpu/drm/amd/amdkfd/kfd_chardev.c        | 10 ++++++++++
+>>>  drivers/gpu/drm/amd/amdkfd/kfd_priv.h           |  3 +++
+>>>  6 files changed, 47 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+>>> index 2bf6a31c194d..5333e052d56d 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+>>> @@ -360,6 +360,7 @@ int amdgpu_amdkfd_reserve_mem_limit(struct amdgpu_device *adev,
+>>>               uint64_t size, u32 alloc_flag, int8_t xcp_id);
+>>>  void amdgpu_amdkfd_unreserve_mem_limit(struct amdgpu_device *adev,
+>>>               uint64_t size, u32 alloc_flag, int8_t xcp_id);
+>>> +void amdgpu_amdkfd_clear_kfd_mapping(struct amdgpu_device *adev);
+>>>
+>>>  u64 amdgpu_amdkfd_xcp_memory_size(struct amdgpu_device *adev, int xcp_id);
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+>>> index 7c01492e69dd..3ac2bd86c08b 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+>>> @@ -139,6 +139,18 @@ void amdgpu_amdkfd_reserve_system_mem(uint64_t size)
+>>>       kfd_mem_limit.system_mem_used += size;
+>>>  }
+>>>
+>>> +void amdgpu_amdkfd_clear_kfd_mapping(struct amdgpu_device *adev)
+>>> +{
+>>> +     if (adev->kfd.dev && adev->kfd.dev->inode &&
+>>> +             adev->kfd.dev->inode->i_mapping) {
+>>> +             unmap_mapping_range(adev->kfd.dev->inode->i_mapping,
+>>> +                     KFD_MMAP_TYPE_DOORBELL, kfd_doorbell_process_slice(adev->kfd.dev), 1);
+>>> +             unmap_mapping_range(adev->kfd.dev->inode->i_mapping,
+>>> +                     KFD_MMAP_TYPE_MMIO, PAGE_SIZE, 1);
+>>> +     }
+>>> +}
+>>> +
+>>> +
+>>>  /* Estimate page table size needed to represent a given memory size
+>>>   *
+>>>   * With 4KB pages, we need one 8 byte PTE for each 4KB of memory
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>> index 073f632f295a..c67936d1fb0d 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>> @@ -5019,7 +5019,6 @@ int amdgpu_device_mode1_reset(struct amdgpu_device *adev)
+>>>
+>>>       /* disable BM */
+>>>       pci_clear_master(adev->pdev);
+>>> -
+>>>       if (amdgpu_dpm_is_mode1_reset_supported(adev)) {
+>>>               dev_info(adev->dev, "GPU smu mode1 reset\n");
+>>>               ret = amdgpu_dpm_mode1_reset(adev);
+>>> @@ -5840,6 +5839,12 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
+>>>       /* We need to lock reset domain only once both for XGMI and single device */
+>>>       amdgpu_device_recovery_get_reset_lock(adev, &device_list);
+>>>
+>>> +     /* unmap all the mappings of doorbell and framebuffer to prevent user space from
+>>> +      * accessing them
+>>> +      */
+>>> +     unmap_mapping_range(adev->ddev.anon_inode->i_mapping, 0, 0, 1);
+>>> +     amdgpu_amdkfd_clear_kfd_mapping(adev);
+>>> +
+>>>       amdgpu_device_halt_activities(adev, job, reset_context, &device_list,
+>>>                                     hive, need_emergency_restart);
+>>>       if (need_emergency_restart)
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+>>> index 0071d6957828..1dd343f0219f 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+>>> @@ -46,6 +46,7 @@
+>>>  #include "amdgpu_hmm.h"
+>>>  #include "amdgpu_xgmi.h"
+>>>  #include "amdgpu_vm.h"
+>>> +#include "amdgpu_reset.h"
+>>>
+>>>  static int
+>>>  amdgpu_gem_add_input_fence(struct drm_file *filp,
+>>> @@ -118,13 +119,21 @@ amdgpu_gem_update_timeline_node(struct drm_file *filp,
+>>>  static vm_fault_t amdgpu_gem_fault(struct vm_fault *vmf)
+>>>  {
+>>>       struct ttm_buffer_object *bo = vmf->vma->vm_private_data;
+>>> +     struct amdgpu_device *adev = amdgpu_ttm_adev(bo->bdev);
+>>>       struct drm_device *ddev = bo->base.dev;
+>>>       vm_fault_t ret;
+>>>       int idx;
+>>>
+>>> +     /* Prevent new mappings from coming in during reset */
+>>> +
+>>> +     if (!down_read_trylock(&adev->reset_domain->sem))
+>>> +             return VM_FAULT_SIGSEGV;
+>>> +
+>>>       ret = ttm_bo_vm_reserve(bo, vmf);
+>>> -     if (ret)
+>>> +     if (ret) {
+>>> +             up_read(&adev->reset_domain->sem);
+>>>               return ret;
+>>> +     }
+>>>
+>>>       if (drm_dev_enter(ddev, &idx)) {
+>>>               ret = amdgpu_bo_fault_reserve_notify(bo);
+>>> @@ -140,11 +149,15 @@ static vm_fault_t amdgpu_gem_fault(struct vm_fault *vmf)
+>>>       } else {
+>>>               ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
+>>>       }
+>>> -     if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
+>>> +     if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT)) {
+>>> +             up_read(&adev->reset_domain->sem);
+>>>               return ret;
+>>> +     }
+>>>
+>>>  unlock:
+>>>       dma_resv_unlock(bo->base.resv);
+>>> +     up_read(&adev->reset_domain->sem);
+>>> +
+>>>       return ret;
+>>>  }
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+>>> index 84b9bde7f371..d5bf5ba73ca0 100644
+>>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+>>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+>>> @@ -130,11 +130,21 @@ void kfd_chardev_exit(void)
+>>>  static int kfd_open(struct inode *inode, struct file *filep)
+>>>  {
+>>>       struct kfd_process *process;
+>>> +     struct kfd_node *node;
+>>>       bool is_32bit_user_mode;
+>>> +     int i;
+>>>
+>>>       if (iminor(inode) != 0)
+>>>               return -ENODEV;
+>>>
+>>> +     /* Save inode in kfd_dev for unmap_mapping_range */
+>>> +     for (i = 0; kfd_topology_enum_kfd_devices(i, &node) == 0; i++) {
+>>> +             if (node && node->kfd && !node->kfd->inode) {
+>>> +                     node->kfd->inode = inode;
+>>> +                     break;
+>>> +             }
+>>> +     }
+>>> +
+>>>       is_32bit_user_mode = in_compat_syscall();
+>>>
+>>>       if (is_32bit_user_mode) {
+>>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+>>> index a6ff1db477f9..bfdd7d3bc7cb 100644
+>>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+>>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+>>> @@ -373,6 +373,9 @@ struct kfd_dev {
+>>>
+>>>       struct workqueue_struct *ih_wq;
+>>>
+>>> +     /* kfd inode */
+>>> +     struct inode *inode;
+>>> +
+>>>       /* Kernel doorbells for KFD device */
+>>>       struct amdgpu_bo *doorbells;
+>>>
+>>
 
-/* snip */
-
-> index 408559d6fb2d..f8250c80be02 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c
-> @@ -6,7 +6,20 @@
-> =C2=A0 */
-> =C2=A0
-> =C2=A0#include "dml2_internal_types.h"
-> +#include "dml2_wrapper.h"
-> =C2=A0#include "dml2_wrapper_fpu.h"
-> +#include "dml21_wrapper.h"
-> +#include "dml21_wrapper_fpu.h"
-> +
-> +#include "dc_fpu.h"
-> +
-> +struct dml2_context *dml2_allocate_memory(void)
-> +{
-> +	struct dml2_context *dml2;
-> +
-> +	DC_RUN_WITH_PREEMPTION_ENABLED(dml2 =3D vzalloc(sizeof(struct dml2_cont=
-ext)));
-> +	return dml2;
-> +}
-> =C2=A0
-> =C2=A0bool dml2_validate(const struct dc *in_dc, struct dc_state *context=
-, struct dml2_context *dml2,
-> =C2=A0	enum dc_validate_mode validate_mode)
-> @@ -23,16 +36,12 @@ bool dml2_validate(const struct dc *in_dc, struct dc_=
-state *context, struct dml2
-> =C2=A0		return out;
-> =C2=A0	}
-> =C2=A0
-> -	DC_FP_START();
-
-Notably the removal of this is causing:
-
-[    3.943927] do_fpu invoked from kernel context![#1]:
-[    3.948860] CPU: 0 UID: 0 PID: 11 Comm: kworker/0:1 Not tainted 7.0.3-ao=
-sc-main-4k #2 PREEMPT(lazy)
-[    3.957938] Hardware name: Loongson Loongson-3B6000x1-7A2000x1-XB612B0_v=
-1.1/XB612B0_v1.1, BIOS Loongson-FwSdk-V5.0.0431-stable202602 04/10/26 09:20=
-:09
-[    3.971334] Workqueue: sync_wq local_pci_probe_callback
-[    3.976528] pc ffff800002becd80 ra ffff800002becd30 tp 90000001005d8000 =
-sp 90000001005db5e0
-[    3.984827] a0 ffff80001326ebf8 a1 0000000000000000 a2 ffff80001326ec98 =
-a3 ffff80001326ec90
-[    3.993124] a4 ffff80001326ec90 a5 0000000000000000 a6 0000000000000000 =
-a7 0000000000000000
-[    4.001422] t0 ffff800003327000 t1 ffff80001326f000 t2 0000000000000001 =
-t3 0000000000000000
-[    4.009720] t4 0000000000000004 t5 0000000000000100 t6 0000000000000000 =
-t7 0000000000000000
-[    4.018018] t8 0000000000000000 u0 ffff800002be8220 s9 90000001413e2000 =
-s0 9000000160c00000
-[    4.026316] s1 9000000161c80000 s2 9000000160c00000 s3 90000001223af080 =
-s4 9000000161c80000
-[    4.034613] s5 9000000160c00000 s6 9000000161c80000 s7 9000000161c40000 =
-s8 ffff80001326a000
-[    4.042912]    ra: ffff800002becd30 dml21_map_dc_state_into_dml_display_=
-cfg+0x40/0x12a0 [amdgpu]
-[    4.052169]   ERA: ffff800002becd80 dml21_map_dc_state_into_dml_display_=
-cfg+0x90/0x12a0 [amdgpu]
-[    4.061277]  CRMD: 000000b0 (PLV0 -IE -DA +PG DACF=3DCC DACM=3DCC -WE)
-[    4.067423]  PRMD: 00000004 (PPLV0 +PIE -PWE)
-[    4.071749]  EUEN: 00000000 (-FPE -SXE -ASXE -BTE)
-[    4.076508]  ECFG: 00071c1d (LIE=3D0,2-4,10-12 VS=3D7)
-[    4.081266] ESTAT: 000f0000 [FPD] (IS=3D ECode=3D15 EsubCode=3D0)
-[    4.086801]  PRID: 0014d011 (Loongson-64bit, Loongson-3B6000)
-[    4.092507] Modules linked in: amdgpu(+) hid_logitech_dj i2c_algo_bit dr=
-m_ttm_helper ttm drm_exec drm_suballoc_helper drm_buddy drm_panel_backlight=
-_quirks gpu_sched amdxcp drm_display_helper cec hid_generic pwm_loongson la=
-_ow_syscall
- ntsync i2c_dev dmi_sysfs
-[    4.115253] Process kworker/0:1 (pid: 11, threadinfo=3D00000000187c43c8,=
- task=3D00000000627a7089)
-[    4.123725] Stack : ffff8000135e6360 ffff8000135e66b8 0000000000000000 0=
-000043800000780
-[    4.131681]         ffff800003328000 9000000161c40000 9000000161c802d8 f=
-fff800002c32b28
-[    4.139637]         ffff8000135e63f0 0000000000000000 0000000000000000 0=
-000000000000000
-[    4.147592]         0000000000000000 0000000000000000 0000000000000000 9=
-000000121846010
-[    4.155548]         0000000000000000 9000000161c80000 9000000161c80000 0=
-000000000000001
-[    4.163504]         0000000000000001 90000001223af080 9000000160c00000 f=
-fff80001326a000
-[    4.171460]         ffff80001326a000 ffff800002bef274 9000000161c86000 0=
-000000000000001
-[    4.179415]         0000000000000010 0000000000000001 9000000161c80000 f=
-fff800002aeb330
-[    4.187371]         9000000160c00000 9000000160c00000 90000001413e2000 9=
-0000001223af080
-[    4.195326]         0000000000000010 0000000000000001 90000001415b0000 f=
-fff800002851348
-[    4.203282]         ...
-[    4.205705] Call Trace:
-[    4.205707] [<ffff800002becd80>] dml21_map_dc_state_into_dml_display_cfg=
-+0x90/0x12a0 [amdgpu]
-[    4.216978] [<ffff800002bef270>] dml21_validate+0xc0/0x160 [amdgpu]
-[    4.223573] [<ffff800002aeb32c>] dcn401_validate_bandwidth+0xdc/0x290 [a=
-mdgpu]
-[    4.231156] [<ffff800002851344>] create_validate_stream_for_sink+0x574/0=
-x5b0 [amdgpu]
-[    4.239328] [<ffff800002851404>] amdgpu_dm_connector_mode_valid+0x84/0x2=
-c0 [amdgpu]
-[    4.247312] [<9000000006bc2db4>] drm_connector_mode_valid+0x44/0xc0
-[    4.253542] [<9000000006bc2f6c>] __drm_helper_update_and_validate+0x13c/=
-0x490
-[    4.260632] [<9000000006bc35c8>] drm_helper_probe_single_connector_modes=
-+0x308/0x6c0
-[    4.268326] [<9000000006ba055c>] drm_client_modeset_probe+0x1bc/0x1a50
-[    4.274811] [<9000000006bc5df8>] __drm_fb_helper_initial_config_and_unlo=
-ck+0x38/0x6f0
-[    4.282594] [<9000000006bccfcc>] drm_fbdev_client_hotplug+0x9c/0x120
-[    4.288906] [<9000000006b9ddd0>] drm_client_register+0x60/0xb0
-[    4.294702] [<9000000006bcd158>] drm_fbdev_client_setup+0xa8/0x260
-[    4.300841] [<9000000006bcbed8>] drm_client_setup+0xf8/0x170
-[    4.306461] [<ffff80000236a35c>] amdgpu_pci_probe+0x38c/0x8a0 [amdgpu]
-[    4.313291] [<9000000006957294>] local_pci_probe+0x44/0xe0
-[    4.318740] [<900000000695734c>] local_pci_probe_callback+0x1c/0x40
-[    4.324965] [<9000000005a6d4f8>] process_one_work+0x1a8/0x670
-[    4.330672] [<9000000005a6e42c>] worker_thread+0x1cc/0x3a0
-[    4.336120] [<9000000005a787d4>] kthread+0x134/0x170
-[    4.341049] [<90000000074a8314>] ret_from_kernel_thread+0x24/0x1d0
-[    4.347191] [<90000000059e28c4>] ret_from_kernel_thread_asm+0xc/0x88
-[    4.353504]
-[    4.354975] Code: 40074580  1a00e76c  29c2207d <2bc1a078> 1400003d  2b92=
-6198  038b03bd  00150369  29c30076
-[    4.364664]
-[    4.366156] ---[ end trace 0000000000000000 ]---
-
-Reported-by: xinmu <xinmu@xinmu.moe>
-
---=20
-Xi Ruoyao <xry111@xry111.site>
