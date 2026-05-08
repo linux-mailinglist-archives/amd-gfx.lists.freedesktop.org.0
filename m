@@ -2,106 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uOjMBSqA/WnnegAAu9opvQ
+	id qGzEIRGX/WnBgAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 08 May 2026 08:18:18 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 08 May 2026 09:56:01 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75E274F25AB
-	for <lists+amd-gfx@lfdr.de>; Fri, 08 May 2026 08:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A4234F362A
+	for <lists+amd-gfx@lfdr.de>; Fri, 08 May 2026 09:56:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E555A10E5BA;
-	Fri,  8 May 2026 06:18:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7036210E5D4;
+	Fri,  8 May 2026 07:55:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wOoj+rM8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L8KHJCk6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010054.outbound.protection.outlook.com
- [52.101.193.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96CAA10E5BA
- for <amd-gfx@lists.freedesktop.org>; Fri,  8 May 2026 06:18:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lCwY7FCmykae1ccGd/cjHcPoRnqYjMuihRNqkEqdKzTMytwxjuNgsyd8Ep3qEu4WKA6W3jMvUBiOBmhRwD1DAAvdvEsYUhjduAh9ciO+IUY3CLG/tzvrIQTZO9XpqKSaR589lDyiwoI+cBETUh3wTj3WFUIkoriYrHW9UPvefi6AW6g5p7akmSFaeD0YVIP8nmf2uDTk9RhrqoHU2CSdsVu6GxH3ePia8IAJhBLX4/p2FgbLS8CPpSeHaJ0ua/BTO3iSkMsIblcniueLw+jGjkrCVccRAh3jf6/ZNgl8OjGCkKITuVm4LYwaO1id/HonFlslJsdv1yH1AtAr51f7AQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YvQ4Ak5seqsOLBuAWz4TLtk+zCkRDMIDs9y9qgu7fSA=;
- b=A36WRomP5l/QLfc89n1v1L6jeYXgiP4lpGlCLnFRM7Vku6HKw+rHaFQbTxs3z/86cMzOl6n9p6Rhg9xCMo55u6eGumBzCP81CLPBWgvoI2fyQvvxINJKD56dYX6l7gmWWOmuqt5Gc92+zsQ0/hiS6vSefxjr2b28n0QCae7JGpBLLoxTe1/hFC8F0vx/JaALyEVIoGLcgy0G7ecZKyrtoM6UF+Xg5PiAQhU3tT646m79pEDrczUcjRstJN89YxIRhZR5UVnDlmvgCibPnH4E++qYezk7e+hirTbChtcywJ2trJL8tUfw6VYPRSf31T3AkVNonuoRjRksac6mr5cERQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YvQ4Ak5seqsOLBuAWz4TLtk+zCkRDMIDs9y9qgu7fSA=;
- b=wOoj+rM8ZguvoETboGwRbH0yJdza2/obMp0AucdR0kK4fk9xikZMWmn1VH3AvUKBZySY3PinNPRG4Y/87rwb88QP956MLJvCUWlmeAae2/h+0IBjtBZB3Vbx6KT62Hnbpb+29POOc57mmYYvJNAfLfETaBjN+mRzDvD1iWNIUjg=
-Received: from CH2PR05CA0035.namprd05.prod.outlook.com (2603:10b6:610::48) by
- SJ2PR12MB9242.namprd12.prod.outlook.com (2603:10b6:a03:56f::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.19; Fri, 8 May
- 2026 06:18:07 +0000
-Received: from CH2PEPF00000145.namprd02.prod.outlook.com
- (2603:10b6:610:0:cafe::da) by CH2PR05CA0035.outlook.office365.com
- (2603:10b6:610::48) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9913.7 via Frontend Transport; Fri, 8
- May 2026 06:18:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CH2PEPF00000145.mail.protection.outlook.com (10.167.244.102) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9891.9 via Frontend Transport; Fri, 8 May 2026 06:18:07 +0000
-Received: from yifan.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 8 May
- 2026 01:18:03 -0500
-From: Yifan Zhang <yifan1.zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, <christian.koenig@amd.com>,
- <felix.kuehling@amd.com>, <phasta@kernel.org>, <Honglei1.Huang@amd.com>,
- <Perry.Yuan@amd.com>, Yifan Zhang <yifan1.zhang@amd.com>
-Subject: [PATCH v2] drm/amdgpu: unmap all user mappings of framebuffer and
- doorbell before mode1 reset
-Date: Fri, 8 May 2026 14:17:38 +0800
-Message-ID: <20260508061738.1039917-1-yifan1.zhang@amd.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EA1C10F369;
+ Fri,  8 May 2026 06:56:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778223364; x=1809759364;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=47POBLVaUrXtK1fn5h2rHbXgKdBedhfQvXbum5KWZpY=;
+ b=L8KHJCk6taFyMXyAoAmZyKAbRI4ljiOboWt1PV+cdcPFKuUcGU53eDZV
+ OllX892Dwr9BU7Z5Es02CnlKmCKclnmduTUd6f/9cweldEN212jEgeikh
+ u9wL3hIQunc34UypSq0M7a11w/sD2lueud9mDZOTsclPufA2Rdnrd4sxJ
+ OlSMeIYI1+I7L+SUI4RRhMkIL4ZUJH0UqVQbNH6ABndjdH816jdQcnSzx
+ uGorDDZduLCK0YV3pkn99HEhi6ai2SCtz4WIpkbipjDh9yms2u4JnBcId
+ Gb50FdHeoWxczpf4q5IFWspdg0OAHxlR6pAn/nN/A/IWkPkGR0w728OKK w==;
+X-CSE-ConnectionGUID: z7a1qwv5SN6aQcp0zk+W/A==
+X-CSE-MsgGUID: RVvl4OzcTj6CRTRDvCAj/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="79373325"
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="79373325"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2026 23:56:03 -0700
+X-CSE-ConnectionGUID: F50X2WD0Tn6WkjwwFx5+Nw==
+X-CSE-MsgGUID: vHEYlSuQSi2eEDhF3COPEQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="232153647"
+Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
+ ([10.190.239.37])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2026 23:56:00 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.auld@intel.com, Arunpravin.PaneerSelvam@amd.com,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH V2] drm/buddy: Integrate lockdep annotations for gpu buddy
+ manager
+Date: Fri,  8 May 2026 12:25:45 +0530
+Message-ID: <20260508065544.4049240-2-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF00000145:EE_|SJ2PR12MB9242:EE_
-X-MS-Office365-Filtering-Correlation-Id: 59e62c1f-1ac2-4be4-8576-08deacc99223
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700016|376014|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: l1UQ75sOkZE+r3jCghsV00O8jxcgljZ5MeRP8snQORHASekR2wCI0w9/8i6SFfR+rFr9F2r5QaXPSts1RhMNh8OjV/iujMBB7hGFNnJv3OfOXxzRW1r53KKbIq4xO/KFe5UWTKDZfI6mzNE7EQpbVlt4fEkidq8w6/jTYRyhSaxJ13Pbbc5aOXDU3P9Qua+M3gTyeo23bdFqCbUDtX9fBZbsJWhF+WwvNfDfPOB4Xw5nTdaooZ3FL0ZH+xMXN8AZjuL+0Wi1K0TrDOtBNMHh0mzwuXHanMOrBJgWbiIAg7NqU9pk0MQSj49UkQlypL8VvsM7hVBR4OdQnbyxW527bH/oWP5yPmqCVLlIfr19kxCHYo9WucCknVBCeLXbmddhplKKnAcqfZ3buD06wSIL6aVF4PfD1BhOSA8eVv3sxryocFWdEv/B5xi9VSSWdHd8UfjTxOP+FmgJS5u50BjKy+yg6Y396fNqkPVdCwpvQ9aDJCSlzdiAhIwBA5j8VkJ6scMXdsWzph9rnuFI6XwzXWHv9lxF5TqEgy9d37S9UcX+OjCn2OR434u36KWYqnK58Y5o1h4afjiHjD9PDIlGIotSa6vQ4zwBwv1DwNGLGTuPCygDPDpSOgybwtPrTO1H5QHi7dfd2prvip3LNNW/TP4mEyovuQ+LfjnvSOLR619ZidCxhviNr6BNeG9Bo5lpYril4PIsinzjdr9yA4UxLHskAkoN+9C2FUndZkx4mLM=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: jMzpVrXa/fKPIIhNJJHxgbeReFzSk3WtZ/wtzd2KCWNvhevdSqU9BatmkNUJkULKFRlSoMoqmLNnNEBfudDRAYCfTKXaTpja+r/AXWGZL7AJCkWpFtb1e6EVtPvjFrwlIsJRPbqI4Mn8Ctyofrx7xH0tpKOvrnwXhgWPsPsEiTeTsFld6ljZXxDe0OP7OFW10Klv0/KCVgyqzEgjquv6NXRRPPmGHvSfUEpKMR4tY2YuoaF6ZXQcr2UVoT32XzNgavEk16CznLoc8H7rgkwl/P/jXO8TDtohQ8mmDSIX2CrYDXR/a6fvUMk9lab8NJAE8wj64supny45G9E3j6n3IurvL7Adh//MU2Yql0QqzEjK6pPvCMjQ7JTIzvmUP5xzPyU9GMlJRSLVLDOYlPzYz950qhQ6NNRL23FxnpSGkzdMAcO0gnUTOC7I94sZWcCX
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2026 06:18:07.3110 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59e62c1f-1ac2-4be4-8576-08deacc99223
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF00000145.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9242
+X-Mailman-Approved-At: Fri, 08 May 2026 07:55:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,214 +74,209 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 75E274F25AB
+X-Rspamd-Queue-Id: 1A4234F362A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[yifan1.zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[amd.com:+];
+	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	HAS_XOIP(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_FIVE(0.00)[6];
-	NEURAL_HAM(-0.00)[-0.978];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[8];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,amd.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	FROM_NEQ_ENVFROM(0.00)[tejas.upadhyay@intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-During Mode 1 reset, the ASIC undergoes a reset cycle and becomes temporarily
-inaccessible via PCIe. Any attempt to access framebuffer or MMIO registers during
-this window can result in uncompleted PCIe transactions, leading to NMI panics or
-system hangs.
+gpu_buddy APIs are expected to be called with the driver-provided lock
+held, but there is no runtime enforcement of this contract. Add lockdep
+annotations to catch locking violations early.
 
-To prevent this, Unmap all of the applications mappings of the framebuffer
-and doorbell BARs before mode1 reset. Also prevent new mappings from coming in
-during the reset process.
+Introduce gpu_buddy_driver_set_lock() for the driver to register the
+lock that protects the buddy manager. Add gpu_buddy_driver_lock_held()
+assertions to all exported gpu_buddy and drm_buddy APIs that
+access/modify the manager state. The lock_dep_map field is only compiled
+in when CONFIG_LOCKDEP is enabled, adding zero overhead to production
+builds.
 
-v2: remove inode in kfd_dev (Christian)
+Wire up xe_ttm_vram_mgr to register its mutex with the buddy manager
+after initialization.
 
-Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+Assisted-by: Copilot:claude-opus-4.6
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    |  1 +
- .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  | 11 ++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  6 +++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       | 17 ++++++++++++--
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c      | 22 +++++++++++++++++++
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |  1 +
- 6 files changed, 56 insertions(+), 2 deletions(-)
+ drivers/gpu/buddy.c                  | 11 ++++++++
+ drivers/gpu/drm/drm_buddy.c          |  1 +
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c |  1 +
+ include/linux/gpu_buddy.h            | 41 ++++++++++++++++++++++++++++
+ 4 files changed, 54 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-index 2bf6a31c194d..5333e052d56d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-@@ -360,6 +360,7 @@ int amdgpu_amdkfd_reserve_mem_limit(struct amdgpu_device *adev,
- 		uint64_t size, u32 alloc_flag, int8_t xcp_id);
- void amdgpu_amdkfd_unreserve_mem_limit(struct amdgpu_device *adev,
- 		uint64_t size, u32 alloc_flag, int8_t xcp_id);
-+void amdgpu_amdkfd_clear_kfd_mapping(struct amdgpu_device *adev);
+diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+index 52686672e99f..eb1457376307 100644
+--- a/drivers/gpu/buddy.c
++++ b/drivers/gpu/buddy.c
+@@ -437,6 +437,9 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
+ 		root_count++;
+ 	} while (size);
  
- u64 amdgpu_amdkfd_xcp_memory_size(struct amdgpu_device *adev, int xcp_id);
++#ifdef CONFIG_LOCKDEP
++	mm->lock_dep_map = NULL;
++#endif
+ 	return 0;
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-index 7c01492e69dd..2b06a2dae3da 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-@@ -139,6 +139,17 @@ void amdgpu_amdkfd_reserve_system_mem(uint64_t size)
- 	kfd_mem_limit.system_mem_used += size;
- }
+ out_free_roots:
+@@ -538,6 +541,7 @@ void gpu_buddy_reset_clear(struct gpu_buddy *mm, bool is_clear)
+ 	unsigned int order;
+ 	int i;
  
-+void amdgpu_amdkfd_clear_kfd_mapping(struct amdgpu_device *adev)
-+{
-+	if (!adev->kfd.dev)
-+		return;
-+
-+	kfd_dev_unmap_mapping_range(KFD_MMAP_TYPE_DOORBELL,
-+				    kfd_doorbell_process_slice(adev->kfd.dev));
-+	kfd_dev_unmap_mapping_range(KFD_MMAP_TYPE_MMIO, PAGE_SIZE);
-+}
-+
-+
- /* Estimate page table size needed to represent a given memory size
-  *
-  * With 4KB pages, we need one 8 byte PTE for each 4KB of memory
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 073f632f295a..c741a1a2a8cb 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -5840,6 +5840,12 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 	/* We need to lock reset domain only once both for XGMI and single device */
- 	amdgpu_device_recovery_get_reset_lock(adev, &device_list);
- 
-+	/* unmap all the mappings of doorbell and framebuffer to prevent user space from
-+	 * accessing them
-+	 */
-+	unmap_mapping_range(adev->ddev.anon_inode->i_mapping, 0, 0, 1);
-+	amdgpu_amdkfd_clear_kfd_mapping(adev);
-+
- 	amdgpu_device_halt_activities(adev, job, reset_context, &device_list,
- 				      hive, need_emergency_restart);
- 	if (need_emergency_restart)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index 0071d6957828..1dd343f0219f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -46,6 +46,7 @@
- #include "amdgpu_hmm.h"
- #include "amdgpu_xgmi.h"
- #include "amdgpu_vm.h"
-+#include "amdgpu_reset.h"
- 
- static int
- amdgpu_gem_add_input_fence(struct drm_file *filp,
-@@ -118,13 +119,21 @@ amdgpu_gem_update_timeline_node(struct drm_file *filp,
- static vm_fault_t amdgpu_gem_fault(struct vm_fault *vmf)
++	gpu_buddy_driver_lock_held(mm);
+ 	size = mm->size;
+ 	for (i = 0; i < mm->n_roots; ++i) {
+ 		order = ilog2(size) - ilog2(mm->chunk_size);
+@@ -580,6 +584,7 @@ EXPORT_SYMBOL(gpu_buddy_reset_clear);
+ void gpu_buddy_free_block(struct gpu_buddy *mm,
+ 			  struct gpu_buddy_block *block)
  {
- 	struct ttm_buffer_object *bo = vmf->vma->vm_private_data;
-+	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->bdev);
- 	struct drm_device *ddev = bo->base.dev;
- 	vm_fault_t ret;
- 	int idx;
++	gpu_buddy_driver_lock_held(mm);
+ 	BUG_ON(!gpu_buddy_block_is_allocated(block));
+ 	mm->avail += gpu_buddy_block_size(mm, block);
+ 	if (gpu_buddy_block_is_clear(block))
+@@ -633,6 +638,7 @@ void gpu_buddy_free_list(struct gpu_buddy *mm,
+ {
+ 	bool mark_clear = flags & GPU_BUDDY_CLEARED;
  
-+	/* Prevent new mappings from coming in during reset */
-+
-+	if (!down_read_trylock(&adev->reset_domain->sem))
-+		return VM_FAULT_SIGSEGV;
-+
- 	ret = ttm_bo_vm_reserve(bo, vmf);
--	if (ret)
-+	if (ret) {
-+		up_read(&adev->reset_domain->sem);
- 		return ret;
-+	}
- 
- 	if (drm_dev_enter(ddev, &idx)) {
- 		ret = amdgpu_bo_fault_reserve_notify(bo);
-@@ -140,11 +149,15 @@ static vm_fault_t amdgpu_gem_fault(struct vm_fault *vmf)
- 	} else {
- 		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
- 	}
--	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
-+	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT)) {
-+		up_read(&adev->reset_domain->sem);
- 		return ret;
-+	}
- 
- unlock:
- 	dma_resv_unlock(bo->base.resv);
-+	up_read(&adev->reset_domain->sem);
-+
- 	return ret;
++	gpu_buddy_driver_lock_held(mm);
+ 	__gpu_buddy_free_list(mm, objects, mark_clear, !mark_clear);
  }
+ EXPORT_SYMBOL(gpu_buddy_free_list);
+@@ -1172,6 +1178,8 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
+ 	u64 new_start;
+ 	int err;
  
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index 84b9bde7f371..1be1b1dd2341 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -69,6 +69,21 @@ static const struct class kfd_class = {
- 	.name = kfd_dev_name,
++	gpu_buddy_driver_lock_held(mm);
++
+ 	if (!list_is_singular(blocks))
+ 		return -EINVAL;
+ 
+@@ -1287,6 +1295,8 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+ 	unsigned long pages;
+ 	int err;
+ 
++	gpu_buddy_driver_lock_held(mm);
++
+ 	if (size < mm->chunk_size)
+ 		return -EINVAL;
+ 
+@@ -1475,6 +1485,7 @@ void gpu_buddy_print(struct gpu_buddy *mm)
+ {
+ 	int order;
+ 
++	gpu_buddy_driver_lock_held(mm);
+ 	pr_info("chunk_size: %lluKiB, total: %lluMiB, free: %lluMiB, clear_free: %lluMiB\n",
+ 		mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
+ 
+diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+index 841f3de5f307..faa025498de4 100644
+--- a/drivers/gpu/drm/drm_buddy.c
++++ b/drivers/gpu/drm/drm_buddy.c
+@@ -42,6 +42,7 @@ void drm_buddy_print(struct gpu_buddy *mm, struct drm_printer *p)
+ {
+ 	int order;
+ 
++	gpu_buddy_driver_lock_held(mm);
+ 	drm_printf(p, "chunk_size: %lluKiB, total: %lluMiB, free: %lluMiB, clear_free: %lluMiB\n",
+ 		   mm->chunk_size >> 10, mm->size >> 20, mm->avail >> 20, mm->clear_avail >> 20);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 6ba47996bc7c..9f67df646955 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -322,6 +322,7 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+ 	if (err)
+ 		return err;
+ 
++	gpu_buddy_driver_set_lock(&mgr->mm, &mgr->lock);
+ 	ttm_set_driver_manager(&xe->ttm, mem_type, &mgr->manager);
+ 	ttm_resource_manager_set_used(&mgr->manager, true);
+ 
+diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
+index 5fa917ba5450..71941a039648 100644
+--- a/include/linux/gpu_buddy.h
++++ b/include/linux/gpu_buddy.h
+@@ -154,6 +154,7 @@ struct gpu_buddy_block {
+  * @avail: Total free space currently available for allocation in bytes.
+  * @clear_avail: Free space available in the clear tree (zeroed memory) in bytes.
+  *               This is a subset of @avail.
++ * @lock_dep_map: Annotates gpu_buddy API with a driver provided lock.
+  */
+ struct gpu_buddy {
+ /* private: */
+@@ -179,8 +180,48 @@ struct gpu_buddy {
+ 	u64 size;
+ 	u64 avail;
+ 	u64 clear_avail;
++#ifdef CONFIG_LOCKDEP
++	struct lockdep_map *lock_dep_map;
++#endif
  };
  
-+/*
-+ * Cache the address space of the chardev on first open so that the reset
-+ * path can drop all userspace mappings of doorbell and MMIO ranges via
-+ * unmap_mapping_range().
++#ifdef CONFIG_LOCKDEP
++/**
++ * gpu_buddy_driver_set_lock() - Set the lock protecting accesses to GPU BUDDY
++ * @mm: Pointer to GPU buddy structure.
++ * @lock: the lock used to protect the gpu buddy. The locking primitive
++ * must contain a dep_map field.
++ *
++ * Call this to annotate gpu_buddy APIs which access/modify gpu_buddy manager
 + */
-+static struct address_space *kfd_dev_mapping;
++#define gpu_buddy_driver_set_lock(mm, lock) \
++	do { \
++		struct gpu_buddy *__mm = (mm); \
++		if (!WARN(__mm->lock_dep_map, "GPU BUDDY MM lock should be set only once.")) \
++			__mm->lock_dep_map = &(lock)->dep_map; \
++	} while (0)
++#else
++#define gpu_buddy_driver_set_lock(mm, lock) do { (void)(mm); (void)(lock); } while (0)
++#endif
 +
-+void kfd_dev_unmap_mapping_range(loff_t const holebegin, loff_t const holelen)
++#ifdef CONFIG_LOCKDEP
++/**
++ * gpu_buddy_driver_lock_held() - Assert GPU BUDDY manager lock is held
++ * @mm: Pointer to the GPU BUDDY structure.
++ *
++ * Ensure driver lock is held.
++ */
++static inline void gpu_buddy_driver_lock_held(struct gpu_buddy *mm)
 +{
-+	struct address_space *mapping = READ_ONCE(kfd_dev_mapping);
-+
-+	if (mapping)
-+		unmap_mapping_range(mapping, holebegin, holelen, 1);
++	if (mm->lock_dep_map)
++		lockdep_assert(lock_is_held_type(mm->lock_dep_map, 0));
 +}
++#else
++static inline void gpu_buddy_driver_lock_held(struct gpu_buddy *mm)
++{
++}
++#endif
 +
- static inline struct kfd_process_device *kfd_lock_pdd_by_id(struct kfd_process *p, __u32 gpu_id)
+ static inline u64
+ gpu_buddy_block_offset(const struct gpu_buddy_block *block)
  {
- 	struct kfd_process_device *pdd;
-@@ -135,6 +150,13 @@ static int kfd_open(struct inode *inode, struct file *filep)
- 	if (iminor(inode) != 0)
- 		return -ENODEV;
- 
-+	/*
-+	 * /dev/kfd is a single chardev so all opens share one inode. Cache
-+	 * its address_space on the first open for use by the reset path.
-+	 */
-+	if (!READ_ONCE(kfd_dev_mapping))
-+		cmpxchg(&kfd_dev_mapping, NULL, inode->i_mapping);
-+
- 	is_32bit_user_mode = in_compat_syscall();
- 
- 	if (is_32bit_user_mode) {
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index a6ff1db477f9..f037062c33ea 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -399,6 +399,7 @@ enum kfd_mempool {
- /* Character device interface */
- int kfd_chardev_init(void);
- void kfd_chardev_exit(void);
-+void kfd_dev_unmap_mapping_range(loff_t const holebegin, loff_t const holelen);
- 
- /**
-  * enum kfd_unmap_queues_filter - Enum for queue filters.
 -- 
-2.43.0
+2.52.0
 
