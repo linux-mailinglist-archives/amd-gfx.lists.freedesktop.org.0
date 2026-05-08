@@ -2,133 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eJfgClGi/WmwgQAAu9opvQ
+	id cOCCBJqFAWoFcAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 08 May 2026 10:44:01 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 May 2026 09:30:34 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F4844F3DAE
-	for <lists+amd-gfx@lfdr.de>; Fri, 08 May 2026 10:44:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B53E250935E
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 May 2026 09:30:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 304C210F3DB;
-	Fri,  8 May 2026 08:43:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFA0710E4D5;
+	Mon, 11 May 2026 07:30:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="AQMNGGad";
+	dkim=pass (1024-bit key; unprotected) header.d=xry111.site header.i=@xry111.site header.b="nIp+GL+A";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010056.outbound.protection.outlook.com
- [40.93.198.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84C3D10F3DE;
- Fri,  8 May 2026 08:43:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kYwOpe3sAFGL3v2gHQ8yIQequfeoyx5YA3nu5nZ77IUgw/qv6viDXQd+ZyJcrXZWYSXUdZl8Ji+g7uv+rgACmDcPA2il0ozHbebDP0VaAyz+o9mulm691lf+U+1ZbWHIULizCHIJc32Zizk7npVzdCB2aFOoCh96aoNAxNX8yZSWOZJsZhAtjtsMnGAVnKbEEEqnOiZwXNuCjZ4X2q79dw8W9FUVIxqhCIXFXSA88YCFTAIcbdb0ZYUPJQEkOBacfy6Xrc/aJt+GPQoP/ZEOH7sfsPh5l1pZw9EI7DvZ761v3EBrIoT4XwZk8/ZRMn3ApZC9epdy7X4F9ZFMRL78hw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=d/UDwidXjwOhNN3ywh/iHiYHh+OQMutAJhw0P5Me7Qw=;
- b=Wmp9jABQM4laF66CmspwT4EO7x28MlRdJ6swDbJbVEdd6EbKj/TgEPcPxcf+4j+fxHRMWDH2n0uWZ2dRixX2fHzAj4GxMpXTuktxuScuWQokE9r291P4IzjpPtzEcdchiBBhIiC4uf9KWcByLFjX2XLW6/09gpaAK+viaTnG4kCPzKvtq1I8/mU95fav/JF87xCB3XD2UJYOzUtf7W88uZNlv9MT7+2zt5gHvc7uTS3aIxXfArDblXJClZZbmuABANpZs63dvX/L7b0mt0kA2AIVl799CaKtu9ht0rEMZqu58BNXV8nzSC1AGfStIoRfdrnUFPx5Sj6leiL1Jumtkg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d/UDwidXjwOhNN3ywh/iHiYHh+OQMutAJhw0P5Me7Qw=;
- b=AQMNGGadATaC/9DURt/40p1KXnCRvOSHmbve9ocRPbWk/FtGBsKLEpwHnCAlgCQqJM2fTTVHkzCCRdEpDfw0IaF8qDGXl2gDaKgs0IeyM/lnq04FYnHRAQqLS42dUSIo70keIb+IrlAb0nySIezrMHW+sb+oIK5uZdZj+NCjfEU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by MN0PR12MB6319.namprd12.prod.outlook.com (2603:10b6:208:3c0::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.15; Fri, 8 May
- 2026 08:43:54 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9870.023; Fri, 8 May 2026
- 08:43:54 +0000
-Message-ID: <dcc966e0-da1d-4589-ad04-02aeb1a8e06f@amd.com>
-Date: Fri, 8 May 2026 10:43:48 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND] drm/amd/pm: Use guard(mutex) instead of manual
- lock+unlock
-To: Andre Hirata <andrejhirata@usp.br>, kenneth.feng@amd.com,
- alexander.deucher@amd.com, airlied@gmail.com, simona@ffwll.ch
-Cc: Gabriel Dimant <gabriel.dimant@usp.br>,
- Guilherme Gabriel <guilhermesangabriel@usp.br>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20260508024744.6523-1-andrejhirata@usp.br>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260508024744.6523-1-andrejhirata@usp.br>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN0P222CA0030.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:208:531::32) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from xry111.site (xry111.site [89.208.246.23])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABA3D10E303
+ for <amd-gfx@lists.freedesktop.org>; Fri,  8 May 2026 08:57:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xry111.site;
+ s=default; t=1778230650;
+ bh=XTE2ScLz1R6lNx0b4ZmJP0j2jlKQ/OYwUr1wLMduU0k=;
+ h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+ b=nIp+GL+A97EeFGk0DucWBu7j/eOJdnkDhdrrw58KvU2hSYRydXE3AroxFLk8VTyRc
+ rJW2oZYsunH06AIk6M3UKDlAuACKE7XBzNg0mdkxl72f2g7HQzNqFxYMBhQgEl1Vhu
+ myWhrZ/QzQawOhfDkXk7/3hSghm2bxqbCruevkdo=
+Received: from [IPv6:2409:8a4c:e1f:d2d0:3663:3ffe:842d:4c31] (unknown
+ [IPv6:2409:8a4c:e1f:d2d0:3663:3ffe:842d:4c31])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature ECDSA (secp384r1)
+ server-digest SHA384) (Client did not present a certificate)
+ (Authenticated sender: xry111@xry111.site)
+ by xry111.site (Postfix) with ESMTPSA id EAF3865997;
+ Fri,  8 May 2026 04:57:24 -0400 (EDT)
+Message-ID: <d0765c9131d74bbe89e2ae7df38f63f0b413aa3d.camel@xry111.site>
+Subject: Re: [PATCH v2 24/30] drm/amd/display: Move FPU Guards From DML To
+ DC - Part 2
+From: Xi Ruoyao <xry111@xry111.site>
+To: ChuanYu Tseng <ChuanYu.Tseng@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
+ Wayne Lin <wayne.lin@amd.com>, Tom Chung	 <chiahsuan.chung@amd.com>,
+ Fangzhi Zuo <jerry.zuo@amd.com>, Dan Wheeler	 <daniel.wheeler@amd.com>, Ray
+ Wu <Ray.Wu@amd.com>, Ivan Lipski	 <ivan.lipski@amd.com>, Alex Hung
+ <alex.hung@amd.com>, Rafal Ostrowski	 <rafal.ostrowski@amd.com>, Dillon
+ Varone <dillon.varone@amd.com>, Mingcong Bai	 <jeffbai@aosc.io>, xinmu
+ <xinmu@xinmu.moe>
+Date: Fri, 08 May 2026 16:57:19 +0800
+In-Reply-To: <df24e57df62dc4d0a9385a20f6476808b133be71.camel@xry111.site>
+References: <20260326030153.406612-1-ChuanYu.Tseng@amd.com>
+ <20260326030153.406612-25-ChuanYu.Tseng@amd.com>
+ <df24e57df62dc4d0a9385a20f6476808b133be71.camel@xry111.site>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.60.1 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MN0PR12MB6319:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1b3c46b5-f8e0-40d3-5ea2-08deacddef6b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|56012099003|22082099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: FfvuwFh72XWw/m23grNXyH1r7Y8bDLY11IxASTeY6HyWb9NtQy/4QPZzKh53xw0EsX5y6hfKOHVM8MZyvzziQA3Hnb2JSLVVLumXB45P/AR5nm/zU4wq2Py5yfs0raPLQrLi9r4kSfXZ0oe/JevryaCnsceih40y1iALue+G+UWoOOPYh3T9UmAFQ9gWMiqPuDrlG881T0rQV+BB2YhMm+KWqbmQ3Y65k6japEDerRtKv1x27UMnDe9Wv1IRApZUGoEU9SCIN3cfGsmaQMvwkUgKqD2QFjYNFaGxk/KJmA0MDQCiMqLzXOfpwHxDfNdBZQwU8BhzOVaotzkdZgGb1+QBM8u3oguBFgGUEeZOOpd35ioLne4qOl4nIGRV6BLdPophoPkC3ovNstUIGOVTv/eec/UnnwV23C5nww26D9s0CkixQxuSNHtZYo0O1ldxusuKNQgT8//RgyxhUbuWUiKA/RuJTQcVjimdkze4WfZJyr2c9bwkSwPdy7AH9N9wboBGrk5qzs27T361LwZsZkG1cASQk3ovKvbJ7Dpskr84lc0u9FgG27o5QvH55Szv1jguQ5yt6yJLmTqJtGNURawNsp7g0EGahoFU4dZ4PtcUamfbpPrw/HkxaQSLL/FqJ38j4Ao/XSOYcvPSwOfyOPXW/CEgQF1+sDUKxNXcidnM2W1DqiEFBa5W5PWuqtA5
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MFhrREhZNlVLNWVzTVMrUWZuQnlEQXNNSXllTUJQazZoLzZHMUdwT2xsSnBZ?=
- =?utf-8?B?Mi9rMlVGRUJqYnVhejhGOEhvUDUrRVF4S0s4Ny9vRzNQeTU1QVdSSlRqMTVI?=
- =?utf-8?B?aUh1OW03cnBRMUh4SGVYZzM4UG9RN21hajVOQU1IeTRxcVUzUzBPRkF3VitD?=
- =?utf-8?B?K3c5ekVabWVCeStNMEpWaXJ0WnNQMXNwQUtzd1Z0MFZJdTg5SSs5MXFDSVdV?=
- =?utf-8?B?all1aWxZckN3N1YwUjNrbHU1WXVjdzEzUW83LzVRd1BmVmR1R205RzNnUUFo?=
- =?utf-8?B?MTVCNUFRK3BDY2xzNllWYmhyMlpVUDRUUjF6aEh1Tjd0RGdJNDVwQmYzeU9k?=
- =?utf-8?B?QTVVcnVyT2JNamFteUFUSHhPTVhkQzFpVHNtekZGYUk2dUhmWmZpVWRSQVRH?=
- =?utf-8?B?TWxrTDFYZ1NBQW1MSTd5bk1UdzV4eG5NQ2Z6NjdObHFlQnJiOUxaM1dhS2lI?=
- =?utf-8?B?aWIzeVo4b1dmZ21MRE1ES2tTbXBaK2o3Q3hLc2pRTFh2dnFpZkhoUGFNL2JQ?=
- =?utf-8?B?NTQ0SHhBakdndHcyRGdsYzlkMXJ5UDkvMXRodTlvSVJxTGI5Z3pWdTg2OU9j?=
- =?utf-8?B?YTBSckRvT0hYSDFXckQ2bmtRbTBnazJlVGxYbXpTMEN2MVZ0OWRCU0R5OEh2?=
- =?utf-8?B?NXFtaEdPOHArUGs3WmNrTTBvRzMxWFM3K0tQNmVvTDNyU01TUzRjMkZFUmVO?=
- =?utf-8?B?QnUwNkh6NHYyaVRhMkF3c3NCVkY5VHhDaTljQVBPTEEzM2dGVlk2Ymw5UDlr?=
- =?utf-8?B?UUo2Q1NTT0FlNUlWUzI2cGNXNkNsWlhjWjlsK25lU2VrSEQybkt4R1djc2NK?=
- =?utf-8?B?N2F3M21oemhtRDI1SkN5dzFlNTNpRkVDc1c3VzJNUElRdTR0NEp1RlN0cGhP?=
- =?utf-8?B?WEpkNlFOU1lnODdkZUVLUENIQWNHSWQ2ZE5ZSGNmcnlQNnZPTVlncFVtSFA1?=
- =?utf-8?B?OUhoc0o3elpscUhncnJvODRBYUl6TDRMQ3lqUTM1RXpra1pCbUtpL2ZDbTRp?=
- =?utf-8?B?UjRKRFpvSVNHN3pOQitHZjBtaGpBRmpaODFVaENGeUZWQ3lWU3hZSFB3cXl4?=
- =?utf-8?B?VFJPN3oySmpHVE9IaStHMjJOQ080ajBMYk83QWZ4YmdDdXJoT1dmV2I0VG9l?=
- =?utf-8?B?OFUrQTcyK3d2eDRHTzJ3NTB1dkxodXEvVXFldXp0UzR5VldkQmhXeDFoNk04?=
- =?utf-8?B?Y2FnUW9ZV0d3ZUtpczY5eHFzaVRGUUR6Q1JkeERFdHJMQkFHd3Z3MGlPMmlC?=
- =?utf-8?B?TnE4VTdIRzd5eWhnVUc3WlpwTGl6YWplTlJKWXZmQUlyS2VsT09JejlSNVRm?=
- =?utf-8?B?TUN0VllzSW5oMWYrV09NUnNNNWpWOEs0SUsvZmUzMURMWVBsUnI4dTVJeWxm?=
- =?utf-8?B?Z1BWOFFRb01pRDY0bFpQV280Tm9iNlZ3R0tndmc1T0d1WHREMDREeENyQWVu?=
- =?utf-8?B?M1RZSE10S0FjR2gzak5MNmV6NHFFV1JlTTZyNnFMRnlTSzZYNUxndkw1WVI4?=
- =?utf-8?B?U3pzZy9UenVHa2N6UDJvNjRhMmhHR1Q0djFwTHVJL29ZcjJNMUxZay9wSFJU?=
- =?utf-8?B?RHlJcTREMGNPMm5NeXRkUHVtbFl3RHdUWmNpdlRWTWdPSmU5QjVXVjg4NFlv?=
- =?utf-8?B?cGhlQitEUFlpV0FrNWJDaFZhc0RRTzIxMkFSWGpNZUlPVEpENm5Zc2JqOU9P?=
- =?utf-8?B?VUQ4UUJWN2szdkUxanRMVGlVVHJVSFlPTktGNjVubzV1WllEVDhyUVArYTlr?=
- =?utf-8?B?Ni8rS1hNM0ZTNzY2bWE3SlByZndkR25MU3p0cDJ5UUljbG90ZUVFMlB4NDAy?=
- =?utf-8?B?RzB4N1dsclRLeFI1MjNMNUJpbjJ3dURBci9FTVNrcG1ybU1UalRzSWRqdGtU?=
- =?utf-8?B?NHEwTSttRVN0YnpkTy8xY3c0aGdOVGdXVlp6eHNJdktWb3hkSnhIYjhVb0pn?=
- =?utf-8?B?ekdaTTlvSkhwcWI2MXNYS0lwMUtaN24zdUhOVnhxSG8zb3JmSytBSUdpZXF2?=
- =?utf-8?B?YkJnQURpeEhtVkwyaGtEVjZmR21qMEd6T0dvRFI0SzJUSXpmZjdFcUUxd3pu?=
- =?utf-8?B?YU1BOWhnalpiODBINmpyMG5DcDlQY3ZTSTZ4QjY0NFIwd3ViUS9JeDVvMU9C?=
- =?utf-8?B?TWRQVFBEU1M1bUVYd1pBN0xMbmp2dVNtYkFkUiszbGNRQkR4Y3Nwd05kOTAz?=
- =?utf-8?B?Y1R4ejhUZXNKWGtzMU9FUWtZSFYvbHBHc3dscW0xckVsRTRVTVVwbEpISDNH?=
- =?utf-8?B?dmlWSTBuM1NXTVQ4Z0lBaEFPOE80OTE4NC9DUWY1dmpaVllIdXFzUFJNNDFL?=
- =?utf-8?Q?MnelTlA+OBgVr2huV9?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b3c46b5-f8e0-40d3-5ea2-08deacddef6b
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2026 08:43:53.9793 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1szSWjqdn2txFOLsXs3p1invMXsvaz860jAiCSGpAi+MtGsOy1g1H5MworEzlnVA
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6319
+X-Mailman-Approved-At: Mon, 11 May 2026 07:30:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,79 +71,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 9F4844F3DAE
+X-Rspamd-Queue-Id: B53E250935E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	DATE_IN_PAST(1.00)[70];
+	DMARC_POLICY_ALLOW(-0.50)[xry111.site,reject];
+	R_DKIM_ALLOW(-0.20)[xry111.site:s=default];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[usp.br,amd.com,gmail.com,ffwll.ch];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ChuanYu.Tseng@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:aurabindo.pillai@amd.com,m:roman.li@amd.com,m:wayne.lin@amd.com,m:chiahsuan.chung@amd.com,m:jerry.zuo@amd.com,m:daniel.wheeler@amd.com,m:Ray.Wu@amd.com,m:ivan.lipski@amd.com,m:alex.hung@amd.com,m:rafal.ostrowski@amd.com,m:dillon.varone@amd.com,m:jeffbai@aosc.io,m:xinmu@xinmu.moe,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[xry111@xry111.site,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[xry111@xry111.site,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[xry111.site:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-Just two notes, apart from that looks like a nice cleanup to me.
+On Fri, 2026-05-08 at 16:11 +0800, Xi Ruoyao wrote:
+> On Thu, 2026-03-26 at 10:57 +0800, ChuanYu Tseng wrote:
+>=20
+> > FPU guards (DC_FP_START/DC_FP_END) are required to wrap around code tha=
+t
+> > can manipulates floats. To do this properly, the FPU guards must be use=
+d
+> > in a file that is not compiled as a FPU unit. If the guards are used in
+> > a file that is a FPU unit, other sections in the file that aren't guard=
+ed
+> > may be end up being compiled to use FPU operations.
+>=20
+> /* snip */
+>=20
+> > diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c b/dri=
+vers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c
+>=20
+> We have:
+>=20
+> CFLAGS_$(AMDDALPATH)/dc/dml2_0/dml2_wrapper.o :=3D $(dml2_rcflags)
+>=20
+> and
+>=20
+> dml2_rcflags :=3D $(CC_FLAGS_NO_FPU)
+>=20
+> so this file isn't compiled as a FPU unit.=C2=A0 Why removing the guards
+> here?
 
-On 5/8/26 04:47, Andre Hirata wrote:
-> @@ -46,10 +47,9 @@ int amdgpu_dpm_get_sclk(struct amdgpu_device *adev, bool low)
->         if (!pp_funcs->get_sclk)
->                 return 0;
-> 
-> -       mutex_lock(&adev->pm.mutex);
-> +       guard(mutex)(&adev->pm.mutex);
->         ret = pp_funcs->get_sclk((adev)->powerplay.pp_handle,
->                                  low);
-> -       mutex_unlock(&adev->pm.mutex);
-> 
->         return ret;
+>=20
+> /* snip */
+>=20
+> > index 408559d6fb2d..f8250c80be02 100644
+> > --- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c
+> > +++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c
+> > @@ -6,7 +6,20 @@
+> > =C2=A0 */
+> > =C2=A0
+> > =C2=A0#include "dml2_internal_types.h"
+> > +#include "dml2_wrapper.h"
+> > =C2=A0#include "dml2_wrapper_fpu.h"
+> > +#include "dml21_wrapper.h"
+> > +#include "dml21_wrapper_fpu.h"
+> > +
+> > +#include "dc_fpu.h"
+> > +
+> > +struct dml2_context *dml2_allocate_memory(void)
+> > +{
+> > +	struct dml2_context *dml2;
+> > +
+> > +	DC_RUN_WITH_PREEMPTION_ENABLED(dml2 =3D vzalloc(sizeof(struct dml2_co=
+ntext)));
+> > +	return dml2;
+> > +}
+> > =C2=A0
+> > =C2=A0bool dml2_validate(const struct dc *in_dc, struct dc_state *conte=
+xt, struct dml2_context *dml2,
+> > =C2=A0	enum dc_validate_mode validate_mode)
+> > @@ -23,16 +36,12 @@ bool dml2_validate(const struct dc *in_dc, struct d=
+c_state *context, struct dml2
+> > =C2=A0		return out;
+> > =C2=A0	}
+> > =C2=A0
+> > -	DC_FP_START();
+>=20
+> Notably the removal of this is causing:
+>=20
+> [=C2=A0=C2=A0=C2=A0 3.943927] do_fpu invoked from kernel context![#1]:
+> [=C2=A0=C2=A0=C2=A0 3.948860] CPU: 0 UID: 0 PID: 11 Comm: kworker/0:1 Not=
+ tainted 7.0.3-aosc-main-4k #2 PREEMPT(lazy)
 
-In a lot of cases you can now turn the patter "ret = f(...); return ret;" into just return f(..); and potentially drop the ret variable.
+Oh, I didn't expect the code path of 7.0.3 is so different from the
+mainline (7.1-rc1).  The mainline has guarded this elsewhere and the
+breakage on 7.0.3 is caused by some difference reason that I'm still
+trying to figure out...
 
->  }
-> 
-> @@ -291,9 +265,8 @@ bool amdgpu_dpm_is_mode1_reset_supported(struct amdgpu_device *adev)
->         bool support_mode1_reset = false;
-> 
->         if (is_support_sw_smu(adev)) {
-> -               mutex_lock(&adev->pm.mutex);
-> +               guard(mutex)(&adev->pm.mutex);
->                 support_mode1_reset = smu_mode1_reset_is_support(smu);
-> -               mutex_unlock(&adev->pm.mutex);
->         }
-> 
->         return support_mode1_reset;
-
-For cases like this here the coding pattern to check the pre-requisites and abort early is usually better.
-
-So this example here would become:
-
-if (!is_support_sw_smu(adev))
-	return false;
-
-guard(mutex)(&adev->pm.mutex);
-return smu_mode1_reset_is_support(smu);
-
-Which as far as I can see is less code and much easier to read/understand.
-
-But both suggestions could be a separate patch if you want to keep this one as it is.
-
-Regards,
-Christian.
+--=20
+Xi Ruoyao <xry111@xry111.site>
