@@ -2,70 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mHfyD7DPAWqKkAEAu9opvQ
+	id GDc0DrDPAWryjwEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Mon, 11 May 2026 14:46:40 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C99D650E22A
+	by mail.lfdr.de (Postfix) with ESMTPS id 9385D50E229
 	for <lists+amd-gfx@lfdr.de>; Mon, 11 May 2026 14:46:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBA1B10E1B2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABD2A10E1A8;
 	Mon, 11 May 2026 12:46:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ObaZCJqK";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="b35ZTuRN";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C198B10E1D1
- for <amd-gfx@lists.freedesktop.org>; Sun, 10 May 2026 18:54:35 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id
- 5b1f17b1804b1-488a88aeec9so40620855e9.2
- for <amd-gfx@lists.freedesktop.org>; Sun, 10 May 2026 11:54:35 -0700 (PDT)
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
+ [209.85.221.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5564E10E19F
+ for <amd-gfx@lists.freedesktop.org>; Sun, 10 May 2026 19:05:37 +0000 (UTC)
+Received: by mail-wr1-f50.google.com with SMTP id
+ ffacd0b85a97d-43d73352cf2so2889427f8f.1
+ for <amd-gfx@lists.freedesktop.org>; Sun, 10 May 2026 12:05:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1778439274; x=1779044074; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1778439936; x=1779044736; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=QuqzRHtsg71BZnzhF/X7DvgsYZCUBca3nqqVT5JC5t8=;
- b=ObaZCJqKSv1DOSw6VSceMqkFMj0howek5r78s0247gS4rre+RTtRRfF0yLSZcoijT4
- 78cPqCUeEjddxnTGcUXIdYnQ2sT6kd7uhqAT70Y1cAD5TETkQT1DFVUg+2NoSCp5HJDj
- haaKj4UCGOhfmg+6luRP0fWsok97YhpLsp+peZ238mwwdAgkRMmBrZYF2OvfcFPI5H8j
- rmNcY1HGkxz0ykX7brTVOp3o+3YhpCeGwU/nSPoCuYj9OwRSvtkFSXvGFx/Saipcj4ly
- fRgyY09b9mOqyNo0UC1TlCzlnvtp3qAR988Kw9AOf59CaSKcBTN8oO3a4RjC3VlasK5r
- XMrQ==
+ bh=wULIO50aMY8iqYqnteMyOQw6QvzezVAoGO8iMs+bIKs=;
+ b=b35ZTuRNg3pPNM95orzQztaIQ4ywFWh6OH0OSJK3wpvTJ6YeOfDbI8BS0Z1dSMIN8R
+ MEe0sUGsJhRi23SouVssiPI1NRQuS2oHsSrBFKXesk0WHTOcmJBT9vv2xA3IkYxPKDhX
+ 6LgKSwzMKcoID1rsttLkNQbKZGjb8/oSWhkIMBY9AHWN8W27dVaOht4oqQoHtE3/Dy/t
+ /K1rp4+puE9spRpKA8T8K5cKcJO1jbzeHti9tsnUgyDefi+q7OGrB+aNYZw356pxSTw0
+ 9tDiZgOGNptXulz8Y+6ZbhNRCoLcfJhFEWTGwcVxEz5rW/tqD0s1scLcMcwB/WbHAUQg
+ dfXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778439274; x=1779044074;
+ d=1e100.net; s=20251104; t=1778439936; x=1779044736;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=QuqzRHtsg71BZnzhF/X7DvgsYZCUBca3nqqVT5JC5t8=;
- b=Kt/B1M4Y5ZI9ueXe12LfYwxBn98Ku9PtcOwfYFt4NCDiaeRLZU9oqBwCbxoOy7KMoH
- GMNZ43Q5oDFojMslSagReyQMSaUCrwiac5I2QJuUMCIBpAm/+mPqKnPk6/ZX8WlPOscf
- EF0gNE3/BJnf3l4QfeDRcNlp4/ogfPMJTP6VeOu1rNE6siDRu/LdYY4xtobtKSJPhvEm
- B33I5j+4IPiou1AWX+gRBL/rs2y/zy+Xf6cDyvpk+Ycy5UV1jzzfS2IxrdMROUKGLLpp
- QFsxDEy4ykUyhZ7SrTGZwY8bOaCIfCXy5bhXOj2pr2pxwtQ0GZAMuZRtU6SZACuzDBj8
- GWUQ==
+ bh=wULIO50aMY8iqYqnteMyOQw6QvzezVAoGO8iMs+bIKs=;
+ b=JflxaxLLNni6Y5GnjyCXKxn/FMsmxlgnkiGBJbB6Ql19sDahJ4TDYeoA/+8Kr1rO/H
+ xDef0XVK16qf4s5D50mx1fZBwLV3CvYP3TOQDr40zBQ4/2n3bVIZbDdL8nDKzLUm13tN
+ bQ6fVlfYWJrUYqsHhzYTruvd0w1YRuofhVWCtBtjF6RVXhwUfNEjCl2Nk6qdOuujLBWB
+ hk6aU1PdZwmba819PaWUzohvAbUDvjNQ9N6lQfcQbKwHy+cAEfWPbvcUHlvIgq05PscU
+ R7qZs+5GSwsVPXJPJnJlZN7LtazhwyAXTuJkkQeQpRJi7Udp/duAfksCPODS3X1ZhzPb
+ iv+A==
 X-Forwarded-Encrypted: i=1;
- AFNElJ8mZ+m56SDVSa2BgLZCHicG2eyWQPIgxe1M+n+hcT02c5vWDUczYLmhRyEoYvsl1IXpC9nHENks@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx1pw1XWrg6nd0vf8muGao8L2W1HrMGMs7MUvys2lXe6NGoksM9
- Ew5lVGn5jCjeIoUQyppyx9857ORrQC7QLx+MMPG/XWoHC/dAci8YQYGh
-X-Gm-Gg: Acq92OFkpQWOwYSmpI9Qb42AK398k65pmZhUSqn4Rx6Fc+7oNIs6E1oaYlXlphUvcdw
- bwU47SSJIAISh+BZ8TnV03l3ws0QrEvVpH+Au0o7VNmzUngnTyFMRZI9fzrwtH492ScZRsd7tRR
- 6p/lkGWtI6wpd1v/+G+w8jDy6K5LV2vQF7lPrLssZ30OmHdrxWdMQDvgsnNViz0TueZtUMrGyLr
- Yqof8uGy3WzN8SOlfTaik8Ze7R3ejRXr9/oK7sst8ZxEqMJOga2XK6/bbzUnyl9Hr4fHfNRPtFj
- RU8dDmiwavtpeFdC6mWLtpvlQNV+Ssz65TiYloiLAxvbdoIYnPzy/W4K1KkAXGuYE7g6N10bCJv
- TnKlPQsxii9EEDb8+dsuOEQju28jRK8Z4s/GrLW3jCbv3nXCB6aWjEx5pw+cwdMyji9Ksyvf/ot
- +HVcELzlCStz10rG9vAHpXq5MuUZQ7IL/wrK78hpw=
-X-Received: by 2002:a05:600c:3507:b0:489:1b0c:8b43 with SMTP id
- 5b1f17b1804b1-48e706ad0e5mr110987725e9.1.1778439273999; 
- Sun, 10 May 2026 11:54:33 -0700 (PDT)
+ AFNElJ9gPk0oPZpLqo2uS49+r/kXgyu+rEXpZoMNUCLQMRMDZ4PQDd9K5UyNONFhQlZNNMA0rBBH9tH+@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwArfOetFzho8LK9C0b+9qW79TsN9blxgl1hNq4dWKGbmNAvJHS
+ 6VwUJCvHl2zVDxI8326FfdCWo5yjO36NmPsJNlk9tqLN1igRRiu3zOqv
+X-Gm-Gg: Acq92OFy2TQO4IdYKdUsaIB09AMVzkc7B52qZwa4xWQGI0hSu8HsfSwwf20CzJe7UuZ
+ NG2JUYPtlX04IKVDQcBmb7UX/tFfKWyreetA77YMFkcvOU4ZxFefb9wQJDzyMsSho7sJUDMHold
+ cPJqaDAaLRGlVD3BwnaH7zwtjjQg6Lh0Mhfht44Z8CbYP1NGoD+/kn9SzqqdCvvf/vnrfvD25Qx
+ MKTpAuD/VwqdFdkJhQhNrTMhvKQMwALcNq6DHmbdTtnP6MMLluWg8cpMQs7rlW8rX26jEuqVOe/
+ GN7zCgsBz7K6c08M57s7gM3hPgCypv5BcJa2q5lJEEczZN+sfoPYMYABkqOrpQDqeP0hQG2aSkV
+ jTuw9EznR4G3X8cLW98ZI8bTbkv2Vm4hFIym7xFcwGCrYUvHeDK2X2RSgA++ZgEXPdkZ/tWpJGb
+ kOXHYb6GUuVKBVnyETJ9XadyMNq5P5Z2WdUoWe4jM=
+X-Received: by 2002:a05:600c:a02:b0:489:1c1f:35f1 with SMTP id
+ 5b1f17b1804b1-48e706ad0damr110613005e9.4.1778439935639; 
+ Sun, 10 May 2026 12:05:35 -0700 (PDT)
 Received: from skylab.fritz.box ([2a06:4944:10fb:f400:3dc3:7b05:ba52:3241])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48e6d8efc35sm83061965e9.2.2026.05.10.11.54.33
+ 5b1f17b1804b1-48e701e9585sm133070855e9.5.2026.05.10.12.05.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 10 May 2026 11:54:33 -0700 (PDT)
+ Sun, 10 May 2026 12:05:35 -0700 (PDT)
 From: Gilles Risch <gilles.risch@gmail.com>
 To: alexander.deucher@amd.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
@@ -75,8 +75,8 @@ Subject: [PATCH] The Apple iMac11,
  machine suffers from a similar problem as the iMac10,
  1 (late 2009) and the iMac11,
  2 (mid 2010). This small patch fixes the issue on this machine.
-Date: Sun, 10 May 2026 20:54:26 +0200
-Message-ID: <20260510185426.4264-1-gilles.risch@gmail.com>
+Date: Sun, 10 May 2026 21:05:06 +0200
+Message-ID: <20260510190505.4810-2-gilles.risch@gmail.com>
 X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -94,7 +94,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: C99D650E22A
+X-Rspamd-Queue-Id: 9385D50E229
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.78 / 15.00];
 	LONG_SUBJ(1.79)[239];
@@ -129,13 +129,15 @@ X-Spamd-Result: default: False [2.78 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCPT_COUNT_THREE(0.00)[4];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_SPAM(0.00)[0.391];
+	NEURAL_SPAM(0.00)[0.390];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
 X-Rspamd-Action: no action
 
 Fixes freedesktop issue 164
 Link: https://gitlab.freedesktop.org/xorg/driver/xf86-video-ati/-/issues/164
+
+Signed-off-by: Gilles Risch <gilles.risch@gmail.com>
 ---
  drivers/gpu/drm/radeon/atombios_crtc.c     | 4 ++--
  drivers/gpu/drm/radeon/atombios_encoders.c | 9 +++++----
