@@ -2,36 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6OqDA8adAWoHggEAu9opvQ
+	id sLD7NMedAWoHggEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 May 2026 11:13:42 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 May 2026 11:13:43 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90EF950AAFD
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 May 2026 11:13:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACECE50AB05
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 May 2026 11:13:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9DDE10E50C;
-	Mon, 11 May 2026 09:13:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD74A10E518;
+	Mon, 11 May 2026 09:13:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 413A110E518
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E9E310E50C
  for <amd-gfx@lists.freedesktop.org>; Mon, 11 May 2026 09:13:37 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 64B9DRBb3111971; Mon, 11 May 2026 14:43:27 +0530
+ 64B9DRIr3111976; Mon, 11 May 2026 14:43:27 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64B9DRkA3111970;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64B9DR1F3111975;
  Mon, 11 May 2026 14:43:27 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v2 1/2] drm/amdgpu: kfd vmid should start after vmid for gfx
+Subject: [PATCH v2 2/2] drm/amdgpu: kfd vmid should start after vmid for gfx
  userqueues end
-Date: Mon, 11 May 2026 14:43:25 +0530
-Message-Id: <20260511091326.3111950-1-sunil.khatri@amd.com>
+Date: Mon, 11 May 2026 14:43:26 +0530
+Message-Id: <20260511091326.3111950-2-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260511091326.3111950-1-sunil.khatri@amd.com>
+References: <20260511091326.3111950-1-sunil.khatri@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -47,22 +49,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 90EF950AAFD
+X-Rspamd-Queue-Id: ACECE50AB05
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.39 / 15.00];
 	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -71,7 +73,7 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.640];
+	NEURAL_HAM(-0.00)[-0.660];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
@@ -81,7 +83,7 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:mid]
 X-Rspamd-Action: no action
 
-For GMC11, when KGD userqueues are enabled we should have vmid for
+For GMC12, when KGD userqueues are enabled we should have vmid for
 kfd queues start after KGD userqueues VMID ends.
 
 Use the variable gfx.disable_uq instead of gfx_disable_kq to check
@@ -90,19 +92,19 @@ submission is enabled but userqueues is also enabled at same time.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-index 16388e3caea3..354cf1c1b93c 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
-@@ -846,7 +846,7 @@ static int gmc_v11_0_sw_init(struct amdgpu_ip_block *ip_block)
- 	 * amdgpu graphics/compute will use VMIDs 1-7
- 	 * amdkfd will use VMIDs 8-15
- 	 */
--	adev->vm_manager.first_kfd_vmid = adev->gfx.disable_kq ? 1 : 8;
-+	adev->vm_manager.first_kfd_vmid = adev->gfx.disable_uq ? 1 : 8;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+index 586703ec0dfa..202b2efebeb8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+@@ -950,7 +950,7 @@ static int gmc_v12_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 		 amdgpu_ip_version(adev, GC_HWIP, 0) == IP_VERSION(12, 1, 0) ?
+ 		3 : 8;
+ 	adev->vm_manager.first_kfd_vmid =
+-		adev->gfx.disable_kq ? 1 : (adev->vm_manager.first_kfd_vmid);
++		adev->gfx.disable_uq ? 1 : (adev->vm_manager.first_kfd_vmid);
  
  	amdgpu_vm_manager_init(adev);
  
