@@ -2,87 +2,103 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oAGoFedUA2pq4gEAu9opvQ
+	id 6AQ3HV5oA2qa5gEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 18:27:19 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 19:50:22 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEAAF524A6C
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 18:27:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D393652631C
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 19:50:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70D5310EB9B;
-	Tue, 12 May 2026 16:27:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A16510E58F;
+	Tue, 12 May 2026 17:50:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cZ779KCX";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QzHX95bm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
- [209.85.221.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43E6210EB75
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2026 16:27:16 +0000 (UTC)
-Received: by mail-wr1-f52.google.com with SMTP id
- ffacd0b85a97d-43fe608cb92so3657757f8f.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2026 09:27:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1778603235; x=1779208035; darn=lists.freedesktop.org;
- h=content-transfer-encoding:reply-to:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
- :date:message-id:reply-to;
- bh=TmxuQpEJRXeKnWJ7ISt3nttPwwK0oBhYbP4DE9w9FFk=;
- b=cZ779KCXU0+OlZ3Ze2A7/CsREc5r1FvZRuJpaRz7fhv6Kean8RuLRGqYubuJtLcK1V
- X7qHDZcAFkkUEAFHOuJChpsTIlmK1WvuQawjgUsaGNsJmLUSS6XcKhdIzsr7TBP6Q1nJ
- aTgx31/ChiPiifbWzMqiiNrDPMHKn6xl0cVFpG3SxIP3LhnuQ/AiMwTXztWi+wqHuyDT
- eJDQQ4Q3wowaklKtEDyh8QsdnlT5lpg1xvajrvy71bnkfJSfLczrODQwPo6MM7NXX71e
- TQjhJmPiCo9HA+YEn+b3oqXGx77LZto7EdXEXePtDmV5jJczYbnXn4D1hlEXyVLDFu+/
- Redw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778603235; x=1779208035;
- h=content-transfer-encoding:reply-to:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=TmxuQpEJRXeKnWJ7ISt3nttPwwK0oBhYbP4DE9w9FFk=;
- b=KZrNkVE0DXOjQplxBYtJiIvoUXOPa8d8AXCg7mIJRpKN4TuBTemPpoGrCkdHdbeazf
- oPXGFhO2cHfrrUIWRwoim6Z38AIJlpz99PuvrTPr+GSVMPARk0PjBtXCx24WwYQ5P3tJ
- FRZmA68IDC3hkXYUuLNULH2PtoWQfCHE/cFIe7r7xF6MiO+AObapwaYCu7p8M3AvhIPe
- tZ2co4xrNzwufwH1EUU7q8ZID5aoTUkq9tNjLYeT7YFl9aHjbP2NO5niSFcYl6N+pDrK
- l5gEtm4B3F+fYW0Dg6XfUJ5RoiqsraA4ACEuxajB85ZPAHjW86RiSFaJ3l8jdX68FM+f
- eYVA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8dMMJXp+QgMFykQcYx2URKnuFQwOYt3/MnoyL1wMwsrQBcdMONOiiw4P9nrDP2SgI/u00osC2q@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxdGiiXF4YZZ+cMUPzJSVKjERAWsjVzpTuAexoJBxmIsCPknqpl
- 3r5n6J0aCY70Z4TRD2rj9Hcux9IeYBrqL6d7Ir0sGHZBMV0Vrup9moNr
-X-Gm-Gg: Acq92OEL9vVqIfTX7NZHfeKABp+uJJwJGfaNwQdJwpmDwzQJfMt/uHNSY6reA9ne++1
- KgqPp2OyWWjdDTTybCMM4XJK+Bvtk+lNJpS7zAv8nFZQKW++hSYRCjlXI7obIbA5A+KijS+zjfa
- KYI0HDHFgm9kAAn+1UwUQ+RkN6dC0XI5UAqYsAqfqGaBKIU86Xs6rgfk6U1qs5y1lAXuXKUIJo4
- MuxbJVI4BezYV+GHtE1BfQlbNVbe+/YItN3qf3AXE/d+JRC5SZWNE9c/ULuBdciPR8k6a4XUeBj
- D0ZLjfYhMMuAn8tbKNYz6A2AYR24yweve/Ku6OxpNF+rTbst10qK8KlXn5anDC9PxLgoFiE/R9R
- PQ9te27ObKXQtvYFZc4k0bKHRc6/TuScqojwbPBtTkOcqeMPxPayETB7Zmp1Yln1pgVjIJzQJsH
- CA+LypJdyB2saJ8avtuYAX7gPKwAqRZARkQPJK
-X-Received: by 2002:a05:6000:420b:b0:449:4079:4c39 with SMTP id
- ffacd0b85a97d-4546310a45emr30198085f8f.29.1778603234650; 
- Tue, 12 May 2026 09:27:14 -0700 (PDT)
-Received: from able.fritz.box ([2a00:e180:15b9:5900:3e99:f03a:ee63:3e8e])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-4549120ec0asm33019349f8f.17.2026.05.12.09.27.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 12 May 2026 09:27:14 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: Alexander.Deucher@amd.com,
-	amd-gfx@lists.freedesktop.org
-Cc: vprosyak@amd.com
-Subject: [PATCH 4/4] drm/amdgpu: restart the CS if some parts of the VM are
- still invalidated
-Date: Tue, 12 May 2026 18:27:11 +0200
-Message-ID: <20260512162711.51118-4-christian.koenig@amd.com>
+Received: from BN8PR05CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11011071.outbound.protection.outlook.com [52.101.57.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7989910E58F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2026 17:50:19 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yZddWTdae2+nCk4P2r1qCIx97CVpqbiqzmVw1R50NdTOPL+pJoWpV9Mqay+pwRcmSp/2Y2m76nKAyi0CEVglkqO29xesc4Efk+2usrPHWsC2FoMNwOkurIrgp1jx4XYreaKagqVXfBOqcChCLK8u9ojTGau/kY8tocnBglDeG3Xiqqqz5Cyf73jpEn0x/ujMwfqjU4foT08AjRZLcfODoIoz1ckDIv1/HHjMO6Q7i30tjI86lETqeE82Dd/pC7SU5p6Yt1ABhblxx8YqYZEmmiCW6DEXu7+NAo7ywQ7Le8e5b2lI+qov23Gz4GI+c/6qs4kt3fmR1ZLO6sGZoz4MOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JP5JfXHM+vcCl+2OnR5VQoH+tdwWw0bPkb6PmYKMzuU=;
+ b=fJ5WdzUIDYyKnzwuj18C2u67Al4c+3JQ62RZdHkpTqUMJH2N4D0sj10Wo4/OBgravUMsfSmiTB9KaSbKGJaNiJZkBLP77Lin6vQZn3O88roZI2B8ueEQhZCe65Vp0ljn8q4Q5tCr+1BUG1oLWhxsZsFIEbvJ8ZEiAmd0D9GktQ5LmRj+4W4E6iJBKi8huY7t5QVzrAOtGFy64Nq1lAuqb+yVbInGCnOiMsaI2sIc5FDBya+7//58gD+fD23wq2H0xr7Y59EOifGvFGaNa5EeUT0yzjYUJ3WAYRSmdXkqHWs4z3E/j3USDkqojYD4NcOxUGUTotNMOdSb/PHMY8H1Ug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JP5JfXHM+vcCl+2OnR5VQoH+tdwWw0bPkb6PmYKMzuU=;
+ b=QzHX95bmfHFQLCSXdtPrmYxGyabUwOMzkHcDMEWEhy+7I9Rgpmr4Z6+EIwymhfs4nGb5RfYzycnWgII8Dt+CQSYy6rc79zXDTWBKv7/kaD5efqEOe4cnD+0nlRioSM/RdSqBqwMieHrvSDL44Xzln2zrPj1aH+bQ6jiN7MvFpnA=
+Received: from BN9PR03CA0232.namprd03.prod.outlook.com (2603:10b6:408:f8::27)
+ by DS0PR12MB6582.namprd12.prod.outlook.com (2603:10b6:8:d2::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Tue, 12 May
+ 2026 17:50:12 +0000
+Received: from BN2PEPF000044AC.namprd04.prod.outlook.com
+ (2603:10b6:408:f8:cafe::94) by BN9PR03CA0232.outlook.office365.com
+ (2603:10b6:408:f8::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9913.11 via Frontend Transport; Tue,
+ 12 May 2026 17:50:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BN2PEPF000044AC.mail.protection.outlook.com (10.167.243.107) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.25.13 via Frontend Transport; Tue, 12 May 2026 17:50:11 +0000
+Received: from 0yonsun-linux-dev.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.41; Tue, 12 May 2026 12:50:10 -0500
+From: "Sun, Yongqiang" <Yongqiang.Sun@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: "Sun, Yongqiang" <Yongqiang.Sun@amd.com>
+Subject: [PATCH] drm/amdkfd: fix signal page mmap PFN for GTT-backed event
+ pages.
+Date: Tue, 12 May 2026 13:49:57 -0400
+Message-ID: <20260512174957.357982-1-Yongqiang.Sun@amd.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260512162711.51118-1-christian.koenig@amd.com>
-References: <20260512162711.51118-1-christian.koenig@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF000044AC:EE_|DS0PR12MB6582:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4357efe8-43bb-4ccf-2fce-08deb04eea3f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|82310400026|36860700016|376014|11063799003|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: CHmwyTSOogsYAb4zoI7SQsPTaabqRRgTBIC0f7sMx7/JRBP/ic7IdcD5nBbFBgDfPO9c8Qxppp2rtm/lQlNaCV+5FqSyNqec35hlqiu1csCITCyaPgygObnlJgdguvS6+ea8UDKiq2t2nWe1NYz9NoFDe/koJggPU+kr/GY3+dYFIEkrnSVF+Ub0ntVfv8fAYowk0U7p8eG+yhQUIbiiTUV68iFQF1gTY/2hpflOAtHMDW3U0IB5odmu04qA4mJNeU56Z93SB2ZlWnYTmjeQVq7/yYy2cjWYRwSzD7lks+eXByS4iWsSclGWPyZ9bCw/Apad5+fm/vAwNjqo0xI9X7XOg3Av9potpQ6UaKaSOWTlWd7jYv3BO2BXR5Wxa+y7eFaaL65jOFL5cXpUHRmWhsKv1HvX4YWy81aDwa93ZJ3fFZjBqjKCIJHA5W0ci4RbLy1TyP2OJlLCwKLWqjJ6WWc1HhTvzZyG2Asjq1OOi9MoS3kAymjodE2OomjDIkFkmAIRVwwTxKYkGGvuD3hB8OFRlyXh9j7y0SsZivdvaDDhced1+MYCPCqGPKMa7ig2h2V+TJmvqm9zzEdp55UwIRNrZO5YvC6xo7vwqnc8x26yCSGN2TK0wHGYoibTV/3VTv8KPTKfiW775sAg/E1Df7Dexrt3n9cO3gyhgGEXEeJDs8pmYCTlNwdTPjSSKQYtRX+1FPzmktVTSyr5oa7QKzQ5SikULI66R7qRjs/oRF8=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(11063799003)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: wQY7NAlvf6Q5Q4+et0SSX/gRI8S5/ELTuwVHD1YoAm8BPv4RnQe7EHLI2NOTiNP6vGW5oseTQbY0KQgo/6ZbjagBELQ+J8Ovfm9qC8Cdt1pgeBi/7s3g6F3xSZ9HsvgS4QgeFQyY0MXWNJpgGrwBzmQdBy/q6/63yrbLZfUZIkuuogD+rxhbyyvgcSRhOme3UD6SC8jMYkQx/uQ0MKwu1OMTm6ytd69XkBgeZvpba91QdUlVqVgEL5ySUJcv0lp7fSZZefDCqQO8X9Xbsy9AeTh1czq6843ToOlinQFENFaPB8eKJ16RczQCJJzRUGeqjSmRX9n2jQYkoXssKkrk8JVxCs+rQ4PmRhVjH4+IPDlK7O/LuptVfC2z1zcCM+iNgnLpQcAwfmuZQKMEZ5Aq/D0/zxBFNAk2HrLtZCOHTVIMYpRkw9AZcsScpW3YWtvz
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 17:50:11.6718 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4357efe8-43bb-4ccf-2fce-08deb04eea3f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000044AC.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6582
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,78 +110,107 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: DEAAF524A6C
+X-Rspamd-Queue-Id: D393652631C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	REPLYTO_DOM_EQ_TO_DOM(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Alexander.Deucher@amd.com,m:vprosyak@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[ckoenigleichtzumerken@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	HAS_REPLYTO(0.00)[christian.koenig@amd.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ckoenigleichtzumerken@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[Yongqiang.Sun@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.999];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Action: no action
 
-Make sure that we only submit work with full up to date VM page tables.
+__pa(kernel_address) is invalid for vmap'd GTT kmap addresses. Record
+page->user_pfn at setup (virt_to_page / vmalloc_to_pfn) and use it in
+kfd_event_mmap() instead of __pa().
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
+Change-Id: I61061ab280850afa776191c30ba90a475afab46d
+Signed-off-by: "Sun, Yongqiang" <Yongqiang.Sun@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index 10d8dcc3a972..b26f681527f2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -1280,6 +1280,7 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
- {
- 	struct amdgpu_fpriv *fpriv = p->filp->driver_priv;
- 	struct amdgpu_job *leader = p->gang_leader;
-+	struct amdgpu_vm *vm = &fpriv->vm;
- 	struct amdgpu_bo_list_entry *e;
- 	struct drm_gem_object *gobj;
- 	unsigned long index;
-@@ -1325,7 +1326,8 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
- 		amdgpu_hmm_range_free(e->range);
- 		e->range = NULL;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+index e9be798c0a2b..6e0beacca81e 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_events.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+@@ -21,8 +21,10 @@
+  * OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
++#include <linux/mm.h>
+ #include <linux/mm_types.h>
+ #include <linux/slab.h>
++#include <linux/vmalloc.h>
+ #include <linux/types.h>
+ #include <linux/sched/signal.h>
+ #include <linux/sched/mm.h>
+@@ -54,6 +56,7 @@ struct kfd_event_waiter {
+ struct kfd_signal_page {
+ 	uint64_t *kernel_address;
+ 	uint64_t __user *user_address;
++	unsigned long user_pfn;
+ 	bool need_to_free_pages;
+ };
+ 
+@@ -82,6 +85,7 @@ static struct kfd_signal_page *allocate_signal_page(struct kfd_process *p)
+ 
+ 	page->kernel_address = backing_store;
+ 	page->need_to_free_pages = true;
++	page->user_pfn = page_to_pfn(virt_to_page(backing_store));
+ 	pr_debug("Allocated new event signal page at %p, for process %p\n",
+ 			page, p);
+ 
+@@ -349,6 +353,11 @@ static int kfd_event_page_set(struct kfd_process *p, void *kernel_address,
+ 	       KFD_SIGNAL_EVENT_LIMIT * 8);
+ 
+ 	page->kernel_address = kernel_address;
++	/* kmap for GTT is vmap-backed; do not use __pa() on kernel_address */
++	if (is_vmalloc_addr(kernel_address))
++		page->user_pfn = vmalloc_to_pfn(kernel_address);
++	else
++		page->user_pfn = page_to_pfn(virt_to_page(kernel_address));
+ 
+ 	p->signal_page = page;
+ 	p->signal_mapped_size = size;
+@@ -1087,8 +1096,11 @@ int kfd_event_mmap(struct kfd_process *p, struct vm_area_struct *vma)
+ 		return -EINVAL;
  	}
--	if (r) {
-+
-+	if (r || !list_empty(&vm->invalidated)) {
- 		r = -EAGAIN;
- 		mutex_unlock(&p->adev->notifier_lock);
- 		return r;
+ 
+-	pfn = __pa(page->kernel_address);
+-	pfn >>= PAGE_SHIFT;
++	if (!page->user_pfn) {
++		pr_err("signal page has no recorded PFN\n");
++		return -EINVAL;
++	}
++	pfn = page->user_pfn;
+ 
+ 	vm_flags_set(vma, VM_IO | VM_DONTCOPY | VM_DONTEXPAND | VM_NORESERVE
+ 		       | VM_DONTDUMP | VM_PFNMAP);
 -- 
 2.43.0
 
