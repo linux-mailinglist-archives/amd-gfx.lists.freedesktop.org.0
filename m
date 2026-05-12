@@ -2,88 +2,102 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id XhRFAbQuBGqMFAIAu9opvQ
+	id EIe+Mfd4A2pY6AEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 09:56:36 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 21:01:11 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87B5652F23E
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 09:56:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 610C05285A8
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 21:01:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F43C10ED21;
-	Wed, 13 May 2026 07:56:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFB9810E5B2;
+	Tue, 12 May 2026 19:01:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=usp.br header.i=@usp.br header.b="l9Cee67z";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="mtsIPDAp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f174.google.com (mail-dy1-f174.google.com
- [74.125.82.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24F6D10EBFD
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2026 19:01:55 +0000 (UTC)
-Received: by mail-dy1-f174.google.com with SMTP id
- 5a478bee46e88-2f7020a928eso8270823eec.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2026 12:01:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=usp.br; s=usp-google; t=1778612514; x=1779217314; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=sbId00WAHp2KabBC0vsQBfXuDPvPFs92EuJ0J29qKqs=;
- b=l9Cee67z5aYnP60lWKkpoOt2MQZaHq/MxwECJSzb1s59Frsjn456atnAe2iZGwmOJi
- lo6+bJMXGVAwuPCoGL15HQBX0LH/gS3J1tzphl1bMqZkh/lOEYhBpZoaJdzZURAaCz/s
- HHjrooBr2tlmWi2FlztHe5wnVdD3pbjVOU9O2VGuFuxB6iMYxylCUwqcX5wu0WoX8JJX
- /xTGY0ySat6TUhMfpHpvoj8DkFMGg8Fy/Z3den8Lzl//N+uAkVVpZS29FZZoHCByLcIx
- fWIu1QQgFWjGIAc7wdLoH5UyW32dvtM4Ac2fa7CfByP0K1IgjSJm6ibFfBHH1bIl+atg
- 186A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778612514; x=1779217314;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=sbId00WAHp2KabBC0vsQBfXuDPvPFs92EuJ0J29qKqs=;
- b=X2N5ZZODrjF2sD28uPvBAR3UehqOFoPb4J5E1au1KRe0DHEz3e+BXCa6aOJqRv+W4p
- Qj6iKdNwl/Xndm45Vns5LOYDH0O1fYn3306d1HkUzgh2SwioBx0bKrqquNcZZyvd3MvK
- ptdm1S5z5Hq/94MEAy9JBtiiJjyaDMa0WTsESFthrcsl5ISo7II31hVVQNWuZRwMvBEA
- P3rLoqQry109kOWE+2OdgS4uIOQNLCNkYwlWfmZuBdL73S7+CwyiXfsd0Q6ZyZdumwJd
- e/pKV3Yog054XREAQa+IPDADdI5EXL/11LJtBhazYx5zoV25RT0XQpgX//RgVxIEidSr
- IGcQ==
-X-Forwarded-Encrypted: i=1;
- AFNElJ/3VQOEGzapSlI+X74W5LXPJIXJRe3rWSIBMib+gUXEunnAV6wxFcD8pBA141gqTplnKRLMwMF8@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz3Z+xgFEKPkI1XJUD1pykHOAxDnbubaaVbi7ssFw0KpotuIgRs
- f5TEtpuPCQY0PK1bPkl+qiBvbgLj9XhdB7ihI4GJaQU0rjbuELaOhr9Aoax/FTxBkK0=
-X-Gm-Gg: Acq92OE7IJhD23Y62BlrPfWvBJFJmoJZXX5B5T9ycmbbg+BvfsfYP62mrTQaFR/2flt
- HxqCnEYLGqRFpNL0xwPNg4sD+1i50bgoSmrP5mxm8aXDByDWZOLhJ9KejDuvG/7mUKKZK0HkEcZ
- eyxrqmHWFWNmXL1/ec8rjC78Wl60zraC+mmfB5wgzqazqYFxRdb7YXTFnX6/1uf2VKrqecQ0kXS
- /qjiGb12d8AB7sMMWD6aA6eFNOa1XgM6tVkrW4FOMm8gGHMwNZHOdnv9BQSEAZ8zky0p5tyiuWP
- nDeVhsL5sxARNYby8zMwXTaxA1P3TUqeW0dPIDBZj2uSBO6OtYH4ydFKbw9ceD82F1MAFbE4eeT
- xri7fSQTG7Nyl9MLui0xbQbMa3hphoHfYl5UgJr1s5Jg993Y5nIwdqHQf1bMcd8dvA5hbiNHRZX
- LizObB91f1zlZJvDwLRETS9p3GMpR8AqfPr49xjOOK9GG0foUIzBWZaM7Y1Dtt4waPr0PuEe67C
- C4H8bvGXFY3deKAoG7yUFaBZf8nM2UIxpNiNTa4QCTf8QeP
-X-Received: by 2002:a05:7301:19a9:b0:2e1:e5c0:7992 with SMTP id
- 5a478bee46e88-301180af715mr200225eec.8.1778612514275; 
- Tue, 12 May 2026 12:01:54 -0700 (PDT)
-Received: from gui-host.Dlink ([177.140.77.53])
- by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-2f88914523csm18716616eec.29.2026.05.12.12.01.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 12 May 2026 12:01:53 -0700 (PDT)
-From: Guilherme Ivo Bozi <guilherme.bozi@usp.br>
-To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
- harry.wentland@amd.com, simona@ffwll.ch, siqueira@igalia.com,
- sunpeng.li@amd.com
-Cc: Guilherme Ivo Bozi <guilherme.bozi@usp.br>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH 9/9] drm/amd/display: convert dcn42 GPIO translation to lookup
- tables
-Date: Tue, 12 May 2026 15:59:52 -0300
-Message-ID: <20260512190019.228440-10-guilherme.bozi@usp.br>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260512190019.228440-1-guilherme.bozi@usp.br>
-References: <20260512190019.228440-1-guilherme.bozi@usp.br>
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012024.outbound.protection.outlook.com [52.101.43.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38D6510E5B2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2026 19:01:09 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wt2TFfjq11yjb4GQCyLVZgBm69K22AtIq+EeMTe0iigUykC1o/n+wXjDXNLmKME3z6nFZen8I93Czh8b4AEWtg9i0leX3MYL0j5YUOZXCgXF+y+oGL7SShEP/ifTaWqngElExfG+mBtMRI0nbw4iFT0e2t5EnKt7DOE8D1eCAIQM7YZ+AE9TUWWcg2BuXOwPBJGWeLY9nK/4oj6p6477NtSY3AbEOka63MfgjN07U7nj32BBAkBeIwCfdrmw76x+3iUe1TgWKQ71gm2hSaaIl5N9/V7jBTnhUSWqCpILbieeXeQUPrl0XzYcbygFEBpEqfcz9cjPqjNI9jvISv1GNw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oURqfOylrgZtI0ISErUXuSa7uhNwFmHHywz3VD6mUHo=;
+ b=KsQBLWuCAvh5urti6wd1olPVw7S5/CgkkwPTkbghVFnhYcCj4fV0i/vzYrX34f55dJsjg1yU4rWqsqv7/J9jwrRA5L8fefZKpfN+uLLreGi33qauakZTJHghLD2JyhU+JMqLOdnK3gg06cpSKIoW3veDHurpMn6ovYr0IHOLAMmudxENHw7RYn6gJrJv63lJVv1vTNpCsGKr9fFhccd1jct3ekmvgww7+Bq70jgHU0ipB66PmImthQY6AVspM5a38gwxUQMf8m05hImonZmi9g7KyhSlnTAR942+hAr2SfGm8Vgf6ftlZAS4ch4cR5MYowzR3S7tyiSatN5uRmrKLg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oURqfOylrgZtI0ISErUXuSa7uhNwFmHHywz3VD6mUHo=;
+ b=mtsIPDApvX1qoKIHmkg09Y5v9CYoRY2WIakQ1vsE9RlAwBMJNzL88n2ZqMN71SpGwwo+QHebLR5K5GcnKXHwbWPo1t9pStbf3x9B54NIP4i8v6cSepDnt9dtt3jJe/m8doZXSXvdVm2Uj5yX5WfaAEIkAM/rsy5TcQxPqCrXxnE=
+Received: from DM6PR06CA0068.namprd06.prod.outlook.com (2603:10b6:5:54::45) by
+ BY5PR12MB4227.namprd12.prod.outlook.com (2603:10b6:a03:206::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.23; Tue, 12 May
+ 2026 19:01:01 +0000
+Received: from CY4PEPF0000EE3C.namprd03.prod.outlook.com
+ (2603:10b6:5:54:cafe::c6) by DM6PR06CA0068.outlook.office365.com
+ (2603:10b6:5:54::45) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9913.12 via Frontend Transport; Tue,
+ 12 May 2026 19:01:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CY4PEPF0000EE3C.mail.protection.outlook.com (10.167.242.13) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.25.13 via Frontend Transport; Tue, 12 May 2026 19:01:00 +0000
+Received: from harish-base-compute.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.41; Tue, 12 May 2026 14:00:59 -0500
+From: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
+Subject: [PATCH 1/2] drm/amdgpu: Use asic specific pa mask
+Date: Tue, 12 May 2026 15:00:46 -0400
+Message-ID: <20260512190047.655578-1-Harish.Kasiviswanathan@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 13 May 2026 07:56:32 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3C:EE_|BY5PR12MB4227:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4ea905d5-70b8-4a97-827d-08deb058ceb2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700016|376014|82310400026|11063799003|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: taXEp5RNt8h/a0gBfetqlXVRsVDqFFC/7WT1cQ2AqDviZbZ2YJMXS5Q2J9dC+KMv3e9W7+dOvFX7twH0xzo3ZrSPGdBI13WEWzhDI7tWoIobigrYCToGYWq/WR+1yKjF9EGfCLopYUcTm5lhlbPzjai8M9bxRKDrMIJnsMZOQ03FuMriGlw/y1JRVGER41ZMFhHhpPdZicefs9bQbA8pdamh+EdqHknFIAL1teGHtCgq1QWgaKEXmikAkdNEtTP+UbqPUYoc5Rr3yCrUFPyL6uSM8v3PGkVMLN/Bmav0j3YPGBTLGoN8soBf7SyGvYW83OEZPbuJfCDKK3M/xDSpn5cAUdZ8IHUj1435OPv/1JOe3i6WVcNZLcC6dvlePsMVvVj4vcrsysXsW1l+DPKn6jXdbDEUJDKxlX8Wguokcm5LKwfWXh66sDTZw5hHW+B16UgJOhTEUK+jyRJG8VzD8FzjakoQwLU4Ii+WoOtRVEqUikuS95/Tx68am6482MixvOvLO1yTo5JnIVFxnIfBGWQd3bJc0TU9c9bp6sC7ufTNygvxSQQmFhyUTflS2+HQzLkChHGCsANpffhn6YK90Tcw7TsHHeg5lNv0Lv+7Vk1WBSP7QnkM6xMKv9ckD/hYrvctlavT54ik3vk+YhFORdff6NEDkbZHmPYX3NDqqjj8VfxfL0hMsKzKofQkp54yjQeanTYWwiouHvhTTU0qTWEiPfnZRKNx2xlu+d7cQoM=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700016)(376014)(82310400026)(11063799003)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 2uWPRoNkcVYW2xJT8X0szn36Su4DXxA6gRuw7KKh9KryvVgSankl9dh8P+5pamQzy6JxyKEKSGbZDeyI2lHEYUPgS2MsHfX2cGwxMgVOPTerr3OjUS1zXINyd+dyXlhD2NAZw3D5umS0RJgMbZIuCzuCBsb6LYYyATc+bmE/PDoRmcpXEYNWOReEpxyDktqR9xkTZPLNJBRXpHo/1iHbQOZAltuplbj9JrJV65+1oHtw/m4SDLZY2MT4NNLKrKRjjy59f29OQlhsUvY3soji4HwAoABIYG6tBe8U3ha/1hagM5sBL9QKER0vrsos7Hj2z7R7+aKfXmDBPcGA13qXNrd5HXRfg0ci7tTpN64k3T/i6JsmQhA8bH18yz+4z+o6E5UgYDH791Pe33XcEDDTB8ITqXzi78zRTGuRvopZm7Zp950foSxnjqb4pPWFGco5
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 19:01:00.3970 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ea905d5-70b8-4a97-827d-08deb058ceb2
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3C.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4227
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,275 +111,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 87B5652F23E
+X-Rspamd-Queue-Id: 610C05285A8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:harry.wentland@amd.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:sunpeng.li@amd.com,m:guilherme.bozi@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com,ffwll.ch,igalia.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[guilherme.bozi@usp.br,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[guilherme.bozi@usp.br,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[usp.br:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[Harish.Kasiviswanathan@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.999];
+	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[usp.br:email,usp.br:mid,usp.br:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,amd.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-Replace dcn42 GPIO translation switch statements with the
-generic table-based translation helpers.
+For PTE creation use asic specific physical page address mask
 
-This simplifies the GPIO mapping logic and reduces duplicated
-translation code.
-
-No functional changes intended.
-
-Signed-off-by: Guilherme Ivo Bozi <guilherme.bozi@usp.br>
+Signed-off-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
 ---
- .../dc/gpio/dcn42/hw_translate_dcn42.c        | 193 +++++++-----------
- 1 file changed, 70 insertions(+), 123 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h | 1 +
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  | 1 +
+ drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c  | 1 +
+ drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c  | 4 ++++
+ drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c   | 1 +
+ drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c   | 1 +
+ drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c   | 1 +
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c   | 1 +
+ 9 files changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dcn42/hw_translate_dcn42.c b/drivers/gpu/drm/amd/display/dc/gpio/dcn42/hw_translate_dcn42.c
-index e7e1d9979876..7b2c4cd42450 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/dcn42/hw_translate_dcn42.c
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/dcn42/hw_translate_dcn42.c
-@@ -39,62 +39,76 @@
-  * end *********************/
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+index 13bec8461cde..631c8a7cc99a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+@@ -170,7 +170,7 @@ int amdgpu_gmc_set_pte_pde(struct amdgpu_device *adev, void *cpu_pt_addr,
+ 	/*
+ 	 * The following is for PTE only. GART does not have PDEs.
+ 	*/
+-	value = addr & 0x0000FFFFFFFFF000ULL;
++	value = addr & adev->gmc.pa_mask;
+ 	value |= flags;
+ 	writeq(value, ptr + (gpu_page_idx * 8));
  
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+index 676e3aaa1f27..886311fbc2d1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+@@ -280,6 +280,7 @@ struct amdgpu_gmc {
+ 	u64			real_vram_size;
+ 	int			vram_mtrr;
+ 	u64                     mc_mask;
++	uint64_t		pa_mask;
+ 	const struct firmware   *fw;	/* MC firmware */
+ 	uint32_t                fw_version;
+ 	struct amdgpu_irq_src	vm_fault;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+index f2ccf30da324..1e98a9eb8e11 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+@@ -843,6 +843,7 @@ static int gmc_v10_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	 * internal address space.
+ 	 */
+ 	adev->gmc.mc_mask = 0xffffffffffffULL; /* 48 bit MC */
++	adev->gmc.pa_mask = 0x0000FFFFFFFFF000ULL; /* 48 bit PA */
  
-+static const struct gpio_id_offset_entry gpio_offsets[] = {
-+	/* HPD */
-+	GPIO_ENTRY(HPD0_DC_HPD_INT_STATUS, GPIO_ID_HPD, GPIO_HPD_1),
-+	GPIO_ENTRY(HPD1_DC_HPD_INT_STATUS, GPIO_ID_HPD, GPIO_HPD_2),
-+	GPIO_ENTRY(HPD2_DC_HPD_INT_STATUS, GPIO_ID_HPD, GPIO_HPD_3),
-+	GPIO_ENTRY(HPD3_DC_HPD_INT_STATUS, GPIO_ID_HPD, GPIO_HPD_4),
-+	GPIO_ENTRY(HPD4_DC_HPD_INT_STATUS, GPIO_ID_HPD, GPIO_HPD_5),
-+};
-+
-+
-+/* DDC */
-+static const struct gpio_ddc_offset_entry ddc_offset_map[] = {
-+	{ REG(DC_GPIO_DDC1_A), GPIO_DDC_LINE_DDC1 },
-+	{ REG(DC_GPIO_DDC2_A), GPIO_DDC_LINE_DDC2 },
-+	{ REG(DC_GPIO_DDC3_A), GPIO_DDC_LINE_DDC3 },
-+	{ REG(DC_GPIO_DDC4_A), GPIO_DDC_LINE_DDC4 },
-+	{ REG(DC_GPIO_DDC5_A), GPIO_DDC_LINE_DDC5 },
-+	{ REG(DC_GPIO_DDCVGA_A), GPIO_DDC_LINE_DDC_VGA },
-+};
-+
-+
-+static const struct gpio_pin_entry gpio_pins[] = {
-+	/* DDC */
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC1,
-+		DC_GPIO_DDC1_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1DATA_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC2,
-+		DC_GPIO_DDC2_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1DATA_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC3,
-+		DC_GPIO_DDC3_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1DATA_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC4,
-+		DC_GPIO_DDC4_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1DATA_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC5,
-+		DC_GPIO_DDC5_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1DATA_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC_VGA,
-+		DC_GPIO_DDCVGA_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1DATA_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC1,
-+		DC_GPIO_DDC1_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1CLK_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC2,
-+		DC_GPIO_DDC2_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1CLK_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC3,
-+		DC_GPIO_DDC3_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1CLK_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC4,
-+		DC_GPIO_DDC4_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1CLK_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC5,
-+		DC_GPIO_DDC5_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1CLK_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC_VGA,
-+		DC_GPIO_DDCVGA_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1CLK_A_MASK),
-+};
-+
-+
- static bool offset_to_id(
- 	uint32_t offset,
- 	uint32_t mask,
- 	enum gpio_id *id,
- 	uint32_t *en)
+ 	r = dma_set_mask_and_coherent(adev->dev, DMA_BIT_MASK(44));
+ 	if (r) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+index 93b1912e28c8..4b93afe7ac8b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c
+@@ -818,6 +818,7 @@ static int gmc_v11_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	 * internal address space.
+ 	 */
+ 	adev->gmc.mc_mask = 0xffffffffffffULL; /* 48 bit MC */
++	adev->gmc.pa_mask = 0x0000FFFFFFFFF000ULL; /* 48 bit PA */
+ 
+ 	r = dma_set_mask_and_coherent(adev->dev, DMA_BIT_MASK(44));
+ 	if (r) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+index 8bea8d0d16b4..a921e4c007ca 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+@@ -813,6 +813,7 @@ static int gmc_v12_0_sw_init(struct amdgpu_ip_block *ip_block)
  {
--	(void)mask;
--	switch (offset) {
--	/* HPD */
--	case REG(HPD0_DC_HPD_INT_STATUS):
--		*id = GPIO_ID_HPD;
--		*en = GPIO_HPD_1;
--		return true;
--	case REG(HPD1_DC_HPD_INT_STATUS):
--		*id = GPIO_ID_HPD;
--		*en = GPIO_HPD_2;
-+	if (dal_hw_translate_gpio_ddc_offset_to_id(
-+			ddc_offset_map,
-+			ARRAY_SIZE(ddc_offset_map),
-+			offset, en))
- 		return true;
--	case REG(HPD2_DC_HPD_INT_STATUS):
--		*id = GPIO_ID_HPD;
--		*en = GPIO_HPD_3;
--		return true;
--	case REG(HPD3_DC_HPD_INT_STATUS):
--		*id = GPIO_ID_HPD;
--		*en = GPIO_HPD_4;
--		return true;
--	case REG(HPD4_DC_HPD_INT_STATUS):
--		*id = GPIO_ID_HPD;
--		*en = GPIO_HPD_5;
--		return true;
--	/* DDC */
--	/* we don't care about the GPIO_ID for DDC
--	 * in DdcHandle it will use GPIO_ID_DDC_DATA/GPIO_ID_DDC_CLOCK
--	 * directly in the create method
--	 */
--	case REG(DC_GPIO_DDC1_A):
--		*en = GPIO_DDC_LINE_DDC1;
--		return true;
--	case REG(DC_GPIO_DDC2_A):
--		*en = GPIO_DDC_LINE_DDC2;
--		return true;
--	case REG(DC_GPIO_DDC3_A):
--		*en = GPIO_DDC_LINE_DDC3;
--		return true;
--	case REG(DC_GPIO_DDC4_A):
--		*en = GPIO_DDC_LINE_DDC4;
--		return true;
--	case REG(DC_GPIO_DDC5_A):
--		*en = GPIO_DDC_LINE_DDC5;
--		return true;
--	case REG(DC_GPIO_DDCVGA_A):
--		*en = GPIO_DDC_LINE_DDC_VGA;
-+
-+	if (dal_hw_translate_gpio_offset_to_id(
-+			gpio_offsets,
-+			ARRAY_SIZE(gpio_offsets),
-+			offset, mask, id, en))
- 		return true;
--	default:
--		ASSERT_CRITICAL(false);
--		return false;
--	}
-+
-+	ASSERT_CRITICAL(false);
-+	return false;
- }
+ 	int r, vram_width = 0, vram_type = 0, vram_vendor = 0;
+ 	struct amdgpu_device *adev = ip_block->adev;
++	uint64_t pa_mask = 0;
+ 	int i;
  
+ 	adev->mmhub.funcs->init(adev);
+@@ -842,6 +843,7 @@ static int gmc_v12_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 		 * block size 512 (9bit)
+ 		 */
+ 		amdgpu_vm_adjust_size(adev, 256 * 1024, 9, 3, 48);
++		pa_mask = 0x0000FFFFFFFFF000ULL; /* 48 bit PA */
+ 		break;
+ 	case IP_VERSION(12, 1, 0):
+ 		bitmap_set(adev->vmhubs_mask, AMDGPU_GFXHUB(0),
+@@ -854,6 +856,7 @@ static int gmc_v12_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 		 * block size 512 (9bit)
+ 		 */
+ 		amdgpu_vm_adjust_size(adev, 128 * 1024 * 1024, 9, 4, 57);
++		pa_mask = 0x000FFFFFFFFFF000ULL; /* 52 bit PA */
+ 		break;
+ 	default:
+ 		break;
+@@ -910,6 +913,7 @@ static int gmc_v12_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	 * internal address space.
+ 	 */
+ 	adev->gmc.mc_mask = AMDGPU_GMC_HOLE_MASK;
++	adev->gmc.pa_mask = pa_mask;
  
-@@ -103,81 +117,14 @@ static bool id_to_offset(
- 	uint32_t en,
- 	struct gpio_pin_info *info)
- {
--	bool result = true;
--
--	switch (id) {
--	case GPIO_ID_DDC_DATA:
--		info->mask = DC_GPIO_DDC1_A__DC_GPIO_DDC1DATA_A_MASK;
--		switch (en) {
--		case GPIO_DDC_LINE_DDC1:
--			info->offset = REG(DC_GPIO_DDC1_A);
--		break;
--		case GPIO_DDC_LINE_DDC2:
--			info->offset = REG(DC_GPIO_DDC2_A);
--		break;
--		case GPIO_DDC_LINE_DDC3:
--			info->offset = REG(DC_GPIO_DDC3_A);
--		break;
--		case GPIO_DDC_LINE_DDC4:
--			info->offset = REG(DC_GPIO_DDC4_A);
--		break;
--		case GPIO_DDC_LINE_DDC5:
--			info->offset = REG(DC_GPIO_DDC5_A);
--		break;
--		case GPIO_DDC_LINE_DDC_VGA:
--			info->offset = REG(DC_GPIO_DDCVGA_A);
--		break;
--		case GPIO_DDC_LINE_I2C_PAD:
--		default:
--			ASSERT_CRITICAL(false);
--			result = false;
--		}
--	break;
--	case GPIO_ID_DDC_CLOCK:
--		info->mask = DC_GPIO_DDC1_A__DC_GPIO_DDC1CLK_A_MASK;
--		switch (en) {
--		case GPIO_DDC_LINE_DDC1:
--			info->offset = REG(DC_GPIO_DDC1_A);
--		break;
--		case GPIO_DDC_LINE_DDC2:
--			info->offset = REG(DC_GPIO_DDC2_A);
--		break;
--		case GPIO_DDC_LINE_DDC3:
--			info->offset = REG(DC_GPIO_DDC3_A);
--		break;
--		case GPIO_DDC_LINE_DDC4:
--			info->offset = REG(DC_GPIO_DDC4_A);
--		break;
--		case GPIO_DDC_LINE_DDC5:
--			info->offset = REG(DC_GPIO_DDC5_A);
--		break;
--		case GPIO_DDC_LINE_DDC_VGA:
--			info->offset = REG(DC_GPIO_DDCVGA_A);
--		break;
--		case GPIO_DDC_LINE_I2C_PAD:
--		default:
--			ASSERT_CRITICAL(false);
--			result = false;
--		}
--	break;
--	case GPIO_ID_SYNC:
--	case GPIO_ID_VIP_PAD:
--	default:
--		ASSERT_CRITICAL(false);
--		result = false;
--	}
--
--	if (result) {
--		info->offset_y = info->offset + 2;
--		info->offset_en = info->offset + 1;
--		info->offset_mask = info->offset - 1;
--
--		info->mask_y = info->mask;
--		info->mask_en = info->mask;
--		info->mask_mask = info->mask;
--	}
--
--	return result;
-+	if (dal_hw_translate_id_to_offset(
-+			gpio_pins,
-+			ARRAY_SIZE(gpio_pins),
-+			id, en, info))
-+		return true;
-+
-+	ASSERT_CRITICAL(false);
-+	return false;
- }
+ 	r = dma_set_mask_and_coherent(adev->dev, DMA_BIT_MASK(44));
+ 	if (r) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
+index b39f37597429..675e0fbec8cf 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
+@@ -830,6 +830,7 @@ static int gmc_v6_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	amdgpu_vm_adjust_size(adev, 64, 9, 1, 40);
  
+ 	adev->gmc.mc_mask = 0xffffffffffULL;
++	adev->gmc.pa_mask = 0x000000FFFFFFF000ULL;
  
+ 	r = dma_set_mask_and_coherent(adev->dev, DMA_BIT_MASK(40));
+ 	if (r) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+index eedd2006bec3..3eedd2b630c3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+@@ -1010,6 +1010,7 @@ static int gmc_v7_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	 * internal address space.
+ 	 */
+ 	adev->gmc.mc_mask = 0xffffffffffULL; /* 40 bit MC */
++	adev->gmc.pa_mask = 0x000000FFFFFFF000ULL; /* 40 bit PA */
+ 
+ 	r = dma_set_mask_and_coherent(adev->dev, DMA_BIT_MASK(40));
+ 	if (r) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+index 347259700dce..a281abb810f3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+@@ -1125,6 +1125,7 @@ static int gmc_v8_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	 * internal address space.
+ 	 */
+ 	adev->gmc.mc_mask = 0xffffffffffULL; /* 40 bit MC */
++	adev->gmc.pa_mask = 0x000000FFFFFFF000ULL; /* 40 bit PA */
+ 
+ 	r = dma_set_mask_and_coherent(adev->dev, DMA_BIT_MASK(40));
+ 	if (r) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+index 4cc3f2434677..0e485da0db8d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -1983,6 +1983,7 @@ static int gmc_v9_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	 * internal address space.
+ 	 */
+ 	adev->gmc.mc_mask = 0xffffffffffffULL; /* 48 bit MC */
++	adev->gmc.pa_mask = 0x0000FFFFFFFFF000ULL; /* 48 bit PA */
+ 
+ 	dma_addr_bits = amdgpu_ip_version(adev, GC_HWIP, 0) >=
+ 					IP_VERSION(9, 4, 2) ?
 -- 
-2.47.3
+2.43.0
 
