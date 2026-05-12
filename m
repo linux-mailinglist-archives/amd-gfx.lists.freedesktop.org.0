@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qNBPD78uBGqQFAIAu9opvQ
+	id 0A70J7YuBGqQFAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 09:56:47 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 09:56:38 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1057C52F2C4
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 09:56:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51A0A52F260
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 09:56:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40A0E10ED3B;
-	Wed, 13 May 2026 07:56:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD6D910ED27;
+	Wed, 13 May 2026 07:56:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="aAB8UQUC";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="pi1M75fy";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 291D010EC43;
- Tue, 12 May 2026 21:52:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A20F10EC30;
+ Tue, 12 May 2026 21:52:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -27,17 +27,17 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=JHPZXGV6WgCNJ/fIPS2bp7NNXMeSFNOJi8f9ZKXQCeQ=; b=aAB8UQUC2Q1A2pQ0W7pI904RM3
- D6c6m/c8qqon8A0aDxWFV3bbgwSu9gpC8RPCXo8y2vpvouEMcADMaBsn/gV+SQqEgU5F1lKGB/4Tg
- fwGmt8GbPNP+jWifpH8QldrtLIQsDUb3Y1xd+OFuO4ikrsaPtj50ft1Lqw7vZdBI/UjfiUvTfXiG+
- AKbO4zgicW+26KUQ/kKZsU5OiWsfso2PpomXZj4vZjggjvMAzmsk4mU5TfDdftrUp5bPOhtq3U2lW
- mt7Df26HObRJI2bvfy2kXIuDJu0ksZYbJ7xD5JWTCmh0mNZBloiAy1FAFxTbsWuZS798HthmV+Cc+
- f0NP35BA==;
+ bh=ADRJdd6DbFjFBNsAOqsXMBnIGMV6n0RQ4NYaDHYxWvU=; b=pi1M75fy1SwJNusXRj+XM2itCt
+ lYdFM9IV1gc37m9J7YenWyRW9HHMdbYPXbKZSfizOwlq0g7l6AjwsxUT/CWPCx4lPD3fOhYLjVaWE
+ BLA4sYmNaodIdDaglDKBV0IANAvdh11Av7ssFcoNZVoXZxiBqzP2NbPuFe+Uzkg6KMryhwGAC6E5j
+ Fr7GrLhZLN26aZEkJDEo75LvEKT7H+7a3pjBJ7nN5NA1WYXQhMbQg5UY7exAeWJ+9yCLbR5gJr80Y
+ qmsupKVaDretG9OgOC1nntLnbFbB5wnpKdYDFqozs7GOt7V/suc0Z+VWYTNihohT6vIxXDMZ0vyoy
+ Hsuocxgw==;
 Received: from 179-242-241-236.3g.claro.net.br ([179.242.241.236]
  helo=quatroqueijos.cascardo.eti.br)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wMv22-009frh-JN; Tue, 12 May 2026 23:52:50 +0200
+ id 1wMv27-009frh-Qw; Tue, 12 May 2026 23:52:55 +0200
 From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 To: igt-dev@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
@@ -48,9 +48,9 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  Natalie Vock <natalie.vock@gmx.de>, kernel-dev@igalia.com,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-Subject: [PATCH i-g-t 7/8] dmem: only check for dmem availability once
-Date: Tue, 12 May 2026 18:51:54 -0300
-Message-ID: <20260512215156.4083082-8-cascardo@igalia.com>
+Subject: [PATCH i-g-t 8/8] dmem: get region once per driver
+Date: Tue, 12 May 2026 18:51:55 -0300
+Message-ID: <20260512215156.4083082-9-cascardo@igalia.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260512215156.4083082-1-cascardo@igalia.com>
 References: <20260512215156.4083082-1-cascardo@igalia.com>
@@ -70,7 +70,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 1057C52F2C4
+X-Rspamd-Queue-Id: 51A0A52F260
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.99 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -97,55 +97,111 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_SPAM(0.00)[0.210];
+	NEURAL_SPAM(0.00)[0.231];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,igalia.com:email,igalia.com:mid]
 X-Rspamd-Action: no action
 
-While running multiple tests, we only need to check dmem is available at
-the beginning.
+It is expected that only the same region is going to be tested for, so
+there is no use getting the region name for every test for a given driver.
 
 Signed-off-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 ---
- tests/drv_dmem_cgroups.c | 12 ++++--------
- 1 file changed, 4 insertions(+), 8 deletions(-)
+ tests/drv_dmem_cgroups.c | 22 ++++++++--------------
+ 1 file changed, 8 insertions(+), 14 deletions(-)
 
 diff --git a/tests/drv_dmem_cgroups.c b/tests/drv_dmem_cgroups.c
-index 43331117854c..0791bb62d3a2 100644
+index 0791bb62d3a2..30f9caf3630c 100644
 --- a/tests/drv_dmem_cgroups.c
 +++ b/tests/drv_dmem_cgroups.c
-@@ -133,10 +133,6 @@ static void test_write_eviction(int fd, unsigned int flags, const struct igt_dme
+@@ -124,18 +124,14 @@ static int fill_vram(const struct igt_dmem_driver *drv, void *ctx, int fd, int m
+ 	return n_bo;
+ }
+ 
+-static void test_write_eviction(int fd, unsigned int flags, const struct igt_dmem_driver *drv)
++static void test_write_eviction(int fd, char *cg_region, unsigned int flags, const struct igt_dmem_driver *drv)
+ {
+ 	void *ctx;
+ 	struct igt_cgroup *cg;
+-	char *cg_region;
+ 	int n_bo = 0, max_bo;
  	uint64_t current, capacity, cg_max, limit, after;
  	int set_err, err;
  
--	/* Check dmem cgroup controller is available before doing anything else */
--	igt_require_f(igt_cgroup_dmem_available(),
--		      "dmem cgroup controller not available (no cgroup v2 or no registered regions)\n");
--
- 	cg_region = drv->get_region_name(fd);
- 	igt_require_f(cg_region, "Region not tracked by dmem cgroup controller\n");
- 
-@@ -246,10 +242,6 @@ static void test_current(int fd, unsigned int flags, const struct igt_dmem_drive
- 	cg_region = drv->get_region_name(fd);
- 	igt_require_f(cg_region, "Region not tracked by dmem cgroup controller\n");
- 
--	/* Check dmem cgroup controller is available before doing anything else */
--	igt_require_f(igt_cgroup_dmem_available(),
--		      "dmem cgroup controller not available (no cgroup v2 or no registered regions)\n");
+-	cg_region = drv->get_region_name(fd);
+-	igt_require_f(cg_region, "Region not tracked by dmem cgroup controller\n");
 -
  	igt_cgroup_dmem_get_capacity(cg_region, &capacity);
  	igt_require_f(capacity >= 4 * BO_SIZE,
  		      "VRAM capacity (%"PRIu64" MiB) too small to test\n",
-@@ -375,6 +367,10 @@ int igt_main()
- {
- 	igt_fixture() {
- 		igt_require_f(getuid() == 0, "Test requires root\n");
-+		/* Check dmem cgroup controller is available before doing anything else */
-+		igt_require_f(igt_cgroup_dmem_available(),
-+			      "dmem cgroup controller not available (no cgroup v2 or no registered regions)\n");
-+
- 	}
+@@ -215,7 +211,6 @@ static void test_write_eviction(int fd, unsigned int flags, const struct igt_dme
+ 	igt_cgroup_dmem_set_max(cg, cg_region, IGT_CGROUP_DMEM_MAX);
+ 	drv->free_vram(ctx, n_bo, BO_SIZE);
+ 	drv->deinit(ctx);
+-	free(cg_region);
+ 	igt_cgroup_free(cg);
+ }
  
+@@ -230,18 +225,14 @@ static int allocate_vram(const struct igt_dmem_driver *drv, void *ctx, int fd, i
+ 	return err ?: n_bo;
+ }
+ 
+-static void test_current(int fd, unsigned int flags, const struct igt_dmem_driver *drv)
++static void test_current(int fd, char *cg_region, unsigned int flags, const struct igt_dmem_driver *drv)
+ {
+ 	struct igt_cgroup *cg;
+-	char *cg_region;
+ 	void *ctx;
+ 	uint64_t current, capacity, cg_max;
+ 	int n_bo = 0, max_bo;
+ 	int err;
+ 
+-	cg_region = drv->get_region_name(fd);
+-	igt_require_f(cg_region, "Region not tracked by dmem cgroup controller\n");
+-
+ 	igt_cgroup_dmem_get_capacity(cg_region, &capacity);
+ 	igt_require_f(capacity >= 4 * BO_SIZE,
+ 		      "VRAM capacity (%"PRIu64" MiB) too small to test\n",
+@@ -339,13 +330,12 @@ static void test_current(int fd, unsigned int flags, const struct igt_dmem_drive
+ 		     current / SZ_1M, USAGE_SLACK / SZ_1M);
+ 
+ 	drv->deinit(ctx);
+-	free(cg_region);
+ 	igt_cgroup_free(cg);
+ }
+ 
+ static const struct {
+ 	const char *name;
+-	void (*test_fn)(int fd, unsigned int flags, const struct igt_dmem_driver *drv);
++	void (*test_fn)(int fd, char *cg_region, unsigned int flags, const struct igt_dmem_driver *drv);
+ 	unsigned int flags;
+ } subtests[] = {
+ 	{ "current", test_current, 0 },
+@@ -376,20 +366,24 @@ int igt_main()
  	for (int d = 0; drivers[d].driver; d++) {
+ 		igt_subtest_group() {
+ 			int fd = -1;
++			char *cg_region;
+ 			igt_fixture() {
+ 				fd = drm_open_driver(drivers[d].driver_flag);
+ 				igt_require_f(fd >= 0,
+ 					"No %s device found, skipping\n",
+ 					drivers[d].driver->name);
++				cg_region = drivers[d].driver->get_region_name(fd);
++				igt_require_f(cg_region, "Region not tracked by dmem cgroup controller\n");
+ 			}
+ 
+ 			for (int i = 0; subtests[i].name; i++)
+ 				igt_subtest_f("%s-%s", drivers[d].driver->name, subtests[i].name)
+-					subtests[i].test_fn(fd, subtests[i].flags, drivers[d].driver);
++					subtests[i].test_fn(fd, cg_region, subtests[i].flags, drivers[d].driver);
+ 
+ 			igt_fixture() {
+ 				if (fd >= 0)
+ 					drm_close_driver(fd);
++				free(cg_region);
+ 			}
+ 		}
+ 	}
 -- 
 2.47.3
 
