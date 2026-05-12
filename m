@@ -2,105 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CFhoLXh/A2oA6gEAu9opvQ
+	id 4Vl/FvB/A2od6gEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 21:28:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 21:30:56 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6677B528A74
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 21:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D65C4528A9B
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 21:30:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FD6A10EC06;
-	Tue, 12 May 2026 19:28:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="xRhDZcOk";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2A7E10E29B;
+	Tue, 12 May 2026 19:30:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010068.outbound.protection.outlook.com [52.101.56.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE7B610EC06
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2026 19:28:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PQKOwx/ygzBIyg5fHgDvgYdTwz/dyu4vBz20WZJtXB/45/QZ5g7FEFatK4efQeiPt5j8EVxjizpAZgFB9Wlt4vbe8xKqHTw52hYBnSD1OSpyDbhuZXV0iMCdB3RYf/iK84IYvkCMrUtizef2HKzwpb3AXgztYjBxl8w0yDdW3LccJ3zOZzTywDmtzCKn/4krBB3K269rt0gGMyKUx6FWTyGJPkNHwiuORLGfBaDYPu62I+Hx1DdK9TxoflSsvkjylNqVITOW1ScWd01/biSqG23XS5SWfJwTuW5Xe0eHGc1vfo8EBlIclJsgWe7Sa4GLfBt5hBXftsrPuQ0N1VyJEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qoMRwmrhDKjFDZsTqgvXzXsNUD61+82I+WsyeXg6hHU=;
- b=awdT9qGhnQYVgZHg5vs09rTIkG66cVS13lRHFMY1ZAReSFxqZTvsB8rTkgjPsreSPW3osUysjnDZWUt7lkoOvCkhxCGMZSPkHnqd44ld5jHNMM/zn8UPQf+OJdqajixUQRLMoGUdN6GBfGkg8UtGHTtJbvrFC/qhAQMZdPiXaD0/nbNZEgPVw1QmSgFywJ7b/DFCGy/IUNFGzGH7CncMFOqF3MvGGMWz8DXc7/QQjMu2IJRdR8yyOVJhgqnjcf9ncx39uOdaJlKMMlCwEn9kQY5QcsQPvStzuuxaWWH/d3ysdDHZcfFy0ZOcmyfVfNAS8VkGpfL+S37xDsfr5GkXag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qoMRwmrhDKjFDZsTqgvXzXsNUD61+82I+WsyeXg6hHU=;
- b=xRhDZcOk6K1x20IVHez0WmxO0UJDYlJ76t9zMxrLkHVFw+PRtmVDjemAX4/ZFX42bmCgSgk+XWtTanOJDuJhGOybizifsL4umlzQOPFTZuvq1jh69+l2YkoWME/0V1n+yfsHwiXhmo7Vo8wkY0qd4Zbq+aDqVSC9rGqU8cBij10=
-Received: from BYAPR06CA0014.namprd06.prod.outlook.com (2603:10b6:a03:d4::27)
- by BL3PR12MB6450.namprd12.prod.outlook.com (2603:10b6:208:3b9::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.23; Tue, 12 May
- 2026 19:28:48 +0000
-Received: from SJ5PEPF000001EF.namprd05.prod.outlook.com
- (2603:10b6:a03:d4:cafe::cf) by BYAPR06CA0014.outlook.office365.com
- (2603:10b6:a03:d4::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9913.11 via Frontend Transport; Tue,
- 12 May 2026 19:28:46 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF000001EF.mail.protection.outlook.com (10.167.242.203) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.25.13 via Frontend Transport; Tue, 12 May 2026 19:28:46 +0000
-Received: from fdavid-dev.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 12 May
- 2026 14:28:45 -0500
-From: David Francis <David.Francis@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: David Francis <David.Francis@amd.com>
-Subject: [PATCH 2/2] drm/amdkfd: Check bounds for allocate_sdma_queue
- restore_sdma_id
-Date: Tue, 12 May 2026 15:28:24 -0400
-Message-ID: <20260512192824.3682569-2-David.Francis@amd.com>
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FE9810E29B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2026 19:30:52 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 64CJUltb1279843; Wed, 13 May 2026 01:00:47 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64CJUkYu1279842;
+ Wed, 13 May 2026 01:00:46 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH] drm/amdgpu: remove va cursors for all mappings
+Date: Wed, 13 May 2026 01:00:45 +0530
+Message-Id: <20260512193045.1279817-1-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260512192824.3682569-1-David.Francis@amd.com>
-References: <20260512192824.3682569-1-David.Francis@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001EF:EE_|BL3PR12MB6450:EE_
-X-MS-Office365-Filtering-Correlation-Id: af24a4c7-7cbe-4593-1b3b-08deb05cafaf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|82310400026|1800799024|376014|22082099003|18002099003|56012099003|11063799003;
-X-Microsoft-Antispam-Message-Info: bM7Juczab8mIzZ2tIE+8tSxG5bFJ5L0UzeuNWhMZjXitoPCk2IsztHs2baId6zrf0ytJUlIogX6kBzSB/u9MCXAVAZLqdYt+/zMhbwloDuXm5QnRMtcks9MyE1zadZxWgNX91F7a2z6P0UcDcxTqu4x+JUKpDPrQj0sfAw3MA0e6nLSqBQwclv9mb3aPzRobUzsuCUjAenaQiz4ThfRXtRwgN3gDnECFUP5IHOnnDOBLd7RYJ/jL2dn9bSKF0202//M9QC5gkKfkSfGSXOla+h2LW5FSPTTReZoSPF60zwIyk0rP9JtOgIkzb2xqfAWlMKO4IuftH8wp67vqK3orwKHDejyKnMm1lINVroeqwhRscVuJBYhmne/Ttv9uPG7dsHeH+selYaXaH3NOo2z+QBxz9sDZ3F2cumcY4pfsGJs0K3AeqSIwQsMuQqlVq5sq5JRxD9xsNZgvb9kkeH0AV2JTbonf2juZYeypOhN4TiqTJqZMpsdV4X81a8d7OjMKNZXVdPOGlk4X4wum3Ux/YZY0t34IJM0CRcN5/VUIra+/ZRQy1Qxk1Rxh+89onoCfchRSq9sSCR3h9sCzibVXFclsgU2Ips/r4mLIDG+76qlnrqsOvbJQy5gxN7QM2hAoIb35C0n3VyVJGD/tUFxxU6irmucz+B+ahHHNaYRiCJGY9U5xzpiYu2ZnMfuW+OT7NQDQN7AmHp5Z997q+2c1PvwDRO6FofISJ8rIWdrL3mY=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(22082099003)(18002099003)(56012099003)(11063799003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: Vuv1WO2MRrYsbMCppuQtcizBGpkEufOMEX3Hd/XPxw4u72FVEaQGKpxJLdstuFxW0oOH5vOsVpblzGdl0FqjdJ5hJlWgB5CujpQZUvGJdGMKv464L2HzwajATQm61YyseeYjeDUmIS5IhNWfNXOBhLJDyOjG2T1jn3Kletgtw222/+iGB8mzEXEY0Glv7lios7viH1e4+LK/+yh40sEHHMcywzsetSSGYAK+4TDuBckbAfmkhT4HD2VUwQckPj2eIpwV+BP0I9mBTitGXOJTurIio2OQFXgx8pmSUnSF7h7HIM9neBUSn/EVKTJzdB7ojNcUUGK4TBSglAVB1Z0IHYr6+tw/SfmAi7bV2pk6VsmqwR09uCVEz0QT0RhIdN5C4e4HU8KVA5Du3VdDLJ7OLoOaeLoGRAWfepxOZJkPhkV7UP90XWmRn4IQTsEYX2wL
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 19:28:46.2951 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: af24a4c7-7cbe-4593-1b3b-08deb05cafaf
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001EF.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6450
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,73 +46,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6677B528A74
+X-Rspamd-Queue-Id: D65C4528A9B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [2.39 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[David.Francis@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.986];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.999];
-	HAS_XOIP(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,amd.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-allocate_sdma_queue has an option where the sdma queue id can be
-specified (used by CRIU). We weren't bounds-checking that
-value.
+va_cursor struct needs to be cleaned even if the mapping
+has been removed already.
 
-Confirm it's less than the maximum number of queues.
+Also simplify it by make it a void function as return value
+check isn't needed as its called during tear down.
 
-Signed-off-by: David Francis <David.Francis@amd.com>
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 17 +++++++----------
+ 1 file changed, 7 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index b4cc74138f1e..ddbc4bd8ab10 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -1727,6 +1727,9 @@ static int allocate_sdma_queue(struct device_queue_manager *dqm,
- 		}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+index f62163917f70..e325c7a350f9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+@@ -303,13 +303,14 @@ static bool amdgpu_userq_buffer_vas_mapped(struct amdgpu_usermode_queue *queue)
+ static void amdgpu_userq_buffer_va_list_del(struct amdgpu_bo_va_mapping *mapping,
+ 					    struct amdgpu_userq_va_cursor *va_cursor)
+ {
+-	atomic_set(&mapping->bo_va->userq_va_mapped, 0);
++	if (mapping)
++		atomic_set(&mapping->bo_va->userq_va_mapped, 0);
+ 	list_del(&va_cursor->list);
+ 	kfree(va_cursor);
+ }
  
- 		if (restore_sdma_id) {
-+			if (restore_sdma_id >= get_num_sdma_queues(dqm))
-+				return -EINVAL;
-+
- 			/* Re-use existing sdma_id */
- 			if (!test_bit(*restore_sdma_id, dqm->sdma_bitmap)) {
- 				dev_err(dev, "SDMA queue already in use\n");
-@@ -1753,6 +1756,9 @@ static int allocate_sdma_queue(struct device_queue_manager *dqm,
- 			return -ENOMEM;
- 		}
- 		if (restore_sdma_id) {
-+			if (restore_sdma_id >= get_num_xgmi_sdma_queues(dqm))
-+				return -EINVAL;
-+
- 			/* Re-use existing sdma_id */
- 			if (!test_bit(*restore_sdma_id, dqm->xgmi_sdma_bitmap)) {
- 				dev_err(dev, "SDMA queue already in use\n");
+-static int amdgpu_userq_buffer_vas_list_cleanup(struct amdgpu_device *adev,
+-						struct amdgpu_usermode_queue *queue)
++static void amdgpu_userq_buffer_vas_list_cleanup(struct amdgpu_device *adev,
++						 struct amdgpu_usermode_queue *queue)
+ {
+ 	struct amdgpu_userq_va_cursor *va_cursor, *tmp;
+ 	struct amdgpu_bo_va_mapping *mapping;
+@@ -319,15 +320,11 @@ static int amdgpu_userq_buffer_vas_list_cleanup(struct amdgpu_device *adev,
+ 
+ 	list_for_each_entry_safe(va_cursor, tmp, &queue->userq_va_list, list) {
+ 		mapping = amdgpu_vm_bo_lookup_mapping(queue->vm, va_cursor->gpu_addr);
+-		if (!mapping) {
+-			return -EINVAL;
+-		}
+-		dev_dbg(adev->dev, "delete the userq:%p va:%llx\n",
+-			queue, va_cursor->gpu_addr);
++		if (mapping)
++			dev_dbg(adev->dev, "delete the userq:%p va:%llx\n",
++				queue, va_cursor->gpu_addr);
+ 		amdgpu_userq_buffer_va_list_del(mapping, va_cursor);
+ 	}
+-
+-	return 0;
+ }
+ 
+ static int amdgpu_userq_preempt_helper(struct amdgpu_usermode_queue *queue)
 -- 
 2.34.1
 
