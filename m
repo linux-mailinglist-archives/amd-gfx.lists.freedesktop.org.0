@@ -2,130 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AH3KCPEGA2pmzwEAu9opvQ
+	id 2K5CBD4nA2qj1AEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 12:54:41 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 15:12:30 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8866C51EE6B
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 12:54:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FC88520DB5
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 15:12:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DEAF10E263;
-	Tue, 12 May 2026 10:54:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85C0B10EAE8;
+	Tue, 12 May 2026 13:12:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="NtGTU6Q0";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="k/qNbfmK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010004.outbound.protection.outlook.com [52.101.46.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B54D10E263
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2026 10:54:38 +0000 (UTC)
+ (mail-westus2azon11010005.outbound.protection.outlook.com [52.101.46.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64B1F10EAE8
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2026 13:12:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=op0deqAJsdq6JtU8ogEVoHt18YkOfRsblzXCf8P2G482no3MaHzgPDzer19vmCP4zqtQjyLAl4ZHL5Gf5xSe1/oSV3sqc92a9hGvKjyHz4VIhF6D5Xl32CEUgHQB+wg8ZLGjHhy1t23R/IHnlwtkRnlm5ATY1lkCME8PjJAHa4BKDDn2JjMrwAGmltl3ss/P+7VTQgDe1ioyLLSvkf0vBMZMaUgkYdd0df0e0W6D21RFcTZ28ckKw0W0X1M1cBdqdAifiOj6cBf0QhRHlC6uHeK97Y3RcZrS8UyYHlK6J3PiGW3g+BvAEcKOHyfxgsMuKfVzHurljDOSrs2AfF+PSw==
+ b=VmwO6LEwWAAI6Y2jQ654Z1bAT1kcjina0ddNOePaaSlqeFch5397i2wLIgUoakGiGj+p0WecR5jnZcFFiqpNspqY6iEYCf9EX3qDEL1V/p9azF9Twz8kDrXV3F9BK/kvmqXU4BrUgarEoesBu40CFbkPLyvOCMhiI5KZ7X7pM/mBms/OxtGITazysBAa7MBmp/fiywLDw4fTCsK5NX9Hbmnq9BWKc5y5QDYp1TXKhjM9lG5og4NLDF6SKnTlSf8YKpOQABW/37Nzdy7UBrhzu8z3AJm0fcfm4idaNSO96upzz5dSfUIHzs87jRyKEoAHYcv8H/758rxkXdXmrj+vWA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T7UOPq1mtolziKghaYFfQs+R32LoqVzrffYFRg6usho=;
- b=SD+UqfomAVfxjEYJ1HBKgiyICsV7dtAcnnyKn0KMA+j92kVMkphmp0OCDIscGmWerGx3hySHNQ6aRC9o0rTWVmcxhD0/y1682l87OmAioM0kvCpMQaEOj0wNP5xPjeb72u7oK3zoWanJQc4GJ+RI88yk3l+1GHULgaCU+s+sPKzTLoT/bxecFwUoZHtShWkdvmsYsDm/YjOs8d2weezAvlMEDGt4Gcfw+n9acf3LEZH5hj3hmHMo50C+GiGtKU1F/T3Ud5HMapo50DsgNHsoNnRiiqWm8Dlo2Udt+T+nL+V3oMpXx6K668hPqfzDVfM6lAxjxUg7t9rY14ynZ+RnSg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=S6jD7Bl7LkWcImLpV1o+M3/60c2EJ5tivIBdsuR5tOU=;
+ b=uxdEEBcZhTn5RRN6etOBwMW/teaDYqyHRYOHfY2dXFTxiKklg8rO8Uhwh7cHOOg/5pXMsLfTbYqc/GeZnZZyE6Cp8vt0WSEZyuBujroeuhwG2GVMk3oWI5aNNLF5clnXXHZkUBhCSx+ul+LbcY6XUpPqfvhB6oiyEWKFAA/nFiXWj48pYpVqmtQ+t9P5qOP/jpwl3c5FUcN5O9RpIoq4pmgXDPDVoK4NeHSL6DT9THcdEMiHkrhfb9DL0ArFsDUHZgzpmHTtb0QKk//U5Z7+j/JZdhk5snoav3s0Ys5MdgV9pI8I7mk9RqsEk4B/Rs8ddsjNup3RVchI06FyEBhZfw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T7UOPq1mtolziKghaYFfQs+R32LoqVzrffYFRg6usho=;
- b=NtGTU6Q0ga9AgjjNm9+5YjCA+1OwGvU4n5X33FmNLqyiGnmFmw9vAg57TchysSSoVaDe2jpICQGqN3zu+3wT5uvlhvgvBoLjO3N26LuV0KMKbIKf6DcI/jTzzMhl1swq5A8jrdegJE1TH5aqjcQIFcKY0e2ZQkyjSw7a/BrFPsw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by CYXPR12MB9278.namprd12.prod.outlook.com (2603:10b6:930:e5::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Tue, 12 May
- 2026 10:54:32 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9891.021; Tue, 12 May 2026
- 10:54:31 +0000
-Message-ID: <e27e3d07-b971-41e7-84e4-4a1178c7e3ea@amd.com>
-Date: Tue, 12 May 2026 12:54:25 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/amdgpu/userq: update the vm task info during
- signal ioctl
-To: Sunil Khatri <sunil.khatri@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-References: <20260512105143.1017809-1-sunil.khatri@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260512105143.1017809-1-sunil.khatri@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MN2PR15CA0039.namprd15.prod.outlook.com
- (2603:10b6:208:237::8) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+ bh=S6jD7Bl7LkWcImLpV1o+M3/60c2EJ5tivIBdsuR5tOU=;
+ b=k/qNbfmKBeUXKfT1H6jbL7USRkNt+xfZkV2dIrBtsfL2dAPmFtsEhJyxMyJFiWMCAHz/X3SnA4HTuonr3zqSGSCd7sVW7nopO8Tm8bxVllDwjcTGEVturbTa/IMKMQeE4oC0SoRZVypq8RBp+94Gn0JlXGxgGr8RpLiAkYRglxE=
+Received: from PH8PR22CA0017.namprd22.prod.outlook.com (2603:10b6:510:2d1::13)
+ by DS0PR12MB7993.namprd12.prod.outlook.com (2603:10b6:8:14b::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.20; Tue, 12 May
+ 2026 13:12:21 +0000
+Received: from CY4PEPF0000FCC0.namprd03.prod.outlook.com
+ (2603:10b6:510:2d1:cafe::cf) by PH8PR22CA0017.outlook.office365.com
+ (2603:10b6:510:2d1::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.25.17 via Frontend Transport; Tue, 12
+ May 2026 13:12:21 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CY4PEPF0000FCC0.mail.protection.outlook.com (10.167.242.102) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.25.13 via Frontend Transport; Tue, 12 May 2026 13:12:19 +0000
+Received: from yifan.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 12 May
+ 2026 08:12:15 -0500
+From: Yifan Zhang <yifan1.zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Alexander.Deucher@amd.com>, <christian.koenig@amd.com>,
+ <Felix.Kuehling@amd.com>, <David.YatSin@amd.com>, <Kent.Russell@amd.com>,
+ <Perry.Yuan@amd.com>, Yifan Zhang <yifan1.zhang@amd.com>
+Subject: [PATCH] drm/amdgpu: add ioctl to handle RAS poison error
+Date: Tue, 12 May 2026 21:11:49 +0800
+Message-ID: <20260512131149.1440454-1-yifan1.zhang@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CYXPR12MB9278:EE_
-X-MS-Office365-Filtering-Correlation-Id: d2ed9b4a-2455-48aa-3c64-08deb014d8be
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC0:EE_|DS0PR12MB7993:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5c709f0b-e8f7-4d7d-99d5-08deb028192a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|22082099003|18002099003|56012099003|11063799003;
-X-Microsoft-Antispam-Message-Info: ze13N0NTC5Jf8TxcamGe5pzTXYHYo3u5chyLscPHdo2o+YF8BI2d3A8jXqnItLWgv6XXfnmJ3KQXasqcesdhPUJ173oCMnsBWLCvAKriPJVY56wlY89upuDYPZ1cuCA4xGDTYP9canNS2xDExSUKMo5pjCZMwcsmlBS/aNILR0zUxN7kOh394l7bX/K0XU/fN9HHyaoS83RmWUAb3e7bTYHFeSFp1tkmNaiIF/R0snzT1eaG9OMOA9BcfrOvqCxTUgn+UaSbcNYp4ziAZ+vKhjNwgPdM+PCqOLm+Cel7pG96GoS2uSkBN2OwqJaEzyy4mejtp0NcQzdYbnsPwn8Q/OZaAArbskd1aj6cinwVayUCxaEzGKuuqLTtwDIQnvhwOm055ZVvn9US4d1Uow1zoZzV3G7dUPvQuRPD+WMJnTmmSQ9wYUteXlutBormQVXbsEYk8wZyCL/oFV2quayLr1v4IQpAJUotRSyNbPnyc+77a2MnpAvICL8/qGU6jtkDK8VaEA9IzgsN/l7V+9fKlcoJKMhdQx5cRiyMqA8PMhGFECVzQL/VxEeReo1xuLM7lqRhSnmPXrV0vQ3dJ3JobaFQeWBI4kE0Si0Wblf/B/9ARATJ0zQGiKVZkj/Lp9aMDOGC8W6IYPNsBjBjervGI80tkePQjPSUkm5XxhgzviK3OZy6+JD2v2K1rUc7SsaX
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(22082099003)(18002099003)(56012099003)(11063799003);
+ ARA:13230040|36860700016|1800799024|376014|82310400026|56012099003|11063799003|18002099003|3023799003;
+X-Microsoft-Antispam-Message-Info: MHZlAWVb4sPOPU+S8T5wJHXZpGSB0Qh96WrRX9XWZ6KW8YBNF8bnj+jE6YwYWI2Ia7UnongUaIGIT3eIaPB9LnL6c7VtTp3XlJWd6LJfaJsX7zaPeKl6VpPZTubOywfMkMSHi2VTVvLdZLVW7/atntdR1mPzju88emcwTjytYfy92U/h40H+E0p65RX8W4dqvK7L4FrG1NxyAqUKunbj+45JCKPNXE+P/3ZRklzyxU145kv1crz2GfamvB32/3VDpdab36dKaVN4mOIprDhNMAQQIII3ZALeFVtik5sLCE5pHcxuvcKHWZ/j1iNe8FEy45Pam07FN5iqZIyVzTTh3/ScbQEToJ0NPUKgj/YvdxiClDCChJ04pI/WFQ91QSHVR0qh1dxrMubP8mXYApuKyICbpPnNgCzlCd8U/dIqomzAZJEVB8M0jjcJJouFi/k55Sf99Lv+kL81ilWeqarbN+Htn35Oy3UtPvEmXM2X6PP08svwBfeJ21OhMW6weBPGhqqYRQPw0m/I9DiFNjVs3QgKSymKxubmi/Ug5AlmxVTikM/tzhekZMsDnn8Re2531GzbW3ga35FafYY++Yi15VjSaKzCLUZ0H0zA8DZLvg9UkIC9RI422NtQSglxpIMnnvp/3APNcj3SEUWLwaCm/ykj9d0wzo2vK3BDmApJsXvIIRSySD20wlhqqJXr46vC7gR8UitzfUMiiqdYdY1xnPjEcPRK4ilKUgA1BnDX5gM=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700016)(1800799024)(376014)(82310400026)(56012099003)(11063799003)(18002099003)(3023799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dTNyVTVmRnJwZmlxUlU5UVRRU290TjlUeDZETTdEajUxVGJUc05Nc3l0aWpQ?=
- =?utf-8?B?bTl1Vm5mNm5CZ04xaFRDaFNzSk41UHdEL21xTDZVM2ZjanVyUWQybm1mc2tr?=
- =?utf-8?B?TVc4b2JSMHJpVlZQZytGV2xjRWRHVXd2M2hOY3hiYUI0M3llNENXUTF1MVRZ?=
- =?utf-8?B?RzN0WmdPNzZQSWI4VDhaZ25OaXhMeUcrZWluNWxnN0psaUlGSENQVXhvR2NT?=
- =?utf-8?B?bmdMYklrQzYrdllWQ0VtOWdidG5DdzRnaDVjVThmeEhaTTQ4NnFUWWgvbDI2?=
- =?utf-8?B?YjUxSDYydy9nZTVpTEFNSnhYV0VYbjJUV2ZkZjVHckl6M3IwbjBFMjVrRnVO?=
- =?utf-8?B?ZG1UVTVpRU9PZGovRzRqZkxrSCt5T2s3c3NJL0FObVg2N29pa0lCMHJRL3p3?=
- =?utf-8?B?RTVsemVYY21hQzVJWUhXMU1tNGc3ZU4xNUoxQVpxbDNtMDZNWkczWkRQZU5R?=
- =?utf-8?B?ZjlUZjJGL3NaZXUwWjROVVR2ZDR5WUZwWVBXZklXb2p5akQwM1FVem5OUWt5?=
- =?utf-8?B?aHVTTkNaenMrRyt0ZTh3SCtFZjlCdjU1bloxN1FyTzRoWThzdUFYVGxOZnNz?=
- =?utf-8?B?cEJmY3A4azZCMkFKYmg3YmVsYk1MRHdheWl1NEgrTUcvZFAwWnRacmFIeHph?=
- =?utf-8?B?RHVJNVUrbUY0c0xZM2ZENjEvbEVieFhpRWdmaW1CeWVzZFV5cFdvSytKRzA5?=
- =?utf-8?B?eE5WbVBsL3JWdFlVK0pqYVhoMXRRYzRFTHljK2tpWFppMDJGejQ5emlVNmxX?=
- =?utf-8?B?ZkErNjBubndvY0c5Tkd2bzVSaXlhQlhISVBwazVNYno2b2RVWGVSWXF0QU9L?=
- =?utf-8?B?encvUDdhd0pnMjRiZis4em9zVHRwdE5CK3lXS3B0MUFPZDNWT09Xd3JOQzkz?=
- =?utf-8?B?WDFucVZrUk1BVUNCRWVlN3hFSVp5RXBjWkc5NkhibnF6WllVL3lPeTZsTlRC?=
- =?utf-8?B?eWx1SUNRdW1RSFZURTRUdjRhcTZoMW5vdm9YcGtNdlBJUkVWVkJFK1Vzc2JU?=
- =?utf-8?B?RWhvaVYrQTJSR1lyUjVuTXBlVE81U0VlaGdMZURiYmg5UGVjVTlFK1pEL0k3?=
- =?utf-8?B?RlRuTnZuWXRjOHBGTTcxL0x1b29rcFlrcnhoa0tSTDAvSHhCOUxpTnBLblhq?=
- =?utf-8?B?RG0xcjFaTkoyM0lNRVNZSjNlZEdHWWxnelVpd1BQeVQ0VkZlREl0YnZrcWpS?=
- =?utf-8?B?Tm0vT2ZrQnRCcU95d2lsaThrenhqL3BMc1J3Y1hCc0ZQRE4yYlM5VzBIMjZy?=
- =?utf-8?B?eGZGRzlVdDI5ZHFSQmNBZzBZdzUrSHN5ejQwU0hmdVVCSnRacXdKRk0ySFIr?=
- =?utf-8?B?RTZ2SXNkdEFIQk5mN1BqdnFBKzFnVVpLYlc1cUJ5YXdGK2RnWUw2WVNadXJL?=
- =?utf-8?B?cnl6ZUZ2RytJeXE3M05aR0tLcnRKa2IvUjY0K0pUdnJhb0t4SVZRWVE4VUJ2?=
- =?utf-8?B?enBsdjA3YjYzRkdOcHBDVGd4TjJzVUZ2MzNFOGcvcVc3MjJZNUo1bnJYMlEr?=
- =?utf-8?B?MkdlT05hSzdJcE41dFNDK1dvOTFOOERaM2ZRbnpSRm5QNU5EeGpDamtGTEVV?=
- =?utf-8?B?TDBUcVVkOW81QzVYSlhzbGhhVXhUMVdYTkIrMW10emVDQzI4akJzbWVTSTZj?=
- =?utf-8?B?Qk12eFNOMXhCT3gvWTYxTHcvYnRBUHZRVEtIdXJub2Npd1ZmUkNTT01tMlVw?=
- =?utf-8?B?K0hoaG1yRlUxVWVDN2t1cnNJN2haQ01OdFk1ZXAzRGQ1cWk2Z05PUmNLS2Ri?=
- =?utf-8?B?ZzUvbmZva05iM0U3dmg1dmtJZXJlTnlvR29HRVZNdUlCbWtZLzM4c241VkVE?=
- =?utf-8?B?THFZZlFlM1g2UEJpR2pEcDkrRDFTK1hGcStSWUo2S2hORkJrVXhRdkJrUXhD?=
- =?utf-8?B?bmNvRnJUTCszMWg0YnFrejlIbEV1ZmRBRlRNRkZXck9DSWlSVy85QzB1M2ZN?=
- =?utf-8?B?bExTYnYxdXR4a2IxM2kwOEE0ZXFya29QZGhqTjVkZURDdkV6dnJ2TERzSEc2?=
- =?utf-8?B?RkIxZzQ0WWpwalQrU2tWNkRMcGhUaU5pOWtJVVFodU5QWCtqVWVrQ3NzS1JV?=
- =?utf-8?B?eXdhWlIySjVQbkYrcGptRmtRUm9VSVFxYnc3ZjVKVHRHOVZoK2ZMQ2F3LzhB?=
- =?utf-8?B?dHNZdG9QS3MwSTREV2pYMGF2aU4wbmhTUkYrdE0xemROM2c4aWZXcXJVa0xn?=
- =?utf-8?B?cmNsNGhTQ0g4ZTFBdTV6YWVsdnYzRWE0MWFScGwycTlXQ1BSQnVyb1ZUdzdj?=
- =?utf-8?B?SDNzQ3RnTm1OdHo1aEFhbklFdTJiYzBoeDFoeXE5cTRzdGJHRkVrU2lCV1FI?=
- =?utf-8?Q?VIdDOiWx4DK84ibumy?=
+X-MS-Exchange-AntiSpam-MessageData-0: Vp5sXUCc52YhxWeVy+DSkGRMTN25SgBjeNZwPCUQ89fJG12KjbyG+2t2I3yf4EfvHE8ujdVa7s1fpr9gAqX8sygBIr0HV0VbWstB13LWeAde2QWOEehdWKTFJ1y0ED3ScUvnnvaKlWdYBS/TYWhfHcOeqEvSMyEWqDB0kfXuzFEQnGENLIYj8845CyBZr5KTme2fA7PIbIZcKwob3DjL+/2mBf/mQtPSOqV3v9P44/qDb1dOn44HOTxjpHU7iwAaMeCz+GLzqa1HPnvXYBOStEjHRg/Ucx8ia2ImqANVidLWN4J3h9lZbrsC7NX6lErORjR++KJnXRGxsj4fnj65orXOkdhesgpqzUC+Eaw9ZShwd2cQOhOBQd9HRqlMomZoIib7k7XheTXOuOvqkfWczfJDydUY0U/a1p360K0teeO5IzUXdLMT4yxaKgkicy+G
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2ed9b4a-2455-48aa-3c64-08deb014d8be
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 10:54:31.8550 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 13:12:19.9715 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c709f0b-e8f7-4d7d-99d5-08deb028192a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ln/zsmd3Hrv5URnNa2Js1aHTMR92kIc8chaas6fd32YZpbeKCmGyxiLZRa3RxWGE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR12MB9278
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCC0.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7993
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,66 +113,331 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 8866C51EE6B
+X-Rspamd-Queue-Id: 6FC88520DB5
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[yifan1.zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:sunil.khatri@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[amd.com:+];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[3];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	HAS_XOIP(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:mid,amd.com:dkim]
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-On 5/12/26 12:51, Sunil Khatri wrote:
-> Pagefaults does not have process information correctly populated
-> as vm->task is not set during vm_init but should be updated while
-> real submission. So setting that up during signal_ioctl to get
-> the correct submission process details.
-> 
-> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+Add a new DRM_IOCTL_AMDGPU_USER_OPTIONS ioctl with the
+AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY option, allowing userspace (ROCr)
+to control per-process SIGBUS delivery.
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h     |  12 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c |  29 ++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c | 114 +++++++++++++++++++++++-
+ include/uapi/drm/amdgpu_drm.h           |  23 +++++
+ 5 files changed, 177 insertions(+), 2 deletions(-)
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> index 6000dee5ee3d..f62163917f70 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> @@ -802,6 +802,9 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
->  		goto clean_fence_driver;
->  	}
->  
-> +	/* Update VM owner at userq submit-time for page-fault attribution. */
-> +	amdgpu_vm_set_task_info(&fpriv->vm);
-> +
->  	amdgpu_userq_ensure_ev_fence(&fpriv->userq_mgr, &fpriv->evf_mgr);
->  
->  	/* don't map the queue if scheduling is halted */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 80b18bbd7f3a..653a2a516e18 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -455,6 +455,16 @@ struct amdgpu_fpriv {
+ 
+ 	/** GPU partition selection */
+ 	uint32_t		xcp_id;
++
++	/**
++	 * @kfd_sigbus_delay_ms: Per-fd KFD SIGBUS delivery option (set via
++	 * DRM_IOCTL_AMDGPU_USER_OPTIONS / AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY).
++	 *
++	 *   0          - send SIGBUS immediately (default)
++	 *   0xFFFFFFFF - suppress SIGBUS delivery
++	 *   other      - delay SIGBUS delivery by this many milliseconds
++	 */
++	atomic_t		kfd_sigbus_delay_ms;
+ };
+ 
+ int amdgpu_file_to_fpriv(struct file *filp, struct amdgpu_fpriv **fpriv);
+@@ -1467,6 +1477,8 @@ int amdgpu_enable_vblank_kms(struct drm_crtc *crtc);
+ void amdgpu_disable_vblank_kms(struct drm_crtc *crtc);
+ int amdgpu_info_ioctl(struct drm_device *dev, void *data,
+ 		      struct drm_file *filp);
++int amdgpu_user_options_ioctl(struct drm_device *dev, void *data,
++			      struct drm_file *filp);
+ 
+ /*
+  * functions used by amdgpu_encoder.c
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 99688391e70b..cad18bd6f8b3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -3078,6 +3078,7 @@ const struct drm_ioctl_desc amdgpu_ioctls_kms[] = {
+ 	DRM_IOCTL_DEF_DRV(AMDGPU_USERQ_SIGNAL, amdgpu_userq_signal_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(AMDGPU_USERQ_WAIT, amdgpu_userq_wait_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(AMDGPU_GEM_LIST_HANDLES, amdgpu_gem_list_handles_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
++	DRM_IOCTL_DEF_DRV(AMDGPU_USER_OPTIONS, amdgpu_user_options_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+ };
+ 
+ static const struct drm_driver amdgpu_kms_driver = {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index 24526e92f9b8..7903587b8bbb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -1423,6 +1423,35 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+ 	return 0;
+ }
+ 
++/**
++ * amdgpu_user_options_ioctl - set per-fd user options
++ *
++ * @dev: drm dev pointer
++ * @data: pointer to struct drm_amdgpu_user_options
++ * @filp: drm file
++ *
++ * Sets options stored on the per-file amdgpu_fpriv. Currently the only
++ * supported option is %AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY which
++ * controls how KFD delivers SIGBUS for poison/RAS events to the calling
++ * process (immediate, suppressed, or delayed by N milliseconds).
++ */
++int amdgpu_user_options_ioctl(struct drm_device *dev, void *data,
++			      struct drm_file *filp)
++{
++	struct amdgpu_fpriv *fpriv = filp->driver_priv;
++	struct drm_amdgpu_user_options *args = data;
++
++	switch (args->op) {
++	case AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY:
++		atomic_set(&fpriv->kfd_sigbus_delay_ms,
++			   args->kfd_sigbus_delay.value);
++		return 0;
++	default:
++		DRM_DEBUG_KMS("Invalid user option op %u\n", args->op);
++		return -EINVAL;
++	}
++}
++
+ /**
+  * amdgpu_driver_open_kms - drm callback for open
+  *
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+index e9be798c0a2b..2ff6348105b7 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_events.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+@@ -29,10 +29,12 @@
+ #include <linux/uaccess.h>
+ #include <linux/mman.h>
+ #include <linux/memory.h>
++#include <linux/workqueue.h>
+ #include "kfd_priv.h"
+ #include "kfd_events.h"
+ #include "kfd_device_queue_manager.h"
+ #include <linux/device.h>
++#include <uapi/drm/amdgpu_drm.h>
+ 
+ /*
+  * Wrapper around wait_queue_entry_t
+@@ -1337,6 +1339,115 @@ void kfd_signal_reset_event(struct kfd_node *dev)
+ 	srcu_read_unlock(&kfd_processes_srcu, idx);
+ }
+ 
++/*
++ * Per-process opt-in for poison-consumption SIGBUS handling.
++ *
++ * Default: kernel sends SIGBUS to the process immediately when poison is
++ * consumed, in addition to delivering the KFD HW/MEMORY exception events.
++ *
++ * Userspace (ROCr) can opt-in per-process via the
++ * DRM_IOCTL_AMDGPU_USER_OPTIONS / AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY
++ * option. This lets the app's registered system-event callback handle the
++ * RAS error first, instead of being killed by SIGBUS.
++ *
++ * Encoded value (set on any of the process' amdgpu render fds):
++ *   0          - default: SIGBUS immediately (no opt-in)
++ *   0xFFFFFFFF - opt-in, never escalate to SIGBUS
++ *   N (other)  - opt-in, escalate to SIGBUS after N ms if app does not
++ *                handle the error in time (safety timeout)
++ *
++ * Per-process scope: the option is honored if ANY of the process' amdgpu
++ * fds has been configured. This matches the slide deck's "Per-process,
++ * App set at init" semantics, while keeping the UAPI on amdgpu where ROCr
++ * sets it.
++ */
++struct kfd_sigbus_delayed_work {
++	struct delayed_work work;
++	struct kfd_process *p;
++};
++
++static void kfd_signal_sigbus_delayed_fn(struct work_struct *work)
++{
++	struct kfd_sigbus_delayed_work *dw = container_of(to_delayed_work(work),
++				struct kfd_sigbus_delayed_work, work);
++	struct kfd_process *p = dw->p;
++
++	if (p->lead_thread)
++		send_sig(SIGBUS, p->lead_thread, 0);
++
++	kfd_unref_process(p);
++	kfree(dw);
++}
++
++/*
++ * Resolve the per-process SIGBUS opt-in setting by scanning all of the
++ * process' KFD pdds (each backed by an amdgpu render fd). Returns the
++ * "most lenient" value across all fds, in this priority:
++ *   DISABLED (no SIGBUS)  >  any non-zero timeout  >  0 (immediate)
++ *
++ * Rationale: if the app has explicitly opted in on any GPU it uses, it
++ * wants the chance to handle the error in userspace.
++ */
++static u32 kfd_get_sigbus_delay_ms(struct kfd_process *p)
++{
++	u32 result = 0;
++	int i;
++
++	for (i = 0; i < p->n_pdds; i++) {
++		struct kfd_process_device *pdd = p->pdds[i];
++		struct amdgpu_fpriv *drv_priv;
++		u32 v;
++
++		if (!pdd || !pdd->drm_file)
++			continue;
++		if (amdgpu_file_to_fpriv(pdd->drm_file, &drv_priv))
++			continue;
++
++		v = atomic_read(&drv_priv->kfd_sigbus_delay_ms);
++		if (v == AMDGPU_USER_OPTIONS_KFD_SIGBUS_DELAY_DISABLED)
++			return v;
++		if (v > result)
++			result = v;
++	}
++
++	return result;
++}
++
++static void kfd_signal_sigbus_with_delay(struct kfd_node *dev,
++					 struct kfd_process *p)
++{
++	u32 delay_ms = kfd_get_sigbus_delay_ms(p);
++	struct kfd_sigbus_delayed_work *dw;
++
++	if (delay_ms == AMDGPU_USER_OPTIONS_KFD_SIGBUS_DELAY_DISABLED) {
++		dev_info(dev->adev->dev,
++			 "SIGBUS suppressed for process %s(pid:%d): app opted in to handle RAS error\n",
++			 p->lead_thread->comm, p->lead_thread->pid);
++		return;
++	}
++
++	if (delay_ms == 0)
++		goto send_now;
++
++	dw = kzalloc(sizeof(*dw), GFP_ATOMIC);
++	if (!dw)
++		goto send_now;
++
++	/* Take an extra reference for the delayed worker. */
++	kref_get(&p->ref);
++	dw->p = p;
++	INIT_DELAYED_WORK(&dw->work, kfd_signal_sigbus_delayed_fn);
++
++	dev_info(dev->adev->dev,
++		 "Deferring SIGBUS to process %s(pid:%d) by %u ms (RAS error opt-in safety timeout)\n",
++		 p->lead_thread->comm, p->lead_thread->pid, delay_ms);
++	schedule_delayed_work(&dw->work, msecs_to_jiffies(delay_ms));
++	return;
++
++send_now:
++	send_sig(SIGBUS, p->lead_thread, 0);
++}
++
+ void kfd_signal_poison_consumed_event(struct kfd_node *dev, u32 pasid)
+ {
+ 	struct kfd_process *p = kfd_lookup_process_by_pasid(pasid, NULL);
+@@ -1345,7 +1456,6 @@ void kfd_signal_poison_consumed_event(struct kfd_node *dev, u32 pasid)
+ 	struct kfd_event *ev;
+ 	uint32_t id = KFD_FIRST_NONSIGNAL_EVENT_ID;
+ 	int user_gpu_id;
+-
+ 	if (!p) {
+ 		dev_warn(dev->adev->dev, "Not find process with pasid:%d\n", pasid);
+ 		return; /* Presumably process exited. */
+@@ -1391,7 +1501,7 @@ void kfd_signal_poison_consumed_event(struct kfd_node *dev, u32 pasid)
+ 	rcu_read_unlock();
+ 
+ 	/* user application will handle SIGBUS signal */
+-	send_sig(SIGBUS, p->lead_thread, 0);
++	kfd_signal_sigbus_with_delay(dev, p);
+ 
+ 	kfd_unref_process(p);
+ }
+diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
+index 9f3090db2f16..e0a382673b90 100644
+--- a/include/uapi/drm/amdgpu_drm.h
++++ b/include/uapi/drm/amdgpu_drm.h
+@@ -58,6 +58,7 @@ extern "C" {
+ #define DRM_AMDGPU_USERQ_SIGNAL		0x17
+ #define DRM_AMDGPU_USERQ_WAIT		0x18
+ #define DRM_AMDGPU_GEM_LIST_HANDLES	0x19
++#define DRM_AMDGPU_USER_OPTIONS		0x1A
+ 
+ #define DRM_IOCTL_AMDGPU_GEM_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
+ #define DRM_IOCTL_AMDGPU_GEM_MMAP	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
+@@ -79,6 +80,7 @@ extern "C" {
+ #define DRM_IOCTL_AMDGPU_USERQ_SIGNAL	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_SIGNAL, struct drm_amdgpu_userq_signal)
+ #define DRM_IOCTL_AMDGPU_USERQ_WAIT	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, struct drm_amdgpu_userq_wait)
+ #define DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_HANDLES, struct drm_amdgpu_gem_list_handles)
++#define DRM_IOCTL_AMDGPU_USER_OPTIONS	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USER_OPTIONS, struct drm_amdgpu_user_options)
+ 
+ /**
+  * DOC: memory domains
+@@ -1673,6 +1675,27 @@ struct drm_amdgpu_info_uq_metadata {
+ #define AMDGPU_FAMILY_GC_11_5_4			154 /* GC 11.5.4 */
+ #define AMDGPU_FAMILY_GC_12_0_0			152 /* GC 12.0.0 */
+ 
++/*
++ * Definition of user options
++ *
++ * option: AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY
++ *    0:          Disable sigbus delay - SIGBUS will be raised immediately
++ *    0xFFFFFFFF: SIGBUS will not be raised
++ *    other:      Set the sigbus delay in milliseconds
++ */
++#define AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY		0
++
++#define AMDGPU_USER_OPTIONS_KFD_SIGBUS_DELAY_DISABLED	0xFFFFFFFFu
++
++struct drm_amdgpu_user_options {
++	__u32 op;
++	union {
++		struct {
++			__u32 value;
++		} kfd_sigbus_delay;
++	};
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
+-- 
+2.43.0
 
