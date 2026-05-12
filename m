@@ -2,79 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kK8bMeo3A2qK1wEAu9opvQ
+	id WIXnHPE3A2p31wEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 16:23:38 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 16:23:45 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F5B5225A3
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 16:23:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 245345225C1
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 16:23:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0809F10EB65;
-	Tue, 12 May 2026 14:23:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B60110EB70;
+	Tue, 12 May 2026 14:23:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="c/IHoEyw";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="DFoR8eHS";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010029.outbound.protection.outlook.com
- [52.101.193.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCB8510EB4A
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2026 14:23:35 +0000 (UTC)
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013056.outbound.protection.outlook.com
+ [40.93.201.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EFCA10EB6B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2026 14:23:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=G5ebgsuhJlRTxIANajS/Y0e9kaD2/rWGN4i64wbHPp4IfL6oOGxP65b+oaWjrXAlPQQEGsZlCkZ/K53Z9+RjE+F6CNAPUX/drqRwXDUJnHN7yCCDHcRmTTXyO6+2ZD+oBUgVCdpLZn9j3ezbc1cMEfIxuBoj9zmk1FS9kFOCkXQhnMfRR8fYbf/7uquZPYIR2/hQ9FgrTT5nylfIVe235Gm/2OkuxjHQKBpcN86SVgn7rcQuHzlY5i/Zc1WOsPAj61xQw2UrZ9xKltDBz/CUcRm32zUut7GOlqOTJQ/UJXh5A3Odh+0XJJGg8uTgaekehn8GMMOlUlQWfQTQ++7ZcA==
+ b=kDVifQEJ4al9x/CPzIeNTDR3bVkBc4deujniFaDLBgayHdVLmmUvtl85LySQS1ex5QW5KO929zWS4efwEZQ1m7BTwXlV/lfoVkvcNl0hqjd8Kb4VZ5GarlgjXGGXhG/Y3IjVAVDyiOnYTSQOMTvvMvokuvLQbThbZ4Jol6+qQbx250S4KNrofAWExTa2jdKzS9SwnPliiV9Hmplhd40aumAyXCOwz9ySHiba+ENwn77WSZ3z3rzeO8NQZLASnzYbWjA8yknOuVY4v7T34hYfwuBEHg1PYi+I+YZKrFOWmaq7BJLXrndF/kJf59JrYgfyxj9QHmhx9II+AU538Ti+bA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PvCYVtchyk22H95Zt366U2mDwcpRowrrY233s3N4uPw=;
- b=m/6W3eGv2HhGX1hxBmQPZjDk7v88iWSQ50C4QQWGaaqnZFRfCI9qnAl+dpD/vx6stErGhZrCuYL86NfI7YZwcKNSI498s/cZi+RlxaYprav6aJBJ9+CDur/cgwYigdqvwqm0ymcRSV3o/c6jRPfNMXfNrdFY8+6lc3npUU0ahobu23WpulXzUiWsJy3W+yDLNMsY21Oih6h50eEJk7+Hi8cmgWlV94aXxSrOAlXGLefsKjsQgLPG6cY4VVsAZFQzZyPPN0rsBLL3KKJnyPmpz7zlB7/i+tLsMFcavYgObj9QIpiA+t1Omd2OwPjFAzsk/kb4rfiqlOZzeLMXxucvMw==
+ bh=rqelu/pNjsiWN4lq2YyWMx3snbigrMdftEjdO/stIrU=;
+ b=r9oEnktmXbR66XvQe3gO9Gx+bk7MZZzvDZk17ITWuNDBaASrbmJcz5NCUuSN2HAsYHVmnCvoIe0ksTGoK02XGdSoRFt/XK3x4Iw+n2eaoJHgjjEQULBjEhrmtXRe8S3CoZSOm/W1vrNo4lpgAPZgSMHKKf4UM+ODh6PkMzjjZxXaes1MLB4QnhevYWw9gUqI9OkNmT6leC3jGJViqByCn68NEb1j6GF5wbgdld3rogbsmsEFe2RSMsmHtFE1pROJLIeQrGBupwsF7Is4asTJzZyjFpXL1MtA8DwzhjoiiELGr5ZGuwP0rGob/3Ao8yDPgFZ5ELw3ipJcjjIF17p+sg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PvCYVtchyk22H95Zt366U2mDwcpRowrrY233s3N4uPw=;
- b=c/IHoEywq0+8o55SYYJRCjGV+Jl65xFWOQoP+xgG94ZeA2D3Np/oAj3rWd9OH/gvEx5ffX7KDE4aFeBep0d4WBspCLCNLDMpccjr0xu3cjl6MEG345kOvihdr0CT3uSnUZa5WqYNbYe00C9IdWwc9pssmw7poyINxO4vEV9LoEc=
-Received: from MN2PR20CA0019.namprd20.prod.outlook.com (2603:10b6:208:e8::32)
- by IA1PR12MB6161.namprd12.prod.outlook.com (2603:10b6:208:3eb::21)
+ bh=rqelu/pNjsiWN4lq2YyWMx3snbigrMdftEjdO/stIrU=;
+ b=DFoR8eHSvkvLKr3JhVvfkCX8ezXgrEGMqX8gvtYwuZMHfSS1hMe58mr0Jfe4kzSgllzgmh58NuEEADs/n6AIEZGImQ/6q7u3EZyHKksYS51wMXFu/wUcH5HtVAdmQAzhUoWGOyfDgHxgQJUk8gmjsrzdXRi5hdTCIlMY1qXdYdo=
+Received: from BY3PR10CA0012.namprd10.prod.outlook.com (2603:10b6:a03:255::17)
+ by PH0PR12MB8773.namprd12.prod.outlook.com (2603:10b6:510:28d::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.21; Tue, 12 May
- 2026 14:23:28 +0000
-Received: from MN1PEPF0000ECD9.namprd02.prod.outlook.com
- (2603:10b6:208:e8:cafe::40) by MN2PR20CA0019.outlook.office365.com
- (2603:10b6:208:e8::32) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9913.11 via Frontend Transport; Tue,
- 12 May 2026 14:23:26 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.20; Tue, 12 May
+ 2026 14:23:35 +0000
+Received: from SJ5PEPF000001C9.namprd05.prod.outlook.com
+ (2603:10b6:a03:255:cafe::34) by BY3PR10CA0012.outlook.office365.com
+ (2603:10b6:a03:255::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.24 via Frontend Transport; Tue,
+ 12 May 2026 14:23:34 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- MN1PEPF0000ECD9.mail.protection.outlook.com (10.167.242.138) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ SJ5PEPF000001C9.mail.protection.outlook.com (10.167.242.37) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.25.13 via Frontend Transport; Tue, 12 May 2026 14:23:26 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.25.13 via Frontend Transport; Tue, 12 May 2026 14:23:34 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 12 May
- 2026 09:23:22 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 12 May
- 2026 09:23:22 -0500
+ 2026 09:23:23 -0500
 Received: from hwentlanryzen (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
  Transport; Tue, 12 May 2026 09:23:22 -0500
 From: Harry Wentland <harry.wentland@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Jerry.Zuo@amd.com>, Harry Wentland <harry.wentland@amd.com>
-Subject: [PATCH v4 10/13] drm/amd/display: Update HDCP and info_packet modules
- for FRL
-Date: Tue, 12 May 2026 10:23:04 -0400
-Message-ID: <20260512142308.131260-11-harry.wentland@amd.com>
+Subject: [PATCH v4 11/13] drm/amd/display: Tie FRL support into amdgpu_dm
+Date: Tue, 12 May 2026 10:23:05 -0400
+Message-ID: <20260512142308.131260-12-harry.wentland@amd.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260512142308.131260-1-harry.wentland@amd.com>
 References: <20260512142308.131260-1-harry.wentland@amd.com>
@@ -83,29 +78,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD9:EE_|IA1PR12MB6161:EE_
-X-MS-Office365-Filtering-Correlation-Id: f4dfd713-3d45-489f-fcb1-08deb032086f
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001C9:EE_|PH0PR12MB8773:EE_
+X-MS-Office365-Filtering-Correlation-Id: 91ab9fbc-f001-4c69-253e-08deb0320d37
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700016|82310400026|1800799024|3023799003|18002099003|11063799003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info: HNaVE0s37Qxb6G41SK5Z0INna9FZSmnGvKAPY6N1yfU3OlUWN0KjdbQroKPYJuUeq8dqndvMSjucVJ1pvNB0q3cmJVcackRjDPBDsx/9CS+r7Bq2s1OG8C+ysZ6w852vrOOOaehJ22B8hkfc4Q+v3xM+d2bXV9WntuiQMxp6EzHnkpYXb7K5+2o3gp6x+QWra136kR6WIQy6oHP+o4/aZnFWw+8lVlmcdzzjiYqteQ8GdhVTdsHeOpEH06AWYe5hn/DTNY2lv8LGCGkcJPw0UJ3NkqL1KaBOIHf/+Isr+qp+HVzbJZo47vDe1LHGJ7a7vXBNGckUxWRDwsF6U7qHi70Os2LBYfXRqdV7N6AKX9WddLcpBPtp/vVqZ3C9HV3XAnjwwcpfixt0T8zjppe54r88xKnB54TqkNpLGE6cHn05yhuVrFHdK2kAjjYQoMY2j1FxsViDFeplg6P6EC2sPHirlPmCEGwj//zUnkIERKVzHZWRx7KHFJbi3LHaSjsDLQqoFXPLV19rrucPfJfZUeIgxgxKn748bsLTBOwnyQXLjfz+yruuEGk4JtIuRaTWnh9tkILqvTLIfEhTJJeS/wT0agddxtmyZIXeTWuy7wNckg97njioRfR7W72I59JFPVzQylq76fObG2awGdKi+1qUkf9Uh3ZjzPXePASPHloqjt3PAi0BAsW51gAO1I8exDK/6FuAgdum0mQla+XdnvB1sE+deBE8bXLcv8Km+40=
+ ARA:13230040|376014|1800799024|36860700016|82310400026|18002099003|11063799003|22082099003|56012099003|3023799003;
+X-Microsoft-Antispam-Message-Info: +9Ha3WE08CoZ+n+XmH9iDdxqubsDql5O/k/dRwuuWdd1sxBSBaH6PnG4RfBA98n3P1AdtDMXjw2nEuxAmzcVpRt26YCC/UvaPPDsDdzduccDTyY/5fbzMkUP+J+B4amVSFmqQD0EnhneAnPEXw2EkYn1CkBJ8NFADLI+qySMw+XivJ06yOSW0uGTZQFPubncCtTF5bAYysa2n+VvcqAIesnHpHggW32mZPouBuwyxRx3EtGwGEYVUuA8G8VBvG6GllMYC+LCRVDzN2Ychn9k6PJPU/qFmCzNNSuUqWV0GMKfSJh8K5p9Q666F+JykUwdPorjrRyIBFm+B925XMzfTPmjJ1gDvMVM5bim/E6J8M8m7DZPW9bsHJkxi5f0SMzMc0x9WiVXSM8bbKe3IHDP8EQlLySTICCb10fTT3WoQZMgOgeHeVdLAUOsEcFouXCkMEvjm9RBeSdp274zk7Q6lRCE5U/XDzlL4dT49IXWrH69Sbi5CtfFo60+4BjVbeVyX5hdFFZl4F1eWrtyx/fSj+tptiaQdIDZ7WDnczf1IsJVfQ4FA41PDYSr+BH6Y/yAqAY4cjpcaHOoy4/JrewhmnEgri45p1ZkDRAEPYrAQmBmOxHLW5dwgyAcDwq8MJ5QOydjgZv+D00qTZ9YsMlMo8aW/ABLO9WbnwxVJJWL/SNIJT6YsxpxtwYwOpg6u8UlHdIUdOjWGgrpqeR8IAlngabWbzqlHUmCK1VCmWvHDTE=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(3023799003)(18002099003)(11063799003)(56012099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(36860700016)(82310400026)(18002099003)(11063799003)(22082099003)(56012099003)(3023799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 8+ChvC4Uvadtpp4RgnmMJEkkVW5Bh5wrpGz65refvFsLupYT2puKbB7+5lNyHrNi9QN4QSK5Ox9m0y6tX6tw9AvoykwmF21kbPhsFIO3NdPPokAmKe7gyELBJnq0XcHWZcoku74oSzgj2qiyPq2FCUNvEA9L1XMgVrVeu7c8aWkiWDAOJB1Cr02Jyc75/FWjUjUC5/F1cbt/ifOVrg35zaL81jwVaehKChtObRMzk9Cg1u5sZUOfrcBot5Sj7iutYoWP6l17pArZcFejEPRfthb90UEw4YzkYdbr/vN/v/gUSTNurLJ0zU7aHyyThyzW2HoWYZtEJPEiCrPK4Pk9S6iCV0myDr+vUU5bw+ihYyt45ZDDbgqxD0xpXjz++Z6LvOSMCfqR2ploOXkITO3oVjhwPdrfcb5qKd+rdXpIY4dj+iJsIgJp8+K6/xAlSEka
+X-MS-Exchange-AntiSpam-MessageData-0: el6yw2fHhPrg1FlB3COYDP+iZ33D4soEzgcgJ7vF2c8bJXu1J1uVGjMV/tKiQkb1XWLEKvbXB8NzwEg762nxgeip5RcZcZW35Qw3rwnFD7lZMBLVTbJZ2rotQbYNIvabgoanM+KF9Y8xR7SPYKxHOhNgjDPblhViyOuH7Pyuc2s7fNOHIssVZYI876OKRKTL13CJYNMs1pcW61L+vCCrotHN3hX6Z8fnF+OML3EkxzBwHxiWau46gYi/ZDPpdnBmZakj9MHFc8KSoD4NtVf4828WeqQYCLkopEPw/uKzXQS//P3aa+ZJ2tDrLUDXzkFm+0z1yIxbazaxY2ljSJvhZhDuu01QpxXeLF/wD73aZdfhTDa9oLqNoJIf9oBgEkfsuO0+KN8pHB7TMkyO63tQBnD+dLNnDqTN7U48Gv9frs5mv5DTDvygeDP0VLxHQLWG
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 14:23:26.9170 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f4dfd713-3d45-489f-fcb1-08deb032086f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 14:23:34.8409 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 91ab9fbc-f001-4c69-253e-08deb0320d37
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD9.namprd02.prod.outlook.com
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001C9.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6161
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8773
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,7 +114,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 76F5B5225A3
+X-Rspamd-Queue-Id: 245345225C1
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
@@ -146,314 +141,324 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	NEURAL_HAM(-0.00)[-0.999];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-The HDCP module has a minor update for FRL, and info_packet is
-updated for ALLM.
+Tie FRL support into amdgpu_dm, including the FRL status
+polling workqueue.
 
 Signed-off-by: Harry Wentland <harry.wentland@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   2 +-
- .../gpu/drm/amd/display/modules/hdcp/hdcp.c   |   2 +
- .../gpu/drm/amd/display/modules/hdcp/hdcp.h   |   6 +
- .../drm/amd/display/modules/hdcp/hdcp_psp.c   |   2 +
- .../drm/amd/display/modules/hdcp/hdcp_psp.h   |   2 +
- .../amd/display/modules/inc/mod_freesync.h    |   3 +
- .../drm/amd/display/modules/inc/mod_hdcp.h    |   1 +
- .../amd/display/modules/inc/mod_info_packet.h |   2 +-
- .../display/modules/info_packet/info_packet.c | 122 ++++++++++++++----
- 9 files changed, 112 insertions(+), 30 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 68 +++++++++++++++-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h | 10 +++
+ .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.c    |  2 +
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 23 ++++++
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   | 79 +++++++++++++++++++
+ 5 files changed, 180 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index c41f017fe8f2..370991b38ab2 100644
+index 370991b38ab2..6f7df05202de 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -7581,7 +7581,7 @@ create_stream_for_sink(struct drm_connector *connector,
- 	update_stream_signal(stream, sink);
+@@ -2214,6 +2214,12 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
  
- 	if (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
--		mod_build_hf_vsif_infopacket(stream, &stream->vsp_infopacket);
-+		mod_build_hf_vsif_infopacket(stream, &stream->vsp_infopacket, false, false);
- 
- 	if (stream->signal == SIGNAL_TYPE_DISPLAY_PORT ||
- 	    stream->signal == SIGNAL_TYPE_DISPLAY_PORT_MST ||
-diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
-index ca402ddcdacc..fbab100c0e7b 100644
---- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
-+++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
-@@ -66,6 +66,7 @@ static uint8_t is_cp_desired_hdcp1(struct mod_hdcp *hdcp)
- 
- 	return is_auth_needed &&
- 			!hdcp->connection.link.adjust.hdcp1.disable &&
-+			!is_frl_hdcp(hdcp) &&
- 			!hdcp->connection.is_hdcp1_revoked;
+ 		dc_init_callbacks(adev->dm.dc, &init_params);
+ 	}
++	if (adev->dm.dc->caps.max_links > 0) {
++		adev->dm.hdmi_frl_status_polling_wq =
++			create_singlethread_workqueue("hdmi_frl_status_polling_workqueue");
++		if (!adev->dm.vblank_control_workqueue)
++			drm_err(adev_to_drm(adev), "failed to initialize hdmi_frl_status_polling_workqueue\n");
++	}
+ 	if (dc_is_dmub_outbox_supported(adev->dm.dc)) {
+ 		init_completion(&adev->dm.dmub_aux_transfer_done);
+ 		adev->dm.dmub_notify = kzalloc(sizeof(struct dmub_notification), GFP_KERNEL);
+@@ -4283,6 +4289,40 @@ static void hdmi_hpd_debounce_work(struct work_struct *work)
+ 	}
  }
  
-@@ -584,6 +585,7 @@ enum mod_hdcp_operation_mode mod_hdcp_signal_type_to_operation_mode(
- 	switch (signal) {
- 	case SIGNAL_TYPE_DVI_SINGLE_LINK:
- 	case SIGNAL_TYPE_HDMI_TYPE_A:
-+	case SIGNAL_TYPE_HDMI_FRL:
- 		mode = MOD_HDCP_MODE_DEFAULT;
- 		break;
- 	case SIGNAL_TYPE_EDP:
-diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
-index d07387a961dd..92c128ffe2dd 100644
---- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
-+++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
-@@ -406,6 +406,12 @@ static inline uint8_t is_hdmi_dvi_sl_hdcp(struct mod_hdcp *hdcp)
- 	return (hdcp->connection.link.mode == MOD_HDCP_MODE_DEFAULT);
- }
- 
-+static inline uint8_t is_frl_hdcp(struct mod_hdcp *hdcp)
++static void hdmi_frl_status_polling_work(struct work_struct *work)
 +{
-+	return (hdcp->connection.link.mode == MOD_HDCP_MODE_DEFAULT &&
-+			hdcp->connection.link.hdmi.frl_enabled);
++	struct amdgpu_display_manager *dm =
++		container_of(to_delayed_work(work), struct amdgpu_display_manager,
++				hdmi_frl_status_polling_work);
++	struct dc *dc = dm->dc;
++	struct dc_link *dc_link;
++	bool link_update = false;
++
++	for (int i = 0; i < MAX_LINKS; i++) {
++		dc_link = dc->links[i];
++
++		if (!dc_link || !dc_link->local_sink)
++			continue;
++
++		if (!dc_is_hdmi_signal(dc_link->connector_signal))
++			continue;
++
++		if (dc_link->connector_signal != SIGNAL_TYPE_HDMI_FRL)
++			continue;
++
++		link_update = dc_link_frl_poll_status_flag(dc_link);
++		if (link_update) {
++			mutex_lock(&dm->dc_lock);
++			dc_link_detect(dc_link, DETECT_REASON_RETRAIN);
++			mutex_unlock(&dm->dc_lock);
++		}
++	}
++
++	queue_delayed_work(dm->hdmi_frl_status_polling_wq,
++			   &dm->hdmi_frl_status_polling_work,
++			   msecs_to_jiffies(dm->hdmi_frl_status_polling_delay_ms));
 +}
 +
- /* hdcp state helpers */
- static inline uint8_t current_state(struct mod_hdcp *hdcp)
+ static void handle_hpd_irq_helper(struct amdgpu_dm_connector *aconnector)
  {
-diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c
-index 6b7db8ec9a53..d32df3b869f9 100644
---- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c
-+++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c
-@@ -200,6 +200,8 @@ static enum mod_hdcp_status add_display_to_topology_v3(
- 			TA_DTM_HDCP_VERSION_MAX_SUPPORTED__2_3;
- 	dtm_cmd->dtm_in_message.topology_update_v3.encoder_type = TA_DTM_ENCODER_TYPE__DIG;
- 	dtm_cmd->dtm_status = TA_DTM_STATUS__GENERIC_FAILURE;
-+	if (is_frl_hdcp(hdcp))
-+		dtm_cmd->dtm_in_message.topology_update_v3.encoder_type = TA_DTM_ENCODER_TYPE__FRL;
- 	dtm_cmd->dtm_in_message.topology_update_v3.phy_id = link->phy_idx;
- 	dtm_cmd->dtm_in_message.topology_update_v3.link_hdcp_cap = link->hdcp_supported_informational;
- 	dtm_cmd->dtm_in_message.topology_update_v3.dio_output_type = link->dp.usb4_enabled ?
-diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.h b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.h
-index 7844ea91650b..1f9ac8537d53 100644
---- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.h
-+++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.h
-@@ -84,6 +84,7 @@ struct ta_dtm_topology_update_input_v2 {
- 	uint32_t dig_fe;
- 	uint32_t dp_mst_vcid;
- 	uint32_t is_assr;
-+	/*uint32_t is_frl;*/ /*todo*/
- 	uint32_t max_hdcp_supported_version;
- };
+ 	struct drm_connector *connector = &aconnector->base;
+@@ -6933,7 +6973,8 @@ static void fill_stream_properties_from_drm_display_mode(
+ 			timing_out->flags.VSYNC_POSITIVE_POLARITY = 1;
+ 	}
  
-@@ -91,6 +92,7 @@ struct ta_dtm_topology_update_input_v2 {
- /* Security code will check real HW register values and these SW enum values */
- enum ta_dtm_encoder_type {
- 	TA_DTM_ENCODER_TYPE__INVALID    = 0,
-+	TA_DTM_ENCODER_TYPE__FRL        = 0x20,
- 	TA_DTM_ENCODER_TYPE__DIG        = 0x10
- };
+-	if (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A) {
++	if (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A ||
++		stream->signal == SIGNAL_TYPE_HDMI_FRL) {
+ 		err = drm_hdmi_avi_infoframe_from_display_mode(&avi_frame,
+ 							       (struct drm_connector *)connector,
+ 							       mode_in);
+@@ -7580,7 +7621,8 @@ create_stream_for_sink(struct drm_connector *connector,
  
-diff --git a/drivers/gpu/drm/amd/display/modules/inc/mod_freesync.h b/drivers/gpu/drm/amd/display/modules/inc/mod_freesync.h
-index 57916ed98c86..c042fb1bf49c 100644
---- a/drivers/gpu/drm/amd/display/modules/inc/mod_freesync.h
-+++ b/drivers/gpu/drm/amd/display/modules/inc/mod_freesync.h
-@@ -90,6 +90,7 @@ struct mod_vrr_params_flip_interval {
- struct mod_vrr_params {
- 	bool supported;
- 	bool send_info_frame;
-+	bool m_const_engaged; // this is used when m_const is set up in OPTC so no overriding happens from FreeSync Module
- 	enum mod_vrr_state state;
+ 	update_stream_signal(stream, sink);
  
- 	uint32_t min_refresh_in_uhz;
-@@ -98,6 +99,8 @@ struct mod_vrr_params {
- 	uint32_t min_duration_in_us;
- 	uint32_t fixed_refresh_in_uhz;
+-	if (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
++	if (stream->signal == SIGNAL_TYPE_HDMI_TYPE_A ||
++	    stream->signal == SIGNAL_TYPE_HDMI_FRL)
+ 		mod_build_hf_vsif_infopacket(stream, &stream->vsp_infopacket, false, false);
  
-+	uint32_t m_const;
+ 	if (stream->signal == SIGNAL_TYPE_DISPLAY_PORT ||
+@@ -8283,6 +8325,7 @@ create_validate_stream_for_sink(struct drm_connector *connector,
+ 
+ 	if (aconnector &&
+ 	    (aconnector->dc_link->connector_signal == SIGNAL_TYPE_HDMI_TYPE_A ||
++	     aconnector->dc_link->connector_signal == SIGNAL_TYPE_HDMI_FRL ||
+ 	     aconnector->dc_link->dpcd_caps.dongle_type == DISPLAY_DONGLE_DP_HDMI_CONVERTER))
+ 		bpc_limit = 8;
+ 
+@@ -9179,6 +9222,8 @@ void amdgpu_dm_connector_init_helper(struct amdgpu_display_manager *dm,
+ 		aconnector->hdmi_hpd_debounce_delay_ms = 0;
+ 	}
+ 
++	dm->hdmi_frl_status_polling_delay_ms = 200;
++	INIT_DELAYED_WORK(&dm->hdmi_frl_status_polling_work, hdmi_frl_status_polling_work);
+ 	/*
+ 	 * configure support HPD hot plug connector_>polled default value is 0
+ 	 * which means HPD hot plug not supported
+@@ -10850,6 +10895,25 @@ static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
+ 	dc_exit_ips_for_hw_access(dm->dc);
+ 	WARN_ON(!dc_commit_streams(dm->dc, &params));
+ 
++	bool frl_stream_found = false;
 +
- 	struct dc_crtc_timing_adjust adjust;
++	for (i = 0; i < params.stream_count; i++) {
++		struct dc_stream_state *stream = params.streams[i];
++
++		if (stream->signal != SIGNAL_TYPE_HDMI_FRL) {
++			frl_stream_found = true;
++			break;
++		}
++	}
++	if (frl_stream_found) {
++		if (queue_delayed_work(dm->hdmi_frl_status_polling_wq,
++				       &dm->hdmi_frl_status_polling_work,
++				       msecs_to_jiffies(dm->hdmi_frl_status_polling_delay_ms)))
++			drm_dbg_kms(dev, "200ms frl status polling starts ...\n");
++	} else {
++		if (cancel_delayed_work_sync(&dm->hdmi_frl_status_polling_work))
++			drm_dbg_kms(dev, "200ms frl status polling stops ...\n");
++	}
+ 	/* Allow idle optimization when vblank count is 0 for display off */
+ 	if ((dm->active_vblank_irq_count == 0) && amdgpu_dm_is_headless(dm->adev))
+ 		dc_allow_idle_optimizations(dm->dc, true);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+index 1e0ccf58cdb8..8af11bfda6fe 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+@@ -706,6 +706,14 @@ struct amdgpu_display_manager {
+ 		struct completion replied;
+ 		char reply_data[0x40];  // Cannot include dmub_cmd here
+ 	} fused_io[8];
++	/**
++	 * @hdmi_frl_status_polling_work:
++	 *
++	 * workqueue for 200ms frl status polling
++	 */
++	struct workqueue_struct *hdmi_frl_status_polling_wq;
++	struct delayed_work hdmi_frl_status_polling_work;
++	unsigned int hdmi_frl_status_polling_delay_ms;
  
- 	struct mod_vrr_params_fixed_refresh fixed;
-diff --git a/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h b/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
-index 835467225458..d492a59e0939 100644
---- a/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
-+++ b/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
-@@ -114,6 +114,7 @@ struct mod_hdcp_displayport {
- };
+ 	/**
+ 	 * @dm_boot_time_crc_info:
+@@ -852,6 +860,8 @@ struct amdgpu_dm_connector {
+ 	bool disallow_edp_enter_psr;
+ 	bool disallow_edp_enter_replay;
  
- struct mod_hdcp_hdmi {
-+	uint8_t frl_enabled;
- 	uint8_t reserved;
- };
- enum mod_hdcp_operation_mode {
-diff --git a/drivers/gpu/drm/amd/display/modules/inc/mod_info_packet.h b/drivers/gpu/drm/amd/display/modules/inc/mod_info_packet.h
-index 11b127eb13d8..eee8206bc531 100644
---- a/drivers/gpu/drm/amd/display/modules/inc/mod_info_packet.h
-+++ b/drivers/gpu/drm/amd/display/modules/inc/mod_info_packet.h
-@@ -46,7 +46,7 @@ void mod_build_vsc_infopacket(const struct dc_stream_state *stream,
- 		enum color_transfer_func tf);
++	union dwnstream_portxcaps mst_downstream_port_caps;
++
+ 	/* Record progress status of mst*/
+ 	uint8_t mst_status;
  
- void mod_build_hf_vsif_infopacket(const struct dc_stream_state *stream,
--		struct dc_info_packet *info_packet);
-+		struct dc_info_packet *info_packet, int ALLMEnabled, int ALLMValue);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
+index a10401675f53..5c0d275fcbd6 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
+@@ -578,6 +578,8 @@ static void update_config(void *handle, struct cp_psp_stream_config *config)
+ 	link->dp.mst_enabled = config->mst_enabled;
+ 	link->dp.dp2_enabled = config->dp2_enabled;
+ 	link->dp.usb4_enabled = config->usb4_enabled;
++	if (aconnector->dc_sink->sink_signal == SIGNAL_TYPE_HDMI_FRL)
++		link->hdmi.frl_enabled = config->frl_enabled;
+ 	display->adjust.disable = MOD_HDCP_DISPLAY_DISABLE_AUTHENTICATION;
+ 	link->adjust.auth_delay = 2;
+ 	link->adjust.retry_limit = MAX_NUM_OF_ATTEMPTS;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+index c491af21a34c..d2598e391eb8 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+@@ -1071,9 +1071,32 @@ dm_helpers_read_vbios_hardcoded_edid(struct dc_link *link, struct amdgpu_dm_conn
+ 	return edid;
+ }
  
- enum adaptive_sync_sdp_version {
- 	AS_SDP_VER_0 = 0x0,
-diff --git a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-index 55c7250f18d8..fa05547c615a 100644
---- a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-+++ b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
-@@ -504,13 +504,16 @@ void mod_build_vsc_infopacket(const struct dc_stream_state *stream,
-  *  @info_packet: output structure where to store VSIF
-  */
- void mod_build_hf_vsif_infopacket(const struct dc_stream_state *stream,
--		struct dc_info_packet *info_packet)
-+		struct dc_info_packet *info_packet, int ALLMEnabled, int ALLMValue)
++static uint8_t get_max_frl_rate(uint8_t max_lanes, uint8_t max_rate_per_lane)
++{
++	uint8_t max_frl_rate;
++
++	if ((max_lanes == 3) && (max_rate_per_lane == 3))
++		max_frl_rate = 1;
++	else if ((max_lanes == 3) && (max_rate_per_lane == 6))
++		max_frl_rate = 2;
++	else if ((max_lanes == 4) && (max_rate_per_lane == 6))
++		max_frl_rate = 3;
++	else if ((max_lanes == 4) && (max_rate_per_lane == 8))
++		max_frl_rate = 4;
++	else if ((max_lanes == 4) && (max_rate_per_lane == 10))
++		max_frl_rate = 5;
++	else if ((max_lanes == 4) && (max_rate_per_lane == 12))
++		max_frl_rate = 6;
++	else
++		max_frl_rate = 0;
++
++	return max_frl_rate;
++}
++
+ void populate_hdmi_info_from_connector(struct drm_hdmi_info *hdmi, struct dc_edid_caps *edid_caps)
  {
- 		unsigned int length = 5;
- 		bool hdmi_vic_mode = false;
- 		uint8_t checksum = 0;
- 		uint32_t i = 0;
- 		enum dc_timing_3d_format format;
-+		bool bALLM = (bool)ALLMEnabled;
-+		bool bALLMVal = (bool)ALLMValue;
-+		int CCBPC = 0;
+ 	edid_caps->scdc_present = hdmi->scdc.supported;
++	edid_caps->max_frl_rate = get_max_frl_rate(hdmi->max_lanes, hdmi->max_frl_rate_per_lane);
+ }
  
- 		info_packet->valid = false;
- 		format = stream->timing.timing_3d_format;
-@@ -523,47 +526,110 @@ void mod_build_hf_vsif_infopacket(const struct dc_stream_state *stream,
- 				&& format == TIMING_3D_FORMAT_NONE)
- 			hdmi_vic_mode = true;
+ enum dc_edid_status dm_helpers_read_local_edid(
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+index 67e7e14d8976..8e2a8c2c1d84 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+@@ -1174,6 +1174,77 @@ static int try_disable_dsc(struct drm_atomic_state *state,
+ 	return 0;
+ }
  
--		if ((format == TIMING_3D_FORMAT_NONE) && !hdmi_vic_mode)
-+		if ((format == TIMING_3D_FORMAT_NONE) && !hdmi_vic_mode && !bALLM)
- 			return;
- 
--		info_packet->sb[1] = 0x03;
--		info_packet->sb[2] = 0x0C;
--		info_packet->sb[3] = 0x00;
-+		if (!bALLM) {
-+			info_packet->sb[1] = 0x03;
-+			info_packet->sb[2] = 0x0C;
-+			info_packet->sb[3] = 0x00;
- 
--		if (format != TIMING_3D_FORMAT_NONE)
--			info_packet->sb[4] = (2 << 5);
-+			if (format != TIMING_3D_FORMAT_NONE)
-+				info_packet->sb[4] = (2 << 5);
-+			else if (hdmi_vic_mode)
-+				info_packet->sb[4] = (1 << 5);
- 
--		else if (hdmi_vic_mode)
--			info_packet->sb[4] = (1 << 5);
-+			switch (format) {
-+			case TIMING_3D_FORMAT_HW_FRAME_PACKING:
-+			case TIMING_3D_FORMAT_SW_FRAME_PACKING:
-+				info_packet->sb[5] = (0x0 << 4);
-+				break;
- 
--		switch (format) {
--		case TIMING_3D_FORMAT_HW_FRAME_PACKING:
--		case TIMING_3D_FORMAT_SW_FRAME_PACKING:
--			info_packet->sb[5] = (0x0 << 4);
--			break;
-+			case TIMING_3D_FORMAT_SIDE_BY_SIDE:
-+			case TIMING_3D_FORMAT_SBS_SW_PACKED:
-+				info_packet->sb[5] = (0x8 << 4);
-+				length = 6;
-+				break;
- 
--		case TIMING_3D_FORMAT_SIDE_BY_SIDE:
--		case TIMING_3D_FORMAT_SBS_SW_PACKED:
--			info_packet->sb[5] = (0x8 << 4);
--			length = 6;
--			break;
-+			case TIMING_3D_FORMAT_TOP_AND_BOTTOM:
-+			case TIMING_3D_FORMAT_TB_SW_PACKED:
-+				info_packet->sb[5] = (0x6 << 4);
-+				break;
- 
--		case TIMING_3D_FORMAT_TOP_AND_BOTTOM:
--		case TIMING_3D_FORMAT_TB_SW_PACKED:
--			info_packet->sb[5] = (0x6 << 4);
--			break;
-+			default:
-+				break;
-+			}
- 
--		default:
--			break;
-+			if (hdmi_vic_mode) {
-+				ASSERT(stream->timing.hdmi_vic <= 0xFF);
-+				info_packet->sb[5] = (uint8_t)stream->timing.hdmi_vic;
-+			}
-+		} else {
-+			info_packet->sb[1] = 0xD8;
-+			info_packet->sb[2] = 0x5D;
-+			info_packet->sb[3] = 0xC4;
-+			info_packet->sb[4] = HF_VSIF_VERSION;
++static bool get_conv_frl_bw(struct amdgpu_dm_connector *aconnector,
++							uint32_t *bw_in_kbps, uint32_t *dsc_bw_in_kbps)
++{
++	unsigned int max_conv_bw_in_kbps = 0;
++	unsigned int max_sink_bw_in_kbps = 0;
++	unsigned int dsc_max_sink_bw_in_kbps = 0;
 +
-+			if (format != TIMING_3D_FORMAT_NONE) {
-+				info_packet->sb[5] |= 0x01;
-+				length = 6;
-+				switch (format) {
-+				case TIMING_3D_FORMAT_HW_FRAME_PACKING:
-+				case TIMING_3D_FORMAT_SW_FRAME_PACKING:
-+					info_packet->sb[6] = (0x0 << 4);
-+					break;
++	if (aconnector->dc_link->dc->caps.dp_hdmi21_pcon_support &&
++	    aconnector->mst_downstream_port_caps.bytes.byte0.bits.DWN_STRM_PORTX_TYPE == DOWN_STREAM_DETAILED_HDMI) {
++		max_conv_bw_in_kbps = dc_link_bw_kbps_from_raw_frl_link_rate_data(
++				aconnector->dc_link->dc,
++				aconnector->mst_downstream_port_caps.bytes.byte2.bits.MAX_ENCODED_LINK_BW_SUPPORT);
++		if (aconnector->dc_sink->edid_caps.max_frl_rate && max_conv_bw_in_kbps) {
++			max_sink_bw_in_kbps = dc_link_bw_kbps_from_raw_frl_link_rate_data(
++					aconnector->dc_link->dc,
++					aconnector->dc_sink->edid_caps.max_frl_rate);
++			dsc_max_sink_bw_in_kbps = dc_link_bw_kbps_from_raw_frl_link_rate_data(
++					aconnector->dc_link->dc,
++					aconnector->dc_sink->edid_caps.frl_dsc_max_frl_rate);
 +
-+				case TIMING_3D_FORMAT_SIDE_BY_SIDE:
-+				case TIMING_3D_FORMAT_SBS_SW_PACKED:
-+					info_packet->sb[6] = (0x8 << 4);
-+					break;
++			*bw_in_kbps = min(max_conv_bw_in_kbps, max_sink_bw_in_kbps);
++			*dsc_bw_in_kbps = min(*bw_in_kbps, dsc_max_sink_bw_in_kbps);
++		}
++	}
 +
-+				case TIMING_3D_FORMAT_TOP_AND_BOTTOM:
-+				case TIMING_3D_FORMAT_TB_SW_PACKED:
-+					info_packet->sb[6] = (0x6 << 4);
-+					break;
++	return *bw_in_kbps > 0; // Frl endpoint is detected
++}
 +
-+				default:
-+					break;
-+				}
-+			}
++static void build_frl_mst_dsc_params(struct amdgpu_dm_connector *aconnector,
++								struct dc_stream_state *stream,
++								struct dc_dsc_policy *dsc_policy,
++								struct dsc_mst_fairness_params *params,
++								uint32_t frl_conv_dsc_bw_in_kbps)
++{
++	uint32_t min_bpp_x16, max_bpp_x16;
++	struct dc_dsc_config_options dsc_options = {0};
 +
-+			info_packet->sb[5] = (info_packet->sb[5] & ~0x02) | (bALLMVal << 1);
++	min_bpp_x16 = dsc_policy->min_target_bpp * 16;
++	max_bpp_x16 = dsc_policy->max_target_bpp * 16;
 +
-+			switch (stream->timing.display_color_depth) {
-+			case COLOR_DEPTH_888:
-+				CCBPC = 1;
-+				break;
-+			case COLOR_DEPTH_101010:
-+				CCBPC = 3;
-+				break;
-+			case COLOR_DEPTH_121212:
-+				CCBPC = 5;
-+				break;
-+			case COLOR_DEPTH_161616:
-+				CCBPC = 9;
-+				break;
++	dc_dsc_get_default_config_option(stream->sink->ctx->dc, &dsc_options);
++	dsc_options.max_target_bpp_limit_override_x16 =
++			stream->sink->edid_caps.panel_patch.max_dsc_target_bpp_limit * 16;
 +
-+			case COLOR_DEPTH_UNDEFINED:
-+			case COLOR_DEPTH_666:
-+#ifdef CONFIG_DRM_AMD_DC_DCN2_0
-+			case COLOR_DEPTH_999:
-+			case COLOR_DEPTH_111111:
-+#endif
-+			case COLOR_DEPTH_141414:
-+			default:
-+				break;
-+			}
++	if (dc_dsc_compute_config(
++			stream->sink->ctx->dc->res_pool->dscs[0],
++			&stream->sink->dsc_caps.dsc_dec_caps,
++			&dsc_options,
++			frl_conv_dsc_bw_in_kbps,
++			&stream->timing,
++			dc_link_get_highest_encoding_format(aconnector->dc_link),
++			&stream->timing.dsc_cfg)) {
++		// The timing can enable dsc
++		if (stream->sink->dsc_caps.dsc_dec_caps.is_vic_all_bpp && min_bpp_x16 <= stream->timing.dsc_cfg.bits_per_pixel) {
++			// with all supported bpp within the range limit
++			params->bw_range.max_target_bpp_x16 = min(stream->timing.dsc_cfg.bits_per_pixel, dsc_policy->max_target_bpp * 16);
++			params->bw_range.min_target_bpp_x16 = min_bpp_x16;
++			params->bw_range.max_kbps = (params->bw_range.max_target_bpp_x16 * stream->timing.pix_clk_100hz + 159) / 160;
++			params->bw_range.min_kbps = (params->bw_range.min_target_bpp_x16 * stream->timing.pix_clk_100hz + 159) / 160;
++		} else if (!stream->sink->dsc_caps.dsc_dec_caps.is_vic_all_bpp &&
++				min_bpp_x16 <= stream->timing.dsc_cfg.bits_per_pixel &&
++				max_bpp_x16 >= stream->timing.dsc_cfg.bits_per_pixel) {
++			// with selected bpp only within the range limit
++			params->bw_range.max_target_bpp_x16 = stream->timing.dsc_cfg.bits_per_pixel;
++			params->bw_range.max_kbps = (params->bw_range.max_target_bpp_x16 * stream->timing.pix_clk_100hz + 159) / 160;
++			params->bw_range.min_target_bpp_x16 = params->bw_range.max_target_bpp_x16;
++			params->bw_range.min_kbps = params->bw_range.max_kbps;
++		}
++	}
++}
 +
-+			info_packet->sb[5] = (uint8_t)((info_packet->sb[5] & ~0xF0) | (CCBPC << 4));
- 		}
+ static void log_dsc_params(int count, struct dsc_mst_fairness_vars *vars, int k)
+ {
+ 	int i;
+@@ -1199,6 +1270,8 @@ static int compute_mst_dsc_configs_for_link(struct drm_atomic_state *state,
+ 	bool debugfs_overwrite = false;
+ 	uint16_t fec_overhead_multiplier_x1000 = get_fec_overhead_multiplier(dc_link);
+ 	struct drm_connector_state *new_conn_state;
++	bool is_frl_endpoint_present;
++	uint32_t frl_conv_bw_in_kbps, frl_conv_dsc_bw_in_kbps;
  
--		if (hdmi_vic_mode)
--			info_packet->sb[5] = stream->timing.hdmi_vic;
--
- 		info_packet->hb0 = HDMI_INFOFRAME_TYPE_VENDOR;
- 		info_packet->hb1 = 0x01;
- 		info_packet->hb2 = (uint8_t) (length);
+ 	memset(params, 0, sizeof(params));
  
-+
-+
- 		checksum += info_packet->hb0;
- 		checksum += info_packet->hb1;
- 		checksum += info_packet->hb2;
+@@ -1244,6 +1317,12 @@ static int compute_mst_dsc_configs_for_link(struct drm_atomic_state *state,
+ 		params[count].bpp_overwrite = aconnector->dsc_settings.dsc_bits_per_pixel;
+ 		params[count].compression_possible = stream->sink->dsc_caps.dsc_dec_caps.is_dsc_supported;
+ 		dc_dsc_get_policy_for_timing(params[count].timing, 0, &dsc_policy, dc_link_get_highest_encoding_format(stream->link));
++		is_frl_endpoint_present = get_conv_frl_bw(aconnector, &frl_conv_bw_in_kbps, &frl_conv_dsc_bw_in_kbps);
++		if (stream->sink->dsc_caps.dsc_dec_caps.is_dsc_supported &&
++				is_frl_endpoint_present &&
++				frl_conv_dsc_bw_in_kbps &&
++				stream->sink->dsc_caps.dsc_dec_caps.is_frl)
++			build_frl_mst_dsc_params(aconnector, stream, &dsc_policy, &params[count], frl_conv_dsc_bw_in_kbps);
+ 		if (!dc_dsc_compute_bandwidth_range(
+ 				stream->sink->ctx->dc->res_pool->dscs[0],
+ 				stream->sink->ctx->dc->debug.dsc_min_slice_height_override,
 -- 
 2.54.0
 
