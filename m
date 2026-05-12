@@ -2,51 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MGZRJ+U3A2qK1wEAu9opvQ
+	id kBf7Auo3A2qK1wEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 16:23:33 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 16:23:38 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F167552257C
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 16:23:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6314952259B
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 May 2026 16:23:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01D8D10EB58;
-	Tue, 12 May 2026 14:23:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74C2710EB66;
+	Tue, 12 May 2026 14:23:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qOpDeeOU";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="J2r95AY3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011048.outbound.protection.outlook.com
- [40.93.194.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C21F510EB58
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2026 14:23:28 +0000 (UTC)
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010017.outbound.protection.outlook.com
+ [40.93.198.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 532EE10EB60
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 May 2026 14:23:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SBbMQ4cN6ZbSn3eLxlIM8PIOMk2t7uYujW812dWHZR2+vUwJ4TRg1Jz7mhdpxY7Q2MJ4U1HdRtuIfE0YRih7Ubs7JVmXP3Kez0729JAvBSnmaNXyINw/e8qLoX6NIQtu8Vl8hKTa/IhokFMKWE1CMGteP2HWlxIAQWYBru3D+MXsi3Fg8JK4e3hw/JJ80zid1n+5yLjlxfVbtuqpF6YcbBuGPtSNLJlkpI/3QP39VEr8tNTp0qKJzKE5InzpbFKyPhVRusOKrpoIKSkeN7LwbRzzi4DNGa0yU6QDAHARRB+dJr+m9LLJyQGKXfbcigAgWGhlUSJcyAd8BTLeovdKNQ==
+ b=r92yKzXO9udfAbdT9gynaFoEG7bdFj2Z1H9IER6b+hVRC19pqrDFJGpYfNBL+PiN7SDk5qN/78IHZdjaBiYXfaR8UUHZvl/lTu74VlJsWddxruIIBnNDd/Ds69lVMih2116xg+AXqJAU+VFZ35p0+HlNJMPYgnJWLC6GaWFiepmgO/87jGfyspsnJ7++QXo69fPkLbREmruY2m+78nMY5gxHH3Et373Z6u7DDm2i0AXkrBXXIXEMK7N7XacnoqaZgvlF6/VbYMGdEzSof1x3YYrLs6nhhEArvovvLU9MNrYPAT1sI8zlEhEinj8OKf57YoTOfUD2Zrn7BAHqYe5fhA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s1YzyB8yl/D9WlIlmDk4m64yahBe3cLzlW/sGYWVK7U=;
- b=JJ13dT3rMwqbwqIIVfiVuMKxlEGYYXSM/mC5qaDzulPckqbe/qjza4yMjNFvflV+S6ebqocb9QoSEvWZ0FGw4ee89eHymLxmld4w9vxILW2+IFJHe3GkwlJ8x9nOqjBuldZ+U74VhS6bmflxkYO6RuRw0SfvUcNDfQBYlYuPtFBb5baTyfnuh61vX0TQaxyPHbH8fcHaiXYgfEmAybPP29D9XcbPAooZS/5/7toUl/y4U0ACCiD9jnmOfLei6kf1VfAz0lsFmHDudj94AoAVZnSN0fWJrl+LlD4QusTzWPgwldtvlCWLFREtLuBsCBlFwKW7C0knCftnPMizxXgzPg==
+ bh=CPn1gIQniGU6/dbbBQKWMbKGELcjI/Pn/7jUsJ0IYy0=;
+ b=RbQ0Jhsptk6THuBF64l/E2o/yJB9g8UyebQdJ4Rou/SuH8BJh216TkcVkNoGZfPy/Af5Jnh97WNT8DdyEsTShIwH/4BwMogtD+ZSXEdJYeG9QtxaptBn+xbq/zxkWPvwLCg6A/KbztXHoD6nCNTKlF2A5Rffh5pSR4lAdY1NRAK8kdaBGpfop14PHCvNZMxKYW06dwaZtdGWL6EOrjc6ib11YFk2vy7Gko/KNAVP8wFDBM62reiGXUlXKEImmzxKsXVai4ApYVOJLjqhjWZCTZ01SzonlEwftsbxTAqTQiTiYeJY0rbG6c8ZP0IpTjCkAviqnpfW2s1AuNdThcrN8A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s1YzyB8yl/D9WlIlmDk4m64yahBe3cLzlW/sGYWVK7U=;
- b=qOpDeeOU4XTnsijwMwBaPXeggN+BA72RRZ8j3ovH6zQoCLdOixxkbb3HY79D0MAydjTbHQqD7p5HMbn7Kl+n+Or+AtKZ9ZQPBuYfpXlrhlll5Iky8f2l+hMSEWPoxSt1pLnk5Cvic/gCpMqxg4/1qAazVXqtDUFRyIZBTvLztug=
-Received: from SJ0PR03CA0141.namprd03.prod.outlook.com (2603:10b6:a03:33c::26)
- by SA3PR12MB7975.namprd12.prod.outlook.com (2603:10b6:806:320::11)
+ bh=CPn1gIQniGU6/dbbBQKWMbKGELcjI/Pn/7jUsJ0IYy0=;
+ b=J2r95AY3ioCv/wV2OyTBn5EMwVCyneJwUKFJRDjDmZBjmuj9KTxYzSCYO0s7K3Cbgyx5vIu0C/APawxxqWot0coRNPXRiMef2Gy9RwpHHFHn4OWemI+Bzstq9pF7Mn2LV/adcZZGU1fz5tNR6G/t/jRiKebYNk94vk0wWo8tUXU=
+Received: from SJ0PR13CA0168.namprd13.prod.outlook.com (2603:10b6:a03:2c7::23)
+ by SA1PR12MB8095.namprd12.prod.outlook.com (2603:10b6:806:33f::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.23; Tue, 12 May
- 2026 14:23:18 +0000
-Received: from SJ5PEPF000001CC.namprd05.prod.outlook.com
- (2603:10b6:a03:33c:cafe::bf) by SJ0PR03CA0141.outlook.office365.com
- (2603:10b6:a03:33c::26) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9891.23 via Frontend Transport; Tue,
- 12 May 2026 14:23:18 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Tue, 12 May
+ 2026 14:23:20 +0000
+Received: from SJ5PEPF000001CE.namprd05.prod.outlook.com
+ (2603:10b6:a03:2c7:cafe::66) by SJ0PR13CA0168.outlook.office365.com
+ (2603:10b6:a03:2c7::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.25.16 via Frontend Transport; Tue, 12
+ May 2026 14:23:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -54,22 +54,27 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
 Received: from satlexmb08.amd.com (165.204.84.17) by
- SJ5PEPF000001CC.mail.protection.outlook.com (10.167.242.41) with Microsoft
+ SJ5PEPF000001CE.mail.protection.outlook.com (10.167.242.38) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.25.13 via Frontend Transport; Tue, 12 May 2026 14:23:17 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
+ 15.21.25.13 via Frontend Transport; Tue, 12 May 2026 14:23:19 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 12 May
- 2026 09:23:16 -0500
+ 2026 09:23:17 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 12 May
+ 2026 09:23:17 -0500
 Received: from hwentlanryzen (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Tue, 12 May 2026 09:23:16 -0500
+ Transport; Tue, 12 May 2026 09:23:17 -0500
 From: Harry Wentland <harry.wentland@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Jerry.Zuo@amd.com>, Harry Wentland <harry.wentland@amd.com>
-Subject: [PATCH v4 02/13] drm/amd/display: Add DML changes to support HDMI FRL
-Date: Tue, 12 May 2026 10:22:56 -0400
-Message-ID: <20260512142308.131260-3-harry.wentland@amd.com>
+Subject: [PATCH v4 03/13] drm/amd/display: add HDMI 2.1 FRL base support to
+ DML 2.0
+Date: Tue, 12 May 2026 10:22:57 -0400
+Message-ID: <20260512142308.131260-4-harry.wentland@amd.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260512142308.131260-1-harry.wentland@amd.com>
 References: <20260512142308.131260-1-harry.wentland@amd.com>
@@ -78,29 +83,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CC:EE_|SA3PR12MB7975:EE_
-X-MS-Office365-Filtering-Correlation-Id: c02ff183-7cd4-4191-7e05-08deb032031b
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CE:EE_|SA1PR12MB8095:EE_
+X-MS-Office365-Filtering-Correlation-Id: c6208e82-c71d-469f-c270-08deb032040c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|376014|82310400026|1800799024|11063799003|3023799003|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: D80FAC+a68aXOivqGcPYNtUbXHNuhRxMp0Q+P6QIRDPZK+Z3t4SWXUQFBaG5uXdfRuDZkoXcOuDcDRNE679IReCPPu2tEiRtJ5E6h8IWz73t1aL3dRLi7GSAAjbRgTRCi22ClvqOYSm/fDFKb6jJ8G7DE62R0SwIdnvLCXPkioOxqj/oKK6ZUE4Brra2ldBOCmJ/6UR84QMwFVEWEib7kmzUY0oWCtjjp0oCe/dpDe7HdT3u7V7iZBTzs++DKX5Fy3dNQZt46PkaQ0VTgUAz+F0LUZHEIARwoKDnMyzt9YpNDSoc+e50UMofJgu/kAPnV48SgMZr2p1A4/Xq5cZhpQYqJYawQAxzu8jhuao6AdJGo9XzCQQz17Py811j7EBYZ7mlFxlqEMWy4BB7qYaqa6dGOFpb1LXOwernIFiCfdebX2yMc+FKEJtqKMRJnj8dCLvuiBfT4AxsNNv3u6jIhmWxNeZdDRslwH1VuUwi5vLe2yDHrC2wG+Bs0nH2V3P1pkbRUqK95+RnrZlPaLV2cwllWfb0YN7e8pXmD8IDnsToOy8R0GJyky1w+6TywDXjpqaYBphTKeuaQABtjKmPzuAo0xW5JalJ3VHCFDBOI3aEHw2+ZSLMx3HI38mIFD/dvYS454dnsOJTlYosc/CEWq67+NV0QZefE6WHjRILvZyOwrKqwEDQO9n4jOvvL99adWMBhZbgNMtBJXyVYmH1gKc8wtUrkq6Dxf85F+461fo=
+ ARA:13230040|1800799024|82310400026|376014|36860700016|3023799003|22082099003|18002099003|56012099003|11063799003;
+X-Microsoft-Antispam-Message-Info: uLVWN1Is4C2k5p6Nl6glo/0/NI++ikijmm77Tc5jIgfwP4bdUTPFikZS+DTFaYJYpp7J3P9apaSkifD05KuQDU0G8OKCTU16oWNzN3twbHDWmTg6MZSNbXNMWqtV72drSTvk7G341iJ1oVcGGFhlt1IZUkXCdpJkN6vaxyXgzcLhNBSBSjKCVhqpLmHuJJ2AP7lnzuOZT4zE4ys0wY2Zoq0UqvHw6l0VtoJM7hBDUCRrXHzAzeauNVgkrULz5Ytn7+FM7KFnTcFWv/owVEVyghH5NkX4As8J1XAHLGfpdGSxkWee0MiFG+KKpXRIc82qaDBeGA9jn0jzdys7sJ0e/uhJGasr5xdZeTfCRGFUTpt/wTMqfUhWBKICZkTkfw3C+xfsP5/b2+FroVlfJCDIT/SC5GinKWydQ1f/YnKaoSo8eHBzruCfhmjb/qx9DknSS4qPNtM4TbyaqrZzIpu1ludrFZpX4wSNASQDH+nYRY9dH/iB2WOMhB+cQt5KElD0X7eaRkKlp5cU4su+f22OQ5RBDoh2BWMgq2iuAxQDtJ0J8qKVxQBbIA9lKEJ8xnUkDsKtc4DwDqMIln71dF3nWE2j9Hrxrd+3efVO+XaQ9kTaN+aToejMq/X6WqWs+/IejAN+qrWD+11Tcwpid1VSGWNMSg5m9Yct3JodTenZxVo8csp+jSKeowGCUWyifrgGnc7iZD/Y6zazEmnPvomYl6hDf8bBqzK86nN/drMsgms=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(376014)(82310400026)(1800799024)(11063799003)(3023799003)(56012099003)(22082099003)(18002099003);
+ SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(3023799003)(22082099003)(18002099003)(56012099003)(11063799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 2aqoHHcV9I6PsfbCVwXtyO4XPdR1kZMUpFJAxrV6fuxhH8iC1fd13f6ttk5g5GLXjQ06taN6wuRyptXTA8i1aSwgMUmgT0WNRUGQNgQ8zzJwUENB/DB/XbgTehYJqJZHIEPD50EH4yFeIFb3q7Nh3MEny8IN4M5CJYZGf1flh5xglB9btRcbhU00Cb5CSD/Mt19CiAexXieoGMZD5lvX2+8qBCS4Revwr/FG7hB14OHH5vn2EeL6MLBW7vCoW7t8YIZYVF8dfU/n0tySj62ZhHOnBrAe7hB+BztRAcYdv+FPTuhBeXSHUBJwUURsJrVZeXD+uIX4oAIPJjYHIfnxbE5rf+ph176bn7TgDw0llD8d0MEGpOO3CJTGGiLdLExKPVo7ik3mq4077G/HvGedWJ4TrKmsX/cAgRgBXuVgIPhpPRM6o5aFjttO3/5nFER0
+X-MS-Exchange-AntiSpam-MessageData-0: yqQSkyQb5lebD6ZS+Qx5oe8FwlhDPL4Dpfdfjst8p1GxEmwP+/z2qwvxzs+zlUqZVGvXkYL9Zq6FiDUlzoV1ODlMquuKlzMpmnAgzNZ5FjJNndLYBDeKE2OD0qbGLh3zJEIikgiLsi6nHQSsidHdHY+cAMkzciQF+5/AOV3VJj45HHsUau8CsXWUoEB9kh0BTN43qqndvKYteC6gjbmbmOUB/VHuM8InBmH3Yx9RvwpUOEZ1qozqzWPRW5FEFV9thYgi8jS1rBfqkiAB3U4NArKUbdFhOruYngybeQQqJPu11tlqg/80M9w4/h+gR/U0/jMD/RptaEPxmAyfFaWydiHbI+X3Dxckkt68CHBI3lMgmdRlq/neWfxsaJDjaOeTQKV1uC8i63pRFMAwqx9h+ZU7YXDd5z+YOwdaBw9VwNC7wbiZDnowrJNSRbOnfR4s
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 14:23:17.8823 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c02ff183-7cd4-4191-7e05-08deb032031b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2026 14:23:19.4610 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6208e82-c71d-469f-c270-08deb032040c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CC.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CE.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7975
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8095
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,7 +119,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: F167552257C
+X-Rspamd-Queue-Id: 6314952259B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
@@ -137,317 +142,101 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:mid,amd.com:dkim];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:dkim];
 	NEURAL_HAM(-0.00)[-0.999];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Action: no action
 
-This adds DML support for HDMI FRL.
-
-Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+Add HDMI FRL bits to DML 2.0
 ---
- drivers/gpu/drm/amd/display/dc/dml/Makefile   |   3 +
- .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.c  |   5 +
- .../drm/amd/display/dc/dml/dcn30/dcn30_fpu.c  |  89 +++
- .../drm/amd/display/dc/dml/dcn30/dcn30_fpu.h  |  22 +
- .../dc/dml/dcn30/display_mode_vba_30.c        | 277 +++++++-
- .../amd/display/dc/dml/dcn302/dcn302_fpu.c    |   1 +
- .../amd/display/dc/dml/dcn303/dcn303_fpu.c    |   1 +
- .../dc/dml/dcn31/display_mode_vba_31.c        | 240 +++++++
- .../dc/dml/dcn314/display_mode_vba_314.c      | 238 +++++++
- .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.c  |  10 +
- .../drm/amd/display/dc/dml/dcn32/dcn32_fpu.h  |   2 +
- .../dc/dml/dcn32/display_mode_vba_32.c        |  16 +-
- .../dc/dml/dcn32/display_mode_vba_util_32.c   | 124 +++-
- .../amd/display/dc/dml/display_mode_enums.h   |   1 +
- .../drm/amd/display/dc/dml/dml1_frl_cap_chk.c | 589 ++++++++++++++++++
- .../drm/amd/display/dc/dml/dml1_frl_cap_chk.h |   9 -
- 16 files changed, 1612 insertions(+), 15 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/dc/dml/dml1_frl_cap_chk.c
+ .../gpu/drm/amd/display/dc/dml2_0/Makefile    |   2 +
+ .../amd/display/dc/dml2_0/display_mode_core.c | 104 ++++-
+ .../amd/display/dc/dml2_0/display_mode_util.c |   3 +
+ .../dml2_0/dml21/dml21_translation_helper.c   |   4 +
+ .../dml21/src/dml2_core/dml2_core_dcn4.c      |   1 +
+ .../src/dml2_core/dml2_core_dcn4_calcs.c      |  29 +-
+ .../src/dml2_core/dml2_core_shared_types.h    |   3 +
+ .../lib_frl_cap_check.c                       | 396 +++++++++++++++++
+ .../lib_frl_cap_check.h                       |  90 ++++
+ .../dc/dml2_0/dml2_translation_helper.c       |   4 +
+ .../drm/amd/display/dc/dml2_0/dml2_utils.c    |   2 +
+ .../amd/display/dc/dml2_0/dml_frl_cap_chk.c   | 413 ++++++++++++++++++
+ .../amd/display/dc/dml2_0/dml_frl_cap_chk.h   | 109 +++++
+ 13 files changed, 1153 insertions(+), 7 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_standalone_libraries/lib_frl_cap_check.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_standalone_libraries/lib_frl_cap_check.h
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml2_0/dml_frl_cap_chk.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml2_0/dml_frl_cap_chk.h
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-index 268b5fbdb48b..10d4ace04d4f 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-@@ -78,6 +78,7 @@ CFLAGS_$(AMDDALPATH)/dc/dml/calcs/dcn_calcs.o := $(dml_ccflags)
- CFLAGS_$(AMDDALPATH)/dc/dml/calcs/dcn_calc_auto.o := $(dml_ccflags)
- CFLAGS_$(AMDDALPATH)/dc/dml/calcs/dcn_calc_math.o := $(dml_ccflags) -Wno-tautological-compare
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/display_mode_vba.o := $(dml_rcflags)
-+CFLAGS_$(AMDDALPATH)/dc/dml/dml1_frl_cap_chk.o := $(dml_ccflags)
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn20/display_mode_vba_20.o := $(dml_rcflags)
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn20/display_rq_dlg_calc_20.o := $(dml_rcflags)
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dcn20/display_mode_vba_20v2.o := $(dml_rcflags)
-@@ -117,9 +118,11 @@ CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/display_rq_dlg_helpers.o := $(dml_rcflags)
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/calcs/dcn_calcs.o := $(dml_rcflags)
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/calcs/dcn_calc_auto.o := $(dml_rcflags)
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/calcs/dcn_calc_math.o := $(dml_rcflags)
-+CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/dml1_frl_cap_chk.o := $(dml_rcflags)
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/Makefile b/drivers/gpu/drm/amd/display/dc/dml2_0/Makefile
+index 8a451c36fdb3..44e00c2b7ac7 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/Makefile
+@@ -80,6 +80,7 @@ CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml2_0/dml21/dml21_wrapper.o := $(dml2_ccflags)
+ DML2 = display_mode_core.o display_mode_util.o dml2_wrapper_fpu.o dml2_wrapper.o \
+ 		dml2_utils.o dml2_policy.o dml2_translation_helper.o dml2_dc_resource_mgmt.o dml2_mall_phantom.o \
+ 		dml_display_rq_dlg_calc.o
++DML2 += dml_frl_cap_chk.o
  
- ifdef CONFIG_DRM_AMD_DC_FP
- DML += display_mode_lib.o display_rq_dlg_helpers.o dml1_display_rq_dlg_calc.o
-+DML += dml1_frl_cap_chk.o
- DML += dcn10/dcn10_fpu.o
- DML += dcn20/dcn20_fpu.o
- DML += display_mode_vba.o dcn20/display_rq_dlg_calc_20.o dcn20/display_mode_vba_20.o
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c
-index ed7c989a5b13..5f088d113b9f 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/dcn20_fpu.c
-@@ -1049,6 +1049,8 @@ static bool is_dtbclk_required(struct dc *dc, struct dc_state *context)
- 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
- 		if (!context->res_ctx.pipe_ctx[i].stream)
- 			continue;
-+		if (dc_is_hdmi_frl_signal(context->res_ctx.pipe_ctx[i].stream->signal))
-+			return true;
- 		if (dc->link_srv->dp_is_128b_132b_signal(&context->res_ctx.pipe_ctx[i]))
- 			return true;
- 	}
-@@ -1467,6 +1469,9 @@ int dcn20_populate_dml_pipes_from_context(struct dc *dc,
- 		case SIGNAL_TYPE_DVI_DUAL_LINK:
- 			pipes[pipe_cnt].dout.output_type = dm_hdmi;
- 			break;
-+		case SIGNAL_TYPE_HDMI_FRL:
-+			pipes[pipe_cnt].dout.output_type = dm_hdmifrl;
-+			break;
- 		default:
- 			/* In case there is no signal, set dp with 4 lanes to allow max config */
- 			pipes[pipe_cnt].dout.is_virtual = 1;
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.c
-index 0ba388c6aec1..a690324f78dc 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.c
-@@ -33,6 +33,8 @@
- #include "display_mode_vba_30.h"
- #include "dcn30_fpu.h"
+ AMD_DAL_DML2 = $(addprefix $(AMDDALPATH)/dc/dml2_0/,$(DML2))
  
-+#include "../dml1_frl_cap_chk.h"
-+
- #define REG(reg)\
- 	optc1->tg_regs->reg
+@@ -102,6 +103,7 @@ DML21 += src/dml2_pmo/dml2_pmo_factory.o
+ DML21 += src/dml2_pmo/dml2_pmo_dcn4_fams2.o
+ DML21 += src/dml2_pmo/dml2_pmo_dcn42.o
+ DML21 += src/dml2_standalone_libraries/lib_float_math.o
++DML21 += src/dml2_standalone_libraries/lib_frl_cap_check.o
+ DML21 += dml21_translation_helper.o
+ DML21 += dml21_wrapper.o
+ DML21 += dml21_wrapper_fpu.o
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/display_mode_core.c b/drivers/gpu/drm/amd/display/dc/dml2_0/display_mode_core.c
+index 241406e9e85a..fb4ea2ee28b7 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/display_mode_core.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/display_mode_core.c
+@@ -27,6 +27,8 @@
+ #include "display_mode_core.h"
+ #include "display_mode_util.h"
+ #include "display_mode_lib_defines.h"
++#include "dml_frl_cap_chk.h"
++#include "lib_frl_cap_check.h"
  
-@@ -131,6 +133,7 @@ struct _vcs_dpi_soc_bounding_box_st dcn3_0_soc = {
- 				.phyclk_mhz = 300.0,
- 				.phyclk_d18_mhz = 667.0,
- 				.dscclk_mhz = 405.6,
-+				.dtbclk_mhz = 1217.0,
- 			},
- 		},
+ #include "dml_assert.h"
  
-@@ -741,3 +744,89 @@ void patch_dcn30_soc_bounding_box(struct dc *dc, struct _vcs_dpi_soc_bounding_bo
- 		}
- 	}
- }
-+
-+#undef DC_LOGGER
-+#define DC_LOGGER \
-+		enc3->base.ctx->logger
-+
-+#define hdmi_frl_print(str, ...) {DC_LOG_HDMI_FRL(str, ##__VA_ARGS__); }
-+
-+#define DEBUG_FRL_CAP_CHK 1
-+
-+void hpo_fpu_enc3_validate_hdmi_frl_output_link(struct hpo_frl_stream_encoder *enc,
-+						struct dc_hdmi_frl_link_settings *frl_link_settings,
-+						struct frl_cap_chk_params *frl_params,
-+						const struct dc_crtc_timing *timing,
-+						unsigned int dsc_max_rate)
-+{
-+	(void)enc;
-+	dc_assert_fp_enabled();
-+
-+	switch (frl_link_settings->frl_link_rate) {
-+	case HDMI_FRL_LINK_RATE_3GBPS:
-+		frl_params->r_bit_nominal = 3.0e9;
-+		break;
-+	case HDMI_FRL_LINK_RATE_6GBPS:
-+	case HDMI_FRL_LINK_RATE_6GBPS_4LANE:
-+		frl_params->r_bit_nominal = 6.0e9;
-+		break;
-+	case HDMI_FRL_LINK_RATE_8GBPS:
-+		frl_params->r_bit_nominal = 8.0e9;
-+		break;
-+	case HDMI_FRL_LINK_RATE_10GBPS:
-+	default:
-+		frl_params->r_bit_nominal = 10.0e9;
-+		break;
-+	case HDMI_FRL_LINK_RATE_12GBPS:
-+		frl_params->r_bit_nominal = 12.0e9;
-+		break;
-+	}
-+
-+	frl_params->f_pixel_clock_nominal = (double)timing->pix_clk_100hz * 100;
-+	frl_params->h_active = timing->h_addressable + timing->h_border_left + timing->h_border_right;
-+	frl_params->h_blank = timing->h_total - frl_params->h_active;
-+	frl_params->vic = timing->vic;
-+}
-+
-+void hpo_fpu_enc3_validate_hdmi_frl_output_timing(
-+		const struct dc_crtc_timing *timing,
-+		const struct audio_check *audio,
-+		struct frl_cap_chk_params *frl_params)
-+{
-+	dc_assert_fp_enabled();
-+
-+	if (timing->flags.DSC) {
-+		frl_params->compressed = true;
-+	} else {
-+		frl_params->compressed = false;
-+	}
-+
-+	frl_params->audio_packet_type = audio->audio_packet_type;
-+	frl_params->f_audio = audio->max_audiosample_rate;
-+	frl_params->acat = audio->acat;
-+}
-+
-+enum frl_cap_chk_result frl_fpu_cap_chk_common(struct hpo_frl_stream_encoder *enc,
-+					       struct frl_cap_chk_intermediates *inter,
-+					       struct frl_cap_chk_params *params)
-+{
-+	(void)enc;
-+	return dml1_frl_cap_chk_common(inter, params);
-+}
-+
-+
-+enum frl_cap_chk_result frl_fpu_cap_chk_uncompressed(struct hpo_frl_stream_encoder *enc,
-+						     struct frl_cap_chk_params *params,
-+						     struct frl_cap_chk_intermediates *inter)
-+{
-+	(void)enc;
-+	return dml1_frl_cap_chk_uncompressed(params, inter);
-+}
-+
-+enum frl_cap_chk_result frl_fpu_cap_chk_compressed(struct hpo_frl_stream_encoder *enc,
-+						   struct frl_cap_chk_params *params,
-+						   struct frl_cap_chk_intermediates *inter)
-+{
-+	(void)enc;
-+	return -5;
-+}
-\ No newline at end of file
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.h b/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.h
-index e3b6ad6a8784..e3a46915d168 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/dcn30_fpu.h
-@@ -70,4 +70,26 @@ void dcn3_fpu_build_wm_range_table(struct clk_mgr *base);
- 
- void patch_dcn30_soc_bounding_box(struct dc *dc, struct _vcs_dpi_soc_bounding_box_st *dcn3_0_ip);
- 
-+void hpo_fpu_enc3_validate_hdmi_frl_output_link(struct hpo_frl_stream_encoder *enc,
-+						struct dc_hdmi_frl_link_settings *frl_link_settings,
-+						struct frl_cap_chk_params *frl_params,
-+						const struct dc_crtc_timing *timing,
-+						unsigned int dsc_max_rate);
-+
-+void hpo_fpu_enc3_validate_hdmi_frl_output_timing(const struct dc_crtc_timing *timing,
-+						  const struct audio_check *audio,
-+						  struct frl_cap_chk_params *frl_params);
-+
-+enum frl_cap_chk_result frl_fpu_cap_chk_common(struct hpo_frl_stream_encoder *enc,
-+					       struct frl_cap_chk_intermediates *inter,
-+					       struct frl_cap_chk_params *params);
-+
-+enum frl_cap_chk_result frl_fpu_cap_chk_uncompressed(struct hpo_frl_stream_encoder *enc,
-+						     struct frl_cap_chk_params *params,
-+						     struct frl_cap_chk_intermediates *inter);
-+
-+enum frl_cap_chk_result frl_fpu_cap_chk_compressed(struct hpo_frl_stream_encoder *enc,
-+						   struct frl_cap_chk_params *params,
-+						   struct frl_cap_chk_intermediates *inter);
-+
- #endif /* __DCN30_FPU_H__*/
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-index f0b1bfb408f6..2a309e86f60f 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
-@@ -28,6 +28,8 @@
- #include "display_mode_vba_30.h"
- #include "../dml_inline_defs.h"
- 
-+#include "../dml1_frl_cap_chk.h"
-+
- 
- /*
-  * NOTE:
-@@ -324,6 +326,17 @@ static void CalculateUrgentBurstFactor(
- 		double *UrgentBurstFactorChroma,
- 		bool *NotEnoughUrgentLatencyHiding);
- 
-+static double RequiredDTBCLK(
-+		bool DSCEnable,
-+		double PixelClock,
-+		enum output_format_class OutputFormat,
-+		double OutputBPP,
-+		int DSCSlices,
-+		long HTotal,
-+		long HActive,
-+		int AudioRate,
-+		int AudioLayoutSingle);
-+
- static void UseMinimumDCFCLK(
- 		struct display_mode_lib *mode_lib,
- 		struct vba_vars_st *v,
-@@ -626,6 +639,8 @@ static unsigned int dscceComputeDelay(
+@@ -864,7 +866,7 @@ static dml_uint_t dscceComputeDelay(
+ 	// #all other modes operate at 1 pixel per clock
+ 	else if (pixelFormat == dml_444)
  		pixelsPerClock = 1;
- 	else if (pixelFormat == dm_n422)
+-	else if (pixelFormat == dml_n422)
++	else if (pixelFormat == dml_n422 || Output == dml_hdmifrl)
  		pixelsPerClock = 2;
-+	else if (Output == dm_hdmifrl)
-+		pixelsPerClock = 2;
  	else
  		pixelsPerClock = 1;
+@@ -884,7 +886,7 @@ static dml_uint_t dscceComputeDelay(
+ 	w = sliceWidth / pixelsPerClock;
  
-@@ -646,6 +661,8 @@ static unsigned int dscceComputeDelay(
  	//422 mode has an additional cycle of delay
- 	if (pixelFormat == dm_420 || pixelFormat == dm_444 || pixelFormat == dm_n422)
+-	if (pixelFormat == dml_420 || pixelFormat == dml_444 || pixelFormat == dml_n422)
++	if (pixelFormat == dml_420 || pixelFormat == dml_444 || pixelFormat == dml_n422 || Output == dml_hdmifrl)
  		s = 0;
-+	else if (Output == dm_hdmifrl)
-+		s = 0;
  	else
  		s = 1;
- 
-@@ -716,6 +733,25 @@ static unsigned int dscComputeDelay(enum output_format_class pixelFormat, enum o
+@@ -947,7 +949,7 @@ static dml_uint_t dscComputeDelay(enum dml_output_format_class pixelFormat, enum
  		Delay = Delay + 1;
- 		//   sft
+ 		// sft
  		Delay = Delay + 1;
-+	} else if (Output == dm_hdmifrl && pixelFormat != dm_444) {
-+		//   sfr
-+		Delay = Delay + 2;
-+		//   dsccif
-+		Delay = Delay + 1;
-+		//   dscc - input deserializer
-+		Delay = Delay + 5;
-+		//  dscc - input cdc fifo
-+		Delay = Delay + 25;
-+		//   dscc - cdc uncertainty
-+		Delay = Delay + 2;
-+		//   dscc - output cdc fifo
-+		Delay = Delay + 10;
-+		//   dscc - cdc uncertainty
-+		Delay = Delay + 2;
-+		//   dscc - output serializer
-+		Delay = Delay + 1;
-+		//   sft
-+		Delay = Delay + 1;
- 	} else {
- 		//   sfr
- 		Delay = Delay + 2;
-@@ -2017,6 +2053,8 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
- 				v->DSCFormatFactor = 1;
- 			else if (v->OutputFormat[k] == dm_n422)
- 				v->DSCFormatFactor = 2;
-+			else if (v->Output[k] == dm_hdmifrl)
-+				v->DSCFormatFactor = 2;
- 			else
- 				v->DSCFormatFactor = 1;
- 			if (v->ODMCombineEnabled[k] == dm_odm_combine_mode_4to1)
-@@ -3309,19 +3347,38 @@ static double TruncToValidBPP(
- 	int NonDSCBPP1 = 0;
- 	int NonDSCBPP2 = 0;
+-	} else if (pixelFormat == dml_n422) {
++	} else if (pixelFormat == dml_n422 || (Output == dml_hdmifrl && pixelFormat != dml_444)) {
+ 	// sfr
+ 	Delay = Delay + 2;
+ 	// dsccif
+@@ -2741,20 +2743,44 @@ static dml_float_t TruncToValidBPP(
+ 	dml_uint_t NonDSCBPP1;
+ 	dml_uint_t NonDSCBPP2;
  
-+	enum frl_cap_chk_result hdmifrlresult = { 0 };
-+	struct frl_cap_chk_params hdmifrlparams = { 0 };
-+	struct frl_cap_chk_intermediates hdmifrlinter = { 0 };
++	frl_cap_chk_result hdmifrlresult = FRL_CAP_CHK_OK;
++	frl_cap_chk_params hdmifrlparams = { 0 };
++	frl_cap_chk_intermediates hdmifrlinter = { 0 };
 +
 +	hdmifrlparams.lanes = Lanes;
 +	hdmifrlparams.f_pixel_clock_nominal = PixelClock * 1000000;
@@ -456,1225 +245,74 @@ index f0b1bfb408f6..2a309e86f60f 100644
 +	hdmifrlparams.f_audio = AudioRate * 1000;
 +	hdmifrlparams.h_active = HActive;
 +	hdmifrlparams.h_blank = HTotal - HActive;
++	hdmifrlparams.bpc = (dml_uint_t)(DesiredBPP / 3);
 +	hdmifrlparams.compressed = DSCEnable;
++	hdmifrlparams.slices = DSCSlices;
++	hdmifrlparams.slice_width = (dml_uint_t)(dml_ceil((dml_float_t) HActive / DSCSlices, 1.0));
++	hdmifrlparams.bpp_target = DesiredBPP;
 +
- 	if (Format == dm_420) {
+ 	if (Format == dml_420) {
  		NonDSCBPP0 = 12;
  		NonDSCBPP1 = 15;
  		NonDSCBPP2 = 18;
  		MinDSCBPP = 6;
  		MaxDSCBPP = 1.5 * DSCInputBitPerComponent - 1.0 / 16;
-+		hdmifrlparams.pixel_encoding = HDMI_FRL_PIXEL_ENCODING_420;
-+		hdmifrlparams.bpc = (int)(DesiredBPP * 2 / 3);
- 	} else if (Format == dm_444) {
++		hdmifrlparams.pixel_encoding = PIXEL_ENCODING_420;
++		hdmifrlparams.bpc = (dml_uint_t) (DesiredBPP / 1.5);
+ 	} else if (Format == dml_444) {
  		NonDSCBPP0 = 24;
  		NonDSCBPP1 = 30;
  		NonDSCBPP2 = 36;
  		MinDSCBPP = 8;
  		MaxDSCBPP = 3 * DSCInputBitPerComponent - 1.0 / 16;
-+		hdmifrlparams.pixel_encoding = HDMI_FRL_PIXEL_ENCODING_444;
-+	    hdmifrlparams.bpc = (int)(DesiredBPP / 3);
++		hdmifrlparams.pixel_encoding = PIXEL_ENCODING_444;
++		hdmifrlparams.bpc = (dml_uint_t) (DesiredBPP / 3.0);
  	} else {
-+		hdmifrlparams.pixel_encoding = HDMI_FRL_PIXEL_ENCODING_422;
-+	    hdmifrlparams.bpc = (int)(DesiredBPP / 2);
- 		NonDSCBPP0 = 16;
- 		NonDSCBPP1 = 20;
- 		NonDSCBPP2 = 24;
-@@ -3329,12 +3386,20 @@ static double TruncToValidBPP(
- 		if (Format == dm_n422) {
- 			MinDSCBPP = 7;
+-		if (Output == dml_hdmi) {
++		hdmifrlparams.pixel_encoding = PIXEL_ENCODING_422;
++		hdmifrlparams.bpc = (dml_uint_t) (DesiredBPP / 2.0);
++
++		if (Output == dml_hdmi || Output == dml_hdmifrl) {
+ 			NonDSCBPP0 = 24;
+ 			NonDSCBPP1 = 24;
+ 			NonDSCBPP2 = 24;
+@@ -2763,7 +2789,7 @@ static dml_float_t TruncToValidBPP(
+ 			NonDSCBPP1 = 20;
+ 			NonDSCBPP2 = 24;
+ 	}
+-	if (Format == dml_n422) {
++	if (Format == dml_n422 || Output == dml_hdmifrl) {
+ 		MinDSCBPP = 7;
  			MaxDSCBPP = 2 * DSCInputBitPerComponent - 1.0 / 16.0;
-+		} else if (Output == dm_hdmifrl) {
-+			MinDSCBPP = 7;
-+			MaxDSCBPP = 2 * DSCInputBitPerComponent - 1.0 / 16.0;
  		} else {
- 			MinDSCBPP = 8;
- 			MaxDSCBPP = 3 * DSCInputBitPerComponent - 1.0 / 16.0;
+@@ -2772,7 +2798,11 @@ static dml_float_t TruncToValidBPP(
  		}
  	}
  
-+	if (Output == dm_hdmifrl) {
-+		hdmifrlresult = dml1_frl_cap_chk_inter(&hdmifrlparams, &hdmifrlinter);
-+		MaxLinkBPP = (1 - hdmifrlinter.overhead_max) * dml_min(hdmifrlinter.r_frl_char_min * 16 * Lanes / hdmifrlinter.f_pixel_clock_max + 24 * TB_BORROWED_MAX / HActive,
-+				(hdmifrlinter.r_frl_char_min * 16 * Lanes / hdmifrlinter.f_pixel_clock_max * HTotal - 16 * hdmifrlinter.blank_audio_min) / HActive);
-+	} else
- 	if (DSCEnable && Output == dm_dp) {
- 		MaxLinkBPP = LinkBitRate / 10 * 8 * Lanes / PixelClock * (1 - 2.4 / 100);
- 	} else {
-@@ -3372,6 +3437,8 @@ static double TruncToValidBPP(
- 		if (!((DSCEnable == false && (DesiredBPP == NonDSCBPP2 || DesiredBPP == NonDSCBPP1 || DesiredBPP == NonDSCBPP0 || DesiredBPP == 18)) ||
+-	if (Output == dml_dp2p0) {
++	if (Output == dml_hdmifrl) {
++		hdmifrlresult = frl_cap_chk_inter(&hdmifrlparams, &hdmifrlinter);
++		MaxLinkBPP = (1 - hdmifrlinter.overhead_max) * dml_min(hdmifrlinter.r_frl_char_min * 16.0 * (dml_float_t) Lanes / hdmifrlinter.f_pixel_clock_max + 24.0 * (dml_float_t) TB_BORROWED_MAX / (dml_float_t) HActive,
++														(hdmifrlinter.r_frl_char_min * 16.0 * (dml_float_t)Lanes / hdmifrlinter.f_pixel_clock_max * (dml_float_t) HTotal - 16.0 * (dml_float_t) hdmifrlinter.blank_audio_min) / (dml_float_t) HActive);
++	} else if (Output == dml_dp2p0) {
+ 		MaxLinkBPP = LinkBitRate * Lanes / PixelClock * 128.0 / 132.0 * 383.0 / 384.0 * 65536.0 / 65540.0;
+ 	} else if (DSCEnable && Output == dml_dp) {
+ 		MaxLinkBPP = LinkBitRate / 10.0 * 8.0 * Lanes / PixelClock * (1 - 2.4 / 100);
+@@ -2824,6 +2854,8 @@ static dml_float_t TruncToValidBPP(
+ 		if (!((DSCEnable == false && (DesiredBPP == NonDSCBPP2 || DesiredBPP == NonDSCBPP1 || DesiredBPP == NonDSCBPP0)) ||
  				(DSCEnable && DesiredBPP >= MinDSCBPP && DesiredBPP <= MaxDSCBPP))) {
- 			return BPP_INVALID;
-+		} else if ((Output == dm_hdmifrl && hdmifrlresult != FRL_CAP_CHK_OK) || (Output != dm_hdmifrl && MaxLinkBPP < DesiredBPP)) {
-+			return BPP_INVALID;
+ 			return __DML_DPP_INVALID__;
++		} else if ((Output == dml_hdmifrl && hdmifrlresult != FRL_CAP_CHK_OK) || (Output != dml_hdmifrl && MaxLinkBPP < DesiredBPP)) {
++			return __DML_DPP_INVALID__;
  		} else {
  			return DesiredBPP;
  		}
-@@ -4013,6 +4080,172 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 						// TODO: Need some other way to handle this nonsense
- 						// v->OutputTypeAndRatePerState[i][k] = v->Output[k] & " HBR3"
- 					}
-+				} else if (v->Output[k] == dm_hdmifrl) {
-+					if (v->DSCEnable[k] == true || v->ODMCombineEnablePerState[i][k] == dm_odm_combine_mode_4to1) {
-+						v->RequiresDSC[i][k] = true;
-+						v->LinkDSCEnable = true;
-+						v->RequiresFEC[i][k] = true;
-+					} else {
-+						v->RequiresDSC[i][k] = false;
-+						v->LinkDSCEnable = false;
-+						v->RequiresFEC[i][k] = false;
-+					}
-+					v->Outbpp = BPP_INVALID;
-+					if (v->PHYCLKD18PerState[i] >= 3000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								3000,
-+								3,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "3x3";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 6000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								6000,
-+								3,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "6x3";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 6000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								6000,
-+								4,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "6x4";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 8000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								8000,
-+								4,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState(i, k) = v->Output[k] & "8x4";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 10000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								10000,
-+								4,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						if (v->Outbpp == BPP_INVALID && v->ForcedOutputLinkBPP[k] == 0
-+								&& v->PHYCLKD18PerState[i] < 12000.0 / 18) {
-+							v->RequiresDSC[i][k] = true;
-+							v->LinkDSCEnable = true;
-+							v->RequiresFEC[i][k] = true;
-+							v->Outbpp = TruncToValidBPP(
-+									10000,
-+									4,
-+									v->HTotal[k],
-+									v->HActive[k],
-+									v->PixelClockBackEnd[k],
-+									v->ForcedOutputLinkBPP[k],
-+									v->LinkDSCEnable,
-+									v->Output[k],
-+									v->OutputFormat[k],
-+									v->DSCInputBitPerComponent[k],
-+									v->NumberOfDSCSlices[k],
-+									v->AudioSampleRate[k],
-+									v->AudioSampleLayout[k],
-+									v->ODMCombineEnablePerState[i][k]);
-+						}
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "10x4";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 12000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								12000,
-+								4,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						if (v->Outbpp == BPP_INVALID && v->ForcedOutputLinkBPP[k] == 0) {
-+							v->RequiresDSC[i][k] = true;
-+							v->LinkDSCEnable = true;
-+							v->RequiresFEC[i][k] = true;
-+							v->Outbpp = TruncToValidBPP(
-+									12000,
-+									4,
-+									v->HTotal[k],
-+									v->HActive[k],
-+									v->PixelClockBackEnd[k],
-+									v->ForcedOutputLinkBPP[k],
-+									v->LinkDSCEnable,
-+									v->Output[k],
-+									v->OutputFormat[k],
-+									v->DSCInputBitPerComponent[k],
-+									v->NumberOfDSCSlices[k],
-+									v->AudioSampleRate[k],
-+									v->AudioSampleLayout[k],
-+									v->ODMCombineEnablePerState[i][k]);
-+						}
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "12x4";
-+					}
- 				}
- 			} else {
- 				v->OutputBppPerState[i][k] = 0;
-@@ -4022,7 +4255,7 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 	for (i = start_state; i < v->soc.num_states; i++) {
- 		v->DIOSupport[i] = true;
- 		for (k = 0; k <= v->NumberOfActivePlanes - 1; k++) {
--			if (!v->skip_dio_check[k] && v->BlendingAndTiming[k] == k && (v->Output[k] == dm_dp || v->Output[k] == dm_edp || v->Output[k] == dm_hdmi)
-+			if (!v->skip_dio_check[k] && v->BlendingAndTiming[k] == k && (v->Output[k] == dm_dp || v->Output[k] == dm_edp || v->Output[k] == dm_hdmi || v->Output[k] == dm_hdmifrl)
- 					&& (v->OutputBppPerState[i][k] == 0
- 							|| (v->OutputFormat[k] == dm_420 && v->Interlace[k] == true && v->ProgressiveToInterlaceUnitInOPP == true))) {
- 				v->DIOSupport[i] = false;
-@@ -4030,6 +4263,25 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 		}
- 	}
- 
-+	for (i = start_state; i < v->soc.num_states; ++i) {
-+		v->DTBCLKRequiredMoreThanSupported[i] = false;
-+		for (k = 0; k < v->NumberOfActivePlanes; ++k) {
-+			if (v->BlendingAndTiming[k] == k && v->Output[k] == dm_hdmifrl
-+					&& RequiredDTBCLK(
-+							v->RequiresDSC[i][k],
-+							v->PixelClockBackEnd[k],
-+							v->OutputFormat[k],
-+							v->OutputBppPerState[i][k],
-+							v->NumberOfDSCSlices[k],
-+							v->HTotal[k],
-+							v->HActive[k],
-+							v->AudioSampleRate[k],
-+							v->AudioSampleLayout[k]) > v->DTBCLKPerState[i]) {
-+				v->DTBCLKRequiredMoreThanSupported[i] = true;
-+			}
-+		}
-+	}
-+
- 	for (i = start_state; i < v->soc.num_states; ++i) {
- 		v->ODMCombine4To1SupportCheckOK[i] = true;
- 		for (k = 0; k < v->NumberOfActivePlanes; ++k) {
-@@ -6248,6 +6500,29 @@ static double CalculateUrgentLatency(
- 	return ret;
- }
- 
-+static double RequiredDTBCLK(
-+		bool DSCEnable,
-+		double PixelClock,
-+		enum output_format_class OutputFormat,
-+		double OutputBPP,
-+		int DSCSlices,
-+		long HTotal,
-+		long HActive,
-+		int AudioRate,
-+		int AudioLayout)
-+{
-+	if (DSCEnable != true) {
-+		return dml_max(PixelClock / 4.0 * OutputBPP / 24.0, 25.0);
-+	} else {
-+		double PixelWordRate = PixelClock /  (OutputFormat == dm_444 ? 1 : 2);
-+		double HCActive = dml_ceil(DSCSlices * dml_ceil(OutputBPP * dml_ceil(HActive / DSCSlices, 1) / 8.0, 1) / 3.0, 1);
-+		double HCBlank = 64 + 32 * dml_ceil((double)AudioRate * (AudioLayout == 1 ? 1.0 : 0.25) * HTotal / (PixelClock * 1000), 1);
-+		double AverageTribyteRate = PixelWordRate * (HCActive + HCBlank) / HTotal;
-+		double HActiveTribyteRate = PixelWordRate * HCActive / HActive;
-+		return dml_max4(PixelWordRate / 4.0, AverageTribyteRate / 4.0, HActiveTribyteRate / 4.0, 25.0) * 1.002;
-+	}
-+}
-+
- static noinline_for_stack void UseMinimumDCFCLK(
- 		struct display_mode_lib *mode_lib,
- 		struct vba_vars_st *v,
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn302/dcn302_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn302/dcn302_fpu.c
-index 90a7b29ebe74..781bc429807f 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn302/dcn302_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn302/dcn302_fpu.c
-@@ -119,6 +119,7 @@ struct _vcs_dpi_soc_bounding_box_st dcn3_02_soc = {
- 						.phyclk_mhz = 300.0,
- 						.phyclk_d18_mhz = 667.0,
- 						.dscclk_mhz = 405.6,
-+						.dtbclk_mhz = 1217.0,
- 				},
- 		},
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn303/dcn303_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn303/dcn303_fpu.c
-index e42419c7868d..e6d7d67f06a4 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn303/dcn303_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn303/dcn303_fpu.c
-@@ -118,6 +118,7 @@ struct _vcs_dpi_soc_bounding_box_st dcn3_03_soc = {
- 						.phyclk_mhz = 300.0,
- 						.phyclk_d18_mhz = 667.0,
- 						.dscclk_mhz = 405.6,
-+						.dtbclk_mhz = 1217.0,
- 				},
- 		},
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
-index f9224a433220..261d90aaa3ad 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
-@@ -29,6 +29,8 @@
- #include "display_mode_vba_31.h"
- #include "../dml_inline_defs.h"
- 
-+#include "../dml1_frl_cap_chk.h"
-+
- /*
-  * NOTE:
-  *   This file is gcc-parsable HW gospel, coming straight from HW engineers.
-@@ -357,6 +359,17 @@ static void CalculateUrgentBurstFactor(
- 		double *UrgentBurstFactorChroma,
- 		bool *NotEnoughUrgentLatencyHiding);
- 
-+static double RequiredDTBCLK(
-+		bool DSCEnable,
-+		double PixelClock,
-+		enum output_format_class OutputFormat,
-+		double OutputBPP,
-+		int DSCSlices,
-+		int HTotal,
-+		int HActive,
-+		int AudioRate,
-+		int AudioLayoutSingle);
-+
- static void UseMinimumDCFCLK(
- 		struct display_mode_lib *mode_lib,
- 		int MaxPrefetchMode,
-@@ -695,6 +708,8 @@ static unsigned int dscceComputeDelay(
- 		pixelsPerClock = 1;
- 	else if (pixelFormat == dm_n422)
- 		pixelsPerClock = 2;
-+	else if (Output == dm_hdmifrl)
-+		pixelsPerClock = 2;
- 	// #all other modes operate at 1 pixel per clock
- 	else
- 		pixelsPerClock = 1;
-@@ -716,6 +731,8 @@ static unsigned int dscceComputeDelay(
- 	//422 mode has an additional cycle of delay
- 	if (pixelFormat == dm_420 || pixelFormat == dm_444 || pixelFormat == dm_n422)
- 		s = 0;
-+	else if (Output == dm_hdmifrl)
-+		s = 0;
- 	else
- 		s = 1;
- 
-@@ -786,6 +803,25 @@ static unsigned int dscComputeDelay(enum output_format_class pixelFormat, enum o
- 		Delay = Delay + 1;
- 		//   sft
- 		Delay = Delay + 1;
-+	} else if (Output == dm_hdmifrl && pixelFormat != dm_444) {
-+		//   sfr
-+		Delay = Delay + 2;
-+		//   dsccif
-+		Delay = Delay + 1;
-+		//   dscc - input deserializer
-+		Delay = Delay + 5;
-+		//  dscc - input cdc fifo
-+		Delay = Delay + 25;
-+		//   dscc - cdc uncertainty
-+		Delay = Delay + 2;
-+		//   dscc - output cdc fifo
-+		Delay = Delay + 10;
-+		//   dscc - cdc uncertainty
-+		Delay = Delay + 2;
-+		//   dscc - output serializer
-+		Delay = Delay + 1;
-+		//   sft
-+		Delay = Delay + 1;
- 	} else {
- 		//   sfr
- 		Delay = Delay + 2;
-@@ -2243,6 +2279,8 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
- 				v->DSCFormatFactor = 1;
- 			else if (v->OutputFormat[k] == dm_n422)
- 				v->DSCFormatFactor = 2;
-+			else if (v->Output[k] == dm_hdmifrl)
-+				v->DSCFormatFactor = 2;
- 			else
- 				v->DSCFormatFactor = 1;
- 			if (v->ODMCombineEnabled[k] == dm_odm_combine_mode_4to1)
-@@ -3615,19 +3653,38 @@ static double TruncToValidBPP(
- 	int NonDSCBPP1;
- 	int NonDSCBPP2;
- 
-+	enum frl_cap_chk_result hdmifrlresult = FRL_CAP_CHK_OK;
-+	struct frl_cap_chk_params hdmifrlparams = { 0 };
-+	struct frl_cap_chk_intermediates hdmifrlinter = { 0 };
-+
-+	hdmifrlparams.lanes = Lanes;
-+	hdmifrlparams.f_pixel_clock_nominal = PixelClock * 1000000;
-+	hdmifrlparams.r_bit_nominal = LinkBitRate * 1000000;
-+	hdmifrlparams.layout = AudioLayout;
-+	hdmifrlparams.f_audio = AudioRate * 1000;
-+	hdmifrlparams.h_active = HActive;
-+	hdmifrlparams.h_blank = HTotal - HActive;
-+	hdmifrlparams.compressed = DSCEnable;
-+
- 	if (Format == dm_420) {
- 		NonDSCBPP0 = 12;
- 		NonDSCBPP1 = 15;
- 		NonDSCBPP2 = 18;
- 		MinDSCBPP = 6;
- 		MaxDSCBPP = 1.5 * DSCInputBitPerComponent - 1.0 / 16;
-+		hdmifrlparams.pixel_encoding = HDMI_FRL_PIXEL_ENCODING_420;
-+		hdmifrlparams.bpc = (int)(DesiredBPP * 2 / 3);
- 	} else if (Format == dm_444) {
- 		NonDSCBPP0 = 24;
- 		NonDSCBPP1 = 30;
- 		NonDSCBPP2 = 36;
- 		MinDSCBPP = 8;
- 		MaxDSCBPP = 3 * DSCInputBitPerComponent - 1.0 / 16;
-+		hdmifrlparams.pixel_encoding = HDMI_FRL_PIXEL_ENCODING_444;
-+	    hdmifrlparams.bpc = (int)(DesiredBPP / 3);
- 	} else {
-+		hdmifrlparams.pixel_encoding = HDMI_FRL_PIXEL_ENCODING_422;
-+	    hdmifrlparams.bpc = (int)(DesiredBPP / 2);
- 
- 		NonDSCBPP0 = 16;
- 		NonDSCBPP1 = 20;
-@@ -3636,12 +3693,22 @@ static double TruncToValidBPP(
- 		if (Format == dm_n422) {
- 			MinDSCBPP = 7;
- 			MaxDSCBPP = 2 * DSCInputBitPerComponent - 1.0 / 16.0;
-+		} else if (Output == dm_hdmifrl) {
-+			MinDSCBPP = 7;
-+			MaxDSCBPP = 2 * DSCInputBitPerComponent - 1.0 / 16.0;
- 		} else {
- 			MinDSCBPP = 8;
- 			MaxDSCBPP = 3 * DSCInputBitPerComponent - 1.0 / 16.0;
- 		}
- 	}
- 
-+	if (Output == dm_hdmifrl) {
-+		hdmifrlresult = dml1_frl_cap_chk_inter(&hdmifrlparams, &hdmifrlinter);
-+		MaxLinkBPP = (1 - hdmifrlinter.overhead_max)
-+				* dml_min(
-+						hdmifrlinter.r_frl_char_min * 16 * Lanes / hdmifrlinter.f_pixel_clock_max + 24 * TB_BORROWED_MAX / HActive,
-+						(hdmifrlinter.r_frl_char_min * 16 * Lanes / hdmifrlinter.f_pixel_clock_max * HTotal - 16 * hdmifrlinter.blank_audio_min) / HActive);
-+	} else
- 	if (DSCEnable && Output == dm_dp) {
- 		MaxLinkBPP = LinkBitRate / 10 * 8 * Lanes / PixelClock * (1 - 2.4 / 100);
- 	} else {
-@@ -3678,6 +3745,8 @@ static double TruncToValidBPP(
- 		if (!((DSCEnable == false && (DesiredBPP == NonDSCBPP2 || DesiredBPP == NonDSCBPP1 || DesiredBPP <= NonDSCBPP0))
- 				|| (DSCEnable && DesiredBPP >= MinDSCBPP && DesiredBPP <= MaxDSCBPP))) {
- 			return BPP_INVALID;
-+		} else if ((Output == dm_hdmifrl && hdmifrlresult != FRL_CAP_CHK_OK) || (Output != dm_hdmifrl && MaxLinkBPP < DesiredBPP)) {
-+			return BPP_INVALID;
- 		} else {
- 			return DesiredBPP;
- 		}
-@@ -4105,6 +4174,7 @@ void dml31_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 
- 				if (v->ODMCombinePolicy == dm_odm_combine_policy_none
- 						|| !(v->Output[k] == dm_dp ||
-+						     v->Output[k] == dm_hdmifrl ||
- 						     v->Output[k] == dm_dp2p0 ||
- 						     v->Output[k] == dm_edp)) {
- 					v->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_disabled;
-@@ -4529,6 +4599,131 @@ void dml31_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 							// v->OutputTypeAndRatePerState[i][k] = v->Output[k] & " HBR3"
- 						}
- 					}
-+				} else if (v->Output[k] == dm_hdmifrl) {
-+					if (v->DSCEnable[k] == true) {
-+						v->RequiresDSC[i][k] = true;
-+						v->LinkDSCEnable = true;
-+						v->RequiresFEC[i][k] = true;
-+					} else {
-+						v->RequiresDSC[i][k] = false;
-+						v->LinkDSCEnable = false;
-+						v->RequiresFEC[i][k] = false;
-+					}
-+					v->Outbpp = BPP_INVALID;
-+					if (v->PHYCLKD18PerState[i] >= 3000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								3000,
-+								3,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "3x3";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 6000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								6000,
-+								3,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "6x3";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 6000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								6000,
-+								4,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "6x4";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 8000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								8000,
-+								4,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState(i, k) = v->Output[k] & "8x4";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 10000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								10000,
-+								4,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "10x4";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 12000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								12000,
-+								4,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "12x4";
-+					}
- 				}
- 			} else {
- 				v->OutputBppPerState[i][k] = 0;
-@@ -4542,6 +4737,7 @@ void dml31_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 			if (v->BlendingAndTiming[k] == k
- 					&& (v->Output[k] == dm_dp ||
- 					    v->Output[k] == dm_edp ||
-+					    v->Output[k] == dm_hdmifrl ||
- 					    v->Output[k] == dm_hdmi) && v->OutputBppPerState[i][k] == 0) {
- 				v->LinkCapacitySupport[i] = false;
- 			}
-@@ -4553,6 +4749,7 @@ void dml31_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 		if (v->BlendingAndTiming[k] == k
- 				&& (v->Output[k] == dm_dp ||
- 				    v->Output[k] == dm_edp ||
-+				    v->Output[k] == dm_hdmifrl ||
- 				    v->Output[k] == dm_hdmi)) {
- 			if (v->OutputFormat[k] == dm_420 && v->Interlace[k] == 1 && v->ProgressiveToInterlaceUnitInOPP == true) {
- 				P2IWith420 = true;
-@@ -4564,11 +4761,31 @@ void dml31_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 		}
- 	}
- 
-+	for (i = 0; i < v->soc.num_states; ++i) {
-+		v->DTBCLKRequiredMoreThanSupported[i] = false;
-+		for (k = 0; k < v->NumberOfActivePlanes; ++k) {
-+			if (v->BlendingAndTiming[k] == k && v->Output[k] == dm_hdmifrl
-+					&& RequiredDTBCLK(
-+							v->RequiresDSC[i][k],
-+							v->PixelClockBackEnd[k],
-+							v->OutputFormat[k],
-+							v->OutputBppPerState[i][k],
-+							v->NumberOfDSCSlices[k],
-+							v->HTotal[k],
-+							v->HActive[k],
-+							v->AudioSampleRate[k],
-+							v->AudioSampleLayout[k]) > v->DTBCLKPerState[i]) {
-+				v->DTBCLKRequiredMoreThanSupported[i] = true;
-+			}
-+		}
-+	}
-+
- 	for (i = 0; i < v->soc.num_states; ++i) {
- 		v->ODMCombine4To1SupportCheckOK[i] = true;
- 		for (k = 0; k < v->NumberOfActivePlanes; ++k) {
- 			if (v->BlendingAndTiming[k] == k && v->ODMCombineEnablePerState[i][k] == dm_odm_combine_mode_4to1
- 					&& (v->ODMCombine4To1Supported == false || v->Output[k] == dm_dp || v->Output[k] == dm_edp
-+							|| (v->Output[k] == dm_hdmifrl && v->DSCEnable[k] == false)
- 							|| v->Output[k] == dm_hdmi)) {
- 				v->ODMCombine4To1SupportCheckOK[i] = false;
- 			}
-@@ -7055,6 +7272,29 @@ static double CalculateUrgentLatency(
- 	return ret;
- }
- 
-+static double RequiredDTBCLK(
-+		bool DSCEnable,
-+		double PixelClock,
-+		enum output_format_class OutputFormat,
-+		double OutputBPP,
-+		int DSCSlices,
-+		int HTotal,
-+		int HActive,
-+		int AudioRate,
-+		int AudioLayout)
-+{
-+	if (DSCEnable != true) {
-+		return dml_max(PixelClock / 4.0 * OutputBPP / 24.0, 25.0);
-+	} else {
-+		double PixelWordRate = PixelClock / (OutputFormat == dm_444 ? 1 : 2);
-+		double HCActive = dml_ceil(DSCSlices * dml_ceil(OutputBPP * dml_ceil(HActive / DSCSlices, 1) / 8.0, 1) / 3.0, 1);
-+		double HCBlank = 64 + 32 * dml_ceil(AudioRate * (AudioLayout == 1 ? 1.0 : 0.25) * HTotal / (PixelClock * 1000), 1);
-+		double AverageTribyteRate = PixelWordRate * (HCActive + HCBlank) / HTotal;
-+		double HActiveTribyteRate = PixelWordRate * HCActive / HActive;
-+		return dml_max4(PixelWordRate / 4.0, AverageTribyteRate / 4.0, HActiveTribyteRate / 4.0, 25.0) * 1.002;
-+	}
-+}
-+
- static noinline_for_stack void UseMinimumDCFCLK(
- 		struct display_mode_lib *mode_lib,
- 		int MaxPrefetchMode,
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-index dd9dc0c8cb43..674605d8d4fd 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn314/display_mode_vba_314.c
-@@ -29,6 +29,8 @@
- #include "display_mode_vba_314.h"
- #include "../dml_inline_defs.h"
- 
-+#include "../dml1_frl_cap_chk.h"
-+
- /*
-  * NOTE:
-  *   This file is gcc-parsable HW gospel, coming straight from HW engineers.
-@@ -366,6 +368,17 @@ static void CalculateUrgentBurstFactor(
- 		double *UrgentBurstFactorChroma,
- 		bool *NotEnoughUrgentLatencyHiding);
- 
-+static double RequiredDTBCLK(
-+		bool DSCEnable,
-+		double PixelClock,
-+		enum output_format_class OutputFormat,
-+		double OutputBPP,
-+		int DSCSlices,
-+		int HTotal,
-+		int HActive,
-+		int AudioRate,
-+		int AudioLayoutSingle);
-+
- static void UseMinimumDCFCLK(
- 		struct display_mode_lib *mode_lib,
- 		int MaxPrefetchMode,
-@@ -713,6 +726,8 @@ static unsigned int dscceComputeDelay(
- 		pixelsPerClock = 1;
- 	else if (pixelFormat == dm_n422)
- 		pixelsPerClock = 2;
-+	else if (Output == dm_hdmifrl)
-+		pixelsPerClock = 2;
- 	// #all other modes operate at 1 pixel per clock
- 	else
- 		pixelsPerClock = 1;
-@@ -734,6 +749,8 @@ static unsigned int dscceComputeDelay(
- 	//422 mode has an additional cycle of delay
- 	if (pixelFormat == dm_420 || pixelFormat == dm_444 || pixelFormat == dm_n422)
- 		s = 0;
-+	else if (Output == dm_hdmifrl)
-+		s = 0;
- 	else
- 		s = 1;
- 
-@@ -804,6 +821,25 @@ static unsigned int dscComputeDelay(enum output_format_class pixelFormat, enum o
- 		Delay = Delay + 1;
- 		//   sft
- 		Delay = Delay + 1;
-+	} else if (Output == dm_hdmifrl && pixelFormat != dm_444) {
-+		//   sfr
-+		Delay = Delay + 2;
-+		//   dsccif
-+		Delay = Delay + 1;
-+		//   dscc - input deserializer
-+		Delay = Delay + 5;
-+		//  dscc - input cdc fifo
-+		Delay = Delay + 25;
-+		//   dscc - cdc uncertainty
-+		Delay = Delay + 2;
-+		//   dscc - output cdc fifo
-+		Delay = Delay + 10;
-+		//   dscc - cdc uncertainty
-+		Delay = Delay + 2;
-+		//   dscc - output serializer
-+		Delay = Delay + 1;
-+		//   sft
-+		Delay = Delay + 1;
- 	} else {
- 		//   sfr
- 		Delay = Delay + 2;
-@@ -2261,6 +2297,8 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
- 				v->DSCFormatFactor = 1;
- 			else if (v->OutputFormat[k] == dm_n422)
- 				v->DSCFormatFactor = 2;
-+			else if (v->Output[k] == dm_hdmifrl)
-+				v->DSCFormatFactor = 2;
- 			else
- 				v->DSCFormatFactor = 1;
- 			if (v->ODMCombineEnabled[k] == dm_odm_combine_mode_4to1)
-@@ -3721,19 +3759,38 @@ static double TruncToValidBPP(
- 	int NonDSCBPP1;
- 	int NonDSCBPP2;
- 
-+	enum frl_cap_chk_result hdmifrlresult = FRL_CAP_CHK_OK;
-+	struct frl_cap_chk_params hdmifrlparams = { 0 };
-+	struct frl_cap_chk_intermediates hdmifrlinter = { 0 };
-+
-+	hdmifrlparams.lanes = Lanes;
-+	hdmifrlparams.f_pixel_clock_nominal = PixelClock * 1000000;
-+	hdmifrlparams.r_bit_nominal = LinkBitRate * 1000000;
-+	hdmifrlparams.layout = AudioLayout;
-+	hdmifrlparams.f_audio = AudioRate * 1000;
-+	hdmifrlparams.h_active = HActive;
-+	hdmifrlparams.h_blank = HTotal - HActive;
-+	hdmifrlparams.compressed = DSCEnable;
-+
- 	if (Format == dm_420) {
- 		NonDSCBPP0 = 12;
- 		NonDSCBPP1 = 15;
- 		NonDSCBPP2 = 18;
- 		MinDSCBPP = 6;
- 		MaxDSCBPP = 1.5 * DSCInputBitPerComponent - 1.0 / 16;
-+		hdmifrlparams.pixel_encoding = HDMI_FRL_PIXEL_ENCODING_420;
-+		hdmifrlparams.bpc = (int)(DesiredBPP * 2 / 3);
- 	} else if (Format == dm_444) {
- 		NonDSCBPP0 = 24;
- 		NonDSCBPP1 = 30;
- 		NonDSCBPP2 = 36;
- 		MinDSCBPP = 8;
- 		MaxDSCBPP = 3 * DSCInputBitPerComponent - 1.0 / 16;
-+		hdmifrlparams.pixel_encoding = HDMI_FRL_PIXEL_ENCODING_444;
-+	    hdmifrlparams.bpc = (int)(DesiredBPP / 3);
- 	} else {
-+		hdmifrlparams.pixel_encoding = HDMI_FRL_PIXEL_ENCODING_422;
-+	    hdmifrlparams.bpc = (int)(DesiredBPP / 2);
- 
- 		NonDSCBPP0 = 16;
- 		NonDSCBPP1 = 20;
-@@ -3742,12 +3799,22 @@ static double TruncToValidBPP(
- 		if (Format == dm_n422) {
- 			MinDSCBPP = 7;
- 			MaxDSCBPP = 2 * DSCInputBitPerComponent - 1.0 / 16.0;
-+		} else if (Output == dm_hdmifrl) {
-+			MinDSCBPP = 7;
-+			MaxDSCBPP = 2 * DSCInputBitPerComponent - 1.0 / 16.0;
- 		} else {
- 			MinDSCBPP = 8;
- 			MaxDSCBPP = 3 * DSCInputBitPerComponent - 1.0 / 16.0;
- 		}
- 	}
- 
-+	if (Output == dm_hdmifrl) {
-+		hdmifrlresult = dml1_frl_cap_chk_inter(&hdmifrlparams, &hdmifrlinter);
-+		MaxLinkBPP = (1 - hdmifrlinter.overhead_max)
-+				* dml_min(
-+						hdmifrlinter.r_frl_char_min * 16 * Lanes / hdmifrlinter.f_pixel_clock_max + 24 * TB_BORROWED_MAX / HActive,
-+						(hdmifrlinter.r_frl_char_min * 16 * Lanes / hdmifrlinter.f_pixel_clock_max * HTotal - 16 * hdmifrlinter.blank_audio_min) / HActive);
-+	} else
- 	if (DSCEnable && Output == dm_dp) {
- 		MaxLinkBPP = LinkBitRate / 10 * 8 * Lanes / PixelClock * (1 - 2.4 / 100);
- 	} else {
-@@ -3784,6 +3851,8 @@ static double TruncToValidBPP(
- 		if (!((DSCEnable == false && (DesiredBPP == NonDSCBPP2 || DesiredBPP == NonDSCBPP1 || DesiredBPP <= NonDSCBPP0))
- 				|| (DSCEnable && DesiredBPP >= MinDSCBPP && DesiredBPP <= MaxDSCBPP))) {
- 			return BPP_INVALID;
-+		} else if ((Output == dm_hdmifrl && hdmifrlresult != FRL_CAP_CHK_OK) || (Output != dm_hdmifrl && MaxLinkBPP < DesiredBPP)) {
-+			return BPP_INVALID;
- 		} else {
- 			return DesiredBPP;
- 		}
-@@ -4195,6 +4264,7 @@ void dml314_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_
- 
- 				if (v->ODMCombinePolicy == dm_odm_combine_policy_none
- 						|| !(v->Output[k] == dm_dp ||
-+						     v->Output[k] == dm_hdmifrl ||
- 						     v->Output[k] == dm_dp2p0 ||
- 						     v->Output[k] == dm_edp)) {
- 					v->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_disabled;
-@@ -4616,6 +4686,131 @@ void dml314_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_
- 							// v->OutputTypeAndRatePerState[i][k] = v->Output[k] & " HBR3"
- 						}
- 					}
-+				} else if (v->Output[k] == dm_hdmifrl) {
-+					if (v->DSCEnable[k] == true) {
-+						v->RequiresDSC[i][k] = true;
-+						v->LinkDSCEnable = true;
-+						v->RequiresFEC[i][k] = true;
-+					} else {
-+						v->RequiresDSC[i][k] = false;
-+						v->LinkDSCEnable = false;
-+						v->RequiresFEC[i][k] = false;
-+					}
-+					v->Outbpp = BPP_INVALID;
-+					if (v->PHYCLKD18PerState[i] >= 3000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								3000,
-+								3,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "3x3";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 6000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								6000,
-+								3,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "6x3";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 6000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								6000,
-+								4,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "6x4";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 8000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								8000,
-+								4,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState(i, k) = v->Output[k] & "8x4";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 10000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								10000,
-+								4,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "10x4";
-+					}
-+					if (v->Outbpp == BPP_INVALID && v->PHYCLKD18PerState[i] >= 12000.0 / 18) {
-+						v->Outbpp = TruncToValidBPP(
-+								12000,
-+								4,
-+								v->HTotal[k],
-+								v->HActive[k],
-+								v->PixelClockBackEnd[k],
-+								v->ForcedOutputLinkBPP[k],
-+								v->LinkDSCEnable,
-+								v->Output[k],
-+								v->OutputFormat[k],
-+								v->DSCInputBitPerComponent[k],
-+								v->NumberOfDSCSlices[k],
-+								v->AudioSampleRate[k],
-+								v->AudioSampleLayout[k],
-+								v->ODMCombineEnablePerState[i][k]);
-+						v->OutputBppPerState[i][k] = v->Outbpp;
-+						//v->OutputTypeAndRatePerState[i][k] = v->Output[k] & "12x4";
-+					}
- 				}
- 			} else {
- 				v->OutputBppPerState[i][k] = 0;
-@@ -4629,6 +4824,7 @@ void dml314_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_
- 			if (v->BlendingAndTiming[k] == k
- 					&& (v->Output[k] == dm_dp ||
- 					    v->Output[k] == dm_edp ||
-+					    v->Output[k] == dm_hdmifrl ||
- 					    v->Output[k] == dm_hdmi) && v->OutputBppPerState[i][k] == 0) {
- 				v->LinkCapacitySupport[i] = false;
- 			}
-@@ -4640,6 +4836,7 @@ void dml314_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_
- 		if (v->BlendingAndTiming[k] == k
- 				&& (v->Output[k] == dm_dp ||
- 				    v->Output[k] == dm_edp ||
-+				    v->Output[k] == dm_hdmifrl ||
- 				    v->Output[k] == dm_hdmi)) {
- 			if (v->OutputFormat[k] == dm_420 && v->Interlace[k] == 1 && v->ProgressiveToInterlaceUnitInOPP == true) {
- 				P2IWith420 = true;
-@@ -4651,6 +4848,24 @@ void dml314_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_
- 		}
- 	}
- 
-+	for (i = 0; i < v->soc.num_states; ++i) {
-+		v->DTBCLKRequiredMoreThanSupported[i] = false;
-+		for (k = 0; k < v->NumberOfActivePlanes; ++k) {
-+			if (v->BlendingAndTiming[k] == k && v->Output[k] == dm_hdmifrl
-+					&& RequiredDTBCLK(
-+							v->RequiresDSC[i][k],
-+							v->PixelClockBackEnd[k],
-+							v->OutputFormat[k],
-+							v->OutputBppPerState[i][k],
-+							v->NumberOfDSCSlices[k],
-+							v->HTotal[k],
-+							v->HActive[k],
-+							v->AudioSampleRate[k],
-+							v->AudioSampleLayout[k]) > v->DTBCLKPerState[i]) {
-+				v->DTBCLKRequiredMoreThanSupported[i] = true;
-+			}
-+		}
-+	}
- 
- 	for (i = 0; i < v->soc.num_states; ++i) {
- 		v->ODMCombine4To1SupportCheckOK[i] = true;
-@@ -7141,6 +7356,29 @@ static double CalculateUrgentLatency(
- 	return ret;
- }
- 
-+static double RequiredDTBCLK(
-+		bool DSCEnable,
-+		double PixelClock,
-+		enum output_format_class OutputFormat,
-+		double OutputBPP,
-+		int DSCSlices,
-+		int HTotal,
-+		int HActive,
-+		int AudioRate,
-+		int AudioLayout)
-+{
-+	if (DSCEnable != true) {
-+		return dml_max(PixelClock / 4.0 * OutputBPP / 24.0, 25.0);
-+	} else {
-+		double PixelWordRate = PixelClock / (OutputFormat == dm_444 ? 1 : 2);
-+		double HCActive = dml_ceil(DSCSlices * dml_ceil(OutputBPP * dml_ceil(HActive / DSCSlices, 1) / 8.0, 1) / 3.0, 1);
-+		double HCBlank = 64 + 32 * dml_ceil(AudioRate * (AudioLayout == 1 ? 1.0 : 0.25) * HTotal / (PixelClock * 1000), 1);
-+		double AverageTribyteRate = PixelWordRate * (HCActive + HCBlank) / HTotal;
-+		double HActiveTribyteRate = PixelWordRate * HCActive / HActive;
-+		return dml_max4(PixelWordRate / 4.0, AverageTribyteRate / 4.0, HActiveTribyteRate / 4.0, 25.0) * 1.002;
-+	}
-+}
-+
- static noinline_for_stack void UseMinimumDCFCLK(
- 		struct display_mode_lib *mode_lib,
- 		int MaxPrefetchMode,
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-index 1b1ab6a6d53a..b5bd1358fdfd 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.c
-@@ -1608,6 +1608,8 @@ static bool is_dtbclk_required(struct dc *dc, struct dc_state *context)
- 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
- 		if (!context->res_ctx.pipe_ctx[i].stream)
- 			continue;
-+		if (dc_is_hdmi_frl_signal(context->res_ctx.pipe_ctx[i].stream->signal))
-+			return true;
- 		if (dc->link_srv->dp_is_128b_132b_signal(&context->res_ctx.pipe_ctx[i]))
- 			return true;
- 	}
-@@ -3588,3 +3590,11 @@ void dcn32_override_min_req_memclk(struct dc *dc, struct dc_state *context)
- 		}
- 	}
- }
-+
-+unsigned int dcn32_get_max_dispclk_mhz(struct dc *dc, struct dc_state *context)
-+{
-+	(void)dc;
-+	int max_level = context->bw_ctx.dml.soc.num_states;
-+
-+	return (unsigned int) context->bw_ctx.dml.soc.clock_limits[max_level - 1].dispclk_mhz;
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.h b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.h
-index 273d2bd79d85..ff83fbc811d3 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/dcn32_fpu.h
-@@ -77,4 +77,6 @@ void dcn32_override_min_req_memclk(struct dc *dc, struct dc_state *context);
- 
- void dcn32_set_clock_limits(const struct _vcs_dpi_soc_bounding_box_st *soc_bb);
- 
-+unsigned int dcn32_get_max_dispclk_mhz(struct dc *dc, struct dc_state *context);
-+
- #endif
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
-index 505b5a5f212e..81e608b3cc74 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_32.c
-@@ -29,6 +29,8 @@
- #include "../dml_inline_defs.h"
- #include "display_mode_vba_util_32.h"
- 
-+#include "../dml1_frl_cap_chk.h"
-+
- void dml32_recalculate(struct display_mode_lib *mode_lib);
- static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerformanceCalculation(
- 		struct display_mode_lib *mode_lib);
-@@ -342,6 +344,8 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
- 				mode_lib->vba.DSCFormatFactor = 1;
- 			else if (mode_lib->vba.OutputFormat[k] == dm_n422)
- 				mode_lib->vba.DSCFormatFactor = 2;
-+			else if (mode_lib->vba.Output[k] == dm_hdmifrl)
-+				mode_lib->vba.DSCFormatFactor = 2;
- 			else
- 				mode_lib->vba.DSCFormatFactor = 1;
- 			if (mode_lib->vba.ODMCombineEnabled[k] == dm_odm_combine_mode_4to1)
-@@ -2282,6 +2286,8 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 	for (k = 0; k < mode_lib->vba.NumberOfActiveSurfaces; ++k) {
- 		if (mode_lib->vba.BlendingAndTiming[k] == k) {
- 			v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.TotalNumberOfActiveOTG = v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.TotalNumberOfActiveOTG + 1;
-+			if (mode_lib->vba.Output[k] == dm_hdmifrl)
-+				v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.TotalNumberOfActiveDP2p0 = v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.TotalNumberOfActiveDP2p0 + 1;
- 			if (mode_lib->vba.Output[k] == dm_dp2p0) {
- 				v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.TotalNumberOfActiveDP2p0 = v->dummy_vars.dml32_ModeSupportAndSystemConfigurationFull.TotalNumberOfActiveDP2p0 + 1;
- 				if (mode_lib->vba.OutputMultistreamId[k]
-@@ -2328,6 +2334,7 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 			if (mode_lib->vba.BlendingAndTiming[k] == k
- 				&& (mode_lib->vba.Output[k] == dm_dp || mode_lib->vba.Output[k] == dm_dp2p0
- 					|| mode_lib->vba.Output[k] == dm_edp
-+					|| mode_lib->vba.Output[k] == dm_hdmifrl
- 					|| mode_lib->vba.Output[k] == dm_hdmi)
- 				&& mode_lib->vba.OutputBppPerState[i][k] == 0 &&
- 				(mode_lib->vba.UsesMALLForPStateChange[k] != dm_use_mall_pstate_change_phantom_pipe)) {
-@@ -2353,6 +2360,7 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 		if (mode_lib->vba.BlendingAndTiming[k] == k
- 				&& (mode_lib->vba.Output[k] == dm_dp || mode_lib->vba.Output[k] == dm_dp2p0
- 						|| mode_lib->vba.Output[k] == dm_edp
-+						|| mode_lib->vba.Output[k] == dm_hdmifrl
- 						|| mode_lib->vba.Output[k] == dm_hdmi)) {
- 			if (mode_lib->vba.OutputFormat[k]
- 					== dm_420 && mode_lib->vba.Interlace[k] == 1 &&
-@@ -2388,7 +2396,9 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+@@ -5516,6 +5548,66 @@ static void CalculateOutputLink(
+ 					*OutputRate = dml_output_rate_dp_rate_hbr3;
  				}
  			}
- 
--			if ((mode_lib->vba.Output[k] == dm_edp || mode_lib->vba.Output[k] == dm_hdmi)) {
-+			if ((mode_lib->vba.Output[k] == dm_edp
-+					|| mode_lib->vba.Output[k] == dm_hdmifrl
-+					|| mode_lib->vba.Output[k] == dm_hdmi)) {
- 				if (mode_lib->vba.OutputMultistreamEn[k] == true && mode_lib->vba.OutputMultistreamId[k] == k)
- 					mode_lib->vba.MultistreamWithHDMIOreDP = true;
- 				for (j = 0; j < mode_lib->vba.NumberOfActiveSurfaces; ++j) {
-@@ -2415,6 +2425,7 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 		mode_lib->vba.DTBCLKRequiredMoreThanSupported[i] = false;
- 		for (k = 0; k < mode_lib->vba.NumberOfActiveSurfaces; ++k) {
- 			if (mode_lib->vba.BlendingAndTiming[k] == k
-+					&& mode_lib->vba.Output[k] == dm_hdmifrl
- 					&& dml32_RequiredDTBCLK(mode_lib->vba.RequiresDSC[i][k],
- 							mode_lib->vba.PixelClockBackEnd[k],
- 							mode_lib->vba.OutputFormat[k],
-@@ -2451,6 +2462,7 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 		for (k = 0; k <= mode_lib->vba.NumberOfActiveSurfaces - 1; k++) {
- 			if (mode_lib->vba.BlendingAndTiming[k] == k) {
- 				if (mode_lib->vba.Output[k] == dm_dp || mode_lib->vba.Output[k] == dm_dp2p0
-+						|| mode_lib->vba.Output[k] == dm_hdmifrl
- 						|| mode_lib->vba.Output[k] == dm_edp) {
- 					if (mode_lib->vba.OutputFormat[k] == dm_420) {
- 						mode_lib->vba.DSCFormatFactor = 2;
-@@ -2458,6 +2470,8 @@ void dml32_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 						mode_lib->vba.DSCFormatFactor = 1;
- 					} else if (mode_lib->vba.OutputFormat[k] == dm_n422) {
- 						mode_lib->vba.DSCFormatFactor = 2;
-+					} else if (mode_lib->vba.Output[k] == dm_hdmifrl) {
-+						mode_lib->vba.DSCFormatFactor = 2;
- 					} else {
- 						mode_lib->vba.DSCFormatFactor = 1;
- 					}
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
-index 15f5248340a7..40a0a5815ca5 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn32/display_mode_vba_util_32.c
-@@ -24,6 +24,7 @@
-  */
- #include "display_mode_vba_util_32.h"
- #include "../dml_inline_defs.h"
-+#include "../dml1_frl_cap_chk.h"
- #include "display_mode_vba_32.h"
- #include "../display_mode_lib.h"
- 
-@@ -55,6 +56,8 @@ unsigned int dml32_dscceComputeDelay(
- 
- 	if (pixelFormat == dm_420)
- 		pixelsPerClock = 2;
-+	else if (Output == dm_hdmifrl)
-+		pixelsPerClock = 2;
- 	else if (pixelFormat == dm_n422)
- 		pixelsPerClock = 2;
- 	// #all other modes operate at 1 pixel per clock
-@@ -78,6 +81,8 @@ unsigned int dml32_dscceComputeDelay(
- 	//422 mode has an additional cycle of delay
- 	if (pixelFormat == dm_420 || pixelFormat == dm_444 || pixelFormat == dm_n422)
- 		s = 0;
-+	else if (Output == dm_hdmifrl)
-+		s = 0;
- 	else
- 		s = 1;
- 
-@@ -140,7 +145,7 @@ unsigned int dml32_dscComputeDelay(enum output_format_class pixelFormat, enum ou
- 		Delay = Delay + 1;
- 		//   sft
- 		Delay = Delay + 1;
--	} else if (pixelFormat == dm_n422 || (pixelFormat != dm_444)) {
-+	} else if (pixelFormat == dm_n422 || (Output == dm_hdmifrl && pixelFormat != dm_444)) {
- 		//   sfr
- 		Delay = Delay + 2;
- 		//   dsccif
-@@ -1546,6 +1551,91 @@ void dml32_CalculateOutputLink(
- 					*OutputRate = dm_output_rate_dp_rate_hbr3;
- 				}
- 			}
-+		} else if (Output == dm_hdmifrl) {
-+			if (DSCEnable == true) {
++		} else if (Output == dml_hdmifrl) {
++			if (DSCEnable == dml_dsc_enable) {
 +				*RequiresDSC = true;
 +				LinkDSCEnable = true;
 +				*RequiresFEC = true;
@@ -1685,177 +323,748 @@ index 15f5248340a7..40a0a5815ca5 100644
 +			}
 +			*OutBpp = 0;
 +			if (PHYCLKD18PerState >= 3000 / 18) {
-+				*OutBpp = dml32_TruncToValidBPP(3000, 3, HTotal, HActive, PixelClockBackEnd,
-+						ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat,
-+						DSCInputBitPerComponent, NumberOfDSCSlices, (unsigned int)AudioSampleRate,
-+						AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
++				*OutBpp = TruncToValidBPP(3000, 3, HTotal, HActive, PixelClockBackEnd, ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat, DSCInputBitPerComponent, NumberOfDSCSlices, (dml_uint_t)AudioSampleRate, AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
 +				//OutputTypeAndRate = Output & "3x3";
-+				*OutputType = dm_output_type_hdmifrl;
-+				*OutputRate = dm_output_rate_hdmi_rate_3x3;
++				*OutputType = dml_output_type_hdmifrl;
++				*OutputRate = dml_output_rate_hdmi_rate_3x3;
 +			}
 +			if (*OutBpp == 0 && PHYCLKD18PerState >= 6000 / 18) {
-+				*OutBpp = dml32_TruncToValidBPP(6000, 3, HTotal, HActive, PixelClockBackEnd,
-+						ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat,
-+						DSCInputBitPerComponent, NumberOfDSCSlices, (unsigned int)AudioSampleRate,
-+						AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
++				*OutBpp = TruncToValidBPP(6000, 3, HTotal, HActive, PixelClockBackEnd, ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat, DSCInputBitPerComponent, NumberOfDSCSlices, (dml_uint_t)AudioSampleRate, AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
 +				//OutputTypeAndRate = Output & "6x3";
-+				*OutputType = dm_output_type_hdmifrl;
-+				*OutputRate = dm_output_rate_hdmi_rate_6x3;
++				*OutputType = dml_output_type_hdmifrl;
++				*OutputRate = dml_output_rate_hdmi_rate_6x3;
 +			}
 +			if (*OutBpp == 0 && PHYCLKD18PerState >= 6000 / 18) {
-+				*OutBpp = dml32_TruncToValidBPP(6000, 4, HTotal, HActive, PixelClockBackEnd,
-+						ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat,
-+						DSCInputBitPerComponent, NumberOfDSCSlices, (unsigned int)AudioSampleRate,
-+						AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
++				*OutBpp = TruncToValidBPP(6000, 4, HTotal, HActive, PixelClockBackEnd, ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat, DSCInputBitPerComponent, NumberOfDSCSlices, (dml_uint_t)AudioSampleRate, AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
 +				//OutputTypeAndRate = Output & "6x4";
-+				*OutputType = dm_output_type_hdmifrl;
-+				*OutputRate = dm_output_rate_hdmi_rate_6x4;
++				*OutputType = dml_output_type_hdmifrl;
++				*OutputRate = dml_output_rate_hdmi_rate_6x4;
 +			}
 +			if (*OutBpp == 0 && PHYCLKD18PerState >= 8000 / 18) {
-+				*OutBpp = dml32_TruncToValidBPP(8000, 4, HTotal, HActive, PixelClockBackEnd,
-+						ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat,
-+						DSCInputBitPerComponent, NumberOfDSCSlices, (unsigned int)AudioSampleRate,
-+						AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
++				*OutBpp = TruncToValidBPP(8000, 4, HTotal, HActive, PixelClockBackEnd, ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat, DSCInputBitPerComponent, NumberOfDSCSlices, (dml_uint_t)AudioSampleRate, AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
 +				//OutputTypeAndRate = Output & "8x4";
-+				*OutputType = dm_output_type_hdmifrl;
-+				*OutputRate = dm_output_rate_hdmi_rate_8x4;
++				*OutputType = dml_output_type_hdmifrl;
++				*OutputRate = dml_output_rate_hdmi_rate_8x4;
 +			}
 +			if (*OutBpp == 0 && PHYCLKD18PerState >= 10000 / 18) {
-+				*OutBpp = dml32_TruncToValidBPP(10000, 4, HTotal, HActive, PixelClockBackEnd,
-+						ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat,
-+						DSCInputBitPerComponent, NumberOfDSCSlices, (unsigned int)AudioSampleRate,
-+						AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
-+				if (*OutBpp == 0 && DSCEnable == true && ForcedOutputLinkBPP == 0 &&
-+						PHYCLKD18PerState < 12000 / 18) {
++				*OutBpp = TruncToValidBPP(10000, 4, HTotal, HActive, PixelClockBackEnd, ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat, DSCInputBitPerComponent, NumberOfDSCSlices, (dml_uint_t)AudioSampleRate, AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
++				if (*OutBpp == 0 && DSCEnable == dml_dsc_enable_if_necessary && ForcedOutputLinkBPP == 0 && PHYCLKD18PerState < 12000 / 18) {
 +					*RequiresDSC = true;
 +					LinkDSCEnable = true;
 +					*RequiresFEC = true;
-+					*OutBpp = dml32_TruncToValidBPP(10000, 4, HTotal, HActive, PixelClockBackEnd,
-+							ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat,
-+							DSCInputBitPerComponent, NumberOfDSCSlices, (unsigned int)AudioSampleRate,
-+							AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
++					*OutBpp = TruncToValidBPP(10000, 4, HTotal, HActive, PixelClockBackEnd, ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat, DSCInputBitPerComponent, NumberOfDSCSlices, (dml_uint_t)AudioSampleRate, AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
 +				}
 +				//OutputTypeAndRate = Output & "10x4";
-+				*OutputType = dm_output_type_hdmifrl;
-+				*OutputRate = dm_output_rate_hdmi_rate_10x4;
++				*OutputType = dml_output_type_hdmifrl;
++				*OutputRate = dml_output_rate_hdmi_rate_10x4;
 +			}
 +
 +			if (*OutBpp == 0 && PHYCLKD18PerState >= 12000 / 18) {
-+				*OutBpp = dml32_TruncToValidBPP(12000, 4, HTotal, HActive, PixelClockBackEnd,
-+						ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat,
-+						DSCInputBitPerComponent, NumberOfDSCSlices, (unsigned int)AudioSampleRate,
-+						AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
-+				if (*OutBpp == 0 && DSCEnable == true && ForcedOutputLinkBPP == 0) {
++				*OutBpp = TruncToValidBPP(12000, 4, HTotal, HActive, PixelClockBackEnd, ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat, DSCInputBitPerComponent, NumberOfDSCSlices, (dml_uint_t)AudioSampleRate, AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
++				if (*OutBpp == 0 && DSCEnable == dml_dsc_enable_if_necessary && ForcedOutputLinkBPP == 0) {
 +					*RequiresDSC = true;
 +					LinkDSCEnable = true;
 +					*RequiresFEC = true;
-+					*OutBpp = dml32_TruncToValidBPP(12000, 4, HTotal, HActive, PixelClockBackEnd,
-+							ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat,
-+							DSCInputBitPerComponent, NumberOfDSCSlices, (unsigned int)AudioSampleRate,
-+							AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
++					*OutBpp = TruncToValidBPP(12000, 4, HTotal, HActive, PixelClockBackEnd, ForcedOutputLinkBPP, LinkDSCEnable, Output, OutputFormat, DSCInputBitPerComponent, NumberOfDSCSlices, (dml_uint_t)AudioSampleRate, AudioSampleLayout, ODMModeNoDSC, ODMModeDSC, &dummy);
 +				}
 +				//OutputTypeAndRate = Output & "12x4";
-+				*OutputType = dm_output_type_hdmifrl;
-+				*OutputRate = dm_output_rate_hdmi_rate_12x4;
++				*OutputType = dml_output_type_hdmifrl;
++				*OutputRate = dml_output_rate_hdmi_rate_12x4;
 +			}
  		}
  	}
  }
-@@ -1599,12 +1689,27 @@ double dml32_TruncToValidBPP(
- 	unsigned int   NonDSCBPP2;
- 	unsigned int   NonDSCBPP3 = BPP_INVALID;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/display_mode_util.c b/drivers/gpu/drm/amd/display/dc/dml2_0/display_mode_util.c
+index 3939a0d8b835..a8519f547dce 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/display_mode_util.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/display_mode_util.c
+@@ -393,6 +393,7 @@ void dml_print_mode_support(struct display_mode_lib_st *mode_lib, dml_uint_t j)
+ 	dml_print("DML: MODE SUPPORT:     DISPCLK DPPCLK Support                     : %s\n", mode_lib->ms.support.DISPCLK_DPPCLK_Support[j] == true ? "Supported" : "NOT Supported");
+ 	dml_print("DML: MODE SUPPORT:     Total Available Pipes Support              : %s\n", mode_lib->ms.support.TotalAvailablePipesSupport[j] == true ? "Supported" : "NOT Supported");
+ 	dml_print("DML: MODE SUPPORT:     Number Of OTG Support                      : %s\n", mode_lib->ms.support.NumberOfOTGSupport == true ? "Supported" : "NOT Supported");
++	dml_print("DML: MODE SUPPORT:     Number Of HDMI FRL Support                 : %s\n", mode_lib->ms.support.NumberOfHDMIFRLSupport == true ? "Supported" : "NOT Supported");
+ 	dml_print("DML: MODE SUPPORT:     Number Of DP2p0 Support                    : %s\n", mode_lib->ms.support.NumberOfDP2p0Support == true ? "Supported" : "NOT Supported");
+ 	dml_print("DML: MODE SUPPORT:     Writeback Latency Support                  : %s\n", mode_lib->ms.support.WritebackLatencySupport == true ? "Supported" : "NOT Supported");
+ 	dml_print("DML: MODE SUPPORT:     Writeback Scale Ratio And Taps Support     : %s\n", mode_lib->ms.support.WritebackScaleRatioAndTapsSupport == true ? "Supported" : "NOT Supported");
+@@ -451,6 +452,8 @@ void dml_print_dml_mode_support_info(const struct dml_mode_support_info_st *supp
+ 		dml_print("DML: support: NotEnoughLanesForMSO = 0x%x\n", support->NotEnoughLanesForMSO);
+ 	if (!fail_only || support->NumberOfOTGSupport == 0)
+ 		dml_print("DML: support: NumberOfOTGSupport = 0x%x\n", support->NumberOfOTGSupport);
++	if (!fail_only || support->NumberOfHDMIFRLSupport == 0)
++		dml_print("DML: support: NumberOfHDMIFRLSupport = 0x%x\n", support->NumberOfHDMIFRLSupport);
+ 	if (!fail_only || support->NumberOfDP2p0Support == 0)
+ 		dml_print("DML: support: NumberOfDP2p0Support = 0x%x\n", support->NumberOfDP2p0Support);
+ 	if (!fail_only || support->NonsupportedDSCInputBPC == 1)
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_translation_helper.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_translation_helper.c
+index 25557c99a28e..c86b45bbeb2b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_translation_helper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_translation_helper.c
+@@ -213,6 +213,9 @@ static void populate_dml21_output_config_from_stream_state(struct dml2_link_outp
+ 	case SIGNAL_TYPE_DVI_DUAL_LINK:
+ 		output->output_encoder = dml2_hdmi;
+ 		break;
++	case SIGNAL_TYPE_HDMI_FRL:
++		output->output_encoder = dml2_hdmifrl;
++		break;
+ 	default:
+ 			output->output_encoder = dml2_dp;
+ 	}
+@@ -247,6 +250,7 @@ static void populate_dml21_output_config_from_stream_state(struct dml2_link_outp
+ 	case SIGNAL_TYPE_DISPLAY_PORT_MST:
+ 	case SIGNAL_TYPE_EDP:
+ 	case SIGNAL_TYPE_VIRTUAL:
++	case SIGNAL_TYPE_HDMI_FRL:
+ 	default:
+ 		output->output_dp_link_rate = dml2_dp_rate_na;
+ 		break;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4.c
+index 858e7bbc511f..c983869e0fa3 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4.c
+@@ -66,6 +66,7 @@ struct dml2_core_ip_params core_dcn4_ip_caps_base = {
+ 	.cursor_64bpp_support = true,
+ 	.dynamic_metadata_vm_enabled = false,
  
-+	enum frl_cap_chk_result          hdmifrlresult = FRL_CAP_CHK_OK;
-+	struct frl_cap_chk_params          hdmifrlparams = { 0 };
-+	struct frl_cap_chk_intermediates   hdmifrlinter = { 0 };
++	.max_num_hdmi_frl_outputs = 1,
+ 	.max_num_dp2p0_outputs = 4,
+ 	.max_num_dp2p0_streams = 4,
+ 	.imall_supported = 1,
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
+index 827bd9143c87..f338e733318e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_dcn4_calcs.c
+@@ -7,6 +7,7 @@
+ #include "dml2_core_dcn4_calcs.h"
+ #include "dml2_debug.h"
+ #include "lib_float_math.h"
++#include "lib_frl_cap_check.h"
+ #include "dml_top_types.h"
+ 
+ #define DML2_MAX_FMT_420_BUFFER_WIDTH 4096
+@@ -1294,19 +1295,39 @@ static double TruncToValidBPP(
+ 	unsigned int NonDSCBPP2;
+ 	enum dml2_odm_mode ODMMode;
+ 
++	enum lib_frl_cap_check_status hdmifrlresult = LIB_FRL_CAP_CHECK_OK;
 +
-+	hdmifrlparams.lanes = Lanes;
-+	hdmifrlparams.f_pixel_clock_nominal = PixelClock * 1000000;
-+	hdmifrlparams.r_bit_nominal = LinkBitRate * 1000000;
-+	hdmifrlparams.layout = AudioLayout;
-+	hdmifrlparams.f_audio = AudioRate * 1000;
-+	hdmifrlparams.h_active = HActive;
-+	hdmifrlparams.h_blank = HTotal - HActive;
-+	hdmifrlparams.bpc = (int)(DesiredBPP / 3);
-+	hdmifrlparams.compressed = DSCEnable;
-+
- 	if (Format == dm_420) {
++	l->hdmifrlparams.lanes = (int)Lanes;
++	l->hdmifrlparams.f_pixel_clock_nominal = PixelClock * 1000000;
++	l->hdmifrlparams.r_bit_nominal = LinkBitRate * 1000000;
++	l->hdmifrlparams.layout = (int)AudioLayout;
++	l->hdmifrlparams.f_audio = AudioRate * 1000;
++	l->hdmifrlparams.h_active = (int)HActive;
++	l->hdmifrlparams.h_blank = (int)(HTotal - HActive);
++	l->hdmifrlparams.bpc = (int)(DesiredBPP / 3);
++	l->hdmifrlparams.compressed = DSCEnable;
++	l->hdmifrlparams.slices = (int)DSCSlices;
++	l->hdmifrlparams.slice_width = (int)(math_ceil2((double)HActive / DSCSlices, 1.0));
++	l->hdmifrlparams.bpp_target = DesiredBPP;
+ 	if (Format == dml2_420) {
  		NonDSCBPP0 = 12;
  		NonDSCBPP1 = 15;
  		NonDSCBPP2 = 18;
  		MinDSCBPP = 6;
- 		MaxDSCBPP = 1.5 * DSCInputBitPerComponent - 1.0 / 16;
-+		hdmifrlparams.pixel_encoding = HDMI_FRL_PIXEL_ENCODING_420;
- 	} else if (Format == dm_444) {
- 		NonDSCBPP3 = 18;
+ 		MaxDSCBPP = 16;
++		l->hdmifrlparams.pixel_encoding = LIB_FRL_CAP_CHECK_PIXEL_ENCODING_420;
++		l->hdmifrlparams.bpc = (int)(DesiredBPP / 1.5);
+ 	} else if (Format == dml2_444) {
  		NonDSCBPP0 = 24;
-@@ -1612,8 +1717,10 @@ double dml32_TruncToValidBPP(
+ 		NonDSCBPP1 = 30;
  		NonDSCBPP2 = 36;
  		MinDSCBPP = 8;
- 		MaxDSCBPP = 3 * DSCInputBitPerComponent - 1.0 / 16;
-+		hdmifrlparams.pixel_encoding = HDMI_FRL_PIXEL_ENCODING_444;
+ 		MaxDSCBPP = 16;
++		l->hdmifrlparams.pixel_encoding = LIB_FRL_CAP_CHECK_PIXEL_ENCODING_444;
++		l->hdmifrlparams.bpc = (int)(DesiredBPP / 3.0);
  	} else {
--		if (Output == dm_hdmi) {
-+		hdmifrlparams.pixel_encoding = HDMI_FRL_PIXEL_ENCODING_422;
-+		if (Output == dm_hdmi || Output == dm_hdmifrl) {
++		l->hdmifrlparams.pixel_encoding = LIB_FRL_CAP_CHECK_PIXEL_ENCODING_422;
++		l->hdmifrlparams.bpc = (int)(DesiredBPP / 2.0);
+ 
+ 		if (Output == dml2_hdmi || Output == dml2_hdmifrl) {
  			NonDSCBPP0 = 24;
- 			NonDSCBPP1 = 24;
- 			NonDSCBPP2 = 24;
-@@ -1622,7 +1729,7 @@ double dml32_TruncToValidBPP(
- 			NonDSCBPP1 = 20;
- 			NonDSCBPP2 = 24;
+@@ -1326,7 +1347,11 @@ static double TruncToValidBPP(
  		}
--		if (Format == dm_n422) {
-+		if (Format == dm_n422 || Output == dm_hdmifrl) {
- 			MinDSCBPP = 7;
- 			MaxDSCBPP = 2 * DSCInputBitPerComponent - 1.0 / 16.0;
+ 	}
+ 
+-	if (Output == dml2_dp2p0) {
++	if (Output == dml2_hdmifrl) {
++		hdmifrlresult = frl_cap_check_intermediates(&l->hdmifrlparams, &l->hdmifrlinter);
++		MaxLinkBPP = (1 - l->hdmifrlinter.overhead_max) * math_min2(l->hdmifrlinter.r_frl_char_min * 16.0 * (double)Lanes / l->hdmifrlinter.f_pixel_clock_max + 24.0 * (double)DML2_FRL_CHK_TB_BORROWED_MAX / (double)HActive,
++			(l->hdmifrlinter.r_frl_char_min * 16.0 * (double)Lanes / l->hdmifrlinter.f_pixel_clock_max * (double)HTotal - 16.0 * (double)l->hdmifrlinter.blank_audio_min) / (double)HActive);
++	} else if (Output == dml2_dp2p0) {
+ 		MaxLinkBPP = LinkBitRate * Lanes / PixelClock * 128.0 / 132.0 * 383.0 / 384.0 * 65536.0 / 65540.0;
+ 	} else if (DSCEnable && Output == dml2_dp) {
+ 		MaxLinkBPP = LinkBitRate / 10.0 * 8.0 * Lanes / PixelClock * (1 - 2.4 / 100);
+@@ -1364,6 +1389,8 @@ static double TruncToValidBPP(
+ 		if (!((DSCEnable == false && (DesiredBPP == NonDSCBPP2 || DesiredBPP == NonDSCBPP1 || DesiredBPP == NonDSCBPP0)) ||
+ 			(DSCEnable && DesiredBPP >= MinDSCBPP && DesiredBPP <= MaxDSCBPP))) {
+ 			return __DML2_CALCS_DPP_INVALID__;
++		} else if ((Output == dml2_hdmifrl && hdmifrlresult != LIB_FRL_CAP_CHECK_OK) || (Output != dml2_hdmifrl && MaxLinkBPP < DesiredBPP)) {
++			return __DML2_CALCS_DPP_INVALID__;
  		} else {
-@@ -1630,7 +1737,13 @@ double dml32_TruncToValidBPP(
- 			MaxDSCBPP = 3 * DSCInputBitPerComponent - 1.0 / 16.0;
- 		}
- 	}
--	if (Output == dm_dp2p0) {
-+	if (Output == dm_hdmifrl) {
-+		hdmifrlresult = dml1_frl_cap_chk_inter(&hdmifrlparams, &hdmifrlinter);
-+		MaxLinkBPP = (1 - hdmifrlinter.overhead_max) * dml_min(hdmifrlinter.r_frl_char_min * 16 *
-+				Lanes / hdmifrlinter.f_pixel_clock_max + 24 * TB_BORROWED_MAX / HActive,
-+				(hdmifrlinter.r_frl_char_min * 16 * Lanes / hdmifrlinter.f_pixel_clock_max *
-+						HTotal - 16 * hdmifrlinter.blank_audio_min) / HActive);
-+	} else if (Output == dm_dp2p0) {
- 		MaxLinkBPP = LinkBitRate * Lanes / PixelClock * 128 / 132 * 383 / 384 * 65536 / 65540;
- 	} else if (DSCEnable && Output == dm_dp) {
- 		MaxLinkBPP = LinkBitRate / 10 * 8 * Lanes / PixelClock * (1 - 2.4 / 100);
-@@ -1681,6 +1794,9 @@ double dml32_TruncToValidBPP(
- 				DesiredBPP <= NonDSCBPP0)) ||
- 				(DSCEnable && DesiredBPP >= MinDSCBPP && DesiredBPP <= MaxDSCBPP)))
- 			return BPP_INVALID;
-+		else if ((Output == dm_hdmifrl && hdmifrlresult != FRL_CAP_CHK_OK) ||
-+				(Output != dm_hdmifrl && MaxLinkBPP < DesiredBPP))
-+			return BPP_INVALID;
- 		else
  			return DesiredBPP;
- 	}
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_enums.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_enums.h
-index d5831a34f5a1..42013fa5ad01 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_enums.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_enums.h
-@@ -30,6 +30,7 @@ enum output_encoder_class {
- 	dm_hdmi = 1,
- 	dm_wb = 2,
- 	dm_edp = 3,
-+	dm_hdmifrl = 4,
- 	dm_dp2p0 = 5,
+ 		}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_shared_types.h b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_shared_types.h
+index 080bc3c3d244..11e295253f72 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_shared_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_core/dml2_core_shared_types.h
+@@ -8,6 +8,7 @@
+ #include "dml2_external_lib_deps.h"
+ #include "dml_top_display_cfg_types.h"
+ #include "dml_top_types.h"
++#include "lib_frl_cap_check.h"
+ 
+ #define __DML_VBA_DEBUG__
+ #define __DML2_CALCS_MAX_VRATIO_PRE_OTO__ 4.0 //<brief max vratio for one-to-one prefetch bw scheduling
+@@ -1522,6 +1523,8 @@ struct dml2_core_shared_CalculateSwathAndDETConfiguration_locals {
  };
- enum output_format_class {
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dml1_frl_cap_chk.c b/drivers/gpu/drm/amd/display/dc/dml/dml1_frl_cap_chk.c
+ 
+ struct dml2_core_shared_TruncToValidBPP_locals {
++	struct lib_frl_cap_check_params hdmifrlparams;
++	struct lib_frl_cap_check_intermediates hdmifrlinter;
+ };
+ 
+ struct dml2_core_shared_CalculateDETBufferSize_locals {
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_standalone_libraries/lib_frl_cap_check.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_standalone_libraries/lib_frl_cap_check.c
 new file mode 100644
-index 000000000000..9dde4e56f237
+index 000000000000..d62cdf8566cc
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dml1_frl_cap_chk.c
-@@ -0,0 +1,589 @@
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_standalone_libraries/lib_frl_cap_check.c
+@@ -0,0 +1,396 @@
 +// SPDX-License-Identifier: MIT
++//
++// Copyright 2024 Advanced Micro Devices, Inc.
++
++#include "lib_float_math.h"
++#include "lib_frl_cap_check.h"
++
++#define frl_dump_var(fmt, var) {}
++#define frl_print(fmt, ...) {}
++
++static const double   EPSILON = 0.01;
++static const double   DBL_EPSILON = 2.2204460492503131e-16;
++static const int      C_FRL_CB = 510;
++static const double   OVERHEAD_M = 0.003;  /* %   */
++static const double   TOLERANCE_PIXEL_CLOCK = 0.005;  /* %   */
++static const double   TOLERANCE_AUDIO_CLOCK = 1000;   /* ppm */
++static const int      TOLERANCE_FRL_BIT = 300;    /* ppm */
++static const int      ACR_RATE_MAX = 1500;
++const int             DML2_FRL_CHK_TB_BORROWED_MAX = 400;
++
++static enum lib_frl_cap_check_status frl_cap_check_common(struct lib_frl_cap_check_intermediates *inter, struct lib_frl_cap_check_params *params)
++{
++	double   audio_bw_reserve = (params->compressed ? 192000.0 : 0.0);
++	/*
++		if (getenv("DEBUG_FRL_CAP_CHK"))
++		{
++			printf("frl_cap_chk inputs:\n");
++			printf("-------------------\n");
++			frl_dump_var("%i", params->lanes);
++			frl_dump_var("%le", params->f_pixel_clock_nominal);
++			frl_dump_var("%le", params->r_bit_nominal);
++			frl_dump_var("%i", params->audio_packet_type);
++			frl_dump_var("%le", params->f_audio);
++			frl_dump_var("%i", params->h_active);
++			frl_dump_var("%i", params->h_blank);
++			frl_dump_var("%i", params->bpc);
++			frl_dump_var("%i", params->pixel_encoding);
++			frl_dump_var("%i", params->compressed);
++			frl_dump_var("%i", params->slices);
++			frl_dump_var("%i", params->slice_width);
++			frl_dump_var("%le", params->bpp_target);
++			frl_dump_var("%i", params->layout);
++			frl_dump_var("%i", params->acat);
++			printf("frl_cap_chk outputs:\n");
++			printf("---------------------\n");
++		}
++	*/
++	inter->c_frl_sb = 4 * C_FRL_CB + params->lanes;
++	inter->overhead_sb = (double)params->lanes / inter->c_frl_sb;
++	inter->overhead_rs = 8.0 * 4.0 / inter->c_frl_sb;
++	inter->overhead_map = 2.5 / inter->c_frl_sb;
++	inter->overhead_min = inter->overhead_sb + inter->overhead_rs + inter->overhead_map;
++	inter->overhead_max = inter->overhead_min + OVERHEAD_M;
++	inter->f_pixel_clock_max = params->f_pixel_clock_nominal * (1.0 + TOLERANCE_PIXEL_CLOCK);
++	inter->t_line = (params->h_active + params->h_blank) / inter->f_pixel_clock_max;
++	inter->r_bit_min = params->r_bit_nominal * (1.0 - TOLERANCE_FRL_BIT / 1000000.0);
++	inter->r_frl_char_min = inter->r_bit_min / 18.0;
++	inter->c_frl_line = math_floor(inter->t_line * inter->r_frl_char_min * params->lanes);
++	/*
++		if (getenv("DEBUG_FRL_CAP_CHK"))
++		{
++			frl_dump_var("%i", inter->c_frl_sb);
++			frl_dump_var("%le", inter->overhead_sb);
++			frl_dump_var("%le", inter->overhead_rs);
++			frl_dump_var("%le", inter->overhead_map);
++			frl_dump_var("%le", inter->overhead_min);
++			frl_dump_var("%le", inter->overhead_max);
++			frl_dump_var("%le", inter->f_pixel_clock_max);
++			frl_dump_var("%le", inter->t_line);
++			frl_dump_var("%le", inter->r_bit_min);
++			frl_dump_var("%le", inter->r_frl_char_min);
++			frl_dump_var("%le", inter->c_frl_line);
++		}
++	*/
++	switch (params->audio_packet_type) {
++	case 0x02:
++		/* unsupported
++	case 0x07:
++		*/
++		if (params->layout == 0)
++			inter->ap = 0.25;
++		else if (params->layout == 1)
++			inter->ap = 1.0;
++		break;
++	case 0x08:
++		inter->ap = 0.25;
++		break;
++	case 0x09:
++		/* unsupported
++	case 0x0e:
++	case 0x0f:
++		*/
++		inter->ap = 1.0;
++		break;
++		/* unsupported
++	case 0x0b:
++	case 0x0c:
++		if (acat == 0x01)
++			ap = 2.0;
++		else if (acat == 0x02)
++			ap = 3.0;
++		else if (acat == 0x03)
++			ap = 4.0;
++		break;
++		*/
++	case 0x07:
++	case 0x0e:
++	case 0x0f:
++	case 0x0b:
++	case 0x0c:
++		// Unsupported audio format
++		return LIB_FRL_CAP_CHECK_ERROR_UNSUPPORTED_AUDIO;
++	default:
++		inter->ap = 0.0;
++	}
++
++	inter->r_ap = (math_max2(audio_bw_reserve, params->f_audio * inter->ap) + 2 * ACR_RATE_MAX) * (1 + TOLERANCE_AUDIO_CLOCK / 1000000.0);
++	inter->avg_audio_packets_line = inter->r_ap * inter->t_line;
++	inter->audio_packets_line = (int)math_ceil(inter->avg_audio_packets_line);
++	inter->blank_audio_min = 32 + 32 * inter->audio_packets_line; // h_blank_audio_min or hc_blank_audio_min
++
++	params->audio_packets_line = inter->audio_packets_line;
++	/*
++		if (getenv("DEBUG_FRL_CAP_CHK"))
++		{
++			frl_dump_var("%le", inter->ap);
++			frl_dump_var("%le", inter->r_ap);
++			frl_dump_var("%le", inter->avg_audio_packets_line);
++			frl_dump_var("%i", inter->audio_packets_line);
++			frl_dump_var("%i", inter->blank_audio_min);
++		}
++	*/
++	return LIB_FRL_CAP_CHECK_OK;
++}
++
++
++static enum lib_frl_cap_check_status frl_cap_check_uncompressed(struct lib_frl_cap_check_params *params, struct lib_frl_cap_check_intermediates *inter)
++{
++	enum lib_frl_cap_check_status res;
++
++	int k_420;
++	double k_cd;
++	int c_frl_free;
++	int c_frl_rc_margin;
++	int c_frl_rc_savings;
++	int bpp;
++	double bytes_line;
++	int tb_active;
++	int tb_blank;
++	double f_tb_average;
++	double t_active_ref;
++	double t_blank_ref;
++	double t_active_min;
++	double t_blank_min;
++	double t_borrowed;
++	double tb_borrowed;
++	int c_frl_actual_payload;
++	double utilization;
++	double margin;
++
++	res = frl_cap_check_common(inter, params);
++	if (res != LIB_FRL_CAP_CHECK_OK) {
++		return res;
++	}
++
++	k_420 = params->pixel_encoding == LIB_FRL_CAP_CHECK_PIXEL_ENCODING_420 ? 2 : 1;
++	k_cd = params->pixel_encoding == LIB_FRL_CAP_CHECK_PIXEL_ENCODING_422 ? 1.0 : params->bpc / 8.0;
++	c_frl_free = (int)math_max2(params->h_blank * k_cd / k_420 - 32 * (1 + inter->audio_packets_line) - 7, 0);
++	c_frl_rc_margin = 4;
++	c_frl_rc_savings = (int)math_floor(math_max2(((7.0 / 8.0) * c_frl_free) - c_frl_rc_margin, 0.0));
++	bpp = (int)(24 * k_cd / k_420);
++	bytes_line = bpp * params->h_active / 8.0;
++	tb_active = (int)math_ceil(bytes_line / 3);
++	tb_blank = (int)math_ceil(params->h_blank * k_cd / k_420);
++	/*
++		if (getenv("DEBUG_FRL_CAP_CHK"))
++		{
++			frl_dump_var("%i", k_420);
++			frl_dump_var("%le", k_cd);
++			frl_dump_var("%i", c_frl_free);
++			frl_dump_var("%i", c_frl_rc_margin);
++			frl_dump_var("%i", c_frl_rc_savings);
++			frl_dump_var("%i", bpp);
++			frl_dump_var("%le", bytes_line);
++			frl_dump_var("%i", tb_active);
++			frl_dump_var("%i", tb_blank);
++		}
++	*/
++	if (!(inter->blank_audio_min <= tb_blank)) {
++		frl_dump_var("%i", inter->blank_audio_min);
++		frl_dump_var("%i", tb_blank);
++		return LIB_FRL_CAP_CHECK_ERROR_AUDIO_BW;
++	}
++
++	f_tb_average = (inter->f_pixel_clock_max / (params->h_active + params->h_blank)) * (tb_active + tb_blank);
++	t_active_ref = inter->t_line * ((double)params->h_active / (params->h_active + params->h_blank));
++	t_blank_ref = inter->t_line * ((double)params->h_blank / (params->h_active + params->h_blank));
++	t_active_min = (3.0 / 2.0) * tb_active / (params->lanes * inter->r_frl_char_min * (1.0 - inter->overhead_max));
++	t_blank_min = tb_blank / (params->lanes * inter->r_frl_char_min * (1.0 - inter->overhead_max));
++	/*
++		if (getenv("DEBUG_FRL_CAP_CHK"))
++		{
++			frl_dump_var("%le", f_tb_average);
++			frl_dump_var("%le", t_active_ref);
++			frl_dump_var("%le", t_blank_ref);
++			frl_dump_var("%le", t_active_min);
++			frl_dump_var("%le", t_blank_min);
++		}
++	*/
++	if ((t_active_ref >= t_active_min) && (t_blank_ref >= t_blank_min)) {
++		t_borrowed = 0;
++		params->borrow_mode = LIB_FRL_CAP_CHECK_BORROW_MODE_NONE;
++	} else if ((t_active_ref < t_active_min) && (t_blank_ref >= t_blank_min)) {
++		t_borrowed = t_active_min - t_active_ref;
++		params->borrow_mode = LIB_FRL_CAP_CHECK_BORROW_MODE_FROM_BLANK;
++	} else
++		return LIB_FRL_CAP_CHECK_ERROR_BORROW;
++
++	tb_borrowed = math_ceil(t_borrowed * f_tb_average);
++	/*
++		if (getenv("DEBUG_FRL_CAP_CHK"))
++		{
++			frl_dump_var("%le", tb_borrowed);
++			frl_dump_var("%i", params->borrow_mode);
++	}
++	*/
++	if (!(tb_borrowed <= DML2_FRL_CHK_TB_BORROWED_MAX))
++		return LIB_FRL_CAP_CHECK_ERROR_MAX_BORROW;
++
++	c_frl_actual_payload = (int)math_ceil((3.0 / 2.0) * tb_active) + tb_blank - c_frl_rc_savings;
++	utilization = c_frl_actual_payload / inter->c_frl_line;
++	margin = 1.0 - (utilization + inter->overhead_max);
++	/*
++		if (getenv("DEBUG_FRL_CAP_CHK"))
++		{
++			frl_dump_var("%i",  c_frl_actual_payload);
++			frl_dump_var("%le", utilization);
++			frl_dump_var("%le", margin);
++		}
++	*/
++	if (margin < 0 && math_fabs(margin) > EPSILON)
++		return LIB_FRL_CAP_CHECK_ERROR_MARGIN;
++
++	return LIB_FRL_CAP_CHECK_OK;
++}
++
++static enum lib_frl_cap_check_status frl_cap_check_compressed(struct lib_frl_cap_check_params *params, struct lib_frl_cap_check_intermediates *inter)
++{
++	enum lib_frl_cap_check_status res;
++
++	int      c_frl_available;
++	int      c_frl_active_available;
++	int      c_frl_blank_available;
++	int      bytes_target;
++	int      hc_active_target;
++	int      hc_blank_target_est1;
++	int      hc_blank_target_est2;
++	int      hc_blank_target;
++	double   f_tb_average;
++	double   t_active_ref;
++	double   t_blank_ref;
++	double   t_active_target;
++	double   t_blank_target;
++	double   tb_borrowed;
++	int      c_frl_actual_target_payload;
++	double   utilization_targeted;
++	double   margin_target;
++#if defined(DEBUG_FRL_CAP_CHK)
++	double   tb_delta;
++	double   tb_delta_limit;
++	int      tb_worst;
++#endif
++
++	res = frl_cap_check_common(inter, params);
++	if (res != LIB_FRL_CAP_CHECK_OK)
++		return res;
++
++	c_frl_available = (int)math_floor((1 - inter->overhead_max) * inter->c_frl_line);
++	c_frl_active_available = (int)math_floor(c_frl_available * ((double)params->h_active / (params->h_active + params->h_blank)));
++	(void)c_frl_active_available;
++	c_frl_blank_available = (int)math_floor(c_frl_available * ((double)params->h_blank / (params->h_active + params->h_blank)));
++	(void)c_frl_blank_available;
++	bytes_target = params->slices * (int)math_ceil(params->bpp_target * params->slice_width / 8.0);
++
++	if (!params->bypass_hc_target_calc)
++		hc_active_target = (int)math_ceil(bytes_target / 3.0);
++	else
++		hc_active_target = params->hc_active_target;
++
++	hc_blank_target_est1 = (int)math_ceil(hc_active_target * ((double)params->h_blank / params->h_active));
++	hc_blank_target_est2 = (int)math_max2(hc_blank_target_est1, inter->blank_audio_min);
++
++	if (!params->bypass_hc_target_calc) {
++		hc_blank_target = 4 * (int)math_floor(math_min2(hc_blank_target_est2, c_frl_available - 3.0 / 2.0 * hc_active_target) / 4.0);
++
++		params->hc_active_target = hc_active_target;
++		params->hc_blank_target = hc_blank_target;
++	} else {
++		hc_blank_target = params->hc_blank_target;
++	}
++	/*
++		if (getenv("DEBUG_FRL_CAP_CHK"))
++		{
++			frl_dump_var("%i", c_frl_available);
++			frl_dump_var("%i", c_frl_active_available);
++			frl_dump_var("%i", c_frl_blank_available);
++			frl_dump_var("%i", bytes_target);
++			frl_dump_var("%i", hc_active_target);
++			frl_dump_var("%i", hc_blank_target_est1);
++			frl_dump_var("%i", hc_blank_target_est2);
++			frl_dump_var("%i", hc_blank_target);
++		}
++	*/
++	if (!(inter->blank_audio_min <= hc_blank_target)) {
++		frl_dump_var("%i", inter->blank_audio_min);
++		frl_dump_var("%i", hc_blank_target);
++		return LIB_FRL_CAP_CHECK_ERROR_AUDIO_BW;
++	}
++
++	f_tb_average = inter->f_pixel_clock_max / (params->h_active + params->h_blank) * (hc_active_target + hc_blank_target);
++	t_active_ref = inter->t_line * ((double)params->h_active / (params->h_active + params->h_blank));
++	t_blank_ref = inter->t_line - t_active_ref; // * ((double) params->h_blank / (params->h_active + params->h_blank));
++	t_active_target = math_max2((hc_active_target / f_tb_average), (3.0 / 2.0 * hc_active_target) / (params->lanes * inter->r_frl_char_min * (1.0 - inter->overhead_max)));
++	t_blank_target = inter->t_line - t_active_target;
++
++	tb_borrowed = t_active_target * f_tb_average - hc_active_target;
++#if defined(DEBUG_FRL_CAP_CHK)
++	tb_delta = math_fabs(t_active_target - t_active_ref) * (hc_active_target + hc_blank_target_est1) / inter->t_line;
++		{
++			frl_dump_var("%le", f_tb_average);
++			frl_dump_var("%le", t_active_ref);
++			frl_dump_var("%le", t_blank_ref);
++			frl_dump_var("%le", t_active_target);
++			frl_dump_var("%le", t_blank_target);
++			frl_dump_var("%le", tb_delta);
++		}
++#endif
++	if (t_blank_target - t_blank_ref > DBL_EPSILON) {
++#if defined(DEBUG_FRL_CAP_CHK)
++		tb_delta_limit = (t_active_ref - hc_active_target / f_tb_average) * (hc_active_target + hc_blank_target_est1) / inter->t_line;
++#endif
++		params->borrow_mode = LIB_FRL_CAP_CHECK_BORROW_MODE_FROM_ACTIVE;
++	} else if (t_active_target - t_active_ref > DBL_EPSILON) {
++#if defined(DEBUG_FRL_CAP_CHK)
++		tb_delta_limit = tb_delta;
++#endif
++		params->borrow_mode = LIB_FRL_CAP_CHECK_BORROW_MODE_FROM_BLANK;
++	} else {
++#if defined(DEBUG_FRL_CAP_CHK)
++		tb_delta_limit = 0;
++#endif
++		params->borrow_mode = LIB_FRL_CAP_CHECK_BORROW_MODE_NONE;
++	}
++
++#if defined(DEBUG_FRL_CAP_CHK)
++	tb_worst = (int)math_ceil(math_max2(tb_borrowed, tb_delta_limit));
++
++		{
++			frl_dump_var("%le", tb_delta_limit);
++			frl_dump_var("%le", tb_borrowed);
++			frl_dump_var("%i", params->borrow_mode);
++			frl_dump_var("%i", tb_worst);
++		}
++#endif
++	if (!(tb_borrowed <= DML2_FRL_CHK_TB_BORROWED_MAX))
++		return LIB_FRL_CAP_CHECK_ERROR_MAX_BORROW;
++
++	c_frl_actual_target_payload = (int)math_ceil(3.0 / 2.0 * hc_active_target) + hc_blank_target;
++	utilization_targeted = c_frl_actual_target_payload / inter->c_frl_line;
++	margin_target = 1.0 - (utilization_targeted + inter->overhead_max);
++#if defined(DEBUG_FRL_CAP_CHK)
++		{
++			frl_dump_var("%i", c_frl_actual_target_payload);
++			frl_dump_var("%le", utilization_targeted);
++			frl_dump_var("%le", margin_target);
++		}
++#endif
++	// oversubscribed bandwidth relative to margin
++	if (margin_target < 0 && math_fabs(margin_target) > EPSILON)
++		return LIB_FRL_CAP_CHECK_ERROR_MARGIN;
++
++	return LIB_FRL_CAP_CHECK_OK;
++}
++
++enum lib_frl_cap_check_status frl_cap_check(struct lib_frl_cap_check_params *params)
++{
++	struct lib_frl_cap_check_intermediates inter;
++	return frl_cap_check_intermediates(params, &inter);
++}
++
++enum lib_frl_cap_check_status frl_cap_check_intermediates(struct lib_frl_cap_check_params *params, struct lib_frl_cap_check_intermediates *inter)
++{
++	if (params->compressed)
++		return frl_cap_check_compressed(params, inter);
++	return frl_cap_check_uncompressed(params, inter);
++}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_standalone_libraries/lib_frl_cap_check.h b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_standalone_libraries/lib_frl_cap_check.h
+new file mode 100644
+index 000000000000..aa2764856546
+--- /dev/null
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_standalone_libraries/lib_frl_cap_check.h
+@@ -0,0 +1,90 @@
++// SPDX-License-Identifier: MIT
++//
++// Copyright 2024 Advanced Micro Devices, Inc.
++
++#ifndef __LIB_FRL_CAP_CHECK_H__
++#define __LIB_FRL_CAP_CHECK_H__
++
++#include "dml2_external_lib_deps.h"
++
++extern const int DML2_FRL_CHK_TB_BORROWED_MAX;
++
++enum lib_frl_cap_check_pixel_encoding {
++	LIB_FRL_CAP_CHECK_PIXEL_ENCODING_444,
++	LIB_FRL_CAP_CHECK_PIXEL_ENCODING_422,
++	LIB_FRL_CAP_CHECK_PIXEL_ENCODING_420
++};
++
++enum lib_frl_cap_check_borrow_mode {
++	LIB_FRL_CAP_CHECK_BORROW_MODE_NONE,
++	LIB_FRL_CAP_CHECK_BORROW_MODE_FROM_ACTIVE,
++	LIB_FRL_CAP_CHECK_BORROW_MODE_FROM_BLANK
++};
++
++enum lib_frl_cap_check_status {
++	LIB_FRL_CAP_CHECK_OK = 0,
++
++	LIB_FRL_CAP_CHECK_ERROR_AUDIO_BW = -1,
++	LIB_FRL_CAP_CHECK_ERROR_BORROW = -2,
++	LIB_FRL_CAP_CHECK_ERROR_MAX_BORROW = -3,
++	LIB_FRL_CAP_CHECK_ERROR_MARGIN = -4,
++
++	LIB_FRL_CAP_CHECK_ERROR_UNSUPPORTED_AUDIO = -1000
++};
++
++struct lib_frl_cap_check_intermediates {
++	int c_frl_sb;
++	double overhead_sb;
++	double overhead_rs;
++	double overhead_map;
++	double overhead_min;
++	double overhead_max;
++	double f_pixel_clock_max;
++	double t_line;
++	double r_bit_min;
++	double r_frl_char_min;
++	double c_frl_line;
++	double ap;
++	double r_ap;
++	double avg_audio_packets_line;
++	int audio_packets_line;
++	int blank_audio_min;
++};
++
++struct lib_frl_cap_check_params {
++	int lanes;
++	double f_pixel_clock_nominal; /* Pixel Clock rate (Hz) */
++	double r_bit_nominal; /* FRL bitrate (bps) */
++	int audio_packet_type;
++	double f_audio; /* Audio rate (Hz) */
++	int h_active; /* Active pixels per line */
++	int h_blank; /* Blanking pixels per line */
++	int bpc; /* Bits per component */
++
++	enum lib_frl_cap_check_pixel_encoding pixel_encoding;
++
++	bool compressed;
++	bool bypass_hc_target_calc;
++
++	/* DSC parameters */
++	int slices;
++	int slice_width;
++	double bpp_target;
++
++	int layout; /* not supported */
++	int acat; /* not supported */
++
++	/* outputs */
++	int audio_packets_line;
++
++	/* inputs or outputs */
++	int hc_active_target;
++	int hc_blank_target;
++
++	enum lib_frl_cap_check_borrow_mode borrow_mode;
++};
++
++enum lib_frl_cap_check_status frl_cap_check(struct lib_frl_cap_check_params *params);
++enum lib_frl_cap_check_status frl_cap_check_intermediates(struct lib_frl_cap_check_params *params, struct lib_frl_cap_check_intermediates *inter);
++
++#endif
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_translation_helper.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_translation_helper.c
+index 0d8ff236c6d0..166f10b8862f 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_translation_helper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_translation_helper.c
+@@ -808,6 +808,9 @@ static void populate_dml_output_cfg_from_stream_state(struct dml_output_cfg_st *
+ 	case SIGNAL_TYPE_DVI_DUAL_LINK:
+ 		out->OutputEncoder[location] = dml_hdmi;
+ 		break;
++	case SIGNAL_TYPE_HDMI_FRL:
++		out->OutputEncoder[location] = dml_hdmifrl;
++		break;
+ 	default:
+ 		out->OutputEncoder[location] = dml_dp;
+ 	}
+@@ -883,6 +886,7 @@ static void populate_dml_output_cfg_from_stream_state(struct dml_output_cfg_st *
+ 	case SIGNAL_TYPE_DISPLAY_PORT_MST:
+ 	case SIGNAL_TYPE_EDP:
+ 	case SIGNAL_TYPE_VIRTUAL:
++	case SIGNAL_TYPE_HDMI_FRL:
+ 	default:
+ 		out->OutputLinkDPRate[location] = dml_dp_rate_na;
+ 		break;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_utils.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_utils.c
+index 5ed14f694fb0..a3ce011612f7 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_utils.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_utils.c
+@@ -173,6 +173,8 @@ bool is_dtbclk_required(const struct dc *dc, struct dc_state *context)
+ 	for (i = 0; i < dc->res_pool->pipe_count; i++) {
+ 		if (!context->res_ctx.pipe_ctx[i].stream)
+ 			continue;
++		if (dc_is_hdmi_frl_signal(context->res_ctx.pipe_ctx[i].stream->signal))
++			return true;
+ 		if (is_dp2p0_output_encoder(&context->res_ctx.pipe_ctx[i]))
+ 			return true;
+ 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml_frl_cap_chk.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml_frl_cap_chk.c
+new file mode 100644
+index 000000000000..a638c0d6d765
+--- /dev/null
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml_frl_cap_chk.c
+@@ -0,0 +1,413 @@
 +/*
-+ * Copyright 2023 Advanced Micro Devices, Inc.
++ * Copyright 2022 Advanced Micro Devices, Inc.
 + *
 + * Permission is hereby granted, free of charge, to any person obtaining a
 + * copy of this software and associated documentation files (the "Software"),
@@ -1879,239 +1088,72 @@ index 000000000000..9dde4e56f237
 + *
 + */
 +
-+#include "dml_logger.h"
-+#include "dml1_frl_cap_chk.h"
-+#include "dml_inline_defs.h"
-+
-+static const double __maybe_unused EPSILON			= 0.01;
-+static const double __maybe_unused DBL_EPSILON			= 2.2204460492503131e-16;
-+static const double __maybe_unused OVERHEAD_M			= 0.003;  /* %   */
-+static const double __maybe_unused TOLERANCE_PIXEL_CLOCK	= 0.005;  /* %   */
-+static const double __maybe_unused DML_TOLERANCE_AUDIO_CLOCK	= 1000;   /* ppm */
++#include "dml_frl_cap_chk.h"
++#include "display_mode_util.h"
++#include "lib_frl_cap_check.h"
 +
 +#define frl_dump_var(fmt, var) {}
 +#define frl_print(fmt, ...) {}
++#include "dcn_calc_math.h"
++#define fabs(var) dcn_bw_fabs(var)
++#define floor(var) dcn_bw_floor(var)
++#define ceil(var) dcn_bw_ceil(var)
 +
-+const struct frl_primary_format prim_format_444[] = {
-+/* VIC/Rate/Lanes/HCactive/HCBlank */
-+	{64,  3, 3, 960,  360}, /* 1920x1080 @ 100 */
-+	{77,  3, 3, 960,  360}, /* 1920x1080 @ 100 */
-+	{63,  3, 3, 960,  140}, /* 1920x1080 @ 120 */
-+	{78,  3, 3, 960,  140}, /* 1920x1080 @ 120 */
-+	{93,  3, 3, 1920, 828}, /* 3840x2160 @ 24 */
-+	{103, 3, 3, 1920, 828}, /* 3840x2160 @ 24 */
-+	{94,  3, 3, 1920, 720}, /* 3840x2160 @ 25 */
-+	{104, 3, 3, 1920, 720}, /* 3840x2160 @ 25 */
-+	{95,  3, 3, 1920, 280}, /* 3840x2160 @ 30 */
-+	{105, 3, 3, 1920, 280}, /* 3840x2160 @ 30 */
-+	{114, 3, 3, 1920, 828}, /* 3840x2160 @ 48 */
-+	{116, 3, 3, 1920, 828}, /* 3840x2160 @ 48 */
-+	{96,  3, 3, 1920, 720}, /* 3840x2160 @ 50 */
-+	{106, 3, 3, 1920, 720}, /* 3840x2160 @ 50 */
-+	{97,  3, 3, 1920, 280}, /* 3840x2160 @ 60 */
-+	{107, 3, 3, 1920, 280}, /* 3840x2160 @ 60 */
-+	{117, 6, 3, 1920, 720}, /* 3840x2160 @ 100 */
-+	{119, 6, 3, 1920, 720}, /* 3840x2160 @ 100 */
-+	{118, 6, 3, 1920, 280}, /* 3840x2160 @ 120 */
-+	{120, 6, 3, 1920, 280}, /* 3840x2160 @ 120 */
-+	{98,  3, 3, 2048, 700}, /* 4096x2160 @ 24 */
-+	{99,  3, 3, 2048, 592}, /* 4096x2160 @ 25 */
-+	{100, 3, 3, 2048, 152}, /* 4096x2160 @ 30 */
-+	{115, 3, 3, 2048, 700}, /* 4096x2160 @ 48 */
-+	{101, 3, 3, 2048, 592}, /* 4096x2160 @ 50 */
-+	{102, 3, 3, 2048, 152}, /* 4096x2160 @ 60 */
-+	{218, 6, 3, 2048, 592}, /* 4096x2160 @ 100 */
-+	{219, 6, 3, 2048, 152}, /* 4096x2160 @ 120 */
-+	{121, 3, 3, 2560, 1188}, /* 5120x2160 @ 24 */
-+	{122, 3, 3, 2560, 1040}, /* 5120x2160 @ 25 */
-+	{123, 3, 3, 2560, 440}, /* 5120x2160 @ 30 */
-+	{124, 3, 3, 2560, 256}, /* 5120x2160 @ 48 */
-+	{125, 3, 3, 2560, 484}, /* 5120x2160 @ 50 */
-+	{126, 3, 3, 2307, 144}, /* 5120x2160 @ 60 */
-+	{127, 6, 3, 2560, 484}, /* 5120x2160 @ 100 */
-+	{193, 6, 3, 2334, 104}, /* 5120x2160 @ 120 */
-+	{194, 6, 3, 3840, 1660}, /* 7680x2160 @ 24 */
-+	{202, 6, 3, 3840, 1660}, /* 7680x2160 @ 24 */
-+	{195, 6, 3, 3840, 1560}, /* 7680x2160 @ 25 */
-+	{203, 6, 3, 3840, 1560}, /* 7680x2160 @ 25 */
-+	{196, 6, 3, 3840, 660}, /* 7680x2160 @ 30 */
-+	{204, 6, 3, 3840, 660}, /* 7680x2160 @ 30 */
-+	{197, 6, 4, 3142, 1292}, /* 7680x2160 @ 48 */
-+	{205, 6, 4, 3142, 1292}, /* 7680x2160 @ 48 */
-+	{198, 6, 4, 3142, 1180}, /* 7680x2160 @ 50 */
-+	{206, 6, 4, 3142, 1180}, /* 7680x2160 @ 50 */
-+	{199, 6, 4, 3182, 140}, /* 7680x2160 @ 60 */
-+	{207, 6, 4, 3182, 140}, /* 7680x2160 @ 60 */
-+	{200, 10, 4, 2680, 784}, /* 7680x2160 @ 100 */
-+	{208, 10, 4, 2680, 784}, /* 7680x2160 @ 100 */
-+	{201, 10, 4, 2600, 100}, /* 7680x2160 @ 120 */
-+	{209, 10, 4, 2600, 100}, /* 7680x2160 @ 120 */
-+	{210, 6, 3, 4854, 912}, /* 10240x4320 @ 24 */
-+	{211, 6, 3, 4827, 1536}, /* 10240x4320 @ 25 */
-+	{212, 6, 3, 4720, 128}, /* 10240x4320 @ 30 */
-+	{213, 8, 4, 4347, 756}, /* 10240x4320 @ 48 */
-+	{214, 8, 4, 4320, 1376}, /* 10240x4320 @ 50 */
-+	{215, 8, 4, 4187, 124}, /* 10240x4320 @ 60 */
-+};
++#if !defined(TB_BORROWED_MAX)
++#define TB_BORROWED_MAX 400
++#endif
 +
-+const struct frl_primary_format prim_format_422[] = {
-+/* VIC/Rate/Lanes/HCactive/HCBlank */
-+	{64,  3, 3, 960,  360}, /* 1920x1080 @ 100 */
-+	{77,  3, 3, 960,  360}, /* 1920x1080 @ 100 */
-+	{63,  3, 3, 960,  140}, /* 1920x1080 @ 120 */
-+	{78,  3, 3, 960,  140}, /* 1920x1080 @ 120 */
-+	{93,  3, 3, 1920, 828}, /* 3840x2160 @ 24 */
-+	{103, 3, 3, 1920, 828}, /* 3840x2160 @ 24 */
-+	{94,  3, 3, 1920, 720}, /* 3840x2160 @ 25 */
-+	{104, 3, 3, 1920, 720}, /* 3840x2160 @ 25 */
-+	{95,  3, 3, 1920, 280}, /* 3840x2160 @ 30 */
-+	{105, 3, 3, 1920, 280}, /* 3840x2160 @ 30 */
-+	{114, 3, 3, 1920, 828}, /* 3840x2160 @ 48 */
-+	{116, 3, 3, 1920, 828}, /* 3840x2160 @ 48 */
-+	{96,  3, 3, 1920, 720}, /* 3840x2160 @ 50 */
-+	{106, 3, 3, 1920, 720}, /* 3840x2160 @ 50 */
-+	{97,  3, 3, 1920, 280}, /* 3840x2160 @ 60 */
-+	{107, 3, 3, 1920, 280}, /* 3840x2160 @ 60 */
-+	{117, 3, 3, 1370, 104}, /* 3840x2160 @ 100 */
-+	{119, 3, 3, 1370, 104}, /* 3840x2160 @ 100 */
-+	{118, 3, 3, 1130, 104}, /* 3840x2160 @ 120 */
-+	{120, 3, 3, 1130, 104}, /* 3840x2160 @ 120 */
-+	{98,  3, 3, 2048, 700}, /* 4096x2160 @ 24 */
-+	{99,  3, 3, 2048, 592}, /* 4096x2160 @ 25 */
-+	{100, 3, 3, 2048, 152}, /* 4096x2160 @ 30 */
-+	{115, 3, 3, 2048, 700}, /* 4096x2160 @ 48 */
-+	{101, 3, 3, 2048, 592}, /* 4096x2160 @ 50 */
-+	{102, 3, 3, 2048, 152}, /* 4096x2160 @ 60 */
-+	{218, 6, 3, 2048, 592}, /* 4096x2160 @ 100 */
-+	{219, 6, 3, 2048, 152}, /* 4096x2160 @ 120 */
-+	{121, 3, 3, 2560, 1188}, /* 5120x2160 @ 24 */
-+	{122, 3, 3, 2560, 1040}, /* 5120x2160 @ 25 */
-+	{123, 3, 3, 2560, 440}, /* 5120x2160 @ 30 */
-+	{124, 3, 3, 2560, 256}, /* 5120x2160 @ 48 */
-+	{125, 3, 3, 2560, 484}, /* 5120x2160 @ 50 */
-+	{126, 3, 3, 2307, 144}, /* 5120x2160 @ 60 */
-+	{127, 6, 3, 2560, 484}, /* 5120x2160 @ 100 */
-+	{193, 6, 3, 2334, 104}, /* 5120x2160 @ 120 */
-+	{194, 3, 3, 2460, 816}, /* 7680x2160 @ 24 */
-+	{202, 3, 3, 2460, 816}, /* 7680x2160 @ 24 */
-+	{195, 3, 3, 2460, 732}, /* 7680x2160 @ 25 */
-+	{203, 3, 3, 2460, 732}, /* 7680x2160 @ 25 */
-+	{196, 3, 3, 2360, 144}, /* 7680x2160 @ 30 */
-+	{204, 3, 3, 2360, 144}, /* 7680x2160 @ 30 */
-+	{197, 6, 3, 2460, 816}, /* 7680x2160 @ 48 */
-+	{205, 6, 3, 2460, 816}, /* 7680x2160 @ 48 */
-+	{198, 6, 3, 2460, 732}, /* 7680x2160 @ 50 */
-+	{206, 6, 3, 2460, 732}, /* 7680x2160 @ 50 */
-+	{199, 6, 3, 2380, 116}, /* 7680x2160 @ 60 */
-+	{207, 6, 3, 2380, 116}, /* 7680x2160 @ 60 */
-+	{200, 10, 4, 2680, 784}, /* 7680x2160 @ 100 */
-+	{208, 10, 4, 2680, 784}, /* 7680x2160 @ 100 */
-+	{201, 10, 4, 2600, 100}, /* 7680x2160 @ 120 */
-+	{209, 10, 4, 2600, 100}, /* 7680x2160 @ 120 */
-+	{210, 6, 3, 4854, 912}, /* 10240x4320 @ 24 */
-+	{211, 6, 3, 4827, 1536}, /* 10240x4320 @ 25 */
-+	{212, 6, 3, 4720, 128}, /* 10240x4320 @ 30 */
-+	{213, 6, 4, 3360, 420}, /* 10240x4320 @ 48 */
-+	{214, 6, 4, 3334, 892}, /* 10240x4320 @ 50 */
-+	{215, 6, 4, 3120, 124}, /* 10240x4320 @ 60 */
-+	{216, 12, 4, 3334, 764}, /* 10240x4320 @ 100 */
-+	{217, 12, 4, 3120, 124}, /* 10240x4320 @ 120 */
-+};
++static const double   EPSILON               = 0.01;
++static const double   DBL_EPSILON           = 2.2204460492503131e-16;
++static const int      C_FRL_CB              = 510;
++static const double   OVERHEAD_M            = 0.003;  /* %   */
++static const double   TOLERANCE_PIXEL_CLOCK = 0.005;  /* %   */
++static const double   TOLERANCE_AUDIO_CLOCK = 1000;   /* ppm */
++static const int      TOLERANCE_FRL_BIT     = 300;    /* ppm */
++static const int      ACR_RATE_MAX          = 1500;
 +
-+const struct frl_primary_format prim_format_420[] = {
-+/* VIC/Rate/Lanes/HCactive/HCBlank */
-+	{114, 3, 3, 1920, 828}, /* 3840x2160 @ 48 */
-+	{116, 3, 3, 1920, 828}, /* 3840x2160 @ 48 */
-+	{96,  3, 3, 1920, 720}, /* 3840x2160 @ 50 */
-+	{106, 3, 3, 1920, 720}, /* 3840x2160 @ 50 */
-+	{97,  3, 3, 1920, 280}, /* 3840x2160 @ 60 */
-+	{107, 3, 3, 1920, 280}, /* 3840x2160 @ 60 */
-+	{117, 3, 3, 1370, 104}, /* 3840x2160 @ 100 */
-+	{119, 3, 3, 1370, 104}, /* 3840x2160 @ 100 */
-+	{118, 3, 3, 1130, 104}, /* 3840x2160 @ 120 */
-+	{120, 3, 3, 1130, 104}, /* 3840x2160 @ 120 */
-+	{115, 3, 3, 2048, 700}, /* 4096x2160 @ 48 */
-+	{101, 3, 3, 2048, 592}, /* 4096x2160 @ 50 */
-+	{102, 3, 3, 2048, 152}, /* 4096x2160 @ 60 */
-+	{218, 3, 3, 1376, 96}, /* 4096x2160 @ 100 */
-+	{219, 3, 3, 1131, 84}, /* 4096x2160 @ 120 */
-+	{124, 3, 3, 2560, 256}, /* 5120x2160 @ 48 */
-+	{125, 3, 3, 2560, 484}, /* 5120x2160 @ 50 */
-+	{126, 3, 3, 2307, 144}, /* 5120x2160 @ 60 */
-+	{127, 6, 3, 2560, 484}, /* 5120x2160 @ 100 */
-+	{193, 6, 3, 2334, 104}, /* 5120x2160 @ 120 */
-+	{194, 3, 3, 2460, 816}, /* 7680x2160 @ 24 */
-+	{202, 3, 3, 2460, 816}, /* 7680x2160 @ 24 */
-+	{195, 3, 3, 2460, 732}, /* 7680x2160 @ 25 */
-+	{203, 3, 3, 2460, 732}, /* 7680x2160 @ 25 */
-+	{196, 3, 3, 2360, 144}, /* 7680x2160 @ 30 */
-+	{204, 3, 3, 2360, 144}, /* 7680x2160 @ 30 */
-+	{197, 6, 3, 2460, 816}, /* 7680x2160 @ 48 */
-+	{205, 6, 3, 2460, 816}, /* 7680x2160 @ 48 */
-+	{198, 6, 3, 2460, 732}, /* 7680x2160 @ 50 */
-+	{206, 6, 3, 2460, 732}, /* 7680x2160 @ 50 */
-+	{199, 6, 3, 2380, 116}, /* 7680x2160 @ 60 */
-+	{207, 6, 3, 2380, 116}, /* 7680x2160 @ 60 */
-+	{200, 8, 4, 2240, 480}, /* 7680x2160 @ 100 */
-+	{208, 8, 4, 2240, 480}, /* 7680x2160 @ 100 */
-+	{201, 8, 4, 2062, 108}, /* 7680x2160 @ 120 */
-+	{209, 8, 4, 2062, 108}, /* 7680x2160 @ 120 */
-+	{210, 3, 3, 2614, 172}, /* 10240x4320 @ 24 */
-+	{211, 3, 3, 2614, 500}, /* 10240x4320 @ 25 */
-+	{212, 6, 3, 4720, 128}, /* 10240x4320 @ 30 */
-+	{213, 6, 3, 2614, 172}, /* 10240x4320 @ 48 */
-+	{214, 6, 4, 3334, 892}, /* 10240x4320 @ 50 */
-+	{215, 6, 4, 3120, 124}, /* 10240x4320 @ 60 */
-+	{216, 10, 4, 2854, 520}, /* 10240x4320 @ 100 */
-+	{217, 10, 4, 2587, 120}, /* 10240x4320 @ 120 */
-+};
-+
-+enum frl_cap_chk_result dml1_frl_cap_chk_common(struct frl_cap_chk_intermediates *inter,
-+						struct frl_cap_chk_params *params)
++static frl_cap_chk_result frl_cap_chk_common(frl_cap_chk_intermediates *inter, frl_cap_chk_params *params)
 +{
-+	double audio_bw_reserve = (params->compressed ? 192000.0 : 0.0);
-+
-+	dc_assert_fp_enabled();
-+
-+#ifdef DEBUG_FRL_CAP_CHK
++	double   audio_bw_reserve = (params->compressed ? 192000.0 : 0.0);
++/*
++	if (getenv("DEBUG_FRL_CAP_CHK"))
 +	{
 +		printf("frl_cap_chk inputs:\n");
 +		printf("-------------------\n");
-+		frl_dump_var("%i",  params->lanes);
++		frl_dump_var("%i", params->lanes);
 +		frl_dump_var("%le", params->f_pixel_clock_nominal);
 +		frl_dump_var("%le", params->r_bit_nominal);
-+		frl_dump_var("%i",  params->audio_packet_type);
++		frl_dump_var("%i", params->audio_packet_type);
 +		frl_dump_var("%le", params->f_audio);
-+		frl_dump_var("%i",  params->h_active);
-+		frl_dump_var("%i",  params->h_blank);
-+		frl_dump_var("%i",  params->bpc);
-+		frl_dump_var("%i",  params->pixel_encoding);
-+		frl_dump_var("%i",  params->compressed);
-+		frl_dump_var("%i",  params->slices);
-+		frl_dump_var("%i",  params->slice_width);
++		frl_dump_var("%i", params->h_active);
++		frl_dump_var("%i", params->h_blank);
++		frl_dump_var("%i", params->bpc);
++		frl_dump_var("%i", params->pixel_encoding);
++		frl_dump_var("%i", params->compressed);
++		frl_dump_var("%i", params->slices);
++		frl_dump_var("%i", params->slice_width);
 +		frl_dump_var("%le", params->bpp_target);
-+		frl_dump_var("%i",  params->layout);
-+		frl_dump_var("%i",  params->acat);
++		frl_dump_var("%i", params->layout);
++		frl_dump_var("%i", params->acat);
 +		printf("frl_cap_chk outputs:\n");
 +		printf("---------------------\n");
 +	}
-+#endif
-+
-+	inter->c_frl_sb          = 4 * C_FRL_CB + params->lanes;
-+	inter->overhead_sb       = (double)params->lanes / inter->c_frl_sb;
-+	inter->overhead_rs       = 8.0 * 4.0 / inter->c_frl_sb;
-+	inter->overhead_map      = 2.5 / inter->c_frl_sb;
-+	inter->overhead_min      = inter->overhead_sb + inter->overhead_rs + inter->overhead_map;
-+	inter->overhead_max      = inter->overhead_min + OVERHEAD_M;
++*/
++	inter->c_frl_sb = 4 * C_FRL_CB + params->lanes;
++	inter->overhead_sb = (double) params->lanes / inter->c_frl_sb;
++	inter->overhead_rs = 8.0 * 4.0 / inter->c_frl_sb;
++	inter->overhead_map = 2.5 / inter->c_frl_sb;
++	inter->overhead_min = inter->overhead_sb + inter->overhead_rs + inter->overhead_map;
++	inter->overhead_max = inter->overhead_min + OVERHEAD_M;
 +	inter->f_pixel_clock_max = params->f_pixel_clock_nominal * (1.0 + TOLERANCE_PIXEL_CLOCK);
-+	inter->t_line            = (params->h_active + params->h_blank) / inter->f_pixel_clock_max;
-+	inter->r_bit_min         = params->r_bit_nominal * (1.0 - TOLERANCE_FRL_BIT / 1000000.0);
-+	inter->r_frl_char_min    = inter->r_bit_min / 18.0;
-+	inter->c_frl_line        = dml_floor(inter->t_line * inter->r_frl_char_min * params->lanes, 1);
-+
-+#ifdef DEBUG_FRL_CAP_CHK
++	inter->t_line = (params->h_active + params->h_blank) / inter->f_pixel_clock_max;
++	inter->r_bit_min = params->r_bit_nominal * (1.0 - TOLERANCE_FRL_BIT / 1000000.0);
++	inter->r_frl_char_min = inter->r_bit_min / 18.0;
++	inter->c_frl_line = floor(inter->t_line * inter->r_frl_char_min * params->lanes);
++/*
++	if (getenv("DEBUG_FRL_CAP_CHK"))
 +	{
-+		frl_dump_var("%i",  inter->c_frl_sb);
++		frl_dump_var("%i", inter->c_frl_sb);
 +		frl_dump_var("%le", inter->overhead_sb);
 +		frl_dump_var("%le", inter->overhead_rs);
 +		frl_dump_var("%le", inter->overhead_map);
@@ -2123,10 +1165,12 @@ index 000000000000..9dde4e56f237
 +		frl_dump_var("%le", inter->r_frl_char_min);
 +		frl_dump_var("%le", inter->c_frl_line);
 +	}
-+#endif
-+
++*/
 +	switch (params->audio_packet_type) {
 +	case 0x02:
++		/* unsupported
++	case 0x07:
++		*/
 +		if (params->layout == 0)
 +			inter->ap = 0.25;
 +		else if (params->layout == 1)
@@ -2136,80 +1180,94 @@ index 000000000000..9dde4e56f237
 +		inter->ap = 0.25;
 +		break;
 +	case 0x09:
++		/* unsupported
++	case 0x0e:
++	case 0x0f:
++		*/
 +		inter->ap = 1.0;
 +		break;
++		/* unsupported
++	case 0x0b:
++	case 0x0c:
++		if (acat == 0x01)
++			ap = 2.0;
++		else if (acat == 0x02)
++			ap = 3.0;
++		else if (acat == 0x03)
++			ap = 4.0;
++		break;
++		*/
 +	case 0x07:
 +	case 0x0e:
 +	case 0x0f:
 +	case 0x0b:
 +	case 0x0c:
-+		/* Unsupported audio format */
++		// Unsupported audio format
 +		return FRL_CAP_CHK_ERROR_UNSUPPORTED_AUDIO;
 +	default:
 +		inter->ap = 0.0;
 +	}
 +
-+	inter->r_ap                   = (dml_max(audio_bw_reserve, params->f_audio * inter->ap) + 2 * ACR_RATE_MAX) * (1 + DML_TOLERANCE_AUDIO_CLOCK / 1000000.0);
++	inter->r_ap                   = (dml_max(audio_bw_reserve, params->f_audio * inter->ap) + 2 * ACR_RATE_MAX) * (1 + TOLERANCE_AUDIO_CLOCK / 1000000.0);
 +	inter->avg_audio_packets_line = inter->r_ap * inter->t_line;
-+	inter->audio_packets_line     = (int)dml_ceil(inter->avg_audio_packets_line, 1);
++	inter->audio_packets_line     = (int)ceil(inter->avg_audio_packets_line);
 +	inter->blank_audio_min        = 32 + 32 * inter->audio_packets_line; // h_blank_audio_min or hc_blank_audio_min
 +
-+	params->borrow_params.audio_packets_line = inter->audio_packets_line;
-+
-+#ifdef DEBUG_FRL_CAP_CHK
++	params->audio_packets_line = inter->audio_packets_line;
++/*
++	if (getenv("DEBUG_FRL_CAP_CHK"))
 +	{
 +		frl_dump_var("%le", inter->ap);
 +		frl_dump_var("%le", inter->r_ap);
 +		frl_dump_var("%le", inter->avg_audio_packets_line);
-+		frl_dump_var("%i",  inter->audio_packets_line);
-+		frl_dump_var("%i",  inter->blank_audio_min);
++		frl_dump_var("%i", inter->audio_packets_line);
++		frl_dump_var("%i", inter->blank_audio_min);
 +	}
-+#endif
-+
++*/
 +	return FRL_CAP_CHK_OK;
 +}
 +
-+enum frl_cap_chk_result dml1_frl_cap_chk_uncompressed(struct frl_cap_chk_params *params,
-+						      struct frl_cap_chk_intermediates *inter)
++
++static frl_cap_chk_result frl_cap_chk_uncompressed(frl_cap_chk_params *params, frl_cap_chk_intermediates *inter)
 +{
-+	enum frl_cap_chk_result res;
-+	int      k_420;
-+	double   k_cd;
-+	int      c_frl_free;
-+	int      c_frl_rc_margin;
-+	int      c_frl_rc_savings;
-+	int      bpp;
-+	double   bytes_line;
-+	int      tb_active;
-+	int      tb_blank;
-+	double   f_tb_average;
-+	double   t_active_ref;
-+	double   t_blank_ref;
-+	double   t_active_min;
-+	double   t_blank_min;
-+	double   t_borrowed;
-+	double   tb_borrowed;
-+	int      c_frl_actual_payload;
-+	double   utilization;
-+	double   margin;
++	frl_cap_chk_result	res;
 +
-+	dc_assert_fp_enabled();
++	int k_420;
++	double k_cd;
++	int c_frl_free;
++	int c_frl_rc_margin;
++	int c_frl_rc_savings;
++	int bpp;
++	double bytes_line;
++	int tb_active;
++	int tb_blank ;
++	double f_tb_average;
++	double t_active_ref;
++	double t_blank_ref;
++	double t_active_min;
++	double t_blank_min;
++	double t_borrowed;
++	double tb_borrowed;
++	int c_frl_actual_payload;
++	double utilization;
++	double margin;
 +
-+	res = dml1_frl_cap_chk_common(inter, params);
-+	if (res != FRL_CAP_CHK_OK)
++	res = frl_cap_chk_common(inter, params);
++	if (res != FRL_CAP_CHK_OK) {
 +		return res;
++	}
 +
-+	k_420            = params->pixel_encoding == HDMI_FRL_PIXEL_ENCODING_420 ? 2 : 1;
-+	k_cd             = params->pixel_encoding == HDMI_FRL_PIXEL_ENCODING_422 ? 1.0 : params->bpc / 8.0;
-+	c_frl_free       = (int)dml_max(params->h_blank * k_cd / k_420 - 32 * (1 + inter->audio_packets_line) - 7, 0);
-+	c_frl_rc_margin  = 4;
-+	c_frl_rc_savings = (int)dml_floor(dml_max(((7.0 / 8.0) * c_frl_free) - c_frl_rc_margin, 0.0), 1);
-+	bpp              = (int)(24 * k_cd / k_420);
-+	bytes_line       = bpp * params->h_active / 8.0;
-+	tb_active        = (int)dml_ceil(bytes_line / 3, 1);
-+	tb_blank         = (int)dml_ceil(params->h_blank * k_cd / k_420, 1);
-+
-+#ifdef DEBUG_FRL_CAP_CHK
++	k_420 = params->pixel_encoding == PIXEL_ENCODING_420 ? 2 : 1;
++	k_cd = params->pixel_encoding == PIXEL_ENCODING_422 ? 1.0 : params->bpc / 8.0;
++	c_frl_free = (int)dml_max(params->h_blank * k_cd / k_420 - 32 * (1 + inter->audio_packets_line) - 7, 0);
++	c_frl_rc_margin = 4;
++	c_frl_rc_savings = (int)floor(dml_max(((7.0/8.0) * c_frl_free) - c_frl_rc_margin, 0.0));
++	bpp = (int)(24 * k_cd / k_420);
++	bytes_line = bpp * params->h_active / 8.0;
++	tb_active = (int)ceil(bytes_line / 3);
++	tb_blank = (int)ceil(params->h_blank * k_cd / k_420);
++/*
++	if (getenv("DEBUG_FRL_CAP_CHK"))
 +	{
 +		frl_dump_var("%i", k_420);
 +		frl_dump_var("%le", k_cd);
@@ -2221,8 +1279,7 @@ index 000000000000..9dde4e56f237
 +		frl_dump_var("%i", tb_active);
 +		frl_dump_var("%i", tb_blank);
 +	}
-+#endif
-+
++*/
 +	if (!(inter->blank_audio_min <= tb_blank)) {
 +		frl_dump_var("%i", inter->blank_audio_min);
 +		frl_dump_var("%i", tb_blank);
@@ -2230,12 +1287,12 @@ index 000000000000..9dde4e56f237
 +	}
 +
 +	f_tb_average = (inter->f_pixel_clock_max / (params->h_active + params->h_blank)) * (tb_active + tb_blank);
-+	t_active_ref = inter->t_line * ((double)params->h_active / (params->h_active + params->h_blank));
-+	t_blank_ref  = inter->t_line * ((double)params->h_blank / (params->h_active + params->h_blank));
++	t_active_ref = inter->t_line * ((double) params->h_active / (params->h_active + params->h_blank));
++	t_blank_ref  = inter->t_line * ((double) params->h_blank / (params->h_active + params->h_blank));
 +	t_active_min = (3.0 / 2.0) * tb_active / (params->lanes * inter->r_frl_char_min * (1.0 - inter->overhead_max));
 +	t_blank_min  = tb_blank / (params->lanes * inter->r_frl_char_min * (1.0 - inter->overhead_max));
-+
-+#ifdef DEBUG_FRL_CAP_CHK
++/*
++	if (getenv("DEBUG_FRL_CAP_CHK"))
 +	{
 +		frl_dump_var("%le", f_tb_average);
 +		frl_dump_var("%le", t_active_ref);
@@ -2243,232 +1300,297 @@ index 000000000000..9dde4e56f237
 +		frl_dump_var("%le", t_active_min);
 +		frl_dump_var("%le", t_blank_min);
 +	}
-+#endif
-+
-+	if (t_active_ref >= t_active_min && t_blank_ref >= t_blank_min) {
++*/
++	if ((t_active_ref >= t_active_min) && (t_blank_ref >= t_blank_min)) {
 +		t_borrowed = 0;
-+		params->borrow_params.borrow_mode = FRL_BORROW_MODE_NONE;
++		params->borrow_mode = BORROW_MODE_NONE;
 +	} else if ((t_active_ref < t_active_min) && (t_blank_ref >= t_blank_min)) {
 +		t_borrowed = t_active_min - t_active_ref;
-+		params->borrow_params.borrow_mode = FRL_BORROW_MODE_FROM_BLANK;
-+	} else {
++		params->borrow_mode = BORROW_MODE_FROM_BLANK;
++	} else
 +		return FRL_CAP_CHK_ERROR_BORROW;
-+	}
 +
-+	tb_borrowed = dml_ceil(t_borrowed * f_tb_average, 1);
-+
-+#ifdef DEBUG_FRL_CAP_CHK
++	tb_borrowed = ceil(t_borrowed * f_tb_average);
++/*
++	if (getenv("DEBUG_FRL_CAP_CHK"))
 +	{
 +		frl_dump_var("%le", tb_borrowed);
-+		frl_dump_var("%i", params->borrow_params.borrow_mode);
-+	}
-+#endif
-+
++		frl_dump_var("%i", params->borrow_mode);
++}
++*/
 +	if (!(tb_borrowed <= TB_BORROWED_MAX))
 +		return FRL_CAP_CHK_ERROR_MAX_BORROW;
 +
-+	c_frl_actual_payload = (int)(dml_ceil((3.0 / 2.0) * tb_active, 1) + tb_blank - c_frl_rc_savings);
++	c_frl_actual_payload = (int)ceil((3.0/2.0) * tb_active) + tb_blank - c_frl_rc_savings;
 +	utilization          = c_frl_actual_payload / inter->c_frl_line;
 +	margin               = 1.0 - (utilization + inter->overhead_max);
-+
-+#ifdef DEBUG_FRL_CAP_CHK
++/*
++	if (getenv("DEBUG_FRL_CAP_CHK"))
 +	{
 +		frl_dump_var("%i",  c_frl_actual_payload);
 +		frl_dump_var("%le", utilization);
 +		frl_dump_var("%le", margin);
 +	}
-+#endif
-+
-+	if (margin < 0 && dcn_bw_fabs(margin) > EPSILON)
++*/
++	if (margin < 0 && fabs(margin) > EPSILON)
 +		return FRL_CAP_CHK_ERROR_MARGIN;
 +
 +	return FRL_CAP_CHK_OK;
 +}
 +
-+enum frl_cap_chk_result dml1_frl_cap_chk(struct frl_cap_chk_params *params)
-+{
-+	struct frl_cap_chk_intermediates inter;
 +
-+	return dml1_frl_cap_chk_inter(params, &inter);
++
++static frl_cap_chk_result frl_cap_chk_compressed(frl_cap_chk_params *params, frl_cap_chk_intermediates *inter)
++{
++	frl_cap_chk_result          res;
++
++	int      c_frl_available;
++	int      c_frl_active_available;
++	int      c_frl_blank_available;
++	int      bytes_target;
++	int      hc_active_target;
++	int      hc_blank_target_est1;
++	int      hc_blank_target_est2;
++	int      hc_blank_target;
++	double   f_tb_average;
++	double   t_active_ref;
++	double   t_blank_ref;
++	double   t_active_target;
++	double   t_blank_target;
++	double   tb_borrowed;
++	int      c_frl_actual_target_payload;
++	double   utilization_targeted;
++	double   margin_target;
++
++	res = frl_cap_chk_common(inter, params);
++	if (res != FRL_CAP_CHK_OK)
++		return res;
++
++	c_frl_available        = (int)floor((1 - inter->overhead_max) * inter->c_frl_line);
++	c_frl_active_available = (int)floor(c_frl_available * ((double) params->h_active / (params->h_active + params->h_blank)));
++	(void) c_frl_active_available;
++	c_frl_blank_available  = (int)floor(c_frl_available * ((double) params->h_blank / (params->h_active + params->h_blank)));
++	(void) c_frl_blank_available;
++	bytes_target           = params->slices * (int)ceil(params->bpp_target * params->slice_width / 8.0);
++
++	if (!params->bypass_hc_target_calc)
++		hc_active_target = (int)ceil(bytes_target / 3.0);
++	else
++		hc_active_target = params->hc_active_target;
++
++	hc_blank_target_est1   = (int)ceil(hc_active_target * ((double) params->h_blank / params->h_active));
++	hc_blank_target_est2   = (int)dml_max(hc_blank_target_est1, inter->blank_audio_min);
++
++	if (!params->bypass_hc_target_calc) {
++		hc_blank_target = 4 * (int)floor(dml_min(hc_blank_target_est2, c_frl_available - 3.0/2.0 * hc_active_target) / 4.0);
++
++		params->hc_active_target = hc_active_target;
++		params->hc_blank_target = hc_blank_target;
++	} else {
++		hc_blank_target  = params->hc_blank_target;
++	}
++/*
++	if (getenv("DEBUG_FRL_CAP_CHK"))
++	{
++		frl_dump_var("%i", c_frl_available);
++		frl_dump_var("%i", c_frl_active_available);
++		frl_dump_var("%i", c_frl_blank_available);
++		frl_dump_var("%i", bytes_target);
++		frl_dump_var("%i", hc_active_target);
++		frl_dump_var("%i", hc_blank_target_est1);
++		frl_dump_var("%i", hc_blank_target_est2);
++		frl_dump_var("%i", hc_blank_target);
++	}
++*/
++	if (!(inter->blank_audio_min <= hc_blank_target)) {
++		frl_dump_var("%i", inter->blank_audio_min);
++		frl_dump_var("%i", hc_blank_target);
++		return FRL_CAP_CHK_ERROR_AUDIO_BW;
++	}
++
++	f_tb_average    = inter->f_pixel_clock_max / (params->h_active + params->h_blank) * (hc_active_target + hc_blank_target);
++	t_active_ref    = inter->t_line * ((double) params->h_active / (params->h_active + params->h_blank));
++	t_blank_ref     = inter->t_line - t_active_ref; // * ((double) params->h_blank / (params->h_active + params->h_blank));
++	t_active_target = dml_max((hc_active_target / f_tb_average), (3.0/2.0 * hc_active_target)/(params->lanes * inter->r_frl_char_min * (1.0 - inter->overhead_max)));
++	t_blank_target  = inter->t_line - t_active_target;
++
++	tb_borrowed     = t_active_target * f_tb_average - hc_active_target;
++/*
++	if (getenv("DEBUG_FRL_CAP_CHK"))
++	{
++		frl_dump_var("%le", f_tb_average);
++		frl_dump_var("%le", t_active_ref);
++		frl_dump_var("%le", t_blank_ref);
++		frl_dump_var("%le", t_active_target);
++		frl_dump_var("%le", t_blank_target);
++		frl_dump_var("%le", tb_delta);
++	}
++*/
++	if (t_blank_target - t_blank_ref > DBL_EPSILON) {
++		params->borrow_mode = BORROW_MODE_FROM_ACTIVE;
++	} else if (t_active_target - t_active_ref > DBL_EPSILON) {
++		params->borrow_mode = BORROW_MODE_FROM_BLANK;
++	} else {
++		params->borrow_mode = BORROW_MODE_NONE;
++	}
++
++/*
++	if (getenv("DEBUG_FRL_CAP_CHK"))
++	{
++		frl_dump_var("%le", tb_delta_limit);
++		frl_dump_var("%le", tb_borrowed);
++		frl_dump_var("%i", params->borrow_mode);
++		frl_dump_var("%i", tb_worst);
++	}
++*/
++	if (!(tb_borrowed <= TB_BORROWED_MAX))
++		return FRL_CAP_CHK_ERROR_MAX_BORROW;
++
++	c_frl_actual_target_payload = (int)ceil(3.0/2.0 * hc_active_target) + hc_blank_target;
++	utilization_targeted        = c_frl_actual_target_payload / inter->c_frl_line;
++	margin_target               = 1.0 - (utilization_targeted + inter->overhead_max);
++/*
++	if (getenv("DEBUG_FRL_CAP_CHK"))
++	{
++		frl_dump_var("%i", c_frl_actual_target_payload);
++		frl_dump_var("%le", utilization_targeted);
++		frl_dump_var("%le", margin_target);
++	}
++*/
++	// oversubscribed bandwidth relative to margin
++	if (margin_target < 0 && fabs(margin_target) > EPSILON)
++		return FRL_CAP_CHK_ERROR_MARGIN;
++
++	return FRL_CAP_CHK_OK;
 +}
 +
-+enum frl_cap_chk_result dml1_frl_cap_chk_inter(struct frl_cap_chk_params *params,
-+					       struct frl_cap_chk_intermediates *inter)
++frl_cap_chk_result frl_cap_chk(frl_cap_chk_params *params)
 +{
-+	return dml1_frl_cap_chk_uncompressed(params, inter);
++	frl_cap_chk_intermediates   inter;
++	return frl_cap_chk_inter(params, &inter);
 +}
 +
-+static double calculate_compressed_active_time(uint32_t h_active,
-+	const uint32_t h_blank,
-+	const int hc_active,
-+	const int hc_blank,
-+	const uint32_t frl_num_lanes,
-+	const double pix_clk,
-+	const int frl_link_rate)
++frl_cap_chk_result frl_cap_chk_inter(frl_cap_chk_params *params, frl_cap_chk_intermediates *inter)
 +{
-+	double f_tb_average;
-+	double r_bit_nominal;
-+	double r_bit_min;
-+	double r_frl_char_min;
-+	double t_active_est_1;
-+	double t_active_est_2;
-+	double t_active_target;
-+	int c_frl_sb = 510;
-+	int frl_bit_tolerance = 300;
-+	double overhead_m = 0.003;
++	if (params->compressed)
++		return frl_cap_chk_compressed(params, inter);
++	return frl_cap_chk_uncompressed(params, inter);
++}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml_frl_cap_chk.h b/drivers/gpu/drm/amd/display/dc/dml2_0/dml_frl_cap_chk.h
+new file mode 100644
+index 000000000000..87ac9b94e98b
+--- /dev/null
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml_frl_cap_chk.h
+@@ -0,0 +1,109 @@
++/*
++ * Copyright 2022 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ * Authors: AMD
++ *
++ */
++
++#ifndef __DML_FRL_CAP_CHK_H__
++#define __DML_FRL_CAP_CHK_H__
++
++#include "os_types.h"
++
++typedef enum {
++	PIXEL_ENCODING_444,
++	PIXEL_ENCODING_422,
++	PIXEL_ENCODING_420
++} enum_pixel_encoding;
++
++typedef enum {
++	BORROW_MODE_NONE,
++	BORROW_MODE_FROM_ACTIVE,
++	BORROW_MODE_FROM_BLANK
++} enum_borrow_mode;
++
++typedef enum {
++	FRL_CAP_CHK_OK = 0,
++
++	FRL_CAP_CHK_ERROR_AUDIO_BW = -1,
++	FRL_CAP_CHK_ERROR_BORROW = -2,
++	FRL_CAP_CHK_ERROR_MAX_BORROW = -3,
++	FRL_CAP_CHK_ERROR_MARGIN = -4,
++
++	FRL_CAP_CHK_ERROR_UNSUPPORTED_AUDIO = -1000
++} frl_cap_chk_result;
++
++typedef struct {
++	int c_frl_sb;
 +	double overhead_sb;
 +	double overhead_rs;
 +	double overhead_map;
 +	double overhead_min;
 +	double overhead_max;
-+
-+	switch (frl_link_rate) {
-+	case FRL_LINK_RATE_3GBPS:
-+		r_bit_nominal = 3.0e9;
-+		break;
-+	case FRL_LINK_RATE_6GBPS:
-+	case FRL_LINK_RATE_6GBPS_4LANE:
-+		r_bit_nominal = 6.0e9;
-+		break;
-+	case FRL_LINK_RATE_8GBPS:
-+		r_bit_nominal = 8.0e9;
-+		break;
-+	case FRL_LINK_RATE_10GBPS:
-+	default:
-+		r_bit_nominal = 10.0e9;
-+		break;
-+	case FRL_LINK_RATE_12GBPS:
-+		r_bit_nominal = 12.0e9;
-+		break;
-+	}
-+
-+	f_tb_average = pix_clk / (h_active + h_blank)
-+					* (hc_active + hc_blank);
-+
-+	c_frl_sb = 4 * c_frl_sb + frl_num_lanes;
-+	overhead_sb = (double)frl_num_lanes / c_frl_sb;
-+	overhead_rs = 8.0 * 4.0 / c_frl_sb;
-+	overhead_map = 2.5 / c_frl_sb;
-+	overhead_min = overhead_sb + overhead_rs + overhead_map;
-+	overhead_max = overhead_min + overhead_m;
-+
-+	r_bit_min = r_bit_nominal * (1.0 - frl_bit_tolerance / 1000000.0);
-+	r_frl_char_min = r_bit_min / 18.0;
-+	t_active_est_1 = hc_active / f_tb_average;
-+	t_active_est_2 = (3.0 / 2.0 * hc_active) /
-+				  (frl_num_lanes * r_frl_char_min * (1.0 - overhead_max));
-+
-+	if (t_active_est_1 > t_active_est_2) {
-+		t_active_target = t_active_est_1;
-+	} else {
-+		t_active_target = t_active_est_2;
-+	}
-+
-+	return t_active_target;
-+}
-+
-+void frl_modified_pix_clock_for_dsc_padding(const int hc_active_target,
-+	const int hc_blank_target,
-+	const uint8_t frl_num_lanes,
-+	const uint32_t pix_clk_100hz,
-+	const int frl_link_rate,
-+	const uint32_t h_addressable,
-+	const uint32_t h_border_left,
-+	const uint32_t h_border_right,
-+	const uint32_t h_total,
-+	const uint32_t h_addressable_otg,
-+	uint32_t *pix_clk_100hz_otg,
-+	uint32_t *h_total_otg)
-+{
-+	double pix_clk;
-+	int h_active;
-+	int h_blank;
-+	double t_active_target;
-+	double hw_pix_clk;
-+	double h_total_otg_temp;
-+
-+	pix_clk = (double)pix_clk_100hz * 100;
-+
-+	h_active = h_addressable + h_border_left + h_border_right;
-+	h_blank = h_total - h_active;
-+
-+	t_active_target = calculate_compressed_active_time(h_active, h_blank, hc_active_target, hc_blank_target, frl_num_lanes, pix_clk, frl_link_rate);
-+
-+	h_total_otg_temp = ((double)h_addressable_otg * (double)h_total) / ((double)pix_clk_100hz * 100.0 * t_active_target);
-+	/* Htotal must be a multiple of 4, also take the ceiling */
-+	*h_total_otg = (uint32_t)dml_ceil(h_total_otg_temp, 4.0);
-+
-+	hw_pix_clk = (double)(pix_clk_100hz * 100.0 * (double)*h_total_otg) / (double)h_total;
-+	*pix_clk_100hz_otg = (uint32_t)(hw_pix_clk / 100.0);
-+}
-+
-+int frl_modify_borrow_mode_for_dsc_padding(const uint32_t pix_clk_100hz,
-+	const uint32_t h_active,
-+	const uint32_t h_active_padded,
-+	const uint32_t h_blank,
-+	const uint32_t h_blank_padded,
-+	const int hc_active,
-+	const int hc_blank,
-+	const uint8_t frl_num_lanes,
-+	const int frl_link_rate)
-+{
 +	double f_pixel_clock_max;
 +	double t_line;
-+	double t_active;
-+	double t_blank;
-+	double t_active_target;
-+	double t_blank_target;
-+	double pix_clk_tolerance = 0.005;
++	double r_bit_min;
++	double r_frl_char_min;
++	double c_frl_line;
++	double ap;
++	double r_ap;
++	double avg_audio_packets_line;
++	int audio_packets_line;
++	int blank_audio_min;
++} frl_cap_chk_intermediates;
 +
-+	enum frl_borrow_mode borrow_mode;
++typedef struct {
++	int lanes;
++	double f_pixel_clock_nominal; /* Pixel Clock rate (Hz) */
++	double r_bit_nominal; /* FRL bitrate (bps) */
++	int audio_packet_type;
++	double f_audio; /* Audio rate (Hz) */
++	int h_active; /* Active pixels per line */
++	int h_blank; /* Blanking pixels per line */
++	int bpc; /* Bits per component */
 +
-+	f_pixel_clock_max = (double)pix_clk_100hz * (1.0 + pix_clk_tolerance);
-+	t_line = (double)(h_active + h_blank) / f_pixel_clock_max;
++	enum_pixel_encoding pixel_encoding;
 +
-+	t_active_target = calculate_compressed_active_time(h_active, h_blank, hc_active, hc_blank, frl_num_lanes, f_pixel_clock_max, frl_link_rate);
++	bool compressed;
++	bool bypass_hc_target_calc;
 +
-+	t_active = t_line * ((double)h_active_padded / (h_active_padded + h_blank_padded));
-+	t_blank = t_line - t_active;
++	/* DSC parameters */
++	int slices;
++	int slice_width;
++	double bpp_target;
 +
-+	t_blank_target = t_line - t_active_target;
++	int layout; /* not supported */
++	int acat; /* not supported */
 +
-+	if (t_blank_target - t_blank > DBL_EPSILON) {
-+		borrow_mode = FRL_BORROW_MODE_FROM_ACTIVE;
-+	} else if (t_active_target - t_active > DBL_EPSILON) {
-+		borrow_mode = FRL_BORROW_MODE_FROM_BLANK;
-+	} else {
-+		borrow_mode = FRL_BORROW_MODE_NONE;
-+	}
++	/* outputs */
++	int audio_packets_line;
 +
-+	return borrow_mode;
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dml1_frl_cap_chk.h b/drivers/gpu/drm/amd/display/dc/dml/dml1_frl_cap_chk.h
-index debe4c1dc0f7..545f498ea396 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dml1_frl_cap_chk.h
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dml1_frl_cap_chk.h
-@@ -119,13 +119,6 @@ struct frl_cap_chk_params {
- 
- 	bool     compressed;              /* set to true if DSC is enabled */
- 	bool     bypass_hc_target_calc;   /* debug only */
--	bool     allow_all_bpp;           /* dsc_all_bpp */
--
--	/* DSC parameters */
--	int      slices;
--	int      slice_width;
--	double   bpp_target;
--	bool     is_ovt;
- 	int      layout;
- 	int      acat;    /* not supported */
- 
-@@ -145,8 +138,6 @@ enum frl_cap_chk_result dml1_frl_cap_chk_common(struct frl_cap_chk_intermediates
- enum frl_cap_chk_result dml1_frl_cap_chk_uncompressed(struct frl_cap_chk_params *params,
- 						      struct frl_cap_chk_intermediates *inter);
- 
--enum frl_cap_chk_result dml1_frl_cap_chk_compressed(struct frl_cap_chk_params *params,
--						    struct frl_cap_chk_intermediates *inter);
- #endif
- 
- void frl_modified_pix_clock_for_dsc_padding(const int hc_active_target,
++	/* inputs or outputs */
++	int hc_active_target;
++	int hc_blank_target;
++
++	enum_borrow_mode borrow_mode;
++} frl_cap_chk_params;
++
++frl_cap_chk_result frl_cap_chk(frl_cap_chk_params *params);
++frl_cap_chk_result frl_cap_chk_inter(frl_cap_chk_params *params, frl_cap_chk_intermediates *inter);
++
++#endif
 -- 
 2.54.0
 
