@@ -2,69 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KCpBMHXiBGrPQAIAu9opvQ
+	id kKCHFXbiBGrPQAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 22:43:33 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 22:43:34 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 322B953A9E3
+	by mail.lfdr.de (Postfix) with ESMTPS id 05CC753A9EA
 	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 22:43:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6853210F05C;
-	Wed, 13 May 2026 20:43:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D98C210F061;
+	Wed, 13 May 2026 20:43:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PPPA7Xj9";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KiHLF5qX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
- [209.85.221.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADDB610F05A
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 20:43:29 +0000 (UTC)
-Received: by mail-wr1-f47.google.com with SMTP id
- ffacd0b85a97d-43d77f6092eso4579555f8f.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 13:43:29 -0700 (PDT)
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
+ [209.85.221.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE16A10F061
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 20:43:30 +0000 (UTC)
+Received: by mail-wr1-f52.google.com with SMTP id
+ ffacd0b85a97d-43d76dd4ee8so6723392f8f.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 13:43:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1778705008; x=1779309808; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1778705009; x=1779309809; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Ir74CLLiQOUBe8V0c5PWlS0bD6Uuf/ALVrfnhEoRtBg=;
- b=PPPA7Xj9ZhycILl17X+JI+AopYwMlH5k0CPoV4mHAZeTYFFM1DhoFnDDlFj6BKArFz
- NVbVffzmYXmvau0mXEeFY1nENw7Xj3bdFsyOGTxn5iB5e2m2zqjJ8p1/hHW9SLDbhrjA
- DSvgXMCUxDItG41YvYGY4IDpqSL6m5nYgJqJusReAdPpY/GkcyS2BQHjnp6f+2pu1b1b
- fqCvklSn1E+dej9XQQ3UX/ap6Q0WTsyPIX9TazFxVefhgriW8ZwT+xUK/VBaT5sEcNBP
- T9Q3+4lCBa5c525de68V+OhXcMe5ff/xGWEY/QiuF2+9EjT1UcwH5vLsA71ZFhZQrrf1
- S/Uw==
+ bh=9lazp6U03JBhzkXRmXdYYmFwBtMKHRY1kzAfL+o9qDI=;
+ b=KiHLF5qXMmgiGrroqfukEjnLMhKGBGEZLYeXOGi9x5nBd2jeOQ/AiMMJZQUY21+Sw1
+ 6yYL4pxooJbHhVqV+aI6RsyZDqyYUOth5YIUdTeY3bfy/ckj5AFzbygJtzZgMuSOiGvo
+ 9EP4gdZu2FjdhxudKgnk77C52b8XT0CwsUa15pj4LzuFiAMTRDA8z0PQGFMMGx1h7KBR
+ WZMPQ45Q/oXhX0C7QF0Hon/qCS+XZ9su+IHOWOpwVEweddOyBltjjva5N3fNiRbcMZhY
+ vo5YSjsvgk4RWG0mJzsv/bQmOV17H/SyZtvE3L5oIAW+oEO74wzA3z2HbrE/pyphKp48
+ fXLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778705008; x=1779309808;
+ d=1e100.net; s=20251104; t=1778705009; x=1779309809;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=Ir74CLLiQOUBe8V0c5PWlS0bD6Uuf/ALVrfnhEoRtBg=;
- b=BAr4QswF6/iOxcrsyTh4+rdGsuM7N7TLWai7t+KZKTSWjTXvngP1vg3u8NKNgSZ987
- xdo94nqOHNWxyyBfc5AfQf2fykzrwzV23A5GzxRanUqykaU6XubbIKPtBYhqksxkfRpe
- +4Lsp62cmYYO4vIrErdmNElI8erLoR9s6Alt/iGL3XDKRk1dau5xPMwxw6A7ZaY8yJlE
- DHDh3E2vlo1XzMU+0J/eYd5MDRpncxh1C6jtUafsZo5s9397c2ScpabOGMZ8730xTnke
- 0WMnY5tmQ9jXwSeyBDw9+Gd8AOz09+1bpwr+gUaImMv++ezlYltvLx1HItSPZISPocZR
- uabg==
-X-Gm-Message-State: AOJu0YwEvhm5K7VT5G1DXJ+BYU00SbhAOaH+5k4PcYSKSbxNW8r6f0aE
- e6Eih+bO5/0LN80OyqGSPTtHt5QI3R07CKlRxPEWrso1lPnewVq2LV48LXH7mxOs
-X-Gm-Gg: Acq92OGPuz9jzCnejC8vKEZeL+Bg9trYwJEeUDyHt5Q3jIzEEZkM8gTjODkVrSsT4VR
- Z0spHh4z6k33PnXwSlc9fPIrDx19numiL+GGd7Su+pWkWJ5qVFxvI3Uis+8dhmz1hHu4iBPBI+F
- 9gydtQOFzFK77GswPsGzylG6L/sJgeSUNuc4NS8MAhkPPLVVM9TF4Z/GMiwkqP2KAJ38crnLAaH
- 2Z8ZHKKiF9zMN6sqVtE29PzjYfZPGgkJFl934F20MOCRoP0efn/S7AaHAg79+P6ADMR08Nt9MnA
- oHS7W/37zkxpher21coJ3zv/S+/pJMBL2rwnxz46cbv0e6SwH5ris242+Yt3T4rIa57uawJwc3V
- 9fnmjy+MvvtYBqDeeRb8Owp+RVMJzbYBoWhkoon90l5uZtCPXdF9gjtCUVFO5reVOsXpSnI5H52
- Dd8gnItcKpLTDnXQPCPiNriUQIEuKgcQRQy3iNRxx/J+2M8lKcQRnhslBxKPsekabs
-X-Received: by 2002:a05:6000:4027:b0:43d:733f:aee6 with SMTP id
- ffacd0b85a97d-45c583b2a1emr7887022f8f.10.1778705008071; 
- Wed, 13 May 2026 13:43:28 -0700 (PDT)
+ bh=9lazp6U03JBhzkXRmXdYYmFwBtMKHRY1kzAfL+o9qDI=;
+ b=mgBGi21UevRV69Pn5lQkkF21whHrcKMReyLmhC7w3rro9lp8z+Ni7MMeFGGZcpxY29
+ T72Hdssokk7ZrJOB0o/KISP2jABLpwG5c1LNuf0o64H4wHQpDQ97n3aXnUgnC2xRILI1
+ blQ5xOdUHuYq1FJV/h6LwQxFtL4vwhqwifOdOTfiSbgm4RdI0hiTpqQ8L1UNNAy6HNrG
+ qHxKU1oIE+cfCqkWKp+LEPV8Jmg/LOuZjOJp3x/RJLnwuH+gSFFSRYoGmAyGet3LiojI
+ w7NQCsi2dkP7Ua4xxMSxbcVDzwJdpN1zXxKx1F4j18oLTd4y9eLPO+1Gry/f0H0k3Q9+
+ EyDA==
+X-Gm-Message-State: AOJu0Yy/ZoQqPmH7T+AufU9QLneR6DfvlFjpalZwx/SPCqHpaqGKR7oQ
+ HY46URZcO9WBtdfHScQMkg8IshjikTJEh/WRSpwqcHkPM24gvkOUfrX1qceGr7kr
+X-Gm-Gg: Acq92OG6EJOSLTftcSuesm2QgiLG5Mu4yU6tS8ZspdQHkpJtpqH/xRf2NFU/y70X6bz
+ Fy4SLQv+B3/EvsWKY7etQ9MN/Mf7XjhWOIcfgnM/JtCrlcZvVRKgSbA2EQhqF8uyQkCzaLUhSBv
+ mY25j6gLOygXYfHqV6m6psiBc5b5cJvWfUd45B6ocdUqu7PBULf/Csw9ACHYD1/HJp16E8sqvpR
+ uXTW6wav/CxpYPSxCc2WtmdmBjsT55r9rabPhCZbwX7bS1l4IXqcUGhZMYcl+Z92b+wtwIJqZi5
+ kDfMWeMz09fNT0cSPpPcDFhQ5L4yAohmu+vdVs+6+7NVbKmbeDLi7bEEC6ANENsn7ILgK8ajqZq
+ BtE9rwVdx/Bq3LdO76/AmcybzSgEcNIh8MlH0gwe4KDqfiPdV8rLA6kyxHKgnCVPe5k97+Y+jhM
+ H/NAME1cW+/BjP5oPP0W7ebyapdSUCGYyzdcniQ7jDeYDf9gdrvpEuTAWBRJ6nKcN8
+X-Received: by 2002:a05:6000:288c:b0:445:eb07:f0bf with SMTP id
+ ffacd0b85a97d-45c584a9048mr7527589f8f.16.1778705009261; 
+ Wed, 13 May 2026 13:43:29 -0700 (PDT)
 Received: from Timur-Hyperion.home (540017BE.dsl.pool.telekom.hu.
  [84.0.23.190]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-45da0a19c2dsm1308356f8f.21.2026.05.13.13.43.27
+ ffacd0b85a97d-45da0a19c2dsm1308356f8f.21.2026.05.13.13.43.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 May 2026 13:43:27 -0700 (PDT)
+ Wed, 13 May 2026 13:43:28 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  christian.koenig@amd.com,
@@ -76,9 +76,9 @@ To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
  Link Mauve <linkmauve@linkmauve.fr>
-Subject: [PATCH 2/4] drm/amdgpu: Convert tiling flags to modifiers on GFX6-8
-Date: Wed, 13 May 2026 22:43:20 +0200
-Message-ID: <20260513204322.73542-3-timur.kristof@gmail.com>
+Subject: [PATCH 3/4] drm/amd/display: Support DRM format modifiers on GFX6-8
+Date: Wed, 13 May 2026 22:43:21 +0200
+Message-ID: <20260513204322.73542-4-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260513204322.73542-1-timur.kristof@gmail.com>
 References: <20260513204322.73542-1-timur.kristof@gmail.com>
@@ -98,7 +98,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 322B953A9E3
+X-Rspamd-Queue-Id: 05CC753A9EA
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -130,175 +130,409 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linkmauve.fr:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linkmauve.fr:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-This is done for consistency between different GPU generations.
-Convert the tiling flags to modifers on GFX8 and older, so that
-the DC display driver can rely on them like on newer generations.
+Expose displayable DRM format modifiers based on which tiling
+modes are supported by the GFX block.
 
-Note that this code path will only be taken when DC actually
-exposes any modifiers on GFX6-8, which is handled in a subsequent
-commit after this one.
+Technically, DCE could support all possible modes independently
+of what GFX supports, but it doesn't make sense to expose all
+possible permutations.
+
+The following modes will be advertised:
+- 2D_TILED_THIN1 + DISPLAY (macro tiled)
+- 1D_TILED_THIN1 + DISPLAY (micro tiled only)
+- LINEAR
+
+The macro tiling configuration depends on how many bits per pixel
+the given surface has.
+
+When sharing buffers between different GPUs, it is unlikely that
+they will support the same macro tile mode, so it will likely
+need to use the micro tiled only mode.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 Tested-by: Link Mauve <linkmauve@linkmauve.fr>
 Reviewed-by: Marek Olšák <maraeo@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c | 111 +++++++++++++++++++-
- 1 file changed, 108 insertions(+), 3 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 313 +++++++++++++++++-
+ 1 file changed, 306 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index 950937b363fb..dcca930ed3c0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -746,7 +746,7 @@ static int convert_tiling_flags_to_modifier_gfx12(struct amdgpu_framebuffer *afb
- 	return 0;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+index 23a9faa2ea89..24e3510613ce 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+@@ -165,6 +165,18 @@ static void amdgpu_dm_plane_add_modifier(uint64_t **mods, uint64_t *size, uint64
+ 	*size += 1;
  }
  
--static int convert_tiling_flags_to_modifier(struct amdgpu_framebuffer *afb)
-+static int convert_tiling_flags_to_modifier_gfx9(struct amdgpu_framebuffer *afb)
- {
- 	struct amdgpu_device *adev = drm_to_adev(afb->base.dev);
- 	uint64_t modifier = 0;
-@@ -940,6 +940,55 @@ static int convert_tiling_flags_to_modifier(struct amdgpu_framebuffer *afb)
- 	return 0;
- }
- 
-+static int convert_tiling_flags_to_modifier_gfx6(struct amdgpu_framebuffer *afb)
++static void amdgpu_dm_plane_add_modifier_dedup(uint64_t **mods, uint64_t *size,
++					       uint64_t *cap, uint64_t mod)
 +{
-+	const uint32_t array_mode = AMDGPU_TILING_GET(afb->tiling_flags, ARRAY_MODE);
-+	const uint32_t pipe_config = AMDGPU_TILING_GET(afb->tiling_flags, PIPE_CONFIG);
-+	const uint32_t tile_split = AMDGPU_TILING_GET(afb->tiling_flags, TILE_SPLIT);
-+	const uint32_t micro_tile_mode = AMDGPU_TILING_GET(afb->tiling_flags, MICRO_TILE_MODE);
-+	const uint32_t bank_width = AMDGPU_TILING_GET(afb->tiling_flags, BANK_WIDTH);
-+	const uint32_t bank_height = AMDGPU_TILING_GET(afb->tiling_flags, BANK_HEIGHT);
-+	const uint32_t macro_tile_aspect = AMDGPU_TILING_GET(afb->tiling_flags, MACRO_TILE_ASPECT);
-+	const uint32_t num_banks = AMDGPU_TILING_GET(afb->tiling_flags, NUM_BANKS);
-+	struct amdgpu_device *adev = drm_to_adev(afb->base.dev);
-+	uint64_t modifier = 0;
++	uint64_t i;
 +
-+	switch (array_mode) {
-+	case DC_ARRAY_LINEAR_GENERAL:
-+	case DC_ARRAY_LINEAR_ALLIGNED:
-+		modifier = DRM_FORMAT_MOD_LINEAR;
-+		break;
++	for (i = 0; i < *size; ++i)
++		if ((*mods)[i] == mod)
++			return;
 +
-+	case DC_ARRAY_2D_TILED_THIN1:
-+		/* Macro tiled modes only */
-+		modifier |=
-+			AMD_FMT_MOD_SET(PIPE_CONFIG, pipe_config) |
-+			AMD_FMT_MOD_SET(TILE_SPLIT, tile_split) |
-+			AMD_FMT_MOD_SET(BANK_WIDTH, bank_width) |
-+			AMD_FMT_MOD_SET(BANK_HEIGHT, bank_height) |
-+			AMD_FMT_MOD_SET(MACRO_TILE_ASPECT, macro_tile_aspect) |
-+			AMD_FMT_MOD_SET(NUM_BANKS, num_banks);
-+		fallthrough;
++	amdgpu_dm_plane_add_modifier(mods, size, cap, mod);
++}
 +
-+	case DC_ARRAY_1D_TILED_THIN1:
-+		/* Micro and macro tiled modes */
-+		modifier |=
-+			AMD_FMT_MOD |
-+			AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX6) |
-+			AMD_FMT_MOD_SET(TILE, array_mode) |
-+			AMD_FMT_MOD_SET(MICROTILE, micro_tile_mode);
-+		break;
+ static bool amdgpu_dm_plane_modifier_has_dcc(uint64_t modifier)
+ {
+ 	return IS_AMD_FMT_MOD(modifier) && AMD_FMT_MOD_GET(DCC, modifier);
+@@ -211,6 +223,39 @@ static void amdgpu_dm_plane_fill_gfx8_tiling_info_from_flags(struct dc_tiling_in
+ 			AMDGPU_TILING_GET(tiling_flags, PIPE_CONFIG);
+ }
+ 
++static int amdgpu_dm_plane_fill_gfx6_tiling_info_from_modifier(struct dc_tiling_info *tiling_info,
++							       uint64_t modifier)
++{
++	if (modifier == DRM_FORMAT_MOD_LINEAR) {
++		tiling_info->gfx8.array_mode = DC_ARRAY_LINEAR_GENERAL;
++		tiling_info->gfxversion = DcGfxVersion8;
 +
-+	default:
-+		drm_err(&adev->ddev, "array mode 0x%x not supported by DCE\n", array_mode);
-+		return -EINVAL;
++		return 0;
 +	}
 +
-+	afb->base.modifier = modifier;
-+	afb->base.flags |= DRM_MODE_FB_MODIFIERS;
++	if (!IS_AMD_FMT_MOD(modifier))
++		return -EINVAL;
++
++	if (AMD_FMT_MOD_GET(TILE_VERSION, modifier) != AMD_FMT_MOD_TILE_VER_GFX6)
++		return -EINVAL;
++
++	tiling_info->gfx8.array_mode = AMD_FMT_MOD_GET(TILE, modifier);
++	tiling_info->gfxversion = DcGfxVersion8;
++	tiling_info->gfx8.tile_mode = AMD_FMT_MOD_GET(MICROTILE, modifier);
++
++	if (AMD_FMT_MOD_GET(TILE, modifier) < AMD_FMT_MOD_TILE_GFX6_2D_TILED_THIN1)
++		return 0;
++
++	tiling_info->gfx8.pipe_config = AMD_FMT_MOD_GET(PIPE_CONFIG, modifier);
++	tiling_info->gfx8.tile_split = AMD_FMT_MOD_GET(TILE_SPLIT, modifier);
++	tiling_info->gfx8.bank_width = AMD_FMT_MOD_GET(BANK_WIDTH, modifier);
++	tiling_info->gfx8.bank_height = AMD_FMT_MOD_GET(BANK_HEIGHT, modifier);
++	tiling_info->gfx8.tile_aspect = AMD_FMT_MOD_GET(MACRO_TILE_ASPECT, modifier);
++	tiling_info->gfx8.num_banks = AMD_FMT_MOD_GET(NUM_BANKS, modifier);
++
 +	return 0;
 +}
 +
- /* Mirrors the is_displayable check in radeonsi's gfx6_compute_surface */
- static int check_tiling_flags_gfx6(struct amdgpu_framebuffer *afb)
+ static void amdgpu_dm_plane_fill_gfx9_tiling_info_from_device(const struct amdgpu_device *adev,
+ 							      struct dc_tiling_info *tiling_info)
  {
-@@ -1093,7 +1142,7 @@ static int amdgpu_display_verify_sizes(struct amdgpu_framebuffer *rfb)
+@@ -446,6 +491,246 @@ static void amdgpu_dm_plane_add_gfx10_1_modifiers(const struct amdgpu_device *ad
+ 				     AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX9));
+ }
  
- 			get_block_dimensions(block_size_log2, format_info->cpp[i],
- 					     &block_width, &block_height);
--		} else {
-+		} else if (AMD_FMT_MOD_GET(TILE_VERSION, modifier) >= AMD_FMT_MOD_TILE_VER_GFX9) {
- 			int swizzle = AMD_FMT_MOD_GET(TILE, modifier);
- 
- 			switch ((swizzle & ~3) + 1) {
-@@ -1120,6 +1169,60 @@ static int amdgpu_display_verify_sizes(struct amdgpu_framebuffer *rfb)
- 
- 			get_block_dimensions(block_size_log2, format_info->cpp[i],
- 					     &block_width, &block_height);
-+		} else if (AMD_FMT_MOD_GET(TILE_VERSION, modifier) == AMD_FMT_MOD_TILE_VER_GFX6) {
-+			const u32 display_micro_tile_pitch = 32; /* required by DCE */
-+			const u32 micro_tile_width = 8;
-+			const u32 micro_tile_height = 8;
-+			const u32 micro_tile_mode = AMD_FMT_MOD_GET(MICROTILE, modifier);
-+			const u32 array_mode = AMD_FMT_MOD_GET(TILE, modifier);
-+			u32 num_banks, bank_width, bank_height, pipe_config, macro_tile_aspect;
-+			u32 num_pipes;
++/**
++ * amdgpu_dm_plane_get_gfx6_tile_idx() - Get tile mode index on GFX6-8
++ *
++ * @adev: amdgpu_device pointer
++ * @bpp: bits per pixel in the image
++ * @arr: array mode (aka. tile mode) of the image layout
++ *
++ * Select which tiling mode from the table is suitable for the given bits per pixel
++ * using the given array mode, assuming the displayable micro tile mode is used.
++ *
++ * On GFX6-8, the GFX block can only use pre-programmed tiling modes from GB_TILE_MODEn
++ * registers which are programmed by the kernel according to the tiling mode table.
++ * Note that the tiling table is uAPI and userspace relies on specific modes being
++ * present at specific indices.
++ * See SiLib::HwlSetupTileInfo() and CiLib::HwlSetupTileInfo() in addrlib.
++ */
++static u32 amdgpu_dm_plane_get_gfx6_tile_idx(const struct amdgpu_device *adev,
++					 const u32 bpp,
++					 const enum array_mode_values arr)
++{
++	/* Assume that the microtile mode is DISPLAY. */
 +
-+			if (AMD_FMT_MOD_GET(DCC, modifier)) {
-+				drm_dbg_kms(rfb->base.dev, "DCC is not displayable on GFX6-8\n");
-+				return -EINVAL;
-+			}
-+			if (array_mode != AMD_FMT_MOD_TILE_GFX6_1D_TILED_THIN1 &&
-+			    array_mode != AMD_FMT_MOD_TILE_GFX6_2D_TILED_THIN1) {
-+				drm_dbg_kms(rfb->base.dev,
-+					"Array mode %u is not supported by the display driver\n",
-+					array_mode);
-+				return -EINVAL;
-+			}
-+			if (micro_tile_mode != AMD_FMT_MOD_MICROTILE_DISPLAY) {
-+				drm_dbg_kms(rfb->base.dev,
-+					"Micro tile mode %u is not displayable on GFX6-8\n",
-+					micro_tile_mode);
-+				return -EINVAL;
-+			}
++	if (arr == DC_ARRAY_1D_TILED_THIN1)
++		return 9;
 +
-+			num_banks = 2 << AMD_FMT_MOD_GET(NUM_BANKS, modifier);
-+			bank_width = 1 << AMD_FMT_MOD_GET(BANK_WIDTH, modifier);
-+			bank_height = 1 << AMD_FMT_MOD_GET(BANK_HEIGHT, modifier);
-+			pipe_config = AMD_FMT_MOD_GET(PIPE_CONFIG, modifier);
-+			macro_tile_aspect = 1 << AMD_FMT_MOD_GET(MACRO_TILE_ASPECT, modifier);
++	ASSERT(arr == DC_ARRAY_2D_TILED_THIN1);
 +
-+			if (pipe_config >= AMD_FMT_MOD_PIPE_CONFIG_P16_32x32_8x16)
-+				num_pipes = 16;
-+			else if (pipe_config >= AMD_FMT_MOD_PIPE_CONFIG_P8_16x16_8x16)
-+				num_pipes = 8;
-+			else if (pipe_config >= AMD_FMT_MOD_PIPE_CONFIG_P4_8x16)
-+				num_pipes = 4;
-+			else if (pipe_config == AMD_FMT_MOD_PIPE_CONFIG_P2)
-+				num_pipes = 2;
-+			else
-+				unreachable();
++	if (adev->family > AMDGPU_FAMILY_SI)
++		return 10;
 +
-+			if (array_mode < AMD_FMT_MOD_TILE_GFX6_2D_TILED_THIN1) {
-+				block_width = display_micro_tile_pitch;
-+				block_height = micro_tile_height;
-+			} else {
-+				/* Assume non-PRT macro tiling modes */
-+				block_width = num_pipes * micro_tile_width *
-+					      bank_width * macro_tile_aspect;
-+				block_height = micro_tile_height * bank_height *
-+					       num_banks / macro_tile_aspect;
-+			}
- 		}
++	switch (bpp) {
++	case 8:
++		return 10;
++	case 16:
++		return 11;
++	default:
++		return 12;
++	}
++}
++
++/**
++ * amdgpu_dm_plane_calc_gfx7_tile_split() - Calculate tile split on GFX7-8
++ *
++ * @adev: amdgpu_device pointer
++ * @bpp: bits per pixel in the image
++ * @gb_tile_mode: GB_TILE_MODEn register value for the current tiling mode
++ *
++ * Calculate the actual tile split value on GFX7-8, assuming 2D_TILED_THIN1 array mode
++ * with a non-depth micro tile mode.
++ *
++ * On GFX7-8, SAMPLE_SPLIT holds a factor from which the actual tile split bytes
++ * can be calculated. The TILE_SPLIT field is only used for the depth micro tile mode.
++ * See CiLib::HwlComputeMacroModeIndex() in addrlib.
++ */
++static u32 amdgpu_dm_plane_calc_gfx7_tile_split(const struct amdgpu_device *adev,
++						const u32 bpp,
++						const u32 gb_tile_mode)
++{
++	/* Assume 2D_TILED_THIN1 mode with non-DEPTH microtiles */
++	const u32 sample_split = (gb_tile_mode >> 25) & 0x3;
++	const u32 thickness = 1;
++	const u32 tile_size_pixels = 8 * 8;
++	const u32 tile_bytes_1x = tile_size_pixels * bpp * thickness / 8;
++	const u32 sample_split_factor = 1 << sample_split;
++
++	return clamp(tile_bytes_1x * sample_split_factor,
++		     256,
++		     adev->gfx.config.mem_row_size_in_kb * 1024);
++}
++
++/**
++ * amdgpu_dm_plane_get_gfx7_macro_tile_idx() - Get macro tile mode index on GFX7-8
++ *
++ * @bpp: bits per pixel in the image
++ * @tile_split_bytes: actual tile split bytes, see amdgpu_dm_plane_calc_gfx7_tile_split()
++ *
++ * Select which macro tiling mode from the table is suitable for the given bits per pixel,
++ * assuming 2D_TILED_THIN1 array mode and DISPLAY micro tile mode (and no multisampling).
++ * Note that the tiling table is uAPI and userspace relies on specific modes being
++ * present at specific indices.
++ * See CiLib::HwlComputeMacroModeIndex() in addrlib.
++ */
++static u32 amdgpu_dm_plane_get_gfx7_macro_tile_idx(const u32 bpp, const u32 tile_split_bytes)
++{
++	const u32 tile_bytes = clamp(8 * 8 * bpp, 64, tile_split_bytes);
++	const u32 macro_tile_idx = ilog2(tile_bytes / 64);
++
++	WARN_ON(macro_tile_idx >= 16);
++
++	return macro_tile_idx;
++}
++
++/**
++ * amdgpu_dm_plane_calc_gfx6_mod() - Calculate a DRM format modifier for GFX6-8
++ *
++ * @adev: amdgpu_device pointer
++ * @bpp: bits per pixel in the image
++ * @arr: array mode (aka. tile mode) of the image layout
++ *
++ * Select suitable micro and macro tile modes for the given bits per pixel,
++ * and calculate the corresponding DRM format modifier.
++ */
++static u64 amdgpu_dm_plane_calc_gfx6_mod(const struct amdgpu_device *adev,
++					 const u32 bpp,
++					 const enum array_mode_values arr)
++{
++	u32 array_mode, micro_tile_mode, tile_split_bytes;
++	u32 gb_macrotile_mode, macrotile_idx;
++	u32 gb_tile_mode, tile_idx;
++
++	u64 modifier_base =
++		AMD_FMT_MOD |
++		AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX6) |
++		AMD_FMT_MOD_SET(TILE, arr) |
++		AMD_FMT_MOD_SET(MICROTILE, AMD_FMT_MOD_MICROTILE_DISPLAY);
++
++	if (arr < DC_ARRAY_2D_TILED_THIN1)
++		return modifier_base;
++
++	tile_idx = amdgpu_dm_plane_get_gfx6_tile_idx(adev, bpp, arr);
++	gb_tile_mode = adev->gfx.config.tile_mode_array[tile_idx];
++	array_mode = (gb_tile_mode >> 2) & 0xf;
++
++	if (adev->family == AMDGPU_FAMILY_SI) {
++		micro_tile_mode = (gb_tile_mode >> 0) & 0x3;
++		tile_split_bytes = 64 << ((gb_tile_mode >> 11) & 0x7);
++	} else {
++		micro_tile_mode = (gb_tile_mode >> 22) & 0x7;
++		tile_split_bytes = amdgpu_dm_plane_calc_gfx7_tile_split(adev, bpp, gb_tile_mode);
++	}
++
++	ASSERT(array_mode == arr);
++	ASSERT(micro_tile_mode == AMD_FMT_MOD_MICROTILE_DISPLAY);
++
++	modifier_base |=
++		AMD_FMT_MOD_SET(PIPE_CONFIG, (gb_tile_mode >> 6) & 0x1f) |
++		AMD_FMT_MOD_SET(TILE_SPLIT, ilog2(tile_split_bytes / 64));
++
++	if (adev->family == AMDGPU_FAMILY_SI)
++		return modifier_base |
++			AMD_FMT_MOD_SET(BANK_WIDTH, (gb_tile_mode >> 14) & 0x3) |
++			AMD_FMT_MOD_SET(BANK_HEIGHT, (gb_tile_mode >> 16) & 0x3) |
++			AMD_FMT_MOD_SET(MACRO_TILE_ASPECT, (gb_tile_mode >> 18) & 0x3) |
++			AMD_FMT_MOD_SET(NUM_BANKS, (gb_tile_mode >> 20) & 0x3);
++
++	macrotile_idx = amdgpu_dm_plane_get_gfx7_macro_tile_idx(bpp, tile_split_bytes);
++	gb_macrotile_mode = adev->gfx.config.macrotile_mode_array[macrotile_idx];
++
++	return modifier_base |
++		AMD_FMT_MOD_SET(BANK_WIDTH, (gb_macrotile_mode >> 0) & 0x3) |
++		AMD_FMT_MOD_SET(BANK_HEIGHT, (gb_macrotile_mode >> 2) & 0x3) |
++		AMD_FMT_MOD_SET(MACRO_TILE_ASPECT, (gb_macrotile_mode >> 4) & 0x3) |
++		AMD_FMT_MOD_SET(NUM_BANKS, (gb_macrotile_mode >> 6) & 0x3);
++}
++
++/**
++ * amdgpu_dm_plane_gfx6_format_mod_supported() - Check if a modifier is supported on GFX6-8
++ *
++ * @adev: amdgpu_device pointer
++ * @bpp: bits per pixel in the image
++ * @modifier: the modifier whose support we check
++ *
++ * On GFX6-8, not all DRM format modifier can be used with all image formats.
++ * Check whether the specified modifier is supported with the given bits per pixel value.
++ */
++static bool amdgpu_dm_plane_gfx6_format_mod_supported(const struct amdgpu_device *adev,
++						      const u32 bpp,
++						      const u64 modifier)
++{
++	const u32 array_mode = AMD_FMT_MOD_GET(TILE, modifier);
++	const u32 micro_tile_mode = AMD_FMT_MOD_GET(MICROTILE, modifier);
++
++	if (!IS_AMD_FMT_MOD(modifier))
++		return false;
++
++	/* GFX9 and newer format modifiers are not supported on GFX6-8 yet. */
++	if (AMD_FMT_MOD_GET(TILE_VERSION, modifier) != AMD_FMT_MOD_TILE_VER_GFX6)
++		return false;
++
++	/* GFX8 and older format modifiers are not supported on GFX9+ yet. */
++	if (adev->family >= AMDGPU_FAMILY_AI)
++		return false;
++
++	/* GFX6-7 doesn't have any DCC, GFX8 doesn't have displayable DCC. */
++	if (AMD_FMT_MOD_GET(DCC, modifier))
++		return false;
++
++	/*
++	 * For now, only expose 1D and 2D tiles THIN array modes.
++	 * Linear is already exposed through DRM_FORMAT_MOD_LINEAR.
++	 */
++	if (array_mode != AMD_FMT_MOD_TILE_GFX6_1D_TILED_THIN1 &&
++	    array_mode != AMD_FMT_MOD_TILE_GFX6_2D_TILED_THIN1)
++		return false;
++
++	/*
++	 * For now, only expose DISPLAY micro tile mode.
++	 * THIN, DEPTH and THICK modes are not displayable.
++	 * ROTATED has never been supported on Linux.
++	 */
++	if (micro_tile_mode != AMD_FMT_MOD_MICROTILE_DISPLAY)
++		return false;
++
++	/* Verify that the modifier is the same that we'd expose for this bpp */
++	return amdgpu_dm_plane_calc_gfx6_mod(adev, bpp, array_mode) == modifier;
++}
++
++/**
++ * amdgpu_dm_plane_add_gfx6_modifiers() - Expose modifiers for GFX6-8
++ *
++ * @adev: amdgpu_device pointer
++ * @mods: Pointer to array of format modifiers
++ * @size: Pointer to size of the array
++ * @capacity: Pointer to capacity of the array
++ *
++ * Calculate a DRM format modifier for macro tiled modes for each supported
++ * bits per pixel value. Use de-duplication because on some GPUs it may happen
++ * that different bpp results in the exact same macro tiling mode, depending
++ * on the tiling table.
++ *
++ * Also expose a micro tiled only mode. This is less optimal, but supported.
++ */
++static void amdgpu_dm_plane_add_gfx6_modifiers(const struct amdgpu_device *adev,
++					       u64 **mods,
++					       u64 *size,
++					       u64 *capacity)
++{
++	/* 2D tiled displayable */
++	amdgpu_dm_plane_add_modifier(mods, size, capacity,
++		amdgpu_dm_plane_calc_gfx6_mod(adev, 16, DC_ARRAY_2D_TILED_THIN1));
++	amdgpu_dm_plane_add_modifier_dedup(mods, size, capacity,
++		amdgpu_dm_plane_calc_gfx6_mod(adev, 32, DC_ARRAY_2D_TILED_THIN1));
++	amdgpu_dm_plane_add_modifier_dedup(mods, size, capacity,
++		amdgpu_dm_plane_calc_gfx6_mod(adev, 64, DC_ARRAY_2D_TILED_THIN1));
++
++	/* 1D tiled displayable */
++	amdgpu_dm_plane_add_modifier(mods, size, capacity,
++		amdgpu_dm_plane_calc_gfx6_mod(adev, 0, DC_ARRAY_1D_TILED_THIN1));
++}
++
+ static void amdgpu_dm_plane_add_gfx9_modifiers(const struct amdgpu_device *adev,
+ 					       uint64_t **mods,
+ 					       uint64_t *size,
+@@ -727,12 +1012,6 @@ static void amdgpu_dm_plane_add_gfx12_modifiers(struct amdgpu_device *adev,
+ static int amdgpu_dm_plane_get_plane_modifiers(struct amdgpu_device *adev, unsigned int plane_type, uint64_t **mods)
+ {
+ 	uint64_t size = 0, capacity = 128;
+-	*mods = NULL;
+-
+-	/* We have not hooked up any pre-GFX9 modifiers. */
+-	if (adev->family < AMDGPU_FAMILY_AI)
+-		return 0;
+-
+ 	*mods = kmalloc_array(capacity, sizeof(uint64_t), GFP_KERNEL);
  
- 		ret = amdgpu_display_verify_plane(rfb, i, format_info,
-@@ -1271,8 +1374,10 @@ static int amdgpu_display_framebuffer_init(struct drm_device *dev,
- 	    !(rfb->base.flags & DRM_MODE_FB_MODIFIERS)) {
- 		if (amdgpu_ip_version(adev, GC_HWIP, 0) >= IP_VERSION(12, 0, 0))
- 			ret = convert_tiling_flags_to_modifier_gfx12(rfb);
-+		else if (amdgpu_ip_version(adev, GC_HWIP, 0) >= IP_VERSION(9, 0, 0))
-+			ret = convert_tiling_flags_to_modifier_gfx9(rfb);
- 		else
--			ret = convert_tiling_flags_to_modifier(rfb);
-+			ret = convert_tiling_flags_to_modifier_gfx6(rfb);
+ 	if (plane_type == DRM_PLANE_TYPE_CURSOR) {
+@@ -742,6 +1021,13 @@ static int amdgpu_dm_plane_get_plane_modifiers(struct amdgpu_device *adev, unsig
+ 	}
  
- 		if (ret) {
- 			drm_dbg_kms(dev, "Failed to convert tiling flags 0x%llX to a modifier",
+ 	switch (adev->family) {
++	case AMDGPU_FAMILY_SI:
++	case AMDGPU_FAMILY_CI:
++	case AMDGPU_FAMILY_KV:
++	case AMDGPU_FAMILY_VI:
++	case AMDGPU_FAMILY_CZ:
++		amdgpu_dm_plane_add_gfx6_modifiers(adev, mods, &size, &capacity);
++		break;
+ 	case AMDGPU_FAMILY_AI:
+ 	case AMDGPU_FAMILY_RV:
+ 		amdgpu_dm_plane_add_gfx9_modifiers(adev, mods, &size, &capacity);
+@@ -916,8 +1202,13 @@ int amdgpu_dm_plane_fill_plane_buffer_attributes(struct amdgpu_device *adev,
+ 										address);
+ 		if (ret)
+ 			return ret;
+-	} else {
++	} else if (!afb->base.modifier) {
+ 		amdgpu_dm_plane_fill_gfx8_tiling_info_from_flags(tiling_info, tiling_flags);
++	} else {
++		ret = amdgpu_dm_plane_fill_gfx6_tiling_info_from_modifier(tiling_info,
++									  afb->base.modifier);
++		if (ret)
++			return ret;
+ 	}
+ 
+ 	return 0;
+@@ -1552,6 +1843,7 @@ static bool amdgpu_dm_plane_format_mod_supported(struct drm_plane *plane,
+ {
+ 	struct amdgpu_device *adev = drm_to_adev(plane->dev);
+ 	const struct drm_format_info *info = drm_format_info(format);
++	const u32 bpp = drm_format_info_bpp(info, 0);
+ 	int i;
+ 
+ 	if (!info)
+@@ -1575,6 +1867,13 @@ static bool amdgpu_dm_plane_format_mod_supported(struct drm_plane *plane,
+ 	if (i == plane->modifier_count)
+ 		return false;
+ 
++	if (AMD_FMT_MOD_GET(TILE_VERSION, modifier) == AMD_FMT_MOD_TILE_VER_GFX6)
++		return amdgpu_dm_plane_gfx6_format_mod_supported(adev, bpp, modifier);
++
++	/* GFX9+ modifers are not supported on GFX8 and older yet. */
++	if (adev->family < AMDGPU_FAMILY_AI)
++		return false;
++
+ 	/* GFX12 doesn't have these limitations. */
+ 	if (AMD_FMT_MOD_GET(TILE_VERSION, modifier) <= AMD_FMT_MOD_TILE_VER_GFX11) {
+ 		enum dm_micro_swizzle microtile = amdgpu_dm_plane_modifier_gfx9_swizzle_mode(modifier) & 3;
 -- 
 2.54.0
 
