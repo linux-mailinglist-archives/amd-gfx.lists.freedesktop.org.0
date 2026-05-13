@@ -2,65 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iIhaDciLBGqvLQIAu9opvQ
+	id +N6gCtaLBGqvLQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:33:44 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:33:58 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D47E4535289
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:33:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC8CF5352C2
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:33:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5736E10EEF0;
-	Wed, 13 May 2026 14:33:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 553FF10EEDD;
+	Wed, 13 May 2026 14:33:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="wXTfT1eg";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="5qbwBYfI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010046.outbound.protection.outlook.com
- [40.93.198.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DFD510EEE0
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 14:33:39 +0000 (UTC)
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013050.outbound.protection.outlook.com
+ [40.93.196.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C00CE10EEDC
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 14:33:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UPcByPw9IbYqG9rqQpUFDU5oxUovMulzpqiBFpEaOQ6Y6cl88EBCgIWywGUXb7ZqsXfZSDSomUFZhPZR0jyjTGIwuIG3bVeagv7rRn+CMHO5WdrgLVTH4xtd39iAEunGmoHHwoEABdVPV3Dtk9t5uZNMwuFe4Wx/yZRyhtvnpKfnBcEG9mVPo71sPC8EUXaX/J+Yqb2Rep/NPKG0qYSCaVHAXre3SLGLowSRB+zA06K4lf3OuVFQGDs2kfNKH7d320GuDz/2XTgum48I/vMP8ml7QPEhAN5HWlUWAlA7nxb/EEv7N/1PQyKlFERqYZ3UWkpYDkFGHVtc2hGsGKgaWQ==
+ b=IQQHF+MdG15HVlT9W0Z4VYVNILDBdNRSllXD/UsOA955qmZr751DXYqpUByWe9gGt6lWrinilr48CeXQ4DLfFXl2CvTBoR7iZI0wwd0Gg6sSVzZZ0zg1g6qQ6DHmZXg7GeDUYVQ6og8yofYfs7a2nynf+jzbhQYOTc+WNBcteMtxCq3QxtGIyTFa5f2543dz3qCuPFrXckTDCBFDKNqSnzoc6QWXY9/FsOKXDc5FNIQt3Q+oH5I2SKp4LENPVOxPIYHNZbpul4j42uY0/hoZsUOobfCEjzXQiJ8COzWvKVJRhAMnSmEZNOv/XX6B09F4la3mcu6fBhOYIFxDfkGSaw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3ztOMWJKOdXXYbeD/L8W/jJLRPImu0SXjba6Sium594=;
- b=oTuLco/yLntpJRtLAs4dymmdKpo0gvrd5FUvHWltZLAguRKs689dBUSXaHpLHXdeJEvulBhdwqibhSTTrejHKif5wGiQNVxqOmtdUoiHbakjH09eg5GnTYZzTUWJ0zYuO551QkfCbUt1LotyTfa2FyVA1X/DqbJ9v0acAhktPFu5owJz0BEqLTI3Pc8Aa/iPoh7UXyEyjGlgvCjewjC3selV4+u6YjDm9GiQdYvmGKtPUxxyfpMeIcwnhZTKIORJFYn3s3oA7V4SkIdZsAzRemJuH/mJ56gkDJ8MqjiqYVthjUKAQgvKNyt3UBqUkdRMhAuOXBchtbXv8G/Lto9N9w==
+ bh=7fIvO1mKUy1OvmPFk55ThgpfhdusTtfZsVRmyyYHIWA=;
+ b=gCmqTgZslCX724Al9FxNNtz3GZphvASw4AIlg93sP6vVElyLvzGFyp3arA6WOP/I3w1GXDC7h8983Jp2P3IVrvHUDYzfv+LLBWjz0+QzKOmwMhftSQv3QKA8iqsz/TUpE5HqDLoCthVU+gJhKz/t6l0+QwC79HT0h7VA4I0iEyR9rQdihi0RpjuQ9Iw8ls7WC2MVg66jo6nvt3r+GokNncWTqnvQYrgtOBl1nThGt1BSW/o0SwYQcJGADsCcGbfnFIbJWba5/Oj0gFtTi+KFS2PGw4kwfZfgzv0HGu5vUA4jkq6zdY0PhqZ99Q5+O3T7nkYdqtSp7ThGWW8WbFP0Jw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3ztOMWJKOdXXYbeD/L8W/jJLRPImu0SXjba6Sium594=;
- b=wXTfT1egG17UhpPvd/GGU1lMN5IxEFm72BVBFM+rZnhgnXCtg3yV28e2hg+3EqOAkWgK4NlPaHg/iBFfOlebS5HmijZ20ZJz5KVErKfWuECr9X+RfBS9QKfRLj8zan+j+7HO4jq+IVh8IproYWk8IjSrR3fKMBQTMbOP7PcICTM=
-Received: from CYZPR19CA0021.namprd19.prod.outlook.com (2603:10b6:930:8e::22)
- by PH7PR12MB6936.namprd12.prod.outlook.com (2603:10b6:510:1ba::7)
+ bh=7fIvO1mKUy1OvmPFk55ThgpfhdusTtfZsVRmyyYHIWA=;
+ b=5qbwBYfIRO+5GkM431wcdEsRyrUTztDVvr3XmdGlXUP3biRrDcY3u+CKlEHr4wRrrGYT31jZCBHEduUp6FwNextD+3cVKdFrRMy7UspUoLeyK0pifUlEmCpJ7AnpLuEFj0Qi6oAo41ufH0kzhJ6R5/fqeygSucqkTp6nU+DH9AI=
+Received: from MW4PR02CA0011.namprd02.prod.outlook.com (2603:10b6:303:16d::28)
+ by BL3PR12MB6428.namprd12.prod.outlook.com (2603:10b6:208:3b7::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.12; Wed, 13 May
- 2026 14:33:30 +0000
-Received: from CH1PEPF0000A34C.namprd04.prod.outlook.com
- (2603:10b6:930:8e:cafe::d3) by CYZPR19CA0021.outlook.office365.com
- (2603:10b6:930:8e::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9913.12 via Frontend Transport; Wed,
- 13 May 2026 14:33:29 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Wed, 13 May
+ 2026 14:33:40 +0000
+Received: from MWH0EPF000C6193.namprd02.prod.outlook.com
+ (2603:10b6:303:16d:cafe::ee) by MW4PR02CA0011.outlook.office365.com
+ (2603:10b6:303:16d::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.25.18 via Frontend Transport; Wed, 13
+ May 2026 14:33:39 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- CH1PEPF0000A34C.mail.protection.outlook.com (10.167.244.6) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MWH0EPF000C6193.mail.protection.outlook.com (10.167.249.107) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.25.13 via Frontend Transport; Wed, 13 May 2026 14:33:29 +0000
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.25.13 via Frontend Transport; Wed, 13 May 2026 14:33:39 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 13 May
- 2026 09:33:24 -0500
+ 2026 09:33:30 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 13 May
+ 2026 07:33:30 -0700
 Received: from box-0.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
  Transport; Wed, 13 May 2026 09:33:24 -0500
@@ -72,12 +76,10 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Aric Cyr <Aric.Cyr@amd.com>, Alvin Lee
- <alvin.lee2@amd.com>
-Subject: [PATCH 15/28] drm/amd/display: Enable additional wait for pipe
- pending checks
-Date: Wed, 13 May 2026 10:29:37 -0400
-Message-ID: <20260513143213.1852892-17-IVAN.LIPSKI@amd.com>
+ <Chen-Yu.Chen@amd.com>, Ray Wu <ray.wu@amd.com>
+Subject: [PATCH 16/28] drm/amd/display: Fix ISM dc_lock deadlock during suspend
+Date: Wed, 13 May 2026 10:29:38 -0400
+Message-ID: <20260513143213.1852892-18-IVAN.LIPSKI@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260513143213.1852892-2-IVAN.LIPSKI@amd.com>
 References: <20260513143213.1852892-2-IVAN.LIPSKI@amd.com>
@@ -86,29 +88,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000A34C:EE_|PH7PR12MB6936:EE_
-X-MS-Office365-Filtering-Correlation-Id: 97d4be05-7c66-4433-1282-08deb0fc9a1d
+X-MS-TrafficTypeDiagnostic: MWH0EPF000C6193:EE_|BL3PR12MB6428:EE_
+X-MS-Office365-Filtering-Correlation-Id: 50caa97a-c937-4992-d151-08deb0fca033
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700016|376014|56012099003|11063799003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: +HhK4rVW1qEiU3syYiL54BAw+Zgk8T4r9vJolsQXm25nDx/7EOxrgd+KSR08+AhLw0hPpqgDJ7iKzmDZHd1CZWhbXsgzw9gfDVIz3kvpwQW6DhS63rVYsUnMfCf0DVG3USid9o1IYtZdRbxmh58Uc8PQQnokNSe65nv2kAIgiOlj8PGKh0DL0Y17DeU6ogBzr+9qwNDtPOej+cqjddFb3svbrAQVq6Uf85SxdrKZ+jJpf2xi2w9dJhvaZHfZ4IKWkgi1VQL3n3BvwVZofuCkAFhJD6UidEuokK1PnDHJDaX/+uVuYXI04r9AnvZMb5D7j2Pt3rMSZVL2Hvds9/fyDkwJ7HWGbO1GMfeGgp7U4cvlmorKGOukKBgzLX7b8LevuuPd/5/d4iRYPwAK5xIeGGe27GoZyDKTWuvmQ180vTIimM+5FfpVBl6/CTswpAQlvyXiZmnVADk4dC66sFKtemr8qBeliIMIRQ3gokkqVrZouvhh5XNZPq2zRLDmDrpQgtEhsMUqejAt4t19TTETqxaA9mXBQirJjbizQkQ9H3M1TH7XHAegQqrmQzRbaRdOKwyxHxsayHz5/3RHPdfOYJlKKmmukj1Nhxy02386YW/HIZ5F3TkN19CI6d2sez5rquURH6+j8H8PWGzlV85u3UOmof3b5h/zVfwUU8Msfe4aCaMbKkqTuZfVef6JoHtJpGlVjcNRJEL4NZmFa4YyDCkJAXbgwLuham2L7x+P34E=
+ ARA:13230040|82310400026|376014|1800799024|36860700016|11063799003|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info: jmwdYWFLmg6edGTsbZXJAz+XxPzm0nUJ2VVFH34aFWWu1P6kVcF0Ud3VfBk3VGGEEpZpdoKZ1//Q2XdmuwgkcrdTo9/OLDlczy14BDdYhGClmQrVfq2PPma94o0lmAxBuJkmuBFE2NfDfgoUWz9r3TE8JYaUt+Bc/d+j49E2+Nn8rU8pK7gPGe1HS3ocE0wBZ6g2SOhry00lTqurCO0VU616FfobCVRMrvBC/khPx1gjW0muXq9FUbutbSCwi+Ep+reEv7vLdjptn9kIzjaE9ibjvrcFxkDYb4GXbNiej4yCOWOdGi8yUhknpEYlhsv0zYgLGmsnRN9Yo6Kp/yEoO2uGnZnJsNoklNO/5okbXEyvlBv4J0QuIU5WTIRDYbps+50bqCWhP1pNp0DuKNBCp3xrTAP7AU+Ce7jeCZ3KcwLYMEtp0IGba2rms6aQS7qHj8KdlTJ3K1nb2PhzfviQVqUTQ+YjPwBX3EMQUkfjjwsZANaUjvkdW4tIDgynSxJ6JKEJ/rP4B1IZdDcaROwAAFK46bR8oDeFHdebpxY5WeWyUktcpQeJLtzx+5skXakvDuVgNW+9V/1yYvKrXpLrs9pcHxHUKZ3K+X1r6YCgCAfTBXpfEK96gjlYE7/dcCOiCOtRF1cn/ibJ/PkWBRX/QERDrAz05HOyQK3QnNatEvbTAmZj5MxqjEPKdnBscDFsK7cX7m7X8ZAEv4TEwRMbgFHqo49BYA/cGYNP0hYhRZQ=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(56012099003)(11063799003)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(376014)(1800799024)(36860700016)(11063799003)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 2Jskj0PtVLRNOjYj3CS1Mw2vXvwQGJleulppvhqAJSBXX2wK4OQrqgIAj+nV1ElLvwvIHfYQRX04EyaANUkL0vCaAHRWKVfPe0F50UgL2HvblRcs7bQjxf+wxozs1k7SEqYLqg1l7x8C+DH+rKpUbT2msoxbffOkOH1zAWYtg4SNxd6gBHwTUNummMYsaSC5WbwZ57f2ApswD/NXLWvWv88lUwGi0mRhmsWJrD71hGwRJGrPmqdSVu/hGfMZwAxes9bornxWIin72oMRVydJq+ZsWdElzN+YFLK34aejUmbPwJpBZYPXJ5llKdwhkLCss/Usc951ziyr3B6GI1MUG5V5dYV0Mq03T4AWnEP+TxPVvy5yboVnpTvl8IvI5+y7FVHPdmRhGU+SECQoota0x+rkgylOWNQYjCnK0pTi9aHi1mPAi/YVPtnl0o2e7cvK
+X-MS-Exchange-AntiSpam-MessageData-0: yWbY0MA18jWRnzPI1rzbxxv6vQnnEGGqdI11FunOr9wVShEKAYfGHay1lbewbVIjA9Nr5QB88iaPG8pAO8G85qvdaxwbc7r7QKkGMk4oQ9n9nkmEkOdqMcxDixcLwMIaNKHqYxm+t8zs+teUxnZ69Hl32EUhEwlFAc3HrVhEKu7++DecAY6Z0qvgu3FxBFU7w104i7JGcjqBd99p+gp/LIm31cEO5JwBEFRGoUKauwS5UgB/YBRho0+yDs4QyItnO/3dZTBGRaZg4mZG3bdIXVWwI4X6/X/XOugSj9fnIAdzic0Xr4BWsrruJuGJDI4EtyyMeI4dHTxsUBH/7FG3F6v/dwJJI8Bv11wPEeti3jc6T3jyITx/Z9Bl5GsH+NE9k2mJ8AJkBDY/Kg7RrvdR+3/PjxLy2DOpIFacmKRXQRGu3slwJj2YgYfaz+Vvh60L
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 14:33:29.6770 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 97d4be05-7c66-4433-1282-08deb0fc9a1d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 14:33:39.8093 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50caa97a-c937-4992-d151-08deb0fca033
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000A34C.namprd04.prod.outlook.com
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000C6193.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6936
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6428
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,7 +124,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D47E4535289
+X-Rspamd-Queue-Id: CC8CF5352C2
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
@@ -135,7 +137,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -149,219 +151,189 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Action: no action
 
-From: Aric Cyr <Aric.Cyr@amd.com>
+From: Ray Wu <ray.wu@amd.com>
 
-[why]
-In cases where there are two FULL updates within the same display frame,
-it's possible for some blocks to be programmed a second time without having
-been latched completely from the first programming.
+[Why]
+System hang observed during suspend/resume while video is playing.
+amdgpu_dm_ism_disable() is called under dc_lock and waits for ISM
+delayed work via disable_delayed_work_sync(). The work handlers
+themselves take dc_lock, producing an ABBA deadlock when a worker is
+in flight at suspend time.
 
-DCN 3.5 and up already work around this with additional validation checks
-for frame count and defer as needed via fsleep.
+[How]
+Split the disable path into two phases with opposite locking
+contracts:
+  1. amdgpu_dm_ism_disable() -- quiesces workers, must NOT hold
+     dc_lock.
+  2. amdgpu_dm_ism_force_full_power() (new) -- drives the ISM FSM
+     back to FULL_POWER_RUNNING, must hold dc_lock.
 
-[how]
-Enabled existing pipe checks generically for all DCN versions to avoid HW
-programming hazards.
-
-Also removed redundant max_frame_count which can be determined by the
-register mask and shift.
-
-Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
-Signed-off-by: Aric Cyr <Aric.Cyr@amd.com>
+Reviewed-by: Sun peng (Leo) Li <sunpeng.li@amd.com>
+Signed-off-by: Ray Wu <ray.wu@amd.com>
 Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c  | 8 +++++---
- drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_init.c   | 2 ++
- drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_init.c   | 2 ++
- drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_init.c   | 2 ++
- drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c | 2 ++
- drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_init.c   | 2 ++
- drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_init.c | 2 ++
- drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c   | 2 ++
- drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c | 2 ++
- drivers/gpu/drm/amd/display/dc/inc/hw/optc.h             | 1 -
- drivers/gpu/drm/amd/display/dc/optc/dcn35/dcn35_optc.c   | 1 -
- drivers/gpu/drm/amd/display/dc/optc/dcn42/dcn42_optc.c   | 2 --
- 12 files changed, 21 insertions(+), 7 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 25 +++++++--
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c | 56 ++++++++++++++++---
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h |  1 +
+ 3 files changed, 70 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-index fc2587ca56ec..a1c3c4454397 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c
-@@ -181,6 +181,7 @@ void dcn10_set_wait_for_update_needed_for_pipe(struct dc *dc, struct pipe_ctx *p
- 	uint32_t vupdate_start, vupdate_end;
- 	struct crtc_position position;
- 	unsigned int vpos, cur_frame;
-+	uint32_t max_frame_count;
- 
- 	if (!pipe_ctx->stream ||
- 		!pipe_ctx->stream_res.tg ||
-@@ -197,7 +198,8 @@ void dcn10_set_wait_for_update_needed_for_pipe(struct dc *dc, struct pipe_ctx *p
- 
- 	struct optc *optc1 = DCN10TG_FROM_TG(tg);
- 
--	ASSERT(optc1->max_frame_count != 0);
-+	max_frame_count = optc1->tg_mask->OTG_FRAME_COUNT >> optc1->tg_shift->OTG_FRAME_COUNT;
-+	ASSERT(max_frame_count != 0);
- 
- 	if (tg->funcs->is_tg_enabled && !tg->funcs->is_tg_enabled(tg))
- 		return;
-@@ -209,8 +211,8 @@ void dcn10_set_wait_for_update_needed_for_pipe(struct dc *dc, struct pipe_ctx *p
- 	if (vpos < vupdate_start) {
- 		pipe_ctx->wait_frame_count = cur_frame;
- 	} else {
--		if (cur_frame + 1 > optc1->max_frame_count)
--			pipe_ctx->wait_frame_count = cur_frame + 1 - optc1->max_frame_count;
-+		if (cur_frame + 1 > max_frame_count)
-+			pipe_ctx->wait_frame_count = cur_frame + 1 - max_frame_count;
- 		else
- 			pipe_ctx->wait_frame_count = cur_frame + 1;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index c41f017fe8f2..af0af7519517 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -2327,9 +2327,16 @@ static void amdgpu_dm_fini(struct amdgpu_device *adev)
+ 		adev->dm.idle_workqueue = NULL;
  	}
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_init.c
-index 079c226c1097..b5e82e190124 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_init.c
-@@ -118,6 +118,8 @@ static const struct hwseq_private_funcs dcn10_private_funcs = {
- 	.dsc_pg_control = NULL,
- 	.set_hdr_multiplier = dcn10_set_hdr_multiplier,
- 	.verify_allow_pstate_change_high = dcn10_verify_allow_pstate_change_high,
-+	.wait_for_pipe_update_if_needed = dcn10_wait_for_pipe_update_if_needed,
-+	.set_wait_for_update_needed_for_pipe = dcn10_set_wait_for_update_needed_for_pipe,
- };
  
- void dcn10_hw_sequencer_construct(struct dc *dc)
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_init.c
-index ad253c586ea1..1797a91b0186 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn20/dcn20_init.c
-@@ -136,6 +136,8 @@ static const struct hwseq_private_funcs dcn20_private_funcs = {
- 	.dccg_init = dcn20_dccg_init,
- 	.set_blend_lut = dcn20_set_blend_lut,
- 	.set_shaper_3dlut = dcn20_set_shaper_3dlut,
-+	.wait_for_pipe_update_if_needed = dcn10_wait_for_pipe_update_if_needed,
-+	.set_wait_for_update_needed_for_pipe = dcn10_set_wait_for_update_needed_for_pipe,
- };
+-	/* Disable ISM before dc_destroy() invalidates dm->dc */
++	/*
++	 * Disable ISM before dc_destroy() invalidates dm->dc.
++	 *
++	 * Quiesce workers first without dc_lock (they take dc_lock
++	 * themselves, so syncing under it would deadlock), then drive the
++	 * FSM back to FULL_POWER_RUNNING under dc_lock.
++	 */
++	amdgpu_dm_ism_disable(&adev->dm);
+ 	scoped_guard(mutex, &adev->dm.dc_lock)
+-		amdgpu_dm_ism_disable(&adev->dm);
++		amdgpu_dm_ism_force_full_power(&adev->dm);
  
- void dcn20_hw_sequencer_construct(struct dc *dc)
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_init.c
-index 5cbae0cdda96..9834d3075487 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn30/dcn30_init.c
-@@ -145,6 +145,8 @@ static const struct hwseq_private_funcs dcn30_private_funcs = {
- 	.wait_for_blank_complete = dcn20_wait_for_blank_complete,
- 	.set_blend_lut = dcn30_set_blend_lut,
- 	.set_shaper_3dlut = dcn20_set_shaper_3dlut,
-+	.wait_for_pipe_update_if_needed = dcn10_wait_for_pipe_update_if_needed,
-+	.set_wait_for_update_needed_for_pipe = dcn10_set_wait_for_update_needed_for_pipe,
- };
+ 	amdgpu_dm_destroy_drm_device(&adev->dm);
  
- void dcn30_hw_sequencer_construct(struct dc *dc)
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c
-index 33cc48cd0196..a570333aeac1 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c
-@@ -142,6 +142,8 @@ static const struct hwseq_private_funcs dcn301_private_funcs = {
- 	.wait_for_blank_complete = dcn20_wait_for_blank_complete,
- 	.set_blend_lut = dcn30_set_blend_lut,
- 	.set_shaper_3dlut = dcn20_set_shaper_3dlut,
-+	.wait_for_pipe_update_if_needed = dcn10_wait_for_pipe_update_if_needed,
-+	.set_wait_for_update_needed_for_pipe = dcn10_set_wait_for_update_needed_for_pipe,
- };
+@@ -3362,9 +3369,14 @@ static int dm_suspend(struct amdgpu_ip_block *ip_block)
+ 	if (amdgpu_in_reset(adev)) {
+ 		enum dc_status res;
  
- void dcn301_hw_sequencer_construct(struct dc *dc)
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_init.c
-index e56b9a46aecf..b14e6e60b878 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_init.c
-@@ -147,6 +147,8 @@ static const struct hwseq_private_funcs dcn31_private_funcs = {
- 	.set_blend_lut = dcn30_set_blend_lut,
- 	.set_shaper_3dlut = dcn20_set_shaper_3dlut,
- 	.setup_hpo_hw_control = dcn31_setup_hpo_hw_control,
-+	.wait_for_pipe_update_if_needed = dcn10_wait_for_pipe_update_if_needed,
-+	.set_wait_for_update_needed_for_pipe = dcn10_set_wait_for_update_needed_for_pipe,
- };
++		/* Quiesce ISM workers before taking dc_lock (workers take
++		 * dc_lock themselves; syncing under it would deadlock).
++		 */
++		amdgpu_dm_ism_disable(dm);
++
+ 		mutex_lock(&dm->dc_lock);
  
- void dcn31_hw_sequencer_construct(struct dc *dc)
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_init.c
-index 9900c87b4567..d782080883ab 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn314/dcn314_init.c
-@@ -154,6 +154,8 @@ static const struct hwseq_private_funcs dcn314_private_funcs = {
- 	.setup_hpo_hw_control = dcn31_setup_hpo_hw_control,
- 	.calculate_dccg_k1_k2_values = dcn314_calculate_dccg_k1_k2_values,
- 	.resync_fifo_dccg_dio = dcn314_resync_fifo_dccg_dio,
-+	.wait_for_pipe_update_if_needed = dcn10_wait_for_pipe_update_if_needed,
-+	.set_wait_for_update_needed_for_pipe = dcn10_set_wait_for_update_needed_for_pipe,
- };
+-		amdgpu_dm_ism_disable(dm);
++		amdgpu_dm_ism_force_full_power(dm);
+ 		dc_allow_idle_optimizations(adev->dm.dc, false);
  
- void dcn314_hw_sequencer_construct(struct dc *dc)
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c
-index 849dae18b738..c68b20104773 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_init.c
-@@ -163,6 +163,8 @@ static const struct hwseq_private_funcs dcn32_private_funcs = {
- 	.is_dp_dig_pixel_rate_div_policy = dcn32_is_dp_dig_pixel_rate_div_policy,
- 	.apply_single_controller_ctx_to_hw = dce110_apply_single_controller_ctx_to_hw,
- 	.reset_back_end_for_pipe = dcn20_reset_back_end_for_pipe,
-+	.wait_for_pipe_update_if_needed = dcn10_wait_for_pipe_update_if_needed,
-+	.set_wait_for_update_needed_for_pipe = dcn10_set_wait_for_update_needed_for_pipe,
- };
+ 		dm->cached_dc_state = dc_state_create_copy(dm->dc->current_state);
+@@ -3398,8 +3410,13 @@ static int dm_suspend(struct amdgpu_ip_block *ip_block)
  
- void dcn32_hw_sequencer_init_functions(struct dc *dc)
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
-index 5d0dfb36f3e1..0908a791832b 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_init.c
-@@ -167,6 +167,8 @@ static const struct hwseq_private_funcs dcn401_private_funcs = {
- 	.perform_3dlut_wa_unlock = dcn401_perform_3dlut_wa_unlock,
- 	.program_pipe_sequence = dcn401_program_pipe_sequence,
- 	.dc_ip_request_cntl = dcn401_dc_ip_request_cntl,
-+	.wait_for_pipe_update_if_needed = dcn10_wait_for_pipe_update_if_needed,
-+	.set_wait_for_update_needed_for_pipe = dcn10_set_wait_for_update_needed_for_pipe,
- };
+ 	amdgpu_dm_irq_suspend(adev);
  
- void dcn401_hw_sequencer_init_functions(struct dc *dc)
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/optc.h b/drivers/gpu/drm/amd/display/dc/inc/hw/optc.h
-index 0d5a8358a778..7f371cbb35cd 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/optc.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/optc.h
-@@ -68,7 +68,6 @@ struct optc {
- 	int pstate_keepout;
- 	struct dc_crtc_timing orginal_patched_timing;
- 	enum signal_type signal;
--	uint32_t max_frame_count;
- };
++	/*
++	 * Quiesce ISM workers before taking dc_lock (workers take dc_lock
++	 * themselves; syncing under it would deadlock).
++	 */
++	amdgpu_dm_ism_disable(dm);
+ 	scoped_guard(mutex, &dm->dc_lock)
+-		amdgpu_dm_ism_disable(dm);
++		amdgpu_dm_ism_force_full_power(dm);
  
- void optc1_read_otg_state(struct timing_generator *optc, struct dcn_otg_state *s);
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn35/dcn35_optc.c b/drivers/gpu/drm/amd/display/dc/optc/dcn35/dcn35_optc.c
-index a880e4a6d165..62f45c156c32 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn35/dcn35_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn35/dcn35_optc.c
-@@ -621,7 +621,6 @@ void dcn35_timing_generator_init(struct optc *optc1)
- 	optc1->min_v_blank_interlace = 5;
- 	optc1->min_h_sync_width = 4;
- 	optc1->min_v_sync_width = 1;
--	optc1->max_frame_count = 0xFFFFFF;
+ 	hpd_rx_irq_work_suspend(dm);
  
- 	dcn35_timing_generator_set_fgcg(
- 		optc1, CTX->dc->debug.enable_fine_grain_clock_gating.bits.optc);
-diff --git a/drivers/gpu/drm/amd/display/dc/optc/dcn42/dcn42_optc.c b/drivers/gpu/drm/amd/display/dc/optc/dcn42/dcn42_optc.c
-index ed66a2bbb8ae..a3431ec2f058 100644
---- a/drivers/gpu/drm/amd/display/dc/optc/dcn42/dcn42_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/optc/dcn42/dcn42_optc.c
-@@ -283,9 +283,7 @@ void dcn42_timing_generator_init(struct optc *optc1)
- 	optc1->min_v_blank_interlace = 5;
- 	optc1->min_h_sync_width = 4;
- 	optc1->min_v_sync_width = 1;
--	optc1->max_frame_count = 0xFFFFFF;
- 
- 	dcn35_timing_generator_set_fgcg(
- 		optc1, CTX->dc->debug.enable_fine_grain_clock_gating.bits.optc);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+index bc7db5e759d1..857c22007743 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+@@ -524,13 +524,20 @@ static void dm_ism_sso_delayed_work_func(struct work_struct *work)
  }
--
+ 
+ /**
+- * amdgpu_dm_ism_disable - Disable the ISM
++ * amdgpu_dm_ism_disable - Quiesce ISM workers
+  *
+  * @dm: The amdgpu display manager
+  *
+- * Disable the idle state manager by disabling any ISM work, canceling pending
+- * work, and waiting for in-progress work to finish. After disabling, the system
+- * is left in DM_ISM_STATE_FULL_POWER_RUNNING state.
++ * Cancels and disables any pending or in-flight ISM delayed work and waits
++ * for in-progress work to finish. After this returns, no ISM worker can run
++ * and subsequent mod_delayed_work() calls become no-ops via
++ * clear_pending_if_disabled().
++ *
++ * Must NOT be called with dc_lock held: the workers themselves take dc_lock,
++ * so a synchronous wait under dc_lock would deadlock.
++ *
++ * The caller is responsible for driving the FSM back to FULL_POWER_RUNNING
++ * (under dc_lock) by calling amdgpu_dm_ism_force_full_power().
+  */
+ void amdgpu_dm_ism_disable(struct amdgpu_display_manager *dm)
+ {
+@@ -538,21 +545,54 @@ void amdgpu_dm_ism_disable(struct amdgpu_display_manager *dm)
+ 	struct amdgpu_crtc *acrtc;
+ 	struct amdgpu_dm_ism *ism;
+ 
+-	ASSERT(mutex_is_locked(&dm->dc_lock));
++	/*
++	 * Caller must NOT hold dc_lock: the ISM delayed work handlers
++	 * acquire dc_lock themselves, so waiting for them via
++	 * disable_delayed_work_sync() while holding dc_lock would
++	 * self-deadlock against an in-flight worker.
++	 */
++	lockdep_assert_not_held(&dm->dc_lock);
+ 
+ 	drm_for_each_crtc(crtc, dm->ddev) {
+ 		acrtc = to_amdgpu_crtc(crtc);
+ 		ism = &acrtc->ism;
+ 
+-		/* Cancel and disable any pending work */
+ 		disable_delayed_work_sync(&ism->delayed_work);
+ 		disable_delayed_work_sync(&ism->sso_delayed_work);
++	}
++}
++
++/**
++ * amdgpu_dm_ism_force_full_power - Force every CRTC's ISM FSM to FULL_POWER
++ *
++ * @dm: The amdgpu display manager
++ *
++ * Sends DM_ISM_EVENT_EXIT_IDLE_REQUESTED to every CRTC's ISM, leaving each
++ * FSM in FULL_POWER_RUNNING. Intended to be paired with
++ * amdgpu_dm_ism_disable(): callers should first quiesce workers (without
++ * dc_lock), then take dc_lock and call this helper.
++ *
++ * Must be called with dc_lock held.
++ */
++void amdgpu_dm_ism_force_full_power(struct amdgpu_display_manager *dm)
++{
++	struct drm_crtc *crtc;
++	struct amdgpu_crtc *acrtc;
++
++	/*
++	 * Caller must hold dc_lock: commit_event() drives the FSM and
++	 * may touch dc state via dc_allow_idle_optimizations() etc.
++	 */
++	lockdep_assert_held(&dm->dc_lock);
++
++	drm_for_each_crtc(crtc, dm->ddev) {
++		acrtc = to_amdgpu_crtc(crtc);
+ 
+ 		/*
+ 		 * When disabled, leave in FULL_POWER_RUNNING state.
+-		 * EXIT_IDLE will not queue any work
++		 * EXIT_IDLE will not queue any work.
+ 		 */
+-		amdgpu_dm_ism_commit_event(ism,
++		amdgpu_dm_ism_commit_event(&acrtc->ism,
+ 					   DM_ISM_EVENT_EXIT_IDLE_REQUESTED);
+ 	}
+ }
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h
+index 4df6a82972a8..72e2dac49e55 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h
+@@ -146,6 +146,7 @@ void amdgpu_dm_ism_fini(struct amdgpu_dm_ism *ism);
+ void amdgpu_dm_ism_commit_event(struct amdgpu_dm_ism *ism,
+ 				enum amdgpu_dm_ism_event event);
+ void amdgpu_dm_ism_disable(struct amdgpu_display_manager *dm);
++void amdgpu_dm_ism_force_full_power(struct amdgpu_display_manager *dm);
+ void amdgpu_dm_ism_enable(struct amdgpu_display_manager *dm);
+ 
+ #if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
 -- 
 2.43.0
 
