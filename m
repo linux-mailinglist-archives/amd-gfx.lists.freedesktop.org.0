@@ -2,76 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id BtAjDU/ZBGq8PwIAu9opvQ
+	id KESqAlDZBGq8PwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 22:04:31 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 22:04:32 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF4D153A503
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FFD653A507
 	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 22:04:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B88E610F04A;
-	Wed, 13 May 2026 20:04:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2009110F053;
+	Wed, 13 May 2026 20:04:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jVERfoyx";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ntHdAc6O";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CD7C10F04A
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 20:04:27 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-488af9fdaa7so40712185e9.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 13:04:27 -0700 (PDT)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+ [209.85.128.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E02210F04A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 20:04:28 +0000 (UTC)
+Received: by mail-wm1-f43.google.com with SMTP id
+ 5b1f17b1804b1-48d146705b4so86333635e9.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 13:04:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1778702666; x=1779307466; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1778702667; x=1779307467; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=W1FPGSV7LejosXVeEFxjnGK2JzxLEsdYwTa92yxR1dQ=;
- b=jVERfoyxds5qJQ+AkTHETw73LKADhQPBguzIOR1GP3V9V/aXBQ4PL3UqBCX3TaweIm
- iJab2qPlM/5q7YTxM/U7VFusV6Nlbo85aCbO6MxTBbfWZx3I/JJpFpupjpd9yatEDpVq
- uiKlOba3x/po+OdzVKrGt4M9cHX2RBnLZix2ojgm5Db4ubkqo2FISqUJzW/uCLevU4+Q
- jH0AaUtbTk+M7BMBYWuH43TqP35mzX1cd2RoEpSOrv9x+CZ9vWg5fNTg6F4MXFK+Dsmk
- OYi6wEMrtJJHIlz3POPf34d6HexigL5grUX4yh6/6NKWC7I2GyKukoK8tutqXLNuDVD0
- 9pKg==
+ bh=UxYoehvwx6JnVvgyB4wpOmMQgYoOl/v9XfUQ8spxtu0=;
+ b=ntHdAc6O7VW5FZ/TBtgIG0b5xhdtOcKOYkNDUi+oxJLF/V9HqwLUh2cbTbCr+AF6fk
+ Chl1bmNjKk9FtDzU6KllWdWnfCu5WKMahYDefzhJo/hBaNRaZnqaK/tOgiFj6bh0i1SO
+ PcmwyQJxoIqVINGVoD+ig65NXhCWRcaE81LNKxfMh/AnxShFOrPNmhaOEpxGlJByjReI
+ CnTyq3b6t8W2ceNlAaxLyIKlqAok+++EwUbX/2U0Kk7qDlp9cQW8NAYDV/1W1M0tZXKP
+ MZrOxiBWNSZF1iQRlVkfaewctN7RCoIIJn34K6V/0mPGAIAc00XfBMa18JZ51WgyVHGK
+ NipQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778702666; x=1779307466;
+ d=1e100.net; s=20251104; t=1778702667; x=1779307467;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=W1FPGSV7LejosXVeEFxjnGK2JzxLEsdYwTa92yxR1dQ=;
- b=fpW/pt3oxQzMw0yWLtjr00oQZQhBxVDt27iQMiA5xJDCtAVAS8hYrss/UCjolLLGPF
- LUecsG6UVpgZY6C/lV/cokYphC+ZBVVb3nxhF6zYFAP0/oKGEhcgjeUVflI6R4QlkrDa
- QZZaDHzb2bVyPMBcAGCgPlVCjgke+V9TDLlzc2O7uIP9BKK02KwBiGsCFmOwQ4ReKz4u
- ZprLiyx5LWrnbnSCRDaWXkxgWO64BbJqB3l2oHhSg75GUu1I8orMUdBHmfgBqXIpwLLl
- 0WcTX1h0gco18jqQF21otIjg37/71qaumxJI8TY1hNhyBTI3xW8TaOsQ0pyoKf1CyZ6H
- CYZw==
-X-Gm-Message-State: AOJu0YwzwlE9YFH2H3Atj1GZfK0GcvUDZ3HaL8dGFXsaSiRyZiTVR3rY
- mKlvJsEUpfcmUyqK8uJi9+A173XEL6yEpvjoJW9NqvGS0p5UVjaNoPaSWQKfjg==
-X-Gm-Gg: Acq92OHZ6cHgtjfB7BX+j0YUr2/0Qf951q6NYxFO2S71g4HkbC5CQmVDgL1bc77ZNOY
- ONujEm6tfHS5+HvbYjln47zNC6mp5MoYLL57lkURpE4Osl4VvXepXaibLErdmVKA6AYLvV64brV
- hXZRsAxPp0CimO596Y9cRYbmuI4xUo2lijCAjOzfv7aUbvP5EIpPCG0vDxjoriLz8cjG60H99In
- jQ6Ga7TDI2aYxe03zVRhuBZA5/dXukvt79oxZktYckoeJRYKyAnp7i7uGa5Izqu+s1VvGbXrG4/
- drtFO6T8U8K+HLO+kHDy5eFuMIsjgLWQw5o4pw7NQvVzGHn527fxJvOiprJdnV1VC40027YFUzw
- bFNl9AyvJbdqvKilW6UILB2/AKJGcivcpd3TmOnx1c7NA8CS3IbDqetrwTdLvtWSlHT8ATE6ujW
- 0cck2v32BAifKHxBrn3Yt2TJZY7cffQt4cWwXSUMBwOpE6aFnJwkqGpMx7TjJ+wjY7
-X-Received: by 2002:a05:600c:4ed1:b0:489:a4:e555 with SMTP id
- 5b1f17b1804b1-48fc9a41e96mr66803415e9.21.1778702665573; 
- Wed, 13 May 2026 13:04:25 -0700 (PDT)
+ bh=UxYoehvwx6JnVvgyB4wpOmMQgYoOl/v9XfUQ8spxtu0=;
+ b=iPiGC16eUVAHtmBen023qJudITrO1NWltzESymCEXHauS3UfvSsXfGNT5CX+jA0S1u
+ 5Y3rothv+uIrIYnN3gYo3AIBHyLmwEOh6jmeJvvb1wnfM/1kUoT0+AgZYiYhZ0liXvw6
+ IXV1PrtQIVYJEwR64wvCjCzNAkr/hZ8pphU9ibBgWhQ+TNXPUj9fvnZ8pbpl0OAMUffj
+ D5VSo6Mr7b4YY7AX2z+sXMjovbVQ/7klvOjiC3AvpAFrZQNaJyB9xtlBnpmwEA/cGJU4
+ CaTpGW1xMKqufilWPglXxAY/sW9OwGO4VLSbykGVTjKyLEp5bECF60rRQW3jr5IRoD01
+ +TvQ==
+X-Gm-Message-State: AOJu0Yz/3unrFmsu7kBCLkNm/5b5YjWObPyj1KSpeSeuywTGrIWZpuLl
+ ym7G2HeUgswy+9ZtrKaeYozl39EbNAApnVTWU3w8pjNSdsC7iL1XVVbOxWe7xg==
+X-Gm-Gg: Acq92OGMghxG5pJJ6lhJAOpPbp87SIGcN7QX8l/M09iKHwUEtp/TrWBJyTDmvjY9Tmp
+ 5Pvc/hJBQT8eFN92UyLpeIELzHSrL8GXXzI2LJKvRsA40zV6q9nZaFoRZcOMvg9+f6vn66Kt7nc
+ mcrufk2HxnN90B3fVh4HuyRa3zAwUDFeeUEXkvAN5vzO948IIp2wGMW9MrLLhaYc4DnvrbdxdC9
+ m6cgcJ965OREkKfgkuWa6Opu6IkrZ4r03UBL2FtsWiDBgkeC3K4ncxIdqX7IO/EdC+tgHqXtq+2
+ DBOUy/SMI7kCSO9Ka+6v9z0UycoH991yN1XqKuYUeiRrEkItY4veIC/KiT9CuaHC84GaHbipBTG
+ zqda9zrbDtUfCv/fMXhYnMn+86RCyBBczBelnS/RoHmOZyJYYQ6BE5aq73Lm9WQ9ALIdQtKya5F
+ yBATm9VTDJhuAKfq4exmagrJF+lsIC20daviKPa7zlaH7nmXRGnGZjZyLcTi0dEA6+
+X-Received: by 2002:a05:600c:4c29:b0:48f:d1b8:9ab1 with SMTP id
+ 5b1f17b1804b1-48fd1b8a1ecmr31850945e9.9.1778702666514; 
+ Wed, 13 May 2026 13:04:26 -0700 (PDT)
 Received: from Timur-Hyperion.home (540017BE.dsl.pool.telekom.hu.
  [84.0.23.190]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-45d9e768c4fsm1257463f8f.8.2026.05.13.13.04.24
+ ffacd0b85a97d-45d9e768c4fsm1257463f8f.8.2026.05.13.13.04.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 May 2026 13:04:25 -0700 (PDT)
+ Wed, 13 May 2026 13:04:26 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  christian.koenig@amd.com, Natalie Vock <natalie.vock@gmx.de>
-Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 7/9] drm/amdgpu/vce1: Stop using amdgpu_vce_resume
-Date: Wed, 13 May 2026 22:04:14 +0200
-Message-ID: <20260513200416.35631-8-timur.kristof@gmail.com>
+Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ John Olender <john.olender@gmail.com>
+Subject: [PATCH 8/9] drm/amdgpu/vce2: Fix VCE 2 firmware size and offsets
+Date: Wed, 13 May 2026 22:04:15 +0200
+Message-ID: <20260513200416.35631-9-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260513200416.35631-1-timur.kristof@gmail.com>
 References: <20260513200416.35631-1-timur.kristof@gmail.com>
@@ -91,7 +92,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: CF4D153A503
+X-Rspamd-Queue-Id: 6FFD653A507
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -112,7 +113,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-1.000];
 	MID_RHS_MATCH_FROM(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
@@ -126,71 +127,57 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email]
 X-Rspamd-Action: no action
 
-The VCE1 firmware works slightly differently and is already
-loaded by vce_v1_0_load_fw(). It doesn't actually need to
-call amdgpu_vce_resume().
+The VCPU BO contains the actual FW at an offset, but
+it was not calculated into the VCPU BO size.
+Subtract this from the FW size to make sure there is
+no out of bounds access.
 
+Additionally, increase the VCE_V2_0_DATA_SIZE to
+have extra space after the VCE handles.
+
+Also increase the data size used for each VCE handle.
+The FW needs 23744 bytes, use 24K to be safe.
+
+This fixes VM faults when using VCE 2.
+
+Cc: John Olender <john.olender@gmail.com>
+Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/4802
+Fixes: e98226221467 ("drm/amdgpu: recalculate VCE firmware BO size")
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 Reviewed-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/vce_v1_0.c | 16 ++++++----------
- 1 file changed, 6 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/vce_v2_0.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c
-index 32ee6452f95d..93253db5e2de 100644
---- a/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vce_v1_0.c
-@@ -178,7 +178,7 @@ static void vce_v1_0_init_cg(struct amdgpu_device *adev)
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
+index db149eda6204..3a6fc8604108 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
+@@ -37,9 +37,14 @@
+ #include "oss/oss_2_0_d.h"
+ #include "oss/oss_2_0_sh_mask.h"
  
- /**
-- * vce_v1_0_load_fw_signature - load firmware signature into VCPU BO
-+ * vce_v1_0_load_fw() - load firmware signature into VCPU BO
-  *
-  * @adev: amdgpu_device pointer
-  *
-@@ -186,7 +186,7 @@ static void vce_v1_0_init_cg(struct amdgpu_device *adev)
-  * This function finds the signature appropriate for the current
-  * ASIC and writes that into the VCPU BO.
-  */
--static int vce_v1_0_load_fw_signature(struct amdgpu_device *adev)
-+static int vce_v1_0_load_fw(struct amdgpu_device *adev)
- {
- 	const struct common_firmware_header *hdr;
- 	struct vce_v1_0_fw_signature *sign;
-@@ -232,6 +232,8 @@ static int vce_v1_0_load_fw_signature(struct amdgpu_device *adev)
- 		return -EINVAL;
- 	}
- 
-+	memset_io(&cpu_addr[0], 0, amdgpu_bo_size(adev->vce.vcpu_bo));
 +
- 	cpu_addr += (256 - 64) / 4;
- 	memcpy_toio(&cpu_addr[0], &sign->val[i].nonce[0], 16);
- 	cpu_addr[4] = cpu_to_le32(le32_to_cpu(sign->length) + 64);
-@@ -592,10 +594,7 @@ static int vce_v1_0_sw_init(struct amdgpu_ip_block *ip_block)
- 	if (r)
- 		return r;
++/* Use 24K to be safe. The FW supposedly only requires 23744 bytes. */
++#define VCE_V2_0_DATA_ENTRY_SIZE (24 * 1024)
++
+ #define VCE_V2_0_FW_SIZE	(256 * 1024)
+ #define VCE_V2_0_STACK_SIZE	(64 * 1024)
+-#define VCE_V2_0_DATA_SIZE	(23552 * AMDGPU_MAX_VCE_HANDLES)
++#define VCE_V2_0_DATA_SIZE	(VCE_V2_0_DATA_ENTRY_SIZE * (AMDGPU_MAX_VCE_HANDLES + 1))
++
+ #define VCE_STATUS_VCPU_REPORT_FW_LOADED_MASK	0x02
  
--	r = amdgpu_vce_resume(adev);
--	if (r)
--		return r;
--	r = vce_v1_0_load_fw_signature(adev);
-+	r = vce_v1_0_load_fw(adev);
- 	if (r)
- 		return r;
- 	r = vce_v1_0_ensure_vcpu_bo_32bit_addr(adev);
-@@ -714,10 +713,7 @@ static int vce_v1_0_resume(struct amdgpu_ip_block *ip_block)
- 	struct amdgpu_device *adev = ip_block->adev;
- 	int r;
+ static void vce_v2_0_set_ring_funcs(struct amdgpu_device *adev);
+@@ -183,7 +188,7 @@ static void vce_v2_0_mc_resume(struct amdgpu_device *adev)
+ 	WREG32(mmVCE_LMI_VCPU_CACHE_40BIT_BAR, (adev->vce.gpu_addr >> 8));
  
--	r = amdgpu_vce_resume(adev);
--	if (r)
--		return r;
--	r = vce_v1_0_load_fw_signature(adev);
-+	r = vce_v1_0_load_fw(adev);
- 	if (r)
- 		return r;
- 	r = vce_v1_0_ensure_vcpu_bo_32bit_addr(adev);
+ 	offset = AMDGPU_VCE_FIRMWARE_OFFSET;
+-	size = VCE_V2_0_FW_SIZE;
++	size = VCE_V2_0_FW_SIZE - AMDGPU_VCE_FIRMWARE_OFFSET;
+ 	WREG32(mmVCE_VCPU_CACHE_OFFSET0, offset & 0x7fffffff);
+ 	WREG32(mmVCE_VCPU_CACHE_SIZE0, size);
+ 
 -- 
 2.54.0
 
