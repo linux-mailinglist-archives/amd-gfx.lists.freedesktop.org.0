@@ -2,87 +2,109 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eEvlLrnqBGrOQQIAu9opvQ
+	id UPvvIxz0BGoTQwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 23:18:49 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 23:58:52 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 241E153AEE0
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 23:18:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E940453B33A
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 23:58:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3350610F072;
-	Wed, 13 May 2026 21:18:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50C4E10E13D;
+	Wed, 13 May 2026 21:58:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DpneW860";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="FKcChGfE";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com
- [209.85.219.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 335F410F072
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 21:18:46 +0000 (UTC)
-Received: by mail-qv1-f54.google.com with SMTP id
- 6a1803df08f44-8b1f2b7f1bcso82056276d6.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 14:18:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1778707125; x=1779311925; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id:from
- :to:cc:subject:date:message-id:reply-to;
- bh=LhDjW3I5Y8P1uIeQFjEbnKo3t3FqwD71SQiFBw91vTk=;
- b=DpneW860HkM1B6ozhjl7KsTQa1srQE8Dd5lQFASOxTidLsVs2LO2K8iFmj0VaMUz+a
- ur1efX8s175E18/rrEqS1fvlsEQAAepv8lsHXw0Fvr/a94IQ49iv/UEckbc7VuIVLHtJ
- +DRktC5p1bkibB6PDzipHqoB7qMaIhe6eUMC/6gh9vKF06FpTp4es2i5c4V878/E0E5G
- +YpMYF55XQKnFpke+to+ji87rRThMCIYozoGBCENxKPRW8UZrX2LqhW30eOYpMfexGWC
- 8oFF+7fiY7fZSjh5TnmbMLt8whNrEP2fta9NV3auDkgCw4WOt/db4FANUccHy8LM9xyM
- Ic7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778707125; x=1779311925;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=LhDjW3I5Y8P1uIeQFjEbnKo3t3FqwD71SQiFBw91vTk=;
- b=lG3VOYUQIXSOBc7fdrr1slx/B6eueTn6sG/wPDIwLHFWUroHe/KYFwXFkruOy5ARqW
- Y2mMvSUlnsUBeqWPt9v5GKkY7rC+6GKxHQCUhlnwyMsMMciVoA/rQODF/cNpLbguSo6d
- Tlz+h9+N95IgqfiZZoJmHLAi45lgdCOCxTCoCn77z6hcPPymmwcpfecYnN7QTMzsq+yz
- K+4D/hL/OrKGvU/tKRPs5IBXyeDeNCLCf3e9Nfy0XHstyBcw6BNi61jTXdRVCwH32zeX
- kbkpvWPxPQ7O4i2JBAEEwWN6Z6KKIP6QGJuMZ/knivrgJsXcrgAUq32IHqDcLl9v+g/G
- hr5A==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8gc/4eD2zmBpdBTdggkS8m0OQsfPweFjOmjEOhlmWE8mcdqNjPLnUTUUcEq8ssiPQxeNchyf84@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzEW9cbNwfEKyEHyFE4GnInQFCmuT60+xlwBzC03U+EhyFi4hgO
- moVrzUt2ET8mZhujN3g5oGYiPeXi2Ct5PC3ljSTo/YuAk9FYXlcainRR
-X-Gm-Gg: Acq92OEIbqLDmVGwNcitjlVZ8bmTzjRkJU6M4bbnUIyN+WZXOVqkK+xKJ4mP2qdt+qZ
- MK+zFvFOnCPjM+Pf7VImYU1nMQ1PedKi1TIie+CEoS3r26Zix/YtN3zr59Kir49JQiyzidvqVxd
- L7LpqOuyWXIGBic+224KZ5Dm+0B5ePiaFcnxeP0+6hH/HBt2eXpera+XfKdtT8y+6vBr77xdT3C
- 8TtPXmyiejiAvmGhXtJkZs1cp4Tt3dZ5pyNcnn7euAxvgCc1AxHtfl4WC/UyahcgDy5E7hYyC2E
- e9Jyvb57slPQOHG3zKoOXw61GTs0VdbcojRih2EVOOxWjjFvAwcYVHA4VHBBw+wE8F4RRYOi5Jj
- shBYhvRhUESI/M82GljisAjhL0XsMEzzgRjrsw+/pRNgbe4Ls3mGk43GYPWDe4FPQaS8KWtBjXa
- HyPdQzRoXZs1XBs+7RAbpIZj5VMRt9NeU=
-X-Received: by 2002:a05:6214:4801:b0:8ba:d36a:8b0c with SMTP id
- 6a1803df08f44-8c8fbd05f71mr16533066d6.12.1778707124817; 
- Wed, 13 May 2026 14:18:44 -0700 (PDT)
-Received: from [192.168.1.100] ([32.220.111.111])
- by smtp.googlemail.com with ESMTPSA id
- 6a1803df08f44-8c90c161928sm6139136d6.44.2026.05.13.14.18.44
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 13 May 2026 14:18:44 -0700 (PDT)
-Message-ID: <7233fc9c-a654-4969-b10c-2b89d6bc4fd2@gmail.com>
-Date: Wed, 13 May 2026 17:18:43 -0400
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010062.outbound.protection.outlook.com [52.101.46.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32A9010E13D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 21:58:49 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sJeuuDQnZbXYiH9ldbxgKgW87RsVcpFBEGxfTxOPT4UuCIR1EQ/kqzIh4gaW6emujugn/sYyC4ahwG7J430ahGH07xYW1gTOIr0osrzuIkOU2J1ksEo0XQ+/FdkHyGS6+CBYy7Rdqm4aUsJ4pwI/rHTxpwOceozOk8UC0hPjJrVMJUzZXCZ0qlbTLVJmU6LxtGbTzmHJfjRGTPHL7sb7vw8ebmv26xJt7TLeAZWn0BvuUlas3SEcL2LS2KQp2jTILlD+TZz0vgkHd6Tn5QzhPXwXm+MJlNyAEz553GdhPlDBG+/+Yq/KfarH+xkctYh2vlHDYI5LpmOykc+bBCmKCw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+eOK56oVnzCVDOURinSzQIeu0PBH+RHIjLCOzuPqQeA=;
+ b=k6vYehFGAzSWYi14L93kS3v0uQq/m+MOZLBaXzw+urM/I+tny2u5XGzN44RNXWRFFwlGsv/X1toWy4U4/G0o5jDLJur9UG4ttQxMt0QeeK9n7sj7fgALTWomJ9E+0MIAdewo2UZb0LFWjc2WP0oatPUdIgTl+L+M1AW7nEannuzITnwV3T6/6O6Q5X1Ni0rGFc9RR1kaL+Qv7uMJ5B7x6UsQJ0wK6KvFr6SWIQ98fAW3YtLvyKov9nG5yNmMl642CyQpc6kArykLmJaAfRQZXLoeJfUGCgrOvU7g6XhMEurgPo1oa144LyPmibAakry+qb+GJtHaN8Diu6vWmL+2Uw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+eOK56oVnzCVDOURinSzQIeu0PBH+RHIjLCOzuPqQeA=;
+ b=FKcChGfEhXaz/0siVF+sK3JjdPF/JDBsCrB0weYHPi4A+9csAa86GpiF4xEx507dMxxOn7VC9dP8Vd+gJLytQ82ZVn8coTYWD/KvvTSBLjyVKtAlXWP7yYN3PNwy9NDvdjdjEsPKj6nI11XrG2IrmeSZMC++kxBmgeMC+i6bIxI=
+Received: from DS7PR05CA0065.namprd05.prod.outlook.com (2603:10b6:8:57::10) by
+ DS0PR12MB9276.namprd12.prod.outlook.com (2603:10b6:8:1a0::5) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9891.23; Wed, 13 May 2026 21:58:44 +0000
+Received: from SN1PEPF0002BA4B.namprd03.prod.outlook.com
+ (2603:10b6:8:57:cafe::32) by DS7PR05CA0065.outlook.office365.com
+ (2603:10b6:8:57::10) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.25.18 via Frontend Transport; Wed, 13
+ May 2026 21:58:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ SN1PEPF0002BA4B.mail.protection.outlook.com (10.167.242.68) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.25.13 via Frontend Transport; Wed, 13 May 2026 21:58:43 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.41; Wed, 13 May
+ 2026 16:58:43 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 13 May
+ 2026 16:58:43 -0500
+Received: from p8.amd.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
+ Transport; Wed, 13 May 2026 16:58:42 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Harry.Wentland@amd.com>, Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH] drm/amd/display: check if dml21_add_phantom_plane() is
+ successful
+Date: Wed, 13 May 2026 17:58:36 -0400
+Message-ID: <20260513215836.40154-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/9] drm/amdgpu/vce2: Fix VCE 2 firmware size and offsets
-To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- christian.koenig@amd.com, Natalie Vock <natalie.vock@gmx.de>
-References: <20260513200416.35631-1-timur.kristof@gmail.com>
- <20260513200416.35631-9-timur.kristof@gmail.com>
-Content-Language: en-US
-From: John Olender <john.olender@gmail.com>
-In-Reply-To: <20260513200416.35631-9-timur.kristof@gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: alexander.deucher@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4B:EE_|DS0PR12MB9276:EE_
+X-MS-Office365-Filtering-Correlation-Id: 36cd51ab-75f2-4247-12bc-08deb13acd0a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|36860700016|82310400026|13003099007|11063799003|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: OmqY1g7Lv8xpRXXqUIhJClwnzptuEA7lr6ks8wmf96HDN1jvM56/mI6qYf7THkA7UQ+EpAGrYL3yjUE5bq/5SlVF9rRHsLBR9svzlk3Uu2d0ZkfYwn4AZfHp1lsOno7vfQiqxbXP1DDzJs39D65JjFFglN+3E5U3K5L2csTxb4qrRfcLkzf+V2IDnA4NZVi3MUJwa+y1M247iORGRgwepyvVV7jlGBjN0WDSPrhWlPasc7CrMVxcAuGluDxHoke2bvQrDsfn0mVbSC8AmcGK1fCfHuT+FUfpUMXEXABmZl168TH/dLVeQoZ2pviE3b4M88d1tRSzYjWeB0iHyvES409YVAZAHEbNePGulIikhwFAYnVsJjDuOwHYIiwBmIAUD0uGuhFvPBMpB0TCmXdGh9dF6Qk3I7nLm7TbhcqK0bODfY5/84ozudzWy2RTQxTezi4ndb58zve3nqPoIg+spOBl38w7p77a+rUIAR0NVgsdCQU3MEO8YXHTQwW1/weQQkOKcAx2mn6lyT0rQk7qtwJnwaEPdlPATU71Y2ISRXP9vKSyDzOpWY5IXj7IdjbnM2ViFvR6M6870+hI7Rzf4/tGMF9bixellcg4nFFx52CwOEqFoj4jMFzShNmMYJV5eTZRZw9TrPZ96HfL41jcIhcX8TfVRgX+xq1nW7iFR6CvaezZMw7sjw4VaoMEK2X1
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(36860700016)(82310400026)(13003099007)(11063799003)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: Y4XJdfX26+GcXR8tHAHLaPyqx59R2p+vs5VzDvtQGgpfdgxl0MS7JjjHP8yQ0dt6+J5RitoRChCzmr6hIXOiyVOEB78YsaiRQ9xv2ebU1k/Trf/RG4YmuNmpBFDZn9HeA+z00wFqCwzrHYnHktLigk/t+RXKHvYcwh3YrYjwZvN1COXyzwsHDYYGqbhADDFPyIo8xBu60qs0gliQEJ6gIe8ocrxbD0Ukok2AyV3BakMpfd9p9zreccSzYGhXikUtmker75Mp11bm6rT1sx0OjKz9ORvYXfHBRtNhkbVfVUwVURuJ6NPB5Mp6s9R/znrZ1nso7J00eW+evgb0T1E9obqay3Tq491JJ+ZwsAP3Cs15JEgdbY2XkzNk09XMMBsQTatu0TaADpQnWoY/4IuA/BCteGJwWv6n/usRzrp5bgK+pzx+BzckZemu3w99ca4N
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 21:58:43.8764 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 36cd51ab-75f2-4247-12bc-08deb13acd0a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA4B.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9276
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,102 +118,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 241E153AEE0
+X-Rspamd-Queue-Id: E940453B33A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com,gmx.de];
-	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:natalie.vock@gmx.de,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[johnolender@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[johnolender@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TAGGED_FROM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,gitlab.freedesktop.org:url]
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url];
+	NEURAL_HAM(-0.00)[-0.999];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Action: no action
 
-On 5/13/26 4:04 PM, Timur Kristóf wrote:
-> The VCPU BO contains the actual FW at an offset, but
-> it was not calculated into the VCPU BO size.
-> Subtract this from the FW size to make sure there is
-> no out of bounds access.
-> 
-> Additionally, increase the VCE_V2_0_DATA_SIZE to
-> have extra space after the VCE handles.
-> 
-> Also increase the data size used for each VCE handle.
-> The FW needs 23744 bytes, use 24K to be safe.
-> 
-> This fixes VM faults when using VCE 2.
-> 
-> Cc: John Olender <john.olender@gmail.com>
-> Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/4802
-> Fixes: e98226221467 ("drm/amdgpu: recalculate VCE firmware BO size")
-> Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
-> Reviewed-by: Christian König <christian.koenig@amd.com>
+Verify that the phantom plane was allocated to avoid a later
+segfault.
 
-Looks to be effective on both Kaveri and Hawaii against a wide range of
-test input sizes.
+Fixes: 70839da63605 ("drm/amd/display: Add new DCN401 sources")
+Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4970
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ .../drm/amd/display/dc/dml2_0/dml21/dml21_utils.c | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
 
-Thanks,
-John
-
-> ---
->  drivers/gpu/drm/amd/amdgpu/vce_v2_0.c | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
-> index db149eda6204..3a6fc8604108 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
-> @@ -37,9 +37,14 @@
->  #include "oss/oss_2_0_d.h"
->  #include "oss/oss_2_0_sh_mask.h"
->  
-> +
-> +/* Use 24K to be safe. The FW supposedly only requires 23744 bytes. */
-> +#define VCE_V2_0_DATA_ENTRY_SIZE (24 * 1024)
-> +
->  #define VCE_V2_0_FW_SIZE	(256 * 1024)
->  #define VCE_V2_0_STACK_SIZE	(64 * 1024)
-> -#define VCE_V2_0_DATA_SIZE	(23552 * AMDGPU_MAX_VCE_HANDLES)
-> +#define VCE_V2_0_DATA_SIZE	(VCE_V2_0_DATA_ENTRY_SIZE * (AMDGPU_MAX_VCE_HANDLES + 1))
-> +
->  #define VCE_STATUS_VCPU_REPORT_FW_LOADED_MASK	0x02
->  
->  static void vce_v2_0_set_ring_funcs(struct amdgpu_device *adev);
-> @@ -183,7 +188,7 @@ static void vce_v2_0_mc_resume(struct amdgpu_device *adev)
->  	WREG32(mmVCE_LMI_VCPU_CACHE_40BIT_BAR, (adev->vce.gpu_addr >> 8));
->  
->  	offset = AMDGPU_VCE_FIRMWARE_OFFSET;
-> -	size = VCE_V2_0_FW_SIZE;
-> +	size = VCE_V2_0_FW_SIZE - AMDGPU_VCE_FIRMWARE_OFFSET;
->  	WREG32(mmVCE_VCPU_CACHE_OFFSET0, offset & 0x7fffffff);
->  	WREG32(mmVCE_VCPU_CACHE_SIZE0, size);
->  
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_utils.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_utils.c
+index 835fece1d46a6..50e445275b14c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_utils.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_utils.c
+@@ -359,14 +359,13 @@ void dml21_handle_phantom_streams_planes(const struct dc *dc, struct dc_state *c
+ 					main_plane = main_stream_status->plane_states[dc_plane_index];
+ 
+ 					/* create phantom planes for subvp enabled plane */
+-					dml21_add_phantom_plane(dml_ctx,
+-							dc,
+-							context,
+-							phantom_stream,
+-							main_plane,
+-							&dml_ctx->v21.mode_programming.programming->plane_programming[dml_plane_index]);
+-
+-					phantoms_added = true;
++					if (dml21_add_phantom_plane(dml_ctx,
++								    dc,
++								    context,
++								    phantom_stream,
++								    main_plane,
++								    &dml_ctx->v21.mode_programming.programming->plane_programming[dml_plane_index]))
++						phantoms_added = true;
+ 				}
+ 			}
+ 		}
+-- 
+2.54.0
 
