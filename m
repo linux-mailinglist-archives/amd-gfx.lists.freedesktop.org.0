@@ -2,48 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yPUFGdSLBGqvLQIAu9opvQ
+	id gAJWHdiLBGqvLQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:33:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:34:00 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3BE75352BA
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:33:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 268715352D6
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:34:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6787B10EEDC;
-	Wed, 13 May 2026 14:33:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD8A110EEE0;
+	Wed, 13 May 2026 14:33:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="o+Fd0cQl";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3hgPpDws";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012067.outbound.protection.outlook.com [52.101.43.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2372310EEE2
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 14:33:53 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011006.outbound.protection.outlook.com [52.101.52.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D746A10EEE2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 14:33:52 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=D1Cyvf6ogail//WBBiAn7yIR29Rq81dHJ8UJv/U3BFFcVSUBxbp2XWB0MyeYLl+i+JeFpavdUht70huKo1gVDGxcxBEYKBFTmfwozGJbSG1aQRpkc09DAddm06empeg+NRlIL15TyzV6aSMWdqGfE7f55gnrbu+BJhii7+fgpBL5N9/gGkw3Y5wl7jfcUfNhpdS/TPpTt8jV22n3c+0n07x9GnL1blcud2JRE44vuHDUqAwbs57IwBIKy29R8ruGOQssMKDNOvtGFiAttTjdjJ+QYEL8nqbqtoXlBY6tbpBdKGIskMYrcFLmQc1Tf/PIok6yCP5JYnBCB/oFvtj5xg==
+ b=irf705dU9kqR3eHw7h3ilSyfMujxmxsPeOXOsVnb3D7RrQJEtE2QqmALoErX26v3k5bwo5Oqp6EnrvDaEX7+Au6LfnaBVCXzoifQLpOVS3yYmTw4HFLHzmHdLdE0W3SnvCwqNTOiwEOQA6MOYA1wpbMZoXnTnVVRqMA+1/UzEEwgJ0k5SHhAxt1L2x9QwwuOsBYZnIGc65Pd9afRj/lqP0nUYj0zrUZm9vMiL4vmmGodsv5EP79TGUmi9W1+/Ijj/q4oWmCk1N3KELLyzVCJwIJ9pxA1jBzNgYRpb+4JsSbDeOrLn5BCMjxL5T45pSFjYk3biSDQnhzBpfYc17k3Dw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NJ/pa4KBfHQgdKL6pQL66+AfMPf9tU6+jkj2EhVUJgc=;
- b=mzFtvf2m3ksnD3CqtpnObdWMihO/c+FwAx4GMVF8yOJYEKQminyekWjngbimGBYxIjfdMbufEOwqhxhV9H9ToxD7aTPxo97QsLKVtyGQ+dv3bH2F7daHR8XqvPiIdUloRXlbWMb6FxO+F+ovQCBVvrx8V+7bauzok19H0UdFAn385s167ykY/uEegesS/F+WgoOflp9A7kO53L8qizg5Wit7+JrQ0LsDPeKl+VhSJOfu4uXsvONXF3/Rh1QOtqi1XQ89M09q3HP2j1GBm9zhdHOx/IgrdYur5yBiW/9tWvX/n+RNyR/s52h3eGBL1YmgKsv69+Wb8yHiqzrsBS7fyw==
+ bh=YZpeztTNz337zGNGYPFA0KhAkJpN5YKWniAH4ZRTR/s=;
+ b=YLYg7NnOqmifmCJ7v0GlEUFMViPeELOMsgdSdDE+myYBkjgBThAA/tS5kvd3IsfqXvdbFENObfAaL2ZbEqTAOXjTa65E0+B+R208WBZdTqx/023okzLA6PwJR+6KXmFd+B5G/w7dPW67BO+x/qkKd4x6H2fUK55g9iZ/jyYtvIa/XdcnIdXuHAtiRa1NrEWIsdI1Pv+XG7s4VpJTaCSxmxxR/7pd57PRegSnC2V8A4fJIsKhEkJH7oub1c1P1BVf4VIqeLNJcUiQwZKtKhdM4xJXho81AMpi4Rb4E3RWhUOVoyXefACYO7zaJl8T9WpvbzoRst3yYzX8fLC09QEmNw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NJ/pa4KBfHQgdKL6pQL66+AfMPf9tU6+jkj2EhVUJgc=;
- b=o+Fd0cQlMZovY8vt+y9UI7itq1+C6cfwD4TC/HwK6ufyE8j9Vfb+aN2gtt4b5csMWs7J+n0GMqUna4VoGBvekreNxdPfCTQdUQMe1CAahHjBWsduAvCkjE7Fta18Ty2L61OvhOm4K7MoBBnEDL4YNcpr8e4hDLHKjDbnrjM2Ads=
-Received: from BY3PR05CA0028.namprd05.prod.outlook.com (2603:10b6:a03:254::33)
- by SJ2PR12MB9005.namprd12.prod.outlook.com (2603:10b6:a03:53d::10)
+ bh=YZpeztTNz337zGNGYPFA0KhAkJpN5YKWniAH4ZRTR/s=;
+ b=3hgPpDws0hiHL3F8Rpz5tdx0V18wYnZgKTHYJ87bZ/enr4rkijf3koaCpmhp6qpkAfiMSlq8ZnADkQw4lKS0V6on02A/kGeeHkG0CuRfHQ4Md20A2KZchK2V8Th5vqzU1+/DasvyGMnDIETT/Efuq7kbKGiBFF8ExkmhQ+EA+zw=
+Received: from CH0PR13CA0036.namprd13.prod.outlook.com (2603:10b6:610:b2::11)
+ by SJ2PR12MB7800.namprd12.prod.outlook.com (2603:10b6:a03:4c1::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.22; Wed, 13 May
- 2026 14:33:47 +0000
-Received: from MWH0EPF000C6192.namprd02.prod.outlook.com
- (2603:10b6:a03:254:cafe::33) by BY3PR05CA0028.outlook.office365.com
- (2603:10b6:a03:254::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Wed, 13 May
+ 2026 14:33:48 +0000
+Received: from CH1PEPF0000A349.namprd04.prod.outlook.com
+ (2603:10b6:610:b2:cafe::3d) by CH0PR13CA0036.outlook.office365.com
+ (2603:10b6:610:b2::11) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.25.17 via Frontend Transport; Wed, 13
  May 2026 14:33:47 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -51,22 +51,22 @@ X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- MWH0EPF000C6192.mail.protection.outlook.com (10.167.249.102) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ CH1PEPF0000A349.mail.protection.outlook.com (10.167.244.9) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.21.25.13 via Frontend Transport; Wed, 13 May 2026 14:33:47 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 13 May
- 2026 09:33:39 -0500
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 09:33:40 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 13 May
- 2026 09:33:39 -0500
+ 2026 07:33:40 -0700
 Received: from box-0.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 13 May 2026 09:33:38 -0500
+ Transport; Wed, 13 May 2026 09:33:39 -0500
 From: <IVAN.LIPSKI@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -76,10 +76,10 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, <stable@vger.kernel.org>
-Subject: [PATCH 22/28] drm/amd/display: Fix integer overflow in
- bios_get_image()
-Date: Wed, 13 May 2026 10:29:44 -0400
-Message-ID: <20260513143213.1852892-24-IVAN.LIPSKI@amd.com>
+Subject: [PATCH 23/28] drm/amd/display: Validate GPIO pin LUT table size
+ before iterating
+Date: Wed, 13 May 2026 10:29:45 -0400
+Message-ID: <20260513143213.1852892-25-IVAN.LIPSKI@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260513143213.1852892-2-IVAN.LIPSKI@amd.com>
 References: <20260513143213.1852892-2-IVAN.LIPSKI@amd.com>
@@ -88,29 +88,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000C6192:EE_|SJ2PR12MB9005:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c1814bb-3d54-4191-cc0c-08deb0fca4a5
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000A349:EE_|SJ2PR12MB7800:EE_
+X-MS-Office365-Filtering-Correlation-Id: 31a4311e-6c23-495b-9e0b-08deb0fca48a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|376014|82310400026|1800799024|18002099003|22082099003|11063799003|56012099003;
-X-Microsoft-Antispam-Message-Info: INmMcuNPZcc02jcAoTcp90TVJXEUt2q/VxW/0rDugJowJgIfEpx49M5YNbCb9wevqBFSqcLhA3qribrQhsb0RpTSpk6MCBWLoSLiU9MR2zvA4Ovgf69zOpD17baLGPghtZnWAKk5Ct9j2jAl7elF3SeiCabCuKVnWDHQExUOkJINYRLVp17rjYjBT6CmsaQ2KinZVHxQ2IAW4BF1PkONlbwf8XJHEl4/mnV5qMQ586AV1XGJFKbfSEILOcyP6HqrZ/G0VkTt5Qys8oM3ifCm2YMyB7tDepsxKnxOHNe9ToqMaXcCMMmZ2KyuA6bGQFP8MmN8Ih9s2yaRwQWW48qjmeSblRZtIR8yz1c/6ocUH4iM+PJ2AkAsX4b50ozWQEPJ+55OpHq++SNGsDXva0gU3AQAtSI1KXpq/vvy971H2EBSpbytX4KuzSdRrMfccTMZLRt0NYN3Moo7ArcFE/pE3myOGuZtj8O6gPPu45Ejiraxvciftr4LOhkEgVfLtRMfeazx280y9Eozyp4OQXU1MytH8Bo0fIPQEqe23DZ+BuI0C5ICWT+DKyNYLHphq3hzYp6+ZzatFp5bWXyDFA7BfSVKTJfQuvT7j1gJ0mMdz0XJXggnBQMyxTbBTMPseR72hRBIsIk3S+4EwfhzuhQmrXTRMXaJHi1I95NM9gAynJuJxrxbvoPG1vte60n8EY94KoQJNnJYXmCYeJlJFsmSty7pv8UjxtLaiaJo9XNw8AY=
+ ARA:13230040|1800799024|376014|82310400026|36860700016|22082099003|18002099003|56012099003|11063799003;
+X-Microsoft-Antispam-Message-Info: Urp/HliD5o7wGRkjlydZJ9ssmUzZyE8N0eZIqYhKIvJ0hghLfnAMQ/CdKrLzOWaSBLYGMreCBrkikf4InpC3v51fnIjQLhXemMuOjqSvW6hAfguPArUWj/vR986/GNXXBA5Zhk0Yqt008TLmJgGzkZlU+q0y5BXLD3H6I7A01rkhPuMPJBYwnv4MMo3PNvwwQJylbqOk7+oUzjNa9BqJGwnhk2iXHKCX7MEHJfAvaySddPX3JaJP5jThfkEUnN0MPKarE5It2vRQzOUnyXYaiUiFHgJUNY0bmcvrQbjc2Mm7GHNlt9tmKcG9gjHuap1h1eJEUPYbknex+FU2T0w7d3wLf/gAgkJmZNC4n9ySXeTsi6AUZ3hz8UMHrW4dFilo/bCzlcFLwF4EDhdHPCmahyGi+kzGJuqfNTeOw1cK+4ibMwOH8gcFNiIecJAAuk9BtVXuIIfHO/pn1Pq2qNf973C5hDms7CM9s1WB3SM5uZEanOxLJOrjVgSaMTjKxEBy5WvENArYefPMQQ2XRy90MyNpjJphSw+sPa/FELYu8f1BmZ8GV1v3NpsSARi5XSHKCi5vJUjtr0GaUCQgC+xhWV0NhauiJk2Icw2EQ+AXPADT5Xfe6BYfuCnWp9IGNqZY22uqH8caz8viSjNYXDNJZsv7khBeCAHPwIQG/G9ofCEyz0WWLnGiiPjCwHT1kHuBj+laekf/WMhGDLlJnk1PvUhQyosC+uRtcdsLDEnW5Mw=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(376014)(82310400026)(1800799024)(18002099003)(22082099003)(11063799003)(56012099003);
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700016)(22082099003)(18002099003)(56012099003)(11063799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 5EPf4sQbdYrhGrF27eO3mVIFHeUF4c1rZMRCkEytPnxAEyulJYripAFSLxHIaYjodRBdmy45V0pn0q4RUnN/BHMCoSXbQXNPTxYDobz74A9SVA9+pQzzGfnHMDOUZ9FNHnoDzUEdzBowkKsWhMo6Za+VCoZk2NCU60U/HehBR3mBfbrOEmhoj9ETsEXQANTkNp2DZAtjnPIWGD21IhiQBkle/k6YxE/vNlLV8SiGaqvbZ0Wbzhb4THoCKsBcOg5FE05cjyJexZ8S9ytHbwLj0Ni01AdnXFT6c+5hjo8DB7RwSz0nJJCHcS8AiZpDALr+FYFKRls1lHHtOsomFj07tSOPD38rMZL/w/HcGQZcux2HiM8rFR5qfOpi0U1DI11gVRcyoO/Gc/hrDOsinKIS6u9v2XVm22ZNGJ1ICt+KyfOV2YLjeDYfP1YJjXraDLaX
+X-MS-Exchange-AntiSpam-MessageData-0: LGbDflMASZfA/QAbx5DUgARDELZJz+KNi+oGMlaqpd28HCjMBrAZp0wgESzmBDT2ccbAAJ3a+t0XnwDvWAvqxH0DkW++/PrBzaTgFqicX2A7WexY1EF+rEdjSoSVS529AOsPxfPLjJDfTfJLEel1qOyTj6haVRyHJ2kc1cqNfPqmHu24PcyWYONHt2b0O3NhyZCPkBPcnuo3y6dCD9eDtWwAdrPuWEtHaTF+vOPkyOtyPWQlfJi5wDIU1bXZ+5nYnIQPVYda77ESXtEfNPv7l3fC9jiqhU7pxkE3fZPoJuE18RE2qjUXB0Ac4kocTtuDAONUWZH4WpeIYN1qa9moZ6dQG6k6Zg8YWzrnghqwWr5c2GcyHYMkxEUk8yo06vEJG4yVJYw+EqUZdW5bQDnQeZAI2UeR13j5XZ+3xEr2QtK0QElNx8nOUQd5O8Gub0sg
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 14:33:47.2467 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c1814bb-3d54-4191-cc0c-08deb0fca4a5
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 14:33:47.1726 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31a4311e-6c23-495b-9e0b-08deb0fca48a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000C6192.namprd02.prod.outlook.com
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000A349.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9005
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7800
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,7 +124,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D3BE75352BA
+X-Rspamd-Queue-Id: 268715352D6
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
@@ -157,52 +157,56 @@ X-Rspamd-Action: no action
 From: Harry Wentland <harry.wentland@amd.com>
 
 [Why&How]
-The bounds check in bios_get_image() computes 'offset + size' using
-unsigned 32-bit arithmetic before comparing against bios_size. If a
-VBIOS image contains a near-UINT32_MAX offset the addition wraps to a
-small value, the comparison passes, and the function returns a wild
-pointer past the VBIOS mapping.
+The GPIO pin table parsers in get_gpio_i2c_info() and
+bios_parser_get_gpio_pin_info() derive an element count from the VBIOS
+table_header.structuresize field, then iterate over gpio_pin[] entries.
+However, GET_IMAGE() only validates that the table header itself fits
+within the BIOS image. If the VBIOS reports a structuresize larger than
+the actual mapped data, the loop reads past the end of the BIOS image,
+causing an out-of-bounds read.
 
-Additionally, the comparison uses '<' (strict), which incorrectly
-rejects the valid exact-fit case where offset + size == bios_size.
-
-Fix both issues by restructuring the check to avoid the addition
-entirely: first reject if offset alone exceeds bios_size, then check
-size against the remaining space (bios_size - offset). This eliminates
-the overflow and correctly permits exact-fit accesses.
+Fix this by calling bios_get_image() to validate that the full claimed
+structuresize is accessible within the BIOS image before entering the
+loop in both functions.
 
 Cc: stable@vger.kernel.org
 
-Assisted-by: GitHub Copilot:claude-opus-4.6
+Assisted-by: GitHub Copilot:claude-opus-4-6 Mythos
 
 Reviewed-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Harry Wentland <harry.wentland@amd.com>
 Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/bios/bios_parser_helper.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser_helper.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser_helper.c
-index 8d2cf95ae739..e00dc05c2d9d 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser_helper.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser_helper.c
-@@ -37,10 +37,13 @@ uint8_t *bios_get_image(struct dc_bios *bp,
- 	uint32_t offset,
- 	uint32_t size)
- {
--	if (bp->bios && offset + size < bp->bios_size)
--		return bp->bios + offset;
--	else
-+	if (!bp->bios)
- 		return NULL;
-+
-+	if (offset > bp->bios_size || size > bp->bios_size - offset)
-+		return NULL;
-+
-+	return bp->bios + offset;
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+index b4dd8219b8f0..39668db6d472 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+@@ -493,6 +493,10 @@ static enum bp_result get_gpio_i2c_info(
+ 			- sizeof(struct atom_common_table_header))
+ 				/ sizeof(struct atom_gpio_pin_assignment);
  
- #include "reg_helper.h"
++	if (!bios_get_image(&bp->base, DATA_TABLES(gpio_pin_lut),
++			    le16_to_cpu(header->table_header.structuresize)))
++		return BP_RESULT_BADBIOSTABLE;
++
+ 	pin = (struct atom_gpio_pin_assignment *) header->gpio_pin;
+ 
+ 	for (table_index = 0; table_index < count; table_index++) {
+@@ -681,6 +685,11 @@ static enum bp_result bios_parser_get_gpio_pin_info(
+ 	count = (le16_to_cpu(header->table_header.structuresize)
+ 			- sizeof(struct atom_common_table_header))
+ 				/ sizeof(struct atom_gpio_pin_assignment);
++
++	if (!bios_get_image(&bp->base, DATA_TABLES(gpio_pin_lut),
++			    le16_to_cpu(header->table_header.structuresize)))
++		return BP_RESULT_BADBIOSTABLE;
++
+ 	for (i = 0; i < count; ++i) {
+ 		if (header->gpio_pin[i].gpio_id != gpio_id)
+ 			continue;
 -- 
 2.43.0
 
