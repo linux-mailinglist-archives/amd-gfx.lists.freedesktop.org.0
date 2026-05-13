@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YGo9KrSLBGqvLQIAu9opvQ
+	id 0GycOrqLBGqvLQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:33:24 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:33:30 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C5BD53521A
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:33:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A7FE535238
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:33:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9DC610EED5;
-	Wed, 13 May 2026 14:33:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9138410EEEE;
+	Wed, 13 May 2026 14:33:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="CF0al26b";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="j0HZqyrp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011001.outbound.protection.outlook.com [52.101.57.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F55F10EED1
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 14:33:20 +0000 (UTC)
+Received: from DM5PR21CU001.outbound.protection.outlook.com
+ (mail-centralusazon11011004.outbound.protection.outlook.com [52.101.62.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3B6210EED2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 14:33:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WLPm1ZFcNrtjoeikmoHon0O+rQ/a+CIEeTY6LCWgFOfH8lakgbOqv2bPjxTA2Llk3+K/d5KTmFXh/7uq6UydV8V+TndH6WuxYEABax0/Z9Fz6fXyyI0WrARHvzf9fc7DJbstzuQi5vikctog+Ufn/QSvK1LoiE0DkM/bh/bdkrXx4xl8OZDrvUwZXND6DhG3NSAw2iB6TjloJCSGYZRqHvyD61MnSOVWUuB1k7zVnLshQxahA6zLn1mVnvTMqkl+2bFPwijX6C/EHnUkS1xYcrUFFbZCP996Czgl5osIKRQeMJCWVgSA94R9uS4y5FZwD6GA2k34ubUuFK4L4lg98A==
+ b=Q4JlJoOSfhFSaSVhzIkwSFvFqBoqUR/gPIe3c/zdOrdFdteHeHAx/keVIQvL7eQb2r08IZIhKnMwd4aW1TqoqVlrdapQ3FasuwLwMSjh2qvKTDja87iZv1m0XDVkPCeqOrC5difh+Y5tN8UjMwio7norgZ6Kx/nRkMK3YQzDg590ve31trbStuKdorxb4j0q8KmGW30po5X8TRSX8aqocHv5jn56OOlqyN4doTjMLNGWJp6GBut4t60ufQU3sezGBaySp7YE+KK5ymq64WdjY0tIPTYWlMQ8Bc0tJ9FuNm6puSPqs2VK4WRo3j/yZnU50GRi5r22I3EX6eXDL2s++Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MW3bv14jjc6gF6DIaPylxzykY0i0394RnUd1LKmrYcY=;
- b=AVk7hcfelBgJ614n9F22tRhZx5qOKK3XrqJdy673oRRkUP8aXrroNYXLG6E+vACVrSYP8MqYtI/eMVFWwf1Si+jdvrjmPZ5yerTBs70/gm332F9v/AgGZQfNJz6uNeUHvWflc6oN4OuNYBr++4nByEN7+rM4JVTAq0EIpNoNoc+nr3Zn81BLey5Y871o40a0I9zutvcXnhsyJE4tbK+20oS0NT91tRAuKXXauVgdlhvByx/105QhaFgLdXxCnCGXidiVUVe3o9eV+rPSnCHpoEPf+7pdfMmJctXM2F3lvMA/rFEpxkdfKNceyD1haeZBTYCE8CH7jCjf3Hvf5yPS3Q==
+ bh=CyHX6o446zfIpFlMd+oC94Wv4ZW/KC8SctW1xc1r8Y4=;
+ b=y1dJK5N+IJvWb3bUGAxCEiPmVo5cgsbzlN7HknMarg8ttxo1PsVeAGyQycpUAGVEODLkBT18+gy9ViyftBUbLlrpus9Klhv3DGMto2ps13hr7RBZazzDEMseM0+BNJYfDdbbCObqa6mWsTmc8BUhgUxXSNF4/pbduXaYogy6oC0GapXeg6fDbIppEEVt1noWdruOjO1cBpiDXZMBPcJLz01ouCdBmXW7+rc3Mo/1n958b+XXNOSASU2loiYR5+aUykgqtDHTi5eRP6kcPHrHpTnhNrcLn03yai1EqHQzjLCyIYqosmpkCio7bZv09OlpzBqTrfhNogaBquub2XTz+Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MW3bv14jjc6gF6DIaPylxzykY0i0394RnUd1LKmrYcY=;
- b=CF0al26bISMa6ATNerUyw/RzRBCxINfJ9XYt/LJsBXsnIISVL53WPv7DBdD55ATeOffHoVsozAQ1cYsWOUH/NTXgVmgSVH35U6rTsHTrcb+Y8mlK6suJ6CKMsdmE+tcBUd75zt0lQ1FoiHnFL9Ioz0yOULlS3xkLCm1Wnhh/oCc=
-Received: from CH2PR18CA0042.namprd18.prod.outlook.com (2603:10b6:610:55::22)
- by CY3PR12MB9578.namprd12.prod.outlook.com (2603:10b6:930:109::16)
+ bh=CyHX6o446zfIpFlMd+oC94Wv4ZW/KC8SctW1xc1r8Y4=;
+ b=j0HZqyrpm/VXNVjhTO2ByAcfkNSo6/LGXjFBUQXjjpJcK36jQsuzLSpERyU80JmQHQ1l6Z5CRYvApKeQS618TIOgIAo6oc/iZXR/mfjf3978fpL/xb1Sia1gnSwRg5QN1bLhiAOaaxvqyU6+a1KZp3w6KrOweusj3MxZ0XFz20w=
+Received: from CH2PR18CA0043.namprd18.prod.outlook.com (2603:10b6:610:55::23)
+ by BL1PR12MB5732.namprd12.prod.outlook.com (2603:10b6:208:387::17)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.12; Wed, 13 May
- 2026 14:33:17 +0000
+ 2026 14:33:19 +0000
 Received: from CH1PEPF0000A348.namprd04.prod.outlook.com
- (2603:10b6:610:55:cafe::95) by CH2PR18CA0042.outlook.office365.com
- (2603:10b6:610:55::22) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:610:55:cafe::d5) by CH2PR18CA0043.outlook.office365.com
+ (2603:10b6:610:55::23) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9913.12 via Frontend Transport; Wed,
- 13 May 2026 14:33:17 +0000
+ 13 May 2026 14:33:18 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,18 +55,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb08.amd.com (165.204.84.17) by
  CH1PEPF0000A348.mail.protection.outlook.com (10.167.244.4) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.25.13 via Frontend Transport; Wed, 13 May 2026 14:33:16 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb08.amd.com
+ 15.21.25.13 via Frontend Transport; Wed, 13 May 2026 14:33:18 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.41; Wed, 13 May
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 13 May
  2026 09:33:16 -0500
-Received: from satlexmb07.amd.com (10.181.42.216) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 13 May
- 2026 09:33:16 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 13 May
+ 2026 07:33:16 -0700
 Received: from box-0.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 13 May 2026 09:33:10 -0500
+ Transport; Wed, 13 May 2026 09:33:16 -0500
 From: <IVAN.LIPSKI@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -76,44 +76,41 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, James Lin <pinglei.lin@amd.com>
-Subject: [PATCH 02/28] Revert "drm/amd/display: dmub_cmd.h: add missing
- kernel-doc for enums"
-Date: Wed, 13 May 2026 10:29:24 -0400
-Message-ID: <20260513143213.1852892-4-IVAN.LIPSKI@amd.com>
+ Dillon Varone <dillon.varone@amd.com>
+Subject: [PATCH 03/28] drm/amd/display: Enable DCN42 PMO policy
+Date: Wed, 13 May 2026 10:29:25 -0400
+Message-ID: <20260513143213.1852892-5-IVAN.LIPSKI@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260513143213.1852892-2-IVAN.LIPSKI@amd.com>
 References: <20260513143213.1852892-2-IVAN.LIPSKI@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-Received-SPF: None (SATLEXMB04.amd.com: IVAN.LIPSKI@amd.com does not designate
- permitted sender hosts)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000A348:EE_|CY3PR12MB9578:EE_
-X-MS-Office365-Filtering-Correlation-Id: 19ed1ce8-c165-4525-7a9e-08deb0fc9257
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000A348:EE_|BL1PR12MB5732:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0b4b55c7-2c69-48a9-7db3-08deb0fc9389
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|82310400026|1800799024|376014|36860700016|11063799003|22082099003|18002099003|56012099003|3023799003;
-X-Microsoft-Antispam-Message-Info: SP0CZyuWxTO8gKQPMG1RHIYPuvkzmiPLDIWySayrSycVYltjKLnievo77Y6pRVBYe6I1HT4SLTrydhZF0wjpuKevy9z+DBiULCeAdqpgPMHWv85LIHa3Hf3IBVXVsD7lJqM5bB0yDI8koS51QLORU7pBPyA5DQheKsaneSfl2zuXlWasYWGxUidmAvFreokuPtzQTnQ0Pw5oe503+K0U5skFhbCIC9QMjy0dd5eyzu4asKn9ZTkByX/+rCZDJegMFhXr/GTN04dSgLsRSRlQWOOrQ2lXMHXQn8tzrvXXHfbEr1+PnnJF9IaAS3t5ZkQE1+EoVfy79IyeGpmP7ygKpmZT1l3cHCuRYxgjLJYzjMvj2fKoWUqw+uot4UG7Pi+JjtJ6V+rDOPXKGrDMbx/yfidMsFGMNJN9+VeNT4VzSq7CDZ7iWl5Juml7lWedZy6HRdX9bbZmxcWWryUDzQFMzEr4hbpsxNv54KiEVf5VynEgjJ7GBY7EENI1vlSvzDQyXVDtN4+sOd+QLz54g6ws82UNx1cu8KEMKyfGfth3lbohPqP/7h1BtZPMbGviPZLqngg87oWHJEpreqc6BLQUAESdDTV/PeLdpDAGTiU4oxYKcXPoN+0SfByqSeeB2HS2b6q+ut1Q4AvV3By6ODTEJQgrAZ+g1frLd5us2t1Lp/AHDFJGF0VQQthhyJ+DCxWi4J6PwGdnYTJXbKMT6Sc95q1Q0yBDzb+3+PZa1+lpNA8=
+X-Microsoft-Antispam-Message-Info: IhNhaNkUz7hHi0w5Ir/Xb6rvJ0NL/vVt/5hCt35wMhbHxr71ZfaH/Ek1j9xy4I83m2iueG4he2mcrMKrnF8f3pJGOqvJ9NSoQT4VN6Jo25dtiIJ01Iw2Aaci5Xw3CwlkfuUrIKZPfvXieW7j93GYxykjW/xOaz4LBSwQPLnj3Gbv3f2lDgClS6QH0az3ggeTxZmTCVdu8ySeMiOmIwi6j+MIcjmFBy7SATteCi/IIFBUvkKm0o07EqO4h/NczOzozwx67W6ryE8RzC3CT9DG1D+GsipC8KLOx/h+03nXsevZle1fCNOk5ghhUUQ/JaB1oZuQs8RD3h4FT8uujBD0nGObP6Ay2qINu0XB+f+5o/GdTNlopY5aSGua/OWHqpcaPlOQA8zPHtUwN+0N59JN6oK3zJisa+cFJeEpgQIHSjLuOrM6iIb3R3s1YfdzjwQ/T2zp4v0m0rb/O5SVymCuf7nSgAcPLgP8I2yx4VVJcUNQeR1PkPujMon7yVYsqHDAxpuvq9cS2ROD5nC3lVBvDVDslMI8VNctLyRKkDAtYRzmShE+6l1ZmbH69RZcukyOtWp71EA1hIw5TSSEWA0r7ssH0leu0paUMIzvPjelU/xriIK4pb1jks8WTNFBM9pI5XVlTCCK4EqmxQeq3lxkc+ZYEcj8mQuEcFwxjtkF/qQaxNahHWzfFox+MKeex1qElM8YArygZn6tpLyrj1bSi5lPM4fcAXywuaA/2Djl9FQ=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(13230040)(82310400026)(1800799024)(376014)(36860700016)(11063799003)(22082099003)(18002099003)(56012099003)(3023799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: rdEym/KyRGl0YIWQYr2pzMBnbiJgvsxyCGsmPg+C8b2RwwB2YJEYRZe5feZH2YpCnMjl1g6OXi84MItBA0A5ESOzLZi6+VfP4YqdAHkv40b5YN1QxbaBel/5kBoD9MPYpwNZ3p8lbi2tegwsClRq7dtLhGoIRg60K3rtd0YHhEQ52qcegJdCU1N/ymPjWdnFYE2g7PnNSv1yOb7uClzjVls5QNOGownUYM3T67Vg1sBLbCxDhqZqUmY9xoJ5nXvXE/Wa0vVBkFVs0WdYduzdQnnENjhTrM/uCrMVPL3jIAMkgvY6gWxZ6aoirvAXIw00RfAOg456K8o1eHfOoKBfWNtf641b7UKjcZcg59QbZi9YRclK5Dfq5UtgO9XRNn2S40wRIWPWUguTRwP+ZwbvLYaOuN14xPr0T4T+Vt40euSD5gMZ3T8CcFMGrUkDADZw
+X-MS-Exchange-AntiSpam-MessageData-0: zXXYm7Yv/0LDkMX0VvMHFru5JO6PkG7dritzvTPkUi7XEI27ZSPUnD6wIu0fZCs1wByRA341k8N39GKSkTzUCId3yt7m/zoBTwrDubHm/jZCgt+VBVYZ7AEQv+pym7rb6xl/KbzWC7U0l2Zn2izQEPgjjP9Gki1n1x68XqsEalWPkPtsMI1VlUBrkjR0jaWaJ9uLn6jNzoUY3S9nSsgg5FRR6yFlHJ4MRfY38nq4n3rd3E8OM9r89LC2QlmqOv4NHfj/exdyvfTqWQTOcU9O0wr9QlscKPAZW4tyEzuDUex71H6L/HlfkfkcIseLfsyntzFaXyxZvdO7VsXpIhb9KTVlSvrq23DuBRhnHBId1daiDNdgkVijSlinXvVvl+va1qEqcuyQyZYMFmf3NKT0WLgSNqxdFZZSDWrLARkIxUOWFov881B4jBi2Ohv8C+dY
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 14:33:16.6390 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19ed1ce8-c165-4525-7a9e-08deb0fc9257
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 14:33:18.6461 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b4b55c7-2c69-48a9-7db3-08deb0fc9389
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb08.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000A348.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9578
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5732
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,7 +124,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 3C5BD53521A
+X-Rspamd-Queue-Id: 9A7FE535238
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
@@ -140,7 +137,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -152,429 +149,402 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-0.998];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Action: no action
 
-From: James Lin <PingLei.Lin@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
-[Why & How]
-This reverts commit 7d9d8fc1db837bdf39a8947b2928ec562dab83f1.
+[Why]
+The MinTTU policy in DML2.1 does not guarantee that we support p-state
+in blank. This is a delta vs dml2 and earlier revisions as the prefetch
+mode override has been removed in favor of a more configurable pstate
+optimizer.
 
-1. Auto-generated Header: The file 'dmub_cmd.h' is an auto-generated header
-   managed in an external repository (dmu_stg). Manual changes made directly in
-   this repository will be overwritten and lost during the next automated weekly
-   synchronization.
+[How]
+The policy has been added in a prior patch, this patch enables it based
+on pmo flag.
 
-2. Tooling Compatibility: This header is governed by internal AMD firmware
-   standards which require Doxygen formatting for cross-team documentation.
-   Moving to kernel-doc syntax may break internal documentation pipelines.
-
-3. Suppressing Warnings: Current 'make htmldocs' and 'make W=1' builds
-   do not actively scan 'dmub_cmd.h' for kernel-doc compliance, thus no warnings
-   are triggered during standard compilation. To address warnings generated when
-   manually running './scripts/kernel-doc', we have added a notice at the file
-   header indicating that this is an auto-generated file that does not strictly
-   follow kernel-doc formatting. This ensures that any future linting tools or
-   manual checks recognize the formatting as intentional.
-
-Acked-by: Harry Wentland <harry.wentland@amd.com>
-Acked-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: James Lin <pinglei.lin@amd.com>
+Reviewed-by: Dillon Varone <dillon.varone@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
 ---
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 156 ++++++------------
- 1 file changed, 48 insertions(+), 108 deletions(-)
+ .../dml2_0/dml21/dml21_translation_helper.c   |   5 +-
+ .../dc/dml2_0/dml21/inc/dml_top_types.h       |   1 +
+ .../dml21/src/dml2_pmo/dml2_pmo_dcn42.c       | 144 ++++++++++++++++--
+ .../dml21/src/dml2_pmo/dml2_pmo_dcn42.h       |   1 +
+ .../dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.c  |   4 -
+ .../dml21/src/dml2_pmo/dml2_pmo_factory.c     |  16 ++
+ .../dml21/src/dml2_top/dml2_top_soc15.c       |  30 +++-
+ .../drm/amd/display/dc/dml2_0/dml2_wrapper.h  |   1 +
+ 8 files changed, 184 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index c1becd664cb9..2f68438000ea 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -1008,30 +1008,15 @@ union dmub_fw_boot_status {
-  * enum dmub_fw_boot_status_bit - Enum bit definitions for SCRATCH0.
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_translation_helper.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_translation_helper.c
+index 25557c99a28e..f849fb882b2a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_translation_helper.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_translation_helper.c
+@@ -36,6 +36,8 @@ static void dml21_populate_pmo_options(struct dml2_pmo_options *pmo_options,
+ 	pmo_options->disable_drr_var_when_var_active = in_dc->debug.disable_fams_gaming == INGAME_FAMS_DISABLE ||
+ 			in_dc->debug.disable_fams_gaming == INGAME_FAMS_MULTI_DISP_CLAMPED_ONLY;
+ 	pmo_options->disable_drr_clamped_when_var_active = in_dc->debug.disable_fams_gaming == INGAME_FAMS_DISABLE;
++
++	pmo_options->force_mandatory_uclk_pstate_support = config->pmo.force_mandatory_uclk_pstate_support;
+ }
+ 
+ static enum dml2_project_id dml21_dcn_revision_to_dml2_project_id(enum dce_version dcn_version)
+@@ -690,7 +692,8 @@ static void populate_dml21_plane_config_from_plane_state(struct dml2_context *dm
+ 	plane->overrides.gpuvm_min_page_size_kbytes = soc_bb->gpuvm_min_page_size_kbytes;
+ 	plane->overrides.hostvm_min_page_size_kbytes = soc_bb->hostvm_min_page_size_kbytes;
+ 
+-	plane->immediate_flip = plane_state->flip_immediate;
++	//Always true for DAL, we want to validate the worst case scenario as we have to switch b/w the two without possibility of failure.
++	plane->immediate_flip = true;
+ 
+ 	plane->composition.rect_out_height_spans_vactive =
+ 		plane_state->dst_rect.height >= stream->src.height &&
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/dml_top_types.h b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/dml_top_types.h
+index dff903a103db..8d7960a340c2 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/dml_top_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/dml_top_types.h
+@@ -71,6 +71,7 @@ struct dml2_pmo_options {
+ 	bool disable_dyn_odm;
+ 	bool disable_dyn_odm_for_multi_stream;
+ 	bool disable_dyn_odm_for_stream_with_svp;
++	bool force_mandatory_uclk_pstate_support;
+ 	struct dml2_pmo_pstate_strategy *override_strategy_lists[DML2_MAX_PLANES];
+ 	unsigned int num_override_strategies_per_list[DML2_MAX_PLANES];
+ };
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_dcn42.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_dcn42.c
+index 30fd5efe4b87..4e0d757388ca 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_dcn42.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_dcn42.c
+@@ -13,10 +13,12 @@
+  * configurations, ensuring p-state watermark support in the blank period only.
   */
- enum dmub_fw_boot_status_bit {
--	/** @DMUB_FW_BOOT_STATUS_BIT_DAL_FIRMWARE: 1 if DAL FW */
--	DMUB_FW_BOOT_STATUS_BIT_DAL_FIRMWARE = (1 << 0),
--	/** @DMUB_FW_BOOT_STATUS_BIT_MAILBOX_READY: 1 if mailbox ready */
--	DMUB_FW_BOOT_STATUS_BIT_MAILBOX_READY = (1 << 1),
--	/** @DMUB_FW_BOOT_STATUS_BIT_OPTIMIZED_INIT_DONE: 1 if init done */
--	DMUB_FW_BOOT_STATUS_BIT_OPTIMIZED_INIT_DONE = (1 << 2),
--	/** @DMUB_FW_BOOT_STATUS_BIT_RESTORE_REQUIRED: 1 if driver should call restore */
--	DMUB_FW_BOOT_STATUS_BIT_RESTORE_REQUIRED = (1 << 3),
--	/**
--	 * @DMUB_FW_BOOT_STATUS_BIT_DEFERRED_LOADED: 1 if VBIOS data is
--	 * deferred programmed
--	 */
--	DMUB_FW_BOOT_STATUS_BIT_DEFERRED_LOADED = (1 << 4),
--	/** @DMUB_FW_BOOT_STATUS_BIT_FAMS_ENABLED: 1 if FAMS is enabled */
--	DMUB_FW_BOOT_STATUS_BIT_FAMS_ENABLED = (1 << 5),
--	/**
--	 * @DMUB_FW_BOOT_STATUS_BIT_DETECTION_REQUIRED: 1 if detection needs
--	 * to be triggered by driver
--	 */
--	DMUB_FW_BOOT_STATUS_BIT_DETECTION_REQUIRED = (1 << 6),
--	/** @DMUB_FW_BOOT_STATUS_BIT_HW_POWER_INIT_DONE: 1 if hw power init is completed */
--	DMUB_FW_BOOT_STATUS_BIT_HW_POWER_INIT_DONE = (1 << 7),
--	/** @DMUB_FW_BOOT_STATUS_BIT_ONO_REGIONS_ENABLED: if ONO regions are enabled */
--	DMUB_FW_BOOT_STATUS_BIT_ONO_REGIONS_ENABLED = (1 << 8),
-+	DMUB_FW_BOOT_STATUS_BIT_DAL_FIRMWARE = (1 << 0), /**< 1 if DAL FW */
-+	DMUB_FW_BOOT_STATUS_BIT_MAILBOX_READY = (1 << 1), /**< 1 if mailbox ready */
-+	DMUB_FW_BOOT_STATUS_BIT_OPTIMIZED_INIT_DONE = (1 << 2), /**< 1 if init done */
-+	DMUB_FW_BOOT_STATUS_BIT_RESTORE_REQUIRED = (1 << 3), /**< 1 if driver should call restore */
-+	DMUB_FW_BOOT_STATUS_BIT_DEFERRED_LOADED = (1 << 4), /**< 1 if VBIOS data is deferred programmed */
-+	DMUB_FW_BOOT_STATUS_BIT_FAMS_ENABLED = (1 << 5), /**< 1 if FAMS is enabled*/
-+	DMUB_FW_BOOT_STATUS_BIT_DETECTION_REQUIRED = (1 << 6), /**< 1 if detection need to be triggered by driver*/
-+	DMUB_FW_BOOT_STATUS_BIT_HW_POWER_INIT_DONE = (1 << 7), /**< 1 if hw power init is completed */
-+	DMUB_FW_BOOT_STATUS_BIT_ONO_REGIONS_ENABLED = (1 << 8), /**< 1 if ONO regions are enabled */
+ 
++static const double MIN_VACTIVE_MARGIN_PCT = 0.25; // We need more than non-zero margin because DET buffer granularity can alter vactive latency hiding
++
+ static const struct dml2_pmo_pstate_strategy dcn42_strategy_list_1_display[] = {
+ 	// VBlank only
+ 	{
+-		.per_stream_pstate_method = { dml2_pstate_method_vblank, dml2_pstate_method_na, dml2_pstate_method_na, dml2_pstate_method_na },
++		.per_stream_pstate_method = { dml2_pstate_method_vactive, dml2_pstate_method_na, dml2_pstate_method_na, dml2_pstate_method_na },
+ 		.allow_state_increase = true,
+ 	},
+ };
+@@ -26,7 +28,7 @@ static const int dcn42_strategy_list_1_display_size = sizeof(dcn42_strategy_list
+ static const struct dml2_pmo_pstate_strategy dcn42_strategy_list_2_display[] = {
+ 	// VBlank only for both displays
+ 	{
+-		.per_stream_pstate_method = { dml2_pstate_method_vblank, dml2_pstate_method_vblank, dml2_pstate_method_na, dml2_pstate_method_na },
++		.per_stream_pstate_method = { dml2_pstate_method_vactive, dml2_pstate_method_vactive, dml2_pstate_method_na, dml2_pstate_method_na },
+ 		.allow_state_increase = true,
+ 	},
+ };
+@@ -36,7 +38,7 @@ static const int dcn42_strategy_list_2_display_size = sizeof(dcn42_strategy_list
+ static const struct dml2_pmo_pstate_strategy dcn42_strategy_list_3_display[] = {
+ 	// VBlank only for all three displays
+ 	{
+-		.per_stream_pstate_method = { dml2_pstate_method_vblank, dml2_pstate_method_vblank, dml2_pstate_method_vblank, dml2_pstate_method_na },
++		.per_stream_pstate_method = { dml2_pstate_method_vactive, dml2_pstate_method_vactive, dml2_pstate_method_vactive, dml2_pstate_method_na },
+ 		.allow_state_increase = true,
+ 	},
+ };
+@@ -46,31 +48,149 @@ static const int dcn42_strategy_list_3_display_size = sizeof(dcn42_strategy_list
+ static const struct dml2_pmo_pstate_strategy dcn42_strategy_list_4_display[] = {
+ 	// VBlank only for all four displays
+ 	{
+-		.per_stream_pstate_method = { dml2_pstate_method_vblank, dml2_pstate_method_vblank, dml2_pstate_method_vblank, dml2_pstate_method_vblank },
++		.per_stream_pstate_method = { dml2_pstate_method_vactive, dml2_pstate_method_vactive, dml2_pstate_method_vactive, dml2_pstate_method_vactive },
+ 		.allow_state_increase = true,
+ 	},
  };
  
- /* Register bit definition for SCRATCH5 */
-@@ -1095,22 +1080,18 @@ enum dmub_ips_comand_type {
-  */
- enum dmub_cursor_offload_comand_type {
- 	/**
--	 * @DMUB_CMD__CURSOR_OFFLOAD_INIT:
- 	 * Initializes the cursor offload feature.
- 	 */
- 	DMUB_CMD__CURSOR_OFFLOAD_INIT = 0,
- 	/**
--	 * @DMUB_CMD__CURSOR_OFFLOAD_STREAM_ENABLE: Enables cursor offloading
--	 * for a stream and updates the timing parameters.
-+	 * Enables cursor offloading for a stream and updates the timing parameters.
- 	 */
- 	DMUB_CMD__CURSOR_OFFLOAD_STREAM_ENABLE = 1,
- 	/**
--	 * @DMUB_CMD__CURSOR_OFFLOAD_STREAM_DISABLE:
- 	 * Disables cursor offloading for a given stream.
- 	 */
- 	DMUB_CMD__CURSOR_OFFLOAD_STREAM_DISABLE = 2,
- 	/**
--	 * @DMUB_CMD__CURSOR_OFFLOAD_STREAM_PROGRAM:
- 	 * Programs the latest data for a given stream.
- 	 */
- 	DMUB_CMD__CURSOR_OFFLOAD_STREAM_PROGRAM = 3,
-@@ -1176,7 +1157,7 @@ enum dmub_fw_boot_options_bit {
-  * [Header (256 Bytes)][Feature 1 (256 Bytes)][Feature 2 (256 Bytes)]...
-  */
+ static const int dcn42_strategy_list_4_display_size = sizeof(dcn42_strategy_list_4_display) / sizeof(struct dml2_pmo_pstate_strategy);
  
--/*
-+/**
-  * enum dmub_shared_state_feature_id - List of shared state features.
-  */
- enum dmub_shared_state_feature_id {
-@@ -1933,36 +1914,30 @@ enum dmub_cmd_type {
-  */
- enum dmub_out_cmd_type {
- 	/**
--	 * @DMUB_OUT_CMD__NULL: Invalid outbox command, ignored.
-+	 * Invalid outbox command, ignored.
- 	 */
- 	DMUB_OUT_CMD__NULL = 0,
- 	/**
--	 * @DMUB_OUT_CMD__DP_AUX_REPLY:
- 	 * Command type used for DP AUX Reply data notification
- 	 */
- 	DMUB_OUT_CMD__DP_AUX_REPLY = 1,
- 	/**
--	 * @DMUB_OUT_CMD__DP_HPD_NOTIFY:
- 	 * Command type used for DP HPD event notification
- 	 */
- 	DMUB_OUT_CMD__DP_HPD_NOTIFY = 2,
- 	/**
--	 * @DMUB_OUT_CMD__SET_CONFIG_REPLY:
- 	 * Command type used for SET_CONFIG Reply notification
- 	 */
- 	DMUB_OUT_CMD__SET_CONFIG_REPLY = 3,
- 	/**
--	 * @DMUB_OUT_CMD__DPIA_NOTIFICATION:
- 	 * Command type used for USB4 DPIA notification
- 	 */
- 	DMUB_OUT_CMD__DPIA_NOTIFICATION = 5,
- 	/**
--	 * @DMUB_OUT_CMD__HPD_SENSE_NOTIFY:
- 	 * Command type used for HPD redetect notification
- 	 */
- 	DMUB_OUT_CMD__HPD_SENSE_NOTIFY = 6,
- 	/**
--	 * @DMUB_OUT_CMD__FUSED_IO:
- 	 * Command type used for Fused IO notification
- 	 */
- 	DMUB_OUT_CMD__FUSED_IO = 7,
-@@ -2154,19 +2129,19 @@ struct dmub_rb_cmd_PLAT_54186_wa {
-  */
- enum dmub_cmd_mall_type {
- 	/**
--	 * @DMUB_CMD__MALL_ACTION_ALLOW: Allows display refresh from MALL.
-+	 * Allows display refresh from MALL.
- 	 */
- 	DMUB_CMD__MALL_ACTION_ALLOW = 0,
- 	/**
--	 * @DMUB_CMD__MALL_ACTION_DISALLOW: Disallows display refresh from MALL.
-+	 * Disallows display refresh from MALL.
- 	 */
- 	DMUB_CMD__MALL_ACTION_DISALLOW = 1,
- 	/**
--	 * @DMUB_CMD__MALL_ACTION_COPY_CURSOR: Cursor copy for MALL.
-+	 * Cursor copy for MALL.
- 	 */
- 	DMUB_CMD__MALL_ACTION_COPY_CURSOR = 2,
- 	/**
--	 * @DMUB_CMD__MALL_ACTION_NO_DF_REQ: Controls DF requests.
-+	 * Controls DF requests.
- 	 */
- 	DMUB_CMD__MALL_ACTION_NO_DF_REQ = 3,
- };
-@@ -2195,21 +2170,18 @@ struct dmub_rb_cmd_mall {
-  */
- enum dmub_cmd_cab_type {
- 	/**
--	 * @DMUB_CMD__CAB_NO_IDLE_OPTIMIZATION:
- 	 * No idle optimizations (i.e. no CAB)
- 	 */
- 	DMUB_CMD__CAB_NO_IDLE_OPTIMIZATION = 0,
- 	/**
--	 * @DMUB_CMD__CAB_NO_DCN_REQ: No DCN requests for memory
-+	 * No DCN requests for memory
- 	 */
- 	DMUB_CMD__CAB_NO_DCN_REQ = 1,
- 	/**
--	 * @DMUB_CMD__CAB_DCN_SS_FIT_IN_CAB:
- 	 * Fit surfaces in CAB (i.e. CAB enable)
- 	 */
- 	DMUB_CMD__CAB_DCN_SS_FIT_IN_CAB = 2,
- 	/**
--	 * @DMUB_CMD__CAB_DCN_SS_NOT_FIT_IN_CAB:
- 	 * Do not fit surfaces in CAB (i.e. no CAB)
- 	 */
- 	DMUB_CMD__CAB_DCN_SS_NOT_FIT_IN_CAB = 3,
-@@ -2224,7 +2196,7 @@ struct dmub_rb_cmd_cab_for_ss {
- 	uint8_t debug_bits;     /* debug bits */
- };
++static bool is_bit_set_in_bitfield(unsigned int bit_field, unsigned int bit_offset)
++{
++	if (bit_field & (0x1 << bit_offset))
++		return true;
++
++	return false;
++}
++
++static void setup_planes_for_vactive_by_mask(struct display_configuation_with_meta *display_config,
++	struct dml2_pmo_instance *pmo,
++	int plane_mask)
++{
++	unsigned int plane_index;
++	unsigned int stream_index;
++	struct dml2_plane_parameters *plane;
++
++	for (plane_index = 0; plane_index < display_config->display_config.num_planes; plane_index++) {
++		if (is_bit_set_in_bitfield(plane_mask, plane_index)) {
++			plane = &display_config->display_config.plane_descriptors[plane_index];
++			stream_index = display_config->display_config.plane_descriptors[plane_index].stream_index;
++
++			plane->overrides.reserved_vblank_time_ns = (long)math_max2(pmo->soc_bb->power_management_parameters.dram_clk_change_blackout_us * 1000.0,
++					plane->overrides.reserved_vblank_time_ns);
++			if (!pmo->options->disable_vactive_det_fill_bw_pad) {
++				display_config->display_config.plane_descriptors[plane_index].overrides.max_vactive_det_fill_delay_us[dml2_pstate_type_uclk] =
++					(unsigned int)math_floor(pmo->scratch.pmo_dcn4.stream_pstate_meta[stream_index].method_vactive.max_vactive_det_fill_delay_us);
++			}
++
++			display_config->stage3.pstate_switch_modes[plane_index] = dml2_pstate_method_vactive;
++		}
++	}
++}
++
++static void reset_display_configuration(struct display_configuation_with_meta *display_config)
++{
++	unsigned int plane_index;
++	unsigned int stream_index;
++	struct dml2_plane_parameters *plane;
++
++	for (stream_index = 0; stream_index < display_config->display_config.num_streams; stream_index++) {
++		display_config->stage3.stream_svp_meta[stream_index].valid = false;
++	}
++
++	for (plane_index = 0; plane_index < display_config->display_config.num_planes; plane_index++) {
++		plane = &display_config->display_config.plane_descriptors[plane_index];
++
++		// Unset SubVP
++		plane->overrides.legacy_svp_config = dml2_svp_mode_override_auto;
++
++		// Remove reserve time
++		plane->overrides.reserved_vblank_time_ns = 0;
++
++		// Reset strategy to auto
++		plane->overrides.uclk_pstate_change_strategy = dml2_uclk_pstate_change_strategy_auto;
++
++		display_config->stage3.pstate_switch_modes[plane_index] = dml2_pstate_method_na;
++	}
++}
++
++static bool setup_display_config(struct display_configuation_with_meta *display_config, struct dml2_pmo_instance *pmo, int strategy_index)
++{
++	struct dml2_pmo_scratch *scratch = &pmo->scratch;
++
++	bool fams2_required = false;
++	bool success = true;
++	unsigned int stream_index;
++
++	reset_display_configuration(display_config);
++
++	for (stream_index = 0; stream_index < display_config->display_config.num_streams; stream_index++) {
++
++		if (pmo->scratch.pmo_dcn4.pstate_strategy_candidates[strategy_index].per_stream_pstate_method[stream_index] == dml2_pstate_method_na) {
++			success = false;
++			break;
++		} else if (scratch->pmo_dcn4.pstate_strategy_candidates[strategy_index].per_stream_pstate_method[stream_index] == dml2_pstate_method_vactive) {
++			setup_planes_for_vactive_by_mask(display_config, pmo, scratch->pmo_dcn4.stream_plane_mask[stream_index]);
++		}
++	}
++
++	/* copy FAMS2 meta */
++	if (success) {
++		display_config->stage3.fams2_required = fams2_required;
++		memcpy(&display_config->stage3.stream_pstate_meta,
++			&scratch->pmo_dcn4.stream_pstate_meta,
++			sizeof(struct dml2_pstate_meta) * DML2_MAX_PLANES);
++	}
++
++	return success;
++}
++
++bool pmo_dcn42_fams2_optimize_for_pstate_support(struct dml2_pmo_optimize_for_pstate_support_in_out *in_out)
++{
++	bool success = false;
++	struct dml2_pmo_scratch *s = &in_out->instance->scratch;
++
++	memcpy(in_out->optimized_display_config, in_out->base_display_config, sizeof(struct display_configuation_with_meta));
++
++	if (in_out->last_candidate_failed) {
++		if (s->pmo_dcn4.pstate_strategy_candidates[s->pmo_dcn4.cur_pstate_candidate].allow_state_increase &&
++			s->pmo_dcn4.cur_latency_index < s->pmo_dcn4.max_latency_index - 1) {
++			s->pmo_dcn4.cur_latency_index++;
++
++			success = true;
++		}
++	}
++
++	if (!success) {
++		s->pmo_dcn4.cur_latency_index = s->pmo_dcn4.min_latency_index;
++		s->pmo_dcn4.cur_pstate_candidate++;
++
++		if (s->pmo_dcn4.cur_pstate_candidate < s->pmo_dcn4.num_pstate_candidates) {
++			success = true;
++		}
++	}
++
++	if (success) {
++		in_out->optimized_display_config->stage3.min_clk_index_for_latency = s->pmo_dcn4.cur_latency_index;
++		setup_display_config(in_out->optimized_display_config, in_out->instance, in_out->instance->scratch.pmo_dcn4.cur_pstate_candidate);
++	}
++
++	return success;
++}
++
+ bool pmo_dcn42_test_for_pstate_support(struct dml2_pmo_test_for_pstate_support_in_out *in_out)
+ {
+ 	const struct dml2_pmo_scratch *s = &in_out->instance->scratch;
+-	const int REQUIRED_RESERVED_TIME =
+-		(int)in_out->instance->soc_bb->power_management_parameters.dram_clk_change_blackout_us;
+ 	bool p_state_supported = true;
+ 	unsigned int stream_index;
  
--/*
-+/**
-  * Enum for indicating which MCLK switch mode per pipe
-  */
- enum mclk_switch_mode {
-@@ -2702,18 +2674,11 @@ struct dmub_fams2_stream_static_state_v1 {
-  * p-state request to allow latency
-  */
- enum dmub_fams2_allow_delay_check_mode {
--	/**
--	 * @FAMS2_ALLOW_DELAY_CHECK_NONE: No check for request to allow delay
--	 */
-+	/* No check for request to allow delay */
- 	FAMS2_ALLOW_DELAY_CHECK_NONE = 0,
--	/**
--	 * @FAMS2_ALLOW_DELAY_CHECK_FROM_START: Check for request to allow delay
--	 */
-+	/* Check for request to allow delay */
- 	FAMS2_ALLOW_DELAY_CHECK_FROM_START = 1,
--	/**
--	 * @FAMS2_ALLOW_DELAY_CHECK_FROM_PREPARE:
--	 * Check for prepare to allow delay
--	 */
-+	/* Check for prepare to allow delay */
- 	FAMS2_ALLOW_DELAY_CHECK_FROM_PREPARE = 2,
- };
+-	if (in_out->base_display_config->display_config.overrides.all_streams_blanked)
+-		return true;
+-
+ 	if (s->pmo_dcn4.cur_pstate_candidate < 0)
+ 		return false;
  
-@@ -2785,28 +2750,27 @@ struct dmub_rb_cmd_ib {
-  */
- enum dmub_cmd_idle_opt_type {
- 	/**
--	 * @DMUB_CMD__IDLE_OPT_DCN_RESTORE: DCN hardware restore.
-+	 * DCN hardware restore.
- 	 */
- 	DMUB_CMD__IDLE_OPT_DCN_RESTORE = 0,
+ 	for (stream_index = 0; stream_index < in_out->base_display_config->display_config.num_streams; stream_index++) {
+-		if (s->pmo_dcn4.pstate_strategy_candidates[s->pmo_dcn4.cur_pstate_candidate].per_stream_pstate_method[stream_index] == dml2_pstate_method_vblank) {
+-			if (dcn4_get_minimum_reserved_time_us_for_planes(in_out->base_display_config, s->pmo_dcn4.stream_plane_mask[stream_index]) < REQUIRED_RESERVED_TIME ||
+-			    dcn4_get_vactive_pstate_margin(in_out->base_display_config, s->pmo_dcn4.stream_plane_mask[stream_index]) > 0) {
++		if (s->pmo_dcn4.pstate_strategy_candidates[s->pmo_dcn4.cur_pstate_candidate].per_stream_pstate_method[stream_index] == dml2_pstate_method_vactive) {
++			if (dcn4_get_minimum_reserved_time_us_for_planes(in_out->base_display_config, s->pmo_dcn4.stream_plane_mask[stream_index]) < (int)in_out->instance->soc_bb->power_management_parameters.dram_clk_change_blackout_us ||
++			    dcn4_get_vactive_pstate_margin(in_out->base_display_config, s->pmo_dcn4.stream_plane_mask[stream_index]) < (int)(MIN_VACTIVE_MARGIN_PCT * in_out->instance->soc_bb->power_management_parameters.dram_clk_change_blackout_us)) {
+ 				p_state_supported = false;
+ 				break;
+ 			}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_dcn42.h b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_dcn42.h
+index 31ba8575351d..5db7877bb8ca 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_dcn42.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_dcn42.h
+@@ -12,6 +12,7 @@ struct dml2_pmo_initialize_in_out;
+ struct dml2_pmo_test_for_pstate_support_in_out;
  
- 	/**
--	 * @DMUB_CMD__IDLE_OPT_DCN_SAVE_INIT: DCN hardware save.
-+	 * DCN hardware save.
- 	 */
- 	DMUB_CMD__IDLE_OPT_DCN_SAVE_INIT = 1,
+ bool pmo_dcn42_initialize(struct dml2_pmo_initialize_in_out *in_out);
++bool pmo_dcn42_fams2_optimize_for_pstate_support(struct dml2_pmo_optimize_for_pstate_support_in_out *in_out);
+ bool pmo_dcn42_test_for_pstate_support(struct dml2_pmo_test_for_pstate_support_in_out *in_out);
  
- 	/**
--	 * @DMUB_CMD__IDLE_OPT_DCN_NOTIFY_IDLE: DCN hardware notify idle.
-+	 * DCN hardware notify idle.
- 	 */
- 	DMUB_CMD__IDLE_OPT_DCN_NOTIFY_IDLE = 2,
+ #endif /* __DML2_PMO_DCN42_H__ */
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.c
+index b348c65a0f75..8301e23ab89f 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_dcn4_fams2.c
+@@ -1884,10 +1884,6 @@ bool pmo_dcn4_fams2_init_for_pstate_support(struct dml2_pmo_init_for_pstate_supp
  
- 	/**
--	 * @DMUB_CMD__IDLE_OPT_SET_DC_POWER_STATE:
- 	 * DCN hardware notify power state.
- 	 */
- 	DMUB_CMD__IDLE_OPT_SET_DC_POWER_STATE = 3,
+ 	memset(s, 0, sizeof(struct dml2_pmo_scratch));
  
- 	/**
--	 * @DMUB_CMD__IDLE_OPT_RELEASE_HW: DCN notify to release HW.
-+	 * DCN notify to release HW.
- 	 */
- 	 DMUB_CMD__IDLE_OPT_RELEASE_HW = 4,
- };
-@@ -2835,7 +2799,7 @@ struct dmub_rb_cmd_idle_opt_dcn_notify_idle {
- 	struct dmub_dcn_notify_idle_cntl_data cntl_data;
- };
+-	if (display_config->display_config.overrides.all_streams_blanked) {
+-		return true;
+-	}
+-
+ 	pmo->scratch.pmo_dcn4.min_latency_index = in_out->base_display_config->stage1.min_clk_index_for_latency;
+ 	pmo->scratch.pmo_dcn4.max_latency_index = pmo->mcg_clock_table_size;
+ 	pmo->scratch.pmo_dcn4.cur_latency_index = in_out->base_display_config->stage1.min_clk_index_for_latency;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_factory.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_factory.c
+index af2ba7d08a61..a1164de13a05 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_factory.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_pmo/dml2_pmo_factory.c
+@@ -5,6 +5,7 @@
+ #include "dml2_pmo_factory.h"
+ #include "dml2_pmo_dcn4_fams2.h"
+ #include "dml2_pmo_dcn3.h"
++#include "dml2_pmo_dcn42.h"
+ #include "dml2_external_lib_deps.h"
  
--/*
-+/**
-  * enum dmub_idle_opt_dc_power_state - DC power states.
-  */
- enum dmub_idle_opt_dc_power_state {
-@@ -2877,7 +2841,7 @@ struct dmub_clocks {
-  */
- enum dmub_cmd_clk_mgr_type {
- 	/**
--	 * @DMUB_CMD__CLK_MGR_NOTIFY_CLOCKS: Notify DMCUB of clock update.
-+	 * Notify DMCUB of clock update.
- 	 */
- 	DMUB_CMD__CLK_MGR_NOTIFY_CLOCKS = 0,
- };
-@@ -3122,40 +3086,21 @@ struct dmub_rb_cmd_dpphy_init {
-  * 4 AUX request command bits are shifted to high nibble.
-  */
- enum dp_aux_request_action {
--	/**
--	 * @DP_AUX_REQ_ACTION_I2C_WRITE: I2C-over-AUX write request
--	 */
-+	/** I2C-over-AUX write request */
- 	DP_AUX_REQ_ACTION_I2C_WRITE		= 0x00,
--	/**
--	 * @DP_AUX_REQ_ACTION_I2C_READ: I2C-over-AUX read request
--	 */
-+	/** I2C-over-AUX read request */
- 	DP_AUX_REQ_ACTION_I2C_READ		= 0x10,
--	/**
--	 * @DP_AUX_REQ_ACTION_I2C_STATUS_REQ: I2C-over-AUX write status request
--	 */
-+	/** I2C-over-AUX write status request */
- 	DP_AUX_REQ_ACTION_I2C_STATUS_REQ	= 0x20,
--	/**
--	 * @DP_AUX_REQ_ACTION_I2C_WRITE_MOT:
--	 * I2C-over-AUX write request with MOT=1
--	 */
-+	/** I2C-over-AUX write request with MOT=1 */
- 	DP_AUX_REQ_ACTION_I2C_WRITE_MOT		= 0x40,
--	/**
--	 * @DP_AUX_REQ_ACTION_I2C_READ_MOT:
--	 * I2C-over-AUX read request with MOT=1
--	 */
-+	/** I2C-over-AUX read request with MOT=1 */
- 	DP_AUX_REQ_ACTION_I2C_READ_MOT		= 0x50,
--	/**
--	 * @DP_AUX_REQ_ACTION_I2C_STATUS_REQ_MOT:
--	 * I2C-over-AUX write status request with MOT=1
--	 */
-+	/** I2C-over-AUX write status request with MOT=1 */
- 	DP_AUX_REQ_ACTION_I2C_STATUS_REQ_MOT	= 0x60,
--	/**
--	 * @DP_AUX_REQ_ACTION_DPCD_WRITE: Native AUX write request
--	 */
-+	/** Native AUX write request */
- 	DP_AUX_REQ_ACTION_DPCD_WRITE		= 0x80,
--	/**
--	 * @DP_AUX_REQ_ACTION_DPCD_READ: Native AUX read request
--	 */
-+	/** Native AUX read request */
- 	DP_AUX_REQ_ACTION_DPCD_READ		= 0x90
- };
+ static bool dummy_init_for_stutter(struct dml2_pmo_init_for_stutter_in_out *in_out)
+@@ -60,6 +61,21 @@ bool dml2_pmo_create(enum dml2_project_id project_id, struct dml2_pmo_instance *
+ 		result = true;
+ 		break;
+ 	case dml2_project_dcn42:
++		out->initialize = pmo_dcn42_initialize;
++
++		out->init_for_vmin = pmo_dcn4_fams2_init_for_vmin;
++		out->test_for_vmin = pmo_dcn4_fams2_test_for_vmin;
++		out->optimize_for_vmin = pmo_dcn4_fams2_optimize_for_vmin;
++
++		out->init_for_uclk_pstate = pmo_dcn4_fams2_init_for_pstate_support;
++		out->test_for_uclk_pstate = pmo_dcn42_test_for_pstate_support;
++		out->optimize_for_uclk_pstate = pmo_dcn42_fams2_optimize_for_pstate_support;
++
++		out->init_for_stutter = pmo_dcn4_fams2_init_for_stutter;
++		out->test_for_stutter = pmo_dcn4_fams2_test_for_stutter;
++		out->optimize_for_stutter = pmo_dcn4_fams2_optimize_for_stutter;
++		result = true;
++		break;
+ 	case dml2_project_dcn4x_stage2_auto_drr_svp:
+ 		out->initialize = pmo_dcn4_fams2_initialize;
  
-@@ -3163,21 +3108,21 @@ enum dp_aux_request_action {
-  * enum aux_return_code_type - DP AUX process return code listing.
-  */
- enum aux_return_code_type {
--	/** @AUX_RET_SUCCESS: AUX process succeeded */
-+	/** AUX process succeeded */
- 	AUX_RET_SUCCESS = 0,
--	/** @AUX_RET_ERROR_UNKNOWN: AUX process failed with unknown reason */
-+	/** AUX process failed with unknown reason */
- 	AUX_RET_ERROR_UNKNOWN,
--	/** @AUX_RET_ERROR_INVALID_REPLY: AUX process completed with invalid reply */
-+	/** AUX process completed with invalid reply */
- 	AUX_RET_ERROR_INVALID_REPLY,
--	/** @AUX_RET_ERROR_TIMEOUT: AUX process timed out */
-+	/** AUX process timed out */
- 	AUX_RET_ERROR_TIMEOUT,
--	/** @AUX_RET_ERROR_HPD_DISCON: HPD was low during AUX process */
-+	/** HPD was low during AUX process */
- 	AUX_RET_ERROR_HPD_DISCON,
--	/** @AUX_RET_ERROR_ENGINE_ACQUIRE: Failed to acquire AUX engine */
-+	/** Failed to acquire AUX engine */
- 	AUX_RET_ERROR_ENGINE_ACQUIRE,
--	/** @AUX_RET_ERROR_INVALID_OPERATION: AUX request not supported */
-+	/** AUX request not supported */
- 	AUX_RET_ERROR_INVALID_OPERATION,
--	/** @AUX_RET_ERROR_PROTOCOL_ERROR: AUX process not available */
-+	/** AUX process not available */
- 	AUX_RET_ERROR_PROTOCOL_ERROR,
- };
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_top/dml2_top_soc15.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_top/dml2_top_soc15.c
+index fa20a91c6e16..e6c49c27035c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_top/dml2_top_soc15.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/src/dml2_top/dml2_top_soc15.c
+@@ -782,6 +782,7 @@ static bool dml2_top_soc15_check_mode_supported(struct dml2_check_mode_supported
  
-@@ -3185,9 +3130,9 @@ enum aux_return_code_type {
-  * enum aux_channel_type - DP AUX channel type listing.
-  */
- enum aux_channel_type {
--	/** @AUX_CHANNEL_LEGACY_DDC: AUX thru Legacy DP AUX */
-+	/** AUX thru Legacy DP AUX */
- 	AUX_CHANNEL_LEGACY_DDC,
--	/** @AUX_CHANNEL_DPIA: AUX thru DPIA DP tunneling */
-+	/** AUX thru DPIA DP tunneling */
- 	AUX_CHANNEL_DPIA
- };
+ 	bool result = false;
+ 	bool mcache_success = false;
++	bool uclk_pstate_success = false;
+ 	memset(dpmm_programming, 0, sizeof(struct dml2_display_cfg_programming));
  
-@@ -3672,7 +3617,7 @@ enum phy_link_rate {
- 	 */
- };
+ 	setup_unoptimized_display_config_with_meta(dml, &l->base_display_config_with_meta, in_out->display_config);
+@@ -805,6 +806,24 @@ static bool dml2_top_soc15_check_mode_supported(struct dml2_check_mode_supported
+ 		mcache_success = dml2_top_optimization_perform_optimization_phase(&l->optimization_phase_locals, &mcache_phase);
+ 	}
  
--/*
-+/**
-  * enum dmub_phy_fsm_state - PHY FSM states.
-  * PHY FSM state to transit to during PSR enable/disable.
-  */
-@@ -5949,11 +5894,10 @@ struct dmub_rb_cmd_abm_query_caps {
-  */
- enum dmub_abm_ace_curve_type {
- 	/**
--	 * @ABM_ACE_CURVE_TYPE__SW: ACE curve as defined by the SW layer.
-+	 * ACE curve as defined by the SW layer.
- 	 */
- 	ABM_ACE_CURVE_TYPE__SW = 0,
- 	/**
--	 * @ABM_ACE_CURVE_TYPE__SW_IF:
- 	 * ACE curve as defined by the SW to HW translation interface layer.
- 	 */
- 	ABM_ACE_CURVE_TYPE__SW_IF = 1,
-@@ -5964,11 +5908,10 @@ enum dmub_abm_ace_curve_type {
-  */
- enum dmub_abm_histogram_type {
- 	/**
--	 * @ABM_HISTOGRAM_TYPE__SW: ACE curve as defined by the SW layer.
-+	 * ACE curve as defined by the SW layer.
- 	 */
- 	ABM_HISTOGRAM_TYPE__SW = 0,
- 	/**
--	 * @ABM_HISTOGRAM_TYPE__SW_IF:
- 	 * ACE curve as defined by the SW to HW translation interface layer.
- 	 */
- 	ABM_HISTOGRAM_TYPE__SW_IF = 1,
-@@ -6174,17 +6117,14 @@ struct dmub_rb_cmd_get_visual_confirm_color {
-  */
- enum dmub_cmd_panel_cntl_type {
- 	/**
--	 * @DMUB_CMD__PANEL_CNTL_HW_INIT:
- 	 * Initializes embedded panel hardware blocks.
- 	 */
- 	DMUB_CMD__PANEL_CNTL_HW_INIT = 0,
- 	/**
--	 * @DMUB_CMD__PANEL_CNTL_QUERY_BACKLIGHT_INFO:
- 	 * Queries backlight info for the embedded panel.
- 	 */
- 	DMUB_CMD__PANEL_CNTL_QUERY_BACKLIGHT_INFO = 1,
- 	/**
--	 * @DMUB_CMD__PANEL_DEBUG_PWM_FREQ:
- 	 * Sets the PWM Freq as per user's requirement.
- 	 */
- 	DMUB_CMD__PANEL_DEBUG_PWM_FREQ = 2,
++	if (result) {
++		if (dml->pmo_options.force_mandatory_uclk_pstate_support) {
++			struct optimization_phase_params uclk_phase =	{
++			.dml = dml,
++			.display_config = &l->base_display_config_with_meta,
++			.init_function = dml2_top_optimization_init_function_uclk_pstate,
++			.test_function = dml2_top_optimization_test_function_uclk_pstate,
++			.optimize_function = dml2_top_optimization_optimize_function_uclk_pstate,
++			.optimized_display_config = &l->optimized_display_config_with_meta,
++			.all_or_nothing = false,
++			};
++
++			uclk_pstate_success = dml2_top_optimization_perform_optimization_phase(&l->optimization_phase_locals, &uclk_phase);
++		} else {
++			uclk_pstate_success = true;
++		}
++	}
++
+ 	/*
+ 	* Call DPMM to map all requirements to minimum clock state
+ 	*/
+@@ -817,7 +836,7 @@ static bool dml2_top_soc15_check_mode_supported(struct dml2_check_mode_supported
+ 		result = dml->dpmm_instance.map_mode_to_soc_dpm(&l->dppm_map_mode_params);
+ 	}
+ 
+-	in_out->is_supported = mcache_success;
++	in_out->is_supported = mcache_success & uclk_pstate_success;
+ 	result = result && in_out->is_supported;
+ 
+ 	return result;
+@@ -928,6 +947,15 @@ static bool dml2_top_soc15_build_mode_programming(struct dml2_build_mode_program
+ 	if (uclk_pstate_success) {
+ 		memcpy(&l->base_display_config_with_meta, &l->optimized_display_config_with_meta, sizeof(struct display_configuation_with_meta));
+ 		l->base_display_config_with_meta.stage3.success = true;
++	} else if (dml->pmo_options.force_mandatory_uclk_pstate_support) {
++		l->informative_params.instance = &dml->core_instance;
++		l->informative_params.programming = in_out->programming;
++		l->informative_params.mode_is_supported = false;
++
++		dml->core_instance.populate_informative(&l->informative_params);
++
++		in_out->programming->informative.failed_mcache_validation = true;
++		return false;
+ 	}
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.h b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.h
+index 5ee489682f2e..2f2ae05dd59c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.h
+@@ -232,6 +232,7 @@ struct dml2_configuration_options {
+ 	/* Only for debugging purposes when initializing SOCBB params via tool for DML21. */
+ 	struct socbb_ip_params_external *external_socbb_ip_params;
+ 	struct {
++		bool force_mandatory_uclk_pstate_support;
+ 		bool force_pstate_method_enable;
+ 		enum dml2_force_pstate_methods force_pstate_method_values[MAX_PIPES];
+ 	} pmo;
 -- 
 2.43.0
 
