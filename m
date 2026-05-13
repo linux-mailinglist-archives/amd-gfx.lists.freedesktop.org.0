@@ -2,37 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gJ5ZLRI5BGoqFgIAu9opvQ
+	id wMJzLLCHBWr5XwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 10:40:50 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 May 2026 10:28:32 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D3EA52FCEB
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 10:40:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD30253F542
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 May 2026 10:28:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AF9E10E4CB;
-	Wed, 13 May 2026 08:40:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38AB210F16F;
+	Thu, 14 May 2026 08:28:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WscbgpiU";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B02C10E2D7
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 08:40:46 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 64D8eavC1905363; Wed, 13 May 2026 14:10:36 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64D8eadk1905362;
- Wed, 13 May 2026 14:10:36 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v3] drm/amdgpu: userq_va_mapped should remain true once done
-Date: Wed, 13 May 2026 14:10:35 +0530
-Message-Id: <20260513084035.1905343-1-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F11FF10E5B6;
+ Wed, 13 May 2026 08:54:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778662455; x=1810198455;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=Jgp2UTOFNInsOSeSpPgO0/7DmN2y2j0R3zuWEKTH2EQ=;
+ b=WscbgpiUBUVfWYsno48tPSMsrFNHyv5x8UJiUZuoIwSYvaG1aDXabH8S
+ onyVGyaH+3Pw6flYKHuA1zyxDijBeMKtly8yC5hX/l2q4yl5Q0CIJvpwt
+ 57yqcRuQhYOjwHcBsGqIff284AulQKlS5ZGOQb7YkF4Dm2KYa7HVAc2Xf
+ q52yw68IOw97xK1OKL2SIKuqxJSELGDvTQ1vngJW+d55D5Lrg+ENNAMzh
+ DhGbwcp9q0Dt6q0SvIQxQ7TfbjOlhZz6AYHMfLtBFqITgR/+FutwZoIqM
+ CXxI3ThvvVxb5q8zGqqAZrQYccM8EbwgS+2pOaOZrIQrwtNWO/us45QPP w==;
+X-CSE-ConnectionGUID: u++Eq4omTMGeEIB6pv3dkA==
+X-CSE-MsgGUID: pT+AX7zkQvq+HELNqjkf3A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="82151214"
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="82151214"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 01:54:15 -0700
+X-CSE-ConnectionGUID: D7jmCdnESpW3WBvi8P2EGw==
+X-CSE-MsgGUID: GqmBRViOSG612pY7NMdvUA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="238267969"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO [10.245.244.49])
+ ([10.245.244.49])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 01:54:12 -0700
+Message-ID: <54760b7dc968b830d3db4606fee43a02e8184ce9.camel@linux.intel.com>
+Subject: Re: [PATCH i-g-t 0/8] dmem: add amdgpu support and one more test
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Thadeu
+ Lima de Souza Cascardo <cascardo@igalia.com>, igt-dev@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, maarten.lankhorst@linux.intel.com, Natalie
+ Vock	 <natalie.vock@gmx.de>, kernel-dev@igalia.com, Tvrtko Ursulin	
+ <tvrtko.ursulin@igalia.com>, "Prosyak, Vitaly" <Vitaly.Prosyak@amd.com>
+Date: Wed, 13 May 2026 10:54:08 +0200
+In-Reply-To: <ceb093fc-f028-4c03-8f16-08ab2d0b1ed7@amd.com>
+References: <20260512215156.4083082-1-cascardo@igalia.com>
+ <ceb093fc-f028-4c03-8f16-08ab2d0b1ed7@amd.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 14 May 2026 08:28:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,129 +79,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 3D3EA52FCEB
+X-Rspamd-Queue-Id: CD30253F542
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.39 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,linux.intel.com,gmx.de,igalia.com,amd.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.987];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:mid]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid]
 X-Rspamd-Action: no action
 
-Multiple queues needs these bo_va objects belonging to
-the same uq_mgr. So once they are mapped lets not unmap
-them as at any point of time any of the queues might be
-using it.
+On Wed, 2026-05-13 at 10:06 +0200, Christian K=C3=B6nig wrote:
+> On 5/12/26 23:51, Thadeu Lima de Souza Cascardo wrote:
+> > This work builds on top of Thomas Hellstr=C3=B6m's patches at [1].
+> >=20
+> > Besides the case of eviction when setting dmem.max, which still
+> > needs
+> > support from [2], there are other cases for testing dmem behavior
+> > and
+> > potential regressions. Thomas' patches lay over the groundwork for
+> > this,
+> > while this patchset addes one basic test of checking current usage
+> > and that
+> > drivers respect max setting when no eviction is taking place yet.
+> >=20
+> > This patchset also introduces a driver layer such that the same
+> > tests can
+> > work with different drivers. amdgpu support is here added too.
+>=20
+> Of hand that looks really nice.
+>=20
+> Please always keep Vitaly CCed for igt test patches which affect
+> amdgpu as well.
+>=20
+> Thanks,
+> Christian.
 
-Also userq_va_mapped should be a boolean than atomic.
+Agree this looks nice.
+For the xe changes (once [1] gets merged)
+Acked-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  3 ++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  | 16 ++++------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c     |  2 +-
- 3 files changed, 7 insertions(+), 14 deletions(-)
+Thanks,
+Thomas
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-index 912c9afaf9e1..4d68732d6223 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-@@ -96,7 +96,8 @@ struct amdgpu_bo_va {
- 	 * if non-zero, cannot unmap from GPU because user queues may still access it
- 	 */
- 	unsigned int			queue_refcount;
--	atomic_t			userq_va_mapped;
-+	/* Indicates if this buffer is mapped for any user queue. Once set, never reset. */
-+	bool				userq_va_mapped;
- };
- 
- struct amdgpu_bo {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index 24b172a0d9ac..b970617129af 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -227,7 +227,7 @@ static int amdgpu_userq_buffer_va_list_add(struct amdgpu_usermode_queue *queue,
- 
- 	INIT_LIST_HEAD(&va_cursor->list);
- 	va_cursor->gpu_addr = addr;
--	atomic_set(&va_map->bo_va->userq_va_mapped, 1);
-+	va_map->bo_va->userq_va_mapped = true;
- 	list_add(&va_cursor->list, &queue->userq_va_list);
- 
- 	return 0;
-@@ -274,7 +274,7 @@ static bool amdgpu_userq_buffer_va_mapped(struct amdgpu_vm *vm, u64 addr)
- 	dma_resv_assert_held(vm->root.bo->tbo.base.resv);
- 
- 	mapping = amdgpu_vm_bo_lookup_mapping(vm, addr);
--	if (!IS_ERR_OR_NULL(mapping) && atomic_read(&mapping->bo_va->userq_va_mapped))
-+	if (!IS_ERR_OR_NULL(mapping) && mapping->bo_va->userq_va_mapped)
- 		r = true;
- 	else
- 		r = false;
-@@ -300,15 +300,6 @@ static bool amdgpu_userq_buffer_vas_mapped(struct amdgpu_usermode_queue *queue)
- 	return false;
- }
- 
--static void amdgpu_userq_buffer_va_list_del(struct amdgpu_bo_va_mapping *mapping,
--					    struct amdgpu_userq_va_cursor *va_cursor)
--{
--	if (mapping)
--		atomic_set(&mapping->bo_va->userq_va_mapped, 0);
--	list_del(&va_cursor->list);
--	kfree(va_cursor);
--}
--
- static void amdgpu_userq_buffer_vas_list_cleanup(struct amdgpu_device *adev,
- 						 struct amdgpu_usermode_queue *queue)
- {
-@@ -323,7 +314,8 @@ static void amdgpu_userq_buffer_vas_list_cleanup(struct amdgpu_device *adev,
- 		if (mapping)
- 			dev_dbg(adev->dev, "delete the userq:%p va:%llx\n",
- 				queue, va_cursor->gpu_addr);
--		amdgpu_userq_buffer_va_list_del(mapping, va_cursor);
-+		list_del(&va_cursor->list);
-+		kfree(va_cursor);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 82a1c19350ee..b483fecbb524 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -2002,7 +2002,7 @@ int amdgpu_vm_bo_unmap(struct amdgpu_device *adev,
- 	 * during user requests GEM unmap IOCTL except for forcing the unmap
- 	 * from user space.
- 	 */
--	if (unlikely(atomic_read(&bo_va->userq_va_mapped) > 0))
-+	if (unlikely(bo_va->userq_va_mapped))
- 		amdgpu_userq_gem_va_unmap_validate(adev, mapping, saddr);
- 
- 	list_del(&mapping->list);
--- 
-2.34.1
 
+>=20
+> >=20
+> > [1] https://patchwork.freedesktop.org/series/163935/
+> >=20
+> > Thadeu Lima de Souza Cascardo (8):
+> > =C2=A0 Introduce dmem driver and implement Xe support
+> > =C2=A0 Adjust xe_cgroups test to use igt_dmem_driver
+> > =C2=A0 Make xe_cgroup test a generic test
+> > =C2=A0 amdgpu: add amdgpu_cgroup_region_name
+> > =C2=A0 igt_dmem_driver: add amdgpu support
+> > =C2=A0 dmem: add test for current/max
+> > =C2=A0 dmem: only check for dmem availability once
+> > =C2=A0 dmem: get region once per driver
+> >=20
+> > =C2=A0lib/amdgpu/amd_dmem.c=C2=A0=C2=A0=C2=A0 |=C2=A0 94 ++++++++++
+> > =C2=A0lib/amdgpu/amd_memory.c=C2=A0 |=C2=A0 25 +++
+> > =C2=A0lib/amdgpu/amd_memory.h=C2=A0 |=C2=A0=C2=A0 2 +
+> > =C2=A0lib/igt_dmem_driver.h=C2=A0=C2=A0=C2=A0 |=C2=A0 25 +++
+> > =C2=A0lib/meson.build=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0=C2=A0 2 +
+> > =C2=A0lib/xe/xe_dmem.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+| 145 +++++++++++++++
+> > =C2=A0tests/drv_dmem_cgroups.c | 390
+> > +++++++++++++++++++++++++++++++++++++++
+> > =C2=A0tests/intel/xe_cgroups.c | 296 -----------------------------
+> > =C2=A0tests/meson.build=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 2 +-
+> > =C2=A09 files changed, 684 insertions(+), 297 deletions(-)
+> > =C2=A0create mode 100644 lib/amdgpu/amd_dmem.c
+> > =C2=A0create mode 100644 lib/igt_dmem_driver.h
+> > =C2=A0create mode 100644 lib/xe/xe_dmem.c
+> > =C2=A0create mode 100644 tests/drv_dmem_cgroups.c
+> > =C2=A0delete mode 100644 tests/intel/xe_cgroups.c
+> >=20
