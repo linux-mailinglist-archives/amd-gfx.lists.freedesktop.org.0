@@ -2,63 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CCn8J7eLBGqvLQIAu9opvQ
+	id CNTjHL+LBGqvLQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:33:27 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:33:35 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F37A535228
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:33:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20125535256
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 May 2026 16:33:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BE2810EECD;
-	Wed, 13 May 2026 14:33:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9712F10EEC3;
+	Wed, 13 May 2026 14:33:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="iLP4dcA0";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="LrfjdUF0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011007.outbound.protection.outlook.com
- [40.93.194.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F19910EEBC
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 14:33:23 +0000 (UTC)
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013026.outbound.protection.outlook.com
+ [40.107.201.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E42E10EEC3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 May 2026 14:33:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KMcYNvnnL5XMFehExlxwQaotOHLYZ4i+mrHWfvdv11VNp308oAUvG4Yudkg9hOoHqm4TXYaw8yG5h1FxLgdteLtyEEzyFBJg1dtlMgSykATv8aciWbP2LIGcR4je7toEtGdn415GVixZ4gZnHmuLNLVaeqqzHJIhyPFHKank4mOC91MOs+/1UWoY5lWoFzy7i1ixeYUCk3gn8uC8CGc08Zs0W7n1+gKFNJJhNtVOweyN30O6wGQIFHUIdEG2WxXAYsz/Ji6s589Wkx2I2bePxdWVjEnczPLSHgJZkDhrw6TvREJPY9cdQzHPgdCREyrhaCkFYqjU1jZihirWOryCLw==
+ b=rhBQVnGZSTYRcERciDvgzWIvqsGCVllnmfclO9hgpDugEMLMntbC5CnjPdUWE/Ai5WmywiuiwgXsiZOIjXEYZto5HxGKy0s5rOt/4LK3kC6WbYmSsvpNOCpW+3nZfEPvlao3m1ehv+Z+2puxP5jwP5Cex58dIs2T+6iOAjFMjMuSkGQl4OiUk9M9225tBEspw+YkpKVnBW0+c679PMhoXjDPkQZznzGVhFMpwx2uF9dROgzfaYcRwE2nDZR2+/G612eiVXn3I7QNwyiqtXmy3IoLqYVFX0XlfOSXaYXomJuei02tFnahn7CFYvtboMFiTnk0pNYz+qJDfGxY6tX/vg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Xh2o+QU4Xa95t3O2w3RRHCYBGv0DKsOQ8G//q7698fA=;
- b=NaLbK2Qqx2MoysX6nSLt2+qKQ0WNT5ucE2Vnxp7UeoMSW3rdQLWuTgcFT5aZBjOYqM6TG8y1lQrTqlRl6ymukibI8urBxi+Q4IkN2JPNK0NVKoPDUvUeclDAsKLtnMijepkThfvWK8hrnGPaK7vz9Ael9eKfEa+CCkXNisaZ3AJhnMgVNK7sq645/D/Xx/lsg2vV10sPro0Xv8Us/tOANwmeloSsphydxHOMetXzsiDvj4D6qDq5JHtGv4q+PX1Ni+p02T5kTYfoDYpYHwd+z7W9KvqlkX3FEyWyc5KQlwiUtLglGXC9nl0id+r8rsjfVdD77MGASv/CtFVOJ7bnMQ==
+ bh=Y4zTygnnBG4FtUoxAENYdTMrukkxodJwEKmXv2rp/ts=;
+ b=DKjDPiCOlwkTnHIaeHpbtH5eBv7XuSsZXKOEW/gXcfQP+7P54xel/CbyXNjlrSGX+JXWwUJ4puIGL+5ZwE9EymenGM395Re4BucAFFn1F10vx46Skcly/a53YT54U9dwvk7DORFPfe05PHOO32+/Uxy0WbEqbsmeJNIVyK8DmnQHeDozvkybQ1S9ct8sIQGF9u0Yrf+oEJj9HD3EUfDxLceIgz3Ozl4ZjICbkp3riuk5bnWd172Flgl3oeRCqLK/u0nGBZ0h3Gjx5uwOGfQfk+2C9zbFojNFt/AVj4EZWz6oFQXmshek16dRkbAcMkKwvbeRmfcfh9Wy0PasmIXcdQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Xh2o+QU4Xa95t3O2w3RRHCYBGv0DKsOQ8G//q7698fA=;
- b=iLP4dcA0Mpf6beShTS1BPwpvt5PiL6HLyY0MGyg5R3WXB9Zruw7uH3WXCDcnakbK4O6LqwRnnbaTULWFHJ0/p+YQdXKcQ66OHyyAycb2OCoxmm+rWUpEKn/5hKOwGAYvId7E/fyHt83W9zurZDSnnkDJon08LG0WgkAZaFjEIto=
-Received: from CH2PR18CA0034.namprd18.prod.outlook.com (2603:10b6:610:55::14)
- by LV3PR12MB9401.namprd12.prod.outlook.com (2603:10b6:408:21c::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.12; Wed, 13 May
- 2026 14:33:20 +0000
-Received: from CH1PEPF0000A348.namprd04.prod.outlook.com
- (2603:10b6:610:55:cafe::db) by CH2PR18CA0034.outlook.office365.com
- (2603:10b6:610:55::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9913.12 via Frontend Transport; Wed,
- 13 May 2026 14:33:20 +0000
+ bh=Y4zTygnnBG4FtUoxAENYdTMrukkxodJwEKmXv2rp/ts=;
+ b=LrfjdUF0R/WdN84oLpxPbEjwUmcdoeXiLOGH0HBv07CoD9iQCFVC59Kl8I3QP1m1DMUJjnyHmOp4F/IZyG82tPFkaX1Ir96WDVzUOG/GehrSuPXBGv+vRXjyQRALtabWpktdFAavN3/ICnsKWEZdR+A8bKmBp8UOJhRfntdezCg=
+Received: from BY5PR13CA0025.namprd13.prod.outlook.com (2603:10b6:a03:180::38)
+ by DM6PR12MB4185.namprd12.prod.outlook.com (2603:10b6:5:216::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Wed, 13 May
+ 2026 14:33:26 +0000
+Received: from MWH0EPF000C6194.namprd02.prod.outlook.com
+ (2603:10b6:a03:180:cafe::1) by BY5PR13CA0025.outlook.office365.com
+ (2603:10b6:a03:180::38) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.25.18 via Frontend Transport; Wed, 13
+ May 2026 14:33:25 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- CH1PEPF0000A348.mail.protection.outlook.com (10.167.244.4) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MWH0EPF000C6194.mail.protection.outlook.com (10.167.249.104) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.25.13 via Frontend Transport; Wed, 13 May 2026 14:33:19 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.25.13 via Frontend Transport; Wed, 13 May 2026 14:33:25 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 13 May
  2026 09:33:18 -0500
 Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb10.amd.com
@@ -67,7 +67,7 @@ Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb10.amd.com
  2026 09:33:18 -0500
 Received: from box-0.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 13 May 2026 09:33:17 -0500
+ Transport; Wed, 13 May 2026 09:33:18 -0500
 From: <IVAN.LIPSKI@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -77,9 +77,9 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>
-Subject: [PATCH 05/28] drm/amd/display: Add KUnit test for CRC function
-Date: Wed, 13 May 2026 10:29:27 -0400
-Message-ID: <20260513143213.1852892-7-IVAN.LIPSKI@amd.com>
+Subject: [PATCH 06/28] drm/amd/display: Add KUnit test for HDCP process_output
+Date: Wed, 13 May 2026 10:29:28 -0400
+Message-ID: <20260513143213.1852892-8-IVAN.LIPSKI@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260513143213.1852892-2-IVAN.LIPSKI@amd.com>
 References: <20260513143213.1852892-2-IVAN.LIPSKI@amd.com>
@@ -88,29 +88,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000A348:EE_|LV3PR12MB9401:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3a24ca3e-0df8-4ca5-f5a5-08deb0fc9457
+X-MS-TrafficTypeDiagnostic: MWH0EPF000C6194:EE_|DM6PR12MB4185:EE_
+X-MS-Office365-Filtering-Correlation-Id: ac83ec96-f487-4237-d21e-08deb0fc97a4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700016|376014|11063799003|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: yG1Fh2hgWSjSPCqgwB1l8jffsXwBu4QQudOwzQsxt1Up6P4nsLBDocxr41LHJhztaHvjk1r0hh7AM16JORTc6w7USYborw736O7l1UAZRLNd5Pqb7yL+J2kIUbJMj+VHtJBrnY1iluyluoutkin56MR+hQxukAJNdRSsq7XnMhXUeEba1ffpXeXF6b/O/54FtcY1r2sRLWVlIimuNw5dG3WCi4F0cwWDU688OMjqFoBNCCAmEJtJPKs8m0NY77h5Tvlhg+8BFiUAc16hmeNKtYZjkXM2jvvbWP/Mw1Fehf9fmm9eqmPWT2WGKvUsSMVBzsotPASXBsbowzda8fe2eSJusBRB2cWsEHBJxLRWGSP6nqDoab/4xkgqVWf97xWSGMhtsfDlRHMBX3i+KP/0p60rHy9K+HsamhSVdGCNDBvC9hV8/sa4Q+mEDV+NvefvY1Xxbdk3IDseZAIGGKzUysyjdyUdKwSIE1mYOTOPhnMlyz2ONocaXop6QhMWu/6hYKi1uOdIA2VfL66h+/nYY64rZ0tme7RJ0WVazQg8d3sKuSOQ+R0ArvURLFFv2UQv2WyReI1Qxz3D4jZSDvxHQzNQUT5IDDYSJv7mcE2/JcHzHIjxcT3HGhz7FjuDy1LcvtArfv6esc5uCKj2g3cbL1rpdnBdW23teGE0k87ZP+C9ciuAwDsvYWIofp/hV1dRPibHgcWCdCxZnw3Pk8yVF3l6mDsyXw/rJr8MW0Xf3E4=
+ ARA:13230040|1800799024|376014|82310400026|36860700016|3023799003|22082099003|18002099003|56012099003|11063799003;
+X-Microsoft-Antispam-Message-Info: Q1+bBDOSNPGsCaGPMBMK3b2YnEt4TS1WABGLttNvAgQx71fLqzfB6QINDzVVc/ZG5/YW895OJAaQvf1F7y7SwUMifPUA7bQ/BLjU77wyVuvblAFzpgkGCo3k/5jYCSsI7dC4DKfqAacgvS320RYXbjLLJy4ejP/1r6BrKoXncbtCBFM8jZvHv1ZMJ2VdsQ8Btl8MyG5Ewaxvz3OM76cZZ+5djokConpryCrGFMpSldqSogQwhlYsk/X6BmGL+EGxHEoCzKJbQRwQ3tVMdYD8vER7WHHw2SMvu0Zg6aby7zM1JOAD6fCglCRaR/t0S9AZRu2Npj1SgDDnOfwsVPTfiCaJVrxreqzNJx14xTf8O1swpXE5gc6lEuJz+bWaoj+xlWOAF37yyiiX49mw3R+ezQW9iXSp7XkjLSlkaC27LqWTGRgAlmqy1fo2Ms9T0QfpRTx27e5lh5w1AsD7LWhRx5wbo+WZ9nnN5URBVRKetxnEU/sCP3EWUfM9+9FHWWcH6Qg+MSUrCGWk0uOWHr9s/hpWE9d9h6XIR3xZf1Sugr9o+wHlTu84CuC1f+1GKDuCUT4kTY4JpK81uvNoDPMtcsAX/S4lY8AP0xQr7PbWuN/9TngnemitSTgfBZ2NXkjtFVv86jVYjHk7rUR1HYUTdzsURDzY5KFbKUiCq8S9ATFemg2lizfb0kxXHEg3nM1CnaTRJ7ZGZeco4yYe/kWLoaE+mBoNy6vXDZvsl55bqHA=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(11063799003)(56012099003)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700016)(3023799003)(22082099003)(18002099003)(56012099003)(11063799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 4+BNCGLPZz4Zq+EvYA8UR815SMPtzf1y6heXgBK9zn2bfJ8Y1cL5Yq/aBx6j+06pmz2dpIiRPRsRP7XdRkZf95GKizdfiTcVG6oBLIxwiMZYYL+iMmMAtXqYYrYwdwwoVFEiXrpz8nko7cb7+6Nk83YnNQiPkuiByGkiQTCMJntSBJtb1EzO0jDg9z6kRBdl7f2RPOvDKuDgOG4UTknLESU4ut1XzSadRPu68IraLo4HgJhfa96unbibV1yPH7wN8qUQS+qiV7cilWykPtZ251pmJhsU20ZOK+AMUi351rhM5uY/OjxBpNoXWUfpLO3vo3S9C5ePsZmT/DdEbfLtCg56ogzG8V0T3agVzbpPq65YWumpEWMXRT7r14PCO8ay/dazCfbyxUUNMkIy25AaSpVoppp7ZinfsRc/gJgk3aWM8gLx5NQ7Lu4mIzp0IWNc
+X-MS-Exchange-AntiSpam-MessageData-0: g8zgmhn17cAc72IWdn8dSU+CUsg4hsAjjjYE7V4QPTOZvbg4zUGO2ch9zNS6dd39Yq5HQ5Sho/LKj/EQLRpjh/wv4Jru5LtBUKWtYyby/MZmaxXUFdgEC0lP/rxCgr1UtCEEcQWQ8jZjBPjzhsI67s5sD/PjxzpHa6IkdMngUYrI6SmKjirrNGq9pUJwlrRJD2s8vdCN5kIxBHLnoyPA2P9dXxuWC8OT52rJZgxA7ra8lVm+5PfNA8tG/+LCOB9pCRClX7dqByhjFaAR/8m9/Icrs3FxMI5PbrEYsS2HxIdsrKbCy1RKOx6RJkeWWGyxuuQF6uY369gnfDab5FKXP1KFdEhCdnHVr3ZYP397DbplXyR/H8yRIjYPQQgU/gEjb7n6Z0iVw7Ymvu8moKjUJav6l0HI22V6NzsB1iMja6/+EL52uq4UuT0ZPoz5jT7f
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 14:33:19.9976 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a24ca3e-0df8-4ca5-f5a5-08deb0fc9457
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2026 14:33:25.4258 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ac83ec96-f487-4237-d21e-08deb0fc97a4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000A348.namprd04.prod.outlook.com
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000C6194.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9401
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4185
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,7 +124,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 4F37A535228
+X-Rspamd-Queue-Id: 20125535256
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
@@ -154,328 +154,304 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Action: no action
 
-From: Aurabindo Pillai <aurabindo.pillai@amd.com>
+From: Alex Hung <alex.hung@amd.com>
 
-DM CRC parsing functions are an easy candidate for exploring the use of
-KUnit unit-testing frameworks. Add a few tests for the same.
+Expose process_output() as non-static when CONFIG_DRM_AMD_DC_KUNIT_TEST
+is enabled and add KUnit tests exercising its full branch logic:
 
-The test file and .kunitconfig are placed under amdgpu_dm/tests/ to
-follow the convention of keeping test code separate from production
-sources.
+- property_validate_dwork is always enqueued (delay=0)
+- callback_dwork is scheduled when callback_needed is set
+- callback_dwork is cancelled when callback_stop is set
+- watchdog_timer_dwork is scheduled when watchdog_timer_needed is set
+- watchdog_timer_dwork is cancelled when watchdog_timer_stop is set
+- Both dworks are scheduled independently when both flags are set
 
-Assisted-by: Copilot:Claude-Opus-4.6
+Assisted-by: Copilot:Claude-Sonnet-4.6
 
 Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Signed-off-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
 ---
- drivers/gpu/drm/amd/display/Kconfig           |  12 ++
- .../gpu/drm/amd/display/amdgpu_dm/Makefile    |   5 +
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c |  17 ++-
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_crc.h |   7 +
- .../amdgpu_dm/amdgpu_dm_kunit_helpers.h       |  19 +++
- .../amd/display/amdgpu_dm/tests/.kunitconfig  |  14 ++
- .../drm/amd/display/amdgpu_dm/tests/Makefile  |   7 +
- .../amdgpu_dm/tests/amdgpu_dm_crc_test.c      | 121 ++++++++++++++++++
- 8 files changed, 198 insertions(+), 4 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_kunit_helpers.h
- create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/.kunitconfig
- create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile
- create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_crc_test.c
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |   2 -
+ .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.c    |   5 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.h    |  13 +-
+ .../drm/amd/display/amdgpu_dm/tests/Makefile  |   5 +
+ .../amdgpu_dm/tests/amdgpu_dm_hdcp_test.c     | 175 ++++++++++++++++++
+ 5 files changed, 196 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_hdcp_test.c
 
-diff --git a/drivers/gpu/drm/amd/display/Kconfig b/drivers/gpu/drm/amd/display/Kconfig
-index abd3b6564373..38323e574c6b 100644
---- a/drivers/gpu/drm/amd/display/Kconfig
-+++ b/drivers/gpu/drm/amd/display/Kconfig
-@@ -56,4 +56,16 @@ config DRM_AMD_SECURE_DISPLAY
- 	  This option enables the calculation of crc of specific region via
- 	  debugfs. Cooperate with specific DMCU FW.
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+index 1e0ccf58cdb8..43056392a1f0 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+@@ -45,8 +45,6 @@
+  * in amdgpu_dm_kms.h file
+  */
  
-+config DRM_AMD_DC_KUNIT_TEST
-+	tristate "KUnit tests for the AMD DC display driver" if !KUNIT_ALL_TESTS
-+	depends on DRM_AMD_DC && KUNIT && DEBUG_FS
-+	default KUNIT_ALL_TESTS
-+	help
-+	  This option enables KUnit tests for the AMD Display Core driver.
-+	  These tests validate core functionality like CRC source parsing,
-+	  color management, and other utility functions.
-+
-+	  For more information on KUnit and unit tests in general, please
-+	  refer to the KUnit documentation in Documentation/dev-tools/kunit/.
-+
- endmenu
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/Makefile b/drivers/gpu/drm/amd/display/amdgpu_dm/Makefile
-index 89350aa9ca7e..914f89af047c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/Makefile
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/Makefile
-@@ -59,3 +59,8 @@ AMDGPU_DM = $(addprefix $(AMDDALPATH)/amdgpu_dm/,$(AMDGPUDM))
+-#define AMDGPU_DM_MAX_DISPLAY_INDEX 31
+-
+ #define AMDGPU_DM_MAX_CRTC 6
  
- AMD_DISPLAY_FILES += $(AMDGPU_DM)
- endif
-+
-+# KUnit tests as separate module
-+ifneq ($(CONFIG_DRM_AMD_DC_KUNIT_TEST),)
-+obj-y += $(AMDDALPATH)/amdgpu_dm/tests/
-+endif
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c
-index e9834d7b6534..3613e67d1085 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c
-@@ -33,6 +33,7 @@
- #include "amdgpu_securedisplay.h"
- #include "amdgpu_dm_psr.h"
- #include "amdgpu_dm_replay.h"
+ #define AMDGPU_DM_MAX_NUM_EDP 2
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
+index a10401675f53..29e5bdb16b89 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
+@@ -31,6 +31,7 @@
+ #include "dm_helpers.h"
+ #include <drm/display/drm_hdcp_helper.h>
+ #include "hdcp_psp.h"
 +#include "amdgpu_dm_kunit_helpers.h"
  
- static const char *const pipe_crc_sources[] = {
- 	"none",
-@@ -43,7 +44,8 @@ static const char *const pipe_crc_sources[] = {
- 	"auto",
- };
- 
--static enum amdgpu_dm_pipe_crc_source dm_parse_crc_source(const char *source)
-+STATIC_IFN_KUNIT
-+enum amdgpu_dm_pipe_crc_source dm_parse_crc_source(const char *source)
- {
- 	if (!source || !strcmp(source, "none"))
- 		return AMDGPU_DM_PIPE_CRC_SOURCE_NONE;
-@@ -58,25 +60,32 @@ static enum amdgpu_dm_pipe_crc_source dm_parse_crc_source(const char *source)
- 
- 	return AMDGPU_DM_PIPE_CRC_SOURCE_INVALID;
+ /*
+  * If the SRM version being loaded is less than or equal to the
+@@ -158,7 +159,8 @@ static int psp_set_srm(struct psp_context *psp,
+ 	return 0;
  }
-+EXPORT_IF_KUNIT(dm_parse_crc_source);
  
--static bool dm_is_crc_source_crtc(enum amdgpu_dm_pipe_crc_source src)
+-static void process_output(struct hdcp_workqueue *hdcp_work)
 +STATIC_IFN_KUNIT
-+bool dm_is_crc_source_crtc(enum amdgpu_dm_pipe_crc_source src)
++void process_output(struct hdcp_workqueue *hdcp_work)
  {
- 	return (src == AMDGPU_DM_PIPE_CRC_SOURCE_CRTC) ||
- 	       (src == AMDGPU_DM_PIPE_CRC_SOURCE_CRTC_DITHER);
- }
-+EXPORT_IF_KUNIT(dm_is_crc_source_crtc);
+ 	struct mod_hdcp_output output = hdcp_work->output;
  
--static bool dm_is_crc_source_dprx(enum amdgpu_dm_pipe_crc_source src)
-+STATIC_IFN_KUNIT
-+bool dm_is_crc_source_dprx(enum amdgpu_dm_pipe_crc_source src)
+@@ -178,6 +180,7 @@ static void process_output(struct hdcp_workqueue *hdcp_work)
+ 
+ 	schedule_delayed_work(&hdcp_work->property_validate_dwork, msecs_to_jiffies(0));
+ }
++EXPORT_IF_KUNIT(process_output);
+ 
+ static void link_lock(struct hdcp_workqueue *work, bool lock)
  {
- 	return (src == AMDGPU_DM_PIPE_CRC_SOURCE_DPRX) ||
- 	       (src == AMDGPU_DM_PIPE_CRC_SOURCE_DPRX_DITHER);
- }
-+EXPORT_IF_KUNIT(dm_is_crc_source_dprx);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
+index 4faa344f196e..4bb072cfac1e 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
+@@ -31,12 +31,19 @@
+ #include "hdcp.h"
+ #include "dc.h"
+ #include "dm_cp_psp.h"
+-#include "amdgpu.h"
++
++/*
++ * Minimal declarations needed by this header.
++ * Full amdgpu/DM definitions come from amdgpu_dm.h included by each .c file.
++ */
++#define AMDGPU_DM_MAX_DISPLAY_INDEX 31
++struct amdgpu_dm_connector;
  
--static bool dm_need_crc_dither(enum amdgpu_dm_pipe_crc_source src)
-+STATIC_IFN_KUNIT
-+bool dm_need_crc_dither(enum amdgpu_dm_pipe_crc_source src)
- {
- 	return (src == AMDGPU_DM_PIPE_CRC_SOURCE_CRTC_DITHER) ||
- 	       (src == AMDGPU_DM_PIPE_CRC_SOURCE_DPRX_DITHER) ||
- 	       (src == AMDGPU_DM_PIPE_CRC_SOURCE_NONE);
- }
-+EXPORT_IF_KUNIT(dm_need_crc_dither);
+ struct mod_hdcp;
+ struct mod_hdcp_link;
+ struct mod_hdcp_display;
+ struct cp_psp;
++struct amdgpu_device;
  
- const char *const *amdgpu_dm_crtc_get_crc_sources(struct drm_crtc *crtc,
- 						  size_t *count)
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.h
-index 8538513ea879..76731ee44e13 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crc.h
-@@ -148,4 +148,11 @@ void amdgpu_dm_crtc_secure_display_create_contexts(struct amdgpu_device *adev);
- #define amdgpu_dm_crtc_secure_display_create_contexts(x)
- #endif
+ struct hdcp_workqueue {
+ 	struct work_struct cpirq_work;
+@@ -87,4 +94,8 @@ void hdcp_destroy(struct kobject *kobj, struct hdcp_workqueue *work);
+ 
+ struct hdcp_workqueue *hdcp_create_workqueue(struct amdgpu_device *adev, struct cp_psp *cp_psp, struct dc *dc);
  
 +#ifdef CONFIG_DRM_AMD_DC_KUNIT_TEST
-+enum amdgpu_dm_pipe_crc_source dm_parse_crc_source(const char *source);
-+bool dm_is_crc_source_crtc(enum amdgpu_dm_pipe_crc_source src);
-+bool dm_is_crc_source_dprx(enum amdgpu_dm_pipe_crc_source src);
-+bool dm_need_crc_dither(enum amdgpu_dm_pipe_crc_source src);
++void process_output(struct hdcp_workqueue *hdcp_work);
 +#endif
 +
- #endif /* AMD_DAL_DEV_AMDGPU_DM_AMDGPU_DM_CRC_H_ */
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_kunit_helpers.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_kunit_helpers.h
-new file mode 100644
-index 000000000000..4b2864375105
---- /dev/null
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_kunit_helpers.h
-@@ -0,0 +1,19 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright 2026 Advanced Micro Devices, Inc.
-+ */
-+
-+#ifndef AMDGPU_DM_KUNIT_HELPERS_H
-+#define AMDGPU_DM_KUNIT_HELPERS_H
-+
-+#if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
-+#define STATIC_IFN_KUNIT
-+#define INLINE_IFN_KUNIT inline
-+#define EXPORT_IF_KUNIT(symbol) EXPORT_SYMBOL(symbol)
-+#else
-+#define STATIC_IFN_KUNIT static
-+#define INLINE_IFN_KUNIT
-+#define EXPORT_IF_KUNIT(symbol)
-+#endif
-+
-+#endif /* AMDGPU_DM_KUNIT_HELPERS_H */
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/.kunitconfig b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/.kunitconfig
-new file mode 100644
-index 000000000000..36676326ade4
---- /dev/null
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/.kunitconfig
-@@ -0,0 +1,14 @@
-+CONFIG_KUNIT=y
-+CONFIG_PCI=y
-+CONFIG_DRM=y
-+CONFIG_DRM_AMDGPU=y
-+CONFIG_DRM_AMD_DC=y
-+CONFIG_DEBUG_FS=y
-+CONFIG_DRM_AMD_DC_KUNIT_TEST=y
-+CONFIG_FW_LOADER=y
-+CONFIG_DRM_KMS_HELPER=y
-+CONFIG_DRM_TTM=y
-+CONFIG_HWMON=y
-+CONFIG_I2C=y
-+CONFIG_POWER_SUPPLY=y
-+CONFIG_CRC16=y
+ #endif /* AMDGPU_DM_AMDGPU_DM_HDCP_H_ */
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile
-new file mode 100644
-index 000000000000..1238d8832fa3
---- /dev/null
+index 1238d8832fa3..9669ea79a666 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile
-@@ -0,0 +1,7 @@
-+# SPDX-License-Identifier: GPL-2.0
-+#
-+# Makefile for amdgpu_dm KUnit tests.
-+
-+ccflags-y += -I$(src)/..
-+
-+obj-$(CONFIG_DRM_AMD_DC_KUNIT_TEST) += amdgpu_dm_crc_test.o
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_crc_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_crc_test.c
+@@ -3,5 +3,10 @@
+ # Makefile for amdgpu_dm KUnit tests.
+ 
+ ccflags-y += -I$(src)/..
++ccflags-y += -I$(src)/../..
++ccflags-y += -I$(src)/../../include
++ccflags-y += -I$(src)/../../modules/inc
++ccflags-y += -I$(src)/../../dc
+ 
+ obj-$(CONFIG_DRM_AMD_DC_KUNIT_TEST) += amdgpu_dm_crc_test.o
++obj-$(CONFIG_DRM_AMD_DC_KUNIT_TEST) += amdgpu_dm_hdcp_test.o
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_hdcp_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_hdcp_test.c
 new file mode 100644
-index 000000000000..bba8b1a8fa1c
+index 000000000000..d03b606d27bc
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_crc_test.c
-@@ -0,0 +1,121 @@
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_hdcp_test.c
+@@ -0,0 +1,175 @@
 +// SPDX-License-Identifier: GPL-2.0 OR MIT
 +/*
-+ * KUnit tests for amdgpu_dm_crc.c
++ * KUnit tests for amdgpu_dm_hdcp.c
 + *
 + * Copyright 2026 Advanced Micro Devices, Inc.
 + */
 +
 +#include <kunit/test.h>
++#include <linux/workqueue.h>
 +
-+#include "amdgpu_dm_crc.h"
++#include "amdgpu_dm_hdcp.h"
 +
-+static void dm_test_parse_crc_source_none(struct kunit *test)
++static void dummy_work_fn(struct work_struct *work) {}
++
++/* Tests for process_output() */
++
++/*
++ * Helper: allocate and initialise a minimal hdcp_workqueue sufficient for
++ * process_output() testing.  Only the three delayed works accessed by
++ * process_output() are initialised; everything else is zeroed.
++ */
++static struct hdcp_workqueue *alloc_test_workqueue(struct kunit *test)
 +{
-+	KUNIT_EXPECT_EQ(test, AMDGPU_DM_PIPE_CRC_SOURCE_NONE, dm_parse_crc_source("none"));
-+	KUNIT_EXPECT_EQ(test, AMDGPU_DM_PIPE_CRC_SOURCE_NONE, dm_parse_crc_source(NULL));
++	struct hdcp_workqueue *work;
++
++	work = kunit_kzalloc(test, sizeof(*work), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, work);
++
++	INIT_DELAYED_WORK(&work->callback_dwork, dummy_work_fn);
++	INIT_DELAYED_WORK(&work->watchdog_timer_dwork, dummy_work_fn);
++	INIT_DELAYED_WORK(&work->property_validate_dwork, dummy_work_fn);
++
++	return work;
 +}
 +
-+static void dm_test_parse_crc_source_crtc(struct kunit *test)
++/*
++ * process_output() always schedules property_validate_dwork with delay=0,
++ * which queues the work item directly (bypassing the timer).  Use
++ * work_pending() rather than delayed_work_pending() to detect this.
++ */
++static void dm_test_process_output_property_validate_always_scheduled(struct kunit *test)
 +{
-+	KUNIT_EXPECT_EQ(test, AMDGPU_DM_PIPE_CRC_SOURCE_CRTC, dm_parse_crc_source("crtc"));
-+	KUNIT_EXPECT_EQ(test, AMDGPU_DM_PIPE_CRC_SOURCE_CRTC, dm_parse_crc_source("auto"));
++	struct hdcp_workqueue *work = alloc_test_workqueue(test);
++
++	/* No flags set: only property_validate_dwork should be enqueued */
++	process_output(work);
++
++	KUNIT_EXPECT_TRUE(test, work_pending(&work->property_validate_dwork.work));
++	KUNIT_EXPECT_FALSE(test, delayed_work_pending(&work->callback_dwork));
++	KUNIT_EXPECT_FALSE(test, delayed_work_pending(&work->watchdog_timer_dwork));
++
++	cancel_delayed_work_sync(&work->property_validate_dwork);
 +}
 +
-+static void dm_test_parse_crc_source_dprx(struct kunit *test)
++/*
++ * output.callback_needed=true must schedule callback_dwork.
++ */
++static void dm_test_process_output_callback_needed(struct kunit *test)
 +{
-+	KUNIT_EXPECT_EQ(test, AMDGPU_DM_PIPE_CRC_SOURCE_DPRX, dm_parse_crc_source("dprx"));
++	struct hdcp_workqueue *work = alloc_test_workqueue(test);
++
++	work->output.callback_needed = true;
++	work->output.callback_delay = 500;
++
++	process_output(work);
++
++	KUNIT_EXPECT_TRUE(test, delayed_work_pending(&work->callback_dwork));
++
++	cancel_delayed_work_sync(&work->callback_dwork);
++	cancel_delayed_work_sync(&work->property_validate_dwork);
 +}
 +
-+static void dm_test_parse_crc_source_crtc_dither(struct kunit *test)
++/*
++ * output.callback_stop=true must cancel a previously scheduled callback_dwork.
++ */
++static void dm_test_process_output_callback_stop(struct kunit *test)
 +{
-+	KUNIT_EXPECT_EQ(test, AMDGPU_DM_PIPE_CRC_SOURCE_CRTC_DITHER,
-+			dm_parse_crc_source("crtc dither"));
++	struct hdcp_workqueue *work = alloc_test_workqueue(test);
++
++	/* Pre-schedule callback_dwork with a long delay so it won't fire. */
++	schedule_delayed_work(&work->callback_dwork, msecs_to_jiffies(10000));
++	KUNIT_ASSERT_TRUE(test, delayed_work_pending(&work->callback_dwork));
++
++	work->output.callback_stop = true;
++
++	process_output(work);
++
++	KUNIT_EXPECT_FALSE(test, delayed_work_pending(&work->callback_dwork));
++
++	cancel_delayed_work_sync(&work->property_validate_dwork);
 +}
 +
-+static void dm_test_parse_crc_source_dprx_dither(struct kunit *test)
++/*
++ * output.watchdog_timer_needed=true must schedule watchdog_timer_dwork.
++ */
++static void dm_test_process_output_watchdog_needed(struct kunit *test)
 +{
-+	KUNIT_EXPECT_EQ(test, AMDGPU_DM_PIPE_CRC_SOURCE_DPRX_DITHER,
-+			dm_parse_crc_source("dprx dither"));
++	struct hdcp_workqueue *work = alloc_test_workqueue(test);
++
++	work->output.watchdog_timer_needed = true;
++	work->output.watchdog_timer_delay = 1000;
++
++	process_output(work);
++
++	KUNIT_EXPECT_TRUE(test, delayed_work_pending(&work->watchdog_timer_dwork));
++
++	cancel_delayed_work_sync(&work->watchdog_timer_dwork);
++	cancel_delayed_work_sync(&work->property_validate_dwork);
 +}
 +
-+static void dm_test_parse_crc_source_invalid(struct kunit *test)
++/*
++ * output.watchdog_timer_stop=true must cancel a previously scheduled
++ * watchdog_timer_dwork.
++ */
++static void dm_test_process_output_watchdog_stop(struct kunit *test)
 +{
-+	KUNIT_EXPECT_EQ(test, AMDGPU_DM_PIPE_CRC_SOURCE_INVALID,
-+			dm_parse_crc_source("invalid"));
-+	KUNIT_EXPECT_EQ(test, AMDGPU_DM_PIPE_CRC_SOURCE_INVALID,
-+			dm_parse_crc_source("unknown"));
-+	KUNIT_EXPECT_EQ(test, AMDGPU_DM_PIPE_CRC_SOURCE_INVALID,
-+			dm_parse_crc_source(""));
++	struct hdcp_workqueue *work = alloc_test_workqueue(test);
++
++	/* Pre-schedule watchdog_timer_dwork with a long delay. */
++	schedule_delayed_work(&work->watchdog_timer_dwork, msecs_to_jiffies(10000));
++	KUNIT_ASSERT_TRUE(test, delayed_work_pending(&work->watchdog_timer_dwork));
++
++	work->output.watchdog_timer_stop = true;
++
++	process_output(work);
++
++	KUNIT_EXPECT_FALSE(test, delayed_work_pending(&work->watchdog_timer_dwork));
++
++	cancel_delayed_work_sync(&work->property_validate_dwork);
 +}
 +
-+static void dm_test_is_crc_source_crtc(struct kunit *test)
++/*
++ * Both callback_needed and watchdog_timer_needed set: both dworks are
++ * scheduled independently.
++ */
++static void dm_test_process_output_callback_and_watchdog_needed(struct kunit *test)
 +{
-+	KUNIT_EXPECT_TRUE(test, dm_is_crc_source_crtc(AMDGPU_DM_PIPE_CRC_SOURCE_CRTC));
-+	KUNIT_EXPECT_TRUE(test, dm_is_crc_source_crtc(AMDGPU_DM_PIPE_CRC_SOURCE_CRTC_DITHER));
++	struct hdcp_workqueue *work = alloc_test_workqueue(test);
 +
-+	KUNIT_EXPECT_FALSE(test, dm_is_crc_source_crtc(AMDGPU_DM_PIPE_CRC_SOURCE_NONE));
-+	KUNIT_EXPECT_FALSE(test, dm_is_crc_source_crtc(AMDGPU_DM_PIPE_CRC_SOURCE_DPRX));
-+	KUNIT_EXPECT_FALSE(test, dm_is_crc_source_crtc(AMDGPU_DM_PIPE_CRC_SOURCE_DPRX_DITHER));
-+	KUNIT_EXPECT_FALSE(test, dm_is_crc_source_crtc(AMDGPU_DM_PIPE_CRC_SOURCE_INVALID));
++	work->output.callback_needed = true;
++	work->output.callback_delay = 200;
++	work->output.watchdog_timer_needed = true;
++	work->output.watchdog_timer_delay = 800;
++
++	process_output(work);
++
++	KUNIT_EXPECT_TRUE(test, delayed_work_pending(&work->callback_dwork));
++	KUNIT_EXPECT_TRUE(test, delayed_work_pending(&work->watchdog_timer_dwork));
++
++	cancel_delayed_work_sync(&work->callback_dwork);
++	cancel_delayed_work_sync(&work->watchdog_timer_dwork);
++	cancel_delayed_work_sync(&work->property_validate_dwork);
 +}
++/* End of tests for process_output() */
 +
-+static void dm_test_is_crc_source_dprx(struct kunit *test)
-+{
-+	KUNIT_EXPECT_TRUE(test, dm_is_crc_source_dprx(AMDGPU_DM_PIPE_CRC_SOURCE_DPRX));
-+	KUNIT_EXPECT_TRUE(test, dm_is_crc_source_dprx(AMDGPU_DM_PIPE_CRC_SOURCE_DPRX_DITHER));
-+
-+	KUNIT_EXPECT_FALSE(test, dm_is_crc_source_dprx(AMDGPU_DM_PIPE_CRC_SOURCE_NONE));
-+	KUNIT_EXPECT_FALSE(test, dm_is_crc_source_dprx(AMDGPU_DM_PIPE_CRC_SOURCE_CRTC));
-+	KUNIT_EXPECT_FALSE(test, dm_is_crc_source_dprx(AMDGPU_DM_PIPE_CRC_SOURCE_CRTC_DITHER));
-+	KUNIT_EXPECT_FALSE(test, dm_is_crc_source_dprx(AMDGPU_DM_PIPE_CRC_SOURCE_INVALID));
-+}
-+
-+static void dm_test_need_crc_dither(struct kunit *test)
-+{
-+	KUNIT_EXPECT_TRUE(test, dm_need_crc_dither(AMDGPU_DM_PIPE_CRC_SOURCE_NONE));
-+	KUNIT_EXPECT_TRUE(test, dm_need_crc_dither(AMDGPU_DM_PIPE_CRC_SOURCE_CRTC_DITHER));
-+	KUNIT_EXPECT_TRUE(test, dm_need_crc_dither(AMDGPU_DM_PIPE_CRC_SOURCE_DPRX_DITHER));
-+
-+	KUNIT_EXPECT_FALSE(test, dm_need_crc_dither(AMDGPU_DM_PIPE_CRC_SOURCE_CRTC));
-+	KUNIT_EXPECT_FALSE(test, dm_need_crc_dither(AMDGPU_DM_PIPE_CRC_SOURCE_DPRX));
-+	KUNIT_EXPECT_FALSE(test, dm_need_crc_dither(AMDGPU_DM_PIPE_CRC_SOURCE_INVALID));
-+}
-+
-+static void dm_test_is_valid_crc_source(struct kunit *test)
-+{
-+	KUNIT_EXPECT_TRUE(test, amdgpu_dm_is_valid_crc_source(AMDGPU_DM_PIPE_CRC_SOURCE_CRTC));
-+	KUNIT_EXPECT_TRUE(test, amdgpu_dm_is_valid_crc_source(AMDGPU_DM_PIPE_CRC_SOURCE_DPRX));
-+	KUNIT_EXPECT_TRUE(test,
-+			  amdgpu_dm_is_valid_crc_source(AMDGPU_DM_PIPE_CRC_SOURCE_CRTC_DITHER));
-+	KUNIT_EXPECT_TRUE(test,
-+			  amdgpu_dm_is_valid_crc_source(AMDGPU_DM_PIPE_CRC_SOURCE_DPRX_DITHER));
-+
-+	KUNIT_EXPECT_FALSE(test, amdgpu_dm_is_valid_crc_source(AMDGPU_DM_PIPE_CRC_SOURCE_NONE));
-+	KUNIT_EXPECT_FALSE(test, amdgpu_dm_is_valid_crc_source(AMDGPU_DM_PIPE_CRC_SOURCE_MAX));
-+	KUNIT_EXPECT_FALSE(test, amdgpu_dm_is_valid_crc_source(AMDGPU_DM_PIPE_CRC_SOURCE_INVALID));
-+}
-+
-+static struct kunit_case dm_crc_test_cases[] = {
-+	KUNIT_CASE(dm_test_parse_crc_source_none),
-+	KUNIT_CASE(dm_test_parse_crc_source_crtc),
-+	KUNIT_CASE(dm_test_parse_crc_source_dprx),
-+	KUNIT_CASE(dm_test_parse_crc_source_crtc_dither),
-+	KUNIT_CASE(dm_test_parse_crc_source_dprx_dither),
-+	KUNIT_CASE(dm_test_parse_crc_source_invalid),
-+	KUNIT_CASE(dm_test_is_crc_source_crtc),
-+	KUNIT_CASE(dm_test_is_crc_source_dprx),
-+	KUNIT_CASE(dm_test_need_crc_dither),
-+	KUNIT_CASE(dm_test_is_valid_crc_source),
++static struct kunit_case dm_hdcp_test_cases[] = {
++	KUNIT_CASE(dm_test_process_output_property_validate_always_scheduled),
++	KUNIT_CASE(dm_test_process_output_callback_needed),
++	KUNIT_CASE(dm_test_process_output_callback_stop),
++	KUNIT_CASE(dm_test_process_output_watchdog_needed),
++	KUNIT_CASE(dm_test_process_output_watchdog_stop),
++	KUNIT_CASE(dm_test_process_output_callback_and_watchdog_needed),
 +	{}
 +};
 +
-+static struct kunit_suite dm_crc_test_suite = {
-+	.name = "amdgpu_dm_crc",
-+	.test_cases = dm_crc_test_cases,
++static struct kunit_suite dm_hdcp_test_suite = {
++	.name = "amdgpu_dm_hdcp",
++	.test_cases = dm_hdcp_test_cases,
 +};
 +
-+kunit_test_suite(dm_crc_test_suite);
++kunit_test_suite(dm_hdcp_test_suite);
 +
 +MODULE_LICENSE("Dual MIT/GPL");
-+MODULE_DESCRIPTION("KUnit tests for amdgpu_dm_crc");
++MODULE_DESCRIPTION("KUnit tests for amdgpu_dm_hdcp");
 +MODULE_AUTHOR("AMD");
 -- 
 2.43.0
