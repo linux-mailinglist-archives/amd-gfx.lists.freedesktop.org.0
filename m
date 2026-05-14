@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gNVOFVzwBWq3dgIAu9opvQ
+	id uKyOEUUABmrFdwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 May 2026 17:55:08 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 May 2026 19:03:01 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA0F5544587
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 May 2026 17:55:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6A875450B0
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 May 2026 19:03:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C75510E5F0;
-	Thu, 14 May 2026 15:55:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FDCF10E3C7;
+	Thu, 14 May 2026 17:02:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="UyQNoBfl";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="KS3pxNmU";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011020.outbound.protection.outlook.com [52.101.52.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 342D510F292
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 May 2026 15:55:05 +0000 (UTC)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012004.outbound.protection.outlook.com [52.101.43.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9790710E3CA;
+ Thu, 14 May 2026 17:02:55 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OlBX+LjR64z6bCtW9LmHgMglOlZIFPzeO/V0Bj5+baA2Ip+zL9tHJBUzRaTFRqspl9Esf9p+jOGp0FSZlR/y+FnCm+BFL1S1C8BfdqXGS0qjqPQNOY9Zn38DhQx9dCGpHdWc3h4O/tFasxsc1QNroHSDBcq3SprQwqd0LE2z/ZVeXi6ZdkEkIDsGpSgft6bjvCZr3dN6v5dTwEQu4fYyZsTlXF81l4b+Lt2WFKsPppRNtuQ2au9txCSCdxm+nWCVD2XlsZKv1utWhi5rNtzulIkjVuKTAWAm1N8qoJT12VNIgXSjguSBXx/5d3dnt8dc4hJhmgl+1ZMnpeSwbwj1mA==
+ b=ER5QfBArXa8ppSjP1odOyotK+6I6CtLucjUau9VTIX5XZzf5xHNDQf0hgtpt2O0eoxUAflp7qgJPaycZ/VBFMhqFGtA2SefyvJc+3vFxgDAscND3+KbWl9MmpZNZ4jzutWuhphWxxzKZH8tPugLInAQ/ukhOX7KOyFtqTBiAXez9d348HYTX7BJZHkXC2V3ZCg51vGlx7qgfejUGImD8JuSRftP2UnSDLJg9EM2d9h97IF24duN6HQRt6yEs8pP6NWoWaLJENsnmtcShs/FEIamat3DV8k6ctnYD4XS6rotA7PgA/e2jeW42d3EKb3PIO/DZSoQnOjFLjDwBzgaWcg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kqQEr5HpfsJ15mjaGlFoIlptQw2nEhy0x52rb4TfJJM=;
- b=IxwQ9r9QIKQNdT4zgeRq44p6hu9crT0p542Yl3fcNXRfVQ3kZovYvIrgm/MTuGBFl/93TSApU5oIekosGnKtPaynGQlidomtBXe4io/Xgv23Ww6x5r2XQrgWOkdeBfZs3orgPgNqy1BggAwdJ3jsY+f1KnEEK1OIazWa8aTiHuCh2kY+jS2MnsTUWlNy9VyGtSUqCrjEsIGHgxrNMZixpcKPYkDvkWZ/A4cnLMshGdAEUJK+NFIsomXqritOF5W6huW8IuLaG9bmTAkMSMIqC32J5zy7R5B8Fz11PRkvYEuXMnrC+JmIYUaCz4gJMKkdjD/ycf+zE/fG/GjYxOL/Og==
+ bh=BNBtypnnMPtjA2redigw9vdP+OHc++8G5ZSIEwEI9wY=;
+ b=aIQ7h2D9KyViS2RpAiYXwS/KWghiIYcRtLif1i64Rq/GA8ljqUojNft3uDp1a+rZpaW5VEYMBzFe+5JuOJnJx0ntaLvV/UCWcca1cy64vOhyg70XbSsP6KfKtqYZiezj4fKoi95QO0OD5jPElP/7F25A1TQ1T4TKxUYHa2Dimpdi1tVR+aWjc0aeAkOOiTFtZsU9EGtoHqUoEc6MKeBQlz/J/Mjem3aMtxhAAhsu/Pu4ab4jTExP9ILn2jusCXa7fqyyGsH9jrAOJPE0FaDR1B9vhyUD83jvG6BhIsERzwNAPoNCAUm8n0CBKhumPzh6BQIpYiycPIRTSIbdwltt4A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ 165.204.84.17) smtp.rcpttodomain=gmail.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kqQEr5HpfsJ15mjaGlFoIlptQw2nEhy0x52rb4TfJJM=;
- b=UyQNoBflFGgSHpQH2WLh/mY2um6SNhmKRVxn5HvO/DyaxgHT5o/Uwdh0AVW+Utzg3zMA7TDBebr4WJiM0vguNwrRmf/wnWcaZGBy/SyPEbAjK3vaw5bmlxbXchDf50RDHTxQROm9EEO7OGq4co0q4EHAQuR2njKhZgD2W5PLGzE=
-Received: from PH7P220CA0003.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:326::25)
- by CYXPR12MB9338.namprd12.prod.outlook.com (2603:10b6:930:e5::13)
+ bh=BNBtypnnMPtjA2redigw9vdP+OHc++8G5ZSIEwEI9wY=;
+ b=KS3pxNmUQaEpz/0UA5Ws4lrN2Y7+8pEUKX7jlUA4JdQlJjlqp554YuphchezUSsu5zj93kl4MtFHg4sbQmGBFm6GoWenpQH5oEsrC9+821yYTCuPQ85ZhGrm43U04UruKL7DdEnfbW1oLO9+Arj5Ip6GOBekgVUcqbkjN9JQMUM=
+Received: from PH1PEPF0001330D.namprd07.prod.outlook.com (2603:10b6:518:1::1c)
+ by DS5PPF78FC67EBA.namprd12.prod.outlook.com (2603:10b6:f:fc00::655)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Thu, 14 May
- 2026 15:54:55 +0000
-Received: from CY4PEPF0000E9D5.namprd05.prod.outlook.com
- (2603:10b6:510:326:cafe::a8) by PH7P220CA0003.outlook.office365.com
- (2603:10b6:510:326::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.25.19 via Frontend Transport; Thu, 14
- May 2026 15:54:55 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.12; Thu, 14 May
+ 2026 17:02:50 +0000
+Received: from CY4PEPF0000EDD7.namprd03.prod.outlook.com
+ (2a01:111:f403:f912::1) by PH1PEPF0001330D.outlook.office365.com
+ (2603:1036:903:47::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.25.17 via Frontend Transport; Thu, 14
+ May 2026 17:02:50 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -53,58 +53,58 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
 Received: from satlexmb08.amd.com (165.204.84.17) by
- CY4PEPF0000E9D5.mail.protection.outlook.com (10.167.241.68) with Microsoft
+ CY4PEPF0000EDD7.mail.protection.outlook.com (10.167.241.203) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.25.13 via Frontend Transport; Thu, 14 May 2026 15:54:54 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
+ 15.21.25.13 via Frontend Transport; Thu, 14 May 2026 17:02:49 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 14 May
- 2026 10:54:54 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ 2026 12:02:49 -0500
+Received: from kylin.lan (10.180.168.240) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 14 May
- 2026 10:54:53 -0500
-Received: from box-0.amd.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Thu, 14 May 2026 10:54:53 -0500
-From: <IVAN.LIPSKI@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, <mario.limonciello@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Ivan Lipski <ivan.lipski@amd.com>,
- Max Chernoff <git@maxchernoff.ca>
-Subject: [PATCH v2] drm/amd/display: Write REFCLK to 48MHz on DCN21
-Date: Thu, 14 May 2026 11:53:50 -0400
-Message-ID: <20260514155348.2114429-3-IVAN.LIPSKI@amd.com>
+ 2026 10:02:47 -0700
+From: Alex Hung <alex.hung@amd.com>
+To: <Felix.Kuehling@amd.com>, <alexander.deucher@amd.com>,
+ <christian.koenig@amd.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
+ <harry.wentland@amd.com>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>
+CC: <alex.hung@amd.com>, kernel test robot <lkp@intel.com>
+Subject: [PATCH] drm/amdkfd: Fix UML build guards for x86_64-only code
+Date: Thu, 14 May 2026 11:01:39 -0600
+Message-ID: <20260514170139.335618-1-alex.hung@amd.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb09.amd.com
+ (10.181.42.218)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D5:EE_|CYXPR12MB9338:EE_
-X-MS-Office365-Filtering-Correlation-Id: c224b264-0b58-4c98-0015-08deb1d12413
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD7:EE_|DS5PPF78FC67EBA:EE_
+X-MS-Office365-Filtering-Correlation-Id: be88f994-2a5a-48c0-6376-08deb1daa122
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|1800799024|82310400026|376014|18002099003|56012099003|11063799003;
-X-Microsoft-Antispam-Message-Info: mZ//5l7iWoxAF51EHYg49k6htTrVldi/kd8fh/B9tcnFxnAID3IXDD/Aj3Mt6cPx6MMGFDCmx4g7biDuQPXbd0Wf984zBnXXaaGd6O3aE/RZxO7/T2CeKOvE30+15LSglG8ICI1q5M7/SyXPhnGRIaVJ3gGAsxW+u4geF054gffXTKdVgPjX2RdSuLp3/AAbLGRMeYfcxcip7voHfxCIF+4usoz1T19/zWoDzuks+Z9ZZaqSa7Tcs4YihplyvGeOe//1DgeTRYjSpXSZtqj8uUvJpzE46cXBzyejf+3qvSp/0+KeBDUKUTzXbj8kp90DcKdIVdDdDNT9NR0COiT7HbEDwn8LKP+HcxSInGRTN1n+9FNZICEavUjszjkk1utdt3/loOMb1Ukj5WNGzUckpE3uZrW+/Q507/xH5Z+ZY5oGW5HT+sDq3W5r8U1tn+IEFMlEEtO+pWCYe7ygCeF/V3GWyuR4Bp2GwLVtycTFQ98zciqcYZwnxRjpuY5DIi1NbA8aCBkclPA2xGBYzpn7pifQB0xWhwmUsDxmHTmODeYRY1J78qAG597PREvfFsDKJpsiEWkar2ooMed3uQbJtTnI2EJntugobd7dSRQIjCKiS3ovzFAX16F98ICXpDriE7L7epPLbIYCi7DSUOyGCpsbh1lfiumwiZpSl0O+B5xZqsKfeg8iXWrEnLYAOYkeo9Fdo7YviZDT69G/L50xmQmM+7l+FRPC3htDP8euY5w=
+ ARA:13230040|1800799024|376014|82310400026|36860700016|18002099003|56012099003|11063799003;
+X-Microsoft-Antispam-Message-Info: 4qqQJMrRij/cqwlEqSr1X0wDUKx08XieRI8YZOyRR4HOVf+fk8WUjM1eEeOZ9L7VY7A3BaffGic7rYGJbnWCMlzd6V5RYOaU3o6jimyJYBJWjDiCiiai1Al1X1w9cgizF0yS3wnbWzE9Ue6oToXx9iXGlJ9D44jT2U4LtcugvQRmY68bljKNe+uxp0W9WoB+HXyTirK5DV1cyGzIIIcn60K64HoIO4hnuUNjxWd5a30Yo/qhOZsAcZSwWscuBnKnmmgIT31/2cc7R7i+Hdkw6G/G7L9eT0tX7CkMDVDx6a0zqK4tVwhJOcwnXSX19Jm1j2LbexxIatGimrJ8TDaKeZh6FjbqqWGsV7z751uMnXjpaDsEWwnHnyfnNUVa7t8kbbGj6bUT7KQOzpRqn2hdJWIUy8i7a3VlXuUKgc4CtLRApkCwam36O3RSJO03ZHENZOY26Gs5x7vqFjxhfLHM6pUIuM9SxXSCsswXb6Bs1RgHIe6bdsonTe5HmC7mqLbB1IQGrtx4bNqqs5QtHK0xtsBj11AwVpol4PRh9ydzNv4bdcir2YjERB5c/zwDNN7Xizkbdkko0/eXQfNmg4UdvwiztXTr/5D4cEzN48Q9ZUCEiZex0El7Fo6yeGwQgt76Ug+tUkYSwQusIggq9VycyTzaMH9VFevDD5XPnX6ikozcjbm26bJioDONmoLzeUDMvlxVZk8RTqq70ByTVhEL1o7qqqI0Z6uccl1UCF0LOEI=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(1800799024)(82310400026)(376014)(18002099003)(56012099003)(11063799003);
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700016)(18002099003)(56012099003)(11063799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 3ATbK1aleoGZ5Uf1zOuu/nREGbzsA3xLXmVxAnAoKE4G07R/G01TuWIuwON/Zkwls+8oMg+q9n/z/GYnS2vHTiRIduylFvhC/G0fXYwfJGS7gbKKDrrDdpoKa/NKiBRTL33vGLXkxXd+Fk4tJGN0SzO1BIS5Y9Zep8k/xIP099I9C2ybrhyouuip62Lh7lr5S3WJ8W7Q10N/3lzTCquo/sVm/r8E5kzLK4F8YvhQf9baRDCC03iPtKJpE8zQRGtcwKS5n64JeneRykqpzpgJB4j+joXrFK0vNtgFb56HGSJLVDasCy9AWLzsEukb1toMj+1Gz4mYkM8Ifs8P2hkPGOVfcRW0JM3NO1HOue32IAnf99/wDfkit2LIVCFr+HmJn+rdDaXZ3UuT+CZd5xvrKa4r24MkO7bS9C+07fZcgsuItSamadbCPxC3P77aKpLY
+X-MS-Exchange-AntiSpam-MessageData-0: yXIkLPSWO9xKT6AGSXlIG8Y4jM/9BvXZU55dz8irsYalxl45Lp00WdPdtl3wSBy3XP0OTzR9c3qETgpIC5a88nZ6rOMaLbVu1tewJmhaUqC5zS2e0G98GI+3kpQbPZuol2avA43/NTSMu1AokogRcqmrrnbztb1/7WDjrL5deQt1t/EEQU55oFaVbWsoQwH0IS9XD3Ec9gPue70Fl+kLwacIA+pq/AyvpxWYM6448kJzZG5yRX8WfAqEPHpJ+HsxGjTkSGy0xy9U5rf70kauLnAqJ3otj6V3syXjXusMr+T36BWgdOd4jXl/eYnZxnm7OMDqQI0M50nz9XqN+x/E4iToOWoKnM52rtNd1vKjqz0IXzHCNvOahlxKJj18JqO+CatEed1KTceNpIgzLqDevwaHvY1gbM4/cnFGgpofhKSKf8P5ihVamCXQGRMjT2YR
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 May 2026 15:54:54.3771 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c224b264-0b58-4c98-0015-08deb1d12413
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 May 2026 17:02:49.6530 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: be88f994-2a5a-48c0-6376-08deb1daa122
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D5.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD7.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR12MB9338
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPF78FC67EBA
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,91 +118,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: BA0F5544587
+X-Rspamd-Queue-Id: E6A875450B0
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,amd.com:mid,amd.com:dkim];
-	FROM_NEQ_ENVFROM(0.00)[IVAN.LIPSKI@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_NO_DN(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	NEURAL_HAM(-0.00)[-0.999];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,amd.com:dkim,intel.com:email];
+	FROM_NEQ_ENVFROM(0.00)[alex.hung@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_XOIP(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-From: Ivan Lipski <ivan.lipski@amd.com>
+cpu_data().topo.apicid and kfd_fill_iolink_info_for_cpu() rely on
+x86-specific structs not present on UML. The kfd_topology.c and
+kfd_crat.c were guarded by CONFIG_X86_64 alone, causing build
+failures when CONFIG_DRM_AMDGPU is selected on UML.
 
-[Why&How]
-dccg21_init() calls dccg2_init() which hardcodes 100MHz refclk values
-for MICROSECOND_TIME_BASE_DIV and MILLISECOND_TIME_BASE_DIV. DCN21
-uses 48MHz refclk, so the wrong values corrupt DCCG timing and cause eDP
-link training failure on cold boot.
+Update guards to '#if defined(CONFIG_X86_64) && !defined(CONFIG_UML)'
+to ensure x86_64-only paths are excluded on UML builds.
 
-Write the correct 48MHz values directly instead of calling dccg2_init().
-
-Fixes: b7dfeea1e168 ("drm/amd/display: Add missing DCCG register entries for DCN20-DCN316")
-
-v2:
-Fixed typo
-
-Reported-by: Max Chernoff <git@maxchernoff.ca>
-Tested-by: Max Chernoff <git@maxchernoff.ca>
-Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
+Fixes: e6b71bcdc409 ("drm/amdgpu: Remove UML build exclusion from Kconfig")
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202605140506.TI8zPIBG-lkp@intel.com/
+Cc: Harry Wentland <harry.wentland@amd.com>
+Assisted-by: Copilot:Claude-Sonnet-4.6
+Signed-off-by: Alex Hung <alex.hung@amd.com>
 ---
- .../drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c    | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c     | 6 +++---
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c b/drivers/gpu/drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c
-index bdc3ce5d4f47..be167bbd42b5 100644
---- a/drivers/gpu/drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c
-+++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c
-@@ -105,15 +105,26 @@ static void dccg21_update_dpp_dto(struct dccg *dccg, int dpp_inst, int req_dppcl
-  * dccg2_init() unconditionally overwrites MICROSECOND_TIME_BASE_DIV to
-  * 0x00120264, destroying the marker before it can be read.
-  *
-- * Guard the call: if the S0i3 marker is present, skip dccg2_init() so the
-+ * Guard the call: if the S0i3 marker is present, skip init so the
-  * WA can function correctly. bios_golden_init() will handle init in that case.
-+ *
-+ * DCN21 uses 48MHz refclk, not 100MHz, so we must explicitly set the correct
-+ * values (48MHz is taken from rn_clk_mgr_construct()).
-  */
- static void dccg21_init(struct dccg *dccg)
- {
-+	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
-+
- 	if (dccg2_is_s0i3_golden_init_wa_done(dccg))
- 		return;
- 
--	dccg2_init(dccg);
-+	/* 48MHz refclk from rn_clk_mgr_construct() */
-+	REG_WRITE(MICROSECOND_TIME_BASE_DIV, 0x00120230);
-+	REG_WRITE(MILLISECOND_TIME_BASE_DIV, 0x0010bb80);
-+	REG_WRITE(DISPCLK_FREQ_CHANGE_CNTL, 0x0e01003c);
-+
-+	if (REG(REFCLK_CNTL))
-+		REG_WRITE(REFCLK_CNTL, 0);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+index a1087c13f241..cf7b1b038d5f 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+@@ -1821,7 +1821,7 @@ static int kfd_fill_mem_info_for_cpu(int numa_node_id, int *avail_size,
+ 	return 0;
  }
  
- static const struct dccg_funcs dccg21_funcs = {
+-#ifdef CONFIG_X86_64
++#if defined(CONFIG_X86_64) && !defined(CONFIG_UML)
+ static int kfd_fill_iolink_info_for_cpu(int numa_node_id, int *avail_size,
+ 				uint32_t *num_entries,
+ 				struct crat_subtype_iolink *sub_type_hdr)
+@@ -1880,7 +1880,7 @@ static int kfd_create_vcrat_image_cpu(void *pcrat_image, size_t *size)
+ 	struct crat_subtype_generic *sub_type_hdr;
+ 	int avail_size = *size;
+ 	int numa_node_id;
+-#ifdef CONFIG_X86_64
++#if defined(CONFIG_X86_64) && !defined(CONFIG_UML)
+ 	uint32_t entries = 0;
+ #endif
+ 	int ret = 0;
+@@ -1945,7 +1945,7 @@ static int kfd_create_vcrat_image_cpu(void *pcrat_image, size_t *size)
+ 			sub_type_hdr->length);
+ 
+ 		/* Fill in Subtype: IO Link */
+-#ifdef CONFIG_X86_64
++#if defined(CONFIG_X86_64) && !defined(CONFIG_UML)
+ 		ret = kfd_fill_iolink_info_for_cpu(numa_node_id, &avail_size,
+ 				&entries,
+ 				(struct crat_subtype_iolink *)sub_type_hdr);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+index 46db0d65d242..87e13f021457 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+@@ -2349,7 +2349,7 @@ static int kfd_cpumask_to_apic_id(const struct cpumask *cpumask)
+ 	first_cpu_of_numa_node = cpumask_first(cpumask);
+ 	if (first_cpu_of_numa_node >= nr_cpu_ids)
+ 		return -1;
+-#ifdef CONFIG_X86_64
++#if defined(CONFIG_X86_64) && !defined(CONFIG_UML)
+ 	return cpu_data(first_cpu_of_numa_node).topo.apicid;
+ #else
+ 	return first_cpu_of_numa_node;
 -- 
 2.43.0
 
