@@ -2,27 +2,27 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +KD4BAcNB2oLrAIAu9opvQ
+	id WKXDLwkNB2p0rAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2026 14:09:43 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2026 14:09:45 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5FD654F29C
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2026 14:09:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 975ED54F2C1
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2026 14:09:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA13510F508;
-	Fri, 15 May 2026 12:09:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AA5E10F50D;
+	Fri, 15 May 2026 12:09:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81AB910F50E
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 May 2026 12:09:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D65E10F50D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 May 2026 12:09:42 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
  [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 303125EDA1;
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 8F6485EDB3;
  Fri, 15 May 2026 12:09:23 +0000 (UTC)
 Authentication-Results: smtp-out1.suse.de;
 	none
@@ -30,11 +30,11 @@ Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C95A0593AA;
- Fri, 15 May 2026 12:09:22 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 35BCA593A9;
+ Fri, 15 May 2026 12:09:23 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id iDDqL/IMB2rQFwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 15 May 2026 12:09:22 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id CA7tC/MMB2rQFwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 15 May 2026 12:09:23 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: simona@ffwll.ch, airlied@gmail.com, mdaenzer@redhat.com,
  pekka.paalanen@collabora.com, jadahl@gmail.com, contact@emersion.fr,
@@ -42,9 +42,9 @@ To: simona@ffwll.ch, airlied@gmail.com, mdaenzer@redhat.com,
 Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-hyperv@vger.kernel.org, virtualization@lists.linux.dev,
  spice-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 7/9] drm/qxl: Set DRM_VBLANK_FLAG_SIMULATED
-Date: Fri, 15 May 2026 13:55:12 +0200
-Message-ID: <20260515120916.333614-8-tzimmermann@suse.de>
+Subject: [PATCH 8/9] drm/virtgpu: Set DRM_VBLANK_FLAG_SIMULATED
+Date: Fri, 15 May 2026 13:55:13 +0200
+Message-ID: <20260515120916.333614-9-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260515120916.333614-1-tzimmermann@suse.de>
 References: <20260515120916.333614-1-tzimmermann@suse.de>
@@ -52,11 +52,11 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
-X-Spam-Score: -4.00
 X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
-X-Spam-Flag: NO
+X-Spam-Score: -4.00
 X-Spam-Level: 
+X-Spam-Flag: NO
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,7 +70,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D5FD654F29C
+X-Rspamd-Queue-Id: 975ED54F2C1
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.99 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -105,25 +105,25 @@ X-Spamd-Result: default: False [0.99 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[]
 X-Rspamd-Action: no action
 
-Mark the vblank event on qxl as simulated, so that the WAIT_VBLANK
+Mark the vblank event on virtgpu as simulated, so that the WAIT_VBLANK
 ioctl fails with an error. The ioctl should not be supported because
 the output is not synchronized to a display refresh.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/qxl/qxl_display.c | 2 +-
+ drivers/gpu/drm/virtio/virtgpu_display.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/qxl/qxl_display.c b/drivers/gpu/drm/qxl/qxl_display.c
-index a026bd35ef48..b808fdebbd89 100644
---- a/drivers/gpu/drm/qxl/qxl_display.c
-+++ b/drivers/gpu/drm/qxl/qxl_display.c
-@@ -1300,7 +1300,7 @@ int qxl_modeset_init(struct qxl_device *qdev)
+diff --git a/drivers/gpu/drm/virtio/virtgpu_display.c b/drivers/gpu/drm/virtio/virtgpu_display.c
+index 44ffffec550f..558d8001c54f 100644
+--- a/drivers/gpu/drm/virtio/virtgpu_display.c
++++ b/drivers/gpu/drm/virtio/virtgpu_display.c
+@@ -381,7 +381,7 @@ int virtio_gpu_modeset_init(struct virtio_gpu_device *vgdev)
+ 	for (i = 0 ; i < vgdev->num_scanouts; ++i)
+ 		vgdev_output_init(vgdev, i);
  
- 	qxl_display_read_client_monitors_config(qdev);
- 
--	ret = drm_vblank_init(&qdev->ddev, qxl_num_crtc);
-+	ret = drmm_vblank_init(&qdev->ddev, qxl_num_crtc, DRM_VBLANK_FLAG_SIMULATED);
+-	ret = drm_vblank_init(vgdev->ddev, vgdev->num_scanouts);
++	ret = drmm_vblank_init(vgdev->ddev, vgdev->num_scanouts, DRM_VBLANK_FLAG_SIMULATED);
  	if (ret)
  		return ret;
  
