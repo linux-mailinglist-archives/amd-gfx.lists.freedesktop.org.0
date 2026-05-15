@@ -2,90 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +HQ7Au7cCmpV8wQAu9opvQ
+	id YH8lIwY4B2ottwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2026 17:13:10 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73474569C9B
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CEC8551F44
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 May 2026 17:13:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ABCE10E74F;
-	Mon, 18 May 2026 09:33:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54A7210E1C2;
+	Fri, 15 May 2026 15:13:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=bitbyteword.org header.i=@bitbyteword.org header.b="CDjLuGz5";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="l1qrZ4QV";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com
- [209.85.222.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02D1910E61C
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 May 2026 13:59:42 +0000 (UTC)
-Received: by mail-qk1-f172.google.com with SMTP id
- af79cd13be357-902deb2412fso1022531585a.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 May 2026 06:59:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bitbyteword.org; s=google; t=1778853581; x=1779458381;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=45LaM1Fr3Zq3iiITdQvbYZ1is3E5sWAW6nvjjI/+KtE=;
- b=CDjLuGz5Ya0jCD27U9MXyy2R4vF0oDP0hFnFcM1QTU2rpHgYnYVVAFLp82csxRA8sI
- 9G+ORGsatLf+Ds/qnez4zP6aSKVdob0bKsF8xz/gsswqSXXkMtl5oqNjYcwzT2BR5+6x
- HZo2DaZsZtmm5r7q2Rsm8nVvFbhrpcOxHIPWFBlch9FomhGUhhz6h9DTyQz+1dVGWCT3
- Bd9eZUtzeihDLjzuHUtYIuBt8OiOuZgsi+xY5Gi9J+34vsK8ExptOF1E97I2g4RyMoLQ
- zIHXYUdYWxRV962Yrse4biIEdNGjD+ajiJtR5pnejgJ+bBdB9dcRvVp93C2yqahRX536
- 2ryA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778853581; x=1779458381;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=45LaM1Fr3Zq3iiITdQvbYZ1is3E5sWAW6nvjjI/+KtE=;
- b=CjyqdgJ8B9URhyzWzlhjskOpcGBXLHVpzl0/Tm2uHSKSSm5KtUBlimfGE/BZxb+mvf
- 6AjtrDZZJLDf2kRt63SlC+LdlU0hfzydlWaXD1I9xHg66AqlR+HktSpiaJ2XUhm+LQVE
- va+QzYJ5zTo4098pOG7k1MeEBCZBLMA4dPIaKAM2ncgJyzGiOWdldAOMTnmZvs9vliRa
- 7waTXVtTB6Ag4swkO9KMm9cuOuipSx7y/OMSizGlQHrfm1hSrO8vtPdOcQqbq/ezi8bA
- cJgrx1h8258bTbrP1AOuLb0rRwNmrmmOQBaWQxNLKrEdh1Red2mgtxWVoRgxCkA3LVPR
- +GIw==
-X-Gm-Message-State: AOJu0Yx12JDI/FdRkcLbQg/TrVRBdvmIdrjRozWkvXu8a6Lr4CJX1WH9
- wtf77gVBqw0kyv7dmKsMXKcoy7LRL6lUU0O7GLSijJAZH0Yvqe/tgkc1SicetoH55gM=
-X-Gm-Gg: Acq92OE+egoZBhdIMSU7d+JTW2xHPViNknFZ+5GOpsUUW3Y+R12QfRIwcwoVLOiiV9V
- wEHmQ1t70cxh0Mko2/gvwuvzZMdebwa8INU3mgzJU5Xi7not2E2hShsltdVtBGNGrn8TtTgn48W
- HJ5XOt3X6PNmzzMMMhCtTC/r8cmiqgfh9ZeopB858Utq+8SHNtI0OrgVOo4dh7l8r2EIEPoJhia
- b41ifiCK5ydb/IFXbHW3ZR1IK6zx7hqOz3YGswy4pYS+dMwEcELQEd3elBDHqBLe2KGy8dOPVbb
- ogfOCLbrxbnc4vSgYgG+58KkZizdXWU4wUNHXN7NZVV15JJDcvrkt78SO0KyBIIpw5lqfXFcq7V
- WCxKXY20GRSZjgXOqbTEz3jeG0f0ig9Dw52EsqBFKHKzrRDppKQcIvmvrQcQS+Q/l2RenOJpFOC
- OQ3x90B42dNPz60eGlyRaWIZazWEiF
-X-Received: by 2002:a05:620a:29c9:b0:8cd:9665:9eff with SMTP id
- af79cd13be357-911cd46b36amr659332785a.21.1778853580911; 
- Fri, 15 May 2026 06:59:40 -0700 (PDT)
-Received: from vinp2.lan ([2607:fb92:1900:6734:902:ab48:6190:9c1e])
- by smtp.gmail.com with ESMTPSA id
- af79cd13be357-910bd02f12dsm564638885a.40.2026.05.15.06.59.39
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 15 May 2026 06:59:40 -0700 (PDT)
-From: "Vineeth Pillai (Google)" <vineeth@bitbyteword.org>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Steven Rostedt <rostedt@goodmis.org>, linux-trace-kernel@vger.kernel.org,
- Vineeth Pillai <vineeth@bitbyteword.org>,
- Peter Zijlstra <peterz@infradead.org>
-Subject: [PATCH v3 06/11] drm: Use trace_call__##name() at guarded tracepoint
- call sites
-Date: Fri, 15 May 2026 09:59:32 -0400
-Message-ID: <20260515135932.2238842-1-vineeth@bitbyteword.org>
-X-Mailer: git-send-email 2.54.0
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAB2610E1C2;
+ Fri, 15 May 2026 15:13:05 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4gH9gL2S7Qz9v5V;
+ Fri, 15 May 2026 17:13:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1778857982;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=G9Ve8iSK64OPJloQ1KyEsnuVQdZfv3OGb7barbdsQz8=;
+ b=l1qrZ4QVtCpTlJqwSaf2Rea5oWIKIin+cJbMCGt0cLQUa9GshgY3K0t/HxIP3MWzld8V5D
+ hVNoMR42wtugGTbofF1VWKY+8Zig99yBhFRGfkawkGX1XX5TFG7p69X4CWqWL5400icF7l
+ SobZ2BKX1aamsnyvwtHVSE+lKiyqLoPsckUftL5K/Z+4u5h4oRVGEke0LdWVFNzfepXZ+y
+ yu8oGwrzLcASmYXyPLBexKYfz/pL0G25Zwnh+FaYBwAFtbeTgOSd4qs0PRiiaBPXwJyE9S
+ Amutf9pX4xHyG2y4lgd3i9PgKHU5VV/lGzhrUbusX1x7dvJFdphWq7LkUfszaA==
+Message-ID: <b5d03921-1e6f-4c4f-900e-fc9e28222176@mailbox.org>
+Date: Fri, 15 May 2026 17:12:58 +0200
 MIME-Version: 1.0
+Subject: Re: [PATCH 0/9] drm: Limit DRM_IOCTL_WAIT_VBLANK to vblank interrupts
+To: Thomas Zimmermann <tzimmermann@suse.de>, simona@ffwll.ch,
+ airlied@gmail.com, pekka.paalanen@collabora.com, jadahl@gmail.com,
+ contact@emersion.fr, maarten.lankhorst@linux.intel.com, mripard@kernel.org
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-hyperv@vger.kernel.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org
+References: <20260515120916.333614-1-tzimmermann@suse.de>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Language: en-CA
+In-Reply-To: <20260515120916.333614-1-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 May 2026 09:33:27 +0000
+X-MBO-RS-META: 854feowx6yjx48qwaa5bzzie7tsk7ya4
+X-MBO-RS-ID: 8806f4ef33ee5bb5fe8
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,149 +69,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 73474569C9B
+X-Rspamd-Queue-Id: 0CEC8551F44
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.69 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DATE_IN_PAST(1.00)[67];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[bitbyteword.org:s=google];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:matthew.brost@intel.com,m:dakr@kernel.org,m:phasta@kernel.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:dri-devel@lists.freedesktop.org,m:rostedt@goodmis.org,m:linux-trace-kernel@vger.kernel.org,m:vineeth@bitbyteword.org,m:peterz@infradead.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
 	ARC_NA(0.00)[];
-	DMARC_NA(0.00)[bitbyteword.org];
-	FORGED_SENDER(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,intel.com,kernel.org,linux.intel.com,suse.de];
-	DKIM_TRACE(0.00)[bitbyteword.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[suse.de,ffwll.ch,gmail.com,collabora.com,emersion.fr,linux.intel.com,kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,goodmis.org:email]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mailbox.org:mid,mailbox.org:dkim]
 X-Rspamd-Action: no action
 
-From: Vineeth Pillai <vineeth@bitbyteword.org>
+On 5/15/26 13:55, Thomas Zimmermann wrote:
+> DRM's WAIT_VBLANK ioctl synchronizes user-space clients to display
+> refresh. This is meaningless with vblank timers, which run unrelated
+> to the hardware's vblank.
+> 
+> Disable the ioctl for simulated vblanks. Set DRM_VBLANK_FLAG_SIMULATED
+> for CRTCs with simulated vblank events in all such drivers. The vblank
+> timers of these devices still rate-limit the number of page-flip events
+> to match the display refresh.
+> 
+> According to maintainers, user-space compositors do not require the ioctl
+> for rate-limitting display output. Weston and Kwin rely on page-flip
+> events. Mutter uses and internal timer to limit the number of display
+> updates per second.
 
-Replace trace_foo() with the new trace_call__foo() at sites already
-guarded by trace_foo_enabled(), avoiding a redundant
-static_branch_unlikely() re-evaluation inside the tracepoint.
-trace_call__foo() calls the tracepoint callbacks directly without
-utilizing the static branch again.
+Actually mutter fundamentally relies on atomic commit completion events for that, same as Weston & KWin. Mutter uses the WAIT_VBLANK ioctl only for minimizing input → output latency (which can hide issues when completion of atomic commits isn't properly throttled).
 
-Original v2 series:
-https://lore.kernel.org/linux-trace-kernel/20260323160052.17528-1-vineeth@bitbyteword.org/
 
-Parts of the original v2 series have already been merged in mainline.
-This patch is being reposted as a follow-up cleanup for the remaining
-unmerged pieces.
+(Just a side not on the cover letter, no objections to the patches themselves)
 
-Suggested-by: Steven Rostedt <rostedt@goodmis.org>
-Suggested-by: Peter Zijlstra <peterz@infradead.org>
-Signed-off-by: Vineeth Pillai (Google) <vineeth@bitbyteword.org>
-Assisted-by: Claude:claude-sonnet-4-6
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c            |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c            |  4 ++--
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 10 +++++-----
- drivers/gpu/drm/scheduler/sched_entity.c          |  5 +++--
- 4 files changed, 11 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index b24d5d21be5f..cb0b5cb07d57 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -1004,7 +1004,7 @@ static void trace_amdgpu_cs_ibs(struct amdgpu_cs_parser *p)
- 		struct amdgpu_job *job = p->jobs[i];
- 
- 		for (j = 0; j < job->num_ibs; ++j)
--			trace_amdgpu_cs(p, job, &job->ibs[j]);
-+			trace_call__amdgpu_cs(p, job, &job->ibs[j]);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 9ba9de16a27a..a36ae94c425f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -1415,7 +1415,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev, struct amdgpu_bo_va *bo_va,
- 
- 	if (trace_amdgpu_vm_bo_mapping_enabled()) {
- 		list_for_each_entry(mapping, &bo_va->valids, list)
--			trace_amdgpu_vm_bo_mapping(mapping);
-+			trace_call__amdgpu_vm_bo_mapping(mapping);
- 	}
- 
- error_free:
-@@ -2183,7 +2183,7 @@ void amdgpu_vm_bo_trace_cs(struct amdgpu_vm *vm, struct ww_acquire_ctx *ticket)
- 				continue;
- 		}
- 
--		trace_amdgpu_vm_bo_cs(mapping);
-+		trace_call__amdgpu_vm_bo_cs(mapping);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 5fc5d5608506..fbdc12cdd6bb 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5263,11 +5263,11 @@ static void amdgpu_dm_backlight_set_level(struct amdgpu_display_manager *dm,
- 	}
- 
- 	if (trace_amdgpu_dm_brightness_enabled()) {
--		trace_amdgpu_dm_brightness(__builtin_return_address(0),
--					   user_brightness,
--					   brightness,
--					   caps->aux_support,
--					   power_supply_is_system_supplied() > 0);
-+		trace_call__amdgpu_dm_brightness(__builtin_return_address(0),
-+						 user_brightness,
-+						 brightness,
-+						 caps->aux_support,
-+						 power_supply_is_system_supplied() > 0);
- 	}
- 
- 	if (caps->aux_support) {
-diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-index fe174a4857be..185a2636b599 100644
---- a/drivers/gpu/drm/scheduler/sched_entity.c
-+++ b/drivers/gpu/drm/scheduler/sched_entity.c
-@@ -429,7 +429,8 @@ static bool drm_sched_entity_add_dependency_cb(struct drm_sched_entity *entity,
- 
- 	if (trace_drm_sched_job_unschedulable_enabled() &&
- 	    !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &entity->dependency->flags))
--		trace_drm_sched_job_unschedulable(sched_job, entity->dependency);
-+		trace_call__drm_sched_job_unschedulable(sched_job,
-+							entity->dependency);
- 
- 	if (!dma_fence_add_callback(entity->dependency, &entity->cb,
- 				    drm_sched_entity_wakeup))
-@@ -586,7 +587,7 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
- 		unsigned long index;
- 
- 		xa_for_each(&sched_job->dependencies, index, entry)
--			trace_drm_sched_job_add_dep(sched_job, entry);
-+			trace_call__drm_sched_job_add_dep(sched_job, entry);
- 	}
- 	atomic_inc(entity->rq->sched->score);
- 	WRITE_ONCE(entity->last_user, current->group_leader);
 -- 
-2.54.0
-
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
