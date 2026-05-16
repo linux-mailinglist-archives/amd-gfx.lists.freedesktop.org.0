@@ -2,82 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id W+MsHPi8CGpV3QMAu9opvQ
+	id MNSZEfHcCmpV8wQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 16 May 2026 20:52:40 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:37 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09E8555D5FE
-	for <lists+amd-gfx@lfdr.de>; Sat, 16 May 2026 20:52:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19C0B569CCE
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C84110E586;
-	Sat, 16 May 2026 18:52:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BAA810E081;
+	Mon, 18 May 2026 09:33:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PmfbwzMe";
+	dkim=pass (2048-bit key; unprotected) header.d=icloud.com header.i=@icloud.com header.b="ZrEe2af6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
- [209.85.128.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05C4710E547
- for <amd-gfx@lists.freedesktop.org>; Sat, 16 May 2026 18:52:36 +0000 (UTC)
-Received: by mail-wm1-f48.google.com with SMTP id
- 5b1f17b1804b1-4893940bb5eso4293515e9.3
- for <amd-gfx@lists.freedesktop.org>; Sat, 16 May 2026 11:52:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1778957555; x=1779562355; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Of5uJ4G2xF4w03OvBq3FrKhJGQfgKwZiWtACnNDXJdY=;
- b=PmfbwzMeen5/Oz3+AprV4zHq7Zr6oMmV13yJ8Fk8IQW+NatzIDyJtVNdmRxKNv0USf
- G0C6s0LOzYhF0ATQdi2ALbxG7pH3mj8ArnU0IIC6IQrETnZhtOb1f3vb51sQHi89Unle
- F3c2R22r5rTOgfYwK185wgnUKxxdgJvzCjzN8MprI6Mxm7iKBXzx11S9Awxt3MAUaYM4
- 5bFMcsSsdfItD8afXjwwZBIyj6afdYAMAqT2Zblo14/9ER0pWrx6yyWf9d28FX/754GZ
- fj7CLfREmFk1qLaTwHh506wwD4SEOxC6qJk0vhLExhPdYfZ/UNVb6aZbkVcZjKlqahbm
- g4qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778957555; x=1779562355;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=Of5uJ4G2xF4w03OvBq3FrKhJGQfgKwZiWtACnNDXJdY=;
- b=eXbLTK17YuE90lkcU6X1PYEyte4MvfSl8olFxnTSnEMdqWn/OqLPQI5yJd0eD4hK4n
- PXLKzmfh+zI1Ad+WpAclZE0ksrBn8MBc6VNkzHHCS6Zq/2E+z9a5lFaYJPlGu4n6gOKP
- vV8YUGmTx/IGbvSUlPaPJjIR8YL1RPDU8dOO8nf0wFywfhfEMQMWFjtrFjLQ4m/3D4Vh
- oSY8nrQJG9ql7FgXyAsqGiP6TgN2KHUJoqGNeY7/n8q4oRnC6KHym7FrNZquAHzz+qCy
- 5lf1eZpxGXcjt36sEJ9jhxHu0g4YAYhrqMowzHniIcICsqdDF+1VMaXFWe7XOK8X9SWM
- wmQA==
-X-Gm-Message-State: AOJu0YzsplWHNZKGHjQd1LJiBf43royEPDoPxHHGoY+81Cvl2dsetBJu
- Jq9dGo2RTbd5xeupJYTuP4hmOMwgAfA1uXkqvHFvqZkWYg6vRB83oBi4
-X-Gm-Gg: Acq92OFtIdt3R8KRX30HilZYYPyZ8yiic6Dl+FijEcuwAfvGrUmDxHRsBTaWp7ezK31
- C2qf7fVFk8+JZYbJSibwh5TBpklXp+hRwyyPQ9mD62GXN4WBnS+RzwgZBnamcL2YF/W9faEdh4i
- 7Cu8NhSujDfBdbdS6HJnqXMP8KAWa+FLmBqflj1Dx0fgaeiv8g6bCqUKMjdqs/QKf1uxDaWE0BL
- BnNoulrUxouWmtSN9FuhJsiryeae5JWgQOGC1HXRuh08ojCwB07YxCjfJ1qDHS3f4jzE3gvpqSk
- UwHHcjDY97zNqJvANkdyIzFkqpGWPWjApEyqB2AAHhXxY7kJtEhNMte+7O7CuHG8yHtO6A3zaE7
- INMlbxzq1kwYPcoW7LIDkA317yKpEUTbnOkoy2hgrSUfRHrMxp1vEnKfS8eaIZzKmpVFKXPPPgZ
- An8bXVf8KY2bdk9pvdAQtSFS7DBEi7B8oJS+acJw==
-X-Received: by 2002:a05:600d:10:b0:489:e696:8362 with SMTP id
- 5b1f17b1804b1-48fe60d7882mr105852915e9.13.1778957555135; 
- Sat, 16 May 2026 11:52:35 -0700 (PDT)
-Received: from skylab.fritz.box ([2a06:4944:10fb:f400:d904:da17:d4e8:49c7])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48fe5cab818sm147773865e9.14.2026.05.16.11.52.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 16 May 2026 11:52:34 -0700 (PDT)
-From: Gilles Risch <gilles.risch@gmail.com>
-To: alexander.deucher@amd.com
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Gilles Risch <gilles.risch@gmail.com>
-Subject: [PATCH] drm/radeon: fix eDP resume from suspend on iMac11,
- 1 / DCE3.1 systems
-Date: Sat, 16 May 2026 20:52:26 +0200
-Message-ID: <20260516185226.3005-1-gilles.risch@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260516092420.3579-2-gilles.risch@gmail.com>
-References: <20260516092420.3579-2-gilles.risch@gmail.com>
+X-Greylist: delayed 46328 seconds by postgrey-1.36 at gabe;
+ Sat, 16 May 2026 23:13:58 UTC
+Received: from outbound.mr.icloud.com (mr-2002l-snip4-2.eps.apple.com
+ [57.103.68.215])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C55710E1E3
+ for <amd-gfx@lists.freedesktop.org>; Sat, 16 May 2026 23:13:58 +0000 (UTC)
+Received: from outbound.mr.icloud.com (unknown [127.0.0.2])
+ by p00-icloudmta-asmtp-us-west-2a-60-percent-5 (Postfix) with ESMTPS id
+ 1EE231800133; Sat, 16 May 2026 23:13:54 +0000 (UTC)
+X-ICL-Out-Info: HUtFAUMEWwJACUgATUQeDx5WFlZNRAJCTQhKBUMDRQBBCFYBWANLVxQEG1sIUhhXE1gTVl8OXQIwUBtfAkIPHBNWFRMLU1ZRGFwdQAhUClkVC0EFXXcCURxWDVdDVARfUEsbDlwES1oVVRcOAkIfUB9MFldDWhkcGVoUXBhTRVEfVFhDGUVWaUELTx1dGVscQmRYVwkKAlEcVg1XQ1QEX1BUEVdQCwoAFlpAClRVRgJEDEkeWQNYBF1YTldfGlJTFAAaCw4FXQZAXDhaDlsERxQXG1wACUtGCUkdDgRUB10FXQ==
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com; s=1a1hai;
+ t=1778973238; x=1781565238; bh=2B8kh88BmMcREPsTrqppXb4O6KSA0MQb13JMTQ3AyrA=;
+ h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:x-icloud-hme;
+ b=ZrEe2af6nbuQLUs+52pG0Ub0MTF8KtiuYVacoOn6dz74pLF+6/Pl4gQ/MhNLkWHOL10lbfP5CRrbRLsR2qJp6nu9drE+xzNdYKEA4omdExVP7gHB6FJB2XU0gGIOdvKGERWr592TYXSJ9SATX/SJvvBE8fsKEz0KlcpPyfPzSOCNL3pkV3pJBbDy+SLb9qgv5YYrH7SWZLLPRntrGad2Kd1VrJ3f8g6UgF98Xz3Vjm8gkluC1b9DSh1YA3/IZnApksUo+PEBkMqNDz3Ypu7BkjT9PrKIEowCFRp3/2pdUe9C5UC/Xn6s6GR2zLvJ5mS5zrL29HrzXRYeDAhP/WYkbA==
+Received: from [192.168.1.34] (unknown [17.57.152.38])
+ by p00-icloudmta-asmtp-us-west-2a-60-percent-5 (Postfix) with ESMTPSA id
+ B13AC1800134; Sat, 16 May 2026 23:13:51 +0000 (UTC)
+Message-ID: <a2fc899b-0451-4436-a6d2-9ad9b8c2640e@icloud.com>
+Date: Sun, 17 May 2026 08:13:46 +0900
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] docs: fix typo in mpo-overview.rst
+To: Jonathan Corbet <corbet@lwn.net>, Alex Deucher
+ <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Shuah Khan <skhan@linuxfoundation.org>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260516100406.21070-1-cheesecake2960@icloud.com>
+ <87se7rmont.fsf@trenco.lwn.net>
+Content-Language: en-US
+From: Cheesecake <cheesecake2960@icloud.com>
+In-Reply-To: <87se7rmont.fsf@trenco.lwn.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE2MDIzNyBTYWx0ZWRfX9afkiO/+L68K
+ 3sxyBWtZdDUI1yDvHkh0b4UTlPgwsu3RwLa8Mo3ujYiTphvnV/uUmoBYx1JP3i46lv0BV0UHJHF
+ OLxJeYT3im3fTXJzdbZNyKzNv6D0tFSpdJUYqZysp3xOX4Wfb+wh02QbDzaE7TEPBX6OkkwAXKS
+ fzVl02OvH/xfwgCQ7DJdhq8BCZmJgPh+DhGBaIrHoZnDVXERXTjI3RWbc9FvKFnyv0DJEJtYqAZ
+ nGhVlDYV0DwdjhFJ6stHN5JDZz6vrXufPbhatQnBBl9r6PT8S0RoDOLqh4RomCamLMWx6wUiyPA
+ t0KpAcfFhJ4BaypM5VZktEloHnBOHMvYP3xs3jAAuaXVic5FwnyfBj2S4TVMvQ=
+X-Authority-Info-Out: v=2.4 cv=BquQAIX5 c=1 sm=1 tr=0 ts=6a08fa34
+ cx=c_apl:c_pps:t_out a=9OgfyREA4BUYbbCgc0Y0oA==:117
+ a=9OgfyREA4BUYbbCgc0Y0oA==:17 a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10
+ a=x7bEGLp0ZPQA:10 a=sIGCgqHK338A:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=v3ZZPjhaAAAA:8 a=U4lEO9gh2w5_OOAwJnoA:9 a=QEXdDO2ut3YA:10 a=UzISIztuOb4A:10
+ a=zY0JdQc1-4EAyPf5TuXT:22
+X-Proofpoint-GUID: FockY6_NoY58eSZNn8CMSw7qhlzHuBrL
+X-Proofpoint-ORIG-GUID: FockY6_NoY58eSZNn8CMSw7qhlzHuBrL
+X-Mailman-Approved-At: Mon, 18 May 2026 09:33:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,95 +83,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 09E8555D5FE
+X-Rspamd-Queue-Id: 19C0B569CCE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.99 / 15.00];
-	R_DKIM_REJECT(1.00)[gmail.com:s=20251104];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	DATE_IN_PAST(1.00)[34];
+	DMARC_POLICY_ALLOW(-0.50)[icloud.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[icloud.com:s=1a1hai];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:dri-devel@lists.freedesktop.org,m:gilles.risch@gmail.com,m:gillesrisch@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:skhan@linuxfoundation.org,m:dri-devel@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[cheesecake2960@icloud.com,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[icloud.com];
+	FREEMAIL_TO(0.00)[lwn.net,amd.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,linuxfoundation.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[gillesrisch@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com];
-	DKIM_TRACE(0.00)[gmail.com:-];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gillesrisch@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[icloud.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[cheesecake2960@icloud.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_SPAM(0.00)[0.884];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FROM_HAS_DN(0.00)[]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[icloud.com:email,icloud.com:mid,icloud.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-After suspend/resume the internal eDP display on iMac11,1 (and
-potentially other DCE3.1 systems) stays dark because
-atombios_set_edp_panel_power() skips panel power control for
-anything older than DCE4.
+On 2026/05/16 23:09, Jonathan Corbet wrote:
 
-Fix this by:
-- Extending atombios_set_edp_panel_power() to also handle DCE3.1
-  by changing the !ASIC_IS_DCE4() guard to !ASIC_IS_DCE31().
-  HPD polling works correctly on DCE3.1 (verified: HPD is asserted
-  at iteration 0 on iMac11,1).
-- Issuing ATOM_ENCODER_CMD_DP_VIDEO_ON/OFF for DCE3.1 in addition
-  to DCE4+.
+> Cheesecake <cheesecake2960@icloud.com> writes:
+>
+>> Replace "transparant" with "transparent"
+>>
+>> Signed-off-by: Cheesecake <cheesecake2960@icloud.com>
+> Patches need a proper signoff with a real name, please.
+>
+> Thanks,
+>
+> jo
 
-Tested on iMac11,1 (Mobility Radeon HD 4850, RV770/DCE3.1).
 
-Signed-off-by: Gilles Risch <gilles.risch@gmail.com>
----
- drivers/gpu/drm/radeon/atombios_encoders.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Thanks for pointing that out.
 
-diff --git a/drivers/gpu/drm/radeon/atombios_encoders.c b/drivers/gpu/drm/radeon/atombios_encoders.c
-index 4e984973c043..b62fd713efcf 100644
---- a/drivers/gpu/drm/radeon/atombios_encoders.c
-+++ b/drivers/gpu/drm/radeon/atombios_encoders.c
-@@ -1383,7 +1383,7 @@ atombios_set_edp_panel_power(struct drm_connector *connector, int action)
- 	if (connector->connector_type != DRM_MODE_CONNECTOR_eDP)
- 		goto done;
- 
--	if (!ASIC_IS_DCE4(rdev))
-+	if (!ASIC_IS_DCE31(rdev))
- 		goto done;
- 
- 	if ((action != ATOM_TRANSMITTER_ACTION_POWER_ON) &&
-@@ -1707,7 +1707,7 @@ radeon_atom_encoder_dpms_dig(struct drm_encoder *encoder, int mode)
- 		if (ENCODER_MODE_IS_DP(atombios_get_encoder_mode(encoder)) && connector) {
- 			/* DP_SET_POWER_D0 is set in radeon_dp_link_train */
- 			radeon_dp_link_train(encoder, connector);
--			if (ASIC_IS_DCE4(rdev))
-+			if (ASIC_IS_DCE4(rdev) || ASIC_IS_DCE31(rdev))
- 				atombios_dig_encoder_setup(encoder, ATOM_ENCODER_CMD_DP_VIDEO_ON, 0);
- 		}
- 		if (radeon_encoder->devices & (ATOM_DEVICE_LCD_SUPPORT)) {
-@@ -1724,7 +1724,7 @@ radeon_atom_encoder_dpms_dig(struct drm_encoder *encoder, int mode)
- 	case DRM_MODE_DPMS_SUSPEND:
- 	case DRM_MODE_DPMS_OFF:
- 
--		if (ASIC_IS_DCE4(rdev)) {
-+		if (ASIC_IS_DCE4(rdev) || ASIC_IS_DCE31(rdev)) {
- 			if (ENCODER_MODE_IS_DP(atombios_get_encoder_mode(encoder)) && connector)
- 				atombios_dig_encoder_setup(encoder, ATOM_ENCODER_CMD_DP_VIDEO_OFF, 0);
- 		}
--- 
-2.47.3
+I accidentally sent this patch using an anonymous address/name.
+I'll resend it properly later.
+
+Thank you for your time.
 
