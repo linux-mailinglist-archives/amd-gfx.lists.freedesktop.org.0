@@ -2,69 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CPrABe3cCmpV8wQAu9opvQ
+	id uP50Gu/cCmpV8wQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:33 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:35 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0D29569C90
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92D16569CA3
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30B7410E757;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94FF310E75F;
 	Mon, 18 May 2026 09:33:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=icloud.com header.i=@icloud.com header.b="L+HWPK+Z";
+	dkim=pass (2048-bit key; unprotected) header.d=lwn.net header.i=@lwn.net header.b="FkOaEQAi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 2242 seconds by postgrey-1.36 at gabe;
- Sat, 16 May 2026 10:41:50 UTC
-Received: from outbound.mr.icloud.com
- (p-west2-cluster4-host7-snip4-10.eps.apple.com [57.103.69.221])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D44C10E194
- for <amd-gfx@lists.freedesktop.org>; Sat, 16 May 2026 10:41:50 +0000 (UTC)
-Received: from outbound.mr.icloud.com (unknown [127.0.0.2])
- by p00-icloudmta-asmtp-us-west-2a-20-percent-1 (Postfix) with ESMTPS id
- AC1C9180014E; Sat, 16 May 2026 10:04:25 +0000 (UTC)
-X-ICL-Out-Info: HUtFAUMEWwJACUgATUQeDx5WFlZNRAJCTQhKBUMDRQBBCFYBWANLVxQEG1sIUhhXE1gTVl8OXQIwUBtfAkIPHBNWFRMLU1ZRGFwdQAhUClkVC0EFXXcCURxWDVdDVARfUEsbDlwDS1oVVRcOAkIfUB9MFldDWhkcGVoUXBhTRVEfVFhDGUVWaUELTx1dGVscQmRYVwkKAlEcVg1XQ1QEX1BUEVdQC1kCQg9IBlwBWgJADUgFQwVaAkcJVQJAVANXFUodUAxcDgBJD0hzBFQHXQVdVlACWlUSBEAIVlBeCF4fTBw=
-Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com; s=1a1hai;
- t=1778925868; x=1781517868; bh=z1uuttnWHoBOGMCJ+W0SZTjwptXK7tsCW7idcPuBMhg=;
- h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme;
- b=L+HWPK+ZZ9XszwBkH4w4sS6HBkaDqJ980O4aY/W2yQl2KEZQ2vU8Wt+JJMA3T25e7yrnucLR2faBPKeyv7zV1BAfTT+aYVAar4WqybN3g3/gGVEwcFkjJssvkdchnObG+xpfzfmbpDHsKbdkolj+gIA+8XLVHtHhRMh0J7t1vVSz3Rdu6PfL7i3/jgsvy06cAXRjdLLPDCvA/WKu2lDOXCxirwWiFw71+2Oe9x2mHW9dERxKK5wGegyw/bsesFZX5O89TGBtnMS2qZnZEHxEjwbnDuSMhU1VkTUi12IONRmX1PR1XLFRDenUqhdB7RrcVGl0ujsVLBAcXdwzaT1mNw==
-Received: from localhost.localdomain (unknown [17.57.152.38])
- by p00-icloudmta-asmtp-us-west-2a-20-percent-1 (Postfix) with ESMTPSA id
- E186D1800105; Sat, 16 May 2026 10:04:21 +0000 (UTC)
-From: Cheesecake <cheesecake2960@icloud.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>
+Received: from ms.lwn.net (ms.lwn.net [45.79.88.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C2D810E20C;
+ Sat, 16 May 2026 14:09:44 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net 950D2410B8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
+ t=1778940583; bh=ou8DOGO+SAzFBsITu8uOd2acXVesjslZQVd52PzTi6s=;
+ h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+ b=FkOaEQAiXekO5PIMvT466xeKe6fz+LPEpA0XS5Uag4J+nfmEdmU6HIrZGBJYOGQgm
+ nuwVf4OtiaO81wyi8KFYxQ+6df+IvzsPQUUccFgd5n5jc2s7FOdOJ8os63dAN3mDLW
+ QKDSFyA/Djymuje+VGi0MT05sb5JoHyLo6GfSya38SyF2KFfGpcI+STADgAHPiPGIo
+ PqJZEVNhHxMc66G6LlBtZu7l917oDvGyX+zDlIPP5Umq/OozWiLWaNYNd8eGKCRiwN
+ w9Kaop3t43V7SN3E72e/KnanMIcfPrtS+RH5lMCDGVTjjqB3QIUc0v0rgn3bPrhLkC
+ e1RYQl4cVVeUA==
+Received: from localhost (unknown [IPv6:2601:280:4600:27b:67c:16ff:fe81:5f9b])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature ECDSA (prime256v1)
+ server-digest SHA256) (No client certificate requested)
+ by ms.lwn.net (Postfix) with ESMTPSA id 950D2410B8;
+ Sat, 16 May 2026 14:09:43 +0000 (UTC)
+From: Jonathan Corbet <corbet@lwn.net>
+To: Cheesecake <cheesecake2960@icloud.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Shuah Khan
+ <skhan@linuxfoundation.org>
 Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- Cheesecake <cheesecake2960@icloud.com>
-Subject: [PATCH] docs: fix typo in mpo-overview.rst
-Date: Sat, 16 May 2026 19:04:02 +0900
-Message-ID: <20260516100406.21070-1-cheesecake2960@icloud.com>
-X-Mailer: git-send-email 2.54.0
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, Cheesecake
+ <cheesecake2960@icloud.com>
+Subject: Re: [PATCH] docs: fix typo in mpo-overview.rst
+In-Reply-To: <20260516100406.21070-1-cheesecake2960@icloud.com>
+References: <20260516100406.21070-1-cheesecake2960@icloud.com>
+Date: Sat, 16 May 2026 08:09:42 -0600
+Message-ID: <87se7rmont.fsf@trenco.lwn.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: 8dRHMVkqXsqwYlhI4dVFsmnKaMI5Dsd6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE2MDA5OCBTYWx0ZWRfX4HidBCuWzT9w
- 1e3II25Qqo5DiR/Aw/ZWD1eir2jpeDTfpmMlARwq8CsBWAfgVKz8bq2238MiKKxWune315LK/jl
- 1X0HmEA5gGS48jykLglxBkfTW5ld3WzhyDN+OcK9sXt9uhJ0I6hCtlzXjkP8vlbi2Cc6ITT9jhp
- cryyQblHHEHeMpRyIVjZa1qpb2q7lpeIECwVqw1BESLo/yRAXghjI45tcTRi/p0Ac4EQnak6JLi
- W59mbCWh84hFuHs8HB+1nuh0rPSNkBiuAL7/YsUmYkN8WL9HCIcnt3hNrqzsiPLkimy/y6JR0O8
- Cs7S8okeHYQJZ9VHwN4Vyv9/pOoB3Lly/7dOvWwB3+hxGJH+HXxlD6WVnB4ci0=
-X-Proofpoint-ORIG-GUID: 8dRHMVkqXsqwYlhI4dVFsmnKaMI5Dsd6
-X-Authority-Info-Out: v=2.4 cv=V41wEOni c=1 sm=1 tr=0 ts=6a08412a
- cx=c_apl:c_pps:t_out a=9OgfyREA4BUYbbCgc0Y0oA==:117
- a=9OgfyREA4BUYbbCgc0Y0oA==:17 a=NGcC8JguVDcA:10 a=x7bEGLp0ZPQA:10
- a=sIGCgqHK338A:10 a=VkNPw1HP01LnGYTKEx00:22 a=v3ZZPjhaAAAA:8
- a=IDD1vTIlNhPWhZ1IPAAA:9
-X-Apple-Category-Label: MjE0Nzk4NjU5NzY6JGNhdGVnb3J5JF9QZXJzb25hbCw=
+Content-Type: text/plain
 X-Mailman-Approved-At: Mon, 18 May 2026 09:33:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,66 +68,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: C0D29569C90
+X-Rspamd-Queue-Id: 92D16569CA3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.19 / 15.00];
-	DATE_IN_PAST(1.00)[47];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[icloud.com,quarantine];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	DATE_IN_PAST(1.00)[43];
+	DMARC_POLICY_ALLOW(-0.50)[lwn.net,none];
 	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[lwn.net:s=20201203];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[icloud.com:s=1a1hai];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:dri-devel@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:cheesecake2960@icloud.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[amd.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[cheesecake2960@icloud.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[icloud.com];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[icloud.com,amd.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,linuxfoundation.org];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,icloud.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-0.999];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cheesecake2960@icloud.com,amd-gfx-bounces@lists.freedesktop.org];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[icloud.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,icloud.com:email,icloud.com:mid,icloud.com:dkim,pipe:email]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[corbet@lwn.net,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[lwn.net:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[icloud.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,trenco.lwn.net:mid]
 X-Rspamd-Action: no action
 
-Replace "transparant" with "transparent"
+Cheesecake <cheesecake2960@icloud.com> writes:
 
-Signed-off-by: Cheesecake <cheesecake2960@icloud.com>
----
- Documentation/gpu/amdgpu/display/mpo-overview.rst | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> Replace "transparant" with "transparent"
+>
+> Signed-off-by: Cheesecake <cheesecake2960@icloud.com>
 
-diff --git a/Documentation/gpu/amdgpu/display/mpo-overview.rst b/Documentation/gpu/amdgpu/display/mpo-overview.rst
-index 59a4f54a3..ed39e53ff 100644
---- a/Documentation/gpu/amdgpu/display/mpo-overview.rst
-+++ b/Documentation/gpu/amdgpu/display/mpo-overview.rst
-@@ -167,7 +167,7 @@ and interactions with operations such as DPMS and S3:
- - ``kms_plane_multiple@atomic-pipe-*-tiling-``
- - ``kms_plane_scaling@pipe-*-plane-scaling``
- - ``kms_plane_alpha_blend@pipe-*-alpha-basic``
--- ``kms_plane_alpha_blend@pipe-*-alpha-transparant-fb``
-+- ``kms_plane_alpha_blend@pipe-*-alpha-transparent-fb``
- - ``kms_plane_alpha_blend@pipe-*-alpha-opaque-fb``
- - ``kms_plane_alpha_blend@pipe-*-constant-alpha-min``
- - ``kms_plane_alpha_blend@pipe-*-constant-alpha-mid``
--- 
-2.54.0
+Patches need a proper signoff with a real name, please.
 
+Thanks,
+
+jo
