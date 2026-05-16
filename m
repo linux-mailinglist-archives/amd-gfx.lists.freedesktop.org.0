@@ -2,82 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2JGcHAo4CGoHegMAu9opvQ
+	id CPrABe3cCmpV8wQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 16 May 2026 11:25:30 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:33 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B90F755AEE7
-	for <lists+amd-gfx@lfdr.de>; Sat, 16 May 2026 11:25:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0D29569C90
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7E5110E0D4;
-	Sat, 16 May 2026 09:25:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30B7410E757;
+	Mon, 18 May 2026 09:33:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hBlxiza4";
+	dkim=pass (2048-bit key; unprotected) header.d=icloud.com header.i=@icloud.com header.b="L+HWPK+Z";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
- [209.85.128.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9219810E0F6
- for <amd-gfx@lists.freedesktop.org>; Sat, 16 May 2026 09:25:25 +0000 (UTC)
-Received: by mail-wm1-f42.google.com with SMTP id
- 5b1f17b1804b1-48fde648a71so3364805e9.0
- for <amd-gfx@lists.freedesktop.org>; Sat, 16 May 2026 02:25:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1778923523; x=1779528323; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=achqQyyIP4rnn7sCWNMLaWeFxphvcEeKGoSKkFPXgdA=;
- b=hBlxiza4qEgMCrkBT8syjF77gc1wZkgD3D/uHoNZR4XM/yZPAqtd4i5sFqacpxwQhD
- atku5YS5EQInc3ndpnwl7JjSyfC0/Vc/rCt5d1Jd5Crqtrv1cxKYAmQ8x30SELBpvkeY
- 9RzFBEPyhgQ7S7tMbukfnlszrqnMa7xcop7xmulqmoO92hFS/Etp6g8/5vumwmHlTqn7
- wQkgSsm+n2aN5cQi9WGhizieKXiLaRlqyBYRkszETy0h4ZI2kKnn6VhTPsuAYJzJx5cN
- kT4TxwSOw4phcwjvWFdfc+PKtO5x3vflf+ZUKORGTO/2pwN7bvamjYbXVG7PYU4tktEx
- ++VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778923523; x=1779528323;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=achqQyyIP4rnn7sCWNMLaWeFxphvcEeKGoSKkFPXgdA=;
- b=b0RWQB4advL+XE82USV2EqRirv+I9BSK1uH+daWhJFzbaiHSnb/m6UKKPHn0yQb4DA
- xzwkjL6k9Vv+G0W+zBJb8TbmFaNzTJUx8onlUyIpZ9Nbtu8d4xptlN7EMXeHond8aZtF
- b3xZIdvtna0URt6y3L9xxPZWj18ojVAUvO3kAWPi3rf1TcTBD/sodJYDE1mTe4dmSgzJ
- YApB0lY63Zl0HymltfLfp8vLSmuWjDN/oDOOmJ39udYYL0tv+msV8E1kN+UF3RrfIRks
- NaGwufJkgvGsEyJeyGQ2wvZBXhwHhIa1k62hCaYB6EG3V1xc0kQCKzbpdex0PyUF+UN5
- 5IIg==
-X-Gm-Message-State: AOJu0YxSacXEKxCAgzIDGeGhxStYLyipnI0DtftclVqgGM6Cp0IRV9uQ
- fIo9MXcFon55OBrcL5BB6a70Nt5TjDgO5eis5A4WdWeZofYfKNMNqbbi
-X-Gm-Gg: Acq92OGvs8eeBKRNR8cNz2/F46RRoamI3HUWUWqjRwnPXMG/kbJpjwqOhzmKrRyJtYJ
- lzi60TE2AQC2VQqfTCdWv53hVZ/lGBCy020kx9X40cSA8S/MSBv7ANHFwpc2jFV/XCimtaNDs3F
- Uy9u1tpYSOo28+oAmrQlZiBbTHrj7uSEQXvh8KdIRaOVbqwqjkJ7wP4Mz28bvvMnilJIQ6EhZ4s
- INQfGhzRNUINIos1d5g3nPeiEGY1094h8jo8kvc0+tS0bhtC2Qkw7vR9PDjUm+DDkMcN0j9IBUo
- d/IXIlp4n+0xHyhzjNQtJsXrRNrpcY+DiKD/sqMWvLk1Q16gEDQhOTRlr6oXsWRKFSr6IgnVL0a
- oA4bWwq8PXsGt4QGV8YdJ2lCanvXywrvcAhZwuXLxzDDCQqL4Oei8HYJv0cCcZY5PZpshQ8H2ZC
- N/tpKj8Sffx/h8+Eb4OCbsSx7thtHZcOqQInKEAA==
-X-Received: by 2002:a05:600c:a30a:b0:48f:e230:29f4 with SMTP id
- 5b1f17b1804b1-48fe53a4866mr76718055e9.15.1778923523124; 
- Sat, 16 May 2026 02:25:23 -0700 (PDT)
-Received: from skylab.fritz.box ([2a06:4944:10fb:f400:77d:501a:25b2:e8f4])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48febe83ba2sm32135175e9.35.2026.05.16.02.25.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 16 May 2026 02:25:22 -0700 (PDT)
-From: Gilles Risch <gilles.risch@gmail.com>
-To: alexander.deucher@amd.com
+X-Greylist: delayed 2242 seconds by postgrey-1.36 at gabe;
+ Sat, 16 May 2026 10:41:50 UTC
+Received: from outbound.mr.icloud.com
+ (p-west2-cluster4-host7-snip4-10.eps.apple.com [57.103.69.221])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D44C10E194
+ for <amd-gfx@lists.freedesktop.org>; Sat, 16 May 2026 10:41:50 +0000 (UTC)
+Received: from outbound.mr.icloud.com (unknown [127.0.0.2])
+ by p00-icloudmta-asmtp-us-west-2a-20-percent-1 (Postfix) with ESMTPS id
+ AC1C9180014E; Sat, 16 May 2026 10:04:25 +0000 (UTC)
+X-ICL-Out-Info: HUtFAUMEWwJACUgATUQeDx5WFlZNRAJCTQhKBUMDRQBBCFYBWANLVxQEG1sIUhhXE1gTVl8OXQIwUBtfAkIPHBNWFRMLU1ZRGFwdQAhUClkVC0EFXXcCURxWDVdDVARfUEsbDlwDS1oVVRcOAkIfUB9MFldDWhkcGVoUXBhTRVEfVFhDGUVWaUELTx1dGVscQmRYVwkKAlEcVg1XQ1QEX1BUEVdQC1kCQg9IBlwBWgJADUgFQwVaAkcJVQJAVANXFUodUAxcDgBJD0hzBFQHXQVdVlACWlUSBEAIVlBeCF4fTBw=
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com; s=1a1hai;
+ t=1778925868; x=1781517868; bh=z1uuttnWHoBOGMCJ+W0SZTjwptXK7tsCW7idcPuBMhg=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme;
+ b=L+HWPK+ZZ9XszwBkH4w4sS6HBkaDqJ980O4aY/W2yQl2KEZQ2vU8Wt+JJMA3T25e7yrnucLR2faBPKeyv7zV1BAfTT+aYVAar4WqybN3g3/gGVEwcFkjJssvkdchnObG+xpfzfmbpDHsKbdkolj+gIA+8XLVHtHhRMh0J7t1vVSz3Rdu6PfL7i3/jgsvy06cAXRjdLLPDCvA/WKu2lDOXCxirwWiFw71+2Oe9x2mHW9dERxKK5wGegyw/bsesFZX5O89TGBtnMS2qZnZEHxEjwbnDuSMhU1VkTUi12IONRmX1PR1XLFRDenUqhdB7RrcVGl0ujsVLBAcXdwzaT1mNw==
+Received: from localhost.localdomain (unknown [17.57.152.38])
+ by p00-icloudmta-asmtp-us-west-2a-20-percent-1 (Postfix) with ESMTPSA id
+ E186D1800105; Sat, 16 May 2026 10:04:21 +0000 (UTC)
+From: Cheesecake <cheesecake2960@icloud.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>
 Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Gilles Risch <gilles.risch@gmail.com>
-Subject: [PATCH v2] drm/radeon: fix internal display on iMac11,
- 1 (RV770/DCE3.1)
-Date: Sat, 16 May 2026 11:24:21 +0200
-Message-ID: <20260516092420.3579-2-gilles.risch@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260510185426.4264-1-gilles.risch@gmail.com>
-References: <20260510185426.4264-1-gilles.risch@gmail.com>
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Cheesecake <cheesecake2960@icloud.com>
+Subject: [PATCH] docs: fix typo in mpo-overview.rst
+Date: Sat, 16 May 2026 19:04:02 +0900
+Message-ID: <20260516100406.21070-1-cheesecake2960@icloud.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: 8dRHMVkqXsqwYlhI4dVFsmnKaMI5Dsd6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE2MDA5OCBTYWx0ZWRfX4HidBCuWzT9w
+ 1e3II25Qqo5DiR/Aw/ZWD1eir2jpeDTfpmMlARwq8CsBWAfgVKz8bq2238MiKKxWune315LK/jl
+ 1X0HmEA5gGS48jykLglxBkfTW5ld3WzhyDN+OcK9sXt9uhJ0I6hCtlzXjkP8vlbi2Cc6ITT9jhp
+ cryyQblHHEHeMpRyIVjZa1qpb2q7lpeIECwVqw1BESLo/yRAXghjI45tcTRi/p0Ac4EQnak6JLi
+ W59mbCWh84hFuHs8HB+1nuh0rPSNkBiuAL7/YsUmYkN8WL9HCIcnt3hNrqzsiPLkimy/y6JR0O8
+ Cs7S8okeHYQJZ9VHwN4Vyv9/pOoB3Lly/7dOvWwB3+hxGJH+HXxlD6WVnB4ci0=
+X-Proofpoint-ORIG-GUID: 8dRHMVkqXsqwYlhI4dVFsmnKaMI5Dsd6
+X-Authority-Info-Out: v=2.4 cv=V41wEOni c=1 sm=1 tr=0 ts=6a08412a
+ cx=c_apl:c_pps:t_out a=9OgfyREA4BUYbbCgc0Y0oA==:117
+ a=9OgfyREA4BUYbbCgc0Y0oA==:17 a=NGcC8JguVDcA:10 a=x7bEGLp0ZPQA:10
+ a=sIGCgqHK338A:10 a=VkNPw1HP01LnGYTKEx00:22 a=v3ZZPjhaAAAA:8
+ a=IDD1vTIlNhPWhZ1IPAAA:9
+X-Apple-Category-Label: MjE0Nzk4NjU5NzY6JGNhdGVnb3J5JF9QZXJzb25hbCw=
+X-Mailman-Approved-At: Mon, 18 May 2026 09:33:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,136 +79,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: B90F755AEE7
+X-Rspamd-Queue-Id: C0D29569C90
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.99 / 15.00];
-	R_DKIM_REJECT(1.00)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [1.19 / 15.00];
+	DATE_IN_PAST(1.00)[47];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[icloud.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[icloud.com:s=1a1hai];
 	MAILLIST(-0.20)[mailman];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:dri-devel@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:cheesecake2960@icloud.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[amd.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:dri-devel@lists.freedesktop.org,m:gilles.risch@gmail.com,m:gillesrisch@gmail.com,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[gillesrisch@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:-];
+	FORGED_SENDER(0.00)[cheesecake2960@icloud.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[icloud.com];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,icloud.com];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gillesrisch@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_SPAM(0.00)[0.964];
+	NEURAL_HAM(-0.00)[-0.999];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cheesecake2960@icloud.com,amd-gfx-bounces@lists.freedesktop.org];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[icloud.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,icloud.com:email,icloud.com:mid,icloud.com:dkim,pipe:email]
 X-Rspamd-Action: no action
 
-The Apple iMac11,1 (late 2009) has an integrated ATI Mobility Radeon
-HD 4850 (RV770/M98L) with a 2560x1440 internal panel connected via an
-internal DisplayPort path. This machine suffers from a similar problem
-as the iMac10,1 (late 2009) and the iMac11,2 (mid 2010). Without this
-fix the display stays dark under KMS. Two issues are addressed:
+Replace "transparant" with "transparent"
 
-1. The RV770 implements DCE3.1 and not DCE3.2. ASIC_IS_DCE32() starts at
-   CHIP_RV730 which is newer than RV770, so the RV770 never matched the
-   DCE3.2 PLL and encoder logic. Introduce ASIC_IS_DCE31() starting at
-   CHIP_RV770 to fix this.
-
-2. Apple routed the internal display through Link B of the DIG encoder
-   instead of Link A, as observed in the kernel display connector log.
-   The same quirk already exists for iMac10,1 and iMac11,2 - iMac11,1
-   was simply missing from the list.
-
-Note: resume from suspend still results in a dark screen as the DP
-re-driver chips on the mainboard lose their state during power-off.
-This will be addressed in a follow-up patch.
-
-Fixes freedesktop issue 164
-Link: https://gitlab.freedesktop.org/xorg/driver/xf86-video-ati/-/issues/164
-
-Signed-off-by: Gilles Risch <gilles.risch@gmail.com>
+Signed-off-by: Cheesecake <cheesecake2960@icloud.com>
 ---
-v2: No code changes. Fixed commit message:
-    - Added drm/radeon: prefix to subject line
-    - Added empty line between subject and body
-    - Added technical description of the changes
+ Documentation/gpu/amdgpu/display/mpo-overview.rst | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/gpu/drm/radeon/atombios_crtc.c     | 4 ++--
- drivers/gpu/drm/radeon/atombios_encoders.c | 9 +++++----
- drivers/gpu/drm/radeon/radeon.h            | 1 +
- 3 files changed, 8 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/radeon/atombios_crtc.c b/drivers/gpu/drm/radeon/atombios_crtc.c
-index 2fc0334e0d6c..3c6d332739e3 100644
---- a/drivers/gpu/drm/radeon/atombios_crtc.c
-+++ b/drivers/gpu/drm/radeon/atombios_crtc.c
-@@ -580,7 +580,7 @@ static u32 atombios_adjust_pll(struct drm_crtc *crtc,
- 			radeon_crtc->pll_flags |= (/*RADEON_PLL_USE_FRAC_FB_DIV |*/
- 				RADEON_PLL_PREFER_CLOSEST_LOWER);
- 
--		if (ASIC_IS_DCE32(rdev) && mode->clock > 200000)	/* range limits??? */
-+		if (ASIC_IS_DCE31(rdev) && mode->clock > 200000)	/* range limits??? */
- 			radeon_crtc->pll_flags |= RADEON_PLL_PREFER_HIGH_FB_DIV;
- 		else
- 			radeon_crtc->pll_flags |= RADEON_PLL_PREFER_LOW_REF_DIV;
-@@ -594,7 +594,7 @@ static u32 atombios_adjust_pll(struct drm_crtc *crtc,
- 		if (((rdev->family == CHIP_RS780) || (rdev->family == CHIP_RS880))
- 		    && !radeon_crtc->ss_enabled)
- 			radeon_crtc->pll_flags |= RADEON_PLL_USE_FRAC_FB_DIV;
--		if (ASIC_IS_DCE32(rdev) && mode->clock > 165000)
-+		if (ASIC_IS_DCE31(rdev) && mode->clock > 165000)
- 			radeon_crtc->pll_flags |= RADEON_PLL_USE_FRAC_FB_DIV;
- 	} else {
- 		radeon_crtc->pll_flags |= RADEON_PLL_LEGACY;
-diff --git a/drivers/gpu/drm/radeon/atombios_encoders.c b/drivers/gpu/drm/radeon/atombios_encoders.c
-index 5cfd8fcfa5e8..4e984973c043 100644
---- a/drivers/gpu/drm/radeon/atombios_encoders.c
-+++ b/drivers/gpu/drm/radeon/atombios_encoders.c
-@@ -2123,12 +2123,13 @@ int radeon_atom_pick_dig_encoder(struct drm_encoder *encoder, int fe_idx)
- 	}
- 
- 	/*
--	 * On DCE32 any encoder can drive any block so usually just use crtc id,
--	 * but Apple thinks different at least on iMac10,1 and iMac11,2, so there use linkb,
--	 * otherwise the internal eDP panel will stay dark.
-+	 * On DCE31 and DCE32 any encoder can drive any block so usually just use crtc id,
-+	 * but Apple thinks different at least on iMac10,1, iMac11,1 and iMac11,2,
-+	 * so there use linkb, otherwise the internal eDP panel will stay dark.
- 	 */
--	if (ASIC_IS_DCE32(rdev)) {
-+	if (ASIC_IS_DCE31(rdev)) {
- 		if (dmi_match(DMI_PRODUCT_NAME, "iMac10,1") ||
-+		    dmi_match(DMI_PRODUCT_NAME, "iMac11,1") ||
- 		    dmi_match(DMI_PRODUCT_NAME, "iMac11,2"))
- 			enc_idx = (dig->linkb) ? 1 : 0;
- 		else
-diff --git a/drivers/gpu/drm/radeon/radeon.h b/drivers/gpu/drm/radeon/radeon.h
-index 527b9d19d730..6b7c0abe49fb 100644
---- a/drivers/gpu/drm/radeon/radeon.h
-+++ b/drivers/gpu/drm/radeon/radeon.h
-@@ -2625,6 +2625,7 @@ void r100_pll_errata_after_index(struct radeon_device *rdev);
- 			    (rdev->family == CHIP_RS740)  ||	\
- 			    (rdev->family >= CHIP_R600))
- #define ASIC_IS_DCE3(rdev) ((rdev->family >= CHIP_RV620))
-+#define ASIC_IS_DCE31(rdev) ((rdev->family >= CHIP_RV770))
- #define ASIC_IS_DCE32(rdev) ((rdev->family >= CHIP_RV730))
- #define ASIC_IS_DCE4(rdev) ((rdev->family >= CHIP_CEDAR))
- #define ASIC_IS_DCE41(rdev) ((rdev->family >= CHIP_PALM) && \
+diff --git a/Documentation/gpu/amdgpu/display/mpo-overview.rst b/Documentation/gpu/amdgpu/display/mpo-overview.rst
+index 59a4f54a3..ed39e53ff 100644
+--- a/Documentation/gpu/amdgpu/display/mpo-overview.rst
++++ b/Documentation/gpu/amdgpu/display/mpo-overview.rst
+@@ -167,7 +167,7 @@ and interactions with operations such as DPMS and S3:
+ - ``kms_plane_multiple@atomic-pipe-*-tiling-``
+ - ``kms_plane_scaling@pipe-*-plane-scaling``
+ - ``kms_plane_alpha_blend@pipe-*-alpha-basic``
+-- ``kms_plane_alpha_blend@pipe-*-alpha-transparant-fb``
++- ``kms_plane_alpha_blend@pipe-*-alpha-transparent-fb``
+ - ``kms_plane_alpha_blend@pipe-*-alpha-opaque-fb``
+ - ``kms_plane_alpha_blend@pipe-*-constant-alpha-min``
+ - ``kms_plane_alpha_blend@pipe-*-constant-alpha-mid``
 -- 
-2.47.3
+2.54.0
 
