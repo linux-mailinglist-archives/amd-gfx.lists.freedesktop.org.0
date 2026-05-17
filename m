@@ -2,51 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0Ob7C2zNCWo9qQQAu9opvQ
+	id qC7OKPDcCmpV8wQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 17 May 2026 16:15:08 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:36 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7AA65618C1
-	for <lists+amd-gfx@lfdr.de>; Sun, 17 May 2026 16:15:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52E4A569CC7
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3938910E265;
-	Sun, 17 May 2026 14:15:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 940ED10E75E;
+	Mon, 18 May 2026 09:33:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="4ELVILYo";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 596 seconds by postgrey-1.36 at gabe;
- Sun, 17 May 2026 14:15:04 UTC
-Received: from mailout1.hostsharing.net (mailout1.hostsharing.net
- [83.223.95.204])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E019B10E265;
- Sun, 17 May 2026 14:15:04 +0000 (UTC)
-Received: from h08.hostsharing.net (h08.hostsharing.net
- [IPv6:2a01:37:1000::53df:5f1c:0])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange x25519 server-signature ECDSA (secp384r1) server-digest SHA384
- client-signature ECDSA (secp384r1) client-digest SHA384)
- (Client CN "*.hostsharing.net",
- Issuer "GlobalSign GCC R6 AlphaSSL CA 2025" (verified OK))
- by mailout1.hostsharing.net (Postfix) with ESMTPS id 7177D35F;
- Sun, 17 May 2026 16:05:06 +0200 (CEST)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
- id 5462D60163BA; Sun, 17 May 2026 16:05:06 +0200 (CEST)
-Date: Sun, 17 May 2026 16:05:06 +0200
-From: Lukas Wunner <lukas@wunner.de>
-To: Gilles Risch <gilles.risch@gmail.com>
-Cc: alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2] drm/radeon: fix internal display on iMac11, 1
- (RV770/DCE3.1)
-Message-ID: <agnLEk44qr-bL9K1@wunner.de>
-References: <20260510185426.4264-1-gilles.risch@gmail.com>
- <20260516092420.3579-2-gilles.risch@gmail.com>
- <agiy9II5jkHEgPAq@wunner.de>
- <d5262f65-22b5-4ff3-b905-12bb2a4b587d@gmail.com>
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DA3D10E248;
+ Sun, 17 May 2026 16:35:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+ bh=do72l8TBC+8Jj9AHwbmpNhWmI6qpXHRcwH0HVceqiQo=; b=4ELVILYolYp0dDoclVtxjrfzkh
+ y2JUBaVKoaZYEVtU36+OkI7tKqClQn4ulgJXL4ktpUYIbCXpl9IW0LHJJQdBrkMpstxRI+zdtU1X6
+ uxRNR4o7ojvxY207YOSWtAtnga1cecOBw0CT2/86aBM8Zi6DTyG0QTe9kcpmec8F63dRX/QkXN5/C
+ V+1QJNa6erJI/CMMX51LevHoVweaRCEllmt9SVZcbE5lRAxBJBX5cjnm4C3TgDXOKSIMr5fr6tt5e
+ 3QmDRkhCdpToyPh3sHhgTLy7NlFM55AUPv456ueGgcUeCREyxsy182VDEjoR6HpuK/8YDFlLSVz20
+ XknKmy/Q==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+ by bombadil.infradead.org with esmtpsa (Exim 4.99.1 #2 (Red Hat Linux))
+ id 1wOeSk-0000000D28F-3YTd; Sun, 17 May 2026 16:35:34 +0000
+Message-ID: <9cee25bf-c2ec-4e1c-9c21-bfe043dc6720@infradead.org>
+Date: Sun, 17 May 2026 09:35:34 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d5262f65-22b5-4ff3-b905-12bb2a4b587d@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] docs: gpu: fix spelling errors and remove duplicate
+ sentence
+To: Elliot Tester <elliotctester1@gmail.com>, alexander.deucher@amd.com,
+ christian.koenig@amd.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+ corbet@lwn.net
+Cc: skhan@linuxfoundation.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260517134122.38389-1-elliotctester1@gmail.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20260517134122.38389-1-elliotctester1@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 18 May 2026 09:33:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,46 +67,175 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: B7AA65618C1
+X-Rspamd-Queue-Id: 52E4A569CC7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.61 / 15.00];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.49 / 15.00];
+	R_DKIM_REJECT(1.00)[infradead.org:s=bombadil.20210309];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[infradead.org : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[wunner.de: no valid DMARC record];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[lukas@wunner.de,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,amd.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,lwn.net];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
+	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[infradead.org:-];
 	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,wunner.de:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-On Sun, May 17, 2026 at 03:53:51PM +0200, Gilles Risch wrote:
-> The test robot mentions that it cannot find ASIC_IS_DCE31(); this is because
-> both patches build on one another. Should I submit both patches as a series?
 
-Yes, either that or wait for the first patch to be applied and show up in
-the drm-next repo.  Then 0-day should not complain.
 
-Usually people are annoyed if patches are resubmitted in short cadence,
-so the polite thing to do is wait for 1 or 2 weeks before respinning
-so that people get a chance to provide further comments.
+On 5/17/26 6:41 AM, Elliot Tester wrote:
+> Fix various spelling errors in GPU docs:
+> - indicies -> indices (userq.rst)
+> - umap -> unmap (userq.rst)
+> - pre-empt -> preempt (drm-compute.rst)
+> - buffer-leaks -> buffer leaks (drm-uapi.rst)
+> - Additionally to -> In addition to (drm-uapi.rst)
+> - unpriviledged -> unprivileged (drm-uapi.rst)
+> - fucntions -> functions (todo.rst)
+> - varios -> various (todo.rst)
+> - implementions -> implementations (todo.rst)
+> - complection -> completion (todo.rst)
+> 
+> Ale remove a duplicated sentance and stray "uff." in the todo.rst, add
+> missing period after drm_ioctl.c reference, and add missing newline at
+> end of drm-uapi.rst. Fixing this would make reading the docs just a
+> little bit easier.
+> 
+> Signed-off-by: Elliot Tester <elliotctester1@gmail.com>
 
-Thanks,
+LGTM. Thanks.
+Acked-by: Randy Dunlap <rdunlap@infradead.org>
 
-Lukas
+> ---
+>  Documentation/gpu/amdgpu/userq.rst |  4 ++--
+>  Documentation/gpu/drm-compute.rst  |  2 +-
+>  Documentation/gpu/drm-uapi.rst     | 10 +++++-----
+>  Documentation/gpu/todo.rst         | 11 +++++------
+>  4 files changed, 13 insertions(+), 14 deletions(-)
+> 
+> diff --git a/Documentation/gpu/amdgpu/userq.rst b/Documentation/gpu/amdgpu/userq.rst
+> index 88f54393b..94427e18a 100644
+> --- a/Documentation/gpu/amdgpu/userq.rst
+> +++ b/Documentation/gpu/amdgpu/userq.rst
+> @@ -156,9 +156,9 @@ IOCTL Interfaces
+>  GPU virtual addresses used for queues and related data (rptrs, wptrs, context
+>  save areas, etc.) should be validated by the kernel mode driver to prevent the
+>  user from specifying invalid GPU virtual addresses.  If the user provides
+> -invalid GPU virtual addresses or doorbell indicies, the IOCTL should return an
+> +invalid GPU virtual addresses or doorbell indices, the IOCTL should return an
+>  error message.  These buffers should also be tracked in the kernel driver so
+> -that if the user attempts to unmap the buffer(s) from the GPUVM, the umap call
+> +that if the user attempts to unmap the buffer(s) from the GPUVM, the unmap call
+>  would return an error.
+>  
+>  INFO
+> diff --git a/Documentation/gpu/drm-compute.rst b/Documentation/gpu/drm-compute.rst
+> index f90c3e63a..35cc8d654 100644
+> --- a/Documentation/gpu/drm-compute.rst
+> +++ b/Documentation/gpu/drm-compute.rst
+> @@ -7,7 +7,7 @@ seconds. (The time let the user wait before he reaches for the power button).
+>  This means that other techniques need to be used to manage those workloads,
+>  that cannot use fences.
+>  
+> -Some hardware may schedule compute jobs, and have no way to pre-empt them, or
+> +Some hardware may schedule compute jobs, and have no way to preempt them, or
+>  have their memory swapped out from them. Or they simply want their workload
+>  not to be preempted or swapped out at all.
+>  
+> diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
+> index 579e87cb9..0ef498bff 100644
+> --- a/Documentation/gpu/drm-uapi.rst
+> +++ b/Documentation/gpu/drm-uapi.rst
+> @@ -150,10 +150,10 @@ separate render node called renderD<num>. There will be one render node
+>  per device. No ioctls except PRIME-related ioctls will be allowed on
+>  this node. Especially GEM_OPEN will be explicitly prohibited. For a
+>  complete list of driver-independent ioctls that can be used on render
+> -nodes, see the ioctls marked DRM_RENDER_ALLOW in drm_ioctl.c  Render
+> -nodes are designed to avoid the buffer-leaks, which occur if clients
+> +nodes, see the ioctls marked DRM_RENDER_ALLOW in drm_ioctl.c.  Render
+> +nodes are designed to avoid the buffer leaks, which occur if clients
+>  guess the flink names or mmap offsets on the legacy interface.
+> -Additionally to this basic interface, drivers must mark their
+> +In addition to this basic interface, drivers must mark their
+>  driver-dependent render-only ioctls as DRM_RENDER_ALLOW so render
+>  clients can use them. Driver authors must be careful not to allow any
+>  privileged ioctls on render nodes.
+> @@ -568,7 +568,7 @@ ENOSPC:
+>  EPERM/EACCES:
+>          Returned for an operation that is valid, but needs more privileges.
+>          E.g. root-only or much more common, DRM master-only operations return
+> -        this when called by unpriviledged clients. There's no clear
+> +        this when called by unprivileged clients. There's no clear
+>          difference between EACCES and EPERM.
+>  
+>  ENODEV:
+> @@ -761,4 +761,4 @@ Stable uAPI events
+>  From ``drivers/gpu/drm/scheduler/gpu_scheduler_trace.h``
+>  
+>  .. kernel-doc::  drivers/gpu/drm/scheduler/gpu_scheduler_trace.h
+> -   :doc: uAPI trace events
+> \ No newline at end of file
+> +   :doc: uAPI trace events
+> diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
+> index bc9f14c8a..b13cd4347 100644
+> --- a/Documentation/gpu/todo.rst
+> +++ b/Documentation/gpu/todo.rst
+> @@ -55,7 +55,7 @@ There are still drivers that use drm_simple_display_pipe. The task here is to
+>  convert them to use regular atomic helpers. Search for a driver that calls
+>  drm_simple_display_pipe_init() and inline all helpers from drm_simple_kms_helper.c
+>  into the driver, such that no simple-KMS interfaces are required. Please also
+> -rename all inlined fucntions according to driver conventions.
+> +rename all inlined functions according to driver conventions.
+>  
+>  Contact: Thomas Zimmermann, respective driver maintainer
+>  
+> @@ -301,7 +301,7 @@ Various hold-ups:
+>    valid formats for atomic drivers.
+>  
+>  - Many drivers subclass drm_framebuffer, we'd need a embedding compatible
+> -  version of the varios drm_gem_fb_create functions. Maybe called
+> +  version of the various drm_gem_fb_create functions. Maybe called
+>    drm_gem_fb_create/_with_dirty/_with_funcs as needed.
+>  
+>  Contact: Simona Vetter
+> @@ -326,10 +326,9 @@ everything after it has done the write-protect/mkwrite trickery:
+>  
+>        vma->vm_page_prot = pgprot_wrprotect(vma->vm_page_prot);
+>  
+> -- Set the mkwrite and fsync callbacks with similar implementions to the core
+> +- Set the mkwrite and fsync callbacks with similar implementations to the core
+>    fbdev defio stuff. These should all work on plain ptes, they don't actually
+> -  require a struct page.  uff. These should all work on plain ptes, they don't
+> -  actually require a struct page.
+> +  require a struct page.
+>  
+>  - Track the dirty pages in a separate structure (bitfield with one bit per page
+>    should work) to avoid clobbering struct page.
+> @@ -914,7 +913,7 @@ Querying errors from drm_syncobj
+>  ================================
+>  
+>  The drm_syncobj container can be used by driver independent code to signal
+> -complection of submission.
+> +completion of submission.
+>  
+>  One minor feature still missing is a generic DRM IOCTL to query the error
+>  status of binary and timeline drm_syncobj.
+
+-- 
+~Randy
