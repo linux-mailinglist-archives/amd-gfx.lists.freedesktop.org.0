@@ -2,61 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IBZaOA82CWrBNgQAu9opvQ
+	id vz4KK3ROCWp1UQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 17 May 2026 05:29:19 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 17 May 2026 07:13:24 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E1B455F1E0
-	for <lists+amd-gfx@lfdr.de>; Sun, 17 May 2026 05:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF00E55F485
+	for <lists+amd-gfx@lfdr.de>; Sun, 17 May 2026 07:13:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 899AF10E231;
-	Sun, 17 May 2026 03:29:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9107C10E07A;
+	Sun, 17 May 2026 05:13:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S4l13bMl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NOgoTXo6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBE2410E231;
- Sun, 17 May 2026 03:29:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09B2C10E07A;
+ Sun, 17 May 2026 05:13:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778988555; x=1810524555;
+ t=1778994800; x=1810530800;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=W3hxyvPQIHp6N/EcjsueATTuNczPa4vrB3d34Qz9f4g=;
- b=S4l13bMlFmEjdLx1mo9Iitbi+FsPalL9bkNG/tCq2Dswcof4uVREoInl
- 3fbNrSa1aRjKKW1a23AMY7wOORmk6FGk42hZoYOJ2tKWdUXYttMFEroTq
- eLvD4iHKej4bL2HFQ+DWl4wi3rnhLA8L+DYBGjP0gdUJQQHuGsRZb9Yta
- v5WizlRf3k4tVH4/AUBPhdtRUqwi06G8z5iJTJtqUw40dWXyaKDzn0vX/
- VFwO0G/6VjtUjZdeag9Usqry9dtH6tRl8YN45JsJuOFZey9EY3iFml6Nq
- DKcVriwPG4gGX1BPEzRM0qUcIO165LB0c4xWfjZkBEZSIRqIjUzcv8UW/ A==;
-X-CSE-ConnectionGUID: KsBZG2adSL2TS1rfnj3aYg==
-X-CSE-MsgGUID: eAxIL18wQ4aKPyVBsryRow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11788"; a="90583159"
-X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; d="scan'208";a="90583159"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2026 20:29:14 -0700
-X-CSE-ConnectionGUID: hI1MqPDSRMqXqMwfZi0H0A==
-X-CSE-MsgGUID: 4UbGB/DXS5WdSw+SZJgpWg==
+ bh=NrreUJmMhVo7G49aHntbm9vYheKC7kN4qSsf+o47kg0=;
+ b=NOgoTXo6TKEFyGAChmJ/1+5n43APU6wqMJPx0zLC50vC9fEbo+US5Edi
+ XC8fVY3MI+XoTlWkQw4vkqkDmiVQAHdY2ntu+7002K/w3frgyz+gsc+Lf
+ NTq+RXKwni1XSunPIvQrJsXutz0id5OSTY4SdqQnJ+sKTS+3HuSb7DxUC
+ tkBK6UPZK7PjBEQd7KlrkSUbKT20ZkxyXJEURFfO7iQK/VzRojnNbQbpY
+ v+xO/PsSjOi7jD7CcuWrA7q5bIGvRtegzyrU7QnrR5l1lcGiVaq/9Z6r/
+ SRqFdcNtgTVGWG6RL20JN+xowY6aBvlfpHbXD+15loXMRLiovc8T0cjda w==;
+X-CSE-ConnectionGUID: zS7grUTdQnKlyTiPuE54gA==
+X-CSE-MsgGUID: KT6dNsRxRh2jqRshatFMAw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11788"; a="79931404"
+X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; d="scan'208";a="79931404"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2026 22:13:19 -0700
+X-CSE-ConnectionGUID: YxTgBYiNQzeVW9Wus7i42g==
+X-CSE-MsgGUID: e6csiXYLTB67IPqF+Dngsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; d="scan'208";a="243075114"
+X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; d="scan'208";a="236053818"
 Received: from lkp-server01.sh.intel.com (HELO d94e5e629b2d) ([10.239.97.150])
- by orviesa003.jf.intel.com with ESMTP; 16 May 2026 20:29:13 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 16 May 2026 22:13:18 -0700
 Received: from kbuild by d94e5e629b2d with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wOSBh-000000001KU-4664;
- Sun, 17 May 2026 03:29:09 +0000
-Date: Sun, 17 May 2026 11:28:56 +0800
+ (envelope-from <lkp@intel.com>) id 1wOToR-000000001NS-2aT4;
+ Sun, 17 May 2026 05:13:15 +0000
+Date: Sun, 17 May 2026 13:12:45 +0800
 From: kernel test robot <lkp@intel.com>
 To: Gilles Risch <gilles.risch@gmail.com>, alexander.deucher@amd.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Gilles Risch <gilles.risch@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Gilles Risch <gilles.risch@gmail.com>
 Subject: Re: [PATCH] drm/radeon: fix eDP resume from suspend on iMac11, 1 /
  DCE3.1 systems
-Message-ID: <202605171126.1g7CRkTZ-lkp@intel.com>
+Message-ID: <202605171301.73YzX9wA-lkp@intel.com>
 References: <20260516185226.3005-1-gilles.risch@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -75,36 +74,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 3E1B455F1E0
+X-Rspamd-Queue-Id: DF00E55F485
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,lists.freedesktop.org,gmail.com];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,amd.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[lists.linux.dev,lists.freedesktop.org,gmail.com];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,git-scm.com:url,gitlab.freedesktop.org:url,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
 Hi Gilles,
@@ -121,30 +120,25 @@ url:    https://github.com/intel-lab-lkp/linux/commits/Gilles-Risch/drm-radeon-f
 base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
 patch link:    https://lore.kernel.org/r/20260516185226.3005-1-gilles.risch%40gmail.com
 patch subject: [PATCH] drm/radeon: fix eDP resume from suspend on iMac11, 1 / DCE3.1 systems
-config: riscv-randconfig-001-20260517 (https://download.01.org/0day-ci/archive/20260517/202605171126.1g7CRkTZ-lkp@intel.com/config)
-compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project 5bac06718f502014fade905512f1d26d578a18f3)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260517/202605171126.1g7CRkTZ-lkp@intel.com/reproduce)
+config: riscv-randconfig-002-20260517 (https://download.01.org/0day-ci/archive/20260517/202605171301.73YzX9wA-lkp@intel.com/config)
+compiler: riscv32-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260517/202605171301.73YzX9wA-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202605171126.1g7CRkTZ-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202605171301.73YzX9wA-lkp@intel.com/
 
 All errors (new ones prefixed by >>):
 
->> drivers/gpu/drm/radeon/atombios_encoders.c:1386:7: error: call to undeclared function 'ASIC_IS_DCE31'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+   drivers/gpu/drm/radeon/atombios_encoders.c: In function 'atombios_set_edp_panel_power':
+>> drivers/gpu/drm/radeon/atombios_encoders.c:1386:14: error: implicit declaration of function 'ASIC_IS_DCE31'; did you mean 'ASIC_IS_DCE3'? [-Wimplicit-function-declaration]
     1386 |         if (!ASIC_IS_DCE31(rdev))
-         |              ^
-   drivers/gpu/drm/radeon/atombios_encoders.c:1710:30: error: call to undeclared function 'ASIC_IS_DCE31'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    1710 |                         if (ASIC_IS_DCE4(rdev) || ASIC_IS_DCE31(rdev))
-         |                                                   ^
-   drivers/gpu/drm/radeon/atombios_encoders.c:1727:29: error: call to undeclared function 'ASIC_IS_DCE31'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    1727 |                 if (ASIC_IS_DCE4(rdev) || ASIC_IS_DCE31(rdev)) {
-         |                                           ^
-   3 errors generated.
+         |              ^~~~~~~~~~~~~
+         |              ASIC_IS_DCE3
 
 
-vim +/ASIC_IS_DCE31 +1386 drivers/gpu/drm/radeon/atombios_encoders.c
+vim +1386 drivers/gpu/drm/radeon/atombios_encoders.c
 
   1372	
   1373	bool
