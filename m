@@ -2,70 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UJJwB/DcCmpV8wQAu9opvQ
+	id 0LfUOevcCmpV8wQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:36 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:31 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E125E569CC0
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58EB2569C7F
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29E0B10E763;
-	Mon, 18 May 2026 09:33:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2728E10E74A;
+	Mon, 18 May 2026 09:33:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=icloud.com header.i=@icloud.com header.b="zzfi9vHz";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="R5sdup77";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 600 seconds by postgrey-1.36 at gabe;
- Sun, 17 May 2026 07:59:32 UTC
-Received: from outbound.pv.icloud.com (pv-2006f-snip4-3.eps.apple.com
- [57.103.67.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27F2810E1B6
- for <amd-gfx@lists.freedesktop.org>; Sun, 17 May 2026 07:59:32 +0000 (UTC)
-Received: from outbound.pv.icloud.com (unknown [127.0.0.2])
- by p00-icloudmta-asmtp-us-west-1a-100-percent-0 (Postfix) with ESMTPS id
- D7272180010D; Sun, 17 May 2026 07:40:37 +0000 (UTC)
-X-ICL-Out-Info: HUtFAUMEWwJACUgBTUQeDx5WFlZNRAJCTQhKBUMDRQBBCFYBWANLVxQEC0AFBlgARnkRUAFYHlZeWhdeTVEPDwNKEAJeBV1yGVoUXBhTRVEfVFhBDgpaBlBRHV8CCgRHBFsXRgNTRUIGFxFQAVgeVl5aF15NRx9ATWJJAVoZWxxAF0puTVMPDxlaFFwYU0VRH1RYXgRTVg5CCUoFXQJaBUAOTANfB0UHRgpLHlwaGEEYCEsBW3cCURxWDVdDVARfThkMSh1SVlsTVRdGCQ==
-Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com; s=1a1hai;
- t=1779003639; x=1781595639; bh=aNvb29xy+lV9pE+SL5VbNJWu0la3P/7Ev+VY2zxukOE=;
- h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme;
- b=zzfi9vHzak2GMtTVMp2F0bk8evPbPRHSLgTTiSJITBLBBnf3S+vlIQz69aH0pjemLPGsSAoyv2bbq0rmdPPSkdHfLKF2eTUcjfxHuVEAjYEChsql6U8lYafDhHxv/2FBSEVofRcpXsR2NYcShn3JfpblAycuPPL+pgvm3gCG73vn2kOyZabm4QC7zsrfbU2pl9Y/mM3o6PQxZWH7iI69VO28D1G5c7od+2Q7JzYmD+OsTvO0ccmyrsnlyFzYJiT7zkp3RHslnr7HXE7nKynfn2sMdMznJqyvNMSgGze/Ufmzez4ObOekVWRIaax1MfHNY8/SPZiYZX4GbInxseojyg==
-mail-alias-created-date: 1778972301885
-Received: from localhost.localdomain (unknown [17.56.9.36])
- by p00-icloudmta-asmtp-us-west-1a-100-percent-0 (Postfix) with ESMTPSA id
- 24A90180012E; Sun, 17 May 2026 07:40:33 +0000 (UTC)
-From: Sakurai Shun <ssh1326@icloud.com>
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com
+ [209.85.219.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2816110E09F
+ for <amd-gfx@lists.freedesktop.org>; Sun, 17 May 2026 13:18:01 +0000 (UTC)
+Received: by mail-qv1-f49.google.com with SMTP id
+ 6a1803df08f44-8acb09ddbf6so32440706d6.2
+ for <amd-gfx@lists.freedesktop.org>; Sun, 17 May 2026 06:18:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1779023880; x=1779628680; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=8qmzV4OG/gwgrFg2WjVRa5yFfeYJiaj+u8zvgWP2oxA=;
+ b=R5sdup77L4kbL+l8/kbVMfHt21OiXaBTOg0BH6iK9mgMGCChhl+7vf6JTKCdIzTX8g
+ uK1kYo4wJ/EcXuIYMOmMeJ6jMlD6ktqu8zrHZ7DdW3rHf4eJDHfpo5yxgB7g0Cusgrw5
+ 99aS/HRvr845CtRSAmheI5eTx5rx5dVegxHILKtMUtKjSfb805eIdB+tcrI8HIZ5uXNY
+ 5CD+JrFXs6M1Hvk0FToZ/YfJve9oTrbodWcZwv8mEdgy4I3bx3r7yKtTR7M6nJWyuBac
+ zj8LwV89qNqoaYVbdFfi9oRsnQrXqWx+WpKdSsBhaP2imGJSREff8i9fCFKgzrhIxR1y
+ BBwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779023880; x=1779628680;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=8qmzV4OG/gwgrFg2WjVRa5yFfeYJiaj+u8zvgWP2oxA=;
+ b=SE5Vf2Wk3dxEyGWKkrp5/J48n71aKk6hYqlUv3clLsNcYp63gqbDE7kMoYGvATuCV8
+ cDWkwc8oy02rw5RitfEiLEFae+CLtEaqFpDdC5yJwn9s2H6HDiDxXuzRmCDqnYN/MA2D
+ Z68o+x5tao0kh/XRNFnDcz1+H+yrPhPhf+nAW03bkrcjJ1rUkpOMxuFwm3RxY8E8EFXw
+ +IGNDEpfX8nusf2Rusxm7rnGJ9e6CbK3zXdm5G1IivgSnBRquN0ME3VV5XpeUeQs6SQJ
+ 0c12xMnsMV0RpX2qoPiL4U6rnDBfmR6Hw6ktXAuwkFW4uD62W+cdZr15rdoLo6osZ2MX
+ NK7Q==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ+sV7iymIhG0tPPau3RFR5t8LtY85Cyk6Y0mFa5nOjF7+dLC85NpntcW/Q1Jp6yvtS1+dLfnJvK@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwZYFIT0fQTctZrl9JkTQc00dYVFLVEV5DwU5kmfDEnOIyttwNx
+ MMxtGw78WpS7lwU3mU1Mx9hSE+ls95sLTvVXTlhLl7enAiULDEb/dL5r
+X-Gm-Gg: Acq92OFnY1Kt+qSFkuJlI9lvTqjFLDr7Lr/BEh5PzUU10k5hgNHJ0z3bSjNpjj0h66s
+ 8+nSvDDJlTCBB55i11vmDhVP2/gFdRdZnznp4r6fsdTFLypmbsQ+HzA1Ez4Qo2WrvT21GCCf+jS
+ 5faZRNAFB+VPM1Vh8GizrpkRViss6EhEybQzJg0zTeom1LqYKR7RKBfjLUglwaPWylDEO3zJuhB
+ umHFHQGi2gH4rdbpedT+hwOPbuKq7BOwI3Eg81V7V/5rLpa0OqUBHcRtFUCWtBqbs881iobOfCt
+ XBWGGxsfpQWmVmVrrGA3rc1NrcphmyCu/lyFjgizj/J2Te9SSgVBkI75S3rZYjnXVxearoYewWu
+ HByQ/gvXW/VJoiMsUHcfbs/618FdRVbpN/xU1L/VnnNbSbng+9cg1nO3PB5TK7ar1LMk1+4KhfV
+ kk5PDsnUTWbCwBVZ0kmw6ey4YpED/7IN/jUTC8m/SsyJP0qLzmMQMzBJbSo8hmy2w2GrYV63xL7
+ K9VjyBK8uHLlujFVwTfOHeL3cpEpeFfFaIYC083p/Q=
+X-Received: by 2002:ad4:4211:0:b0:8bd:6baa:6a0c with SMTP id
+ 6a1803df08f44-8ca0f611b62mr138164296d6.11.1779023879979; 
+ Sun, 17 May 2026 06:17:59 -0700 (PDT)
+Received: from server0.tail6e7dd.ts.net (c-68-48-65-54.hsd1.mi.comcast.net.
+ [68.48.65.54]) by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-8ca3619c703sm22268846d6.33.2026.05.17.06.17.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 17 May 2026 06:17:59 -0700 (PDT)
+From: Michael Bommarito <michael.bommarito@gmail.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>
-Cc: Sakurai Shun <ssh1326@icloud.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH v2 RESEND] docs: fix typo in mpo-overview.rst
-Date: Sun, 17 May 2026 16:40:13 +0900
-Message-ID: <20260517074020.5633-1-ssh1326@icloud.com>
-X-Mailer: git-send-email 2.54.0
+ Christian Koenig <christian.koenig@amd.com>,
+ David Francis <David.Francis@amd.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Cc: Ziyi Guo <n7l8m4@u.northwestern.edu>
+Subject: [PATCH] drm/amdgpu: fix lock leak on ENOMEM in
+ AMDGPU_GEM_OP_GET_MAPPING_INFO
+Date: Sun, 17 May 2026 09:17:42 -0400
+Message-ID: <20260517131742.3435209-1-michael.bommarito@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Info-Out: v=2.4 cv=aahsXBot c=1 sm=1 tr=0 ts=6a0970f6
- cx=c_apl:c_pps:t_out a=azHRBMxVc17uSn+fyuI/eg==:117
- a=azHRBMxVc17uSn+fyuI/eg==:17 a=NGcC8JguVDcA:10 a=x7bEGLp0ZPQA:10
- a=ZxuoajvSgW0A:10 a=VkNPw1HP01LnGYTKEx00:22 a=v3ZZPjhaAAAA:8
- a=vi3RrHiwHXUnrlATKwIA:9 a=IxSG75etxsVYPPdR13TJ:22 a=lOdrInXjANxufYs0I0OZ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTE3MDA4MCBTYWx0ZWRfX6mTTVoH5SiGQ
- aocRPE0aKlJMtW+3bXywpNlNeEAOpk4WyljpL7Q/aiJD/zNhycEmN+XKZOuGPguxaOSNuLMSIKH
- /18ohvGoNyTce5aZMOB4Nlg7XpaBqegdIj3XxyXUcEt5rTcDs4xOd62DwkAplQp4xnsl1PhMDrj
- cQmMbmlwspJKCqG39CQTyklbgwLwGRE6fjnuRLaYibrQN7klfBkt+mxA2OiaVlv7ASyis/WYQXm
- Z7ux6g2/mz/go3QZVhny641+vhZvLMFR0VvXTmn1fL5opuZP7+66Gb5vQjc0scQOg3KMTaXc9GT
- VS8SJLAe6SQZlAcf+B6PXYUVpzxnTHbX/HLnj/TSQNHZGRDUk7UM1ElAlZs+/0=
-X-Proofpoint-GUID: ja6PTfVLb1Z_-8LArzE4K9bA2Oo9Xayc
-X-Proofpoint-ORIG-GUID: ja6PTfVLb1Z_-8LArzE4K9bA2Oo9Xayc
-X-Apple-Category-Label: MjE0Nzk4NjU5NzY6JGNhdGVnb3J5JF9QZXJzb25hbCw=
 X-Mailman-Approved-At: Mon, 18 May 2026 09:33:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,66 +97,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: E125E569CC0
+X-Rspamd-Queue-Id: 58EB2569C7F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.19 / 15.00];
-	DATE_IN_PAST(1.00)[25];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[icloud.com,quarantine];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[icloud.com:s=1a1hai];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:ssh1326@icloud.com,m:dri-devel@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[amd.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[ssh1326@icloud.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[icloud.com];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[icloud.com,lists.freedesktop.org,vger.kernel.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-0.999];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:David.Francis@amd.com,m:sumit.semwal@linaro.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-media@vger.kernel.org,m:linaro-mm-sig@lists.linaro.org,m:n7l8m4@u.northwestern.edu,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_TO(0.00)[amd.com,linaro.org,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,lists.linaro.org];
+	TAGGED_FROM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[michaelbommarito@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ssh1326@icloud.com,amd-gfx-bounces@lists.freedesktop.org];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[icloud.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pipe:email,icloud.com:email,icloud.com:mid,icloud.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michaelbommarito@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.979];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-Replace "transparant" with "transparent"
+The AMDGPU_GEM_OP_GET_MAPPING_INFO branch of amdgpu_gem_op_ioctl()
+holds three cleanup-tracked resources before calling kvcalloc():
+the drm_gem_object reference from drm_gem_object_lookup(), the
+drm_exec lock on the looked-up GEM via drm_exec_lock_obj(), and
+the drm_exec lock on the per-process VM root page directory via
+amdgpu_vm_lock_pd().  All three are released by the out_exec
+label that every other error path in this function jumps to.
+The kvcalloc() failure path returns -ENOMEM directly, skipping
+out_exec and leaking all three.
 
-Signed-off-by: Sakurai Shun <ssh1326@icloud.com>
+The leaked per-process VM root PD dma_resv lock is the
+load-bearing leak: any subsequent operation on the same VM
+(further GEM ops, command-submission, eviction, TTM shrinker
+callbacks) blocks on the held lock.  DRM_IOCTL_AMDGPU_GEM_OP is
+DRM_AUTH | DRM_RENDER_ALLOW, so this is an unprivileged-local
+denial of service against the caller's GPU context, reachable
+by any process with /dev/dri/renderD* access.
+
+Route the failure through out_exec so drm_exec_fini() and
+drm_gem_object_put() run.
+
+Reproduced on stock 7.0.0-10, Ryzen 7 5700U / Radeon Vega
+(Lucienne): the failing ioctl returns -ENOMEM and a second
+GET_MAPPING_INFO on the same fd then blocks in
+drm_exec_lock_obj() on the leaked dma_resv.  SIGKILL on the
+caller does not reap the task; the fd-release path during
+process exit goes through amdgpu_gem_object_close() ->
+drm_exec_prepare_obj() on the same lock, leaving the task in D
+state until the box is rebooted.  The patched kernel was not
+rebuilt and re-tested on this hardware; the fix is mechanical.
+Tested on a single Lucienne / Vega box only.
+
+Ziyi Guo posted an independent INT_MAX-bound check for
+args->num_entries in the same branch [1]; the two patches are
+complementary and can land in either order.
+
+Fixes: 4d82724f7f2b ("drm/amdgpu: Add mapping info option for GEM_OP ioctl")
+Cc: stable@vger.kernel.org
+Link: https://lore.kernel.org/all/20260208000255.4073363-1-n7l8m4@u.northwestern.edu/ # [1]
+Signed-off-by: Michael Bommarito <michael.bommarito@gmail.com>
+Assisted-by: Claude:claude-opus-4-7
 ---
- Documentation/gpu/amdgpu/display/mpo-overview.rst | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/gpu/amdgpu/display/mpo-overview.rst b/Documentation/gpu/amdgpu/display/mpo-overview.rst
-index 59a4f54a3..ed39e53ff 100644
---- a/Documentation/gpu/amdgpu/display/mpo-overview.rst
-+++ b/Documentation/gpu/amdgpu/display/mpo-overview.rst
-@@ -167,7 +167,7 @@ and interactions with operations such as DPMS and S3:
- - ``kms_plane_multiple@atomic-pipe-*-tiling-``
- - ``kms_plane_scaling@pipe-*-plane-scaling``
- - ``kms_plane_alpha_blend@pipe-*-alpha-basic``
--- ``kms_plane_alpha_blend@pipe-*-alpha-transparant-fb``
-+- ``kms_plane_alpha_blend@pipe-*-alpha-transparent-fb``
- - ``kms_plane_alpha_blend@pipe-*-alpha-opaque-fb``
- - ``kms_plane_alpha_blend@pipe-*-constant-alpha-min``
- - ``kms_plane_alpha_blend@pipe-*-constant-alpha-mid``
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+index 9ef80bca4102..8224fb499fdf 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+@@ -1091,8 +1091,10 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
+ 		 * be retried.
+ 		 */
+ 		vm_entries = kvcalloc(args->num_entries, sizeof(*vm_entries), GFP_KERNEL);
+-		if (!vm_entries)
+-			return -ENOMEM;
++		if (!vm_entries) {
++			r = -ENOMEM;
++			goto out_exec;
++		}
+ 
+ 		amdgpu_vm_bo_va_for_each_valid_mapping(bo_va, mapping) {
+ 			if (num_mappings < args->num_entries) {
 -- 
-2.54.0
+2.53.0
 
