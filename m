@@ -2,85 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cAeKIe7cCmpV8wQAu9opvQ
+	id wFnyOXjICWropQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 17 May 2026 15:54:00 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C635569C9F
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 11:33:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DBAA561520
+	for <lists+amd-gfx@lfdr.de>; Sun, 17 May 2026 15:54:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B7B610E75C;
-	Mon, 18 May 2026 09:33:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0266410E263;
+	Sun, 17 May 2026 13:53:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KEc+2POH";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Y6UY5Lbm";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 972F410E174
- for <amd-gfx@lists.freedesktop.org>; Sun, 17 May 2026 13:41:36 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-453903ee4adso1142601f8f.3
- for <amd-gfx@lists.freedesktop.org>; Sun, 17 May 2026 06:41:36 -0700 (PDT)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 572BB10E174
+ for <amd-gfx@lists.freedesktop.org>; Sun, 17 May 2026 13:53:55 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-48e82c23840so8641195e9.3
+ for <amd-gfx@lists.freedesktop.org>; Sun, 17 May 2026 06:53:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779025295; x=1779630095; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=e0Fqrssiq5EKJqOqnUySdSTXrmaCviyXE8eaNVLH4Wo=;
- b=KEc+2POHpjliCpwMjzbpr29fe3fwG92xQFdT7EhA32MwQbSBoFMOVRcD3BKia3vPcj
- H1uj4muEP+HV1wk/Y+sxQrxkhkH/v6rFOpqDkOJ9LNe162UnWwfqiTy2A4D4knkEN5kc
- 4Dja1Levf+E3SpBUlNibkU+PzOC06/5DZWzvEOKhEKsbhWUOgApHs2FcvPOIaVyRSEmk
- jGT2pYMeSlGJgWocxNZputcXcv3xUHoSL9Hwq0buXQMph41wH4q/xZOBEWsJIcRus/Kv
- g3oQK9GkQT6xGLyhFCw64wyqYljVChDM/yQsK/BT4L2p5Nr6CN2KH+MrGYUyB23KQfb8
- 5Bow==
+ d=gmail.com; s=20251104; t=1779026034; x=1779630834; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=ay6bnjdiJykakdEpJojMy3BsnRfLjHl5B+Mr2CQ/Omw=;
+ b=Y6UY5LbmRLlDfhUT6XrVuOvHxDWHGGLUE0xVr8hiR76fyg2JtZpYCivy/xfSzRI2eE
+ kl0mNnZfNa/OUR1FG1XnqQotH3YtnzWyVDORk4QT3Ws/DSae+DS/Z/28DRMb5t6LrqB6
+ a+hf6Iaol26pI6Ql5xCs3/jGqs1p87ULV4heZypYvCUPEdkQgqSgtRFDMQITJ66XPVOP
+ 4NHG6mwSgtx4Sd8bM42vGLAI7jUzegsWxnhxyDFv3Ov+CQAaEYB550yI/nbZzLeFs6oJ
+ CydqJ4qibX9O+PkIjiAsff16n8GxPBLuVQNQ1fDnNvcNCkJMyCRMG9b3xKdgF88grvl7
+ jPpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779025295; x=1779630095;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=e0Fqrssiq5EKJqOqnUySdSTXrmaCviyXE8eaNVLH4Wo=;
- b=PaB5XvyRquNtkDBsxw1V3KLwk1fLYC5mcHm7c6NkBe0PMWK5m4R3vVlt/Alo7kA79H
- 7DMp8/j0ITSLkVnWk6oCjHqJFFwiy2wZUOhzUeuY0YizCqz6m4zu9qbB4ya0DYnfy6V7
- Sh+tYX9XlGGWhid0/KgM2IxbChTFexA7tV5akbFD+o3p1GfpsZzVaMtx3p3bwcUiz1nt
- /yWlO7KFo0OoOKMCcHvCEw22afA/6bZ+IyGscVIwU+a+pzHWYy35pudldzGI2M8J+/KO
- qKgDC2uPYr98MVPxV7U3d2JMZPkiy8PflTRNRXVf0BCmUKpX6O1rCcrwtIVaWJvTHMIK
- G5Ew==
+ d=1e100.net; s=20251104; t=1779026034; x=1779630834;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ay6bnjdiJykakdEpJojMy3BsnRfLjHl5B+Mr2CQ/Omw=;
+ b=qh3auQ5BdbuuMkTcFcBznQ/QNdpDsX35uhs1lPVroHB90CIzifIEqLVLXIKtFITjz6
+ ytVcCX9L1sZ/voizhq7u1lTMMV9C/XBwgELgMnRELkV4XcBIftQy/5tiwRSTN+Sq29Yl
+ BHTVJ4MseShV6OSOx0ceMTsL56gaAK7VsZiihz+2/5ToT2buImXHii+tVXw9WElvapCi
+ SodGYtxB+ydenUpE2NVCbd+6n0fHUMYa+85r096OqDQRyoKHHpHh9/h86hq8/5TqqGGj
+ VPydNTb4g0wJxLNQoT3NlYDcbJ4RspaBoRaL1xzvC5qY83H0afooJdWlDKqIyG9YJYaK
+ YpSQ==
 X-Forwarded-Encrypted: i=1;
- AFNElJ/cmOpQX3h5fHnsSGywDU2qm+TIjxGTiyD9vm8pckXOTN9BjdHPuiNDLh8nF1+L6CrwedcwcKrg@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy1uNGPd3MI2ivlVZWdxq+L4mi/nh1I0J5zNrX/t2K2HMd1w+Y8
- +NSNZaA4JZNAxhSRNOktBd2qohthaqc4pZK+gIj3A1JhnMvOUeiwXyCI
-X-Gm-Gg: Acq92OFHCRY5UQplH+mcskJ5G+leSilYM7YhTdwsKO0Ol9qCpAmgs4QzjDBVd2wloer
- vYYrP963oaEAdfBIicB2PEMKjMs87fSqXyxP0nZUpi0Xq6OynyPRYZ6zsAIjdVQ7zNukLEXkHvP
- rFqfntvkENodob6F9sT4CwXEXFN45xGB0jOr95ndisk3x5P1zoqoY7V3neH7/z0aMYWLZtlkxOs
- lVs11JEayzz4MTXXQaeDtgQ4eQJyKGeyi+4HAApfVddeCa7mrUPxRQaofmytxxdi2RJNmLrNemK
- /vJJOA8TboEVD0MnoQGH+yWDE6Ghs380s0PxUBwIba87SNHa9bwr3wXNrtAJnq+ktJjVCrNr8lR
- XGIdV6oAXY764NDuq6cc1BVC68ut89v/Qd9FxUDOg37PWmIyFccQ2I1qp2EME6N3PgNGrFiU2qu
- JLx3c62JZlIYiObITlgq57oenwhi2HJgU/u+ou6KsbL70MiaM1+NHx5zYaqlOmFF02m2pZo/Lye
- A==
-X-Received: by 2002:a05:6000:4010:b0:43f:df1b:9e07 with SMTP id
- ffacd0b85a97d-45e5c5a5580mr16862802f8f.42.1779025294346; 
- Sun, 17 May 2026 06:41:34 -0700 (PDT)
-Received: from localhost.localdomain (i59F7ABEC.versanet.de. [89.247.171.236])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-45da15a666fsm28231673f8f.36.2026.05.17.06.41.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 17 May 2026 06:41:33 -0700 (PDT)
-From: Elliot Tester <elliotctester1@gmail.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, corbet@lwn.net
-Cc: skhan@linuxfoundation.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, Elliot Tester <elliotctester1@gmail.com>
-Subject: [PATCH] docs: gpu: fix spelling errors and remove duplicate sentence
-Date: Sun, 17 May 2026 15:41:22 +0200
-Message-ID: <20260517134122.38389-1-elliotctester1@gmail.com>
-X-Mailer: git-send-email 2.54.0
+ AFNElJ9N0sxcF9lhvhoIC62n6nPCw5Ww+z8U7T9Cw6dPWPE3a8iNNsMWMogkO3qqLnybm7VqwpEi9QOf@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxAe1UTz3yjU1x4eqS4i5KuyFuP0VVHcHJsy2ehBgGqEV1/z0IV
+ jfnnCkKCHk+MdKBY8cj29x1f3deAH4vBNJ4EIJCfgul8pU3WlKhSC7MR
+X-Gm-Gg: Acq92OHhqVD4aZohDAaAzzJYjpD0EpkErHApPQr2g/6/J1101TgtSc86P23qAlGf/wz
+ Ae6mbfZhpV6RLRQywo0oVWrBvLeLg2mQ8fb6SZGiq6bjNRBkpRe4mrixdFq02+CWeXm0xUAlD8D
+ o2eS+WLhWd8WjFc+aEqjxClO91T//9tjiGSUdkacOmrpdt4yK9T4S4PzYOGcY0Y7GB22x7Iuc5K
+ RQiu1qBzvB7DXv+zIt3Hp+YaU+JAG+IVK5ea4AQvZSjEO0iwryOYRSuuI1O4twJUUUm1EwL8POp
+ WhLXlMizm62b8feTOiHZnY99+JndY9Edxhsljb1eKgjUG+5Rrcm52s+9b3NwmqzqyCwK3GergRz
+ LLNapuIyCPZEyGkfDcP/NIrl0Bj23u7WdWwaeXQJBFZUuaONHVLTtD294dKLy6hOEDGEl+8HLG3
+ mrGVeI/hHFTJZvYEYVwE/05/Nf6Mg/rjOCR+IORiNVT14Hqsysg7R7i9EmG5WpqAxUTnWenmXmh
+ /Q7PeSPg0+7dw1E
+X-Received: by 2002:a05:600c:8189:b0:488:ac01:72b6 with SMTP id
+ 5b1f17b1804b1-48fe6323addmr174059765e9.21.1779026033650; 
+ Sun, 17 May 2026 06:53:53 -0700 (PDT)
+Received: from ?IPV6:2a06:4944:10fb:f400:509b:3e86:dfb4:f404?
+ ([2a06:4944:10fb:f400:509b:3e86:dfb4:f404])
+ by smtp.googlemail.com with ESMTPSA id
+ 5b1f17b1804b1-48febf8305dsm81575455e9.9.2026.05.17.06.53.52
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 17 May 2026 06:53:53 -0700 (PDT)
+Message-ID: <d5262f65-22b5-4ff3-b905-12bb2a4b587d@gmail.com>
+Date: Sun, 17 May 2026 15:53:51 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/radeon: fix internal display on iMac11, 1
+ (RV770/DCE3.1)
+To: Lukas Wunner <lukas@wunner.de>
+Cc: alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20260510185426.4264-1-gilles.risch@gmail.com>
+ <20260516092420.3579-2-gilles.risch@gmail.com> <agiy9II5jkHEgPAq@wunner.de>
+Content-Language: en-US
+From: Gilles Risch <gilles.risch@gmail.com>
+In-Reply-To: <agiy9II5jkHEgPAq@wunner.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 May 2026 09:33:27 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,177 +99,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 1C635569C9F
+X-Rspamd-Queue-Id: 9DBAA561520
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:dri-devel@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:elliotctester1@gmail.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[elliotctester1@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[amd.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,lwn.net];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,lists.freedesktop.org,vger.kernel.org,gmail.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[elliotctester1@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:lukas@wunner.de,m:alexander.deucher@amd.com,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[gillesrisch@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.993];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gillesrisch@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_HAM(-0.00)[-0.998];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[wunner.de:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-Fix various spelling errors in GPU docs:
-- indicies -> indices (userq.rst)
-- umap -> unmap (userq.rst)
-- pre-empt -> preempt (drm-compute.rst)
-- buffer-leaks -> buffer leaks (drm-uapi.rst)
-- Additionally to -> In addition to (drm-uapi.rst)
-- unpriviledged -> unprivileged (drm-uapi.rst)
-- fucntions -> functions (todo.rst)
-- varios -> various (todo.rst)
-- implementions -> implementations (todo.rst)
-- complection -> completion (todo.rst)
+Good afternoon Lukas,
 
-Ale remove a duplicated sentance and stray "uff." in the todo.rst, add
-missing period after drm_ioctl.c reference, and add missing newline at
-end of drm-uapi.rst. Fixing this would make reading the docs just a
-little bit easier.
+thanks for the review.
 
-Signed-off-by: Elliot Tester <elliotctester1@gmail.com>
----
- Documentation/gpu/amdgpu/userq.rst |  4 ++--
- Documentation/gpu/drm-compute.rst  |  2 +-
- Documentation/gpu/drm-uapi.rst     | 10 +++++-----
- Documentation/gpu/todo.rst         | 11 +++++------
- 4 files changed, 13 insertions(+), 14 deletions(-)
+The initial launch date can either be verified in the TeraScale 
+architecture comparison table on Wikipedia [1] or directly in the kernel 
+source at drivers/gpu/drm/radeon/radeon_family.h where CHIP_RV770 (line 
+74) precedes CHIP_RV730 (line 75).
 
-diff --git a/Documentation/gpu/amdgpu/userq.rst b/Documentation/gpu/amdgpu/userq.rst
-index 88f54393b..94427e18a 100644
---- a/Documentation/gpu/amdgpu/userq.rst
-+++ b/Documentation/gpu/amdgpu/userq.rst
-@@ -156,9 +156,9 @@ IOCTL Interfaces
- GPU virtual addresses used for queues and related data (rptrs, wptrs, context
- save areas, etc.) should be validated by the kernel mode driver to prevent the
- user from specifying invalid GPU virtual addresses.  If the user provides
--invalid GPU virtual addresses or doorbell indicies, the IOCTL should return an
-+invalid GPU virtual addresses or doorbell indices, the IOCTL should return an
- error message.  These buffers should also be tracked in the kernel driver so
--that if the user attempts to unmap the buffer(s) from the GPUVM, the umap call
-+that if the user attempts to unmap the buffer(s) from the GPUVM, the unmap call
- would return an error.
- 
- INFO
-diff --git a/Documentation/gpu/drm-compute.rst b/Documentation/gpu/drm-compute.rst
-index f90c3e63a..35cc8d654 100644
---- a/Documentation/gpu/drm-compute.rst
-+++ b/Documentation/gpu/drm-compute.rst
-@@ -7,7 +7,7 @@ seconds. (The time let the user wait before he reaches for the power button).
- This means that other techniques need to be used to manage those workloads,
- that cannot use fences.
- 
--Some hardware may schedule compute jobs, and have no way to pre-empt them, or
-+Some hardware may schedule compute jobs, and have no way to preempt them, or
- have their memory swapped out from them. Or they simply want their workload
- not to be preempted or swapped out at all.
- 
-diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
-index 579e87cb9..0ef498bff 100644
---- a/Documentation/gpu/drm-uapi.rst
-+++ b/Documentation/gpu/drm-uapi.rst
-@@ -150,10 +150,10 @@ separate render node called renderD<num>. There will be one render node
- per device. No ioctls except PRIME-related ioctls will be allowed on
- this node. Especially GEM_OPEN will be explicitly prohibited. For a
- complete list of driver-independent ioctls that can be used on render
--nodes, see the ioctls marked DRM_RENDER_ALLOW in drm_ioctl.c  Render
--nodes are designed to avoid the buffer-leaks, which occur if clients
-+nodes, see the ioctls marked DRM_RENDER_ALLOW in drm_ioctl.c.  Render
-+nodes are designed to avoid the buffer leaks, which occur if clients
- guess the flink names or mmap offsets on the legacy interface.
--Additionally to this basic interface, drivers must mark their
-+In addition to this basic interface, drivers must mark their
- driver-dependent render-only ioctls as DRM_RENDER_ALLOW so render
- clients can use them. Driver authors must be careful not to allow any
- privileged ioctls on render nodes.
-@@ -568,7 +568,7 @@ ENOSPC:
- EPERM/EACCES:
-         Returned for an operation that is valid, but needs more privileges.
-         E.g. root-only or much more common, DRM master-only operations return
--        this when called by unpriviledged clients. There's no clear
-+        this when called by unprivileged clients. There's no clear
-         difference between EACCES and EPERM.
- 
- ENODEV:
-@@ -761,4 +761,4 @@ Stable uAPI events
- From ``drivers/gpu/drm/scheduler/gpu_scheduler_trace.h``
- 
- .. kernel-doc::  drivers/gpu/drm/scheduler/gpu_scheduler_trace.h
--   :doc: uAPI trace events
-\ No newline at end of file
-+   :doc: uAPI trace events
-diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
-index bc9f14c8a..b13cd4347 100644
---- a/Documentation/gpu/todo.rst
-+++ b/Documentation/gpu/todo.rst
-@@ -55,7 +55,7 @@ There are still drivers that use drm_simple_display_pipe. The task here is to
- convert them to use regular atomic helpers. Search for a driver that calls
- drm_simple_display_pipe_init() and inline all helpers from drm_simple_kms_helper.c
- into the driver, such that no simple-KMS interfaces are required. Please also
--rename all inlined fucntions according to driver conventions.
-+rename all inlined functions according to driver conventions.
- 
- Contact: Thomas Zimmermann, respective driver maintainer
- 
-@@ -301,7 +301,7 @@ Various hold-ups:
-   valid formats for atomic drivers.
- 
- - Many drivers subclass drm_framebuffer, we'd need a embedding compatible
--  version of the varios drm_gem_fb_create functions. Maybe called
-+  version of the various drm_gem_fb_create functions. Maybe called
-   drm_gem_fb_create/_with_dirty/_with_funcs as needed.
- 
- Contact: Simona Vetter
-@@ -326,10 +326,9 @@ everything after it has done the write-protect/mkwrite trickery:
- 
-       vma->vm_page_prot = pgprot_wrprotect(vma->vm_page_prot);
- 
--- Set the mkwrite and fsync callbacks with similar implementions to the core
-+- Set the mkwrite and fsync callbacks with similar implementations to the core
-   fbdev defio stuff. These should all work on plain ptes, they don't actually
--  require a struct page.  uff. These should all work on plain ptes, they don't
--  actually require a struct page.
-+  require a struct page.
- 
- - Track the dirty pages in a separate structure (bitfield with one bit per page
-   should work) to avoid clobbering struct page.
-@@ -914,7 +913,7 @@ Querying errors from drm_syncobj
- ================================
- 
- The drm_syncobj container can be used by driver independent code to signal
--complection of submission.
-+completion of submission.
- 
- One minor feature still missing is a generic DRM IOCTL to query the error
- status of binary and timeline drm_syncobj.
--- 
-2.54.0
+The test robot mentions that it cannot find ASIC_IS_DCE31(); this is 
+because both patches build on one another. Should I submit both patches 
+as a series?
+
+Kind regards,
+Gilles
+
+On 16.05.26 20:09, Lukas Wunner wrote:
+> On Sat, May 16, 2026 at 11:24:21AM +0200, Gilles Risch wrote:
+>> The Apple iMac11,1 (late 2009) has an integrated ATI Mobility Radeon
+>> HD 4850 (RV770/M98L) with a 2560x1440 internal panel connected via an
+>> internal DisplayPort path. This machine suffers from a similar problem
+>> as the iMac10,1 (late 2009) and the iMac11,2 (mid 2010). Without this
+>> fix the display stays dark under KMS. Two issues are addressed:
+>>
+>> 1. The RV770 implements DCE3.1 and not DCE3.2. ASIC_IS_DCE32() starts at
+>>     CHIP_RV730 which is newer than RV770, so the RV770 never matched the
+>>     DCE3.2 PLL and encoder logic. Introduce ASIC_IS_DCE31() starting at
+>>     CHIP_RV770 to fix this.
+>>
+>> 2. Apple routed the internal display through Link B of the DIG encoder
+>>     instead of Link A, as observed in the kernel display connector log.
+>>     The same quirk already exists for iMac10,1 and iMac11,2 - iMac11,1
+>>     was simply missing from the list.
+> Not an expert in the radeon driver or AMD chip revisions, but if it
+> helps improve support for older Macs I'll be happy to offer my:
+>
+> Reviewed-by: Lukas Wunner <lukas@wunner.de>
+>
+> It's not immediately obvious that CHIP_RV770 precedes CHIP_RV730
+> in the enum and that hence ASIC_IS_DCE31() subsumes ASIC_IS_DCE32().
+>
+> Thanks,
+>
+> Lukas
+
 
