@@ -2,97 +2,109 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iKAgFiMiC2reDgUAu9opvQ
+	id MHsmOOcQDGr6VQUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 16:28:51 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 09:27:35 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF03D56EC4F
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 16:28:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7771E5790D1
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 09:27:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A781E10E88F;
-	Mon, 18 May 2026 14:28:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E37E110EAD7;
+	Tue, 19 May 2026 07:27:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="isxrgDVA";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="F36ZVhw6";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f49.google.com (mail-dl1-f49.google.com [74.125.82.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D797710E88F
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 14:28:46 +0000 (UTC)
-Received: by mail-dl1-f49.google.com with SMTP id
- a92af1059eb24-12c87f1f8c8so122600c88.2
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 07:28:46 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779114526; cv=none;
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com
+ [209.85.167.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A24B810E896
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 14:34:14 +0000 (UTC)
+Received: by mail-lf1-f49.google.com with SMTP id
+ 2adb3069b0e04-5a858881ad2so3236080e87.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 07:34:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779114853; cv=none;
  d=google.com; s=arc-20240605;
- b=fefr1GpTu2ATDE0LoiTl7FUq57Y7AeOKeaJGCfdnBO8bfCueNpIF67Up9gJAnUxSQ+
- 5C5R6HWHPqnYQTA/PqgFnSfLKzhFatzqiszpRnb0wk0smCfvY+2tSbPJjpHX9i22XI5P
- TiOI9hzH+3nwnZlRVDRy0s0SUQwlAQsgw3RXwo2yDbzzjXJtMxGgf3T3TscEwpw2F6ID
- KGYI23yijKvMt451m+vAStrrkN4ls4abvCSi0bVPo4Y7rP4v51o/c/sPChY5ewR77WGk
- nf/1wVTZUtBW3YTYPChvmQIE6BRYpwsKR0Vbr7v4EzGnHrhKhOH6DBd1htuvaqxuEExb
- gOWA==
+ b=brrLE04o9M6ax1JnmQfzr5dbB5cMOaKqw5YsJivmSSDESAUM0obDRjJS5BjulSO58a
+ Yfozl2yWv/Yw3zhehSSv8odWlkBF6xJwEaBLrbDF3aDgZAwkjwC8oTirtqpfJLwuwCK2
+ cPkUI8lzCGSwrzwxNMLddkOqWM4eKKLJti+xCDG01uatswnWhozDRSNGrxn+y0BlfzKE
+ HV3A4dhvmE86qVHKz8Ase3un5vPimd3gMz2GuK4mVeZro8YUkvenWmc8yXK62qGHPmx6
+ aJ7YFGQQo6miUZ0O4cvrwUimoRd4x9LOS07gMyOKoeaneGFPlLE87v0DTSiVuAj+Btid
+ Oe6Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=eHp6HvgnAYfucxMy8r/T/zzkHFjLcckBg5P5ZMn7kls=;
- fh=uCJ+Cn59moqhZgX9T88H24gKBHNH+vwyf/9HmOLRarE=;
- b=PFuQZyByA79JDmGYB8OgvWCjzMbvB/MmplXGodeCOkBXfN8fkFxQJ+5xP1/KQ/5H6M
- NX1J3FbUTla//lMe6rdNOvMMW88xqkI/JjayTA00nC/4segcDcUGJUzidZc1yHw/0EG4
- 57kouTOmqjIjPmKBQdpyX07rTINYTGnZuBxISVLHaQWTOJRsCewFMsa5Um+2R5T0CBQH
- RJ7nEG/KCyzGStzlWFgy2UDu1fPwsHS/2PZedO87NmuPTnjxl1QJX5DAegUAaCAl1HR7
- X9o4jDGDyxFD6+UZmFdm7X8UqSBRGtMAz8/o4ree7DgPEcKasNjilmeUFEfjXODDlWlT
- EeQw==; darn=lists.freedesktop.org
+ bh=oqRnCaOYWjwDT5cGUR3SD10/guhtfL7tCTBSlh/U3DQ=;
+ fh=vz2bWcM9yj3AK4pzEaKoy+QNSDkpZDKQMXbvw22JqHM=;
+ b=fVeCqueXUvMsx3TIIHXdKzlBm7H4RMSi6fs/m4F3zj18ngCmG4upC05FYMyMvqNjXA
+ EXkSLc3V6mvwQ5ABwym5ZGpY8Z085FOs1UufdmeHOMiCTwwRxgRQz0FzD720iM8DXxjO
+ zR0mfMJHykw2Sn+2XASeqdNkRnbvzjdZF/iholBZfNk94Pl6JUxsuhqtsWGGiJrmIS+9
+ zEajloi9sXbG5H60Xkbc1lKkaLrbppQsfBHw96jJj0/Fletn287SZyiApwIqzJPyVgAA
+ I6VGWBm9WwHtu1WWHGKq1o3If2tpiSfGx92juHDeea9XoJM/H/RM5vqTclNhk18KdODW
+ suMA==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779114526; x=1779719326; darn=lists.freedesktop.org;
+ d=suse.com; s=google; t=1779114853; x=1779719653; darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=eHp6HvgnAYfucxMy8r/T/zzkHFjLcckBg5P5ZMn7kls=;
- b=isxrgDVAGDI1xylc1f5PZf6Nh2dAQ1PxcSHBTwJwikU3PCDZR1VOeO/z7/x3fvixjL
- RiavIaQyRQg6QRXCOS8QwxP7KmEz8rWqROyZ8Hw78cnm2zpnHc/HoOK1Jacy5AT/S5aB
- GpgDqlkMwt9STNdBNk2a1xRo1EgocKY3AZiCaiIm4kMFTE1okSocO7QDGoebBzmsLfPr
- m+HylMsPdfIY9adrpv4jeJs0C8w8OWEM17myIbCGPIkFDGSFb1ESMr3vDobcG//CDBaU
- vpjkCO88tP0tcCr26dqirEOmOWYcxcMP398hjWVf07iAJkOMFB3y3rfN1fQt+0GRCCpC
- QJZg==
+ bh=oqRnCaOYWjwDT5cGUR3SD10/guhtfL7tCTBSlh/U3DQ=;
+ b=F36ZVhw6xg24CIwXeGT2xj88RxabskxttZtAPCClxOVgEME3w7F7MsoA++ifwYBAAZ
+ 9Kl2Dl/toBbChL3luov7kk62Qycd9FS90O2vFYC6OpiBdU7RVSFe53eD+gMVOyYX5OcF
+ g5J62gNmNA2nHTd9v0/Pc7oYHlqP7b0PQ6bGYXLDEYA0k9MVvxqTOdYWFThwJF3XRnvw
+ O/kx/WvNdTohRU4fYP1Qqst7WwoeG9UjCWjkzplTbc5Ar8BXolM+MDd1BPovL2lVtikV
+ mnnF5nmZDodlHQpR6SPbLUo0mslJPXE4p9aN83JTKh3a6B3D6EJaS/AdGHFi3n5tEWvS
+ AnaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779114526; x=1779719326;
+ d=1e100.net; s=20251104; t=1779114853; x=1779719653;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=eHp6HvgnAYfucxMy8r/T/zzkHFjLcckBg5P5ZMn7kls=;
- b=YkJYmJkxFKgU+o63n4tIs3nV0UZus+uylfdAMdAgDsS2J/+b2PHfaeowqitOAh1XAm
- j2uRTrIEWkjjXj0s75eDgQMsCdRWydfFncRzMkAdbYPRTSbjEETLf9mSemXrJlRIu1Nz
- NZ/8kxt10Aa2iYysNOJyM2k/48xkHYO8w/oHKUCosD523G9KFEfTitaypO3lyRPVIUx9
- Lc1wu/5NQ9193xjN8hYe9GH5S0G28SkB0TPGDXeuvDIC/DsDYUPbLYsDYRztvZRZJW4H
- 9jfLvAwAQFgfNS+WN1xabEOi000HcbEPVhts2WGF/bbPqAg4y818CizcPpnALMxTkAQy
- OQOA==
-X-Gm-Message-State: AOJu0Yx4jpIv2A054peL2y/IIi3ljw8lW1XOf2cOI5GwGlSOFgfvMPrf
- l7xbmriHCxlUpN/68la3b4/gq3ZZq72PvP+XqH1cXSDxR/uEi5ua0eJ7XDkPbfCPjhYmOFq1XU0
- RIuTrWJbdASL/WpOZm0CCgncRg78GqN4=
-X-Gm-Gg: Acq92OEDwLLDKyI7kHNMV8Ia8pm176IsEw9eOFZAMhNMlJ2nvyZjrA9yWud1EZSNX9T
- zU5ScrSX8tZPuX7QxDBk7qoj+87FrukKwhv+cDL94SjIC1URh0d5WJC5nLY1Y9mJdKYkcBdRsFj
- Z4P2nUroqXPDS5ugkGL0wUcdtZ1UC2EkHYSNQj15mt1kFtopBuAWYd8mRvTdb9DNRzVwVQ3Tv07
- znnTpBxMjEAJbgXdibKlCx/8NKX11GiAQwV7afTY+xar3igS3tmNDjezxBJ6/Yo7dmIfkDVNgJo
- zBP2dcqBCobVMnvP5F4WCuUf4iFXtI0OGsey03bhra6kdQnPolE+U5CoFbQybqharlDy0Q==
-X-Received: by 2002:a05:7022:6994:b0:119:e56b:c3f5 with SMTP id
- a92af1059eb24-1350483f16cmr2766421c88.5.1779114526072; Mon, 18 May 2026
- 07:28:46 -0700 (PDT)
+ bh=oqRnCaOYWjwDT5cGUR3SD10/guhtfL7tCTBSlh/U3DQ=;
+ b=nxu3LiP3R1tttZ4FYrFVK/REGlQXiVtG5/Xl3Mg8lcOeEhDQ9lFa5tBdTdqlnfGAwl
+ Am8EFPNkCiC2TmOe5FJPb3lfB7woCelgfrWDkvMgiRIFrcYPcZd6BrvhqKM581wAc8Fs
+ Sa1liE5Os5UEFW7x5oAOZ2G/Lh4tNgrlL+cdQmB2nJz+JILJw8NuHXGA+aEiMJjcnXiv
+ JirSQ6wcKBmlfR1o0tzhD4Llmq91BBMKmC3CSQmzF4Z22COPqYyW4Od/iIWk0jz9JZ6O
+ S++iVWeBRUasO4mRqUafHRfpPrWHVbO4CVHz9f0ujTbdQ6N+EN3Pm6jhkgTyrCaCM9gb
+ hVdg==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ+6EqSyqxso/RU94LrjTRhFDpXrsVpOo6Pmss3Ip4VvzF6fNY11SQGx/91Zt2/qnDlsL51QGWsG@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyi+0ywUHEwZ4EXftQpMx0+aA+uGqP6bDjZzbc6yGSzLMjakoWf
+ 5qDfiMKs2Qbn5zg5NbjLxxvRqlt+CBh/WZh9tL7t3aZ0YxEkHPKpLZoT8nTVq52neqLDTl23ez+
+ OMORVT9Q5G3c2gQzFliIEkRDPtx7tEemAczgmP4ODfQ==
+X-Gm-Gg: Acq92OHaSt6hfFjlZVg/Bt5b9PR5c+sqKj0nqsnAEnyqwYjYSn4qaEWn2TH3EsO0q/b
+ 4ldwIEwBQkAJha5TDV/4ZS/yMEhHQm3ank1pQbWjoZoLr9PU/IguTopnxUSQZO7cGOzXmErKbhB
+ QBsbNFEyrQMIijMrUzNxUAeNa+8Lyv48cW/NMFoTDIVpnrbxrgHbq4UmnWIzKJKk9S3f1nQuTpb
+ uC1CKAEtWsxiZMOaE57lbFGwGDCBcbA/kXVY2iAgGSmCdD4N6euFZ0EMPvvcX9wVpK0/nCdhwoc
+ +5KVLzhS
+X-Received: by 2002:a05:6512:1188:b0:5a1:38c4:4247 with SMTP id
+ 2adb3069b0e04-5aa0e600127mr4228575e87.1.1779114852958; Mon, 18 May 2026
+ 07:34:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20260515091054.529610-1-arnd@kernel.org>
- <bcafbc27-9556-4891-94d1-ab81f707c127@triang3l.ru>
-In-Reply-To: <bcafbc27-9556-4891-94d1-ab81f707c127@triang3l.ru>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 18 May 2026 10:28:33 -0400
-X-Gm-Features: AVHnY4KEVCIFY2_WxOsoSrUG1gkZy82u0MLyGhmUX6PfRdrzTgyibhro0RIu6Yo
-Message-ID: <CADnq5_Mv1ZFcGDx-3gX9CiDCCQgn3=HA9POcBu59umkjrScXJQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/radeon/evergreen_cs: Add missing NULL prefix check in
- surface check
-To: Vitaliy Triang3l Kuzmin <ml@triang3l.ru>
-Cc: amd-gfx@lists.freedesktop.org, Arnd Bergmann <arnd@kernel.org>
+References: <20260514103815.190628-1-marco.crivellari@suse.com>
+ <20260514103815.190628-3-marco.crivellari@suse.com>
+ <CADnq5_OZG_vsEuUWgTPJtz-4zf4s=bA9Q_r9-w+KMQVa4RkMzQ@mail.gmail.com>
+In-Reply-To: <CADnq5_OZG_vsEuUWgTPJtz-4zf4s=bA9Q_r9-w+KMQVa4RkMzQ@mail.gmail.com>
+From: Marco Crivellari <marco.crivellari@suse.com>
+Date: Mon, 18 May 2026 16:34:01 +0200
+X-Gm-Features: AVHnY4K214WNU2hBJ6vCTO-QsPeLak87wQZy7EGptiTlpMvsh_X5QK980jqHruw
+Message-ID: <CAAofZF62w01GpNOQoSunLFboC=FXihb05rKNtZ1S9hQL4zEuGg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/amdgpu: Replace use of system_unbound_wq with
+ system_dfl_wq
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, Tejun Heo <tj@kernel.org>, 
+ Lai Jiangshan <jiangshanlai@gmail.com>,
+ Frederic Weisbecker <frederic@kernel.org>, 
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Michal Hocko <mhocko@suse.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Christian Konig <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 19 May 2026 07:27:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,86 +120,48 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:ml@triang3l.ru,m:arnd@kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:tj@kernel.org,m:jiangshanlai@gmail.com,m:frederic@kernel.org,m:bigeasy@linutronix.de,m:mhocko@suse.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[marco.crivellari@suse.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[suse.com:+];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_NEQ_ENVFROM(0.00)[marco.crivellari@suse.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,kernel.org,gmail.com,linutronix.de,suse.com,amd.com,ffwll.ch];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: BF03D56EC4F
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,suse.com:dkim]
+X-Rspamd-Queue-Id: 7771E5790D1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Applied.  Thanks!
+On Mon, May 18, 2026 at 4:26=E2=80=AFPM Alex Deucher <alexdeucher@gmail.com=
+> wrote:
+> [...]
+> Applied the series.  Thanks!
 
-On Mon, May 18, 2026 at 6:29=E2=80=AFAM Vitaliy Triang3l Kuzmin <ml@triang3=
-l.ru> wrote:
->
-> 'evergreen_surface_check' is called with a NULL warning prefix when
-> handling potentially recoverable issues or just to compute the alignment
-> requirements, and 'evergreen_surface_check' is called again in case of
-> failure (with the correct prefix, as opposed to NULL), therefore, the
-> initial check must not print a warning, because the surface may be
-> accepted successfully after having been corrected, however if it isn't,
-> the final check will print the warning anyway. The surface check
-> functions specific to array modes already implement this behavior, but
-> the 'evergreen_surface_check' function itself doesn't.
->
-> This is also supposed to fix the "'%s' directive argument is null
-> [-Werror=3Dformat-overflow=3D]" compiler warning.
->
-> Fixes: 285484e2d55e ("drm/radeon: add support for evergreen/ni tiling inf=
-ormations v11")
-> Reported-by: Arnd Bergmann <arnd@arndb.de>
-> Signed-off-by: Vitaliy Triang3l Kuzmin <ml@triang3l.ru>
-> ---
->   drivers/gpu/drm/radeon/evergreen_cs.c | 6 ++++--
->   1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/radeon/evergreen_cs.c b/drivers/gpu/drm/rade=
-on/evergreen_cs.c
-> index 3142ef4da7f4..9196f85db9ce 100644
-> --- a/drivers/gpu/drm/radeon/evergreen_cs.c
-> +++ b/drivers/gpu/drm/radeon/evergreen_cs.c
-> @@ -312,8 +312,10 @@ static int evergreen_surface_check(struct radeon_cs_=
-parser *p,
->         case ARRAY_2D_TILED_THIN1:
->                 return evergreen_surface_check_2d(p, surf, prefix);
->         default:
-> -               dev_warn(p->dev, "%s:%d %s invalid array mode %d\n",
-> -                               __func__, __LINE__, prefix, surf->mode);
-> +               if (prefix) {
-> +                       dev_warn(p->dev, "%s:%d %s invalid array mode %d\=
-n",
-> +                                       __func__, __LINE__, prefix, surf-=
->mode);
-> +               }
->                 return -EINVAL;
->         }
->         return -EINVAL;
-> --
-> 2.43.0
->
+Many thanks!
+
+--=20
+
+Marco Crivellari
+
+SUSE Labs
