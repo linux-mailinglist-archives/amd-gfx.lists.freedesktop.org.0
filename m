@@ -2,40 +2,98 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0LtZASYRC2rz/gQAu9opvQ
+	id WIhWAIQeC2q8DgUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 15:16:22 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 16:13:24 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9EC456D76D
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 15:16:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2FB956E767
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 16:13:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B632110E83B;
-	Mon, 18 May 2026 13:16:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8A3610E87A;
+	Mon, 18 May 2026 14:13:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JLFym1sT";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 771BE10E833
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 13:16:14 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 64IDG9wQ3501489; Mon, 18 May 2026 18:46:09 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64IDG9Nl3501488;
- Mon, 18 May 2026 18:46:09 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v2 6/6] drm/amdgpu/userq: add amdgpu_bo_unpin when
- amdgpu_ttm_alloc_gart fails
-Date: Mon, 18 May 2026 18:46:08 +0530
-Message-Id: <20260518131608.3501426-7-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260518131608.3501426-1-sunil.khatri@amd.com>
-References: <20260518131608.3501426-1-sunil.khatri@amd.com>
+Received: from mail-dl1-f47.google.com (mail-dl1-f47.google.com [74.125.82.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FEC410E878
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 14:13:19 +0000 (UTC)
+Received: by mail-dl1-f47.google.com with SMTP id
+ a92af1059eb24-12db2e9b3bcso141847c88.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 07:13:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779113598; cv=none;
+ d=google.com; s=arc-20240605;
+ b=SaoULugf6JwC0JTi251KnjG/yHoNxZQl5rdUr/5CAyhNIFBq/ykNZqEez5YcbTVaUr
+ MsU7URNQ/cWKhbiQ7n9kU9XfdGZ4uUOF2bOe5gEDsRybUPLoI91AGMgiYdhmsCK4u0tp
+ zI6KsNbculvdfJQ4JG8pBvkGXIRzw0+hDsciXDzEYy91OvQB6pO/D0PF44tfUQAxl+ZU
+ Mf0qMgVrBJ5P4+12jklY1Y+S9TmI53gnLsNXE25YrdbZwoxpkpKEogC5FdMrnNm6tBdW
+ Nza6wgoSHjNvaZLguP/gq04KUZQdSk96FLBl30UIeGwd+jUWDxVuzWOoX0wXfFhAmTTU
+ ynCg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=34fbl685GddDXIIsOccU0ziJYuxgAStirJgZ1Nl2PQw=;
+ fh=iiqrzwCZynWcbAECOX5hywCm9y3JjuPo7+a/khd3e6g=;
+ b=ll/DD47A3HRKBOqVeY7nDth3HS7WW4mf7cdz7svgfA8Ka+pWIhxSnseWR31dkmtsGz
+ 5eXUCmhsh4zo89En6Sj+S82sKA16+AW+kr7YVx3dNVOkRiNSoShXCDdaBzCzM3d3+t+E
+ Cgm1POjRs5jUJhe8whVZPIWJdRVgOW1rRIm1+oGoxrkZdullxGS0xPDV3ysyqUNnarG0
+ 3QSbTh5cfiPHxAi6wW5AyV6JLZGQxvxF4+sXdZDXtH+e9qY6McWN8i2SCJLbPFewPA5e
+ 1CaRroFlVtmuZdTVjOMsAsbTiWtEZtqJXu3/SyQ/MbbmazhbH+JR0jI5KgI2o+dXvQM4
+ +h3w==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1779113598; x=1779718398; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=34fbl685GddDXIIsOccU0ziJYuxgAStirJgZ1Nl2PQw=;
+ b=JLFym1sT47+oJ0DNhqSHfBNlvsbVQFdchqmCqjO8ej7f5GCqVVCrzbd+XkcYq0iwyo
+ maXkHNqZOiwEarBcb6TjE33sMbNLkSZhXgyBtgbB5nbq+ejgpm6lENrq+Lp2Zw5AhmU1
+ TqYmpIkvnoxzHhbDgKnfkoKVSYWGQYILk7BqsAAV3jAoRCIby5s2QINjPxzovG2JdixK
+ fkiRXTvm1SRhbVfoiuBzBVorTNbVtJkYyfLCgMkDfXKaha+awPVk3CGvDEnmiwWNoRvz
+ hjMxXlsj/ANc3De8YblF+qkM15TyIUBUjg8x/yteSLSTwL16WiE4EnMofveizHQfu8WW
+ RYbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779113598; x=1779718398;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=34fbl685GddDXIIsOccU0ziJYuxgAStirJgZ1Nl2PQw=;
+ b=US7QzoQ+vzbnNsJJ00g+aptWYi30agy8rdv3HeQXThUUYN7Rx1w1KNYSi7e5sPmiO9
+ gjSIpuh7ec4PVa7aoIKdiI1Xl2IaNLZGyrV2XlDAKCEHUdqTvAyl+eM2vca2EVvGKmis
+ DIGMOoy4x+x22j3txuiGZZwluMIOcM3YOgT1LDPyNJSWqvOErpGl2oRwqALDsluJePtu
+ 7MoynhDnS2XqCRa/wSKzxEvN2MqkxRdLMsNowzcE8HGNdHex04bxs1sUzMxEZPilsYtj
+ ZEArDshYnQVP9GAZv7mWt+yvaQu+fkT6HvhCO1it8DdFBx7oM9rmaMCR7kHOJaNW7+mb
+ ytfw==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/pf362Y5oLIlSTaUK2SkB97Pvu78RlOCupj3fkE4ALud6GhNcNteU5m+g/y0PH4k1RgndbXKYs@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxuHGsikTbsd2EkU1cjgH3/9uX3KeEdfUwwoDWAgWoDwd7aKsTT
+ uxdqejeXcfOtWwCmpcTdNs2+3OlxY6pk51zdPQdnemkgYiv8wGV+x30x/0iaFCFdapyKqqxHxvU
+ /+7uIEKDkiFnWyikw+WLOITH0jm3xzuc=
+X-Gm-Gg: Acq92OFHuKQ+Fk7o6UVOhmvYaANhvPf34DX1593sONFaNz4i292+X2NrZzqHen77tsi
+ EeCV29dSiVY98KAuvwRePa4DaiwGmoCaDNx4qfexnGWbTnyPsa6wl4kdn28W9zitKTKqiOfG/qI
+ ayYXzYQbEzrmawCdhgCz+Lox4dR37ssLzS478as0TKf7rnLuAL+J8yiqXgZ7FBQsLe3xBMj6k1e
+ HalUkd2/polER+31zkCOQtOG/bZxP5gvtz5XHz1ahoD+lfC/zBQESISllZkyGW6qMvCWRAfwKTQ
+ m3/iQuiK4UgnOO/NkjK+6vqbxtvxSNAPF+tH1nks2cCNUpCk2vLoYi6S+NpvAa9GzPSTfQ==
+X-Received: by 2002:a05:7022:327:b0:12c:20b9:80fc with SMTP id
+ a92af1059eb24-13504a4d776mr2704211c88.7.1779113598458; Mon, 18 May 2026
+ 07:13:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260516092420.3579-2-gilles.risch@gmail.com>
+ <20260516185226.3005-1-gilles.risch@gmail.com>
+In-Reply-To: <20260516185226.3005-1-gilles.risch@gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 18 May 2026 10:13:06 -0400
+X-Gm-Features: AVHnY4LuXsY0hUOzkYGYYjr7SSDeuOn5o-L_GCgJFvpkv84eU_un5eQ7ke-IjUk
+Message-ID: <CADnq5_OZ8c4r-b6EzWCWuPA4BfDWs99ypJx-tS0FBuRZqHzH8w@mail.gmail.com>
+Subject: Re: [PATCH] drm/radeon: fix eDP resume from suspend on iMac11, 1 /
+ DCE3.1 systems
+To: Gilles Risch <gilles.risch@gmail.com>
+Cc: alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="0000000000000db11b0652182a50"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,69 +107,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: C9EC456D76D
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.39 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-1.21 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_BASE64_TEXT(0.10)[];
+	MIME_GOOD(-0.10)[multipart/mixed,text/plain,text/x-patch];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:gilles.risch@gmail.com,m:alexander.deucher@amd.com,m:dri-devel@lists.freedesktop.org,m:gillesrisch@gmail.com,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.973];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	HAS_ATTACHMENT(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	RCPT_COUNT_THREE(0.00)[4];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,mail.gmail.com:mid,amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: A2FB956E767
 X-Rspamd-Action: no action
+X-Rspamd-Server: lfdr
 
-Unping the wptr_obj->obj when amdgpu_ttm_alloc_gart fails.
+--0000000000000db11b0652182a50
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+On Sat, May 16, 2026 at 2:52=E2=80=AFPM Gilles Risch <gilles.risch@gmail.co=
+m> wrote:
+>
+> After suspend/resume the internal eDP display on iMac11,1 (and
+> potentially other DCE3.1 systems) stays dark because
+> atombios_set_edp_panel_power() skips panel power control for
+> anything older than DCE4.
+>
+> Fix this by:
+> - Extending atombios_set_edp_panel_power() to also handle DCE3.1
+>   by changing the !ASIC_IS_DCE4() guard to !ASIC_IS_DCE31().
+>   HPD polling works correctly on DCE3.1 (verified: HPD is asserted
+>   at iteration 0 on iMac11,1).
+> - Issuing ATOM_ENCODER_CMD_DP_VIDEO_ON/OFF for DCE3.1 in addition
+>   to DCE4+.
+>
+> Tested on iMac11,1 (Mobility Radeon HD 4850, RV770/DCE3.1).
+>
+> Signed-off-by: Gilles Risch <gilles.risch@gmail.com>
+> ---
+>  drivers/gpu/drm/radeon/atombios_encoders.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/radeon/atombios_encoders.c b/drivers/gpu/drm=
+/radeon/atombios_encoders.c
+> index 4e984973c043..b62fd713efcf 100644
+> --- a/drivers/gpu/drm/radeon/atombios_encoders.c
+> +++ b/drivers/gpu/drm/radeon/atombios_encoders.c
+> @@ -1383,7 +1383,7 @@ atombios_set_edp_panel_power(struct drm_connector *=
+connector, int action)
+>         if (connector->connector_type !=3D DRM_MODE_CONNECTOR_eDP)
+>                 goto done;
+>
+> -       if (!ASIC_IS_DCE4(rdev))
+> +       if (!ASIC_IS_DCE31(rdev))
+>                 goto done;
+>
+>         if ((action !=3D ATOM_TRANSMITTER_ACTION_POWER_ON) &&
+> @@ -1707,7 +1707,7 @@ radeon_atom_encoder_dpms_dig(struct drm_encoder *en=
+coder, int mode)
+>                 if (ENCODER_MODE_IS_DP(atombios_get_encoder_mode(encoder)=
+) && connector) {
+>                         /* DP_SET_POWER_D0 is set in radeon_dp_link_train=
+ */
+>                         radeon_dp_link_train(encoder, connector);
+> -                       if (ASIC_IS_DCE4(rdev))
+> +                       if (ASIC_IS_DCE4(rdev) || ASIC_IS_DCE31(rdev))
+>                                 atombios_dig_encoder_setup(encoder, ATOM_=
+ENCODER_CMD_DP_VIDEO_ON, 0);
+>                 }
+>                 if (radeon_encoder->devices & (ATOM_DEVICE_LCD_SUPPORT)) =
+{
+> @@ -1724,7 +1724,7 @@ radeon_atom_encoder_dpms_dig(struct drm_encoder *en=
+coder, int mode)
+>         case DRM_MODE_DPMS_SUSPEND:
+>         case DRM_MODE_DPMS_OFF:
+>
+> -               if (ASIC_IS_DCE4(rdev)) {
+> +               if (ASIC_IS_DCE4(rdev) || ASIC_IS_DCE31(rdev)) {
+>                         if (ENCODER_MODE_IS_DP(atombios_get_encoder_mode(=
+encoder)) && connector)
+>                                 atombios_dig_encoder_setup(encoder, ATOM_=
+ENCODER_CMD_DP_VIDEO_OFF, 0);
+>                 }
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-index 14db2124ff81..2d95203ec58e 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-@@ -81,7 +81,7 @@ mes_userq_create_wptr_mapping(struct amdgpu_device *adev,
- 	ret = amdgpu_ttm_alloc_gart(&wptr_obj->obj->tbo);
- 	if (ret) {
- 		DRM_ERROR("Failed to bind bo to GART. ret %d\n", ret);
--		goto fail_map;
-+		goto fail_alloc_gart;
- 	}
- 
- 	queue->wptr_obj.gpu_addr = amdgpu_bo_gpu_offset(wptr_obj->obj);
-@@ -89,6 +89,8 @@ mes_userq_create_wptr_mapping(struct amdgpu_device *adev,
- 	drm_exec_fini(&exec);
- 	return 0;
- 
-+fail_alloc_gart:
-+	amdgpu_bo_unpin(wptr_obj->obj);
- fail_map:
- 	amdgpu_bo_unref(&wptr_obj->obj);
- fail_lock:
--- 
-2.34.1
+These changes don't make sense and will break other DCE3.c boards.   I
+had the attached patch from you in one of my old branches, does it fix
+the issue?
 
+Alex
+
+--0000000000000db11b0652182a50
+Content-Type: text/x-patch; charset="US-ASCII"; 
+	name="0001-drm-radeon-Fix-eDP-for-single-display-iMac11-1.patch"
+Content-Disposition: attachment; 
+	filename="0001-drm-radeon-Fix-eDP-for-single-display-iMac11-1.patch"
+Content-Transfer-Encoding: base64
+Content-ID: <f_mpbaa6rj0>
+X-Attachment-Id: f_mpbaa6rj0
+
+RnJvbSBjYTRmYzJmZDU4ZGNkM2JmOWY2YWZkOGQzN2IyN2ExY2ZjYzQyMzM3IE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBHaWxsZXMgUmlzY2ggPGdpbGxlcy5yaXNjaEBnbWFpbC5jb20+
+CkRhdGU6IEZyaSwgMTcgTm92IDIwMjMgMjA6NDg6MjQgKzAxMDAKU3ViamVjdDogW1BBVENIXSBk
+cm0vcmFkZW9uOiBGaXggZURQIGZvciBzaW5nbGUtZGlzcGxheSBpTWFjMTEsMQoKVGhlIEFwcGxl
+IGlNYWMxMSwxIChsYXRlIDIwMDkpIGhhcyBhbiBpbnRlZ3JhdGVkIEFUSSBNb2JpbGl0eSBSYWRl
+b24gSEQgNDg1MC4KVGhpcyBtYWNoaW5lIHN1ZmZlcnMgZnJvbSBhIHNpbWlsYXIgcHJvYmxlbSBh
+cyB0aGUgaU1hYzEwLDEgKGxhdGUgMjAwOSkgYW5kCnRoZSBpTWFjMTEsMiAobWlkIDIwMTApLiBU
+aGlzIHNtYWxsIHBhdGNoIGZpeGVzIHRoZSBpc3N1ZSBvbiB0aGlzIG1hY2hpbmUuCgpGaXhlcyBm
+cmVlZGVza3RvcCBpc3N1ZSAxNjQKTGluazogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3Jn
+L3hvcmcvZHJpdmVyL3hmODYtdmlkZW8tYXRpLy0vaXNzdWVzLzE2NAoKU2lnbmVkLW9mZi1ieTog
+R2lsbGVzIFJpc2NoIDxnaWxsZXMucmlzY2hAZ21haWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBBbGV4
+IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJt
+L3JhZGVvbi9hdG9tYmlvc19jcnRjLmMgICAgIHwgNCArKy0tCiBkcml2ZXJzL2dwdS9kcm0vcmFk
+ZW9uL2F0b21iaW9zX2VuY29kZXJzLmMgfCA5ICsrKysrLS0tLQogZHJpdmVycy9ncHUvZHJtL3Jh
+ZGVvbi9yYWRlb24uaCAgICAgICAgICAgIHwgMSArCiAzIGZpbGVzIGNoYW5nZWQsIDggaW5zZXJ0
+aW9ucygrKSwgNiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFk
+ZW9uL2F0b21iaW9zX2NydGMuYyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vYXRvbWJpb3NfY3J0
+Yy5jCmluZGV4IDJmYzAzMzRlMGQ2YzUuLjNjNmQzMzI3MzllM2MgMTAwNjQ0Ci0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9yYWRlb24vYXRvbWJpb3NfY3J0Yy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9y
+YWRlb24vYXRvbWJpb3NfY3J0Yy5jCkBAIC01ODAsNyArNTgwLDcgQEAgc3RhdGljIHUzMiBhdG9t
+Ymlvc19hZGp1c3RfcGxsKHN0cnVjdCBkcm1fY3J0YyAqY3J0YywKIAkJCXJhZGVvbl9jcnRjLT5w
+bGxfZmxhZ3MgfD0gKC8qUkFERU9OX1BMTF9VU0VfRlJBQ19GQl9ESVYgfCovCiAJCQkJUkFERU9O
+X1BMTF9QUkVGRVJfQ0xPU0VTVF9MT1dFUik7CiAKLQkJaWYgKEFTSUNfSVNfRENFMzIocmRldikg
+JiYgbW9kZS0+Y2xvY2sgPiAyMDAwMDApCS8qIHJhbmdlIGxpbWl0cz8/PyAqLworCQlpZiAoQVNJ
+Q19JU19EQ0UzMShyZGV2KSAmJiBtb2RlLT5jbG9jayA+IDIwMDAwMCkJLyogcmFuZ2UgbGltaXRz
+Pz8/ICovCiAJCQlyYWRlb25fY3J0Yy0+cGxsX2ZsYWdzIHw9IFJBREVPTl9QTExfUFJFRkVSX0hJ
+R0hfRkJfRElWOwogCQllbHNlCiAJCQlyYWRlb25fY3J0Yy0+cGxsX2ZsYWdzIHw9IFJBREVPTl9Q
+TExfUFJFRkVSX0xPV19SRUZfRElWOwpAQCAtNTk0LDcgKzU5NCw3IEBAIHN0YXRpYyB1MzIgYXRv
+bWJpb3NfYWRqdXN0X3BsbChzdHJ1Y3QgZHJtX2NydGMgKmNydGMsCiAJCWlmICgoKHJkZXYtPmZh
+bWlseSA9PSBDSElQX1JTNzgwKSB8fCAocmRldi0+ZmFtaWx5ID09IENISVBfUlM4ODApKQogCQkg
+ICAgJiYgIXJhZGVvbl9jcnRjLT5zc19lbmFibGVkKQogCQkJcmFkZW9uX2NydGMtPnBsbF9mbGFn
+cyB8PSBSQURFT05fUExMX1VTRV9GUkFDX0ZCX0RJVjsKLQkJaWYgKEFTSUNfSVNfRENFMzIocmRl
+dikgJiYgbW9kZS0+Y2xvY2sgPiAxNjUwMDApCisJCWlmIChBU0lDX0lTX0RDRTMxKHJkZXYpICYm
+IG1vZGUtPmNsb2NrID4gMTY1MDAwKQogCQkJcmFkZW9uX2NydGMtPnBsbF9mbGFncyB8PSBSQURF
+T05fUExMX1VTRV9GUkFDX0ZCX0RJVjsKIAl9IGVsc2UgewogCQlyYWRlb25fY3J0Yy0+cGxsX2Zs
+YWdzIHw9IFJBREVPTl9QTExfTEVHQUNZOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3Jh
+ZGVvbi9hdG9tYmlvc19lbmNvZGVycy5jIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9hdG9tYmlv
+c19lbmNvZGVycy5jCmluZGV4IDNkOWY0N2JjODA3YWYuLjM3ZGE3OTYxY2U3OTIgMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vYXRvbWJpb3NfZW5jb2RlcnMuYworKysgYi9kcml2
+ZXJzL2dwdS9kcm0vcmFkZW9uL2F0b21iaW9zX2VuY29kZXJzLmMKQEAgLTIxMjMsMTIgKzIxMjMs
+MTMgQEAgaW50IHJhZGVvbl9hdG9tX3BpY2tfZGlnX2VuY29kZXIoc3RydWN0IGRybV9lbmNvZGVy
+ICplbmNvZGVyLCBpbnQgZmVfaWR4KQogCX0KIAogCS8qCi0JICogT24gRENFMzIgYW55IGVuY29k
+ZXIgY2FuIGRyaXZlIGFueSBibG9jayBzbyB1c3VhbGx5IGp1c3QgdXNlIGNydGMgaWQsCi0JICog
+YnV0IEFwcGxlIHRoaW5rcyBkaWZmZXJlbnQgYXQgbGVhc3Qgb24gaU1hYzEwLDEgYW5kIGlNYWMx
+MSwyLCBzbyB0aGVyZSB1c2UgbGlua2IsCi0JICogb3RoZXJ3aXNlIHRoZSBpbnRlcm5hbCBlRFAg
+cGFuZWwgd2lsbCBzdGF5IGRhcmsuCisJICogT24gRENFMzEgYW5kIERDRTMyIGFueSBlbmNvZGVy
+IGNhbiBkcml2ZSBhbnkgYmxvY2sgc28gdXN1YWxseSBqdXN0IHVzZSBjcnRjIGlkLAorCSAqIGJ1
+dCBBcHBsZSB0aGlua3MgZGlmZmVyZW50IGF0IGxlYXN0IG9uIGlNYWMxMCwxLCBpTWFjMTEsMSBh
+bmQgaU1hYzExLDIsCisJICogc28gdGhlcmUgdXNlIGxpbmtiLCBvdGhlcndpc2UgdGhlIGludGVy
+bmFsIGVEUCBwYW5lbCB3aWxsIHN0YXkgZGFyay4KIAkgKi8KLQlpZiAoQVNJQ19JU19EQ0UzMihy
+ZGV2KSkgeworCWlmIChBU0lDX0lTX0RDRTMxKHJkZXYpKSB7CiAJCWlmIChkbWlfbWF0Y2goRE1J
+X1BST0RVQ1RfTkFNRSwgImlNYWMxMCwxIikgfHwKKwkJICAgIGRtaV9tYXRjaChETUlfUFJPRFVD
+VF9OQU1FLCAiaU1hYzExLDEiKSB8fAogCQkgICAgZG1pX21hdGNoKERNSV9QUk9EVUNUX05BTUUs
+ICJpTWFjMTEsMiIpKQogCQkJZW5jX2lkeCA9IChkaWctPmxpbmtiKSA/IDEgOiAwOwogCQllbHNl
+CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbi5oIGIvZHJpdmVycy9n
+cHUvZHJtL3JhZGVvbi9yYWRlb24uaAppbmRleCA1MjdiOWQxOWQ3MzA2Li42YjdjMGFiZTQ5ZmI3
+IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbi5oCisrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uLmgKQEAgLTI2MjUsNiArMjYyNSw3IEBAIHZvaWQgcjEw
+MF9wbGxfZXJyYXRhX2FmdGVyX2luZGV4KHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2KTsKIAkJ
+CSAgICAocmRldi0+ZmFtaWx5ID09IENISVBfUlM3NDApICB8fAlcCiAJCQkgICAgKHJkZXYtPmZh
+bWlseSA+PSBDSElQX1I2MDApKQogI2RlZmluZSBBU0lDX0lTX0RDRTMocmRldikgKChyZGV2LT5m
+YW1pbHkgPj0gQ0hJUF9SVjYyMCkpCisjZGVmaW5lIEFTSUNfSVNfRENFMzEocmRldikgKChyZGV2
+LT5mYW1pbHkgPj0gQ0hJUF9SVjc3MCkpCiAjZGVmaW5lIEFTSUNfSVNfRENFMzIocmRldikgKChy
+ZGV2LT5mYW1pbHkgPj0gQ0hJUF9SVjczMCkpCiAjZGVmaW5lIEFTSUNfSVNfRENFNChyZGV2KSAo
+KHJkZXYtPmZhbWlseSA+PSBDSElQX0NFREFSKSkKICNkZWZpbmUgQVNJQ19JU19EQ0U0MShyZGV2
+KSAoKHJkZXYtPmZhbWlseSA+PSBDSElQX1BBTE0pICYmIFwKLS0gCjIuNTQuMAoK
+--0000000000000db11b0652182a50--
