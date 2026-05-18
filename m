@@ -2,35 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iCJGKEMwC2plEQUAu9opvQ
+	id iKDjNEAwC2plEQUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 17:29:07 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 17:29:04 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76CAA56FF69
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 17:29:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9023156FF4D
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 17:29:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA4AF10E8F9;
-	Mon, 18 May 2026 15:29:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2C0510E326;
+	Mon, 18 May 2026 15:29:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CA7610E5D2
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E858C10E593
  for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 15:28:59 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 64IFSt5D3716060; Mon, 18 May 2026 20:58:55 +0530
+ 64IFSt4R3716065; Mon, 18 May 2026 20:58:55 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64IFSt8V3716059;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64IFSt0P3716064;
  Mon, 18 May 2026 20:58:55 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v3 2/8] drm/amdgpu/userq: Fix the mutex_init cleanup for
- fence_drv_lock
-Date: Mon, 18 May 2026 20:58:44 +0530
-Message-Id: <20260518152850.3715990-3-sunil.khatri@amd.com>
+Subject: [PATCH v3 3/8] drm/amdgpu: simplify return value in
+ amdgpu_userq_get_doorbell_index
+Date: Mon, 18 May 2026 20:58:45 +0530
+Message-Id: <20260518152850.3715990-4-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260518152850.3715990-1-sunil.khatri@amd.com>
 References: <20260518152850.3715990-1-sunil.khatri@amd.com>
@@ -78,50 +78,89 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 76CAA56FF69
+X-Rspamd-Queue-Id: 9023156FF4D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Mutex fence_drv_lock is cleanup in amdgpu_userq_fence_driver_free
-but current cleanup is directly done later in the code which eventually
-tried to do mutex_destroy two times.
+Function amdgpu_userq_get_doorbell_index returns a uint64 type index
+as well as a int type failure values. So simplifying that here and
+using a int type return value and getting the index in input pointer
+of type uint64 type.
+
+Also since it is used just once here so lets make it local to the file
+with static type.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 19 ++++++++++---------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h |  3 ---
+ 2 files changed, 10 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index 4a50f6536f8d..d3971bf9112b 100644
+index d3971bf9112b..d42a4d97e8e4 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -777,14 +777,16 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+@@ -536,12 +536,13 @@ void amdgpu_userq_destroy_object(struct amdgpu_userq_mgr *uq_mgr,
+ 	amdgpu_bo_unref(&userq_obj->obj);
+ }
+ 
+-uint64_t
++static int
+ amdgpu_userq_get_doorbell_index(struct amdgpu_userq_mgr *uq_mgr,
+ 				struct amdgpu_db_info *db_info,
+-				struct drm_file *filp)
++				struct drm_file *filp,
++				uint64_t *index)
+ {
+-	uint64_t index;
++	uint64_t doorbell_index;
+ 	struct drm_gem_object *gobj;
+ 	struct amdgpu_userq_obj *db_obj = db_info->db_obj;
+ 	int r, db_size;
+@@ -588,12 +589,13 @@ amdgpu_userq_get_doorbell_index(struct amdgpu_userq_mgr *uq_mgr,
+ 		goto unpin_bo;
  	}
  
- 	queue->doorbell_index = index;
--	mutex_init(&queue->fence_drv_lock);
--	xa_init_flags(&queue->fence_drv_xa, XA_FLAGS_ALLOC);
-+
- 	r = amdgpu_userq_fence_driver_alloc(adev, &queue->fence_drv);
- 	if (r) {
- 		drm_file_err(uq_mgr->file, "Failed to alloc fence driver\n");
- 		goto clean_doorbell;
- 	}
+-	index = amdgpu_doorbell_index_on_bar(uq_mgr->adev, db_obj->obj,
++	doorbell_index = amdgpu_doorbell_index_on_bar(uq_mgr->adev, db_obj->obj,
+ 					     db_info->doorbell_offset, db_size);
+ 	drm_dbg_driver(adev_to_drm(uq_mgr->adev),
+-		       "[Usermode queues] doorbell index=%lld\n", index);
++		       "[Usermode queues] doorbell index=%lld\n", doorbell_index);
+ 	amdgpu_bo_unreserve(db_obj->obj);
+-	return index;
++	*index = doorbell_index;
++	return 0;
  
-+	mutex_init(&queue->fence_drv_lock);
-+	xa_init_flags(&queue->fence_drv_xa, XA_FLAGS_ALLOC);
-+
- 	r = uq_funcs->mqd_create(queue, &args->in);
- 	if (r) {
- 		drm_file_err(uq_mgr->file, "Failed to create Queue\n");
-@@ -860,7 +862,6 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 	amdgpu_bo_reserve(fpriv->vm.root.bo, true);
- 	amdgpu_userq_buffer_vas_list_cleanup(adev, queue);
+ unpin_bo:
+ 	amdgpu_bo_unpin(db_obj->obj);
+@@ -769,10 +771,9 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
  	amdgpu_bo_unreserve(fpriv->vm.root.bo);
--	mutex_destroy(&queue->fence_drv_lock);
- free_queue:
- 	kfree(queue);
- err_pm_runtime:
+ 
+ 	/* Convert relative doorbell offset into absolute doorbell index */
+-	index = amdgpu_userq_get_doorbell_index(uq_mgr, &db_info, filp);
+-	if (index == (uint64_t)-EINVAL) {
++	r = amdgpu_userq_get_doorbell_index(uq_mgr, &db_info, filp, &index);
++	if (r) {
+ 		drm_file_err(uq_mgr->file, "Failed to get doorbell for queue\n");
+-		r = -EINVAL;
+ 		goto clean_mapping;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+index 49b33e2d6932..9c4d4220c353 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+@@ -163,9 +163,6 @@ void amdgpu_userq_evict(struct amdgpu_userq_mgr *uq_mgr);
+ void amdgpu_userq_ensure_ev_fence(struct amdgpu_userq_mgr *userq_mgr,
+ 				  struct amdgpu_eviction_fence_mgr *evf_mgr);
+ 
+-uint64_t amdgpu_userq_get_doorbell_index(struct amdgpu_userq_mgr *uq_mgr,
+-					 struct amdgpu_db_info *db_info,
+-					     struct drm_file *filp);
+ 
+ u32 amdgpu_userq_get_supported_ip_mask(struct amdgpu_device *adev);
+ bool amdgpu_userq_enabled(struct drm_device *dev);
 -- 
 2.34.1
 
