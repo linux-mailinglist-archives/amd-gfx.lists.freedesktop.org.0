@@ -2,34 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QGzQMgkmC2puEAUAu9opvQ
+	id 6EyKIgsmC2pwEAUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 16:45:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 16:45:31 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F5D56F203
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 16:45:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF1856F219
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 16:45:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3093F10E8BD;
-	Mon, 18 May 2026 14:45:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D782310E8BE;
+	Mon, 18 May 2026 14:45:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8806110E8B9
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 14:45:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5ABE10E8B9
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 14:45:27 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 64IEjLrA3697790; Mon, 18 May 2026 20:15:21 +0530
+ 64IEjMcg3697801; Mon, 18 May 2026 20:15:22 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64IEjLl63697789;
- Mon, 18 May 2026 20:15:21 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64IEjMdP3697800;
+ Mon, 18 May 2026 20:15:22 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v3 7/8] drm/amdgpu/userq: reserve root bo without interruption
-Date: Mon, 18 May 2026 20:15:04 +0530
-Message-Id: <20260518144505.3697615-8-sunil.khatri@amd.com>
+Subject: [PATCH v3 8/8] drm/amdgpu/userq: make sure queue is valid in the
+ hang_detect_work
+Date: Mon, 18 May 2026 20:15:05 +0530
+Message-Id: <20260518144505.3697615-9-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260518144505.3697615-1-sunil.khatri@amd.com>
 References: <20260518144505.3697615-1-sunil.khatri@amd.com>
@@ -77,35 +78,48 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: A1F5D56F203
+X-Rspamd-Queue-Id: 5EF1856F219
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Fix the code to make it an uninterruptible reservation
-for root bo.
+Thread 1: Running amdgpu_userq_destroy which eventually remove
+the queue from door bell and set userq_mgr = NULL.
+
+Thread2: An interrupt might have scheduled the hang_detect_work
+which still need userq_mgr to be valid but could get an NULL
+ptrs.
+
+To fix that make sure we cancel the hang_detect_work again before
+setting userq_mgr to NULL.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index 68efed47f412..8b0b53f80499 100644
+index 8b0b53f80499..5c2e0c400d5f 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -620,11 +620,7 @@ amdgpu_userq_destroy(struct amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermode_que
- 	/* Cancel any pending hang detection work and cleanup */
- 	cancel_delayed_work_sync(&queue->hang_detect_work);
+@@ -427,7 +427,6 @@ static void amdgpu_userq_cleanup(struct amdgpu_usermode_queue *queue)
+ 	xa_erase_irq(&adev->userq_doorbell_xa, queue->doorbell_index);
+ 	amdgpu_userq_fence_driver_free(queue);
+ 	queue->fence_drv = NULL;
+-	queue->userq_mgr = NULL;
+ 	list_del(&queue->userq_va_list);
  
--	r = amdgpu_bo_reserve(vm->root.bo, false);
--	if (r) {
--		drm_file_err(uq_mgr->file, "Failed to reserve root bo during userqueue destroy\n");
--		return r;
--	}
-+	amdgpu_bo_reserve(vm->root.bo, true);
- 	amdgpu_userq_buffer_vas_list_cleanup(adev, queue);
- 	amdgpu_bo_unreserve(vm->root.bo);
+ 	up_read(&adev->reset_domain->sem);
+@@ -635,6 +634,10 @@ amdgpu_userq_destroy(struct amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermode_que
+ 	amdgpu_userq_cleanup(queue);
+ 	mutex_unlock(&uq_mgr->userq_mutex);
  
++	/* This is case an interrupt was fired and a hang detection work is pending */
++	cancel_delayed_work_sync(&queue->hang_detect_work);
++	queue->userq_mgr = NULL;
++
+ 	amdgpu_bo_reserve(queue->db_obj.obj, true);
+ 	amdgpu_bo_unpin(queue->db_obj.obj);
+ 	amdgpu_bo_unreserve(queue->db_obj.obj);
 -- 
 2.34.1
 
