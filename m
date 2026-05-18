@@ -2,35 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mFL0KgcmC2pwEAUAu9opvQ
+	id WHpRHQomC2pwEAUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 16:45:27 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 16:45:30 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 834E356F1F8
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 16:45:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A64656F20B
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 16:45:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84D1910E8B5;
-	Mon, 18 May 2026 14:45:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D34C910E8B9;
+	Mon, 18 May 2026 14:45:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1E4E10E8B2
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 14:45:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC7D010E8B5
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 14:45:24 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 64IEjJ3H3697768; Mon, 18 May 2026 20:15:19 +0530
+ 64IEjKhF3697779; Mon, 18 May 2026 20:15:20 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64IEjJ1q3697767;
- Mon, 18 May 2026 20:15:19 +0530
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64IEjK713697778;
+ Mon, 18 May 2026 20:15:20 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v3 5/8] drm/amdgpu/userq: clean up wptr_obj along with
- mqd_destroy
-Date: Mon, 18 May 2026 20:15:02 +0530
-Message-Id: <20260518144505.3697615-6-sunil.khatri@amd.com>
+Subject: [PATCH v3 6/8] drm/amdgpu/userq: add amdgpu_bo_unpin when
+ amdgpu_ttm_alloc_gart fails
+Date: Mon, 18 May 2026 20:15:03 +0530
+Message-Id: <20260518144505.3697615-7-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260518144505.3697615-1-sunil.khatri@amd.com>
 References: <20260518144505.3697615-1-sunil.khatri@amd.com>
@@ -78,34 +78,39 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 834E356F1F8
+X-Rspamd-Queue-Id: 4A64656F20B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-During queue creation failure, when we clean up mqd via
-mqd_destroy we arent doing the wptr_obj cleanup and hence
-adding that clean up.
+Unping the wptr_obj->obj when amdgpu_ttm_alloc_gart fails.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index c07aad2c6a53..68efed47f412 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -851,6 +851,10 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- clean_mqd:
- 	mutex_unlock(&uq_mgr->userq_mutex);
- 	uq_funcs->mqd_destroy(queue);
-+	amdgpu_bo_reserve(queue->wptr_obj.obj, true);
-+	amdgpu_bo_unpin(queue->wptr_obj.obj);
-+	amdgpu_bo_unreserve(queue->wptr_obj.obj);
-+	amdgpu_bo_unref(&queue->wptr_obj.obj);
- clean_fence_driver:
- 	amdgpu_userq_fence_driver_free(queue);
- clean_doorbell:
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+index 14db2124ff81..2d95203ec58e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+@@ -81,7 +81,7 @@ mes_userq_create_wptr_mapping(struct amdgpu_device *adev,
+ 	ret = amdgpu_ttm_alloc_gart(&wptr_obj->obj->tbo);
+ 	if (ret) {
+ 		DRM_ERROR("Failed to bind bo to GART. ret %d\n", ret);
+-		goto fail_map;
++		goto fail_alloc_gart;
+ 	}
+ 
+ 	queue->wptr_obj.gpu_addr = amdgpu_bo_gpu_offset(wptr_obj->obj);
+@@ -89,6 +89,8 @@ mes_userq_create_wptr_mapping(struct amdgpu_device *adev,
+ 	drm_exec_fini(&exec);
+ 	return 0;
+ 
++fail_alloc_gart:
++	amdgpu_bo_unpin(wptr_obj->obj);
+ fail_map:
+ 	amdgpu_bo_unref(&wptr_obj->obj);
+ fail_lock:
 -- 
 2.34.1
 
