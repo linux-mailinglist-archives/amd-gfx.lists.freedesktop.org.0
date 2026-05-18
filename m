@@ -2,35 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8B/LMyoPC2rL/gQAu9opvQ
+	id u7CnNyYPC2rL/gQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 15:07:54 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 15:07:50 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8BCC56D4C4
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 15:07:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A647656D4A1
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 15:07:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EA3910E4AA;
-	Mon, 18 May 2026 13:07:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A266310E82C;
+	Mon, 18 May 2026 13:07:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9615B10E83B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F62510E5D7
  for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 13:07:47 +0000 (UTC)
 Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
  by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 64ID7gdE3418287; Mon, 18 May 2026 18:37:42 +0530
+ 64ID7ger3418292; Mon, 18 May 2026 18:37:42 +0530
 Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64ID7gbw3418286;
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64ID7gqX3418291;
  Mon, 18 May 2026 18:37:42 +0530
 From: Sunil Khatri <sunil.khatri@amd.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v1 1/6] drm/amdgpu/userq: Fix doorbell cleanup on queue
- creation fail
-Date: Mon, 18 May 2026 18:37:32 +0530
-Message-Id: <20260518130737.3418232-2-sunil.khatri@amd.com>
+Subject: [PATCH v1 2/6] drm/amdgpu/userq: Fix the mutex_init cleanup for
+ fence_drv_lock
+Date: Mon, 18 May 2026 18:37:33 +0530
+Message-Id: <20260518130737.3418232-3-sunil.khatri@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260518130737.3418232-1-sunil.khatri@amd.com>
 References: <20260518130737.3418232-1-sunil.khatri@amd.com>
@@ -49,7 +49,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: A8BCC56D4C4
+X-Rspamd-Queue-Id: A647656D4A1
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.39 / 15.00];
 	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
@@ -72,7 +72,7 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.972];
+	NEURAL_HAM(-0.00)[-0.970];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
@@ -82,39 +82,46 @@ X-Spamd-Result: default: False [2.39 / 15.00];
 	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-Unpin and unref the door bell obj if queue creation fails before
-initialization is complete.
+Mutex fence_drv_lock is cleanup in amdgpu_userq_fence_driver_free
+but current cleanup is directly done later in the code which eventually
+tried to do mutex_destroy two times.
 
 Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index f1873f632547..4a50f6536f8d 100644
+index 4a50f6536f8d..d3971bf9112b 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -782,7 +782,7 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+@@ -777,14 +777,16 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 	}
+ 
+ 	queue->doorbell_index = index;
+-	mutex_init(&queue->fence_drv_lock);
+-	xa_init_flags(&queue->fence_drv_xa, XA_FLAGS_ALLOC);
++
  	r = amdgpu_userq_fence_driver_alloc(adev, &queue->fence_drv);
  	if (r) {
  		drm_file_err(uq_mgr->file, "Failed to alloc fence driver\n");
--		goto clean_mapping;
-+		goto clean_doorbell;
+ 		goto clean_doorbell;
  	}
  
++	mutex_init(&queue->fence_drv_lock);
++	xa_init_flags(&queue->fence_drv_xa, XA_FLAGS_ALLOC);
++
  	r = uq_funcs->mqd_create(queue, &args->in);
-@@ -851,6 +851,11 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 	uq_funcs->mqd_destroy(queue);
- clean_fence_driver:
- 	amdgpu_userq_fence_driver_free(queue);
-+clean_doorbell:
-+	amdgpu_bo_reserve(queue->db_obj.obj, true);
-+	amdgpu_bo_unpin(queue->db_obj.obj);
-+	amdgpu_bo_unreserve(queue->db_obj.obj);
-+	amdgpu_bo_unref(&queue->db_obj.obj);
- clean_mapping:
+ 	if (r) {
+ 		drm_file_err(uq_mgr->file, "Failed to create Queue\n");
+@@ -860,7 +862,6 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
  	amdgpu_bo_reserve(fpriv->vm.root.bo, true);
  	amdgpu_userq_buffer_vas_list_cleanup(adev, queue);
+ 	amdgpu_bo_unreserve(fpriv->vm.root.bo);
+-	mutex_destroy(&queue->fence_drv_lock);
+ free_queue:
+ 	kfree(queue);
+ err_pm_runtime:
 -- 
 2.34.1
 
