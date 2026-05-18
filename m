@@ -2,40 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GE/LCUQwC2rzEQUAu9opvQ
+	id mm5vIl9FC2rgFAUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 17:29:08 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 18:59:11 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0CB656FF70
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 17:29:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 113A7571574
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 18:59:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4A2810E8F1;
-	Mon, 18 May 2026 15:29:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C96910E91B;
+	Mon, 18 May 2026 16:59:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=daenzer.net header.i=@daenzer.net header.b="tT1pC+dT";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6185F10E8F1
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 15:29:00 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 64IFStIJ3716090; Mon, 18 May 2026 20:58:55 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64IFSt9Y3716089;
- Mon, 18 May 2026 20:58:55 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
-Subject: [PATCH v3 8/8] drm/amdgpu/userq: make sure queue is valid in the
- hang_detect_work
-Date: Mon, 18 May 2026 20:58:50 +0530
-Message-Id: <20260518152850.3715990-9-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260518152850.3715990-1-sunil.khatri@amd.com>
-References: <20260518152850.3715990-1-sunil.khatri@amd.com>
+X-Greylist: delayed 4255 seconds by postgrey-1.36 at gabe;
+ Mon, 18 May 2026 16:59:07 UTC
+Received: from smtp-42af.mail.infomaniak.ch (smtp-42af.mail.infomaniak.ch
+ [84.16.66.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AEE510E8F8
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 16:59:07 +0000 (UTC)
+Received: from smtp-4-0001.mail.infomaniak.ch (smtp-4-0001.mail.infomaniak.ch
+ [10.7.10.108])
+ by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4gK2JV3v49zLjn;
+ Mon, 18 May 2026 17:48:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=daenzer.net;
+ s=20251126; t=1779119290;
+ bh=QGDAbvOWF4Bo4FiivAm6DGvIEYEPLfoJb8o1rGEK4cs=;
+ h=From:To:Cc:Subject:Date:From;
+ b=tT1pC+dTIPfelkTdyIzqeZtsfyHhtdbOxPHXypJoJjEmtASdlQiney0VhhjCfRNDn
+ S8H1xRexy3G0Nzi8pZr3f5xvyJEwbH+lxp5CUq0mv6F7jElXZSKDFdq364E5J02S4l
+ /c5dcXPlrQR0A91o7mEOzX/qF5qTl2aXC/LQHsnZjZnfqtm6xh8G0e8KgwizknRd41
+ mfvExEU/I4OPnWOdbDaNUyqbgDYSyQjqDshLQW4T7eI7NUWdLVR3MDtWfzM6C7b3ET
+ bqiel89gqZQhYAMhpyiK2CA25s+vsew7goCZ5FM7lIDcJvvCNTWya8MlWLQg6cxRn5
+ LBqzPrARI+CnQ==
+Received: from unknown by smtp-4-0001.mail.infomaniak.ch (Postfix) with ESMTPA
+ id 4gK2JT6bfBz8wx; Mon, 18 May 2026 17:48:09 +0200 (CEST)
+Received: from unknown by kaveri with local (Exim 4.99.2)
+ (envelope-from <michel@daenzer.net>) id 1wP0CP-00000002liK-2uBO;
+ Mon, 18 May 2026 17:48:09 +0200
+From: =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Wayne Lin <Wayne.Lin@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amd/display: Consult MCCS FreeSync cap only if requested
+ & supported
+Date: Mon, 18 May 2026 17:48:09 +0200
+Message-ID: <20260518154809.660061-1-michel@daenzer.net>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Infomaniak-Routing: alpha
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,77 +68,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [2.39 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[daenzer.net,reject];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[daenzer.net:s=20251126];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:Wayne.Lin@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[michel@daenzer.net,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	R_DKIM_NA(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	DKIM_TRACE(0.00)[daenzer.net:+];
+	RCPT_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michel@daenzer.net,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: F0CB656FF70
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: 113A7571574
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thread 1: Running amdgpu_userq_destroy which eventually remove
-the queue from door bell and set userq_mgr = NULL.
+From: Michel Dänzer <mdaenzer@redhat.com>
 
-Thread2: An interrupt might have scheduled the hang_detect_work
-which still need userq_mgr to be valid but could get an NULL
-ptrs.
+When the do_mccs parameter is false, we don't call
+dm_helpers_read_mccs_caps, so sink->mccs_caps.freesync_supported is
+unlikely to be true.
 
-To fix that make sure we cancel the hang_detect_work again before
-setting userq_mgr to NULL.
-
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+Fixes: 6f71d5dd3206 ("drm/amd/display: Read sink freesync support via mccs")
+Bug: https://gitlab.freedesktop.org/drm/amd/-/work_items/5286
+Signed-off-by: Michel Dänzer <mdaenzer@redhat.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index 8b0b53f80499..5c2e0c400d5f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -427,7 +427,6 @@ static void amdgpu_userq_cleanup(struct amdgpu_usermode_queue *queue)
- 	xa_erase_irq(&adev->userq_doorbell_xa, queue->doorbell_index);
- 	amdgpu_userq_fence_driver_free(queue);
- 	queue->fence_drv = NULL;
--	queue->userq_mgr = NULL;
- 	list_del(&queue->userq_va_list);
+I suspect this logic might not be quite right yet, it fixes the
+regression and should be a step in the right direction though.
+
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index e0d209d016cd..9d4692e4ea26 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -13468,17 +13468,15 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
+ 	}
  
- 	up_read(&adev->reset_domain->sem);
-@@ -635,6 +634,10 @@ amdgpu_userq_destroy(struct amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermode_que
- 	amdgpu_userq_cleanup(queue);
- 	mutex_unlock(&uq_mgr->userq_mutex);
+ 	/* Handle MCCS */
+-	if (do_mccs)
++	if (do_mccs) {
+ 		dm_helpers_read_mccs_caps(adev->dm.dc->ctx, amdgpu_dm_connector->dc_link, sink);
  
-+	/* This is case an interrupt was fired and a hang detection work is pending */
-+	cancel_delayed_work_sync(&queue->hang_detect_work);
-+	queue->userq_mgr = NULL;
-+
- 	amdgpu_bo_reserve(queue->db_obj.obj, true);
- 	amdgpu_bo_unpin(queue->db_obj.obj);
- 	amdgpu_bo_unreserve(queue->db_obj.obj);
+-	if ((sink->sink_signal == SIGNAL_TYPE_HDMI_TYPE_A ||
+-		as_type == FREESYNC_TYPE_PCON_IN_WHITELIST) &&
+-		(!sink->edid_caps.freesync_vcp_code ||
+-		(sink->edid_caps.freesync_vcp_code && !sink->mccs_caps.freesync_supported)))
+-		freesync_capable = false;
++		if (sink->edid_caps.freesync_vcp_code && !sink->mccs_caps.freesync_supported)
++			freesync_capable = false;
+ 
+-	if (do_mccs && sink->mccs_caps.freesync_supported && freesync_capable)
+-		dm_helpers_mccs_vcp_set(adev->dm.dc->ctx, amdgpu_dm_connector->dc_link, sink);
++		if (sink->mccs_caps.freesync_supported && freesync_capable)
++			dm_helpers_mccs_vcp_set(adev->dm.dc->ctx, amdgpu_dm_connector->dc_link, sink);
++	}
+ 
+ update:
+ 	if (dm_con_state)
 -- 
-2.34.1
+2.53.0
 
