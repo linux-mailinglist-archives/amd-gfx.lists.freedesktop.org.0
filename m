@@ -2,76 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EHeeG+AQDGoZVQUAu9opvQ
+	id gJGCKuIQDGoZVQUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 09:27:28 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 09:27:30 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08BFA5790A3
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 09:27:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 526655790CA
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 09:27:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 768BF10EACA;
-	Tue, 19 May 2026 07:27:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD78B10EAD2;
+	Tue, 19 May 2026 07:27:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TksMm5Tf";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I1QdSQtJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4344C10E355
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 21:20:13 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id
- 5b1f17b1804b1-488a14c31eeso17074375e9.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 14:20:13 -0700 (PDT)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
+ [209.85.221.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8158510E8EA
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 21:20:30 +0000 (UTC)
+Received: by mail-wr1-f53.google.com with SMTP id
+ ffacd0b85a97d-44509921fbcso1652884f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 14:20:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779139212; x=1779744012; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1779139229; x=1779744029; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=eib3eRFzS2+00sCLYIMDe5vm4mlk/dWlRJSkbmyxtqY=;
- b=TksMm5TfdCGVJclcnfxJcT2vlQa5pGrzYY7XL+DUSwd5dauXkaCoTxUbJAP0BfK4j3
- EqK1i3Tb9MDo5ojR9kIaZI4ghfELrWL3rpz7OuZUPN6hDKJ1YrkF0Bxi7uMh5okv9zrt
- jP91TM7i+WYN9Z2tRVZ0VHbljBVaK3C4lZ9BNa+ZUdL1d6fbIhKElft5yUr2qR9Jg48I
- 4wz9e+Ony6Ns7VwFsgjBg+mL2hGVZsOzndQPwPBK8Et027k9XEBRaJxg+GPg2Pot3p5f
- o38bicxoR3Buwsj7eVuRSpaNYfOZhoheZP1B3hxam3WnoJcEEPnA1T8gldybuo0w9QkC
- oi/Q==
+ bh=91PXPoM2XMelQ4xNCvH0aS1l4HeuvF9F6hz/TwrZmjg=;
+ b=I1QdSQtJhjwYWH0o1y7rkSdbRvrcbUBRdVdiNAKWnYIvzYy9pvCXex6++MreKDj6ve
+ pbn45TI110U0BptF7OVDUwz4KEtYITqqIweTuppBShIgBVS2rDlJWBj9USlDvJ4frnBc
+ xgzzPUWKNmruwvC7XJx0Md1+VUuR0k6SEbOpdqtWX+gKyT1VXtjF0v2Ckq7vU6lzzbhB
+ Ds3moOVdKkaoFapzMar3EjhLJPsuvIYxnbHc3ner6cN7XiSxNBCyiM454Wc78Feh21YK
+ ay3pSRUvxSYVLMwtxoNC1+Ak+ABMSWuvW8onmy09lmrOfDjkmdOjoUdjoxSZRbcWIl8k
+ Wbgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779139212; x=1779744012;
+ d=1e100.net; s=20251104; t=1779139229; x=1779744029;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=eib3eRFzS2+00sCLYIMDe5vm4mlk/dWlRJSkbmyxtqY=;
- b=FLVRTwrdZ7Tw0ELMb+KcJlVbiVJGO9Y5WVSyll+5ZwkfghYKxvG+s4KG52y9ipRQ8Q
- nTR5wueipn5k7q/3CgLBxoLZ1WI4YOlmmsSTEyzR51dP0aPE2zw8fvFFjaD/mQpuY4Yi
- D5THhicN0C5JCNQvRk1mvx6QJMqFeZoOPOtu6lRhC/KhFfo+JdDpUgr9OQEyWDEiEa4o
- GEKBCGHe00l8Hoy0hAemIOYonlhqhnNnHZ1Ppv+M92g4otaEfvb76IpBOGoCg9mxwWx4
- RBbbQgcyTeNyXLV0PJPMrn5pYP6iJ5joik0yfrw6pEDvoAYViWbW4OZTu8mP9LHVWNIR
- +pQg==
-X-Gm-Message-State: AOJu0YwsUOAkrPLFaxgB1AXoieVhPfTmHWqjAHAii51G1NFvtOio340w
- WU5vD24kNpzsqsV2ShhnmZkQrokvw1Z8matCEHEu4LJnqwfte25cFk29
-X-Gm-Gg: Acq92OHx4NTmb1jKBB2+uINZ+R+qhFQ/AV9uu6dLLyMv5PytUBf8liBRIh4JXx5GdF4
- qS0P/8gqeoTZVP8YRIeqqCoKxo9Xh06Qe/DR2ILY9iu9gx9brpFECE98jfshlvVu4PVqoBXG0D+
- +hp22la5RYM8+vFVZVMm3kBLckaflKjXVZYd7lML3vrqjygFu5eKj/Efxw35PKwHsQ960kdXdNL
- rMYLt+JydSa5q0gl6H4Yx0e819B5RdQpjwt8kKxBphBHCSA+7MpK1yvk1sbWckTH+lylKAUJwou
- b9z39zuRNYk8l0EcB3o03TXvgDJHAwXEwW5dxeCLUoKikzYioTOrvEI87WylSjoGBcLXqamEgfn
- DD5FagLouZPyY/g3WFGsRb4WoI4kKFrfP7NqLx8TqiFD8ZcxirLx94gmiOn9BPmoIWVUcVOPChH
- Wd/8mvCgWkjN+riFtZ/dvwJk61070WRXP1K06BVOlsIqVq1XpH
-X-Received: by 2002:a05:600c:a405:b0:48a:52ce:a4b1 with SMTP id
- 5b1f17b1804b1-48fe60dd5e8mr252074615e9.15.1779139211392; 
- Mon, 18 May 2026 14:20:11 -0700 (PDT)
+ bh=91PXPoM2XMelQ4xNCvH0aS1l4HeuvF9F6hz/TwrZmjg=;
+ b=Xre9c45Q2cWqkuQRJhmxLm593BBwQDi6hJ+PBs3DtFWOC3zpsgpbkuP7LkQcbZghTK
+ o+Y9WUbqkBpgJfffhVLfM/L472dB0TcS5vsuCKMvBQprF/elQcdg0g/uJsvd/48Zcc6S
+ XEfkrraq2tIDZULTzQmC6vEY3ydzsBrOVbwXWuY75Ycrlavp0sWgfuolRBzZ8XkEGuP+
+ 6S1pixzboFES9Q2rbIbFVh7n++60pX1Rkiy4YKJK8nMz8yVKiXejinTZV5NdJwehefeN
+ Wuxi15aql1SIZBQxt9tXWwxncIOvDvKV8DdG3iAr+nLQXlKFyIGarmB0u4zA8U2GPt9U
+ z3SQ==
+X-Gm-Message-State: AOJu0Yw1awElZD/7chwv+p6yihz7dmKj++x9P/pZjnDm2xvL1eJvXZLn
+ CNNUGEd6cCy69EBInGKX4HKp2mKgncoyc1LgdotFZHByaEIypbyXcaT4
+X-Gm-Gg: Acq92OFnb5UbeI/jH9LL6A9HFuFVQXJwyk1vQ/l1QiZ/cIRhZgY/BMQLddA1pc1XtBU
+ zgmUFgq89zEMW28SZAGXPGyqpisaRovYY7EyT9J64rtLmJrnv23keJ5VVo7X9SvVqZmTbDy475F
+ XgI1vcVEhnATpjSaZSVm0ZNmDJgcw1qyhXFeKO8qDPFEQLknjvXCW7YANeTFgH4n/Nx4lVa/znl
+ 2ZQ9P4t9ZRQz0OjLwv8QyVncps8c40F2Be0QL3Z1Y6vLRN2KPGH7iKjzjkNR+myWS45d59tuYtI
+ yHz2ky652U5zA8ylhq9W0fYykZu7zsdcgvsZmbLygQGdKIhiXH84fCiICv66QpPjyzVnc3t9BoV
+ y4kZ3Qe9HpjdvKBpz3PRVJrbzxdkXKJuMmhrBXHgvmFI0xGRi8uJtCR6d+Yi2ICpwNl2EPvuItX
+ OGF/5mR88Ut5DCOjlS9jpJMfRHrPNi2wzDUVudrv3oZnbVy0w9
+X-Received: by 2002:a05:6000:1787:b0:455:fbb:28bb with SMTP id
+ ffacd0b85a97d-45e5c5dd6famr26011067f8f.35.1779139228788; 
+ Mon, 18 May 2026 14:20:28 -0700 (PDT)
 Received: from skylab.fritz.box ([2a06:4944:10fb:f400:564:5711:52c6:59ff])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-45d9ed2ffdfsm37133980f8f.15.2026.05.18.14.20.10
+ ffacd0b85a97d-45d9ed2ffdfsm37133980f8f.15.2026.05.18.14.20.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 18 May 2026 14:20:11 -0700 (PDT)
+ Mon, 18 May 2026 14:20:28 -0700 (PDT)
 From: Gilles Risch <gilles.risch@gmail.com>
 To: alexander.deucher@amd.com
 Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  lkp@intel.com, Gilles Risch <gilles.risch@gmail.com>
-Subject: [PATCH v3 0/2] drm/radeon: fix iMac11,1 dark display
-Date: Mon, 18 May 2026 23:14:09 +0200
-Message-ID: <20260518211409.4868-3-gilles.risch@gmail.com>
+Subject: [PATCH v3 1/2] drm/radeon: fix internal display on iMac11,
+ 1 (RV770/DCE3.1)
+Date: Mon, 18 May 2026 23:14:11 +0200
+Message-ID: <20260518211409.4868-5-gilles.risch@gmail.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <CADnq5_PhXmCNOGz9zK8mz7Y0Jw-J9uexhVjGLRqMA4AOHsJ5TQ@mail.gmail.com>
 References: <CADnq5_PhXmCNOGz9zK8mz7Y0Jw-J9uexhVjGLRqMA4AOHsJ5TQ@mail.gmail.com>
@@ -91,83 +92,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [2.19 / 15.00];
-	BROKEN_CONTENT_TYPE(1.50)[];
+X-Spamd-Result: default: False [2.49 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[gmail.com:s=20251104];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:dri-devel@lists.freedesktop.org,m:lkp@intel.com,m:gilles.risch@gmail.com,m:gillesrisch@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER(0.00)[gillesrisch@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
 	TAGGED_FROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FREEMAIL_CC(0.00)[lists.freedesktop.org,intel.com,gmail.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:-];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[gillesrisch@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_HAS_DN(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 08BFA5790A3
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: 526655790CA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hello Alex,
+The Apple iMac11,1 (late 2009) has an integrated ATI Mobility Radeon
+HD 4850 (RV770/M98L) with a 2560x1440 internal panel connected via an
+internal DisplayPort path. This machine suffers from a similar problem
+as the iMac10,1 (late 2009) and the iMac11,2 (mid 2010). Without this
+fix the display stays dark under KMS. Two issues are addressed:
 
-thank you for the feedback. I've updated the patch to use dmi_match()
-as suggested, limited to iMac11,1 only since that is the only machine
-I have tested so far.
+1. The RV770 implements DCE3.1 and not DCE3.2. ASIC_IS_DCE32() starts at
+   CHIP_RV730 which is newer than RV770, so the RV770 never matched the
+   DCE3.2 PLL and encoder logic. Introduce ASIC_IS_DCE31() starting at
+   CHIP_RV770 to fix this.
 
-I will have access to other older Apple iMacs which also show display
-issues under Linux. Given your comment about unusual wiring and
-potentially broken atom tables on these machines, it would make sense
-to investigate this more thoroughly in the long run. I would be happy
-to help with testing if that would be useful.
+2. Apple routed the internal display through Link B of the DIG encoder
+   instead of Link A, as observed in the kernel display connector log.
+   The same quirk already exists for iMac10,1 and iMac11,2 - iMac11,1
+   was simply missing from the list.
 
-The build error reported by the kernel test robot is also fixed — the
-previous version was missing the dependency on the ASIC_IS_DCE31()
-macro introduced in patch 1. Both patches are now submitted together
-as a series.
+Note: resume from suspend still results in a dark screen as the DP
+re-driver chips on the mainboard lose their state during power-off.
+This will be addressed in a follow-up patch.
 
-Changes in v3:
-- Submit both patches together as a series to fix the build dependency
-- Use dmi_match(DMI_PRODUCT_NAME, "iMac11,1") instead of
-  ASIC_IS_DCE31() to avoid breaking other DCE3.x boards
-  (suggested by Alex Deucher)
-- Limit fix to iMac11,1 only (only tested machine)
+Fixes freedesktop issue 164
+Link: https://gitlab.freedesktop.org/xorg/driver/xf86-video-ati/-/issues/164
 
-Tested on iMac11,1 with Debian Linux.
+Signed-off-by: Gilles Risch <gilles.risch@gmail.com>
+---
+v3: No code changes. 
 
-Gilles Risch (2):
-  drm/radeon: fix internal display on iMac11,1 (RV770/DCE3.1)
-  drm/radeon: fix eDP resume from suspend on iMac11,1 / DCE3.1 systems
+ drivers/gpu/drm/radeon/atombios_crtc.c     | 4 ++--
+ drivers/gpu/drm/radeon/atombios_encoders.c | 9 +++++----
+ drivers/gpu/drm/radeon/radeon.h            | 1 +
+ 3 files changed, 8 insertions(+), 6 deletions(-)
 
- drivers/gpu/drm/radeon/atombios_crtc.c     |  4 ++--
- drivers/gpu/drm/radeon/atombios_encoders.c | 16 +++++++++-------
- drivers/gpu/drm/radeon/radeon.h            |  1 +
- 3 files changed, 12 insertions(+), 9 deletions(-)
-
-
-base-commit: 6916d5703ddf9a38f1f6c2cc793381a24ee914c6
+diff --git a/drivers/gpu/drm/radeon/atombios_crtc.c b/drivers/gpu/drm/radeon/atombios_crtc.c
+index 2fc0334e0d6c..3c6d332739e3 100644
+--- a/drivers/gpu/drm/radeon/atombios_crtc.c
++++ b/drivers/gpu/drm/radeon/atombios_crtc.c
+@@ -580,7 +580,7 @@ static u32 atombios_adjust_pll(struct drm_crtc *crtc,
+ 			radeon_crtc->pll_flags |= (/*RADEON_PLL_USE_FRAC_FB_DIV |*/
+ 				RADEON_PLL_PREFER_CLOSEST_LOWER);
+ 
+-		if (ASIC_IS_DCE32(rdev) && mode->clock > 200000)	/* range limits??? */
++		if (ASIC_IS_DCE31(rdev) && mode->clock > 200000)	/* range limits??? */
+ 			radeon_crtc->pll_flags |= RADEON_PLL_PREFER_HIGH_FB_DIV;
+ 		else
+ 			radeon_crtc->pll_flags |= RADEON_PLL_PREFER_LOW_REF_DIV;
+@@ -594,7 +594,7 @@ static u32 atombios_adjust_pll(struct drm_crtc *crtc,
+ 		if (((rdev->family == CHIP_RS780) || (rdev->family == CHIP_RS880))
+ 		    && !radeon_crtc->ss_enabled)
+ 			radeon_crtc->pll_flags |= RADEON_PLL_USE_FRAC_FB_DIV;
+-		if (ASIC_IS_DCE32(rdev) && mode->clock > 165000)
++		if (ASIC_IS_DCE31(rdev) && mode->clock > 165000)
+ 			radeon_crtc->pll_flags |= RADEON_PLL_USE_FRAC_FB_DIV;
+ 	} else {
+ 		radeon_crtc->pll_flags |= RADEON_PLL_LEGACY;
+diff --git a/drivers/gpu/drm/radeon/atombios_encoders.c b/drivers/gpu/drm/radeon/atombios_encoders.c
+index 5cfd8fcfa5e8..4e984973c043 100644
+--- a/drivers/gpu/drm/radeon/atombios_encoders.c
++++ b/drivers/gpu/drm/radeon/atombios_encoders.c
+@@ -2123,12 +2123,13 @@ int radeon_atom_pick_dig_encoder(struct drm_encoder *encoder, int fe_idx)
+ 	}
+ 
+ 	/*
+-	 * On DCE32 any encoder can drive any block so usually just use crtc id,
+-	 * but Apple thinks different at least on iMac10,1 and iMac11,2, so there use linkb,
+-	 * otherwise the internal eDP panel will stay dark.
++	 * On DCE31 and DCE32 any encoder can drive any block so usually just use crtc id,
++	 * but Apple thinks different at least on iMac10,1, iMac11,1 and iMac11,2,
++	 * so there use linkb, otherwise the internal eDP panel will stay dark.
+ 	 */
+-	if (ASIC_IS_DCE32(rdev)) {
++	if (ASIC_IS_DCE31(rdev)) {
+ 		if (dmi_match(DMI_PRODUCT_NAME, "iMac10,1") ||
++		    dmi_match(DMI_PRODUCT_NAME, "iMac11,1") ||
+ 		    dmi_match(DMI_PRODUCT_NAME, "iMac11,2"))
+ 			enc_idx = (dig->linkb) ? 1 : 0;
+ 		else
+diff --git a/drivers/gpu/drm/radeon/radeon.h b/drivers/gpu/drm/radeon/radeon.h
+index 527b9d19d730..6b7c0abe49fb 100644
+--- a/drivers/gpu/drm/radeon/radeon.h
++++ b/drivers/gpu/drm/radeon/radeon.h
+@@ -2625,6 +2625,7 @@ void r100_pll_errata_after_index(struct radeon_device *rdev);
+ 			    (rdev->family == CHIP_RS740)  ||	\
+ 			    (rdev->family >= CHIP_R600))
+ #define ASIC_IS_DCE3(rdev) ((rdev->family >= CHIP_RV620))
++#define ASIC_IS_DCE31(rdev) ((rdev->family >= CHIP_RV770))
+ #define ASIC_IS_DCE32(rdev) ((rdev->family >= CHIP_RV730))
+ #define ASIC_IS_DCE4(rdev) ((rdev->family >= CHIP_CEDAR))
+ #define ASIC_IS_DCE41(rdev) ((rdev->family >= CHIP_PALM) && \
 -- 
 2.47.3
 
