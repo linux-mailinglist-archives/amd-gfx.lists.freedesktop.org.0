@@ -2,82 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0MKyLcMNC2pN/gQAu9opvQ
+	id sCkFAy3NCmq18QQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 15:01:55 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 10:26:21 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EA4656D3A5
-	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 15:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CBA3568B3D
+	for <lists+amd-gfx@lfdr.de>; Mon, 18 May 2026 10:26:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77F5E10E2FF;
-	Mon, 18 May 2026 13:01:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C171E10E06A;
+	Mon, 18 May 2026 08:26:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="l73z4DeQ";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Ar9STGbR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com
- [209.85.160.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5278D10E6F6
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 08:08:49 +0000 (UTC)
-Received: by mail-oa1-f45.google.com with SMTP id
- 586e51a60fabf-4042fe53946so706665fac.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 01:08:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779091728; x=1779696528; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=+QLmDk5oLv8YlQxU58cLUijUUkaHidAoC22pfi4gEsY=;
- b=l73z4DeQgESN4Q54BEO4YFJMfG63zacncp7RtD6d9w7ekHWkAULVkUNUlQ2B17/gHJ
- vwcXm8uhh07rvA5ZOx0Jauiyw2se67kH+VO6VL+gSkqEbYCZyByC9TQEH81hQaFZR5ex
- HVnXGS0qT/6Qy185XvV2zrD5CVJg5Zo5FKCgIwwJEztGbsUYN/Foi/zUwBxlNlwlVSXI
- J6rj+GeDLhFn1aCOfOTtUw8vu7WgTLVkHvHmaLtDFoPVgYHR9F+iQJmXcetbcgyNHEWm
- FpeOJhrNKIkmXroDOjiVzTcJ8tIUzFttnOGQiduPO8E0kutnU4Zxe2U60gfu0X+h8xaQ
- 31fQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779091728; x=1779696528;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=+QLmDk5oLv8YlQxU58cLUijUUkaHidAoC22pfi4gEsY=;
- b=Xy1oDl3m4lV/W/aDWaML284CKozpZTz8wNWb7V2cRacK/xpflILAjUEx9eUcxjxvBj
- dFj+sp9CI5h7I2Rx+PxXK1BogZdYJvHrwsttncvpkYkrufj0ICOHr8WKm17sUMms8CHv
- S6cL1wZ45e2IGmxeD/6CycDQKP81ysq5y34gpit1kalQU/e/7xtUpRV/D/X8MgrAoMzm
- rcnM9TD5qk/FTGRHUNsm+uLniuHxmZoGOiLMqpyDGCB/xTjsV6t/J5QyrAne5SVNzF+a
- rBIzWaAeImIa1Bvm2ltUOPGA+rWt3T/9MszoG6ThIAx5LmbNqD5Z1NtFHk3+9Odby8uc
- Fqsg==
-X-Gm-Message-State: AOJu0YxbxQZQZbhJsyIughrtH1MQqtXv0FlVxXLuxCZ2gBVYi0u3qiNf
- XjpT9SeoefsYUpdVrTfIj27NIX52jBmCTGHngxW7z98Ha0dHOqMFlex0
-X-Gm-Gg: Acq92OHJs0/FHD6IwBRHyD9vwJT3VjOsPqCb2nMbzGe9qbjG8tfpYAmN6ct1b2HnQjw
- FMNyFIegO5NJsmjKbDlHrGCfGDvcQ/kEKrhn00mUUI2ZvEWbf6lJWM4R/66R85w7XLnkb3ZEuon
- 6wLx4s1Y6EGR+8e01oWA9/kh2jiNf0/VBwtbUC8VhvJ8WyE36o3HsLxDIPSP4lzzq3IqeJkeaza
- ZrCw8dULw63H7OLROsyuJGLWcjMTLNAQVvX5Nq/X9IfinzKPBhsfD9wT3Ad1yulVJFfV4GTg1gV
- 0hjT7ZKLlZ+qh8HcJSGen5j/szMtyqp6AS3VZTqxSZ5sDN8A5eHc7z+7A0wuMUslXsQrPVHovFj
- +Bg1DwbNZEJ83jJi84XIlLW9H3M2NRkeVfb+RV7V71wMNqgV8qiQn0qPZLSWhDZGOk9xCfqkcJw
- 3sGmdrLRI8PYBer0A=
-X-Received: by 2002:a05:6871:b21:b0:42f:cd67:2b84 with SMTP id
- 586e51a60fabf-43a2d9cb7damr8743171fac.9.1779091728336; 
- Mon, 18 May 2026 01:08:48 -0700 (PDT)
-Received: from houminxi ([72.244.37.221]) by smtp.gmail.com with ESMTPSA id
- 586e51a60fabf-43a957b84fdsm3602215fac.18.2026.05.18.01.08.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 18 May 2026 01:08:46 -0700 (PDT)
-From: Minxi Hou <houminxi@gmail.com>
-To: jwollrath@web.de
-Cc: amd-gfx@lists.freedesktop.org,
-	Minxi Hou <houminxi@gmail.com>
-Subject: Re: 7.0-rc4 dcn31_program_compbuf_size trace
-Date: Mon, 18 May 2026 16:08:35 +0800
-Message-ID: <20260518080835.100682-1-houminxi@gmail.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260316094232.6bb6f0bf@schienar>
-References: <20260316094232.6bb6f0bf@schienar>
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012006.outbound.protection.outlook.com
+ [40.93.195.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B60E10E06A
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 08:26:17 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jRQsLiyKml3mOYioGVcDlWwWVVhpeXd2jJ6StyXr9GwKd714x12xBoZDn8H0QtYaDA2Jmjwm7PyFoTA0jNkytzBqfeIO8xuipxRVZFqPt29fBzxs9Kr4biJ1lNma0MB9vDQ7VTVsA4U5KTD0wHle9CQFGq7tuNydwlqDQLJk2TNnoRlnvBuQyzF0hJk7ecXcspsgyifUKJDmVq1y3Pk5dNylFbLai9v1Igx+RrzvyfTIDepWI2ef2mrEzzrZbWR8zaKHHCEZP1USvxTMcGh+IXGVgcvYSmPoKFUyoCx1k1oVe+dYsY5UrXT/mlosyMnI30FFwFFRPKZqZY6ycOMp3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=K2s2x3LPfBm6kbwTUmFbPNeEhebtEC7KYXbMpoZjv8A=;
+ b=apgNBtGyjTNl/7vnqHLTvPVZNpwWc98YAaIdI5L/nAMz9LlPh3Cgol4Gf18xH4nCZ+SZiquMUvp1xjDc8LaD/yV9lEaURPTGXnTCzGIPmaagsAV2FYElcvNNsT2SdT2Mq1jcnZcJMDShPHP8onvy6+CuchPp12Q8r49Yhj4eDLQzaR+rGmIf3KvzBNLBAHKB6dMIyFwFJEeUGlrix7ICweV2cGLv9g16C3+IOnkFLgfYqjdJv/FaxJxLCzTrv1lejYm5zgEyTmzxYW4StjT9XwXohMcnT9in+g9Hy4k633Y3IBq8QIZuZolYVg8rIDjfrSdZJQZRETagvUWl2ntsHw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=K2s2x3LPfBm6kbwTUmFbPNeEhebtEC7KYXbMpoZjv8A=;
+ b=Ar9STGbRQw98+pMfdmN6mVP3cqJjJCYVu050n5H/rADEqlJoXwSaIo87J3h+7lvLmY58lFt6ohkxakc0YkHBSNIEAYSHnl8FH3Ku/cn802xbQM8F26dgwbpZeToUAqSdphC9uUpf1eVpRv5y1cNegHS0inYLEkTc+sKnKcK1xcw=
+Received: from BL1PR13CA0220.namprd13.prod.outlook.com (2603:10b6:208:2bf::15)
+ by MN2PR12MB4237.namprd12.prod.outlook.com (2603:10b6:208:1d6::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.23; Mon, 18 May
+ 2026 08:26:10 +0000
+Received: from BL6PEPF0001AB56.namprd02.prod.outlook.com
+ (2603:10b6:208:2bf:cafe::8e) by BL1PR13CA0220.outlook.office365.com
+ (2603:10b6:208:2bf::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.48.13 via Frontend Transport; Mon, 18
+ May 2026 08:26:10 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BL6PEPF0001AB56.mail.protection.outlook.com (10.167.241.8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.48.11 via Frontend Transport; Mon, 18 May 2026 08:26:10 +0000
+Received: from canli-build.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Mon, 18 May
+ 2026 03:26:05 -0500
+From: Candice Li <candice.li@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Hawking Zhang <Hawking.Zhang@amd.com>, Tao Zhou <tao.zhou1@amd.com>,
+ Stanley Yang <stanley.yang@amd.com>, Thomas Chai <yipeng.chai@amd.com>,
+ Candice Li <candice.li@amd.com>
+Subject: [PATCH 1/4] drm/amd/ras: bound CPER record fetch buffer size and count
+Date: Mon, 18 May 2026 16:25:43 +0800
+Message-ID: <20260518082543.786786-1-candice.li@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 18 May 2026 13:01:46 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB56:EE_|MN2PR12MB4237:EE_
+X-MS-Office365-Filtering-Correlation-Id: 99dbca95-5cf2-4446-7655-08deb4b71dae
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|36860700016|1800799024|82310400026|18002099003|56012099003|11063799003;
+X-Microsoft-Antispam-Message-Info: mGwBdW5SF9XT3e92LhX62ah1ziVfeJgEi4un9KRHWhp2X8RuILBd41uu4nZM77ejKKBclaNG+SdiDEVrwQVCdUCkLIhQTTOxHza8rrb7IlolSlJqrOiWmUh/4hrUrQ5XEBriY+ihC5WOLRiTtNO/uBrpMQ+INLKg26nh+l0RP3c1ts1oJX4KYUQLP3vcixuuBmw83A/EeZYT50xAHUMLyhQQ2mL5XaL+L4gHSzSOKt0mXLHKNy7QRg9tZGKJQf2aePMOwoMD8wYEfQ13rpaPIfo8pQBesodo+4+Z4KZ5CXsSbxPYMukjQrDXESN/vBtGIbmbgGpImEr/Gk4bj1lxCXvxgjfHRJ1Pvwl12xz8XC1EQJucuwxz2uZlXB6xN32uANUzp0MV8WAUEKa4MU1+Nfqq0Mj+q3s7UKx+ryIRa3WLB99715ZEeck63TRssigpsqV5hO1UU48eAF4/jL3/yHQ0nDmTSYoXkKEjwZJSggXb+Lk3qC5Xm1GNqdLGLOH2lIc0iB/Qm+gfbvHRySFEWjv3WbG78VxO+uWOnTjcy4OoVsiZbVG6r7j/VsGR86RY77in7rN/9Fe6C344M/oyviZPaHbjoVchDCD1oTNbEWZFwKfSNcuPXHGw3qm2yeDEZqrYG3w8qIOBkrpEuCLIzP0UPGBPbD3t0loSZr4SZLrrXpd8wQjAcCWYQX+u0AjgSTsLMCtn/9qciHNFk7293SaySHjI4nHUxHpHuXKQ7aM=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700016)(1800799024)(82310400026)(18002099003)(56012099003)(11063799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 45SxwYEZQcc0/QjorPL5HvrUq2Irh6iiJVYYTX15feYqIqHM//vO5R5ScHcBe+eZS383ej7MEjwIlBjRtRjpD75zOoeE974XlVZVGLvifxojy6ZFnsChh6MD0re0MBK3esY8K1aYCm38c79OkKff5kbhnG50qEyJKzyOb3nWIyS9/e86BCZPp7P0jwZ+bLHXqFEdBt6VX/2XCJA4vVDQ34nQkypuXgWKvVU34KsbDW1kQR+Nr+XI6DqMNKV/DEYlzfcFCBP2FedhWHdXOe0vVf6EfZaNp7/k8q/CUaGC5raYGfe1eKqZTc90l9Zs+DPATt3BYPivKK+N+jjiyVBDEoIh3dsdn5SLzBloF7/zx8ErhkXn/gwW1VC04T3CwXf4yN3eRVP+xHxW/M6nGb09MHu9LWPHHj63nXvj/9L8W2kVcHPUgg/6nTHQQF5Rx25p
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2026 08:26:10.2829 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 99dbca95-5cf2-4446-7655-08deb4b71dae
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB56.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4237
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,87 +114,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6EA4656D3A5
+X-Rspamd-Queue-Id: 5CBA3568B3D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [1.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jwollrath@web.de,m:houminxi@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[web.de];
-	FORGED_SENDER(0.00)[houminxi@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[candice.li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	DKIM_TRACE(0.00)[amd.com:+];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.992];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[houminxi@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RSPAMD_EMAILBL_FAIL(0.00)[4k.60hz:query timed out];
+	NEURAL_HAM(-0.00)[-0.999];
+	HAS_XOIP(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Action: no action
 
-On Mon, 16 Mar 2026 09:42:32 +0100, Julian Wollrath wrote:
-> when turning the display off via 'xset dpms force off' I observe the
-> following warning and trace under 7.0-rc4 with a AMD Ryzen 7 PRO 8840U
+Limit RAS_CMD__GET_CPER_RECORD so buf_size and cper_num
+from userspace cannot force unbounded kzalloc or long loops.
 
-I can reproduce the same warning on different hardware with a different
-trigger.
+Signed-off-by: Candice Li <candice.li@amd.com>
+---
+ drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c | 4 ++++
+ drivers/gpu/drm/amd/ras/rascore/ras_cmd.c             | 4 ++++
+ drivers/gpu/drm/amd/ras/rascore/ras_cmd.h             | 4 ++++
+ 3 files changed, 12 insertions(+)
 
-Machine: HP Z66 G6 14 (ProBook 4 G1ah), AMD Ryzen 7 H 255 (HawkPoint1),
-kernel 7.0.8-200.fc44.x86_64.
+diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c
+index 7ec5287daf7f19..0a721d5d92344d 100644
+--- a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c
++++ b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_virt_ras_cmd.c
+@@ -267,6 +267,10 @@ static int amdgpu_virt_ras_get_cper_records(struct ras_core_context *ras_core,
+ 	if (!req->buf_size || !req->buf_ptr || !req->cper_num)
+ 		return RAS_CMD__ERROR_INVALID_INPUT_DATA;
+ 
++	if (req->buf_size > RAS_CMD_MAX_CPER_BUF_SZ ||
++	    req->cper_num > RAS_CMD_MAX_CPER_FETCH_NUM)
++		return RAS_CMD__ERROR_INVALID_INPUT_DATA;
++
+ 	trace = kcalloc(MAX_RECORD_PER_BATCH, sizeof(*trace), GFP_KERNEL);
+ 	if (!trace)
+ 		return RAS_CMD__ERROR_GENERIC;
+diff --git a/drivers/gpu/drm/amd/ras/rascore/ras_cmd.c b/drivers/gpu/drm/amd/ras/rascore/ras_cmd.c
+index 4f89810d85a15e..5c812f3d984140 100644
+--- a/drivers/gpu/drm/amd/ras/rascore/ras_cmd.c
++++ b/drivers/gpu/drm/amd/ras/rascore/ras_cmd.c
+@@ -217,6 +217,10 @@ static int ras_cmd_get_cper_records(struct ras_core_context *ras_core,
+ 	if (!req->buf_size || !req->buf_ptr || !req->cper_num)
+ 		return RAS_CMD__ERROR_INVALID_INPUT_DATA;
+ 
++	if (req->buf_size > RAS_CMD_MAX_CPER_BUF_SZ ||
++	    req->cper_num > RAS_CMD_MAX_CPER_FETCH_NUM)
++		return RAS_CMD__ERROR_INVALID_INPUT_DATA;
++
+ 	buffer = kzalloc(req->buf_size, GFP_KERNEL);
+ 	if (!buffer)
+ 		return RAS_CMD__ERROR_GENERIC;
+diff --git a/drivers/gpu/drm/amd/ras/rascore/ras_cmd.h b/drivers/gpu/drm/amd/ras/rascore/ras_cmd.h
+index 7ea35a02898742..a1a73e6452e73d 100644
+--- a/drivers/gpu/drm/amd/ras/rascore/ras_cmd.h
++++ b/drivers/gpu/drm/amd/ras/rascore/ras_cmd.h
+@@ -405,6 +405,10 @@ struct batch_ras_trace_info {
+ 
+ #define RAS_CMD_MAX_BATCH_NUM  300
+ #define RAS_CMD_MAX_TRACE_NUM  300
++
++/* Upper bounds for RAS_CMD__GET_CPER_RECORD to limit kernel allocations and work. */
++#define RAS_CMD_MAX_CPER_FETCH_NUM	RAS_CMD_MAX_BATCH_NUM
++#define RAS_CMD_MAX_CPER_BUF_SZ	(1024U * 1024U) /* 1 MiB */
+ struct ras_cmd_batch_trace_record_rsp {
+ 	uint32_t version;
+ 	uint16_t real_batch_num;
+-- 
+2.25.1
 
-Trigger: HDMI hotplug with an external 4K monitor. The Z66's HDMI port
-uses a DP-to-HDMI protocol converter with FRL support (dmesg shows
-"DP-HDMI FRL PCON supported"). Connecting the monitor at boot causes
-the first timeout during initialization; subsequent hotplug events
-repeat it at runtime.
-
-The call trace matches yours exactly:
-  dcn31_program_compbuf_size line:141
-  dcn20_optimize_bandwidth
-  dc_commit_state_no_check
-  dc_commit_streams
-  amdgpu_dm_atomic_commit_tail
-
-Not seen with 6.19.x. CachyOS community bisected this to:
-
-  commit 592c5b80110d5e9e50873b5364818cb6f401e26d
-  "drm/amd/display: Migrate HUBBUB register access from hwseq to hubbub component"
-
-One thing I noticed on my setup: the amdgpu driver defaults to
-max_bpc=16 for the HDMI connector. With a HDMI 2.0 monitor (BenQ
-EL2870U, Max TMDS 340 MHz) at 4K@60Hz, the higher color depth
-increases bandwidth demand during compbuf reprogramming and makes the
-timeout happen more often. Adding amdgpu.deep_color=0 helps but does
-not fix the root cause.
-
-Partial workaround:
-  amdgpu.runpm=0 amdgpu.gfx_off=0 amdgpu.deep_color=0
-
-A patch proposed by Giuseppe Ranieri in the CachyOS issue tracker [1]
-changes the REG_WAIT parameters from 1us*100 to 1000us*30 and resolves
-the warning for several users with DCN 3.1 hardware. Discussion there
-is ongoing about whether 2-10us*1000 would be a better fit.
-
-[1] https://github.com/CachyOS/linux-cachyos/issues/810
-
-Minxi Hou
