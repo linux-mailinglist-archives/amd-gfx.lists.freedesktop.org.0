@@ -2,111 +2,134 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mEnuDOIQDGr6VQUAu9opvQ
+	id eM7BH5bCC2qWMQUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 09:27:30 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 03:53:26 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC9B25790BC
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 09:27:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEAB45762F7
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 03:53:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFCB310EACD;
-	Tue, 19 May 2026 07:27:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB42A10E073;
+	Tue, 19 May 2026 01:53:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=bitbyteword.org header.i=@bitbyteword.org header.b="AZoBDsM4";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="lPx0CQ1T";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yx1-f50.google.com (mail-yx1-f50.google.com
- [74.125.224.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BA6110E149
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 23:20:59 +0000 (UTC)
-Received: by mail-yx1-f50.google.com with SMTP id
- 956f58d0204a3-65c24be9e4bso3059859d50.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 May 2026 16:20:59 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779146458; cv=none;
- d=google.com; s=arc-20240605;
- b=HwTq8qdcvMsVAg5bQ36Q1nyfFqE2Xi9gVptveniK1+321LoTJgzjsyQAGKRg0LKGwc
- 7Xhtu7CcVozDhplFRqRQjsdJdUWHrPJKuTMH4WEajpux+WmbhsEYYkHP9yoVJ84NDJwh
- lG8F1PfuUTOhi23dgDC3dqj57yXvI/BYKJIP7A0TRWpVFN/5WLrAcXEZHTH02JzgMW2C
- SiQE6IXqwau2WukpVNJlhh38BGpCFT6FJkcmNjwvVOUDlzohvVwOgwBKp6oaQGKrjL/w
- n2vRXANV/llXG+E1W/nKEuEbdicA3R5ka0ak4GhLMFG71mvXbkMzEpSQ7V+dq2lWu+3o
- MYog==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=qyiC/6ER7XJQAQS9fYV1hi++02Ay+WfrOqQ6ixqtbHQ=;
- fh=J/FYJKjJl/3fRd0kMBMsZXLdoEtuUkkb6IYLyl9o34M=;
- b=aA/1RqJHjU93lA8P2EoG7OcdDJJQ3IkyS0RC3/MCpflaLvAueht5xgnhgyMSKdGFbc
- jqQf8jF69vAA119JJiEzteypC4FV4d4Xy0vAEaRCtoXU9LEzxME1ukq9uZ9TMWX1SPlF
- dKuKXJ1rLJAASiLsSQYHv9sLT4oylDFPpXhy0y2UEiXx+7B++IosauFY6NIRPzqqfwwO
- YXqFdbHKBDBX0FE+Q4e1vRlns+h+kxHy82YapRwqXtTOk9GJZ/ij7G6VPPqs4yT05FzH
- gHGiw9bp3RI1mblujvGM2EFfddBpkuE7Fxr/2+dNyDubYMZk1ZI2q7KVSqyc96EEhJ8z
- 9mMw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bitbyteword.org; s=google; t=1779146458; x=1779751258;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=qyiC/6ER7XJQAQS9fYV1hi++02Ay+WfrOqQ6ixqtbHQ=;
- b=AZoBDsM4+UmK9xTQpYnH+tQmJczU3tysd/hHt8TozSrBKDRzU5H8Sl999edx/9dtFX
- LsVzaURGLffRfnqQjYMNlaxPjouyDrhQxJpXLXjEyeh64huo7hfPc5lslj0baj8MDgn2
- oB4v0v6Se1AwBmxk1p2hm2G4UgVE47oZKppL8bolgJ+ZDQtTP8PDR7SLgcWIjUyEphtG
- 8SUPbQcFb2h5uaxFIqKbJkV20XYAKgAQHbCTfLvr6LvHof42YcIvQR7evr3HjuDda7tU
- 15kZOBpaRIeeaZhNrkdDIOrkNjNYHTt6W0CHZoFt1jfsSMdaDyaPy1eNxigEWhMkGnR6
- I7Hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779146458; x=1779751258;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=qyiC/6ER7XJQAQS9fYV1hi++02Ay+WfrOqQ6ixqtbHQ=;
- b=akWY334cJtuxSh7mK9/doqv2anFHU/4BT8dBleQlvXKFGsFFhMiZEQnhW6Mt2tMbrm
- zeVjVa6yNyoIbSEierWHZnNBCBSGp3MwVv9nZySdGu2PiDskwz8vXkR7t9+N8fprvNgi
- O4gc9B7oj0Na3f7I6HP4VdIeXBvvTN9DbyDWmEuHf/iYzbdWFBoTd+IE+oIbHoRORQ1m
- MzORt1ssQ30kZaEfA77/ALZl+wcv94Dyo75in6Ht7WNptrlF4OhMdjtKDLFneFYZe+TI
- fNEn7oBbtS/VvR7jKHDiscslNNFGunEsIj4x/O4KaEbYr/yfAubH3GFCO2xT1yiODz4A
- eeXw==
-X-Forwarded-Encrypted: i=1;
- AFNElJ9Bl3Otm5wfkK1IrLFK/w6uqfygD2FnGARDxr/zGd9OwRreMVMm5as/cNlfC+G/Nvgf02E9r7Se@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzHYejEqZj04KqHdFvGnEy07Q17cg07tMTvuYWn3Ow1Y1lyxZti
- rxcPKxNT1DEqcg97w+wVqcl9xo63hkl/1edkOvZYQaFXE8y/AquIjCU4xoYUP2fTuOuneEj1sak
- UO6aVlFteWv5wHzQGKsPJn7oDmgAHMCYNMrKKShmICg==
-X-Gm-Gg: Acq92OHpDtM5gEnEu3nr04irqmcldyXLPEuSwxmdGS8Fo7k4/sDkdkEosNta4W/ELUH
- FRnrWbupni1BRgLDU/xpfRy8z5uvdaXikvcGexGeOlUibRDrOgZ4ocJIAS70lO2HGCUh8AKaKMC
- WFbQuuTEEYxkwDwS4uz5hEcyrOHxE6YkdvbvV8BcepQG68NjQZ0HC7j5DF8MYMV7ZE29I8QKn8y
- 5d37uDoN6f+zvtIvU1UwEINI9yJ05+YFpH/AUNBPZYV0b1nMuB2KXqs7W9wFw/BIsxXjl8k74rD
- C1aOCUiwKA==
-X-Received: by 2002:a05:690e:148b:b0:65c:6164:f29a with SMTP id
- 956f58d0204a3-65e22839e7fmr18959504d50.46.1779146457665; Mon, 18 May 2026
- 16:20:57 -0700 (PDT)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010037.outbound.protection.outlook.com [52.101.61.37])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25D4710E073;
+ Tue, 19 May 2026 01:53:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kOpj3L7sH5Y2LE0UoLjOK3YhHi6zJC51ZWIc6i8pvIwxKOcm87qxD72SjAZEbxXnb2MjucEgWE3iJp7n+Pa+3/kS/iWwB5MfjDRroqufySWQdSCmpzrM5p3po/6Lryxg5+iAFi+dJCr+5PBHsRoY1lin5Bg5IfPTuWQxMj8bjk0SGGIpBotVi5lF++NCxkiA0ikznTlBNwR/AsQD2k0xJ/FyHDiLUj5XLPZzTuxfcHJGYdqBdy0fRELbfN77gGcN6aX234+vpOSACtwJHsY/Zptv1ffNfU7oxHmW6I2CGLUY/NrTFrgyFBq0wdgSvBn7cSyjT2AZSIpmJKutOVhU7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sD/g3eYq5ENRlFvQjCe39izNqFeehlQFBE3Z5TGGpTw=;
+ b=ZRFi47V1Gn93+2vBYqwoP8YXwhWLG11OpLKmexy/oklSJN/exkruR0qakmVwE/mcRoP1AGVK4cI2AlGDXZnC+BzSLoA8S3ulBaldBIurj9egIGkQLwt9WElTlrZIOOo3EiGpMDYdmahyUgVxRSd4dD5KDXCoCiZ/DFxkzOMQ5oqh2bOenBA8wFgjAdTf9geLw84mweL54zd+XotfHWc0R9zNkQ/dyvA/6P9pN2PZfMpaXHN0q4M3S73NxUxLWWyPhDZ1314BPHmAZ97bSaQjjt5bSjpb3IzpwiSVrBg54LrN56iLYfwx+j9ny0KYlTW1anwQSMfyvq0L2plOuvQz+A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sD/g3eYq5ENRlFvQjCe39izNqFeehlQFBE3Z5TGGpTw=;
+ b=lPx0CQ1TdQyfSclOe7OEMlBXw7mEhf4MOS93IXJwhcphaPMHP5utDw+z12mfRWR81pASviY72jRQj2yAwAXXv9W7HaohSSLmKUGvPSBhHmRRHseC86vtNSJJDunuKNM6TGJmBsEokOpoATiwuwqsaYsx7ind3oxarEgniPoTZSQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CYYPR12MB8892.namprd12.prod.outlook.com (2603:10b6:930:be::12)
+ by DS0PR12MB9324.namprd12.prod.outlook.com (2603:10b6:8:1b6::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.23; Tue, 19 May
+ 2026 01:53:18 +0000
+Received: from CYYPR12MB8892.namprd12.prod.outlook.com
+ ([fe80::62b0:b284:c9c6:c96]) by CYYPR12MB8892.namprd12.prod.outlook.com
+ ([fe80::62b0:b284:c9c6:c96%4]) with mapi id 15.21.0025.020; Tue, 19 May 2026
+ 01:53:18 +0000
+Message-ID: <9ede5b2c-ee6f-40c8-8607-3dcba90a5d08@amd.com>
+Date: Tue, 19 May 2026 09:53:09 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm/edid: parse panel type from DisplayID 2.x Display
+ Parameters block
+Content-Language: en-US
+To: Leo Li <sunpeng.li@amd.com>, Jani Nikula <jani.nikula@intel.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Harry Wentland <harry.wentland@amd.com>, Ray Wu <Ray.Wu@amd.com>,
+ Limonciello Mario <Mario.Limonciello@amd.com>
+References: <20260514065606.1151834-1-chen-yu.chen@amd.com>
+ <20260514065606.1151834-2-chen-yu.chen@amd.com>
+ <8e0c6356a570c55e3df54be6c2d7952dfcee2a06@intel.com>
+ <020f60b5-b2c4-494a-a16d-07a700d299f4@amd.com>
+From: "Chen, Chen-Yu" <Chen-Yu.Chen@amd.com>
+In-Reply-To: <020f60b5-b2c4-494a-a16d-07a700d299f4@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI1PR02CA0040.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::7) To CYYPR12MB8892.namprd12.prod.outlook.com
+ (2603:10b6:930:be::12)
 MIME-Version: 1.0
-References: <20260515135932.2238842-1-vineeth@bitbyteword.org>
- <81783d0807a5ffac93f61eddba0d2f595d7f239f.camel@mailbox.org>
-In-Reply-To: <81783d0807a5ffac93f61eddba0d2f595d7f239f.camel@mailbox.org>
-From: Vineeth Remanan Pillai <vineeth@bitbyteword.org>
-Date: Mon, 18 May 2026 19:20:46 -0400
-X-Gm-Features: AVHnY4KAw0ZavPbDVfhEtyHlzriwrbmjQeDlQua14-BfS3GXG-7uIcLEub9UvWg
-Message-ID: <CAO7JXPhMBd0xgDRO-gZ2HpSTnrj1OD67c39jrXWEKaowNc9GEA@mail.gmail.com>
-Subject: Re: [PATCH v3 06/11] drm: Use trace_call__##name() at guarded
- tracepoint call sites
-To: phasta@kernel.org
-Cc: Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Matthew Brost <matthew.brost@intel.com>, Danilo Krummrich <dakr@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, Steven Rostedt <rostedt@goodmis.org>, 
- linux-trace-kernel@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 19 May 2026 07:27:26 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CYYPR12MB8892:EE_|DS0PR12MB9324:EE_
+X-MS-Office365-Filtering-Correlation-Id: 88d0127c-f426-4e70-a652-08deb54965da
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|22082099003|3023799003|56012099003|18002099003|11063799003|4143699003;
+X-Microsoft-Antispam-Message-Info: nEQlTUnM/zsk36p92oIXcu8GH+Ax4/CyI/j27IrIm3vIugfY9H4OvU5eAKZS7lNxurldMQP4ib7y7eRgPIZ7JWJh900bYJHr4AZuqKpkS1rEXHzuB9+o8IanUlTMTNgLjhX63UG0wWK/lk/wMBMaZgRwaUwlO9pBbOIIZ3+k2bJe7F+SZzLLYiVMA7DCoh5QIQNBYU05Yfgwpm29ekXYG5MH4/t6xo4RkkVrfCCmt8QcvB7wc0Q0GCpBiakRV+e0s0D8P+YfL/N548ThiIaCwNnCxWGCKQRP2bwPBKVIDb2FzLd+9l8K8tGZuw5nemCjLp0Cwcx+Ca8eK0RV3xi/enlb816289GEiJMkaAIHnO2nE3WnfLE730nHGQCAZ9PepOYSWtXCMDIVIlwuQf/eLecYf+Sc3NfuBV5Z8Vnlb9y41iaV6IGFANHhuaaXkuvlWDV1kMZa5wW5x5KoLBxYXlDj9Eulf21gdh0kQo4Jdumh7UlezEFtY8SyyCrLOBVauU4bNSUtrK2vgHwiIpYaZV0nvaFAcor9Odv7Mv4gLbef9AZ4Fl6vbJaM1E+2/K20bIDfdSrLU4mN3q6d7ZBqVX8USmelJj/nNC64s/6IYRe+5gT/dOdYjd5fvC6EaRc/9NoIWkxpD+AHOR73ERxoakm6eXc/2ctsZRKPQEdzXFAOaEqAzPnEfaVIZ02CmEyN
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CYYPR12MB8892.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(22082099003)(3023799003)(56012099003)(18002099003)(11063799003)(4143699003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bkN0L3lQVmFjOGVNa096R0hiMTR2SmJ3MDdhRTk4NW1ramF6c3dVa1lrNzFk?=
+ =?utf-8?B?aFo4N0tJUGRFbTFCTkxoNFVIMVVYWDFxUlBEWUs0eWlvM0VKM1hBMTR6WlFr?=
+ =?utf-8?B?SmdmU1NtOUNoOGxudUVvWXZsZFg5Z0JmMlBWcmRiaXhQbGJGT2lpUVlvekE3?=
+ =?utf-8?B?Q0lvTnYrbkFnSldxYTVYVXJTVFg4dlA1OGNSRU5CcGJLR2hobFpyc2JpYWtI?=
+ =?utf-8?B?VmM1dzB6ODdLbTJqbm5ubkh0dGVPM2N4d0NDRTBYSjRSRVZnRkhtWTJ2dU9O?=
+ =?utf-8?B?SCtIVjRxVmpOa09XU2s5Qmgwbk5ycDVtL0wxVmdsUC90dVhnYzNUeWlXNTVN?=
+ =?utf-8?B?RWlGcncrNFdwY3BicXpiOEtReUlGZzhDcXlXOXhxdFdRT2pJRU9SaXhrK2pI?=
+ =?utf-8?B?QUQrd0FJNi9DMkJ0RlNzbHJKMzU5Qm54cHBWTmFLT2lHMnRXYzRnUFZWOE5t?=
+ =?utf-8?B?MmVBcGtsekMwZS9VclNkb0hZd1hlU1ZLaXZrbHVLa296YTNZbm5KWGN1UU0x?=
+ =?utf-8?B?UWtVRnNqNGh3Rm8rMFFtL2w2QzN4UTErRXByU3ZCKytkT2lYRUlTcHJvYzZv?=
+ =?utf-8?B?RmNjblk2S0pnczBzL2o1VXVodDI2Q3ZEWHVrYjVHc3k4a3FkS2RmK29xc2Qx?=
+ =?utf-8?B?VGxIdmNseXUzV3kvUjhtU3BOM0FpTGtTQmZ4K1BJZHY5S05ubDk5aS9XeXIr?=
+ =?utf-8?B?dFdXSkhDTk55Y3dzUDJucEtPT3hXQ3pwQU10Mzh0MXprV3Q5OEpvSzMwMFN3?=
+ =?utf-8?B?YXR3MWR3VStndVI0OVc1TGozeEl0SEFYbmZ6Ym9sQVgxWDIxR0VpM2F4TTBq?=
+ =?utf-8?B?bGxBUTI3dXRiN0tXVHRmWmNwOTRYK0RXaGFJbEdtZ2VEZWZQKzRpK0RRVEVN?=
+ =?utf-8?B?bFdXT3hvdHJPNHUwamJvNlpBTXIxYnhOVzdxSWdFTEhxWTQ0OW5ZeXVwdG1U?=
+ =?utf-8?B?aFpNZ2NTaCtvczJaVkU2aGtrYlhMR08wQ2JqczlzYjY5emhta0prWFhBNU1B?=
+ =?utf-8?B?SmNXTDlQbW4vUHJxZ21ZMURic0ZzSTZrcEZ1V3kzdEZSdWdLZjVnVHBkbU5K?=
+ =?utf-8?B?VEI5ZDlUd1BBRTZIV2VTeHllcmNwYXBrZlJ1S3BrVWpvQTZJZmEybE1OSUNT?=
+ =?utf-8?B?Z2RzRFBUbEtJSDUralp0eG9ucEEwbEhudmUxYzNDcmltVXcvdFNMWGo4Z3Za?=
+ =?utf-8?B?R0tHL01NYmxsUzlsSmE2N1dpVlZDa0JpUHp2ZUlHTmJXdG9iK3dQblpScUQw?=
+ =?utf-8?B?NklkcFA2dlFIbmtuVlRyVVNRQlJjMi9zK2xINklJN2ZmNndwNkR6dnN0Q1hm?=
+ =?utf-8?B?WGxSbFNTUUtJNWNEbjYwS3BFUURuV3JINEJEQTZpNFN1RTAxSVlvaWFjck9l?=
+ =?utf-8?B?bFNPL1V6M2ExbXFjUXVFc0JudzhpRTZxME1jN3pweUdhMVoyRkQ1UXl0OU9o?=
+ =?utf-8?B?UklFVmx3OEtFT1l1d0w3Z2psNWQ4K1hyYmVYK3JuKytoZnYwLzN5ZFpsUGxN?=
+ =?utf-8?B?dnUyTFpnTFJpaFZuYktqR1RXRUFEcmc1OXk5Q3RzNjhaUVRBU2N6aG9ubFZx?=
+ =?utf-8?B?NXlSSjR3NjhCT2VEeEdJZ1htZnRjS3lvNzloV1BkeXNqNW1qR1pPOEVvODha?=
+ =?utf-8?B?VzZEMFJMN0N2SzBORkxFM20rTVBaM2sxeGVOb2ZabVlOVEx0dzJNZW8zT2Jz?=
+ =?utf-8?B?K3N6NW83cWRHL3RTOHM0Ulg4VU1CZkdZLzFHZ0pSZWYxQUlRK2VyZVl4ZjZB?=
+ =?utf-8?B?WUxWZGVkZXdPNStrdFNpVENzUWY0VEdkOHRCWTNQeWRTVFVXYWllMmtJK1Jm?=
+ =?utf-8?B?bzdjL3NpVE9UNGZjem5kUFQ5WjdzbzEwQm45eU9zenhFcWQwZnNVUmYyWVh4?=
+ =?utf-8?B?d3R5aFJaTTJCK3lyM21kU3BpWlVKNnFPUVRUUnRlNmRpVnl6ZVFhVkZJQW1B?=
+ =?utf-8?B?SG1VWnUwdXhLNG9SSkYxa2R1LzQxZkRCb2J5d1dCQTUzcUF0eUgrWFlRMi9y?=
+ =?utf-8?B?SE82aFp2UEpZLzdkVUt6WmxPVXE0emRjSi93YUFEZm53ZEZTOWRXZFhqYzVB?=
+ =?utf-8?B?dVdYamZqRHlsUlhuSU5FL0xVY2NOWWZwcnJMN2lHcXFiYWRDSTA5N2VMYWlo?=
+ =?utf-8?B?TkdKV090Q2toaEJrQ1lFR0F2N3RlUitnK3ZzY1JJT2xONEJnNlNmeVozWFQv?=
+ =?utf-8?B?cG9SRFdyMDg3TmRwMDR2ZURRZkUvMXJJZXU2NEI3eUVFWXM4M2pEdTZYcWdJ?=
+ =?utf-8?B?MHJJdVRLWjh2dUQrOURkdjdhNzZ5dnl1dkwxVmhsbXNjdkVPU0UvSnNBMTFG?=
+ =?utf-8?Q?N/im1YU9rrptalQEdt?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 88d0127c-f426-4e70-a652-08deb54965da
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR12MB8892.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2026 01:53:18.2967 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fvqGdjO5X1VUaK8OPl3F46kwwocA0n1U+5opVAHlIQTYzCk9kjr7akCp4Ar++n4pySqAXX8qltNSCXxUmsVerw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB9324
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,187 +143,241 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.81 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[bitbyteword.org:s=google];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	DMARC_NA(0.00)[bitbyteword.org];
-	FORGED_RECIPIENTS(0.00)[m:phasta@kernel.org,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:matthew.brost@intel.com,m:dakr@kernel.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:dri-devel@lists.freedesktop.org,m:rostedt@goodmis.org,m:linux-trace-kernel@vger.kernel.org,m:peterz@infradead.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[bitbyteword.org:+];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vineeth@bitbyteword.org,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,intel.com,kernel.org,linux.intel.com,suse.de,lists.freedesktop.org,goodmis.org,vger.kernel.org,infradead.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[amd.com:+];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,amd.com:mid,amd.com:dkim];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mailbox.org:email,infradead.org:email,bitbyteword.org:email,bitbyteword.org:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,goodmis.org:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: BC9B25790BC
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	FROM_HAS_DN(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Chen-Yu.Chen@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: DEAB45762F7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, May 18, 2026 at 11:01=E2=80=AFAM Philipp Stanner <phasta@mailbox.or=
-g> wrote:
->
-> On Fri, 2026-05-15 at 09:59 -0400, Vineeth Pillai (Google) wrote:
-> > From: Vineeth Pillai <vineeth@bitbyteword.org>
-> >
-> > Replace trace_foo() with the new trace_call__foo() at sites already
-> > guarded by trace_foo_enabled(), avoiding a redundant
-> > static_branch_unlikely() re-evaluation inside the tracepoint.
-> > trace_call__foo() calls the tracepoint callbacks directly without
-> > utilizing the static branch again.
->
-> The "foo" terminology is unusual I think? I always wrote it with regex,
-> like "trace_*()".
->
-Sorry about the terminology. Part of the patches got merged this way,
-so is it okay to continue the terminology to have consistency?
 
->
->
-> >
-> > Original v2 series:
-> > https://lore.kernel.org/linux-trace-kernel/20260323160052.17528-1-vinee=
-th@bitbyteword.org/
->
-> I'd put this in a Link: tag section below.
->
-Makes sense, will do. Steve also suggested to put this whole section
-after "---" because it isn't relevant to the changes. Will fix this in
-next iteration.
 
-> >
-> > Parts of the original v2 series have already been merged in mainline.
-> > This patch is being reposted as a follow-up cleanup for the remaining
-> > unmerged pieces.
->
-> So this v3 series as a whole is a followup to that v2?
->
-v3 is a follow up to remaining patches that were not merged with the
-previous cycle. The core api and couple of patches went in the
-previous cycle, so this is for rest of it.
+On 5/16/2026 7:47 AM, Leo Li wrote:
+> 
+> 
+> On 2026-05-15 04:23, Jani Nikula wrote:
+>> On Thu, 14 May 2026, Chenyu Chen <chen-yu.chen@amd.com> wrote:
+>>> Parse the Display Parameters Data Block (tag 0x21) defined in
+>>> DisplayID v2.1a Section 4.2.6. Extract the Display Device Technology
+>>> field from payload byte 27, bits [6:4], which indicates whether the
+>>> panel is LCD (001b) or OLED (010b).
+>>>
+>>> Store the result in drm_display_info.did_panel_type so that downstream
+>>> drivers can use it for panel-type-dependent behavior.
+>>>
+>>> Assisted-by: Copilot:Claude-Opus-4.6
+>>> Signed-off-by: Chenyu Chen <chen-yu.chen@amd.com>
+>>> Reviewed-by: Mario Limonciello <mario.limonciello@amd.com>
+>>> ---
+>>>  drivers/gpu/drm/drm_displayid_internal.h | 25 ++++++++++
+>>>  drivers/gpu/drm/drm_edid.c               | 61 +++++++++++++++++++-----
+>>>  include/drm/drm_connector.h              |  6 +++
+>>>  include/uapi/drm/drm_mode.h              |  1 +
+>>>  4 files changed, 82 insertions(+), 11 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_displayid_internal.h b/drivers/gpu/drm/drm_displayid_internal.h
+>>> index 5b1b32f73516..e0f7c54d2987 100644
+>>> --- a/drivers/gpu/drm/drm_displayid_internal.h
+>>> +++ b/drivers/gpu/drm/drm_displayid_internal.h
+>>> @@ -142,6 +142,31 @@ struct displayid_formula_timing_block {
+>>>  	struct displayid_formula_timings_9 timings[];
+>>>  } __packed;
+>>>  
+>>> +/*
+>>> + * DisplayID v2.x Display Parameters Data Block (tag 0x21).
+>>> + *
+>>> + * Per VESA DisplayID v2.1a, Section 4.2.6, Table 4-14:
+>>> + * Offset 0x1E (payload byte 27) contains Native Color Depth and
+>>> + * Display Device Technology fields.
+>>> + *   bits [2:0] = Native Color Depth
+>>> + *   bit  [3]   = RESERVED
+>>> + *   bits [6:4] = Display Device Technology
+>>> + *     000b = not specified, 001b = LCD, 010b = OLED, others reserved
+>>> + *   bit  [7]   = Display Device Theme Preference
+>>> + */
+>>> +#define DISPLAYID_DISPLAY_PARAMS_DEVICE_TECH	GENMASK(6, 4)
+>>> +
+>>> +struct displayid_display_params_block {
+>>> +	struct displayid_block base;
+>>> +	u8 payload[27];
+>>> +	u8 device_tech_byte; /* bits [6:4] = Display Device Technology */
+>>> +	u8 reserved;
+>>> +} __packed;
+>>> +
+>>> +#define DISPLAYID_DISPLAY_PARAMS_MIN_LEN	\
+>>> +	(sizeof(struct displayid_display_params_block) -	\
+>>> +	 sizeof(struct displayid_block))
+>>> +
+>>>  #define DISPLAYID_VESA_MSO_OVERLAP	GENMASK(3, 0)
+>>>  #define DISPLAYID_VESA_MSO_MODE		GENMASK(6, 5)
+>>>  
+>>> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+>>> index 8031f021d4d0..9b160a878df4 100644
+>>> --- a/drivers/gpu/drm/drm_edid.c
+>>> +++ b/drivers/gpu/drm/drm_edid.c
+>>> @@ -6713,6 +6713,8 @@ static void drm_reset_display_info(struct drm_connector *connector)
+>>>  
+>>>  	info->source_physical_address = CEC_PHYS_ADDR_INVALID;
+>>>  	memset(&info->amd_vsdb, 0, sizeof(info->amd_vsdb));
+>>> +
+>>> +	info->did_panel_type = DRM_MODE_PANEL_TYPE_UNKNOWN;
+>>>  }
+>>>  
+>>>  static void update_displayid_info(struct drm_connector *connector,
+>>> @@ -6721,24 +6723,61 @@ static void update_displayid_info(struct drm_connector *connector,
+>>>  	struct drm_display_info *info = &connector->display_info;
+>>>  	const struct displayid_block *block;
+>>>  	struct displayid_iter iter;
+>>> +	const u8 *section = NULL;
+>>>  
+>>>  	displayid_iter_edid_begin(drm_edid, &iter);
+>>>  	displayid_iter_for_each(block, &iter) {
+>>> +		if (section != iter.section) {
+>>> +			drm_dbg_kms(connector->dev,
+>>> +				    "[CONNECTOR:%d:%s] DisplayID extension version 0x%02x, primary use 0x%02x\n",
+>>> +				    connector->base.id, connector->name,
+>>> +				    displayid_version(&iter),
+>>> +				    displayid_primary_use(&iter));
+>>> +			if (displayid_version(&iter) == DISPLAY_ID_STRUCTURE_VER_20 &&
+>>> +			    (displayid_primary_use(&iter) == PRIMARY_USE_HEAD_MOUNTED_VR ||
+>>> +			     displayid_primary_use(&iter) == PRIMARY_USE_HEAD_MOUNTED_AR))
+>>> +				info->non_desktop = true;
+>>> +			section = iter.section;
+>>> +		}
+>>
+>> What is this even supposed to do?
+>>
+> 
+> I think the intention is to log and process the DisplayID base section header only once instead on every
+> iteration. Maybe a `bool header_processed` works better?
+> 
+> - Leo
+> 
 
-The intention was to send this v3 as a direct patch to individual
-subsystem maintainers but forgot to remove the numbering and hence
-there might be a confusion. Will remove the numbering and send it  as
-stand alone patch in the next iteration.
+The intention was to keep section-level drm_dbg_kms logging for better debugging visibility.
 
-> >
-> > Suggested-by: Steven Rostedt <rostedt@goodmis.org>
-> > Suggested-by: Peter Zijlstra <peterz@infradead.org>
-> > Signed-off-by: Vineeth Pillai (Google) <vineeth@bitbyteword.org>
-> > Assisted-by: Claude:claude-sonnet-4-6
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c            |  2 +-
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c            |  4 ++--
-> >  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 10 +++++-----
-> >  drivers/gpu/drm/scheduler/sched_entity.c          |  5 +++--
-> >  4 files changed, 11 insertions(+), 10 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_cs.c
-> > index b24d5d21be5f..cb0b5cb07d57 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> > @@ -1004,7 +1004,7 @@ static void trace_amdgpu_cs_ibs(struct amdgpu_cs_=
-parser *p)
-> >               struct amdgpu_job *job =3D p->jobs[i];
-> >
-> >               for (j =3D 0; j < job->num_ibs; ++j)
-> > -                     trace_amdgpu_cs(p, job, &job->ibs[j]);
-> > +                     trace_call__amdgpu_cs(p, job, &job->ibs[j]);
-> >       }
-> >  }
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_vm.c
-> > index 9ba9de16a27a..a36ae94c425f 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> > @@ -1415,7 +1415,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device *ade=
-v, struct amdgpu_bo_va *bo_va,
-> >
-> >       if (trace_amdgpu_vm_bo_mapping_enabled()) {
-> >               list_for_each_entry(mapping, &bo_va->valids, list)
-> > -                     trace_amdgpu_vm_bo_mapping(mapping);
-> > +                     trace_call__amdgpu_vm_bo_mapping(mapping);
-> >       }
-> >
-> >  error_free:
-> > @@ -2183,7 +2183,7 @@ void amdgpu_vm_bo_trace_cs(struct amdgpu_vm *vm, =
-struct ww_acquire_ctx *ticket)
-> >                               continue;
-> >               }
-> >
-> > -             trace_amdgpu_vm_bo_cs(mapping);
-> > +             trace_call__amdgpu_vm_bo_cs(mapping);
-> >       }
-> >  }
-> >
-> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/driver=
-s/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > index 5fc5d5608506..fbdc12cdd6bb 100644
-> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > @@ -5263,11 +5263,11 @@ static void amdgpu_dm_backlight_set_level(struc=
-t amdgpu_display_manager *dm,
-> >       }
-> >
-> >       if (trace_amdgpu_dm_brightness_enabled()) {
-> > -             trace_amdgpu_dm_brightness(__builtin_return_address(0),
-> > -                                        user_brightness,
-> > -                                        brightness,
-> > -                                        caps->aux_support,
-> > -                                        power_supply_is_system_supplie=
-d() > 0);
-> > +             trace_call__amdgpu_dm_brightness(__builtin_return_address=
-(0),
-> > +                                              user_brightness,
-> > +                                              brightness,
-> > +                                              caps->aux_support,
-> > +                                              power_supply_is_system_s=
-upplied() > 0);
-> >       }
-> >
-> >       if (caps->aux_support) {
-> > diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm=
-/scheduler/sched_entity.c
-> > index fe174a4857be..185a2636b599 100644
-> > --- a/drivers/gpu/drm/scheduler/sched_entity.c
-> > +++ b/drivers/gpu/drm/scheduler/sched_entity.c
-> > @@ -429,7 +429,8 @@ static bool drm_sched_entity_add_dependency_cb(stru=
-ct drm_sched_entity *entity,
-> >
-> >       if (trace_drm_sched_job_unschedulable_enabled() &&
-> >           !test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &entity->dependency->f=
-lags))
-> > -             trace_drm_sched_job_unschedulable(sched_job, entity->depe=
-ndency);
-> > +             trace_call__drm_sched_job_unschedulable(sched_job,
-> > +                                                     entity->dependenc=
-y);
->
-> I would be more happy if you sacrifice a bit of space here and keep it
-> a single line since the if condition is already quite convoluted and
-> challenging to read.
->
-I understand, will fix it in next iteration.
+That said, I agree that this does not belong in the iterator directly and should be refactored into a helper.
 
-Thanks,
-Vineeth
+>>> +
+>>>  		drm_dbg_kms(connector->dev,
+>>> -			    "[CONNECTOR:%d:%s] DisplayID extension version 0x%02x, primary use 0x%02x\n",
+>>> +			    "[CONNECTOR:%d:%s] DisplayID block tag 0x%02x, rev 0x%02x, size %u\n",
+>>>  			    connector->base.id, connector->name,
+>>> -			    displayid_version(&iter),
+>>> -			    displayid_primary_use(&iter));
+>>> +			    block->tag, block->rev, block->num_bytes);
+>>> +
+>>>  		if (displayid_version(&iter) == DISPLAY_ID_STRUCTURE_VER_20 &&
+>>> -		    (displayid_primary_use(&iter) == PRIMARY_USE_HEAD_MOUNTED_VR ||
+>>> -		     displayid_primary_use(&iter) == PRIMARY_USE_HEAD_MOUNTED_AR))
+>>> -			info->non_desktop = true;
+>>> +		    block->tag == DATA_BLOCK_2_DISPLAY_PARAMETERS) {
+>>> +			const struct displayid_display_params_block *params =
+>>> +				(const struct displayid_display_params_block *)block;
+>>> +			u8 tech;
+>>> +
+>>> +			if (block->num_bytes < DISPLAYID_DISPLAY_PARAMS_MIN_LEN) {
+>>> +				drm_dbg_kms(connector->dev,
+>>> +					    "[CONNECTOR:%d:%s] DisplayID Display Parameters block too short (%u < %zu)\n",
+>>> +					    connector->base.id, connector->name,
+>>> +					    block->num_bytes,
+>>> +					    DISPLAYID_DISPLAY_PARAMS_MIN_LEN);
+>>> +				continue;
+>>> +			}
+>>>  
+>>> -		/*
+>>> -		 * We're only interested in the base section here, no need to
+>>> -		 * iterate further.
+>>> -		 */
+>>> -		break;
+>>> +			tech = FIELD_GET(DISPLAYID_DISPLAY_PARAMS_DEVICE_TECH,
+>>> +					 params->device_tech_byte);
+>>> +
+>>> +			drm_dbg_kms(connector->dev,
+>>> +				    "[CONNECTOR:%d:%s] DisplayID Display Parameters: device technology %u\n",
+>>> +				    connector->base.id, connector->name, tech);
+>>> +
+>>> +			switch (tech) {
+>>> +			case 1: /* LCD */
+>>> +				info->did_panel_type = DRM_MODE_PANEL_TYPE_LCD;
+>>> +				break;
+>>> +			case 2: /* OLED */
+>>> +				info->did_panel_type = DRM_MODE_PANEL_TYPE_OLED;
+>>> +				break;
+>>> +			default:
+>>> +				break;
+>>> +			}
+>>> +		}
+>>
+>> Please tell copilot to not add so much crap in the iterator block. Add
+>> functions. Add the first function as a refactor for non_desktop, add
+>> more stuff on top, i.e. split this into multiple patches.
+>>
+>> BR,
+>> Jani.
+>>
+>>
+
+You're right, the current patches are hard to follow due to mixing refactoring and new logic.
+
+I will refactor the code into helper functions and split the changes into smaller patches, then resend the updated series.
+
+Thanks for the suggestions.
+
+Regards,
+Chenyu
+
+>>>  	}
+>>>  	displayid_iter_end(&iter);
+>>>  }
+>>> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+>>> index c398dbc68bbc..b95aec34ddb7 100644
+>>> --- a/include/drm/drm_connector.h
+>>> +++ b/include/drm/drm_connector.h
+>>> @@ -899,6 +899,12 @@ struct drm_display_info {
+>>>  	 * @amd_vsdb: AMD-specific VSDB information.
+>>>  	 */
+>>>  	struct drm_amd_vsdb_info amd_vsdb;
+>>> +
+>>> +	/**
+>>> +	 * @did_panel_type: Panel type from DisplayID Display Parameters
+>>> +	 * Data Block (tag 0x21). Uses DRM_MODE_PANEL_TYPE_* constants.
+>>> +	 */
+>>> +	u8 did_panel_type;
+>>>  };
+>>>  
+>>>  int drm_display_info_set_bus_formats(struct drm_display_info *info,
+>>> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+>>> index 3693d82b5279..d7ca1040b92e 100644
+>>> --- a/include/uapi/drm/drm_mode.h
+>>> +++ b/include/uapi/drm/drm_mode.h
+>>> @@ -169,6 +169,7 @@ extern "C" {
+>>>  /* Panel type property */
+>>>  #define DRM_MODE_PANEL_TYPE_UNKNOWN	0
+>>>  #define DRM_MODE_PANEL_TYPE_OLED	1
+>>> +#define DRM_MODE_PANEL_TYPE_LCD		2
+>>>  
+>>>  /*
+>>>   * DRM_MODE_ROTATE_<degrees>
+>>
+> 
