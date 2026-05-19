@@ -2,70 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6CHjA7A5DGp8aQUAu9opvQ
+	id ONf1Ma05DGp8aQUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 12:21:36 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 12:21:33 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B44E457C1E3
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 12:21:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 714E057C1D3
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 12:21:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D43D10EC03;
-	Tue, 19 May 2026 10:21:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AD2010EBFB;
+	Tue, 19 May 2026 10:21:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ldK6yBab";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="rv1BEuHd";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B63710EBFB
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 10:21:30 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-44a5174670eso1872053f8f.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 03:21:30 -0700 (PDT)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
+ [209.85.221.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F20B10EBFB
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 10:21:31 +0000 (UTC)
+Received: by mail-wr1-f43.google.com with SMTP id
+ ffacd0b85a97d-44c350a5b87so1989019f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 03:21:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779186089; x=1779790889; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1779186090; x=1779790890; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=XBtkZ2gf/Jj5M+m4sGia3yHihFthLzwruBg7fP1JRdQ=;
- b=ldK6yBabjLWyyyPShC6qVxjkkr+pzdDUKZclXdzwR9m0pUg7WctCbDEASmidsfI2/9
- WQj7SxjHLochbrrpquheWKrtObjessRKJjSRZm5Q5PQXpOZUYgPXg2xs3Re2lyzQV4ZJ
- FqeN0gt07xI7aSnoIr3dx/Amv0R5o0xpOZlNZF9fbGvX/6BmuBng6bT9H6gtb2zZIbDX
- awDJaso3lNKciKybNTsNZvMLDFTWnNkomFP5PBordrRK1HvAjIVai8s5iVFo6oqYODpN
- 9dpEv9XKhVbNGZ/SVtYHGKooUI9IBnzAEKndaEmMfcMHnsagFEaw+hHxsuK3EWOmVQ8+
- 4DNQ==
+ bh=YAoMNWS200z6XBGC8Yb0H0qoAX1NlIZAlj8acUvZrbM=;
+ b=rv1BEuHd+S1oUQLv+SOfmql2I1nqpniZ+ZnfF4mKo2mcqTryzOXsxMnZ4Nr2b8CY56
+ zkkZ7cjo2HkXhCkX6A6EqW9oHkJNJQhytljqRvvgV+ZLLBXkmtbOEQ8uqHBc8ihn35fb
+ X6Rd5kVoc4sSm7z/+4TlpVqV6PAmxxCC+LBgIF7dmOpOY+RNA0MA+qFt+VQcVML+CddC
+ Hr4DOSYgXqAsW7smn1KWXOxzV18DlShk1OvwSJ/BQIIeB7AyP3gccS0E8sBODHDyMDkO
+ aLDAICVy2aJ9QkGlUAjjn0bjEbDBgiZkzprRf3jMlJcbkv2yAUbxLRfKpZxG2WwsHHa7
+ Zc5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779186089; x=1779790889;
+ d=1e100.net; s=20251104; t=1779186090; x=1779790890;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=XBtkZ2gf/Jj5M+m4sGia3yHihFthLzwruBg7fP1JRdQ=;
- b=esdHiTUJzaKFx8/dgHy9CAUuJySdv1S6q5ygBD1+6ERT3ZsIDZtsd3L/wJTTpxNezz
- tXBqOXrhsCMZi+ZQ/8p2rIE1dllICjifx8s4KS3gVeQnpuToRQJgKRN01gcPMUVU9Brl
- CW3ccbR6p7ntr8hYXZ7hfDwUuYT7+x4Wqp0WAAl5VoEtv3/Iozfv/L2ohuE7SCShb78h
- u96YCAzGwVzZTuJiOxwd7KDKqXOWV9XdcsiFPZU8f1+4/V+vA3ZGUfW6rOlBNdgbeh2u
- rriLjmE0LSqgdHt/hcM6E4s3wN054qfG0TmxSKvmydDN3qSJD+XA36ElkeJQYD/PSRWi
- h18g==
-X-Gm-Message-State: AOJu0Yxr0gdlT0aihHUfoSnEesNrma/Ggm1lTBaq/c4oaUsdztOsyOFm
- 8MddtApUz9P0cOHezHMQVbY2SDLw9OubFEVECkBNAlJNZ2Zd7mz8rW98Bnl4xnfo
-X-Gm-Gg: Acq92OGRR7g6MdkRg2MWN/imqysUuMIvloTbGasL8PBStHC6vqdV2oPQ57AuffD+jGW
- tGpKVpOcGAPjkDt0vg4rQI6AyBJCjCDSMKaea6GQXFvAio+S7uO6f4aPbp7qXT5ovdCHXSnOYMG
- I2aMGCoVu9UhBZ+OfrmyN6JpF5vPP/ZuRTet+cGT4G8J5n9RDzOUn/a2GWU8jCTA0rbeu3MoMSR
- KrAsInxbhs3OiC8+Ah8rRMxlD7arPvRJMGR3NskKk4esInWNrCYp4H5SJCwDUTXpPOnPZCcq1fA
- kiB3e2dis9URmbmLmzLxc+GGA4WiIIRIBvtgBb1xZ+bFop47oq8VzGCjdf3ZD7kEwfTZdbHpXTi
- wDCv1dD1QzdBUJ14B2x/SqHvtcXR6EuuKinVMOE2teGSR11tFCVBjQWdzw5bXcLA41caVqwHwbP
- kgDKbsMqY71VIhbj3E65zg7HSwobxhPkUrrtZX8Dlc6RjTwnXAX51ZiFcDQ/MrZ6MTyfDVD7j9x
- w8=
-X-Received: by 2002:a05:6000:2405:b0:43d:e31:68d1 with SMTP id
- ffacd0b85a97d-45e5c5cf18bmr30129076f8f.21.1779186088597; 
- Tue, 19 May 2026 03:21:28 -0700 (PDT)
+ bh=YAoMNWS200z6XBGC8Yb0H0qoAX1NlIZAlj8acUvZrbM=;
+ b=e2CV1rgLZvt6Zh6bj65YDVh+atvMfD7VH4vptn8/ZAGXVVU9JcIpDpnA18o9dmlOxj
+ mux5nt2VvsP4nJYMB9pY+X3jcrKHGs+Rvn/+Bz2KCpo0QgwZz28ZNim3eRLvtH3xTB3S
+ qzOEMVdQXos8ar/65YUq3NUEEdlWotiQCM6mleOSQ9MDesO0KdVg6mpZcDylFYng9YiH
+ UQ08g2zZbBT3pfkcKNVq1bLNagCcYvYrlklvcSxhTZcFmO7Lqm6Jr/628dcLtO66Nw84
+ eBxOcFgKz0ykoh81SydFjvalaFZUaH8RoaEhaG+cetWLxdGv2lJAEctruXPlcjneZxQ9
+ B8nQ==
+X-Gm-Message-State: AOJu0YzoVmOMB9Mdfejn/FcmaKS6a9WL0aO5dmFttTPgiMT4jLCDGCAk
+ x90qk7X2GYpeFLQwrkm5mmF436f2lCGkVNKTL+l5v4dInVBEkoRk+Nu6k3R7T8jK
+X-Gm-Gg: Acq92OHoD30ofLWwRTwNJIzpOyYpFVeAZ8GlkjDY2QLZ0BACzykUPPLYp8JlfD650gi
+ 9ZmuNSCT3cTxHMUere986p3rCOH+b9Xb02OCGIwqRPGB6GZYcPtaGd49oTwVhHoKc48yBflhNm6
+ eVkVnIwLNIBoZnpfodc9lSDQkFCppWjlLCSmS5Ep5ARLrDTGQs79UDkLFTRIdkBsGQ3vnDknnE/
+ bIU2e4y+7Oen/TXY0gMgbT/KmT1tg3EJtO64c//EX1qEBOE6Dly6Hi9lKt9OIQK/b0f6qGAjMV+
+ wdnAu6Be095o1blg4v92kHzcmjbUVrNfUMo02/MZIGWeZyZdK+k9SXjbVBHbUu0sukpkGQ/7wCv
+ PbNOhThHGNrdwvx+Aod8V2WXHYKG+b60uIOskaCWbd3KbF4XJothGq/KHWyaroP9LtS5iIRGwf8
+ WIsiurwVVDKowYLc4wSprwZKT7FYyXgRjggxF+uAsLHXh+IaYnfok8T21kVpt5Gasm
+X-Received: by 2002:a05:600c:1512:b0:48f:e26a:1744 with SMTP id
+ 5b1f17b1804b1-48fe60ecd67mr175187155e9.9.1779186089738; 
+ Tue, 19 May 2026 03:21:29 -0700 (PDT)
 Received: from Timur-Hyperion.home (54001290.dsl.pool.telekom.hu.
  [84.0.18.144]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-45da0fe0fecsm41028224f8f.26.2026.05.19.03.21.27
+ ffacd0b85a97d-45da0fe0fecsm41028224f8f.26.2026.05.19.03.21.28
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 May 2026 03:21:28 -0700 (PDT)
+ Tue, 19 May 2026 03:21:29 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  christian.koenig@amd.com, Natalie Vock <natalie.vock@gmx.de>,
@@ -73,10 +72,9 @@ To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  Alex Hung <alex.hung@amd.com>, Roman Li <Roman.Li@amd.com>,
  Leo Li <sunpeng.li@amd.com>, Mario Limonciello <mario.limonciello@amd.com>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 07/14] drm/amd/display: Delete disp_clk_voltage from
- integrated info (v2)
-Date: Tue, 19 May 2026 12:21:11 +0200
-Message-ID: <20260519102118.246466-8-timur.kristof@gmail.com>
+Subject: [PATCH 08/14] drm/amd/display: Delete dm_pp_clocks_state
+Date: Tue, 19 May 2026 12:21:12 +0200
+Message-ID: <20260519102118.246466-9-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260519102118.246466-1-timur.kristof@gmail.com>
 References: <20260519102118.246466-1-timur.kristof@gmail.com>
@@ -126,160 +124,53 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: B44E457C1E3
+X-Rspamd-Queue-Id: 714E057C1D3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Only DCE 11.0 relies on this information and even that
-didn't use this field, because it queries the information
-from the pplib. It also filled the field incorrectly on
-that version.
-
-On newer GPUs, the VIOS integrated info no longer contains
-display clock voltage dependencies, so we don't need it.
-
-v2:
-- Also delete some code wrapped in #if 0
+It isn't used by anything anymore.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 Reviewed-by: Melissa Wen <mwen@igalia.com>
 ---
- .../gpu/drm/amd/display/dc/bios/bios_parser.c | 36 -------------------
- .../drm/amd/display/dc/bios/bios_parser2.c    | 18 ----------
- .../display/include/grph_object_ctrl_defs.h   |  9 -----
- 3 files changed, 63 deletions(-)
+ .../drm/amd/display/dc/dm_services_types.h    | 23 -------------------
+ 1 file changed, 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-index 05f299ec5463..2c7cca697f5f 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser.c
-@@ -2419,15 +2419,6 @@ static enum bp_result get_integrated_info_v8(
- 	info->dentist_vco_freq = le32_to_cpu(info_v8->ulDentistVCOFreq) * 10;
- 	info->boot_up_uma_clock = le32_to_cpu(info_v8->ulBootUpUMAClock) * 10;
+diff --git a/drivers/gpu/drm/amd/display/dc/dm_services_types.h b/drivers/gpu/drm/amd/display/dc/dm_services_types.h
+index f114ab819afd..b3505d93503f 100644
+--- a/drivers/gpu/drm/amd/display/dc/dm_services_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dm_services_types.h
+@@ -36,30 +36,7 @@ struct dm_pp_clock_range {
+ 	int max_khz;
+ };
  
--	for (i = 0; i < NUMBER_OF_DISP_CLK_VOLTAGE; ++i) {
--		/* Convert [10KHz] into [KHz] */
--		info->disp_clk_voltage[i].max_supported_clk =
--			le32_to_cpu(info_v8->sDISPCLK_Voltage[i].
--				    ulMaximumSupportedCLK) * 10;
--		info->disp_clk_voltage[i].voltage_index =
--			le32_to_cpu(info_v8->sDISPCLK_Voltage[i].ulVoltageIndex);
--	}
+-enum dm_pp_clocks_state {
+-	DM_PP_CLOCKS_STATE_INVALID,
+-	DM_PP_CLOCKS_STATE_ULTRA_LOW,
+-	DM_PP_CLOCKS_STATE_LOW,
+-	DM_PP_CLOCKS_STATE_NOMINAL,
+-	DM_PP_CLOCKS_STATE_PERFORMANCE,
 -
- 	info->boot_up_req_display_vector =
- 		le32_to_cpu(info_v8->ulBootUpReqDisplayVector);
- 	info->gpu_cap_info =
-@@ -2570,14 +2561,6 @@ static enum bp_result get_integrated_info_v9(
- 	info->dentist_vco_freq = le32_to_cpu(info_v9->ulDentistVCOFreq) * 10;
- 	info->boot_up_uma_clock = le32_to_cpu(info_v9->ulBootUpUMAClock) * 10;
- 
--	for (i = 0; i < NUMBER_OF_DISP_CLK_VOLTAGE; ++i) {
--		/* Convert [10KHz] into [KHz] */
--		info->disp_clk_voltage[i].max_supported_clk =
--			le32_to_cpu(info_v9->sDISPCLK_Voltage[i].ulMaximumSupportedCLK) * 10;
--		info->disp_clk_voltage[i].voltage_index =
--			le32_to_cpu(info_v9->sDISPCLK_Voltage[i].ulVoltageIndex);
--	}
+-	/* Starting from DCE11, Max 8 levels of DPM state supported. */
+-	DM_PP_CLOCKS_DPM_STATE_LEVEL_INVALID = DM_PP_CLOCKS_STATE_INVALID,
+-	DM_PP_CLOCKS_DPM_STATE_LEVEL_0,
+-	DM_PP_CLOCKS_DPM_STATE_LEVEL_1,
+-	DM_PP_CLOCKS_DPM_STATE_LEVEL_2,
+-	/* to be backward compatible */
+-	DM_PP_CLOCKS_DPM_STATE_LEVEL_3,
+-	DM_PP_CLOCKS_DPM_STATE_LEVEL_4,
+-	DM_PP_CLOCKS_DPM_STATE_LEVEL_5,
+-	DM_PP_CLOCKS_DPM_STATE_LEVEL_6,
+-	DM_PP_CLOCKS_DPM_STATE_LEVEL_7,
 -
- 	info->boot_up_req_display_vector =
- 		le32_to_cpu(info_v9->ulBootUpReqDisplayVector);
- 	info->gpu_cap_info = le32_to_cpu(info_v9->ulGPUCapInfo);
-@@ -2719,25 +2702,6 @@ static enum bp_result construct_integrated_info(
- 		}
- 	}
- 
--	/* Sort voltage table from low to high*/
--	if (result == BP_RESULT_OK) {
--		int32_t i;
--		int32_t j;
+-	DM_PP_CLOCKS_MAX_STATES
+-};
 -
--		for (i = 1; i < NUMBER_OF_DISP_CLK_VOLTAGE; ++i) {
--			for (j = i; j > 0; --j) {
--				if (
--						info->disp_clk_voltage[j].max_supported_clk <
--						info->disp_clk_voltage[j-1].max_supported_clk) {
--					/* swap j and j - 1*/
--					swap(info->disp_clk_voltage[j - 1],
--					     info->disp_clk_voltage[j]);
--				}
--			}
--		}
--
--	}
--
- 	return result;
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-index 39668db6d472..d19ae67ebfac 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-@@ -2671,15 +2671,6 @@ static enum bp_result get_integrated_info_v11(
- 	info->dentist_vco_freq = le32_to_cpu(info_v11->ulDentistVCOFreq) * 10;
- 	info->boot_up_uma_clock = le32_to_cpu(info_v8->ulBootUpUMAClock) * 10;
- 
--	for (i = 0; i < NUMBER_OF_DISP_CLK_VOLTAGE; ++i) {
--		/* Convert [10KHz] into [KHz] */
--		info->disp_clk_voltage[i].max_supported_clk =
--		le32_to_cpu(info_v11->sDISPCLK_Voltage[i].
--			ulMaximumSupportedCLK) * 10;
--		info->disp_clk_voltage[i].voltage_index =
--		le32_to_cpu(info_v11->sDISPCLK_Voltage[i].ulVoltageIndex);
--	}
--
- 	info->boot_up_req_display_vector =
- 			le32_to_cpu(info_v11->ulBootUpReqDisplayVector);
- 	info->boot_up_nb_voltage =
-@@ -3032,7 +3023,6 @@ static enum bp_result construct_integrated_info(
- 	struct atom_data_revision revision;
- 
- 	int32_t i;
--	int32_t j;
- 
- 	if (!info)
- 		return result;
-@@ -3134,14 +3124,6 @@ static enum bp_result construct_integrated_info(
- 			DC_LOG_BIOS("driver forced fixdpvoltageswing = %d\n", info->ext_disp_conn_info.fixdpvoltageswing);
- 		}
- 	}
--	/* Sort voltage table from low to high*/
--	for (i = 1; i < NUMBER_OF_DISP_CLK_VOLTAGE; ++i) {
--		for (j = i; j > 0; --j) {
--			if (info->disp_clk_voltage[j].max_supported_clk <
--			    info->disp_clk_voltage[j-1].max_supported_clk)
--				swap(info->disp_clk_voltage[j-1], info->disp_clk_voltage[j]);
--		}
--	}
- 
- 	return result;
- }
-diff --git a/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h b/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
-index a0f03fb67605..3e4e8d55dd0f 100644
---- a/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
-+++ b/drivers/gpu/drm/amd/display/include/grph_object_ctrl_defs.h
-@@ -273,7 +273,6 @@ struct transmitter_configuration {
- #define NUMBER_OF_UCHAR_FOR_GUID 16
- #define MAX_NUMBER_OF_EXT_DISPLAY_PATH 7
- #define NUMBER_OF_CSR_M3_ARB 10
--#define NUMBER_OF_DISP_CLK_VOLTAGE 4
- #define NUMBER_OF_AVAILABLE_SCLK 5
- 
- struct i2c_reg_info {
-@@ -302,14 +301,6 @@ struct edp_info {
- 
- /* V6 */
- struct integrated_info {
--	struct clock_voltage_caps {
--		/* The Voltage Index indicated by FUSE, same voltage index
--		shared with SCLK DPM fuse table */
--		uint32_t voltage_index;
--		/* Maximum clock supported with specified voltage index */
--		uint32_t max_supported_clk; /* in KHz */
--	} disp_clk_voltage[NUMBER_OF_DISP_CLK_VOLTAGE];
--
- 	struct display_connection_info {
- 		struct external_display_path {
- 			/* A bit vector to show what devices are supported */
+ struct dm_pp_gpu_clock_range {
+-	enum dm_pp_clocks_state clock_state;
+ 	struct dm_pp_clock_range sclk;
+ 	struct dm_pp_clock_range mclk;
+ 	struct dm_pp_clock_range eclk;
 -- 
 2.54.0
 
