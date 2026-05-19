@@ -2,77 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QKBSDrUdDGpJWQUAu9opvQ
+	id GNPNBbcdDGpJWQUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 10:22:13 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 10:22:15 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACE51579E4B
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 10:22:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4511579E59
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 10:22:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 098C510E378;
-	Tue, 19 May 2026 08:22:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33A4610EB19;
+	Tue, 19 May 2026 08:22:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Z8qF5YpY";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bTtJeMtI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B681810E378
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 08:22:08 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id
- 5b1f17b1804b1-48984d29fe3so35622105e9.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 01:22:08 -0700 (PDT)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 814C310E378
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 08:22:09 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-488af9fdaa7so15007875e9.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 01:22:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779178927; x=1779783727; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=Tm/4b5VMebBm4ZVR5bCz1ABYIerYeL5C6Pbo70yc1DE=;
- b=Z8qF5YpYI1uaBwMJWCyQ0kT1Shay+DWLL+Zp8v5ntih1DMs2/lN8yZtJppR9+n6k7R
- iv9cmQXY2EgsWFbSLx6XC3QkaACUd8UShVcFhRPblkXmcUHzMeHlENqBovfLwC5cmrv9
- 1NQ7lsv/vwTH/Ag1knEs1gZJ4avvKHKmJkasHvuiIH+45UtdajYVJ206A7ODKS11L4Ux
- iX/10+OSa/64fI4wA4Rs59Uw0+kal0Q9ZHllrwkbn88skhM7oRjkcB1mMUn91GAR5DjG
- idrA+SnKiHjb5JhvXtjsf2lX7HNSZWz6IzRBbZu2k5PV9s2KxtYf8IB3CK52ca+y2x9l
- cnww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779178927; x=1779783727;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20251104; t=1779178928; x=1779783728; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Tm/4b5VMebBm4ZVR5bCz1ABYIerYeL5C6Pbo70yc1DE=;
- b=mPufjZXVcE+Q0Bjoc60/emHHtoSIcEe/IhqgFZIdHOzGU+gMUK3NGW9N9uPERzfuoi
- SfJiTl/WPQgN66EMYI6JRSuzREV3bPv/eaEe5tJD9Nb/Oj+Himjt7te/k+63arHW3ywY
- XgnAfvhZ0cM09MFtZV1cNQQ4rJNrqoLUXNnTa1ruRU5xaFgSVYDcGwVpnbW9HagK7Mg1
- Tr00UX1cSOhHh+JLl9EI+GJ44JOJO3y9yLFN8MM6rdcHm41vBuQiGSXCx4cXPXJyNLIM
- txvFfaEKZCiaz0OMixcpB7i62weQqX2QnIO0+xNiXZ3H1W4/yxA2EZ/DsSsm2XJ84hhC
- d/AA==
-X-Gm-Message-State: AOJu0YzASw8JDBR4mtWxwAKHu3Dod6rn+sB9r/XitlAd5kYFAqr6gIC1
- JtdURVPf2NptvHB09Vck41eVXCTtY6BER0VTAViIfUUT17a1tksa/8JdpD9Llw==
-X-Gm-Gg: Acq92OFwZvNd59cGWq/HaU3tZEjvpd1MONLh7AVsaTLGuLkYsFGa7Tb8dCosiR7T0Ij
- YGDScKpN8TNg3/Nu5BTUhCwRDVjd/Mi+fPQAtkb1mVWIdbKaTN0Byie0lqta8EHiJH4XZcDUDMY
- SNcAEbSLsPm7LGkXhpdndCndcMEVVw5cUamexlQ30cjgv/JfuVIlUnNLI6CcSiMj83bntj+ZCeN
- k+m0DUsW0XTvdAmc7VY4QoPEX0dnTS/wHR//+7IeAKNTK3kxDyBHpqDWrqsdgDiYQt/MPEbWimw
- fFnEbym2trOHIgGlTUIzbTLfwEFIGjspxyHnI2Qf+ls1t9vl57GSVLSrRZJIn6xv3lpCpeQpfkA
- NVGL9JWsPO+vEQxB4ZH7PI9ejY8MxZk3ZMShAFNALL8/nODwMRMPtE0L29xk+NsO9clpvIUtwKU
- 1UuTFd3gpchWKVvDTkWR9QiELHb9I26V4e6cezwkT6U37NlfzJAjcvRokqXaY9Pqfg
-X-Received: by 2002:a05:600d:b:b0:48e:8741:fd42 with SMTP id
- 5b1f17b1804b1-48fe60ee64amr217846745e9.12.1779178926943; 
- Tue, 19 May 2026 01:22:06 -0700 (PDT)
+ bh=hjK8PkbjxXTymhLUI+I/9V07duGvqZH4cgPbogqvhWo=;
+ b=bTtJeMtI3IvbiG5ZVJYiiV+w6T6bewIeNsNd0HVsyGphpOG/X/Xz2u8xmrwY4GhpNj
+ tLrQ7LABhCHN8oc9kX4Nukuc4r4VYEMxz6DEP5EPBytTrxGfxuYMB+IOkTj6qM5kbuQI
+ f4tuTFOg7jcMfYYgaad0fcaRlkbEA2aqO7W1ZEx0CbtE4M7eN+1RtYCP0XgnnVbcGUqA
+ 9K+OOj1U0Pf0+9yQzEPDU1OHB8sZLYsIuxByjXkXuJOX2fjvQNlAA3WWSo7eoSIKRcwd
+ MDUApa4omTTXWWU2t5CVutH1lAa67jgzylzux4iLEyxnPsokiC84bJ0IsokY2LWIlIaP
+ /u3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779178928; x=1779783728;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=hjK8PkbjxXTymhLUI+I/9V07duGvqZH4cgPbogqvhWo=;
+ b=gofDA2vOSS8Ko5AefW7rNogxMTKpH4hecGhtdEkzlNRIc3NBrwICNtO10jQ88rYwkG
+ foZ/8guE88+TJe75IKiK8jhaXEIfnenbQYWqCZa2xPy6+Zh7KFpJnNcC0UlOfGplG4fe
+ 1i76sZ2uY31SpfPmVg/zHUcgfv/Iz9da3ehffEOuA41vQgT/lZt3cjOtt7KN06saTaKl
+ THCC01ji7lb2T0RFZ0Bxc8WtGWPVdgQxzFxTIGH5CSNTpkI6zQlUQY4QdjdY03QSFxzP
+ oLWmjhCT/6l8GfrgHpWzrEejNbbxTYtc9rwF94td2VVhf5rfc3orUvV2TB/COdN4vIhs
+ pUQQ==
+X-Gm-Message-State: AOJu0Yyg2f/irZlseF/aU8/cH1tyc20hoN+s0kMmV7/pK8DkDHDBfL04
+ r56B7ZDAzl5ql9kwNAYQQo435F6dXtE0ysSN7Z9+hAXcN0xmDeKMK5Fz0POCUw==
+X-Gm-Gg: Acq92OFrxRM9e7Oxuo1AMPMvf/ZaYS9cjQ+Ed0hPNOlqog4Wllg4IEZunR+kcCsa2ao
+ J3zCQuXMKZXPFTfsnO6jSBOQ0hPue1lio9ZNHi0jrSsAGYn9CMoryYqNo94Xa2T3YqldoJn4Rk4
+ lapluKaJXOQbiZHmC5d/ghxXdozcGm5AWmtai4KR11I25FVcDvGmwK5YxPUg6M3yT9hyEpCCf0u
+ 03e1epCLdrZ8eQEr+BuxH5SzcMSS9TZBsHRxlYujDjJB53RMO5yGa68B54wwDCdSC+NWSbojJy7
+ 9Usb2jRMYEgI9No7fF2vx4OgNNwUV75PzGGagRQ4xAWKYbJ7/sd+YTU31n2FiuqpPOz9OFEflg5
+ iXwD7EiA6HfOeVZIbT/hRRzx079yMNLyxQt9sRuoViG+AAf7BvFO9/RTXfbXLXSaZD0/yiL0uOT
+ ggGvmgB1TjZ+hG6d0HPRYC544+n9hLs8sTwG1MfcNd8B0nBU3WJgK0iYwwRW9iS7Lv
+X-Received: by 2002:a05:600c:a406:b0:486:fbd1:9dc0 with SMTP id
+ 5b1f17b1804b1-48fe6514713mr223647365e9.22.1779178927949; 
+ Tue, 19 May 2026 01:22:07 -0700 (PDT)
 Received: from Timur-Hyperion.home (54001290.dsl.pool.telekom.hu.
  [84.0.18.144]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48feb00e5easm101575685e9.13.2026.05.19.01.22.06
+ 5b1f17b1804b1-48feb00e5easm101575685e9.13.2026.05.19.01.22.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 May 2026 01:22:06 -0700 (PDT)
+ Tue, 19 May 2026 01:22:07 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  christian.koenig@amd.com, Natalie Vock <natalie.vock@gmx.de>,
  John Olender <john.olender@gmail.com>, Liu Leo <Leo.Liu@amd.com>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 0/5] drm/amdgpu/uvd: Fix UVD BO memory placement issues
-Date: Tue, 19 May 2026 10:21:59 +0200
-Message-ID: <20260519082204.60811-1-timur.kristof@gmail.com>
+Subject: [PATCH 1/5] drm/amdgpu: Respect placement requirements in
+ amdgpu_gtt_mgr functions
+Date: Tue, 19 May 2026 10:22:00 +0200
+Message-ID: <20260519082204.60811-2-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260519082204.60811-1-timur.kristof@gmail.com>
+References: <20260519082204.60811-1-timur.kristof@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -118,50 +122,70 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: ACE51579E4B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email]
+X-Rspamd-Queue-Id: A4511579E59
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-UVD 4.x and older have two requirements for CS BOs:
-1. All BOs must not cross 256M segments
-2. MSG and FB BOs must be located in the same segment as the VCPU BO
+When testing intersection and compatibility, respect
+the actual placement requirements. This is a pre-requisite
+for ensuring that UVD CS BOs do not cross 256M segments.
 
-The amdgpu_uvd code attempts to solve those requirements,
-but unfortunately it has hit various limitations:
+Fixes: ded910f368a5 ("drm/amdgpu: Implement intersect/compatible functions")
+Suggested-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c | 30 +++++++++++++++++++--
+ 1 file changed, 28 insertions(+), 2 deletions(-)
 
-* VCPU BO may be placed in a different segment
-* VRAM allocations may cross 256M in low memory scenarios
-* GTT manager doesn't respect placement requirements
-* GTT allocations may cross 256M
-* GTT->GTT moves are not implemented
-
-Let's solve these issues by fixing the GTT manager,
-making sure that GTT allocations are placed in 256M segments
-and VRAM allocations are moved to GTT when they cross 256M.
-It also fixes forcing MSG and FB BOs to the UVD segment
-when the UVD segment isn't the first segment, which can be
-the case when resizable BAR is enabled.
-
-This series should be backported to 7.0 and 7.1 because
-technically this may have been a regression for some users
-caused by switching to amdgpu by default.
-
-Timur Kristóf (5):
-  drm/amdgpu: Respect placement requirements in amdgpu_gtt_mgr functions
-  drm/amdgpu: Use placements of 256M GART segments for SI/CIK
-  drm/amdgpu/uvd: Place VCPU BO only in VRAM for UVD 4.x and older
-  drm/amdgpu/uvd: Fix forcing BOs into UVD segment when it isn't at 0
-  drm/amdgpu/uvd: Move BOs to GTT when we can't place them in VRAM
-    correctly
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c | 30 ++++++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c     | 57 ++++++++++++++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h     |  3 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c     | 74 +++++++++++++++------
- 4 files changed, 136 insertions(+), 28 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+index 02f85802f579..19b6770a877d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+@@ -272,7 +272,20 @@ static bool amdgpu_gtt_mgr_intersects(struct ttm_resource_manager *man,
+ 				      const struct ttm_place *place,
+ 				      size_t size)
+ {
+-	return !place->lpfn || amdgpu_gtt_mgr_has_gart_addr(res);
++	const struct drm_mm_node *const node = &to_ttm_range_mgr_node(res)->mm_nodes[0];
++	const u32 num_pages = PFN_UP(size);
++
++	if (!place->lpfn)
++		return true;
++
++	if (!amdgpu_gtt_mgr_has_gart_addr(res))
++		return false;
++
++	if (place->fpfn >= (node->start + num_pages) ||
++	    (place->lpfn && place->lpfn <= node->start))
++		return false;
++
++	return true;
+ }
+ 
+ /**
+@@ -290,7 +303,20 @@ static bool amdgpu_gtt_mgr_compatible(struct ttm_resource_manager *man,
+ 				      const struct ttm_place *place,
+ 				      size_t size)
+ {
+-	return !place->lpfn || amdgpu_gtt_mgr_has_gart_addr(res);
++	const struct drm_mm_node *const node = &to_ttm_range_mgr_node(res)->mm_nodes[0];
++	const u32 num_pages = PFN_UP(size);
++
++	if (!place->lpfn)
++		return true;
++
++	if (!amdgpu_gtt_mgr_has_gart_addr(res))
++		return false;
++
++	if (node->start < place->fpfn ||
++	    (place->lpfn && (node->start + num_pages) > place->lpfn))
++		return false;
++
++	return true;
+ }
+ 
+ /**
 -- 
 2.54.0
-
 
