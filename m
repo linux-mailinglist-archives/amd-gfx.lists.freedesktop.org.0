@@ -2,101 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wOwxIUh9DGoSiQUAu9opvQ
+	id kJfxDkNgDWquwgUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 17:10:00 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 May 2026 09:18:27 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4ED558124A
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 17:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C436F588CC9
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 May 2026 09:18:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F04E710ED61;
-	Tue, 19 May 2026 15:09:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8694D10EF26;
+	Wed, 20 May 2026 07:18:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hAnxvX/N";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="qs3N6rwQ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f174.google.com (mail-dy1-f174.google.com
- [74.125.82.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4159710ED61
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 15:09:57 +0000 (UTC)
-Received: by mail-dy1-f174.google.com with SMTP id
- 5a478bee46e88-2f16c892babso194159eec.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 08:09:57 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779203396; cv=none;
- d=google.com; s=arc-20240605;
- b=C31aqmgQ0bggmxh2gR/qAosn7zBM1UbmN/AJfY1MR1QSZNKOrzHdHkgnnm4pzjZbdv
- sFpPCd7pSruwC4nexAyv5R7zPYRsioiHQKQFil4UDMmG2vW7O9zrwsMvQd9WYTa7pQKG
- r/6d4wJC3x0e5CZA5eEKd3u8x6ng5NL7zSO4Hh2LIIvxYXJLRA5ojdIjCyqd6YUD3iLH
- NAI3tW89pxGxA79Pky19eNSn950EYUesd5XsQ9wgmWtYxsUJ2qsBy26pITJJ9E63XTC3
- zRGTSr8aa1WiQ0MFP4JwDM6zXDAKb3qmNHKRjLcMEwlRVOjC9O3fTGpVzQvKjAqUAdk4
- Ox4A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=TWnVTVksITKPAhoRP6Y3qQxe9phY5G7cyxbbpX0qjS0=;
- fh=m85prCGj3H8LnYRWs3jhVM8MIwvQkW3RdEwuSXjbWSM=;
- b=PK30AHUQNyZUbAwRr8f3bwzDIeExMF/7KcFwLH3vLjkBbRq0l8DaYvz44NR5XSuonZ
- fWinHKbhEWrGp+9X5oZTSO24e6L/rtwh2yHrQwqmppV5LPPbQ4BLlfJx0HSZC4Uze7Nu
- g8YqwPO7cNE19WKvKdzcZqwTnBn78jTo24jgB4aq6AG5yWvUdfstqTx8st1AyTpiy2gT
- Vo6eEryrXc8bNLLtQgGJFIgx9FhqRAwAvPc7bFIA/v5+c6XLxrxmXdTZODQF+Ww0UjzC
- 8R8WcJXiiqHvf0aeu4RZWDqbxS+7uOfQzj1nvAcW671o9GKpw6/BgKJpVPFSprhBCUCq
- Bx2g==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
+ [209.85.214.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D85210ED62
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 15:12:01 +0000 (UTC)
+Received: by mail-pl1-f179.google.com with SMTP id
+ d9443c01a7336-2b2e8b95bdbso325ad.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 08:12:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779203396; x=1779808196; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=TWnVTVksITKPAhoRP6Y3qQxe9phY5G7cyxbbpX0qjS0=;
- b=hAnxvX/NWPzoQcsThIO4yHVW0GUzHAP5Mxa/TKhUwfek9VJHRgF4kTV0GDYO13yJLt
- 7v2Uuo+0H1U6PvtJ7XL6pER2y2iqAG0kRrklfMqDJA18bsDbr5zM9pTYtHbKFycQPzxd
- 0xlvBr514vGEcG4ed7JFrbrGzv6G5BFLelKRpSpw67NFL3uAKWC0xHjbdup6wl9SVGmk
- bez0wqFne1DJJAD6GiWJhkugRTcsloFErE9P1Uda1ddxH+nGdyAjo4pypukgjiKOZ3XO
- 7arOO8g/ExW5//FAzJ8f2+DnIFW1e7Iy2Wo8RS4ycsotEpC1LzEiAQ0vO95DnIhJC76S
- IdSA==
+ d=google.com; s=20251104; t=1779203520; x=1779808320;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=JFaonW5sjqONYy9HxLylYW8qsfh6N/igZfarUXzh5kA=;
+ b=qs3N6rwQaK/DOLtYvW9OOht1DvUTSGVMiso/NgDPsbPkpjqZAvrPUc/i4q15nJ/PuT
+ N4WwNTWBI8bmgP60IC9O3GB/kJEzRhlcIC7eWAsr72JKl7znPCQkZBWay1Qp7lj8jN8F
+ PWC91/X17kMK/spt1LKrgQrnDii7AJp88fB71LtGRzRyNWVSocGXRfDy0tvEOhPG+pva
+ qVPC/fKLN28NsVz1e/zCxOXrHc8rfS+OQycqobcKYjcfkQL68YK5lMZxiKwhrQPeGzTL
+ p9E2inKLuiepi9iv31voztI9zby5nJWLq3tkN80TSAMbXQD/1Cbwcx4zWH08H/IP0SA6
+ oMJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779203396; x=1779808196;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=TWnVTVksITKPAhoRP6Y3qQxe9phY5G7cyxbbpX0qjS0=;
- b=oZG50aEm9X3H7bT1nI6B4Lq1OxaeHd1ySzm3tskp0YCx9BzRAA2xcfkNBzXz23Bo+m
- px7I/bcIujI+EL4TP0AOsKAlhU0r3cVle9FLooQYhCavcG1lMuL2JYZukFb++w3Ces3X
- shmZYHF3MER/CUK8aseB6jYBlkHkFvRah359x2B2BhqUMzb6zLaLkH7nUo8MY7jZo+GK
- AdbeMoZxhP1npk6Ht8E38+D9pLCOezJOgfqCbCSUm5TRG+AiX+C4j1NPS8vbaflEPTDE
- Bk55FGuyHu7qx+EtMPlSpha2aaQuAG0E+f8DlE0VEYM9ZsItRxuSYsxGqXMwWhZFvERu
- iHug==
-X-Gm-Message-State: AOJu0YyYSRvno+jrsPBWxXpbsT3lpyVsqblQWuuVaNir7MtnMpIITcv2
- +pMHQDyW/S7Oio4rqoeY99CHePaHNAw/uVmHnF0NnZWQvSCQyBfnUyefUSxDwJ+lNyfDSGmvqTB
- EjVgwT5TyXTgWbB0JzhNSWrN3/uiwF2s=
-X-Gm-Gg: Acq92OEQ2o3S4/wZwKwHIi6wuOAHrlZJ7uZYJpk82+is0ohpXFq580qb7CMOTbGaDkp
- a0xE2MyTc9EKc3R5cnmIWlvRE6T72tUKA54FSERTz3Vwhqh7bo/7AIoLXtXLUqJ21AfFiJqAY30
- AWlWuFHz7cGvLyFJFias6C4LQyL8slAPnATCr6vtIhedHKtpjvlYoVV9YisDNdd6gPfXiMkA9Fk
- 4FQF9WuT0rdr/mR/tKUaby1R4d9lh5xKU6sl/NCNlDyJsGmHV5dsEBQRBUgUUovEFideOUQwV4Q
- L7QQXj/f5iuALQcLD8u2hYkp8tDn8uWdcAt3njlLKLJJdOHxpLyq1iiQijwexl9W1aqkHS8lELB
- O9Y0O
-X-Received: by 2002:a05:7022:6620:b0:134:cf44:5fa9 with SMTP id
- a92af1059eb24-13503fe876fmr3573857c88.0.1779203396419; Tue, 19 May 2026
- 08:09:56 -0700 (PDT)
+ d=1e100.net; s=20251104; t=1779203520; x=1779808320;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=JFaonW5sjqONYy9HxLylYW8qsfh6N/igZfarUXzh5kA=;
+ b=K+WkAYhJCBAlVtZ5ChgzPqB2Cq5z7V+upMK96zzEE0K/TfsvvOY7P45ZskJRumtMfB
+ hTRQ8ZarlxxgZnuLfDzbRU8h39KiG8cFQH5PHl1QljHB/oveP4MwiI+2azRpd11BweWp
+ a7CwlG8ZvjKQe/ZLVXvi+EF8rwahTKr3kNRs/zD5vDR4HhTOu7jMVto8RG1U0xa0nluJ
+ nq4HSDRUBVEJiYHIrqgn9rsc1nC8PQOQHPeRITHIQ+dzRqNPxc0zU7Jg+Bp9wDhYir0R
+ a0qYo+IaRhrev25dNQHoZr85k/DrAk2uC9jaxxhV4aTY+HdSVHkJQtWuB48T3oMFseer
+ EgeA==
+X-Gm-Message-State: AOJu0YyKHrMCQdRv6MYohhG2BeSAfg30iLoWX0D5FXI+rjU0JUUVZMu9
+ lHp7Y8uzXLrG8g8Z/UiKX9fiVA9LgAm83MmYJRlGD7B2h2KIVhZZMOUz1cGQPhQ5og==
+X-Gm-Gg: Acq92OEIeJ2eYTwRje7DNshSpmTT+Wa9C3inT/lzaVKUatYocDjXG9J4FNNgxe5ei+O
+ 5bH9fRhojHPRMLSEJUE/J88Numj0IXAHbFwPmrwctjJFdCaoZqhny7kdvRRtsTWDTDOrW7CuFY2
+ GHZI14TQh0/X+b6AlNeVtAboS7t+CPTmehAq2NCZqjbHoGM9D0CpYJokByTvlmpD0v36O7/E8dE
+ HN4+A4zT/EfxAThVZQphBhd9KfHeoyoZN4ip154GYhVBy+3gViHpQ3tCLZauMvR2Otjm5PtBunM
+ Uvjd1tp2gPXJ8VUcVYLE7HtGxAJb48+SDDyfxLszJ+NaI9aG7LfETL0voJx0xaOGcyVwsa4ybRP
+ BMAEIJBgKfJ6sdRAGC7m8aoBBD953KlJ52i/qaXgUETyExgG2Vla2RGbDPrMHO+1TrrPk+vvlgh
+ HolAMYAZJqSVhvDOHgxvRhitWfaPeSv1kZEBK0h+w01A/XMN8UT0boqutkRbQv2ZuUO8qZBD6t4
+ gD+x0Jy2V/HJpUtYaOsxnPM52hiublaEua6thuE7FKI4Q6s5+vwkFY0
+X-Received: by 2002:a17:902:cf0d:b0:2b4:6529:7bae with SMTP id
+ d9443c01a7336-2bdb329b56bmr6422215ad.17.1779203519932; 
+ Tue, 19 May 2026 08:11:59 -0700 (PDT)
+Received: from google.com (112.174.16.34.bc.googleusercontent.com.
+ [34.16.174.112]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-83f19f7cd19sm18390100b3a.54.2026.05.19.08.11.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 19 May 2026 08:11:59 -0700 (PDT)
+Date: Tue, 19 May 2026 15:11:55 +0000
+From: Carlos Llamas <cmllamas@google.com>
+To: Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>
+Subject: Re: [PATCH] drm/amd/display: use GNU make rwildcard instead of find
+Message-ID: <agx9uxrYxzXgcGuO@google.com>
+References: <20260416125412.29552-1-Hawking.Zhang@amd.com>
 MIME-Version: 1.0
-References: <20260519084158.72960-1-timur.kristof@gmail.com>
- <20260519084158.72960-2-timur.kristof@gmail.com>
-In-Reply-To: <20260519084158.72960-2-timur.kristof@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 19 May 2026 11:09:43 -0400
-X-Gm-Features: AVHnY4JXmiTtLRd_pJx3NfKzkZH5Hq4kPqBX5l1JQBsAlB8Oa2dHRWlf_wy8tzg
-Message-ID: <CADnq5_NfMcnXT7JM98dumcam7xBS-QUc0nEP_7Y+r6HFJ1oNYQ@mail.gmail.com>
-Subject: Re: [PATCH 1/5] drm/amd/pm/si: Disregard vblank time when no displays
- are connected
-To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, 
- christian.koenig@amd.com, Natalie Vock <natalie.vock@gmx.de>, 
- Jeremy Klarenbeek <jeremy.klarenbeek99@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260416125412.29552-1-Hawking.Zhang@amd.com>
+X-Mailman-Approved-At: Wed, 20 May 2026 07:18:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,90 +94,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[google.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:Hawking.Zhang@amd.com,m:alexander.deucher@amd.com,m:harry.wentland@amd.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:natalie.vock@gmx.de,m:jeremy.klarenbeek99@gmail.com,m:timurkristof@gmail.com,m:jeremyklarenbeek99@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[cmllamas@google.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,gmx.de,gmail.com];
+	FROM_NEQ_ENVFROM(0.00)[cmllamas@google.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[google.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: E4ED558124A
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: C436F588CC9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, May 19, 2026 at 4:42=E2=80=AFAM Timur Krist=C3=B3f <timur.kristof@g=
-mail.com> wrote:
->
-> When no displays are connected, there is no vblank
-> happening so the power management code shouldn't
-> worry about it.
->
-> This fixes a regression that caused the memory clock
-> to be stuck at maximum when there were no displays
-> connected to a SI GPU.
->
-> Fixes: 9003a0746864 ("drm/amd/pm: Treat zero vblank time as too short in =
-si_dpm (v3)")
-> Fixes: 9d73b107a61b ("drm/amd/pm: Use pm_display_cfg in legacy DPM (v2)")
-> Tested-by: Jeremy Klarenbeek <jeremy.klarenbeek99@gmail.com>
-> Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
-
-Series is:
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-And applied.
-
-Thanks!
-
+On Thu, Apr 16, 2026 at 08:54:12PM +0800, Hawking Zhang wrote:
+> Replace external find calls with GNU Make’s $(rwildcard …)
+> to collect files. Depending on ‘find’ can fail if it’s
+> unavailable or returns no matches, which left CFLAGS_*
+> unset. In that case, floating-point code was built
+> with -mno-sse, leading to build failures.
+> 
+> Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
 > ---
->  drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm=
-/amd/pm/legacy-dpm/si_dpm.c
-> index b75a6031c68a..5afe42918497 100644
-> --- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-> +++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
-> @@ -3076,6 +3076,10 @@ static bool si_dpm_vblank_too_short(void *handle)
->         /* we never hit the non-gddr5 limit so disable it */
->         u32 switch_limit =3D adev->gmc.vram_type =3D=3D AMDGPU_VRAM_TYPE_=
-GDDR5 ? 450 : 0;
->
-> +       /* Disregard vblank time when there are no displays connected */
-> +       if (!adev->pm.pm_display_cfg.num_display)
-> +               return false;
-> +
->         /* Consider zero vblank time too short and disable MCLK switching=
-.
->          * Note that the vblank time is set to maximum when no displays a=
-re attached,
->          * so we'll still enable MCLK switching in that case.
-> --
-> 2.54.0
->
+>  drivers/gpu/drm/amd/display/dc/dml2_0/Makefile | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/Makefile b/drivers/gpu/drm/amd/display/dc/dml2_0/Makefile
+> index 8a451c36fdb3..10c547e63657 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dml2_0/Makefile
+> +++ b/drivers/gpu/drm/amd/display/dc/dml2_0/Makefile
+> @@ -55,8 +55,9 @@ subdir-ccflags-y += -I$(FULL_AMD_DISPLAY_PATH)/dc/dml2_0/dml21/
+>  
+>  # Add FPU flags to all dml2 files by default, remove NO_FPU flags.
+>  # FPU flags step 1: Find all .c files in dal/dc/dml2_0 and it's subfolders
+> +rwildcard = $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$(2)) $(filter $(subst *,%,$(2)),$d))
+>  DML2_ABS_PATH := $(FULL_AMD_DISPLAY_PATH)/dc/dml2_0
+> -DML2_C_FILES := $(shell find $(DML2_ABS_PATH) -name '*.c' -type f)
+> +DML2_C_FILES := $(call rwildcard,$(DML2_ABS_PATH)/,*.c)
+>  
+>  # FPU flags step 2: Convert to .o and make paths relative to $(AMDDALPATH)/dc/dml2_0/
+>  DML2_RELATIVE_O_FILES := $(patsubst $(DML2_ABS_PATH)/%,dc/dml2_0/%,$(patsubst %.c,%.o,$(DML2_C_FILES)))
+> -- 
+> 2.17.1
+> 
+
+Following commit 4bb2f0721ed8 ("drm/amd/display: Move FPU Guards From
+DML To DC - Part 2"), I started having the following build issues:
+
+  ERROR: modpost: "__eqdf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+  ERROR: modpost: "__truncdfsf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+  ERROR: modpost: "__nesf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+  ERROR: modpost: "__divsf3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+  ERROR: modpost: "__extendsfdf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+  ERROR: modpost: "__adddf3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+  ERROR: modpost: "__fixdfsi" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+  ERROR: modpost: "__floatsisf" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+  ERROR: modpost: "__mulsf3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+  ERROR: modpost: "__fixsfsi" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+  WARNING: modpost: suppressed 20 unresolved symbol warnings because there were too man
+
+
+This patch fixes them. Thanks!
+
+Tested-by: Carlos Llamas <cmllamas@google.com>
