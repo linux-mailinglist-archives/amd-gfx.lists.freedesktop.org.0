@@ -2,77 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aBPPBWIiDGrjWwUAu9opvQ
+	id SAdLLmAiDGrjWwUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 10:42:10 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 10:42:08 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBEC057A552
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 10:42:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DFF457A54A
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 10:42:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E56E10EB69;
-	Tue, 19 May 2026 08:42:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDF2F10EB14;
+	Tue, 19 May 2026 08:42:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lTecmVbC";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="iJor/2If";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6CC210EB14
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 08:42:04 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-488ab2db91aso33515065e9.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 01:42:04 -0700 (PDT)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
+ [209.85.128.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBD8810EB14
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 08:42:05 +0000 (UTC)
+Received: by mail-wm1-f46.google.com with SMTP id
+ 5b1f17b1804b1-488af96f6b2so35675825e9.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 01:42:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779180123; x=1779784923; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1779180124; x=1779784924; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=jlUVQSs5BQNLKwijpg9J2OlcuRue5qIacselDF1An5A=;
- b=lTecmVbCol9jV6vdfsnwlVo/x1tE1wT0h5wEXckHqJ8WVhc5iN1aLX6fb510xYjyTd
- 6QuNt421dLLUc2AhI+QdUaXZKhtwEePJosrKGbiy2Tkvl3Af2GgDfl061EQHPfzunwGB
- maQpSJWUcdVCLhxXHNnEHtILQR7N2U7l0Vf7knAIy60O58FOE7303UNWp7E7VWH41NVa
- 2sMHMqWy3znKzKKENLyUcr5SR4OLRJZhTZ5FDWqyg5JV802FnImGin+O7fHkYglWSOeY
- CT/bjKPtAIR2cXaVEsXyp31LQYCLw1UcYYm/mtNlkNPW7GaSnvaVQSJ0D3koyyu3MI5f
- sPYg==
+ bh=bbkVZm9huwk5DqPliqJm3CtpFt7jRXNZ8wXXHRzSOM4=;
+ b=iJor/2IfMgDg6fmo5Fe6Ua2va6CQqQsvsfLAizJjYcA+CBt0cmNDAPnyM+7dRg4tU+
+ n/UdYJ6hH0PcNSm/Ho5v31KFedI8YGwV6JVSrCgSmeZyHcO5y+SUF9mgeb2C+tdNZQoA
+ W/01YrVLMFklrjszWcWXxWnVibIeu1za/NxzC+kfgcLXRI77rUtvAjFi+ueyFCBbPh95
+ MhapFuszZfaSEOGt9A4c8SkSYVLUJTW9gMlHDaW4Oc5ZXtp0ADnadDOFQZskOrly1z/0
+ nf3+VpEAcjPKHJ4XSX2l/8Rh433Ghj5XoxYsPm9WZG+FcuraONJhpjnHK5EvqFDoBgt+
+ 7P4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779180123; x=1779784923;
+ d=1e100.net; s=20251104; t=1779180124; x=1779784924;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=jlUVQSs5BQNLKwijpg9J2OlcuRue5qIacselDF1An5A=;
- b=M+An8UPKNV0i+cZ2o+JdMbXGI6/yolnSh4n418sifgrtLUqnt5FjP2L2KRdfvTxX6Q
- 6qkjxk3/UXx/JLfdEDdbu1HF+tdiZrpyEjBozxJEOIdviozJGF2qLQzwWhA11aEqMwYj
- Y3t0uxq4MP2dU6lmN33pS5jlDsjvh/ff52Z3ffAKqTfm/bYcWnFp4NWA7PXqZv9IwFfb
- PVlseqy6ST20dZExt0x/swwBR/OFYJ3CDWMNlFWuT1Fuou83IphNFhsHK9APaN5inmiH
- WfCdqn+oXF95D1noB+NMqVcR5mQd6DnM48AuRnax0Z68/Caf++Q0xGcbG9ikc6Vv4UE+
- g01Q==
-X-Gm-Message-State: AOJu0Yz83NKvBdIp86ONKGpGVa9ZpU3miYxK9uTr+3ICbI8Ptakej4LL
- Rc8SDPdfIkUW9cGDv3AikEWmBk25nE1/3cI7NaWy9wquwtBT/WECuum27j9u1g==
-X-Gm-Gg: Acq92OFaZ1obUfTahuRSRa9eSFepd9BFHZwORcn5hWmNmSmg7YjkaGM+KwxTCQFJwHw
- nN8JbAmTWjwqhgiknKV02uDqOymwY4cjS/tkKFAN4gzBLmaeybCZT+5Uar4kjUd3md17LpE7nWu
- 95BvGCz3Vmr/2IkqZXQb6ABDnZBZWIMOI36TPff5IuJWAfT8o/9UirxOkBCfSsX8zl5PLhECOUC
- tne5IN3g+/GNaP4HD1uldI9Tqn8CFk0wSnrmXpniet+viatKm22FlO5JONsyeg+szoMaTFPpcdn
- PGLp8HX+Hv/2fRBPZfHseqYjYyiFOaQmeSwv4aS6PgtvyYmwbHs5p11+LmO3/UFX0qxjyn1JJpR
- jhhpRCsm9+W2kHinVM3WLd+CYe5T0G5YW7v6i/4CcqdlMpc+BLMbayh30ymWuHiGxUFvD7eYVOa
- 3sLiV6FIFjlI8iZTs0g8YAvWR9Wa/p4BxOdrxpTz98i+tK85euhhiEk2pHqkH5ZRCw
-X-Received: by 2002:a05:600c:34c3:b0:48f:d0f7:78f1 with SMTP id
- 5b1f17b1804b1-48fe60e4e27mr304928545e9.4.1779180123215; 
- Tue, 19 May 2026 01:42:03 -0700 (PDT)
+ bh=bbkVZm9huwk5DqPliqJm3CtpFt7jRXNZ8wXXHRzSOM4=;
+ b=BkvZvI4E1PTelkre7meGylU3fXzfRLm9+nyA3EPbpQfYKOsAHHFVAWewQCffBtzHqO
+ 7+ziGSAPs1ntVLG4nksLSRq0HAs1SlWc6jhBbAupQ2+bOqibqbeCYrRr0pbX3QGPqThS
+ PaaaM3dE8OrJbiKrhXG/6QR4cg6oCxRSy+NLe2C6NafE/xB5qYmNCeLkqBCSuZDsnfAC
+ BpvMeKT+CHi/sMzNUOz6BxfMEnpHmd/CNKl4ilQSjYq80s+2pmsCAsP2T3eZQOWuiL0S
+ fn/C+zyzvmwfASGzwaNCt+B7gZveEz6I8aR8PXI6JMsAc10W0PnU+IPZzdZJ9Jwjwaly
+ oOAQ==
+X-Gm-Message-State: AOJu0Yz1Is5B2bzcbrZxgYPNio8uPdtEnAvI8YuaP66C5Jc7fuQia4S1
+ aghRmFJwbQI15WEG9+A+kJJeBRzE526u7mjQ7TCOswjT94m16GWFXiN0c+Dnag==
+X-Gm-Gg: Acq92OESjNGmn05Blh0t7jsL1MDBirS3eLjHgCafXYW/+fbW+XUoNhtkmlSosdDZXUR
+ 4TATd3c4IxXNaJBjyAAqySYkmoMARbTU8w75EAdKTjXPVSJBorWtE+ip2A72+AzUOd7dKoegAs7
+ gUl9TwlwGJbl1Kvq1rmY7GhTsyQTkFo/smCdvoElGKzyjp6MZoExKklBGmfyDg3uF3OSwMeSmvO
+ Un9NaYp4HoC4ioGkEMoKsS7B6GA0NHZcbOpcfr6ZhxVpxdRO8xrKus9BdMauWuPPNw3N8n4DX15
+ 9OytH3On2QHfXRGUIlIMzFEZgoYvWL1TsN3TBXy908pOfa3WY8RZ9g/Oif4HxexIs/XwvSm5Y4/
+ KIdL6reALcad8O8GgJBlQ0PLdjTP+u0VQJ/mBv4pau0bpZMNBUXhGca5qjhoDB51eb2yPqDhkYQ
+ 7vZgq8KnOzNin1iDigTCAacfJ1IbG1t9Hq7mPC9EglJ9sn7qYgIBIN28dDuwp1u4tt
+X-Received: by 2002:a05:600c:46cf:b0:48e:8974:c377 with SMTP id
+ 5b1f17b1804b1-48fe6626ba1mr274274775e9.29.1779180124187; 
+ Tue, 19 May 2026 01:42:04 -0700 (PDT)
 Received: from Timur-Hyperion.home (54001290.dsl.pool.telekom.hu.
  [84.0.18.144]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-48ff2cb4ae0sm141935945e9.0.2026.05.19.01.42.02
+ 5b1f17b1804b1-48ff2cb4ae0sm141935945e9.0.2026.05.19.01.42.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 May 2026 01:42:02 -0700 (PDT)
+ Tue, 19 May 2026 01:42:03 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  christian.koenig@amd.com, Natalie Vock <natalie.vock@gmx.de>,
  Jeremy Klarenbeek <jeremy.klarenbeek99@gmail.com>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 2/5] drm/amd/pm: Rename enable_bapm() to notify_ac_dc()
-Date: Tue, 19 May 2026 10:41:55 +0200
-Message-ID: <20260519084158.72960-3-timur.kristof@gmail.com>
+Subject: [PATCH 3/5] drm/amd/pm/smu7: Notify SMU7 of DC->AC switch
+Date: Tue, 19 May 2026 10:41:56 +0200
+Message-ID: <20260519084158.72960-4-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260519084158.72960-1-timur.kristof@gmail.com>
 References: <20260519084158.72960-1-timur.kristof@gmail.com>
@@ -122,94 +122,101 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: BBEC057A552
+X-Rspamd-Queue-Id: 6DFF457A54A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-No functional changes, just change the name of this
-function pointer to be more generic.
+When ATOM_PP_PLATFORM_CAP_HARDWAREDC is set,
+the SMU has a GPIO pin for detecting AC/DC switch
+and everything works automatically.
 
-BAPM refers to a specific feature on KV, but other kinds of
-ASICs may also need the SMU to be notified on AC/DC changes.
+Otherwise when there is no GPIO pin, the SMU can
+automatically detect switching to DC, but needs
+to be notified of switching to AC.
 
-Also remove the argument and use adev->pm.ac_power instead.
+Use PPSMC_MSG_RunningOnAC to notify the SMC
+when switching to AC.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/include/kgd_pp_interface.h | 2 +-
- drivers/gpu/drm/amd/pm/amdgpu_dpm.c            | 8 ++++----
- drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c     | 6 +++---
- 3 files changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c  | 12 ++++++++++++
+ .../gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c   | 15 +++++++++++++++
+ drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h      |  1 +
+ 3 files changed, 28 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/include/kgd_pp_interface.h b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-index 1bbf531de5ed..27e0874d3ade 100644
---- a/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-+++ b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-@@ -417,7 +417,7 @@ struct amd_pm_funcs {
- 	void (*display_configuration_changed)(void *handle);
- 	void (*print_power_state)(void *handle, void *ps);
- 	bool (*vblank_too_short)(void *handle);
--	void (*enable_bapm)(void *handle, bool enable);
-+	void (*notify_ac_dc)(void *handle);
- 	int (*check_state_equal)(void *handle,
- 				void  *cps,
- 				void  *rps,
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-index feadf604b474..f76ba6753551 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-@@ -33,8 +33,8 @@
- #include <linux/power_supply.h>
- #include "amdgpu_smu.h"
- 
--#define amdgpu_dpm_enable_bapm(adev, e) \
--		((adev)->powerplay.pp_funcs->enable_bapm((adev)->powerplay.pp_handle, (e)))
-+#define amdgpu_dpm_notify_ac_dc(adev) \
-+		((adev)->powerplay.pp_funcs->notify_ac_dc((adev)->powerplay.pp_handle))
- 
- #define amdgpu_dpm_is_legacy_dpm(adev) ((adev)->powerplay.pp_handle == (adev))
- 
-@@ -504,8 +504,8 @@ void amdgpu_pm_acpi_event_handler(struct amdgpu_device *adev)
- 			adev->pm.ac_power = false;
- 
- 		if (adev->powerplay.pp_funcs &&
--		    adev->powerplay.pp_funcs->enable_bapm)
--			amdgpu_dpm_enable_bapm(adev, adev->pm.ac_power);
-+		    adev->powerplay.pp_funcs->notify_ac_dc)
-+			amdgpu_dpm_notify_ac_dc(adev);
- 
- 		if (is_support_sw_smu(adev))
- 			smu_set_ac_dc(adev->powerplay.pp_handle);
-diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c
-index 33eb85dd68e9..49b95752de25 100644
---- a/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c
-@@ -1233,14 +1233,14 @@ static void kv_update_requested_ps(struct amdgpu_device *adev,
- 	adev->pm.dpm.requested_ps = &pi->requested_rps;
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
+index 0bbb89788335..19e74baa2b85 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
+@@ -1550,6 +1550,17 @@ static void pp_pm_compute_clocks(void *handle)
+ 			      NULL);
  }
  
--static void kv_dpm_enable_bapm(void *handle, bool enable)
-+static void kv_dpm_enable_bapm(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 	struct kv_power_info *pi = kv_get_pi(adev);
- 	int ret;
++static void pp_dpm_notify_ac_dc(void *handle)
++{
++	struct pp_hwmgr *hwmgr = handle;
++
++	if (!hwmgr || !hwmgr->pm_en)
++		return;
++
++	if (hwmgr->hwmgr_func->notify_ac_dc)
++		hwmgr->hwmgr_func->notify_ac_dc(hwmgr);
++}
++
+ static const struct amd_pm_funcs pp_dpm_funcs = {
+ 	.load_firmware = pp_dpm_load_fw,
+ 	.wait_for_fw_loading_complete = pp_dpm_fw_loading_complete,
+@@ -1615,4 +1626,5 @@ static const struct amd_pm_funcs pp_dpm_funcs = {
+ 	.gfx_state_change_set = pp_gfx_state_change_set,
+ 	.get_smu_prv_buf_details = pp_get_prv_buffer_details,
+ 	.pm_compute_clocks = pp_pm_compute_clocks,
++	.notify_ac_dc = pp_dpm_notify_ac_dc,
+ };
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+index 4436ab2bb51f..416b9380a70e 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+@@ -5854,6 +5854,20 @@ static int smu7_power_off_asic(struct pp_hwmgr *hwmgr)
+ 	return result;
+ }
  
- 	if (pi->bapm_enable) {
--		ret = amdgpu_kv_smc_bapm_enable(adev, enable);
-+		ret = amdgpu_kv_smc_bapm_enable(adev, adev->pm.ac_power);
- 		if (ret)
- 			drm_err(adev_to_drm(adev), "amdgpu_kv_smc_bapm_enable failed\n");
- 	}
-@@ -3342,7 +3342,7 @@ static const struct amd_pm_funcs kv_dpm_funcs = {
- 	.debugfs_print_current_performance_level = &kv_dpm_debugfs_print_current_performance_level,
- 	.force_performance_level = &kv_dpm_force_performance_level,
- 	.set_powergating_by_smu = kv_set_powergating_by_smu,
--	.enable_bapm = &kv_dpm_enable_bapm,
-+	.notify_ac_dc = &kv_dpm_enable_bapm,
- 	.get_vce_clock_state = amdgpu_get_vce_clock_state,
- 	.check_state_equal = kv_check_state_equal,
- 	.read_sensor = &kv_dpm_read_sensor,
++static void smu7_notify_ac_dc(struct pp_hwmgr *hwmgr)
++{
++	struct amdgpu_device *adev = (struct amdgpu_device *)(hwmgr->adev);
++
++	/* Check if the platform already manages the AC/DC switch via dedicated GPIO. */
++	if (phm_cap_enabled(hwmgr->platform_descriptor.platformCaps,
++			    PHM_PlatformCaps_AutomaticDCTransition))
++		return;
++
++	/* The SMU automatically notices DC, but needs to be notified when switching to AC. */
++	if (adev->pm.ac_power)
++		smum_send_msg_to_smc(hwmgr, PPSMC_MSG_RunningOnAC, NULL);
++}
++
+ static const struct pp_hwmgr_func smu7_hwmgr_funcs = {
+ 	.backend_init = &smu7_hwmgr_backend_init,
+ 	.backend_fini = &smu7_hwmgr_backend_fini,
+@@ -5916,6 +5930,7 @@ static const struct pp_hwmgr_func smu7_hwmgr_funcs = {
+ 	.get_asic_baco_state = smu7_baco_get_state,
+ 	.set_asic_baco_state = smu7_baco_set_state,
+ 	.power_off_asic = smu7_power_off_asic,
++	.notify_ac_dc = smu7_notify_ac_dc,
+ };
+ 
+ uint8_t smu7_get_sleep_divider_id_from_clock(uint32_t clock,
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h b/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h
+index 3ae45eac0c5c..84de2ccad7a3 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h
++++ b/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h
+@@ -364,6 +364,7 @@ struct pp_hwmgr_func {
+ 					bool disable);
+ 	ssize_t (*get_gpu_metrics)(struct pp_hwmgr *hwmgr, void **table);
+ 	int (*gfx_state_change)(struct pp_hwmgr *hwmgr, uint32_t state);
++	void (*notify_ac_dc)(struct pp_hwmgr *hwmgr);
+ };
+ 
+ struct pp_table_func {
 -- 
 2.54.0
 
