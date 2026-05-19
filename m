@@ -2,69 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qJFzKrI5DGp8aQUAu9opvQ
+	id EEb3EbU5DGp8aQUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 12:21:38 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 12:21:41 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AB4B57C1F0
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 12:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED39E57C1FF
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 12:21:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC5BA10EC06;
-	Tue, 19 May 2026 10:21:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FBFD10EC09;
+	Tue, 19 May 2026 10:21:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hITe/o/q";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kjzH5cRO";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7940F10EC06
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 10:21:35 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-488b150559bso25914345e9.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 03:21:35 -0700 (PDT)
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
+ [209.85.221.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 564A110EC08
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 10:21:38 +0000 (UTC)
+Received: by mail-wr1-f52.google.com with SMTP id
+ ffacd0b85a97d-45297094718so2605302f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 03:21:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779186094; x=1779790894; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1779186097; x=1779790897; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=ISuzfLzxod04mW64mPswgOenYamaSA5mZi+LgMASUEU=;
- b=hITe/o/qUGTl3JzKJeTpZATj12b85TGnbwZe+Z4OGbkRbJDpDM6EIhZ+7kAu5KZCBZ
- 5y7txlFJ/4S4y6Six2z3lrRQ3xZAutgg3nZT6vvm3h4It6LGbISzM808uYWorkMSPcQi
- dtAgzzIIM5GgOjehLQcrILjaMNHYw7JUTmbmogm6n3LgcVTmrOUmSaLZInJSm2R0480r
- 3kCKfen3Fapbag4HRxAhQyEd991HYPegb3laLsdUEWmKWLEx/usL8eUTUSvZGZg+VfZS
- h11ChpIyo6zsr7hf70msiPfbmL3/ZcAcwdR+pkUZ/p2rF9XnYMAKf5w3fIC/t5kpsSF/
- cLTg==
+ bh=0IVfnpTZcjF+U7vHhyOQPf6AFBAZGkJjS0WBqRaCEXk=;
+ b=kjzH5cROOxK6El7LJKdTEREFlPubn3oFflwxygyj/0A8675PpG3B/dCFqhOTdxeGs0
+ Y2DVRQLr+/r/O3QSvNMVgrXxLBi3b/wIZZOQWhZVs+j5MlZ0vMPVxw6Je6XJLiexgl3E
+ Q2NRxhl2cknULTZdD4dXovcPb5LdR7m3SFkosKYdAar2hgPLdk9vK7KWAnUfqmRPNhKS
+ 2n5+reXjZ3XkYgaukks+oQI8vgKnfGDU7sc46XWjNehXHwwg+ph1vajLu7IG4nxsLotD
+ nAzLoL8clt8RslZ65qkqdDQOAGwr7n+s34IuAQcch+UAF12SiwAa+uH3JGwcOErMJvV2
+ 5WQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779186094; x=1779790894;
+ d=1e100.net; s=20251104; t=1779186097; x=1779790897;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=ISuzfLzxod04mW64mPswgOenYamaSA5mZi+LgMASUEU=;
- b=g+7AQprtBdkDZSmIisl1xcAaLNXXzv0Wnq7QDWbxx89dTy5Jl9/PrDPdhy0rtRHoOp
- +P7+5bpoR92jGDh1e2+35srVtnqRHhfhLtIr2+UJsyA9Ted8B/DHZFZP83tQTSubbv3k
- f8AxUM/6i9z5KLx7ubqDoBvTOKzZELz1YwSY9HOWWmSl8+j2f0LvxHfRdiYYUgoOhpTc
- q/40CH8Kckkm25JTN7cnNmBD2Q13PiyynVbyTRIw4Wjuq2I+5VWjZOO+JVB1KuxgVial
- JN9fx+G9eWo8dOU0RDRnju7EMzf+fKsxx3z79PBCvpn5fcnrokwwQP+evOqFFhpS+a9y
- mnuA==
-X-Gm-Message-State: AOJu0Yxr+ers9tdvPB8+SmlIenxpcDkn6aOlqDavn+poa/4MlYJW/cTI
- mrxwBi/1+vGvl5hoqNeHfLdxlujOmSufDODoefBuMflnuTn1+iCPZ3J+herKjBA0
-X-Gm-Gg: Acq92OEbYttEtkOpWWNVSM5JcSYqrXo3OzzKegjtXMxq9a30nbqfhyhJx+HPQtXEs44
- RuOj5vlC1tdpb16ic+NPHl0bHn8cUVktFyZjgQmRvxMFE2p5QcFzi+DkEvOD6Zi4n7djPAN2n/J
- STl2gXOlU3LfHJJmJaWgJ6b5SIszr9EmYVaqj6Qx/FnzvdpfauqEhYeqJ3rBfehepka/MKajbNV
- ykSwKbQSq5AmDyQLOa0KOgMdSVcgVmAff8m/UoTVbKx4Hd3H8SS8g/TQoT6kvPRNt+tOf06/2Y4
- B8UUYgGllJt3MGoGumhjyDszIJvqsidO2Cc4wHzVqWrn72snuYEADcILgGuVNYwwisgcvfOyx26
- lZwegV/AZwaoNP+j6eZ84KMNcg/eKOxkSoXPAyX59PfZg9jvWYUZA7rflmyfAfM90EJt0UydR6w
- ilTIx2hZk6Pf1HaYywP5TfR+gP94wSv6KmXyqxuhVWbI9ladEgarh/Aqi9gzMVOpG9
-X-Received: by 2002:a05:600c:4e46:b0:488:bc6a:528d with SMTP id
- 5b1f17b1804b1-48fe632243cmr311389425e9.22.1779186093947; 
- Tue, 19 May 2026 03:21:33 -0700 (PDT)
+ bh=0IVfnpTZcjF+U7vHhyOQPf6AFBAZGkJjS0WBqRaCEXk=;
+ b=Hyns2AmMcOeL0pVBD3G1fAWd3Ea9sKVjzGAz8dLqdEoPXCOm+/IoFH6BA1U8oieACa
+ L25wMFtLFpMvuRSX+cfnUsiaUeGqvW9s7nShwK10fQsUKjBwKNjVWO9nTmnpi+qBAajv
+ EJqkWeWMM6gACRNMGcyqbnf7p8r0UaRnuNvKPrGAqgENK67PXaDhzkWAshtbm1d9inMB
+ Do8z0ruLilEqaKqqHbS0yxK33bDG7k0nFSH8Tw/0p7B/fkrxr6dt934JTDMpflaG6ydi
+ RJpdz3C5G2rJs1F+gqVXFsdqYUcUXreZs44qlKv1LxS1EIHUQajj8f8RAcFbHFu/Kw6T
+ t+8A==
+X-Gm-Message-State: AOJu0Yw5Y0NzcvaK4raMlevT7r6llJYpEfoGEOeDBvKPpHnNGhaMNoac
+ yQppiLKnTwiDfa0tWFg+caO3mnPbNmzNYPyR/Lqe7OrOsvvFNaKU+wziYWM4g3mo
+X-Gm-Gg: Acq92OGKJwTs+DU9m/VdjLEdV+CwoE5aPeYjvRc+o8grFXcKdn0OgNY/MEu7yd0fQ1o
+ MVxkMGHa9bDta6rJS9BSdpIsMd1lHTAKUAQFT/Gwn0w210Ros72sD778VJSU+/GLTYIxkiUzs4b
+ rOPWN9h8KgfVxYBxLKrKZTYLU2Re7m7I9gnfkoi+EslTvO7mHzrp/ARizkJoBCFJV6bFcVEkEj7
+ ziCCRjfr92QqnuE4J4R8RERmkkAlEWCy5z5dzZkaMER4QGlerQChk2uB5dlrR/dSL4vTUvbj1ML
+ vG6CgWIx3rk1j2TMVzx3PLqtAE/l7wv7ebWfqS5xkckyZ8R8eAvekQBn9aZa35jRJLkNe98Dp8q
+ TwdMpvZDRCdnd/pI1U9B4thVpZUpBEUqnMua0PKC+DHn+zwY8Vpio+utU69cpLPctbvqxgCbBGW
+ +NTWaZ0sMsqa0LbqhabQ5HzvTROsX8NghBqWzgOm4B3nhyQtqRqraMeW2A368IcU3c
+X-Received: by 2002:a5d:5d0e:0:b0:44e:639b:7d0f with SMTP id
+ ffacd0b85a97d-45e5c36bd17mr29746943f8f.12.1779186094940; 
+ Tue, 19 May 2026 03:21:34 -0700 (PDT)
 Received: from Timur-Hyperion.home (54001290.dsl.pool.telekom.hu.
  [84.0.18.144]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-45da0fe0fecsm41028224f8f.26.2026.05.19.03.21.33
+ ffacd0b85a97d-45da0fe0fecsm41028224f8f.26.2026.05.19.03.21.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 May 2026 03:21:33 -0700 (PDT)
+ Tue, 19 May 2026 03:21:34 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  christian.koenig@amd.com, Natalie Vock <natalie.vock@gmx.de>,
@@ -72,9 +72,9 @@ To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  Alex Hung <alex.hung@amd.com>, Roman Li <Roman.Li@amd.com>,
  Leo Li <sunpeng.li@amd.com>, Mario Limonciello <mario.limonciello@amd.com>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 12/14] drm/amd/pm: Delete vddc_dep_on_dal_pwrl
-Date: Tue, 19 May 2026 12:21:16 +0200
-Message-ID: <20260519102118.246466-13-timur.kristof@gmail.com>
+Subject: [PATCH 13/14] drm/amd/pm: Delete get_dal_power_level
+Date: Tue, 19 May 2026 12:21:17 +0200
+Message-ID: <20260519102118.246466-14-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260519102118.246466-1-timur.kristof@gmail.com>
 References: <20260519102118.246466-1-timur.kristof@gmail.com>
@@ -124,201 +124,146 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 2AB4B57C1F0
+X-Rspamd-Queue-Id: ED39E57C1FF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-It was not used by anything anymore.
+Not needed anymore.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 Reviewed-by: Melissa Wen <mwen@igalia.com>
 ---
- .../amd/pm/powerplay/hwmgr/processpptables.c  |  1 -
- .../drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c  | 41 ------------------
- .../drm/amd/pm/powerplay/hwmgr/smu8_hwmgr.c   | 42 -------------------
- .../drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c |  3 --
- drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h  |  2 -
- 5 files changed, 89 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c   |  3 ---
+ drivers/gpu/drm/amd/include/dm_pp_interface.h          |  1 -
+ drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c       | 10 ----------
+ .../gpu/drm/amd/pm/powerplay/hwmgr/hardwaremanager.c   | 10 ----------
+ drivers/gpu/drm/amd/pm/powerplay/inc/hardwaremanager.h |  3 ---
+ drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h           |  2 --
+ 6 files changed, 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c
-index f06b29e33ba4..00e8f1be87e7 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c
-@@ -1324,7 +1324,6 @@ static int init_clock_voltage_dependency(struct pp_hwmgr *hwmgr,
- 	hwmgr->dyn_state.vddc_dependency_on_sclk = NULL;
- 	hwmgr->dyn_state.vddci_dependency_on_mclk = NULL;
- 	hwmgr->dyn_state.vddc_dependency_on_mclk = NULL;
--	hwmgr->dyn_state.vddc_dep_on_dal_pwrl = NULL;
- 	hwmgr->dyn_state.mvdd_dependency_on_mclk = NULL;
- 	hwmgr->dyn_state.vce_clock_voltage_dependency_table = NULL;
- 	hwmgr->dyn_state.uvd_clock_voltage_dependency_table = NULL;
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
-index 5be6f82ecc6f..f5c1f483dec8 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
-@@ -127,42 +127,6 @@ static int smu10_construct_max_power_limits_table(struct pp_hwmgr *hwmgr,
- 	return 0;
- }
- 
--static int smu10_init_dynamic_state_adjustment_rule_settings(
--							struct pp_hwmgr *hwmgr)
--{
--	int count = 8;
--	struct phm_clock_voltage_dependency_table *table_clk_vlt;
--
--	table_clk_vlt = kzalloc(struct_size(table_clk_vlt, entries, count),
--				GFP_KERNEL);
--
--	if (NULL == table_clk_vlt) {
--		pr_err("Can not allocate memory!\n");
--		return -ENOMEM;
--	}
--
--	table_clk_vlt->count = count;
--	table_clk_vlt->entries[0].clk = PP_DAL_POWERLEVEL_0;
--	table_clk_vlt->entries[0].v = 0;
--	table_clk_vlt->entries[1].clk = PP_DAL_POWERLEVEL_1;
--	table_clk_vlt->entries[1].v = 1;
--	table_clk_vlt->entries[2].clk = PP_DAL_POWERLEVEL_2;
--	table_clk_vlt->entries[2].v = 2;
--	table_clk_vlt->entries[3].clk = PP_DAL_POWERLEVEL_3;
--	table_clk_vlt->entries[3].v = 3;
--	table_clk_vlt->entries[4].clk = PP_DAL_POWERLEVEL_4;
--	table_clk_vlt->entries[4].v = 4;
--	table_clk_vlt->entries[5].clk = PP_DAL_POWERLEVEL_5;
--	table_clk_vlt->entries[5].v = 5;
--	table_clk_vlt->entries[6].clk = PP_DAL_POWERLEVEL_6;
--	table_clk_vlt->entries[6].v = 6;
--	table_clk_vlt->entries[7].clk = PP_DAL_POWERLEVEL_7;
--	table_clk_vlt->entries[7].v = 7;
--	hwmgr->dyn_state.vddc_dep_on_dal_pwrl = table_clk_vlt;
--
--	return 0;
--}
--
- static int smu10_get_system_info_data(struct pp_hwmgr *hwmgr)
- {
- 	struct smu10_hwmgr *smu10_data = (struct smu10_hwmgr *)hwmgr->backend;
-@@ -176,8 +140,6 @@ static int smu10_get_system_info_data(struct pp_hwmgr *hwmgr)
- 	smu10_construct_max_power_limits_table (hwmgr,
- 				    &hwmgr->dyn_state.max_clock_voltage_on_ac);
- 
--	smu10_init_dynamic_state_adjustment_rule_settings(hwmgr);
--
- 	return 0;
- }
- 
-@@ -612,9 +574,6 @@ static int smu10_hwmgr_backend_fini(struct pp_hwmgr *hwmgr)
- 	kfree(pinfo->vdd_dep_on_phyclk);
- 	pinfo->vdd_dep_on_phyclk = NULL;
- 
--	kfree(hwmgr->dyn_state.vddc_dep_on_dal_pwrl);
--	hwmgr->dyn_state.vddc_dep_on_dal_pwrl = NULL;
--
- 	kfree(hwmgr->backend);
- 	hwmgr->backend = NULL;
- 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu8_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu8_hwmgr.c
-index 8a37c745cb11..63a1e3748e5c 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu8_hwmgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu8_hwmgr.c
-@@ -270,42 +270,6 @@ static int smu8_construct_max_power_limits_table(struct pp_hwmgr *hwmgr,
- 	return 0;
- }
- 
--static int smu8_init_dynamic_state_adjustment_rule_settings(
--			struct pp_hwmgr *hwmgr,
--			ATOM_CLK_VOLT_CAPABILITY *disp_voltage_table)
--{
--	struct phm_clock_voltage_dependency_table *table_clk_vlt;
--
--	table_clk_vlt = kzalloc(struct_size(table_clk_vlt, entries, 8),
--				GFP_KERNEL);
--
--	if (NULL == table_clk_vlt) {
--		pr_err("Can not allocate memory!\n");
--		return -ENOMEM;
--	}
--
--	table_clk_vlt->count = 8;
--	table_clk_vlt->entries[0].clk = PP_DAL_POWERLEVEL_0;
--	table_clk_vlt->entries[0].v = 0;
--	table_clk_vlt->entries[1].clk = PP_DAL_POWERLEVEL_1;
--	table_clk_vlt->entries[1].v = 1;
--	table_clk_vlt->entries[2].clk = PP_DAL_POWERLEVEL_2;
--	table_clk_vlt->entries[2].v = 2;
--	table_clk_vlt->entries[3].clk = PP_DAL_POWERLEVEL_3;
--	table_clk_vlt->entries[3].v = 3;
--	table_clk_vlt->entries[4].clk = PP_DAL_POWERLEVEL_4;
--	table_clk_vlt->entries[4].v = 4;
--	table_clk_vlt->entries[5].clk = PP_DAL_POWERLEVEL_5;
--	table_clk_vlt->entries[5].v = 5;
--	table_clk_vlt->entries[6].clk = PP_DAL_POWERLEVEL_6;
--	table_clk_vlt->entries[6].v = 6;
--	table_clk_vlt->entries[7].clk = PP_DAL_POWERLEVEL_7;
--	table_clk_vlt->entries[7].v = 7;
--	hwmgr->dyn_state.vddc_dep_on_dal_pwrl = table_clk_vlt;
--
--	return 0;
--}
--
- static int smu8_get_system_info_data(struct pp_hwmgr *hwmgr)
- {
- 	struct smu8_hwmgr *data = hwmgr->backend;
-@@ -404,9 +368,6 @@ static int smu8_get_system_info_data(struct pp_hwmgr *hwmgr)
- 	smu8_construct_max_power_limits_table (hwmgr,
- 				    &hwmgr->dyn_state.max_clock_voltage_on_ac);
- 
--	smu8_init_dynamic_state_adjustment_rule_settings(hwmgr,
--				    &info->sDISPCLK_Voltage[0]);
--
- 	return result;
- }
- 
-@@ -1150,9 +1111,6 @@ static int smu8_hwmgr_backend_init(struct pp_hwmgr *hwmgr)
- static int smu8_hwmgr_backend_fini(struct pp_hwmgr *hwmgr)
- {
- 	if (hwmgr != NULL) {
--		kfree(hwmgr->dyn_state.vddc_dep_on_dal_pwrl);
--		hwmgr->dyn_state.vddc_dep_on_dal_pwrl = NULL;
--
- 		kfree(hwmgr->backend);
- 		hwmgr->backend = NULL;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
+index a3ee580d8dd1..2cdb8fea504a 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
+@@ -288,7 +288,6 @@ bool dm_pp_get_clock_levels_by_type(
+ 		DRM_INFO("DM_PPLIB: Warning: using default validation clocks!\n");
+ 		validation_clks.engine_max_clock = 72000;
+ 		validation_clks.memory_max_clock = 80000;
+-		validation_clks.level = 0;
  	}
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
-index 12f47ec87997..8b8c4e899878 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
-@@ -814,9 +814,6 @@ static int vega10_set_private_data_based_on_pptable(struct pp_hwmgr *hwmgr)
  
- static int vega10_hwmgr_backend_fini(struct pp_hwmgr *hwmgr)
+ 	DRM_INFO("DM_PPLIB: Validation clocks:\n");
+@@ -296,8 +295,6 @@ bool dm_pp_get_clock_levels_by_type(
+ 			validation_clks.engine_max_clock);
+ 	DRM_INFO("DM_PPLIB:    memory_max_clock: %d\n",
+ 			validation_clks.memory_max_clock);
+-	DRM_INFO("DM_PPLIB:    level           : %d\n",
+-			validation_clks.level);
+ 
+ 	/* Translate 10 kHz to kHz. */
+ 	validation_clks.engine_max_clock *= 10;
+diff --git a/drivers/gpu/drm/amd/include/dm_pp_interface.h b/drivers/gpu/drm/amd/include/dm_pp_interface.h
+index 349544504c93..10747a1ceda9 100644
+--- a/drivers/gpu/drm/amd/include/dm_pp_interface.h
++++ b/drivers/gpu/drm/amd/include/dm_pp_interface.h
+@@ -113,7 +113,6 @@ struct amd_pp_display_configuration {
+ struct amd_pp_simple_clock_info {
+ 	uint32_t	engine_max_clock;
+ 	uint32_t	memory_max_clock;
+-	uint32_t	level;
+ };
+ 
+ enum PP_DAL_POWERLEVEL {
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
+index 4c2c40e8123b..a53577a83f1b 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
+@@ -1023,7 +1023,6 @@ static int pp_display_configuration_change(void *handle,
+ static int pp_get_current_clocks(void *handle,
+ 		struct amd_pp_clock_info *clocks)
  {
--	kfree(hwmgr->dyn_state.vddc_dep_on_dal_pwrl);
--	hwmgr->dyn_state.vddc_dep_on_dal_pwrl = NULL;
--
- 	kfree(hwmgr->backend);
- 	hwmgr->backend = NULL;
+-	struct amd_pp_simple_clock_info simple_clocks = { 0 };
+ 	struct pp_clock_info hw_clocks;
+ 	struct pp_hwmgr *hwmgr = handle;
+ 	int ret = 0;
+@@ -1031,8 +1030,6 @@ static int pp_get_current_clocks(void *handle,
+ 	if (!hwmgr || !hwmgr->pm_en)
+ 		return -EINVAL;
  
+-	phm_get_dal_power_level(hwmgr, &simple_clocks);
+-
+ 	if (phm_cap_enabled(hwmgr->platform_descriptor.platformCaps,
+ 					PHM_PlatformCaps_PowerContainment))
+ 		ret = phm_get_clock_info(hwmgr, &hwmgr->current_ps->hardware,
+@@ -1057,11 +1054,6 @@ static int pp_get_current_clocks(void *handle,
+ 	clocks->max_engine_clock_in_sr = hw_clocks.max_eng_clk;
+ 	clocks->min_engine_clock_in_sr = hw_clocks.min_eng_clk;
+ 
+-	if (simple_clocks.level == 0)
+-		clocks->max_clocks_state = PP_DAL_POWERLEVEL_7;
+-	else
+-		clocks->max_clocks_state = simple_clocks.level;
+-
+ 	if (0 == phm_get_current_shallow_sleep_clocks(hwmgr, &hwmgr->current_ps->hardware, &hw_clocks)) {
+ 		clocks->max_engine_clock_in_sr = hw_clocks.max_eng_clk;
+ 		clocks->min_engine_clock_in_sr = hw_clocks.min_eng_clk;
+@@ -1138,8 +1130,6 @@ static int pp_get_display_mode_validation_clocks(void *handle,
+ 	if (!hwmgr || !hwmgr->pm_en || !clocks)
+ 		return -EINVAL;
+ 
+-	clocks->level = PP_DAL_POWERLEVEL_7;
+-
+ 	if (phm_cap_enabled(hwmgr->platform_descriptor.platformCaps, PHM_PlatformCaps_DynamicPatchPowerState))
+ 		ret = phm_get_max_high_clocks(hwmgr, clocks);
+ 
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hardwaremanager.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hardwaremanager.c
+index a59677cf8dfc..72c2d3b69a03 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hardwaremanager.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hardwaremanager.c
+@@ -328,16 +328,6 @@ int phm_store_dal_configuration_data(struct pp_hwmgr *hwmgr,
+ 	return 0;
+ }
+ 
+-int phm_get_dal_power_level(struct pp_hwmgr *hwmgr,
+-		struct amd_pp_simple_clock_info *info)
+-{
+-	PHM_FUNC_CHECK(hwmgr);
+-
+-	if (info == NULL || hwmgr->hwmgr_func->get_dal_power_level == NULL)
+-		return -EINVAL;
+-	return hwmgr->hwmgr_func->get_dal_power_level(hwmgr, info);
+-}
+-
+ int phm_set_cpu_power_state(struct pp_hwmgr *hwmgr)
+ {
+ 	PHM_FUNC_CHECK(hwmgr);
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/inc/hardwaremanager.h b/drivers/gpu/drm/amd/pm/powerplay/inc/hardwaremanager.h
+index 915f1b8e4dba..36dcad065fae 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/inc/hardwaremanager.h
++++ b/drivers/gpu/drm/amd/pm/powerplay/inc/hardwaremanager.h
+@@ -426,9 +426,6 @@ extern int phm_check_states_equal(struct pp_hwmgr *hwmgr,
+ extern int phm_store_dal_configuration_data(struct pp_hwmgr *hwmgr,
+ 		const struct amd_pp_display_configuration *display_config);
+ 
+-extern int phm_get_dal_power_level(struct pp_hwmgr *hwmgr,
+-		struct amd_pp_simple_clock_info *info);
+-
+ extern int phm_set_cpu_power_state(struct pp_hwmgr *hwmgr);
+ 
+ extern int phm_power_down_asic(struct pp_hwmgr *hwmgr);
 diff --git a/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h b/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h
-index 3ae45eac0c5c..1ee7e3044272 100644
+index 1ee7e3044272..fc1ffe1b2c97 100644
 --- a/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h
 +++ b/drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h
-@@ -540,7 +540,6 @@ struct phm_ppt_v1_information {
- 	struct phm_clock_array *valid_dcefclk_values;
- 	struct phm_clock_and_voltage_limits max_clock_voltage_on_dc;
- 	struct phm_clock_and_voltage_limits max_clock_voltage_on_ac;
--	struct phm_clock_voltage_dependency_table *vddc_dep_on_dal_pwrl;
- 	struct phm_ppm_table *ppm_parameter_table;
- 	struct phm_cac_tdp_table *cac_dtp_table;
- 	struct phm_tdp_table *tdp_table;
-@@ -632,7 +631,6 @@ struct phm_dynamic_state_info {
- 	struct phm_clock_voltage_dependency_table *vddc_dependency_on_mclk;
- 	struct phm_clock_voltage_dependency_table *mvdd_dependency_on_mclk;
- 	struct phm_clock_voltage_dependency_table *vddc_dependency_on_display_clock;
--	struct phm_clock_voltage_dependency_table *vddc_dep_on_dal_pwrl;
- 	struct phm_clock_array                    *valid_sclk_values;
- 	struct phm_clock_array                    *valid_mclk_values;
- 	struct phm_clock_and_voltage_limits       max_clock_voltage_on_dc;
+@@ -292,8 +292,6 @@ struct pp_hwmgr_func {
+ 	int (*store_cc6_data)(struct pp_hwmgr *hwmgr, uint32_t separation_time,
+ 				bool cc6_disable, bool pstate_disable,
+ 				bool pstate_switch_disable);
+-	int (*get_dal_power_level)(struct pp_hwmgr *hwmgr,
+-			struct amd_pp_simple_clock_info *info);
+ 	int (*get_performance_level)(struct pp_hwmgr *, const struct pp_hw_power_state *,
+ 			PHM_PerformanceLevelDesignation, uint32_t, PHM_PerformanceLevel *);
+ 	int (*get_current_shallow_sleep_clocks)(struct pp_hwmgr *hwmgr,
 -- 
 2.54.0
 
