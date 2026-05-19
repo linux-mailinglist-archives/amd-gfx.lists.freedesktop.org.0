@@ -2,40 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mJeCB+IQDGoZVQUAu9opvQ
+	id kFhpHOAQDGr6VQUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 09:27:30 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 09:27:28 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E76BC5790BD
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 09:27:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C90535790A2
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 09:27:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D29B10EAD0;
-	Tue, 19 May 2026 07:27:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55C8C10EAC7;
+	Tue, 19 May 2026 07:27:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=disroot.org header.i=@disroot.org header.b="PGzfZMlU";
+	dkim=pass (2048-bit key; secure) header.d=disroot.org header.i=@disroot.org header.b="OKe4E2pV";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
+X-Greylist: delayed 523 seconds by postgrey-1.36 at gabe;
+ Tue, 19 May 2026 03:16:04 UTC
 Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43C0810EA35;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24BD110EA34;
  Tue, 19 May 2026 03:16:04 +0000 (UTC)
 Received: from mail01.disroot.lan (localhost [127.0.0.1])
- by disroot.org (Postfix) with ESMTP id 250A52744A;
- Tue, 19 May 2026 05:07:19 +0200 (CEST)
+ by disroot.org (Postfix) with ESMTP id AE478276BE;
+ Tue, 19 May 2026 05:07:49 +0200 (CEST)
 X-Virus-Scanned: SPAM Filter at disroot.org
 Received: from layka.disroot.org ([127.0.0.1])
  by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id hkjozB0zKrzE; Tue, 19 May 2026 05:07:18 +0200 (CEST)
+ id cyM_6Bqaj2tO; Tue, 19 May 2026 05:07:48 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
- t=1779160038; bh=3Tis3fmi1HNGdfTbzRUoTnqezjx0ZMIVE+MHFCSkM4Q=;
- h=From:To:Cc:Subject:Date;
- b=PGzfZMlUIf8KgF3KSIp4QrsXeSdAJ6aVFjIuc8VI4vw6+zfPopMBDusImfTgwFzib
- KIE8yV1CVNfVUFZHrrG/iqMmg1Qmv5fsO3wYm6q80gG73EV92GJbuy4/hBR86koJ35
- TD/T9t7GHKgFgpIv4eUmH3YFDGAaX+2Tz9ark464t7nMB6t/YwvU7WDeGgnpRb9ZKH
- SSElxfuTe8TafxnV3STCagJlq+H1SC0n8rmlcDHOJQOtUmj6fNkrAlMr6/V+SeSgyy
- vWUy+udL5zbj8aUTs+dLLxKTUnfWroSjfTSptjSJ3KL134qU2f3cVte+Jq8S6zq4dm
- amB//GCxqfcUw==
+ t=1779160068; bh=l1Lwu2wAfeB+q1/AjeKi7nRw2gGLCVwN+HXESaGK9F4=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=OKe4E2pV0setWCwlGizluv+AFL/0GbO8yPJb/f+BHC0Ljx4HLC1fEHh8oi2yfAkJM
+ fXq+J84ArGspMhdBJn9pztVRVuFRT3PFikpptQBwwPAas4w10RbAvN8C3AmfIJSUXb
+ uCN2AKqkz6krmMJ2WxRCIRnN5n+tcIAq1YsYk4wV8nQX6jIuCRnzfw+cutOGQTEXzF
+ SQXd3lsCC/TvABcnW3ghXsxaI+ccTorJXFJ98hM030OPlY0hNnxA6FYkUF+PPaTlWL
+ wY465H+OPMQ8gZKywx7Xomkl3hdmwy/e7gveMevCZDzk4kHC3EL2lFvE3BVRnKlYmA
+ 8Lyis58mxZRBw==
 From: Leorize <leorize+oss@disroot.org>
 To: linux-kernel@vger.kernel.org
 Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -45,9 +47,12 @@ Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Leorize <leorize+oss@disroot.org>
-Subject: [PATCH 0/1] fixing dull colors in HDR for Polaris GPUs
-Date: Mon, 18 May 2026 20:06:18 -0700
-Message-ID: <20260519030624.51613-1-leorize+oss@disroot.org>
+Subject: [PATCH 1/1] drm/amd/display: set MSA MISC1 bit 6 when using VSC SDP
+ for DCE 11.x
+Date: Mon, 18 May 2026 20:06:19 -0700
+Message-ID: <20260519030624.51613-2-leorize+oss@disroot.org>
+In-Reply-To: <20260519030624.51613-1-leorize+oss@disroot.org>
+References: <20260519030624.51613-1-leorize+oss@disroot.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 19 May 2026 07:27:26 +0000
@@ -91,43 +96,83 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx,oss];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,disroot.org:mid,disroot.org:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: E76BC5790BD
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,disroot.org:email,disroot.org:mid,disroot.org:dkim]
+X-Rspamd-Queue-Id: C90535790A2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
+When BT.2020 colorimetry is selected, the driver sends information using
+VSC SDP but does not set "ignore MSA colorimetry" bit on older GPUs with
+DCE-based IPs. This causes certain sinks to prefer colorimetry
+information in DP MSA, resulting in terrible color rendering ("dull"
+colors) when HDR is enabled.
 
-Quite awhile ago I reported
-https://gitlab.freedesktop.org/drm/amd/-/work_items/4849 and it appears
-that I'm the only unlucky soul to have this particular GPU/Display
-combo.
+This commit wires up the MISC1 bit 6 for GPUs with DCE 11.x based IPs to
+correctly configure sinks to ignore colorimetry information in MSA,
+resolving the color rendering issue.
 
-Having some time off I decided to put these new fangled LLMs (GPT-5.5)
-into the test, and it found the issue rather quickly: MISC1 bit 6 was
-not set, causing the display to prefer MSA colorimetry. In the case
-Windows was booted first, the Radeon driver there configured the sink
-correctly, and it would keep that state until the link is disconnected.
-
-The hypothesis was tested and verified by using `umr` to modify the
-`DP_MSA_MISC` register directly, following with a display power-cycle.
-The implementation was copied from the code path used for DCN-based
-GPUs, and extra register wiring was assisted by LLM.
-
-This is my very first patch into the kernel, and I don't have a lot of
-experience with GPUs, so guidance would be greatly appreciated. If
-possible, I would like this fix to go into the stable branch as well, so
-I don't have to wait until the next release to use my monitor :D
-
--- Leorize
-
-Leorize (1):
-  drm/amd/display: set MSA MISC1 bit 6 when using VSC SDP for DCE 11.x
-
+Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/4849
+Assisted-by: oh-my-pi:GPT-5.5
+Signed-off-by: Leorize <leorize+oss@disroot.org>
+---
  .../drm/amd/display/dc/dce/dce_stream_encoder.c   | 15 ++++++++++++++-
  .../drm/amd/display/dc/dce/dce_stream_encoder.h   |  3 ++-
  2 files changed, 16 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
+index ed407e779c12..2c3a20d35fe9 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
+@@ -271,7 +271,6 @@ static void dce110_stream_encoder_dp_set_stream_attribute(
+ 	bool use_vsc_sdp_for_colorimetry,
+ 	uint32_t enable_sdp_splitting)
+ {
+-	(void)use_vsc_sdp_for_colorimetry;
+ 	(void)enable_sdp_splitting;
+ 	uint32_t h_active_start;
+ 	uint32_t v_active_start;
+@@ -334,6 +333,16 @@ static void dce110_stream_encoder_dp_set_stream_attribute(
+ 	if (REG(DP_MSA_MISC))
+ 		misc1 = REG_READ(DP_MSA_MISC);
+ 
++	/* For YCbCr420 and BT2020 Colorimetry Formats, VSC SDP shall be used.
++	 * When MISC1, bit 6, is Set to 1, a Source device uses a VSC SDP to indicate the
++	 * Pixel Encoding/Colorimetry Format and that a Sink device shall ignore MISC1, bit 7,
++	 * and MISC0, bits 7:1 (MISC1, bit 7, and MISC0, bits 7:1, become "don't care").
++	 */
++	if (use_vsc_sdp_for_colorimetry)
++		misc1 = misc1 | 0x40;
++	else
++		misc1 = misc1 & ~0x40;
++
+ 	/* set color depth */
+ 
+ 	switch (hw_crtc_timing.display_color_depth) {
+@@ -499,6 +508,10 @@ static void dce110_stream_encoder_dp_set_stream_attribute(
+ 				hw_crtc_timing.h_addressable + hw_crtc_timing.h_border_right,
+ 				DP_MSA_VHEIGHT, hw_crtc_timing.v_border_top +
+ 				hw_crtc_timing.v_addressable + hw_crtc_timing.v_border_bottom);
++	} else {
++		/* DCE-only path */
++		if (REG(DP_MSA_MISC))
++			REG_WRITE(DP_MSA_MISC, misc1);   /* MSA_MISC1 */
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h
+index 342c0afe6a94..88d6044904d1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h
+@@ -96,7 +96,8 @@
+ 
+ #define SE_COMMON_REG_LIST(id)\
+ 	SE_COMMON_REG_LIST_DCE_BASE(id), \
+-	SRI(AFMT_CNTL, DIG, id)
++	SRI(AFMT_CNTL, DIG, id), \
++	SRI(DP_MSA_MISC, DP, id)
+ 
+ #define SE_DCN_REG_LIST(id)\
+ 	SE_COMMON_REG_LIST_BASE(id),\
 -- 
 2.54.0
 
