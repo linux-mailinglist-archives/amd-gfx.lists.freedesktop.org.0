@@ -2,84 +2,36 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EJzJObQ5DGp8aQUAu9opvQ
+	id 2NfRLfNGDGp/cwUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 12:21:40 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 13:18:11 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99E7157C1FE
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 12:21:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4497657D5CF
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 May 2026 13:18:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25F9E10EC08;
-	Tue, 19 May 2026 10:21:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Pz+lAxKk";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38FB810E071;
+	Tue, 19 May 2026 11:18:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9417F10EBFD
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 10:21:37 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id
- 5b1f17b1804b1-4891c00e7aeso24375645e9.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 03:21:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779186096; x=1779790896; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Jq9DQU9+7CWNdt7Tl1OTcUjQ1o4DT7lI+wb4tdVU/6E=;
- b=Pz+lAxKktfWEqAiuPypCD8c9Gl7HdmvC3iYiTE9Ed+Yhg+d9LdMqIgT+cqgtNe53JI
- MEIn7BE/nxDuJg+qkbghvN10F5woJcrGsLCjXK7CY6ZK7SyB8730WZTXatMW0t7JWKTa
- qL4FGu3XmGEiz0/NV49Chy5PmG/fMoPDMiQS5ws5IfFJlLZe/b1NoPIE5uzWYlVTWV/y
- CJ7qYC8vJ2EBplQNzm54F+INgSeFUPu1cJsAGg5dw342KDvCQ8BSDYmmPYzUZ/rrJUTJ
- XHoSa1j4Eq9nuxTDpPVX0dQ9cdN5b5FeNBClGa9jHXhDfFe0yv9v10GDLsHDlNUxULoP
- GJFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779186096; x=1779790896;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=Jq9DQU9+7CWNdt7Tl1OTcUjQ1o4DT7lI+wb4tdVU/6E=;
- b=UG8DJ17JmCF5s2MLYNp1YEZe+pV8rhLce7BDIcZFEwUg/6EuyUZv9KbhR4yMJURfER
- yPZS7O+U7lNcfnfyp8lkQEN+2EYdsRFVn4DLSUofPgxz0QZzhqxYlb7uqqHbOZLvL1jD
- jgo9XPY2PfTULk646siGzJ4D70AaWETmjYlPhx896myAyVvvhvV1vV/+ZfF0WAoBjwIR
- zcuJZ+KpRO50P15JiaXYMo2EIH71+/lpk4YkQ6DYLygwb28l183qcpbBsVMedn74WHli
- 5ZPkW9qiCwvEhoU+Qshu20H4kpTK//KutmUvlJNhdmTUCY0MlgTLTkxfi8+uF2OCX7tO
- IKwQ==
-X-Gm-Message-State: AOJu0YwHJoBBdVO//dhM3W1VR2mrQ56SP2gKrHHxrox6yO7hSjgqa5wE
- 66/4VwMuwYm8Boo3NIGmqqFbH81frK+kVRn2jWyen6/DdxvZ46y4+G5DyKu77MRY
-X-Gm-Gg: Acq92OFhd9+16cUdgZApWPcdjpmHB/1tFgXO3gdQ1BLvWDShTA1WuQt05t9lm/fR8ra
- nauS/PgRbMwX9WNGnDcAqcczdCiXWCLphoL8Q7Je/5KpXEnVVOp82W0tjvhph0vdsB0L7O2/QTs
- lUTMwakPZYNuFlZLvbf9KttLBtfTA7zGGw4LZY4v0q3rBiyR8k7N6L8uf6So4u3BviayMAFyzgd
- qtwskfRNILfOoAoeRX8urIDExaMsHKZgTrPvrL0cVqQffsTs2sSvUm6wSNkmgw7TX31I6U8l5hH
- pswBxpbuk0MBYBlYX6aUahjMogQ6wlhgd4jaKMB3APeYaZRFFO6moSaxkZjyR8jhLtGxaKM8C9P
- LiJxIv0i4GpQ2nuORg2UaWigESKZpbqPkUbHlhetT7B1MxE5VMzdgNywLpt9rtyV/9d09djagWQ
- KpX+N1Y7Gdoodk3BoBrLJkxwkWUVaeTin+V3cePIkmbzc9aczGrmlRP9xsSH0XPnJb
-X-Received: by 2002:a05:600c:470e:b0:489:201c:dc46 with SMTP id
- 5b1f17b1804b1-48fe60ea590mr274201575e9.12.1779186096081; 
- Tue, 19 May 2026 03:21:36 -0700 (PDT)
-Received: from Timur-Hyperion.home (54001290.dsl.pool.telekom.hu.
- [84.0.18.144]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-45da0fe0fecsm41028224f8f.26.2026.05.19.03.21.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 19 May 2026 03:21:35 -0700 (PDT)
-From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- christian.koenig@amd.com, Natalie Vock <natalie.vock@gmx.de>,
- Melissa Wen <mwen@igalia.com>, Harry Wentland <Harry.Wentland@amd.com>,
- Alex Hung <alex.hung@amd.com>, Roman Li <Roman.Li@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Mario Limonciello <mario.limonciello@amd.com>
-Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 14/14] drm/amd/pm: Delete PP_DAL_POWERLEVEL
-Date: Tue, 19 May 2026 12:21:18 +0200
-Message-ID: <20260519102118.246466-15-timur.kristof@gmail.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260519102118.246466-1-timur.kristof@gmail.com>
-References: <20260519102118.246466-1-timur.kristof@gmail.com>
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4188110E071
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 May 2026 11:18:08 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 64JBI3O51435994; Tue, 19 May 2026 16:48:03 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 64JBI35D1435993;
+ Tue, 19 May 2026 16:48:03 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH v6 1/8] drm/amdgpu/userq: Fix doorbell object cleanup of queue
+Date: Tue, 19 May 2026 16:47:54 +0530
+Message-Id: <20260519111801.1435954-1-sunil.khatri@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,84 +46,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [2.39 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,gmx.de,igalia.com];
-	TAGGED_FROM(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	R_DKIM_NA(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[gmail.com];
+	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 99E7157C1FE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 4497657D5CF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Not used and not needed anymore.
+Unpin and unref the door bell obj if queue creation fails before
+initialization is complete.
 
-Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
-Reviewed-by: Melissa Wen <mwen@igalia.com>
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
 ---
- drivers/gpu/drm/amd/include/dm_pp_interface.h | 18 ------------------
- 1 file changed, 18 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/include/dm_pp_interface.h b/drivers/gpu/drm/amd/include/dm_pp_interface.h
-index 10747a1ceda9..e3d40fb37103 100644
---- a/drivers/gpu/drm/amd/include/dm_pp_interface.h
-+++ b/drivers/gpu/drm/amd/include/dm_pp_interface.h
-@@ -115,23 +115,6 @@ struct amd_pp_simple_clock_info {
- 	uint32_t	memory_max_clock;
- };
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+index 154742bdd5a6..eedea84c5e0f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+@@ -787,7 +787,7 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 	r = uq_funcs->mqd_create(queue, &args->in);
+ 	if (r) {
+ 		drm_file_err(uq_mgr->file, "Failed to create Queue\n");
+-		goto clean_mapping;
++		goto clean_doorbell_bo;
+ 	}
  
--enum PP_DAL_POWERLEVEL {
--	PP_DAL_POWERLEVEL_INVALID = 0,
--	PP_DAL_POWERLEVEL_ULTRALOW,
--	PP_DAL_POWERLEVEL_LOW,
--	PP_DAL_POWERLEVEL_NOMINAL,
--	PP_DAL_POWERLEVEL_PERFORMANCE,
--
--	PP_DAL_POWERLEVEL_0 = PP_DAL_POWERLEVEL_ULTRALOW,
--	PP_DAL_POWERLEVEL_1 = PP_DAL_POWERLEVEL_LOW,
--	PP_DAL_POWERLEVEL_2 = PP_DAL_POWERLEVEL_NOMINAL,
--	PP_DAL_POWERLEVEL_3 = PP_DAL_POWERLEVEL_PERFORMANCE,
--	PP_DAL_POWERLEVEL_4 = PP_DAL_POWERLEVEL_3+1,
--	PP_DAL_POWERLEVEL_5 = PP_DAL_POWERLEVEL_4+1,
--	PP_DAL_POWERLEVEL_6 = PP_DAL_POWERLEVEL_5+1,
--	PP_DAL_POWERLEVEL_7 = PP_DAL_POWERLEVEL_6+1,
--};
--
- struct amd_pp_clock_info {
- 	uint32_t min_engine_clock;
- 	uint32_t max_engine_clock;
-@@ -141,7 +124,6 @@ struct amd_pp_clock_info {
- 	uint32_t max_bus_bandwidth;
- 	uint32_t max_engine_clock_in_sr;
- 	uint32_t min_engine_clock_in_sr;
--	enum PP_DAL_POWERLEVEL max_clocks_state;
- };
+ 	/* Update VM owner at userq submit-time for page-fault attribution. */
+@@ -808,7 +808,7 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 		if (r) {
+ 			drm_file_err(uq_mgr->file, "Failed to map Queue\n");
+ 			mutex_unlock(&uq_mgr->userq_mutex);
+-			goto clean_doorbell;
++			goto erase_doorbell;
+ 		}
+ 	}
  
- enum amd_pp_clock_type {
+@@ -831,10 +831,15 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
+ 	args->out.queue_id = qid;
+ 	return 0;
+ 
+-clean_doorbell:
++erase_doorbell:
+ 	xa_erase_irq(&adev->userq_doorbell_xa, index);
+ clean_mqd:
+ 	uq_funcs->mqd_destroy(queue);
++clean_doorbell_bo:
++	amdgpu_bo_reserve(queue->db_obj.obj, true);
++	amdgpu_bo_unpin(queue->db_obj.obj);
++	amdgpu_bo_unreserve(queue->db_obj.obj);
++	amdgpu_bo_unref(&queue->db_obj.obj);
+ clean_mapping:
+ 	amdgpu_bo_reserve(fpriv->vm.root.bo, true);
+ 	amdgpu_userq_buffer_vas_list_cleanup(adev, queue);
 -- 
-2.54.0
+2.34.1
 
