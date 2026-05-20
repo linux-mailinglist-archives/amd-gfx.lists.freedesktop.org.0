@@ -2,130 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mPHqCDF3DWokxwUAu9opvQ
+	id yNJhHNStDmrSBAYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 May 2026 10:56:17 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 09:01:40 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8484558A3C8
-	for <lists+amd-gfx@lfdr.de>; Wed, 20 May 2026 10:56:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B1B959FCF3
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 09:01:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 194EE10EF81;
-	Wed, 20 May 2026 08:56:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 610A010F21D;
+	Thu, 21 May 2026 07:01:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="sjZypQ2O";
+	dkim=pass (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="TiS8wmmg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH0PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11011008.outbound.protection.outlook.com [40.107.208.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EC7010EF81
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 May 2026 08:56:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Et0yU5gLdnyd0awR2n+ME4fY31LmN+OKqxPCERcvK0GqL95lcaMuHrFZ1UKYVWnnzWc6hV3VWC3OSCVaTPvGsTgaXwsuGJI1dhsZ5WSL/johF4oDH3t6tNwcyodLS/dHaUD6lx93jXwDtGqqch86JM1tHsgScWmTaL4E4+gnJZHAwUnyY8C8mljwoJ3AHCwdnXNPSOFl/jRu2ubLFbiO5TgyPKo1TDNHc6Cga/tYjRop0eh84fghIO8U4JDhZ2z/rNDCLeSPInv1Z1bUataPTNQ1EGCaNGONKoUIlYre8ImAC+2Fs8yM3PkrwgalxBIFynlCWKcpVqsJPS5O0VWroA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lui23NCkqipnEWKzE2gSFk/3kW/jlh04UF9hWo8ciDo=;
- b=j1aT9r/Q/p7ZvYlOtrR5PTymi7dx5tsne2GUeHp53KClfUykLrsf14gjsiV4Nq3eELOhHPmd9AvvqbhaSEoQ0tCxGCsNBcd2jy0e9pGg11FgtMPrvM8rhZyuUejgkaHC3z1LnJEhA9JNc/NfDI+S1PgtylZdy7uLlRhGZDhioKNITAmwEnuXXreU5Sq6vBwB3fuWuAg1/vQBfhQ89vuJ70zwxvdEbowu6TSBmH8xen3epOuR5mFVPNOR/2rZijtMlUhj0TyF4ipESnd7J48DRWH6e/e0pvUTePhJG++ogQiPhAuEcpYATC4wS0OSV6dHMaVb688uyS++jbY4B1W2CA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lui23NCkqipnEWKzE2gSFk/3kW/jlh04UF9hWo8ciDo=;
- b=sjZypQ2OetJYVKKNjOvqqBdUcFhOmE3owEHfMRX7cXhsqLBBuEGNuFr8xW6pmT5fmQTqtACv14LnF1z9MW20QwAP0vx3/9dhdrx4lZwS5erDaU5DXEV3Rt6WOqLQK7KDCV1TofZlGHHZcjlMd5ZYqbQgRB5dcQaYrTktoYq18jw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SJ2PR12MB8884.namprd12.prod.outlook.com (2603:10b6:a03:547::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Wed, 20 May
- 2026 08:56:10 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0025.022; Wed, 20 May 2026
- 08:56:10 +0000
-Message-ID: <933edeb7-9f7e-48aa-a798-feb5c0cc7738@amd.com>
-Date: Wed, 20 May 2026 10:56:06 +0200
+X-Greylist: delayed 468 seconds by postgrey-1.36 at gabe;
+ Wed, 20 May 2026 09:06:43 UTC
+Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
+ [46.38.247.119])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CC3610EF7D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 May 2026 09:06:43 +0000 (UTC)
+Received: from mors-relay-8404.netcup.net (localhost [127.0.0.1])
+ by mors-relay-8404.netcup.net (Postfix) with ESMTPS id 4gL57L2cdnz8Bhl;
+ Wed, 20 May 2026 10:58:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
+ s=key2; t=1779267534;
+ bh=kmrXM2xDfbqfbD/fPnVMn722OKYUpDmg0PIS/FT5SZg=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=TiS8wmmgmEN3MmJ97cDmmZS8IBihnWHKhIwMnVLkARVLaOj2ScsgoWL+p6Eca13Up
+ tAsME4F78gk0PMpZ7A0/q29X/7i13398cZiojoyhZptQyVFVVIePw+h1dbleeyyUxq
+ LrlTUsrn1bAvl0CqiYY8+7YtOIKTJuUtpN967X71k/aKQEPRtvwNN+LwDxyd1jNpJp
+ KPjk4pWiMWnRNvAQ4CoUAcdlA6YIHeWYlxWXtRR95//I6E1ehgB0ab6Ktndveb+/lw
+ h8BbSNQauyLac/bbTp3sDtAVim9NEHULXRI3BYoPt/uZ7G44stU+EcGtXs9bBNStVx
+ lY/lsDT7Ra0Ew==
+Received: from policy01-mors.netcup.net (unknown [46.38.225.35])
+ by mors-relay-8404.netcup.net (Postfix) with ESMTPS id 4gL57L1vx9z4x86;
+ Wed, 20 May 2026 10:58:54 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at policy01-mors.netcup.net
+X-Spam-Flag: NO
+X-Spam-Score: -2.898
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.898 required=6.31 tests=[ALL_TRUSTED=-1,
+ BAYES_00=-1.9, SPF_PASS=-0.001, URIBL_BLOCKED=0.001,
+ URIBL_DBL_BLOCKED_OPENDNS=0.001, URIBL_ZEN_BLOCKED_OPENDNS=0.001]
+ autolearn=ham autolearn_force=no
+Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by policy01-mors.netcup.net (Postfix) with ESMTPS id 4gL57K0Kq4z8tYl;
+ Wed, 20 May 2026 10:58:53 +0200 (CEST)
+Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
+ [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
+ by mxe9fb.netcup.net (Postfix) with ESMTPSA id 56A1D6034C;
+ Wed, 20 May 2026 10:58:52 +0200 (CEST)
+Authentication-Results: mxe9fb;
+ spf=pass (sender IP is 2a02:8108:8984:1d00:a0cf:1912:4be:477f)
+ smtp.mailfrom=regressions@leemhuis.info
+ smtp.helo=[IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f]
+Received-SPF: pass (mxe9fb: connection is authenticated)
+Message-ID: <3e181f99-42d3-484f-a89b-2f5955146a5b@leemhuis.info>
+Date: Wed, 20 May 2026 10:58:51 +0200
+MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] drm/amdgpu/userq: reserve the object before pinning it
-To: Sunil Khatri <sunil.khatri@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-References: <20260520025258.1866776-1-sunil.khatri@amd.com>
- <20260520025258.1866776-2-sunil.khatri@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260520025258.1866776-2-sunil.khatri@amd.com>
+Subject: Re: 7.0-rc4 dcn31_program_compbuf_size trace
+To: Minxi Hou <houminxi@gmail.com>, jwollrath@web.de
+Cc: amd-gfx@lists.freedesktop.org, Eric Naim <dnaim@cachyos.org>,
+ Bhuvanachandra Pinninti <bpinnint@amd.com>,
+ Linux kernel regressions list <regressions@lists.linux.dev>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Antonio Quartulli <antonio@mandelbit.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+References: <20260316094232.6bb6f0bf@schienar>
+ <20260518080835.100682-1-houminxi@gmail.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+Content-Language: de-DE, en-US
+In-Reply-To: <20260518080835.100682-1-houminxi@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0243.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f5::11) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SJ2PR12MB8884:EE_
-X-MS-Office365-Filtering-Correlation-Id: 47c291c5-3b5f-41d0-98a6-08deb64da322
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|4143699003|22082099003|56012099003|18002099003|11063799006;
-X-Microsoft-Antispam-Message-Info: fmmxjwraKPZTrX8AU8/mnGDH7IlRd6KG3iuWxkq0HrzyaZQXKLlEU8bDmo/TJve1XmaTJ4prgwv48WYPyEgP20u8s6ADRPVRp4Zg1GTjrOze/jED7hTIA6w0eoaBrDUMrBVyqvqPpH72JdWdVtD8vdVP+Km0+cK1D3kgHforiqOU8Lk8tNoPUUpnBjLHCpk4vu2Tu8o3y+ezyE5SBSf+mVUBBC8oUSq26ADSnAGY5jpTLGrQ7IH7FUVBrG0GFvHqntVbSuWLPsys6zNBvz+E6sa1SZAV13yX0u2Ie5eC3ZxDA5wmgSSFH894e/17r4BcXvk1EruiNV4BZqRQMAKgVtSpOntjMlZqxHJmPbzvF+jV+csNAmaaSz9Yk7IxMpRD8dhE68PuWKmqFwZUbJn9gwuN5MtNu/QWRYE9UE869BsqscfM/ESkXIw6Uh+oEKQCECsSZUsxp1tpiGmbM7c4oDNlHRV4rTvixp3LMMrG7146CrOv0kWugTMvLPQrJ6j+0nz2m8FtjjKwPAeXVotc7itsGl1fRzo4cqIAI1v1T1McX4xJTGmYjHawSXPGYuM32BpErsYgY56A8cMJtwGt8CPJX6flkISITI4k0CloCxbJhVXiX124/fiCZGB2vuzfx6QS/z8liIlePySvZ45mNIfWc0X+IBTMeHTrzpwEb2Amm3HSNXayMAwLYGZi1kMa
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(4143699003)(22082099003)(56012099003)(18002099003)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RWpJVGFUVTFBSmZUanR1QmFLbGpDUzJzdjNNOHlGMmo0aWQ5MWhrRXU0Ukdk?=
- =?utf-8?B?eWZKWGFOaDFsdnhjUzRnQ3ZZbUozaW96WHV1ZXBjMWJmbGJ1OUcxZ0tUSmVQ?=
- =?utf-8?B?M0p5UldIdndvQm81UFJ4bmx4TlpXSkpqRXh1LzB4cWVLUktVa2E4ZEpBRmhP?=
- =?utf-8?B?emRYRlF4eWI2QTBaTit4S1Rzc0k5ODFVc1pvNDZhNDlXdCtMTTROSkd1aTdo?=
- =?utf-8?B?UzYxK1JjMHNnUFh0d0dxaWxNNlJMNFhvVGNzb3ZTdGtJUlN2bDF0Z3lsQWlt?=
- =?utf-8?B?WEYvSFc1YkpYZkIxVVJDYXNxN2Z3WmJ6QkhIUk9hcVcvQ04yQ1pLZkE1a3Zw?=
- =?utf-8?B?ZWdFaGRxQkNTLzUrREcvdDVTRnFFQWxmZHRRVnNIK1kxWDNNbkw3MzJQVlFi?=
- =?utf-8?B?bExHbU80dE5mTmRteU9zUHBEQVhYL1ovUytndFN1UXNiSURlbmRTL0Z6WDlS?=
- =?utf-8?B?OXR2c2dXMEl6ajdUSFM3SXRUWG5ibGtoUW85eWxSRllGa01HNVVpMnNNK3dG?=
- =?utf-8?B?d2VxZFc2TG1SRnM3TmQ5TGJta2Z4QzQ4b0RXRHEvTWZKKzEzbkk4NU9wd1VG?=
- =?utf-8?B?eDZmM2NrcytldTNuRW93TEQ4SkxSSGl6WkVKTUp1dmtHZ2JnWUxIb1BTcVpG?=
- =?utf-8?B?anRtNGZ0aVc1OGd1NldKVW9WdVZFM3ZxSlhldTNNeTg2Z05XSVVycjBJOS9K?=
- =?utf-8?B?YUIvc0p4YlFwYnpjTk5aNWxSZjJhcjJxWFFsRjlIN2N1d0F0aVFSNWt4YTht?=
- =?utf-8?B?T2FtZ1ViK3JzZndQVFFvUDNvRkJmamI2cCtWTk8xQ2s2TmJWOGYySDNZeU40?=
- =?utf-8?B?dVMrSVV5SGxFWElpWGRvbkJCaUtNekFEVlFmYTcrMjZuTmwzcy8yOHkwRkRE?=
- =?utf-8?B?Tm1xTDdjL3QrY1hlTTNSa1RrWTNlaWJkK1d1SVRsUzF4MWFhZ015OW14Z0Vz?=
- =?utf-8?B?eFVJckFiTHVWc3lZZWF6eXZkc20wK3JsQXc3TkQ4ak5pNFBhbzZWV211M0hD?=
- =?utf-8?B?cUFsYTNEUkNzbVRPbVFZWDlhSVgxRldIRW1rZ2pvSGVlNkM1TWVXN3QydVlz?=
- =?utf-8?B?L056VzVFc3RUeEpkMGVoeUxMNTdWOGxodG16K1J5TFQxNDZacG12L0ZMdm5C?=
- =?utf-8?B?eFJCNXoxbUFNOXFwUWl6Rlp5c2grWGliTHQxem9yZ1hKR3NaMmVPWGJOS3dH?=
- =?utf-8?B?NkEwcVBxZk5SQmZTaHNKSzdmYXJsRGNjeWVkRmlxOHBKNVhiZmVlNCtLSU8z?=
- =?utf-8?B?S3dUOGU0N2NCUlZPdzVMeU1ObG4zUzR6SGE3SHhJL0FqeDF0S1I5Y24rVkFn?=
- =?utf-8?B?R2FuRTc3RDJtTlAxQi84VXArRDhsUUJ4T2c5bXozZmdkMklzNjVsR0xrODh1?=
- =?utf-8?B?VGFCSkxsQ3NIaVRYeVVxWldTZitXWnpnc1l2eUJKdnZsU25EME1Lb3BaaDNN?=
- =?utf-8?B?V2crYTlkeVl1UlMvZjR5MmI5RC9yeWtWbGUxUXRqeUZTb0JoQy9oa3hxaTAz?=
- =?utf-8?B?azlzV0NQZU5xQk91YVdjZG1LNmh6V3Y1MDArZWw3d2VIdHAzTi9sbURNeVVM?=
- =?utf-8?B?N1pTdUxkb1hNUTdqdnczOVl2eGJmTWVtRS8vZy9sdHA5ZVJyaFVDWHIvb25S?=
- =?utf-8?B?bjRuNStJTHU5UkhuMkoxTy81SWdnalZDSGpLV085Y0JWMWsvblBaVExTMlZD?=
- =?utf-8?B?ekdCbEZWWWtEaWVjdTEzcXNWelAxUXdDNGwraDNKbk1MRHMyR0Z0RHZseUs1?=
- =?utf-8?B?cElQUlloTjJGSnFaeFh1RzYvVHlqRVpuWm1FREwwYjZMRUs1SlZ6dzR4MlR5?=
- =?utf-8?B?UzZyTDluUnVJc1hzamE3d1Y1MnhoTWxWaHRwK2JaOE9XYUlZK0s3TjIvTS9F?=
- =?utf-8?B?RVUrRzJQaVlNbzN3d0Z0RjliczFIZTM1L08va3NVcXNoWEZ4NmhzeGRyMkN6?=
- =?utf-8?B?YXFyNUEwTVQ5YS8ydWJsQ3VYQ0g5dk1pUWtGVWZ5TkRIMDZ6WmtRcnFUa0N0?=
- =?utf-8?B?bDJzd3gzVllHd3I3MmV0bTRsb0VjUE9SbG41M0JiRldYcVZQY1Mvc1Jhb2tK?=
- =?utf-8?B?RG9zdDdxVFR0cjNkejl5ZU1wTS9uTUJ6Zlpqb3NmaVVtVHYycGlFUlNRVTJj?=
- =?utf-8?B?KzhCQld0Qjh2N2VrSEdpTUNKQ3JSVzBETG9BVzhDQVRsbE4yd2hOTzAzQWdX?=
- =?utf-8?B?eTkvdGVvb0NJOFBNTnJudU1aV2tzTHNaaXhHWnlOenlEdThTRE9EaC9jcTU2?=
- =?utf-8?B?UHl2b2gzT0RjNUVkeDhnVGRhTW5qeTRKUVR1c2JuWHlvYWY5VTFNcCtEeTBz?=
- =?utf-8?Q?8lowtX27069DrwKZeV?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47c291c5-3b5f-41d0-98a6-08deb64da322
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 May 2026 08:56:10.1751 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UyrFZR3Xj1P1gQhfmYuwFA8G27KJ1IySojibGF3YjqJx7g8BLiVByPsQOsZd9zbV
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8884
+X-PPP-Message-ID: <177926753273.259557.14850135628493609089@mxe9fb.netcup.net>
+X-NC-CID: G1osxqXGYcLY/uTBF2vW+9WvFR2CJOYw9Mw7Dp7IC2jHdK6N1ds=
+X-Mailman-Approved-At: Thu, 21 May 2026 07:01:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,65 +97,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:sunil.khatri@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[amd.com:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:houminxi@gmail.com,m:jwollrath@web.de,m:dnaim@cachyos.org,m:bpinnint@amd.com,m:regressions@lists.linux.dev,m:alexander.deucher@amd.com,m:antonio@mandelbit.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
+	DMARC_NA(0.00)[leemhuis.info];
+	FREEMAIL_TO(0.00)[gmail.com,web.de];
+	FORGED_SENDER(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RSPAMD_URIBL_FAIL(0.00)[gitlab.freedesktop.org:query timed out,60hz:query timed out];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[leemhuis.info:+];
+	RSPAMD_EMAILBL_FAIL(0.00)[4k.60hz:query timed out];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[3];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,amd.com:mid,amd.com:dkim]
-X-Rspamd-Queue-Id: 8484558A3C8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,gitlab.freedesktop.org:url,60hz:email]
+X-Rspamd-Queue-Id: 0B1B959FCF3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 5/20/26 04:52, Sunil Khatri wrote:
-> In amdgpu_userq_destroy_object, we should reserve the object
-> before unpin the object.
+[+a few people]
 
-Yeah please completely nuke the function and use amdgpu_bo_free_kernel() instead.
+On 5/18/26 10:08, Minxi Hou wrote:
+> On Mon, 16 Mar 2026 09:42:32 +0100, Julian Wollrath wrote:
+>> when turning the display off via 'xset dpms force off' I observe the
+>> following warning and trace under 7.0-rc4 with a AMD Ryzen 7 PRO 8840U
+> 
+> I can reproduce the same warning on different hardware with a different
+> trigger.
+> 
+> Machine: HP Z66 G6 14 (ProBook 4 G1ah), AMD Ryzen 7 H 255 (HawkPoint1),
+> kernel 7.0.8-200.fc44.x86_64.
+> 
+> Trigger: HDMI hotplug with an external 4K monitor. The Z66's HDMI port
+> uses a DP-to-HDMI protocol converter with FRL support (dmesg shows
+> "DP-HDMI FRL PCON supported"). Connecting the monitor at boot causes
+> the first timeout during initialization; subsequent hotplug events
+> repeat it at runtime.
+> 
+> The call trace matches yours exactly:
+>   dcn31_program_compbuf_size line:141
+>   dcn20_optimize_bandwidth
+>   dc_commit_state_no_check
+>   dc_commit_streams
+>   amdgpu_dm_atomic_commit_tail
+> 
+> Not seen with 6.19.x. CachyOS community bisected this to:
+> 
+>   commit 592c5b80110d5e9e50873b5364818cb6f401e26d
+>   "drm/amd/display: Migrate HUBBUB register access from hwseq to hubbub component"
 
+Antonio posted a RFC fix for that comment here with a reference to a
+warning that on a *very quick* look looks similar:
+https://lore.kernel.org/all/20260519144509.2646680-1-antonio@mandelbit.com/
+
+Wondering if we need a ticket here to get this resolved:
+https://gitlab.freedesktop.org/drm/amd/-/work_items/
+
+But from the reply to Antonio's patch is sounds like it's not needed.
+
+Ciao, Thorsten
+
+> One thing I noticed on my setup: the amdgpu driver defaults to
+> max_bpc=16 for the HDMI connector. With a HDMI 2.0 monitor (BenQ
+> EL2870U, Max TMDS 340 MHz) at 4K@60Hz, the higher color depth
+> increases bandwidth demand during compbuf reprogramming and makes the
+> timeout happen more often. Adding amdgpu.deep_color=0 helps but does
+> not fix the root cause.
 > 
-> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 2 ++
->  1 file changed, 2 insertions(+)
+> Partial workaround:
+>   amdgpu.runpm=0 amdgpu.gfx_off=0 amdgpu.deep_color=0
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> index 0607b7078518..758bf099f0bc 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> @@ -528,8 +528,10 @@ int amdgpu_userq_create_object(struct amdgpu_userq_mgr *uq_mgr,
->  
->  void amdgpu_userq_destroy_object(struct amdgpu_userq_obj *userq_obj)
->  {
-> +	amdgpu_bo_reserve(userq_obj->obj, true);
->  	amdgpu_bo_kunmap(userq_obj->obj);
->  	amdgpu_bo_unpin(userq_obj->obj);
-> +	amdgpu_bo_unreserve(userq_obj->obj);
->  	amdgpu_bo_unref(&userq_obj->obj);
->  }
->  
+> A patch proposed by Giuseppe Ranieri in the CachyOS issue tracker [1]
+> changes the REG_WAIT parameters from 1us*100 to 1000us*30 and resolves
+> the warning for several users with DCN 3.1 hardware. Discussion there
+> is ongoing about whether 2-10us*1000 would be a better fit.
+> 
+> [1] https://github.com/CachyOS/linux-cachyos/issues/810
+> 
+> Minxi Hou
 
