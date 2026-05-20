@@ -2,139 +2,84 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cLMtCRkvDmoK7wUAu9opvQ
+	id 4EUnJtGtDmr6AwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 00:00:57 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 09:01:37 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B7C859B97C
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 00:00:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CE9559FCEF
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 09:01:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 896BF10E421;
-	Wed, 20 May 2026 22:00:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CC0F10E477;
+	Thu, 21 May 2026 07:01:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="UHFdx2IQ";
+	dkim=pass (2048-bit key; secure) header.d=usp.br header.i=@usp.br header.b="PZZPPhAG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013016.outbound.protection.outlook.com
- [40.107.201.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D425210E421
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 May 2026 22:00:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EECkVpjX7wH7Nl4YK8yxlpzcllcNToPjUF6GpR3M5Ib4leYibrUPPpW5Hjrr5n3ymcYbYXPRcLAiK3xGswYIlt9JzPf7QKNIOWNNBEwRwqTREknkn/Fhh1tmxEEtoyYYh1jxS4QrW5PBgdIX2K/rdV2hvGg3rmKs2cDitILAxBQeeBmsPXO2QxvE1MPw6axJE6Oh8vZjokYGwWz90txoxTHb2fuMcM2zvcDuLspeAOBjHCNyr16a5DhrmcjfZ6VTvHVZbGt1Y7tIQxM0nl4qc5Oa350QcjijamZFVT7tTCgrekdNQX9NfZqVtUhb/1Tk/hkR2iBMO3sGksHFS3f0BA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jUbEV+YZ6Y1eXVcTfhJUWmho7sZDZm2M4DLrndsJOYg=;
- b=KqZux3s+yX/tcIzk2C0spNp5+7nOoiCsI4MOUuy2yNnFSzBZjFsdI7adw7sPOjcsXrLdfsu5GTDgl5lDtOcmEtXb70xOvTCNz8XO4QjDALJHInT73KR09/MYa2B8cDfw2HG6OhqGh4sLPtcTZkP1/vBVwAFksvY27jt+ek6La//PQutDg1d7G38vFQjgkzixNLvTgvO9OXPr/AfmB/AGuRImNz2r9FKyGujiFRKWEKbSsEQXSkRrc9j7KaYdM0UuKTkrjKF49mSjUDiBR5rab9lBTwtmUBs11Qla6gzG7jHQbShHaoIY0XaviDymxvB63I9ACAoBJLvDgwdOOrMZFA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jUbEV+YZ6Y1eXVcTfhJUWmho7sZDZm2M4DLrndsJOYg=;
- b=UHFdx2IQhrPQ5cufMtBbqwT005xvkx0SLRLTXvvbXOGYPKscD494Q1KotM+sekhrdzI7MOluBPmRlZlmnLZzGBGmwx33eCwDon38iTnv93zhy106DvAXpoCkVaN8F4sRn6HCZjP82tymODXPKcduEHB4LJ7kZm1tNbrpo3vDFl8=
-Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
- by SA0PR12MB4366.namprd12.prod.outlook.com (2603:10b6:806:72::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.14; Wed, 20 May
- 2026 22:00:48 +0000
-Received: from BL1PR12MB5144.namprd12.prod.outlook.com
- ([fe80::699b:1fb2:73:6a33]) by BL1PR12MB5144.namprd12.prod.outlook.com
- ([fe80::699b:1fb2:73:6a33%6]) with mapi id 15.21.0048.016; Wed, 20 May 2026
- 22:00:48 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>, "Liang, Prike"
- <Prike.Liang@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH 2/2] drm/amdgpu: unmap userq for evicting user queue
-Thread-Topic: [PATCH 2/2] drm/amdgpu: unmap userq for evicting user queue
-Thread-Index: AQHc4585ot1t5jJr2k24OA/1GKe53rYWz4AAgACw7bA=
-Date: Wed, 20 May 2026 22:00:48 +0000
-Message-ID: <BL1PR12MB5144F90F81E91323361BF09EF7012@BL1PR12MB5144.namprd12.prod.outlook.com>
-References: <20260514124250.3833711-1-Prike.Liang@amd.com>
- <20260514124250.3833711-2-Prike.Liang@amd.com>
- <cff0a9b1-5e02-48ee-bd1c-bd0f31d89bae@amd.com>
-In-Reply-To: <cff0a9b1-5e02-48ee-bd1c-bd0f31d89bae@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_Enabled=True;
- MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_SetDate=2026-05-20T21:58:55.0000000Z;
- MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_Name=AMD Public
- v26; MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_ContentBits=3;
- MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_Method=Privileged
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL1PR12MB5144:EE_|SA0PR12MB4366:EE_
-x-ms-office365-filtering-correlation-id: 5d3d7d80-29b5-420d-e3a5-08deb6bb3ff8
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|4143699003|22082099003|56012099003|18002099003|38070700021|11063799006;
-x-microsoft-antispam-message-info: VV0A+ZyY7cx7llB1jEPV6DdFStEfIT0LyWR0EKdfWUuzMaeqIQ1gF1sjlHGcPCJxsExTfjVesYksoioy5gVYiJ5vGkvlSjHXsEh74r9AloFOyxzp0tHX4OZLU2tqU5imPAnZDwKH1eKQGfdbhHPGX/R+6Erg01JusPplOwERF0dKSoOWz5/jsC9MzPZw1m4OZ2kjv5aVMTyuWdMrv8/l9n6k/q+r99o/SEVhoQDaYFp2ib5BOKMVCZAZGrkG8PU84heHWkfnw2F/cmC9QMnmOZXFv0tbEchjetLZ1JQtt2RynqUBhEoNNKRRAv/Uk6i2+KH1UGtkvCop005bfmsQKBxf8e78BfaPHHgKSs8Ufn1q5suTbA9U3xPo/4LtPp6C4qxxDLnwi5TshTsUeASbSnLlv2j7gZV7oqotMYZt1n4XQftnLHvITqzAUhrGbk0/F+y3HWN4DYp8QDcWJWvk6OAGDxtg5mH0xCkj5jvSX9Ae3Jxi7XNLqZVTpokT36X7yTI/n9osdCDnz44RZHyYJ6PzFZ/pU1onPHYtN3tQsIG1CFWLfCwLd1hj2nrXiranD2r1KgaNldyG6f0KiiDP/EMAH+kicHgpzMJl/bXgBCt73v/+ty1zUSYq8bXlIa9rNmwYQOaXA4TYO0uSMmawrNU36NiTcop+2WcXU8rPuKBtsk+CZypoPYgGaf5+bdjUnNSq8V4MVnCzg5X04vSphx17XWRn+5YNoe6n33XyjUxvd3SfG5zQxH+1TsZ0zzMm
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(4143699003)(22082099003)(56012099003)(18002099003)(38070700021)(11063799006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Y3E3NUttM3lpOTl3amxhZUxZZ1U3SHErdHhTbkFhWHVsNFpBMVRNdHJnMGxo?=
- =?utf-8?B?ais1TURWeEg0VlUyTjAwRVpOYW5zZjA5WFpPU0lQSlRtZFhFUGI5OUpLWXlV?=
- =?utf-8?B?OXBSK0ZHOStlOThXRGNWSDdkcjNmWWxoY0tscEdwZHhtY1JIRTNtZHVibk96?=
- =?utf-8?B?TWpTc2w0V21VanJjdDRZVDcrNW16Mmcwc3IzQnBqdGtrTElIc0pKWXRZSURZ?=
- =?utf-8?B?OXRBbnAyWGFuOU1vSWdzTjNZUk1OSGdkTy9wTEczR3lGRHYrb1NKcnBXN2gz?=
- =?utf-8?B?QnM0SEtSaktnNm1FT3NmWXYxWkh2ekxzRmE2OGVTdEpCYlV2ZFphL0t5Y3Vr?=
- =?utf-8?B?Z0psdHh0R3RIMUZSYlpIczRtclJoVzI1U2MvdzZFT2JNRXFqaUJYS0Mzd1ZE?=
- =?utf-8?B?Qk9HakRIdmo5VXF5TUVOd2VrUHZpaVkrNGI1UXhFK1cvWHBtZVY4SytPK0J5?=
- =?utf-8?B?MzdzZjd6aStnUjZlN3BkamtSMmExcWR1V1lJN2o4c0lBako1ZWw0czFUejAz?=
- =?utf-8?B?NjBSZVpIWFdXWFVVNDJ3THZnREw4YThZSG1lY0V6UEhkMFFUdGkxRmxsV3cx?=
- =?utf-8?B?SFBxNTdMM2piRjEvaW5Xa3ZsditEK2pRS3dwblNFZS9scU1aQk8xWXpaQnY5?=
- =?utf-8?B?cFprNlp1blFPTXB5Y2FweHZrRlZqa0I5cEpvekRLVlNnaFNZdHVPbGtLR21Y?=
- =?utf-8?B?WngxNjhJcCs5SFdobmZVNVdKSlVwTU1RU1FhYXdxMGlMZER3WTlMaC9MUWN3?=
- =?utf-8?B?ZUtZYmptbzZoZ0gybEphMGE0cTFPenhsU241M2NvZEphc1NvajVRb2FHaWtW?=
- =?utf-8?B?NXVxSlNOTzB3NzlodkZ3RGdBZEhJVWxJYVZpa2VZSE81dlpHL1ZwWnpwQ1pX?=
- =?utf-8?B?RTdKUTNFZm1sSjg2aElIZHZZU1QwNmpSeEV1MWdPODdxZHdxSFhaMStZU3ZQ?=
- =?utf-8?B?ekFMdXpBalpFYmt6NHRLVXhIejNqL3BhemNGbTZQR3NSQ3VhOGFudmVheFJZ?=
- =?utf-8?B?RFk5MlBkUDVOb1Y2MEthVkZUMk1nOGRaejErSStQVFd6dnh0NloxSERvalZq?=
- =?utf-8?B?bGFrUTVHS0N3NGU0ck5qZjYybTlwVGNEUEJmaERnZDY4ZVFUOFpZQWh6TnEz?=
- =?utf-8?B?TjdpenRCMStYQlk5YTd1VHpicy9kRGJNSUNaazBtRW9WUU9KZTM5OWNSVzl4?=
- =?utf-8?B?b3ZUVUE5ejhEZ1AvZmdDQUNHRSs0MkJiRiswZEJHdEVmT0NBUlBKUWtYVkpD?=
- =?utf-8?B?SkZwN2xPNkUvTnBqeHNwVDJuTmF1ZGVnWkpXbHk0Y0JGd2RMaVZaSExtS1pC?=
- =?utf-8?B?THU3YytuSVlEUnVVN1haL3B4R1hDdkRtUFJvTU01aFluT3FocWN4aWVUWnRz?=
- =?utf-8?B?L0srbzFzY0FVME5xM1FqaHI0UFUxaW5WTjA2ZGY0djcyRjEvTlRVR1d0VnFa?=
- =?utf-8?B?dGVzc0p2aUhmTkJvY0l5ZVZzTmlLWVgwTTMwcEsrbGV1Y2RzQlVoVmRYaiti?=
- =?utf-8?B?RFlrR2QvOUhEbkIvbCtPc1R1UjJ0SzFjeGdnVWNuczdjWXVCQWdmc0Vqb3Rn?=
- =?utf-8?B?ZnQzSTNTVmtKTG9jdlA3bDJGUkE1eVRscnFKZUhEb3NPOERDdlN0enhIa3lT?=
- =?utf-8?B?QkU4V1hsYnJCN0ZPamNsKzRPZlN6bDFSZnpSN1c4azMxYTZXMTZHRDF4cFFP?=
- =?utf-8?B?Ry9ZY1F6Vk9raE5SY2FHNmg0RUp0SE8yWGxEL0hJUlY2ODlaMVVMT08rYk5E?=
- =?utf-8?B?ZzJGaU1ZQzdOOVNFSkh2VVdXTVdVNHVnODlUOFprRDdmMXZsVUJMNU1OOWZO?=
- =?utf-8?B?VHV4WnBRNmphWVhmbnNxdUZiWFRkREthb09OUFYwbkVUcjc3U1lyTDUzSTJN?=
- =?utf-8?B?ZXYwc09RclBCN1ZKL3V6NW4rWDZ0RnA5VmxrQ1BKZTNmTDFzWFBkWUVpdlhq?=
- =?utf-8?B?UVdTKzFWWVEyRjgvYmFHSitQOUhBSURNd2l0dVdqYzVTb2RDS3RCcE9Cbm5i?=
- =?utf-8?B?WlltZlpHM0hyVEpOdWJjWWJZd25iRG40Vm5VMVpidFBONnZlK1U0clRoRW5z?=
- =?utf-8?B?cERjbDZhVXY3WU41NmZCNXR4VEV4Z2dMcnFyTU9hcHd6UVFvd0ErT2JmMita?=
- =?utf-8?B?Q3M0TkZ1U05rNlEvcHBFOG5RMmVqQUtPK3JZa0JFSjQ2TGVLcXo0Z216TjdO?=
- =?utf-8?B?ZHZIc1l0OStpZW5sRW5hNzY2YTBPK0NielJuazh2eEJpa2R1SVg2TVJReERa?=
- =?utf-8?B?OVZnNnRNcWNxbHFIVmFvRnJQOFAyZDlyUEtoUWNCZ3hTNVNib09zaHlJOWR3?=
- =?utf-8?Q?WWcLenWM4xq8QdWtyU?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com
+ [209.85.221.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B479610F177
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 May 2026 22:43:17 +0000 (UTC)
+Received: by mail-vk1-f182.google.com with SMTP id
+ 71dfb90a1353d-575eaa32c7cso1829171e0c.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 May 2026 15:43:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=usp.br; s=usp-google; t=1779316996; x=1779921796; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Dd83DKF3frqmG4DXmGPzNS34lS70vyOR5YrJhziAaCg=;
+ b=PZZPPhAGCvVENZERFvGOnNncyhMUJTmfGgCwgR8AbrC1wnXEAwO1oFpvxz+tLnYJNX
+ /mXYSGC3OeP4Isi7qXSjmFciURPC965URQulcNxpIJHWE/2MxGQ8Mr99pWUXceJNctfP
+ vSmYBIrp/f7TmdzxNVRKArZbFD5QFJ0u4YVY6CSF5INu7fYAuivQCTPd2BXzCEm3HoR+
+ e9SPrzN/VXpH8z/Wg/GR5WQqlFxEsDm885yNVuVFFrWOChGPKjSNcKucM/lZQdDuQDC8
+ rWDhp/wxTfb2F2UaERs8ClYttGcpvcznle862KY3gV00wQojw1pvK1UqI6LjTNVleprB
+ FBGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779316996; x=1779921796;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Dd83DKF3frqmG4DXmGPzNS34lS70vyOR5YrJhziAaCg=;
+ b=s9j6S9MVV4++dajhBkQ2T9mG0PUHrxq26ZcMxY6CKF0FFLEn/9WkH+zg3LR2XdE540
+ EXoa7VDAZ7cKfXI2qfMEnvBcyDjKCoIV0V1aqkTQDM5+QM8LtpIUfghEES5hv4r0W7vV
+ WBf2ENzUow1u6liijZ+FPbIimJpATYCq8GLD+N9KF2mtmzbcN5sg4TG0mJws+ez6aar8
+ Kbrk/xQNdm64ny63glRa8WHffpLSAgnycty7bCvdcwuz/HWPE636eG6yX97hdCppLuP4
+ 23s+WGdNbXW2nghISem2zwg0OkDmtY6d6/VFXaRQBnOXytkM2Ef92pwSpGO9QMEbEDwO
+ 1qZg==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/JRKNc74TzJ5c6FUIhzV8hRQORebGGGLHXpO2co7lWN6Pa/66485BxrGKLYwglqSKTceVwyybx@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxuGmB+fqQgmRi1YtuE1RQ33yrxfJtThdQ2iWqnxC2zngw4Yg3j
+ twfcDjwPIVQeQ7yB5OtMARVIfsCCdKDybn+AOOTWYSwa85OTeFlHPrMfIUj2ge6/QoY=
+X-Gm-Gg: Acq92OEaJrXuxh2QP2ZcnhhuYvzxA23R2c9UdokAgnSMVzZDyvUTbwq8plSBgaO6EEZ
+ MC7TuGB0qjloVvQakM5MMH7SUotM/EqAn1UJ9SNqKRNMExzMjWTu6CmEwufVrwGeEV5KMeRqtp7
+ 83SJRlopi5TMM2FjSDYf/7ZhBULlRf/H47plhUlr4iyvycyoffKnRJfiq2yE7z7WJzO615cOJLD
+ +IZI7sQGsBhYBHq6CDWdiO+COFHdiSOCWVRIqzjiggFJwJnJNcp/UFFKMIXCWYDJwu0ptAg15Ku
+ QR7r9GYobsayUwzDGR8WJCYkl/cwGQCrfj2sz7kJ1qCdbcThzuseppSGfSUDsfYUqhM20lGKVJj
+ JZKJ4h4HH6N4lvdBavncs59GOx9dl6WMu+ngQTVPQ08zvqYe2d0tUEIFBYlYWv1m4cVvlziDwuu
+ 0fIcFIGrTfbw==
+X-Received: by 2002:a05:6102:f91:b0:633:3040:ca5d with SMTP id
+ ada2fe7eead31-6738e4da513mr294017137.9.1779316996343; 
+ Wed, 20 May 2026 15:43:16 -0700 (PDT)
+Received: from arch-ideapad ([2804:7f0:3df:2617:4b61:1102:6d3e:92b4])
+ by smtp.gmail.com with ESMTPSA id
+ a1e0cc1a2514c-95fc29cda8bsm11281113241.0.2026.05.20.15.43.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 20 May 2026 15:43:15 -0700 (PDT)
+From: Ryan Oliveira <ryan.oliveiraf@usp.br>
+X-Google-Original-From: Ryan Oliveira
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: Ryan Oliveira <ryan.oliveiraf@usp.br>, Kaiky Cintra <kaikycintra@usp.br>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu: Unify vm_fault_interrupt_state logic for gmc v10
+ and v12_0
+Date: Wed, 20 May 2026 19:42:13 -0300
+Message-ID: <20260520224217.17615-1-ryan.oliveiraf@usp.br>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5d3d7d80-29b5-420d-e3a5-08deb6bb3ff8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2026 22:00:48.1395 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hr0NibCzavQBBg6bmA02VL1s+LgO+X7dg81IKwnRJgwsnwco1ZFboDupx53tBBKqXoa3kgukt8UZ+4A5ZUmkNQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4366
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 21 May 2026 07:01:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,87 +93,238 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.21 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_BASE64_TEXT(0.10)[];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:Christian.Koenig@amd.com,m:Prike.Liang@amd.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:ryan.oliveiraf@usp.br,m:kaikycintra@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[Alexander.Deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[ryan.oliveiraf@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Alexander.Deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ryan.oliveiraf@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[usp.br:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DKIM_TRACE(0.00)[amd.com:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_THREE(0.00)[3];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,lists.freedesktop.org:email,BL1PR12MB5144.namprd12.prod.outlook.com:mid]
-X-Rspamd-Queue-Id: 6B7C859B97C
+	RSPAMD_EMAILBL_FAIL(0.00)[kaikycintra.usp.br:query timed out,ryan.oliveiraf.usp.br:query timed out];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[usp.br:email,usp.br:mid,usp.br:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 4CE9559FCEF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-UHVibGljDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS29lbmlnLCBD
-aHJpc3RpYW4gPENocmlzdGlhbi5Lb2VuaWdAYW1kLmNvbT4NCj4gU2VudDogV2VkbmVzZGF5LCBN
-YXkgMjAsIDIwMjYgNzoyNiBBTQ0KPiBUbzogTGlhbmcsIFByaWtlIDxQcmlrZS5MaWFuZ0BhbWQu
-Y29tPjsgYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IERldWNoZXIsIEFsZXhh
-bmRlciA8QWxleGFuZGVyLkRldWNoZXJAYW1kLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCAy
-LzJdIGRybS9hbWRncHU6IHVubWFwIHVzZXJxIGZvciBldmljdGluZyB1c2VyIHF1ZXVlDQo+DQo+
-IE9uIDUvMTQvMjYgMTQ6NDIsIFByaWtlIExpYW5nIHdyb3RlOg0KPiA+IElmIHRoZSBkcml2ZXIg
-b25seSBwcmVlbXB0cyBxdWV1ZXMsIHRoZXJlIGNhbiBzdGlsbCBiZSBpbmZsaWdodCB3YXZlcywN
-Cj4gPiBwZW5kaW5nIGRpc3BhdGNoIHN0YXRlLCBvciByZXN1bWUvcmVkaXNwYXRjaCBwb3NzaWJp
-bGl0eSB0aWVkIHRvIHRoZQ0KPiA+IHNhbWUgcXVldWUuIFRoZW4gdGhlIFZNL1RUTSBzaWRlIG1h
-eSBwcm9jZWVkIHRvIG1vdmUvdW5tYXAgcXVldWUNCj4gPiByZWxhdGVkIEJPcyBkdXJpbmcgZXZp
-Y3RpbmcgdGhlIHF1ZXVlIHdoaWxlIHNoYWRlciBUQ1AgY2xpZW50cyBzdGlsbA0KPiA+IG5lZWQg
-dG8gYWNjZXNzIHRoZW0uDQo+ID4NCj4gPiBTbyBmb3IgZXZpY3Rpb24sIHVubWFwIGlzIHNhZmVy
-IGJlY2F1c2UgaXQgbWFrZXMgdGhlIHF1ZXVlIG5vbnJ1bm5hYmxlDQo+ID4gYmVmb3JlIG1lbW9y
-eSBiYWNraW5nIGlzIGludmFsaWRhdGVkLiBNZWFud2hpbGUsIGZvciBhIGlkbGUgcXVldWUgaXQn
-cw0KPiA+IG1vcmUgc3V0aWFibGUgZm9yIHVubWFwcGluZyBpdCByYXRoZXIgcHJlZW1wdCBhbmQg
-dW5tYXBwaW5nIGFsc28gc2FmZQ0KPiA+IG1vcmUgcHJvY2Vzc2luZyB0aW1lIHRoYW4gcHJlZW1w
-dC4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFByaWtlIExpYW5nIDxQcmlrZS5MaWFuZ0BhbWQu
-Y29tPg0KPg0KPiBJIHdhcyBhbHJlYWR5IHdvbmRlcmluZyB3aGVuIHdlIHN3aXRjaGVkIHRvIHBy
-ZWVtcHQgaWYgdGhhdCBpcyBjb3JyZWN0IG9yDQo+IG5vdC4NCj4NCj4gVGhpcyBwYXRjaCBoZXJl
-IHByZXR0eSBtdWNoIGNvbmZpcm1zIHRoYXQgaXQgd2FzIG5vdCBjb3JyZWN0LiBJIG5lZWQgdG8g
-ZGlzY3Vzcw0KPiB3aXRoIEFsZXggd2hhdCB0byBkbyBoZXJlLCBidXQgZm9yIG5vdyB0aGUgcGF0
-Y2ggaXMgY2xlYXJseSBhIGJ1ZyBmaXg6DQo+DQo+IFJldmlld2VkLWJ5OiBDaHJpc3RpYW4gS8O2
-bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+DQoNCldoYXQncyB0aGUgcG9pbnQgb2YgaGF2
-aW5nIGEgcHJlZW1wdCBvcGVyYXRpb24gaWYgaXQgZG9lc24ndCBhY3R1YWxseSBwcmVlbXB0IHRo
-ZSB3b3JrPyAgU2VlbXMgbGlrZSBhIGZpcm13YXJlIGJ1Zy4NCg0KUmV2aWV3ZWQtYnk6IEFsZXgg
-RGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4NCg0KQWxleA0KDQoNCj4NCj4gVGhh
-bmtzLA0KPiBDaHJpc3RpYW4uDQo+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2FtZGdwdV91c2VycS5jIHwgNCArKy0tDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAyIGlu
-c2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3VzZXJxLmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvYW1kZ3B1L2FtZGdwdV91c2VycS5jDQo+ID4gaW5kZXggMmUzZWRiNmRkNTA2Li5hNjNk
-ZmRmYTQxOTUgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
-Z3B1X3VzZXJxLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
-dXNlcnEuYw0KPiA+IEBAIC0xMDQ4LDcgKzEwNDgsNyBAQCBhbWRncHVfdXNlcnFfcmVzdG9yZV9h
-bGwoc3RydWN0DQo+IGFtZGdwdV91c2VycV9tZ3IgKnVxX21ncikNCj4gPiAgICAgICAgICAgICAg
-ICAgICAgIGNvbnRpbnVlOw0KPiA+ICAgICAgICAgICAgIH0NCj4gPg0KPiA+IC0gICAgICAgICAg
-IHIgPSBhbWRncHVfdXNlcnFfcmVzdG9yZV9oZWxwZXIocXVldWUpOw0KPiA+ICsgICAgICAgICAg
-IHIgPSBhbWRncHVfdXNlcnFfbWFwX2hlbHBlcihxdWV1ZSk7DQo+ID4gICAgICAgICAgICAgaWYg
-KHIpDQo+ID4gICAgICAgICAgICAgICAgICAgICByZXQgPSByOw0KPiA+DQo+ID4gQEAgLTEyODUs
-NyArMTI4NSw3IEBAIGFtZGdwdV91c2VycV9ldmljdF9hbGwoc3RydWN0DQo+IGFtZGdwdV91c2Vy
-cV9tZ3INCj4gPiAqdXFfbWdyKQ0KPiA+DQo+ID4gICAgIC8qIFRyeSB0byB1bm1hcCBhbGwgdGhl
-IHF1ZXVlcyBpbiB0aGlzIHByb2Nlc3MgY3R4ICovDQo+ID4gICAgIHhhX2Zvcl9lYWNoKCZ1cV9t
-Z3ItPnVzZXJxX3hhLCBxdWV1ZV9pZCwgcXVldWUpIHsNCj4gPiAtICAgICAgICAgICByID0gYW1k
-Z3B1X3VzZXJxX3ByZWVtcHRfaGVscGVyKHF1ZXVlKTsNCj4gPiArICAgICAgICAgICByID0gYW1k
-Z3B1X3VzZXJxX3VubWFwX2hlbHBlcihxdWV1ZSk7DQo+ID4gICAgICAgICAgICAgaWYgKHIpDQo+
-ID4gICAgICAgICAgICAgICAgICAgICByZXQgPSByOw0KPiA+ICAgICB9DQoNCg==
+From: Ryan Oliveira <ryan.oliveiraf@usp.br>
+
+This patch consolidates vm_fault_interrupt_state handling logic found
+in gmc_v10_0.c and gmc_v12_0.c into a shared helper function inside
+amdgpu_gmc.c
+
+Since the v10 and v12_0 implementations are identical copies, moving
+this to amdgpu_gmc simplifies maintenance and reduces code duplication.
+
+Signed-off-by: Ryan Oliveira <ryan.oliveiraf@usp.br>
+Co-developed-by: Kaiky Cintra <kaikycintra@usp.br>
+Signed-off-by: Kaiky Cintra <kaikycintra@usp.br>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 37 +++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h |  3 ++
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  | 39 +------------------------
+ drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c  | 38 +-----------------------
+ 4 files changed, 42 insertions(+), 75 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+index 13bec8461cde..eebf5c17efb4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+@@ -590,6 +590,43 @@ int amdgpu_gmc_handle_retry_fault(struct amdgpu_device *adev,
+ 	return 0;
+ }
+ 
++int amdgpu_gmc_vm_fault_interrupt_state(struct amdgpu_device *adev,
++				   struct amdgpu_irq_src *src, unsigned int type,
++				   enum amdgpu_interrupt_state state)
++{
++	switch (state) {
++	case AMDGPU_IRQ_STATE_DISABLE:
++		/* MM HUB */
++		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), false);
++		/* GFX HUB */
++		/* This works because this interrupt is only
++		 * enabled at init/resume and disabled in
++		 * fini/suspend, so the overall state doesn't
++		 * change over the course of suspend/resume.
++		 */
++		if (!adev->in_s0ix)
++			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), false);
++		break;
++	case AMDGPU_IRQ_STATE_ENABLE:
++		/* MM HUB */
++		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), true);
++		/* GFX HUB */
++		/* This works because this interrupt is only
++		 * enabled at init/resume and disabled in
++		 * fini/suspend, so the overall state doesn't
++		 * change over the course of suspend/resume.
++		 */
++		if (!adev->in_s0ix)
++			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), true);
++		break;
++	default:
++		break;
++	}
++
++	return 0;
++}
++
++
+ int amdgpu_gmc_ras_sw_init(struct amdgpu_device *adev)
+ {
+ 	int r;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+index 676e3aaa1f27..386e5f292c4e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+@@ -437,6 +437,9 @@ int amdgpu_gmc_handle_retry_fault(struct amdgpu_device *adev,
+ 				  u32 cam_index,
+ 				  u32 node_id,
+ 				  bool write_fault);
++int amdgpu_gmc_vm_fault_interrupt_state(struct amdgpu_device *adev,
++				   struct amdgpu_irq_src *src, unsigned int type,
++				   enum amdgpu_interrupt_state state);
+ int amdgpu_gmc_ras_sw_init(struct amdgpu_device *adev);
+ int amdgpu_gmc_ras_late_init(struct amdgpu_device *adev);
+ void amdgpu_gmc_ras_fini(struct amdgpu_device *adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+index 8523833a74fb..4aaa3c65e186 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+@@ -59,43 +59,6 @@ static int gmc_v10_0_ecc_interrupt_state(struct amdgpu_device *adev,
+ 	return 0;
+ }
+ 
+-static int
+-gmc_v10_0_vm_fault_interrupt_state(struct amdgpu_device *adev,
+-				   struct amdgpu_irq_src *src, unsigned int type,
+-				   enum amdgpu_interrupt_state state)
+-{
+-	switch (state) {
+-	case AMDGPU_IRQ_STATE_DISABLE:
+-		/* MM HUB */
+-		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), false);
+-		/* GFX HUB */
+-		/* This works because this interrupt is only
+-		 * enabled at init/resume and disabled in
+-		 * fini/suspend, so the overall state doesn't
+-		 * change over the course of suspend/resume.
+-		 */
+-		if (!adev->in_s0ix)
+-			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), false);
+-		break;
+-	case AMDGPU_IRQ_STATE_ENABLE:
+-		/* MM HUB */
+-		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), true);
+-		/* GFX HUB */
+-		/* This works because this interrupt is only
+-		 * enabled at init/resume and disabled in
+-		 * fini/suspend, so the overall state doesn't
+-		 * change over the course of suspend/resume.
+-		 */
+-		if (!adev->in_s0ix)
+-			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), true);
+-		break;
+-	default:
+-		break;
+-	}
+-
+-	return 0;
+-}
+-
+ static int gmc_v10_0_process_interrupt(struct amdgpu_device *adev,
+ 				       struct amdgpu_irq_src *source,
+ 				       struct amdgpu_iv_entry *entry)
+@@ -168,7 +131,7 @@ static int gmc_v10_0_process_interrupt(struct amdgpu_device *adev,
+ }
+ 
+ static const struct amdgpu_irq_src_funcs gmc_v10_0_irq_funcs = {
+-	.set = gmc_v10_0_vm_fault_interrupt_state,
++	.set = amdgpu_gmc_vm_fault_interrupt_state,
+ 	.process = gmc_v10_0_process_interrupt,
+ };
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+index 586703ec0dfa..d3eabe3b6dff 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+@@ -53,42 +53,6 @@ static int gmc_v12_0_ecc_interrupt_state(struct amdgpu_device *adev,
+ 	return 0;
+ }
+ 
+-static int gmc_v12_0_vm_fault_interrupt_state(struct amdgpu_device *adev,
+-					      struct amdgpu_irq_src *src, unsigned type,
+-					      enum amdgpu_interrupt_state state)
+-{
+-	switch (state) {
+-	case AMDGPU_IRQ_STATE_DISABLE:
+-		/* MM HUB */
+-		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), false);
+-		/* GFX HUB */
+-		/* This works because this interrupt is only
+-		 * enabled at init/resume and disabled in
+-		 * fini/suspend, so the overall state doesn't
+-		 * change over the course of suspend/resume.
+-		 */
+-		if (!adev->in_s0ix)
+-			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), false);
+-		break;
+-	case AMDGPU_IRQ_STATE_ENABLE:
+-		/* MM HUB */
+-		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), true);
+-		/* GFX HUB */
+-		/* This works because this interrupt is only
+-		 * enabled at init/resume and disabled in
+-		 * fini/suspend, so the overall state doesn't
+-		 * change over the course of suspend/resume.
+-		 */
+-		if (!adev->in_s0ix)
+-			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), true);
+-		break;
+-	default:
+-		break;
+-	}
+-
+-	return 0;
+-}
+-
+ static int gmc_v12_0_process_interrupt(struct amdgpu_device *adev,
+ 				       struct amdgpu_irq_src *source,
+ 				       struct amdgpu_iv_entry *entry)
+@@ -160,7 +124,7 @@ static int gmc_v12_0_process_interrupt(struct amdgpu_device *adev,
+ }
+ 
+ static const struct amdgpu_irq_src_funcs gmc_v12_0_irq_funcs = {
+-	.set = gmc_v12_0_vm_fault_interrupt_state,
++	.set = amdgpu_gmc_vm_fault_interrupt_state,
+ 	.process = gmc_v12_0_process_interrupt,
+ };
+ 
+-- 
+2.54.0
+
