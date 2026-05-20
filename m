@@ -2,84 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4EUnJtGtDmr6AwYAu9opvQ
+	id uMyaHOE6Dmoc9AUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 09:01:37 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 00:51:13 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CE9559FCEF
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 09:01:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D456F59C553
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 00:51:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CC0F10E477;
-	Thu, 21 May 2026 07:01:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF26910E19B;
+	Wed, 20 May 2026 22:51:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=usp.br header.i=@usp.br header.b="PZZPPhAG";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="pAgwiZym";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com
- [209.85.221.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B479610F177
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 May 2026 22:43:17 +0000 (UTC)
-Received: by mail-vk1-f182.google.com with SMTP id
- 71dfb90a1353d-575eaa32c7cso1829171e0c.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 May 2026 15:43:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=usp.br; s=usp-google; t=1779316996; x=1779921796; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=Dd83DKF3frqmG4DXmGPzNS34lS70vyOR5YrJhziAaCg=;
- b=PZZPPhAGCvVENZERFvGOnNncyhMUJTmfGgCwgR8AbrC1wnXEAwO1oFpvxz+tLnYJNX
- /mXYSGC3OeP4Isi7qXSjmFciURPC965URQulcNxpIJHWE/2MxGQ8Mr99pWUXceJNctfP
- vSmYBIrp/f7TmdzxNVRKArZbFD5QFJ0u4YVY6CSF5INu7fYAuivQCTPd2BXzCEm3HoR+
- e9SPrzN/VXpH8z/Wg/GR5WQqlFxEsDm885yNVuVFFrWOChGPKjSNcKucM/lZQdDuQDC8
- rWDhp/wxTfb2F2UaERs8ClYttGcpvcznle862KY3gV00wQojw1pvK1UqI6LjTNVleprB
- FBGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779316996; x=1779921796;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Dd83DKF3frqmG4DXmGPzNS34lS70vyOR5YrJhziAaCg=;
- b=s9j6S9MVV4++dajhBkQ2T9mG0PUHrxq26ZcMxY6CKF0FFLEn/9WkH+zg3LR2XdE540
- EXoa7VDAZ7cKfXI2qfMEnvBcyDjKCoIV0V1aqkTQDM5+QM8LtpIUfghEES5hv4r0W7vV
- WBf2ENzUow1u6liijZ+FPbIimJpATYCq8GLD+N9KF2mtmzbcN5sg4TG0mJws+ez6aar8
- Kbrk/xQNdm64ny63glRa8WHffpLSAgnycty7bCvdcwuz/HWPE636eG6yX97hdCppLuP4
- 23s+WGdNbXW2nghISem2zwg0OkDmtY6d6/VFXaRQBnOXytkM2Ef92pwSpGO9QMEbEDwO
- 1qZg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ/JRKNc74TzJ5c6FUIhzV8hRQORebGGGLHXpO2co7lWN6Pa/66485BxrGKLYwglqSKTceVwyybx@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxuGmB+fqQgmRi1YtuE1RQ33yrxfJtThdQ2iWqnxC2zngw4Yg3j
- twfcDjwPIVQeQ7yB5OtMARVIfsCCdKDybn+AOOTWYSwa85OTeFlHPrMfIUj2ge6/QoY=
-X-Gm-Gg: Acq92OEaJrXuxh2QP2ZcnhhuYvzxA23R2c9UdokAgnSMVzZDyvUTbwq8plSBgaO6EEZ
- MC7TuGB0qjloVvQakM5MMH7SUotM/EqAn1UJ9SNqKRNMExzMjWTu6CmEwufVrwGeEV5KMeRqtp7
- 83SJRlopi5TMM2FjSDYf/7ZhBULlRf/H47plhUlr4iyvycyoffKnRJfiq2yE7z7WJzO615cOJLD
- +IZI7sQGsBhYBHq6CDWdiO+COFHdiSOCWVRIqzjiggFJwJnJNcp/UFFKMIXCWYDJwu0ptAg15Ku
- QR7r9GYobsayUwzDGR8WJCYkl/cwGQCrfj2sz7kJ1qCdbcThzuseppSGfSUDsfYUqhM20lGKVJj
- JZKJ4h4HH6N4lvdBavncs59GOx9dl6WMu+ngQTVPQ08zvqYe2d0tUEIFBYlYWv1m4cVvlziDwuu
- 0fIcFIGrTfbw==
-X-Received: by 2002:a05:6102:f91:b0:633:3040:ca5d with SMTP id
- ada2fe7eead31-6738e4da513mr294017137.9.1779316996343; 
- Wed, 20 May 2026 15:43:16 -0700 (PDT)
-Received: from arch-ideapad ([2804:7f0:3df:2617:4b61:1102:6d3e:92b4])
- by smtp.gmail.com with ESMTPSA id
- a1e0cc1a2514c-95fc29cda8bsm11281113241.0.2026.05.20.15.43.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 20 May 2026 15:43:15 -0700 (PDT)
-From: Ryan Oliveira <ryan.oliveiraf@usp.br>
-X-Google-Original-From: Ryan Oliveira
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch
-Cc: Ryan Oliveira <ryan.oliveiraf@usp.br>, Kaiky Cintra <kaikycintra@usp.br>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: Unify vm_fault_interrupt_state logic for gmc v10
- and v12_0
-Date: Wed, 20 May 2026 19:42:13 -0300
-Message-ID: <20260520224217.17615-1-ryan.oliveiraf@usp.br>
-X-Mailer: git-send-email 2.54.0
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF1C310E181;
+ Wed, 20 May 2026 22:51:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+ Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=HsjhAy2BBtCFA/egDCdJZk4pjYZbxFSYZKXDkZ+Avwo=; b=pAgwiZymOW8GGrLLojHhetbVx0
+ 9TrKs9vM0v6AmUOGFF9kTLwGkbQ/WntzQL2Sj0b7582rF4a4DMqcybT4HUbo4l4rKRyqkxpCx4H/e
+ o1Z4MDHncvmdjtf+fvVmlVAJ4gNVGT2Q/PtvPUOqX4J6E0C9rvamZCWWq/Rzj8l2qU7wrfxT7Rkj4
+ iEQgN5cRzQaPAArG92EKxbyOWFD4IBrKs+vQ4yLdziplGub28uNWH2zOi1fq/2WLfzZDFmtFPb/4z
+ VCWOXI0i0O92YxbT0DmOHLG4oKNKWiGJ3fQdBFOulCCk2bIG40O5m42OD9JBUlNlvsdvIRP50KAki
+ hzS4+nFw==;
+Received: from d209-89-236-181.abhsia.telus.net ([209.89.236.181]
+ helo=atmagalia) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wPpk9-0043dh-8d; Thu, 21 May 2026 00:50:25 +0200
+Date: Wed, 20 May 2026 16:50:14 -0600
+From: Rodrigo Siqueira <siqueira@igalia.com>
+To: Alex Hung <alex.hung@amd.com>, Harry Wentland <harry.wentland@amd.com>
+Cc: John Harrison <John.Harrison@igalia.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, "Kandpal,
+ Suraj" <suraj.kandpal@intel.com>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Abhinav Kumar <abhinav.kumar@linux.dev>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, 
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
+ Jessica Zhang <jesszhan0024@gmail.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v5 0/8] drm: writeback: clean up writeback connector
+ initialization
+Message-ID: <ag44Kk4h188WGhcN@atmagalia>
+References: <20260505-wb-drop-encoder-v5-0-42567b7c7af2@oss.qualcomm.com>
+ <177894506978.2448625.17152574519326512949.b4-ty@b4>
+ <8fc45730-b2e3-4ba8-b80a-9b30557e810b@Igalia.com>
+ <wcgvogluzfrjk6rlomswkmqceilbbichxsgx3aqzpoawe7jzgw@uiy3ogtswflk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 21 May 2026 07:01:28 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <wcgvogluzfrjk6rlomswkmqceilbbichxsgx3aqzpoawe7jzgw@uiy3ogtswflk>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,238 +92,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [2.49 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:ryan.oliveiraf@usp.br,m:kaikycintra@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
+	RCVD_COUNT_THREE(0.00)[3];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[ryan.oliveiraf@usp.br,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[38];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[igalia.com:-];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.903];
+	FROM_NEQ_ENVFROM(0.00)[siqueira@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ryan.oliveiraf@usp.br,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[usp.br:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RSPAMD_EMAILBL_FAIL(0.00)[kaikycintra.usp.br:query timed out,ryan.oliveiraf.usp.br:query timed out];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FREEMAIL_CC(0.00)[igalia.com,linux.intel.com,intel.com,amd.com,gmail.com,ffwll.ch,arm.com,kernel.org,suse.de,oss.qualcomm.com,linux.dev,poorly.run,somainline.org,ideasonboard.com,glider.be,raspberrypi.com,wanadoo.fr,bootlin.com,lists.freedesktop.org,vger.kernel.org];
+	TAGGED_RCPT(0.00)[amd-gfx,renesas];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[usp.br:email,usp.br:mid,usp.br:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 4CE9559FCEF
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: D456F59C553
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Ryan Oliveira <ryan.oliveiraf@usp.br>
+On 05/20, Dmitry Baryshkov wrote:
+> On Tue, May 19, 2026 at 09:59:00AM -0700, John Harrison wrote:
+> > On 5/16/26 08:25, Dmitry Baryshkov wrote:
+> > > On Tue, 05 May 2026 03:24:57 +0300, Dmitry Baryshkov wrote:
+> > > > Drivers using drm_writeback_connector_init() / _with_encoder() don't
+> > > > perform cleanup in a manner similar to drmm_writeback_connector_init()
+> > > > (see drm_writeback_connector_cleanup()). Migrate all existing drivers
+> > > > to use drmm_writeback_connector_init(), drop
+> > > > drm_writeback_connector_init() and drm_writeback_connector::encoder
+> > > > (it's unused afterwards).
+> > > > 
+> > > > [...]
+> > > Applied to msm-fixes, thanks!
+> > > 
+> > > [1/8] drm/msm/dpu: don't mix devm and drmm functions
+> > >        https://gitlab.freedesktop.org/lumag/msm/-/commit/c0c70a11365c
+> > > 
+> > > Best regards,
+> > That is only the first patch of the series, yes?
+> 
+> Yes, correct.
+> 
+> > 
+> > What is happening with the rest? Can they all be merged to drm-next now? As
+> > I understand it, only the first patch was still being discussed, the others
+> > have all been reviewed some time ago.
+> 
+> At least we need an ack from the AMD maintainers. I can pick up patches
+> 3-6 to drm-misc-next, but it doesn't really help because the rest of the
+> patches are blocked by the AMD change.
 
-This patch consolidates vm_fault_interrupt_state handling logic found
-in gmc_v10_0.c and gmc_v12_0.c into a shared helper function inside
-amdgpu_gmc.c
 
-Since the v10 and v12_0 implementations are identical copies, moving
-this to amdgpu_gmc simplifies maintenance and reduces code duplication.
+Hi Alex, Harry,
 
-Signed-off-by: Ryan Oliveira <ryan.oliveiraf@usp.br>
-Co-developed-by: Kaiky Cintra <kaikycintra@usp.br>
-Signed-off-by: Kaiky Cintra <kaikycintra@usp.br>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 37 +++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h |  3 ++
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  | 39 +------------------------
- drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c  | 38 +-----------------------
- 4 files changed, 42 insertions(+), 75 deletions(-)
+Could we have your acked-by for this series? I tested it with a DCN
+4.0.1 and the kms_writeback test; everything looks fine. This series
+should not cause regressions because the AMD modifications are
+restricted to the writeback functions; if you want to be sure and cover
+more hardware, it can be useful to run it through AMD CI (you just need
+to make a few minor adjustments when applying it to the
+amd-staging-drm-next).
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-index 13bec8461cde..eebf5c17efb4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -590,6 +590,43 @@ int amdgpu_gmc_handle_retry_fault(struct amdgpu_device *adev,
- 	return 0;
- }
- 
-+int amdgpu_gmc_vm_fault_interrupt_state(struct amdgpu_device *adev,
-+				   struct amdgpu_irq_src *src, unsigned int type,
-+				   enum amdgpu_interrupt_state state)
-+{
-+	switch (state) {
-+	case AMDGPU_IRQ_STATE_DISABLE:
-+		/* MM HUB */
-+		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), false);
-+		/* GFX HUB */
-+		/* This works because this interrupt is only
-+		 * enabled at init/resume and disabled in
-+		 * fini/suspend, so the overall state doesn't
-+		 * change over the course of suspend/resume.
-+		 */
-+		if (!adev->in_s0ix)
-+			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), false);
-+		break;
-+	case AMDGPU_IRQ_STATE_ENABLE:
-+		/* MM HUB */
-+		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), true);
-+		/* GFX HUB */
-+		/* This works because this interrupt is only
-+		 * enabled at init/resume and disabled in
-+		 * fini/suspend, so the overall state doesn't
-+		 * change over the course of suspend/resume.
-+		 */
-+		if (!adev->in_s0ix)
-+			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), true);
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
-+
- int amdgpu_gmc_ras_sw_init(struct amdgpu_device *adev)
- {
- 	int r;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-index 676e3aaa1f27..386e5f292c4e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-@@ -437,6 +437,9 @@ int amdgpu_gmc_handle_retry_fault(struct amdgpu_device *adev,
- 				  u32 cam_index,
- 				  u32 node_id,
- 				  bool write_fault);
-+int amdgpu_gmc_vm_fault_interrupt_state(struct amdgpu_device *adev,
-+				   struct amdgpu_irq_src *src, unsigned int type,
-+				   enum amdgpu_interrupt_state state);
- int amdgpu_gmc_ras_sw_init(struct amdgpu_device *adev);
- int amdgpu_gmc_ras_late_init(struct amdgpu_device *adev);
- void amdgpu_gmc_ras_fini(struct amdgpu_device *adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-index 8523833a74fb..4aaa3c65e186 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-@@ -59,43 +59,6 @@ static int gmc_v10_0_ecc_interrupt_state(struct amdgpu_device *adev,
- 	return 0;
- }
- 
--static int
--gmc_v10_0_vm_fault_interrupt_state(struct amdgpu_device *adev,
--				   struct amdgpu_irq_src *src, unsigned int type,
--				   enum amdgpu_interrupt_state state)
--{
--	switch (state) {
--	case AMDGPU_IRQ_STATE_DISABLE:
--		/* MM HUB */
--		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), false);
--		/* GFX HUB */
--		/* This works because this interrupt is only
--		 * enabled at init/resume and disabled in
--		 * fini/suspend, so the overall state doesn't
--		 * change over the course of suspend/resume.
--		 */
--		if (!adev->in_s0ix)
--			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), false);
--		break;
--	case AMDGPU_IRQ_STATE_ENABLE:
--		/* MM HUB */
--		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), true);
--		/* GFX HUB */
--		/* This works because this interrupt is only
--		 * enabled at init/resume and disabled in
--		 * fini/suspend, so the overall state doesn't
--		 * change over the course of suspend/resume.
--		 */
--		if (!adev->in_s0ix)
--			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), true);
--		break;
--	default:
--		break;
--	}
--
--	return 0;
--}
--
- static int gmc_v10_0_process_interrupt(struct amdgpu_device *adev,
- 				       struct amdgpu_irq_src *source,
- 				       struct amdgpu_iv_entry *entry)
-@@ -168,7 +131,7 @@ static int gmc_v10_0_process_interrupt(struct amdgpu_device *adev,
- }
- 
- static const struct amdgpu_irq_src_funcs gmc_v10_0_irq_funcs = {
--	.set = gmc_v10_0_vm_fault_interrupt_state,
-+	.set = amdgpu_gmc_vm_fault_interrupt_state,
- 	.process = gmc_v10_0_process_interrupt,
- };
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-index 586703ec0dfa..d3eabe3b6dff 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
-@@ -53,42 +53,6 @@ static int gmc_v12_0_ecc_interrupt_state(struct amdgpu_device *adev,
- 	return 0;
- }
- 
--static int gmc_v12_0_vm_fault_interrupt_state(struct amdgpu_device *adev,
--					      struct amdgpu_irq_src *src, unsigned type,
--					      enum amdgpu_interrupt_state state)
--{
--	switch (state) {
--	case AMDGPU_IRQ_STATE_DISABLE:
--		/* MM HUB */
--		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), false);
--		/* GFX HUB */
--		/* This works because this interrupt is only
--		 * enabled at init/resume and disabled in
--		 * fini/suspend, so the overall state doesn't
--		 * change over the course of suspend/resume.
--		 */
--		if (!adev->in_s0ix)
--			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), false);
--		break;
--	case AMDGPU_IRQ_STATE_ENABLE:
--		/* MM HUB */
--		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), true);
--		/* GFX HUB */
--		/* This works because this interrupt is only
--		 * enabled at init/resume and disabled in
--		 * fini/suspend, so the overall state doesn't
--		 * change over the course of suspend/resume.
--		 */
--		if (!adev->in_s0ix)
--			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), true);
--		break;
--	default:
--		break;
--	}
--
--	return 0;
--}
--
- static int gmc_v12_0_process_interrupt(struct amdgpu_device *adev,
- 				       struct amdgpu_irq_src *source,
- 				       struct amdgpu_iv_entry *entry)
-@@ -160,7 +124,7 @@ static int gmc_v12_0_process_interrupt(struct amdgpu_device *adev,
- }
- 
- static const struct amdgpu_irq_src_funcs gmc_v12_0_irq_funcs = {
--	.set = gmc_v12_0_vm_fault_interrupt_state,
-+	.set = amdgpu_gmc_vm_fault_interrupt_state,
- 	.process = gmc_v12_0_process_interrupt,
- };
- 
+Anyway, this series was
+
+Tested-by: Rodrigo Siqueira <siqueira@igalia.com>
+
+Thanks
+
+> 
+> -- 
+> With best wishes
+> Dmitry
+
 -- 
-2.54.0
-
+Rodrigo Siqueira
