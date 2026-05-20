@@ -2,80 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id upl8CNqtDmraBAYAu9opvQ
+	id 6PVSOFaMDWpKywUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 09:01:46 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 May 2026 12:26:30 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CFE959FD19
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 09:01:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4367358BB97
+	for <lists+amd-gfx@lfdr.de>; Wed, 20 May 2026 12:26:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80D0810F230;
-	Thu, 21 May 2026 07:01:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C06F910E616;
+	Wed, 20 May 2026 10:26:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bJOIRG8W";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="oNXxXdAv";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09C0410EFFF;
- Wed, 20 May 2026 10:17:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779272252; x=1810808252;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=eOlOBfiJj7Bv4YUhSkUqIibhF6y3L5ddhXYlMCE6R8o=;
- b=bJOIRG8WzNO3cRYvlbNdteikVPajoVrLDBPkeSuj1YrpVmxNrLv6z+QM
- 4bFS62mcfpUrL2I3357u77ad3vCU8QNeBp0Ydo/a2luv4/LJuAK/8/KgD
- gHUuRkSFaz9lvWkGn2owzo9JbkCLKTOSoUt+oRanCSRbnjNdED+etQj6j
- ydK2gYjUL2anzFboaIaC2I3awXhTLScPQ1QeKaEdYkwWhyrFUdmd+dHjw
- tHbnQ+dRqQG6kYXNI6Alo63d5MSR1kswWgfZ0JvmbVA7G01AXdTXAuNPU
- JQdLOxUWggK5zcchkX+Hb2ubDp3V97LfiNqrTmhpK9S5nK7BoJ0E8OlIY Q==;
-X-CSE-ConnectionGUID: kFjYHq6bTBeBu/j6WGYh6A==
-X-CSE-MsgGUID: 1mYaSfHlSres+npb58NSNQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11791"; a="102843317"
-X-IronPort-AV: E=Sophos;i="6.23,244,1770624000"; d="scan'208";a="102843317"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2026 03:17:31 -0700
-X-CSE-ConnectionGUID: c+w11R1bT82yxF92bdIqGQ==
-X-CSE-MsgGUID: suprNGISQamG4TXx5V+Cyw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,244,1770624000"; d="scan'208";a="244114163"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO fedora) ([10.245.245.175])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2026 03:17:27 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, Alice Ryhl <aliceryhl@google.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
-Subject: [PATCH v2 4/4] drm/exec, drm/xe,
- drm/amdgpu: Add an accessor for struct drm_exec::ticket
-Date: Wed, 20 May 2026 12:16:16 +0200
-Message-ID: <20260520101616.41284-5-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260520101616.41284-1-thomas.hellstrom@linux.intel.com>
-References: <20260520101616.41284-1-thomas.hellstrom@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010069.outbound.protection.outlook.com [52.101.61.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D76E10E616
+ for <amd-gfx@lists.freedesktop.org>; Wed, 20 May 2026 10:26:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dhmNjS2fCGiuNyJym9jiuJfY5bFR5/BWfoUaYVdxQDD/7l8rqerEZ9Uuyca4Gbkx1niva/YDPeQ4xvntexHyLN8vCH3j3l0YgbJqEM0JK8s0wYNznBAI5EgjU1EcfuXJA1w9VOMYhvyiv/Qrz3WYrpxpqzgzD9alaVL1u9VWDWq982V4MrEFJ9AZeBVC7PFEnXPdeunEOjKSJV/dx6Ry9vIfeU/YMC7xv6+xZ6iJflPVFOzx45+rMWSduP7Pb7SGle1QoiKAlTKwsofphnrVQUqFdTx5XQYJwzxinUB01ctiPnrzNJ+WI96YB1UNZhAvo6aapDdLgXMwWNZtbEOtWw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YpFo4G/b/W3sykLXhkeFZEcSycL1AAo4z9TMeYxcTGI=;
+ b=JHIzUt2Y6o04igbHqHVB6MzH6WTY9Ilj7FGLG8GXI4LCQTcqQWbmQGnavBtCYpDpgTm1RRa+qZm+DxBJXsN6qvOJbUDb9LT+FBLX8hUI6Q5jwIN6zHMxrGNKuqq/uSZoj3NkBMfP6nYG9GMTDK26HBPANmFbGMiV4aJX61fGqIyIaQug35YrAKZ22vldPHinKCSIf/syl3Ca1qyNORa7AJn1U1VMikp98xAWLLul6iShNbcgST9MALk7Re+qNyFqmFksp8bS1aLZK1hRphkJvNWcv7WpTr76cXAdiG7dsTKDqyofO6abvyTOTgj53Oijn65SVdDz3bwv+S62SllnTw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YpFo4G/b/W3sykLXhkeFZEcSycL1AAo4z9TMeYxcTGI=;
+ b=oNXxXdAvf+kV7NRoRzsAEnryU7stXWArbKAYblRD3k9Xrq6n0AChB7sgEa00sV9bQwbgQeUyPv8Lq35ASMO/106bS6+ZJ0pTQ+DRdqm0B7V5KRDTnZD6MEZKW/9YfqmEIv2hpIAKyEB/LTRTBgQ4OeiH24FpUtBqlU/S7UZYaSg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB7794.namprd12.prod.outlook.com (2603:10b6:510:276::15)
+ by DM3PR12MB9391.namprd12.prod.outlook.com (2603:10b6:0:3d::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.14; Wed, 20 May
+ 2026 10:26:24 +0000
+Received: from PH7PR12MB7794.namprd12.prod.outlook.com
+ ([fe80::e0be:f851:96ea:cf85]) by PH7PR12MB7794.namprd12.prod.outlook.com
+ ([fe80::e0be:f851:96ea:cf85%6]) with mapi id 15.21.0048.013; Wed, 20 May 2026
+ 10:26:24 +0000
+Message-ID: <01492831-10f1-4ac2-8850-bc87da9328b9@amd.com>
+Date: Wed, 20 May 2026 15:56:18 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] drm/amdgpu/userq: clean amdgpu_userq_destroy_object
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Sunil Khatri <sunil.khatri@amd.com>, Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+References: <20260520025258.1866776-1-sunil.khatri@amd.com>
+ <508fac40-c387-47fe-aab0-d9bfadaa670e@amd.com>
+Content-Language: en-US
+From: "Khatri, Sunil" <sukhatri@amd.com>
+In-Reply-To: <508fac40-c387-47fe-aab0-d9bfadaa670e@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 21 May 2026 07:01:28 +0000
+X-ClientProxiedBy: PN4PR01CA0047.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:279::9) To PH7PR12MB7794.namprd12.prod.outlook.com
+ (2603:10b6:510:276::15)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB7794:EE_|DM3PR12MB9391:EE_
+X-MS-Office365-Filtering-Correlation-Id: 45fadb5f-6772-4dfd-0cab-08deb65a3e40
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|22082099003|18002099003|56012099003|11063799006|4143699003;
+X-Microsoft-Antispam-Message-Info: qlKaYPT0mE6VK5K48b0ws5WdCemmnFoFA1nW9NV9oRWonr94fwu1cw1qjKFZ79KHq4u0EPJXPj0u3WmBnvCYR6a8CTOddooQ4T5WIb7u2XHUpEyWa4/setDDKnUAeaz5fqR71icDQCLTFyBuRJ23kYo4IyhJ27ABPIK2qjeXYVwzBs4FXXdS8OWebYZNp8PQzsd1MREfX7PHe9Y4n53VUqDlIeRL7V/ssMmILGw8ArUjXe4a/Cm+L+jRw2ZN9wKk45KNypjBXXhTZx27R+xgEnyvTOktykz70fqztpcth+Sakipxv+hZQoZyYG/fz0mL589gQqyKf37eL2a3bxrk2IJmQYWk/jDJUMp8pZuqnYxU9RsuO0ShgvqPnIM86mc7yiDy8KsO9N6UWjAO0q/zRyMPklfkqe7KHF5Kr73MDf4NZrox7zYq4n9I9FkaV4foqfgVtGC2eSLUVjUqAnyNwAXSEqMiG20P3gFhWVTAgTA41fH50SsPhvi9hgpG2a+I8n34QG3HSAvLmiS9XAw9/UA9+aMR7g2fU8hBW5mvIbbLeADxVq7MgUlk9sUjoRTnPa4vCAP756hnuLtu6b0gNOKCIQIEXoTElBUejnUlJaYtL+VhPWsflUl0Z26hkne9H0WuBd+dXE4FsSQHnGLyMp22YJBZYeQEtsSiRECq041IvYX/uKkX+fXUPa/8k7r7
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB7794.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(22082099003)(18002099003)(56012099003)(11063799006)(4143699003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SEp0ODRIaytIYm1rR3Y5bFA1TGNXNmpkOXJWWDdDbVdoZ05LYjJ3Ry8zUWdH?=
+ =?utf-8?B?UUpsRnROdno3QVRielQrdFNUMG8ySVRGanY4aUR1TnJDWURJUGJMRTFuK1Y4?=
+ =?utf-8?B?bG5ERUl6RE9CQnZPeUMvRTBnbGgySmlSL0Q1WFpTdG9UMTdEdXQwc0RPNGhs?=
+ =?utf-8?B?TG9MOGVoZDA3dnNOczlOWklyYmNjN29va2g0UzU0OUN5VERIT1o2NGYwcGc0?=
+ =?utf-8?B?dVZ5UlkxcDNrelNkdUdadWtRWThuYk5kRDNFT2dHT0V3ZTdpSDZJL2FUbHNZ?=
+ =?utf-8?B?T242K244S3VNbWVURWoySmRmKzBlQUI4QVBDSUVqTWhnZjhqb1hhSkMwMUxK?=
+ =?utf-8?B?UHg1cnVSV2NEV0dPSHZzUHo3UkJ5M1A0c1EyU1NYM3gzaENQSlRxOXN1N3Rs?=
+ =?utf-8?B?ZjVzbjU2WVhSV05LWnRZbE54M3lXNWZ2SnRnbU5FV3VYNmRNdUlLZWJ4RG96?=
+ =?utf-8?B?QjcrYVdnSVFSc051TDZrbmtQM1BlK1NicTM3ejhTQWMwb09tSEMvWVhNQmly?=
+ =?utf-8?B?TzRnK1NQNkREaHNoSTdGaG1NOXFyendUMFUxSVRXMmQ3MTVWZktXWFk4dGVB?=
+ =?utf-8?B?VDZyYW1Jc29YcVNXNVNxSktZM29TR3piK28wZWRteUlqa2xIU3hGRUZIWW5u?=
+ =?utf-8?B?WS91YmJ1SXNBTHgxdWJGQU9HTFlObW12UXluT2NvRHZIQ3EzaGxsUmZ4SlhG?=
+ =?utf-8?B?UTRDVVVJVnJ1YlRLOGNqeWE0ZHAzL3NtSkJ0bDkwQVRjQmR1OWMybTQwQnNi?=
+ =?utf-8?B?bUFxMGJna2wyeEVjWlQwOTJkTG54OVUxOHEveHkvUkU1UkNpS2dnNjRSUHd6?=
+ =?utf-8?B?dUxFWVoyUWkxQVBqM0ttcUNSU0N0Zml0WGVJdzVQUkUwNlVWNkt6cEY2TmI2?=
+ =?utf-8?B?b1BpU2w2d0NjeGZ1TlhCZ3dhOTBuY2lUbnkyajUrNHkvdGNyczlTbms2UkM3?=
+ =?utf-8?B?Y1grVDZBSFVRaTVLSytsejJ3SUJhVGpXdlRtNTVmY3gyckNaMzhnb3U2Y2Jt?=
+ =?utf-8?B?cEw2Z2ZpM0s1V2diZDUzbUZia2R0TzBmQzVWYmpmNTBkNFFYMTNLcW9XZDB1?=
+ =?utf-8?B?ckZZc3paNzRQT2dQL2NQN0dWdzBETWNuc2VVSFErdnFFQ3RXTDRVam1QQXRX?=
+ =?utf-8?B?UCtsemFQVGdPVmVKZnNVbjAzdVNOa1lpRVczZUxNSmZrUFZUSmpOQlpIeXFH?=
+ =?utf-8?B?Nk53UjFuMUtMMlQzaUswU05wNXdrRXZ5cEJXWmhFU2ZZaUNSWmlZRG9nU0RD?=
+ =?utf-8?B?eU92WUNhMGdMMGxoSFRENjVsYkhHOVNIUGRXSDJkOUdqc3g2Z2RSek5HQmlM?=
+ =?utf-8?B?RENUYnozL1UzK25wUFFSR1FGVVlUNVdualVLeHEvWVl6clZIVUEwaUcyTHps?=
+ =?utf-8?B?Q3luTkZucDladjNYdGVINnM2NnhTMUh5d0dySktlSEdxaUtCam9NblVOR0pj?=
+ =?utf-8?B?WThUZms0NUduWEZ5azl5eWNrWVd4L0N6WmUyc1NMM1lCdlBMTzJoM1NNTUhv?=
+ =?utf-8?B?NGtYYTNpZmtIMEp4cEFVd3poZ3A4RUFtRDUvYXpSczA0dzJZYkhpckZnVUZw?=
+ =?utf-8?B?WFkxaU9PSFFrTkhkZnlDM3ByUXh0V0VEN09Wa2MxMmZHWmczRG1vcWtrLzNv?=
+ =?utf-8?B?bnZmQ3VmbGpXSDREWll6WU1MTUdBSFBrZG1QdzNYUmRFc0QwREFLR3k5UUdS?=
+ =?utf-8?B?WURQaWRyRXNtWkgvRzdrTTllU0dZWDZxRHBzd1ZKeUVHR1hWNE9wQlRlaWZP?=
+ =?utf-8?B?RHNZRU43K0laelVocVZiYWlPUFB3NUdOR2podU5kYitLN0RWYWVaODRLcXUy?=
+ =?utf-8?B?bkFSbmdHUFJqbHMwT1AzcW8zTHpvUWxHR1k3S3NRaTlYMXZPMmtwVEdlc2d1?=
+ =?utf-8?B?a0o4ekplRTRENUxJN2xMOHROUEsxazduV1JIS2VmN3loYXZJbitmTWkxV01N?=
+ =?utf-8?B?OHJVWjhaZjNTTzIxb2pMTnFJM3BIcFRMSFJyVi9nQ3ZVSlc1NDBMNzBhTklw?=
+ =?utf-8?B?OWFxeU9ISDNvQTRyTGtlc3RsUDd5WUI0a0dudDFsc1Fsc1cwZlo4d3ExZ0cr?=
+ =?utf-8?B?RVpvaE1SQVE1TlN5QnFBWTlUbXFTb2h3bjRHS1BOVkZudTNtVG9hUHVpTGlW?=
+ =?utf-8?B?NEhJL2pGQmxUeThrM3Nad2VOTWJ0c0JiYUthZDRwV1dCT0hscWNsZEpEbDg5?=
+ =?utf-8?B?dE1tTXVDMEt5OFMvYmd3emxocUxkUjMxUTdHTE5zQzU4YjhVOVVTc3plakxj?=
+ =?utf-8?B?WncvM2pzUEQ1TVkwR1VUNndnOERlcU94VnRBaCs0SUhMMFFTQmtzWlJ1VkE2?=
+ =?utf-8?B?MW9TYUJ3bThwVmpFSlhQcnhWWGpzam1tQ1pmTDlhdzZTOERPM09Sdz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 45fadb5f-6772-4dfd-0cab-08deb65a3e40
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB7794.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 May 2026 10:26:24.3815 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0JOcd0iyb0mBn69hYitjNvAHBXgg7kgH3IVz9Y4OzZ+jSlHWiz4G+evS7md2YEr8wpHFmFTJGqwJj+9+ItRfHg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PR12MB9391
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,150 +140,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[sukhatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:sunil.khatri@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sukhatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[linux.intel.com,amd.com,gmail.com,ffwll.ch,kernel.org,suse.de,intel.com,google.com,oss.qualcomm.com,linux.dev,poorly.run,somainline.org,lists.freedesktop.org,vger.kernel.org];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DKIM_TRACE(0.00)[intel.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 0CFE959FD19
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,amd.com:mid,amd.com:dkim]
+X-Rspamd-Queue-Id: 4367358BB97
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Drivers were accessing this drm_exec member directly.
-While that may seem harmless, it will require action if
-the drm_exec utility is made a subclass of a dma-resv transaction
-utility as outlined in the cover-letter.
 
-Provide an accessor, drm_exec_ticket() to avoid that.
+On 20-05-2026 02:25 pm, Christian König wrote:
+> On 5/20/26 04:52, Sunil Khatri wrote:
+>> amdgpu_userq_destroy_object does not use userq_mgr
+>> reference and hence cleaning that up.
+> As far as I can see the whole amdgpu_userq_create_object() and amdgpu_userq_destroy_object() functions do the exact same thing as amdgpu_bo_create_kernel() and amdgpu_bo_free_kernel().
+>
+> So it looks like the two functions are completely superflous to begin with.
+>
+> Regards,
+> Christian.
 
-v2:
-- Fix amdgpu compile error (Intel CI)
-- Update the commit message.
+Sure let me have a loot at them and rework accordingly.
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c |  4 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c           |  6 +++---
- drivers/gpu/drm/xe/xe_validation.c               |  4 ++--
- include/drm/drm_exec.h                           | 11 +++++++++++
- 4 files changed, 18 insertions(+), 7 deletions(-)
+Regards
+Sunil khatri
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-index 72a5a29e63f6..d54794e5b18b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-@@ -2999,7 +2999,7 @@ int amdgpu_amdkfd_gpuvm_restore_process_bos(void *info, struct dma_fence __rcu *
- 	/* Validate PDs, PTs and evicted DMABuf imports last. Otherwise BO
- 	 * validations above would invalidate DMABuf imports again.
- 	 */
--	ret = process_validate_vms(process_info, &exec.ticket);
-+	ret = process_validate_vms(process_info, drm_exec_ticket(&exec));
- 	if (ret) {
- 		pr_debug("Validating VMs failed, ret: %d\n", ret);
- 		goto validate_map_fail;
-@@ -3040,7 +3040,7 @@ int amdgpu_amdkfd_gpuvm_restore_process_bos(void *info, struct dma_fence __rcu *
- 			goto validate_map_fail;
- 		}
- 
--		ret = amdgpu_vm_handle_moved(adev, peer_vm, &exec.ticket);
-+		ret = amdgpu_vm_handle_moved(adev, peer_vm, drm_exec_ticket(&exec));
- 		if (ret) {
- 			dev_dbg(adev->dev,
- 				"Memory eviction: handle moved failed, pid %8d. Try again.\n",
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index 97a851ae7bd8..6ada57abce9d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -1157,7 +1157,7 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
- 			return r;
- 	}
- 
--	r = amdgpu_vm_handle_moved(adev, vm, &p->exec.ticket);
-+	r = amdgpu_vm_handle_moved(adev, vm, drm_exec_ticket(&p->exec));
- 	if (r)
- 		return r;
- 
-@@ -1359,7 +1359,7 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
- 	cs->out.handle = seq;
- 	leader->uf_sequence = seq;
- 
--	amdgpu_vm_bo_trace_cs(&fpriv->vm, &p->exec.ticket);
-+	amdgpu_vm_bo_trace_cs(&fpriv->vm, drm_exec_ticket(&p->exec));
- 	for (i = 0; i < p->gang_size; ++i) {
- 		amdgpu_job_free_resources(p->jobs[i]);
- 		trace_amdgpu_cs_ioctl(p->jobs[i]);
-@@ -1794,7 +1794,7 @@ int amdgpu_cs_find_mapping(struct amdgpu_cs_parser *parser,
- 	*map = mapping;
- 
- 	/* Double check that the BO is reserved by this CS */
--	if (dma_resv_locking_ctx((*bo)->tbo.base.resv) != &parser->exec.ticket)
-+	if (dma_resv_locking_ctx((*bo)->tbo.base.resv) != drm_exec_ticket(&parser->exec))
- 		return -EINVAL;
- 
- 	/* Make sure VRAM is allocated contigiously */
-diff --git a/drivers/gpu/drm/xe/xe_validation.c b/drivers/gpu/drm/xe/xe_validation.c
-index a611438eaafe..8dff4d0ec895 100644
---- a/drivers/gpu/drm/xe/xe_validation.c
-+++ b/drivers/gpu/drm/xe/xe_validation.c
-@@ -156,7 +156,7 @@ int xe_validation_ctx_init(struct xe_validation_ctx *ctx, struct xe_validation_d
- 
- #ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
- /*
-- * This abuses both drm_exec and ww_mutex internals and should be
-+ * This abuses ww_mutex internals and should be
-  * replaced by checking for -EDEADLK when we can make TTM
-  * stop converting -EDEADLK to -ENOMEM.
-  * An alternative is to not have exhaustive eviction with
-@@ -164,7 +164,7 @@ int xe_validation_ctx_init(struct xe_validation_ctx *ctx, struct xe_validation_d
-  */
- static bool xe_validation_contention_injected(struct drm_exec *exec)
- {
--	return !!exec->ticket.contending_lock;
-+	return !!drm_exec_ticket(exec)->contending_lock;
- }
- 
- #else
-diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
-index 99c7e1bb3c5b..8725ba92ff91 100644
---- a/include/drm/drm_exec.h
-+++ b/include/drm/drm_exec.h
-@@ -161,6 +161,17 @@ static inline bool drm_exec_is_contended(struct drm_exec *exec)
- 		goto *__drm_exec_retry_ptr;			\
- 	} while (0)
- 
-+/**
-+ * drm_exec_ticket - return the ww_acquire_ctx for this exec context
-+ * @exec: drm_exec object
-+ *
-+ * Return: Pointer to the ww_acquire_ctx embedded in @exec.
-+ */
-+static inline struct ww_acquire_ctx *drm_exec_ticket(struct drm_exec *exec)
-+{
-+	return &exec->ticket;
-+}
-+
- void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr);
- void drm_exec_fini(struct drm_exec *exec);
- bool drm_exec_cleanup(struct drm_exec *exec);
--- 
-2.54.0
-
+>
+>> Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  |  3 +--
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  |  3 +--
+>>   drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 10 ++++------
+>>   3 files changed, 6 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>> index 798998d65e17..0607b7078518 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>> @@ -526,8 +526,7 @@ int amdgpu_userq_create_object(struct amdgpu_userq_mgr *uq_mgr,
+>>   	return r;
+>>   }
+>>   
+>> -void amdgpu_userq_destroy_object(struct amdgpu_userq_mgr *uq_mgr,
+>> -				 struct amdgpu_userq_obj *userq_obj)
+>> +void amdgpu_userq_destroy_object(struct amdgpu_userq_obj *userq_obj)
+>>   {
+>>   	amdgpu_bo_kunmap(userq_obj->obj);
+>>   	amdgpu_bo_unpin(userq_obj->obj);
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+>> index 033b8a0de6b1..fe89e35b0d85 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+>> @@ -155,8 +155,7 @@ int amdgpu_userq_create_object(struct amdgpu_userq_mgr *uq_mgr,
+>>   			       struct amdgpu_userq_obj *userq_obj,
+>>   			       int size);
+>>   
+>> -void amdgpu_userq_destroy_object(struct amdgpu_userq_mgr *uq_mgr,
+>> -				 struct amdgpu_userq_obj *userq_obj);
+>> +void amdgpu_userq_destroy_object(struct amdgpu_userq_obj *userq_obj);
+>>   
+>>   void amdgpu_userq_evict(struct amdgpu_userq_mgr *uq_mgr);
+>>   
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+>> index 2d95203ec58e..69b36ebfe7ac 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+>> @@ -432,10 +432,10 @@ static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
+>>   	return 0;
+>>   
+>>   free_ctx:
+>> -	amdgpu_userq_destroy_object(uq_mgr, &queue->fw_obj);
+>> +	amdgpu_userq_destroy_object(&queue->fw_obj);
+>>   
+>>   free_mqd:
+>> -	amdgpu_userq_destroy_object(uq_mgr, &queue->mqd);
+>> +	amdgpu_userq_destroy_object(&queue->mqd);
+>>   
+>>   free_props:
+>>   	kfree(userq_props);
+>> @@ -445,11 +445,9 @@ static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
+>>   
+>>   static void mes_userq_mqd_destroy(struct amdgpu_usermode_queue *queue)
+>>   {
+>> -	struct amdgpu_userq_mgr *uq_mgr = queue->userq_mgr;
+>> -
+>> -	amdgpu_userq_destroy_object(uq_mgr, &queue->fw_obj);
+>> +	amdgpu_userq_destroy_object(&queue->fw_obj);
+>>   	kfree(queue->userq_prop);
+>> -	amdgpu_userq_destroy_object(uq_mgr, &queue->mqd);
+>> +	amdgpu_userq_destroy_object(&queue->mqd);
+>>   }
+>>   
+>>   static int mes_userq_preempt(struct amdgpu_usermode_queue *queue)
