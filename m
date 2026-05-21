@@ -2,85 +2,124 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8LenGW5RFWqmUQcAu9opvQ
+	id aBAsAfsSD2pzEwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:18 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 16:13:15 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDEE55D1F7E
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74E765A6F12
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 16:13:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3140C10E547;
-	Tue, 26 May 2026 07:53:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D198810E528;
+	Thu, 21 May 2026 14:13:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eda3QdVS";
+	dkim=pass (2048-bit key; secure) header.d=fooishbar.org header.i=@fooishbar.org header.b="B0KS206S";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
- [209.85.210.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D57E310F334
- for <amd-gfx@lists.freedesktop.org>; Thu, 21 May 2026 13:35:42 +0000 (UTC)
-Received: by mail-pf1-f178.google.com with SMTP id
- d2e1a72fcca58-8379e010b01so2655634b3a.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 21 May 2026 06:35:42 -0700 (PDT)
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
+ [209.85.210.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60D1710F339
+ for <amd-gfx@lists.freedesktop.org>; Thu, 21 May 2026 14:13:11 +0000 (UTC)
+Received: by mail-pf1-f176.google.com with SMTP id
+ d2e1a72fcca58-83ec36a13e9so2957959b3a.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 21 May 2026 07:13:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779372791; cv=none;
+ d=google.com; s=arc-20240605;
+ b=Qaymhs0N17nkjtGoce/yqI/c9SyF22/3y8hDaB8vAR+aL+nkojzX+oBTp6m16XcAcu
+ GKnIi+KlrYE5nISlBomZw5xHzJ+tBiL5HeE47HMnI2VvY7HRcjzFAXryyge3eVyCMTvk
+ vyM2CbHKhs9ELd70uv2qC9ptM5orfCOdyfwLaPOR8ekW6kor19VrtT4wZFBflJGee2Wa
+ QZ8tLgZxbg1gGeQHMmeJlKI+uKOUwyp9KRvVP6ewdAgGy5hWPXUZiJS6rp/CGw45mX12
+ KM7yelTiiisb5lTINumn6si03G1/MpxZ1cD0sEm9ofYyrCZDkZYgKq6+emiSvzFEi0/U
+ N1UA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=REP4STaURwNBwYLUxnT2eThrBHI2vGspRNmg6btJygo=;
+ fh=RDTDrNVjRALLNKpj2mVzJ3iXBCRtMIt9hq+/E29mivo=;
+ b=XnuheWKueg2IdqYKIUTi9cwUifYsiXnR3Ah0jz1Ru99VyaZ4tf5brnFUnhTJsVY2cA
+ pCoDZu2SHg4eRdX7z/eTgS4HsyNjF8ODyWXoBsm+4vsSmBfRxoGgFNc+24O/XwvgDWYP
+ lnuo3vIVmCquTK5P9PPojH0MXxtknEVhFTLQm0aeOd4I0ZuvEe3G/qdw4052HyOLhtSK
+ o7wxnCzhUxd/XqfGdzORM4E2gfCEdmWp/qJOyKzIbbYWtBDFS3vc9UUwO4BxnDoDfLXd
+ O+DzaOKw2RpiygBiT+cKMb42xStsAIvPnniBi+Px7rL6XRW1VwZIfFaZ2CuyqvaSWQw3
+ mfTw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779370542; x=1779975342; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=BIK/4TSUzg+Gt9duY3olQGpqAgCO2S6UZFsGeUBiZ8Q=;
- b=eda3QdVS6rlW6+i2X7zCdlDaDzztXkjLC8OQpnJDYazmI2Mon7IKMSV9TnRhKs0RVT
- 9UVxMYNFeJFMrB5j2M6AS7aEk8UHBEV+iUeFfIZvItbyJ4hP0xtDnjpTB4twO9R9npei
- 2QSw8HesKg/swV1wOweczJcNrFQcGIySBenJufJXPP/oRzkNCP3elIcGs7uwXv270U1N
- c8ybHarWK9vOlr/5oY+ckEH8kkwx0Pe+F9zQd4bOAE2NzFfmGvIDeqYiWZ9rPy1vrf7o
- ZRbfvaPVQJ9vyhDdA8K20UbMUvNY1usrwBrBGGV+XXSm5KKorBJ324Mz+ZwrgQTwU9di
- q4+A==
+ d=fooishbar.org; s=google; t=1779372791; x=1779977591;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=REP4STaURwNBwYLUxnT2eThrBHI2vGspRNmg6btJygo=;
+ b=B0KS206SJCDMlPBj3enN0FsCW+bO+4qoyBjEbW/roKfA8sJwk/nfyATTMyS+9k1Bsc
+ F+j7F9k2ubY32CFqKo+cXnsazki1e1I0ster1uIDj8Kyy4sHYuZuBlDMrUX6BCpQIuSW
+ Pgb5txZ6LQ53Be20KEG+ZVZN8Uf6ptBqiZqDxwOGJcu8JMOHGhkvpqFT/FA2jmj0+IHM
+ OYywnIpcZYYvDnk7z367KV+anBeBUnuGIVtvFj/8dUDCFqBEwaqhHo1JrWYKDpECAt0K
+ z14Hb9qOlw8IkC1saAzEr01e/V8QRYPio5xwP/XNk6oko3d7OY1/B5Baj6BS6QwTnLLk
+ 6zFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779370542; x=1779975342;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=1e100.net; s=20251104; t=1779372791; x=1779977591;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=BIK/4TSUzg+Gt9duY3olQGpqAgCO2S6UZFsGeUBiZ8Q=;
- b=m7KGNyp4z/1q8gQbnOSlg1/t6WlTf2FiGJTDVijC6/UkfknZ9ImgzHCSWb914NVbp/
- UTw3svnKiFoiQz+YP74dWblm2f8VwnHADdwnmJyTJx1r+mlsOIj2YjvrO6JGmhbtsy28
- +u21rLIalutX6iEqEXs4udY7H20TFYOt3xsfrf15cLE2A2MAOO7PXt9k44qWZg8fY7TY
- fcnJqA+fP2YvrbE4Qp9xXyoRmdow3dZZnW0W6bNo5otxtxTgnY1O0QPZlsXSvt6ISWkI
- jUzCA4cp+D1APCFSdo4wFWwdIrdRHBE0yzSI5RQkHJdc21YIe//HeX7R8OHJQUF61LMe
- SEoQ==
+ bh=REP4STaURwNBwYLUxnT2eThrBHI2vGspRNmg6btJygo=;
+ b=a9NqCSia7JEV00AOvayWczoyfRv8S7LviZw2cGMF3/NmqARSg7evlUjNm9p4DBx/6h
+ zZGUjpmJibhkDxDh2k9u0wMnCbyEuSC/RLE2dFKLR5A1eQBIMVBzXNwCu+YagC0Yn9cT
+ 5EtFpvtagREJk83+zJTX6onC+lx2T72kS4hPsSYkgi8HxznWN+2ra2T9XRTPzz8wN5Mz
+ avq9+nBCrmUWOZLEF6VzK54UYr11UbXxdGzA5zCCV7ZxlgMPg/1VifykXwwzuVhjg556
+ GD5yX8M9/ezR7Enx4T1+P5vueSz/LYcKg0Fh1tyjAjBPTS3JYDh6pnIPd4LU7+G54cBt
+ kMRQ==
 X-Forwarded-Encrypted: i=1;
- AFNElJ9clm3g27n9bKi50YSvPTYOkjB+Hj09eb45BO+7PHWuUH78zqv/m/eDPiOtxINDPWe1W8xVZKnX@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzdxVmpZRn2P6sNy/qfTsD6XEsLPrK4AUURu299Ax2HYE59KWGB
- GUtWfYOJyro9xwBMmmWl76l7iyJGcqSjrT2ZLbcjoe8KmV9fTH4WTw7t
-X-Gm-Gg: Acq92OH6rBkSqhwZkognR/18BnsFByMtP4q6chV7cMkHHjMY688WqfVtqoNBrKl4Aes
- AQVvnZdP5lYs0pjeckAURHaTv+kdUVe4MguX7QwD5is8c5o4cvSJJdHnfjlzi3+F78PSJUvgFs3
- Zb+MqDHRJ1fYqprOLMEclJdEh1HXNNyssPEnQvPDtDFQfJ1j9Nr1b5WOvVhxODfxnaVitjFQ549
- mXXfd5VZq5c9ASeoygf8toT3AeUUO5jQ/Mq+juI1403pySBZlh5WkKhh/g/wUIsxYgXum/UOt01
- 85I7DmX60WUULfgQX8jGu/67DJHPFzYjC1qVSXB+Sx+rV7GLOlv5dKlbrG46RUX7UvEgN3EmJxR
- L7F4Kj39dUh+DYOnCFXxKxZ5Hp6rnyCyf0QBvSvi7Z+yz2PBszTbWd5ZP0hgipWb5js8zIypcaZ
- HF+QoLpf0TmiKZcvSN1nuY/h0GHnA1eDTLvbrxekN82Q1vA50BGexZ1VMgohc=
-X-Received: by 2002:a05:6a00:950e:b0:835:3f51:72fb with SMTP id
- d2e1a72fcca58-8414ac893c1mr3157356b3a.12.1779370542273; 
- Thu, 21 May 2026 06:35:42 -0700 (PDT)
-Received: from csl-conti-dell7858.ntu.edu.sg ([155.69.195.57])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-84154b1bfc1sm1286174b3a.26.2026.05.21.06.35.39
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 21 May 2026 06:35:41 -0700 (PDT)
-From: Maoyi Xie <maoyixie.tju@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/amdgpu: remove dead empty checks in ring_mux
- ib_mark_offset and end_ib
-Date: Thu, 21 May 2026 21:35:37 +0800
-Message-Id: <20260521133537.3438468-1-maoyixie.tju@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ AFNElJ+yD+9b8oZ0tAYWG3G5UTSjdsq3wLm2Xzinvey7a6/iJLMptZQZhpmEVj+SJrHzwVZQy04dAb45@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxXdXMSI9RT9N7EOyk+3RCfw/CyiaCL0C1GHusNhxos2BFtqjYO
+ Dw9sE2LzU3xYuhFRLxG562DOPD2ixpHTfTYjEUC9tBq5hxF4o/ER+qgL7UguNs3Kp41j5mMlT9s
+ PbNvk+uBNojLyp2GjDBVsQ/9idINsuXQXPB3nVSgi1w==
+X-Gm-Gg: Acq92OHNBcFbY+/urAwm1pBluJNOBU7XI3EMP3JpYchirTpo38JFU5lT9FbqB+uTdgs
+ vSOZVmse20Hv7kJW132YlFckSg3IgBu9o0NYk3Es3XPMAgnTXc5vP7WU1ZrMEtp2AW2b78Sf1v/
+ UbqzdqdT/kts0ExFDmzVwOsHJv4gyRuh+lLAA9GJRRF6CzEcVWhFNSefqf41cXXYjEXeGx62Fi5
+ jLyYTLmQLVD4XuhOJAiDm0vwe+fIQp4H9Zj89SPU94cYG/oWTfETmdeNkjTaUkvbfbpN+80uSa8
+ pGFClxH9Y8nnauOy5IN74LnVBL45W7nb9sqsp38=
+X-Received: by 2002:a05:6a00:170c:b0:83f:2568:d45f with SMTP id
+ d2e1a72fcca58-8414ae0067emr3410992b3a.23.1779372790773; Thu, 21 May 2026
+ 07:13:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 26 May 2026 07:53:08 +0000
+References: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
+ <20260423-color-format-v14-3-449a419ccbd4@collabora.com>
+In-Reply-To: <20260423-color-format-v14-3-449a419ccbd4@collabora.com>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Thu, 21 May 2026 15:12:59 +0100
+X-Gm-Features: AVHnY4IhuE52xfR4O7ZsBvGU9UxEW_nGPaKeUuOJKbLW6yd-ftNZQIcte9EpFTU
+Message-ID: <CAPj87rOgkSAhVzzHyuKEGPxVYeDhJKLGVNrBA2BkG00gvMJjYQ@mail.gmail.com>
+Subject: Re: [PATCH v14 03/28] drm: Add new general DRM property "color format"
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ kernel@collabora.com, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+ wayland-devel@lists.freedesktop.org, Werner Sembach <wse@tuxedocomputers.com>, 
+ Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,95 +134,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.31 / 15.00];
-	DATE_IN_PAST(1.00)[114];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[fooishbar.org:s=google];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	TAGGED_FROM(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[maoyixietju@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	DMARC_NA(0.00)[fooishbar.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:lumag@kernel.org,m:s.hauer@pengutronix.de,m:robh@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kernel@collabora.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:intel-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m
+ :wayland-devel@lists.freedesktop.org,m:wse@tuxedocomputers.com,m:andri@yngvason.is,m:marius.vlad@collabora.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[daniel@fooishbar.org,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[42];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[fooishbar.org:+];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[maoyixietju@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[daniel@fooishbar.org,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: DDEE55D1F7E
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,fooishbar.org:dkim]
+X-Rspamd-Queue-Id: 74E765A6F12
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-amdgpu_ring_mux_ib_mark_offset() and amdgpu_ring_mux_end_ib() read
-e->list with list_last_entry() and then test the returned pointer
-against NULL. list_last_entry() never returns NULL. On an empty
-list it returns container_of(&e->list, struct amdgpu_mux_chunk,
-entry), which is an aliased pointer derived from the list head.
-The "cannot find chunk!" error path is dead code.
+Hi,
 
-These callsites run on the software ring submission path, after
-amdgpu_ring_mux_start_ib() has linked a fresh chunk into e->list.
-By the IB API contract, mark_offset and end_ib only execute between
-start_ib and the chunk's removal in scan_and_remove_signaled_chunk(),
-so e->list is non-empty at the read. The defensive check is
-misleading and never fires.
+On Thu, 23 Apr 2026 at 20:04, Nicolas Frattaroli
+<nicolas.frattaroli@collabora.com> wrote:
+> +       } else if (property == connector->color_format_property) {
+> +               if (val > INT_MAX || !drm_connector_color_format_valid(val)) {
+> +                       drm_dbg_atomic(connector->dev,
+> +                                      "[CONNECTOR:%d:%s] unknown color format %llu\n",
+> +                                      connector->base.id, connector->name, val);
+> +                       return -EINVAL;
+> +               }
 
-Drop the dead block on both sites. The list_last_entry() read stays.
-If a future change broke the precondition, callers would crash on
-the aliased pointer, which is louder than the current silent error
-log and easier to debug.
+Shouldn't this already be ensured by drm_property_change_valid_get()?
 
-Suggested-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Maoyi Xie <maoyixie.tju@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c | 8 --------
- 1 file changed, 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c
-index 6e64a96fa285..83d62d9f76d4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c
-@@ -495,10 +495,6 @@ void amdgpu_ring_mux_ib_mark_offset(struct amdgpu_ring_mux *mux,
- 	}
- 
- 	chunk = list_last_entry(&e->list, struct amdgpu_mux_chunk, entry);
--	if (!chunk) {
--		DRM_ERROR("cannot find chunk!\n");
--		return;
--	}
- 
- 	switch (type) {
- 	case AMDGPU_MUX_OFFSET_TYPE_CONTROL:
-@@ -528,10 +524,6 @@ void amdgpu_ring_mux_end_ib(struct amdgpu_ring_mux *mux, struct amdgpu_ring *rin
- 	}
- 
- 	chunk = list_last_entry(&e->list, struct amdgpu_mux_chunk, entry);
--	if (!chunk) {
--		DRM_ERROR("cannot find chunk!\n");
--		return;
--	}
- 
- 	chunk->end = ring->wptr;
- 	chunk->sync_seq = READ_ONCE(ring->fence_drv.sync_seq);
--- 
-2.34.1
-
+Cheers,
+Daniel
