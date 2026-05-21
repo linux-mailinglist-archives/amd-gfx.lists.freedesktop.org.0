@@ -2,94 +2,129 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EPphJd6tDmraBAYAu9opvQ
+	id +BofHj5ZDmo4+AUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 09:01:50 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 03:00:46 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DDAF59FD18
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 09:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA86059D789
+	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 03:00:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99C0210F22F;
-	Thu, 21 May 2026 07:01:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD88D10E1B9;
+	Thu, 21 May 2026 01:00:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="P08gTjLj";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Nb5a7Zda";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com
- [209.85.160.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2862010E182
- for <amd-gfx@lists.freedesktop.org>; Thu, 21 May 2026 00:52:51 +0000 (UTC)
-Received: by mail-oa1-f50.google.com with SMTP id
- 586e51a60fabf-40974bf7781so5144890fac.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 20 May 2026 17:52:51 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779324770; cv=none;
- d=google.com; s=arc-20240605;
- b=iTMgXp7f/EbA0kHgydQFh2Bp4rdNRtTto8dNbOjAbRZEw9zLNd0I2dhGg/NFhOTN4m
- 24AQEAcHfvCjaZuRdeD8aWiHI/tjhf+AuiIgJb3/9qZ/+DYbG43xRGBYvIzuEQgSbTqM
- 3Xs5wOynyN1DcgvPKHoQwD9KEGnGOlr3LROy4VfTFmZVnb7Qg3gWAs5d3YIX12THgkKx
- fzJmEgVeX8YNjPyKAw3AhEsXGcIU6gJqoGEoSOrwtEIRuZmffAkcBsPnEo5MUXrZN5I+
- TZEuSSZHhTZ7QKv3g6mWgzp1bETJuxC/H/fQ4uQ2QHx4lM92XoCcaw+jBo9DPxUYBWUa
- jiCg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=to:subject:message-id:date:from:in-reply-to:references:mime-version
- :dkim-signature;
- bh=rfGahdF14NrG0GQy6WnJREawOyO9Fypnn5Px49Fz6I4=;
- fh=hs9oynQb3YjZT40omR8IZyt+l0QN8nu4Bye5abBVWug=;
- b=TRaVwCm/ULr8PQLfq80EeURF6VK12B24zhITg47yOVJBy7UsqWnMr6CZC7TnwR1789
- o5RdTcvGM5XlERkGQaxF7R0rzCBiGntRXuODo9BpnRk0aus3xelTovdtqW40rCVhXscA
- tdb2ux8xGR5uwmJwxO7ID5SrFbGDlnsQRA7aT7ftnpSU0U6HCvhDy0QOH3jpeBIMsFVb
- RA/TVQwjdsBX7K7oDOr3bNSbNBcVxCxFe0u/0RtRNvEd3QlRdWfpMtZuLlwoxGmhGl5V
- PEyYqCPb2/I3qYBDoFBwVlSevPIU81TVvGmTZqUT7VuP/EMxR9KrZR2byvMtDODDC428
- SL6Q==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779324770; x=1779929570; darn=lists.freedesktop.org;
- h=to:subject:message-id:date:from:in-reply-to:references:mime-version
- :from:to:cc:subject:date:message-id:reply-to;
- bh=rfGahdF14NrG0GQy6WnJREawOyO9Fypnn5Px49Fz6I4=;
- b=P08gTjLj9zWt7H1IqPPGAdanQvGpLJ4nS/K/APOfnUtqxMz+oWWDDpPXOOq9IPOMXf
- Hp26+8Gk5Pn4Kf/uXgFBNmYhPrPToV1fljSCKBp1A6IFlV9sDsNDym0tKyWmTPZ+oxjS
- poWLe3uyV75VcMDzLL+lampFxnZpYm/oFY4MtXodE+m+HBfcFMRwhfcEG95MuhoWoC7D
- EhLbWz1H62Wur5ADQo6Eaxi7UMysBYoV5KpdniXFh/CLURxFK3ITDpGN21glssN3NPKl
- c1GdG0VYiJZyq7HJMK+QhPV97TIj1X4jm552VztHUUXJKUk+NZG0alBXV/qlCgUkquDD
- o7vQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779324770; x=1779929570;
- h=to:subject:message-id:date:from:in-reply-to:references:mime-version
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=rfGahdF14NrG0GQy6WnJREawOyO9Fypnn5Px49Fz6I4=;
- b=U93qIVASDe+0wVAleh5xNp77jsXA+Q11PPfefFvApq/K4b0T6VvLuMIMGL0PlqeHmC
- G7d4wTUe7gcm4aZrQBTcAvK8B9dVRp6qAYTbyatIaYLdEoQJTb8XFQGg3m27uAwJSd1P
- 65kZ3rYSTa2f2wap25x5xE70iABXAmq0r0OVb8mPN5X3g9AgPSu+2HTRidpShY7P3bHe
- TfiZ/NWYaCLsFinVmh1q6CDnwKAIHQpMtoG5NkFoGgjyDTJKFIetohqgyEuEMGflXPK/
- prLBUi8fwzcmVKJ9rlH8g8oEka6Itc+B3iwBlk6FYgdR1YAiQZWCsXMUYU9k5HYak8D6
- YNaA==
-X-Gm-Message-State: AOJu0Yw0e0LTTjDhGPdOO/72MRVlqmGwvDjSDJN+oxEQ7WIvpCIk0xpv
- NTXODSGy/jDpDefcRkbd2cvNMySVe+Fw7Sinu5TNPWrcWeIg8nOqZPu2ik1mB5YWQNNbmJIBOJT
- m2985qqovzUIwLCAoTeLMV+G58l3xpo7dHjt32b0=
-X-Gm-Gg: Acq92OGgG4cOYVj6dpc4VL2LHLLdFxO9T0b2/Z8SFzg2W3y0RedymbpveZ1wbLTrDZy
- hI9jKUMHmbu62d5UbGmtAhv/NHkQ/6LxzB/wXR9FIAdy5q8NKJ5ZHur7/6ows+cJyJrBFPEHMwF
- RQg6y7WVJL57kp2CtQndf2XD+g6o+ppI6xgkslb93qxdFTcLg5ixcWA3aqAWh8Y25iX5BkSvZF4
- Zb/Xxk9+EaFIXRF1vY3mQryI+88HdYYfqzh5Kbj4O42pg0bRMqXcmmi/+iJCP0kTXG+IOXa5Bxb
- mJlRRHcIvKHFvbFAt1AjBI0F5qrRVUaPKvbBypSCLQ==
-X-Received: by 2002:a05:6870:968e:b0:439:d504:1469 with SMTP id
- 586e51a60fabf-43b2f88beaemr424420fac.9.1779324770014; Wed, 20 May 2026
- 17:52:50 -0700 (PDT)
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013042.outbound.protection.outlook.com
+ [40.93.196.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E037810E1B9
+ for <amd-gfx@lists.freedesktop.org>; Thu, 21 May 2026 01:00:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NV1xNOCL3/gS/DF2JbialssvRTWyI+aYtxt/VEb5EJ25j+SJMXFLJFw0cjh3wbp343LnQ3I1uOd02cAobymJ18sBzRX1xLCVw0X9td1E8QwC1H2Lr3Fc+UJg494uwX9BRhRylvBv3qFFiCH/RIDtiFEFfZb+SdB3KdP8GPruL9mbxFJK2UU+RYBqN5ouBu+4PdKNQu9UyJ530+RjFPNdTsRWhZSw6ymQgELEbe3fFkmD6rYZE0lVRn94wqcTfrbQvlts5nhqO0nPG39uCe9poINGsl5sbpnxEgESqI4DsdOvcQpuVRgnNpeWs2K8HdDyiIsjHKsrL0Rq05Uq2WIv3w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=czQy2/jA+btHUl+LHVgGMNQoDh88FoHMdq3X6JQAvsY=;
+ b=faEV/pPj+SQmI8DfgxKCITUNOs71Vp4hWeweEs5QnksR9tOeUKLvpnOYUKZqEANCwFtU8iU6UL5QO3RqF3qUQ2DTB3AQ0aDa0rBXSY7mYRbmUkOeDf96C2/BS2YBDDT1auddGPjJOocTAwHNMevL4VfQojda1STRP1EN9t1kCrbBJv0QNO4uVv7t6nDeEHKz6YNyy0kUFzrZAMwZmmgftgelW3vNdU11GwXBqeZYuOzHMBqaJm8VQmuwQXce/8B48AtKMkubDRFbG81YCuIPnihec/1s4LZeacLM0JfB40P8Ti2um+nuM5t8dLGHA8jylVoomU/yMv21o9+dwhZJ+g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=czQy2/jA+btHUl+LHVgGMNQoDh88FoHMdq3X6JQAvsY=;
+ b=Nb5a7ZdaeFh9p45fnZa9n6eqGxc3d0/0KiCqJvQPefw5PN79PqDab/CdwhOaSqMb5TZEeW9JP5xT/4JlGyiQFMPR1koKaUZmfuJtD7T53/ty+ZbGNAcbHV+pyizwJN4TLyXN65fvsYZdCq5jy2klzL8GfJZ3GUzX9nV4eVPdC+I=
+Received: from SJ1PR12MB6194.namprd12.prod.outlook.com (2603:10b6:a03:458::12)
+ by SA1PR12MB7037.namprd12.prod.outlook.com (2603:10b6:806:24c::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.14; Thu, 21 May
+ 2026 01:00:39 +0000
+Received: from SJ1PR12MB6194.namprd12.prod.outlook.com
+ ([fe80::2201:99d6:c63e:3d2a]) by SJ1PR12MB6194.namprd12.prod.outlook.com
+ ([fe80::2201:99d6:c63e:3d2a%4]) with mapi id 15.21.0048.016; Thu, 21 May 2026
+ 01:00:39 +0000
+From: "Dong, Ruijing" <Ruijing.Dong@amd.com>
+To: "Cheng, Benjamin" <Benjamin.Cheng@amd.com>, "Deucher, Alexander"
+ <Alexander.Deucher@amd.com>, "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+CC: "Wu, David" <David.Wu3@amd.com>, "Liu, Leo" <Leo.Liu@amd.com>, "Cheng,
+ Benjamin" <Benjamin.Cheng@amd.com>
+Subject: RE: [PATCH] drm/amdgpu/vce: Add overflow checks for size
+Thread-Topic: [PATCH] drm/amdgpu/vce: Add overflow checks for size
+Thread-Index: AQHc6LFxtSt9EiUTZ0Wiw0EUF8Q0vbYXqQuQ
+Date: Thu, 21 May 2026 01:00:38 +0000
+Message-ID: <SJ1PR12MB6194EE2F1EE299E4F56B2F27950E2@SJ1PR12MB6194.namprd12.prod.outlook.com>
+References: <20260520233543.2118183-1-benjamin.cheng@amd.com>
+In-Reply-To: <20260520233543.2118183-1-benjamin.cheng@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-05-21T01:00:28.0000000Z;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD General
+ v26; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=3;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR12MB6194:EE_|SA1PR12MB7037:EE_
+x-ms-office365-filtering-correlation-id: c10c28db-3a99-4246-ca9f-08deb6d45fd1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|56012099003|18002099003|22082099003|38070700021|11063799006;
+x-microsoft-antispam-message-info: FuwQ8NT1Urb+2J9XbybZEjSByRSpjnRT1QY7LcdDebCEAzh8BHxVmNYQGjnfeE/SUnKchpJeRH4DCb+0PQyyVF4jMJfI8NJxqJ6eL7xAINQpA9YeGmEE+B9uuo309lblOho3osBRxRMkDaU8HPx1/a96q4php4TszLy+eX3KO2IDlbjh7Nn74boL9GaMEvVGZyVDVDshvlPEqZjl9BkshyPcS3VzMvZqlnr62IlfyXDPB38lMMEoxp0v9k8+SQXJ+2p2dqH4sCGj+07E0qneDi9gl6eNPaRfxM8scNLvzSDz9FCt9fUnQIbxgFvFQXxQ/bNWe7fi2bPIT0G4rCP/L5ZxagrFm5Zo3XpSjdKpo3HekCqXlNv22GQTPLcSa65X5CIxI/HU8XRKqbUOzT3xiBmmieZky9KVOmYZQQE/EE8yC0S93pNSLWKCb+oQcJDCpMHE5GJRwqCT2ABsIKAXW4Pv2P+6ZlH9+W8NUgzmYLEyE+LlBfI79pvhcMEOaxQ7cAMuS142QeUlOJOnyXXQ6qed6uBDYxrqzUIFwx31Im8bKrW0ab3fShION1n7RXz9EZE+pPZ76E2UdtfPQibk18l2H0V2O1xAU2Y6YpEgr7XG2fa9EvgQSOKRSKbTQM+3kkBCpMWe/OP77ftLxke/KOwVzWVfBb82T9aATBzxQPlOOF24j0VnuKmVFxUi+5dU7KTU6Z0OG23+Au4f2wwC6NQk6uF27AxQOqat/OEXPLGBF/S8DCvsSyfEYRXWXO3w
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR12MB6194.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(56012099003)(18002099003)(22082099003)(38070700021)(11063799006);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ShACqCrnjGevvMFI6+8d6y5V2U8fNYt3b4gSDOdueL/F9biKL84FbfJGwbIU?=
+ =?us-ascii?Q?2+cccWEp4C0pzhyMxriJEa4GkKvlBdLZ5p8BqrHGaFj9/IXryYJVo8InHiXI?=
+ =?us-ascii?Q?juOOht2OwMQXi0BMkmIrGUEJ3XItx4XMlmU78J77m+NF5HMQWn1eEs5Vlruh?=
+ =?us-ascii?Q?EoB2vLY7UhkQCJusCph4Ol4phEV2dqSy12G4tFplyUISUQdRpJb2iFvLPe5s?=
+ =?us-ascii?Q?Re5gJlk5VsqhIaZuqBPVQniO/syBSxSMJ2CGRmNcHRXRnRDmJcei46YhM7bt?=
+ =?us-ascii?Q?Wyxgy9k9tP6hyyg2ATb+gyW+xduCAzOTdQs0EQG/UiKprKYW5Ymgjxpl+Tnr?=
+ =?us-ascii?Q?65ajlo2y/vt+xc7oPEl8snWF9X2KjbtrLZEbW4ctPt5elqg3N5QDgH12v9qB?=
+ =?us-ascii?Q?P+wiI7A6W4Y8B6RHWf8cSa+VmsByKBfvEkr7/W+9k9vnj3EoPM5MSMStU7Qf?=
+ =?us-ascii?Q?xl5jrCSe9R4kOJjmXcw+HLPhoPNkHds/TdNAgGfSKxFf57ZOzo9sFKQtj3Gd?=
+ =?us-ascii?Q?ZHvwQZmK0EhW6vbpZcWCJ+gWcC6S/WtdP6fF7i/2eI+TgvsTiwMbKNgkjSIU?=
+ =?us-ascii?Q?fFFt+xcGhKtiZ1RNqqi6n4hSL2R9F17p4JVz2t6WCTUllnpYGQwD7E/Fyewm?=
+ =?us-ascii?Q?qH6Yr4Ymg+u6VGJyhdVSaBmc7C/xLTHgCvNhwTz4Kmxae97DZLLTWrlZm8l0?=
+ =?us-ascii?Q?evGq6Rfmmy+gsJj1kTzTJQL54OnNjsuHfUNslXZdVIZyyakFE69cy3Kxxx79?=
+ =?us-ascii?Q?fv9yCxLE5GxHlYL204fMMjVqG0wWdSonFaqEdKexSSiqAgeewrOv+vOki5YO?=
+ =?us-ascii?Q?EU/fV/wxE7tzu4fqDopS5E26CQKmWRLY1ynlswVjq3g71lS8fCpUvr+O/NIs?=
+ =?us-ascii?Q?p7vdPKBE72pwGKPT85Bt1d9GtgkXjO4j/0pvHK749Rxq34Yr2aLDIhilYtXB?=
+ =?us-ascii?Q?7KxHQNQs4pl1X+IDInwk09n/7QQ64+AKJFDFzPYiCDmHQ49ueKHPMdtN5bie?=
+ =?us-ascii?Q?pMc85WSPJyi0QHEeMpJcg9ZWyHcF03XRgJUI9FSJT7jYBr7ThvZygU6SkzBf?=
+ =?us-ascii?Q?h/8/bUExzKfV0phBavAUpvx4sbyimEoQWM1d/RNeU8c9OICEeHmanLW3EsS3?=
+ =?us-ascii?Q?Q1ky1w5fDXLdFLCmU2IeYh3E3BNr8rNdu6VoFBd4v/zHdrxSeofy5CQn8CrL?=
+ =?us-ascii?Q?2IOqRxmVEbLTGuQMJR2m3n+sxnd3yL3vuprvV7TEz/hSvU9UG1xT0UYqp/rs?=
+ =?us-ascii?Q?NudsVKzhMQYUA7voR+d2Q5Ro+snw+xSssGQpLK2diPvWSq962qS0ACnMUKTe?=
+ =?us-ascii?Q?dislPUCuMxzdNPyIyNLbkzNA88fCJcaep3blPol56HQoiua5WhLjEBVPQ/E9?=
+ =?us-ascii?Q?LW+rFqsZ97ZOJGrVMN3Y5bsx303KYm+VRGZQme3+jZ6c3cfyLY5dIkHbafaU?=
+ =?us-ascii?Q?eWmEiVZGgYrOKkaJtoGWXwUNTKbUYpCHODhSaio550rrbI5chRcKvmT0xH6Y?=
+ =?us-ascii?Q?O8SE0RCzzNHUoSSPBKe0+dm6T1pKRNl0LQSpZNk+SP+KudQFUUOLyEVyiJxa?=
+ =?us-ascii?Q?HNlHZPHuaWzr73qNJLVQvZLV+aIxstZNvhvIMl6Kx0ifti2hfvM2EEbmMvNT?=
+ =?us-ascii?Q?p892bF8/7QPmu0sLfTvY/AOtWuaO+R95gQUCI1Sdy+c8VsNR//nIIgCx6tml?=
+ =?us-ascii?Q?bdcYVretiMU6Fb35VIcJ3VqdGxth+nYKOrFWqoMdZGKaLb3g?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20260519084158.72960-1-timur.kristof@gmail.com>
-In-Reply-To: <20260519084158.72960-1-timur.kristof@gmail.com>
-From: Jeremy Klarenbeek <jeremy.klarenbeek99@gmail.com>
-Date: Thu, 21 May 2026 02:52:37 +0200
-X-Gm-Features: AVHnY4JCHGx_dwHeJiibFyjMZHjNcO5E4m59zZEbROjEv0hh2FDQXvHQlrrhK7Q
-Message-ID: <CAOGA6Hg3Xp=idx=TM7K+_VPrjMGsf0D49c1=_1QXm+9n54hQdQ@mail.gmail.com>
-Subject: Re: [PATCH 0/5] drm/amd/pm: Fix laptop issues on SMU6-7
-To: amd-gfx@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="000000000000db587506524954d0"
-X-Mailman-Approved-At: Thu, 21 May 2026 07:01:28 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR12MB6194.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c10c28db-3a99-4246-ca9f-08deb6d45fd1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2026 01:00:38.9701 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cXhmXuUwyQ0TwjzM4eu5292qiiGRvnHCBiDkWMXnejignpTuPukuYsIWg37e09Db
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7037
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,155 +138,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Benjamin.Cheng@amd.com,m:Alexander.Deucher@amd.com,m:Christian.Koenig@amd.com,m:David.Wu3@amd.com,m:Leo.Liu@amd.com,s:lists@lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[Ruijing.Dong@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_ONE(0.00)[1];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jeremyklarenbeek99@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	RSPAMD_EMAILBL_FAIL(0.00)[timurkristof.gmail.com:query timed out];
 	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Ruijing.Dong@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 1DDAF59FD18
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,SJ1PR12MB6194.namprd12.prod.outlook.com:mid]
+X-Rspamd-Queue-Id: DA86059D789
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---000000000000db587506524954d0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+AMD General
 
-Thanks for pulling this together, Timur and Alex. I just tried compiling
-the series of 5 patches and it crashes my FirePro W4170M driver during boot=
-:
+Reviewed-by: Ruijing Dong <ruijing.dong@amd.com>
 
-[   41.095779] amdgpu 0000:01:00.0: [drm] *ERROR* UVD Firmware validate
-fail (-22).
-[   41.095788] amdgpu 0000:01:00.0: resume of IP block <uvd_v3_1> failed -2=
-2
-[   41.095792] amdgpu 0000:01:00.0: amdgpu_device_ip_resume failed (-22).
+Thanks,
+Ruijing
 
-I think it may be required after all to run the entire compute clocks
-pipeline, or at least a bit more of it. I've been successfully running this
-patch for the past few weeks:
-https://github.com/luisfonsivevo/linux/commit/9b6090a4c145c988158d507c7b659=
-c8765d9f7da
-(I'm not allowed to create forks on the freedesktop GitLab)
+-----Original Message-----
+From: Benjamin Cheng <benjamin.cheng@amd.com>
+Sent: Wednesday, May 20, 2026 7:36 PM
+To: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian <Chri=
+stian.Koenig@amd.com>; amd-gfx@lists.freedesktop.org
+Cc: Wu, David <David.Wu3@amd.com>; Dong, Ruijing <Ruijing.Dong@amd.com>; Li=
+u, Leo <Leo.Liu@amd.com>; Cheng, Benjamin <Benjamin.Cheng@amd.com>
+Subject: [PATCH] drm/amdgpu/vce: Add overflow checks for size
 
+Although VCE has HW limits much smaller than this and should fail without c=
+ausing damage, prevent the overflow just in case.
 
-On Tue, May 19, 2026 at 10:42=E2=80=AFAM Timur Krist=C3=B3f <timur.kristof@=
-gmail.com>
-wrote:
+Signed-off-by: Benjamin Cheng <benjamin.cheng@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
-> Fix various issues with the clocks stuck on SI
-> laptop dGPUs:
->
-> * vblank mistake when there are no displays connected
-> * forgot to notify SMU about DC->AC switch
-> * inconsistent values in VBIOS
->
-> While we are at it, also implement the DC->AC notification
-> for SMU7 as well, which is supposed to work the same way.
->
-> Jeremy Klarenbeek (2):
->   drm/amd/pm/si: Fix updating clock limits from power states
->   drm/amd/pm/si: Notify the SMC when switching to AC
->
-> Timur Krist=C3=B3f (3):
->   drm/amd/pm/si: Disregard vblank time when no displays are connected
->   drm/amd/pm: Rename enable_bapm() to notify_ac_dc()
->   drm/amd/pm/smu7: Notify SMU7 of DC->AC switch
->
->  .../gpu/drm/amd/include/kgd_pp_interface.h    |  2 +-
->  drivers/gpu/drm/amd/pm/amdgpu_dpm.c           |  8 +--
->  drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c    |  6 +--
->  drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c    | 50 ++++++++++++++-----
->  .../gpu/drm/amd/pm/powerplay/amd_powerplay.c  | 12 +++++
->  .../drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c   | 15 ++++++
->  drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h  |  1 +
->  7 files changed, 74 insertions(+), 20 deletions(-)
->
-> --
-> 2.54.0
->
->
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_vce.c
+index efdebd9c0a1f..d73be4d7eff2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+@@ -877,9 +877,15 @@ int amdgpu_vce_ring_parse_cs(struct amdgpu_cs_parser *=
+p,
+                                goto out;
+                        }
 
---000000000000db587506524954d0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+-                       *size =3D amdgpu_ib_get_value(ib, idx + 8) *
+-                               amdgpu_ib_get_value(ib, idx + 10) *
+-                               8 * 3 / 2;
++                       if (check_mul_overflow(amdgpu_ib_get_value(ib, idx =
++ 8),
++                                              amdgpu_ib_get_value(ib, idx =
++ 10),
++                                              &tmp) ||
++                           check_mul_overflow(tmp, 8 * 3 / 2, size)) {
++                               DRM_ERROR("enc size overflow!\n");
++                               r =3D -EINVAL;
++                               goto out;
++                       }
++
+                        break;
 
-<div dir=3D"ltr"><div dir=3D"ltr">Thanks for pulling this together, Timur a=
-nd Alex. I just tried compiling the series of 5 patches and it crashes my F=
-irePro W4170M driver during boot:<br><br>[ =C2=A0 41.095779] amdgpu 0000:01=
-:00.0: [drm] *ERROR* UVD Firmware validate fail (-22).<br>[ =C2=A0 41.09578=
-8] amdgpu 0000:01:00.0: resume of IP block &lt;uvd_v3_1&gt; failed -22<br>[=
- =C2=A0 41.095792] amdgpu 0000:01:00.0: amdgpu_device_ip_resume failed (-22=
-).<br><br>I think it may be required after all to run the entire compute cl=
-ocks pipeline, or at least a bit more of it. I&#39;ve been successfully run=
-ning this patch for the past few weeks: <a href=3D"https://github.com/luisf=
-onsivevo/linux/commit/9b6090a4c145c988158d507c7b659c8765d9f7da">https://git=
-hub.com/luisfonsivevo/linux/commit/9b6090a4c145c988158d507c7b659c8765d9f7da=
-</a></div><div>(I&#39;m not allowed to create forks on the freedesktop GitL=
-ab)</div><br><br><div class=3D"gmail_quote gmail_quote_container"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Tue, May 19, 2026 at 10:42=E2=80=AFAM Timu=
-r Krist=C3=B3f &lt;<a href=3D"mailto:timur.kristof@gmail.com">timur.kristof=
-@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">Fix various issues with the clocks stuck on SI<br>
-laptop dGPUs:<br>
-<br>
-* vblank mistake when there are no displays connected<br>
-* forgot to notify SMU about DC-&gt;AC switch<br>
-* inconsistent values in VBIOS<br>
-<br>
-While we are at it, also implement the DC-&gt;AC notification<br>
-for SMU7 as well, which is supposed to work the same way.<br>
-<br>
-Jeremy Klarenbeek (2):<br>
-=C2=A0 drm/amd/pm/si: Fix updating clock limits from power states<br>
-=C2=A0 drm/amd/pm/si: Notify the SMC when switching to AC<br>
-<br>
-Timur Krist=C3=B3f (3):<br>
-=C2=A0 drm/amd/pm/si: Disregard vblank time when no displays are connected<=
-br>
-=C2=A0 drm/amd/pm: Rename enable_bapm() to notify_ac_dc()<br>
-=C2=A0 drm/amd/pm/smu7: Notify SMU7 of DC-&gt;AC switch<br>
-<br>
-=C2=A0.../gpu/drm/amd/include/kgd_pp_interface.h=C2=A0 =C2=A0 |=C2=A0 2 +-<=
-br>
-=C2=A0drivers/gpu/drm/amd/pm/amdgpu_dpm.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0|=C2=A0 8 +--<br>
-=C2=A0drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c=C2=A0 =C2=A0 |=C2=A0 6 +--=
-<br>
-=C2=A0drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c=C2=A0 =C2=A0 | 50 ++++++++=
-++++++-----<br>
-=C2=A0.../gpu/drm/amd/pm/powerplay/amd_powerplay.c=C2=A0 | 12 +++++<br>
-=C2=A0.../drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c=C2=A0 =C2=A0| 15 ++++++<b=
-r>
-=C2=A0drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h=C2=A0 |=C2=A0 1 +<br>
-=C2=A07 files changed, 74 insertions(+), 20 deletions(-)<br>
-<br>
--- <br>
-2.54.0<br>
-<br>
-</blockquote></div></div>
+                case 0x04000001: /* config extension */
+--
+2.54.0
 
---000000000000db587506524954d0--
