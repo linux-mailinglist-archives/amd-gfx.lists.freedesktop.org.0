@@ -2,150 +2,110 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iE26EHNRFWqmUQcAu9opvQ
+	id +Fj4BnVRFWrcUQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:23 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:25 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D971E5D1FDA
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8D265D201B
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D754710E55C;
-	Tue, 26 May 2026 07:53:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94F9E10E57B;
+	Tue, 26 May 2026 07:53:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=spasswolf@web.de header.b="g2m2dhZh";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lEiM8gWh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.web.de (mout.web.de [212.227.15.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7319510E4B4
- for <amd-gfx@lists.freedesktop.org>; Thu, 21 May 2026 11:51:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1779364249; x=1779969049; i=spasswolf@web.de;
- bh=46wu/BQ1dJ9x/IfhbitVCxS5L/x16bf2eQWkaOr3syc=;
- h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
- References:Content-Type:MIME-Version:Content-Transfer-Encoding:cc:
- content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=g2m2dhZhsvU9BmiHakEjJvwj2z4Zw6EDPrvgnQuWrHUSCV971ozHZqiQv9OyGAC6
- 03bsUDMnIxR+pDuX9zVUjH8kKB57hD/1RE6ApiD/IXAwsqsh8/6uFcNC4UvtV6Rn+
- U5N4gSwmnyJe8VYBfrMB0CKAaLvJLgBcB41jMqQiN4UACwT1oIZbjv4OO6AX/HeJj
- VtsDWZmAOFqrwrXZ3hQNCc5tpBZT2AGNAxBY2dHAigPJHZw0gLxpbi5FwYxKRthDO
- js3P7ohIwVFLNcb6Bn+8yiy0jtTSag6iu9AvDriKkl0M6AbQp1SQNQCvgMH6YfXN0
- Kfa9iBtimQJBsROAqA==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb006
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1MhFlm-1x2vNL1V8k-00j33x; Thu, 21
- May 2026 13:50:49 +0200
-Message-ID: <70676dae700e6a40989315bf31ea269a509ddc0f.camel@web.de>
-Subject: Re: context switch within RCU read-side critical section in
- next-20260518+ with PREEMPT_RT
-From: Bert Karwatzki <spasswolf@web.de>
-To: Mateusz Guzik <mjguzik@gmail.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, spasswolf@web.de, Christian
- Brauner	 <brauner@kernel.org>, spasswolf@web.de,
- linux-kernel@vger.kernel.org, 	linux-next@vger.kernel.org,
- linux-rt-devel@lists.linux.dev, 	linux-fsdevel@vger.kernel.org,
- adobriyan@gmail.com, jack@suse.cz, 	viro@zeniv.linux.org.uk, Sebastian
- Andrzej Siewior <bigeasy@linutronix.de>,  Alex Deucher
- <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Date: Thu, 21 May 2026 13:50:48 +0200
-In-Reply-To: <CAGudoHGk1CP3gRQLCV85AFHKx6vBEyKySOn4J+AZVAP2FkrN3g@mail.gmail.com>
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com
+ [209.85.218.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B48210E410
+ for <amd-gfx@lists.freedesktop.org>; Thu, 21 May 2026 12:01:20 +0000 (UTC)
+Received: by mail-ej1-f44.google.com with SMTP id
+ a640c23a62f3a-bd01481e592so866378966b.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 21 May 2026 05:01:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779364879; cv=none;
+ d=google.com; s=arc-20240605;
+ b=HKu3jykMxSO2dYE7EF7yEXQOckUcbf1+hNvA55O0yJCW1y2/RCu0zp/EIxk0H2WAhx
+ jnLL6rPrArVp8pyMjuFlznEJJa61SQ7Ih74ShdAz8OmUDmlj7tjgSk/kcjgE+6ChuDOi
+ O02ZCKEIMQi59YNoD2iNfywFKA4Swuj7lDBB4o5Vo4fYSHUgjcWRyoFKNjQToESH1o1i
+ Bh6IyUqMfBtD92tQtlycRSJZEI4us4+ae1Nq1HhWoMtToh8oq396YtrbORLUH63D8/mn
+ A+FtwMjkGxXlO+KSlsY17Cg2Yn5gC9H72m4mUEqjwSB0nNe7kgo3dpyGELumc04ffLEo
+ OBgg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=N0WRCQ+KH01CpayEYyy7mrrqhMaV2Yzdg1bxdqWZuZw=;
+ fh=x3MbhV0y/onqlSJqJVm4PAVIL+gLCDtYBd9uED7x/KI=;
+ b=NNUADhJI94Svr0ZTKBdiS7HVbHiDDmYxlEd+03UpnfH5+tkVXFejf7AO7C7UxwTpAf
+ W5ZJzvmaGVHPbC7ISIXxXVEVZ94vYm1iC3tT1y6qQBceDrhIp+Kmxso/n+vFR+SGfmxG
+ UqSj/X/pukLJymQ5YX3FTsQbNOHZCzVIV9kAZMmueB1Fv/u143zZi/bODyJs1lhMYi+9
+ iSeBHAE5JLvx9rQ4pb8ptZZK96ksjYx7F0e8dEU9XoZPelIfDWxmFxy0dQXM6k2ZleIG
+ ProHWMevn/FR24pL8AW5B2pObjdvaL+Z3JJC5jouExTm+ytwVyhicP4VhKSNwSAz/qP/
+ MoWw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1779364879; x=1779969679; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=N0WRCQ+KH01CpayEYyy7mrrqhMaV2Yzdg1bxdqWZuZw=;
+ b=lEiM8gWhVP4eLbY3W6O5NraQyCnMxIA1Qd2K/Xy8m2TUhoh/fSuFK7nK/7zibjuBog
+ n1oXUoiWUGSG6QVurgy2SpW2gJtkan26laD/mEA3R0DmnxtVqw4BQL8s9yIyQArYu73B
+ 2309gY5oIG8P2Y1eheYd5ven8JnQpUvRxCPkuIrgrb8LEtGhNvV7/BEyquWTW8qtveoo
+ mziT/GcKxex2Q0Cckb7y3S5U6Ew0gDLm7HXq35HW+u+Int4On1KVNrslLG1LHOp7fzEY
+ zne6aGY8SibzAOa88Q8Vucv0oAVdhKnmy3Qpx0WAbC/moym4TGOHk4F/CpA4yrU0aJ+9
+ vbUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779364879; x=1779969679;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=N0WRCQ+KH01CpayEYyy7mrrqhMaV2Yzdg1bxdqWZuZw=;
+ b=YQiEsxziZtIa3O+a/KnR67Ld/hit6i9KpGb3CvPMHvHaiOZnEpMCDgEeOkgXl1RgTS
+ /nXV2MvUlFGsPENSB8AO6l9Z/A6v/O9RSlPynPIChqAUerk7Rw+Sc1aO2OfJN1VjTZN0
+ jA67iHki8CXS+EeFXoMG0uANsVrxgUNHDMMccQ2CR1NzLn9l5EvBIZYpKNS96EJQpzLi
+ GVVb00peCagLjqhrbB5pQycc0NwkOqNEOsQlRpD8hPXoL7FiILbd8INpL+Pqc0W9Wf3+
+ qFSMeCLORcG0ir/Iv83tRg+WbAHwZ1bl6ntZbmAszqgM7OlLWYjv9W9DTweDQoQUJ6dI
+ 36Cw==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/VIXw8hOhOxNdr0/3CaPQoZsJ+YsfCIQsjRdzvsGYhIJdxAq/KBNQf1q3qZjI7RQqr1A0UhUhD@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyFMVGyOAbNH9r7XF19b0SKIViHF/Rs+t7oBkSQ3kczWBELsN2U
+ HvMw/zGBN7Onlw2OqsquoeahS0tdwe2GbZC4gGKOa16AG2xaNtdzfI08yS38FHg30edgRy5ZHDR
+ kaFdXbPrLMmTsuz92eJBbatb3unEjwgs=
+X-Gm-Gg: Acq92OE4BRlu6FALrvge40/CqUbbJ2knQBk6Ytg/LWzfo7oX7pUJD0ZVGuP0kPQNo3k
+ kQ15Oc7KZWqMXudleh7RhwTCdgmWhXpQnFlgzZN0w9iGEv/UnZ6nX5pepwUfKU+gwwpZ6eZp6lU
+ 3KasTW2SmYDUoFgzs8wyaDAKxNEQeBG76nzojmPzf6DlncUKFHmQK5cqCADuZy7gkr47UGgaVf8
+ IP8eB379yiQfj+bWMPvG6TYVGWowoylwJI1SWN7G2PhMrPu9SZOloUtuAx9qPBUGLdUWGCWZora
+ 7fwukyp85v49apClp3gSMq9P4jM7SMTER3Vvt5A=
+X-Received: by 2002:a17:907:2845:b0:bdb:e19d:5257 with SMTP id
+ a640c23a62f3a-bdc152607demr109803166b.29.1779364876921; Thu, 21 May 2026
+ 05:01:16 -0700 (PDT)
+MIME-Version: 1.0
 References: <20260520225245.2962-1-spasswolf@web.de>
  <fnrz73n5jojl2wlbgrsjdtu5zuwykwbcjzznaijbquuovpoand@i6ihdqn7a6zv>
  <s7cu3dpioidx6mepmai6eyj2pxjs4skbw7v534zbzs6g2fwcis@cvokidcxy3xa>
- <4f548d61b2dd12e01f401ce4b8c865f238f7b23c.camel@web.de>
- <878q9dvzh0.ffs@tglx>
+ <4f548d61b2dd12e01f401ce4b8c865f238f7b23c.camel@web.de> <878q9dvzh0.ffs@tglx>
  <50e5e76bc13256e3f5b3301e92f159957c3d6762.camel@web.de>
  <CAGudoHGk1CP3gRQLCV85AFHKx6vBEyKySOn4J+AZVAP2FkrN3g@mail.gmail.com>
+ <70676dae700e6a40989315bf31ea269a509ddc0f.camel@web.de>
+In-Reply-To: <70676dae700e6a40989315bf31ea269a509ddc0f.camel@web.de>
+From: Mateusz Guzik <mjguzik@gmail.com>
+Date: Thu, 21 May 2026 14:01:04 +0200
+X-Gm-Features: AVHnY4Jlf-yrDim2uzOH0TXtokw0U7b4OPXVrImpSSlCPvkxIq7CNbdejhw5Too
+Message-ID: <CAGudoHEX=Su_ehV8nNP_6Onfh=hB6uiyTTCojR7nSOkEj6zh4Q@mail.gmail.com>
+Subject: Re: context switch within RCU read-side critical section in
+ next-20260518+ with PREEMPT_RT
+To: Bert Karwatzki <spasswolf@web.de>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+ Christian Brauner <brauner@kernel.org>, linux-kernel@vger.kernel.org, 
+ linux-next@vger.kernel.org, linux-rt-devel@lists.linux.dev, 
+ linux-fsdevel@vger.kernel.org, adobriyan@gmail.com, jack@suse.cz, 
+ viro@zeniv.linux.org.uk, Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.56.2-0+deb13u1 
-MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:b0YjzjBbpycIh+Vx4jEqQGJJi9mz4mrX9EVOFfLmdi44KkCTDCa
- Z7R59O5GVSigRauHi6BxJ/Qp8LQkfUE+W2cAjTwrSk6gPv0Wqic6NC0jQZvrPRekbYblJ76
- I16JEwdEMiyoVCiowLVTYeeLqv/GH+5+Q7hT1ZussCLnpaHP+9e7hocFxBszeOWLPZg8qHI
- SBQDhxkKTPiWZfiWVKonQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:BR+z4UO6B9g=;V4J3w27dCNHtvm6ooveJF+qh/wg
- 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
- YMjb3A==
 X-Mailman-Approved-At: Tue, 26 May 2026 07:53:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -160,66 +120,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	DATE_IN_PAST(1.00)[116];
-	DMARC_POLICY_ALLOW(-0.50)[web.de,quarantine];
-	R_DKIM_ALLOW(-0.20)[web.de:s=s29768273];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DATE_IN_PAST(1.00)[115];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:spasswolf@web.de,m:tglx@linutronix.de,m:brauner@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-next@vger.kernel.org,m:linux-rt-devel@lists.linux.dev,m:linux-fsdevel@vger.kernel.org,m:adobriyan@gmail.com,m:jack@suse.cz,m:viro@zeniv.linux.org.uk,m:bigeasy@linutronix.de,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[mjguzik@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mjguzik@gmail.com,m:tglx@linutronix.de,m:spasswolf@web.de,m:brauner@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-next@vger.kernel.org,m:linux-rt-devel@lists.linux.dev,m:linux-fsdevel@vger.kernel.org,m:adobriyan@gmail.com,m:jack@suse.cz,m:viro@zeniv.linux.org.uk,m:bigeasy@linutronix.de,m:alexander.deucher@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[spasswolf@web.de,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[web.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[web.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[web.de:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[spasswolf@web.de,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[linutronix.de,web.de,kernel.org,vger.kernel.org,lists.linux.dev,gmail.com,suse.cz,zeniv.linux.org.uk,amd.com,lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mjguzik@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linutronix.de,kernel.org,vger.kernel.org,lists.linux.dev,gmail.com,suse.cz,zeniv.linux.org.uk,amd.com,lists.freedesktop.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: D971E5D1FDA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: B8D265D201B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Thu, May 21, 2026 at 1:51=E2=80=AFPM Bert Karwatzki <spasswolf@web.de> w=
+rote:
+>
+>
+> >
+> > Can you please do the following:
+> > 1. go back to the known crashing-tag, add my fix, verify you still get
+> > the amd splat and then try out the fix provided by Thomas
+> > 2. regardless if the above helps, can you boot a kernel built with
+> > CONFIG_KASAN=3Dy
+> >
+> > fwiw I verified my patch works fine with KASAN, including by
+> > intentionally miscalculating the size of the target buffer and seeing
+> > a nice splat from it so I'm confident I'm not corrupting anything.
+> > However, as there are new mallocs + free flying around at early boot,
+> > it is *plausible* amd was getting zeroed memory without asking for it
+> > and it worked by accident.
+>
+> I think the warnning from amdgpu is only displayed with CONFIG_LOCKDEP=3D=
+y, so
+> your "improved fix" does not silence the warning from amdgpu.
+>
+> The additional fix from Thomas fixes the amdgpu warning.
+>
 
->=20
-> Can you please do the following:
-> 1. go back to the known crashing-tag, add my fix, verify you still get
-> the amd splat and then try out the fix provided by Thomas
-> 2. regardless if the above helps, can you boot a kernel built with
-> CONFIG_KASAN=3Dy
->=20
-> fwiw I verified my patch works fine with KASAN, including by
-> intentionally miscalculating the size of the target buffer and seeing
-> a nice splat from it so I'm confident I'm not corrupting anything.
-> However, as there are new mallocs + free flying around at early boot,
-> it is *plausible* amd was getting zeroed memory without asking for it
-> and it worked by accident.
+I just wanted to confirm my patch does not *cause* issues, at worst
+uncovers them.
 
-I think the warnning from amdgpu is only displayed with CONFIG_LOCKDEP=3Dy=
-, so
-your "improved fix" does not silence the warning from amdgpu.=20
+> I also built the kernel with CONFIG_KASAN and get no error messages.
+>
 
-The additional fix from Thomas fixes the amdgpu warning.
+nice
 
-I also built the kernel with CONFIG_KASAN and get no error messages.
+I presume Thomas will handle getting the amdgpu patch to the right
+people, I think it will be fine to drop all the mailing lists and the
+cc's. :-)
 
-Bert Karwatzki
+So overall I think we are done here.
+
+Thank you for testing and sorry for the breakage.
