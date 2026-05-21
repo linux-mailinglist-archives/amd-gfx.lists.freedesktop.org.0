@@ -2,73 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SMSJFFrUDmr2CQYAu9opvQ
+	id CNPPDhFUFWqmUQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 11:46:02 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 10:04:33 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 495BE5A2984
-	for <lists+amd-gfx@lfdr.de>; Thu, 21 May 2026 11:46:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EB015D2346
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 10:04:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC21810E0D4;
-	Thu, 21 May 2026 09:45:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E83010E5AF;
+	Tue, 26 May 2026 07:53:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QqmRKPn7";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="wCmBEW1c";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="B69uRIZi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF3C210E439;
- Thu, 21 May 2026 09:45:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779356759; x=1810892759;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=TCZTrJrBdgiRh4gqQvmMTY8x6g99ouQ5GXQCNVm/HPI=;
- b=QqmRKPn7Q8Yp2mOfX5TRWpXc6bhiGJbpS3ZJ8ZGQDE0HDJGQNwvI2xCG
- KIde2su7VGYbHR3PLpW9UAaOQxJcaDu2lzjByLO9/5fUECGh9lcxdmfyQ
- a3WqkIoGSocJOnOYTVLXCYnggHlroV5fBtfQKmpcK9IeC0vINV5qiGCIO
- iIyyqmjCjiEImdGqZISHOQMcgdTx4ZuRcCLvonIaIL3z2JIj4qG/xsiKT
- b9X0UTtw9yRllv4GBvP1ehcE67f0yM091IhKtffaSVdekOUBAUyaauZrE
- 5wU+Lv8iGE8Dx1DLXae+jhc0Cvx2tvcRw3pJ3xlEXSguvBhVCiQH1j3+4 A==;
-X-CSE-ConnectionGUID: PpgjXtRHSUW2AN2adiSoPA==
-X-CSE-MsgGUID: 4QZpncGfRyGVVmKQ2jXb6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11792"; a="80450414"
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="80450414"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 02:45:59 -0700
-X-CSE-ConnectionGUID: +rUo7ROgQlyofsz/e5I0oA==
-X-CSE-MsgGUID: /nQHP1Q7QSCozMJLtKgr9g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="240347284"
-Received: from igk-lkp-server01.igk.intel.com (HELO bdf09bfdbd5f)
- ([10.211.93.152])
- by orviesa008.jf.intel.com with ESMTP; 21 May 2026 02:45:55 -0700
-Received: from kbuild by bdf09bfdbd5f with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wPzyT-00000000Aq7-0tKX;
- Thu, 21 May 2026 09:45:53 +0000
-Date: Thu, 21 May 2026 11:45:42 +0200
-From: kernel test robot <lkp@intel.com>
-To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org,
- Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-Subject: Re: [PATCH v3 2/2] drm/amdgpu: fix recursive ww_mutex acquire in
- amdgpu_devcoredump_format
-Message-ID: <202605211112.xlUYDZeM-lkp@intel.com>
-References: <20260520151741.50575-3-mikhail.v.gavrilov@gmail.com>
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0151C10E18A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 21 May 2026 10:17:18 +0000 (UTC)
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1779358636;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=1jaC8pjc2z4shGVJq80mW2Jzm/K/JIWXN2kFb0V3uLE=;
+ b=wCmBEW1csGgo6syobkpdDxC06y1HG3kmdpdwRa7DPH6YN3kLFOKcXzONgSjBXgCy6yROAt
+ qlctch6ry6QKTLAheqPRS7R9uedTa0jbPO48CqBpT3sabRfDooKu7/UuzNPCWLzFMBF1/n
+ gJwYwKVqdGCHUNAikWnpQ+LmdBbrwzk2YEQX7zZGx8TG2TT7nRa5eS5DrJE3k9lhOqhsj3
+ ZWHhh4Ypbp6x/NNZPav7ErpZJYYsWtt40ZCemDfwP59b2RtE1EnM1vcke1c6FIDVepvx7L
+ HXfRYznstV7o8y43sAB+FbqSXIeVh2ToV8lhAv7PjtT+Cz93UlyF1gtVaYm6RA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1779358636;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=1jaC8pjc2z4shGVJq80mW2Jzm/K/JIWXN2kFb0V3uLE=;
+ b=B69uRIZih19kZU6rGQuO8trjDRjaUnObUsVeWvr8Dpgj+TIqFZqKqasDfd7vrhcGgcVlf5
+ 5+3QMR9ik045RyBA==
+To: Bert Karwatzki <spasswolf@web.de>, Mateusz Guzik <mjguzik@gmail.com>,
+ Christian Brauner <brauner@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-next@vger.kernel.org,
+ linux-rt-devel@lists.linux.dev, linux-fsdevel@vger.kernel.org,
+ adobriyan@gmail.com, jack@suse.cz, viro@zeniv.linux.org.uk, Sebastian
+ Andrzej Siewior <bigeasy@linutronix.de>, spasswolf@web.de, Alex Deucher
+ <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Subject: Re: context switch within RCU read-side critical section in
+ next-20260518+ with PREEMPT_RT
+In-Reply-To: <4f548d61b2dd12e01f401ce4b8c865f238f7b23c.camel@web.de>
+References: <20260520225245.2962-1-spasswolf@web.de>
+ <fnrz73n5jojl2wlbgrsjdtu5zuwykwbcjzznaijbquuovpoand@i6ihdqn7a6zv>
+ <s7cu3dpioidx6mepmai6eyj2pxjs4skbw7v534zbzs6g2fwcis@cvokidcxy3xa>
+ <4f548d61b2dd12e01f401ce4b8c865f238f7b23c.camel@web.de>
+Date: Thu, 21 May 2026 12:17:15 +0200
+Message-ID: <878q9dvzh0.ffs@tglx>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260520151741.50575-3-mikhail.v.gavrilov@gmail.com>
+Content-Type: text/plain
+X-Mailman-Approved-At: Tue, 26 May 2026 07:53:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,68 +73,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [4.69 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
+	DATE_IN_PAST(1.00)[117];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[linutronix.de,none];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[linutronix.de:s=2020,linutronix.de:s=2020e];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lists.linux.dev,amd.com,gmail.com,ffwll.ch,linaro.org,vger.kernel.org,lists.linaro.org];
+	FORGED_RECIPIENTS(0.00)[m:spasswolf@web.de,m:mjguzik@gmail.com,m:brauner@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-next@vger.kernel.org,m:linux-rt-devel@lists.linux.dev,m:linux-fsdevel@vger.kernel.org,m:adobriyan@gmail.com,m:jack@suse.cz,m:viro@zeniv.linux.org.uk,m:bigeasy@linutronix.de,m:alexander.deucher@amd.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,vger.kernel.org];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	GREYLIST(0.00)[pass,body];
+	FORGED_SENDER(0.00)[tglx@linutronix.de,amd-gfx-bounces@lists.freedesktop.org];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_TO(0.00)[web.de,gmail.com,kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.linux.dev,gmail.com,suse.cz,zeniv.linux.org.uk,linutronix.de,web.de,amd.com,lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[tglx@linutronix.de,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[linutronix.de:+];
+	NEURAL_HAM(-0.00)[-0.838];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 495BE5A2984
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 7EB015D2346
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Mikhail,
+On Thu, May 21 2026 at 11:20, Bert Karwatzki wrote:
+> Am Donnerstag, dem 21.05.2026 um 11:09 +0200 schrieb Mateusz Guzik:
+>
+> with next-20260519 (no RT, no LOCKDEP) and got no crash so far (4 boots only though (next-20260619
+> crashed in 2 out of 3 boots without RT)) but I get this warning on every boot:
+>
+> [    2.793416] [    T331] ------------[ cut here ]------------
+> [    2.793433] [    T331] DEBUG_LOCKS_WARN_ON(lock->magic != lock)
+> [    2.793434] [    T331] WARNING: kernel/locking/mutex.c:625 at __mutex_lock+0x586/0x10c0, CPU#17: (udev-worker)/331
 
-kernel test robot noticed the following build warnings:
+So either the mutex is corrupted or was never initialized.
 
-[auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on drm/drm-next drm-i915/for-linux-next drm-i915/for-linux-next-fixes drm-tip/drm-tip next-20260520]
-[cannot apply to linus/master v6.16-rc1]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> [    2.793463] [    T331] Modules linked in: amdgpu(+) hid_generic usbhid drm_client_lib i2c_algo_bit drm_buddy hid drm_ttm_helper ttm drm_exec
+> drm_suballoc_helper mfd_core drm_panel_backlight_quirks gpu_sched amdxcp drm_display_helper drm_kms_helper ahci libahci xhci_pci libata xhci_hcd drm nvme
+> scsi_mod igc usbcore nvme_core scsi_common video nvme_keyring i2c_piix4 cec nvme_auth usb_common crc16 i2c_smbus wmi gpio_amdpt gpio_generic
+> [    2.793518] [    T331] CPU: 17 UID: 0 PID: 331 Comm: (udev-worker) Not tainted 7.1.0-rc4-next-20260519-rcunortlockdep-dirty #465 PREEMPT 
+> [    2.793534] [    T331] Hardware name: ASUS System Product Name/ROG STRIX B850-F GAMING WIFI, BIOS 1627 02/05/2026
+> [    2.793547] [    T331] RIP: 0010:__mutex_lock+0x58d/0x10c0
+> [    2.793555] [    T331] Code: 4c 8b 4d 88 85 c0 0f 84 f8 fa ff ff 44 8b 15 ca 9b 81 00 45 85 d2 0f 85 e8 fa ff ff 48 8d 3d 1a 57 82 00 48 c7 c6 a6 51 9e 83
+> <67> 48 0f b9 3a 4c 8b 4d 88 e9 cc fa ff ff 48 8b bd 78 ff ff ff e8
+> [    2.793579] [    T331] RSP: 0018:ffffa497016c3510 EFLAGS: 00010246
+> [    2.793588] [    T331] RAX: 0000000000000001 RBX: ffff88c33a4c2ad8 RCX: 0000000000000000
+> [    2.793598] [    T331] RDX: 0000000000000001 RSI: ffffffff839e51a6 RDI: ffffffff83de3c00
+> [    2.793609] [    T331] RBP: ffffa497016c35c0 R08: ffffffffc0a55d92 R09: 0000000000000000
+> [    2.793619] [    T331] R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+> [    2.793629] [    T331] R13: 0000000000000002 R14: ffffa497016c3550 R15: 0000000000268000
+> [    2.793641] [    T331] FS:  00007f1f32e5b9c0(0000) GS:ffff88d23b2ca000(0000) knlGS:0000000000000000
+> [    2.793653] [    T331] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [    2.793662] [    T331] CR2: 000055cdfa28f588 CR3: 0000000112e73000 CR4: 0000000000f50ef0
+> [    2.793673] [    T331] PKRU: 55555554
+> [    2.793678] [    T331] Call Trace:
+> [    2.793683] [    T331]  <TASK>
+> [    2.793687] [    T331]  ? lock_acquire+0xbe/0x2d0
+> [    2.793696] [    T331]  ? init_mqd+0x122/0x190 [amdgpu]
+> [    2.793809] [    T331]  ? lock_release+0xc6/0x2a0
+> [    2.793816] [    T331]  ? init_mqd+0x122/0x190 [amdgpu]
+> [    2.793902] [    T331]  init_mqd+0x122/0x190 [amdgpu]
+> [    2.793961] [    T331]  init_mqd_hiq+0xd/0x20 [amdgpu]
+> [    2.794015] [    T331]  kq_initialize.constprop.0+0x2b8/0x370 [amdgpu]
+> [    2.794071] [    T331]  kernel_queue_init+0x3f/0x60 [amdgpu]
+> [    2.794125] [    T331]  pm_init+0x6b/0x100 [amdgpu]
+> [    2.794178] [    T331]  start_cpsch+0x1d6/0x270 [amdgpu]
+> [    2.794234] [    T331]  kgd2kfd_device_init.cold+0x7b9/0xa1a [amdgpu]
+> [    2.794365] [    T331]  amdgpu_amdkfd_device_init+0x190/0x260 [amdgpu]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mikhail-Gavrilov/drm-amdgpu-convert-amdgpu_vm_lock_by_pasid-to-drm_exec/20260520-231931
-base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
-patch link:    https://lore.kernel.org/r/20260520151741.50575-3-mikhail.v.gavrilov%40gmail.com
-patch subject: [PATCH v3 2/2] drm/amdgpu: fix recursive ww_mutex acquire in amdgpu_devcoredump_format
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-docutils: docutils (Docutils 0.21.2, Python 3.13.5, on linux)
-reproduce: (https://download.01.org/0day-ci/archive/20260521/202605211112.xlUYDZeM-lkp@intel.com/reproduce)
+amdgpu_amdkfd_device_init()
+  kgd2kfd_device_init() {
+      ....
+        init_mqd()
+          mutex_lock(... profiler_lock); <- FAIL
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202605211112.xlUYDZeM-lkp@intel.com/
+      mutex_init(...profiler_lock);
+  }
 
-All warnings (new ones prefixed by >>):
+Seems the famous graphics CI failed to catch this...
 
-   AMD plane color pipeline
-   ------------------------ [docutils]
->> Documentation/gpu/amdgpu/driver-core:225: ./drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c:2958: WARNING: Inline emphasis start-string without end-string. [docutils]
-   Documentation/gpu/driver-uapi:31: ./include/uapi/drm/xe_drm.h:2538: ERROR: Unexpected section title.
+Thanks,
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+        tglx
+---
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -744,6 +744,9 @@ bool kgd2kfd_device_init(struct kfd_dev
+ 			KGD_ENGINE_SDMA1);
+ 	kfd->shared_resources = *gpu_resources;
+ 
++	kfd->profiler_process = NULL;
++	mutex_init(&kfd->profiler_lock);
++
+ 	kfd->num_nodes = amdgpu_xcp_get_num_xcp(kfd->adev->xcp_mgr);
+ 
+ 	if (kfd->num_nodes == 0) {
+@@ -936,9 +939,6 @@ bool kgd2kfd_device_init(struct kfd_dev
+ 
+ 	svm_range_set_max_pages(kfd->adev);
+ 
+-	kfd->profiler_process = NULL;
+-	mutex_init(&kfd->profiler_lock);
+-
+ 	kfd->init_complete = true;
+ 	dev_info(kfd_device, "added device %x:%x\n", kfd->adev->pdev->vendor,
+ 		 kfd->adev->pdev->device);
