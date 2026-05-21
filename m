@@ -2,78 +2,150 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id M0T3E2hRFWraUQcAu9opvQ
+	id iE26EHNRFWqmUQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:12 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:23 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62FD75D1F47
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D971E5D1FDA
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29B5B10E530;
-	Tue, 26 May 2026 07:53:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D754710E55C;
+	Tue, 26 May 2026 07:53:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iS1QQwPB";
+	dkim=pass (2048-bit key; secure) header.d=web.de header.i=spasswolf@web.de header.b="g2m2dhZh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BE2810E492;
- Thu, 21 May 2026 11:45:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779363956; x=1810899956;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=NQFPplxomD0x/n8n9y9LQN4H3w76sftdXd7q8RgP6wo=;
- b=iS1QQwPBEuLq1ZWk+Mba3CQmxRAIhpyykGt2G6Juyl69Z/AlElLsc8VX
- aXCwniQadbgYvramlvRPTFzXDvWvlZ8xRjDgBmn/o7lMFRqXn9C1uNczE
- iFyucKm4toBsHb5Af4mw+lUPSrwBTgmVgG0L5RoMqDiYW4nnEoBgQpJF5
- OUuHMCK7uLP5hEqe3p4XJPC150fonwoc3aau18gLcp6bgQEBZYPaCinsL
- aVZw72d9aS/oL8A5A/IzSDmJb25OVNJVjZOc3UvK3TyX252Yh+AatUWFp
- nw4LybXQVUU+SZ0GZ2LosJ8puC82gtYZVR1OjKobhtv+JuuNGkz+3x48+ w==;
-X-CSE-ConnectionGUID: rgOQV+sBSzO0TV+TCeCJGQ==
-X-CSE-MsgGUID: rXJZsNyyQj+uhgJMx+Z47A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11792"; a="91670947"
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="91670947"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 04:45:55 -0700
-X-CSE-ConnectionGUID: efRim4avTweoDSsfFU1U7g==
-X-CSE-MsgGUID: S9fI+i6jSiWPJtQNsUY7BA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="240533509"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.105])
- ([10.245.244.105])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 04:45:49 -0700
-Message-ID: <9266d1f9615d942c2472f5b9846247a71ab62dc7.camel@linux.intel.com>
-Subject: Re: [PATCH v2 0/4] drm/exec: drm_exec polishing
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Felix Kuehling <Felix.Kuehling@amd.com>, Alex Deucher	
- <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, Simona
- Vetter	 <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Danilo Krummrich
- <dakr@kernel.org>,  Matthew Brost <matthew.brost@intel.com>, Alice Ryhl
- <aliceryhl@google.com>, Rob Clark	 <robin.clark@oss.qualcomm.com>, Dmitry
- Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul	 <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, Natalie
- Vock	 <natalie.vock@gmx.de>
-Date: Thu, 21 May 2026 13:45:35 +0200
-In-Reply-To: <da49f6c2-5b6e-4bd6-8940-84206b5913f8@amd.com>
-References: <20260520101616.41284-1-thomas.hellstrom@linux.intel.com>
- <da49f6c2-5b6e-4bd6-8940-84206b5913f8@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
+Received: from mout.web.de (mout.web.de [212.227.15.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7319510E4B4
+ for <amd-gfx@lists.freedesktop.org>; Thu, 21 May 2026 11:51:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1779364249; x=1779969049; i=spasswolf@web.de;
+ bh=46wu/BQ1dJ9x/IfhbitVCxS5L/x16bf2eQWkaOr3syc=;
+ h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+ References:Content-Type:MIME-Version:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=g2m2dhZhsvU9BmiHakEjJvwj2z4Zw6EDPrvgnQuWrHUSCV971ozHZqiQv9OyGAC6
+ 03bsUDMnIxR+pDuX9zVUjH8kKB57hD/1RE6ApiD/IXAwsqsh8/6uFcNC4UvtV6Rn+
+ U5N4gSwmnyJe8VYBfrMB0CKAaLvJLgBcB41jMqQiN4UACwT1oIZbjv4OO6AX/HeJj
+ VtsDWZmAOFqrwrXZ3hQNCc5tpBZT2AGNAxBY2dHAigPJHZw0gLxpbi5FwYxKRthDO
+ js3P7ohIwVFLNcb6Bn+8yiy0jtTSag6iu9AvDriKkl0M6AbQp1SQNQCvgMH6YfXN0
+ Kfa9iBtimQJBsROAqA==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from client.hidden.invalid by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MhFlm-1x2vNL1V8k-00j33x; Thu, 21
+ May 2026 13:50:49 +0200
+Message-ID: <70676dae700e6a40989315bf31ea269a509ddc0f.camel@web.de>
+Subject: Re: context switch within RCU read-side critical section in
+ next-20260518+ with PREEMPT_RT
+From: Bert Karwatzki <spasswolf@web.de>
+To: Mateusz Guzik <mjguzik@gmail.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, spasswolf@web.de, Christian
+ Brauner	 <brauner@kernel.org>, spasswolf@web.de,
+ linux-kernel@vger.kernel.org, 	linux-next@vger.kernel.org,
+ linux-rt-devel@lists.linux.dev, 	linux-fsdevel@vger.kernel.org,
+ adobriyan@gmail.com, jack@suse.cz, 	viro@zeniv.linux.org.uk, Sebastian
+ Andrzej Siewior <bigeasy@linutronix.de>,  Alex Deucher
+ <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Date: Thu, 21 May 2026 13:50:48 +0200
+In-Reply-To: <CAGudoHGk1CP3gRQLCV85AFHKx6vBEyKySOn4J+AZVAP2FkrN3g@mail.gmail.com>
+References: <20260520225245.2962-1-spasswolf@web.de>
+ <fnrz73n5jojl2wlbgrsjdtu5zuwykwbcjzznaijbquuovpoand@i6ihdqn7a6zv>
+ <s7cu3dpioidx6mepmai6eyj2pxjs4skbw7v534zbzs6g2fwcis@cvokidcxy3xa>
+ <4f548d61b2dd12e01f401ce4b8c865f238f7b23c.camel@web.de>
+ <878q9dvzh0.ffs@tglx>
+ <50e5e76bc13256e3f5b3301e92f159957c3d6762.camel@web.de>
+ <CAGudoHGk1CP3gRQLCV85AFHKx6vBEyKySOn4J+AZVAP2FkrN3g@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+User-Agent: Evolution 3.56.2-0+deb13u1 
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:b0YjzjBbpycIh+Vx4jEqQGJJi9mz4mrX9EVOFfLmdi44KkCTDCa
+ Z7R59O5GVSigRauHi6BxJ/Qp8LQkfUE+W2cAjTwrSk6gPv0Wqic6NC0jQZvrPRekbYblJ76
+ I16JEwdEMiyoVCiowLVTYeeLqv/GH+5+Q7hT1ZussCLnpaHP+9e7hocFxBszeOWLPZg8qHI
+ SBQDhxkKTPiWZfiWVKonQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:BR+z4UO6B9g=;V4J3w27dCNHtvm6ooveJF+qh/wg
+ 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
+ YMjb3A==
 X-Mailman-Approved-At: Tue, 26 May 2026 07:53:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,138 +162,64 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	DATE_IN_PAST(1.00)[116];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[web.de,quarantine];
+	R_DKIM_ALLOW(-0.20)[web.de:s=s29768273];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:mjguzik@gmail.com,m:tglx@linutronix.de,m:spasswolf@web.de,m:brauner@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-next@vger.kernel.org,m:linux-rt-devel@lists.linux.dev,m:linux-fsdevel@vger.kernel.org,m:adobriyan@gmail.com,m:jack@suse.cz,m:viro@zeniv.linux.org.uk,m:bigeasy@linutronix.de,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[spasswolf@web.de,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[web.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,google.com,oss.qualcomm.com,linux.dev,poorly.run,somainline.org,lists.freedesktop.org,vger.kernel.org,gmx.de];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[web.de:+];
 	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[spasswolf@web.de,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linutronix.de,web.de,kernel.org,vger.kernel.org,lists.linux.dev,gmail.com,suse.cz,zeniv.linux.org.uk,amd.com,lists.freedesktop.org];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim]
-X-Rspamd-Queue-Id: 62FD75D1F47
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: D971E5D1FDA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
-
-On Wed, 2026-05-20 at 13:34 +0200, Christian K=C3=B6nig wrote:
-> On 5/20/26 12:16, Thomas Hellstr=C3=B6m wrote:
-> > During the work towards enabling exhaustive eviction using full
-> > ww locking in TTM, Christian indicated that the path for the
-> > drm_exec moving forward was to be a full drm_exec helper with
-> > things like userptr validation rather than a WW transaction
-> > abstraction. The idea was then briefly discussed to craft a
-> > WW transaction helper and then subclass that with drm_exec
-> > with the idea that the WW transaction helper could be used in
-> > TTM for eviction and for other uses that didn't mandate a full
-> > exec sequence.
->=20
-> BTW Natalie is now trying to polish my TTM patches for doing that
-> because some test case for the SteamDeck is running
->  into issues with pinning buffers for display.
-
-Thanks for the review, Christian.
-
-FWIW I did a POC implementation moving drm_exec as a transaction helper
-to the dma-buf layer, and then re-implemented drm_exec on top as a
-wrapper here:
-
-https://gitlab.freedesktop.org/thomash/xe-vibe/-/commits/ww_transaction?ref=
-_type=3Dheads
-
-Since this would work on any object with a refererence count and a
-dma_resv, and even mixing them, it would solve a couple of issues:
-
-1) Decouple the ttm object refcount issue from the TTM exhaustive
-eviction (Not saying we shouldn't get rid of the ttm object refcount
-anyway).
-
-2) Implement any eviction locking modes (like snapshotting, object
-release after slow-lock and similar) separate from drm_exec, and keep
-exec as a pure exec-buf helper.
-
-3) Facilitate ww locking in dma_buf_map().
-
-4) Directly lock VMs instead of vm objects.
-
-I haven't posted the patches yet since I wanted to get some feedback
-first of whether this is a reasonable direction.
-
-Thanks,
-Thomas
 
 >=20
-> > Regardless whether that actually happens or not, this series
-> > aims to clean up abuses of drm_exec internals in drivers
-> > so that future development of drm_exec isn't blocked by
-> > such driver usage.
+> Can you please do the following:
+> 1. go back to the known crashing-tag, add my fix, verify you still get
+> the amd splat and then try out the fix provided by Thomas
+> 2. regardless if the above helps, can you boot a kernel built with
+> CONFIG_KASAN=3Dy
 >=20
-> Yeah completely agree, going to review those patches now.
->=20
-> Regards,
-> Christian.
->=20
-> >=20
-> > Except for patch 2 which is a small cleanup only.
-> >=20
-> > v2:
-> > - An drm/msm patch was already merged.
-> > - Use a unique id for the loop variable (patch 1) (Christian)
-> > - Move assignment to declaration (patch 2) (Christian)
-> > - Declare the retry pointer as void *const. (patch 2)
-> > - Only allow if the drm_exec context is newly initialized. (patch
-> > 3)
-> > =C2=A0 (Christian)
-> > - Fix amdgpu compile error (patch 4) (Intel CI)
-> > - Update the commit message (patch 4)
-> >=20
-> > Thomas Hellstr=C3=B6m (4):
-> > =C2=A0 drm/exec: Remove the index parameter from
-> > =C2=A0=C2=A0=C2=A0 drm_exec_for_each_locked_obj[_reverse]
-> > =C2=A0 drm/exec: Make the drm_exec_until_all_locked() macro more
-> > readable
-> > =C2=A0 drm/exec, drm/xe: Avoid abusing the drm_exec retry pointer
-> > =C2=A0 drm/exec, drm/xe, drm/amdgpu: Add an accessor for struct
-> > =C2=A0=C2=A0=C2=A0 drm_exec::ticket
-> >=20
-> > =C2=A0.../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c=C2=A0 |=C2=A0 4 +-
-> > =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 15 ++--
-> > =C2=A0.../drm/amd/amdgpu/amdgpu_eviction_fence.c=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 3 +-
-> > =C2=A0drivers/gpu/drm/drm_exec.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0 9 +--
-> > =C2=A0drivers/gpu/drm/drm_gpuvm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 3 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_validation.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_validation.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
-> > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0 3 +-
-> > =C2=A0include/drm/drm_exec.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 | 71 ++++++++++++++-
-> > ----
-> > =C2=A09 files changed, 70 insertions(+), 44 deletions(-)
-> >=20
+> fwiw I verified my patch works fine with KASAN, including by
+> intentionally miscalculating the size of the target buffer and seeing
+> a nice splat from it so I'm confident I'm not corrupting anything.
+> However, as there are new mallocs + free flying around at early boot,
+> it is *plausible* amd was getting zeroed memory without asking for it
+> and it worked by accident.
+
+I think the warnning from amdgpu is only displayed with CONFIG_LOCKDEP=3Dy=
+, so
+your "improved fix" does not silence the warning from amdgpu.=20
+
+The additional fix from Thomas fixes the amdgpu warning.
+
+I also built the kernel with CONFIG_KASAN and get no error messages.
+
+Bert Karwatzki
