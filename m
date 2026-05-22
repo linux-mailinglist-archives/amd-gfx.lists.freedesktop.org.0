@@ -2,95 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oBu1IEOsEGrKcAYAu9opvQ
+	id U7reFHNRFWrkUQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 May 2026 21:19:31 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:23 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D324A5B95B4
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 May 2026 21:19:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF20C5D1FD7
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FB5C10F5AD;
-	Fri, 22 May 2026 19:19:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15C5910E56C;
+	Tue, 26 May 2026 07:53:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZXssrSto";
+	dkim=pass (1024-bit key; unprotected) header.d=valvesoftware.com header.i=@valvesoftware.com header.b="WjOGzlrw";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2DF410E34E;
- Fri, 22 May 2026 19:19:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779477568; x=1811013568;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=mvsDdaMaG9ahIS17I/CcaLNe8axrlTXXcEKv1I/F3/Q=;
- b=ZXssrStocuppOtW1LLHKq65BFilzaNo3KamAI44OhgvwaXPx/s4lCNM6
- XJvnV8AbkHpzRY6L2zOMz06UJegSnmWIu127uKn9E4DKgZpXkWp8OhTEB
- d795837jWor1HH23Wq2sGol6JzUckfhDWlij/HYhCqcxMKPdgUAT0AXpT
- jRD8BAsXqOi4c5iFJp5zAMO7aa8FsicZqyKYrkGo1X0JEWsFllTqvuPJf
- N1Yi1bvIin4P61UlBiwIzI1zJAk4SWGJ1CigZpWzW3B6CC8pIZEJN2RaR
- l9SffWHJUoOzr3t5JfKdmIO7E6Zl3hljOSbrtWHi6iCScWLPRtGt5ds/s A==;
-X-CSE-ConnectionGUID: WZ4OLB3iRbaxTcSlDvoKRA==
-X-CSE-MsgGUID: ksOWXAWnSw6IQc33NbPvQQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="84267521"
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="84267521"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 12:19:27 -0700
-X-CSE-ConnectionGUID: dL6cDJ6DQFWZrX5hPOKejw==
-X-CSE-MsgGUID: L335gYqQSTavjDxYniwzUQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="264546693"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.71])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 12:19:18 -0700
-Date: Fri, 22 May 2026 22:19:14 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>,
- Daniel Stone <daniel@fooishbar.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org,
- wayland-devel@lists.freedesktop.org
-Subject: Re: [PATCH v15 12/28] drm/i915/dp: Add YCBCR444 handling for sink
- formats
-Message-ID: <ahCsMhvKzUU-3x7b@intel.com>
-References: <20260522-color-format-v15-0-21fb136c9df2@collabora.com>
- <20260522-color-format-v15-12-21fb136c9df2@collabora.com>
+Received: from us-smtp-delivery-172.mimecast.com
+ (us-smtp-delivery-172.mimecast.com [170.10.133.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7E9D10E0C7
+ for <amd-gfx@lists.freedesktop.org>; Fri, 22 May 2026 22:15:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=valvesoftware.com;
+ s=mc20150811; t=1779488126;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=WbGeRSmieSX02oFIxSL7sYZ4IN41etaUo4I72wb2Kj0=;
+ b=WjOGzlrwkT1gcwYqH9QFiJynvPEP/HAhqEaEjDP8bwmjPufIyu5NptPaOLAeYBVvg6V0b6
+ lQFWY25i8qnBDsqgT1DBA+qr07akTR8CiEUwKTWxhPHaUoH+8ikAJn0lTtUTgvm6XggVx5
+ 6j4Ks5yy2fHHYn9Lf1odXyyiS6nyT5g=
+Received: from smtp-02-tuk3.valvesoftware.com
+ (smtp-02-blv1.valvesoftware.com [208.64.203.182]) by relay.mimecast.com
+ with ESMTP with STARTTLS (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384)
+ id us-mta-206-TIAz--gdOAypeyHnuz5jxw-1; Fri, 22 May 2026 18:15:24 -0400
+X-MC-Unique: TIAz--gdOAypeyHnuz5jxw-1
+X-Mimecast-MFC-AGG-ID: TIAz--gdOAypeyHnuz5jxw_1779488123
+Received: from antispam.valve.org ([172.16.1.107])
+ by smtp-02-tuk3.valvesoftware.com with esmtp (Exim 4.97)
+ (envelope-from <peihsiny@valvesoftware.com>)
+ id 1wQY9L-000000074zQ-0rAl for amd-gfx@lists.freedesktop.org;
+ Fri, 22 May 2026 15:15:23 -0700
+Received: from antispam.valve.org (127.0.0.1) id h23anm0171s0 for
+ <amd-gfx@lists.freedesktop.org>;
+ Fri, 22 May 2026 15:15:23 -0700 (envelope-from <peihsiny@valvesoftware.com>)
+Received: from mail1.valvemail.org ([172.16.144.22])
+ by antispam.valve.org ([172.16.1.107]) (SonicWall 10.0.15.7233)
+ with ESMTP id o202605222215230058122-5; Fri, 22 May 2026 15:15:23 -0700
+Received: from mail2.valvemail.org (172.16.144.23) by mail1.valvemail.org
+ (172.16.144.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Fri, 22 May
+ 2026 15:15:22 -0700
+Received: from mail2.valvemail.org ([::1]) by mail2.valvemail.org ([::1]) with
+ mapi id 15.02.2562.017; Fri, 22 May 2026 15:15:22 -0700
+From: Pei-Hsin Yang <peihsiny@valvesoftware.com>
+To: =?utf-8?B?TWljaGVsIETDpG56ZXI=?= <michel.daenzer@mailbox.org>
+CC: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: RE: [External Mail] Re: Test result / finding of "drm/amd/display:
+ Consult MCCS FreeSync cap only if requested & supported"
+Thread-Topic: [External Mail] Re: Test result / finding of "drm/amd/display:
+ Consult MCCS FreeSync cap only if requested & supported"
+Thread-Index: AdznyYW5KuL81IotTPmWr+1olc6y4wAnk9yAAAH0cTAALvV0AABCoHew
+Date: Fri, 22 May 2026 22:15:22 +0000
+Message-ID: <431e78bafdc7402398d5b7bc85d81252@valvesoftware.com>
+References: <44069eb146824aa195312f5b02c49287@valvesoftware.com>
+ <7a9021cd-fd78-4b0d-846b-135d0d72224e@mailbox.org>
+ <16231b1742004f848af243ce398281ec@valvesoftware.com>
+ <ce51243c-3b98-4f99-911f-70dd0b860da0@mailbox.org>
+In-Reply-To: <ce51243c-3b98-4f99-911f-70dd0b860da0@mailbox.org>
+Accept-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.22.11.65]
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260522-color-format-v15-12-21fb136c9df2@collabora.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-Mlf-DSE-Version: 6871
+X-Mlf-Rules-Version: s20260522120322; ds20230628172248;
+ di20260507172443; ri20160318003319; fs20260522203510
+X-Mlf-Smartnet-Version: 20210917223710
+X-Mlf-Envelope-From: peihsiny@valvesoftware.com
+X-Mlf-CnxnMgmt-Allow: 172.16.144.22
+X-Mlf-Version: 10.0.15.7233
+X-Mlf-License: BSV_C_AP_T_R
+X-Mlf-UniqueId: o202605222215230058122
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: XTjXhZRR92yLGi7llw5kSk7daSN12scfeZ96eSll3zs_1779488123
+X-Mimecast-Originator: valvesoftware.com
+Content-Language: en-US
+Content-Type: multipart/mixed;
+ boundary="_002_431e78bafdc7402398d5b7bc85d81252valvesoftwarecom_"
+X-Mailman-Approved-At: Tue, 26 May 2026 07:53:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,111 +102,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.78 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_MIXED_CHARSET(0.59)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.21 / 15.00];
+	DATE_IN_PAST(1.00)[81];
+	DMARC_POLICY_ALLOW(-0.50)[valvesoftware.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[valvesoftware.com:s=mc20150811];
+	MAILLIST(-0.20)[mailman];
+	MIME_BASE64_TEXT(0.10)[];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[40];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,fooishbar.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[valvesoftware.com:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER(0.00)[peihsiny@valvesoftware.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:michel.daenzer@mailbox.org,s:lists@lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,valvesoftware.com:email,valvesoftware.com:mid,valvesoftware.com:dkim,mailbox.org:email];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_NEQ_ENVFROM(0.00)[peihsiny@valvesoftware.com,amd-gfx-bounces@lists.freedesktop.org];
+	HAS_ATTACHMENT(0.00)[];
+	HAS_XOIP(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:mid,intel.com:dkim,collabora.com:email,fooishbar.org:email]
-X-Rspamd-Queue-Id: D324A5B95B4
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_SEVEN(0.00)[8]
+X-Rspamd-Queue-Id: BF20C5D1FD7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, May 22, 2026 at 02:32:03PM +0200, Nicolas Frattaroli wrote:
-> In anticipation of userspace being able to explicitly select supported
-> sink formats, add handling of the YCBCR444 sink format. The AUTO path
-> does not choose this format, but with explicit format selection added to
-> the driver, it becomes a possibility.
-> 
-> Check for both source and sink support of YCBCR444 in
-> intel_dp_sink_format_valid.
-> 
-> Acked-by: Daniel Stone <daniel@fooishbar.org>
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 1920d2f02666..143ed85224be 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1344,6 +1344,20 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
->  					 8, sink_format, true);
->  }
->  
-> +static bool
-> +intel_dp_can_ycbcr444(struct intel_dp *intel_dp)
-> +{
-> +	if (source_can_output(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR444) &&
-> +	    !drm_dp_is_branch(intel_dp->dpcd))
-> +		return true;
-> +
-> +	if (source_can_output(intel_dp, INTEL_OUTPUT_FORMAT_RGB) &&
-> +	    dfp_can_convert_from_rgb(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR444))
+--_002_431e78bafdc7402398d5b7bc85d81252valvesoftwarecom_
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-IIRC my previous conclusion was that we don't want the dfp convert
-stuff here, at least initially. So this should just are about
-source_can_output().
+PiBOb3RlIHRoYXQgc29tZSBraW5kIG9mIHNob3J0LXRlcm0gc29sdXRpb24gaXMgbmVlZGVkIGZv
+ciB0aGUgcmVncmVzc2lvbihzKSBpbiA3LjEtcmMuDQoNCkhlcmUgaXMgbXkgc3VnZ2VzdGlvbiBh
+cyBhIHNob3J0LXRlcm0gd29ya2Fyb3VuZDogIA0KCS0gSnVzdCByZWZlciB0byB0aGUgdnNkYl9p
+bmZvIGRhdGEgc3RydWN0dXJlIHRvIHNldCB0aGUgdmFsdWUgb2YgZnJlZXN5bmNfY2FwYWJsZS4g
+IGZyZWVzeW5jX21jY3NfdmNwX2NvZGUgPSAwIGRvZXNuJ3QgbWVhbiBGcmVlU3luYyBpcyBub3Qg
+c3VwcG9ydGVkLg0KCS0gQ2hlY2sgYm90aCBmcmVlc3luY19zdXBwb3J0ZWQgYW5kIGZyZWVzeW5j
+X21jY3NfdmNwX2NvZGUgYWxvbmcgd2l0aCBkb19tY2NzIHRvIGNhbGwgZG1faGVscGVyc19tY2Nz
+X3ZjcF9zZXQoKS4NCgktIE5vdGUgdGhhdCBNQ0NTIGNvbW1hbmQgb3ZlciBEREMgbWlnaHQgYmUg
+ZmFpbGVkIGF0IHJ1bnRpbWUsIGJ1dCBhdCBsZWFzdCwgaXQgd2lsbCBub3QgaW5hZHZlcnRlbnRs
+eSBkaXNhYmxlIHRoZSBWUlIgaWYgKDEpIHNpbmsgaXMgRnJlZVN5bmMgc3VwcG9ydGVkIGJ1dCB2
+Y3BfY29kZSA9IDAsIG9yICgyKSBkbV9oZWxwZXJzX3JlYWRfbWNjc19jYXAoKSBmYWlsZWQgaW50
+ZXJtaXR0ZW50bHkgYXQgcnVudGltZS4NCg0KUGF0Y2ggY3JlYXRlZCBiYXNlZCBvbiBjb21taXQg
+NTNmMDIzNWMwMjg0ZmM2NzZkMTUxMGE0NjBlMWM2YzExMWRlM2VhMSBpcyBhdHRhY2hlZCBhcyBh
+IHJlZmVyZW5jZSBmb3IgQU1EIHRlYW0gdG8gcmV2aWV3Lg0KDQpjb21taXQgNTNmMDIzNWMwMjg0
+ZmM2NzZkMTUxMGE0NjBlMWM2YzExMWRlM2VhMSAoSEVBRCAtPiBhbWQtc3RhZ2luZy1kcm0tbmV4
+dCwgb3JpZ2luL2FtZC1zdGFnaW5nLWRybS1uZXh0LCBvcmlnaW4vSEVBRCkNCg0KVGhhbmtzDQpQ
+ZWktSHNpbg0KDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBNaWNoZWwgRMOk
+bnplciA8bWljaGVsLmRhZW56ZXJAbWFpbGJveC5vcmc+IA0KU2VudDogVGh1cnNkYXksIE1heSAy
+MSwgMjAyNiAxMjoxMCBBTQ0KVG86IFBlaS1Ic2luIFlhbmcgPHBlaWhzaW55QHZhbHZlc29mdHdh
+cmUuY29tPg0KQ2M6IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQpTdWJqZWN0OiBSZTog
+W0V4dGVybmFsIE1haWxdIFJlOiBUZXN0IHJlc3VsdCAvIGZpbmRpbmcgb2YgImRybS9hbWQvZGlz
+cGxheTogQ29uc3VsdCBNQ0NTIEZyZWVTeW5jIGNhcCBvbmx5IGlmIHJlcXVlc3RlZCAmIHN1cHBv
+cnRlZCINCg0KT24gNS8yMC8yNiAxNzo1NCwgUGVpLUhzaW4gWWFuZyB3cm90ZToNCj4gDQo+PiBU
+ZXN0ZWQgd2l0aCAzIEhETUkgc2lua3Mgd2l0aCBkaWZmZXJlbnQgRnJlZVN5bmMvSERNSSBWUlIg
+Y2FwYWJpbGl0aWVzLiAgSSBzYXcgb25lIGNhc2UgdGhhdCBhIEZyZWVTeW5jIHNpbmsgKERlbGwg
+UzI3MjFIUykgd2l0aCBFNmggVkNQIGNvZGUgc3VwcG9ydGVkIHdhcyBkZXRlY3RlZCBhcyBGcmVl
+U3luYyBjYXBhYmxlIGF0IGJlZ2lubmluZyBidXQgaWRlbnRpZmllZCBhcyBub3QgRnJlZVN5bmMg
+Y2FwYWJsZSBsYXRlciDigJMgYWZ0ZXIgZG9fbWNjcyBpcyBjaGFuZ2VkIGZyb20gdHJ1ZSB0byBm
+YWxzZS4NCj4gDQo+Pj4gQW5kIHRoYXQgZG9lc24ndCBoYXBwZW4gd2l0aG91dCBteSBwYXRjaCBh
+cHBsaWVkPw0KPiANCj4gVGhlcmUgYXJlIG90aGVyIGlzc3VlcyB3aXRob3V0IHlvdXIgcGF0Y2gg
+YXBwbGllZC4gICBPbmUgaXNzdWUgaXMgdGhhdCBpZiBhIEZyZWVTeW5jIGNhcGFibGUgc2luayB3
+aXRoIE1DQ1MgVkNQIENvZGUgPSAwIChtb3N0bHkgYXJlIFRWcyksIGl0IHdpbGwgYmUgZGV0ZWN0
+ZWQgYXMgbm90IEZyZWVTeW5jIHN1cHBvcnRlZCBhbmQgVlJSIHdpbGwgYmUgZGlzYWJsZWQuDQoN
+ClRoYXQgc291bmRzIHNpbWlsYXIgdG8gaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2Ry
+bS9hbWQvLS93b3JrX2l0ZW1zLzUyODYgLg0KDQoNCkkgd2FzIHdvbmRlcmluZyBpZiB0aGUgc3Bl
+Y2lmaWMgaXNzdWUgeW91IGRlc2NyaWJlZCBhYm92ZSB3aXRoIERlbGwgUzI3MjFIUyBpcyByZXBy
+b2R1Y2libGUgd2l0aG91dCBteSBwYXRjaCB0aG91Z2gsIGluIHdoaWNoIGNhc2UgaXQgbWlnaHQg
+YmUgYSBzZXBhcmF0ZSByZWdyZXNzaW9uIChhbmQgd291bGRuJ3Qgc3BlYWsgYWdhaW5zdCBtZXJn
+aW5nIG15IHBhdGNoKS4NCg0KDQo+Pj4gVEJIIEkgZG9uJ3QgcmVhbGx5IHdhbnQgdG8gYmUgZml4
+aW5nIHRoZSByZWdyZXNzaW9uIEkgaGl0LCBJJ2QgcHJlZmVyIHRoZSBBTUQgZGlzcGxheSB0ZWFt
+IHRvIGhhbmRsZSBpdC4NCj4gDQo+IFllcywgYWdyZWVkLiAgQXMgRnJlZVN5bmMgTUNDUyBzdXBw
+b3J0IGhhcyBpbW1lZGlhdGUgaW1wYWN0cyB0byBWYWx2ZSdzIFN0ZWFtIGRldmljZXMsIEkgd2ls
+bCB3b3JrIHdpdGggQU1EIGRpc3BsYXkgdGVhbSB0byBoYW5kbGUgaXQuICAgSERNSSAyLjEgVlJS
+IGFuZCBWVEVNIHBhY2tldCBzZW5kaW5nIHN1cHBvcnQgbmVlZCB0byBiZSBpbmNsdWRlZCBhcyB3
+ZWxsLg0KDQpOb3RlIHRoYXQgc29tZSBraW5kIG9mIHNob3J0LXRlcm0gc29sdXRpb24gaXMgbmVl
+ZGVkIGZvciB0aGUgcmVncmVzc2lvbihzKSBpbiA3LjEtcmMuDQoNCg0KLS0gDQpFYXJ0aGxpbmcg
+TWljaGVsIETDpG56ZXIgICAgICAgXCAgICAgICAgR05PTUUgLyBYd2F5bGFuZCAvIE1lc2EgZGV2
+ZWxvcGVyDQpodHRwczovL3JlZGhhdC5jb20gICAgICAgICAgICAgXCAgICAgICAgICAgICAgIExp
+YnJlIHNvZnR3YXJlIGVudGh1c2lhc3QNCg0K
+--_002_431e78bafdc7402398d5b7bc85d81252valvesoftwarecom_
+Content-Type: application/octet-stream;
+	name="asdn-freesync-mccs-caps-use-vsdb.patch"
+Content-Description: asdn-freesync-mccs-caps-use-vsdb.patch
+Content-Disposition: attachment;
+	filename="asdn-freesync-mccs-caps-use-vsdb.patch"; size=907;
+	creation-date="Fri, 22 May 2026 22:11:50 GMT";
+	modification-date="Fri, 22 May 2026 21:57:05 GMT"
+Content-Transfer-Encoding: base64
 
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
->  static enum drm_mode_status
->  intel_dp_sink_format_valid(struct intel_connector *connector,
->  			   const struct drm_display_mode *mode,
-> @@ -1364,6 +1378,13 @@ intel_dp_sink_format_valid(struct intel_connector *connector,
->  
->  		return MODE_OK;
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1
+X2RtLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5j
+CmluZGV4IGFmMGFmNzUxOTUxNy4uZmZjMDI3M2ZjZjYxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jCisrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmMKQEAgLTEzNjgwLDExICsxMzY4
+MCwxMCBAQCB2b2lkIGFtZGdwdV9kbV91cGRhdGVfZnJlZXN5bmNfY2FwcyhzdHJ1Y3QgZHJtX2Nv
+bm5lY3RvciAqY29ubmVjdG9yLAogCiAJaWYgKChzaW5rLT5zaW5rX3NpZ25hbCA9PSBTSUdOQUxf
+VFlQRV9IRE1JX1RZUEVfQSB8fAogCQlhc190eXBlID09IEZSRUVTWU5DX1RZUEVfUENPTl9JTl9X
+SElURUxJU1QpICYmCi0JCSghc2luay0+ZWRpZF9jYXBzLmZyZWVzeW5jX3ZjcF9jb2RlIHx8Ci0J
+CShzaW5rLT5lZGlkX2NhcHMuZnJlZXN5bmNfdmNwX2NvZGUgJiYgIXNpbmstPm1jY3NfY2Fwcy5m
+cmVlc3luY19zdXBwb3J0ZWQpKSkKKwkJKCF2c2RiX2luZm8uZnJlZXN5bmNfc3VwcG9ydGVkKSkK
+IAkJZnJlZXN5bmNfY2FwYWJsZSA9IGZhbHNlOwogCi0JaWYgKGRvX21jY3MgJiYgc2luay0+bWNj
+c19jYXBzLmZyZWVzeW5jX3N1cHBvcnRlZCAmJiBmcmVlc3luY19jYXBhYmxlKQorCWlmIChkb19t
+Y2NzICYmIHZzZGJfaW5mby5mcmVlc3luY19zdXBwb3J0ZWQgJiYgdnNkYl9pbmZvLmZyZWVzeW5j
+X21jY3NfdmNwX2NvZGUpCiAJCWRtX2hlbHBlcnNfbWNjc192Y3Bfc2V0KGFkZXYtPmRtLmRjLT5j
+dHgsIGFtZGdwdV9kbV9jb25uZWN0b3ItPmRjX2xpbmssIHNpbmspOwogCiB1cGRhdGU6Cg==
+--_002_431e78bafdc7402398d5b7bc85d81252valvesoftwarecom_--
 
-Again, would prefer a cleanr 420->444->rgb order.
-
->  	case INTEL_OUTPUT_FORMAT_RGB:
-> +		return MODE_OK;
-> +	case INTEL_OUTPUT_FORMAT_YCBCR444:
-> +		if (!(info->color_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444)))
-> +			return MODE_BAD;
-> +		if (!intel_dp_can_ycbcr444(intel_dp))
-> +			return MODE_BAD;
-
-These two ifs are swapped when compared to the HDMI version for no
-good reason that I can see.
-
-And missing the has_hdmi_sink check here as well.
-
-> +
->  		return MODE_OK;
->  	default:
->  		MISSING_CASE(sink_format);
-> 
-> -- 
-> 2.54.0
-
--- 
-Ville Syrjälä
-Intel
