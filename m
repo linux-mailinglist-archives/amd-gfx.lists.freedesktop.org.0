@@ -2,85 +2,136 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SPdeObVRFWraUQcAu9opvQ
+	id QBThASl+EGrdXwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:54:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 22 May 2026 18:02:49 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D4205D21B1
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:54:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64CB85B74D7
+	for <lists+amd-gfx@lfdr.de>; Fri, 22 May 2026 18:02:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7B1A10E5F6;
-	Tue, 26 May 2026 07:54:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D98310E262;
+	Fri, 22 May 2026 16:02:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="WgaCAY3E";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="417XZV4x";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94CF510F721;
- Fri, 22 May 2026 12:37:00 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1779453411; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=OZrUo1WYc2zkFyjS/Q4vGR//2hqTKcz6X0SAScJjxyBVfvZu+gFXXqjMKAWknoZjGriHA9hmmmMqlMmMy3pMDP/Cm07HidJFKehE8gajqvKWU1Mmf4XJsyrMy8eRe5W9yI6X/a/htdL6fmHI5PLDaDQIX9OETHoPRf1CtgjiH00=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1779453411;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=26EFTuIhlqnsc4uUzyuaHx+9wSdJArl+zaLC9veBaX4=; 
- b=AxZIQ0iZI5ov3PdaO7thHVLkcHajpuj/P3iFwjQFAiCUvR0VKW86lD2JN4k96fHmE2xCsCxGJJ2uVU5s06kkd5HfzLL8maT4kdF9/zB6ztGN8Vv2t7DiOaxEAH4MOaLcKpEiHXtIih0tQwWzeI8bYJU543N/QaXBs2dMxOFxhyA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779453411; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=26EFTuIhlqnsc4uUzyuaHx+9wSdJArl+zaLC9veBaX4=;
- b=WgaCAY3ElQAIEMmoGTQDPDiSDLigtnAiKKiXLrNgQW9ISknxT60ysRE8k/lOT8Yb
- PvAUK6V7Z21bTRXAROnZLm8ra4QB/ZEMZ7vHLzub8jwLgIO8Q7FtT8soDQR/dRXyqQk
- DTtoH0Dtvu9Dc2yP7JxJR6RXiUH/uMcpoqIHIS/s=
-Received: by mx.zohomail.com with SMTPS id 177945341033966.33667935734206;
- Fri, 22 May 2026 05:36:50 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Fri, 22 May 2026 14:32:19 +0200
-Subject: [PATCH v15 28/28] drm/connector: Update docs of "colorspace" for
- color format prop
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012019.outbound.protection.outlook.com [52.101.43.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 348AC10E262
+ for <amd-gfx@lists.freedesktop.org>; Fri, 22 May 2026 16:02:45 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jUgqynFc1B/gYlv7SEsQQmS8v7NbIs6lRnK4du7tmgDV9N9Ds9KxBFJyOtvvfBky/9Df6StYStBnxXNn/8h0leMJI/unh5mNcSBDIpGvX/1MjHYkQXLhy4CRfSDlIIj8gwQMQ7Y4w6KNVm93sfzM/Tw878gjjK+7qOUIdKHBCmhQDezvrGYDa0KTvDb8rIVuRq72714/0CgA01wjeQyhqSRo8oixBaxcRADwt/uQ4ZGsSOOacUe3DBgi4A2bonqHhSdMFtaus1XbeGADIyqrnwMNO5e+JMZF3vuOOgJ2gcOkyePC7HDysAGWRWPP7vgm5Y9gcqy+R407141vg7uUKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lBdyNdar/GFAbXjsqg4b0jcTvUGFHHraiz3IK2hq8Ws=;
+ b=hdlsSJIIclS+N1VRPp9Z1097SgSGPE5WfEhuFTboAQ+qupPhroKwiiQtS710pNNaVQsPtvjew+6Mu+XdEbJkPJD2OGBNGz427SRtJgzeEi0SQT9YE1UJJ2hBl/ETRrgkQpwUCkp7hmZaV8kmmWGpUp+v3pLXVDV0Ot+i0nBpciMZjIcl3e58mIDM3AiuX2bAFUcIEF+WgDBi1ZInIkyMh4fRz4JkjHyhWahvbLUy8VZqUU6SHPm4Iv5aEVcl9LaoCRq3s0eEkLyEsGFlxYbvTvwYRF/C9wJUP7TWe0C0uPXGGkZu+4qGDjWEzBHL3usgQ4H/1ueCiyxkVA5ok6hZ6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lBdyNdar/GFAbXjsqg4b0jcTvUGFHHraiz3IK2hq8Ws=;
+ b=417XZV4x6y3tdl8wbU4OFrGFW3VZkvMVwDpuTi8Om9dZcG9IiKuWShnlMpbFNDY5B/69L9iJWXgTVLscJgkeVcmTbNopnYHvUk0s2M4xRXE09b5s0JrZMMKN4Nfag9qNx+Qg/4wnY+NzkmWKo37qqwqzGJiHKesF4j93FbaKLHU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DS4PR12MB9612.namprd12.prod.outlook.com (2603:10b6:8:278::5) by
+ DM4PR12MB7648.namprd12.prod.outlook.com (2603:10b6:8:104::15) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.48.17; Fri, 22 May 2026 16:02:41 +0000
+Received: from DS4PR12MB9612.namprd12.prod.outlook.com
+ ([fe80::5e55:25ea:365c:f99c]) by DS4PR12MB9612.namprd12.prod.outlook.com
+ ([fe80::5e55:25ea:365c:f99c%5]) with mapi id 15.21.0048.016; Fri, 22 May 2026
+ 16:02:40 +0000
+Message-ID: <324818a5-5169-4822-9364-033f7bed208a@amd.com>
+Date: Fri, 22 May 2026 12:02:37 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: Fix num_pages calculation in
+ amdgpu_ttm_map_buffer() for non-4K page sizes
+To: Donet Tom <donettom@linux.ibm.com>, amd-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Alex Deucher <alexdeucher@gmail.com>, christian.koenig@amd.com,
+ Philip Yang <yangp@amd.com>
+Cc: David.YatSin@amd.com, Kent.Russell@amd.com,
+ Ritesh Harjani <ritesh.list@gmail.com>,
+ Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Simona Vetter <simona@ffwll.ch>
+References: <20260522112838.1311531-1-donettom@linux.ibm.com>
+Content-Language: en-US
+From: "Kuehling, Felix" <felix.kuehling@amd.com>
+In-Reply-To: <20260522112838.1311531-1-donettom@linux.ibm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YT4P288CA0090.CANP288.PROD.OUTLOOK.COM
+ (2603:10b6:b01:d0::23) To DS4PR12MB9612.namprd12.prod.outlook.com
+ (2603:10b6:8:278::5)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260522-color-format-v15-28-21fb136c9df2@collabora.com>
-References: <20260522-color-format-v15-0-21fb136c9df2@collabora.com>
-In-Reply-To: <20260522-color-format-v15-0-21fb136c9df2@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
- Daniel Stone <daniel@fooishbar.org>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-doc@vger.kernel.org, wayland-devel@lists.freedesktop.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.15.2
-X-Mailman-Approved-At: Tue, 26 May 2026 07:53:08 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS4PR12MB9612:EE_|DM4PR12MB7648:EE_
+X-MS-Office365-Filtering-Correlation-Id: 81c41bab-ee21-4515-aedd-08deb81b8d34
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|11063799006|22082099003|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: AkgeyQT7RtTFFpjw5ddEe4KINyjN4q9LB0nIgbn4OUFsAQcAnullpipIgb11Xh4zdModQIavowiEVJK/axUZjAm0int3xgUJl24JcOv5P/T8fqewlUCN30kBSwXZD0sILOSYgESkjbietcuTu03jqkp5Vb2XQ5n2DyG4qoQSAjRrZgrWsULOH5cghMA2qJiU/AIiLHbTzGD7FkN0fxHd23MmtHk5WKQhq2haSco2oQ6PPrEGMB4VvL/+m30emch1xJSUbbdVUyg+UVKF/kFQ6SG74CPH9QtyFmsH/Jf8PtDqePGNM90ii6pkl/J+A5OKzdsyZIcJufVX51FzMr8LdDGmxgVW4Da0gwx8sx2B2aW/XjmpJOc5U9WEIeqeQgP5g91IrG5mP2sCLl2ZsNyK1Q/gIWIQneSKboTrKO3Fxqx/iEKuxkioSY9Wdziq5bSRtmNJ9gqce2aLK2vV2Q+cHCD0Qp8FkNaQ8AP/LyEXR1X/o1FErKdmHu8mUBb/A2NJzCeYKUJSv3EkJmLOu9aGj5qAV7cneWvsYCGecJxh8IB0KNR5WqSVfrWH/cQC7z0i0WU5YT9GJndR5ApU5PUbZmsvdm51dcVmY/aOQD0rbfd2CwsUfVg0yjqS7rxHDylizi97iLwf+GX45NCyAuK/YqLicqO8GVHgt7EunkaN+jBVjf2vkZjmiN1wxmg5W9iz
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PR12MB9612.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(11063799006)(22082099003)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YUlnM1B4MTQvRUgwU3BJa1hYeEU2dmtkbm4vaXJwaC84Q2pjY2Mvc1dRT0NQ?=
+ =?utf-8?B?NmtKZk5aWFh1SWpkOU1qNklsZjFLYnVtQVE3K3NFRmMxamRpcElJVmtNdW1O?=
+ =?utf-8?B?cTdsMXlEenYyWVVYR3g0VnFCRWo1MGxILzRYWm1YZnRkWHBTczlVY0x5RitL?=
+ =?utf-8?B?MG9qaGdaRjZvK3Nubit1K3JzM3ZLR05FZnU0THEreElhTlgvcFNrdVlZMGZE?=
+ =?utf-8?B?bkt6TFBSS3hKYllwbXZaRHZDVzdKWEVTL0JUUS95Tk4wRm1jMUw5dllSMVBL?=
+ =?utf-8?B?UFJ3cWsxNWVHNmNnVHJwekFCZVh6U21qR2wyeFZVMEE2Y2VLNHVyaDQyOGVN?=
+ =?utf-8?B?Y280WGhaTzNPSGNRQVN5cFVUcy9VajZBRG5VMmVjNWRTOHNHbTVpN21wVDFt?=
+ =?utf-8?B?blhISnNJMzdPOG5sTjZBeWphZDB5UFlwb0lGQTB3clYydFBKeHpwQ21EV092?=
+ =?utf-8?B?U0hnZHdlQVRLS2JqWUlrTStjOGVaOWEvOEdFcERZMTF0bUJ0N3B1bE9CSmd1?=
+ =?utf-8?B?QXRJc1E2Mm9JMGlwOFBzSkVSbHVrL0VXNDFrU1EwSmxLbll2bWU1Z1YxdlVU?=
+ =?utf-8?B?NXluZVBSaElZalhiN21rK0o5MHNHdk55RHl0dGhqbjRSNHJiYVVtV0tFK2d2?=
+ =?utf-8?B?OTBCUlN2L1JheFRUOUtGV2ZqaEFZREpSdFVjS0hWRU02Z3FqVWQ0Y1FkNmxR?=
+ =?utf-8?B?LzUyWUlmdEtuYXB6cHZZR1V5Zi9OMGNhY1M5ZlhhVkJEeS9tUG0wK2tmVUV3?=
+ =?utf-8?B?Ym5MZ0RaNVlZN0h0UnpnbW5CRkVNMG1KQVBNMjc4UWxGMFlTdkNUV24wN0JR?=
+ =?utf-8?B?MDFGa0NXWS9UNmVqZTArVEJGVWtIRHQwUWNZY2JuSFhTaXVGLzR2VjNDSUw4?=
+ =?utf-8?B?SjRMRGNiQTZiSjg4RnN5VTE5cU55Vnd0emlyaDR0ekpXL2tlVUYyUnBYSGN0?=
+ =?utf-8?B?VTFjQVhRdzJXV2djbkFzQVdKZUZQQjB2QVA1WUUyR3dJdU1TalM0dW9jSEJZ?=
+ =?utf-8?B?bFp6TGNCVDhSaDA0UUlobjFXMmU1ZldMOG9nRGVCZ1hMcS9VK1lJT05EdHdx?=
+ =?utf-8?B?WU04YUVxYXdXL2FvQ1paKzRMTGRjSDg4dmU3TzNiRFBhRXNFZzRGNW5xalJE?=
+ =?utf-8?B?Y0wwN3VmU0N1SGtkMnVwMndJbG9jNlhhTUdiYjFqTGdoaStycFVtbnk4UWFH?=
+ =?utf-8?B?ajFKRXhsTUl6cWg4OENtMGNzYVRwRXhoMlJNNjdJazEybE1weGRHWWZ3Nkdx?=
+ =?utf-8?B?SFRXbjByREhtQm9hZXlIbXdTaG5nL01XUlpOS2o4bWc2cDFzaW1KUU95aFFH?=
+ =?utf-8?B?aHM4RTRubHlycVlnVW43YWxtUUJORUtlUGxkWFpGNTgxSnlTNTlXbkY4QXh1?=
+ =?utf-8?B?Zy9hdTZOeEhHRjJXRVdPS1hOYVI2WTVjTldhVTVkaHpJaDZ4TlBoMTB0Rzln?=
+ =?utf-8?B?M0gxdmh5SE1OMDlJRWxZUUZITkZuMkU0STVERysrME5paUx2RU85ak9FWmsr?=
+ =?utf-8?B?YzE2R09PNlRpRXh2aGhhN3BBTHBlaGFVZmpZZkZwNEpPeDdOZnpBMElFaDJL?=
+ =?utf-8?B?Tm1mem9IV3pvdHlHb1Q3Y2VWelc2NEx5UFVVTEFxT3F3QWFoT3dPdnhTS1RL?=
+ =?utf-8?B?bm1oWjI2MHI1SHV0Z0dRdlI3ZS9XazluV0JUWkYvcUtJRENsNGpNN2I0aE1G?=
+ =?utf-8?B?YXpRSmxWN0pPbUdvSU40UStlYlV3RHROL1MwUHpiS1U5TUsyNTcvaDRWZG44?=
+ =?utf-8?B?VGQrOWw2L24zeDNMQTBjQW1TQ014RWJMcDJFVS9DWmZJK1l2c1ZReGFHRkFi?=
+ =?utf-8?B?TUlsazZnMFdZaDZQS1hHSFdsZGc2SUJDck04TjJ5ZUJ4SERHdWJyWWJZdnIx?=
+ =?utf-8?B?ZGJWWkZ6R0I2WHp6OS8rOUhwZDZOQW9KU24wWStIWHQ5RFlZSnB4K3pYMXJF?=
+ =?utf-8?B?WU9YRjBFdHUweE4vQjFLTXExQWdKQjRQMzFZN0xYc0VoQm5WTllMUk8xZlM5?=
+ =?utf-8?B?UGdlcTNNYjM0Qzg1WlFENGVrb0VtbjI3K3JvV1hxOGxKWUpQc3pSUyt2bWJh?=
+ =?utf-8?B?aEJZU05Vc1ZXTndGL3ZCcXhHRUpIZkxOcHRPOXNUZm5BaWhCOFB5SjB3RVg5?=
+ =?utf-8?B?cWxxVENLQ0w1d0lWZ056YU1xNnNCMTRMaTR3cEtnMU9rZlc4YmhyUVRRZXRH?=
+ =?utf-8?B?NnFUQjM3WTZKQXZoaFZYcVJUTE9JL1RtY3lBa3lqUkg0QXJWN3NQUm9Hbksz?=
+ =?utf-8?B?Rmt2QW56Y1o5eWhmUkZNQm81L3VqN3JkZEQwc29TS0tRd3FaZ0FtQWFtZG0r?=
+ =?utf-8?B?NEdGUTMxUTNuMFNTZkJDZzl0d2FWTEFsa2VqT2NiSmdOVHJQcHMxdz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 81c41bab-ee21-4515-aedd-08deb81b8d34
+X-MS-Exchange-CrossTenant-AuthSource: DS4PR12MB9612.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2026 16:02:40.8395 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EVTxHrXv5kH0N+ouqwd1FM5mQQ/AV/KU9HOFRXwJWkg47JnX025Z76aGEYdeaZkwD91fLuRd5q6pCY/brvX/gA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7648
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,67 +145,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.29 / 15.00];
+X-Spamd-Result: default: False [1.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[91];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,fooishbar.org];
-	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[40];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:donettom@linux.ibm.com,m:alexander.deucher@amd.com,m:alexdeucher@gmail.com,m:christian.koenig@amd.com,m:yangp@amd.com,m:David.YatSin@amd.com,m:Kent.Russell@amd.com,m:ritesh.list@gmail.com,m:svaidy@linux.ibm.com,m:pierre-eric.pelloux-prayer@amd.com,m:simona@ffwll.ch,m:riteshlist@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[felix.kuehling@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_TO(0.00)[linux.ibm.com,lists.freedesktop.org,amd.com,gmail.com];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[felix.kuehling@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,linux.ibm.com,ffwll.ch];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,collabora.com:email,collabora.com:mid,collabora.com:dkim,fooishbar.org:email]
-X-Rspamd-Queue-Id: 6D4205D21B1
+	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 64CB85B74D7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The colorspace property's documentation states that BT2020_RGB and
-BT2020_YCC are equivalent, and the output format depends on the driver.
 
-Now that there is a "color format" property that userspace can use to
-explicitly set a format, update the colorspace docs to mention this.
+On 2026-05-22 07:28, Donet Tom wrote:
+> amdgpu_gart_map_vram_range() expects the number of pages (num_pages) in
+> 4K page units. However, in amdgpu_ttm_map_buffer(), the number of pages
+> is calculated based on the system page size. On systems with non-4K page
+> sizes, this results in an incorrect number of pages being passed to
+> amdgpu_gart_map_vram_range().
+>
+> Fix this by calculating the number of pages correctly before passing it
+> to amdgpu_gart_map_vram_range().
+>
+> Signed-off-by: Donet Tom <donettom@linux.ibm.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 1 +
+>   1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> index 3d2e00efc741..2904a9400605 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@ -269,6 +269,7 @@ static int amdgpu_ttm_map_buffer(struct amdgpu_ttm_buffer_entity *entity,
+>   		amdgpu_gart_map(adev, 0, num_pages, dma_addr, flags, cpu_addr);
+>   	} else {
+>   		u64 pa = mm_cur->start + adev->vm_manager.vram_base_offset;
+> +		num_pages *= AMDGPU_GPU_PAGES_IN_CPU_PAGE;
+>   
+>   		amdgpu_gart_map_vram_range(adev, pa, 0, num_pages, flags, cpu_addr);
 
-The behaviour here is not changed for userspace that doesn't know about
-the color format property yet, as the color format property defaults to
-"AUTO", where the choice of output format is left up to drivers.
+IMO it would be cleaner to change the definition of 
+amdgpu_gart_map_vram_range to use the same page size as amdgpu_gart_map.
 
-Reviewed-by: Daniel Stone <daniel@fooishbar.org>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/gpu/drm/drm_connector.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Regards,
+   Felix
 
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-index b91c1f76355e..52f9a6a8daf7 100644
---- a/drivers/gpu/drm/drm_connector.c
-+++ b/drivers/gpu/drm/drm_connector.c
-@@ -2573,7 +2573,8 @@ EXPORT_SYMBOL(drm_mode_create_aspect_ratio_property);
-  *		conversion matrix and convert to the appropriate quantization
-  *		range.
-  *		The variants BT2020_RGB and BT2020_YCC are equivalent and the
-- *		driver chooses between RGB and YCbCr on its own.
-+ *		driver chooses between RGB and YCbCr based on the color format
-+ *		property.
-  *
-  *	SMPTE_170M_YCC:
-  *	BT709_YCC:
 
--- 
-2.54.0
-
+>   	}
