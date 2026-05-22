@@ -2,105 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yGoTHm0UEGphTQYAu9opvQ
+	id OIRzB7VRFWrzUQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 May 2026 10:31:41 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:54:29 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27DB75B09D8
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 May 2026 10:31:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C33535D2196
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:54:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C52210E669;
-	Fri, 22 May 2026 08:31:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="H08HdUBu";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF88010E5FF;
+	Tue, 26 May 2026 07:54:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com
- [209.85.210.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F1B710E1B6
- for <amd-gfx@lists.freedesktop.org>; Fri, 22 May 2026 08:31:36 +0000 (UTC)
-Received: by mail-ot1-f50.google.com with SMTP id
- 46e09a7af769-7e363c6141dso5928840a34.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 22 May 2026 01:31:36 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779438696; cv=none;
- d=google.com; s=arc-20240605;
- b=b9Iro1BPg+LpJEuPKRCjiGPUtT3BPldeinFdIVGVBZ1SfLd03MzyEIPvwkYBYpcGnL
- zA8oRSKU//ZG49WQa39FCTqIH/zu7zs9gmn1g+ojw+tEDG3VJCS9eqe5GXoJGAe4fVFt
- et9MYsAgxYSBcLUUdwWpih6RaIjDx9XncNDkIEMHVS/lO/nSAeeoI/MXXicc94KKxC8k
- hCRtknubLjzVuaZSNQD6BETKCRTO/Lsz/96B+HAQZT+NsgsUaVtmFWFnrxNocG6IXCjl
- AfI2uwGqXIA7CV+OAdfyVVNdAjVVmNoHZQ99rdKuFZiOlW2Xm9dcza290hZ8XjFjzncz
- dj3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=9ThiWo7n+RoKO5Fmewf5eOm/6gdGdTn6HMevgFDP/mU=;
- fh=K4oB6c8XPSePsU9WBhEA0mcpKBxSUVlntn+/DekCnfQ=;
- b=YiRvuymTaiNKPdugKe3m9a5a8Qsd3w2YImFY9SKS/ygrwrPQws/hqGz1MDGnyO1eLO
- pkjotolHB8bkKNJCdZ6dFD1QFrTXhV8Yn340MQtg3ZnQcOlw5vSs9AYG4EXgzFNQLs7c
- 8vJdoEvbek4PV3R1FFz5U4Nd6ejDK19C0acZQ1eIpcMwdL+nij7SPcjpYqkJ+N5jAzdu
- /iDrQl6IVV91ZkZn32ReBDtjfZzJsnDjzDh3n9PmoZ9DqIp0EkfYzjAOQCONTxtLxEX4
- jl+4twiDPxSZaqUf6SXa9C86ELE6zhR8pT0P1PuaSEE/nEEuoLzHVZeUb1YXEDFTyaWP
- UUSQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779438696; x=1780043496; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=9ThiWo7n+RoKO5Fmewf5eOm/6gdGdTn6HMevgFDP/mU=;
- b=H08HdUBuwu46VvkyPvPg+b68rk6rGandYdFqq0c3AIBmcg8W2Vz0fX0OfH7snP3B/w
- Pmng3OdGQ8or8K709Bk3nafh7I8X/u16Ymfay5J4peN5vibd4S7/drGU7S2c7GoE+OZI
- cYIVkk8eXTlXMXV/au6hO4HcMcw4cI1XOVy8/TAIpUwVhgBDXbl/JQYw7XhMwcKq7Ewj
- rVuMBKudUF9BepjdZD88GgLwQBmZFuXPyy6OXzM+c5YW48n9YYwnr0scgBLNoX2M142g
- z9+/mIb/Non3vlBSAcySIo1BnQt3+kymY2TI//zvzkX6w9a2AkJ0FlupckLChkpsYR2J
- bO8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779438696; x=1780043496;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=9ThiWo7n+RoKO5Fmewf5eOm/6gdGdTn6HMevgFDP/mU=;
- b=QlrXmVzF2KX/LVtqTEiy/Yuh/XhSETjZNQCL2AAALGWAbyyJDnwB8ktOa0knAmg1lj
- 2ONACb2fz+mexABWhh5xAzO/W4wp2iN7qMdOqefgBaJMs3bOmcbXrctXAQ6rDh/kHHOV
- vu6Wo8Tytkm4Mtrzr3G9sVJusWJJI44/F0rVT+43id/vsud3C228RYZcvJXnYZA/bprJ
- ce1XUMO8cKYo+Kr2d5C6qCUUJylvEU7Q4K5rRRaqPRlKT+mKoWhBZAr6wea7pGkQZ0u7
- t9J72SF46hg09nYFmuZZAm9XoFPZSOwLjA2f9eN4fldh9MDGw0Nrmr8MKhNvyDzGebAu
- bqJQ==
-X-Gm-Message-State: AOJu0YzrwbPA+6JUHC5+NhJo4vKdzE1V9l9xBnI+gPmzc7VY3+ZoDWOW
- 2E5KsUZCspPLZq+KCMi115t3uhxgyEG4qmLEnwdHFOqDbxNoDWEN5S6AhWdxrfciILeHtPEIIai
- SHeVyh5ObsVTdXu1bPH45DE2oGZ57H/8=
-X-Gm-Gg: Acq92OGWrRYHKigSs8FdJoZExdSld4np9isyJ/iAkl4nPJLY6HDH0xTGXEF4xbGakjl
- gu+BrhKXQ3/Cx43Y0X5c6wQOa2t9KC0R4rgBgEwcSSs7lfKJmnJzM4PXD/CaW+8TSD6LPtrKyRS
- +JYQWpo7ex+D6A+xlKyZFujdmFgj2TP5OoxAsY0o1KqPgAF3xF5F9oChnWApotBdTy0NOI9j4bF
- E3GCnqqYuQSVy1iSXdU85al8f6pU1y0SuGlGHZvHAtLwTDBcMs3znVfwufQGrEpeC3tq64q7m5y
- bkskEqDsog==
-X-Received: by 2002:a05:6830:4707:b0:7d7:570b:6800 with SMTP id
- 46e09a7af769-7e5feef54dbmr1560827a34.23.1779438695670; Fri, 22 May 2026
- 01:31:35 -0700 (PDT)
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B59F10F50D;
+ Fri, 22 May 2026 09:19:26 +0000 (UTC)
+X-UUID: 50f1333255bf11f1aa26b74ffac11d73-20260522
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.12, REQID:3907f5cb-10e1-4dc5-a463-e8fa8ff10195, IP:0,
+ U
+ RL:0,TC:0,Content:0,EDM:-25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+ N:release,TS:-25
+X-CID-META: VersionHash:e7bac3a, CLOUDID:dd5522b411114bdc0608001cf9a16299,
+ BulkI
+ D:nil,BulkQuantity:0,Recheck:0,SF:102|850|865|898,TC:nil,Content:0|15|16|5
+ 0,EDM:2,IP:nil,URL:99|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:
+ 0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 50f1333255bf11f1aa26b74ffac11d73-20260522
+X-User: jindongyang@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+ (envelope-from <jindongyang@kylinos.cn>)
+ (Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+ with ESMTP id 1456995312; Fri, 22 May 2026 17:19:21 +0800
+From: Dongyang Jin <jindongyang@kylinos.cn>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, sathishkumar.sundararaju@amd.com, yinjie.yao@amd.com,
+ michal.simek@amd.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Dongyang Jin <jindongyang@kylinos.cn>,
+ kernel test robot <lkp@intel.com>
+Subject: [PATCH] drm/amdgpu/jpeg: Fix format-truncation warning in
+ jpeg_v2_5_sw_init()
+Date: Fri, 22 May 2026 17:19:10 +0800
+Message-Id: <20260522091910.3276524-1-jindongyang@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20260521104335.28978-1-mikhail.v.gavrilov@gmail.com>
- <20260521150841.20625-1-mikhail.v.gavrilov@gmail.com>
- <20260521150841.20625-3-mikhail.v.gavrilov@gmail.com>
- <55aee3e4-9003-4694-b0fa-277a8c2bbbc4@amd.com>
-In-Reply-To: <55aee3e4-9003-4694-b0fa-277a8c2bbbc4@amd.com>
-From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-Date: Fri, 22 May 2026 13:31:23 +0500
-X-Gm-Features: AVHnY4LSbTM-4tTWAVOgrISJCrLtgJ-GyODBgDohHuk9RVR7oadaYTWLeSuLNrM
-Message-ID: <CABXGCsPPY3qX7Ad-a7==nmA5R7aejCTCrmWYpn-9OQQU=1eMMA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] drm/amdgpu: fix recursive ww_mutex acquire in
- amdgpu_devcoredump_format
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, 
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 26 May 2026 07:53:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,75 +66,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [1.99 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DATE_IN_PAST(1.00)[94];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
 	MIME_GOOD(-0.10)[text/plain];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[kylinos.cn];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:pierre-eric.pelloux-prayer@amd.com,m:sumit.semwal@linaro.org,m:linux-media@vger.kernel.org,m:linaro-mm-sig@lists.linaro.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[mikhailvgavrilov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,amd.com,gmail.com,ffwll.ch,linaro.org,lists.linaro.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mikhailvgavrilov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jindongyang@kylinos.cn,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.968];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 27DB75B09D8
+	R_DKIM_NA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,kylinos.cn:mid,kylinos.cn:email]
+X-Rspamd-Queue-Id: C33535D2196
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thanks for the review. v6 will:
+A false-positive compile warnings:
 
- - trim the commit message: drop the reproducer paragraph, keep just
-   the problem description and the solution
- - move the IB dumping into its own function
- - replace the break-based flow inside drm_exec_until_all_locked() with
-   goto error handling, and drop the now-superfluous `locked` variable
- - not call drm_exec_fini() in the locking helper on the error path
+drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c: In function 'jpeg_v2_5_sw_init':
+drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c:152:68: warning: '%d' directive output may be truncated writing between 1 and 11 bytes into a region of size 7 [-Wformat-truncation=]
+  152 |                 snprintf(ring->name, sizeof(ring->name), "jpeg_dec_%d", i);
+      |                                                                    ^~
+drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c:152:58: note: directive argument in the range [-2147483643, 255]
+  152 |                 snprintf(ring->name, sizeof(ring->name), "jpeg_dec_%d", i);
+      |                                                          ^~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c:152:17: note: 'snprintf' output between 11 and 21 bytes into a destination of size 16
+  152 |                 snprintf(ring->name, sizeof(ring->name), "jpeg_dec_%d", i);
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-One thing I'd like to confirm before respinning =E2=80=94 the !mapping case=
- in
-the locking loop:
+Suppress it by replacing the type of variable i with uint8_t.
 
-mapping =3D amdgpu_vm_bo_lookup_mapping(vm, pfn);
-if (!mapping)
-    continue;
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202605212104.SAIMqegX-lkp@intel.com/
+Signed-off-by: Dongyang Jin <jindongyang@kylinos.cn>
+---
+ drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-You commented "That's also an error, it could be that we just want to
-print the IB start address in that case."
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
+index 5208312e7017..a88a1e1d6423 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_5.c
+@@ -104,7 +104,8 @@ static int jpeg_v2_5_early_init(struct amdgpu_ip_block *ip_block)
+ static int jpeg_v2_5_sw_init(struct amdgpu_ip_block *ip_block)
+ {
+ 	struct amdgpu_ring *ring;
+-	int i, r;
++	uint8_t i;
++	int r;
+ 	struct amdgpu_device *adev = ip_block->adev;
+ 
+ 	for (i = 0; i < adev->jpeg.num_jpeg_inst; ++i) {
+@@ -149,7 +150,7 @@ static int jpeg_v2_5_sw_init(struct amdgpu_ip_block *ip_block)
+ 		else
+ 			ring->vm_hub = AMDGPU_MMHUB0(0);
+ 		ring->doorbell_index = (adev->doorbell_index.vcn.vcn_ring0_1 << 1) + 1 + 8 * i;
+-		snprintf(ring->name, sizeof(ring->name), "jpeg_dec_%d", i);
++		snprintf(ring->name, sizeof(ring->name), "jpeg_dec_%u", i);
+ 		r = amdgpu_ring_init(adev, ring, 512, &adev->jpeg.inst[i].irq,
+ 				     0, AMDGPU_RING_PRIO_DEFAULT, NULL);
+ 		if (r)
+-- 
+2.25.1
 
-My reading: a missing mapping is not fatal to the whole dump. For that
-IB there is simply nothing to lock, so the locking loop should move on
-to the next IB, and the content loop then still emits the
-"IB #N 0x<addr> <dw>" header with no body (it already does this via
-goto output_ib_content). The dump continues for the remaining IBs.
-
-So in the locking loop I'd keep `continue` for !mapping, and reserve
-goto-abort only for real errors (drm_exec_lock_obj() failure, VM not
-found). Is that what you intended, or should a missing mapping abort
-the whole IB dump?
-
---=20
-Thanks,
-Mike.
