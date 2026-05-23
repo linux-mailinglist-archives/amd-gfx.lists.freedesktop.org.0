@@ -2,84 +2,102 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8IyrHX9RFWraUQcAu9opvQ
+	id GJC9DbVRFWraUQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:35 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:54:29 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1D605D20C9
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C86345D2197
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:54:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28F5110E5B1;
-	Tue, 26 May 2026 07:53:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D66CB10E5FA;
+	Tue, 26 May 2026 07:54:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="DHJpKuP0";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="sewmbVmj";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D82CD10E7AE;
- Sat, 23 May 2026 19:48:56 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1779565726; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=YivRdyVdIUyefuyRo7wM018X8HLm1qVWQ9Hbl73R7Qb+sM4fwrqfQrccVXONNbNPudCu7CKKmlAOXzUTpT3sYqzgzK4coTMRVxwOxEOOA8US0QS1MMiUZ87iugfBWw7V8SKrB7P0T/JejsY0OyEEyyoGsUW7R/bqVUzYM+a4fLo=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1779565726;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=26EFTuIhlqnsc4uUzyuaHx+9wSdJArl+zaLC9veBaX4=; 
- b=BXYniJO0Clx+DFYzVCJmbmcziRtNTI6T9eHiSp+LkDpp3YMyKJC/arcT1M2JJFUSpyD6zNlVOpiLO5JKxnHQyizdwMcLLRs/TsjYRPO00CxyqBxwH8p6mRKnVvWo/Vd2OyxzMuSVBt2TZXV7oNIjQeaeAKlR+wxIk39hOsLdrpY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779565726; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=26EFTuIhlqnsc4uUzyuaHx+9wSdJArl+zaLC9veBaX4=;
- b=DHJpKuP0sXDC1x7Nl/iQacLFQF9x8ET0NvL/bls/uu+59nJ9K7HxFhCJAKCosk3o
- Ck9w5iITProSiAUZVc8NkadC5s7XzRbD/IHjRW5WWH4gjcaqojvM6UreaNhIdQHEJ7E
- lJlHd5ZnXFDWpvR5Cj5oNOif8XII3xByZGWaQFlQ=
-Received: by mx.zohomail.com with SMTPS id 177956572445825.918389143356876;
- Sat, 23 May 2026 12:48:44 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Sat, 23 May 2026 21:44:03 +0200
-Subject: [PATCH v16 28/28] drm/connector: Update docs of "colorspace" for
- color format prop
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com
+ [209.85.215.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D076710E323
+ for <amd-gfx@lists.freedesktop.org>; Sat, 23 May 2026 20:50:36 +0000 (UTC)
+Received: by mail-pg1-f181.google.com with SMTP id
+ 41be03b00d2f7-c70c112cb61so6835667a12.0
+ for <amd-gfx@lists.freedesktop.org>; Sat, 23 May 2026 13:50:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779569436; cv=none;
+ d=google.com; s=arc-20240605;
+ b=LaRlnH2SJ2O9StJ//bCTzZwCB7LRFne+pzsQ2yl9HI4mAQcxvRQRRN6l/4BYTxT4ld
+ VvESQuzLLo9KO0mFlBnxd+gIPsZ8hIAzzHMx7YQ3Sf+AA/coQRfDkQoyeY7icWjztBiL
+ mLM1V47sUq2chb/hfUAi8kqxpxdQYwGzE77NuV48JWkiLna9XjBIELPk/WJTKZC6knS0
+ zXaTBeF/+MGwnDVy6UEQ8pH/ixdi892UHKofQOE9+XXxFotfHxOKXEa0PfDBaI2BmCXI
+ pG7WDK9k9l8QQFtFs/+y9Tup4SJX6oun4wctpbHjWiuA5JQvEY3QEeacj+w0IfVWtRMA
+ ZwnQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=IyTQ98dxYkPfqT9yOtXNuJEPxSlMOIrwYBGil6h3LZ0=;
+ fh=hCUCfkLP5eK3EwDL6ydbYDw/6V5kuf7m8gj3sUwnslY=;
+ b=D8r3a1cH5aVtWtNiB7oClNbhJF7iueUYNq8eV7F+AxvhCnaUR+2J2MGHZD1Iq6m/1u
+ MrZOI+jT1qF/wsKc5Y2OcdiEqQli3auePKNqwlelrlxZ601NqgjDxRHMYXl77V3f436P
+ NLL/XxKQZYbJqHZYOSclZPP9YbpCVOmWU0JtuCGRisB5cGOAsaSSmSCbInE2olP3LmH9
+ RfFNV8lmM6/Ip5uQdlsPdfEkvKFmSG1Ma9ElBYazn631z7mcQ4FbB2D54A+FNzKPzMoC
+ vFuyvTAm8d3Wj7L/088bH/rU7W68iNi5MVuNo7ydu6nTHY1JblG6dIQ0ycIaJM8//LBS
+ pEaQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1779569436; x=1780174236; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=IyTQ98dxYkPfqT9yOtXNuJEPxSlMOIrwYBGil6h3LZ0=;
+ b=sewmbVmj8rCgVYV/e0JWs/1Vf95PNIcbnoksI1xT//9Cl7XLkdnrBvpN7nQgsyCnFC
+ qSPAcO7038sQWctLy3pHCh04aOiWGnWL8v1yCUtHoZ3RxWeSfqjIkaLKAa+riKATloGP
+ hxkMBH9/D854ZtWOXzR69AvvUdeNTj+/U1H+6s+SxjD0E7lCa3NO0U+e1LmxvXzKWFN9
+ AkX5GiXMX/pFhFU0O/AVHjvc5fXKH1Gq3sRLH8EkuYjJg7rMMDBc+aB6b3H6fb//zcpE
+ Y3B9Gn/T/AFORKQlVkas/ucjOgdITECubwK0EbTQKVa3nlOUiJgs0B5O0SUebObuOqVE
+ 2ZnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779569436; x=1780174236;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=IyTQ98dxYkPfqT9yOtXNuJEPxSlMOIrwYBGil6h3LZ0=;
+ b=D8dzSuaB/+onHPU2uqxsP73cAi/wwuhc1QXmDdNsqbeGYOf6+kxIkc0oplshrZj6P4
+ jRESj2f5ckeXUwTeImCAKgO+Xn+8hjon+RV6dxH4WsMkBAjnaugyA0wmixw4ABQdP5CA
+ +d/1wzRrER4mXtvz5fsDHg/gsHy+FpIErjTDF7/uvvzmBKCaLN1UE+hqTqDBfpX6CR2N
+ 6ClJlF7EkozAB2AvZBsuZsmIRZJPkS0bIqZJ2u6lqX6y2bc7vpFjqLllsn9zuKiebAOL
+ QMa4C3rSP/QZXtdhhnEUz31LUNtm66IUcsdcGEudvNgKgrRDRNgaJ9xVPAcu27BSZRvZ
+ V3oA==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ9aHwkBjmFqFUA+ENzws/ZdPkZDp9RWbQf0v54vYAZYXcMhg1WAc+mgIpKJQ/LaYscbphl0LwCF@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxjJAB/a6biB9GF/83/A4Lw6i4y+jCWsVySzh/PMgvdrVXBavbz
+ UDWed9KirTu1NqbAY3Q2DKSJQI0mFUXhcNTonRufrSyE0FH85TdD6K7g326/xmVZc1yAjzXq7ix
+ 1j/aljgaNVJIk5lT2Hbst5umoHnEFgvE=
+X-Gm-Gg: Acq92OF9zyMJkpS9bV4klwow731+NSWAP52DosfjWZ9Ktnvuv6FFQLV30ktgGRiSPUR
+ y+OOpv0h/Jufmzr5ywC35T1TYaWUZTCbEPnQ/6n6hmiCVGq7qjpLr5+33ZYyWRUJkmhoDP5gaGe
+ JJvP91VsKMJN/t8gJmYmgEu8KbttrMIvGMcMIE1Iluq+8PKuGZa1j0hbPPahz/ypX1tDEHjDyne
+ 1+2+TfWFDnsbA54qCcaAANX0bVncqfpBjKCUWBajCjB5wdSKAiRVRBRvtjV4plA1vRChUo0lgCJ
+ LzwyY7SK/wlK0fshcd7R9vAZCppubyzLIvTcpj5E3fgLzNtfziUZBrwsVE+0DTfGLZin3un6
+X-Received: by 2002:a05:6a21:3285:b0:3a0:adc5:52c1 with SMTP id
+ adf61e73a8af0-3b328c4cbf0mr9292019637.11.1779569436223; Sat, 23 May 2026
+ 13:50:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260523-color-format-v16-28-24340c5e4732@collabora.com>
-References: <20260523-color-format-v16-0-24340c5e4732@collabora.com>
-In-Reply-To: <20260523-color-format-v16-0-24340c5e4732@collabora.com>
+References: <20260430010405.52591-1-kenner.linuxdev@gmail.com>
+In-Reply-To: <20260430010405.52591-1-kenner.linuxdev@gmail.com>
+From: kenner azevedi <kenner.linuxdev@gmail.com>
+Date: Sat, 23 May 2026 16:50:25 -0400
+X-Gm-Features: AVHnY4JlT12H_E0ODt_22_aaUdV4UquI6AiBAxfDaGZ9HELRKphl73htp1x5-BY
+Message-ID: <CAFHy_waHvX5cDPu4=7R4nQzWBudYP2BwT6aiq0jHf4nCT3tGzw@mail.gmail.com>
+Subject: Re: [PATCH] Fix kernel-doc for amdgpu_display_manager
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
- Daniel Stone <daniel@fooishbar.org>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-doc@vger.kernel.org, wayland-devel@lists.freedesktop.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.15.2
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: Rodrigo Siqueira <siqueira@igalia.com>, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 26 May 2026 07:53:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,67 +112,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.29 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[60];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-1.21 / 15.00];
+	DATE_IN_PAST(1.00)[59];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
+	FORGED_SENDER(0.00)[kennerlinuxdev@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,fooishbar.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[40];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kennerlinuxdev@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,collabora.com:mid,collabora.com:dkim,fooishbar.org:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: A1D605D20C9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: C86345D2197
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The colorspace property's documentation states that BT2020_RGB and
-BT2020_YCC are equivalent, and the output format depends on the driver.
+Hi Team, good afternoon.
 
-Now that there is a "color format" property that userspace can use to
-explicitly set a format, update the colorspace docs to mention this.
+Any update about this patch?
 
-The behaviour here is not changed for userspace that doesn't know about
-the color format property yet, as the color format property defaults to
-"AUTO", where the choice of output format is left up to drivers.
+Regards,
 
-Reviewed-by: Daniel Stone <daniel@fooishbar.org>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/gpu/drm/drm_connector.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Kenner Azevedo
 
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-index b91c1f76355e..52f9a6a8daf7 100644
---- a/drivers/gpu/drm/drm_connector.c
-+++ b/drivers/gpu/drm/drm_connector.c
-@@ -2573,7 +2573,8 @@ EXPORT_SYMBOL(drm_mode_create_aspect_ratio_property);
-  *		conversion matrix and convert to the appropriate quantization
-  *		range.
-  *		The variants BT2020_RGB and BT2020_YCC are equivalent and the
-- *		driver chooses between RGB and YCbCr on its own.
-+ *		driver chooses between RGB and YCbCr based on the color format
-+ *		property.
-  *
-  *	SMPTE_170M_YCC:
-  *	BT709_YCC:
-
--- 
-2.54.0
-
+On Wed, Apr 29, 2026 at 9:04=E2=80=AFPM Kenner de Azevedo dos Santos Mirand=
+a
+<kenner.linuxdev@gmail.com> wrote:
+>
+> The struct boot_time_crc_info is not described in amdgpu_display_manager.
+>
+> Running the `make htmldocs` is showing the following warning :
+>
+> WARNING: ./drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h:715 struct m=
+ember 'boot_time_crc_info' not described in 'amdgpu_display_manager'
+>
+> i added the description that fix the warning and describe the struct.
+>
+> The warning is not showing anymore in make htmldocs after change.
+>
+> Signed-off-by: Kenner de Azevedo dos Santos Miranda <kenner.linuxdev@gmai=
+l.com>
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/=
+gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+> index 74a8fe1a1999..201b4796b591 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+> @@ -347,6 +347,7 @@ struct hpd_rx_irq_offload_work {
+>   * @dmub_aux_transfer_done: struct completion used to indicate when DMUB
+>   *                         transfers are done
+>   * @delayed_hpd_wq: work queue used to delay DMUB HPD work
+> + * @boot_time_crc_info: Stores CRC information collected during boot
+>   */
+>  struct amdgpu_display_manager {
+>
+> --
+> 2.43.0
+>
