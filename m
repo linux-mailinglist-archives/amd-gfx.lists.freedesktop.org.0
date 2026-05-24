@@ -2,112 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yBhECB6YEmo+1QYAu9opvQ
+	id wP6YOXNRFWrkUQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 24 May 2026 08:18:06 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:23 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34D175C1828
-	for <lists+amd-gfx@lfdr.de>; Sun, 24 May 2026 08:18:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89C865D1FF5
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3226210E062;
-	Sun, 24 May 2026 06:18:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10FFF10E569;
+	Tue, 26 May 2026 07:53:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="Pcss/Abf";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fXq/CoBq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1CA410E062
- for <amd-gfx@lists.freedesktop.org>; Sun, 24 May 2026 06:18:00 +0000 (UTC)
-Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 64NJmQV7227724; Sun, 24 May 2026 06:17:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=pp1; bh=XuegOV
- y4pNZlaxyzTvZgCV5NLqnyGyYRazvgp1KhDHg=; b=Pcss/AbfxIxCm3uOpJk8ZK
- 0kGBFWzWPgx3HexZHNL0DeG5O83CKXBL5saNpVRdkA0qw5mGVrN0XVDE61QYwKUo
- 3ZtQ7wD6bcNRfC5+9g6KxGQvI0H5kncLfSoQvwa0pPwgFMcG/ImqNIyJ7pbJIOI1
- iDsYQntKKBX62PZ2Dl56I3836kgLGvWxUNbGTGZhc75jpwgAzTQVqTOcWm/OUROf
- I9xXAMB1457oVEsQSjWGw6R0vGg1NFbxGYmPaFE19zCZYzO1LZrzzEinU20MedNf
- gzS2S5UGEUh1Rf20rRGv4uZ6G5N57UpedNOVi6vmjn20MSKfzgmWb4D3L8Fw3XPA
- ==
-Received: from ppma13.dal12v.mail.ibm.com
- (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4eb4nbtvqq-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sun, 24 May 2026 06:17:57 +0000 (GMT)
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
- by ppma13.dal12v.mail.ibm.com (8.18.1.7/8.18.1.7) with ESMTP id 64O6950H005262;
- Sun, 24 May 2026 06:17:56 GMT
-Received: from smtprelay04.wdc07v.mail.ibm.com ([172.16.1.71])
- by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4ebrsg0fcy-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sun, 24 May 2026 06:17:56 +0000 (GMT)
-Received: from smtpav01.dal12v.mail.ibm.com (smtpav01.dal12v.mail.ibm.com
- [10.241.53.100])
- by smtprelay04.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 64O6HtSp36569762
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Sun, 24 May 2026 06:17:55 GMT
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 5D7CD58058;
- Sun, 24 May 2026 06:17:55 +0000 (GMT)
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id AA9AF58057;
- Sun, 24 May 2026 06:17:50 +0000 (GMT)
-Received: from [9.39.18.98] (unknown [9.39.18.98])
- by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTP;
- Sun, 24 May 2026 06:17:50 +0000 (GMT)
-Message-ID: <2685af20-398f-4c02-a1c4-50456cbebd07@linux.ibm.com>
-Date: Sun, 24 May 2026 11:47:48 +0530
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com
+ [209.85.160.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB4D110E0B8
+ for <amd-gfx@lists.freedesktop.org>; Sun, 24 May 2026 06:38:53 +0000 (UTC)
+Received: by mail-oa1-f51.google.com with SMTP id
+ 586e51a60fabf-43496e6a964so6285322fac.2
+ for <amd-gfx@lists.freedesktop.org>; Sat, 23 May 2026 23:38:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779604733; cv=none;
+ d=google.com; s=arc-20240605;
+ b=V7GauR5XZ9xEYhsUUKp+NhVi0WzWYqoHWRiEbg5ft+GopbtQosbfajbo58Q3chNtdq
+ n2ZQbDcHvvd7jHDjqtU+cLq1C4ovSn+3OrXbvubjD9PA8QLlmpUrm3X1Bo3LmDtAsTqP
+ JkTyV9k15dGAOX3/ZVFBb5cxNNTFsjQMNCXxLPx+YU3N3lYA3EHPgSES1LbgifpMkRyK
+ 05bP7lSW0EitO+h+gOBxVtX3OqnzYLMuAiDkMQ2ogLR05a/WMJCfqMegFBP6XV6Bpsv1
+ oMzuy+L3C19uaqujPvBbHU4d4Iyv63A/6a9GIyNdJ1mFiFY28J7ZAoKdgYZk7zP7C4gf
+ PXxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=QaMfln2ByBFUQ+J3B2UtN1L1gX2XLG038KWWEXFitTI=;
+ fh=ek6b5uMEeNDVeRr9FvJqwX5rAOxeGnLDMnth00heuWE=;
+ b=bzXf8flQu7/DHFD1WKm4iQlbrK1nMhc0UtfsvOB9fOwrCPeE9W6USC2lph1c+ezmEf
+ nXL9+ebphoDoQUsF5O+gXNyLMN0WCBjOtCmRTamKfZyj6yq8OgziUtHjIk84jYGE9mTs
+ FtMaBf2Kz8IcoBCKABbZnBEhfeqAmRQBrBxpAxYzj08Q+xmNftwHFs1z9uy4iw9I8aox
+ 2qDPEkio+XlijlirpVkOAmDhbvosvc+MN8Sf6IexCeW7fZxog/SCtvbThm/M6VebQyt5
+ XXVLg59tdByJ2CG9sFqoB2AePcP1h68r3ovehCXNkf4jtwlcWvbmlBZHCmDmow+jE0yJ
+ AJkQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1779604733; x=1780209533; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=QaMfln2ByBFUQ+J3B2UtN1L1gX2XLG038KWWEXFitTI=;
+ b=fXq/CoBqb5HWMDkhLsfZL35NNC37EQb0Wk+AJNGXljZamyhVG2RheB3rWp9EHKDu/h
+ mfmPd4mksotE6xk8kCYgbO3jKHtSv+F+8HtMUdQILmmr1xtrP72AJMgqhJ8UqQOiolAV
+ zmoL+1YC3eKmxoHqnAYCRMpso1+tLvdercqftZ0K2vnJxANWAlVngvhKpUbcaTCS2Fxf
+ lXHnDQ/W3lpEph5nA4Pf5+oi0ElilUv8LbIuRIF+IODa4ug4snDplReCx02n1IaUbP7O
+ paov4nkSQMNk+vqVVtjjGbasckwPqp1y5q5A7lOkRcXtpS+8VKxEUdDbLQubw52wXlz2
+ orTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779604733; x=1780209533;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=QaMfln2ByBFUQ+J3B2UtN1L1gX2XLG038KWWEXFitTI=;
+ b=j0vcTTU6VGkFrPPRA7SWTEA2cZRIgiN+zH9C/fGAzvZgBIr10GHZ+MoWnKCgxpsFZv
+ Z6/THrjo/p0OaprkD2xYKw00SiRyKbNMaTTcfGhW3mS8IPfxzC6DJkDI6ieTwYGYR6M/
+ AE34DAc9nmXQfjvlKa2vLZLaS3mVMrfgjyKYVjbMg+5YARpRjavRf3zKdFkUEyPvb5Mx
+ jI4i3RZ5LqvafcrPm19VqsDR8XIftGQJhZ5SzQ7DndK6xb5FBaC8o6Re+GURXPWt/iTt
+ f5z/nuBsVdDhu2nN9AKYh20dAIfKS+Ov9zZvQ5IhxcHhkAzdJuIktQuBroiX7L1rssnb
+ KVLg==
+X-Gm-Message-State: AOJu0Yz6FZ05pOkbJzqSyFq3YY+OuxsE2vbabvwLkj7Exuy01edv9qwV
+ dzYkuwcryYQkRe5Q5pZJ0nEbbB8hDa5qPnlwSEx9mrbpwSlCNQy8W3WCcLnZtumhL29PpUD+GHi
+ Axp3fD7k+jqzNFwNtrYUM32ZlDPaIxYYk2CzFzHU=
+X-Gm-Gg: Acq92OHZ+i+pNRWrjz7qZcGD7DM39eOYtUTYg5lK58Z5XUvDeShp228lCO4WSnFmLMJ
+ vqyG4VHVGzWap147lCwNEltKejcFq6QrVuDNjV/bleVvYTHJRchs5BkMNAZe2lBZjKyiFyOEwxo
+ 26IygytvEPPEa6hFcXjcQwSp9C3RNnO2tlIYV8uaDjMxwBiEF5uRgksGNRdeSv5fk4PBEfqe3VK
+ UTgDuiNmYg6lS3SV6IvKTqG9vYUKjZ06KnrpuiPz1CwUh5OU4R9S6TgphOrZ5NweL7jyW+Ovp08
+ lLaVSvWLxia046H29XvDa+i2inPYBaL4KjjP9KR6XwHZLP6C2Nno
+X-Received: by 2002:a05:6870:c292:b0:41b:e633:baf4 with SMTP id
+ 586e51a60fabf-43b5a9a2430mr6262543fac.3.1779604732811; Sat, 23 May 2026
+ 23:38:52 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: Fix num_pages calculation in
- amdgpu_ttm_map_buffer() for non-4K page sizes
-To: "Kuehling, Felix" <felix.kuehling@amd.com>, amd-gfx@lists.freedesktop.org, 
- Alex Deucher <alexander.deucher@amd.com>,
- Alex Deucher <alexdeucher@gmail.com>, christian.koenig@amd.com,
- Philip Yang <yangp@amd.com>
-Cc: David.YatSin@amd.com, Kent.Russell@amd.com,
- Ritesh Harjani <ritesh.list@gmail.com>,
- Vaidyanathan Srinivasan <svaidy@linux.ibm.com>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
- Simona Vetter <simona@ffwll.ch>
-References: <20260522112838.1311531-1-donettom@linux.ibm.com>
- <324818a5-5169-4822-9364-033f7bed208a@amd.com>
-Content-Language: en-US
-From: Donet Tom <donettom@linux.ibm.com>
-In-Reply-To: <324818a5-5169-4822-9364-033f7bed208a@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Authority-Analysis: v=2.4 cv=VvYTxe2n c=1 sm=1 tr=0 ts=6a129815 cx=c_pps
- a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17
- a=IkcTkHD0fZMA:10 a=NGcC8JguVDcA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=V8glGbnc2Ofi9Qvn3v5h:22 a=VnNF1IyMAAAA:8
- a=Wsw0RTbig2Dux1eSHHYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: ot3-e3DrSb9ZkKzuHz_mujor28iYd2Hm
-X-Proofpoint-GUID: hw2D-UYkM4By4uEMcZw44ERnmlPQcAZw
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTI0MDA2MCBTYWx0ZWRfX9nBO2skluqcW
- IjjC4ks4To30oxbWAtlmrxzMuQRd10zXH0v/se8dAwhHjTTfMrYcbUy76NaoHbxFchoqLWORncL
- LaIA/L8XW9sGheIl5G2i7Mj1kl+mWhYFG1XIsYl7HC9dg52tTvXi7YKPRdF1vkLLW2XPCfSLpkX
- QJ3V8Eu6mk26uW5XUf2WPHzNsLmgdxCWX9j615VyZy4CWhgbtAFc/rRaBIAurXNKRJsAw9IovXd
- T2sYD6fpN/PHx0TmZQNBX5g8yr8VrTEFIgqIu49GfXEraXrVOV7uSkbMBMrZTYy6Q3VnVOWvDQr
- Rt/fEDT7fCwxMAyd7NHiMh3TSHEziE46T4lIopJ2O9AwzInPV7E7kXZu6nd5vSma4r1dJ9TidxX
- oFZZuxQOuqeQmgqc1li7EILIhFL1OCjBpQ7Var3kApafTcZhxx1l74aI0/4frwaVJFctbxAxKDV
- /ptWso3Ba0QeLrrt1bw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-05-24_02,2026-05-18_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 priorityscore=1501 spamscore=0 adultscore=0
- lowpriorityscore=0 malwarescore=0 impostorscore=0 clxscore=1015 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2605130000 definitions=main-2605240060
+References: <20260519084158.72960-1-timur.kristof@gmail.com>
+In-Reply-To: <20260519084158.72960-1-timur.kristof@gmail.com>
+From: Jeremy Klarenbeek <jeremy.klarenbeek99@gmail.com>
+Date: Sun, 24 May 2026 08:38:41 +0200
+X-Gm-Features: AVHnY4IbV09zlnkTeMoe1rVsbwWJGog2myT2i81SQicCmWsTA4wyut9YZiVN53E
+Message-ID: <CAOGA6Hix7yPkF2o3hapz9zfpRZ5HHjaaJuDcyWjp+Aoihxf9-A@mail.gmail.com>
+Subject: Re: [PATCH 0/5] drm/amd/pm: Fix laptop issues on SMU6-7
+To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com
+Cc: timur.kristof@gmail.com
+Content-Type: multipart/alternative; boundary="000000000000f09e1d06528a83a1"
+X-Mailman-Approved-At: Tue, 26 May 2026 07:53:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,90 +104,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DATE_IN_PAST(1.00)[49];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:felix.kuehling@amd.com,m:alexander.deucher@amd.com,m:alexdeucher@gmail.com,m:christian.koenig@amd.com,m:yangp@amd.com,m:David.YatSin@amd.com,m:Kent.Russell@amd.com,m:ritesh.list@gmail.com,m:svaidy@linux.ibm.com,m:pierre-eric.pelloux-prayer@amd.com,m:simona@ffwll.ch,m:riteshlist@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[amd.com,lists.freedesktop.org,gmail.com];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[donettom@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,linux.ibm.com,ffwll.ch];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.ibm.com:mid];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[donettom@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ibm.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jeremyklarenbeek99@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.994];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[10]
-X-Rspamd-Queue-Id: 34D175C1828
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 89C865D1FF5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+--000000000000f09e1d06528a83a1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 5/22/26 9:32 PM, Kuehling, Felix wrote:
+Apologies for my late reply. I tested the patch series (SI laptop
+1002:6606) and the problem remains where the clock speeds don't boost upon
+switching to AC. Timur and I investigated this and found 2 problems:
+
+1. It seems that it is necessary after all to recompute clock speeds when
+toggling AC/DC. Sending PPSMC_MSG_RunningOnAC on its own has no effect.
+Each ASIC family's apply_state_adjust_rules appears to be responsible for
+the switch by setting the max_limits, and this function is only called as
+part of computing clocks. I'm considering removing the .notify_ac_dc field
+from the IP block entirely and just calling .pm_compute_clocks from
+amdgpu_pm_acpi_event_handler, but I only know for certain that this works
+for my GPU.
+2. The ATOM_PP_PLATFORM_CAP_HARDWAREDC flag is enabled for my GPU, causing
+PPSMC_MSG_RunningOnAC to never be sent. Either the flag is enabled
+erroneously, or we're interpreting its intended usage incorrectly.
+
+Unfortunately we're a bit stumped without either having documentation or a
+stack of old laptops and could use some guidance on how to best proceed.
+Thankfully the merged series doesn't seem to be causing any regressions at
+least. I am currently running this workaround patch on top of the original
+5:
+https://github.com/luisfonsivevo/linux/commit/d74aa4e6fe4212c0a90467c45646b=
+d138cea9a9d
+
+On Tue, May 19, 2026 at 10:42=E2=80=AFAM Timur Krist=C3=B3f <timur.kristof@=
+gmail.com>
+wrote:
+
+> Fix various issues with the clocks stuck on SI
+> laptop dGPUs:
 >
-> On 2026-05-22 07:28, Donet Tom wrote:
->> amdgpu_gart_map_vram_range() expects the number of pages (num_pages) in
->> 4K page units. However, in amdgpu_ttm_map_buffer(), the number of pages
->> is calculated based on the system page size. On systems with non-4K page
->> sizes, this results in an incorrect number of pages being passed to
->> amdgpu_gart_map_vram_range().
->>
->> Fix this by calculating the number of pages correctly before passing it
->> to amdgpu_gart_map_vram_range().
->>
->> Signed-off-by: Donet Tom <donettom@linux.ibm.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> index 3d2e00efc741..2904a9400605 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> @@ -269,6 +269,7 @@ static int amdgpu_ttm_map_buffer(struct 
->> amdgpu_ttm_buffer_entity *entity,
->>           amdgpu_gart_map(adev, 0, num_pages, dma_addr, flags, 
->> cpu_addr);
->>       } else {
->>           u64 pa = mm_cur->start + adev->vm_manager.vram_base_offset;
->> +        num_pages *= AMDGPU_GPU_PAGES_IN_CPU_PAGE;
->>             amdgpu_gart_map_vram_range(adev, pa, 0, num_pages, flags, 
->> cpu_addr);
+> * vblank mistake when there are no displays connected
+> * forgot to notify SMU about DC->AC switch
+> * inconsistent values in VBIOS
 >
-> IMO it would be cleaner to change the definition of 
-> amdgpu_gart_map_vram_range to use the same page size as amdgpu_gart_map.
-
-Thank you, Felix, for the review.
-
-I will make the suggested changes in amdgpu_gart_map_vram_range() and 
-post a v2 patch.
-
-
--Donet
-
+> While we are at it, also implement the DC->AC notification
+> for SMU7 as well, which is supposed to work the same way.
 >
-> Regards,
->   Felix
+> Jeremy Klarenbeek (2):
+>   drm/amd/pm/si: Fix updating clock limits from power states
+>   drm/amd/pm/si: Notify the SMC when switching to AC
+>
+> Timur Krist=C3=B3f (3):
+>   drm/amd/pm/si: Disregard vblank time when no displays are connected
+>   drm/amd/pm: Rename enable_bapm() to notify_ac_dc()
+>   drm/amd/pm/smu7: Notify SMU7 of DC->AC switch
+>
+>  .../gpu/drm/amd/include/kgd_pp_interface.h    |  2 +-
+>  drivers/gpu/drm/amd/pm/amdgpu_dpm.c           |  8 +--
+>  drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c    |  6 +--
+>  drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c    | 50 ++++++++++++++-----
+>  .../gpu/drm/amd/pm/powerplay/amd_powerplay.c  | 12 +++++
+>  .../drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c   | 15 ++++++
+>  drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h  |  1 +
+>  7 files changed, 74 insertions(+), 20 deletions(-)
+>
+> --
+> 2.54.0
 >
 >
->>       }
+
+--000000000000f09e1d06528a83a1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Apologies for my late reply. I tested the patch series (SI=
+ laptop 1002:6606) and the problem remains where the clock speeds don&#39;t=
+ boost upon switching to AC. Timur and I investigated this and found 2 prob=
+lems:<br><br>1. It seems that it is necessary after all to recompute clock =
+speeds when toggling AC/DC. Sending=C2=A0PPSMC_MSG_RunningOnAC on its own h=
+as no effect. Each ASIC family&#39;s=C2=A0apply_state_adjust_rules appears =
+to be responsible for the switch by setting the max_limits, and this functi=
+on is only called as part of computing clocks. I&#39;m considering removing=
+ the .notify_ac_dc field from the IP=C2=A0block=C2=A0entirely and just call=
+ing=C2=A0.pm_compute_clocks from amdgpu_pm_acpi_event_handler, but I only k=
+now for certain that this works for my GPU.<div>2. The=C2=A0ATOM_PP_PLATFOR=
+M_CAP_HARDWAREDC flag is enabled for my GPU, causing PPSMC_MSG_RunningOnAC =
+to never be sent. Either the flag is enabled erroneously, or we&#39;re inte=
+rpreting its intended usage incorrectly.<br><br>Unfortunately we&#39;re a b=
+it stumped without either having documentation or a stack of old laptops an=
+d could use some guidance on how to best proceed. Thankfully the merged ser=
+ies doesn&#39;t seem to be causing any regressions at least. I am currently=
+ running this workaround patch on top of the original 5:=C2=A0<a href=3D"ht=
+tps://github.com/luisfonsivevo/linux/commit/d74aa4e6fe4212c0a90467c45646bd1=
+38cea9a9d">https://github.com/luisfonsivevo/linux/commit/d74aa4e6fe4212c0a9=
+0467c45646bd138cea9a9d</a></div></div><br><div class=3D"gmail_quote gmail_q=
+uote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 19, 2026 =
+at 10:42=E2=80=AFAM Timur Krist=C3=B3f &lt;<a href=3D"mailto:timur.kristof@=
+gmail.com">timur.kristof@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex">Fix various issues with the clocks stuck =
+on SI<br>
+laptop dGPUs:<br>
+<br>
+* vblank mistake when there are no displays connected<br>
+* forgot to notify SMU about DC-&gt;AC switch<br>
+* inconsistent values in VBIOS<br>
+<br>
+While we are at it, also implement the DC-&gt;AC notification<br>
+for SMU7 as well, which is supposed to work the same way.<br>
+<br>
+Jeremy Klarenbeek (2):<br>
+=C2=A0 drm/amd/pm/si: Fix updating clock limits from power states<br>
+=C2=A0 drm/amd/pm/si: Notify the SMC when switching to AC<br>
+<br>
+Timur Krist=C3=B3f (3):<br>
+=C2=A0 drm/amd/pm/si: Disregard vblank time when no displays are connected<=
+br>
+=C2=A0 drm/amd/pm: Rename enable_bapm() to notify_ac_dc()<br>
+=C2=A0 drm/amd/pm/smu7: Notify SMU7 of DC-&gt;AC switch<br>
+<br>
+=C2=A0.../gpu/drm/amd/include/kgd_pp_interface.h=C2=A0 =C2=A0 |=C2=A0 2 +-<=
+br>
+=C2=A0drivers/gpu/drm/amd/pm/amdgpu_dpm.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0|=C2=A0 8 +--<br>
+=C2=A0drivers/gpu/drm/amd/pm/legacy-dpm/kv_dpm.c=C2=A0 =C2=A0 |=C2=A0 6 +--=
+<br>
+=C2=A0drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c=C2=A0 =C2=A0 | 50 ++++++++=
+++++++-----<br>
+=C2=A0.../gpu/drm/amd/pm/powerplay/amd_powerplay.c=C2=A0 | 12 +++++<br>
+=C2=A0.../drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c=C2=A0 =C2=A0| 15 ++++++<b=
+r>
+=C2=A0drivers/gpu/drm/amd/pm/powerplay/inc/hwmgr.h=C2=A0 |=C2=A0 1 +<br>
+=C2=A07 files changed, 74 insertions(+), 20 deletions(-)<br>
+<br>
+-- <br>
+2.54.0<br>
+<br>
+</blockquote></div>
+
+--000000000000f09e1d06528a83a1--
