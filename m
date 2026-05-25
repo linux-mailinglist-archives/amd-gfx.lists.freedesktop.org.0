@@ -2,103 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CB3ULkEHFGpSIwcAu9opvQ
+	id SHK1CHFRFWraUQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2026 10:24:33 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:21 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25B8C5C7AFA
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2026 10:24:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5B5A5D1FB7
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:53:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2376310E099;
-	Mon, 25 May 2026 08:24:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0968910E543;
+	Tue, 26 May 2026 07:53:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qesBvsU/";
+	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="PccIQ2VK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012038.outbound.protection.outlook.com [52.101.53.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8206610E5EC
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2026 08:24:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NJPDb7RWnmSmLNnT7Ovl+QvrtLTgmjT9aJLJ/3/Hlnp5r7TZtUVsmO+YV1l55EW6ShTTTLmpmLNKLPaEAMYQX7HXKOSqSHjfPrwTafRb2cRdhD96HJxkff4Fwyfq7Aw1hsGldnx70K+sWnfEMZnNk2yUBqPZNdXmlq6Jv0tp20cUsOGY1vPBAqJEDUp3bJ656oFx113uI0Z4NH38FEqj3OA12TYhzkZy4eAk06p54IN59ehoA1/ZvQAYmgzn4Sb0r30LHQ5lKPdrjpVSoPQuF8wmO3nqcB+raImEDxVmnzMGE4O7VYZNhX+YmdgPbSV226jN6znxpzXGjgPD1mOxCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W9CGuqmxXS28QVGuuiwCnLQSxK5hBmny8MEuhQtBFQ8=;
- b=chymNSoV1ZEKZ3Dd7/8OZ7ceHGqukSLOUIeD/RUrIjDem00+zoEadbmec4YKRIGoZX3yExO679i7SPs6H8zHvenRMK9H8fj/gIxejG7UrMOGDXIn1HQTwy2daKCkZrhZ57q7dIs+lpQ4t7bs9pSJKejCi6VR+mAPSKjYa8sJXqvOR7KbLYNfETK7LLKmxpCOlKqUG5G7JJfEQgRLzntnfw9p7rPA7W+V88tYF4k6BPXUlwxBVnbTCKITdYdiIBFh9brwvou8hTy41CfK2PWu657iiLkoRuCRjU9klEwUO+EfJa036AMkjLkOZaLe4M58tdBMddWsfvWqp85iIe1efg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W9CGuqmxXS28QVGuuiwCnLQSxK5hBmny8MEuhQtBFQ8=;
- b=qesBvsU/Ul0/5pyV215CVz/2RSs3KbJ+YUd9aCsk8uOKQ+EXzlCqCV1vFF/4Jr7fpvguaTS7y4lhgeQKl6bwycbuyKysnV36iRmvI80sdGOtRvr0UbSr6p5Us5VGLBOIVWSWwBsVoTeGJLFbyJAdUVTnMqzinZZAAuyuX44pxfg=
-Received: from DM6PR02CA0144.namprd02.prod.outlook.com (2603:10b6:5:332::11)
- by CH3PR12MB8880.namprd12.prod.outlook.com (2603:10b6:610:17b::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.20; Mon, 25 May
- 2026 08:24:21 +0000
-Received: from DS3PEPF0000C37E.namprd04.prod.outlook.com
- (2603:10b6:5:332:cafe::62) by DM6PR02CA0144.outlook.office365.com
- (2603:10b6:5:332::11) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.48.19 via Frontend Transport; Mon, 25
- May 2026 08:24:21 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- DS3PEPF0000C37E.mail.protection.outlook.com (10.167.23.8) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.71.7 via Frontend Transport; Mon, 25 May 2026 08:24:21 +0000
-Received: from fedora.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Mon, 25 May
- 2026 03:24:19 -0500
-From: Zhu Lingshan <lingshan.zhu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <Alexander.Deucher@amd.com>
-CC: <Christian.Koenig@amd.com>, <Ray.Huang@amd.com>, Zhu Lingshan
- <lingshan.zhu@amd.com>
-Subject: [PATCH] drm/amdgpu: implement per-process MES context
-Date: Mon, 25 May 2026 16:23:59 +0800
-Message-ID: <20260525082359.5510-1-lingshan.zhu@amd.com>
+X-Greylist: delayed 541 seconds by postgrey-1.36 at gabe;
+ Mon, 25 May 2026 08:41:40 UTC
+Received: from smtp.smtpout.orange.fr (smtp-74.smtpout.orange.fr
+ [80.12.242.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2138510E60F
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2026 08:41:40 +0000 (UTC)
+Received: from fedora.home ([10.65.86.65]) by smtp.orange.fr with ESMTP
+ id RQjnwk7oUsxRiRQjnwEp9c; Mon, 25 May 2026 10:32:39 +0200
+Received: from fedora.home ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
+ by smtp.orange.fr with ESMTPSA
+ id RQjiwSvJZ0kQyRQjiw1ip2; Mon, 25 May 2026 10:32:36 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+ s=t20230301; t=1779697957;
+ bh=Fnk8oA7PB8/6xVAhw25jvSyQJRQLIGQflxrmLhnBdRo=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version;
+ b=PccIQ2VKyrevZzrYIjYqBgNLh9cFAHJBttmCptFv6GX/GwQvirJXgUxZL0/513jAY
+ cxm2+F+6ESHC8BbVDrlkd0ZGrjqrkjyPzuUCG2kM9kArfiFWsZa3w7xtkh8OiC0q5Z
+ J1p0qQLq0DozgcH3xy8++i12iGnF+0fBTHOkwZKlGuA8Q3n3B350jJT9bih7Drq/cg
+ r5RfekM2wO0Y9Bt5etPVy+OQ0Ebo4kIvkZcFm+8L9NGGwUYB3pBJNcsdyTAzR5bOvg
+ 6uCmrxjIi1kDnHurGkYzecdHh5t+HszuQSL1I/45o2WHpqoePRuUcs8EsPQApZXhMl
+ B+AJvpUmBj+Zw==
+X-ME-Helo: fedora.home
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Mon, 25 May 2026 10:32:37 +0200
+X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu: optimize psp_copy_fw()
+Date: Mon, 25 May 2026 10:31:35 +0200
+Message-ID: <e16b3b7bba06c6c9b4f0577b23b25cf0f5045fda.1779697857.git.christophe.jaillet@wanadoo.fr>
 X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37E:EE_|CH3PR12MB8880:EE_
-X-MS-Office365-Filtering-Correlation-Id: 62f33bed-05a3-402e-a37a-08deba3705ac
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|82310400026|36860700016|18002099003|56012099003|11063799006;
-X-Microsoft-Antispam-Message-Info: DdZsKUD5huhtQilntt0va59yZ9j1WJZlo2sXaNc4+W8fQu59cZfRJwSNkAgh2nlD48jior8tpeTtgNdZlVAP1J4BVeFI/80s15J4ggu580/XA8BXnzEFTkuBheIDEXwXb/NDdNMkEYjeCAgKL9ttwGYdIJ9KTw5Dph3zb2eoku3bCw2/Uk3QahO8CFY5wvdL/qyW00/VAvm3LUCSNjm3o7kcVljSBWbje6hGRh/l4/EARIn1kFKTDUjS+RFTWdLV02Klm2Pf7Eua9wBHM7wNGJuswonxPiHoscpJm2mNDFlbBFH9idPNsM24743BzVBiyh4rgM8jfdZZkyw259iKQHquLdpSP5+nBRGErCINVMVT+HTriwsEjSg9xjYhV6/0SULBNsfx8j8EMqVNmuA2RqVHFl+Om0FOuo+tBfVEnF85kStB6fUF2M3INN11k1MS8S4IUxh7Jh5HXgyD6yZWlCx52nYILoF15bSpbgDiCSrIzw7eEPqepWydMC6UOaqZ6vwQHxxKY/WhwEMrXm3+IXXplMjTjAhdKb8ARoOF18zdq1z4nRS7xRz3FJgrIvG1o8vZdyvmlLsXaNzGvIBLcKXZ/xBbg2xz6NYpWAfiVq++yJnvzhadkHlyqRuShdeT+fJNXkkNQRLHSJp6rOiszrDGqy2VzUSkjSn91octgt3X+g9htul8LUakZL7nI9uMFMXDI3wp62g5gzeWgB4GQ9eFkZUYpHXjTy+77qmCSdA=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(82310400026)(36860700016)(18002099003)(56012099003)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: IFVmws/wqDoWPzH6xZOH/tE8ylDNfJ3ulcI+YR+hhB5f8u+KZ3ld1ATPNeln1ytrK3ovegX4sTF0/g9H35lI+L6sl6retvztohza3EVUFDb+xbne7MEtSlw8BY3vrGl83i2sWNB2BW+BCJcugZfr/O5spNsIueROOBcPhuzJU8msA+eyHd2TxZXsLzqQjAvQaEf62obRS/l9B9nO/yAN4UKOLL4vICrYicQME9Uii/5RPy/4rAwwosj4sns0r4My/mb1VfC5ydyUD2wm/uN+Bf17KhsfEnvk79UYe3sWSS6OIReRbxYmuN3YFoU9ggAZMQwqX6JHciRQh1qfq7QMVTL8GYpHNRaO8E5cM8vQ2pIYnUrBhvS5nfX+O+GMwRknfGE8MrROuxhos5gujElnYb7rh7qZKE19DpLFDYxwbi18ms5eV0P1AnQVCD6h+Onq
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2026 08:24:21.3543 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62f33bed-05a3-402e-a37a-08deba3705ac
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF0000C37E.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8880
+X-Mailman-Approved-At: Tue, 26 May 2026 07:53:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,195 +69,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.19 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[wanadoo.fr,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[wanadoo.fr:s=t20230301];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:linux-kernel@vger.kernel.org,m:kernel-janitors@vger.kernel.org,m:christophe.jaillet@wanadoo.fr,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[christophe.jaillet@wanadoo.fr,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[wanadoo.fr];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
 	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,wanadoo.fr,lists.freedesktop.org];
+	DKIM_TRACE(0.00)[wanadoo.fr:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[lingshan.zhu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	HAS_XOIP(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christophe.jaillet@wanadoo.fr,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 25B8C5C7AFA
+X-Rspamd-Queue-Id: C5B5A5D1FB7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-MES process context is a process-level page
-where process specific context is saved for
-MES scheduler.
+In psp_copy_fw(), 1 Mo of memory is zeroed, the partially re-written.
+Save a few cycles and use memcpy_and_pad() which avoids writing twice
+some of the memory.
 
-However, current user-queue code path assigns
-fw_obj of a queue to MES process_context_addr
-when adding the queue to MES.
-
-This means every new queue from the same process
-would replace the previous process context address
-with that queue's fw_obj address.
-What's worse is, when user space frees a queue,
-its fw_obj will be freed as well, causing MES
-working on a NULL page pointer.
-
-This issue leads to inconsistency and crash
-in the scheduler.
-
-This commit allocates a process-level page for
-MES process contexts for a process other than queue-level
-
-Signed-off-by: Zhu Lingshan <lingshan.zhu@amd.com>
+Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  |  5 +++
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  |  1 +
- drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 48 ++++++++++++++++------
- 3 files changed, 42 insertions(+), 12 deletions(-)
+Compile-tested only.
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index 38e310a8694d..0c4d6f80616e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -1225,6 +1225,11 @@ void amdgpu_userq_mgr_fini(struct amdgpu_userq_mgr *userq_mgr)
- 	 */
- 	cancel_work_sync(&userq_mgr->reset_work);
- 
-+	if (userq_mgr->proc_ctx_obj.obj)
-+		amdgpu_bo_free_kernel(&userq_mgr->proc_ctx_obj.obj,
-+				      &userq_mgr->proc_ctx_obj.gpu_addr,
-+				      &userq_mgr->proc_ctx_obj.cpu_ptr);
-+
- 	mutex_destroy(&userq_mgr->userq_mutex);
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-index 28cfc6682333..fe85234e58b3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-@@ -127,6 +127,7 @@ struct amdgpu_userq_mgr {
- 	struct amdgpu_device		*adev;
- 	struct delayed_work		resume_work;
- 	struct drm_file			*file;
-+	struct amdgpu_userq_obj		proc_ctx_obj;
- 
- 	/**
- 	 * @reset_work:
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-index e9189f07c6dc..3022025bc2ec 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-@@ -133,8 +133,8 @@ static int mes_userq_map(struct amdgpu_usermode_queue *queue)
- 	queue_input.gang_quantum = 10000;
- 	queue_input.paging = false;
- 
--	queue_input.process_context_addr = ctx->gpu_addr;
--	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
-+	queue_input.process_context_addr = uq_mgr->proc_ctx_obj.gpu_addr;
-+	queue_input.gang_context_addr = ctx->gpu_addr;
- 	queue_input.inprocess_gang_priority = AMDGPU_MES_PRIORITY_LEVEL_NORMAL;
- 	queue_input.gang_global_priority_level = convert_to_mes_priority(queue->priority);
- 
-@@ -169,7 +169,7 @@ static int mes_userq_unmap(struct amdgpu_usermode_queue *queue)
- 
- 	memset(&queue_input, 0x0, sizeof(struct mes_remove_queue_input));
- 	queue_input.doorbell_offset = queue->doorbell_index;
--	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
-+	queue_input.gang_context_addr = ctx->gpu_addr;
- 
- 	amdgpu_mes_lock(&adev->mes);
- 	r = adev->mes.funcs->remove_hw_queue(&adev->mes, &queue_input);
-@@ -186,12 +186,8 @@ static int mes_userq_create_ctx_space(struct amdgpu_userq_mgr *uq_mgr,
- 	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
- 	int r, size;
- 
--	/*
--	 * The FW expects at least one page space allocated for
--	 * process ctx and gang ctx each. Create an object
--	 * for the same.
--	 */
--	size = AMDGPU_USERQ_PROC_CTX_SZ + AMDGPU_USERQ_GANG_CTX_SZ;
-+	/* The FW expects at least one page space allocated for gang ctx. */
-+	size = AMDGPU_USERQ_GANG_CTX_SZ;
- 	r = amdgpu_bo_create_kernel(uq_mgr->adev, size, 0,
- 				    AMDGPU_GEM_DOMAIN_GTT,
- 				    &ctx->obj, &ctx->gpu_addr,
-@@ -257,6 +253,27 @@ static int mes_userq_detect_and_reset(struct amdgpu_device *adev,
- 	return r;
- }
- 
-+static int mes_userq_create_proc_ctx_space(struct amdgpu_userq_mgr *uq_mgr)
-+{
-+	int r = 0;
-+
-+	mutex_lock(&uq_mgr->userq_mutex);
-+	if (!uq_mgr->proc_ctx_obj.obj) {
-+		r = amdgpu_bo_create_kernel(uq_mgr->adev, AMDGPU_USERQ_PROC_CTX_SZ,
-+					    0, AMDGPU_GEM_DOMAIN_GTT,
-+					    &uq_mgr->proc_ctx_obj.obj,
-+					    &uq_mgr->proc_ctx_obj.gpu_addr,
-+					    &uq_mgr->proc_ctx_obj.cpu_ptr);
-+
-+		if (!r)
-+			memset(uq_mgr->proc_ctx_obj.cpu_ptr, 0, AMDGPU_USERQ_PROC_CTX_SZ);
-+	}
-+
-+	mutex_unlock(&uq_mgr->userq_mutex);
-+
-+	return r;
-+}
-+
- static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
- 				struct drm_amdgpu_userq_in *args_in)
- {
-@@ -429,7 +446,14 @@ static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
- 		goto free_mqd;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index 665a2632379d..9525a6bab33b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -4586,8 +4586,7 @@ int psp_copy_fw(struct psp_context *psp, uint8_t *start_addr, uint32_t bin_size)
+ 		return -EINVAL;
  	}
  
--	/* Create BO for FW operations */
-+	/* Create per-process MES process context BO */
-+	r = mes_userq_create_proc_ctx_space(uq_mgr);
-+	if (r) {
-+		DRM_ERROR("Failed to allocate MES process context space bo, error: %d\n", r);
-+		goto free_mqd;
-+	}
-+
-+	/* Create BO of a gang for FW operations */
- 	r = mes_userq_create_ctx_space(uq_mgr, queue, mqd_user);
- 	if (r) {
- 		DRM_ERROR("Failed to allocate BO for userqueue (%d)", r);
-@@ -492,7 +516,7 @@ static int mes_userq_preempt(struct amdgpu_usermode_queue *queue)
- 	*fence_ptr = 0;
+-	memset(psp->fw_pri_buf, 0, PSP_1_MEG);
+-	memcpy(psp->fw_pri_buf, start_addr, bin_size);
++	memcpy_and_pad(psp->fw_pri_buf, PSP_1_MEG, start_addr, bin_size, 0);
  
- 	memset(&queue_input, 0x0, sizeof(struct mes_suspend_gang_input));
--	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
-+	queue_input.gang_context_addr = ctx->gpu_addr;
- 	queue_input.suspend_fence_addr = fence_gpu_addr;
- 	queue_input.suspend_fence_value = 1;
- 	amdgpu_mes_lock(&adev->mes);
-@@ -529,7 +553,7 @@ static int mes_userq_restore(struct amdgpu_usermode_queue *queue)
- 		return 0;
- 
- 	memset(&queue_input, 0x0, sizeof(struct mes_resume_gang_input));
--	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
-+	queue_input.gang_context_addr = ctx->gpu_addr;
- 
- 	amdgpu_mes_lock(&adev->mes);
- 	r = adev->mes.funcs->resume_gang(&adev->mes, &queue_input);
+ 	drm_dev_exit(idx);
+ 	return 0;
 -- 
 2.54.0
 
