@@ -2,70 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qG5CBk42FGpuKwcAu9opvQ
+	id MPWJMlA2FGpuKwcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2026 13:45:18 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2026 13:45:20 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD3125CA1FA
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2026 13:45:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F2AD5CA20F
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2026 13:45:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A70B10E2B3;
-	Mon, 25 May 2026 11:45:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90E5010E2BC;
+	Mon, 25 May 2026 11:45:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Yk5pQ5l0";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mXaOmrZ5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
- [209.85.128.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42EED10E2B3
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2026 11:45:15 +0000 (UTC)
-Received: by mail-wm1-f46.google.com with SMTP id
- 5b1f17b1804b1-4891d7164ddso45706645e9.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2026 04:45:15 -0700 (PDT)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+ [209.85.128.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C96110E2B3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2026 11:45:16 +0000 (UTC)
+Received: by mail-wm1-f48.google.com with SMTP id
+ 5b1f17b1804b1-4891c00e7aeso65728385e9.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2026 04:45:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20251104; t=1779709514; x=1780314314; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=bjyM8Fhw5HJm6g0/bDmujdKm3OZbrMwhTn3i3zaT8wc=;
- b=Yk5pQ5l06c1xlQyZKQeBBqjLLbJePlv0pYhlTKPFJT/PO/+Wljv7UgAROAkwOQ07cS
- ZO3q3kwsIv5rXHY+FoZWUeUyptkZ+cSezm4eFhVfDLPiHXhVZ8yYZkDtU2Dz01FwctSr
- tJf3KhsrHf7MtDthm25StKa2yBomUG8S1qes2kK8VWLfGgOUGXmwtzueBoIhfopDOa+I
- lXwe95tDmhHClGTYP4dbE8fuBkq/gmBAqUVWmftD2J5JhoGDVP0QOUy5ZUC3afdD58UL
- xzk7RRha7mNMBV+zrQ/nJVi2Hve9+SfGikAy8ZkF12ItXxgyNKuDgJhHdOS1horDPXnf
- 1dYQ==
+ bh=SfxtZH65cg0i5+vzJglwkLDnyUm3JyyyOF6Kl2dYKv8=;
+ b=mXaOmrZ5vC4ARap68h4YTb7OYxNjday2d6enk1Yt54x8R56o9pzX5db/stMy0z8ZpM
+ CtijkpRCquZ/X9Awqu7E2SAaxPHfXhXodG7vrlaU/mUz/3gk8K+c6gFVxv27y2Nsy9c0
+ b2TJ764gKMgi8uQ+ithhq6Nt75UjfreHF9H8IVpFxvT9jId+k5SVgKBz6iCGsMsO2ziw
+ igLggdvMk9ESfV8VHQXRNuqtvDTmmpTbTPO2pUq5aUxs6Ixkj48mSJE3yYFJwGXz1vno
+ 6hwaSZaWydhfSmyYfxvohQXR9zfXCxA3kdanmBr1dgvtgH0s5vR3EuCqCaCSoCQUa86c
+ q6Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20251104; t=1779709514; x=1780314314;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=bjyM8Fhw5HJm6g0/bDmujdKm3OZbrMwhTn3i3zaT8wc=;
- b=cl4N0itm4WCAl+QNmc6xe6uvTLBZxVFfvM/F9nBZ97SwG1ySO4giPUggJm4oDDTfCE
- muGpQEnvIQ/rB8H+UnbV4hTz0YbFUWru3wJuJNYE0Jl99j7rJaQX8k0Jc9TPua3Wqhsf
- jjqN3oxwrojSxH7FO0Pwq8la6kWFtVeWFSUzNBTu5+z0QyFKCjknChC5/0lQAiTpO6wr
- Fcz17jgBVS6IxISw3Ux8BU10lw4Ud5ks8Sd01pCy5rT4LQJOJuFwgGjQTijYTXLkBReG
- 5aozu1sH5EHbajeL8cra8vhEOkxssIshfDStKzrhE5GEWSySuF3cFNr86j5ycxc+m3FN
- ZCBg==
-X-Gm-Message-State: AOJu0Yy2Up1eqgJvi+qApZJEYzIJglq/WwF+bya3qxA/jqsRsYJ8BBql
- CqwsAynefEZU+K0JshTo0tXKN5qgp5d06o7e3e9ZRtJkpjGznPlzyRX1LMyHTA==
-X-Gm-Gg: Acq92OGVl+dvStQ01D7wkNKdjtnNG1fPrEApKopemJwqSZ67gHg/C6DEDu/x+aEt2uJ
- WB4UcPyRamq2giOyY/DrjqESIRmRhGUpZ5m826s8qRhcryjVfe3kYQts2fsg2WEDyfym6CEIrBU
- D66+kBKB3YDFOvbWZb3bFZP69qvjNN97p/S9CygjKzCtRJCSq/c/WSt6ywA7mHbXSyvc7mfJscZ
- mxnYDP6bV5fFmGRFeO8CcHFeN8UJ0iIP1QcQTZcEuMsf5i6h2q+nIo8iCN50Blg6DIWMkqPb92E
- tniKn9AtvypA3/O7Dtwq0SM8jZgKFwK86SBv9mfiEEZ/6su0VwUNh8J/hSDMfDPHtS+lWv+/XIo
- VMg1ah5EEuUt+KkKQh+BnLI1PL6m15Z8Oxrt+w0+uEPA1eo70xIhLa7UjUqO6L6RFY+QeD+RTEo
- kOPgQDYJ7mUpu7KRN02IBYKbQPnP3ZzMvGk12CWQTxSUUjy41gtVU9l9dmrnfPnmOm44dPTHHQK
- Qfa8Kg1EADeoQ==
-X-Received: by 2002:a05:600c:474a:b0:490:51e2:d992 with SMTP id
- 5b1f17b1804b1-49051e2daa6mr167532315e9.13.1779709513522; 
- Mon, 25 May 2026 04:45:13 -0700 (PDT)
+ bh=SfxtZH65cg0i5+vzJglwkLDnyUm3JyyyOF6Kl2dYKv8=;
+ b=FGPo/742WEzTR2d6ZUaLWobvAi4v3+KylwEHAi/MDhfStzL3Wj6biOGG6QXjzmgaNm
+ yyojJ3E4N/67lVDxuIhbffXS4tAzeJrD/NW1kaTvLI8Pcvc3QDrWhtc9Ls/3Tb89gfdh
+ K7xBWdvjT8CyMxNTPCzftzUmrJHEn75JDyKX0H89W/Cx9NM7ZpLdVxT3BnGJiRwdGOia
+ oTYArBHmdfPu/lbI7yYGxenTvGpvtwJ/n5mErjpjS1ZSZa2QVQVkSvJIl0HiwBTV3rBW
+ zBK2F4FO6s6H5ZFtR5Vkgm9Siwvcb2B2dJRebqWRjzbeIL7LZm/jh4JAQJUcS1xGMSUE
+ I7lw==
+X-Gm-Message-State: AOJu0YwF4grUoaKdpkB6ysFNBFxs/W0WM8C3t+/6neztyNWW6vnjOEb6
+ mlR/qfH+vZI44AQ0iF5C2IKv0vvjpFx/bH9c2JCR1uPRWT7oQMFjTNRGHlZRyQ==
+X-Gm-Gg: Acq92OGABtvxpmBcMIXjRiei+ydiVicT4kus1sEn6GVfePvwkxv98O9DPIRrIc8/Pan
+ l5GLO/Sg0jkw2eBL1aWtJjYoFqJsaelbwUkBNl95I4npdjz7lY2iOaOX5xTCziDqH8LYHV9enTu
+ sbSYGMd52m2Cq93f55bZ7lXLZxWzcxKThqW4bGKRg+HfFrs9Id4V6GHF6AcbSzqBxqXgJdFHdSo
+ 8Q+nXTguU8jd+M0doA00zzpo67kVkvKoxX3JwuT7hcSLlxDIhrNfsskvvLZf6N9A1AUs/G+BSIw
+ F8jmDeWecmg40+qR+48SDi11V8Ty0DiPULfHhW2WFrXnf66fU8+YvSsWtXEcQPrDDwo0UvlCTvZ
+ /jzjWB9ewpuyzaudnOlRLt3H/PSKkG4rk2uUsT+H5U1/T40ViwsYw6SJnCS2xJY0mhqNoDqTlbd
+ BEwB/WodJDW9XC2hc7fcT9RVRyuiFrXJxs0s2jHt/yhYbYnogseZZOVGZeIwX7ww9q
+X-Received: by 2002:a05:600c:c4a1:b0:490:3fd9:e78b with SMTP id
+ 5b1f17b1804b1-490426cef8bmr239723575e9.17.1779709514512; 
+ Mon, 25 May 2026 04:45:14 -0700 (PDT)
 Received: from Timur-Hyperion.home (54001290.dsl.pool.telekom.hu.
  [84.0.18.144]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4904527f7f7sm365533885e9.7.2026.05.25.04.45.12
+ 5b1f17b1804b1-4904527f7f7sm365533885e9.7.2026.05.25.04.45.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 25 May 2026 04:45:13 -0700 (PDT)
+ Mon, 25 May 2026 04:45:14 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  christian.koenig@amd.com, Natalie Vock <natalie.vock@gmx.de>,
@@ -73,9 +72,10 @@ To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  Amir Shetaia <Amir.Shetaia@amd.com>,
  =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <maraeo@gmail.com>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 4/7] drm/amdgpu/ih: Add retry_cam_ack IH function pointer
-Date: Mon, 25 May 2026 13:45:04 +0200
-Message-ID: <20260525114507.24566-5-timur.kristof@gmail.com>
+Subject: [PATCH 5/7] drm/amdgpu/gfxhub: Enable retry fault interrupts when
+ needed
+Date: Mon, 25 May 2026 13:45:05 +0200
+Message-ID: <20260525114507.24566-6-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260525114507.24566-1-timur.kristof@gmail.com>
 References: <20260525114507.24566-1-timur.kristof@gmail.com>
@@ -126,99 +126,231 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: BD3125CA1FA
+X-Rspamd-Queue-Id: 7F2AD5CA20F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Instead of writing the doorbell in amdgpu_gmc_handle_retry_fault()
-directly, add an IH function pointer which can be defined in
-a different way for different IH versions.
+Enable retry fault interrupts when initializing the GFXHUB
+system aperture registers according to whether retrying
+page faults is enabled in amdgpu (ie. amdgpu.noretry=0).
 
-This is to allow implementing the filter CAM without a doorbell.
+Needs to be done for each GFXHUB version at once,
+because none of them actually enabled this interrupt.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ih.h  | 1 +
- drivers/gpu/drm/amd/amdgpu/ih_v7_0.c    | 6 ++++++
- drivers/gpu/drm/amd/amdgpu/vega20_ih.c  | 8 +++++++-
- 4 files changed, 15 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v11_5_0.c | 9 +++++++--
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v12_0.c   | 9 +++++++--
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c    | 9 +++++++--
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c    | 2 ++
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c    | 9 +++++++--
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c    | 9 +++++++--
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c    | 9 +++++++--
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c  | 9 +++++++--
+ 8 files changed, 51 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-index 52258f1341c2..d790b7619ccd 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -565,7 +565,7 @@ int amdgpu_gmc_handle_retry_fault(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v11_5_0.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v11_5_0.c
+index 652eea6eae4a..ef20eafd59ae 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v11_5_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v11_5_0.c
+@@ -155,6 +155,7 @@ static void gfxhub_v11_5_0_init_gart_aperture_regs(struct amdgpu_device *adev)
+ static void gfxhub_v11_5_0_init_system_aperture_regs(struct amdgpu_device *adev)
+ {
+ 	uint64_t value;
++	u32 tmp;
  
- 		ret = amdgpu_vm_handle_fault(adev, entry->pasid, entry->vmid, node_id,
- 					     addr, entry->timestamp, write_fault);
--		WDOORBELL32(adev->irq.retry_cam_doorbell_index, cam_index);
-+		adev->irq.ih_funcs->retry_cam_ack(adev, cam_index);
- 		if (ret)
- 			return 1;
- 	} else {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.h
-index 444437c30088..e6e34f6e86f4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ih.h
-@@ -97,6 +97,7 @@ struct amdgpu_ih_funcs {
- 	const char *(*node_id_to_die_name)(struct amdgpu_device *adev,
- 					   unsigned int node_id,
- 					   char *buf, size_t size);
-+	void (*retry_cam_ack)(struct amdgpu_device *adev, u32 cam_index);
- };
+ 	WREG32_SOC15(GC, 0, regGCMC_VM_AGP_BASE, 0);
+ 	WREG32_SOC15(GC, 0, regGCMC_VM_AGP_BOT, adev->gmc.agp_start >> 24);
+@@ -180,8 +181,12 @@ static void gfxhub_v11_5_0_init_system_aperture_regs(struct amdgpu_device *adev)
+ 	WREG32_SOC15(GC, 0, regGCVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_HI32,
+ 		     (u32)((u64)adev->dummy_page_addr >> 44));
  
- #define amdgpu_ih_get_wptr(adev, ih) (adev)->irq.ih_funcs->get_wptr((adev), (ih))
-diff --git a/drivers/gpu/drm/amd/amdgpu/ih_v7_0.c b/drivers/gpu/drm/amd/amdgpu/ih_v7_0.c
-index 6de9e87e04e1..c2431f4c2671 100644
---- a/drivers/gpu/drm/amd/amdgpu/ih_v7_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/ih_v7_0.c
-@@ -289,6 +289,11 @@ static uint32_t ih_v7_0_setup_retry_doorbell(u32 doorbell_index)
- 	return val;
+-	WREG32_FIELD15_PREREG(GC, 0, GCVM_L2_PROTECTION_FAULT_CNTL2,
+-		       ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++	tmp = RREG32_SOC15(GC, 0, regGCVM_L2_PROTECTION_FAULT_CNTL2);
++	tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
++				 ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++	tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
++				 ENABLE_RETRY_FAULT_INTERRUPT, !adev->gmc.noretry);
++	WREG32_SOC15(GC, 0, regGCVM_L2_PROTECTION_FAULT_CNTL2, tmp);
  }
  
-+static void ih_v7_0_retry_cam_ack(struct amdgpu_device *adev, u32 cam_index)
-+{
-+	WDOORBELL32(adev->irq.retry_cam_doorbell_index, cam_index);
-+}
-+
- #define regIH_RING1_CLIENT_CFG_INDEX_V7_1             0x122
- #define regIH_RING1_CLIENT_CFG_INDEX_V7_1_BASE_IDX    0
- #define regIH_RING1_CLIENT_CFG_DATA_V7_1              0x123
-@@ -858,6 +863,7 @@ static const struct amdgpu_ih_funcs ih_v7_0_funcs = {
- 	.decode_iv_ts = amdgpu_ih_decode_iv_ts_helper,
- 	.set_rptr = ih_v7_0_set_rptr,
- 	.node_id_to_die_name = ih_v7_0_node_id_to_die_name,
-+	.retry_cam_ack = ih_v7_0_retry_cam_ack,
- };
+ static void gfxhub_v11_5_0_init_tlb_regs(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_0.c
+index 6cbf837d50dd..ec3ff4dec674 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_0.c
+@@ -158,6 +158,7 @@ static void gfxhub_v12_0_init_gart_aperture_regs(struct amdgpu_device *adev)
+ static void gfxhub_v12_0_init_system_aperture_regs(struct amdgpu_device *adev)
+ {
+ 	uint64_t value;
++	u32 tmp;
  
- static void ih_v7_0_set_interrupt_funcs(struct amdgpu_device *adev)
-diff --git a/drivers/gpu/drm/amd/amdgpu/vega20_ih.c b/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
-index 85846fd08ce4..30a82fff3ff7 100644
---- a/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
-+++ b/drivers/gpu/drm/amd/amdgpu/vega20_ih.c
-@@ -293,6 +293,11 @@ static uint32_t vega20_setup_retry_doorbell(u32 doorbell_index)
- 	return val;
+ 	/* Program the AGP BAR */
+ 	WREG32_SOC15(GC, 0, regGCMC_VM_AGP_BASE, 0);
+@@ -184,8 +185,12 @@ static void gfxhub_v12_0_init_system_aperture_regs(struct amdgpu_device *adev)
+ 	WREG32_SOC15(GC, 0, regGCVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_HI32,
+ 		     (u32)((u64)adev->dummy_page_addr >> 44));
+ 
+-	WREG32_FIELD15_PREREG(GC, 0, GCVM_L2_PROTECTION_FAULT_CNTL2,
+-		       ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++	tmp = RREG32_SOC15(GC, 0, regGCVM_L2_PROTECTION_FAULT_CNTL2);
++	tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
++				 ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++	tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
++				 ENABLE_RETRY_FAULT_INTERRUPT, !adev->gmc.noretry);
++	WREG32_SOC15(GC, 0, regGCVM_L2_PROTECTION_FAULT_CNTL2, tmp);
  }
  
-+static void vega20_retry_cam_ack(struct amdgpu_device *adev, u32 cam_index)
-+{
-+	WDOORBELL32(adev->irq.retry_cam_doorbell_index, cam_index);
-+}
-+
- /**
-  * vega20_ih_irq_init - init and enable the interrupt ring
-  *
-@@ -738,7 +743,8 @@ static const struct amdgpu_ih_funcs vega20_ih_funcs = {
- 	.get_wptr = vega20_ih_get_wptr,
- 	.decode_iv = amdgpu_ih_decode_iv_helper,
- 	.decode_iv_ts = amdgpu_ih_decode_iv_ts_helper,
--	.set_rptr = vega20_ih_set_rptr
-+	.set_rptr = vega20_ih_set_rptr,
-+	.retry_cam_ack = vega20_retry_cam_ack,
- };
  
- static void vega20_ih_set_interrupt_funcs(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c
+index bfe247b1a333..27d7f7cb903f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c
+@@ -91,6 +91,7 @@ static void gfxhub_v1_0_init_gart_aperture_regs(struct amdgpu_device *adev)
+ static void gfxhub_v1_0_init_system_aperture_regs(struct amdgpu_device *adev)
+ {
+ 	uint64_t value;
++	u32 tmp;
+ 
+ 	if (!amdgpu_sriov_vf(adev) || adev->asic_type <= CHIP_VEGA10) {
+ 		/* Program the AGP BAR */
+@@ -134,8 +135,12 @@ static void gfxhub_v1_0_init_system_aperture_regs(struct amdgpu_device *adev)
+ 		WREG32_SOC15(GC, 0, mmVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_HI32,
+ 			     (u32)((u64)adev->dummy_page_addr >> 44));
+ 
+-		WREG32_FIELD15(GC, 0, VM_L2_PROTECTION_FAULT_CNTL2,
+-			       ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++		tmp = RREG32_SOC15(GC, 0, mmVM_L2_PROTECTION_FAULT_CNTL2);
++		tmp = REG_SET_FIELD(tmp, VM_L2_PROTECTION_FAULT_CNTL2,
++					 ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++		tmp = REG_SET_FIELD(tmp, VM_L2_PROTECTION_FAULT_CNTL2,
++					 ENABLE_RETRY_FAULT_INTERRUPT, !adev->gmc.noretry);
++		WREG32_SOC15(GC, 0, mmVM_L2_PROTECTION_FAULT_CNTL2, tmp);
+ 	}
+ 
+ 	/* In the case squeezing vram into GART aperture, we don't use
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
+index fbdf46070b38..ed9a64bc5aaa 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c
+@@ -176,6 +176,8 @@ gfxhub_v1_2_xcc_init_system_aperture_regs(struct amdgpu_device *adev,
+ 			tmp = RREG32_SOC15(GC, GET_INST(GC, i), regVM_L2_PROTECTION_FAULT_CNTL2);
+ 			tmp = REG_SET_FIELD(tmp, VM_L2_PROTECTION_FAULT_CNTL2,
+ 					    ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++			tmp = REG_SET_FIELD(tmp, VM_L2_PROTECTION_FAULT_CNTL2,
++					    ENABLE_RETRY_FAULT_INTERRUPT, !adev->gmc.noretry);
+ 			WREG32_SOC15(GC, GET_INST(GC, i), regVM_L2_PROTECTION_FAULT_CNTL2, tmp);
+ 		}
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c
+index 9ea593e2c719..152b2735d360 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c
+@@ -151,6 +151,7 @@ static void gfxhub_v2_0_init_gart_aperture_regs(struct amdgpu_device *adev)
+ static void gfxhub_v2_0_init_system_aperture_regs(struct amdgpu_device *adev)
+ {
+ 	uint64_t value;
++	u32 tmp;
+ 
+ 	if (!amdgpu_sriov_vf(adev)) {
+ 		/* Program the AGP BAR */
+@@ -178,8 +179,12 @@ static void gfxhub_v2_0_init_system_aperture_regs(struct amdgpu_device *adev)
+ 	WREG32_SOC15(GC, 0, mmGCVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_HI32,
+ 		     (u32)((u64)adev->dummy_page_addr >> 44));
+ 
+-	WREG32_FIELD15(GC, 0, GCVM_L2_PROTECTION_FAULT_CNTL2,
+-		       ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++	tmp = RREG32_SOC15(GC, 0, mmGCVM_L2_PROTECTION_FAULT_CNTL2);
++	tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
++				 ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++	tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
++				 ENABLE_RETRY_FAULT_INTERRUPT, !adev->gmc.noretry);
++	WREG32_SOC15(GC, 0, mmGCVM_L2_PROTECTION_FAULT_CNTL2, tmp);
+ }
+ 
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
+index 30b90d35abd0..83c2ddbbd292 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c
+@@ -154,6 +154,7 @@ static void gfxhub_v2_1_init_gart_aperture_regs(struct amdgpu_device *adev)
+ static void gfxhub_v2_1_init_system_aperture_regs(struct amdgpu_device *adev)
+ {
+ 	uint64_t value;
++	u32 tmp;
+ 
+ 	if (amdgpu_sriov_vf(adev))
+ 		return;
+@@ -182,8 +183,12 @@ static void gfxhub_v2_1_init_system_aperture_regs(struct amdgpu_device *adev)
+ 	WREG32_SOC15(GC, 0, mmGCVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_HI32,
+ 		     (u32)((u64)adev->dummy_page_addr >> 44));
+ 
+-	WREG32_FIELD15(GC, 0, GCVM_L2_PROTECTION_FAULT_CNTL2,
+-		       ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++	tmp = RREG32_SOC15(GC, 0, mmGCVM_L2_PROTECTION_FAULT_CNTL2);
++	tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
++				 ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++	tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
++				 ENABLE_RETRY_FAULT_INTERRUPT, !adev->gmc.noretry);
++	WREG32_SOC15(GC, 0, mmGCVM_L2_PROTECTION_FAULT_CNTL2, tmp);
+ }
+ 
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c
+index 9e6a6e13dec0..90bbb2fe4884 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c
+@@ -150,6 +150,7 @@ static void gfxhub_v3_0_init_gart_aperture_regs(struct amdgpu_device *adev)
+ static void gfxhub_v3_0_init_system_aperture_regs(struct amdgpu_device *adev)
+ {
+ 	uint64_t value;
++	u32 tmp;
+ 
+ 	/* Program the AGP BAR */
+ 	WREG32_SOC15(GC, 0, regGCMC_VM_AGP_BASE, 0);
+@@ -176,8 +177,12 @@ static void gfxhub_v3_0_init_system_aperture_regs(struct amdgpu_device *adev)
+ 	WREG32_SOC15(GC, 0, regGCVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_HI32,
+ 		     (u32)((u64)adev->dummy_page_addr >> 44));
+ 
+-	WREG32_FIELD15_PREREG(GC, 0, GCVM_L2_PROTECTION_FAULT_CNTL2,
+-		       ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++	tmp = RREG32_SOC15(GC, 0, regGCVM_L2_PROTECTION_FAULT_CNTL2);
++	tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
++				 ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++	tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
++				 ENABLE_RETRY_FAULT_INTERRUPT, !adev->gmc.noretry);
++	WREG32_SOC15(GC, 0, regGCVM_L2_PROTECTION_FAULT_CNTL2, tmp);
+ }
+ 
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c
+index b3b1085c7cd3..1b3c067ab48c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c
+@@ -153,6 +153,7 @@ static void gfxhub_v3_0_3_init_gart_aperture_regs(struct amdgpu_device *adev)
+ static void gfxhub_v3_0_3_init_system_aperture_regs(struct amdgpu_device *adev)
+ {
+ 	uint64_t value;
++	u32 tmp;
+ 
+ 	if (amdgpu_sriov_vf(adev))
+ 		return;
+@@ -181,8 +182,12 @@ static void gfxhub_v3_0_3_init_system_aperture_regs(struct amdgpu_device *adev)
+ 	WREG32_SOC15(GC, 0, regGCVM_L2_PROTECTION_FAULT_DEFAULT_ADDR_HI32,
+ 		     (u32)((u64)adev->dummy_page_addr >> 44));
+ 
+-	WREG32_FIELD15_PREREG(GC, 0, GCVM_L2_PROTECTION_FAULT_CNTL2,
+-		       ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++	tmp = RREG32_SOC15(GC, 0, regGCVM_L2_PROTECTION_FAULT_CNTL2);
++	tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
++				 ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
++	tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
++				 ENABLE_RETRY_FAULT_INTERRUPT, !adev->gmc.noretry);
++	WREG32_SOC15(GC, 0, regGCVM_L2_PROTECTION_FAULT_CNTL2, tmp);
+ }
+ 
+ 
 -- 
 2.54.0
 
