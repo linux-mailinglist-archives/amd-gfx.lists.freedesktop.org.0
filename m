@@ -2,68 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iP9TOEo2FGpuKwcAu9opvQ
+	id 4HarIEw2FGpuKwcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2026 13:45:14 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2026 13:45:16 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4875D5CA1DD
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2026 13:45:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FE2D5CA1EC
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2026 13:45:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99A7310E2AB;
-	Mon, 25 May 2026 11:45:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91B2910E2A0;
+	Mon, 25 May 2026 11:45:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GdeE0vKa";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aVw5Rphc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6469A10E2A0
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2026 11:45:11 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id
- 5b1f17b1804b1-48a3e9862f0so50436235e9.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2026 04:45:11 -0700 (PDT)
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
+ [209.85.128.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9602B10E2A0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2026 11:45:12 +0000 (UTC)
+Received: by mail-wm1-f45.google.com with SMTP id
+ 5b1f17b1804b1-48984d29fe3so99553605e9.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2026 04:45:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779709510; x=1780314310; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=m8cU9h9SRAVQJT6AVkZu8Ep4jYmQCgT70j8P+uuZKEs=;
- b=GdeE0vKa9+pe/6E7idpUXVsmhlMBFYSSVK2pNhJHeyPMqY6ed9Vf5WDlE3vVSwsBrN
- kbEt8qkRadFqMiwoxDTGjli4VGUt2s1UZp0Yoi5g+NyPeg+QrJ8oA/qyoSMO5ckMfU6+
- bGRGIlRxSQyNeXqRowQ4wp1X9XU2/aHvxQqpCMzsYYPb+xCuiMFFqd1Q+cBWfKmg8qAK
- XWuvPerXXlFZJZa1V7vCaP2rxkb6JEUBnVaScwBIOW4Xys2khI7LAQElgcapLsx/O+Q7
- 3q1c1CXUdYN1le3rVIqHxCjkl61HRFdYHzwT4mTrsSVlwMJQhyTdXzXax5paLMC4tcdJ
- yIXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779709510; x=1780314310;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20251104; t=1779709511; x=1780314311; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=m8cU9h9SRAVQJT6AVkZu8Ep4jYmQCgT70j8P+uuZKEs=;
- b=DDUMQqnd4XKkI0uQHNWt+beLw64d8VVsP9IT+Y2BrML7py/51ahYYoCwc7ooTXGHbD
- psFW6mPXRZgH6O4e9vOihrMdPvHrHR3idE1ocZpLfyXYCKPMS7j7MbDAoulhCd7dlSO6
- x9m+pjofJnHHz9TAuAQMjOhZ5wXKPfCua542acO2/yXRZE9aJuwItGfl83cPNNcRgxGu
- 8IbHgvQpGCiBeKAXLZWVIDdctriwiFlf97Ck8Gl1DX7mPCJkh2cS7I0QZqkVMksc+9A9
- DqcLguyoQxP6OD3/QX27yxZJiHS7hSxCklPpdPvQ4I5axEZxNSzXlCTTxKW1XfMAyrJc
- gAHA==
-X-Gm-Message-State: AOJu0Yy5ldFRIsA8dXJcYNbWHDaIZKwpZF7LYDsUZ9C7py1Ta1Zv2poj
- vODsHmGf8+ced0m+bY8o6A38SCEy+75HoDMLzYVlJTpaNvx3FGznOUasWYOQyg==
-X-Gm-Gg: Acq92OGyfRPNEomMrntFV9ax/vjW+AZ2RzNMtTqmvi4yeRWTrC0iWt+E0+jfQsHd15I
- HvFVozueRrZr2N8Ejd1d21JI5huRMCSYcCfVLfrRMjhPx/EaXL1V6GSKijSpNpWoxdc5a8G08JR
- HNWMuT5PiDRgwzTwyzSnr9J0sWOIabHRs49soNA2N20csjDnm6ac4FeVP5JKRzTfJrnwXt8NJxC
- HeAcOUjAJDa4pTqjqfFZTpRzWwcsnG2MfT64YpZDYb2sTxJ1PSiLMwouMzulJ7r+u5LjzXzCrcS
- RMn1/ldUcD6EvrWsdVlmOa7velD8T0B0FBdq4aE/5dyMbKuobFZx7Dl3PN0AxDV8aeLMOVdp9E1
- eEqQmDpgXzcYPksoth4DzZvsCs4P9I5V7ZGrCejlmBhiWn4X4q4dVAcemHMzVfMjqwZfa6GcQbL
- Z3kWsHPhqfT3G3cYOm+JgdF9KIIlHEuQW2JhUXYBH43xe11FMlKkxJh/nJKvxWIhc2
-X-Received: by 2002:a05:600c:c4a4:b0:485:3c2e:60d5 with SMTP id
- 5b1f17b1804b1-4904225fbdamr210455375e9.2.1779709509763; 
- Mon, 25 May 2026 04:45:09 -0700 (PDT)
+ bh=iqY+uznyizqSjIsihQ7f34/Plj9lozDTO+AqBjdp6/8=;
+ b=aVw5Rphcp2fzwhTkQCy1Zt5R17tks6sdSlHfJ5YSkgRxN4vU6JkPWsFY72N2EqIQJc
+ NI/t6ibhpK53RB36yINYLmGRMNBNKA5SBMQP2zElDi77UDUoMjyGs7iGtk3DZUiJxtxo
+ ej7S2D9eCS9KponN3YR3h7xtGgZjqw7qblpKKeuF4a1b5VWiNNPmWzIsVWw4BdaNMM+p
+ LV19sHOpZHyUNqTu9dfj5KZiyV2AMMJrKJ8CUvC3cxkiH6TPvvHZhw6x2eKg2o0xVHSO
+ ToBuCwEkA4Vj5qPDLesyRmkT28VLCuWr14pSIktygSUJASINenq6q5+Cx8JhcQiDJzVO
+ km7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779709511; x=1780314311;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=iqY+uznyizqSjIsihQ7f34/Plj9lozDTO+AqBjdp6/8=;
+ b=AQ31HLBVYTimMFNEPeoV/OzCiNdtuqpVLJPszQSo1Qfk2lA2u/2XK1guMr25eGTatP
+ w3o4/pFwQVDm1x+4sCMMKjTLbjcgz475omhJaBbnpZL+f2FuJhzCb466MrsVlucxJedI
+ NFGVijIEKiG8DboCLWS7+Ya3Pq2wKHNyk/EErQEelRlUk2k8OXyTSly4UhhFllbQmpY4
+ MM4zTkbiu8IPTMIRE80DSxFvfel8pz3H8y/9pb8rTB0hGJOf21VZU7ehH7d4k5Xck4qE
+ hLQBM9L/9YOwq02MpR2KiuZxoQv7ZoBqio0fa8yCz+MRbohO7gynPJIps+2rvjfiCZ5R
+ Aang==
+X-Gm-Message-State: AOJu0Yx42Knrn0cyJaAK4NCJ7x67zWFhRm2y1ID19H2C/zPxdQtDNww5
+ 2R8QqtRXS/zERyHZnFi9dNvrJ88RlJwsCkUIS2K3qfPh2FUMTQ6rVllJBErrUw==
+X-Gm-Gg: Acq92OG+S8Dq7zSkH4ym4j31bw/wlkDUTJDzwe4YeVqWHHVarz92Ix0I4/XiX/nOCim
+ Nmvu3hgSEtaCNi1/xgF+AT9PVB5/OsjoOzGtSDAm2jRagw14WzDNk9GSGaM1M5SV2S+tXPidjz2
+ Z0Tu7mItGlYLOOl2xBdzaHIgHPhdt3tHuDDR4281Vh4QYhAssNQSCU91IWB1m/zQJN9/39F68ut
+ EyE/o6i7AOzhreDQwh663tiPpEzG2Px4VBqK8kFKZp3MWSu4t1AJKDXdWbSEKe6jg+VpN5rbMDn
+ JOCVbytP24+se3nA0n3zqyTbn6rHn0e3hYuAjH8NIB/kTy4vqcrrSiiGoK4n7nKRFtq6CGM6Hvq
+ S95skCW2Fw5Tv+wR5SMyzP7WyikFB7VpCoqqHXK+mgmPBt7usOmMPy2nf/2wjuOYYxUEp6XGGBW
+ dFLCvWXB5zMdGfUOpoSTyD3MfbOWX9yFULHmREDGFnwny6dnhHoRD6s6X+9ohX8RbW
+X-Received: by 2002:a05:600c:674a:b0:490:5057:f5f7 with SMTP id
+ 5b1f17b1804b1-49050580a91mr159945865e9.11.1779709510768; 
+ Mon, 25 May 2026 04:45:10 -0700 (PDT)
 Received: from Timur-Hyperion.home (54001290.dsl.pool.telekom.hu.
  [84.0.18.144]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4904527f7f7sm365533885e9.7.2026.05.25.04.45.08
+ 5b1f17b1804b1-4904527f7f7sm365533885e9.7.2026.05.25.04.45.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 25 May 2026 04:45:09 -0700 (PDT)
+ Mon, 25 May 2026 04:45:10 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  christian.koenig@amd.com, Natalie Vock <natalie.vock@gmx.de>,
@@ -71,10 +72,13 @@ To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  Amir Shetaia <Amir.Shetaia@amd.com>,
  =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <maraeo@gmail.com>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 0/7] drm/amdgpu: Improve retry fault handling (v2)
-Date: Mon, 25 May 2026 13:45:00 +0200
-Message-ID: <20260525114507.24566-1-timur.kristof@gmail.com>
+Subject: [PATCH 1/7] drm/amdgpu: Use gmc->noretry instead of amdgpu_noretry
+ directly
+Date: Mon, 25 May 2026 13:45:01 +0200
+Message-ID: <20260525114507.24566-2-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260525114507.24566-1-timur.kristof@gmail.com>
+References: <20260525114507.24566-1-timur.kristof@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -121,66 +125,160 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 4875D5CA1DD
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email]
+X-Rspamd-Queue-Id: 2FE2D5CA1EC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Fix some issues regarding retry fault handling,
-such as enabling the retry fault interrupt (necessary
-for retry faults to work) and similar.
+Whether retry faults are actually enabled, is determined by
+the amdgpu_gmc_noretry_set() function. The rest of the code
+base should use gmc->noretry instead of the module parameter.
 
-Improve retry faults on Navi 3 dGPUs by enabling
-the filter CAM, which can filter the repeated page
-fault interrupts that happen when retry faults are
-enabled, making the handling more efficient.
+Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v11_5_0.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v12_0.c   | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c    | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c  | 2 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c     | 2 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_1.c   | 2 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c   | 2 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v3_3.c     | 2 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v4_1_0.c   | 2 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.c   | 2 +-
+ 10 files changed, 10 insertions(+), 10 deletions(-)
 
-With this series, the kernel is able to mitigate
-most page faults on Navi 3 without causing a hang
-and without a need to reset the GPU, when the
-amdgpu.noretry=0 module parameter is set.
-
-Changes in v2:
-
-* Reordered patches in the series to put bug fixes first
-* Enable retry fault interrupt in init_system_aperture_regs()
-  instead of in set_fault_enable_default()
-* Added a patch to respect the noretry flag on GFX12.1 too
-
-Timur Kristóf (7):
-  drm/amdgpu: Use gmc->noretry instead of amdgpu_noretry directly
-  drm/amdgpu/gfxhub: Program CRASH_ON_*_FAULT bits to 0 as needed
-  drm/amdgpu/gmc: Don't compare page fault timestamps with other
-    interrupts
-  drm/amdgpu/ih: Add retry_cam_ack IH function pointer
-  drm/amdgpu/gfxhub: Enable retry fault interrupts when needed
-  drm/amdgpu/gfxhub: Respect noretry flag for retry faults on GFX12.1
-  drm/amdgpu: Enable retry CAM on Navi 3 dGPUs
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c     |  7 +++++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h     |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_ih.h      |  1 +
- drivers/gpu/drm/amd/amdgpu/gfxhub_v11_5_0.c | 21 ++++++++++++---------
- drivers/gpu/drm/amd/amdgpu/gfxhub_v12_0.c   | 21 ++++++++++++---------
- drivers/gpu/drm/amd/amdgpu/gfxhub_v12_1.c   | 16 +++++++---------
- drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c    | 19 +++++++++++--------
- drivers/gpu/drm/amd/amdgpu/gfxhub_v1_2.c    | 12 ++++++------
- drivers/gpu/drm/amd/amdgpu/gfxhub_v2_0.c    | 19 +++++++++++--------
- drivers/gpu/drm/amd/amdgpu/gfxhub_v2_1.c    | 19 +++++++++++--------
- drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c    | 21 ++++++++++++---------
- drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c  | 21 ++++++++++++---------
- drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c      |  5 ++++-
- drivers/gpu/drm/amd/amdgpu/ih_v6_0.c        | 18 +++++++++++++++++-
- drivers/gpu/drm/amd/amdgpu/ih_v7_0.c        |  6 ++++++
- drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c     |  2 +-
- drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_1.c   |  2 +-
- drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c   |  2 +-
- drivers/gpu/drm/amd/amdgpu/mmhub_v3_3.c     |  2 +-
- drivers/gpu/drm/amd/amdgpu/mmhub_v4_1_0.c   |  2 +-
- drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.c   |  2 +-
- drivers/gpu/drm/amd/amdgpu/vega20_ih.c      |  8 +++++++-
- 22 files changed, 141 insertions(+), 86 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v11_5_0.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v11_5_0.c
+index f9949fedfbb9..f845ba698b40 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v11_5_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v11_5_0.c
+@@ -321,7 +321,7 @@ static void gfxhub_v11_5_0_setup_vmid_config(struct amdgpu_device *adev)
+ 		/* Send no-retry XNACK on fault to suppress VM fault storm. */
+ 		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL,
+ 				    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
+-				    !amdgpu_noretry);
++				    !adev->gmc.noretry);
+ 		WREG32_SOC15_OFFSET(GC, 0, regGCVM_CONTEXT1_CNTL,
+ 				    i * hub->ctx_distance, tmp);
+ 		WREG32_SOC15_OFFSET(GC, 0, regGCVM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_0.c
+index 7609b9cecae8..ba78b5a1a7cd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_0.c
+@@ -326,7 +326,7 @@ static void gfxhub_v12_0_setup_vmid_config(struct amdgpu_device *adev)
+ 		/* Send no-retry XNACK on fault to suppress VM fault storm. */
+ 		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL,
+ 				    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
+-				    !amdgpu_noretry);
++				    !adev->gmc.noretry);
+ 		WREG32_SOC15_OFFSET(GC, 0, regGCVM_CONTEXT1_CNTL,
+ 				    i * hub->ctx_distance, tmp);
+ 		WREG32_SOC15_OFFSET(GC, 0, regGCVM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c
+index abe30c8bd2ba..631f99e3741a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0.c
+@@ -318,7 +318,7 @@ static void gfxhub_v3_0_setup_vmid_config(struct amdgpu_device *adev)
+ 		/* Send no-retry XNACK on fault to suppress VM fault storm. */
+ 		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL,
+ 				    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
+-				    !amdgpu_noretry);
++				    !adev->gmc.noretry);
+ 		WREG32_SOC15_OFFSET(GC, 0, regGCVM_CONTEXT1_CNTL,
+ 				    i * hub->ctx_distance, tmp);
+ 		WREG32_SOC15_OFFSET(GC, 0, regGCVM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c
+index b3ef6e71811f..8a87410ce016 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v3_0_3.c
+@@ -323,7 +323,7 @@ static void gfxhub_v3_0_3_setup_vmid_config(struct amdgpu_device *adev)
+ 		/* Send no-retry XNACK on fault to suppress VM fault storm. */
+ 		tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL,
+ 				    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
+-				    !amdgpu_noretry);
++				    !adev->gmc.noretry);
+ 		WREG32_SOC15_OFFSET(GC, 0, regGCVM_CONTEXT1_CNTL,
+ 				    i * hub->ctx_distance, tmp);
+ 		WREG32_SOC15_OFFSET(GC, 0, regGCVM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c
+index 3d82cfa0f1b5..ab56dd15b3f5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0.c
+@@ -340,7 +340,7 @@ static void mmhub_v3_0_setup_vmid_config(struct amdgpu_device *adev)
+ 		/* Send no-retry XNACK on fault to suppress VM fault storm. */
+ 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL,
+ 				    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
+-				    !amdgpu_noretry);
++				    !adev->gmc.noretry);
+ 		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_CNTL,
+ 				    i * hub->ctx_distance, tmp);
+ 		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_1.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_1.c
+index a1b0b7b39a42..6522a89379b7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_1.c
+@@ -333,7 +333,7 @@ static void mmhub_v3_0_1_setup_vmid_config(struct amdgpu_device *adev)
+ 		/* Send no-retry XNACK on fault to suppress VM fault storm. */
+ 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL,
+ 				    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
+-				    !amdgpu_noretry);
++				    !adev->gmc.noretry);
+ 		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_CNTL,
+ 				    i * hub->ctx_distance, tmp);
+ 		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c
+index 34e8dbd47c0f..23cf95783264 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_0_2.c
+@@ -339,7 +339,7 @@ static void mmhub_v3_0_2_setup_vmid_config(struct amdgpu_device *adev)
+ 		/* Send no-retry XNACK on fault to suppress VM fault storm. */
+ 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL,
+ 				    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
+-				    !amdgpu_noretry);
++				    !adev->gmc.noretry);
+ 		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_CNTL,
+ 				    i * hub->ctx_distance, tmp);
+ 		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_3.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_3.c
+index cfce7e1297d4..98568c72c2be 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v3_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v3_3.c
+@@ -451,7 +451,7 @@ static void mmhub_v3_3_setup_vmid_config(struct amdgpu_device *adev)
+ 		/* Send no-retry XNACK on fault to suppress VM fault storm. */
+ 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL,
+ 				    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
+-				    !amdgpu_noretry);
++				    !adev->gmc.noretry);
+ 		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_CNTL,
+ 				    i * hub->ctx_distance, tmp);
+ 		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v4_1_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v4_1_0.c
+index bef75c4c48d3..c9fb48992a2d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v4_1_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v4_1_0.c
+@@ -334,7 +334,7 @@ static void mmhub_v4_1_0_setup_vmid_config(struct amdgpu_device *adev)
+ 		/* Send no-retry XNACK on fault to suppress VM fault storm. */
+ 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL,
+ 				    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
+-				    !amdgpu_noretry);
++				    !adev->gmc.noretry);
+ 		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_CNTL,
+ 				    i * hub->ctx_distance, tmp);
+ 		WREG32_SOC15_OFFSET(MMHUB, 0, regMMVM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.c
+index 29f7ed466858..49b7f16a941f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.c
+@@ -518,7 +518,7 @@ static void mmhub_v4_2_0_mid_setup_vmid_config(struct amdgpu_device *adev,
+ 			/* Send no-retry XNACK on fault to suppress VM fault storm. */
+ 			tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL,
+ 					    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
+-					    !amdgpu_noretry);
++					    !adev->gmc.noretry);
+ 			WREG32_SOC15_OFFSET(MMHUB, GET_INST(MMHUB, j), regMMVM_CONTEXT1_CNTL,
+ 					    i * hub->ctx_distance, tmp);
+ 			WREG32_SOC15_OFFSET(MMHUB, GET_INST(MMHUB, j), regMMVM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
 -- 
 2.54.0
 
