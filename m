@@ -2,70 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CADXFoozFGo7KwcAu9opvQ
+	id yAsfMIszFGo7KwcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2026 13:33:30 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2026 13:33:31 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA5DF5C9F49
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2026 13:33:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D615C9F57
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 May 2026 13:33:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71DA110E253;
-	Mon, 25 May 2026 11:33:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7338510E294;
+	Mon, 25 May 2026 11:33:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Z9ukcosD";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="omqo0QIH";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1375710E253
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+ [209.85.128.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB23310E28F
  for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2026 11:33:27 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id
- 5b1f17b1804b1-4891e5b9c1fso81603235e9.2
+Received: by mail-wm1-f54.google.com with SMTP id
+ 5b1f17b1804b1-4903f7a90d1so27394275e9.2
  for <amd-gfx@lists.freedesktop.org>; Mon, 25 May 2026 04:33:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779708805; x=1780313605; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1779708806; x=1780313606; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=wL8k57vYlbi3U9YokjW8P89P7GkelY1c0R9HWfsyeNE=;
- b=Z9ukcosD4gjliUpIkfgaZKoJjoCqF+/03p5Ff9qq7ebN8YTClq71d/bId/vIARVj/E
- pEETE5Z/+QtqX9C2R0rjL6xbqlf+RP5Z1REXnITvX6sZd4ftoXdAfFOnFvFsTNE9viWE
- tRReKXqX1YHTm7o1zg0Xc3E3GLTBUFTSmGnt92yZ/KzeWAz+XC/NYQKFO4bCkf8vgcRR
- uDMIjIK2lx3ArgpsMMx9woztmZczRJhntzpPVuR4Rv8yCdgKMZf696J7AqkKgEaN5ys+
- UXfinA2hmlbtZyqd3xWlM2aSFj/v/ekMDGe+Zniikv/OlbKw07xK7maJFfMw+Y7ZGcuC
- 9EWA==
+ bh=VZOTjfdvVUoAxPEDBuME1CuF9RE2uhmL8jaSYcYhLV4=;
+ b=omqo0QIHCxNB/8vWvTXA2EH7TX9kQeTURQo5YbPgsq8yxJXDNeTAMV36pQonFrd+Bo
+ uDQRKQuVqNI9s9uj5xUpLg8l2Fold8rGPB4yIimrYnRuVh1xQ/ShODw9jLT4shkAHd79
+ 7HZvMEEVlkgavUw0OgyU9v1cvdH2kCRaI6NJip1J9uVAv9mfWpfHTk0gPQv1XyW+zle8
+ cPfleu0eVoIfRgbLHzv04t4C1t7hS/WTjD2D2Q3iOjbH/cKd3Fn4kt26X6EIxafUH7BS
+ 1npWFKt3lvYg3+LL7P3Kxw2F/7cYR+52YGujSw4dUfZBmY/nH6E13SARS66UzXkf2s42
+ D1Yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779708805; x=1780313605;
+ d=1e100.net; s=20251104; t=1779708806; x=1780313606;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=wL8k57vYlbi3U9YokjW8P89P7GkelY1c0R9HWfsyeNE=;
- b=RABEaY5LTLaro48VM7pJYXJ8DDJa8pjj3pL+ZiAlKO/pVSAXTarrdUQ7VJlBuOf/2X
- lTcrc5OdKVDmBh5XBG49rHzC7vk+WjShu1mUJ2sUpPzzTrsz888hX3sKHMMkEDBpKIY4
- Mdt6zjdJie5btp3Lu9C77XJXPZAgZ0R3PEPWwXwsbTNK/MXzgeZ+i0y/ci2d9maE0yQ4
- 7pskG3+lqK2Z1oe94o4c+JJdWzJazc0a23fWnCE9bEJ6vsJ07K5Sdb4U6tHUlqHmSDZT
- nujy8IR0YvMQKLfrYpC3dZHaLLEXvmgB9oI8NyLFzT1yn+Fblp81PZeaM7A7f5Yzekey
- QGkQ==
-X-Gm-Message-State: AOJu0Yy+M0R2fxa+DrBYOTEDJAKPXNcD5gbG3OAeBZoFWXoVfMclIN4c
- WLTDDIZuMBWUnu0+wQCqZL/4fAT/kANNhUXjqEnAqkwja9x3MZpsm1lk+sk8Dw==
-X-Gm-Gg: Acq92OEJh9nCQAKqorgc80zdyZ8rDw+kLaZjgh9SOrO6ZJ83Q5xdh6+V2/Z/l2x3/dE
- n9fARnfLFLbhavqnzsdwEwUan+eku/rkwF9g00wMcsrk6xCpZ43VRMwVS1+sqGlFXmQ4m7qXXaa
- q+l9G7U00j5Ly82GmWID1rMmWz1irsIZdn5qESMiGtAje/Njg6OY3i00nWISZ9xSeW/OhbKGBIm
- 8qEFH+9hKwhLnFtljUmHiX0U3BKVKUIiSvvwhS/yxIsJ1K6n1JJvDvZkh005ASKCeMB5SnGcO39
- iUByPHsLfHcbB57wIJ1+osxiG2UYr27xeIKXyTee9zvvh0OvZLTZ/xPfVNEQHRsR22PkjgKTRTZ
- YSC98GWM/K8ghHdkNKmCzxtIEVV5LvbfGhQEtfWKgesaUMOJFJ9eE0WdbbUbeEV4r4yYFxheb6V
- J1LepGABAcAtxf/wDaGIkhQr9E8ybR0i39TRw3Jv2Wp+/q7LJmpqMF72PWZ6gh8FH2YjuQPD3j1
- d4=
-X-Received: by 2002:a05:600c:8217:b0:490:51e9:deba with SMTP id
- 5b1f17b1804b1-49051e9e233mr147714375e9.27.1779708805180; 
- Mon, 25 May 2026 04:33:25 -0700 (PDT)
+ bh=VZOTjfdvVUoAxPEDBuME1CuF9RE2uhmL8jaSYcYhLV4=;
+ b=hpnbq30f9/euevIa7MNSyxiGrNA/iffCpuYvX6cjG3Y89C0zQT2hXQ2pIxcbsovg/Y
+ hX8VpY8NFH3KUsBQ7mHx5+Tjw1heR+PyuXJEi2IzTiod2nCnvwieevnyvHLqqAvvF93a
+ nEB4gI+dGLIMuzjOvhCJIyHpuHB7Z8u9+Upd2xQ3dxP1Gzydxwfv6pFwm4I+Ga4ZfyAU
+ 6lrUEvfU3nrJ5mP25vq+ySNxReQT7QibMba88xwcFOm1zT8dj0cKIn4jZNxeQx5LXdKG
+ vO1lpjJAzIVn4Yg7KAjXYu1bg8KbTPrOfcWOJX2xYc0o/G3SZ7KTtd4ZvPf7LP70YX1n
+ 1lyw==
+X-Gm-Message-State: AOJu0Yww4jk8IYmkiOpiUkugFF/K+3gPKhUziFWq2kev6LCpOXDMgxdy
+ bfPB0v155RDCuENBW5/1bKaQXEfHzWBL5h0u3D3DmgObccTNP6TQ1z5OPeasVw==
+X-Gm-Gg: Acq92OF2y3ssdfyHK97aHmfIr+Rp1A2ZOgbHMPUPV4TZ7DmVBLmD1M8p7aJXdwgUlyv
+ c6we7bunePKk+O2L7C8NhqgBk2NI6yK7sGuN0O6/Si2vxGXhAp5sh+XOc+juGW1zhybzFend+Xx
+ 33jh6oLHEUPdomavTXVL6KO4+QUKavSCX5c8SYxr5l0G6X74cOcGg2+pu1iKi4CHC0njm81y/e9
+ RsLi/iGwc/+PI83dGwUu3Ojabp17ILb2mXFP6TMMAzPYrnns8yRuHevpu8bDddt+2XJqJbZ70ey
+ cGsT+VRdvGx+ynXSvWe2bs1KZ7BgnhLwZPQixGJJgR/90GcVmqgp4hK7HaCzpPZHBpXQ84d2V6g
+ pE1qKY/tczlHBjyMCB5OoZGMJb1sai854aa8hq9ztyIhtCBNerNrfSGU6v3V6HWKs7agkQ+r9JH
+ eV1/RdT9qtl5GadL3tnINSg7aKOOy0aQMU6SKYDKM0bWeEUvg5tJUOVRxjYYxwo7Zb
+X-Received: by 2002:a05:600c:8485:b0:490:5074:651e with SMTP id
+ 5b1f17b1804b1-4905074659bmr151264905e9.25.1779708806028; 
+ Mon, 25 May 2026 04:33:26 -0700 (PDT)
 Received: from Timur-Hyperion.home (54001290.dsl.pool.telekom.hu.
  [84.0.18.144]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-49045284855sm241047845e9.0.2026.05.25.04.33.24
+ 5b1f17b1804b1-49045284855sm241047845e9.0.2026.05.25.04.33.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 25 May 2026 04:33:24 -0700 (PDT)
+ Mon, 25 May 2026 04:33:25 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  christian.koenig@amd.com, Natalie Vock <natalie.vock@gmx.de>,
@@ -73,10 +72,10 @@ To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  John Olender <john.olender@gmail.com>, Liu Leo <Leo.Liu@amd.com>,
  Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 2/4] drm/amdgpu: Fix amdgpu_bo_move() when old_mem and new_mem
- are both GTT
-Date: Mon, 25 May 2026 13:33:18 +0200
-Message-ID: <20260525113321.17953-3-timur.kristof@gmail.com>
+Subject: [PATCH 3/4] drm/amdgpu/uvd: Place VCPU BO only in VRAM for UVD 4.x
+ and older
+Date: Mon, 25 May 2026 13:33:19 +0200
+Message-ID: <20260525113321.17953-4-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260525113321.17953-1-timur.kristof@gmail.com>
 References: <20260525113321.17953-1-timur.kristof@gmail.com>
@@ -126,56 +125,66 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: DA5DF5C9F49
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 75D615C9F57
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The UVD code relies on GTT to GTT moves in order to ensure
-that its BOs don't cross 256M segments.
+These UVD versions don't fully support GPUVM and are only
+validated to work when their VCPU BO is placed in VRAM.
 
-Fixes: bfe5e585b44f ("drm/ttm: move last binding into the drivers.")
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 6c6ab4dd6ea9..f80371bc74d7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -515,6 +515,15 @@ static int amdgpu_bo_move(struct ttm_buffer_object *bo, bool evict,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
+index 3a3bc0d370fa..1e59ca924abe 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
+@@ -188,6 +188,7 @@ int amdgpu_uvd_sw_init(struct amdgpu_device *adev)
+ 	const struct common_firmware_header *hdr;
+ 	unsigned int family_id;
+ 	int i, j, r;
++	u32 vcpu_bo_domain;
  
- 	if (new_mem->mem_type == TTM_PL_TT ||
- 	    new_mem->mem_type == AMDGPU_PL_PREEMPT) {
-+		if (old_mem && (old_mem->mem_type == TTM_PL_TT ||
-+				old_mem->mem_type == AMDGPU_PL_PREEMPT)) {
-+			r = ttm_bo_wait_ctx(bo, ctx);
-+			if (r)
-+				return r;
+ 	INIT_DELAYED_WORK(&adev->uvd.idle_work, amdgpu_uvd_idle_work_handler);
+ 
+@@ -319,12 +320,20 @@ int amdgpu_uvd_sw_init(struct amdgpu_device *adev)
+ 	if (adev->firmware.load_type != AMDGPU_FW_LOAD_PSP)
+ 		bo_size += AMDGPU_GPU_PAGE_ALIGN(le32_to_cpu(hdr->ucode_size_bytes) + 8);
+ 
++	/* UVD 5.0 and newer HW can use 64 bit addressing. */
++	adev->uvd.address_64_bit =
++		!amdgpu_device_ip_block_version_cmp(adev, AMD_IP_BLOCK_TYPE_UVD, 5, 0);
 +
-+			amdgpu_ttm_backend_unbind(bo->bdev, bo->ttm);
-+		}
++	vcpu_bo_domain = AMDGPU_GEM_DOMAIN_VRAM;
++	if (adev->uvd.address_64_bit)
++		vcpu_bo_domain |= AMDGPU_GEM_DOMAIN_GTT;
 +
- 		r = amdgpu_ttm_backend_bind(bo->bdev, bo->ttm, new_mem);
- 		if (r)
- 			return r;
-@@ -549,6 +558,15 @@ static int amdgpu_bo_move(struct ttm_buffer_object *bo, bool evict,
- 		ttm_bo_assign_mem(bo, new_mem);
- 		return 0;
+ 	for (j = 0; j < adev->uvd.num_uvd_inst; j++) {
+ 		if (adev->uvd.harvest_config & (1 << j))
+ 			continue;
++
+ 		r = amdgpu_bo_create_kernel(adev, bo_size, PAGE_SIZE,
+-					    AMDGPU_GEM_DOMAIN_VRAM |
+-					    AMDGPU_GEM_DOMAIN_GTT,
++					    vcpu_bo_domain,
+ 					    &adev->uvd.inst[j].vcpu_bo,
+ 					    &adev->uvd.inst[j].gpu_addr,
+ 					    &adev->uvd.inst[j].cpu_addr);
+@@ -339,10 +348,6 @@ int amdgpu_uvd_sw_init(struct amdgpu_device *adev)
+ 		adev->uvd.filp[i] = NULL;
  	}
-+	if ((old_mem->mem_type == TTM_PL_TT ||
-+	     old_mem->mem_type == AMDGPU_PL_PREEMPT) &&
-+	    (new_mem->mem_type == TTM_PL_TT ||
-+	     new_mem->mem_type == AMDGPU_PL_PREEMPT)) {
-+		amdgpu_bo_move_notify(bo, evict, new_mem);
-+		ttm_resource_free(bo, &bo->resource);
-+		ttm_bo_assign_mem(bo, new_mem);
-+		return 0;
-+	}
  
- 	if (old_mem->mem_type == AMDGPU_PL_GDS ||
- 	    old_mem->mem_type == AMDGPU_PL_GWS ||
+-	/* from uvd v5.0 HW addressing capacity increased to 64 bits */
+-	if (!amdgpu_device_ip_block_version_cmp(adev, AMD_IP_BLOCK_TYPE_UVD, 5, 0))
+-		adev->uvd.address_64_bit = true;
+-
+ 	r = amdgpu_uvd_create_msg_bo_helper(adev, 128 << 10, &adev->uvd.ib_bo);
+ 	if (r)
+ 		return r;
 -- 
 2.54.0
 
