@@ -2,133 +2,100 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QLtFBfyHFWpXWQcAu9opvQ
+	id UEs7OG6eFWr9WgcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 13:46:04 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 15:21:50 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 352605D5185
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 13:46:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 567CB5D651C
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 15:21:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED5DE10E151;
-	Tue, 26 May 2026 11:46:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F87810E47E;
+	Tue, 26 May 2026 13:21:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="2IBxsyyE";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="omGoC19D";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012047.outbound.protection.outlook.com [52.101.48.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C563510E151
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 May 2026 11:45:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Wa0z3HNvqakIF0FBUGRNdbpKEcct3RQuRZtyC8UzV3Xh/3fKtDLpbXky9YkLqTAdyUKRBemsjzWsb32GM6KYk7c8RocWcf5fH2hEWkCnqPQTkwBswzuAcAZ0cGvLkEFz602fwfg5D//44zGHFMiYpm0UOB4bljfpyo9Ank42kzgy1IfVERp9aLEt70dOycPTsBXuMd7nnjCp5EMotF2AsS3adxTSROUiHwaJAyZ0VcUFeFITDOOpsYJrdi8Ww8rGV96EFOpHLh1Pds7KYsdIPiRE7T5Q6oTt7CnM4A3Sty6sJfNMtbq16yf03ERpf9k01GG+XESm4KJ88wpxLoZf1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qT4zAa4AFhbV6X0zyrjvfkMKrZ4Fe2uxk+m5D3/xxac=;
- b=dnXizD3l6xK8Ib9sZyS2ipzjOJlaqKsJHsOZ5krYtrklY7+ebBEnJ4UZ+3MZucG1lZYt+DM/7B75Gt+Msmi4WvrIkmeXqPPMd2Sq6ZaLzlAv1QoMvYLWorlMa7loAfzOdZIuPwejchGsHorbQAr2GxF7m4cSBwDkxts2vOGAkhujB4i7J3VELiyukxp6c4y6og4DsE9RFSexMZoTcDlSMnt5DEGpjai8uEeqR3vyu3NMCrUmip3T7h1SRC2yoV/bDh+ILHdNYZPusgrEWJFn6FlROGsAkwqgqstHgpPJtBO6MXMYOkcYZku44MBkxwwgVxE1xYeCmw50aQqeS3bwXA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qT4zAa4AFhbV6X0zyrjvfkMKrZ4Fe2uxk+m5D3/xxac=;
- b=2IBxsyyEiIRtqogA/fI4jtvGAdiJZrUzHpgR52FweiNZ0porG1M5TwgYtn0RYvb4NYbmMRN+i4jXZo16kvV4o0iRRzNAHgLO5FQYZ1iJ/TTWNr5wDE5NsF1o5a+MJwievHDRiguuNZsJMPvpJ9Y964xf0sJWfvg4mbXlIFRGgD0=
-Received: from IA0PR12MB8895.namprd12.prod.outlook.com (2603:10b6:208:491::5)
- by DS4PR12MB9659.namprd12.prod.outlook.com (2603:10b6:8:27f::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.17; Tue, 26 May
- 2026 11:45:53 +0000
-Received: from IA0PR12MB8895.namprd12.prod.outlook.com
- ([fe80::904a:1cfc:7595:522]) by IA0PR12MB8895.namprd12.prod.outlook.com
- ([fe80::904a:1cfc:7595:522%5]) with mapi id 15.21.0048.016; Tue, 26 May 2026
- 11:45:52 +0000
-From: "Hosur, Priya" <Priya.Hosur@amd.com>
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Lazar,
- Lijo" <Lijo.Lazar@amd.com>, "Deucher, Alexander" <Alexander.Deucher@amd.com>, 
- "Koenig, Christian" <Christian.Koenig@amd.com>, "Limonciello, Mario"
- <Mario.Limonciello@amd.com>, "Feng, Kenneth" <Kenneth.Feng@amd.com>
-CC: "Vishwakarma, Pratik" <Pratik.Vishwakarma@amd.com>, "Gopalakrishnan,
- Veerabadhran (Veera)" <Veerabadhran.Gopalakrishnan@amd.com>
-Subject: RE: [PATCH 1/1] drm/amd/pm: smu_v14_0_0: use SoftMin for gfxclk in
- set_soft_freq_limited_range
-Thread-Topic: [PATCH 1/1] drm/amd/pm: smu_v14_0_0: use SoftMin for gfxclk in
- set_soft_freq_limited_range
-Thread-Index: AQHc3ffYwY2ypZgtJUyvUNJ6nKyG07YgStbQgAAAIsA=
-Date: Tue, 26 May 2026 11:45:52 +0000
-Message-ID: <IA0PR12MB88954E0603AE0591C9FA40FEF30B2@IA0PR12MB8895.namprd12.prod.outlook.com>
+Received: from mail-dy1-f169.google.com (mail-dy1-f169.google.com
+ [74.125.82.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BE9F10E47E
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 May 2026 13:21:47 +0000 (UTC)
+Received: by mail-dy1-f169.google.com with SMTP id
+ 5a478bee46e88-2ee34d7e55aso1246699eec.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 May 2026 06:21:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779801706; cv=none;
+ d=google.com; s=arc-20240605;
+ b=aQrGngqjBd3+dNRXJMm/xJdxgcBHxkzXHmUVCgWdlqd2THrUxnq9ccPRVEawe4FVsc
+ ZhDmfhGoklefrkHeyfdlQbRtntk7747OwqFfS/EJRbOhWJbTXoqwn7uepfVhLZPAFgxu
+ 1rg0vp/IGeIEL1vAiKgLlf0rq2e1BDAxxpkH5TGUesEVl0RNJveJbsHVv/dc9I3OTsw2
+ 8EAOceHWgTnvyYn0GUUdPS3Irz6v6eaDr8SSPLzyDhHDo5pHDAWam5NZ+QiaIgmLJ7gY
+ vvkozOX2C889HUwyrmc3Tchk39QKsCcZdhhJcvqA+u9wS1HGTv7joKnWAsCfzRFtA+yj
+ wWLw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=1DDR2f2wJkv2bljojbmb+TpobDJar8In8RZxgC4nj8c=;
+ fh=0+NNu0JCv8eYPVNsNn5QzAjMYsa/uOfuT9mrBHkU1I0=;
+ b=OsvYu9PUnKyiGeVTupcrPKz6E5QJ96odeBtVBBy28C1ANtenE7xgfEPyY3ds6bImy8
+ 3r3G/gYIxfTfowXj29Gv0ZP75hF0X6fEvOtVL23bRFCkqVZw0u7XKVRhjqj2F/rkkqHX
+ ezPG9FHIHxextTCZK2qmY+x2O9R9xgWIOXEAOXuATv3EpF/PESdTF6MV+RMDm8fut4SV
+ 3nKcWAzC73KoyDDhc/Bs+szMtNeaBctHT7vJX4FIOJgP9H5RJVZ9uFNwrmi8nPH1S9VO
+ E+bDD6S1yXn6WpJjqUUFCL+FwmmGOxejh804jTWuJdDEWIU1ULIVufWdkJeuVPlWVXcS
+ sxuA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1779801706; x=1780406506; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=1DDR2f2wJkv2bljojbmb+TpobDJar8In8RZxgC4nj8c=;
+ b=omGoC19Do2Jo5gtP/WY9WNtOB2EnbhK2Um+73LvX76DiYpWcrPt/yHJkohX9pxen30
+ tjWV48oHfvbWzRrahjuNnH8NL5A1wLZgS6OV+S6TFnzRa1PrDMTRRP/m1wJ8vEn0FzbN
+ RTJ7G2BKHJHWEQfstsXtdFXP2FghGyoN9EeHwlE4aE/gSevsLFqhDkHLzSVs+WZd24dA
+ TivGMqmx30a3LSmLto84npm30OtHOyKiLMhQ2hgAo521+vfWnschtHCOqkb5Oxb8wgiG
+ 3Bptj3LwRPLxBdKinSltoW2Y6mI8zpVNbRnuLu1VcTlqd/OLplZvC4BcLQMiFEKBfJkz
+ jYdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779801706; x=1780406506;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=1DDR2f2wJkv2bljojbmb+TpobDJar8In8RZxgC4nj8c=;
+ b=XQ0OkoVLPPAwJU70gn7eCZdFVcZWDvesgSYsGjSXxxqB42vgPJ65MSAxyuxUnyffIk
+ pSvDWT2GIaKuR2voOkVLmqKF5pm8rYVgKAUpBhl/GT0q1s2b6LMQnthJa1jTvc7s/YKX
+ h5yClflkZbSW4EI7D+NzaePg9uEnmJkLJQD6SrP6VayWI4OZf5dQ/HeJ9YMrelKEbOFG
+ DAxZvbMCmxBrxhQxFh0sHfq5n47rZnf+HIM/8x5UJVkzkUfO9p3kBfPbo+jv8+BKNW6+
+ 9XUQ0pUr24MSsoIWWIkzcp0wU3xmk/tXeRAqngK0Oh2LRbP76MdNF44hY2QUCgowMaub
+ OR6g==
+X-Gm-Message-State: AOJu0YzCAwSRawZRuifU9PQMX4Y4FykbqZsGEj44ZNG9odK0f/QC0w3Y
+ zDrWbP/fNJ8OPsZ9H8gCFXdqIh65WGBFIbe99dXus7Z0s95XyETE2/Y+ePGOQkVA4rUiJ4C1BFm
+ 5cxuOw751LeZFlInUVX1bBtqsC3ULtp4=
+X-Gm-Gg: Acq92OHk+4Bkg/u571Vgwu0HG5oRz1swAdVaGzhR8v0xOLndgWcRqbaE+iku1/c1OaS
+ FbEBqGp57xRELcpov5Fod1s1EdxmBTOJdJ8cBtjuZurTsI1diMOXC3tRda3h3lpNZyfhGaDXfLC
+ 04mHZnNDyaWWx+QC4zsbeG/+5RB9wTHggfsd1MHzCO9LoRCdL9CRbF/hd2RfnqN6X+zszPQDX2Q
+ YBOEvP5qrpqVMvnJziiI3pkU7jLDl6MAUivPVOf6aU7GZ6dEpFq79fvmR1xcGBqynelKeqNd/gJ
+ Ur1AVkbMYPPrTa6LUykkC4M5tey5H9d6gQyII0RV43NOvOFD2lF2ru06CBP56Sv/G8vK7A==
+X-Received: by 2002:a05:7022:f90:b0:132:1e00:de4f with SMTP id
+ a92af1059eb24-1365f6f5a09mr2982765c88.1.1779801706326; Tue, 26 May 2026
+ 06:21:46 -0700 (PDT)
+MIME-Version: 1.0
 References: <20260507080137.841442-1-Priya.Hosur@amd.com>
  <20260507080137.841442-2-Priya.Hosur@amd.com>
- <DS2PR12MB977328897A55E01978F41CBB8E0B2@DS2PR12MB9773.namprd12.prod.outlook.com>
-In-Reply-To: <DS2PR12MB977328897A55E01978F41CBB8E0B2@DS2PR12MB9773.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-05-26T11:32:51.0000000Z;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD General
- v26; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=3;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA0PR12MB8895:EE_|DS4PR12MB9659:EE_
-x-ms-office365-filtering-correlation-id: 8d40a055-cddd-48e4-2049-08debb1c5716
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|11063799006|22082099003|3023799007|56012099003|18002099003|4143699003|921020|38070700021;
-x-microsoft-antispam-message-info: DG807pUDFIbmT2ozYM5xrDCjWdK4vKFBOYZbl4DJJyc8M4k3Lzz7Ppr0zqqvPzYyIm8oBA2aGqxOol289BH/R14echCX3Lj7xTJufv+wVi0xXsTqgVxQjQkxQJLznGFNvp3U0GBNWrnDmn9e7nDKh0Nz/Sk9B5c99GserPbTFN/3xfmUwspkOaADAqThUm9mmHreuDTbO8aCWDzMNLEcIX9C1NFA/rEG3aC5s74qBh4ARAYt46sp1JOVxlv+GEbieI18AZFaiq06aUWB6twjbDLXxR49lSlq11jgPBJKSlGu6Vx4EjlU9ZUNIkNDCUTFooC59TLXyso9c5Y/2RV6ohZDdNQN0dg+HHKsGL28t7+isJzyHOuGzpLA5+E84SxKXJXlfpsWDseN2CeIsNVOxeSJGsexPhNipjI7Nxqb1ATMNTvMNNHP0cAwL1+7ikFK4jC5j45G9FPAlW/9H8p3i555tcJOAHoLBDOzzveiA18UBXLDpWjzH4lb822vKy/RMxl7z01ZX1/0TQh29yEwMwzjT8RcPHY+annUJYuDI4cWzKmRRrMoRBPlEMx0eNMKWhtyKsPm68CZbBPboMV8R7xVquTPDirk+LAvxrEU8dzU/6elsw6U9x8Ipfsz8p9ZVsHPjPPsNt1Xy285zMtqnVEh/WdkkwcZqcw3GaK0jav1IG0zOaFS5l9FgD/udrsODm9CPm0ECEFhlje8UJ4paFKyDAMc2rMUxB7IerELFM93D+1x4syF7RVl/N/VXGsO0DYD6WyuY+zB8EN1q7nRIg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR12MB8895.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(11063799006)(22082099003)(3023799007)(56012099003)(18002099003)(4143699003)(921020)(38070700021);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?1nkHPa2ba6W8P/nwEzPS7jqifgZD8wtvVzpVq35jEPdzU2PK0F0wPf8TLjlp?=
- =?us-ascii?Q?MHIUUxO3j50XJHWplq8YwvE4IzuqTVYljPWKQgXbUlULNzlZjnISlV9AcodT?=
- =?us-ascii?Q?/UdlTjnIhSpUZUDXJDWOnYb9X/b8KcrHDLXcq3Q0WZtATgfkvCrNgDXIM4C4?=
- =?us-ascii?Q?gynPk7ytqITg/FUn63HB/O/A8btP2+vnJ83URbzDDRRXApvtI79lxeWjRqGM?=
- =?us-ascii?Q?ocKDV1q2Tytftbc9Q+X/r/8W5fA9JtidFIrv1BP/NA9E+JlcsRn+KI3oxtl0?=
- =?us-ascii?Q?wpOIuJfGU71qODmXFPy+yXrFO92xvAVaeK3ooMycrXUIp+8nOKlBVWvZcaLM?=
- =?us-ascii?Q?Ge2KHm+UnMiW9BodSk/V1+fg7c8ipQHo/m4XARIQx+mkTLec/M/nq/N6WPIv?=
- =?us-ascii?Q?9sx3KZm24eYpY0F+WSVwmmQMJvRsGInKxehok/Je0CJ7F0PpKBBnCAOzBuEB?=
- =?us-ascii?Q?kYVCtqaIK2IigxdKn0R50ZIBspflQJsRiB2bJ62GF6p6CzqMOnaAKhGHlDZK?=
- =?us-ascii?Q?w8WxEtc5lnS4j8GIzgmi0lr4dp6GVV0/GqG7t7uEFKp/KTRXi7GoaBER3iyM?=
- =?us-ascii?Q?FF8V48clSMmsXbVXvLyGDtVVRiPbEKjTgvyYyOoo1X1/QoXusetn6dAsmxIC?=
- =?us-ascii?Q?oqxSFtptHALLXxEnIYdRBpJ6rEnmNU/WQQuVZVOIajTjnATeyxFkmUipuxpV?=
- =?us-ascii?Q?cOPG25O3rFv6Vjo0o66nH9VhpMbA+9JgZ2fa48rQ88iukwAE02bmtYT3gwzP?=
- =?us-ascii?Q?HORzCZolnvu47J47YR4ZdkOc135SQ85tMjGbzDHw1iqlncVCnbwaA/UHnqe1?=
- =?us-ascii?Q?SaW0KH7+TjTQ6GWNgvH4TaGX6L0KcLEctoLT96x2Mna6/MYHHNhjyQ3udocy?=
- =?us-ascii?Q?dLNuqL6mhyhDru9U0PhqtE7c7w2oL6I8+7F5UMhxh0YuQxfId4GHSRjxrS3/?=
- =?us-ascii?Q?OU4aT4AAdJyEaVWvfK11A91OmQnDx5UzkfgQjmwNvNS168sJapBixQOlrwuC?=
- =?us-ascii?Q?jW1Sy0BYYNONwU+u4EzomX9DEOPqqoFlPc06U+tTlstfXdTvIOjUCr2fng+y?=
- =?us-ascii?Q?Ub/kZBj2AfVm2ABK34l1kdkbMBDAOlI7Y5M4HaFVEYtddJv3A8R+1gINnWk2?=
- =?us-ascii?Q?7VRnzluQZU6jFkXvRB7blxlzFPPzafVw5omaQSuaYUVrQEJ2Qi3rrS/oEA68?=
- =?us-ascii?Q?+tDDZcRoFtdO8GIlRS13NCawUxSmsVfBPqe29mHwA0E6vFrTCdXHrJrzX/Tg?=
- =?us-ascii?Q?PawkoPDMfeGGDmfThor+l7E+GwUjch0qh4B4kgBNeHqmGXNzx0JB2T8OUMv8?=
- =?us-ascii?Q?xWHhKvawFXcBRud4hYKZ2NN0FfY7e3xz4+06pkthJs5vaM5zTpDZ7/Ygnwgl?=
- =?us-ascii?Q?1DftmYCp8l3QHIHLX5g2wxjW1XDttXs42byl8DuD4OpDXmdNwnh6h25S+PaU?=
- =?us-ascii?Q?LpdGC16qHatQkjKg+jyrxBdV3hkO+JHb7ZEccIcEoUby9Ys9GIQTDTmsj2sp?=
- =?us-ascii?Q?/U72ltfaBCZlN5x/KKLb3TX5SOnSjZy0nnrGs+WgUzEiV+knOPfS9pHIHyrk?=
- =?us-ascii?Q?37Qxbd+Ekx3E7wRklKLmfazw+dPuInb9Sd8j3aVyZunymm0Bv0a4WZqS+yOe?=
- =?us-ascii?Q?hW6MAMrvjZiz/jNQKGso0LGIDz6ff99np896tR+ukPNZiRLgLVBXOFkJhd9N?=
- =?us-ascii?Q?Rp5rRGyEs27ouEqPT0oI0Wditn7zEZROqvXTQmxQ6llRdtnj?=
-Content-Type: text/plain; charset="us-ascii"
+In-Reply-To: <20260507080137.841442-2-Priya.Hosur@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 26 May 2026 09:21:35 -0400
+X-Gm-Features: AVHnY4LTACR6iAn57W0wISsgRwuSDEAGV0RHM8aJlyxaDdX4GF-ykmRoYcnTDzU
+Message-ID: <CADnq5_OmROsjeOQa89TDM0oeM4Qa-ikKa7JPfwzOiK=DwmKiQA@mail.gmail.com>
+Subject: Re: [PATCH 1/1] drm/amd/pm: smu_v14_0_0: use SoftMin for gfxclk in
+ set_soft_freq_limited_range
+To: Priya Hosur <Priya.Hosur@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, lijo.lazar@amd.com, 
+ alexander.deucher@amd.com, christian.koenig@amd.com, 
+ Pratik.Vishwakarma@amd.com, Veerabadhran.Gopalakrishnan@amd.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR12MB8895.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d40a055-cddd-48e4-2049-08debb1c5716
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 May 2026 11:45:52.7146 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rJN3L4Ndy3TXAu/kGJClaDWx5iS4K0DhVMGnntbPsFldZ+W+c2Z2FO59eOggpvN1o+yfMZxrJZkDCQAWNqdmmQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB9659
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,95 +109,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[amd.com:+];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Priya.Hosur@amd.com,m:lijo.lazar@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:Pratik.Vishwakarma@amd.com,m:Veerabadhran.Gopalakrishnan@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[Priya.Hosur@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	REDIRECTOR_URL(0.00)[aka.ms];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: 352605D5185
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 567CB5D651C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-AMD General
+On Thu, May 7, 2026 at 4:19=E2=80=AFAM Priya Hosur <Priya.Hosur@amd.com> wr=
+ote:
+>
+> In smu_v14_0_0_set_soft_freq_limited_range(), the gfxclk floor is
+> programmed via SetHardMinGfxClk together with SetSoftMaxGfxClk. Under
+> power_dpm_force_performance_level=3Dhigh this pins HardMin to peak gfxclk=
+.
+>
+> In PMFW arbitration HardMin has higher priority than SoftMax, so the
+> firmware thermal/PPT throttler cannot clamp gfxclk via SoftMax once
+> HardMin is set to peak. Replace SetHardMinGfxClk with SetSoftMinGfxclk
+> so the driver still requests peak performance but the firmware
+> throttler retains the ability to clamp gfxclk under thermal/PPT
+> pressure. SoftMax handling is unchanged and no other clock domains
+> are affected.
+>
+> Signed-off-by: Priya Hosur <Priya.Hosur@amd.com>
 
-Hi Team
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-Gentle reminder regarding the review of the patch shared earlier.
-
-Thanks and Regards
-Priya Hosur
-
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Priya Ho=
-sur
-Sent: Thursday, May 7, 2026 1:32 PM
-To: amd-gfx@lists.freedesktop.org; Lazar, Lijo <Lijo.Lazar@amd.com>; Deuche=
-r, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian <Christian.Koen=
-ig@amd.com>
-Cc: Vishwakarma, Pratik <Pratik.Vishwakarma@amd.com>; Gopalakrishnan, Veera=
-badhran (Veera) <Veerabadhran.Gopalakrishnan@amd.com>
-Subject: [PATCH 1/1] drm/amd/pm: smu_v14_0_0: use SoftMin for gfxclk in set=
-_soft_freq_limited_range
-
-[Some people who received this message don't often get email from priya.hos=
-ur@amd.com. Learn why this is important at https://aka.ms/LearnAboutSenderI=
-dentification ]
-
-In smu_v14_0_0_set_soft_freq_limited_range(), the gfxclk floor is programme=
-d via SetHardMinGfxClk together with SetSoftMaxGfxClk. Under power_dpm_forc=
-e_performance_level=3Dhigh this pins HardMin to peak gfxclk.
-
-In PMFW arbitration HardMin has higher priority than SoftMax, so the firmwa=
-re thermal/PPT throttler cannot clamp gfxclk via SoftMax once HardMin is se=
-t to peak. Replace SetHardMinGfxClk with SetSoftMinGfxclk so the driver sti=
-ll requests peak performance but the firmware throttler retains the ability=
- to clamp gfxclk under thermal/PPT pressure. SoftMax handling is unchanged =
-and no other clock domains are affected.
-
-Signed-off-by: Priya Hosur <Priya.Hosur@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c b/drivers=
-/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c
-index c76b1f07885e..2fe006de927a 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c
-@@ -1231,7 +1231,8 @@ static int smu_v14_0_0_set_soft_freq_limited_range(st=
-ruct smu_context *smu,
-        switch (clk_type) {
-        case SMU_GFXCLK:
-        case SMU_SCLK:
--               msg_set_min =3D SMU_MSG_SetHardMinGfxClk;
-+               /* SoftMin lets PMFW throttle gfxclk; HardMin would overrid=
-e SoftMax. */
-+               msg_set_min =3D SMU_MSG_SetSoftMinGfxclk;
-                msg_set_max =3D SMU_MSG_SetSoftMaxGfxClk;
-                break;
-        case SMU_FCLK:
---
-2.43.0
-
-
+> ---
+>  drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c b/drive=
+rs/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c
+> index c76b1f07885e..2fe006de927a 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c
+> @@ -1231,7 +1231,8 @@ static int smu_v14_0_0_set_soft_freq_limited_range(=
+struct smu_context *smu,
+>         switch (clk_type) {
+>         case SMU_GFXCLK:
+>         case SMU_SCLK:
+> -               msg_set_min =3D SMU_MSG_SetHardMinGfxClk;
+> +               /* SoftMin lets PMFW throttle gfxclk; HardMin would overr=
+ide SoftMax. */
+> +               msg_set_min =3D SMU_MSG_SetSoftMinGfxclk;
+>                 msg_set_max =3D SMU_MSG_SetSoftMaxGfxClk;
+>                 break;
+>         case SMU_FCLK:
+> --
+> 2.43.0
+>
