@@ -2,51 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CIZ6BjeqFWqJXAcAu9opvQ
+	id 0A76JjmqFWqJXAcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 16:12:07 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 16:12:09 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCAC05D72FA
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 16:12:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E7E05D7302
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 16:12:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB5A910E671;
-	Tue, 26 May 2026 14:12:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE5FD10E67C;
+	Tue, 26 May 2026 14:12:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZqkSbIdu";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="lbP8FOpI";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013018.outbound.protection.outlook.com
- [40.93.201.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEB6610E671
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 May 2026 14:12:02 +0000 (UTC)
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012018.outbound.protection.outlook.com [52.101.53.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8D7E10E66D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 May 2026 14:11:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kJUERaeJpWBPXS+1zM1wJ+lWr05vW642RF/ZXxELmryHkpWNMIrB2HXq6C5DzfLLthkccBAS4XSWadPgmkRneB/tKZBVCz3seTuOwB8Khsk8DyxMPG860SEApPzuymumPhAlQlEFWkWsgpMjXcxQptHDgMPhcphuCAHpf2DoMIglwjwJWxFwmx7wS9Ty24rad4NujTdoCzJmqpsIhDMUtH62VihpvyOYgxWWqWyv+JNOaw0ZSxLNfaXT2I42uhZIRnTGCbbvpUZX8/ExqlnaXg/04DP0x1/TgBqwllQHN6UjNwq/KxE+oTh2uoI+7UFfplOFRWXhlVtSKEUL4WXpyQ==
+ b=hk6jB6YBMIq81c40loYRRcn616LQEZK5DJ3vpMlre8tceHermsEF3KcdwujwR8+QndsKoAaI2QDdCWLicXixG7VHC3VvHp4diiuP6SjtfkwiCresOGtsLlh/yeoV9pCh5nwi+dGcrm28i3vLnaafB42KmUeXQHrryqRRrblaMz4aQb/QOwWpOWjyoofqxvS4AzDp6wPkveinQ7UtdlSDrVm38G6s4eEd6bXxnGx08ul+c9TP/XXmmAXgAPJQq83b/DRnkN7vAICMerbp+4bHaBifvS5FMkX4Ly2uDgjtpgjW/OshLbm2k8SKdyHLOOc95QKE58OHXdoxt9YK+Xn+Fg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e2Zw/EMlbvTBX6GSv0H1QHsJme23lSHqx6C0L/HDvWs=;
- b=ljMZKsZE5G1u101auvyFEiuxLBUxP4hSijRHzkn9PQbD3yupChSxiRhvX7C2Q/8GRQgFHnslFpz8kOLEc6FmW5ikKnwN/UeO4YEBgiN5snXx0nkapyqtSg3gbkOGAiMtn8SOx9zfMN/0Sv0Di9mPib0SxrVP99oKAkBofPgllnPLsrvYTIaScTt5PrN7cAhy7b7+r/mvyFJH9r128GypqN53ymHeXCoMM5R4993VN26l5mBDn1H8tFLeF7j0/En7NANj+OVDHx2Rkk4GMIkpxRwJ/UMYNspvChTOubQo/acF2EjYdNBsrs6MhmIzCXRrvSLviBskGgSTJ263FFExGQ==
+ bh=gesbGdeR6Wv6XCfb5j0x5HoEFnPVFZmHp/J0Zcq+f+g=;
+ b=QPVH6wvDWrN+UOvwwuXcVs9shzqpnWjUn3seQrK/cu89mv4I6+GgVOZl+w4trczf6+uFjhLAZKTLvSWFBuKB8PwUQJNITg0nRfT8YFYgKzBXeLJEuLtojxpp1GkxEb1Qsj/wEikvH+l9tvvkCSCxy9oOrGnSFlUMDQD6Tv+TmxUPsaZ6gNxrGTRTe6upsyYi9fKQhdtElmsY7Oeh4ze7CqDBAK0BYllibXfcXZnp0R56+9//Aa06CT2Un5eNF03Fw8lORo8aYMqz47ZQmRaD/uCyn0BXJDBBvEAbMyFhwE4qlnGGlA2xFl9+78wxsKHMNh93UvpftGeHJ76IYxHRvg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e2Zw/EMlbvTBX6GSv0H1QHsJme23lSHqx6C0L/HDvWs=;
- b=ZqkSbIdux3IclFiG1oQQKNyKM+pJKTuW70Ckoyo7ncFrPFCg81NC0sSqEz93n7Yry+e4KZbzd6QhmyuBrvv3XK5QE+7EZL9UUs4lCy7lFckw7W79qUJlwpkRCkIQxB6ekL/FMw5drg5tqcWkEV9O48PtcP5yUItMFYS34SV8KXE=
-Received: from BN9PR03CA0690.namprd03.prod.outlook.com (2603:10b6:408:10e::35)
- by CH3PR12MB9196.namprd12.prod.outlook.com (2603:10b6:610:197::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.20; Tue, 26 May
+ bh=gesbGdeR6Wv6XCfb5j0x5HoEFnPVFZmHp/J0Zcq+f+g=;
+ b=lbP8FOpIiBJ0esEdD+uqWnn9pwBRNwLTpmQkpTo9ikntv2JbaV7LzX7CUiwtM45kWAehBXNZjqcJIrBcwwnTZm8UsyB75jb8EroY60AYAXQcCGK19/AWLd4mR/6o0Nep2SFYGREbq9GBp1m++GcicF8I5L5yI9OrlsWSRZeNqwY=
+Received: from BN9PR03CA0685.namprd03.prod.outlook.com (2603:10b6:408:10e::30)
+ by DS7PR12MB6264.namprd12.prod.outlook.com (2603:10b6:8:94::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.11; Tue, 26 May
  2026 14:11:55 +0000
 Received: from BN3PEPF0000B078.namprd04.prod.outlook.com
- (2603:10b6:408:10e:cafe::82) by BN9PR03CA0690.outlook.office365.com
- (2603:10b6:408:10e::35) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:408:10e:cafe::a3) by BN9PR03CA0685.outlook.office365.com
+ (2603:10b6:408:10e::30) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.12 via Frontend Transport; Tue, 26
- May 2026 14:11:54 +0000
+ May 2026 14:11:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,7 +55,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  BN3PEPF0000B078.mail.protection.outlook.com (10.167.243.123) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.71.7 via Frontend Transport; Tue, 26 May 2026 14:11:54 +0000
+ 15.21.71.7 via Frontend Transport; Tue, 26 May 2026 14:11:55 +0000
 Received: from work-495456.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 26 May
@@ -64,9 +63,10 @@ Received: from work-495456.amd.com (10.180.168.240) by satlexmb07.amd.com
 From: James Zhu <James.Zhu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <alexander.deucher@amd.com>, <Bing.Ma@amd.com>, <jamesz@amd.com>
-Subject: [PATCH v4 04/17] drm/amdgpu: add UAPI to support profiler/SPM
-Date: Tue, 26 May 2026 10:11:16 -0400
-Message-ID: <20260526141129.592886-4-James.Zhu@amd.com>
+Subject: [PATCH v4 05/17] drm/amdgpu: add amdgpu_bo_alloc_gtt_mem and
+ amdgpu_bo_free_gtt_mem
+Date: Tue, 26 May 2026 10:11:17 -0400
+Message-ID: <20260526141129.592886-5-James.Zhu@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260526141129.592886-1-James.Zhu@amd.com>
 References: <20260526141129.592886-1-James.Zhu@amd.com>
@@ -78,29 +78,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B078:EE_|CH3PR12MB9196:EE_
-X-MS-Office365-Filtering-Correlation-Id: d7ab869e-3bf1-47cb-023e-08debb30bdbe
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B078:EE_|DS7PR12MB6264:EE_
+X-MS-Office365-Filtering-Correlation-Id: fa4ec911-9d79-4a00-a00c-08debb30be07
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|376014|36860700016|6133799003|11063799006|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 0KhA4AghrqIoYyd1+E2RoMj0RiolGTxTDgbC0Z7eWL+sawM9SJuMu14tkJWDjPLNZ0nRqTx6abR5TIehTdrG3qVtUtoZzX95DK7erGTIZ0c78EJ34lnUBqpKt672zp60uLs4FIoD7u+/UwmgUnCew2/d1sK48lX5voUE6DyjhI7uHxoMTVRys2uz6fGuCkhPnNmcFdZQtl4IncwjdrTLOtPb7O/9lpaOQvStakdiwnVSyritghXYFwjQoWpN8runxO6zhtjBoLJ6icG/a+BHH7hxvRua+LYxe1OfBAI09aJBnf3x15p4U4WNB/odng4F/5Awk/vmVw9Nwjn0vX1rRczX3WbU5upwSCZt2Bbpaq2rScA0EO96H7Qlr+c6zMihSPkWNwU4ueSUeJK3/MndBjVoBuXi4Vaj5ERcaBFAktsRiGvtaTDU8W4wZ/4s9A+nK89pswhA8kXk7fi4qQJDezwIneNpnTufhyrcUIBw/EMCUvUGJbRho7y/q3ZHEVRLb6PLc8cskqVM2XsF3UCg5MDexseTzxxWAfvM1Qmg5WVzhYBv27z532bBrcciul5WA2JbgSHsm90LI0ccNcw8t48BuTxHrCjwqAo9KbeGaFU1jrVRKF0dntPaxFYN0jekR8pY8sIWzeFJ0BVM6mR6OewHNxZI6mP9T4ZlCbfPJDaCvHCnbQz1Y4IN/6LgpMpzOtHsDFoQ3rFVzRI8GhEBx5YkKR1yvNr3U4Sry/B6v1U=
+ ARA:13230040|82310400026|36860700016|376014|1800799024|6133799003|11063799006|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info: 7rD5uaVCuXb2dwS4X96gYTEhz6SiUGxAi6ONCgaLXdJKUaAGpu0lxiPo9Y+52WPi+Fya/Yjd4AY75VQNScHM8P9peLZfdtQUWpQfa8j6alWW6o+G4WBaG7d0LxhWJje/bT1hO6UoRe9nzQet0UISvvOV2RW9mwP869YG9ohjBghRCALunXbDsd5Hvd/lSsVYhhzvpEuOwRj2uOdLKZE8Al7HmSE+qDpjNQkvKTT44OcEyk81nXTuK7UJShac0QOe9cZ13rBGJ+BS3To/RkM8bp4t93ga1+7nCK7TfoeMoaHlj92JFbjwbXZqUufWyox2VNbq8dO4vGp0PXKWYouecyLrhtPD6Me0Sw0Rp06Ma00fT0lFDImEkPoAV/wA6XMZ2yhDu/AmaM/2acamt9r1jC2UnyYqNFrMuSqC1Y0OjSF2P6jOTgs4Q4ws6/N2dtEiH8ocpMdTrZBSgM2Ve4rtt/r5aL48MIHgxb71FeC6IzbAXgqOSydBWg5Wgr8x3KnGSxpR1KtATESrJ7w1Zrt22AZlRYy48zAiee5lYn6O4oVZL3b7tT52x1G7p5HDZV8dSaiBk87oUiGQGO1ZQMMpITLTK0OCaJTAkuHE/t3rGIKjYl5NGqJaQcthxpupl7I2P6L83y612oyO5XJjqZSzPnbwQp2jB+yvd/Z/3uPGTcS5dXXVdDZAN1ZKdPZnhVjvK5yHuGT1ZMOlwb3EFWQutV6sCrAnUrnGnVfAgnUZvwo=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(6133799003)(11063799006)(22082099003)(56012099003)(18002099003);
+ SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(6133799003)(11063799006)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: ExaGInRseWlsrp4Ni8ec27EpnmrOlN1FreDMg0jZJtiGX2XLw0+uA1hgK5TrDG+ZRxQlwxDBzMxAFuXH07JozgqEKD1PhipABNTYSO7LYuPwj9DyjXm9O6+AXNWTZqgwQDwD2mCCpoBItCWH24RU2Hw1yucdxOwjeRj69nszgDtJJPZpkrZmtgDHeZyiAtuoF61Q/HjczqENkz8YbbHbjp57HCv5WNyvPwmISv9ecFEEhT7e/pIabRE6xPUfB9tTEJ62JZHaQ1TqOJhXuo+owMRH5iCUEPD8Uj3HeeAR0psC5ErPA5U6sNeykS7csd4ybYQI69ejXFtIu+9FpJgTMGPnjD5gdUhzhu/8+IYrPYSphmv9xDUtp3+rxedYOK0Wms0DHgUqgjPd9mDE9+uhfydLwlM7AxsJ7WPRjUr0oHay3vf59jmG6RLoDvlzCCA6
+X-MS-Exchange-AntiSpam-MessageData-0: VBDVPDL7x8hx290fuUvaJHVgJNio2mCUdFB+tme/cMHo4Om30var8W7it8H6PdEXFgdoHpcGEsd3zyrjRTVFloeBoV2ssdFwIH0ViBGBDOwnMmiVURLDAv8271po0SOsBAKI1Vf1fq6xufBm9+28mvfLac5a6r/m1Iy1HLBVeQp04XaQ50LB4LA2vGulMnm2tCzy/kjv+C7ppuaExA6rdd4+C3GwRO+A9PFX7Q6dopuaP+VRhLHJOcfV4UgObyaV3if+zd+uk+a6QtW0VKvMhOwvfcucJL8g5wgo0NupOpZKDPSX4apAQi9BP97NycjXiQigOvVDH+BDNA4oZ0SGLFz7IS/EJEliFjn5e/YuIBm4Nb4bhvl4Tzt0dj6sHM/7GUSdoV570pBXI355KM/V09WMuW2WxJWq2/uWbUN7QEgHC4SSTtjYwYE/S+C4cWRW
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 14:11:54.8932 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d7ab869e-3bf1-47cb-023e-08debb30bdbe
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 14:11:55.3758 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa4ec911-9d79-4a00-a00c-08debb30be07
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B078.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9196
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6264
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,167 +142,173 @@ X-Spamd-Result: default: False [1.19 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	NEURAL_HAM(-0.00)[-1.000];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,amd.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: BCAC05D72FA
+X-Rspamd-Queue-Id: 4E7E05D7302
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-to extend the DRM_AMDGPU_PROFILER ioctl to support Stream Performance
-Monitor (SPM) hardware, which streams GPU performance counter data
-continuously into a ring buffer for offline analysis.
+two helper functions for allocating and freeing kernel-internal
+GTT (Graphics Translation Table) buffer objects, intended for use by
+the SPM ring buffer allocation path.
 
-A new operation AMDGPU_PROFILER_SPM is added to drm_amdgpu_profiler_ops,
-dispatching through the existing drm_amdgpu_profiler_args union via the
-new drm_amdgpu_spm_args member.
+amdgpu_bo_alloc_gtt_mem():
+  Allocates a TTM kernel BO of the requested size in GTT domain,
+  PAGE_SIZE aligned. The bo_ptr_size is set to sizeof(struct amdgpu_bo).
+  After creation the BO is reserved, pinned to GTT, GART-bound via
+  amdgpu_ttm_alloc_gart(), and kernel-mapped via amdgpu_bo_kmap().
+  On success, the caller receives the opaque BO handle (*mem_obj),
+  the GPU virtual address (*gpu_addr), and the kernel virtual address
+  (*cpu_ptr). All intermediate steps are rolled back cleanly on any
+  failure via a chained goto error path.
 
-Three SPM sub-operations are defined in drm_amdgpu_spm_op:
-  AMDGPU_SPM_OP_ACQUIRE (0):
-    Acquires exclusive access to SPM on the caller's XCP partition.
-    Must be called before SET_DEST_BUF. Returns -EBUSY if another
-    process already holds SPM.
+  Two optional flags control BO creation:
+  - mqd_gfx9=true: sets AMDGPU_GEM_CREATE_CP_MQD_GFX9, required for
+    GFX9 MQD-compatible allocations.
+  - is_uswc_mode=true: sets AMDGPU_GEM_CREATE_CPU_GTT_USWC, enabling
+    uncached speculative write-combining CPU access to the GTT buffer.
 
-  AMDGPU_SPM_OP_RELEASE (1):
-    Releases exclusive SPM access, stopping the hardware and freeing
-    the ring buffer, allowing another process to acquire SPM.
-
-  AMDGPU_SPM_OP_SET_DEST_BUF (2):
-    Controls the destination buffer for SPM counter streaming:
-    - dest_buf=NULL: unsets the destination buffer and stops copying.
-    - dest_buf!=NULL: sets a new user-space destination buffer of
-      buf_size bytes. If timeout>0, the call blocks up to timeout ms
-      waiting for the previous buffer to be filled; on return, timeout
-      is updated with the remaining time. If timeout expires, any
-      partial data is flushed and the call returns success. If timeout=0,
-      the previous buffer is replaced immediately without waiting.
-      bytes_copied reports how much data was written to the previous
-      buffer. has_data_loss is non-zero if ring buffer overflow occurred.
-
-A drm_amdgpu_spm_buffer_header structure is prepended to each dest_buf
-by the kernel, containing the SPM version (major in bits 31:24, minor
-in bits 23:0), bytes_copied, and has_data_loss for that buffer.
+amdgpu_bo_free_gtt_mem():
+  Reverses the allocation by reserving the BO, unmapping (kunmap),
+  unpinning, unreserving, and dropping the last reference (unref).
+  Handles NULL gracefully and logs an error if reservation fails.
 
 Signed-off-by: James Zhu <James.Zhu@amd.com>
 Reviewed-by: Bing Ma <Bing.Ma@amd.com>
 ---
- include/uapi/drm/amdgpu_drm.h | 94 +++++++++++++++++++++++++++++++++++
- 1 file changed, 94 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 97 ++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.h |  5 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h     |  1 -
+ 3 files changed, 101 insertions(+), 2 deletions(-)
 
-diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-index e66e190b5865..4004cb973fac 100644
---- a/include/uapi/drm/amdgpu_drm.h
-+++ b/include/uapi/drm/amdgpu_drm.h
-@@ -1791,11 +1791,104 @@ union drm_amdgpu_cwsr {
- #define AMDGPU_FAMILY_GC_11_5_4			154 /* GC 11.5.4 */
- #define AMDGPU_FAMILY_GC_12_0_0			152 /* GC 12.0.0 */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+index 4dd7c712b8c3..0a163b5e850f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+@@ -1701,4 +1701,101 @@ u64 amdgpu_bo_print_info(int id, struct amdgpu_bo *bo, struct seq_file *m)
  
+ 	return size;
+ }
 +
-+/*
-+ * Supported SPM (Stream Performance Monitor) Operations
-+ */
-+/**
-+ * drm_amdgpu_spm_op - SPM ioctl operations
-+ *
-+ * @AMDGPU_SPM_OP_ACQUIRE: acquire exclusive access to SPM
-+ * @AMDGPU_SPM_OP_RELEASE: release exclusive access to SPM
-+ * @AMDGPU_SPM_OP_SET_DEST_BUF: set or unset destination buffer for SPM streaming
-+ */
-+enum drm_amdgpu_spm_op {
-+	AMDGPU_SPM_OP_ACQUIRE,
-+	AMDGPU_SPM_OP_RELEASE,
-+	AMDGPU_SPM_OP_SET_DEST_BUF
-+};
++int amdgpu_bo_alloc_gtt_mem(struct amdgpu_device *adev, size_t size,
++				void **mem_obj, uint64_t *gpu_addr,
++				void **cpu_ptr, bool mqd_gfx9, bool is_uswc_mode)
++{
++	struct amdgpu_bo *bo = NULL;
++	struct amdgpu_bo_param bp;
++	int r;
++	void *cpu_ptr_tmp = NULL;
 +
-+/**
-+ * drm_amdgpu_spm_args - Arguments for SPM ioctl
-+ *
-+ * @op[in]:            specifies the operation to perform
-+ * @dst_buf[in]:       used for the address of the destination buffer
-+ *                      in @AMDGPU_SPM_OP_SET_DEST_BUF
-+ * @buf_size[in]:      size of the destination buffer
-+ * @timeout[in/out]:   [in]: timeout in milliseconds, [out]: amount of time left
-+ *                      in the timeout window
-+ * @bytes_copied[out]: total amount of data that was copied to the previous dest_buf
-+ * @has_data_loss:     non-zero if data was lost (e.g. due to ring buffer overflow),
-+ *                      zero otherwise
-+ *
-+ * This ioctl performs different functions depending on the @op parameter.
-+ *
-+ * AMDGPU_SPM_OP_ACQUIRE
-+ * ------------------------
-+ *
-+ * Acquires exclusive access of SPM on the specified XCP for the calling process.
-+ * This must be called before using AMDGPU_SPM_OP_SET_DEST_BUF.
-+ *
-+ * AMDGPU_SPM_OP_RELEASE
-+ * ------------------------
-+ *
-+ * Releases exclusive access of SPM on the specified XCP for the calling process,
-+ * which allows another process to acquire it in the future.
-+ *
-+ * AMDGPU_SPM_OP_SET_DEST_BUF
-+ * -----------------------------
-+ *
-+ * If @dst_buf is NULL, the destination buffer address is unset and copying of counters
-+ * is stopped.
-+ *
-+ * If @dst_buf is not NULL, it specifies the pointer to a new destination buffer.
-+ * @buf_size specifies the size of the buffer.
-+ *
-+ * If @timeout is non-0, the call will wait for up to @timeout ms for the previous
-+ * buffer to be filled. If previous buffer to be filled before timeout, the @timeout
-+ * will be updated value with the time remaining. If the timeout is exceeded, the function
-+ * copies any partial data available into the previous user buffer and returns success.
-+ * The amount of valid data in the previous user buffer is indicated by @bytes_copied.
-+ *
-+ * If @timeout is 0, the function immediately replaces the previous destination buffer
-+ * without waiting for the previous buffer to be filled. That means the previous buffer
-+ * may only be partially filled, and @bytes_copied will indicate how much data has been
-+ * copied to it.
-+ *
-+ * If data was lost, e.g. due to a ring buffer overflow, @has_data_loss will be non-0.
-+ *
-+ * Returns negative error code on failure, 0 on success.
-+ */
-+struct drm_amdgpu_spm_args {
-+	__u64 dest_buf;
-+	__u32 buf_size;
-+	__u32 op;
-+	__u32 timeout;
-+	__u32 bytes_copied;
-+	__u32 has_data_loss;
-+};
++	memset(&bp, 0, sizeof(bp));
++	bp.size = size;
++	bp.byte_align = PAGE_SIZE;
++	bp.domain = AMDGPU_GEM_DOMAIN_GTT;
++	if (is_uswc_mode)
++		bp.flags = AMDGPU_GEM_CREATE_CPU_GTT_USWC;
++	else
++		bp.flags = 0;
++	bp.type = ttm_bo_type_kernel;
++	bp.resv = NULL;
++	bp.bo_ptr_size = sizeof(struct amdgpu_bo);
 +
-+/**
-+ * drm_amdgpu_spm_buffer_header - SPM Buffer header for drm_amdgpu_spm_args->dest_buf
-+ *
-+ * @version        [out]: spm version
-+ * @bytes_copied   [out]: amount of data for each sub-block
-+ * @has_data_loss: [out]: boolean indicating whether data was lost for each sub-block
-+ *                        (e.g. due to a ring-buffer overflow)
-+ */
-+struct drm_amdgpu_spm_buffer_header {
-+	__u32 version; /* 0-23: minor 24-31: major */
-+	__u32 bytes_copied;
-+	__u32 has_data_loss;
-+	__u32 reserved[5];
-+};
++	if (mqd_gfx9)
++		bp.flags |= AMDGPU_GEM_CREATE_CP_MQD_GFX9;
 +
- /*
-  * Supported Profiler Operations
-  */
- enum drm_amdgpu_profiler_ops {
- 	AMDGPU_PROFILER_VERSION = 0,
-+	AMDGPU_PROFILER_SPM,
- };
++	r = amdgpu_bo_create(adev, &bp, &bo);
++	if (r) {
++		dev_err(adev->dev,
++			"failed to allocate BO for amdgpu (%d)\n", r);
++		return r;
++	}
++
++	/* map the buffer */
++	r = amdgpu_bo_reserve(bo, true);
++	if (r) {
++		dev_err(adev->dev, "(%d) failed to reserve bo for amdgpu\n", r);
++		goto allocate_mem_reserve_bo_failed;
++	}
++
++	r = amdgpu_bo_pin(bo, AMDGPU_GEM_DOMAIN_GTT);
++	if (r) {
++		dev_err(adev->dev, "(%d) failed to pin bo for amdgpu\n", r);
++		goto allocate_mem_pin_bo_failed;
++	}
++
++	r = amdgpu_ttm_alloc_gart(&bo->tbo);
++	if (r) {
++		dev_err(adev->dev, "%p bind failed\n", bo);
++		goto allocate_mem_kmap_bo_failed;
++	}
++
++	r = amdgpu_bo_kmap(bo, &cpu_ptr_tmp);
++	if (r) {
++		dev_err(adev->dev,
++			"(%d) failed to map bo to GTT for amdgpu", r);
++		goto allocate_mem_kmap_bo_failed;
++	}
++
++	*mem_obj = bo;
++	*gpu_addr = amdgpu_bo_gpu_offset(bo);
++	*cpu_ptr = cpu_ptr_tmp;
++
++	amdgpu_bo_unreserve(bo);
++
++	return 0;
++
++allocate_mem_kmap_bo_failed:
++	amdgpu_bo_unpin(bo);
++allocate_mem_pin_bo_failed:
++	amdgpu_bo_unreserve(bo);
++allocate_mem_reserve_bo_failed:
++	amdgpu_bo_unref(&bo);
++
++	return r;
++}
++
++void amdgpu_bo_free_gtt_mem(struct amdgpu_device *adev, void **mem_obj)
++{
++	struct amdgpu_bo **bo = (struct amdgpu_bo **) mem_obj;
++	int r;
++
++	if (!bo || !*bo)
++		return;
++
++	r = amdgpu_bo_reserve(*bo, true);
++	if (r) {
++		dev_err(adev->dev,
++			"(%d) failed to reserve bo to free", r);
++		return;
++	}
++
++	amdgpu_bo_kunmap(*bo);
++	amdgpu_bo_unpin(*bo);
++	amdgpu_bo_unreserve(*bo);
++	amdgpu_bo_unref(bo);
++}
++
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
+index 912c9afaf9e1..0102d43b2edc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
+@@ -353,5 +353,8 @@ void amdgpu_debugfs_sa_init(struct amdgpu_device *adev);
  
- struct drm_amdgpu_profiler_args {
-@@ -1803,6 +1896,7 @@ struct drm_amdgpu_profiler_args {
- 	__u32 pad;
- 	union {
- 		__u32 version;		/* lower 16 bit: minor. higher 16 bit: major */
-+		struct drm_amdgpu_spm_args spm;
- 	};
- };
+ bool amdgpu_bo_support_uswc(u64 bo_flags);
  
+-
++int amdgpu_bo_alloc_gtt_mem(struct amdgpu_device *adev, size_t size,
++				void **mem_obj, uint64_t *gpu_addr,
++				void **cpu_ptr, bool mqd_gfx9, bool is_uswc_mode);
++void amdgpu_bo_free_gtt_mem(struct amdgpu_device *adev, void **mem_obj);
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+index 1bbfa8744e01..ed9a228f5cef 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+@@ -747,5 +747,4 @@ void amdgpu_vm_print_task_info(struct amdgpu_device *adev,
+ 		list_for_each_entry(mapping, &(bo_va)->valids, list)
+ #define amdgpu_vm_bo_va_for_each_invalid_mapping(bo_va, mapping) \
+ 		list_for_each_entry(mapping, &(bo_va)->invalids, list)
+-
+ #endif
 -- 
 2.34.1
 
