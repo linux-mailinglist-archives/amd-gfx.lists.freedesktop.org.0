@@ -2,70 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4Kt8FY+uFWpkXwcAu9opvQ
+	id 0O4tO8GwFWpxYAcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 16:30:39 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 16:40:01 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 067675D78BC
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 16:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 008555D7C3C
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 16:40:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF83510E52F;
-	Tue, 26 May 2026 14:30:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E53C110E487;
+	Tue, 26 May 2026 14:39:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="SohMtHi2";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="M+fC2EGT";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A8EA10E4EB;
- Tue, 26 May 2026 14:30:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=oqZyzcWW+SVENqYEdzT/g6oNyc+nRa4NJGuS3Z6L+QM=; b=SohMtHi22jGXx7lJ6XEw7WDWry
- i6OR/KN3Ej435caRowe9iN5Exu9429K1L8LuEanuIBm411oCWkKckaEw8xEC49gMwzBtsenADFQPk
- tNOFLdglCSTXw7QTbyem5iMc+7GWo3428/f9tsePzkrMS+oWZem1a11/5n2gPP+HmKIvUqbiTl2lM
- Wgqo6mX638AK31X/DjAMGztHnSOmcuEjzBUd5IqULTdmaIxTvK1VQ+FSU3y5xfZfX9kuUx8XV/D1j
- tbaLJPpj2fusTsnWFFwCSmr4/vyV6MPiGrCBni/m+nmsuL7SopbrDWdK9zgxzPTlAmGiVF6g0vjBX
- GkP45Tng==;
-Received: from [79.117.146.159] (helo=killbill.home)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wRsn3-008TUc-IP; Tue, 26 May 2026 16:29:53 +0200
-From: Melissa Wen <mwen@igalia.com>
-To: airlied@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- simona@ffwll.ch, tzimmermann@suse.de
-Cc: Alex Hung <alex.hung@amd.com>, Simon Ser <contact@emersion.fr>,
- Uma Shankar <uma.shankar@intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Xaver Hugl <xaver.hugl@kde.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>,
- John Harrison <John.Harrison@Igalia.com>,
- Rodrigo Siqueira <siqueira@igalia.com>, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com, Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/atomic: reject colorop update from inactive color
- pipeline
-Date: Tue, 26 May 2026 16:17:10 +0200
-Message-ID: <20260526142940.504911-4-mwen@igalia.com>
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010067.outbound.protection.outlook.com [52.101.201.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 493C910E487
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 May 2026 14:39:58 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=EEoZx8Ghg8jFccN2JAidJ5kIcggdVEmmctTK1fsIGX4GrydNInhE121tRMrHxZ+xu0Al4TZZ1aKKU6U9eCFVc2r3GPq+l9sOpJX4GgJnJMSLxBmeJSBbQfLZSSt5DXcH8dn6fJ8W4tDG9PkAANq9l8DdE61a87d9dRp6kwlKdqfOg2Hyfgtq48yuA68ApF1w+0472q7g0/f2x7Fa3BZJdeIxlculF5+8w+OdAn6XUCqeoNqlttL0Zg+K3xFAXr6mjgaNGZcAXXETx0oTg2ob29sTNF91ALKJlzVJIPW0FDusUiAYC2UOTHzVR86dku4/7onNJIcWY2yoVNmTn12xaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GEq3V06pKvEIL0h3Lii5iDpwAahMTxuxACI4ZSzHH2o=;
+ b=eyQ5LSIXrCXBOWKufD/e1TCMm5P08a21QWAP75BilLVeAWanLiemj+RJ4foBJWGIBX/HzsKUGt65DCkByBPmWHnSPMp1HrxQCafQm08CG12CttGmaoqbXFjSjCIcTg6i4BkM6lTEJ2O/dxk+foMQx5QI1K+OmMSYcViLjjYhhkm0sVFzC6lqvJgIcTFk1hiDMLPPUrROpC947A5qNA8zIALa0jmx1ndXvZMa02XXmIi+MZzDDVMPTNlIMLdQWyVVXPkEmf7IsvXEFrU/B7kjtRzY9gwsjuxY0LWAGYei3VLJlduzwdvKlM30UHd1mAzaZm8eiNNfhsOuqX1Wqtp+YQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GEq3V06pKvEIL0h3Lii5iDpwAahMTxuxACI4ZSzHH2o=;
+ b=M+fC2EGT2hcpfm7X8g/vyOZrb1RD5pVcQz9g3sLUHJ98d2r+GinSKC5CTaE5cWpDA+4hGaXx7YzKig3Q1Z7rJyJjFof/oZer1dRVSViERPzaP1J4p34jqsz99hLl9y0BknS4ZRZ/tZi1pW2IHBn9AoYGjqwTCNXxhUH7h4Cxdi0=
+Received: from MN2PR18CA0022.namprd18.prod.outlook.com (2603:10b6:208:23c::27)
+ by DM4PR12MB5770.namprd12.prod.outlook.com (2603:10b6:8:61::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.11; Tue, 26 May
+ 2026 14:39:55 +0000
+Received: from MN1PEPF0000F0E0.namprd04.prod.outlook.com
+ (2603:10b6:208:23c:cafe::5) by MN2PR18CA0022.outlook.office365.com
+ (2603:10b6:208:23c::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.12 via Frontend Transport; Tue, 26
+ May 2026 14:39:55 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MN1PEPF0000F0E0.mail.protection.outlook.com (10.167.242.38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.71.7 via Frontend Transport; Tue, 26 May 2026 14:39:54 +0000
+Received: from caden-arch.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 26 May
+ 2026 09:39:52 -0500
+From: Caden Chien <chih-wei.chien@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <Christian.Koenig@amd.com>,
+ <Alexander.Deucher@amd.com>
+CC: <Solomon.Chiu@amd.com>, <Peyton.Lee@amd.com>, <HaoPing.Liu@amd.com>,
+ <Yu.Wang4@amd.com>, Caden Chien <chih-wei.chien@amd.com>
+Subject: [PATCH 0/3] Add vpe v2.2.0 support
+Date: Tue, 26 May 2026 22:32:16 +0800
+Message-ID: <20260526143219.609033-1-chih-wei.chien@amd.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260526142940.504911-1-mwen@igalia.com>
-References: <20260526142940.504911-1-mwen@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E0:EE_|DM4PR12MB5770:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8cf153b0-fe77-4cec-0dd7-08debb34a724
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|82310400026|376014|36860700016|11063799006|6133799003|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: 5cvQwB3mslSaBFZrWDDrrMHlcmacx7ewIqQ4KBgwUgHbIrg8VlfnrwLoAiBvzKnBOaR8Zw1moLMOASEo11V3nzxAy4eQ7Q7rG/5+Z16L4V4dQSK29K6cxWt78TsqB312k5pcsohLVyE0SyV2G9ELscm/ke8gXJkcWSYv2ARmwJob04E94Gez9B3tIZgxWPtt6xyBTEz0bxggZ4UW7aH04vImz0TZ+IZE1tTSVMIbG9vuQ2V+NZQzwQ6iFdcLQx9oAlsRICidLcudPjgEQN+XaadraeUR0U/f1IPjtKAixSK0p2BXnTdrvEpyp3GtDCyN8NZvKm9ZtefrOffXWSwFmnh62ShoBp8D9Cx8a6396BHu4quakjxKzcAq7wP9YGlRW2kRiQ6yIWST7aFhRN/Pqh7jSQ3xlG+h7eF1shXTmmW9bkjHYBX5+cZKXPZ5f9jiol7BwsPl4bSj+2lu+TptJTY5aBmQMm/iREr8oYhtax+5SXO5u1Sq6Us3425nbTQWfP3i+9sB7fWzYoqvCXPD5RM0jyrVNBoNc1dsFV73p2ZGrSsUSEsaGKLXvbypdLQBnvU/VIgdW1zQG1ahixJKBfIbA7CmzNZtdHSnl5w35N+hkX0OomjyZcCY1rNvDjoIv5HY8S41TXALnXolPToHXD80nTZbp5BubvzDglZb1CfggtyGMhr5QAmnoi4xjTYeX0JuttkZMPPDBRxJXLmMFZ4rpa0DgEp9hfwtu/5gyjw=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016)(11063799006)(6133799003)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: yPcMGJnhazWElVOFDcNsrPJ2elMwvX7bCxBxmyt5bkEoWNWvxOoUtwcF9hLDkCUS/N3YN/9swXEeD6cAtU7dWn5fkUwFZn1SQ3qSluh20AyPrZaZF1M/VD5h37mRvc+mehChk7FcWomuLIBdqpSroo+IlHBGzgD/qkjaS0d46+NZgCLFE+6SpfrbAOGECqcpuokWdX3G2SiCInThKUMGe9P99PwCrzhhz9/Hu74P/lbvD0VI08+mHyceVs5yYVTgWkiki0N8S5ZJBlHRbj+xNArUuw5sj9zIghfvUCIZi31EC38kCaDpjlxTpXQkJdP44jspMhg5TsZpUdiJ10Jpaa9vcWhg1HjWc3gELFlwODQD4dSyJXd9g6BUERbXDrWKupCiyqSqtOsZCh/1RZk09JRyu99ULp9PkKz/AU8TtFpJa+qgktLhu194+JrWXRBk
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 14:39:54.9603 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8cf153b0-fe77-4cec-0dd7-08debb34a724
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0E0.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5770
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,138 +113,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.99 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+X-Spamd-Result: default: False [1.19 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,emersion.fr,intel.com,kde.org,collabora.com,bootlin.com,linux.dev,Igalia.com,igalia.com,lists.freedesktop.org,oss.qualcomm.com,kernel.org,gmail.com,poorly.run,somainline.org,vger.kernel.org];
-	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FREEMAIL_TO(0.00)[gmail.com,linux.intel.com,kernel.org,ffwll.ch,suse.de];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.882];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_TLS_LAST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,igalia.com:mid,igalia.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 067675D78BC
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[chih-wei.chien@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 008555D7C3C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Only allow updates on colorops that are part of an active pipeline, i.e.
-check if a colorop belongs to the color pipeline of a plane in its
-current, new or old state. If not, reject the state change of this
-inactive colorop. Performing this check later in drm_atomic_check_only()
-to remove the ordering dependency that would exist if done at the time
-of colorop property setting. Userspace is allowed to change colorops of
-an active color pipeline, or when activating or deactivating its
-pipeline in the same commit. However, changes in inactive color pipeline
-is not allowed.
+This series adds vpe v2.2.0 support in ip discovery and ip funcs setup.
+No register update on vpe v2.2.0. Doorbell range initialization is
+updated accordingly in the same way as vpe v2.0.0 on nbio v7.11.4
 
-Suggested-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Signed-off-by: Melissa Wen <mwen@igalia.com>
----
- drivers/gpu/drm/drm_atomic.c | 59 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-index 4fb3a23e862a..a0549435954b 100644
---- a/drivers/gpu/drm/drm_atomic.c
-+++ b/drivers/gpu/drm/drm_atomic.c
-@@ -865,6 +865,54 @@ drm_atomic_add_pipeline_colorops(struct drm_atomic_commit *state,
- 	return 0;
- }
- 
-+/**
-+ * drm_atomic_colorop_check - check new colorop state
-+ * @new_colorop_state: new colorop state to check
-+ *
-+ * Ensure that the colorop in @new_colorop_state belongs to an active color
-+ * pipeline, i.e. it's in the chain of colorops set to the color_pipeline
-+ * property of current, old or new plane state.
-+ *
-+ * Returns: 0 on success, -EINVAL otherwise.
-+ */
-+static int drm_atomic_colorop_check(const struct drm_colorop_state *new_colorop_state)
-+{
-+	struct drm_atomic_commit *state = new_colorop_state->state;
-+	struct drm_plane *plane = new_colorop_state->colorop->plane;
-+	struct drm_plane_state *new_plane_state, *old_plane_state;
-+	struct drm_colorop *colorop;
-+
-+	new_plane_state = drm_atomic_get_new_plane_state(state, plane);
-+	old_plane_state = drm_atomic_get_old_plane_state(state, plane);
-+
-+	/* No changes in the plane state. Check current-committed plane state */
-+	if (!new_plane_state) {
-+		for (colorop = plane->state->color_pipeline; colorop; colorop = colorop->next)
-+			if (colorop == new_colorop_state->colorop)
-+				return 0;
-+		return -EINVAL;
-+	}
-+
-+	if (WARN_ON(!old_plane_state)) return -EINVAL;
-+
-+	/* Check if the colorop is active in the new plane state */
-+	for (colorop = new_plane_state->color_pipeline; colorop; colorop = colorop->next)
-+		if (colorop == new_colorop_state->colorop)
-+			return 0;
-+
-+	/* Same color pipeline as new; no point walking old. Colorop isn't active */
-+	if (new_plane_state->color_pipeline == old_plane_state->color_pipeline)
-+		return -EINVAL;
-+
-+	/* Check if the colorop was active in the old plane state */
-+	for (colorop = old_plane_state->color_pipeline; colorop; colorop = colorop->next)
-+		if (colorop == new_colorop_state->colorop)
-+			return 0;
-+
-+	/* Colorop is not part of an active color pipeline. */
-+	return -EINVAL;
-+}
-+
- static void drm_atomic_colorop_print_state(struct drm_printer *p,
- 					   const struct drm_colorop_state *state)
- {
-@@ -1714,6 +1762,8 @@ int drm_atomic_check_only(struct drm_atomic_commit *state)
- 	struct drm_plane *plane;
- 	struct drm_plane_state *old_plane_state;
- 	struct drm_plane_state *new_plane_state;
-+	struct drm_colorop *colorop;
-+	struct drm_colorop_state *new_colorop_state;
- 	struct drm_crtc *crtc;
- 	struct drm_crtc_state *old_crtc_state;
- 	struct drm_crtc_state *new_crtc_state;
-@@ -1730,6 +1780,15 @@ int drm_atomic_check_only(struct drm_atomic_commit *state)
- 			requested_crtc |= drm_crtc_mask(crtc);
- 	}
- 
-+	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-+		ret = drm_atomic_colorop_check(new_colorop_state);
-+		if (ret) {
-+			drm_dbg_atomic(dev, "[COLOROP:%d:%d] is not part of an active color pipeline.\n",
-+				       colorop->base.id, colorop->type);
-+			return ret;
-+		}
-+	}
-+
- 	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
- 		ret = drm_atomic_plane_check(old_plane_state, new_plane_state);
- 		if (ret) {
+Caden Chien (3):
+  drm/amdgpu/nbio: remove doorbell entry5 for vcn on v7.11.5
+  drm/amdgpu/nbio: enable doorbell range init for vpe on v7.11.5
+  drm/amdgpu/vpe: add vpe v2.2.0 support
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vpe.c       |  1 +
+ drivers/gpu/drm/amd/amdgpu/nbif_v6_3_1.c      | 12 ++++++++----
+ drivers/gpu/drm/amd/amdgpu/vpe_v2_0.c         |  1 +
+ 4 files changed, 11 insertions(+), 4 deletions(-)
+
 -- 
 2.53.0
 
