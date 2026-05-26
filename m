@@ -2,131 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mIXGEThOFWpMUQcAu9opvQ
+	id YDwWFtRRFWrcUQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:39:36 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:55:00 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C6FC5D1C85
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:39:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC5E15D21DB
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 09:54:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD79B10E127;
-	Tue, 26 May 2026 07:39:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BED8410E0F0;
+	Tue, 26 May 2026 07:54:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3NNiUXQd";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="nkXryJcp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012032.outbound.protection.outlook.com
- [40.93.195.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A06810E127
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 May 2026 07:39:32 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010038.outbound.protection.outlook.com [52.101.46.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AADAC10E0F0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 May 2026 07:54:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JnsKUm5n03ZhoVKEHetKencW0TIHIBEygl1Muu7JV0maGSZ50YQAOrLG8xgF2qEKNFumOZPD+7b8gwtS0nEIrgJl8qF82pU3r6JB6sscJF32eFbz6BG5THYNfQo6dVRnoV3zwVyQlwrevxMBFWEAPrQgWuaIzmW3q7UgLhB6jIqrOs33mdskKSDampKxsO66hzEvB4atJanbSiZQOQVXsSmgI4c1NCA8K+5yO8qM+DcNrH4K3gPOSe8qhxpgGGPsm4Bwm60N8G8yMx6tTmlGig2vboKBgmsx7VBpvK7S24FTppNLt9JWXx1ZvDjH6VF+WP1oJPfltiRHeNolUXLINA==
+ b=mCCqe65scleK2sAXN228PDT2kBWTzYdRGEm/s6pTLGdUl/8XQx3AD1W5NspjP4A4TU6LL7EhYJdy8bujsSiGAV93fdOBjMO1TDFEpcNCk6fNBqsCmb9KhFWBzSGCHPOFHV/Czv8WMocjV7oqxVZ1D8qRtjLA9BWWC66HC1a1Nxp/86+w8fKgs5ebx4Sqr+Lz9ugyZUz6RCl3JCr7VL2OIHb5jifjQlOMtrJC80lvk5eWpmY+AmOMTZ+r+t4J2nGMiLjI/6nfKRjEraeuDNJXheKoAXt9p7JLdZsUHHYQpGK9cGHavRDywWYrBTLaif2iCncMFx5Ov6mDZdONc1JHQw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+bq+oUOZxxPsWY6B8JVGeT+yqMJCirObWgc9RXGWLI4=;
- b=JJCOv8ZrfQYp9jFEiNqEksSgndPgwd2XN4Bii/9L1Yj7X5xnQlLTq9DnimLwPHxyCIHK/5/tYY8a7lHYW2xR1ZT66NnEK0zWeyNeS/b1sd92Xi7LYg47UMw2qPiC4KbUNV1/fUajClWxo7YdKIyZsZE/cU5PVW+/d6H31tPgScDgC5gaqWVgvYkWUcUCF9cPfdvSfJDW/MqBCPx0TzxaF2l4VrjOR0two/f/SbRqe9h7ezyTfTOBLZsB75klNd+WFMLV705Htoms1ZGdxA76ivXBjlDO/rAvzUi/2wYrtRtiVEPkQRoRxxJh7IZWu4YlCxnic4kbkbtkr4saUUc5Fw==
+ bh=Zfi/DCBjCorJPmAhJdpG5mq6FHtVRD/IAvMaQmXIVAg=;
+ b=SAAAbKoQHInSadJSYphhPnVv9DfyO3i/L6/XyGuzIhaWfGktbONvngxmiCWz24qikSSj3xcPd1PiekkkRgUK1e003JOZAAgzuEBh8/ZI5Gphc0oUsV6n+W+L+3nIiPsSwtqWnBrsK09piRJ/i1wfUMRu1CuF2YtrAJXO0wZWLO5Sren1BEAIVGqARTV31rywnI2r3VON4cnwKsfQ0gRvoCAibV2s+QedhxEuqGZ5eiBltDmCu0BUeXhWU1hhjPT7uIKniPO8H3zsow5EE7C84/e+2RlYQQClUIGW2hEiykBotMjeqhXsPHdL0Fn2U1NINu4sUkP52GEHETF0Q5pkig==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+bq+oUOZxxPsWY6B8JVGeT+yqMJCirObWgc9RXGWLI4=;
- b=3NNiUXQdMq1A4R9mjjdl34iHTuoNlwWbaSpKklEDvsyenfRF+5Bo2o4q2P1CXwcfeXSlpjdHAzgR2Grc8+a/PjKmyLVIDVZz0mQJrpqcscpt1eSSa5SrSDnVWwa/Y7zRJhNjBXqCsvVAo7kxI9EJZOGqhvAH/4ev2N0Sby3KpLo=
+ bh=Zfi/DCBjCorJPmAhJdpG5mq6FHtVRD/IAvMaQmXIVAg=;
+ b=nkXryJcptBPyXAeTYQC8qo5M+AHep7UGFdo/QG1KWI6POJ6tVzdc0KG6D7+4MHii4YY1IfPEpYKtGSf98k5BZgy58/4qrHGfwiYxkyT00oOTDb664S22lOwY1tnAcniTDWIJyJljcJi5lzYMPGTTZgC55GtYj4EtswtXreo39fg=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
- by SN7PR12MB8792.namprd12.prod.outlook.com (2603:10b6:806:341::16)
+Received: from CH2PR12MB9457.namprd12.prod.outlook.com (2603:10b6:610:27c::7)
+ by IA4PR12MB9810.namprd12.prod.outlook.com (2603:10b6:208:551::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.19; Tue, 26 May
- 2026 07:39:29 +0000
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc%3]) with mapi id 15.21.0048.019; Tue, 26 May 2026
- 07:39:29 +0000
-Message-ID: <0086fc92-7a66-4e77-b49d-1b9bc6c110a7@amd.com>
-Date: Tue, 26 May 2026 13:09:21 +0530
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.11; Tue, 26 May
+ 2026 07:54:51 +0000
+Received: from CH2PR12MB9457.namprd12.prod.outlook.com
+ ([fe80::85a8:1df:840a:cd4c]) by CH2PR12MB9457.namprd12.prod.outlook.com
+ ([fe80::85a8:1df:840a:cd4c%5]) with mapi id 15.21.0071.010; Tue, 26 May 2026
+ 07:54:51 +0000
+Content-Type: multipart/alternative;
+ boundary="------------83o3wpKNwqf1ce021C8R4rkR"
+Message-ID: <591307db-a567-4bac-b995-1eec64a7c42d@amd.com>
+Date: Tue, 26 May 2026 15:54:44 +0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5] drm/amdgpu: add ioctl to handle RAS poison error
-To: Yifan Zhang <yifan1.zhang@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: Alexander.Deucher@amd.com, christian.koenig@amd.com,
- Felix.Kuehling@amd.com, David.YatSin@amd.com, Kent.Russell@amd.com,
- Perry.Yuan@amd.com
-References: <20260526022834.2380471-1-yifan1.zhang@amd.com>
+Subject: Re: [PATCH] drm/amdgpu: implement per-process MES context
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com
+Cc: Ray.Huang@amd.com
+References: <20260525082359.5510-1-lingshan.zhu@amd.com>
+ <53d1f30e-96d1-48a8-a933-c922439e9cdb@amd.com>
 Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20260526022834.2380471-1-yifan1.zhang@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN4PR01CA0015.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:26e::12) To SA0PR12MB7091.namprd12.prod.outlook.com
- (2603:10b6:806:2d5::17)
+From: "Zhu, Lingshan" <lingshan.zhu@amd.com>
+In-Reply-To: <53d1f30e-96d1-48a8-a933-c922439e9cdb@amd.com>
+X-ClientProxiedBy: SI2PR06CA0009.apcprd06.prod.outlook.com
+ (2603:1096:4:186::17) To CH2PR12MB9457.namprd12.prod.outlook.com
+ (2603:10b6:610:27c::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|SN7PR12MB8792:EE_
-X-MS-Office365-Filtering-Correlation-Id: 69229a72-5d07-4d11-2787-08debaf9eb7e
+X-MS-TrafficTypeDiagnostic: CH2PR12MB9457:EE_|IA4PR12MB9810:EE_
+X-MS-Office365-Filtering-Correlation-Id: a1ea23fb-6d29-410c-efd2-08debafc1093
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|3023799007|6133799003|11063799006|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 91i/hE1mF3xRolT58dghjziC7dKP9HiNPYbysXb6FHQrw7Xp2fDsSjbp2/VVgJHxps+gbSJCy1+OfzurLYE0bTN5Qo6Ehyk66O0UDlMwsLAVes9IZtzKJFNCe4RqKBHYIH4q0boC5dln9j4BeZv/lIoOaWoJUbukPXbXlQkkYtJ1lNdAGNLitm7obEHBL+Dmqv9fgFBGdXWzfMGQHg/he7/ary+I8ktpOVicSYFiDYamLlqbkf7PxL2RBRsPJbtwTTbgCLyPTBGxgEI7/hYDtPVBSWZ4uks4bv+46zIWmTEAYZ9amFtvP6mjPrJR6rY1UD8rHwyillVwnr8cRa7M1SWMJD/cLgXNygRSoNnR5KGmC0PxJCUiU259XJVmXdluysFtoqL0WkMRZbFl536lxe3441urg+HHs/3e7hhv/cRMMOzW38RN7HscncPFpdyui63rhns9Dk/mXzqifYMxZQ82rRsnJYTdtPw2EoCjw1B73+9meByPQPzpAwySUcRbq7Qxk7kWSiax7pifA1/Pf6xstM/DCfnKVgUZWltcn3Crkq4GxdX85fxHOW7Pp1AQX6rK4+hqAcEhbaS5BZMdGxyJPN/qHcxCpB94isV3OKkR/hvaxU8MY5dTtkROgYObw6IiPHdwR1tgcO6f4TKIp8o6rvRUq3wYLJXJ/scIQRgNIdybX24zevFvpv/Qc+NniyAb/etrA37YunIpt9l2qg==
+ ARA:13230040|1800799024|376014|366016|4143699003|11063799006|18002099003|56012099003|22082099003|8096899003;
+X-Microsoft-Antispam-Message-Info: 5cXYQrm6/yNjcozi0QfvGi0cbCQnjhovhX3RpK8lrHy9UEDIsTPYa1f8/m5KZXs7glplR8yKedRkQC5rUSWoQqMdc7bsCJ+uspalxfDG2Rhk80BjKzxfxdsNnCcyfRP+Ww6LHRn+MxIkpCsqaosYKTLPfNEP3QtALodO5Q6Am0ZTLoBljqrxYUnauJPHFJn9M7YKTp36fdLNkKm37NHfeDrswKc5AN7gAUJZMtsM8Bc/E+04ftm4HHW7oEe63zyvzMN61S8/+VZLmLffKD1zyknXpI5hqy2afhPYqKYcVUaxTgvXrenVEU1WOoOnRuV71vfr4wjpC4McBbnSQBUhSmDuUxmhW6I5pGnwCnIXFsIwyKEkf5Da/iW29b8KGg/lcfPwVSMb20WlEULUb5NNARH4OF2MW1Es/8c0CtvDRh5jQ7SQxkR/xc9u9rod/maD7ehne7rdCc9lc401Q28jB7HbaCTuKFOL9/JgnuXX/dK4Z78QKURGU5AU5rl3yHa2oT2DAuLdpfY45IXXGng+baROfWdHO5TWjDVk8ddL9aEm1ljzgJVYPVZKr65nrdNcAACLsM138gNyFzcqCv5Rrmrs0EK7TBMtQ0acE9mBJfDsHewzqoH+EF4mKz8MX9h3zBcB6adjgg9LbsG1osTsd44L6WGt/ob29jVZGPClcapy3wuHJl5hoXhV5TpyWven
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(3023799007)(6133799003)(11063799006)(56012099003)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:CH2PR12MB9457.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(4143699003)(11063799006)(18002099003)(56012099003)(22082099003)(8096899003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZE1SZVliV3lHZGVmRndYd1Vac2dPWnFydlZPTzhlZndSNzNrUjlIZDIwbGZo?=
- =?utf-8?B?eUo4Kys4Y2ZCS1hBWjlYaEJPQll4KzRPeGQ4SWFFTmROdFppU1hSaXI2MTEz?=
- =?utf-8?B?cnVqZ1NWRWptai9WeDE3a2ptV3VoMmFxbm1ONHVNTlJhaEZDTVgwUEFlMmNu?=
- =?utf-8?B?dHZxK3FITjhpOHJtOVdmZ0Q4MnYrRVpBekVqdzhvczRqK1piOGYzVDdtMkF2?=
- =?utf-8?B?WVdXWmhUZENXb0ErUVBGTGRGdlRoZkEzVVdIK3dPenkxU3lENzhiUHFwallm?=
- =?utf-8?B?WUE0eVVqbVY2WWFqb1RKZ28zdklhQnBDeVIwL0R0QjUrSDNySE1KTjN6bmcr?=
- =?utf-8?B?ZGdad1A3Tm5hbml2bWMwVEpucm9sWk9EcGswVG04QVVJL0hjbG9KODMzMngw?=
- =?utf-8?B?cWp3clBFWk9Zazk0di9hbElKdFM5RmZMOVJOOUdOd3hSdWNEbk0wMk9IQktF?=
- =?utf-8?B?NmJvZGJvUGh5SVI0QjlDd3ovRmhUV3lKeUQrMzZEQkgxZHo1eURtZWpwa3Nk?=
- =?utf-8?B?eWpzWCtidlg4ekNmVXdGa1U1cnBzNk5GVGVabWdqS3ROVmxWZVVQTnlHbUpw?=
- =?utf-8?B?cmxmY3krQmlyR2N1TE9UVHRCTGtHQlFQNmhVU0NFVytDQjJoM2NGWGtRWFNS?=
- =?utf-8?B?dWx2ZGpKd0FjUC96eFB0ZG1KNTlxYUd1Y0kwdWJXM0lWR2JNWm9VbWlieUI5?=
- =?utf-8?B?NFB5alJBM1IxdzJQcEMxbkdZc04xcmF1UjlQM1Uyd25Jc1lrb3VHNFJLeVMx?=
- =?utf-8?B?Y3VaOVA3VE1zUFJGdU1Pci9HM2hrTk5ydmNVQVpmNnBhQ3JaKzYrRlp5Vklu?=
- =?utf-8?B?ejkwU1FjUWNpV2p4UmRmcGpudHZ5ZnFVWlI4V3hvZFBDQ3gvcGk4amc2Sk5v?=
- =?utf-8?B?aFZnOHlZeXRlbHhtNE1lY3RETG0vTmVZMVdGcGlOV2IrYUE5cWt0ZEQ5YzN6?=
- =?utf-8?B?b0xZaXZrMlY0NEEzK2tsMTA1eUtYWmJKTkxLQ2RDNk9HTlgrMHJHRnE1c1Fo?=
- =?utf-8?B?RmxYeEFqUWY3SU5OZXpBcThIVElPMVUrTWpHNmd6NGFaVHFIZDNLZUxvWldG?=
- =?utf-8?B?UGlKTm04OEs2Wk9sNW5NSW52aFJkclZWYTFnVjBPNVM0VExWaGROaEhramFu?=
- =?utf-8?B?MlRTc2FnRGRKZW0vYm5RQmZPc1RRTmxqQWdNVTc4UVM1YXZTeFFRREYxVlBC?=
- =?utf-8?B?M3hlcFg1YmJPaUFYcjg3ZGVuRWpub1VvZnRzaDdTUlArU2JPM2xvNjlFOG1W?=
- =?utf-8?B?Rm45ZTFQREZwZmNEZUZMUTEwcTdRRU9lUS9RMDBFY3R1NGgxTkZVazVUWFll?=
- =?utf-8?B?NWRuVE5tdG95cHgxcit5akNvbEFleFZpVUhRbE9EMCtvZi9iS2ZIK3psL0NJ?=
- =?utf-8?B?dXlzSUljSVZnUVU3WXV4ZEI1Y09uQ1ErdDl1bUNkZ2tkUmlyc2dqK2t3KzRV?=
- =?utf-8?B?bXlqdjB6VEFMbTNmWTh0RWtjT2M5ZUEreEZ6TXY1d0lUY1JGKzRyOFlKVlpG?=
- =?utf-8?B?QTdycWcwQmo2WWNjdU5VcVlqZjBpT0tvZWxub0I2RUdwb1AxckMwdlVTUDdj?=
- =?utf-8?B?U0tRN2FSQmsweGY0bFAvTG5obXB1WGNvYzVZUlNDcUZqV1hGbm01RkZCMlpE?=
- =?utf-8?B?d1NKbE4wckZzclN2Z0NXT2dFd2tnYXYxSzJqMy9xc1RuRDNoaS80aWI1Z3hu?=
- =?utf-8?B?VWhhdy8rOHQyM0kzREJzZVB5ZllFSWxvUHhHU0xmdnlaVENlNE00UG9pdkhB?=
- =?utf-8?B?cmI2TUVaL2pIYVFPTHhhOXBHUXJYaytIbjdSalJ2UnNmOVNVb1Q2L3hjckVt?=
- =?utf-8?B?QkdYWVpPMVAvMkRLQXIyeHQxdGM4UFlMdHBaZ3NRNHlDNE8rUys1QTBDYkM5?=
- =?utf-8?B?bE5xbTFxR0lzUFRnd0NuRVBSS3ZzL0Y3S050aE81dnhtanJFb2k4cUM0eTlt?=
- =?utf-8?B?RGI0RlVMdEtjTVBEcnc0akh6YUNrc1ByVkJ2aGZNYldOK2xUNHE2dHhwSmhH?=
- =?utf-8?B?b1U2RnFBOU95TWtuZjd5U1QwVEN6c2RRR1V3ZHdJL0lEbDlHQUF4Y0JhTitD?=
- =?utf-8?B?RFhNc0cxdTZvRWRJditoSFUybUc1UkVZYy9JTFZ1N0YxbS9OTms2TkxuZDhC?=
- =?utf-8?B?NVk0ZDZDZGZ6T0d2RFZHbUxrYlZqNnhyWG5acjYxNk1LTWZCcGxzRnhPRmVj?=
- =?utf-8?B?SVhURXRqeGVyWXQwNjk5bnZoMXhiemYrTEF0dXJXSlpzaU5HbjhuZ1NYdUJn?=
- =?utf-8?B?VTBVU3lobmxWa0FkVzR6cW9tanhvcjRvVmx4a2M1S2E0RjhPdzczRk5tVmZo?=
- =?utf-8?Q?+s8eGAGg2Uv8oyRC6S?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Vzk1aU1lTFBVdFZ1MlRwaUlLT3ZITUpXNWt4anU1c0x6Q1dHWGZiRmlJcUJw?=
+ =?utf-8?B?dm1vVlFPQXFTeGdEVXJyVXR1MUUvMnQ2emdJOHlxSm1qY1BCczZlbnFNNHhE?=
+ =?utf-8?B?TG1GTm5NZVp6a3ZrZ3MrcjJXVzVKRUdzVDlWZW5ocWZZMWdoNkxBMlVwOGhp?=
+ =?utf-8?B?cWlHdDE0VlAvOXhEb0xyVHBKMDhycmxYTHR6T1ZCeDRaMkdlMC92U2lLMHF0?=
+ =?utf-8?B?WTd4bWtYMmhwd3Jnb1NFZjNtWExFdEpBeXVvQlAyMGlWUnY3VlhvN3JhQ0w2?=
+ =?utf-8?B?ejB5ZCtkT1hKUEdBeC9hNWpaSDFQWGZLZUdxWWhIZjdndFhVNEdhVlhFWGdo?=
+ =?utf-8?B?ZEVsbVFmRzV0UTNlZXIvd2lQYUxCREovU01IUGc0OExnSzBjcVIrcHZtRnY4?=
+ =?utf-8?B?TFR1dlBCTjRjYVdjcmdKY2NzY2JBeTZCRXRPRkRoUW95OFBoOHF0QTd0U0gv?=
+ =?utf-8?B?QzRiMjBCVGJTaVJkMTZ3dk9IT09KUm9JYVF5WU9TaENSNzJQK1lab0dEeGJm?=
+ =?utf-8?B?dUowbUFBK2ZPbXdESkx0TG9rOXhPUU1OOWc3RTNOOGp0aHVpdTZDUWVIMy8w?=
+ =?utf-8?B?ZEc5eExKRUVEZndCaTdrUkllTXM3UklKU21kRm1XNlZ5Qk1ZOEJXbHBudUc2?=
+ =?utf-8?B?SjA1VE1oeSsyRGwva1FySHJoNzI1eENMSU5sTU91aS9vb1BVcjBMYmVxNjZF?=
+ =?utf-8?B?U2tReUhLZFFwTldlT3hlOFExM3N5Z3JyRWhWd1B6Mkp0UGp5WVJ2emtrMzZ2?=
+ =?utf-8?B?enByUlJDc0pZeVZQK1g1dTkyOU1KVWVLY2p5V3JjTUZ3UEwvVGkxMkhmcDJm?=
+ =?utf-8?B?anB0M3NKUGQxdFl2OGk0UlJZYTBERHhmUGFmUGRlbXc0K1RMTTB2aGptWnM1?=
+ =?utf-8?B?REhmaFpQOW03WG9CcTE2RkJwVEswenkyQmt2WXByUEpNczU4blR3aWZFNmZ3?=
+ =?utf-8?B?YTNFRUw4VHhtU3NrODA4cnB6Y1RSNTR5b1RKNUJtSWdXZGJORFRjMzN0MmhL?=
+ =?utf-8?B?YU5tK25OV2ZmdDRKeVlqSGpzOEdxTkxVa2pOSjA3SWFmOEM5K2xJeWZNRDAw?=
+ =?utf-8?B?MUZablVvZ3hzRkJNTE5Gb21hUFg0cVh4WFB1UlNicTZjc0lxRWw1NXByTndC?=
+ =?utf-8?B?ZVMwV0ZKbVAvUmhtNll4YTVhSk9EQ29NSXBaMnJmMWVrS3J0VGtxN1lsN2Fq?=
+ =?utf-8?B?SEsrZ1ppUTJRSGdKanBBSzhXZVpKUHFlOWkxU3dtd24zVVBpWm93L0dMUUhQ?=
+ =?utf-8?B?T0JzOFRERXpVdXJqZmYvbUN4c0tsb3BxR3pjcUMyeEtJTUgxRmtHUDZidWRJ?=
+ =?utf-8?B?UDJEa1VHdlVVMGZucDl0QzRvS05nV1VnSFBTY001N3l3dlprWktDY2pBaDFa?=
+ =?utf-8?B?Q1pZb0dKcENqbnYrQms2bExYZ3p2aXdTME9tWTlXTWcyZzBNVXZ1ZmZLMTV5?=
+ =?utf-8?B?Mms0ejNGc2lnb0pieEw4N3BnaXVDMk9JY05XSWY1eVVMTVNwa01VQUhna2Iw?=
+ =?utf-8?B?Vno0dmx1OHpzR1BPRXdhOFVBcm1uWExQNmp5ajJpbjdYS1QrYTAyRHV6UUtD?=
+ =?utf-8?B?b1QvdTFQWnFiekhWRVJEZFBBdEJSa2ZZalVabklMWVQrVllVblJSbEczUWxu?=
+ =?utf-8?B?b0NGcC9RYWhHSndzcHJGVUU4b3JuWUNLTVd5NlNQajJnSi9HOXgvRmdRK1lK?=
+ =?utf-8?B?blJqMncwM0N6eGJwSStjdFE2S3ZtQWJDSkJyOHIycGFuWEJLWWlnRXlKN01Z?=
+ =?utf-8?B?UGxDQmtoeDBSbHl5eXZzTmdYd09WZ3gvcFJQV254OW9hYjFzbTF2MEgrVUo0?=
+ =?utf-8?B?SDh3VWZnc2pWWHNrTWRkWWhRdnY4NkszSkJNOFVUS3Jnem9nQkRWamc3UktL?=
+ =?utf-8?B?c1h5QW81SUw2S25VZC81akkxTThYV3dkb3VNREtVOFhJUnFCQWFxVUpMZ2xo?=
+ =?utf-8?B?VERyYmsxL0oxTVFFSm1XRThWWnRqMVYxak9GMHJLZ0V2TU5mclBMNjZNelhI?=
+ =?utf-8?B?SHNvbURqeHo1TW44cGZoOU95cDhramVrU3FLd1JGWHM2Zmg3bFdiNTdsWWxY?=
+ =?utf-8?B?aCtiQnBXaFc5NWlQNzFpZGtvZzZBcXE4VnNnOXJpZkZLamF6RU1UK1ZtYyt3?=
+ =?utf-8?B?SllNTFVsNDcvVzdaWmlqOVpLWWRyRm9UaWlPQ0M4UFRkN3JEcTE2aGpJRDli?=
+ =?utf-8?B?YmIxSGJYc2tnZjJOajM0WVpDbXNseGNmb2d1OGZjbWhTdUZUd0JXZGZJZHZn?=
+ =?utf-8?B?eXdYd012MUdxYSs0NlorcDFlY0ZnNG5CcTJYbTBTcmlwY0NHSXJIU0Zzd2JT?=
+ =?utf-8?Q?3pGZ0ZwhOmgDB9Kxrq?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 69229a72-5d07-4d11-2787-08debaf9eb7e
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a1ea23fb-6d29-410c-efd2-08debafc1093
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB9457.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 07:39:29.5044 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 07:54:50.9426 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: II6h66N/NbzAy05pp5eDEOYDhI81IALsa1X2kEruT7J3xA/+RguPaK8av2v5tnU2
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8792
+X-MS-Exchange-CrossTenant-UserPrincipalName: nAkxQ9Qs5tTcfAzCWfspkumpbK+yFWwZzP16NAdrxIDNkgLfX16RRCDoNIV56+k9TPDSvOqaaEzJlbQfEfAM0w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR12MB9810
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,397 +139,464 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [-0.21 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:yifan1.zhang@amd.com,m:Alexander.Deucher@amd.com,m:christian.koenig@amd.com,m:Felix.Kuehling@amd.com,m:David.YatSin@amd.com,m:Kent.Russell@amd.com,m:Perry.Yuan@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[lingshan.zhu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:Alexander.Deucher@amd.com,m:Ray.Huang@amd.com,s:lists@lfdr.de];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lingshan.zhu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	NEURAL_HAM(-0.00)[-0.981];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,amd.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 9C6FC5D1C85
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: AC5E15D21DB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+--------------83o3wpKNwqf1ce021C8R4rkR
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+On 5/26/2026 3:02 AM, Christian König wrote:
 
-On 26-May-26 7:58 AM, Yifan Zhang wrote:
-> Add a new DRM_IOCTL_AMDGPU_USER_OPTIONS ioctl with the
-> AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY option, allowing userspace (ROCr)
-> to control per-process SIGBUS delivery.
-> 
-> Userspace for this can be found at:
-> https://github.com/ROCm/rocm-systems/pull/6190
-> 
-> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+>
+> On 5/25/26 10:23, Zhu Lingshan wrote:
+>> MES process context is a process-level page
+>> where process specific context is saved for
+>> MES scheduler.
+>>
+>> However, current user-queue code path assigns
+>> fw_obj of a queue to MES process_context_addr
+>> when adding the queue to MES.
+>>
+>> This means every new queue from the same process
+>> would replace the previous process context address
+>> with that queue's fw_obj address.
+>> What's worse is, when user space frees a queue,
+>> its fw_obj will be freed as well, causing MES
+>> working on a NULL page pointer.
+>>
+>> This issue leads to inconsistency and crash
+>> in the scheduler.
+>>
+>> This commit allocates a process-level page for
+>> MES process contexts for a process other than queue-level
+>>
+>> Signed-off-by: Zhu Lingshan <lingshan.zhu@amd.com>
+>> ---
+>>  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  |  5 +++
+>>  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  |  1 +
+>>  drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 48 ++++++++++++++++------
+>>  3 files changed, 42 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>> index 38e310a8694d..0c4d6f80616e 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>> @@ -1225,6 +1225,11 @@ void amdgpu_userq_mgr_fini(struct amdgpu_userq_mgr *userq_mgr)
+>>  	 */
+>>  	cancel_work_sync(&userq_mgr->reset_work);
+>>  
+>> +	if (userq_mgr->proc_ctx_obj.obj)
+> Please drop that check it is unecessary.
 
-Have one generic comment on the ioctl naming convention. Need comments 
-from Alex/Christian also.
+sure, I can drop this in V2.
 
-Apart from that looks good to me -
+>
+>> +		amdgpu_bo_free_kernel(&userq_mgr->proc_ctx_obj.obj,
+>> +				      &userq_mgr->proc_ctx_obj.gpu_addr,
+>> +				      &userq_mgr->proc_ctx_obj.cpu_ptr);
+>> +
+>>  	mutex_destroy(&userq_mgr->userq_mutex);
+>>  }
+>>  
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+>> index 28cfc6682333..fe85234e58b3 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+>> @@ -127,6 +127,7 @@ struct amdgpu_userq_mgr {
+>>  	struct amdgpu_device		*adev;
+>>  	struct delayed_work		resume_work;
+>>  	struct drm_file			*file;
+>> +	struct amdgpu_userq_obj		proc_ctx_obj;
+>>  
+>>  	/**
+>>  	 * @reset_work:
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+>> index e9189f07c6dc..3022025bc2ec 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+>> @@ -133,8 +133,8 @@ static int mes_userq_map(struct amdgpu_usermode_queue *queue)
+>>  	queue_input.gang_quantum = 10000;
+>>  	queue_input.paging = false;
+>>  
+>> -	queue_input.process_context_addr = ctx->gpu_addr;
+>> -	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
+>> +	queue_input.process_context_addr = uq_mgr->proc_ctx_obj.gpu_addr;
+>> +	queue_input.gang_context_addr = ctx->gpu_addr;
+>>  	queue_input.inprocess_gang_priority = AMDGPU_MES_PRIORITY_LEVEL_NORMAL;
+>>  	queue_input.gang_global_priority_level = convert_to_mes_priority(queue->priority);
+>>  
+>> @@ -169,7 +169,7 @@ static int mes_userq_unmap(struct amdgpu_usermode_queue *queue)
+>>  
+>>  	memset(&queue_input, 0x0, sizeof(struct mes_remove_queue_input));
+>>  	queue_input.doorbell_offset = queue->doorbell_index;
+>> -	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
+>> +	queue_input.gang_context_addr = ctx->gpu_addr;
+>>  
+>>  	amdgpu_mes_lock(&adev->mes);
+>>  	r = adev->mes.funcs->remove_hw_queue(&adev->mes, &queue_input);
+>> @@ -186,12 +186,8 @@ static int mes_userq_create_ctx_space(struct amdgpu_userq_mgr *uq_mgr,
+>>  	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
+>>  	int r, size;
+>>  
+>> -	/*
+>> -	 * The FW expects at least one page space allocated for
+>> -	 * process ctx and gang ctx each. Create an object
+>> -	 * for the same.
+>> -	 */
+>> -	size = AMDGPU_USERQ_PROC_CTX_SZ + AMDGPU_USERQ_GANG_CTX_SZ;
+>> +	/* The FW expects at least one page space allocated for gang ctx. */
+>> +	size = AMDGPU_USERQ_GANG_CTX_SZ;
+>>  	r = amdgpu_bo_create_kernel(uq_mgr->adev, size, 0,
+>>  				    AMDGPU_GEM_DOMAIN_GTT,
+>>  				    &ctx->obj, &ctx->gpu_addr,
+>> @@ -257,6 +253,27 @@ static int mes_userq_detect_and_reset(struct amdgpu_device *adev,
+>>  	return r;
+>>  }
+>>  
+>> +static int mes_userq_create_proc_ctx_space(struct amdgpu_userq_mgr *uq_mgr)
+>> +{
+>> +	int r = 0;
+>> +
+>> +	mutex_lock(&uq_mgr->userq_mutex);
+> Clear NAK. We can't allocate anything while holding that lock.
+>
+> Please add a different lock to protected the buffer or just oportunistically allocate it with CMPXCHG().
 
-Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+I will introduce a different lock in V2.
 
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  2 +
->   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h |  6 ++
->   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  1 +
->   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c    | 27 +++++++++
->   drivers/gpu/drm/amd/amdkfd/kfd_events.c    | 69 +++++++++++++++++++++-
->   drivers/gpu/drm/amd/amdkfd/kfd_priv.h      | 15 +++++
->   drivers/gpu/drm/amd/amdkfd/kfd_process.c   | 33 +++++++++++
->   include/uapi/drm/amdgpu_drm.h              | 21 +++++++
->   8 files changed, 173 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> index 5d7bfa59424a..771ec0608270 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -1467,6 +1467,8 @@ int amdgpu_enable_vblank_kms(struct drm_crtc *crtc);
->   void amdgpu_disable_vblank_kms(struct drm_crtc *crtc);
->   int amdgpu_info_ioctl(struct drm_device *dev, void *data,
->   		      struct drm_file *filp);
-> +int amdgpu_user_options_ioctl(struct drm_device *dev, void *data,
-> +			      struct drm_file *filp);
->   
->   /*
->    * functions used by amdgpu_encoder.c
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-> index 5333e052d56d..68d83a6e6b3a 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-> @@ -210,6 +210,7 @@ int amdgpu_amdkfd_evict_userptr(struct mmu_interval_notifier *mni,
->   int amdgpu_amdkfd_bo_validate_and_fence(struct amdgpu_bo *bo,
->   					uint32_t domain,
->   					struct dma_fence *fence);
-> +int amdgpu_amdkfd_set_sigbus_delay(struct task_struct *task, u32 ms);
->   #else
->   static inline
->   bool amdkfd_fence_check_mm(struct dma_fence *f, struct mm_struct *mm)
-> @@ -241,6 +242,11 @@ int amdgpu_amdkfd_bo_validate_and_fence(struct amdgpu_bo *bo,
->   {
->   	return 0;
->   }
-> +static inline
-> +int amdgpu_amdkfd_set_sigbus_delay(struct task_struct *task, u32 ms)
-> +{
-> +	return -EOPNOTSUPP;
-> +}
->   #endif
->   /* Shared API */
->   int amdgpu_amdkfd_alloc_kernel_mem(struct amdgpu_device *adev, size_t size,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> index 1781c0c3d010..4d4d21babc61 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -3076,6 +3076,7 @@ const struct drm_ioctl_desc amdgpu_ioctls_kms[] = {
->   	DRM_IOCTL_DEF_DRV(AMDGPU_USERQ_SIGNAL, amdgpu_userq_signal_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
->   	DRM_IOCTL_DEF_DRV(AMDGPU_USERQ_WAIT, amdgpu_userq_wait_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
->   	DRM_IOCTL_DEF_DRV(AMDGPU_GEM_LIST_HANDLES, amdgpu_gem_list_handles_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
-> +	DRM_IOCTL_DEF_DRV(AMDGPU_USER_OPTIONS, amdgpu_user_options_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
->   };
->   
->   static const struct drm_driver amdgpu_kms_driver = {
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> index 24526e92f9b8..772e0fda7e14 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> @@ -1423,6 +1423,33 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
->   	return 0;
->   }
->   
-> +/**
-> + * amdgpu_user_options_ioctl - set per-fd user options
-> + *
-> + * @dev: drm dev pointer
-> + * @data: pointer to struct drm_amdgpu_user_options
-> + * @filp: drm file
-> + *
-> + * Sets options stored on the per-file amdgpu_fpriv. Currently the only
-> + * supported option is %AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY which
-> + * controls how KFD delivers SIGBUS for poison/RAS events to the calling
-> + * process (immediate, suppressed, or delayed by N milliseconds).
-> + */
-> +int amdgpu_user_options_ioctl(struct drm_device *dev, void *data,
-> +			      struct drm_file *filp)
-> +{
-> +	struct drm_amdgpu_user_options *args = data;
-> +
-> +	switch (args->op) {
-> +	case AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY:
-> +		return amdgpu_amdkfd_set_sigbus_delay(current,
-> +						      args->kfd_sigbus_delay.value);
-> +	default:
-> +		DRM_DEBUG_KMS("Invalid user option op %u\n", args->op);
-> +		return -EINVAL;
-> +	}
-> +}
-> +
->   /**
->    * amdgpu_driver_open_kms - drm callback for open
->    *
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
-> index e9be798c0a2b..92027c5aae61 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_events.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
-> @@ -29,10 +29,12 @@
->   #include <linux/uaccess.h>
->   #include <linux/mman.h>
->   #include <linux/memory.h>
-> +#include <linux/workqueue.h>
->   #include "kfd_priv.h"
->   #include "kfd_events.h"
->   #include "kfd_device_queue_manager.h"
->   #include <linux/device.h>
-> +#include <uapi/drm/amdgpu_drm.h>
->   
->   /*
->    * Wrapper around wait_queue_entry_t
-> @@ -1337,6 +1339,71 @@ void kfd_signal_reset_event(struct kfd_node *dev)
->   	srcu_read_unlock(&kfd_processes_srcu, idx);
->   }
->   
-> +/*
-> + * Per-process opt-in for poison-consumption SIGBUS handling.
-> + *
-> + * Default: kernel sends SIGBUS to the process immediately when poison is
-> + * consumed, in addition to delivering the KFD HW/MEMORY exception events.
-> + *
-> + * Userspace (ROCr) can opt-in per-process via the
-> + * DRM_IOCTL_AMDGPU_USER_OPTIONS / AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY
-> + * option. This lets the app's registered system-event callback handle the
-> + * RAS error first, instead of being killed by SIGBUS.
-> + *
-> + * Encoded value (stored on the kfd_process):
-> + *   0          - default: SIGBUS immediately (no opt-in)
-> + *   0xFFFFFFFF - opt-in, never escalate to SIGBUS
-> + *   N (other)  - opt-in, escalate to SIGBUS after N ms if app does not
-> + *                handle the error in time (safety timeout)
-> + */
-> +
-> +void kfd_signal_sigbus_delayed_fn(struct work_struct *work)
-> +{
-> +	struct kfd_process *p = container_of(to_delayed_work(work),
-> +				struct kfd_process, signal_work);
-> +
-> +	if (p->lead_thread)
-> +		send_sig(SIGBUS, p->lead_thread, 0);
-> +
-> +	kfd_unref_process(p);
-> +}
-> +
-> +static void kfd_signal_sigbus_with_delay(struct kfd_node *dev,
-> +					 struct kfd_process *p)
-> +{
-> +	u32 delay_ms = atomic_read(&p->kfd_sigbus_delay_ms);
-> +
-> +	if (delay_ms == AMDGPU_USER_OPTIONS_KFD_SIGBUS_DELAY_DISABLED) {
-> +		dev_info(dev->adev->dev,
-> +			 "SIGBUS suppressed for process %s(pid:%d): app opted in to handle RAS error\n",
-> +			 p->lead_thread->comm, p->lead_thread->pid);
-> +		return;
-> +	}
-> +
-> +	if (delay_ms == 0)
-> +		goto send_now;
-> +
-> +	/*
-> +	 * Take an extra reference for the delayed worker. If the work is
-> +	 * already pending (e.g. another device of this process consumed poison
-> +	 * just before), drop the reference and skip rescheduling - the process
-> +	 * only needs to be notified once.
-> +	 */
-> +	kref_get(&p->ref);
-> +	if (!schedule_delayed_work(&p->signal_work, msecs_to_jiffies(delay_ms))) {
-> +		kfd_unref_process(p);
-> +		return;
-> +	}
-> +
-> +	dev_info(dev->adev->dev,
-> +		 "Deferring SIGBUS to process %s(pid:%d) by %u ms (RAS error opt-in safety timeout)\n",
-> +		 p->lead_thread->comm, p->lead_thread->pid, delay_ms);
-> +	return;
-> +
-> +send_now:
-> +	send_sig(SIGBUS, p->lead_thread, 0);
-> +}
-> +
->   void kfd_signal_poison_consumed_event(struct kfd_node *dev, u32 pasid)
->   {
->   	struct kfd_process *p = kfd_lookup_process_by_pasid(pasid, NULL);
-> @@ -1391,7 +1458,7 @@ void kfd_signal_poison_consumed_event(struct kfd_node *dev, u32 pasid)
->   	rcu_read_unlock();
->   
->   	/* user application will handle SIGBUS signal */
-> -	send_sig(SIGBUS, p->lead_thread, 0);
-> +	kfd_signal_sigbus_with_delay(dev, p);
->   
->   	kfd_unref_process(p);
->   }
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> index f037062c33ea..ae6d1ecb14d5 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> @@ -957,6 +957,20 @@ struct kfd_process {
->   	size_t signal_event_count;
->   	bool signal_event_limit_reached;
->   
-> +	/**
-> +	 * @kfd_sigbus_delay_ms: Per-process KFD SIGBUS delivery option for
-> +	 * poison/RAS events (set via DRM_IOCTL_AMDGPU_USER_OPTIONS /
-> +	 * AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY).
-> +	 *
-> +	 *   0          - send SIGBUS immediately (default)
-> +	 *   0xFFFFFFFF - suppress SIGBUS delivery
-> +	 *   other      - delay SIGBUS delivery by this many milliseconds
-> +	 */
-> +	atomic_t kfd_sigbus_delay_ms;
-> +
-> +	/* Delayed signal delivery to user */
-> +	struct delayed_work signal_work;
-> +
->   	/* Information used for memory eviction */
->   	void *kgd_process_info;
->   	/* Eviction fence that is attached to all the BOs of this process. The
-> @@ -1554,6 +1568,7 @@ void kfd_signal_vm_fault_event(struct kfd_process_device *pdd,
->   void kfd_signal_reset_event(struct kfd_node *dev);
->   
->   void kfd_signal_poison_consumed_event(struct kfd_node *dev, u32 pasid);
-> +void kfd_signal_sigbus_delayed_fn(struct work_struct *work);
->   void kfd_signal_process_terminate_event(struct kfd_process *p);
->   
->   static inline void kfd_flush_tlb(struct kfd_process_device *pdd)
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-> index 419bb8086ccd..dd48ad9a3438 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-> @@ -992,6 +992,33 @@ struct kfd_process *kfd_create_process(struct task_struct *thread)
->   	return process;
->   }
->   
-> +/**
-> + * amdgpu_amdkfd_set_sigbus_delay - Set per-process KFD SIGBUS delay
-> + * @task: task in the target process
-> + * @ms:   encoded delay value (0 = immediate, 0xFFFFFFFF = suppress,
-> + *        otherwise delay in milliseconds)
-> + *
-> + * Stores the SIGBUS delivery option on the kfd_process associated with
-> + * @task. If the calling process has not opened /dev/kfd yet (no
-> + * kfd_process exists), this is a no-op - the option only applies to
-> + * processes that actually use KFD.
-> + */
-> +int amdgpu_amdkfd_set_sigbus_delay(struct task_struct *task, u32 ms)
-> +{
-> +	struct kfd_process *p;
-> +
-> +	if (!task->mm)
-> +		return -EINVAL;
-> +
-> +	p = kfd_lookup_process_by_mm(task->mm);
-> +	if (!p)
-> +		return 0;
-> +
-> +	atomic_set(&p->kfd_sigbus_delay_ms, ms);
-> +	kfd_unref_process(p);
-> +	return 0;
-> +}
-> +
->   static struct kfd_process *find_process_by_mm(const struct mm_struct *mm)
->   {
->   	struct kfd_process *process;
-> @@ -1328,6 +1355,11 @@ void kfd_process_notifier_release_internal(struct kfd_process *p)
->   	kfd_process_table_remove(p);
->   	cancel_delayed_work_sync(&p->eviction_work);
->   	cancel_delayed_work_sync(&p->restore_work);
-> +	/*
-> +	 * If work pending, cancel it and drop the extra ref
-> +	 */
-> +	if (cancel_delayed_work_sync(&p->signal_work))
-> +		kfd_unref_process(p);
->   
->   	/*
->   	 * Dequeue and destroy user queues, it is not safe for GPU to access
-> @@ -1584,6 +1616,7 @@ struct kfd_process *create_process(const struct task_struct *thread, bool primar
->   
->   	INIT_DELAYED_WORK(&process->eviction_work, evict_process_worker);
->   	INIT_DELAYED_WORK(&process->restore_work, restore_process_worker);
-> +	INIT_DELAYED_WORK(&process->signal_work, kfd_signal_sigbus_delayed_fn);
->   	process->last_restore_timestamp = get_jiffies_64();
->   	err = kfd_event_init_process(process);
->   	if (err)
-> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-> index 9f3090db2f16..ab71c4b4aeac 100644
-> --- a/include/uapi/drm/amdgpu_drm.h
-> +++ b/include/uapi/drm/amdgpu_drm.h
-> @@ -58,6 +58,7 @@ extern "C" {
->   #define DRM_AMDGPU_USERQ_SIGNAL		0x17
->   #define DRM_AMDGPU_USERQ_WAIT		0x18
->   #define DRM_AMDGPU_GEM_LIST_HANDLES	0x19
-> +#define DRM_AMDGPU_USER_OPTIONS		0x1A
->   
->   #define DRM_IOCTL_AMDGPU_GEM_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
->   #define DRM_IOCTL_AMDGPU_GEM_MMAP	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
-> @@ -79,6 +80,7 @@ extern "C" {
->   #define DRM_IOCTL_AMDGPU_USERQ_SIGNAL	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_SIGNAL, struct drm_amdgpu_userq_signal)
->   #define DRM_IOCTL_AMDGPU_USERQ_WAIT	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, struct drm_amdgpu_userq_wait)
->   #define DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_HANDLES, struct drm_amdgpu_gem_list_handles)
-> +#define DRM_IOCTL_AMDGPU_USER_OPTIONS	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USER_OPTIONS, struct drm_amdgpu_user_options)
->   
->   /**
->    * DOC: memory domains
-> @@ -1673,6 +1675,25 @@ struct drm_amdgpu_info_uq_metadata {
->   #define AMDGPU_FAMILY_GC_11_5_4			154 /* GC 11.5.4 */
->   #define AMDGPU_FAMILY_GC_12_0_0			152 /* GC 12.0.0 */
->   
-> +/*
-> + * Definition of user options
-> + *
-> + * option: AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY
-> + *    0:          Disable sigbus delay - SIGBUS will be raised immediately
-> + *    0xFFFFFFFF: SIGBUS will not be raised
-> + *    other:      Set the sigbus delay in milliseconds
-> + */
-> +#define AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY		0
-> +
-> +#define AMDGPU_USER_OPTIONS_KFD_SIGBUS_DELAY_DISABLED	0xFFFFFFFFu
-> +
-> +struct drm_amdgpu_user_options {
-> +	__u32 op;
-> +	struct {
-> +		__u32 value;
-> +	} kfd_sigbus_delay;
-> +};
+>
+>> +	if (!uq_mgr->proc_ctx_obj.obj) {
+> Please drop that check, amdgpu_bo_create_kernel() should already take care of that.
 
-Rather than 'user', it may be good to consider naming it as 
-amdgpu_proc_options (process related options).
+I think we still need this check, because although amdgpu_bo_create_kernel() checks (!*bo_ptr), but:
+1) it does not immediately return if bo_ptr is valid. It only skips re-creating the bo,
+it still calls amdgpu_bo_reserve(), amdgpu_bo_pin(), amdgpu_ttm_alloc_gart(), and amdgpu_bo_kmap()
+on every invocation.
 
-Thanks,
-Lijo
+2) it calls memset() unconditionally on every invocation.
 
-> +
->   #if defined(__cplusplus)
->   }
->   #endif
+So I think this check is still necessary, and another thing, do you think
+amdgpu_bo_create_kernel() should immediately return if *bo_ptr is not NULL?
+It looks like this deserve a fix.
 
+Thanks
+Lingshan
+
+>
+> Regards,
+> Christian.
+>
+>> +		r = amdgpu_bo_create_kernel(uq_mgr->adev, AMDGPU_USERQ_PROC_CTX_SZ,
+>> +					    0, AMDGPU_GEM_DOMAIN_GTT,
+>> +					    &uq_mgr->proc_ctx_obj.obj,
+>> +					    &uq_mgr->proc_ctx_obj.gpu_addr,
+>> +					    &uq_mgr->proc_ctx_obj.cpu_ptr);
+>> +
+>> +		if (!r)
+>> +			memset(uq_mgr->proc_ctx_obj.cpu_ptr, 0, AMDGPU_USERQ_PROC_CTX_SZ);
+>> +	}
+>> +
+>> +	mutex_unlock(&uq_mgr->userq_mutex);
+>> +
+>> +	return r;
+>> +}
+>> +
+>>  static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
+>>  				struct drm_amdgpu_userq_in *args_in)
+>>  {
+>> @@ -429,7 +446,14 @@ static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
+>>  		goto free_mqd;
+>>  	}
+>>  
+>> -	/* Create BO for FW operations */
+>> +	/* Create per-process MES process context BO */
+>> +	r = mes_userq_create_proc_ctx_space(uq_mgr);
+>> +	if (r) {
+>> +		DRM_ERROR("Failed to allocate MES process context space bo, error: %d\n", r);
+>> +		goto free_mqd;
+>> +	}
+>> +
+>> +	/* Create BO of a gang for FW operations */
+>>  	r = mes_userq_create_ctx_space(uq_mgr, queue, mqd_user);
+>>  	if (r) {
+>>  		DRM_ERROR("Failed to allocate BO for userqueue (%d)", r);
+>> @@ -492,7 +516,7 @@ static int mes_userq_preempt(struct amdgpu_usermode_queue *queue)
+>>  	*fence_ptr = 0;
+>>  
+>>  	memset(&queue_input, 0x0, sizeof(struct mes_suspend_gang_input));
+>> -	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
+>> +	queue_input.gang_context_addr = ctx->gpu_addr;
+>>  	queue_input.suspend_fence_addr = fence_gpu_addr;
+>>  	queue_input.suspend_fence_value = 1;
+>>  	amdgpu_mes_lock(&adev->mes);
+>> @@ -529,7 +553,7 @@ static int mes_userq_restore(struct amdgpu_usermode_queue *queue)
+>>  		return 0;
+>>  
+>>  	memset(&queue_input, 0x0, sizeof(struct mes_resume_gang_input));
+>> -	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
+>> +	queue_input.gang_context_addr = ctx->gpu_addr;
+>>  
+>>  	amdgpu_mes_lock(&adev->mes);
+>>  	r = adev->mes.funcs->resume_gang(&adev->mes, &queue_input);
+--------------83o3wpKNwqf1ce021C8R4rkR
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <pre>On 5/26/2026 3:02 AM, Christian König wrote:</pre>
+    <blockquote type="cite" cite="mid:53d1f30e-96d1-48a8-a933-c922439e9cdb@amd.com">
+      <pre wrap="" class="moz-quote-pre">
+
+On 5/25/26 10:23, Zhu Lingshan wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">MES process context is a process-level page
+where process specific context is saved for
+MES scheduler.
+
+However, current user-queue code path assigns
+fw_obj of a queue to MES process_context_addr
+when adding the queue to MES.
+
+This means every new queue from the same process
+would replace the previous process context address
+with that queue's fw_obj address.
+What's worse is, when user space frees a queue,
+its fw_obj will be freed as well, causing MES
+working on a NULL page pointer.
+
+This issue leads to inconsistency and crash
+in the scheduler.
+
+This commit allocates a process-level page for
+MES process contexts for a process other than queue-level
+
+Signed-off-by: Zhu Lingshan <a class="moz-txt-link-rfc2396E" href="mailto:lingshan.zhu@amd.com">&lt;lingshan.zhu@amd.com&gt;</a>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  |  5 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  |  1 +
+ drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 48 ++++++++++++++++------
+ 3 files changed, 42 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+index 38e310a8694d..0c4d6f80616e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+@@ -1225,6 +1225,11 @@ void amdgpu_userq_mgr_fini(struct amdgpu_userq_mgr *userq_mgr)
+ 	 */
+ 	cancel_work_sync(&amp;userq_mgr-&gt;reset_work);
+ 
++	if (userq_mgr-&gt;proc_ctx_obj.obj)
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Please drop that check it is unecessary.</pre>
+    </blockquote>
+    <pre><font face="monospace">sure, I can drop this in V2.</font></pre>
+    <blockquote type="cite" cite="mid:53d1f30e-96d1-48a8-a933-c922439e9cdb@amd.com">
+      <pre wrap="" class="moz-quote-pre">
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+		amdgpu_bo_free_kernel(&amp;userq_mgr-&gt;proc_ctx_obj.obj,
++				      &amp;userq_mgr-&gt;proc_ctx_obj.gpu_addr,
++				      &amp;userq_mgr-&gt;proc_ctx_obj.cpu_ptr);
++
+ 	mutex_destroy(&amp;userq_mgr-&gt;userq_mutex);
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+index 28cfc6682333..fe85234e58b3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+@@ -127,6 +127,7 @@ struct amdgpu_userq_mgr {
+ 	struct amdgpu_device		*adev;
+ 	struct delayed_work		resume_work;
+ 	struct drm_file			*file;
++	struct amdgpu_userq_obj		proc_ctx_obj;
+ 
+ 	/**
+ 	 * @reset_work:
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+index e9189f07c6dc..3022025bc2ec 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+@@ -133,8 +133,8 @@ static int mes_userq_map(struct amdgpu_usermode_queue *queue)
+ 	queue_input.gang_quantum = 10000;
+ 	queue_input.paging = false;
+ 
+-	queue_input.process_context_addr = ctx-&gt;gpu_addr;
+-	queue_input.gang_context_addr = ctx-&gt;gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
++	queue_input.process_context_addr = uq_mgr-&gt;proc_ctx_obj.gpu_addr;
++	queue_input.gang_context_addr = ctx-&gt;gpu_addr;
+ 	queue_input.inprocess_gang_priority = AMDGPU_MES_PRIORITY_LEVEL_NORMAL;
+ 	queue_input.gang_global_priority_level = convert_to_mes_priority(queue-&gt;priority);
+ 
+@@ -169,7 +169,7 @@ static int mes_userq_unmap(struct amdgpu_usermode_queue *queue)
+ 
+ 	memset(&amp;queue_input, 0x0, sizeof(struct mes_remove_queue_input));
+ 	queue_input.doorbell_offset = queue-&gt;doorbell_index;
+-	queue_input.gang_context_addr = ctx-&gt;gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
++	queue_input.gang_context_addr = ctx-&gt;gpu_addr;
+ 
+ 	amdgpu_mes_lock(&amp;adev-&gt;mes);
+ 	r = adev-&gt;mes.funcs-&gt;remove_hw_queue(&amp;adev-&gt;mes, &amp;queue_input);
+@@ -186,12 +186,8 @@ static int mes_userq_create_ctx_space(struct amdgpu_userq_mgr *uq_mgr,
+ 	struct amdgpu_userq_obj *ctx = &amp;queue-&gt;fw_obj;
+ 	int r, size;
+ 
+-	/*
+-	 * The FW expects at least one page space allocated for
+-	 * process ctx and gang ctx each. Create an object
+-	 * for the same.
+-	 */
+-	size = AMDGPU_USERQ_PROC_CTX_SZ + AMDGPU_USERQ_GANG_CTX_SZ;
++	/* The FW expects at least one page space allocated for gang ctx. */
++	size = AMDGPU_USERQ_GANG_CTX_SZ;
+ 	r = amdgpu_bo_create_kernel(uq_mgr-&gt;adev, size, 0,
+ 				    AMDGPU_GEM_DOMAIN_GTT,
+ 				    &amp;ctx-&gt;obj, &amp;ctx-&gt;gpu_addr,
+@@ -257,6 +253,27 @@ static int mes_userq_detect_and_reset(struct amdgpu_device *adev,
+ 	return r;
+ }
+ 
++static int mes_userq_create_proc_ctx_space(struct amdgpu_userq_mgr *uq_mgr)
++{
++	int r = 0;
++
++	mutex_lock(&amp;uq_mgr-&gt;userq_mutex);
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Clear NAK. We can't allocate anything while holding that lock.
+
+Please add a different lock to protected the buffer or just oportunistically allocate it with CMPXCHG().</pre>
+    </blockquote>
+    <pre>I will introduce a different lock in V2.</pre>
+    <blockquote type="cite" cite="mid:53d1f30e-96d1-48a8-a933-c922439e9cdb@amd.com">
+      <pre wrap="" class="moz-quote-pre">
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+	if (!uq_mgr-&gt;proc_ctx_obj.obj) {
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Please drop that check, amdgpu_bo_create_kernel() should already take care of that.</pre>
+    </blockquote>
+    <pre>I think we still need this check, because although amdgpu_bo_create_kernel() checks (!*bo_ptr), but:
+1) it does not immediately return if bo_ptr is valid. It only skips re-creating the bo,
+it still calls amdgpu_bo_reserve(), amdgpu_bo_pin(), amdgpu_ttm_alloc_gart(), and amdgpu_bo_kmap()
+on every invocation.
+
+2) it calls memset() unconditionally on every invocation.
+
+So I think this check is still necessary, and another thing, do you think
+amdgpu_bo_create_kernel() should immediately return if *bo_ptr is not NULL?
+It looks like this deserve a fix.
+
+Thanks
+Lingshan</pre>
+    <blockquote type="cite" cite="mid:53d1f30e-96d1-48a8-a933-c922439e9cdb@amd.com">
+      <pre wrap="" class="moz-quote-pre">
+
+Regards,
+Christian.
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+		r = amdgpu_bo_create_kernel(uq_mgr-&gt;adev, AMDGPU_USERQ_PROC_CTX_SZ,
++					    0, AMDGPU_GEM_DOMAIN_GTT,
++					    &amp;uq_mgr-&gt;proc_ctx_obj.obj,
++					    &amp;uq_mgr-&gt;proc_ctx_obj.gpu_addr,
++					    &amp;uq_mgr-&gt;proc_ctx_obj.cpu_ptr);
++
++		if (!r)
++			memset(uq_mgr-&gt;proc_ctx_obj.cpu_ptr, 0, AMDGPU_USERQ_PROC_CTX_SZ);
++	}
++
++	mutex_unlock(&amp;uq_mgr-&gt;userq_mutex);
++
++	return r;
++}
++
+ static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
+ 				struct drm_amdgpu_userq_in *args_in)
+ {
+@@ -429,7 +446,14 @@ static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
+ 		goto free_mqd;
+ 	}
+ 
+-	/* Create BO for FW operations */
++	/* Create per-process MES process context BO */
++	r = mes_userq_create_proc_ctx_space(uq_mgr);
++	if (r) {
++		DRM_ERROR(&quot;Failed to allocate MES process context space bo, error: %d\n&quot;, r);
++		goto free_mqd;
++	}
++
++	/* Create BO of a gang for FW operations */
+ 	r = mes_userq_create_ctx_space(uq_mgr, queue, mqd_user);
+ 	if (r) {
+ 		DRM_ERROR(&quot;Failed to allocate BO for userqueue (%d)&quot;, r);
+@@ -492,7 +516,7 @@ static int mes_userq_preempt(struct amdgpu_usermode_queue *queue)
+ 	*fence_ptr = 0;
+ 
+ 	memset(&amp;queue_input, 0x0, sizeof(struct mes_suspend_gang_input));
+-	queue_input.gang_context_addr = ctx-&gt;gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
++	queue_input.gang_context_addr = ctx-&gt;gpu_addr;
+ 	queue_input.suspend_fence_addr = fence_gpu_addr;
+ 	queue_input.suspend_fence_value = 1;
+ 	amdgpu_mes_lock(&amp;adev-&gt;mes);
+@@ -529,7 +553,7 @@ static int mes_userq_restore(struct amdgpu_usermode_queue *queue)
+ 		return 0;
+ 
+ 	memset(&amp;queue_input, 0x0, sizeof(struct mes_resume_gang_input));
+-	queue_input.gang_context_addr = ctx-&gt;gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
++	queue_input.gang_context_addr = ctx-&gt;gpu_addr;
+ 
+ 	amdgpu_mes_lock(&amp;adev-&gt;mes);
+ 	r = adev-&gt;mes.funcs-&gt;resume_gang(&amp;adev-&gt;mes, &amp;queue_input);
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------83o3wpKNwqf1ce021C8R4rkR--
