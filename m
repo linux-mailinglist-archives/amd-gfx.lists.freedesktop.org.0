@@ -2,97 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GEhGDlWhFmqBnwcAu9opvQ
+	id VFEAJSrFFWoFbAcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 09:46:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 18:07:06 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B395E09AC
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 09:46:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0821E5D9511
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 18:07:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50B9E10E245;
-	Wed, 27 May 2026 07:46:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8A5910E6C5;
+	Tue, 26 May 2026 16:07:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=valvesoftware.com header.i=@valvesoftware.com header.b="a4hLXOEK";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="pz9tEYG3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 380 seconds by postgrey-1.36 at gabe;
- Tue, 26 May 2026 15:11:08 UTC
-Received: from us-smtp-delivery-172.mimecast.com
- (us-smtp-delivery-172.mimecast.com [170.10.129.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6F6310E20C
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 May 2026 15:11:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=valvesoftware.com;
- s=mc20150811; t=1779808267;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=/o58ejGK8onng0/VtWpFh4esMZPeGuyDS78DK9Me7Zs=;
- b=a4hLXOEKBNAzIXcuJGzQLxrtURNj+fAZwh70tIn202fqKq4w4l7Wts8RHpbmL4VN/UWmPI
- UQ+tVu9DnMl4kYG4/hhmMbkXaPfbeef0zR+DiYlhSibfyGFPMFar4jdnQLdS/NhkEcb3+p
- kHO1MBQU2o+I0jTa3UPaH2pTwVfKLyE=
-Received: from smtp-02-tuk3.valvesoftware.com
- (smtp-02-blv1.valvesoftware.com [208.64.203.182]) by relay.mimecast.com
- with ESMTP with STARTTLS (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384)
- id us-mta-175-gErr4YA9M2ydJSj8lratow-1; Tue, 26 May 2026 11:04:44 -0400
-X-MC-Unique: gErr4YA9M2ydJSj8lratow-1
-X-Mimecast-MFC-AGG-ID: gErr4YA9M2ydJSj8lratow_1779807883
-Received: from antispam.valve.org ([172.16.1.107])
- by smtp-02-tuk3.valvesoftware.com with esmtp (Exim 4.97)
- (envelope-from <peihsiny@valvesoftware.com>)
- id 1wRtKf-00000004spO-0BWK for amd-gfx@lists.freedesktop.org;
- Tue, 26 May 2026 08:04:43 -0700
-Received: from antispam.valve.org (127.0.0.1) id h2mr8m0171sr for
- <amd-gfx@lists.freedesktop.org>;
- Tue, 26 May 2026 08:04:43 -0700 (envelope-from <peihsiny@valvesoftware.com>)
-Received: from mail2.valvemail.org ([172.16.144.23])
- by antispam.valve.org ([172.16.1.107]) (SonicWall 10.0.15.7233)
- with ESMTP id o202605261504430076524-5; Tue, 26 May 2026 08:04:43 -0700
-Received: from mail2.valvemail.org (172.16.144.23) by mail2.valvemail.org
- (172.16.144.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 26 May
- 2026 08:04:43 -0700
-Received: from mail2.valvemail.org ([::1]) by mail2.valvemail.org ([::1]) with
- mapi id 15.02.2562.017; Tue, 26 May 2026 08:04:43 -0700
-From: Pei-Hsin Yang <peihsiny@valvesoftware.com>
-To: =?utf-8?B?TWljaGVsIETDpG56ZXI=?= <michel.daenzer@mailbox.org>
-CC: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: RE: [External Mail] Re: Test result / finding of "drm/amd/display:
- Consult MCCS FreeSync cap only if requested & supported"
-Thread-Topic: [External Mail] Re: Test result / finding of "drm/amd/display:
- Consult MCCS FreeSync cap only if requested & supported"
-Thread-Index: AdznyYW5KuL81IotTPmWr+1olc6y4wAnk9yAAAH0cTAALvV0AABCoHewAMb8EYAADFKRAA==
-Date: Tue, 26 May 2026 15:04:42 +0000
-Message-ID: <17aabac2d51c411c8e9aa230d799ab49@valvesoftware.com>
-References: <44069eb146824aa195312f5b02c49287@valvesoftware.com>
- <7a9021cd-fd78-4b0d-846b-135d0d72224e@mailbox.org>
- <16231b1742004f848af243ce398281ec@valvesoftware.com>
- <ce51243c-3b98-4f99-911f-70dd0b860da0@mailbox.org>
- <431e78bafdc7402398d5b7bc85d81252@valvesoftware.com>
- <1fb98dd3-55fd-4269-91bd-292b1167718b@mailbox.org>
-In-Reply-To: <1fb98dd3-55fd-4269-91bd-292b1167718b@mailbox.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.22.15.76]
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA71710E0CC
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 May 2026 16:06:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=j1y0KPF5djGZq9vRfG0XVigRrWpGZYhYmO/L9RYE0uA=; b=pz9tEYG3JhF5RjGiYVVVhUmEeK
+ hxYzfo5PGDzuTcz4Q2B26rLgr4KqQ+dquVYRfSnqZjJBZFpmyDrzkPrK1+vI293G/SdywKc5POGqU
+ NAIBFGIYZR34HyLeZ15fSqf1a8tjp9obR1WSVAk8+RYes/NUMp8wEkYSrvhS3bXK7JMTC0w9dR6yI
+ Kgj2vxCCjLVYMHLmJmZJtHOIzsAsCmqBGDiuIjCcUgqPMDGjGdSlt9CY0Pki5NTMx/lha1wK6zfE8
+ GBu2u/WISBkH4pdyeKXPUSlvvvA4tRiXF98NoeNOpDYGQD+XFo29cskuBuhUDwiCb5F63xLVofzR7
+ wsz1+l5g==;
+Received: from [90.240.106.137] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wRuIx-008Vb1-4A; Tue, 26 May 2026 18:06:55 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, David Francis <David.Francis@amd.com>,
+ Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [RFC 0/5] Tiny steps towards amdgpu checkpoint and restore
+Date: Tue, 26 May 2026 17:06:25 +0100
+Message-ID: <20260526160630.35562-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-X-Mlf-DSE-Version: 6871
-X-Mlf-Rules-Version: s20260522120322; ds20230628172248;
- di20260507172443; ri20160318003319; fs20260522203510
-X-Mlf-Smartnet-Version: 20210917223710
-X-Mlf-Envelope-From: peihsiny@valvesoftware.com
-X-Mlf-Version: 10.0.15.7233
-X-Mlf-License: BSV_C_AP_T_R
-X-Mlf-UniqueId: o202605261504430076524
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: ZJlMNnaTz3tKIiK-0RefyiamxJ4kaaA2TqG9Kql03mk_1779807883
-X-Mimecast-Originator: valvesoftware.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
-X-Mailman-Approved-At: Wed, 27 May 2026 07:46:23 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,89 +64,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.21 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[valvesoftware.com,quarantine];
+X-Spamd-Result: default: False [1.99 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[valvesoftware.com:s=mc20150811];
 	MAILLIST(-0.20)[mailman];
-	MIME_BASE64_TEXT(0.10)[];
-	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:michel.daenzer@mailbox.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,valvesoftware.com:email,valvesoftware.com:mid,valvesoftware.com:dkim,mailbox.org:email];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[peihsiny@valvesoftware.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[valvesoftware.com:+];
-	MISSING_XM_UA(0.00)[];
 	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	DKIM_TRACE(0.00)[igalia.com:-];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peihsiny@valvesoftware.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_XOIP(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.893];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[8]
-X-Rspamd-Queue-Id: 90B395E09AC
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,criu.org:url]
+X-Rspamd-Queue-Id: 0821E5D9511
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-PiBJbiB0aGUgZnV0dXJlLCBwbGVhc2Ugc2VuZCBwYXRjaGVzIGlubGluZSwgdG8gbWFrZSBnaXZp
-bmcgZmVlZGJhY2sgZWFzaWVyLg0KDQpXaWxsIGRvLiAgVGhhbmtzLg0KDQo+IHZzZGJfaW5mby5m
-cmVlc3luY19zdXBwb3J0ZWQgYWxyZWFkeSBndWFyZHMgc2V0dGluZyBmcmVlc3luY19jYXBhYmxl
-ID0gdHJ1ZSBpbiB0aGUgZmlyc3QgcGxhY2UgKGdpdmVuIGVpdGhlciBvZiB0aGUgb3RoZXIgdHdv
-IGNvbmRpdGlvbnMpIGFib3ZlLCBzbyB0aGlzIGlmLXN0YXRlbWVudCBsb29rcyBzdXBlcmZsdW91
-cyBub3cuDQoNClllcywgaWYgaGFyZHdhcmUgZGV0ZWN0aW9uIHZpYSBNQ0NTIFZDUCBDb2RlIHJl
-YWQgaXMgbm90IHByZWZlcnJlZCwgdGhlbiB0aGlzIGlmLXN0YXRlbWVudCBjYW4gYmUgcmVtb3Zl
-ZC4NCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IE1pY2hlbCBEw6RuemVyIDxt
-aWNoZWwuZGFlbnplckBtYWlsYm94Lm9yZz4gDQpTZW50OiBUdWVzZGF5LCBNYXkgMjYsIDIwMjYg
-Njo1NSBBTQ0KVG86IFBlaS1Ic2luIFlhbmcgPHBlaWhzaW55QHZhbHZlc29mdHdhcmUuY29tPg0K
-Q2M6IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQpTdWJqZWN0OiBSZTogW0V4dGVybmFs
-IE1haWxdIFJlOiBUZXN0IHJlc3VsdCAvIGZpbmRpbmcgb2YgImRybS9hbWQvZGlzcGxheTogQ29u
-c3VsdCBNQ0NTIEZyZWVTeW5jIGNhcCBvbmx5IGlmIHJlcXVlc3RlZCAmIHN1cHBvcnRlZCINCg0K
-T24gNS8yMy8yNiAwMDoxNSwgUGVpLUhzaW4gWWFuZyB3cm90ZToNCj4+IE5vdGUgdGhhdCBzb21l
-IGtpbmQgb2Ygc2hvcnQtdGVybSBzb2x1dGlvbiBpcyBuZWVkZWQgZm9yIHRoZSByZWdyZXNzaW9u
-KHMpIGluIDcuMS1yYy4NCj4gDQo+IEhlcmUgaXMgbXkgc3VnZ2VzdGlvbiBhcyBhIHNob3J0LXRl
-cm0gd29ya2Fyb3VuZDogIA0KPiAJLSBKdXN0IHJlZmVyIHRvIHRoZSB2c2RiX2luZm8gZGF0YSBz
-dHJ1Y3R1cmUgdG8gc2V0IHRoZSB2YWx1ZSBvZiBmcmVlc3luY19jYXBhYmxlLiAgZnJlZXN5bmNf
-bWNjc192Y3BfY29kZSA9IDAgZG9lc24ndCBtZWFuIEZyZWVTeW5jIGlzIG5vdCBzdXBwb3J0ZWQu
-DQo+IAktIENoZWNrIGJvdGggZnJlZXN5bmNfc3VwcG9ydGVkIGFuZCBmcmVlc3luY19tY2NzX3Zj
-cF9jb2RlIGFsb25nIHdpdGggZG9fbWNjcyB0byBjYWxsIGRtX2hlbHBlcnNfbWNjc192Y3Bfc2V0
-KCkuDQo+IAktIE5vdGUgdGhhdCBNQ0NTIGNvbW1hbmQgb3ZlciBEREMgbWlnaHQgYmUgZmFpbGVk
-IGF0IHJ1bnRpbWUsIGJ1dCBhdCBsZWFzdCwgaXQgd2lsbCBub3QgaW5hZHZlcnRlbnRseSBkaXNh
-YmxlIHRoZSBWUlIgaWYgKDEpIHNpbmsgaXMgRnJlZVN5bmMgc3VwcG9ydGVkIGJ1dCB2Y3BfY29k
-ZSA9IDAsIG9yICgyKSBkbV9oZWxwZXJzX3JlYWRfbWNjc19jYXAoKSBmYWlsZWQgaW50ZXJtaXR0
-ZW50bHkgYXQgcnVudGltZS4NCj4gDQo+IFBhdGNoIGNyZWF0ZWQgYmFzZWQgb24gY29tbWl0IDUz
-ZjAyMzVjMDI4NGZjNjc2ZDE1MTBhNDYwZTFjNmMxMTFkZTNlYTEgaXMgYXR0YWNoZWQgYXMgYSBy
-ZWZlcmVuY2UgZm9yIEFNRCB0ZWFtIHRvIHJldmlldy4NCj4gDQo+IGNvbW1pdCA1M2YwMjM1YzAy
-ODRmYzY3NmQxNTEwYTQ2MGUxYzZjMTExZGUzZWExIChIRUFEIC0+IGFtZC1zdGFnaW5nLWRybS1u
-ZXh0LCBvcmlnaW4vYW1kLXN0YWdpbmctZHJtLW5leHQsIG9yaWdpbi9IRUFEKQ0KDQpJbiB0aGUg
-ZnV0dXJlLCBwbGVhc2Ugc2VuZCBwYXRjaGVzIGlubGluZSwgdG8gbWFrZSBnaXZpbmcgZmVlZGJh
-Y2sgZWFzaWVyLg0KDQoNCj4gQEAgLTEzNjgwLDExICsxMzY4MCwxMCBAQCB2b2lkIGFtZGdwdV9k
-bV91cGRhdGVfZnJlZXN5bmNfY2FwcyhzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLA0K
-PiANCj4gICAgICAgICBpZiAoKHNpbmstPnNpbmtfc2lnbmFsID09IFNJR05BTF9UWVBFX0hETUlf
-VFlQRV9BIHx8DQo+ICAgICAgICAgICAgICAgICBhc190eXBlID09IEZSRUVTWU5DX1RZUEVfUENP
-Tl9JTl9XSElURUxJU1QpICYmDQo+IC0gICAgICAgICAgICAgICAoIXNpbmstPmVkaWRfY2Fwcy5m
-cmVlc3luY192Y3BfY29kZSB8fA0KPiAtICAgICAgICAgICAgICAgKHNpbmstPmVkaWRfY2Fwcy5m
-cmVlc3luY192Y3BfY29kZSAmJiAhc2luay0+bWNjc19jYXBzLmZyZWVzeW5jX3N1cHBvcnRlZCkp
-KQ0KPiArICAgICAgICAgICAgICAgKCF2c2RiX2luZm8uZnJlZXN5bmNfc3VwcG9ydGVkKSkNCj4g
-ICAgICAgICAgICAgICAgIGZyZWVzeW5jX2NhcGFibGUgPSBmYWxzZTsNCg0KdnNkYl9pbmZvLmZy
-ZWVzeW5jX3N1cHBvcnRlZCBhbHJlYWR5IGd1YXJkcyBzZXR0aW5nIGZyZWVzeW5jX2NhcGFibGUg
-PSB0cnVlIGluIHRoZSBmaXJzdCBwbGFjZSAoZ2l2ZW4gZWl0aGVyIG9mIHRoZSBvdGhlciB0d28g
-Y29uZGl0aW9ucykgYWJvdmUsIHNvIHRoaXMgaWYtc3RhdGVtZW50IGxvb2tzIHN1cGVyZmx1b3Vz
-IG5vdy4NCg0KDQotLSANCkVhcnRobGluZyBNaWNoZWwgRMOkbnplciAgICAgICBcICAgICAgICBH
-Tk9NRSAvIFh3YXlsYW5kIC8gTWVzYSBkZXZlbG9wZXINCmh0dHBzOi8vcmVkaGF0LmNvbSAgICAg
-ICAgICAgICBcICAgICAgICAgICAgICAgTGlicmUgc29mdHdhcmUgZW50aHVzaWFzdA0KDQo=
+I am sending this early with the main goal of getting a feel on how it will be
+received etc.
+
+Cover letter is written mostly for people who already know what checkpoint and
+restore is, so I will just restate the high level goal - To be able to
+checkpoint and restore purely a rendernode process (so no kfd in the picture).
+
+And for people not too familiar what it is, probably best to first read about it
+here: https://criu.org/Main_Page.
+
+There are three pieces of work here:
+
+1.
+This kernel series which adds new uapi to amdgpu.
+
+2.
+A new IGT test case which helped me find what doesn't work and to verify what I
+added.
+
+https://cgit.freedesktop.org/~tursulin/intel-gpu-tools/log/?h=amd-criu
+
+The IGT starts out adding some very basic tests (first commit) which are laid
+out in order of increasing complexity.
+
+Following commits then add more tests and by the end, with all these series
+combined, they all pass apart from the forking subtest. But that one I am
+leaving out of scope for now.
+
+(And to be clear, before this work, none of the tests cases can pass.)
+
+3.
+Changes to the amdgpu CRIU plugin which use the above uapi, among other changes.
+
+https://github.com/tursulin/criu/pull/new/amdgpu-render-node-rfc
+
+As a picture is worth a thousand words the best I can do is some from terminal
+pastes showing it all in action.
+
+Terminal 1:
+
+$ sudo ~/build-holo/tests/amdgpu/amd_criu --r busy-client-content
+IGT-Version: 2.3-ge37a85b91 (x86_64) (Linux: 7.1.0-rc2-cfs x86_64)
+Using IGT_SRANDOM=1779805687 for randomisation
+Opened device: /dev/dri/renderD128
+Starting subtest: busy-client-content
+Start checkpointing within 10 seconds...
+
+Now switch to terminal 2:
+
+$ sudo /usr/local/sbin/criu dump -t `pgrep amd_criu | head -1` \
+  -L /usr/local/lib/criu/ -vvv -o criu.log -j --link-remap --tcp-established \
+  --file-locks --ext-unix-sk
+
+Back to terminal 1:
+
+...
+Killed # This is normal - CRIU dump has saved and terminated the process
+
+Back to terminal 2, lets restore it:
+
+$ sudo /usr/local/sbin/criu restore  -L /usr/local/lib/criu/ -vvv \
+  -o restore.log --shell-job --link-remap --tcp-established --file-locks 
+  --ext-unix-sk
+Subtest busy-client-content: SUCCESS (10.739s)
+
+And that is it. Client which was busy looping submitting a SDMA_NOP IB was
+successfuly checkpointed and restored to completion. It both ran for the
+remainder of the indented duration and we checked buffer content was as
+expected at the end.
+
+There is definitely more to do. Play more with exported buffers, syncobjs,
+fences, buffer objects lists, but for now, as said, I am looking for some early
+feedback etc.
+
+Tvrtko Ursulin (5):
+  drm/amdgpu: Extend listing of buffer handles with the userptr object
+    flag
+  drm/amdgpu: Add a reserved VM ID query
+  drm/amdgpu: Add a new ioctl for listing client contexts
+  drm/amdgpu: Add context handle renaming operation
+  drm/amdgpu: Add driver managed buffer copy
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 132 ++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 120 +++++++++++++++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h |   4 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |  54 ++++++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h |  26 ++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  |   4 +
+ include/uapi/drm/amdgpu_drm.h           |  54 +++++++++-
+ 8 files changed, 365 insertions(+), 31 deletions(-)
+
+-- 
+2.54.0
 
