@@ -2,78 +2,133 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yC0rNLWZFWqNWgcAu9opvQ
+	id CO80Ln9oFWqyUwcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 15:01:41 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 11:31:43 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 559425D5F5F
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 15:01:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 570855D35C8
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 11:31:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B95A710E49D;
-	Tue, 26 May 2026 13:01:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9605B10E179;
+	Tue, 26 May 2026 09:31:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TWm4i+KN";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="uuzYnFCR";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EE6D10E179;
- Tue, 26 May 2026 09:24:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779787477; x=1811323477;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=UxK94y3fWJzZjnLNI4RnnCb0k4ycYwtk98jPwkRyCi0=;
- b=TWm4i+KNLG2ShG40rck1kFyA/afERwuJvtqsWlB7gpk5xYxfwdkNAyHL
- 9ZdYaz5XSv8Vz83eanDAZ0AdPJqxEf8+GLOn9V8CdlAlHgbl2MdTQYS3B
- I+9MF/S9BuLpFudre9ZF7YA0Fh0tR/qksjybgGoAy/Zsi8vc8wCwMcuQq
- 85DpAaQAvY2GniK7YOOOMmh3Jl8UNQGioBaalwXIh4EZKDYkKv8e5fvYF
- T/8UERiAwjE4Cd6sZPSw0QrijIKuiTD4XGWTYDQpH6ZUFifxrzX7uVaUg
- WKQTfDKlxHPTIFec46M5d3Fuws4wIBu9tefvnTEZnoFcW6wvvy6CusInj w==;
-X-CSE-ConnectionGUID: VNf9lbo0Qqm/2iirtmONaw==
-X-CSE-MsgGUID: HPtyveCWSA+iTCfA+uEXGA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="80710488"
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="80710488"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 02:24:36 -0700
-X-CSE-ConnectionGUID: slU2VGj9TbGua5O+IiR8Gw==
-X-CSE-MsgGUID: uKFXlOePQ0ypZtjRo5w26Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="245900357"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.244.115])
- ([10.245.244.115])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 02:24:32 -0700
-Message-ID: <b797a2aaa1bcef239a2eba449043dd278b9fa51a.camel@linux.intel.com>
-Subject: Re: [PATCH v4 2/5] cgroup/dmem: Add reclaim callback for lowering
- max below current usage
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner
- <hannes@cmpxchg.org>,  Tejun Heo <tj@kernel.org>, Michal
- =?ISO-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>, 	cgroups@vger.kernel.org,
- Huang Rui <ray.huang@amd.com>, Matthew Brost	 <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Maxime Ripard	 <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter	 <simona@ffwll.ch>,
- David Airlie <airlied@gmail.com>, Christian =?ISO-8859-1?Q?K=F6nig?=	
- <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, 	linux-kernel@vger.kernel.org
-Date: Tue, 26 May 2026 11:24:29 +0200
-In-Reply-To: <9fe89d8e-9c32-4b03-ac2c-a634f5d4de0c@linux.intel.com>
-References: <20260512082406.44470-1-thomas.hellstrom@linux.intel.com>
- <20260512082406.44470-3-thomas.hellstrom@linux.intel.com>
- <9fe89d8e-9c32-4b03-ac2c-a634f5d4de0c@linux.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011041.outbound.protection.outlook.com
+ [40.93.194.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD22010E179
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 May 2026 09:31:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Di5NT94vwqLvXS1Rhqf43lT+GV6umJ6hc8rjtqh6tR1ItM6Qz7Wm82wyTuWmVq0cblSQ5d4faFk28SYB2pvMfesYCy54rHmGrMNGCknDb39NT5iurah93YqCgD+EfqJoioDJgQoQjTHdmaQJ8dedflCn6VsznawCxQDQT6iUHGrKaA/BZxAOESy69txuPJ/ZaaX3l5Hej+AavhmaApiPDAMnpmv/RoqYoc+LTLnImB4EX0e0HOArtaqmFGRFRi5Mo8QY6QxSQEdA+YdYDXGFiJQU5VotpgjjVkjeIthC2/qRcBVnWZDDbbRyGh/3mUoG4WBGUE6ZPdhNbsKCchcSRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9BOnsWY9WPCN03TC0lGetoIWn82wsHopN1cR+VTSjbI=;
+ b=XY9RgqiPxYW1Ea/2T9xFeMv6feGu+pA44V/d5+yrZVLX+Do6my8XAonrtdwU2S5vNgnGHn5myzfjrS/bNHeWooFA9ZckcRw7xlYil/dn5xbU4/J8DZ8ghb3IORhnh+nHgszegx4ofnkow28OGnnZZDJPJYlnb9b0jz16Q5LBmxg05eTQaT8yxs37geuCWG2A9enU8rmSXttbmi8IChZCmUeqUVeeXzIfSFeuqlZ1Be0zm6CE04Z0l6qpFDt4OAtJ8S6NXcLZExoDF30zsyKktRuG/rITcG/8qPHg4RQ0wl3ESyGdL+bj4aGCMrxn4cuvzA6JfLxULA+SmQY8K+O43A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9BOnsWY9WPCN03TC0lGetoIWn82wsHopN1cR+VTSjbI=;
+ b=uuzYnFCRGBh9bkAIjrtaTjzGLX0DZZ0moUcFkgW5FSrcWOvOAUz+ip/uo/vpuMLJMw6KE29IcsRTAQXm4CLPZ+RNkHbhXUFykJoz8s1DlOdxHoFoiIE2R6sU/VYTv44yVoiHTYlFeckQKLegp4qL3pA/WOA8yTp2dysshjaPkjw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CH2PR12MB9457.namprd12.prod.outlook.com (2603:10b6:610:27c::7)
+ by MW4PR12MB6999.namprd12.prod.outlook.com (2603:10b6:303:20a::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.20; Tue, 26 May
+ 2026 09:31:17 +0000
+Received: from CH2PR12MB9457.namprd12.prod.outlook.com
+ ([fe80::85a8:1df:840a:cd4c]) by CH2PR12MB9457.namprd12.prod.outlook.com
+ ([fe80::85a8:1df:840a:cd4c%5]) with mapi id 15.21.0071.010; Tue, 26 May 2026
+ 09:31:17 +0000
+Content-Type: multipart/alternative;
+ boundary="------------0ideELL6gzORsx5pJEwDnrZE"
+Message-ID: <28f20c70-978c-46a4-8531-0d4d1fbd7734@amd.com>
+Date: Tue, 26 May 2026 17:31:11 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: implement per-process MES context
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com
+Cc: Ray.Huang@amd.com
+References: <20260525082359.5510-1-lingshan.zhu@amd.com>
+ <53d1f30e-96d1-48a8-a933-c922439e9cdb@amd.com>
+ <591307db-a567-4bac-b995-1eec64a7c42d@amd.com>
+ <7f2be916-27ba-47bc-9440-121a9e7d659c@amd.com>
+Content-Language: en-US
+From: "Zhu, Lingshan" <lingshan.zhu@amd.com>
+In-Reply-To: <7f2be916-27ba-47bc-9440-121a9e7d659c@amd.com>
+X-ClientProxiedBy: KU3P306CA0009.MYSP306.PROD.OUTLOOK.COM
+ (2603:1096:d10:15::13) To CH2PR12MB9457.namprd12.prod.outlook.com
+ (2603:10b6:610:27c::7)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 26 May 2026 13:01:36 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PR12MB9457:EE_|MW4PR12MB6999:EE_
+X-MS-Office365-Filtering-Correlation-Id: f946145f-34c5-4481-f201-08debb0989ce
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|11063799006|4143699003|18002099003|56012099003|22082099003|8096899003;
+X-Microsoft-Antispam-Message-Info: Y7BMragSCXpPYfIfvuIDfIYeF8+fQ9NHFabaxTbaZ/Kktq1QV1remE9ca/AjfJnfQddo9qcQ10QSRC5jl58t0n8LD+dvfm6vWGbymuy/CVS8QgfDDZJT049rJQRV1O6C7qE68r38Eiid2QnTvSb1zedonVlY2REpvSJDfP2c8i9ymtoC2+JL2/MemB/y5c747d004M9ThEUbpx5cZIa4ZXZ1mLMGr7ktGlw9Q9PrJsVSO6Az/X1fhYj5uexQ+HA0/abIEh+fVT1U8WQ0GHE/kfEOzl5MR4VK8FQ0whwU0ZUGEbd4oz17jqbCKAxZFtKor+bE8JNU6hfysS6KK08s5bysXiCkqUK3MTqTCBfjCrMuR90IRP3tPObIBYsW4O+6wvSciaTgbidC6gayCkPrBEZlV3D3J+G6cQZUDdhDlLQHU9NYOIqbmmiTO/q8m6SK9PYDFf6COsszdK4dnkR+VtnNncN3JcKmyH1uPzWH0dWfRRSmPJ12bzWqjgPSgbFRT5QmZeIvHu8BQuGItS+sxRDM3McV6UAnLCkMEHwlfUGn1wx7vtTGwGhNOLa6Ka5w9vH1H2BBTpJz5pz+/fk0RFJrh6mTRsvSQdiVRNuNjDliK7KtyTtUjRwwXE4D1OrNERU7ASQTofBRDpNRVyXY+rJCZ4IwdLps/z0lMYfIcAVikE1j0YGPfiz+2anXT0Fd
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH2PR12MB9457.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(11063799006)(4143699003)(18002099003)(56012099003)(22082099003)(8096899003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SlV3U2VEU3lkajZtZWFBSzVsY1JCUjZtOElwTFh4WnRNV2VQRDF1TUYvOGh1?=
+ =?utf-8?B?bDB2Ri9mRTNxcTJGZnQ2blFHZDFkelowcThENGc0dWE5cFBvVGdPME44bGI4?=
+ =?utf-8?B?UExlWjJ2N2p2eXhMUXMzcXVPQVZRcjJFWlpDT3ZkMXE3TzJBdHBUUWREVy9a?=
+ =?utf-8?B?bWdwcW5EN1dmV1pwaGh5dm1ickgydmRTdU5xTDZNYlk5ZmdXZzY5bTU2a1FJ?=
+ =?utf-8?B?bFZCZk5IVUZBbERDMEZNeG1sSE5YV0lvbmdBZzUwYTRVNUg4c09weUdoOTlr?=
+ =?utf-8?B?TS9oRlJkUVhaUGsxNzZRNkp5WTlXalF4aFo1T2RMZWtDajhuWGtHQzEyODRP?=
+ =?utf-8?B?Z2dpUHdpNGZIZXdXazg1ZVFHS1p0Q2JzV0lldVgwSGpBWENCdmJmMmR4eFZP?=
+ =?utf-8?B?VFdpNVlZL2UvTUgvSE9KWVZKcXNmWmtLdDFUcHFYVFdyTThiRWlaaDdiRDJh?=
+ =?utf-8?B?Z0JRT0F3bkt5N0ZLUDRiM0YxU1M0cDRwTWsyYmEvNWZDTXRHKzlGQnlSTDJa?=
+ =?utf-8?B?VEdoY1lrTHdzZyt0TzBXMVM0M2Rtd2cxQjlDZjBVWHhoV2tmejgxT1QvWjhp?=
+ =?utf-8?B?YkI3U01mS1F5VWZ6MTdiODRDSG1xQnBacVpERlYyK1oweklwYmUzeUJGUVgr?=
+ =?utf-8?B?VHVQdzBNb1BuK2xxWU9KYWluWXhLc2xiMUgrNjBsUWVGRUdCcmRKUjR5cm9w?=
+ =?utf-8?B?dU9Ybmo3RmtrOW9ndXVhTWI2NHpVbzlBUnV0VnI0cDRGb1IvN2pnaFRUc00r?=
+ =?utf-8?B?TTdSUEhSQjg1TzAyeWJTQUgyc2ROckk4OS9TVmVCUk90bVNjamY3ZG96RGky?=
+ =?utf-8?B?TCtJakhvaVNRUnd3YUd6VHQyemJaTzcyblpoODllUUJNVzJCejhlZGZWYVlI?=
+ =?utf-8?B?M3NMaUc4bzE0a2pDV2lsM1hmS05RYUk5dlk2VnJSeHBFRk1rbVlFWlM4Mkdy?=
+ =?utf-8?B?MEFNaHJoellYSlVYazdOYlZUS2dqMGVOYmlpLzFwTzhUSmw3YUx3VXJPbFcv?=
+ =?utf-8?B?RmJZM1dMeFVqb0NUaWlMQ2k1WTRzSXorN0xqbjdINzdEM25oYnRFUDNyek9I?=
+ =?utf-8?B?dDRMTXJIeGZqaXJ3Q3E1SlRhb25NcTdhNDNIQ3hqL000TGc0endSSGtHWW1v?=
+ =?utf-8?B?YnRLZlZVZklJWDllVEZqVDJxRFlJMDFIMlhOMWhwSFU5aS9kU0ZvMEU5RzF5?=
+ =?utf-8?B?ZW8wanJEemY5VEhrWlk0aUFRZWdLUXoraTZjQWhnTnVPd25YNkZXVUkwc09D?=
+ =?utf-8?B?bHlvQmFPRytOWVMxWUw2WTV0NTVnYTMrY0RqeTNxOFZLWnBrMVFJWitRWFN2?=
+ =?utf-8?B?MHVlVHdRQ0xaeVNBYUhqTlkyVFhldndYSWY3cTlndzdjSGx3N1NmeGM4bVpF?=
+ =?utf-8?B?blloSTVqZ1NNTEFsaGZIVGpITWJmdENUTzBpZG5HS1VYMjZuWUJ4T1Z4QnFj?=
+ =?utf-8?B?MHQzei8rWUpwWVZaMENJUzd3b2xpbDhGSTJKS0N2aE5JSy9aV3lORFRyR1Vk?=
+ =?utf-8?B?THd4NFdlL0F4UTlpVWp1TFBXeTh4SDdrZ1BMTU0rYmtkM0F6Ymo4bE5yeS9i?=
+ =?utf-8?B?TEp1c3Uxa2JuOTA0Q0JuL3VlcUZvRTdDMnZxUjBEOWNPRXhRMC9GRkQ5WUtU?=
+ =?utf-8?B?MzRkTEl3Sy9PWEF6VCtGaWJReHc4UzF0TFVmbVNqSkoxYUhYMitiTmRaVVFk?=
+ =?utf-8?B?aVZKOHZQalhrNk55N3lLem5wU2R5WDdvTTU3OXdMbGJMcWtHRlQvVlpURjdr?=
+ =?utf-8?B?bFMzT1JNOXB5Q2llanlCZEhMcTkyYkxrNVNWdXIvbzZ6QmNBazg2VHZXV2No?=
+ =?utf-8?B?KzlxS2VCMm82bmNjc3JrcnlBSk51Vnp5aWxFai9IWTVPNEcvd292aUp1dUhv?=
+ =?utf-8?B?Q24wWmduYzJWd2lsQnY4VWxhbmVpUnk1RE5BVklUVjFydzNzbjFZbWw0SjZl?=
+ =?utf-8?B?eCsvUDFuT1pFMDBvWjVXemdUOTdoNWtzTkZpU3crL1dNZjBJT21RbUZxTGlm?=
+ =?utf-8?B?QTVDNTBxdUh6TWVZcVlobGlRZlp1WnMvbWY1WTVULzBaVlIyamlqaEFrc3RY?=
+ =?utf-8?B?V04vY3YxNFlES2tBeENnL3BER0gxMCt3LzIxZWtQUWN5NGExUUtxVEVSWEZp?=
+ =?utf-8?B?NFIwU2dvNjg0VWtmaExiVHUvTnZId3Fvd1FGLzMwcXgxZ3I3b052NVpOSVZr?=
+ =?utf-8?B?NndLNGJtL1Fjekk0TkcxV2pCZ2xoQ0xuMGtFSm83ay9oVXdyOXc5aXo3ZmRO?=
+ =?utf-8?B?M2lzRzVuRFQvT2hNQUZiZG1xSC9YVzJHZXlxQStDcGpObmc5cit1YjY5eXcx?=
+ =?utf-8?Q?C/yLPKbFm8qHarfwXj?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f946145f-34c5-4481-f201-08debb0989ce
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB9457.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 09:31:17.5811 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 69SNwtUmXa6IC2I6EpQn10sp3GwgKEA8J2fkq0Kvdpd+o1EQxrflYbzWqKz/9XyFFKjYEscJAMVkSvZrJHv1sw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6999
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,433 +142,534 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[gmx.de,cmpxchg.org,kernel.org,suse.com,vger.kernel.org,amd.com,intel.com,suse.de,ffwll.ch,gmail.com,lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[lingshan.zhu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:Alexander.Deucher@amd.com,m:Ray.Huang@amd.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lingshan.zhu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	NEURAL_HAM(-0.00)[-0.976];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:dkim,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 559425D5F5F
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,amd.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 570855D35C8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi, Maarten,
+--------------0ideELL6gzORsx5pJEwDnrZE
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Thanks for reviewing.
+On 5/26/2026 4:46 PM, Christian König wrote:
 
-On Tue, 2026-05-26 at 10:27 +0200, Maarten Lankhorst wrote:
-> Hello,
->=20
-> Den 2026-05-12 kl. 10:24, skrev Thomas Hellstr=C3=B6m:
-> > Add an optional reclaim callback to struct dmem_cgroup_region. When
-> > dmem.max is set below the current usage of a cgroup pool, the new
-> > limit
-> > is applied immediately (so that concurrent allocations are
-> > throttled
-> > while reclaim is in progress) and then the driver is asked to evict
-> > memory to bring usage back below the limit.
-> >=20
-> > Reclaim is attempted up to a bounded number of times. No error is
-> > returned to userspace if usage remains above the limit after
-> > reclaim,
-> > and a pending signal will abort the reclaim loop early. This
-> > matches
-> > the behavior of memory.max in the memory cgroup controller.
-> >=20
-> > Also honor O_NONBLOCK so that if that flag is set during the
-> > max value write, no reclaim is initiated. The idea is to avoid
-> > charging the reclaim cost to the writer of the max value.
-> >=20
-> > v2:
-> > - Write max before reclaim is attempted (Maarten)
-> > - Let signals abort the reclaim without error (Maarten)
-> > - If a new max value is written with the O_NONBLOCK flag,
-> > =C2=A0 reclaim is not attempted (Maarten)
-> > - Extract region from the pool parameter rather than
-> > =C2=A0 passing it explicitly to set_resource_xxx().
-> > v3:
-> > - Use an rwsem to protect reclaim callback registration and
-> > =C2=A0 region unregister against concurrent reclaim invocations,
-> > =C2=A0 ensuring reclaim_priv is visible when the callback is
-> > =C2=A0 invoked. (Sashiko-bot)
-> >=20
-> > Assisted-by: GitHub_Copilot:claude-sonnet-4.6
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0include/linux/cgroup_dmem.h |=C2=A0 24 ++++++++
-> > =C2=A0kernel/cgroup/dmem.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | =
-106
-> > +++++++++++++++++++++++++++++++++---
-> > =C2=A02 files changed, 121 insertions(+), 9 deletions(-)
-> >=20
-> > diff --git a/include/linux/cgroup_dmem.h
-> > b/include/linux/cgroup_dmem.h
-> > index dd4869f1d736..c3bce21cbe80 100644
-> > --- a/include/linux/cgroup_dmem.h
-> > +++ b/include/linux/cgroup_dmem.h
-> > @@ -14,6 +14,21 @@ struct dmem_cgroup_pool_state;
-> > =C2=A0/* Opaque definition of a cgroup region, used internally */
-> > =C2=A0struct dmem_cgroup_region;
-> > =C2=A0
-> > +/**
-> > + * typedef dmem_cgroup_reclaim_fn_t - Reclaim callback for a dmem
-> > cgroup region.
-> > + * @pool: The cgroup pool that needs memory reclaimed.
-> > + * @target_bytes: Minimum number of bytes the driver should
-> > attempt to free.
-> > + * @priv: Private data registered with
-> > dmem_cgroup_region_set_reclaim().
-> > + *
-> > + * Called by the dmem cgroup controller when dmem.max is set below
-> > the current
-> > + * usage of @pool. The driver should evict at least @target_bytes
-> > of memory
-> > + * from @pool. May be called multiple times if usage remains above
-> > the limit.
-> > + *
-> > + * Return: 0 if progress was made, negative error code otherwise.
-> > + */
-> > +typedef int (*dmem_cgroup_reclaim_fn_t)(struct
-> > dmem_cgroup_pool_state *pool,
-> > +					u64 target_bytes, void
-> > *priv);
-> > +
-> > =C2=A0#if IS_ENABLED(CONFIG_CGROUP_DMEM)
-> > =C2=A0struct dmem_cgroup_region *dmem_cgroup_register_region(u64 size,
-> > const char *name_fmt, ...) __printf(2,3);
-> > =C2=A0void dmem_cgroup_unregister_region(struct dmem_cgroup_region
-> > *region);
-> > @@ -26,6 +41,9 @@ bool dmem_cgroup_state_evict_valuable(struct
-> > dmem_cgroup_pool_state *limit_pool,
-> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool ignore_low, bool
-> > *ret_hit_low);
-> > =C2=A0
-> > =C2=A0void dmem_cgroup_pool_state_put(struct dmem_cgroup_pool_state
-> > *pool);
-> > +void dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region
-> > *region,
-> > +				=C2=A0=C2=A0=C2=A0 dmem_cgroup_reclaim_fn_t
-> > reclaim,
-> > +				=C2=A0=C2=A0=C2=A0 void *priv);
-> > =C2=A0#else
-> > =C2=A0static inline __printf(2,3) struct dmem_cgroup_region *
-> > =C2=A0dmem_cgroup_register_region(u64 size, const char *name_fmt, ...)
-> > @@ -62,5 +80,11 @@ bool dmem_cgroup_state_evict_valuable(struct
-> > dmem_cgroup_pool_state *limit_pool,
-> > =C2=A0static inline void dmem_cgroup_pool_state_put(struct
-> > dmem_cgroup_pool_state *pool)
-> > =C2=A0{ }
-> > =C2=A0
-> > +static inline void
-> > +dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region *region,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dmem_cgroup_reclaim_fn_t recla=
-im,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 void *priv)
-> > +{ }
-> > +
-> > =C2=A0#endif
-> > =C2=A0#endif	/* _CGROUP_DMEM_H */
-> > diff --git a/kernel/cgroup/dmem.c b/kernel/cgroup/dmem.c
-> > index 1ab1fb47f271..5fd5a1634d21 100644
-> > --- a/kernel/cgroup/dmem.c
-> > +++ b/kernel/cgroup/dmem.c
-> > @@ -51,6 +51,20 @@ struct dmem_cgroup_region {
-> > =C2=A0	 * No new pools should be added to the region afterwards.
-> > =C2=A0	 */
-> > =C2=A0	bool unregistered;
-> > +
-> > +	/**
-> > +	 * @reclaim: Optional callback invoked when dmem.max is
-> > set below the
-> > +	 * current usage of a pool. The driver should attempt to
-> > free at least
-> > +	 * @target_bytes from @pool. May be called multiple times
-> > if usage
-> > +	 * remains above the limit after returning.
-> > +	 */
-> > +	dmem_cgroup_reclaim_fn_t reclaim;
-> > +
-> > +	/** @reclaim_priv: Private data passed to @reclaim. */
-> > +	void *reclaim_priv;
-> > +
-> > +	/** @unregister_sem: Protect @reclaim while it is running.
-> > */
-> > +	struct rw_semaphore unregister_sem;
-> > =C2=A0};
-> > =C2=A0
-> > =C2=A0struct dmemcg_state {
-> > @@ -145,21 +159,58 @@ static void free_cg_pool(struct
-> > dmem_cgroup_pool_state *pool)
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0static void
-> > -set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val)
-> > +set_resource_min(struct dmem_cgroup_pool_state *pool, u64 val,
-> > bool nonblock)
-> > =C2=A0{
-> > =C2=A0	page_counter_set_min(&pool->cnt, val);
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0static void
-> > -set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val)
-> > +set_resource_low(struct dmem_cgroup_pool_state *pool, u64 val,
-> > bool nonblock)
-> > =C2=A0{
-> > =C2=A0	page_counter_set_low(&pool->cnt, val);
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0static void
-> > -set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val)
-> > +set_resource_max(struct dmem_cgroup_pool_state *pool, u64 val,
-> > bool nonblock)
-> > =C2=A0{
-> > -	page_counter_set_max(&pool->cnt, val);
-> > +	struct dmem_cgroup_region *region =3D pool->region;
-> > +
-> > +	/*
-> > +	 * Always update the limit, even if usage currently
-> > exceeds it.
-> > +	 * Concurrent allocations will be throttled against the
-> > new limit
-> > +	 * while reclaim is in progress.
-> > +	 */
-> > +	xchg(&pool->cnt.max, (unsigned long)val);
-> > +
-> > +	if (nonblock || !READ_ONCE(region->reclaim))
-> > +		return;
-> > +
-> > +	for (int retries =3D 5; retries > 0; retries--) {
-> Where does 5 come from? This code should retry until no longer above
-> limit, otherwise you'll get some hard to debug issues.
+> On 5/26/26 09:54, Zhu, Lingshan wrote:
+>> On 5/26/2026 3:02 AM, Christian König wrote:
+>>
+>>> On 5/25/26 10:23, Zhu Lingshan wrote:
+>>>> MES process context is a process-level page
+>>>> where process specific context is saved for
+>>>> MES scheduler.
+>>>>
+>>>> However, current user-queue code path assigns
+>>>> fw_obj of a queue to MES process_context_addr
+>>>> when adding the queue to MES.
+>>>>
+>>>> This means every new queue from the same process
+>>>> would replace the previous process context address
+>>>> with that queue's fw_obj address.
+>>>> What's worse is, when user space frees a queue,
+>>>> its fw_obj will be freed as well, causing MES
+>>>> working on a NULL page pointer.
+>>>>
+>>>> This issue leads to inconsistency and crash
+>>>> in the scheduler.
+>>>>
+>>>> This commit allocates a process-level page for
+>>>> MES process contexts for a process other than queue-level
+>>>>
+>>>> Signed-off-by: Zhu Lingshan <lingshan.zhu@amd.com>
+>>>> ---
+>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  |  5 +++
+>>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  |  1 +
+>>>>  drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 48 ++++++++++++++++------
+>>>>  3 files changed, 42 insertions(+), 12 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>>>> index 38e310a8694d..0c4d6f80616e 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+>>>> @@ -1225,6 +1225,11 @@ void amdgpu_userq_mgr_fini(struct amdgpu_userq_mgr *userq_mgr)
+>>>>  	 */
+>>>>  	cancel_work_sync(&userq_mgr->reset_work);
+>>>>  
+>>>> +	if (userq_mgr->proc_ctx_obj.obj)
+>>> Please drop that check it is unecessary.
+>> sure, I can drop this in V2.
+>>
+>>>> +		amdgpu_bo_free_kernel(&userq_mgr->proc_ctx_obj.obj,
+>>>> +				      &userq_mgr->proc_ctx_obj.gpu_addr,
+>>>> +				      &userq_mgr->proc_ctx_obj.cpu_ptr);
+>>>> +
+>>>>  	mutex_destroy(&userq_mgr->userq_mutex);
+>>>>  }
+>>>>  
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+>>>> index 28cfc6682333..fe85234e58b3 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+>>>> @@ -127,6 +127,7 @@ struct amdgpu_userq_mgr {
+>>>>  	struct amdgpu_device		*adev;
+>>>>  	struct delayed_work		resume_work;
+>>>>  	struct drm_file			*file;
+>>>> +	struct amdgpu_userq_obj		proc_ctx_obj;
+>>>>  
+>>>>  	/**
+>>>>  	 * @reset_work:
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+>>>> index e9189f07c6dc..3022025bc2ec 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+>>>> @@ -133,8 +133,8 @@ static int mes_userq_map(struct amdgpu_usermode_queue *queue)
+>>>>  	queue_input.gang_quantum = 10000;
+>>>>  	queue_input.paging = false;
+>>>>  
+>>>> -	queue_input.process_context_addr = ctx->gpu_addr;
+>>>> -	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
+>>>> +	queue_input.process_context_addr = uq_mgr->proc_ctx_obj.gpu_addr;
+>>>> +	queue_input.gang_context_addr = ctx->gpu_addr;
+>>>>  	queue_input.inprocess_gang_priority = AMDGPU_MES_PRIORITY_LEVEL_NORMAL;
+>>>>  	queue_input.gang_global_priority_level = convert_to_mes_priority(queue->priority);
+>>>>  
+>>>> @@ -169,7 +169,7 @@ static int mes_userq_unmap(struct amdgpu_usermode_queue *queue)
+>>>>  
+>>>>  	memset(&queue_input, 0x0, sizeof(struct mes_remove_queue_input));
+>>>>  	queue_input.doorbell_offset = queue->doorbell_index;
+>>>> -	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
+>>>> +	queue_input.gang_context_addr = ctx->gpu_addr;
+>>>>  
+>>>>  	amdgpu_mes_lock(&adev->mes);
+>>>>  	r = adev->mes.funcs->remove_hw_queue(&adev->mes, &queue_input);
+>>>> @@ -186,12 +186,8 @@ static int mes_userq_create_ctx_space(struct amdgpu_userq_mgr *uq_mgr,
+>>>>  	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
+>>>>  	int r, size;
+>>>>  
+>>>> -	/*
+>>>> -	 * The FW expects at least one page space allocated for
+>>>> -	 * process ctx and gang ctx each. Create an object
+>>>> -	 * for the same.
+>>>> -	 */
+>>>> -	size = AMDGPU_USERQ_PROC_CTX_SZ + AMDGPU_USERQ_GANG_CTX_SZ;
+>>>> +	/* The FW expects at least one page space allocated for gang ctx. */
+>>>> +	size = AMDGPU_USERQ_GANG_CTX_SZ;
+>>>>  	r = amdgpu_bo_create_kernel(uq_mgr->adev, size, 0,
+>>>>  				    AMDGPU_GEM_DOMAIN_GTT,
+>>>>  				    &ctx->obj, &ctx->gpu_addr,
+>>>> @@ -257,6 +253,27 @@ static int mes_userq_detect_and_reset(struct amdgpu_device *adev,
+>>>>  	return r;
+>>>>  }
+>>>>  
+>>>> +static int mes_userq_create_proc_ctx_space(struct amdgpu_userq_mgr *uq_mgr)
+>>>> +{
+>>>> +	int r = 0;
+>>>> +
+>>>> +	mutex_lock(&uq_mgr->userq_mutex);
+>>> Clear NAK. We can't allocate anything while holding that lock.
+>>>
+>>> Please add a different lock to protected the buffer or just oportunistically allocate it with CMPXCHG().
+>> I will introduce a different lock in V2.
+>>
+>>>> +	if (!uq_mgr->proc_ctx_obj.obj) {
+>>> Please drop that check, amdgpu_bo_create_kernel() should already take care of that.
+>> I think we still need this check, because although amdgpu_bo_create_kernel() checks (!*bo_ptr), but:
+>> 1) it does not immediately return if bo_ptr is valid. It only skips re-creating the bo,
+>> it still calls amdgpu_bo_reserve(), amdgpu_bo_pin(), amdgpu_ttm_alloc_gart(), and amdgpu_bo_kmap()
+>> on every invocation.
+>>
+>> 2) it calls memset() unconditionally on every invocation.
+>>
+>> So I think this check is still necessary, and another thing, do you think
+>> amdgpu_bo_create_kernel() should immediately return if *bo_ptr is not NULL?
+>> It looks like this deserve a fix.
+> Good point, IIRC we added this handling to make it easier to re-create kernel buffers after suspend/resume.
+>
+> I'm not sure if any code path is actually still using this since we found that for a lot of use cases you need to keep the FW buffers at the same location even after suspend/resume.
 
-The memcg controller uses MAX_RECLAIM_RETRIES, although if that fails,
-it will invoke the OOM killer, although if the reclaim callback makes
-progress, it will not consume a retry. Perhaps we should adopt the same
-behaviour except the OOM killer, at least for now. Note that if a
-signal is pending, the reclaim attempt is abandoned both here and in
-memcg.
+Yes, after suspend/resume, it is every reasonable to expect the FW buffer still at the same location.
+But on a second thought, I think it does not need to re-create kernel buffers,
+because it is a suspend/resume, just like taking a nap,
+the BO is not destroyed during this suspend/resume routine,
+so I think it can simply keep using the original BO, no need to re-create.
+
+>
+> Anyway just add an if and comment why it is necessary.
+
+sure, I will keep this if, and leave a comment explaining why.
+
+Thanks
+Lingshan
+
+>
+>
+>> Thanks
+>> Lingshan
+>>
+>>> Regards,
+>>> Christian.
+>>>
+>>>> +		r = amdgpu_bo_create_kernel(uq_mgr->adev, AMDGPU_USERQ_PROC_CTX_SZ,
+>>>> +					    0, AMDGPU_GEM_DOMAIN_GTT,
+>>>> +					    &uq_mgr->proc_ctx_obj.obj,
+>>>> +					    &uq_mgr->proc_ctx_obj.gpu_addr,
+>>>> +					    &uq_mgr->proc_ctx_obj.cpu_ptr);
+>>>> +
+>>>> +		if (!r)
+>>>> +			memset(uq_mgr->proc_ctx_obj.cpu_ptr, 0, AMDGPU_USERQ_PROC_CTX_SZ);
+> When amdgpu_bo_create_kernel() does that the memset here can probably be dropped.
+>
+> Regards,
+> Christian.
+>
+>>>> +	}
+>>>> +
+>>>> +	mutex_unlock(&uq_mgr->userq_mutex);
+>>>> +
+>>>> +	return r;
+>>>> +}
+>>>> +
+>>>>  static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
+>>>>  				struct drm_amdgpu_userq_in *args_in)
+>>>>  {
+>>>> @@ -429,7 +446,14 @@ static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
+>>>>  		goto free_mqd;
+>>>>  	}
+>>>>  
+>>>> -	/* Create BO for FW operations */
+>>>> +	/* Create per-process MES process context BO */
+>>>> +	r = mes_userq_create_proc_ctx_space(uq_mgr);
+>>>> +	if (r) {
+>>>> +		DRM_ERROR("Failed to allocate MES process context space bo, error: %d\n", r);
+>>>> +		goto free_mqd;
+>>>> +	}
+>>>> +
+>>>> +	/* Create BO of a gang for FW operations */
+>>>>  	r = mes_userq_create_ctx_space(uq_mgr, queue, mqd_user);
+>>>>  	if (r) {
+>>>>  		DRM_ERROR("Failed to allocate BO for userqueue (%d)", r);
+>>>> @@ -492,7 +516,7 @@ static int mes_userq_preempt(struct amdgpu_usermode_queue *queue)
+>>>>  	*fence_ptr = 0;
+>>>>  
+>>>>  	memset(&queue_input, 0x0, sizeof(struct mes_suspend_gang_input));
+>>>> -	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
+>>>> +	queue_input.gang_context_addr = ctx->gpu_addr;
+>>>>  	queue_input.suspend_fence_addr = fence_gpu_addr;
+>>>>  	queue_input.suspend_fence_value = 1;
+>>>>  	amdgpu_mes_lock(&adev->mes);
+>>>> @@ -529,7 +553,7 @@ static int mes_userq_restore(struct amdgpu_usermode_queue *queue)
+>>>>  		return 0;
+>>>>  
+>>>>  	memset(&queue_input, 0x0, sizeof(struct mes_resume_gang_input));
+>>>> -	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
+>>>> +	queue_input.gang_context_addr = ctx->gpu_addr;
+>>>>  
+>>>>  	amdgpu_mes_lock(&adev->mes);
+>>>>  	r = adev->mes.funcs->resume_gang(&adev->mes, &queue_input);
+--------------0ideELL6gzORsx5pJEwDnrZE
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <pre>On 5/26/2026 4:46 PM, Christian König wrote:</pre>
+    <blockquote type="cite" cite="mid:7f2be916-27ba-47bc-9440-121a9e7d659c@amd.com">
+      <pre wrap="" class="moz-quote-pre">On 5/26/26 09:54, Zhu, Lingshan wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">On 5/26/2026 3:02 AM, Christian König wrote:
+
+</pre>
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">On 5/25/26 10:23, Zhu Lingshan wrote:
+</pre>
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">MES process context is a process-level page
+where process specific context is saved for
+MES scheduler.
+
+However, current user-queue code path assigns
+fw_obj of a queue to MES process_context_addr
+when adding the queue to MES.
+
+This means every new queue from the same process
+would replace the previous process context address
+with that queue's fw_obj address.
+What's worse is, when user space frees a queue,
+its fw_obj will be freed as well, causing MES
+working on a NULL page pointer.
+
+This issue leads to inconsistency and crash
+in the scheduler.
+
+This commit allocates a process-level page for
+MES process contexts for a process other than queue-level
+
+Signed-off-by: Zhu Lingshan <a class="moz-txt-link-rfc2396E" href="mailto:lingshan.zhu@amd.com">&lt;lingshan.zhu@amd.com&gt;</a>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  |  5 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  |  1 +
+ drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 48 ++++++++++++++++------
+ 3 files changed, 42 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+index 38e310a8694d..0c4d6f80616e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+@@ -1225,6 +1225,11 @@ void amdgpu_userq_mgr_fini(struct amdgpu_userq_mgr *userq_mgr)
+ 	 */
+ 	cancel_work_sync(&amp;userq_mgr-&gt;reset_work);
+ 
++	if (userq_mgr-&gt;proc_ctx_obj.obj)
+</pre>
+          </blockquote>
+          <pre wrap="" class="moz-quote-pre">Please drop that check it is unecessary.
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">
+sure, I can drop this in V2.
+
+</pre>
+        <blockquote type="cite">
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">+		amdgpu_bo_free_kernel(&amp;userq_mgr-&gt;proc_ctx_obj.obj,
++				      &amp;userq_mgr-&gt;proc_ctx_obj.gpu_addr,
++				      &amp;userq_mgr-&gt;proc_ctx_obj.cpu_ptr);
++
+ 	mutex_destroy(&amp;userq_mgr-&gt;userq_mutex);
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+index 28cfc6682333..fe85234e58b3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
+@@ -127,6 +127,7 @@ struct amdgpu_userq_mgr {
+ 	struct amdgpu_device		*adev;
+ 	struct delayed_work		resume_work;
+ 	struct drm_file			*file;
++	struct amdgpu_userq_obj		proc_ctx_obj;
+ 
+ 	/**
+ 	 * @reset_work:
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+index e9189f07c6dc..3022025bc2ec 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
+@@ -133,8 +133,8 @@ static int mes_userq_map(struct amdgpu_usermode_queue *queue)
+ 	queue_input.gang_quantum = 10000;
+ 	queue_input.paging = false;
+ 
+-	queue_input.process_context_addr = ctx-&gt;gpu_addr;
+-	queue_input.gang_context_addr = ctx-&gt;gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
++	queue_input.process_context_addr = uq_mgr-&gt;proc_ctx_obj.gpu_addr;
++	queue_input.gang_context_addr = ctx-&gt;gpu_addr;
+ 	queue_input.inprocess_gang_priority = AMDGPU_MES_PRIORITY_LEVEL_NORMAL;
+ 	queue_input.gang_global_priority_level = convert_to_mes_priority(queue-&gt;priority);
+ 
+@@ -169,7 +169,7 @@ static int mes_userq_unmap(struct amdgpu_usermode_queue *queue)
+ 
+ 	memset(&amp;queue_input, 0x0, sizeof(struct mes_remove_queue_input));
+ 	queue_input.doorbell_offset = queue-&gt;doorbell_index;
+-	queue_input.gang_context_addr = ctx-&gt;gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
++	queue_input.gang_context_addr = ctx-&gt;gpu_addr;
+ 
+ 	amdgpu_mes_lock(&amp;adev-&gt;mes);
+ 	r = adev-&gt;mes.funcs-&gt;remove_hw_queue(&amp;adev-&gt;mes, &amp;queue_input);
+@@ -186,12 +186,8 @@ static int mes_userq_create_ctx_space(struct amdgpu_userq_mgr *uq_mgr,
+ 	struct amdgpu_userq_obj *ctx = &amp;queue-&gt;fw_obj;
+ 	int r, size;
+ 
+-	/*
+-	 * The FW expects at least one page space allocated for
+-	 * process ctx and gang ctx each. Create an object
+-	 * for the same.
+-	 */
+-	size = AMDGPU_USERQ_PROC_CTX_SZ + AMDGPU_USERQ_GANG_CTX_SZ;
++	/* The FW expects at least one page space allocated for gang ctx. */
++	size = AMDGPU_USERQ_GANG_CTX_SZ;
+ 	r = amdgpu_bo_create_kernel(uq_mgr-&gt;adev, size, 0,
+ 				    AMDGPU_GEM_DOMAIN_GTT,
+ 				    &amp;ctx-&gt;obj, &amp;ctx-&gt;gpu_addr,
+@@ -257,6 +253,27 @@ static int mes_userq_detect_and_reset(struct amdgpu_device *adev,
+ 	return r;
+ }
+ 
++static int mes_userq_create_proc_ctx_space(struct amdgpu_userq_mgr *uq_mgr)
++{
++	int r = 0;
++
++	mutex_lock(&amp;uq_mgr-&gt;userq_mutex);
+</pre>
+          </blockquote>
+          <pre wrap="" class="moz-quote-pre">Clear NAK. We can't allocate anything while holding that lock.
+
+Please add a different lock to protected the buffer or just oportunistically allocate it with CMPXCHG().
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">
+I will introduce a different lock in V2.
+
+</pre>
+        <blockquote type="cite">
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">+	if (!uq_mgr-&gt;proc_ctx_obj.obj) {
+</pre>
+          </blockquote>
+          <pre wrap="" class="moz-quote-pre">Please drop that check, amdgpu_bo_create_kernel() should already take care of that.
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">
+I think we still need this check, because although amdgpu_bo_create_kernel() checks (!*bo_ptr), but:
+1) it does not immediately return if bo_ptr is valid. It only skips re-creating the bo,
+it still calls amdgpu_bo_reserve(), amdgpu_bo_pin(), amdgpu_ttm_alloc_gart(), and amdgpu_bo_kmap()
+on every invocation.
+
+2) it calls memset() unconditionally on every invocation.
+
+So I think this check is still necessary, and another thing, do you think
+amdgpu_bo_create_kernel() should immediately return if *bo_ptr is not NULL?
+It looks like this deserve a fix.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Good point, IIRC we added this handling to make it easier to re-create kernel buffers after suspend/resume.
+
+I'm not sure if any code path is actually still using this since we found that for a lot of use cases you need to keep the FW buffers at the same location even after suspend/resume.</pre>
+    </blockquote>
+    <pre>Yes, after suspend/resume, it is every reasonable to expect the FW buffer still at the same location.
+But on a second thought, I think it does not need to re-create kernel buffers,
+because it is a suspend/resume, just like taking a nap,
+the BO is not destroyed during this suspend/resume routine,
+so I think it can simply keep using the original BO, no need to re-create.</pre>
+    <blockquote type="cite" cite="mid:7f2be916-27ba-47bc-9440-121a9e7d659c@amd.com">
+      <pre wrap="" class="moz-quote-pre">
+
+Anyway just add an if and comment why it is necessary.</pre>
+    </blockquote>
+    <pre>sure, I will keep this if, and leave a comment explaining why.
+
+Thanks
+Lingshan</pre>
+    <blockquote type="cite" cite="mid:7f2be916-27ba-47bc-9440-121a9e7d659c@amd.com">
+      <pre wrap="" class="moz-quote-pre">
 
 
->=20
-> > +		u64 usage =3D page_counter_read(&pool->cnt);
-> > +		int ret;
-> > +
-> > +		if (usage <=3D val)
-> > +			break;
-> > +
-> > +		if (signal_pending(current))
-> > +			break;
-> > +
-> > +		/* Block unregister until the reclaim callback
-> > completes. */
-> > +		if (down_read_interruptible(&region-
-> > >unregister_sem))
-> > +			break;
-> > +
-> > +		if (!region->reclaim) {
-> > +			up_read(&region->unregister_sem);
-> > +			break;
-> > +		}
-> > +
-> > +		ret =3D region->reclaim(pool, usage - val, region-
-> > >reclaim_priv);
-> > +		up_read(&region->unregister_sem);
-> > +		if (ret)
-> > +			break;
-> > +
-> > +		cond_resched();
-> > +	}
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0static u64 get_resource_low(struct dmem_cgroup_pool_state *pool)
-> > @@ -184,9 +235,9 @@ static u64 get_resource_current(struct
-> > dmem_cgroup_pool_state *pool)
-> > =C2=A0
-> > =C2=A0static void reset_all_resource_limits(struct
-> > dmem_cgroup_pool_state *rpool)
-> > =C2=A0{
-> > -	set_resource_min(rpool, 0);
-> > -	set_resource_low(rpool, 0);
-> > -	set_resource_max(rpool, PAGE_COUNTER_MAX);
-> > +	set_resource_min(rpool, 0, false);
-> > +	set_resource_low(rpool, 0, false);
-> > +	set_resource_max(rpool, PAGE_COUNTER_MAX, false);
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0static void dmemcs_offline(struct cgroup_subsys_state *css)
-> > @@ -491,6 +542,12 @@ void dmem_cgroup_unregister_region(struct
-> > dmem_cgroup_region *region)
-> > =C2=A0	region->unregistered =3D true;
-> > =C2=A0	spin_unlock(&dmemcg_lock);
-> > =C2=A0
-> > +	/* Ensure all reclaim() callbacks have finished. */
-> > +	down_write(&region->unregister_sem);
-> > +	/* Pairs with READ_ONCE() in set_resource_max() */
-> > +	WRITE_ONCE(region->reclaim, NULL);
-> > +	up_write(&region->unregister_sem);
-> > +
-> > =C2=A0	kref_put(&region->ref, dmemcg_free_region);
-> > =C2=A0}
-> I've thought about it some more, Can we do the same as dma-buf init?
->=20
-> DEFINE_DMEMCG_REGION_INFO(info);
-> info.size =3D size.
-> info.ops =3D &drm_ttm_dmem_region_ops;
-> info.region_priv =3D ttm_region;
-> info.device_priv =3D drm_dev;
->=20
-> dmem_region =3D dmem_cgroup_register_region(&info);
->=20
-> This way we don't need to have a typedef for function pointers,
-> no need for READ_ONCE() and/or additional locking, which was only
-> added because it wasn't set at init.
->=20
-> If we can push the responsibility for serialization against unload
-> to the driver, we should also be able to use drm_dev_enter/exit here
-> for the reclaim loop?
->=20
-> Something like below:
->=20
-> if (!ops->device_begin(device_priv, &cookie))
-> 	return 0; // Device gone
->=20
-> while (true) {
-> 	ops->reclaim(region_priv, ...);
-> }
->=20
-> ops->device_end(device_priv, cookie);
->=20
-> Although we will additionally need to ensure that the region holds a
-> refcount on
-> reclaim_priv until dmemcg_free_region is called, otherwise this
-> breaks.
->=20
-> So 4 ops needed:
-> - device_begin
-> - reclaim
-> - device_end
-> - free (called after region refcount drops to 0, called immediately
-> on !CONFIG_DMEMCG, drops device refcount)
->=20
-> Relatedly, I believe perhaps we should also convert from drmm managed
-> to devm managed,
-> as all memory is already freed after the device is physically
-> detached.
->=20
-> Hopefully this solves all lifetime issues, and this design allows for
-> additional callbacks into the device or region later on if needed.
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">
+Thanks
+Lingshan
 
-Let me take a look at this.
-/Thomas
+</pre>
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">Regards,
+Christian.
 
+</pre>
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">+		r = amdgpu_bo_create_kernel(uq_mgr-&gt;adev, AMDGPU_USERQ_PROC_CTX_SZ,
++					    0, AMDGPU_GEM_DOMAIN_GTT,
++					    &amp;uq_mgr-&gt;proc_ctx_obj.obj,
++					    &amp;uq_mgr-&gt;proc_ctx_obj.gpu_addr,
++					    &amp;uq_mgr-&gt;proc_ctx_obj.cpu_ptr);
++
++		if (!r)
++			memset(uq_mgr-&gt;proc_ctx_obj.cpu_ptr, 0, AMDGPU_USERQ_PROC_CTX_SZ);
+</pre>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+When amdgpu_bo_create_kernel() does that the memset here can probably be dropped.
 
->=20
-> Kind regards,
-> ~Maarten Lankhorst
->=20
-> > =C2=A0EXPORT_SYMBOL_GPL(dmem_cgroup_unregister_region);
-> > @@ -530,6 +587,7 @@ struct dmem_cgroup_region
-> > *dmem_cgroup_register_region(u64 size, const char *fmt
-> > =C2=A0	INIT_LIST_HEAD(&ret->pools);
-> > =C2=A0	ret->name =3D region_name;
-> > =C2=A0	ret->size =3D size;
-> > +	init_rwsem(&ret->unregister_sem);
-> > =C2=A0	kref_init(&ret->ref);
-> > =C2=A0
-> > =C2=A0	spin_lock(&dmemcg_lock);
-> > @@ -568,6 +626,34 @@ void dmem_cgroup_pool_state_put(struct
-> > dmem_cgroup_pool_state *pool)
-> > =C2=A0}
-> > =C2=A0EXPORT_SYMBOL_GPL(dmem_cgroup_pool_state_put);
-> > =C2=A0
-> > +/**
-> > + * dmem_cgroup_region_set_reclaim() - Register a reclaim callback
-> > on a region.
-> > + * @region: The region to register the callback for.
-> > + * @reclaim: Callback to invoke when dmem.max is set below current
-> > usage.
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Called =
-with the pool that needs reclaiming and the
-> > number of
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bytes t=
-o free. Returns 0 on progress, negative on
-> > failure.
-> > + * @priv: Opaque pointer passed back to @reclaim.
-> > + *
-> > + * When dmem.max is lowered below the current usage of a cgroup
-> > pool, the
-> > + * dmem controller will call @reclaim with a target number of
-> > bytes to free.
-> > + * After @reclaim returns the controller retries setting the
-> > limit; if usage
-> > + * is still too high it calls @reclaim again, up to a bounded
-> > retry count.
-> > + */
-> > +void dmem_cgroup_region_set_reclaim(struct dmem_cgroup_region
-> > *region,
-> > +				=C2=A0=C2=A0=C2=A0 dmem_cgroup_reclaim_fn_t
-> > reclaim,
-> > +				=C2=A0=C2=A0=C2=A0 void *priv)
-> > +{
-> > +	if (!region)
-> > +		return;
-> > +
-> > +	down_write(&region->unregister_sem);
-> > +	region->reclaim_priv =3D priv;
-> > +	/* Pairs with READ_ONCE() in set_resource_max() */
-> > +	WRITE_ONCE(region->reclaim, reclaim);
-> > +	up_write(&region->unregister_sem);
-> > +}
-> > +EXPORT_SYMBOL_GPL(dmem_cgroup_region_set_reclaim);
-> > +
-> > =C2=A0static struct dmem_cgroup_pool_state *
-> > =C2=A0get_cg_pool_unlocked(struct dmemcg_state *cg, struct
-> > dmem_cgroup_region *region)
-> > =C2=A0{
-> > @@ -725,9 +811,10 @@ static int dmemcg_parse_limit(char *options,
-> > u64 *new_limit)
-> > =C2=A0
-> > =C2=A0static ssize_t dmemcg_limit_write(struct kernfs_open_file *of,
-> > =C2=A0				 char *buf, size_t nbytes, loff_t
-> > off,
-> > -				 void (*apply)(struct
-> > dmem_cgroup_pool_state *, u64))
-> > +				 void (*apply)(struct
-> > dmem_cgroup_pool_state *, u64, bool))
-> > =C2=A0{
-> > =C2=A0	struct dmemcg_state *dmemcs =3D css_to_dmemcs(of_css(of));
-> > +	bool nonblock =3D of->file->f_flags & O_NONBLOCK;
-> > =C2=A0	int err =3D 0;
-> > =C2=A0
-> > =C2=A0	while (buf && !err) {
-> > @@ -772,7 +859,8 @@ static ssize_t dmemcg_limit_write(struct
-> > kernfs_open_file *of,
-> > =C2=A0		}
-> > =C2=A0
-> > =C2=A0		/* And commit */
-> > -		apply(pool, new_limit);
-> > +		apply(pool, new_limit, nonblock);
-> > +
-> > =C2=A0		dmemcg_pool_put(pool);
-> > =C2=A0
-> > =C2=A0out_put:
+Regards,
+Christian.
+
+</pre>
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <blockquote type="cite">
+            <pre wrap="" class="moz-quote-pre">+	}
++
++	mutex_unlock(&amp;uq_mgr-&gt;userq_mutex);
++
++	return r;
++}
++
+ static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
+ 				struct drm_amdgpu_userq_in *args_in)
+ {
+@@ -429,7 +446,14 @@ static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
+ 		goto free_mqd;
+ 	}
+ 
+-	/* Create BO for FW operations */
++	/* Create per-process MES process context BO */
++	r = mes_userq_create_proc_ctx_space(uq_mgr);
++	if (r) {
++		DRM_ERROR(&quot;Failed to allocate MES process context space bo, error: %d\n&quot;, r);
++		goto free_mqd;
++	}
++
++	/* Create BO of a gang for FW operations */
+ 	r = mes_userq_create_ctx_space(uq_mgr, queue, mqd_user);
+ 	if (r) {
+ 		DRM_ERROR(&quot;Failed to allocate BO for userqueue (%d)&quot;, r);
+@@ -492,7 +516,7 @@ static int mes_userq_preempt(struct amdgpu_usermode_queue *queue)
+ 	*fence_ptr = 0;
+ 
+ 	memset(&amp;queue_input, 0x0, sizeof(struct mes_suspend_gang_input));
+-	queue_input.gang_context_addr = ctx-&gt;gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
++	queue_input.gang_context_addr = ctx-&gt;gpu_addr;
+ 	queue_input.suspend_fence_addr = fence_gpu_addr;
+ 	queue_input.suspend_fence_value = 1;
+ 	amdgpu_mes_lock(&amp;adev-&gt;mes);
+@@ -529,7 +553,7 @@ static int mes_userq_restore(struct amdgpu_usermode_queue *queue)
+ 		return 0;
+ 
+ 	memset(&amp;queue_input, 0x0, sizeof(struct mes_resume_gang_input));
+-	queue_input.gang_context_addr = ctx-&gt;gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
++	queue_input.gang_context_addr = ctx-&gt;gpu_addr;
+ 
+ 	amdgpu_mes_lock(&amp;adev-&gt;mes);
+ 	r = adev-&gt;mes.funcs-&gt;resume_gang(&amp;adev-&gt;mes, &amp;queue_input);
+</pre>
+          </blockquote>
+        </blockquote>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------0ideELL6gzORsx5pJEwDnrZE--
