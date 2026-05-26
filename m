@@ -2,132 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OGw7Ee0JFmpNhAcAu9opvQ
+	id eNzMAVShFmqBnwcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 23:00:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 09:46:28 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A30E75DC8B5
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 May 2026 23:00:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6876A5E09A5
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 09:46:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F6BA10E53E;
-	Tue, 26 May 2026 21:00:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8FB610E20D;
+	Wed, 27 May 2026 07:46:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="qXAmKdQh";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LrX0k0e5";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013019.outbound.protection.outlook.com
- [40.93.196.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E5D910E53E
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 May 2026 21:00:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fyfaZsfN7xSRSm7G/CEueuKrR+gQ2wy/RtFuXaAdtQBS0MftZmdWFWwYL9Jy/k429X6qNw1OPEznXvaWa77Wys2HZRTzHvKjMIaT5S1KWGUUttNU2dzszlJKqShr7zGN4bCFUS9ujHJaLs/zTj4sTvqLSXWLglLclzgpFByc2iJNEV6jjRjUEm5OISoOqouXn7N7441xXql6XgmL6bdWOSssbseoCHb8jnLLjbWwhAZpk0Pki6ol0W0I18nawvj+lkQQijdFdFMZyDFo6lWIbzmot9eWTRxGpt6DZPucr/RD/moZL/C23nSkmLBnEDDrBhRel4fkgINFpHbCKLzmJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V7fKg9jaXB5dRDHUTjVFDxCeTO/B+7tSbJTasHe3V+A=;
- b=H1MXhkmi09RLqsurqdXZQZUb6IYE/kgK4ezkom4q6nnzcHJZ8Qmxa3rA8EofjduGurcArHubV0XGPHNwnvymnvqDdpHlp5YDRfSCdzWWAN8qRURpAGdrx2gAm1yPLe4mJJQqlBTsLacULvEICHZWwJpyo2g1fHU8yE2hvWVsdPHf/loChxli10dUlF020B1CVE80qPvm4DuD/xGXHWQfQtmLYT6joT0u9yT1seArL6N08R7+tzdGC+M8vUCgsz/9OFVIou/MBlDtrU0pYFcvNpq0t7bMX8QezyDPdrUc9AO0Y9EMqMZ23L9l310MLnCh7s8Ar63zBKKVltsB0cDTgA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V7fKg9jaXB5dRDHUTjVFDxCeTO/B+7tSbJTasHe3V+A=;
- b=qXAmKdQhN8n9lsD5hey+6BNF41l+nVlO4cXRhUEsMEo8Qqh+tYi8UeFRX6qz71llsciL+sYECl9hME2N2/e4RKr1lg2MVFnJJPIRFMF791onJreAiiM/PAbQYR1MeNpMe/wEsCtIZTPUr7qJnb49BhEaNrjuh/7l23cLqdfZG+o=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CH0PR12MB8464.namprd12.prod.outlook.com (2603:10b6:610:184::11)
- by CH3PR12MB9079.namprd12.prod.outlook.com (2603:10b6:610:1a1::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.20; Tue, 26 May
- 2026 21:00:19 +0000
-Received: from CH0PR12MB8464.namprd12.prod.outlook.com
- ([fe80::a45b:9b43:1014:eaf2]) by CH0PR12MB8464.namprd12.prod.outlook.com
- ([fe80::a45b:9b43:1014:eaf2%5]) with mapi id 15.21.0071.011; Tue, 26 May 2026
- 21:00:18 +0000
-Message-ID: <207d45ad-623c-448c-b20d-5612953b5a05@amd.com>
-Date: Tue, 26 May 2026 17:00:16 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 34/42] drm/amdkfd: split out mes queue reset sequence into
- standalone function
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- christian.koenig@amd.com, sunil.khatri@amd.com, Jesse.Zhang@amd.com,
- Shaoyun.Liu@amd.com
-References: <20260522002048.98506-1-alexander.deucher@amd.com>
- <20260522002048.98506-35-alexander.deucher@amd.com>
-Content-Language: en-US
-From: Amber Lin <Amber.Lin@amd.com>
-In-Reply-To: <20260522002048.98506-35-alexander.deucher@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YT4PR01CA0101.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:d7::17) To CH0PR12MB8464.namprd12.prod.outlook.com
- (2603:10b6:610:184::11)
+Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com
+ [74.125.82.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15CC010E544
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 May 2026 21:01:04 +0000 (UTC)
+Received: by mail-dy1-f179.google.com with SMTP id
+ 5a478bee46e88-30246cfd41aso685638eec.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 26 May 2026 14:01:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1779829263; x=1780434063; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=C2x6fxQ+tdvDCPGI0zQ3v4zt0ktfN5BxYIE2BnW2JnA=;
+ b=LrX0k0e5D/So0PFaLL0O1uepznZ3hMNcm0WVEDWwhtOEsqIHVXQfeRcIA25FVMmKYN
+ cwiItmQt5oOquAIKacFNtojHiDTejnat/x+OIwuv8sTpXu9ALpEKLXaNjf8qawp7+DIp
+ 8VZjonNG2Bh1yXqVHlEcC7gUS+xfey0FH0hVmTK3iZF2eOs+x73INouLNPZRAZulE7w+
+ lDa3vMb9vzsgPto1U2z9qM9IpiHU67N1xPAA4NCBvEmPkJOhsVvsxxiE0G44/t88NYcX
+ vjISUvvhObixsMqUc4Jev16Vs0UoQJVTV801GfrR8903RdAmm35laTxhmgzyG/uXPRiU
+ DNRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779829263; x=1780434063;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=C2x6fxQ+tdvDCPGI0zQ3v4zt0ktfN5BxYIE2BnW2JnA=;
+ b=hqZ1PnVqq5hcgNbVnbL3g2SA7MR70whFCnT264C4+X+ZCkTVlJ8oDhEx+m0zgZrHBG
+ 36Fg12YS15SIy/zudE7qWsPrgl4fEH7mmq9tVG44gWjn7pxsJjXwFrvOsm0ac5W4tNcM
+ xuLUcI7GkOMUiuzvgFvwHe9s6/Us5xMg1i7v1+5Dzk1vxNabFCq4Y2FGpQMBfpk5MPnl
+ +qHw5b7ysFbQcWHbX9uSAacJ7kLD58y8M54DDfkJ+TV1ObwE8M4lfVn9BN2G7gdapclU
+ nKHPqJ1tXPsqxKL9EenELtxF+7g6RkOKyvdbU6vOZCpqvSLxzfu+2FLULKjtEr90sfEz
+ g/Yw==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ8OANtX2Vbmh4vATWllRX+ayfDvyki7oDJG4Kmwf2mUryRIqgMO5Fgi1MxIJEozgqKBQ9Ra73Kt@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzgcFX/7uvZftO/Wei10mBedPdoYcbznogbwS2Mx2++8nfBT2d0
+ WodcOoktWeiy3BttoN3nu5oMsAalIYGtm4k3daWzPjBnd0t8kDJw/0BH
+X-Gm-Gg: Acq92OENAXAsPrmN+shnm7wsHncDTYEfokV4dxbMP5A2geBr3aWmUNXlA8JHCav5N2K
+ 54T2Kyh2QHpVgPUg/QstnjF2DjJXHfx0KKRbGTG0Yxd1641BU0axNqGRWwi5UC485iI6Xr7LwA8
+ e4Cr3E+M0AACvCxacMVs8bYLCBWaFYMGHMN33N+SP8sM6ajABtAaCFktAcd/ijC5/Th84OFk7ko
+ +/XYOp2a/zWa6g3S6Yxy6sOsThXB0RV6gb9qEcHLiBavSv2W4F8TaLtiOUGhMjoHRsMDeYpTA94
+ Wl7yqmEr6ec1+7gDJz5wWdcE3CW0KoomAv1rkvB4gCXsZc1B/n2tuIvApT7E10LzVoWyT+CmoGc
+ p0jkpl/W+zrDLL/0TwINyge/+QeyGj9iPeIUfK0EiJ1p34+bhkYtE1CFglyLur4M5PAasxUsdXi
+ REs/1Aki2NoQOfMdFEAPS7X47OI2EcvRKaxnHUY+K4bY7F2qY5IYA=
+X-Received: by 2002:a05:7300:cd85:b0:2d9:ad46:4a92 with SMTP id
+ 5a478bee46e88-3044905ce1emr8171506eec.13.1779829263188; 
+ Tue, 26 May 2026 14:01:03 -0700 (PDT)
+Received: from localhost.localdomain ([187.17.229.0])
+ by smtp.gmail.com with ESMTPSA id
+ 5a478bee46e88-30451ef3273sm15404389eec.2.2026.05.26.14.00.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 26 May 2026 14:01:02 -0700 (PDT)
+From: Edson Juliano Drosdeck <edson.drosdeck@gmail.com>
+To: harry.wentland@amd.com
+Cc: sunpeng.li@amd.com, siqueira@igalia.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ mario.limonciello@amd.com, alex.hung@amd.com, Wayne.Lin@amd.com,
+ timur.kristof@gmail.com, superm1@kernel.org, aurabindo.pillai@amd.com,
+ ivan.lipski@amd.com, chen-yu.chen@amd.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ edson.drosdeck@gmail.com
+Subject: [PATCH] drm/amd/display: Avoid using zero AC/DC brightness levels
+Date: Tue, 26 May 2026 18:00:48 -0300
+Message-ID: <20260526210048.1162477-1-edson.drosdeck@gmail.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH0PR12MB8464:EE_|CH3PR12MB9079:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9b5952e8-0a42-48a0-419c-08debb69cb1e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|11063799006|22082099003|18002099003|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info: R7epzdxmOBw6mfDCApOhFDh7TWyt4F58nahUYlnflwnEr3yHYwg1E+WUq+JCzWqzrRXzC9F1GIsYTg/AYiXjOs/9IQ/30ULEjBpJWpoNEJ+dOWY+zvvobWFniQvFqUWE0tyS1NQc+t43d67x0JqnJ72z2WIQbtABzlIyx+qGoMJS+4jpYq3MBnle5t4hVXJNutZY5WE64W8mVvvQw5giyABQrirZWSR5oGP9FMC0z/U5vcXa7pv3UHfP/QNUVYFbmqct4QfdlouhvGEZJvGkwJVfCKrh0eBTNi8DOZtlB5ywllgw5AxZMXXItg2mfdF95Ioj7zrT55lAfSH/WFh4tEFZ4IGsBYYBF0qKHpaGBmZObpA5cVSARyyjtE9MnpqKNyR9tCJDgl1H7bEzE1ZMF430DE0bDXSgf2exhfQ7Kj+tz/q8vMrgcz2tWWEGOQh6qa0mBd8PdbBIQIFS/QeIezyxC0vuXmZsAT1xDRc5sk8zuP2Vln0z+hWuSGIP7zNej+NmXKqKLuBBQRj5NHU5p2Z7+0BQxe8Y78DKhx6S0vuChkiaTiRS/tMZ2E/vdQiFJ5qHuknZhEAszcg2E3yfdsMJPNZ3pNUmZ06EbiplI6pW0zEJfgz7FZUxebyT/9yoBydx0M8ohUf6BlmFOXkponW+9FecGo4YvUxI0GRRP1/fkXwLLNgImh7S8S5vBC+G
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR12MB8464.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(11063799006)(22082099003)(18002099003)(4143699003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QW5qWW5SamhUZjQ2a0d1cG5la2pIbDNnS2x5N1VvTG5HRFRTVlRodGh4bmRC?=
- =?utf-8?B?R3lWLzZ6NFE2UWtVYm9IekV3ZEtCTjZ2N0lXbHozZ2hrcFRqTnN6dmJTbGNS?=
- =?utf-8?B?VjR1Ti9CaFRFZzdvencwYjYwKzlSbFl0aEpTdVVha1pmWDBFWGszMmx0cis1?=
- =?utf-8?B?YjRlaXpUZEEwN3FTSmtnM1VYTUhsMCtueDRyeVFRZS9MenQ3M0sxbnhNWnR4?=
- =?utf-8?B?NC9VUU5JTzhvRmE2cUVJTFExNEJoL2RIV2NtZFFyUTdCU1NXRHdpTGo0K0pC?=
- =?utf-8?B?TjYwenkrUzk4OEFJbUlNYzJ5Vkk3UktOK0Z6aFFkZlVOb0pxWWwyaFV3enM1?=
- =?utf-8?B?RGNmV2R4aWd3VktwSEN1YlA1RG52dGtnWE1JTjNXclEwRlJiTmhyYmZLbWsx?=
- =?utf-8?B?VnJwZHBjUkdkVlhUeG9YTkR4b00rVFp4dys5Q3hLWkpYRkJUOXVHUS9QQ3BX?=
- =?utf-8?B?Y0pkS0VUcTVnNU9Td1hSaTlqOEk4TVFqYUo3SHEyUUZzSVhlYWpxTkltbnIr?=
- =?utf-8?B?dmpJbGh1azBkZTc3SWlFcmkwVGtMY2YxRHlQOURYUDRsamwvWmY5Ty9ZMGM0?=
- =?utf-8?B?cWduUkFGdnFrbUVMZFdGUjlXVUlIbkZGMHdFT2w2K09ydkNFN2NIZE1sb3Y2?=
- =?utf-8?B?Qk8wN3hlSjVGQ0o0cDgrWHBESW8zekFnNlZQMXpvcE9sRHJoVFlIWjdWOFY2?=
- =?utf-8?B?Y000NU5PdXVjNC9KNzRYeU9yeFBxaDlHWFY3WFlqUzl1VnpJbzNaeW9iSjFY?=
- =?utf-8?B?RzVqUWJocmp6VnRzNURYVmRIc1I5bWxMTTVGdHdqb3lUY1RUb0dkZC93Tlgv?=
- =?utf-8?B?Uk9uUmFjblpGdEpVU3FlS2dmbU8zUkZBRzkzRUZFdjVDdnczc2YxNkdDU1Ra?=
- =?utf-8?B?Znp6d1ZYd2RUWklEam5xKytKeWk0VzByUmViQ0FGclUzWm9QSTlrMU81bzkw?=
- =?utf-8?B?eWFkZFF0djFSNXZYV3gxU0JqSDd0aWJkN21JdlV3UnlzTmZSWGIvaWI3VU9U?=
- =?utf-8?B?N0pXdkcrTTY3YW1yTVNKNzNMS1FXZFplVDkxTnVVRnZFSFkxMkhnbkRQM1pN?=
- =?utf-8?B?alVLMjNERE5Jck9iNms1clY2ZVFXcnJwUVBJK3pGYmErckhsSk9QSTNhbUFz?=
- =?utf-8?B?Y2F0ak9vbHJERitseEMwOGI3SGNMUi9YMWJWdDJIQzBhTzJjNW05QTFIZ2p2?=
- =?utf-8?B?ejdrTVpvVjRCemY3VFVucEM4b2xDYmFoS0VCMFZHRnpmemptMTFyWE9OTUlk?=
- =?utf-8?B?VjlSY1ZqTURzc29Yd0Ixemhnc1doZFdTOVJKM0NyNncrQVcxczVlbDVIbWdB?=
- =?utf-8?B?R0pHTWZvQW9iMXFNYzk2SHJrR200OE4yZmUyTExZUFlhNGNvdGFNQWM3cTNF?=
- =?utf-8?B?Z1FkWlZ5aTdnTHNkTXZEQlNvQVhCNVAyY3Q2bkU5NGxTeWdiSDZZQVVCZlkr?=
- =?utf-8?B?c2t0Sml0Wnh4ZnpRZEFWZXdXamhweVFlQnhGRzkxYlRHZTFtS0VQSDhMVTda?=
- =?utf-8?B?OXhGVnRiekxQVzNDNG9VUWtVOEVwb3E3amRWOVhJN0YvbkRQaG8vYmtMbTdo?=
- =?utf-8?B?enI4Q2ZWM1ZVVkk0SENPSUJHTW1ldnB0M05SakdaZ1JVS3VGMmx6OVdKRndV?=
- =?utf-8?B?OVExaitidGg2Z0o5SytSWWorZzV1ck94RjM3bDVHNzdvNnBBblJOUkNGcU96?=
- =?utf-8?B?UlFnWUdoaStFVlNyRjJ0YUkvVjJnQ3NCUkxxSUFOd3ZhY0tUTFlpK0k1MmFW?=
- =?utf-8?B?RVFRY0Z4eEU0WjNLTmpvQ3ZaRG95NVlxODFzalBMdFUwa0xoNG1iUCtBRWZD?=
- =?utf-8?B?RFRIREp5WGNNSmhwREMyWlBkZjc5TUNPVi9XTThtcjQwaGNTWnlrWktreEQr?=
- =?utf-8?B?Mm9rbnI0ODJiVEs2d0hOclhKS3czVnBlTUZSckc2UktUMDlRNVRTOG56dVJs?=
- =?utf-8?B?ZGFNbzViMTRjZ0ZIaUVtMXFYM1JGRllNbnNTVXYydHdDQmM4RzVoaWpaSDJO?=
- =?utf-8?B?K2k1QzFQbzJnZEdRaC9rRXZQOWc1TmFvTnpVZU5uQ3NJeGp2Zk5rbWw2RUY3?=
- =?utf-8?B?NU1pSkNuY2lNTWk3cEpwZ1IydnpFaUtUTVpKenZRNGdHM0lySnYzRG4xMXJt?=
- =?utf-8?B?Y1FPYXJVQUlleEdIc0ZLUGpwM2JOeG5QOVBaTmFBdXhyUzVKK3FVZmROYmNm?=
- =?utf-8?B?TDgzdEtCZWFkcnZSVHJPWmZ3ZzFuZlhEdC93YjJ5RC9vVDZWcDRGMXN0ZW1O?=
- =?utf-8?B?UGo0ZEpPT1dMS3AvdmtRUkVPdUhxb1h1TmtISTNJSFoyL2Y1Nkd1VG9vSWVv?=
- =?utf-8?Q?bhQa6S51ze+ufT7rjV?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9b5952e8-0a42-48a0-419c-08debb69cb1e
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR12MB8464.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 21:00:18.8588 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kJMLkiK+Jk5q+jkQAOWwcP0aWuywgpX6ra8SPmG1LMqXwd1483mhWPo3uJN2k7lZ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9079
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 27 May 2026 07:46:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,127 +95,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:sunil.khatri@amd.com,m:Jesse.Zhang@amd.com,m:Shaoyun.Liu@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[Amber.Lin@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[edsondrosdeck@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:mario.limonciello@amd.com,m:alex.hung@amd.com,m:Wayne.Lin@amd.com,m:timur.kristof@gmail.com,m:superm1@kernel.org,m:aurabindo.pillai@amd.com,m:ivan.lipski@amd.com,m:chen-yu.chen@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:edson.drosdeck@gmail.com,m:timurkristof@gmail.com,m:edsondrosdeck@gmail.com,s:lists@lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,kernel.org,lists.freedesktop.org,vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	TO_DN_NONE(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Amber.Lin@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[edsondrosdeck@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.993];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,amd.com:mid,amd.com:dkim]
-X-Rspamd-Queue-Id: A30E75DC8B5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 6876A5E09A5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Reviewed-by: Amber Lin <Amber.Lin@amd.com>
+Some systems report zero AC/DC brightness levels during
+backlight initialization, causing the panel brightness to
+start at the minimum level on boot.
 
-On 5/21/26 20:20, Alex Deucher wrote:
-> No intended functional change.
-> 
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->   .../drm/amd/amdkfd/kfd_device_queue_manager.c | 48 ++++++++++++-------
->   1 file changed, 31 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-> index e323658f972cd..0a59a79ee28be 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-> @@ -407,6 +407,32 @@ static int add_all_kfd_queues_mes(struct device_queue_manager *dqm)
->   	return retval;
->   }
->   
-> +static int reset_queue_mes(struct device_queue_manager *dqm, struct queue *q,
-> +			   int queue_type, int pipe, int queue, unsigned int db)
-> +{
-> +	struct amdgpu_device *adev = (struct amdgpu_device *)dqm->dev->adev;
-> +	struct kfd_process_device *pdd;
-> +	bool use_mmio = false;
-> +	int r;
-> +
-> +	pdd = kfd_get_process_device_data(q->device, q->process);
-> +	if (!pdd)
-> +		return -ENODEV;
-> +
-> +	if (use_mmio)
-> +		r = amdgpu_mes_reset_queue_mmio(adev, queue_type, 0, 1, pipe, queue,
-> +						ffs(dqm->dev->xcc_mask) - 1);
-> +	else
-> +		r = amdgpu_mes_reset_user_queue(adev, queue_type, db,
-> +						ffs(dqm->dev->xcc_mask) - 1);
-> +	if (r)
-> +		return r;
-> +	/* Proceed remove_queue with reset=true */
-> +	remove_queue_mes_on_reset_option(dqm, q, &pdd->qpd, true, false);
-> +	set_queue_as_reset(dqm, q, &pdd->qpd);
-> +	return 0;
-> +}
-> +
->   static int reset_queues_mes(struct device_queue_manager *dqm)
->   {
->   	struct amdgpu_device *adev = (struct amdgpu_device *)dqm->dev->adev;
-> @@ -414,7 +440,6 @@ static int reset_queues_mes(struct device_queue_manager *dqm)
->   	int num_hung = 0, r = 0, i, pipe, queue, queue_type;
->   	u32 *hung_array = dqm->hung_db_array;
->   	struct amdgpu_mes_hung_queue_hqd_info *hqd_info = dqm->hqd_info;
-> -	struct kfd_process_device *pdd;
->   	struct queue *q;
->   
->   	if (!amdgpu_mes_queue_reset_by_mes_supported(adev)) {
-> @@ -468,24 +493,13 @@ static int reset_queues_mes(struct device_queue_manager *dqm)
->   
->   		q = find_queue_by_doorbell_offset(dqm, hung_array[i]);
->   		/* skip queues not owned by KFD */
-> -		if (!q)
-> +		if (!q) {
->   			continue;
-> -
-> -		pdd = kfd_get_process_device_data(q->device, q->process);
-> -		if (!pdd) {
-> -			r = -ENODEV;
-> -			goto fail;
-> +		} else {
-> +			r = reset_queue_mes(dqm, q, queue_type, pipe, queue, hung_array[i]);
-> +			if (r)
-> +				goto fail;
->   		}
-> -
-> -		pr_warn("Hang detected doorbell %x pipe %d queue %d type %d\n",
-> -				hung_array[i], pipe, queue, queue_type);
-> -		r = amdgpu_mes_reset_user_queue(adev, queue_type, hung_array[i],
-> -						ffs(dqm->dev->xcc_mask) - 1);
-> -		if (r)
-> -			goto fail;
-> -		/* Proceed remove_queue with reset=true */
-> -		remove_queue_mes_on_reset_option(dqm, q, &pdd->qpd, true, false);
-> -		set_queue_as_reset(dqm, q, &pdd->qpd);
->   	}
->   
->   	dqm->detect_hang_count = num_hung;
+Only use the firmware brightness levels when both AC and DC
+values are non-zero
 
+Signed-off-by: Edson Juliano Drosdeck <edson.drosdeck@gmail.com>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 5fc5d5608506..f947ce2a8625 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -5380,7 +5380,9 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
+ 	}
+ 
+ 	caps = &dm->backlight_caps[aconnector->bl_idx];
+-	if (get_brightness_range(caps, &min, &max)) {
++	if (get_brightness_range(caps, &min, &max) &&
++	    caps->ac_level > 0 &&
++	    caps->dc_level > 0) {
+ 		if (power_supply_is_system_supplied() > 0)
+ 			props.brightness = DIV_ROUND_CLOSEST((max - min) * caps->ac_level, 100);
+ 		else
 -- 
-Regards,
-Amber
+2.47.3
 
