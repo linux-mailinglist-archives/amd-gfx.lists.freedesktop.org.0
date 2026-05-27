@@ -2,54 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id D1j7I+nuF2q4WAgAu9opvQ
+	id sMdsJWwFF2rT1QcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 09:29:45 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 16:53:32 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08CBC5EDB15
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 09:29:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04DA75E64BA
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 16:53:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D525210ED1A;
-	Thu, 28 May 2026 07:29:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 756A610E812;
+	Wed, 27 May 2026 14:53:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=xry111.site header.i=@xry111.site header.b="NWOu0gUx";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SNLxNghW";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from xry111.site (xry111.site [89.208.246.23])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 925BA10E0E5
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2026 14:45:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xry111.site;
- s=default; t=1779893136;
- bh=hGsMTYHoeQ0TOkj6e86i0hzrq9+4umeDk9Y0LdQv/5U=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=NWOu0gUxzqaxdp3mXAwhEcw/crIRX9GTHNuhgUEXL4RRDFjO3gUh/6FUpyY98C6Jb
- sPeb2+wWrcA3oJY6hRoba8aewOedPpxcPZmwJQZwsK/h7fz2Strmb0ShEQL16EAArM
- LKkjiSjyVClR294LRiySgowNqI16rTwdDFbd/e6Q=
-Received: from stargazer (unknown
- [IPv6:2409:8a4c:e1b:e231:5a6e:b99e:242d:222b])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (secp384r1) server-digest SHA384)
- (Client did not present a certificate)
- (Authenticated sender: xry111@xry111.site)
- by xry111.site (Postfix) with ESMTPSA id A499B659C8;
- Wed, 27 May 2026 10:45:33 -0400 (EDT)
-From: Xi Ruoyao <xry111@xry111.site>
-To: stable@vger.kernel.org
-Cc: amd-gfx@lists.freedesktop.org, Rafal Ostrowski <rafal.ostrowski@amd.com>,
- Dillon Varone <dillon.varone@amd.com>, Chenyu Chen <chen-yu.chen@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Xi Ruoyao <xry111@xry111.site>
-Subject: [PATCH v7.0.y 8/8] drm/amd/display: Move dml2_destroy to non-FPU
- compilation unit
-Date: Wed, 27 May 2026 22:44:28 +0800
-Message-ID: <20260527144428.1095001-9-xry111@xry111.site>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260527144428.1095001-1-xry111@xry111.site>
-References: <20260527144428.1095001-1-xry111@xry111.site>
+Received: from mail-dy1-f174.google.com (mail-dy1-f174.google.com
+ [74.125.82.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A2EA10E812
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2026 14:53:28 +0000 (UTC)
+Received: by mail-dy1-f174.google.com with SMTP id
+ 5a478bee46e88-2f24905306dso1252739eec.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2026 07:53:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779893608; cv=none;
+ d=google.com; s=arc-20240605;
+ b=f0Y922rxVDGTuTSmVVXRL+7uFSO4jM8wTRmPPQGuoJyw9jMIc3YcUwDsnyzqS74RhU
+ i/HCgMCrJzr6QD6O+sJsNiXuUGLyJ+mVIwWJeZlZ4f8mndIPvbwSNMLn1snrPF94nCFj
+ 9zn8RFvqn0KFs0lcRdyCVHi6+aDXss4wsM9bb6yjc6IAZZnMY3f0Rwark3+zocm7BMIJ
+ LdZciOd9yoj0o+TwnVQCyQJMJ4muTp0dPFqW/zhWC7p9SfQApWspexyY6wAMgzMOYRSu
+ Jiy2eEnUfV4JcYyDgLBhcddGUd6n2pu38uPpfVSxI+jiyMHME9gXc2pRoceQfgZ/wwFN
+ xMEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=XROd06mogEZ8MfUVOoAot6h7W7ooA7c3mzHnmbPJulI=;
+ fh=gZ/QuQ1El2NU1RRI5pc/CAX4Mv4g4Ez7PWwEsOz7Ag0=;
+ b=VQwFnHQoEK4TpPLeAWupJ4vFpBsNh3P6Hoc5/drm0QIlwe/ge2CShHVPcL8VRsIHTM
+ Y/aYE+ebPX5ZwOeN2H9qRTtSEdf1DgoRLzYNNEBsb4XVQhDSPxC3fk4+ldz0Iz3u3vmC
+ G3KIf/0SToMdnnd86UmcyPfeON8WtSc9UYQVbCaH/FO4sMrMDRoH1nOOgzZD8+gBZvsD
+ 6gvbarts7ej1WR49YzsqxFTaxedMa200H6tRxs+kjkGoBk9O8M+QEp5/jHJQA9Rw+aM9
+ Or+CeZmwEq9rIxxq+8wQJPd8b+WYalUp7oXVxOt7AQYaRv88XIUSjTDo+eeLzTV0gL3s
+ GSyA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1779893608; x=1780498408; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=XROd06mogEZ8MfUVOoAot6h7W7ooA7c3mzHnmbPJulI=;
+ b=SNLxNghWTDl+wRkO5PJVHArknSCRzvh9EUdBoDwiDG4lUgEKXcIyQOGa+GsnSVyf5L
+ jNF/c7BcogEjqU41hiEASDluPcsEQJ8s1bzlW999TAXVac5+h/1ViRVKMBXhCnnnDN8m
+ jeNBUll3S+weGG57sGonEZOhd5KVAPwC8BoVVEu2VqEsXIrnKTsJCm2NvRtWr2REE4P6
+ R7q4corbNKycPa/U8xxCWZHsZk89x3wEPZq4fxMS49woVNZORKqqSJRoOThupO5/XgXp
+ GwNsnEQ0DT6RVvluFe3Hbt7+hRohBs/0bG9dW5DspsTmmQO3yWAMOmoMuGOkJUtmGYo2
+ TqyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779893608; x=1780498408;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=XROd06mogEZ8MfUVOoAot6h7W7ooA7c3mzHnmbPJulI=;
+ b=CvONqNkRmuoXJp8+TAbNJ9YVk37c4M75HSFsNY264nZICpjQBOxgtw6IQu352hsZyp
+ a99Bn01J2qoiX5FLZ+e2JOCZZlP61/nuAwXtMqmn26mv41mveioTF1C5zyTDNjcxE+b/
+ ByK51pWvdcv9PPuqpy3DCGPJZRp7qg3dgdLmtl2tSgR/lV3TCbyTmPqBanEg9rtyz6ym
+ gAd6UUtmMAvOuM7iPjUn8YhoZ8nPjgO+Jx9V1QNPIx0pQIEDIQxnC9CXfCMJkFd/TQ7w
+ WUSgigqrggH1CGBNNDZa1f3GG+0nYHdyPAUvlETfvnmCKegR5m3Zfvpy8pkuzvVi3YuL
+ lB6Q==
+X-Gm-Message-State: AOJu0Yx1KEDpJ7Zvi/lLEL+ymSEK780Rc3mHRlTQAp1xm+v7A5xMBW3V
+ x5ea6J3gWDc7ka6DcJztATtz7qIOuaHGLeTJvlDVhIr0RFw+6CW+kFzZU075weaammeAZmdk1GJ
+ 9b5iCKTpMdr6lq4qR8Xm1YflleH3Ba50=
+X-Gm-Gg: Acq92OE/3PxFQ+05UUgNMSYT8p1sQwnRZSrsd8ucIhUiW5aIMs7898CC1OcEkASdnIK
+ vI/4z5kWBI8d5ujQ1SHvR21r/DgkpTGZNMVy547FpM5K9nj95/4kyN6zboYv0dM2FMFlm49c53A
+ 5NAdiucLcS3M7ao6BbfPLJNVsQEqJ9pVbre1FP3uj2i5nJPYI6Em48gdyYCJtpuVzWDxK2ZSYlt
+ szlmAKsZUqUqNrvUnljI+mvkJ5XB+M5cb3kgwimRSPgdfS+vnFTwZj1umltL4h6+oT2rbBWNVO8
+ kdFuiaaugfZG4s0Yz2K/AQAT7fLqS/opZpPvvPl0FOxIGO+7sFFH37PabBCFg43lJJX4J/fpjF0
+ pseqx
+X-Received: by 2002:a05:7301:198f:b0:2f0:ddce:8468 with SMTP id
+ 5a478bee46e88-30449193017mr4751603eec.8.1779893607521; Wed, 27 May 2026
+ 07:53:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 28 May 2026 07:29:41 +0000
+References: <20260527141014.567441-1-Yongqiang.Sun@amd.com>
+In-Reply-To: <20260527141014.567441-1-Yongqiang.Sun@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 27 May 2026 10:53:16 -0400
+X-Gm-Features: AVHnY4IkFYeVcXAgRn7sxwaplIdsqUOwkYNh_-IuySsVuanhhbk2km8MbjoiGaA
+Message-ID: <CADnq5_N3U1QogF0hkZi6NhcUhrqMpgNzVsDfe7R2xFD9E3VH8Q@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdkfd: fix SMI event cross-process information leak
+To: Yongqiang Sun <Yongqiang.Sun@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,129 +106,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[xry111.site,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[xry111.site:s=default];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Yongqiang.Sun@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:stable@vger.kernel.org,m:rafal.ostrowski@amd.com,m:dillon.varone@amd.com,m:chen-yu.chen@amd.com,m:alexander.deucher@amd.com,m:xry111@xry111.site,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[xry111@xry111.site,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[xry111@xry111.site,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[xry111.site:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,xry111.site:email,xry111.site:mid,xry111.site:dkim]
-X-Rspamd-Queue-Id: 08CBC5EDB15
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 04DA75E64BA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Rafal Ostrowski <rafal.ostrowski@amd.com>
+On Wed, May 27, 2026 at 10:29=E2=80=AFAM Yongqiang Sun <Yongqiang.Sun@amd.c=
+om> wrote:
+>
+> kfd_smi_ev_enabled() skips the suser privilege check when pid=3D0.
+> PROCESS_START, PROCESS_END, and VMFAULT events are emitted with
+> pid=3D0 while carrying another process's PID and command name, so any
+> /dev/kfd user in the render group can monitor all GPU workloads.
+>
+> Pass the target process PID into kfd_smi_event_add() for these events
+> so the existing per-client filter restricts delivery to the owning
+> process or CAP_SYS_ADMIN subscribers.
+>
+> Signed-off-by: Yongqiang Sun <Yongqiang.Sun@amd.com>
 
-[ Upstream commit 8bf0cb97edb697dba2515e6452c17c5245111448 ]
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-On PREEMPT_RT kernels, vfree() can sleep because spin_lock is
-converted to rt_mutex. dml2_destroy() calls vfree() while inside
-an FPU-guarded region (preempt_count=2), which is illegal.
-
-dml2_wrapper_fpu.c is compiled with CC_FLAGS_FPU which defines
-_LINUX_FPU_COMPILATION_UNIT, making DC_RUN_WITH_PREEMPTION_ENABLED()
-resolve to a no-op. This prevents the macro from cycling FPU
-context off/on around vfree().
-
-Move dml2_destroy() to dml2_wrapper.c (non-FPU compilation unit)
-where DC_RUN_WITH_PREEMPTION_ENABLED() properly cycles DC_FP_END/
-DC_FP_START around vfree(). This pairs it with dml2_allocate_memory()
-which already lives there.
-
-Reviewed-by: Dillon Varone <dillon.varone@amd.com>
-Signed-off-by: Rafal Ostrowski <rafal.ostrowski@amd.com>
-Signed-off-by: Chenyu Chen <chen-yu.chen@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Xi Ruoyao <xry111@xry111.site>
----
- .../drm/amd/display/dc/dml2_0/dml21/dml21_wrapper.c   |  4 ++--
- drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c  | 11 +++++++++++
- .../gpu/drm/amd/display/dc/dml2_0/dml2_wrapper_fpu.c  | 10 ----------
- 3 files changed, 13 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper.c
-index 7398f8b69adb..8bed59e976d1 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper.c
-@@ -58,8 +58,8 @@ bool dml21_create(const struct dc *in_dc, struct dml2_context **dml_ctx, const s
- 
- void dml21_destroy(struct dml2_context *dml2)
- {
--	vfree(dml2->v21.dml_init.dml2_instance);
--	vfree(dml2->v21.mode_programming.programming);
-+	DC_RUN_WITH_PREEMPTION_ENABLED(vfree(dml2->v21.dml_init.dml2_instance));
-+	DC_RUN_WITH_PREEMPTION_ENABLED(vfree(dml2->v21.mode_programming.programming));
- }
- 
- void dml21_copy(struct dml2_context *dst_dml_ctx,
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c
-index f4d45875d0be..6e3611a05c83 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper.c
-@@ -107,6 +107,17 @@ bool dml2_create(const struct dc *in_dc, const struct dml2_configuration_options
- 	return true;
- }
- 
-+void dml2_destroy(struct dml2_context *dml2)
-+{
-+	if (!dml2)
-+		return;
-+
-+	if (dml2->architecture == dml2_architecture_21)
-+		dml21_destroy(dml2);
-+
-+	DC_RUN_WITH_PREEMPTION_ENABLED(vfree(dml2));
-+}
-+
- void dml2_reinit(const struct dc *in_dc,
- 				 const struct dml2_configuration_options *config,
- 				 struct dml2_context **dml2)
-diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper_fpu.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper_fpu.c
-index 66624cfc27b1..a14e3004a7b7 100644
---- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper_fpu.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_wrapper_fpu.c
-@@ -548,16 +548,6 @@ void dml2_apply_debug_options(const struct dc *dc, struct dml2_context *dml2)
- 	}
- }
- 
--void dml2_destroy(struct dml2_context *dml2)
--{
--	if (!dml2)
--		return;
--
--	if (dml2->architecture == dml2_architecture_21)
--		dml21_destroy(dml2);
--	vfree(dml2);
--}
--
- void dml2_extract_dram_and_fclk_change_support(struct dml2_context *dml2,
- 	unsigned int *fclk_change_support, unsigned int *dram_clk_change_support)
- {
--- 
-2.54.0
-
+> ---
+>  drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c b/drivers/gpu/dr=
+m/amd/amdkfd/kfd_smi_events.c
+> index d2bc169e84b0..82f9165225fd 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
+> @@ -254,8 +254,10 @@ void kfd_smi_event_update_vmfault(struct kfd_node *d=
+ev, uint16_t pasid)
+>         if (task_info) {
+>                 /* Report VM faults from user applications, not retry fro=
+m kernel */
+>                 if (task_info->task.pid)
+> -                       kfd_smi_event_add(0, dev, KFD_SMI_EVENT_VMFAULT, =
+KFD_EVENT_FMT_VMFAULT(
+> -                                         task_info->task.pid, task_info-=
+>task.comm));
+> +                       kfd_smi_event_add(task_info->task.pid, dev,
+> +                                         KFD_SMI_EVENT_VMFAULT,
+> +                                         KFD_EVENT_FMT_VMFAULT(task_info=
+->task.pid,
+> +                                                               task_info=
+->task.comm));
+>                 amdgpu_vm_put_task_info(task_info);
+>         }
+>  }
+> @@ -356,7 +358,7 @@ void kfd_smi_event_process(struct kfd_process_device =
+*pdd, bool start)
+>         task_info =3D amdgpu_vm_get_task_info_vm(avm);
+>
+>         if (task_info) {
+> -               kfd_smi_event_add(0, pdd->dev,
+> +               kfd_smi_event_add(task_info->task.pid, pdd->dev,
+>                                   start ? KFD_SMI_EVENT_PROCESS_START :
+>                                   KFD_SMI_EVENT_PROCESS_END,
+>                                   KFD_EVENT_FMT_PROCESS(task_info->task.p=
+id,
+> --
+> 2.43.0
+>
