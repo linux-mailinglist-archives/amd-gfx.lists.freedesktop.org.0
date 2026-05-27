@@ -2,86 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8LemK/8AF2p80wcAu9opvQ
+	id qHk8H+nuF2qLWAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 16:34:39 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 09:29:45 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F367C5E5F16
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 16:34:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D84F35EDB11
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 09:29:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 870D088C4C;
-	Wed, 27 May 2026 14:34:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E8C710ED10;
+	Thu, 28 May 2026 07:29:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LFwZxDAP";
+	dkim=pass (1024-bit key; unprotected) header.d=xry111.site header.i=@xry111.site header.b="NUC5Kp21";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com
- [209.85.221.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 923A988C4C
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2026 14:34:36 +0000 (UTC)
-Received: by mail-wr1-f54.google.com with SMTP id
- ffacd0b85a97d-43fe608cb92so7238051f8f.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2026 07:34:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779892475; x=1780497275; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=g0l3QMDmLkGp/VA5PaWhQOeZ8ImsFrgHglUHf29FLsw=;
- b=LFwZxDAPin8anPMcYYdkUoze/ra/QI+1mIcCCcImJyfcgSQfhXOmXlsZv/y0CMhsIU
- lP4dV9ryFeKwsNHSA3qjsq/QRtvlp5n2LWrPheALl5t65joSBmBhcNVmpDPfASxDVoHO
- iEq7FRCfSsu+2sRLP4zCe0hzBlyX7qVkyEPK9IbcY83iZj7mrOSbaFY5bgSTAGgc++uz
- QvGTp5s1X9M+nITctv8TWUS7fJVxizhs7rSsN/jDrLMbNUcp53GfjLDsXoLHMuZdekos
- 1XgE9p2xIZowdzBtZujHYMfnMmNU4z9y/IaeT6r6kXrwWwN/gjlV2PnE5bKBa+34VMrx
- UyeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779892475; x=1780497275;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=g0l3QMDmLkGp/VA5PaWhQOeZ8ImsFrgHglUHf29FLsw=;
- b=U1WL8fcLKhT8jkl3wwNN9WQaEoCMDmJIPB7PYpDo/+GviGvFoFjGw2GFC86BLamWg9
- qF97KhlfnlCPGcXYscpecSwESnYitVFNy59oDuqbEqL5D4lWXx2xBh7/Cfybu1qeKJS+
- BrFMKPM1SJ3f7x3ZEVobHw/r4DcocDRKQOr4zgZgm6v6Obe4gL04UDFk8lgEN8LP5odk
- pL6Mu9QGCSI4SU3e5saVcJLbmI3kxKT+4A3DC9tWE1AXSc9Y32dgl7s8jEEXFVqxiszs
- 8sm1qoo32fvoDFdDtSc50+Gz1TXbGGl9ekn7IngiXWpsosR4A5YfCOYQS1urPR6PYQL5
- /2UA==
-X-Gm-Message-State: AOJu0YxP37oEEFBCU75Bf8pFbmMQd3dLfchgRqqwap0FBGhKVsIpv71t
- NyCjOYEzR4oBZ9HTZyXYD5mdFUuzwrNzTN2LXdXV9/TXQzlaSjynjse3j5JiEa1S
-X-Gm-Gg: Acq92OH3Trb7aGCZ3FVtVceTxxHBJZZOOnXY2bpCO4LV2fER6NC3QsglXjUI5WUeYpk
- zAamkIOZ092rm2f94AaL1jhEqUzVYLWF83g1PFVMXP8IzaEzKF6o1jD4e0sFhn38yaSySJk/XSy
- dRnQGKlD9W9igDHBWluMGJChD/JuaVUg5c9K+7OfICDu9I7KdYC6Ul1G3BZ4HMFgUqVOZP7Omgm
- SQlOq1vKFcj4VQTSpNjmhyqnCKXYzap7fu10gsXaUEH/imDddbSK39xaKRFDcmuS6HOvViY3O4L
- WZvA/XYIEn9mlq5i7QvXR5mTDOQ4Nd8umNzInHdSNmD86Ng7pDi3yxuv60iK8ofA9IrvhfZ4cRz
- dTC+TNWSoxY9PLn6cnqE+NaR0ycxs4AmHBUZGUU+CcdRgstzyehA+52GOQemzgzoDYzu6hkFcmm
- Ftp4go7MStvNeUE5DBAmdn5uwlHizteMzVSSkss6/dHtUXKDslRLEOMmH1
-X-Received: by 2002:a5d:5d82:0:b0:454:a12c:6cdb with SMTP id
- ffacd0b85a97d-45eb36b0b6cmr39348524f8f.2.1779892474847; 
- Wed, 27 May 2026 07:34:34 -0700 (PDT)
-Received: from timur-max.localnet (zugloihajos.finet.hu. [212.108.221.74])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-45edb5c27e7sm6466252f8f.35.2026.05.27.07.34.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 27 May 2026 07:34:34 -0700 (PDT)
-From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
-To: amd-gfx@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Alex Deucher <alexdeucher@gmail.com>, christian.koenig@amd.com,
- Philip Yang <yangp@amd.com>, Donet Tom <donettom@linux.ibm.com>
-Cc: David.YatSin@amd.com, Kent.Russell@amd.com,
- Ritesh Harjani <ritesh.list@gmail.com>,
- Vaidyanathan Srinivasan <svaidy@linux.ibm.com>, donettom@linux.ibm.com
-Subject: Re: [PATCH v3] drm/amdgpu: Fix incorrect VRAM GART mappings on non-4K
- page size systems
-Date: Wed, 27 May 2026 16:34:33 +0200
-Message-ID: <10065023.eNJFYEL58v@timur-max>
-In-Reply-To: <20260527131931.1133797-1-donettom@linux.ibm.com>
-References: <20260527131931.1133797-1-donettom@linux.ibm.com>
+Received: from xry111.site (xry111.site [89.208.246.23])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CFFA10E0E5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2026 14:45:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xry111.site;
+ s=default; t=1779893105;
+ bh=R4e4bdB71D+rq0MJ2lvVyJlXVRDcaBHIexttwo3qq34=;
+ h=From:To:Cc:Subject:Date:From;
+ b=NUC5Kp21I/KuQUswq4kDO14XalWMmoxqCreq87QbBYxkBhpHfORVgCCBDETkT/L3q
+ MlBmFD+RLxhukaymxD5uxg6bDgjIiwTt0L5IzfWNrLm8vrJFM4B3VZR8jMFK1AkPna
+ KTqsiMI6C1nx45v1h14AXZFH6DnJkw1Y6lDpl/Pk=
+Received: from stargazer (unknown
+ [IPv6:2409:8a4c:e1b:e231:5a6e:b99e:242d:222b])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (secp384r1) server-digest SHA384)
+ (Client did not present a certificate)
+ (Authenticated sender: xry111@xry111.site)
+ by xry111.site (Postfix) with ESMTPSA id BCAEB6597E;
+ Wed, 27 May 2026 10:45:03 -0400 (EDT)
+From: Xi Ruoyao <xry111@xry111.site>
+To: stable@vger.kernel.org
+Cc: amd-gfx@lists.freedesktop.org,
+	Xi Ruoyao <xry111@xry111.site>
+Subject: [PATCH v7.0.y 0/8] drm/amd: Backport FPU Guard Move from DML to DC
+Date: Wed, 27 May 2026 22:44:20 +0800
+Message-ID: <20260527144428.1095001-1-xry111@xry111.site>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 28 May 2026 07:29:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,115 +59,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[xry111.site,reject];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[xry111.site:s=default];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:stable@vger.kernel.org,m:xry111@xry111.site,s:lists@lfdr.de];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,gmail.com,linux.ibm.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[xry111@xry111.site,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[xry111.site:+];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[xry111@xry111.site,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,linux.ibm.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email]
-X-Rspamd-Queue-Id: F367C5E5F16
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,xry111.site:mid,xry111.site:dkim]
+X-Rspamd-Queue-Id: D84F35EDB11
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026. m=C3=A1jus 27., szerda 15:19:31 k=C3=B6z=C3=A9p-eur=C3=B3pai ny=C3=
-=A1ri id=C5=91 Donet Tom wrote:
-> When mapping VRAM pages into the GART page table,
-> amdgpu_gart_map_vram_range() assumes that the system page size is the
-> same as the GPU page size.
->=20
-> On systems with non-4K page sizes, multiple GPU pages can exist within
-> a single CPU page. As a result, the mappings are created incorrectly
-> because fewer page table entries are programmed than required.
->=20
-> Fix this by programming the mappings correctly for non-4K page size
-> systems.
->=20
-> Fixes: 237d623ae659 ("drm/amdgpu/gart: Add helper to bind VRAM pages (v2)=
-")
-> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Signed-off-by: Donet Tom <donettom@linux.ibm.com>
-> ---
+The change from my commit c97a7dccb3ed ("drm/amd/display/dml2: Guard
+dml21_map_dc_state_into_dml_display_cfg with DC_FP_START") was dropped
+in the commit e6a8a000cfe6 ("drm/amd/display: Rename dml2 to dml2_0
+folder") for some reason I don't know, so on 6.19.y and 7.0.y the
+original issue (9070XT fails to work on LoongArch) has regressed.
 
-Thank you! The fix looks good to me.
-Reviewed-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
+As I've mentioned in my commit message, it was only an incomplete and
+temporary solution.  As the mainline already contains the move of FPU
+guard which should ultimately resolve the issue, it seems better to
+just backport the final fix instead of adding the temporary ad-hoc
+change back.
 
+Tested with 9070XT (where the original issue manifested) and 5500XT.
 
-> v2 -> v3
-> - Addressed Christian's review comments and added the Reviewed-by tag.
->=20
-> v2 -
-> https://lore.kernel.org/all/20260527111750.1084088-1-donettom@linux.ibm.c=
-om
-> / v1 -
-> https://lore.kernel.org/all/20260522112838.1311531-1-donettom@linux.ibm.c=
-om
-> / ---
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c index b6f849d51c2e..c4c21dbbbd=
-bf
-> 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gart.c
-> @@ -394,7 +394,8 @@ void amdgpu_gart_map_vram_range(struct amdgpu_device
-> *adev, uint64_t pa, uint64_t start_page, uint64_t num_pages,
->  				uint64_t flags, void *dst)
->  {
-> -	u32 i, idx;
-> +	u32 i, j, t, idx;
-> +	u64 page_base;
->=20
->  	/* The SYSTEM flag indicates the pages aren't in VRAM. */
->  	WARN_ON_ONCE(flags & AMDGPU_PTE_SYSTEM);
-> @@ -402,9 +403,12 @@ void amdgpu_gart_map_vram_range(struct amdgpu_device
-> *adev, uint64_t pa, if (!drm_dev_enter(adev_to_drm(adev), &idx))
->  		return;
->=20
-> -	for (i =3D 0; i < num_pages; ++i) {
-> -		amdgpu_gmc_set_pte_pde(adev, dst,
-> -			start_page + i, pa + AMDGPU_GPU_PAGE_SIZE *=20
-i, flags);
-> +	page_base =3D pa;
-> +	for (i =3D 0, t =3D 0; i < num_pages; i++) {
-> +		for (j =3D 0; j < AMDGPU_GPU_PAGES_IN_CPU_PAGE; j++, t++)=20
-{
-> +			amdgpu_gmc_set_pte_pde(adev, dst, start_page=20
-+ t, page_base, flags);
-> +			page_base +=3D AMDGPU_GPU_PAGE_SIZE;
-> +		}
->  	}
->=20
->  	drm_dev_exit(idx);
+Ovidiu Bunea (1):
+  drm/amd/display: Add min clock init for DML21 mode programming
 
+Rafal Ostrowski (4):
+  drm/amd/display: Move FPU Guards From DML To DC - Part 1
+  drm/amd/display: Move FPU Guards From DML To DC - Part 2
+  drm/amd/display: Move FPU Guards From DML To DC - Part 3
+  drm/amd/display: Move dml2_destroy to non-FPU compilation unit
 
+Srinivasan Shanmugam (1):
+  drm/amd/display: Fix dc_is_fp_enabled name mismatch
 
+Wayne Lin (1):
+  drm/amd/display: Fix fpu guard warning
+
+Xi Ruoyao (1):
+  drm/amd/display: Backport dml21 DC_RUN_WITH_PREEMPTION_ENABLED
+    addition from DC 3.2.373
+
+ .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.c    |   25 +-
+ .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.h    |   17 +-
+ .../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c  |    2 -
+ .../display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c  |    2 -
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |    5 +-
+ .../gpu/drm/amd/display/dc/core/dc_state.c    |   75 +-
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   |   15 +-
+ .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.c  |    2 +-
+ .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.h  |    2 +-
+ .../drm/amd/display/dc/dml/dcn31/dcn31_fpu.c  |    6 +-
+ .../drm/amd/display/dc/dml/dcn31/dcn31_fpu.h  |    6 +-
+ .../gpu/drm/amd/display/dc/dml2_0/Makefile    |   72 +-
+ .../dml2_0/dml21/dml21_translation_helper.c   |   25 +
+ .../dml2_0/dml21/dml21_translation_helper.h   |    1 +
+ .../display/dc/dml2_0/dml21/dml21_wrapper.c   |  391 +--
+ .../display/dc/dml2_0/dml21/dml21_wrapper.h   |   30 -
+ .../dc/dml2_0/dml21/dml21_wrapper_fpu.c       |  379 +++
+ .../dc/dml2_0/dml21/dml21_wrapper_fpu.h       |   60 +
+ .../drm/amd/display/dc/dml2_0/dml2_wrapper.c  |   34 +-
+ .../amd/display/dc/dml2_0/dml2_wrapper_fpu.c  |   19 +-
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c |    4 +-
+ .../dc/resource/dcn21/dcn21_resource.c        |    7 +
+ .../dc/resource/dcn31/dcn31_resource.c        |    7 +
+ .../dc/resource/dcn315/dcn315_resource.c      |    7 +
+ .../dc/resource/dcn316/dcn316_resource.c      |    7 +
+ .../dc/resource/dcn35/dcn35_resource.c        |   10 +-
+ .../dc/resource/dcn35/dcn35_resource.h        |    1 +
+ .../dc/resource/dcn351/dcn351_resource.c      |   10 +-
+ .../dc/resource/dcn36/dcn36_resource.c        |    4 +-
+ .../dc/resource/dcn401/dcn401_resource.c      |   30 +-
+ .../dc/resource/dcn42/dcn42_resource.c        | 2355 +++++++++++++++++
+ 31 files changed, 3076 insertions(+), 534 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper_fpu.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper_fpu.h
+ create mode 100644 drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
+
+-- 
+2.54.0
 
