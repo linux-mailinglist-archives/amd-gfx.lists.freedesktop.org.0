@@ -2,109 +2,132 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cL/7EKLVFmrrtAcAu9opvQ
+	id KH6UC6jZFmrMtQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 13:29:38 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 13:46:48 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E87DD5E3646
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 13:29:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C6F35E3969
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 13:46:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 348E310E786;
-	Wed, 27 May 2026 11:29:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE8F510E7A8;
+	Wed, 27 May 2026 11:46:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="eVU0TMZ0";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="45PY0sbG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013025.outbound.protection.outlook.com
- [40.107.201.25])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26E6C10E780;
- Wed, 27 May 2026 11:29:33 +0000 (UTC)
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012033.outbound.protection.outlook.com [52.101.48.33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DE1E10E79D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2026 11:46:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UVSwUlu8NBADmxzXSsuO7ijO8HtHTZprdg198BggWf3n6Z18qzUXejsOe392bMuz/GpttSlaVFuJ7t2UCTGyIkAxB/gZ5/QjlpYXw29fyOQPidfOxOdTdICo/pFZ97JoYpWkUqxK2VVNUGn354w5IgyMPcFq6xIW1dURdXlD6ir80ULG+lkq7ld53Rz9KVPrN9XVaM3+AChjrWhLM/LIGI94eX5QZc65CK13f3dJyzfTPQOAGjcWfYiJP7YHpU8PMh/+737YrgyErBKjkvtI7zu+u9uMFSne9JJIo8ad5/GWxLmsJaKL47vxzMzSRz5uS/hqlDiZVboxaqw4jjwAuw==
+ b=VzxhVD0EGlmEBwVtnfM9q7Y07At7QAjWNSlzGuEK9d8N43r4OI0KoPHSmRhy/zG3DMqvwlhXaqVWev4ZQ8CjGQnyiDS3n4LbLPuySOA2GvAulbAQfj44R6BNm8Uhy1/000Hh7fQEgfPTstn1kHNEJT/RtrNLCdsQGd31ay6y5i9w/w68b513lRqQ3S54OfX/U/7mnwbJX/gNzdQP1VyDiZikykZSuW3ppzjBuOepMccd/OdbHwKQYM69c26kIqRigxxIkiiQsM6inD4b5F8ai4vCOSojBTggNTWcA/UR6SeC+slvI7JqdX3elVSZlIGEHoa3gSALcf+4/yOfaAsLTw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AwZMtEYMN3ux8JGxnLo9TL+BXzg21fNesIbVuR1zRzQ=;
- b=InO93tELvCKbwT311jDYOddXFW8dG20tGXf8xUckZA2U6glby0wS7pTV3sVlRJzJ4j3w7eW325f9d3EGzrFrx2cbTxdUeCj20GjJKD4Ev/FU/y+hqo1RH0k7N3JwFp3t5CKUMroHsjSn+7AXPsbtSvCOf1C7zSUl72oCpPHS9n5gWryOXYwIBRibGS290nKqBc6mLONKMdMc7yf8xtZffpR13g4jjgV/CDUcgnf8foiuxL/g9aZcYsREPtGZJXdFCJJSu/DsXHhXRE6s2V8FsrjuFhLAOK+Svl2j7MtOorpGmvXi3BwQsHFESJtmZ6unluWPhJABNSg5UJwpuXOIhw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
+ bh=cvnZjk9VJ5OveuEAZ7LCfLzIVsQ9IfB+RkpJv1erMQs=;
+ b=rGpUr/RwM/zBVleAy9Yc4jPJjV7HAbDsLawM7mCYxRaf1Q+i92M8Jgg2D+SeYhCV7kQ8LCE1U27df7vK5pb7jSdLlaTcO5bJZ5y47pxDL6CiLbKX/xi4nx3yqHbCv9PyAbhzphRm52b8nR+7rXLWDXLB0oqmdhZwyoGwBOMr/157GoYVHorQpr0pqcnz67qrU2xXyrXfzC7kzH7A/mPF8TdPkLwdIUoKmnnZ6UDpsBuXdfUTOXMobcgZE9qALxuC8C9NsO7UiFSuCQPxdcApg7qePzdW/09qz9u/MiyW1Jpgr/p0CfyUkKbvY6OUnLuICD9munXceWr/sxb5/EfMxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AwZMtEYMN3ux8JGxnLo9TL+BXzg21fNesIbVuR1zRzQ=;
- b=eVU0TMZ0gYDgKdlm78Hq7VK0Om1ms9/ifjgDxLIs2eHot5nAj49t461ZePIwdU+H1eJYCA3N1VxnJJBaRFiAs21MmCTctBkULBrXCLEWQADQlEJHp4sS6urIQU97Acb+e592N5XOoNNta9M9w43kWszllLdG2Db939FN/ijSZhM=
-Received: from BN0PR02CA0029.namprd02.prod.outlook.com (2603:10b6:408:e4::34)
- by CY1PR12MB9627.namprd12.prod.outlook.com (2603:10b6:930:104::9)
+ bh=cvnZjk9VJ5OveuEAZ7LCfLzIVsQ9IfB+RkpJv1erMQs=;
+ b=45PY0sbGdt1tM7hxDzU3vXoaH9Ul1DvgOJfqzFxxHQL16+Uu9E+MY2ONhkgkrADM+/PLOBH9plAlySzKJmYt8IFc5g3NglGxj2MQoGuULL4tKf+ZwXWoIbDHphKRXu9lw6WSepLA2s2olL40mhSjeDNmDl1rPv3JOTj0oBSq2Yg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SN7PR12MB8790.namprd12.prod.outlook.com (2603:10b6:806:34b::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.17; Wed, 27 May
- 2026 11:29:28 +0000
-Received: from BN3PEPF0000B06D.namprd21.prod.outlook.com
- (2603:10b6:408:e4:cafe::6a) by BN0PR02CA0029.outlook.office365.com
- (2603:10b6:408:e4::34) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.13 via Frontend Transport; Wed, 27
- May 2026 11:29:28 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BN3PEPF0000B06D.mail.protection.outlook.com (10.167.243.72) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.92.0 via Frontend Transport; Wed, 27 May 2026 11:29:28 +0000
-Received: from arun-nv33.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 27 May
- 2026 06:29:25 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <matthew.auld@intel.com>, <christian.koenig@amd.com>,
- <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
-CC: <alexander.deucher@amd.com>, Arunpravin Paneer Selvam
- <Arunpravin.PaneerSelvam@amd.com>
-Subject: [PATCH v4 2/2] gpu/tests/buddy: add clear-tracker allocation latency
- benchmarks
-Date: Wed, 27 May 2026 16:59:02 +0530
-Message-ID: <20260527112902.3815-2-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260527112902.3815-1-Arunpravin.PaneerSelvam@amd.com>
-References: <20260527112902.3815-1-Arunpravin.PaneerSelvam@amd.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.19; Wed, 27 May
+ 2026 11:46:41 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0071.011; Wed, 27 May 2026
+ 11:46:41 +0000
+Message-ID: <546f4e04-e45e-4678-b71d-a63a4d223cc2@amd.com>
+Date: Wed, 27 May 2026 13:46:37 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 5/5] drm/amdgpu: Add driver managed buffer copy
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, amd-gfx@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, David Francis <David.Francis@amd.com>,
+ Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>
+References: <20260526160630.35562-1-tvrtko.ursulin@igalia.com>
+ <20260526160630.35562-6-tvrtko.ursulin@igalia.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260526160630.35562-6-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR3P281CA0057.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:4b::8) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B06D:EE_|CY1PR12MB9627:EE_
-X-MS-Office365-Filtering-Correlation-Id: d2f39f3d-3d2e-4eaa-9441-08debbe336d5
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SN7PR12MB8790:EE_
+X-MS-Office365-Filtering-Correlation-Id: d7a34781-1973-4e5c-e551-08debbe59e5d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|82310400026|376014|1800799024|18002099003|22082099003|5023799004|11063799006|6133799003|56012099006;
-X-Microsoft-Antispam-Message-Info: YyncYXWvLn+9RXaJMIio52l/AP3ExW40ud5gI0p70/x4Rq/waAnpM4JWUsPdHNaWdH8nD5vuRA+fkG3zvmZ+9TysL/QXX0mn2qfxh61JhvzSWKChxU5ABG6y7cU8t6r8PfUy6t777B0ZOcguGat8mZWktRMSJvXlOQLA5OqSGsG+Z2wVKCdB7KZlAK/35aCiNvqq3zAAI6Rlfjz1O+L6H8+iCeW3vNW3uI9J9D+gab3Fc+bvOonoCcYA49VFm++RnQ/ZYtR/XXARbqFIjL6e+aa/BOWJgcqv9D0vQLBJgU2Tvi0Xfe3MRoXBlm6imSm3nyJQruqpZaDlN+bgZnEg9OLOAAethWk6roXmCMft0X7h3bVHYhi5AEk/1rYp5TsF0kF/T9wkLBD3BnSc4+5dXP+1WqCRK4egqNyCDTccHjHHcNgRF2VGbTluokWYkZhzE7YKUrWt5JgT3mcG5O3SzoCIQX1cnRgb8rowp1+w/FP5fgr0+Z0INc+akjSzxl04zYoj6Oq8YZiHXO5P8FTmFS72ED8cBMI+pTZtVOGY+PslD/BWIgZkrPKPwxSJbPPRJjKMR5jJOTe4+LgxQShnGNn6z1QAP3lCXHZExuOF65Jwmb8lJzIHAldvCXhazSd/ikC+CI+NekB/iSIyG1PNhZO6IIYrRJKZf3k0l9MLnRmfkVXzo6Q8Blw7Y2l6uzyrqULNtLNR05Wfoy+kTQMOkESM+7AJYMq3kQiXRuTHpGw=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(82310400026)(376014)(1800799024)(18002099003)(22082099003)(5023799004)(11063799006)(6133799003)(56012099006);
+ ARA:13230040|366016|1800799024|376014|22082099003|18002099003|56012099006|3023799007|4143699003|11063799006;
+X-Microsoft-Antispam-Message-Info: 1g+1mYdA8iHrlu6PbsnwhOh3tZlBX/0AAd/TdSWaEjde6sX5h666y2IFlW3Az5jjdKmndIHl/ak/i9SoNziwkrKmN0yprfeqAd4xt/66axRHtPk3n0TYLselS60hoVwrh0M5qlZeFKRikh36+0lMM8d+y54L42uy70vssscjJxjAMyPyCjgG2sfUCQQM2aXeKBTyTmfmt3gwNdLweKTGKiG0mb1HAg5yxHHAs3qHdnCHK5yiSoruU8SBKBLTaz8E+dfy8qJWnuF5I88YrX5QR5LlmOs6x/AwAb2yN2UtR9eDka6EhOK/94juRTG+ehWkKmBIKG+bUoEBddNiwqdi0ITZpwH1u96KS9AXxsm6+38hg9hyKYxJxwEaLIQeClM2+e3D1J1yLySGdEKQoJ7EuowIuFhOje8i1/jLN2DsrOZPGpC37v6+Ee1FbyqlS1D8XXyQbYHlSrYo8dG7VZ0h0M4PTdAUq80lkhrlVLLOMWCm/lGgDlVJ4ZzlVMjLrpF8QmMnasOxUclj9dkU+vwvxjr4jnN23Jt3CM30U7mTSb1xH5UPOsh/1v7IxkxDeZshPtK5qeFpW/D77IwBCORGK3UjtQodE9PXtKm+PH2j1i4yJ8jGizEjc7KqosxUbVfRyFHgoat5Nk5y+4rIBXwC9aoWLLqrxQIwx/zy7Cl6gnX4+4dSOwtoS5jU4Y8G5LKA
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(22082099003)(18002099003)(56012099006)(3023799007)(4143699003)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: W7bIZyCKE0EGuWw8brhWSQXYyM8Djga+1jRmXywSM0ZOuk6KvPgxMwoUJOU8+4xPCsbFTQUbLnRv2eYrwQ7kKejikIi26dbgFLmxtRdLP9l7xLaboF5W/YGFgBvklcW++S3BSpZN7cH3ymL4+6ruepNGUqqUmO0Z+1jgMRF0JktPvDawH8qt37Lrrr7nkDE2sgPdsWhYYO3U7q/XotvZ3yql0twv610aVYDqnQY7+MxFftnVYYSTQVdxd/BziqIzdJCkd6Y1FgqNGDvsDUAACOFwfEEC9fVHB3r4AX1xVlVtzPDT0FKsf6RCZdxrVghHfrleFtsFpXEsiL+6kn4C9AbPiHrPBWTd3FOLi5+8vlluV6BZoQrhCefokljHFCZk0WT+NpqVLLY4c/Ni1S/57sj74PuNc46Pde3gwQuUzgjs8JjVTM7mFxLhBurGsXJx
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WE5vS21weE9VS0kwdEU5akQyem5sK1RkOXRYSWo0TzBzSlVuOE1GNkkreEpK?=
+ =?utf-8?B?TGk4VHlLcUs4WXZHbk0zUFZvM1JHT2h1dUpXNGdxSHIvOGtLVDM2MmEyQXo1?=
+ =?utf-8?B?MExucndtRm4xWExFSXMzelZwVEdlSUZuQ25aRkRaS0VXK3d4QTBnNDFnSHc5?=
+ =?utf-8?B?L3piZmNsUStYK3JScit5NGJNL243NG9UQlRscWtuNDdOWWx2cWVaSFZQR2Ja?=
+ =?utf-8?B?eGY1MFdGdG5kVEFNaXNSanlNQ1J0QkJ5YUtTdGgrYklGTS9iZGFNdHd6WkxO?=
+ =?utf-8?B?QTdLeXNaSWlhNEZzWXlVVFBXMHg2V1FQazNnem9BcDZRWTFWek9UVlMzUW1j?=
+ =?utf-8?B?Rk84Sm1DZEhhMFhNdTRaZkYwbEVwMnlyNThKS3NHZlJCMTFWbXB6dElhc3hF?=
+ =?utf-8?B?enl3b09LNnlXRG5QTE82TzBkeDBHVVBLUEx2TW1oUHVlcDBCZ3RQQU12YTBI?=
+ =?utf-8?B?bWtuUFNiRFh0Z3NqUDRMR1lXME01QjVpNEp1M0tQY2JJVllWSU95bWRmZkJO?=
+ =?utf-8?B?Z1d5UDhUWVNOUmdVazNrZWFpaWg0bHc2QUU4VEpqUU5MaDQvSmprWkNDbitX?=
+ =?utf-8?B?OUpOdGwrSXBkdHl3R2cwaDEyVVpxNm9IanN0UWFuU1FESllhbm1uSEJWelFa?=
+ =?utf-8?B?c0tJOWRZV3MyMkZkTVRlZjRRWmVwSDFMSXRDWStEaTdxWFM0aGliY3FaVkdI?=
+ =?utf-8?B?UmZHZ2hPTVFKb241NW4vTWJMcklUUk9xd3JjWnpKL0VQRTczS0ZHM3gvVGdu?=
+ =?utf-8?B?bnBVdEVyOW1CYkY0YjZoY0FkMy95QlRzaUdVL0pBSUFRS3F2ckZWb3BpeGQy?=
+ =?utf-8?B?Y0J2Mjd3cXgzZHF5QXFRR3NYNis2YzQ3MmM0NncyWm9EaHdveHY3NnBIcnhi?=
+ =?utf-8?B?dDFGYnpoTk5PZ3hSQWFWZmhvbmhBQzJMUUd4QVUydlVSNkxWZWU4MW5FbG5H?=
+ =?utf-8?B?czR3OUN2S1JmeS83c0U2OGJBZDNwNmkxMEpCVmdYaGs3STF1NTVaaG1WNlE3?=
+ =?utf-8?B?a2tSU1VVcmxtVGJ5dGNNUHJnNmdRaHRsRWV1eXU1K2JhSGZhK1RsWjR0dHhv?=
+ =?utf-8?B?QVlXcjR5MDU5dDMrQjRlemlmMnNUM2RUWC9mKzk2WTZRMzdSYjlJYVE3ZU1m?=
+ =?utf-8?B?akx0NGdBS25LTUhGVFUxcmQwK3pwZTJlVVZGQ0xzSTNDZFpBZ0V3NDZtUW83?=
+ =?utf-8?B?WGIzQWVMZHlXWXBRN3JJUWZtdDVJTHZMUnR0bEw2NlFPeE1LMGk5M3QzanlY?=
+ =?utf-8?B?ZmYwQUlldVZUUUdrR245VXZqK2tRTkNMdWRTdHpIc0d5czFZSDVoaC9vTHFm?=
+ =?utf-8?B?NUpjZ3cvaDAyc2czV1BoN1JUVjFLdkdhM1Y5SlFVTnVUMDBFRS85ekp2VUZs?=
+ =?utf-8?B?VUNYNDJUU3h6b2s0RnVHUXNacURSem4rcGhGS20zeG1rTG12Nlg0VDlSMU1U?=
+ =?utf-8?B?YVlZWHNhSkFTY2U0OTkxZDlHOU9ISEQzU3oyd3U0LzBUMVlNUHkwblJRR3Bu?=
+ =?utf-8?B?cmNGTW1ZMUVjNnhzSnI1azhjd3AxU3BLK3FwRHZPaFdLdUlQQmE5emJXZnM5?=
+ =?utf-8?B?MjRJbGk0bUUvaG11QVJDekxrN3p0TXN4dGJKR3pRNFhaZmw0Ni9ZSkNVT1M0?=
+ =?utf-8?B?VzNadXA3S09YSlA5WjgrYlhUTURTdGh2RVA2ekNZR1UxMzRpV3B2NXJIbkx2?=
+ =?utf-8?B?NGxCWHVHMHFDMGVEbDRYbkhMS2YzZzFBT2c0NHdxdlFZWnpoRVV2ek1OR0dR?=
+ =?utf-8?B?NFQ0N0xqbDlkZE1JbVNReFp4dWNSTm14Y2R1Q0Zwc3l3N3lmK2pSV3lNbWxP?=
+ =?utf-8?B?TGM4bmsrbG1RTnBleHJzd1hsNlVLQ3V0cVJEN2QvL0J4WSttaFFUdGtRUVdC?=
+ =?utf-8?B?YjdxWEtac2UrUzhMR25NTytZanFIdFJYUlczV0NTeTc2Yk9BclB1ZlE4N2px?=
+ =?utf-8?B?aEdoVkJDeGtONU9iVFpqRHNkQjdJTnVTMjBkN25aemkzVTA0aWlidnE1aCtP?=
+ =?utf-8?B?VXhGb1Y2eWNKUHRkYlRtVlhxelJaYkZTbHJTTEJEVERzdnhlM2VmRVRCRURR?=
+ =?utf-8?B?dHJiOTF0NVZMSkVGTFg0OExRNCtYdW54ZXg0bzgzeWlOSVIzc0tlR2tmaVhG?=
+ =?utf-8?B?RDNmcmRwdVd4WExtZ0tjN010RGdIVi9qWFMwOW9VaFZza29UcWt2VlNEcjAw?=
+ =?utf-8?B?VGdmNWxVUU8xak0zZ1FaU2x4aHA1aWJjQWZaTEhmN2l0UXB2Wlg5VGZGNVlX?=
+ =?utf-8?B?cFZESjYwMm1xamhsd2dqVm9GcmFDRUFPZEtGZCtaSUM3eVJTMi9VS2VGOHFZ?=
+ =?utf-8?Q?LDJGEaxFv76eWEKDfO?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 May 2026 11:29:28.4709 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2f39f3d-3d2e-4eaa-9441-08debbe336d5
+X-MS-Exchange-CrossTenant-Network-Message-Id: d7a34781-1973-4e5c-e551-08debbe59e5d
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 May 2026 11:46:41.3737 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B06D.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR12MB9627
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: i6B2BHmMgHKDySfXWDLx+9Whk012wfdxqfsroz29jpexEo6gl5lWxay73FUjl5BK
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8790
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,233 +141,286 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[Arunpravin.PaneerSelvam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:tvrtko.ursulin@igalia.com,m:kernel-dev@igalia.com,m:David.Francis@amd.com,m:Harish.Kasiviswanathan@amd.com,m:alexander.deucher@amd.com,m:Felix.Kuehling@amd.com,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_XOIP(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,amd.com:mid,amd.com:dkim]
-X-Rspamd-Queue-Id: E87DD5E3646
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 7C6F35E3969
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add gpu_test_buddy_clear_tracker_performance test case that measures
-allocation latency before and after replacing the dual-tree /
-force_merge design with a decoupled clear tracker.
+On 5/26/26 18:06, Tvrtko Ursulin wrote:
+> Saving and restoring buffer object content poses a challenge for the
+> checkpoint and restore process for at least two reasons.
+> 
+> For example not all objects can be exported as dma-buf to enable copying
+> from a separate client context, neither can any objects be easily copied
+> from the same context since the injected CRIU code is unaware of the GPU
+> virtual memory free and allocated ranges.
+> 
+> Lets bypass both problems by simply exposing access to the alrady present
+> fast kernel copy via a new DRM_IOCTL_AMDGPU_GEM_COPY_BUFFER ioctl.
 
-Two scenarios are covered.
+Oh nice, that was on the TODO list for KFD integration as well.
 
-1. Single contiguous allocation after fragmentation. A 4 GiB pool is
-   filled with 4 KiB blocks and freed in alternating clear/dirty order,
-   so every buddy pair ends up split across the two trees and cannot
-   coalesce at free() time. A single contiguous 4 GiB allocation then
-   takes ~61 ms on the dual-tree design (the alloc path has to invoke
-   __force_merge() to climb back up to max_order) and ~25 ms with the
-   clear tracker (the pool is already coalesced at free() time).
+> By giving the kernel simply the source and destination handles it is able
+> to copy them without the need for objects to be mapped, or shared with a
+> separate client.
+> 
+> For now this is implemented fully synchronous but can easily be extended
+> for more parallelsim.
 
-2. Repeated allocations from a fragmented pool. Same 4 GiB pool, freed
-   with even-indexed blocks cleared and odd-indexed dirty so every
-   adjacent buddy pair sits on opposite sides of the merge barrier.
-   16384 x 256 KiB allocations then take ~80 ms on the dual-tree
-   design (each alloc pays the __force_merge() cost) and ~39 ms with
-   the clear tracker (free-time merging makes each alloc an O(log N)
-   split).
+Looks reasonable of hand but I would rather like to have an output DMA-fence (drm_syncobj) instead of the dma_fence_wait().
 
-v2:
- - Removed unwanted sub tests
+Regards,
+Christian.
 
-v3:
- - Pass GPU_BUDDY_CONTIGUOUS_ALLOCATION on the timed full-pool alloc so
-   the benchmark actually exercises the contiguous (force_merge) path
-   instead of silently falling back to smaller blocks. (sashiko)
-
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Christian König <christian.koenig@amd.com>
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
----
- drivers/gpu/tests/gpu_buddy_test.c | 128 ++++++++++++++++++++++++++---
- 1 file changed, 118 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/tests/gpu_buddy_test.c b/drivers/gpu/tests/gpu_buddy_test.c
-index e0d24a4542b2..1669c628847f 100644
---- a/drivers/gpu/tests/gpu_buddy_test.c
-+++ b/drivers/gpu/tests/gpu_buddy_test.c
-@@ -38,7 +38,7 @@ static void gpu_test_buddy_subtree_offset_alignment_stress(struct kunit *test)
- 	};
- 	struct list_head allocated[ARRAY_SIZE(alignments)];
- 	unsigned int i, max_subtree_align = 0;
--	int ret, tree, order;
-+	int ret, order;
- 	struct gpu_buddy mm;
- 
- 	KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_init(&mm, mm_size, SZ_4K),
-@@ -93,15 +93,13 @@ static void gpu_test_buddy_subtree_offset_alignment_stress(struct kunit *test)
- 		gpu_buddy_free_list(&mm, &allocated[i], 0);
- 
- 		for (order = 0; order <= mm.max_order; order++) {
--			{
--				node = mm.free_tree[order].rb_node;
--				if (!node)
--					continue;
--
--				block = container_of(node, struct gpu_buddy_block, rb);
--				max_subtree_align = max(max_subtree_align,
--							block->subtree_max_alignment);
--			}
-+			node = mm.free_tree[order].rb_node;
-+			if (!node)
-+				continue;
-+
-+			block = container_of(node, struct gpu_buddy_block, rb);
-+			max_subtree_align = max(max_subtree_align,
-+						block->subtree_max_alignment);
- 		}
- 
- 		KUNIT_EXPECT_GE(test, max_subtree_align, ilog2(alignments[i]));
-@@ -285,6 +283,115 @@ static void gpu_test_buddy_fragmentation_performance(struct kunit *test)
- 	gpu_buddy_fini(&mm);
- }
- 
-+static void gpu_test_buddy_clear_tracker_performance(struct kunit *test)
-+{
-+	struct gpu_buddy_block *block, *tmp;
-+	unsigned long elapsed_ms;
-+	LIST_HEAD(clear_blocks);
-+	LIST_HEAD(dirty_blocks);
-+	LIST_HEAD(allocated);
-+	struct gpu_buddy mm;
-+	LIST_HEAD(results);
-+	ktime_t start, end;
-+	int i, count;
-+
-+	/*
-+	 * Contiguous alloc latency after alternating clear/dirty fragmentation
-+	 *
-+	 * Fill a 4 GiB pool with 4 KiB allocations, partition them into
-+	 * alternating cleared and dirty sets, then free both.  In the old
-+	 * dual-tree design every adjacent buddy pair has one cleared half and
-+	 * one dirty half, so the pair sits on opposite sides of the clear/dirty
-+	 * merge barrier and cannot be coalesced at free() time.  The pool
-+	 * stays fully fragmented and the subsequent contiguous 4 GiB allocation
-+	 * has to invoke __force_merge() to climb back up to max_order before
-+	 * it can succeed.  With the clear-tracker design buddy pairs coalesce
-+	 * unconditionally during free(), so the pool is already at max_order
-+	 * before the timed alloc begins and __force_merge() is not needed.
-+	 */
-+	KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_init(&mm, SZ_4G, SZ_4K),
-+			       "buddy_init failed\n");
-+
-+	for (i = 0; i < SZ_4G / SZ_4K; i++)
-+		KUNIT_ASSERT_FALSE_MSG(test,
-+				       gpu_buddy_alloc_blocks(&mm, 0, SZ_4G, SZ_4K, SZ_4K,
-+							      &allocated, 0),
-+				       "buddy_alloc hit an error size=%u\n", SZ_4K);
-+
-+	count = 0;
-+	list_for_each_entry_safe(block, tmp, &allocated, link) {
-+		if (count++ % 2 == 0)
-+			list_move_tail(&block->link, &clear_blocks);
-+		else
-+			list_move_tail(&block->link, &dirty_blocks);
-+	}
-+
-+	gpu_buddy_free_list(&mm, &clear_blocks, GPU_BUDDY_CLEARED);
-+	gpu_buddy_free_list(&mm, &dirty_blocks, 0);
-+
-+	start = ktime_get();
-+	KUNIT_ASSERT_FALSE_MSG(test,
-+			       gpu_buddy_alloc_blocks(&mm, 0, SZ_4G, SZ_4G, SZ_4K,
-+						      &results,
-+						      GPU_BUDDY_CONTIGUOUS_ALLOCATION),
-+			       "contiguous alloc failed\n");
-+	end = ktime_get();
-+	elapsed_ms = ktime_to_ms(ktime_sub(end, start));
-+
-+	kunit_info(test, "Contiguous alloc after fragmentation: %lu ms\n",
-+		   elapsed_ms);
-+
-+	gpu_buddy_free_list(&mm, &results, 0);
-+	gpu_buddy_fini(&mm);
-+
-+	/*
-+	 * Repeated alloc throughput from a maximally fragmented pool
-+	 *
-+	 * Fill a 4 GiB pool with 4 KiB allocations, free even-indexed blocks
-+	 * as cleared and odd-indexed blocks as dirty.  The alternating pattern
-+	 * ensures every adjacent buddy pair has one cleared half and one dirty
-+	 * half, so each pair lands on opposite sides of the old merge barrier.
-+	 * Each of the 16 384 x 256 KiB allocations in the timed loop has to
-+	 * pay the __force_merge() cost on the alloc path under the old design.
-+	 * With the clear-tracker design the pool collapses to one max_order
-+	 * block during free(), so each alloc is a simple O(log N) split.
-+	 */
-+	KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_init(&mm, SZ_4G, SZ_4K),
-+			       "buddy_init failed\n");
-+
-+	for (i = 0; i < SZ_4G / SZ_4K; i++)
-+		KUNIT_ASSERT_FALSE_MSG(test,
-+				       gpu_buddy_alloc_blocks(&mm, 0, SZ_4G, SZ_4K, SZ_4K,
-+							      &allocated, 0),
-+				       "buddy_alloc hit an error size=%u\n", SZ_4K);
-+
-+	count = 0;
-+	list_for_each_entry_safe(block, tmp, &allocated, link) {
-+		if (count++ % 2 == 0)
-+			list_move_tail(&block->link, &clear_blocks);
-+		else
-+			list_move_tail(&block->link, &dirty_blocks);
-+	}
-+
-+	gpu_buddy_free_list(&mm, &clear_blocks, GPU_BUDDY_CLEARED);
-+	gpu_buddy_free_list(&mm, &dirty_blocks, 0);
-+
-+	start = ktime_get();
-+	for (i = 0; i < SZ_4G / SZ_256K; i++)
-+		KUNIT_ASSERT_FALSE_MSG(test,
-+				       gpu_buddy_alloc_blocks(&mm, 0, SZ_4G, SZ_256K, SZ_4K,
-+							      &results, 0),
-+				       "buddy_alloc hit an error size=%u\n", SZ_256K);
-+	end = ktime_get();
-+	elapsed_ms = ktime_to_ms(ktime_sub(end, start));
-+
-+	kunit_info(test, "Repeated 256 KiB allocs from fragmented pool: %lu ms\n",
-+		   elapsed_ms);
-+
-+	gpu_buddy_free_list(&mm, &results, 0);
-+	gpu_buddy_fini(&mm);
-+}
-+
- static void gpu_test_buddy_alloc_range_bias(struct kunit *test)
- {
- 	u32 mm_size, size, ps, bias_size, bias_start, bias_end, bias_rem;
-@@ -1398,6 +1505,7 @@ static struct kunit_case gpu_buddy_tests[] = {
- 	KUNIT_CASE(gpu_test_buddy_alloc_range),
- 	KUNIT_CASE(gpu_test_buddy_alloc_range_bias),
- 	KUNIT_CASE_SLOW(gpu_test_buddy_fragmentation_performance),
-+	KUNIT_CASE_SLOW(gpu_test_buddy_clear_tracker_performance),
- 	KUNIT_CASE(gpu_test_buddy_alloc_exceeds_max_order),
- 	KUNIT_CASE(gpu_test_buddy_offset_aligned_allocation),
- 	KUNIT_CASE(gpu_test_buddy_subtree_offset_alignment_stress),
--- 
-2.34.1
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |   1 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 102 ++++++++++++++++++++++++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h |   2 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |  14 ++--
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h |   7 ++
+>  include/uapi/drm/amdgpu_drm.h           |   8 ++
+>  6 files changed, 127 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> index 2b971de3c189..b927e3a3089e 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> @@ -3066,6 +3066,7 @@ const struct drm_ioctl_desc amdgpu_ioctls_kms[] = {
+>  	DRM_IOCTL_DEF_DRV(AMDGPU_USERQ_WAIT, amdgpu_userq_wait_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+>  	DRM_IOCTL_DEF_DRV(AMDGPU_GEM_LIST_HANDLES, amdgpu_gem_list_handles_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+>  	DRM_IOCTL_DEF_DRV(AMDGPU_GEM_LIST_CONTEXTS, amdgpu_gem_list_contexts_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+> +	DRM_IOCTL_DEF_DRV(AMDGPU_GEM_COPY_BUFFER, amdgpu_gem_copy_buffer_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+>  };
+>  
+>  static const struct drm_driver amdgpu_kms_driver = {
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> index 5eb8433229b4..4e0440cd6ee2 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> @@ -1216,6 +1216,108 @@ int amdgpu_gem_list_handles_ioctl(struct drm_device *dev, void *data,
+>  	return ret;
+>  }
+>  
+> +/**
+> + * amdgpu_gem_copy_buffer_ioctl - copy buffer object content
+> + *
+> + * @dev: drm device pointer
+> + * @data: drm_amdgpu_gem_copy_buffer
+> + * @filp: drm file pointer
+> + *
+> + * Returns:
+> + * 0 for success, -errno for errors.
+> + */
+> +int amdgpu_gem_copy_buffer_ioctl(struct drm_device *dev, void *data,
+> +				 struct drm_file *filp)
+> +{
+> +	struct amdgpu_copy_mem src_mem = {}, dst_mem = {};
+> +	struct drm_amdgpu_gem_copy_buffer *args = data;
+> +	struct amdgpu_device *adev = drm_to_adev(dev);
+> +	struct drm_gem_object *src_gobj, *dst_gobj;
+> +	struct amdgpu_bo *src_bo, *dst_bo;
+> +	struct dma_fence *fence = NULL;
+> +	struct drm_exec exec;
+> +	unsigned int e;
+> +	long timeout;
+> +	int r;
+> +
+> +	if (args->flags)
+> +		return -EINVAL;
+> +
+> +	src_gobj = drm_gem_object_lookup(filp, args->src_handle);
+> +	if (!src_gobj)
+> +		return -ENOENT;
+> +
+> +	dst_gobj = drm_gem_object_lookup(filp, args->dst_handle);
+> +	if (!dst_gobj) {
+> +		r = -ENOENT;
+> +		goto err_dst;
+> +	}
+> +
+> +	src_bo = gem_to_amdgpu_bo(src_gobj);
+> +	dst_bo = gem_to_amdgpu_bo(dst_gobj);
+> +
+> +	if (amdgpu_bo_size(src_bo) < amdgpu_bo_size(dst_bo)) {
+> +		r = -E2BIG;
+> +		goto err_sizes;
+> +	}
+> +
+> +	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
+> +
+> +	drm_exec_until_all_locked(&exec) {
+> +		r = drm_exec_prepare_obj(&exec, &src_bo->tbo.base, 1);
+> +		drm_exec_retry_on_contention(&exec);
+> +		if (r)
+> +			goto err_unlock;
+> +
+> +		r = drm_exec_prepare_obj(&exec, &dst_bo->tbo.base, 1);
+> +		drm_exec_retry_on_contention(&exec);
+> +		if (r)
+> +			goto err_unlock;
+> +	}
+> +
+> +	src_mem.bo = &src_bo->tbo;
+> +	src_mem.mem = src_bo->tbo.resource;
+> +	dst_mem.bo = &dst_bo->tbo;
+> +	dst_mem.mem = dst_bo->tbo.resource;
+> +	e = atomic_inc_return(&adev->mman.next_move_entity) %
+> +			      adev->mman.num_move_entities;
+> +	r = amdgpu_ttm_copy_mem_to_mem(adev, &adev->mman.move_entities[e],
+> +				       &src_mem, &dst_mem,
+> +				       amdgpu_bo_size(src_bo),
+> +				       amdgpu_bo_encrypted(src_bo),
+> +				       dst_bo->tbo.base.resv, &fence);
+> +	if (r) {
+> +		goto err_unlock;
+> +	} else if (!fence) {
+> +		r = -ENXIO;
+> +		goto err_unlock;
+> +	}
+> +
+> +	dma_resv_add_fence(src_bo->tbo.base.resv, fence, DMA_RESV_USAGE_READ);
+> +	dma_resv_add_fence(dst_bo->tbo.base.resv, fence, DMA_RESV_USAGE_WRITE);
+> +	dma_fence_put(fence);
+> +	drm_exec_fini(&exec);
+> +
+> +	timeout = dma_resv_wait_timeout(dst_bo->tbo.base.resv,
+> +					DMA_RESV_USAGE_WRITE, true,
+> +					MAX_SCHEDULE_TIMEOUT);
+> +	if (timeout < 0)
+> +		return timeout;
+> +	else if (timeout == 0)
+> +		return -ETIME;
+> +	else
+> +		goto out_put;
+> +
+> +err_unlock:
+> +	drm_exec_fini(&exec);
+> +out_put:
+> +err_sizes:
+> +	drm_gem_object_put(dst_gobj);
+> +err_dst:
+> +	drm_gem_object_put(src_gobj);
+> +	return r;
+> +}
+> +
+>  static int amdgpu_gem_align_pitch(struct amdgpu_device *adev,
+>  				  int width,
+>  				  int cpp,
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
+> index 0e17d9fc665f..64529680fdad 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
+> @@ -71,6 +71,8 @@ int amdgpu_gem_list_handles_ioctl(struct drm_device *dev, void *data,
+>  				  struct drm_file *filp);
+>  int amdgpu_gem_list_contexts_ioctl(struct drm_device *dev, void *data,
+>  				   struct drm_file *filp);
+> +int amdgpu_gem_copy_buffer_ioctl(struct drm_device *dev, void *data,
+> +				 struct drm_file *filp);
+>  
+>  int amdgpu_gem_metadata_ioctl(struct drm_device *dev, void *data,
+>  				struct drm_file *filp);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> index 4023c84fe29d..3baad073ed54 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@ -294,13 +294,13 @@ static int amdgpu_ttm_map_buffer(struct amdgpu_ttm_buffer_entity *entity,
+>   *
+>   */
+>  __attribute__((nonnull))
+> -static int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,
+> -				      struct amdgpu_ttm_buffer_entity *entity,
+> -				      const struct amdgpu_copy_mem *src,
+> -				      const struct amdgpu_copy_mem *dst,
+> -				      uint64_t size, bool tmz,
+> -				      struct dma_resv *resv,
+> -				      struct dma_fence **f)
+> +int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,
+> +			       struct amdgpu_ttm_buffer_entity *entity,
+> +			       const struct amdgpu_copy_mem *src,
+> +			       const struct amdgpu_copy_mem *dst,
+> +			       uint64_t size, bool tmz,
+> +			       struct dma_resv *resv,
+> +			       struct dma_fence **f)
+>  {
+>  	struct amdgpu_res_cursor src_mm, dst_mm;
+>  	struct dma_fence *fence = NULL;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> index 8c0424577dea..360a860b8280 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> @@ -286,4 +286,11 @@ void amdgpu_ttm_mmio_remap_free_sgt(struct device *dev,
+>  				    enum dma_data_direction dir,
+>  				    struct sg_table *sgt);
+>  
+> +int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,
+> +			       struct amdgpu_ttm_buffer_entity *entity,
+> +			       const struct amdgpu_copy_mem *src,
+> +			       const struct amdgpu_copy_mem *dst,
+> +			       uint64_t size, bool tmz,
+> +			       struct dma_resv *resv,
+> +			       struct dma_fence **f);
+>  #endif
+> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
+> index d2a7b4e9daed..1335a181eb39 100644
+> --- a/include/uapi/drm/amdgpu_drm.h
+> +++ b/include/uapi/drm/amdgpu_drm.h
+> @@ -59,6 +59,7 @@ extern "C" {
+>  #define DRM_AMDGPU_USERQ_WAIT		0x18
+>  #define DRM_AMDGPU_GEM_LIST_HANDLES	0x19
+>  #define DRM_AMDGPU_GEM_LIST_CONTEXTS	0x20
+> +#define DRM_AMDGPU_GEM_COPY_BUFFER	0x21
+>  
+>  #define DRM_IOCTL_AMDGPU_GEM_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
+>  #define DRM_IOCTL_AMDGPU_GEM_MMAP	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
+> @@ -81,6 +82,7 @@ extern "C" {
+>  #define DRM_IOCTL_AMDGPU_USERQ_WAIT	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, struct drm_amdgpu_userq_wait)
+>  #define DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_HANDLES, struct drm_amdgpu_gem_list_handles)
+>  #define DRM_IOCTL_AMDGPU_GEM_LIST_CONTEXTS DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_CONTEXTS, struct drm_amdgpu_gem_list_contexts)
+> +#define DRM_IOCTL_AMDGPU_GEM_COPY_BUFFER DRM_IOW(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_COPY_BUFFER, struct drm_amdgpu_gem_copy_buffer)
+>  
+>  /**
+>   * DOC: memory domains
+> @@ -206,6 +208,12 @@ union drm_amdgpu_gem_create {
+>  	struct drm_amdgpu_gem_create_out	out;
+>  };
+>  
+> +struct drm_amdgpu_gem_copy_buffer {
+> +	__u32	src_handle;
+> +	__u32	dst_handle;
+> +	__u64	flags;
+> +};
+> +
+>  /** Opcode to create new residency list.  */
+>  #define AMDGPU_BO_LIST_OP_CREATE	0
+>  /** Opcode to destroy previously created residency list */
 
