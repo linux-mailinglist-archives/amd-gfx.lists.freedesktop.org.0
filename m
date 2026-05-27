@@ -2,134 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CKypC/2mFmoOoAcAu9opvQ
+	id CE2QOOvuF2q5WAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 10:10:37 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 09:29:47 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C1EA5E0DEF
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 10:10:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C8135EDB47
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 09:29:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F81110E077;
-	Wed, 27 May 2026 08:10:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 932BF10ED24;
+	Thu, 28 May 2026 07:29:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="FZaAjpyo";
+	dkim=pass (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="bdQ5+7NB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011040.outbound.protection.outlook.com
- [40.93.194.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6195E10E753
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2026 08:10:33 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NIIrjOdEWxrPSE8nGnyXyqo/kBr/rJHNZTz3XJIKdI85KjW7ukinRRCFj2i/9m8g60yUdO8G7fZJ3PuFDLuFxI3a2WGuEf62tB8biMfbm16VA30yXQz1XNlMuC03NpK6V4a5UIkZrJlnWjA/UIPOg2A5j7GU9+2C1r5sASyZgH9aCAUPV5H/g3Th83lf6fWDuRT5I4TiObGBO7ZD7d+V4jwQw/TGbuwbbXF4N6ax2gc2YGpUCfWYqXiOu6EYdNEzx7qnpyfhBDduxifKDmeJWaOKv/cFyvuR4pCImaEfJgnxx+n2qZJLem30nHzrhgxVJKHtLbMEYZYL3JgewQvZuA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wo6sDKjAh6q48IyF8BBtWERojU09Y5UGx743VzNXwGk=;
- b=I48bebYCKpuqHBf8aAPfZW73aaaVFQR+ReDNGRNLEMbQrHu1yrW3Rn0Ouu4CPIGTcoHM1pvGmqdfQraqXIIWee+fDK0D9L3rJGifh70y9Edm/ScewrV5VTpdVRW4rNoyCHVlIa8xD/Cw8O9cBEqUyBpqwchsr4MRGrd8JpUexE9lWwErnfz4VIuPAkgU4NtXfNL1ABXKVWR0oNMCZoNzB+PqNJ3Y++YOFXuMiQs+024T8OwMGtLoXE+lNHkKgNtJRVYzDmNEXv02nZVg8cN4D/mGZDv6ZceVgE9/vXxuUu24rGxMMnixB2jsOifkAoWEPDCXkpD9woKQUyVHaKQXMA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wo6sDKjAh6q48IyF8BBtWERojU09Y5UGx743VzNXwGk=;
- b=FZaAjpyoZwMWgG8Y1M8fiQmZkPCeHShS7EXvLz+wTlQddf9NUnIAoCo1OgxrgpRgxOIwsdMVardWCmzf8VhCa1AfDhpjm0KUB1cO8ZLhuQ25Ssjclrp6O830BX787fsRJSLAadebsTNvlQKiMD//bpQp+T0hC7yfpxPkrBzod0g=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by CY3PR12MB9578.namprd12.prod.outlook.com (2603:10b6:930:109::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.18; Wed, 27 May
- 2026 08:10:28 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0071.011; Wed, 27 May 2026
- 08:10:28 +0000
-Message-ID: <50260781-195a-4f77-bd83-9209268a4e2d@amd.com>
-Date: Wed, 27 May 2026 10:10:24 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 1/5] drm/amdgpu: Extend listing of buffer handles with the
- userptr object flag
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, David Francis <David.Francis@amd.com>,
- Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>
-References: <20260526160630.35562-1-tvrtko.ursulin@igalia.com>
- <20260526160630.35562-2-tvrtko.ursulin@igalia.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260526160630.35562-2-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BN9PR03CA0560.namprd03.prod.outlook.com
- (2603:10b6:408:138::25) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+X-Greylist: delayed 432 seconds by postgrey-1.36 at gabe;
+ Wed, 27 May 2026 08:46:14 UTC
+Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
+ [185.244.194.184])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A154410E167
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2026 08:46:14 +0000 (UTC)
+Received: from relay01-mors.netcup.net (localhost [127.0.0.1])
+ by relay01-mors.netcup.net (Postfix) with ESMTPS id 4gQNM773BRz95pN;
+ Wed, 27 May 2026 10:38:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
+ s=key2; t=1779871140;
+ bh=Sr0H+KAy4WCc04GejdOIgsotYR9rZsPYwwXu98pnoT8=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=bdQ5+7NBHtESfpaU2IOzXYz3SQYl0lAcmfEQJ0N6W2Pt+/8ULStEOduh/Qv9Rij5p
+ pcQG6/zLdtc8Rp1qfcyg9t0U7TxKtmNlVrAE7HmJPySkhA6jQkPv8rka0eg1DFJFJS
+ YKyNKtOhiBWapwBIcC/DSgQFiZkymPgMyBwg0Ugo3BzecNdRmPTPbzw9GuoSD5z0gQ
+ kfgqRNxZhxTj587JRQuZra37qOa3qZsd4wDRZsz6H3B5L6ttldsMgZumt0VHKQ2GJD
+ 3LsXwziFnWvnD6lnutWtg8lYmh1QbWS00m/+Gy7RRr5Me0yaU8eyCC/KSwXr8mx21o
+ eLyvB91iz/9ig==
+Received: from policy01-mors.netcup.net (unknown [46.38.225.35])
+ by relay01-mors.netcup.net (Postfix) with ESMTPS id 4gQNM76KZlz7wgN;
+ Wed, 27 May 2026 10:38:59 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at policy01-mors.netcup.net
+X-Spam-Flag: NO
+X-Spam-Score: -2.898
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.898 required=6.31 tests=[ALL_TRUSTED=-1,
+ BAYES_00=-1.9, SPF_PASS=-0.001, URIBL_BLOCKED=0.001,
+ URIBL_DBL_BLOCKED_OPENDNS=0.001, URIBL_ZEN_BLOCKED_OPENDNS=0.001]
+ autolearn=ham autolearn_force=no
+Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by policy01-mors.netcup.net (Postfix) with ESMTPS id 4gQNM63Bs3z8tZn;
+ Wed, 27 May 2026 10:38:58 +0200 (CEST)
+Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
+ [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
+ by mxe9fb.netcup.net (Postfix) with ESMTPSA id 0A7E361820;
+ Wed, 27 May 2026 10:38:57 +0200 (CEST)
+Authentication-Results: mxe9fb;
+ spf=pass (sender IP is 2a02:8108:8984:1d00:a0cf:1912:4be:477f)
+ smtp.mailfrom=linux@leemhuis.info
+ smtp.helo=[IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f]
+Received-SPF: pass (mxe9fb: connection is authenticated)
+Message-ID: <e3fa05e5-ca09-4179-8b03-db168558f77a@leemhuis.info>
+Date: Wed, 27 May 2026 10:38:55 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CY3PR12MB9578:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6db173ae-c10d-4fd5-d1a4-08debbc769b1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|18002099003|22082099003|10063799003|56012099006|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: WIH6QDFS/Dmk8AHDkyHB/bf9KAo5aGhfJajvIG+Pc0ZY/XW6VY/8qHs3izVMbI8j15PAFqrgxTQOC6a58sEqcqmRI6pl83wHVed72O2ZsfMHFoZnmFhWuoFgFGOMYXLO3u5ALI9/ndbkKlXlsplgsuI6LT2BCY6oEkU29vhH1lzDFSWVWaeQW4Q7arw4FGkT5LMocqrqOhS4Rl2nvhDRp5Ql4yKW4K3TgRonyhoQfjwXQEIhfShrezsqdOcryyG4Dpatw2xTfB3BGjoMmG+cMxlVJfGpoh2FczQDITzY8zcgpF70DnCenGsfMlmnkQPz9ARUmRkAd/bzxvloGBVDYxoQxPKp11YWDz0b4bnMWIjhbu28Mkeos/q4fl3EOoABi3v0fRoqprkfXJjuXXePfx1MOX+WPUqBbPEd4vtLZAElsJO1N++87lfTrsyMg5tXcjihlf1vncp5/38HDZfoKYYomABYxfBdaFGZqBkf9DUMZdi6Dhl6cy9DjSUld0uj4aEBEcLm5FLOhy5azXOCtc0RB/2hBp6yt5PD2PEMaw4ppLGXvSgIKwixx7gIymnf+MV7o5fFf9EbTSUvyTcvnqu5ml8Jm4gFwkYxep90ibm4LAOnka7NQ4xhz6c0KNC6X0CRltyQhJUcpgeNKN7VirhIAVRzJlCyPpmUZNiwXpGQYjpXE1cGPEsHBBhFKLy2
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(18002099003)(22082099003)(10063799003)(56012099006)(11063799006)(4143699003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c0x3OXQ5d21PMXFTNnNFLzdlcTVIZTRIM09JYU4zUmlEWFhqL2F6YzMrdEhY?=
- =?utf-8?B?NXpYRWp6V2VkM2Y5L0RlcGpiYW1OQmxnNUplMWFnZGVheW9KbWYzOVhMV3Bz?=
- =?utf-8?B?ZWpPV0RHcURXY0h2TXJjQ05teU42Sm5CY0JrWjd0dnRMNXNZVXh1NmZ6b1Qx?=
- =?utf-8?B?QmhhN3VsaHJVaHZsNVVvWXNuajNPYjlGNlpndC8yQ0NVNFk2QWNYK0FjR2pK?=
- =?utf-8?B?aUYxcSs5Z0RXdmwzWWtaSlNXbjlOU0RoQThwcXk1Mm91L00zTWRTSlk5WjU0?=
- =?utf-8?B?RnlFdEhwRkcxRUE5bEF6cVhoRGRHUHI0b3Z0QlZBUE04L2VpdVZEQUVrcE5l?=
- =?utf-8?B?NWh1enNieC9aOEVZRzFlTHFSaUh4aFFzb1JVbk5Ib2JvdWY1VHMreGJkb0tD?=
- =?utf-8?B?QUdYbmMraTZxNDRTZnMvanpYTDhKbzVKbERCdXRMQlhvYzYvYlc1dXd1cDZm?=
- =?utf-8?B?bkFsUlYzU1RERkp4ZHEvTDF6TGV2YjJubHYwbXNBVVZKMTFPRGJRdHR3Tno5?=
- =?utf-8?B?cTdlODRpa3EvZkRZaUZDeTNPNzVKa1ZsYm9qZlppK05LUUliSjJqSldBZnB6?=
- =?utf-8?B?SWJYWU1mS3hBaXliMHBlc3l4Q0VubndyazZMa2tnTGNTdTM2N01oQ2lWVFBI?=
- =?utf-8?B?ejlPZ0NnMWMzTkRMNG41OUNqRlN3REdXVHdRQWRzdFZlcjdaY0NkaWpNSkFX?=
- =?utf-8?B?UUt2ZlZMbVlzb3NaekJGbm56K3ZsM05IcU5MSXpEQXBlbUdWbW9NVktTbk05?=
- =?utf-8?B?bVNNZ2xIQVlYRkpVQXFmcEttc2xWRUZ2MlpaTmpBZnV6SWcvYnRpL0JJWUV0?=
- =?utf-8?B?NzBORmFtQUVhcXlrZUNuWVhiNmpZTDNQS20zOEowbkhiQm5NVWJiMDFucXFs?=
- =?utf-8?B?QnBDSUhpd3FDck1tYjVvWTBLanBOYjd2Y2czRUFzaC9vM3orZXp2TmhQNkRI?=
- =?utf-8?B?YnJLTm44elRsUkZ4Vjg2RlhJL3UzMVZaV3JKQTZHa3NIU0JaYkZ2enUvVWtv?=
- =?utf-8?B?MEkwZkdNSmtjNm4yWVZpa1NGQkczdm5WdWdBb3lyYmQ1RDhldlV6bWJkWUdv?=
- =?utf-8?B?UmhzTlFIUjE5VDNVVW9yN2t1VFZwMisxLytQb0pUTzJyMTRUd1dVc25ZKytN?=
- =?utf-8?B?WG9pWGEyOHJlSUorU0s1VXBvaFBJbFhZT1E3OXFSNW00dTJ6ZWo5OFJuV2ti?=
- =?utf-8?B?Q3M2V1RPMXRpcGtoNTIrZUQrNklUcThGczZlVlhERStxbjdtTmVWWUd3dzlk?=
- =?utf-8?B?Z00zb0NZUlRXbWxUWENUVHFmdlJrdzNvSE0xcGp6Z3FRL3NMUVRsVHI2cGF5?=
- =?utf-8?B?ZWlUMnkwNzlZbEUyV3A0VFNTdy94THhkejdPT3I0dkg3K0dYSWphYmxlSVRj?=
- =?utf-8?B?WURWNngydFBZRTQzU3QwM0sxeitsdU5ub3Q3eVBhZktGN1dDd3NvQnl4dlZN?=
- =?utf-8?B?eTlaaEh0YUhQOEIySjBYQmVXbmdybWhzUWZxL0FGRVp0SVdjUmpyK3ZTakpi?=
- =?utf-8?B?TGhTeWpvVmJmcXRjOTJ4Nmw4V0lHdWRHMXFEc2FLQkM2bTNtaDQzN2l3a0Rk?=
- =?utf-8?B?QnNJWExucThsL0J6elU1TTAxVnVHY3A5TjlCeEZSYkxoTXV0TnAzY29RODRK?=
- =?utf-8?B?cDJDNnViNjdNeWFzNlIzdUl0Qjk0QzJFM0E1ZmhMSWVHenJyUi9lVEJFWkxl?=
- =?utf-8?B?ZjlZL1RlQk1WdGIvcUMvVkNRbEkxTDNKUisyZjlGL3hQakRtNUx4N1VCa2NB?=
- =?utf-8?B?dkgxVExiUEwyVkc4c0psZDVyQTNDc1FKbkFaVWkxMjhTcHE2ckRZNWZiZGhB?=
- =?utf-8?B?akpRcVQzRjNTMXJEVkZuaGNtM0xCN1cyQllsT3hwTkcwOG5VUlhOdWFrSXdX?=
- =?utf-8?B?Z0hlbktia3Qrald3WXhidDBqQlZKMnEvNHd4NS84SWI1V1lZNzFoa0thNkJu?=
- =?utf-8?B?ZXVGQ3N5KytiUDJXaERNRTZ6b09SWS9uMEN3dzdlVy9NenhnSG9TZE5wUGRv?=
- =?utf-8?B?azFaaVRwMjhqeEorZ2R1WW5ZRmZJT2VYeng3UXpFT2VPRXBEUStzTHFiTDVk?=
- =?utf-8?B?VnhJcEVWZWtUK091Y0FoVExmU0xiQlg2RCsxbi81SVY4TkF5MlRHTWRzVWM0?=
- =?utf-8?B?OTNNU2gzOWxTZTdGbzZweTMySEVudTIycGlSQ0RRTEU3T1ZGbFR5UXhUT1Vt?=
- =?utf-8?B?S0NHU01VRDVLTUJCU0ZZcU5QeGNLWFdEZThsRlQ2TGhuT01jMnE4WWx2ckVZ?=
- =?utf-8?B?aGtkaWp5TnROMHQ1NFBkd0pmejFhSGJxWFF4dU9rYlo5bWdOVml1NUJQZFBl?=
- =?utf-8?Q?YF6usz4UVWPc9/RHV2?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6db173ae-c10d-4fd5-d1a4-08debbc769b1
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 May 2026 08:10:28.0559 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4PgbX5AOAh4K52PuHp6JaKO4a2vsPW8BRevz+oYeL55wP6McCHfhB8NAWWkj+zIU
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9578
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/amd/display: Write REFCLK to 48MHz on DCN21
+To: Alex Deucher <alexdeucher@gmail.com>, IVAN.LIPSKI@amd.com
+Cc: amd-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ mario.limonciello@amd.com, Alex Deucher <alexander.deucher@amd.com>,
+ Max Chernoff <git@maxchernoff.ca>,
+ Linux kernel regressions list <regressions@lists.linux.dev>
+References: <20260514155348.2114429-3-IVAN.LIPSKI@amd.com>
+ <CADnq5_PDFT1+8G_yAVBa0nGpBgbs=npszsW_G2n85f+zh33_zg@mail.gmail.com>
+From: Thorsten Leemhuis <linux@leemhuis.info>
+Content-Language: de-DE, en-US
+Autocrypt: addr=linux@leemhuis.info; keydata=
+ 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 MEK4
+In-Reply-To: <CADnq5_PDFT1+8G_yAVBa0nGpBgbs=npszsW_G2n85f+zh33_zg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-PPP-Message-ID: <177987113741.4140924.2598995578202932072@mxe9fb.netcup.net>
+X-NC-CID: hsbW1m3zccmoQXJZeZUihVYgqvihA2KPedSs3+cUnrx/DP2djU8=
+X-Mailman-Approved-At: Thu, 28 May 2026 07:29:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,228 +139,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:tvrtko.ursulin@igalia.com,m:kernel-dev@igalia.com,m:David.Francis@amd.com,m:Harish.Kasiviswanathan@amd.com,m:alexander.deucher@amd.com,m:Felix.Kuehling@amd.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:IVAN.LIPSKI@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:aurabindo.pillai@amd.com,m:mario.limonciello@amd.com,m:alexander.deucher@amd.com,m:git@maxchernoff.ca,m:regressions@lists.linux.dev,s:lists@lfdr.de];
+	DMARC_NA(0.00)[leemhuis.info];
+	FREEMAIL_TO(0.00)[gmail.com,amd.com];
+	FORGED_SENDER(0.00)[linux@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[leemhuis.info:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[linux@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 8C1EA5E0DEF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 5C8135EDB47
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 5/26/26 18:06, Tvrtko Ursulin wrote:
-> Add a new flag (AMDGPU_GEM_LIST_HANDLES_FLAG_IS_USERPTR) to the
-> DRM_IOCTL_AMDGPU_GEM_LIST_CONTEXTS ioctl.
-> 
-> This is required to allow for checkpoint and restore of userptr objects.
-> 
-> The existing struct drm_amdgpu_gem_list_handles_entry is used with the
-> userptr creation flags places in alloc_flags, while the alignment field
-> contains the userspace address.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 18 +++++++----
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 40 +++++++++++++++++--------
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h | 19 +++++++++++-
->  include/uapi/drm/amdgpu_drm.h           |  7 +++--
->  4 files changed, 61 insertions(+), 23 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> index 0259d81e5157..5eb8433229b4 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> @@ -1186,14 +1186,20 @@ int amdgpu_gem_list_handles_ioctl(struct drm_device *dev, void *data,
->  
->  		bo_entry = &bo_entries[bo_index];
->  
-> -		bo_entry->size = amdgpu_bo_size(bo);
-> -		bo_entry->alloc_flags = bo->flags & AMDGPU_GEM_CREATE_SETTABLE_MASK;
-> -		bo_entry->preferred_domains = bo->preferred_domains;
->  		bo_entry->gem_handle = id;
-> -		bo_entry->alignment = bo->tbo.page_alignment;
-> +		bo_entry->size = amdgpu_bo_size(bo);
-> +		if (amdgpu_ttm_tt_is_userptr(bo->tbo.ttm)) {
-> +			bo_entry->flags = AMDGPU_GEM_LIST_HANDLES_FLAG_IS_USERPTR;
-> +			bo_entry->alloc_flags = amdgpu_ttm_tt_get_userptr_flags(bo->tbo.ttm);
-> +			bo_entry->alignment = amdgpu_ttm_tt_get_userptr_addr(bo->tbo.ttm);
-> +		} else {
-> +			bo_entry->alloc_flags = bo->flags & AMDGPU_GEM_CREATE_SETTABLE_MASK;
-> +			bo_entry->preferred_domains = bo->preferred_domains;
-> +			bo_entry->alignment = bo->tbo.page_alignment;
->  
-> -		if (bo->tbo.base.import_attach)
-> -			bo_entry->flags |= AMDGPU_GEM_LIST_HANDLES_FLAG_IS_IMPORT;
-> +			if (bo->tbo.base.import_attach)
-> +				bo_entry->flags = AMDGPU_GEM_LIST_HANDLES_FLAG_IS_IMPORT;
-> +		}
->  
->  		bo_index += 1;
->  	}
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> index 3d2e00efc741..4023c84fe29d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> @@ -767,6 +767,33 @@ int amdgpu_ttm_tt_get_user_pages(struct amdgpu_bo *bo,
->  	return r;
->  }
->  
-> +/*
-> + * amdgpu_ttm_tt_is_userptr - Have the pages backing by userptr?
-> + */
-> +bool amdgpu_ttm_tt_is_userptr(struct ttm_tt *ttm)
-> +{
-> +	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(ttm);
-> +
-> +	if (gtt == NULL || !gtt->userptr)
-> +		return false;
-> +
-> +	return true;
-> +}
-> +
-> +u32 amdgpu_ttm_tt_get_userptr_flags(struct ttm_tt *ttm)
-> +{
-> +	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(ttm);
-> +
-> +	return gtt->userflags;
-> +}
-> +
-> +u64 amdgpu_ttm_tt_get_userptr_addr(struct ttm_tt *ttm)
-> +{
-> +	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(ttm);
-> +
-> +	return gtt->userptr;
-> +}
-> +
->  #endif
->  
->  /*
-> @@ -1374,19 +1401,6 @@ bool amdgpu_ttm_tt_affect_userptr(struct ttm_tt *ttm, unsigned long start,
->  	return true;
->  }
->  
-> -/*
-> - * amdgpu_ttm_tt_is_userptr - Have the pages backing by userptr?
-> - */
-> -bool amdgpu_ttm_tt_is_userptr(struct ttm_tt *ttm)
-> -{
-> -	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(ttm);
-> -
-> -	if (gtt == NULL || !gtt->userptr)
-> -		return false;
-> -
-> -	return true;
-> -}
-> -
->  /*
->   * amdgpu_ttm_tt_is_readonly - Is the ttm_tt object read only?
->   */
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> index f2f23a42b3cc..8c0424577dea 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> @@ -211,12 +211,30 @@ uint64_t amdgpu_ttm_domain_start(struct amdgpu_device *adev, uint32_t type);
->  #if IS_ENABLED(CONFIG_DRM_AMDGPU_USERPTR)
->  int amdgpu_ttm_tt_get_user_pages(struct amdgpu_bo *bo,
->  				 struct amdgpu_hmm_range *range);
-> +bool amdgpu_ttm_tt_is_userptr(struct ttm_tt *ttm);
-> +u32 amdgpu_ttm_tt_get_userptr_flags(struct ttm_tt *ttm);
-> +u64 amdgpu_ttm_tt_get_userptr_addr(struct ttm_tt *ttm);
->  #else
->  static inline int amdgpu_ttm_tt_get_user_pages(struct amdgpu_bo *bo,
->  					       struct amdgpu_hmm_range *range)
->  {
->  	return -EPERM;
->  }
-> +
-> +static inline bool amdgpu_ttm_tt_is_userptr(struct ttm_tt *ttm)
-> +{
-> +	return false;
-> +}
-> +
-> +static inline u32 amdgpu_ttm_tt_get_userptr_flags(struct ttm_tt *ttm)
-> +{
-> +	return -1;
-> +}
-> +
-> +static inline u64 amdgpu_ttm_tt_get_userptr_addr(struct ttm_tt *ttm)
-> +{
-> +	return 0;
-> +}
->  #endif
->  
->  /**
-> @@ -251,7 +269,6 @@ bool amdgpu_ttm_tt_affect_userptr(struct ttm_tt *ttm, unsigned long start,
->  				  unsigned long end, unsigned long *userptr);
->  bool amdgpu_ttm_tt_userptr_invalidated(struct ttm_tt *ttm,
->  				       int *last_invalidated);
-> -bool amdgpu_ttm_tt_is_userptr(struct ttm_tt *ttm);
->  bool amdgpu_ttm_tt_is_readonly(struct ttm_tt *ttm);
->  uint64_t amdgpu_ttm_tt_pde_flags(struct ttm_tt *ttm, struct ttm_resource *mem);
->  uint64_t amdgpu_ttm_tt_pte_flags(struct amdgpu_device *adev, struct ttm_tt *ttm,
-> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-> index 9f3090db2f16..3069560ac26e 100644
-> --- a/include/uapi/drm/amdgpu_drm.h
-> +++ b/include/uapi/drm/amdgpu_drm.h
-> @@ -836,6 +836,7 @@ struct drm_amdgpu_gem_op {
->  };
->  
->  #define AMDGPU_GEM_LIST_HANDLES_FLAG_IS_IMPORT	(1 << 0)
-> +#define AMDGPU_GEM_LIST_HANDLES_FLAG_IS_USERPTR	(1 << 1)
->  
->  struct drm_amdgpu_gem_list_handles {
->  	/* User pointer to array of drm_amdgpu_gem_bo_info_entry */
-> @@ -851,7 +852,7 @@ struct drm_amdgpu_gem_list_handles_entry {
->  	/* gem handle of buffer object */
->  	__u32 gem_handle;
->  
-> -	/* Currently just one flag: IS_IMPORT */
-> +	/* AMDGPU_GEM_LIST_HANDLES_FLAG_* */
->  	__u32 flags;
->  
->  	/* Size of bo */
-> @@ -860,10 +861,10 @@ struct drm_amdgpu_gem_list_handles_entry {
->  	/* Preferred domains for GEM_CREATE */
->  	__u64 preferred_domains;
->  
-> -	/* GEM_CREATE flags for re-creation of buffer */
-> +	/* GEM_CREATE flags for re-creation of buffer or drm_amdgpu_gem_userptr.flags */
->  	__u64 alloc_flags;
->  
-> -	/* physical start_addr alignment in bytes for some HW requirements */
-> +	/* physical start_addr alignment in bytes for some HW requirements or drm_amdgpu_gem_userptr.addr */
->  	__u64 alignment;
 
-Make that an union, e.g. union { __u64 alignment; __u64 userptr; }, apart looks pretty good to me.
 
-Regards,
-Christian.
+On 5/14/26 19:18, Alex Deucher wrote:
+> On Thu, May 14, 2026 at 12:04 PM <IVAN.LIPSKI@amd.com> wrote:
+>>
+>> From: Ivan Lipski <ivan.lipski@amd.com>
+>>
+>> [Why&How]
+>> dccg21_init() calls dccg2_init() which hardcodes 100MHz refclk values
+>> for MICROSECOND_TIME_BASE_DIV and MILLISECOND_TIME_BASE_DIV. DCN21
+>> uses 48MHz refclk, so the wrong values corrupt DCCG timing and cause eDP
+>> link training failure on cold boot.
+>>
+>> Write the correct 48MHz values directly instead of calling dccg2_init().
+>>
+>> Fixes: b7dfeea1e168 ("drm/amd/display: Add missing DCCG register entries for DCN20-DCN316")
+>>
+>> v2:
+>> Fixed typo
+>>
+>> Reported-by: Max Chernoff <git@maxchernoff.ca>
+>> Tested-by: Max Chernoff <git@maxchernoff.ca>
+>> Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
 
->  };
->  
+What happened to this regression fix? From the outside it looks like it
+did not make any progress in the last 12+ days -- but from the outside
+it's easy to miss something (like an alternative fix), so please just
+tell me if that's the case
+
+Side note: Adding these might be good:
+
+ Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/5272
+ Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/5311
+
+Ciao, Thorsten
+
+> Acked-by: Alex Deucher <alexander.deucher@amd.com>
+>
+> For a future patch, it would be a nice clean up to read the ref clock
+> from the driver and program the clock as needed rather than requiring
+> a separate callback for each chip and using a hardcoded programming
+> sequence.
+> 
+> Alex
+> 
+>> ---
+>>  .../drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c    | 15 +++++++++++++--
+>>  1 file changed, 13 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c b/drivers/gpu/drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c
+>> index bdc3ce5d4f47..be167bbd42b5 100644
+>> --- a/drivers/gpu/drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c
+>> +++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn21/dcn21_dccg.c
+>> @@ -105,15 +105,26 @@ static void dccg21_update_dpp_dto(struct dccg *dccg, int dpp_inst, int req_dppcl
+>>   * dccg2_init() unconditionally overwrites MICROSECOND_TIME_BASE_DIV to
+>>   * 0x00120264, destroying the marker before it can be read.
+>>   *
+>> - * Guard the call: if the S0i3 marker is present, skip dccg2_init() so the
+>> + * Guard the call: if the S0i3 marker is present, skip init so the
+>>   * WA can function correctly. bios_golden_init() will handle init in that case.
+>> + *
+>> + * DCN21 uses 48MHz refclk, not 100MHz, so we must explicitly set the correct
+>> + * values (48MHz is taken from rn_clk_mgr_construct()).
+>>   */
+>>  static void dccg21_init(struct dccg *dccg)
+>>  {
+>> +       struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
+>> +
+>>         if (dccg2_is_s0i3_golden_init_wa_done(dccg))
+>>                 return;
+>>
+>> -       dccg2_init(dccg);
+>> +       /* 48MHz refclk from rn_clk_mgr_construct() */
+>> +       REG_WRITE(MICROSECOND_TIME_BASE_DIV, 0x00120230);
+>> +       REG_WRITE(MILLISECOND_TIME_BASE_DIV, 0x0010bb80);
+>> +       REG_WRITE(DISPCLK_FREQ_CHANGE_CNTL, 0x0e01003c);
+>> +
+>> +       if (REG(REFCLK_CNTL))
+>> +               REG_WRITE(REFCLK_CNTL, 0);
+>>  }
+>>
+>>  static const struct dccg_funcs dccg21_funcs = {
+>> --
+>> 2.43.0
+>>
+> 
 
