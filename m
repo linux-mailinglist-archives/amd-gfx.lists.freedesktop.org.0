@@ -2,105 +2,100 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OGyyEuvuF2q2WAgAu9opvQ
+	id QAztG5QoF2qu6wcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 09:29:47 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 19:23:32 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B45FC5EDB2D
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 09:29:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C28435E84B6
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 May 2026 19:23:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 815C910ED1D;
-	Thu, 28 May 2026 07:29:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15DDA10E83A;
+	Wed, 27 May 2026 17:23:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HgTHkkXs";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qMQk8ASo";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yx1-f41.google.com (mail-yx1-f41.google.com
- [74.125.224.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1598110E262
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2026 16:31:33 +0000 (UTC)
-Received: by mail-yx1-f41.google.com with SMTP id
- 956f58d0204a3-65c477a3278so12150738d50.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2026 09:31:33 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779899492; cv=none;
+Received: from mail-dl1-f45.google.com (mail-dl1-f45.google.com [74.125.82.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2C4710E83A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2026 17:23:28 +0000 (UTC)
+Received: by mail-dl1-f45.google.com with SMTP id
+ a92af1059eb24-136af97e62fso126670c88.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 May 2026 10:23:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779902608; cv=none;
  d=google.com; s=arc-20240605;
- b=azQoynpX33EzpwjFl6r+h5b5UUzIRv1PFAbCAb9H5Cch0jrsOabTiUj1tbTM74upLl
- phX0AcwQO2MRiBYobw6WbPHEB8mpDmkwWZAWFDJypWeTm9FYxajzwSmwr4uOmoNofEyd
- bhiQQwgUAoWwj0YGPKd88yKOYK8QI/7IeNCH5furiKvPtTz8fT+zSvsXOb2GU817aIrV
- aYiZ+L0ldQc2klugWsvkyfilB0V8al/GQF4LzJZVJjwHJWIBm5KEUdLDhWIL4C2gSLFg
- z13D4gSTUWPDvaMmituRRLUU116a6PHrrGq8HpYIA/SR7S8R4/pkdUvdBvC+n0Z7jClk
- mz6A==
+ b=YmNcTGbjqTBH8cs5e8aWnRDY87nSCEtOz9TDn1SoNtuN2BO5k0kPOwFwFMGr5XZiBX
+ +w9q3GoAhrUwRAtho+NpB1766zDTrRPltmfrtSD5srCaeFX6P2w2udwOiNqsK+4WmUFj
+ DDXzN+8z+LNuKZs2OvWZyJDAbilY/we8tiESZUqHEhKXc78KzNP5dXaWqEl2qBRZiMLc
+ OHF1Ewpk6okdELeCdo2xRAqX7Ju2/XFGHy5fP54gHAdzsuN+Sdwy7iqiJ5gWNze8lWw1
+ IESDQP7IS+afIas0ez5slmlBinGXAaaWTrGMOjrtQ21+BdOv2hEwrVBYBhIn8iYzhnQy
+ QHpw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=9tLf8lt1YoAuBidXkoX7o9PfBwuIjJNOIKz1xekd6O8=;
- fh=ayRqx3dXxB5T6J1sKtvX6ZXjY0pF42Wr914CRkD6ujw=;
- b=IcBxDnE0q/7RnjINpzvurhCSbVcYpqVdEzFRZGF5iL1S3zDEBrHLsFiKNekNhh1YAK
- dFcHTK1HW6Z4R8DdOAuz+ynlWzCf+4GeN4cd/HmgFtX//+5jZz1gPSMS+camRdg0ojjv
- +A3etk4jLkpGouVFSUjkA0OKClbuD+V2zX3k2UPEbR5dlOTgmyebfK0boEAEJ7G8w6ZI
- TSQ0cIZ6rEsnRCDEdqgqXImGODJF/hLbsb8fT13SKCPu1Qcv7UrVKddd7IUQ718jptVf
- 7r2bmTlRA21PWQduEtJVVMBgkHCVCsjr2QJEvsWln/fLohSJSK8aEkDplcZZYxPfr3SP
- A+Tg==; darn=lists.freedesktop.org
+ bh=i03O9b4teaHrovNnKK4Pppw9rXidvDLCix+Z2KaHwy8=;
+ fh=wWOFNk5sUCklAcQii4zxAj3gL6FszaB+8rFh2R9st2w=;
+ b=TGHblQrlGnwsZRr2qGi96LCuueRrDkeH/++bu4qJ7soR7syK7u70KqNqa0r2f0aotS
+ fd7ddPdtGOTe8sVGPf3i6MbyXY/TSyrYA7a3W3Q0F9RiWr0Ke45vWMh2xM1G/PStjyD/
+ O2rleNxnUsKLuE0i26Xpton8MJyKzzyftXuu4SRvgsNkRrbi6MNfHByQXl96XeIwzTX0
+ XNNoWgv+kr8r5PcypVgBFvl/fei+21M9bfrI7NzRX4GSiRGfnZyOURqvW+ZnmMs5tqGs
+ XiAsWpMa0YCGbQEKTXujniLlia0FQonDuAcRRn+DkhHG4CtZp+LEycE3zRiB+TWHmbXy
+ cfmQ==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779899492; x=1780504292; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1779902608; x=1780507408; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=9tLf8lt1YoAuBidXkoX7o9PfBwuIjJNOIKz1xekd6O8=;
- b=HgTHkkXs1YFtJgdmjxxPR2z72ubtM+as7l37XQ2VN55lTUEkJBMJuywBSlctIswxlm
- xp9wFZBdUgyGKMJ3Gs6/oqMhwLInDsfdetp9FwQDtZ24W3a7vbWGMKpr4v1/rWox6Dga
- uE9dcomPb9JFzqpg/Ekg7wSiIR+BDs+2GF4QDa1OHTWW6WiFu7val09x5Mh08K/FcQV8
- 7wrUP0yB0tWZ0rrWCXot6Ptv5XrPLeeLxnw8E3jyLPJDt1ekPcJpxMxQPcHYPKZVJ1rw
- jtbS+mQ89/DtWqyLhyWUnXe17bwJue4IWx+M+2HI1XqMb7B5WB6GoZseJmq8YJ6QHYWm
- WnUQ==
+ bh=i03O9b4teaHrovNnKK4Pppw9rXidvDLCix+Z2KaHwy8=;
+ b=qMQk8ASoau7zoA2pgjRkREqzSf/amTuLGsuCakQicz5VsmHUIkDuR9ReKhuc2SXOE1
+ 8MWxLJgoRZh8rFmisu/JQgJStZG1uJrKVbBhCt0ptOTfKJCZW+EBkqHwcQ6++r7swvx/
+ qJVfUCWi75y65i9bIAHbRI7kB1mbVYe5dnvzdppdZK7VQldZWGEQEt/4R5NrfKb4JtVQ
+ Gy97DBntrTWRxk71wB8YJ3GXb/1rXfCVxTG1aELPgZYCL09Z823Nm51nKcHvOycvdDWi
+ yrhM+HwSjLR6Z9B5uPjXigxd1N0pMNSrXlmA1EOrn1jYWwv1BYSJuxe3xVlu3Qre1IHB
+ KY8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779899492; x=1780504292;
+ d=1e100.net; s=20251104; t=1779902608; x=1780507408;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=9tLf8lt1YoAuBidXkoX7o9PfBwuIjJNOIKz1xekd6O8=;
- b=dQVLeBqk+QbiXf5kEHxH7j7miJhs51HulujzQR1FvnluqGmrhqzMmP1rlMUqAl2T+F
- mjA780sbYUbtape4xT2dd96iYYjTZ1yTRfjLoOsbWH4oKCoNz6qGU5cZCHc/FpIwV1w3
- SGqKEyxPn6oK4HaYqfgZq3FxV0SSjUvTqV4fH+yVZbP66QiEIg9NGmuHk4SR8RKnyiWK
- 1v+1T916pO8mWcWVDauKNwSkHAL2T2Vs3XdF1I83gyg4qJsCfj9zqZK9UbM9gA9OLxdP
- hUdpkI+ZVMFLBBr0o9o0OL3MJXZB1ErcY+lRRNBOJln9gE8ki4oI6rWolF03L8CL2lGO
- 2xbQ==
+ bh=i03O9b4teaHrovNnKK4Pppw9rXidvDLCix+Z2KaHwy8=;
+ b=Cm2+o7Jb87Pq4SAJf7+b4028vRr9HSmbw4BvdyYFeSynui34VnTsyi8D5r5yIg4inF
+ SkCRTlBOVjXEzUOLHO9XloMumkj2a1DkS3f9QwTszdDCMTGMRrrVf2zAo3sKsEw1sr64
+ 2zaOKlBr5jRL+wkEkJXfYkp7yjA+hgwEBH0CAg3WTJPDswhGfYppINhdMRmihF0EN4yi
+ iqxqZ+rGWN3fIlj5UZ0u/eXbukG7vczkPzX29A5nsoX1bth+TyrrLjLyiNR5qKcwRhcY
+ OMBDrtll5o4ZqbiuStF3t/KkgaEejRN/6/1V0AfgAMt3hYIxDX4sC10tWrNu25DnTfdk
+ VNnQ==
 X-Forwarded-Encrypted: i=1;
- AFNElJ8b5Gkm6jj1etu0M/sEf+sRX0pUxRjWGfMRLkvkHW2/0JDEsqs7bHkzePLQUl7bU/Cit1m1D8CQ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyTtLBeL7a9klAt79ZM5nXj397tcpyQLVKCDZc4Ue6JAFOefEK/
- AligW1ShbLzOIDmejWHN6pTFpAF7RoDN5BDFoLelBz6hD0I6SnRAABwArQM7qt520RuhaKKwIkm
- /6BWdy7YVHQTKBSpQWGKBLEJzOBmaQ0I=
-X-Gm-Gg: Acq92OG41AavTn8U7xo2k+Nk57cptHi39HdTxdt829bAra4X2szFq1VmxMFZUGORLEZ
- lduPqhf9HiMBEs2nUizqiZ69r42aUwdB+8MBcZQ1dYK6vqPI73F0/MsuLVIhttEt3Bs8yRowEC5
- onFhVG639/z9jPKkC6In9eRyezrE8Rwinny+teJIrMQw6Y4d10DJ3zjc/KLolMPaCYLY142nGqX
- uglI7I7AD1v+GYbQfH2/9G9xm/eMgTWw3wglBWYI+xwmFhk+2MYRdQ7lOUQKcJA0jWh7aGv5/kJ
- DVlkUPRgmgfWwQWwVCuq8jwTMuLQTnooxmScLbkvrG4zZgzeztBgt32SKNnvvxtiwl1TNeKi
-X-Received: by 2002:a05:690e:158f:10b0:65e:14b6:b1c3 with SMTP id
- 956f58d0204a3-65ec965c9f8mr17896814d50.16.1779899491716; Wed, 27 May 2026
- 09:31:31 -0700 (PDT)
+ AFNElJ8j5gn87UV9vAyW6SuAOwkk/FCtok5n2xNbtXpsHvkR9pUp66Xlk6oaAQ1/Tq8h6O2ovEtLRnk+@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzWAxyLn9fuT+mFwOGgKYKyUU+rbpLnjtGo8VQj7tD39igxCga8
+ iPDOCbBaUl1tE+h/T+FVdFRidGuMq6p8ZX4OaBrWPYe9UV71TOg/6rN4h1FajXFT3UeNC3bj/bQ
+ A/1iO/NPE0eSrf8/P/hJKKS2DTX1Jg4U=
+X-Gm-Gg: Acq92OECuhJEOEO/nGgfyeAS+aj2uz+UwpTvjTD2P2Z3OJgSmyrEg1v/rP2eLuUKTG2
+ NCso7tI6SjR4qFkrAfnUVSmGBHSSuVvkGJ21crr4ekB5RcNFiI5famlAgABMUZXpQJ5AVVVXetM
+ 1RTyVONtLUk7/9txCkEN0YTtnFbYLX76FvTX96p4KfatAQ7W/NCDxH/R7JKns+1fTqHPX+joQJl
+ UoyNqyLBjX4tAcOxu1NwG+wtnnvCR2Zty6dzdJsbc99TNs29xDJ7ynSL8D9ogWcUs/d+34lccxl
+ SP+SbgYEYEnJpTi7pdn1QSVhioFLk8ci9sE2dXfUm0lRnHqWxu89Iwkzxp7pc4pZnSUp0A==
+X-Received: by 2002:a05:7022:7a5:b0:12d:ce63:d8c5 with SMTP id
+ a92af1059eb24-1365f6f595amr4276835c88.2.1779902607700; Wed, 27 May 2026
+ 10:23:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20260527133917.207150-1-tzimmermann@suse.de>
-In-Reply-To: <20260527133917.207150-1-tzimmermann@suse.de>
-From: Julian Orth <ju.orth@gmail.com>
-Date: Wed, 27 May 2026 18:31:22 +0200
-X-Gm-Features: AVHnY4LiGKeklklqrya8rDzPqcZQqpOuXv9liIo0k9FzrL8MbPYNMzvo_QUUG_E
-Message-ID: <CAHijbEVZBRTK7yhZy8gaZwb19JMzUD_nA2S1LOKX2NrK19RBsQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/9] drm: Limit DRM_IOCTL_WAIT_VBLANK to vblank
- interrupts
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: simona@ffwll.ch, airlied@gmail.com, mdaenzer@redhat.com, 
- pekka.paalanen@collabora.com, jadahl@gmail.com, contact@emersion.fr, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, mhklinux@outlook.com, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- wayland-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org, 
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org
+References: <20260526022834.2380471-1-yifan1.zhang@amd.com>
+ <0086fc92-7a66-4e77-b49d-1b9bc6c110a7@amd.com>
+In-Reply-To: <0086fc92-7a66-4e77-b49d-1b9bc6c110a7@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 27 May 2026 13:23:15 -0400
+X-Gm-Features: AVHnY4I8z0SQwREtYOOKunBnemzdpu8YSV-saq8ns7fjwqqGfgWQrJg3XvnmieM
+Message-ID: <CADnq5_O-RHFM=k+E_uMKxdo8JTD2jPWxd0b4oMfqtqTRidHcPQ@mail.gmail.com>
+Subject: Re: [PATCH v5] drm/amdgpu: add ioctl to handle RAS poison error
+To: "Lazar, Lijo" <lijo.lazar@amd.com>
+Cc: Yifan Zhang <yifan1.zhang@amd.com>, amd-gfx@lists.freedesktop.org, 
+ Alexander.Deucher@amd.com, christian.koenig@amd.com, Felix.Kuehling@amd.com, 
+ David.YatSin@amd.com, Kent.Russell@amd.com, Perry.Yuan@amd.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Thu, 28 May 2026 07:29:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,128 +113,466 @@ X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:tzimmermann@suse.de,m:simona@ffwll.ch,m:airlied@gmail.com,m:mdaenzer@redhat.com,m:pekka.paalanen@collabora.com,m:jadahl@gmail.com,m:contact@emersion.fr,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:mhklinux@outlook.com,m:dri-devel@lists.freedesktop.org,m:wayland-devel@lists.freedesktop.org,m:linux-hyperv@vger.kernel.org,m:virtualization@lists.linux.dev,m:spice-devel@lists.freedesktop.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[juorth@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:lijo.lazar@amd.com,m:yifan1.zhang@amd.com,m:Alexander.Deucher@amd.com,m:christian.koenig@amd.com,m:Felix.Kuehling@amd.com,m:David.YatSin@amd.com,m:Kent.Russell@amd.com,m:Perry.Yuan@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[juorth@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[ffwll.ch,gmail.com,redhat.com,collabora.com,emersion.fr,linux.intel.com,kernel.org,outlook.com,lists.freedesktop.org,vger.kernel.org,lists.linux.dev];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,suse.de:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: B45FC5EDB2D
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: C28435E84B6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, May 27, 2026 at 3:39=E2=80=AFPM Thomas Zimmermann <tzimmermann@suse=
-.de> wrote:
+On Tue, May 26, 2026 at 4:04=E2=80=AFAM Lazar, Lijo <lijo.lazar@amd.com> wr=
+ote:
 >
-> DRM's WAIT_VBLANK ioctl synchronizes user-space clients to display
-> refresh. This is meaningless with vblank timers, which run unrelated
-> to the hardware's vblank.
 >
-> Disable the ioctl for simulated vblanks. Set DRM_VBLANK_FLAG_SIMULATED
-> for CRTCs with simulated vblank events in all such drivers. The vblank
-> timers of these devices still rate-limit the number of page-flip events
-> to match the display refresh.
 >
-> According to maintainers, user-space compositors do not require the ioctl
-> for rate-limitting display output. Weston, Kwin and Mutter rely on comple=
-tion
-> events. Mutter optionally uses the WAIT_VBLANK ioctl only to optimize the
-> time from input to output.
+> On 26-May-26 7:58 AM, Yifan Zhang wrote:
+> > Add a new DRM_IOCTL_AMDGPU_USER_OPTIONS ioctl with the
+> > AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY option, allowing userspace (ROC=
+r)
+> > to control per-process SIGBUS delivery.
+> >
+> > Userspace for this can be found at:
+> > https://github.com/ROCm/rocm-systems/pull/6190
+> >
+> > Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
 >
-> When testing with mutter and weston, the page-flip rate appears correct
-> with the patch set applied.
+> Have one generic comment on the ioctl naming convention. Need comments
+> from Alex/Christian also.
+>
+> Apart from that looks good to me -
+>
+> Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+>
+> > ---
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  2 +
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h |  6 ++
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  1 +
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c    | 27 +++++++++
+> >   drivers/gpu/drm/amd/amdkfd/kfd_events.c    | 69 +++++++++++++++++++++=
+-
+> >   drivers/gpu/drm/amd/amdkfd/kfd_priv.h      | 15 +++++
+> >   drivers/gpu/drm/amd/amdkfd/kfd_process.c   | 33 +++++++++++
+> >   include/uapi/drm/amdgpu_drm.h              | 21 +++++++
+> >   8 files changed, 173 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu.h
+> > index 5d7bfa59424a..771ec0608270 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > @@ -1467,6 +1467,8 @@ int amdgpu_enable_vblank_kms(struct drm_crtc *crt=
+c);
+> >   void amdgpu_disable_vblank_kms(struct drm_crtc *crtc);
+> >   int amdgpu_info_ioctl(struct drm_device *dev, void *data,
+> >                     struct drm_file *filp);
+> > +int amdgpu_user_options_ioctl(struct drm_device *dev, void *data,
+> > +                           struct drm_file *filp);
+> >
+> >   /*
+> >    * functions used by amdgpu_encoder.c
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/d=
+rm/amd/amdgpu/amdgpu_amdkfd.h
+> > index 5333e052d56d..68d83a6e6b3a 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+> > @@ -210,6 +210,7 @@ int amdgpu_amdkfd_evict_userptr(struct mmu_interval=
+_notifier *mni,
+> >   int amdgpu_amdkfd_bo_validate_and_fence(struct amdgpu_bo *bo,
+> >                                       uint32_t domain,
+> >                                       struct dma_fence *fence);
+> > +int amdgpu_amdkfd_set_sigbus_delay(struct task_struct *task, u32 ms);
+> >   #else
+> >   static inline
+> >   bool amdkfd_fence_check_mm(struct dma_fence *f, struct mm_struct *mm)
+> > @@ -241,6 +242,11 @@ int amdgpu_amdkfd_bo_validate_and_fence(struct amd=
+gpu_bo *bo,
+> >   {
+> >       return 0;
+> >   }
+> > +static inline
+> > +int amdgpu_amdkfd_set_sigbus_delay(struct task_struct *task, u32 ms)
+> > +{
+> > +     return -EOPNOTSUPP;
+> > +}
+> >   #endif
+> >   /* Shared API */
+> >   int amdgpu_amdkfd_alloc_kernel_mem(struct amdgpu_device *adev, size_t=
+ size,
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_drv.c
+> > index 1781c0c3d010..4d4d21babc61 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > @@ -3076,6 +3076,7 @@ const struct drm_ioctl_desc amdgpu_ioctls_kms[] =
+=3D {
+> >       DRM_IOCTL_DEF_DRV(AMDGPU_USERQ_SIGNAL, amdgpu_userq_signal_ioctl,=
+ DRM_AUTH|DRM_RENDER_ALLOW),
+> >       DRM_IOCTL_DEF_DRV(AMDGPU_USERQ_WAIT, amdgpu_userq_wait_ioctl, DRM=
+_AUTH|DRM_RENDER_ALLOW),
+> >       DRM_IOCTL_DEF_DRV(AMDGPU_GEM_LIST_HANDLES, amdgpu_gem_list_handle=
+s_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+> > +     DRM_IOCTL_DEF_DRV(AMDGPU_USER_OPTIONS, amdgpu_user_options_ioctl,=
+ DRM_AUTH|DRM_RENDER_ALLOW),
+> >   };
+> >
+> >   static const struct drm_driver amdgpu_kms_driver =3D {
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_kms.c
+> > index 24526e92f9b8..772e0fda7e14 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> > @@ -1423,6 +1423,33 @@ int amdgpu_info_ioctl(struct drm_device *dev, vo=
+id *data, struct drm_file *filp)
+> >       return 0;
+> >   }
+> >
+> > +/**
+> > + * amdgpu_user_options_ioctl - set per-fd user options
+> > + *
+> > + * @dev: drm dev pointer
+> > + * @data: pointer to struct drm_amdgpu_user_options
+> > + * @filp: drm file
+> > + *
+> > + * Sets options stored on the per-file amdgpu_fpriv. Currently the onl=
+y
+> > + * supported option is %AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY which
+> > + * controls how KFD delivers SIGBUS for poison/RAS events to the calli=
+ng
+> > + * process (immediate, suppressed, or delayed by N milliseconds).
+> > + */
+> > +int amdgpu_user_options_ioctl(struct drm_device *dev, void *data,
+> > +                           struct drm_file *filp)
+> > +{
+> > +     struct drm_amdgpu_user_options *args =3D data;
+> > +
+> > +     switch (args->op) {
+> > +     case AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY:
+> > +             return amdgpu_amdkfd_set_sigbus_delay(current,
+> > +                                                   args->kfd_sigbus_de=
+lay.value);
+> > +     default:
+> > +             DRM_DEBUG_KMS("Invalid user option op %u\n", args->op);
+> > +             return -EINVAL;
+> > +     }
+> > +}
+> > +
+> >   /**
+> >    * amdgpu_driver_open_kms - drm callback for open
+> >    *
+> > diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_events.c b/drivers/gpu/drm/=
+amd/amdkfd/kfd_events.c
+> > index e9be798c0a2b..92027c5aae61 100644
+> > --- a/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+> > +++ b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+> > @@ -29,10 +29,12 @@
+> >   #include <linux/uaccess.h>
+> >   #include <linux/mman.h>
+> >   #include <linux/memory.h>
+> > +#include <linux/workqueue.h>
+> >   #include "kfd_priv.h"
+> >   #include "kfd_events.h"
+> >   #include "kfd_device_queue_manager.h"
+> >   #include <linux/device.h>
+> > +#include <uapi/drm/amdgpu_drm.h>
+> >
+> >   /*
+> >    * Wrapper around wait_queue_entry_t
+> > @@ -1337,6 +1339,71 @@ void kfd_signal_reset_event(struct kfd_node *dev=
+)
+> >       srcu_read_unlock(&kfd_processes_srcu, idx);
+> >   }
+> >
+> > +/*
+> > + * Per-process opt-in for poison-consumption SIGBUS handling.
+> > + *
+> > + * Default: kernel sends SIGBUS to the process immediately when poison=
+ is
+> > + * consumed, in addition to delivering the KFD HW/MEMORY exception eve=
+nts.
+> > + *
+> > + * Userspace (ROCr) can opt-in per-process via the
+> > + * DRM_IOCTL_AMDGPU_USER_OPTIONS / AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_D=
+ELAY
+> > + * option. This lets the app's registered system-event callback handle=
+ the
+> > + * RAS error first, instead of being killed by SIGBUS.
+> > + *
+> > + * Encoded value (stored on the kfd_process):
+> > + *   0          - default: SIGBUS immediately (no opt-in)
+> > + *   0xFFFFFFFF - opt-in, never escalate to SIGBUS
+> > + *   N (other)  - opt-in, escalate to SIGBUS after N ms if app does no=
+t
+> > + *                handle the error in time (safety timeout)
+> > + */
+> > +
+> > +void kfd_signal_sigbus_delayed_fn(struct work_struct *work)
+> > +{
+> > +     struct kfd_process *p =3D container_of(to_delayed_work(work),
+> > +                             struct kfd_process, signal_work);
+> > +
+> > +     if (p->lead_thread)
+> > +             send_sig(SIGBUS, p->lead_thread, 0);
+> > +
+> > +     kfd_unref_process(p);
+> > +}
+> > +
+> > +static void kfd_signal_sigbus_with_delay(struct kfd_node *dev,
+> > +                                      struct kfd_process *p)
+> > +{
+> > +     u32 delay_ms =3D atomic_read(&p->kfd_sigbus_delay_ms);
+> > +
+> > +     if (delay_ms =3D=3D AMDGPU_USER_OPTIONS_KFD_SIGBUS_DELAY_DISABLED=
+) {
+> > +             dev_info(dev->adev->dev,
+> > +                      "SIGBUS suppressed for process %s(pid:%d): app o=
+pted in to handle RAS error\n",
+> > +                      p->lead_thread->comm, p->lead_thread->pid);
+> > +             return;
+> > +     }
+> > +
+> > +     if (delay_ms =3D=3D 0)
+> > +             goto send_now;
+> > +
+> > +     /*
+> > +      * Take an extra reference for the delayed worker. If the work is
+> > +      * already pending (e.g. another device of this process consumed =
+poison
+> > +      * just before), drop the reference and skip rescheduling - the p=
+rocess
+> > +      * only needs to be notified once.
+> > +      */
+> > +     kref_get(&p->ref);
+> > +     if (!schedule_delayed_work(&p->signal_work, msecs_to_jiffies(dela=
+y_ms))) {
+> > +             kfd_unref_process(p);
+> > +             return;
+> > +     }
+> > +
+> > +     dev_info(dev->adev->dev,
+> > +              "Deferring SIGBUS to process %s(pid:%d) by %u ms (RAS er=
+ror opt-in safety timeout)\n",
+> > +              p->lead_thread->comm, p->lead_thread->pid, delay_ms);
+> > +     return;
+> > +
+> > +send_now:
+> > +     send_sig(SIGBUS, p->lead_thread, 0);
+> > +}
+> > +
+> >   void kfd_signal_poison_consumed_event(struct kfd_node *dev, u32 pasid=
+)
+> >   {
+> >       struct kfd_process *p =3D kfd_lookup_process_by_pasid(pasid, NULL=
+);
+> > @@ -1391,7 +1458,7 @@ void kfd_signal_poison_consumed_event(struct kfd_=
+node *dev, u32 pasid)
+> >       rcu_read_unlock();
+> >
+> >       /* user application will handle SIGBUS signal */
+> > -     send_sig(SIGBUS, p->lead_thread, 0);
+> > +     kfd_signal_sigbus_with_delay(dev, p);
+> >
+> >       kfd_unref_process(p);
+> >   }
+> > diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/am=
+d/amdkfd/kfd_priv.h
+> > index f037062c33ea..ae6d1ecb14d5 100644
+> > --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+> > +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+> > @@ -957,6 +957,20 @@ struct kfd_process {
+> >       size_t signal_event_count;
+> >       bool signal_event_limit_reached;
+> >
+> > +     /**
+> > +      * @kfd_sigbus_delay_ms: Per-process KFD SIGBUS delivery option f=
+or
+> > +      * poison/RAS events (set via DRM_IOCTL_AMDGPU_USER_OPTIONS /
+> > +      * AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY).
+> > +      *
+> > +      *   0          - send SIGBUS immediately (default)
+> > +      *   0xFFFFFFFF - suppress SIGBUS delivery
+> > +      *   other      - delay SIGBUS delivery by this many milliseconds
+> > +      */
+> > +     atomic_t kfd_sigbus_delay_ms;
+> > +
+> > +     /* Delayed signal delivery to user */
+> > +     struct delayed_work signal_work;
+> > +
+> >       /* Information used for memory eviction */
+> >       void *kgd_process_info;
+> >       /* Eviction fence that is attached to all the BOs of this process=
+. The
+> > @@ -1554,6 +1568,7 @@ void kfd_signal_vm_fault_event(struct kfd_process=
+_device *pdd,
+> >   void kfd_signal_reset_event(struct kfd_node *dev);
+> >
+> >   void kfd_signal_poison_consumed_event(struct kfd_node *dev, u32 pasid=
+);
+> > +void kfd_signal_sigbus_delayed_fn(struct work_struct *work);
+> >   void kfd_signal_process_terminate_event(struct kfd_process *p);
+> >
+> >   static inline void kfd_flush_tlb(struct kfd_process_device *pdd)
+> > diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm=
+/amd/amdkfd/kfd_process.c
+> > index 419bb8086ccd..dd48ad9a3438 100644
+> > --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> > +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> > @@ -992,6 +992,33 @@ struct kfd_process *kfd_create_process(struct task=
+_struct *thread)
+> >       return process;
+> >   }
+> >
+> > +/**
+> > + * amdgpu_amdkfd_set_sigbus_delay - Set per-process KFD SIGBUS delay
+> > + * @task: task in the target process
+> > + * @ms:   encoded delay value (0 =3D immediate, 0xFFFFFFFF =3D suppres=
+s,
+> > + *        otherwise delay in milliseconds)
+> > + *
+> > + * Stores the SIGBUS delivery option on the kfd_process associated wit=
+h
+> > + * @task. If the calling process has not opened /dev/kfd yet (no
+> > + * kfd_process exists), this is a no-op - the option only applies to
+> > + * processes that actually use KFD.
+> > + */
+> > +int amdgpu_amdkfd_set_sigbus_delay(struct task_struct *task, u32 ms)
+> > +{
+> > +     struct kfd_process *p;
+> > +
+> > +     if (!task->mm)
+> > +             return -EINVAL;
+> > +
+> > +     p =3D kfd_lookup_process_by_mm(task->mm);
+> > +     if (!p)
+> > +             return 0;
+> > +
+> > +     atomic_set(&p->kfd_sigbus_delay_ms, ms);
+> > +     kfd_unref_process(p);
+> > +     return 0;
+> > +}
+> > +
+> >   static struct kfd_process *find_process_by_mm(const struct mm_struct =
+*mm)
+> >   {
+> >       struct kfd_process *process;
+> > @@ -1328,6 +1355,11 @@ void kfd_process_notifier_release_internal(struc=
+t kfd_process *p)
+> >       kfd_process_table_remove(p);
+> >       cancel_delayed_work_sync(&p->eviction_work);
+> >       cancel_delayed_work_sync(&p->restore_work);
+> > +     /*
+> > +      * If work pending, cancel it and drop the extra ref
+> > +      */
+> > +     if (cancel_delayed_work_sync(&p->signal_work))
+> > +             kfd_unref_process(p);
+> >
+> >       /*
+> >        * Dequeue and destroy user queues, it is not safe for GPU to acc=
+ess
+> > @@ -1584,6 +1616,7 @@ struct kfd_process *create_process(const struct t=
+ask_struct *thread, bool primar
+> >
+> >       INIT_DELAYED_WORK(&process->eviction_work, evict_process_worker);
+> >       INIT_DELAYED_WORK(&process->restore_work, restore_process_worker)=
+;
+> > +     INIT_DELAYED_WORK(&process->signal_work, kfd_signal_sigbus_delaye=
+d_fn);
+> >       process->last_restore_timestamp =3D get_jiffies_64();
+> >       err =3D kfd_event_init_process(process);
+> >       if (err)
+> > diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_dr=
+m.h
+> > index 9f3090db2f16..ab71c4b4aeac 100644
+> > --- a/include/uapi/drm/amdgpu_drm.h
+> > +++ b/include/uapi/drm/amdgpu_drm.h
+> > @@ -58,6 +58,7 @@ extern "C" {
+> >   #define DRM_AMDGPU_USERQ_SIGNAL             0x17
+> >   #define DRM_AMDGPU_USERQ_WAIT               0x18
+> >   #define DRM_AMDGPU_GEM_LIST_HANDLES 0x19
+> > +#define DRM_AMDGPU_USER_OPTIONS              0x1A
+> >
+> >   #define DRM_IOCTL_AMDGPU_GEM_CREATE DRM_IOWR(DRM_COMMAND_BASE + DRM_A=
+MDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
+> >   #define DRM_IOCTL_AMDGPU_GEM_MMAP   DRM_IOWR(DRM_COMMAND_BASE + DRM_A=
+MDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
+> > @@ -79,6 +80,7 @@ extern "C" {
+> >   #define DRM_IOCTL_AMDGPU_USERQ_SIGNAL       DRM_IOWR(DRM_COMMAND_BASE=
+ + DRM_AMDGPU_USERQ_SIGNAL, struct drm_amdgpu_userq_signal)
+> >   #define DRM_IOCTL_AMDGPU_USERQ_WAIT DRM_IOWR(DRM_COMMAND_BASE + DRM_A=
+MDGPU_USERQ_WAIT, struct drm_amdgpu_userq_wait)
+> >   #define DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES DRM_IOWR(DRM_COMMAND_BASE +=
+ DRM_AMDGPU_GEM_LIST_HANDLES, struct drm_amdgpu_gem_list_handles)
+> > +#define DRM_IOCTL_AMDGPU_USER_OPTIONS        DRM_IOWR(DRM_COMMAND_BASE=
+ + DRM_AMDGPU_USER_OPTIONS, struct drm_amdgpu_user_options)
+> >
+> >   /**
+> >    * DOC: memory domains
+> > @@ -1673,6 +1675,25 @@ struct drm_amdgpu_info_uq_metadata {
+> >   #define AMDGPU_FAMILY_GC_11_5_4                     154 /* GC 11.5.4 =
+*/
+> >   #define AMDGPU_FAMILY_GC_12_0_0                     152 /* GC 12.0.0 =
+*/
+> >
+> > +/*
+> > + * Definition of user options
+> > + *
+> > + * option: AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY
+> > + *    0:          Disable sigbus delay - SIGBUS will be raised immedia=
+tely
+> > + *    0xFFFFFFFF: SIGBUS will not be raised
+> > + *    other:      Set the sigbus delay in milliseconds
+> > + */
+> > +#define AMDGPU_USER_OPTIONS_OP_KFD_SIGBUS_DELAY              0
+> > +
+> > +#define AMDGPU_USER_OPTIONS_KFD_SIGBUS_DELAY_DISABLED        0xFFFFFFF=
+Fu
+> > +
+> > +struct drm_amdgpu_user_options {
+> > +     __u32 op;
+> > +     struct {
+> > +             __u32 value;
+> > +     } kfd_sigbus_delay;
+> > +};
+>
+> Rather than 'user', it may be good to consider naming it as
+> amdgpu_proc_options (process related options).
 
-To avoid this being a regression, you need to test that this change
-does not regress input latency.
+Yeah, I think AMDGPU_PROC_OPTIONS might be better in this case, but I
+don't have a strong opinion.  user_options may be better depending on
+what else we add to it.  Either way:
 
-As discussed on IRC, compositors use vblank data to predict the time
-of the next flip event. For each device that you are touching here,
-there are two possibilities:
-
-- The vblank data is related to the flip timing, i.e. flip events and
-vblank events are sent at almost the same time. In this case removing
-these apis removes the path for compositors to predict the time of the
-next flip event. Input latency will therefore regress after idle
-periods when the compositor no longer has the time of the last vblank.
-
-- The vblank data has nothing to do with the time of the next flip
-event. In this case this series could in fact improve latency because
-it removes the incorrect data from the compositor.
-
-Whether the times of the flip events correspond to hardware timings is
-not relevant. Everything in wayland compositors is scheduled against
-flip event timings and they are also forwarded to clients for their
-frame scheduling. If the flip timings are wrong/out of sync with the
-hardware, then removing the vblank apis does not improve this
-situation.
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
 >
-> This change has been discussed at length on IRC recently.
+> Thanks,
+> Lijo
 >
-> https://people.freedesktop.org/~cbrill/dri-log/?channel=3Ddri-devel&highl=
-ight_names=3D&date=3D2026-05-08&show_html=3Dtrue
-> https://people.freedesktop.org/~cbrill/dri-log/?channel=3Ddri-devel&highl=
-ight_names=3D&date=3D2026-05-12&show_html=3Dtrue
-> https://people.freedesktop.org/~cbrill/dri-log/?channel=3Ddri-devel&highl=
-ight_names=3D&date=3D2026-05-13&show_html=3Dtrue
-> https://people.freedesktop.org/~cbrill/dri-log/?channel=3Ddri-devel&highl=
-ight_names=3D&date=3D2026-05-15&show_html=3Dtrue
->
-> v2:
-> - add filter to CRTC_GET_SEQUENCE and CRTC_QUEUE_SEQUENCE ioctls (Michel)
-> - clarify Mutter's behavior in cover letter (Michel)
->
-> Thomas Zimmermann (9):
->   drm/vblank: Add drmm_vblank_init() to indicate managed cleanup
->   drm/vblank: Add DRM_VBLANK_FLAG_SIMULATED
->   drm/amdgpu: vkms: Set DRM_VBLANK_FLAG_SIMULATED
->   drm/bochs: Set DRM_VBLANK_FLAG_SIMULATED
->   drm/cirrus: Set DRM_VBLANK_FLAG_SIMULATED
->   drm/hypervdrm: Set DRM_VBLANK_FLAG_SIMULATED
->   drm/qxl: Set DRM_VBLANK_FLAG_SIMULATED
->   drm/virtgpu: Set DRM_VBLANK_FLAG_SIMULATED
->   drm/vkms: Set DRM_VBLANK_FLAG_SIMULATED
->
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c    |  3 ++-
->  drivers/gpu/drm/drm_vblank.c                | 26 +++++++++++++++------
->  drivers/gpu/drm/drm_vblank_helper.c         |  2 +-
->  drivers/gpu/drm/hyperv/hyperv_drm_modeset.c |  2 +-
->  drivers/gpu/drm/qxl/qxl_display.c           |  2 +-
->  drivers/gpu/drm/tiny/bochs.c                |  2 +-
->  drivers/gpu/drm/tiny/cirrus-qemu.c          |  2 +-
->  drivers/gpu/drm/virtio/virtgpu_display.c    |  2 +-
->  drivers/gpu/drm/vkms/vkms_drv.c             |  4 ++--
->  include/drm/drm_crtc.h                      |  2 +-
->  include/drm/drm_device.h                    |  2 +-
->  include/drm/drm_vblank.h                    | 15 +++++++++++-
->  12 files changed, 45 insertions(+), 19 deletions(-)
->
->
-> base-commit: 5fb5a9a63cf5ece68e0eeb6fa397da27712bccf0
-> --
-> 2.54.0
+> > +
+> >   #if defined(__cplusplus)
+> >   }
+> >   #endif
 >
