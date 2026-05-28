@@ -2,152 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IPLjIvJDGWqNuAgAu9opvQ
+	id mB2gNuyMGGohlAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 09:44:50 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 20:43:56 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27B7C5FEBD9
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 09:44:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FA2E5F69E8
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 20:43:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F41E510FA47;
-	Fri, 29 May 2026 07:44:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3080210F55A;
+	Thu, 28 May 2026 18:43:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=spasswolf@web.de header.b="tHUGdmUV";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="M66bGZXq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.web.de (mout.web.de [217.72.192.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9E1F10F253
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 17:59:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1779991172; x=1780595972; i=spasswolf@web.de;
- bh=+t2uBMRmJqWbe7EEuTbwr1yRQbqM/ioHiPLugIxF0RE=;
- h=X-UI-Sender-Class:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
- References:Content-Type:MIME-Version:Content-Transfer-Encoding:cc:
- content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=tHUGdmUVuAbkG+fY6ZCY2EgNnl/Ps6LOdMcloY5zY/iW/OQPOsgeV91QlYLFA0vS
- WuMri366Seza8nVqdnY4Ct3tsIZdi+iEyBNJ6JKsmgf9dC+kJiDRWJNUPzYq/q69w
- CytPuNzoBpLlzkkqw3FxjXmS7OiaS36XHSN5WlP1dU7i/KrIqdc8knkLvQxnJv64s
- sIlAjc41cRSMzZ2KmlmGBFgUo5I2q5USPCak/3nSXfEFc3qZ8bdE4cDft/yotvLFO
- azuGcMVAxhcktONqt+r/Iv+AuWFTR5xfBW9pdNpZU4FLHsMPtsmwEE8cEzr9xIHCM
- 9TYn6oS6GKyQuxT+YA==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1Mrfp8-1x7HAe0ZLI-00oWDW; Thu, 28
- May 2026 19:59:32 +0200
-Message-ID: <7e8f3a515208583d06c9b5ca18a3e007a8c6b692.camel@web.de>
-Subject: Re: context switch within RCU read-side critical section in
- next-20260518+ with PREEMPT_RT
-From: Bert Karwatzki <spasswolf@web.de>
-To: Mateusz Guzik <mjguzik@gmail.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, spasswolf@web.de, Christian
- Brauner	 <brauner@kernel.org>, linux-kernel@vger.kernel.org,
- linux-next@vger.kernel.org, 	linux-rt-devel@lists.linux.dev,
- linux-fsdevel@vger.kernel.org, 	adobriyan@gmail.com, jack@suse.cz,
- viro@zeniv.linux.org.uk, Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Alex Deucher <alexander.deucher@amd.com>, 	amd-gfx@lists.freedesktop.org
-Date: Thu, 28 May 2026 19:59:31 +0200
-In-Reply-To: <CAGudoHEX=Su_ehV8nNP_6Onfh=hB6uiyTTCojR7nSOkEj6zh4Q@mail.gmail.com>
-References: <20260520225245.2962-1-spasswolf@web.de>
- <fnrz73n5jojl2wlbgrsjdtu5zuwykwbcjzznaijbquuovpoand@i6ihdqn7a6zv>
- <s7cu3dpioidx6mepmai6eyj2pxjs4skbw7v534zbzs6g2fwcis@cvokidcxy3xa>
- <4f548d61b2dd12e01f401ce4b8c865f238f7b23c.camel@web.de>
- <878q9dvzh0.ffs@tglx>
- <50e5e76bc13256e3f5b3301e92f159957c3d6762.camel@web.de>
- <CAGudoHGk1CP3gRQLCV85AFHKx6vBEyKySOn4J+AZVAP2FkrN3g@mail.gmail.com>
- <70676dae700e6a40989315bf31ea269a509ddc0f.camel@web.de>
- <CAGudoHEX=Su_ehV8nNP_6Onfh=hB6uiyTTCojR7nSOkEj6zh4Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.56.2-0+deb13u1 
+Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com
+ [74.125.82.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8626E10F55A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 18:43:53 +0000 (UTC)
+Received: by mail-dy1-f172.google.com with SMTP id
+ 5a478bee46e88-30436e8f582so849822eec.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 11:43:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779993833; cv=none;
+ d=google.com; s=arc-20240605;
+ b=cqLOgbZfm34GbhQj/2nRNSfOYuodGMPEpvdWCI65xv0c+gNwRiW6P494egUGzcSiQp
+ tkoifeQy1ssj3DoyO42DrZ8Ix0g3Eurun061xkGXSV5p7iMmil5yNqCiWtyKzbBCxjn3
+ kb0eo30usk3kRSI/iKjnTFrok1wwPZMPe/lx4GoJF7rhPfmLovANPM+tukIxpcDqXXlN
+ zEQCNF1vp38xvuVSqyUBaLDJauY3g/mZiy+N9+i9SvS/WLSnI0wU1LExOOjEqIxh7YW/
+ jz+p538t5CcMMJWiGuSTLMwsbQPzw3YmtxruwAJFV/W9hmTU+j9816I3mejH0/Skoo2g
+ AyqQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=Ko95xw76BDQndPkeigI/Zefailss2NHCrXUSHZbN1AY=;
+ fh=mMwEBgaqB8GWe/mzFZQyewDVYtlOSQWYolYL+wVyf6Y=;
+ b=TXVPLWxASv5f5sI14qK8E8+lCwrlxnlayLR7aJInXqSjysOOGV2Yv5DMhcJs3g4gDY
+ nIxMF/5TyKll0QwTNpaatVKl3DqCfoQXAfFm9rU2ffgppgoZYZDcv31CXy7Iwgt6vW8h
+ GtHuLHc+AYWXE3aAV3vZxgZBxoCSBcjieX8AoB6wmWF3rifmZgtY72BaYDgUBhiOXFB0
+ uTX8t93VSQC5Zs1hkLAHLuRUGhvvqz3a7PQgVlTib2bfgGenDnILt6jd0HfRNcuNYSIt
+ F+/bUUgJXZAPe8mUol655dHUa0cuG435+Oyvn7yHxHGtMHPOh9775iRX8ETQZiHq1Zwn
+ 6k1A==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1779993833; x=1780598633; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Ko95xw76BDQndPkeigI/Zefailss2NHCrXUSHZbN1AY=;
+ b=M66bGZXqYKdSCvg8ILVso15kHE1kN7fJJ72BdY4GbSh3iVvuqxvwG/Abh5aHK84cED
+ LSQLhPe22LGjPTDZQQ0sRXST3/zha+JlxKf2QLWyn2P98ttPYHB8gWcuhIPpT3rTyrsc
+ J2bSJ03KjMWjsFKpfWvjoO7NQeqY3+DCAyntWN0MJYkPbln/BWBnmV0pNFJpTcv+Dlmn
+ e1To7pf6NRQpId2LBPRww/oyYUIvyz348miio1qDTzUljuWNWe7lccAkWD3iDtfyJhEH
+ SSGg3g1fNyq/wENDSktY5aCwmvFBeW8zfgkyHD9XHPiYVEu0Roxn3v60UOox773y7DF4
+ fDFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779993833; x=1780598633;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=Ko95xw76BDQndPkeigI/Zefailss2NHCrXUSHZbN1AY=;
+ b=VpTfLdBgjvN8fPy5ndPM7v9DaUDQuN0oE/rV6p0QMzsPcdpcnGirB8XoeqzkegrPfy
+ OLlIcfzc+AuGAV4DXQ4iQaV4aSmot3xgpA7NB5Ctuc/ZqANC6xLoSlJY2OwQAtJk3SHH
+ +fmwlHfGbtm9daJ6wqy/8haiNZ7J+m8E9nCGQqOrbqkF18i92FqW/heHZJPKLEIMJ4zJ
+ ehKWn/xi64Dlk0dBHo27aEVP7SDWjiIhsrdVDWAoc/QvHkMYbWG+0eTQJ3Fg9zMJErvt
+ PYbHz/1mxopl5seeTKCOGW9/UBSA7S0UNVHhxv53KgEniKdLOZ/eud9Z3PiYDIl1IE1Q
+ 5ZLQ==
+X-Gm-Message-State: AOJu0YwdwRLkpDDM/+JdOVoL7AhCA3WnvSpkv1tne+Ftf5/ISnwAYwoZ
+ rhMjYq2pp+dq6K3sa2oxi/8oYmqaVYIgUCBt8GtxSbjGG1L37NzQOhnooRMdx6Rq8IKP1rCX7k+
+ EcgxxrpO2T3y0XUW93M8FZ13H8KtOEAI=
+X-Gm-Gg: Acq92OG766TCi4kmHSjfbSl2msSmy0zDHN6ow7phwWFS2/XL/ATljzsUAK2fKWPZ5B2
+ 7C3ZlVxdWN2fmBo2rna/fyjcakSJE+qninKhQpSWXO2NwZFRbDqR7SCfG/3kRVAKXxNeyJT6dt3
+ cFsxZkx9gTNw8w1G4BzxR3DR/oMfphgDbAinrp6F3STaxf8PGJhu6z4edNMPqLh9LivvIXf7xcd
+ 1cYmBKKQbDfwxGcSQa7i5SQiOWWSGBkn58jwQ6c8dSyJ8ccxQzu4u8V32NiFDg57kFeIiCPu7WX
+ 7x1Ad72ujQ5e7mZ4lmEehxn7d1JC3fei9FhUSSsIZGD916QSCUbAW4V83pJsZOQYmcOjEQeHaBu
+ cEPSYPzMREJF8Vfw=
+X-Received: by 2002:a05:7022:4391:b0:137:100a:69ee with SMTP id
+ a92af1059eb24-137a88d30b5mr29349c88.7.1779993832622; Thu, 28 May 2026
+ 11:43:52 -0700 (PDT)
 MIME-Version: 1.0
+References: <20260528154709.824142-1-boyuan.zhang@amd.com>
+In-Reply-To: <20260528154709.824142-1-boyuan.zhang@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 28 May 2026 14:43:40 -0400
+X-Gm-Features: AVHnY4KgW0jEcwMqwQeCxxFfUJMXUzF4KCMRHay5Z4GIZdw-bfowNthrVp8HxzI
+Message-ID: <CADnq5_PN6a8yXbeCtA1a2DO9nXB0VVpBRDCKSQzHrPAe66UT_g@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu/vce: fix integer overflow in image size
+To: boyuan.zhang@amd.com
+Cc: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com, leo.liu@amd.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:00WSvhz+TDyJCaqT65o7CCHgLmuLFFgzuy688cx9TWJOtR7WSeO
- /Adyo5OULwI9pS52bPv4SUA+xnfypCdp6Ap7XbvO943ita7f6nia4PPRjIeQwCWBgDFgeZE
- Dx+dI77s4rKPl+okHBYsOvVZdhmys4xXyb8rdhhkXkTvHHJ22CBmNpvFjssCC8tfthZZxsC
- Mml2S5umvfUpB7S2Du8FQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:PbM6UiLJT3k=;vWaKiJNlmb0UTjzm/mzok9hxmZu
- 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
- yonhuA==
-X-Mailman-Approved-At: Fri, 29 May 2026 07:44:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,50 +106,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[web.de,quarantine];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[web.de:s=s29768273];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:mjguzik@gmail.com,m:tglx@linutronix.de,m:spasswolf@web.de,m:brauner@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-next@vger.kernel.org,m:linux-rt-devel@lists.linux.dev,m:linux-fsdevel@vger.kernel.org,m:adobriyan@gmail.com,m:jack@suse.cz,m:viro@zeniv.linux.org.uk,m:bigeasy@linutronix.de,m:alexander.deucher@amd.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:boyuan.zhang@amd.com,m:alexander.deucher@amd.com,m:leo.liu@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_COUNT_THREE(0.00)[3];
-	ARC_NA(0.00)[];
-	FREEMAIL_CC(0.00)[linutronix.de,web.de,kernel.org,vger.kernel.org,lists.linux.dev,gmail.com,suse.cz,zeniv.linux.org.uk,amd.com,lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[spasswolf@web.de,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[web.de];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_NONE(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[spasswolf@web.de,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[web.de:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 27B7C5FEBD9
+	FREEMAIL_FROM(0.00)[gmail.com]
+X-Rspamd-Queue-Id: 1FA2E5F69E8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Am Donnerstag, dem 21.05.2026 um 14:01 +0200 schrieb Mateusz Guzik:
->=20
-> So overall I think we are done here.
->=20
-> Thank you for testing and sorry for the breakage.
+On Thu, May 28, 2026 at 11:54=E2=80=AFAM <boyuan.zhang@amd.com> wrote:
+>
+> From: Boyuan Zhang <boyuan.zhang@amd.com>
+>
+> Fix a security vulnerability where malicious VCE command streams
+> with oversized dimensions (e.g. 65536=C3=9765536) cause 32-bit integer
+> overflow, wrapping the calculated buffer size to 0. This bypasses
+> validation and allows GPU firmware to perform out-of-bound memory
+> access.
+>
+> The fix uses 64-bit arithmetic to detect overflow and rejects
+> invalid dimensions before they reach the hardware.
+>
+> V2: remove redundant check
+> V3: modify max height value
+> V4: remove size64
+>
+> Signed-off-by: Boyuan Zhang <boyuan.zhang@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c | 16 +++++++++++++---
+>  1 file changed, 13 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_vce.c
+> index efdebd9c0a1f..d2f1a9a1d338 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+> @@ -877,9 +877,19 @@ int amdgpu_vce_ring_parse_cs(struct amdgpu_cs_parser=
+ *p,
+>                                 goto out;
+>                         }
+>
+> -                       *size =3D amdgpu_ib_get_value(ib, idx + 8) *
+> -                               amdgpu_ib_get_value(ib, idx + 10) *
+> -                               8 * 3 / 2;
+> +                       uint32_t width =3D amdgpu_ib_get_value(ib, idx + =
+8);
+> +                       uint32_t height =3D amdgpu_ib_get_value(ib, idx +=
+ 10);
 
-Just as a reminder, this has not been fixed in linux-next, yet,
-up to version next-20260528.
+Mixed declarations and code; older compilers will complain about this.
+With that fixed:
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-Bert Karwatzki
+> +
+> +                       if (width =3D=3D 0 || height =3D=3D 0 ||
+> +                           width > 4096 || height > 2304) {
+> +                               DRM_ERROR("invalid VCE image size: %ux%u\=
+n",
+> +                                         width, height);
+> +                               r =3D -EINVAL;
+> +                               goto out;
+> +                       }
+> +
+> +                       *size =3D width * height * 8 * 3 / 2;
+> +
+>                         break;
+>
+>                 case 0x04000001: /* config extension */
+> --
+> 2.43.0
+>
