@@ -2,132 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GCwUJSUCGGp+ZQgAu9opvQ
+	id 0IcICe1DGWrHuAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 10:51:49 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 09:44:45 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 016815EEF79
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 10:51:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A63FA5FEBC0
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 09:44:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A7CE10EE33;
-	Thu, 28 May 2026 08:51:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C69310FA40;
+	Fri, 29 May 2026 07:44:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="mDx9jMex";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="g3a498FF";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012008.outbound.protection.outlook.com [40.107.209.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16ACE10EE30;
- Thu, 28 May 2026 08:51:44 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hOFV+V8HZusRyP8tpNStWXebNvTa+oU9qirxmD/144pzbPW8Ro3KMc6LdbuO4mfvNTaw2Byt3k4RMPlC2pP0BRNmF4ojWx9579op0fNosNiUmDNSKc9M7OWLHPStT+4sw+Mns2h+RtzCsbX9x2kOELuMcfbObaMjaPTlaSS4SRkH5HogrtF5S4lMlR10AtUA/bsXo/8uDnCDCxop9VppIaqFz5Vgt3kIjEiGtncdy3s9lE4+Rf75uKjejv9Cw+bCyiwTutTxgc1BohAjYcdi8uu5AD2x4s6nL6r5d6JDeU//IgEx8gLpZIZu96XptgVBkYDGEo7XXU6YYTwZPyyxJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GvKSx5vAeKfMkQdR9ii0NLh1LBSjaCKhieKAiwSPlSE=;
- b=EDyw54qvj/STlDknnwGT8cKfqVi26H8DK8Tbi2cNljYASIlCTuuj0mTSbcJXTmeOKL9YWlFacekHfJgJcJO093Zr6klTVT9NdvuU+5AaaslzmQ9NZXXdswT2PJUivY5ySvNqibx5M0/2KxKPOMxtXiLRsiw6tMnDqslF1YGIesRmN6cSFrgdbzdVpvJNNcK+cTQr/tjNnsq7KNMAexDMLIvhtloQs54KTN5/BTYj/riDOpdhgqENg8j1G0IIjxsEV3WFArTKQDRdBOr7Y0tyY0kVEIPMWQd6uNNxCaq5ODNi90Fp3Ajk0NPqD4cI2D4Mbi/MlB75AyKX1g3hIyzZ/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GvKSx5vAeKfMkQdR9ii0NLh1LBSjaCKhieKAiwSPlSE=;
- b=mDx9jMexu9TvKqa1RY1nXuUIWnqSgb7ZTCd6OL9efGPlD9sW5xXD3fp9jj0MyKArJHHXcPFDpEIsX0CHUIKsGf8wmd0v/wfs3NQnUGUnNiTqE1uclsVq7p98Wpt4+x22Ro3fCgkhwRSWL2jl4suJDfEM4DiN62ZmwV1kE7NSJJk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CYYPR12MB8892.namprd12.prod.outlook.com (2603:10b6:930:be::12)
- by MN2PR12MB4455.namprd12.prod.outlook.com (2603:10b6:208:265::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.14; Thu, 28 May
- 2026 08:51:40 +0000
-Received: from CYYPR12MB8892.namprd12.prod.outlook.com
- ([fe80::62b0:b284:c9c6:c96]) by CYYPR12MB8892.namprd12.prod.outlook.com
- ([fe80::62b0:b284:c9c6:c96%4]) with mapi id 15.21.0071.011; Thu, 28 May 2026
- 08:51:40 +0000
-Message-ID: <8a1e73be-13a6-42af-8e1c-f38fdb60cbdf@amd.com>
-Date: Thu, 28 May 2026 16:51:36 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] drm/edid: extract base section header processing
- into helper
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Ray Wu <Ray.Wu@amd.com>, Limonciello Mario <Mario.Limonciello@amd.com>,
- Jani Nikula <jani.nikula@intel.com>
-References: <20260526030254.1460480-1-chen-yu.chen@amd.com>
- <20260526030254.1460480-2-chen-yu.chen@amd.com>
-Content-Language: en-US
-From: "Chen, Chen-Yu" <Chen-Yu.Chen@amd.com>
-In-Reply-To: <20260526030254.1460480-2-chen-yu.chen@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TYCP286CA0114.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:29c::12) To CYYPR12MB8892.namprd12.prod.outlook.com
- (2603:10b6:930:be::12)
+Received: from mail-yx1-f43.google.com (mail-yx1-f43.google.com
+ [74.125.224.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD34210EF50
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 10:01:10 +0000 (UTC)
+Received: by mail-yx1-f43.google.com with SMTP id
+ 956f58d0204a3-65e15fb394bso8880829d50.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 03:01:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779962469; cv=none;
+ d=google.com; s=arc-20240605;
+ b=apcLSeTp3uJlRToIolM7C6Ltr3Qe2JNzwxOz6q8D5hN4rqBzpmrZ94KnA+W3KvnorO
+ +Cas/cayY0tkqno1UWvDefmkg3XzTCHETlJDt735r84JYM5rqux1TTNzYcewQ+8EuPpR
+ AMyEe8eK2J/9FiEGOtToP9c4qzK10KOZVJANkx+phIxVmigD5+HyLezxDp0CFQdnRdT1
+ lFi3mC5hO5HrYoV1bZFYvANKnoyC++ESDudb7LSbeidzAILnKdLblyfYLDRSZIs2thXR
+ zj7z2mJ59d0QwR2dfyMOPxxT5WyYS3SZYWrtcnBAOEu97AD405BMSSC3+ZvUdFepObEy
+ EUQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=ENaGop7hdOhRvlo9/v6zprcr5Co1+opC5qv3HonlvMs=;
+ fh=Ca8+V5bvQf7cz/uQ/rOEXYD6EvMa4d0I040Bpe5rBS4=;
+ b=DpPGu0m0LFQO5/1G6pnckSAFP3WWTBmCnoADLb5Lk6kaARqofTIP7uJmnjamCtMVpT
+ m1FEO3fUj1bwco3Uo65yEXOQCp+tU4BKeofVCIPTVGEFEBdMbzOiCmoR9ChDCCwdaZN6
+ SvWmyX1+LRmgD7DtdD1+1aZ/YW9XIdUxjJIb9pXuyDo1o+Rfw0dsI2+Udy0qtQvffDmw
+ rDfWAB5s/OfprG7Ieg2Nm7VJ9jEk3jWMvlSXJlNp6PCjrASCzwjhSI14sYUl+/y/YbN+
+ Qu3a0mKqHqoYfUDu7hd1AEeorKJYHcsfW+BchszjzGWCZ4J54xcJN/R8YL8Hs/PdSrDq
+ 6Hdg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1779962469; x=1780567269; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ENaGop7hdOhRvlo9/v6zprcr5Co1+opC5qv3HonlvMs=;
+ b=g3a498FFqNwSL3udJYupbXixF1mM8SbJqcFdB0qUQFsl0RityJQbCYMCt+BgvOghcL
+ ZpenSjKsysi8tYOfPTVYgxKn78OXzgyDwSRsuBqiHsVmisand58F5nmOHnbqx7+f/TQq
+ 5LbTNF96HJ1NTQSGxbfKMV998TZEAY0kZzjvjA+yTdjR+QGaJMP+bGC8J/Qsj1B8ek2I
+ GP3ukQlZFIchWC937OP8wMEF9x3pPKfETmfJZGzKXsl5/sQ1F/+W1a9WpHOcXoDXJzUY
+ qy7t0gxORyd1Vq04esnvMJSN86X3r9NtEMqKm66AqNaFcD9nK1ZGwAtR4VIyHSK0XMuO
+ /wfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779962469; x=1780567269;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=ENaGop7hdOhRvlo9/v6zprcr5Co1+opC5qv3HonlvMs=;
+ b=ky/qieBTNFVRLbnzoWD846Ohhk2E15hFp7ehwW5TMEy6TH/x4y4dEyqZkXtoRcEEfZ
+ 1BUQZHrMHE7Y83Iyjt/DJzLLvpAsHw9kTzR1ETnLKriCGdGLGnZgWd2we9ij4MD0pPNa
+ Y3SuzTgxvQGm4f8idEOoouvV97t2rs6pjPE4b/URXikXwF16m3EbFouUxDDgL4hcNLla
+ wIaLXXRF6s1Yy/7WY/kAtIwSD5/frVjrYgPzWwpp/3fDFWawZOQeaMiLbYU2Bw9thms2
+ rSu6YmhVGb1xb32ZmOGdDkypbIHJN2e3tnHZFRZuylKHpJiYf6Le0/PR9wB2S4g75qbQ
+ Z+LQ==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ9PQiG7id04ugeuuwKayUHqPzBNgtTp2AmUIfy33tzKl0JytGclyLzW/yQBI2fkkXjnQAi6ZcEL@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyAd1aaeYq7w7msW1iroo2AsfB4oPxzeR9tNRj2AQZXpSwgyDus
+ 74ktmGZ8zLY8EjHKt+IDzZGT6y8RCeJun+7srDxJXbV65Wm1BjcjgBknDsObwky41yZw0xeDcWz
+ FvDw1jeU1mnKkDDDv+pvFePb2LzU4PJc=
+X-Gm-Gg: Acq92OFKbMUyzNjiuFDOMGIUHZlyqgiDyC+uj0URj3VDaOABCFAh90gMj9Ycbj2nFM/
+ tjR3moNBtkRAViJaZUUxp7FSX4VA2/Ao1EEKYGyG6LjzwrexIyiTpZYeVQe7K6Yt/p5QAvr6MJ4
+ 0Oi/n9/eoDmi+6/FkpYNrb5MThQjpip+cp4AHKOzTdmYCNyPf5mF0+iGCmEJum10KG3vqdtpWme
+ uZs8ekPLSxlI68DcqABAVZEk2efuzvDYQf9Nxq/eLiSsWZGO+D8ENwf7IqhiE4HOv49ERlp1uy+
+ /XumoQvL2ge7c5EOOvDJGnqxamWKFFnaeLi4Ih9XbU/EY32YppKvF7cci2JoF0/y5fN9DcisidJ
+ eUx6rpQ==
+X-Received: by 2002:a05:690e:4090:b0:65e:421f:25a with SMTP id
+ 956f58d0204a3-65ec9938b9dmr23205364d50.53.1779962469261; Thu, 28 May 2026
+ 03:01:09 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR12MB8892:EE_|MN2PR12MB4455:EE_
-X-MS-Office365-Filtering-Correlation-Id: 656ebfa9-3100-4b93-49ea-08debc9655c8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|22082099003|18002099003|11063799006|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info: 8gkNjgVqNfczbbCLYfy5lC/9ghaDgiXX0SgdiEMHF+AqzgOUHf8S8GCbUN7lCcSZSLc+NnKAivmHyg6NCYP2RWv4GyoSV5a7IXSGHFavxEKbiN+GjPJrYpA2+mq20kdDFBiMkF75yKShXqQtzWKHW5kNH3OwSZCABeD8xxwl58qvpuE0HMeWTcCxqliZfB8N+9bAxTLQJjv/ZEGIc3l0eNs+4CFLJG+figpZGEaLuOnRMthYXtb+w0fRTz/H0h+8IKdtgQrCMcksM8JHNGh09TYA70mTxr25qmYNwzz2yYlZlgM4lYUyyDJU2Aqe6SBYNtT5t09pbXTcFlvgHygBmyLrLUC7g632NKgL6WJAW2odWjEbSbR0YYT97aAH/cXy1m8yAkUlYfAkL9/yPtumRleTp3mNTx2GsOe+XplqJrQ57RUwuZ0b+uOUZvDMC3i1grtmo1zmFQWr1XRYzd7tgXuI/rauV5XkjDZ9ahPFilxX7MfoemgO6ZdKmztJ/69QDRtYh/zKQQznDYh3hV+as0+f8Qq4CK1K1P+PsjHIikMtSl/+ETt5SWKUei/BdwzWqmJ4h1L0yQfTMIu967bLZ6LIgm2F5gKTykBsuDj8sB1EcQ0GTgT5MZqio7NF1R4oQId3itzBzbkR3JL+37Mm/7nO1JBVz+nvphQi0W+BK+noBhW5EHM8ANKQhXhf0p4D
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR12MB8892.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(22082099003)(18002099003)(11063799006)(4143699003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MitWdEFzbjdkK3B4WkxHREZnRytDWGJNRzk1c2wxSjByS1oyeGZ2YjgrWFdw?=
- =?utf-8?B?UGtOUjY5cDE1Y01KTjZpbDJWSVZpTW9uWkt3eEViL09qZEVwRjAwdUhCT054?=
- =?utf-8?B?TEIvd2pKZjRjbnBPZHkrdGNWM2I1V0QzNjd3c3YzbXgxVTFRWEZtUjZhT284?=
- =?utf-8?B?NE5LZFdDVGpmemdCQXVCZ0VoeFFEV016RnlZSllBWENhUlpLeFZPUmxlWlBx?=
- =?utf-8?B?QzNnRFhxekNnMFdyQk9kczN5U3lsK2VNYnhLMCszMWUxcmNxMTZoaWJGVUE5?=
- =?utf-8?B?RTVPWjAzSllNV0UxY3FvN1FobzlLeE8rZkNHdkovLzMrS1FvOStWUUNpL21S?=
- =?utf-8?B?c3dWY2N3dmxiMUc1UUZraWtkTGYzK2pWNFF5Qk5TdVNLYVZwN2Zjc2lCb2pl?=
- =?utf-8?B?ZFJ3YmlkMmRXMVRLa1EybVJGNDdJQlJGS0JpQWVNL1ltaXRidit5a2NnUTdO?=
- =?utf-8?B?Zy9UZkRITzVXSFJkZ09Sbk5qT0ZGaEMwVHVqUHdpbzVTa3FTUWFZOWdCcXlo?=
- =?utf-8?B?aW1FWjkvbEFQSFhmSnl3bUZxZlZ4YW1NN2txS3N1dU9yTEhlUnoxcUh6cEFD?=
- =?utf-8?B?UWtpMWw3RU55UlF5dSswY1FoYlVpTjFwcnlBYUFpK0tGM1hTOXBDZHNkT3ps?=
- =?utf-8?B?WjBTYW5iYnU3M2lWQ0JOeHNGMFlQcVhHdWw3MzdKRjhNb2Rmam8wWUE4aUh2?=
- =?utf-8?B?aDBFdS9oWHZOcitCY1lMR3MxWk5LbHlhVGt5aEpUYzg2Q2JiQ1BOMmt1TDM2?=
- =?utf-8?B?bittMmJkRmF1Y3QyMmpMb2FKYk9EVEo0LzhLOW1tdzZQMUZWS2VQN01JdGZ2?=
- =?utf-8?B?ZTVpclVVdGp4Q0ZJTWw5anB5YU1HeEkzdHpnUW9lQVBJTVovRWNIMytucUND?=
- =?utf-8?B?czlmNWZ4d2FhdFprd2poVzJ4cWlVcGJ1NlVwbHlHZk9wb0FVSWcyeDgzWFhh?=
- =?utf-8?B?OGtXY2FVdDRNN0V5V3RFMEVQdHlybTFvQzdNUTR3Q213M0owcnRHalNETTdN?=
- =?utf-8?B?b1BKQ0tpV1ZtR0FlRTVDSzB0ellZWitydmhjQjRvT3ZVazZyb1dnQXdPa0RL?=
- =?utf-8?B?T0hYa0ZZOXFDdjIrcG0yQW5zaEFVZi85ZXBOQ0JXRnAvMTFKTzdVSHRMT1hs?=
- =?utf-8?B?L245ZUp5Ymp1c2dNZ2RvMXpWTUkrTXowZXRVdjNnazBqRkVaQldiYkhkbXdY?=
- =?utf-8?B?VitWVFhuUFNCR1BOYmZ2blBVeVM5TjNFUkFITGtOdXFKL0pvUG9zN3FyUTFT?=
- =?utf-8?B?RXdmdmtmbjQzeFJLV3hoeGR4RFhVYngwQVY0dkZXWDJkNG53U2dYRUZJWGQ4?=
- =?utf-8?B?R2ZONi9JZUZtWkhTZk05UnNMd0xFcUhaWU9BOU1rcDZaMDVkcjJDWWhwWEJt?=
- =?utf-8?B?WktYcjZHbmY3RU5YQjNzYUpJRFdHYmxRdzVvK2grVEdGdFhSM0Q3NEZybmk3?=
- =?utf-8?B?dUZxRS9rbkk1Wm12cDNoc25XelVLaTdHY21yeGRacmFpU2hWVFRLeG5UaHFL?=
- =?utf-8?B?a3RRNGlORkNtRld2UTdhbUZXTzh5bWNEWXdta2tnQ05sZUt5djJqanYrenNJ?=
- =?utf-8?B?c082MEhZWHltUnduSVJRN2Nqb3dGSTU5bmxkNFJ5OWZQQ0F4VnFGdURhUDVy?=
- =?utf-8?B?Z2JHbk9RSTJjMmNORTYzMFhxV1pyYkk2ODBmQWtNOHRJTUo4Y2RJV2hEQ1VB?=
- =?utf-8?B?SGpKUkt0VW05dTI5RktxK1AydDhZc1hQSENEQVJ2cFA5eXRMUjI1ZDl5clFM?=
- =?utf-8?B?b1MveFIvTCtubzdSWWNBOWFHMm9DV1libDA3QmU3bG8vYlpTbTNiaVRqN09n?=
- =?utf-8?B?WmErcVNYNlVvRVBnNG1nSmcwMWZIUVBNRU1QVklqK3ozSGswODA2c3FKaVBj?=
- =?utf-8?B?aUVUUnZGbGFOK1RpcU5sSk9OYUNOVzh4WUltbHplb0dxT3FtQ1p5Rmhjejhs?=
- =?utf-8?B?VDB3L0QvanVKWTVDTDNBOFR5Z09OK2ViQlJHTk01dS9rVTFLQjRIWTF1WW1K?=
- =?utf-8?B?b0JVSWpIU0hNUTllVjRNWlUxOWcxN0ZJWStyUlZWd0Y4Nll3OFdYUW9HUFll?=
- =?utf-8?B?ejNjek56cENiT085WXd0c0lWTkF0RGl5UE9mbWF3WXVpUHNsaENtU0toWlQv?=
- =?utf-8?B?dlk0ejhFK2xIejVSNWxUdlRMRS9PUzJCekhVdm92b0M4VkF4RFJJbTB1eld4?=
- =?utf-8?B?eEhTY2lFdWpMM0dQd3JmMnFUOURLR2FNZDJlU0cvb0ZZWCtZTElaNDZWSEhm?=
- =?utf-8?B?cHRtRS9PV0twK1k1aVEzYmx0Z3hsdHhqTnhoOE1tSkxVYmtpcHUrNGxoSmo1?=
- =?utf-8?B?NEdSeldHMkJ4OFZ3bUFJdmZvZUVlYmpzTGdjMGFQanloNzNmVndtQT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 656ebfa9-3100-4b93-49ea-08debc9655c8
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR12MB8892.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 08:51:40.6718 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: G9W+eES4fd7DM4B9j44P7hGpNWmowgXug4eA6ibjfoD3dIgPj81Eduz8Y8oX2YE3T9+1VFCIh2Dm0rYcJ5A1GQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4455
+References: <20260527133917.207150-1-tzimmermann@suse.de>
+ <CAHijbEVZBRTK7yhZy8gaZwb19JMzUD_nA2S1LOKX2NrK19RBsQ@mail.gmail.com>
+ <1d399c2d-b50f-4d19-8170-9db8961e4227@suse.de>
+In-Reply-To: <1d399c2d-b50f-4d19-8170-9db8961e4227@suse.de>
+From: Julian Orth <ju.orth@gmail.com>
+Date: Thu, 28 May 2026 12:01:01 +0200
+X-Gm-Features: AVHnY4Kd6TXNqqh3i-IesxOIMTyuSSIzXsJX_ARE_lWWTyd_wM1yd783Bw12QD0
+Message-ID: <CAHijbEUKpOuDLJES9AbSp8Pk+egeDPe7KPyBy1xBFM9ET9peCg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/9] drm: Limit DRM_IOCTL_WAIT_VBLANK to vblank
+ interrupts
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: simona@ffwll.ch, airlied@gmail.com, mdaenzer@redhat.com, 
+ pekka.paalanen@collabora.com, jadahl@gmail.com, contact@emersion.fr, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, mhklinux@outlook.com, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ wayland-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org, 
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 29 May 2026 07:44:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,115 +118,209 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Chen-Yu.Chen@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS(0.00)[m:tzimmermann@suse.de,m:simona@ffwll.ch,m:airlied@gmail.com,m:mdaenzer@redhat.com,m:pekka.paalanen@collabora.com,m:jadahl@gmail.com,m:contact@emersion.fr,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:mhklinux@outlook.com,m:dri-devel@lists.freedesktop.org,m:wayland-devel@lists.freedesktop.org,m:linux-hyperv@vger.kernel.org,m:virtualization@lists.linux.dev,m:spice-devel@lists.freedesktop.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+]
-X-Rspamd-Queue-Id: 016815EEF79
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[juorth@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[juorth@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[ffwll.ch,gmail.com,redhat.com,collabora.com,emersion.fr,linux.intel.com,kernel.org,outlook.com,lists.freedesktop.org,vger.kernel.org,lists.linux.dev];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,mail.gmail.com:mid,suse.com:url]
+X-Rspamd-Queue-Id: A63FA5FEBC0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Jani,
+On Thu, May 28, 2026 at 9:54=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse=
+.de> wrote:
+>
+> Hi
+>
+> Am 27.05.26 um 18:31 schrieb Julian Orth:
+> > On Wed, May 27, 2026 at 3:39=E2=80=AFPM Thomas Zimmermann <tzimmermann@=
+suse.de> wrote:
+> >> DRM's WAIT_VBLANK ioctl synchronizes user-space clients to display
+> >> refresh. This is meaningless with vblank timers, which run unrelated
+> >> to the hardware's vblank.
+> >>
+> >> Disable the ioctl for simulated vblanks. Set DRM_VBLANK_FLAG_SIMULATED
+> >> for CRTCs with simulated vblank events in all such drivers. The vblank
+> >> timers of these devices still rate-limit the number of page-flip event=
+s
+> >> to match the display refresh.
+> >>
+> >> According to maintainers, user-space compositors do not require the io=
+ctl
+> >> for rate-limitting display output. Weston, Kwin and Mutter rely on com=
+pletion
+> >> events. Mutter optionally uses the WAIT_VBLANK ioctl only to optimize =
+the
+> >> time from input to output.
+> >>
+> >> When testing with mutter and weston, the page-flip rate appears correc=
+t
+> >> with the patch set applied.
+> > To avoid this being a regression, you need to test that this change
+> > does not regress input latency.
+>
+> Let me stress that the current situation is that there's high-quality,
+> and low-quality and no timing information. Depends on the driver and
+> hardware.
+>
+> >
+> > As discussed on IRC, compositors use vblank data to predict the time
+> > of the next flip event. For each device that you are touching here,
+> > there are two possibilities:
+> >
+> > - The vblank data is related to the flip timing, i.e. flip events and
+> > vblank events are sent at almost the same time. In this case removing
+> > these apis removes the path for compositors to predict the time of the
+> > next flip event. Input latency will therefore regress after idle
+> > periods when the compositor no longer has the time of the last vblank.
+>
+> User-space compositors seem to operate under this assumption. That, I
+> think, makes sense on better hardware with rendering and vblank IRQs.
+> Page flips are fast on such systems.
+>
+> >
+> > - The vblank data has nothing to do with the time of the next flip
+> > event. In this case this series could in fact improve latency because
+> > it removes the incorrect data from the compositor.
+>
+> Most of the hardware that would use vblank timers falls in this
+> category. Page flips often consist of memcpys into video memory, or they
+> transfer pixel data over slow peripheral busses. The amount of work per
+> page flip varies with the size of the damage rectangles.
+>
+> Any vblank timing information here is therefore of low quality. For some
+> scenarios, it would be common to miss a vblank or even the one after it.
 
-I'm not sure why I didn't receive the cover letter, so I'm replying to this email.
-Do you have any comments on PATCH v3, or does it look good to you?
+What matters is if the flip event will be aligned to _some_ vblank
+event. As long as that is the case, the compositor can estimate which
+vblank it will hit based on previous frames and can schedule its work
+accordingly. I believe KWin and Mutter already support scheduling
+frames for multiple vblanks in the future to support low-powered
+devices or devices that are under high load. I have not looked into
+this myself.
 
-Regards,
-Chenyu
+But even on high-powered devices compositors already take per-commit
+kernel work into account. For example, by default I aim to commit 1.5
+ms before vblank. This grace period is adjusted dynamically if I miss
+the expected vblank.
 
+Therefore I don't think this is an argument against exposing vblank
+info. Even if the hardware had such an interrupt, the memcpy and
+slow-bus issues would continue to apply.
 
-On 5/26/2026 10:59 AM, Chenyu Chen wrote:
-> Extract the DisplayID base section header logging and non_desktop
-> detection from update_displayid_info() into a dedicated helper,
-> drm_displayid_process_base_section_header(). Remove the break so the
-> iterator walks through all data blocks, preparing for future patches
-> that will parse additional block types within the loop.
-> 
-> The helper is called only once for the base section via a
-> base_section_header_processed flag. Since version and primary_use are
-> only captured from the base section, and extension sections carry a
-> primary use of zero per spec, the non_desktop logic is unaffected.
-> 
-> No functional change.
-> 
-> Assisted-by: Copilot:Claude-Opus-4.6
-> Signed-off-by: Chenyu Chen <chen-yu.chen@amd.com>
-> ---
->  drivers/gpu/drm/drm_edid.c | 37 +++++++++++++++++++++----------------
->  1 file changed, 21 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 8031f021d4d0..7ad3f939dbe6 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -6715,30 +6715,35 @@ static void drm_reset_display_info(struct drm_connector *connector)
->  	memset(&info->amd_vsdb, 0, sizeof(info->amd_vsdb));
->  }
->  
-> +static void drm_displayid_process_base_section_header(struct drm_connector *connector,
-> +						      const struct displayid_iter *iter)
-> +{
-> +	struct drm_display_info *info = &connector->display_info;
-> +
-> +	drm_dbg_kms(connector->dev,
-> +		    "[CONNECTOR:%d:%s] DisplayID extension version 0x%02x, primary use 0x%02x\n",
-> +		    connector->base.id, connector->name,
-> +		    displayid_version(iter),
-> +		    displayid_primary_use(iter));
-> +	if (displayid_version(iter) == DISPLAY_ID_STRUCTURE_VER_20 &&
-> +	    (displayid_primary_use(iter) == PRIMARY_USE_HEAD_MOUNTED_VR ||
-> +	     displayid_primary_use(iter) == PRIMARY_USE_HEAD_MOUNTED_AR))
-> +		info->non_desktop = true;
-> +}
-> +
->  static void update_displayid_info(struct drm_connector *connector,
->  				  const struct drm_edid *drm_edid)
->  {
-> -	struct drm_display_info *info = &connector->display_info;
->  	const struct displayid_block *block;
->  	struct displayid_iter iter;
-> +	bool base_section_header_processed = false;
->  
->  	displayid_iter_edid_begin(drm_edid, &iter);
->  	displayid_iter_for_each(block, &iter) {
-> -		drm_dbg_kms(connector->dev,
-> -			    "[CONNECTOR:%d:%s] DisplayID extension version 0x%02x, primary use 0x%02x\n",
-> -			    connector->base.id, connector->name,
-> -			    displayid_version(&iter),
-> -			    displayid_primary_use(&iter));
-> -		if (displayid_version(&iter) == DISPLAY_ID_STRUCTURE_VER_20 &&
-> -		    (displayid_primary_use(&iter) == PRIMARY_USE_HEAD_MOUNTED_VR ||
-> -		     displayid_primary_use(&iter) == PRIMARY_USE_HEAD_MOUNTED_AR))
-> -			info->non_desktop = true;
-> -
-> -		/*
-> -		 * We're only interested in the base section here, no need to
-> -		 * iterate further.
-> -		 */
-> -		break;
-> +		if (!base_section_header_processed) {
-> +			drm_displayid_process_base_section_header(connector, &iter);
-> +			base_section_header_processed = true;
-> +		}
->  	}
->  	displayid_iter_end(&iter);
->  }
+>
+>
+> IMHO, the first thing to discuss is whether having possibly low-quality
+> timing information is preferable to having either high-quality timing or
+> none. I have no strong opinion, but would tend to the latter.
 
+If you want to make userspace aware that vblank events are not backed
+by hardware interrupts, then maybe this could be exposed as a driver
+cap or a flag in the vblank event. Userspace could then decide on
+their own what to do with that information.
+
+Currently I don't think any compositor would use that information
+since they target flip times and don't care if those times are driven
+by hardware or software (since this is not actionable by userspace
+anyway). So maybe the useful flag would be "flip times will not be
+aligned to any vblank event" if that applies to any driver.
+
+>
+> Best regards
+> Thomas
+>
+>
+> >
+> > Whether the times of the flip events correspond to hardware timings is
+> > not relevant. Everything in wayland compositors is scheduled against
+> > flip event timings and they are also forwarded to clients for their
+> > frame scheduling. If the flip timings are wrong/out of sync with the
+> > hardware, then removing the vblank apis does not improve this
+> > situation.
+> >
+> >> This change has been discussed at length on IRC recently.
+> >>
+> >> https://people.freedesktop.org/~cbrill/dri-log/?channel=3Ddri-devel&hi=
+ghlight_names=3D&date=3D2026-05-08&show_html=3Dtrue
+> >> https://people.freedesktop.org/~cbrill/dri-log/?channel=3Ddri-devel&hi=
+ghlight_names=3D&date=3D2026-05-12&show_html=3Dtrue
+> >> https://people.freedesktop.org/~cbrill/dri-log/?channel=3Ddri-devel&hi=
+ghlight_names=3D&date=3D2026-05-13&show_html=3Dtrue
+> >> https://people.freedesktop.org/~cbrill/dri-log/?channel=3Ddri-devel&hi=
+ghlight_names=3D&date=3D2026-05-15&show_html=3Dtrue
+> >>
+> >> v2:
+> >> - add filter to CRTC_GET_SEQUENCE and CRTC_QUEUE_SEQUENCE ioctls (Mich=
+el)
+> >> - clarify Mutter's behavior in cover letter (Michel)
+> >>
+> >> Thomas Zimmermann (9):
+> >>    drm/vblank: Add drmm_vblank_init() to indicate managed cleanup
+> >>    drm/vblank: Add DRM_VBLANK_FLAG_SIMULATED
+> >>    drm/amdgpu: vkms: Set DRM_VBLANK_FLAG_SIMULATED
+> >>    drm/bochs: Set DRM_VBLANK_FLAG_SIMULATED
+> >>    drm/cirrus: Set DRM_VBLANK_FLAG_SIMULATED
+> >>    drm/hypervdrm: Set DRM_VBLANK_FLAG_SIMULATED
+> >>    drm/qxl: Set DRM_VBLANK_FLAG_SIMULATED
+> >>    drm/virtgpu: Set DRM_VBLANK_FLAG_SIMULATED
+> >>    drm/vkms: Set DRM_VBLANK_FLAG_SIMULATED
+> >>
+> >>   drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c    |  3 ++-
+> >>   drivers/gpu/drm/drm_vblank.c                | 26 +++++++++++++++----=
+--
+> >>   drivers/gpu/drm/drm_vblank_helper.c         |  2 +-
+> >>   drivers/gpu/drm/hyperv/hyperv_drm_modeset.c |  2 +-
+> >>   drivers/gpu/drm/qxl/qxl_display.c           |  2 +-
+> >>   drivers/gpu/drm/tiny/bochs.c                |  2 +-
+> >>   drivers/gpu/drm/tiny/cirrus-qemu.c          |  2 +-
+> >>   drivers/gpu/drm/virtio/virtgpu_display.c    |  2 +-
+> >>   drivers/gpu/drm/vkms/vkms_drv.c             |  4 ++--
+> >>   include/drm/drm_crtc.h                      |  2 +-
+> >>   include/drm/drm_device.h                    |  2 +-
+> >>   include/drm/drm_vblank.h                    | 15 +++++++++++-
+> >>   12 files changed, 45 insertions(+), 19 deletions(-)
+> >>
+> >>
+> >> base-commit: 5fb5a9a63cf5ece68e0eeb6fa397da27712bccf0
+> >> --
+> >> 2.54.0
+> >>
+>
+> --
+> --
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Frankenstr. 146, 90461 N=C3=BCrnberg, Germany, www.suse.com
+> GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG N=C3=
+=BCrnberg)
+>
+>
