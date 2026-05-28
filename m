@@ -2,104 +2,132 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YHjFDN8YGGoBdQgAu9opvQ
+	id cJFEFOdDGWrHuAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 12:28:47 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 09:44:39 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B21E05F0922
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 12:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC77E5FEBAA
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 09:44:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B41B10EFA8;
-	Thu, 28 May 2026 10:28:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80F7610FA3B;
+	Fri, 29 May 2026 07:44:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hkcjkFbn";
+	dkim=pass (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="VpmNhuTd";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012013.outbound.protection.outlook.com
- [40.93.195.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A817110EFA8
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 10:28:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vVMO4RquQCHsd1vJudrSUypcYLCKgN41flkBgwDBcJ8xnzpO6WA8gndF+NVdqc5zlB8j2qihycGwqJgA2rdST76OvRQP0EkBKnFpTixfntKhppu4HIUkmKhGTNgvTUYLAhy6R5lhVpzPK259oWaLD9U5KTBFqXgF7BbNgjjbi4vxIvTbUnmZ3n+YD0aOJHwcfAVjbNExmUEpgAtAQrKYiOWCGfItr4esphbCdblkUobvnm9xHyxbLwt9BdS3bsZHWsWdICE225r1xE8lsXr/exrmZfOW5NVvcgjclxXQk1tuZnieFf9/yH/PC4g2/g8kWUAa37mjaj6AF8r4VgT6xw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9SY5ZXkMXOVp9sUahzcmcU8syQ9EX2jP7hdZKSuLYKc=;
- b=braJYYuJANrz2/rm/infNXcEjylCxg5ys8sdkB4hGwWMg/Rr99OgmnJxsNwvfoZ9itDvKJmRcA1gcEXpunESjQWrnqP4iYbLCDd1YI7lTUPSaofTZwMPxaTYnjuOaQ9EUyXXsqooWZR6rl0W1HCN802A5a7iTENT9ZcscEtVHQ0psOnJA2172nEy5NwSgY61F6j7kSDZ/OciBWkawWR2q5C4f4v1xX8HVjXO8A2yEbL+hDAr8VLxJfbQVranU8Z/eo8iFTxfAfruIBMnD/0BnbwdlDaqnzkrCMzIqpzccWtlFKPS6Fm4BmBKHbeC6qevP7E+kUWqjPxBf6S2eoHuhQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9SY5ZXkMXOVp9sUahzcmcU8syQ9EX2jP7hdZKSuLYKc=;
- b=hkcjkFbnGpxDkKffSdXmAI4k1sPs8nSHennsA+c0M5+vNhoaj5+bvauxMk/3a+HgZvS4NsRTQyQe1hc7CG3XGWABMwPC6nLBSMXbVWqVbWG/HfYq1b+lgt7OKrOaK99Hohuesfi2DOZISupR7rw0j3iYNO1qMzqcdglJGLuPsBw=
-Received: from DS7PR03CA0304.namprd03.prod.outlook.com (2603:10b6:8:2b::16) by
- IA1PR12MB6602.namprd12.prod.outlook.com (2603:10b6:208:3a2::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.71.13; Thu, 28 May 2026 10:28:37 +0000
-Received: from DS1PEPF0001709C.namprd05.prod.outlook.com
- (2603:10b6:8:2b:cafe::3e) by DS7PR03CA0304.outlook.office365.com
- (2603:10b6:8:2b::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.12 via Frontend Transport; Thu, 28
- May 2026 10:28:37 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- DS1PEPF0001709C.mail.protection.outlook.com (10.167.18.106) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.92.5 via Frontend Transport; Thu, 28 May 2026 10:28:37 +0000
-Received: from fedora.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 28 May
- 2026 05:28:35 -0500
-From: Zhu Lingshan <lingshan.zhu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <Alexander.Deucher@amd.com>
-CC: <Christian.Koenig@amd.com>, <Ray.Huang@amd.com>, Zhu Lingshan
- <lingshan.zhu@amd.com>
-Subject: [PATCH V2] drm/amdgpu: implement per-process MES context
-Date: Thu, 28 May 2026 18:28:22 +0800
-Message-ID: <20260528102822.20368-1-lingshan.zhu@amd.com>
-X-Mailer: git-send-email 2.54.0
+Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
+ [46.38.247.119])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A846110F03D
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 11:17:16 +0000 (UTC)
+Received: from mors-relay-8404.netcup.net (localhost [127.0.0.1])
+ by mors-relay-8404.netcup.net (Postfix) with ESMTPS id 4gR3q80p7Dz86j3;
+ Thu, 28 May 2026 13:17:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
+ s=key2; t=1779967028;
+ bh=t4MwfkzG0d4WtyKv3QbXG+UR8CR6zeiN3ZL2lNK0h4Q=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=VpmNhuTdoynqjYo8z5kExba4HwusEPqN+HQTRLp07KrzZgQ9ZVzgsjEEAWVy0k4ru
+ BUszghD7KR/zSz66QtgiJjjgRHFJWz93SRQVTpUdKItBPU4yo+aFK4XrZz5SkUPw6y
+ hWkFGXtKtk7JoiO2wiEsG+A47yeegUQ7vKJdS4laXHitWrEQityopn6MuAfaI/K9LE
+ huLdGV7uo8mFkJcv8+szyDueRFCcP9sFi4UJCV+SNB6BOVOVxPnKxWQoNOHh4f2mOq
+ 91LLZ5p0oMHZ5PmGc3AaIQQnudB3jtjdmYd9UaBdhIzzhaeWRgJdbOW1FVQYlzFlQh
+ mOW8iLYdHzTcg==
+Received: from policy01-mors.netcup.net (unknown [46.38.225.35])
+ by mors-relay-8404.netcup.net (Postfix) with ESMTPS id 4gR3q80568z4xYl;
+ Thu, 28 May 2026 13:17:08 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at policy01-mors.netcup.net
+X-Spam-Flag: NO
+X-Spam-Score: -2.898
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.898 required=6.31 tests=[ALL_TRUSTED=-1,
+ BAYES_00=-1.9, SPF_PASS=-0.001, URIBL_BLOCKED=0.001,
+ URIBL_DBL_BLOCKED_OPENDNS=0.001, URIBL_ZEN_BLOCKED_OPENDNS=0.001]
+ autolearn=ham autolearn_force=no
+Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by policy01-mors.netcup.net (Postfix) with ESMTPS id 4gR3q66FRMz8tbj;
+ Thu, 28 May 2026 13:17:06 +0200 (CEST)
+Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
+ [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
+ by mxe9fb.netcup.net (Postfix) with ESMTPSA id 07DB460150;
+ Thu, 28 May 2026 13:17:05 +0200 (CEST)
+Authentication-Results: mxe9fb;
+ spf=pass (sender IP is 2a02:8108:8984:1d00:a0cf:1912:4be:477f)
+ smtp.mailfrom=regressions@leemhuis.info
+ smtp.helo=[IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f]
+Received-SPF: pass (mxe9fb: connection is authenticated)
+Message-ID: <1c522568-1d5e-4210-8f25-1aa96e0d3c3a@leemhuis.info>
+Date: Thu, 28 May 2026 13:17:05 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [External Mail] Re: Test result / finding of "drm/amd/display:
+ Consult MCCS FreeSync cap only if requested & supported"
+To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
+ Pei-Hsin Yang <peihsiny@valvesoftware.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Linux kernel regressions list <regressions@lists.linux.dev>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+References: <44069eb146824aa195312f5b02c49287@valvesoftware.com>
+ <7a9021cd-fd78-4b0d-846b-135d0d72224e@mailbox.org>
+ <16231b1742004f848af243ce398281ec@valvesoftware.com>
+ <ce51243c-3b98-4f99-911f-70dd0b860da0@mailbox.org>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+Content-Language: de-DE, en-US
+X-Enigmail-Draft-Status: N11222
+Autocrypt: addr=linux@leemhuis.info; keydata=
+ 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 MEK4
+In-Reply-To: <ce51243c-3b98-4f99-911f-70dd0b860da0@mailbox.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0001709C:EE_|IA1PR12MB6602:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e38ec7c-dfcb-40a7-9703-08debca3e10d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|82310400026|376014|1800799024|11063799006|56012099006|18002099003;
-X-Microsoft-Antispam-Message-Info: n/Z5QDYC323qkG1U8P833lgINwR+xVlI7Bj/SQ0f//+gmKRdK/iBEJRbfGPYU2yfTLr6BIV1Kpc/SSc2pwljIJwgjKYIFQIuik0HrnThFP6Aqzv++51uot9WeW6+9QThPJnEHdtjgNSqHM7BN0uJaXdiqZ2ycUULVazXqcKJJEiE5FgRoGVDXAKCudRM77bYryS26rXcgtlq6YCMlI9yBxUGWDniWiWTomy85eNZgrfwqUtarYCiS3cwpYcohgvanEHrlia/banlhmqF7RYDmAG/rr/fT3zjpqunO4c56X5VB6nMG/wjIs30SctX+sx40s3z0fgfdwlGdGEoH2z/XLRtu0L4CQqUqBUin6039EvJeyB0eTMoUIiLfFH/mK9VKID2vN0HzXsUmT0taaKoOCxx6BXVISMvsk/rCPNv0tk9sWKJs3s3fl/x/lMj+7Q4ikRnM9RhGW/POKgzRkH6QVIBLiK7+4Zxt+/jEP+DM0Mr/AM9BGLClstbn5KS3KGXxJUrtPPKzKUrrSp6Eu+bwRbRGOd6UgXk1DSTNAOhS8FMD2sdu+pRajtF0S3YiIUfMEtI/b7jFqAJptX7jZJfvvVmfgXrcTupqCAxtXE5em1bEryQGbETREOJ9dAUDPzgBFPYqcnsqmCb9xemupMdj3aYYK2GWKzTKFWGFXdM1i++p3puoK7ZcgZ4gp7mI7MjOIio1rD3v8/A09fBS9k7+vP4hIfs2QhUAUR2cCWe9qQ=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(82310400026)(376014)(1800799024)(11063799006)(56012099006)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 3Zlso1WPqmNOBHJ2hZmQZtI6sE2NC8L1qGHJK25uh3q1OAaUOVyR/MtjfkcUAvvY3Hyw1F9mJBv7t0G3cvWnKlVLaWCHffZjIo6HeInl73jGBfzTAWHMulAIsW8EnG0QXn1edGfYP6C82ZBuIa+eExBG378ZQngBVS1LKJPzQA6d+QXYBHalbQbhxfyYtiNLA3rtUs8hREgLcY96eoV7ruYEgmowagnDDrZ75Jo5bT8ov49i3x5ddlIcRKgtyA43yI64gjvolGn8z9awLZgHxQ8sXUjiO17LVV6EDXOp3EZGUbY6y4V7CXtr/oxvNA/mjxs0HDPGQcWxBJ4Cp1ukic8GeD3qriJI9VWiLeAy79w48lui/iRUVNnHr+ZR7y6iEoxswdy7dcjJ0vdAzyooio5yKpDdP5S9Xh8qjLXW0eNZudEu8E12zGcplfyryH+L
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 10:28:37.3839 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e38ec7c-dfcb-40a7-9703-08debca3e10d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0001709C.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6602
+X-PPP-Message-ID: <177996702631.3775691.10510101217118724061@mxe9fb.netcup.net>
+X-NC-CID: VT+3wFD0GlzxeSD2mIUc2r9Ft2dbk6T9azLuPB/KJWJySk6S9N4=
+X-Mailman-Approved-At: Fri, 29 May 2026 07:44:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,207 +142,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:michel.daenzer@mailbox.org,m:peihsiny@valvesoftware.com,m:regressions@lists.linux.dev,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
+	DMARC_NA(0.00)[leemhuis.info];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
+	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[leemhuis.info:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[lingshan.zhu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,amd.com:mid,amd.com:dkim]
-X-Rspamd-Queue-Id: B21E05F0922
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: BC77E5FEBAA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-MES process context is a process-level page
-where process specific context is saved for
-MES scheduler.
+[+Alex +Christian]
 
-However, current user-queue code path assigns
-fw_obj of a queue to MES process_context_addr
-when adding the queue to MES.
+On 5/21/26 09:09, Michel Dänzer wrote:
+> On 5/20/26 17:54, Pei-Hsin Yang wrote:
+>>
+>>> Tested with 3 HDMI sinks with different FreeSync/HDMI VRR capabilities.  I saw one case that a FreeSync sink (Dell S2721HS) with E6h VCP code supported was detected as FreeSync capable at beginning but identified as not FreeSync capable later – after do_mccs is changed from true to false.
+>>
+>>>> And that doesn't happen without my patch applied?
+>>
+>> There are other issues without your patch applied.   One issue is that if a FreeSync capable sink with MCCS VCP Code = 0 (mostly are TVs), it will be detected as not FreeSync supported and VRR will be disabled.
+> 
+> That sounds similar to https://gitlab.freedesktop.org/drm/amd/-/work_items/5286 .
+>
+> I was wondering if the specific issue you described above with Dell S2721HS is reproducible without my patch though, in which case it might be a separate regression (and wouldn't speak against merging my patch).
+> 
+> 
+>>>> TBH I don't really want to be fixing the regression I hit, I'd prefer the AMD display team to handle it.
+>>
+>> Yes, agreed.  As FreeSync MCCS support has immediate impacts to Valve's Steam devices, I will work with AMD display team to handle it.   HDMI 2.1 VRR and VTEM packet sending support need to be included as well.
+> 
+> Note that some kind of short-term solution is needed for the regression(s) in 7.1-rc.
 
-This means every new queue from the same process
-would replace the previous process context address
-with that queue's fw_obj address.
-What's worse is, when user space frees a queue,
-its fw_obj will be freed as well, causing MES
-working on a NULL page pointer.
+Yeah, that would be good. Makes me wonder how the rough plan to realize
+this looks like? Sounds like Michael's patch[1] that was discussed here
+is not a good option? Reminder, Linus ideally wants known regression
+fixed by -rc6, which is why I'm asking.
 
-This issue leads to inconsistency and crash
-in the scheduler.
+Ciao, Thorsten
 
-This commit allocates a process-level page for
-MES process contexts for a process other than queue-level
-
-Signed-off-by: Zhu Lingshan <lingshan.zhu@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c  |  6 +++
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  |  2 +
- drivers/gpu/drm/amd/amdgpu/mes_userqueue.c | 52 +++++++++++++++++-----
- 3 files changed, 48 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index 38e310a8694d..951d5da850be 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -1172,6 +1172,7 @@ int amdgpu_userq_mgr_init(struct amdgpu_userq_mgr *userq_mgr, struct drm_file *f
- 	xa_init_flags(&userq_mgr->userq_xa, XA_FLAGS_ALLOC);
- 	userq_mgr->adev = adev;
- 	userq_mgr->file = file_priv;
-+	mutex_init(&userq_mgr->proc_ctx_lock);
- 
- 	INIT_DELAYED_WORK(&userq_mgr->resume_work, amdgpu_userq_restore_worker);
- 	INIT_WORK(&userq_mgr->reset_work, amdgpu_userq_mgr_reset_work);
-@@ -1225,6 +1226,11 @@ void amdgpu_userq_mgr_fini(struct amdgpu_userq_mgr *userq_mgr)
- 	 */
- 	cancel_work_sync(&userq_mgr->reset_work);
- 
-+	amdgpu_bo_free_kernel(&userq_mgr->proc_ctx_obj.obj,
-+			      &userq_mgr->proc_ctx_obj.gpu_addr,
-+			      &userq_mgr->proc_ctx_obj.cpu_ptr);
-+
-+	mutex_destroy(&userq_mgr->proc_ctx_lock);
- 	mutex_destroy(&userq_mgr->userq_mutex);
- }
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-index 28cfc6682333..a5867ffe6988 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-@@ -127,6 +127,8 @@ struct amdgpu_userq_mgr {
- 	struct amdgpu_device		*adev;
- 	struct delayed_work		resume_work;
- 	struct drm_file			*file;
-+	struct mutex			proc_ctx_lock;
-+	struct amdgpu_userq_obj		proc_ctx_obj;
- 
- 	/**
- 	 * @reset_work:
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-index e9189f07c6dc..5313cae63322 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-@@ -133,8 +133,8 @@ static int mes_userq_map(struct amdgpu_usermode_queue *queue)
- 	queue_input.gang_quantum = 10000;
- 	queue_input.paging = false;
- 
--	queue_input.process_context_addr = ctx->gpu_addr;
--	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
-+	queue_input.process_context_addr = uq_mgr->proc_ctx_obj.gpu_addr;
-+	queue_input.gang_context_addr = ctx->gpu_addr;
- 	queue_input.inprocess_gang_priority = AMDGPU_MES_PRIORITY_LEVEL_NORMAL;
- 	queue_input.gang_global_priority_level = convert_to_mes_priority(queue->priority);
- 
-@@ -169,7 +169,7 @@ static int mes_userq_unmap(struct amdgpu_usermode_queue *queue)
- 
- 	memset(&queue_input, 0x0, sizeof(struct mes_remove_queue_input));
- 	queue_input.doorbell_offset = queue->doorbell_index;
--	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
-+	queue_input.gang_context_addr = ctx->gpu_addr;
- 
- 	amdgpu_mes_lock(&adev->mes);
- 	r = adev->mes.funcs->remove_hw_queue(&adev->mes, &queue_input);
-@@ -186,12 +186,8 @@ static int mes_userq_create_ctx_space(struct amdgpu_userq_mgr *uq_mgr,
- 	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
- 	int r, size;
- 
--	/*
--	 * The FW expects at least one page space allocated for
--	 * process ctx and gang ctx each. Create an object
--	 * for the same.
--	 */
--	size = AMDGPU_USERQ_PROC_CTX_SZ + AMDGPU_USERQ_GANG_CTX_SZ;
-+	/* The FW expects at least one page space allocated for gang ctx. */
-+	size = AMDGPU_USERQ_GANG_CTX_SZ;
- 	r = amdgpu_bo_create_kernel(uq_mgr->adev, size, 0,
- 				    AMDGPU_GEM_DOMAIN_GTT,
- 				    &ctx->obj, &ctx->gpu_addr,
-@@ -257,6 +253,31 @@ static int mes_userq_detect_and_reset(struct amdgpu_device *adev,
- 	return r;
- }
- 
-+static int mes_userq_create_proc_ctx_space(struct amdgpu_userq_mgr *uq_mgr)
-+{
-+	int r = 0;
-+
-+	mutex_lock(&uq_mgr->proc_ctx_lock);
-+	/* This check is a necessary because amdgpu_bo_create_kernel()
-+	 * calls helpers like amdgpu_bo_pin() and memset() unconditionally
-+	 * even when bo_ptr is NULL
-+	 */
-+	if (!uq_mgr->proc_ctx_obj.obj) {
-+		r = amdgpu_bo_create_kernel(uq_mgr->adev, AMDGPU_USERQ_PROC_CTX_SZ,
-+					    0, AMDGPU_GEM_DOMAIN_GTT,
-+					    &uq_mgr->proc_ctx_obj.obj,
-+					    &uq_mgr->proc_ctx_obj.gpu_addr,
-+					    &uq_mgr->proc_ctx_obj.cpu_ptr);
-+
-+		if (!r)
-+			memset(uq_mgr->proc_ctx_obj.cpu_ptr, 0, AMDGPU_USERQ_PROC_CTX_SZ);
-+	}
-+
-+	mutex_unlock(&uq_mgr->proc_ctx_lock);
-+
-+	return r;
-+}
-+
- static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
- 				struct drm_amdgpu_userq_in *args_in)
- {
-@@ -429,7 +450,14 @@ static int mes_userq_mqd_create(struct amdgpu_usermode_queue *queue,
- 		goto free_mqd;
- 	}
- 
--	/* Create BO for FW operations */
-+	/* Create per-process MES process context BO */
-+	r = mes_userq_create_proc_ctx_space(uq_mgr);
-+	if (r) {
-+		DRM_ERROR("Failed to allocate MES process context space bo, error: %d\n", r);
-+		goto free_mqd;
-+	}
-+
-+	/* Create BO of a gang for FW operations */
- 	r = mes_userq_create_ctx_space(uq_mgr, queue, mqd_user);
- 	if (r) {
- 		DRM_ERROR("Failed to allocate BO for userqueue (%d)", r);
-@@ -492,7 +520,7 @@ static int mes_userq_preempt(struct amdgpu_usermode_queue *queue)
- 	*fence_ptr = 0;
- 
- 	memset(&queue_input, 0x0, sizeof(struct mes_suspend_gang_input));
--	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
-+	queue_input.gang_context_addr = ctx->gpu_addr;
- 	queue_input.suspend_fence_addr = fence_gpu_addr;
- 	queue_input.suspend_fence_value = 1;
- 	amdgpu_mes_lock(&adev->mes);
-@@ -529,7 +557,7 @@ static int mes_userq_restore(struct amdgpu_usermode_queue *queue)
- 		return 0;
- 
- 	memset(&queue_input, 0x0, sizeof(struct mes_resume_gang_input));
--	queue_input.gang_context_addr = ctx->gpu_addr + AMDGPU_USERQ_PROC_CTX_SZ;
-+	queue_input.gang_context_addr = ctx->gpu_addr;
- 
- 	amdgpu_mes_lock(&adev->mes);
- 	r = adev->mes.funcs->resume_gang(&adev->mes, &queue_input);
--- 
-2.54.0
-
+[1]
+https://lore.kernel.org/amd-gfx/20260518154809.660061-1-michel@daenzer.net/
