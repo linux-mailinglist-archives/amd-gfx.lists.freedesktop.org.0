@@ -2,104 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id INdhLplAGGrIhwgAu9opvQ
+	id kAxqF+ZDGWqNuAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 15:18:17 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 09:44:38 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AA615F2973
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 15:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 708945FEB9C
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 09:44:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CBB810F170;
-	Thu, 28 May 2026 13:18:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0627C10FA26;
+	Fri, 29 May 2026 07:44:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="YbC1o8ap";
+	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="d+mF7kLD";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013038.outbound.protection.outlook.com
- [40.93.196.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DB1810F170
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 13:18:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HJ84N2CKiT5WW6gPFhI9vjsOBTsoc/j43I7Mt4s8VSggzEBUPGbLeF0l+Na7SRgaA4DRVUU3/1Nl4acF3iHqBTDlAHgbRVTSpz7blDhhcWLmiyuCtBUFf6SY+3655JTFgUpCCcdRBWTL0sHxsNbAUzJNmces1UQn/OSmEGB8aTiSY7ERh+Mx7DN7UWnm+SHrcjANAc+gLQrByyRMMjYagwfnvFOHShC4S510yDtcs0qCSan/irK3FhAEchZtkzkcK4/4kaLHgMpi2c/pNXw8rRVEC9OBMGFpgGFsWPPcoye3lNtCDSOfV2pCqBca+59hgAAs4qjPCX8AGHJAiZxHeQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wIJ4rmNwvIPT0C3mmUulDHj5etudeWL9BJaBNuPWakA=;
- b=yQmjh2OaHhN1hDDNQgDAyVlYqZHmt8JR9vJza/KWX+jhCb10Bz9pKXQa87PcwbpLCemfpJa2+BC3NYBSIhZAuP1N7B1iFIp/FcmJA0HJVgkO4fMOGkfN7pl+Cq0CD++x69m+8qddnbmKfQYOHNmqS5qEuAYvVHjos81dOhQs83oO5gz7id2mH2G2UFZ09np9y0/kZvPdiWBLst7NGVvAGYt99L3nRWIepgojX6nhcGBCETV+JBBOAL93UkGKkbdMpVpeiQGYCosHmYxVOREZOP85oYOPbtZqHVbWGMVZVOW6n/RHMGYhdITTOaH52G4xHwKOgK7kE2LJngiCPxOP5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wIJ4rmNwvIPT0C3mmUulDHj5etudeWL9BJaBNuPWakA=;
- b=YbC1o8apYmW4JrLm4h1hm37077XxCLF+SycjMKYOlZDEqXyFd1j88sn+4lw29od/iA9brLDdfYEwfG/9HIaIv3Z7Ft8Mw/QMr1FYlujJ8WYYS95xInAuvkemwtxMP6EoHBwYl9g8z+bPOTpMxwFRTrt2BCjO16iCs7keDO3jM70=
-Received: from DS1PR02CA0001.namprd02.prod.outlook.com (2603:10b6:8:452::15)
- by CY5PR12MB6369.namprd12.prod.outlook.com (2603:10b6:930:21::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.14; Thu, 28 May
- 2026 13:18:09 +0000
-Received: from DS1PEPF00017092.namprd03.prod.outlook.com
- (2603:10b6:8:452:cafe::79) by DS1PR02CA0001.outlook.office365.com
- (2603:10b6:8:452::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.13 via Frontend Transport; Thu, 28
- May 2026 13:18:09 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- DS1PEPF00017092.mail.protection.outlook.com (10.167.17.135) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.71.7 via Frontend Transport; Thu, 28 May 2026 13:18:08 +0000
-Received: from fdavid-dev.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 28 May
- 2026 08:18:08 -0500
-From: David Francis <David.Francis@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: David Francis <David.Francis@amd.com>
-Subject: [PATCH V2] drm/amdkfd: Check bounds in
- allocate_event_notification_slot
-Date: Thu, 28 May 2026 09:17:55 -0400
-Message-ID: <20260528131755.1776615-1-David.Francis@amd.com>
-X-Mailer: git-send-email 2.34.1
+X-Greylist: delayed 372 seconds by postgrey-1.36 at gabe;
+ Thu, 28 May 2026 13:31:50 UTC
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9D6E10F194;
+ Thu, 28 May 2026 13:31:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=5p
+ gYK/c6yag7oUDNjB7BB4xzOjsTGZrrPSqPB/w4kuc=; b=d+mF7kLDMSPHVOx4ac
+ 9At9SR0dImadwnBqzVBea+cwFkKbGVatTvcfEPvqQ/2UJiDWd637lsozUEiDDMS/
+ A8p+h2VJZFI2nfU3OIhu4lDe/dCCL8ejedvK3fs4/JfRElk404KZ7RYTSHpN93LA
+ SMB6NAjUMB4pABhtV2yDBe2ug=
+Received: from China-163-team (unknown [])
+ by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id
+ _____wD373KaQBhq1y1jAA--.16331S3; 
+ Thu, 28 May 2026 21:18:25 +0800 (CST)
+From: Wenshan Lan <jetlan9@163.com>
+To: gregkh@linuxfoundation.org,
+	sashal@kernel.org,
+	stable@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org, Wenshan Lan <jetlan9@163.com>
+Subject: [PATCH 6.6.y 2/2] drm, fbcon,
+ vga_switcheroo: Avoid race condition in fbcon setup
+Date: Thu, 28 May 2026 21:18:17 +0800
+Message-ID: <20260528131817.59900-2-jetlan9@163.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260528131817.59900-1-jetlan9@163.com>
+References: <20260528131817.59900-1-jetlan9@163.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017092:EE_|CY5PR12MB6369:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0630b544-6b52-4917-74ae-08debcbb8fc6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|376014|1800799024|82310400026|18002099003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: xNkj9i6NGjpT7SaCNOyp2mVa63rS0oEEq+6EzacKao5WuVJl5YA6HegS/n/LcJVw+kTzeSlDzKeOJL+ZzxybURWEA1QBccJjFjhShFyGuvMygb4Wij8KmK5OeGs7UhSam8IEUzTdHj4+0wHYm2W8KU3eTwNJVO3DZ5JseKjT0wq1nWboBlZDP1XyblNoqF7p6Q8QGrWClcHvz8QUw+j0lkVlM65SQKYEnMMBviGsgDK9Ve4k9KpF3/KXT8E4LEi2FbUPHh75QD402Psm11SxwkM9KUI214kpqhpswh8QtvuaGLrqR01wjp1KEnFVJKIp9cD0hB74aegBWPocWevayMuLOLLE2IRRWV9JR/CSsxgDeU8p1gDAAuWM2mIW6/OJxfO2t0GTTscZ38rdm85JmgJrAcwoWvsNCDdHWE7XMzQENYSTHvLQ2A6g5vBbTM5KPRDNXSUrQD7z0E95/ZkRc0Z2bm2S/jaV2wHpjQhnvDQ+hI/OpOdws0MW1RZ6WWu+qt3p0vRAIdr2bGuGNh77Prd6xYr2gCtA9KtBpRVSe9WvdfwR5Q2rFov6noMfTeVr99CXGVHEceo034HXlSAgL2yZpkAj2vgne/hFmmSxSl3I5pTHDJ34X7zI/SxIYcrSHk7LK9dzxCWQKpiDMEvezTIlrUOHrtU9XsJIvn/NKRjAeoar3IoxisHcEal8qA9Vedub2OdjMpMsb9Zd5YVZNJzvo2E5ge2BzxlcAiznWhg=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(376014)(1800799024)(82310400026)(18002099003)(56012099006)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: IdlDa7+FBP5SCU8qMbG0dPQa29FOM2/VkQTg2JzL6zuP2crjliVN+LnFzgSExs1DGFeerDv3FAWRFRC9Wl0kTM9IBXt+Gc756d/FlcXrqLeLhChaUx2aGhAN3obde5frL47F1nta48cYQrl3ClTqAW9TuJp/k0t9oH093vTbwhDq8b/DShglAxrG5D/k4wRCb643+A+d+el74E43h06He2+Um13NlwJ9ZI6dVgi1l3T4vxcg8gig52gYghHEjeqVIusBeIP6P9/sMsyRsRs/6LeQIhJJeQQJ2VKmCgsa0EhAUZ66nhVLzM29WQYeugSZKzz0+RFOJIiy4XlCBEQ6b0Q2ViFV9nA/wKpwxzi0x0OeCia38RE3EKEMBeEfpQo5K02TlfHdVUg6ZKBY6CAQ1cXt2p1SYclKSzOzaH8qLEeviA9bfEtzTR+k3p/wlN/z
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 13:18:08.9499 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0630b544-6b52-4917-74ae-08debcbb8fc6
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017092.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6369
+X-CM-TRANSID: _____wD373KaQBhq1y1jAA--.16331S3
+X-Coremail-Antispam: 1Uf129KBjvJXoW3Ary7AF13Cry7ZrWxXw4fXwb_yoW7Xw1kpF
+ sIkFW5KrZ5JF4ruw1Dua12ya43Aan7Cry8XrWxG3WYvw12yryF9Fs5Ary5u345Grs7Jr1j
+ q34Syw18uryDCaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pt2NR_UUUUU=
+X-Originating-IP: [47.95.114.252]
+X-CM-SenderInfo: xmhwztjqz6il2tof0z/xtbC6wLYoWoYQKLvZgAA3J
+X-Mailman-Approved-At: Fri, 29 May 2026 07:44:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,70 +71,174 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
+	RCVD_COUNT_THREE(0.00)[3];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[163.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[vger.kernel.org,suse.de,redhat.com,amd.com,lists.freedesktop.org,163.com];
+	DKIM_TRACE(0.00)[163.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[David.Francis@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jetlan9@163.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 2AA615F2973
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,msgid.link:url,suse.de:email]
+X-Rspamd-Queue-Id: 708945FEB9C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The valid event ids go from 0 to signal_mapped_size / 8
-(usually 256).
+From: Thomas Zimmermann <tzimmermann@suse.de>
 
-allocate_event_notification_slot has an option to specify
-an event id to allocate at, used by CRIU. We weren't checking
-the bounds on that value.
+[ Upstream commit eb76d0f5553575599561010f24c277cc5b31d003 ]
 
-Check them.
+Protect vga_switcheroo_client_fb_set() with console lock. Avoids OOB
+access in fbcon_remap_all(). Without holding the console lock the call
+races with switching outputs.
 
-v2: Lower bounds check is unecessary because of idr_alloc
-already rejecting negative numbers. Upper bounds check should
-be KFD_SIGNAL_EVENT_LIMIT since the signal mode mappings might
-not yet exist
+VGA switcheroo calls fbcon_remap_all() when switching clients. The fbcon
+function uses struct fb_info.node, which is set by register_framebuffer().
+As the fb-helper code currently sets up VGA switcheroo before registering
+the framebuffer, the value of node is -1 and therefore not a legal value.
+For example, fbcon uses the value within set_con2fb_map() [1] as an index
+into an array.
 
-Signed-off-by: David Francis <David.Francis@amd.com>
+Moving vga_switcheroo_client_fb_set() after register_framebuffer() can
+result in VGA switching that does not switch fbcon correctly.
+
+Therefore move vga_switcheroo_client_fb_set() under fbcon_fb_registered(),
+which already holds the console lock. Fbdev calls fbcon_fb_registered()
+from within register_framebuffer(). Serializes the helper with VGA
+switcheroo's call to fbcon_remap_all().
+
+Although vga_switcheroo_client_fb_set() takes an instance of struct fb_info
+as parameter, it really only needs the contained fbcon state. Moving the
+call to fbcon initialization is therefore cleaner than before. Only amdgpu,
+i915, nouveau and radeon support vga_switcheroo. For all other drivers,
+this change does nothing.
+
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Link: https://elixir.bootlin.com/linux/v6.17/source/drivers/video/fbdev/core/fbcon.c#L2942 # [1]
+Fixes: 6a9ee8af344e ("vga_switcheroo: initial implementation (v15)")
+Acked-by: Javier Martinez Canillas <javierm@redhat.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org
+Cc: <stable@vger.kernel.org> # v2.6.34+
+Link: https://patch.msgid.link/20251105161549.98836-1-tzimmermann@suse.de
+[ Minor context conflict resolved. ]
+Signed-off-by: Wenshan Lan <jetlan9@163.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_events.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/drm_fb_helper.c  | 14 --------------
+ drivers/video/fbdev/core/fbcon.c |  9 +++++++++
+ 2 files changed, 9 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
-index e9be798c0a2b..850d6befeb6d 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_events.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
-@@ -107,6 +107,9 @@ static int allocate_event_notification_slot(struct kfd_process *p,
+diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
+index eee7b56d441f..9691c93f19a0 100644
+--- a/drivers/gpu/drm/drm_fb_helper.c
++++ b/drivers/gpu/drm/drm_fb_helper.c
+@@ -30,9 +30,7 @@
+ #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+ 
+ #include <linux/console.h>
+-#include <linux/pci.h>
+ #include <linux/sysrq.h>
+-#include <linux/vga_switcheroo.h>
+ 
+ #include <drm/drm_atomic.h>
+ #include <drm/drm_drv.h>
+@@ -575,11 +573,6 @@ EXPORT_SYMBOL(drm_fb_helper_release_info);
+  */
+ void drm_fb_helper_unregister_info(struct drm_fb_helper *fb_helper)
+ {
+-	struct fb_info *info = fb_helper->info;
+-	struct device *dev = info->device;
+-
+-	if (dev_is_pci(dev))
+-		vga_switcheroo_client_fb_set(to_pci_dev(dev), NULL);
+ 	unregister_framebuffer(fb_helper->info);
+ }
+ EXPORT_SYMBOL(drm_fb_helper_unregister_info);
+@@ -1673,7 +1666,6 @@ static int drm_fb_helper_single_fb_probe(struct drm_fb_helper *fb_helper)
+ {
+ 	struct drm_client_dev *client = &fb_helper->client;
+ 	struct drm_fb_helper_surface_size sizes;
+-	struct fb_info *info;
+ 	int ret;
+ 
+ 	ret = drm_fb_helper_find_sizes(fb_helper, &sizes);
+@@ -1691,12 +1683,6 @@ static int drm_fb_helper_single_fb_probe(struct drm_fb_helper *fb_helper)
+ 
+ 	strcpy(fb_helper->fb->comm, "[fbcon]");
+ 
+-	info = fb_helper->info;
+-
+-	/* Set the fb info for vgaswitcheroo clients. Does nothing otherwise. */
+-	if (dev_is_pci(info->device))
+-		vga_switcheroo_client_fb_set(to_pci_dev(info->device), info);
+-
+ 	return 0;
+ }
+ 
+diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
+index 703c4e851612..d1ac4e45eea6 100644
+--- a/drivers/video/fbdev/core/fbcon.c
++++ b/drivers/video/fbdev/core/fbcon.c
+@@ -64,6 +64,7 @@
+ #include <linux/console.h>
+ #include <linux/string.h>
+ #include <linux/kd.h>
++#include <linux/pci.h>
+ #include <linux/slab.h>
+ #include <linux/fb.h>
+ #include <linux/fbcon.h>
+@@ -75,6 +76,7 @@
+ #include <linux/interrupt.h>
+ #include <linux/crc32.h> /* For counting font checksums */
+ #include <linux/uaccess.h>
++#include <linux/vga_switcheroo.h>
+ #include <asm/irq.h>
+ 
+ #include "fbcon.h"
+@@ -2914,6 +2916,9 @@ void fbcon_fb_unregistered(struct fb_info *info)
+ 
+ 	console_lock();
+ 
++	if (info->device && dev_is_pci(info->device))
++		vga_switcheroo_client_fb_set(to_pci_dev(info->device), NULL);
++
+ 	fbcon_registered_fb[info->node] = NULL;
+ 	fbcon_num_registered_fb--;
+ 
+@@ -3047,6 +3052,10 @@ static int do_fb_registered(struct fb_info *info)
+ 		}
  	}
  
- 	if (restore_id) {
-+		if (*restore_id >= KFD_SIGNAL_EVENT_LIMIT)
-+			return -EINVAL;
++	/* Set the fb info for vga_switcheroo clients. Does nothing otherwise. */
++	if (info->device && dev_is_pci(info->device))
++		vga_switcheroo_client_fb_set(to_pci_dev(info->device), info);
 +
- 		id = idr_alloc(&p->event_idr, ev, *restore_id, *restore_id + 1,
- 				GFP_KERNEL);
- 	} else {
+ 	return ret;
+ }
+ 
 -- 
-2.34.1
+2.43.0
 
