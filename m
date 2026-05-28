@@ -2,98 +2,133 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kKmUHSCSGGoMlQgAu9opvQ
+	id 0AaiJxPMGGrrnQgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 21:06:08 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 01:13:23 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D68BF5F6DD8
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 21:06:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40F395FB40B
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 01:13:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B544410F598;
-	Thu, 28 May 2026 19:06:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1123D10F6E3;
+	Thu, 28 May 2026 23:13:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TW2Heok4";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="DYKNmtfX";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f171.google.com (mail-dy1-f171.google.com
- [74.125.82.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49CEA10F598
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 19:06:04 +0000 (UTC)
-Received: by mail-dy1-f171.google.com with SMTP id
- 5a478bee46e88-304e86ecebfso15957eec.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 12:06:04 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779995163; cv=none;
- d=google.com; s=arc-20240605;
- b=e7LUJUhv1/bGsbLqq47yqJsNs8nt37IBLT9IMOFrnHSdnvsbD4X3bQiqnH96YoNB7u
- nq6qrsXRTO1tHBxG1IKiOmvayP/YxGpQwibqzH+BF33zh2Dyr+QhFSAfs5z3IRNzngFz
- KoEHVgzeBMSkiMFe6pIg5cc3KvFFa4E2FdYr898FYLoSnLwMkVNZfhC8iJ7TLJWNhovd
- rhMVMub4f2YR6v2P1UNwPhmzxU6dr3fZtYxGzwLcI7SO7VBS+e8TgME2pevb2hCA95Os
- Kt4eCuvKrydE9e1n//qRP0G9O8Dt/XugYLv+EjSgLwSHX0eD0P6ZseOaaKGjSAlGwd1i
- DnQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=onifHXX69YdTKcJN4UBC/GPwagl+JwYKtjX1h6y8GQk=;
- fh=gkoPe+54c4oWYF2PVKqr+b0lEaj1PU1ZD5Jdt4G/vK4=;
- b=OeytkPDGeQ/5P7ViFRwH682WYjgBMeDGcCGjdd3+djMQfzhZRSnwIe0fei1KBnPWxR
- qdTvhcHKCNnNm1ALSHoK0kGSfrA0pB1fEE4P42iJv1qUiDPkFX51y74O97AfoXHN7kUp
- ZfheoGd390ICxkVuOA3Xjauohog9i/aVeit3ra+qiFvWTSfISdLwGoEomDLDVvXZkLx1
- 4PnmNGHSkeYQuqRM9AHWHPBsVQdzSlBIx4o5F/sPprQNI3UgNmg8UaZK/rgcwuDticYc
- RTs3V7fZFQGWuoPQOqmbNVBO97PRxR2cp12t3ahhjg3+3YxweXyGz3v7721sNmqSibWF
- pbtw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1779995163; x=1780599963; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=onifHXX69YdTKcJN4UBC/GPwagl+JwYKtjX1h6y8GQk=;
- b=TW2Heok4Pl7VKlj8p42+YGXbm+CavnAQUGrJUCVBMWHlPm/38X+0f4yA7wG810zjUT
- bKNHQ6sV/JuOH0Y/4bj8Ptp8oomdC6RcI2kHfuOz8CXq7yqwxJVrle/+Zjq63J++eWHr
- RP0ePm66L0kMKBRQn1+J17h3Wo7CT2NJpDfxUXhfiRqTsemAzXXoC1mv3WTwjVK88q+F
- O/ZJ6ovbdpTq+0EDmNWNVMxxmsY11BBqPeR2OupeXusveCRp67JHLrmRmiw0DrQQtbkk
- 5ptFD+7KR+IkCvVDpLc6Vkwm35MrlyPLZK1xU27T9yxnC497rQNrJSy2rIXeXKQJypL3
- IgHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779995163; x=1780599963;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=onifHXX69YdTKcJN4UBC/GPwagl+JwYKtjX1h6y8GQk=;
- b=GACaT3jTgaPitRNOLfv3dqU2oMOvcVURHJ7stioAS4Q198YqH4bsSS9PzMNrb9lvNs
- HqpuZf161N1VO2aOeLQKC5nWcf5F2XR2tgA94YMxtnemQZoH7S7RVFPdlR6brpH1RRci
- uL47ixnhwyxBBkhVGk1sOrdfYTHCh8DExvR/ZZC15kZa4dTDZSXbLu8NLA7ojEf78BOG
- P2sHU8JoU+I/ce016eYXuM/UC+PxDdrZPtGgTmjTy2AOSCd+pPxcHhk7yM9qxqJNf6AD
- kOf4jHkcuFKPdydxiSUJyGHHcCvgylXF3zy/WokpIGtEHfQVfSGSdpDZX8Hw/hjgheVF
- 7j/w==
-X-Gm-Message-State: AOJu0Yzr4Gj3rKpiTs6mnokdxzEx5S22Da1iNufjq8atllJxTTnSOz5X
- +RK5rlMtzwqquN55hSTa9xQtFzen6mQKrpqorDL77zvj1IhoGqzfCMSbi3bIKGiT3iGqrS3zx1/
- vyEQTmcFnBPBB2XUj1w1T2IkgM1RyogpA2g==
-X-Gm-Gg: Acq92OGIAJyLumFIyCVyW7JjplWH27UQldlclxe4Y9Fm3jZhCg77vHS8Xrid9gFDMY5
- WALvgX/8K/kg9JW6pwRzKL47RAUSFXuI/V2ar2/lRnTuDGk/FnMbVTlIx3vtilJN+UK331eXgED
- coF+8IAtPm6snBjcbCWiy3ym03catJcuwTQIptroGGjCMIMDoOpiEVqv2eDTj/5NlLityY7CAru
- gYhXhlHjU+spqxxDRDIlG705uH+/a5N02OkOTNMxVE8SXYxGnxDv75Bh4ueepXR6U3fMoaJhFIO
- TITd3w87qp4q5wPOiFp0LXvxQ9lK5uj+FBRD8FwZSVuzIaV3k3Ya9mkOy/sWOyLPR1Wz+E7W7FR
- xvuT/L1Vw96ivVh8=
-X-Received: by 2002:a05:7022:661f:b0:130:a719:a680 with SMTP id
- a92af1059eb24-137a87c855dmr47629c88.7.1779995163449; Thu, 28 May 2026
- 12:06:03 -0700 (PDT)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012066.outbound.protection.outlook.com [52.101.43.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D9A910F6E2;
+ Thu, 28 May 2026 23:13:13 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HD9Wtd8XPlDprxIQhPsW/Lg9oACNM3AhyLR7N1JS3YaCX57I4DYBCl3EZK/I2dkH8BHh+PQxO7xag8mXXo5gNcI13X4FdcXx/1S5M5E6SKDM0SS6pQU/L83GphZ/Z+1HIwaIzuFi0IjXYIAflj0DCJ78cc0+XoFGeBxGsWSoRbEFhtvrZ/60ZslzaKcZb/L8jBI+OVhZFnyPVq0sJsVqLzCESwlHgdijoCIlz072FM0kYrXcgZ8BSdsSdi0G2nnoogMd3ckahKxS7x7O/3iVW0Qsrm06D7xNiTlpS8OQ55nkFaY/+dKfBfnpmoDQ/sxN0ESitN9/pW2KJk6TeghikA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ado9ctj6dv7im+e1zH6aSB1B4EbGdFYq8k9s2M5CGNQ=;
+ b=DaqfUABZHzDfx2QnarJ9+Gsj8w//UWmSnBVpXF1tIxT8q0lVwSnRndrAj+VxXKZrmh0PY46B6ZOQ+lnVLYqvAVpnEb+1oif7TzINmA6WhncDl8cIHkfaY6hHq7gWjbB4bb/n7EbBHnp/L7qm83hMiRyIRQ7qDEkIeWxcP1MZMLhhbGdKLx50qHxsNb0B5SZHyj7xLmbfFFGPDZx1bNVSBJUW2AzY3cPmGBrP6/TejgV4DUXNWjxwED92pnwwvqF+VMOGo4u8BQ4J6eh2ee656vz003o1g8qa+0TU9j6Ppmaak9YgOrhVd3+nfzbnTsYXWaAXEwIMfZx3UTC0+Z3iMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ado9ctj6dv7im+e1zH6aSB1B4EbGdFYq8k9s2M5CGNQ=;
+ b=DYKNmtfXr8Ae/1wH3EgHxBuTwkSmHbYdtmBrFY2DaJ6Zjb18ViuljjHcNe9SEVDmSC18R6O8SyvTmoMDdHQuS7gWWxkCDKgzrKdeQYalZEl7MUh06t/X0cH8BcgcOqWFVen1TjyLOw3AKCUOKONGKdDUXVLDmo11OGvKcGcU2Ww=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH8PR12MB6914.namprd12.prod.outlook.com (2603:10b6:510:1cb::21)
+ by CY5PR12MB6321.namprd12.prod.outlook.com (2603:10b6:930:22::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.11; Thu, 28 May
+ 2026 23:13:09 +0000
+Received: from PH8PR12MB6914.namprd12.prod.outlook.com
+ ([fe80::2893:177a:72b0:6000]) by PH8PR12MB6914.namprd12.prod.outlook.com
+ ([fe80::2893:177a:72b0:6000%6]) with mapi id 15.21.0071.011; Thu, 28 May 2026
+ 23:13:08 +0000
+Message-ID: <4ebe7f6b-aa32-4441-84db-1b09cc69c075@amd.com>
+Date: Thu, 28 May 2026 22:17:05 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amd/display: Avoid using zero AC/DC brightness levels
+Content-Language: en-US
+To: Edson Juliano Drosdeck <edson.drosdeck@gmail.com>, harry.wentland@amd.com
+Cc: sunpeng.li@amd.com, siqueira@igalia.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ alex.hung@amd.com, Wayne.Lin@amd.com, timur.kristof@gmail.com,
+ superm1@kernel.org, aurabindo.pillai@amd.com, ivan.lipski@amd.com,
+ chen-yu.chen@amd.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20260526210048.1162477-1-edson.drosdeck@gmail.com>
+From: Mario Limonciello <mario.limonciello@amd.com>
+In-Reply-To: <20260526210048.1162477-1-edson.drosdeck@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PA7P264CA0141.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:102:377::19) To PH8PR12MB6914.namprd12.prod.outlook.com
+ (2603:10b6:510:1cb::21)
 MIME-Version: 1.0
-References: <20260528171917.45575-1-andrew.martin@amd.com>
-In-Reply-To: <20260528171917.45575-1-andrew.martin@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 28 May 2026 15:05:51 -0400
-X-Gm-Features: AVHnY4IEsry0LI7IWbqqT7jgfe_n7QdYk0eIYVO6IK2VEdUJkLIiHtYoAI6-Khk
-Message-ID: <CADnq5_NOfe=bc0dsekVT0pC0oCm-cLUODJ8mxLSWHnUNb7JQ0A@mail.gmail.com>
-Subject: Re: [PATCH v1] drm/amdkfd: Fix buffer overflow in SDMA queue
- checkpoint/restore on GFX11
-To: Andrew Martin <andrew.martin@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR12MB6914:EE_|CY5PR12MB6321:EE_
+X-MS-Office365-Filtering-Correlation-Id: 78ad6d15-ab3e-4568-aa95-08debd0eae66
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|18002099003|22082099003|11063799006|56012099006|6133799003;
+X-Microsoft-Antispam-Message-Info: Fc0CW0kMhpmBZ+bLhwc9vFzCHwWl3kVGlE34/Kwo9tTelUCqi0ctIT+vjAgCyvG6GtITxp19UzVcjAyO01MSRoRIWYYtmwHJsmDFSbcywf+cmGpUDr8gLSyxosNP7bkU1jKqn93AfU8s3N1AFrb/bKQ86DVIswQ55vJ9yRbOc1ymkzrgrLaSt0TPCdP7gAfTtJg202qkisaG4mAYVD5f7U/UtLiXwoFIo9jB8blduTZp6mUlSi+yCDMZHWt5m84L6jt7jBL3em2+hhYBSTMq6oUWtgOBCJ8eRJUhfdtL67mv65Ca5srBqbPDP/etlO9jDbAst+8XuIERJVScqO2Y3xz0r0H6kb3UD18Lp045lsBq51ilAQ0/ZW+aiOX34Tdmy9WjCus2/RzvwONZ2+PF/beMVDGKQc5q3sm3on4at4Md6EJ3+lcSKp2l+BT9i4vKhvcM0fmuXFqtI1q0/Jsoj4eO/OENqGJwIY9zY8b3DZoLzbMvTJJLMGL9FgX/QFzlBQXN3aeBvpkiV+udyGaWqVvHEcVMkatkW3sUCZWzBbCNiW7phrJsGbs4pto+r1zjnDHvqXHL789kteNZkWy9ONa1uUNg7RugTAYuARxfP9U2ccbgtr5n0tJ3iKu5BQppE3uOc0EA1dR+8BtQs2Td+Fegoyi/BVifFx+VIzGUve++uQIENtUdRZzDvqVX8m+D
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR12MB6914.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(18002099003)(22082099003)(11063799006)(56012099006)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dkIrVmExcGQrT1ArYldZM1dxY0ZFVFVleVRVU2wreDR6eVhCbC92Mys5YlBR?=
+ =?utf-8?B?U1ZEZVB4WEFZNzdHaWh1TTRXTzFQblZiQzE2c0NuN1llTFJpbVo3VUcyRUgr?=
+ =?utf-8?B?YXRVMFBGQjZ6VjFMZzQ5NzRtVjlGMlk1LzYvczRnMm1qTTJvVldYamxmTmI1?=
+ =?utf-8?B?MmU4QnBYdzFFTWlXL0g1aWdFeWo1WFEvbkF4MzBYNDhsS3JrREc3cG0yQ0Y1?=
+ =?utf-8?B?Q1VFZ2lKcmt3UXJXeDlCU2U3V3dSeE1EKy91REFEcTY2azdNcnNxQzRKUGQ4?=
+ =?utf-8?B?QjFaOTVSdkdWSTN3V0hnTmJpUHVnc2srYlB2eFNQMXY4OHkvbjJMcjA5ZDRM?=
+ =?utf-8?B?Q1BHYzlRZHNpTW1RSkdBWjN4UXcxSUk0ZXdSNklYSUY2V1RVaWRCNlBJVXFV?=
+ =?utf-8?B?QjdHR2xqcGFCcDJmN0R5Z3hGZHBGNHJLT3FxdHVJUzJOdjFOTklRUzRJNnpj?=
+ =?utf-8?B?TDlaWDlLamczaE1NQkwxRlJYZTZ5YkQ4YTA0NkZSVTdMcE4zUVROdWhJRjFB?=
+ =?utf-8?B?Uk1VRjlrSUIydlpHM0JYdkQ2MGlPRWxpMjhmTXhlMXdIUGkycG9CM204S0ov?=
+ =?utf-8?B?K25pSXVEeGtNNjgwVWVHdEdwcDUxZzRmdTVNZXBxSXp3UnhzUmc1MTJWUzA4?=
+ =?utf-8?B?Tm1QTmh4MGR3MUlJQnRSZ1p5NG1MNGMzeitZbXI1Nkx3OHhrTmE4SEE0bFpv?=
+ =?utf-8?B?YjhXaE5wakJhRkgzT3h3Q21ESDlscXR1REFaOGJTZjBiVnFVcjVFRy83dHI0?=
+ =?utf-8?B?VXdMclZ0dnZLdE9WY3VMdG5kdGFZeWJiZUdkazdBNEF2aDM3d05sWVI4SjEx?=
+ =?utf-8?B?ZUdlVVBPSkp2K1N6bzlOamxwYitTOUV5dEh6Nyt6RmxSWDRzeExQc3dPN1JJ?=
+ =?utf-8?B?REpCMy9lN0ZOK3lvQ1JjWklDRkNmNGtkT3NYTHdZUTJQVHNrUG1zcytUOTFj?=
+ =?utf-8?B?WFMzODBhVTFmWmVaQVdEenVHTCtFRXJoTWlkZDhkcWx0SUVhdmxlS1NrY05Z?=
+ =?utf-8?B?OUdvS1MrNUpKZE81dUZtUEVxRDBDb1c5UEdLOEY3WGlBZEJ0eExYRWhxK3NW?=
+ =?utf-8?B?eGtEOUVUTXlQUk9mTVZ5bFF6RkZNN3U1SjAyK2taM1IvbzNEQ1NzVUJNV1Jr?=
+ =?utf-8?B?a1oxMlZVWlBzTTBNTTZ2dWgraE5JNFlFVDc2NnJ3SmRTZmgybTN4UmQrZytj?=
+ =?utf-8?B?RzRnL3dFS255U0puVHZWQWk0SDROdUcyR1ozbVVSNlR4bU9aTHdXbG5mYlJV?=
+ =?utf-8?B?UVFRMy9oa2pscy9JaVgrbEpTSkNPeHJHUDFCcXBxM25CQmJZdjVVM25SemdG?=
+ =?utf-8?B?Slk3NkowdnNRRTk1ZHVvMHo5M2ZSYjRvbVhSeTBoSzhkbFhVbWJXVmdCV1Rq?=
+ =?utf-8?B?UC96U0tURFZTUld6YTVIUDhnMUhvMzlzSUZYQWtyQU1FdEVFV0ZUaWxLNkpQ?=
+ =?utf-8?B?cnNTeEk0RmlUUW1ZTWNWYk9JUnhzTDdQVGRqMlFoNjVhOEFOVFQ2SFo2Uit1?=
+ =?utf-8?B?UEQxTEZHQXBtRXlScDd3K1dKSHVRVXdqTm9mNFo4akxyNURIamhVOTBVVzRJ?=
+ =?utf-8?B?SjBrMjI0d0p5TnFGa05aL2ZSY2xFTzFpckRnekE2K2xjQUpQYW5iTGxNcllH?=
+ =?utf-8?B?enE1UmlNTjMzRldsdEM4U1haZkowZGszNVhyS2UrSzNqMjRjb3lISEJSb2RJ?=
+ =?utf-8?B?NDRUY1VHNFlJWm85RzZFVWRpR05EZVpkRzk1ZVRlTnE4RURaa01lcEZvWkZC?=
+ =?utf-8?B?R2ZiRk80VUZqRmtRSHgrb3JRam53T3FhL3NUUjZ2U2lIQXA5UWp3Y0N5dHM0?=
+ =?utf-8?B?QXFSWU1FR0gzK3lmOWtGbXJRVjRsOXFrUnFNb0l2UW02YU0vTUZaelJzcnRx?=
+ =?utf-8?B?YnhwSWk3eVhOblNQcWpraXc5UktPUFd0TGNKb3hqcEVia1pKS0dJNWUzKzNI?=
+ =?utf-8?B?UzFXQVgvM2c1UnlGNmsreGdFSlczWHhlKzhWU04wOWJTYW1UV0xwamVPRDFi?=
+ =?utf-8?B?Y3VPNHNhWFBQbi9LTFNOaktvRjZKT0U3dkJzeDdjUjVjRUFUbXZpZlp1SGgx?=
+ =?utf-8?B?UkZhNTUwV1N5YVkvMXhhWHF5K0ZCY2hQbkNaVE5zMGttaW1OM09hNVFZbVZB?=
+ =?utf-8?B?RlRsYkpGb3lZb0l5dnFReHpWM3JQQXV3dUd2YW9SejBURnVCOEFHdGkrb2Jq?=
+ =?utf-8?B?ako3VVNQR2dKZ3RHcFhGdk5QSk9vYXN1UDJERWkzQXd1dEpqU3VMaVFpZVpJ?=
+ =?utf-8?B?ZmhTcjdtU1diR01XcXVWR2oyeVlMRjJQclF6TzFlM0VhTUdJSGkzOE1uNE5I?=
+ =?utf-8?Q?rQcDzHe2/kgRgyxXRO?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 78ad6d15-ab3e-4568-aa95-08debd0eae66
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB6914.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 23:13:08.7875 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tv9taUufS4omQWeS3skyhFBF1D+v0KHCukIV/0l8XQp0q/qO7hROE56VFuO/nj7I0d0f52OVx80wRiwcFMsRoA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6321
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,139 +142,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,amd.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FORGED_RECIPIENTS(0.00)[m:andrew.martin@amd.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[mario.limonciello@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,kernel.org,lists.freedesktop.org,vger.kernel.org];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FREEMAIL_FROM(0.00)[gmail.com]
-X-Rspamd-Queue-Id: D68BF5F6DD8
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:mid,amd.com:dkim]
+X-Rspamd-Queue-Id: 40F395FB40B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, May 28, 2026 at 1:34=E2=80=AFPM Andrew Martin <andrew.martin@amd.co=
-m> wrote:
->
-> The v11 MQD manager incorrectly assigned the CP-compute variants of
-> checkpoint_mqd/restore_mqd for KFD_MQD_TYPE_SDMA queues. These functions
-> use sizeof(struct v11_compute_mqd) (2048 bytes) instead of sizeof(struct
-> v11_sdma_mqd) (512 bytes), causing a 1536-byte overflow.
->
-> During CRIU checkpoint of an SDMA queue on Navi3x:
-> - checkpoint_mqd() reads 2048 bytes from a 512-byte SDMA MQD buffer,
->   leaking 1536 bytes of adjacent GTT memory to userspace
->
-> During CRIU restore:
-> - restore_mqd() writes 2048 bytes into a 512-byte SDMA MQD buffer,
->   corrupting 1536 bytes of adjacent GTT memory (often the ring buffer
->   or neighboring MQDs)
->
-> This is a copy-paste regression unique to v11. All other ASIC backends
-> (cik, vi, v9, v10, v12) correctly use the SDMA-specific variants.
->
-> Add checkpoint_mqd_sdma() and restore_mqd_sdma() functions that properly
-> handle the smaller v11_sdma_mqd structure, matching the pattern used in
-> other MQD managers.
->
-> Fixes: cc009e613de6 ("drm/amdkfd: Add KFD support for soc21 v3")
-> Assisted-by: Claude:Sonnet 4-5
-> Signed-off-by: Andrew Martin <andrew.martin@amd.com>
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+
+On 5/26/26 22:00, Edson Juliano Drosdeck wrote:
+> Some systems report zero AC/DC brightness levels during
+> backlight initialization, causing the panel brightness to
+> start at the minimum level on boot.
+> 
+> Only use the firmware brightness levels when both AC and DC
+> values are non-zero
+> 
+> Signed-off-by: Edson Juliano Drosdeck <edson.drosdeck@gmail.com>
+
+Can you please share an acpidump and an EDID into a bug report to look at?
 
 > ---
->  .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c  | 40 ++++++++++++++++++-
->  1 file changed, 38 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c b/drivers/g=
-pu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
-> index 4d8cf6008a77..ce0f5e8e5c29 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
-> @@ -355,6 +355,42 @@ static void restore_mqd(struct mqd_manager *mm, void=
- **mqd,
->         qp->is_active =3D 0;
->  }
->
-> +static void checkpoint_mqd_sdma(struct mqd_manager *mm,
-> +                               void *mqd,
-> +                               void *mqd_dst,
-> +                               void *ctl_stack_dst)
-> +{
-> +       struct v11_sdma_mqd *m;
-> +
-> +       m =3D get_sdma_mqd(mqd);
-> +
-> +       memcpy(mqd_dst, m, sizeof(struct v11_sdma_mqd));
-> +}
-> +
-> +static void restore_mqd_sdma(struct mqd_manager *mm, void **mqd,
-> +                            struct kfd_mem_obj *mqd_mem_obj, uint64_t *g=
-art_addr,
-> +                            struct queue_properties *qp,
-> +                            const void *mqd_src,
-> +                            const void *ctl_stack_src,
-> +                            const u32 ctl_stack_size)
-> +{
-> +       uint64_t addr;
-> +       struct v11_sdma_mqd *m;
-> +
-> +       m =3D (struct v11_sdma_mqd *) mqd_mem_obj->cpu_ptr;
-> +       addr =3D mqd_mem_obj->gpu_addr;
-> +
-> +       memcpy(m, mqd_src, sizeof(*m));
-> +
-> +       m->sdmax_rlcx_doorbell_offset =3D
-> +               qp->doorbell_off << SDMA0_QUEUE0_DOORBELL_OFFSET__OFFSET_=
-_SHIFT;
-> +
-> +       *mqd =3D m;
-> +       if (gart_addr)
-> +               *gart_addr =3D addr;
-> +
-> +       qp->is_active =3D 0;
-> +}
->
->  static void init_mqd_hiq(struct mqd_manager *mm, void **mqd,
->                         struct kfd_mem_obj *mqd_mem_obj, uint64_t *gart_a=
-ddr,
-> @@ -539,8 +575,8 @@ struct mqd_manager *mqd_manager_init_v11(enum KFD_MQD=
-_TYPE type,
->                 mqd->update_mqd =3D update_mqd_sdma;
->                 mqd->destroy_mqd =3D kfd_destroy_mqd_sdma;
->                 mqd->is_occupied =3D kfd_is_occupied_sdma;
-> -               mqd->checkpoint_mqd =3D checkpoint_mqd;
-> -               mqd->restore_mqd =3D restore_mqd;
-> +               mqd->checkpoint_mqd =3D checkpoint_mqd_sdma;
-> +               mqd->restore_mqd =3D restore_mqd_sdma;
->                 mqd->mqd_size =3D sizeof(struct v11_sdma_mqd);
->                 mqd->mqd_stride =3D kfd_mqd_stride;
->  #if defined(CONFIG_DEBUG_FS)
-> --
-> 2.43.0
->
+>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 5fc5d5608506..f947ce2a8625 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -5380,7 +5380,9 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
+>   	}
+>   
+>   	caps = &dm->backlight_caps[aconnector->bl_idx];
+> -	if (get_brightness_range(caps, &min, &max)) {
+> +	if (get_brightness_range(caps, &min, &max) &&
+> +	    caps->ac_level > 0 &&
+> +	    caps->dc_level > 0) {
+>   		if (power_supply_is_system_supplied() > 0)
+>   			props.brightness = DIV_ROUND_CLOSEST((max - min) * caps->ac_level, 100);
+>   		else
+
