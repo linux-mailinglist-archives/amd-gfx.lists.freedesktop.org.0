@@ -2,132 +2,136 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cJFEFOdDGWrHuAgAu9opvQ
+	id MFyCLQ0nGGqZeQgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 09:44:39 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 13:29:17 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC77E5FEBAA
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 09:44:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22DE05F14D1
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 13:29:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80F7610FA3B;
-	Fri, 29 May 2026 07:44:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C911410F04D;
+	Thu, 28 May 2026 11:29:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="VpmNhuTd";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="JqkbhSyq";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
- [46.38.247.119])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A846110F03D
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 11:17:16 +0000 (UTC)
-Received: from mors-relay-8404.netcup.net (localhost [127.0.0.1])
- by mors-relay-8404.netcup.net (Postfix) with ESMTPS id 4gR3q80p7Dz86j3;
- Thu, 28 May 2026 13:17:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
- s=key2; t=1779967028;
- bh=t4MwfkzG0d4WtyKv3QbXG+UR8CR6zeiN3ZL2lNK0h4Q=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=VpmNhuTdoynqjYo8z5kExba4HwusEPqN+HQTRLp07KrzZgQ9ZVzgsjEEAWVy0k4ru
- BUszghD7KR/zSz66QtgiJjjgRHFJWz93SRQVTpUdKItBPU4yo+aFK4XrZz5SkUPw6y
- hWkFGXtKtk7JoiO2wiEsG+A47yeegUQ7vKJdS4laXHitWrEQityopn6MuAfaI/K9LE
- huLdGV7uo8mFkJcv8+szyDueRFCcP9sFi4UJCV+SNB6BOVOVxPnKxWQoNOHh4f2mOq
- 91LLZ5p0oMHZ5PmGc3AaIQQnudB3jtjdmYd9UaBdhIzzhaeWRgJdbOW1FVQYlzFlQh
- mOW8iLYdHzTcg==
-Received: from policy01-mors.netcup.net (unknown [46.38.225.35])
- by mors-relay-8404.netcup.net (Postfix) with ESMTPS id 4gR3q80568z4xYl;
- Thu, 28 May 2026 13:17:08 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at policy01-mors.netcup.net
-X-Spam-Flag: NO
-X-Spam-Score: -2.898
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.898 required=6.31 tests=[ALL_TRUSTED=-1,
- BAYES_00=-1.9, SPF_PASS=-0.001, URIBL_BLOCKED=0.001,
- URIBL_DBL_BLOCKED_OPENDNS=0.001, URIBL_ZEN_BLOCKED_OPENDNS=0.001]
- autolearn=ham autolearn_force=no
-Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
- SHA256) (No client certificate requested)
- by policy01-mors.netcup.net (Postfix) with ESMTPS id 4gR3q66FRMz8tbj;
- Thu, 28 May 2026 13:17:06 +0200 (CEST)
-Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
- [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
- by mxe9fb.netcup.net (Postfix) with ESMTPSA id 07DB460150;
- Thu, 28 May 2026 13:17:05 +0200 (CEST)
-Authentication-Results: mxe9fb;
- spf=pass (sender IP is 2a02:8108:8984:1d00:a0cf:1912:4be:477f)
- smtp.mailfrom=regressions@leemhuis.info
- smtp.helo=[IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f]
-Received-SPF: pass (mxe9fb: connection is authenticated)
-Message-ID: <1c522568-1d5e-4210-8f25-1aa96e0d3c3a@leemhuis.info>
-Date: Thu, 28 May 2026 13:17:05 +0200
-MIME-Version: 1.0
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010025.outbound.protection.outlook.com
+ [52.101.193.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61F6A10F04D
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 11:29:13 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fHaaRuVWIm10STZHuuVyroHl5JhLLA/QMLrS/ywKuvXVnDP7dZaK2i5g0kxKHMGLeCXMpbWhcW3SgodMjyh2cqn5iJpvz8HGsv1TrukONDJvoEcKQIkUzpZfjPxpco5p070yhzfhJwiiGT2DId73oYVxEspGpDH3M7ciI2vsMqyoDXh/61rcRkcZM4DmppFjtM/by2ZGFMd7p0Ruxaxe+dR3wrikSnqMGKVX+9pBoZdBIu5q9w769Vz9k1wwEqRfoOyPpT906TMD+VVxtjW+BqO8I1XfTYPTKt4S3xTBvZKR2vJZBmuusZ3clwNy9X0fm5Gcleim+dUNkhmemubOeg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SerhyFQUedsuRCKnOnWc2ACewSQChUpkPaxWWNkHM0o=;
+ b=ifxUv+C9onWwIXTxFGbT0fSwMg8IcAZZaMLbfJZdnJWMoI/hGO0MoVuE1LjvSEM6pkIA507D8sRCMoqmO8Y7aIozNQlvdZuIn9uxp7pEe9mfxPgCxxpZyu+NY0zXdXVfbPzbmq/QYG3BCXCtc2Qn5lH21jArU7SpJzPGNRNa9yBNZm2jag1JwLSAxTzknL++JnshW3sNya/A66fsMJhvYHIN46OMYPwV4845LNph6MlJwqyMq8FvCejU8hjwximzjRwe9XcP4ENA5ccA+C3dNbb5mV49tMluZ8cYbRSzxRKhDbLPdWMj2A44/Lp6vPGraD4RnVFag5eG4hiQ1IaZRQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SerhyFQUedsuRCKnOnWc2ACewSQChUpkPaxWWNkHM0o=;
+ b=JqkbhSyqI97CDQhdzPeSCSf6u/WU0vqvYNtLXUn+evjmBqmUS/nLQEOoW1ev0jfdbUX/Hu6MLgx6MWwUBZ1pf2zOyunCNgckpeTG3HNC7g8UkZxlktDrTIDTrlqTYyUb0m+wW5m/dSAsznDJXFEbq5IYvFk5pvcVwC+nvTHdO0I=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from IA1PR12MB6435.namprd12.prod.outlook.com (2603:10b6:208:3ad::10)
+ by SA1PR12MB8162.namprd12.prod.outlook.com (2603:10b6:806:33a::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.13; Thu, 28 May
+ 2026 11:29:07 +0000
+Received: from IA1PR12MB6435.namprd12.prod.outlook.com
+ ([fe80::8b77:7cdb:b17a:a8e2]) by IA1PR12MB6435.namprd12.prod.outlook.com
+ ([fe80::8b77:7cdb:b17a:a8e2%5]) with mapi id 15.21.0071.011; Thu, 28 May 2026
+ 11:29:07 +0000
+Message-ID: <a8ded005-e2d8-4163-be35-f1b018cefe74@amd.com>
+Date: Thu, 28 May 2026 19:29:00 +0800
 User-Agent: Mozilla Thunderbird
-Subject: Re: [External Mail] Re: Test result / finding of "drm/amd/display:
- Consult MCCS FreeSync cap only if requested & supported"
-To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
- Pei-Hsin Yang <peihsiny@valvesoftware.com>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Linux kernel regressions list <regressions@lists.linux.dev>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-References: <44069eb146824aa195312f5b02c49287@valvesoftware.com>
- <7a9021cd-fd78-4b0d-846b-135d0d72224e@mailbox.org>
- <16231b1742004f848af243ce398281ec@valvesoftware.com>
- <ce51243c-3b98-4f99-911f-70dd0b860da0@mailbox.org>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-Content-Language: de-DE, en-US
-X-Enigmail-Draft-Status: N11222
-Autocrypt: addr=linux@leemhuis.info; keydata=
- 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 MEK4
-In-Reply-To: <ce51243c-3b98-4f99-911f-70dd0b860da0@mailbox.org>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH] drm/amdgpu: move notifier_seq read back inside retry loop
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Huang, Ray" <Ray.Huang@amd.com>, "Prosyak, Vitaly"
+ <Vitaly.Prosyak@amd.com>, "Liu, Jenny (Jing)" <Jenny-Jing.Liu@amd.com>,
+ "Huang, Honglei1" <Honglei1.Huang@amd.com>
+References: <20260528062902.362031-1-honghuan@amd.com>
+ <1e9480eb-24fa-4d97-9e4e-7120bf668f20@amd.com>
+ <IA1PR12MB6435193DB8FBEFB4F4CEE093D9092@IA1PR12MB6435.namprd12.prod.outlook.com>
+ <0b5ae36d-4045-4411-89bc-e779be98bce0@amd.com>
+Content-Language: en-US
+From: "Huang, Honglei1" <honghuan@amd.com>
+In-Reply-To: <0b5ae36d-4045-4411-89bc-e779be98bce0@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-PPP-Message-ID: <177996702631.3775691.10510101217118724061@mxe9fb.netcup.net>
-X-NC-CID: VT+3wFD0GlzxeSD2mIUc2r9Ft2dbk6T9azLuPB/KJWJySk6S9N4=
-X-Mailman-Approved-At: Fri, 29 May 2026 07:44:33 +0000
+X-ClientProxiedBy: TPYP295CA0023.TWNP295.PROD.OUTLOOK.COM (2603:1096:7d0:a::7)
+ To IA1PR12MB6435.namprd12.prod.outlook.com
+ (2603:10b6:208:3ad::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR12MB6435:EE_|SA1PR12MB8162:EE_
+X-MS-Office365-Filtering-Correlation-Id: 81c045ae-0525-4502-0674-08debcac5434
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|11063799006|56012099006|6133799003|4143699003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 9deKTbwCOzqIQsoKo5XaB/D2e3FD1E7smLjdd+eyVupO4bpiIi6PJ9i4TivnGqjE7bnWB2hb8H37C04Syfg/oXgng2uVcekKmtCWDJ7n95AU6gcC6M1VXK4FR5AbYNbn1igV2UDRBMjLbPrIBaX6M/6bOl+AP9OeLSSXxDQk1hKzpfNle/d9proE8Yr/0celSzoRJDpeARkwD9Tx7HhLBIKmZTH4QH66vTsLeMiHtqtrJR7lw7EHrITrUCn79gDgn69JNh9/FKT4FqYGdE2FXIiXZw+XDrM8daRPsDwpCARQL+qeoIGuQYtGvDUhU79LcEVZNyh7e/25Q5qXKMp6CfKMDOve2S7yX8UbBNKMlumSOiUYwQvQ3fBzTGLSWAuf9niwo/ZB5cRTlx5O6br5sXHNdiCKJrzI0i6/boyi6SRp5txyExa35P9I7TFyhQTF61szKJ51MGb4nUUl5BMJa0/qH3b1MYRnQmym0Gl9rnDZFAqywJnheD6/1fghiubXR0505r9IJ0YsVCoud+3YpZ+JvNK8fE6Hez0cEY2e7g7Ee/56BbxnQHL7LIRboMBKInBZaYYm4hiUK8kv6gS+s9Q1RZglCLV3+jbvm6CBPENIDJ6ZtZDqwih4odISUf4C3X1I2fIfWgdSL4/+/Kuwx/tRRkwjgVjsQiIgJlazLJ2M2xz+0XYTQntd5ZDrSsJy
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA1PR12MB6435.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(11063799006)(56012099006)(6133799003)(4143699003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N1hTclpuRFVPa3hlc3pldmtlNVlzRnNFcFFDbnE0Z09lcWZZYWhPbVZSOVZn?=
+ =?utf-8?B?RkE4T2xVamtabStwTTRZaU54SjBWNXZHaFVBaWdMQnZkYk9GbmhEVGlrcnA1?=
+ =?utf-8?B?Vm1NMnE3LzR6c01qTmJPV0I5RXM3NTgwSnNjNXk4a2tYTFNMMERCUzAvUmcy?=
+ =?utf-8?B?ZWphQms1Ymk1eE5wemVxWWdhMGY3Umsvbk5MMVJBcW5tWXBmOTVJenpLZzkw?=
+ =?utf-8?B?THVySkxpRVF2RzgvSlY0dU1RMnJESmZkalhNaVhXb3hoZmdtajBRbVFsV25K?=
+ =?utf-8?B?WEErdlFzMEt4byt4aEtOeGJkV3B3cmYyNTBlcEdycjV0OVh0UTFjamYyU0lD?=
+ =?utf-8?B?d2FJcmx3NG1JZ0dyYWFENW9nQVA2K3FwdFkxSUx6dWZ4L3N5b011eEpucld3?=
+ =?utf-8?B?Vk5QNWlOQVQ2QmhrVWp6ci9rNWI5RlN1UDZFNXRQUXZJZCtKTTVoSEFpY2VU?=
+ =?utf-8?B?QlUvTW9NcFJ4Z3hQSS9BVnN6blIvNkEzRC9xeWJoSFZxSkFYbGhpeHc4QkR5?=
+ =?utf-8?B?cytJNVgwZVJvSER0enQwT0pUcm1XbzlYUzZyZG9CcjQwYUdwVTZJUmcvLzhk?=
+ =?utf-8?B?R0hRL2RUVjRucWZEcFllVk11NFFCNFl3YWh1a2tiVE1sZ21yd3liNk10KzNT?=
+ =?utf-8?B?L21yQ3Nrd29LMVRzdHdsaEk3ayttQmNPNm9jNWMvNVRjR3ZCZTE1R2Rpbmg5?=
+ =?utf-8?B?ak16V3BRa1VoYmZuRER4R1dudk1xWGJnZ1k3a01udkh6SXJDRkJRNEttNFJD?=
+ =?utf-8?B?cUVKL3l1U1R1OXc3dFNQU1JORG03U0g2dVlSREpWVUVaQ1pLQVpjN3l3eVRm?=
+ =?utf-8?B?VUtuSG44T3l3SnJLNDlSOUZMTEhvclBhNk0vSXFhRnVYckVCVFNlUmFXS3Ry?=
+ =?utf-8?B?UmFFc3gzeUJ3UlZ3dEwza3RqbVhHOUdobDZJaEpuYmJzWkFKWnZtZVU1S1RZ?=
+ =?utf-8?B?VzhaaHZoeUdqZXBFNEZJeEg0TVJJcWhjeTkrTXVRY0U2b0xaZmh3T3NCc3pu?=
+ =?utf-8?B?aFJNc2FKUk9aM0FiYU1oOGJvYkFiUXc0MHhreWNnK2JSY2ZiSDB0cHNmeStS?=
+ =?utf-8?B?NGNlTWhycUMxZzBvQ0NPa0JBU0k4KzlEUGNwSU9Nc3ppRGIzNlFWbXphQ29B?=
+ =?utf-8?B?U0haMzlwcTZ2MGJlWWVIZllic3RFVEtuRDgwYWJsSitrai9Xd1pOSUdFanA1?=
+ =?utf-8?B?NWhndnhiSEhtOVhkUCszRXA3V0U3TitTMmhibFZEZmU2WnZ0ajA5bkh0UlNw?=
+ =?utf-8?B?c01XNzRibnVidFl5K0NqTkxJRTFTbktoTlpoTmMva0dvQWpoZUNGc210TGpy?=
+ =?utf-8?B?OXFLc1FpL0tZZkdZL2xrTDVhK3EzOHh1TU9mQ2pHb0J1V2UydnpEZ0NwcC82?=
+ =?utf-8?B?TVRaYURFZDB0YmVhZzJBTDlxTXRFanltS09uM3pvNmlFQll3aUNUMk1jOG9s?=
+ =?utf-8?B?aFNXRm1jN0w4U1pkcVM2Q3hJTDVYUFM3cUFkM29pcVk4c2h1ZWZYamE5c0RI?=
+ =?utf-8?B?QkRWQ052ME0rWkpzcHRuZVMwMXcvaTFuUDJ0MU0zTHFaY3JPZkxYUUZwWHRr?=
+ =?utf-8?B?ek4rQ0wwOU9lUnRqMWMxZVp4NndLY2FsZ1QvQVpNMlBwVEtRemhyZDFkMjNQ?=
+ =?utf-8?B?N1YrUW9VUS85dnZObGhkMHRIY1lFckRyaHNrTnRjeTVpR1BtK0dKY3RJdTQ3?=
+ =?utf-8?B?ajY1d3BrMjBYRlhOOVBkTVAzaUJlUlZyakFhcVczL0ZwNytZbWpHN2dDSHFu?=
+ =?utf-8?B?SUYxTUd6eGxRajBNZExaZjNHSTI4MTg5VUZMQVpSOGx0NjhWM2xtOUdBOFZj?=
+ =?utf-8?B?bm9VMEo4ejdvbXloTzlKdFVWTE9CTDRUKzJMZk5tRW40RXhLNzFEcHpiRXIw?=
+ =?utf-8?B?ZlhPMVh1bEVsRlhzaUszL2JhOEZXRitESXl4VWY1cHU2Ly9lMWdkZU5uZzg5?=
+ =?utf-8?B?ZUU0T2hlRk93aSt2ZlR6bUtOYVlOVGJyK0dEWUZQcGpFWkN6QUFJZ1I3MWdX?=
+ =?utf-8?B?SGE1OUpsVGlmYlg1ZUVXY1hrTDNxVE9ubW9GODBXOWU2dS9pb21ESkMyWUNS?=
+ =?utf-8?B?R2ZBbmF1aWxJY2dvYVR5TjVQN3ZiRlpsdmQxdklVeTkxYVdqOG91NTJ0bnZj?=
+ =?utf-8?B?NDlkeGphaVBlWDNRYkNaMGU3Z2VTRjlncURlSThrYU1ZT29md0RRRXZjTUkx?=
+ =?utf-8?B?aEhReTZocVByaUF1V3hNV1JKZVV3Ulp1SE5KRXUxM2xHYjVVbGN2MiszeHlp?=
+ =?utf-8?B?VXhEWVVwTGp2eUlRdmduVnJHWTJlNVNnRE9Fa2ZjVjhSMHhaVlNlWlJaZXll?=
+ =?utf-8?Q?Kpwu5AQj3Qb0Cq4zW7?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 81c045ae-0525-4502-0674-08debcac5434
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR12MB6435.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 11:29:07.0039 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: I4Hti1j0YzeIwf1A8hJri8J0KMySDdtJOf5R+MR3nYUw6N6KBeO2uMHdbXBo34p9iJ6MhGc/YZJiSyFbSfAgyQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8162
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,70 +145,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:michel.daenzer@mailbox.org,m:peihsiny@valvesoftware.com,m:regressions@lists.linux.dev,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
-	DMARC_NA(0.00)[leemhuis.info];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:Alexander.Deucher@amd.com,m:Ray.Huang@amd.com,m:Vitaly.Prosyak@amd.com,m:Jenny-Jing.Liu@amd.com,m:Honglei1.Huang@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[honghuan@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[leemhuis.info:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[honghuan@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: BC77E5FEBAA
+	RCPT_COUNT_SEVEN(0.00)[7];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,amd.com:mid,amd.com:dkim,lists.freedesktop.org:email]
+X-Rspamd-Queue-Id: 22DE05F14D1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-[+Alex +Christian]
 
-On 5/21/26 09:09, Michel Dänzer wrote:
-> On 5/20/26 17:54, Pei-Hsin Yang wrote:
->>
->>> Tested with 3 HDMI sinks with different FreeSync/HDMI VRR capabilities.  I saw one case that a FreeSync sink (Dell S2721HS) with E6h VCP code supported was detected as FreeSync capable at beginning but identified as not FreeSync capable later – after do_mccs is changed from true to false.
->>
->>>> And that doesn't happen without my patch applied?
->>
->> There are other issues without your patch applied.   One issue is that if a FreeSync capable sink with MCCS VCP Code = 0 (mostly are TVs), it will be detected as not FreeSync supported and VRR will be disabled.
-> 
-> That sounds similar to https://gitlab.freedesktop.org/drm/amd/-/work_items/5286 .
->
-> I was wondering if the specific issue you described above with Dell S2721HS is reproducible without my patch though, in which case it might be a separate regression (and wouldn't speak against merging my patch).
-> 
-> 
->>>> TBH I don't really want to be fixing the regression I hit, I'd prefer the AMD display team to handle it.
->>
->> Yes, agreed.  As FreeSync MCCS support has immediate impacts to Valve's Steam devices, I will work with AMD display team to handle it.   HDMI 2.1 VRR and VTEM packet sending support need to be included as well.
-> 
-> Note that some kind of short-term solution is needed for the regression(s) in 7.1-rc.
 
-Yeah, that would be good. Makes me wonder how the rough plan to realize
-this looks like? Sounds like Michael's patch[1] that was discussed here
-is not a good option? Reminder, Linus ideally wants known regression
-fixed by -rc6, which is why I'm asking.
+On 5/28/2026 4:06 PM, Christian König wrote:
+> On 5/28/26 09:22, Huang, Honglei1 wrote:
+>> AMD General
+>>
+>> -----Original Message-----
+>> From: Koenig, Christian <Christian.Koenig@amd.com>
+>> Sent: Thursday, May 28, 2026 2:54 PM
+>> To: Huang, Honglei1 <Honglei1.Huang@amd.com>; amd-gfx@lists.freedesktop.org
+>> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Huang, Ray <Ray.Huang@amd.com>; Prosyak, Vitaly <Vitaly.Prosyak@amd.com>; Liu, Jenny (Jing) <Jenny-Jing.Liu@amd.com>
+>> Subject: Re: [PATCH] drm/amdgpu: move notifier_seq read back inside retry loop
+>>
+>> On 5/28/26 08:29, Honglei Huang wrote:
+>>> Align with drm_gpusvm_get_pages() (drm_gpusvm.c line 1416, 1440) which
+>>> refreshes notifier_seq via mmu_interval_read_begin() on each retry
+>>> iteration. Without this, a stale sequence number causes
+>>> hmm_range_fault() to perpetually return -EBUSY, leading to an infinite
+>>> retry loop at the caller level.
+>>
+>> Absolutely clear NAK.
+>>
+>> This is exactly the bug 144ba981783f ("drm/amdgpu: fix amdgpu_hmm_range_get_pages") tries to fix.
+>>
+>> The sequence *must* be grabbed before the loop because it protects all pages and not just the one from the current grabbed chunk.
+>>
+>> What probably needs to happen is that we need to move the retry label or just completely stop retrying at all.
+>>
+>> Got it.
+>> But in my local test, the test KFDMemoryTest.LargestSysBufferTest always fail.
+> 
+> I mean that's pretty much intentional. Testing is for falsification and not validation.
+> 
+> Either the use case is not valid in the first place or the test is not valid.
+> 
 
-Ciao, Thorsten
+Yes, under the current pattern this case is hard to pass for large 
+system memory platform.
 
-[1]
-https://lore.kernel.org/amd-gfx/20260518154809.660061-1-michel@daenzer.net/
+>> It can pass before. This case needs RAM size big enough to reproduce,
+>> for some large RAM size CI platform, it can reproduce easily.
+>> Maybe someone can else can double check.
+>>
+>> And I understand your concern about the seq scope.
+>>
+>> Would it be acceptable to just remove the internal retry entirely and
+>> propagate -EBUSY to the caller?
+> 
+> Yeah I had a similar thought. I don't think the code should retry at all.
+> 
+> -EBUSY means userspace did something in parallel which resulting in the operation to not be able to complete.
+> 
+> So the only good reaction I can see is to abort and let user space or higher level retry.
+
+Yes, and actually I think maybe there are two points need to be changed.
+If we want to keep the retry tag, the retry need to be moved to the 
+start of do while loop, the entire fault path need to be done again,
+the previous 2G size chunks should not be skipped. The retry tag in the 
+middle of the loop is meaningless. The whole range should be retry again.
+
+And the latest seq number should be get when restart the retry. Or there 
+will be a -EBUSY infinite loop when a retry is needed, cause the seq 
+number never get updated.
+
+This can be done in inside a function or outside a function.
+If a retry is needed at a high level calling, modifications will also be 
+required at other call points, and there are many places need to be 
+modified.
+
+However, even with the above fixes, faults in large intervals may still 
+get stuck in endless retries. I got a the pages from a system with 60G 
+of memory, memory changes are inevitable in my local tests.
+
+Perhaps the better approach is to split the huge range into smaller 
+chunks, like drm_gpusvm does with 2 MiB ranges, and get the pages and 
+insert each one into the MMU notifier individually.
+In this way, registration for a large area can be completed, although it 
+will be time consuming.
+But it's better than the situation of constantly trying again and again.
+
+Regards,
+Honglei
+
+> 
+> Regards,
+> Christian.
+> 
+>> The caller already handles retry at a
+>> higher level. Something like:
+>>
+>> hmm_range->notifier_seq = mmu_interval_read_begin(notifier);
+>> r = hmm_range_fault(hmm_range);
+>> if (unlikely(r))
+>>      goto out_free_pfns;
+>>
+>> This keeps your seq placement while eliminating the infinite loop on
+>> -EBUSY.
+>>
+>> Regards,
+>> Christian.
+>>
+>>>
+>>> Fixes: 144ba981783f ("drm/amdgpu: fix amdgpu_hmm_range_get_pages")
+>>> Signed-off-by: Honglei Huang <honghuan@amd.com>
+>>> ---
+>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c | 2 +-
+>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
+>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
+>>> index 5d72878c8..ec0fe9044 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
+>>> @@ -192,7 +192,6 @@ int amdgpu_hmm_range_get_pages(struct mmu_interval_notifier *notifier,
+>>>        end = start + npages * PAGE_SIZE;
+>>>        hmm_range->dev_private_owner = owner;
+>>>
+>>> -     hmm_range->notifier_seq = mmu_interval_read_begin(notifier);
+>>>        do {
+>>>                hmm_range->end = min(hmm_range->start + max_bytes, end);
+>>>
+>>> @@ -202,6 +201,7 @@ int amdgpu_hmm_range_get_pages(struct mmu_interval_notifier *notifier,
+>>>                timeout = jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
+>>>
+>>>   retry:
+>>> +             hmm_range->notifier_seq = mmu_interval_read_begin(notifier);
+>>>                r = hmm_range_fault(hmm_range);
+>>>                if (unlikely(r)) {
+>>>                        if (r == -EBUSY && !time_after(jiffies, timeout))
+>>
+> 
+
