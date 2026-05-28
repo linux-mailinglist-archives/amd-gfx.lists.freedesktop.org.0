@@ -2,129 +2,129 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UKW3DGbuF2p8VwgAu9opvQ
+	id CErcIbH0F2q5WAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 09:27:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 09:54:25 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BCDD5EDA63
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 09:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A6C75EE0E0
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 May 2026 09:54:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6229310ED07;
-	Thu, 28 May 2026 07:27:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCFB010ED67;
+	Thu, 28 May 2026 07:54:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="rzGVQ7c/";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Vibv4b2t";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="N9krKUA1";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="iPU0Jk9T";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="GjZHsRQG";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010065.outbound.protection.outlook.com [52.101.46.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FB8810ED07
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 07:27:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xmD6TBsXdGvhdARlsfGc40F4Y3Dnjc4B8AXjqdt/E3RkG6WWzMoA9kSlyF+mT3/TYlMnmUCA3UAH1ZRq3Wac6yAHYzzzXwS4sIZsGYWh5fVGbbzccWdQSc+PLviEaz3lHVQrUZF+UkqTVYx6utPZns1clpg3P1dSeurg1Z6GJHeQztTjqxrZG32rgUeBJtHmDwenBY8A1540HkJgH1kR/N0va6w8UjXVKdfUVMx1wHMirY5RxhmAj/Cl/WAvzsY/QoyB/cPU5PuCptznk2CSo6poAoNVv2Onii6Kop++zsN23tMhIQuvsFSpiyn6ReqKKQADxOQdbN/bUKPPbyVXGg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AtQsIVtfgxmaBJBE8N3ruTIf3iTPairQbVXI08j35S0=;
- b=MLTr3xNPB8QaArX6rqRbn5EOnJMkvX0EQYbHRTTfdokPh7CWeGkJuzvljGoDuPjsf8kbSq3k83JO8pOIcUspgjye+JDLuVeybunUORcKXKm53ROHwRoileuupNy63oyWoPFasjS7+Y9T39X9y6nEZaCCft6p0wziZQpeXWCnKTMaOrGwBwQYUYGjKzAkezkmwHNi/aaS9lQCSa7rwYLzrXtYLHIR/XlLIP4r6K3/GwAqO5YmB5Q+xq/YOU5E+y8cW/sfkw5b3LFolFJfKBbcZ2Mh1Fn0DAMSrdcgGfXhU01xLUk5Q6xpOPwMF7LkuEPAKbNPFs2nErgUPQWCE/6zsw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AtQsIVtfgxmaBJBE8N3ruTIf3iTPairQbVXI08j35S0=;
- b=rzGVQ7c/z7MzkdlDEohbP6jHQQPdGKlDLaAq6O0BfB+X6ZXXJFb7HDt5MyC+l2sbQX3ym6peUSZxj8dahK+nVVNzGZGVj9EzrChGThAh6DWQhsaIuLnAw8/j2UBPWAHK8x6De4VzztTCFBXP6JafGk5Yw6hznJM1P2UqGqq7TzQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SJ2PR12MB8183.namprd12.prod.outlook.com (2603:10b6:a03:4f4::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.11; Thu, 28 May
- 2026 07:27:26 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0071.011; Thu, 28 May 2026
- 07:27:26 +0000
-Message-ID: <9164ec6a-ef61-484d-9d52-92094fa28f7c@amd.com>
-Date: Thu, 28 May 2026 09:27:21 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu/gfx9: guard fault IRQ puts in hw_fini
-To: Yunxiang Li <Yunxiang.Li@amd.com>, Alex Deucher <alexander.deucher@amd.com>
-Cc: Tao Zhou <tao.zhou1@amd.com>, Guchun Chen <guchun.chen@amd.com>,
- amd-gfx@lists.freedesktop.org, stable@vger.kernel.org
-References: <20260527204940.1741202-1-Yunxiang.Li@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260527204940.1741202-1-Yunxiang.Li@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0370.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f8::16) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3712710ED68
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 07:54:20 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 7382D6AAFF;
+ Thu, 28 May 2026 07:54:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1779954858; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=nIFtEp8XNRLMDTgplchOXvBKr/AWJ8CoFKLco2rj1TI=;
+ b=Vibv4b2tN84Hue1lY0RmmIbay0Lyx5VmfDU2oMVp7/9PUXR9frjPzjsYaCKNT17GVHsOhU
+ HeKNhTpIS/M1AxPNzQ3nLjM+krKdc9Q+Rfj5krHroMUW5F1xFqQPKrzlS34obps7+TNV9E
+ A5jnPk4chUG8b73qNbd9OuRt7x3jACg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1779954858;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=nIFtEp8XNRLMDTgplchOXvBKr/AWJ8CoFKLco2rj1TI=;
+ b=N9krKUA1KgGc3J0zgor7SkZxGamN7dtY2O19CnV4Tb0qVyM411Dc+5BTPDISA6oUV2ogl5
+ c9PvWIvgPZ+zLPBw==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=iPU0Jk9T;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=GjZHsRQG
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1779954857; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=nIFtEp8XNRLMDTgplchOXvBKr/AWJ8CoFKLco2rj1TI=;
+ b=iPU0Jk9TcyIT1jIz4sLNnE0aYJ6qPawt/UPUXEN9yt4ROET6SvgUupWCqOWqX7gSciX/+V
+ e2eNcD7XgFoh9NTjUQzBCeduNHPCs76dFrrq6aS7OX0CWEF8C2I8SmZewmj9yl86SGls42
+ ZLXAD8MvE/napEwcK4CKF58H7CHeztE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1779954857;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=nIFtEp8XNRLMDTgplchOXvBKr/AWJ8CoFKLco2rj1TI=;
+ b=GjZHsRQGDCs4T6IyCm2heJ2vbAHLAVE4iA2S5CeM0lxNwxHGurTJT6nr8jkHYI+tFIMVEK
+ hgktSEDhRZFqQLDQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 0A3715AC99;
+ Thu, 28 May 2026 07:54:17 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id w30pAan0F2qvZgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 28 May 2026 07:54:17 +0000
+Message-ID: <1d399c2d-b50f-4d19-8170-9db8961e4227@suse.de>
+Date: Thu, 28 May 2026 09:54:16 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SJ2PR12MB8183:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3a0e1809-1a7d-4ad8-10a3-08debc8a9108
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|18002099003|22082099003|56012099006|11063799006|6133799003;
-X-Microsoft-Antispam-Message-Info: Aaw+v6QlstJQbM6or+n8dHOWpEK8EOBaeKStEGwa+NMwyBV5Ard2+YIefo36kyBityIsVmOjnM1JSy9268+Q9NDITAKlrIn1LJbwlyW2me+qiw2v11znPYP8hvBUZckqiFxxgr9z7ooFD4iBwERdlR1Kud3Zg9pqfUOTIoZ0LEgO0MDMdynsLiiyyTGZCeBY8Q3+3J2zW7Bowe+kbMqb7upxdlk9G8qaV6sxl0ehuupn5ZeXrwVq7A/xvoD9RFV9vKOJoeKzDQWAYt6uxWaObqY9CB32BhqqVvakS3jtoTI3pLDWbnANFgN91NyZjw4kpCjDMFB9mN1r1UW+2a941RWfWJ732rAeGd66JGonQwgakJwrGerTbzmp22saAGCo5AzuOWz5LqOOsKdml/JIax+01D1Mhb5aRTn0cmBShSoe28WBsVmuCNFb6X8RQQx6QPdOkeFgVG+OmTZ66cJuPR1ciXsvxVHnX4FcmcuBpFKUc3+G5i0fsNXFnTFTrYmhIo9uuR8y0l3I92MnwcnSY+eysc+iQc0CKlX7nH/sWjDadO+zNHgocoI2OXHCGic3ax2UJUFc28yPOmYdgPBzUTKwkmx+2P1n72m6HTWL306ZvdPYLjkV1/W7NOEgNoJH9jphvvYjSGnqfTjNlyMndbmHbd5VUkQm1uEXlddlt0gzGzMigQe+5Cxxj7EYRhDk
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(22082099003)(56012099006)(11063799006)(6133799003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N0lDeHVFY1ZucDh2UGlSNURnbEMycWNydGpmNnU2czU0eVluTEV4T1I4SW1h?=
- =?utf-8?B?aXdUeHo3ZVozOGNlZmJXbXY4ZmEzOGZncU9vS1JEakkva1MzZjJrcWczdWww?=
- =?utf-8?B?K09WOGxCejZlNnNzeUYxdXBQTnhjNlJoMmVndTAxN1puaTgyU0ZJUmF5SE9Y?=
- =?utf-8?B?aTQ2c0xVU3hKTC84SjR1VGExZlBjM2g0U1RMRjBQaUZZam52bVNKOHBlb1lY?=
- =?utf-8?B?QWJDVllpbFhOb1RJQkRhdXV3L3VjalF0SzlHSkdBWlF6c0ZrZERraUdYRUVZ?=
- =?utf-8?B?akZRUURJSXIzRVkrUjdtT0RSR1k5Y2VhOW10ckNWYkM5NXJTV0Nsa3ZxQitW?=
- =?utf-8?B?cEtMRFJ0cEJyZmpmUWNjYkFnSkc4NFQyQlNkL0tsbzVqbHljNmxFcldZeFk0?=
- =?utf-8?B?R2o3VHZieSt4WGlWU0xGeDVNQlZoTlFiekRHSXNZbjZSS3ZBaGpUZTRrWnJy?=
- =?utf-8?B?N01HSjgvdVhCRzhRbFNwZ3ZEYUtMVHp1QkhPMW10SGxHTWl0L1RyMUF3WG5I?=
- =?utf-8?B?eHNGREt5ZWsydWFDL0R4eGpuU01ETmZoclNRRitwMStJazllZTFta3hZdUlR?=
- =?utf-8?B?TXZxVHkvSHlhcnF2eHVrTDRDeGpSb0VsMUg2QjIxNkZQQVkyQXZYaGRjeVVY?=
- =?utf-8?B?YVVZYWM1SXRocDVjdVVhYWFmUnE3VkZ0bjYxbmJoRDJDUmpGVy90S3RDZTgv?=
- =?utf-8?B?dS81VThhTThmR2hwMmFOWG04QWV6RVMxRFJSK3lnZUl6ejd4SDg1MkVaZHVO?=
- =?utf-8?B?RytUOFRKN1lmTkkybkFLanpnZjUzOW1LMUlzZnpKdlJ6RkZUNy8xOXRER1c1?=
- =?utf-8?B?RnU0cldPL0hCbm1NM2RmWkEwd1BlM25xQWczWW5lUnJNL00xSmVjWktlb0NG?=
- =?utf-8?B?V2tZL0w3ZmtYM0s1Rk8rbnM0VTdsSzBqTm9SMXZqSDhqSktrU3VQeWZtdXNt?=
- =?utf-8?B?Q2ZqZEVyWDBrRGxiYnJ2dGt1SkFFdlJBd2VEQUpPMnVVQkw1SDZKMTZjaHJM?=
- =?utf-8?B?bVVzUXJOb3dhQzM0bThsbk56VEVkdzc4RjFVT1ovN3RERFZUNGw2VTRGQUht?=
- =?utf-8?B?ZEV6YmNvY09icEt4cUxjZnB5REtTZmJ5NVVXVC9zSEhYb1o2OUJoR1hMQ1BR?=
- =?utf-8?B?V3lDTjMwNDFmUFY2bjU2Z1AyM0UybXFPU085bGlKeDc2MXppY3Foc3lRYnFS?=
- =?utf-8?B?MU9NcjV6ang4WEVpdDBFVDRSbWY2cStweFZsMkZVMVZxRWkybGZrOXRIM1R3?=
- =?utf-8?B?NERSSTIrME1ua3VnQ3pGcStWSS9UbkFBVldub1B6NTBhNVRUc0w0bWZ4SmNP?=
- =?utf-8?B?VncwdFQ5VEpjNUZ4dHZQLzBhbXJuNXJNWjBoNjV4b1o2a0dBTXoveUpWTVll?=
- =?utf-8?B?OHZTbmVRbHlqU2VnakUyMDA5TUtVaVAzZEUyQzhRWE1ERFJkSFk5c2R0U3px?=
- =?utf-8?B?VldncEd4cFFlYWlSZTNnRTZHc09tYVpoMG1DSUw1SUd4OXMwS2xwTVJXS3Ri?=
- =?utf-8?B?aXNOWlJ6cncvd3NkNHI2L3F6NnY1RjAxcHJLNkQ4bHRpUjg0azBPNmZnbWFX?=
- =?utf-8?B?ejJ5dzRSZG94OXFDOWNVU0I0WEhsN0o2eFlQUFlGMkNQbzQ3RlAra1FpUG1m?=
- =?utf-8?B?MExGYkxzUnJGTkJCTnE1QjZ3eDhYSDFrY2JRcVAxb2lxMGlsdEtyQ3A4M3B0?=
- =?utf-8?B?dCs1UGRhdkRKcHo2Y3RTTWFVZFJqTVZDdjFnMldPNVowMm5MRytEaDZRd09a?=
- =?utf-8?B?RHY2QlVleUoyT2hvQ2hzVjZ5ZEF6bFZGd3JVQmwveStMc0hNUWhtajYxTTFm?=
- =?utf-8?B?Um1lU0dOalRrVFJ0QmZjWEZtdktuY01WSDN0Q25yY3FWeU44Z2pkbFNLQUg4?=
- =?utf-8?B?TmE2TUZ1b3o3NyttZG5KSC9tamhSWHFrRnJVcVI0OUo2NmpjaWZFZFNSekxM?=
- =?utf-8?B?UkFseEcxejMrUkdHSXE3d3ZxWFZ2OXZRMStReEZ2YXFLRDZpbmpmVnVtYnUv?=
- =?utf-8?B?bFZ4aUJ3RnNrenIrM2tGVnB3dEtjMklSMXpMMUF0Vm82ZG1EbTkxT3F2TnZQ?=
- =?utf-8?B?SmJRbW1pMmZ6eDJvRzRybU9NTGNSSTF6Y3phcG43MEVaaWdwWStNZDUrK21k?=
- =?utf-8?B?aVVJVld3SFZjcERHclRvZ1hLbkRmWmM3RWhUdFNDZmJ5VzJlWnpuUXR3SkhU?=
- =?utf-8?B?WWFJdzlFTERHN280MHFRRXNHUUdGTmxzSk4ycW9vSlI2aXdkcmtJQ2xjUFFL?=
- =?utf-8?B?WnFpbWpVOGRta0RkcjdIZVl2cHpoWThvNTgzcnYrZi9SVFUrZGg1VWFUQnFv?=
- =?utf-8?Q?mUdJHLODgallTCmZSG?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a0e1809-1a7d-4ad8-10a3-08debc8a9108
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2026 07:27:26.1032 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OkavZwk12HiJgtLazWagujrpJA7j6pezkK7AAqnzwpgRFYsdR80FERJMysC+iEGx
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8183
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/9] drm: Limit DRM_IOCTL_WAIT_VBLANK to vblank
+ interrupts
+To: Julian Orth <ju.orth@gmail.com>
+Cc: simona@ffwll.ch, airlied@gmail.com, mdaenzer@redhat.com,
+ pekka.paalanen@collabora.com, jadahl@gmail.com, contact@emersion.fr,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, mhklinux@outlook.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ wayland-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org
+References: <20260527133917.207150-1-tzimmermann@suse.de>
+ <CAHijbEVZBRTK7yhZy8gaZwb19JMzUD_nA2S1LOKX2NrK19RBsQ@mail.gmail.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <CAHijbEVZBRTK7yhZy8gaZwb19JMzUD_nA2S1LOKX2NrK19RBsQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Level: 
+X-Spam-Flag: NO
+X-Spam-Score: -3.01
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,98 +138,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Yunxiang.Li@amd.com,m:alexander.deucher@amd.com,m:tao.zhou1@amd.com,m:guchun.chen@amd.com,m:stable@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ju.orth@gmail.com,m:simona@ffwll.ch,m:airlied@gmail.com,m:mdaenzer@redhat.com,m:pekka.paalanen@collabora.com,m:jadahl@gmail.com,m:contact@emersion.fr,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:mhklinux@outlook.com,m:dri-devel@lists.freedesktop.org,m:wayland-devel@lists.freedesktop.org,m:linux-hyperv@vger.kernel.org,m:virtualization@lists.linux.dev,m:spice-devel@lists.freedesktop.org,m:juorth@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[tzimmermann@suse.de,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[ffwll.ch,gmail.com,redhat.com,collabora.com,emersion.fr,linux.intel.com,kernel.org,outlook.com,lists.freedesktop.org,vger.kernel.org,lists.linux.dev];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[suse.de:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,amd.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 9BCDD5EDA63
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,suse.de:email,suse.de:mid,suse.de:dkim]
+X-Rspamd-Queue-Id: 3A6C75EE0E0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 5/27/26 22:49, Yunxiang Li wrote:
-> gfx_v9_0_hw_fini() unconditionally puts priv_reg_irq, priv_inst_irq,
-> bad_op_irq and cp_ecc_error_irq, but the matching gets in
-> gfx_v9_0_late_init() and amdgpu_gfx_ras_late_init() may be skipped
-> on SR-IOV VF, partial late_init failure, or an earlier IP init
-> failure.  When hw_fini then runs, the unmatched puts underflow the
-> refcounts and trip the amdgpu_irq_put() WARN:
-> 
->   WARNING: CPU: 4 PID: 6367 at drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c:676
->   RIP: amdgpu_irq_put+0xc6/0xe0 [amdgpu]
->   Call Trace:
->    gfx_v9_0_hw_fini+0x200/0x9a0 [amdgpu]
->    amdgpu_ip_block_hw_fini+0x29/0xc0 [amdgpu]
->    amdgpu_device_fini_hw+0x309/0x5f0 [amdgpu]
->    amdgpu_driver_unload_kms+0x7c/0x90 [amdgpu]
->    amdgpu_pci_remove+0x51/0x90 [amdgpu]
+Hi
 
-That's a good catch.
+Am 27.05.26 um 18:31 schrieb Julian Orth:
+> On Wed, May 27, 2026 at 3:39 PM Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>> DRM's WAIT_VBLANK ioctl synchronizes user-space clients to display
+>> refresh. This is meaningless with vblank timers, which run unrelated
+>> to the hardware's vblank.
+>>
+>> Disable the ioctl for simulated vblanks. Set DRM_VBLANK_FLAG_SIMULATED
+>> for CRTCs with simulated vblank events in all such drivers. The vblank
+>> timers of these devices still rate-limit the number of page-flip events
+>> to match the display refresh.
+>>
+>> According to maintainers, user-space compositors do not require the ioctl
+>> for rate-limitting display output. Weston, Kwin and Mutter rely on completion
+>> events. Mutter optionally uses the WAIT_VBLANK ioctl only to optimize the
+>> time from input to output.
+>>
+>> When testing with mutter and weston, the page-flip rate appears correct
+>> with the patch set applied.
+> To avoid this being a regression, you need to test that this change
+> does not regress input latency.
 
-> Guard each put with amdgpu_irq_enabled() so hw_fini only releases
-> IRQs that are currently held.
+Let me stress that the current situation is that there's high-quality, 
+and low-quality and no timing information. Depends on the driver and 
+hardware.
 
-That's a clear NAK.
+>
+> As discussed on IRC, compositors use vblank data to predict the time
+> of the next flip event. For each device that you are touching here,
+> there are two possibilities:
+>
+> - The vblank data is related to the flip timing, i.e. flip events and
+> vblank events are sent at almost the same time. In this case removing
+> these apis removes the path for compositors to predict the time of the
+> next flip event. Input latency will therefore regress after idle
+> periods when the compositor no longer has the time of the last vblank.
 
-This just works around the problem in an incorrect way. The real question is why we have the get in late_init()?
+User-space compositors seem to operate under this assumption. That, I 
+think, makes sense on better hardware with rendering and vblank IRQs. 
+Page flips are fast on such systems.
 
-Regards,
-Christian.
+>
+> - The vblank data has nothing to do with the time of the next flip
+> event. In this case this series could in fact improve latency because
+> it removes the incorrect data from the compositor.
 
-> 
-> Fixes: d97b02bb9c7aa ("drm/amdgpu/gfx: disable gfx9 cp_ecc_error_irq only when enabling legacy gfx ras")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Yunxiang Li <Yunxiang.Li@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 11 +++++++----
->  1 file changed, 7 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> index bf270e605949f..e5a3735d98342 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> @@ -4057,11 +4057,14 @@ static int gfx_v9_0_hw_fini(struct amdgpu_ip_block *ip_block)
->  {
->  	struct amdgpu_device *adev = ip_block->adev;
->  
-> -	if (amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__GFX))
-> +	if (amdgpu_irq_enabled(adev, &adev->gfx.cp_ecc_error_irq, 0))
->  		amdgpu_irq_put(adev, &adev->gfx.cp_ecc_error_irq, 0);
-> -	amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
-> -	amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> -	amdgpu_irq_put(adev, &adev->gfx.bad_op_irq, 0);
-> +	if (amdgpu_irq_enabled(adev, &adev->gfx.priv_reg_irq, 0))
-> +		amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
-> +	if (amdgpu_irq_enabled(adev, &adev->gfx.priv_inst_irq, 0))
-> +		amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> +	if (amdgpu_irq_enabled(adev, &adev->gfx.bad_op_irq, 0))
-> +		amdgpu_irq_put(adev, &adev->gfx.bad_op_irq, 0);
->  
->  	/* DF freeze and kcq disable will fail */
->  	if (!amdgpu_ras_intr_triggered())
+Most of the hardware that would use vblank timers falls in this 
+category. Page flips often consist of memcpys into video memory, or they 
+transfer pixel data over slow peripheral busses. The amount of work per 
+page flip varies with the size of the damage rectangles.
+
+Any vblank timing information here is therefore of low quality. For some 
+scenarios, it would be common to miss a vblank or even the one after it.
+
+
+IMHO, the first thing to discuss is whether having possibly low-quality 
+timing information is preferable to having either high-quality timing or 
+none. I have no strong opinion, but would tend to the latter.
+
+Best regards
+Thomas
+
+
+>
+> Whether the times of the flip events correspond to hardware timings is
+> not relevant. Everything in wayland compositors is scheduled against
+> flip event timings and they are also forwarded to clients for their
+> frame scheduling. If the flip timings are wrong/out of sync with the
+> hardware, then removing the vblank apis does not improve this
+> situation.
+>
+>> This change has been discussed at length on IRC recently.
+>>
+>> https://people.freedesktop.org/~cbrill/dri-log/?channel=dri-devel&highlight_names=&date=2026-05-08&show_html=true
+>> https://people.freedesktop.org/~cbrill/dri-log/?channel=dri-devel&highlight_names=&date=2026-05-12&show_html=true
+>> https://people.freedesktop.org/~cbrill/dri-log/?channel=dri-devel&highlight_names=&date=2026-05-13&show_html=true
+>> https://people.freedesktop.org/~cbrill/dri-log/?channel=dri-devel&highlight_names=&date=2026-05-15&show_html=true
+>>
+>> v2:
+>> - add filter to CRTC_GET_SEQUENCE and CRTC_QUEUE_SEQUENCE ioctls (Michel)
+>> - clarify Mutter's behavior in cover letter (Michel)
+>>
+>> Thomas Zimmermann (9):
+>>    drm/vblank: Add drmm_vblank_init() to indicate managed cleanup
+>>    drm/vblank: Add DRM_VBLANK_FLAG_SIMULATED
+>>    drm/amdgpu: vkms: Set DRM_VBLANK_FLAG_SIMULATED
+>>    drm/bochs: Set DRM_VBLANK_FLAG_SIMULATED
+>>    drm/cirrus: Set DRM_VBLANK_FLAG_SIMULATED
+>>    drm/hypervdrm: Set DRM_VBLANK_FLAG_SIMULATED
+>>    drm/qxl: Set DRM_VBLANK_FLAG_SIMULATED
+>>    drm/virtgpu: Set DRM_VBLANK_FLAG_SIMULATED
+>>    drm/vkms: Set DRM_VBLANK_FLAG_SIMULATED
+>>
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c    |  3 ++-
+>>   drivers/gpu/drm/drm_vblank.c                | 26 +++++++++++++++------
+>>   drivers/gpu/drm/drm_vblank_helper.c         |  2 +-
+>>   drivers/gpu/drm/hyperv/hyperv_drm_modeset.c |  2 +-
+>>   drivers/gpu/drm/qxl/qxl_display.c           |  2 +-
+>>   drivers/gpu/drm/tiny/bochs.c                |  2 +-
+>>   drivers/gpu/drm/tiny/cirrus-qemu.c          |  2 +-
+>>   drivers/gpu/drm/virtio/virtgpu_display.c    |  2 +-
+>>   drivers/gpu/drm/vkms/vkms_drv.c             |  4 ++--
+>>   include/drm/drm_crtc.h                      |  2 +-
+>>   include/drm/drm_device.h                    |  2 +-
+>>   include/drm/drm_vblank.h                    | 15 +++++++++++-
+>>   12 files changed, 45 insertions(+), 19 deletions(-)
+>>
+>>
+>> base-commit: 5fb5a9a63cf5ece68e0eeb6fa397da27712bccf0
+>> --
+>> 2.54.0
+>>
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+
 
