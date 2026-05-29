@@ -2,54 +2,103 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mHopKLldGWpevwgAu9opvQ
+	id iLIvE61eGWpevwgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 11:34:49 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 11:38:53 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12A3F60001C
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 11:34:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A587B6000B5
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 11:38:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0619A10FBCF;
-	Fri, 29 May 2026 09:34:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DE8610FC0A;
+	Fri, 29 May 2026 09:38:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="OMW4BUzn";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="tUnFtd47";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59F6910FBCF
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 09:34:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=l4O98xhLXp3z6wsGChFJ8McVxhWmxPvjZiw/gXtU3tg=; b=OMW4BUznsuvo7oKCDNxRCyPag9
- +/LNzqcST/L4fMh9SY/jVvQVfX+DkcpSpoFw6+FzCbVx+armgBuDMSQUcnQ9c3wjDweB92toR+IaJ
- hJ5tfTsLZGhL3B4eTEKIH13OBnEDqVOiCnYtZp00KtgcPT0YZ/1cmG0W55NoiOHxJCWLaEr2rkzeF
- ulb5OLjSFMrEQzH8zd7/Ozf22FG0BmasDATNzywUE3HNeF5OwocO/qUlCoN1+RavgUYYnyoAPSsZz
- LpnFI+dJT/CELHsHBY1n/+rMM1pAnKCYvPrg0448q3LfrmCPO7TsZEl0t2CNbztT38NFBlUyBz4kZ
- t0TTO2Gw==;
-Received: from [90.240.106.137] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wStc4-009nUl-JB; Fri, 29 May 2026 11:34:44 +0200
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Subject: [PATCH 4/4] drm/amdgpu: Remove output parameter in bo list handling
-Date: Fri, 29 May 2026 10:34:36 +0100
-Message-ID: <20260529093436.82149-5-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260529093436.82149-1-tvrtko.ursulin@igalia.com>
-References: <20260529093436.82149-1-tvrtko.ursulin@igalia.com>
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012015.outbound.protection.outlook.com [52.101.53.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5E5A10FBE7
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 09:38:44 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zBPdbR4g+kcoVAogrX/ML2tNP+5Fu/dyeWsKe5E5O8Jf8t223yw/QswwMW1SX+TedWFTqqv0boMk2G8Ej1YLEWVNSJlEfYi7R7ghQ7wrzLJG3m0FX0VPLQCKWsTrUidnjle39HgOkqqk8qn9Kvu1aOowvej54x0vVViyD8Dc5tNU6RTBVwrDTXVBtYEEsyUZ17MEqe/h2jp7Gt7o2rYNZroqNT0/epvtA3xlvx62b/62Cv+XYAxYgppCc/E4MIxoPq7LnI0rUMSHdViOJYKFNqb7Rw+oqXOqWEH7GcwvenRD3Vw2KnFJq37khwViegEf4UwpoP8okRTP/SxxAAz8gg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NFqhx1RDR4VNZ0fu2QrirEuUDT3k1qQv/JHdah4rz/4=;
+ b=SIiHuQrJjFfLR4msONoQrmQ2UlNT8sUq9OrAVmfmG5MISuGzZ3gqB0XkWx8PZEaFB+1k8YEoO6IBQjryB9uyW9/Zfv1IL5oWGdN/Ut5wY6cqZp/1vng8s4p62pRw5f1TAfpcBF1OhVMN7wldfOhFqMZfUItz9TvO6qPTWDm45UHw0aat9Q5d1ZQ6ywF9uSnfVq2pda3shLXpoRJhcPTl46Mh2YDGNZj/OtoPCvYqBDoGg6gwclEbZ/j/Oy2dX6fpqDuiodsdW9Y6l1DKNE5XpQyU6ioDCoOtkSSEdSbCaFegY4H/FIh6vlt6i7Hb1ijr4GrKvIFmrvEhRN2h8Ol20Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NFqhx1RDR4VNZ0fu2QrirEuUDT3k1qQv/JHdah4rz/4=;
+ b=tUnFtd47B0SuNuF3xMvE4pLS1IR2YbEQTuOeCoDwDqS26/a/4jc/Dm3oNf+IsNZfBOQcwTJjkSPdjeYoWlfAjhEPX1v3aNHEMuWKsA6kWweyFc3KZ5L/uIXVq7dcahhJIf+Glz9H8DYdtl/+rctt8dZyr2M3LbXR0cc69ySX+js=
+Received: from DM6PR02CA0155.namprd02.prod.outlook.com (2603:10b6:5:332::22)
+ by LV2PR12MB5990.namprd12.prod.outlook.com (2603:10b6:408:170::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.15; Fri, 29 May
+ 2026 09:38:41 +0000
+Received: from CH3PEPF00000018.namprd21.prod.outlook.com
+ (2603:10b6:5:332:cafe::1f) by DM6PR02CA0155.outlook.office365.com
+ (2603:10b6:5:332::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.13 via Frontend Transport; Fri, 29
+ May 2026 09:38:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CH3PEPF00000018.mail.protection.outlook.com (10.167.244.123) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.92.0 via Frontend Transport; Fri, 29 May 2026 09:38:40 +0000
+Received: from mlse-blrlinux-ll.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Fri, 29 May
+ 2026 04:38:38 -0500
+From: Lijo Lazar <lijo.lazar@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <Alexander.Deucher@amd.com>,
+ <Asad.Kamal@amd.com>, <kevinyang.wang@amd.com>
+Subject: [PATCH 1/2] drm/amd/pm: Use strscpy in profile mode parsing
+Date: Fri, 29 May 2026 15:08:19 +0530
+Message-ID: <20260529093820.1134317-1-lijo.lazar@amd.com>
+X-Mailer: git-send-email 2.49.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PEPF00000018:EE_|LV2PR12MB5990:EE_
+X-MS-Office365-Filtering-Correlation-Id: cf067f86-cc19-4549-90a8-08debd661121
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|36860700016|82310400026|1800799024|11063799006|56012099006|18002099003;
+X-Microsoft-Antispam-Message-Info: Oox/zRIHuxC1Cac/F21LTGKfCMSfu8X7nHIAWVZxdklM8FUjYV7vxtTTHhkjNtgdt8FSrAEGq+4ppC7CovOcKGXvaq86J2gyY0EQc2Gy/5yMz3rxHyk0K5hoX4YMBFkwN1Tx7YnF4VwynufZyLNq7QMkpUAN6uPveZlH7Uwa618yk4Shhy5PpaxhuM9zb9SqC4FK9kZJvIFJvsqIxS6lxJWBWigUKzRMtDjkmaswsKvsC70w7nhtAtJ84oghc3z+2Den4jzuuiYOHUxxTRWIeAfnPtlarQPejB1DBvInSDHx4nTFDOIbVvUhWpZ/fwA9ansxp5OAV631aNPRi2zG9Muiyeif+zEW/BDvspIAvvV1uKl3DUkUhZSHeCHkyjsrxlOHxvVKp7WyDV2TS1Na4QIoG8l8puYmSG83M6Z4OT6e/0PhFO2D+nroFhAykFYfrP4HadA/YKz/ZC4lrGDzpkcZQTCFB2uVJ9es4wlF0v4LQaeTdWJmx+eDuwi6cs+2IO7uSwrPVadAA21+YIur4DeLI+UyWFsJ7c925A6jMpkPqkMGXCyPEWCedQyi6u9yZT/M/H3mjWdr98WqC19Qg1vNyT/+cOJLYZu/zAXT/UGzQMSCvywCnBs1lg/jyvvEp5ptU7/DF0Wu1eWUt3ffkqXYLILvLghCoqq8Aa92cZpx/aJqfjuzaGRAG5ZVfihOrk6IkZFP7SbB/RmgAZHymT/gzoJ+EraO1/r6OqRDJQI=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(11063799006)(56012099006)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: QCJBKmgsXJu8jbvXeDMqpTrSFI44oRa2spOxoLrNujCaxOGnby9onebyZolklGebMq/EgXW09Y8J4lknApCUtFD+j7pB+QCi6H/RNsB2l8iiCGzS3B3Vn/mkrrmkWr7XI2xT1G5KeSC7Gr6cZ4PVzhv22DR0pzr0eBImqyi1fNuusfTxz4XkPBB4C/wTy7RSpTGl6ojxB2u9vObhELemfp5Msha5Hj5d0kSCTMAn5AFDWEZ23tZP9S/NMYxkOx0tins0qMRRNPMfRox9a/vDCKMQ7hMl6xyH5E+z5+0mtCeRugpl6l335hWmq+MdKbXeQ8hwcx6t2NonGQKO07IqvZ6eNBnMee9MlLGNyuVq1UO1D4qCKnjOXY4Ezj4dJu2q0iihyVDCvu3+ij/irkfyWZUmvt7V+GrEbaNeTYpx412sKsBdWbx7VH1BbFNaFhGT
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2026 09:38:40.4364 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf067f86-cc19-4549-90a8-08debd661121
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH3PEPF00000018.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5990
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,377 +112,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.49 / 15.00];
+X-Spamd-Result: default: False [-0.71 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MAILSPIKE_FAIL(0.00)[131.252.210.177:query timed out];
+	FROM_HAS_DN(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:mid,igalia.com:email,amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 12A3F60001C
+	RSPAMD_EMAILBL_FAIL(0.00)[lijo.lazar.amd.com:query timed out];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_FIVE(0.00)[6];
+	HAS_XOIP(0.00)[];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MSBL_EBL_FAIL(0.00)[lijo.lazar@amd.com:query timed out];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,amd.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: A587B6000B5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Removing the output parameter from a few functions should result in more
-readable code and also enables us to save some lines.
+Use strscpy to copy the buffer which makes it explicit that a valid NULL
+terminated string gets copied. Also, make it explicit that the source
+buffer can be copied safely to the temporary buffer by checking against
+its size.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c | 86 ++++++++++-----------
- drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h | 17 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c      | 54 ++++++-------
- 3 files changed, 73 insertions(+), 84 deletions(-)
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c | 14 +++++---------
+ 1 file changed, 5 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-index 02e097b0f286..f5a40f9d5c04 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-@@ -59,9 +59,9 @@ static int amdgpu_bo_list_entry_cmp(const void *_a, const void *_b)
- 	return (int)a->priority - (int)b->priority;
- }
+diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+index 450ecb188aed..ebe0b320ca4f 100644
+--- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
++++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+@@ -1375,26 +1375,22 @@ static ssize_t amdgpu_set_pp_power_profile_mode(struct device *dev,
+ 	long parameter[64];
+ 	char *sub_str, buf_cpy[128];
+ 	char *tmp_str;
+-	uint32_t i = 0;
+ 	char tmp[2];
+ 	long int profile_mode = 0;
+ 	const char delimiter[3] = {' ', '\n', '\0'};
+-	size_t len;
  
--int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
--			  struct drm_amdgpu_bo_list_entry *info,
--			  size_t num_entries, struct amdgpu_bo_list **result)
-+struct amdgpu_bo_list *
-+amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
-+		      struct drm_amdgpu_bo_list_entry *info, size_t num_entries)
- {
- 	unsigned last_entry = 0, first_userptr = num_entries;
- 	struct amdgpu_bo_list_entry *array;
-@@ -72,7 +72,7 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
+-	tmp[0] = *(buf);
++	tmp[0] = *(buf++);
+ 	tmp[1] = '\0';
+ 	ret = kstrtol(tmp, 0, &profile_mode);
+ 	if (ret)
+ 		return -EINVAL;
  
- 	list = kvzalloc_flex(*list, entries, num_entries);
- 	if (!list)
--		return -ENOMEM;
-+		return ERR_PTR(-ENOMEM);
- 
- 	kref_init(&list->refcount);
- 
-@@ -127,8 +127,7 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
- 
- 	trace_amdgpu_cs_bo_status(list->num_entries, total_size);
- 
--	*result = list;
--	return 0;
-+	return list;
- 
- error_free:
- 	for (i = 0; i < last_entry; ++i)
-@@ -136,12 +135,11 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
- 	for (i = first_userptr; i < num_entries; ++i)
- 		amdgpu_bo_unref(&array[i].bo);
- 	kvfree(list);
--	return r;
-+	return ERR_PTR(r);
- 
- }
- 
--int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, u32 id,
--		       struct amdgpu_bo_list **result)
-+struct amdgpu_bo_list *amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, u32 id)
- {
- 	struct amdgpu_bo_list *list;
- 
-@@ -149,11 +147,11 @@ int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, u32 id,
- 	list = xa_load(&fpriv->bo_list_handles, id);
- 	if (list)
- 		kref_get(&list->refcount);
-+	else
-+		list = ERR_PTR(-ENOENT);
- 	xa_unlock(&fpriv->bo_list_handles);
- 
--	*result = list;
--
--	return list ? 0 : -ENOENT;
-+	return list;
- }
- 
- void amdgpu_bo_list_put(struct amdgpu_bo_list *list)
-@@ -162,25 +160,20 @@ void amdgpu_bo_list_put(struct amdgpu_bo_list *list)
- 		kref_put(&list->refcount, amdgpu_bo_list_free);
- }
- 
--int amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in,
--				      struct drm_amdgpu_bo_list_entry **info_param)
-+struct drm_amdgpu_bo_list_entry *
-+amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in)
- {
- 	const void __user *uptr = u64_to_user_ptr(in->bo_info_ptr);
- 	const uint32_t bo_number = in->bo_number;
--	struct drm_amdgpu_bo_list_entry *info;
- 
- 	if (bo_number > AMDGPU_BO_LIST_MAX_ENTRIES)
--		return -EINVAL;
-+		return ERR_PTR(-EINVAL);
- 
- 	if (in->bo_info_size != sizeof(struct drm_amdgpu_bo_list_entry))
--		return -EINVAL;
-+		return ERR_PTR(-EINVAL);
- 
--	info = vmemdup_array_user(uptr, bo_number, sizeof(*info));
--	if (IS_ERR(info))
--		return PTR_ERR(info);
--
--	*info_param = info;
--	return 0;
-+	return vmemdup_array_user(uptr, bo_number,
-+				  sizeof(struct drm_amdgpu_bo_list_entry));
- }
- 
- int amdgpu_bo_list_ioctl(struct drm_device *dev, void *data,
-@@ -188,27 +181,24 @@ int amdgpu_bo_list_ioctl(struct drm_device *dev, void *data,
- {
- 	struct amdgpu_fpriv *fpriv = filp->driver_priv;
- 	struct amdgpu_device *adev = drm_to_adev(dev);
--	struct drm_amdgpu_bo_list_entry *info = NULL;
- 	struct amdgpu_bo_list *list, *prev, *curr;
- 	union drm_amdgpu_bo_list *args = data;
- 	uint32_t handle = args->in.list_handle;
-+	struct drm_amdgpu_bo_list_entry *info;
- 	int r;
- 
--	r = amdgpu_bo_create_list_entry_array(&args->in, &info);
--	if (r)
--		return r;
--
- 	switch (args->in.operation) {
- 	case AMDGPU_BO_LIST_OP_CREATE:
--		r = amdgpu_bo_list_create(adev, filp, info, args->in.bo_number,
--					  &list);
--		if (r)
--			goto error_free;
-+	case AMDGPU_BO_LIST_OP_UPDATE:
-+		info = amdgpu_bo_create_list_entry_array(&args->in);
-+		if (IS_ERR(info))
-+			return PTR_ERR(info);
- 
--		r = xa_alloc(&fpriv->bo_list_handles, &handle, list,
--			     xa_limit_32b, GFP_KERNEL);
--		if (r)
--			goto error_put_list;
-+		list = amdgpu_bo_list_create(adev, filp, info,
-+					     args->in.bo_number);
-+		kvfree(info);
-+		if (IS_ERR(list))
-+			return PTR_ERR(list);
- 
- 		break;
- 
-@@ -219,12 +209,20 @@ int amdgpu_bo_list_ioctl(struct drm_device *dev, void *data,
- 
- 		break;
- 
--	case AMDGPU_BO_LIST_OP_UPDATE:
--		r = amdgpu_bo_list_create(adev, filp, info, args->in.bo_number,
--					  &list);
-+	default:
-+		return -EINVAL;
-+	};
-+
-+	switch (args->in.operation) {
-+	case AMDGPU_BO_LIST_OP_CREATE:
-+		r = xa_alloc(&fpriv->bo_list_handles, &handle, list,
-+			     xa_limit_32b, GFP_KERNEL);
- 		if (r)
--			goto error_free;
-+			goto error_put_list;
- 
-+		break;
-+
-+	case AMDGPU_BO_LIST_OP_UPDATE:
- 		curr = xa_load(&fpriv->bo_list_handles, handle);
- 		if (!curr) {
- 			r = -ENOENT;
-@@ -244,21 +242,17 @@ int amdgpu_bo_list_ioctl(struct drm_device *dev, void *data,
- 		amdgpu_bo_list_put(curr);
- 		break;
- 
-+	case AMDGPU_BO_LIST_OP_DESTROY:
- 	default:
--		r = -EINVAL;
--		goto error_free;
-+		/* Handled above. */
- 	}
- 
- 	memset(args, 0, sizeof(*args));
- 	args->out.list_handle = handle;
--	kvfree(info);
- 
- 	return 0;
- 
- error_put_list:
- 	amdgpu_bo_list_put(list);
--
--error_free:
--	kvfree(info);
- 	return r;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
-index cf127bc66f53..bde912150824 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
-@@ -53,17 +53,16 @@ struct amdgpu_bo_list {
- 	struct amdgpu_bo_list_entry entries[] __counted_by(num_entries);
- };
- 
--int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, u32 id,
--		       struct amdgpu_bo_list **result);
-+struct amdgpu_bo_list *amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, u32 id);
- void amdgpu_bo_list_put(struct amdgpu_bo_list *list);
--int amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in,
--				      struct drm_amdgpu_bo_list_entry **info_param);
-+struct drm_amdgpu_bo_list_entry *
-+amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in);
- 
--int amdgpu_bo_list_create(struct amdgpu_device *adev,
--				 struct drm_file *filp,
--				 struct drm_amdgpu_bo_list_entry *info,
--				 size_t num_entries,
--				 struct amdgpu_bo_list **list);
-+struct amdgpu_bo_list *
-+amdgpu_bo_list_create(struct amdgpu_device *adev,
-+		      struct drm_file *filp,
-+		      struct drm_amdgpu_bo_list_entry *info,
-+		      size_t num_entries);
- 
- #define amdgpu_bo_list_for_each_entry(e, list) \
- 	for (e = list->entries; \
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index 6845342b9e7e..17b1578ae77b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -145,24 +145,19 @@ static int amdgpu_cs_p1_bo_handles(struct amdgpu_cs_parser *p,
- 				   struct drm_amdgpu_bo_list_in *data)
- {
- 	struct drm_amdgpu_bo_list_entry *info;
--	int r;
-+	struct amdgpu_bo_list *list;
- 
--	r = amdgpu_bo_create_list_entry_array(data, &info);
--	if (r)
--		return r;
--
--	r = amdgpu_bo_list_create(p->adev, p->filp, info, data->bo_number,
--				  &p->bo_list);
--	if (r)
--		goto error_free;
-+	info = amdgpu_bo_create_list_entry_array(data);
-+	if (IS_ERR(info))
-+		return PTR_ERR(info);
- 
-+	list = amdgpu_bo_list_create(p->adev, p->filp, info, data->bo_number);
- 	kvfree(info);
-+	if (IS_ERR(list))
-+		return PTR_ERR(list);
-+
-+	p->bo_list = list;
- 	return 0;
--
--error_free:
--	kvfree(info);
--
--	return r;
- }
- 
- /* Copy the data from userspace and go over it the first time */
-@@ -847,6 +842,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- {
- 	struct amdgpu_fpriv *fpriv = p->filp->driver_priv;
- 	struct ttm_operation_ctx ctx = { true, false };
-+	struct amdgpu_bo_list *list = NULL;
- 	struct amdgpu_vm *vm = &fpriv->vm;
- 	struct amdgpu_bo_list_entry *e;
- 	struct drm_gem_object *obj;
-@@ -858,23 +854,24 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 		if (p->bo_list)
+ 	if (profile_mode == PP_SMC_POWER_PROFILE_CUSTOM) {
+-		if (count < 2 || count > 127)
++		if (count < 2 || count > sizeof(buf_cpy))
  			return -EINVAL;
- 
--		r = amdgpu_bo_list_get(fpriv, cs->in.bo_list_handle,
--				       &p->bo_list);
--		if (r)
--			return r;
-+		list = amdgpu_bo_list_get(fpriv, cs->in.bo_list_handle);
- 	} else if (!p->bo_list) {
- 		/* Create a empty bo_list when no handle is provided */
--		r = amdgpu_bo_list_create(p->adev, p->filp, NULL, 0,
--					  &p->bo_list);
--		if (r)
--			return r;
-+		list = amdgpu_bo_list_create(p->adev, p->filp, NULL, 0);
- 	}
- 
-+	if (IS_ERR(list))
-+		return PTR_ERR(list);
-+	else if (list)
-+		p->bo_list = list;
-+	else
-+		list = p->bo_list;
-+
- 	/* Get userptr backing pages. If pages are updated after registered
- 	 * in amdgpu_gem_userptr_ioctl(), amdgpu_cs_list_validate() will do
- 	 * amdgpu_ttm_backend_bind() to flush and invalidate new pages
- 	 */
--	amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
-+	amdgpu_bo_list_for_each_userptr_entry(e, list) {
- 		bool userpage_invalidated = false;
- 		struct amdgpu_bo *bo = e->bo;
- 
-@@ -904,7 +901,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 		if (unlikely(r))
- 			goto out_free_user_pages;
- 
--		amdgpu_bo_list_for_each_entry(e, p->bo_list) {
-+		amdgpu_bo_list_for_each_entry(e, list) {
- 			r = drm_exec_prepare_obj(&p->exec, &e->bo->tbo.base,
- 						 TTM_NUM_MOVE_FENCES + p->gang_size);
- 			drm_exec_retry_on_contention(&p->exec);
-@@ -923,7 +920,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 		}
- 	}
- 
--	amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
-+	amdgpu_bo_list_for_each_userptr_entry(e, list) {
- 		struct mm_struct *usermm;
- 
- 		usermm = amdgpu_ttm_tt_get_usermm(e->bo->tbo.ttm);
-@@ -976,13 +973,12 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 				     p->bytes_moved_vis);
- 
- 	for (i = 0; i < p->gang_size; ++i)
--		amdgpu_job_set_resources(p->jobs[i], p->bo_list->gds_obj,
--					 p->bo_list->gws_obj,
--					 p->bo_list->oa_obj);
-+		amdgpu_job_set_resources(p->jobs[i], list->gds_obj,
-+					 list->gws_obj, list->oa_obj);
- 	return 0;
- 
- out_free_user_pages:
--	amdgpu_bo_list_for_each_userptr_entry(e, p->bo_list) {
-+	amdgpu_bo_list_for_each_userptr_entry(e, list) {
- 		amdgpu_hmm_range_free(e->range);
- 		e->range = NULL;
- 	}
+-		while (isspace(*++buf))
+-			i++;
+-		len = count - 1 - i;
+-		memcpy(buf_cpy, buf, len);
+-		buf_cpy[len] = '\0';
++		while (isspace(*buf))
++			buf++;
++		strscpy(buf_cpy, buf, sizeof(buf_cpy));
+ 		tmp_str = buf_cpy;
+ 		while ((sub_str = strsep(&tmp_str, delimiter)) != NULL) {
+ 			if (strlen(sub_str) == 0)
 -- 
-2.54.0
+2.49.0
 
