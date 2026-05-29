@@ -2,48 +2,131 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qFllIGeLGWosxggAu9opvQ
+	id +MoaE02LGWosxggAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 14:49:43 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 14:49:17 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B233602783
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 14:49:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACA10602765
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 14:49:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F56910FEA5;
-	Fri, 29 May 2026 12:49:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA9E310FE9F;
+	Fri, 29 May 2026 12:49:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hZT/bgE2";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 327 seconds by postgrey-1.36 at gabe;
- Fri, 29 May 2026 12:20:10 UTC
-Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3578910FE3F
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 12:20:10 +0000 (UTC)
-Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
- (195.54.195.159) with Microsoft SMTP Server (TLS) id 14.3.498.0; Fri, 29 May
- 2026 15:14:42 +0300
-Received: from localhost (10.0.253.153) by Ex16-01.fintech.ru (10.0.10.18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 29 May
- 2026 15:14:41 +0300
-From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-To: Alex Deucher <alexander.deucher@amd.com>
-CC: Nikita Zhandarovich <n.zhandarovich@fintech.ru>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>
-Subject: [PATCH] drm/radeon: Fix OOB read in MC register table init
-Date: Fri, 29 May 2026 15:14:34 +0300
-Message-ID: <20260529121436.1633842-1-n.zhandarovich@fintech.ru>
-X-Mailer: git-send-email 2.43.0
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012048.outbound.protection.outlook.com [52.101.53.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B035210FE9F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 12:49:13 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=THTkFtp7oe7iSrLM6ygcgy6kdHMPNg+g/GgGEkRgzwc4ZTH0JTQtFLEj/y/Gi5oiixt+U6wEOJCZyVXMSPGIqc9G0NjEOmbBIM93gaDfCMWtoWIBEQ0xKaAfx63P+s3E+qt5PcwnNzKR+ablLO8HwQ+gkrTZCdZuwyAHYWM8JDRYesOqnc2gOf2UVu3mztODRJds+luFCYBdRWx+Jb4qrGwTF8/4mrkcv/wxkdtIoP0QPJlNW62Mi5fRDhU8Er+pyACyr3jZUs2UIYpghJmLxpGhiE/OXw8hy5K74EKC5BT33zhIlk6AswxigHmN+YZ7yHtE/bztvA8HKkKLofE0Lw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4waU/24qbLHoHHXax2vomMPcjLFqzgzzk9yFPSIgxio=;
+ b=ooythg+2pbg7HI+leXnG/ju8E6mcZCicA4TkK06QmPF/IDR2oKY4k50soOsj39SDfL1ueRVaI1hVBFH8Sq1su5QGinaxq/CNGw38xO04U0IZbs59n/ZPPjKPXSuDVFoGq0BqrMId76MGpK0TFoIo8QVxuqyRkiXYHdqqTMrBHQs2Cw7qA3BJuy8oykYwX9e83Wd4OjZDVdsR1i+dUVRAII7cHYCjwdFhuEcPwwRIllG+TV+p3ecgckV3s821lCslfcDVT4uQDSYgxbykneYfPA03engDSrCwnMxRTAaoC/IxvHmeHDG9wyZRFHckt0+A4tIpMmDB3pfXMKlmzZYStQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4waU/24qbLHoHHXax2vomMPcjLFqzgzzk9yFPSIgxio=;
+ b=hZT/bgE2cC6KaFipGWumf2f+oK/OuHsCQOFI+YPE1f0hZW1A2W0+IcBu6SjpfhrRKJGtYnbJ1NB7L0djm3sTtycZ6MiFysMwunrzbbLkcH+mIcHLb2/mnQd+9tSz8PA/igOLvuC5cEe7BqvWSzT35T5RTGppuLuKOU8g7j4X29I=
+Received: from DS7PR12MB6005.namprd12.prod.outlook.com (2603:10b6:8:7c::17) by
+ PH7PR12MB8596.namprd12.prod.outlook.com (2603:10b6:510:1b7::6) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.71.15; Fri, 29 May 2026 12:49:10 +0000
+Received: from DS7PR12MB6005.namprd12.prod.outlook.com
+ ([fe80::ab84:617d:61a9:3727]) by DS7PR12MB6005.namprd12.prod.outlook.com
+ ([fe80::ab84:617d:61a9:3727%3]) with mapi id 15.21.0071.011; Fri, 29 May 2026
+ 12:49:09 +0000
+From: "Liang, Prike" <Prike.Liang@amd.com>
+To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Koenig, Christian"
+ <Christian.Koenig@amd.com>, "Pelloux-Prayer, Pierre-Eric"
+ <Pierre-eric.Pelloux-prayer@amd.com>, "Pelloux-Prayer, Pierre-Eric"
+ <Pierre-eric.Pelloux-prayer@amd.com>
+Subject: RE: [PATCH 2/2] drm/amdgpu: add userq job and state transition trace
+ events
+Thread-Topic: [PATCH 2/2] drm/amdgpu: add userq job and state transition trace
+ events
+Thread-Index: AQHc7dMwbTv00Xxo9EymkgLv/hnlcLYk1GCA
+Date: Fri, 29 May 2026 12:49:09 +0000
+Message-ID: <DS7PR12MB6005453059156B25B61CBF15FB162@DS7PR12MB6005.namprd12.prod.outlook.com>
+References: <20260527122001.69831-1-Prike.Liang@amd.com>
+ <20260527122001.69831-2-Prike.Liang@amd.com>
+In-Reply-To: <20260527122001.69831-2-Prike.Liang@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-05-29T10:43:40.0000000Z;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD General
+ v26; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=3;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS7PR12MB6005:EE_|PH7PR12MB8596:EE_
+x-ms-office365-filtering-correlation-id: 9b95b962-ead5-48d4-9460-08debd80ad83
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|11063799006|4143699003|38070700021|56012099006|6133799003|18002099003|22082099003;
+x-microsoft-antispam-message-info: ISbjnAYhy/mf6fKbPSKtxl95CpSSljFpShjXDcVSaxPTzsLZq85G3Lyq4LdlDSfrqb9BFQVEaxzzRNXUKAX+FdmQtwsIE9uvS8kYSAteJunX8lOau1h/JNyy0FQX7AYOw7Luw9E7O2Y0bwc+Ni1i1GsEJWi8oXJChCV8cYG9+5YvwLQu2xvvRNKZLaUN7IFk6boYyUSZ+4/RLClXmfviDP9EMv5ieVQPdRnbR9FLuIsEupBW0VuvKTM2Xtlq2xs7P47Lk7KG+xMTzxUOWlxiEgvuN8EV4NbMjQJsgnbBvUw87puJqreVobfiwq66Fexl4FSJ7ZIGoV14AJrMyXQfHjq/A1Z0cSxqT3U+vqcXbad4Q020VTPfAfJh32ilf1jFVd1ysSIFES49/b9s598JOkb5z3JbWWeFeCR1FlMkqiEzRXV57DBrRxIAX3fikiaYM6YU1SWuMmsbCj3Jc18Rdm6NvmBbfItOM2N9WQIo8c6KwJvdafOKPq/bJokYmm7ZlVCRvYcG/6IWaHFHghsLlF0YGiMi8AxXNvf/365x6GB4m7i+sB/98dKOm6mW/5LOPzeeI0EkDUf79ixs+nFniBQsJC4cRPrLlScjqLEGbvbIx4qwaeomXPSilc8FhdgnTdrx1kNC/NNn2vuN1oFRSnAUkDOxMSopoua07wO72rrgcEAjAKkKO/aHjYNkGmzLpegrQDn/l27hPJCuYnecGXNVltIyP/Nq9dJnFfO12kbE0mLjkphcKO9hK4ZGyGQS
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR12MB6005.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(11063799006)(4143699003)(38070700021)(56012099006)(6133799003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?o1aklRcTerSnBgd8GbTiFMEoxVNSKkTnYuOfUILgy+7KsXHjm1ExcVguriN3?=
+ =?us-ascii?Q?hHtTTQomrXV64WpfdLbFqYF3dGxiJ3x7V3Uht+j4HJvPE1BbvSQwFpEnWXQ7?=
+ =?us-ascii?Q?Qvb3OTa2gyUg4tyyPiD9QLmK6DS+5DfmvGN3qyOqCDVLIH1p/UsFMGNA5/US?=
+ =?us-ascii?Q?LTwgvHHZS7zhvXApDxyIj0I8iBTj16vsUbA978mZ95nZU2X4i6PZfVcI7Zft?=
+ =?us-ascii?Q?PiYlBI3klVe49gNnDMqETq7Oufb0ZLEVLmpjbCPtVuso0r7QC2Es1Xbuhrjp?=
+ =?us-ascii?Q?MaWXyeCXvUDMXsRpghPqxAyjP+maABt0btKHVB0eL9XDeIRDMKT+LCIfPbyk?=
+ =?us-ascii?Q?vGCsOZPHCXIB2TucR/PpwS6jlQpPcgPuuOWj4PPj47vGLuFGA6EeFMbYb7lD?=
+ =?us-ascii?Q?OJg1DUZry5i//CG4P5mYeiZC2oF1KIiUa3J/U4LOJaPdhmIvhRZOk+Yhayzs?=
+ =?us-ascii?Q?TvaPnawuGWO0be0j8QREz5TljCucXtS4+JmTFQkhdquNpx+qvPZMiXsJtdsv?=
+ =?us-ascii?Q?jCcb5Hs8rcaY3tu/Ue3/Vztjbc74oDEnuhuPwig9B0keMeFnQ7Hj6RqzDk4Z?=
+ =?us-ascii?Q?Q8MlCqhaq4YwQe0WCXoxvO3e1FqMfnm/o0s8YiLWeH5VfDqQNyabSuJy4iMm?=
+ =?us-ascii?Q?forVB7pUamJRx+TS/PJsabfZlXuOf4xa5XmHICtzsn9vyjoGcfq5da+/TN6D?=
+ =?us-ascii?Q?s5LMcnTPu2t5664uvE0jUsuipTwPDYGXORK7/Cpv3M9g5mNdsf1nlCDBF5we?=
+ =?us-ascii?Q?cD6WZm9Ow58kfU5qpDtoA7Tg/pYsG51ooXdz7SWhsyumwodbfvsvkV++zsl+?=
+ =?us-ascii?Q?lfqDmkyvk81/+nF/WQvyzHWJ5i1LLvJ+0CEzo0Yxe8OFCeSHMK7ripUcpaKE?=
+ =?us-ascii?Q?hPNAdIiriIYckcnHSbXdTI9IlOJjvA3+UiUNZYVDH/B0LLskhXKcQEkm015r?=
+ =?us-ascii?Q?MyvoI/yAQospRR8Ay9OjzcCyxM84n59DqEnf7CKfdg4EGssk3j8Y45dPccsx?=
+ =?us-ascii?Q?jzBjV2G/aX7LMYJ1iwBW7EseaE7bZZTRnTdAyQRycJRlOHWFc/3sTs9DuGG8?=
+ =?us-ascii?Q?98TpuP1ktVD53B3nvkoj2wtUNu5LIxt3+QZeB6W1eH/v8QTs+A4AQt3vuz14?=
+ =?us-ascii?Q?uvH89M/RUPXN1CHYgfv3vPkMqbvg+gvoM2UCohtDU2oH2GmmgswTcGTnfY3y?=
+ =?us-ascii?Q?/xOACMFUY6av/eh2lMbbQm6UdwMWd3ixi3LZFDq0+VNvAfWzJRioBuIkrruY?=
+ =?us-ascii?Q?l8VT1X4GsH+e6AspyMP8QL+3YnAtPL+S6NIHwyEaWumw055pcKb8SKWKUqPy?=
+ =?us-ascii?Q?oXh2zkquaSMgxfhnMhy8MxGPqfkiyrl+fv1UjkT3nq1Um8gq/R1sNGKwWvon?=
+ =?us-ascii?Q?ObosQWYiEvA+8POwFmzJI9LVxrhuSH7WHRkn2Gexs0N+a5p4lqp3VuKLWRjb?=
+ =?us-ascii?Q?eGT+JTOu40UAM7+1B+E5oJJK5nXrQ0nskEMH9TPR8rn0jHH+mmIgDcmBscda?=
+ =?us-ascii?Q?6N7aP+ictMZc1TiEyT+u1XGJgHqONwVbJCKO5HUqxc1TXLIcc+Hz2mrtF2ul?=
+ =?us-ascii?Q?dIThNkyHKxtIi9weylLbyPpwTr18mMwfwLy5cuxT81drQuOwdX9Bwn4Ll0G8?=
+ =?us-ascii?Q?aLsVfSIoS1uDM0rY+ujUKlLdUP3prv+EuAzlFyBTmh5xrmkEBIjXQyA9QEdG?=
+ =?us-ascii?Q?5eMrHGDgi+srvNlhcJZ4vlAeHjVCybn2jWdgW/5cwK8ZiiOE?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.0.253.153]
-X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
- (10.0.10.18)
-X-Mailman-Approved-At: Fri, 29 May 2026 12:49:40 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB6005.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b95b962-ead5-48d4-9460-08debd80ad83
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 May 2026 12:49:09.7327 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 2o29EImiP6t24IpfEhzMiDjTmbK3X1kEUhoiP6gkcc29alUU69ngSNRUqwOFhBn8
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8596
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,76 +140,426 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.89 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:n.zhandarovich@fintech.ru,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:lvc-project@linuxtesting.org,s:lists@lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[fintech.ru];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FORGED_SENDER(0.00)[n.zhandarovich@fintech.ru,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[fintech.ru,amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,linuxtesting.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[n.zhandarovich@fintech.ru,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_XOIP(0.00)[];
-	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[Prike.Liang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-0.891];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,fintech.ru:mid,fintech.ru:email]
-X-Rspamd-Queue-Id: 3B233602783
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:email,DS7PR12MB6005.namprd12.prod.outlook.com:mid]
+X-Rspamd-Queue-Id: ACA10602765
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-radeon_atom_init_mc_reg_table() copies the previous mc_data[] entry when
-pre_reg_data requests DATA_EQU_PREV. However, the loop starts at i == 0,
-so a malformed or unexpected table can make the first entry use
-DATA_EQU_PREV and trigger an out-of-bounds read from mc_data[i - 1].
+AMD General
 
-Emulate a fix for a similar issue in amdgpu_atombios_init_mc_reg_table,
-see commit 51dfc0a4d609 ("drm/amdgpu: fix mc_data out-of-bounds read
-warning"), by skipping DATA_EQU_PREV for the first entry.
+Ping
 
-Found by Linux Verification Center (linuxtesting.org) with static
-analysis tool SVACE.
+Regards,
+      Prike
 
-Fixes: ae5b0abbb6f7 ("drm/radeon/kms: add atom helper functions for dpm (v3)")
-Cc: stable@vger.kernel.org
-Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
----
-P.S. checkpatch warns that too many tabs were used but I can't do much
-about surrounding code being already too deeply nested.
+> -----Original Message-----
+> From: Liang, Prike <Prike.Liang@amd.com>
+> Sent: Wednesday, May 27, 2026 8:20 PM
+> To: amd-gfx@lists.freedesktop.org
+> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian
+> <Christian.Koenig@amd.com>; Pelloux-Prayer, Pierre-Eric <Pierre-eric.Pell=
+oux-
+> prayer@amd.com>; Pelloux-Prayer, Pierre-Eric <Pierre-eric.Pelloux-
+> prayer@amd.com>; Liang, Prike <Prike.Liang@amd.com>
+> Subject: [PATCH 2/2] drm/amdgpu: add userq job and state transition trace=
+ events
+>
+> From: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+>
+> Add ftrace events for tracking the userq fence emit, signal and queue sta=
+te transition.
+>
+> Signed-off-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd=
+.com>
+> Signed-off-by: Prike Liang <Prike.Liang@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h     | 113 ++++++++++++++++++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c     |  21 ++++
+>  .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   |  12 +-
+>  3 files changed, 143 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
+> index df98be22f1f5..ef6a1fb82ff3 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
+> @@ -28,6 +28,8 @@
+>  #include <linux/types.h>
+>  #include <linux/tracepoint.h>
+>
+> +#include "amdgpu_userq_fence.h"
+> +
+>  #undef TRACE_SYSTEM
+>  #define TRACE_SYSTEM amdgpu
+>  #define TRACE_INCLUDE_FILE amdgpu_trace @@ -636,6 +638,117 @@
+> DEFINE_EVENT(amdgpu_userq_queue_result, amdgpu_userq_destroy_end,
+>            TP_PROTO(struct amdgpu_usermode_queue *queue, int result),
+>            TP_ARGS(queue, result));
+>
+> +TRACE_EVENT(amdgpu_userq_job_run,
+> +         TP_PROTO(struct device *device, struct amdgpu_usermode_queue
+> *queue, struct amdgpu_userq_fence *fence),
+> +         TP_ARGS(device, queue, fence),
+> +         TP_STRUCT__entry(
+> +                          __field(u64, fence_context)
+> +                          __field(u64, fence_seqno)
+> +                          __string(dev, dev_name(device))
+> +                          __field(u64, doorbell_index)
+> +                          __field(u64, client_id)
+> +                          __field(u32, queue_type)
+> +                          ),
+> +         TP_fast_assign(
+> +                        __entry->fence_context =3D fence->base.context;
+> +                        __entry->fence_seqno =3D fence->base.seqno;
+> +                        __assign_str(dev);
+> +                        __entry->doorbell_index =3D queue->doorbell_inde=
+x;
+> +                        __entry->client_id =3D queue->userq_mgr->file->c=
+lient_id;
+> +                        __entry->queue_type =3D queue->queue_type;
+> +                        ),
+> +         TP_printk("dev=3D%s, client_id=3D%llu, type=3D%u, doorbell=3D%l=
+lu,
+> fence=3D%llu:%llu",
+> +                   __get_str(dev), __entry->client_id, __entry->queue_ty=
+pe, __entry-
+> >doorbell_index,
+> +                   __entry->fence_context,
+> +                   __entry->fence_seqno)
+> +);
+> +
+> +TRACE_EVENT(amdgpu_userq_job_queue,
+> +         TP_PROTO(struct device *device,
+> +                  struct amdgpu_usermode_queue *queue),
+> +         TP_ARGS(device, queue),
+> +         TP_STRUCT__entry(__field(u64, context)
+> +                          __string(dev, dev_name(device))
+> +                          __field(u64, doorbell_index)
+> +                          __field(u64, client_id)
+> +                          __field(u32, queue_type)
+> +                          ),
+> +         TP_fast_assign(__assign_str(dev);
+> +                        __entry->doorbell_index =3D queue->doorbell_inde=
+x;
+> +                        __entry->queue_type =3D queue->queue_type;
+> +                        __entry->client_id =3D queue->userq_mgr->file->c=
+lient_id;
+> +                        __entry->context =3D queue->fence_drv->context;
+> +                       ),
+> +         TP_printk("dev=3D%s, client_id=3D%llu, type=3D%u, doorbell=3D%l=
+lu,
+> context=3D%llu",
+> +                   __get_str(dev), __entry->client_id, __entry->queue_ty=
+pe,
+> +                   __entry->doorbell_index, __entry->context) );
+> +
+> +TRACE_EVENT(amdgpu_userq_job_add_dep,
+> +         TP_PROTO(struct device *device, struct amdgpu_usermode_queue
+> *queue, struct amdgpu_userq_fence *dep),
+> +         TP_ARGS(device, queue, dep),
+> +         TP_STRUCT__entry(
+> +                          __field(u64, context)
+> +                          __field(u64, dep_context)
+> +                          __field(u64, dep_seqno)
+> +                          __string(dev, dev_name(device))
+> +                          __field(u64, doorbell_index)
+> +                          __field(u64, client_id)
+> +                          __field(u32, queue_type)
+> +                          ),
+> +         TP_fast_assign(
+> +                        __assign_str(dev);
+> +                        __entry->doorbell_index =3D queue->doorbell_inde=
+x;
+> +                        __entry->queue_type =3D queue->queue_type;
+> +                        __entry->client_id =3D queue->userq_mgr->file->c=
+lient_id;
+> +                        __entry->context =3D queue->fence_drv->context;
+> +                        __entry->dep_context =3D dep->base.context;
+> +                        __entry->dep_seqno =3D dep->base.seqno;
+> +                        ),
+> +         TP_printk("dev=3D%s, client_id=3D%llu, type=3D%u, doorbell=3D%l=
+lu, context=3D%llu
+> depends on fence=3D%llu:%llu",
+> +                   __get_str(dev), __entry->client_id, __entry->queue_ty=
+pe, __entry-
+> >doorbell_index, __entry->context,
+> +                   __entry->dep_context,
+> +                   __entry->dep_seqno)
+> +);
+> +
+> +TRACE_EVENT(amdgpu_userq_state_start,
+> +         TP_PROTO(struct amdgpu_usermode_queue *queue),
+> +         TP_ARGS(queue),
+> +         TP_STRUCT__entry(
+> +                          __field(u64, doorbell_index)
+> +                          __field(u64, client_id)
+> +                          __field(u32, queue_type)
+> +                          __field(u32, from)
+> +                          ),
+> +         TP_fast_assign(
+> +                        __entry->doorbell_index =3D queue->doorbell_inde=
+x;
+> +                        __entry->queue_type =3D queue->queue_type;
+> +                        __entry->client_id =3D queue->userq_mgr->file->c=
+lient_id;
+> +                        __entry->from =3D queue->state;
+> +                        ),
+> +         TP_printk("client_id=3D%llu, type=3D%u, doorbell=3D%llu, from=
+=3D%d",
+> +                   __entry->client_id, __entry->queue_type,
+> +__entry->doorbell_index, __entry->from) );
+> +
+> +TRACE_EVENT(amdgpu_userq_state_changed,
+> +         TP_PROTO(struct amdgpu_usermode_queue *queue, enum
+> amdgpu_userq_state new_state),
+> +         TP_ARGS(queue, new_state),
+> +         TP_STRUCT__entry(
+> +                          __field(u64, doorbell_index)
+> +                          __field(u64, client_id)
+> +                          __field(u32, queue_type)
+> +                          __field(u32, to)
+> +                          ),
+> +         TP_fast_assign(
+> +                        __entry->doorbell_index =3D queue->doorbell_inde=
+x;
+> +                        __entry->queue_type =3D queue->queue_type;
+> +                        __entry->client_id =3D queue->userq_mgr->file->c=
+lient_id;
+> +                        __entry->to =3D new_state;
+> +                        ),
+> +         TP_printk("client_id=3D%llu, type=3D%u, doorbell=3D%llu, to=3D%=
+d",
+> +                   __entry->client_id, __entry->queue_type,
+> +__entry->doorbell_index, __entry->to) );
+> +
+>  #undef AMDGPU_JOB_GET_TIMELINE_NAME
+>  #endif
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> index 9dc6cb579ac7..536e73c7e9ef 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> @@ -296,11 +296,15 @@ static int amdgpu_userq_preempt_helper(struct
+> amdgpu_usermode_queue *queue)
+>       int r;
+>
+>       if (queue->state =3D=3D AMDGPU_USERQ_STATE_MAPPED) {
+> +             trace_amdgpu_userq_state_start(queue);
+> +
+>               r =3D userq_funcs->preempt(queue);
+>               if (r) {
+> +                     trace_amdgpu_userq_state_changed(queue,
+> AMDGPU_USERQ_STATE_HUNG);
+>                       queue->state =3D AMDGPU_USERQ_STATE_HUNG;
+>                       return r;
+>               } else {
+> +                     trace_amdgpu_userq_state_changed(queue,
+> +AMDGPU_USERQ_STATE_PREEMPTED);
+>                       queue->state =3D AMDGPU_USERQ_STATE_PREEMPTED;
+>               }
+>       }
+> @@ -316,10 +320,14 @@ static int amdgpu_userq_restore_helper(struct
+> amdgpu_usermode_queue *queue)
+>       int r =3D 0;
+>
+>       if (queue->state =3D=3D AMDGPU_USERQ_STATE_PREEMPTED) {
+> +             trace_amdgpu_userq_state_start(queue);
+> +
+>               r =3D userq_funcs->restore(queue);
+>               if (r) {
+> +                     trace_amdgpu_userq_state_changed(queue,
+> AMDGPU_USERQ_STATE_HUNG);
+>                       queue->state =3D AMDGPU_USERQ_STATE_HUNG;
+>               } else {
+> +                     trace_amdgpu_userq_state_changed(queue,
+> AMDGPU_USERQ_STATE_MAPPED);
+>                       queue->state =3D AMDGPU_USERQ_STATE_MAPPED;
+>               }
+>       }
+> @@ -337,12 +345,15 @@ static int amdgpu_userq_unmap_helper(struct
+> amdgpu_usermode_queue *queue)
+>
+>       if ((queue->state =3D=3D AMDGPU_USERQ_STATE_MAPPED) ||
+>           (queue->state =3D=3D AMDGPU_USERQ_STATE_PREEMPTED)) {
+> +             trace_amdgpu_userq_state_start(queue);
+>
+>               r =3D userq_funcs->unmap(queue);
+>               if (r) {
+> +                     trace_amdgpu_userq_state_changed(queue,
+> AMDGPU_USERQ_STATE_HUNG);
+>                       queue->state =3D AMDGPU_USERQ_STATE_HUNG;
+>                       return r;
+>               } else {
+> +                     trace_amdgpu_userq_state_changed(queue,
+> +AMDGPU_USERQ_STATE_UNMAPPED);
+>                       queue->state =3D AMDGPU_USERQ_STATE_UNMAPPED;
+>               }
+>       }
+> @@ -359,11 +370,15 @@ static int amdgpu_userq_map_helper(struct
+> amdgpu_usermode_queue *queue)
+>       int r;
+>
+>       if (queue->state =3D=3D AMDGPU_USERQ_STATE_UNMAPPED) {
+> +             trace_amdgpu_userq_state_start(queue);
+> +
+>               r =3D userq_funcs->map(queue);
+>               if (r) {
+> +                     trace_amdgpu_userq_state_changed(queue,
+> AMDGPU_USERQ_STATE_HUNG);
+>                       queue->state =3D AMDGPU_USERQ_STATE_HUNG;
+>                       return r;
+>               } else {
+> +                     trace_amdgpu_userq_state_changed(queue,
+> AMDGPU_USERQ_STATE_MAPPED);
+>                       queue->state =3D AMDGPU_USERQ_STATE_MAPPED;
+>               }
+>       }
+> @@ -894,6 +909,7 @@ amdgpu_userq_restore_all(struct amdgpu_userq_mgr
+> *uq_mgr)
+>               if (!amdgpu_userq_buffer_vas_mapped(queue)) {
+>                       drm_file_err(uq_mgr->file,
+>                                    "trying restore queue without va mappi=
+ng\n");
+> +                     trace_amdgpu_userq_state_changed(queue,
+> +AMDGPU_USERQ_STATE_INVALID_VA);
+>                       queue->state =3D AMDGPU_USERQ_STATE_INVALID_VA;
+>                       continue;
+>               }
+> @@ -1389,12 +1405,14 @@ void amdgpu_userq_pre_reset(struct amdgpu_device
+> *adev)
+>               if (queue->state !=3D AMDGPU_USERQ_STATE_MAPPED)
+>                       continue;
+>
+> +             trace_amdgpu_userq_state_start(queue);
+>               userq_funcs =3D adev->userq_funcs[queue->queue_type];
+>               userq_funcs->unmap(queue);
+>               /* just mark all queues as hung at this point.
+>                * if unmap succeeds, we could map again
+>                * in amdgpu_userq_post_reset() if vram is not lost
+>                */
+> +             trace_amdgpu_userq_state_changed(queue,
+> AMDGPU_USERQ_STATE_HUNG);
+>               queue->state =3D AMDGPU_USERQ_STATE_HUNG;
+>               amdgpu_userq_fence_driver_force_completion(queue);
+>       }
+> @@ -1413,6 +1431,8 @@ int amdgpu_userq_post_reset(struct amdgpu_device
+> *adev, bool vram_lost)
+>
+>       xa_for_each(&adev->userq_doorbell_xa, queue_id, queue) {
+>               if (queue->state =3D=3D AMDGPU_USERQ_STATE_HUNG
+> && !vram_lost) {
+> +                     trace_amdgpu_userq_state_start(queue);
+> +
+>                       userq_funcs =3D adev->userq_funcs[queue->queue_type=
+];
+>                       /* Re-map queue */
+>                       r =3D userq_funcs->map(queue);
+> @@ -1420,6 +1440,7 @@ int amdgpu_userq_post_reset(struct amdgpu_device
+> *adev, bool vram_lost)
+>                               dev_err(adev->dev, "Failed to remap queue %=
+ld\n",
+> queue_id);
+>                               continue;
+>                       }
+> +                     trace_amdgpu_userq_state_changed(queue,
+> AMDGPU_USERQ_STATE_MAPPED);
+>                       queue->state =3D AMDGPU_USERQ_STATE_MAPPED;
+>               }
+>       }
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+> index 008330a0d852..6071e83acd9e 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+> @@ -30,7 +30,7 @@
+>  #include <drm/drm_syncobj.h>
+>
+>  #include "amdgpu.h"
+> -#include "amdgpu_userq_fence.h"
+> +#include "amdgpu_trace.h"
+>
+>  #define AMDGPU_USERQ_MAX_HANDLES     (1U << 16)
+>
+> @@ -528,6 +528,8 @@ int amdgpu_userq_signal_ioctl(struct drm_device *dev,=
+ void
+> *data,
+>       /* Create the new fence */
+>       amdgpu_userq_fence_init(queue, fence, wptr);
+>
+> +     trace_amdgpu_userq_job_run(dev->dev, queue, fence);
+> +
+>       mutex_unlock(&userq_mgr->userq_mutex);
+>
+>       /*
+> @@ -701,7 +703,7 @@ amdgpu_userq_wait_add_fence(struct
+> drm_amdgpu_userq_wait *wait_info,  }
+>
+>  static int
+> -amdgpu_userq_wait_return_fence_info(struct drm_file *filp,
+> +amdgpu_userq_wait_return_fence_info(struct drm_device *dev, struct
+> +drm_file *filp,
+>                                   struct drm_amdgpu_userq_wait *wait_info=
+,
+>                                   u32 *syncobj_handles, u32 *timeline_poi=
+nts,
+>                                   u32 *timeline_handles,
+> @@ -835,6 +837,8 @@ amdgpu_userq_wait_return_fence_info(struct drm_file *=
+filp,
+>               goto free_fences;
+>       }
+>
+> +     trace_amdgpu_userq_job_queue(dev->dev, waitq);
+> +
+>       for (i =3D 0, cnt =3D 0; i < num_fences; i++) {
+>               struct amdgpu_userq_fence_driver *fence_drv;
+>               struct amdgpu_userq_fence *userq_fence; @@ -869,6 +873,8 @@
+> amdgpu_userq_wait_return_fence_info(struct drm_file *filp,
+>
+>               amdgpu_userq_fence_driver_get(fence_drv);
+>
+> +             trace_amdgpu_userq_job_add_dep(dev->dev, waitq, userq_fence=
+);
+> +
+>               /* Store drm syncobj's gpu va address and value */
+>               fence_info[cnt].va =3D fence_drv->va;
+>               fence_info[cnt].value =3D fences[i]->seqno; @@ -968,7 +974,=
+7 @@ int
+> amdgpu_userq_wait_ioctl(struct drm_device *dev, void *data,
+>                                                  gobj_write,
+>                                                  gobj_read);
+>       } else {
+> -             r =3D amdgpu_userq_wait_return_fence_info(filp, wait_info,
+> +             r =3D amdgpu_userq_wait_return_fence_info(dev, filp, wait_i=
+nfo,
+>                                                       syncobj_handles,
+>                                                       timeline_points,
+>                                                       timeline_handles,
+> --
+> 2.34.1
 
- drivers/gpu/drm/radeon/radeon_atombios.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/drivers/gpu/drm/radeon/radeon_atombios.c b/drivers/gpu/drm/radeon/radeon_atombios.c
-index 3dd9724b331d..c6d229a4322f 100644
---- a/drivers/gpu/drm/radeon/radeon_atombios.c
-+++ b/drivers/gpu/drm/radeon/radeon_atombios.c
-@@ -4032,6 +4032,8 @@ int radeon_atom_init_mc_reg_table(struct radeon_device *rdev,
- 										(u32)le32_to_cpu(*((u32 *)reg_data + j));
- 									j++;
- 								} else if ((reg_table->mc_reg_address[i].pre_reg_data & LOW_NIBBLE_MASK) == DATA_EQU_PREV) {
-+									if (i == 0)
-+										continue;
- 									reg_table->mc_reg_table_entry[num_ranges].mc_data[i] =
- 										reg_table->mc_reg_table_entry[num_ranges].mc_data[i - 1];
- 								}
