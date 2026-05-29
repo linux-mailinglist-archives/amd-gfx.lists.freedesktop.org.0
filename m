@@ -2,78 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uH5fKEp7GWpHxAgAu9opvQ
+	id mD2bL0d7GWpHxAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 13:40:58 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 13:40:55 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55B0C601C34
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 13:40:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72CD5601C25
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 13:40:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1DC310FDD5;
-	Fri, 29 May 2026 11:40:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF37410FDD3;
+	Fri, 29 May 2026 11:40:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QoE1hck1";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AyIiy0hh";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
- [209.85.221.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 807FE10FDC9
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 11:40:46 +0000 (UTC)
-Received: by mail-wr1-f46.google.com with SMTP id
- ffacd0b85a97d-45ef372c58aso274736f8f.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 04:40:46 -0700 (PDT)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
+ [209.85.221.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83D9110FDD3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 11:40:47 +0000 (UTC)
+Received: by mail-wr1-f49.google.com with SMTP id
+ ffacd0b85a97d-43eb05b1875so7228644f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 04:40:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1780054845; x=1780659645; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1780054846; x=1780659646; darn=lists.freedesktop.org;
  h=content-transfer-encoding:reply-to:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
  :date:message-id:reply-to;
- bh=j80hSp/BtZjhlsnhGMKP1/AKaEvtzu5rqwpX5wqDE7g=;
- b=QoE1hck1+/zwu19FfNhoYHbXwJKTlf97qAH4y6z1VzTfVjKTa7T1d+HEX2nZnNB/1E
- opnuc0CRY1T4UD5D3cns3fBEjvIze65L0DB6bXxfM9BNQfrL81i+uAjnH3Uan+5RT7vL
- Tj/HObbh4AkocnfAq0xeHRgjhemCQ4g3w/HcSrU5aujk/FYdfU/4qzJWOI2Psh3UTQBw
- EvjHdclKQYLwH+Q53dOHEc4j9onKwrb7JTFivGI3yI6PwdGXGh7LusgbRagEx4p4x2vB
- B6DG+wOv6fNtgaz3CjkBP4ohO21D6UzUlX2eMXZhhGYuPS1ml2B3i6IOrnLsZRB5qCHO
- OHiQ==
+ bh=GxQTN1BukcJ8O4VHpG6rqsw7ATFjkSoIQdmZO03Qe/0=;
+ b=AyIiy0hhZsOOgAqLe04NXsH5IwW2HS9kwKdqtr6+9/TL9EJuVVGsL6LpLa+GtvMfSS
+ tZ4b7671P1fbrXd3EqjD35AMGevRC6I4XVjJ8z+JGBqUA+NM5DmJvjt1LhrcICHUQD+g
+ /Q1xKFu2aMl6eQSnYoqs44I3AxmUhhNYbWUPLY6NGsxphEiz/cli13pZZCV3lHR5iDpX
+ Q1fWBwk3sV+nSjyRIBNLHbwKG3UMtbqhJHwatPtdew8z9GTaJRNpEByIEwnlxRKrGMLf
+ mP/KDRo498bfkSDdyF+wp+RzA++iORC0nWIxsvahrqiLfdxb1Fmyv7IZ8ioIiHizh5r2
+ 4ZAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1780054845; x=1780659645;
+ d=1e100.net; s=20251104; t=1780054846; x=1780659646;
  h=content-transfer-encoding:reply-to:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=j80hSp/BtZjhlsnhGMKP1/AKaEvtzu5rqwpX5wqDE7g=;
- b=J6B3+K7EU5CuoHJpyDpsxjCSnWWcEsW4ksKlb3beNn3u6GZkqZeNbe5JuXzhRmgvqg
- jPWrw/aa9df8c4MMk6h/phF1s6ZMFYCd/uezXcYTGs5evPFK5xzAAyxDV7eaAydZDd77
- Zn4g+TBwuE1UQT6SFbNsxIe2wwjwgGViKrm7yM2td+aUC48ZpRGso6Q3xSZUfkREmsjU
- ervHKgbR6LSGQrUWMF6JPtBegLHtSkoCaz5T/e7A1waYBt2DPnvSAdV1JJFj+qkxe5L6
- We3USTCZmmACYOr49ptxO8t0a4PqoQMFJiNAOyia2nW0AZMhJ+eisiWTqhIc+TCFCqe1
- Ox8w==
-X-Gm-Message-State: AOJu0Yxq6eig3a1bh3lKsKkFSsGb7pW2C82Pp8kZsU5JTh16tcioPK9B
- Vrkb7R3MQmsuDMwI/j4jHZ7GLWDwLz6pQsxdBZ3Wws3CKsW3at4QvaFR
-X-Gm-Gg: Acq92OGq68Pozq9gHsUHsPTxm/4K27MeiBpF9eeQAsr7hhWrW/VZ29fhsIktTpLlGrR
- qIuY+76Dz+DhssBqldIOVQb1+uqd/A/SCVt9N//0ZzCTLoej7fJI4qeIXFyUpkIbaIO+bOS0gFR
- bcUSLuBCscm6rtZ+OW1GzcuzVKmt0SXktr9uZsuNLpBmXzJq6Z7WJsSEm+jAGH8+kaD12peRsOr
- pVO35mIlcWuO61869PNhgblMKcQcjRgFi1yhWnczGHd6s3sPrig0bpUrpa6bHuxRRVjuyrPboJE
- FUYp+aTzG45eALAtSdpdtOrhu9era/htAUmpSJ4rRsrkPWHInWkUbORmcSJAGQNKUZYV2NY2q5J
- 0/NCs0cwKxKBXKTumgdMJ2ObpV1LYWYB9QAPVa4GyXf12xS7sQxDM8xBWPce9wM5touoJ5MosRD
- WjDRKTTqT7CLEBAMiWBydxdIJCuuHD9eNs4EsRgxlst00=
-X-Received: by 2002:a05:6000:605:b0:452:8286:86bf with SMTP id
- ffacd0b85a97d-45ef14020eamr4433492f8f.1.1780054844954; 
- Fri, 29 May 2026 04:40:44 -0700 (PDT)
+ bh=GxQTN1BukcJ8O4VHpG6rqsw7ATFjkSoIQdmZO03Qe/0=;
+ b=PgZ4OXntj/PTVSQ69zcD5WI82BERQiG6vTjsws7VEZoByY3DtLONUkW+JDIPdvCZNP
+ Zc2+XXQXBLOuZt1HpfeD4ZNkduL5p7Wsr4VJO0SMvxVhq6up2I1qW3C0b7tyUOwoiXx+
+ H3Ok/gjLYzFJg0wJk5H2SCLO0epa610FdbKpa4sWzwZ9UY92YvgZANceBvV/u8uNZw7J
+ t2QiHw+J+9RT+7RuzsEWhCpjWv4vBOW18yffzLbf8i0QxvkPskf3Vthg6zYxSPq0HWME
+ m46We2eebSCKxI2O32GJpktEsVbFztsARvtlBhdBhMcWpVjxxVH8h5i1OuUNIsJstMlQ
+ AXtA==
+X-Gm-Message-State: AOJu0YwLBNTSq29RpGVnVYlGkKoZtYL+i7klv0h1RZC74uf2bOtEzQGB
+ 10zmFr6d2k/bUOqxBHQ2GXOrxRCl+lfGKXjBDudcut9LYgqurpm2KS3X
+X-Gm-Gg: Acq92OFKdX0aRiDDhvyf6m1dF3LdMmcamKTQYBsw9LkT4/gj/EJo7g477pjGQK/NtBP
+ QzFesK0oVGWXAy8eE530B4fFmgYzEWnJTqpYOn8WpdyAVS1Llnunb0H2AKLpHc/QmINDAFDuVai
+ Cl2/w7h5ddJShMyo/h8NMuG8enheUcp+WbycdnOc0WkXWdnaQ9Rb8LpQy9Cwhl6U4rt+8sCJnaK
+ IVPiMHlbkKkFewBpBFXOnT/gE9AGfkoqVJSIaxRJtWpmz82tQV7snEbczjS5+chx4HQ5bkmFo+M
+ wqHggFW+++SBFacYakMz3QHrAXwVT8ZGvjE4PFUotTHk/AprCnDpQ17xmVqpPCb7AdK/U8Qo8K2
+ j/QoV5nvEf5kOzi4qNIZvjsK7mg2cucPRs7oaF9JWyfU42r9nMDBC7e2nOAW6+hFs+/i+7AhV0P
+ 4gFZwIPv7GlvKRMx79pRYzfmxQflrL7QfAb1NNow5iwMY=
+X-Received: by 2002:adf:e44c:0:b0:43d:6f0f:32fe with SMTP id
+ ffacd0b85a97d-45ef146f78emr3193139f8f.31.1780054845941; 
+ Fri, 29 May 2026 04:40:45 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:1544:8100:da55:fa26:bd:a26])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-45ef354cf0dsm2993109f8f.17.2026.05.29.04.40.43
+ ffacd0b85a97d-45ef354cf0dsm2993109f8f.17.2026.05.29.04.40.45
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 29 May 2026 04:40:44 -0700 (PDT)
+ Fri, 29 May 2026 04:40:45 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: natalie.vock@gmx.de, honghuan@amd.com, Alexander.Deucher@amd.com,
  Felix.Kuehling@amd.com, Philip.Yang@amd.com, timur.kristof@gmail.com
 Cc: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 11/13] drm/amdgpu: nuke most amdgpu_vm_eviction_(try)lock uses
-Date: Fri, 29 May 2026 13:24:13 +0200
-Message-ID: <20260529114031.3714-12-christian.koenig@amd.com>
+Subject: [PATCH 12/13] drm/amdgpu: rework eviction lock handling into critical
+ section
+Date: Fri, 29 May 2026 13:24:14 +0200
+Message-ID: <20260529114031.3714-13-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260529114031.3714-1-christian.koenig@amd.com>
 References: <20260529114031.3714-1-christian.koenig@amd.com>
@@ -130,105 +131,257 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	HAS_REPLYTO(0.00)[christian.koenig@amd.com]
-X-Rspamd-Queue-Id: 55B0C601C34
+X-Rspamd-Queue-Id: 72CD5601C25
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Use scoped_guard/scoped_cond_guard instead.
+Taking the eviction lock is actually just one step which we need to do
+in the critical section handling.
 
-Saving and restoring the GFP flags is not necessary in those use case.
+Rename the functions to reflect that, use the update parameters instead of the
+vm to save the GFP flags.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        | 29 +++++++++----------
- .../gpu/drm/amd/amdgpu/amdgpu_vm_internal.h   |  9 ------
- 2 files changed, 13 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        | 34 ++++++---------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |  1 -
+ .../gpu/drm/amd/amdgpu/amdgpu_vm_internal.h   | 41 ++++++++++++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c     | 28 ++++++-------
+ 4 files changed, 58 insertions(+), 46 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index f81ddc6873a0..3ac083c9f77e 100644
+index 3ac083c9f77e..d4e207db83c9 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -616,9 +616,8 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 	 * As soon as all page tables are in place we can start updating them
- 	 * again.
- 	 */
--	amdgpu_vm_eviction_lock(vm);
--	vm->evicting = false;
--	amdgpu_vm_eviction_unlock(vm);
-+	scoped_guard(mutex, &vm->eviction_lock)
-+		vm->evicting = false;
- 
- 	list_for_each_entry_safe(bo_base, tmp, &vm->always_valid.evicted,
- 				 vm_status) {
-@@ -676,9 +675,8 @@ bool amdgpu_vm_ready(struct amdgpu_vm *vm)
- 
- 	amdgpu_vm_assert_locked(vm);
+@@ -1143,11 +1143,9 @@ int amdgpu_vm_map_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+ 	params.override_pte = allow_override && adev->gmc.override_pte;
+ 	INIT_LIST_HEAD(&params.tlb_flush_waitlist);
  
 -	amdgpu_vm_eviction_lock(vm);
--	ret = !vm->evicting;
--	amdgpu_vm_eviction_unlock(vm);
-+	scoped_guard(mutex, &vm->eviction_lock)
-+		ret = !vm->evicting;
- 
- 	ret &= list_empty(&vm->kernel.evicted);
- 
-@@ -2308,9 +2306,10 @@ void amdgpu_vm_bo_del(struct amdgpu_device *adev,
- bool amdgpu_vm_evictable(struct amdgpu_bo *bo)
- {
- 	struct amdgpu_vm_bo_base *bo_base = bo->vm_bo;
-+	struct amdgpu_vm *vm;
- 
- 	/* Page tables of a destroyed VM can go away immediately */
--	if (!bo_base || !bo_base->vm)
-+	if (bo_base || !bo_base->vm)
- 		return true;
- 
- 	/* Don't evict VM page tables while they are busy */
-@@ -2318,17 +2317,15 @@ bool amdgpu_vm_evictable(struct amdgpu_bo *bo)
- 		return false;
- 
- 	/* Try to block ongoing updates */
--	if (!amdgpu_vm_eviction_trylock(bo_base->vm))
--		return false;
-+	vm = bo_base->vm;
-+	scoped_cond_guard(mutex_try, return false, &vm->eviction_lock) {
- 
--	/* Don't evict VM page tables while they are updated */
--	if (!dma_fence_is_signaled(bo_base->vm->last_unlocked)) {
--		amdgpu_vm_eviction_unlock(bo_base->vm);
--		return false;
+-	if (vm->evicting) {
+-		r = -EBUSY;
++	r = amdgpu_vm_begin_critical(&params);
++	if (r)
+ 		goto error_free;
 -	}
-+		/* Don't evict VM page tables while they are updated */
-+		if (!dma_fence_is_signaled(vm->last_unlocked))
-+			return false;
  
--	bo_base->vm->evicting = true;
--	amdgpu_vm_eviction_unlock(bo_base->vm);
-+		vm->evicting = true;
-+	}
- 	return true;
+ 	if (!dma_fence_is_signaled(vm->last_unlocked)) {
+ 		struct dma_fence *tmp = dma_fence_get_stub();
+@@ -1229,7 +1227,7 @@ int amdgpu_vm_map_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+ 
+ error_free:
+ 	kfree(tlb_cb);
+-	amdgpu_vm_eviction_unlock(vm);
++	amdgpu_vm_end_critical(&params);
+ 	drm_dev_exit(idx);
+ 	return r;
  }
+@@ -1277,11 +1275,9 @@ int amdgpu_vm_unmap_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+ 	params.unlocked = true;
+ 	INIT_LIST_HEAD(&params.tlb_flush_waitlist);
  
+-	amdgpu_vm_eviction_lock(vm);
+-	if (vm->evicting) {
+-		r = -EBUSY;
++	r = amdgpu_vm_begin_critical(&params);
++	if (r)
+ 		goto error_free;
+-	}
+ 
+ 	r = vm->update_funcs->prepare(&params, sync,
+ 				      AMDGPU_KERNEL_JOB_ID_VM_UNMAP_RANGE);
+@@ -1300,7 +1296,7 @@ int amdgpu_vm_unmap_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+ 
+ error_free:
+ 	kfree(tlb_cb);
+-	amdgpu_vm_eviction_unlock(vm);
++	amdgpu_vm_end_critical(&params);
+ 	drm_dev_exit(idx);
+ 	return r;
+ }
+@@ -3113,30 +3109,26 @@ bool amdgpu_vm_handle_fault(struct amdgpu_device *adev, u32 pasid,
+ 		goto error_unlock;
+ 	}
+ 
+-	amdgpu_vm_eviction_lock(vm);
+-	if (vm->evicting) {
+-		r = -EBUSY;
+-		goto error_dev_exit;
+-	}
+-
+ 	memset(&params, 0, sizeof(params));
+ 	params.adev = adev;
+ 	params.vm = vm;
+ 	params.immediate = true;
+ 	params.pages_addr = NULL;
+ 
++	r = amdgpu_vm_begin_critical(&params);
++	if (r)
++		goto error_end_critical;
++
+ 	r = dma_resv_reserve_fences(root->tbo.base.resv, 1);
+ 	if (r) {
+ 		pr_debug("failed %d to reserve fence slot\n", r);
+-		goto error_eviction_lock;
++		goto error_end_critical;
+ 	}
+ 
+ 	amdgpu_vm_update_leaves(&params, addr, addr, value, flags);
+ 
+-error_eviction_lock:
+-	amdgpu_vm_eviction_unlock(vm);
+-
+-error_dev_exit:
++error_end_critical:
++	amdgpu_vm_end_critical(&params);
+ 	drm_dev_exit(idx);
+ 
+ error_unlock:
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+index 21c78b18f4df..7db3c3577949 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+@@ -286,7 +286,6 @@ struct amdgpu_vm {
+ 	 */
+ 	struct mutex		eviction_lock;
+ 	bool			evicting;
+-	unsigned int		saved_flags;
+ 
+ 	/* Memory statistics for this vm, protected by stats_lock */
+ 	spinlock_t		stats_lock;
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_internal.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_internal.h
-index 16710017e8ca..7276d987e9a6 100644
+index 7276d987e9a6..29c74920f3b0 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_internal.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_internal.h
-@@ -141,15 +141,6 @@ static inline void amdgpu_vm_eviction_lock(struct amdgpu_vm *vm)
- 	vm->saved_flags = memalloc_noreclaim_save();
+@@ -93,6 +93,11 @@ struct amdgpu_vm_update_params {
+ 	 */
+ 	bool override_pte;
+ 
++	/**
++	 * @saved_flags: Saved flags for GFP reduction.
++	 */
++	unsigned int saved_flags;
++
+ 	/**
+ 	 * @tlb_flush_waitlist: temporary storage for BOs until tlb_flush
+ 	 */
+@@ -130,21 +135,37 @@ void amdgpu_vm_pt_free_list(struct amdgpu_device *adev,
+ 
+ int amdgpu_vm_pt_map_tables(struct amdgpu_device *adev, struct amdgpu_vm *vm);
+ 
+-/*
+- * vm eviction_lock can be taken in MMU notifiers. Make sure no reclaim-FS
+- * happens while holding this lock anywhere to prevent deadlocks when
+- * an MMU notifier runs in reclaim-FS context.
++/**
++ * amdgpu_vm_begin_critical - start the critical section of the update
++ * @p: The update parameters
++ *
++ * Serialize all updates, check parameters and make sure that memory allocations
++ * don't enter the reclaim path so that we don't deadlock with MMU notifiers.
++ *
++ * Returns:
++ *
++ * 0 on success or a negative error code on failure.
++ * Even on error amdgpu_vm_end_critical() must still be called to clean up!
+  */
+-static inline void amdgpu_vm_eviction_lock(struct amdgpu_vm *vm)
++static inline int amdgpu_vm_begin_critical(struct amdgpu_vm_update_params *p)
+ {
+-	mutex_lock(&vm->eviction_lock);
+-	vm->saved_flags = memalloc_noreclaim_save();
++	mutex_lock(&p->vm->eviction_lock);
++	p->saved_flags = memalloc_noreclaim_save();
++	if (p->vm->evicting)
++		return -EBUSY;
++	return 0;
  }
  
--static inline bool amdgpu_vm_eviction_trylock(struct amdgpu_vm *vm)
--{
--	if (mutex_trylock(&vm->eviction_lock)) {
--		vm->saved_flags = memalloc_noreclaim_save();
--		return true;
--	}
--	return false;
--}
--
- static inline void amdgpu_vm_eviction_unlock(struct amdgpu_vm *vm)
+-static inline void amdgpu_vm_eviction_unlock(struct amdgpu_vm *vm)
++/**
++ * amdgpu_vm_end_critical - end the critical section of the update
++ * @p: The update parameters
++ *
++ * Restore the GFP flags and drop the lock.
++ */
++static inline void amdgpu_vm_end_critical(struct amdgpu_vm_update_params *p)
  {
- 	memalloc_noreclaim_restore(vm->saved_flags);
+-	memalloc_noreclaim_restore(vm->saved_flags);
+-	mutex_unlock(&vm->eviction_lock);
++	memalloc_noreclaim_restore(p->saved_flags);
++	mutex_unlock(&p->vm->eviction_lock);
+ }
+ 
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
+index 6026d6f27842..cf1697374416 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
+@@ -478,42 +478,42 @@ int amdgpu_vm_pt_create(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+ /**
+  * amdgpu_vm_pt_alloc - Allocate a specific page table
+  *
+- * @adev: amdgpu_device pointer
+- * @vm: VM to allocate page tables for
++ * @p: see amdgpu_vm_update_params definition
+  * @cursor: Which page table to allocate
+  *
+  * Make sure a specific page table or directory is allocated.
+  *
+  * Returns:
+- * 1 if page table needed to be allocated, 0 if page table was already
+- * allocated, negative errno if an error occurred.
++ *
++ * 0 on success or a negative error code on failure.
+  */
+-static int amdgpu_vm_pt_alloc(struct amdgpu_device *adev,
+-			      struct amdgpu_vm *vm,
++static int amdgpu_vm_pt_alloc(struct amdgpu_vm_update_params *p,
+ 			      struct amdgpu_vm_pt_cursor *cursor)
+ {
+ 	struct amdgpu_vm_bo_base *entry = cursor->entry;
+ 	struct amdgpu_bo *pt_bo;
+ 	struct amdgpu_bo_vm *pt;
+-	int r;
++	int r, r2;
+ 
+ 	if (entry->bo)
+ 		return 0;
+ 
+-	amdgpu_vm_eviction_unlock(vm);
+-	r = amdgpu_vm_pt_create(adev, vm, cursor->level, &pt,
+-				vm->root.bo->xcp_id);
+-	amdgpu_vm_eviction_lock(vm);
++	amdgpu_vm_end_critical(p);
++	r = amdgpu_vm_pt_create(p->adev, p->vm, cursor->level, &pt,
++				p->vm->root.bo->xcp_id);
++	r2 = amdgpu_vm_begin_critical(p);
+ 	if (r)
+ 		return r;
++	if (r2)
++		return r2;
+ 
+ 	/* Keep a reference to the root directory to avoid
+ 	 * freeing them up in the wrong order.
+ 	 */
+ 	pt_bo = &pt->bo;
+ 	pt_bo->parent = amdgpu_bo_ref(cursor->parent->bo);
+-	amdgpu_vm_bo_base_init(entry, vm, pt_bo);
+-	r = amdgpu_vm_pt_clear(adev, vm, pt);
++	amdgpu_vm_bo_base_init(entry, p->vm, pt_bo);
++	r = amdgpu_vm_pt_clear(p->adev, p->vm, pt);
+ 	if (r)
+ 		goto error_free_pt;
+ 
+@@ -802,7 +802,7 @@ int amdgpu_vm_ptes_update(struct amdgpu_vm_update_params *params,
+ 		/* make sure that the page tables covering the
+ 		 * address range are actually allocated
+ 		 */
+-		r = amdgpu_vm_pt_alloc(params->adev, params->vm, &cursor);
++		r = amdgpu_vm_pt_alloc(params, &cursor);
+ 		if (r)
+ 			return r;
+ 
 -- 
 2.43.0
 
