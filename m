@@ -2,78 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cDhzIEB7GWr3wwgAu9opvQ
+	id qExAKkB7GWr3wwgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 13:40:48 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EF74601C01
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CE48601C02
 	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 13:40:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA55B10FDCC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C551A10FDCD;
 	Fri, 29 May 2026 11:40:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="tHKUAh6L";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FT64pAP0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98DE910FDC9
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 11:40:43 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-49050bfe053so44291995e9.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 04:40:43 -0700 (PDT)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C2B010FDC9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 11:40:44 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-490388fd0dbso81570275e9.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 04:40:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1780054842; x=1780659642; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1780054843; x=1780659643; darn=lists.freedesktop.org;
  h=content-transfer-encoding:reply-to:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
  :date:message-id:reply-to;
- bh=Hz5mfmh+1Szrf9d9MXqXv6HkvN/P6wggT+B6h9bnSwg=;
- b=tHKUAh6LrNmGWkq7FTncCH04Dp4P8u3litxltwJuFNfiTNfiCf70x8HjflUx3rvx/6
- bADRgSYFSc6ifJdfFkUjrut3x1w5luBWSUkVrXuAR1II8tBCiDQcdDxpNMsAU/43Aw/l
- xglXzIHi708ZBv61dv6+XYp4O0juGOjHO0ztMdHazD0VW5rJaveXYbcYLT34qEyNcwHm
- hW+3o7+Z5E68I7rPzbCHeBosFSxPhBfJPsRGy/Z9HE1firK47WpLro23JO4Tlc9pVoQf
- 8QcH8trxjgsjNIv0bIl9MbAGbkYCeybvop8bY3UP7hJPaXlQ29OyEiquFiHiK0Z+7Shv
- w2xg==
+ bh=GnMp1GSTDPXdGTWJVEOChP+RS3BZG3+3IddhjYhK8wk=;
+ b=FT64pAP0DO2sRtg4+oxkk9ZfrFQ8Jj86ZWE3T6hyZ5g9o0LqPvXBrvb3FqzKFwnxWo
+ S31r/vx+dadeTSuP06HmWV8Qio1gE3uaFXJVIk6E2cB55/XBZKfqadegXCcrPF03XdZ0
+ 205kgpIjyd6HBM6qHPI5PGv5SVj8gDeXzpjLUmKliixOYfnbWNXWIaW57g88888GOREx
+ B8Tq6t0gA2P1zPEmo5wtbIQMj94qV1ixN+Pd3I28uznxEX+pg+eMySGE7H5P706Vv8yd
+ yuZkP/tBmkAlMarfYjCBazrs2UBYBhsfc0iMDPS4LHjkDzhmD+NCudjiY9ukigg9Wkf0
+ uThQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1780054842; x=1780659642;
+ d=1e100.net; s=20251104; t=1780054843; x=1780659643;
  h=content-transfer-encoding:reply-to:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Hz5mfmh+1Szrf9d9MXqXv6HkvN/P6wggT+B6h9bnSwg=;
- b=kCC01mwdDu9uqL5mD30t7UsidaIl6q6xd9ArUHjBuTwJ5Vxr9JkKGbMqPnpZLLH/pW
- y+EYgp25+ecTxZyaEl8JPok2eV2Eezfr/Am9e43tDgN23y25YmyEc8y3OqO27VTrJHYw
- a4uMC0V/ep0aFbfrisCD2gksfDTXnX4un3gH3+lu/XJtxx90qEEqdku7AAIpvfQZWegX
- q4HvPnndXl3gSCrKPdBT0p6NczHNKPCiTqBTVrIPSxUxQ8kkTWdL3oHh2PR/S4YAtWwS
- DISpwr+ObYnW6h7gCyGLQOrvSL2NAi5lHCPw0CpTCj1b7187W9h0e/67c5JpON4Pjc0G
- b16w==
-X-Gm-Message-State: AOJu0YzX+Fax+7jAI8xizUnSSwVqTsyV5qJ7iDewqPQpyRQqb751uFaO
- jR0hQubuUaYPmtiGitsUorF9F1yf7Ngvu0O5qxxwkWCdn94SQ0sMbmSeUOKggDZcI8g=
-X-Gm-Gg: Acq92OGPEFleFh9k6GBNqn0zJ3XVTcLHkBeydZdcxYt7Lw6R3ZXiNcbgBX9z1KIgu1d
- ahrMNntRIGcRdrqS2ZGbq0l6uTSCTr2bO9IwyOhRqxEzI1n29TOnWwYb46dEBaYLs4Gh3xsNSgF
- YrEb7KcbflLqV0U8Ab3YkPgHJBKUYDs5UoHKiOZAwkSCc8o0dj5juWsSuAPX4pXL9tZZyVojJq3
- eG8sI3bYVwfb7PAW4fDRk4pycKO1J+SX7ILHl28yxylxNGz/vQJV1ERl4ol2cYAJeFGYcX280No
- 7e+zbD6yZlZavup9qQyE2D11kxLA00ovdqBweC8SHJErwUQ2/5ahwlzjF+QQgzNcQfeXpK6Q3Qk
- LVx/Astp9PlyQ3mtG2zrUR7mOJvj7ggR2YGT/KZQf7nz2gPoxe5x1hQvkNU8WK5UvCEpIehw0L3
- IIP4rPxqEdzJMsi+vCkrQQke4/ts8AQLbVIVB+7eBitq8=
-X-Received: by 2002:a05:600c:561a:b0:490:7136:ad0a with SMTP id
- 5b1f17b1804b1-4909c0792admr36565715e9.4.1780054842015; 
- Fri, 29 May 2026 04:40:42 -0700 (PDT)
+ bh=GnMp1GSTDPXdGTWJVEOChP+RS3BZG3+3IddhjYhK8wk=;
+ b=Dr/mmhD1qjk4PdvFxZPIFDRNIbdDa6FoGSbhAAxklOieuHGKWJMoY/sF5E3s+6xNiZ
+ r7mIwPQAOrmjQnYfLdBKp3vBCofYk/e+0lsZuIC17tsrExNlB7+LNHNETayr8+6Ymdm0
+ FprswC9jfOtsUpznCT01V+EOh6IXmF831g+oDQ+Qjnx6HQh1Bdbin1UvIC2CqzCJgEv5
+ qwcjMHv7G7M+nsWx2LL/UfhXuDUTF/fXclMhkqjjhK4SA4sL45vVvp49eiextahFvewV
+ uxqk6+77MfCgN+LRS88fGdr4kIyxiLvOTJz0eRJkU1Asf476KDzuYbBHexMqIi3jJzcP
+ 7TJg==
+X-Gm-Message-State: AOJu0YzPtpGlXNgWqlZpGtuzhyXVtT5Da1uUGVBKrRUvUp/vR3iU7Y96
+ 2UTmTXm0l3Xa/AFZ/n1FUyIt8AoG+bfHsPWJRsqliNyJj+6cf5IzwrCc
+X-Gm-Gg: Acq92OHqn7zSt/bDztBduMZj2XnD9+YSQMI4p371xliJ0dt+6zXuseX/epc87XxkKs+
+ ULDOa6BrjEla9DQLwS9RihQX554BtNHWt184yelwmLBwxuN+vTHd+pL5QAsdrpnV2PNG1D6CcYA
+ MNY4j7Vyg0ntQLzq0+5sc8NIbCA7CgXiwAmXAOUW3t8xvg73paTuKRozKsPwiV+TtFcYAlFB3jO
+ RoBW0VROzPeHsK4XctkmJs/GCRDR7SWIz+t578oiEbTvgwz8Nggrx1bLruCjlD7Dw+8qtSYTSB8
+ 86sVx0CfpT+/E9mto+3rZv4LvHn7YxN1XbS0hhCMo8bcV3JMKEtiLTjRLnQlt61as3nMs7nUUCe
+ 3EvQea+Zd7cR4bJlWKhCiQnws5UYsG5I+YUFgnVIrKA6DWe3XT5sx2xulMReR7jNY0oYUSC1cas
+ /JNVDLZfsYac5aTxSIS5esHKaTPV83wysQSDidZgt9avBIaakkPOQP1g==
+X-Received: by 2002:a05:600c:a105:b0:490:6e12:542c with SMTP id
+ 5b1f17b1804b1-4909c0e4476mr36438675e9.23.1780054843014; 
+ Fri, 29 May 2026 04:40:43 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:1544:8100:da55:fa26:bd:a26])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-45ef354cf0dsm2993109f8f.17.2026.05.29.04.40.41
+ ffacd0b85a97d-45ef354cf0dsm2993109f8f.17.2026.05.29.04.40.42
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 29 May 2026 04:40:41 -0700 (PDT)
+ Fri, 29 May 2026 04:40:42 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
 To: natalie.vock@gmx.de, honghuan@amd.com, Alexander.Deucher@amd.com,
  Felix.Kuehling@amd.com, Philip.Yang@amd.com, timur.kristof@gmail.com
 Cc: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 08/13] drm/amdgpu: split amdgpu_vm_update_range
-Date: Fri, 29 May 2026 13:24:10 +0200
-Message-ID: <20260529114031.3714-9-christian.koenig@amd.com>
+Subject: [PATCH 09/13] drm/amdgpu: start to move VM internals into
+ amdgpu_vm_internal.h
+Date: Fri, 29 May 2026 13:24:11 +0200
+Message-ID: <20260529114031.3714-10-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260529114031.3714-1-christian.koenig@amd.com>
 References: <20260529114031.3714-1-christian.koenig@amd.com>
@@ -114,7 +115,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
@@ -124,369 +125,414 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCPT_COUNT_SEVEN(0.00)[7];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	HAS_REPLYTO(0.00)[christian.koenig@amd.com]
-X-Rspamd-Queue-Id: 2EF74601C01
+X-Rspamd-Queue-Id: 5CE48601C02
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Split amdgpu_vm_update_range into two functions.
+Avoid exposing some defines outside of the VM code.
 
-amdgpu_vm_map_range() is for mapping PTEs into a range and updates
-which can be done while holding the VM lock.
-
-amdgpu_vm_unmap_range() is for unmapping PTEs without holding the VM
-lock in MMU notifiers.
+Co-developed by Claude Sonnet 4.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.h   |   3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c    | 112 ++++++++++++++++++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h    |  14 ++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c |  35 ++-----
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c      |  16 ++--
- 5 files changed, 120 insertions(+), 60 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h     |   2 +
+ .../gpu/drm/amd/amdgpu/amdgpu_trace_points.c  |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        | 118 -------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c    |   1 +
+ .../gpu/drm/amd/amdgpu/amdgpu_vm_internal.h   | 159 ++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c     |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c   |   1 +
+ 8 files changed, 166 insertions(+), 118 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_vm_internal.h
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-index 44fe40f9e8df..653ffa9ca0f3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
-@@ -47,7 +47,7 @@ enum amdgpu_ib_pool_type;
- /* Internal kernel job ids. (decreasing values, starting from U64_MAX). */
- #define AMDGPU_KERNEL_JOB_ID_VM_UPDATE              (18446744073709551615ULL)
- #define AMDGPU_KERNEL_JOB_ID_VM_UPDATE_PDES         (18446744073709551614ULL)
--#define AMDGPU_KERNEL_JOB_ID_VM_UPDATE_RANGE        (18446744073709551613ULL)
-+#define AMDGPU_KERNEL_JOB_ID_VM_MAP_RANGE           (18446744073709551613ULL)
- #define AMDGPU_KERNEL_JOB_ID_VM_PT_CLEAR            (18446744073709551612ULL)
- #define AMDGPU_KERNEL_JOB_ID_TTM_MAP_BUFFER         (18446744073709551611ULL)
- #define AMDGPU_KERNEL_JOB_ID_TTM_ACCESS_MEMORY_SDMA (18446744073709551610ULL)
-@@ -63,6 +63,7 @@ enum amdgpu_ib_pool_type;
- #define AMDGPU_KERNEL_JOB_ID_SDMA_RING_TEST         (18446744073709551600ULL)
- #define AMDGPU_KERNEL_JOB_ID_VPE_RING_TEST          (18446744073709551599ULL)
- #define AMDGPU_KERNEL_JOB_ID_RUN_SHADER             (18446744073709551598ULL)
-+#define AMDGPU_KERNEL_JOB_ID_VM_UNMAP_RANGE         (18446744073709551597ULL)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
+index d13e64a69e25..d6def9bec72c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
+@@ -35,6 +35,8 @@
+ #define AMDGPU_JOB_GET_TIMELINE_NAME(job) \
+ 	 job->base.s_fence->finished.ops->get_timeline_name(&job->base.s_fence->finished)
  
- struct amdgpu_job {
- 	struct drm_sched_job    base;
++struct amdgpu_vm_update_params;
++
+ TRACE_EVENT(amdgpu_device_rreg,
+ 	    TP_PROTO(unsigned did, uint32_t reg, uint32_t value),
+ 	    TP_ARGS(did, reg, value),
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace_points.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace_points.c
+index b96d885f6e33..fe61ed5b487e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace_points.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace_points.c
+@@ -25,6 +25,7 @@
+ #include <drm/amdgpu_drm.h>
+ #include "amdgpu_cs.h"
+ #include "amdgpu.h"
++#include "amdgpu_vm_internal.h"
+ 
+ #define CREATE_TRACE_POINTS
+ #include "amdgpu_trace.h"
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index edc8b1ca2d3e..b5adfcacc55a 100644
+index b5adfcacc55a..f81ddc6873a0 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -1080,11 +1080,10 @@ amdgpu_vm_tlb_flush(struct amdgpu_vm_update_params *params,
- }
- 
- /**
-- * amdgpu_vm_update_range - update a range in the vm page table
-+ * amdgpu_vm_map_range - map something to a range in the vm page tables
-  *
-  * @adev: amdgpu_device pointer to use for commands
-  * @vm: the VM to update the range
-- * @unlocked: unlocked invalidation during MM callback
-  * @flush_tlb: trigger tlb invalidation after update completed
-  * @allow_override: change MTYPE for local NUMA nodes
-  * @sync: fences we need to sync to
-@@ -1097,23 +1096,26 @@ amdgpu_vm_tlb_flush(struct amdgpu_vm_update_params *params,
-  * @pages_addr: DMA addresses to use for mapping
-  * @fence: optional resulting fence
-  *
-- * Fill in the page table entries between @start and @last.
-+ * Fill in the page table entries between @start and @last. Allocate and free
-+ * new page tables as needed. Can only be called while holding the VM lock.
-  *
-  * Returns:
-  * 0 for success, negative erro code for failure.
-  */
--int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
--			   bool unlocked, bool flush_tlb, bool allow_override,
--			   struct amdgpu_sync *sync, uint64_t start,
--			   uint64_t last, uint64_t flags, uint64_t offset,
--			   uint64_t vram_base, struct ttm_resource *res,
--			   dma_addr_t *pages_addr, struct dma_fence **fence)
-+int amdgpu_vm_map_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
-+			bool flush_tlb, bool allow_override,
-+			struct amdgpu_sync *sync, uint64_t start,
-+			uint64_t last, uint64_t flags, uint64_t offset,
-+			uint64_t vram_base, struct ttm_resource *res,
-+			dma_addr_t *pages_addr, struct dma_fence **fence)
- {
- 	struct amdgpu_vm_tlb_seq_struct *tlb_cb;
- 	struct amdgpu_vm_update_params params;
- 	struct amdgpu_res_cursor cursor;
- 	int r, idx;
- 
-+	amdgpu_vm_assert_locked(vm);
-+
- 	if (!drm_dev_enter(adev_to_drm(adev), &idx))
- 		return -ENODEV;
- 
-@@ -1138,7 +1140,6 @@ int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 	params.adev = adev;
- 	params.vm = vm;
- 	params.pages_addr = pages_addr;
--	params.unlocked = unlocked;
- 	params.needs_flush = flush_tlb;
- 	params.override_pte = allow_override && adev->gmc.override_pte;
- 	INIT_LIST_HEAD(&params.tlb_flush_waitlist);
-@@ -1149,7 +1150,7 @@ int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 		goto error_free;
- 	}
- 
--	if (!unlocked && !dma_fence_is_signaled(vm->last_unlocked)) {
-+	if (!dma_fence_is_signaled(vm->last_unlocked)) {
- 		struct dma_fence *tmp = dma_fence_get_stub();
- 
- 		amdgpu_bo_fence(vm->root.bo, vm->last_unlocked, true);
-@@ -1158,7 +1159,7 @@ int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 	}
- 
- 	r = vm->update_funcs->prepare(&params, sync,
--				      AMDGPU_KERNEL_JOB_ID_VM_UPDATE_RANGE);
-+				      AMDGPU_KERNEL_JOB_ID_VM_MAP_RANGE);
- 	if (r)
- 		goto error_free;
- 
-@@ -1234,6 +1235,77 @@ int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 	return r;
- }
- 
-+/**
-+ * amdgpu_vm_unmap_range - clear leave PTEs to unmap something
-+ *
-+ * @adev: amdgpu_device pointer to use for commands
-+ * @vm: the VM to update the range
-+ * @sync: fences we need to sync to
-+ * @start: start of unmapped range
-+ * @last: last unmapped entry
-+ * @flags: flags for the entries
-+ * @fence: optional resulting fence
-+ *
-+ * Fill in the page table entries between @start and @last with a fixed flags
-+ * value without allocating or freeing page tables. Can be used without locking
-+ * the VM.
-+ *
-+ * Returns:
-+ * 0 for success, negative erro code for failure.
-+ */
-+int amdgpu_vm_unmap_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
-+			   struct amdgpu_sync *sync, uint64_t start,
-+			   uint64_t last, uint64_t flags,
-+			   struct dma_fence **fence)
-+{
-+	struct amdgpu_vm_tlb_seq_struct *tlb_cb;
-+	struct amdgpu_vm_update_params params;
-+	int r, idx;
-+
-+	if (!drm_dev_enter(adev_to_drm(adev), &idx))
-+		return -ENODEV;
-+
-+	tlb_cb = kmalloc(sizeof(*tlb_cb), GFP_KERNEL);
-+	if (!tlb_cb) {
-+		drm_dev_exit(idx);
-+		return -ENOMEM;
-+	}
-+
-+	memset(&params, 0, sizeof(params));
-+	params.adev = adev;
-+	params.vm = vm;
-+	params.needs_flush = true;
-+	params.unlocked = true;
-+	INIT_LIST_HEAD(&params.tlb_flush_waitlist);
-+
-+	amdgpu_vm_eviction_lock(vm);
-+	if (vm->evicting) {
-+		r = -EBUSY;
-+		goto error_free;
-+	}
-+
-+	r = vm->update_funcs->prepare(&params, sync,
-+				      AMDGPU_KERNEL_JOB_ID_VM_UNMAP_RANGE);
-+	if (r)
-+		goto error_free;
-+
-+	amdgpu_vm_update_leaves(&params, start, last, 0, flags);
-+
-+	r = vm->update_funcs->commit(&params, fence);
-+	if (r)
-+		goto error_free;
-+
-+	amdgpu_vm_tlb_flush(&params, fence, tlb_cb);
-+	amdgpu_vm_pt_free_list(adev, &params);
-+	tlb_cb = NULL;
-+
-+error_free:
-+	kfree(tlb_cb);
-+	amdgpu_vm_eviction_unlock(vm);
-+	drm_dev_exit(idx);
-+	return r;
-+}
-+
- void amdgpu_vm_get_memory(struct amdgpu_vm *vm,
- 			  struct amdgpu_mem_stats stats[__AMDGPU_PL_NUM])
- {
-@@ -1362,11 +1434,11 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev, struct amdgpu_bo_va *bo_va,
- 
- 		trace_amdgpu_vm_bo_update(mapping);
- 
--		r = amdgpu_vm_update_range(adev, vm, false, flush_tlb,
--					   !uncached, &sync, mapping->start,
--					   mapping->last, update_flags,
--					   mapping->offset, vram_base, mem,
--					   pages_addr, last_update);
-+		r = amdgpu_vm_map_range(adev, vm, flush_tlb, !uncached, &sync,
-+					mapping->start, mapping->last,
-+					update_flags, mapping->offset,
-+					vram_base, mem, pages_addr,
-+					last_update);
- 		if (r)
- 			goto error_free;
- 	}
-@@ -1565,9 +1637,9 @@ int amdgpu_vm_clear_freed(struct amdgpu_device *adev,
- 			struct amdgpu_bo_va_mapping, list);
- 		list_del(&mapping->list);
- 
--		r = amdgpu_vm_update_range(adev, vm, false, true, false,
--					   &sync, mapping->start, mapping->last,
--					   0, 0, 0, NULL, NULL, &f);
-+		r = amdgpu_vm_map_range(adev, vm, true, false,
-+					&sync, mapping->start, mapping->last,
-+					0, 0, 0, NULL, NULL, &f);
- 		amdgpu_vm_free_mapping(adev, vm, mapping, f);
- 		if (r) {
- 			dma_fence_put(f);
+@@ -37,6 +37,7 @@
+ #include <drm/drm_exec.h>
+ #include "amdgpu.h"
+ #include "amdgpu_vm.h"
++#include "amdgpu_vm_internal.h"
+ #include "amdgpu_trace.h"
+ #include "amdgpu_amdkfd.h"
+ #include "amdgpu_gmc.h"
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-index 3e86a2a470f0..561f2873d2ec 100644
+index 561f2873d2ec..21c78b18f4df 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-@@ -529,12 +529,16 @@ int amdgpu_vm_flush_compute_tlb(struct amdgpu_device *adev,
- 				uint32_t xcc_mask);
- void amdgpu_vm_bo_base_init(struct amdgpu_vm_bo_base *base,
- 			    struct amdgpu_vm *vm, struct amdgpu_bo *bo);
--int amdgpu_vm_update_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
--			   bool unlocked, bool flush_tlb, bool allow_override,
-+int amdgpu_vm_map_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
-+			bool flush_tlb, bool allow_override,
-+			struct amdgpu_sync *sync, uint64_t start,
-+			uint64_t last, uint64_t flags, uint64_t offset,
-+			uint64_t vram_base, struct ttm_resource *res,
-+			dma_addr_t *pages_addr, struct dma_fence **fence);
-+int amdgpu_vm_unmap_range(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 			   struct amdgpu_sync *sync, uint64_t start,
--			   uint64_t last, uint64_t flags, uint64_t offset,
--			   uint64_t vram_base, struct ttm_resource *res,
--			   dma_addr_t *pages_addr, struct dma_fence **fence);
-+			   uint64_t last, uint64_t flags,
-+			   struct dma_fence **fence);
- int amdgpu_vm_bo_update(struct amdgpu_device *adev,
- 			struct amdgpu_bo_va *bo_va,
- 			bool clear);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-index 6f5415d5a1bc..ac3f3e31e2e2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
-@@ -553,7 +553,6 @@ void amdgpu_vm_pt_free_list(struct amdgpu_device *adev,
- 			    struct amdgpu_vm_update_params *params)
- {
- 	struct amdgpu_vm_bo_base *entry, *next;
--	bool unlocked = params->unlocked;
+@@ -261,80 +261,6 @@ struct amdgpu_task_info {
+ 	struct kref	refcount;
+ };
  
- 	if (list_empty(&params->tlb_flush_waitlist))
- 		return;
-@@ -561,7 +560,7 @@ void amdgpu_vm_pt_free_list(struct amdgpu_device *adev,
- 	/*
- 	 * unlocked unmap clear page table leaves, warning to free the page entry.
- 	 */
--	WARN_ON(unlocked);
-+	WARN_ON(params->unlocked);
+-/**
+- * struct amdgpu_vm_update_params
+- *
+- * Encapsulate some VM table update parameters to reduce
+- * the number of function parameters
+- *
+- */
+-struct amdgpu_vm_update_params {
+-
+-	/**
+-	 * @adev: amdgpu device we do this update for
+-	 */
+-	struct amdgpu_device *adev;
+-
+-	/**
+-	 * @vm: optional amdgpu_vm we do this update for
+-	 */
+-	struct amdgpu_vm *vm;
+-
+-	/**
+-	 * @immediate: if changes should be made immediately
+-	 */
+-	bool immediate;
+-
+-	/**
+-	 * @unlocked: true if the root BO is not locked
+-	 */
+-	bool unlocked;
+-
+-	/**
+-	 * @pages_addr:
+-	 *
+-	 * DMA addresses to use for mapping
+-	 */
+-	dma_addr_t *pages_addr;
+-
+-	/**
+-	 * @job: job to used for hw submission
+-	 */
+-	struct amdgpu_job *job;
+-
+-	/**
+-	 * @num_dw_left: number of dw left for the IB
+-	 */
+-	unsigned int num_dw_left;
+-
+-	/**
+-	 * @needs_flush: true whenever we need to invalidate the TLB
+-	 */
+-	bool needs_flush;
+-
+-	/**
+-	 * @override_pte: true for memory that is not uncached and gmc override function is
+-	 * implemented to allow MTYPE to be overridden for NUMA local memory.
+-	 */
+-	bool override_pte;
+-
+-	/**
+-	 * @tlb_flush_waitlist: temporary storage for BOs until tlb_flush
+-	 */
+-	struct list_head tlb_flush_waitlist;
+-};
+-
+-struct amdgpu_vm_update_funcs {
+-	int (*map_table)(struct amdgpu_bo_vm *bo);
+-	int (*prepare)(struct amdgpu_vm_update_params *p,
+-		       struct amdgpu_sync *sync, u64 k_job_id);
+-	int (*update)(struct amdgpu_vm_update_params *p,
+-		      struct amdgpu_bo_vm *bo, uint64_t pe, uint64_t addr,
+-		      unsigned count, uint32_t incr, uint64_t flags);
+-	int (*commit)(struct amdgpu_vm_update_params *p,
+-		      struct dma_fence **fence);
+-};
+-
+ struct amdgpu_vm_fault_info {
+ 	/* fault address */
+ 	uint64_t	addr;
+@@ -604,24 +530,6 @@ void amdgpu_vm_move_to_lru_tail(struct amdgpu_device *adev,
+ void amdgpu_vm_get_memory(struct amdgpu_vm *vm,
+ 			  struct amdgpu_mem_stats stats[__AMDGPU_PL_NUM]);
  
- 	list_for_each_entry_safe(entry, next, &params->tlb_flush_waitlist, vm_status)
- 		amdgpu_vm_pt_free(entry);
-@@ -801,24 +800,17 @@ int amdgpu_vm_ptes_update(struct amdgpu_vm_update_params *params,
- 		uint64_t incr, entry_end, pe_start;
- 		struct amdgpu_bo *pt;
- 
--		if (!params->unlocked) {
--			/* make sure that the page tables covering the
--			 * address range are actually allocated
--			 */
--			r = amdgpu_vm_pt_alloc(params->adev, params->vm,
--					       &cursor);
--			if (r)
--				return r;
--		}
-+		/* make sure that the page tables covering the
-+		 * address range are actually allocated
-+		 */
-+		r = amdgpu_vm_pt_alloc(params->adev, params->vm, &cursor);
-+		if (r)
-+			return r;
- 
- 		shift = amdgpu_vm_pt_level_shift(adev, cursor.level);
- 		parent_shift = amdgpu_vm_pt_level_shift(adev, cursor.level - 1);
--		if (params->unlocked) {
--			/* Unlocked updates are only allowed on the leaves */
--			if (amdgpu_vm_pt_descendant(adev, &cursor))
--				continue;
--		} else if (adev->asic_type < CHIP_VEGA10 &&
--			   (flags & AMDGPU_PTE_VALID)) {
-+		if (adev->asic_type < CHIP_VEGA10 &&
-+		    (flags & AMDGPU_PTE_VALID)) {
- 			/* No huge page support before GMC v9 */
- 			if (cursor.level != AMDGPU_VM_PTB) {
- 				if (!amdgpu_vm_pt_descendant(adev, &cursor))
-@@ -864,14 +856,7 @@ int amdgpu_vm_ptes_update(struct amdgpu_vm_update_params *params,
- 		mask = amdgpu_vm_pt_entries_mask(adev, cursor.level);
- 		pe_start = ((cursor.pfn >> shift) & mask) * 8;
- 
--		if (cursor.level < AMDGPU_VM_PTB && params->unlocked)
--			/*
--			 * MMU notifier callback unlocked unmap huge page, leave is PDE entry,
--			 * only clear one entry. Next entry search again for PDE or PTE leave.
--			 */
--			entry_end = 1ULL << shift;
--		else
--			entry_end = ((uint64_t)mask + 1) << shift;
-+		entry_end = ((uint64_t)mask + 1) << shift;
- 		entry_end += cursor.pfn & ~(entry_end - 1);
- 		entry_end = min(entry_end, end);
- 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 37b5166e9a14..d0ea20dea3e1 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -1372,9 +1372,8 @@ svm_range_unmap_from_gpu(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 		return -EINVAL;
- 	}
- 
--	return amdgpu_vm_update_range(adev, vm, true, true, false, NULL, gpu_start,
--				      gpu_end, init_pte_value, 0, 0, NULL, NULL,
--				      fence);
-+	return amdgpu_vm_unmap_range(adev, vm, NULL, gpu_start, gpu_end,
-+				     init_pte_value, fence);
+-int amdgpu_vm_pt_clear(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+-		       struct amdgpu_bo_vm *vmbo);
+-int amdgpu_vm_pt_create(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+-			int level, struct amdgpu_bo_vm **vmbo, int32_t xcp_id);
+-void amdgpu_vm_pt_free_root(struct amdgpu_device *adev, struct amdgpu_vm *vm);
+-
+-int amdgpu_vm_pde_update(struct amdgpu_vm_update_params *params,
+-			 struct amdgpu_vm_bo_base *entry);
+-int amdgpu_vm_ptes_update(struct amdgpu_vm_update_params *params,
+-			  uint64_t start, uint64_t end,
+-			  uint64_t dst, uint64_t flags);
+-void amdgpu_vm_update_leaves(struct amdgpu_vm_update_params *params,
+-			     uint64_t start, uint64_t end,
+-			     int64_t dst, uint64_t flags);
+-void amdgpu_vm_pt_free_work(struct work_struct *work);
+-void amdgpu_vm_pt_free_list(struct amdgpu_device *adev,
+-			    struct amdgpu_vm_update_params *params);
+-
+ #if defined(CONFIG_DEBUG_FS)
+ void amdgpu_debugfs_vm_bo_info(struct amdgpu_vm *vm, struct seq_file *m);
+ #endif
+@@ -657,32 +565,6 @@ static inline uint64_t amdgpu_vm_tlb_seq(struct amdgpu_vm *vm)
+ 	return atomic64_read(&vm->tlb_seq);
  }
  
- static int
-@@ -1489,12 +1488,11 @@ svm_range_map_to_gpu(struct kfd_process_device *pdd, struct svm_range *prange,
- 			 (last_domain == SVM_RANGE_VRAM_DOMAIN) ? 1 : 0,
- 			 pte_flags);
+-/*
+- * vm eviction_lock can be taken in MMU notifiers. Make sure no reclaim-FS
+- * happens while holding this lock anywhere to prevent deadlocks when
+- * an MMU notifier runs in reclaim-FS context.
+- */
+-static inline void amdgpu_vm_eviction_lock(struct amdgpu_vm *vm)
+-{
+-	mutex_lock(&vm->eviction_lock);
+-	vm->saved_flags = memalloc_noreclaim_save();
+-}
+-
+-static inline bool amdgpu_vm_eviction_trylock(struct amdgpu_vm *vm)
+-{
+-	if (mutex_trylock(&vm->eviction_lock)) {
+-		vm->saved_flags = memalloc_noreclaim_save();
+-		return true;
+-	}
+-	return false;
+-}
+-
+-static inline void amdgpu_vm_eviction_unlock(struct amdgpu_vm *vm)
+-{
+-	memalloc_noreclaim_restore(vm->saved_flags);
+-	mutex_unlock(&vm->eviction_lock);
+-}
+-
+ void amdgpu_vm_update_fault_cache(struct amdgpu_device *adev,
+ 				  unsigned int pasid,
+ 				  uint64_t addr,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c
+index b31ff6f56f0d..d03b9bbe20c7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_cpu.c
+@@ -21,6 +21,7 @@
+  */
  
--		r = amdgpu_vm_update_range(adev, vm, false, flush_tlb, true,
--					   NULL, gpu_start, gpu_end,
--					   pte_flags,
--					   (last_start - prange->start) << PAGE_SHIFT,
--					   bo_adev ? bo_adev->vm_manager.vram_base_offset : 0,
--					   NULL, dma_addr, &vm->last_update);
-+		r = amdgpu_vm_map_range(adev, vm, flush_tlb, true, NULL,
-+					gpu_start, gpu_end, pte_flags,
-+					(last_start - prange->start) << PAGE_SHIFT,
-+					bo_adev ? bo_adev->vm_manager.vram_base_offset : 0,
-+					NULL, dma_addr, &vm->last_update);
+ #include "amdgpu_vm.h"
++#include "amdgpu_vm_internal.h"
+ #include "amdgpu.h"
+ #include "amdgpu_reset.h"
+ #include "amdgpu_object.h"
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_internal.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_internal.h
+new file mode 100644
+index 000000000000..16710017e8ca
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_internal.h
+@@ -0,0 +1,159 @@
++/*
++ * Copyright 2016 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ * Authors: Christian König
++ */
++#ifndef __AMDGPU_VM_INTERNAL_H__
++#define __AMDGPU_VM_INTERNAL_H__
++
++#include <linux/types.h>
++#include <linux/list.h>
++#include "amdgpu_vm.h"
++
++struct amdgpu_device;
++struct amdgpu_vm;
++struct amdgpu_job;
++struct amdgpu_sync;
++struct amdgpu_bo_vm;
++struct amdgpu_vm_bo_base;
++struct dma_fence;
++
++/**
++ * struct amdgpu_vm_update_params
++ *
++ * Encapsulate some VM table update parameters to reduce
++ * the number of function parameters
++ *
++ */
++struct amdgpu_vm_update_params {
++
++	/**
++	 * @adev: amdgpu device we do this update for
++	 */
++	struct amdgpu_device *adev;
++
++	/**
++	 * @vm: optional amdgpu_vm we do this update for
++	 */
++	struct amdgpu_vm *vm;
++
++	/**
++	 * @immediate: if changes should be made immediately
++	 */
++	bool immediate;
++
++	/**
++	 * @unlocked: true if the root BO is not locked
++	 */
++	bool unlocked;
++
++	/**
++	 * @pages_addr:
++	 *
++	 * DMA addresses to use for mapping
++	 */
++	dma_addr_t *pages_addr;
++
++	/**
++	 * @job: job to used for hw submission
++	 */
++	struct amdgpu_job *job;
++
++	/**
++	 * @num_dw_left: number of dw left for the IB
++	 */
++	unsigned int num_dw_left;
++
++	/**
++	 * @needs_flush: true whenever we need to invalidate the TLB
++	 */
++	bool needs_flush;
++
++	/**
++	 * @override_pte: true for memory that is not uncached and gmc override function is
++	 * implemented to allow MTYPE to be overridden for NUMA local memory.
++	 */
++	bool override_pte;
++
++	/**
++	 * @tlb_flush_waitlist: temporary storage for BOs until tlb_flush
++	 */
++	struct list_head tlb_flush_waitlist;
++};
++
++struct amdgpu_vm_update_funcs {
++	int (*map_table)(struct amdgpu_bo_vm *bo);
++	int (*prepare)(struct amdgpu_vm_update_params *p,
++		       struct amdgpu_sync *sync, u64 k_job_id);
++	int (*update)(struct amdgpu_vm_update_params *p,
++		      struct amdgpu_bo_vm *bo, uint64_t pe, uint64_t addr,
++		      unsigned count, uint32_t incr, uint64_t flags);
++	int (*commit)(struct amdgpu_vm_update_params *p,
++		      struct dma_fence **fence);
++};
++
++int amdgpu_vm_pt_clear(struct amdgpu_device *adev, struct amdgpu_vm *vm,
++		       struct amdgpu_bo_vm *vmbo);
++int amdgpu_vm_pt_create(struct amdgpu_device *adev, struct amdgpu_vm *vm,
++			int level, struct amdgpu_bo_vm **vmbo,
++			int32_t xcp_id);
++void amdgpu_vm_pt_free_root(struct amdgpu_device *adev, struct amdgpu_vm *vm);
++
++int amdgpu_vm_pde_update(struct amdgpu_vm_update_params *params,
++			 struct amdgpu_vm_bo_base *entry);
++int amdgpu_vm_ptes_update(struct amdgpu_vm_update_params *params,
++			  uint64_t start, uint64_t end,
++			  uint64_t dst, uint64_t flags);
++void amdgpu_vm_update_leaves(struct amdgpu_vm_update_params *params,
++			     uint64_t start, uint64_t end,
++			     int64_t dst, uint64_t flags);
++void amdgpu_vm_pt_free_list(struct amdgpu_device *adev,
++			    struct amdgpu_vm_update_params *params);
++
++int amdgpu_vm_pt_map_tables(struct amdgpu_device *adev, struct amdgpu_vm *vm);
++
++/*
++ * vm eviction_lock can be taken in MMU notifiers. Make sure no reclaim-FS
++ * happens while holding this lock anywhere to prevent deadlocks when
++ * an MMU notifier runs in reclaim-FS context.
++ */
++static inline void amdgpu_vm_eviction_lock(struct amdgpu_vm *vm)
++{
++	mutex_lock(&vm->eviction_lock);
++	vm->saved_flags = memalloc_noreclaim_save();
++}
++
++static inline bool amdgpu_vm_eviction_trylock(struct amdgpu_vm *vm)
++{
++	if (mutex_trylock(&vm->eviction_lock)) {
++		vm->saved_flags = memalloc_noreclaim_save();
++		return true;
++	}
++	return false;
++}
++
++static inline void amdgpu_vm_eviction_unlock(struct amdgpu_vm *vm)
++{
++	memalloc_noreclaim_restore(vm->saved_flags);
++	mutex_unlock(&vm->eviction_lock);
++}
++
++#endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
+index ac3f3e31e2e2..f9c93a71e153 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_pt.c
+@@ -26,6 +26,7 @@
+ #include "amdgpu.h"
+ #include "amdgpu_trace.h"
+ #include "amdgpu_vm.h"
++#include "amdgpu_vm_internal.h"
+ #include "amdgpu_job.h"
  
- 		for (j = last_start - prange->start; j <= i; j++)
- 			dma_addr[j] |= last_domain;
+ /*
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
+index 50cc0779c340..6acb6f08ddbf 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c
+@@ -21,6 +21,7 @@
+  */
+ 
+ #include "amdgpu_vm.h"
++#include "amdgpu_vm_internal.h"
+ #include "amdgpu_job.h"
+ #include "amdgpu_object.h"
+ #include "amdgpu_trace.h"
 -- 
 2.43.0
 
