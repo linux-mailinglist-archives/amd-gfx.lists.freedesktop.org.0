@@ -2,102 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qLITBUTGGGo5nQgAu9opvQ
+	id MLpEErXvGGo/pAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 00:48:36 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 03:45:25 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45C4E5FB1A2
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 00:48:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE03B5FC157
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 03:45:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24D6110F6BE;
-	Thu, 28 May 2026 22:48:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5F5D10F79F;
+	Fri, 29 May 2026 01:45:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XRL7BYJh";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="1wNluuQB";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f50.google.com (mail-dl1-f50.google.com [74.125.82.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9764A10F6BE
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 22:48:32 +0000 (UTC)
-Received: by mail-dl1-f50.google.com with SMTP id
- a92af1059eb24-136400af2bbso63507c88.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 15:48:32 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1780008512; cv=none;
- d=google.com; s=arc-20240605;
- b=W35195nttSyYJD4Y6iiVH1sEkqd/Qkp6p0VM7/R0mq/hpeZtzECHplpRzURaU1MMQx
- csq5uFTVwfU3lFVGLfALWBl0FD4zVGPUvMWuQ2+L1cbrtadpGQkQ5sMW2VzEe7Dtoms6
- YE5ud/nJzNDA3XGOMv+I8as3WEYn0xLArjzVX/J1m9L9xUx4Nh4GQbX3Zg2W3B68RYtM
- ifUuGFxQ+EDxcSBDZz0yhoO4FpGni6F00Caz6Qbc/dy1y+vz1z3/a7BkqbQQYKEODPN+
- GhqVtPP3AFp9gdOVyn8PJI98f0G2XJun7g2SSYgwPipYi9Nm+Z0cM2s0expf/z8y8PkY
- c84w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=FcSNYkWH3X2EL42Mtsjd93+Hdl9nugm/Z7ha/JuKKN0=;
- fh=R8UrUv3d+/i4o6mYGoWTaHgpCw4qAiC13nksgkDGJlo=;
- b=hL0LK97nRDQhmRm2/vuRypwQ6SZtjmtBFpj7zdOZoKlkIP5Ngx7xzCQTiNMYFu0D+F
- oYwdjXHEZ6TqOyEJGMO5iYCQCqOuzR6r+7cakqBqj+EOAGZQYleAOBAVIYH00xQsqdNJ
- VzL6q/8I7yodEwOhxOAddB17LT7ofMSaWJ86tO1RejJCOU0Xo0XjhwzsifmgN9WDUyYX
- qcujA/JxK5zZDKQxRyazL3B5DS440lmZe+vmgwvwckOlqM6r5wE/thNUYgmTYO+JubBI
- guKhkv1m5lmj80rIhqpnBwbapy/ywpO90bXMFwMgbvOauUsCQwvfVNTRrXRi/5Rw7aS0
- vBuQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1780008512; x=1780613312; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=FcSNYkWH3X2EL42Mtsjd93+Hdl9nugm/Z7ha/JuKKN0=;
- b=XRL7BYJhstfupv812voCYtvBxg0L2f9ewOtCDM4X/Ekikq4BQfBRlWzyNJYhim7S30
- p6oiIArtiapiKC12g5gK9zyhfBoaPQ9hZSgaBJE9wXlN+s0w4IRAycc5slpZBwfwEW8g
- A4HxnFBS3CI9oheAensnvsYpSybQ1riG0x0vsb7z4hIEm6y1/SpuqIvmYE7P9AV6+uEQ
- qZqloADHrH5xuTExfC6WHIm+7jpkO8GLGX5qutCEQWNiCWS3DXeJTHbcCl9oqw8vR16H
- NeL2Q6s7llNXWtwHWTOl0wpyMBmzprCU3B38UdiHEUghat0AqYyQTq8D6SBbnGH97FOd
- SAEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1780008512; x=1780613312;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=FcSNYkWH3X2EL42Mtsjd93+Hdl9nugm/Z7ha/JuKKN0=;
- b=ZDSGXWFhTI+nY00V4ujShPTt+ROZ4Wf69gMxQJIzs+nfGE/yi0OOUCLibW4tA8QORi
- edwqgL6vuX1av5X6AjLeiLbJlNVKjc+Ma9qVVW4f8iM7rqkz1jKK0cBIuKvHtBxbo9FC
- 7lB43TyDtJnjEdvJzsNOUO1Am/nIpDicfz4pCUg8z8Qna/17dkH3iDM44CGLr7iJOcIb
- CPI3a9847VTVCUTkUpnukwUPq7sC0PQ1YStR3A4E8Y3/McJKtAgvbBVUpj2T6nwTQFfC
- N74E0heXgiVlZ7TarALuM+UnlaZF/e12/YslU2Dx9MFwHX47B2AcSdpc5AvYpON7gGtS
- RoYA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ++N4Q99xNxLZfZjxIWPODXgFIFd7seSwLmwsY+GNZs+zBs1Uf2VCfLpNc5NpPsQVfSfXA4jUcK@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzIqIIxJ2+o5SF39Qptv+B28lXXXYwE7H+LONS9qZXbAxEZLcst
- NCShM/+Bhd6zLcriQ3wGtot3NSSm5EpLYcEj3W+hq1qPP/A4c3E7zU7tekwEIdTC1JoMseqhbaU
- K5Nk/iUpWW+wzllZtxzY04dA+VgM1WXk=
-X-Gm-Gg: Acq92OG92zZOD98PWcpW5sRcBRWF95Tr3bIzffHdIzzDtYBFuy6CaufK05uJ+s8Yel0
- eE5Ss/iXL9zMDZ2+XFsKjAy3A1ZCSdD9oEhD2ZDASatMIypvV4zdkXlhTb2WQgdTd1GWpAemDZ1
- lEYE7AAzrLO7xBV4jIZICObE6hWr/oXM5958toa8zGz1GoGOmpbltpjppWdgZ23jRptg7udzb5r
- mYOGvuNRnt2pRD4IkTESCcZsltfbPqM125hQWp1vm4/LAQPg8dKjTA9/jmqEuQ+01ZWqBkqR8jE
- HvP+axhBjWqt6YDqzrEMAi3wCibb7qRgY2vcJfaenpDDgvUZ8PlSWav2uQ5/j6dCjxphY/wHFXm
- eq8D+
-X-Received: by 2002:a05:7022:6089:b0:134:cf44:5fa9 with SMTP id
- a92af1059eb24-137ae50f328mr88478c88.0.1780008511452; Thu, 28 May 2026
- 15:48:31 -0700 (PDT)
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013036.outbound.protection.outlook.com
+ [40.93.201.36])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47DCC10F79F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 01:45:21 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=c0scAiqlxQ/fq32px9LpOCYYviSNQvJNprtm0taLpmpaeiR+zyy8/RsKDnOlXRfvICNNwbotKpojyQwoQi8X7btHRtrdjvyfDQaJCzgDXvx20He6vD93fC7gBT6CsDDpzboEuGz/iTsWSaED4VgvgazwjvQsjNRJRrD4MRoEawiQM+KMbc2L3uLywQ4goPN6/ZqtTCWigNuX+LCbshm8ZRvhSKbqDOWRTnuEunqlDI+wqvQKFRahwf3TQ7WeqK7/0nTHuqCe8g3edO5oS2XjeT1LYdPw+d//fA0u9xeSVZAc6VTtihe2mLKyWLn8W1qhHBVwU4cyvVMy0NqTTXY9fQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KMTrrQcc7YiL5vj1N0eFfMo3tS3FrN72ZQ/FAjKSZgE=;
+ b=yfmsrXs/vrIQG9+QDXtRV2Xl7U5UVkiC+PIbvsvfPkK1S6yWVKACv1SOUdvRVRAGStQS03M3twErHhSPsvWW/mkfvCPwrcX7q0Sc/71a1VeP2k7080nTQ05r9+8NAURjk7Ob/7uEir27WhdsVlu3qXZm2SpMOcO4cosTgn03STqD8k8EQKsU+9jfryPurnbiLNbR3OREKwf1iFGoXn4ZZ6SjDYFW/HN8v4gMZH4GbrWEt9aVsJ7THuhQaZgTnjPxoG3E0gTkRgrkvJLkZWg6F67qLxmx3EdEZtwHkS0dfULqMxIJ21XySEoV4n/AYJu1GOcN/psMuPfepOAjvijWdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KMTrrQcc7YiL5vj1N0eFfMo3tS3FrN72ZQ/FAjKSZgE=;
+ b=1wNluuQBCmUWyrIRiHR+P5+8lTj5J1XJ6zfXS6RNpQKyyg+diCEMXV0VHlSRvR7XAt9GtRGFNcjWAweB6IstOruZ0Eir+Rmpx4rxdNFpyDXJNWnJAxcyCjlQFvyQLh94FtiFXVEW5+iAF0s4UFzJUOxzbMxB6Fh+VjieC5cqEmI=
+Received: from MN0P223CA0016.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:52b::29)
+ by MN0PR12MB6030.namprd12.prod.outlook.com (2603:10b6:208:3ce::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.15; Fri, 29 May
+ 2026 01:45:15 +0000
+Received: from BN3PEPF0000B072.namprd04.prod.outlook.com
+ (2603:10b6:208:52b:cafe::52) by MN0P223CA0016.outlook.office365.com
+ (2603:10b6:208:52b::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.14 via Frontend Transport; Fri, 29
+ May 2026 01:45:15 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ BN3PEPF0000B072.mail.protection.outlook.com (10.167.243.117) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.92.5 via Frontend Transport; Fri, 29 May 2026 01:45:15 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 28 May
+ 2026 20:45:14 -0500
+Received: from AB350-desktop.amd.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
+ Transport; Thu, 28 May 2026 20:45:14 -0500
+From: <vitaly.prosyak@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Vitaly Prosyak <vitaly.prosyak@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Felix Kuehling <felix.kuehling@amd.com>
+Subject: [PATCH] drm/amdgpu: enable execute permission fault reporting on GFX
+ 10.1.x
+Date: Thu, 28 May 2026 21:44:32 -0400
+Message-ID: <20260529014508.115012-1-vitaly.prosyak@amd.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-References: <20260527233504.1830940-1-Yunxiang.Li@amd.com>
- <20260527233504.1830940-3-Yunxiang.Li@amd.com>
-In-Reply-To: <20260527233504.1830940-3-Yunxiang.Li@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 28 May 2026 18:48:19 -0400
-X-Gm-Features: AVHnY4Ixt_GeR1zuYcwui8fCq5b5oIETTIkDOGo0rohDFBoXkUPUSwU-eTbhzrI
-Message-ID: <CADnq5_N9tz-NR0o3WCod+=7j+oqZsMjX4RT6P__Cu-2DSLuy6g@mail.gmail.com>
-Subject: Re: [PATCH 2/2] drm/amdgpu/gfx: move fault and EOP IRQ get/put to
- hw_init/hw_fini
-To: Yunxiang Li <Yunxiang.Li@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B072:EE_|MN0PR12MB6030:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7e61a44c-42cb-4c40-e5a7-08debd23ee9e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|36860700016|376014|1800799024|18002099003|56012099006|6133799003|3023799007|11063799006;
+X-Microsoft-Antispam-Message-Info: Htwb68uklf9vvQFTsBwPfJbSHVZzSY+sG4olLczGWw30sFZx5zGJzM7z+3/G1jWmc+ro/IqHwkJiFgn/7SnqV2ak9FN1mI+7L1tEsZeyPa37S+PUebIs0XPb5CH6Ip5SiNCtuDuOrZxbUlzbAvg7PN2JdothbcMhw53UB8fgCkX5D7NyAefwuUmTO0mD/VZtZwobUSEQXTasR7DJG0StgoHxiT5/qQE7+2hr6JK6EJ09lRUhjRPES7OYSICd14wvd6yvlDtH3LZDTOABQfMOgpBp8tqstHnp+gZ0EpBtEWI2ZxnMZE/+by4Ev51EZSnIhu8xdN1Zim0Gzn9sBfAbNM/g5yLp5OpO4MWNYhKC8sXMTOVuJXtcrEm9fWgP9JlkU11eb4SDgFE/zGUox1JD6CPLkoObpdKLunYNVA8bB+hVjAefOwLVaBk/yKCUnPw5EdrcBSirHU9oLqqkxPjohhFDrIkrh/GrQw4E2WjLK8z1DE0N+zIpMAG6R2AnuJR471kEyih5HqOhf5xbQKj3uG77XsDa9Mv7JNKvK2lJpeOQj83aRNgYhDd5OuaoqUxfXZ0vSvUw90kYyjGwzREvLLQj2Z9FizUC9ADcPWVEUGnjXcyEkXDLibks3fqvMC+0J/UIVJ3OIG1uJEug0Q96tJ5csfnF2SWPc7Dzn4syBAzEmYg8JLzD8lxNI/iWxyN4g+VqB9ZAMqdRRh8J/fELTlsdk9RG7YzeCQRl7pRqWEQ=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(18002099003)(56012099006)(6133799003)(3023799007)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: wwVJ15cg5pkcJloYbFal+eC5HXA9y/LH4Y99Nztn6tuNecB3UyrVe2yj85KKZ1yoA4y48IhJX5i6o8pZvDiZW19Wqpuwba8io9lzzcKQ9aEK4uTaLT+936cT1VKDAKLvY9TeLgTyo8I5cIx0YI9lztxAxJihJwoikWOVyNU7ivy55nnSLZ9tFFy4pUbfqUI097zl5bq6x3gQOsWkytEwhY6HIo7gD2LfPdr9kJr+AZAF5bADyZ+drSK7I2FOBExlyRzYUfxjsw9A/LDACX+a3AJ3b8TlbRxZClH78af37QafnUG2To3hfr0Q6MS9fj21mwuQuNYWtO6RBeXJkzTiZGownnMpwwrnh89AC7hF00B4w4IWSHYnx7WmHcUYUE9Pt6gT6cs3Jv1hEZ8sj46ljCjEwE2VC62lq7wwoSljkl0yGmIKs8mXdRvy9ljpPGyf
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2026 01:45:15.7663 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e61a44c-42cb-4c40-e5a7-08debd23ee9e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B072.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6030
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,1276 +115,204 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Yunxiang.Li@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,amd.com:mid,amd.com:dkim];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[vitaly.prosyak@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,amd.com:email]
-X-Rspamd-Queue-Id: 45C4E5FB1A2
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: AE03B5FC157
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, May 27, 2026 at 7:44=E2=80=AFPM Yunxiang Li <Yunxiang.Li@amd.com> w=
-rote:
->
-> priv_reg / priv_inst / bad_op and (on v11+) userq EOP IRQs are
-> acquired in late_init but released in hw_fini.  This split forced
-> gfx_v9_0_hw_fini() to defensively guard each put with
-> amdgpu_irq_enabled() because hw_fini runs on paths that may not
-> reach late_init.
->
-> amdgpu_ip_block_hw_fini() only runs after hw_init returns success,
-> and suspend / resume cycle the refs through the same path, so
-> hw_init / hw_fini pair without any extra tracking.  Move the gets
-> there and drop the guards.
->
-> While here, fix the pre-existing partial-failure leak in
-> set_userq_eop_interrupts() (gfx11 / 12_0 / 12_1).  amdgpu_irq_get()
-> increments the refcount before calling .set, so a failure partway
-> through the loop leaves earlier successful gets stranded.  Track
-> the loop position and roll back on the enable path.
->
-> Signed-off-by: Yunxiang Li <Yunxiang.Li@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c  |  43 +++----
->  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 162 ++++++++++++++----------
->  drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  | 162 ++++++++++++++----------
->  drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c  | 114 +++++++++--------
->  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c   |  39 +++---
->  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c |  35 ++---
->  6 files changed, 315 insertions(+), 240 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gfx_v10_0.c
-> index 58c69dcb527f7..0780c5e5de4ff 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> @@ -7523,32 +7523,50 @@ static int gfx_v10_0_hw_init(struct amdgpu_ip_blo=
-ck *ip_block)
->         r =3D gfx_v10_0_cp_resume(adev);
->         if (r)
->                 return r;
->
->         if (amdgpu_ip_version(adev, GC_HWIP, 0) =3D=3D IP_VERSION(10, 3, =
-0))
->                 gfx_v10_3_program_pbb_mode(adev);
->
->         if (amdgpu_ip_version(adev, GC_HWIP, 0) >=3D IP_VERSION(10, 3, 0)=
- && !amdgpu_sriov_vf(adev))
->                 gfx_v10_3_set_power_brake_sequence(adev);
->
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_reg_irq, 0);
-> +       if (r)
-> +               return r;
-> +
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_inst_irq, 0);
-> +       if (r)
-> +               goto err_priv_inst;
-> +
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.bad_op_irq, 0);
-> +       if (r)
-> +               goto err_bad_op;
-> +
-> +       return 0;
-> +
-> +err_bad_op:
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> +err_priv_inst:
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
->         return r;
->  }
->
->  static int gfx_v10_0_hw_fini(struct amdgpu_ip_block *ip_block)
->  {
->         struct amdgpu_device *adev =3D ip_block->adev;
->
->         cancel_delayed_work_sync(&adev->gfx.idle_work);
->
-> -       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
-> -       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
->         amdgpu_irq_put(adev, &adev->gfx.bad_op_irq, 0);
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
->
->         /* WA added for Vangogh asic fixing the SMU suspend failure
->          * It needs to set power gating again during gfxoff control
->          * otherwise the gfxoff disallowing will be failed to set.
->          */
->         if (amdgpu_ip_version(adev, GC_HWIP, 0) =3D=3D IP_VERSION(10, 3, =
-1))
->                 gfx_v10_0_set_powergating_state(ip_block, AMD_PG_STATE_UN=
-GATE);
->
->         if (!adev->no_hw_access) {
->                 if (amdgpu_async_gfx_ring) {
-> @@ -7830,40 +7848,20 @@ static int gfx_v10_0_early_init(struct amdgpu_ip_=
-block *ip_block)
->         gfx_v10_0_set_gds_init(adev);
->         gfx_v10_0_set_rlc_funcs(adev);
->         gfx_v10_0_set_mqd_funcs(adev);
->
->         /* init rlcg reg access ctrl */
->         gfx_v10_0_init_rlcg_reg_access_ctrl(adev);
->
->         return gfx_v10_0_init_microcode(adev);
->  }
->
-> -static int gfx_v10_0_late_init(struct amdgpu_ip_block *ip_block)
-> -{
-> -       struct amdgpu_device *adev =3D ip_block->adev;
-> -       int r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_reg_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_inst_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.bad_op_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       return 0;
+From: Vitaly Prosyak <vitaly.prosyak@amd.com>
 
-Wasn't there a reason (sequencing maybe?) these were in late_init()?
-Are you sure it's ok to move them into hw_init()?
+Problem
+=======
+On GFX 10.1.x (Navi10, Navi12, Navi14), execute permission faults are
+completely invisible. When a GPU buffer is mapped without VM_PAGE_EXECUTABLE
+and the CP attempts to fetch shader instructions from it, the hardware
+enters an infinite retry loop with zero diagnostic output:
 
-Alex
+  - No interrupt is generated
+  - No dmesg message appears
+  - The CP silently stalls until the scheduler timeout fires (~10s)
+  - The only symptom is unexplained GPU job timeouts
 
-> -}
-> -
->  static bool gfx_v10_0_is_rlc_enabled(struct amdgpu_device *adev)
->  {
->         uint32_t rlc_cntl;
->
->         /* if RLC is not enabled, do nothing */
->         rlc_cntl =3D RREG32_SOC15(GC, 0, mmRLC_CNTL);
->         return (REG_GET_FIELD(rlc_cntl, RLC_CNTL, RLC_ENABLE_F32)) ? true=
- : false;
->  }
->
->  static void gfx_v10_0_set_safe_mode(struct amdgpu_device *adev, int xcc_=
-id)
-> @@ -9798,21 +9796,20 @@ static void gfx_v10_0_ring_begin_use(struct amdgp=
-u_ring *ring)
->  static void gfx_v10_0_ring_end_use(struct amdgpu_ring *ring)
->  {
->         amdgpu_gfx_profile_ring_end_use(ring);
->
->         amdgpu_gfx_enforce_isolation_ring_end_use(ring);
->  }
->
->  static const struct amd_ip_funcs gfx_v10_0_ip_funcs =3D {
->         .name =3D "gfx_v10_0",
->         .early_init =3D gfx_v10_0_early_init,
-> -       .late_init =3D gfx_v10_0_late_init,
->         .sw_init =3D gfx_v10_0_sw_init,
->         .sw_fini =3D gfx_v10_0_sw_fini,
->         .hw_init =3D gfx_v10_0_hw_init,
->         .hw_fini =3D gfx_v10_0_hw_fini,
->         .suspend =3D gfx_v10_0_suspend,
->         .resume =3D gfx_v10_0_resume,
->         .is_idle =3D gfx_v10_0_is_idle,
->         .wait_for_idle =3D gfx_v10_0_wait_for_idle,
->         .soft_reset =3D gfx_v10_0_soft_reset,
->         .set_clockgating_state =3D gfx_v10_0_set_clockgating_state,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gfx_v11_0.c
-> index fabdbbd0abb7c..de0bf6e1f64d8 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> @@ -4800,20 +4800,92 @@ static void gfx_v11_0_disable_gpa_mode(struct amd=
-gpu_device *adev)
->
->         data =3D RREG32_SOC15(GC, 0, regCPC_PSP_DEBUG);
->         data |=3D CPC_PSP_DEBUG__GPA_OVERRIDE_MASK;
->         WREG32_SOC15(GC, 0, regCPC_PSP_DEBUG, data);
->
->         data =3D RREG32_SOC15(GC, 0, regCPG_PSP_DEBUG);
->         data |=3D CPG_PSP_DEBUG__GPA_OVERRIDE_MASK;
->         WREG32_SOC15(GC, 0, regCPG_PSP_DEBUG, data);
->  }
->
-> +static int gfx_v11_0_set_userq_eop_interrupts(struct amdgpu_device *adev=
-,
-> +                                             bool enable)
-> +{
-> +       unsigned int irq_type;
-> +       int m, p, r;
-> +
-> +       if (adev->userq_funcs[AMDGPU_HW_IP_GFX]) {
-> +               for (m =3D 0; m < adev->gfx.me.num_me; m++) {
-> +                       for (p =3D 0; p < adev->gfx.me.num_pipe_per_me; p=
-++) {
-> +                               irq_type =3D AMDGPU_CP_IRQ_GFX_ME0_PIPE0_=
-EOP + p;
-> +                               if (enable)
-> +                                       r =3D amdgpu_irq_get(adev, &adev-=
->gfx.eop_irq, irq_type);
-> +                               else
-> +                                       r =3D amdgpu_irq_put(adev, &adev-=
->gfx.eop_irq, irq_type);
-> +                               if (r) {
-> +                                       if (!enable)
-> +                                               return r;
-> +                                       goto err_gfx;
-> +                               }
-> +                       }
-> +               }
-> +       }
-> +
-> +       if (adev->userq_funcs[AMDGPU_HW_IP_COMPUTE]) {
-> +               for (m =3D 0; m < adev->gfx.mec.num_mec; ++m) {
-> +                       for (p =3D 0; p < adev->gfx.mec.num_pipe_per_mec;=
- p++) {
-> +                               irq_type =3D AMDGPU_CP_IRQ_COMPUTE_MEC1_P=
-IPE0_EOP
-> +                                       + (m * adev->gfx.mec.num_pipe_per=
-_mec)
-> +                                       + p;
-> +                               if (enable)
-> +                                       r =3D amdgpu_irq_get(adev, &adev-=
->gfx.eop_irq, irq_type);
-> +                               else
-> +                                       r =3D amdgpu_irq_put(adev, &adev-=
->gfx.eop_irq, irq_type);
-> +                               if (r) {
-> +                                       if (!enable)
-> +                                               return r;
-> +                                       goto err_compute;
-> +                               }
-> +                       }
-> +               }
-> +       }
-> +
-> +       return 0;
-> +
-> +err_compute:
-> +       for (p--; p >=3D 0; p--) {
-> +               irq_type =3D AMDGPU_CP_IRQ_COMPUTE_MEC1_PIPE0_EOP
-> +                       + (m * adev->gfx.mec.num_pipe_per_mec) + p;
-> +               amdgpu_irq_put(adev, &adev->gfx.eop_irq, irq_type);
-> +       }
-> +       for (m--; m >=3D 0; m--) {
-> +               for (p =3D adev->gfx.mec.num_pipe_per_mec - 1; p >=3D 0; =
-p--) {
-> +                       irq_type =3D AMDGPU_CP_IRQ_COMPUTE_MEC1_PIPE0_EOP
-> +                               + (m * adev->gfx.mec.num_pipe_per_mec) + =
-p;
-> +                       amdgpu_irq_put(adev, &adev->gfx.eop_irq, irq_type=
-);
-> +               }
-> +       }
-> +       m =3D adev->gfx.me.num_me;
-> +err_gfx:
-> +       for (p--; p >=3D 0; p--) {
-> +               irq_type =3D AMDGPU_CP_IRQ_GFX_ME0_PIPE0_EOP + p;
-> +               amdgpu_irq_put(adev, &adev->gfx.eop_irq, irq_type);
-> +       }
-> +       for (m--; m >=3D 0; m--) {
-> +               for (p =3D adev->gfx.me.num_pipe_per_me - 1; p >=3D 0; p-=
--) {
-> +                       irq_type =3D AMDGPU_CP_IRQ_GFX_ME0_PIPE0_EOP + p;
-> +                       amdgpu_irq_put(adev, &adev->gfx.eop_irq, irq_type=
-);
-> +               }
-> +       }
-> +       return r;
-> +}
-> +
->  static int gfx_v11_0_hw_init(struct amdgpu_ip_block *ip_block)
->  {
->         int r;
->         struct amdgpu_device *adev =3D ip_block->adev;
->
->         amdgpu_gfx_cleaner_shader_init(adev, adev->gfx.cleaner_shader_siz=
-e,
->                                        adev->gfx.cleaner_shader_ptr);
->
->         if (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_RLC_BACKDOOR_A=
-UTO) {
->                 if (adev->gfx.imu.funcs) {
-> @@ -4897,76 +4969,57 @@ static int gfx_v11_0_hw_init(struct amdgpu_ip_blo=
-ck *ip_block)
->         gfx_v11_0_tcp_harvest(adev);
->
->         r =3D gfx_v11_0_cp_resume(adev);
->         if (r)
->                 return r;
->
->         /* get IMU version from HW if it's not set */
->         if (!adev->gfx.imu_fw_version)
->                 adev->gfx.imu_fw_version =3D RREG32_SOC15(GC, 0, regGFX_I=
-MU_SCRATCH_0);
->
-> -       return r;
-> -}
-> -
-> -static int gfx_v11_0_set_userq_eop_interrupts(struct amdgpu_device *adev=
-,
-> -                                             bool enable)
-> -{
-> -       unsigned int irq_type;
-> -       int m, p, r;
-> -
-> -       if (adev->userq_funcs[AMDGPU_HW_IP_GFX]) {
-> -               for (m =3D 0; m < adev->gfx.me.num_me; m++) {
-> -                       for (p =3D 0; p < adev->gfx.me.num_pipe_per_me; p=
-++) {
-> -                               irq_type =3D AMDGPU_CP_IRQ_GFX_ME0_PIPE0_=
-EOP + p;
-> -                               if (enable)
-> -                                       r =3D amdgpu_irq_get(adev, &adev-=
->gfx.eop_irq,
-> -                                                          irq_type);
-> -                               else
-> -                                       r =3D amdgpu_irq_put(adev, &adev-=
->gfx.eop_irq,
-> -                                                          irq_type);
-> -                               if (r)
-> -                                       return r;
-> -                       }
-> -               }
-> -       }
-> -
-> -       if (adev->userq_funcs[AMDGPU_HW_IP_COMPUTE]) {
-> -               for (m =3D 0; m < adev->gfx.mec.num_mec; ++m) {
-> -                       for (p =3D 0; p < adev->gfx.mec.num_pipe_per_mec;=
- p++) {
-> -                               irq_type =3D AMDGPU_CP_IRQ_COMPUTE_MEC1_P=
-IPE0_EOP
-> -                                       + (m * adev->gfx.mec.num_pipe_per=
-_mec)
-> -                                       + p;
-> -                               if (enable)
-> -                                       r =3D amdgpu_irq_get(adev, &adev-=
->gfx.eop_irq,
-> -                                                          irq_type);
-> -                               else
-> -                                       r =3D amdgpu_irq_put(adev, &adev-=
->gfx.eop_irq,
-> -                                                          irq_type);
-> -                               if (r)
-> -                                       return r;
-> -                       }
-> -               }
-> -       }
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_reg_irq, 0);
-> +       if (r)
-> +               return r;
-> +
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_inst_irq, 0);
-> +       if (r)
-> +               goto err_priv_inst;
-> +
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.bad_op_irq, 0);
-> +       if (r)
-> +               goto err_bad_op;
-> +
-> +       r =3D gfx_v11_0_set_userq_eop_interrupts(adev, true);
-> +       if (r)
-> +               goto err_userq_eop;
->
->         return 0;
-> +
-> +err_userq_eop:
-> +       amdgpu_irq_put(adev, &adev->gfx.bad_op_irq, 0);
-> +err_bad_op:
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> +err_priv_inst:
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
-> +       return r;
->  }
->
->  static int gfx_v11_0_hw_fini(struct amdgpu_ip_block *ip_block)
->  {
->         struct amdgpu_device *adev =3D ip_block->adev;
->
->         cancel_delayed_work_sync(&adev->gfx.idle_work);
->
-> -       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
-> -       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> -       amdgpu_irq_put(adev, &adev->gfx.bad_op_irq, 0);
->         gfx_v11_0_set_userq_eop_interrupts(adev, false);
-> +       amdgpu_irq_put(adev, &adev->gfx.bad_op_irq, 0);
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
->
->         if (!adev->no_hw_access) {
->                 if (amdgpu_async_gfx_ring &&
->                     !adev->gfx.disable_kq) {
->                         if (amdgpu_gfx_disable_kgq(adev, 0))
->                                 DRM_ERROR("KGQ disable failed\n");
->                 }
->
->                 if (amdgpu_gfx_disable_kcq(adev, 0))
->                         DRM_ERROR("KCQ disable failed\n");
-> @@ -5342,44 +5395,20 @@ static int gfx_v11_0_early_init(struct amdgpu_ip_=
-block *ip_block)
->         gfx_v11_0_set_gds_init(adev);
->         gfx_v11_0_set_rlc_funcs(adev);
->         gfx_v11_0_set_mqd_funcs(adev);
->         gfx_v11_0_set_imu_funcs(adev);
->
->         gfx_v11_0_init_rlcg_reg_access_ctrl(adev);
->
->         return gfx_v11_0_init_microcode(adev);
->  }
->
-> -static int gfx_v11_0_late_init(struct amdgpu_ip_block *ip_block)
-> -{
-> -       struct amdgpu_device *adev =3D ip_block->adev;
-> -       int r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_reg_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_inst_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.bad_op_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       r =3D gfx_v11_0_set_userq_eop_interrupts(adev, true);
-> -       if (r)
-> -               return r;
-> -
-> -       return 0;
-> -}
-> -
->  static bool gfx_v11_0_is_rlc_enabled(struct amdgpu_device *adev)
->  {
->         uint32_t rlc_cntl;
->
->         /* if RLC is not enabled, do nothing */
->         rlc_cntl =3D RREG32_SOC15(GC, 0, regRLC_CNTL);
->         return (REG_GET_FIELD(rlc_cntl, RLC_CNTL, RLC_ENABLE_F32)) ? true=
- : false;
->  }
->
->  static void gfx_v11_0_set_safe_mode(struct amdgpu_device *adev, int xcc_=
-id)
-> @@ -7194,21 +7223,20 @@ static void gfx_v11_0_ring_begin_use(struct amdgp=
-u_ring *ring)
->  static void gfx_v11_0_ring_end_use(struct amdgpu_ring *ring)
->  {
->         amdgpu_gfx_profile_ring_end_use(ring);
->
->         amdgpu_gfx_enforce_isolation_ring_end_use(ring);
->  }
->
->  static const struct amd_ip_funcs gfx_v11_0_ip_funcs =3D {
->         .name =3D "gfx_v11_0",
->         .early_init =3D gfx_v11_0_early_init,
-> -       .late_init =3D gfx_v11_0_late_init,
->         .sw_init =3D gfx_v11_0_sw_init,
->         .sw_fini =3D gfx_v11_0_sw_fini,
->         .hw_init =3D gfx_v11_0_hw_init,
->         .hw_fini =3D gfx_v11_0_hw_fini,
->         .suspend =3D gfx_v11_0_suspend,
->         .resume =3D gfx_v11_0_resume,
->         .is_idle =3D gfx_v11_0_is_idle,
->         .wait_for_idle =3D gfx_v11_0_wait_for_idle,
->         .soft_reset =3D gfx_v11_0_soft_reset,
->         .check_soft_reset =3D gfx_v11_0_check_soft_reset,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd=
-/amdgpu/gfx_v12_0.c
-> index f47928dcd8480..f66293fc675e7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> @@ -3648,20 +3648,92 @@ static void gfx_v12_0_init_golden_registers(struc=
-t amdgpu_device *adev)
->                 if (adev->rev_id =3D=3D 0)
->                         soc15_program_register_sequence(adev,
->                                         golden_settings_gc_12_0_rev0,
->                                         (const u32)ARRAY_SIZE(golden_sett=
-ings_gc_12_0_rev0));
->                 break;
->         default:
->                 break;
->         }
->  }
->
-> +static int gfx_v12_0_set_userq_eop_interrupts(struct amdgpu_device *adev=
-,
-> +                                             bool enable)
-> +{
-> +       unsigned int irq_type;
-> +       int m, p, r;
-> +
-> +       if (adev->userq_funcs[AMDGPU_HW_IP_GFX]) {
-> +               for (m =3D 0; m < adev->gfx.me.num_me; m++) {
-> +                       for (p =3D 0; p < adev->gfx.me.num_pipe_per_me; p=
-++) {
-> +                               irq_type =3D AMDGPU_CP_IRQ_GFX_ME0_PIPE0_=
-EOP + p;
-> +                               if (enable)
-> +                                       r =3D amdgpu_irq_get(adev, &adev-=
->gfx.eop_irq, irq_type);
-> +                               else
-> +                                       r =3D amdgpu_irq_put(adev, &adev-=
->gfx.eop_irq, irq_type);
-> +                               if (r) {
-> +                                       if (!enable)
-> +                                               return r;
-> +                                       goto err_gfx;
-> +                               }
-> +                       }
-> +               }
-> +       }
-> +
-> +       if (adev->userq_funcs[AMDGPU_HW_IP_COMPUTE]) {
-> +               for (m =3D 0; m < adev->gfx.mec.num_mec; ++m) {
-> +                       for (p =3D 0; p < adev->gfx.mec.num_pipe_per_mec;=
- p++) {
-> +                               irq_type =3D AMDGPU_CP_IRQ_COMPUTE_MEC1_P=
-IPE0_EOP
-> +                                       + (m * adev->gfx.mec.num_pipe_per=
-_mec)
-> +                                       + p;
-> +                               if (enable)
-> +                                       r =3D amdgpu_irq_get(adev, &adev-=
->gfx.eop_irq, irq_type);
-> +                               else
-> +                                       r =3D amdgpu_irq_put(adev, &adev-=
->gfx.eop_irq, irq_type);
-> +                               if (r) {
-> +                                       if (!enable)
-> +                                               return r;
-> +                                       goto err_compute;
-> +                               }
-> +                       }
-> +               }
-> +       }
-> +
-> +       return 0;
-> +
-> +err_compute:
-> +       for (p--; p >=3D 0; p--) {
-> +               irq_type =3D AMDGPU_CP_IRQ_COMPUTE_MEC1_PIPE0_EOP
-> +                       + (m * adev->gfx.mec.num_pipe_per_mec) + p;
-> +               amdgpu_irq_put(adev, &adev->gfx.eop_irq, irq_type);
-> +       }
-> +       for (m--; m >=3D 0; m--) {
-> +               for (p =3D adev->gfx.mec.num_pipe_per_mec - 1; p >=3D 0; =
-p--) {
-> +                       irq_type =3D AMDGPU_CP_IRQ_COMPUTE_MEC1_PIPE0_EOP
-> +                               + (m * adev->gfx.mec.num_pipe_per_mec) + =
-p;
-> +                       amdgpu_irq_put(adev, &adev->gfx.eop_irq, irq_type=
-);
-> +               }
-> +       }
-> +       m =3D adev->gfx.me.num_me;
-> +err_gfx:
-> +       for (p--; p >=3D 0; p--) {
-> +               irq_type =3D AMDGPU_CP_IRQ_GFX_ME0_PIPE0_EOP + p;
-> +               amdgpu_irq_put(adev, &adev->gfx.eop_irq, irq_type);
-> +       }
-> +       for (m--; m >=3D 0; m--) {
-> +               for (p =3D adev->gfx.me.num_pipe_per_me - 1; p >=3D 0; p-=
--) {
-> +                       irq_type =3D AMDGPU_CP_IRQ_GFX_ME0_PIPE0_EOP + p;
-> +                       amdgpu_irq_put(adev, &adev->gfx.eop_irq, irq_type=
-);
-> +               }
-> +       }
-> +       return r;
-> +}
-> +
->  static int gfx_v12_0_hw_init(struct amdgpu_ip_block *ip_block)
->  {
->         int r;
->         struct amdgpu_device *adev =3D ip_block->adev;
->
->         if (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_RLC_BACKDOOR_A=
-UTO) {
->                 if (adev->gfx.imu.funcs && (amdgpu_dpm > 0)) {
->                         /* RLC autoload sequence 1: Program rlc ram */
->                         if (adev->gfx.imu.funcs->program_rlc_ram)
->                                 adev->gfx.imu.funcs->program_rlc_ram(adev=
-);
-> @@ -3735,77 +3807,58 @@ static int gfx_v12_0_hw_init(struct amdgpu_ip_blo=
-ck *ip_block)
->         /*
->          * init golden registers and rlc resume may override some registe=
-rs,
->          * reconfig them here
->          */
->         gfx_v12_0_tcp_harvest(adev);
->
->         r =3D gfx_v12_0_cp_resume(adev);
->         if (r)
->                 return r;
->
-> -       return r;
-> -}
-> -
-> -static int gfx_v12_0_set_userq_eop_interrupts(struct amdgpu_device *adev=
-,
-> -                                             bool enable)
-> -{
-> -       unsigned int irq_type;
-> -       int m, p, r;
-> -
-> -       if (adev->userq_funcs[AMDGPU_HW_IP_GFX]) {
-> -               for (m =3D 0; m < adev->gfx.me.num_me; m++) {
-> -                       for (p =3D 0; p < adev->gfx.me.num_pipe_per_me; p=
-++) {
-> -                               irq_type =3D AMDGPU_CP_IRQ_GFX_ME0_PIPE0_=
-EOP + p;
-> -                               if (enable)
-> -                                       r =3D amdgpu_irq_get(adev, &adev-=
->gfx.eop_irq,
-> -                                                          irq_type);
-> -                               else
-> -                                       r =3D amdgpu_irq_put(adev, &adev-=
->gfx.eop_irq,
-> -                                                          irq_type);
-> -                               if (r)
-> -                                       return r;
-> -                       }
-> -               }
-> -       }
-> -
-> -       if (adev->userq_funcs[AMDGPU_HW_IP_COMPUTE]) {
-> -               for (m =3D 0; m < adev->gfx.mec.num_mec; ++m) {
-> -                       for (p =3D 0; p < adev->gfx.mec.num_pipe_per_mec;=
- p++) {
-> -                               irq_type =3D AMDGPU_CP_IRQ_COMPUTE_MEC1_P=
-IPE0_EOP
-> -                                       + (m * adev->gfx.mec.num_pipe_per=
-_mec)
-> -                                       + p;
-> -                               if (enable)
-> -                                       r =3D amdgpu_irq_get(adev, &adev-=
->gfx.eop_irq,
-> -                                                          irq_type);
-> -                               else
-> -                                       r =3D amdgpu_irq_put(adev, &adev-=
->gfx.eop_irq,
-> -                                                          irq_type);
-> -                               if (r)
-> -                                       return r;
-> -                       }
-> -               }
-> -       }
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_reg_irq, 0);
-> +       if (r)
-> +               return r;
-> +
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_inst_irq, 0);
-> +       if (r)
-> +               goto err_priv_inst;
-> +
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.bad_op_irq, 0);
-> +       if (r)
-> +               goto err_bad_op;
-> +
-> +       r =3D gfx_v12_0_set_userq_eop_interrupts(adev, true);
-> +       if (r)
-> +               goto err_userq_eop;
->
->         return 0;
-> +
-> +err_userq_eop:
-> +       amdgpu_irq_put(adev, &adev->gfx.bad_op_irq, 0);
-> +err_bad_op:
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> +err_priv_inst:
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
-> +       return r;
->  }
->
->  static int gfx_v12_0_hw_fini(struct amdgpu_ip_block *ip_block)
->  {
->         struct amdgpu_device *adev =3D ip_block->adev;
->         uint32_t tmp;
->
->         cancel_delayed_work_sync(&adev->gfx.idle_work);
->
-> -       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
-> -       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> -       amdgpu_irq_put(adev, &adev->gfx.bad_op_irq, 0);
->         gfx_v12_0_set_userq_eop_interrupts(adev, false);
-> +       amdgpu_irq_put(adev, &adev->gfx.bad_op_irq, 0);
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
->
->         if (!adev->no_hw_access) {
->                 if (amdgpu_async_gfx_ring) {
->                         if (amdgpu_gfx_disable_kgq(adev, 0))
->                                 DRM_ERROR("KGQ disable failed\n");
->                 }
->
->                 if (amdgpu_gfx_disable_kcq(adev, 0))
->                         DRM_ERROR("KCQ disable failed\n");
->
-> @@ -3920,44 +3973,20 @@ static int gfx_v12_0_early_init(struct amdgpu_ip_=
-block *ip_block)
->         gfx_v12_0_set_irq_funcs(adev);
->         gfx_v12_0_set_rlc_funcs(adev);
->         gfx_v12_0_set_mqd_funcs(adev);
->         gfx_v12_0_set_imu_funcs(adev);
->
->         gfx_v12_0_init_rlcg_reg_access_ctrl(adev);
->
->         return gfx_v12_0_init_microcode(adev);
->  }
->
-> -static int gfx_v12_0_late_init(struct amdgpu_ip_block *ip_block)
-> -{
-> -       struct amdgpu_device *adev =3D ip_block->adev;
-> -       int r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_reg_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_inst_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.bad_op_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       r =3D gfx_v12_0_set_userq_eop_interrupts(adev, true);
-> -       if (r)
-> -               return r;
-> -
-> -       return 0;
-> -}
-> -
->  static bool gfx_v12_0_is_rlc_enabled(struct amdgpu_device *adev)
->  {
->         uint32_t rlc_cntl;
->
->         /* if RLC is not enabled, do nothing */
->         rlc_cntl =3D RREG32_SOC15(GC, 0, regRLC_CNTL);
->         return (REG_GET_FIELD(rlc_cntl, RLC_CNTL, RLC_ENABLE_F32)) ? true=
- : false;
->  }
->
->  static void gfx_v12_0_set_safe_mode(struct amdgpu_device *adev,
-> @@ -5433,21 +5462,20 @@ static void gfx_v12_0_ring_begin_use(struct amdgp=
-u_ring *ring)
->  static void gfx_v12_0_ring_end_use(struct amdgpu_ring *ring)
->  {
->         amdgpu_gfx_profile_ring_end_use(ring);
->
->         amdgpu_gfx_enforce_isolation_ring_end_use(ring);
->  }
->
->  static const struct amd_ip_funcs gfx_v12_0_ip_funcs =3D {
->         .name =3D "gfx_v12_0",
->         .early_init =3D gfx_v12_0_early_init,
-> -       .late_init =3D gfx_v12_0_late_init,
->         .sw_init =3D gfx_v12_0_sw_init,
->         .sw_fini =3D gfx_v12_0_sw_fini,
->         .hw_init =3D gfx_v12_0_hw_init,
->         .hw_fini =3D gfx_v12_0_hw_fini,
->         .suspend =3D gfx_v12_0_suspend,
->         .resume =3D gfx_v12_0_resume,
->         .is_idle =3D gfx_v12_0_is_idle,
->         .wait_for_idle =3D gfx_v12_0_wait_for_idle,
->         .set_clockgating_state =3D gfx_v12_0_set_clockgating_state,
->         .set_powergating_state =3D gfx_v12_0_set_powergating_state,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c b/drivers/gpu/drm/amd=
-/amdgpu/gfx_v12_1.c
-> index 033f15e21ad33..61c3577f829fe 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-> @@ -2728,20 +2728,64 @@ static void gfx_v12_1_init_golden_registers(struc=
-t amdgpu_device *adev)
->         int i;
->
->         for (i =3D 0; i < NUM_XCC(adev->gfx.xcc_mask); i++) {
->                 gfx_v12_1_xcc_disable_burst(adev, i);
->                 gfx_v12_1_xcc_enable_atomics(adev, i);
->                 gfx_v12_1_xcc_disable_early_write_ack(adev, i);
->                 gfx_v12_1_xcc_disable_tcp_spill_cache(adev, i);
->         }
->  }
->
-> +static int gfx_v12_1_set_userq_eop_interrupts(struct amdgpu_device *adev=
-,
-> +                                             bool enable)
-> +{
-> +       unsigned int irq_type;
-> +       int m, p, r;
-> +
-> +       if (!adev->gfx.disable_kq)
-> +               return 0;
-> +
-> +       for (m =3D 0; m < adev->gfx.mec.num_mec; ++m) {
-> +               for (p =3D 0; p < adev->gfx.mec.num_pipe_per_mec; p++) {
-> +                       irq_type =3D AMDGPU_CP_IRQ_COMPUTE_MEC1_PIPE0_EOP
-> +                               + (m * adev->gfx.mec.num_pipe_per_mec)
-> +                               + p;
-> +                       if (enable)
-> +                               r =3D amdgpu_irq_get(adev, &adev->gfx.eop=
-_irq, irq_type);
-> +                       else
-> +                               r =3D amdgpu_irq_put(adev, &adev->gfx.eop=
-_irq, irq_type);
-> +                       if (r) {
-> +                               if (!enable)
-> +                                       return r;
-> +                               goto err_unwind;
-> +                       }
-> +               }
-> +       }
-> +
-> +       return 0;
-> +
-> +err_unwind:
-> +       for (p--; p >=3D 0; p--) {
-> +               irq_type =3D AMDGPU_CP_IRQ_COMPUTE_MEC1_PIPE0_EOP
-> +                       + (m * adev->gfx.mec.num_pipe_per_mec) + p;
-> +               amdgpu_irq_put(adev, &adev->gfx.eop_irq, irq_type);
-> +       }
-> +       for (m--; m >=3D 0; m--) {
-> +               for (p =3D adev->gfx.mec.num_pipe_per_mec - 1; p >=3D 0; =
-p--) {
-> +                       irq_type =3D AMDGPU_CP_IRQ_COMPUTE_MEC1_PIPE0_EOP
-> +                               + (m * adev->gfx.mec.num_pipe_per_mec) + =
-p;
-> +                       amdgpu_irq_put(adev, &adev->gfx.eop_irq, irq_type=
-);
-> +               }
-> +       }
-> +       return r;
-> +}
-> +
->  static int gfx_v12_1_hw_init(struct amdgpu_ip_block *ip_block)
->  {
->         int r, i, num_xcc;
->         struct amdgpu_device *adev =3D ip_block->adev;
->
->         if (adev->firmware.load_type =3D=3D AMDGPU_FW_LOAD_RLC_BACKDOOR_A=
-UTO) {
->                 /* rlc autoload firmware */
->                 r =3D gfx_v12_1_rlc_backdoor_autoload_enable(adev);
->                 if (r)
->                         return r;
-> @@ -2796,20 +2840,38 @@ static int gfx_v12_1_hw_init(struct amdgpu_ip_blo=
-ck *ip_block)
->         /*
->          * init golden registers and rlc resume may override some registe=
-rs,
->          * reconfig them here
->          */
->         gfx_v12_1_tcp_harvest(adev);
->
->         r =3D gfx_v12_1_cp_resume(adev);
->         if (r)
->                 return r;
->
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_reg_irq, 0);
-> +       if (r)
-> +               return r;
-> +
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_inst_irq, 0);
-> +       if (r)
-> +               goto err_priv_inst;
-> +
-> +       r =3D gfx_v12_1_set_userq_eop_interrupts(adev, true);
-> +       if (r)
-> +               goto err_userq_eop;
-> +
-> +       return 0;
-> +
-> +err_userq_eop:
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> +err_priv_inst:
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
->         return r;
->  }
->
->  static void gfx_v12_1_xcc_fini(struct amdgpu_device *adev,
->                               int xcc_id)
->  {
->         uint32_t tmp;
->
->         if (!adev->no_hw_access) {
->                 if (amdgpu_gfx_disable_kcq(adev, xcc_id))
-> @@ -2821,55 +2883,28 @@ static void gfx_v12_1_xcc_fini(struct amdgpu_devi=
-ce *adev,
->         if (amdgpu_sriov_vf(adev)) {
->                 /* Program KIQ position of RLC_CP_SCHEDULERS during destr=
-oy */
->                 tmp =3D RREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_CP_=
-SCHEDULERS);
->                 tmp &=3D 0xffffff00;
->                 WREG32_SOC15(GC, GET_INST(GC, xcc_id), regRLC_CP_SCHEDULE=
-RS, tmp);
->         }
->         gfx_v12_1_xcc_cp_compute_enable(adev, false, xcc_id);
->         gfx_v12_1_xcc_enable_gui_idle_interrupt(adev, false, xcc_id);
->  }
->
-> -static int gfx_v12_1_set_userq_eop_interrupts(struct amdgpu_device *adev=
-,
-> -                                             bool enable)
-> -{
-> -       unsigned int irq_type;
-> -       int m, p, r;
-> -
-> -       if (adev->gfx.disable_kq) {
-> -               for (m =3D 0; m < adev->gfx.mec.num_mec; ++m) {
-> -                       for (p =3D 0; p < adev->gfx.mec.num_pipe_per_mec;=
- p++) {
-> -                               irq_type =3D AMDGPU_CP_IRQ_COMPUTE_MEC1_P=
-IPE0_EOP
-> -                                       + (m * adev->gfx.mec.num_pipe_per=
-_mec)
-> -                                       + p;
-> -                               if (enable)
-> -                                       r =3D amdgpu_irq_get(adev, &adev-=
->gfx.eop_irq,
-> -                                                          irq_type);
-> -                               else
-> -                                       r =3D amdgpu_irq_put(adev, &adev-=
->gfx.eop_irq,
-> -                                                          irq_type);
-> -                               if (r)
-> -                                       return r;
-> -                       }
-> -               }
-> -       }
-> -
-> -       return 0;
-> -}
-> -
->  static int gfx_v12_1_hw_fini(struct amdgpu_ip_block *ip_block)
->  {
->         struct amdgpu_device *adev =3D ip_block->adev;
->         int i, num_xcc;
->
-> -       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
-> -       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
->         gfx_v12_1_set_userq_eop_interrupts(adev, false);
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
->
->         num_xcc =3D NUM_XCC(adev->gfx.xcc_mask);
->         for (i =3D 0; i < num_xcc; i++) {
->                 gfx_v12_1_xcc_fini(adev, i);
->         }
->
->         adev->gfxhub.funcs->gart_disable(adev);
->
->         adev->gfx.is_poweron =3D false;
->
-> @@ -2956,40 +2991,20 @@ static int gfx_v12_1_early_init(struct amdgpu_ip_=
-block *ip_block)
->         gfx_v12_1_set_irq_funcs(adev);
->         gfx_v12_1_set_rlc_funcs(adev);
->         gfx_v12_1_set_mqd_funcs(adev);
->         gfx_v12_1_set_imu_funcs(adev);
->
->         gfx_v12_1_init_rlcg_reg_access_ctrl(adev);
->
->         return gfx_v12_1_init_microcode(adev);
->  }
->
-> -static int gfx_v12_1_late_init(struct amdgpu_ip_block *ip_block)
-> -{
-> -       struct amdgpu_device *adev =3D ip_block->adev;
-> -       int r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_reg_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_inst_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       r =3D gfx_v12_1_set_userq_eop_interrupts(adev, true);
-> -       if (r)
-> -               return r;
-> -
-> -       return 0;
-> -}
-> -
->  static bool gfx_v12_1_is_rlc_enabled(struct amdgpu_device *adev)
->  {
->         uint32_t rlc_cntl;
->
->         /* if RLC is not enabled, do nothing */
->         rlc_cntl =3D RREG32_SOC15(GC, GET_INST(GC, 0), regRLC_CNTL);
->         return (REG_GET_FIELD(rlc_cntl, RLC_CNTL, RLC_ENABLE_F32)) ? true=
- : false;
->  }
->
->  static void gfx_v12_1_xcc_set_safe_mode(struct amdgpu_device *adev,
-> @@ -3869,21 +3884,20 @@ static void gfx_v12_1_emit_mem_sync(struct amdgpu=
-_ring *ring)
->         amdgpu_ring_write(ring, 0xffffff);  /* CP_COHER_SIZE_HI */
->         amdgpu_ring_write(ring, 0); /* CP_COHER_BASE */
->         amdgpu_ring_write(ring, 0);  /* CP_COHER_BASE_HI */
->         amdgpu_ring_write(ring, 0x0000000A); /* POLL_INTERVAL */
->         amdgpu_ring_write(ring, gcr_cntl); /* GCR_CNTL */
->  }
->
->  static const struct amd_ip_funcs gfx_v12_1_ip_funcs =3D {
->         .name =3D "gfx_v12_1",
->         .early_init =3D gfx_v12_1_early_init,
-> -       .late_init =3D gfx_v12_1_late_init,
->         .sw_init =3D gfx_v12_1_sw_init,
->         .sw_fini =3D gfx_v12_1_sw_fini,
->         .hw_init =3D gfx_v12_1_hw_init,
->         .hw_fini =3D gfx_v12_1_hw_fini,
->         .suspend =3D gfx_v12_1_suspend,
->         .resume =3D gfx_v12_1_resume,
->         .is_idle =3D gfx_v12_1_is_idle,
->         .wait_for_idle =3D gfx_v12_1_wait_for_idle,
->         .set_clockgating_state =3D gfx_v12_1_set_clockgating_state,
->         .set_powergating_state =3D gfx_v12_1_set_powergating_state,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/=
-amdgpu/gfx_v9_0.c
-> index bec0720f70552..47721d0c37812 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> @@ -4043,33 +4043,48 @@ static int gfx_v9_0_hw_init(struct amdgpu_ip_bloc=
-k *ip_block)
->                 return r;
->
->         r =3D gfx_v9_0_cp_resume(adev);
->         if (r)
->                 return r;
->
->         if (amdgpu_ip_version(adev, GC_HWIP, 0) =3D=3D IP_VERSION(9, 4, 2=
-) &&
->             !amdgpu_sriov_vf(adev))
->                 gfx_v9_4_2_set_power_brake_sequence(adev);
->
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_reg_irq, 0);
-> +       if (r)
-> +               return r;
-> +
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_inst_irq, 0);
-> +       if (r)
-> +               goto err_priv_inst;
-> +
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.bad_op_irq, 0);
-> +       if (r)
-> +               goto err_bad_op;
-> +
-> +       return 0;
-> +
-> +err_bad_op:
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> +err_priv_inst:
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
->         return r;
->  }
->
->  static int gfx_v9_0_hw_fini(struct amdgpu_ip_block *ip_block)
->  {
->         struct amdgpu_device *adev =3D ip_block->adev;
->
-> -       if (amdgpu_irq_enabled(adev, &adev->gfx.priv_reg_irq, 0))
-> -               amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
-> -       if (amdgpu_irq_enabled(adev, &adev->gfx.priv_inst_irq, 0))
-> -               amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> -       if (amdgpu_irq_enabled(adev, &adev->gfx.bad_op_irq, 0))
-> -               amdgpu_irq_put(adev, &adev->gfx.bad_op_irq, 0);
-> +       amdgpu_irq_put(adev, &adev->gfx.bad_op_irq, 0);
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
->
->         /* DF freeze and kcq disable will fail */
->         if (!amdgpu_ras_intr_triggered())
->                 /* disable KCQ to avoid CPC touch memory not valid anymor=
-e */
->                 amdgpu_gfx_disable_kcq(adev, 0);
->
->         if (amdgpu_sriov_vf(adev)) {
->                 gfx_v9_0_cp_gfx_enable(adev, false);
->                 /* must disable polling for SRIOV when hw finished, other=
-wise
->                  * CPC engine may still keep fetching WB address which is=
- already
-> @@ -4856,32 +4871,20 @@ static int gfx_v9_0_ecc_late_init(struct amdgpu_i=
-p_block *ip_block)
->                 adev->gfx.ras->enable_watchdog_timer(adev);
->
->         return 0;
->  }
->
->  static int gfx_v9_0_late_init(struct amdgpu_ip_block *ip_block)
->  {
->         struct amdgpu_device *adev =3D ip_block->adev;
->         int r;
->
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_reg_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_inst_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.bad_op_irq, 0);
-> -       if (r)
-> -               return r;
-> -
->         r =3D gfx_v9_0_ecc_late_init(ip_block);
->         if (r)
->                 return r;
->
->         if (amdgpu_ip_version(adev, GC_HWIP, 0) =3D=3D IP_VERSION(9, 4, 2=
-))
->                 gfx_v9_4_2_debug_trap_config_init(adev,
->                         adev->vm_manager.first_kfd_vmid, AMDGPU_NUM_VMID)=
-;
->         else
->                 gfx_v9_0_debug_trap_config_init(adev,
->                         adev->vm_manager.first_kfd_vmid, AMDGPU_NUM_VMID)=
-;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/am=
-d/amdgpu/gfx_v9_4_3.c
-> index 9f76e1af8a553..510266ba0c388 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-> @@ -2364,20 +2364,38 @@ static int gfx_v9_4_3_hw_init(struct amdgpu_ip_bl=
-ock *ip_block)
->         gfx_v9_4_3_constants_init(adev);
->
->         r =3D adev->gfx.rlc.funcs->resume(adev);
->         if (r)
->                 return r;
->
->         r =3D gfx_v9_4_3_cp_resume(adev);
->         if (r)
->                 return r;
->
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_reg_irq, 0);
-> +       if (r)
-> +               return r;
-> +
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_inst_irq, 0);
-> +       if (r)
-> +               goto err_priv_inst;
-> +
-> +       r =3D amdgpu_irq_get(adev, &adev->gfx.bad_op_irq, 0);
-> +       if (r)
-> +               goto err_bad_op;
-> +
-> +       return 0;
-> +
-> +err_bad_op:
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> +err_priv_inst:
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
->         return r;
->  }
->
->  static int gfx_v9_4_3_perf_monitor_ptl_init(struct amdgpu_device *adev, =
-bool enable)
->  {
->         struct amdgpu_ptl *ptl =3D &adev->psp.ptl;
->         uint32_t ptl_state =3D enable ? 1 : 0;
->         uint32_t fmt1, fmt2;
->         int r;
->
-> @@ -2439,23 +2457,23 @@ static int gfx_v9_4_3_ptl_hw_init(struct amdgpu_d=
-evice *adev)
->  }
->
->  static int gfx_v9_4_3_hw_fini(struct amdgpu_ip_block *ip_block)
->  {
->         struct amdgpu_device *adev =3D ip_block->adev;
->         int i, num_xcc;
->
->         if (adev->psp.ptl.hw_supported && !amdgpu_in_reset(adev))
->                 gfx_v9_4_3_perf_monitor_ptl_init(adev, false);
->
-> -       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
-> -       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
->         amdgpu_irq_put(adev, &adev->gfx.bad_op_irq, 0);
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_inst_irq, 0);
-> +       amdgpu_irq_put(adev, &adev->gfx.priv_reg_irq, 0);
->
->         num_xcc =3D NUM_XCC(adev->gfx.xcc_mask);
->         for (i =3D 0; i < num_xcc; i++) {
->                 gfx_v9_4_3_xcc_fini(adev, i);
->         }
->
->         return 0;
->  }
->
->  static int gfx_v9_4_3_suspend(struct amdgpu_ip_block *ip_block)
-> @@ -2604,33 +2622,20 @@ static int gfx_v9_4_3_early_init(struct amdgpu_ip=
-_block *ip_block)
->
->         /* init rlcg reg access ctrl */
->         gfx_v9_4_3_init_rlcg_reg_access_ctrl(adev);
->
->         return gfx_v9_4_3_init_microcode(adev);
->  }
->
->  static int gfx_v9_4_3_late_init(struct amdgpu_ip_block *ip_block)
->  {
->         struct amdgpu_device *adev =3D ip_block->adev;
-> -       int r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_reg_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.priv_inst_irq, 0);
-> -       if (r)
-> -               return r;
-> -
-> -       r =3D amdgpu_irq_get(adev, &adev->gfx.bad_op_irq, 0);
-> -       if (r)
-> -               return r;
->
->         if (adev->gfx.ras &&
->             adev->gfx.ras->enable_watchdog_timer)
->                 adev->gfx.ras->enable_watchdog_timer(adev);
->
->         gfx_v9_4_3_ptl_hw_init(adev);
->
->         return 0;
->  }
->
-> --
-> 2.51.2
->
+This was discovered using the IGT amd_close_race stress test when
+VM_PAGE_EXECUTABLE was intentionally removed from IB buffer mappings.
+The GPU would hang for ~8 seconds per job with no fault information,
+making it impossible to diagnose the root cause from kernel logs alone.
+
+Root Cause
+==========
+GFX 10.1.x defaults to RETRY_PERMISSION_OR_INVALID_PAGE_FAULT=1
+(noretry=0). With retry enabled, UTCL1 handles permission faults
+locally: it keeps re-requesting the translation from UTCL2 in a
+tight loop, hoping the PTE permissions will change. Since they never
+do for a genuine execute permission violation, this loops forever.
+
+Crucially, UTCL1 never propagates the fault to the interrupt handler
+(IH) ring -- the L2 protection fault interrupt is never generated.
+The gmc_v10_0_process_interrupt() handler is simply never called.
+
+GFX 10.3+ already defaults to noretry=1 (set in amdgpu_gmc_noretry_set),
+which makes ALL permission faults generate immediate L2 protection fault
+interrupts. GFX 10.1.x was the only remaining generation where this
+problem existed.
+
+Fix
+===
+1. Extend the noretry default to include GFX 10.1.x by changing the
+   threshold from IP_VERSION(10, 3, 0) to IP_VERSION(10, 1, 0) in
+   amdgpu_gmc_noretry_set(). This aligns Navi10/12/14 behavior with
+   all newer GPU generations.
+
+2. Add explicit execute permission fault logging in
+   gmc_v10_0_process_interrupt() so that when an execute fault
+   arrives (whether via retry or non-retry path), it is clearly
+   identified as an execute permission violation rather than a
+   generic page fault.
+
+3. Add execute permission fault detection in the KFD interrupt
+   handler (kfd_int_process_v10.c) to extract and log the EXE bit
+   from the IH ring entry source data.
+
+With noretry=1, the fault path becomes:
+  CP fetch -> UTCL1 miss -> UTCL2 lookup -> PTE found but no X bit ->
+  L2 protection fault interrupt -> IH ring -> gmc_v10_0_process_interrupt()
+
+The L2_PROTECTION_FAULT_STATUS register then shows PERMISSION_FAULTS=0x8
+(execute bit), and the handler prints the faulting address, process name,
+VMID, and PASID.
+
+Test Results (Navi10, IP_VERSION 10.1.10)
+=========================================
+With amd_close_race test (VM_PAGE_EXECUTABLE intentionally removed):
+
+Before fix:
+  - Zero fault messages in dmesg
+  - CP stalls for ~8s per job, scheduler timeout kills process
+  - No way to identify execute permission as the cause
+
+After fix:
+  amdgpu 0000:03:00.0: [gfxhub] page fault (src_id:0 ring:64 vmid:4 pasid:592)
+  amdgpu 0000:03:00.0:  Process amd_close_race pid 13380 thread amd_close_race:13384
+  amdgpu 0000:03:00.0:   in page at address 0x0000000040001000 from client 0x1b (UTCL2)
+  amdgpu 0000:03:00.0: GCVM_L2_PROTECTION_FAULT_STATUS:0x00700881
+  amdgpu 0000:03:00.0:      PERMISSION_FAULTS: 0x8
+  amdgpu 0000:03:00.0:      MAPPING_ERROR: 0x0
+  amdgpu 0000:03:00.0:      RW: 0x0
+
+  - 200 fault interrupts correctly fired during stress test (20 rounds)
+  - PERMISSION_FAULTS: 0x8 = execute permission violation
+  - Full process identification available
+  - No regressions with normal (properly-mapped) GPU workloads
+
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Felix Kuehling <felix.kuehling@amd.com>
+Signed-off-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c        | 23 +++++++++++++++++--
+ .../gpu/drm/amd/amdkfd/kfd_int_process_v10.c  |  9 ++++++++
+ 3 files changed, 31 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+index 13bec8461cde..a9bb01c6cb58 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+@@ -1014,7 +1014,7 @@ void amdgpu_gmc_noretry_set(struct amdgpu_device *adev)
+ 				gc_ver == IP_VERSION(9, 4, 3) ||
+ 				gc_ver == IP_VERSION(9, 4, 4) ||
+ 				gc_ver == IP_VERSION(9, 5, 0) ||
+-				gc_ver >= IP_VERSION(10, 3, 0));
++				gc_ver >= IP_VERSION(10, 1, 0));
+ 
+ 	/* For GFX12.1 B0, set xnack (retry) on as default */
+ 	if (gc_ver == IP_VERSION(12, 1, 0) && (adev->rev_id & 0xf) == 0x1)
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+index 8523833a74fb..554f514e59f9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+@@ -102,6 +102,8 @@ static int gmc_v10_0_process_interrupt(struct amdgpu_device *adev,
+ {
+ 	uint32_t vmhub_index = entry->client_id == SOC15_IH_CLIENTID_VMC ?
+ 			       AMDGPU_MMHUB0(0) : AMDGPU_GFXHUB(0);
++	bool exe_fault = !!(entry->src_data[1] &
++			    AMDGPU_GMC9_FAULT_SOURCE_DATA_EXE);
+ 	struct amdgpu_vmhub *hub = &adev->vmhub[vmhub_index];
+ 	bool retry_fault = !!(entry->src_data[1] &
+ 			      AMDGPU_GMC9_FAULT_SOURCE_DATA_RETRY);
+@@ -117,9 +119,26 @@ static int gmc_v10_0_process_interrupt(struct amdgpu_device *adev,
+ 	if (retry_fault) {
+ 		int ret = amdgpu_gmc_handle_retry_fault(adev, entry, addr, 0, 0,
+ 							write_fault);
+-		/* Returning 1 here also prevents sending the IV to the KFD */
+-		if (ret == 1)
++		/*
++		 * For execute permission faults, always fall through to
++		 * print the fault info. This makes missing VM_PAGE_EXECUTABLE
++		 * mappings visible in dmesg instead of silently stalling
++		 * the CP in an infinite retry loop.
++		 */
++		if (ret == 1 && exe_fault) {
++			dev_err_ratelimited(adev->dev,
++				"[%s] execute permission retry fault "
++				"(src_id:%u ring:%u vmid:%u pasid:%u "
++				"addr:0x%016llx flags:0x%02x)\n",
++				entry->vmid_src ? "mmhub" : "gfxhub",
++				entry->src_id, entry->ring_id,
++				entry->vmid, entry->pasid, addr,
++				(unsigned int)(entry->src_data[1] & 0xff));
++			/* Fall through to print L2 protection fault status */
++		} else if (ret == 1) {
++			/* Returning 1 prevents sending the IV to the KFD */
+ 			return 1;
++		}
+ 	}
+ 
+ 	if (!amdgpu_sriov_vf(adev)) {
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v10.c b/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v10.c
+index 19406ab92c5b..800592bc908c 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v10.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v10.c
+@@ -360,6 +360,15 @@ static void event_interrupt_wq_v10(struct kfd_node *dev,
+ 		info.prot_valid = ring_id & 0x08;
+ 		info.prot_read  = ring_id & 0x10;
+ 		info.prot_write = ring_id & 0x20;
++		info.prot_exec  = ih_ring_entry[5] & 0x10;
++
++		if (info.prot_exec)
++			dev_info_ratelimited(dev->adev->dev,
++				"KFD: execute permission fault "
++				"(vmid:%u pasid:%u addr:0x%llx src_data1:0x%x)\n",
++				vmid, pasid,
++				(uint64_t)info.page_addr << PAGE_SHIFT,
++				le32_to_cpu(ih_ring_entry[5]));
+ 
+ 		memset(&exception_data, 0, sizeof(exception_data));
+ 		exception_data.gpu_id = dev->id;
+-- 
+2.54.0
+
