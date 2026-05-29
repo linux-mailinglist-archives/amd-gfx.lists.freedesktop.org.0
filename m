@@ -2,144 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0M6THexDGWrHuAgAu9opvQ
+	id eG53Lrs2GWogtAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 09:44:44 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 08:48:27 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1838C5FEBB3
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 09:44:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D98D5FE224
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 08:48:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F3C210FA41;
-	Fri, 29 May 2026 07:44:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AA6510F991;
+	Fri, 29 May 2026 06:48:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=natalie.vock@gmx.de header.b="bM8oqX+m";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nVJXKwNg";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E06E510F975;
- Fri, 29 May 2026 06:35:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
- s=s31663417; t=1780036497; x=1780641297; i=natalie.vock@gmx.de;
- bh=EPoM/bGKRx+EAZy54i/ajOwXnKH1NW0h8ot5mRJFek0=;
- h=X-UI-Sender-Class:From:Date:Subject:MIME-Version:Content-Type:
- Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
- cc:content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=bM8oqX+mZm12Cct9Jy4+hWuiZK02HiD1EzpRn8aVGSyViWc1Vs2PcsTjOzjnQxaC
- XKhcVqEhv2b5eHJJ8NnYKtUEfYRxV3h//WkOv4/GpUXZ2cPC5C+kmbXEnfAVumjqf
- +PNrGnQZXrd9Rl8+tUebpsyCxONcJRLR0OuA3YPjPCjhQqBkqtiGT52DqVabBVdZg
- tJmdA3xARNO/v70WW2LDytHYM6wAsq02NWJPWBJgBgz1WAWZnc/x/trhFRp7XkT4O
- 3xCMTtYDF1KtrxN+8i7GzHbcGUlK2vLBs9QOprsxNHQWj4QxPT9+5ZrWn4/aJqKmJ
- I8h4/WfFWThLAhXd/g==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from client.hidden.invalid by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MGyxN-1wXTFK134t-003Jvl; Fri, 29
- May 2026 08:34:57 +0200
-From: Natalie Vock <natalie.vock@gmx.de>
-Date: Fri, 29 May 2026 08:34:40 +0200
-Subject: [PATCH 3/3] drm/amdgpu: Bump minor version
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <20260529-prt-explicit-sync-v1-3-9f1c60955cab@gmx.de>
-References: <20260529-prt-explicit-sync-v1-0-9f1c60955cab@gmx.de>
-In-Reply-To: <20260529-prt-explicit-sync-v1-0-9f1c60955cab@gmx.de>
-To: Felix Kuehling <Felix.Kuehling@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- =?utf-8?q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com
+ [209.85.167.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59A9610F991
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 06:48:21 +0000 (UTC)
+Received: by mail-lf1-f52.google.com with SMTP id
+ 2adb3069b0e04-5a995ab70d1so15945092e87.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 May 2026 23:48:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1780037300; x=1780642100; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=doPRw5QapmDdqAPGgFbdNczGbZz+3rVnzTYKju4SbAA=;
+ b=nVJXKwNgLEkYGbSon8RuduJfibLMASrGKUPxGSk2qpsGFTRtpHg63delRTE4QjoV8+
+ q+4Eum+etnez1tHO8oxNEa7ttBLb+bD2Y0LSqlkZv+K1CF6trfmOcwdCOhgFNegWfcUI
+ xMqjS1VRxjfcQ7zicAS+lZKdS8l4Mw4DoHjDCrKUPfe+2KJMV/zHdvhJ2jfrJPv+mnbV
+ vopVb05dcOG5jZg4Fm5hPfZpONCjEzktmGShBfulvWFEvC8in6Dv0oh8HNXMyfsRoQ65
+ CmBU7EQUvHVz8f1qNzkfAptUei5C2ZfvmdVXJB50wBmjB24ofipiO/99bH1Iz6T3/FtM
+ 0jdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1780037300; x=1780642100;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=doPRw5QapmDdqAPGgFbdNczGbZz+3rVnzTYKju4SbAA=;
+ b=U90fiPRWoTll6u2TwxokGUo7pvQ1cyWJgq0FNuXE4tmjIt/aDK9KHqG+FozbN11MAa
+ TazgdVrOT+Q+D2qnYRrHK4Qft6GJ5TQsaIrjXyt6HAhd+j1Jfglr0WdMULtHTjTVoaQX
+ DZNc6y+2lW3JCKu4MyZsr//tkxKzqgNCm4aJ9sZ6VXOv0AZEDe6BWAC7QehUOIPOseGB
+ 4y33cpGkydx/eSMD/eT7QJIA5K2fv0XtGyfo2COR3BFvo+5TveQu3mbfbPLDJ6Tiv1AD
+ hXNeG3dp07Atn+HQPCkaQeS6P2odLQNIlVR6gKkr7oCOzfiYifNwRCBjUFQJxRQNeIZY
+ 35Jg==
+X-Gm-Message-State: AOJu0YxOY7/iWLvPn3XA2win1h2OcE+JBrvzkJlM9rOC1M06nqN9yF50
+ if/58IuvV1lLBvHxpXTbScwLhgIOIRFxAIYcSkQ53Zp7y1B2IM+BNZoiO4HkbCdQ3DZMOyux
+X-Gm-Gg: Acq92OGR2khpotAQG+ULrU6JTKYPGDQrixivF5myT/D+U/nNkArtNVKAbAf09jt31E5
+ 1U4ZpA+oeGqt4uQ9MoKX5MpUKd8CboPIyrq1ZOTJ87wpmLIniNBAngJKE9OgjcXDDWOHJ0GXCOG
+ VidWZvKCb/bBDCF4aMFp4mOQ4IfNOH9kvcKVKdZFyOonBdTFBU2ePK4lqUJe/coEgIA/xjQZfg/
+ iYrKUM6wGSiVorWq9K9fx5RVAz9X3M93wt2YG7bc4qZwswwvt5V9MyCHqcrH8Y+nrsu76MWEhV+
+ ytFvNfxLtWYdzbG4Up+1WCugVoEbObyCL0YwOkyy3oQMC6z2YgoRb7F+poF6hydByLRrMPrnnEJ
+ 4u3XZ228guNlhMVmfESNFxkwtU6164cVcea7xaUZyRdcI/d0ZMa4X+VcsD/1W/fVNrygCVFr5uZ
+ AdIXijiqZAH8aYjBWPsSI/v6VhHBNZnaiQs8KZmKIZze0=
+X-Received: by 2002:a05:6512:3d1c:b0:5aa:2a30:217a with SMTP id
+ 2adb3069b0e04-5aa594a573bmr325607e87.34.1780037299072; 
+ Thu, 28 May 2026 23:48:19 -0700 (PDT)
+Received: from localhost ([188.234.148.119]) by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5aa5b79f04dsm72147e87.83.2026.05.28.23.48.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 28 May 2026 23:48:17 -0700 (PDT)
+From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
-X-Mailer: b4 0.15.2
-X-Provags-ID: V03:K1:l8NjjEwb3NB3hrnZ8FqjFZfhPpyYbfXfoEnT/5oYRu8EEtD/ar/
- y+c+dAdaNNmbGnBVw1PPqmC+aqzMbYbWrhRyW6EDoMoYwSusvWZZvYAULXf3LlnAXp1XVk/
- aJqJp5zRQvS/079P2yjOqr/h6KPgutddiKdwFMBvyA+OwBdV5p8Gtff0zW7s6wH4h1D5KaJ
- fS3V+vaVMm8jj7vjC6+sQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:E3llLmWLHVA=;f1NgEZVjf1Z1W3qZNMPSU7g+29f
- 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
-X-Mailman-Approved-At: Fri, 29 May 2026 07:44:33 +0000
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org,
+ Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+Subject: [PATCH v6 0/2] drm/amdgpu: fix recursive ww_mutex in devcoredump IB
+ dump
+Date: Fri, 29 May 2026 11:47:37 +0500
+Message-ID: <20260529064740.25060-1-mikhail.v.gavrilov@gmail.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260521150841.20625-1-mikhail.v.gavrilov@gmail.com>
+References: <20260521150841.20625-1-mikhail.v.gavrilov@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,62 +99,134 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmx.de,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmx.de:s=s31663417];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
-	FREEMAIL_FROM(0.00)[gmx.de];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmx.de:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[natalie.vock@gmx.de,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[mikhailvgavrilov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,linaro.org,vger.kernel.org,lists.linaro.org];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:email,gmx.de:mid,gmx.de:dkim]
-X-Rspamd-Queue-Id: 1838C5FEBB3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 6D98D5FE224
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-To signal availability of explicit PRT sync to userspace.
+This series fixes a lockdep "possible recursive locking" splat in
+amdgpu_devcoredump_format() that fires on every GPU timeout once a job
+with a PASID context is involved. With amdgpu.gpu_recovery=0 the timeout
+handler refires every ~2 s, so the splat repeats until it drowns the
+kernel ring buffer. It is also a real self-deadlock for IB BOs that
+share their dma_resv with the root PD (the always-valid case).
+ 
+The root cause: amdgpu_devcoredump_format() holds the VM root PD's
+reservation and then reserves each IB BO on top of it, nesting two
+reservation_ww_class_mutex acquires without a ww_acquire_ctx.
+ 
+The fix teaches amdgpu_vm_lock_by_pasid() to lock the root PD in a
+drm_exec context, so the devcoredump path can lock the root PD and all
+the IB BOs together in one ww ticket. Because amdgpu_vm_lock_by_pasid()
+has a second caller in the page-fault path, the series is split so each
+patch builds and works on its own:
+ 
+  1/2  Convert amdgpu_vm_lock_by_pasid() to take a drm_exec context and
+       lock the root PD with drm_exec_lock_obj(). The drm_exec context
+       holds the root BO reference, so the root output parameter is
+       dropped. Updates the existing caller, amdgpu_vm_handle_fault().
+       Pure refactor, no functional change to the page-fault path.
+       (Reviewed-by Christian on v5.)
+ 
+  2/2  Move the IB dumping into a separate helper that locks the root PD
+       and every IB BO together in one drm_exec ticket. The per-IB
+       amdgpu_bo_reserve() nesting is gone, along with a BO refcount
+       leak on the old reserve-failure path. This is the actual bug fix
+       and carries the Fixes: tag.
+ 
+Tested on Linux 7.1-rc4 + this series, Radeon RX 7900 XTX (gfx1100),
+KASAN + PROVE_LOCKING enabled, using a small libdrm_amdgpu reproducer
+that submits a GFX IB chained at GPU VA 0 and waits for the hang. Before
+the series the splat fires on every TDR; after it the dmesg is clean
+across repeated timeouts and the devcoredump IB dump is produced
+correctly.
+ 
+v1: https://lore.kernel.org/amd-gfx/20260429143743.50743-1-mikhail.v.gavrilov@gmail.com/
+v2: https://lore.kernel.org/amd-gfx/20260519161541.19994-1-mikhail.v.gavrilov@gmail.com/
+v3: https://lore.kernel.org/amd-gfx/20260520151741.50575-1-mikhail.v.gavrilov@gmail.com/
+v4: https://lore.kernel.org/amd-gfx/20260521104335.28978-1-mikhail.v.gavrilov@gmail.com/
+v5: https://lore.kernel.org/amd-gfx/20260521150841.20625-1-mikhail.v.gavrilov@gmail.com/
+ 
+Changes since v5 (all in patch 2, per Christian's review):
+- Trim the commit message: drop the reproducer paragraph, keep the
+  problem description and the solution.
+- Move the IB dumping out of amdgpu_devcoredump_format() into a separate
+  amdgpu_devcoredump_print_ibs() helper.
+- Use goto error handling inside drm_exec_until_all_locked() instead of
+  break, and drop the now-superfluous `locked` variable. drm_exec_fini()
+  is called once at the end of the helper, not in the locking path.
+- Patch 1 is unchanged from v5 and keeps Christian's Reviewed-by.
+ 
+A note on one review point I couldn't fully confirm before respinning
+(asked on the v5 thread [1], no reply yet): in the locking loop, when
+amdgpu_vm_bo_lookup_mapping() returns no mapping for an IB, this version
+treats it as non-fatal -- there is simply nothing to lock for that IB,
+so the loop continues, and the content loop still emits the
+"IB #N <addr>" header without a body. goto-abort is reserved for real
+errors (VM not found, drm_exec_lock_obj() failure). If a missing mapping
+should instead abort the whole dump, I'll change it.
+ 
+[1] https://lore.kernel.org/amd-gfx/CABXGCsPPY3qX7Ad-a7==nmA5R7aejCTCrmWYpn-9OQQU=1eMMA@mail.gmail.com/
+ 
+Changes since v4:
+- Pass nr=1 to drm_exec_init() in amdgpu_vm_handle_fault() (Christian).
+- Picked up Christian's Reviewed-by on patch 1.
+ 
+Changes since v3:
+- Lock the root PD with drm_exec_lock_obj() instead of
+  amdgpu_vm_lock_pd(); drop the root output parameter; unlock with
+  drm_exec_unlock_obj() on the VM-recheck-failed path (Christian).
+- Resolves the docutils warning the kernel test robot reported on v3.
+ 
+Changes since v2:
+- Reworked along the lines Christian suggested: amdgpu_vm_lock_by_pasid()
+  takes a drm_exec context directly (patch 1), devcoredump locks the
+  root PD and all IB BOs in one ticket (patch 2). The v2 helper struct
+  and the three collect/lock/release helpers are gone.
+ 
+Changes since v1:
+- Switched from per-IB amdgpu_bo_reserve() to drm_exec.
+- Dropped the Cc: stable tag: the regression only landed in 7.1-rc1, so
+  the fix reaches 7.1 via drm-fixes without a stable backport.
 
-Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
-=2D--
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Mikhail Gavrilov (2):
+  drm/amdgpu: convert amdgpu_vm_lock_by_pasid() to drm_exec
+  drm/amdgpu: fix recursive ww_mutex acquire in
+    amdgpu_devcoredump_format
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu_drv.c
-index 1781c0c3d010f..f3b86fa4b181e 100644
-=2D-- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -127,9 +127,10 @@
-  * - 3.62.0 - Add AMDGPU_IDS_FLAGS_MODE_PF, AMDGPU_IDS_FLAGS_MODE_VF & AM=
-DGPU_IDS_FLAGS_MODE_PT
-  * - 3.63.0 - GFX12 display DCC supports 256B max compressed block size
-  * - 3.64.0 - Userq IP support query
-+ * - 3.65.0 - VM PRT explicit sync
-  */
- #define KMS_DRIVER_MAJOR	3
--#define KMS_DRIVER_MINOR	64
-+#define KMS_DRIVER_MINOR	65
- #define KMS_DRIVER_PATCHLEVEL	0
-=20
- /*
+ .../gpu/drm/amd/amdgpu/amdgpu_dev_coredump.c  | 215 ++++++++++--------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |  91 +++++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |   2 +-
+ 3 files changed, 184 insertions(+), 124 deletions(-)
 
-=2D-=20
+-- 
 2.54.0
 
