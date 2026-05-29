@@ -2,140 +2,133 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4UgHAG00HWpcWQkAu9opvQ
+	id KCQaDWuyGWrJyQgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 09:27:41 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 17:36:11 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 025E561AD8C
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 09:27:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D47604D83
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 17:36:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28D69112EDF;
-	Mon,  1 Jun 2026 07:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C949511211F;
+	Fri, 29 May 2026 15:36:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=natalie.vock@gmx.de header.b="U3f99kvO";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ndQZH19Q";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5965A11211D
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 15:31:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
- s=s31663417; t=1780068673; x=1780673473; i=natalie.vock@gmx.de;
- bh=HFZfTPMizrvdsPLuqadco6dkFbZelMBMBT3a/lOPspo=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
- References:MIME-Version:Content-Transfer-Encoding:cc:
- content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=U3f99kvOgblhqjjMp1/zIi0CZguJlJ74CUoe/NfSzaSnXY6l3WRZ4oelLmshlJdR
- JDUsK+pikYrZrWDBuSVIqI01ipLkPG0Q13XHBYk5aJGaVUidUiiajBnWtk7ln0WfR
- vVtu0Zcd4JH2M0Ok10vi2mHcM9JqN/lYqqES0yfJcShLRlu0ijU3/zd08tRKw6kYw
- ek7/OwqlcHLJ0gaqtcg29iyD3Hj4L3d9Gd49EiC/pj3IO643G9PZLlo6N2Uh2hzF3
- 4S9xRaH/cUFV+Zw+hh6ix7yDEXKqJiRWFixdFJlOBUn7xRfRyxxVT4wJShAQ/mma+
- 2QbVfqiWM8hQ+exsiQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from client.hidden.invalid by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MryXN-1x7DtM1kSz-00eNK7; Fri, 29
- May 2026 17:31:13 +0200
-From: Natalie Vock <natalie.vock@gmx.de>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 2/2] drm/amdgpu: Rename moved state to needs_update
-Date: Fri, 29 May 2026 17:30:51 +0200
-Message-ID: <20260529153051.973261-2-natalie.vock@gmx.de>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260529153051.973261-1-natalie.vock@gmx.de>
-References: <20260529153051.973261-1-natalie.vock@gmx.de>
-MIME-Version: 1.0
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010001.outbound.protection.outlook.com [52.101.56.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB85B11211F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 15:36:06 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XbBcxie5n2teCH1G5IvRckYtVVz9Jph1tHpNt3nOEY3qVGTqAifWlihdn99ZeFiZG6Q4WFqj5GNRsM6OaE+n4V+Yu+PH9Gf0YrMWNEQqA+d/Vb3KaCNKTodw//wuMVBs5RrWFtYb61JghkIi4l1FWNdkUPBRYDRJkrDoRf18qnTzrf6UXXNIxbyeDYeWQpyrhBvKTM+q4/mXvUgmgRmQfTnRLotJriNKvGIfy9kx/vrCC5nu4ev9X77Y2slr8hTd0m0qOCYVCiUPhA3abWm65wfYu3EbYPeJS0N5jCbCEzFrEbcYgSxCteCzqqU0ubJUVtJzePh9L2ZQPLHtLL994Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OG9Hw3Ljw5UwQCi4yYieuy9SxG7TBUY84Nj2GukZyDY=;
+ b=r61a5bW9ZnHVtFXd/fc3yUPcLxSUICmuYU8j3PvOrmiVk7b6q+jxUM5VM1lYVsSNdxV9Z6AZR9f84kty9xkGNbXUfsoqX9eFzRuR/Ez03mnG4HoCBTsdEzIsAabs3bIlm4/qngl0QYgnDrFTnC7k6gWpc63i46BQbMEofNoeCH4PFabDQpK/1fx9/t6koIYL+jvNx24+kFWZhWs8gH3IjzHOgOxYeqgnUSSxHTeLXYUd2tj5JIDd9jCl18WrihyvA6aWhHZUXCSRNy2r0jrv9nojQi/0k31Kim0Nx1qMqeKdEJEIEU3pdSRRVvnqeUf6ArSNZZvMbWuJ+ilZneZAHg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OG9Hw3Ljw5UwQCi4yYieuy9SxG7TBUY84Nj2GukZyDY=;
+ b=ndQZH19Q3SiFkoqmFyX5knRx/fkcQ95gO+RHH+8sUiCXF3Qwcyj+MUo66CtbDgLkROV4p13wXT3zC9fCyp+r9YOo+ITJlexjW7PsAB9oIviNp9ecybnjPLpsY417CJnV1NtgkdnNaddCSF3cPlwWVI/d+eNO1TEhxTxQgN1ILxs=
+Received: from CH0PR12MB5372.namprd12.prod.outlook.com (2603:10b6:610:d7::10)
+ by LV0PR12MB999067.namprd12.prod.outlook.com (2603:10b6:408:32d::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.13; Fri, 29 May
+ 2026 15:36:03 +0000
+Received: from CH0PR12MB5372.namprd12.prod.outlook.com
+ ([fe80::f3be:26ac:e6fd:16da]) by CH0PR12MB5372.namprd12.prod.outlook.com
+ ([fe80::f3be:26ac:e6fd:16da%4]) with mapi id 15.21.0071.014; Fri, 29 May 2026
+ 15:36:03 +0000
+From: "Liu, Shaoyun" <Shaoyun.Liu@amd.com>
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>, "Khatri, Sunil"
+ <Sunil.Khatri@amd.com>, "Lin, Amber" <Amber.Lin@amd.com>, "Zhang, Jesse(Jie)"
+ <Jesse.Zhang@amd.com>
+CC: "Chen, Michael" <Michael.Chen@amd.com>, "Zhang, Jesse(Jie)"
+ <Jesse.Zhang@amd.com>
+Subject: RE: [PATCH 12/42] drm/amdgpu/mes_v12_1: use mes schedule pipe for
+ legacy queues on unified MES
+Thread-Topic: [PATCH 12/42] drm/amdgpu/mes_v12_1: use mes schedule pipe for
+ legacy queues on unified MES
+Thread-Index: AQHc6YD8kDbRmhO180GGwEzyumvrybYlLrHw
+Date: Fri, 29 May 2026 15:36:02 +0000
+Message-ID: <CH0PR12MB537258E1F648A63DF404ADA9F4162@CH0PR12MB5372.namprd12.prod.outlook.com>
+References: <20260522002048.98506-1-alexander.deucher@amd.com>
+ <20260522002048.98506-13-alexander.deucher@amd.com>
+In-Reply-To: <20260522002048.98506-13-alexander.deucher@amd.com>
+Accept-Language: en-CA, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-05-29T15:33:49.0000000Z;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD General
+ v26; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=3;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH0PR12MB5372:EE_|LV0PR12MB999067:EE_
+x-ms-office365-filtering-correlation-id: 1065c93c-786e-471f-c5a8-08debd97fdc9
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|921020|4143699003|18002099003|22082099003|11063799006|56012099006|38070700021;
+x-microsoft-antispam-message-info: AKoeBTpF7c60Ey7ycTY1iJgSEL1ljpNDpK/QkfYmSEh/GZNEc6VXzJiKhsl1Rph4YE1f3m7gNkp3u7+/+ZrbDbj4DT5LxogBhu1891tM38PS7VcoI74ZgFsAH+VoQ7O+Khlngs7CSrbNUHVxRoGQKEsUoRNdWoqY3CqUfYxN+TYIjsN3ZpDWBFqSZ6YD+HNW7s9JD1siOyTTrKjezjsPGIkF8CWAUd8vLUMN6PeV4+ZnDjcBewVc6ugF8P1f3NW8h/z7mEbnR2Ks9clkdUfRM4lgnY990q87JynM2atpml5Fc1OxdVbinuZ5uyAA+8t9jjWOOgtXoSkqz/DlzGulwY/ep9IWq5dYAHI5PPOksexNrxXO27A9zZz+p1f1ED4Mb5QI4v0CmT7ORERZeG2ojb4/kmEDVhu7/woxiSvt6U8gZymAx7fyi5MrKDmCcpFPTuaBrI7QckuzugtjjcFUgHSGJY/BUT5SG08TLm6nP4ynT64lSl9dDvXeCEbThfV6vog0+DYDKX6Dou1X9i6/NUbSWKyh5yuucCyZC9Uc32OgRezPnVkEtNRBRZzB/d7EIXw5QSFKyHTwgDKfKsRkuO4LW7Jfhorbr1UBFNLPu8lETuEgTy0YQvsZjrZ6NJIB1rc4iTCtvCrIGBe4ZqF43OIFg/PkJS7kcvUGewvxNdxAzKUX+peXsjOHq8FqhC2uWaXsuwf51qyHvXZO7RnMvl2wjagoNN/d64dTbm/WPnjz1SGD00oQVPAyg9voAPfNWsQha4RvFW/YVavme641dw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR12MB5372.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(921020)(4143699003)(18002099003)(22082099003)(11063799006)(56012099006)(38070700021);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?NTNPdbyFa3hTKg7vhZ4/C4g6LgUSGdjElsWXDEDOwMZdApXm4D7RjipeWMUF?=
+ =?us-ascii?Q?dbaXTA9mQxG362LuljQCAlca5s4+Z3ir6rXhDgpjblUfRD7nu/xfE92HY0E+?=
+ =?us-ascii?Q?VV3tHCt0Y9RV6+kKC/ORDE9b/oVZ/kv+8DdL5JK8N2S5HZTsBhrE2cUxU/5n?=
+ =?us-ascii?Q?9eZxR7/1FAa4hNzzXH2+O5BclHY6xi2TTlbUSVgOL6nVX2VSeLkyYh/tnN0O?=
+ =?us-ascii?Q?Go4eT3A8AP3u9LapOZLxJA/XTg9WlMzWzGCgJLB1IEXkKWDEm2//+IKK4ejf?=
+ =?us-ascii?Q?rZp9ddl1T7RQG8ZPGgw0tl/TZdFAjHjEvQnjHkSCzoloV8fHIwY/WbRkHn26?=
+ =?us-ascii?Q?yeYVqQOiIskdxAdOjx000yeHI0tKcVLb/Hrr1Bf6kscctlBzRaDa/qPJ+wvX?=
+ =?us-ascii?Q?zNmZ0IQHMxAHqQLbJBFkcZGYJ3iVweflhqRzXQIg+w+yMo/c17YHFlhS5kKi?=
+ =?us-ascii?Q?E+fQ6kNlf6lxtlweR79vF9Q+fD661hTf0czmG1iYcGSGMPVtr3nPK/WHK7jr?=
+ =?us-ascii?Q?e8ukDoMUDF23itNMuiCE+z8WqVsWy8wIGzVRprXC4YsAztztzFeboRxXnNwf?=
+ =?us-ascii?Q?4s/uqw/X593/BeAz25tMJrRExj3FXsaAGOvZ3KNrLSvCIbclsDby+2rRg9dA?=
+ =?us-ascii?Q?xzfFmCHc86AkwEMwZ6KBLXNGDCciqmxpgcop7Q7QxrFX4ecu1WksCVVn0T2W?=
+ =?us-ascii?Q?VY8zC0ExwcwVW1cc7YRGdZY3VbFmwzSB2JMp4qeNLBZTQi1FeF2Fg+uk0Kmu?=
+ =?us-ascii?Q?SNKVAcZNgqcik6fpL0KvXfmYyPGUBIfIkJqwQnnHGhACTxu9U+padnrSGHTA?=
+ =?us-ascii?Q?huEOQpHnTZYj8EZ7/JZ7C/RPHut9XNXasvOqFTNT8Zl0dr22ZX5QBuOjY3wq?=
+ =?us-ascii?Q?QXn1FMcL7BN0voDF2Y7Eb29wyy90BiNyQiSiCpFxahAJCC6NeL1JOd684Oaw?=
+ =?us-ascii?Q?tFwKetI6lShN13ADwldLi9F3VIuv6eCMwWzVLc+oqwka26QdGevioifnbkGw?=
+ =?us-ascii?Q?f/eLAMKleFevqI4+9ZFhe3mX5G2I7Aw0SR7G1vU/0DTKHPx7qDTwd6Be7U3C?=
+ =?us-ascii?Q?g+34pC+NV731malV/x9tJTohiADKmIR5DKwTQs4Z/6+h44JYCAjIZFd+rOyK?=
+ =?us-ascii?Q?PBS/XXwYFUqe4ZgefK6AIzVQAMpJNrr2JcKy7jkqAh4SY9k7XCOzttjIW1zu?=
+ =?us-ascii?Q?zsfgnrbnSJd2HBITLvuCmG9TBdtn3OkpZi3GKBl2qWsN5uQrYHtQmwaDGCC9?=
+ =?us-ascii?Q?clxwO4e7SQsGvJhiWGA6wanZMEJAIVT/15lh8P2VHC/jfZprMK/GwAIJ0Vyj?=
+ =?us-ascii?Q?aOnjV+PFndW9TqwTucNDpblTEHar/CfrsXyWuwlkecZDQ3zaNzrmXwnQI994?=
+ =?us-ascii?Q?bRQBBYYWpKpS0Hv7HD01ryzv6Xl6LB4VNRd3L3mfELYyo/jdBuh7mPuLvwwe?=
+ =?us-ascii?Q?GJKj33+BqpzoRd2DEwuomHdZyd7TWx/usyh7IUpbpbgODSnhYqu5MQJVqvKk?=
+ =?us-ascii?Q?lkTcoFUnxAOKPa3THMjupgkgp5urdwxf8SOa3N2gpN9fMK654eJWIFdBrNoJ?=
+ =?us-ascii?Q?sADgoJcEQrbhtrMaa92nn1wmz3O/gXnFvlWoRUZa5s4DOEwCc6M1vIpvoJlA?=
+ =?us-ascii?Q?8Sj8N2GkwXjJIrAH11vk2igUrYC3Bx6o0MPZH+k8nvCqqUnqterF1hXs38iI?=
+ =?us-ascii?Q?DXLANmpI7wr0cjw8jBFfpfqagLMeLSVi0e16xz6SvdQjlsPc?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Reik4em6DPezVh5jTd9MIm0lY9+25PREV48CtF4B9Bb0/3ryUPJ
- xR1lR4rS0ZJYvZQboMipW0DI83XF4yaVIlCzP/L6X+vxaQbh7xgFJ3Hk+3vaGeEdVdx2cIM
- TKxocWJ1csHMIM2+YM1UMC5irXqBEu+H/sjjoTfxMOVhBJYPhbR0IxwC/AlbRfYmm3EIfHN
- lErPsKdOuZYNnJ7Mym6SQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:p1AgDKUo/QI=;MgDfga1CIU37RwbDC7RZKlUR8Nf
- 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
- B1Bd76yRep5jhVetAj1Q81ceg0as7toyJsO5xIH
-X-Mailman-Approved-At: Mon, 01 Jun 2026 07:27:37 +0000
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR12MB5372.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1065c93c-786e-471f-c5a8-08debd97fdc9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 May 2026 15:36:02.7712 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lkVQ7AoKuNGmXizaND7dDxcMjWhbvQe/i07+PglGqHw2iDZmb+y7G49XpSQP8R+KBR0MT+DIGL6O/bMCnZy0ug==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV0PR12MB999067
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,304 +142,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.19 / 15.00];
-	DATE_IN_PAST(1.00)[63];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmx.de,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmx.de:s=s31663417];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmx.de];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:timur.kristof@gmail.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com];
-	FORGED_SENDER(0.00)[natalie.vock@gmx.de,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Alexander.Deucher@amd.com,m:Christian.Koenig@amd.com,m:Sunil.Khatri@amd.com,m:Amber.Lin@amd.com,m:Jesse.Zhang@amd.com,m:Michael.Chen@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[Shaoyun.Liu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Shaoyun.Liu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-1.000];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FROM_NEQ_ENVFROM(0.00)[natalie.vock@gmx.de,amd-gfx-bounces@lists.freedesktop.org];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmx.de:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:email,gmx.de:mid,gmx.de:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 025E561AD8C
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:email,amd.com:email,amd.com:dkim]
+X-Rspamd-Queue-Id: 43D47604D83
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This state can be reached via other means than physical moves, like PRT
-bindings. Make the name match the actual purpose of the state.
+AMD General
 
-Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
-=2D--
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 54 +++++++++++++-------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h |  9 +++--
- 2 files changed, 33 insertions(+), 30 deletions(-)
+The KCQ is not used for mes_v12_1 anymore , so it won't affect it  at all, =
+but It's still good to keep the  same logic as v12_0 .
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_vm.c
-index 9ddeb984beff7..506268fca901f 100644
-=2D-- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -142,7 +142,7 @@ static void amdgpu_vm_assert_locked(struct amdgpu_vm *=
-vm)
- static void amdgpu_vm_bo_status_init(struct amdgpu_vm_bo_status *lists)
- {
- 	INIT_LIST_HEAD(&lists->evicted);
--	INIT_LIST_HEAD(&lists->moved);
-+	INIT_LIST_HEAD(&lists->needs_update);
- 	INIT_LIST_HEAD(&lists->idle);
- }
-=20
-@@ -211,14 +211,14 @@ static void amdgpu_vm_bo_evicted(struct amdgpu_vm_bo=
-_base *vm_bo)
- 	amdgpu_vm_bo_unlock_lists(vm_bo);
- }
- /**
-- * amdgpu_vm_bo_moved - vm_bo is moved
-+ * amdgpu_vm_bo_needs_update - vm_bo needs pagetable update
-  *
-- * @vm_bo: vm_bo which is moved
-+ * @vm_bo: vm_bo which is out of date
-  *
-- * State for vm_bo objects meaning the underlying BO was moved but the ne=
-w
-- * location not yet reflected in the page tables.
-+ * State for vm_bo objects meaning the underlying BO had mapping changes =
-(move, PRT bind/unbind)
-+ * but the new location is not yet reflected in the page tables.
-  */
--static void amdgpu_vm_bo_moved(struct amdgpu_vm_bo_base *vm_bo)
-+static void amdgpu_vm_bo_needs_update(struct amdgpu_vm_bo_base *vm_bo)
- {
- 	struct amdgpu_vm_bo_status *lists;
- 	struct amdgpu_bo *bo =3D vm_bo->bo;
-@@ -232,7 +232,7 @@ static void amdgpu_vm_bo_moved(struct amdgpu_vm_bo_bas=
-e *vm_bo)
- 		vm_bo->moved =3D false;
- 		list_move(&vm_bo->vm_status, &lists->idle);
- 	} else {
--		list_move(&vm_bo->vm_status, &lists->moved);
-+		list_move(&vm_bo->vm_status, &lists->needs_update);
- 	}
- 	amdgpu_vm_bo_unlock_lists(vm_bo);
- }
-@@ -266,11 +266,12 @@ static void amdgpu_vm_bo_idle(struct amdgpu_vm_bo_ba=
-se *vm_bo)
- static void amdgpu_vm_bo_reset_state_machine(struct amdgpu_vm *vm)
- {
- 	amdgpu_vm_assert_locked(vm);
--	list_splice_init(&vm->kernel.idle, &vm->kernel.moved);
--	list_splice_init(&vm->always_valid.idle, &vm->always_valid.moved);
-+	list_splice_init(&vm->kernel.idle, &vm->kernel.needs_update);
-+	list_splice_init(&vm->always_valid.idle,
-+			 &vm->always_valid.needs_update);
-=20
- 	spin_lock(&vm->individual_lock);
--	list_splice_init(&vm->individual.idle, &vm->individual.moved);
-+	list_splice_init(&vm->individual.idle, &vm->individual.needs_update);
- 	spin_unlock(&vm->individual_lock);
- }
-=20
-@@ -424,7 +425,7 @@ void amdgpu_vm_bo_base_init(struct amdgpu_vm_bo_base *=
-base,
- 	 */
- 	if (bo->preferred_domains &
- 	    amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type))
--		amdgpu_vm_bo_moved(base);
-+		amdgpu_vm_bo_needs_update(base);
- 	else
- 		amdgpu_vm_bo_evicted(base);
- }
-@@ -597,7 +598,7 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, str=
-uct amdgpu_vm *vm,
-=20
- 		vm->update_funcs->map_table(to_amdgpu_bo_vm(bo_base->bo));
- 		bo_base->moved =3D true;
--		amdgpu_vm_bo_moved(bo_base);
-+		amdgpu_vm_bo_needs_update(bo_base);
- 	}
-=20
- 	/*
-@@ -615,7 +616,7 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, str=
-uct amdgpu_vm *vm,
- 			return r;
-=20
- 		bo_base->moved =3D true;
--		amdgpu_vm_bo_moved(bo_base);
-+		amdgpu_vm_bo_needs_update(bo_base);
- 	}
-=20
- 	if (!ticket)
-@@ -636,7 +637,7 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, str=
-uct amdgpu_vm *vm,
- 			return r;
-=20
- 		bo_base->moved =3D true;
--		amdgpu_vm_bo_moved(bo_base);
-+		amdgpu_vm_bo_needs_update(bo_base);
-=20
- 		/* It's a bit inefficient to always jump back to the start, but
- 		 * we would need to re-structure the KFD for properly fixing
-@@ -970,7 +971,7 @@ int amdgpu_vm_update_pdes(struct amdgpu_device *adev,
-=20
- 	amdgpu_vm_assert_locked(vm);
-=20
--	if (list_empty(&vm->kernel.moved))
-+	if (list_empty(&vm->kernel.needs_update))
- 		return 0;
-=20
- 	if (!drm_dev_enter(adev_to_drm(adev), &idx))
-@@ -986,7 +987,7 @@ int amdgpu_vm_update_pdes(struct amdgpu_device *adev,
- 	if (r)
- 		goto error;
-=20
--	list_for_each_entry(entry, &vm->kernel.moved, vm_status) {
-+	list_for_each_entry(entry, &vm->kernel.needs_update, vm_status) {
- 		/* vm_flush_needed after updating moved PDEs */
- 		flush_tlb_needed |=3D entry->moved;
-=20
-@@ -1002,7 +1003,8 @@ int amdgpu_vm_update_pdes(struct amdgpu_device *adev=
-,
- 	if (flush_tlb_needed)
- 		atomic64_inc(&vm->tlb_seq);
-=20
--	list_for_each_entry_safe(entry, tmp, &vm->kernel.moved, vm_status)
-+	list_for_each_entry_safe(entry, tmp, &vm->kernel.needs_update,
-+				 vm_status)
- 		amdgpu_vm_bo_idle(entry);
-=20
- error:
-@@ -1605,7 +1607,7 @@ int amdgpu_vm_handle_moved(struct amdgpu_device *ade=
-v,
- 	bool clear, unlock;
- 	int r;
-=20
--	list_for_each_entry_safe(bo_va, tmp, &vm->always_valid.moved,
-+	list_for_each_entry_safe(bo_va, tmp, &vm->always_valid.needs_update,
- 				 base.vm_status) {
- 		/* Per VM BOs never need to bo cleared in the page tables */
- 		r =3D amdgpu_vm_bo_update(adev, bo_va, false);
-@@ -1614,8 +1616,8 @@ int amdgpu_vm_handle_moved(struct amdgpu_device *ade=
-v,
- 	}
-=20
- 	spin_lock(&vm->individual_lock);
--	while (!list_empty(&vm->individual.moved)) {
--		bo_va =3D list_first_entry(&vm->individual.moved,
-+	while (!list_empty(&vm->individual.needs_update)) {
-+		bo_va =3D list_first_entry(&vm->individual.needs_update,
- 					 typeof(*bo_va), base.vm_status);
- 		resv =3D bo_va->base.bo->tbo.base.resv;
- 		spin_unlock(&vm->individual_lock);
-@@ -1774,7 +1776,7 @@ static void amdgpu_vm_bo_insert_map(struct amdgpu_de=
-vice *adev,
- 		amdgpu_vm_prt_get(adev);
-=20
- 	if (amdgpu_vm_is_bo_always_valid(vm, bo) && !bo_va->base.moved)
--		amdgpu_vm_bo_moved(&bo_va->base);
-+		amdgpu_vm_bo_needs_update(&bo_va->base);
-=20
- 	trace_amdgpu_vm_bo_map(bo_va, mapping);
- }
-@@ -2083,7 +2085,7 @@ int amdgpu_vm_bo_clear_mappings(struct amdgpu_device=
- *adev,
-=20
- 		if (amdgpu_vm_is_bo_always_valid(vm, bo) &&
- 		    !before->bo_va->base.moved)
--			amdgpu_vm_bo_moved(&before->bo_va->base);
-+			amdgpu_vm_bo_needs_update(&before->bo_va->base);
- 	} else {
- 		kfree(before);
- 	}
-@@ -2098,7 +2100,7 @@ int amdgpu_vm_bo_clear_mappings(struct amdgpu_device=
- *adev,
-=20
- 		if (amdgpu_vm_is_bo_always_valid(vm, bo) &&
- 		    !after->bo_va->base.moved)
--			amdgpu_vm_bo_moved(&after->bo_va->base);
-+			amdgpu_vm_bo_needs_update(&after->bo_va->base);
- 	} else {
- 		kfree(after);
- 	}
-@@ -2273,7 +2275,7 @@ void amdgpu_vm_bo_invalidate(struct amdgpu_bo *bo, b=
-ool evicted)
- 		if (bo_base->moved)
- 			continue;
- 		bo_base->moved =3D true;
--		amdgpu_vm_bo_moved(bo_base);
-+		amdgpu_vm_bo_needs_update(bo_base);
- 	}
- }
-=20
-@@ -3067,7 +3069,7 @@ static void amdgpu_debugfs_vm_bo_status_info(struct =
-seq_file *m,
-=20
- 	id =3D 0;
- 	seq_puts(m, "\tMoved BOs:\n");
--	list_for_each_entry(base, &lists->moved, vm_status) {
-+	list_for_each_entry(base, &lists->needs_update, vm_status) {
- 		if (!base->bo)
- 			continue;
-=20
-@@ -3076,7 +3078,7 @@ static void amdgpu_debugfs_vm_bo_status_info(struct =
-seq_file *m,
-=20
- 	id =3D 0;
- 	seq_puts(m, "\tIdle BOs:\n");
--	list_for_each_entry(base, &lists->moved, vm_status) {
-+	list_for_each_entry(base, &lists->needs_update, vm_status) {
- 		if (!base->bo)
- 			continue;
-=20
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_vm.h
-index cc096c005e348..2e01a51d5e41a 100644
-=2D-- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-@@ -212,7 +212,8 @@ struct amdgpu_vm_bo_base {
- 	 * protected by vm BO being reserved */
- 	bool				shared;
-=20
--	/* protected by the BO being reserved */
-+	/* if the BO was moved and all mappings are invalid
-+	 * protected by the BO being reserved */
- 	bool				moved;
- };
-=20
-@@ -220,14 +221,14 @@ struct amdgpu_vm_bo_base {
-  * The following status lists contain amdgpu_vm_bo_base objects for
-  * either PD/PTs, per VM BOs or BOs with individual resv object.
-  *
-- * The state transits are: evicted -> moved -> idle
-+ * The state transits are: evicted -> needs_update -> idle
-  */
- struct amdgpu_vm_bo_status {
- 	/* BOs evicted which need to move into place again */
- 	struct list_head		evicted;
-=20
--	/* BOs which moved but new location hasn't been updated in the PDs/PTs *=
-/
--	struct list_head		moved;
-+	/* BOs whose mappings changed but PDs/PTs haven't been updated */
-+	struct list_head needs_update;
-=20
- 	/* BOs done with the state machine and need no further action */
- 	struct list_head		idle;
-=2D-=20
+ Reviewed-by : Shaoyun.liu < Shaoyun.liu@amd.com>
+
+Regards
+Shaoyun.liu
+-----Original Message-----
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Deucher,=
+ Alexander
+Sent: Thursday, May 21, 2026 8:20 PM
+To: amd-gfx@lists.freedesktop.org; Koenig, Christian <Christian.Koenig@amd.=
+com>; Khatri, Sunil <Sunil.Khatri@amd.com>; Lin, Amber <Amber.Lin@amd.com>;=
+ Zhang, Jesse(Jie) <Jesse.Zhang@amd.com>; Liu, Shaoyun <Shaoyun.Liu@amd.com=
+>
+Cc: Chen, Michael <Michael.Chen@amd.com>; Deucher, Alexander <Alexander.Deu=
+cher@amd.com>; Liu, Shaoyun <Shaoyun.Liu@amd.com>; Zhang, Jesse(Jie) <Jesse=
+.Zhang@amd.com>
+Subject: [PATCH 12/42] drm/amdgpu/mes_v12_1: use mes schedule pipe for lega=
+cy queues on unified MES
+
+From: Jesse Zhang <Jesse.Zhang@amd.com>
+
+when suspend_all_gangs is issued to pipe0 MES during system suspend or runt=
+ime PM, pipe0 can only suspend and resume queues it has tracked.
+KCQs registered with a non-zero pipe slot may not be correctly handled, lea=
+ving them in an inconsistent state after resume.
+
+v3: fix the schedule pipe issue
+
+Suggested-by: Michael Chen <michael.chen@amd.com>
+Suggested-by: Alex Deucher <alexander.deucher@amd.com>
+Suggested-by: Shaoyun Liu <shaoyun.liu@amd.com>
+Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/mes_v12_1.c | 22 ++++++++++++++++------
+ 1 file changed, 16 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v12_1.c b/drivers/gpu/drm/amd/a=
+mdgpu/mes_v12_1.c
+index b169e577e5838..2099beedd5755 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mes_v12_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/mes_v12_1.c
+@@ -417,10 +417,15 @@ static int mes_v12_1_map_legacy_queue(struct amdgpu_m=
+es *mes,
+                convert_to_mes_queue_type(input->queue_type);
+        mes_add_queue_pkt.map_legacy_kq =3D 1;
+
+-       if (mes->adev->enable_uni_mes)
+-               pipe =3D AMDGPU_MES_KIQ_PIPE;
+-       else
++       if (mes->adev->enable_uni_mes) {
++               /* Keep scheduler queue on KIQ pipe; map all other kernel q=
+ueues on sched pipe. */
++               if (input->queue_type =3D=3D AMDGPU_RING_TYPE_MES)
++                       pipe =3D AMDGPU_MES_KIQ_PIPE;
++               else
++                       pipe =3D AMDGPU_MES_SCHED_PIPE;
++       } else {
+                pipe =3D AMDGPU_MES_SCHED_PIPE;
++       }
+
+        return mes_v12_1_submit_pkt_and_poll_completion(mes,
+                        input->xcc_id, pipe,
+@@ -457,10 +462,15 @@ static int mes_v12_1_unmap_legacy_queue(struct amdgpu=
+_mes *mes,
+                        convert_to_mes_queue_type(input->queue_type);
+        }
+
+-       if (mes->adev->enable_uni_mes)
+-               pipe =3D AMDGPU_MES_KIQ_PIPE;
+-       else
++       if (mes->adev->enable_uni_mes) {
++               /* Keep scheduler queue on KIQ pipe; map all other kernel q=
+ueues on sched pipe. */
++               if (input->queue_type =3D=3D AMDGPU_RING_TYPE_MES)
++                       pipe =3D AMDGPU_MES_KIQ_PIPE;
++               else
++                       pipe =3D AMDGPU_MES_SCHED_PIPE;
++       } else {
+                pipe =3D AMDGPU_MES_SCHED_PIPE;
++       }
+
+        return mes_v12_1_submit_pkt_and_poll_completion(mes,
+                        input->xcc_id, pipe,
+--
 2.54.0
 
