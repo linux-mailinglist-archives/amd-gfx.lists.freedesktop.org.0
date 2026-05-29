@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cGJlNrtdGWpevwgAu9opvQ
+	id yJEVJ7xdGWpevwgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 11:34:51 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 11:34:52 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86C6A60002B
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 11:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50A38600032
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 11:34:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CA5010FBD7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C96D10FBD6;
 	Fri, 29 May 2026 09:34:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="DOtKUKuS";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="PUrg3zVK";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC71110FBD6
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 09:34:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8028110FBD7
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 09:34:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -27,23 +27,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=IeiB3f270jmZ+D9Cv7YP5NKSQlL/Vbxk1kIZkAzLNm8=; b=DOtKUKuS3818aGJbYt+51MmTMT
- rVT/iCn95X9z7avuf1INQv97/etkTZKOfxBenbeppkoetoov2B/XoAip+DrMCO3fq1XV+KHzGLimy
- aEovK7xYV4a+GM5Tm0J9s5biHM+FkfJIncdy/GjzekS7tKMr6+1hxzLfGxWCxaxil8FCvGTX7+iTV
- hYpSEUrwqYtDzZioUl43tdwr3RDUf2ZwTXhuNecKmWfqwRlBNPUru+OdrwRMwH4NxKncFOvFv6DkL
- BlO2j5n/0VM2cv0fXiLD36siJukjNvNcyOaKTgwkgsnOIMfhRLMHo7jHVftwAlfAvLsND+onReUSt
- w+4kUuEQ==;
+ bh=gyoPF60x+hV+GQN925kU/mfPNkf1hcYAmTEQog4tUjA=; b=PUrg3zVK8Pup+NSuFGrBZKcAQB
+ 0j8b4IvtXhzK4Xs485vghP2DsSdUqikVfxnoMREKnScUzs9g/1ytMIbQP6W7NYizCPyugF3JZ1HeJ
+ 96Zdp77HE55H7EV2xrx/NVimFAi1pNbKp5mOTJQffcY3tuMNff2/1bYi2scT2HviOZRPCCru0sDHb
+ Zpd0uF/mGrX2jnPZy1IItpnUw/26PwWlv2UPiyeHg4rsPQlC7IOhKqSKnSrD/EizGmEghWNO2OBiw
+ j5pVVQRRuD0pT5SKtqIr/SIY4Rxh8v2gJMFSSmY+8ANCrlI6oOYPpUjJyDyY1gm4P5+zfUhAzsMzi
+ cJZKQyuw==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wStc3-009nUT-0R; Fri, 29 May 2026 11:34:43 +0200
+ id 1wStc3-009nUb-Po; Fri, 29 May 2026 11:34:43 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Subject: [PATCH 2/4] drm/amdgpu: Remove the bo list mutex
-Date: Fri, 29 May 2026 10:34:34 +0100
-Message-ID: <20260529093436.82149-3-tvrtko.ursulin@igalia.com>
+Subject: [PATCH 3/4] drm/amdgpu: Replace idr with xarray in amdgpu_bo_list
+Date: Fri, 29 May 2026 10:34:35 +0100
+Message-ID: <20260529093436.82149-4-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260529093436.82149-1-tvrtko.ursulin@igalia.com>
 References: <20260529093436.82149-1-tvrtko.ursulin@igalia.com>
@@ -89,119 +89,267 @@ X-Spamd-Result: default: False [1.49 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:mid,igalia.com:email,amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 86C6A60002B
+X-Rspamd-Queue-Id: 50A38600032
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The bo list is immutable during command submission since the drm_exec
-conversion so we can remove the mutex.
+IDR is deprecated so let's replace it with xarray.
+
+Conversion is mostly 1:1 apart from AMDGPU_BO_LIST_OP_UPDATE which was
+implemented with idr_replace, and has now been replaced with a sequence of
+xa_load and xa_cmpxchg. Should userspace attempt multi-threaded update
+operations on the same handle it could theoretically hit a new -ENOENT
+path. But I believe this is purely theoretical and still safe.
+
+Also, since we have removed the RCU protection around the handle lookup we
+also removed the RCU freeing of the list.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Reviewed-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c |  3 +--
- drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h |  4 ----
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c      | 15 ++++-----------
- 3 files changed, 5 insertions(+), 17 deletions(-)
+v2:
+ * Dropped RCU freeing of the list.
 
+v3:
+ * Handle NULL in amdgpu_bo_list_put.
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h         |  4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c | 83 +++++++++------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h |  3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     | 11 +--
+ 4 files changed, 43 insertions(+), 58 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 5d7bfa59424a..12815d4eb6cb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -44,6 +44,7 @@
+ #include <linux/hashtable.h>
+ #include <linux/dma-fence.h>
+ #include <linux/pci.h>
++#include <linux/xarray.h>
+ 
+ #include <drm/ttm/ttm_bo.h>
+ #include <drm/ttm/ttm_placement.h>
+@@ -445,8 +446,7 @@ struct amdgpu_fpriv {
+ 	struct amdgpu_bo_va	*prt_va;
+ 	struct amdgpu_bo_va	*csa_va;
+ 	struct amdgpu_bo_va	*seq64_va;
+-	struct mutex		bo_list_lock;
+-	struct idr		bo_list_handles;
++	struct xarray		bo_list_handles;
+ 	struct amdgpu_ctx_mgr	ctx_mgr;
+ 	struct amdgpu_userq_mgr	userq_mgr;
+ 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-index 5ce3160ce55a..fa230d480ab0 100644
+index fa230d480ab0..02e097b0f286 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c
-@@ -42,7 +42,7 @@ static void amdgpu_bo_list_free_rcu(struct rcu_head *rcu)
+@@ -38,14 +38,6 @@
+ #define AMDGPU_BO_LIST_NUM_BUCKETS	(AMDGPU_BO_LIST_MAX_PRIORITY + 1)
+ #define AMDGPU_BO_LIST_MAX_ENTRIES	(128 * 1024)
+ 
+-static void amdgpu_bo_list_free_rcu(struct rcu_head *rcu)
+-{
+-	struct amdgpu_bo_list *list = container_of(rcu, struct amdgpu_bo_list,
+-						   rhead);
+-
+-	kvfree(list);
+-}
+-
+ static void amdgpu_bo_list_free(struct kref *ref)
  {
- 	struct amdgpu_bo_list *list = container_of(rcu, struct amdgpu_bo_list,
- 						   rhead);
--	mutex_destroy(&list->bo_list_mutex);
+ 	struct amdgpu_bo_list *list = container_of(ref, struct amdgpu_bo_list,
+@@ -54,7 +46,8 @@ static void amdgpu_bo_list_free(struct kref *ref)
+ 
+ 	amdgpu_bo_list_for_each_entry(e, list)
+ 		amdgpu_bo_unref(&e->bo);
+-	call_rcu(&list->rhead, amdgpu_bo_list_free_rcu);
 +
- 	kvfree(list);
++	kvfree(list);
  }
  
-@@ -134,7 +134,6 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
+ static int amdgpu_bo_list_entry_cmp(const void *_a, const void *_b)
+@@ -147,36 +140,26 @@ int amdgpu_bo_list_create(struct amdgpu_device *adev, struct drm_file *filp,
  
- 	trace_amdgpu_cs_bo_status(list->num_entries, total_size);
+ }
  
--	mutex_init(&list->bo_list_mutex);
- 	*result = list;
- 	return 0;
+-static void amdgpu_bo_list_destroy(struct amdgpu_fpriv *fpriv, int id)
+-{
+-	struct amdgpu_bo_list *list;
+-
+-	mutex_lock(&fpriv->bo_list_lock);
+-	list = idr_remove(&fpriv->bo_list_handles, id);
+-	mutex_unlock(&fpriv->bo_list_lock);
+-	if (list)
+-		kref_put(&list->refcount, amdgpu_bo_list_free);
+-}
+-
+-int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, int id,
++int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, u32 id,
+ 		       struct amdgpu_bo_list **result)
+ {
+-	rcu_read_lock();
+-	*result = idr_find(&fpriv->bo_list_handles, id);
++	struct amdgpu_bo_list *list;
  
+-	if (*result && kref_get_unless_zero(&(*result)->refcount)) {
+-		rcu_read_unlock();
+-		return 0;
+-	}
++	xa_lock(&fpriv->bo_list_handles);
++	list = xa_load(&fpriv->bo_list_handles, id);
++	if (list)
++		kref_get(&list->refcount);
++	xa_unlock(&fpriv->bo_list_handles);
+ 
+-	rcu_read_unlock();
+-	*result = NULL;
+-	return -ENOENT;
++	*result = list;
++
++	return list ? 0 : -ENOENT;
+ }
+ 
+ void amdgpu_bo_list_put(struct amdgpu_bo_list *list)
+ {
+-	kref_put(&list->refcount, amdgpu_bo_list_free);
++	if (list)
++		kref_put(&list->refcount, amdgpu_bo_list_free);
+ }
+ 
+ int amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in,
+@@ -203,12 +186,12 @@ int amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in,
+ int amdgpu_bo_list_ioctl(struct drm_device *dev, void *data,
+ 				struct drm_file *filp)
+ {
+-	struct amdgpu_device *adev = drm_to_adev(dev);
+ 	struct amdgpu_fpriv *fpriv = filp->driver_priv;
++	struct amdgpu_device *adev = drm_to_adev(dev);
++	struct drm_amdgpu_bo_list_entry *info = NULL;
++	struct amdgpu_bo_list *list, *prev, *curr;
+ 	union drm_amdgpu_bo_list *args = data;
+ 	uint32_t handle = args->in.list_handle;
+-	struct drm_amdgpu_bo_list_entry *info = NULL;
+-	struct amdgpu_bo_list *list, *old;
+ 	int r;
+ 
+ 	r = amdgpu_bo_create_list_entry_array(&args->in, &info);
+@@ -222,19 +205,18 @@ int amdgpu_bo_list_ioctl(struct drm_device *dev, void *data,
+ 		if (r)
+ 			goto error_free;
+ 
+-		mutex_lock(&fpriv->bo_list_lock);
+-		r = idr_alloc(&fpriv->bo_list_handles, list, 1, 0, GFP_KERNEL);
+-		mutex_unlock(&fpriv->bo_list_lock);
+-		if (r < 0) {
++		r = xa_alloc(&fpriv->bo_list_handles, &handle, list,
++			     xa_limit_32b, GFP_KERNEL);
++		if (r)
+ 			goto error_put_list;
+-		}
+ 
+-		handle = r;
+ 		break;
+ 
+ 	case AMDGPU_BO_LIST_OP_DESTROY:
+-		amdgpu_bo_list_destroy(fpriv, handle);
++		list = xa_erase(&fpriv->bo_list_handles, handle);
++		amdgpu_bo_list_put(list);
+ 		handle = 0;
++
+ 		break;
+ 
+ 	case AMDGPU_BO_LIST_OP_UPDATE:
+@@ -243,16 +225,23 @@ int amdgpu_bo_list_ioctl(struct drm_device *dev, void *data,
+ 		if (r)
+ 			goto error_free;
+ 
+-		mutex_lock(&fpriv->bo_list_lock);
+-		old = idr_replace(&fpriv->bo_list_handles, list, handle);
+-		mutex_unlock(&fpriv->bo_list_lock);
++		curr = xa_load(&fpriv->bo_list_handles, handle);
++		if (!curr) {
++			r = -ENOENT;
++			goto error_put_list;
++		}
+ 
+-		if (IS_ERR(old)) {
+-			r = PTR_ERR(old);
++		prev = xa_cmpxchg(&fpriv->bo_list_handles, handle, curr, list,
++				  GFP_KERNEL);
++		if (xa_is_err(prev)) {
++			r = xa_err(prev);
++			goto error_put_list;
++		} else if (prev != curr) {
++			r = -ENOENT;
+ 			goto error_put_list;
+ 		}
+ 
+-		amdgpu_bo_list_put(old);
++		amdgpu_bo_list_put(curr);
+ 		break;
+ 
+ 	default:
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
-index 2b5e7c46a39d..1acf53f8b2f9 100644
+index 1acf53f8b2f9..cf127bc66f53 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h
-@@ -51,10 +51,6 @@ struct amdgpu_bo_list {
- 	unsigned first_userptr;
- 	unsigned num_entries;
+@@ -43,7 +43,6 @@ struct amdgpu_bo_list_entry {
+ };
  
--	/* Protect access during command submission.
--	 */
--	struct mutex bo_list_mutex;
--
+ struct amdgpu_bo_list {
+-	struct rcu_head rhead;
+ 	struct kref refcount;
+ 	struct amdgpu_bo *gds_obj;
+ 	struct amdgpu_bo *gws_obj;
+@@ -54,7 +53,7 @@ struct amdgpu_bo_list {
  	struct amdgpu_bo_list_entry entries[] __counted_by(num_entries);
  };
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index 6ada57abce9d..6845342b9e7e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -870,8 +870,6 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 			return r;
- 	}
+-int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, int id,
++int amdgpu_bo_list_get(struct amdgpu_fpriv *fpriv, u32 id,
+ 		       struct amdgpu_bo_list **result);
+ void amdgpu_bo_list_put(struct amdgpu_bo_list *list);
+ int amdgpu_bo_create_list_entry_array(struct drm_amdgpu_bo_list_in *in,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index 71272f40feef..8c13b644dc71 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -1504,8 +1504,7 @@ int amdgpu_driver_open_kms(struct drm_device *dev, struct drm_file *file_priv)
+ 	if (r)
+ 		goto error_vm;
  
--	mutex_lock(&p->bo_list->bo_list_mutex);
+-	mutex_init(&fpriv->bo_list_lock);
+-	idr_init_base(&fpriv->bo_list_handles, 1);
++	xa_init_flags(&fpriv->bo_list_handles, XA_FLAGS_ALLOC1);
+ 
+ 	r = amdgpu_userq_mgr_init(&fpriv->userq_mgr, file_priv, adev);
+ 	if (r)
+@@ -1550,8 +1549,8 @@ void amdgpu_driver_postclose_kms(struct drm_device *dev,
+ 	struct amdgpu_fpriv *fpriv = file_priv->driver_priv;
+ 	struct amdgpu_bo_list *list;
+ 	struct amdgpu_bo *pd;
++	unsigned long handle;
+ 	u32 pasid;
+-	int handle;
+ 
+ 	if (!fpriv)
+ 		return;
+@@ -1587,11 +1586,9 @@ void amdgpu_driver_postclose_kms(struct drm_device *dev,
+ 		amdgpu_pasid_free_delayed(pd->tbo.base.resv, pasid);
+ 	amdgpu_bo_unref(&pd);
+ 
+-	idr_for_each_entry(&fpriv->bo_list_handles, list, handle)
++	xa_for_each(&fpriv->bo_list_handles, handle, list)
+ 		amdgpu_bo_list_put(list);
 -
- 	/* Get userptr backing pages. If pages are updated after registered
- 	 * in amdgpu_gem_userptr_ioctl(), amdgpu_cs_list_validate() will do
- 	 * amdgpu_ttm_backend_bind() to flush and invalidate new pages
-@@ -988,7 +986,6 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
- 		amdgpu_hmm_range_free(e->range);
- 		e->range = NULL;
- 	}
--	mutex_unlock(&p->bo_list->bo_list_mutex);
- 	return r;
- }
+-	idr_destroy(&fpriv->bo_list_handles);
+-	mutex_destroy(&fpriv->bo_list_lock);
++	xa_destroy(&fpriv->bo_list_handles);
  
-@@ -1370,7 +1367,6 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
- 	amdgpu_vm_move_to_lru_tail(p->adev, &fpriv->vm);
- 
- 	mutex_unlock(&p->adev->notifier_lock);
--	mutex_unlock(&p->bo_list->bo_list_mutex);
- 	return 0;
- }
- 
-@@ -1442,28 +1438,25 @@ int amdgpu_cs_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
- 
- 	r = amdgpu_cs_patch_jobs(&parser);
- 	if (r)
--		goto error_backoff;
-+		goto error_fini;
- 
- 	r = amdgpu_cs_vm_handling(&parser);
- 	if (r)
--		goto error_backoff;
-+		goto error_fini;
- 
- 	r = amdgpu_cs_sync_rings(&parser);
- 	if (r)
--		goto error_backoff;
-+		goto error_fini;
- 
- 	trace_amdgpu_cs_ibs(&parser);
- 
- 	r = amdgpu_cs_submit(&parser, data);
- 	if (r)
--		goto error_backoff;
-+		goto error_fini;
- 
- 	amdgpu_cs_parser_fini(&parser);
- 	return 0;
- 
--error_backoff:
--	mutex_unlock(&parser.bo_list->bo_list_mutex);
--
- error_fini:
- 	amdgpu_cs_parser_fini(&parser);
- 	return r;
+ 	kfree(fpriv);
+ 	file_priv->driver_priv = NULL;
 -- 
 2.54.0
 
