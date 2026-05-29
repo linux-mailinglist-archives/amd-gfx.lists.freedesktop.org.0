@@ -2,53 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KH3qFRVbGWoLvwgAu9opvQ
+	id YP+YL7pdGWpevwgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 11:23:33 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 11:34:50 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8D215FFDF7
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 11:23:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 973D3600024
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 11:34:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9149910FBB5;
-	Fri, 29 May 2026 09:23:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECDA810FBD3;
+	Fri, 29 May 2026 09:34:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Rg02szv4";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="X8b+uGUe";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0520A10FBB5
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 09:23:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 455B510FBCF
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 09:34:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
- Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
  Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
  In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Rgj1YdP9tGy2Kb+4Teg2cq6YrMYW/vBpH2Z2YCgf814=; b=Rg02szv4JeMp9EczK93aYw/KbI
- nRLW55tfxkGcFVKD6hiXJu8PijX+PwCx/y7N8UeZ/W/fTn3xpTK9ZltNri9vnPMwkqIhi0E9MMTg3
- i/ZKznTiRZ3EksXwUcZc2G59qGHJglky8Sy2Ff5OpeKAlDaDhvsPl69OPcbJc5nsLRgz+IvmN8Ih3
- xTfxwQjGhdC3BOeGDyh3S0VwrgxB4mBu5YUonUfYQd4jQDmFQFpxgL3PsCjczw9vyegObSDV3Os/K
- VxSQS2aHJ4vcTLmQOLSx+QzD50pgAiI6XmfO2lBgH3c3FG3Vq4H0VADXB4RG64ZvOrCpocBf2mkn7
- hIyFiFug==;
+ bh=f+3ZDZqo9/jLB1XMtTFyAuAH41nBPsTbqIoQm5Y/FJU=; b=X8b+uGUesy68uDZ27J+MNiYmGC
+ BxkIVIZJHIVATc5Q93a3t2qJjC4HrNPx22ynF+wmo32oJ2kczh25GrpB7j1B1slLUpL1JJ05azeEm
+ vcR5ZOm0262lWMxQW4ZKHH3zHeo7LUSxVpFSKZIpb14AotvsbErxVf9A9Ks4w0CNZU9TWDDNryjwX
+ ZppDv6DSmPTofOBhsLQ8+Alu6wDY4wvlo/pMT5c2xV109aed1xNtO5jZFbqkFi2F83jTTQYhGaEgW
+ FVTOOYHO/rxF8HjHl+Bhh/4YWL5/gexn/VuQnr35oMGK2EkSIzjEphHIt59rzj5IZEunLk/IbZFkn
+ ru+rHvRg==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wStR9-009nFc-72; Fri, 29 May 2026 11:23:27 +0200
+ id 1wStc1-009nUG-FW; Fri, 29 May 2026 11:34:41 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Benjamin Welton <benjamin.welton@amd.com>, Perry Yuan <perry.yuan@amd.com>,
- Kent Russell <kent.russell@amd.com>, Yifan Zhang <yifan1.zhang@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>
-Subject: [PATCH] amd/amdkfd: Fix profiler lock init order
-Date: Fri, 29 May 2026 10:23:22 +0100
-Message-ID: <20260529092322.81977-1-tvrtko.ursulin@igalia.com>
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: [PATCH 0/4] BO list handling cleanups
+Date: Fri, 29 May 2026 10:34:32 +0100
+Message-ID: <20260529093436.82149-1-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,116 +61,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.99 / 15.00];
+X-Spamd-Result: default: False [1.49 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[3];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.986];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,igalia.com:mid,igalia.com:email]
-X-Rspamd-Queue-Id: B8D215FFDF7
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,igalia.com:mid]
+X-Rspamd-Queue-Id: 973D3600024
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-A call chain at driver probe exists where profiler lock is used before it
-is initialized:
+Resurrecting some old cleanup patches which have fallen through the cracks.
 
-[   12.131440] kfd kfd: Allocated 3969056 bytes on gart
-[   12.131561] kfd kfd: Total number of KFD nodes to be created: 1
-[   12.132691] ------------[ cut here ]------------
-[   12.132703] DEBUG_LOCKS_WARN_ON(lock->magic != lock)
-[   12.132705] WARNING: kernel/locking/mutex.c:625 at __mutex_lock+0x616/0x1150, CPU#0: (udev-worker)/569
-...
-[   12.133051] Call Trace:
-[   12.133055]  <TASK>
-[   12.133059]  ? mark_held_locks+0x40/0x70
-[   12.133068]  ? init_mqd+0xe1/0x1b0 [amdgpu 5154987db73e842b9b4f761e2bd86e17c7ada65c]
-[   12.133671]  ? _raw_spin_unlock_irqrestore+0x4c/0x60
-[   12.133683]  ? init_mqd+0xe1/0x1b0 [amdgpu 5154987db73e842b9b4f761e2bd86e17c7ada65c]
-[   12.134235]  init_mqd+0xe1/0x1b0 [amdgpu 5154987db73e842b9b4f761e2bd86e17c7ada65c]
-[   12.134781]  init_mqd_hiq+0x12/0x30 [amdgpu 5154987db73e842b9b4f761e2bd86e17c7ada65c]
-[   12.135340]  kq_initialize.constprop.0+0x309/0x400 [amdgpu 5154987db73e842b9b4f761e2bd86e17c7ada65c]
-[   12.135898]  kernel_queue_init+0x44/0x80 [amdgpu 5154987db73e842b9b4f761e2bd86e17c7ada65c]
-[   12.136439]  pm_init+0x70/0x100 [amdgpu 5154987db73e842b9b4f761e2bd86e17c7ada65c]
-[   12.136984]  start_cpsch+0x1dc/0x280 [amdgpu 5154987db73e842b9b4f761e2bd86e17c7ada65c]
-[   12.137525]  kgd2kfd_device_init+0x70f/0xd10 [amdgpu 5154987db73e842b9b4f761e2bd86e17c7ada65c]
-[   12.138070]  amdgpu_amdkfd_device_init+0x172/0x230 [amdgpu 5154987db73e842b9b4f761e2bd86e17c7ada65c]
-[   12.138618]  amdgpu_device_init+0x246a/0x2960 [amdgpu 5154987db73e842b9b4f761e2bd86e17c7ada65c]
+Series needed a gentle rebase but they have all even been reviewed.
 
-The human readable call chain is:
+I *think* the reason they haven't been merged was that before I have been
+"bundling" them with the context handling XArray conversion and the combined
+series was failing the internal (AMD) CI. So maybe try separate now in attempt
+to isolate the problem.
 
-kgd2kfd_device_init
-  kfd_init_node
-    kfd_resume
-      node->dqm->ops.start
+Cc: Christian König <christian.koenig@amd.com>
 
-Where start can be start_cpsch, which calls pm_init, etc, which ends up
-calling kq->mqd_mgr->init_mqd, which takes the profiler lock:
+Tvrtko Ursulin (4):
+  drm/amdgpu: Drop support for variable struct drm_amdgpu_bo_list_entry
+    size
+  drm/amdgpu: Remove the bo list mutex
+  drm/amdgpu: Replace idr with xarray in amdgpu_bo_list
+  drm/amdgpu: Remove output parameter in bo list handling
 
-init_mqd()
-{
-...
-	mutex_lock(&mm->dev->kfd->profiler_lock);
-...
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h         |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c | 169 ++++++++------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.h |  22 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c      |  67 ++++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     |  11 +-
+ 5 files changed, 109 insertions(+), 164 deletions(-)
 
-Fix it by initializing the mutext at the top of kgd2kfd_device_init().
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Fixes: a789761de305 ("amd/amdkfd: Add kfd_ioctl_profiler to contain profiler kernel driver changes")
-Cc: Benjamin Welton <benjamin.welton@amd.com>
-Cc: Perry Yuan <perry.yuan@amd.com>
-Cc: Kent Russell <kent.russell@amd.com>
-Cc: Yifan Zhang <yifan1.zhang@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Felix Kuehling <Felix.Kuehling@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-index c2c59781feee..1c57e11220a7 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -736,6 +736,9 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
- 	int partition_mode;
- 	int xcp_idx;
- 
-+	kfd->profiler_process = NULL;
-+	mutex_init(&kfd->profiler_lock);
-+
- 	kfd->mec_fw_version = amdgpu_amdkfd_get_fw_version(kfd->adev,
- 			KGD_ENGINE_MEC1);
- 	kfd->mec2_fw_version = amdgpu_amdkfd_get_fw_version(kfd->adev,
-@@ -936,9 +939,6 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
- 
- 	svm_range_set_max_pages(kfd->adev);
- 
--	kfd->profiler_process = NULL;
--	mutex_init(&kfd->profiler_lock);
--
- 	kfd->init_complete = true;
- 	dev_info(kfd_device, "added device %x:%x\n", kfd->adev->pdev->vendor,
- 		 kfd->adev->pdev->device);
 -- 
 2.54.0
 
