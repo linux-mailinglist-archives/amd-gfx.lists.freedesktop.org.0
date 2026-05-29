@@ -2,133 +2,113 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4G+kEJm6GWqVyggAu9opvQ
+	id yKk1IW40HWpbWQkAu9opvQ:T3
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 18:11:05 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 09:27:44 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BBAC605547
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 May 2026 18:11:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFF5D61ADB7
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 09:27:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26E2E1121E1;
-	Fri, 29 May 2026 16:11:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90B93112EE4;
+	Mon,  1 Jun 2026 07:27:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="vufJsMsS";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WeJvkyPy";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012060.outbound.protection.outlook.com [52.101.53.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FB1F1121E1
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 16:11:01 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GuxtSOtOBuVIUjrvsTq5MyASukmJpd6yl36Jx5qqmpnbgMZLZ/eKSyQmsyRHAaIRv+UZA/e/dHp1PjSiKvpUhQeZ07HAkgnwM0HPr40HbrPz5+z4+Xs3uMc7I4y/Yt5WwF9Qbi9nvk5wsOzYyVZ/46SkAh1R/y0V7Dy3lgIbgt2gpG+1+UiZACl/Vsgo9zB/oZ8foKFF3yjZ5rW+N1h3/teViq9Qn9/KLyVEIQ9N34u6B1LdAM+DRwDKuA27QY9QML0c1QWnxB3FRUV9d7ywqK07MyccOR3rmEUkgjf/KxSPpxyyKHiEvWYgxDuqxeTIkWMCO0A0PHVrsEXccFGUdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HPH2wqMD+Gmp6IiWdPPif28dzNnSoC0osSzaeI/Hrmk=;
- b=WSwzBChnP8BPuQ6ZOb7O3c7fcXLexoR7PWwvXnT7hW1uHXF4KnaYTNFfkn5a+utsWoofPlYI+eJxK92PJ+VV6KLiUwdNCk0FbpyM+gKk+ywE1ZAIwRbOp1nncFEA7wGqmrVJABt6D44CAqvldtRz7RWx7ean/jXaw0Y6r2XILLTiLyORGCZ8FPkKPKjaCBtoNJHSfRocg5kPWtqd6eRPK7n2qgo5RTy3gngtFSQ/zNLOWr2sJ3/9rILr7jodb9moIng03Mv5GaTKV/yfjVnPQOVl/trXhURmpJOjZPhWcbqUSaIrOOHbNivMONZFmU5nFpgcdOh9ZonVXlzyEoz19A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HPH2wqMD+Gmp6IiWdPPif28dzNnSoC0osSzaeI/Hrmk=;
- b=vufJsMsSn/Oz3i5TrIFzOvwT8W/0HqL/WP8qT7GEUtxNmHz/raOo3UtuXf+EBQ+qs6pJfNNxcuIIIQnQrT5gkSOUO0I9auD/gUs1agxsHKLtTGvN94voQeC8c/3COjwMDeJC8lnCyhwYaMLbY8GG7Lud0MoKInvEJbPvGrkyt/8=
-Received: from CH0PR12MB5372.namprd12.prod.outlook.com (2603:10b6:610:d7::10)
- by PH7PR12MB9152.namprd12.prod.outlook.com (2603:10b6:510:2ec::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.12; Fri, 29 May
- 2026 16:10:55 +0000
-Received: from CH0PR12MB5372.namprd12.prod.outlook.com
- ([fe80::f3be:26ac:e6fd:16da]) by CH0PR12MB5372.namprd12.prod.outlook.com
- ([fe80::f3be:26ac:e6fd:16da%4]) with mapi id 15.21.0071.014; Fri, 29 May 2026
- 16:10:55 +0000
-From: "Liu, Shaoyun" <Shaoyun.Liu@amd.com>
-To: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Koenig,
- Christian" <Christian.Koenig@amd.com>, "Khatri, Sunil"
- <Sunil.Khatri@amd.com>, "Lin, Amber" <Amber.Lin@amd.com>, "Zhang, Jesse(Jie)"
- <Jesse.Zhang@amd.com>
-CC: "Rastogi, Manu" <Manu.Rastogi@amd.com>, "Zhang, Jesse(Jie)"
- <Jesse.Zhang@amd.com>
-Subject: RE: [PATCH 14/42] drm/amdgpu/gfx12: Refactor compute pipe reset and
- add HQD cleanup
-Thread-Topic: [PATCH 14/42] drm/amdgpu/gfx12: Refactor compute pipe reset and
- add HQD cleanup
-Thread-Index: AQHc6YEFumJDZVFTF0mRQd4iEORTuLYlOHBA
-Date: Fri, 29 May 2026 16:10:54 +0000
-Message-ID: <CH0PR12MB5372CB6EE646106B41E1B214F4162@CH0PR12MB5372.namprd12.prod.outlook.com>
-References: <20260522002048.98506-1-alexander.deucher@amd.com>
- <20260522002048.98506-15-alexander.deucher@amd.com>
-In-Reply-To: <20260522002048.98506-15-alexander.deucher@amd.com>
-Accept-Language: en-CA, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-05-29T16:05:40.0000000Z;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD General
- v26; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=3;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH0PR12MB5372:EE_|PH7PR12MB9152:EE_
-x-ms-office365-filtering-correlation-id: 20579f04-8c6d-4c9b-a6de-08debd9cdcc2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|38070700021|921020|22082099003|18002099003|3023799007|4143699003|11063799006|56012099006;
-x-microsoft-antispam-message-info: 9mPc2uq/slRt/d5ufguYrk+FxpihCjCc33UeIK+71YQ2WfbsXY8TSxzBFuGLvWuXi6GzIg382IcMJ4YR/iQeu62Sy0XQSvbFurWSR5Cp6xuCtenXrL1FcEROhNdbrqqbVvvqroAK6TIM9B4dFmlvcA/5ItgZnvm5FrAgIPj7W6sbXEsEcG0T5a1dqS7w93KvcyxhyKwD0CgzLk20H7Dl7UBy0rlTHdvlA4uKNg7/V+vIeSAAVbpQbnlLIuJ0j3JytB/FoCcwCXyb2uXMOL0VdquhtEqCGVyta/7IcAtG50szV2z2Zu3/x8vD4lst0YxXqa3hFSiMi8pm2RX760Ek2sQEA24YC7EL0EmucLsdJt1G8LzWupsRQ2pXu2/OVCoeDz++IscdruoyrkQHEkuJnPmIIz9cIxsMyDEaC7Hh5+vUoMV3AEgcFsmC4V8zotB4/9etHBoq/05DNtsDU8A20ms7bu8MR+TurhOuB092E9QWbsh9PSChjekeul0v/mBW4G090EBeSXjH2kC9pW2w2m9QPLt6LudiDAU6QO3mWoQ0672P6LKQdrCl0GbXYkHlf7AMcg07zUSK7SbeRgaK2z+wDhwqaNo/cUrNSFHFmnSENeMehFXV8Ezfv2mTE6dzmyuvPNBiByomqtYZkdjs5YtO8bUKJc7TJopfmc8nHWwMPSkFEjUjA2D58Ie4R/U9v2g8cZpkXDUISyICyfG7zuQ7oEBfwL7Q2L0ZhiWzhCHtmaFxaTfgcfVodMZ4FtjaxQWVGts59tdELGMOlr1mOw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR12MB5372.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(921020)(22082099003)(18002099003)(3023799007)(4143699003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?i/Sz7EUq8gZ9HBLPtFdAWx3rN9iaQ/FzHi/FzfR4W7fnth1DZkOCZQwmnHCb?=
- =?us-ascii?Q?AfHLKgL1utn0bj3M4H4OX1UFlC8tL9mbS+AQPvPKhKvJCYZoNiOS+uX03YLh?=
- =?us-ascii?Q?QaGMaNlOJ3hG73MQz/3MBfhSmrvKU7WP+CfluSl7DJpjtIA4CbKtX184iY4u?=
- =?us-ascii?Q?Nf3sDFvOu5Yo3UkSQVZCkgf51Mzv+S+UOU2S6pAIjeJCE0LO85f+GJk8RYQZ?=
- =?us-ascii?Q?5S1fkdv15rDROqnRgpdj9BH65oTCfqLsnRJpNmES9bvPXKOVY1bplt9g5LuR?=
- =?us-ascii?Q?+T+tKyFA/GtCiJvdvV1f6iRwimk6gy9Q8rL8AHk56/dfsZWfm2199Us8IouR?=
- =?us-ascii?Q?/Z6VtrKEHSXL8nbBEaxCDbq99wLz+Nc1/tdqjPNtCzN9nykp1oI2mTuuocOq?=
- =?us-ascii?Q?qnBGhYtMJnySuB+fZ5Qg9yfXdpq3A1tNWJ7dD1bw1yzTIW/5WmQEfFoMpf/2?=
- =?us-ascii?Q?h2pKdRZEtGNLZaRFsMrg6dY2jdGoOJmnGylmyhuRBh+xerwshnlmvy5ui/Ib?=
- =?us-ascii?Q?T9S0A7GnF5y2l4eqDcqQcVp/o3kME9HbrqX8yaMgue8ePC0iJdDO0SmU+Hzz?=
- =?us-ascii?Q?bVdMqGAeWZqjeO/JbrH3hDplnKF8jsgpVlrIXIiz6NLelQWG/k1b9NfYB7np?=
- =?us-ascii?Q?9ovafYmkBSJNFV7RhkTEIo29DrD8Rj2IboQ+zjBG4Uic5mxr2zZSJeG/mfx0?=
- =?us-ascii?Q?IuLfn7+ZDjNRMCmOUSbxFMHqo2L9Xt1xM304/2qM1yxzQGj1uKyqdNddwm3s?=
- =?us-ascii?Q?8ca7O89ER/dpclNsmx21l10KxGIvPPVsO19XduSvFwZYbFMqdWsz+IhGTJFd?=
- =?us-ascii?Q?Tppq1GsG8ef4bPkSNFbz/pqFaysi/yVjYn7lvgSsQ9VgWyyxUYGUCGjM1Yub?=
- =?us-ascii?Q?GKnew8ZkEkwEKAzCX5Hi7qkom8fjRweF6Z7QLGMVvOCwd6BdqoKpDLEu3/iH?=
- =?us-ascii?Q?tVhfdlt5aAO/5ZT5flPml2ncUdVS8TgutB5K0lO1leiMp+kLTE3ErOX+Q70r?=
- =?us-ascii?Q?BkWhDA6aDvBZBL/RmwbcQ4e5/fusO1XvDpwj3qzDNqwAF+4Mf5j64raCEoJj?=
- =?us-ascii?Q?7btHI2/t4PnS2/9Kc1aKUHrZ0++ILW2VvI4g/DNzK4DTWoq1SO/aEDiqIOZF?=
- =?us-ascii?Q?YCzZc2R3/T/eHX5D4dq+ISQelp+rNEKCCcyU1CmYRC/SjRu6wpp/T67ELfBY?=
- =?us-ascii?Q?ZnFYE1u0fQOT3UHNMso2VzoNd1kiAGzv5bnsKWOsdfVOBO7iyqQ8wyIDlR9B?=
- =?us-ascii?Q?j2MCH/y70hyGdXbGnWsn7m+xR0FR/FzqrxlBN9QXeCjEPTxnbNBPhTZUuHHP?=
- =?us-ascii?Q?7dnZdoSmJjuOc803dXhFZ2rpb4d+E4bSLDVdlTxpIMvX6no1LgGB38Pney+v?=
- =?us-ascii?Q?WcBkqY4IDr1cBxzrMepaTr0ddqhhbvRxiJ5cKLt20QL4pp+EWuVAjhyxNWjC?=
- =?us-ascii?Q?yNevEjJQ0Dwr4btd9mXkaMfTRNnE7abUTvDH8dktzVLNR4JA5co1lrOKolQ3?=
- =?us-ascii?Q?EHfylRWNqLqIg8a36h6qEAdrXhxEb14qaRTjQ7uMhdTMl/cCoerelHVuoOVj?=
- =?us-ascii?Q?a0Yk6xS6FjAob3ytHW4no2Rf4pROZ5fVWiGvcYdnlfmVvmPtMlTRMljW2jQh?=
- =?us-ascii?Q?hX4sAnqhNJXlqBtUcEfnMWA0TbekuFn/eDRcqSWRZlVWA91QfJhk1zbOO/FL?=
- =?us-ascii?Q?tu1uY6Rb2PTBzKXT3O3MX4sS/warZ1NXaIfiPL0RvtR5IeVD?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
+ [209.85.218.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB4971122F2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 17:20:14 +0000 (UTC)
+Received: by mail-ej1-f42.google.com with SMTP id
+ a640c23a62f3a-bd4f7f05e90so2426407166b.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 May 2026 10:20:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1780075213; cv=none;
+ d=google.com; s=arc-20240605;
+ b=A2I38X5G+tPQA+wBk/GhlYv7fJ6SDgw6XHIjVuqef7R8plz2LKZz6BKpKraOcIHnNt
+ 17tHmB3ZmYfccxK2cRD/qC4DOTmM/kd+P7hX0ATDm35s21EWJZ/oHEQcbmqUh0khtxXA
+ +yLie0kuFn/KrNtXR7Qu7mvgTWQ/BTRPncusb3OWPlwIwnI1Rxtc3ergYPjCvaEuW86K
+ eRX7ltXOL1Apq6QD77C+hDPMW6B7wpbLJZb/OEa+iYXpmTrD35SbeDnZ8ZAZIfTnaOJf
+ wstYLw/wnu0cZCLb8wSN8odHy1BkF9D0uny5PZ6DeXN9kXDjQKzC3uEmZRgb6IgBVe12
+ UYxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=ynZ2XBdbslE1WoArPNQQVVLJB+hS3g1ZlbeqlJR3SQc=;
+ fh=mtAgAg1x6dVCbtHnUW2KC/uwxWav4iLTNx7iyxxuz5Q=;
+ b=lpv8Qwl4b79Yuht95WXDwWA7SgrdWFYVwUPwXQu2lmiFXvmuqDws5d7QtNAMgx6+kl
+ ZVwz3D+PIGkVuva9YniYAHBBAqR06rBGnx4PoCz8DfEE46R67mjKzsQ0Nitu7dPEJ8jA
+ m/2KE5s+75qaiYsS1GksHQIdfgUa+2j2+IwgDG8RDvSRSbzlunMMX5lKOLKqI5fZWWG6
+ /McDL+PGWk3BEqccV5NLWEZX2kWm1bB/J9af2B1mBUx7PuoRurpyceVOFo9hM1ztFIuv
+ LHnaBZ2iuvxrTYRxrTZqYIIWr1T+X8vAIHGMeya/U25TEYRvacG4k1HkCSDmWbARFPnC
+ E2dQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1780075213; x=1780680013; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ynZ2XBdbslE1WoArPNQQVVLJB+hS3g1ZlbeqlJR3SQc=;
+ b=WeJvkyPy2IRhSaqmbtUNj9IeVN6cle7VxYj1qvOk6btdKVHE6tRvuhPhvZPqylwcH0
+ PqYasGtkBrD9NoOp8b+D+vu5yEH4FU+yJZA+s1MME4+WYiXd3wl47mNN2QTiANXG69uO
+ RhVbYQOqw7EGl1JKkVbQ2oeNbr/GPC6kKzW04iTxkImKzZZMXDlADMTLjRPZ8zHOZiN/
+ wCDHri/iws/XLlPAkDkJ4ZpAe31UPQZzLLz2ZEk4gh8MDaBomoLB5wlj19JqHQcaVeHf
+ KFqAT+/Y0FQLR5NmhUCziSM6kZB0mhiiH6fUbUchuT7aKT07SDdtfRM9pIU46ARZbLbO
+ vEvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1780075213; x=1780680013;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=ynZ2XBdbslE1WoArPNQQVVLJB+hS3g1ZlbeqlJR3SQc=;
+ b=VyMRzJMkywZEm8rsfixQAFHgY3VXLzYfSIw8K5sIWwIfPf1aKwSrlUYgRT2zAIJvpL
+ JuWVYjXvSjldvgz28ntFsOrLQb9QEveJvFHY/EXjOM20qhDGvYprnA0W6Wrn4rhR4xTy
+ yxCQduv5IK4JtpQ7x1gh0Y7yeBpyJt/tHRqiURsNZk6uP1ov8P5JP6B9lNgROU+f7fCG
+ ZXnp5+ydAfNz9cUULgrHVn20yZF32uiyaBoAMNF8UTobCefyeISQFFT7QZxf/R/9mwpr
+ JjHB1FCXbUOTfLg9h1mpCOa86YMxqBHZOL6u37o//fzS/DZXgWL1OmmfSv1Rwh+T0SsL
+ MhJw==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ+nKof/WeGo5txHXiZfSa+XTO1FaYc88ZgX7jmtdJ6sygnUSCEqABzhdnBWEY1OHvgiiIh9OzZa@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzorETXhouDW7L8aIDOgOe8D4TPOewjWHA24U3YHGFkj8UKS5wD
+ wfDk8Y8AtptSJPixOAwoCHEFNB96kuWhO7JoeuVncuio+MMrC4Tl4Hzx7ZVIS0+4jctyNloTuM5
+ ZLDq+AidN1tBTctr7QC8gSh4SJ8Q911c=
+X-Gm-Gg: Acq92OG3UY8umiFeZ47N+eKME8hKstZi9dhLrogTIeIYDw6YGwRg+FszqmTBX6Ls1/6
+ 1IH0Hif8Yq0DonSOfrZvu/isSfjXhuPEsVBTM84LKGpGWQSux4bfIfHiiBMZOUhKA+tHB022z0n
+ VEM56aYOn3eCXe7n1lhRQiX+5Y/vC48XgyaQzQ310CvAvjqdeIsHPwFSAcl6wK6i0sSOmrZB/TA
+ XN5PIDm+wQbxxb+dzLlgczXjhU38bqe2YqQhPb3biDg/xk6fYcyypTa9SiKW/ciP9a1wSOyrJMp
+ q/C+GydjBepC8BNJw4DwaKWox1mZ4UeaQz38bI4bee8unwNcUg==
+X-Received: by 2002:a17:907:9282:b0:bd4:6da5:d5b2 with SMTP id
+ a640c23a62f3a-beab0dd8aecmr26412166b.1.1780075213265; Fri, 29 May 2026
+ 10:20:13 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR12MB5372.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20579f04-8c6d-4c9b-a6de-08debd9cdcc2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 May 2026 16:10:54.9452 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gLAuL/VRyz77Np/0L1yw4RFGWJ7nEKZgzh0L6iwS+Yw5x8l5KWBdqAkjXqQa0tFTCEMaqxp3j4G0F0id/5WYrQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9152
+References: <20260520225245.2962-1-spasswolf@web.de>
+ <fnrz73n5jojl2wlbgrsjdtu5zuwykwbcjzznaijbquuovpoand@i6ihdqn7a6zv>
+ <s7cu3dpioidx6mepmai6eyj2pxjs4skbw7v534zbzs6g2fwcis@cvokidcxy3xa>
+ <4f548d61b2dd12e01f401ce4b8c865f238f7b23c.camel@web.de> <878q9dvzh0.ffs@tglx>
+ <50e5e76bc13256e3f5b3301e92f159957c3d6762.camel@web.de>
+ <CAGudoHGk1CP3gRQLCV85AFHKx6vBEyKySOn4J+AZVAP2FkrN3g@mail.gmail.com>
+ <70676dae700e6a40989315bf31ea269a509ddc0f.camel@web.de>
+ <CAGudoHEX=Su_ehV8nNP_6Onfh=hB6uiyTTCojR7nSOkEj6zh4Q@mail.gmail.com>
+ <7e8f3a515208583d06c9b5ca18a3e007a8c6b692.camel@web.de>
+In-Reply-To: <7e8f3a515208583d06c9b5ca18a3e007a8c6b692.camel@web.de>
+From: Mateusz Guzik <mjguzik@gmail.com>
+Date: Fri, 29 May 2026 19:20:00 +0200
+X-Gm-Features: AVHnY4LcAg9EMC0vBy9pozkVNxhEfZnN5xmOlqt1ph5yPNhhQZBBmhxfALKw18o
+Message-ID: <CAGudoHFPXP+i3q4HsZqmZaRxw-UjXX_RiUosteVESO2uv-qhew@mail.gmail.com>
+Subject: Re: context switch within RCU read-side critical section in
+ next-20260518+ with PREEMPT_RT
+To: Bert Karwatzki <spasswolf@web.de>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+ Christian Brauner <brauner@kernel.org>, linux-kernel@vger.kernel.org, 
+ linux-next@vger.kernel.org, linux-rt-devel@lists.linux.dev, 
+ linux-fsdevel@vger.kernel.org, adobriyan@gmail.com, jack@suse.cz, 
+ viro@zeniv.linux.org.uk, Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 01 Jun 2026 07:27:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,303 +122,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DATE_IN_PAST(1.00)[62];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Alexander.Deucher@amd.com,m:Christian.Koenig@amd.com,m:Sunil.Khatri@amd.com,m:Amber.Lin@amd.com,m:Jesse.Zhang@amd.com,m:Manu.Rastogi@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[Shaoyun.Liu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:spasswolf@web.de,m:tglx@linutronix.de,m:brauner@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-next@vger.kernel.org,m:linux-rt-devel@lists.linux.dev,m:linux-fsdevel@vger.kernel.org,m:adobriyan@gmail.com,m:jack@suse.cz,m:viro@zeniv.linux.org.uk,m:bigeasy@linutronix.de,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[mjguzik@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[web.de];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Shaoyun.Liu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mjguzik@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linutronix.de,kernel.org,vger.kernel.org,lists.linux.dev,gmail.com,suse.cz,zeniv.linux.org.uk,amd.com,lists.freedesktop.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:email,amd.com:email,amd.com:dkim,CH0PR12MB5372.namprd12.prod.outlook.com:mid]
-X-Rspamd-Queue-Id: 9BBAC605547
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: AFF5D61ADB7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-AMD General
-
-Comments in line.
-
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Deucher,=
- Alexander
-Sent: Thursday, May 21, 2026 8:20 PM
-To: amd-gfx@lists.freedesktop.org; Koenig, Christian <Christian.Koenig@amd.=
-com>; Khatri, Sunil <Sunil.Khatri@amd.com>; Lin, Amber <Amber.Lin@amd.com>;=
- Zhang, Jesse(Jie) <Jesse.Zhang@amd.com>; Liu, Shaoyun <Shaoyun.Liu@amd.com=
+On Thu, May 28, 2026 at 7:59=E2=80=AFPM Bert Karwatzki <spasswolf@web.de> w=
+rote:
 >
-Cc: Rastogi, Manu <Manu.Rastogi@amd.com>; Deucher, Alexander <Alexander.Deu=
-cher@amd.com>; Zhang, Jesse(Jie) <Jesse.Zhang@amd.com>
-Subject: [PATCH 14/42] drm/amdgpu/gfx12: Refactor compute pipe reset and ad=
-d HQD cleanup
+> Am Donnerstag, dem 21.05.2026 um 14:01 +0200 schrieb Mateusz Guzik:
+> >
+> > So overall I think we are done here.
+> >
+> > Thank you for testing and sorry for the breakage.
+>
+> Just as a reminder, this has not been fixed in linux-next, yet,
+> up to version next-20260528.
+>
 
-From: Jesse Zhang <Jesse.Zhang@amd.com>
-
-Refactor gfx_v12_0_reset_compute_pipe() to accept explicit me, pipe, and qu=
-eue parameters instead of deriving them from the ring structure. This enabl=
-es the function to be used in generic pipe reset flows.
-
-Introduce gfx_v12_0_clear_hqds_on_mec_pipe() to properly clear CP_HQD_ACTIV=
-E and CP_HQD_DEQUEUE_REQUEST for all queues on a given MEC pipe while the p=
-ipe reset is asserted, ensuring the HQDs are torn down correctly before dea=
-sserting reset.
-
-Switch the KCQ reset path to use the common MEC pipe reset helper amdgpu_gf=
-x_mec_pipe_reset_run(), which coordinates the reset sequence including KFD =
-suspend/resume to avoid conflicts with user mode queues.
-
-v2: just update the sequence (Alex)
-
-Suggested-by:  Manu Rastogi <manu.rastogi@amd.com>
-Suggested-by:  Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Jesse Zhang <jesse.zhang@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c | 123 ++++++++++++++++---------
- 1 file changed, 77 insertions(+), 46 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/a=
-mdgpu/gfx_v12_0.c
-index 4be650ce1fba7..d235e904b806b 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -5309,10 +5309,38 @@ static int gfx_v12_0_reset_kgq(struct amdgpu_ring *=
-ring,
-        return amdgpu_ring_reset_helper_end(ring, timedout_fence);  }
-
--static int gfx_v12_0_reset_compute_pipe(struct amdgpu_ring *ring)
-+/*
-+ * With MEC pipe reset asserted, clear CP_HQD_ACTIVE /
-+CP_HQD_DEQUEUE_REQUEST for
-+ * every queue on (me, pipe). HQDs must be torn down while pipe reset
-+stays
-+ * asserted; only then clear the pipe reset bit.
-+ * Caller must hold adev->srbm_mutex.
-+ */
-+static void gfx_v12_0_clear_hqds_on_mec_pipe(struct amdgpu_device *adev, u=
-32 me,
-+                                            u32 pipe)
- {
--       struct amdgpu_device *adev =3D ring->adev;
--       uint32_t reset_pipe =3D 0, clean_pipe =3D 0;
-+       unsigned int q;
-+       int j;
-+
-+       for (q =3D 0; q < adev->gfx.mec.num_queue_per_pipe; q++) {
-+               soc24_grbm_select(adev, me, pipe, q, 0);
-+               /* Start from a clean HQD dequeue state before forcing HQD =
-inactive. */
-+               WREG32_SOC15(GC, 0, regCP_HQD_ACTIVE, 0);
-{shaoyunl] : After pipe reset successfully , you should be able to directly=
- clear ACTIVE and DEQUEUE_REQUEST .  One more thing  you need to set  regSP=
-I_COMPUTE_QUEUE_RESET) to 1 to reset SPI after per queue reset through  MMI=
-O .
-
-+               if (RREG32_SOC15(GC, 0, regCP_HQD_ACTIVE) & 1) {
-+                       WREG32_SOC15(GC, 0, regCP_HQD_DEQUEUE_REQUEST, 1);
-+                       for (j =3D 0; j < adev->usec_timeout; j++) {
-+                               if (!(RREG32_SOC15(GC, 0, regCP_HQD_ACTIVE)=
- & 1))
-+                                       break;
-+                               udelay(1);
-+                       }
-+               }
-+               WREG32_SOC15(GC, 0, regCP_HQD_DEQUEUE_REQUEST, 0);
-+       }
-+}
-+
-+static int gfx_v12_0_reset_compute_pipe(struct amdgpu_device *adev,
-+                                          u32 me, u32 pipe, u32 queue)
-+{
-+       uint32_t reset_val, clean_val;
-        int r =3D 0;
-
-        if (!gfx_v12_pipe_reset_support(adev))
-@@ -5320,75 +5348,78 @@ static int gfx_v12_0_reset_compute_pipe(struct amdg=
-pu_ring *ring)
-
-        gfx_v12_0_set_safe_mode(adev, 0);
-        mutex_lock(&adev->srbm_mutex);
--       soc24_grbm_select(adev, ring->me, ring->pipe, ring->queue, 0);
--
--       reset_pipe =3D RREG32_SOC15(GC, 0, regCP_MEC_RS64_CNTL);
--       clean_pipe =3D reset_pipe;
--
-+       soc24_grbm_select(adev, me, pipe, queue, 0);
-        if (adev->gfx.rs64_enable) {
--               switch (ring->pipe) {
-+               reset_val =3D RREG32_SOC15(GC, 0, regCP_MEC_RS64_CNTL);
-+               clean_val =3D reset_val;
-+
-+               switch (pipe) {
-                case 0:
--                       reset_pipe =3D REG_SET_FIELD(reset_pipe, CP_MEC_RS6=
-4_CNTL,
--                                                  MEC_PIPE0_RESET, 1);
--                       clean_pipe =3D REG_SET_FIELD(clean_pipe, CP_MEC_RS6=
-4_CNTL,
--                                                  MEC_PIPE0_RESET, 0);
-+                       reset_val =3D REG_SET_FIELD(reset_val, CP_MEC_RS64_=
-CNTL,
-+                                                 MEC_PIPE0_RESET, 1);
-+                       clean_val =3D REG_SET_FIELD(clean_val, CP_MEC_RS64_=
-CNTL,
-+                                                 MEC_PIPE0_RESET, 0);
-                        break;
-                case 1:
--                       reset_pipe =3D REG_SET_FIELD(reset_pipe, CP_MEC_RS6=
-4_CNTL,
--                                                  MEC_PIPE1_RESET, 1);
--                       clean_pipe =3D REG_SET_FIELD(clean_pipe, CP_MEC_RS6=
-4_CNTL,
--                                                  MEC_PIPE1_RESET, 0);
-+                       reset_val =3D REG_SET_FIELD(reset_val, CP_MEC_RS64_=
-CNTL,
-+                                                 MEC_PIPE1_RESET, 1);
-+                       clean_val =3D REG_SET_FIELD(clean_val, CP_MEC_RS64_=
-CNTL,
-+                                                 MEC_PIPE1_RESET, 0);
-                        break;
-                case 2:
--                       reset_pipe =3D REG_SET_FIELD(reset_pipe, CP_MEC_RS6=
-4_CNTL,
--                                                  MEC_PIPE2_RESET, 1);
--                       clean_pipe =3D REG_SET_FIELD(clean_pipe, CP_MEC_RS6=
-4_CNTL,
--                                                  MEC_PIPE2_RESET, 0);
-+                       reset_val =3D REG_SET_FIELD(reset_val, CP_MEC_RS64_=
-CNTL,
-+                                                 MEC_PIPE2_RESET, 1);
-+                       clean_val =3D REG_SET_FIELD(clean_val, CP_MEC_RS64_=
-CNTL,
-+                                                 MEC_PIPE2_RESET, 0);
-                        break;
-                case 3:
--                       reset_pipe =3D REG_SET_FIELD(reset_pipe, CP_MEC_RS6=
-4_CNTL,
--                                                  MEC_PIPE3_RESET, 1);
--                       clean_pipe =3D REG_SET_FIELD(clean_pipe, CP_MEC_RS6=
-4_CNTL,
--                                                  MEC_PIPE3_RESET, 0);
-+                       reset_val =3D REG_SET_FIELD(reset_val, CP_MEC_RS64_=
-CNTL,
-+                                                 MEC_PIPE3_RESET, 1);
-+                       clean_val =3D REG_SET_FIELD(clean_val, CP_MEC_RS64_=
-CNTL,
-+                                                 MEC_PIPE3_RESET, 0);
-                        break;
-                default:
-                        break;
-                }
--               WREG32_SOC15(GC, 0, regCP_MEC_RS64_CNTL, reset_pipe);
--               WREG32_SOC15(GC, 0, regCP_MEC_RS64_CNTL, clean_pipe);
-+               WREG32_SOC15(GC, 0, regCP_MEC_RS64_CNTL, reset_val);
-+               gfx_v12_0_clear_hqds_on_mec_pipe(adev, me, pipe);
-+               soc24_grbm_select(adev, me, pipe, queue, 0);
-+               WREG32_SOC15(GC, 0, regCP_MEC_RS64_CNTL, clean_val);
-                r =3D (RREG32_SOC15(GC, 0, regCP_MEC_RS64_INSTR_PNTR) << 2)=
- -
-                                RS64_FW_UC_START_ADDR_LO;
-        } else {
--               switch (ring->pipe) {
-+               reset_val =3D RREG32_SOC15(GC, 0, regCP_MEC_CNTL);
-+               clean_val =3D reset_val;
-+
-+               switch (pipe) {
-                case 0:
--                       reset_pipe =3D REG_SET_FIELD(reset_pipe, CP_MEC_CNT=
-L,
--                                                          MEC_ME1_PIPE0_RE=
-SET, 1);
--                       clean_pipe =3D REG_SET_FIELD(clean_pipe, CP_MEC_CNT=
-L,
--                                                          MEC_ME1_PIPE0_RE=
-SET, 0);
-+                       reset_val =3D REG_SET_FIELD(reset_val, CP_MEC_CNTL,
-+                                                 MEC_ME1_PIPE0_RESET, 1);
-+                       clean_val =3D REG_SET_FIELD(clean_val, CP_MEC_CNTL,
-+                                                 MEC_ME1_PIPE0_RESET, 0);
-                        break;
-                case 1:
--                       reset_pipe =3D REG_SET_FIELD(reset_pipe, CP_MEC_CNT=
-L,
--                                                          MEC_ME1_PIPE1_RE=
-SET, 1);
--                       clean_pipe =3D REG_SET_FIELD(clean_pipe, CP_MEC_CNT=
-L,
--                                                          MEC_ME1_PIPE1_RE=
-SET, 0);
-+                       reset_val =3D REG_SET_FIELD(reset_val, CP_MEC_CNTL,
-+                                                 MEC_ME1_PIPE1_RESET, 1);
-+                       clean_val =3D REG_SET_FIELD(clean_val, CP_MEC_CNTL,
-+                                                 MEC_ME1_PIPE1_RESET, 0);
-                        break;
-                default:
--               break;
-+                       break;
-                }
--               WREG32_SOC15(GC, 0, regCP_MEC_CNTL, reset_pipe);
--               WREG32_SOC15(GC, 0, regCP_MEC_CNTL, clean_pipe);
--               /* Doesn't find the F32 MEC instruction pointer register, a=
-nd suppose
--                * the driver won't run into the F32 mode.
--                */
-+
-+               WREG32_SOC15(GC, 0, regCP_MEC_CNTL, reset_val);
-+               gfx_v12_0_clear_hqds_on_mec_pipe(adev, me, pipe);
-+               soc24_grbm_select(adev, me, pipe, queue, 0);
-+               WREG32_SOC15(GC, 0, regCP_MEC_CNTL, clean_val);
-        }
-
-        soc24_grbm_select(adev, 0, 0, 0, 0);
-        mutex_unlock(&adev->srbm_mutex);
-        gfx_v12_0_unset_safe_mode(adev, 0);
-
--       dev_info(adev->dev, "The ring %s pipe resets: %s\n", ring->name,
--                       r =3D=3D 0 ? "successfully" : "failed");
--       /* Need the ring test to verify the pipe reset result.*/
-+       dev_dbg(adev->dev, "MEC pipe me%u pipe%u queue%u resets to MEC FW s=
-tart PC: %s\n",
-+               me, pipe, queue, r =3D=3D 0 ? "successfully" : "failed");
-        return 0;
- }
-
-@@ -5405,7 +5436,7 @@ static int gfx_v12_0_reset_kcq(struct amdgpu_ring *ri=
-ng,
-        r =3D amdgpu_mes_reset_legacy_queue(ring->adev, ring, vmid, use_mmi=
-o, 0);
-        if (r) {
-                dev_warn(adev->dev, "fail(%d) to reset kcq  and try pipe re=
-set\n", r);
--               r =3D gfx_v12_0_reset_compute_pipe(ring);
-+               r =3D gfx_v12_0_reset_compute_pipe(adev, ring->me, ring->pi=
-pe,
-+ring->queue);
-                if (r)
-                        return r;
-        }
---
-2.54.0
-
+I sent a v4 of the patchset with some extra touch ups:
+https://lore.kernel.org/linux-fsdevel/20260529171840.2576445-1-mjguzik@gmai=
+l.com/T/#t
