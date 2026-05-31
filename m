@@ -2,47 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sMzxJ0ogHGoRKAkAu9opvQ
+	id kFlzAk4gHGosKAkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:30 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:34 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72AB4615E6F
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1C47615EA4
+	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7976112AF3;
-	Sun, 31 May 2026 11:49:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47091112AFB;
+	Sun, 31 May 2026 11:49:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ToExa9UG";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QePbd8ux";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00BD7112AE8;
- Sun, 31 May 2026 11:49:20 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06942112AEC;
+ Sun, 31 May 2026 11:49:21 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 7841160123;
+ by sea.source.kernel.org (Postfix) with ESMTP id E460D43BA6;
  Sun, 31 May 2026 11:49:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C84531F00893;
- Sun, 31 May 2026 11:49:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F2951F00899;
+ Sun, 31 May 2026 11:49:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
  s=k20260515; t=1780228160;
- bh=5lzk+OTDldDG2SnGC+MYMfMJssDNEQ29EEsKCv9DX20=;
+ bh=CcLw2xrA7d/rhgSuQdOu3mO9lNkWZtB/cXxj8gAKDVc=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=ToExa9UGH3B1LMTgiGuTwl3jtaSBnNLG5YMVYC8W+s4qGhljAILwOO+FfYoR5FMOv
- o8KIVOsPgzyQGavxCQPHNyFOXBQ3UtlqPkqO748zAHub+JJh4DcNH5rLW5BSk3wfJc
- uKOmzlplpVO0FjgcfEIt9iWYFE5CT1/MkB56YQp8yVeggfIsSxGKBCXVJuKZwuwB0F
- seZsmBUxOJE+50+Si8BO8M6zZeFazmGCShgXM7UcNFqdOkHLTYMMZSwpGZ/MWMJu/N
- 2BY2rsHRuIG5nFGAnF0yZTAB9ya9W1Wazu1XnIX7v9+zGPS8elXzkp8PlBK+xxz95v
- nwAqtKoCwR9JQ==
+ b=QePbd8uxdPB87nFmPiqImv6C9ianuvp3aqFBoec4LkiglHg6f+7TZn5sUDdWxmg0e
+ JcZRHzmN8hfnj+AHjiVeDvsS5rxFoBDDQDglTNE0EShwhFJK32IQVTjmVhaIuHf0mg
+ 9fIwWqccY1rNS6179YcA6vUzhObMFiEB2D183WkkdeC1QXgFcJNNocMK5YLw/w/OVO
+ thKemPEAEYK6icAxx8r/TIoK9Pd9lmQYKux3eidTambK4zMbcE378H+Huu0zJt0Ts0
+ 8zvINM55yHUa1FH0W90IIKzU249V98qgjwKVqQDdznTO+XuH0GlchbkSXK/vupEFvu
+ ctoh+vQxrGPNw==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
 To: dri-devel@lists.freedesktop.org
 Cc: amd-gfx@lists.freedesktop.org,
  "Mario Limonciello (AMD)" <superm1@kernel.org>
-Subject: [PATCH v5 07/11] drm/amd/display: Move backlight tracing out of the
- dc lock
-Date: Sun, 31 May 2026 06:49:04 -0500
-Message-ID: <20260531114908.1693426-8-superm1@kernel.org>
+Subject: [PATCH v5 08/11] drm/amd/display: use drm backlight
+Date: Sun, 31 May 2026 06:49:05 -0500
+Message-ID: <20260531114908.1693426-9-superm1@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260531114908.1693426-1-superm1@kernel.org>
 References: <20260531114908.1693426-1-superm1@kernel.org>
@@ -87,50 +86,80 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 72AB4615E6F
+X-Rspamd-Queue-Id: D1C47615EA4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The backlight tracing doesn't need to be done with DC lock held as
-it's using information that is fed into the function.
+Convert AMD display driver to use the new DRM backlight infrastructure.
+This allows brightness control via DRM connector properties.
+
+Includes fixes for backlight resource lifecycle management.
 
 Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 430b7d3d8930..f6610902eee4 100644
+index f6610902eee4..55c3838f7ec8 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5371,13 +5371,6 @@ static void amdgpu_dm_backlight_set_level(struct amdgpu_display_manager *dm,
- 	if (caps->brightness_mask)
- 		brightness |= caps->brightness_mask;
+@@ -86,6 +86,7 @@
+ #include <drm/drm_atomic.h>
+ #include <drm/drm_atomic_uapi.h>
+ #include <drm/drm_atomic_helper.h>
++#include <drm/drm_backlight.h>
+ #include <drm/drm_blend.h>
+ #include <drm/drm_fixed.h>
+ #include <drm/drm_fourcc.h>
+@@ -5549,6 +5550,15 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
+ 		dm->actual_brightness[aconnector->bl_idx] = real_brightness;
+ 		dm->brightness[aconnector->bl_idx] = real_brightness;
+ 	}
++
++	/* Link the registered backlight device to the DRM connector. If
++	 * drm_backlight_alloc() failed earlier in init_helper,
++	 * aconnector->base.backlight is NULL and drm_backlight_link() is a
++	 * no-op.
++	 */
++	drm_backlight_link(aconnector->base.backlight,
++			   dm->backlight_dev[aconnector->bl_idx]);
++
+ 	drm_dbg_driver(drm, "DM: Registered Backlight device: %s\n", bl_name);
  
--	/* Change brightness based on AUX property */
--	mutex_lock(&dm->dc_lock);
--	if (dm->dc->caps.ips_support && dm->dc->ctx->dmub_srv->idle_allowed) {
--		dc_allow_idle_optimizations(dm->dc, false);
--		reallow_idle = true;
--	}
--
- 	if (trace_amdgpu_dm_brightness_enabled()) {
- 		trace_amdgpu_dm_brightness(__builtin_return_address(0),
- 					   user_brightness,
-@@ -5386,6 +5379,13 @@ static void amdgpu_dm_backlight_set_level(struct amdgpu_display_manager *dm,
- 					   power_supply_is_system_supplied() > 0);
+ 	return 0;
+@@ -7993,6 +8003,7 @@ static void amdgpu_dm_connector_destroy(struct drm_connector *connector)
  	}
  
-+	/* Change brightness based on AUX property */
-+	mutex_lock(&dm->dc_lock);
-+	if (dm->dc->caps.ips_support && dm->dc->ctx->dmub_srv->idle_allowed) {
-+		dc_allow_idle_optimizations(dm->dc, false);
-+		reallow_idle = true;
-+	}
+ 	if (aconnector->bl_idx != -1) {
++		drm_backlight_link(aconnector->base.backlight, NULL);
+ 		backlight_device_unregister(dm->backlight_dev[aconnector->bl_idx]);
+ 		dm->backlight_dev[aconnector->bl_idx] = NULL;
+ 	}
+@@ -8005,6 +8016,10 @@ static void amdgpu_dm_connector_destroy(struct drm_connector *connector)
+ 	aconnector->dc_sink = NULL;
+ 
+ 	drm_dp_cec_unregister_connector(&aconnector->dm_dp_aux.aux);
++	/* DRM core will handle drm_backlight cleanup via:
++	 * drm_connector_unregister() -> drm_backlight_unregister()
++	 * drm_connector_cleanup() -> drm_backlight_free()
++	 */
+ 	drm_connector_unregister(connector);
+ 	drm_connector_cleanup(connector);
+ 	kfree(aconnector->dm_dp_aux.aux.name);
+@@ -9254,6 +9269,12 @@ void amdgpu_dm_connector_init_helper(struct amdgpu_display_manager *dm,
+ 	aconnector->base.state->max_bpc = 16;
+ 	aconnector->base.state->max_requested_bpc = aconnector->base.state->max_bpc;
+ 
++	if (connector_type == DRM_MODE_CONNECTOR_eDP) {
++		int r = drm_backlight_alloc(&aconnector->base);
 +
- 	if (caps->aux_support) {
- 		rc = dc_link_set_backlight_level_nits(link, true, brightness,
- 						      AUX_BL_DEFAULT_TRANSITION_TIME_MS);
++		if (r)
++			drm_err(dm->ddev, "Failed to allocate backlight: %d\n", r);
++	}
+ 	if (connector_type == DRM_MODE_CONNECTOR_HDMIA) {
+ 		/* Content Type is currently only implemented for HDMI. */
+ 		drm_connector_attach_content_type_property(&aconnector->base);
 -- 
 2.54.0
 
