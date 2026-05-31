@@ -2,48 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UCxbN0ogHGomKAkAu9opvQ
+	id KOu6E04gHGomKAkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:30 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:34 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88307615E70
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 235AF615EAA
+	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E639112AF1;
-	Sun, 31 May 2026 11:49:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7B7F112AFC;
+	Sun, 31 May 2026 11:49:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iXyvi0f0";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="S0sIwwim";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58183112AEC;
- Sun, 31 May 2026 11:49:22 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8774E112AED;
+ Sun, 31 May 2026 11:49:23 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 3FCCC44635;
+ by tor.source.kernel.org (Postfix) with ESMTP id 0B84A60123;
+ Sun, 31 May 2026 11:49:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EC581F00893;
  Sun, 31 May 2026 11:49:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9CF31F00898;
- Sun, 31 May 2026 11:49:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
  s=k20260515; t=1780228162;
- bh=OCmzLrDf11CowVnaLX9u60t3iwYDZIlAE1pIoNvP2BY=;
+ bh=s/yReg27q7GRpv9v5w8P9RnJc9ups0mYVC6jBC5ZC6A=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=iXyvi0f0U6r8UnczNjbKHTyDkq+BJKNuRfcMfq/Oa7isv0oJYXV4kcQgzN1pao2Az
- Wa/ENw2B/eJg8Ay0dlJPMjNAm2NGNkAFlECI2hXXnFjG1v+jheJ1mtUA2qG5ikIfzA
- BdsmlZrSn2Z7PiJu5k8ERDSGK3U63McowqQwIc7S8xI4IEwfE0zoczVIR4JR4JrvQM
- 58jSK7S/bj0zxSt+rVN40E0UAVlqjE0gdiIKGmIGpK396l0IuXhvr7kzV0b9EtYIjb
- PxYpDpS5nOzsQrtzIe4lEszOq9SF+G6XnfkI5T67Mtp19oEZYh0QpxBN1Yy6LQ4FSl
- jaizrHvFKVYVA==
+ b=S0sIwwimF8pFh2usvlucQ/LJDBneh6T1HhCPEGU82bUIq3ozw1JyS86Mua63/z8j3
+ 8/eOI8coHcWGabj8XKmSo7C1xdD9tGGAElPHxh0JP31F5AwtSxcT1d5jOn+wCFfY7R
+ 3OmkLiSEgM5aKICOQm3t9oc/PQi9BgEZHRJSUKIa1XBynaKHIqZOgkdABttVP9UuL4
+ ur5l/7R/khNz+AISaD5JqgQaAy1KGsxTbzqbvlIcpI3cOPCSWwTFA3nchJsCESoqmt
+ 1exe0coQAk8jrHHgZMdp04AwtIh2JaW0+SNrIrWUZGD3SNOlFk0+kFVpzVBebwDtBH
+ xDqBa1jux88tA==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
 To: dri-devel@lists.freedesktop.org
 Cc: amd-gfx@lists.freedesktop.org,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: [PATCH v5 10/11] drm/bridge: auto-link panel backlight in bridge
- connector
-Date: Sun, 31 May 2026 06:49:07 -0500
-Message-ID: <20260531114908.1693426-11-superm1@kernel.org>
+ "Mario Limonciello (AMD)" <superm1@kernel.org>
+Subject: [PATCH v5 11/11] drm/i915/display: use drm backlight
+Date: Sun, 31 May 2026 06:49:08 -0500
+Message-ID: <20260531114908.1693426-12-superm1@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260531114908.1693426-1-superm1@kernel.org>
 References: <20260531114908.1693426-1-superm1@kernel.org>
@@ -78,7 +76,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[superm1@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
@@ -88,97 +86,83 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 88307615E70
+X-Rspamd-Queue-Id: 235AF615EAA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The link should allow clients to change luminance property.
+Convert Intel display drivers (i915 and xe) to use the new DRM backlight
+infrastructure. This allows brightness control via DRM connector
+properties.
 
-Tested-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> # SM8150-HDK
+Allocate DRM backlight for eDP connectors during initialization, link the
+backlight device to the connector during registration, and unlink during
+unregistration.
+
+Assisted-by: Sonnet:4
 Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
 ---
 v5:
- * Add tag
+ * New patch
 ---
- drivers/gpu/drm/bridge/panel.c                 | 15 +++++++++++++++
- drivers/gpu/drm/display/drm_bridge_connector.c | 15 ++++++++++++++-
- include/drm/drm_bridge.h                       |  1 +
- 3 files changed, 30 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_backlight.c | 4 ++++
+ drivers/gpu/drm/i915/display/intel_dp.c        | 8 ++++++++
+ 2 files changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/panel.c
-index 184a8b7049a7..1dbd3ba75903 100644
---- a/drivers/gpu/drm/bridge/panel.c
-+++ b/drivers/gpu/drm/bridge/panel.c
-@@ -233,6 +233,21 @@ bool drm_bridge_is_panel(const struct drm_bridge *bridge)
- }
- EXPORT_SYMBOL(drm_bridge_is_panel);
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+index 34e95f05936e..99ae39dfb7bb 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+@@ -9,6 +9,7 @@
+ #include <linux/string_helpers.h>
+ #include <acpi/video.h>
  
-+/**
-+ * drm_panel_bridge_to_panel - get the drm_panel wrapped by a panel bridge
-+ * @bridge: the panel bridge
-+ *
-+ * Returns the &drm_panel wrapped by @bridge, or NULL if @bridge is not a
-+ * panel bridge.
-+ */
-+struct drm_panel *drm_panel_bridge_to_panel(struct drm_bridge *bridge)
-+{
-+	if (!drm_bridge_is_panel(bridge))
-+		return NULL;
-+	return drm_bridge_to_panel_bridge(bridge)->panel;
-+}
-+EXPORT_SYMBOL(drm_panel_bridge_to_panel);
-+
- /**
-  * drm_panel_bridge_add - Creates a &drm_bridge and &drm_connector that
-  * just calls the appropriate functions from &drm_panel.
-diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
-index 39cc18f78eda..a1d54f7bac6a 100644
---- a/drivers/gpu/drm/display/drm_bridge_connector.c
-+++ b/drivers/gpu/drm/display/drm_bridge_connector.c
-@@ -11,7 +11,9 @@
- #include <linux/slab.h>
- 
- #include <drm/drm_atomic_state_helper.h>
 +#include <drm/drm_backlight.h>
- #include <drm/drm_bridge.h>
-+#include <drm/drm_panel.h>
- #include <drm/drm_bridge_connector.h>
- #include <drm/drm_connector.h>
- #include <drm/drm_device.h>
-@@ -1048,9 +1050,20 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
- 		connector->polled = DRM_CONNECTOR_POLL_CONNECT
- 				  | DRM_CONNECTOR_POLL_DISCONNECT;
+ #include <drm/drm_file.h>
+ #include <drm/drm_print.h>
  
--	if (panel_bridge)
-+	if (panel_bridge) {
-+		struct drm_panel *panel;
+@@ -1004,6 +1005,8 @@ int intel_backlight_device_register(struct intel_connector *connector)
+ 		    "[CONNECTOR:%d:%s] backlight device %s registered\n",
+ 		    connector->base.base.id, connector->base.name, name);
+ 
++	drm_backlight_link(connector->base.backlight, bd);
 +
- 		drm_panel_bridge_set_orientation(connector, panel_bridge);
+ out:
+ 	kfree(name);
  
-+		panel = drm_panel_bridge_to_panel(panel_bridge);
-+		if (panel && panel->backlight) {
-+			ret = drm_backlight_alloc(connector);
-+			if (!ret)
-+				drm_backlight_link(connector->backlight,
-+						   panel->backlight);
-+		}
+@@ -1015,6 +1018,7 @@ void intel_backlight_device_unregister(struct intel_connector *connector)
+ 	struct intel_panel *panel = &connector->panel;
+ 
+ 	if (panel->backlight.device) {
++		drm_backlight_link(connector->base.backlight, NULL);
+ 		backlight_device_unregister(panel->backlight.device);
+ 		panel->backlight.device = NULL;
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 6ef2a0043cda..109f85dc6b89 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -44,6 +44,7 @@
+ #include <drm/display/drm_dsc_helper.h>
+ #include <drm/display/drm_hdmi_helper.h>
+ #include <drm/drm_atomic_helper.h>
++#include <drm/drm_backlight.h>
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_edid.h>
+ #include <drm/drm_fixed.h>
+@@ -7222,6 +7223,13 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+ 				    type, &intel_dp->aux.ddc);
+ 	drm_connector_helper_add(&connector->base, &intel_dp_connector_helper_funcs);
+ 
++	if (type == DRM_MODE_CONNECTOR_eDP) {
++		int r = drm_backlight_alloc(&connector->base);
++
++		if (r)
++			drm_err(display->drm, "Failed to allocate backlight: %d\n", r);
 +	}
 +
- 	if (support_hdcp && IS_REACHABLE(CONFIG_DRM_DISPLAY_HELPER) &&
- 	    IS_ENABLED(CONFIG_DRM_DISPLAY_HDCP_HELPER))
- 		drm_connector_attach_content_protection_property(connector, true);
-diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
-index a8d67bd9ee50..6cc2a22b2dec 100644
---- a/include/drm/drm_bridge.h
-+++ b/include/drm/drm_bridge.h
-@@ -1558,6 +1558,7 @@ void drm_bridge_hpd_notify(struct drm_bridge *bridge,
+ 	if (!HAS_GMCH(display) && DISPLAY_VER(display) < 12)
+ 		connector->base.interlace_allowed = true;
  
- #ifdef CONFIG_DRM_PANEL_BRIDGE
- bool drm_bridge_is_panel(const struct drm_bridge *bridge);
-+struct drm_panel *drm_panel_bridge_to_panel(struct drm_bridge *bridge);
- struct drm_bridge *drm_panel_bridge_add(struct drm_panel *panel);
- struct drm_bridge *drm_panel_bridge_add_typed(struct drm_panel *panel,
- 					      u32 connector_type);
 -- 
 2.54.0
 
