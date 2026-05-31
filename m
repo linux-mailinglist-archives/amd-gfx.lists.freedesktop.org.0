@@ -2,46 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uC0oKU8gHGoRKAkAu9opvQ
+	id UCxbN0ogHGomKAkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:35 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:30 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BF4C615EB4
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88307615E70
+	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0AA9112AF6;
-	Sun, 31 May 2026 11:49:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E639112AF1;
+	Sun, 31 May 2026 11:49:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="X86rgM8g";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iXyvi0f0";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E92F112AEC;
- Sun, 31 May 2026 11:49:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58183112AEC;
+ Sun, 31 May 2026 11:49:22 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 8683B437DA;
+ by sea.source.kernel.org (Postfix) with ESMTP id 3FCCC44635;
+ Sun, 31 May 2026 11:49:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9CF31F00898;
  Sun, 31 May 2026 11:49:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 128531F00898;
- Sun, 31 May 2026 11:49:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1780228161;
- bh=7j3xREiz6TaZFynKoDNbPly5H4/Z68zaoFZKyJzNWGc=;
+ s=k20260515; t=1780228162;
+ bh=OCmzLrDf11CowVnaLX9u60t3iwYDZIlAE1pIoNvP2BY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=X86rgM8glaK/9j6LwXMfZhMG2JQB+jwmKo0yjN8SOWnJWgOTlGgips4JAq8aCYDJk
- lxH/avYeJwiPTPHoIcd35lbV0P7kygAF7dme+qEb+Ip6F0WyPvgWVHRp0FRFQOeNNd
- cVdpbrtB8NUgmT2978Pjto7gWYDHvXT+kwCzmCeXuRZTa3ECIOqmSHy0lmX6nzweqt
- mHH9kMr2X3pSPo1M/JXbzlWaURQ/0kJSr5GznEKWT/+eUjv992mcWZC2tDh1zJIcKF
- FDtLagahIqEaoe+//cPY+rD+O1+vN+xBarEbRMCwKT4MWnLR+DzJrzWYZ3molwlE3Q
- P8Hzmd/Ggzy4A==
+ b=iXyvi0f0U6r8UnczNjbKHTyDkq+BJKNuRfcMfq/Oa7isv0oJYXV4kcQgzN1pao2Az
+ Wa/ENw2B/eJg8Ay0dlJPMjNAm2NGNkAFlECI2hXXnFjG1v+jheJ1mtUA2qG5ikIfzA
+ BdsmlZrSn2Z7PiJu5k8ERDSGK3U63McowqQwIc7S8xI4IEwfE0zoczVIR4JR4JrvQM
+ 58jSK7S/bj0zxSt+rVN40E0UAVlqjE0gdiIKGmIGpK396l0IuXhvr7kzV0b9EtYIjb
+ PxYpDpS5nOzsQrtzIe4lEszOq9SF+G6XnfkI5T67Mtp19oEZYh0QpxBN1Yy6LQ4FSl
+ jaizrHvFKVYVA==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
 To: dri-devel@lists.freedesktop.org
 Cc: amd-gfx@lists.freedesktop.org,
- "Mario Limonciello (AMD)" <superm1@kernel.org>
-Subject: [PATCH v5 09/11] drm/amd/display: Drop brightness caching in amdgpu_dm
-Date: Sun, 31 May 2026 06:49:06 -0500
-Message-ID: <20260531114908.1693426-10-superm1@kernel.org>
+ "Mario Limonciello (AMD)" <superm1@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: [PATCH v5 10/11] drm/bridge: auto-link panel backlight in bridge
+ connector
+Date: Sun, 31 May 2026 06:49:07 -0500
+Message-ID: <20260531114908.1693426-11-superm1@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260531114908.1693426-1-superm1@kernel.org>
 References: <20260531114908.1693426-1-superm1@kernel.org>
@@ -76,7 +78,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[superm1@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
@@ -86,216 +88,97 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 4BF4C615EB4
+X-Rspamd-Queue-Id: 88307615E70
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-[Why]
-Brightness caching isn't necessary when the core is changing brightness
-as part of the connector state.
+The link should allow clients to change luminance property.
 
-[How]
-Drop all brightness and actual brightness caching
-
+Tested-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> # SM8150-HDK
 Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 64 ++-----------------
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h | 13 ----
- 2 files changed, 5 insertions(+), 72 deletions(-)
+v5:
+ * Add tag
+---
+ drivers/gpu/drm/bridge/panel.c                 | 15 +++++++++++++++
+ drivers/gpu/drm/display/drm_bridge_connector.c | 15 ++++++++++++++-
+ include/drm/drm_bridge.h                       |  1 +
+ 3 files changed, 30 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 55c3838f7ec8..62161d7f7994 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3732,12 +3732,6 @@ static int dm_resume(struct amdgpu_ip_block *ip_block)
- 
- 		mutex_unlock(&dm->dc_lock);
- 
--		/* set the backlight after a reset */
--		for (i = 0; i < dm->num_of_edps; i++) {
--			if (dm->backlight_dev[i])
--				amdgpu_dm_backlight_set_level(dm, i, dm->brightness[i]);
--		}
--
- 		return 0;
- 	}
- 	/* Recreate dc_state - DC invalidates it when setting power state to S3. */
-@@ -5350,10 +5344,8 @@ static void amdgpu_dm_backlight_set_level(struct amdgpu_display_manager *dm,
- 		if (aconnector->bl_idx != bl_idx)
- 			continue;
- 
--		/* if connector is off, save the brightness for next time it's on */
-+		/* if connector is off, DRM core will restore it next time it's on */
- 		if (!aconnector->base.encoder) {
--			dm->brightness[bl_idx] = user_brightness;
--			dm->actual_brightness[bl_idx] = 0;
- 			return;
- 		}
- 	}
-@@ -5361,11 +5353,10 @@ static void amdgpu_dm_backlight_set_level(struct amdgpu_display_manager *dm,
- 	amdgpu_dm_update_backlight_caps(dm, bl_idx);
- 	caps = &dm->backlight_caps[bl_idx];
- 
--	dm->brightness[bl_idx] = user_brightness;
- 	/* update scratch register */
- 	if (bl_idx == 0)
--		amdgpu_atombios_scratch_regs_set_backlight_level(dm->adev, dm->brightness[bl_idx]);
--	brightness = convert_brightness_from_user(caps, dm->brightness[bl_idx]);
-+		amdgpu_atombios_scratch_regs_set_backlight_level(dm->adev, user_brightness);
-+	brightness = convert_brightness_from_user(caps, user_brightness);
- 	link = (struct dc_link *)dm->backlight_link[bl_idx];
- 
- 	/* Apply brightness quirk */
-@@ -5407,9 +5398,6 @@ static void amdgpu_dm_backlight_set_level(struct amdgpu_display_manager *dm,
- 		dc_allow_idle_optimizations(dm->dc, true);
- 
- 	mutex_unlock(&dm->dc_lock);
--
--	if (rc)
--		dm->actual_brightness[bl_idx] = user_brightness;
+diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/panel.c
+index 184a8b7049a7..1dbd3ba75903 100644
+--- a/drivers/gpu/drm/bridge/panel.c
++++ b/drivers/gpu/drm/bridge/panel.c
+@@ -233,6 +233,21 @@ bool drm_bridge_is_panel(const struct drm_bridge *bridge)
  }
+ EXPORT_SYMBOL(drm_bridge_is_panel);
  
- static int amdgpu_dm_backlight_update_status(struct backlight_device *bd)
-@@ -5457,7 +5445,7 @@ static int amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm,
- static int amdgpu_dm_backlight_get_brightness(struct backlight_device *bd)
- {
- 	struct amdgpu_display_manager *dm = bl_get_data(bd);
--	int i, ret;
-+	int i;
++/**
++ * drm_panel_bridge_to_panel - get the drm_panel wrapped by a panel bridge
++ * @bridge: the panel bridge
++ *
++ * Returns the &drm_panel wrapped by @bridge, or NULL if @bridge is not a
++ * panel bridge.
++ */
++struct drm_panel *drm_panel_bridge_to_panel(struct drm_bridge *bridge)
++{
++	if (!drm_bridge_is_panel(bridge))
++		return NULL;
++	return drm_bridge_to_panel_bridge(bridge)->panel;
++}
++EXPORT_SYMBOL(drm_panel_bridge_to_panel);
++
+ /**
+  * drm_panel_bridge_add - Creates a &drm_bridge and &drm_connector that
+  * just calls the appropriate functions from &drm_panel.
+diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
+index 39cc18f78eda..a1d54f7bac6a 100644
+--- a/drivers/gpu/drm/display/drm_bridge_connector.c
++++ b/drivers/gpu/drm/display/drm_bridge_connector.c
+@@ -11,7 +11,9 @@
+ #include <linux/slab.h>
  
- 	for (i = 0; i < dm->num_of_edps; i++) {
- 		if (bd == dm->backlight_dev[i])
-@@ -5466,11 +5454,7 @@ static int amdgpu_dm_backlight_get_brightness(struct backlight_device *bd)
- 	if (i >= AMDGPU_DM_MAX_NUM_EDP)
- 		i = 0;
+ #include <drm/drm_atomic_state_helper.h>
++#include <drm/drm_backlight.h>
+ #include <drm/drm_bridge.h>
++#include <drm/drm_panel.h>
+ #include <drm/drm_bridge_connector.h>
+ #include <drm/drm_connector.h>
+ #include <drm/drm_device.h>
+@@ -1048,9 +1050,20 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
+ 		connector->polled = DRM_CONNECTOR_POLL_CONNECT
+ 				  | DRM_CONNECTOR_POLL_DISCONNECT;
  
--	ret = amdgpu_dm_backlight_get_level(dm, i);
--	if (ret < 0)
--		return dm->brightness[i];
--
--	return ret;
-+	return amdgpu_dm_backlight_get_level(dm, i);
- }
+-	if (panel_bridge)
++	if (panel_bridge) {
++		struct drm_panel *panel;
++
+ 		drm_panel_bridge_set_orientation(connector, panel_bridge);
  
- static const struct backlight_ops amdgpu_dm_backlight_ops = {
-@@ -5488,8 +5472,6 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
- 	struct amdgpu_dm_backlight_caps *caps;
- 	char bl_name[16];
- 	int min, max;
--	int real_brightness;
--	int init_brightness;
- 	int r;
++		panel = drm_panel_bridge_to_panel(panel_bridge);
++		if (panel && panel->backlight) {
++			ret = drm_backlight_alloc(connector);
++			if (!ret)
++				drm_backlight_link(connector->backlight,
++						   panel->backlight);
++		}
++	}
++
+ 	if (support_hdcp && IS_REACHABLE(CONFIG_DRM_DISPLAY_HELPER) &&
+ 	    IS_ENABLED(CONFIG_DRM_DISPLAY_HDCP_HELPER))
+ 		drm_connector_attach_content_protection_property(connector, true);
+diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
+index a8d67bd9ee50..6cc2a22b2dec 100644
+--- a/include/drm/drm_bridge.h
++++ b/include/drm/drm_bridge.h
+@@ -1558,6 +1558,7 @@ void drm_bridge_hpd_notify(struct drm_bridge *bridge,
  
- 	if (aconnector->bl_idx == -1)
-@@ -5515,8 +5497,6 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
- 	} else
- 		props.brightness = props.max_brightness = MAX_BACKLIGHT_LEVEL;
- 
--	init_brightness = props.brightness;
--
- 	if (caps->data_points && !(amdgpu_dc_debug_mask & DC_DISABLE_CUSTOM_BRIGHTNESS_CURVE)) {
- 		drm_info(drm, "Using custom brightness curve\n");
- 		props.scale = BACKLIGHT_SCALE_NON_LINEAR;
-@@ -5530,7 +5510,6 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
- 	dm->backlight_dev[aconnector->bl_idx] =
- 		backlight_device_register(bl_name, aconnector->base.kdev, dm,
- 					  &amdgpu_dm_backlight_ops, &props);
--	dm->brightness[aconnector->bl_idx] = props.brightness;
- 
- 	if (IS_ERR(dm->backlight_dev[aconnector->bl_idx])) {
- 		r = PTR_ERR(dm->backlight_dev[aconnector->bl_idx]);
-@@ -5539,18 +5518,6 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
- 		return r;
- 	}
- 
--	/*
--	 * dm->brightness[x] can be inconsistent just after startup until
--	 * ops.get_brightness is called.
--	 */
--	real_brightness =
--		amdgpu_dm_backlight_ops.get_brightness(dm->backlight_dev[aconnector->bl_idx]);
--
--	if (real_brightness != init_brightness) {
--		dm->actual_brightness[aconnector->bl_idx] = real_brightness;
--		dm->brightness[aconnector->bl_idx] = real_brightness;
--	}
--
- 	/* Link the registered backlight device to the DRM connector. If
- 	 * drm_backlight_alloc() failed earlier in init_helper,
- 	 * aconnector->base.backlight is NULL and drm_backlight_link() is a
-@@ -10665,7 +10632,6 @@ static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
- 	bool mode_set_reset_required = false;
- 	u32 i;
- 	struct dc_commit_streams_params params = {dc_state->streams, dc_state->stream_count};
--	bool set_backlight_level = false;
- 
- 	/* Disable writeback */
- 	for_each_old_connector_in_state(state, connector, old_con_state, i) {
-@@ -10785,7 +10751,6 @@ static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
- 			acrtc->hw_mode = new_crtc_state->mode;
- 			crtc->hwmode = new_crtc_state->mode;
- 			mode_set_reset_required = true;
--			set_backlight_level = true;
- 		} else if (modereset_required(new_crtc_state)) {
- 			drm_dbg_atomic(dev,
- 				       "Atomic commit: RESET. crtc id %d:[%p]\n",
-@@ -10838,18 +10803,6 @@ static void amdgpu_dm_commit_streams(struct drm_atomic_state *state,
- 		}
- 	}
- 
--	/* During boot up and resume the DC layer will reset the panel brightness
--	 * to fix a flicker issue.
--	 * It will cause the dm->actual_brightness is not the current panel brightness
--	 * level. (the dm->brightness is the correct panel level)
--	 * So we set the backlight level with dm->brightness value after set mode
--	 */
--	if (set_backlight_level) {
--		for (i = 0; i < dm->num_of_edps; i++) {
--			if (dm->backlight_dev[i])
--				amdgpu_dm_backlight_set_level(dm, i, dm->brightness[i]);
--		}
--	}
- }
- 
- static void dm_set_writeback(struct amdgpu_display_manager *dm,
-@@ -11355,13 +11308,6 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
- 	/* Update audio instances for each connector. */
- 	amdgpu_dm_commit_audio(dev, state);
- 
--	/* restore the backlight level */
--	for (i = 0; i < dm->num_of_edps; i++) {
--		if (dm->backlight_dev[i] &&
--		    (dm->actual_brightness[i] != dm->brightness[i]))
--			amdgpu_dm_backlight_set_level(dm, i, dm->brightness[i]);
--	}
--
- 	/*
- 	 * send vblank event on all events not handled in flip and
- 	 * mark consumed event for drm_atomic_helper_commit_hw_done
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-index 1ab066859d9e..952bfea0d8dc 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-@@ -648,19 +648,6 @@ struct amdgpu_display_manager {
- 	struct completion dmub_aux_transfer_done;
- 	struct workqueue_struct *delayed_hpd_wq;
- 
--	/**
--	 * @brightness:
--	 *
--	 * cached backlight values.
--	 */
--	u32 brightness[AMDGPU_DM_MAX_NUM_EDP];
--	/**
--	 * @actual_brightness:
--	 *
--	 * last successfully applied backlight values.
--	 */
--	u32 actual_brightness[AMDGPU_DM_MAX_NUM_EDP];
--
- 	/**
- 	 * @aux_hpd_discon_quirk:
- 	 *
+ #ifdef CONFIG_DRM_PANEL_BRIDGE
+ bool drm_bridge_is_panel(const struct drm_bridge *bridge);
++struct drm_panel *drm_panel_bridge_to_panel(struct drm_bridge *bridge);
+ struct drm_bridge *drm_panel_bridge_add(struct drm_panel *panel);
+ struct drm_bridge *drm_panel_bridge_add_typed(struct drm_panel *panel,
+ 					      u32 connector_type);
 -- 
 2.54.0
 
