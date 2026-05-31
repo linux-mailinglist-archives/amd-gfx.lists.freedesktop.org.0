@@ -2,54 +2,133 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id N8EFEm00HWpeWQkAu9opvQ
+	id mDGLMlEwHGqDLQkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 09:27:41 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 14:57:53 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA9C561AD8D
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 09:27:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33DBF616318
+	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 14:57:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E281112EE0;
-	Mon,  1 Jun 2026 07:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9C0F112B30;
+	Sun, 31 May 2026 12:57:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=poczta.fm header.i=@poczta.fm header.b="A45h48hc";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="W2SHXTBp";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtpo63.interia.pl (smtpo63.interia.pl [217.74.67.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 161A1112B28
- for <amd-gfx@lists.freedesktop.org>; Sun, 31 May 2026 12:42:11 +0000 (UTC)
-Received: from Stacjonarny (62-133-144-026.dynamicip.ostnet.pl [62.133.144.26])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by www.poczta.fm (INTERIA.PL) with ESMTPSA;
- Sun, 31 May 2026 14:42:08 +0200 (CEST)
-From: "Artur Chlebek" <achlebek@poczta.fm>
-To: "'Greg KH'" <gregkh@linuxfoundation.org>
-Cc: <amd-gfx@lists.freedesktop.org>, <regressions@lists.linux.dev>,
- <stable@vger.kernel.org>
-References: <002901dcf0eb$9472e210$bd58a630$@poczta.fm>
- <2026053159-unread-disagree-0da7@gregkh> 
-In-Reply-To: 
-Subject: RE: 7.0.9 vs 7.0.10/7.1 Radeon 260X regression
-Date: Sun, 31 May 2026 14:42:08 +0200
-Message-ID: <003901dcf0fa$e5315ce0$af9416a0$@poczta.fm>
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011066.outbound.protection.outlook.com
+ [40.93.194.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5696D112B30
+ for <amd-gfx@lists.freedesktop.org>; Sun, 31 May 2026 12:57:50 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=i3vPawziQaQGmId9Sn04OcFSFry7umzORFsqnUJxBJ+J0nt+9QbLcfLsnoemqpnq03uiLKTKgzhV5IiV+zCEvkmwC7hZgP3Zac9h4wDqZsHpy6KemZIusrPR8sRwHVyRPpqxIk4BcVPstqmmxGExZQfj4yWMD8lAu6khZKL8ufHdKr+OHiiZ5WySFRnqPTOI6yqG5zCSWsAignIJoFsn+LAqGaAe0ig1C989m+9ThbyMdWoz7AKgFhYyATyY5Y6Ltf2itrpjbtkpoKaw8UMUNRNUAIMsTSLevLVX7+jHOdqt7T4nOWfMrHwIWmL7ijKVNbk9Y0dFNMb3/moChY4Xnw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bqLFbDwyhwjzgh+h2pL79Suw1rELPE0hdZYCD9cbUiE=;
+ b=GO2Pr0G9SzkKHADqHzgQ31k+sPcHkTVABAfh+PuLOtqxr1t+PVWlAtJmrQpWoiFpbdmfdegZV8EXJNkDEkigUOiEJnHD9jLQeECZFb/0JsFIXNtkSk6mHk20HOVfdQ/NSg66SZRs6u3Kim9tCzjzqTNxyaGWi6iOn25Hzae+2HuPLTGcZiWkDjLbl8o6siOBd2tgOB2e8RgxU3kHsXymEJGdkBrNgGzs07T0qRGwhVRaGku8tDbARZz7iKkl2RlTbksJyA9Z6YtPFKDKjC7/rAyfXCQZPfRswU+TDB5xjSAKWmYifD9M8YjKhQcxSCwq6yQBZrfNwzG0xw04Ff2POQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bqLFbDwyhwjzgh+h2pL79Suw1rELPE0hdZYCD9cbUiE=;
+ b=W2SHXTBpb2EtvWEottiupCV5NwwR0dFFg1IF6YbVO1UuChTJcy6RfyCw2UO7XgEppSclOdLDkbrb1nfFh8zaz9w2ZX/Hw3eKu1kUHhITeRzLke4FLLYsv68+UgP9CZu4o1UlKJKcRyunudiW1xZZTsgC23WrStZeg+7px/BgVR0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SJ0PR12MB7007.namprd12.prod.outlook.com (2603:10b6:a03:486::8)
+ by SJ0PR12MB6904.namprd12.prod.outlook.com (2603:10b6:a03:483::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.16; Sun, 31 May
+ 2026 12:57:46 +0000
+Received: from SJ0PR12MB7007.namprd12.prod.outlook.com
+ ([fe80::6f95:c4a2:894d:9e8a]) by SJ0PR12MB7007.namprd12.prod.outlook.com
+ ([fe80::6f95:c4a2:894d:9e8a%5]) with mapi id 15.21.0071.015; Sun, 31 May 2026
+ 12:57:45 +0000
+Message-ID: <4810ae14-8580-438f-ad3d-d7c7d8e7d6a3@amd.com>
+Date: Sun, 31 May 2026 08:57:39 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/5] drm/amd/display: Retry link detection when it fails
+To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
+ Ivan Lipski <ivan.lipski@amd.com>, Alex Hung <alex.hung@amd.com>,
+ Ray Wu <Ray.Wu@amd.com>, Wenjing Liu <wenjing.liu@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
+ Dan Wheeler <daniel.wheeler@amd.com>
+References: <20260531105744.28717-1-timur.kristof@gmail.com>
+Content-Language: en-US
+From: Harry Wentland <harry.wentland@amd.com>
+In-Reply-To: <20260531105744.28717-1-timur.kristof@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YQZPR01CA0179.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:8b::8) To SJ0PR12MB7007.namprd12.prod.outlook.com
+ (2603:10b6:a03:486::8)
 MIME-Version: 1.0
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFDUGtZMJYvTWCxG+Cy9+QRqeP05ADRSPyrAmjEVgO3QYPi8A==
-Content-Language: pl
-X-IPL-Priority-Group: 0-0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poczta.fm; s=dk;
- t=1780231329; bh=aQxHIfR0Wt2sOg4MkPcCIB7mzg9EaFBUOuncs0GU2l8=;
- h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
- b=A45h48hc9sRiVQUTQ1VwRafd6Kuh75w372Llu0owqL1tHlxHvBoPGF3ABeRgTDaQj
- UAjPvLnzO92AaNvUPDEZR3UtD0WsE6ldC4G12fRMAB2zF9sqZ70PjOdSbEyKhGokyt
- 4IQOnNA9Bdnn21V/HKtRYH1ElCe5K3jlGmOrXvhk=
-X-Mailman-Approved-At: Mon, 01 Jun 2026 07:27:37 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR12MB7007:EE_|SJ0PR12MB6904:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9241aaca-5373-497c-b1ec-08debf1435e1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|56012099006|11063799006|22082099003|18002099003|921020;
+X-Microsoft-Antispam-Message-Info: fVmFoBVs1wxRdPi2J7Bx00obgDRoUiDLsQBVO3uGdtiRn5KIiV8xIhjOOctdtUYOgCVdvu+dD7HxSNexyv/6VFmacabgj5agDHJNwcAkMQuK20JdOFofSNRxoPzQ87yMyft9Y4/v1FsFB0VoQsSiX0JzgBtHJOOrf0CwD9NAD8+ztAW5lL0m0FYfCcYQi5xgW5pVJVprlyh41fKyPOIW1a/YLAOD4yL+RQ+I57DmSwkEqQTJhZSeRbOgi8ejhTnGGfcUpmb936k15VaymPHfJWAUy3z2AAqHWrfD8t3yjLjxUw6XX6jJ2+I428OZMAyZL9+kPbwuTsTAm7iLNcWswn5+cBISEjonGTuGikEv9kXEnpP34129MUEKY7tbpQzBb+DQJYtxqbPm11FpFTl1zUuLfxqYeFFiNfLwooiay3frHH0sIJwSTrsD/uN5H9oMuX2ShlLt1urDpFaGes9hv89bgM6hANLs05Pa7reA7t8uegKFlQ77FYgqgPFxjV1Y/NQd3b2w8QLnMmtI24jK1YkycxOwrg7zWFGcFdDbTzEIPNcot1Lq6d4NfArQ1q2GThpIEpu2hNperdn8l9itJZiG+xIYo/7+AD3B9LbQAwUD1LbR9Jap/fe7vcwP7dMrxlJvFW8yI+pXkPL38JzhrxeBX7GNv9l371sVz6kyKXjXPzUrCLSeJn4YSPQ05I90lK0oXLxu/8isnpT69FnkZpHimv6umrHrZOy26tNX1AeRY75TJUvCqf9tyV/7BMMb
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR12MB7007.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(56012099006)(11063799006)(22082099003)(18002099003)(921020);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VE5DaC9zb2hqcjc1K2dIQk4vd3ZmZzVtRWVHbW9ZZlFBajIwZEVyZmdzbXhp?=
+ =?utf-8?B?Rlg1dHZ1dzdzTFpjeFc2ZG8rTXhvZ0RRNUhDUWlFbkowb2N2Sjl5NUtZazRn?=
+ =?utf-8?B?SjhscXVySEE3VDUvWlhROWgwa1JNbkVKOWc3K2RqakZjVzlQZ0cxN3dXUWo5?=
+ =?utf-8?B?d2ZmOGdnZkM4alRqSjhCandLUXhmK2VSM3VaSndmd09mSkV4dC9mQVgyQURQ?=
+ =?utf-8?B?a0NiQ3duUTltZndqN3NVdWdJT1ZxR3BnVjE1a2RjZEdHN2ZPWndvWENRc3JU?=
+ =?utf-8?B?RXN0MnowVlEwZUV2Y1lCclREYWppNXNoYnI0RnZrZll6OXhCUnEzNVhRV3hs?=
+ =?utf-8?B?YWJMbDQwWnU3eW40VFhNUGNiZ1JDYlZHbWUzc0RQWU9FQW5CQlhOcHdwVzQ2?=
+ =?utf-8?B?blA3Q2NoUng2Vm5TWFpROVJqSnZCQWdSd0VrM3JGbHFuUkJySXh5ZzJFa0xp?=
+ =?utf-8?B?WlpYWEpRSTkyZWZKNDc0RjFxSFo1Zm41UEh3aVQ5YUhlZ1ZsZUQyZW5RQmln?=
+ =?utf-8?B?U3FmSVlpdzU3b2VRU1prMHF1S2k2Y05OUDErZ1lCUG9XeXY2bzJHNkcydkNr?=
+ =?utf-8?B?VGRaZ0VKdU1tOXZCVGN2T09YdTgwZFdxeWJrNXZCVVdFblpIbjhYb3ZzcmJj?=
+ =?utf-8?B?NjkyZ1dsZ01JV09XcEZIRUxOc3Iyc3dWMjVqQjdiUXpGZjlHdEpVdFZVb2do?=
+ =?utf-8?B?dndLU0p5ZWtUZ0RBWEZmUkx5ZXNzRFltK0J6TFc0aWFqSVgzNG85VE9Eamwx?=
+ =?utf-8?B?NzNOVHY2U0gxeUNhYS9MUGJOenB5VzZoT2xGbXBNYzIrZXFDREJFZnk4Vm9m?=
+ =?utf-8?B?SEVaWnBlcnNJN2l2ZTVBUTFxcWQvcUc2NGRIK3dpZEtFdGZsdVQyajJMZGxS?=
+ =?utf-8?B?akFFU3hWclVQUTNBSHNsYXBVUFM0QkRsYTJBbTN6K2NRbXhtZ1AzbThHWE9K?=
+ =?utf-8?B?QXVXY0FOZldIaE5rSnJRR2tjWmt1ck9CcmgxejBONjVoQXE0MTVOL1I3dVd0?=
+ =?utf-8?B?QXU2dkd6M1JnUm5mcnpndno5NncvTFN3M1Y0UWtmQi80S05WRjVKT1VjbTk2?=
+ =?utf-8?B?c0ovaTViNkRtelZ6MDdBbi9SRld5MjZucVRnL0wrbEpTUk0vZlpYaGxOTXRX?=
+ =?utf-8?B?L1JWTnlYWGpoQ2t5bWU3VzVPWExZTGR3ZDJMVHpZMHFuekV4ditwSmtwbFA4?=
+ =?utf-8?B?bDJ3SUxidjBXYzlROWxTUHdDYmh4THlmVnRpcEJnT05rUDQyVkFBVEo0RmJ6?=
+ =?utf-8?B?V2VOaUZOU09QRmNneWIzbDdGT2UyYVduMVN2aFQ2cnRVTDliVUVWT0kxQUFQ?=
+ =?utf-8?B?V3NrcWd2dWtQR2hXN2FUWlhlNG9tOEFTVnozZm92QjcwMWoxOFlnRUUvc1dH?=
+ =?utf-8?B?Ry9vLzVjZUxDRzlHN1pEUGtUUWs4bGZnZUVKN2M0T1VOZVliUHdEUzRyMmJM?=
+ =?utf-8?B?WUM3c1N1ZUVPbTlOZVJJek54SWY5Y3hTN0tnUzBwaC9xRkZCWEFrYkQ5Ulcv?=
+ =?utf-8?B?cGVocnN3eVk2OFlzNjY0anMvTlpuaStYWWVZeDJWZllUMVhnWFlCcHIwQ3hD?=
+ =?utf-8?B?OGZOdnVWMUpqS0pFaXNreEVLZzFYa1VONkhwNWo4a1hWMWg5MFRVNnBCVlpF?=
+ =?utf-8?B?K1RjNHk5NVczSFBvZ3lJVGdsSk5BdGZ1YVV3aitQeUhnT25YeTJIWEdWSU9X?=
+ =?utf-8?B?aTRZMEtpWG9zbUNza1g3M3Mxa29uWmlnWlBJOEMwU3k1dXhSaFlOVHE5UzVK?=
+ =?utf-8?B?YkVZMXhsSXRXc1p5OEpTUCtpT2FxNE03dU9qT0V1cW5hK0NLNjZLMGFTeENI?=
+ =?utf-8?B?TTBGVGE2N2FrZVo0ZFJ6QkoyVHNScGlqTUl0cXZzUVZ3SmRFa1ZMTURBNUNL?=
+ =?utf-8?B?dE5VNllsWVhwak1XWUpYVFl5MmNuTWZaU09wbENGZU45czBqaU15KzBJUTVk?=
+ =?utf-8?B?TVhxL3lLS1BrZ25mNGtLeWx2TXRXNVlPbXRDRVdOR1p3dmJpMmY4SnQ1K2R6?=
+ =?utf-8?B?Wk5xVnNIdkMramVIWkhpbDJBcHUyR2VxMnZuZlJ4MFFkUFg0RCtZdkxZZUxL?=
+ =?utf-8?B?bkM1ZHZNRk1wUnZiaHEzN00vMFJ3Y3pHSHJINDMybjdFK2g1cWtyS2lUNzJX?=
+ =?utf-8?B?ay82MnRvdk84aGlkTmcyQUFoTGsvVDg1QzBhWitPeW5PVjQ5N0VwT2ZIQnUr?=
+ =?utf-8?B?QU1EeFREN3NPWnJTN0Z6L2VVeG5TUlllQVpLQ1hDQUk4OWYvZUF3RStsUkh0?=
+ =?utf-8?B?N1VwU3ZBMlVNQUh6Y0wvMy9iNmZ6dmZOOWkwWW5nTmgzVkNvc3FPdElwQVow?=
+ =?utf-8?B?bm96Zm8xNldiSUFyV3ZaZTE1L0tOMmQ1Y3JhRzR1RDJIRzllSEpNUT09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9241aaca-5373-497c-b1ec-08debf1435e1
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB7007.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2026 12:57:45.8865 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: b8z/rih+8u/MNc8NB3DmFoBn3CEAi9sEDFVBPDYGiQn4h+mfI9aBt4zSFfWUFB2KnK4+IMVpj2eniiAHBRLaIQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6904
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,69 +142,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[poczta.fm,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[poczta.fm:s=dk];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:gregkh@linuxfoundation.org,m:regressions@lists.linux.dev,m:stable@vger.kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[poczta.fm];
-	FORGED_SENDER(0.00)[achlebek@poczta.fm,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:Alexander.Deucher@amd.com,m:ivan.lipski@amd.com,m:alex.hung@amd.com,m:Ray.Wu@amd.com,m:wenjing.liu@amd.com,m:aurabindo.pillai@amd.com,m:roman.li@amd.com,m:daniel.wheeler@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com];
+	FORGED_SENDER(0.00)[harry.wentland@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[poczta.fm:+];
-	RCPT_COUNT_THREE(0.00)[4];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[achlebek@poczta.fm,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[poczta.fm:email,poczta.fm:mid,poczta.fm:dkim,linux.dev:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: AA9C561AD8D
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,amd.com:mid,amd.com:dkim]
+X-Rspamd-Queue-Id: 33DBF616318
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
------Original Message-----
-From: Greg KH <gregkh@linuxfoundation.org>
-Sent: Sunday, May 31, 2026 1:43 PM
-To: Artur Chlebek <achlebek@poczta.fm>
-Cc: amd-gfx@lists.freedesktop.org; regressions@lists.linux.dev;
-stable@vger.kernel.org
-Subject: Re: 7.0.9 vs 7.0.10/7.1 Radeon 260X regression
 
-On Sun, May 31, 2026 at 12:52:30PM +0200, Artur Chlebek wrote:
->> Hi, I have 5x fps drop on amdgpu Radeon 260X 1GB between kernel 7.0.9 
->> and
->> 7.0.10 or 7.1rc
->> 
->> Original sparse mail got flagged as spam so let me elaborate:
->> Newest vanilla Fedora with Plasma, Gigabyte GA-H97-D3H, looked into 
->> things like clocks, PM, ASPM, tried flags, GTTSIZE, .dc=0 - all seems 
->> fine nothing helps.
-> 
-> Can you use 'git bisect' to find the offending commit?
-> 
-> thanks,
-> 
-> greg k-h
 
-I'm sorry I'm not familiar with git at all, and very new to Linux. I can do
-some local tests if led by hand...
+On 2026-05-31 06:57, Timur Kristóf wrote:
+> When dc_link_detect_connection_type thinks that a display is
+> connected, but dc_link_detect failed, enqueue delayed work to
+> retry the link detection again.
+> 
+> Useful when eg. HPD pin is high but the display isn't ready and
+> didn't respond to DDC. Typically this may happen when the HPD
+> pins make contact before the DDC pins, or when the display
+> is "slow to wake up" and doesn't respond on DDC.
+> 
+> The first few patches are just a slight refactor to
+> de-duplicate some code and do some cleanup necessary
+> for the retry. This is to avoid adding even more duplicated
+> code.
 
-PS: I can confirm that 7.0.9-205 is 25fps in Unigine Heaven, and 7.0.10-200
-(or 7.1 since beginning of rc availability) is 3-5fps.
+Series is
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+
+Dan, can we queue this for testing in the next promotion cycle before 
+merging?
+
+Harry
+
+> 
+> Timur Kristóf (5):
+>    drm/amd/display: Add detect reason to handle_hpd_irq_helper
+>    drm/amd/display: Use handle_hpd_irq_helper for HPD RX
+>    drm/amd/display: Always create delayed HPD work queue
+>    drm/amd/display: Retry link detection on hotplug
+>    drm/amd/display: Retry link detection on resume and boot
+> 
+>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 216 +++++++++++++-----
+>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  16 ++
+>   2 files changed, 179 insertions(+), 53 deletions(-)
+> 
 
