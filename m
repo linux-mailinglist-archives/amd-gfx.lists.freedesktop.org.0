@@ -2,51 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KOu6E04gHGomKAkAu9opvQ
+	id 2FTMLm40HWpcWQkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 09:27:42 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 235AF615EAA
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BF6361ADA1
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 09:27:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7B7F112AFC;
-	Sun, 31 May 2026 11:49:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 709EE112EE2;
+	Mon,  1 Jun 2026 07:27:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="S0sIwwim";
+	dkim=pass (1024-bit key; unprotected) header.d=poczta.fm header.i=@poczta.fm header.b="GXmDwvEi";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8774E112AED;
- Sun, 31 May 2026 11:49:23 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 0B84A60123;
- Sun, 31 May 2026 11:49:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EC581F00893;
- Sun, 31 May 2026 11:49:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1780228162;
- bh=s/yReg27q7GRpv9v5w8P9RnJc9ups0mYVC6jBC5ZC6A=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=S0sIwwimF8pFh2usvlucQ/LJDBneh6T1HhCPEGU82bUIq3ozw1JyS86Mua63/z8j3
- 8/eOI8coHcWGabj8XKmSo7C1xdD9tGGAElPHxh0JP31F5AwtSxcT1d5jOn+wCFfY7R
- 3OmkLiSEgM5aKICOQm3t9oc/PQi9BgEZHRJSUKIa1XBynaKHIqZOgkdABttVP9UuL4
- ur5l/7R/khNz+AISaD5JqgQaAy1KGsxTbzqbvlIcpI3cOPCSWwTFA3nchJsCESoqmt
- 1exe0coQAk8jrHHgZMdp04AwtIh2JaW0+SNrIrWUZGD3SNOlFk0+kFVpzVBebwDtBH
- xDqBa1jux88tA==
-From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-To: dri-devel@lists.freedesktop.org
-Cc: amd-gfx@lists.freedesktop.org,
- "Mario Limonciello (AMD)" <superm1@kernel.org>
-Subject: [PATCH v5 11/11] drm/i915/display: use drm backlight
-Date: Sun, 31 May 2026 06:49:08 -0500
-Message-ID: <20260531114908.1693426-12-superm1@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260531114908.1693426-1-superm1@kernel.org>
-References: <20260531114908.1693426-1-superm1@kernel.org>
+Received: from smtpo49.interia.pl (smtpo49.interia.pl [217.74.67.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 413AE10E151
+ for <amd-gfx@lists.freedesktop.org>; Sun, 31 May 2026 12:04:51 +0000 (UTC)
+Received: from Stacjonarny (62-133-144-026.dynamicip.ostnet.pl [62.133.144.26])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by www.poczta.fm (INTERIA.PL) with ESMTPSA;
+ Sun, 31 May 2026 14:04:48 +0200 (CEST)
+From: "Artur Chlebek" <achlebek@poczta.fm>
+To: "'Greg KH'" <gregkh@linuxfoundation.org>
+Cc: <amd-gfx@lists.freedesktop.org>, <regressions@lists.linux.dev>,
+ <stable@vger.kernel.org>
+References: <002901dcf0eb$9472e210$bd58a630$@poczta.fm>
+ <2026053159-unread-disagree-0da7@gregkh>
+In-Reply-To: <2026053159-unread-disagree-0da7@gregkh>
+Subject: RE: 7.0.9 vs 7.0.10/7.1 Radeon 260X regression
+Date: Sun, 31 May 2026 14:04:48 +0200
+Message-ID: <003701dcf0f5$ae8ef350$0bacd9f0$@poczta.fm>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQFDUGtZMJYvTWCxG+Cy9+QRqeP05ADRSPyrt1S/MJA=
+Content-Language: pl
+X-IPL-Priority-Group: 0-0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poczta.fm; s=dk;
+ t=1780229090; bh=e7/qcnShqUBBb/+p6q0GSpdsFle8DuDHsO56XnzqioA=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+ b=GXmDwvEiA9rdPLAcNyoiRs7Uub7f7a/9nEZ4ZoZGHkQxImZiDAyvHdco+9Iabd1F5
+ a0waF3I0hT7NSjIeiiqiUSR6w+haAUCjJkg98zRO8qKKn50erchdMod/whlE3Vo61X
+ KY/FkU3AZcd0YVjMRPHgEebkeBHWos+FyRxOj9Mk=
+X-Mailman-Approved-At: Mon, 01 Jun 2026 07:27:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,109 +63,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[poczta.fm,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[poczta.fm:s=dk];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:gregkh@linuxfoundation.org,m:regressions@lists.linux.dev,m:stable@vger.kernel.org,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[achlebek@poczta.fm,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[poczta.fm];
 	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[superm1@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[poczta.fm:+];
+	RCPT_COUNT_THREE(0.00)[4];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[achlebek@poczta.fm,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 235AF615EAA
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,poczta.fm:email,poczta.fm:mid,poczta.fm:dkim,lists.freedesktop.org:email]
+X-Rspamd-Queue-Id: 8BF6361ADA1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Convert Intel display drivers (i915 and xe) to use the new DRM backlight
-infrastructure. This allows brightness control via DRM connector
-properties.
+-----Original Message-----
+From: Greg KH <gregkh@linuxfoundation.org> 
+Sent: Sunday, May 31, 2026 1:43 PM
+To: Artur Chlebek <achlebek@poczta.fm>
+Cc: amd-gfx@lists.freedesktop.org; regressions@lists.linux.dev;
+stable@vger.kernel.org
+Subject: Re: 7.0.9 vs 7.0.10/7.1 Radeon 260X regression
 
-Allocate DRM backlight for eDP connectors during initialization, link the
-backlight device to the connector during registration, and unlink during
-unregistration.
+On Sun, May 31, 2026 at 12:52:30PM +0200, Artur Chlebek wrote:
+>> Hi, I have 5x fps drop on amdgpu Radeon 260X 1GB between kernel 7.0.9 
+>> and
+>> 7.0.10 or 7.1rc
+>> 
+>> Original sparse mail got flagged as spam so let me elaborate:
+>> Newest vanilla Fedora with Plasma, Gigabyte GA-H97-D3H, looked into 
+>> things like clocks, PM, ASPM, tried flags, GTTSIZE, .dc=0 - all seems 
+>> fine nothing helps.
+> 
+> Can you use 'git bisect' to find the offending commit?
+> 
+> thanks,
+> 
+> greg k-h
 
-Assisted-by: Sonnet:4
-Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
----
-v5:
- * New patch
----
- drivers/gpu/drm/i915/display/intel_backlight.c | 4 ++++
- drivers/gpu/drm/i915/display/intel_dp.c        | 8 ++++++++
- 2 files changed, 12 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-index 34e95f05936e..99ae39dfb7bb 100644
---- a/drivers/gpu/drm/i915/display/intel_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-@@ -9,6 +9,7 @@
- #include <linux/string_helpers.h>
- #include <acpi/video.h>
- 
-+#include <drm/drm_backlight.h>
- #include <drm/drm_file.h>
- #include <drm/drm_print.h>
- 
-@@ -1004,6 +1005,8 @@ int intel_backlight_device_register(struct intel_connector *connector)
- 		    "[CONNECTOR:%d:%s] backlight device %s registered\n",
- 		    connector->base.base.id, connector->base.name, name);
- 
-+	drm_backlight_link(connector->base.backlight, bd);
-+
- out:
- 	kfree(name);
- 
-@@ -1015,6 +1018,7 @@ void intel_backlight_device_unregister(struct intel_connector *connector)
- 	struct intel_panel *panel = &connector->panel;
- 
- 	if (panel->backlight.device) {
-+		drm_backlight_link(connector->base.backlight, NULL);
- 		backlight_device_unregister(panel->backlight.device);
- 		panel->backlight.device = NULL;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 6ef2a0043cda..109f85dc6b89 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -44,6 +44,7 @@
- #include <drm/display/drm_dsc_helper.h>
- #include <drm/display/drm_hdmi_helper.h>
- #include <drm/drm_atomic_helper.h>
-+#include <drm/drm_backlight.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_fixed.h>
-@@ -7222,6 +7223,13 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 				    type, &intel_dp->aux.ddc);
- 	drm_connector_helper_add(&connector->base, &intel_dp_connector_helper_funcs);
- 
-+	if (type == DRM_MODE_CONNECTOR_eDP) {
-+		int r = drm_backlight_alloc(&connector->base);
-+
-+		if (r)
-+			drm_err(display->drm, "Failed to allocate backlight: %d\n", r);
-+	}
-+
- 	if (!HAS_GMCH(display) && DISPLAY_VER(display) < 12)
- 		connector->base.interlace_allowed = true;
- 
--- 
-2.54.0
+I'm sorry I'm not familiar with git at all, and very new to Linux. I can do
+some local tests if led by hand...
 
