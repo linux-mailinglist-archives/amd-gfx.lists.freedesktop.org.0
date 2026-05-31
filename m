@@ -2,70 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oPRNEzQUHGpdJgkAu9opvQ
+	id 4C7nGDkUHGpdJgkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 12:57:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 12:58:01 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3FD7615AFE
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 12:57:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 136F7615B0C
+	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 12:58:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71C7810E613;
-	Sun, 31 May 2026 10:57:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98F8F10E616;
+	Sun, 31 May 2026 10:57:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RBArmemC";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LLVpUIqk";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E21410E612
- for <amd-gfx@lists.freedesktop.org>; Sun, 31 May 2026 10:57:51 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id
- 5b1f17b1804b1-490a765d410so4791725e9.1
- for <amd-gfx@lists.freedesktop.org>; Sun, 31 May 2026 03:57:51 -0700 (PDT)
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
+ [209.85.128.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37A4310E613
+ for <amd-gfx@lists.freedesktop.org>; Sun, 31 May 2026 10:57:52 +0000 (UTC)
+Received: by mail-wm1-f45.google.com with SMTP id
+ 5b1f17b1804b1-490a765f47aso3211215e9.1
+ for <amd-gfx@lists.freedesktop.org>; Sun, 31 May 2026 03:57:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1780225070; x=1780829870; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1780225071; x=1780829871; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=6tCVxwZ/2kSCfKPYf/iRfAPTkHxcF6iOZxH1syXDR7Q=;
- b=RBArmemChd7or4EuvavBp3wIF4ZO9RYmwZvNwvsMwJSSufu1OOOgLVzHCi5ud5az76
- yktRh66V27VcuaDwUnzNzJailhVdSOraaGJW2ceWKM10DF8Jxd6zMDYCdgTfdCzXe/97
- 3+iothDmM1oDNLFMt3mc5vpPLqOdyMuFWAUB5pdtGfyP4w2zV1bjyte0trsNYNqipsBh
- +k2lkw6+BgB6kdF9WpGgVlLm3MLTzgAw0Q6hbLuuGKyD8eL3ChRWL/eZnywv1FlvwAEQ
- SLm93yyCBIQHPmkF1Ii0JPzVPpSxJQ3MN5HO0lmwC+my/qFTduAgSUOQHtsBt0TovNsd
- 6JdQ==
+ bh=SqKtki+BLyfiZJsWxKa0XzxeBr6g0BJYASpoIgEStXk=;
+ b=LLVpUIqkXxogOi+HUtrkMVBNALLudiYutXhS1zVLxn2JkICX9O1ZQZ8uwajK/+thNU
+ f76h/f4EnGnErU6KoI0Ewt66Drcv1TzNbyZsDZAI6AVYkH2YZ+R3p5W5oxTsvvMTLkaY
+ e8zuCEjijKNVSXRLp4WpxcfI1LxQCZzYV2ZBlVRAzsmqoMchyy97zyWlaivbzZOyvZZ3
+ iAn7f6RUU0pfJ/RE7WZEPk5Jp4tNQfMumsO+fltO0MHdlpS4o72QhrimiRtaKArELvT5
+ fGY5VZeW/b+YsJq2DHUS/gZ6fkrx3EmfriF7A2uQWX75rdaPX+h3kbBManjv7KEUvrxX
+ XTFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1780225070; x=1780829870;
+ d=1e100.net; s=20251104; t=1780225071; x=1780829871;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=6tCVxwZ/2kSCfKPYf/iRfAPTkHxcF6iOZxH1syXDR7Q=;
- b=tFIZyY9SZHFABiFY0xXzsEABEA47ZCLIRM2j/9P5Si6r2NOhs3zkdH7GNKpNKCfDrV
- 6WsRYGckHp2np0JLQ9gt2PPJp9TmMQlijZZjfsnwDsm6Uu6WUzTTTC65UKCfp30TPl+W
- wPFZY32eKP4qalx8uZI0sCdJcCbewjPFIyFVQaU/ZP2b/wJInwnvSKAaMLmrXQTNPFWC
- qUnaF34nw/9hAqjaTVCCfz+k/Tp5PKYPbVlAF0G7/pakgAT6g/VNJke6w8zCKPSdrZdt
- g2s1TBEhSLVWWtB2lgBKieRSwTwc8XRPsUUQzae9rU7pWDFJa9bAIZvAvo39DAcgMitw
- 5PeA==
-X-Gm-Message-State: AOJu0Yyz5mxr3Wji8L2yh9IqbGblYuVlV63Oz7cRrTdk3z6zF+18Izbd
- 5xdO/lSVZs34M7DnviT/LGLixuWj1VAn2mkSNOqQ8GMj8Ss9qCOJFIYavmSbMkJJ
-X-Gm-Gg: Acq92OFHqKtSyQ95mnhdrfdfGYoaQGZ+nDgfdT/vwFVZT5uADcs3oSBuuxRwe5BDZQ/
- tASWFDfysuhy8+StTl+XSwfw98N6MNwmuOI3j4URYu5ua6tJrhUQaUMDd5YXel568cXlBQvz6CQ
- P1Ugf3HDQZEsYvCDiXFyvJtTixE+hcGQ7SG0jkHZ6JuROS+gW60ExZYpnk3EAr0WU/N9qu/S6V1
- paWOqKYtkCcgeGSXk11WNdDYF7HI08vFLbGEOhKZ5q4zgJ+Znels3c3p2yG8KzHqXP5VLozOcFY
- BOGptWNAIDgzLSxHLrz+y27bwpCAXo1Wc6EJBIjwYJMyDku14d92VSM35/l+YQpMlEvFnKmdrKo
- KcJTgrb/XO7scsDRnLJVl68IQJ/swGV0sQ19FbjoiruSq69tfLs0SF92O1HcOQmFCgEm6RR82+V
- brMSDhv4GseIQzRkGPhyALMDhnTOdGArfXp3HJrmE6z9bsJF/mv0dcq8OWvQ9WO8pYi7pgxfhb4
- keit+XZZ6iuTtN/
-X-Received: by 2002:a05:600c:5306:b0:490:a455:f882 with SMTP id
- 5b1f17b1804b1-490a455f915mr114445635e9.24.1780225069808; 
- Sun, 31 May 2026 03:57:49 -0700 (PDT)
+ bh=SqKtki+BLyfiZJsWxKa0XzxeBr6g0BJYASpoIgEStXk=;
+ b=j8bO/mG6dIU+wYjQM0pSK4nk6vNguWWM+X++J01wjNvS9WgYRMEyXzmcEryZsc0F5b
+ eSvOUwtp+6E/hn09bniX9CN8yFCpUxV4Pk+AV+Cc0OUI2MrppmTJzsfj6FEO96+y6AK1
+ yGNSS599RVBiJRayUXdbQrk0ECoMCAn4m/HcLGY8G0X9mIdl3fiz1p7HSsTEEiAxuW9+
+ SHCznaBDSC1hqkfXnjYsQ4Hc58RXhr3tQkz590liFy7cyv91w9vVnH7fEBoTMxYOQ+EM
+ piyJvIX3Su9Fd3R4v2KOUBPsUUrPvdeCisBoLa6mcfqP/fyfZdYvlAaCNw6ANpeF1ZvR
+ wOfA==
+X-Gm-Message-State: AOJu0YwqxfZLhFqj82cX+6JZM7RCXuj2HhicXaapcf9OhnFxRDWPBbmf
+ aGJzF0QImV2VMNcG/gIyRXPsN0BX8o9/Rr6z+4J1ngOerFYygvl8c6SVQrGuiVmS
+X-Gm-Gg: Acq92OFRF/nrCfpD7C8ZnFvBIUExTjUnH/ZOigewzQ5BTfFI8Tl4tBvCIAxOSZxucII
+ CNXjER+Q7bGNRw5KTH0S7s3g81mNn6BHC56Pbwold/4b2LfOan0f7SKGFrW+IGCB+GvNkuvCseY
+ 4LHkaN9PHjKZ2bztJTnVJ6aui2BBJJB1r5vKACl7JFGPHCXSKmbxfSfry9tRHiN8nT2lwab8hdR
+ BKy3w858l4BS72NhHpQ/QQc4Qn5YYKN2t1vOxU8ZyfyEEWQYCOrCqjU7qhPzPKPYL/gSBAMGcZ1
+ tKkfkroo/WWs7rNrlvC2/HqcJWfSGkSxxroAluJz+46F0aYpbI6VutdrTKeIttGhdOGPbTQvECY
+ Booz53A62gPuYEgvWhekStINT5ZXeGUXk/YoZ+fr3iWg99ChztrwShp3pjiXjceOn3f45+bNxTc
+ MBY26u6vFir/c0wejvKc0vFGIAIF3nornM+M1lc5ZsKf5pMiYFwf3SDcu0BNc52Uxz+6WL7nBZs
+ i2EBd8jgbs8gb7D
+X-Received: by 2002:a05:600c:6287:b0:490:9d1b:f068 with SMTP id
+ 5b1f17b1804b1-490a295d9c6mr127249895e9.29.1780225070657; 
+ Sun, 31 May 2026 03:57:50 -0700 (PDT)
 Received: from Timur-Max.c.hoisthospitality.com (184.31.0.109.rev.sfr.net.
  [109.0.31.184]) by smtp.gmail.com with ESMTPSA id
  5b1f17b1804b1-4909d68980csm192904065e9.1.2026.05.31.03.57.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 31 May 2026 03:57:49 -0700 (PDT)
+ Sun, 31 May 2026 03:57:50 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
  Ivan Lipski <ivan.lipski@amd.com>, harry.wentland@amd.com,
@@ -74,9 +74,9 @@ To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
  Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
  Dan Wheeler <daniel.wheeler@amd.com>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 2/5] drm/amd/display: Use handle_hpd_irq_helper for HPD RX
-Date: Sun, 31 May 2026 12:57:41 +0200
-Message-ID: <20260531105744.28717-3-timur.kristof@gmail.com>
+Subject: [PATCH 3/5] drm/amd/display: Always create delayed HPD work queue
+Date: Sun, 31 May 2026 12:57:42 +0200
+Message-ID: <20260531105744.28717-4-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260531105744.28717-1-timur.kristof@gmail.com>
 References: <20260531105744.28717-1-timur.kristof@gmail.com>
@@ -125,83 +125,48 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: F3FD7615AFE
+X-Rspamd-Queue-Id: 136F7615B0C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Remove duplicated code and just call handle_hpd_irq_helper
-with the appropriate detect reason.
+Not just when DMUB outbox is supported.
+It will be used for normal HPD events too.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 41 +------------------
- 1 file changed, 1 insertion(+), 40 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index c071c27d8313..28092ac052ae 100644
+index 28092ac052ae..255903d000c2 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -4436,14 +4436,12 @@ static void handle_hpd_rx_irq(void *param)
- 	struct dc_link *dc_link = aconnector->dc_link;
- 	bool is_mst_root_connector = aconnector->mst_mgr.mst_state;
- 	bool result = false;
--	enum dc_connection_type new_connection_type = dc_connection_none;
- 	struct amdgpu_device *adev = drm_to_adev(dev);
- 	union hpd_irq_data hpd_irq_data;
- 	bool link_loss = false;
- 	bool has_left_work = false;
- 	int idx = dc_link->link_index;
- 	struct hpd_rx_irq_offload_work_queue *offload_wq = &adev->dm.hpd_rx_offload_wq[idx];
--	struct dc *dc = aconnector->dc_link->ctx->dc;
- 
- 	memset(&hpd_irq_data, 0, sizeof(hpd_irq_data));
- 
-@@ -4512,44 +4510,7 @@ static void handle_hpd_rx_irq(void *param)
- out:
- 	if (result && !is_mst_root_connector) {
- 		/* Downstream Port status changed. */
--		if (!dc_link_detect_connection_type(dc_link, &new_connection_type))
--			drm_err(adev_to_drm(adev), "KMS: Failed to detect connector\n");
--
--		if (aconnector->base.force && new_connection_type == dc_connection_none) {
--			emulated_link_detect(dc_link);
--
--			if (aconnector->fake_enable)
--				aconnector->fake_enable = false;
--
--			amdgpu_dm_update_connector_after_detect(aconnector);
--
--
--			drm_modeset_lock_all(dev);
--			dm_restore_drm_connector_state(dev, connector);
--			drm_modeset_unlock_all(dev);
--
--			drm_kms_helper_connector_hotplug_event(connector);
--		} else {
--			bool ret = false;
--
--			mutex_lock(&adev->dm.dc_lock);
--			dc_exit_ips_for_hw_access(dc);
--			ret = dc_link_detect(dc_link, DETECT_REASON_HPDRX);
--			mutex_unlock(&adev->dm.dc_lock);
--
--			if (ret) {
--				if (aconnector->fake_enable)
--					aconnector->fake_enable = false;
--
--				amdgpu_dm_update_connector_after_detect(aconnector);
--
--				drm_modeset_lock_all(dev);
--				dm_restore_drm_connector_state(dev, connector);
--				drm_modeset_unlock_all(dev);
--
--				drm_kms_helper_connector_hotplug_event(connector);
--			}
--		}
-+		handle_hpd_irq_helper(aconnector, DETECT_REASON_HPDRX);
+@@ -2197,6 +2197,12 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
+ 			create_singlethread_workqueue("dm_vblank_control_workqueue");
+ 		if (!adev->dm.vblank_control_workqueue)
+ 			drm_err(adev_to_drm(adev), "failed to initialize vblank_workqueue.\n");
++
++		adev->dm.delayed_hpd_wq = create_singlethread_workqueue("amdgpu_dm_hpd_wq");
++		if (!adev->dm.delayed_hpd_wq) {
++			drm_err(adev_to_drm(adev), "failed to create hpd offload workqueue.\n");
++			goto error;
++		}
  	}
- 	if (hpd_irq_data.bytes.device_service_irq.bits.CP_IRQ) {
- 		if (adev->dm.hdcp_workqueue)
+ 
+ 	if (adev->dm.dc->caps.ips_support &&
+@@ -2223,12 +2229,6 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
+ 			goto error;
+ 		}
+ 
+-		adev->dm.delayed_hpd_wq = create_singlethread_workqueue("amdgpu_dm_hpd_wq");
+-		if (!adev->dm.delayed_hpd_wq) {
+-			drm_err(adev_to_drm(adev), "failed to create hpd offload workqueue.\n");
+-			goto error;
+-		}
+-
+ 		amdgpu_dm_outbox_init(adev);
+ 		if (!register_dmub_notify_callback(adev, DMUB_NOTIFICATION_AUX_REPLY,
+ 			dmub_aux_setconfig_callback, false)) {
 -- 
 2.54.0
 
