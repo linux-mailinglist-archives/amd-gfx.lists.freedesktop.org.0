@@ -2,52 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6HAeM240HWpZWQkAu9opvQ
+	id SODGEIM0HWoqWQkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 09:27:42 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 09:28:03 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A452561ADA2
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 09:27:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC6E661ADE0
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 09:28:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E202D112EDD;
-	Mon,  1 Jun 2026 07:27:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 562CA112EEE;
+	Mon,  1 Jun 2026 07:28:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=poczta.fm header.i=@poczta.fm header.b="dran2DTi";
+	dkim=pass (2048-bit key; secure) header.d=pm.me header.i=@pm.me header.b="UrglIUm3";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 381 seconds by postgrey-1.36 at gabe;
- Sun, 31 May 2026 00:04:56 UTC
-Received: from smtpo49.interia.pl (smtpo49.interia.pl [217.74.67.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 881E110E380
- for <amd-gfx@lists.freedesktop.org>; Sun, 31 May 2026 00:04:56 +0000 (UTC)
-Received: from Stacjonarny (62-133-147-124.dynamicip.ostnet.pl
- [62.133.147.124])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by www.poczta.fm (INTERIA.PL) with ESMTPSA;
- Sun, 31 May 2026 01:58:31 +0200 (CEST)
-From: "Artur Chlebek" <achlebek@poczta.fm>
-To: <amd-gfx@lists.freedesktop.org>
-Cc: <regressions@lists.linux.dev>,
-	<stable@vger.kernel.org>
-Subject: 7.0.9 vs 7.0.10/7.1 Radeon 260X regression
-Date: Sun, 31 May 2026 01:58:32 +0200
-Message-ID: <00de01dcf090$38cd2e80$aa678b80$@poczta.fm>
+Received: from mail-244102.protonmail.ch (mail-244102.protonmail.ch
+ [109.224.244.102])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA99A112A80
+ for <amd-gfx@lists.freedesktop.org>; Sun, 31 May 2026 04:59:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
+ s=protonmail3; t=1780203549; x=1780462749;
+ bh=K+8OFb6m2BhuUAkJ/JJ3Js3mjRVZ001+PKPq5jYUsxY=;
+ h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+ Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+ b=UrglIUm3HCGYFcIczw/PZS14z0l01yf2anJsDfMMFCo58kFXJ7ZIukZCCU9pj40Xu
+ oEm8QvfTowjrUzDAemaT1r/GKv2aDRjT73LWi5z5uYC8nvF7lymhICbpSPYgymbq8V
+ eTzF2d43tUqMO140BkiLRwbjGjhB4Qc/HOO6wBFE+Ep5n9RX8OS6AKlrAiP5WxEj7L
+ oDJsmDJ9aXOkJ2jNxL6GFhF+MKDreK+Bpwahuj1alEUYl/7b7O0xNAxtZV2CQ1bO2J
+ 0qPmtGSYeH7L1O73TMlNwW7NWcNsf3rtAeTsBzLTX9Hw/Gj+IbKNJcsHYNVdmGINvH
+ fw/BeXLLPEIQg==
+Date: Sun, 31 May 2026 04:59:04 +0000
+To: dri-devel@lists.freedesktop.org
+From: =?utf-8?Q?Gustavo_Kenji_Mendon=C3=A7a_Kaneko?= <kaneko.dev@pm.me>
+Cc: airlied@gmail.com, simona@ffwll.ch, alexander.deucher@amd.com,
+ christian.koenig@amd.com, harry.wentland@amd.com, corbet@lwn.net,
+ amd-gfx@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ =?utf-8?Q?Gustavo_Kenji_Mendon=C3=A7a_Kaneko?= <kaneko.dev@pm.me>
+Subject: [PATCH 1/2] drm: fix spelling mistakes in comments and documentation
+Message-ID: <20260531045852.41849-1-kaneko.dev@pm.me>
+Feedback-ID: 165279626:user:proton
+X-Pm-Message-ID: afb4c42cef220faf058e256e353ae6c0ff2e2bf2
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="----=_NextPart_000_00DF_01DCF0A0.FC570FF0"
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdzwkAzOD3/BrJybT02U1KdQhmm1LA==
-Content-Language: pl
-X-IPL-Priority-Group: 0-0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poczta.fm; s=dk;
- t=1780185512; bh=Hy3wcDEGkMNxIk7hULP+9CScokmO5OsQMjUY0EiYFPA=;
- h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
- b=dran2DTiLdOWo7/ex3ZRZaGGnEZWvDNzqsGhrJNZHLQvtdXoz6eG0XZ8Cvt0qiMcT
- 55uxExAKMr2NMXagsXap7UW/FRIDcGdwCZP8BCqInb8uO8P6ZslwjSprd9UvFjLpUV
- 1hmL7sQBdoVmuUgf04d/mUmlPTXXITdz9E5D5zXQ=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 01 Jun 2026 07:27:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,93 +61,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	DATE_IN_PAST(1.00)[31];
-	DMARC_POLICY_ALLOW(-0.50)[poczta.fm,quarantine];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	DATE_IN_PAST(1.00)[26];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[poczta.fm:s=dk];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,amd.com,lwn.net,lists.freedesktop.org,vger.kernel.org,pm.me];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[poczta.fm];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER(0.00)[kaneko.dev@pm.me,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:dri-devel@lists.freedesktop.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:harry.wentland@amd.com,m:corbet@lwn.net,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:kaneko.dev@pm.me,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[achlebek@poczta.fm,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[poczta.fm:+];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[kaneko.dev@pm.me,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[pm.me:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,poczta.fm:mid,poczta.fm:dkim]
-X-Rspamd-Queue-Id: A452561ADA2
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:email,pm.me:mid,pm.me:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: DC6E661ADE0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This is a multipart message in MIME format.
+Fix multiple spelling mistakes across the DRM subsystem:
 
-------=_NextPart_000_00DF_01DCF0A0.FC570FF0
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+- 'occured' -> 'occurred' in:
+  - drm_debugfs_crc.h
+  - amdgpu_ctx.c
+  - amdgpu_ids.c (x2)
+  - amdgpu_job.h
+  - radeon_fence.c (x2)
 
-Hi, I have 5x fps drop on amdgpu Radeon 260X 1GB between kernel 7.0.9 and
-7.0.10 or 7.1rc
+- 'fucntions' -> 'functions' in Documentation/gpu/todo.rst
+- 'doesn't exists' -> 'doesn't exist' in amdgpu_gmc.h
 
+Signed-off-by: Gustavo Kenji Mendon=C3=A7a Kaneko <kaneko.dev@pm.me>
+---
+ Documentation/gpu/todo.rst              | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.h | 2 +-
+ drivers/gpu/drm/radeon/radeon_fence.c   | 4 ++--
+ include/drm/drm_debugfs_crc.h           | 2 +-
+ 7 files changed, 9 insertions(+), 9 deletions(-)
 
-------=_NextPart_000_00DF_01DCF0A0.FC570FF0
-Content-Type: text/html;
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
+index bc9f14c8a2ec..841e4e986c48 100644
+--- a/Documentation/gpu/todo.rst
++++ b/Documentation/gpu/todo.rst
+@@ -55,7 +55,7 @@ There are still drivers that use drm_simple_display_pipe.=
+ The task here is to
+ convert them to use regular atomic helpers. Search for a driver that calls
+ drm_simple_display_pipe_init() and inline all helpers from drm_simple_kms_=
+helper.c
+ into the driver, such that no simple-KMS interfaces are required. Please a=
+lso
+-rename all inlined fucntions according to driver conventions.
++rename all inlined functions according to driver conventions.
+=20
+ Contact: Thomas Zimmermann, respective driver maintainer
+=20
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_ctx.c
+index 7af86a32c0c5..e5884bb4d63a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+@@ -564,7 +564,7 @@ static int amdgpu_ctx_query(struct amdgpu_device *adev,
+ =09out->state.flags =3D 0x0;
+ =09out->state.hangs =3D 0x0;
+=20
+-=09/* determine if a GPU reset has occured since the last call */
++=09/* determine if a GPU reset has occurred since the last call */
+ =09reset_counter =3D atomic_read(&adev->gpu_reset_counter);
+ =09/* TODO: this should ideally return NO, GUILTY, or INNOCENT. */
+ =09if (ctx->reset_counter_query =3D=3D reset_counter)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_gmc.h
+index 6ab4c1e297fc..85a0d9bcba16 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+@@ -39,7 +39,7 @@
+ =09=09=09=090xff00000000000000ULL : 0xffff800000000000ULL)
+=20
+ /*
+- * Hardware is programmed as if the hole doesn't exists with start and end
++ * Hardware is programmed as if the hole doesn't exist with start and end
+  * address values.
+  *
+  * This mask is used to remove the upper 16bits of the VA and so come up w=
+ith
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_ids.c
+index 124fb38eb465..095ab609623f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
+@@ -161,12 +161,12 @@ void amdgpu_pasid_free_delayed(struct dma_resv *resv,
+  */
+=20
+ /**
+- * amdgpu_vmid_had_gpu_reset - check if reset occured since last use
++ * amdgpu_vmid_had_gpu_reset - check if reset occurred since last use
+  *
+  * @adev: amdgpu_device pointer
+  * @id: VMID structure
+  *
+- * Check if GPU reset occured since last use of the VMID.
++ * Check if GPU reset occurred since last use of the VMID.
+  */
+ bool amdgpu_vmid_had_gpu_reset(struct amdgpu_device *adev,
+ =09=09=09       struct amdgpu_vmid *id)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_job.h
+index 56a88e14a044..bc011b4639f2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+@@ -31,7 +31,7 @@
+ #define AMDGPU_PREAMBLE_IB_PRESENT          (1 << 0)
+ /* bit set means preamble IB is first presented in belonging context */
+ #define AMDGPU_PREAMBLE_IB_PRESENT_FIRST    (1 << 1)
+-/* bit set means context switch occured */
++/* bit set means context switch occurred */
+ #define AMDGPU_HAVE_CTX_SWITCH              (1 << 2)
+ /* bit set means IB is preempted */
+ #define AMDGPU_IB_PREEMPTED                 (1 << 3)
+diff --git a/drivers/gpu/drm/radeon/radeon_fence.c b/drivers/gpu/drm/radeon=
+/radeon_fence.c
+index 02a40e4750c7..943861b62ee9 100644
+--- a/drivers/gpu/drm/radeon/radeon_fence.c
++++ b/drivers/gpu/drm/radeon/radeon_fence.c
+@@ -191,7 +191,7 @@ static int radeon_fence_check_signaled(wait_queue_entry=
+_t *wait,
+  * @ring: ring index the fence is associated with
+  *
+  * Checks the current fence value and calculates the last
+- * signalled fence value. Returns true if activity occured
++ * signalled fence value. Returns true if activity occurred
+  * on the ring, and the fence_queue should be waken up.
+  */
+ static bool radeon_fence_activity(struct radeon_device *rdev, int ring)
+@@ -262,7 +262,7 @@ static bool radeon_fence_activity(struct radeon_device =
+*rdev, int ring)
+  * @work: delayed work item
+  *
+  * Checks for fence activity and if there is none probe
+- * the hardware if a lockup occured.
++ * the hardware if a lockup occurred.
+  */
+ static void radeon_fence_check_lockup(struct work_struct *work)
+ {
+diff --git a/include/drm/drm_debugfs_crc.h b/include/drm/drm_debugfs_crc.h
+index 1b4c98c2f838..d7da666b50ca 100644
+--- a/include/drm/drm_debugfs_crc.h
++++ b/include/drm/drm_debugfs_crc.h
+@@ -49,7 +49,7 @@ struct drm_crtc_crc_entry {
+  * @lock: protects the fields in this struct
+  * @source: name of the currently configured source of CRCs
+  * @opened: whether userspace has opened the data file for reading
+- * @overflow: whether an overflow occured.
++ * @overflow: whether an overflow occurred.
+  * @entries: array of entries, with size of %DRM_CRC_ENTRIES_NR
+  * @head: head of circular queue
+  * @tail: tail of circular queue
+--=20
+2.54.0
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
-HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-ligatures:standardcontextual;
-	mso-fareast-language:EN-US;}
-span.Stylwiadomocie-mail17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:11.0pt;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style></head><body lang=3DPL link=3D"#0563C1" vlink=3D"#954F72" =
-style=3D'word-wrap:break-word'><div class=3DWordSection1><p =
-class=3DMsoNormal><span lang=3DEN-GB>Hi, I have 5x fps drop on amdgpu =
-Radeon 260X 1GB between kernel 7.0.9 and 7.0.10 or =
-7.1rc<o:p></o:p></span></p></div></body></html>
-------=_NextPart_000_00DF_01DCF0A0.FC570FF0--
 
