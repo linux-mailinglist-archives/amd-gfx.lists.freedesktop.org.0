@@ -2,47 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CKGQDEwgHGosKAkAu9opvQ
+	id +AhqEkYgHGoRKAkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:32 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:26 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0804E615E8B
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F07D2615E42
+	for <lists+amd-gfx@lfdr.de>; Sun, 31 May 2026 13:49:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EFE9112AF2;
-	Sun, 31 May 2026 11:49:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E7EE112AE8;
+	Sun, 31 May 2026 11:49:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BQrf/V8b";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LQeuNW5E";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0D30112AE9;
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB2DE112AEA;
  Sun, 31 May 2026 11:49:19 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 35DA56012A;
+ by sea.source.kernel.org (Postfix) with ESMTP id A13B140C4D;
  Sun, 31 May 2026 11:49:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88E271F00898;
- Sun, 31 May 2026 11:49:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BF221F00899;
+ Sun, 31 May 2026 11:49:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1780228158;
- bh=errEbvgeXyBw0TvYlf2J0dLvisFcz0ashprEBAn44NM=;
+ s=k20260515; t=1780228159;
+ bh=U2k+F91HwjQrpVP3BVgcbCSYpcxAxV57CRaPIrFsxM4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=BQrf/V8bG1c3mJodgwl+Znxso6+uUgvH57BPFs4cJbdxLVRJCoEZZoHrZCuinR3Gh
- lkahSoGTvtG/GKfXkfMury/5J+3iUBIC1O4Vpv8WVvKGlXl4P+tACpoF8MEC5Jyl6m
- A39KqhN0wi3BQNEsUeONujEdIb2tO9rGbeWA8SJ4awo8yWgCRlATkIUdSZsXh1yjgq
- iEUJ+7wS+i7zWg6nhsVZ8VR8REgRGhBFOgdi9C1pVWIgMtvbVOY/MQi6rY0zVGLy2c
- iDNhQzYFoAndBk36uiKd8NCdM2CVZ1SGqjHyYbkEGUikWUu8qQ+5efNa3RBduVLPZu
- IqGlbBQF4kprg==
+ b=LQeuNW5EHjGT/VvCYkNCvBXhrcBu4uDTVK/feGdJaTxwubjSbpfAAg6EcKjqhlrVm
+ lf8I9SG4ey2w/SXopeNY/jWVyWKZHTTAlzBDTjVjFXvJs33g47kglV3Yv0evaxXWOP
+ G6DC9MeEeOfGa09sTKOycXHNZCBoqbiRw2Z4MMhrMb1on/mz9S6OW0jiympVqm6ld6
+ fqVQFrXgSzt+XQwt7oNgayJChC+vE1ws4lWNgGEGrxzWUGqbd9yWezPGDQvaDb3WMP
+ dJLCsEaqUK01aHaJEJWMuJYIAvsaaTdsdhbTK080OJKvloVfrcnbwZBEjotayZIxio
+ hEQcK5UxTAcBA==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
 To: dri-devel@lists.freedesktop.org
 Cc: amd-gfx@lists.freedesktop.org,
  "Mario Limonciello (AMD)" <superm1@kernel.org>
-Subject: [PATCH v5 05/11] drm/amd/display: Pass up errors reading actual
- brightness
-Date: Sun, 31 May 2026 06:49:02 -0500
-Message-ID: <20260531114908.1693426-6-superm1@kernel.org>
+Subject: [PATCH v5 06/11] drm/amd/display: Allow backlight registration to fail
+Date: Sun, 31 May 2026 06:49:03 -0500
+Message-ID: <20260531114908.1693426-7-superm1@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260531114908.1693426-1-superm1@kernel.org>
 References: <20260531114908.1693426-1-superm1@kernel.org>
@@ -87,76 +86,105 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 0804E615E8B
+X-Rspamd-Queue-Id: F07D2615E42
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 [Why]
-If the DC API fails to return actual brightness when backlight control
-API requests it, then the wrong value may be returned.
+If backlight registration fails then it's ignored. This could hide
+a fatal problem to a user.
 
 [How]
-Change return type of amdgpu_dm_backlight_get_level() to an integer
-and pass an error code up to the caller.
+Pass error codes up from backlight registration failures.
 
 Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 41 +++++++++++--------
+ 1 file changed, 24 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index d99617c9bbb9..de9b29ad6cab 100644
+index de9b29ad6cab..430b7d3d8930 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5427,7 +5427,7 @@ static int amdgpu_dm_backlight_update_status(struct backlight_device *bd)
- 	return 0;
- }
+@@ -5478,7 +5478,7 @@ static const struct backlight_ops amdgpu_dm_backlight_ops = {
+ 	.update_status	= amdgpu_dm_backlight_update_status,
+ };
  
--static u32 amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm,
-+static int amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm,
- 					 int bl_idx)
+-static void
++static int
+ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
  {
- 	int ret;
-@@ -5441,14 +5441,14 @@ static u32 amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm,
- 		u32 avg, peak;
+ 	struct drm_device *drm = aconnector->base.dev;
+@@ -5489,15 +5489,16 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
+ 	int min, max;
+ 	int real_brightness;
+ 	int init_brightness;
++	int r;
  
- 		if (!dc_link_get_backlight_level_nits(link, &avg, &peak))
--			return dm->brightness[bl_idx];
-+			return -EINVAL;
- 		return convert_brightness_to_user(&caps, avg);
+ 	if (aconnector->bl_idx == -1)
+-		return;
++		return 0;
+ 
+ 	if (!acpi_video_backlight_use_native()) {
+ 		drm_info(drm, "Skipping amdgpu DM backlight registration\n");
+ 		/* Try registering an ACPI video backlight device instead. */
+ 		acpi_video_register_backlight();
+-		return;
++		return 0;
  	}
  
- 	ret = dc_link_get_backlight_level(link);
+ 	caps = &dm->backlight_caps[aconnector->bl_idx];
+@@ -5531,22 +5532,26 @@ amdgpu_dm_register_backlight_device(struct amdgpu_dm_connector *aconnector)
+ 	dm->brightness[aconnector->bl_idx] = props.brightness;
  
- 	if (ret == DC_ERROR_UNEXPECTED)
--		return dm->brightness[bl_idx];
-+		return -EINVAL;
+ 	if (IS_ERR(dm->backlight_dev[aconnector->bl_idx])) {
+-		drm_err(drm, "DM: Backlight registration failed!\n");
++		r = PTR_ERR(dm->backlight_dev[aconnector->bl_idx]);
++		drm_err(drm, "DM: Backlight registration failed: %d\n", r);
+ 		dm->backlight_dev[aconnector->bl_idx] = NULL;
+-	} else {
+-		/*
+-		 * dm->brightness[x] can be inconsistent just after startup until
+-		 * ops.get_brightness is called.
+-		 */
+-		real_brightness =
+-			amdgpu_dm_backlight_ops.get_brightness(dm->backlight_dev[aconnector->bl_idx]);
++		return r;
++	}
  
- 	return convert_brightness_to_user(&caps, ret);
- }
-@@ -5456,7 +5456,7 @@ static u32 amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm,
- static int amdgpu_dm_backlight_get_brightness(struct backlight_device *bd)
- {
- 	struct amdgpu_display_manager *dm = bl_get_data(bd);
--	int i;
-+	int i, ret;
- 
- 	for (i = 0; i < dm->num_of_edps; i++) {
- 		if (bd == dm->backlight_dev[i])
-@@ -5464,7 +5464,12 @@ static int amdgpu_dm_backlight_get_brightness(struct backlight_device *bd)
+-		if (real_brightness != init_brightness) {
+-			dm->actual_brightness[aconnector->bl_idx] = real_brightness;
+-			dm->brightness[aconnector->bl_idx] = real_brightness;
+-		}
+-		drm_dbg_driver(drm, "DM: Registered Backlight device: %s\n", bl_name);
++	/*
++	 * dm->brightness[x] can be inconsistent just after startup until
++	 * ops.get_brightness is called.
++	 */
++	real_brightness =
++		amdgpu_dm_backlight_ops.get_brightness(dm->backlight_dev[aconnector->bl_idx]);
++
++	if (real_brightness != init_brightness) {
++		dm->actual_brightness[aconnector->bl_idx] = real_brightness;
++		dm->brightness[aconnector->bl_idx] = real_brightness;
  	}
- 	if (i >= AMDGPU_DM_MAX_NUM_EDP)
- 		i = 0;
--	return amdgpu_dm_backlight_get_level(dm, i);
++	drm_dbg_driver(drm, "DM: Registered Backlight device: %s\n", bl_name);
 +
-+	ret = amdgpu_dm_backlight_get_level(dm, i);
-+	if (ret < 0)
-+		return dm->brightness[i];
-+
-+	return ret;
++	return 0;
  }
  
- static const struct backlight_ops amdgpu_dm_backlight_ops = {
+ static int initialize_plane(struct amdgpu_display_manager *dm,
+@@ -8078,7 +8083,9 @@ amdgpu_dm_connector_late_register(struct drm_connector *connector)
+ 			return r;
+ 	}
+ 
+-	amdgpu_dm_register_backlight_device(amdgpu_dm_connector);
++	r = amdgpu_dm_register_backlight_device(amdgpu_dm_connector);
++	if (r)
++		return r;
+ 
+ 	if ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort) ||
+ 	    (connector->connector_type == DRM_MODE_CONNECTOR_eDP)) {
 -- 
 2.54.0
 
