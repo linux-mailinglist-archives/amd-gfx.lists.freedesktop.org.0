@@ -2,54 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iC24LW2SHWp2cQkAu9opvQ
+	id +Ac3Hm+SHWp2cQkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:08:45 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:08:47 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F91B62085A
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:08:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C710620870
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:08:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9E101133B1;
-	Mon,  1 Jun 2026 14:08:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E05321133B3;
+	Mon,  1 Jun 2026 14:08:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="LlfeIlLw";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="oZzRqziS";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE7AD1133AD
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 14:08:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BC771133AD
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 14:08:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=lscxumvPbyPnbhGeB/Q8bWSeqhtJtri3L+QEZHbZ+L0=; b=LlfeIlLw/zEMHiRZfy6MbXimtT
- uRHAssLEAf178ER/JVRk9ZowlH9OiIMkXgAePk8VS5vk49lWDJS+Rl2CiGqZ3FCQw2hlh5+7oW68c
- o66G0lZdVR3S3aM3xJkDngAXs49TULmxLOgvfonySBsqTD9dbHs8cGcXWKyhmuf2V1rfjWYi4G8lf
- 5KNydLDTa5i62v/c/mqpMECGASyzrWsDTdCcwTfYgkJtMBSitTVezRA1AaSTTlafT8tKDrI3NLPZv
- eCCUgcJmfU2RjHvHKJ8HZIqCqowFvO27toAD62ZNoSj65n77fxZaag8c5tcEHudznGzmn+avmjVEP
- 0yF9S+PA==;
+ bh=NE0r8qc1ewywjYYEyhOUZAscPY7Es5Ze2TSStqCYXtA=; b=oZzRqziSN0kCyBLZpekQN1d+qN
+ AuovgW6PA9mV1JbfKVLAouhMaHy4V9jcx56Q8GRsngWC8GsiPMTM4L3zyg6wfKJ+6HODoqneQSY3C
+ VQ7+mH28o9VBcjckQ5Y3c5rnkFIOLrgOAKu0h8yqqIyHFgJF35Ynl8T9OTNbdG66/axF2H4XDFIDU
+ iN6YYzcc7esKLCSdf5FLMg8AiUOlhNnPjvdoeMSt6cmAZ0NmrRn129LweFgOJkaUWTonC281yeIcu
+ ebp2a1/Cfyw7yxWV0xQmJeecLg2SricBnB/iE8/QA4zfErmXeGItLwt8MG3jJodq9JZqFXzc8qYcB
+ FzGZIY1g==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wU3Jm-00B2vN-4y; Mon, 01 Jun 2026 16:08:38 +0200
+ id 1wU3Jm-00B2vU-T6; Mon, 01 Jun 2026 16:08:38 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH 4/7] drm/amdgpu: Remove live context error log and skip
-Date: Mon,  1 Jun 2026 15:08:25 +0100
-Message-ID: <20260601140828.27779-5-tvrtko.ursulin@igalia.com>
+Subject: [PATCH 5/7] drm/amdgpu: Simplify amdgpu_ctx_get_stable_pstate()
+Date: Mon,  1 Jun 2026 15:08:26 +0100
+Message-ID: <20260601140828.27779-6-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260601140828.27779-1-tvrtko.ursulin@igalia.com>
 References: <20260601140828.27779-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,67 +63,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.49 / 15.00];
+X-Spamd-Result: default: False [1.99 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	MAILLIST(-0.20)[mailman];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	TO_DN_SOME(0.00)[];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[igalia.com:-];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_SPAM(0.00)[0.621];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:mid,igalia.com:email,amd.com:email]
-X-Rspamd-Queue-Id: 8F91B62085A
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_SPAM(0.00)[0.762];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:mid,igalia.com:email]
+X-Rspamd-Queue-Id: 2C710620870
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-According to Christian the skip can only cause memory leaks if it would to
-trigger, while it does nothing for the fact context manager will still get
-zapped with live back references from dangling contexts.
+amdgpu_ctx_get_stable_pstate() can never return other than success so
+instead of returning the pstate via a pointer we can simply return the
+pstate directly.
+
+While at it, rename the function to amdgpu_get_stable_pstate() to make it
+obvious it is not operating on the context at all.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Suggested-by: Christian König <christian.koenig@amd.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 8 +-------
- 1 file changed, 1 insertion(+), 7 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 38 +++++++++----------------
+ 1 file changed, 13 insertions(+), 25 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-index 9762b52073b4..342ff257decf 100644
+index 342ff257decf..4f4552c7732f 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-@@ -919,14 +919,8 @@ static void amdgpu_ctx_mgr_entity_fini(struct amdgpu_ctx_mgr *mgr)
- 	struct amdgpu_ctx *ctx;
- 	uint32_t id;
- 
--	idr_for_each_entry(&mgr->ctx_handles, ctx, id) {
--		if (kref_read(&ctx->refcount) != 1) {
--			drm_err(adev_to_drm(mgr->adev), "ctx %p is still alive\n", ctx);
--			continue;
--		}
--
-+	idr_for_each_entry(&mgr->ctx_handles, ctx, id)
- 		amdgpu_ctx_put(ctx);
--	}
+@@ -296,32 +296,20 @@ static ktime_t amdgpu_ctx_fini_entity(struct amdgpu_device *adev,
+ 	return res;
  }
  
- void amdgpu_ctx_mgr_fini(struct amdgpu_ctx_mgr *mgr)
+-static int amdgpu_ctx_get_stable_pstate(struct amdgpu_ctx *ctx,
+-					u32 *stable_pstate)
++static u32 amdgpu_get_stable_pstate(struct amdgpu_device *adev)
+ {
+-	struct amdgpu_device *adev = ctx->mgr->adev;
+-	enum amd_dpm_forced_level current_level;
+-
+-	current_level = amdgpu_dpm_get_performance_level(adev);
+-
+-	switch (current_level) {
++	switch (amdgpu_dpm_get_performance_level(adev)) {
+ 	case AMD_DPM_FORCED_LEVEL_PROFILE_STANDARD:
+-		*stable_pstate = AMDGPU_CTX_STABLE_PSTATE_STANDARD;
+-		break;
++		return AMDGPU_CTX_STABLE_PSTATE_STANDARD;
+ 	case AMD_DPM_FORCED_LEVEL_PROFILE_MIN_SCLK:
+-		*stable_pstate = AMDGPU_CTX_STABLE_PSTATE_MIN_SCLK;
+-		break;
++		return AMDGPU_CTX_STABLE_PSTATE_MIN_SCLK;
+ 	case AMD_DPM_FORCED_LEVEL_PROFILE_MIN_MCLK:
+-		*stable_pstate = AMDGPU_CTX_STABLE_PSTATE_MIN_MCLK;
+-		break;
++		return AMDGPU_CTX_STABLE_PSTATE_MIN_MCLK;
+ 	case AMD_DPM_FORCED_LEVEL_PROFILE_PEAK:
+-		*stable_pstate = AMDGPU_CTX_STABLE_PSTATE_PEAK;
+-		break;
++		return AMDGPU_CTX_STABLE_PSTATE_PEAK;
+ 	default:
+-		*stable_pstate = AMDGPU_CTX_STABLE_PSTATE_NONE;
+-		break;
++		return AMDGPU_CTX_STABLE_PSTATE_NONE;
+ 	}
+-	return 0;
+ }
+ 
+ static int amdgpu_ctx_init(struct amdgpu_ctx_mgr *mgr, int32_t priority,
+@@ -357,7 +345,7 @@ static int __amdgpu_ctx_set_stable_pstate(struct amdgpu_ctx *ctx,
+ 	enum amd_dpm_forced_level level;
+ 	struct amdgpu_ctx *current_ctx;
+ 	u32 current_stable_pstate;
+-	int r = 0;
++	int r;
+ 
+ 	lockdep_assert_held(&adev->pm.stable_pstate_ctx_lock);
+ 
+@@ -385,9 +373,9 @@ static int __amdgpu_ctx_set_stable_pstate(struct amdgpu_ctx *ctx,
+ 	if (current_ctx && current_ctx != ctx)
+ 		return -EBUSY;
+ 
+-	r = amdgpu_ctx_get_stable_pstate(ctx, &current_stable_pstate);
+-	if (r || current_stable_pstate == stable_pstate)
+-		return r;
++	current_stable_pstate = amdgpu_get_stable_pstate(adev);
++	if (current_stable_pstate == stable_pstate)
++		return 0;
+ 
+ 	r = amdgpu_dpm_force_performance_level(adev, level);
+ 	if (r)
+@@ -643,7 +631,7 @@ static int amdgpu_ctx_stable_pstate(struct amdgpu_device *adev,
+ {
+ 	struct amdgpu_ctx *ctx;
+ 	struct amdgpu_ctx_mgr *mgr;
+-	int r;
++	int r = 0;
+ 
+ 	if (!fpriv)
+ 		return -EINVAL;
+@@ -659,7 +647,7 @@ static int amdgpu_ctx_stable_pstate(struct amdgpu_device *adev,
+ 	if (set)
+ 		r = amdgpu_ctx_set_stable_pstate(ctx, *stable_pstate);
+ 	else
+-		r = amdgpu_ctx_get_stable_pstate(ctx, stable_pstate);
++		*stable_pstate = amdgpu_get_stable_pstate(adev);
+ 
+ 	mutex_unlock(&mgr->lock);
+ 	return r;
 -- 
 2.54.0
 
