@@ -2,103 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CMO/H7fzHWpkgAkAu9opvQ
+	id OL5zNiiFHmo9kgkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 23:03:51 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Jun 2026 09:24:24 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1425625765
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 23:03:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C20C629A01
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Jun 2026 09:24:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D377D10E9A8;
-	Mon,  1 Jun 2026 21:03:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41DB310ECB7;
+	Tue,  2 Jun 2026 07:24:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="QGF8epKA";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NEDi/VSc";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012051.outbound.protection.outlook.com [52.101.48.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B18B410E9A8
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 21:03:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pDn6sikEciH43SG48B1RU64jRZHL5fXESU3iMlqjB8dHNPNMZrLDLbX2l4eprOnLoOPyUCp099DiC4oCuqVIN25j9CxvLji+bMtB7n70d/V1qXMkv7LNs9mhZxbOd9/+6YkbN3fJPwNgoWGFSt0yoVCNveT4ruPQMhKbaLuBlI4v5tWjX0ONJJPb9on1SLUOXbRLsOGTJoLsB0THVOLfZyIxNySguovqGqxfbq1IWakuWBnmAt7UEic6qb1gdhxSr4KnGNUslUOC3Hbs6tN6s/CwF2m9a2ssJaPvmUBbMqEc5Dvrj6fGvyR6hYcAGbIwJeLUILPBN445xed0RP3b2A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=l0TlKWrrZTrIYyMLAxIOn8KkEuF2/e1VftqP/MyWxbE=;
- b=yXTpFvuuwGk42zUprbACtvg6mNXt1ugOzPN6qmprYbzC5rIllqxNrxW8EOuL/xYqlw5uwyOi2pTDJx93C01rZMMl6z0RzLF8KgzpNA5ZZcmXDYn/x7W14UVM/y67/CakmiIrdHZKFp/gZ/oi7Xm5aYqOsmlCkgzx4M0+3dtAr22Rg+yYCMitgccWk9J05lWdC+wq0Zp3G9BfEnt1Q1LCOccbkwMzxESWhBbZde1a6vgufuHridqQZAWdw3FzPf4G6H4ZdPbUYr1GPgBXIOREWbMbO2Mj4tOAjXmzNuPqccWhDD+k91yi81+KvQJYRTm+6+wZoKFEV5szoLHGfOUMqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=l0TlKWrrZTrIYyMLAxIOn8KkEuF2/e1VftqP/MyWxbE=;
- b=QGF8epKAlEaa/ydcLWCUyJzCDAoa2cqpgA+OPMNySdLJ3j3qLvQOoJ+HpFOj035jGtRDhhxZ0yXQqERUvaTD3LwLFYwlAuiIOzdQLdgCuNBsCwzUirxuv4Vo4iyPE0fEVFpd8LLWYNXYnKBfwPS1YiVYqEdxABDeM38EUkFmA8c=
-Received: from PH7P220CA0099.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:32d::23)
- by MN2PR12MB4254.namprd12.prod.outlook.com (2603:10b6:208:1d0::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.17; Mon, 1 Jun 2026
- 21:03:41 +0000
-Received: from SA2PEPF0000150A.namprd04.prod.outlook.com
- (2603:10b6:510:32d:cafe::82) by PH7P220CA0099.outlook.office365.com
- (2603:10b6:510:32d::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.16 via Frontend Transport; Mon, 1
- Jun 2026 21:03:40 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SA2PEPF0000150A.mail.protection.outlook.com (10.167.242.42) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.92.5 via Frontend Transport; Mon, 1 Jun 2026 21:03:40 +0000
-Received: from yunxiali-dev (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Mon, 1 Jun
- 2026 16:03:40 -0500
-From: Yunxiang Li <Yunxiang.Li@amd.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, Yunxiang Li <Yunxiang.Li@amd.com>
-Subject: [PATCH] drm/amdgpu: set sub_block_index for mca ras sub-blocks
-Date: Mon, 1 Jun 2026 17:03:23 -0400
-Message-ID: <20260601210323.493076-1-Yunxiang.Li@amd.com>
-X-Mailer: git-send-email 2.51.2
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4737510E568
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 21:20:04 +0000 (UTC)
+Received: by mail-wm1-f41.google.com with SMTP id
+ 5b1f17b1804b1-490ace40f4bso12564945e9.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2026 14:20:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1780348803; x=1780953603; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=qnwAsy6Fhk/v2/m0U2Y/k7DuV+rs4ovp810ofu9BhuY=;
+ b=NEDi/VScMjuj5aFKmTiM5JRYCjNNrMXAKTFYWWbpK+wuqXkZa1JGF0m+lfoA84OkDF
+ 00fIXxQMWY8qfFys1C6JAGrodAvx532OofEuy0Pzh6kTGr6Y7DG98FasV0xT0MpsAeI9
+ +szfIZk91586GAMJ8ZqNWJzOUeykl6bbHIFjtMHCDA37xqz9a9RdP9iiks9sRPophwpo
+ bKtzx4nPcvq5C/pcGVcq8Ir+PsKJ0KL2K9LW3OdsIqYwfgNf2jdf1xmISWLpD/Wcy1aw
+ vvYg07qFVGgVgWbg/lVIKbiVVTncyUa2Cj8GWmlPclGYYTIYUYvuOGePgzMXlBa6UZJf
+ Rmkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1780348803; x=1780953603;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=qnwAsy6Fhk/v2/m0U2Y/k7DuV+rs4ovp810ofu9BhuY=;
+ b=cMQLOTShogVFc81H5/KeuXhh3JCcPuK6zTSVMEgYQOmdGNK3EVNHa9KM4xtscDvdUs
+ E7lQ8mgzHjespp0CQtWytMZTNHz46b8m0yBvM1DL5L8n3J/A8ysUDW/aAxVmijJk3xkY
+ iI1+Rmm592KZOrKjgREgRklQzA6rMnkjHP9MNfA3bbgyF+GaU2/RbLoomYWtlBOTQ/pJ
+ 18g37a9P2bEt2mWTDNr4NoLH7KYaGVeIjgxK+fbybLe36RipjZO2tXzp8HebKUcwC0gX
+ AKlbc3p5bUILKT0gUotWLR2FI5NN7vE6SlExjsO27XVBhmiaC8Q51O3qY+hFyW5yn803
+ FpHA==
+X-Gm-Message-State: AOJu0YzqTL9oGzyZ5wDpR9lQxFquQkxTYrSSq0gfiyy9ZcEPW+L2TAb4
+ L3E5JaLsShFuK1KhvKnj4o/Ub2cr/ONEp4A06yxj9THOXl++z0Kj7ILH
+X-Gm-Gg: Acq92OFiYDw6+WAAeSAmIv8pR8dw8aI6tzcR/3gfkHeZTfcKY/eQyNk2Wmd0wtElXbj
+ Y/+Ek43hbk6dq9xu2nDLuXvMtNS7AHBetX2zqNfhVrAs5kQWWITLbiwQJ+J0hKBRPG1znQZBq86
+ kO5Bv6K8WRYGEVvA7pdz2wNw8xoIGl2a6JgYveo28WPg/2aNKs0ZwGNHaXqqDyHqMZ6N4H0FnV/
+ T2dQCjaz2MqbDmuIy9FHdN+vCtmxHy0Aiz0OxwafM2tmmsw17nx6yc1R+ZnF0l8o6Edi0rlZpCS
+ vijFUGDNDYaUClM5EepK/Kq+A1RhrEnyOxuQEt6xf8f9Ph0/QWUBxNJbvFeBT/F4XBE8IIkMMO/
+ 88Er1o4eU5wqumGRF2O64E62fJnB9B7qDFZghDav3IASaGfPIMkg7SgVnbJpVwL7lgwztR3YQ2Q
+ 44YsugM5edFBcvwjW80N39l/tqZ+NnxOGeyij8/SfDSRPGfxbm
+X-Received: by 2002:a05:600c:4fc4:b0:490:6889:202 with SMTP id
+ 5b1f17b1804b1-490a29639e6mr225017555e9.29.1780348802385; 
+ Mon, 01 Jun 2026 14:20:02 -0700 (PDT)
+Received: from skylab.fritz.box ([2a06:4944:10fb:f400:8383:b4e3:3885:b00a])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-490ad63b34dsm19778925e9.27.2026.06.01.14.20.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 01 Jun 2026 14:20:01 -0700 (PDT)
+From: Gilles Risch <gilles.risch@gmail.com>
+To: alexander.deucher@amd.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Gilles Risch <gilles.risch@gmail.com>
+Subject: [PATCH v5] drm/radeon: fix internal display on iMac11,
+ 1 (RV770/DCE3.1)
+Date: Mon,  1 Jun 2026 23:19:32 +0200
+Message-ID: <20260601211931.2837-2-gilles.risch@gmail.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <CADnq5_Os2Bk8Dd9d8m_CkK9nYSporzUqbiRA=YD85nRBB6XjMw@mail.gmail.com>
+References: <CADnq5_Os2Bk8Dd9d8m_CkK9nYSporzUqbiRA=YD85nRBB6XjMw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF0000150A:EE_|MN2PR12MB4254:EE_
-X-MS-Office365-Filtering-Correlation-Id: 94a994e5-4b44-4f00-59ab-08dec02141f9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|36860700016|82310400026|56012099006|18002099003|6133799003|11063799006;
-X-Microsoft-Antispam-Message-Info: KkcK3hmyNAQK0DQ1Ix1PN0zBL0I3b5Xx4yzvSf9iiSjs4gxMeLbLhrDBmeGfuBTZIvZ+BbYt+Su38AnnL0MjOZzPyhbZBYP3FKJC9THazgfopA7MHd8RSV30a/I4H69+FSHeLeKRSv4gXmeVLJyt6/xhnD0GV0tvxFP3oyAdpqxqlCThuRa/9ylTLrfMaWzWDx0FjsFwEQwNqClHUqsFkgZIvR+2mOGGTbuNLJoGAl8U/pWMudIm/tl5rBhBaHom0P90f9e0N52JKs1zEzxcoAXyyNDgRZbagr4zaPG9jAuNv71aYEOAmQV3Pfy9seMxk4VDdQfz7/AFEY7zStgePqB5PfniUIQRLI8DOxaL+qdMmPehIwYxB0mE49pEGXwpqCjoNKl3EHMlBppCsCvBvaBBF20sqGj4wHLf/AOPzgtyCZCeNxqsBxwE2ShYMeP1iP622JZ7iPAjaTls0OgmkPhhHTEVRKAhSvcqtcOBCqz8GTEMBe8X9P30GSxWVmKr/47FrKNT/ILmPJOMolei0cGD/SWyNP5gDc/Di7n30aN1GRTMyEWo7tfJJOdNz0UiwNcfdxsmM1f2EuPiwzi3hO80ulAjDhsxwfaLDBVspiqgKBw/FBhtw98R6Mg5EuwXcI3cZR4+m+CxPx2Bwnrv3Aw5VM/zK4DYVCVvK5fF+5HDiXr7ekiHtUQ/8YK9dRmvygcXmaxz7j2GFaAHzYKP/iHZpoO17dqsTj+Em12xn2o=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(36860700016)(82310400026)(56012099006)(18002099003)(6133799003)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: MGEMsJhY41xFh3MzGweKM/g9MDvu+IMis/IbN8IxUi69ejbjv8OerzBxk0IfkD2MhxEG3zltUufY/cgVazdrsC/BNjZIy8vl1/FlW+ZuIHHdR3R/qqoJZ88RKZJwwI2hxJaIX7SJTRKMLAjWKBV/AI/Qz+OvYfVCZc34Yo4pHCkkVSr6Gq1AVsewoR9p03BYb2V5RpULIcYJLqMzSD05M3KtWYGKysBq9b8i0/lnwdeLX8u+8Y98WnKcxAAplxBSNske3G72rzoOTJPaA2j7B31yqFRnJEUFvGjDJVIftvfegYNl+YWlN6kjdfM/i/HT54DgFPuZw+UOeKdnSOlTUaVW5SbjJtVpCxV/lIvvVzvenNrYTIsmufosHR+2ZmblpqL/mTpHihWJzhuN97lu5UvqTBlETrBnqNUtRtLeQKzJrG6emsKvVg/6orhnFfB/
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2026 21:03:40.6184 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94a994e5-4b44-4f00-59ab-08dec02141f9
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF0000150A.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4254
+X-Mailman-Approved-At: Tue, 02 Jun 2026 07:24:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,105 +92,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [0.99 / 15.00];
+	R_DKIM_REJECT(1.00)[gmail.com:s=20251104];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:Yunxiang.Li@amd.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FORGED_SENDER(0.00)[Yunxiang.Li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[Yunxiang.Li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:dri-devel@lists.freedesktop.org,m:gilles.risch@gmail.com,m:gillesrisch@gmail.com,s:lists@lfdr.de];
 	TO_DN_SOME(0.00)[];
-	HAS_XOIP(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[gillesrisch@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:-];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gillesrisch@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,amd.com:mid,amd.com:dkim]
-X-Rspamd-Queue-Id: F1425625765
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	NEURAL_SPAM(0.00)[0.600];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 8C20C629A01
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The mca ras sub-blocks (mp0, mp1, mpio) all share the
-AMDGPU_RAS_BLOCK__MCA block id and are distinguished only by
-sub_block_index. The ras manager object for an mca block is selected
-with:
+The Apple iMac11,1 (27-inch, Late 2009) uses a Mobility Radeon HD 4850
+(RV770/DCE3.1) with a 2560x1440 internal panel on an internal
+DisplayPort path. Without this fix the display stays dark under KMS.
 
-	con->objs[AMDGPU_RAS_BLOCK__LAST + head->sub_block_index]
+This machine suffers from the same issue as iMac10,1 and iMac11,2:
+Apple routes the internal display through Link B of the DIG encoder
+instead of Link A. Add iMac11,1 to the existing DMI quirk and move
+the Apple-specific encoder assignment into its own block, independent
+of the DCE version check.
 
-Since the rework in commit 7f544c5488cf ("drm/amdgpu: Rework mca ras
-sw_init") moved the ras_comm setup into amdgpu_mca_mp*_ras_sw_init() but
-left sub_block_index unset, mp0/mp1/mpio all default to index 0 and
-collide on the same object slot. mp0 grabs the slot and creates its
-sysfs node first; mp1 (and mpio) then find the slot already in use, so
-amdgpu_ras_block_late_init() -> amdgpu_ras_sysfs_create() returns
--EINVAL:
+Additionally, the 2560x1440 panel requires RADEON_PLL_USE_FRAC_FB_DIV
+and ATOM_ENCODER_CMD_DP_VIDEO_ON, limited to iMac11,1 via dmi_match()
+to avoid affecting other boards.
 
-  amdgpu: mca.mp1 failed to execute ras_block_late_init_default! ret:-22
-  amdgpu: amdgpu_ras_late_init failed -22
-  amdgpu: amdgpu_device_ip_late_init failed
-  amdgpu: Fatal error during GPU init
-
-The error is currently masked because amdgpu_ras_late_init() does not
-check the return value of amdgpu_ras_block_late_init_default(), but it
-already leaves mp1/mpio without their sysfs nodes and becomes a fatal
-init failure as soon as that return value is honored.
-
-Restore the per-sub-block sub_block_index assignment so each mca
-sub-block maps to its own object slot.
-
-Fixes: 7f544c5488cf ("drm/amdgpu: Rework mca ras sw_init")
-Signed-off-by: Yunxiang Li <Yunxiang.Li@amd.com>
+Signed-off-by: Gilles Risch <gilles.risch@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/radeon/atombios_crtc.c     |  5 ++++-
+ drivers/gpu/drm/radeon/atombios_encoders.c | 23 ++++++++++++----------
+ 2 files changed, 17 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
-index 3ca03b5e0f913..e1e4a61b1301c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
-@@ -99,6 +99,7 @@ int amdgpu_mca_mp0_ras_sw_init(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/radeon/atombios_crtc.c b/drivers/gpu/drm/radeon/atombios_crtc.c
+index 2fc0334e0..075eba2d4 100644
+--- a/drivers/gpu/drm/radeon/atombios_crtc.c
++++ b/drivers/gpu/drm/radeon/atombios_crtc.c
+@@ -24,6 +24,8 @@
+  *          Alex Deucher
+  */
  
- 	strcpy(ras->ras_block.ras_comm.name, "mca.mp0");
- 	ras->ras_block.ras_comm.block = AMDGPU_RAS_BLOCK__MCA;
-+	ras->ras_block.ras_comm.sub_block_index = AMDGPU_RAS_MCA_BLOCK__MP0;
- 	ras->ras_block.ras_comm.type = AMDGPU_RAS_ERROR__MULTI_UNCORRECTABLE;
- 	adev->mca.mp0.ras_if = &ras->ras_block.ras_comm;
++#include <linux/dmi.h>
++
+ #include <drm/drm_fixed.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_framebuffer.h>
+@@ -594,7 +596,8 @@ static u32 atombios_adjust_pll(struct drm_crtc *crtc,
+ 		if (((rdev->family == CHIP_RS780) || (rdev->family == CHIP_RS880))
+ 		    && !radeon_crtc->ss_enabled)
+ 			radeon_crtc->pll_flags |= RADEON_PLL_USE_FRAC_FB_DIV;
+-		if (ASIC_IS_DCE32(rdev) && mode->clock > 165000)
++		if ((ASIC_IS_DCE32(rdev) || dmi_match(DMI_PRODUCT_NAME, "iMac11,1"))
++		    && mode->clock > 165000)
+ 			radeon_crtc->pll_flags |= RADEON_PLL_USE_FRAC_FB_DIV;
+ 	} else {
+ 		radeon_crtc->pll_flags |= RADEON_PLL_LEGACY;
+diff --git a/drivers/gpu/drm/radeon/atombios_encoders.c b/drivers/gpu/drm/radeon/atombios_encoders.c
+index 5cfd8fcfa..8b3f8303a 100644
+--- a/drivers/gpu/drm/radeon/atombios_encoders.c
++++ b/drivers/gpu/drm/radeon/atombios_encoders.c
+@@ -1707,7 +1707,7 @@ radeon_atom_encoder_dpms_dig(struct drm_encoder *encoder, int mode)
+ 		if (ENCODER_MODE_IS_DP(atombios_get_encoder_mode(encoder)) && connector) {
+ 			/* DP_SET_POWER_D0 is set in radeon_dp_link_train */
+ 			radeon_dp_link_train(encoder, connector);
+-			if (ASIC_IS_DCE4(rdev))
++			if (ASIC_IS_DCE4(rdev) || dmi_match(DMI_PRODUCT_NAME, "iMac11,1"))
+ 				atombios_dig_encoder_setup(encoder, ATOM_ENCODER_CMD_DP_VIDEO_ON, 0);
+ 		}
+ 		if (radeon_encoder->devices & (ATOM_DEVICE_LCD_SUPPORT)) {
+@@ -2123,17 +2123,20 @@ int radeon_atom_pick_dig_encoder(struct drm_encoder *encoder, int fe_idx)
+ 	}
  
-@@ -123,6 +124,7 @@ int amdgpu_mca_mp1_ras_sw_init(struct amdgpu_device *adev)
+ 	/*
+-	 * On DCE32 any encoder can drive any block so usually just use crtc id,
+-	 * but Apple thinks different at least on iMac10,1 and iMac11,2, so there use linkb,
+-	 * otherwise the internal eDP panel will stay dark.
++	 * Apple routes the internal eDP panel through Link B of the DIG encoder
++	 * instead of Link A on the iMac10,1, iMac11,1 and iMac11,2.
++	 * Use linkb to avoid a dark display.
+ 	 */
+-	if (ASIC_IS_DCE32(rdev)) {
+-		if (dmi_match(DMI_PRODUCT_NAME, "iMac10,1") ||
+-		    dmi_match(DMI_PRODUCT_NAME, "iMac11,2"))
+-			enc_idx = (dig->linkb) ? 1 : 0;
+-		else
+-			enc_idx = radeon_crtc->crtc_id;
++	if (dmi_match(DMI_PRODUCT_NAME, "iMac10,1") ||
++	    dmi_match(DMI_PRODUCT_NAME, "iMac11,1") ||
++	    dmi_match(DMI_PRODUCT_NAME, "iMac11,2")) {
++		enc_idx = (dig->linkb) ? 1 : 0;
++		goto assigned;
++	}
  
- 	strcpy(ras->ras_block.ras_comm.name, "mca.mp1");
- 	ras->ras_block.ras_comm.block = AMDGPU_RAS_BLOCK__MCA;
-+	ras->ras_block.ras_comm.sub_block_index = AMDGPU_RAS_MCA_BLOCK__MP1;
- 	ras->ras_block.ras_comm.type = AMDGPU_RAS_ERROR__MULTI_UNCORRECTABLE;
- 	adev->mca.mp1.ras_if = &ras->ras_block.ras_comm;
- 
-@@ -147,6 +149,7 @@ int amdgpu_mca_mpio_ras_sw_init(struct amdgpu_device *adev)
- 
- 	strcpy(ras->ras_block.ras_comm.name, "mca.mpio");
- 	ras->ras_block.ras_comm.block = AMDGPU_RAS_BLOCK__MCA;
-+	ras->ras_block.ras_comm.sub_block_index = AMDGPU_RAS_MCA_BLOCK__MPIO;
- 	ras->ras_block.ras_comm.type = AMDGPU_RAS_ERROR__MULTI_UNCORRECTABLE;
- 	adev->mca.mpio.ras_if = &ras->ras_block.ras_comm;
++	/* on DCE32 and encoder can driver any block so just crtc id */
++	if (ASIC_IS_DCE32(rdev)) {
++		enc_idx = radeon_crtc->crtc_id;
+ 		goto assigned;
+ 	}
  
 -- 
-2.51.2
+2.47.3
 
