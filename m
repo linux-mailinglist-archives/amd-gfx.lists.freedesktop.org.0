@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cdqJN2ySHWqScQkAu9opvQ
+	id kN21HW6SHWqScQkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:08:44 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:08:46 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC97862084D
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:08:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ACCD620861
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:08:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C4621133B0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C74761133AD;
 	Mon,  1 Jun 2026 14:08:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="HSmGLK4E";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="rHZTR+gJ";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50B711133AF
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 14:08:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C7E71133B0
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 14:08:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -27,24 +27,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=yMqXJrNmwsMzrscHdEoZvbeEu8iC8pj/ZzCVaLeI3HY=; b=HSmGLK4E1RZwXPBTPs8hG0pnId
- kxfPd83j2A/EgJa38TmstuCn0LXaRDiKx9OCEgsNu0zrhJtDVz/iHDnbdp9R05IEdm1nujVqC8256
- ZNyYCPwSjBDp26BNEvbpJv+mJozei2qqXhbOdMoW/n0BFCE0Yh5J0pkf+0cZOw+Cis/H4driNeAQu
- 2bFmNzLNZ5zHo5Tb/WVZwD3Kmx4PqyEo9+/hfCZ3lRASjy1g/y+T1XEvPV8V9YOAtGRaEE8VCqiaM
- N/ytMGlZ0RjHdOFSsH9wJe64DPmKJvUKfY+3soQDb8BqfJWUc7S2J/ZdRIhF9Lsu+lZcaNG4Dd6Va
- 4ofM8E0Q==;
+ bh=9adO84A9/OeqU3kCeP9AC8GZC2MfGgtBi7tMrh0PFmI=; b=rHZTR+gJhSrCo/0e+Txjz68Mge
+ PHU0MCWH5w7jKAb6HhxqB9faugpBHTAeJUSuvaZJdDbnHGkVd3ycjktUa8fHFZlXJMHAYDbdOP21Z
+ d3emjgGRFFXAh/XMsrnosp8aCzZWdjvYeEqqkBiMCD2fraE2RwV84hKPqBYG++wnGjT2I600Fevev
+ UJ0suHBIcJi4a6F4/ERf8UxrvebvVvqAC4eHfUx6XSU9wC+2IQP6qe1ElFkpm+T3pToHQAJ7fPGz4
+ /7yQS33FyQ2vO7bi/lU8nu91NN2QcLxSf0qeisgMUL8QNdwFZm44wggjY5Az4rnk82gCd6ovDcLIw
+ QH4SqibA==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wU3Jk-00B2vE-Jg; Mon, 01 Jun 2026 16:08:36 +0200
+ id 1wU3Jl-00B2vI-CH; Mon, 01 Jun 2026 16:08:37 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH 2/7] drm/amdgpu: Remove arbitrary number of contexts limitation
-Date: Mon,  1 Jun 2026 15:08:23 +0100
-Message-ID: <20260601140828.27779-3-tvrtko.ursulin@igalia.com>
+Subject: [PATCH 3/7] drm/amdgpu: Consolidate ctx put
+Date: Mon,  1 Jun 2026 15:08:24 +0100
+Message-ID: <20260601140828.27779-4-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260601140828.27779-1-tvrtko.ursulin@igalia.com>
 References: <20260601140828.27779-1-tvrtko.ursulin@igalia.com>
@@ -86,60 +86,173 @@ X-Spamd-Result: default: False [1.49 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[igalia.com:-];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_SPAM(0.00)[0.671];
+	NEURAL_SPAM(0.00)[0.647];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,igalia.com:mid,igalia.com:email]
-X-Rspamd-Queue-Id: AC97862084D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:mid,igalia.com:email,amd.com:email]
+X-Rspamd-Queue-Id: 2ACCD620861
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-There is no need for an arbitrary limit to number of contexts userspace
-can be allowed to create. Remove the AMDGPU_VM_MAX_NUM_CTX (4096) and
-allow for full 32-bit of handles to be allocated.
+Currently there are two flavours of the context reference count
+destructor:
+
+ - amdgpu_ctx_do_release(), used from kref_put from places where the code
+   thinks context may have been used, or is in active use, and;
+ - amdgpu_ctx_fini(), used when code is sure context entities have already
+   been idled.
+
+Since amdgpu_ctx_do_release() calls amdgpu_ctx_fini() after having idled
+and destroyed the scheduler entities, we can consolidate the two into a
+single function.
+
+Functional difference is that now drm_sched_entity_destroy() is called on
+context manager shutdown (file close), where previously it was
+drm_sched_entity_fini(). But the former is a superset of the latter, and
+during file close the flush method is also called, which calls
+drm_sched_entity_flush(), which is also called by
+drm_sched_entity_destroy(). And as it is safe to attempt to flush a never
+used entity, or flush it twice, there is actually no functional change.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Suggested-by: Christian König <christian.koenig@amd.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h     | 1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 6 +++---
- 2 files changed, 3 insertions(+), 4 deletions(-)
+v2:
+ * Use separate variable for drm_dev_enter for readability.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 12815d4eb6cb..79ec05733dba 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -272,7 +272,6 @@ extern int amdgpu_ptl;
- 
- extern uint amdgpu_hdmi_hpd_debounce_delay_ms;
- 
--#define AMDGPU_VM_MAX_NUM_CTX			4096
- #define AMDGPU_SG_THRESHOLD			(256*1024*1024)
- #define AMDGPU_WAIT_IDLE_TIMEOUT_IN_MS	        3000
- #define AMDGPU_MAX_USEC_TIMEOUT			100000	/* 100 ms */
+v3:
+ * Keep amdgpu_ctx_fini_entity as a separate function.
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 54 ++++---------------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h |  9 ++++-
+ 2 files changed, 15 insertions(+), 48 deletions(-)
+
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-index ff77126c5644..63564dc45829 100644
+index 63564dc45829..9762b52073b4 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-@@ -505,14 +505,14 @@ static int amdgpu_ctx_alloc(struct amdgpu_device *adev,
- 		return -ENOMEM;
+@@ -283,6 +283,8 @@ static ktime_t amdgpu_ctx_fini_entity(struct amdgpu_device *adev,
+ 	if (!entity)
+ 		return res;
+ 
++	drm_sched_entity_destroy(&entity->entity);
++
+ 	for (i = 0; i < amdgpu_sched_jobs; ++i) {
+ 		res = ktime_add(res, amdgpu_ctx_fence_time(entity->fences[i]));
+ 		dma_fence_put(entity->fences[i]);
+@@ -416,7 +418,7 @@ static int amdgpu_ctx_set_stable_pstate(struct amdgpu_ctx *ctx,
+ 	return r;
+ }
+ 
+-static void amdgpu_ctx_fini(struct kref *ref)
++void amdgpu_ctx_fini(struct kref *ref)
+ {
+ 	struct amdgpu_ctx *ctx = container_of(ref, struct amdgpu_ctx, refcount);
+ 	struct amdgpu_ctx_mgr *mgr = ctx->mgr;
+@@ -523,24 +525,6 @@ static int amdgpu_ctx_alloc(struct amdgpu_device *adev,
+ 	return r;
+ }
+ 
+-static void amdgpu_ctx_do_release(struct kref *ref)
+-{
+-	struct amdgpu_ctx *ctx;
+-	u32 i, j;
+-
+-	ctx = container_of(ref, struct amdgpu_ctx, refcount);
+-	for (i = 0; i < AMDGPU_HW_IP_NUM; ++i) {
+-		for (j = 0; j < amdgpu_ctx_num_entities[i]; ++j) {
+-			if (!ctx->entities[i][j])
+-				continue;
+-
+-			drm_sched_entity_destroy(&ctx->entities[i][j]->entity);
+-		}
+-	}
+-
+-	amdgpu_ctx_fini(ref);
+-}
+-
+ static int amdgpu_ctx_free(struct amdgpu_fpriv *fpriv, uint32_t id)
+ {
+ 	struct amdgpu_ctx_mgr *mgr = &fpriv->ctx_mgr;
+@@ -548,8 +532,7 @@ static int amdgpu_ctx_free(struct amdgpu_fpriv *fpriv, uint32_t id)
  
  	mutex_lock(&mgr->lock);
--	r = idr_alloc(&mgr->ctx_handles, ctx, 1, AMDGPU_VM_MAX_NUM_CTX, GFP_KERNEL);
--	if (r < 0) {
-+	*id = 1;
-+	r = idr_alloc_u32(&mgr->ctx_handles, ctx, id, UINT_MAX, GFP_KERNEL);
-+	if (r) {
- 		mutex_unlock(&mgr->lock);
- 		kfree(ctx);
- 		return r;
- 	}
+ 	ctx = idr_remove(&mgr->ctx_handles, id);
+-	if (ctx)
+-		kref_put(&ctx->refcount, amdgpu_ctx_do_release);
++	amdgpu_ctx_put(ctx);
+ 	mutex_unlock(&mgr->lock);
+ 	return ctx ? 0 : -EINVAL;
+ }
+@@ -765,15 +748,6 @@ struct amdgpu_ctx *amdgpu_ctx_get(struct amdgpu_fpriv *fpriv, uint32_t id)
+ 	return ctx;
+ }
  
--	*id = (uint32_t)r;
- 	r = amdgpu_ctx_init(mgr, priority, filp, ctx);
- 	if (r) {
- 		idr_remove(&mgr->ctx_handles, *id);
+-int amdgpu_ctx_put(struct amdgpu_ctx *ctx)
+-{
+-	if (ctx == NULL)
+-		return -EINVAL;
+-
+-	kref_put(&ctx->refcount, amdgpu_ctx_do_release);
+-	return 0;
+-}
+-
+ uint64_t amdgpu_ctx_add_fence(struct amdgpu_ctx *ctx,
+ 			      struct drm_sched_entity *entity,
+ 			      struct dma_fence *fence)
+@@ -943,29 +917,15 @@ long amdgpu_ctx_mgr_entity_flush(struct amdgpu_ctx_mgr *mgr, long timeout)
+ static void amdgpu_ctx_mgr_entity_fini(struct amdgpu_ctx_mgr *mgr)
+ {
+ 	struct amdgpu_ctx *ctx;
+-	struct idr *idp;
+-	uint32_t id, i, j;
++	uint32_t id;
+ 
+-	idp = &mgr->ctx_handles;
+-
+-	idr_for_each_entry(idp, ctx, id) {
++	idr_for_each_entry(&mgr->ctx_handles, ctx, id) {
+ 		if (kref_read(&ctx->refcount) != 1) {
+ 			drm_err(adev_to_drm(mgr->adev), "ctx %p is still alive\n", ctx);
+ 			continue;
+ 		}
+ 
+-		for (i = 0; i < AMDGPU_HW_IP_NUM; ++i) {
+-			for (j = 0; j < amdgpu_ctx_num_entities[i]; ++j) {
+-				struct drm_sched_entity *entity;
+-
+-				if (!ctx->entities[i][j])
+-					continue;
+-
+-				entity = &ctx->entities[i][j]->entity;
+-				drm_sched_entity_fini(entity);
+-			}
+-		}
+-		kref_put(&ctx->refcount, amdgpu_ctx_fini);
++		amdgpu_ctx_put(ctx);
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
+index cf8d700a22fe..b1fa7fe74569 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h
+@@ -70,7 +70,14 @@ struct amdgpu_ctx_mgr {
+ extern const unsigned int amdgpu_ctx_num_entities[AMDGPU_HW_IP_NUM];
+ 
+ struct amdgpu_ctx *amdgpu_ctx_get(struct amdgpu_fpriv *fpriv, uint32_t id);
+-int amdgpu_ctx_put(struct amdgpu_ctx *ctx);
++
++void amdgpu_ctx_fini(struct kref *kref);
++
++static inline void amdgpu_ctx_put(struct amdgpu_ctx *ctx)
++{
++	if (ctx)
++		kref_put(&ctx->refcount, amdgpu_ctx_fini);
++}
+ 
+ int amdgpu_ctx_get_entity(struct amdgpu_ctx *ctx, u32 hw_ip, u32 instance,
+ 			  u32 ring, struct drm_sched_entity **entity);
 -- 
 2.54.0
 
