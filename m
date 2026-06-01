@@ -2,104 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YO8BGHTjHWoPfwkAu9opvQ
+	id kB9kFCiFHmqhkQkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 21:54:28 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Jun 2026 09:24:24 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC7D8624CC1
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 21:54:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 009596299FA
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Jun 2026 09:24:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6390710E8E9;
-	Mon,  1 Jun 2026 19:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB88D10ECB0;
+	Tue,  2 Jun 2026 07:24:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="BlGKaevc";
+	dkim=pass (2048-bit key; secure) header.d=theesfeld.net header.i=@theesfeld.net header.b="N23YkX00";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010062.outbound.protection.outlook.com
- [40.93.198.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2C3C10E8E9
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 19:54:23 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=i0+fLkb1GZJ+NnLMKbkR4IEktyWVbfJD9QLX8viuUmOBY0pUvXKusIlv2JPf6xiIdkAKIJbSjhRvfIVi3nSyUxtiGgN+9cutNDF7TaxAsMYmXrCYyj4LFwLJrnv9mKs78Sl1Ot4us0WnNw7REseFYkBfHmTy9+5793tprFpbg2zNO1znaX11DIaKTmShvTuhubb8qpL/2umoFzI+vBHkFJDKzED4DqEkEcmOavUncmcx9cRw5+PJP54D6L83EnSf7LNsemqCTC4GqSDn8uWDSGVVF0DssKkUPaCMsOX9/B8lPmyJAjKGnR3StNeREJ4Y5CrZHODRfuIv5pGuU6MOVg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UUEypc4qN7fxDtaG/+YmM3u7qhNJ6SRzzdI5KZhcO+Q=;
- b=iaF1E+guSRZZJZ9GCSJNQ0vhAGJdyscon9Cs2M4eT6Y3vd7Bd9pU7MLPNi8zmhQfGPyz9JUhUYbKtXoxqM0tiWUH9x41PbNU/kIrp5hhpS2NNnalHeZQAAMmWwPCa5uaU6YlCmsfJxlrYYD6mCSgqlfbl7QjR1Ei2eCmjl8LiAN6F9tCQDH3puRcpDjRX3rmQKC9DSczZz09jyBdL/2Yq34n3hufi+n43vH8X7T8X3VD4tEVZWcFVlrCzKEa+Bxga7JLH0/KG85yBaetqAszDtawXJGhKoil1W0f/mzYJ3qCOvxu8PN+C2BHFTK3Jl8jsUkFsLyYelN+Vq/QXhaCyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UUEypc4qN7fxDtaG/+YmM3u7qhNJ6SRzzdI5KZhcO+Q=;
- b=BlGKaevcExc0ACtI7tbdO5JhUv1KC5RENpN2UXcwCP4dp8crifNPL2ynWrGEJsKK77Fq1jxIPV/UE5/b3Pmk17p2IQMwkMCPkFGoM5RtMfrkKyi0bjqqcoLxhzhQ3vJJzcYTN7HU/MytQJk6BROCxv3avVX34oAE3QyRtiURivU=
-Received: from PH0PR07CA0003.namprd07.prod.outlook.com (2603:10b6:510:5::8) by
- DM4PR12MB6397.namprd12.prod.outlook.com (2603:10b6:8:b4::10) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.71.12; Mon, 1 Jun 2026 19:54:18 +0000
-Received: from CY4PEPF0000FCC1.namprd03.prod.outlook.com
- (2603:10b6:510:5:cafe::78) by PH0PR07CA0003.outlook.office365.com
- (2603:10b6:510:5::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.71.13 via Frontend Transport; Mon, 1
- Jun 2026 19:54:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CY4PEPF0000FCC1.mail.protection.outlook.com (10.167.242.103) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.92.5 via Frontend Transport; Mon, 1 Jun 2026 19:54:16 +0000
-Received: from 0yonsun-linux-dev.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.41; Mon, 1 Jun 2026 14:54:15 -0500
-From: Yongqiang Sun <Yongqiang.Sun@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Yongqiang Sun <Yongqiang.Sun@amd.com>
-Subject: [PATCH] drm/amdkfd: fix sysfs topology prop length on buffer
- truncation
-Date: Mon, 1 Jun 2026 15:53:58 -0400
-Message-ID: <20260601195358.226233-1-Yongqiang.Sun@amd.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mail-4321.protonmail.ch (mail-4321.protonmail.ch [185.70.43.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5A2D10E8EF;
+ Mon,  1 Jun 2026 19:55:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theesfeld.net;
+ s=protonmail2; t=1780343717; x=1780602917;
+ bh=i5q6iyFTLtGZwAyQzskDa+UIgmFftyxv9qY3L/cfpX8=;
+ h=From:To:Cc:Subject:Date:Message-ID:From:To:Cc:Date:Subject:
+ Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+ b=N23YkX00yFQSbqS9JbTZfcrjGpXrbY1qAJaobCIP0PT82buagoPDd/ZtTBRO0PrWy
+ QRyLqWJXWVvrvp4WB74iGrvOxHJVuf4CNBfEUPNxIamMe6qR3pKzn50QabDTBc4Rwd
+ bmXCAE1beNpaQYWGSA08v9nfxugiIHoTLTfbSmhitgUsZGYwPd/yNIoxDdqidRyV7v
+ b8SPpNBZHbtpQkRvQp6l3O8FTdCIWPcRsFZQ2r75lciJu0CZNbqsHvzlbdqKvhfyS+
+ ks/1v0eycTOqsGZRyu6rAoFAwNL+mid7cnEoELmKI7GP1ifryXP8gb11/MPG1CTTmI
+ YUI9tPokCXbhg==
+X-Pm-Submission-Id: 4gTl736RV8z2ScPK
+From: William Theesfeld <william@theesfeld.net>
+To: Felix Kuehling <Felix.Kuehling@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amdkfd: convert CRIU event-private allocation to
+ kvcalloc()
+Date: Mon,  1 Jun 2026 15:55:10 -0400
+Message-ID: <20260601195510.639318-1-william@theesfeld.net>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC1:EE_|DM4PR12MB6397:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6d3c5649-baec-4b17-1226-08dec0179006
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|1800799024|82310400026|376014|18002099003|56012099006|6133799003|11063799006;
-X-Microsoft-Antispam-Message-Info: 9vdfos5EBvHQJwDJG8RuDnP27Hxh+FbB7b0SfJw0eFXU0Fr+Nn3n+YuUK+jqoW0oxvVRWBPjy5eUt3k+tnzWDVA/h8dZW9Ore/st5KVLBRYoe37F1YU/BccMC5cwy98vkhLFKbbOQnUMCmKgYmjq71EBUH3AkLofFjT4xFg4qMtbUK9Y1pYQsrBDwsVvNJsj/9aivk/M+fZ1dKL2TSPCvUVSil0awclDqBEkeHIC4IHaNeZKI3EskIX33XunN6TCb9eT4nyeOvOcDYKblJfk3dftRsw3FsAiJ6s3oYn2G/jEUBBM5DAsB05HeciF53CuEx7Ipqf7UaBn+M0PVtwRSnDJbmXvcZyw3+0sFot4E/OVLBAxuql/kOYquau4NNXsk4DvYOME8mSNka5fOYCWmfJ69aIDVOhL4DlGoBOsM1RpcP3vBiuG1AU4suXzgt8hDemtG3d9wrCgRkiVDmm99AB9PhtIyLDtbgl0hbl21K6skbIoLG6/Ivi0O9g+BZPwKB+1ogAXkZeRq3GvVBgnMUOWQwgOeMp+hPPq3rfAIaDv/7rNFtwg5QMoFLnyVv2ZjavDdMwcd4GmH5Gachc/ChHck16W8EMVGnnTsQZ98I0G/EHaPpiWC2skYivt1jJJQO88eYkl9MjJw14+BwZcXia8uhj83FesmzH8p2XLe1ZC0mO2NHx5R2sTObqJNqRc+txA3KnWDAHyCi5OZ6qGcaip/2EOKFGjPLc4KrLVo54=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(1800799024)(82310400026)(376014)(18002099003)(56012099006)(6133799003)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: oNhdHoFs9zwvxmQuw0xU5WU5+IK2tcqC7ipJer0uJHvReQTmaVl7o8QJ0PLhU4Q80ONbXk+MCXfLOvYJsNiMy73EjXq8TkxPXIc9Iuo60c3KYzXSf2Glx2Arv+uNTm7TUqyG3WBcMVhcTF5QWaOHclVFMr1XVlQqBls7TEzy4PBm8ZM/iFApCqQ/4XvTVps5JANEacIm/esYFh4fF8WP4QWnyMWFTtt61xEVGbNFb+T3OphytzbRdt4C3374pRN4NSfXa3CRROuK5VMUBIe/mac/BiSeUAXVfiax68JaLlaemBbdIh4VCqXAmsZICHngYV5Ag+bM0Gpl8hECUp1bGKDjfIlFmWYd13IxAf6hyy9miBemmAeqtFyH4mYxmjj7dbfvb9fq5/Ji+/kW702r71qGHxQHgvUrJKb7mwFGbbQtQzZYIm5ejeh0xMdZ5CYG
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2026 19:54:16.5399 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d3c5649-baec-4b17-1226-08dec0179006
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCC1.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6397
+X-Mailman-Approved-At: Tue, 02 Jun 2026 07:24:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,61 +60,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[theesfeld.net,quarantine];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[theesfeld.net:s=protonmail2];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[Yongqiang.Sun@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	HAS_XOIP(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[william@theesfeld.net,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[theesfeld.net:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_HAM(-0.00)[-0.999];
-	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: BC7D8624CC1
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,theesfeld.net:email,theesfeld.net:mid,theesfeld.net:dkim]
+X-Rspamd-Queue-Id: 009596299FA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-sysfs_show_gen_prop() accumulated snprintf()'s return value into the
-offset. snprintf() reports bytes that would have been written, not
-bytes actually written, so a truncated sysfs show could over-report
-its length. Use sysfs_emit_at(), which returns only the bytes written.
+criu_checkpoint_events() allocates the ev_privs[] array, sized by the
+runtime count returned from kfd_get_num_events(), using the open-coded
+kvzalloc(n * sizeof(*p), ...) form.  Switch to kvcalloc(), which
+carries the same zero-on-allocation semantics and adds the standard
+size_mul overflow check on the n * sizeof multiplication.
 
-Signed-off-by: Yongqiang Sun <Yongqiang.Sun@amd.com>
+No functional change.
+
+Signed-off-by: William Theesfeld <william@theesfeld.net>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-index f57da088f1f8..0ff793a17857 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-@@ -198,8 +198,7 @@ struct kfd_topology_device *kfd_create_topology_device(
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+index 44150a71f..9739214e2 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_events.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+@@ -543,7 +543,7 @@ int kfd_criu_checkpoint_events(struct kfd_process *p,
+ 	if (!num_events)
+ 		return 0;
  
+-	ev_privs = kvzalloc(num_events * sizeof(*ev_privs), GFP_KERNEL);
++	ev_privs = kvcalloc(num_events, sizeof(*ev_privs), GFP_KERNEL);
+ 	if (!ev_privs)
+ 		return -ENOMEM;
  
- #define sysfs_show_gen_prop(buffer, offs, fmt, ...)		\
--		(offs += snprintf(buffer+offs, PAGE_SIZE-offs,	\
--				  fmt, __VA_ARGS__))
-+		(offs += sysfs_emit_at(buffer, offs, fmt, __VA_ARGS__))
- #define sysfs_show_32bit_prop(buffer, offs, name, value) \
- 		sysfs_show_gen_prop(buffer, offs, "%s %u\n", name, value)
- #define sysfs_show_64bit_prop(buffer, offs, name, value) \
 -- 
-2.43.0
+2.54.0
 
