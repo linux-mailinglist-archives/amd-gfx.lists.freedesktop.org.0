@@ -2,61 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aHidDgWVHWrOcQkAu9opvQ
+	id eFmPNb2THWqmcQkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:19:49 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:14:21 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FABB620BCE
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:19:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49DB16209CE
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:14:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 645151133F0;
-	Mon,  1 Jun 2026 14:19:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B0441133C8;
+	Mon,  1 Jun 2026 14:14:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Gp6uYTqA";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 234301133EC
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 14:19:46 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 4339D6784A;
- Mon,  1 Jun 2026 14:19:30 +0000 (UTC)
-Authentication-Results: smtp-out2.suse.de;
-	none
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id E6242779A7;
- Mon,  1 Jun 2026 14:19:29 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id KCUDN/GUHWpSdwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 01 Jun 2026 14:19:29 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: simona@ffwll.ch, michel.daenzer@mailbox.org, louis.chauvet@bootlin.com,
- ville.syrjala@linux.intel.com, jani.nikula@intel.com, mhklkml@zohomail.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 7/7] drm/vblank: timer: Avoid reading the vblank time
- unnecessarily
-Date: Mon,  1 Jun 2026 16:08:35 +0200
-Message-ID: <20260601141922.91498-8-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260601141922.91498-1-tzimmermann@suse.de>
-References: <20260601141922.91498-1-tzimmermann@suse.de>
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010049.outbound.protection.outlook.com [52.101.85.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B3E21133C8
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 14:14:18 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oateMTZXCq4kEX07NtpASe6sNhRUMx6OR3/IdmZVUP8qpLIFQlq1Dw6etbiq6a3W1Be5lr56Z9SOLHpxSB2deJe1dJnJYmbv67UCXnVtSTOVnERi78316PtwGiLDqz/4nEUyPUl8csuiDR2KNd9c+98Z9QPthwcJEPhGyRak3fvwPZwbhsIn7waBI76txR04WxICM+72bS6mLFlFcll939CyWj0J58tW89EfGFfOP4xlPyi5x+weiTZm342aIOoDu/2rKxqcHchSHN0yVVcBhyrYmWkXsBK0AQI7nc89mL1aYtEpiOrCF6lVEcn/VK23d2LhieK3/d2tknRxXQIZcQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fd7Riq5VcraJ4rkBHSnCCqi9DyIK3aSZUOil/X5lfqQ=;
+ b=W8cvthYJ8n6U1JRSV7pw2gz5nu+UCUJGYakzw5QaTDgPH5TKHQ2RQ3PNso12XGFMGK/jkt3igbQGDPPmDhYztyol3UZhGNrjkWbzGOglXszFUGkSlJ/Hp7LFvrF+XL/n24DC3FV1gOi1mLUM5eoRxSMvAAEQ4Osax1+WL7dgsjNwSDJ21linFgLC72oToV9pFXOT5wEYQvA/6n9ri+uAJXjSCrgMaJEJAs+ldo6Yw1asc+x94CqNkhBAqhj84IACf1kS+HcvXFDncAArp71YHILWXhrLHuXO+iBtAHNBnUxQEaE6gZtFSV2d5pANcQETL2HsXswo79XmpjYcrvZXJw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fd7Riq5VcraJ4rkBHSnCCqi9DyIK3aSZUOil/X5lfqQ=;
+ b=Gp6uYTqAvK08ZMQHV2kktW/LbT++q0qkYHEfesJq9JlAW6m9bwU3EClBUbhWtfN0n4/0AKX6uPkN1tP3TAxFk/LJFOimm5SekG9sCKY2PoJFO6TtuAE8DhndNmmdQ0+H0EVkbYxxk+1GnIpKGtjoo+GQPL+aIeSWapdjXi2EQSU=
+Received: from SA9PR13CA0052.namprd13.prod.outlook.com (2603:10b6:806:22::27)
+ by IA1PR12MB6018.namprd12.prod.outlook.com (2603:10b6:208:3d6::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.16; Mon, 1 Jun 2026
+ 14:14:13 +0000
+Received: from SN1PEPF00036F41.namprd05.prod.outlook.com
+ (2603:10b6:806:22:cafe::31) by SA9PR13CA0052.outlook.office365.com
+ (2603:10b6:806:22::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.5 via Frontend Transport; Mon, 1
+ Jun 2026 14:14:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SN1PEPF00036F41.mail.protection.outlook.com (10.167.248.25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.92.5 via Frontend Transport; Mon, 1 Jun 2026 14:14:13 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.41; Mon, 1 Jun 2026 09:14:10 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: Alex Hung <alex.hung@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>, Roman Li <roman.li@amd.com>, Tom Chung
+ <chiahsuan.chung@amd.com>, Wayne Lin <Wayne.Lin@amd.com>, Nicholas Kazlauskas
+ <Nicholas.Kazlauskas@amd.com>, Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+Subject: [PATCH] drm/amd/display: Add missing kdoc for ALLM parameters
+Date: Mon, 1 Jun 2026 19:42:15 +0530
+Message-ID: <20260601141215.2647457-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Pre-Result: action=no action; module=replies;
- Message is reply to one we originated
-X-Spam-Flag: NO
-X-Spam-Score: -4.00
-X-Spam-Level: 
-X-Rspamd-Pre-Result: action=no action; module=replies;
- Message is reply to one we originated
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF00036F41:EE_|IA1PR12MB6018:EE_
+X-MS-Office365-Filtering-Correlation-Id: ecc33539-5c31-47b1-c590-08debfe80e9f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|36860700016|376014|1800799024|3023799007|11063799006|18002099003|56012099006;
+X-Microsoft-Antispam-Message-Info: WIH1SLaIvcodSRUSBiSV6+KkVlkVReMWZduej8hm/Z2aBpIIIrW62YyDtCmi/rUTCCerr4q/LzoMOfjrZu6/quufHMwFKrK9gUrLpSOvfYCvtSiGopEz/NUhVkxmRpfiDRW9xBVyYVwz/kjwU81E3VCtXAeZT2suMsB2mqgkjMcIDdhEM7jLVq6D+MR9j9O5qIfTB0QxmW0gBRevT9FCphi7IJ7tWJjYGh8c6kNTpmIP5AT5KWUmmgbOQt5nHk0BZ0DunY4iP+snRlPgiLZ4stVaQgNAUIHF8dusT8KVtdRsfQKEnXSmzkwwA9fywLayusT6Ar2cHnrglsEKXBgSt3Ck7KV/gDHNHl8NBdbBYlR+g5lQGzzGj89kInvxJ1lN3yx8nhsmRJjgo1GMxdKcwxIZTYY7EqlAUB8WTFA4ntCgzqQBf8Le+WXYCYpHPmDAk/Roi7oPww0xWmsCQht8uRfd9gkue5WNTtcoEzGOocVtstGACuhFZ1WKRWu22YgjdD/SvU3k3k/tKNOBD7YPkmh6ET8NGZsnc7i38HDrH91mDs6h2yTep3rwtkxjhXignaJiLKU+UW8Ddwh6DUhbQSbFHfJyd/n/yioXqoYj5A59Jq4rW+LVi6eV19fAEnS0GHDlF9Sa+HYLPSA66ejQ8M4DNvtk9effBh3waRvVk8JZqSpd00MR4jQzNjTIB7ttk3cbso16Btx20UgvWzjfXpDjrHYmp8txoAC9Byh52zA=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(3023799007)(11063799006)(18002099003)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: SNzZCvPcrsUEPy+1i02o0KY9Aks5b6s56D7lCJVxsXrnhCzvE+5HGID3UrYGuyYSZx9lt05Mff9EZc2LxRhXqQUtX6FfTEB85Mf6B6YhHP8TVe/hRrNG0ak2nqRhOHG5Gw8zsXOt6W6C8fTQbMLOYrxPmXI6DEVTSH+m7cxPqCZ+zm9QCdsrea7s6UWLdJ5MI6zMPgMayVdqOUkJgp/maXa85Tv4f8lIm8WkQUFEnSdeMv16HTjEb0/0rbR3myK83ErQOkU/shFpXb7pDa4fp0zXszsLhjDnmwseTx9JzDiChcvF53dvfaXiTnacWfyxi6KtqbgzLg+SRJF8BQcLy+pDhhKqH77pfzGsitDn4boPhVmyP72wRurrCUGBBMy19jpQciJGmFOFKQEVnlJKQ+DqM9CDV02+s/qDeNAQFa+A/92np2F7oZClgYLeSt1V
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2026 14:14:13.1200 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ecc33539-5c31-47b1-c590-08debfe80e9f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00036F41.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6018
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,86 +114,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.99 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[suse.de : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:simona@ffwll.ch,m:michel.daenzer@mailbox.org,m:louis.chauvet@bootlin.com,m:ville.syrjala@linux.intel.com,m:jani.nikula@intel.com,m:mhklkml@zohomail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:airlied@gmail.com,m:dri-devel@lists.freedesktop.org,m:virtualization@lists.linux.dev,m:tzimmermann@suse.de,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FREEMAIL_TO(0.00)[ffwll.ch,mailbox.org,bootlin.com,linux.intel.com,intel.com,zohomail.com,kernel.org,gmail.com];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[tzimmermann@suse.de,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:alex.hung@amd.com,m:aurabindo.pillai@amd.com,m:srinivasan.shanmugam@amd.com,m:roman.li@amd.com,m:chiahsuan.chung@amd.com,m:Wayne.Lin@amd.com,m:Nicholas.Kazlauskas@amd.com,m:Bhawanpreet.Lakha@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	R_DKIM_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	HAS_XOIP(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 0FABB620BCE
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,amd.com:mid,amd.com:dkim]
+X-Rspamd-Queue-Id: 49DB16209CE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-In drm_crtc_vblank_get_vblank_timeout(), there's a loop to read
-a consistent vblank count and time. Only read the time once per
-iteration and avoid costly locking and an atomic read.
+Add descriptions for the missing parameters for ALLMEnabled and
+ALLMValue  to keep the function documentation synchronized with the
+function prototype mod_build_hf_vsif_infopacket().
 
-Return an error after 10 retries. This indicates that the vblank
-counter is broken or being updated way too often.
+Fixes the below with gcc W=1:
+../display/modules/info_packet/info_packet.c:507 function parameter 'ALLMEnabled' not described in 'mod_build_hf_vsif_infopacket'
+../display/modules/info_packet/info_packet.c:507 function parameter 'ALLMValue' not described in 'mod_build_hf_vsif_infopacket'
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Fixes: 3c2381b92cba ("drm/amd/display: add support for VSIP info packet")
+Cc: Roman Li <roman.li@amd.com>
+Cc: Alex Hung <alex.hung@amd.com>
+Cc: Tom Chung <chiahsuan.chung@amd.com>
+Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Cc: Wayne Lin <Wayne.Lin@amd.com>
+Cc: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Cc: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 ---
- drivers/gpu/drm/drm_vblank.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 75e2183be0ab..05f28e27cbff 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -2316,7 +2316,8 @@ bool drm_crtc_vblank_get_vblank_timeout(struct drm_crtc *crtc, ktime_t *vblank_t
- 
- 	if (READ_ONCE(vblank->enabled)) {
- 		ktime_t cur_time;
--		u64 cur_count;
-+		u64 lst_count, cur_count;
-+		unsigned int retries = 10;
- 
- 		/*
- 		 * A concurrent vblank timeout could update the expires field before
-@@ -2324,10 +2325,15 @@ bool drm_crtc_vblank_get_vblank_timeout(struct drm_crtc *crtc, ktime_t *vblank_t
- 		 * expiry time to the new vblank time; deducing the timer had already
- 		 * expired. Reread until we get consistent values from both fields.
- 		 */
-+		cur_count = drm_crtc_vblank_count(crtc);
- 		do {
--			cur_count = drm_crtc_vblank_count_and_time(crtc, &cur_time);
-+			lst_count = cur_count;
- 			*vblank_time = READ_ONCE(vtimer->timer.node.expires);
--		} while (cur_count != drm_crtc_vblank_count_and_time(crtc, &cur_time));
-+			cur_count = drm_crtc_vblank_count_and_time(crtc, &cur_time);
-+		} while (cur_count != lst_count && retries--);
-+
-+		if (drm_WARN_ON(dev, cur_count != lst_count))
-+			return false; /* broken vblank counter */
- 
- 		if (drm_WARN_ON(dev, !ktime_after(*vblank_time, cur_time)))
- 			return false; /* already expired */
+diff --git a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
+index fa05547c615a..f5ac4bf32a78 100644
+--- a/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
++++ b/drivers/gpu/drm/amd/display/modules/info_packet/info_packet.c
+@@ -502,6 +502,8 @@ void mod_build_vsc_infopacket(const struct dc_stream_state *stream,
+  *
+  *  @stream:      contains data we may need to construct VSIF (i.e. timing_3d_format, etc.)
+  *  @info_packet: output structure where to store VSIF
++ *  @ALLMEnabled: indicates whether ALLM HF-VSIF should be generated
++ *  @ALLMValue:   ALLM bit value to advertise in HF-VSIF
+  */
+ void mod_build_hf_vsif_infopacket(const struct dc_stream_state *stream,
+ 		struct dc_info_packet *info_packet, int ALLMEnabled, int ALLMValue)
 -- 
-2.54.0
+2.34.1
 
