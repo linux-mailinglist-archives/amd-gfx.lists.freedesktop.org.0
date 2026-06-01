@@ -2,38 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eFfkGfuUHWqmcQkAu9opvQ
+	id sGWnEP+UHWrOcQkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:19:39 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:19:43 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A0D1620B76
-	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:19:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9670620B9A
+	for <lists+amd-gfx@lfdr.de>; Mon, 01 Jun 2026 16:19:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0924210E810;
-	Mon,  1 Jun 2026 14:19:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC2DF10E7FC;
+	Mon,  1 Jun 2026 14:19:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="WxKCMaNj";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="4IgyksRo";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="WxKCMaNj";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="4IgyksRo";
+	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 064E310E7E7
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 14:19:34 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 204EA1133EB
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 14:19:38 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 5C32A67222;
+ by smtp-out2.suse.de (Postfix) with ESMTPS id BAC2D67320;
  Mon,  1 Jun 2026 14:19:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1780323568; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=eb5ySa3ZIoRexYr2KV174ly4yzBKEEvWhDm8xKUIkdg=;
+ b=WxKCMaNjjQx4u8oXFMqAH7K4/brQMMV0akolrMmIdBy9w4/ekbrNbx5PzFqGeWqKPgEEZh
+ 1GU3KMxPUfLPqbBmlNhFde9ABefPW545iCFRB0iY+JPl6CUNv4qTdc9zgmHFbSs9mEKbFA
+ 7NWQvV2SpBwnJUmyzLhIy80yX769vkI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1780323568;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=eb5ySa3ZIoRexYr2KV174ly4yzBKEEvWhDm8xKUIkdg=;
+ b=4IgyksRoxvAyH4YNv3+K6VWSl25Eu5U11uOyBjjCrdk4KR5jUf5oH34ezz2+YJXyX5Ot9H
+ qqW9lx+MwzQDVFCA==
 Authentication-Results: smtp-out2.suse.de;
 	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1780323568; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=eb5ySa3ZIoRexYr2KV174ly4yzBKEEvWhDm8xKUIkdg=;
+ b=WxKCMaNjjQx4u8oXFMqAH7K4/brQMMV0akolrMmIdBy9w4/ekbrNbx5PzFqGeWqKPgEEZh
+ 1GU3KMxPUfLPqbBmlNhFde9ABefPW545iCFRB0iY+JPl6CUNv4qTdc9zgmHFbSs9mEKbFA
+ 7NWQvV2SpBwnJUmyzLhIy80yX769vkI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1780323568;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=eb5ySa3ZIoRexYr2KV174ly4yzBKEEvWhDm8xKUIkdg=;
+ b=4IgyksRoxvAyH4YNv3+K6VWSl25Eu5U11uOyBjjCrdk4KR5jUf5oH34ezz2+YJXyX5Ot9H
+ qqW9lx+MwzQDVFCA==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 077B7779A7;
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 6274E779A8;
  Mon,  1 Jun 2026 14:19:28 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id YACkAPCUHWpSdwAAD6G6ig
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 8GqxFvCUHWpSdwAAD6G6ig
  (envelope-from <tzimmermann@suse.de>); Mon, 01 Jun 2026 14:19:28 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: simona@ffwll.ch, michel.daenzer@mailbox.org, louis.chauvet@bootlin.com,
@@ -41,20 +82,17 @@ To: simona@ffwll.ch, michel.daenzer@mailbox.org, louis.chauvet@bootlin.com,
  maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  virtualization@lists.linux.dev, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 2/7] drm/vblank: timer: Fix timestamp calculation
-Date: Mon,  1 Jun 2026 16:08:30 +0200
-Message-ID: <20260601141922.91498-3-tzimmermann@suse.de>
+Subject: [PATCH 3/7] drm/vblank: timer: Use absolute timer since boot
+Date: Mon,  1 Jun 2026 16:08:31 +0200
+Message-ID: <20260601141922.91498-4-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260601141922.91498-1-tzimmermann@suse.de>
 References: <20260601141922.91498-1-tzimmermann@suse.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Pre-Result: action=no action; module=replies;
- Message is reply to one we originated
-X-Rspamd-Pre-Result: action=no action; module=replies;
- Message is reply to one we originated
 X-Spam-Flag: NO
-X-Spam-Score: -4.00
+X-Spam-Score: -7.30
 X-Spam-Level: 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,128 +107,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.99 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[suse.de : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:simona@ffwll.ch,m:michel.daenzer@mailbox.org,m:louis.chauvet@bootlin.com,m:ville.syrjala@linux.intel.com,m:jani.nikula@intel.com,m:mhklkml@zohomail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:airlied@gmail.com,m:dri-devel@lists.freedesktop.org,m:virtualization@lists.linux.dev,m:tzimmermann@suse.de,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FREEMAIL_TO(0.00)[ffwll.ch,mailbox.org,bootlin.com,linux.intel.com,intel.com,zohomail.com,kernel.org,gmail.com];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER(0.00)[tzimmermann@suse.de,amd-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:simona@ffwll.ch,m:michel.daenzer@mailbox.org,m:louis.chauvet@bootlin.com,m:ville.syrjala@linux.intel.com,m:jani.nikula@intel.com,m:mhklkml@zohomail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:airlied@gmail.com,m:dri-devel@lists.freedesktop.org,m:virtualization@lists.linux.dev,m:tzimmermann@suse.de,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[ffwll.ch,mailbox.org,bootlin.com,linux.intel.com,intel.com,zohomail.com,kernel.org,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[suse.de:+];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	R_DKIM_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 1A0D1620B76
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mailbox.org:email,suse.de:email,suse.de:mid,suse.de:dkim]
+X-Rspamd-Queue-Id: E9670620B9A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-In drm_crtc_vblank_get_vblank_timeout(), return the timestamp of the
-first visible scanline after the last vblank timeout. This is what the
-caller expects.
+Replace HRTIMER_MODE_REL with HRTIMER_MODE_ABS. Align the vblank
+timeouts at multiples of the current mode's frame duration. Use
+CLOCK_BOOTTIME to avoid clock gaps from suspends. Allows the timer
+code to easily estimate future timeouts even while the timer is
+disabled.
 
-A vblank phase starts with a vblank timeout. At this point the display
-is blanked for several scanlines. Afterwards the display is unblanked
-until the next vblank timeout occurs. The display content is only visible
-during that second part.
+Also add a separate error message for cases where the timeout handler
+tries to forward an unexpired timer. This would indicate a problem in
+how the timer is being set up.
 
-The current implementation of drm_crtc_vblank_get_vblank_timeout()
-returns the timestamp of the last vblank timeout that started the current
-vblank phase. But the display only unblanks after 20 to 30 percent of
-the overall frame duration. The returned timestamp is therefore too early.
-
-The next vblank timeout is already known when calculating the returned
-timestamp. Instead of subtracting the duration of a full frame from the
-value, only subtract the duration of the active, visible part. The result
-is the timestamp of the first visible scanline, as expected by the caller.
-
-This bug was not introduced by the generic vblank timer. It appears that
-the get_vblank_timeout logic has always been buggy since it was first
-added in commit 3a0709928b17 ("drm/vkms: Add vblank events simulated by
-hrtimers").
-
+Suggested-by: Michel Dänzer <michel.daenzer@mailbox.org>
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/drm_vblank.c | 32 +++++++++++++++++++++++++-------
- 1 file changed, 25 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/drm_vblank.c | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 96d70c3d4522..d52df247d04e 100644
+index d52df247d04e..03b07e3c2598 100644
 --- a/drivers/gpu/drm/drm_vblank.c
 +++ b/drivers/gpu/drm/drm_vblank.c
-@@ -2293,10 +2293,19 @@ EXPORT_SYMBOL(drm_crtc_vblank_cancel_timer);
-  */
- bool drm_crtc_vblank_get_vblank_timeout(struct drm_crtc *crtc, ktime_t *vblank_time)
- {
-+	struct drm_device *dev = crtc->dev;
+@@ -2192,7 +2192,9 @@ static enum hrtimer_restart drm_vblank_timer_function(struct hrtimer *timer)
+ 		return HRTIMER_NORESTART;
+ 
+ 	ret_overrun = hrtimer_forward_now(&vtimer->timer, interval);
+-	if (ret_overrun != 1)
++	if (!ret_overrun)
++		drm_dbg_vbl(dev, "vblank timer underrun\n");
++	else if (ret_overrun != 1)
+ 		drm_dbg_vbl(dev, "vblank timer overrun\n");
+ 
+ 	if (crtc_funcs->handle_vblank_timeout)
+@@ -2221,6 +2223,7 @@ int drm_crtc_vblank_start_timer(struct drm_crtc *crtc)
  	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
  	struct drm_vblank_crtc_timer *vtimer = &vblank->vblank_timer;
-+	const struct drm_display_mode *mode;
- 	u64 cur_count;
- 	ktime_t cur_time;
-+	s64 framedur_ns;
-+	s64 activedur_ns;
-+
-+	if (drm_drv_uses_atomic_modeset(dev))
-+		mode = &vblank->hwmode;
-+	else
-+		mode = &crtc->hwmode;
+ 	unsigned long flags;
++	s64 vblank_time_ns;
  
- 	if (!READ_ONCE(vblank->enabled))
- 		return false;
-@@ -2312,17 +2321,26 @@ bool drm_crtc_vblank_get_vblank_timeout(struct drm_crtc *crtc, ktime_t *vblank_t
- 		*vblank_time = READ_ONCE(vtimer->timer.node.expires);
- 	} while (cur_count != drm_crtc_vblank_count_and_time(crtc, &cur_time));
+ 	if (!vtimer->crtc) {
+ 		/*
+@@ -2229,7 +2232,7 @@ int drm_crtc_vblank_start_timer(struct drm_crtc *crtc)
+ 		vtimer->crtc = crtc;
+ 		spin_lock_init(&vtimer->interval_lock);
+ 		hrtimer_setup(&vtimer->timer, drm_vblank_timer_function,
+-			      CLOCK_MONOTONIC, HRTIMER_MODE_REL);
++			      CLOCK_BOOTTIME, HRTIMER_MODE_ABS);
+ 	} else {
+ 		/*
+ 		 * Timer should not be active. If it is, wait for the
+@@ -2245,7 +2248,13 @@ int drm_crtc_vblank_start_timer(struct drm_crtc *crtc)
+ 	vtimer->interval = ns_to_ktime(vblank->framedur_ns);
+ 	spin_unlock_irqrestore(&vtimer->interval_lock, flags);
  
--	if (drm_WARN_ON(crtc->dev, !ktime_compare(*vblank_time, cur_time)))
-+	if (drm_WARN_ON(dev, !ktime_compare(*vblank_time, cur_time)))
- 		return false; /* Already expired */
+-	hrtimer_start(&vtimer->timer, vtimer->interval, HRTIMER_MODE_REL);
++	/*
++	 * Always align the vblank timeout to the frame duration. Allows
++	 * for estimating the next vblank even if the hrtimer has been
++	 * disabled.
++	 */
++	vblank_time_ns = roundup(ktime_get_ns(), vblank->framedur_ns);
++	hrtimer_start(&vtimer->timer, ns_to_ktime(vblank_time_ns), HRTIMER_MODE_ABS);
  
-+	framedur_ns = vblank->framedur_ns;
-+
- 	/*
--	 * To prevent races we roll the hrtimer forward before we do any
--	 * interrupt processing - this is how real hw works (the interrupt
--	 * is only generated after all the vblank registers are updated)
--	 * and what the vblank core expects. Therefore we need to always
--	 * correct the timestamp by one frame.
-+	 * To prevent races we rolled the hrtimer forward before we did any
-+	 * timeout processing - this is how real hw works (the interrupt is
-+	 * only generated after all the vblank registers are updated) and what
-+	 * the vblank core expects.
-+	 *
-+	 * Therefore we always need to correct the timestamp. The returned
-+	 * time should be the time of the first active scanline after the
-+	 * previous vblank. Hence subtract the active phase's duration from
-+	 * the next expiration time.
- 	 */
--	*vblank_time = ktime_sub(*vblank_time, vtimer->interval);
-+	if (drm_WARN_ON(dev, !mode->crtc_vtotal))
-+		return false;
-+	activedur_ns = div_s64(framedur_ns * mode->crtc_vdisplay, mode->crtc_vtotal);
-+	*vblank_time = ktime_sub_ns(*vblank_time, activedur_ns);
- 
- 	return true;
+ 	return 0;
  }
 -- 
 2.54.0
