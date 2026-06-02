@@ -2,131 +2,103 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SpnJI2zVHmqAVgAAu9opvQ
+	id fifBKZjsH2rosQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 02 Jun 2026 15:06:52 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 10:58:00 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED66962E48A
-	for <lists+amd-gfx@lfdr.de>; Tue, 02 Jun 2026 15:06:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48E01635EC1
+	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 10:57:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=HdWN49mO;
+	dkim=pass header.d=usp.br header.s=usp-google header.b=x1Qs5+oX;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=quarantine) header.from=usp.br;
+	arc=pass ("google.com:s=arc-20240605:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1944810F0B9;
-	Tue,  2 Jun 2026 13:06:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8661113C5B;
+	Wed,  3 Jun 2026 08:57:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012040.outbound.protection.outlook.com [40.107.209.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 881BE10F0B9
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jun 2026 13:06:49 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aAqnk+phw+e34WYsuaS7YU+4l0XrCqJv0rc1c6e0ER3drow5JXz5FOhRBYyIsflcx+MAE6MMN3h6yErD4Jfui/lAy8u53iFAoTxgOQHt3acqBf+6v9NEnceuq+We4WAAUzNq8Lh/nUEBudn9OiX/yy8PVw0iuLgo343Ml/NG9pqs8fkciEA3VSL474KjJ5RyNtbhlMAmBNnAnytxPuCHZFCqFztfyqVtx2O5NGVp1nHYf2ZHuB0tGq1pqfjmHXFXHl2BravfcUcQuk1aSqS3JXdcdRbzp7pn2ViI23es5hV6erweZ6P5H1PO65fuCFTSpRNlwqd5/9OBMEua+6tUig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ip6cDSSwJg6EnOvx8HacxBjPTUsuxIsmQLsC8FR3dVc=;
- b=yiRd5mE2Ah0xj+zgChJAjFTwoHDYjhmVz1ZlCPawZA0W7fOhOH5UgiSUoVh7HTYE8NRH6FjbjPlOyjZKbjUU/ozEtAQGGPL2Mnu7iiTAyLD87pSGAWLvu/3r27Lelak+B36dTz9m4QX7Grsm+NPFTjJp7Hf0SpeQSyyPumU2fBFQlQfrDxRQ0Cxrk0J/3+YHYUDnS6exKyPbYg/Fou1dbUJlhxBbI11BheJRqh5Hjz6a1LXtLMTd1O4XaaONtyQI6Kv72/J1wgMACVDeEAeGAiJSUlK5ZrZpRbzAvbss9dymPPscRuIJRatvuUrNn89c+6Svm+lnTyWoyZEpLqvBEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ip6cDSSwJg6EnOvx8HacxBjPTUsuxIsmQLsC8FR3dVc=;
- b=HdWN49mOq2Pov/zA3QcHO3ldBF3ck8u/tA8GTjr28juPOPuPQe9dOdjrVzh+1ydkXKC1fbZrY6rkJebSyOsGfCy0fug3sh4TYGXv2yrwCgWrJM8xZX0aFFDHrDgH46CU4FkXPmAEhybicDKoihTx4oZMhzkY9CoIRm2TXhVRlYI=
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
- by CY8PR12MB8068.namprd12.prod.outlook.com (2603:10b6:930:75::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.16; Tue, 2 Jun 2026
- 13:06:46 +0000
-Received: from SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
- ([fe80::ec33:1213:cfd8:63bc%3]) with mapi id 15.21.0092.006; Tue, 2 Jun 2026
- 13:06:46 +0000
-Message-ID: <f9d4a3ba-1b9c-4a19-8d34-bed73f1dc5ff@amd.com>
-Date: Tue, 2 Jun 2026 18:36:38 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] drm/amd/pm: smu_v14_0_0: use SoftMin for gfxclk in
- set_soft_freq_limited_range
-To: Priya Hosur <Priya.Hosur@amd.com>, amd-gfx@lists.freedesktop.org,
- alexander.deucher@amd.com, christian.koenig@amd.com
-Cc: Pratik.Vishwakarma@amd.com, Veerabadhran.Gopalakrishnan@amd.com
-References: <20260507080137.841442-1-Priya.Hosur@amd.com>
- <20260507080137.841442-2-Priya.Hosur@amd.com>
-Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20260507080137.841442-2-Priya.Hosur@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0276.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1f2::19) To SJ0PR12MB7082.namprd12.prod.outlook.com
- (2603:10b6:a03:4ae::12)
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com
+ [209.85.208.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 218CF10F133
+ for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jun 2026 13:44:09 +0000 (UTC)
+Received: by mail-ed1-f45.google.com with SMTP id
+ 4fb4d7f45d1cf-68ae265815aso9263911a12.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 02 Jun 2026 06:44:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1780407848; cv=none;
+ d=google.com; s=arc-20240605;
+ b=Zb2EN7me9XbzJ8QAsGU7qcunEQhaheWgmlwb20h6KK5LDeMSY74I0tKEuCGWYbbH8R
+ +x87EWmlGWLV/yoowvNnzBlYlI0+PJMp8QbU4mkHovET4PdgZ3ctVA5DzR2GNHhv+mt2
+ 3qIejMfO4rYYonHnQ+rRBM1rqyByr+82HH86615wcvdHrKwcJphBxnD1GgfV/uwa+z7J
+ hVnIRYapxzRBHifP+gQezo58ufwDHrxXayGdDMwZJoAyvWK10DL+Ka1BIAVqvnlfOw7w
+ bPt4tru22IgQPGBM/t7cc63qQ1axQtdK6uI0HzZqC2lm8etfp9VW7v3temotipl/PdIz
+ 1Kqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=82dEe/gKwhXZVRLk9OdQ2RS4d20ckRZa2yqh09EPZPE=;
+ fh=SEy+uC980zvE2Gam7oDfeZCaBdiDe7l9uQPuy2N1Jk8=;
+ b=TdNTtFeCTXQOH3xK4KC25JT4JgPdQQABi7eoWHZmKgu6hUixboVbAFon5PXnwzoDhM
+ mGNN9fzRA9PxjnX0fe43nLmqDn/zPOPCSpZPpPAtk1qVFum13jnge4I8BASP4P232B2V
+ lMKmmoVOBm6Q+3+JGt+2+VkvMWmzULtz8ENEgvPzuRG1mbVw9/SoOVGDhz73f+zRQpKf
+ vUIbD4QnJHWs+lQxjQzRFkaXSsjbvfLw4G1gnVW1Bv+BKoKlI8kbD9OAWPejoRwEvW+E
+ UXo7QW28bWtSvOEyzorYtizhlZUD9+qBLuIT5/TU9zVBbXowItYp5i2VnlHO87DC+FfN
+ RVxQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=usp.br; s=usp-google; t=1780407848; x=1781012648; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=82dEe/gKwhXZVRLk9OdQ2RS4d20ckRZa2yqh09EPZPE=;
+ b=x1Qs5+oXvzHsQrFTwhH892GFPI5RD5c+G+2ofea0/EjEbfaIjJw0YDitvjl4t7zdTl
+ kBGJRCsrP2V9x2d90a9B7lKyG3lLRBfC6vqWoCemAst0Gec9aTE5umqPOFb1eUKOKo+A
+ +zy5rs2Ee0oAp9ws9OQXZ7rUzygreSsxmChKYd/oiiciUm2G2XlHyIABWxaX3EVYUIhm
+ AWVYQos0nJcWNkyHYPkQ7cbAt0R+SFckJ01KAG1fLvsBdV+JyTaox3Dhd8mi0Pr+sdAX
+ KEAhZF/tgIi7RvpTy31tp4fufRE8RNvfJFIqYJqGJxPZ6EKkpstCeaNPCqA90dYneQZE
+ IZRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1780407848; x=1781012648;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=82dEe/gKwhXZVRLk9OdQ2RS4d20ckRZa2yqh09EPZPE=;
+ b=iEepgE7NcnFIhv2VmEFduHD3xbOTBTfzdtiEWrsxq24Hyo10NLmLf6xMkxuRzu/iZY
+ 3XWex+1B+UQvGCWbjisUYbsHtW49Cr9DBUhiDNEjc4kfE0TYDxGOzH5EGNOUEsSq9yik
+ ibk/HCmVj0shc9ozK2HfvYjxG65OTQJ1uQ5nVBQJC2qZKArkfYt9m9qjPAVZmE1n9rpa
+ zqwfXv+O9guD9otWGbV5TJ/GXGlX3iGGp44x6yWRc0M12WezngQhyyrUqrRxBn/smOQ/
+ BFMHlQUxlcP+0BGXHxNwCF5t11+fTgX46OsKdq1mRvxslinkiCM0MWCBZFTGx5tKBmU+
+ 5gOw==
+X-Gm-Message-State: AOJu0YwVd7TyTqF+gtEigcoZ+OEFTzpBp8+NNjCmeYd4mxriQKUO0YBD
+ 9nRfiZPGFfVKVsrNHA4hXCSsTb+UsoJPq4XZdTTeN0UGaD5AYqCm08+3/Z5ncvjopGUlvEupNTV
+ ChKzvxImUc2ClMAW6rlorM8uxnKntaZdjty3GR9YH5g==
+X-Gm-Gg: Acq92OE4POJGOUM5e5dEDdWTFlfdLKOFZmsDTeIg5GHNhWF+5mjS1fXb8yy9MB6je51
+ DbF5okUiEV3rfBPNhDEbJZ8Qp4Ynq4UA6RE0mJv+vKIdYaTDRYp3OjkeTpecBPSJPuEU2afcyg8
+ gb9kRlsjZ7LO6XF+Fbx61DAJ9EC6/RnelhBx367FFGM8ytdWKIqKxsyh7WZRlMehYmfc0oIxkGU
+ I/H8KgQ8B52oUYAyqwmuAxaNbvKApPOj74mU9g/ALEGsi8K9nY0wf05UYGdzYykXH63+wCzLcCo
+ lk6TWfnyUnA/d0wb2qXq/mK/RYDdg9OVvPtoSUprmzI6vc6Ib3KXRhq3YUm+1QcobRuXWTgEfDo
+ 8Ax9kE1vOgLPubW0hrX5X4Pcqud+zph2Y2e8biefW13nwp1U=
+X-Received: by 2002:a05:6402:a50e:b0:67f:9124:8815 with SMTP id
+ 4fb4d7f45d1cf-68c8cc29ecfmr4897371a12.17.1780407848188; Tue, 02 Jun 2026
+ 06:44:08 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|CY8PR12MB8068:EE_
-X-MS-Office365-Filtering-Correlation-Id: 20dc682f-12a8-487a-8593-08dec0a7cbd7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|3023799007|22082099003|18002099003|56012099006|4143699003|11063799006;
-X-Microsoft-Antispam-Message-Info: btJwRA2vOx0mjia7vNzZis9ZPYsM9yBumiCBDV307KFoBtpr0vQMyTZ4cx6l0ZlBO8updcyIBcASU3SvZOvIf0nIIY3hB1gO3HzjK23n9C17vPCRnbi+9Ku5XqU/AKhEKoIQwFWvJi6f4bKJsE5JIJ77iLLfTNQfzbxrXed0RycsDZck/UagKC7FUwzxEUqrxnEYOIj7194C2FRzM8AJ2setj9waGZVJNGe2MrMrb+WCHBmJoV+EaKWBwZVHAd0QLA1yatHOsLxFXU618G5B/5h52yKzPRJEcuQo+02zrjMoNTXFu8ojDBJoUUdG4Hp8U6/aT2SvCl8/fj3qZWMP8CGA6eccE4DyNo6EG3cgOsG1KsMih50BltCmCOyfjATsxezGsW1Cszjydo29SVjY8yGrVau0A5njBuCukqyEAY19ewiB0B0lzUZzXqVeJCL+B/oKn779C3YT5DAZOSxpL+4Soby6xYZPxZPYOQJY6XHorpin3Xt4WmKd+6WB4ch9oLjluHzmamSnMCcxgZpAwFdq5AI+MFnLy7N7JAapFwxvpOPsJun9bEOsaeMbBze+hL1IdHBkYVJxtyGkGt5ABD4tLH0eUf2jyTSn9NGYe6YLcTrwplkJbbJRUwvKAqw6y9g13M1q1ZWbw/I7+/ImFAcE7bZRm5tEFFdrWYj5KwKDdm4YJBdouaC/5zhGKKIG
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(3023799007)(22082099003)(18002099003)(56012099006)(4143699003)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VkgxZVdyQXNjQmd6OUtBV2EwN1ZwZjdLbDhBT3JaMXkyM1h3U2dUZGRtK1g5?=
- =?utf-8?B?SmJ2Q1JpYkhKQmpiNXM1UjFLamVsMmE5Z0ROVEVlUlNIMFhybjVSdVNpWjFI?=
- =?utf-8?B?WFU1RnJDSFd6ZEtKS21mRVAvaW5LWDBSN0tuVWNkTjEwVm9tMnZnOWhlRnd4?=
- =?utf-8?B?MWNaSy9wOHFXT1hhNmVheVBwQ3FkMFNKNWdweXl2SG4rN21GdmRXaU03ZzdU?=
- =?utf-8?B?OFNsKytoQ2JFZldoMHk4dDNwZ1Z1S2FUbmVodjFMdnU4MG95S0JYWW5XUmFG?=
- =?utf-8?B?dVpFUVF5WHgwUWVDQmlMaFpleHV5TGREZHlCYXNJZE51NXltRTA5VHhRK2dV?=
- =?utf-8?B?cjRFQ2JBR09ld0VXK0FLNE9VTUdJNXQwZC9la0ZIL1JDY29jcTVoR0tVY1Rj?=
- =?utf-8?B?aTErenFvZ3FnTHNZWlBGWUU1ZFRWZmtlcWIxd1NmUEFMQkhhMW1JUGJJcTd2?=
- =?utf-8?B?SkZSSE9EZTdUb0dnNGdsYzR4VXBsZEdKNUdhMW4wcC9FUyt5MCt1TWlNYUVQ?=
- =?utf-8?B?bm84N2tlc3V3Y2JqUDBiV2IwRjVRclhqMldKUHJuank5SW14RmxHQmk5M2Rv?=
- =?utf-8?B?d21CL3JqazhOYnMrQitISnpOcTFkTGF6TVBlT0E5V3Z2bHI1L1FkY0dKMFFr?=
- =?utf-8?B?VnRITHJ2eTc3UkFPNWpSYkRYNXpZdFloeEJmSlo0djJncDRvOVp3bmVFTXdW?=
- =?utf-8?B?VG1wekpEVDRTNmVGSkVueXdEU0twT0wxUFBReG53TytLUzEvdTZOVlFGRWxW?=
- =?utf-8?B?L2RUZzlOOTNuVWVHMHBRZUx4WmJ0VkNXNXZjRDlYN05jOHFLc3RtalFDYkMy?=
- =?utf-8?B?WlJaQUIwTjF3ejBnSWk1V1lNRDNzQ3NJUmxhVkRzS25ITVlSaWhaU0pyUGIx?=
- =?utf-8?B?NzhvWUM0QWtMb2grSzVzM2c3akllVnU3R29pYzgxaTVqUno0STdLMS9PQmlQ?=
- =?utf-8?B?QnFubjJkM2czaW51OFBJOC9NSXRTMWk4ZGg3bFk4a3FWbFdyRi9KOS9aUkpL?=
- =?utf-8?B?RENjQTAvODNYbFNrMm1XOFpqQXRtT1B1eUduYUhXbFhBSlBSZXBkOXROdTNT?=
- =?utf-8?B?bXVIMG5LWmhwNk5od1FySHBmMHlTdnhHbWpieHp1bHdPaGNXaHlaY1VCNXRn?=
- =?utf-8?B?WGFBYkJaNHA1cEpyU0VRTGZ5UWNZczZPRFBuaFlBcEcwdFV0SGIzVVpvM29C?=
- =?utf-8?B?ckhPelhNd2xjQ0xsdUpYWXdmT2ROL2xMWDFTRzFPcURYZS95RG9KbU5vS290?=
- =?utf-8?B?cFpYcy9BV1pvTXowZUtLNUVObG5CdXRuWVpsTW96VXNoS0REYU0veUY2N21H?=
- =?utf-8?B?REhxTWV2ZnJVaVl2Y0QrdytZSXoyTUZ3Z1FCWVlTbzJGMlZuMlJEbzNGVmkr?=
- =?utf-8?B?Nkp2RXBGek1FcC9lQVo3UEJnMkZudGM3MlU4VjVaNE81bGRLUDh1elZVWU9v?=
- =?utf-8?B?a2MxRzNOZFpWTzRZS1ZtR2NRbmZJckowNzYyMWRqUEplMVM5ZStaUFJ6VlA3?=
- =?utf-8?B?czBEQ1l3VVVPZWMzVWpOYTdtWUNGZWtQQmhtdjA3bVBKL1AwMWtGQXlzQ0FB?=
- =?utf-8?B?RllZYS9UQndQU1h5b3M1ZWNDdjJEdytnOWdXNWpFQXE3bkpLQWU0ODdJNS9l?=
- =?utf-8?B?eGVVazVBWlF0RXdBOWhvQ29lTW9JSFhuU0pLcVRDbjV4SDI5amxLdVFuZXNp?=
- =?utf-8?B?OXVRWVRESkpwV1JJeTgyODFhWGE5Nzk1aUYyZ3BUbFJtUWRuU3QzTTFkaWlv?=
- =?utf-8?B?WERiVGw1eGNhYzF0MHRhTExYR2daR29SUW1zZXRTb0ZXTkJ6VjV5QWU3Y2Vr?=
- =?utf-8?B?MHFaMzNIL2pGclBKelkwN2xBTmhrUU9KWm5oM1RyNUUySEpMdUtPdHJEUzdu?=
- =?utf-8?B?SEdYWUQ3RHhJUHdiNmFsdm5wVG9yYitXbThvMHloTHQvVHNqa1AySmxoZmdS?=
- =?utf-8?B?cEk1eTdsb0dGNE9WSWlXcWhEUFJwUDhGbnp3bEkrR0ZlRkVyY2x3RmJnVy9P?=
- =?utf-8?B?UDd6YnpCRE1mRDhsKzQwZHFuOHFWeHBoR21Vd0swRW9KMmdjR2U2N1NJM0pn?=
- =?utf-8?B?TGt5b1dCZ2JZYmFlL3l5b2hYMTBYNkgrWFZ4R1doQUdhMzRvOVBzdncrL2RE?=
- =?utf-8?B?YkVYZE00L2h0dDFaTDBCZThFaU1qTWl3a1B1RFk4eDFHdnczSUpOVE1MWW5j?=
- =?utf-8?B?akNNQUFCRitIRlFja2NhMmw2QnJpSXJEQU14TXY0bzQwU1NlSUloT3VNQndk?=
- =?utf-8?B?SmRaN2U5RTk1QVVrTnR5ZFpMOG9OOXh3V3BHejk5ZFlJVHBwSVR6Zzl5MHVY?=
- =?utf-8?Q?S2OBV04bN4FGVviWju?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20dc682f-12a8-487a-8593-08dec0a7cbd7
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB7082.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2026 13:06:46.2254 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kL6OzquQWEfOehCHlTBe3K0iYZ5Qc/Bk033/4UqKvE+9MJlvptqgIKheSIYg0XTU
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8068
+References: <20260512190019.228440-1-guilherme.bozi@usp.br>
+In-Reply-To: <20260512190019.228440-1-guilherme.bozi@usp.br>
+From: Guilherme Ivo Bozi <guilherme.bozi@usp.br>
+Date: Tue, 2 Jun 2026 10:43:56 -0300
+X-Gm-Features: AVHnY4KfJ5TFV44CTzJXc_Y5_RuCxlXUjuKa27M2A4_OGavaoTMNEMI_WfjiQ1Y
+Message-ID: <CAJgF-xu=wPXkdSD-HwjDheSWXvokcCg9nZ3_ku12=0N9i96yaA@mail.gmail.com>
+Subject: Re: [PATCH 0/9] drm/amd/display: convert GPIO translation logic to
+ lookup tables
+To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com, 
+ harry.wentland@amd.com, simona@ffwll.ch, siqueira@igalia.com, 
+ sunpeng.li@amd.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Wed, 03 Jun 2026 08:57:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,77 +114,103 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:Priya.Hosur@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:Pratik.Vishwakarma@amd.com,m:Veerabadhran.Gopalakrishnan@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:harry.wentland@amd.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:sunpeng.li@amd.com,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	FREEMAIL_TO(0.00)[gmail.com,amd.com,ffwll.ch,igalia.com];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[guilherme.bozi@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[usp.br:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_NONE(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FROM_NEQ_ENVFROM(0.00)[guilherme.bozi@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MIME_TRACE(0.00)[0:+];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: ED66962E48A
+X-Rspamd-Queue-Id: 48E01635EC1
 
+Gentle ping on this series. Thanks.
 
+Kind regards,
+Guilherme Ivo
 
-On 07-May-26 1:31 PM, Priya Hosur wrote:
-> In smu_v14_0_0_set_soft_freq_limited_range(), the gfxclk floor is
-> programmed via SetHardMinGfxClk together with SetSoftMaxGfxClk. Under
-> power_dpm_force_performance_level=high this pins HardMin to peak gfxclk.
-> 
-> In PMFW arbitration HardMin has higher priority than SoftMax, so the
-> firmware thermal/PPT throttler cannot clamp gfxclk via SoftMax once
-> HardMin is set to peak. Replace SetHardMinGfxClk with SetSoftMinGfxclk
-> so the driver still requests peak performance but the firmware
-> throttler retains the ability to clamp gfxclk under thermal/PPT
-> pressure. SoftMax handling is unchanged and no other clock domains
-> are affected.
-> 
-
-Though shutdown is controlled with gfx clock adjustment, is it expected 
-to set hardmin for other clock domains for perf levels or should they 
-all set softmin only?
-
-Thanks,
-Lijo
-> Signed-off-by: Priya Hosur <Priya.Hosur@amd.com>
-> ---
->   drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c
-> index c76b1f07885e..2fe006de927a 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c
-> @@ -1231,7 +1231,8 @@ static int smu_v14_0_0_set_soft_freq_limited_range(struct smu_context *smu,
->   	switch (clk_type) {
->   	case SMU_GFXCLK:
->   	case SMU_SCLK:
-> -		msg_set_min = SMU_MSG_SetHardMinGfxClk;
-> +		/* SoftMin lets PMFW throttle gfxclk; HardMin would override SoftMax. */
-> +		msg_set_min = SMU_MSG_SetSoftMinGfxclk;
->   		msg_set_max = SMU_MSG_SetSoftMaxGfxClk;
->   		break;
->   	case SMU_FCLK:
-
+On Tue, May 12, 2026 at 4:00=E2=80=AFPM Guilherme Ivo Bozi
+<guilherme.bozi@usp.br> wrote:
+>
+> This series converts the GPIO HW translation logic used by
+> multiple DCN generations from large switch statements to
+> static lookup tables with shared helper functions.
+>
+> The new implementation reduces duplicated translation logic
+> across generations and makes the GPIO mappings easier to
+> maintain and extend.
+>
+> The series introduces generic GPIO translation helpers first,
+> followed by per-generation conversions.
+>
+> The following generations were converted:
+>
+>   - dcn10
+>   - dcn20
+>   - dcn21
+>   - dcn30
+>   - dcn315
+>   - dcn32
+>   - dcn401
+>   - dcn42
+>
+> The dce60, dce80, dce110 and dce120 implementations were
+> left unchanged for now.
+>
+> dce60 and dce80 contain special switch-case handling paths
+> that currently do not map cleanly to the new table-based
+> representation, so they were intentionally excluded from
+> this refactor.
+>
+> No functional changes intended.
+>
+> Guilherme Ivo Bozi (9):
+>   drm/amd/display: add GPIO HW translation helpers
+>   drm/amd/display: convert dcn10 GPIO translation to lookup tables
+>   drm/amd/display: convert dcn20 GPIO translation to lookup tables
+>   drm/amd/display: convert dcn21 GPIO translation to lookup tables
+>   drm/amd/display: convert dcn30 GPIO translation to lookup tables
+>   drm/amd/display: convert dcn315 GPIO translation to lookup tables
+>   drm/amd/display: convert dcn32 GPIO translation to lookup tables
+>   drm/amd/display: convert dcn401 GPIO translation to lookup tables
+>   drm/amd/display: convert dcn42 GPIO translation to lookup tables
+>
+>  .../dc/gpio/dcn10/hw_translate_dcn10.c        | 484 +++++++-----------
+>  .../dc/gpio/dcn20/hw_translate_dcn20.c        | 432 ++++++----------
+>  .../dc/gpio/dcn21/hw_translate_dcn21.c        | 417 ++++++---------
+>  .../dc/gpio/dcn30/hw_translate_dcn30.c        | 432 ++++++----------
+>  .../dc/gpio/dcn315/hw_translate_dcn315.c      | 418 ++++++---------
+>  .../dc/gpio/dcn32/hw_translate_dcn32.c        | 386 +++++---------
+>  .../dc/gpio/dcn401/hw_translate_dcn401.c      | 392 +++++---------
+>  .../dc/gpio/dcn42/hw_translate_dcn42.c        | 193 +++----
+>  .../drm/amd/display/dc/gpio/hw_translate.c    |  86 ++++
+>  .../drm/amd/display/dc/gpio/hw_translate.h    |  21 +
+>  .../gpu/drm/amd/display/include/gpio_types.h  |  48 ++
+>  11 files changed, 1274 insertions(+), 2035 deletions(-)
+>
+> --
+> 2.47.3
+>
