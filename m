@@ -2,81 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OL5zNiiFHmo9kgkAu9opvQ
+	id 6GiMEyWFHmqhkQkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 02 Jun 2026 09:24:24 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Jun 2026 09:24:21 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C20C629A01
-	for <lists+amd-gfx@lfdr.de>; Tue, 02 Jun 2026 09:24:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF0196299E0
+	for <lists+amd-gfx@lfdr.de>; Tue, 02 Jun 2026 09:24:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41DB310ECB7;
-	Tue,  2 Jun 2026 07:24:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02D5C10ECB5;
+	Tue,  2 Jun 2026 07:24:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NEDi/VSc";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="kWD9rCZs";
 	dkim-atps=neutral
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4737510E568
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 21:20:04 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id
- 5b1f17b1804b1-490ace40f4bso12564945e9.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 01 Jun 2026 14:20:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1780348803; x=1780953603; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=qnwAsy6Fhk/v2/m0U2Y/k7DuV+rs4ovp810ofu9BhuY=;
- b=NEDi/VScMjuj5aFKmTiM5JRYCjNNrMXAKTFYWWbpK+wuqXkZa1JGF0m+lfoA84OkDF
- 00fIXxQMWY8qfFys1C6JAGrodAvx532OofEuy0Pzh6kTGr6Y7DG98FasV0xT0MpsAeI9
- +szfIZk91586GAMJ8ZqNWJzOUeykl6bbHIFjtMHCDA37xqz9a9RdP9iiks9sRPophwpo
- bKtzx4nPcvq5C/pcGVcq8Ir+PsKJ0KL2K9LW3OdsIqYwfgNf2jdf1xmISWLpD/Wcy1aw
- vvYg07qFVGgVgWbg/lVIKbiVVTncyUa2Cj8GWmlPclGYYTIYUYvuOGePgzMXlBa6UZJf
- Rmkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1780348803; x=1780953603;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=qnwAsy6Fhk/v2/m0U2Y/k7DuV+rs4ovp810ofu9BhuY=;
- b=cMQLOTShogVFc81H5/KeuXhh3JCcPuK6zTSVMEgYQOmdGNK3EVNHa9KM4xtscDvdUs
- E7lQ8mgzHjespp0CQtWytMZTNHz46b8m0yBvM1DL5L8n3J/A8ysUDW/aAxVmijJk3xkY
- iI1+Rmm592KZOrKjgREgRklQzA6rMnkjHP9MNfA3bbgyF+GaU2/RbLoomYWtlBOTQ/pJ
- 18g37a9P2bEt2mWTDNr4NoLH7KYaGVeIjgxK+fbybLe36RipjZO2tXzp8HebKUcwC0gX
- AKlbc3p5bUILKT0gUotWLR2FI5NN7vE6SlExjsO27XVBhmiaC8Q51O3qY+hFyW5yn803
- FpHA==
-X-Gm-Message-State: AOJu0YzqTL9oGzyZ5wDpR9lQxFquQkxTYrSSq0gfiyy9ZcEPW+L2TAb4
- L3E5JaLsShFuK1KhvKnj4o/Ub2cr/ONEp4A06yxj9THOXl++z0Kj7ILH
-X-Gm-Gg: Acq92OFiYDw6+WAAeSAmIv8pR8dw8aI6tzcR/3gfkHeZTfcKY/eQyNk2Wmd0wtElXbj
- Y/+Ek43hbk6dq9xu2nDLuXvMtNS7AHBetX2zqNfhVrAs5kQWWITLbiwQJ+J0hKBRPG1znQZBq86
- kO5Bv6K8WRYGEVvA7pdz2wNw8xoIGl2a6JgYveo28WPg/2aNKs0ZwGNHaXqqDyHqMZ6N4H0FnV/
- T2dQCjaz2MqbDmuIy9FHdN+vCtmxHy0Aiz0OxwafM2tmmsw17nx6yc1R+ZnF0l8o6Edi0rlZpCS
- vijFUGDNDYaUClM5EepK/Kq+A1RhrEnyOxuQEt6xf8f9Ph0/QWUBxNJbvFeBT/F4XBE8IIkMMO/
- 88Er1o4eU5wqumGRF2O64E62fJnB9B7qDFZghDav3IASaGfPIMkg7SgVnbJpVwL7lgwztR3YQ2Q
- 44YsugM5edFBcvwjW80N39l/tqZ+NnxOGeyij8/SfDSRPGfxbm
-X-Received: by 2002:a05:600c:4fc4:b0:490:6889:202 with SMTP id
- 5b1f17b1804b1-490a29639e6mr225017555e9.29.1780348802385; 
- Mon, 01 Jun 2026 14:20:02 -0700 (PDT)
-Received: from skylab.fritz.box ([2a06:4944:10fb:f400:8383:b4e3:3885:b00a])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-490ad63b34dsm19778925e9.27.2026.06.01.14.20.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Jun 2026 14:20:01 -0700 (PDT)
-From: Gilles Risch <gilles.risch@gmail.com>
-To: alexander.deucher@amd.com
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Gilles Risch <gilles.risch@gmail.com>
-Subject: [PATCH v5] drm/radeon: fix internal display on iMac11,
- 1 (RV770/DCE3.1)
-Date: Mon,  1 Jun 2026 23:19:32 +0200
-Message-ID: <20260601211931.2837-2-gilles.risch@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <CADnq5_Os2Bk8Dd9d8m_CkK9nYSporzUqbiRA=YD85nRBB6XjMw@mail.gmail.com>
-References: <CADnq5_Os2Bk8Dd9d8m_CkK9nYSporzUqbiRA=YD85nRBB6XjMw@mail.gmail.com>
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF3CE1137EB
+ for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jun 2026 03:12:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=I4gGLAdNf52WPFFAYkC6rriPGKuD0scRD8vqOYbdLQc=; b=kWD9rCZsI9ykxKpUQbSM5exlqD
+ c9Is3RG5x/xo6zEVXgsfJdgEAtw4754gR0HOPzyG71eC9E00/HXmVcpW+VxVIL1r3Vm2LkQOEUr90
+ XwI7gASIVM6BHh4+BuYza+GZt8h755WUttSHiXuDAO3c7E48kfoZiKh0m969A7DuF49eV0pner7Zc
+ e+EJ86FpIqeD34Ct4THRPF2UAV3tLZ93dKtHCcU8Moa7P061higGUbuiWOH4gCOARzzh/Y0Z3CEjQ
+ 3fB8NT8re6jbXbA1pMnOChw5FTrSkQ1FfcLzIhS510jTHcKO6z0tFu/K9PF4ffIrAyqOMAOb6jKJd
+ cgLkgtOA==;
+Received: from [50.53.43.113] (helo=bombadil.infradead.org)
+ by bombadil.infradead.org with esmtpsa (Exim 4.99.1 #2 (Red Hat Linux))
+ id 1wUFY8-0000000CD2c-2YA2; Tue, 02 Jun 2026 03:12:16 +0000
+From: Randy Dunlap <rdunlap@infradead.org>
+To: linux-doc@vger.kernel.org
+Cc: Randy Dunlap <rdunlap@infradead.org>, Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>, Alex Hung <alex.hung@amd.com>,
+ Ivan Lipski <ivan.lipski@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org
+Subject: [PATCH] kdoc: xforms: ignore special static/inline macros
+Date: Mon,  1 Jun 2026 20:12:13 -0700
+Message-ID: <20260602031214.2817411-1-rdunlap@infradead.org>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 02 Jun 2026 07:24:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -92,131 +65,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.99 / 15.00];
-	R_DKIM_REJECT(1.00)[gmail.com:s=20251104];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [1.49 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_DKIM_REJECT(1.00)[infradead.org:s=bombadil.20210309];
 	MAILLIST(-0.20)[mailman];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_SOFTFAIL(0.10)[infradead.org : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:dri-devel@lists.freedesktop.org,m:gilles.risch@gmail.com,m:gillesrisch@gmail.com,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:linux-doc@vger.kernel.org,m:rdunlap@infradead.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:mchehab@kernel.org,m:harry.wentland@amd.com,m:alex.hung@amd.com,m:ivan.lipski@amd.com,m:daniel.wheeler@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[rdunlap@infradead.org,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[gillesrisch@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:-];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gillesrisch@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com];
+	DKIM_TRACE(0.00)[infradead.org:-];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	NEURAL_SPAM(0.00)[0.600];
+	NEURAL_SPAM(0.00)[0.687];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 8C20C629A01
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,infradead.org:mid,infradead.org:email,lwn.net:email]
+X-Rspamd-Queue-Id: CF0196299E0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Apple iMac11,1 (27-inch, Late 2009) uses a Mobility Radeon HD 4850
-(RV770/DCE3.1) with a 2560x1440 internal panel on an internal
-DisplayPort path. Without this fix the display stays dark under KMS.
+drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c contains 7 (for
+now) functions that use STATIC_IFN_KUNIT or INLINE_IFN_KUNIT macros for
+function qualifiers (static or not, inline or not).
 
-This machine suffers from the same issue as iMac10,1 and iMac11,2:
-Apple routes the internal display through Link B of the DIG encoder
-instead of Link A. Add iMac11,1 to the existing DMI quirk and move
-the Apple-specific encoder assignment into its own block, independent
-of the DCE version check.
+These cause parse warnings from kernel-doc:
+Invalid C declaration: Expected identifier in nested name, got keyword:
+  struct [error at 29]
+STATIC_IFN_KUNIT const struct drm_color_lut * __extract_blob_lut (const
+  struct drm_property_blob *blob, uint32_t *size)
 
-Additionally, the 2560x1440 panel requires RADEON_PLL_USE_FRAC_FB_DIV
-and ATOM_ENCODER_CMD_DP_VIDEO_ON, limited to iMac11,1 via dmi_match()
-to avoid affecting other boards.
+Handle these in kernel-doc to prevent multiple warnings.
 
-Signed-off-by: Gilles Risch <gilles.risch@gmail.com>
+Fixes: 647d1fd04652 ("drm/amd/display: Add KUnit test for color helpers")
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
 ---
- drivers/gpu/drm/radeon/atombios_crtc.c     |  5 ++++-
- drivers/gpu/drm/radeon/atombios_encoders.c | 23 ++++++++++++----------
- 2 files changed, 17 insertions(+), 11 deletions(-)
+Cc: Jonathan Corbet <corbet@lwn.net>
+Cc: Shuah Khan <skhan@linuxfoundation.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Alex Hung <alex.hung@amd.com>
+Cc: Ivan Lipski <ivan.lipski@amd.com>
+Cc: Dan Wheeler <daniel.wheeler@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
 
-diff --git a/drivers/gpu/drm/radeon/atombios_crtc.c b/drivers/gpu/drm/radeon/atombios_crtc.c
-index 2fc0334e0..075eba2d4 100644
---- a/drivers/gpu/drm/radeon/atombios_crtc.c
-+++ b/drivers/gpu/drm/radeon/atombios_crtc.c
-@@ -24,6 +24,8 @@
-  *          Alex Deucher
-  */
- 
-+#include <linux/dmi.h>
-+
- #include <drm/drm_fixed.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_framebuffer.h>
-@@ -594,7 +596,8 @@ static u32 atombios_adjust_pll(struct drm_crtc *crtc,
- 		if (((rdev->family == CHIP_RS780) || (rdev->family == CHIP_RS880))
- 		    && !radeon_crtc->ss_enabled)
- 			radeon_crtc->pll_flags |= RADEON_PLL_USE_FRAC_FB_DIV;
--		if (ASIC_IS_DCE32(rdev) && mode->clock > 165000)
-+		if ((ASIC_IS_DCE32(rdev) || dmi_match(DMI_PRODUCT_NAME, "iMac11,1"))
-+		    && mode->clock > 165000)
- 			radeon_crtc->pll_flags |= RADEON_PLL_USE_FRAC_FB_DIV;
- 	} else {
- 		radeon_crtc->pll_flags |= RADEON_PLL_LEGACY;
-diff --git a/drivers/gpu/drm/radeon/atombios_encoders.c b/drivers/gpu/drm/radeon/atombios_encoders.c
-index 5cfd8fcfa..8b3f8303a 100644
---- a/drivers/gpu/drm/radeon/atombios_encoders.c
-+++ b/drivers/gpu/drm/radeon/atombios_encoders.c
-@@ -1707,7 +1707,7 @@ radeon_atom_encoder_dpms_dig(struct drm_encoder *encoder, int mode)
- 		if (ENCODER_MODE_IS_DP(atombios_get_encoder_mode(encoder)) && connector) {
- 			/* DP_SET_POWER_D0 is set in radeon_dp_link_train */
- 			radeon_dp_link_train(encoder, connector);
--			if (ASIC_IS_DCE4(rdev))
-+			if (ASIC_IS_DCE4(rdev) || dmi_match(DMI_PRODUCT_NAME, "iMac11,1"))
- 				atombios_dig_encoder_setup(encoder, ATOM_ENCODER_CMD_DP_VIDEO_ON, 0);
- 		}
- 		if (radeon_encoder->devices & (ATOM_DEVICE_LCD_SUPPORT)) {
-@@ -2123,17 +2123,20 @@ int radeon_atom_pick_dig_encoder(struct drm_encoder *encoder, int fe_idx)
- 	}
- 
- 	/*
--	 * On DCE32 any encoder can drive any block so usually just use crtc id,
--	 * but Apple thinks different at least on iMac10,1 and iMac11,2, so there use linkb,
--	 * otherwise the internal eDP panel will stay dark.
-+	 * Apple routes the internal eDP panel through Link B of the DIG encoder
-+	 * instead of Link A on the iMac10,1, iMac11,1 and iMac11,2.
-+	 * Use linkb to avoid a dark display.
- 	 */
--	if (ASIC_IS_DCE32(rdev)) {
--		if (dmi_match(DMI_PRODUCT_NAME, "iMac10,1") ||
--		    dmi_match(DMI_PRODUCT_NAME, "iMac11,2"))
--			enc_idx = (dig->linkb) ? 1 : 0;
--		else
--			enc_idx = radeon_crtc->crtc_id;
-+	if (dmi_match(DMI_PRODUCT_NAME, "iMac10,1") ||
-+	    dmi_match(DMI_PRODUCT_NAME, "iMac11,1") ||
-+	    dmi_match(DMI_PRODUCT_NAME, "iMac11,2")) {
-+		enc_idx = (dig->linkb) ? 1 : 0;
-+		goto assigned;
-+	}
- 
-+	/* on DCE32 and encoder can driver any block so just crtc id */
-+	if (ASIC_IS_DCE32(rdev)) {
-+		enc_idx = radeon_crtc->crtc_id;
- 		goto assigned;
- 	}
- 
--- 
-2.47.3
+ tools/lib/python/kdoc/xforms_lists.py |    2 ++
+ 1 file changed, 2 insertions(+)
 
+--- linux-next-20260601.orig/tools/lib/python/kdoc/xforms_lists.py
++++ linux-next-20260601/tools/lib/python/kdoc/xforms_lists.py
+@@ -104,6 +104,8 @@ class CTransforms:
+         (CMatch("__context_unsafe"), ""),
+         (CMatch("__attribute_const__"), ""),
+         (CMatch("__attribute__"), ""),
++        (CMatch("STATIC_IFN_KUNIT"), ""),
++        (CMatch("INLINE_IFN_KUNIT"), ""),
+ 
+         #
+         # HACK: this is similar to process_export() hack. It is meant to
