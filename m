@@ -1,78 +1,66 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
-	by lfdr with LMTP
-	id cHwtDrKxHmr7JAAAu9opvQ
+	by mail.lfdr.de with LMTP
+	id 0nuXFprsH2rqsQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 02 Jun 2026 12:34:26 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 10:58:02 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 947E362CAB7
-	for <lists+amd-gfx@lfdr.de>; Tue, 02 Jun 2026 12:34:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E734B635EB3
+	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 10:57:56 +0200 (CEST)
+Authentication-Results: mail.lfdr.de;
+	dkim=temperror ("DNS error when getting key") header.d=seu.edu.cn header.s=default header.b=hN6ompbH;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	dmarc=temperror reason="SPF/DKIM temp error" header.from=seu.edu.cn (policy=temperror)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E72F10EEA5;
-	Tue,  2 Jun 2026 10:34:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=arm.com header.i=@arm.com header.b="MeBxmfsy";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAD4110FAF1;
+	Wed,  3 Jun 2026 08:57:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6BC9810EEA5
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jun 2026 10:34:22 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 12A79353D
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jun 2026 03:34:17 -0700 (PDT)
-Received: from [192.168.0.1] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id
- C03123F632
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jun 2026 03:34:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
- t=1780396462; bh=sSLG3wXzMGkuchBhOWXlkifyhi6ZS+mT6rRQfEDVsGo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=MeBxmfsyPmvlOdgYzpp/D0oL5IOdig3DHO8zsPwItb2h2Xh2Ff0rdcrne2nyMYg6M
- rIafqqPm/Nw1VCE7e8z4j/y1e8wsXYfSr1WduolLJDgPjV4FcptMYsqQo7rG52g+Qb
- IOU+jQU6rWM3roFNRVJ/KoJC0HKVh7p8RiH4hI54=
-Date: Tue, 2 Jun 2026 11:33:49 +0100
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Jessica Zhang <jesszhan0024@gmail.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v5 4/8] drm/mali: use drmm_writeback_connector_init()
-Message-ID: <ah6xjR_vHhsXqvyI@e142607>
-References: <20260505-wb-drop-encoder-v5-0-42567b7c7af2@oss.qualcomm.com>
- <20260505-wb-drop-encoder-v5-4-42567b7c7af2@oss.qualcomm.com>
+X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
+ Tue, 02 Jun 2026 10:58:09 UTC
+Received: from mail-m128189.netease.com (mail-m128189.netease.com
+ [103.209.128.189])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AF7710EF24;
+ Tue,  2 Jun 2026 10:58:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ BOUNDARY="=_Part_346146_266324616.1780397583210"
+Message-ID: <AMgAqgBUKT9GR95Sm49u6arg.3.1780397583210.Hmail.220255722@seu.edu.cn>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: alexander.deucher@amd.com, airlied@gmail.com, simona@ffwll.ch, 
+ kenneth.feng@amd.com, kevinyang.wang@amd.com, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, jianhao.xu@seu.edu.cn, 
+ stable@vger.kernel.org
+Subject: =?UTF-8?B?UmU6UmU6IFtQQVRDSCAxLzJdIGRybS9hbWRncHUvbWVzMTE6IGZpeCBxdWV1ZSBpbml0IHdwdHIgcmVzZXQ=?=
+X-Priority: 3
+X-Mailer: HMail Webmail Server V2.0 Copyright (c) 2016-163.com web
+X-Originating-IP: 222.191.246.242
+In-Reply-To: <bb4e417d-5669-4d06-a731-c9aa369f6bd7@amd.com>
+References: <20260602050354.2237095-1-runyu.xiao@seu.edu.cn>
+ <20260602050354.2237095-2-runyu.xiao@seu.edu.cn>
+ <bb4e417d-5669-4d06-a731-c9aa369f6bd7@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260505-wb-drop-encoder-v5-4-42567b7c7af2@oss.qualcomm.com>
+Received: from 220255722@seu.edu.cn( [222.191.246.242] ) by ajax-webmail (
+ [127.0.0.1] ) ; Tue, 2 Jun 2026 18:53:03 +0800 (GMT+08:00)
+From: =?UTF-8?B?6IKW5ram5a6H?= <220255722@seu.edu.cn>
+Date: Tue, 2 Jun 2026 18:53:03 +0800 (GMT+08:00)
+X-HM-Tid: 0a9e87f6543102f2kunm0d74ac9f170cb
+X-HM-MType: 1
+X-HM-NTES-SC: AL0_4z5B86Wr4Tz9jdMF+bhXMRHhhMlSfSSYXdeQQDCaqSOqI2l1LHfZmsz6cZ
+ FRhMgPe8OqJWIAOHTDwR6VMoRq5X3qwebwsk2/w4DaRPv01J09AtWNeTGmIl4159XnlaQYOOPbWn
+ +TdFtoO5JuZD7IMeUaL0dJSsbSxiJ9KSsWPYU=
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+ tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZT00aVklMGkkeSR1MS0JLS1YVFA
+ kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUlVSkJKVUlPTVVJT0lZV1kWGg8SFR0UWUFZT0tIVU
+ pLSEpOTE5VSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+ b=hN6ompbHdZ4MQ+YfBW0y1UDSYyKVQ05JEew7BnWtr93SfbI6Pnuk9qGNn7XeAfXcrzVDdFTtQdpeoFxmel+Fy+fPUcD9zuHIX3jH7XNd8PM87mIRNym+uzXJ6W1Bbb3U1UfHTsuZr5SOc5l10r1dCPBBIK49YxLkp19IeUFIPOg=;
+ c=relaxed/relaxed; s=default; d=seu.edu.cn; v=1; 
+ bh=NZNGTT1zeJYU3+aVD8k3rsYCqlBgY/+alboxcBcQZoQ=;
+ h=date:mime-version:subject:message-id:from;
+X-Mailman-Approved-At: Wed, 03 Jun 2026 08:57:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,136 +74,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 947E362CAB7
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.49 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[arm.com:s=foss];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [1.99 / 15.00];
+	SUBJ_EXCESS_BASE64(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,seu.edu.cn];
+	HAS_X_PRIO_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:jani.nikula@linux.intel.com,m:suraj.kandpal@intel.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:robin.clark@oss.qualcomm.com,m:lumag@kernel.org,m:abhinav.kumar@linux.dev,m:sean@poorly.run,m:marijn.suijten@somainline.org,m:laurent.pinchart+renesas@ideasonboard.com,m:tomi.valkeinen+renesas@ideasonboard.com,m:kieran.bingham+renesas@ideasonboard.com,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:dave.stevenson@raspberrypi.com,m:mcanal@igalia.com,m:kernel-list@raspberrypi.com,m:christophe.jaillet@wanadoo.fr,m:jesszhan0024@gmail.com,m:louis.chauvet@bootlin.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:freedreno@lists.freedesktop.org,m:linux-renesas-soc@vger.kernel.org,m:
- laurent.pinchart@ideasonboard.com,m:tomi.valkeinen@ideasonboard.com,m:kieran.bingham@ideasonboard.com,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[liviu.dudau@arm.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[35];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[arm.com:-];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[liviu.dudau@arm.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[linux.intel.com,intel.com,amd.com,igalia.com,gmail.com,ffwll.ch,kernel.org,suse.de,oss.qualcomm.com,linux.dev,poorly.run,somainline.org,ideasonboard.com,glider.be,raspberrypi.com,wanadoo.fr,bootlin.com,lists.freedesktop.org,vger.kernel.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[seu.edu.cn:?];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx,renesas];
-	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	HAS_XOIP(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[220255722@seu.edu.cn,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_DNSFAIL(0.00)[seu.edu.cn : SPF/DKIM temp error,none];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,arm.com:email,bootlin.com:email,qualcomm.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Action: no action
+	R_DKIM_TEMPFAIL(0.00)[seu.edu.cn:s=default];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,seu.edu.cn:from_mime,seu.edu.cn:mid]
+X-Rspamd-Server: lfdr
+X-Rspamd-Queue-Id: E734B635EB3
 
-On Tue, May 05, 2026 at 03:25:01AM +0300, Dmitry Baryshkov wrote:
-> The driver uses drm_writeback_connector_init() instead of its drmm
-> counterpart, but it doesn't perform the job queue cleanup (neither
-> manually nor by calling drm_writeback_connector_cleanup()). On the
-> contrary, the drmm_writeback_connector_init() function ensures the
-> proper cleanup of the job queue.
-> 
-> Use drmm_plain_encoder_alloc() to allocate simple encoder and
-> drmm_writeback_connector_init() in order to initialize writeback
-> connector instance.
-> 
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+--=_Part_346146_266324616.1780397583210
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
 
-Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
+SGkgQ2hyaXN0aWFuLAoKClRoYW5rcywgdW5kZXJzdG9vZC4KCgpUbyBtYWtlIHN1cmUgSSByZXdv
+cmsgdGhpcyBpbiB0aGUgcmlnaHQgZGlyZWN0aW9uOiB3b3VsZCB5b3UgZXhwZWN0CnRoaXMgcmVz
+ZXQgcGF0aCB0byBkbwoKCiAgcmluZy0+d3B0ciA9IDA7CiAgYW1kZ3B1X3Jpbmdfc2V0X3dwdHIo
+cmluZyk7CgoKaW5zdGVhZCBvZiB3cml0aW5nIHdwdHJfY3B1X2FkZHIgZGlyZWN0bHk/CgoKSSBh
+bSBhc2tpbmcgYmVjYXVzZSBhbWRncHVfcmluZ19zZXRfd3B0cigpIGFsc28gdXBkYXRlcyB0aGUg
+ZG9vcmJlbGwsCnNvIEkgd2FudCB0byBjb25maXJtIHRoYXQgdGhpcyBpcyB0aGUgaW50ZW5kZWQg
+c2VxdWVuY2UgZm9yIHRoZQpyZXNldC9zdXNwZW5kIGNhc2UgaGVyZS4KCgpUaGFua3MsClJ1bnl1
+CgoKT24gVHVlLCBKdW4gMiwgMjAyNiBhdCAxMTo0OTowNUFNICswMjAwLCBDaHJpc3RpYW4gS8O2
+bmlnIHdyb3RlOgo+IENsZWFyIE5BSy4KPgo+IFRoZSBhdG9taWM2NF90IGNhc3QgaGFjayBpcyBq
+dXN0IHNvbWV0aGluZyB3ZSBkaWQgZm9yIG9sZGVyCj4gZ2VuZXJhdGlvbnMgYW5kIGlzIG5vdCBz
+b21ldGhpbmcgd2hpY2ggaXMgbmVjZXNzYXJ5IG5vciBzaG91bGQKPiBiZSBkb25lIGhlcmUuCj4K
+PiBXaGF0IGNvdWxkIGJlIHBvc3NpYmxlIGlzIHRoYXQgd2UgbmVlZCB0byB1c2UgYW1kZ3B1X3Jp
+bmdfc2V0X3dwdHIoKQo+IGhlcmUgdG8gY29ycmVjdGx5IGRpc3Rpbmd1aXNoIGJldHdlZW4gcXVl
+dWVzIHdpdGggMzJiaXQgYW5kIDY0Yml0Cj4gd3B0cnMuCgo=
+--=_Part_346146_266324616.1780397583210
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: base64
 
-Best regards,
-Liviu
-
-> ---
->  drivers/gpu/drm/arm/malidp_mw.c | 25 ++++++++++++++-----------
->  1 file changed, 14 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/arm/malidp_mw.c b/drivers/gpu/drm/arm/malidp_mw.c
-> index fad343842038..6e0c78e998aa 100644
-> --- a/drivers/gpu/drm/arm/malidp_mw.c
-> +++ b/drivers/gpu/drm/arm/malidp_mw.c
-> @@ -84,11 +84,6 @@ malidp_mw_connector_detect(struct drm_connector *connector, bool force)
->  	return connector_status_connected;
->  }
->  
-> -static void malidp_mw_connector_destroy(struct drm_connector *connector)
-> -{
-> -	drm_connector_cleanup(connector);
-> -}
-> -
->  static struct drm_connector_state *
->  malidp_mw_connector_duplicate_state(struct drm_connector *connector)
->  {
-> @@ -114,7 +109,6 @@ static const struct drm_connector_funcs malidp_mw_connector_funcs = {
->  	.reset = malidp_mw_connector_reset,
->  	.detect = malidp_mw_connector_detect,
->  	.fill_modes = drm_helper_probe_single_connector_modes,
-> -	.destroy = malidp_mw_connector_destroy,
->  	.atomic_duplicate_state = malidp_mw_connector_duplicate_state,
->  	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
->  };
-> @@ -211,6 +205,7 @@ static u32 *get_writeback_formats(struct malidp_drm *malidp, int *n_formats)
->  int malidp_mw_connector_init(struct drm_device *drm)
->  {
->  	struct malidp_drm *malidp = drm_to_malidp(drm);
-> +	struct drm_encoder *encoder;
->  	u32 *formats;
->  	int ret, n_formats;
->  
-> @@ -224,11 +219,19 @@ int malidp_mw_connector_init(struct drm_device *drm)
->  	if (!formats)
->  		return -ENOMEM;
->  
-> -	ret = drm_writeback_connector_init(drm, &malidp->mw_connector,
-> -					   &malidp_mw_connector_funcs,
-> -					   &malidp_mw_encoder_helper_funcs,
-> -					   formats, n_formats,
-> -					   1 << drm_crtc_index(&malidp->crtc));
-> +	encoder = drmm_plain_encoder_alloc(drm, NULL, DRM_MODE_ENCODER_VIRTUAL,
-> +					   NULL);
-> +	if (IS_ERR(encoder))
-> +		return PTR_ERR(encoder);
-> +
-> +	drm_encoder_helper_add(encoder, &malidp_mw_encoder_helper_funcs);
-> +
-> +	encoder->possible_crtcs = drm_crtc_mask(&malidp->crtc);
-> +
-> +	ret = drmm_writeback_connector_init(drm, &malidp->mw_connector,
-> +					    &malidp_mw_connector_funcs,
-> +					    encoder,
-> +					    formats, n_formats);
->  	kfree(formats);
->  	if (ret)
->  		return ret;
-> 
-> -- 
-> 2.47.3
-> 
-
--- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
+Zm9udC1mYW1pbHk6QXJpYWwiPjxwcmU+PGRpdj48Zm9udCBmYWNlPSJBcmlhbCI+PHNwYW4gc3R5
+bGU9IndoaXRlLXNwYWNlLWNvbGxhcHNlOiBjb2xsYXBzZTsiPkhpIENocmlzdGlhbiw8L3NwYW4+
+PC9mb250PjwvZGl2PjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiPjxzcGFuIHN0eWxlPSJ3aGl0ZS1z
+cGFjZS1jb2xsYXBzZTogY29sbGFwc2U7Ij48YnI+PC9zcGFuPjwvZm9udD48L2Rpdj48ZGl2Pjxm
+b250IGZhY2U9IkFyaWFsIj48c3BhbiBzdHlsZT0id2hpdGUtc3BhY2UtY29sbGFwc2U6IGNvbGxh
+cHNlOyI+VGhhbmtzLCB1bmRlcnN0b29kLjwvc3Bhbj48L2ZvbnQ+PC9kaXY+PGRpdj48Zm9udCBm
+YWNlPSJBcmlhbCI+PHNwYW4gc3R5bGU9IndoaXRlLXNwYWNlLWNvbGxhcHNlOiBjb2xsYXBzZTsi
+Pjxicj48L3NwYW4+PC9mb250PjwvZGl2PjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiPjxzcGFuIHN0
+eWxlPSJ3aGl0ZS1zcGFjZS1jb2xsYXBzZTogY29sbGFwc2U7Ij5UbyBtYWtlIHN1cmUgSSByZXdv
+cmsgdGhpcyBpbiB0aGUgcmlnaHQgZGlyZWN0aW9uOiB3b3VsZCB5b3UgZXhwZWN0PC9zcGFuPjwv
+Zm9udD48L2Rpdj48ZGl2Pjxmb250IGZhY2U9IkFyaWFsIj48c3BhbiBzdHlsZT0id2hpdGUtc3Bh
+Y2UtY29sbGFwc2U6IGNvbGxhcHNlOyI+dGhpcyByZXNldCBwYXRoIHRvIGRvPC9zcGFuPjwvZm9u
+dD48L2Rpdj48ZGl2Pjxmb250IGZhY2U9IkFyaWFsIj48c3BhbiBzdHlsZT0id2hpdGUtc3BhY2Ut
+Y29sbGFwc2U6IGNvbGxhcHNlOyI+PGJyPjwvc3Bhbj48L2ZvbnQ+PC9kaXY+PGRpdj48Zm9udCBm
+YWNlPSJBcmlhbCI+PHNwYW4gc3R5bGU9IndoaXRlLXNwYWNlLWNvbGxhcHNlOiBjb2xsYXBzZTsi
+PiZuYnNwOyByaW5nLSZndDt3cHRyID0gMDs8L3NwYW4+PC9mb250PjwvZGl2PjxkaXY+PGZvbnQg
+ZmFjZT0iQXJpYWwiPjxzcGFuIHN0eWxlPSJ3aGl0ZS1zcGFjZS1jb2xsYXBzZTogY29sbGFwc2U7
+Ij4mbmJzcDsgYW1kZ3B1X3Jpbmdfc2V0X3dwdHIocmluZyk7PC9zcGFuPjwvZm9udD48L2Rpdj48
+ZGl2Pjxmb250IGZhY2U9IkFyaWFsIj48c3BhbiBzdHlsZT0id2hpdGUtc3BhY2UtY29sbGFwc2U6
+IGNvbGxhcHNlOyI+PGJyPjwvc3Bhbj48L2ZvbnQ+PC9kaXY+PGRpdj48Zm9udCBmYWNlPSJBcmlh
+bCI+PHNwYW4gc3R5bGU9IndoaXRlLXNwYWNlLWNvbGxhcHNlOiBjb2xsYXBzZTsiPmluc3RlYWQg
+b2Ygd3JpdGluZyB3cHRyX2NwdV9hZGRyIGRpcmVjdGx5Pzwvc3Bhbj48L2ZvbnQ+PC9kaXY+PGRp
+dj48Zm9udCBmYWNlPSJBcmlhbCI+PHNwYW4gc3R5bGU9IndoaXRlLXNwYWNlLWNvbGxhcHNlOiBj
+b2xsYXBzZTsiPjxicj48L3NwYW4+PC9mb250PjwvZGl2PjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwi
+PjxzcGFuIHN0eWxlPSJ3aGl0ZS1zcGFjZS1jb2xsYXBzZTogY29sbGFwc2U7Ij5JIGFtIGFza2lu
+ZyBiZWNhdXNlIGFtZGdwdV9yaW5nX3NldF93cHRyKCkgYWxzbyB1cGRhdGVzIHRoZSBkb29yYmVs
+bCw8L3NwYW4+PC9mb250PjwvZGl2PjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiPjxzcGFuIHN0eWxl
+PSJ3aGl0ZS1zcGFjZS1jb2xsYXBzZTogY29sbGFwc2U7Ij5zbyBJIHdhbnQgdG8gY29uZmlybSB0
+aGF0IHRoaXMgaXMgdGhlIGludGVuZGVkIHNlcXVlbmNlIGZvciB0aGU8L3NwYW4+PC9mb250Pjwv
+ZGl2PjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiPjxzcGFuIHN0eWxlPSJ3aGl0ZS1zcGFjZS1jb2xs
+YXBzZTogY29sbGFwc2U7Ij5yZXNldC9zdXNwZW5kIGNhc2UgaGVyZS48L3NwYW4+PC9mb250Pjwv
+ZGl2PjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiPjxzcGFuIHN0eWxlPSJ3aGl0ZS1zcGFjZS1jb2xs
+YXBzZTogY29sbGFwc2U7Ij48YnI+PC9zcGFuPjwvZm9udD48L2Rpdj48ZGl2Pjxmb250IGZhY2U9
+IkFyaWFsIj48c3BhbiBzdHlsZT0id2hpdGUtc3BhY2UtY29sbGFwc2U6IGNvbGxhcHNlOyI+VGhh
+bmtzLDwvc3Bhbj48L2ZvbnQ+PC9kaXY+PGRpdj48Zm9udCBmYWNlPSJBcmlhbCI+PHNwYW4gc3R5
+bGU9IndoaXRlLXNwYWNlLWNvbGxhcHNlOiBjb2xsYXBzZTsiPlJ1bnl1PC9zcGFuPjwvZm9udD48
+L2Rpdj48ZGl2Pjxmb250IGZhY2U9IkFyaWFsIj48c3BhbiBzdHlsZT0id2hpdGUtc3BhY2UtY29s
+bGFwc2U6IGNvbGxhcHNlOyI+PGJyPjwvc3Bhbj48L2ZvbnQ+PC9kaXY+PGRpdj48Zm9udCBmYWNl
+PSJBcmlhbCI+PHNwYW4gc3R5bGU9IndoaXRlLXNwYWNlLWNvbGxhcHNlOiBjb2xsYXBzZTsiPk9u
+IFR1ZSwgSnVuIDIsIDIwMjYgYXQgMTE6NDk6MDVBTSArMDIwMCwgQ2hyaXN0aWFuIEvDtm5pZyB3
+cm90ZTo8L3NwYW4+PC9mb250PjwvZGl2PjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiPjxzcGFuIHN0
+eWxlPSJ3aGl0ZS1zcGFjZS1jb2xsYXBzZTogY29sbGFwc2U7Ij4mZ3Q7IENsZWFyIE5BSy48L3Nw
+YW4+PC9mb250PjwvZGl2PjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiPjxzcGFuIHN0eWxlPSJ3aGl0
+ZS1zcGFjZS1jb2xsYXBzZTogY29sbGFwc2U7Ij4mZ3Q7PC9zcGFuPjwvZm9udD48L2Rpdj48ZGl2
+Pjxmb250IGZhY2U9IkFyaWFsIj48c3BhbiBzdHlsZT0id2hpdGUtc3BhY2UtY29sbGFwc2U6IGNv
+bGxhcHNlOyI+Jmd0OyBUaGUgYXRvbWljNjRfdCBjYXN0IGhhY2sgaXMganVzdCBzb21ldGhpbmcg
+d2UgZGlkIGZvciBvbGRlcjwvc3Bhbj48L2ZvbnQ+PC9kaXY+PGRpdj48Zm9udCBmYWNlPSJBcmlh
+bCI+PHNwYW4gc3R5bGU9IndoaXRlLXNwYWNlLWNvbGxhcHNlOiBjb2xsYXBzZTsiPiZndDsgZ2Vu
+ZXJhdGlvbnMgYW5kIGlzIG5vdCBzb21ldGhpbmcgd2hpY2ggaXMgbmVjZXNzYXJ5IG5vciBzaG91
+bGQ8L3NwYW4+PC9mb250PjwvZGl2PjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiPjxzcGFuIHN0eWxl
+PSJ3aGl0ZS1zcGFjZS1jb2xsYXBzZTogY29sbGFwc2U7Ij4mZ3Q7IGJlIGRvbmUgaGVyZS48L3Nw
+YW4+PC9mb250PjwvZGl2PjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwiPjxzcGFuIHN0eWxlPSJ3aGl0
+ZS1zcGFjZS1jb2xsYXBzZTogY29sbGFwc2U7Ij4mZ3Q7PC9zcGFuPjwvZm9udD48L2Rpdj48ZGl2
+Pjxmb250IGZhY2U9IkFyaWFsIj48c3BhbiBzdHlsZT0id2hpdGUtc3BhY2UtY29sbGFwc2U6IGNv
+bGxhcHNlOyI+Jmd0OyBXaGF0IGNvdWxkIGJlIHBvc3NpYmxlIGlzIHRoYXQgd2UgbmVlZCB0byB1
+c2UgYW1kZ3B1X3Jpbmdfc2V0X3dwdHIoKTwvc3Bhbj48L2ZvbnQ+PC9kaXY+PGRpdj48Zm9udCBm
+YWNlPSJBcmlhbCI+PHNwYW4gc3R5bGU9IndoaXRlLXNwYWNlLWNvbGxhcHNlOiBjb2xsYXBzZTsi
+PiZndDsgaGVyZSB0byBjb3JyZWN0bHkgZGlzdGluZ3Vpc2ggYmV0d2VlbiBxdWV1ZXMgd2l0aCAz
+MmJpdCBhbmQgNjRiaXQ8L3NwYW4+PC9mb250PjwvZGl2PjxkaXY+PGZvbnQgZmFjZT0iQXJpYWwi
+PjxzcGFuIHN0eWxlPSJ3aGl0ZS1zcGFjZS1jb2xsYXBzZTogY29sbGFwc2U7Ij4mZ3Q7IHdwdHJz
+Ljwvc3Bhbj48L2ZvbnQ+PC9kaXY+PC9wcmU+PC9kaXY+
+--=_Part_346146_266324616.1780397583210--
