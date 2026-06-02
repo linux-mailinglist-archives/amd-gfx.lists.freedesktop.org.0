@@ -2,82 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qe+WJZLsH2rhsQAAu9opvQ
+	id y22FLJbsH2rmsQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 10:57:54 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 10:57:58 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB16E635EAA
-	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 10:57:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51B86635EB5
+	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 10:57:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=leemhuis.info header.s=key2 header.b=k5D4xum6;
+	dkim=pass header.d=proton.me header.s=protonmail header.b="U2MK6Y/n";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=none
+	dmarc=pass (policy=quarantine) header.from=proton.me
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53B3B10FACC;
-	Wed,  3 Jun 2026 08:57:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6968610FAE8;
+	Wed,  3 Jun 2026 08:57:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 326 seconds by postgrey-1.36 at gabe;
- Tue, 02 Jun 2026 10:28:07 UTC
-Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
- [194.59.206.189])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 333EE10EE8B
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jun 2026 10:28:07 +0000 (UTC)
-Received: from relay02-mors.netcup.net (localhost [127.0.0.1])
- by relay02-mors.netcup.net (Postfix) with ESMTPS id 4gV6Mz0nPKz4GwW;
- Tue,  2 Jun 2026 12:22:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
- s=key2; t=1780395759;
- bh=VYFhJ3VCcrIBuRdl3r/r1EM5IvJPKKXIzX/hIQ1d56k=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=k5D4xum6akIUIi3miuK3NAE9l+heKaYxwhD6k4JGoPeJAars48ej66kT1h5vuxC3d
- 4VYLcSNhTEhXFyoodk1xPvtG3HrS+i/ZezB/OE3iGYTCxAtUAdmK4uxxBnN4PTRObC
- j4J3AjuJ4C5K8gQp5BiMciYJVf7raqphz0Ujar2sFYWYIqDhxqaNyf2Q4MUUaRJ2Ag
- ftb9guYkDg+wyAizoP7J0fX6Ut8jE/RJHKlMyBaHOnaXugkuI0EH+PM/aE5BtUz164
- 4YT0HT5Y0Q/ce3xU2G/JFjh3K2/nVMxRROe2FSHPWk343sfBD3t8liq09O6d1GGAVp
- unEN2qjI1lMIw==
-Received: from policy01-mors.netcup.net (unknown [46.38.225.35])
- by relay02-mors.netcup.net (Postfix) with ESMTPS id 4gV6Mz053mz7yrb;
- Tue,  2 Jun 2026 12:22:39 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at policy01-mors.netcup.net
-X-Spam-Flag: NO
-X-Spam-Score: -2.898
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.898 required=6.31 tests=[ALL_TRUSTED=-1,
- BAYES_00=-1.9, SPF_PASS=-0.001, URIBL_BLOCKED=0.001,
- URIBL_DBL_BLOCKED_OPENDNS=0.001, URIBL_ZEN_BLOCKED_OPENDNS=0.001]
- autolearn=ham autolearn_force=no
-Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
- SHA256) (No client certificate requested)
- by policy01-mors.netcup.net (Postfix) with ESMTPS id 4gV6Mw3BQPz8tdq;
- Tue,  2 Jun 2026 12:22:36 +0200 (CEST)
-Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
- [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
- by mxe9fb.netcup.net (Postfix) with ESMTPSA id C73AC6031E;
- Tue,  2 Jun 2026 12:22:35 +0200 (CEST)
-Received-SPF: pass (mxe9fb: connection is authenticated)
-Message-ID: <59f38ae7-2d5a-4dcf-bff9-7e58c36f36d4@leemhuis.info>
-Date: Tue, 2 Jun 2026 12:22:34 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+X-Greylist: delayed 1384 seconds by postgrey-1.36 at gabe;
+ Tue, 02 Jun 2026 10:29:11 UTC
+Received: from mail-24417.protonmail.ch (mail-24417.protonmail.ch
+ [109.224.244.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CF7F10EE8E
+ for <amd-gfx@lists.freedesktop.org>; Tue,  2 Jun 2026 10:29:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+ s=protonmail; t=1780396148; x=1780655348;
+ bh=Ps3BeSaIN+cFaDTrCg33BpAK7kq/PwD0EyF9XARctp8=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector;
+ b=U2MK6Y/nJG93usNNo+k3l6ticr9KDHJi581QUPvThrogqgl43MfjOKaJElfUMae8F
+ SBpiipQiIAlrVcnyexDeBuj/Hv/8EHnSFOXZlQ4Rsr7NmNGOcI9uya9+S3AG6BJw3y
+ 9aoxnpHReYx+52jmf/ouTwZ0K4xVu/IBjr4YsuxvSclnn+CtiA/tYHoVrAPAMDWs74
+ YsclOEqDnecgW6iGm8V8JJ4k4LrCAs7j0zquGNZajOHHRd1I6t9qapWaytGXyqz1m1
+ gRVXN2YhTMBwquZjGZen3r7f+Nwv1RS0R6vULBFyixqpdWbZbnULEXA9un63O64cst
+ DW+nkmTYTL+jg==
+Date: Tue, 02 Jun 2026 10:29:01 +0000
+To: Thorsten Leemhuis <regressions@leemhuis.info>, regressions@lists.linux.dev
+From: Tj <tj.iam.tj@proton.me>
+Cc: amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ =?utf-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Subject: Re: [REGRESSION] RIP: 0010:vce_v1_0_set_powergating_state+0x5b8/0x600
  [amdgpu]
-To: Tj <tj.iam.tj@proton.me>, regressions@lists.linux.dev
-Cc: amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Message-ID: <aa7b7f17-fcd4-44ba-b2a9-80001f31feb0@proton.me>
+In-Reply-To: <59f38ae7-2d5a-4dcf-bff9-7e58c36f36d4@leemhuis.info>
 References: <ah6q-k5wvRbW6k6e@mail.iam.tj>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-Content-Language: de-DE, en-US
-In-Reply-To: <ah6q-k5wvRbW6k6e@mail.iam.tj>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-PPP-Message-ID: <178039575615.3965615.5598947623154553667@mxe9fb.netcup.net>
-X-NC-CID: lyDu3goblGvLSHN3vEvDpAjnjT/QF6hkpZOMBqUgIo4boZWFu2M=
+ <59f38ae7-2d5a-4dcf-bff9-7e58c36f36d4@leemhuis.info>
+Feedback-ID: 113488376:user:proton
+X-Pm-Message-ID: cc5ceb1ab9cfcb52adb25d3e186087c4911dfa87
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Wed, 03 Jun 2026 08:57:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -93,276 +69,392 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.69 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[proton.me,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
+	R_DKIM_ALLOW(-0.20)[proton.me:s=protonmail];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[leemhuis.info];
-	FORGED_RECIPIENTS(0.00)[m:tj.iam.tj@proton.me,m:regressions@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
 	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,gmail.com,amd.com];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:regressions@leemhuis.info,m:regressions@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[tj.iam.tj@proton.me,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[leemhuis.info:+];
+	DKIM_TRACE(0.00)[proton.me:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[tj.iam.tj@proton.me,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MISSING_XM_UA(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gitlab.freedesktop.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EB16E635EAA
+X-Rspamd-Queue-Id: 51B86635EB5
 
-On 6/2/26 12:06, Tj wrote:
-> Repeatedly hit this with 7.1-rc6. I haven't yet got time to do a bisect.
-> 
-> $ lspci -nnk -d ::0300
-> 0a:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Cape Verde GL [FirePro W4100] [1002:682c]
->         Subsystem: Dell Device [1028:2b1e]
->         Kernel driver in use: amdgpu
->         Kernel modules: radeon, amdgpu
-> 
-> $ journalctl --boot 5e39a2d49af2432c8f14f2a866a6b275 --priority=warning
-> ...
-> Jun 02 09:25:11 sunny kernel: Linux version 7.1.0-rc6+debian+tj (linux@iam.tj) (gcc (Debian 14.2.0-19) 14.2.0, GNU ld (GNU Binutils for Debian) 2.44) #446 SMP PREEMPT_DYNAMIC Mon Jun  1 07:32:2>
-> ...
-> Jun 02 09:25:11 sunny kernel: WARNING: drivers/gpu/drm/amd/amdgpu/vce_v1_0.c:329 at vce_v1_0_set_powergating_state+0x5b8/0x600 [amdgpu], CPU#8: (udev-worker)/251
+Thorsten, thanks for the almost instant pointer to the potential fix.=20
+I've grabbed the patch and will do a build and test later today, once=20
+I've also got a potential fix for the bluetooth/input regression that=20
+hung my workstation.
 
-Thx for reporting this. This is not my area of expertise, but from a
-very quick look that seems to be the issue
-https://gitlab.freedesktop.org/drm/amd/-/work_items/5336
-for which Timur sent a fix:
+On 02/06/2026 10:22, Thorsten Leemhuis wrote:
+> On 6/2/26 12:06, Tj wrote:
+>> Repeatedly hit this with 7.1-rc6. I haven't yet got time to do a bisect.
+>>
+>> $ lspci -nnk -d ::0300
+>> 0a:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [=
+AMD/ATI] Cape Verde GL [FirePro W4100] [1002:682c]
+>>          Subsystem: Dell Device [1028:2b1e]
+>>          Kernel driver in use: amdgpu
+>>          Kernel modules: radeon, amdgpu
+>>
+>> $ journalctl --boot 5e39a2d49af2432c8f14f2a866a6b275 --priority=3Dwarnin=
+g
+>> ...
+>> Jun 02 09:25:11 sunny kernel: Linux version 7.1.0-rc6+debian+tj (linux@i=
+am.tj) (gcc (Debian 14.2.0-19) 14.2.0, GNU ld (GNU Binutils for Debian) 2.4=
+4) #446 SMP PREEMPT_DYNAMIC Mon Jun  1 07:32:2>
+>> ...
+>> Jun 02 09:25:11 sunny kernel: WARNING: drivers/gpu/drm/amd/amdgpu/vce_v1=
+_0.c:329 at vce_v1_0_set_powergating_state+0x5b8/0x600 [amdgpu], CPU#8: (ud=
+ev-worker)/251
+> Thx for reporting this. This is not my area of expertise, but from a
+> very quick look that seems to be the issue
+> https://gitlab.freedesktop.org/drm/amd/-/work_items/5336
+> for which Timur sent a fix:
+>
+> drm/amdgpu: Align amdgpu_gtt_mgr entries to TLB size on all SI
+> https://lore.kernel.org/all/20260525112204.12604-1-timur.kristof@gmail.co=
+m/
+>
+> According to Alex it's making it's way through the ranks. Consider
+> testing it to ensure it really is the same problem.
+>
+> Ciao, Thorsten
+>
+>> Jun 02 09:25:11 sunny kernel: Modules linked in: evdev joydev hid_generi=
+c dm_mod amdgpu(+) drm_buddy amdxcp drm_panel_backlight_quirks usbhid gpu_s=
+ched hid drm_ttm_helper sd_mod ttm drm_client_>
+>> Jun 02 09:25:11 sunny kernel: CPU: 8 UID: 0 PID: 251 Comm: (udev-worker)=
+ Not tainted 7.1.0-rc6+debian+tj #446 PREEMPT(lazy)
+>> Jun 02 09:25:11 sunny kernel: Hardware name: System manufacturer System =
+Product Name/PRIME X370-PRO, BIOS 6254 01/05/2026
+>> Jun 02 09:25:11 sunny kernel: RIP: 0010:vce_v1_0_set_powergating_state+0=
+x5b8/0x600 [amdgpu]
+>> Jun 02 09:25:11 sunny kernel: Code: c2 ad 47 d6 c1 48 c7 c7 a8 4e 87 c1 =
+e8 a1 02 45 f3 f6 05 05 77 dc 00 40 0f 84 ac fe ff ff e9 52 0b 92 00 0f 0b =
+e9 52 fe ff ff <0f> 0b 31 c9 be 0b 80 00 00 48>
+>> Jun 02 09:25:11 sunny kernel: RSP: 0018:ffffceacc081b850 EFLAGS: 0001020=
+6
+>> Jun 02 09:25:11 sunny kernel: RAX: 0000000000000000 RBX: 000000000022600=
+0 RCX: 0000000000000000
+>> Jun 02 09:25:11 sunny kernel: RDX: 0000000000266000 RSI: 000000000000800=
+a RDI: ffff8b47a3880000
+>> Jun 02 09:25:11 sunny kernel: RBP: ffff8b47a3880000 R08: ffffceacc081b88=
+8 R09: 0000000000000000
+>> Jun 02 09:25:11 sunny kernel: R10: 0000000088b80000 R11: 000000000001117=
+0 R12: 0000000000276000
+>> Jun 02 09:25:11 sunny kernel: R13: ffff8b47a38d4d98 R14: 000000000000000=
+9 R15: ffffffffc0aad220
+>> Jun 02 09:25:11 sunny kernel: FS:  00007fae0d7059c0(0000) GS:ffff8b4ed8f=
+10000(0000) knlGS:0000000000000000
+>> Jun 02 09:25:11 sunny kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 000000008=
+0050033
+>> Jun 02 09:25:11 sunny kernel: CR2: 000055d37be98f18 CR3: 000000010299b00=
+0 CR4: 0000000000350ef0
+>> Jun 02 09:25:11 sunny kernel: Call Trace:
+>> Jun 02 09:25:11 sunny kernel:  <TASK>
+>> Jun 02 09:25:11 sunny kernel:  amdgpu_device_ip_set_powergating_state+0x=
+aa/0x1b0 [amdgpu]
+>> Jun 02 09:25:11 sunny kernel:  si_dpm_set_power_state+0xd54/0x18e0 [amdg=
+pu]
+>> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
+>> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
+>> Jun 02 09:25:11 sunny kernel:  ? __pfx_vce_v1_0_hw_init+0x10/0x10 [amdgp=
+u]
+>> Jun 02 09:25:11 sunny kernel:  amdgpu_dpm_change_power_state_locked.isra=
+.0+0x2e0/0x570 [amdgpu]
+>> Jun 02 09:25:11 sunny kernel:  amdgpu_dpm_compute_clocks+0xa5/0xf0 [amdg=
+pu]
+>> Jun 02 09:25:11 sunny kernel:  vce_v1_0_hw_init+0x97/0xb0 [amdgpu]
+>> Jun 02 09:25:11 sunny kernel:  amdgpu_device_init.cold+0x1ca4/0x22a3 [am=
+dgpu]
+>> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
+>> Jun 02 09:25:11 sunny kernel:  ? pci_conf1_read+0xab/0xf0
+>> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
+>> Jun 02 09:25:11 sunny kernel:  ? pci_bus_read_config_word+0x4c/0x80
+>> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
+>> Jun 02 09:25:11 sunny kernel:  ? do_pci_enable_device+0x121/0x190
+>> Jun 02 09:25:11 sunny kernel:  amdgpu_driver_load_kms+0x19/0x80 [amdgpu]
+>> Jun 02 09:25:11 sunny kernel:  amdgpu_pci_probe+0x1e9/0x4d0 [amdgpu]
+>> Jun 02 09:25:11 sunny kernel:  local_pci_probe+0x41/0x90
+>> Jun 02 09:25:11 sunny kernel:  pci_device_probe+0xe4/0x2b0
+>> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
+>> Jun 02 09:25:11 sunny kernel:  ? sysfs_do_create_link_sd+0x6e/0xe0
+>> Jun 02 09:25:11 sunny kernel:  really_probe+0xde/0x380
+>> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
+>> Jun 02 09:25:11 sunny kernel:  ? __pfx___driver_attach+0x10/0x10
+>> Jun 02 09:25:11 sunny kernel:  __driver_probe_device+0x84/0x150
+>> Jun 02 09:25:11 sunny kernel:  driver_probe_device+0x1f/0xa0
+>> Jun 02 09:25:11 sunny kernel:  __driver_attach+0xba/0x1f0
+>> Jun 02 09:25:11 sunny kernel:  bus_for_each_dev+0x8e/0xe0
+>> Jun 02 09:25:11 sunny kernel:  bus_add_driver+0x11f/0x200
+>> Jun 02 09:25:11 sunny kernel:  driver_register+0x72/0xd0
+>> Jun 02 09:25:11 sunny kernel:  ? __pfx_amdgpu_init+0x10/0x10 [amdgpu]
+>> Jun 02 09:25:11 sunny kernel:  do_one_initcall+0x5c/0x320
+>> Jun 02 09:25:11 sunny kernel:  do_init_module+0x60/0x250
+>> Jun 02 09:25:11 sunny kernel:  init_module_from_file+0xd6/0x130
+>> Jun 02 09:25:11 sunny kernel:  idempotent_init_module+0x114/0x310
+>> Jun 02 09:25:11 sunny kernel:  __x64_sys_finit_module+0x71/0xe0
+>> Jun 02 09:25:11 sunny kernel:  do_syscall_64+0xea/0x640
+>> Jun 02 09:25:11 sunny kernel:  ? do_syscall_64+0x9f/0x640
+>> Jun 02 09:25:11 sunny kernel:  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+>> Jun 02 09:25:11 sunny kernel: RIP: 0033:0x7fae0e2637b9
+>> Jun 02 09:25:11 sunny kernel: Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 =
+0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b =
+4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48>
+>> Jun 02 09:25:11 sunny kernel: RSP: 002b:00007fff609daf68 EFLAGS: 0000024=
+6 ORIG_RAX: 0000000000000139
+>> Jun 02 09:25:11 sunny kernel: RAX: ffffffffffffffda RBX: 000055d37be9a7c=
+0 RCX: 00007fae0e2637b9
+>> Jun 02 09:25:11 sunny kernel: RDX: 0000000000000000 RSI: 000055d37be9c66=
+0 RDI: 0000000000000020
+>> Jun 02 09:25:11 sunny kernel: RBP: 0000000000000000 R08: 000000000000000=
+0 R09: 0000000000000000
+>> Jun 02 09:25:11 sunny kernel: R10: 0000000000000000 R11: 000000000000024=
+6 R12: 000055d37be9c660
+>> Jun 02 09:25:11 sunny kernel: R13: 0000000000020000 R14: 000055d37be96e9=
+0 R15: 0000000000000000
+>> Jun 02 09:25:11 sunny kernel:  </TASK>
+>> Jun 02 09:25:11 sunny kernel: ---[ end trace 0000000000000000 ]---
+>> Jun 02 09:25:11 sunny kernel: ------------[ cut here ]------------
+>> un 02 09:25:11 sunny kernel: WARNING: drivers/gpu/drm/amd/amdgpu/vce_v1_=
+0.c:336 at vce_v1_0_set_powergating_state+0x5ea/0x600 [amdgpu], CPU#8: (ude=
+v-worker)/251
+>> Jun 02 09:25:11 sunny kernel: Modules linked in: evdev joydev hid_generi=
+c dm_mod amdgpu(+) drm_buddy amdxcp drm_panel_backlight_quirks usbhid gpu_s=
+ched hid drm_ttm_helper sd_mod ttm drm_client_>
+>> Jun 02 09:25:11 sunny kernel: CPU: 8 UID: 0 PID: 251 Comm: (udev-worker)=
+ Tainted: G        W           7.1.0-rc6+debian+tj #446 PREEMPT(lazy)
+>> Jun 02 09:25:11 sunny kernel: Tainted: [W]=3DWARN
+>> Jun 02 09:25:11 sunny kernel: Hardware name: System manufacturer System =
+Product Name/PRIME X370-PRO, BIOS 6254 01/05/2026
+>> Jun 02 09:25:11 sunny kernel: RIP: 0010:vce_v1_0_set_powergating_state+0=
+x5ea/0x600 [amdgpu]
+>> Jun 02 09:25:11 sunny kernel: Code: 00 48 89 ef e8 87 ae f5 ff 31 c9 ba =
+00 00 01 00 48 89 ef be 0c 80 00 00 e8 73 ae f5 ff 41 f7 c4 ff 7f 00 00 0f =
+84 ff fd ff ff <0f> 0b e9 f8 fd ff ff 66 66 2e>
+>> Jun 02 09:25:11 sunny kernel: RSP: 0018:ffffceacc081b850 EFLAGS: 0001020=
+6
+>> Jun 02 09:25:11 sunny kernel: RAX: 0000000000000000 RBX: 000000000022600=
+0 RCX: 0000000000000000
+>> Jun 02 09:25:11 sunny kernel: RDX: 0000000000010000 RSI: 000000000000800=
+c RDI: ffff8b47a3880000
+>> Jun 02 09:25:11 sunny kernel: RBP: ffff8b47a3880000 R08: ffffceacc081b88=
+8 R09: 0000000000000000
+>> Jun 02 09:25:11 sunny kernel: R10: 0000000088b80000 R11: 000000000001117=
+0 R12: 0000000000276000
+>> Jun 02 09:25:11 sunny kernel: R13: ffff8b47a38d4d98 R14: 000000000000000=
+9 R15: ffffffffc0aad220
+>> Jun 02 09:25:11 sunny kernel: FS:  00007fae0d7059c0(0000) GS:ffff8b4ed8f=
+10000(0000) knlGS:0000000000000000
+>> Jun 02 09:25:11 sunny kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 000000008=
+0050033
+>> Jun 02 09:25:11 sunny kernel: CR2: 000055d37be98f18 CR3: 000000010299b00=
+0 CR4: 0000000000350ef0
+>> Jun 02 09:25:11 sunny kernel: Call Trace:
+>> Jun 02 09:25:11 sunny kernel:  <TASK>
+>> Jun 02 09:25:11 sunny kernel:  amdgpu_device_ip_set_powergating_state+0x=
+aa/0x1b0 [amdgpu]
+>> Jun 02 09:25:11 sunny kernel:  si_dpm_set_power_state+0xd54/0x18e0 [amdg=
+pu]
+>> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
+>> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
+>> Jun 02 09:25:11 sunny kernel:  ? __pfx_vce_v1_0_hw_init+0x10/0x10 [amdgp=
+u]
+>> Jun 02 09:25:11 sunny kernel:  amdgpu_dpm_change_power_state_locked.isra=
+.0+0x2e0/0x570 [amdgpu]
+>> Jun 02 09:25:11 sunny kernel:  amdgpu_dpm_compute_clocks+0xa5/0xf0 [amdg=
+pu]
+>> Jun 02 09:25:11 sunny kernel:  vce_v1_0_hw_init+0x97/0xb0 [amdgpu]
+>> Jun 02 09:25:11 sunny kernel:  amdgpu_device_init.cold+0x1ca4/0x22a3 [am=
+dgpu]
+>> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
+>> Jun 02 09:25:11 sunny kernel:  ? pci_conf1_read+0xab/0xf0
+>> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
+>> Jun 02 09:25:11 sunny kernel:  ? pci_bus_read_config_word+0x4c/0x80
+>> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
+>> Jun 02 09:25:11 sunny kernel:  ? do_pci_enable_device+0x121/0x190
+>> Jun 02 09:25:11 sunny kernel:  amdgpu_driver_load_kms+0x19/0x80 [amdgpu]
+>> Jun 02 09:25:11 sunny kernel:  amdgpu_pci_probe+0x1e9/0x4d0 [amdgpu]
+>> Jun 02 09:25:11 sunny kernel:  local_pci_probe+0x41/0x90
+>> Jun 02 09:25:11 sunny kernel:  pci_device_probe+0xe4/0x2b0
+>> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
+>> Jun 02 09:25:11 sunny kernel:  ? sysfs_do_create_link_sd+0x6e/0xe0
+>> Jun 02 09:25:11 sunny kernel:  really_probe+0xde/0x380
+>> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
+>> Jun 02 09:25:11 sunny kernel:  ? __pfx___driver_attach+0x10/0x10
+>> Jun 02 09:25:11 sunny kernel:  __driver_probe_device+0x84/0x150
+>> Jun 02 09:25:11 sunny kernel:  driver_probe_device+0x1f/0xa0
+>> Jun 02 09:25:11 sunny kernel:  __driver_attach+0xba/0x1f0
+>> Jun 02 09:25:11 sunny kernel:  bus_for_each_dev+0x8e/0xe0
+>> Jun 02 09:25:11 sunny kernel:  bus_add_driver+0x11f/0x200
+>> Jun 02 09:25:11 sunny kernel:  driver_register+0x72/0xd0
+>> Jun 02 09:25:11 sunny kernel:  ? __pfx_amdgpu_init+0x10/0x10 [amdgpu]
+>> Jun 02 09:25:11 sunny kernel:  do_one_initcall+0x5c/0x320
+>> Jun 02 09:25:11 sunny kernel:  do_init_module+0x60/0x250
+>> Jun 02 09:25:11 sunny kernel:  init_module_from_file+0xd6/0x130
+>> Jun 02 09:25:11 sunny kernel:  idempotent_init_module+0x114/0x310
+>> Jun 02 09:25:11 sunny kernel:  __x64_sys_finit_module+0x71/0xe0
+>> Jun 02 09:25:11 sunny kernel:  do_syscall_64+0xea/0x640
+>> Jun 02 09:25:11 sunny kernel:  ? do_syscall_64+0x9f/0x640
+>> Jun 02 09:25:11 sunny kernel:  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+>> Jun 02 09:25:11 sunny kernel: RIP: 0033:0x7fae0e2637b9
+>> Jun 02 09:25:11 sunny kernel: Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 =
+0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b =
+4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48>
+>> Jun 02 09:25:11 sunny kernel: RSP: 002b:00007fff609daf68 EFLAGS: 0000024=
+6 ORIG_RAX: 0000000000000139
+>> Jun 02 09:25:11 sunny kernel: RAX: ffffffffffffffda RBX: 000055d37be9a7c=
+0 RCX: 00007fae0e2637b9
+>> Jun 02 09:25:11 sunny kernel: RDX: 0000000000000000 RSI: 000055d37be9c66=
+0 RDI: 0000000000000020
+>> Jun 02 09:25:11 sunny kernel: RBP: 0000000000000000 R08: 000000000000000=
+0 R09: 0000000000000000
+>> Jun 02 09:25:11 sunny kernel: R10: 0000000000000000 R11: 000000000000024=
+6 R12: 000055d37be9c660
+>> Jun 02 09:25:11 sunny kernel: R13: 0000000000020000 R14: 000055d37be96e9=
+0 R15: 0000000000000000
+>> Jun 02 09:25:11 sunny kernel:  </TASK>
+>> Jun 02 09:25:11 sunny kernel: ---[ end trace 0000000000000000 ]---
+>> Jun 02 09:25:11 sunny kernel: amdgpu 0000:0a:00.0: VCE busy: VCE_STATUS=
+=3D0x100, SRBM_STATUS2=3D0x0
+>>
+>>
+>> $ sudo lspci -vvnnk -d ::0300
+>> 0a:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [=
+AMD/ATI] Cape Verde GL [FirePro W4100] [1002:682c] (prog-if 00 [VGA control=
+ler])
+>>          Subsystem: Dell Device [1028:2b1e]
+>>          Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- Par=
+Err- Stepping- SERR- FastB2B- DisINTx+
+>>          Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=3Dfast >TAbort=
+- <TAbort- <MAbort- >SERR- <PERR- INTx-
+>>          Latency: 0, Cache Line Size: 64 bytes
+>>          Interrupt: pin A routed to IRQ 86
+>>          IOMMU group: 16
+>>          Region 0: Memory at e0000000 (64-bit, prefetchable) [size=3D256=
+M]
+>>          Region 2: Memory at fce00000 (64-bit, non-prefetchable) [size=
+=3D256K]
+>>          Region 4: I/O ports at d000 [size=3D256]
+>>          Expansion ROM at 000c0000 [disabled] [size=3D128K]
+>>          Capabilities: [48] Vendor Specific Information: Len=3D08 <?>
+>>          Capabilities: [50] Power Management version 3
+>>                  Flags: PMEClk- DSI- D1+ D2+ AuxCurrent=3D0mA PME(D0-,D1=
++,D2+,D3hot+,D3cold-)
+>>                  Status: D0 NoSoftRst- PME-Enable- DSel=3D0 DScale=3D0 P=
+ME-
+>>          Capabilities: [58] Express (v2) Legacy Endpoint, IntMsgNum 0
+>>                  DevCap: MaxPayload 256 bytes, PhantFunc 0, Latency L0s =
+<4us, L1 unlimited
+>>                          ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset-=
+ TEE-IO-
+>>                  DevCtl: CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
+>>                          RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+
+>>                          MaxPayload 256 bytes, MaxReadReq 512 bytes
+>>                  DevSta: CorrErr+ NonFatalErr- FatalErr- UnsupReq+ AuxPw=
+r- TransPend-
+>>                  LnkCap: Port #0, Speed 8GT/s, Width x16, ASPM L0s L1, E=
+xit Latency L0s <64ns, L1 <1us
+>>                          ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp=
++
+>>                  LnkCtl: ASPM Disabled; RCB 64 bytes, LnkDisable- CommCl=
+k+
+>>                          ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
+>>                  LnkSta: Speed 8GT/s, Width x16
+>>                          TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgm=
+t-
+>>                  DevCap2: Completion Timeout: Not Supported, TimeoutDis-=
+ NROPrPrP- LTR-
+>>                           10BitTagComp- 10BitTagReq- OBFF Not Supported,=
+ ExtFmt- EETLPPrefix-
+>>                           EmergencyPowerReduction Not Supported, Emergen=
+cyPowerReductionInit-
+>>                           FRS-
+>>                           AtomicOpsCap: 32bit- 64bit- 128bitCAS-
+>>                  DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis-
+>>                           AtomicOpsCtl: ReqEn-
+>>                           IDOReq- IDOCompl- LTR- EmergencyPowerReduction=
+Req-
+>>                           10BitTagReq- OBFF Disabled, EETLPPrefixBlk-
+>>                  LnkCap2: Supported Link Speeds: 2.5-8GT/s, Crosslink- R=
+etimer- 2Retimers- DRS-
+>>                  LnkCtl2: Target Link Speed: 8GT/s, EnterCompliance- Spe=
+edDis-
+>>                           Transmit Margin: Normal Operating Range, Enter=
+ModifiedCompliance- ComplianceSOS-
+>>                           Compliance Preset/De-emphasis: -6dB de-emphasi=
+s, 0dB preshoot
+>>                  LnkSta2: Current De-emphasis Level: -3.5dB, Equalizatio=
+nComplete+ EqualizationPhase1-
+>>                           EqualizationPhase2- EqualizationPhase3- LinkEq=
+ualizationRequest-
+>>                           Retimer- 2Retimers- CrosslinkRes: unsupported
+>>          Capabilities: [a0] MSI: Enable+ Count=3D1/1 Maskable- 64bit+
+>>                  Address: 00000000fee00000  Data: 0000
+>>          Capabilities: [100 v1] Vendor Specific Information: ID=3D0001 R=
+ev=3D1 Len=3D010 <?>
+>>          Capabilities: [150 v2] Advanced Error Reporting
+>>                  UESta:  DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmp=
+lt- RxOF- MalfTLP-
+>>                          ECRC- UnsupReq- ACSViol- UncorrIntErr- BlockedT=
+LP- AtomicOpBlocked- TLPBlockedErr-
+>>                          PoisonTLPBlocked- DMWrReqBlocked- IDECheck- Mis=
+IDETLP- PCRC_CHECK- TLPXlatBlocked-
+>>                  UEMsk:  DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmp=
+lt- RxOF- MalfTLP-
+>>                          ECRC- UnsupReq- ACSViol- UncorrIntErr- BlockedT=
+LP- AtomicOpBlocked- TLPBlockedErr-
+>>                          PoisonTLPBlocked- DMWrReqBlocked- IDECheck- Mis=
+IDETLP- PCRC_CHECK- TLPXlatBlocked-
+>>                  UESvrt: DLP+ SDES+ TLP- FCP+ CmpltTO- CmpltAbrt- UnxCmp=
+lt- RxOF+ MalfTLP+
+>>                          ECRC- UnsupReq- ACSViol- UncorrIntErr+ BlockedT=
+LP- AtomicOpBlocked- TLPBlockedErr-
+>>                          PoisonTLPBlocked- DMWrReqBlocked- IDECheck- Mis=
+IDETLP- PCRC_CHECK- TLPXlatBlocked-
+>>                  CESta:  RxErr- BadTLP+ BadDLLP- Rollover- Timeout- AdvN=
+onFatalErr- CorrIntErr- HeaderOF-
+>>                  CEMsk:  RxErr- BadTLP- BadDLLP- Rollover- Timeout- AdvN=
+onFatalErr+ CorrIntErr- HeaderOF-
+>>                  AERCap: First Error Pointer: 00, ECRCGenCap+ ECRCGenEn-=
+ ECRCChkCap+ ECRCChkEn-
+>>                          MultHdrRecCap- MultHdrRecEn- TLPPfxPres- HdrLog=
+Cap-
+>>                  HeaderLog: 00000000 00000000 00000000 00000000
+>>          Capabilities: [200 v1] Physical Resizable BAR
+>>                  BAR 0: current size: 256MB, supported: 256MB 512MB 1GB =
+2GB 4GB
+>>          Capabilities: [270 v1] Secondary PCI Express
+>>                  LnkCtl3: LnkEquIntrruptEn- PerformEqu-
+>>                  LaneErrStat: LaneErr at lane: 6
+>>          Kernel driver in use: amdgpu
+>>          Kernel modules: radeon, amdgpu
+>>
+>>
 
-drm/amdgpu: Align amdgpu_gtt_mgr entries to TLB size on all SI
-https://lore.kernel.org/all/20260525112204.12604-1-timur.kristof@gmail.com/
-
-According to Alex it's making it's way through the ranks. Consider
-testing it to ensure it really is the same problem.
-
-Ciao, Thorsten
-
-> Jun 02 09:25:11 sunny kernel: Modules linked in: evdev joydev hid_generic dm_mod amdgpu(+) drm_buddy amdxcp drm_panel_backlight_quirks usbhid gpu_sched hid drm_ttm_helper sd_mod ttm drm_client_>
-> Jun 02 09:25:11 sunny kernel: CPU: 8 UID: 0 PID: 251 Comm: (udev-worker) Not tainted 7.1.0-rc6+debian+tj #446 PREEMPT(lazy)
-> Jun 02 09:25:11 sunny kernel: Hardware name: System manufacturer System Product Name/PRIME X370-PRO, BIOS 6254 01/05/2026
-> Jun 02 09:25:11 sunny kernel: RIP: 0010:vce_v1_0_set_powergating_state+0x5b8/0x600 [amdgpu]
-> Jun 02 09:25:11 sunny kernel: Code: c2 ad 47 d6 c1 48 c7 c7 a8 4e 87 c1 e8 a1 02 45 f3 f6 05 05 77 dc 00 40 0f 84 ac fe ff ff e9 52 0b 92 00 0f 0b e9 52 fe ff ff <0f> 0b 31 c9 be 0b 80 00 00 48>
-> Jun 02 09:25:11 sunny kernel: RSP: 0018:ffffceacc081b850 EFLAGS: 00010206
-> Jun 02 09:25:11 sunny kernel: RAX: 0000000000000000 RBX: 0000000000226000 RCX: 0000000000000000
-> Jun 02 09:25:11 sunny kernel: RDX: 0000000000266000 RSI: 000000000000800a RDI: ffff8b47a3880000
-> Jun 02 09:25:11 sunny kernel: RBP: ffff8b47a3880000 R08: ffffceacc081b888 R09: 0000000000000000
-> Jun 02 09:25:11 sunny kernel: R10: 0000000088b80000 R11: 0000000000011170 R12: 0000000000276000
-> Jun 02 09:25:11 sunny kernel: R13: ffff8b47a38d4d98 R14: 0000000000000009 R15: ffffffffc0aad220
-> Jun 02 09:25:11 sunny kernel: FS:  00007fae0d7059c0(0000) GS:ffff8b4ed8f10000(0000) knlGS:0000000000000000
-> Jun 02 09:25:11 sunny kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> Jun 02 09:25:11 sunny kernel: CR2: 000055d37be98f18 CR3: 000000010299b000 CR4: 0000000000350ef0
-> Jun 02 09:25:11 sunny kernel: Call Trace:
-> Jun 02 09:25:11 sunny kernel:  <TASK>
-> Jun 02 09:25:11 sunny kernel:  amdgpu_device_ip_set_powergating_state+0xaa/0x1b0 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  si_dpm_set_power_state+0xd54/0x18e0 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
-> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
-> Jun 02 09:25:11 sunny kernel:  ? __pfx_vce_v1_0_hw_init+0x10/0x10 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  amdgpu_dpm_change_power_state_locked.isra.0+0x2e0/0x570 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  amdgpu_dpm_compute_clocks+0xa5/0xf0 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  vce_v1_0_hw_init+0x97/0xb0 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  amdgpu_device_init.cold+0x1ca4/0x22a3 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
-> Jun 02 09:25:11 sunny kernel:  ? pci_conf1_read+0xab/0xf0
-> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
-> Jun 02 09:25:11 sunny kernel:  ? pci_bus_read_config_word+0x4c/0x80
-> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
-> Jun 02 09:25:11 sunny kernel:  ? do_pci_enable_device+0x121/0x190
-> Jun 02 09:25:11 sunny kernel:  amdgpu_driver_load_kms+0x19/0x80 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  amdgpu_pci_probe+0x1e9/0x4d0 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  local_pci_probe+0x41/0x90
-> Jun 02 09:25:11 sunny kernel:  pci_device_probe+0xe4/0x2b0
-> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
-> Jun 02 09:25:11 sunny kernel:  ? sysfs_do_create_link_sd+0x6e/0xe0
-> Jun 02 09:25:11 sunny kernel:  really_probe+0xde/0x380
-> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
-> Jun 02 09:25:11 sunny kernel:  ? __pfx___driver_attach+0x10/0x10
-> Jun 02 09:25:11 sunny kernel:  __driver_probe_device+0x84/0x150
-> Jun 02 09:25:11 sunny kernel:  driver_probe_device+0x1f/0xa0
-> Jun 02 09:25:11 sunny kernel:  __driver_attach+0xba/0x1f0
-> Jun 02 09:25:11 sunny kernel:  bus_for_each_dev+0x8e/0xe0
-> Jun 02 09:25:11 sunny kernel:  bus_add_driver+0x11f/0x200
-> Jun 02 09:25:11 sunny kernel:  driver_register+0x72/0xd0
-> Jun 02 09:25:11 sunny kernel:  ? __pfx_amdgpu_init+0x10/0x10 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  do_one_initcall+0x5c/0x320
-> Jun 02 09:25:11 sunny kernel:  do_init_module+0x60/0x250
-> Jun 02 09:25:11 sunny kernel:  init_module_from_file+0xd6/0x130
-> Jun 02 09:25:11 sunny kernel:  idempotent_init_module+0x114/0x310
-> Jun 02 09:25:11 sunny kernel:  __x64_sys_finit_module+0x71/0xe0
-> Jun 02 09:25:11 sunny kernel:  do_syscall_64+0xea/0x640
-> Jun 02 09:25:11 sunny kernel:  ? do_syscall_64+0x9f/0x640
-> Jun 02 09:25:11 sunny kernel:  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-> Jun 02 09:25:11 sunny kernel: RIP: 0033:0x7fae0e2637b9
-> Jun 02 09:25:11 sunny kernel: Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48>
-> Jun 02 09:25:11 sunny kernel: RSP: 002b:00007fff609daf68 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
-> Jun 02 09:25:11 sunny kernel: RAX: ffffffffffffffda RBX: 000055d37be9a7c0 RCX: 00007fae0e2637b9
-> Jun 02 09:25:11 sunny kernel: RDX: 0000000000000000 RSI: 000055d37be9c660 RDI: 0000000000000020
-> Jun 02 09:25:11 sunny kernel: RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
-> Jun 02 09:25:11 sunny kernel: R10: 0000000000000000 R11: 0000000000000246 R12: 000055d37be9c660
-> Jun 02 09:25:11 sunny kernel: R13: 0000000000020000 R14: 000055d37be96e90 R15: 0000000000000000
-> Jun 02 09:25:11 sunny kernel:  </TASK>
-> Jun 02 09:25:11 sunny kernel: ---[ end trace 0000000000000000 ]---
-> Jun 02 09:25:11 sunny kernel: ------------[ cut here ]------------
-> un 02 09:25:11 sunny kernel: WARNING: drivers/gpu/drm/amd/amdgpu/vce_v1_0.c:336 at vce_v1_0_set_powergating_state+0x5ea/0x600 [amdgpu], CPU#8: (udev-worker)/251
-> Jun 02 09:25:11 sunny kernel: Modules linked in: evdev joydev hid_generic dm_mod amdgpu(+) drm_buddy amdxcp drm_panel_backlight_quirks usbhid gpu_sched hid drm_ttm_helper sd_mod ttm drm_client_>
-> Jun 02 09:25:11 sunny kernel: CPU: 8 UID: 0 PID: 251 Comm: (udev-worker) Tainted: G        W           7.1.0-rc6+debian+tj #446 PREEMPT(lazy)
-> Jun 02 09:25:11 sunny kernel: Tainted: [W]=WARN
-> Jun 02 09:25:11 sunny kernel: Hardware name: System manufacturer System Product Name/PRIME X370-PRO, BIOS 6254 01/05/2026
-> Jun 02 09:25:11 sunny kernel: RIP: 0010:vce_v1_0_set_powergating_state+0x5ea/0x600 [amdgpu]
-> Jun 02 09:25:11 sunny kernel: Code: 00 48 89 ef e8 87 ae f5 ff 31 c9 ba 00 00 01 00 48 89 ef be 0c 80 00 00 e8 73 ae f5 ff 41 f7 c4 ff 7f 00 00 0f 84 ff fd ff ff <0f> 0b e9 f8 fd ff ff 66 66 2e>
-> Jun 02 09:25:11 sunny kernel: RSP: 0018:ffffceacc081b850 EFLAGS: 00010206
-> Jun 02 09:25:11 sunny kernel: RAX: 0000000000000000 RBX: 0000000000226000 RCX: 0000000000000000
-> Jun 02 09:25:11 sunny kernel: RDX: 0000000000010000 RSI: 000000000000800c RDI: ffff8b47a3880000
-> Jun 02 09:25:11 sunny kernel: RBP: ffff8b47a3880000 R08: ffffceacc081b888 R09: 0000000000000000
-> Jun 02 09:25:11 sunny kernel: R10: 0000000088b80000 R11: 0000000000011170 R12: 0000000000276000
-> Jun 02 09:25:11 sunny kernel: R13: ffff8b47a38d4d98 R14: 0000000000000009 R15: ffffffffc0aad220
-> Jun 02 09:25:11 sunny kernel: FS:  00007fae0d7059c0(0000) GS:ffff8b4ed8f10000(0000) knlGS:0000000000000000
-> Jun 02 09:25:11 sunny kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> Jun 02 09:25:11 sunny kernel: CR2: 000055d37be98f18 CR3: 000000010299b000 CR4: 0000000000350ef0
-> Jun 02 09:25:11 sunny kernel: Call Trace:
-> Jun 02 09:25:11 sunny kernel:  <TASK>
-> Jun 02 09:25:11 sunny kernel:  amdgpu_device_ip_set_powergating_state+0xaa/0x1b0 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  si_dpm_set_power_state+0xd54/0x18e0 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
-> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
-> Jun 02 09:25:11 sunny kernel:  ? __pfx_vce_v1_0_hw_init+0x10/0x10 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  amdgpu_dpm_change_power_state_locked.isra.0+0x2e0/0x570 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  amdgpu_dpm_compute_clocks+0xa5/0xf0 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  vce_v1_0_hw_init+0x97/0xb0 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  amdgpu_device_init.cold+0x1ca4/0x22a3 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
-> Jun 02 09:25:11 sunny kernel:  ? pci_conf1_read+0xab/0xf0
-> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
-> Jun 02 09:25:11 sunny kernel:  ? pci_bus_read_config_word+0x4c/0x80
-> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
-> Jun 02 09:25:11 sunny kernel:  ? do_pci_enable_device+0x121/0x190
-> Jun 02 09:25:11 sunny kernel:  amdgpu_driver_load_kms+0x19/0x80 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  amdgpu_pci_probe+0x1e9/0x4d0 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  local_pci_probe+0x41/0x90
-> Jun 02 09:25:11 sunny kernel:  pci_device_probe+0xe4/0x2b0
-> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
-> Jun 02 09:25:11 sunny kernel:  ? sysfs_do_create_link_sd+0x6e/0xe0
-> Jun 02 09:25:11 sunny kernel:  really_probe+0xde/0x380
-> Jun 02 09:25:11 sunny kernel:  ? srso_return_thunk+0x5/0x5f
-> Jun 02 09:25:11 sunny kernel:  ? __pfx___driver_attach+0x10/0x10
-> Jun 02 09:25:11 sunny kernel:  __driver_probe_device+0x84/0x150
-> Jun 02 09:25:11 sunny kernel:  driver_probe_device+0x1f/0xa0
-> Jun 02 09:25:11 sunny kernel:  __driver_attach+0xba/0x1f0
-> Jun 02 09:25:11 sunny kernel:  bus_for_each_dev+0x8e/0xe0
-> Jun 02 09:25:11 sunny kernel:  bus_add_driver+0x11f/0x200
-> Jun 02 09:25:11 sunny kernel:  driver_register+0x72/0xd0
-> Jun 02 09:25:11 sunny kernel:  ? __pfx_amdgpu_init+0x10/0x10 [amdgpu]
-> Jun 02 09:25:11 sunny kernel:  do_one_initcall+0x5c/0x320
-> Jun 02 09:25:11 sunny kernel:  do_init_module+0x60/0x250
-> Jun 02 09:25:11 sunny kernel:  init_module_from_file+0xd6/0x130
-> Jun 02 09:25:11 sunny kernel:  idempotent_init_module+0x114/0x310
-> Jun 02 09:25:11 sunny kernel:  __x64_sys_finit_module+0x71/0xe0
-> Jun 02 09:25:11 sunny kernel:  do_syscall_64+0xea/0x640
-> Jun 02 09:25:11 sunny kernel:  ? do_syscall_64+0x9f/0x640
-> Jun 02 09:25:11 sunny kernel:  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-> Jun 02 09:25:11 sunny kernel: RIP: 0033:0x7fae0e2637b9
-> Jun 02 09:25:11 sunny kernel: Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48>
-> Jun 02 09:25:11 sunny kernel: RSP: 002b:00007fff609daf68 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
-> Jun 02 09:25:11 sunny kernel: RAX: ffffffffffffffda RBX: 000055d37be9a7c0 RCX: 00007fae0e2637b9
-> Jun 02 09:25:11 sunny kernel: RDX: 0000000000000000 RSI: 000055d37be9c660 RDI: 0000000000000020
-> Jun 02 09:25:11 sunny kernel: RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
-> Jun 02 09:25:11 sunny kernel: R10: 0000000000000000 R11: 0000000000000246 R12: 000055d37be9c660
-> Jun 02 09:25:11 sunny kernel: R13: 0000000000020000 R14: 000055d37be96e90 R15: 0000000000000000
-> Jun 02 09:25:11 sunny kernel:  </TASK>
-> Jun 02 09:25:11 sunny kernel: ---[ end trace 0000000000000000 ]---
-> Jun 02 09:25:11 sunny kernel: amdgpu 0000:0a:00.0: VCE busy: VCE_STATUS=0x100, SRBM_STATUS2=0x0
-> 
-> 
-> $ sudo lspci -vvnnk -d ::0300
-> 0a:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Cape Verde GL [FirePro W4100] [1002:682c] (prog-if 00 [VGA controller])
->         Subsystem: Dell Device [1028:2b1e]
->         Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx+
->         Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
->         Latency: 0, Cache Line Size: 64 bytes
->         Interrupt: pin A routed to IRQ 86
->         IOMMU group: 16
->         Region 0: Memory at e0000000 (64-bit, prefetchable) [size=256M]
->         Region 2: Memory at fce00000 (64-bit, non-prefetchable) [size=256K]
->         Region 4: I/O ports at d000 [size=256]
->         Expansion ROM at 000c0000 [disabled] [size=128K]
->         Capabilities: [48] Vendor Specific Information: Len=08 <?>
->         Capabilities: [50] Power Management version 3
->                 Flags: PMEClk- DSI- D1+ D2+ AuxCurrent=0mA PME(D0-,D1+,D2+,D3hot+,D3cold-)
->                 Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
->         Capabilities: [58] Express (v2) Legacy Endpoint, IntMsgNum 0
->                 DevCap: MaxPayload 256 bytes, PhantFunc 0, Latency L0s <4us, L1 unlimited
->                         ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset- TEE-IO-
->                 DevCtl: CorrErr+ NonFatalErr+ FatalErr+ UnsupReq+
->                         RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+
->                         MaxPayload 256 bytes, MaxReadReq 512 bytes
->                 DevSta: CorrErr+ NonFatalErr- FatalErr- UnsupReq+ AuxPwr- TransPend-
->                 LnkCap: Port #0, Speed 8GT/s, Width x16, ASPM L0s L1, Exit Latency L0s <64ns, L1 <1us
->                         ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp+
->                 LnkCtl: ASPM Disabled; RCB 64 bytes, LnkDisable- CommClk+
->                         ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
->                 LnkSta: Speed 8GT/s, Width x16
->                         TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
->                 DevCap2: Completion Timeout: Not Supported, TimeoutDis- NROPrPrP- LTR-
->                          10BitTagComp- 10BitTagReq- OBFF Not Supported, ExtFmt- EETLPPrefix-
->                          EmergencyPowerReduction Not Supported, EmergencyPowerReductionInit-
->                          FRS-
->                          AtomicOpsCap: 32bit- 64bit- 128bitCAS-
->                 DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis-
->                          AtomicOpsCtl: ReqEn-
->                          IDOReq- IDOCompl- LTR- EmergencyPowerReductionReq-
->                          10BitTagReq- OBFF Disabled, EETLPPrefixBlk-
->                 LnkCap2: Supported Link Speeds: 2.5-8GT/s, Crosslink- Retimer- 2Retimers- DRS-
->                 LnkCtl2: Target Link Speed: 8GT/s, EnterCompliance- SpeedDis-
->                          Transmit Margin: Normal Operating Range, EnterModifiedCompliance- ComplianceSOS-
->                          Compliance Preset/De-emphasis: -6dB de-emphasis, 0dB preshoot
->                 LnkSta2: Current De-emphasis Level: -3.5dB, EqualizationComplete+ EqualizationPhase1-
->                          EqualizationPhase2- EqualizationPhase3- LinkEqualizationRequest-
->                          Retimer- 2Retimers- CrosslinkRes: unsupported
->         Capabilities: [a0] MSI: Enable+ Count=1/1 Maskable- 64bit+
->                 Address: 00000000fee00000  Data: 0000
->         Capabilities: [100 v1] Vendor Specific Information: ID=0001 Rev=1 Len=010 <?>
->         Capabilities: [150 v2] Advanced Error Reporting
->                 UESta:  DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP-
->                         ECRC- UnsupReq- ACSViol- UncorrIntErr- BlockedTLP- AtomicOpBlocked- TLPBlockedErr-
->                         PoisonTLPBlocked- DMWrReqBlocked- IDECheck- MisIDETLP- PCRC_CHECK- TLPXlatBlocked-
->                 UEMsk:  DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP-
->                         ECRC- UnsupReq- ACSViol- UncorrIntErr- BlockedTLP- AtomicOpBlocked- TLPBlockedErr-
->                         PoisonTLPBlocked- DMWrReqBlocked- IDECheck- MisIDETLP- PCRC_CHECK- TLPXlatBlocked-
->                 UESvrt: DLP+ SDES+ TLP- FCP+ CmpltTO- CmpltAbrt- UnxCmplt- RxOF+ MalfTLP+
->                         ECRC- UnsupReq- ACSViol- UncorrIntErr+ BlockedTLP- AtomicOpBlocked- TLPBlockedErr-
->                         PoisonTLPBlocked- DMWrReqBlocked- IDECheck- MisIDETLP- PCRC_CHECK- TLPXlatBlocked-
->                 CESta:  RxErr- BadTLP+ BadDLLP- Rollover- Timeout- AdvNonFatalErr- CorrIntErr- HeaderOF-
->                 CEMsk:  RxErr- BadTLP- BadDLLP- Rollover- Timeout- AdvNonFatalErr+ CorrIntErr- HeaderOF-
->                 AERCap: First Error Pointer: 00, ECRCGenCap+ ECRCGenEn- ECRCChkCap+ ECRCChkEn-
->                         MultHdrRecCap- MultHdrRecEn- TLPPfxPres- HdrLogCap-
->                 HeaderLog: 00000000 00000000 00000000 00000000
->         Capabilities: [200 v1] Physical Resizable BAR
->                 BAR 0: current size: 256MB, supported: 256MB 512MB 1GB 2GB 4GB
->         Capabilities: [270 v1] Secondary PCI Express
->                 LnkCtl3: LnkEquIntrruptEn- PerformEqu-
->                 LaneErrStat: LaneErr at lane: 6
->         Kernel driver in use: amdgpu
->         Kernel modules: radeon, amdgpu
-> 
-> 
 
