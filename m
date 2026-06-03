@@ -2,55 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GMYxNWAjIWpL/gAAu9opvQ
+	id F5/gJpJXIGor1gAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 09:04:00 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 18:34:26 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BDD363D7D3
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 09:04:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49D2D639C63
+	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 18:34:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=xry111.site header.s=default header.b=Jz955fD8;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=JQPU59MI;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=reject) header.from=xry111.site
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C890113CFB;
-	Thu,  4 Jun 2026 07:03:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE68D1120C6;
+	Wed,  3 Jun 2026 16:34:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from xry111.site (xry111.site [89.208.246.23])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4C7111208B
- for <amd-gfx@lists.freedesktop.org>; Wed,  3 Jun 2026 16:22:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xry111.site;
- s=default; t=1780503735;
- bh=wGxgAQwcjweBt1joUDz6N7yOUq13v1bmpae5T1zCRVU=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=Jz955fD8YsMTRnyLCPRjrx2VocqPW6P2sKxDJA/F5zbGSVGa1j7c7oSe3shqwYz/G
- KN/xwJ+z9vwwmtHIlOdtZQlvdta3GDdBx25ToSIFeeNJywqmCvoEOEosSOQFbBbQgE
- bykQbPRO6hvMyRw/ujp/egqZ8CX6bg4Zz4IN+LHM=
-Received: from [127.0.0.1]
- (2607-8700-5500-e873-0000-0000-0000-1001.16clouds.com
- [IPv6:2607:8700:5500:e873::1001])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature ECDSA (secp384r1)
- server-digest SHA384) (Client did not present a certificate)
- (Authenticated sender: xry111@xry111.site)
- by xry111.site (Postfix) with ESMTPSA id 8B92E65987;
- Wed,  3 Jun 2026 12:22:14 -0400 (EDT)
-Message-ID: <56ddd82d81e14d5b14247e2066955bc21223951a.camel@xry111.site>
-Subject: Re: [PATCH v7.0.y 0/8] drm/amd: Backport FPU Guard Move from DML to DC
-From: Xi Ruoyao <xry111@xry111.site>
-To: Sasha Levin <sashal@kernel.org>, stable@vger.kernel.org
-Cc: amd-gfx@lists.freedesktop.org
-Date: Thu, 04 Jun 2026 00:22:12 +0800
-In-Reply-To: <20260603105137.drm-amd-fpu-guard@kernel.org>
-References: <20260527144428.1095001-1-xry111@xry111.site>
- <20260603105137.drm-amd-fpu-guard@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.60.2 
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011030.outbound.protection.outlook.com
+ [40.93.194.30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C9001120C5
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 Jun 2026 16:34:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gs+4fpa/tpEf73Q+3qf87EIj5SfUSABxwb0Aswp2fKL9bi1/KU+QHUIwYjqBkQkxPJ9BRwTjwxD/M30537zBsaOd2rUEioURiklxM0LZUBlGQb8BNJ1t1cBb/L7kXHK8sg3aPKwpUu4z9uRAuKeibJm4If0bnqWETDeoSHDiqIfJ4ObVFtqgHnDFL9wReSc4NxQgkwndh6kJMHSFlT91dURAIzN/XtVbRfeh8BQ2peFmacG9krYaAyNOMNOJnQ+S/H9HoFmEhi4IlgUfls12Hz1lOaprMm5veJzfKvXRvdLG/kfkhyWyJC/C/rr96Z7rHWduU+2sWIu3arvhZ70IZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Jb2fYxZXPB89jMv6ynuRcCTfpsirWSli5bhs3FVbT0c=;
+ b=PDORCVjETnMpwjjeiXX4JMfB6mSXF3bRTINUDY2aZggxF1o72t0kcovecucnlZff6j31lf2WZiS91qVdYnfqCWzUQRmyd1QL+EcWj0EOqtsRTj43b2JKol3Lc53USKW53L/PGdDclKi3cBgfj07iMHggSzWfg6xczgqRlfY0BB3q0uEaGBnOZgz4zf6NJgH1t+xWhhzRZhndKezx3Jq1UVNwYGpFtBKcSILjFAChKtjQzV8IAew1h3dYxdaWhj2rMRxTptsEp/jgdwvlC09BLRWnUQoJC9GNJGrzFYxG2Iny5ykwi0EKCPsP2SA2RO3IUeD7ee3/ja/PN+0Uy8AhsQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Jb2fYxZXPB89jMv6ynuRcCTfpsirWSli5bhs3FVbT0c=;
+ b=JQPU59MIKBIx+OHOwptATc9wxtackWGkj5pB7tf4FMgk+iNfqRIkFzu4AspGoG70rFpMN+pHjzlGwemh2mQpqB6S6IdK0tgN+UTx07AlB3UcFtkkPrV687W0Ioy98WT/IcPYbwrLGniiwY9/z+MPOmoAr1pZhI4G2vlVKiJOwPA=
+Received: from BL1PR13CA0340.namprd13.prod.outlook.com (2603:10b6:208:2c6::15)
+ by DS5PPFEC0C6BDA1.namprd12.prod.outlook.com (2603:10b6:f:fc00::668)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.17; Wed, 3 Jun 2026
+ 16:34:09 +0000
+Received: from BL02EPF0001A107.namprd05.prod.outlook.com
+ (2603:10b6:208:2c6:cafe::6a) by BL1PR13CA0340.outlook.office365.com
+ (2603:10b6:208:2c6::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.7 via Frontend Transport; Wed, 3
+ Jun 2026 16:34:09 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BL02EPF0001A107.mail.protection.outlook.com (10.167.241.136) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.92.5 via Frontend Transport; Wed, 3 Jun 2026 16:34:09 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.41; Wed, 3 Jun 2026 11:34:06 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
+ Deucher" <alexander.deucher@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>
+Subject: [PATCH v9 00/11] drm/amdgpu: Render-node EVENTFD subscriptions
+ (toward KFD/KGD event unification) 
+Date: Wed, 3 Jun 2026 22:03:39 +0530
+Message-ID: <20260603163350.2678309-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 04 Jun 2026 07:03:56 +0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A107:EE_|DS5PPFEC0C6BDA1:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8f75a121-45d7-41f0-329b-08dec18defff
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|36860700016|82310400026|56012099006|18002099003|11063799006;
+X-Microsoft-Antispam-Message-Info: 3MjIQc/okGsQB/04BwyQ481N5e9/Yo5boPeM3DQ4vl0x9d11mCDdS9VOgpEnwWrvTEckw9yVhQA5UedGjHcndPWmn/yvC+KYua6+Kph3HvN47rAovwClZwIUQ5ZooVcOVOIxUYCB6IwfU3bFlGJ8pjp5xch9453NoXxjcW8Ollwopqkub1ygAEiZSPV9VaZLA2kT98btDPDG76KudkzkBftoacrXSZOuPhrkfFVYRauTq8ylWkXE9Ojd7ggsSrEvqV+B4EaTCe9bw2WnunMxsyEUxKbKUsfMBnE2TOO4+CFYDICYqlFVDT0RYAVGJL1xUoyE8RU5738fQMBIeV0QUlYhdF+0f7dVVhaeaB2wOkDdTzAlQI6oLs6SbqUxI3WGh+7aBo6c3DHMStojtB2j7HyzOIO6sCqLYk2xjffDfbex0IVT5C+8/aVViwYbLWMeK+EGDxbfGAYUsSx9is8tfL/l71703oW92bt5fK1wDrhlGq33VJQy9BmH6qP6Lz6P1+aoT1Daw6LE/XMd3HlRMrS0Cj2yhvlIp15V3I1ZNfYwlE60+uPubOQ2zj4JmnILKBWe+yvbwiCwICo7h3IbTapgS+fj9hLVcCwdm3Dgft5o8Z+VGi9SQNMxTUFboZ2K1f51QAc3faV+aI/oJvyffqb7g/FOecp/IFzhUe9DHoYGOOWW3ZgEcbXUvcPWkskSrhrbbepB5B96occu64W7Wg1rmmtzXa5Z75cjmzNGe5A=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(36860700016)(82310400026)(56012099006)(18002099003)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: VBc/ZY/Exl95HJfpaD00btUCTQIlZKWPtCDx3jgbbnjigc0r2krkE+oUqqgF6YuDqiMu9ytwVkqv1gq9nfo09uSbDla4WprzUGwV343nOcKjOnteykZ42GVV9a2J8ZyCOHJXsdHzMqRO+ILx1r1l07wWvDX3Aat15cl2eNxj3BfJx4tdsdwXbGfJiAqrvqOu3D1rci5VFtSdWfgyFPaLDW/MgAkJs1rCRGpo2JS9iZdtROUpCNhvub29OAwH0/8uSIynxEmCvDsbXfqVIhj8tN/45TZUNdsKDbuB8DMu0tx72fFH+FsvmPDqZoNVhckixcQ725SIcogZn8NmoY9l6V5sWOo3YnfaR5T1Mu2E5hMah0n+EDUo55chzdaxUQsrJ4/eSYOjNAusDvbDwmOleNm59kaZsOJAbKuQ3OVILXIJO7h8N5GL7GeKCNBUNU3M
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2026 16:34:09.3747 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f75a121-45d7-41f0-329b-08dec18defff
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A107.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPFEC0C6BDA1
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,53 +118,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[xry111.site,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	SUBJECT_ENDS_SPACES(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[xry111.site:s=default];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:sashal@kernel.org,m:stable@vger.kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[xry111@xry111.site,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[xry111.site:+];
-	RCPT_COUNT_THREE(0.00)[3];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xry111@xry111.site,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:srinivasan.shanmugam@amd.com,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	RCPT_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	HAS_XOIP(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:mid,amd.com:from_mime,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5BDD363D7D3
+X-Rspamd-Queue-Id: 49D2D639C63
 
-On Wed, 2026-06-03 at 11:13 -0400, Sasha Levin wrote:
-> > [PATCH v7.0.y 0/8] drm/amd: Backport FPU Guard Move from DML to DC
-> >=20
-> > As the mainline already contains the move of FPU guard which should
-> > ultimately resolve the issue, it seems better to just backport the
-> > final fix instead of adding the temporary ad-hoc change back.
->=20
-> Thanks for the series. Unfortunately it doesn't apply cleanly to
-> 7.0.y.
+This series is rebased on top of asdn commit:
+1b4722a07966 ("drm/amd/display: Disable FRL and add module param to enable it")
 
-Rebased onto 7.0.11:
-https://lore.kernel.org/stable/20260603153920.249671-1-xry111@xry111.site/
+Testing:
+Compilation tested
+Driver load/unload tested
 
---=20
-Xi Ruoyao <xry111@xry111.site>
+Srinivasan Shanmugam (11):
+  drm/amdgpu: Add render-node EVENTFD manager core
+  drm/amdgpu: Embed eventfd manager in amdgpu_fpriv
+  drm/amdgpu: Wire userq manager to fpriv eventfd manager
+  drm/amdgpu/uapi: Add unified EVENTFD ioctl for render node
+  drm/amdgpu/uapi: Define kernel event types for EVENTFD subscriptions
+  drm/amdgpu: Make EVENTFD subscriptions queue-aware
+  drm/amdgpu: Store user queue qid in amdgpu_usermode_queue
+  drm/amdgpu/gfx11: Signal USERQ EOP eventfds via userq manager
+  drm/amdgpu: Signal QUEUE_RESET eventfds
+  drm/amdgpu: Signal MEMORY_EXCEPTION eventfds
+  drm/amdgpu: Signal SCRATCH eventfds
+
+ drivers/gpu/drm/amd/amdgpu/Makefile         |   3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h         |   8 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c     |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.c | 416 ++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.h |  67 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     |  44 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c   |  13 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h   |   2 +
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c      |  21 +
+ drivers/gpu/drm/amd/amdgpu/gmc_v11_0.c      |  13 +
+ drivers/gpu/drm/amd/amdgpu/mes_userqueue.c  |   7 +
+ include/uapi/drm/amdgpu_drm.h               |  43 ++
+ 12 files changed, 637 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.h
+
+-- 
+2.34.1
+
