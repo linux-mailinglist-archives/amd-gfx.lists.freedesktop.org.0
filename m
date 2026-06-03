@@ -2,107 +2,128 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HUCEE+UrIGqWyAAAu9opvQ
+	id NmvKMS4vIGo5yQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 15:28:05 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 15:42:06 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9B3E6380A9
-	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 15:28:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27ACF6382C8
+	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 15:42:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=CvTZOcVW;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=umD24gZe;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E3F610FE29;
-	Wed,  3 Jun 2026 13:28:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA48410F581;
+	Wed,  3 Jun 2026 13:42:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012050.outbound.protection.outlook.com
- [40.93.195.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9ED3910FE29
- for <amd-gfx@lists.freedesktop.org>; Wed,  3 Jun 2026 13:28:01 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011070.outbound.protection.outlook.com [52.101.52.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6CF410F581
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 Jun 2026 13:42:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ee9SCsoD2mcNcl8yu+utuXO8wArBRU6bLENlAnD3POutMJbebelixP4Ap14ufKn4vKtr0OEcHX67SAocrEpBvFqF5ht3xSBH9W5k9nGF7/tMJ397sQGAXp7uW4sWtHqKSM0aevLGFlTz4lzJqrQtU0woq91tACiHrgqVmO80eJlXrkaCOt4McpBwu46nfY/RzhZHQJYHM/16KD8GvslJKUjCt3Nd5GKeOiiNfvv8eQ0wHf4ayLadqoXA5eW1Q8GnAepVsAMPbBkb5eD+visPqbqTYmJPu7yC8oUVy332CxBluzF2GQikGcNian/7smR/RQtVKIR51AI4UkpKSX9DqA==
+ b=FIW0fpMgG4X+ENxm7WIidnDbXi8j7XCVQBjATCcoI97QC/lqmEQLqSSW2OMnPmdXLlqGTmeXlh5R4ANCtS1pNoRdACZXx6W/7e84Bljj7EetokscRCue4pSkgA9lgOIh1Vu/Hl+/5jNE0D9/iLnq3XkKQex8KrT6GrV6otWFQEibU8kpksazRYPP89UdPDiqFS+T10SxJcSKxIoK//J49r+zmAi10w3c+nOSmdN39aSwsAvqiS4Z/isnc0lCAJjr9FtoGbrZpkpRtOtML2EIpqf/l6zvmMgToRAai8z+AyZtJLNiPLce4F744KfkP5g1ipLxdrTWIOqwGfUSfYvasg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9MxjZ2/9EPBkf2ERrh0EekUhKZcWjniGhnwzYrQpt4E=;
- b=txb8mOi1AhuG8vfe/+XaupTGsan2ftp8eScdTrmwKDrLf9W2TcjsaJRSFSIzZltgvBkGTt+RavEiGexR1Q9cKyf8nsxr/iyY4zVhBgsy3ZcypxEiLJWciEFggdumYxHPHzdfCUqnbcrcRurbFMUg3lap1AkwLJxkn8V0f6shXns4FaERxBwPPtO9m1juPaOM0Pw6RQRfSxRbJXJEQ2sxMIbmLg5/2oMknpZsK+McrL25TLKBmHqERz8cv+XW8Zb2RPbeT2p+HN0x+nVgtp+u47gZH/d3PZ+cET//G9wPm5F7M003ZNHLD40IBbTq3FRRvFBFNY63GtVCGRFESexRDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=BGaoEgyesILbVj20AIzgRa5+YdUgpFxahCTyspTk9mk=;
+ b=TWY/qAWPPREdJ0TCsK0ydpFKq5oCOmscouRHjRKhaV+FGc9MglbTvmy3Z5M//sU9lGiIIYB6ox9fRPDDrSJ7qcau8UQJpLiWQYObGTLrzrtOHzQ84dqMDtlH5KLhikhNY21tnvQQqS4+1A4CpNsEeXRoQocG+DKVmklYiH8Qxz9Olk3G430sgm1zePudCIrKLiX3yPZqI6883rn0BxBz98DO3pYejzADm+Kzn9rU+/mbHcyx4az0V/c93feq7llPgzXUtJc6YfCzvdTqUAS/CEJHXlN5xD+Ep7reaCe9odkjkRhtKKiWyASi00+SNh7AM5yTFZAZ6gJ6KR/WM7epdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9MxjZ2/9EPBkf2ERrh0EekUhKZcWjniGhnwzYrQpt4E=;
- b=CvTZOcVW0OCseCA2WRfS8oivRE6/x9ET+TDPW9mqLymO7wsukYlkor0hCtmtk9Um006Fq5SkK+h1SifKUFykoI3rIMjZSNPpYFKeK4lneXk6GtwrAWYA75luNF+eugUeM6xGtlumuw2PFiu/HHvnq+7FjhR+y5A8TTFoeorqaPw=
-Received: from PH0PR07CA0085.namprd07.prod.outlook.com (2603:10b6:510:f::30)
- by DS7PR12MB8322.namprd12.prod.outlook.com (2603:10b6:8:ed::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.16; Wed, 3 Jun 2026
- 13:27:57 +0000
-Received: from CY4PEPF0000EE30.namprd05.prod.outlook.com
- (2603:10b6:510:f:cafe::c) by PH0PR07CA0085.outlook.office365.com
- (2603:10b6:510:f::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.7 via Frontend Transport; Wed, 3
- Jun 2026 13:27:57 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CY4PEPF0000EE30.mail.protection.outlook.com (10.167.242.36) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.92.5 via Frontend Transport; Wed, 3 Jun 2026 13:27:57 +0000
-Received: from krussell.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 3 Jun
- 2026 08:27:55 -0500
-From: Kent Russell <kent.russell@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Kent Russell <kent.russell@amd.com>
-Subject: [PATCH 3/3] drm/amdkfd: Extend MQDs in HBM to gfx944
-Date: Wed, 3 Jun 2026 09:27:40 -0400
-Message-ID: <20260603132740.180346-3-kent.russell@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260603132740.180346-1-kent.russell@amd.com>
-References: <20260603132740.180346-1-kent.russell@amd.com>
+ bh=BGaoEgyesILbVj20AIzgRa5+YdUgpFxahCTyspTk9mk=;
+ b=umD24gZeW+TCuV2qOXTOlP+007lXyHUQiMH4dvPZKVouLR/0UUkcX+h0I6VjbsPx9XD0yiGkcF+UMsw5nquW1qVIBGpy9h+/UgHI1nNJGRxUv4QIfl1obguESrPvkkTe86bvRVLn1mY0cSqO6kX9jhdj1Euw1zdtWZHxra4HRZA=
+Received: from BL1PR12MB5336.namprd12.prod.outlook.com (2603:10b6:208:314::8)
+ by SJ2PR12MB9192.namprd12.prod.outlook.com (2603:10b6:a03:55d::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Wed, 3 Jun 2026
+ 13:42:00 +0000
+Received: from BL1PR12MB5336.namprd12.prod.outlook.com
+ ([fe80::576a:69b5:929c:8640]) by BL1PR12MB5336.namprd12.prod.outlook.com
+ ([fe80::576a:69b5:929c:8640%4]) with mapi id 15.21.0092.006; Wed, 3 Jun 2026
+ 13:41:59 +0000
+Message-ID: <94fcce68-98bc-49c9-ac44-1235644aa309@amd.com>
+Date: Wed, 3 Jun 2026 09:41:55 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdkfd: add sdma queue counter for gfxv9
+To: Eric Huang <jinhuieric.huang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+References: <20260527175921.192734-1-jinhuieric.huang@amd.com>
+Content-Language: en-US
+From: Eric Huang <jinhuieric.huang@amd.com>
+In-Reply-To: <20260527175921.192734-1-jinhuieric.huang@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YT4PR01CA0021.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:d1::27) To BL1PR12MB5336.namprd12.prod.outlook.com
+ (2603:10b6:208:314::8)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE30:EE_|DS7PR12MB8322:EE_
-X-MS-Office365-Filtering-Correlation-Id: b94bd80c-b879-40ca-2bef-08dec173ecd1
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5336:EE_|SJ2PR12MB9192:EE_
+X-MS-Office365-Filtering-Correlation-Id: 80726fcb-c4ea-4842-e03b-08dec175e2b2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|1800799024|36860700016|22082099003|18002099003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: Ziy87Tv9IjxEOI9zCXKMzDO+x6i/9dZu+nZCLxeV3d1wS3z9NqR9xr3PLi0wSOBvIjTqF8JYB9QMAEdomMfxOSssgzcJ0C34zniPt1YVbMUtv6Ysy+E4NajupTKaiTNdN7myLlrXLkdfVm0qxzXPCHh9uOhLKH1p0foloygpqx5k+G1PmFA5VnaHK60fgokQA1BNitwiPrwxeeAhcRRZH0XYvLZiZbNC3Y2jkU3dsifthnY9hX2o6VG4+yGtBgRPlWY+Sh1wzEHBFN45959aNDxSaoTHMoMEp7PBDWa2k4xnKAxUMHVUjFcM+RJnvIsKe/SjXCED/WTJnw7j2p4//YTB/tE2dX/Nu4S1JkCm7N2No5lh/ojt2hwKEdGe3AyncespsP3ge7dfEQkvH2KBUnEXc0E4UeTzq9uELA3HUwaIR7s4XQTh7bnakziIVQJ4NwmmA/mBO8vMwr/GIewpRsURlS+d/fNfn53to4TjG6IjHb6sJn3y+E12uKEFj1xiFHaY6CPxMSbaxMbSqWNlJIDl76LN9b3J9yc0YmY1K5uOEl/9M3bVHn0f0nPU5o+xEfBHF6TRYsbNkfctvMAVh+Ss1SWow8t/sXF1ID/tMuvXyXGW5+pk98cgHtLTRlVpBp0lAjhgG8YEKQDzR7dpKr+KGoHPDq58hSCdYQMuBx9+2q8Vc+ChRboAIH3GWrUjV489cZsi2ytkUMlds9CLgsPulpGTTpBm8IRxy/4FHKk=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(1800799024)(36860700016)(22082099003)(18002099003)(56012099006)(11063799006);
+ ARA:13230040|1800799024|376014|366016|11063799006|18002099003|22082099003|56012099006;
+X-Microsoft-Antispam-Message-Info: ni7+ncII+FYb5NSzaPmc98pkoLgfhs59cqJ4KUI7/8RWDVRoMIl7KZEicR9013bAhxq9XEwxGNQAtthH+S02+dAiAn3KTkBKZT11uLpQ3zJZenAQIOZ7t/gahtaLAxfBtO3HPJIVHr9KdXTpjQb/Ue7kmEsyEDaHjRox+97cD7F2JcxFLjVWBIP9PPpwHUMf+c+KZJopivGb0wUhtJhQB7FYzRzmcihDTdNgPMs6H47c/K2ZFIUEqYNeV/Gq+IvjvVYJLS3LJJioH8oZi6G3wEgL1ncgw2Qy+GkYGSrXD7cfgJnd7WdWffRMJQ6IJm3WSEl631aP9GAiNYDkErNa8TF8eATXeTs25K5mpARjpyDB4qaJN6HWZrlG1bxS9o7crQTvOnknXhTtw19xKhcom+AETER8Oj9j50wox3ta7d+7lFAdYJdOQvbfJgD+MWQlf3umkrJes4nfRoz+2vEvITqywfar24qYgY/l3JpcvpC3oM04GCIzePNwl9O25twXexIb/fcTrGa0glGn5pDbJV5m3H9nxg+hofWYtsM0qBJh5pKLObNREFUl805K9X+9XoVuiM1MopwUV7csWhUUQUZngoYLk1ZMRY756G8+HDbIrNgTcZaOQQbMAMlXnROusG1YCtBZhsWI2oHCWD6G+bsNnZLHHJClCunw2QEYMSuP3sB8Xo0e97Ieh2+R9wHu
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5336.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(11063799006)(18002099003)(22082099003)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: J6y3TiUebyoKtjSxa4cYUJ8UEoaWzdizntg5xC1j0S9CUVPPOom3vOqrbGshfRfVXJhOlk1/jIl35ymJJuCVusxpNTfSTsTdFvqB5C3ErnyqEILCbufFjqJ5Cj0BT1msYstA9a83bwD/BgsJvxWFqIn7D+DE/cSoYoNkCUqKFrrfN22rG1VpyiqmGyYPZ+A3L2Y3o2phSlpF5vMkhO4M8mXqWHo0STV77lIjYtrpw36/6PRnGkz12yZnSypEanTqHMnIoBaXdahK3e95jGR83g49pUhIVguizc7jUItLz4rvKtGih570dQhcjQD22QqZsfvF6y2vp4OivDhCRGr5vDx3EvueVrTd6x/LXUxtBZAsIeMKXaN5zpV3in1uQWWE092SjP4ThGM2pI0UcH6xJq81oDqYMztG2mWffoJCwvj08vuOmdimmnKV8P2w4IyP
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NHpCL3drTTFCd1hpTmJDT2FvekRRelRyT0dvOEwvMG1ReHozVDI1d3pHUC9C?=
+ =?utf-8?B?SlBOSU96NGcvVHJEWjR0NVBwWHJibk5IOWZ6c1hPcFhYbUxUckhVZmJlR2Iy?=
+ =?utf-8?B?TTBqUW5za2J0OTREVlRyaHViSU5KbHNiM1gxRldlNDMySURjNmFuYXl3M1Na?=
+ =?utf-8?B?TnY0UUJ3RWp5a3pFQ2VRanZlSnZIeVRVM2YrOENkN1pnOC9KTDJ0b1RQQ00y?=
+ =?utf-8?B?VFVTNXFqbmgzT2ZqMUpjMkNZa3pzUGxsczVEVklJNEdWK1lWMmM5NGJTdk4w?=
+ =?utf-8?B?TGk0OHpDbXB6UVZZQ3FqRkdqNDVFRzcwZWxjWktzSUtybERYQzBmWklVb2gz?=
+ =?utf-8?B?RXF3dVN5V0swQUdwQWs5NisyMDFZSStiV0FVWUN6RTRVVlpBOHhXcjhPZGQx?=
+ =?utf-8?B?WmRtQ1Axd28rb1FXZ1NGZnFSUGpqOFcwenhJOU5xcllNMmp4NEc4dXRnOEsy?=
+ =?utf-8?B?a0dOckZaTFRXNG4vQ09xYy9YWE4ybTAxcGxCV2pubmxzYXBoQ0s3a0VvcE1i?=
+ =?utf-8?B?aHdQeDc3aVd3ZjlJT1R1NXptZ0tDcUpib3R5VXJiRHhzUGNYcDYxdXhYVDRD?=
+ =?utf-8?B?T3dxM3Z2ME91b3pBcitERzNDdVROOUNQZmsxdUFkdGtCMFhCamo4Q1B2cGNF?=
+ =?utf-8?B?cFRHeG8wOW82a0sxRmpFQnYrVWEzT0o5blFSQVhoZFlRT2w3anR2NTFLUm9P?=
+ =?utf-8?B?dUprSW5LREhjNGtJTEc3czlpbU5CZnlIWlVDYmEzc09uUHpveFJxQ1R5K3BK?=
+ =?utf-8?B?VENWbVRMT2NvaVdBMDRBVEd5bndHQ041N3pLckJjeUdwTmtWd0tqeFRtTmFn?=
+ =?utf-8?B?WXdxRHdFNXo3SjBTbmR1Z05uM3FYRjkvT1h4L1h6M08zNE5KK2xseXdWM3I1?=
+ =?utf-8?B?c1lyaXdFN1h4TTk5aWlpcUZLRGN5M21DZDRHRkROUUhiNEZjeUxkSVZmVEE4?=
+ =?utf-8?B?ajMvdXAvdHBEVEZudGFSOTJLRjF6NDIyeDBUZGQxdGdwNCtFM0JzM1doWTZ4?=
+ =?utf-8?B?R25TcjYyUEZxbUhnT2t3OUFiem5KaEdVbWNITVRUcHNlQ0JodThFUlE3dTFE?=
+ =?utf-8?B?U3lNZTZjSGY5ZG11cjR5TU4xU3YxRVpNN0hMOURid0drcWdrY0xOMzAyMG5w?=
+ =?utf-8?B?ZlJxaGMxNE1JQ21lRU15L2ZseEh1bHNxZ215T3ZxZDU3a3I1Q3VOREV2WS9O?=
+ =?utf-8?B?QklUSmd3eW9aT3d6czU3TE1JQ3k5dnlDOGViRExkU1pheGxlV3B6YzEwM2NK?=
+ =?utf-8?B?MGxqL3ROVEFhRFZJMmM5WWpyWjJKL2FEUDNTR1Z1SGJ3bU9jb2dNaUtablNJ?=
+ =?utf-8?B?UTlyQ0sweVR6dG5SRXJDbHJ3cjdheDhJWjdXWWtDYlhTMEExNG1vdXNnOWJS?=
+ =?utf-8?B?VGtmbjVKaWl4dmMvZU4xUTBDaXhVNTVXS1NYT1pwdXpZUUMxaldIaTJ4bzJZ?=
+ =?utf-8?B?QkVGKzlpTEJ6WDRQOC90MlVnenNEMHlKaHBwbHVXdmg5MVdOWGh1Qm1UR3Rm?=
+ =?utf-8?B?cWdhSHpMalJtcS9memhuUDVZL0RBVUFLVHhLSU9CRGxoejNucGdIQ3czODly?=
+ =?utf-8?B?eWplRmc2dE5haFE1d1lzcDA4ZTdROXdVK2xJUUVCQkVaNTQ0UkVlNGdyTGpJ?=
+ =?utf-8?B?dTRNZHI5WkFKYXNjK0E3MzZNNnYvUlA3eWRCN1FKL29QdjFsd0pGUkovZWJV?=
+ =?utf-8?B?dUROQ1oyaEVYNnJYV0ZQRTJjcS8vTTdGZE1GbFllSmZmRDZpMXFsVklzVXVP?=
+ =?utf-8?B?MGt2YzBnREQ1WUM4aDUxZHNmb0pCWktkbERXWERMeTNDaDN0aFZsbVJXY1cz?=
+ =?utf-8?B?aTYzUzBBMmIvNldxVElEQis3b0ZoOFZPcFkySHczSUUwdW9EWUZEK21vWmhF?=
+ =?utf-8?B?YnZhdFU3a2FYMWVQMU9Fa2dQMUpKeXEyeHB5M25uZVNOUUpJellpT2RlSHdv?=
+ =?utf-8?B?a2tNUE85ck5iNGsyR2tQd3h6R3VmMG9IbzR6TXZ0UDJCL3VFcEd6YTAvUTNC?=
+ =?utf-8?B?cW9zeEtBblJuVzNZK212TjVXUEZiMGJjSW5BZUozZE1qM2ErSTFWMElOZ1Fi?=
+ =?utf-8?B?c0NnamFIdU0waVhid3Q5M3JsdEZSWU5scHFibU9MZ0t0QTBHNlVVV0Y3SllR?=
+ =?utf-8?B?STFGUzhHdENpWkVRTnQrTGxLYVFTWUVtV0lzWVh3azIzQ05BbGdHeC9vQ2Fl?=
+ =?utf-8?B?SldDVUVQNkZ6VFR3WTc4Y0g1dkh1eUxXcUhjSFcxWUpHeXNnQVNKRm5iR1Rq?=
+ =?utf-8?B?QjRkM3lZQnUwWUZjOC9mT3F1WHdiNkcxRFZLTWZKMXEzU3ovdlkzR3d2TDhw?=
+ =?utf-8?B?N0Q1TllqMWpWSit1YmdGUHNIRVFYUmhuL0x5Vm5wUS8rYkFZRzA4dz09?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2026 13:27:57.0834 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b94bd80c-b879-40ca-2bef-08dec173ecd1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 80726fcb-c4ea-4842-e03b-08dec175e2b2
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5336.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2026 13:41:59.7647 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE30.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8322
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rKzTgGDmuQh1+Hdj9LUnvFzZd6o9NC5uDENJVj6pRuZ5D8dvXnR5iLaBg7RzdVfk8TZETHICaJE3Sq0yY8xr+A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9192
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,57 +138,230 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[kent.russell@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:jinhuieric.huang@amd.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[jinhuieric.huang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jinhuieric.huang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A9B3E6380A9
+X-Rspamd-Queue-Id: 27ACF6382C8
 
-This has proven stable and performant on gfx943 and gfx950, so extend
-it to gfx944 as well
+Ping ...
 
-Signed-off-by: Kent Russell <kent.russell@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
-index 5970a1694286..b0f83f63e010 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.c
-@@ -324,6 +324,7 @@ bool mqd_on_vram(struct amdgpu_device *adev)
- 	switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
- 	case IP_VERSION(9, 4, 2):
- 	case IP_VERSION(9, 4, 3):
-+	case IP_VERSION(9, 4, 4):
- 	case IP_VERSION(9, 5, 0):
- 		return true;
- 	default:
--- 
-2.43.0
+On 2026-05-27 13:59, Eric Huang wrote:
+> since gfx 9.4.3 HW is calculating accumulated activity counter
+> per-queue in register sdmax_rlcx_utilization_hi/lo, CPFW adds it in
+> sdma MQD for save/restore, KFD will read it from there. gfx 9.4.2
+> will still keep the way to read from memory at rptr+8.
+>
+> Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
+> ---
+>   .../drm/amd/amdkfd/kfd_device_queue_manager.c | 26 +++++++++++++------
+>   drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h  |  1 +
+>   .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c   | 18 +++++++++++++
+>   drivers/gpu/drm/amd/amdkfd/kfd_process.c      | 15 ++++++++++-
+>   drivers/gpu/drm/amd/include/v9_structs.h      |  4 +--
+>   5 files changed, 53 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> index 4c2378bbdc95..1a69091aa695 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+> @@ -1064,8 +1064,14 @@ static int destroy_queue_nocpsch(struct device_queue_manager *dqm,
+>   	/* Get the SDMA queue stats */
+>   	if ((q->properties.type == KFD_QUEUE_TYPE_SDMA) ||
+>   	    (q->properties.type == KFD_QUEUE_TYPE_SDMA_XGMI)) {
+> -		retval = read_sdma_queue_counter((uint64_t __user *)q->properties.read_ptr,
+> -							&sdma_val);
+> +		if (KFD_GC_VERSION(dqm->dev) <= IP_VERSION(9, 4, 2))
+> +			retval = read_sdma_queue_counter((uint64_t __user *)q->properties.read_ptr,
+> +							 &sdma_val);
+> +		else
+> +			retval = mqd_mgr->read_sdma_counter ?
+> +				 mqd_mgr->read_sdma_counter(q->mqd, &sdma_val) :
+> +				 0;
+> +
+>   		if (retval)
+>   			dev_err(dev, "Failed to read SDMA queue counter for queue: %d\n",
+>   				q->properties.queue_id);
+> @@ -2689,7 +2695,8 @@ static int destroy_queue_cpsch(struct device_queue_manager *dqm,
+>   				struct queue *q)
+>   {
+>   	int retval;
+> -	struct mqd_manager *mqd_mgr;
+> +	struct mqd_manager *mqd_mgr =
+> +		dqm->mqd_mgrs[get_mqd_type_from_queue_type(q->properties.type)];
+>   	uint64_t sdma_val = 0;
+>   	struct kfd_process_device *pdd = qpd_to_pdd(qpd);
+>   	struct device *dev = dqm->dev->adev->dev;
+> @@ -2697,8 +2704,14 @@ static int destroy_queue_cpsch(struct device_queue_manager *dqm,
+>   	/* Get the SDMA queue stats */
+>   	if ((q->properties.type == KFD_QUEUE_TYPE_SDMA) ||
+>   	    (q->properties.type == KFD_QUEUE_TYPE_SDMA_XGMI)) {
+> -		retval = read_sdma_queue_counter((uint64_t __user *)q->properties.read_ptr,
+> -							&sdma_val);
+> +		if (KFD_GC_VERSION(dqm->dev) <= IP_VERSION(9, 4, 2))
+> +			retval = read_sdma_queue_counter((uint64_t __user *)q->properties.read_ptr,
+> +					                 &sdma_val);
+> +		else
+> +			retval = mqd_mgr->read_sdma_counter ?
+> +				 mqd_mgr->read_sdma_counter(q->mqd, &sdma_val) :
+> +				 0;
+> +
+>   		if (retval)
+>   			dev_err(dev, "Failed to read SDMA queue counter for queue: %d\n",
+>   				q->properties.queue_id);
+> @@ -2724,9 +2737,6 @@ static int destroy_queue_cpsch(struct device_queue_manager *dqm,
+>   
+>   	}
+>   
+> -	mqd_mgr = dqm->mqd_mgrs[get_mqd_type_from_queue_type(
+> -			q->properties.type)];
+> -
+>   	deallocate_doorbell(qpd, q);
+>   
+>   	if ((q->properties.type == KFD_QUEUE_TYPE_SDMA) ||
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
+> index 06ca6235ff1b..7d3b801ea6e3 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
+> @@ -123,6 +123,7 @@ struct mqd_manager {
+>   	bool (*check_preemption_failed)(struct mqd_manager *mm, void *mqd);
+>   	uint64_t (*mqd_stride)(struct mqd_manager *mm,
+>   				struct queue_properties *p);
+> +	int (*read_sdma_counter)(void *mqd, uint64_t *val);
+>   
+>   	struct mutex	mqd_mutex;
+>   	struct kfd_node	*dev;
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+> index a04102fd2fb7..fe3a676d734f 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
+> @@ -959,6 +959,23 @@ static int get_wave_state_v9_4_3(struct mqd_manager *mm, void *mqd,
+>   	return err;
+>   }
+>   
+> +static int read_sdma_counter(void *mqd, uint64_t *val)
+> +{
+> +	struct v9_sdma_mqd *m = get_sdma_mqd(mqd);
+> +
+> +	if (!m)
+> +		return -EINVAL;
+> +
+> +	/* Since GC 9.4.3 sdma queue activity accumulated
+> +	 * counter is saved/restored in MQD by CPFW when
+> +	 * queue is unmapped/mapped.
+> +	 */
+> +	*val = ((uint64_t)m->sdmax_rlcx_utilization_hi << 32) |
+> +		m->sdmax_rlcx_utilization_lo;
+> +
+> +	return 0;
+> +}
+> +
+>   #if defined(CONFIG_DEBUG_FS)
+>   
+>   static int debugfs_show_mqd(struct seq_file *m, void *data)
+> @@ -1072,6 +1089,7 @@ struct mqd_manager *mqd_manager_init_v9(enum KFD_MQD_TYPE type,
+>   		mqd->restore_mqd = restore_mqd_sdma;
+>   		mqd->mqd_size = sizeof(struct v9_sdma_mqd);
+>   		mqd->mqd_stride = kfd_mqd_stride;
+> +		mqd->read_sdma_counter = read_sdma_counter;
+>   #if defined(CONFIG_DEBUG_FS)
+>   		mqd->debugfs_show_mqd = debugfs_show_mqd_sdma;
+>   #endif
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> index 419bb8086ccd..270f253213e4 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+> @@ -91,6 +91,7 @@ struct kfd_sdma_activity_handler_workarea {
+>   
+>   struct temp_sdma_queue_list {
+>   	uint64_t __user *rptr;
+> +	void *mqd;
+>   	uint64_t sdma_val;
+>   	unsigned int queue_id;
+>   	struct list_head list;
+> @@ -108,6 +109,7 @@ static void kfd_sdma_activity_worker(struct work_struct *work)
+>   	int ret = 0;
+>   	struct temp_sdma_queue_list sdma_q_list;
+>   	struct temp_sdma_queue_list *sdma_q, *next;
+> +	struct mqd_manager *mqd_mgr;
+>   
+>   	workarea = container_of(work, struct kfd_sdma_activity_handler_workarea,
+>   				sdma_activity_work);
+> @@ -119,6 +121,9 @@ static void kfd_sdma_activity_worker(struct work_struct *work)
+>   	qpd = &pdd->qpd;
+>   	if (!dqm || !qpd)
+>   		return;
+> +
+> +	mqd_mgr = dqm->mqd_mgrs[KFD_MQD_TYPE_SDMA];
+> +
+>   	/*
+>   	 * Total SDMA activity is current SDMA activity + past SDMA activity
+>   	 * Past SDMA count is stored in pdd.
+> @@ -161,6 +166,7 @@ static void kfd_sdma_activity_worker(struct work_struct *work)
+>   
+>   		INIT_LIST_HEAD(&sdma_q->list);
+>   		sdma_q->rptr = (uint64_t __user *)q->properties.read_ptr;
+> +		sdma_q->mqd = q->mqd;
+>   		sdma_q->queue_id = q->properties.queue_id;
+>   		list_add_tail(&sdma_q->list, &sdma_q_list.list);
+>   	}
+> @@ -189,7 +195,14 @@ static void kfd_sdma_activity_worker(struct work_struct *work)
+>   
+>   	list_for_each_entry(sdma_q, &sdma_q_list.list, list) {
+>   		val = 0;
+> -		ret = read_sdma_queue_counter(sdma_q->rptr, &val);
+> +
+> +		if ((KFD_GC_VERSION(dqm->dev) <= IP_VERSION(9, 4, 2)))
+> +			ret = read_sdma_queue_counter(sdma_q->rptr, &val);
+> +		else
+> +			ret = mqd_mgr->read_sdma_counter ?
+> +			      mqd_mgr->read_sdma_counter(sdma_q->mqd, &val) :
+> +			      0;
+> +
+>   		if (ret) {
+>   			pr_debug("Failed to read SDMA queue active counter for queue id: %d",
+>   				 sdma_q->queue_id);
+> diff --git a/drivers/gpu/drm/amd/include/v9_structs.h b/drivers/gpu/drm/amd/include/v9_structs.h
+> index a2f81b9c38af..e0d387f08576 100644
+> --- a/drivers/gpu/drm/amd/include/v9_structs.h
+> +++ b/drivers/gpu/drm/amd/include/v9_structs.h
+> @@ -69,8 +69,8 @@ struct v9_sdma_mqd {
+>   	uint32_t sdmax_rlcx_midcmd_cntl;
+>   	uint32_t reserved_42;
+>   	uint32_t reserved_43;
+> -	uint32_t reserved_44;
+> -	uint32_t reserved_45;
+> +	uint32_t sdmax_rlcx_utilization_lo;
+> +	uint32_t sdmax_rlcx_utilization_hi;
+>   	uint32_t reserved_46;
+>   	uint32_t reserved_47;
+>   	uint32_t reserved_48;
 
