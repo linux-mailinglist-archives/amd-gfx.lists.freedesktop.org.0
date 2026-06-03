@@ -2,52 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yck1A9lEIGp2zgAAu9opvQ
+	id pSu2D18jIWpE/gAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 17:14:33 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 09:03:59 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A15763901F
-	for <lists+amd-gfx@lfdr.de>; Wed, 03 Jun 2026 17:14:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C611C63D7C3
+	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 09:03:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=LPTkBfu9;
+	dkim=pass header.d=xry111.site header.s=default header.b=lsa2IJO8;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=kernel.org
+	dmarc=pass (policy=reject) header.from=xry111.site
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03FB510E113;
-	Wed,  3 Jun 2026 15:14:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D90DD112719;
+	Thu,  4 Jun 2026 07:03:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A3AC10FFB5
- for <amd-gfx@lists.freedesktop.org>; Wed,  3 Jun 2026 15:14:29 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id B6D316021A;
- Wed,  3 Jun 2026 15:14:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8B6F1F00899;
- Wed,  3 Jun 2026 15:14:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1780499668;
- bh=Aq028AynYYctYnzfZbArV/GKcGfBvb5dUmYBpDOGCSM=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=LPTkBfu9XhTQZh4UVyuDOm1BBIW9y2slYIXZ8q05Z8QCMNc7TTinn0cPSyjjwexbJ
- az2fCIWYK5lOE/gr6+Aw9kE180vyo+nf4Pn/UZb7BZTPUAbKM7w8l72Uju6AYSXAme
- KYsxgmiw7qH9tO56ZLg6Yzkg5XCegLiAZhP7KaHFeZ88V39HlZhWKnw8zPd9ZZGbuC
- XYlkqe6hOGikd+eCfE+jH88TplH+/lmTSVqRbS6JFchBtKy+kSI69F8cbF6IGuZsMY
- N3rBqN+bsuq9Vin/ZN5WOwaC51KyDT3ZMP5U/inkZ2o+OuO7piq8wIZiaTj6VW/VvV
- Wfxj3ptOQbB8A==
-From: Sasha Levin <sashal@kernel.org>
+Received: from xry111.site (xry111.site [89.208.246.23])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52FD9112083
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 Jun 2026 15:40:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xry111.site;
+ s=default; t=1780501204;
+ bh=ZKrR5aUhBaKbID3EWhhs18EUWgAXM/AzlaE4P5/gR78=;
+ h=From:To:Cc:Subject:Date:From;
+ b=lsa2IJO8SDcw7nN5cugAw87ZOnn3CSsS+lxOi+x2pwS1TsLPevGJ7tBU/CteaMO62
+ eF72ZebqLApbYrl9xB/3o7w7PhThl+w4ec8O762/v3lUdwFTcan8ZRbWWKB+l98AEr
+ dWpLWDHMuNtVh8c/hNL9MIz0frFcW7DGpDRf2s0c=
+Received: from stargazer (unknown
+ [IPv6:2408:824e:307:6541:546a:40ae:5851:c0ef])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (secp384r1) server-digest SHA384)
+ (Client did not present a certificate)
+ (Authenticated sender: xry111@xry111.site)
+ by xry111.site (Postfix) with ESMTPSA id 1B18765987;
+ Wed,  3 Jun 2026 11:40:01 -0400 (EDT)
+From: Xi Ruoyao <xry111@xry111.site>
 To: stable@vger.kernel.org
 Cc: Sasha Levin <sashal@kernel.org>, amd-gfx@lists.freedesktop.org,
  Xi Ruoyao <xry111@xry111.site>
-Subject: Re: [PATCH v7.0.y 0/8] drm/amd: Backport FPU Guard Move from DML to DC
-Date: Wed,  3 Jun 2026 11:13:54 -0400
-Message-ID: <20260603105137.drm-amd-fpu-guard@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260527144428.1095001-1-xry111@xry111.site>
-References: <20260527144428.1095001-1-xry111@xry111.site>
+Subject: [PATCH v7.0.y v2 0/8] drm/amd: Backport FPU Guard Move from DML to DC
+Date: Wed,  3 Jun 2026 23:39:12 +0800
+Message-ID: <20260603153920.249671-1-xry111@xry111.site>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 04 Jun 2026 07:03:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,49 +61,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[xry111.site,reject];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[xry111.site:s=default];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:stable@vger.kernel.org,m:sashal@kernel.org,m:xry111@xry111.site,s:lists@lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[xry111@xry111.site,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[sashal@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:stable@vger.kernel.org,m:sashal@kernel.org,m:xry111@xry111.site,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[xry111.site:+];
 	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[sashal@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[xry111@xry111.site,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,xry111.site:mid,xry111.site:from_mime,xry111.site:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7A15763901F
+X-Rspamd-Queue-Id: C611C63D7C3
 
-> [PATCH v7.0.y 0/8] drm/amd: Backport FPU Guard Move from DML to DC
->
-> As the mainline already contains the move of FPU guard which should
-> ultimately resolve the issue, it seems better to just backport the
-> final fix instead of adding the temporary ad-hoc change back.
+The change from my commit c97a7dccb3ed ("drm/amd/display/dml2: Guard
+dml21_map_dc_state_into_dml_display_cfg with DC_FP_START") was dropped
+in the commit e6a8a000cfe6 ("drm/amd/display: Rename dml2 to dml2_0
+folder") for some reason I don't know, so on 6.19.y and 7.0.y the
+original issue (9070XT fails to work on LoongArch) has regressed.
 
-Thanks for the series. Unfortunately it doesn't apply cleanly to 7.0.y.
+As I've mentioned in my commit message, it was only an incomplete and
+temporary solution.  As the mainline already contains the move of FPU
+guard which should ultimately resolve the issue, it seems better to
+just backport the final fix instead of adding the temporary ad-hoc
+change back.
+
+Tested with 9070XT (where the original issue manifested) and 5500XT.
+
+Changes since v1: rebase onto 7.0.11.
+
+Ovidiu Bunea (1):
+  drm/amd/display: Add min clock init for DML21 mode programming
+
+Rafal Ostrowski (4):
+  drm/amd/display: Move FPU Guards From DML To DC - Part 1
+  drm/amd/display: Move FPU Guards From DML To DC - Part 2
+  drm/amd/display: Move FPU Guards From DML To DC - Part 3
+  drm/amd/display: Move dml2_destroy to non-FPU compilation unit
+
+Srinivasan Shanmugam (1):
+  drm/amd/display: Fix dc_is_fp_enabled name mismatch
+
+Wayne Lin (1):
+  drm/amd/display: Fix fpu guard warning
+
+Xi Ruoyao (1):
+  drm/amd/display: Backport dml21 DC_RUN_WITH_PREEMPTION_ENABLED
+    addition from DC 3.2.373
+
+ .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.c    |   25 +-
+ .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.h    |   17 +-
+ .../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c  |    2 -
+ .../display/dc/clk_mgr/dcn32/dcn32_clk_mgr.c  |    2 -
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |    5 +-
+ .../gpu/drm/amd/display/dc/core/dc_state.c    |   75 +-
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   |   15 +-
+ .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.c  |    2 +-
+ .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.h  |    2 +-
+ .../drm/amd/display/dc/dml/dcn31/dcn31_fpu.c  |    6 +-
+ .../drm/amd/display/dc/dml/dcn31/dcn31_fpu.h  |    6 +-
+ .../gpu/drm/amd/display/dc/dml2_0/Makefile    |   72 +-
+ .../dml2_0/dml21/dml21_translation_helper.c   |   25 +
+ .../dml2_0/dml21/dml21_translation_helper.h   |    1 +
+ .../display/dc/dml2_0/dml21/dml21_wrapper.c   |  391 +--
+ .../display/dc/dml2_0/dml21/dml21_wrapper.h   |   30 -
+ .../dc/dml2_0/dml21/dml21_wrapper_fpu.c       |  379 +++
+ .../dc/dml2_0/dml21/dml21_wrapper_fpu.h       |   60 +
+ .../drm/amd/display/dc/dml2_0/dml2_wrapper.c  |   34 +-
+ .../amd/display/dc/dml2_0/dml2_wrapper_fpu.c  |   19 +-
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c |    4 +-
+ .../dc/resource/dcn21/dcn21_resource.c        |    7 +
+ .../dc/resource/dcn31/dcn31_resource.c        |    7 +
+ .../dc/resource/dcn315/dcn315_resource.c      |    7 +
+ .../dc/resource/dcn316/dcn316_resource.c      |    7 +
+ .../dc/resource/dcn35/dcn35_resource.c        |   10 +-
+ .../dc/resource/dcn35/dcn35_resource.h        |    1 +
+ .../dc/resource/dcn351/dcn351_resource.c      |   10 +-
+ .../dc/resource/dcn36/dcn36_resource.c        |    4 +-
+ .../dc/resource/dcn401/dcn401_resource.c      |   30 +-
+ .../dc/resource/dcn42/dcn42_resource.c        | 2355 +++++++++++++++++
+ 31 files changed, 3076 insertions(+), 534 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper_fpu.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml2_0/dml21/dml21_wrapper_fpu.h
+ create mode 100644 drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
 
 -- 
-Thanks,
-Sasha
+2.54.0
+
