@@ -2,70 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XDBzC+KRIWp5JAEAu9opvQ
+	id lLRIN92RIWpxJAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 16:55:30 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 16:55:25 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9FB8641213
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 16:55:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FC696411FF
+	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 16:55:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b="M7V3/MVb";
+	dkim=pass header.d=amd.com header.s=selector1 header.b="wR/p5GEE";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3089112849;
-	Thu,  4 Jun 2026 14:55:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 036E9112842;
+	Thu,  4 Jun 2026 14:55:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010041.outbound.protection.outlook.com
- [40.93.198.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C98CB112849
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2026 14:55:25 +0000 (UTC)
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013051.outbound.protection.outlook.com
+ [40.107.201.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7A0C112840
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2026 14:55:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xgBycfPqUYAby9qlJ2VO01aLbXKrjJZ+cZpRjbA31UzZ+jvxl6i7njJesX6xUID0CIeYfWPNNWajKbroHGHkNfbTUlO6ufkth6QzjbNYjHgBP83rnOl8aKy45xENoPAHUEKCR8NGzK7Pz7JDk0LFbho8CvlIQbbBJ1UdeySue6965soZl1SuYBGzCY0t4abqKi8juFXpDo4BZO2zKZw7CFIt4DFPDOoaqPUcS0ibiEQ7WYkVQEeewOusGOrWSiF7j7LG4zR+zVkdqpAtXyMPk/XvHCFMRkQcpEw7rh489qKnbO0fut0JalVpLVCF4+Ca4LwKtrgYRHaN4or483FU2A==
+ b=qxsyygSFBiv9AkXqLu57gyAQewMefYx3p1OL4q074vsOP/bpKzEl3/wX3Qtu392iOYfzBpSdIV6Bcd6BcS6EWVfP4i8QkVo3syJbuHzTgi4gpjerSrDcjS/4ad8dj0UgYYAWEYpwajlKKL1QJ9BGMnY8o3Jll1xrtMk2eOkQA+uFmegDARCc1+AtVaNyoJpPj9tiYrNpoj7Q3wpwERN9XnXNgDoOPCjbkJg4TLCW98sa6pKaDwIwDuiSSdh5no3hd6hN1kePjL5CUwunS8sLNiAVzOPCXJvjt3QrkCD1UKz9hBAgjBlAbDgTHuCgqL7ERd6CJw+qeq/nTwddsm047A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VGsIMXV2+ADSzM0giwFJ6rlI/3Tz1HQTziQHpOQQNv8=;
- b=hBNl1rzlDGkI0wpcDxxbG+oomH0/cztt9E+/qG+S2LG0M4UZH1HGqiO2EcVC5wdy0fKmxGsrB81k+41lj5BquBHJdtvZ2Mtc5QC6IwqTpYHivLs86V40sGt//uGmTuKEBBdx51vAXgK8DrWDBT6j48r0ovc3Z3r+TUJKMXUbV6d/ErVeXRK0lEqGGh2oiEPu8/AyApFTNK+baG6dwE0loT50/nD53Nn7sOcRWD2O7iz39IfwUSKesSNxUFj8zrzvWbbijW/uCVtWwxcOqge1zryLsIMBYrqaK6Ei/4jdRpQOuicYHvcM6jDMDBrDUWIWyJUbg+yCFU4XEaAkKzeQSg==
+ bh=iQSV0Hbi9mMS7V7jhCZMRx7w5kUfCAVCt0R6M1h63JA=;
+ b=of6A7jJUcKvvAgtP/SF6DCBr20Mmi+UhNdTrvCILg8JxY20ArUJkmOIPzzU2LsAI3gOdOAWZgTSvjigQXzfrBxkePjLmwjEU0AzZOL8Bgsdq5g5hDuVlqPplKKmczbjsbbDeiaCYLhtj6JEDKEcviMCCJd1btwBdFiMzk8umGxpF/TE0Dkz1J7b1Cx9k5zTJee1m3sas1cLytLMvxPKerSI6a/BXnzZnRVzLsAgBkXmtM8ZxHwaxBnzx6zt6vHgPXAq7Pl38kGqtSc6CHcIILQUFYNloSQPWJbFt6aZoGX6OZE/CBAA/jYn4tlf/c9+RSXjk0pCrrC5cywxxtW/dzQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VGsIMXV2+ADSzM0giwFJ6rlI/3Tz1HQTziQHpOQQNv8=;
- b=M7V3/MVb5iDh9fKNUAcunObJZO0CnzywUujYWvUPkaSPxHydBt+tY8AgNjLFj9HAxfcH9XhyLK1GSceiVKcfZQI8BzSQ/B18lAXG14Xss1bwp5rU+woi1goHzdAx0eKO7rsaGYXFdyf+iie/Bir1DCAYaFIL27z9+61PvpS4djU=
-Received: from BY3PR04CA0026.namprd04.prod.outlook.com (2603:10b6:a03:217::31)
- by SA1PR12MB8723.namprd12.prod.outlook.com (2603:10b6:806:385::12)
+ bh=iQSV0Hbi9mMS7V7jhCZMRx7w5kUfCAVCt0R6M1h63JA=;
+ b=wR/p5GEEER4ER7v4kJH5ZoXEnlR2KkKCHhL+rvjaaTgdxnwAEjCQX6LFgg94bCyIDbo68e+OdbP+LYw7LAmjA0fVzkSUfU54+0uzkWdOBQuEH/0sQWmJN0DZTKF6HrPOibbfjHsyb3uGjPampc5xbAor6eXAF3iBHiNa1evehEc=
+Received: from BN9PR03CA0237.namprd03.prod.outlook.com (2603:10b6:408:f8::32)
+ by MW4PR12MB6755.namprd12.prod.outlook.com (2603:10b6:303:1ea::21)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Thu, 4 Jun 2026
- 14:55:16 +0000
-Received: from SJ5PEPF000001F0.namprd05.prod.outlook.com
- (2603:10b6:a03:217:cafe::64) by BY3PR04CA0026.outlook.office365.com
- (2603:10b6:a03:217::31) with Microsoft SMTP Server (version=TLS1_3,
+ 14:55:17 +0000
+Received: from BN1PEPF00004689.namprd05.prod.outlook.com
+ (2603:10b6:408:f8:cafe::4) by BN9PR03CA0237.outlook.office365.com
+ (2603:10b6:408:f8::32) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.8 via Frontend Transport; Thu, 4
- Jun 2026 14:55:15 +0000
+ Jun 2026 14:55:17 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- SJ5PEPF000001F0.mail.protection.outlook.com (10.167.242.68) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BN1PEPF00004689.mail.protection.outlook.com (10.167.243.134) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.92.5 via Frontend Transport; Thu, 4 Jun 2026 14:55:15 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.92.5 via Frontend Transport; Thu, 4 Jun 2026 14:55:17 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 4 Jun
- 2026 09:55:04 -0500
+ 2026 09:55:05 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 4 Jun
+ 2026 09:55:05 -0500
 Received: from aaurabin-tumbleweed.king-squeaker.ts.net (10.180.168.240) by
  satlexmb08.amd.com (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41
- via Frontend Transport; Thu, 4 Jun 2026 09:55:03 -0500
+ via Frontend Transport; Thu, 4 Jun 2026 09:55:04 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -74,10 +78,10 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
-Subject: [PATCH 14/24] drm/amd/display: Extract HDCP testable helpers for KUnit
-Date: Thu, 4 Jun 2026 10:52:08 -0400
-Message-ID: <20260604145428.809959-15-aurabindo.pillai@amd.com>
+ <Chen-Yu.Chen@amd.com>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Subject: [PATCH 15/24] drm/amd/display: Restore periodic detection for DCN35
+Date: Thu, 4 Jun 2026 10:52:09 -0400
+Message-ID: <20260604145428.809959-16-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260604145428.809959-1-aurabindo.pillai@amd.com>
 References: <20260604145428.809959-1-aurabindo.pillai@amd.com>
@@ -86,29 +90,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F0:EE_|SA1PR12MB8723:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4ea4defc-fe27-454f-47b1-08dec249499e
+X-MS-TrafficTypeDiagnostic: BN1PEPF00004689:EE_|MW4PR12MB6755:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1632635e-e507-421a-8c90-08dec2494aaa
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700016|82310400026|1800799024|18002099003|6133799003|22082099003|56012099006|11063799006|3023799007;
-X-Microsoft-Antispam-Message-Info: kSURyEAgz/WIEwq7ToFHwTRrrUkJyujS7Z9m0fmoo8a6gdlrriDzI4kk1d60G6G4bh+m8j2kKJnJyFKQ39HV8JHltsgP4h5tTdLv1fHFG8KtCFPQseiqwg8BHeGLAAcpG9XtAsNcEbODcxpWVH/gHGC0yrRL8jmTTnyMjWYY5IcyVz5xhrb/50flvG9Zz0F5k4xdLQU6MdnhmxcbF50pyUALbd0oxdBC5jdPC3n/h5BoQgAyhcbqfNExJ+CcJY5gcj4EVjN0zN/21mHPsBcue6RHg7MkkdCz5WHjrE/ZY4bpVMNK57ayJ7qbZyAnrbhTRL8Vsfxnz3dwcYfRY6kuMioesoLmAUlMjFzn6px43zmLNde5QJAIrjssBHS/vNrh8EODvrqNELJCPo3J0mHB6E+UNVis/yPBOdmR6XzdMIyaCrJRXbOEtxTCw03k7kmlPwPYEdYxqGAFv515yLw1rBajEppGmeebIWN8n4sephQg/j/GteYl1iWCNHTcXit0cr4aQdNR4IVpaenVBc1NQwIOAuFUde1/OVMtHGJFbMybO29tajE9na+/6s3SzmVEcv8wtWckoraXj1SnKlOw17mR/2rLTwF1NP2J51LGpXiCpfFHTqOM1v82I/R8NzLRowKuiskoO3ySlzZk2wkyiv27dzm5ZuKvzKmEonRpOPuqYv9LG7FRaowdxaAIzHnFUFcGJ1OzAyoLxdoHF8cXFPAcO1A1MoyK21oYCy8IIVE=
+ ARA:13230040|376014|36860700016|82310400026|1800799024|13003099007|22082099003|18002099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: kVokZrY1LK0nOKDyV8IUYqfhFICiLii5si1J8bJnyw2ATDba+ywH7CqWMmlq6kJd4y/ThiBQj1g1BzIyLedWLCAAMkBkkTMGc49uPJdO1Mn5Q7mPSsVdVeNeTiHNkJ4FJQFTQze9p2TGGoaM4I0Bcm5Aye0Q8C7yq+G1H/hEVWCPsrnCGK1v18uMEY1+LYbFdxEgRM2PLrykYp9wWfPnZkcaUpy2V+KmmeeM2HoUrKhSi7MpkSK3j9cHG8CvBMVe7QAsxxL3KQ//wKJMRXVCCGe5npenKs7yLDmKwlwl6woIjw5K5uuM9xZIpscQTWcNLzW+n9jhqFHq9Jx7dx5wpmVXNOnnIoq/54PeBVjwp55xQutSxdllokEjrEUJ7QrdUOa10Co1Z/qGBuWG618MnsI5FGstO/Xm/9+dhKsm0xixfyMlKj/52O0MSkFoxZjWYWylEyai2y0TgfypCczWMo4opSICay0HayQ1C1bGACRqe2vUIUrpUBccMVKY/wDExuFfIHnZo1zBsSBOg2tQlBNdoajU0Fl4OdiEo2nIg5WzQj0+x+k55Uh94WAXxuY3VBrkZcURB67KoPhWEIVRNUQ7x/wSonlHhqXhllKqo2uOYg/cIKMgM34DNM1qVjWS76UE/D/a27wx5KLNgYVVnOjBnfizKr16oU5/Mnek8FF2lNOuzkSZlT8ANLSqR65h
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(18002099003)(6133799003)(22082099003)(56012099006)(11063799006)(3023799007);
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(13003099007)(22082099003)(18002099003)(56012099006)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: PIRNnIYoFOGjfFlfZ1UwoYIFFhjA3IUhT9Fth8XLOrm21WyFwkwXnl94tMJkYHephjCy/aUT2tKR4gMdeTKwy1eJTmEGOp86yD7Wvw9JMShyhY8pDPNyShz/+HaAm0IpLJ6qxh6dVlFYENKKdxi3pCiMqGr8C1ZG2JrPi0n1ziXtBR1upzgY8RUv9LE7fjgJ1P//KyF1j+VwKAvu9TS1GW6/GtWFxPg/8VIH2IqLM5dT+QK8RdmRg4PkwTnbpfvrdUceuMUXvdAGPj4aocJxWbqMV61wRMNoF6sJDyW3NWz7+dj611oABN3uMLX49WD/Nw62rgD3JocPCIWMnCi3CyQV1djqQwEds23gmXGlY6GDQ/FkB0jmG+xHlLk+9669R/fTK0evrHagFiM0sPfaQYoag4TznYwtF+cIJKVoH5oRhtoDjGzufzOOchONpA0n
+X-MS-Exchange-AntiSpam-MessageData-0: g45H7S11QEJxj/vap91GOMp1veS8eRAeczUItrKRji18NmmoTLBtgChJjlZFR2MKUbt/zM3NlylXBnkmTtPL/xiY5r484zs2PehoRlGqaBgRWGLyPMJRqu6ovU16//5iT0NAkIzIvY8SEskPNcaVAkwwGvg1fADLBImts2tmSJ0lPKXNWlHXpY4WzeJBlthyHJdmqpPizqDv4sYkcWrmJ2ieDmPV1vrKMawtgQxSaLMVGPZCPg6TCI+3QgMNrfqUBJR9b7qiwbjxrezNnPCZx9nA+xPyqyUUwr0CIcRT+3C1gNevgD3Gnn8JqFQBL94ZyVLux7retEvhP825ElkfiUNEu/K9j+Bftr7+JvCtUZkh4gTb3k/xVHhWQRDfxH4D4WZy3jMiI1Gj7rSULR5IeZ8mOJ3+eQ7Ru13pqjdAXfDa0+irTtIi3oBKhe3roqie
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2026 14:55:15.5654 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ea4defc-fe27-454f-47b1-08dec249499e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2026 14:55:17.3899 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1632635e-e507-421a-8c90-08dec2494aaa
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F0.namprd05.prod.outlook.com
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF00004689.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8723
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6755
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,575 +148,100 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[aurabindo.pillai@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url];
 	ALIAS_RESOLVED(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C9FB8641213
+X-Rspamd-Queue-Id: 6FC696411FF
 
-From: Alex Hung <alex.hung@amd.com>
+From: Ivan Lipski <ivan.lipski@amd.com>
 
-[WHAT]
-Extract hdcp_get_content_protection_from_status() and
-hdcp_get_link_display_adjustments() from event_property_update()
-and hdcp_update_display() so the pure decision logic can be
-KUnit-tested.
+[Why&How]
+Periodic detection callbacks from DCN35 was removed for higher IPS
+residency causing some displays to fail to recover after DPMS sleep. The
+monitors bounces HPD ~1.2s after link training, and without periodic
+detection the system enters IPS with no mechanism to wake and rediscover
+the display.
 
-Also update function comments to kernel-doc formats.
+Restore the periodic detection calls in dcn35_clk_mgr for now. It should
+be replaced with a proper IPS-aware solution long term using DMUB.
 
-Assisted-by: Copilot:Claude-Opus-4.6
-Reviewed-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
-Signed-off-by: Alex Hung <alex.hung@amd.com>
+Also remove it from dcn31 and dcn314_clk_mgr.c since they do not have IPS,
+thus should not affect them.
+
+Fixes: 3f6c060846be ("drm/amd/display: Remove periodic detection callbacks from dcn35+")
+Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/5318
+Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.c    | 115 ++++---
- .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.h    |  12 +
- .../amdgpu_dm/tests/amdgpu_dm_hdcp_test.c     | 297 +++++++++++++++++-
- 3 files changed, 370 insertions(+), 54 deletions(-)
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c   | 2 --
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c | 2 --
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c   | 2 ++
+ 3 files changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-index d1de295f1171..039f6516085c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-@@ -182,6 +182,70 @@ void process_output(struct hdcp_workqueue *hdcp_work)
- }
- EXPORT_IF_KUNIT(process_output);
- 
-+STATIC_IFN_KUNIT
-+bool hdcp_get_content_protection_from_status(
-+	unsigned int hdcp_content_type,
-+	enum mod_hdcp_encryption_status encryption_status,
-+	unsigned int *content_protection)
-+{
-+	if (encryption_status == MOD_HDCP_ENCRYPTION_STATUS_HDCP_OFF) {
-+		*content_protection = DRM_MODE_CONTENT_PROTECTION_DESIRED;
-+		return true;
-+	}
-+
-+	if (hdcp_content_type == DRM_MODE_HDCP_CONTENT_TYPE0 &&
-+	    encryption_status <= MOD_HDCP_ENCRYPTION_STATUS_HDCP2_TYPE0_ON) {
-+		*content_protection = DRM_MODE_CONTENT_PROTECTION_ENABLED;
-+		return true;
-+	}
-+
-+	if (hdcp_content_type == DRM_MODE_HDCP_CONTENT_TYPE1 &&
-+	    encryption_status == MOD_HDCP_ENCRYPTION_STATUS_HDCP2_TYPE1_ON) {
-+		*content_protection = DRM_MODE_CONTENT_PROTECTION_ENABLED;
-+		return true;
-+	}
-+
-+	return false;
-+}
-+EXPORT_IF_KUNIT(hdcp_get_content_protection_from_status);
-+
-+STATIC_IFN_KUNIT
-+void hdcp_get_link_display_adjustments(
-+	bool enable_encryption,
-+	u8 content_type,
-+	bool fused_io_supported,
-+	bool hdcp_lc_force_fw_enable,
-+	bool hdcp_lc_enable_sw_fallback,
-+	struct mod_hdcp_link_adjustment *link_adjust,
-+	struct mod_hdcp_display_adjustment *display_adjust)
-+{
-+	memset(link_adjust, 0, sizeof(*link_adjust));
-+	memset(display_adjust, 0, sizeof(*display_adjust));
-+
-+	if (!enable_encryption) {
-+		display_adjust->disable =
-+			MOD_HDCP_DISPLAY_DISABLE_AUTHENTICATION;
-+		return;
-+	}
-+
-+	display_adjust->disable = MOD_HDCP_DISPLAY_NOT_DISABLE;
-+	link_adjust->auth_delay = 2;
-+	link_adjust->retry_limit = MAX_NUM_OF_ATTEMPTS;
-+
-+	if (content_type == DRM_MODE_HDCP_CONTENT_TYPE0) {
-+		link_adjust->hdcp2.force_type = MOD_HDCP_FORCE_TYPE_0;
-+	} else if (content_type == DRM_MODE_HDCP_CONTENT_TYPE1) {
-+		link_adjust->hdcp1.disable = 1;
-+		link_adjust->hdcp2.force_type = MOD_HDCP_FORCE_TYPE_1;
-+	}
-+
-+	link_adjust->hdcp2.use_fw_locality_check =
-+		fused_io_supported || hdcp_lc_force_fw_enable;
-+	link_adjust->hdcp2.use_sw_locality_fallback =
-+		hdcp_lc_enable_sw_fallback;
-+}
-+EXPORT_IF_KUNIT(hdcp_get_link_display_adjustments);
-+
- static void link_lock(struct hdcp_workqueue *work, bool lock)
- {
- 	int i = 0;
-@@ -212,8 +276,11 @@ void hdcp_update_display(struct hdcp_workqueue *hdcp_work,
- 		drm_connector_put(&hdcp_w->aconnector[conn_index]->base);
- 	hdcp_w->aconnector[conn_index] = aconnector;
- 
--	memset(&link_adjust, 0, sizeof(link_adjust));
--	memset(&display_adjust, 0, sizeof(display_adjust));
-+	hdcp_get_link_display_adjustments(enable_encryption, content_type,
-+			dc->caps.fused_io_supported,
-+			dc->debug.hdcp_lc_force_fw_enable,
-+			dc->debug.hdcp_lc_enable_sw_fallback,
-+			&link_adjust, &display_adjust);
- 
- 	if (enable_encryption) {
- 		/* Explicitly set the saved SRM as sysfs call will be after we already enabled hdcp
-@@ -224,25 +291,9 @@ void hdcp_update_display(struct hdcp_workqueue *hdcp_work,
- 				    hdcp_work->srm_size,
- 				    &hdcp_work->srm_version);
- 
--		display_adjust.disable = MOD_HDCP_DISPLAY_NOT_DISABLE;
--
--		link_adjust.auth_delay = 2;
--		link_adjust.retry_limit = MAX_NUM_OF_ATTEMPTS;
--
--		if (content_type == DRM_MODE_HDCP_CONTENT_TYPE0) {
--			link_adjust.hdcp2.force_type = MOD_HDCP_FORCE_TYPE_0;
--		} else if (content_type == DRM_MODE_HDCP_CONTENT_TYPE1) {
--			link_adjust.hdcp1.disable = 1;
--			link_adjust.hdcp2.force_type = MOD_HDCP_FORCE_TYPE_1;
--		}
--		link_adjust.hdcp2.use_fw_locality_check =
--				(dc->caps.fused_io_supported || dc->debug.hdcp_lc_force_fw_enable);
--		link_adjust.hdcp2.use_sw_locality_fallback = dc->debug.hdcp_lc_enable_sw_fallback;
--
- 		schedule_delayed_work(&hdcp_w->property_validate_dwork,
- 				      msecs_to_jiffies(DRM_HDCP_CHECK_PERIOD_MS));
- 	} else {
--		display_adjust.disable = MOD_HDCP_DISPLAY_DISABLE_AUTHENTICATION;
- 		hdcp_w->encryption_status[conn_index] = MOD_HDCP_ENCRYPTION_STATUS_HDCP_OFF;
- 		cancel_delayed_work(&hdcp_w->property_validate_dwork);
- 	}
-@@ -336,6 +387,7 @@ static void event_property_update(struct work_struct *work)
- 							property_update_work);
- 	struct amdgpu_dm_connector *aconnector = NULL;
- 	struct drm_device *dev;
-+	unsigned int content_protection;
- 	long ret;
- 	unsigned int conn_index;
- 	struct drm_connector *connector;
-@@ -375,26 +427,15 @@ static void event_property_update(struct work_struct *work)
- 					MOD_HDCP_ENCRYPTION_STATUS_HDCP_OFF;
- 			}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
+index 00c4be7c3aa4..ff47af3854b6 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
+@@ -158,7 +158,6 @@ void dcn31_update_clocks(struct clk_mgr *clk_mgr_base,
+ 		if (new_clocks->zstate_support != DCN_ZSTATE_SUPPORT_DISALLOW &&
+ 				new_clocks->zstate_support != clk_mgr_base->clks.zstate_support) {
+ 			dcn31_smu_set_zstate_support(clk_mgr, new_clocks->zstate_support);
+-			dm_helpers_enable_periodic_detection(clk_mgr_base->ctx, true);
+ 			clk_mgr_base->clks.zstate_support = new_clocks->zstate_support;
  		}
--		if (hdcp_work->encryption_status[conn_index] !=
--			MOD_HDCP_ENCRYPTION_STATUS_HDCP_OFF) {
--			if (conn_state->hdcp_content_type ==
--				DRM_MODE_HDCP_CONTENT_TYPE0 &&
--				hdcp_work->encryption_status[conn_index] <=
--				MOD_HDCP_ENCRYPTION_STATUS_HDCP2_TYPE0_ON) {
-+		if (hdcp_get_content_protection_from_status(conn_state->hdcp_content_type,
-+							    hdcp_work->encryption_status[conn_index],
-+							    &content_protection)) {
-+			if (content_protection == DRM_MODE_CONTENT_PROTECTION_ENABLED)
- 				DRM_DEBUG_DRIVER("[HDCP_DM] DRM_MODE_CONTENT_PROTECTION_ENABLED\n");
--				drm_hdcp_update_content_protection(connector,
--								   DRM_MODE_CONTENT_PROTECTION_ENABLED);
--			} else if (conn_state->hdcp_content_type ==
--					DRM_MODE_HDCP_CONTENT_TYPE1 &&
--					hdcp_work->encryption_status[conn_index] ==
--					MOD_HDCP_ENCRYPTION_STATUS_HDCP2_TYPE1_ON) {
--				drm_hdcp_update_content_protection(connector,
--								   DRM_MODE_CONTENT_PROTECTION_ENABLED);
--			}
--		} else {
--			DRM_DEBUG_DRIVER("[HDCP_DM] DRM_MODE_CONTENT_PROTECTION_DESIRED\n");
--			drm_hdcp_update_content_protection(connector,
--							   DRM_MODE_CONTENT_PROTECTION_DESIRED);
-+			else
-+				DRM_DEBUG_DRIVER("[HDCP_DM] DRM_MODE_CONTENT_PROTECTION_DESIRED\n");
-+
-+			drm_hdcp_update_content_protection(connector, content_protection);
+ 
+@@ -184,7 +183,6 @@ void dcn31_update_clocks(struct clk_mgr *clk_mgr_base,
+ 		if (new_clocks->zstate_support == DCN_ZSTATE_SUPPORT_DISALLOW &&
+ 				new_clocks->zstate_support != clk_mgr_base->clks.zstate_support) {
+ 			dcn31_smu_set_zstate_support(clk_mgr, DCN_ZSTATE_SUPPORT_DISALLOW);
+-			dm_helpers_enable_periodic_detection(clk_mgr_base->ctx, false);
+ 			clk_mgr_base->clks.zstate_support = new_clocks->zstate_support;
  		}
- 		drm_modeset_unlock(&dev->mode_config.connection_mutex);
- 	}
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
-index 90b18c450ca6..3ba5823aed9f 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
-@@ -96,6 +96,18 @@ struct hdcp_workqueue *hdcp_create_workqueue(struct amdgpu_device *adev, struct
  
- #if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
- void process_output(struct hdcp_workqueue *hdcp_work);
-+bool hdcp_get_content_protection_from_status(
-+	unsigned int hdcp_content_type,
-+	enum mod_hdcp_encryption_status encryption_status,
-+	unsigned int *content_protection);
-+void hdcp_get_link_display_adjustments(
-+	bool enable_encryption,
-+	u8 content_type,
-+	bool fused_io_supported,
-+	bool hdcp_lc_force_fw_enable,
-+	bool hdcp_lc_enable_sw_fallback,
-+	struct mod_hdcp_link_adjustment *link_adjust,
-+	struct mod_hdcp_display_adjustment *display_adjust);
- #endif
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c
+index dd6f11ecb9c9..24f6304011ae 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn314/dcn314_clk_mgr.c
+@@ -230,7 +230,6 @@ void dcn314_update_clocks(struct clk_mgr *clk_mgr_base,
+ 		if (new_clocks->zstate_support != DCN_ZSTATE_SUPPORT_DISALLOW &&
+ 				new_clocks->zstate_support != clk_mgr_base->clks.zstate_support) {
+ 			dcn314_smu_set_zstate_support(clk_mgr, new_clocks->zstate_support);
+-			dm_helpers_enable_periodic_detection(clk_mgr_base->ctx, true);
+ 			clk_mgr_base->clks.zstate_support = new_clocks->zstate_support;
+ 		}
  
- #endif /* AMDGPU_DM_AMDGPU_DM_HDCP_H_ */
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_hdcp_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_hdcp_test.c
-index d03b606d27bc..619b4a80c82b 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_hdcp_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_hdcp_test.c
-@@ -12,11 +12,241 @@
+@@ -255,7 +254,6 @@ void dcn314_update_clocks(struct clk_mgr *clk_mgr_base,
+ 		if (new_clocks->zstate_support == DCN_ZSTATE_SUPPORT_DISALLOW &&
+ 				new_clocks->zstate_support != clk_mgr_base->clks.zstate_support) {
+ 			dcn314_smu_set_zstate_support(clk_mgr, DCN_ZSTATE_SUPPORT_DISALLOW);
+-			dm_helpers_enable_periodic_detection(clk_mgr_base->ctx, false);
+ 			clk_mgr_base->clks.zstate_support = new_clocks->zstate_support;
+ 		}
  
- static void dummy_work_fn(struct work_struct *work) {}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
+index 103013e2a0de..a69824e1eb26 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn35/dcn35_clk_mgr.c
+@@ -419,6 +419,7 @@ void dcn35_update_clocks(struct clk_mgr *clk_mgr_base,
+ 		if (new_clocks->zstate_support != DCN_ZSTATE_SUPPORT_DISALLOW &&
+ 				new_clocks->zstate_support != clk_mgr_base->clks.zstate_support) {
+ 			dcn35_smu_set_zstate_support(clk_mgr, new_clocks->zstate_support);
++			dm_helpers_enable_periodic_detection(clk_mgr_base->ctx, true);
+ 			clk_mgr_base->clks.zstate_support = new_clocks->zstate_support;
+ 		}
  
-+/* Tests for hdcp_get_content_protection_from_status() */
-+
-+/**
-+ * dm_test_hdcp_get_cp_disabled_returns_desired - HDCP off maps to DESIRED
-+ * @test: KUnit test context
-+ *
-+ * When encryption status is HDCP_OFF, content_protection should be set
-+ * to DESIRED and the function should return true to indicate an update.
-+ */
-+static void dm_test_hdcp_get_cp_disabled_returns_desired(struct kunit *test)
-+{
-+	unsigned int content_protection = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
-+	bool update;
-+
-+	update = hdcp_get_content_protection_from_status(
-+		DRM_MODE_HDCP_CONTENT_TYPE0,
-+		MOD_HDCP_ENCRYPTION_STATUS_HDCP_OFF,
-+		&content_protection);
-+
-+	KUNIT_EXPECT_TRUE(test, update);
-+	KUNIT_EXPECT_EQ(test, content_protection,
-+			DRM_MODE_CONTENT_PROTECTION_DESIRED);
-+}
-+
-+/**
-+ * dm_test_hdcp_get_cp_type0_returns_enabled - TYPE0 with TYPE0_ON maps to ENABLED
-+ * @test: KUnit test context
-+ *
-+ * When content type is TYPE0 and encryption status is at or below
-+ * HDCP2_TYPE0_ON, content_protection should be set to ENABLED.
-+ */
-+static void dm_test_hdcp_get_cp_type0_returns_enabled(struct kunit *test)
-+{
-+	unsigned int content_protection = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
-+	bool update;
-+
-+	update = hdcp_get_content_protection_from_status(
-+		DRM_MODE_HDCP_CONTENT_TYPE0,
-+		MOD_HDCP_ENCRYPTION_STATUS_HDCP2_TYPE0_ON,
-+		&content_protection);
-+
-+	KUNIT_EXPECT_TRUE(test, update);
-+	KUNIT_EXPECT_EQ(test, content_protection,
-+			DRM_MODE_CONTENT_PROTECTION_ENABLED);
-+}
-+
-+/**
-+ * dm_test_hdcp_get_cp_type1_returns_enabled - TYPE1 with TYPE1_ON maps to ENABLED
-+ * @test: KUnit test context
-+ *
-+ * When content type is TYPE1 and encryption status is exactly
-+ * HDCP2_TYPE1_ON, content_protection should be set to ENABLED.
-+ */
-+static void dm_test_hdcp_get_cp_type1_returns_enabled(struct kunit *test)
-+{
-+	unsigned int content_protection = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
-+	bool update;
-+
-+	update = hdcp_get_content_protection_from_status(
-+		DRM_MODE_HDCP_CONTENT_TYPE1,
-+		MOD_HDCP_ENCRYPTION_STATUS_HDCP2_TYPE1_ON,
-+		&content_protection);
-+
-+	KUNIT_EXPECT_TRUE(test, update);
-+	KUNIT_EXPECT_EQ(test, content_protection,
-+			DRM_MODE_CONTENT_PROTECTION_ENABLED);
-+}
-+
-+/**
-+ * dm_test_hdcp_get_cp_type1_rejects_type0_status - TYPE1 rejects TYPE0_ON
-+ * @test: KUnit test context
-+ *
-+ * When content type is TYPE1 but encryption status is only TYPE0_ON,
-+ * the function should return false and leave content_protection unchanged.
-+ */
-+static void dm_test_hdcp_get_cp_type1_rejects_type0_status(struct kunit *test)
-+{
-+	unsigned int content_protection = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
-+	bool update;
-+
-+	update = hdcp_get_content_protection_from_status(
-+		DRM_MODE_HDCP_CONTENT_TYPE1,
-+		MOD_HDCP_ENCRYPTION_STATUS_HDCP2_TYPE0_ON,
-+		&content_protection);
-+
-+	KUNIT_EXPECT_FALSE(test, update);
-+	KUNIT_EXPECT_EQ(test, content_protection,
-+			DRM_MODE_CONTENT_PROTECTION_UNDESIRED);
-+}
-+
-+/**
-+ * dm_test_hdcp_get_cp_type0_rejects_type1_status - TYPE0 rejects TYPE1_ON
-+ * @test: KUnit test context
-+ *
-+ * When content type is TYPE0 but encryption status exceeds the TYPE0_ON
-+ * boundary (TYPE1_ON), the function should return false.
-+ */
-+static void dm_test_hdcp_get_cp_type0_rejects_type1_status(struct kunit *test)
-+{
-+	unsigned int content_protection = DRM_MODE_CONTENT_PROTECTION_UNDESIRED;
-+	bool update;
-+
-+	update = hdcp_get_content_protection_from_status(
-+		DRM_MODE_HDCP_CONTENT_TYPE0,
-+		MOD_HDCP_ENCRYPTION_STATUS_HDCP2_TYPE1_ON,
-+		&content_protection);
-+
-+	KUNIT_EXPECT_FALSE(test, update);
-+	KUNIT_EXPECT_EQ(test, content_protection,
-+			DRM_MODE_CONTENT_PROTECTION_UNDESIRED);
-+}
-+
-+/* Tests for hdcp_get_link_display_adjustments() */
-+
-+/**
-+ * dm_test_hdcp_get_adjustments_disable_authentication - disable path zeroes adjustments
-+ * @test: KUnit test context
-+ *
-+ * When enable_encryption is false, display_adjust should disable
-+ * authentication and all link_adjust fields should remain zeroed.
-+ */
-+static void dm_test_hdcp_get_adjustments_disable_authentication(struct kunit *test)
-+{
-+	struct mod_hdcp_link_adjustment link_adjust;
-+	struct mod_hdcp_display_adjustment display_adjust;
-+	unsigned int disable;
-+	unsigned int hdcp1_disable;
-+	unsigned int force_type;
-+
-+	hdcp_get_link_display_adjustments(false, DRM_MODE_HDCP_CONTENT_TYPE0,
-+		false, false, false, &link_adjust, &display_adjust);
-+	disable = display_adjust.disable;
-+	hdcp1_disable = link_adjust.hdcp1.disable;
-+	force_type = link_adjust.hdcp2.force_type;
-+
-+	KUNIT_EXPECT_EQ(test, disable,
-+			MOD_HDCP_DISPLAY_DISABLE_AUTHENTICATION);
-+	KUNIT_EXPECT_EQ(test, link_adjust.auth_delay, 0);
-+	KUNIT_EXPECT_EQ(test, link_adjust.retry_limit, 0);
-+	KUNIT_EXPECT_EQ(test, hdcp1_disable, 0);
-+	KUNIT_EXPECT_EQ(test, force_type, 0);
-+}
-+
-+/**
-+ * dm_test_hdcp_get_adjustments_type0_policy - TYPE0 enables HDCP1 and forces TYPE0
-+ * @test: KUnit test context
-+ *
-+ * When encryption is enabled with content TYPE0, hdcp1 should remain
-+ * enabled, force_type should be TYPE_0, and sw_locality_fallback should
-+ * be propagated from the input parameter.
-+ */
-+static void dm_test_hdcp_get_adjustments_type0_policy(struct kunit *test)
-+{
-+	struct mod_hdcp_link_adjustment link_adjust;
-+	struct mod_hdcp_display_adjustment display_adjust;
-+	unsigned int disable;
-+	unsigned int hdcp1_disable;
-+	unsigned int force_type;
-+
-+	hdcp_get_link_display_adjustments(true, DRM_MODE_HDCP_CONTENT_TYPE0,
-+		false, false, true, &link_adjust, &display_adjust);
-+	disable = display_adjust.disable;
-+	hdcp1_disable = link_adjust.hdcp1.disable;
-+	force_type = link_adjust.hdcp2.force_type;
-+
-+	KUNIT_EXPECT_EQ(test, disable,
-+			MOD_HDCP_DISPLAY_NOT_DISABLE);
-+	KUNIT_EXPECT_EQ(test, link_adjust.auth_delay, 2);
-+	KUNIT_EXPECT_EQ(test, link_adjust.retry_limit, MAX_NUM_OF_ATTEMPTS);
-+	KUNIT_EXPECT_EQ(test, hdcp1_disable, 0);
-+	KUNIT_EXPECT_EQ(test, force_type,
-+			MOD_HDCP_FORCE_TYPE_0);
-+	KUNIT_EXPECT_FALSE(test, link_adjust.hdcp2.use_fw_locality_check);
-+	KUNIT_EXPECT_TRUE(test, link_adjust.hdcp2.use_sw_locality_fallback);
-+}
-+
-+/**
-+ * dm_test_hdcp_get_adjustments_type1_policy - TYPE1 disables HDCP1 and forces TYPE1
-+ * @test: KUnit test context
-+ *
-+ * When encryption is enabled with content TYPE1, hdcp1 should be
-+ * disabled, force_type should be TYPE_1, and fw_locality_check should
-+ * be enabled when hdcp_lc_force_fw_enable is set.
-+ */
-+static void dm_test_hdcp_get_adjustments_type1_policy(struct kunit *test)
-+{
-+	struct mod_hdcp_link_adjustment link_adjust;
-+	struct mod_hdcp_display_adjustment display_adjust;
-+	unsigned int disable;
-+	unsigned int hdcp1_disable;
-+	unsigned int force_type;
-+
-+	hdcp_get_link_display_adjustments(true, DRM_MODE_HDCP_CONTENT_TYPE1,
-+		false, true, false, &link_adjust, &display_adjust);
-+	disable = display_adjust.disable;
-+	hdcp1_disable = link_adjust.hdcp1.disable;
-+	force_type = link_adjust.hdcp2.force_type;
-+
-+	KUNIT_EXPECT_EQ(test, disable,
-+			MOD_HDCP_DISPLAY_NOT_DISABLE);
-+	KUNIT_EXPECT_EQ(test, link_adjust.auth_delay, 2);
-+	KUNIT_EXPECT_EQ(test, link_adjust.retry_limit, MAX_NUM_OF_ATTEMPTS);
-+	KUNIT_EXPECT_EQ(test, hdcp1_disable, 1);
-+	KUNIT_EXPECT_EQ(test, force_type,
-+			MOD_HDCP_FORCE_TYPE_1);
-+	KUNIT_EXPECT_TRUE(test, link_adjust.hdcp2.use_fw_locality_check);
-+	KUNIT_EXPECT_FALSE(test, link_adjust.hdcp2.use_sw_locality_fallback);
-+}
-+
-+/**
-+ * dm_test_hdcp_get_adjustments_fused_io_enables_fw_check - fused_io enables FW locality check
-+ * @test: KUnit test context
-+ *
-+ * When fused_io_supported is true, use_fw_locality_check should be
-+ * enabled regardless of hdcp_lc_force_fw_enable.
-+ */
-+static void dm_test_hdcp_get_adjustments_fused_io_enables_fw_check(struct kunit *test)
-+{
-+	struct mod_hdcp_link_adjustment link_adjust;
-+	struct mod_hdcp_display_adjustment display_adjust;
-+
-+	hdcp_get_link_display_adjustments(true, DRM_MODE_HDCP_CONTENT_TYPE0,
-+		true, false, false, &link_adjust, &display_adjust);
-+
-+	KUNIT_EXPECT_TRUE(test, link_adjust.hdcp2.use_fw_locality_check);
-+}
-+
- /* Tests for process_output() */
+@@ -438,6 +439,7 @@ void dcn35_update_clocks(struct clk_mgr *clk_mgr_base,
+ 		if (new_clocks->zstate_support == DCN_ZSTATE_SUPPORT_DISALLOW &&
+ 				new_clocks->zstate_support != clk_mgr_base->clks.zstate_support) {
+ 			dcn35_smu_set_zstate_support(clk_mgr, DCN_ZSTATE_SUPPORT_DISALLOW);
++			dm_helpers_enable_periodic_detection(clk_mgr_base->ctx, false);
+ 			clk_mgr_base->clks.zstate_support = new_clocks->zstate_support;
+ 		}
  
--/*
-- * Helper: allocate and initialise a minimal hdcp_workqueue sufficient for
-- * process_output() testing.  Only the three delayed works accessed by
-+/**
-+ * alloc_test_workqueue - allocate a minimal hdcp_workqueue for testing
-+ * @test: KUnit test context for managed allocation
-+ *
-+ * Allocates and initialises a minimal hdcp_workqueue sufficient for
-+ * process_output() testing. Only the three delayed works accessed by
-  * process_output() are initialised; everything else is zeroed.
-  */
- static struct hdcp_workqueue *alloc_test_workqueue(struct kunit *test)
-@@ -33,9 +263,12 @@ static struct hdcp_workqueue *alloc_test_workqueue(struct kunit *test)
- 	return work;
- }
- 
--/*
-+/**
-+ * dm_test_process_output_property_validate_always_scheduled - validate_dwork always queued
-+ * @test: KUnit test context
-+ *
-  * process_output() always schedules property_validate_dwork with delay=0,
-- * which queues the work item directly (bypassing the timer).  Use
-+ * which queues the work item directly (bypassing the timer). Uses
-  * work_pending() rather than delayed_work_pending() to detect this.
-  */
- static void dm_test_process_output_property_validate_always_scheduled(struct kunit *test)
-@@ -52,8 +285,12 @@ static void dm_test_process_output_property_validate_always_scheduled(struct kun
- 	cancel_delayed_work_sync(&work->property_validate_dwork);
- }
- 
--/*
-- * output.callback_needed=true must schedule callback_dwork.
-+/**
-+ * dm_test_process_output_callback_needed - callback_needed schedules callback_dwork
-+ * @test: KUnit test context
-+ *
-+ * When output.callback_needed is true, process_output() must schedule
-+ * callback_dwork with the specified delay.
-  */
- static void dm_test_process_output_callback_needed(struct kunit *test)
- {
-@@ -70,8 +307,12 @@ static void dm_test_process_output_callback_needed(struct kunit *test)
- 	cancel_delayed_work_sync(&work->property_validate_dwork);
- }
- 
--/*
-- * output.callback_stop=true must cancel a previously scheduled callback_dwork.
-+/**
-+ * dm_test_process_output_callback_stop - callback_stop cancels callback_dwork
-+ * @test: KUnit test context
-+ *
-+ * When output.callback_stop is true, process_output() must cancel a
-+ * previously scheduled callback_dwork.
-  */
- static void dm_test_process_output_callback_stop(struct kunit *test)
- {
-@@ -90,8 +331,12 @@ static void dm_test_process_output_callback_stop(struct kunit *test)
- 	cancel_delayed_work_sync(&work->property_validate_dwork);
- }
- 
--/*
-- * output.watchdog_timer_needed=true must schedule watchdog_timer_dwork.
-+/**
-+ * dm_test_process_output_watchdog_needed - watchdog_needed schedules watchdog_dwork
-+ * @test: KUnit test context
-+ *
-+ * When output.watchdog_timer_needed is true, process_output() must
-+ * schedule watchdog_timer_dwork with the specified delay.
-  */
- static void dm_test_process_output_watchdog_needed(struct kunit *test)
- {
-@@ -108,9 +353,12 @@ static void dm_test_process_output_watchdog_needed(struct kunit *test)
- 	cancel_delayed_work_sync(&work->property_validate_dwork);
- }
- 
--/*
-- * output.watchdog_timer_stop=true must cancel a previously scheduled
-- * watchdog_timer_dwork.
-+/**
-+ * dm_test_process_output_watchdog_stop - watchdog_stop cancels watchdog_dwork
-+ * @test: KUnit test context
-+ *
-+ * When output.watchdog_timer_stop is true, process_output() must cancel
-+ * a previously scheduled watchdog_timer_dwork.
-  */
- static void dm_test_process_output_watchdog_stop(struct kunit *test)
- {
-@@ -129,9 +377,12 @@ static void dm_test_process_output_watchdog_stop(struct kunit *test)
- 	cancel_delayed_work_sync(&work->property_validate_dwork);
- }
- 
--/*
-- * Both callback_needed and watchdog_timer_needed set: both dworks are
-- * scheduled independently.
-+/**
-+ * dm_test_process_output_callback_and_watchdog_needed - both dworks scheduled independently
-+ * @test: KUnit test context
-+ *
-+ * When both callback_needed and watchdog_timer_needed are set,
-+ * process_output() must schedule both dworks independently.
-  */
- static void dm_test_process_output_callback_and_watchdog_needed(struct kunit *test)
- {
-@@ -154,6 +405,18 @@ static void dm_test_process_output_callback_and_watchdog_needed(struct kunit *te
- /* End of tests for process_output() */
- 
- static struct kunit_case dm_hdcp_test_cases[] = {
-+	/* hdcp_get_content_protection_from_status() */
-+	KUNIT_CASE(dm_test_hdcp_get_cp_disabled_returns_desired),
-+	KUNIT_CASE(dm_test_hdcp_get_cp_type0_returns_enabled),
-+	KUNIT_CASE(dm_test_hdcp_get_cp_type1_returns_enabled),
-+	KUNIT_CASE(dm_test_hdcp_get_cp_type1_rejects_type0_status),
-+	KUNIT_CASE(dm_test_hdcp_get_cp_type0_rejects_type1_status),
-+	/* hdcp_get_link_display_adjustments() */
-+	KUNIT_CASE(dm_test_hdcp_get_adjustments_disable_authentication),
-+	KUNIT_CASE(dm_test_hdcp_get_adjustments_type0_policy),
-+	KUNIT_CASE(dm_test_hdcp_get_adjustments_type1_policy),
-+	KUNIT_CASE(dm_test_hdcp_get_adjustments_fused_io_enables_fw_check),
-+	/* process_output() */
- 	KUNIT_CASE(dm_test_process_output_property_validate_always_scheduled),
- 	KUNIT_CASE(dm_test_process_output_callback_needed),
- 	KUNIT_CASE(dm_test_process_output_callback_stop),
 -- 
 2.54.0
 
