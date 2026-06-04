@@ -2,61 +2,109 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id v8hBKjV8ImpDYQEAu9opvQ
+	id 2RmwEBHmIWptQQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 09:35:17 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 22:54:41 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32DBC64609D
-	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 09:35:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96BCD6437D5
+	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 22:54:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=zohomail header.b=QvnDAYl0;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=dk1k45f1;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	arc=pass ("zohomail.com:s=zohoarc:i=1")
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAF6311A4F5;
-	Fri,  5 Jun 2026 07:35:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AEEA1129C1;
+	Thu,  4 Jun 2026 20:54:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 904 seconds by postgrey-1.36 at gabe;
- Thu, 04 Jun 2026 20:45:23 UTC
-Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com
- [136.143.188.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3208D1129C2
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2026 20:45:23 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1780605019; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=CekFGVvzF2nh/YXBp+KV/bQ2jmhVKUkC0aAeX3L6s3i0TI9egcH9sNBkwHcqFAysCr9WP9pVVLSy/Sr+F2c7RtZw/wZjGZ1w0VF0hBG+EORFXqKfxRHdm5EpJm19QmRmm+gAaU0vKctMht8HYvjXBQ7hBbsus2aUHUFKEr+dBfQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1780605019;
- h=Content-Type:Content-Transfer-Encoding:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
- bh=muC6rawBX3CykhRdzS4yBFWa650rEAb1z3ELNMgRXrs=; 
- b=JM8Pc/KHR/l617ADswfNzQG3O7y47G13DMlMRq25EyDdx8n2nXZp07pU4cb9Pzfzcc2vxCvIs5Uw1Lb1dNC4QVOISUH8UX0rtb+UgWyNJExj/QcAb62FrUwDexDnHqzzxvKDVEid2EUwb0g/DeuryjiWjEeeJi3x47osF3DQTkU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=mark.filion@collabora.com;
- dmarc=pass header.from=<mark.filion@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1780605019; 
- s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
- h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To:Cc;
- bh=muC6rawBX3CykhRdzS4yBFWa650rEAb1z3ELNMgRXrs=;
- b=QvnDAYl09j17c3rOEa5W4zq4fEY3yAN1/8D5JqxyzZXIroUj3RcR+aBto0MI2Jd5
- g7KWKMHjdZv4RD5GyZT3e70A0Yn664vF+IuIKpq1gWCyRXePR0JRuEP6srSyTAxB4gJ
- VODbSCWX8FT5M8MJiW6oxRk/nTruhAW9T72L6toI=
-Received: by mx.zohomail.com with SMTPS id 1780605017273696.9436458254814;
- Thu, 4 Jun 2026 13:30:17 -0700 (PDT)
-Message-ID: <da9b5fdab50e4353fe590521da93e90c622d3cbb.camel@collabora.com>
-Subject: XDC 2026: Registration & Call for Proposals now open!
-From: Mark Filion <mark.filion@collabora.com>
-To: amd-gfx@lists.freedesktop.org
-Date: Thu, 04 Jun 2026 16:30:16 -0400
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.60.1 (3.60.1-1.fc44app2) 
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012051.outbound.protection.outlook.com [52.101.53.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F174D1129C5
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2026 20:54:37 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uPuBgn3+UxCsQAVhxpsGyDNlha6wB8HGbIMv9QqHMZ2QZ9FJD2dA0azAiJpeTPgYR2ez/+CRKj3iX/sZTR6pJZU4dnJkpDNlYW7gykfivG9sL8ugMMGcVXvQTnn3quLAP3xROXFWqc5CSFNGqEJEKOLmEbD/THWqEzrO1gJAR5qzhJP8Jw2xB8K7SdPwcK+ODRnyGeSRkI1rofe3llcrBl3DPx/lbzFtPLNbZx2Fw+mLi4ecLMRnLCgvgJTLlHkpA26ZkTZ0GSB/Jorz30auwup+Q7PCv1WCNJMJOePvowNOcGyqGy44vrSuNhvZ8j37W+6MX8IdI61d/fVxLHMf6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fnChlYlGL93qE3/29ePNeguyKtPfxpY20lN5ku63WSs=;
+ b=J0XMZ1K9S38Nqyt6LkbtGhGMbc36T9d1mHOlU4/gyTDV5vPVc4dVd0ngiY06j+7yxEyOEUDfzCnZkAHda0pe975ZncLHevVA0LnfufFvjb7UVxe1EN8+cVVQu5MP4A9sSagpqKHGioreDwNbTjIot4asVsR3MhsgLU9c32WL0wozFrkCWtEGrIaAVIVe+1TaIxfzECaU0REvyg1V7Or44bcGF65TXiadTbJ3dkURc3OLD3xWo4v1wsF9qCK9UrtK1M0fnMajunwlvKBGigm2in//gvQpheFpfoKz5MRGqzcCBRwqu4cqe5JG2uy1wWpDDXf+g0VprOXEHqno/AjTYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fnChlYlGL93qE3/29ePNeguyKtPfxpY20lN5ku63WSs=;
+ b=dk1k45f162rKE7D1s4/yUufdFQwGz6r4UUONctePEPSRrz7eKwu9bLLEW2PCq5RtIOJ8ogkZVaegZq8oyiJY6v70DPTrjH2D3IX3z8KzU3UJwc7iNTJnBCp2uwxgHlYMNSYQoJC2TL9uds1KuzjLtu+kU4Y+jsS8CXJdaYBev+g=
+Received: from DS1P221CA0012.NAMP221.PROD.OUTLOOK.COM (2603:10b6:8:451::14) by
+ MW4PR12MB5665.namprd12.prod.outlook.com (2603:10b6:303:187::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.15; Thu, 4 Jun 2026
+ 20:54:32 +0000
+Received: from DS1PEPF00017093.namprd03.prod.outlook.com
+ (2603:10b6:8:451:cafe::50) by DS1P221CA0012.outlook.office365.com
+ (2603:10b6:8:451::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.8 via Frontend Transport; Thu, 4
+ Jun 2026 20:54:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ DS1PEPF00017093.mail.protection.outlook.com (10.167.17.136) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.92.5 via Frontend Transport; Thu, 4 Jun 2026 20:54:31 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 4 Jun
+ 2026 15:54:31 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 4 Jun
+ 2026 13:54:31 -0700
+Received: from p8.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
+ Transport; Thu, 4 Jun 2026 15:54:30 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH] drm/amdgpu: remove spurious line in
+ amdgpu_ring_find_guilty_fence()
+Date: Thu, 4 Jun 2026 16:54:23 -0400
+Message-ID: <20260604205423.14358-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Mailman-Approved-At: Fri, 05 Jun 2026 07:35:12 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF00017093:EE_|MW4PR12MB5665:EE_
+X-MS-Office365-Filtering-Correlation-Id: a500858f-5315-409f-0285-08dec27b7a2a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700016|376014|1800799024|82310400026|18002099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: 9pSX/crwpQSCyP/barSJ3boVy5U4bys9TTxPE6GgQGgzOtddqViXgmS2iDkBO5SmM7n8eOD2fmTLb26QxTZkNZsm1CmHaZYzu928OokwC1kLx+y7Q3fZNBM6It2kq50aStQksmUHWiPmmERqEldPG43DqqyAo8JcpVvq1GykgsgTxZFVZVK04FLlu14mJWyoCbzy1DydusmmqctPW/mmARfQp7eZqJH9Dd5HnuPatXTANw2hUo18O2H6f5/YhDrKZfT/X1Tr1Ombq/+r38RbGGnwp/AjQMOXuWbpcNvPHUfzWcSbSCmHw9EEeu3iH2Vh/GHm6CIInUzx463sCdEtr1MRc+KtRWAEIpHteOsObD8vpAAUF8Sqbx8trDMZD37WdVh0X7q6U0WT+DFXXr2JDrlJCp18HqoAhhDBhf3Pg+lmcYNVXxGb00oxvhd7WwnbVwnr9Ldk5F7dz8jPEi17IIsl8g3LZzCLV08bz9uxct4sTdkCzwKFKG2QUCMz3e2IQY4hUN59Dkt3pUhiAAeGKqQr4RiOw+S7xygXzvyJiIkfrqxz03O0wS4AFie2POwAZR3yLhY7QaVbmhvKxJ9QbW/FrY4w+wkBxv5KnrtXUbIDiqOBDuqrE1pluA0G12OrQ/o1ofJ/ijlX1UcSW6AyNSbEoTxqr4nCQe4klLnpU7bWGpwRZv4X5NqbigZhAgQkYlYvrBli405BEtWap4ItxOITwXPYnrWaY4tC39cpM4k=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700016)(376014)(1800799024)(82310400026)(18002099003)(11063799006)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: +/4clQBm8ZL9hNMlBqKRvO7Pc18wag0EQ1B3uYrm7z45ue+ey3u8JzXXSKHFUndrIP+zqIdZtJHhHBPWw9WUWqK5GVlqG15BL6e6d5wFg8tDPF7OHl2KkjHqTWucsbJFF0JLtP82R2Se69MQ9r99AWyPA+AS0rek1HWGcKkaMhgxWq5sQxO4fiu/xdT1gvPMKbAadPRyXpy3O61AAgcOEW0RR9Ckwqx83965mRaH7rCgrOF4J+iMAPW2ho831uoUqYGbZi1vj5O/KCdYnRr0NoCxk+5Zt+23jjS9huSErh9XxzsgGp/Y/NcptRvZ6W7nCedArLDj0jeGsKKVnn6X0We17TgvQIQU+SIc4LrPp4S/6824Cyp4UjvgbZgWfix4es/d/cW+ZWuv/cr4efxfe/PrEFWdPg+J3Fjh+Zd9rSpQqAhiKYU3LbGSx9qTCHNl
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2026 20:54:31.9115 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a500858f-5315-409f-0285-08dec27b7a2a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017093.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB5665
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,74 +119,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	SUBJECT_ENDS_EXCLAIM(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mark.filion@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_ONE(0.00)[1];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,x.org:url,freedesktop.org:url,floss.social:url,collabora.com:mid,collabora.com:from_mime,collabora.com:dkim];
+	RCPT_COUNT_TWO(0.00)[2];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email];
 	ALIAS_RESOLVED(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+]
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 32DBC64609D
+X-Rspamd-Queue-Id: 96BCD6437D5
 
-Hello!
+Copy-paste error.
 
-Registration and Call for Proposals are now open for XDC 2026,
-taking place at the Daniels Spectrum in Toronto, Canada,
-September 28=E2=80=9330, organized by Arm.
+Fixes: f647ddad8ace ("drm/amdgpu/fence: add helper to extract the guilty fence")
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-    https://xdc2026.x.org
-=20
-As usual, the conference is free of charge and open to the general
-public. If you plan on attending, please make sure to register as early
-as possible:
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+index 8569c1c637a2b..3043ad041bb42 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+@@ -842,7 +842,6 @@ amdgpu_ring_find_guilty_fence(struct amdgpu_ring *ring)
+ 
+ 	last_seq = amdgpu_fence_read(ring) & ring->fence_drv.num_fences_mask;
+ 	seq = ring->fence_drv.sync_seq & ring->fence_drv.num_fences_mask;
+-	ring->ring_backup_entries_to_copy = 0;
+ 
+ 	do {
+ 		last_seq++;
+-- 
+2.54.0
 
-    https://indico.freedesktop.org/event/12/registrations/
-
-In addition to registration, the CfP is now open for talks, demos, and
-workshops at XDC 2026. While any serious proposal will be carefully
-considered, topics of interest to X.Org and freedesktop.org developers
-are encouraged. The program focus is on new development, ongoing
-challenges and anything else that will spark discussions among
-attendees in the hallway track.
-
-We are open to talks across all layers of the graphics stack, from the
-kernel to desktop environments / graphical applications and about how
-to make things better for the developers who build them. Head to the
-CfP page to learn more:
-
-    https://indico.freedesktop.org/event/12/abstracts/
-
-The deadline for submissions Friday, July 3, 2026.
-
-We are looking forward to seeing you in Toronto! If you have any
-questions, please email the organizer (charlie.dixon at arm.com), and
-CC=20
-the X.Org board (board at foundation.x.org).
-
-Don't forget, you can follow us on Mastodon for all the latest
-updates and to stay connected:
-
-    https://floss.social/@XOrgDevConf
-
-Best,
-
-Mark
