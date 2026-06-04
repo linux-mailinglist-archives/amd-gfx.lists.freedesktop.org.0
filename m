@@ -2,74 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id OHh7DeCRIWp2JAEAu9opvQ
+	id 07TdIeSRIWp7JAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 16:55:28 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 16:55:32 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D55D6641208
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 16:55:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F44D64121F
+	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 16:55:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=DiBR46A9;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=5fnfKI65;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FE86112843;
-	Thu,  4 Jun 2026 14:55:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF1F511284F;
+	Thu,  4 Jun 2026 14:55:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011003.outbound.protection.outlook.com
- [40.93.194.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFD1F112843
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2026 14:55:24 +0000 (UTC)
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010028.outbound.protection.outlook.com [52.101.201.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDA1A112847
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2026 14:55:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eGP1PN92Z8HtWH/RLPROXx4aQyiMt5VYunUdZ5uC7DrPnpo+0k4V0zJOvIDcip5UrjDxRmpTq/k7jkVKtPhNUpbdxAgyS4tUcgSKI00U9WZbp9sJZJoRVsTAirT1uAri1AzXkK/XK8R8JbGg7gHw9Jw/pLmwRIPm+XBYbcIdo+q2+YufAqxm0kMeLajiqSCFOhXgh1nSjuMuj53oYTLzNG5TqTs22b61Fm8OVNzdK9ovHv7IBNxCLtO4ZUIERBL2sdFVfsDfTth3ao5wS9ZzVC3RFJnjn6Bs7CGKkfHKelEx9oYWBDvow5tSFP+L2N3oInsru7YuklX1wMexvY3rnQ==
+ b=gsxqCINtTtE6G9tYzBfNS6zNI6xlybE4HBsOyPzeYo64ZFsZsHVFFfwJ+NFVr7pinlMoq6n5EPTjvCDvXaCAoOzNvwBg6Sz+ElJd0iyI5TkyLGwu7OzF+rHTqwIENTisc6ZaDX2rQl5cvPU+al5aKIU9oNdK1nBeIHiZAN4Y3tGc+W3rqsBmNWZ50EJJKcV8D6X7sDFUYrkvu7FjsIm1mwQiI7iUp1tV+r0hg7fbgG1blAfdOtKxfCbbmhvqTZYE8xmEtJbglrDm1B1XvLzn8CdDNVduArpHnA4AX5heEsJiVrAEn30XhX7IEBwfuOFdB2Mm58FvcfXAEza+PDAK6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sYSrFQ1wD/awMPNomaHNaJEIKvjw2O24H69Xlzon9z8=;
- b=FyFjCI1ROdFgkFLoN9b8DaI/UVP9nIuSYHhl4dRWpMjFTWkPJosLO4cH6n5Ru2JO/W/iYfCnQfajvWxGDE1j0yyFV01jRqURXBLbs7Apuzcq5WYzG5Y0tqmSGM0et//XbAQpy4fn7Dbsanv31yYS0oWv8PzY0nY/tqR65okqO6HYtGxmjwaEd4Cthas/7g1P3XDjaYkv5Rl56Ns66tA7OWtqHvhKtNOnTPVqvoE7sohT7igFkpmQ+Mm3sPGcoKzs5BPxXETFaCb3pg+DsRpL4kORiyDA0IvtNwMWwsCoCRE7D7UYoMP4i+1Qoyc2WbPNt+rmPbXHiA/IrKRPjoSChA==
+ bh=AyJmG0TbOllSh9AHxSM5w9I2rPNo1e6GeoUwQTaeZIY=;
+ b=yqSHbPCEsLo5wQ6FY3SVSJVXvs1ybrCV++kbHrO/u2AWYQ9ZzUJr7PuyBnMZwzJ1JXsQbtOqxivg/yNAwxdugdFXYT7A4HR+37hjAhcH8igmNIYJ6FzPtXvq6VVEN7c7CCNok5nSzumTD1soECqWfhwXKk4nmgNx4u9DgZQeL2RZjUd+lcPX1N4wBWF06bTpbsR7QzrOlF/bqXNCEb9vL3PzTQr4L8qKOoyK0YOrXjxByo7WskRNS0D8GpMz8SPb2Oa5daIHRMfIRCmG1rQNn1TN+sJsQZTkZctAqo5J/42NxG8LBFZMWR0pqdFkOx3Uye8ESXiSjOGxEhOxt0iohA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sYSrFQ1wD/awMPNomaHNaJEIKvjw2O24H69Xlzon9z8=;
- b=DiBR46A9N1hAII9v6AiQrs9pDuqXEspJpDJLC+zmDP7d7algiMJlPLY6ZR/W0EOExO6ouIjT7iVUopOAr5Yp3+HmxG5b627cJoKEYRXsSil+KAjBgiB4dpikyIVS9DDOjedYLBqnkyT2MwiDN5IFoxlTqPcTdTreo9XnIT5WL1k=
-Received: from BL1PR13CA0434.namprd13.prod.outlook.com (2603:10b6:208:2c3::19)
- by PH7PR12MB6657.namprd12.prod.outlook.com (2603:10b6:510:1fe::7)
+ bh=AyJmG0TbOllSh9AHxSM5w9I2rPNo1e6GeoUwQTaeZIY=;
+ b=5fnfKI65amr0Ba5rgxpYrK9YOImNI++vZAqz1gmBHpxsxYCvjO4vX22moxg/QYV0kz6yeUIrNiXQJ+41L5Sn7bHvd/gA0OnRBlUVDg+Lmy7r1803ClhjWGYeXN/lgABpFIrw2ieS5gqHX1N3/8ReAClafxb9Z44s7kjcpHYAFCw=
+Received: from BL1PR13CA0411.namprd13.prod.outlook.com (2603:10b6:208:2c2::26)
+ by SJ0PR12MB6879.namprd12.prod.outlook.com (2603:10b6:a03:484::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Thu, 4 Jun 2026
- 14:55:16 +0000
-Received: from MN1PEPF0000F0E5.namprd04.prod.outlook.com
- (2603:10b6:208:2c3:cafe::1) by BL1PR13CA0434.outlook.office365.com
- (2603:10b6:208:2c3::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.7 via Frontend Transport; Thu, 4
- Jun 2026 14:55:16 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.8; Thu, 4 Jun 2026
+ 14:55:19 +0000
+Received: from BN1PEPF0000468B.namprd05.prod.outlook.com
+ (2603:10b6:208:2c2:cafe::24) by BL1PR13CA0411.outlook.office365.com
+ (2603:10b6:208:2c2::26) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.8 via Frontend Transport; Thu, 4
+ Jun 2026 14:55:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- MN1PEPF0000F0E5.mail.protection.outlook.com (10.167.242.43) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BN1PEPF0000468B.mail.protection.outlook.com (10.167.243.136) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.92.5 via Frontend Transport; Thu, 4 Jun 2026 14:55:16 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.92.5 via Frontend Transport; Thu, 4 Jun 2026 14:55:18 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 4 Jun
- 2026 09:55:06 -0500
+ 2026 09:55:07 -0500
 Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
  (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 4 Jun
  2026 09:55:06 -0500
 Received: from aaurabin-tumbleweed.king-squeaker.ts.net (10.180.168.240) by
  satlexmb08.amd.com (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41
- via Frontend Transport; Thu, 4 Jun 2026 09:55:05 -0500
+ via Frontend Transport; Thu, 4 Jun 2026 09:55:06 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -79,9 +78,9 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
-Subject: [PATCH 16/24] drm/amd/display: Remove duplicate pp_rn_set_wm_ranges
-Date: Thu, 4 Jun 2026 10:52:10 -0400
-Message-ID: <20260604145428.809959-17-aurabindo.pillai@amd.com>
+Subject: [PATCH 17/24] drm/amd/display: Add KUnit tests for amdgpu_dm_pp_smu
+Date: Thu, 4 Jun 2026 10:52:11 -0400
+Message-ID: <20260604145428.809959-18-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260604145428.809959-1-aurabindo.pillai@amd.com>
 References: <20260604145428.809959-1-aurabindo.pillai@amd.com>
@@ -90,29 +89,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E5:EE_|PH7PR12MB6657:EE_
-X-MS-Office365-Filtering-Correlation-Id: 960cbd16-c80b-4a86-febb-08dec24949de
+X-MS-TrafficTypeDiagnostic: BN1PEPF0000468B:EE_|SJ0PR12MB6879:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0b3b7574-0d41-42bc-2795-08dec2494b9f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|82310400026|1800799024|376014|56012099006|11063799006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: VJ71pxEC5MyUUegREvdDaW6Qgp9lPK5Y0DZ7epX64+Zx9wZht4dwMqrlnBCL94/xJ97vID38rbC5T2LznZOqBXKERcZukytICIOdDfRED9QBJT5LkjPQZOLYqEyOeRaEdxT5uLc1+B/10MAVCFi/1AeVIsMmtEJHtc6VMcnYqvOoVZG0XJQigXyQ0Ra/wmSPK5NBT9QxutUtwihsOPogXcrZhTtbIdckNTyQCG0qguteBgb814tKP6liePKIKLSU8r2+wKnjAYyDyBWAQU+HqPWdO+Yn2C1fWuUpDUnDd7bkhTPrE33XpE0hnVMZEFiVnbY2J6TvjGOFeR+6aGZ/cyjFUylZKh36qw1kAeBzwJJbXH3DbUomaYJOyVjTnQA2lyeNsDQ7/wiCnNp6joVLGzo770AkzvY69aXo2i3WtDMbJp6uxb6tl2pIJwTItymhnX3Ie6UwgPuTEkJABp5/PIGwsjbAO+QC0K+sFAoRRehGkROvdzkTv0cWt1gZnAi20eeUDKkAhw2fa9x9DpwzOxb28K0JldlOqGgMXRLuiltmcvsQ8h/b7XZJtc8i2s3tu02I3QL6EgIu2g39d3ZY4oi5R9tqUxDM78Ra+qw9595KuOFXyjIjlOJSd+HTbS9WnvwGo+sq+VHZd3pjapKwCzp9oPY8BL7iJM7m3rYm+V16UP8ypRKnDil2orUa8+RrK1jV8lNkJEzAjwyooXtazB+dyheuaH55EKccXC72mCs=
+ ARA:13230040|376014|82310400026|1800799024|36860700016|22082099003|18002099003|6133799003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: FB/l2xsJjAavhsuZaha0EKki7yYm/0EA/Q73PgALzI+NBTt7X1b/57arpYVGh4USOe4VrU2NHX6bETb5tQugFkGukO2Gesdzd6N3PUl+obvicREuR9xvoI/Xd6Nh8wDQuRTdO0wIcHcOeE9W4jbRa8vrIpsnYpYF3bsdbBjfNUzLeOSNZWnF9jMd42TQ1AfSW9WXk6DTMHvlXUA1jNxKsrQOsFXUC40tv5v7qYc3FB5okN0pgj+mqS0YRVG1U+txy0oa7gQnIjB1bMVRKiH/1tw2u7Flpgcb8vHFw1I5+DrpqDai4th/QZRJrD9Iiek4DmSXEZqYckIZNV3UjcX9jmsJl13N3rbDHHVC+ZRtSqH1PbA/RZmIyzgyxCp1U17iE0RLJ0XmKDih6lzwY+gC+pQzdK7EEEujTpy4rOvfbMkFt379986diY+g+/g9yv1FPYdsf33UK7COsrOp3HaUw/sF7tB8Nsm1bXQLayEZlnHidO/lZZc4I4nn8HN+eD1HBu+b49fboel1SzO2mWIJQRrAPzpvhHbcAbGl9zWXkSEM6tqnZ4CC/p3slSdml5hrnKZXjMjH591WmzMbFPNeR8cVTIVQIQ6NoAC6ysd9v8M6QUJzbPpBvPWIiLQbEjqxcbEUIoS18aIPy/5ig31GNCsWsKuJr882OfkbQ7SWtIM1ab8f+jvx364JMRTzv5ohEH4wY5NZoFGRhatezlkzhjZaFWY4FDbKvOg57E0+kHo=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(56012099006)(11063799006)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700016)(22082099003)(18002099003)(6133799003)(56012099006)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: IEBW047k/bHcKMZ/MGvqQURoyCT305neNP3Fw1SAmxuZ4lbzIPo26709kkoYWbGilPnP4EbaSL2PRIUEXR8wD0N4oEWQySweIw7VGs1oYLmq6MsrKQv2vXPh66KR8CQtyZ1BMT3940Cxx5WAiXQtWVbHISJCyGpmTC6KNac/oa3jIQhUmDYtjdHozynlkHDFq4AG/38S5F9irgZW1tcBDUQx2i6FKxXOLiXulIxJaeE6qkMoCEzYei0y57KJ3UookAkjVj+ZMa0YsYbXEH/akdTTPmlEI1MuYx7rq7Vdnjd23MVr0lK7dc9MHEeIskayhKwn5hA1CfpZkADDQ6o26alb9pytK0Il+5KP34M5WjG9azmPxCMzLCuNRCByDSLUBPFy86m9m0rVCytd88guP8uQMRNdAZBNtbedrscKn8BIXtkfbVKgObC2B+826Xby
+X-MS-Exchange-AntiSpam-MessageData-0: Gw21Be6JH56xKz8+sqdrkK2FTcrNkbXMcW0CIj2WvvBwu6nxpuVsjkX4otu38MoQlSm8UlIZFFyvEYLWmmeIUh3GvocjPIhzeq/tqP3bd1rut8QVn+JZza4QJOeisRX31uZS7jZ9ncZdvq13udba4i2HHs/XrydzFcSg7pHjR+xi+q8/fm+rSZruUtmb7bImpV8mQow6IRbxeVy9rdcJAfJGwQvOM5blwrncb2fYjw3EabOUga1RzdLqdDU8CWJUtFl7ii/AwzfyOU2ndHjR0PVwUFBbDImiTCgfZp+CjTIIGFxEoTznXygIo2a02rHj6DoCXe9cIpNpoT1dHKrTfr+JLyVc26UHwWwS+cC5zJAR3RA4uIUzD4aePEdzYPGpju6FAiCNxz+k1qqE+640WWoJXR53i9CdZ8/YBOYiQn1xeRP6P/krVKqRYRJ2+avt
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2026 14:55:16.0582 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 960cbd16-c80b-4a86-febb-08dec24949de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2026 14:55:18.9917 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b3b7574-0d41-42bc-2795-08dec2494b9f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0E5.namprd04.prod.outlook.com
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF0000468B.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6657
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6879
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,59 +147,360 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[aurabindo.pillai@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email];
 	ALIAS_RESOLVED(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D55D6641208
+X-Rspamd-Queue-Id: 2F44D64121F
 
 From: Alex Hung <alex.hung@amd.com>
 
 [WHAT]
-Remove pp_rn_set_wm_ranges and reuse the identical
-pp_nv_set_wm_ranges for the DCN_VERSION_2_1 case instead.
+Add KUnit tests for two functions in amdgpu_dm_pp_smu.c:
+get_default_clock_levels and dc_to_pp_clock_type.
 
 Assisted-by: Copilot:Claude-Opus-4.6
 Reviewed-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 Signed-off-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c    | 13 +------------
- 1 file changed, 1 insertion(+), 12 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c  |   8 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_pp_smu.h  |  16 ++
+ .../drm/amd/display/amdgpu_dm/tests/Makefile  |   2 +
+ .../amdgpu_dm/tests/amdgpu_dm_pp_smu_test.c   | 241 ++++++++++++++++++
+ 4 files changed, 265 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.h
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_pp_smu_test.c
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
-index 2cdb8fea504a..2fda6fbed88f 100644
+index 2fda6fbed88f..ca7141dbdf6a 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
-@@ -686,17 +686,6 @@ static enum pp_smu_status pp_rn_get_dpm_clock_table(
- 	return PP_SMU_RESULT_OK;
+@@ -33,6 +33,8 @@
+ #include "amdgpu_dm_irq.h"
+ #include "amdgpu_pm.h"
+ #include "dm_pp_smu.h"
++#include "amdgpu_dm_kunit_helpers.h"
++#include "amdgpu_dm_pp_smu.h"
+ 
+ bool dm_pp_apply_display_requirements(
+ 		const struct dc_context *ctx,
+@@ -109,7 +111,7 @@ bool dm_pp_apply_display_requirements(
+ 	return true;
  }
  
--static enum pp_smu_status pp_rn_set_wm_ranges(struct pp_smu *pp,
--		struct pp_smu_wm_range_sets *ranges)
--{
--	const struct dc_context *ctx = pp->dm;
--	struct amdgpu_device *adev = ctx->driver_context;
--
--	amdgpu_dpm_set_watermarks_for_clocks_ranges(adev, ranges);
--
--	return PP_SMU_RESULT_OK;
--}
--
- void dm_pp_get_funcs(
- 		struct dc_context *ctx,
- 		struct pp_smu_funcs *funcs)
-@@ -743,7 +732,7 @@ void dm_pp_get_funcs(
- 	case DCN_VERSION_2_1:
- 		funcs->ctx.ver = PP_SMU_VER_RN;
- 		funcs->rn_funcs.pp_smu.dm = ctx;
--		funcs->rn_funcs.set_wm_ranges = pp_rn_set_wm_ranges;
-+		funcs->rn_funcs.set_wm_ranges = pp_nv_set_wm_ranges;
- 		funcs->rn_funcs.get_dpm_clock_table = pp_rn_get_dpm_clock_table;
+-static void get_default_clock_levels(
++STATIC_IFN_KUNIT void get_default_clock_levels(
+ 		enum dm_pp_clock_type clk_type,
+ 		struct dm_pp_clock_levels *clks)
+ {
+@@ -140,8 +142,9 @@ static void get_default_clock_levels(
  		break;
- 	default:
+ 	}
+ }
++EXPORT_IF_KUNIT(get_default_clock_levels);
+ 
+-static enum amd_pp_clock_type dc_to_pp_clock_type(
++STATIC_IFN_KUNIT enum amd_pp_clock_type dc_to_pp_clock_type(
+ 		enum dm_pp_clock_type dm_pp_clk_type)
+ {
+ 	enum amd_pp_clock_type amd_pp_clk_type = 0;
+@@ -182,6 +185,7 @@ static enum amd_pp_clock_type dc_to_pp_clock_type(
+ 
+ 	return amd_pp_clk_type;
+ }
++EXPORT_IF_KUNIT(dc_to_pp_clock_type);
+ 
+ static void pp_to_dc_clock_levels(
+ 		const struct amd_pp_clocks *pp_clks,
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.h
+new file mode 100644
+index 000000000000..827b60d5affe
+--- /dev/null
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.h
+@@ -0,0 +1,16 @@
++/* SPDX-License-Identifier: GPL-2.0 OR MIT */
++/*
++ * Copyright 2026 Advanced Micro Devices, Inc.
++ */
++
++#ifndef __AMDGPU_DM_PP_SMU_H__
++#define __AMDGPU_DM_PP_SMU_H__
++
++#include "dm_pp_interface.h"
++
++#if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
++void get_default_clock_levels(enum dm_pp_clock_type clk_type, struct dm_pp_clock_levels *clks);
++enum amd_pp_clock_type dc_to_pp_clock_type(enum dm_pp_clock_type dm_pp_clk_type);
++#endif
++
++#endif /* __AMDGPU_DM_PP_SMU_H__ */
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile
+index fe9f32c9bdde..4d2eb301c2af 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile
+@@ -8,6 +8,7 @@ ccflags-y += -I$(src)/../../include
+ ccflags-y += -I$(src)/../../modules/inc
+ ccflags-y += -I$(src)/../../dc
+ ccflags-y += -I$(src)/../../../amdgpu
++ccflags-y += -I$(src)/../../../include
+ 
+ obj-$(CONFIG_DRM_AMD_DC_KUNIT_TEST) += amdgpu_dm_crc_test.o
+ obj-$(CONFIG_DRM_AMD_DC_KUNIT_TEST) += amdgpu_dm_hdcp_test.o
+@@ -18,3 +19,4 @@ obj-$(CONFIG_DRM_AMD_DC_KUNIT_TEST) += amdgpu_dm_replay_test.o
+ obj-$(CONFIG_DRM_AMD_DC_KUNIT_TEST) += amdgpu_dm_ism_test.o
+ obj-$(CONFIG_DRM_AMD_DC_KUNIT_TEST) += amdgpu_dm_wb_test.o
+ obj-$(CONFIG_DRM_AMD_DC_KUNIT_TEST) += amdgpu_dm_mst_types_test.o
++obj-$(CONFIG_DRM_AMD_DC_KUNIT_TEST) += amdgpu_dm_pp_smu_test.o
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_pp_smu_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_pp_smu_test.c
+new file mode 100644
+index 000000000000..556473f55ebe
+--- /dev/null
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_pp_smu_test.c
+@@ -0,0 +1,241 @@
++// SPDX-License-Identifier: GPL-2.0 OR MIT
++/*
++ * KUnit tests for amdgpu_dm_pp_smu.c
++ *
++ * Copyright 2026 Advanced Micro Devices, Inc.
++ */
++
++#include <kunit/test.h>
++#include <linux/types.h>
++
++#include "dc.h"
++#include "amdgpu_mode.h"
++#include "amdgpu_dm.h"
++#include "amdgpu_dm_pp_smu.h"
++
++/* ---- Tests for get_default_clock_levels ---- */
++
++/**
++ * dm_test_default_clock_levels_display - Test display clock default levels
++ * @test: KUnit test context
++ *
++ * Verify that get_default_clock_levels populates 6 display clock levels
++ * with the expected frequencies in kHz.
++ */
++static void dm_test_default_clock_levels_display(struct kunit *test)
++{
++	struct dm_pp_clock_levels clks = { 0 };
++	uint32_t expected[] = { 300000, 400000, 496560, 626090, 685720, 757900 };
++	int i;
++
++	get_default_clock_levels(DM_PP_CLOCK_TYPE_DISPLAY_CLK, &clks);
++
++	KUNIT_EXPECT_EQ(test, clks.num_levels, 6U);
++	for (i = 0; i < 6; i++)
++		KUNIT_EXPECT_EQ(test, clks.clocks_in_khz[i], expected[i]);
++}
++
++/**
++ * dm_test_default_clock_levels_engine - Test engine clock default levels
++ * @test: KUnit test context
++ *
++ * Verify that get_default_clock_levels populates 6 engine clock levels
++ * with the expected frequencies in kHz.
++ */
++static void dm_test_default_clock_levels_engine(struct kunit *test)
++{
++	struct dm_pp_clock_levels clks = { 0 };
++	uint32_t expected[] = { 300000, 360000, 423530, 514290, 626090, 720000 };
++	int i;
++
++	get_default_clock_levels(DM_PP_CLOCK_TYPE_ENGINE_CLK, &clks);
++
++	KUNIT_EXPECT_EQ(test, clks.num_levels, 6U);
++	for (i = 0; i < 6; i++)
++		KUNIT_EXPECT_EQ(test, clks.clocks_in_khz[i], expected[i]);
++}
++
++/**
++ * dm_test_default_clock_levels_memory - Test memory clock default levels
++ * @test: KUnit test context
++ *
++ * Verify that get_default_clock_levels populates 2 memory clock levels
++ * with the expected frequencies in kHz.
++ */
++static void dm_test_default_clock_levels_memory(struct kunit *test)
++{
++	struct dm_pp_clock_levels clks = { 0 };
++
++	get_default_clock_levels(DM_PP_CLOCK_TYPE_MEMORY_CLK, &clks);
++
++	KUNIT_EXPECT_EQ(test, clks.num_levels, 2U);
++	KUNIT_EXPECT_EQ(test, clks.clocks_in_khz[0], 333000U);
++	KUNIT_EXPECT_EQ(test, clks.clocks_in_khz[1], 800000U);
++}
++
++/**
++ * dm_test_default_clock_levels_unknown - Test unknown clock type default
++ * @test: KUnit test context
++ *
++ * Verify that get_default_clock_levels sets num_levels to 0 for an
++ * unrecognized clock type.
++ */
++static void dm_test_default_clock_levels_unknown(struct kunit *test)
++{
++	struct dm_pp_clock_levels clks = { 0 };
++
++	get_default_clock_levels(DM_PP_CLOCK_TYPE_FCLK, &clks);
++
++	KUNIT_EXPECT_EQ(test, clks.num_levels, 0U);
++}
++
++/* ---- Tests for dc_to_pp_clock_type ---- */
++
++/**
++ * dm_test_dc_to_pp_clock_type_display - Test display clock type mapping
++ * @test: KUnit test context
++ *
++ * Verify DM_PP_CLOCK_TYPE_DISPLAY_CLK maps to amd_pp_disp_clock.
++ */
++static void dm_test_dc_to_pp_clock_type_display(struct kunit *test)
++{
++	KUNIT_EXPECT_EQ(test, (int)dc_to_pp_clock_type(DM_PP_CLOCK_TYPE_DISPLAY_CLK),
++			(int)amd_pp_disp_clock);
++}
++
++/**
++ * dm_test_dc_to_pp_clock_type_engine - Test engine clock type mapping
++ * @test: KUnit test context
++ *
++ * Verify DM_PP_CLOCK_TYPE_ENGINE_CLK maps to amd_pp_sys_clock.
++ */
++static void dm_test_dc_to_pp_clock_type_engine(struct kunit *test)
++{
++	KUNIT_EXPECT_EQ(test, (int)dc_to_pp_clock_type(DM_PP_CLOCK_TYPE_ENGINE_CLK),
++			(int)amd_pp_sys_clock);
++}
++
++/**
++ * dm_test_dc_to_pp_clock_type_memory - Test memory clock type mapping
++ * @test: KUnit test context
++ *
++ * Verify DM_PP_CLOCK_TYPE_MEMORY_CLK maps to amd_pp_mem_clock.
++ */
++static void dm_test_dc_to_pp_clock_type_memory(struct kunit *test)
++{
++	KUNIT_EXPECT_EQ(test, (int)dc_to_pp_clock_type(DM_PP_CLOCK_TYPE_MEMORY_CLK),
++			(int)amd_pp_mem_clock);
++}
++
++/**
++ * dm_test_dc_to_pp_clock_type_dcefclk - Test DCEF clock type mapping
++ * @test: KUnit test context
++ *
++ * Verify DM_PP_CLOCK_TYPE_DCEFCLK maps to amd_pp_dcef_clock.
++ */
++static void dm_test_dc_to_pp_clock_type_dcefclk(struct kunit *test)
++{
++	KUNIT_EXPECT_EQ(test, (int)dc_to_pp_clock_type(DM_PP_CLOCK_TYPE_DCEFCLK),
++			(int)amd_pp_dcef_clock);
++}
++
++/**
++ * dm_test_dc_to_pp_clock_type_dcfclk - Test DCF clock type mapping
++ * @test: KUnit test context
++ *
++ * Verify DM_PP_CLOCK_TYPE_DCFCLK maps to amd_pp_dcf_clock.
++ */
++static void dm_test_dc_to_pp_clock_type_dcfclk(struct kunit *test)
++{
++	KUNIT_EXPECT_EQ(test, (int)dc_to_pp_clock_type(DM_PP_CLOCK_TYPE_DCFCLK),
++			(int)amd_pp_dcf_clock);
++}
++
++/**
++ * dm_test_dc_to_pp_clock_type_pixelclk - Test pixel clock type mapping
++ * @test: KUnit test context
++ *
++ * Verify DM_PP_CLOCK_TYPE_PIXELCLK maps to amd_pp_pixel_clock.
++ */
++static void dm_test_dc_to_pp_clock_type_pixelclk(struct kunit *test)
++{
++	KUNIT_EXPECT_EQ(test, (int)dc_to_pp_clock_type(DM_PP_CLOCK_TYPE_PIXELCLK),
++			(int)amd_pp_pixel_clock);
++}
++
++/**
++ * dm_test_dc_to_pp_clock_type_fclk - Test FCLK type mapping
++ * @test: KUnit test context
++ *
++ * Verify DM_PP_CLOCK_TYPE_FCLK maps to amd_pp_f_clock.
++ */
++static void dm_test_dc_to_pp_clock_type_fclk(struct kunit *test)
++{
++	KUNIT_EXPECT_EQ(test, (int)dc_to_pp_clock_type(DM_PP_CLOCK_TYPE_FCLK),
++			(int)amd_pp_f_clock);
++}
++
++/**
++ * dm_test_dc_to_pp_clock_type_phyclk - Test display PHY clock type mapping
++ * @test: KUnit test context
++ *
++ * Verify DM_PP_CLOCK_TYPE_DISPLAYPHYCLK maps to amd_pp_phy_clock.
++ */
++static void dm_test_dc_to_pp_clock_type_phyclk(struct kunit *test)
++{
++	KUNIT_EXPECT_EQ(test, (int)dc_to_pp_clock_type(DM_PP_CLOCK_TYPE_DISPLAYPHYCLK),
++			(int)amd_pp_phy_clock);
++}
++
++/**
++ * dm_test_dc_to_pp_clock_type_dppclk - Test DPP clock type mapping
++ * @test: KUnit test context
++ *
++ * Verify DM_PP_CLOCK_TYPE_DPPCLK maps to amd_pp_dpp_clock.
++ */
++static void dm_test_dc_to_pp_clock_type_dppclk(struct kunit *test)
++{
++	KUNIT_EXPECT_EQ(test, (int)dc_to_pp_clock_type(DM_PP_CLOCK_TYPE_DPPCLK),
++			(int)amd_pp_dpp_clock);
++}
++
++/**
++ * dm_test_dc_to_pp_clock_type_invalid - Test invalid clock type mapping
++ * @test: KUnit test context
++ *
++ * Verify that an invalid clock type value maps to 0.
++ */
++static void dm_test_dc_to_pp_clock_type_invalid(struct kunit *test)
++{
++	KUNIT_EXPECT_EQ(test, (int)dc_to_pp_clock_type(0), 0);
++}
++
++static struct kunit_case dm_pp_smu_test_cases[] = {
++	/* get_default_clock_levels */
++	KUNIT_CASE(dm_test_default_clock_levels_display),
++	KUNIT_CASE(dm_test_default_clock_levels_engine),
++	KUNIT_CASE(dm_test_default_clock_levels_memory),
++	KUNIT_CASE(dm_test_default_clock_levels_unknown),
++	/* dc_to_pp_clock_type */
++	KUNIT_CASE(dm_test_dc_to_pp_clock_type_display),
++	KUNIT_CASE(dm_test_dc_to_pp_clock_type_engine),
++	KUNIT_CASE(dm_test_dc_to_pp_clock_type_memory),
++	KUNIT_CASE(dm_test_dc_to_pp_clock_type_dcefclk),
++	KUNIT_CASE(dm_test_dc_to_pp_clock_type_dcfclk),
++	KUNIT_CASE(dm_test_dc_to_pp_clock_type_pixelclk),
++	KUNIT_CASE(dm_test_dc_to_pp_clock_type_fclk),
++	KUNIT_CASE(dm_test_dc_to_pp_clock_type_phyclk),
++	KUNIT_CASE(dm_test_dc_to_pp_clock_type_dppclk),
++	KUNIT_CASE(dm_test_dc_to_pp_clock_type_invalid),
++	{}
++};
++
++static struct kunit_suite dm_pp_smu_test_suite = {
++	.name = "amdgpu_dm_pp_smu",
++	.test_cases = dm_pp_smu_test_cases,
++};
++
++kunit_test_suite(dm_pp_smu_test_suite);
++
++MODULE_LICENSE("Dual MIT/GPL");
++MODULE_DESCRIPTION("KUnit tests for amdgpu_dm_pp_smu");
 -- 
 2.54.0
 
