@@ -2,86 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7QTFFl8jIWpH/gAAu9opvQ
+	id VIESIWIjIWpS/gAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 09:03:59 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 09:04:02 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFD0363D7C4
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 09:03:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51D5163D7E9
+	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 09:04:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=pEGEKlrQ;
+	dkim=pass header.d=linux.dev header.s=key1 header.b=qB4JrXrC;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com
+	dmarc=pass (policy=none) header.from=linux.dev
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFD8511271A;
-	Thu,  4 Jun 2026 07:03:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 742B2113D01;
+	Thu,  4 Jun 2026 07:04:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
- [209.85.214.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6802F1126D6
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2026 06:42:42 +0000 (UTC)
-Received: by mail-pl1-f176.google.com with SMTP id
- d9443c01a7336-2bf1f074a12so3982905ad.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 03 Jun 2026 23:42:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1780555362; x=1781160162; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=ERlLtZnynL1JYR1BCmWJV8DFDr7q66lNokSGTMbdgUo=;
- b=pEGEKlrQA1CjTeLdDb+tKZYQMVjP4SeMffrl1evnzhV6w8YbrWULELv+crRTO3M05u
- 1iDX4VjSG0kS4a0N+TSQIZmzdIgZncc3SHN0PzJ1eC5fy2xNAnsgz6z0zdW4Cr6yf4jO
- sXM1bQSQGD6lpAZHPakbSbb2otbiWxp1D2mNe5dh10o7wXOI0Cy9J821TY8AGurpmk8P
- qSSPQ7aC2+mCDNBG7o1hl/9U0uMGDHhUccFn6ieKfnOPLt1ewKvkUXvJ0660jmXtC6bT
- hYPTz/UcnFJRbWqv4Qrrf/cqdzS8v0dCdybmM/SNUNZZN0X13j0XWq8bYODdjNYVEP93
- gYLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1780555362; x=1781160162;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ERlLtZnynL1JYR1BCmWJV8DFDr7q66lNokSGTMbdgUo=;
- b=j/CKbDBMs9UfDrWzzRF+S+iyB9w9KIUVUOISxM52Nr6UHxBzdYqmt+Z1xXm87/+kZy
- UNDrOLNFXoxQwPc8p6bC010x44zoB0Eg35hh+iM5eCxncHSq6IESL9DViJU2CcRznoBP
- xk/SnCe5xugEDq5F63e4B4kSnk2jopE1t3dq9Hcy83b/SEcDilQkXZY/7myBDpatHOqS
- 69AsaS90T42H22jvuulm0F3dFz68+W8plBb8sO6omi3SRppyxhqjh8/rz1x6iOkV+0SZ
- aV+QOZwuOLKoYHb3pxChHnXqYdYFi4I1u9qYVgasD0qGinFNzkDxZ4h6Q5iW/ITUGWZf
- pivg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ/HeTDqhHbDPU4M8dGyaCw04uiEe0YzobUiuMBY3SdvoS4MiTuXRlgKDIq48ienZViWgw1/krj5@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy0q0BJFBDy1QpeQGv2uFfumdDerk/e+HMGI0fpntz7Ib5wjEWt
- sjMqnRhcUt1yI1huGP++8B2oPLF7blWtSOuOZ9+yvhYd91JrREdTIS/A
-X-Gm-Gg: Acq92OHJ7dxq3SI6KUuHjjiGSpZ5x+yfievFcBwxRytopKfhX8OFmOQYx7NQpsQ9BDr
- jxrR/kAuDc9auHS5WtTMn2FL9omLLC4Opjei21GvhN1n/ldlrAErHA3p6q7z7zUg2sPJLBO69oq
- 5AyMseLXcumsXK16qucH5VO95GVQW4swYWnBmUOkXKd+N2MpOI7b+HwP3Ieo2ISddFTVBKNHqXG
- nxvMkdZvAa7Dw7EJsl2QPPOxpGlktZfTitmxnP6IYHEaBEDjFbZvxboTOuEpYJGmg26fM/bQxuH
- BJ06OV26wStA15HnlvD33OBn9vPiIyzES8ZVlVkt4sa0L9PQlqBGUGFtdYEKv7fjMj0XtSd9/9V
- RDBgk+YK9QgqBdFchxMzCDPVbHuui3vPXvEjParrA1QUOVhQqOTUxIz+gVKW9bdxu8pwbUbbh25
- MFxeng2pk+MRGLwy2/
-X-Received: by 2002:a17:903:41cf:b0:2c0:ca93:1303 with SMTP id
- d9443c01a7336-2c1639ee9e7mr70998755ad.6.1780555361754; 
- Wed, 03 Jun 2026 23:42:41 -0700 (PDT)
-Received: from lgs.. ([2001:250:5800:1000::f280])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2c164f6dc92sm43801515ad.13.2026.06.03.23.42.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 03 Jun 2026 23:42:41 -0700 (PDT)
-From: Guangshuo Li <lgs201920130244@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Prike Liang <Prike.Liang@amd.com>, Sunil Khatri <sunil.khatri@amd.com>,
- "Jesse.Zhang" <Jesse.Zhang@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Guangshuo Li <lgs201920130244@gmail.com>
-Subject: [PATCH] drm/amdgpu/userq: clean up VA state on create failure
-Date: Thu,  4 Jun 2026 14:39:43 +0800
-Message-ID: <20260604063943.1412955-1-lgs201920130244@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Received: from out-176.mta1.migadu.com (out-176.mta1.migadu.com
+ [95.215.58.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39D1B1126DC
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2026 06:44:56 +0000 (UTC)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1780555493;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=mTI2prm2clzWv1IFKwQSUxNjHp3GJWhjQ6YGZew1VGE=;
+ b=qB4JrXrC/Jhnp3Q+ZWLXyuhI74JmgrnhViNwN6dZAcs1RKmFD1+S2EV6hNl7S1LHRtKjFw
+ lm4uGvjqDH5z7GqzC/po/RcdmO3M7Ydubewk9hlI+IsLo8Gh2iWT7pPCxFFnlTdgX2yUb8
+ kt9Goo3DbHszaYU5hi7hBO4Fcg5prgI=
+From: Matthew Schwartz <matthew.schwartz@linux.dev>
+To: Leo Li <sunpeng.li@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Daniel Wheeler <daniel.wheeler@amd.com>,
+ Tom Chung <chiahsuan.chung@amd.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ Matthew Schwartz <matthew.schwartz@linux.dev>
+Subject: [PATCH] drm/amd/display: Fix mem_type change detection for async flips
+Date: Wed,  3 Jun 2026 23:44:24 -0700
+Message-ID: <20260604064424.3154796-1-matthew.schwartz@linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Thu, 04 Jun 2026 07:03:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -99,161 +62,84 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:Prike.Liang@amd.com,m:sunil.khatri@amd.com,m:Jesse.Zhang@amd.com,m:lijo.lazar@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:lgs201920130244@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[lgs201920130244@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lgs201920130244@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sunpeng.li@amd.com,m:alexander.deucher@amd.com,m:daniel.wheeler@amd.com,m:chiahsuan.chung@amd.com,m:dri-devel@lists.freedesktop.org,m:matthew.schwartz@linux.dev,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[matthew.schwartz@linux.dev,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[matthew.schwartz@linux.dev,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.dev:mid,linux.dev:dkim,linux.dev:from_mime,linux.dev:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DFD0363D7C4
+X-Rspamd-Queue-Id: 51D5163D7E9
 
-amdgpu_userq_input_va_validate() is not a side-effect-free validator.
-When it succeeds, it allocates a VA cursor, links it on
-queue->userq_va_list and marks the corresponding bo_va as userq mapped.
+[Why]
+amdgpu_dm_crtc_mem_type_changed() fetches the "old" and "new" plane state
+with two drm_atomic_get_plane_state() calls, which both return the new
+state. It compares a state against itself, so it never detects a mem_type
+change and never rejects the async flip.
 
-The user queue create path validates queue_va, rptr_va and wptr_va with a
-short-circuit OR expression. If an earlier validation succeeds and a
-later validation fails, the error path frees the queue directly. The VA
-cursor added by the successful validation is leaked and
-bo_va->userq_va_mapped remains set even though no user queue was created.
+On DCN 3.0.1, this shows up as intermittent corruption when a single DCC
+plane is scanned out with immediate flips under gamescope and its buffer
+moves between the VRAM carveout and GTT.
 
-The same stale VA tracking state can also survive later create failures
-after all VA validations have succeeded, because those paths also free
-the queue without unwinding queue->userq_va_list.
+[How]
+Use drm_atomic_get_old_plane_state() and drm_atomic_get_new_plane_state()
+to compare the actual old and new states. These return NULL rather than
+an error pointer for a plane that is not part of the commit, so the
+IS_ERR() check becomes a NULL check that skips those planes, such as an
+unmodified cursor still in the CRTC's plane_mask.
 
-Route the create error paths through common unwind labels and call
-amdgpu_userq_buffer_vas_list_cleanup() before freeing the queue. This
-releases any VA cursors added during validation and clears the stale
-userq VA mapping state.
-
-Fixes: 9e46b8bb0539 ("drm/amdgpu: validate userq buffer virtual address and size")
-Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
+Fixes: 4caacd1671b7a ("drm/amd/display: Do not elevate mem_type change to full update")
+Signed-off-by: Matthew Schwartz <matthew.schwartz@linux.dev>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 32 +++++++++++------------
- 1 file changed, 15 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index 0a1b93259887..dba0f786ae4a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -826,17 +826,15 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 	    amdgpu_userq_input_va_validate(adev, queue, args->in.rptr_va, AMDGPU_GPU_PAGE_SIZE) ||
- 	    amdgpu_userq_input_va_validate(adev, queue, args->in.wptr_va, AMDGPU_GPU_PAGE_SIZE)) {
- 		r = -EINVAL;
--		kfree(queue);
--		goto unlock;
-+		goto free_queue;
- 	}
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 6c1e7e13f0399..711640739179e 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -12934,13 +12934,11 @@ static bool amdgpu_dm_crtc_mem_type_changed(struct drm_device *dev,
+ 	struct drm_plane_state *new_plane_state, *old_plane_state;
  
- 	/* Convert relative doorbell offset into absolute doorbell index */
- 	index = amdgpu_userq_get_doorbell_index(uq_mgr, &db_info, filp);
- 	if (index == (uint64_t)-EINVAL) {
- 		drm_file_err(uq_mgr->file, "Failed to get doorbell for queue\n");
--		kfree(queue);
- 		r = -EINVAL;
--		goto unlock;
-+		goto free_queue;
- 	}
+ 	drm_for_each_plane_mask(plane, dev, crtc_state->plane_mask) {
+-		new_plane_state = drm_atomic_get_plane_state(state, plane);
+-		old_plane_state = drm_atomic_get_plane_state(state, plane);
++		new_plane_state = drm_atomic_get_new_plane_state(state, plane);
++		old_plane_state = drm_atomic_get_old_plane_state(state, plane);
  
- 	queue->doorbell_index = index;
-@@ -844,15 +842,14 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 	r = amdgpu_userq_fence_driver_alloc(adev, queue);
- 	if (r) {
- 		drm_file_err(uq_mgr->file, "Failed to alloc fence driver\n");
--		goto unlock;
-+		goto free_queue;
- 	}
+-		if (IS_ERR(new_plane_state) || IS_ERR(old_plane_state)) {
+-			drm_err(dev, "Failed to get plane state for plane %s\n", plane->name);
+-			return false;
+-		}
++		if (!old_plane_state || !new_plane_state)
++			continue;
  
- 	r = uq_funcs->mqd_create(queue, &args->in);
- 	if (r) {
- 		drm_file_err(uq_mgr->file, "Failed to create Queue\n");
- 		amdgpu_userq_fence_driver_free(queue);
--		kfree(queue);
--		goto unlock;
-+		goto free_queue;
- 	}
- 
- 	/* drop this refcount during queue destroy */
-@@ -862,21 +859,17 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 	down_read(&adev->reset_domain->sem);
- 	r = xa_err(xa_store_irq(&adev->userq_doorbell_xa, index, queue, GFP_KERNEL));
- 	if (r) {
--		kfree(queue);
- 		up_read(&adev->reset_domain->sem);
--		goto unlock;
-+		goto free_queue;
- 	}
- 
- 	r = xa_alloc(&uq_mgr->userq_xa, &qid, queue,
- 		     XA_LIMIT(1, AMDGPU_MAX_USERQ_COUNT), GFP_KERNEL);
- 	if (r) {
- 		drm_file_err(uq_mgr->file, "Failed to allocate a queue id\n");
--		amdgpu_userq_fence_driver_free(queue);
--		uq_funcs->mqd_destroy(queue);
--		kfree(queue);
- 		r = -ENOMEM;
- 		up_read(&adev->reset_domain->sem);
--		goto unlock;
-+		goto free_queue;
- 	}
- 	up_read(&adev->reset_domain->sem);
- 
-@@ -892,10 +885,7 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 		if (r) {
- 			drm_file_err(uq_mgr->file, "Failed to map Queue\n");
- 			xa_erase(&uq_mgr->userq_xa, qid);
--			amdgpu_userq_fence_driver_free(queue);
--			uq_funcs->mqd_destroy(queue);
--			kfree(queue);
--			goto unlock;
-+			goto free_queue;
- 		}
- 	}
- 
-@@ -915,7 +905,15 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
- 
- 	args->out.queue_id = qid;
- 	atomic_inc(&uq_mgr->userq_count[queue->queue_type]);
-+	goto unlock;
- 
-+free_mqd:
-+	uq_funcs->mqd_destroy(queue);
-+free_fence_driver:
-+	amdgpu_userq_fence_driver_free(queue);
-+free_queue:
-+	amdgpu_userq_buffer_vas_list_cleanup(adev, queue);
-+	kfree(queue);
- unlock:
- 	mutex_unlock(&uq_mgr->userq_mutex);
- 
+ 		if (old_plane_state->fb && new_plane_state->fb &&
+ 		    get_mem_type(old_plane_state->fb) != get_mem_type(new_plane_state->fb))
 -- 
-2.43.0
+2.54.0
 
