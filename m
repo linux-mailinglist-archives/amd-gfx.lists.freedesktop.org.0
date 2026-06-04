@@ -2,69 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tPCTC8mRIWpXJAEAu9opvQ
+	id l8tSIcWRIWpVJAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 16:55:05 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 16:55:01 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1EB26411C2
-	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 16:55:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 007506411BA
+	for <lists+amd-gfx@lfdr.de>; Thu, 04 Jun 2026 16:55:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=nLax5M9Y;
+	dkim=pass header.d=amd.com header.s=selector1 header.b="Xo9/kyYK";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89DB511284D;
-	Thu,  4 Jun 2026 14:55:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9354F11283D;
+	Thu,  4 Jun 2026 14:54:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010053.outbound.protection.outlook.com [52.101.85.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BB78112841
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2026 14:55:01 +0000 (UTC)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011064.outbound.protection.outlook.com
+ [40.93.194.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24C9C11283D
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Jun 2026 14:54:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IkAM+0P0Z6q6z+YM+s6kbTeCnS44LYv6WhivrpPDxzR687rVmjql9y/g5peg3fiJPRnaMQcKq7WiXYhl4A0kCNwDrwdbMLfzNuG4IA9TInTGQE+soFgRVsAYq4/PtBZ23aIwM3IFVhAJHqdXheugr+z8SxXt7eMTuGoBmkeHmaTTnW+XsNPuXeDx4b23y9MP/p/2KLam5KYzzhWgw96pfpHeZsgSgkz7Yv+2uX4Y5fIMkwMQpiEKjCVVyMpoUcL0IIgs9HO6wXJzmsZWriWCYtfN/7oiN7CO6mHEqPttBoP04SDSu0aID48UnmhJ2cWDRi2v1X15UUHWp/XzOH9mbw==
+ b=QT7iesGf2byymoURVX3fdTYtSYrvE+g+ZsGUyAuyqMh/Wh7FJciZCEKd+WZVxjA8tupdT4gA+f7XX6JgAdnP39deBsB9mbOWqT4O/RTHEwpuhNmGljADDsswUrqVhqJSWVCKjtGiIV06CJjsOrqukOnztp4+kfWU7atR4p/+ZKOV+L2cK5p45VBwk2yU+VpRNyBwNiH/WH/p/EjTW+z4/Cn3xD7FbIodM68E/21yfOoPZa2KH+GhvQI4wYH5ty/5HmCC8MboP0oPmet1t9PgMC9iLWMciAOPfwSDHagJzFBdd7EW6KZwhKemVAQAlX/nZn5u4MHBPFDW/JN2H+7WXA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1nz8COj+D2vMgGwSq/gU6CS8B7qafsbEILJC+lum/oY=;
- b=ixvM+w5KlqJwJPfzKqucxRjXYQzJTWbnapCvv4Y0FIhQPLVHamEBTlv8N97l2WVMGB9oDM9LZ94wOZJ311sF8FMcbhyDHNvUgaJeO5XvwbjoF2KIMiSADY3TIom6ACxq19R3KZ+9Pc/FvXKMbndb298Y0CUWgoqojj0tnX+5d4BLknNxeQz1+kVOBuKwOp17YlqFd1jKq/gyfW/vmAVSwj61F4xzc9XIceQsqcPO5m2Y0ZitJOkwBZgLcvy6b0jJ+Y2M27SwaCKMMeYNFIXIDMCnlOoVW8TXFZ0NoGfWOegwkNAcUrVhJj9OxsCIGTGg+C3m41iEyQI4908KwlBpsQ==
+ bh=T5am+/tEJ9AXJ5cfChpjLin6reXQC5WPFIKM941Knvs=;
+ b=BSYUqfkOKe/PYFYXRcMZIbVzKybzQri4Ytw+Zhxwe5p8hEyjPFrWJZo+uKzUkg91iE0AoZ2ijsGc4JSypD+tYYaZFmUTsxamkHLdoDewgWSRRjdoeEAwZ3EaaKOpnqz1XHzGdLCBWKdOoXUbbvLTBkFaUL1We7iE85KZD5ObZ8hcewKobKp3cLqXX8MNwcU2R4NtlBaglz0yqZhrE96+Uak1njBVILnC0boJpgnXADVso7PKM0b+K/a7mcZCOa/6yjOAqm6ZQcleM05q3w9saV3+Lh4wa7/fdRSJ/UJlIvvTYPi7yvSxtKOLnAYN8z3pDx4K1Jw+hMz6/GTUEWSnEw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1nz8COj+D2vMgGwSq/gU6CS8B7qafsbEILJC+lum/oY=;
- b=nLax5M9YtNOUSm778nxNEne82tcJ9eZtt5RuESafOl/omBfSdHGOSzEm/b4x0qwNqgrUR6cwXtozVod4VXcIM6Y3TZg6Lubtr6vH8nq00N3bLh+t6kNcRySpU7JHOSiJCggYTqm6Bzv/ibDHxHpgNhLwQDxd85jnjyqwVGAvSXk=
-Received: from BN0PR07CA0003.namprd07.prod.outlook.com (2603:10b6:408:141::15)
- by IA1PR12MB9738.namprd12.prod.outlook.com (2603:10b6:208:465::6)
+ bh=T5am+/tEJ9AXJ5cfChpjLin6reXQC5WPFIKM941Knvs=;
+ b=Xo9/kyYKJfzEkQH8Rm7OdhYzwrhmmoC610VFZZ5M620Vvzqiz7obXjsIt/U2SN1r1tLcK2HbNPnSssJgOcqf9DOEnv0rHyb54M63o/ZbmO6LybAesz00eoA8+jzAfRERdCC038blvH+/vtZozlXnmPhNRTtRDHFVj+t5rfdIjiQ=
+Received: from BL1P223CA0044.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:5b6::17)
+ by CH3PR12MB9097.namprd12.prod.outlook.com (2603:10b6:610:1a6::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.8; Thu, 4 Jun 2026
- 14:54:57 +0000
-Received: from BN1PEPF0000468A.namprd05.prod.outlook.com
- (2603:10b6:408:141:cafe::68) by BN0PR07CA0003.outlook.office365.com
- (2603:10b6:408:141::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.7 via Frontend Transport; Thu, 4
- Jun 2026 14:54:57 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Thu, 4 Jun 2026
+ 14:54:53 +0000
+Received: from MN1PEPF0000F0DF.namprd04.prod.outlook.com
+ (2603:10b6:208:5b6:cafe::7b) by BL1P223CA0044.outlook.office365.com
+ (2603:10b6:208:5b6::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.8 via Frontend Transport; Thu, 4
+ Jun 2026 14:54:53 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BN1PEPF0000468A.mail.protection.outlook.com (10.167.243.135) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ MN1PEPF0000F0DF.mail.protection.outlook.com (10.167.242.37) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.92.5 via Frontend Transport; Thu, 4 Jun 2026 14:54:57 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.92.5 via Frontend Transport; Thu, 4 Jun 2026 14:54:53 +0000
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 4 Jun
- 2026 09:54:47 -0500
+ 2026 09:54:48 -0500
 Received: from aaurabin-tumbleweed.king-squeaker.ts.net (10.180.168.240) by
  satlexmb08.amd.com (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41
- via Frontend Transport; Thu, 4 Jun 2026 09:54:46 -0500
+ via Frontend Transport; Thu, 4 Jun 2026 09:54:47 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -73,12 +74,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Ovidiu Bunea <ovidiu.bunea@amd.com>, "Nicholas
- Kazlauskas" <nicholas.kazlauskas@amd.com>
-Subject: [PATCH 04/24] drm/amd/display: Temp disable repeater FGCG as
- workaround
-Date: Thu, 4 Jun 2026 10:51:58 -0400
-Message-ID: <20260604145428.809959-5-aurabindo.pillai@amd.com>
+ <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
+Subject: [PATCH 05/24] drm/amd/display: Fix writeback format loop and variable
+ init
+Date: Thu, 4 Jun 2026 10:51:59 -0400
+Message-ID: <20260604145428.809959-6-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260604145428.809959-1-aurabindo.pillai@amd.com>
 References: <20260604145428.809959-1-aurabindo.pillai@amd.com>
@@ -87,29 +87,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF0000468A:EE_|IA1PR12MB9738:EE_
-X-MS-Office365-Filtering-Correlation-Id: 615b34e7-dea9-4315-cc9e-08dec2493eb0
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0DF:EE_|CH3PR12MB9097:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2f86f6f4-6a48-4f6d-7823-08dec2493c69
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|82310400026|36860700016|11063799006|56012099006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: kyY2WNQTXm3hkw88P7xABh2JyLlHHAOA8Trb0+pXza9bZ9oNmB47jvJQ1oHI/IDM0i8o5xf/kTeFHPDp1WBwG2WQJO8tRM7rhbsg8+lNLEFNShPwhAxgHSb9X8d8fcYL2XA5lOLkIeKilILZGfo+upCFrLrKkqokEUXzf/GEzuo0OJ/v92ON1sAV3pMizaM+G+/+mK2zI24WILYUZuKP9uTNAI9XWr+XFv70+RZszWBY+MV2rcoDnB/PG7lYn2Ez/b/33Z+14KOkC5/wBhrdCoy+wg3JulQtcc5QlvdQyUyTEDOMFZnEaUbrqfE0KyQeidelxplZHauvTBnqh39DwIbgTChucC2BpzYuZ1jrhmBnkgPDUpE8MmDZ2YesrHzB4dv8wPTVDFaHsDwdL+P91pNFNIMURMRdVsuLFVgRsFL3JR5FYROicEopMQln4ksxk0Y2DqXve+kYDJtRzM3iw+rfwNQhVh+IgT8XvRw3mbttAQeke9kqO5EquYEox+kTuzWutgzBI9p8N1RN8umRLvBgJZlMqs5YvUn+32JIcju6pY1YPrWoKVbPNMotzatxPyLWDjJ6Jzo3TiR4liFoY41aNz+g7BK2RGrWFFW/1oJ0AwjfSfUuNIb7+rLerI0/9RTWtc3o52/HQj6sLhiNIoihD8VqEubPWQOtBuqCsi06DdjASyd9v8a4LjRwWrKxXb2QCYA4CNdiUvZTLFGZLsPwIrjz5oSRjemu8FrIe3Q=
+ ARA:13230040|36860700016|376014|82310400026|1800799024|6133799003|56012099006|11063799006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: Zr8aJ9GO5zbFSpbN1Enh4HFtpc/I90NVm4ZX0nt+Zoam8sLOiOvI9N0k01MN+tZp39qocSlA+xL+no4yDRMAZcSRFGZfu2dR7iHbRja1RZzOwIeQGKpvzlVvV7Euj6WD7lCmh7Dr0KO9RA7BmahmndPgOlvyLhHznp2fMu+H0Wd96x0L+XMEoznQuOVu7YtDsFjS2xNWNiYq6VIoelEPDGbaC+xtW03X8GSUqw16PnYR7EucDz9PsBOMZkZ94zcHbSK4iJKyG27puuq8GKUUOvAC8VrdYlx7gEDo4YxXJFb37rqk06uH8YTjOnUerWh+8K15rRE2Cd6i7qJhPsi9LzvJdzOBG6UF259mti0+iZAUeQAFwgDgifEx1/JbUSQVe9L2gMQQugIm7AMjnW/KEI+EGW+RGMHpYao3Kez+C8lJyfpWVIWiuw8C923xHw1eX8f2TcxfqpIJSMM6Ib2SRZw0pTNZ7H8O0mZkukcy6YdCoDq0f8blV9x/bEpJIn9xmstbi9pOAqwxzBrWbgD+ADOI7Is5F0qVVLc1zVxNZlPafsf07aFoC2oLyHkrCytJSCIQwlRtgqpMfEw9Jk7ar5ti/bZfaHURuVG/fEV/JVgY5isksX+RLR16MKXqeoVPdkMoFvvDkTtZ3mEq7E7Q+GXhpEAOG5lRc8JDAzblHh12K4TqIXiTvVNE+t9B+4t/SSLFnnQIqRcwUh2KFpLHIFoBy11IFCV7CNRAKgx6BYU=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(82310400026)(36860700016)(11063799006)(56012099006)(18002099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700016)(376014)(82310400026)(1800799024)(6133799003)(56012099006)(11063799006)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: uB2Se5dsIGGCSwyzEid4T5uAdPHDfdM/pVIm+r7GfQUlTbkgxUF+l3KcxjYgsw4Y4F5n5ZKblBH9htMZHFWzlkCREZEFWyGcihd6LjYk9vXFMHWo97TTGypLAxPP6/fik/xbN/voMjz2CyXXF/GtbQC2nK0nn8FFW83iGZJ+rmYJpqBHG6AA0ZHKAL1tGQAM0zhUgcH2NG1grd5R+IlooJXxM/GzoUmTglXXpmo8oL5z9IGX9r/cLHsllgE2XABdkh2Xp07ZOjXX+Y8DeG+XPpNS26rsawSLG44DeMAlRth1bVF2hRwvK/NA93iYi3z1VEEJtXE1Rq0zLTu/NB81TnSETinXz4T4p5Jog4n+49ROpIc07rOTt46eMQ7TL3HIwsikHk2luK6dQAUMEuichLf7ARGEcUk6q/3+Xy6F6XKXz/YRKj90OSxXRA4MW3+k
+X-MS-Exchange-AntiSpam-MessageData-0: LtMWmIWT7iAJuq+Svt4Ef2FgnuNjY46su87B/5qsYppBC+kD+J5OxeozvGDmN35elJdUovMlvUHTUg4LqE8bSUeVDJxxAdBvqz5gypUURdyn/kAeLbrsDxKxFjVd2nYpbKHsnD8sOukhqXMEF/y5Kq+uIyAUsBcvQ1FUKFTTgmswGaAAZw1/UUNhsngu4bCjBRMWs+I0IEk50lh/QjAO+6vorqxG9eN4F73slgkdoSfTQyHLmWW+KD9KlMhrl2jgR/skCwUqKMPqspXf9YJnosD49mBhuOW8xGPlC2qVcmltfcMHojYtoDgSvUxDCtXLmJiuRyGkCcGY4XAhGhLoa/zhdWqPZgAZcxUhjCDVXW4dAs6IeUzdiULbjXRpGMPMkN7VvYNEXdmxuTXjj7IdKuwXOA6d7rvZBvHcjmf7U7K1KzJpKQNMjZOr4Odi1NCg
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2026 14:54:57.2934 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 615b34e7-dea9-4315-cc9e-08dec2493eb0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jun 2026 14:54:53.4767 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f86f6f4-6a48-4f6d-7823-08dec2493c69
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF0000468A.namprd05.prod.outlook.com
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0DF.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB9738
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9097
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,7 +135,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -151,117 +151,52 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B1EB26411C2
+X-Rspamd-Queue-Id: 007506411BA
 
-From: Ovidiu Bunea <ovidiu.bunea@amd.com>
+From: Alex Hung <alex.hung@amd.com>
 
-[why & how]
-There is an issue that is seemingly limited to DCN42 where systems with
-IOMMU enabled will hang during reboot stress testing. The hang happens shortly
-after DCN PG exit happens and HUBP is programmed for the first flip, but before
-the first surface address is latched. Testing has shown that disabling
-DCCG_GLOBAL_FGCG_REP_DIS, HUBP_FGCG_REP_DIS, and DCFCLK_GATE_DIS can mask this
-issue.
+[WHAT]
+1. Use ARRAY_SIZE() instead of manual sizeof division for the
+   format array iteration. Add a break statement to exit the loop
+   early once a matching format is found.
+2. Remove redundant zero initialization of res since all paths
+   assign before use.
 
-Disable FGCG for these three repeater bits to avoid issue while debug is on-going.
-
-Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Signed-off-by: Ovidiu Bunea <ovidiu.bunea@amd.com>
+Assisted-by: Copilot:Claude-Opus-4.6
+Reviewed-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
+Signed-off-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h                      | 1 +
- drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c   | 6 +++++-
- drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.c   | 6 ++++++
- drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c  | 9 ++++++++-
- .../drm/amd/display/dc/resource/dcn42/dcn42_resource.c   | 1 +
- 5 files changed, 21 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index d5d9d56fbcb8..d74776802418 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -1288,6 +1288,7 @@ struct dc_debug_options {
- 	unsigned int min_deep_sleep_dcfclk_khz;
- 	unsigned int force_odm2to1_for_edp_pixclk_mhz;
- 	bool enable_replay_esd_recovery;
-+	uint8_t iommu_mismatch_temp_wka;
- };
- 
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c b/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c
-index e57242f8bc12..adc453c81831 100644
---- a/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c
-+++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c
-@@ -81,8 +81,12 @@ void dccg42_enable_global_fgcg(struct dccg *dccg, bool value)
- {
- 	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
- 
--	if (dccg->ctx->dc->debug.disable_clock_gate)
-+	/* Temporary workaround for IOMMU mismatch issue.
-+	 * Fine grain control via bit2 of debug flag.
-+	 */
-+	if (dccg->ctx->dc->debug.disable_clock_gate || (dccg->ctx->dc->debug.iommu_mismatch_temp_wka & 0x4))
- 		value = false;
-+
- 	REG_UPDATE(DCCG_GLOBAL_FGCG_REP_CNTL, DCCG_GLOBAL_FGCG_REP_DIS, !value);
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.c b/drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.c
-index e4602c3ddc66..57de98444f6c 100644
---- a/drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.c
-@@ -20,6 +20,12 @@ static void hubp42_set_fgcg(struct hubp *hubp, bool enable)
- {
- 	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
- 
-+	/* Temporary workaround for IOMMU mismatch issue.
-+	 * Fine grain control via bit1 of debug flag.
-+	 */
-+	if (hubp->ctx->dc->debug.iommu_mismatch_temp_wka & 0x2)
-+		enable = false;
-+
- 	REG_UPDATE(HUBP_CLK_CNTL, HUBP_FGCG_REP_DIS, !enable);
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c
-index 664004cadf10..96e0133880e1 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn42/dcn42_hwseq.c
-@@ -70,6 +70,7 @@ void dcn42_init_hw(struct dc *dc)
- 	uint32_t user_level = MAX_BACKLIGHT_LEVEL;
- 	bool dchub_ref_freq_changed;
- 	int current_dchub_ref_freq = 0;
-+	uint8_t dcfclk_gate_dis_value = 0;
- 
- 	if (dc->clk_mgr && dc->clk_mgr->funcs && dc->clk_mgr->funcs->init_clocks) {
- 		dc->clk_mgr->funcs->init_clocks(dc->clk_mgr);
-@@ -243,7 +244,13 @@ void dcn42_init_hw(struct dc *dc)
- 		/* enable all DCN clock gating */
- 		REG_WRITE(DCCG_GATE_DISABLE_CNTL, 0);
- 
--		REG_UPDATE(DCFCLK_CNTL, DCFCLK_GATE_DIS, 0);
-+		/* Temporary workaround for IOMMU mismatch issue.
-+		 * Fine grain control via bit0 of debug flag.
-+		 */
-+		if (dc->debug.iommu_mismatch_temp_wka & 0x1)
-+			dcfclk_gate_dis_value = 1;
-+
-+		REG_UPDATE(DCFCLK_CNTL, DCFCLK_GATE_DIS, dcfclk_gate_dis_value);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
+index 110f0173eee6..ead3d0bb052f 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c
+@@ -59,9 +59,11 @@ static int amdgpu_dm_wb_encoder_atomic_check(struct drm_encoder *encoder,
+ 		return -EINVAL;
  	}
  
- 	dcn401_setup_hpo_hw_control(hws, true);
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
-index 7de12b16d7ad..eb7fe5d70264 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
-@@ -801,6 +801,7 @@ static const struct dc_debug_options debug_defaults_drv = {
- 	.replay_skip_crtc_disabled = true,
- 	.psr_skip_crtc_disable = true,
- 	.force_odm2to1_for_edp_pixclk_mhz = 0, // disable the policy for now
-+	.iommu_mismatch_temp_wka = 0x7,
- };
+-	for (i = 0; i < sizeof(amdgpu_dm_wb_formats) / sizeof(u32); i++) {
+-		if (fb->format->format == amdgpu_dm_wb_formats[i])
++	for (i = 0; i < ARRAY_SIZE(amdgpu_dm_wb_formats); i++) {
++		if (fb->format->format == amdgpu_dm_wb_formats[i]) {
+ 			found = true;
++			break;
++		}
+ 	}
  
- static const struct dc_check_config config_defaults = {
+ 	if (!found) {
+@@ -187,7 +189,7 @@ int amdgpu_dm_wb_connector_init(struct amdgpu_display_manager *dm,
+ {
+ 	struct dc *dc = dm->dc;
+ 	struct dc_link *link = dc_get_link_at_index(dc, link_index);
+-	int res = 0;
++	int res;
+ 
+ 	wbcon->link = link;
+ 
 -- 
 2.54.0
 
