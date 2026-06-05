@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HHPDLsXSImpfeAEAu9opvQ
+	id v/NLM8HSImpdeAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 15:44:37 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 15:44:33 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A50A648A12
-	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 15:44:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A166648A0A
+	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 15:44:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=vWqX6TGK;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=Aq73A5v6;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8AAC10E62E;
-	Fri,  5 Jun 2026 13:44:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE3A010E64D;
+	Fri,  5 Jun 2026 13:44:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010014.outbound.protection.outlook.com [52.101.46.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BDD410E642
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2026 13:44:28 +0000 (UTC)
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010013.outbound.protection.outlook.com [52.101.85.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6162B10E642
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2026 13:44:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=F0C3nR16rtA/R9rhQNNBk0Sa15pGRhCTUHXCQoKgVlVTdQ/G+xh+LaTtWFaNcSZKDpO1hsbWZyupKnXNX7DohMZx/JsnBBOu1NLrpeOZ0d11J+HOZ9+IHbPS5Fs47MF7h0qiLimYEz3UffO9M75bLVV8evlrOv70TYD4igQWQvUJG7b+XvRdOOmFZfTRKDR14Llj/n7Klbov4pGjdBjMDi/k4FiPvZOSZIL+D24JjfGhsUtNcwgeWlHSI2dKMoNK6EIcRm1VaTLYHGIl0lxz3+zPtj/NxfXZ+x6i31M3E/WK7ZY9ql4K3gfcXHkKQ+whVG6UcqMjgaLGoagb7xE5Ug==
+ b=WWiDM8QG+MYQTLPBFDY0JXJ2QpDCLuCt9DfK52fA6tuPoy/URk2aPnc0Hxz2Nq6FZg6HkQvfPNj3Od9Tgv+G1qCZSj4gtcRzmR+oGNSSR7j8T/etzguBgLRGQHCoFKj+LJ+pxE83ql+qP91mAfgQVEUju9gn4DHIvrOYsoYjMsLJlztFSqhii8uLRxAgJ6vTAhVDGLhRxPM30sf6wSs31Co3U1LlBRTx9ln6rhYiUfutIkG+cgk6v/pd+BEbxXfn39Ff+rO1qOtkJvq84T+lKB770PraGw/rtsSTDlTpn2rz4vXu2nkyocmEsIUpc6jBLqXqkmz/YGajv70wjkiLBQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5C+yWLXxkf362eroSqQ+WoM6jSa92bfm9mqsZMzB7XM=;
- b=bdjTBsrdvb3uZUUpU0zYw6hjE9sUbIdKKSQyzpczBUX+wFQhZ+2zsfclWSymN+ZefgNvSgraT3jlMzPiy3ZMVDh5EUVzMlDIFCXUeFdGwb7vcw/y6sr8XmG89PMCRg6M1HQhZSihquwDZmFbOFeBAtvFVRfT3dEdrminGMeypk7f+95L18gPr4THjtO91gjh4FX+45ivhccbt/bkReEjlihu8h1r4vnbFxyhK7nFbtE2t5indaKIurObmqbjbdqb75WN+BBzu60PSF9o78CUaYNIp9Ln7l85n9bP9oiHPxuqyjhtkldk2F6zrG5MhW8i6BeVsbQCR2KzUkteMvDC8g==
+ bh=59nEwrpE3ED0rMsXEvbAyl8tIWH3hpbRBxeVbDum1pQ=;
+ b=ZDZkwlKcFz+dEIJwjRc749LpgMTDADrmrBfXQkbbjC4hPPB1BYSD3yG6p0Ia/iyAIqxN6kVFY6zOUSt7yP5WSWApNUfEyZUeS24hQOT5KQLtQ+VfN2WVoOj/JNB+6g7PX+3YSoVU2Pl3RKsYMOzVl5AbSHnKMqtSx/cvUhbOJoo/7Wc76EjciN2tjVnrYdJbIGw8mZkYi+84sa0mDox0sFvTrBWnmZ5VGlYBA/q4fOlnclh51d0Tp8g9oLXtQ44HzpYhR41HZXuNe/mFUWYSzgHMvm3aweXFgBLPltk3ubf735oLI6sH7/7XHwHkHCPjLp254I3J2SUx5wbpbIYuUA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5C+yWLXxkf362eroSqQ+WoM6jSa92bfm9mqsZMzB7XM=;
- b=vWqX6TGK4tFrN2Fq3RTFfdUq8lwGGt9b9ih+8ETJVEELO/197M0XKRo2368UNzRGNx4vRryKXVaNcUf0LxFbRZL6kaS43Jhfq2S1s4T+DFiYJqNQWSfGsOa9PqGYDRyfR2T20ZziXC5xcs5ojJ7b6Hkx0OVrJNqAtW6CmRIg1Gw=
-Received: from CH0P221CA0032.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:11d::11)
- by PH7PR12MB7913.namprd12.prod.outlook.com (2603:10b6:510:27b::16)
+ bh=59nEwrpE3ED0rMsXEvbAyl8tIWH3hpbRBxeVbDum1pQ=;
+ b=Aq73A5v6fGNawic2QJOD9qyex/uO273VfeegojOgATfPszHv9Cu6w2RXOqALxvqOfAcq6EPJUlslx3ZEYX/R/4tthPi0PwOCr1l8N+G584PcyGP+O1fwoI1wvSBu/jw1oZt8Lrm5d2TSkn/skal4qzuH9ViMs9sP5R9NJrwi8uE=
+Received: from CH0P221CA0042.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:11d::26)
+ by BL3PR12MB6379.namprd12.prod.outlook.com (2603:10b6:208:3b2::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.9; Fri, 5 Jun 2026
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.8; Fri, 5 Jun 2026
  13:44:23 +0000
 Received: from DS3PEPF0000C37A.namprd04.prod.outlook.com
- (2603:10b6:610:11d:cafe::e) by CH0P221CA0032.outlook.office365.com
- (2603:10b6:610:11d::11) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:610:11d:cafe::8d) by CH0P221CA0042.outlook.office365.com
+ (2603:10b6:610:11d::26) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.9 via Frontend Transport; Fri, 5
  Jun 2026 13:44:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -65,10 +65,9 @@ Received: from amd-desktop.amd.com (10.180.168.240) by satlexmb07.amd.com
 From: Shahyan Soltani <shahyan.soltani@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Shahyan Soltani <shahyan.soltani@amd.com>
-Subject: [PATCH 09/11] drm/amdgpu: move amdgpu_allowed_register_entry into
- amdgpu_reg_access.h
-Date: Fri, 5 Jun 2026 09:43:21 -0400
-Message-ID: <20260605134400.956791-10-shahyan.soltani@amd.com>
+Subject: [PATCH 10/11] drm/amdgpu: move amdgpu_asic helpers into new header
+Date: Fri, 5 Jun 2026 09:43:22 -0400
+Message-ID: <20260605134400.956791-11-shahyan.soltani@amd.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260605134400.956791-1-shahyan.soltani@amd.com>
 References: <20260605134400.956791-1-shahyan.soltani@amd.com>
@@ -80,29 +79,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37A:EE_|PH7PR12MB7913:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1a1cbaec-61dd-400e-11ea-08dec3088d6e
+X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37A:EE_|BL3PR12MB6379:EE_
+X-MS-Office365-Filtering-Correlation-Id: 33ff25dd-a5c0-499d-88dc-08dec3088d72
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|36860700016|1800799024|18002099003|22082099003|56012099006|6133799003|11063799006;
-X-Microsoft-Antispam-Message-Info: Lgj0y/m+BOu6/e6oGrhy86QwbPSVMasiW43ZwwhAjn9CoGcOJ28je4/+BVBCfO0Q9eKF8aG+RdMP6i1608PcoAzbrWk4+c/2cWDpG6BU9pchJGct4j3Noq8OwWfZ1vodGoEJ2BRqPP3I+gh/lhxAcree7EZXkRraYKN1rdmlNo1PPMMrQdA7lM5L74gPbfBxsb3cJM5GiU/UUu4ydiFly72rWO0V+V41ls19zMO0y3UmKGEeTJ+AR6XrKbwmtE/eDDVvx20S9lajQwlYLZVaU3uoHGRTec4HVdfim0UkB6RInusYp0h13aOPUnUHiMeyEtAA3bZUzU92DW7Pld/KDEhxlY83euIxcEtDGkJIsRrUa9O/aVxvSboHGMvVqo/L1dPE1196Ay/KY+g3JO6xN1QlH3QZPR0+taQmaGYL+9gsYAxjO7FadexbL3cXrfIotFSvxDrhC3TpBVsdVgtHZiYH3Ujhi4mo6Ib25om4K4Fkg5Haq6ODw4LEJRqqPSaLyEhnJRmFm+Yrot7Xoo/19FxjkwOqnm6sPpBw5hGuwCE8oCdAsjURxD6szQXlgvaaEnT/xttCnA2i0mHmiYe40k1Icr7v/p27CogSATNwnn1pNYApBthn72lvOjxJ5au/dY/6yuXThKL6CUDnFtrb/ed7LsDDOMNkvc1A7KYbcALIqzaG1fMOaS6VBZE4nrGkngfcKYKF+apa1dWVHJaItJSNnIGrMKCFthpVU2weWuA=
+ ARA:13230040|376014|36860700016|82310400026|1800799024|18002099003|22082099003|6133799003|3023799007|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: +1NpiydI6F1dog7Cw/RVAkZ2r2NwwyOOPizhasFEQ56d2WEfgrkqxPI6SliZ6a3wLJR/xljHZLyMs0XQXNJBEVXxCpYEoNbMyhXLrrjQxH+sv09wvZAJnsqZEZdOewDH/nCNF+hYl2Qc1KFz3kAQGV8LeBP7hsS5AcPI+Cf6yD40TqI63E2xlbJpQth9tO1JmSE3bmpVvbQG7KJBY3j8doIYO2cApYOylAf9/jaZJf0pfZJOwmLBDtQfAKKKpUGUeMjbR2ySfWsxCEd/m5gCIHXhMpNotsV+t5reAH4ccqS2B81zLcoDHbibALqi0fdzz7+dHAhsODko2B3+LSEljV/pgzWiqGuQ5WhLBAty6sqd8nCN9+GtYLidLhc8BAy6gL967FFeetkuw3RIILf1uMnyy0Vk2lnb2q6uiwfsBgiDnBvHFufhP459DtfdePbjTkP1xYS46qua6DQu80mJ1xgyAw0FwkPYLI8hnD3W4OjpYq3kDSEP4aw0zcGtSDZkWm6x+59wevE7WE/6eEBT1E2YoK7uFuWulYIaTH1kp8B3ytKfDsBimSD2XrHLskCQaFdvjORaEtALWlAMcD5t0MJMGMcv2FpKjb9VcNBVM0Ag9PtLMKGfad+/Vtf9LtWj1Kh9smqPZ//3QAyaIvul88is9O176g24y8N7m/qJ/I5hbWsTyHhCn0FBuuEJD0K4IFttn8kzYgKvdxb928oMgVSz9RJGF9+OanWdexNoe+0=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(36860700016)(1800799024)(18002099003)(22082099003)(56012099006)(6133799003)(11063799006);
+ SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(18002099003)(22082099003)(6133799003)(3023799007)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: v+QiDGuhpCNqGIf4ReRQxAsOMbQ6H/yTZXvtl3CkFNrp8AHKqkwmHi007mOAhYhJy9R/NkQPAlTYAJgOvOdWSc3N4InXeLyYLQMOpA3p6Jh0xfWRtDnZ2o52JNLcfj1z9A3BbH13xcR0oODPCnI6e1vmg30l+I4Tlf3cEYDzIOLkR6cuVFQpw1YaxnYC5dZQx9YFJg+ehl0nyZMFq/g/SXHMojCNUS+kXBAdVWxVGnUOmNq+vKciyhxMUqDoamfX+FSIQc2jmLZzbt4g8J187eS6Oq5g2nruo2zFWRR6ho/HynHs6ZXy9N5LF82c7AnuB13siGS6DkAZwp7X5tFGg8DfYpLTAxDJlZzd/D8cF2FgdhxfkNDMFxGYI4q5hf0FQkLELYGmohJE4PM96kt4YLouyNrJf4gWb6Z6u5zx3ItY7VwDgpoBVVUZjt03zTA/
+X-MS-Exchange-AntiSpam-MessageData-0: Hs0BVsDPi8aRfslRdmpKJPoteamsUQ7u93JWDHdqYjRrsTfaiAPwivD5jAwIo0L8fWD+sxgWTRFXGL0nUyJGWcZyUx0gcmi9wtLUGh5QoeDA441i3B2XwXVfXomL1q9r3NCGJVSa2xilSVSwEkGZT9DngC3w1bv4Tf7VDG/mCTgaQNt1PrBgldCf3Djvi0eElN4rWSUzrH1TgjWSNpWcs2rn2NBX6CjR+DXbvF4mo5/E3CFnPrPMldLNFlxsWOz39ZdQ89/D2PvMXUrDEgy0qWjXIIDjxp6z5x6KcSGoRen3FUCp3+diunyD7iDe8VdIZKJsNGrMeWh8KKGBxxl7jcbxq5RAIcHyuRmYy4A6GY6Wkzn3v3yv88jTedBYCIN7osxu4P05s/J5SeBgWtaHbXqPamqgnLxVre9/Lz2JJjL0DcSPZ20pfRzjCKO1ihE5
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2026 13:44:23.2397 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1a1cbaec-61dd-400e-11ea-08dec3088d6e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2026 13:44:23.2637 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 33ff25dd-a5c0-499d-88dc-08dec3088d72
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF0000C37A.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7913
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6379
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,58 +145,347 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3A50A648A12
+X-Rspamd-Queue-Id: 7A166648A0A
 
-Move struct amdgpu_allowed_register_entry from monolithics amdgpu.h file into
-existing amdgpu_reg_access.h file.
+Move struct amdgpu_asic_funcs, polaris kickers, and ASICs macro from the monolithic amdgpu.h
+file into a new amdgpu_asic.h file.
 
 This is part of the ongoing effort to reduce the size of amdgpu.h into their own respective
 separate headers.
 
 Signed-off-by: Shahyan Soltani <shahyan.soltani@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h            | 8 --------
- drivers/gpu/drm/amd/amdgpu/amdgpu_reg_access.h | 8 ++++++++
- 2 files changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h      | 128 +-----------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_asic.h | 160 +++++++++++++++++++++++
+ 2 files changed, 161 insertions(+), 127 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_asic.h
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 8a6b6f43a320..d2b84c27a6e7 100644
+index d2b84c27a6e7..812bd0f6ff0d 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -415,14 +415,6 @@ int amdgpu_file_to_fpriv(struct file *filp, struct amdgpu_fpriv **fpriv);
+@@ -119,6 +119,7 @@
+ #include "amdgpu_init_level.h"
+ #include "amdgpu_uid.h"
+ #include "amdgpu_video_codecs.h"
++#include "amdgpu_asic.h"
+ #if defined(CONFIG_DRM_AMD_ISP)
+ #include "amdgpu_isp.h"
+ #endif
+@@ -415,61 +416,6 @@ int amdgpu_file_to_fpriv(struct file *filp, struct amdgpu_fpriv **fpriv);
   */
  int amdgpu_benchmark(struct amdgpu_device *adev, int test_number);
  
 -/*
-- * ASIC specific register table accessible by UMD
+- * ASIC specific functions.
 - */
--struct amdgpu_allowed_register_entry {
--	uint32_t reg_offset;
--	bool grbm_indexed;
+-struct amdgpu_asic_funcs {
+-	bool (*read_disabled_bios)(struct amdgpu_device *adev);
+-	bool (*read_bios_from_rom)(struct amdgpu_device *adev,
+-				   u8 *bios, u32 length_bytes);
+-	int (*read_register)(struct amdgpu_device *adev, u32 se_num,
+-			     u32 sh_num, u32 reg_offset, u32 *value);
+-	void (*set_vga_state)(struct amdgpu_device *adev, bool state);
+-	int (*reset)(struct amdgpu_device *adev);
+-	enum amd_reset_method (*reset_method)(struct amdgpu_device *adev);
+-	/* get the reference clock */
+-	u32 (*get_xclk)(struct amdgpu_device *adev);
+-	/* MM block clocks */
+-	int (*set_uvd_clocks)(struct amdgpu_device *adev, u32 vclk, u32 dclk);
+-	int (*set_vce_clocks)(struct amdgpu_device *adev, u32 evclk, u32 ecclk);
+-	/* static power management */
+-	int (*get_pcie_lanes)(struct amdgpu_device *adev);
+-	void (*set_pcie_lanes)(struct amdgpu_device *adev, int lanes);
+-	/* get config memsize register */
+-	u32 (*get_config_memsize)(struct amdgpu_device *adev);
+-	/* flush hdp write queue */
+-	void (*flush_hdp)(struct amdgpu_device *adev, struct amdgpu_ring *ring);
+-	/* invalidate hdp read cache */
+-	void (*invalidate_hdp)(struct amdgpu_device *adev,
+-			       struct amdgpu_ring *ring);
+-	/* check if the asic needs a full reset of if soft reset will work */
+-	bool (*need_full_reset)(struct amdgpu_device *adev);
+-	/* initialize doorbell layout for specific asic*/
+-	void (*init_doorbell_index)(struct amdgpu_device *adev);
+-	/* PCIe bandwidth usage */
+-	void (*get_pcie_usage)(struct amdgpu_device *adev, uint64_t *count0,
+-			       uint64_t *count1);
+-	/* do we need to reset the asic at init time (e.g., kexec) */
+-	bool (*need_reset_on_init)(struct amdgpu_device *adev);
+-	/* PCIe replay counter */
+-	uint64_t (*get_pcie_replay_count)(struct amdgpu_device *adev);
+-	/* device supports BACO */
+-	int (*supports_baco)(struct amdgpu_device *adev);
+-	/* pre asic_init quirks */
+-	void (*pre_asic_init)(struct amdgpu_device *adev);
+-	/* enter/exit umd stable pstate */
+-	int (*update_umd_stable_pstate)(struct amdgpu_device *adev, bool enter);
+-	/* query video codecs */
+-	int (*query_video_codecs)(struct amdgpu_device *adev, bool encode,
+-				  const struct amdgpu_video_codecs **codecs);
+-	/* encode "> 32bits" smn addressing */
+-	u64 (*encode_ext_smn_addressing)(int ext_id);
+-
+-	ssize_t (*get_reg_state)(struct amdgpu_device *adev,
+-				 enum amdgpu_reg_state reg_state, void *buf,
+-				 size_t max_size);
 -};
 -
  /*
-  * ASIC specific functions.
+  * IOCTL.
   */
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_reg_access.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_reg_access.h
-index a1011af6b52b..320c30ce4a62 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_reg_access.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_reg_access.h
-@@ -89,6 +89,14 @@ struct amdgpu_reg_access {
- 	struct amdgpu_reg_smn_ext smn;
+@@ -510,45 +456,6 @@ struct amd_powerplay {
+ 	const struct amd_pm_funcs *pp_funcs;
  };
  
-+/*
-+ * ASIC specific register table accessible by UMD
+-/* polaris10 kickers */
+-#define ASICID_IS_P20(did, rid)		(((did == 0x67DF) && \
+-					 ((rid == 0xE3) || \
+-					  (rid == 0xE4) || \
+-					  (rid == 0xE5) || \
+-					  (rid == 0xE7) || \
+-					  (rid == 0xEF))) || \
+-					 ((did == 0x6FDF) && \
+-					 ((rid == 0xE7) || \
+-					  (rid == 0xEF) || \
+-					  (rid == 0xFF))))
+-
+-#define ASICID_IS_P30(did, rid)		((did == 0x67DF) && \
+-					((rid == 0xE1) || \
+-					 (rid == 0xF7)))
+-
+-/* polaris11 kickers */
+-#define ASICID_IS_P21(did, rid)		(((did == 0x67EF) && \
+-					 ((rid == 0xE0) || \
+-					  (rid == 0xE5))) || \
+-					 ((did == 0x67FF) && \
+-					 ((rid == 0xCF) || \
+-					  (rid == 0xEF) || \
+-					  (rid == 0xFF))))
+-
+-#define ASICID_IS_P31(did, rid)		((did == 0x67EF) && \
+-					((rid == 0xE2)))
+-
+-/* polaris12 kickers */
+-#define ASICID_IS_P23(did, rid)		(((did == 0x6987) && \
+-					 ((rid == 0xC0) || \
+-					  (rid == 0xC1) || \
+-					  (rid == 0xC3) || \
+-					  (rid == 0xC7))) || \
+-					 ((did == 0x6981) && \
+-					 ((rid == 0x00) || \
+-					  (rid == 0x01) || \
+-					  (rid == 0x10))))
+-
+ struct amdgpu_pcie_reset_ctx {
+ 	bool in_link_reset;
+ 	bool occurs_dpc;
+@@ -1082,39 +989,6 @@ int emu_soc_asic_init(struct amdgpu_device *adev);
+ 
+ #include "amdgpu_reset.h"
+ 
+-/*
+- * ASICs macro.
+- */
+-#define amdgpu_asic_set_vga_state(adev, state) \
+-    ((adev)->asic_funcs->set_vga_state ? (adev)->asic_funcs->set_vga_state((adev), (state)) : 0)
+-#define amdgpu_asic_reset(adev) (adev)->asic_funcs->reset((adev))
+-#define amdgpu_asic_reset_method(adev) (adev)->asic_funcs->reset_method((adev))
+-#define amdgpu_asic_get_xclk(adev) (adev)->asic_funcs->get_xclk((adev))
+-#define amdgpu_asic_set_uvd_clocks(adev, v, d) (adev)->asic_funcs->set_uvd_clocks((adev), (v), (d))
+-#define amdgpu_asic_set_vce_clocks(adev, ev, ec) (adev)->asic_funcs->set_vce_clocks((adev), (ev), (ec))
+-#define amdgpu_get_pcie_lanes(adev) (adev)->asic_funcs->get_pcie_lanes((adev))
+-#define amdgpu_set_pcie_lanes(adev, l) (adev)->asic_funcs->set_pcie_lanes((adev), (l))
+-#define amdgpu_asic_get_gpu_clock_counter(adev) (adev)->asic_funcs->get_gpu_clock_counter((adev))
+-#define amdgpu_asic_read_disabled_bios(adev) (adev)->asic_funcs->read_disabled_bios((adev))
+-#define amdgpu_asic_read_bios_from_rom(adev, b, l) (adev)->asic_funcs->read_bios_from_rom((adev), (b), (l))
+-#define amdgpu_asic_read_register(adev, se, sh, offset, v)((adev)->asic_funcs->read_register((adev), (se), (sh), (offset), (v)))
+-#define amdgpu_asic_get_config_memsize(adev) (adev)->asic_funcs->get_config_memsize((adev))
+-#define amdgpu_asic_need_full_reset(adev) (adev)->asic_funcs->need_full_reset((adev))
+-#define amdgpu_asic_init_doorbell_index(adev) (adev)->asic_funcs->init_doorbell_index((adev))
+-#define amdgpu_asic_get_pcie_usage(adev, cnt0, cnt1) ((adev)->asic_funcs->get_pcie_usage((adev), (cnt0), (cnt1)))
+-#define amdgpu_asic_need_reset_on_init(adev) (adev)->asic_funcs->need_reset_on_init((adev))
+-#define amdgpu_asic_get_pcie_replay_count(adev) ((adev)->asic_funcs->get_pcie_replay_count((adev)))
+-#define amdgpu_asic_supports_baco(adev) \
+-    ((adev)->asic_funcs->supports_baco ? (adev)->asic_funcs->supports_baco((adev)) : 0)
+-#define amdgpu_asic_pre_asic_init(adev)                                      \
+-	{                                                                    \
+-		if ((adev)->asic_funcs && (adev)->asic_funcs->pre_asic_init) \
+-			(adev)->asic_funcs->pre_asic_init((adev));           \
+-	}
+-#define amdgpu_asic_update_umd_stable_pstate(adev, enter) \
+-	((adev)->asic_funcs->update_umd_stable_pstate ? (adev)->asic_funcs->update_umd_stable_pstate((adev), (enter)) : 0)
+-#define amdgpu_asic_query_video_codecs(adev, e, c) (adev)->asic_funcs->query_video_codecs((adev), (e), (c))
+-
+ #define amdgpu_inc_vram_lost(adev) atomic_inc(&((adev)->vram_lost_counter))
+ 
+ #define BIT_MASK_UPPER(i) ((i) >= BITS_PER_LONG ? 0 : ~0UL << (i))
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_asic.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_asic.h
+new file mode 100644
+index 000000000000..413f9a98181f
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_asic.h
+@@ -0,0 +1,160 @@
++/* SPDX-License-Identifier: GPL-2.0 OR MIT
++ *
++ * Copyright 2026 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
 + */
-+struct amdgpu_allowed_register_entry {
-+	uint32_t reg_offset;
-+	bool grbm_indexed;
++#ifndef __AMDGPU_ASIC_H__
++#define __AMDGPU_ASIC_H__
++
++#include <linux/types.h>
++#include "amdgpu_reg_state.h"
++
++struct amdgpu_ring;
++struct amdgpu_video_codecs;
++struct amdgpu_device;
++enum amd_reset_method;
++
++/*
++ * ASIC specific functions.
++ */
++struct amdgpu_asic_funcs {
++	bool (*read_disabled_bios)(struct amdgpu_device *adev);
++	bool (*read_bios_from_rom)(struct amdgpu_device *adev,
++				   u8 *bios, u32 length_bytes);
++	int (*read_register)(struct amdgpu_device *adev, u32 se_num,
++			     u32 sh_num, u32 reg_offset, u32 *value);
++	void (*set_vga_state)(struct amdgpu_device *adev, bool state);
++	int (*reset)(struct amdgpu_device *adev);
++	enum amd_reset_method (*reset_method)(struct amdgpu_device *adev);
++	/* get the reference clock */
++	u32 (*get_xclk)(struct amdgpu_device *adev);
++	/* MM block clocks */
++	int (*set_uvd_clocks)(struct amdgpu_device *adev, u32 vclk, u32 dclk);
++	int (*set_vce_clocks)(struct amdgpu_device *adev, u32 evclk, u32 ecclk);
++	/* static power management */
++	int (*get_pcie_lanes)(struct amdgpu_device *adev);
++	void (*set_pcie_lanes)(struct amdgpu_device *adev, int lanes);
++	/* get config memsize register */
++	u32 (*get_config_memsize)(struct amdgpu_device *adev);
++	/* flush hdp write queue */
++	void (*flush_hdp)(struct amdgpu_device *adev, struct amdgpu_ring *ring);
++	/* invalidate hdp read cache */
++	void (*invalidate_hdp)(struct amdgpu_device *adev,
++			       struct amdgpu_ring *ring);
++	/* check if the asic needs a full reset of if soft reset will work */
++	bool (*need_full_reset)(struct amdgpu_device *adev);
++	/* initialize doorbell layout for specific asic*/
++	void (*init_doorbell_index)(struct amdgpu_device *adev);
++	/* PCIe bandwidth usage */
++	void (*get_pcie_usage)(struct amdgpu_device *adev, uint64_t *count0,
++			       uint64_t *count1);
++	/* do we need to reset the asic at init time (e.g., kexec) */
++	bool (*need_reset_on_init)(struct amdgpu_device *adev);
++	/* PCIe replay counter */
++	uint64_t (*get_pcie_replay_count)(struct amdgpu_device *adev);
++	/* device supports BACO */
++	int (*supports_baco)(struct amdgpu_device *adev);
++	/* pre asic_init quirks */
++	void (*pre_asic_init)(struct amdgpu_device *adev);
++	/* enter/exit umd stable pstate */
++	int (*update_umd_stable_pstate)(struct amdgpu_device *adev, bool enter);
++	/* query video codecs */
++	int (*query_video_codecs)(struct amdgpu_device *adev, bool encode,
++				  const struct amdgpu_video_codecs **codecs);
++	/* encode "> 32bits" smn addressing */
++	u64 (*encode_ext_smn_addressing)(int ext_id);
++
++	ssize_t (*get_reg_state)(struct amdgpu_device *adev,
++				 enum amdgpu_reg_state reg_state, void *buf,
++				 size_t max_size);
 +};
 +
- void amdgpu_reg_access_init(struct amdgpu_device *adev);
- uint32_t amdgpu_reg_smc_rd32(struct amdgpu_device *adev, uint32_t reg);
- void amdgpu_reg_smc_wr32(struct amdgpu_device *adev, uint32_t reg, uint32_t v);
++/* polaris10 kickers */
++#define ASICID_IS_P20(did, rid)		(((did == 0x67DF) && \
++					 ((rid == 0xE3) || \
++					  (rid == 0xE4) || \
++					  (rid == 0xE5) || \
++					  (rid == 0xE7) || \
++					  (rid == 0xEF))) || \
++					 ((did == 0x6FDF) && \
++					 ((rid == 0xE7) || \
++					  (rid == 0xEF) || \
++					  (rid == 0xFF))))
++
++#define ASICID_IS_P30(did, rid)		((did == 0x67DF) && \
++					((rid == 0xE1) || \
++					 (rid == 0xF7)))
++
++/* polaris11 kickers */
++#define ASICID_IS_P21(did, rid)		(((did == 0x67EF) && \
++					 ((rid == 0xE0) || \
++					  (rid == 0xE5))) || \
++					 ((did == 0x67FF) && \
++					 ((rid == 0xCF) || \
++					  (rid == 0xEF) || \
++					  (rid == 0xFF))))
++
++#define ASICID_IS_P31(did, rid)		((did == 0x67EF) && \
++					((rid == 0xE2)))
++
++/* polaris12 kickers */
++#define ASICID_IS_P23(did, rid)		(((did == 0x6987) && \
++					 ((rid == 0xC0) || \
++					  (rid == 0xC1) || \
++					  (rid == 0xC3) || \
++					  (rid == 0xC7))) || \
++					 ((did == 0x6981) && \
++					 ((rid == 0x00) || \
++					  (rid == 0x01) || \
++					  (rid == 0x10))))
++
++/*
++ * ASICs macro.
++ */
++#define amdgpu_asic_set_vga_state(adev, state) \
++    ((adev)->asic_funcs->set_vga_state ? (adev)->asic_funcs->set_vga_state((adev), (state)) : 0)
++#define amdgpu_asic_reset(adev) (adev)->asic_funcs->reset((adev))
++#define amdgpu_asic_reset_method(adev) (adev)->asic_funcs->reset_method((adev))
++#define amdgpu_asic_get_xclk(adev) (adev)->asic_funcs->get_xclk((adev))
++#define amdgpu_asic_set_uvd_clocks(adev, v, d) (adev)->asic_funcs->set_uvd_clocks((adev), (v), (d))
++#define amdgpu_asic_set_vce_clocks(adev, ev, ec) (adev)->asic_funcs->set_vce_clocks((adev), (ev), (ec))
++#define amdgpu_get_pcie_lanes(adev) (adev)->asic_funcs->get_pcie_lanes((adev))
++#define amdgpu_set_pcie_lanes(adev, l) (adev)->asic_funcs->set_pcie_lanes((adev), (l))
++#define amdgpu_asic_get_gpu_clock_counter(adev) (adev)->asic_funcs->get_gpu_clock_counter((adev))
++#define amdgpu_asic_read_disabled_bios(adev) (adev)->asic_funcs->read_disabled_bios((adev))
++#define amdgpu_asic_read_bios_from_rom(adev, b, l) (adev)->asic_funcs->read_bios_from_rom((adev), (b), (l))
++#define amdgpu_asic_read_register(adev, se, sh, offset, v)((adev)->asic_funcs->read_register((adev), (se), (sh), (offset), (v)))
++#define amdgpu_asic_get_config_memsize(adev) (adev)->asic_funcs->get_config_memsize((adev))
++#define amdgpu_asic_need_full_reset(adev) (adev)->asic_funcs->need_full_reset((adev))
++#define amdgpu_asic_init_doorbell_index(adev) (adev)->asic_funcs->init_doorbell_index((adev))
++#define amdgpu_asic_get_pcie_usage(adev, cnt0, cnt1) ((adev)->asic_funcs->get_pcie_usage((adev), (cnt0), (cnt1)))
++#define amdgpu_asic_need_reset_on_init(adev) (adev)->asic_funcs->need_reset_on_init((adev))
++#define amdgpu_asic_get_pcie_replay_count(adev) ((adev)->asic_funcs->get_pcie_replay_count((adev)))
++#define amdgpu_asic_supports_baco(adev) \
++    ((adev)->asic_funcs->supports_baco ? (adev)->asic_funcs->supports_baco((adev)) : 0)
++#define amdgpu_asic_pre_asic_init(adev)                                      \
++	{                                                                    \
++		if ((adev)->asic_funcs && (adev)->asic_funcs->pre_asic_init) \
++			(adev)->asic_funcs->pre_asic_init((adev));           \
++	}
++#define amdgpu_asic_update_umd_stable_pstate(adev, enter) \
++	((adev)->asic_funcs->update_umd_stable_pstate ? (adev)->asic_funcs->update_umd_stable_pstate((adev), (enter)) : 0)
++#define amdgpu_asic_query_video_codecs(adev, e, c) (adev)->asic_funcs->query_video_codecs((adev), (e), (c))
++#endif
 -- 
 2.54.0
 
