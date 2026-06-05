@@ -2,53 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YF9uObzSImpQeAEAu9opvQ
+	id XC9sB7vSImpNeAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 15:44:28 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 15:44:27 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EE8D6489EF
-	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 15:44:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCFA36489E7
+	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 15:44:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=VAc8VXwA;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=1ZeXVRMH;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 000AF10E4D2;
-	Fri,  5 Jun 2026 13:44:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AB6210E636;
+	Fri,  5 Jun 2026 13:44:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012045.outbound.protection.outlook.com
- [40.107.200.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D285310E4D2
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2026 13:44:25 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010008.outbound.protection.outlook.com [52.101.61.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 648BF10E675
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2026 13:44:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W7rOiubZ8Je8Wzb3GidPBt9fmn8Q4R/o91XNg0+hdwTkxT407AKoWTudi0dWB+MTKt1D7REJzoEgwwolmdqDj/wF9bXFpn1xQwaZAhL1ZoTf0rDCLUCaFjnV1XwxpZIWGGkbbwqGqj6dovXzJ5X5oyas+MWznSlMH+rTcPosvjsLIeoEG0ixYZlSX5bW0ruzVTyYHqMjVe0hvUuc/MKH+PUSfaZyQhtu0gfmCxXLslyft7gYioLnGu41cDmzstOqrQ1bRMQdkLaS5eX9bJQw8LKIO96hVO9PK6AYJ1eVbnO5awv11FPskXEvmZN/movsNNNGuLbBDtPgHncX2svDqw==
+ b=afHhNl4tQ4MLt+b8S8/hY5QVs1JcWH7Mz8NNMVeR5ll1GQRSboHhElOzC5k6cdeSQqAUp9GpzmLIJ/ymU49Xqeqjn8t5fJfM9NM/CO4QzGS5h294G2O2SDf6sZGJbU+T1YNaUeYi7r6a3X4eTGb+9J3twQU/abPudbIqVLTuLaglH/boM9jSlfNFzOvwFD16EFrKdA7y/eS4j8oE31ZztA8loOTbQXPzzpV7M3XkBzCLfCWzqLqheukmwPqLs38i35DC78aVHV5f7ulCcAEWqBaBvUrq8LG82RC2iNeYMxon2vZTFF1ghaJiFqXhg6uipylqiQwQfnvYnwVs7PT7lQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p9JaID9znL7f9z4EqI3vVeZleqbbXoKkCY/jHUclKag=;
- b=XsGoi8JxMPaCurz9alStlXwlUIolWV8yTdfY7tmpBbQf7+9x4itDPOWlPiTsOW32YmwvtqikvBJ31ZFZc/MgtrrvjYGyo4IsZKEWLo3h902wtBFVO4Ya5VDQV5paM7rHuIsHB3FEmKyPg0Rc+cUuaE5DDkSxVq7HmglS8OqZ1uC9T6JQMnOZ7IWyOuPyzdCCYkMa0h3PwFwDcM63zipdtTpASpoH5/ERZdmWh3R6F5ZI77KD2neP+9zyhozsq3+X4nyaeJj5x8auws7jR9+VfFtNULOVz2g5xmuyqqdo11IUEJH8fVnE72/ZwjAKGfoJ/EDZoj1/7rrbdwFI4Ap3RA==
+ bh=TYdKW4495CwjK76ElFLck9YMax6g//KZsGsK0l+qLes=;
+ b=brjBrcLuVm5U5wKKzkIYgiR4nlsmlkD8VfX11fYcNIIoQVXd6JJ7PXyU7MKieKjSSqDtsCteK4LkK7ZXZQzo4hOnDrBJ+/wqqxlGCMliipEPCv6uVDZPcWJm+0yaupvM8vGcd3p1ec3oeKhWe+qGNFA31GOH/msfhIWtuiuqGD9LUjInZI5oIOcPbd/N2NsWOp47xAgTHwTk4QrNgSjd9zoaNgXKxA4GbxCZNPWHKaeIDXaMCYxS6bdYBldTlWW0cc1KoYmVIMc+5qBiDWHLQRz1R3RSKGjqgjvYod4NFbrd/L6RQanWEqLO2yLociV5x6kYRabU8JM/ZR0UbDELfg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p9JaID9znL7f9z4EqI3vVeZleqbbXoKkCY/jHUclKag=;
- b=VAc8VXwA/ML0K9qMAyw8O6CisLvuSMxHo0fqlnTM9HmI4eYNBs5d6NBoX3scdsyJYH6oE4k+6VDzzH/fCRbRm3caHJeZ0+Mm7Jc3aAdiyBtCkTc03eYh3jBTdF0sxKzRu90eIxWCv7KJjVAA9/AW6z1jfFfJgXod3o+pLjVhF1w=
-Received: from CH0P221CA0032.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:11d::11)
- by CH3PR12MB8880.namprd12.prod.outlook.com (2603:10b6:610:17b::18)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=TYdKW4495CwjK76ElFLck9YMax6g//KZsGsK0l+qLes=;
+ b=1ZeXVRMHuSp9c4XvhyOSMrcOId21OLrTFoW/HZ4jhvUor/y5l47uahrDrEEVk/Suro0nhsxKsawSzWy/TM9e40S4joRTftcmaZ982+2AzqAIJ78bluZKjll+urJwGUFe6aTjuxkKivdJgXRkAnpIa53Cnr89CsD3N/JQ017E7fI=
+Received: from CH0P221CA0040.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:11d::20)
+ by DS0PR12MB7702.namprd12.prod.outlook.com (2603:10b6:8:130::13) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.8; Fri, 5 Jun 2026
- 13:44:18 +0000
+ 13:44:19 +0000
 Received: from DS3PEPF0000C37A.namprd04.prod.outlook.com
- (2603:10b6:610:11d:cafe::e) by CH0P221CA0032.outlook.office365.com
- (2603:10b6:610:11d::11) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:610:11d:cafe::83) by CH0P221CA0040.outlook.office365.com
+ (2603:10b6:610:11d::20) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.9 via Frontend Transport; Fri, 5
- Jun 2026 13:44:18 +0000
+ Jun 2026 13:44:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -66,10 +65,10 @@ Received: from amd-desktop.amd.com (10.180.168.240) by satlexmb07.amd.com
 From: Shahyan Soltani <shahyan.soltani@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Shahyan Soltani <shahyan.soltani@amd.com>
-Subject: [PATCH 02/11] drm/amdgpu: move struct amdgpu_wb and helpers into
- separate header file
-Date: Fri, 5 Jun 2026 09:43:14 -0400
-Message-ID: <20260605134400.956791-3-shahyan.soltani@amd.com>
+Subject: [PATCH 03/11] drm/amdgpu: move struct amdgpu_uid and helpers into
+ header file
+Date: Fri, 5 Jun 2026 09:43:15 -0400
+Message-ID: <20260605134400.956791-4-shahyan.soltani@amd.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260605134400.956791-1-shahyan.soltani@amd.com>
 References: <20260605134400.956791-1-shahyan.soltani@amd.com>
@@ -81,29 +80,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37A:EE_|CH3PR12MB8880:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0a0bbd41-d19f-4ce3-ebf7-08dec3088a51
+X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37A:EE_|DS0PR12MB7702:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9acd39df-1be1-4b4a-4ee6-08dec3088ade
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|82310400026|36860700016|3023799007|11063799006|56012099006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: rr3lzORA+V/BD6C2M7SliFaGbWBkojGu1o08E8EVi3I4bcUqqI3CNpdNTbRilk+X0+epYN5hEML+RgbvmG1maR0LCXvYcTu3cAKFuuAuNjGp3ZyY0xZJLPIeIv69L2ISgLYjLEJZciyeo6ItcWfEYyd6v/j18Yt4LBPVQU0HBKL37R+aTY1AGuo7rFyK8cqChjDo+rAF24UHn+M1jdUsBJ6dTijJRtlcaStzBOp+5gh+DwKbeWNzHZ3n6qnwaf7Flwv+Zmk4OxOt7CuWq/dstjuzo1kXZG+pAMtMkXw6/SML6E/JiC+dd9PkSOCkFHfghBwVCJSdXgTvI2O9qhmujX42EewPCsAQg8BuLk8oh7LNFnUBjSs96/HAxgC/DCybQnnfasegdZ9gsbD6xYRhAowH6fqbR9rwZ+ENmtzbg9PQsuC+vrrfiZnb/uQP96KkZ/ptCKAxbhUnJk0ui7i8YuVYRih9KuXGi6nwNm74cBvxUB0X/WoqFGNMdt1KaePRCfuR9BDFWgMLKVOVljQl7RPkq7tDJxP+QY2fZijt/+YP0tgDSFLxNxPtBH5ji2A4X9JebXETD6RRWEyVeddgtLAZ7PCsCeqaerQm6ifKy5LKcuMrAoDijtwRQsB+QZ3xRMkXpHwbYS4PLIAKTk7XIktw+cPXydj56M6eGizRscRoqNpC4JpjToMzNSyVarnQACYW6VX8ODb8HiGFphA20oevaNkWTMy2azNUxipgSos=
+ ARA:13230040|82310400026|36860700016|376014|1800799024|56012099006|11063799006|22082099003|18002099003|3023799007;
+X-Microsoft-Antispam-Message-Info: Cqr9lExPMliyJGWD7Mrl5IbzE6mhbJSOWtzLY/NcK/KHrrbG1mzxorxnfLJHCMOJk3KQlCwwF7Ia1eYFc6dKWHwsMP4s/pIw2anm7zC2GFfkvmDR4k9BuSUV0DqG/RLu14JdWyh4qUN1tPZC6Jvo16PIHNLI9fooMP+BdaJmuNyjdWrVob04orpTDv4pEHtPkUVGNzq8Wd+A8Vj7R7yevUglPcJQmJO0cKIwfqvcJEqeyxW5UUbq+jfeN8SIccAmsmk+dItjrooFYfORp6J7whtpogffkfIFaZo/db4Y0MJR6kDVLO/a2DktQWXdRNVCEXlew8X9mLhdph4vBdez59JaV5kzaiwpwussPuiA7Qnhm70QmbHq70i/Df5Tj3nbtdmWPKz9cGK5d4NdEGHzJ/HfAleh0nUzuEpdZxwbDOuqx8NewGb77bPZ99oML6ohHhwGTH23nu1BAoz69DlUBseL/dTG/h9EYqtCYMy/B5KH9FYEI8xACL34f9kMY92761zCEQiVlomrHvuCxMgMW+Oe6wpCxB4y8Ncv36rrg9OMl/kbTGum5Fyt3b3XOcOJoq7jpncecEsQHrmyacXo4/SniOglCCejYsSGI0ZR0khl2BdY8H4+k6qKt1R4iouunF6g5lp1ebiuGwvpI3M5d5UXAyfX87z/EYvXK+tLDrQKGvafmvK83pb4l4rqgRJKf0MhINwaggd+XZPBT2/7tBe9jH0IJOT7s+fqhJz/LGs=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(82310400026)(36860700016)(3023799007)(11063799006)(56012099006)(22082099003)(18002099003);
+ SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(56012099006)(11063799006)(22082099003)(18002099003)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: XAhF9+kxrf65HQJuVHbcRN+dE2W+guoNGaHWVnk2vEFIwKQU4bGPRTfAm+Rl20gQdfU1jeWfCEmSyfrXWbGHNWd66wAEWW8kjs8Fj1W4/UIobKOIsIdDMXvoRpWqq3y2FTfNpBJYunDciPTzNr0K648iFKRXuKaEHSFqOgdEJRmH91cKQJGrptV2rHC5AtzaHehyBkOf8uAgVgdCeydPh4gBrj3AvXtIweJGhyHiVR1IXi0FxAJJzzPYqSDSV546L9i3zVdskU/2Vh3ffP4oSf1HxayMlvKiiRlXzgVxPBM3lDDUzQvqXExq3LiA9FtJ0/kgQ8higHOPPRBiBrxjce+qVGsnAz47UrL5izkgyVW15H7VG3ddUOyvdrjfOtntB8ylk4no5D4rS2i/6otCU7As/0dZIha6N11r1VAdePxGfukbW+y8dpysNSElLvgm
+X-MS-Exchange-AntiSpam-MessageData-0: zi47gzS0r3tbuDXwfCQbNtU5B/0PtGqo9nanamXtfdxD/Px5lHyY7c5iOREt8k3ZzhZX/y/9uExxrTv6qFSDSGZTgWazq8e+xnB5OYIl2HsD7VI17LV+ng8zBbKS+IyiBJyGWgg+SWFAApV6PgVXB0NBKO5u7HDqbIUJe4TcixqCVkF1PDzbtqNVyh29if78Q5LNwll7/9UZR3TTb8SYxRiLCFzvy/2faGAykgNICdgce1iKsttXK/lGtbrO/4btqgTpMvv5LklEYEYWbKBNVG7v0mjX9SBcIzzrkabmVi9AoERSPLhHqkgvD2k/Yk4o2BFYo9aVedyG64ZGL7NIR3DFsWy0z0qWLCQS4HPt2/uV8u/r/9fSG9WYj7PqS71i6WzEtvKbUgXXp7wLCFdRBJp091LKrIhv2eiCxvPaViCTk47LxvD9vwq5x8Tu5CGp
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2026 13:44:18.0450 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0a0bbd41-d19f-4ce3-ebf7-08dec3088a51
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2026 13:44:18.9650 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9acd39df-1be1-4b4a-4ee6-08dec3088ade
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF0000C37A.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8880
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7702
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,115 +144,73 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8EE8D6489EF
+X-Rspamd-Queue-Id: BCFA36489E7
 
-Move struct amdgpu_wb and helpers out of the monolithic header amdgpu.h
-into its own dedicated header amdgpu_wb.h.
+Move struct amdgpu_uid and helpers from the monolithic amdgpu.h file into a new amdgpu_uid.h file.
 
-This is part of the ongoing effort to reduce the size of amdgpu.h into
-their own respective separate headers.
+This is part of the ongoing effort to reduce the size of amdgpu.h into their own respective
+separate headers.
 
 Signed-off-by: Shahyan Soltani <shahyan.soltani@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h    |  68 +----------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_wb.h | 100 +++++++++++++++++++++++++
- 2 files changed, 101 insertions(+), 67 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_wb.h
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h     | 22 +----------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_uid.h | 50 +++++++++++++++++++++++++
+ 2 files changed, 51 insertions(+), 21 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_uid.h
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index d7d8664854fd..9a714b4b59bc 100644
+index 9a714b4b59bc..0f8743254fe6 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -112,6 +112,7 @@
- #include "amdgpu_userq.h"
- #include "amdgpu_eviction_fence.h"
+@@ -114,6 +114,7 @@
  #include "amdgpu_sa.h"
-+#include "amdgpu_wb.h"
+ #include "amdgpu_wb.h"
  #include "amdgpu_ip.h"
++#include "amdgpu_uid.h"
  #if defined(CONFIG_DRM_AMD_ISP)
  #include "amdgpu_isp.h"
-@@ -429,73 +430,6 @@ struct amdgpu_fpriv {
+ #endif
+@@ -553,21 +554,6 @@ struct amdgpu_mmio_remap {
+ 	struct amdgpu_bo *bo;
+ };
  
- int amdgpu_file_to_fpriv(struct file *filp, struct amdgpu_fpriv **fpriv);
- 
--/*
-- * Writeback
-- */
--#define AMDGPU_MAX_WB 1024	/* Reserve at most 1024 WB slots for amdgpu-owned rings. */
--
--/**
-- * struct amdgpu_wb - This struct is used for small GPU memory allocation.
-- *
-- * This struct is used to allocate a small amount of GPU memory that can be
-- * used to shadow certain states into the memory. This is especially useful for
-- * providing easy CPU access to some states without requiring register access
-- * (e.g., if some block is power gated, reading register may be problematic).
-- *
-- * Note: the term writeback was initially used because many of the amdgpu
-- * components had some level of writeback memory, and this struct initially
-- * described those components.
-- */
--struct amdgpu_wb {
--
--	/**
--	 * @wb_obj:
--	 *
--	 * Buffer Object used for the writeback memory.
--	 */
--	struct amdgpu_bo	*wb_obj;
--
--	/**
--	 * @wb:
--	 *
--	 * Pointer to the first writeback slot. In terms of CPU address
--	 * this value can be accessed directly by using the offset as an index.
--	 * For the GPU address, it is necessary to use gpu_addr and the offset.
--	 */
--	uint32_t		*wb;
--
--	/**
--	 * @gpu_addr:
--	 *
--	 * Writeback base address in the GPU.
--	 */
--	uint64_t		gpu_addr;
--
--	/**
--	 * @num_wb:
--	 *
--	 * Number of writeback slots reserved for amdgpu.
--	 */
--	u32			num_wb;
--
--	/**
--	 * @used:
--	 *
--	 * Track the writeback slot already used.
--	 */
--	unsigned long		used[DIV_ROUND_UP(AMDGPU_MAX_WB, BITS_PER_LONG)];
--
--	/**
--	 * @lock:
--	 *
--	 * Protects read and write of the used field array.
--	 */
--	spinlock_t		lock;
+-enum amdgpu_uid_type {
+-	AMDGPU_UID_TYPE_XCD,
+-	AMDGPU_UID_TYPE_AID,
+-	AMDGPU_UID_TYPE_SOC,
+-	AMDGPU_UID_TYPE_MID,
+-	AMDGPU_UID_TYPE_MAX
 -};
 -
--int amdgpu_device_wb_get(struct amdgpu_device *adev, u32 *wb);
--void amdgpu_device_wb_free(struct amdgpu_device *adev, u32 wb);
+-#define AMDGPU_UID_INST_MAX 8 /* max number of instances for each UID type */
 -
- /*
-  * Benchmarking
-  */
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_wb.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_wb.h
+-struct amdgpu_uid {
+-	uint64_t uid[AMDGPU_UID_TYPE_MAX][AMDGPU_UID_INST_MAX];
+-	struct amdgpu_device *adev;
+-};
+-
+ #define MAX_UMA_OPTION_NAME	28
+ #define MAX_UMA_OPTION_ENTRIES	19
+ 
+@@ -1530,10 +1516,4 @@ static inline int amdgpu_device_bus_status_check(struct amdgpu_device *adev)
+ 
+        return 0;
+ }
+-
+-void amdgpu_device_set_uid(struct amdgpu_uid *uid_info,
+-			   enum amdgpu_uid_type type, uint8_t inst,
+-			   uint64_t uid);
+-uint64_t amdgpu_device_get_uid(struct amdgpu_uid *uid_info,
+-			       enum amdgpu_uid_type type, uint8_t inst);
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_uid.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_uid.h
 new file mode 100644
-index 000000000000..dac9fc3f0004
+index 000000000000..d92ddcce9f58
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_wb.h
-@@ -0,0 +1,100 @@
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_uid.h
+@@ -0,0 +1,50 @@
 +/* SPDX-License-Identifier: GPL-2.0 OR MIT
 + *
 + * Copyright 2026 Advanced Micro Devices, Inc.
@@ -276,83 +233,33 @@ index 000000000000..dac9fc3f0004
 + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 + * OTHER DEALINGS IN THE SOFTWARE.
 + */
-+#ifndef __AMDGPU_WB_H__
-+#define __AMDGPU_WB_H__
++#ifndef __AMDGPU_UID_H__
++#define __AMDGPU_UID_H__
 +
 +#include <linux/types.h>
-+#include <linux/spinlock_types.h>
-+#include <linux/math.h>
 +
-+/*
-+ * Writeback
-+ */
-+#define AMDGPU_MAX_WB 1024	/* Reserve at most 1024 WB slots for amdgpu-owned rings. */
++#define AMDGPU_UID_INST_MAX 8 /* max number of instances for each UID type */
 +
-+/**
-+ * struct amdgpu_wb - This struct is used for small GPU memory allocation.
-+ *
-+ * This struct is used to allocate a small amount of GPU memory that can be
-+ * used to shadow certain states into the memory. This is especially useful for
-+ * providing easy CPU access to some states without requiring register access
-+ * (e.g., if some block is power gated, reading register may be problematic).
-+ *
-+ * Note: the term writeback was initially used because many of the amdgpu
-+ * components had some level of writeback memory, and this struct initially
-+ * described those components.
-+ */
-+
-+struct amdgpu_bo;
 +struct amdgpu_device;
 +
-+struct amdgpu_wb {
-+
-+	/**
-+	 * @wb_obj:
-+	 *
-+	 * Buffer Object used for the writeback memory.
-+	 */
-+	struct amdgpu_bo	*wb_obj;
-+
-+	/**
-+	 * @wb:
-+	 *
-+	 * Pointer to the first writeback slot. In terms of CPU address
-+	 * this value can be accessed directly by using the offset as an index.
-+	 * For the GPU address, it is necessary to use gpu_addr and the offset.
-+	 */
-+	uint32_t		*wb;
-+
-+	/**
-+	 * @gpu_addr:
-+	 *
-+	 * Writeback base address in the GPU.
-+	 */
-+	uint64_t		gpu_addr;
-+
-+	/**
-+	 * @num_wb:
-+	 *
-+	 * Number of writeback slots reserved for amdgpu.
-+	 */
-+	u32			num_wb;
-+
-+	/**
-+	 * @used:
-+	 *
-+	 * Track the writeback slot already used.
-+	 */
-+	unsigned long		used[DIV_ROUND_UP(AMDGPU_MAX_WB, BITS_PER_LONG)];
-+
-+	/**
-+	 * @lock:
-+	 *
-+	 * Protects read and write of the used field array.
-+	 */
-+	spinlock_t		lock;
++enum amdgpu_uid_type {
++	AMDGPU_UID_TYPE_XCD,
++	AMDGPU_UID_TYPE_AID,
++	AMDGPU_UID_TYPE_SOC,
++	AMDGPU_UID_TYPE_MID,
++	AMDGPU_UID_TYPE_MAX
 +};
 +
-+int amdgpu_device_wb_get(struct amdgpu_device *adev, u32 *wb);
-+void amdgpu_device_wb_free(struct amdgpu_device *adev, u32 wb);
++struct amdgpu_uid {
++	uint64_t uid[AMDGPU_UID_TYPE_MAX][AMDGPU_UID_INST_MAX];
++	struct amdgpu_device *adev;
++};
++
++void amdgpu_device_set_uid(struct amdgpu_uid *uid_info,
++			   enum amdgpu_uid_type type, uint8_t inst,
++			   uint64_t uid);
++uint64_t amdgpu_device_get_uid(struct amdgpu_uid *uid_info,
++			       enum amdgpu_uid_type type, uint8_t inst);
 +#endif
 -- 
 2.54.0
