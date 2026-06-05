@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wBngDb7SImpVeAEAu9opvQ
+	id wwqqBcHSImpceAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 15:44:30 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 15:44:33 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1CB46489F4
-	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 15:44:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B454A648A07
+	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 15:44:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=k1OlwUYd;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=y3hmNnoq;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B1F410E54B;
-	Fri,  5 Jun 2026 13:44:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13E8B10E642;
+	Fri,  5 Jun 2026 13:44:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011048.outbound.protection.outlook.com [52.101.62.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C76F10E4D2
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2026 13:44:26 +0000 (UTC)
+Received: from PH8PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11012046.outbound.protection.outlook.com [40.107.209.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42B3F10E561
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2026 13:44:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yMePwIgQHUifdj48BQRPxOF7BKigYQLWZIiEvc+RZ/sun1TAOg5fbi9JUMdB6TpyPyJ5cXOJLhm4AvAMVo9Px0GO4TgNo/GmD2pnXfa69kWrYXZg7DKWfjAil2H3ckhQuDv9mubHfP9f2CgSe5iJLT3lcGlSEoAoCDv4lHx+KaV44HqdUhsa0j175Q/iefZchi+HP89WXFa1QzKC5e7KAiO42jJVqUwPqiwyrC8rouG8KGUctOYJU9a17ve+zLdmbTFm/05Vx5c7vTYOlfbwU5bwh7Tu8PT8rw7yvmVXHAQP2hz+UUHaWMAECz666UzaUUg0JsHqOw05b6JxlnD75A==
+ b=UC2PpiNDEygkjav6RQS5lgOlGdeCyHX30GolS7/nuWs1XraXmqyQOXHFwN6Ev0MStN9I+oG0oD3msGrnU4C67h1t/tWDw9FsLtO5cQ8OEmV+XDwozN1B22EyvGzn0ps0MtaZuzrqzXRmaNj3GuVLWnuQLWUm1PL6EnJfJuwjkrEVVaYVcgGkUGZ3CY3G/HXLXXw9pr67H8v6l8f7dysD2/nA/vWRBX0Tmb2YfM+gVTgvHKu3j80KHRK2nGjjP4nNZ35FZww/OCjSQApqBKQk+t5kV2c0eWiwCicoP832yH54snIAR0zJXcA9sARkXPNbOc614N4PR9SD4kyH298GPQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LkBwROJ9qfMyHjsXlMvZpdZaG0aTEX4w88ReZW/vqVY=;
- b=br5UC+ikonO+1y6o80iDwC0/FRgvIIVy6vZKWrNzUcipaXLTVXHWJsSMoQVTBqWq9jhLVOwl7ggZJ5JinFdRGn+gWkaC5f4oBrZWAAfpxl9n3ogR62Lj1Trk9z7M2NhrAWweQSmX8K6YA2GalfVOfeprwdHBTNSBFnmda+iV74YHiB1d19NhZHtFNIw7cdO+AXCpmY8PYnlw3jIa9Pyo8SXddQd9YNUD7Rs44DZenhI+Bscj52b63DTN6Hl2BU1mTp9GcaAgM3ZcfXyRs9eatkpSsTmVjrM4k+jyqrGtAMqADx8BwZ2xdb+9xgrBi63h4GvWTaR1Qt2SQubKRi93CQ==
+ bh=Jue8PTfiX2L4QvXl/02pthukXeqZsoa6/C9/GLA+1MM=;
+ b=wj/XYATWUE5QSqAyw+IGAYRO/ZrRv/mRzq15lWeoxSDbMWgVLGRDk6WDO3Jo4H07JNL3DVVf7PmE0QEBtw9R6JDJ8Jf/TM1KnxwFasSbnbhmso5MsDbwbuUKH0sBe+B+2PDLQPmkN5c7tLOX1/+78IJtSESvlztfU/znXCNjFujFVh8GV+oVrYDGt+TS/KLD/5VmXDkPy0a523569R62VjYjQN+Aq7oKJd1rfSzGBV7HOf5erVK6UcQBqAC6H+HmwBXD0SbyqOusNB96kC7StEk9s/xno3mIZuqgezoFKCVXl6T/oGyRBZHS5HX1pBDXtjoyCyexpZcFiFMp0uMKog==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LkBwROJ9qfMyHjsXlMvZpdZaG0aTEX4w88ReZW/vqVY=;
- b=k1OlwUYdcwOVsa0x1mHIfVGlhbPmrlbNm89R2048Kzzh5SRSNPwdjpx43QCQWCU9dvjfIN6cLJtiapL8tohrEuxj7IICd/Rx1zSwN476ln3xmYtdiz0q4+INnvxIdWBJCBAdDiwV4eCrAM9XJ3pWD5p+Wq1r6eTd8eywwQF0kT8=
-Received: from CH0P221CA0043.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:11d::23)
- by IA0PR12MB8862.namprd12.prod.outlook.com (2603:10b6:208:48e::16)
+ bh=Jue8PTfiX2L4QvXl/02pthukXeqZsoa6/C9/GLA+1MM=;
+ b=y3hmNnoqFfnoYrWrWvfk5NEvmyrnpm9RkU5se05+vI9eld8xsYn0eDgyezohaKdy4iQxTQRgvVGVD7/XbmV/d6gPWfYZsqVvGBv/unUOd//P/TOLIdkn3DB0Egr4WFQaf2vVgrljG3+W3f2zdxpLnrNxsEpl8O6S2EIYQNeGzBo=
+Received: from CH0P221CA0039.NAMP221.PROD.OUTLOOK.COM (2603:10b6:610:11d::21)
+ by DS5PPF016FC81DF.namprd12.prod.outlook.com (2603:10b6:f:fc00::644)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.8; Fri, 5 Jun 2026
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Fri, 5 Jun 2026
  13:44:19 +0000
 Received: from DS3PEPF0000C37A.namprd04.prod.outlook.com
- (2603:10b6:610:11d:cafe::6e) by CH0P221CA0043.outlook.office365.com
- (2603:10b6:610:11d::23) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:610:11d:cafe::76) by CH0P221CA0039.outlook.office365.com
+ (2603:10b6:610:11d::21) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.10 via Frontend Transport; Fri, 5
  Jun 2026 13:44:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -61,14 +61,14 @@ Received: from satlexmb07.amd.com (165.204.84.17) by
 Received: from amd-desktop.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Fri, 5 Jun
- 2026 08:44:14 -0500
+ 2026 08:44:15 -0500
 From: Shahyan Soltani <shahyan.soltani@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Shahyan Soltani <shahyan.soltani@amd.com>
-Subject: [PATCH 04/11] drm/amdgpu: move struct amdgpu_video_codecs and helpers
- into header file
-Date: Fri, 5 Jun 2026 09:43:16 -0400
-Message-ID: <20260605134400.956791-5-shahyan.soltani@amd.com>
+Subject: [PATCH 05/11] drm/amdgpu: move struct amdgpu_mqd and helpers into
+ header file
+Date: Fri, 5 Jun 2026 09:43:17 -0400
+Message-ID: <20260605134400.956791-6-shahyan.soltani@amd.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260605134400.956791-1-shahyan.soltani@amd.com>
 References: <20260605134400.956791-1-shahyan.soltani@amd.com>
@@ -80,29 +80,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37A:EE_|IA0PR12MB8862:EE_
-X-MS-Office365-Filtering-Correlation-Id: d347521a-5c84-4109-ec0f-08dec3088b39
+X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37A:EE_|DS5PPF016FC81DF:EE_
+X-MS-Office365-Filtering-Correlation-Id: ecf367f9-e313-4177-ea12-08dec3088b34
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|82310400026|36860700016|3023799007|6133799003|56012099006|11063799006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: lVYm7KfteNwt4vtNMeC/EUOW45G1gR6ZlcwNuUzO8Hy80IVDS/nFpv23B7DLoxjZhGENP3rGyB+h8s+aynHYaZmaiuoRQHQW6HQN1A82YXrzMF/BQv/p38IpGeI+34oyY/7PwP+xGsbke2w27vuPEyLQFbM6srVNWAWhlJd0yNNGzu3p8HmhIUF9VgnT02AQtAU2FWtTsE2IvP1/fogX+2N5gbrkyWHAgApmgVZyGy1a8xKb6JmzJsAgfoGUVyfWoYNsXcNpP9qLWctkn6dIC4l69ogecN+ZHLhEUU+ALB2wpX/TyLi3aszpHzvpHni5Pq6XNk08BtAQTMcbDRwJTusmmWeACnfebxtEIuXoDKs7kzwgEz3vvN8B0xwMzDNjon7xY2MlFndnepaxPEQE6REqMnsFbY2orGQiUH9oD7NiG8sSWiLcFxF4JPMEB9IXfJeNW0oU1PMjzZ9IhmNiBWEc5NWqidxyTcFDhIOca6V8lAEn9RzKVfwsckrJ3bS3bSRsaY+YeWm1L4SL/9pCMDHMfnO2J4J9S+GpxzSMmxOJ+JzNVdrJRMUhpUe575Tt2cmRhbxB8re72weZls0hE6QD1MZmtztSN8c0kUlwuwxYHLu2wc3nEPx5Bd8aa0+mB0BC+SAmyzY0SeDUz3T1G4kQOmfeutVRERWF7nsWZYKBmIDGFqcypxQn0Y/Kaw7GoMltHzSZlpDUFcC21p+AlRIjm6OQFN+6PODQskBKG+U=
+ ARA:13230040|36860700016|82310400026|1800799024|376014|6133799003|3023799007|18002099003|22082099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: vFRoeioWkJb8+8SzDmPviAn1zdIrt+JbgFnzxsP9ncGJRSo0meFqSEGEbdeckA/SMchMlNPMmx3yK75OHUFVhCOtSA24Sns7GBxG1+Bikb3uLTAc2FLXvK4f+O4XVgAlmnlU/8ZVIADq3Q440WnMaQcr7TJjd6/N+dfSdroaPa+Nw5Gkvye4zaKBSrxJxrK6dro/zcYhbhEpAQUcFakvuZ9iOs5Chzdu4IcuACq+6fk/n84mqWff0Cs4tlP/t0TTJjI/zwg1fUMoTUhk+8Du8N4XEHu+x+6jlftvp6C24V6xvBxSGzzlMtOpFJ+zhUQnvbQWvNHZJcjItAhNTTCVPW5C42ksaXYs0iWfIP7D9T7Zh+mYc3ewtoYeIqvILIL864G81IqxT/y/8iy6BZvpTvPYqN89mfAQDgZoUlgyFWejcyjBasPsJMdXmHABAnmDxj/qgn035C5uCx6IIwb1Y5D7Y3HHFJ9E6sruT1uubFEH90b5jaejl3krDDHd4m89iSAS9+s4ZMcYzrSKn2ROBuK1d9B9AP22AIaByLNVgx44AQZ5DWqML5bNpgiEBCnHz7kDVRQktnDo4Gl8pTL4wC2dU76SiNXSaXiiBeEJteMjqOsHYO1vpnCTg5vbaLwCGpkuwVLbzQbV1vER3Mek4NQtILTOp1WW6s46HQeLpomjjtXQs5wXrvj+EPVrAs5hRxIx2vBIk3kbE1neYT2Fpns43cAp3CmMAN8iEDrG6yI=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(82310400026)(36860700016)(3023799007)(6133799003)(56012099006)(11063799006)(22082099003)(18002099003);
+ SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(6133799003)(3023799007)(18002099003)(22082099003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: D+ZAcFXJNYhc4dmrNTVdhyqK4TWw/GetvllcrksWhLQj+UvNHaMz2n1yNBbAPuBl1CQiDCHtcawt3aSYxvqmqrG6AsXSk+a32PKy6eNxaKmw1ti7Un2ZBfSdWyrLrF0dzqpDkL+9ifyNJjfaPS6tUzehdipXDWOfek99Qiy35IkfZicVsqqngUh8CVY19eoAZ0c3qrVrKcBh/6fYlHAlswB6AzQfR5EXI8mk/sUuRa9pt/yQeee1GB1QL85LsN+kmhnQJBFX4Hxdb+DvWRgFKzLKTbuu324fOSLKkt1G62fLt0Pj1YSvNELQ8+0HM1jQy1+/u3fsTKZZYnayTadVonDuhfC1qRmMO9NCJ6bb1+lcO87tLGI4E+QVCzHvzdHzfEcphOm5JELqArRUAPFrR6shrPh9mi8GNYzj3u8n1rHezRjZ+hxbRPN/7DBVOGVs
+X-MS-Exchange-AntiSpam-MessageData-0: sZ/Q7oXZP05kMpY6YGu7r+xXqs07mKjgnN+2dLlsVoAf/yHBAeH5cjUA6X+o2xQXi1pmsMpoQwTDWePBWDnkrYzq0vJW8qty3UinHoFss2xT5RqR4Q7AUSAmbVFyt60m4Yb0YLibfPC2gqUEw02Yu5yoQdSdE4/C7nu0WxQuHsu0GgTKdATg4ghoH91OCp7zgQ38BABDUf0kw2SxEXQu7ng+TzLq4othiEEBTj+vB4XcE2Ik18s2UyqXnYXPx0RHMjOfWHPffyxR3ZuBCd9lSpA3t12RH+scsieR8ln5gvvnVrmED+aOlD/rcdouTFMku5GRE5MtDse2WYAmrn9tMuMgz6jbIQ2ACaxn822aChRMDF8uk2oOZYLVWWV95UVxXcb5hXPWMEWB73ge4uy4Q/yO2oW7P3gguoZq/n/LYVFZhS2RwyOmZQIxc9tyogpo
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2026 13:44:19.5440 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d347521a-5c84-4109-ec0f-08dec3088b39
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2026 13:44:19.5035 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ecf367f9-e313-4177-ea12-08dec3088b34
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF0000C37A.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8862
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPF016FC81DF
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,68 +144,101 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D1CB46489F4
+X-Rspamd-Queue-Id: B454A648A07
 
-Move struct amdgpu_video_codec_info, struct amdgpu_video_codecs, and helpers into a new
-amdgpu_video_codecs.h file.
+Move struct amdgpu_mqd_prop, struct amdgpu_mqd, and helpers from the monolithic amdgpu.h into
+a new amdgpu_mqd.h file.
 
 This is part of the ongoing effort to reduce the size of amdgpu.h into their own respective
 separate headers.
 
 Signed-off-by: Shahyan Soltani <shahyan.soltani@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           | 21 +--------
- .../gpu/drm/amd/amdgpu/amdgpu_video_codecs.h  | 47 +++++++++++++++++++
- 2 files changed, 48 insertions(+), 20 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_video_codecs.h
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h     | 47 +---------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mqd.h | 75 +++++++++++++++++++++++++
+ 2 files changed, 76 insertions(+), 46 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_mqd.h
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 0f8743254fe6..8fb70731ea58 100644
+index 8fb70731ea58..9473626ea96f 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -115,6 +115,7 @@
+@@ -114,6 +114,7 @@
+ #include "amdgpu_sa.h"
  #include "amdgpu_wb.h"
  #include "amdgpu_ip.h"
++#include "amdgpu_mqd.h"
  #include "amdgpu_uid.h"
-+#include "amdgpu_video_codecs.h"
+ #include "amdgpu_video_codecs.h"
  #if defined(CONFIG_DRM_AMD_ISP)
- #include "amdgpu_isp.h"
- #endif
-@@ -444,26 +445,6 @@ struct amdgpu_allowed_register_entry {
- 	bool grbm_indexed;
+@@ -611,44 +612,6 @@ struct amd_powerplay {
+ 					  (rid == 0x01) || \
+ 					  (rid == 0x10))))
+ 
+-enum amdgpu_mqd_update_flag {
+-       AMDGPU_UPDATE_FLAG_DBG_WA_ENABLE = 1,
+-       AMDGPU_UPDATE_FLAG_DBG_WA_DISABLE = 2,
+-       AMDGPU_UPDATE_FLAG_IS_GWS = 4, /* quirk for gfx9 IP */
+-};
+-
+-struct amdgpu_mqd_prop {
+-	uint64_t mqd_gpu_addr;
+-	uint64_t hqd_base_gpu_addr;
+-	uint64_t rptr_gpu_addr;
+-	uint64_t wptr_gpu_addr;
+-	uint32_t queue_size;
+-	bool use_doorbell;
+-	uint32_t doorbell_index;
+-	uint64_t eop_gpu_addr;
+-	uint32_t hqd_pipe_priority;
+-	uint32_t hqd_queue_priority;
+-	uint32_t mqd_stride_size;
+-	bool allow_tunneling;
+-	bool hqd_active;
+-	uint64_t shadow_addr;
+-	uint64_t gds_bkup_addr;
+-	uint64_t csa_addr;
+-	uint64_t fence_address;
+-	bool tmz_queue;
+-	bool kernel_queue;
+-	uint32_t *cu_mask;
+-	uint32_t cu_mask_count;
+-	uint32_t cu_flags;
+-	bool is_user_cu_masked;
+-};
+-
+-struct amdgpu_mqd {
+-	unsigned mqd_size;
+-	int (*init_mqd)(struct amdgpu_device *adev, void *mqd,
+-			struct amdgpu_mqd_prop *p);
+-};
+-
+ struct amdgpu_pcie_reset_ctx {
+ 	bool in_link_reset;
+ 	bool occurs_dpc;
+@@ -1035,14 +998,6 @@ struct amdgpu_device {
+ 	struct amdgpu_kfd_dev		kfd;
  };
  
--struct amdgpu_video_codec_info {
--	u32 codec_type;
--	u32 max_width;
--	u32 max_height;
--	u32 max_pixels_per_frame;
--	u32 max_level;
--};
+-/*
+- * MES FW uses address(mqd_addr + sizeof(struct mqd) + 3*sizeof(uint32_t))
+- * as fence address and writes a 32 bit fence value to this address.
+- * Driver needs to allocate at least 4 DWs extra memory in addition to
+- * sizeof(struct mqd). Add 8 DWs and align to AMDGPU_GPU_PAGE_SIZE for safety.
+- */
+-#define AMDGPU_MQD_SIZE_ALIGN(mqd_size) AMDGPU_GPU_PAGE_ALIGN(((mqd_size) + 32))
 -
--#define codec_info_build(type, width, height, level) \
--			 .codec_type = type,\
--			 .max_width = width,\
--			 .max_height = height,\
--			 .max_pixels_per_frame = height * width,\
--			 .max_level = level,
--
--struct amdgpu_video_codecs {
--	const u32 codec_count;
--	const struct amdgpu_video_codec_info *codec_array;
--};
--
- /*
-  * ASIC specific functions.
-  */
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_video_codecs.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_video_codecs.h
+ static inline uint32_t amdgpu_ip_version(const struct amdgpu_device *adev,
+ 					 uint8_t ip, uint8_t inst)
+ {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mqd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mqd.h
 new file mode 100644
-index 000000000000..3b2a6cb8632d
+index 000000000000..3806ade5fa71
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_video_codecs.h
-@@ -0,0 +1,47 @@
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mqd.h
+@@ -0,0 +1,75 @@
 +/* SPDX-License-Identifier: GPL-2.0 OR MIT
 + *
 + * Copyright 2026 Advanced Micro Devices, Inc.
@@ -228,30 +261,58 @@ index 000000000000..3b2a6cb8632d
 + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 + * OTHER DEALINGS IN THE SOFTWARE.
 + */
-+#ifndef __AMDGPU_VIDEO_CODECS_H__
-+#define __AMDGPU_VIDEO_CODECS_H__
++#ifndef __AMDGPU_MQD_H__
++#define __AMDGPU_MQD_H__
 +
 +#include <linux/types.h>
 +
-+#define codec_info_build(type, width, height, level) \
-+			 .codec_type = type,\
-+			 .max_width = width,\
-+			 .max_height = height,\
-+			 .max_pixels_per_frame = height * width,\
-+			 .max_level = level,
++struct amdgpu_device;
 +
-+struct amdgpu_video_codec_info {
-+	u32 codec_type;
-+	u32 max_width;
-+	u32 max_height;
-+	u32 max_pixels_per_frame;
-+	u32 max_level;
++enum amdgpu_mqd_update_flag {
++	AMDGPU_UPDATE_FLAG_DBG_WA_ENABLE = 1,
++	AMDGPU_UPDATE_FLAG_DBG_WA_DISABLE = 2,
++	AMDGPU_UPDATE_FLAG_IS_GWS = 4, /* quirk for gfx9 IP */
 +};
 +
-+struct amdgpu_video_codecs {
-+	const u32 codec_count;
-+	const struct amdgpu_video_codec_info *codec_array;
++struct amdgpu_mqd_prop {
++	uint64_t mqd_gpu_addr;
++	uint64_t hqd_base_gpu_addr;
++	uint64_t rptr_gpu_addr;
++	uint64_t wptr_gpu_addr;
++	uint32_t queue_size;
++	bool use_doorbell;
++	uint32_t doorbell_index;
++	uint64_t eop_gpu_addr;
++	uint32_t hqd_pipe_priority;
++	uint32_t hqd_queue_priority;
++	uint32_t mqd_stride_size;
++	bool allow_tunneling;
++	bool hqd_active;
++	uint64_t shadow_addr;
++	uint64_t gds_bkup_addr;
++	uint64_t csa_addr;
++	uint64_t fence_address;
++	bool tmz_queue;
++	bool kernel_queue;
++	uint32_t *cu_mask;
++	uint32_t cu_mask_count;
++	uint32_t cu_flags;
++	bool is_user_cu_masked;
 +};
++
++struct amdgpu_mqd {
++	unsigned mqd_size;
++	int (*init_mqd)(struct amdgpu_device *adev, void *mqd,
++			struct amdgpu_mqd_prop *p);
++};
++
++/*
++ * MES FW uses address(mqd_addr + sizeof(struct mqd) + 3*sizeof(uint32_t))
++ * as fence address and writes a 32 bit fence value to this address.
++ * Driver needs to allocate at least 4 DWs extra memory in addition to
++ * sizeof(struct mqd). Add 8 DWs and align to AMDGPU_GPU_PAGE_SIZE for safety.
++ */
++#define AMDGPU_MQD_SIZE_ALIGN(mqd_size) AMDGPU_GPU_PAGE_ALIGN(((mqd_size) + 32))
 +#endif
 -- 
 2.54.0
