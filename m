@@ -2,149 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id pp2YN9jKI2qIygEAu9opvQ
+	id MpxtF5HDImqDdQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 06 Jun 2026 09:23:04 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 14:39:45 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D45764CD54
-	for <lists+amd-gfx@lfdr.de>; Sat, 06 Jun 2026 09:23:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC5586483CC
+	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 14:39:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=web.de header.s=s29768273 header.b=rCvXuPVe;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=hYNZC6F8;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=web.de
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67C21112D78;
-	Sat,  6 Jun 2026 07:22:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6ABE8112AF6;
+	Fri,  5 Jun 2026 12:39:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.web.de (mout.web.de [212.227.17.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07459112ACB
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2026 11:39:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1780659544; x=1781264344; i=markus.elfring@web.de;
- bh=5xZ+f8SzZDJmAU1EnpH9VXvDuhlbt0Ej9kbmVsUaruM=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:From:To:
- Cc:References:In-Reply-To:Content-Type:Content-Transfer-Encoding:
- cc:content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=rCvXuPVeK+/HXnPdFIz/XmkJztX9rHT0N0kICsWMoDeJtr3NBMYDFmm63H1auanc
- qFPKB+xXlb2gDHcRSVr/d1JCHmrPFi2MnAyaKXrC37dvPxSoWovCVyLWzWfvhpf4/
- mfNKdvCr1A0GyFAnVaSzZ3RLJ6/SAewoOYPAj+esBT0xqznogRZ55hiNMzXy0gZxu
- IXQxmM2JTGk7IT4SrSJIjZ+OAutlR4raMc6AqnswJUEuH3gFewQ4hs05xmerkIYkG
- IKVwHhhmxRN13q9+QoIpKZ0k7/H/xaORrtKJGO5CUWclVxaW6XfHRrv6kA8lW5ASJ
- eP3P1PzUHCVmIvRNPg==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MkVwi-1wyRmH1mjG-00cggA; Fri, 05
- Jun 2026 13:33:39 +0200
-Message-ID: <da65ea0b-81bd-4109-89cd-f4a5120edba0@web.de>
-Date: Fri, 5 Jun 2026 13:33:37 +0200
-MIME-Version: 1.0
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010052.outbound.protection.outlook.com [52.101.85.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13C94112AF6
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2026 12:39:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZQ/EilFyaOBGcCSk8SkNjbyg+ql9Hw0ZhbHGCkboqreHVqntLyeFley6w6Z82cbPg2euiAN+Hpc7ZUROycX/KeBmKK2yEPiQjy+Mv+VU0mcukEdR1pncbRJDVc8Hk6EHqmoO6OEOIG2E8nVKGc60bHib3hQqEkUeSteJTDMj2CEya44nNfKitzvW5bBNAEclXZjpNpDC5ZpdXguSDmaVTXBCIgFJfnX6Q8C+nvE/o5O3elR8dGFF0QoQ8xj12GqSCrVwrzVFBJjwL02+I+yxp8MaCcjBr7K/p1RyHqABKyePOYshXq3QPjj8q8lrd/qmOzrhUfftpJ/+6HYkzwk/DA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JcpNnhXm5bPeJf4R2CsH6SXfsSycGAOu18KaE7VSq3k=;
+ b=jYgJY3bcZPyfGn6PaIwm24fRilc6MXLvk9FVoVmsx73JQj31b3KdxDfMhRX7PNQYanZSvtOfmTkqPaTluq30zrphbZyyotVgleK0jAdNX1l6bLSEXOOD+OHZ3yLVgnWz5IO6iUKqL88oZNTbjyXxldMB6moZzvvK0hZXYthITKjiVJpsXXqYIJa4bSYRPBP2bGIwiNL4qYfwqTHx+NgzCkCFHF5J9VjzyHdLbKYh3N6GqByo9pb3uHkb+cR5to6xVf9A8ysOHpboMhhOHBQyuS1x7OHsDMIiYuJhzVZmDBvI2Jnlh4IPegYeVBofWGVJaqJ107iWTouDxLwPsTGv8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JcpNnhXm5bPeJf4R2CsH6SXfsSycGAOu18KaE7VSq3k=;
+ b=hYNZC6F8syPPVmwm7Qik/0jVZUBfxlZlCeJLfrGofJX9tp2aU/u7WmS4w7zRNR5IX/4GmD5FGkhaAC8wdAgcx5j0B738G1ZTKWCvlI0VcYO5BZ2syWzVMVzEqSpB3GEvBqpqEvcYik18Jh3HOuLromZ/PKALbrVXR7Z12mUHSh4=
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SA3PR12MB9090.namprd12.prod.outlook.com (2603:10b6:806:397::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.8; Fri, 5 Jun 2026
+ 12:39:39 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0092.006; Fri, 5 Jun 2026
+ 12:39:39 +0000
+Message-ID: <2422c581-f610-4fb9-9142-c56ac33bbbf7@amd.com>
+Date: Fri, 5 Jun 2026 14:39:35 +0200
 User-Agent: Mozilla Thunderbird
-Subject: [PATCH 3/3] drm/amd/display: Use seq_putc() in three functions
-From: Markus Elfring <Markus.Elfring@web.de>
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>, Chenyu Chen
- <chen-yu.chen@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, David Airlie <airlied@gmail.com>,
- Harry Wentland <harry.wentland@amd.com>, Ivan Lipski <ivan.lipski@amd.com>,
- Kees Cook <kees@kernel.org>, Leo Li <sunpeng.li@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>, Ray Wu <ray.wu@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>, Rong Zhang <i@rong.moe>,
- Simona Vetter <simona@ffwll.ch>, =?UTF-8?Q?Timur_Krist=C3=B3f?=
- <timur.kristof@gmail.com>, Tom Chung <chiahsuan.chung@amd.com>
-Cc: LKML <linux-kernel@vger.kernel.org>
-References: <e0689a10-9cd6-4d74-a276-99f8f01c83fa@web.de>
-Content-Language: en-GB, de-DE
-In-Reply-To: <e0689a10-9cd6-4d74-a276-99f8f01c83fa@web.de>
+Subject: Re: [PATCH v9 01/11] drm/amdgpu: Add render-node EVENTFD manager core
+To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+References: <20260603163350.2678309-1-srinivasan.shanmugam@amd.com>
+ <20260603163350.2678309-2-srinivasan.shanmugam@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260603163350.2678309-2-srinivasan.shanmugam@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:HgInL5ze4wR8Y0N9Mto0KsoCWfwmTzkVA1Oa8BEkJD/EuLbh2Jp
- DN5y0RTawt+zh0CCLaSb5BQKBGPcmCmCPzLF3X6Xb3OapZyQ4NnSpN+QKpQfgnYnOC+SZsU
- l5Dqo+TTFNJr6nFhuN3bA2764Rx+8aGtm3Q+hjF+0XflCCBvf/UoOqISgKPbB0yJzqlGj8t
- YXQ5AK95JhxU5TfANSHCA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:AIIZkaF3mL8=;VzRgb/PuKIrkSufPQfiOHKxqJww
- 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
- P81Low==
-X-Mailman-Approved-At: Sat, 06 Jun 2026 07:22:57 +0000
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0271.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:e6::20) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA3PR12MB9090:EE_
+X-MS-Office365-Filtering-Correlation-Id: 864e2361-f458-4b31-d32b-08dec2ff8278
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|6133799003|22082099003|18002099003|4143699003|5023799004|56012099006|11063799006|3023799007;
+X-Microsoft-Antispam-Message-Info: 8qz9nITnmxpb7Hvtg7uZe0KmgRyqH3uawOaKwen0+L1qRwBPyhDLeFkWtG8mKZ/jJ2F3eqfpS0IDWurqCCVTiobajj+c22tZ36fNRl00XvRdfldzt6KqfVtKD7UZAefumQpG7A4aYEaBJUsPz3E3AFozDHP7cl6mAQMgrCFZIWII7CMFrEP0+Lm7mgI1EfCkG8UVxZW2sSUvP2a6756B2AHBLfWvAcYxSYQDpKaP96h2uuLeq6S7WS/iB1+ysq9xW0MUCldtUV/6wEPLVqA3OElLQX8kwI/pa7EsEiaDIhQfagWHxe9AzCaCrJ96aOQ9HSEhLYciawDLRlcNF8ZxtUSBcR3LIyR0DXsm/28x+1xCIc6cCwHStjXZxzjHwAfqd094ltclerq7e1H0soH9kR29pkbXutHNoxp8AYsVBYURBipB2SfSQ3YAiYvcXkBLC5vHrTWfsqXlSN0sI/nd9r7ZLe5uWZIfKcGg8coGl3KYZE+6FIzPHVnEelOpXXBfLil4FXRsyS9KOoEzppnD8ajQIbSeMm3mM7W7+lefwN6L75LBhT/QUFe4UhmezyJUaIOix/xh95wDvVMxbuE+xu4MYAQ7lLmKPFwfB06NjcPvcIEhFkOopZq875J3XELJnjVGK5s/oOp5GaMvv++cOXWSDtlJyU1DwzHeFLUr4F4rAeQKZUCCyyO6Zm12Ayk6
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(6133799003)(22082099003)(18002099003)(4143699003)(5023799004)(56012099006)(11063799006)(3023799007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ajFEMEV1ZjQ2VmJicUpNRzNOOTNDSkljblJ6N3hrZFNvbEU3VDBVOUY4Wk1q?=
+ =?utf-8?B?dm5UNjZDOG5mTXlGSmcxTWs4cFZabHlieENLalN4UkdCWXJNekxoTllFTHZU?=
+ =?utf-8?B?ZnpRelhtNVNDWTFia28vVkRTV05XdzBxbGhCN05YbXRROExYWXUrazVrR09H?=
+ =?utf-8?B?THMwdzlIQUN0VlBmQW1odkJzTERqZGVWRmVmSkJQaHAyVEhOT0F1SjIwZ0FV?=
+ =?utf-8?B?UXJCQVcxeXg1ejl1TVdPRlBkaTNWK0hQZFpIMlBzMHIreE5UOGJVZG05RDBW?=
+ =?utf-8?B?U3NFVlh0YWxtUDFDRzhQa0pTVG5TRnBFRENzRzZnLzBIVlRURjF3TGdxanRu?=
+ =?utf-8?B?elF1R01INC9GR2c1U1B3bGlmbDdUTHZ1amtyMGNGcWIwYmUraWUxTHZ1RWMy?=
+ =?utf-8?B?QkRsZjBTc2xXeEFVeGdVNkdUYmlUVWJhWXpIYWZDeXVwdlUrUnNVQnpkak5N?=
+ =?utf-8?B?S3U0cWIzbzRtWmtQSFo0M0U4MERHditaWGh4am1EQVd0QjhtUE9aOE53YzJM?=
+ =?utf-8?B?VEFrWnJPVnIvemZGdXcyN1VJa3ZlWE1aWTNSY3lNVHZlUTJGd2hGRVoxTmVD?=
+ =?utf-8?B?elVWVGs3SVIxYjlJNkwwMk5oRGVXY0hHQzRhOVlVNXV4UXVtUmhreWhicWFx?=
+ =?utf-8?B?UE8zbE9SYlhoM2hPQ052Q1VsbVlyV3JmQy9NSk9RbUd4Z0wvcDRRVUgveGFH?=
+ =?utf-8?B?MWw1b0U5cnVZYzVSVk1BUGQxR3JkRXkwbU1RZFp0eHZad0hycU9COWtwZElD?=
+ =?utf-8?B?ejhteHJuVmVaWEZBTUdzdnJrQWwzOU82Yjh1VkpPTEtqMkdZeENEVWpsN1pn?=
+ =?utf-8?B?SGwxYmtIOXdoZFM4RTcxcXh2czZ2djFTRmJQZERTU1ZkK3JLNWtaeER4YVV5?=
+ =?utf-8?B?Tk9MTHpyQ0ZiVzJPd1FFZkVVL2tCV0txL29MR2RnRnJHL25IaTl5OGNqNUxH?=
+ =?utf-8?B?NnVtSDVhUm1JK01rYngyWVRudjgyU3dYcDNaajFMSndZVWZvTDJvRXU4aGRB?=
+ =?utf-8?B?S3U1TTdjM20zcTg5ZE9DNFNPbk1NY2dSK0xuRmpnTTVwS3kwVkVQZlJ6ZHhZ?=
+ =?utf-8?B?UWh0dXl3UHRXOGxlVFdtTWpNQTVvU2pGVEc3cy9KNk0ySzJaWVdEWVZleUxh?=
+ =?utf-8?B?dTVEZTNqMlJva2RBMHo4dFdnOUFnZ0h1dDJ3L2U2Q1drQU5seFlIVmhrM0t4?=
+ =?utf-8?B?NXZsc0c2K2dpc2R0eVJZYzRpbDVCclRiRTl4dVdyK0FvNE1ZS3A2K3pwNjVZ?=
+ =?utf-8?B?UkF4Q09wY3A0bFRwZXJ2YzF1czJReU5qdU5tU0o5ZDZNaktqb3g4eThwNjRm?=
+ =?utf-8?B?c0pnZ2J6TXJ1NWJ0U1BCNG5WeHJEeGxZeEF2K3l3YmFWTnQyNVQ1SEVSS0hT?=
+ =?utf-8?B?VENXNUdKTVlWdlFhd1dKQ09zSGNIc0lBckxTa3ZJUElVRlRkWmViNUlCT3l1?=
+ =?utf-8?B?bklGekZJYjl5UGRwZFRFeDlhb1dXcW5ubzZkMEh4YUE5WjV2QU5FY0RqS211?=
+ =?utf-8?B?d0JyM013YWJMOHRqd1NXOFloUHU2WE9CbEFrejJUakJLSDVNNjFFTHh5Ym1B?=
+ =?utf-8?B?WWJ2TlhyZXk3cUczTnQyNXlPbUlrZnRHVEI2d0RqR0JuTVF6eGdyVUtuMVhT?=
+ =?utf-8?B?WlJSbFFuUlpSbFA4WlBzS3M2aC94aXRnbXY1dHd6Mmg4Y3pkbEZqZGdPazlt?=
+ =?utf-8?B?SlhDWHV6dVl0Skk5cmxtUG9YMlJLSzN4V0p0TDBqQ2Y1OG9LTlZYVVA0RjB6?=
+ =?utf-8?B?QUF4TzZYUC8rRWVOb1Y3SWhrUmhwUFF6eWVmNTJpRnIydkZ6eURhVTRwTVhG?=
+ =?utf-8?B?WHFuQWFzYlV4TFZBQWFsNTdhdEZwV3lxSXVxb2FtaTAxU3N0UDlzMi82Uitr?=
+ =?utf-8?B?cWxOSVhWOVVoQVBtcDc0UG9uWW4vVTJTa1RmRW51Zk5DNFIvNVZzYjUxR29u?=
+ =?utf-8?B?emhBMzNqcHl3UXp0ekE1NVMyNFYrMk0rM0tVYllabm94M09Xam1DOHZvcnlp?=
+ =?utf-8?B?M05ja3JDKy9vWnE5UElPMU03YUdWQnp6ckEycmJncUhtcDhYT3dUMHl2Skhm?=
+ =?utf-8?B?bTdqU3JFRmswaS9VWStGU1JLaWlmVmhTVVlnQ2V3ZXZhcllkRlVscnZHRkt2?=
+ =?utf-8?B?YTNMblpWdlRsd240ck55RC82eUw0UVE2Vm1TV1Z0SXFnQTNTVHZVdFZFeEtW?=
+ =?utf-8?B?WUVaSHEzb2xtOHFrS0hwdkpVY3NXYUVaS0tXTG1rQWtsaXJWWVBHMnNaVHBG?=
+ =?utf-8?B?V3l0b1FrYUNaR1R5bUNzb2o3QmN5dGR6SVJIYjk1Smk5bFkyOGduUHpiWVQv?=
+ =?utf-8?Q?ByCeE+yqhO0oI6dBQc?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 864e2361-f458-4b31-d32b-08dec2ff8278
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2026 12:39:39.7495 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yBKm4R/kIAApHUcDpuJRipMxL7N6l7TIjegkZbjalxSjIo93foX8IyCs6xncxvLe
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB9090
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,86 +140,561 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[web.de,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[web.de:s=s29768273];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[web.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,gmail.com,kernel.org,igalia.com,rong.moe,ffwll.ch];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:srinivasan.shanmugam@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
 	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[Markus.Elfring@web.de,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[web.de:+];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8D45764CD54
+X-Rspamd-Queue-Id: CC5586483CC
 
-From: Markus Elfring <elfring@users.sourceforge.net>
-Date: Fri, 5 Jun 2026 12:44:01 +0200
+On 6/3/26 18:33, Srinivasan Shanmugam wrote:
+> Introduce a per-drm_file eventfd manager to support render-node event
+> subscriptions.
+> 
+> The manager is implemented in amdgpu_eventfd.[ch] and is owned by the
+> drm_file (amdgpu_fpriv). It maps event_id -> eventfd_id object, where
+> each eventfd_id can have multiple eventfds bound (fan-out).
+> 
+> The design is IRQ-safe for signaling: IRQ path takes the xarray lock
+> (irqsave) and signals eventfds while still holding the lock.
+> 
+> This patch only adds the core manager
+> 
+> v4:
+> - Use eventfd_ctx pointer as binding identity instead of fd number
+> - Make duplicate (event_id, ctx) binds idempotent
+> - Replace mgr lock with atomic bind limit
+> - Add helper for xa get-or-create event_id
+> 
+> v5:
+> - Rework event_id get/create helper so it is callable without
+>   holding xa lock
+> - Move event_id allocation into the helper and use xa_insert()
+>   for insertion
+> - Drop GFP_NOWAIT usage in xa insertion path
+> - Allocate eventfd entry only after ctx/id prerequisites
+>   are satisfied
+> - Simplify fini path by removing per-entry __xa_erase() and
+>   relying on xa_destroy()
+> - Keep duplicate (event_id, ctx) binds idempotent
+> 
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Suggested-by: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/Makefile         |   3 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.c | 386 ++++++++++++++++++++
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.h |  59 +++
+>  3 files changed, 447 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.c
+>  create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.h
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
+> index ee3574797bc2..dd5a6fc5cbc2 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/Makefile
+> +++ b/drivers/gpu/drm/amd/amdgpu/Makefile
+> @@ -71,7 +71,8 @@ amdgpu-y += amdgpu_device.o amdgpu_reg_access.o amdgpu_doorbell_mgr.o amdgpu_kms
+>  	amdgpu_fw_attestation.o amdgpu_securedisplay.o \
+>  	amdgpu_eeprom.o amdgpu_mca.o amdgpu_psp_ta.o amdgpu_lsdma.o \
+>  	amdgpu_ring_mux.o amdgpu_xcp.o amdgpu_seq64.o amdgpu_aca.o amdgpu_dev_coredump.o \
+> -	amdgpu_cper.o amdgpu_userq_fence.o amdgpu_eviction_fence.o amdgpu_ip.o
+> +	amdgpu_cper.o amdgpu_userq_fence.o amdgpu_eviction_fence.o amdgpu_ip.o \
+> +	amdgpu_eventfd.o
+>  
+>  amdgpu-$(CONFIG_PROC_FS) += amdgpu_fdinfo.o
+>  
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.c
+> new file mode 100644
+> index 000000000000..0b0c9268aedc
+> --- /dev/null
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.c
+> @@ -0,0 +1,386 @@
+> +/*
+> + * Copyright 2026 Advanced Micro Devices, Inc.
+> + *
+> + * Permission is hereby granted, free of charge, to any person obtaining a
+> + * copy of this software and associated documentation files (the "Software"),
+> + * to deal in the Software without restriction, including without limitation
+> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+> + * and/or sell copies of the Software, and to permit persons to whom the
+> + * Software is furnished to do so, subject to the following conditions:
+> + *
+> + * The above copyright notice and this permission notice shall be included in
+> + * all copies or substantial portions of the Software.
+> + *
+> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
+> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+> + * OTHER DEALINGS IN THE SOFTWARE.
+> + *
+> + */
+> +
+> +/*
+> + * Render-node eventfd subscription infrastructure.
+> + *
+> + * This module provides a simple event notification mechanism for render-node
+> + * clients using Linux eventfd objects.
+> + *
+> + * Userspace can bind an eventfd to a userspace-defined event_id. When the
+> + * driver signals that event_id, all eventfds bound to it are notified.
+> + *
+> + * This mechanism is intended to support lightweight GPU event notifications
+> + * (for example, user queue EOP events) without polling from userspace.
+> + */
+> +
+> +#include <linux/slab.h>
+> +#include <linux/err.h>
+> +
+> +#include "amdgpu_eventfd.h"
+> +
+> +#define AMDGPU_EVENTFD_MAX_BINDS 4096
+> +
+> +/**
+> + * amdgpu_eventfd_id_alloc - allocate an event id container
+> + * @event_id: userspace-defined event identifier
+> + *
+> + * Each event_id represents a notification category. Multiple eventfds can
+> + * be bound to the same event_id.
+> + *
+> + * This function allocates the container which stores the list of eventfds
+> + * associated with that event_id.
+> + *
+> + * Return:
+> + * Pointer to the newly allocated structure or NULL on failure.
+> + */
+> +static struct amdgpu_eventfd_id *amdgpu_eventfd_id_alloc(u32 event_id)
+> +{
+> +	struct amdgpu_eventfd_id *id;
+> +
+> +	id = kzalloc(sizeof(*id), GFP_KERNEL);
+> +	if (!id)
+> +		return NULL;
+> +
+> +	id->event_id = event_id;
+> +	INIT_HLIST_HEAD(&id->entries);
+> +	id->n_entries = 0;
+> +	return id;
+> +}
+> +
+> +/**
+> + * amdgpu_eventfd_id_get_or_create - find or create an event_id entry
+> + * @mgr: eventfd manager
+> + * @event_id: event identifier
+> + *
+> + * This helper returns the container associated with the given event_id.
+> + * If it does not exist, it will create one.
+> + *
+> + * The function is designed to be callable without holding any locks.
+> + * Memory allocation is done outside the xarray lock to avoid blocking
+> + * inside critical sections.
+> + *
+> + * Return:
+> + * Pointer to the event_id structure or NULL on failure.
+> + */
+> +static struct amdgpu_eventfd_id *
+> +amdgpu_eventfd_id_get_or_create(struct amdgpu_eventfd_mgr *mgr, u32 event_id)
+> +{
+> +	struct amdgpu_eventfd_id *id;
+> +	struct amdgpu_eventfd_id *new_id;
+> +	unsigned long flags;
+> +	int r;
+> +
+> +	xa_lock_irqsave(&mgr->ids, flags);
+> +	id = xa_load(&mgr->ids, event_id);
+> +	xa_unlock_irqrestore(&mgr->ids, flags);
+> +	if (id)
+> +		return id;
+> +
+> +	new_id = amdgpu_eventfd_id_alloc(event_id);
+> +	if (!new_id)
+> +		return NULL;
+> +
+> +	xa_lock_irqsave(&mgr->ids, flags);
+> +
+> +	/* Re-check after taking the lock in case another thread inserted it. */
+> +	id = xa_load(&mgr->ids, event_id);
+> +	if (id) {
+> +		xa_unlock_irqrestore(&mgr->ids, flags);
+> +		kfree(new_id);
+> +		return id;
+> +	}
+> +
+> +	/*
+> +	 * xa_insert() returns -EBUSY if an entry already exists.
+> +	 * Since we are in irqsave context here, use GFP_ATOMIC.
+> +	 */
+> +	r = xa_insert(&mgr->ids, event_id, new_id, GFP_ATOMIC);
 
-Single characters should occasionally be put into a sequence.
-Thus use the corresponding function =E2=80=9Cseq_putc=E2=80=9D.
+It would be better if GFP_ATOMIC is avoided. See the documentation on xas_insert() how to avoid this.
 
-The source code was transformed by using the Coccinelle software.
+> +	if (r == -EBUSY)
+> +		id = xa_load(&mgr->ids, event_id);
+> +
+> +	xa_unlock_irqrestore(&mgr->ids, flags);
+> +
+> +	if (r == -EBUSY) {
+> +		kfree(new_id);
+> +		return id;
+> +	}
+> +
+> +	if (r) {
+> +		kfree(new_id);
+> +		return NULL;
+> +	}
+> +
+> +	return new_id;
+> +}
+> +
+> +/**
+> + * amdgpu_eventfd_mgr_init - initialize eventfd manager
+> + * @mgr: manager instance
+> + *
+> + * Each DRM file (amdgpu_fpriv) owns one eventfd manager.
+> + *
+> + * The manager stores mappings:
+> + *
+> + *   event_id -> list of eventfds
+> + *
+> + * The xarray provides efficient lookup of event_id containers.
+> + */
+> +void amdgpu_eventfd_mgr_init(struct amdgpu_eventfd_mgr *mgr)
+> +{
+> +	xa_init_flags(&mgr->ids, XA_FLAGS_LOCK_IRQ);
+> +	atomic_set(&mgr->bind_count, 0);
+> +}
+> +
+> +/**
+> + * amdgpu_eventfd_mgr_fini - destroy eventfd manager
+> + * @mgr: manager instance
+> + *
+> + * Frees all registered eventfd bindings.
+> + *
+> + * The caller is expected to ensure that no IRQ-side signaling can occur
+> + * after this function begins. This typically happens during drm_file
+> + * teardown.
+> + */
+> +void amdgpu_eventfd_mgr_fini(struct amdgpu_eventfd_mgr *mgr)
+> +{
+> +	unsigned long index;
+> +	struct amdgpu_eventfd_id *id;
+> +
+> +	/*
+> +	 * Expected teardown ordering: caller ensures no further IRQ-side
+> +	 * signaling can race with this before fini() is called.
+> +	 */
+> +	xa_lock(&mgr->ids);
+> +	xa_for_each(&mgr->ids, index, id) {
+> +		struct amdgpu_eventfd_entry *e;
+> +		struct hlist_node *tmp;
+> +
+> +		hlist_for_each_entry_safe(e, tmp, &id->entries, hnode) {
+> +			hlist_del(&e->hnode);
+> +			eventfd_ctx_put(e->ctx);
+> +			kfree(e);
+> +		}
+> +
+> +		kfree(id);
+> +	}
+> +	xa_unlock(&mgr->ids);
+> +
+> +	xa_destroy(&mgr->ids);
+> +}
+> +
+> +/**
+> + * amdgpu_eventfd_bind - bind eventfd to an event_id
+> + * @mgr: eventfd manager
+> + * @event_id: userspace event identifier
+> + * @eventfd: eventfd file descriptor
+> + *
+> + * This function allows userspace to subscribe to notifications for a
+> + * specific event_id.
+> + *
+> + * Multiple eventfds can be bound to the same event_id.
+> + *
+> + * Duplicate bindings of the same eventfd are treated as success and do
+> + * not create additional entries.
+> + *
+> + * Return:
+> + * 0 on success, negative error code on failure.
+> + */
+> +int amdgpu_eventfd_bind(struct amdgpu_eventfd_mgr *mgr, u32 event_id, int eventfd)
+> +{
+> +	struct amdgpu_eventfd_id *id;
+> +	struct amdgpu_eventfd_entry *e, *it;
+> +	struct eventfd_ctx *ctx;
+> +	unsigned long flags;
+> +	bool dup = false;
+> +
+> +	if (!mgr || !event_id || eventfd < 0)
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * Enforce total bind limit without a separate manager lock.
+> +	 * For duplicate binds, we decrement back before returning success.
+> +	 */
+> +	if (atomic_inc_return(&mgr->bind_count) > AMDGPU_EVENTFD_MAX_BINDS) {
+> +		atomic_dec(&mgr->bind_count);
+> +		return -ENOSPC;
+> +	}
+> +
+> +	ctx = eventfd_ctx_fdget(eventfd);
+> +	if (IS_ERR(ctx)) {
+> +		atomic_dec(&mgr->bind_count);
+> +		return PTR_ERR(ctx);
+> +	}
+> +
+> +	id = amdgpu_eventfd_id_get_or_create(mgr, event_id);
+> +	if (!id) {
+> +		eventfd_ctx_put(ctx);
+> +		atomic_dec(&mgr->bind_count);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	/* check for duplicate binding */
+> +	xa_lock_irqsave(&mgr->ids, flags);
+> +	hlist_for_each_entry(it, &id->entries, hnode) {
+> +		if (it->ctx == ctx) {
+> +			dup = true;
+> +			break;
+> +		}
+> +	}
+> +	xa_unlock_irqrestore(&mgr->ids, flags);
+> +
+> +	if (dup) {
+> +		eventfd_ctx_put(ctx);
+> +		atomic_dec(&mgr->bind_count);
+> +		return 0;
+> +	}
+> +
+> +	/* Allocate entry only after ctx/id prerequisites are satisfied. */
+> +	e = kzalloc(sizeof(*e), GFP_KERNEL);
+> +	if (!e) {
+> +		eventfd_ctx_put(ctx);
+> +		atomic_dec(&mgr->bind_count);
+> +		return -ENOMEM;
+> +	}
+> +	e->ctx = ctx;
+> +
+> +	/*
+> +	 * Re-check duplicate under lock to close the race with another bind()
+> +	 * for the same (event_id, ctx).
+> +	 */
+> +	xa_lock_irqsave(&mgr->ids, flags);
+> +	hlist_for_each_entry(it, &id->entries, hnode) {
+> +		if (it->ctx == ctx) {
+> +			dup = true;
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (!dup) {
+> +		hlist_add_head(&e->hnode, &id->entries);
+> +		id->n_entries++;
+> +		e = NULL; /* consumed */
+> +	}
+> +	xa_unlock_irqrestore(&mgr->ids, flags);
+> +
+> +	if (dup) {
+> +		eventfd_ctx_put(ctx);
+> +		kfree(e);
+> +		atomic_dec(&mgr->bind_count);
+> +		return 0;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * amdgpu_eventfd_unbind - remove eventfd binding
+> + * @mgr: eventfd manager
+> + * @event_id: event identifier
+> + * @eventfd: eventfd file descriptor
+> + *
+> + * Removes an existing binding between an event_id and an eventfd.
+> + *
+> + * Return:
+> + * 0 if removed, -ENOENT if binding does not exist.
+> + */
+> +int amdgpu_eventfd_unbind(struct amdgpu_eventfd_mgr *mgr, u32 event_id, int eventfd)
+> +{
+> +	struct amdgpu_eventfd_id *id;
+> +	struct amdgpu_eventfd_entry *e;
+> +	struct hlist_node *tmp;
+> +	struct eventfd_ctx *ctx;
+> +	unsigned long flags;
+> +	bool removed = false;
+> +
+> +	if (!mgr || !event_id || eventfd < 0)
+> +		return -EINVAL;
+> +
+> +	ctx = eventfd_ctx_fdget(eventfd);
+> +	if (IS_ERR(ctx))
+> +		return PTR_ERR(ctx);
+> +
+> +	xa_lock_irqsave(&mgr->ids, flags);
+> +
+> +	id = xa_load(&mgr->ids, event_id);
+> +	if (!id)
+> +		goto out_unlock;
+> +
+> +	hlist_for_each_entry_safe(e, tmp, &id->entries, hnode) {
+> +		if (e->ctx == ctx) {
 
-Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
-=2D--
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+You could short cut, e.g. use if (e->ctx != ctx) con tinue instead.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/d=
-rivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-index 885e9b7bc27a..e45fa6e97fc6 100644
-=2D-- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
-@@ -606,7 +606,7 @@ static int dp_lttpr_status_show(struct seq_file *m, vo=
-id *unused)
- 		break;
- 	}
-=20
--	seq_puts(m, "\n");
-+	seq_putc(m, '\n');
- 	return 0;
- }
-=20
-@@ -1081,7 +1081,7 @@ static int psr_capability_show(struct seq_file *m, v=
-oid *data)
- 		   str_yes_no(link->psr_settings.psr_feature_enabled));
- 	if (link->psr_settings.psr_version)
- 		seq_printf(m, " [0x%02x]", link->psr_settings.psr_version);
--	seq_puts(m, "\n");
-+	seq_putc(m, '\n');
-=20
- 	return 0;
- }
-@@ -1266,7 +1266,7 @@ static int hdcp_sink_capability_show(struct seq_file=
- *m, void *data)
- 	if (!hdcp_cap && !hdcp2_cap)
- 		seq_printf(m, "%s ", "None");
-=20
--	seq_puts(m, "\n");
-+	seq_putc(m, '\n');
-=20
- 	return 0;
- }
-=2D-=20
-2.54.0
+Apart from those nit picks looks good to me.
+
+Regards,
+Christian.
+
+> +			hlist_del(&e->hnode);
+> +			id->n_entries--;
+> +			removed = true;
+> +
+> +			eventfd_ctx_put(e->ctx);
+> +			kfree(e);
+> +
+> +			atomic_dec(&mgr->bind_count);
+> +
+> +			if (!id->n_entries) {
+> +				__xa_erase(&mgr->ids, event_id);
+> +				kfree(id);
+> +			}
+> +			break;
+> +		}
+> +	}
+> +
+> +out_unlock:
+> +	xa_unlock_irqrestore(&mgr->ids, flags);
+> +	eventfd_ctx_put(ctx);
+> +
+> +	return removed ? 0 : -ENOENT;
+> +}
+> +
+> +/**
+> + * amdgpu_eventfd_signal - notify all eventfds bound to event_id
+> + * @mgr: eventfd manager
+> + * @event_id: event identifier
+> + *
+> + * This function is typically called from interrupt context.
+> + *
+> + * All eventfds registered for the given event_id will be signaled.
+> + * Userspace processes waiting on those eventfds will wake up.
+> + */
+> +void amdgpu_eventfd_signal(struct amdgpu_eventfd_mgr *mgr, u32 event_id)
+> +{
+> +	struct amdgpu_eventfd_id *id;
+> +	struct amdgpu_eventfd_entry *e;
+> +	unsigned long flags;
+> +
+> +	if (!mgr || !event_id)
+> +		return;
+> +
+> +	/*
+> +	 * IRQ-safe signaling path: keep xarray lock held while iterating and
+> +	 * signaling. eventfd_signal() is IRQ-safe.
+> +	 */
+> +	xa_lock_irqsave(&mgr->ids, flags);
+> +
+> +	id = xa_load(&mgr->ids, event_id);
+> +	if (id) {
+> +		hlist_for_each_entry(e, &id->entries, hnode)
+> +			eventfd_signal(e->ctx);
+> +	}
+> +
+> +	xa_unlock_irqrestore(&mgr->ids, flags);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.h
+> new file mode 100644
+> index 000000000000..248afb1f2f14
+> --- /dev/null
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eventfd.h
+> @@ -0,0 +1,59 @@
+> +/*
+> + * Copyright 2026 Advanced Micro Devices, Inc.
+> + *
+> + * Permission is hereby granted, free of charge, to any person obtaining a
+> + * copy of this software and associated documentation files (the "Software"),
+> + * to deal in the Software without restriction, including without limitation
+> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+> + * and/or sell copies of the Software, and to permit persons to whom the
+> + * Software is furnished to do so, subject to the following conditions:
+> + *
+> + * The above copyright notice and this permission notice shall be included in
+> + * all copies or substantial portions of the Software.
+> + *
+> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
+> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+> + * OTHER DEALINGS IN THE SOFTWARE.
+> + *
+> + */
+> +
+> +/*
+> + * Render-node eventfd subscription infrastructure.
+> + */
+> +
+> +#ifndef __AMDGPU_EVENTFD_H__
+> +#define __AMDGPU_EVENTFD_H__
+> +
+> +#include <linux/eventfd.h>
+> +#include <linux/xarray.h>
+> +#include <linux/atomic.h>
+> +
+> +struct amdgpu_eventfd_entry {
+> +	struct eventfd_ctx *ctx;
+> +	struct hlist_node hnode;
+> +};
+> +
+> +struct amdgpu_eventfd_id {
+> +	u32 event_id;
+> +	struct hlist_head entries;
+> +	u32 n_entries;
+> +};
+> +
+> +struct amdgpu_eventfd_mgr {
+> +	struct xarray ids;          /* event_id -> struct amdgpu_eventfd_id* */
+> +	atomic_t bind_count;        /* total binds across all event_ids */
+> +};
+> +
+> +void amdgpu_eventfd_mgr_init(struct amdgpu_eventfd_mgr *mgr);
+> +void amdgpu_eventfd_mgr_fini(struct amdgpu_eventfd_mgr *mgr);
+> +
+> +int amdgpu_eventfd_bind(struct amdgpu_eventfd_mgr *mgr, u32 event_id, int eventfd);
+> +int amdgpu_eventfd_unbind(struct amdgpu_eventfd_mgr *mgr, u32 event_id, int eventfd);
+> +
+> +void amdgpu_eventfd_signal(struct amdgpu_eventfd_mgr *mgr, u32 event_id);
+> +
+> +#endif /* __AMDGPU_EVENTFD_H__ */
 
