@@ -2,95 +2,110 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id h3llJ2M2I2q9kgEAu9opvQ
+	id eosYFmJLI2qtoAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 22:49:39 +0200
+	for <lists+amd-gfx@lfdr.de>; Sat, 06 Jun 2026 00:19:14 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0040664B362
-	for <lists+amd-gfx@lfdr.de>; Fri, 05 Jun 2026 22:49:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D971864B9A8
+	for <lists+amd-gfx@lfdr.de>; Sat, 06 Jun 2026 00:19:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=GiOzwy5X;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=4gSJQZZd;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CD0D10E6DE;
-	Fri,  5 Jun 2026 20:49:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B19D511AB88;
+	Fri,  5 Jun 2026 22:19:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
- [209.85.221.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3410410E499
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2026 20:49:35 +0000 (UTC)
-Received: by mail-wr1-f41.google.com with SMTP id
- ffacd0b85a97d-45ef616daf6so2022182f8f.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 05 Jun 2026 13:49:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1780692574; x=1781297374; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=9THQQ4NwbqXYiGviE040R0PuJzCAd90R9vNSXh5WA7o=;
- b=GiOzwy5XykwWadlpPijyeT/02ZNB9J7oidwDbKBNpRZseHNcFA2bzmiLdezPeB911Y
- MDcsFkdVSTiEhcvMbnUJavtOhQg0TbBcuMyz9aIRd9DScSOfS48rxlooxtxCAv2s9nEX
- O40aCyWrgXQU1I8Or01nbeAxLLZzHPYVQd8nz6637vAflpG3CvEKAyY3wkHpYNh0K0c7
- YEbsLwRrsakjJtX3tTkSZ22uQ5MMFScq2tGllYp+ldHnVaATeJuXvyd54uLGeG4Fz36J
- O/MakYrWTmISxbFlJPbO5L0Pwti6iIjFqi+rYYpCIlP9JuooBKmFR4mbYd+wEHew1vb/
- mxZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1780692574; x=1781297374;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=9THQQ4NwbqXYiGviE040R0PuJzCAd90R9vNSXh5WA7o=;
- b=CT17pS4qC+rF/vfObuDircjsm6nzBb0Pj9IyJOEHrRVx2YYOKA/akHQ6l56Z/43U/B
- bTpatZiPrPvuFJGE0U3xQ4z/JDpdC7+waM0v35cZAAAGnGPKZooqvRisDWrstuN/K9N0
- C/rbemx5Sv9fwJqUpp7qhKULOOw8IyefxgQRyqXd3RXK2YVJptx5QvvVka8iJG8JHd7z
- ltrMs47weWp/AKS12F8hXigHKbvhCszcfvgjFCc9YY1onF/Dl9oTq7tGZqUOP5Y0KeWF
- MI7+r+BzGABXUCXQzVdF35hXaCyE4M5BhQsLRjwS7qs3k4FQrSP+3uerxaQ5pr4vQkqn
- hniA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8oezZxjmbjAGaUoZXbBhyekGW+9zeL1T6GV/RHZ0kgmvOZd9wImnF8rm4A1cnz7/EN963cywq6@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxKdCfspQsTRmicAGeFyxs44MAzz0v8pV8iTri+7EKYM6zL/Zmc
- IdJBNNpbF/E04qg3kNLeNdI+4H6nebrfElOIr6OqwwTHySCQEO4WDpQS
-X-Gm-Gg: Acq92OHzTP8HXUcpmB3KavqEr+HpTGNVfwOAtVKqLP8QGmmfRHRF1d4LNEoK8ndR99y
- KG7l6LIX4r2gxKwN6x5CvCu1SaGwswkTDdO1PZKmr9eYkZosjNYmaM/ZdkZpz1C5k1FApPbNoMP
- pM5j0J7CW6kEa1NT6gddjOhhOIGwmlaY9zzZx9bmUK0bTlfklb90wsUOsaLXh4BvA3/vLXsmPoM
- KiGSfzM2+gnLo+X4xntlMEJIa0ovojfnJN4+qLnTBlWfkLEjUBv1JTZQ4jrdf4csU1SA0TtZDrv
- pfDHyxGc/w50ux7+OkF8iXwgwZj2pv84sfgown3fu23TXyYeqYmx4+fCpE+EK80DfVhjbAmZxJL
- crbA5PRo2vLqmJ7fV9ZdvwA/dPvwdSkUmjWQY64AT0tshXH6WvJpZsjUPNi0TudONmlc+wFPynk
- 3gnjID9FujI7Caw+Ckl0U3yo+BhKHl56uW411j4vWopZFI9zEGETCjb0CS+rQS9UkMoBG2P43L6
- Mf/5tyq
-X-Received: by 2002:a5d:6e84:0:b0:460:1a93:ee91 with SMTP id
- ffacd0b85a97d-46030501f8bmr5648021f8f.22.1780692573485; 
- Fri, 05 Jun 2026 13:49:33 -0700 (PDT)
-Received: from timur-hyperion.localnet (54001290.dsl.pool.telekom.hu.
- [84.0.18.144]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-4601f3444fesm30119218f8f.20.2026.06.05.13.49.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Jun 2026 13:49:32 -0700 (PDT)
-From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
-To: "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "Zuo, Jerry" <Jerry.Zuo@amd.com>
-Cc: "Wentland, Harry" <Harry.Wentland@amd.com>,
- "Li, Sun peng (Leo)" <Sunpeng.Li@amd.com>,
- "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>,
- "Li, Roman" <Roman.Li@amd.com>, "Lin, Wayne" <Wayne.Lin@amd.com>,
- "Chung, ChiaHsuan (Tom)" <ChiaHsuan.Chung@amd.com>,
- "Wheeler, Daniel" <Daniel.Wheeler@amd.com>, "Wu, Ray" <Ray.Wu@amd.com>,
- "LIPSKI, IVAN" <IVAN.LIPSKI@amd.com>, "Hung, Alex" <Alex.Hung@amd.com>,
- "Lin, Ping Lei" <PingLei.Lin@amd.com>, "Chen, Chen-Yu" <Chen-Yu.Chen@amd.com>
-Subject: Re: [PATCH 21/24] drm/amd/display: Retry link detection on hotplug
-Date: Fri, 05 Jun 2026 22:49:31 +0200
-Message-ID: <4270260.lGaqSPkdTl@timur-hyperion>
-In-Reply-To: <CHXPR12MB9992208F15221856A4264B5E97E5112@CHXPR12MB999220.namprd12.prod.outlook.com>
-References: <20260604145428.809959-1-aurabindo.pillai@amd.com>
- <20260604145428.809959-22-aurabindo.pillai@amd.com>
- <CHXPR12MB9992208F15221856A4264B5E97E5112@CHXPR12MB999220.namprd12.prod.outlook.com>
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013062.outbound.protection.outlook.com
+ [40.107.201.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 895F111AB86
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Jun 2026 22:19:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UtaHyzaW/T8K9fBhSA9Mi8Tp+TWofDOl9cg16b1E/Q4nzgxN10hATu41M+rHoNkBknmhudIPCREl9rp4BvKbRTOZidt7rZ8vwEg6DHmFSOBng9FGRF2tS3jgO0FdAPZlOD8iE85sFA/uXY5HMxefX2yvTNs8eAGx0OMnJ4SUBn5wi4adGd31+Lq4mJ17LNn1XEzxGcPig5axXlAg4KemJYUTsZAeg/xzK40r+piGWilLA6M7ceHyRhDdlDIHPD95g8t062Ok9XRM06roShuF08u/bUfEzH24C0wT7F4XmM38NaTzzsqBSUmJ2YuhAKqO7ytMgE56VWtEG1lximDr0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZyrdY/QPzN75CDx1+XGLImVXnTKSPjeaK2Rw/Nlq7sg=;
+ b=br3nUDUfxUyUPaa4PPkmMiJGCRNS0hqZvPuRAvSe4jeuVNk53ivA1nRUIJjJUx+2oS9UQ/wG6KUmX+E4l/MxDAZjI6+v0unbAJplwI6u1lwivRcceUctcsgP8ImUz6gQsJsN3PoA5X8diCvfQ546txgg0j/R9WUpL0a0brcFQeeAivbnIoCP9cPbrVfqKqac577R17SKXVhyMXaJ9aBA6tsKH6fX3/RNocDAE6WsMIRzsH308/7ELbgDtW8ZURb2xuUY+UWTKlbXRMz0AyM7qJrI37l+zCjPfntX8sMclBYub7NEtLZHW80YbZFy94496e6RSic2M3tp707V1qbVBA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZyrdY/QPzN75CDx1+XGLImVXnTKSPjeaK2Rw/Nlq7sg=;
+ b=4gSJQZZdBroiZ8z7+XPc77xjOFzZJKyeOuxPmbhfQuo1KTM7xkXedubVagX5WYOpg7QvQ8vp/NF0EsZXyZkmE9ocEe70xPUv07kLLEZHsf53Vj3EopSc1yUw5BgKSgaBkH817y05jylr66F6A3+3cmnx6z26xtMWmMZaCiWzEtE=
+Received: from BL1PR13CA0108.namprd13.prod.outlook.com (2603:10b6:208:2b9::23)
+ by SJ2PR12MB7917.namprd12.prod.outlook.com (2603:10b6:a03:4c7::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.9; Fri, 5 Jun 2026
+ 22:19:06 +0000
+Received: from MN1PEPF0000ECD8.namprd02.prod.outlook.com
+ (2603:10b6:208:2b9:cafe::9a) by BL1PR13CA0108.outlook.office365.com
+ (2603:10b6:208:2b9::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.8 via Frontend Transport; Fri, 5
+ Jun 2026 22:19:05 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MN1PEPF0000ECD8.mail.protection.outlook.com (10.167.242.137) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.92.5 via Frontend Transport; Fri, 5 Jun 2026 22:19:05 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Fri, 5 Jun
+ 2026 17:19:05 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Fri, 5 Jun
+ 2026 15:19:04 -0700
+Received: from p8.amd.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
+ Transport; Fri, 5 Jun 2026 17:19:04 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>, <timur.kristof@gmail.com>,
+ <christian.koenig@amd.com>
+Subject: [PATCH 1/3] drm/amdgpu: always emit the job vm fence
+Date: Fri, 5 Jun 2026 18:18:51 -0400
+Message-ID: <20260605221853.903153-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD8:EE_|SJ2PR12MB7917:EE_
+X-MS-Office365-Filtering-Correlation-Id: c184f04d-5e86-46f5-72e5-08dec3507482
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700016|82310400026|1800799024|376014|18002099003|6133799003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: JBj77shC41fEFgCyRoy2p3VqvA3bYlOuY2tYknt+RSwQ8N1A4rfda8fXCuaO46dor/uZWNRqCkBURp5veMqM+giTc+Oyiazcv58lS1ECBRO1xqZ44aEYxIv/r+wg4o3QBG3/fV4WERU6dHtTStJaLVXJWLfZj+TEG0fP7a7Lagg9phPf9DQp6svW6D0c/4R5YGp6B3U4OcSYUWEQ14uVZpzPLn6iMoJ5vrme1DVTWVN836JIG8vxuTXsbotIxhJn+LBRCTaCGreK+KrocbrKosqukd4CB53DKeNQ3xipk/GeJ+KcZ7Ur06yaUEWZJ1BwFSNVjooohnj+XwelGra8o5qhrNv/YXTP3cyebk9p2kZUqSQTz0gGQGK2e5V7Uzso3Zq8nJywuLj1hdnf5gmrYuDcatUt3FXi3iY7nTrIeP/+hf46Vqi1l+GEuNWWWLUkyYdTLkRr73XzKNgK1DiBF7TjwS+5tle3/UNBmrN/MFbKoXJaFOIz4V4MswbLeXKrXxuQ/vt6MyEIb51kEpNLQ7azgW18FdVuuVnQQUvD7O2mugRCpg0h03S7ssOoQKtrNs5id+GQDfou2JZxh2lTrksW9/MjFoIRxmrIsr4GyNpANY7WVEvZeo8gbkpmqH+Ju1ICw9iMN734+z04QuSW9Uts668+3kxiQng3Lpt7mAaPzpYU//Inw86og5T2qtwh0rnxbdrcAbYysgBZk1QUbwuOuX5jBnIsIIgEYam7w/M=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(18002099003)(6133799003)(11063799006)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: Z0DwDaQCHvBDsh1qvzWhUBEYvL9Q9tn6gk+8aDxuxC/X4JiN8PrNK8Lk16Zrv6/029WdhejwgA4c4PyFioeJZBKrwIhgmBqOglsXTeerrQQnl/LdVeV0QtUzf4VijSfC0I8uP0BxBmzKZjTaDkPY/BobnGojN3wzrp0YOgufBoXzz0JBS9VNtTXEkfezos01LevRnyXfqVQBO3DophrgIkhTT4orZjAhQJbWfGl0/+RdflHSHU78M3SC/hUtPVdqAjD/Itjd6Dk8HZEm3eieLrs0WH9vRhXLSXYQ9Ir9rdWUI7A+Emrq+gi2Hl28k6xAH8RmLei8aznNv/Lpx6/mUYIVHSazVX/ynI22VdXedTfoXOogjp0K5g5uclj85kMJGkXFvyclPmEsjA4hSCF6cX15vla8G7a2ZAvCX37/bFpxbMgiCgC4iEZy7UmCa9IT
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2026 22:19:05.2255 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c184f04d-5e86-46f5-72e5-08dec3507482
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD8.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7917
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,470 +120,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Aurabindo.Pillai@amd.com,m:Jerry.Zuo@amd.com,m:Harry.Wentland@amd.com,m:Sunpeng.Li@amd.com,m:Roman.Li@amd.com,m:Wayne.Lin@amd.com,m:ChiaHsuan.Chung@amd.com,m:Daniel.Wheeler@amd.com,m:Ray.Wu@amd.com,m:IVAN.LIPSKI@amd.com,m:Alex.Hung@amd.com,m:PingLei.Lin@amd.com,m:Chen-Yu.Chen@amd.com,s:lists@lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:mid,amd.com:dkim,amd.com:from_mime,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	RCPT_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[timur-hyperion:mid,amd.com:email,lists.freedesktop.org:from_smtp,lists.freedesktop.org:email]
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0040664B362
+X-Rspamd-Queue-Id: D971864B9A8
 
-On Friday, June 5, 2026 6:10:28=E2=80=AFPM Central European Summer Time Zuo=
-, Jerry=20
-wrote:
-> AMD General
->=20
-> Hi Timur:
->=20
->      Please let me know whether you have validated the sequence by any SST
-> and HDMI monitor. Basically it is to confirm the link retry workqueue is
-> getting executed with hotplug and dpms use cases without introducing side
-> effect. We've tested locally, but we don't see any link retry workqueue is
-> getting executed by either SST or HDMI monitors. That makes us hard to
-> validate the new error handling logic. It would be perfect that if you ha=
-ve
-> done that at your local setup to confirm the new logic is regression-free
-> for SST and HDMI.
+We need the fence to reemit the gds switch or spm update
+after a queue reset.
 
-Hello Jerry,
+Fixes: a17ef941212b ("drm/amdgpu: rework ring reset backup and reemit v9")
+Cc: timur.kristof@gmail.com
+Cc: christian.koenig@amd.com
+Reviewed-by: Timur Kristóf <timur.kristof@gmail.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
 
-Yes, it worked for me last I tried, but I can double-check to make sure.
-How did you try to test it?
-=20
->      Apart from that, we find a regression in MST. MST has its own detect=
-ion
-> logic and should be separated from SST and HDMI.
-
-Can you say what the regression is and how to reproduce it?
-I'd like to look into it and fix it.
-
-By the way, how do you test MST in general? On my machine, MST doesn't work=
- at=20
-with the DC display driver and is basically broken on every GPU generation=
-=20
-that I tried.
-
-Thanks,
-Timur
-
-
->=20
->=20
-> > -----Original Message-----
-> > From: Aurabindo Pillai <aurabindo.pillai@amd.com>
-> > Sent: Thursday, June 4, 2026 10:52
-> > To: amd-gfx@lists.freedesktop.org
-> > Cc: Wentland, Harry <Harry.Wentland@amd.com>; Li, Sun peng (Leo)
-> > <Sunpeng.Li@amd.com>; Pillai, Aurabindo <Aurabindo.Pillai@amd.com>; Li,
-> > Roman <Roman.Li@amd.com>; Lin, Wayne <Wayne.Lin@amd.com>; Chung,
-> > ChiaHsuan (Tom) <ChiaHsuan.Chung@amd.com>; Zuo, Jerry
-> > <Jerry.Zuo@amd.com>; Wheeler, Daniel <Daniel.Wheeler@amd.com>; Wu,
-> > Ray <Ray.Wu@amd.com>; LIPSKI, IVAN <IVAN.LIPSKI@amd.com>; Hung, Alex
-> > <Alex.Hung@amd.com>; Lin, Ping Lei <PingLei.Lin@amd.com>; Chen, Chen-
-> > Yu <Chen-Yu.Chen@amd.com>; Timur Krist=C3=B3f <timur.kristof@gmail.com>
-> > Subject: [PATCH 21/24] drm/amd/display: Retry link detection on hotplug
-> >
-> >
-> >
-> > From: Timur Krist=C3=B3f <timur.kristof@gmail.com>
-> >
-> >
-> >
-> > When dc_link_detect_connection_type thinks that a display is connected,
-> > but
- dc_link_detect failed, enqueue delayed work to retry the link
-> > detection again.>
-> >
-> >
-> > Useful when eg. HPD pin is high but the display isn't ready and didn't
-> > respond
- to DDC.
-> >
-> >
-> >
-> > - The display is "slow to wake up", ie. DDC isn't ready,
-> >=20
-> >   for example we couldn't read EDID. Can happen with any
-> >   connector type with certain "slow" displays.
-> >   Some displays may take up to 15~20 sec or more to wake up.
-> >
-> >
-> >
-> > - On hotplug, the HPD pin may make contact before the DDC pins,
-> >=20
-> >   so we couldn't read the EDID. This most often happens with
-> >   DVI connectors, rarely with HDMI. It is not impossible but
-> >   extremely rare with other connector types.
-> >
-> >
-> >
-> > Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
-> > Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-> > Reviewed-by: Alex Hung <alex.hung@amd.com>
-> > ---
-> >=20
-> >  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 138
-> >=20
-> > ++++++++++++++++++  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-> >=20
-> > |  16 ++
-> > =20
-> >  2 files changed, 154 insertions(+)
-> >
-> >
-> >
-> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > index d1b1eb67d937..40295a5edbec 100644
-> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > @@ -161,6 +161,17 @@ MODULE_FIRMWARE(FIRMWARE_DCN_42_DMUB);
-> >=20
-> >  #define FIRMWARE_DCN_42B_DMUB "amdgpu/dcn_4_2_1_dmcub.bin"
-> >  MODULE_FIRMWARE(FIRMWARE_DCN_42B_DMUB);
-> >
-> >
-> >
-> > +/**
-> > + * define AMDGPU_DM_HPD_MAX_NUM_RETRIES - maximum amount of
-> > retries for
-> > +hotplug detection  */ #define AMDGPU_DM_HPD_MAX_NUM_RETRIES 5
-> > +
-> > +/**
-> > + * define AMDGPU_DM_HPD_RETRY_DELAY_MSEC - millisecond delay
-> > between
-> > +hotplug detection retries  */ #define
-> > AMDGPU_DM_HPD_RETRY_DELAY_MSEC
-> > +1500
-> > +
-> > +
-> >=20
-> >  /**
-> > =20
-> >   * DOC: overview
-> >   *
-> >=20
-> > @@ -959,6 +970,125 @@ static void dm_handle_hpd_work(struct
-> > work_struct *work)
-> >
-> >
-> >
-> >  }
-> >
-> >
-> >
-> > +/**
-> > + * dm_handle_delayed_hpd_work() - Handle delayed HPD (hotplug
-> > +detection)
-> > + *
-> > + * @w: Base work item structure
-> > + *
-> > + * Used for retrying HPD after a delay. Just calls the normal HPD
-> > helper.
-> > + */
-> > +static void dm_handle_delayed_hpd_work(struct work_struct *work) {
-> > +     struct delayed_work *dw =3D container_of(work, struct delayed_wor=
-k,
-> > work);
-> > +     struct delayed_hpd_work *w =3D container_of(dw, struct
-> > delayed_hpd_work, work);
-> > +     struct amdgpu_dm_connector *aconn =3D w->aconn;
-> > +     enum dc_detect_reason reason =3D w->reason;
-> > +
-> > +     kfree(w);
-> > +     handle_hpd_irq_helper(aconn, reason);
-> > +}
-> > +
-> > +/**
-> > + * dm_cancel_delayed_hpd_work() - Cancel pending hotplug detection work
-> > +for a connector
-> > + *
-> > + * @aconnector: Connector on which the HPD event occurred  */ static
-> > +void dm_cancel_delayed_hpd_work(struct amdgpu_dm_connector
-> > *aconnector)
-> > +{
-> > +     if (!aconnector || !aconnector->delayed_hpd_work)
-> > +             return;
-> > +
-> > +     cancel_delayed_work(&aconnector->delayed_hpd_work->work);
-> > +     aconnector->delayed_hpd_work =3D NULL;
-> > +}
-> > +
-> > +/**
-> > + * dm_cancel_all_delayed_hpd_work() - Cancel all pending hotplug
-> > +detection work on the device
-> > + *
-> > + * @dev: DRM device pointer
-> > + */
-> > +static void dm_cancel_all_delayed_hpd_work(struct drm_device *dev) {
-> > +     struct drm_connector *connector;
-> > +     struct drm_connector_list_iter iter;
-> > +
-> > +     drm_connector_list_iter_begin(dev, &iter);
-> > +     drm_for_each_connector_iter(connector, &iter) {
-> > +             if (connector->connector_type =3D=3D
-> > DRM_MODE_CONNECTOR_WRITEBACK)
-> > +                     continue;
-> > +
-> > +
-> >=20
-> >       dm_cancel_delayed_hpd_work(to_amdgpu_dm_connector(connecto
-> >=20
-> > r));
-> > +     }
-> > +     drm_connector_list_iter_end(&iter);
-> > +}
-> > +
-> > +/**
-> > + * dm_queue_delayed_hpd_work() - Enqueue delayed work to handle
-> > hotplug
-> > +detection
-> > + *
-> > + * @aconnector: Connector on which the HPD event occurred
-> > + * @reason: Reason why we are attempting the HPD
-> > + * @msecs: Millisecond delay after which the delayed work is going to
-> > +happen
-> > + *
-> > + * When dc_link_detect_connection_type thinks that a display is
-> > +connected,
-> > + * but dc_link_detect failed, enqueue delayed work to retry the link
-> > + * detection again.
-> > + *
-> > + * Useful when eg. HPD pin is high but the display isn't ready and
-> > + * didn't respond to DDC.
-> > + *
-> > + * - On boot or suspend/resume, the display is "slow to wake up",
-> > + *   ie. DDC isn't ready, for example we couldn't read DP link caps or
-> > EDID.
- + *   Can happen to any connector with certain "slow" displays.
-> > + *
-> > + * - On hotplug, the HPD pin may make contact before the DDC pins,
-> > + *   so we couldn't read the EDID. Can happen to any connector but
-> > + *   most often to DVI and sometimes to HDMI (rarely to DP).
-> > + *
-> > + */
-> > +static void dm_queue_delayed_hpd_work(struct amdgpu_dm_connector
-> > *aconnector,
-> > +                                   const enum dc_detect_reason reason,
-> > +                                   const unsigned int msecs)
-> > +{
-> > +     struct drm_device *dev =3D aconnector->base.dev;
-> > +     struct amdgpu_device *adev =3D drm_to_adev(dev);
-> > +     struct delayed_hpd_work *w;
-> > +
-> > +     if (!aconnector || !aconnector->dc_link ||
-> > +         aconnector->dc_link->type =3D=3D dc_connection_none)
-> > +             return;
-> > +
-> > +     /* Don't retry polled connectors, the polling is going to detect =
-it.
-> > */
- +     if (aconnector->base.polled !=3D DRM_CONNECTOR_POLL_HPD)
-> > +             return;
-> > +
-> > +     ++aconnector->num_hpd_retries;
-> > +
-> > +     drm_dbg(dev, "Can't detect link on %s on try %d\n",
-> > +             aconnector->base.name, aconnector->num_hpd_retries);
-> > +
-> > +     if (aconnector->num_hpd_retries >
-> > AMDGPU_DM_HPD_MAX_NUM_RETRIES) {
-> > +             drm_warn(dev, "Too many retries on %s: %d, giving up\n",
-> > +                      aconnector->base.name, aconnector-
-> >=20
-> > >num_hpd_retries);
-> >=20
-> > +             aconnector->num_hpd_retries =3D 0;
-> > +             return;
-> > +     }
-> > +
-> > +     w =3D kzalloc(sizeof(*w), GFP_ATOMIC);
-> > +
-> > +     if (!w)
-> > +             return;
-> > +
-> > +     INIT_DELAYED_WORK(&w->work, dm_handle_delayed_hpd_work);
-> > +     w->aconn =3D aconnector;
-> > +     w->reason =3D reason;
-> > +     aconnector->delayed_hpd_work =3D w;
-> > +
-> > +     drm_warn(dev, "Enqueueing next retry on %s\n",
-> > +              aconnector->base.name);
-> > +     queue_delayed_work(adev->dm.delayed_hpd_wq, &w->work,
-> > +                        msecs_to_jiffies(msecs));
-> > +}
-> > +
-> >=20
-> >  static const char *dmub_notification_type_str(enum
-> >  dmub_notification_type
-> >=20
-> > e)  {
-> >=20
-> >       switch (e) {
-> >=20
-> > @@ -3249,6 +3379,7 @@ static int dm_hw_fini(struct amdgpu_ip_block
-> > *ip_block)  {
-> >=20
-> >       struct amdgpu_device *adev =3D ip_block->adev;
-> >
-> >
-> >
-> > +     dm_cancel_all_delayed_hpd_work(&adev->ddev);
-> >=20
-> >       amdgpu_dm_hpd_fini(adev);
-> >
-> >
-> >
-> >       amdgpu_dm_irq_fini(adev);
-> >=20
-> > @@ -3422,6 +3553,8 @@ static int dm_suspend(struct amdgpu_ip_block
-> > *ip_block)
-> >=20
-> >       struct amdgpu_device *adev =3D ip_block->adev;
-> >       struct amdgpu_display_manager *dm =3D &adev->dm;
-> >
-> >
-> >
-> > +     dm_cancel_all_delayed_hpd_work(&adev->ddev);
-> > +
-> >=20
-> >       if (amdgpu_in_reset(adev)) {
-> >      =20
-> >               enum dc_status res;
-> >
-> >
-> >
-> > @@ -4451,6 +4584,9 @@ static void handle_hpd_irq_helper(struct
-> > amdgpu_dm_connector *aconnector,
-> >=20
-> >                       if (aconnector->base.force =3D=3D
-> >=20
-> > DRM_FORCE_UNSPECIFIED ||
-> >=20
-> >                           reason =3D=3D DETECT_REASON_HPDRX)
-> >
-> >
-> >
-> >       drm_kms_helper_connector_hotplug_event(connector);
-> >=20
-> > +             } else {
->=20
->=20
->=20
-> We need to return here if aconnector->mst_mgr.mst_state is set.
->=20
->=20
->=20
-> > +                     dm_queue_delayed_hpd_work(aconnector, reason,
-> > +
-> > AMDGPU_DM_HPD_RETRY_DELAY_MSEC);
-> >=20
-> >               }
-> >      =20
-> >       }
-> > =20
-> >  }
-> >=20
-> > @@ -4459,6 +4595,8 @@ static void handle_hpd_irq(void *param)  {
-> >=20
-> >       struct amdgpu_dm_connector *aconnector =3D (struct
-> >=20
-> > amdgpu_dm_connector *)param;
-> >
-> >
-> >
-> > +     /* Cancel any pending work */
-> > +     dm_cancel_delayed_hpd_work(aconnector);
-> >=20
-> >       handle_hpd_irq_helper(aconnector, DETECT_REASON_HPD);
-> >
-> >
-> >
-> >  }
-> >=20
-> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-> > b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-> > index 7d37c1612131..9a66c9e2b78d 100644
-> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-> > @@ -136,6 +136,18 @@ struct dmub_hpd_work {
-> >=20
-> >       struct amdgpu_device *adev;
-> > =20
-> >  };
-> >
-> >
-> >
-> > +/**
-> > + * struct delayed_hpd_work - Handle delayed HPD (hot plug detection)
-> > +work
-> > + *
-> > + * @work: Base structure, kernel work data for the work event
-> > + * @aconn: Pointer to connector where the HPD event happened  */ struct
-> > +delayed_hpd_work {
-> > +     struct delayed_work work;
-> > +     struct amdgpu_dm_connector *aconn;
-> > +     enum dc_detect_reason reason;
-> > +};
-> > +
-> >=20
-> >  /**
-> > =20
-> >   * struct vblank_control_work - Work data for vblank control
-> >   * @work: Kernel work data for the work event @@ -801,6 +813,10 @@
-> >=20
-> > struct amdgpu_dm_connector {
-> >=20
-> >       /* number of modes generated from EDID at 'dc_sink' */
-> >       int num_modes;
-> >
-> >
-> >
-> > +     /* number of retries on hot plug detection */
-> > +     int num_hpd_retries;
-> > +     struct delayed_hpd_work *delayed_hpd_work;
-> > +
-> >=20
-> >       /* The 'old' sink - before an HPD.
-> >      =20
-> >        * The 'current' sink is in dc_link->sink. */
-> >      =20
-> >       struct dc_sink *dc_sink;
-> >=20
-> > --
-> > 2.54.0
->=20
->=20
-
-
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index 2f3470208829e..7e0e2281719b1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -853,12 +853,10 @@ void amdgpu_vm_flush(struct amdgpu_ring *ring, struct amdgpu_job *job,
+ 					    job->oa_size);
+ 	}
+ 
+-	if (vm_flush_needed || pasid_mapping_needed || cleaner_shader_needed) {
+-		amdgpu_fence_emit(ring, job->hw_vm_fence, 0);
+-		fence = &job->hw_vm_fence->base;
+-		/* get a ref for the job */
+-		dma_fence_get(fence);
+-	}
++	amdgpu_fence_emit(ring, job->hw_vm_fence, 0);
++	fence = &job->hw_vm_fence->base;
++	/* get a ref for the job */
++	dma_fence_get(fence);
+ 
+ 	if (vm_flush_needed) {
+ 		mutex_lock(&id_mgr->lock);
+-- 
+2.54.0
 
