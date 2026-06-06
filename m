@@ -2,127 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id PzzXEzi7I2ocxgEAu9opvQ
+	id MpdZBSCUJWo8JQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 06 Jun 2026 08:16:24 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 07 Jun 2026 17:54:08 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9573264CB1A
-	for <lists+amd-gfx@lfdr.de>; Sat, 06 Jun 2026 08:16:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D150650E99
+	for <lists+amd-gfx@lfdr.de>; Sun, 07 Jun 2026 17:54:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=zQrF4t7e;
+	dkim=none;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=none
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25799112D4D;
-	Sat,  6 Jun 2026 06:16:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22B9D10EA3D;
+	Sun,  7 Jun 2026 15:54:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010044.outbound.protection.outlook.com [52.101.46.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6217F112D4D
- for <amd-gfx@lists.freedesktop.org>; Sat,  6 Jun 2026 06:16:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cxw3sAjo5StwslFCZYPm4F1+EMATjgfDQDVxXEw+3nsk/Lp4OAdiN4FpmerVA5Si2IcdxTY4DM6EAt7ra7n1rwMf72Eite6hMkckq13g1wbPH2nYdG+bvNyastwFj1BZVcmGmqK11BrvChIzGatTJh+cYjSJNwzC/Aa2gd8CPRBjC9oZg30qbtU3HpDCD1rVB0PnMHfbzllZOQn+t7UItzssnLnaDUD1r2Zt2f9UIytPE6L06QGCyev2e/dY7pRmweyt7aSTVAeC6OaoMSyxasVqZSrh2iDkgnaJwVW52ilM4Gf43dW+nVkE7vosqQXMgKNNrP2v3jfU4c+TIOwqFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2A1G3VBvRoxCNtOKf2EHFKdP1pTZl4zDmuVFJYMyrMc=;
- b=BlCWwYxyYsG7kGFF1iZ3TQtEbuXPXZ4qepQp8v19nLXGSbr7ORy4XMbP/cBjKCFk2deZUyKQeLDJfWntE0zPXDSyxXpJUjqR0fmxHv2pNzOfKr6Yc+4docj1xkxTS9pwPcZk5YG7+wpzokMsnOgk6S97DZyZLq9renruF1MuU7PeczFMm5ekU+zhc0fc2QQz6UdVBB3aqsajkNPTx2klBcFsJDv9BLInnqvsJrs7GGCyJ2WN7GGiczoTkA4GzS2IqrV6TWw/kigtMGLNdnvGHvj2X2fv2qF6d/t1EeTWgLLEOHP7xhJYjXVj3f8huLqkqIAy3mW7Xy3sSuzZUqHaPQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2A1G3VBvRoxCNtOKf2EHFKdP1pTZl4zDmuVFJYMyrMc=;
- b=zQrF4t7ehKGX2xtJamobtSBU7Os6iu1U6yahZWQhc6NdTAIdQ2/whT1MXmx8ZdCbRxOHnZ7zvqB5k5jCPQi5ZHlQ6u8rudCTOiJJpolYjlZUsGvVF1/b0yJMVJfKDNsp52JmnhZno2lBO9hDIHTUIF1HRUisHD7tA52Qq8Pa9+0=
-Received: from DM4PR12MB5152.namprd12.prod.outlook.com (2603:10b6:5:393::16)
- by CYYPR12MB8856.namprd12.prod.outlook.com (2603:10b6:930:c0::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.7; Sat, 6 Jun 2026
- 06:16:17 +0000
-Received: from DM4PR12MB5152.namprd12.prod.outlook.com
- ([fe80::8874:ea43:ba4a:e73d]) by DM4PR12MB5152.namprd12.prod.outlook.com
- ([fe80::8874:ea43:ba4a:e73d%5]) with mapi id 15.21.0092.007; Sat, 6 Jun 2026
- 06:16:16 +0000
-From: "Zhang, Jesse(Jie)" <Jesse.Zhang@amd.com>
-To: "Lin, Amber" <Amber.Lin@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>
-Subject: RE: [PATCH] drm/amdkfd: Add gfx11 queue/pipe reset support to topology
-Thread-Topic: [PATCH] drm/amdkfd: Add gfx11 queue/pipe reset support to
- topology
-Thread-Index: AQHc9Tr81FHvzpzM+EyMCuurCDTpoLYxDM2w
-Date: Sat, 6 Jun 2026 06:16:16 +0000
-Message-ID: <DM4PR12MB5152B6DC57ED0A7B01F40BE9E31E2@DM4PR12MB5152.namprd12.prod.outlook.com>
-References: <20260605223037.3767958-1-Amber.Lin@amd.com>
-In-Reply-To: <20260605223037.3767958-1-Amber.Lin@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-06-06T06:13:45.0000000Z;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD General
- v26; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=3;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR12MB5152:EE_|CYYPR12MB8856:EE_
-x-ms-office365-filtering-correlation-id: 8e4acb52-a659-43d8-3e86-08dec3931e3f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|18002099003|22082099003|38070700021|6133799003|11063799006|56012099006;
-x-microsoft-antispam-message-info: od0jgJ5KqvtYDFr52Lq3cTThYeCfN5bCukdjsqhzdzBL0Fztih/WURhSWdYfTqSEED43rrqpmbBpyH4kpsG/AciVMLhLtpVQ0uNbJkQPrpvJw+8evVm545/FKPnmavTby5g/e3BngekVDk43mJMIkxf/6dKqCBP2b1/MxTgtkws5KyXeys0NU8Z+RkKxWduv1mJU6QDuL9wnYd1Pr1Rdpa0r1y4SqkQxE5vcXAjJBz/SaS1EZUrKh7blujq51GphC+mgWybHfwRU6y/B78QXrzoGxYCR8wv1uStQkNYmI1ybboeXPI80T5Y/T+mgq374K2gzgAIX70329BTyyycmj/lHC5yyRA8GVkhQtWZmz1vQn6QwooyWbAWMG/PfMU6P5iAm00GcBhATya2HzfWEyIWdIlBJAwLXjC5BuhnbyH4RdTbl17PvzCyW7Fkavg/+MeyC9aJn4XohTO9sIITR7w8+84DczLtZA3FUOovBn8ikHpJJDeeOXXY2KMCwZNHpr76wyP4dZZWnohWH9cgUVISG5/Q9kN9CnjAPdFFs6NuG1Rujzb5UNbwcGX+K2h91lfV0ZCI3xo0p0G/opLzs2O8ygqMppLW9bLKDqfN+0eiMl+8pL0NacxP29YjPkxbuY+IIlRtDU6/D9ZPVdyxDMtmeiT3KmqCJ4hsgIyeMDOsLkR96TSYaUF7aUtXte9vSfHnu/vlbnkEKdYbU3L3NKpiAFhc4ZT8YoMEKqkBQd3rIH64dkADeq/Q/3DUT0UaQ
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5152.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(18002099003)(22082099003)(38070700021)(6133799003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?gYbdrG46V7bEMRFb9Q5Dpz0gpXdF8M98vLWJuzze/v21GjDkCcD7y+V7v1Tx?=
- =?us-ascii?Q?nuOsappwH+gW5Hg085Vdk3TkC+rBHNItGD5aI7Hhy6eGCuGJYBoE9cnI+tlk?=
- =?us-ascii?Q?Fd8J0FE6cxW2Ju0nhzTcU7LvkObQ/kz7+UwwYMZyvWJgKygMUepmJ+U70NPS?=
- =?us-ascii?Q?iwqUpmTaL8vZColOdw7hCDfUK5GwdLUo+nmpMMFgWsaoTAN8L2f0NyqfNYg0?=
- =?us-ascii?Q?cIZqpPApG2clizukzh7Wndb4u8T2loPcOIL4ip46PTTEDbi7ylfZaHXB4AHW?=
- =?us-ascii?Q?LYCm/Ja0QGvsKkM+6eGXhjpkpAnphorL/JwAgmu1689yCT7HkjdWFUReeeW8?=
- =?us-ascii?Q?r8gH7TrKTmh2fI2ov0XYFB8awjH7LEQx6+2U4n6Qu+o0lPO79KBcxn/4sGwn?=
- =?us-ascii?Q?00bAwaLDFSZKSVF0m9Q2ppwupNNWsUrE3WS8BexU26vePYHILcZCLdMI/UJV?=
- =?us-ascii?Q?1Dei0SbOFunQTi3HN4CD76QeoO/VrUreXPr6JtzFA6jRkRULyUSdpkrJh3dr?=
- =?us-ascii?Q?wfveuIMpt7mkQBEKZC+4QY5l7Q2WWI14IZYQLkC4uDlBz2tC4r/DHgaecV25?=
- =?us-ascii?Q?k7gOM9QyhUH0VFbUoxrtSbEBgnVtN27Y3Ev4j/Na3p1rl46nkfrQg5tWvWhe?=
- =?us-ascii?Q?2A9StwCPfvU9Pt/HYlHxG/Za4LQNkAJf1kx+iq07aP7w//GJ4w2zvJgPIQsL?=
- =?us-ascii?Q?azjo0QvTELa/z5dko4nDHYrcg+6KqLweayMdv8oNM1c8BJyKQ6CDAq1phBF1?=
- =?us-ascii?Q?KNS+yjtATXWe/0VkmVH9oJhnIXBWlxEWXHTnmTM7NUCgFIWyCQYSk4ELt7Xg?=
- =?us-ascii?Q?iVBTL97dlw/1+ODGCfWuj5DuYEHP8h7O4CidT4OTIqt/EDugnLoiokfMWg4Y?=
- =?us-ascii?Q?WLQ1EUjOymorbgDpqTRNHQzYkgfrbWDvaSl9FdnZAFoC6Bl9W6TY2LrKPvdR?=
- =?us-ascii?Q?NKUbNekiUwhQuFaj4vbBFaqqHNr34fRnXxHYXqZSlEKU0bbdYQcGDyMdG6NS?=
- =?us-ascii?Q?QB4hhufhvRG7cz4Bi8M1feUJ8C1utbxuVTdpemQHYtLbtdARIBw13msY5baL?=
- =?us-ascii?Q?GTwuOLZQoxA4CHaNb4CsoPtGZdYxdOYeuOXpdylMj4lQyK8z5YAJPr1+k745?=
- =?us-ascii?Q?CXbzSX3/m7SNfgIQJ5ulkTHCiY2FTHxQWbWOVd8ZaBmqm/Yx2DzwgWgu98+I?=
- =?us-ascii?Q?MZ9AG9DtCfRLYdmSeIdFBIb1KXrMRIwAkDV5qQm/NGZkyfbQq2TPA9aRBpYy?=
- =?us-ascii?Q?W2sirNXrQ0PB/iH/f8hcAY3bze3m7heyZoev3B9j6V82MmsexeKY2UOtOBUx?=
- =?us-ascii?Q?nYK1vCEVKoNmibpVkIQ11JkpShFQWMhm4A7DKyqEvtiqUFUTj4XKTpXZPb1u?=
- =?us-ascii?Q?hFSGkHRfkvB0G/vHP+PK+1lD2i6ukfUVUtFnmPxBNX+UP/dDxiYD24Z0O4FF?=
- =?us-ascii?Q?+hGXFxaFsqdrWXn4T71vxSJnLYtyBqzIbFhwwvfHgmS2itJt5ePEsbM5S54p?=
- =?us-ascii?Q?P91D+NvDUsLIC7+zfiQYAWfxlZBv6obFkhTgw5gq88vlgtYUDgrHR8QYRmDN?=
- =?us-ascii?Q?qlLTETnmQK7Z52jWGCYTx0g8qhjS1EGuIVqU45f7+D6aIa5iuBNbzwr1JtA+?=
- =?us-ascii?Q?wJLaranWU4tmXnB1BXOo28FK+MBQyHrDJ+MaNsq/yFRUeXazDUPB49hc8dp5?=
- =?us-ascii?Q?x3isVviD/1XDSVKhan32isoJI+YW2rUMBqJC2z/5XDKSgVxo?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7189A10E740;
+ Sat,  6 Jun 2026 09:17:42 +0000 (UTC)
+Received: from dfae2b116770.home.arpa (unknown [36.110.52.2])
+ by APP-05 (Coremail) with SMTP id zQCowABnus205SNq3sp+Eg--.15631S2;
+ Sat, 06 Jun 2026 17:17:40 +0800 (CST)
+From: Wentao Liang <vulab@iscas.ac.cn>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: pierre-eric.pelloux-prayer@amd.com, lijo.lazar@amd.com,
+ felix.kuehling@amd.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Wentao Liang <vulab@iscas.ac.cn>, stable@vger.kernel.org
+Subject: [PATCH] drm/amd/display: fix refcount leak in
+ detect_link_and_local_sink()
+Date: Sat,  6 Jun 2026 09:17:31 +0000
+Message-Id: <20260606091731.21183-1-vulab@iscas.ac.cn>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5152.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e4acb52-a659-43d8-3e86-08dec3931e3f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2026 06:16:16.7748 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: engDAb7s92GtuQsmCLrihVdNBZOr1Ojqx0mHa1Z9JavSvbQ45r3gw385Fe2oVNClGSbNqH85mwzc+oALIVMw7A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8856
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: zQCowABnus205SNq3sp+Eg--.15631S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7uw43Cw4UGw4fZw47uw43trb_yoW8XFy3pr
+ W5KryjgrykAF10qa1DAay5uFWUZ3W8tF4Sk3s3Gwn3Aw45ZrsrKF48Zr42gry5Cr98C3Wa
+ qFn8KrW3ZF1qyFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9214x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVWxJr
+ 0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+ 2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r4UJVWxJr1lOx8S6xCaFVCjc4AY6r
+ 1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02
+ 628vn2kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4
+ IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1r
+ MI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJV
+ WUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j
+ 6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYx
+ BIdaVFxhVjvjDU0xZFpf9x0JUG_M-UUUUU=
+X-Originating-IP: [36.110.52.2]
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiDAgKA2ojcefVuQAAs+
+X-Mailman-Approved-At: Sun, 07 Jun 2026 15:54:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,97 +72,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [1.89 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DATE_IN_PAST(1.00)[30];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Amber.Lin@amd.com,m:Alexander.Deucher@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[Jesse.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	RCVD_COUNT_THREE(0.00)[3];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Jesse.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FROM_NEQ_ENVFROM(0.00)[vulab@iscas.ac.cn,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	HAS_XOIP(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:from_mime,amd.com:email,DM4PR12MB5152.namprd12.prod.outlook.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,iscas.ac.cn:mid,iscas.ac.cn:from_mime,iscas.ac.cn:email,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9573264CB1A
+X-Rspamd-Queue-Id: 6D150650E99
 
-AMD General
+In detect_link_and_local_sink(), prev_sink is retained via
+dc_sink_retain() to keep it alive while probing for a new sink.
+When the link type is DisplayPort and the USB-C alt mode
+transition times out (i.e. wait_for_entering_dp_alt_mode()
+returns false), the function returns false without releasing
+the prev_sink reference acquired earlier.  All other error paths
+after the retain properly release the reference.
 
-Reviewed-by: Jesse Zhang <jesse.zhang@amd.com>
+Fix this by calling dc_sink_release(prev_sink) before returning
+on the DP alt mode timeout path.
 
-> -----Original Message-----
-> From: Lin, Amber <Amber.Lin@amd.com>
-> Sent: Saturday, June 6, 2026 6:31 AM
-> To: amd-gfx@lists.freedesktop.org; Deucher, Alexander
-> <Alexander.Deucher@amd.com>; Zhang, Jesse(Jie) <Jesse.Zhang@amd.com>
-> Cc: Lin, Amber <Amber.Lin@amd.com>
-> Subject: [PATCH] drm/amdkfd: Add gfx11 queue/pipe reset support to topolo=
-gy
->
-> Add gfx11 queue/pipe reset support to KFD topology
->
-> Signed-off-by: Amber Lin <Amber.Lin@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdkfd/kfd_priv.h     | 1 +
->  drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 3 +++
->  2 files changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> index 9adc852e5c2d..3a8bd3eaf12b 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-> @@ -210,6 +210,7 @@ enum cache_policy {
->  };
->
->  #define KFD_GC_VERSION(dev) (amdgpu_ip_version((dev)->adev, GC_HWIP,
-> 0))
-> +#define KFD_GC_VERSION_MAJ(dev) ((KFD_GC_VERSION(dev) >> 24))
->  #define KFD_IS_SOC15(dev)   ((KFD_GC_VERSION(dev)) >=3D (IP_VERSION(9,
-> 0, 1)))
->  #define KFD_SUPPORT_XNACK_PER_PROCESS(dev)\
->       ((KFD_GC_VERSION(dev) =3D=3D IP_VERSION(9, 4, 2)) ||        \
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> index 0ff793a17857..6c3734db38ea 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-> @@ -2024,6 +2024,9 @@ static void kfd_topology_set_capabilities(struct
-> kfd_topology_device *dev)
->                       dev->node_props.capability |=3D
->
->       HSA_CAP_TRAP_DEBUG_PRECISE_ALU_OPERATIONS_SUPPORTE
-> D;
->
-> +             if (KFD_GC_VERSION_MAJ(dev->gpu) =3D=3D 11)
-> +                     dev->node_props.capability |=3D
-> HSA_CAP_PER_QUEUE_RESET_SUPPORTED;
-> +
->               if (KFD_GC_VERSION(dev->gpu) >=3D IP_VERSION(12, 1, 0)) {
->                       dev->node_props.capability |=3D
->
->       HSA_CAP_TRAP_DEBUG_PRECISE_MEMORY_OPERATIONS_SUPP
-> ORTED;
-> --
-> 2.43.0
+Cc: stable@vger.kernel.org
+Fixes: 54618888d1ea ("drm/amd/display: break down dc_link.c")
+Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
+---
+ drivers/gpu/drm/amd/display/dc/link/link_detection.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/link/link_detection.c b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
+index 794dd6a95918..4473d93b783a 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/link_detection.c
++++ b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
+@@ -1069,8 +1069,10 @@ static bool detect_link_and_local_sink(struct dc_link *link,
+ 			    link->link_enc->features.flags.bits.DP_IS_USB_C == 1) {
+ 
+ 				/* if alt mode times out, return false */
+-				if (!wait_for_entering_dp_alt_mode(link))
++				if (!wait_for_entering_dp_alt_mode(link)) {
++					dc_sink_release(prev_sink);
+ 					return false;
++				}
+ 			}
+ 
+ 			if (!detect_dp(link, &sink_caps, reason)) {
+-- 
+2.34.1
 
