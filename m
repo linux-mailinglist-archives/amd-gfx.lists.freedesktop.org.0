@@ -2,131 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1fzqK+0iJGo63gEAu9opvQ
+	id kC2VHyGUJWo+JQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 06 Jun 2026 15:38:53 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 07 Jun 2026 17:54:09 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1570F64DA9D
-	for <lists+amd-gfx@lfdr.de>; Sat, 06 Jun 2026 15:38:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C82D6650E9C
+	for <lists+amd-gfx@lfdr.de>; Sun, 07 Jun 2026 17:54:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=wkqzDkk9;
+	dkim=fail ("headers rsa verify failed") header.d=mail.ru header.s=mail4 header.b=O795JheG;
+	dkim=fail ("headers rsa verify failed") header.d=mail.ru header.s=mail4 header.b=H6VcPnHa;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=mail.ru (policy=reject)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDFAB112E35;
-	Sat,  6 Jun 2026 13:38:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68A4510EAA4;
+	Sun,  7 Jun 2026 15:54:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012036.outbound.protection.outlook.com
- [40.93.195.36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BC86112E35
- for <amd-gfx@lists.freedesktop.org>; Sat,  6 Jun 2026 13:38:49 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CFXIUpZqkfXwh7mMHHrMNkNWCJLW3l7jS/pMJUqNQekfQ9Z7AewcF1LORGIUQEmBIvf8cBF7/C4hfRr4/aJY/Z2yfi81Vw8g0aB1I/QJ+v8WXhLcfnYS5OXdpsu0ch0iBX8MV0qsvZRz+PFRZ/jg41oQRxV/UEOqUfdTdcY3Qm9iSM1YhgyFhTX41Ezj7jjzDVkrFU3XWDqMUlziFPMK+ItYo/e6LAtqbm28673uVR6aJroPi/GWvZEHbaP3tgrS+swQfqcmDa7UiSlqpDrIwU9sdqut6AUY5UFAN2wqETk0ajNM13pBDj3eBfHnaN7jT1ZrVa+Uyhipnm/zxUhBdw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ne2mGsytGtz3wjjQ5lagAHDYb7pPtc5oSvxqs5ZXuOg=;
- b=boJPPGRAZXkupDgZPogYxPCUXHIrsMq7RNABbVFTzIucg4FIcuyokgXRr9MHW5leE3iZrELjRqzJQK+ePDDoe+Ix3eQtkQDD835YU8ola+z6LfsoztGAP3PM3RrTZVjNEwjD9+4owIwX17Gk5xC60NObMlnJGLR4vdH1cuFNA93Up+HTQRQDhHJfqn58UWN8eTad85J1wID2V6sK3YstqgSzhcbCU3WGp6VFnwSau5JeGC11RRsgAAJuTcRKjhImkqECbhaJ6sjmzB2+OPrPXV08FBs0bnhaxBlEHYgrVAb8R3UdFDMy1ZYGOtn/+ZTVnFnfSAlX71Kp4WC9nh9OcA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ne2mGsytGtz3wjjQ5lagAHDYb7pPtc5oSvxqs5ZXuOg=;
- b=wkqzDkk9rHMrt/P+69UPd8lH9IqdFIbozIIP26weLH1Q7GtVuvps+wp+/RnUGcWONSarcF1Yo/gZmtX+WELcGyd1yHwuLE9C3oTBzo5V1WVzdvFmlMILOkCHpMf7Az+GEP5NwaB9BH8Z6HqG9s5hwe/HJcyE3pjQiqYSQ04w4G8=
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
- by IA0PR12MB8895.namprd12.prod.outlook.com (2603:10b6:208:491::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.9; Sat, 6 Jun 2026
- 13:38:45 +0000
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::1aeb:47e6:faf1:5f13]) by BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::1aeb:47e6:faf1:5f13%5]) with mapi id 15.21.0092.010; Sat, 6 Jun 2026
- 13:38:45 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: "Sun, Ce(Overlord)" <Ce.Sun@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Chai, Thomas" <YiPeng.Chai@amd.com>, "Zhou1, Tao" <Tao.Zhou1@amd.com>,
- "Li, Candice" <Candice.Li@amd.com>
-Subject: RE: [PATCH v1 1/2] drm/amdgpu/ras: added RAS EEPROM device support
- check
-Thread-Topic: [PATCH v1 1/2] drm/amdgpu/ras: added RAS EEPROM device support
- check
-Thread-Index: AQHc9bjUggY9jq91KUmzUkyDiMaG2bYxiAuA
-Date: Sat, 6 Jun 2026 13:38:45 +0000
-Message-ID: <BN9PR12MB5257F5D7B21B7FE6CF7CB242FC1E2@BN9PR12MB5257.namprd12.prod.outlook.com>
-References: <cover.1780752510.git.cesun102@amd.com>
- <117a42d9579afd04366a096c2322021cefb34736.1780752510.git.cesun102@amd.com>
-In-Reply-To: <117a42d9579afd04366a096c2322021cefb34736.1780752510.git.cesun102@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-06-06T13:38:22.0000000Z;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD General
- v26; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=3;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|IA0PR12MB8895:EE_
-x-ms-office365-filtering-correlation-id: ad41b3e1-7c2d-414c-8df2-08dec3d0ee5d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|18002099003|22082099003|38070700021|11063799006|56012099006|4143699003;
-x-microsoft-antispam-message-info: 6tSRtei+hAUUg1vgvmcIdz+LjoMcOFULcNeQJe9TIYKqorsvNNJ08iu0jBbGFKlSdZzE6dROG9BIJF0u1r0T2FDuhfSKVxOfDTXeOcxeEpT/sC6AFcL2GU3Xj4aF1LpDfu/KcOPQMR64dHcdNq/0LELL9RF10Ng2OGuPBHvgpXf8AknKdODGCUl6+3fhypByELP9xSqkalQkVUyFaaUK6t3OyeeyTuDr2zdW6tRAksRQtHKOMa10od4pD1xFNXe60z9SeXdOk0FU99aJGE28ktoQwJZ0QmcodnQHKyuS7bGq4jhhKv3zw+5zbL9jFbQEKvEE/0La8YRUPTdbkbNCMYOzauguGQuT0NvU7+P6VVg0FkxyhSwieStKjeJyeXuAQO0e4/UgDkfMHCbFODDqBwRwbSt0yoda1SNwhjtwhCF4+XtpDWEGnPupaazWEgeNp+G6Kydk6vNufW9krJWa/ft6Tg4+el6coPfeS7LyQctOtqb8S+IZ+MOM0LBBDnCAtpsXchZkm7mu1TOaF0JhAjscXn3wxMqyDS+OCcTiLS9xbEe0vS6tJuTKtUcWp6ah6vmlMQLc1tm06CTcqmeOl8jEY8ND1cDyrKf+Gx/YHO1nymu4R5pWJx20ZPA+QTQce7U+mRq9lIanid9IgpnpRy2Agfd9SeW0+ZKxtKdU/Bs96jFqD5SdcdRvh4ANADEbOAevRYgfqDlQFidt7upwVzUfxokNH99ia4x0Cd7UtfVIhQLYGvfQtDNzxak6iKfT
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(18002099003)(22082099003)(38070700021)(11063799006)(56012099006)(4143699003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?w8sS7PN/5D5zcGIdg+mnvKtp12bnGwmEHj2eEZzX4lPDr4lYQXjI0Ra6rU8g?=
- =?us-ascii?Q?rTWofN2TgYJFH9Sx/YuRcvKmIPxmtx9XAU4png42yfp6vtCM7uftWLcv8JeX?=
- =?us-ascii?Q?cxSZ3xCcdZtM9EEZ5pZyBoJy2PtzPxHi/jV0lB/Oo0XVj4kJ3YmjTBSJHOiA?=
- =?us-ascii?Q?nKNKXpNCd7Enl64z8vaknXErFGwBJA8Y8ceegvoNL2JuHfFvXbHoZJZ6wjyK?=
- =?us-ascii?Q?UGOOXcgN16OSEShSrSKee6qznD8NwXSC5VYoq8dWlGnW9llgun9oFZZxtt7K?=
- =?us-ascii?Q?thHLJPjylHYi6P1Qd/Rv2VobrcKZsByqXfdJ3oeRF0zWhnU1PDVk9QgPGW6p?=
- =?us-ascii?Q?HG3xTPmSoOMh/h5dTvfaPNzDa6jAtQJxGd0IZmU6of/VdZnTvdk3a0NAGHtY?=
- =?us-ascii?Q?0AHHFflVqLBYEIlLO+CY7caJDHZzAfkId4ZHemy4cSepdVXBSg2HFOklF/96?=
- =?us-ascii?Q?YRdAjClko4zTDI3S8EclEaOcAozYMN0ahevqTIXTA7SEymOSzJwkgzAeIbWW?=
- =?us-ascii?Q?JS4a3q4GWk6x3CtGNpiiLuCItwMKdsiZH5IB//fWfv5eWHPAShq7VT8NZINi?=
- =?us-ascii?Q?Xnl31miad+RFloAUReDfGEsspYjFw4+LoApDOGLqxXv42mhy+Ze7lGoszDye?=
- =?us-ascii?Q?vkPVLQDGGdSRxkW6MOnrQeegE6EQmB8e0A7gJvjHt+YYNXmv0+hh+yzTBlxx?=
- =?us-ascii?Q?jARiV/OeLRONFnipuIRkYFSa3ByDBUPVDD5/rDHG4+UCyp/DlQGSrZA1C9if?=
- =?us-ascii?Q?w8o9/rV9EasLRmFJAdgHi/080S0jTKCpedWcjHDmPWQk6qPxiHsi1rRYAtvL?=
- =?us-ascii?Q?PcKxqzeDgwdnnEEFl2G7wtkVsDBGRmLhCCWKbg0T+sczdulyB465wsdgi18w?=
- =?us-ascii?Q?Z/+9DbbyV4Qpmm5RMRyukw94O8z5VvW681up/zTDd9n4ofIyMDpJKpcWaNxb?=
- =?us-ascii?Q?dkzfA3+9zUVl4Og3/oEPQhEj+YhG2LM08qrHTgBBeg3n4ZFzrNO0Viw5cW4U?=
- =?us-ascii?Q?+92AK0GP4KeBDsIJTv6If0ppu45U+61FKhilp0l2t0CaZtgEeA1veQyh46fp?=
- =?us-ascii?Q?gDcBnz2AYho7JoGrdqn2bk/tkLyxU0jJXoebachFhJ1pYJO9g5642Fhd27dI?=
- =?us-ascii?Q?5+seu8T1i0zxkFxJQpXBd8Qy+KjJp62vH7IPUUgFD/8l9KWPCy27s47UIQTX?=
- =?us-ascii?Q?PsPDG/VoeEZSvQUTLtoGHY3AzfJT7PLPC4+cU9kWgbaScO8nXoI7IvOT9eoI?=
- =?us-ascii?Q?jxOepX4pLOli6dFm/1gLgearHNYTV2Y6EjaOIQL4rl34dny+cXjknslIF4Tw?=
- =?us-ascii?Q?AqV1/FLLiotxDF588V1HLy1pFK4yc3e8k4XCA9detn3cJsW5SQX/hqjNapSX?=
- =?us-ascii?Q?0IkPQZpXlKWB1z9ZdqTHxZfft4FIDZBvMlF9vUsjnnvel6JZOxspEkGwxGgs?=
- =?us-ascii?Q?LHNwoHxTVfRb7FIGFlStOIZsNS5V156En56dcd7HAqvzxyD8x2Nqx2kz5VHi?=
- =?us-ascii?Q?Fl3+LyVyv7s01bCWWyPYSY3TiDvZJJVJu5V4WJMkaH0LXpfe2Cl+FCzfQYYy?=
- =?us-ascii?Q?PX7TYDZWt8cWDJRN4isu4JrM2twSuW/hrGj+7pIDEU0mm/RXm677XVIbkiOF?=
- =?us-ascii?Q?kRbKrumnIBSisOw0bfzp+Htr8iPjm5Z9KLKEMLkOpRWLK+0R8/7Q0QHvjugv?=
- =?us-ascii?Q?uAazQ39nWS0kbi3ZHU0AU3twlSlN7xOM24Fyhi/zxF1sKSk5?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-Greylist: delayed 908 seconds by postgrey-1.36 at gabe;
+ Sat, 06 Jun 2026 21:41:39 UTC
+Received: from send170.i.mail.ru (send170.i.mail.ru [95.163.59.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A780010E568;
+ Sat,  6 Jun 2026 21:41:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru;
+ s=mail4; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:
+ To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive:X-Cloud-Ids;
+ bh=RRlpEfg+rAq4/xxw12K5WLSfzTiih4xrF1skPzLufQM=; t=1780782099; x=1780872099; 
+ b=O795JheGtiRdoLL+oxbyqh1lRdS4RPUGe5Z0o9VG0aHHofaEdjXtELU8+eIvhWCBi+z6bUiL3Hf
+ GGbhEsN9SyJlqu67AliLxWxhnULcK3DZUeF29DtWrhxABZ/ceOV+onE69gGcPI4bAF5vCJLMelfe1
+ MI3++cBQsQdDYT1pHmZ3UfhoOmE9ZjWaxqZXWUBs7eSC0pHHPbvIAliFshCOc+lfCaYQhKTUGfAEl
+ JgBHeLcdARqpormkfHJlPA+LAKWhxNXX5xPt35sJWggkWhBLTXV/gQEqEUR73BsVYxCT9jxfDrT9b
+ 0SlGW+pBsUhwH0EQuYphflr14cd+t7RjPo/w==;
+Received: from [10.113.93.26] (port=45900 helo=send128.i.mail.ru)
+ by exim-fallback-8699f4bc65-bqhcr with esmtp (envelope-from
+ <listdansp@mail.ru>)
+ id 1wVyXE-00000000RsF-3wyx; Sun, 07 Jun 2026 00:26:29 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru;
+ s=mail4; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:
+ To:From:From:Sender:Reply-To:To:Cc:Content-Type:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive:
+ X-Cloud-Ids:Disposition-Notification-To;
+ bh=RRlpEfg+rAq4/xxw12K5WLSfzTiih4xrF1skPzLufQM=; t=1780781188; x=1780871188; 
+ b=H6VcPnHa41WhTFiwGyPtrr+nA3e62R65/yPJYjvM28DToE1jqCjNTaT5nD04LZtSS6bgwARZwOU
+ KM/Cd/RHl3biYr7ImUVIsveT1FCJzV2FkKDnmiO4W9Ecqnf6WeS93Az1JoMr4SgG6B04v98O5VQKX
+ PRuUTwGfvbx1tLCT7akhY8YhpCWO3gfjX6dtPMsZSC4KtNwf2IhJ+B3i/YhnYM6fE6AXoSyX2e6Px
+ cSiOyRzRAsKGVT51oGcZsg9IoER8/HorozNYA031wWMEl7uhPwcVw3U2sqATKM3lgj8ZRWjz/f9FH
+ /V30PV6fMfhPnNIsXZRuCWfLGNDhRmYQIF+g==;
+Received: by exim-smtp-85dd497b6-xgtt4 with esmtpa (envelope-from
+ <listdansp@mail.ru>)
+ id 1wVyX5-00000000Qns-3JHO; Sun, 07 Jun 2026 00:26:20 +0300
+From: Danila Chernetsov <listdansp@mail.ru>
+To: Austin Zheng <austin.zheng@amd.com>
+Cc: Danila Chernetsov <listdansp@mail.ru>, Jun Lei <jun.lei@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org
+Subject: [PATCH] drm/amd/display: Validate max_fclk_mhz in DML2 policy builder
+Date: Sat,  6 Jun 2026 21:25:03 +0000
+Message-Id: <20260606212503.140638-1-listdansp@mail.ru>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad41b3e1-7c2d-414c-8df2-08dec3d0ee5d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2026 13:38:45.2350 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: pf0X6mZPv7IsUWHXBEVGaRlm7/OnMNzYjEi4QwvLpfrPdH2eLdt+ye+6qc2IEaLmJpncS1mnDy9y6cajj/Ionw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8895
+Content-Transfer-Encoding: 8bit
+X-Mailru-Src: smtp
+X-7564579A: 646B95376F6C166E
+X-77F55803: 4F1203BC0FB41BD9FAD06046D747065BFD1F8B0A1B9B9707D8C8F67DBDBE5FA5182A05F5380850409621B98EC0D4CA463DE06ABAFEAF6705D035D994BFFA62EC9D2EAEA2A1F4BB08249BFCD68258DFAF
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE765EC468FF5F3030AEA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F7900637D24CDE3D695BBBC6EA1F7E6F0F101C67CDEEF6D7F21E0D1D9295C2E9FA3191EE1B59CA4C82EFA6586985FD7387DF6F77C7E4FDACEF09268D33FEC8FC032966066F9789CCF6C18C3F8528715B7D10C86878DA827A17800CE7F1FF917D59728F209FA2833FD35BB23D9E625A9149C048EE1E561CDFBCA1751FC26CFBAC0749D213D2E47CDBA5A96583BD4B6F7A4D31EC0BC014FD901B82EE079FA2833FD35BB23D27C277FBC8AE2E8B55B19328CBC4F849A471835C12D1D977C4224003CC836476EB9C4185024447017B076A6E789B0E975F5C1EE8F4F765FC3C79C0CE7F06F4BC3AA81AA40904B5D9CF19DD082D7633A0C84D3B47A649675F3AA81AA40904B5D98AA50765F79006374B811A4946B142CFD81D268191BDAD3D3666184CF4C3C14F3FC91FA280E0CE3D1A620F70A64A45A98AA50765F79006372E808ACE2090B5E1725E5C173C3A84C3C5EA940A35A165FF2DBA43225CD8A89FAE2BFB9A60527F4F262FEC7FBD7D1F5BB5C8C57E37DE458BEDA766A37F9254B7
+X-C1DE0DAB: 0D63561A33F958A57702970249F775C75002B1117B3ED696906CCCD785A21358E20DC3F561CE4150823CB91A9FED034534781492E4B8EEADDFC043C56F70D752C79554A2A72441328621D336A7BC284946AD531847A6065A535571D14F44ED41
+X-C8649E89: 1C3962B70DF3F0AD73CAD6646DEDE191716CD42B3DD1D34C77DD89D51EBB774225B6776AC983F447FC0B9F89525902EE6F57B2FD27647F25E66C117BDB76D659A31CB613A1CE620CF7CC49A6AB6E3800CD24BA6E3248586704A9E8A34112657344EB9665BB483114B8341EE9D5BE9A0A22987DF0AD52FB34505C2008A0FF216FE797B7B01A16DD4552EE4E5D9E54FDA44DC34E6FDC38EA02973FA9AB552041BE982BEF0C6C01360AC3981EEBE9DB10F943082AE146A756F3
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu53w8ahmwBjZKM/YPHZyZHvz5uv+WouB9+ObcCpyrx6l7KImUglyhkEat/+ysWwi0gdhEs0JGjl6ggRWTy1haxBpVdbIX1nthFXMZebaIdHP2ghjoIc/363UZI6Kf1ptIMVYrk7BQKFwEtIM1xCxg4W1OhHIaay3etpg==
+X-Mailru-Sender: 4CE1109FD677D277A25EA9D9B320DF53ED077134A253E0C2B951B70A5BD4BD8E654D62B877AE6CE6AABC8C0DF00C54FAC53BD13D3F6EEB2F3DDE9B364B0DF289C95E31D8FCF52BE1594FB4C9F0DBF4120D4ABDE8C577C2ED
+X-Mras: Ok
+X-Mailru-Src: fallback
+X-7564579A: 646B95376F6C166E
+X-77F55803: 6242723A09DB00B48C57FD6B8CC3B424983C464901AA611741A5A3C9AC30A3C768F3CF0E9FE49B69EB953A509C22E655B12A3BF3B648CB9CC52792B4F660D8B870F1A8B60B048D10B63DD5FB2B6B9523
+X-7FA49CB5: 0D63561A33F958A5075DB5AE9D2FA28F5002B1117B3ED696EC4FD808CD03D3013D1B8CC3424EAECF02ED4CEA229C1FA827C277FBC8AE2E8B54F520D093A0DF28
+X-87b9d050: 1
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu53w8ahmwBjZKM/YPHZyZHvz5uv+WouB9+OYcBso8Zm+oliTz8oZwnDrFsY77LZRcHyw5ht0smWrfSeTW5FiI8avd9v29gUBslpEZ9wIMwqVP4jLQVQ+dVm7x9BpDHadBV9RMjI809PraZhQpxvoob8R/EZ4AvdjPjuA==
+X-Mailru-MI: 20000000020000000000000800
+X-Mras: Ok
+X-Mailman-Approved-At: Sun, 07 Jun 2026 15:54:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,104 +103,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [3.89 / 15.00];
+	DMARC_POLICY_REJECT(2.00)[mail.ru : SPF not aligned (relaxed),reject];
+	R_DKIM_REJECT(1.00)[mail.ru:s=mail4];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:Ce.Sun@amd.com,m:YiPeng.Chai@amd.com,m:Tao.Zhou1@amd.com,m:Candice.Li@amd.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[Hawking.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[mail.ru,amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,linuxtesting.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FREEMAIL_FROM(0.00)[mail.ru];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Hawking.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[listdansp@mail.ru,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mail.ru:-];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:from_mime,amd.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,linuxtesting.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1570F64DA9D
+X-Rspamd-Queue-Id: C82D6650E9C
 
-AMD General
+dml2_policy_build_synthetic_soc_states() validates that several
+derived maximum clock values are non-zero before constructing
+synthetic SOC states.
 
-Series is
+However, max_fclk_mhz is not included in the validation despite
+later logic assuming the presence of at least one valid FCLK level.
+If all FCLK entries are zero, num_fclk_dpms remains zero, causing
+an integer underflow (0 - 1) and out-of-bounds array access.
 
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
 
-Regards,
-Hawking
------Original Message-----
-From: Sun, Ce(Overlord) <Ce.Sun@amd.com>
-Sent: Saturday, June 6, 2026 9:31 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Chai, Thomas <YiPeng.Chai@amd.c=
-om>; Zhou1, Tao <Tao.Zhou1@amd.com>; Li, Candice <Candice.Li@amd.com>; Sun,=
- Ce(Overlord) <Ce.Sun@amd.com>
-Subject: [PATCH v1 1/2] drm/amdgpu/ras: added RAS EEPROM device support che=
-ck
-
-Added RAS EEPROM device support check
-
-Signed-off-by: Ce Sun <cesun102@amd.com>
+Fixes: 7966f319c66d ("drm/amd/display: Introduce DML2")
+Signed-off-by: Danila Chernetsov <listdansp@mail.ru>
 ---
- .../gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c   | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dml2_0/dml2_policy.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c b/drivers/gpu=
-/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c
-index ef09a6fad659..26f554a80e1a 100644
---- a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c
-+++ b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_mgr.c
-@@ -142,6 +142,21 @@ static int amdgpu_ras_mgr_init_eeprom_config(struct am=
-dgpu_device *adev,
-        return 0;
- }
-
-+static bool amdgpu_ras_mgr_eeprom_is_supported(struct amdgpu_device
-+*adev) {
-+       if (amdgpu_sriov_vf(adev))
-+               return false;
-+
-+       switch (amdgpu_ip_version(adev, MP1_HWIP, 0)) {
-+       case IP_VERSION(13, 0, 6):
-+       case IP_VERSION(13, 0, 12):
-+       case IP_VERSION(13, 0, 14):
-+               return (adev->gmc.is_app_apu) ? false : true;
-+       default:
-+               return false;
-+       }
-+}
-+
- static int amdgpu_ras_mgr_init_mp1_config(struct amdgpu_device *adev,
-                struct ras_core_config *config)
- {
-@@ -266,7 +281,8 @@ static struct ras_core_context *amdgpu_ras_mgr_create_r=
-as_core(struct amdgpu_dev
-                init_config.aca_ip_version =3D IP_VERSION(1, 0, 0);
-
-        init_config.sys_fn =3D &amdgpu_ras_sys_fn;
--       init_config.ras_eeprom_supported =3D true;
-+       init_config.ras_eeprom_supported =3D
-+               amdgpu_ras_mgr_eeprom_is_supported(adev);
-        init_config.poison_supported =3D
-                amdgpu_ras_is_poison_mode_supported(adev);
-
---
-2.34.1
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_policy.c b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_policy.c
+index ef693f608d59..70f418ee5dd2 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_policy.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml2_policy.c
+@@ -157,7 +157,8 @@ int dml2_policy_build_synthetic_soc_states(struct dml2_policy_build_synthetic_so
+ 			num_uclk_dpms++;
+ 	}
+ 
+-	if (!max_dcfclk_mhz || !max_dispclk_mhz || !max_dppclk_mhz || !max_phyclk_mhz || !max_dtbclk_mhz)
++	if (!max_dcfclk_mhz || !max_dispclk_mhz || !max_dppclk_mhz || !max_phyclk_mhz ||
++		!max_dtbclk_mhz || !max_fclk_mhz)
+ 		return -1;
+ 
+ 	p->out_states->num_states = 0;
+-- 
+2.25.1
 
