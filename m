@@ -2,53 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 35+qEyODJmojXwIAu9opvQ
+	id LgnqGN29J2ql1QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 08 Jun 2026 10:53:55 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 09:16:45 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DF5D6543E2
-	for <lists+amd-gfx@lfdr.de>; Mon, 08 Jun 2026 10:53:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAD1765D19F
+	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 09:16:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=damsy.net header.s=202408e header.b=USRjuu75;
-	dkim=pass header.d=damsy.net header.s=202408r header.b=Fbm9JgNj;
+	dkim=fail ("headers rsa verify failed") header.d=oss.cyber.gouv.fr header.s=default header.b=KIxVW0iQ;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=none
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=oss.cyber.gouv.fr (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3AF110EFA4;
-	Mon,  8 Jun 2026 08:53:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD23310E119;
+	Tue,  9 Jun 2026 07:16:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from jeth.damsy.net (jeth.damsy.net [51.159.152.102])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89C2E10EFA4
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jun 2026 08:53:50 +0000 (UTC)
-DKIM-Signature: v=1; a=ed25519-sha256; s=202408e; d=damsy.net;
- c=relaxed/relaxed; r=y; 
- h=From:To:Subject:Date:Message-ID; t=1780908828; bh=YKpIGGKqU7nQdiEaG3t4dMi
- XXGHqYRU8jhfJVHK5vao=; b=USRjuu75x2BE/r1QcYJSNyziVVoVFsUZaH5wU7rtI/PtLrJEk9
- 1fjgIsbD5j3iD6eWpVQZUQwyoeLPgxVqznBg==;
-DKIM-Signature: v=1; a=rsa-sha256; s=202408r; d=damsy.net; c=relaxed/relaxed;
- r=y; 
- h=From:To:Subject:Date:Message-ID; t=1780908828; bh=YKpIGGKqU7nQdiEaG3t4dMi
- XXGHqYRU8jhfJVHK5vao=; b=Fbm9JgNjK23Tk/ultN7+MB8beE1/BHw4ZPfcvKyjZfvWOPVQPT
- HpH+39psZtimsZrcKtI7EGR511f/fL6iDaCn7Q8c5jyu0xejeuGO4iBe17EeAY50p7PV0n4wwGB
- f4NdLSe7XqguyZR8/9/J5ZKEZhhQbL7h5xGdc3K/85s1c2Iiwh5gfPEfmtJ/+1red8voKZmjAn6
- 2HbFFsiAcl9FPviWC0dNSxEwErjACFHL+9XfQUzLAGrwHcj07jvSfXbJWXelZD4qT+CjE7FMpQ2
- YwRY+FgJ2UN26z0wtt7KSnfdoK18OGXc2Urk6cks7LGKluCYFi56fs1Bpdc7IYBYtyQ==;
-Message-ID: <4e1e2a69-7e38-4e0c-a2a3-a81d8efdf031@damsy.net>
-Date: Mon, 8 Jun 2026 10:53:47 +0200
+X-Greylist: delayed 1523 seconds by postgrey-1.36 at gabe;
+ Mon, 08 Jun 2026 09:29:12 UTC
+Received: from oss.cyber.gouv.fr (oss.cyber.gouv.fr [51.159.188.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3404010F051
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jun 2026 09:29:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=oss.cyber.gouv.fr; s=default; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=U7Df9sJZwkFi8dKXbP5+VW1scr39okO9krfcmqkDa/s=; b=KIxVW0iQ5zEV17WXgrJuByNg4z
+ +oirNjFpciCreeyYKxJkEx4enTTKqgv7wZbEElHvr6KIFHDX61e53iCyo6/rtmRmhACPZLDiB1Z+9
+ a90kt4n94MP94gDg1vOc1lPZ5pFwSpZH8MoOLD0OvF7dFAkrk78cwntpbKdMRs66XWVQ/twWVbQam
+ MUPZh1vhIR5Qa/qxe7xR+Rl38OIuFyhO2zLbcHcKnuf4ztKm8l6OIzZ4FB0M5rznc4HMSdsOShIa3
+ rEEQMnhKoHVQW2emgIcaJYNawhrza09jKvL9kbPn+oN4+j2wrtcOwVyA68Z84n/qm2V7hudhVJyH1
+ wfCLrI2g==;
+Received: from laubervilliers-658-1-215-187.w90-63.abo.wanadoo.fr
+ ([90.63.246.187]:37593 helo=archlinux)
+ by pf-012.whm.fr-par.scw.cloud with esmtpsa (TLS1.3) tls
+ TLS_AES_256_GCM_SHA384 (Exim 4.99.4)
+ (envelope-from <nicolas.bouchinet@oss.cyber.gouv.fr>)
+ id 1wWVtc-0000000G1UZ-2FeG; Mon, 08 Jun 2026 11:03:47 +0200
+Date: Mon, 8 Jun 2026 11:03:46 +0200
+From: Nicolas Bouchinet <nicolas.bouchinet@oss.cyber.gouv.fr>
+To: Asad Kamal <asad.kamal@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, lijo.lazar@amd.com, 
+ hawking.zhang@amd.com, le.ma@amd.com, shiwu.zhang@amd.com,
+ alexander.deucher@amd.com, kevinyang.wang@amd.com, Tom.StDenis@amd.com
+Subject: Re: [PATCH v3] drm/amdgpu: Gate debugfs MMIO access on kernel lockdown
+Message-ID: <aiaEMl-b5qo6dmL6@archlinux>
+References: <20260603114459.938031-1-asad.kamal@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/amdgpu: add userq create and destroy tracepoints
-To: Prike Liang <Prike.Liang@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: Alexander.Deucher@amd.com, Christian.Koenig@amd.com,
- Pierre-eric.Pelloux-prayer@amd.com
-References: <20260527122001.69831-1-Prike.Liang@amd.com>
-Content-Language: en-US
-From: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>
-In-Reply-To: <20260527122001.69831-1-Prike.Liang@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260603114459.938031-1-asad.kamal@amd.com>
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - pf-012.whm.fr-par.scw.cloud
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - oss.cyber.gouv.fr
+X-Get-Message-Sender-Via: pf-012.whm.fr-par.scw.cloud: authenticated_id:
+ nicolas.bouchinet@oss.cyber.gouv.fr
+X-Authenticated-Sender: pf-012.whm.fr-par.scw.cloud: nicolas.bouchinet@oss.cyber.gouv.fr
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Mailman-Approved-At: Tue, 09 Jun 2026 07:16:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,192 +81,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.99 / 15.00];
+	R_DKIM_REJECT(1.00)[oss.cyber.gouv.fr:s=default];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[damsy.net:s=202408e,damsy.net:s=202408r];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[oss.cyber.gouv.fr : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[damsy.net];
-	FORGED_RECIPIENTS(0.00)[m:Prike.Liang@amd.com,m:Alexander.Deucher@amd.com,m:Christian.Koenig@amd.com,m:Pierre-eric.Pelloux-prayer@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[pierre-eric@damsy.net,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:asad.kamal@amd.com,m:lijo.lazar@amd.com,m:hawking.zhang@amd.com,m:le.ma@amd.com,m:shiwu.zhang@amd.com,m:alexander.deucher@amd.com,m:kevinyang.wang@amd.com,m:Tom.StDenis@amd.com,s:lists@lfdr.de];
+	HAS_X_AS(0.00)[nicolas.bouchinet@oss.cyber.gouv.fr];
+	HAS_X_GMSV(0.00)[nicolas.bouchinet@oss.cyber.gouv.fr];
+	FORGED_SENDER(0.00)[nicolas.bouchinet@oss.cyber.gouv.fr,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[pierre-eric@damsy.net,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[damsy.net:+];
+	HAS_X_SOURCE(0.00)[];
+	DKIM_TRACE(0.00)[oss.cyber.gouv.fr:-];
 	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.bouchinet@oss.cyber.gouv.fr,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	HAS_X_ANTIABUSE(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,damsy.net:mid,damsy.net:from_mime,damsy.net:dkim]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,archlinux:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9DF5D6543E2
+X-Rspamd-Queue-Id: DAD1765D19F
 
-
-
-Le 27/05/2026 à 14:20, Prike Liang a écrit :
-> Add ftrace events around user queue creation and destruction to profile
-> queue setup and teardown latency.
+On Wed, Jun 03, 2026 at 07:44:59PM +0800, Asad Kamal wrote:
+> amdgpu_regs, amdgpu_regs2, and related debugfs nodes allow
+> arbitrary MMIO read/write via RREG32/WREG32 without checking
+> security_locked_down(). On kernel_lockdown=integrity systems
+> this bypasses the same restrictions as /dev/mem and PCI config
+> space sysfs.
 > 
-> Signed-off-by: Prike Liang <Prike.Liang@amd.com>
+> Check LOCKDOWN_PCI_ACCESS (matching pci-sysfs) at the entry of every
+> debugfs handler that performs direct register access.
+> 
+> v2: Use consistent check as per previous check to use
+> LOCKDOWN_DEBUGFS(Lijo)
+> 
+> v3: Do not create any entry from amdgpu_debugfs_regs_init() if
+> LOCKDOWN_PCI_ACCESS is active and log once. (Lijo)
+> 
+> Signed-off-by: Asad Kamal <asad.kamal@amd.com>
 > ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h | 58 +++++++++++++++++++++++
->   drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c |  9 ++++
->   2 files changed, 67 insertions(+)
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-> index d13e64a69e25..df98be22f1f5 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-> @@ -578,6 +578,64 @@ TRACE_EVENT(amdgpu_reset_reg_dumps,
->   		      __entry->value)
->   );
->   
-> +DECLARE_EVENT_CLASS(amdgpu_userq_queue,
-> +	    TP_PROTO(struct amdgpu_usermode_queue *queue),
-> +	    TP_ARGS(queue),
-> +	    TP_STRUCT__entry(
-> +			     __field(void *, queue)
-> +			     __field(u64, doorbell_index)
-> +			     __field(int, queue_type)
-> +			     __field(int, state)
-> +			     __field(u32, xcp_id)
-> +			     ),
-> +	    TP_fast_assign(
-> +			   __entry->queue = queue;
-> +			   __entry->doorbell_index = queue->doorbell_index;
-
-
-trace_amdgpu_userq_create_start() is called before this field is set.
-
-> +			   __entry->queue_type = queue->queue_type;
-> +			   __entry->state = queue->state;
-> +			   __entry->xcp_id = queue->xcp_id;
-
-this field seems never set for amdgpu_usermode_queue.
-
-Pierre-Eric
-> +			   ),
-> +	    TP_printk("queue=%p, doorbell=%llu, type=%d, state=%d, xcp_id=%u",
-> +		      __entry->queue, __entry->doorbell_index,
-> +		      __entry->queue_type, __entry->state, __entry->xcp_id)
-> +);
-> +DEFINE_EVENT(amdgpu_userq_queue, amdgpu_userq_create_start,
-> +	     TP_PROTO(struct amdgpu_usermode_queue *queue),
-> +	     TP_ARGS(queue));
-> +DEFINE_EVENT(amdgpu_userq_queue, amdgpu_userq_destroy_start,
-> +	     TP_PROTO(struct amdgpu_usermode_queue *queue),
-> +	     TP_ARGS(queue));
-> +DECLARE_EVENT_CLASS(amdgpu_userq_queue_result,
-> +	    TP_PROTO(struct amdgpu_usermode_queue *queue, int result),
-> +	    TP_ARGS(queue, result),
-> +	    TP_STRUCT__entry(
-> +			     __field(void *, queue)
-> +			     __field(u64, doorbell_index)
-> +			     __field(int, queue_type)
-> +			     __field(int, state)
-> +			     __field(u32, xcp_id)
-> +			     __field(int, result)
-> +			     ),
-> +	    TP_fast_assign(
-> +			   __entry->queue = queue;
-> +			   __entry->doorbell_index = queue->doorbell_index;
-> +			   __entry->queue_type = queue->queue_type;
-> +			   __entry->state = queue->state;
-> +			   __entry->xcp_id = queue->xcp_id;
-> +			   __entry->result = result;
-> +			   ),
-> +	    TP_printk("queue=%p, doorbell=%llu, type=%d, state=%d, xcp_id=%u, result=%d",
-> +		      __entry->queue, __entry->doorbell_index,
-> +		      __entry->queue_type, __entry->state,
-> +		      __entry->xcp_id, __entry->result)
-> +);
-> +DEFINE_EVENT(amdgpu_userq_queue_result, amdgpu_userq_create_end,
-> +	     TP_PROTO(struct amdgpu_usermode_queue *queue, int result),
-> +	     TP_ARGS(queue, result));
-> +DEFINE_EVENT(amdgpu_userq_queue_result, amdgpu_userq_destroy_end,
-> +	     TP_PROTO(struct amdgpu_usermode_queue *queue, int result),
-> +	     TP_ARGS(queue, result));
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+> index 0ce6e2e4342c..5c4d4ff001ea 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+> @@ -26,6 +26,7 @@
+>  #include <linux/kthread.h>
+>  #include <linux/pci.h>
+>  #include <linux/uaccess.h>
+> +#include <linux/security.h>
+>  #include <linux/pm_runtime.h>
+>  
+>  #include "amdgpu.h"
+> @@ -1739,6 +1740,12 @@ int amdgpu_debugfs_regs_init(struct amdgpu_device *adev)
+>  	struct dentry *ent, *root = minor->debugfs_root;
+>  	unsigned int i;
+>  
+> +	if (security_locked_down(LOCKDOWN_PCI_ACCESS)) {
+> +		drm_info(adev_to_drm(adev),
+> +			 "amdgpu: HW debugfs nodes disabled (kernel lockdown)\n");
+> +		return 0;
+> +	}
 > +
->   #undef AMDGPU_JOB_GET_TIMELINE_NAME
->   #endif
->   
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> index 38e310a8694d..9dc6cb579ac7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> @@ -33,6 +33,7 @@
->   #include "amdgpu_userq.h"
->   #include "amdgpu_hmm.h"
->   #include "amdgpu_userq_fence.h"
-> +#include "amdgpu_trace.h"
->   
->   u32 amdgpu_userq_get_supported_ip_mask(struct amdgpu_device *adev)
->   {
-> @@ -509,6 +510,8 @@ amdgpu_userq_destroy(struct amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermode_que
->   	const struct amdgpu_userq_funcs *uq_funcs = adev->userq_funcs[queue->queue_type];
->   	int r = 0;
->   
-> +	trace_amdgpu_userq_destroy_start(queue);
-> +
->   	cancel_delayed_work_sync(&uq_mgr->resume_work);
->   
->   	/* Cancel any pending hang detection work and cleanup */
-> @@ -538,6 +541,7 @@ amdgpu_userq_destroy(struct amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermode_que
->   	amdgpu_bo_unpin(queue->wptr_obj.obj);
->   	amdgpu_bo_unreserve(queue->wptr_obj.obj);
->   	amdgpu_bo_unref(&queue->wptr_obj.obj);
-> +	trace_amdgpu_userq_destroy_end(queue, r);
->   	kfree(queue);
->   
->   	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-> @@ -639,6 +643,7 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
->   	INIT_DELAYED_WORK(&queue->hang_detect_work,
->   			  amdgpu_userq_hang_detect_work);
->   
-> +	trace_amdgpu_userq_create_start(queue);
->   	r = amdgpu_userq_fence_driver_alloc(adev, &queue->fence_drv);
->   	if (r)
->   		goto free_queue;
-> @@ -700,6 +705,7 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
->   		r = amdgpu_userq_map_helper(queue);
->   		if (r) {
->   			drm_file_err(uq_mgr->file, "Failed to map Queue\n");
-> +			trace_amdgpu_userq_create_end(queue, r);
->   			mutex_unlock(&uq_mgr->userq_mutex);
->   			goto erase_doorbell;
->   		}
-> @@ -716,11 +722,13 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
->   		 * This drops the last reference which should take care of
->   		 * all cleanup.
->   		 */
-> +		trace_amdgpu_userq_create_end(queue, r);
->   		amdgpu_userq_put(queue);
->   		return r;
->   	}
->   
->   	amdgpu_debugfs_userq_init(filp, queue, qid);
-> +	trace_amdgpu_userq_create_end(queue, 0);
->   	args->out.queue_id = qid;
->   	return 0;
->   
-> @@ -736,6 +744,7 @@ amdgpu_userq_create(struct drm_file *filp, union drm_amdgpu_userq *args)
->   free_fence_drv:
->   	amdgpu_userq_fence_driver_free(queue);
->   free_queue:
-> +	trace_amdgpu_userq_create_end(queue, r);
->   	kfree(queue);
->   err_pm_runtime:
->   	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
+>  	for (i = 0; i < ARRAY_SIZE(debugfs_regs); i++) {
+>  		ent = debugfs_create_file(debugfs_regs_names[i],
+>  					  S_IFREG | 0400, root,
+> -- 
+> 2.46.0
+> 
+
+Hi,
+
+Lockdown denies opening of debugfs files but those with the
+following conditions :
+
+- The file must only be opened for reading.
+- The file must have mode 00444.
+- The file must not have ioctl methods fops.
+- The file must not have mmap fops.
+
+I might be missing something, but how are you able to write in those ?
+
+Best regards,
+
+Nicolas
