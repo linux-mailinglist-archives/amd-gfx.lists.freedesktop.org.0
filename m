@@ -2,64 +2,150 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id aDscId+9J2qq1QIAu9opvQ
+	id EyPsDyLvJmq0ngIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 09:16:47 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 08 Jun 2026 18:34:42 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 192FC65D1B7
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 09:16:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBB0B658C07
+	for <lists+amd-gfx@lfdr.de>; Mon, 08 Jun 2026 18:34:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("body hash did not verify") header.d=igalia.com header.s=20170329 header.b=s3hds3+p;
+	dkim=pass header.d=intel.com header.s=Intel header.b=jAC9ZxdT;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
+	dmarc=pass (policy=none) header.from=intel.com;
+	arc=reject ("signature check failed: fail, {[1] = sig:microsoft.com:reject}")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4224210E135;
-	Tue,  9 Jun 2026 07:16:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FC7710F375;
+	Mon,  8 Jun 2026 16:34:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3FC410F549;
- Mon,  8 Jun 2026 14:51:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Cc:To:Message-Id:Content-Transfer-Encoding:Content-Type:
- MIME-Version:Subject:Date:From:Sender:Reply-To:Content-ID:Content-Description
- :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=UyJJnCKwCMPPUe8XA6TmvI54zPoKOHcRM8nji9095GM=; b=s3hds3+pHRKOyZK+c0MyNB6FzF
- 59fX+V0CqfWDWuP28rxFVp0apgTuHCHpB8dshIu+Bfea4+z/JkKJ2IB9lZunwfKjlJmTgKU0jG8XL
- dbLHIxxX3roV2clxnNuyJwmLCPssbh/pYdSUF7YBT6USO8qp8iLHGT49W3pg7AkoH2yrLiZJtDeIn
- hznpOmKOpmBJMpFisnAtitOxPkpNp5IFuflDDw6OC09iHMhKFQoBE3HYeG6Ik5C8qrVaRQZ2eL46q
- yEB22k8+/N4fiPAZmb1oHUFtZhzTodChEMZLMPt+tdB0GTaJ6+Wdlj94ZoKgkxoWfkvrIW5UuPvTq
- I2uHWs5w==;
-Received: from 179-125-70-185-dinamico.pombonet.net.br ([179.125.70.185]
- helo=[127.0.0.1]) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wWbJk-00EQkI-SH; Mon, 08 Jun 2026 16:51:09 +0200
-From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-Date: Mon, 08 Jun 2026 11:50:58 -0300
-Subject: [PATCH] amd/amdkfd: initialize profiler_lock mutex earlier
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45B1F10E49B;
+ Mon,  8 Jun 2026 16:34:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780936478; x=1812472478;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=K1iCRAk3umWOFZM2ThvVXTz3YCpC2YDrb7uQU1/ISKA=;
+ b=jAC9ZxdTZXft1zBlJ6MWL+zQmel2Dxi6Mon5TqE2XBb4W7nQYI3RHErm
+ du3foSPct3QC9bK8ioMX/cZgmAkRM7DeSqqJHQ/oP3WWEy2Db9M+Fft0W
+ i+QvRtHFBWe2rEcBLBZhSJq6pCF7MiRUUXdp9gRXQl1egNZ7pHIIUcr4I
+ IM+okuHyw+qBARt0FUjYtJC0f0Ji/LH8OFC8eYfr97W1xP7J1x1rKS50I
+ MQxGK4Skhba+bwwlEEkO1/6h39lW9B1qTPNqpEFqZCT/HyzfCCOV2dIMD
+ hb/LwanTwKgoERWGPwJwnb+L1NebJyoYIehk9CvxUy/O7gVsv9u8aAgas Q==;
+X-CSE-ConnectionGUID: fW5psJEYRCiqlDo/brNwSQ==
+X-CSE-MsgGUID: kCRJs9vhTF+o4WXHieUo6g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="92785293"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="92785293"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 09:34:38 -0700
+X-CSE-ConnectionGUID: +jTpAzDtRwSvaVOQwyONtg==
+X-CSE-MsgGUID: An9DoaoTQzCBTxgMOB0fHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="249888312"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 09:34:38 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 8 Jun 2026 09:34:37 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 8 Jun 2026 09:34:37 -0700
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.31) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 8 Jun 2026 09:34:36 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kDb4T9XOOGd2Xb8m5nUCDC8LfYRnBIgH9TNdxb4yzOaGlk+GqwRVmOAIAI6gV184JvZS6bWK7580WDCDvId/5COIim2rfrO/iTaHCjXgk5GUJPHrIAJ4CT7HRxMhEWa7AJoo99RB8bpt5QRS4rJBEdwF8s5uH7occkbJggKCV9E1Qq0ZKToOX8ySYIlim9XAOuxx9zdkV0beBJ3BpPQSF5GHXd1gvHNoG2qP7VzTi2QItWvUqvkuHfOWz+lP3b7BWelrOzvg9OKQKA+rV7JM4IdOwKvffj76n4tvDnsqTajJv9elvx5/2DQOBkMtT0YKzLvoBb6aM420o0jqvwXK3w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aZtbC+5wd6QuWzZGNGyp3w+se5aik1qngd7bMrOQVQE=;
+ b=F7akdneVRCI7cd5GqdLNTZ6iUxYm3N2984mJtAQCOxemSBU8ErQf4XJp+U7JcUTEjxNnHLvuknUK2Hyzm84pHjXTXVs2ExC5WnDO7RS8gKyoUTwB+8PmOAOk8O2uuH12bp9aymIDXkXXHZstXURpXOQdK0Y9fC59z8+RGU9kkOXPvFr4Cm3VH0ppKKqZo7vahw5S+ncSaajbF3pr872htT9Ub+KypqB789kbR15D1+kocdWMKRciZEwFnGyO1PJHSMcOx0X2v/7fir84pukRIKseM69vVPxnkoQfUtJAZBDDzhdvJ79UTAp4N6NOHP0Z4kBKGsavB7tS6EFt01xpGg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by MW3PR11MB4761.namprd11.prod.outlook.com (2603:10b6:303:53::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.13; Mon, 8 Jun 2026
+ 16:34:34 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::a0e5:e99c:ee7b:620a]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::a0e5:e99c:ee7b:620a%5]) with mapi id 15.21.0092.011; Mon, 8 Jun 2026
+ 16:34:34 +0000
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, "Vitaly
+ Prosyak" <vitaly.prosyak@amd.com>, Vitaly Prosyak <vitaly.prosyak@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Gustavo Sousa
+ <gustavo.sousa@intel.com>, <dri-devel@lists.freedesktop.org>
+Subject: Build of drm-tip broken possibly by commit 40396ffdf612
+Date: Mon, 8 Jun 2026 13:34:31 -0300
+Message-ID: <87y0gpj8iw.fsf@intel.com>
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0242.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a0::7) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260608-amdgpu-mutex-fix-v1-1-f1fdc889369c@igalia.com>
-X-B4-Tracking: v=1; b=H4sIANHWJmoC/yXM3QpAQBCG4VvRHJtaVqPcihwsOxjlp10rJfduc
- fh89b0XeHbCHqrkAseHeFmXiCxNoBvNMjCKjYZc5aRIFWhmO2wB57Dzib2cWGrSZDPVkykh3jb
- Hcf6SdfPbh3bibn87cN8PSqZNIHQAAAA=
-X-Change-ID: 20260604-amdgpu-mutex-fix-73636d10f6a7
-To: Felix Kuehling <Felix.Kuehling@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Benjamin Welton <bewelton@amd.com>, Kent Russell <kent.russell@amd.com>, 
- Yifan Zhang <yifan1.zhang@amd.com>, Perry Yuan <perry.yuan@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, kernel-dev@igalia.com, 
- Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-X-Mailer: b4 0.16-dev-62088
-X-Mailman-Approved-At: Tue, 09 Jun 2026 07:16:41 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|MW3PR11MB4761:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3796873e-2d0e-49d9-d6a8-08dec57bd29b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|11063799006|56012099006|18002099003; 
+X-Microsoft-Antispam-Message-Info: tJVbFVk8jMuSjc9zferN7p4yX211LyNBCTZKOiQ1Df5kVuCyoZsglx9HE2A74ryTOtqpzKzA81njq3WlSAVFtMu7qvzlGdsCyzG5eM4JWHNKy41TCZnDBssTyVyhIyEleqDtayYQV5gF5g5mX6iGxA1huUWrhrD5JLvWe07IZzCQkNz/NRmjIUluXt+WEfx8mCXDrEszh1K5XVHZJwC68FR+ZuaQCqTZMzFw2MpCrw8B96J0zwWh0s4H11GhOZ5qlso6CGLmUC/1VEqe65aZzibVsf/d1LY0x215r5tRSkrDndFSzIbx5GWxyxy8DNEMkNYW2CqzVTKqEYHcY+Cbg4+snNvunN1/I+ya8Y78pHBn7pQ0wQ8cv7C9U3nD+XgDWNPTUATmDZxbAnp3qBABROnctZ/5vKqHfRnu8lMPIyhBFhh5WhNKI7O/KjT0USSOFqp8TCF8qpiuzv4A7dek+PB9CmrQWkvqBiars07scIjcFdPH5pCjChoPsnxiXwYz2H3MoV53Y6DE8Jv28NqQd0x1kd8o5taFRc7dnfjrslxeIXSHm1wGegzzrvZjwYZy51tIovuoaNtWOvL4hgW1rIbcY1++pQQRbM35JBpvQxje+QghOaxD6gTYHh1vXW4YfUy9VF5k6vE0aTh7euPSiw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(11063799006)(56012099006)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ncnYAvMqqHxoxaO3XUxHU/0V6suvxAXacMzxNsQRfArvnjGPmcKXOrWBnU/z?=
+ =?us-ascii?Q?fmaMKorRIf/ncG8niff2450InWOK2udCEon9syDD7qcLFfIamocSfr5Nfx1T?=
+ =?us-ascii?Q?xi4n3H7ujpi4k+l5VuBn1hnqXq19l9CPwK8CrOa3SzyXlD2ysf/Unj3mAYZ7?=
+ =?us-ascii?Q?K4iSKEPmw3R1phoMp7m4gDUHOg1vGQm7pnCzgdG1BvBv9X6cLjOs7fGmE992?=
+ =?us-ascii?Q?tFnsER88tfaFVdUnStS8PSMigtvhiyhX7WrlAAnoSyvqhBOlF8mW10cFNaxh?=
+ =?us-ascii?Q?0kp2wGrPgXJJN7f/pCWyNP3pGvNNblPWKjgZtWZ9QDcNtF3V9X87JntqqD6S?=
+ =?us-ascii?Q?SAWwiFbk3YYCVUIo1hXoDCwOh8Ex9hGaVeEQuQii9Usp9ug8pV7OZf4nkljG?=
+ =?us-ascii?Q?iW/pfI9SokxeITp6zWWR8k5oYZEO9XBBCLZRSanAR148qCfbjK0a33hQU+tN?=
+ =?us-ascii?Q?+l7HFovH5GVT506rtm22vANp5n97J6rzqx3Fxln/Ej26xlIlRi2FE5Xc6sEq?=
+ =?us-ascii?Q?oj/U5wHPw25P/6Gt9/EeVYlxkCiftlQaW1rSdVPOk5HwJWzhJJMxwsd4Rv9L?=
+ =?us-ascii?Q?X0UN5GN5qKV6DTEXzd5uAUH4xJ74pSve/moazJEyBILW5I5UCLgRk5/G7pM2?=
+ =?us-ascii?Q?nv2q9ChZYNx7we3BYCHba0xgHPXb9mNUVvRTvCM0GwWBS8pa4bOUfeahH/57?=
+ =?us-ascii?Q?TmVZWkdsVF/cAbZCOqTLJuU5V/8QHqXMdaiGj2IHkSR3C+N88FymV7f2oaGt?=
+ =?us-ascii?Q?q/Fn2SYuro+SIUwe1V3LoQ3oUDfv7Xyc6+f/NW8+UgAal4aimzRg38wBxKfc?=
+ =?us-ascii?Q?5mBtpnMZGCJYXqIhqFmC8FETPJrEh20C9TfAWTznYog03kY/eRtWPjLfMXpm?=
+ =?us-ascii?Q?7ldjryb/5IUAtIJsHdjrjC5M1YZBJWqjZiXVSNLBpupm3danLzCZPGW48YTx?=
+ =?us-ascii?Q?582rIaDJXCbS11W/0k3l6Z+vfcRj+fsTPf0exXD44cRrHPyZdVRtyIMghW30?=
+ =?us-ascii?Q?+T5URW1zMnwaJhIBpSuOsQ+EpZ+EdsTMm5EQkuL1kFXQK3zmTCEo9oUwRZC0?=
+ =?us-ascii?Q?ecnojRrHg9R6yLfQpGS3s4putK/BKKJvqiJ5+XJFvpHKmZF0ODcbApqrkLA4?=
+ =?us-ascii?Q?/fCzuSDv7cBH+DDOqjEMFb2A7g4j+eLVQpd4RpDQ/0QVGTc7bRGK7i7kfMHV?=
+ =?us-ascii?Q?4PXSFHywPj+KYP5cSuHThkmsQg/K2teuR1c/A2OrflaamulZcRKexX2f5iTs?=
+ =?us-ascii?Q?m3tQIOoXmliVB+FpmLvwaffJ3OdmXH1+kVkaOpxwvLaLcsdQMOrMQx5T50dg?=
+ =?us-ascii?Q?YB5viVtJ3qGFHvXwwVjcNI/hVru5iWTGOO8L6yBPLzpDeT6twRF0rit1dya9?=
+ =?us-ascii?Q?B7Xy0v6hggmeZwKgZWsMh4SGmq4kCEHcZ0rmWDK/v6qvaqZE1kq7FkPYduwc?=
+ =?us-ascii?Q?39FyUXmZNm/ucsDpGNlfbvYfFYnXid/KxMH9GMG7qYntrrFBZmUcqc1IWK3h?=
+ =?us-ascii?Q?XB5NDUFK5sJRSu5b3doo0QGhoOoqihGb9t/ajlmMLGNmgJrEWGQiSRYh0yoR?=
+ =?us-ascii?Q?JuPOxp74WWzfEDR85vWTeAa+xj+Nt0JHZGDQK9PiVuSB2g5t6p+qFkKV+QqP?=
+ =?us-ascii?Q?1zMEP4PdLtfMUc/IrmwOXu3IRhnGikR7X7x47ZI7+Yw23XVOy98S2Ceu4aT9?=
+ =?us-ascii?Q?FYXlUQ2Jqq5+9IDZule7N+S7eNihG9AH8CKz5ZDw90HCbR3FM15uIia3mHi9?=
+ =?us-ascii?Q?0ZNJOSclvA=3D=3D?=
+X-Exchange-RoutingPolicyChecked: PNZ7B5wuDySFK68OtQKx/GPtKF5fIPtqRzzKjCtYdgxHGMHN0wQzPxu/UMghyEBGAw2tu89Gif52fVNy8tLz3bAS7LYeofSW2Jp9VwwrRbEATLl0EjdgYlm3y2J8M8eGXyrZg/m4qqyZeSyNkoCeeMqfCbaG0owRVIs3Ry4LYMMZRkiEO62rdnFfta+lSklZ32qoxHOdCNJKbUCFUDwoJBp4QRQtOJlUgJYukpD5+2YGdpwMJB714ZOuSYyfWmj9ofMYAxT3H+nnVwG+n8/rsfQOiCsd5Y0OQioUuhZjrXta9+l9DmbYUPbZIe5XA8bIFEJH7ob4rI6oAgKSMAQM4A==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3796873e-2d0e-49d9-d6a8-08dec57bd29b
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2026 16:34:34.0162 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MAyQWcPN7LMWsVb2YusOdg+YNO2GHXw+9dZKHd1ZX10uv17tPRcJrFe3+1giy2pHgFuw0i0z2k8d/n/H1xa19w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4761
+X-OriginatorOrg: intel.com
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,155 +160,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.49 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
-	ARC_NA(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cascardo@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gustavo.sousa@intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 192FC65D1B7
+X-Rspamd-Queue-Id: DBB0B658C07
 
-kfd_init_node/kfd_resume will end up calling init_mqd, which uses the
-profiler_lock mutex before it is initialized, resulting in the warning
-below when CONFIG_DEBUG_MUTEXES=y.
 
-Moving the initialization of profiler_lock earlier in kgd2kfd_device_init
-fixes the issue.
+Hey, folks.
 
-[   13.121334] kfd kfd: Allocated 3969056 bytes on gart
-[   13.121439] kfd kfd: Total number of KFD nodes to be created: 1
-[   13.122509] ------------[ cut here ]------------
-[   13.122523] DEBUG_LOCKS_WARN_ON(lock->magic != lock)
-[   13.122524] WARNING: kernel/locking/mutex.c:625 at __mutex_lock+0x623/0x1160, CPU#2: (udev-worker)/598
-[   13.122544] Modules linked in: nft_fib_inet nft_fib_ipv4 nft_fib_ipv6 nft_fib nft_reject_inet nf_reject_ipv4 nf_reject_ipv6 nft_reject nft_ct nft_chain_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 joydev snd_soc_acp5x_mach algif_hash algif_skcipher snd_acp5x_pcm_dma snd_acp5x_i2s af_alg mousedev snd_sof_amd_acp70 ramoops nf_tables reed_solomon bnep snd_sof_amd_acp63 hid_multitouch intel_rapl_msr amdgpu(+) intel_rapl_common snd_sof_amd_vangogh snd_sof_amd_acp snd_sof_pci btusb btrtl snd_sof rtw88_8822ce btintel snd_sof_utils i2c_algo_bit rtw88_8822c kvm_amd btbcm snd_sof_xtensa_dsp rtw88_pci drm_buddy btmtk hid_steam drm_ttm_helper snd_pci_ps snd_hda_codec_atihdmi rtw88_core ttm snd_soc_acpi_amd_match snd_hda_codec_hdmi mac80211 kvm snd_soc_acpi_amd_sdca_quirks ff_memless bluetooth snd_hda_intel libarc4 drm_exec cdc_acm snd_soc_sdca ecdh_generic snd_hda_codec sp5100_tco irqbypass snd_soc_cs35l41_spi snd_acp_pci drm_suballoc_helper aesni_intel snd_soc_cs35l41 snd_soc_cs35l4
- 1_lib drm_panel_backlight_quirks
-[   13.122617]  snd_amd_acpi_mach gf128mul atkbd snd_acp_legacy_common snd_hwdep snd_soc_nau8821 snd_soc_wm_adsp gpu_sched snd_hda_core rapl snd_pci_acp6x cfg80211 libps2 snd_soc_core i2c_piix4 snd_intel_dspcfg amdxcp video vivaldi_fmap snd_compress pcspkr wdat_wdt opt3001 ltrf216a wmi i2c_smbus rfkill cs_dsp drm_display_helper snd_pcm i2c_hid_acpi snd_timer industrialio snd_pci_acp5x i2c_hid snd snd_acp_config cec soundcore snd_soc_acpi 8250_dw ccp mac_hid pkcs8_key_parser crypto_user loop fuse dm_mod nfnetlink zram 842_decompress lz4hc_compress 842_compress overlay ext4 crc16 mbcache jbd2 usbhid vfat fat btrfs xor libblake2b raid6_pq sdhci_pci sdhci_uhs2 serio_raw sdhci xhci_pci cqhci nvme xhci_hcd mmc_core nvme_core i8042 serio spi_amd
-[   13.122778] CPU: 2 UID: 0 PID: 598 Comm: (udev-worker) Not tainted 7.1.0-rc5-g17cdb54644e7 #95 PREEMPT  fe7e422e25ce48c0eeff34bf50e2cbbb74b08f52
-[   13.122792] Hardware name: Valve Jupiter/Jupiter, BIOS F7A0133 08/05/2024
-[   13.122799] RIP: 0010:__mutex_lock+0x62a/0x1160
-[   13.122807] Code: ff e8 ba 2c 87 ff 85 c0 0f 84 95 fa ff ff 8b 05 fc d1 b5 00 85 c0 0f 85 87 fa ff ff 48 8d 3d 5d ae b6 00 48 c7 c6 85 eb 63 a9 <67> 48 0f b9 3a e9 6f fa ff ff 48 8b 7d 80 e8 f3 8a 00 00 41 f7 c5
-[   13.122823] RSP: 0018:ffffcdbdc2567560 EFLAGS: 00010246
-[   13.122830] RAX: 0000000000000000 RBX: ffff8c055f1486d8 RCX: 0000000000000000
-[   13.122837] RDX: 0000000000000001 RSI: ffffffffa963eb85 RDI: ffffffffa9a727f0
-[   13.122843] RBP: ffffcdbdc2567610 R08: ffffffffc1a7c8f0 R09: 0000000000000000
-[   13.122850] R10: ffffcdbdc2567628 R11: 0000000000000002 R12: 0000000000000000
-[   13.122857] R13: 0000000000000002 R14: ffff8c0567139200 R15: 0000000000000000
-[   13.122863] FS:  00007f9e0ffdf8c0(0000) GS:ffff8c08c4cf7000(0000) knlGS:0000000000000000
-[   13.122872] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[   13.122877] CR2: 00007f209b4917c8 CR3: 0000000109705000 CR4: 0000000000350ef0
-[   13.122885] Call Trace:
-[   13.122889]  <TASK>
-[   13.122892]  ? mark_held_locks+0x40/0x70
-[   13.122902]  ? init_mqd+0x140/0x1b0 [amdgpu 124ada0c0ee626a38601e4af30deafe4f3d26a19]
-[   13.123412]  ? lockdep_hardirqs_on+0x78/0x100
-[   13.123424]  ? init_mqd+0x140/0x1b0 [amdgpu 124ada0c0ee626a38601e4af30deafe4f3d26a19]
-[   13.123896]  init_mqd+0x140/0x1b0 [amdgpu 124ada0c0ee626a38601e4af30deafe4f3d26a19]
-[   13.124236]  init_mqd_hiq+0x12/0x30 [amdgpu 124ada0c0ee626a38601e4af30deafe4f3d26a19]
-[   13.124570]  kq_initialize.constprop.0+0x2f3/0x3a0 [amdgpu 124ada0c0ee626a38601e4af30deafe4f3d26a19]
-[   13.124908]  kernel_queue_init+0x44/0x60 [amdgpu 124ada0c0ee626a38601e4af30deafe4f3d26a19]
-[   13.125268]  pm_init+0x70/0x100 [amdgpu 124ada0c0ee626a38601e4af30deafe4f3d26a19]
-[   13.125653]  start_cpsch+0x1d7/0x270 [amdgpu 124ada0c0ee626a38601e4af30deafe4f3d26a19]
-[   13.125994]  kgd2kfd_device_init.cold+0x7a7/0xa02 [amdgpu 124ada0c0ee626a38601e4af30deafe4f3d26a19]
-[   13.126387]  amdgpu_amdkfd_device_init+0x193/0x260 [amdgpu 124ada0c0ee626a38601e4af30deafe4f3d26a19]
-[   13.126727]  amdgpu_device_init.cold+0x18c7/0x1d94 [amdgpu 124ada0c0ee626a38601e4af30deafe4f3d26a19]
-[   13.127118]  amdgpu_driver_load_kms+0x19/0x80 [amdgpu 124ada0c0ee626a38601e4af30deafe4f3d26a19]
-[   13.127412]  amdgpu_pci_probe+0x204/0x440 [amdgpu 124ada0c0ee626a38601e4af30deafe4f3d26a19]
-[   13.127698]  local_pci_probe+0x3c/0x80
-[   13.127706]  pci_call_probe+0x55/0x2e0
-[   13.127712]  ? _raw_spin_unlock+0x2d/0x50
-[   13.127717]  ? pci_match_device+0x157/0x180
-[   13.127722]  pci_device_probe+0x9b/0x170
-[   13.127727]  really_probe+0xd5/0x370
-[   13.127733]  ? __device_attach_driver+0x120/0x120
-[   13.127738]  __driver_probe_device+0x84/0x150
-[   13.127742]  driver_probe_device+0x1f/0xa0
-[   13.127747]  __driver_attach+0xb3/0x1e0
-[   13.127752]  bus_for_each_dev+0x8e/0xe0
-[   13.127757]  bus_add_driver+0x11e/0x200
-[   13.127762]  driver_register+0x72/0xc0
-[   13.127768]  ? nft_reject_icmpv6_code+0xed0/0xed0 [nft_reject 0e902f0803e5bbdfadf527319d5a2d5ea2df373c]
-[   13.127775]  do_one_initcall+0x6e/0x3a0
-[   13.127782]  do_init_module+0x60/0x230
-[   13.127787]  init_module_from_file+0xc4/0xe0
-[   13.127794]  idempotent_init_module+0x11a/0x310
-[   13.127801]  __x64_sys_finit_module+0x71/0xe0
-[   13.127806]  do_syscall_64+0x122/0x710
-[   13.127812]  ? __seccomp_filter+0x42/0x5d0
-[   13.127819]  ? do_syscall_64+0xd1/0x710
-[   13.127824]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
-[   13.127830] RIP: 0033:0x7f9e10860f6d
-[   13.127835] Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 73 ed 0c 00 f7 d8 64 89 01 48
-[   13.127844] RSP: 002b:00007ffc537eaed8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
-[   13.127851] RAX: ffffffffffffffda RBX: 000056344d23c3f0 RCX: 00007f9e10860f6d
-[   13.127855] RDX: 0000000000000000 RSI: 000056344d23dc60 RDI: 000000000000003a
-[   13.127859] RBP: 00007ffc537eaf70 R08: 0000000000000000 R09: 00007ffc537eaf40
-[   13.127863] R10: 0000000000000000 R11: 0000000000000246 R12: 000056344d23dc60
-[   13.127867] R13: 0000000000020000 R14: 000056344d23ab40 R15: 0000000000000000
-[   13.127874]  </TASK>
-[   13.127877] irq event stamp: 603391
-[   13.127880] hardirqs last  enabled at (603391): [<ffffffffa8f105cc>] _raw_spin_unlock_irqrestore+0x4c/0x60
-[   13.127887] hardirqs last disabled at (603390): [<ffffffffa8f10343>] _raw_spin_lock_irqsave+0x53/0x60
-[   13.127892] softirqs last  enabled at (601682): [<ffffffffa8103402>] __irq_exit_rcu+0xf2/0x190
-[   13.127900] softirqs last disabled at (601671): [<ffffffffa8103402>] __irq_exit_rcu+0xf2/0x190
-[   13.127906] ---[ end trace 0000000000000000 ]---
-[   13.127977] amdgpu: Virtual CRAT table created for GPU
-[   13.129101] amdgpu: Topology: Add GPU node [0x1002:0x163f]
-[   13.129117] kfd kfd: added device 1002:163f
+I noticed that local build of drm-tip is broken for me.  The commit
+causing the build failure seems to be 40396ffdf612 ("drm/amdgpu: restart
+the CS if some parts of the VM are still invalidated").  Reverting it
+fixes the build for me, but quite likely reverting is not the right fix
+here, so I'm sending this note to let the experts do the right thing :-)
 
-Fixes: a789761de305 ("amd/amdkfd: Add kfd_ioctl_profiler to contain profiler kernel driver changes")
-Signed-off-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+That's likely unrelated, but I'm using Intel Xe CI's config[1] in my
+local build.
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-index c2c59781feee..8b2039bcbc4d 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -736,6 +736,8 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
- 	int partition_mode;
- 	int xcp_idx;
- 
-+	mutex_init(&kfd->profiler_lock);
-+
- 	kfd->mec_fw_version = amdgpu_amdkfd_get_fw_version(kfd->adev,
- 			KGD_ENGINE_MEC1);
- 	kfd->mec2_fw_version = amdgpu_amdkfd_get_fw_version(kfd->adev,
-@@ -937,7 +939,6 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
- 	svm_range_set_max_pages(kfd->adev);
- 
- 	kfd->profiler_process = NULL;
--	mutex_init(&kfd->profiler_lock);
- 
- 	kfd->init_complete = true;
- 	dev_info(kfd_device, "added device %x:%x\n", kfd->adev->pdev->vendor,
+[1] https://gitlab.freedesktop.org/drm/xe/ci/-/blob/main/kernel/kconfig
 
----
-base-commit: 17cdb54644e7d92b62cff1c4d1bd3d1486515f68
-change-id: 20260604-amdgpu-mutex-fix-73636d10f6a7
-
-Best regards,
---  
-Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-
+--
+Gustavo Sousa
