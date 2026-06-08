@@ -2,62 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id K4UEC969J2qn1QIAu9opvQ
+	id 8kGMEn4cJ2o6sAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 09:16:46 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 08 Jun 2026 21:48:14 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 909B165D1AC
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 09:16:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7B7C65A268
+	for <lists+amd-gfx@lfdr.de>; Mon, 08 Jun 2026 21:48:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=I5CpvjbO;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=zGyT0knC;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F18710E133;
-	Tue,  9 Jun 2026 07:16:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7F2E10F96A;
+	Mon,  8 Jun 2026 19:48:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D093C10F90A;
- Mon,  8 Jun 2026 19:22:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Cc:To:Message-Id:Content-Transfer-Encoding:Content-Type:
- MIME-Version:Subject:Date:From:Sender:Reply-To:Content-ID:Content-Description
- :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=31JmmMTKHzct1nDyUHBaEfHsNN0eM6NOmSqMdavHu+U=; b=I5CpvjbOBOeVFX2nUPWcOkIESe
- MoEym5fMSTo0BjcemHTvD2hZ1x0slMvtlq65iaoL6iIDx1+6oV+/Bm3CMCK30WCI+zQBBJ351xces
- HhccmKmKDW4Z3zrIplUB8wWSQnSN+lbvRvmPDZRp2eJHkdaUcWT6j8obeEVIsTiJ0MiMT4Z/WnlOq
- sZriicTeQoImFxsgUQJ1dji/SKT3xQsvDm6B9L6ukWlfCxjuCBdo/g22KRX1KfDsK7reiBEC0k/ly
- J2C2qpNkCvvZbWdmnTNQ4BnHA23uXLwNp6krP7VZxccUZ4KD4yNgimVOXIR5IWT73Lfhm/HhdUfQA
- 3UocaZRw==;
-Received: from 179-125-70-185-dinamico.pombonet.net.br ([179.125.70.185]
- helo=[127.0.0.1]) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wWfYa-00EY5f-NY; Mon, 08 Jun 2026 21:22:45 +0200
-From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-Date: Mon, 08 Jun 2026 16:22:35 -0300
-Subject: [PATCH] drm/amdgpu: initialize irq.lock spinlock earlier
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011032.outbound.protection.outlook.com [52.101.52.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9940F10F957
+ for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jun 2026 19:48:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XScZ6FRAiW8i+I5Y1ooM5lzwdnQNbrV6mhVDObvwchcSuvnijku1nmg1X4X6e6ZozDbalsBRNDOxrfXcj8WHTeYOCofF6i1wXJcV8TfsiQcwJ5wo+jFn14eTQbdKT+LbEdzgKNLkVGJa9cisyxBRSbYwl1eD8+9kXTbjweQd4qOZsifZH8NEDUBUl2BIImJ72lCVTxLEp6gNy4wXzIXyHdfizFubBkkyVZKrjgPaKQ0DPJc3W/MHaviS/NMge29qDw2Nksk0Ka747y0b8iEQzH0fp8eersFv0lt+DkS0KhoToucOiSwNLhULmZs1F+b2QIzB99VoBUZaSBwy1l5UsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cB2ZTlbdCwr9t+N6DVPmdU5vX3hAq3M02A0ABCOhhR0=;
+ b=YOZBIs53dQRGHMTHdUpiu4pJge8sl6A2wNLNLdwNdd+gXa4L6Cm+O3vxPWSNb+4zT1KzM7KzmfCpxu6J92lOMXjjna1pYq6JkwAYNqjyxa/r0elyCymLBGVh7p75GDSjJfIou88IyyMgQDXODz41OsNsPHg9xCZ2qJTECK5jthrGgxZm/8GYeddSIt/RDkP/o1vFLGCOqbPN5kYI6FEWmB0xMaGp71bdRNMWfgl3g+x0LLTrBz25gczlhDFS4ZYZUBHsCl5+tXGo+MeKa2ysAofK+jUCTvNlhH1vEfkUpQ0lprqLjrGH0nSBftVlBv3FZp0exRWXtmntpjezkHo4dw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cB2ZTlbdCwr9t+N6DVPmdU5vX3hAq3M02A0ABCOhhR0=;
+ b=zGyT0knCOIOBCPpiReE3ozbQabmL8LjWKdmFs+RqP9Ew4WIehkxMfziOU0IZuO8amq4maa/j4ZCOXwAmvMIe2uKy3NSCdXcPWOFW5AQ1o3VlkeCJ4BH0Tv9TgtHJkFWDo18rI+zVYoR7g4xi8Es9F11YTxO31q9pRcmvhnqsVsU=
+Received: from PH8PR05CA0003.namprd05.prod.outlook.com (2603:10b6:510:2cc::24)
+ by PH8PR12MB6674.namprd12.prod.outlook.com (2603:10b6:510:1c1::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.11; Mon, 8 Jun 2026
+ 19:48:01 +0000
+Received: from SA2PEPF00003F65.namprd04.prod.outlook.com
+ (2603:10b6:510:2cc:cafe::5f) by PH8PR05CA0003.outlook.office365.com
+ (2603:10b6:510:2cc::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.9 via Frontend Transport; Mon, 8
+ Jun 2026 19:48:01 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SA2PEPF00003F65.mail.protection.outlook.com (10.167.248.40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.113.7 via Frontend Transport; Mon, 8 Jun 2026 19:48:00 +0000
+Received: from amd-desktop.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Mon, 8 Jun
+ 2026 14:48:00 -0500
+From: Shahyan Soltani <shahyan.soltani@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alexander Deucher <alexander.deucher@amd.com>, Christian Koenig
+ <christian.koenig@amd.com>, Shahyan Soltani <shahyan.soltani@amd.com>
+Subject: [PATCH v2 00/11] drm/amdgpu: refactor monolithic amdgpu.h
+Date: Mon, 8 Jun 2026 15:47:30 -0400
+Message-ID: <20260608194741.1590055-1-shahyan.soltani@amd.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260608-amdgpu-mutex-fix-2-v1-1-1d850180ed19@igalia.com>
-X-B4-Tracking: v=1; b=H4sIAHsWJ2oC/yXMQQqAIBCF4avErBtQA5GuEi0sp5rACs0Iortnt
- fx4vP+CSIEpQl1cEOjgyOuSIcsC+skuIyG7bFBCaaGFQevduCX0aacTBz5RYWWkrTpyRg4C8nE
- LlIcv2rS/Y+pm6ve3BPf9AHPFhzt2AAAA
-X-Change-ID: 20260608-amdgpu-mutex-fix-2-381a3bed81f0
-To: Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Harry Wentland <harry.wentland@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, kernel-dev@igalia.com, 
- Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-X-Mailer: b4 0.16-dev-62088
-X-Mailman-Approved-At: Tue, 09 Jun 2026 07:16:41 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003F65:EE_|PH8PR12MB6674:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7ba566b2-a576-4ad8-ff8f-08dec596d8de
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|1800799024|376014|36860700016|18002099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: o3hmeYkzl81Z69aCd3mJrg7lewf2TQFm5zWUUZ/t+HyJjjVwzrUEbYvReOGtZD6sBLqOmwMer+HUJPFFBS6dIzmue9FWRMJWsZd6BYButAaV5zWy+wykn0+cj9gUne4KcVDMyxkfVbQBQyOmimeCGI61k6wnBuY19iulwfcJQIBJ+i83WqzFhy5nIk55/+n3UiyD3lJiQmQjiojNSEcazYhd5RlW/3I5uSL4PKlzWxMZBfjf+QI9tEPWx2eAPJDQhyyE3xUxnw7XFMEefA8KWEIYyZTQrD3MErOSwpLrf93EJOVbJPc8WVbi/esokthYHG2GkHQHGmZL9gjrdU/f0j0Jue8C3TzHKtOvvEUwe3/N5lLAtWIUFP5FvtiZh/QLHBP/SNDw/DStAdxprCJFvzkQjIbzufBhiAY1iD4jgKjyV8E2MuVqFkzklLgUJxQM/ZTvrS5nJqOxADmv/50GgRIIV2gmDRF0QF1eoqiJ/Q4zua77EiScDqgBJM7/M3kJ+f8wdEC9F8oyuPgidv+bAT5y0yh6lOM8wngohLliiy8f0JmzDVv0X+NAOjy+EOpbThteHZlH1ewqpdkgYYF/kszE10/kQFBRhBkUerMEn3AWLxcFTqzFc8qdZzjtvvp+mcCmjgOc0Btt/aBJYfPkuHJetlQt4HzIRxO2gob5/JGvPWAVJuIXILP1w4lsEak3pEsDBAcn6K/qjLft05ql9XLdRib9ldMjvDmxvH/jcSU=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(376014)(36860700016)(18002099003)(56012099006)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: j4qwLk/MOFUBBefcv3HR3zDjQ2ATQmD/H9WUgXQJgExiQb7R1iLSIR7Bzs3CgDilahz1U7DJghq4bQsrOBNeBykRkW4Fyz1zrwVCtLzTH+rDVJ4ig/8GFq9suB7UFcmYeG5c1xC8662I0c1ea3J2+NOjeXz3Xjq4qsmL+DTxzfDLs27Bk0z4zhJbnxoCV2UrbLHEYjcmvoAsGtBfrjPF3TV0ynsDu4KAtg9vVRQpss5C584a/5NaAd++65NdcOxcBUP2AjpNVSoG6eWUY53hTcAnAGcIcAMzvdFjsXiKdXlSLJsleticb0CqANAXehVlQi0f/W1nWD5Ce0wfjRgEFizAX81ddREI4amr9cgkaXKPcjtl7cUsZEDEzVHRfrLafHd4wp5fuQcLuy4B/1vJvsM/d5dktFcDTmT4MH+Lr3BPxQhnMrAiWFS+IK0VNidi
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2026 19:48:00.7050 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ba566b2-a576-4ad8-ff8f-08dec596d8de
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F65.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6674
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,125 +115,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.49 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cascardo@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[shahyan.soltani@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 909B165D1AC
+X-Rspamd-Queue-Id: E7B7C65A268
 
-If there is an early failure during amdgpu probe, like missing firmware, it
-will end up calling amdgpu_irq_disable_all, which takes irq.lock spinlock
-without it being initialized.
+This patch series refactors amdgpu.h by moving several structures and their
+associated helpers into dedicated or existing header files. This improves
+code organization and makes the structure easier to parse.
 
-Initializing irq.lock earlier at amdgpu_device_init fixes the issue.
+v2:
+ - Moved amdgpu_device_wb_get()/free() into new amdgpu_wb.c file and
+   amdgpu_device_set_uid()/get_uid() into new amdgpu_uid.c file
+   (addressing v1 review feedback)
+ - Removed v1 patches 8, 10, and 11 (addressing v1 review feedback)
+ - Moved the includes of headers amdgpu_uid.h, amdgpu_init_level.h
+   and amdgpu_video_codecs.h out of amdgpu.h into files where they are
+   actually used (addressing v1 review feedback)
 
-[   79.334079] INFO: trying to register non-static key.
-[   79.334081] The code is fine but needs lockdep annotation, or maybe
-[   79.334083] you didn't initialize this object before use?
-[   79.334084] turning off the locking correctness validator.
-[   79.334088] CPU: 2 UID: 0 PID: 1819 Comm: bash Not tainted 7.1.0-rc5-gfd06300b2348 #96 PREEMPT  8e8f461221633dae3c832d6689eaf0546c0ed4cd
-[   79.334092] Hardware name: Valve Jupiter/Jupiter, BIOS F7A0133 08/05/2024
-[   79.334094] Call Trace:
-[   79.334095]  <TASK>
-[   79.334097]  dump_stack_lvl+0x5d/0x80
-[   79.334103]  register_lock_class+0x7af/0x7c0
-[   79.334109]  __lock_acquire+0x416/0x2610
-[   79.334114]  lock_acquire+0xcf/0x310
-[   79.334117]  ? amdgpu_irq_disable_all+0x3b/0xf0 [amdgpu c88bab43d391d519ad0d5c8e5a099b4aceefa180]
-[   79.334503]  ? _raw_spin_lock_irqsave+0x53/0x60
-[   79.334508]  _raw_spin_lock_irqsave+0x3f/0x60
-[   79.334510]  ? amdgpu_irq_disable_all+0x3b/0xf0 [amdgpu c88bab43d391d519ad0d5c8e5a099b4aceefa180]
-[   79.334881]  amdgpu_irq_disable_all+0x3b/0xf0 [amdgpu c88bab43d391d519ad0d5c8e5a099b4aceefa180]
-[   79.335240]  amdgpu_device_fini_hw+0x90/0x32c [amdgpu c88bab43d391d519ad0d5c8e5a099b4aceefa180]
-[   79.335704]  amdgpu_driver_load_kms.cold+0x22/0x44 [amdgpu c88bab43d391d519ad0d5c8e5a099b4aceefa180]
-[   79.336159]  amdgpu_pci_probe+0x204/0x440 [amdgpu c88bab43d391d519ad0d5c8e5a099b4aceefa180]
-[   79.336494]  local_pci_probe+0x3c/0x80
-[   79.336500]  pci_call_probe+0x55/0x2e0
-[   79.336505]  ? _raw_spin_unlock+0x2d/0x50
-[   79.336508]  ? pci_match_device+0x157/0x180
-[   79.336512]  pci_device_probe+0x9b/0x170
-[   79.336516]  really_probe+0xd5/0x370
-[   79.336521]  __driver_probe_device+0x84/0x150
-[   79.336525]  device_driver_attach+0x47/0xb0
-[   79.336528]  bind_store+0x73/0xc0
-[   79.336531]  kernfs_fop_write_iter+0x176/0x250
-[   79.336536]  vfs_write+0x24d/0x560
-[   79.336542]  ksys_write+0x71/0xe0
-[   79.336546]  do_syscall_64+0x122/0x710
-[   79.336550]  ? do_syscall_64+0xd1/0x710
-[   79.336553]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
-[   79.336557] RIP: 0033:0x7f92fd675006
-[   79.336561] Code: 5d e8 41 8b 93 08 03 00 00 59 5e 48 83 f8 fc 75 19 83 e2 39 83 fa 08 75 11 e8 26 ff ff ff 66 0f 1f 44 00 00 48 8b 45 10 0f 05 <48> 8b 5d f8 c9 c3 0f 1f 40 00 f3 0f 1e fa 55 48 89 e5 48 83 ec 08
-[   79.336562] RSP: 002b:00007ffe4fa867a0 EFLAGS: 00000202 ORIG_RAX: 0000000000000001
-[   79.336565] RAX: ffffffffffffffda RBX: 000000000000000d RCX: 00007f92fd675006
-[   79.336567] RDX: 000000000000000d RSI: 000055b2dfce59b0 RDI: 0000000000000001
-[   79.336568] RBP: 00007ffe4fa867c0 R08: 0000000000000000 R09: 0000000000000000
-[   79.336569] R10: 0000000000000000 R11: 0000000000000202 R12: 000000000000000d
-[   79.336570] R13: 000055b2dfce59b0 R14: 00007f92fd7ca5c0 R15: 000055b2dfdbaf70
-[   79.336574]  </TASK>
+Notes:
+   Moving the includes out of amdgpu.h into where they are actually used
+   caused the commits to go into different subsystems like /pm.
+   Dropping patches 9, 10, and 11 is advised if this isn't desirable.
 
-Fixes: 9950cda2a018 ("drm/amdgpu: drop the drm irq pre/post/un install callbacks")
-Signed-off-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c    | 2 --
- 2 files changed, 2 insertions(+), 2 deletions(-)
+Shahyan Soltani (11):
+  drm/amdgpu: move struct amdgpu_sa from amdgpu.h into its own header
+    file
+  drm/amdgpu: move struct amdgpu_wb and helpers into separate files
+  drm/amdgpu: move struct amdgpu_uid and helpers into separate files
+  drm/amdgpu: move struct amdgpu_video_codecs and helpers into header
+    file
+  drm/amdgpu: move struct amdgpu_mqd and helpers into header file
+  drm/amdgpu: move struct amdgpu_init_level and helpers into header file
+  drm/amdgpu: move amdgpu_acpi helpers into new header
+  drm/amdgpu: move amdgpu_allowed_register_entry into
+    amdgpu_reg_access.h
+  drm/amdgpu: include amdgpu_uid.h only where needed
+  drm/amdgpu: include amdgpu_init_level.h only where needed
+  drm/amdgpu: include amdgpu_video_codecs.h only where needed
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 21a3fb574d53..e5a9f6325c4a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3749,6 +3749,8 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 	mutex_init(&adev->gfx.workload_profile_mutex);
- 	mutex_init(&adev->vcn.workload_profile_mutex);
- 
-+	spin_lock_init(&adev->irq.lock);
-+
- 	amdgpu_device_init_apu_flags(adev);
- 
- 	r = amdgpu_device_check_arguments(adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-index 254a4e983f40..40b8506ac66f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-@@ -309,8 +309,6 @@ int amdgpu_irq_init(struct amdgpu_device *adev)
- 	unsigned int irq, flags;
- 	int r;
- 
--	spin_lock_init(&adev->irq.lock);
--
- 	/* Enable MSI if not disabled by module parameter */
- 	adev->irq.msi_enabled = false;
- 
+ drivers/gpu/drm/amd/amdgpu/Makefile           |   3 +-
+ drivers/gpu/drm/amd/amdgpu/aldebaran.c        |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           | 343 +-----------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.h      | 151 ++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  97 +----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c       |   1 +
+ .../gpu/drm/amd/amdgpu/amdgpu_init_level.h    |  51 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c       |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mqd.h       |  75 ++++
+ .../gpu/drm/amd/amdgpu/amdgpu_reg_access.h    |   8 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c     |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sa.h        |  61 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_uid.c       |  75 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_uid.h       |  50 +++
+ .../gpu/drm/amd/amdgpu/amdgpu_video_codecs.h  |  47 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c      |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_wb.c        |  69 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_wb.h        | 100 +++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c       |   1 +
+ drivers/gpu/drm/amd/amdgpu/cik.c              |   1 +
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c         |   1 +
+ drivers/gpu/drm/amd/amdgpu/nv.c               |   1 +
+ drivers/gpu/drm/amd/amdgpu/si.c               |   1 +
+ drivers/gpu/drm/amd/amdgpu/sienna_cichlid.c   |   1 +
+ drivers/gpu/drm/amd/amdgpu/smu_v13_0_10.c     |   1 +
+ drivers/gpu/drm/amd/amdgpu/soc15.c            |   2 +
+ drivers/gpu/drm/amd/amdgpu/soc21.c            |   1 +
+ drivers/gpu/drm/amd/amdgpu/soc24.c            |   1 +
+ drivers/gpu/drm/amd/amdgpu/soc_v1_0.c         |   1 +
+ drivers/gpu/drm/amd/amdgpu/vi.c               |   1 +
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c            |   1 +
+ .../gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c    |   1 +
+ .../drm/amd/pm/swsmu/smu13/smu_v13_0_12_ppt.c |   1 +
+ .../drm/amd/pm/swsmu/smu13/smu_v13_0_6_ppt.c  |   1 +
+ .../drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.c  |   1 +
+ 35 files changed, 721 insertions(+), 432 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_init_level.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_mqd.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_sa.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_uid.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_uid.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_video_codecs.h
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_wb.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_wb.h
 
----
-base-commit: 60dc0946bbad3eef8bc66a5a8b09b98dbc6e09c0
-change-id: 20260608-amdgpu-mutex-fix-2-381a3bed81f0
-
-Best regards,
---  
-Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+-- 
+2.54.0
 
