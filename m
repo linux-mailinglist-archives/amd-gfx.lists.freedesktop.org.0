@@ -2,104 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bhSPNI0PJ2r5qwIAu9opvQ
+	id K4UEC969J2qn1QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 08 Jun 2026 20:53:01 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 09:16:46 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 399E4659E27
-	for <lists+amd-gfx@lfdr.de>; Mon, 08 Jun 2026 20:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 909B165D1AC
+	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 09:16:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=OgT5wj7n;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=I5CpvjbO;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 300B910F8CF;
-	Mon,  8 Jun 2026 18:52:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F18710E133;
+	Tue,  9 Jun 2026 07:16:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012007.outbound.protection.outlook.com [40.107.209.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65DD010F8CF
- for <amd-gfx@lists.freedesktop.org>; Mon,  8 Jun 2026 18:52:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BbWtViHuxa1OzAXmO+HBhiYupW8/cucclH7JtV4NCNW4SPXZgeWqFWn9nmRY2zVEP/zbb9E+fRuGgzCINCg3ne60A+OZ3bH4d5qzasDjUJ5YJgr9yJesc1Ly5hlhVdMgSrdYRmypYV/B1/4LwSg73dLc/txLBkU2c2u8PIZ3oBXQvaLDGQPDTnoX347Ep1VZ8ipySYyqSdbhGYieDVbYI2PBIcDpfUrqkJMmpPwzWAzjFXB7XNeaPozQpDOW/57AVbxTpoa5Deb5030SXvGrAuMrAc6Q40iLhbQ1ByJ2iOg2IHfrbAxxFNSQzjEekPyG5MRgMgvEFW6HueTiTJP45A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CZqKKs6Na5Ovacy9xiSoLiGjOrPBKV9sXXaSDElOsZw=;
- b=MMH+3BZsRN96qlyTCKcfCAoV8GD1kYHEhgI00V2du5EzG1fG7GYbgQDeo/prI3GEC4AVvB0ccOAHRQnfX0sNHqG8jCvOen/gP2JjB+SN+gBEhfrfZNOtz4EwXP1AzuETxmNhJBZINAgQc722xzjD8pr0fCkvSEL/k+xUciYEdAr4Wv1TUzmGsXhgHId6E7GS3LDM2bO5VLrWhOhVTyAbCkgX9VbbvobqQSjxaEjGV12x+hAQm2Z+VsD64p9KcnMa4EtTckRF2r1pNvuYJIv7TtEPfX3BWTiKFIvkgkwpRZGiEd1gNIlH4zeBsSyFYJisRDpVrOqM+FBvThAoH7Tvdw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CZqKKs6Na5Ovacy9xiSoLiGjOrPBKV9sXXaSDElOsZw=;
- b=OgT5wj7nWWejoyF/r82M8gQkZ+vBspZXkGslFU3wjVYmyAXfoNzM19NZS+lwQe1lRFxEm9FzeJRofrldiUcOBhp/NX5QycaUW13ypYml50KgXA5XJZ9vjg2kGHZkUgmwwCEVXwGXKX0iL8SrWp2++wdwpc4Pxun6OHFZNOx/49g=
-Received: from MW4PR03CA0283.namprd03.prod.outlook.com (2603:10b6:303:b5::18)
- by SA1PR12MB7342.namprd12.prod.outlook.com (2603:10b6:806:2b3::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.12; Mon, 8 Jun 2026
- 18:52:50 +0000
-Received: from MWH0EPF000C6187.namprd02.prod.outlook.com
- (2603:10b6:303:b5:cafe::76) by MW4PR03CA0283.outlook.office365.com
- (2603:10b6:303:b5::18) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.92.12 via Frontend Transport; Mon, 8
- Jun 2026 18:52:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- MWH0EPF000C6187.mail.protection.outlook.com (10.167.249.119) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.113.7 via Frontend Transport; Mon, 8 Jun 2026 18:52:49 +0000
-Received: from harish-base-compute.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.41; Mon, 8 Jun 2026 13:52:49 -0500
-From: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
-Subject: [PATCH] drm/amdgpu: Fix kfd_is_locked under VF
-Date: Mon, 8 Jun 2026 14:52:34 -0400
-Message-ID: <20260608185234.503799-1-Harish.Kasiviswanathan@amd.com>
-X-Mailer: git-send-email 2.43.0
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D093C10F90A;
+ Mon,  8 Jun 2026 19:22:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Cc:To:Message-Id:Content-Transfer-Encoding:Content-Type:
+ MIME-Version:Subject:Date:From:Sender:Reply-To:Content-ID:Content-Description
+ :Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=31JmmMTKHzct1nDyUHBaEfHsNN0eM6NOmSqMdavHu+U=; b=I5CpvjbOBOeVFX2nUPWcOkIESe
+ MoEym5fMSTo0BjcemHTvD2hZ1x0slMvtlq65iaoL6iIDx1+6oV+/Bm3CMCK30WCI+zQBBJ351xces
+ HhccmKmKDW4Z3zrIplUB8wWSQnSN+lbvRvmPDZRp2eJHkdaUcWT6j8obeEVIsTiJ0MiMT4Z/WnlOq
+ sZriicTeQoImFxsgUQJ1dji/SKT3xQsvDm6B9L6ukWlfCxjuCBdo/g22KRX1KfDsK7reiBEC0k/ly
+ J2C2qpNkCvvZbWdmnTNQ4BnHA23uXLwNp6krP7VZxccUZ4KD4yNgimVOXIR5IWT73Lfhm/HhdUfQA
+ 3UocaZRw==;
+Received: from 179-125-70-185-dinamico.pombonet.net.br ([179.125.70.185]
+ helo=[127.0.0.1]) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wWfYa-00EY5f-NY; Mon, 08 Jun 2026 21:22:45 +0200
+From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+Date: Mon, 08 Jun 2026 16:22:35 -0300
+Subject: [PATCH] drm/amdgpu: initialize irq.lock spinlock earlier
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000C6187:EE_|SA1PR12MB7342:EE_
-X-MS-Office365-Filtering-Correlation-Id: c3c00f6d-bb0c-4933-e656-08dec58f238a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700016|82310400026|1800799024|11063799006|56012099006|18002099003;
-X-Microsoft-Antispam-Message-Info: 9BbeZLj2DqiZAQJoXw70DVJNjW8ye9dLWzYeF5snNUYPWKoolnmGjsPhZcynZvZ46QAWv/d0XHTKSP3ELxOScBIqfwMha7wm01wjOLHPo6VR5CVrRy9zdGTgNvjrxtnvBTyjGjNGVtVKLK18AIW4WbzT98/G/KehXZydGgsjqOWD+hONgttsWx7NgstkaXaVhZbdRysn94Np7G/k0S6OLpMEKrUijd7QVvPexlcWuKayEfOTLARvb6VuvqO0jJPQJwqpgbGEq9v2yaRxWRRgggaqYm7Nym6tiqr29PA8yd9S1IRbH6iBKYAWyARKO78JGXn3C14Ws48zVgQu+I0DLaJMmOvEAMxv6d2Y1InNoB9LolINrrujClOwhRsHAu8i/qMxUsfYVV0yULTCRu5Q648gNZq6766BH6T7xfUSFUmhfdtqWYKv4F5B0oRz2sKd5gM2bPGiiZjalMqIFXs38r9fV6fn/Sdc+N4S2k44Y0qiG1+Hv6LrUVS9RgRdzQte0WogFD/vzI/0Bhw4nWrz3fVeSfxKYl6ltDHQJXmiOleEN+SUaw0WM0phL9z2jOIThkeVr87tbOkEpI+cyH/5qstqCJPDTKkO4qu2+z+7cQFIwmyjxcDRjh6kX2jDAk9kWPwr/+o40ZHMUdJUFK4ySElmkWQYD5O4YuRKVh+N8SelEyk19Vjq79AY1v+RGpA235lNMyGilwvfBRuH4TIWdiQ+NZ7f3Q6d7uXBIiIqKNc=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(11063799006)(56012099006)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: l9jax2A4srEc31RpEHM+nY5oC24fO4FpbaealxpfqtoKX5nhtrCCoFnLSCBFPgB0VcoRffAbqohlSZ10zmbBDrrbt2czldepojb8cemMro0L+xziGwjWUYcMUllIV/ysTXXRrQaK8BrmzXppxYEn40nZbkZczU/kHboLGpY3wTUHljbhi5Xyw++kqDBZlzZtAKJlbfFHi3GXhG1VFBfP0tok7+iu6K2TJSEA0M2VjoBruKII+xbJUR4rBeTJ+r3lmZH/0Qmmzzaj/9Ay1Adg2Vm/t9qGX0QTCuoMw1E2L7FI4prj1RvRnkO+DLK5WbscP4Ys5wlsw3Z9BMnqE2B1Ie5DpJBzGxDqw8fut3Nx/RstBiIZcnkvEayLdj0rKijkIhxa08xp5UO81EC4jdcy2Bd5rLxs/jHr61ubraCbxVYnj5tONUm/QVEHoF7dXpfR
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2026 18:52:49.9156 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c3c00f6d-bb0c-4933-e656-08dec58f238a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000C6187.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7342
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260608-amdgpu-mutex-fix-2-v1-1-1d850180ed19@igalia.com>
+X-B4-Tracking: v=1; b=H4sIAHsWJ2oC/yXMQQqAIBCF4avErBtQA5GuEi0sp5rACs0Iortnt
+ fx4vP+CSIEpQl1cEOjgyOuSIcsC+skuIyG7bFBCaaGFQevduCX0aacTBz5RYWWkrTpyRg4C8nE
+ LlIcv2rS/Y+pm6ve3BPf9AHPFhzt2AAAA
+X-Change-ID: 20260608-amdgpu-mutex-fix-2-381a3bed81f0
+To: Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Harry Wentland <harry.wentland@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, kernel-dev@igalia.com, 
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+X-Mailer: b4 0.16-dev-62088
+X-Mailman-Approved-At: Tue, 09 Jun 2026 07:16:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,72 +72,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [0.49 / 15.00];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[Harish.Kasiviswanathan@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cascardo@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[igalia.com:-];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 399E4659E27
+X-Rspamd-Queue-Id: 909B165D1AC
 
-kfd_is_locked remains locked, if the guilty job fence signals during the
-reset sequence. In this scenario, hw_reset is skipped and
-amdgpu_device_reset_sriov() which calls amdgpu_amdkfd_post_reset()
-doesn't get called.
+If there is an early failure during amdgpu probe, like missing firmware, it
+will end up calling amdgpu_irq_disable_all, which takes irq.lock spinlock
+without it being initialized.
 
-In bare metal, amdgpu_device_gpu_resume() calls amdgpu_amdkfd_post_reset()
+Initializing irq.lock earlier at amdgpu_device_init fixes the issue.
 
-Call amdgpu_amdkfd_post_reset() under this condition
+[   79.334079] INFO: trying to register non-static key.
+[   79.334081] The code is fine but needs lockdep annotation, or maybe
+[   79.334083] you didn't initialize this object before use?
+[   79.334084] turning off the locking correctness validator.
+[   79.334088] CPU: 2 UID: 0 PID: 1819 Comm: bash Not tainted 7.1.0-rc5-gfd06300b2348 #96 PREEMPT  8e8f461221633dae3c832d6689eaf0546c0ed4cd
+[   79.334092] Hardware name: Valve Jupiter/Jupiter, BIOS F7A0133 08/05/2024
+[   79.334094] Call Trace:
+[   79.334095]  <TASK>
+[   79.334097]  dump_stack_lvl+0x5d/0x80
+[   79.334103]  register_lock_class+0x7af/0x7c0
+[   79.334109]  __lock_acquire+0x416/0x2610
+[   79.334114]  lock_acquire+0xcf/0x310
+[   79.334117]  ? amdgpu_irq_disable_all+0x3b/0xf0 [amdgpu c88bab43d391d519ad0d5c8e5a099b4aceefa180]
+[   79.334503]  ? _raw_spin_lock_irqsave+0x53/0x60
+[   79.334508]  _raw_spin_lock_irqsave+0x3f/0x60
+[   79.334510]  ? amdgpu_irq_disable_all+0x3b/0xf0 [amdgpu c88bab43d391d519ad0d5c8e5a099b4aceefa180]
+[   79.334881]  amdgpu_irq_disable_all+0x3b/0xf0 [amdgpu c88bab43d391d519ad0d5c8e5a099b4aceefa180]
+[   79.335240]  amdgpu_device_fini_hw+0x90/0x32c [amdgpu c88bab43d391d519ad0d5c8e5a099b4aceefa180]
+[   79.335704]  amdgpu_driver_load_kms.cold+0x22/0x44 [amdgpu c88bab43d391d519ad0d5c8e5a099b4aceefa180]
+[   79.336159]  amdgpu_pci_probe+0x204/0x440 [amdgpu c88bab43d391d519ad0d5c8e5a099b4aceefa180]
+[   79.336494]  local_pci_probe+0x3c/0x80
+[   79.336500]  pci_call_probe+0x55/0x2e0
+[   79.336505]  ? _raw_spin_unlock+0x2d/0x50
+[   79.336508]  ? pci_match_device+0x157/0x180
+[   79.336512]  pci_device_probe+0x9b/0x170
+[   79.336516]  really_probe+0xd5/0x370
+[   79.336521]  __driver_probe_device+0x84/0x150
+[   79.336525]  device_driver_attach+0x47/0xb0
+[   79.336528]  bind_store+0x73/0xc0
+[   79.336531]  kernfs_fop_write_iter+0x176/0x250
+[   79.336536]  vfs_write+0x24d/0x560
+[   79.336542]  ksys_write+0x71/0xe0
+[   79.336546]  do_syscall_64+0x122/0x710
+[   79.336550]  ? do_syscall_64+0xd1/0x710
+[   79.336553]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
+[   79.336557] RIP: 0033:0x7f92fd675006
+[   79.336561] Code: 5d e8 41 8b 93 08 03 00 00 59 5e 48 83 f8 fc 75 19 83 e2 39 83 fa 08 75 11 e8 26 ff ff ff 66 0f 1f 44 00 00 48 8b 45 10 0f 05 <48> 8b 5d f8 c9 c3 0f 1f 40 00 f3 0f 1e fa 55 48 89 e5 48 83 ec 08
+[   79.336562] RSP: 002b:00007ffe4fa867a0 EFLAGS: 00000202 ORIG_RAX: 0000000000000001
+[   79.336565] RAX: ffffffffffffffda RBX: 000000000000000d RCX: 00007f92fd675006
+[   79.336567] RDX: 000000000000000d RSI: 000055b2dfce59b0 RDI: 0000000000000001
+[   79.336568] RBP: 00007ffe4fa867c0 R08: 0000000000000000 R09: 0000000000000000
+[   79.336569] R10: 0000000000000000 R11: 0000000000000202 R12: 000000000000000d
+[   79.336570] R13: 000055b2dfce59b0 R14: 00007f92fd7ca5c0 R15: 000055b2dfdbaf70
+[   79.336574]  </TASK>
 
-Signed-off-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
+Fixes: 9950cda2a018 ("drm/amdgpu: drop the drm irq pre/post/un install callbacks")
+Signed-off-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c    | 2 --
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index dc8c650fc341..cefe1e5dd946 100644
+index 21a3fb574d53..e5a9f6325c4a 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -5888,6 +5888,16 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 	if (r)
- 		goto reset_unlock;
- skip_hw_reset:
-+	/*
-+	 * For VF, gpu_resume skips amdgpu_amdkfd_post_reset (normally done
-+	 * inside amdgpu_device_reset_sriov during actual HW reset). Since HW
-+	 * reset was skipped, we must unlock KFD here to undo the kfd_locked++
-+	 * from pre_reset, otherwise KFD stays locked permanently and new
-+	 * process creation fails with "KFD is locked".
-+	 */
-+	if (job_signaled && amdgpu_sriov_vf(adev))
-+		amdgpu_amdkfd_post_reset(adev);
+@@ -3749,6 +3749,8 @@ int amdgpu_device_init(struct amdgpu_device *adev,
+ 	mutex_init(&adev->gfx.workload_profile_mutex);
+ 	mutex_init(&adev->vcn.workload_profile_mutex);
+ 
++	spin_lock_init(&adev->irq.lock);
 +
- 	r = amdgpu_device_sched_resume(&device_list, reset_context, job_signaled);
- 	if (r)
- 		goto reset_unlock;
--- 
-2.43.0
+ 	amdgpu_device_init_apu_flags(adev);
+ 
+ 	r = amdgpu_device_check_arguments(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
+index 254a4e983f40..40b8506ac66f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
+@@ -309,8 +309,6 @@ int amdgpu_irq_init(struct amdgpu_device *adev)
+ 	unsigned int irq, flags;
+ 	int r;
+ 
+-	spin_lock_init(&adev->irq.lock);
+-
+ 	/* Enable MSI if not disabled by module parameter */
+ 	adev->irq.msi_enabled = false;
+ 
+
+---
+base-commit: 60dc0946bbad3eef8bc66a5a8b09b98dbc6e09c0
+change-id: 20260608-amdgpu-mutex-fix-2-381a3bed81f0
+
+Best regards,
+--  
+Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 
