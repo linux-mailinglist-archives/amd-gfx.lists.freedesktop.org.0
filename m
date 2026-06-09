@@ -2,85 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JWyjBmgjKWp2RQMAu9opvQ
+	id 7noHM14jKWpjRQMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 10:42:16 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 10:42:06 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B787966754C
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 10:42:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55C70667510
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 10:42:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=zohomail header.b=TZOtp8AQ;
+	dkim=pass header.d=collabora.com header.s=mail header.b=ckboBTg9;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	arc=pass ("zohomail.com:s=zohoarc:i=1")
+	dmarc=pass (policy=none) header.from=collabora.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE88210E820;
-	Wed, 10 Jun 2026 08:42:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89EBE10E805;
+	Wed, 10 Jun 2026 08:42:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7465E10E5E6;
- Tue,  9 Jun 2026 12:48:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1781009320; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=GH7myePk3LRGsbgAmGXuH3EGnYY5p1aWd2TQOT9JXuNCUb2ZaygjDvf3dpXQXiTxD7g09h+g3Yykx1HLZ7JuD9aGEDbD0hWm7aG1DG7oySA9Z0Q3gzy2q8Ddz9Z6BYPyevKS+HDL60WJ0lqlz/ZiwOmSNmwYPKfJFAiEvTIsEW0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1781009320;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=62KYxCZxFK08w+RoMa7NxzfH3ErdgYCWI77kkaQwXBw=; 
- b=abLDcoRckTiNhs1dSvBk8+q1eGiXMBaqLVAARsf1J9WRzKtFKEAuL8ksgwAczZnQSav7qXoxC5DHlkcAEnzJiNLjWpmaUk+tN+yR21EOMeUcRlvMNDL8d8jB5xIiBhA8eOPlO4CxxNDOAqjhnmKxkMir8JhuUoxsPp8UsyjmV2E=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1781009320; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=62KYxCZxFK08w+RoMa7NxzfH3ErdgYCWI77kkaQwXBw=;
- b=TZOtp8AQuNu7JEwZOdLH8trhDXm8lhVECu/0faPGLeeugrfwxkljmmyY9YA85Lta
- FuIWuNjs9NNPEMA3Q51HXgQfvrv+f9bqgn6tRkRbDGHUOocl0uMHbbDbTsr60KnpDmp
- 4dRiEFGWBdo3AZcYj1qN3Ryy+N3BjVFKann7zHLM=
-Received: by mx.zohomail.com with SMTPS id 1781009319488398.85945429547075;
- Tue, 9 Jun 2026 05:48:39 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Tue, 09 Jun 2026 14:44:15 +0200
-Subject: [PATCH v17 28/28] drm/i915/dp: Implement "color format" DRM property
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E34BF10E338;
+ Tue,  9 Jun 2026 13:53:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1781013220;
+ bh=L98cR/ByoGK9e175bYrq4L47hW2opnbC3z5psUrV550=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=ckboBTg9fcyqrbuG3aksVjfwbRoKQ/Dj5BOYDQ4Wat1Tz2/VcmfxWTHNhmmqH/lNJ
+ GmGV0GLMIK1qPDXWpTLMCZ07zVnu0En263ZErGJG7Bpub6yUZ6kUmfCWOUD2ket3UG
+ 6S/qoua/fT9gIMEJy95G9pSfZZaVwtzPXEPDQPw/6Wzsi9p6dBv9mI51vjsQWRxXGy
+ JoKcLsYLphbtXFX2OpU5uT2qIz9hyHR1NCDFmV1NbBBrKk8AWSZhV8GOP+8hvH5z1v
+ c91vc+ZQiZ27nPPU79OKWN5BEEukqGfUIVIKjuy3yzBx8A27h3ebIwzR5KL3eK8kdk
+ tH4KOWBXhoMrQ==
+Received: from fluorite (unknown [100.64.0.208])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: pq)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 8F93F17E0433;
+ Tue,  9 Jun 2026 15:53:39 +0200 (CEST)
+Date: Tue, 9 Jun 2026 16:53:06 +0300
+From: Pekka Paalanen <pekka.paalanen@collabora.com>
+To: Michel =?UTF-8?B?RMOkbnplcg==?= <michel.daenzer@mailbox.org>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, Alex
+ Deucher <alexander.deucher@amd.com>, Christian =?UTF-8?B?S8O2bmln?=
+ <christian.koenig@amd.com>, Ville =?UTF-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>, Daniel Stone <daniels@collabora.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, kernel@collabora.com, Derek Foreman
+ <derek.foreman@collabora.com>, Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v5 0/3] Add "link bpc" DRM property
+Message-ID: <20260609165306.67332621@fluorite>
+In-Reply-To: <7ad74724-9233-44ed-9b54-4c88a6a4f255@mailbox.org>
+References: <20260319-link-bpc-v5-0-5306cd04a708@collabora.com>
+ <8676926.T7Z3S40VBb@workhorse>
+ <eff61423-a854-44c1-8634-30e2bd61e005@mailbox.org>
+ <4265353.aeNJFYEL58@workhorse>
+ <254c20a4-cce3-4c8e-9902-514586f3e694@mailbox.org>
+ <20260326155305.736b4e64@fluorite>
+ <47325395-3790-4cb4-8efd-84a3d8ddb80c@mailbox.org>
+ <20260331153805.376486e2@fluorite>
+ <d9abba15-382d-4bc1-a58a-71bb8413eeac@mailbox.org>
+ <20260331172105.271c677c@fluorite>
+ <7ad74724-9233-44ed-9b54-4c88a6a4f255@mailbox.org>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260609-color-format-v17-28-35739b5782cc@collabora.com>
-References: <20260609-color-format-v17-0-35739b5782cc@collabora.com>
-In-Reply-To: <20260609-color-format-v17-0-35739b5782cc@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
- Daniel Stone <daniel@fooishbar.org>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-doc@vger.kernel.org, wayland-devel@lists.freedesktop.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.15.2
+Content-Type: multipart/signed; boundary="Sig_/QAc_Qv+y6AjbFFs+expgZaA";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-Mailman-Approved-At: Wed, 10 Jun 2026 08:41:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,147 +87,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+X-Spamd-Result: default: False [-2.91 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,fooishbar.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[40];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[collabora.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[pekka.paalanen@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,fooishbar.org:email,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:from_mime,mailbox.org:email,fluorite:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B787966754C
+X-Rspamd-Queue-Id: 55C70667510
 
-Implement the "color format" DRM property for DP. The values of the
-property include RGB, YCbCr420, YCbCr444 and Auto. Auto will pick RGB,
-with a fallback to YCbCr420.
+--Sig_/QAc_Qv+y6AjbFFs+expgZaA
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-The mask of supported formats by the source exposed by the property is
-an optimistic scenario, as specific DFP-related caveats can't be
-established before an EDID is present.
+On Wed, 1 Apr 2026 09:46:08 +0200
+Michel D=C3=A4nzer <michel.daenzer@mailbox.org> wrote:
 
-Should the explicitly requested color format not be supported by the
-sink (or by the source in combination with the sink), then an error is
-returned to userspace, so that it can make a better choice.
+> On 3/31/26 16:21, Pekka Paalanen wrote:
+> > On Tue, 31 Mar 2026 14:56:22 +0200
+> > Michel D=C3=A4nzer <michel.daenzer@mailbox.org> wrote: =20
+> >> On 3/31/26 14:38, Pekka Paalanen wrote: =20
+> >>> On Tue, 31 Mar 2026 10:01:59 +0200
+> >>> Michel D=C3=A4nzer <michel.daenzer@mailbox.org> wrote:   =20
+> >>>> On 3/26/26 14:53, Pekka Paalanen wrote:   =20
+> >>>>> On Tue, 24 Mar 2026 17:44:21 +0100
+> >>>>> Michel D=C3=A4nzer <michel.daenzer@mailbox.org> wrote:
+> >>>>>      =20
+> >>>>>> * There's no clear use case.
+> >>>>>>
+> >>>>>> This is generally a requirement for new KMS UAPI.
+> >>>>>>
+> >>>>>> The practical usefulness of the corresponding weston MR is dubious
+> >>>>>> per the concern above.     =20
+> >>>>>
+> >>>>> I think the example of RGB 10 bpc to be degraded to YCbCr 10 bpc
+> >>>>> rather than RGB 8 bpc is an excellent use case.     =20
+> >>>>
+> >>>> This series and the corresponding Weston MR aren't enough to address
+> >>>> that use case though, are they? All they achieve is logging a
+> >>>> potentially misleading warning.
+> >>>>
+> >>>> It might make sense to combine this series and the Weston MR with
+> >>>> whatever else is needed for that use case.   =20
+> >>>
+> >>> What do you believe is missing?   =20
+> >>
+> >> For the stated use case, e.g. a mechanism to control RGB vs YCbCr? =20
+> >=20
+> > There is no need for that. Currently the driver chooses the color model
+> > and depth on its own. We just want to make sure it's not too low. =20
+>=20
+> What can be done when it's too low though?
 
-Reviewed-by: Daniel Stone <daniel@fooishbar.org>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 61 ++++++++++++++++++++++++++++++---
- 1 file changed, 57 insertions(+), 4 deletions(-)
+Notify the end user that their system is not performing up to their
+parameters. They may need to consider changing hardware.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 7c69d3badf9f..8c189e784adb 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3434,10 +3434,10 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
- }
- 
- static int
--intel_dp_compute_formats(struct intel_encoder *encoder,
--			 struct intel_crtc_state *crtc_state,
--			 struct drm_connector_state *conn_state,
--			 bool respect_downstream_limits)
-+intel_dp_compute_formats_auto(struct intel_encoder *encoder,
-+			      struct intel_crtc_state *crtc_state,
-+			      struct drm_connector_state *conn_state,
-+			      bool respect_downstream_limits)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-@@ -3473,6 +3473,34 @@ intel_dp_compute_formats(struct intel_encoder *encoder,
- 	return ret;
- }
- 
-+static int
-+intel_dp_compute_formats(struct intel_encoder *encoder,
-+			 struct intel_crtc_state *crtc_state,
-+			 struct drm_connector_state *conn_state,
-+			 bool respect_downstream_limits)
-+{
-+	switch (conn_state->color_format) {
-+	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-+		return intel_dp_compute_output_format(encoder, crtc_state, conn_state,
-+						      respect_downstream_limits,
-+						      INTEL_OUTPUT_FORMAT_RGB);
-+	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
-+		return intel_dp_compute_output_format(encoder, crtc_state, conn_state,
-+						      respect_downstream_limits,
-+						      INTEL_OUTPUT_FORMAT_YCBCR444);
-+	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
-+		return intel_dp_compute_output_format(encoder, crtc_state, conn_state,
-+						      respect_downstream_limits,
-+						      INTEL_OUTPUT_FORMAT_YCBCR420);
-+	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-+		return intel_dp_compute_formats_auto(encoder, crtc_state, conn_state,
-+						     respect_downstream_limits);
-+	default:
-+		MISSING_CASE(conn_state->color_format);
-+		return -EINVAL;
-+	}
-+}
-+
- void
- intel_dp_audio_compute_config(struct intel_encoder *encoder,
- 			      struct intel_crtc_state *pipe_config,
-@@ -7027,6 +7055,29 @@ intel_dp_has_gamut_metadata_dip(struct intel_encoder *encoder)
- 	return false;
- }
- 
-+static void
-+intel_dp_attach_color_format_property(struct intel_dp *intel_dp)
-+{
-+	struct intel_connector *connector = intel_dp->attached_connector;
-+	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-+	unsigned long fmts = BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444);
-+	bool has_pcon = false;
-+
-+	if (!connector)
-+		return;
-+
-+	if (dig_port && intel_bios_encoder_is_lspcon(dig_port->base.devdata))
-+		has_pcon = true;
-+
-+	if (has_pcon || source_can_output(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR420))
-+		fmts |= BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420);
-+
-+	if (has_pcon || source_can_output(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR444))
-+		fmts |= BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444);
-+
-+	drm_connector_attach_color_format_property(&connector->base, fmts);
-+}
-+
- static void
- intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *_connector)
- {
-@@ -7059,6 +7110,8 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *_connec
- 
- 	if (HAS_VRR(display))
- 		drm_connector_attach_vrr_capable_property(&connector->base);
-+
-+	intel_dp_attach_color_format_property(intel_dp);
- }
- 
- static void
 
--- 
-2.54.0
+Thanks,
+pq
 
+> The only thing I can see is setting a higher "max bpc" value. If
+> that's acceptable and helps though, why was the lower value set in
+> the first place? (Otherwise the weston MR doesn't log the warning)
+>=20
+>=20
+> I feel like I'm still missing a piece of the picture for the
+> practical use.
+>=20
+
+--Sig_/QAc_Qv+y6AjbFFs+expgZaA
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmooGsIACgkQI1/ltBGq
+qqf5EQ/+LHtQAm7P+Dsc4MhTs4n0DBDmz7WmYgtQe22U7nQ4493kVDGqX8O+YFFn
+DemxD/4lsXAVQPi8OEFAGtb/mdJbmJ6g+RV5tBqWtaCxU5LJ+ND8ZAhJnk4WPjOV
+lAgPHZf8X0iavtWm4yVWvKOsSlNI/+AK+FTSQui7qKmv96ghVdIRZz+zR6/+JmD4
++0rYGSngrpDb63vUzuxXWBpAe8IsicYVghegcHIRbvlHyJ0rc9x/P2LxMKu4Zvbl
+Rd8QUSW+qhzmzay0hsWkJ0bgFRNVGcmXW+KJoOg1381gqhi8I+BEAaKMAuY4kjMv
+5PWBGX/4F73j2MQJzpmDnIDynumxC0jojOS5e7kAaC5tLuEkDgBgRInmgoY3TTVx
++sO5jVhQeQpkpqXYBZnR2zCYP5Ql/wiQH3B89dkylAQkV1OJVUoDRuKGUjrA2sI5
+phB49sfmUNGX/6XVjAA+NUhD73t2LUtE3u577zFBLoGaoYwJbAAyewmpV3cl4zP9
+llDH80zIVIQy9AUWYKXq0lgpXEdNNVLRK5uqTzh8juvbcA2cAFgeLNSl9D8H18Ud
+Gi1QYLl8BJhWgHpUBWW1qNpgEQI6bk9Awq2gXmeoXNNeCnI3EhPOZXcIATJwuaXy
+cwd/a2UFifd40zNkLfNiUvPUH/GZ8p2KQZr17taGjNsnaAquy40=
+=NrJS
+-----END PGP SIGNATURE-----
+
+--Sig_/QAc_Qv+y6AjbFFs+expgZaA--
