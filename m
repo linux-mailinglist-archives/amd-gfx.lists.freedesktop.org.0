@@ -2,56 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NF0NFgIsKGoD/gIAu9opvQ
+	id X473FmEjKWprRQMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 17:06:42 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 10:42:09 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABCF466184C
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 17:06:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B96E8667524
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 10:42:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=hV3VxHm8;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Vq4v6QBE;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("google.com:s=arc-20240605:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41F7910E313;
-	Tue,  9 Jun 2026 15:06:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A1CA10E812;
+	Wed, 10 Jun 2026 08:42:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A65B10E313
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 15:06:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=WoUs1jf/TmNkltHRt4RM2bMkVEtw0ppoc5BSkY3uzlk=; b=hV3VxHm8B6Lm3pd6ukm6SMBhLf
- eybiXotb5bBTxzhO7x47FaB1cnSRG0+Ky6ZAgW74fX0yGFjjfrIfogQxOviL6gl6eRY+6JKgEo/pK
- TdUFQGSWromAaXWFhI8j6TGuskwt8wXUfjo42Lh9yRu+O/7MwMvUwovRPlHQv9+RBENLL/bNVKlmc
- 6hfqXqZhEGlLKTsbm1rj3+LdZpNXAJeaUSQ6XEF+AxrfFwVSJUr6vEMkdX1lZoeHVz6mbs4xlJP7t
- wX3Jhgj2gFVKyd4sD/NuSc3MgWDx7N/BaV/8IuYauxJeHfYMYPhg2eiSQtzgx6iaHtuRTAby+z0tT
- O/H6BkMA==;
-Received: from [90.240.106.137] (helo=[192.168.0.116])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1wWy2F-00F2FM-JH; Tue, 09 Jun 2026 17:06:35 +0200
-Message-ID: <8693b119-f870-43eb-ac8d-f4c69419693e@igalia.com>
-Date: Tue, 9 Jun 2026 16:06:34 +0100
+Received: from mail-dy1-f178.google.com (mail-dy1-f178.google.com
+ [74.125.82.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41C6210E315
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 15:30:26 +0000 (UTC)
+Received: by mail-dy1-f178.google.com with SMTP id
+ 5a478bee46e88-3074adb8fcaso9886906eec.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 09 Jun 2026 08:30:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781019025; cv=none;
+ d=google.com; s=arc-20240605;
+ b=HaBuT3k8Glm+1/MBq0rnjsQBE7rCUZrMZDJgVBL6xMAkObKg9DH/3sukBJ+5aEz5a9
+ nh8k8SrEzudtpEM7ciQpJlvdYWoG4jLyAz66UBQMdtJ+2KMDxGBXgC2i9+ZuWa4vQ2f4
+ rh7JXYgapuhVYoCDgeggw1ja+UC+Kx1ft+320nMa1sEG8N3HHOt7d5hP4Pan7VbtbomA
+ 1OAfFJw+xo0SxVbzRWcEhWmP01V0c6TNysBGnDXGOPyE7VBZ/qG8/+pEIH3gGcaamtYz
+ IznUWxOBmUnKiuCYe4S2Yyd5ZgwEFSzjhnAdIel1Kouq/fj+Qk8j07MkOQtBAUnS8vLx
+ mBhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=vJU+o++m0aasR83bRIxN574z9aspy1ro3TGM/ArKaY4=;
+ fh=GC3O+tR+Guc3Z7Kqv65aKoK9ZqMprSiuaQe4yMKJTUg=;
+ b=i/3yiG0tT2UEygm/xd4Zpk6BVKTrvBMDQVW/Th2wn8RMWTqsLN2Xl2qg7kjRSuCVfd
+ Uoqm8yaOLo6Oipitx7qKyvHRYS2om3mSfcFXMEgNB1MOOs9cXbFf14r29SnrZLWrLZZY
+ wdwwQNWZXmwe0jdvclb71J0yeWW3T/BkeOwy0uOX2ugJOaWPIzpjpB67F0x4LfHJVBoo
+ r2EDTGgPo1BRO2FWLDzwRXtujjaV+IlkpdayZGYXByFfYaO/9L59vbYuFur1feQkBxXK
+ KFd3iG6dD66fFqwQUeryeduBehyKJjjLx6AeIoSU94ZgqR657PEs5D10bKjyHaX7+YpL
+ QMMQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1781019025; x=1781623825; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=vJU+o++m0aasR83bRIxN574z9aspy1ro3TGM/ArKaY4=;
+ b=Vq4v6QBEBboFQPVTXbYNm6DI7GbHESlpjC1Oxa95ZCIysVCuyMqxdEH/fMF0uZELCZ
+ hsCwX0fa15ahIOk9MszVFklQf4iK/iUIWWwyqxPQnm8BhhbZUQBI5DKWUAhvY0ddV6Q0
+ rFqfajeOmYbfIoY3EAPdgK+HP0HYveuGp/0YfLFxLU3Wvet2EccCiw59HS1tnEvYSey3
+ nJDYSvYH22wecN9pgMpsYT9rtJ15YeZhmUwAIa7mHERSmJnhDUo/bbMstTZBIypUumt3
+ 1OQoKZzlKaj02MDkJ4xzstbS1CMoXxZzuowIJC0rY+nP5jbQhAS6se4t9av3ycvbA7eA
+ Omuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1781019025; x=1781623825;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=vJU+o++m0aasR83bRIxN574z9aspy1ro3TGM/ArKaY4=;
+ b=Goh/yinP+sDOJvus1W1tC/CA8S8cYBU/tO0pZL3QLkHPbSutqayqd2BG/0U2F37A/8
+ yky7AL8fp4XM+WCJSNqixWhZA94No9Fg/A5wAppw5qCAYe8wIYxl3Mp0zkmYVQOa8LFn
+ t8sni4h54g7XpSonrqoTtWDecd8EatugqGbrJU4VX2E2enLK5FPcOMDPvDJEvNLfbiqq
+ D72ahcnqtuKIv3rR7A2XcuG3yZWnsOgccZh5nJ5NRgn4HvnLcYKxwQkcwi11V+yp5Qvu
+ Vy0HF3tSFLT0Wvbfm7k/DxVjsqAdQjGqOhiIjDni4m9K5z0wxGVsE8M04xKcdcmUmfUn
+ ZLrA==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/MGFmGcXfc45L05LRgTNQfIVm0JUJf7QrihY5Kt9TRhFckfoSzqvMzrFJ3QXnl52YgINysvsUV@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx4TDeRSlILNrQhD0yUoslcmZgCj/jP+T6CIjbCQLcSTzUBppdZ
+ Hu1+gsKvLbwNS/bIYTl8N806ueYlX4aFqQdEoRIPF2tgx5MNm2NMwEsRmQaWGHEfO8/PQmvKVky
+ cFH/gnGH96KsDhk00F/6WvNBC6Il1N8g=
+X-Gm-Gg: Acq92OEmWlHGwI7ml3KmtcwycwLp4scinrCmcBRikAIxHC4Ttk0OazKx/HoqAo4+Qwa
+ um2ERiUs3p9fAyOjXZ5HcNzhSY5RPYBqw9ZhkJZO9nUPiGklbbNFwQKVjBUgoVpny8iAZxf9iVX
+ W0dRh23Lr6HCSKcIyTPyB4PDGrtnXsAAhirXRRqnBQ5wP6/bQOTXd72PK9JK2S9CSB6hkB69hQA
+ NT69RJJ6rLp722EtIT1q/jDmqMUcYJSmESsO8pZBDekGvrOVA5jpyXQfHJY+P8mX/Z4af8OhbVT
+ wDt8ctn4XMmMfUmkoo0=
+X-Received: by 2002:a05:7300:730a:b0:307:2e1c:17f1 with SMTP id
+ 5a478bee46e88-3077b1f6abcmr12851372eec.25.1781019025332; Tue, 09 Jun 2026
+ 08:30:25 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/amdgpu: Choose SOC15 RLC register read write
- functions at init time
-To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexdeucher@gmail.com>
-Cc: kernel-dev@igalia.com
-References: <20260424125003.52366-1-tvrtko.ursulin@igalia.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20260424125003.52366-1-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20260604063943.1412955-1-lgs201920130244@gmail.com>
+ <42b82b4f-43ce-4943-bc64-d7386998473c@amd.com>
+In-Reply-To: <42b82b4f-43ce-4943-bc64-d7386998473c@amd.com>
+From: Guangshuo Li <lgs201920130244@gmail.com>
+Date: Tue, 9 Jun 2026 23:30:11 +0800
+X-Gm-Features: AVVi8CcZdB41eilVcYzozusawa1g5tNYIXVlt10eHy4mOCLoqWYvJODpLiDSN_s
+Message-ID: <CANUHTR9YUmkjrDSGL0uSfHHGxhGtOgfPuF2OudbjTyrCAvd1sA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu/userq: clean up VA state on create failure
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Prike Liang <Prike.Liang@amd.com>, 
+ Sunil Khatri <sunil.khatri@amd.com>, "Jesse.Zhang" <Jesse.Zhang@amd.com>, 
+ Lijo Lazar <lijo.lazar@amd.com>, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Wed, 10 Jun 2026 08:41:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,269 +116,199 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.49 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[lists.freedesktop.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:Prike.Liang@amd.com,m:sunil.khatri@amd.com,m:Jesse.Zhang@amd.com,m:lijo.lazar@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[lgs201920130244@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lgs201920130244@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,igalia.com:email,igalia.com:mid,igalia.com:from_mime]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: ABCF466184C
+X-Rspamd-Queue-Id: B96E8667524
 
+Hi Christian,
 
-+ Alex - wondering you you are interested in this type of a thing or I 
-should drop it? Unless I am missing something (could be, it was long 
-time ago when I first wrote it), it is a nice .text saving of pointless 
-conditionals.
+Thanks for pointing this out.
+
+On Fri, 5 Jun 2026 at 17:32, Christian K=C3=B6nig <christian.koenig@amd.com=
+> wrote:
+>
+> On 6/4/26 08:39, Guangshuo Li wrote:
+> > amdgpu_userq_input_va_validate() is not a side-effect-free validator.
+> > When it succeeds, it allocates a VA cursor, links it on
+> > queue->userq_va_list and marks the corresponding bo_va as userq mapped.
+>
+> That was already removed, you are looking at outdated code.
+>
+> Regards,
+> Christian.
+>
+> >
+> > The user queue create path validates queue_va, rptr_va and wptr_va with=
+ a
+> > short-circuit OR expression. If an earlier validation succeeds and a
+> > later validation fails, the error path frees the queue directly. The VA
+> > cursor added by the successful validation is leaked and
+> > bo_va->userq_va_mapped remains set even though no user queue was create=
+d.
+> >
+> > The same stale VA tracking state can also survive later create failures
+> > after all VA validations have succeeded, because those paths also free
+> > the queue without unwinding queue->userq_va_list.
+> >
+> > Route the create error paths through common unwind labels and call
+> > amdgpu_userq_buffer_vas_list_cleanup() before freeing the queue. This
+> > releases any VA cursors added during validation and clears the stale
+> > userq VA mapping state.
+> >
+> > Fixes: 9e46b8bb0539 ("drm/amdgpu: validate userq buffer virtual address=
+ and size")
+> > Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 32 +++++++++++------------
+> >  1 file changed, 15 insertions(+), 17 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/dr=
+m/amd/amdgpu/amdgpu_userq.c
+> > index 0a1b93259887..dba0f786ae4a 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> > @@ -826,17 +826,15 @@ amdgpu_userq_create(struct drm_file *filp, union =
+drm_amdgpu_userq *args)
+> >             amdgpu_userq_input_va_validate(adev, queue, args->in.rptr_v=
+a, AMDGPU_GPU_PAGE_SIZE) ||
+> >             amdgpu_userq_input_va_validate(adev, queue, args->in.wptr_v=
+a, AMDGPU_GPU_PAGE_SIZE)) {
+> >                 r =3D -EINVAL;
+> > -               kfree(queue);
+> > -               goto unlock;
+> > +               goto free_queue;
+> >         }
+> >
+> >         /* Convert relative doorbell offset into absolute doorbell inde=
+x */
+> >         index =3D amdgpu_userq_get_doorbell_index(uq_mgr, &db_info, fil=
+p);
+> >         if (index =3D=3D (uint64_t)-EINVAL) {
+> >                 drm_file_err(uq_mgr->file, "Failed to get doorbell for =
+queue\n");
+> > -               kfree(queue);
+> >                 r =3D -EINVAL;
+> > -               goto unlock;
+> > +               goto free_queue;
+> >         }
+> >
+> >         queue->doorbell_index =3D index;
+> > @@ -844,15 +842,14 @@ amdgpu_userq_create(struct drm_file *filp, union =
+drm_amdgpu_userq *args)
+> >         r =3D amdgpu_userq_fence_driver_alloc(adev, queue);
+> >         if (r) {
+> >                 drm_file_err(uq_mgr->file, "Failed to alloc fence drive=
+r\n");
+> > -               goto unlock;
+> > +               goto free_queue;
+> >         }
+> >
+> >         r =3D uq_funcs->mqd_create(queue, &args->in);
+> >         if (r) {
+> >                 drm_file_err(uq_mgr->file, "Failed to create Queue\n");
+> >                 amdgpu_userq_fence_driver_free(queue);
+> > -               kfree(queue);
+> > -               goto unlock;
+> > +               goto free_queue;
+> >         }
+> >
+> >         /* drop this refcount during queue destroy */
+> > @@ -862,21 +859,17 @@ amdgpu_userq_create(struct drm_file *filp, union =
+drm_amdgpu_userq *args)
+> >         down_read(&adev->reset_domain->sem);
+> >         r =3D xa_err(xa_store_irq(&adev->userq_doorbell_xa, index, queu=
+e, GFP_KERNEL));
+> >         if (r) {
+> > -               kfree(queue);
+> >                 up_read(&adev->reset_domain->sem);
+> > -               goto unlock;
+> > +               goto free_queue;
+> >         }
+> >
+> >         r =3D xa_alloc(&uq_mgr->userq_xa, &qid, queue,
+> >                      XA_LIMIT(1, AMDGPU_MAX_USERQ_COUNT), GFP_KERNEL);
+> >         if (r) {
+> >                 drm_file_err(uq_mgr->file, "Failed to allocate a queue =
+id\n");
+> > -               amdgpu_userq_fence_driver_free(queue);
+> > -               uq_funcs->mqd_destroy(queue);
+> > -               kfree(queue);
+> >                 r =3D -ENOMEM;
+> >                 up_read(&adev->reset_domain->sem);
+> > -               goto unlock;
+> > +               goto free_queue;
+> >         }
+> >         up_read(&adev->reset_domain->sem);
+> >
+> > @@ -892,10 +885,7 @@ amdgpu_userq_create(struct drm_file *filp, union d=
+rm_amdgpu_userq *args)
+> >                 if (r) {
+> >                         drm_file_err(uq_mgr->file, "Failed to map Queue=
+\n");
+> >                         xa_erase(&uq_mgr->userq_xa, qid);
+> > -                       amdgpu_userq_fence_driver_free(queue);
+> > -                       uq_funcs->mqd_destroy(queue);
+> > -                       kfree(queue);
+> > -                       goto unlock;
+> > +                       goto free_queue;
+> >                 }
+> >         }
+> >
+> > @@ -915,7 +905,15 @@ amdgpu_userq_create(struct drm_file *filp, union d=
+rm_amdgpu_userq *args)
+> >
+> >         args->out.queue_id =3D qid;
+> >         atomic_inc(&uq_mgr->userq_count[queue->queue_type]);
+> > +       goto unlock;
+> >
+> > +free_mqd:
+> > +       uq_funcs->mqd_destroy(queue);
+> > +free_fence_driver:
+> > +       amdgpu_userq_fence_driver_free(queue);
+> > +free_queue:
+> > +       amdgpu_userq_buffer_vas_list_cleanup(adev, queue);
+> > +       kfree(queue);
+> >  unlock:
+> >         mutex_unlock(&uq_mgr->userq_mutex);
+> >
+> > --
+> > 2.43.0
+> >
+>
+
+I was looking at an outdated codebase. Sorry for the noise.
 
 Regards,
-
-Tvrtko
-
-On 24/04/2026 13:50, Tvrtko Ursulin wrote:
-> Currently on every RLC register read the driver checks for three different
-> conditions to decide which of the two register read/write functions to
-> call.
-> 
-> As these register operations are macros, which is required for register
-> name expansion to work, the result is a significant explosion of generated
-> (redundant) code which the compiler cannot optimise away.
-> 
-> We however know that all of the three conditional are static and can
-> therefore move the decision to driver init time. All that we need to do is
-> define a new vfunc table for the SOC12 RLC read/write functions and just
-> use them directly.
-> 
-> Bloat-o-meter agrees the driver size savings are significant:
-> 
-> add/remove: 11/35 grow/shrink: 82/1117 up/down: 53024/-450922 (-397898)
-> ...
-> Total: Before=10293928, After=9896030, chg -3.87%
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  1 +
->   drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.c    | 39 ++++++++++++++++++++++
->   drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h    | 10 ++++++
->   drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c     |  2 ++
->   drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c     |  2 ++
->   drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c     |  2 ++
->   drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c     |  2 ++
->   drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c      |  2 ++
->   drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c    |  2 ++
->   drivers/gpu/drm/amd/amdgpu/soc15_common.h  |  8 ++---
->   10 files changed, 64 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 30ce2e85a506..bd1b0e9ee220 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -3745,6 +3745,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
->   	mutex_init(&adev->gfx.workload_profile_mutex);
->   	mutex_init(&adev->vcn.workload_profile_mutex);
->   
-> +	amdgpu_early_init_rlc_reg_funcs(adev);
->   	amdgpu_device_init_apu_flags(adev);
->   
->   	r = amdgpu_device_check_arguments(adev);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.c
-> index 572a60e1b3cb..002fae3c380e 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.c
-> @@ -583,3 +583,42 @@ int amdgpu_gfx_rlc_init_microcode(struct amdgpu_device *adev,
->   		amdgpu_gfx_rlc_init_microcode_v2_5(adev);
->   	return 0;
->   }
-> +
-> +static const struct amdgpu_rlc_reg_funcs amdgpu_sriov_rlc_reg_funcs = {
-> +	.rreg32 = amdgpu_sriov_rreg,
-> +	.wreg32 = amdgpu_sriov_wreg,
-> +};
-> +
-> +static u32
-> +amdgpu_rlc_rreg(struct amdgpu_device *adev, u32 reg, u32 acc_flags, u32 hwip,
-> +		u32 xcc_id)
-> +{
-> +	return amdgpu_device_rreg(adev, reg, 0);
-> +}
-> +
-> +static void
-> +amdgpu_rlc_wreg(struct amdgpu_device *adev, u32 reg, u32 value, u32 acc_flags,
-> +		u32 hwip, u32 xcc_id)
-> +{
-> +	amdgpu_device_wreg(adev, reg, value, 0);
-> +}
-> +
-> +static const struct amdgpu_rlc_reg_funcs amdgpu_rlc_reg_funcs = {
-> +	.rreg32 = amdgpu_rlc_rreg,
-> +	.wreg32 = amdgpu_rlc_wreg,
-> +};
-> +
-> +void amdgpu_early_init_rlc_reg_funcs(struct amdgpu_device *adev)
-> +{
-> +	adev->gfx.rlc.reg_funcs = &amdgpu_rlc_reg_funcs;
-> +}
-> +
-> +void amdgpu_init_rlc_reg_funcs(struct amdgpu_device *adev)
-> +{
-> +	if (amdgpu_sriov_vf(adev) &&
-> +	    adev->gfx.rlc.funcs &&
-> +	    adev->gfx.rlc.rlcg_reg_access_supported)
-> +		adev->gfx.rlc.reg_funcs = &amdgpu_sriov_rlc_reg_funcs;
-> +	else
-> +		adev->gfx.rlc.reg_funcs = &amdgpu_rlc_reg_funcs;
-> +}
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
-> index e535534237a1..959d60c90dcd 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
-> @@ -262,6 +262,11 @@ struct amdgpu_rlc_funcs {
->   	bool (*is_rlcg_access_range)(struct amdgpu_device *adev, uint32_t reg);
->   };
->   
-> +struct amdgpu_rlc_reg_funcs {
-> +	u32  (*rreg32)(struct amdgpu_device *adev, u32 reg, u32 acc_flags, u32 hwip, u32 xcc_id);
-> +	void (*wreg32)(struct amdgpu_device *adev, u32 reg, u32 val, u32 acc_flags, u32 hwip, u32 xcc_id);
-> +};
-> +
->   struct amdgpu_rlcg_reg_access_ctrl {
->   	uint32_t scratch_reg0;
->   	uint32_t scratch_reg1;
-> @@ -303,6 +308,7 @@ struct amdgpu_rlc {
->   	/* safe mode for updating CG/PG state */
->   	bool in_safe_mode[AMDGPU_MAX_RLC_INSTANCES];
->   	const struct amdgpu_rlc_funcs *funcs;
-> +	const struct amdgpu_rlc_reg_funcs *reg_funcs;
->   
->   	/* for firmware data */
->   	u32 save_and_restore_offset;
-> @@ -374,4 +380,8 @@ void amdgpu_gfx_rlc_fini(struct amdgpu_device *adev);
->   int amdgpu_gfx_rlc_init_microcode(struct amdgpu_device *adev,
->   				  uint16_t version_major,
->   				  uint16_t version_minor);
-> +
-> +void amdgpu_early_init_rlc_reg_funcs(struct amdgpu_device *adev);
-> +void amdgpu_init_rlc_reg_funcs(struct amdgpu_device *adev);
-> +
->   #endif
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> index 8b60299b73ef..4bfdd55be7f9 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> @@ -7829,6 +7829,8 @@ static int gfx_v10_0_early_init(struct amdgpu_ip_block *ip_block)
->   	/* init rlcg reg access ctrl */
->   	gfx_v10_0_init_rlcg_reg_access_ctrl(adev);
->   
-> +	amdgpu_init_rlc_reg_funcs(adev);
-> +
->   	return gfx_v10_0_init_microcode(adev);
->   }
->   
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> index 8c82e90f871b..8b9a9d944641 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> @@ -5341,6 +5341,8 @@ static int gfx_v11_0_early_init(struct amdgpu_ip_block *ip_block)
->   
->   	gfx_v11_0_init_rlcg_reg_access_ctrl(adev);
->   
-> +	amdgpu_init_rlc_reg_funcs(adev);
-> +
->   	return gfx_v11_0_init_microcode(adev);
->   }
->   
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> index 65c33823a688..a5034e39a8e9 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-> @@ -3912,6 +3912,8 @@ static int gfx_v12_0_early_init(struct amdgpu_ip_block *ip_block)
->   
->   	gfx_v12_0_init_rlcg_reg_access_ctrl(adev);
->   
-> +	amdgpu_init_rlc_reg_funcs(adev);
-> +
->   	return gfx_v12_0_init_microcode(adev);
->   }
->   
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-> index 68fd3c04134d..13de1b356e9d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-> @@ -2915,6 +2915,8 @@ static int gfx_v12_1_early_init(struct amdgpu_ip_block *ip_block)
->   
->   	gfx_v12_1_init_rlcg_reg_access_ctrl(adev);
->   
-> +	amdgpu_init_rlc_reg_funcs(adev);
-> +
->   	return gfx_v12_1_init_microcode(adev);
->   }
->   
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> index 95be105671ec..100b5ee44fef 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> @@ -4816,6 +4816,8 @@ static int gfx_v9_0_early_init(struct amdgpu_ip_block *ip_block)
->   	/* init rlcg reg access ctrl */
->   	gfx_v9_0_init_rlcg_reg_access_ctrl(adev);
->   
-> +	amdgpu_init_rlc_reg_funcs(adev);
-> +
->   	return gfx_v9_0_init_microcode(adev);
->   }
->   
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-> index ad4d442e7345..2e17fc1157fd 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
-> @@ -2525,6 +2525,8 @@ static int gfx_v9_4_3_early_init(struct amdgpu_ip_block *ip_block)
->   	/* init rlcg reg access ctrl */
->   	gfx_v9_4_3_init_rlcg_reg_access_ctrl(adev);
->   
-> +	amdgpu_init_rlc_reg_funcs(adev);
-> +
->   	return gfx_v9_4_3_init_microcode(adev);
->   }
->   
-> diff --git a/drivers/gpu/drm/amd/amdgpu/soc15_common.h b/drivers/gpu/drm/amd/amdgpu/soc15_common.h
-> index a7b5a95ebebb..a04f61b22379 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/soc15_common.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/soc15_common.h
-> @@ -38,14 +38,10 @@
->   	(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + (reg)+(offset))
->   
->   #define __WREG32_SOC15_RLC__(reg, value, flag, hwip, inst) \
-> -	((amdgpu_sriov_vf(adev) && adev->gfx.rlc.funcs && adev->gfx.rlc.rlcg_reg_access_supported) ? \
-> -	 amdgpu_sriov_wreg(adev, reg, value, flag, hwip, inst) : \
-> -	 WREG32(reg, value))
-> +	adev->gfx.rlc.reg_funcs->wreg32(adev, reg, value, flag, hwip, inst)
->   
->   #define __RREG32_SOC15_RLC__(reg, flag, hwip, inst) \
-> -	((amdgpu_sriov_vf(adev) && adev->gfx.rlc.funcs && adev->gfx.rlc.rlcg_reg_access_supported) ? \
-> -	 amdgpu_sriov_rreg(adev, reg, flag, hwip, inst) : \
-> -	 RREG32(reg))
-> +	adev->gfx.rlc.reg_funcs->rreg32(adev, reg, flag, hwip, inst)
->   
->   #define WREG32_FIELD15(ip, idx, reg, field, val)	\
->   	 __WREG32_SOC15_RLC__(adev->reg_offset[ip##_HWIP][idx][mm##reg##_BASE_IDX] + mm##reg,	\
-
+Guangshuo
