@@ -2,130 +2,134 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id iyBbID/zJ2qs6AIAu9opvQ
+	id zNqzNxf1J2pF6QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 13:04:31 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 13:12:23 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D943665F3F3
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 13:04:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3574F65F5C0
+	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 13:12:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=zaigEuqT;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=GYmNxRJ+;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54D1810E25D;
-	Tue,  9 Jun 2026 11:04:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 520B410E0E9;
+	Tue,  9 Jun 2026 11:12:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010021.outbound.protection.outlook.com [52.101.61.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55D2A10E27A
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 11:04:28 +0000 (UTC)
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010027.outbound.protection.outlook.com [52.101.201.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D226A10E0E9
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 11:12:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eRSnJDELwHarZIdnll0/HLsMV+nggp1rnqI+7wVDDphMaGaMG/5x9O0emMuoTT2IMZTix2UX58COZsSVByYAN3r9NfgZ7j7nRWnCUyHb/Qkpo1/fdNUHnMaOSIXrkfY/bvlCGbILNMf/eWaE3hmi1x4JLY7L0XeL9KyR53YLXP0HYV5L9y24ZEatJO12jCq9Bqn0shCIGye+aEe1d6VMoWeOq6BQ6X6RrqwAysZa7ELlAXJxjgM9BlCazCos2JG/Xzg3gCyNA4gqEPHTowu6pwSgca3tD41qfizc8S9fKgbp+XXD8e/B/lJ50RP4YnObCfOu7EvFdF4vtxMX9e0KMw==
+ b=XP82lWKM4puaSSB1zFxfMCSeEIfXn+9oAozz8EYEAU/1TjGUqHg3s+EZduY0gj7MKb4QcRyHtTmkwjCOJMC7CJd0JBWRrkiS2QaFU8isKnC28UlcctypoX2gghoTyIGPuNSlY2srNsgFYLkpzqvPf5qER17oXlOoEq+ivhQjpLnHq04orMEPhwN85cxwhVz3JYHeYKd16nKpgNrkMEgFz3sqi2+19qOw3yBAxmdiMXdbkqEmetewQ0gFMPSk5OdZuiJNqMpxciSIN6wN2iK/dfVBTQUuas1j7z336YJisGL9aba3s6IVu+SfInHxEaHbuSjzGX6rLHZCfR7Vm7gUTw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QnpLS+egWxc9DVcsigg806b2TizGdME8m0p8ocV+RSY=;
- b=JfiuruUgedrlloBL2S6O14StIqnPblmRwMK7u9M1PtipQnK5bMz3My2mjvzX2RD9VLVmGZ1iUE+kKyDg1vdtyHiMDPC94CNcupfN4Bv02yjahuOvXfmFdtMZkZ2Yew1iAROYPSl3vDAlsTLqB6/zPKvAWslvLpV3y/iHUYD8W2mpAaH1nraaKzwIFUIee1sjQ0vTUfXq27VFz1Ty0aGxRZ+jVaQBUJtwWN7FpmwzF11MaRypKP825TLKjqFKoTrT7qdRRpTjLT8lfrQOQve+Ars4jpCezhj1+59Og373Ccj3PPFaK4bQljmUB6aYVEnMvDGAf3nqX5VvklAY0nrsmw==
+ bh=XEgMrygNa5SCyge4WkU+tY2aT8+n2dUWBqqBNChwa64=;
+ b=HwAtKvrYFoxhYapmC8dXg+JkI/nFZpIfSJpM0wr2IdJ7ultmRXfyh+02ChOsW7q6CSBVMBIvEk8u7+siLxmVLr/VnbFVi3VvhRc5qs9z3on4sJkUpXPNgWQGi3Gi3z1QnMl5tnZoeiSy+QOGbX5wq35FPMrNElAv04GSnGC64jfa+pEiiFqSuBgSJ/dxan785l+dMK2xJHW+V6Brd8v9f+Camuh2Ek1clZROtm/w9iiGUExPXbQ39RXoexk3vvn+cvXNXx35OL8iJ/gPqYXagYoZjp4tEujAV1y9voWWOY9wreUMgUi4Rv3pkW3euROsKK1jWNpJpt5kLHThzF+gxw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QnpLS+egWxc9DVcsigg806b2TizGdME8m0p8ocV+RSY=;
- b=zaigEuqT0Tq4IXT43WfYfqi3Y/01GYGytr/AzHKgGT1IQBikvq/1pMJxreTcc+DZAU40sA1ivdCCYtU3pj6COQYx1RAUTKj433LCF+Gl0Pd3nZUCxqTl3pQ0TJ1toadsDNYBT1iMhd0FDxe6NZ4jy7FKt7a/q1iV8t9tb0716jU=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA6PR12MB999202.namprd12.prod.outlook.com (2603:10b6:806:450::12)
+ bh=XEgMrygNa5SCyge4WkU+tY2aT8+n2dUWBqqBNChwa64=;
+ b=GYmNxRJ+F/p4MeUitP4e9liAqi/Sz930qjas8zM3dV3TNTwMZ3HbmPBtyx0el9RSLgjZjDEcA9pGZZUw4Zo2A5H8ygfee/BKL7fKkDPFCzwWZC8u2f0ytokiQzO2yk1GCcc9G7AyzUlmlVuqi67D6V4G4GodFTrXYCws/0kbPCM=
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
+ by MW4PR12MB6849.namprd12.prod.outlook.com (2603:10b6:303:20d::8)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.18; Tue, 9 Jun 2026
- 11:04:26 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0092.006; Tue, 9 Jun 2026
- 11:04:26 +0000
-Message-ID: <4800bbb0-7c69-454d-a107-922f986c1ab0@amd.com>
-Date: Tue, 9 Jun 2026 13:04:21 +0200
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.14; Tue, 9 Jun 2026
+ 11:12:14 +0000
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc%3]) with mapi id 15.21.0092.011; Tue, 9 Jun 2026
+ 11:12:14 +0000
+Message-ID: <e3c720a6-497d-43aa-bf7a-0835fc0d799a@amd.com>
+Date: Tue, 9 Jun 2026 16:42:07 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 10/11] drm/amdgpu: include amdgpu_init_level.h only
- where needed
-To: Shahyan Soltani <shahyan.soltani@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: Alexander Deucher <alexander.deucher@amd.com>
-References: <20260608194741.1590055-1-shahyan.soltani@amd.com>
- <20260608194741.1590055-11-shahyan.soltani@amd.com>
+Subject: Re: [PATCH] drm/amd/pm: refactor DPM clock level reporting
+To: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Zhang, Hawking" <Hawking.Zhang@amd.com>,
+ "Feng, Kenneth" <Kenneth.Feng@amd.com>,
+ "Liu, Shuzhou (Bill)" <Shuzhou.Liu@amd.com>, Maisam.Arif@amd.com
+References: <20260609065123.215816-1-kevinyang.wang@amd.com>
+ <6cb5a3be-8cf1-4ce5-8ce9-a6fb363b12fa@amd.com>
+ <DM6PR12MB29726384D65C1D1B41A04415821D2@DM6PR12MB2972.namprd12.prod.outlook.com>
 Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260608194741.1590055-11-shahyan.soltani@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MN0P223CA0019.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:208:52b::34) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+In-Reply-To: <DM6PR12MB29726384D65C1D1B41A04415821D2@DM6PR12MB2972.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN2PR01CA0003.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:25::8) To SA0PR12MB7091.namprd12.prod.outlook.com
+ (2603:10b6:806:2d5::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA6PR12MB999202:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6dcda81c-73b4-467c-a57c-08dec616de1b
+X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|MW4PR12MB6849:EE_
+X-MS-Office365-Filtering-Correlation-Id: ccffef23-661e-4797-94ca-08dec617f572
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|11063799006|22082099003|18002099003|6133799003|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info: gourIBSHAxl63cV+Dt/Yh/T4fabUtUfGSn68xF5llkTzdjZZD6uHi++LDm2g8oP6wLkZh9ublTjelVG0t38v2LY7OfnPij0fl28Tc5SMrHN7SER7jtV1QkwZiSBIcUdg6R0FUMAip0nDidWDnDl+jUNRAATvUovxCvOkOsFfEPEh3dfHOalyR39x/Ek06dYRdLgJ1ZzgpnojnCyQtG4fa1UMY9U+Oe40BG2lJUok34UrDH3ONkr7Byok2lG/Vbme607ntm8SUS5FQqjOQ+w+dZULvSzf+jwrknUZWBciK3ucacTFgItITVIbq95zdxej7RETAqoVqUTblLXBIc7/L1CADnCZJolVU61EKpSjUxAsXrJPHjlYQVE18BKRsmgaCuiB0jfDRYd5/6W9hdoz+RaU5IPVTiSJJRpVjI/T+fy/rJSx17u6YZgBQ490KOmqxyNa58QdSf+Z12z7CGNu+Z5WDsTv5bhwyZNcp4MPqLnzfYZV9g3BKl3uhKc4IgqnZ8hBD1RvZ/otGANppKmf105woxinhqr5+ylZ1f2I5ag2yiiH5xKN8wJn9TSdRJ3tfqh8MsuXWYoGS2BVxm4xsCo/l6dhEI21VDgOFlPNjsT+aMjxbi9fzQBvXFueVuIYW/1pD84DDSLE9j0EMKsdjFChwmptT7ZdHvmvADwltetSOX/FMAfXELhuBq9pn1Mb
+ ARA:13230040|1800799024|376014|366016|6133799003|22082099003|18002099003|4143699003|11063799006|56012099006|3023799007;
+X-Microsoft-Antispam-Message-Info: oO2DVazCg+H3iDqv/YftFDziF1K4eVPQDjiv7ZMly/sCUqsdznv1wy4ITTINpaB4LaSpunKO1XBI7jnKuiWZMNKnV0vmD/sMcS8AAsVlZONTeGDdyVdNPA2O+JjkBauEKV0TUq4ZUgWbNUR2hBZ1HJm4lEobPTi3qS/IBlsHhGS1O9l2+I2vYwW4SnUG8PiFQCZjw/VLAULaknZLGu8Qr91l2cbWQaKeb8CBSDsi+r8aoKTxPS9SW+AOE9V4e0dA4txVD7/u2qqe+DhzRX9sJNgj0u8LWUmcJWCDpnjEMfer8RdrzIfldjEbJ8oui7iCHniKll9KFbpaD72VkANOgvsmWjMBtA1ddRa4yrlyCcpDz+M9koq+KA8uKo/cGz5Y1GiB37D0dSUlyO8WHbz4iKbMzVdiP/jlrAU7ZiVxeneo80G1TTFNqF4Chl5gdWm1/yB7szCvR+m2In3UNB41zFDmNipQk78KR0r7Ot4n5NpkToYmFKiQIsPTyFYW1wlFyV54IBzVaRM1r84NZa3KmwZT6sDgnynfHBsbi1CCtL4sg6SxXodBh/41bvwYAlylCoSyp5PBFSu7HvUOC4KEeyf4d8hLiJhbLjBVeYHNxzzlAgo+U7KOVf5p9kYlZFrHarp0tWCSDCqCcLTDKmQ3DAELZLOX5SjOrcSU5hh0ISghJXk6WXdXXOvW1/1ujJsL
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(11063799006)(22082099003)(18002099003)(6133799003)(4143699003)(56012099006);
+ IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(6133799003)(22082099003)(18002099003)(4143699003)(11063799006)(56012099006)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WDh4RGE4MjMwbW9PZDRaRGh5S1lDcDB6WWdWdFFyZ2xlQjlXTy95WkJ6KzI0?=
- =?utf-8?B?cEMzaks2UzNGUHIzdXZVM2VQbUNJMTBMbzVnMS9aaTUvUFZ1cnBLMXMwakpI?=
- =?utf-8?B?d3piZkE0ZmRZVTNTVlV5Z21FRWM3d3FKNWJRdnZmZThmYUhuN3FhSm14bm9j?=
- =?utf-8?B?NXJwOW5vZ0tWRHVTVCtrbEtWQ0hPdzRxMlpCcGFwd2xCV1ZQQjhrMmFqUmFH?=
- =?utf-8?B?Mll3MCtuK29jRmRRZ3lKT2RtTUpnM0t2NjIyOHRyN3A3QWtCMDB4Q1NjOEhX?=
- =?utf-8?B?clRHamVkV1JYdUJURW9aZTJtN3crZTdNOHJyWUFVNmZtcFdWVGRoM3h4K2hm?=
- =?utf-8?B?dk1samVEa2liSG84cG5sQmZPSFhjQ09CN21ZTWl2cXRpTml5QUN0cUl4TnZF?=
- =?utf-8?B?NS9JL3VuUDA4YStNTy9GT3hmVFJuMHVVVjMvazllcFZMV1VVSEpPVXMzOTZm?=
- =?utf-8?B?S3FNNDEzRHQveWtnOTZja3YvdlFCSUNJMUdVdHVVbkZ3VjB2c1VTU1l2VGZi?=
- =?utf-8?B?bjhOMUpQNzhUM0QvREVQZDU0TzlNZEVldVh3WW5kV0U4akF1RTRheUJxbkJ0?=
- =?utf-8?B?U21PUHVQL2luekUyTHllWDNGTlZNUHdzQmttbXVmMlVEZy94eHh1M1pWUkhS?=
- =?utf-8?B?UmdpQmI0MUsreVR2UEZSQ3RuVkNJQ2Y0MnN3Q09MdFpMUGJlMGVjcnMxdXVw?=
- =?utf-8?B?U1ByUjltbVJjVm9RSDJkWTh5Wm9jYWIvRXp3bFVpWThrYWIyYzlrWENSNm45?=
- =?utf-8?B?eWlIWHg0SVc2Z0tibjdCSkk1N0QzdU1MSHp6b1ZQQmZjOG5OSlpoOVdMMmc2?=
- =?utf-8?B?RzBCZWlKMHRCcHVSaFk5RXhqZDVpdERoSnpqMTlCNmdHNUw0MURYV0p6Qk5Y?=
- =?utf-8?B?Yi9vZCsyOXFxR1ZDOEJqYmFjV1JwZTJjbDd5bkVqVE9oWUpHOXh4RnNnVTc4?=
- =?utf-8?B?VDBTdUtvV3l3MGZYZXlZcGJ5c3NXZW1iakRLQzFTaDJLUjFWVlBMa0k3ZWRD?=
- =?utf-8?B?R1JWbkZjc1B0WjNZaVgvek9sbEhZQlF0SjBFd016K1d3UXdXOGpOR0FjR3Q5?=
- =?utf-8?B?REJwNitibkEzS2EyMEdhUUtrWXlZTTE3emUrdXpST3Fwa3Y3SXVFenJ6d1gz?=
- =?utf-8?B?RjFueXYvZTFFRVpjZDB1Ti9DQW5HSFU3elh1L0FwUnhlQytHRzNVdTlqZzNq?=
- =?utf-8?B?V3NvSk1nV3JiSlBaNU50bFlzQzZEdVNvcnROZHpFMlpCb0RlMHBkeXhnRjFo?=
- =?utf-8?B?U3o3c21oQW9MVDZ4bGtPaDVXMWdjdTZ4UHB6NFAwd293bjNFVUZDWXZISS9H?=
- =?utf-8?B?SWpncFpMQUtjbEZ2cDNaMmsxeTQrWWdhcXVJUml6U1NCNEN0SmJFWmtqRE0v?=
- =?utf-8?B?VmovK2dGd0thSENoMkNoVEtTRFhsalpoUWk5ejQxa2pETjA4V2h0RllPY01P?=
- =?utf-8?B?MWQxZEVFRVdHTHl3UlV2aWdIWURYeFBDeHRXeEMzeDN3cmJmYTdVdDZqQzJF?=
- =?utf-8?B?eDRjRFY4bkUwT01peGQyUlNoRHNIcnNKaW4wR1J5UjV6YVVwSTBrMHFGajF6?=
- =?utf-8?B?Mk03b1FiRXN6YUpMVS9TVTJYc1NrV1pKaFNkMFUrdVc0djl4cnF6aXN4OFJv?=
- =?utf-8?B?OG9ZS1FQZ3p2R0lDNi83RmVnMnZGemtHbWdWcFFpRnZuUUNTMlZzclF3cFZQ?=
- =?utf-8?B?a2NqZnE2UERVU21hVzFPT3dyayticnc5eHlnV1hKQTdOVWM2ZXg0eHoza3pR?=
- =?utf-8?B?OXk5QlEzQVFoclY3amZXMjZFUWtad213OWxJV1J4OWFtZTJ3VmtTWHV2Rzgx?=
- =?utf-8?B?ZFRpQ1ZIVW1zbTRaUFRxYTdrVnc4THpHc0Jlejh1eXQ2NFBXVDFvR241aXBD?=
- =?utf-8?B?d2pEdzl0M01wOHhBSFhRMUpTaENnNGJFOS9xY1lDc21RL0hqQnhLbXp0UTZl?=
- =?utf-8?B?dmZsMzVENnNYWmlxejlzSGJyVDVUMVdONCtpb2xyakt6VE5WZXVsNFpuVDZT?=
- =?utf-8?B?TWo2Tk5OaFAzU1lzZDNvTzFvV1FzMXZ3SitiSWxGaWowYmdPUUZTSzNRUjM1?=
- =?utf-8?B?UE9vTitaZ0RRWGxBVUhSMVZFK0MwMVYxUGRyMmhvQk91Nkh2YTI3VDQ5Y2pa?=
- =?utf-8?B?OEU5Y0l1SkJ3bkt6THFRbFFEYkJWVkZZdFRFUmlKdjFJK3VYai9iUjVzY0M5?=
- =?utf-8?B?QjgxcVdSNXRpeHZTOGN2amQ0TGp5MFVJbmcvVDVhY25nZUtqOExodUk1ckd3?=
- =?utf-8?B?S2ozaS8zZ2dRR3BQQ0w2MTBGc01ncGg0OGZjemlGV240bm9xVnZhZXZPR0dM?=
- =?utf-8?Q?Ty8cXS52zVII9Fnx99?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V0w3RFdlOExHdlNibnErQ0xON1BiamZPbE94MjhkUmxlWFhIZFNha00xa0kr?=
+ =?utf-8?B?eFhuSGowcndjUjZVeTZRR3BpS0QvSW9adTMxaG1ITklWRHJqc1J0WTZDY0tL?=
+ =?utf-8?B?WEFkRXFYcmY3WVRyZW1HQ0FLMVo4L3ZRTDdsQnhmaWtEOExncXR4dG92KzZX?=
+ =?utf-8?B?NllDSTVvLzllTUllaUVxZllxNDRUODZTSUxnNVFMMVUxT0w0K1QwZldFdjJl?=
+ =?utf-8?B?bGFKbFhBMXM4UDcxY0VTZDk1Uk1Lc25QTW05Sm5iOTB4VDVubHdQbkdWZUtF?=
+ =?utf-8?B?MWtKL1B2RU1JWU9tM2Y4VFpybEF1L1NkWk8wZGk4VVA2ZWp6c3JCTk1aRkFZ?=
+ =?utf-8?B?aGVVaUg2YVNXNkgyWjZ3ay91M1hvbllETDZqZGxKRzRwRmhDc1NZRjlGNnM3?=
+ =?utf-8?B?c2M3N3IvWGlyMkltYWg4TzZjT3JESEk4UWxYQnVoeTlQNE1yVGN5VjhnNk5C?=
+ =?utf-8?B?VUlZNHhNcGJSYWRGZDhFSmpxY3V2bStQODEwRVZWU3IyQ3ZETUtsRjVPOGdp?=
+ =?utf-8?B?WXp0QzRqZVMxWitDRzBIdjJLeHNmNFR0L1hkamtPSFV5bkg3QitSbFNCZUk1?=
+ =?utf-8?B?NVpGUFBYc0U3bC9IYXdDYVJyTFQwNEdWdXl6VGFod3VDZi9EOGMxY2V0dWNK?=
+ =?utf-8?B?eWFYT3EwZGVGbkMycEtIV3VJMFRWZWFvb3Z6TFZvV1FBZ2g1U0x4YUlPZGZK?=
+ =?utf-8?B?VWtyYkJVV3dpWFliNUVqV2x1VXVoRzFURTRpdDVWd2tuK1FpLzBnUEV0K0sw?=
+ =?utf-8?B?UFJoTzdoallXdHZWQk56K2ZJcmxwRXlKR3RpVFdZUHB0eVk5RjFZSHl6Q1BM?=
+ =?utf-8?B?eXgxK2xMcTFMSjJGeGZ6YXl2RlQrbGJzUVlpd3ExczFwWTR2QVpjYVk2dzk1?=
+ =?utf-8?B?YlBsQ0d0clp6MDdSRVhYdzcxSE5jY25USDFJY0ZrQ09iVWxDdXBjeStsbnMz?=
+ =?utf-8?B?Q0JtTEZ1NithdjNDNGlDYXBCNWlsb0JvQzVIbnBWcTRmbDJmaWJzOVNFNFFu?=
+ =?utf-8?B?azN6eHdXdktUZk1DaEJSeUhjZ0VyalljY1Z3eDY1d2U4SSsyOHVhSVIxd2ZG?=
+ =?utf-8?B?OWMxNmt4TEltV0VMSm9DbEhsTkZ5ZGVoeVNmZWVlZkRveEFML2s2TGYxSVVM?=
+ =?utf-8?B?MFBFVTk4cDNNSy9EMzdMS2UxUnhDTS9LTmhsNTBXeWxJaU9GaE85TjdjTGh1?=
+ =?utf-8?B?OFlsVjhJeVliVnJOenNSa0VFWDFxSE81cVBubVRvZGJOQjZpbVU2anVHUG5Y?=
+ =?utf-8?B?UHlNOElOTmNEWG9pZGZXZjVuQ2V1bVErZm5zU083dkFFMlVFcS91czFUZmVl?=
+ =?utf-8?B?enpGbDhDcmVjN3FFM2EwQTRzTzFJM25mM2pWMTV6QWRpdC9HQXI4a0QzRXlj?=
+ =?utf-8?B?cWVkTUxZb3lNdUhvOFp2a1Y5OTFlTmxzTld5NU1CVXk0MHNMdTQ3VG4zcHNs?=
+ =?utf-8?B?Umd5KzNScGpVRGNDalIzWUxNR2JrWjVNMHA4OFBtdDlBWHpLbGZDdld1b0VJ?=
+ =?utf-8?B?VnF1b0x1MTV5c2grQ0FjalBFc0VBSG9PbFRRUHA4UHZ3UEJjdFpRTnlXOWM1?=
+ =?utf-8?B?eVFhQTVjZGFlc3F0MDdScVFhb2lLOXp0Z2QwQUNZcnhIckdDOWRHN280NHYz?=
+ =?utf-8?B?ZzdEVFNJNUJVQXpyd3pqSDMzMnFXWkVLMW1sQ3lnOHpwSnhVWUxUYjlueFhZ?=
+ =?utf-8?B?VTE3SXVwZ0JlWGxVcVdXeDhHUkcxdW4vMHdUSGl6SkhBTS8yTzF4YUwrSXRU?=
+ =?utf-8?B?anpyaUZkUGpDVVBEeThhWXJYL1ZKcC9wYXBVV0txTGo1RjA4ZmZUT0U2ay9L?=
+ =?utf-8?B?L0l4Ylh4TjV0d2ltMitpZlYvZ0JiTXhXM2dzSFY1TWhsQ0VPVE05Rlp0OGpY?=
+ =?utf-8?B?YktIN1hDMlh2U3RMdXNwZXNtVldQL1VkWDlIWGc4d3Jqdlo3Ymk2UEVXSFNZ?=
+ =?utf-8?B?MExiM2cxWENYZTc5SHp3KzF3eUpsQUFNMkIweUg0d1kyQitkN2FMdmpJbnY0?=
+ =?utf-8?B?anAvNGd1Ulp6ZmNMOXB0cUIzcU5WNlFER2NMOHM1emdJQWQ2bmtjdW9ESEZs?=
+ =?utf-8?B?ckt3V2tCOURyNWZNSGJ5Um00dzgwUmNKOUt0R2Nvdkw5aUpTNVRLWDJ2Ry9l?=
+ =?utf-8?B?TjJ4Mzg0Mm9HbzltYnUzM3lOYVoxWDNyRk9uT2ljSHplVCtJa1FtZWpZdlBh?=
+ =?utf-8?B?WXdiNTBvV2NPQlpwcGlmWlZ5RVJESGtoM3JJbUZrK08remdlRWQ2SmM1SUJs?=
+ =?utf-8?B?Q2M4clhDSWdiU2d3N3B5MkpBcXR4UGo3MXJqVkpJOGszcnlnME5YL1QyYlcx?=
+ =?utf-8?B?Tm9VM0hpa3YxKzd6bHdtU0xRNmlUL0tGeEpRZjV6L0dpOU9TM2p2UT09?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6dcda81c-73b4-467c-a57c-08dec616de1b
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ccffef23-661e-4797-94ca-08dec617f572
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2026 11:04:25.4479 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2026 11:12:14.2085 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1H7/mTdQlE8ZLeimqnnEwg4LVuIZjpIqySf7TiF7hoGcNVD4itdxLJpUJF2g/cy1
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA6PR12MB999202
+X-MS-Exchange-CrossTenant-UserPrincipalName: PqLpS6SMr0wuJLv1+ZO32hNi/Da1YUEnupZqC9Vl+fDUVaLmKHaZDncNYNeN/CUb
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6849
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,202 +147,297 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:KevinYang.Wang@amd.com,m:Alexander.Deucher@amd.com,m:Hawking.Zhang@amd.com,m:Kenneth.Feng@amd.com,m:Shuzhou.Liu@amd.com,m:Maisam.Arif@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:shahyan.soltani@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D943665F3F3
+X-Rspamd-Queue-Id: 3574F65F5C0
 
-On 6/8/26 21:47, Shahyan Soltani wrote:
-> Remove #include "amdgpu_init_level.h" from amdgpu.h and add forward declaration
-> of struct amdgpu_init_level.
+
+
+On 09-Jun-26 3:49 PM, Wang, Yang(Kevin) wrote:
+> AMD General
 > 
-> Add #include "amdgpu_init_level.h" into files aldebaran.c, amdgpu_device.c,
-> amdgpu_gmc.c, amdgpu_reset.c, gmc_v9_0.c, sienna_cichlid.c, smu_v13_0_10.c,
-> soc15.c, amdgpu_pm.c, and smu_v11_0.c.
+>> -----Original Message-----
+>> From: Lazar, Lijo <Lijo.Lazar@amd.com>
+>> Sent: Tuesday, June 9, 2026 4:11 PM
+>> To: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; amd-
+>> gfx@lists.freedesktop.org
+>> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Zhang, Hawking
+>> <Hawking.Zhang@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>
+>> Subject: Re: [PATCH] drm/amd/pm: refactor DPM clock level reporting
+>>
+>>
+>>
+>> On 09-Jun-26 12:21 PM, Yang Wang wrote:
+>>> Refactor smu_cmn_print_dpm_clk_levels() to build clock entries before
+>>> emitting sysfs output.
+>>>
+>>> For discrete DPM tables, mark the level closest to the reported
+>>> current clock. This avoids losing the active '*' marker when the
+>>> SMU-reported clock does not fall within the previous fixed tolerance.
+>>>
+>>> Keep fine-grained output explicit by reporting the current clock on an
+>>> 'F' line, and keep deep sleep represented by the 'S' line without
+>>> marking a discrete level.
+>>>
+>>> Active marker placement:
+>>>
+>>> | Mode         | '*' marker location       | Reason                    |
+>>> | ------------ | ------------------------- | ------------------------- |
+>>> | discrete     | closest/current DPM level | entries are real levels   |
+>>> | fine-grained | 'F:' current clock line   | min/max are range bounds  |
+>>> | deep sleep   | 'S:' line                 | outside normal DPM range  |
+>>>
+>>> Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/5295
+>>> Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+>>> ---
+>>>    drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c | 148 +++++++++++++++++--
+>> ------
+>>>    1 file changed, 101 insertions(+), 47 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+>>> b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+>>> index d365f06ac1ac..872c0328f290 100644
+>>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+>>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+>>> @@ -1376,77 +1376,131 @@ void smu_cmn_reset_custom_level(struct
+>> smu_context *smu)
+>>>      pstate_table->uclk_pstate.custom.max = 0;
+>>>    }
+>>>
+>>> -static inline bool smu_cmn_freqs_match(uint32_t freq1, uint32_t
+>>> freq2)
+>>> +struct smu_clk_print_entry {
+>>> +   uint32_t freq;
+>>> +   bool selected;
+>>> +};
+>>> +
+>>> +static inline uint32_t smu_cmn_freq_distance(uint32_t freq1, uint32_t
+>>> +freq2) {
+>>> +   return freq1 > freq2 ? freq1 - freq2 : freq2 - freq1; }
+>>> +
+>>> +static inline uint32_t smu_cmn_get_dpm_level_count(struct
+>>> +smu_dpm_table *dpm_table) {
+>>> +   return min_t(uint32_t, dpm_table->count,
+>> SMU_MAX_DPM_LEVELS); }
+>>> +
+>>> +static uint32_t smu_cmn_get_closest_clk_level(struct smu_dpm_table
+>>> +*dpm_table, uint32_t cur_clk) {
+>>> +   uint32_t min_distance, distance;
+>>> +   uint32_t closest_level = 0;
+>>> +   uint32_t count;
+>>> +   uint32_t i;
+>>> +
+>>> +   count = smu_cmn_get_dpm_level_count(dpm_table);
+>>> +   if (!count)
+>>> +           return SMU_MAX_DPM_LEVELS;
+>>> +
+>>> +   min_distance = smu_cmn_freq_distance(cur_clk, dpm_table-
+>>> dpm_levels[0].value);
+>>> +   for (i = 1; i < count; i++) {
+>>> +           distance = smu_cmn_freq_distance(cur_clk, dpm_table-
+>>> dpm_levels[i].value);
+>>> +           if (distance < min_distance) {
+>>> +                   min_distance = distance;
+>>> +                   closest_level = i;
+>>> +           }
+>>> +   }
+>>> +
+>>> +   return closest_level;
+>>> +}
+>>> +
+>>> +static inline int smu_cmn_emit_clk_line(char *buf, int size,
+>>> +                                   int level_index, uint32_t freq, bool
+>> selected) {
+>>> +   return sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
+>>> +                        level_index, freq, selected ? "*" : ""); }
+>>> +
+>>> +static void smu_cmn_build_fine_grained_levels(uint32_t min_clk, uint32_t
+>> max_clk,
+>>> +                                         struct smu_clk_print_entry
+>> *entries,
+>>> +                                         uint32_t *entry_count)
+>>> +{
+>>> +   *entry_count = 2;
+>>> +   entries[0].freq = min_clk;
+>>> +   entries[0].selected = false;
+>>> +   entries[1].freq = max_clk;
+>>> +   entries[1].selected = false;
+>>> +}
+>>> +
+>>> +static void smu_cmn_build_discrete_levels(struct smu_dpm_table
+>> *dpm_table,
+>>> +                                     uint32_t selected_level,
+>>> +                                     struct smu_clk_print_entry *entries,
+>>> +                                     uint32_t *entry_count)
+>>> +{
+>>> +   uint32_t i;
+>>> +
+>>> +   *entry_count = smu_cmn_get_dpm_level_count(dpm_table);
+>>> +
+>>> +   for (i = 0; i < *entry_count; i++) {
+>>> +           entries[i].freq = dpm_table->dpm_levels[i].value;
+>>> +           entries[i].selected = (i == selected_level);
+>>> +   }
+>>> +}
+>>> +
+>>> +static int smu_cmn_emit_clk_prefix(char *buf, int size,
+>>> +                              bool is_fine_grained, bool is_deep_sleep,
+>>> +                              uint32_t cur_clk)
+>>>    {
+>>> -   /* Frequencies within 25 MHz are considered equal */
+>>> -   return (abs((int)freq1 - (int)freq2) <= 25);
+>>> +   if (is_deep_sleep)
+>>> +           size += sysfs_emit_at(buf, size, "S: %uMhz *\n", cur_clk);
+>>> +   else if (is_fine_grained)
+>>> +           size += sysfs_emit_at(buf, size, "F: %uMhz *\n", cur_clk);
+>>
+>> What about keeping the else part as C: <cur_clk> in all cases - instead of just
+>> fine grained? * indicates the closest level matched and cur_clk will give the
+>> exact frequency.
+>>
+>> Thanks,
+>> Lijo
 > 
-> Signed-off-by: Shahyan Soltani <shahyan.soltani@amd.com>
-
-When amdgpu_init_level.h is renamed to amdgpu_device.h the patch is
-
-Reviewed-by: Christian König <christian.koenig@amd.com>
-
-> ---
->  drivers/gpu/drm/amd/amdgpu/aldebaran.c         | 1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu.h            | 2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c     | 1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c        | 1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c      | 1 +
->  drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c          | 1 +
->  drivers/gpu/drm/amd/amdgpu/sienna_cichlid.c    | 1 +
->  drivers/gpu/drm/amd/amdgpu/smu_v13_0_10.c      | 1 +
->  drivers/gpu/drm/amd/amdgpu/soc15.c             | 1 +
->  drivers/gpu/drm/amd/pm/amdgpu_pm.c             | 1 +
->  drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c | 1 +
->  11 files changed, 11 insertions(+), 1 deletion(-)
+> This is a good idea. However, for now I'd like to retain the existing logic to stay compatible with current parsing tools and prevent potential regressions.
+> Also, note that "F" and "S" are optional labels, which are only shown for unmatched DPM LEVEL entries.
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/aldebaran.c b/drivers/gpu/drm/amd/amdgpu/aldebaran.c
-> index a7bc65099755..197876021b73 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/aldebaran.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/aldebaran.c
-> @@ -30,6 +30,7 @@
->  #include "amdgpu_ras.h"
->  #include "amdgpu_psp.h"
->  #include "amdgpu_xgmi.h"
-> +#include "amdgpu_init_level.h"
->  
->  static bool aldebaran_is_mode2_default(struct amdgpu_reset_control *reset_ctl)
->  {
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> index 06e61d66dcf3..a733ebb61300 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -116,7 +116,6 @@
->  #include "amdgpu_ip.h"
->  #include "amdgpu_acpi.h"
->  #include "amdgpu_mqd.h"
-> -#include "amdgpu_init_level.h"
->  #include "amdgpu_video_codecs.h"
->  #if defined(CONFIG_DRM_AMD_ISP)
->  #include "amdgpu_isp.h"
-> @@ -329,6 +328,7 @@ struct amdgpu_reset_context;
->  struct amdgpu_reset_control;
->  struct amdgpu_coredump_info;
->  struct amdgpu_uid;
-> +struct amdgpu_init_level;
->  
->  enum amdgpu_cp_irq {
->  	AMDGPU_CP_IRQ_GFX_ME0_PIPE0_EOP = 0,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 20b67897d7ff..e7e60dba1e4d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -79,6 +79,7 @@
->  #include "amdgpu_virt.h"
->  #include "amdgpu_dev_coredump.h"
->  #include "amdgpu_uid.h"
-> +#include "amdgpu_init_level.h"
->  
->  #include <linux/suspend.h>
->  #include <drm/task_barrier.h>
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-> index 13bec8461cde..e55fa66f7daa 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-> @@ -35,6 +35,7 @@
->  #include "amdgpu_reset.h"
->  #include "amdgpu_xgmi.h"
->  #include "amdgpu_atomfirmware.h"
-> +#include "amdgpu_init_level.h"
->  
->  #include <drm/drm_drv.h>
->  #include <drm/ttm/ttm_tt.h>
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
-> index da77e0ef129b..78121e698151 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_reset.c
-> @@ -25,6 +25,7 @@
->  #include "aldebaran.h"
->  #include "sienna_cichlid.h"
->  #include "smu_v13_0_10.h"
-> +#include "amdgpu_init_level.h"
->  
->  static int amdgpu_reset_xgmi_reset_on_init_suspend(struct amdgpu_device *adev)
->  {
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-> index ced0f3941863..8b0aaa912a8f 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-> @@ -64,6 +64,7 @@
->  
->  #include "amdgpu_ras.h"
->  #include "amdgpu_xgmi.h"
-> +#include "amdgpu_init_level.h"
->  
->  /* add these here since we already include dce12 headers and these are for DCN */
->  #define mmHUBP0_DCSURF_PRI_VIEWPORT_DIMENSION                                                          0x055d
-> diff --git a/drivers/gpu/drm/amd/amdgpu/sienna_cichlid.c b/drivers/gpu/drm/amd/amdgpu/sienna_cichlid.c
-> index 2594467bdd87..940092d8bd1c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/sienna_cichlid.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/sienna_cichlid.c
-> @@ -30,6 +30,7 @@
->  #include "amdgpu_ras.h"
->  #include "amdgpu_psp.h"
->  #include "amdgpu_xgmi.h"
-> +#include "amdgpu_init_level.h"
->  
->  static bool sienna_cichlid_is_mode2_default(struct amdgpu_reset_control *reset_ctl)
->  {
-> diff --git a/drivers/gpu/drm/amd/amdgpu/smu_v13_0_10.c b/drivers/gpu/drm/amd/amdgpu/smu_v13_0_10.c
-> index 70569ea906bc..93bc343fdfeb 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/smu_v13_0_10.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/smu_v13_0_10.c
-> @@ -28,6 +28,7 @@
->  #include "amdgpu_ring.h"
->  #include "amdgpu_ras.h"
->  #include "amdgpu_psp.h"
-> +#include "amdgpu_init_level.h"
->  
->  static bool smu_v13_0_10_is_mode2_default(struct amdgpu_reset_control *reset_ctl)
->  {
-> diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
-> index 87b398dd0769..49b9d81cf8ca 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/soc15.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
-> @@ -77,6 +77,7 @@
->  #include "mxgpu_ai.h"
->  #include "amdgpu_ras.h"
->  #include "amdgpu_xgmi.h"
-> +#include "amdgpu_init_level.h"
->  #include <uapi/linux/kfd_ioctl.h>
->  
->  #define mmMP0_MISC_CGTT_CTRL0                                                                   0x01b9
-> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> index 0c58d23013f4..2b138c85cf60 100644
-> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> @@ -27,6 +27,7 @@
->  #include "amdgpu_drv.h"
->  #include "amdgpu_pm.h"
->  #include "amdgpu_dpm.h"
-> +#include "amdgpu_init_level.h"
->  #include "atom.h"
->  #include <linux/pci.h>
->  #include <linux/hwmon.h>
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-> index 98e7109bbc95..0ca961177c7c 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
-> @@ -37,6 +37,7 @@
->  #include "soc15_common.h"
->  #include "atom.h"
->  #include "amdgpu_ras.h"
-> +#include "amdgpu_init_level.h"
->  #include "smu_cmn.h"
->  
->  #include "asic_reg/thm/thm_11_0_2_offset.h"
+
++Bill/Maisam
+
+What about the case when current clock matches min/max in fine grained 
+scenario? In the new logic, F is the label for current clock always for 
+fine grained clocks which is a deviation from the old logic. Is that to 
+always show 3 levels in fine grained?
+
+Thanks,
+Lijo
+
+> Best Regards,
+> Kevin
+>>
+>>> +
+>>> +   return size;
+>>>    }
+>>>
+>>>    int smu_cmn_print_dpm_clk_levels(struct smu_context *smu,
+>>>                               struct smu_dpm_table *dpm_table,
+>>>                               uint32_t cur_clk, char *buf, int *offset)
+>>>    {
+>>> -   uint32_t min_clk, max_clk, level_index, count;
+>>> -   uint32_t freq_values[3];
+>>> -   int size, lvl, i;
+>>> +   struct smu_clk_print_entry entries[SMU_MAX_DPM_LEVELS];
+>>> +   uint32_t min_clk, max_clk, count, entry_count = 0;
+>>> +   uint32_t selected_level = SMU_MAX_DPM_LEVELS;
+>>> +   int size, i;
+>>>      bool is_fine_grained;
+>>>      bool is_deep_sleep;
+>>> -   bool freq_match;
+>>>
+>>>      if (!dpm_table || !buf)
+>>>              return -EINVAL;
+>>>
+>>> -   level_index = 0;
+>>>      size = *offset;
+>>> -   count = dpm_table->count;
+>>>      is_fine_grained = dpm_table->flags &
+>> SMU_DPM_TABLE_FINE_GRAINED;
+>>> -   min_clk = SMU_DPM_TABLE_MIN(dpm_table);
+>>> -   max_clk = SMU_DPM_TABLE_MAX(dpm_table);
+>>> +   count = smu_cmn_get_dpm_level_count(dpm_table);
+>>> +   min_clk = count ? dpm_table->dpm_levels[0].value : 0;
+>>> +   max_clk = count ? dpm_table->dpm_levels[count - 1].value : 0;
+>>>
+>>>      /* Deep sleep - current clock < min_clock/2, TBD: cur_clk = 0 as
+>> GFXOFF */
+>>>      is_deep_sleep = cur_clk < min_clk / 2;
+>>> -   if (is_deep_sleep) {
+>>> -           size += sysfs_emit_at(buf, size, "S: %uMhz *\n", cur_clk);
+>>> -           level_index = 1;
+>>> -   }
+>>>
+>>>      if (!is_fine_grained || count == 1) {
+>>> -           for (i = 0; i < count; i++) {
+>>> -                   freq_match = !is_deep_sleep &&
+>>> -                                smu_cmn_freqs_match(
+>>> -                                        cur_clk,
+>>> -                                        dpm_table->dpm_levels[i].value);
+>>> -                   size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
+>>> -                                         level_index + i,
+>>> -                                         dpm_table->dpm_levels[i].value,
+>>> -                                         freq_match ? "*" : "");
+>>> +           if (!is_deep_sleep) {
+>>> +                   selected_level =
+>>> +                           smu_cmn_get_closest_clk_level(dpm_table,
+>> cur_clk);
+>>>              }
+>>> +           smu_cmn_build_discrete_levels(dpm_table, selected_level,
+>>> +                                                 entries, &entry_count);
+>>>      } else {
+>>> -           count = 2;
+>>> -           freq_values[0] = min_clk;
+>>> -           freq_values[1] = max_clk;
+>>> +           smu_cmn_build_fine_grained_levels(min_clk, max_clk,
+>>> +                                             entries, &entry_count);
+>>> +   }
+>>>
+>>> -           if (!is_deep_sleep) {
+>>> -                   if (smu_cmn_freqs_match(cur_clk, min_clk)) {
+>>> -                           lvl = 0;
+>>> -                   } else if (smu_cmn_freqs_match(cur_clk, max_clk)) {
+>>> -                           lvl = 1;
+>>> -                   } else {
+>>> -                           /* NOTE: use index '1' to show current clock
+>> value */
+>>> -                           lvl = 1;
+>>> -                           count = 3;
+>>> -                           freq_values[1] = cur_clk;
+>>> -                           freq_values[2] = max_clk;
+>>> -                   }
+>>> -           }
+>>> +   size = smu_cmn_emit_clk_prefix(buf, size, is_fine_grained,
+>>> +                                  is_deep_sleep, cur_clk);
+>>>
+>>> -           for (i = 0; i < count; i++) {
+>>> -                   size += sysfs_emit_at(
+>>> -                           buf, size, "%d: %uMhz %s\n", level_index + i,
+>>> -                           freq_values[i],
+>>> -                           (!is_deep_sleep && i == lvl) ? "*" : "");
+>>> -           }
+>>> -   }
+>>> +   for (i = 0; i < entry_count; i++)
+>>> +           size += smu_cmn_emit_clk_line(buf, size, i,
+>>> +                                        entries[i].freq,
+>>> +                                        entries[i].selected);
+>>>
+>>>      *offset = size;
+>>>
+> 
 
