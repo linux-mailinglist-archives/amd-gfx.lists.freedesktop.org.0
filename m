@@ -2,70 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9GRsB27zJ2rA6AIAu9opvQ
+	id rBb9IVXtJ2rH5QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 13:05:18 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 12:39:17 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A324C65F41B
-	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 13:05:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE8E765F0A5
+	for <lists+amd-gfx@lfdr.de>; Tue, 09 Jun 2026 12:39:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=fdla456g;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=deUBCbV8;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24D7B10E26C;
-	Tue,  9 Jun 2026 11:05:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF09010E22C;
+	Tue,  9 Jun 2026 10:39:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D35610E26C;
- Tue,  9 Jun 2026 11:05:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=KiySRhDaAHdcmwZbZdpciSJ90wXCZyP+XJktLR4gxdc=; b=fdla456g8y4YKgP7z1TNLbZiPp
- F1wNkZzGfOtPyXX+OEk+qOTPzKkNDmfC5wPMoi3RVvKHfc28jihdTY2BbpE9nfkcG3YrrA/+aonK0
- oYCluVY2L1jPMnOLi2hLne3AB8sPzf/wL+ZjhcrhtQkRx6OSsVLmS7OD5snTq9X8/xQsVOlnbN8vd
- wSlox3/RFg3QsV8ewgIwOcPUSB4nV4MnYrLk8TmozA3xEGK36NX0v7w5elMB3wLHXMDPXoPsqAYJJ
- YECJEba9nkqQodKm6z76F8hxFWcRntiygRwaBdj4a8mdtusW3iQKKFqKHa7O1RRxoAbxhzyVK4KPU
- y+V2xG5Q==;
-Received: from [79.117.146.159] (helo=killbill.home)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wWuG8-00Etww-1Y; Tue, 09 Jun 2026 13:04:40 +0200
-From: Melissa Wen <mwen@igalia.com>
-To: airlied@gmail.com, alexander.deucher@amd.com, alex.hung@amd.com,
- christian.koenig@amd.com, contact@emersion.fr, daniels@collabora.com,
- harry.wentland@amd.com, louis.chauvet@bootlin.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, mwen@igalia.com,
- sebastian.wick@redhat.com, simona@ffwll.ch, siqueira@igalia.com,
- sunpeng.li@amd.com, tzimmermann@suse.de
-Cc: Uma Shankar <uma.shankar@intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Xaver Hugl <xaver.hugl@kde.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH v9 4/4] drm/amd/display: use plane color_mgmt_changed to track
- colorop changes
-Date: Tue,  9 Jun 2026 12:20:21 +0200
-Message-ID: <20260609110420.1298352-5-mwen@igalia.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260609110420.1298352-1-mwen@igalia.com>
-References: <20260609110420.1298352-1-mwen@igalia.com>
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010000.outbound.protection.outlook.com [52.101.201.0])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89F2410E22C
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 10:39:13 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ytS/T7e0Cp03yGZ7gJeL4bQiSwQ5xNGlaYRQSNs9HEZMnDuzMD4T1TTkvKDhfGgfMWY96mV200mSarKzWriaBPg8v7Axiog4AlDcmMSeitEOTy5bFKbk5VzfpKV3E+Nfmo5oBAiNXMtQ1/3qzpkExD6d9gyRaOF1+sY4aIPVv60khLtaWKtqDLFoBUAKwHzFQMaodh3JNvCgLqdfr13loF5xAIDeBy+8CHa64VOq52uAAm3F+v1w5lW+4ENnMtWYPtantFP1SQDFwoUyp+KYiLSjAT70z2DTr08I+hQi9LIaSiGehNc0W178goyQnyfYt6ha323IUvOZJ9v2azdU7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sgNgiuEPahAY04hinxBiez9TIbiFNQj7fb5xC2z41A0=;
+ b=B4MuviIGHmpmeLVocSKXMvWSKQ5mF8a9hcsHZNSbpkFC+524vFk+rx88ZjDXuiQ5MQSYkULaEni+ltu7OIjtuUSFTjDPCZ3q7UA7y1sKHpvG3YmyVup1P8P0XTAX6Vwy/13FCuqI1NJl1zJRK2zdW9k2XNHxpcluIUQSyySKsoyJG+bbXkpYA5vj+cDUFMt4Mgp9cekYK9TlkzgvueT1O68bjwbqfw+6ft6YSgTYbbPxb3Mye1Yf0PfX8i2ByB6TlpPK9N2+ntrZ6nnfdSNrw2NDH54nMwtBDmxuBUfV5ca7IZKLPjfmm5jZjM/RMLF7/sPdtXoXgmfI9CUG6LFoHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sgNgiuEPahAY04hinxBiez9TIbiFNQj7fb5xC2z41A0=;
+ b=deUBCbV8+kdA/DKOW8zFG7LuRC3ZI+O+tU/F00cKpB3/ng11lS/Y0SQq4QBEIeZdKfyif6AAE1WCv74M/VLgRdXjchL6W+/0w/TuAK4LPWmJuwE+IbC/8p2taNBM0yHwsLdlEf+g8blwLSWnvgAVtcVzc8aRxqjKxRXb8M6hm1U=
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SN7PR12MB7273.namprd12.prod.outlook.com (2603:10b6:806:2ac::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.14; Tue, 9 Jun 2026
+ 10:39:09 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0092.006; Tue, 9 Jun 2026
+ 10:39:09 +0000
+Message-ID: <60acd3af-f2a8-426c-9c0f-f69c90ec687a@amd.com>
+Date: Tue, 9 Jun 2026 12:39:06 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/11] drm/amdgpu: move struct amdgpu_sa from amdgpu.h
+ into its own header file
+To: Shahyan Soltani <shahyan.soltani@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Alexander Deucher <alexander.deucher@amd.com>
+References: <20260608194741.1590055-1-shahyan.soltani@amd.com>
+ <20260608194741.1590055-2-shahyan.soltani@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260608194741.1590055-2-shahyan.soltani@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BLAPR03CA0015.namprd03.prod.outlook.com
+ (2603:10b6:208:32b::20) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SN7PR12MB7273:EE_
+X-MS-Office365-Filtering-Correlation-Id: e25c6c9c-ffc3-4797-5f58-08dec61356b4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|22082099003|3023799007|18002099003|4143699003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: b5Hvvqx0iouYdLBiDqyhuV+DEf97LnbJtaMmtJWF+MsHrIwbTJXTtHG05gpPm4IuweZ4Qz7mEeerXNCZmC6zsTnsJpTtY8nj/DRO/0W75pXoACk1QXvTYr/FdrVRDsGL3TCjj8Zir4s67Oab79KqJxEvenZeLDLYipF83bClOiatFFJJUHvla/b9y+FrUllyPYkqmNTcpgdnq2YtJCABhCxSKkLpuSkRQGBPD0kPci2lvmmfJJDbvwai9CpNNS7FzQrLReauZNp6eNEXXZcDO8G8r0603yB6m9s/9jkZq3HgqtvrLiFvjcvYvKHdVeW0D43xzt2B5OGesiRmhXITqIKYgslANKRDwS1P7fwJ/H7q4KHndMYWcmA2A497uuMNejyf0EqxeOk7j4XNo8uMV0lFwaktLlZLr3rFyWvXqIj8keOSHeIt19RTtMQd4xdTD00vWI5Gvb6AaY6r9dypxl37LprE9S6+Dm9oiyJHeLsleo7o/CTQvuhOzMHGJQDJajCfv7CYYbtClI62tdZ6oZCHGWIC4CgxjS1psfJ9LYDtYBNkb4yh81pG+dtEENgKpCg63vXST/9/YTYoT0EiD84AFmEVbfa4tqniWjET8z/BpzRSZbsFl8si7yoMTawbd8QtKAwMbbNyURStAKb9iw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(22082099003)(3023799007)(18002099003)(4143699003)(11063799006)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bmRVRitpRUJpR3REV2R3RXMyWjBVdks0K2h0cGVXaXRlUHBVNEZ1Ykh2aW5t?=
+ =?utf-8?B?dGQ1cXNuKzVoUmpOeHJWNkJIMXpCc2FIRjRVdUJuMndFUUhCd3o1cHZ3d3FC?=
+ =?utf-8?B?bFoyRlM3V0J4SXdlNS82QnFqMFRhTjZQckI2bXlpUVZ4bUlWaFZQYms5aStI?=
+ =?utf-8?B?UXJaSmpjMTJIZzY3R2pXYm1jdEdoMzBrZjJmcnJVamNMUGNYeGxzNmtGZUpo?=
+ =?utf-8?B?MTlqZkpCM1NQMm5FMENJSnNXRFJVdEI2NysrWHQ5aHJJT3hEYjJDcjduVU5S?=
+ =?utf-8?B?TlQ4R2NSUXF2RG9LSkVtTnBQT2lkbXRYNzloSkJwamQ4a3JyY2dWV3dHN1pL?=
+ =?utf-8?B?cVlxclVPNWxVWXJhOXVZSEVBWVRTVytnRnJvdk02cUpSUVR4UDdOUmN1SVJC?=
+ =?utf-8?B?WjkyblUxUDE5MzdOZnI1T2JSVXlRdXQxRjFkL2RBVktqblkyVWtFL3FDSElB?=
+ =?utf-8?B?Q0cvK0hUaXprSDhKaDVOZXV4NFlkcW5zWlR6NU9ObEtpclhTdmVqbGxCZ04x?=
+ =?utf-8?B?alhHYmtNR2lNK3REWk5YN1NudTFqTXAvY1JkbDhOWmhnZzdjcE5mWGtTRklP?=
+ =?utf-8?B?RFVVVmZpQXJscVNRWENPOVFmNlNjQXFGWWQrRE11VmwvNlZmT2MwZ2JWV2ln?=
+ =?utf-8?B?dmlUZEpoanlDMEFEaGFLYm9QdTVSTytWQVZ1dC9iTU5hZmczbktiRElpK0Zp?=
+ =?utf-8?B?SG5kcDhXTFBOSVJHdmowTHBydTY1RGJHQk9iUTBuYlQ3N3JJenZDR1FtSUth?=
+ =?utf-8?B?eTNPb0h0VWJmMlRudmlJeUp3VlVReVd4ZzZEVVorcGhZVUtieHJCQmtDMlAx?=
+ =?utf-8?B?b2MzWWlLTk5OK3JjYUpnL0Q1eU1TZU5KNGQzVWduYUFqVzZabzFsclppd3Vj?=
+ =?utf-8?B?QVh5M040bUY0RXZGYWhsckc3RGFMUDEwL2F6WlZsb0dJVExWWVlCMmJtU2R4?=
+ =?utf-8?B?M0t6bWlxb3pjbWllZHZlejNiZWJibnR5eGVVVjJjaENnVktZRFJHNVk5RnI1?=
+ =?utf-8?B?cDlBL3lxcldTVXNCbWFQR3ZHdkFTV0FBZVZiai82WitDS21uVzdZVzVqb2dD?=
+ =?utf-8?B?N3VyNTdSY0Vkdmk2eDhBQnFSWDJGRStpZFFjSjFINlRhM0Fwc0Rzd09ZMUtC?=
+ =?utf-8?B?VHgrV0Z4c3VIZmRYNEdqbjNaUitRdXZJQjhaVGxFMVlXMkNZaEl0Ry9lM25p?=
+ =?utf-8?B?K2JhOTZkdTRJSmtvSU1iaHJ6YVpwQmwzQ0xxMlducEw0SmRMUXB0VFlYeEhK?=
+ =?utf-8?B?SGUxVTV1cGZPeVRSaU15dmdqMXVwS0VyR0t4ZkFUQkh2VklFQnN6TStvLzFj?=
+ =?utf-8?B?amFYTkZER0xsQkdDZm1QVVBjMFZLZFFvK1FqSHo0T0piTldwUXpZa04rNGN1?=
+ =?utf-8?B?OXFTNkZLbkU1VXptenkxWFFXK2QwZXBNdDJ3blIvQkc0UmptdURPOGM5MGVH?=
+ =?utf-8?B?Z2licEEyeWoxVWZ3aW9SeEtzZEJ2VXpCQ3FpcUIyT2FaT3U5MU5hZ0VrajZr?=
+ =?utf-8?B?UmJHSEsrNUxlMmVqd3dIakFjZHN1d0pROEdmZmsvQWMwWW5NUE1vMHl3bVdX?=
+ =?utf-8?B?ekpDU01rMGZ4TFE1VVU3SjFDbnBPaFBpWDB5ZEFUZkN5YlBGWThMc2xycW9C?=
+ =?utf-8?B?bWRJVmMxZ05JZzcwZEpmeDNJSGtoU2VPYVMrUEY0UnVYOHdjd29ROVpLbEFU?=
+ =?utf-8?B?MFlBaXAvYk9iTFpuQStHajJmaG9SUllrNDlVekxKU0oxYXJoZ0ZVL01nNnBQ?=
+ =?utf-8?B?RWRuN3FTL3FMWGFyZ3JrY0R4UXZtOEdmMWM4Y0VyeFl6RUF6Q201U3l3WnBK?=
+ =?utf-8?B?L2daWUNTM2YvUG5mejNWNTlpb0tkK1NLLzFCL2Vmd08vK2d2Q0RSYS9xTE1y?=
+ =?utf-8?B?eThTQ0hVQ294RG5OOEgxbjh2Q2IyRWNoMC9ScVVBVSs2NUxHa2dNMjNFWEE5?=
+ =?utf-8?B?TWx5b1ZrYzhabWdNdmhZaXFFV1lVM2VVS0o4MTBIOUhLTFgzd0RRR2hva2pV?=
+ =?utf-8?B?eGV4NVY5dmhZMUlRa2g0QjZ4b0dHd2kyOTg1Zzdkcm9uakVFOFl5clE5YU9S?=
+ =?utf-8?B?TDFkL2syWmRUa3NSd2t3ZVJpWjFJRDFUMjBjcU9PdS95WllFdHVJUFR2ZXI2?=
+ =?utf-8?B?cGJ0cnd6TCtsME1SVitGd1A5QmtUUnJkZXFyeTNmbUp6RzBaOU41em9Za3JB?=
+ =?utf-8?B?b3oxL3ZsVGxHS2JuQjdYZUJoWlFtV0t1alRicDFMeU1rOWQvUzAySnh2aHY3?=
+ =?utf-8?B?RGZQeEZwUmlYaVQ4VllRV20vc3U1bDNTcGZhbHpyVDgzQ3ltbmsyR0ZlRmFC?=
+ =?utf-8?Q?1u9sYpLqNerGj5LZ7+?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e25c6c9c-ffc3-4797-5f58-08dec61356b4
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2026 10:39:09.6819 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: q2K/Qd36Y7kQYBz7kqCZPQFl151YUTaegKg5Ods7wrpJBQ0DlywcOwDFZMuNW5b7
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7273
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,74 +140,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.99 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[32];
-	RCVD_COUNT_THREE(0.00)[3];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com,emersion.fr,collabora.com,bootlin.com,linux.intel.com,kernel.org,igalia.com,redhat.com,ffwll.ch,suse.de];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:shahyan.soltani@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[igalia.com:-];
+	RCPT_COUNT_THREE(0.00)[3];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A324C65F41B
+X-Rspamd-Queue-Id: DE8E765F0A5
 
-Ensure the driver tracks changes in any colorop property of a plane
-color pipeline by using the same mechanism of CRTC color management and
-update plane color blocks when any colorop property changes. It fixes an
-issue observed on gamescope settings for night mode which is done via
-shaper/3D-LUT updates.
+On 6/8/26 21:47, Shahyan Soltani wrote:
+> Move struct amdgpu_sa_manager out of the monolithic header amdgpu.h into
+> its own dedicated header amdgpu_sa.h.
+> 
+> This is part of the ongoing effort to reduce the size of amdgpu.h into
+> their own respective separate headers.
+> 
+> Signed-off-by: Shahyan Soltani <shahyan.soltani@amd.com>
 
-Fixes: 9ba25915efba ("drm/amd/display: Add support for sRGB EOTF in DEGAM block")
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-Reviewed-by: Alex Hung <alex.hung@amd.com>
-Signed-off-by: Melissa Wen <mwen@igalia.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+I have a similar patch in my pipeline which is just not pushed to amd-staging-drm-next yet:
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index e96a12ff2d31..d3237f61246c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -10067,7 +10067,7 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
- 			continue;
- 
- 		bundle->surface_updates[planes_count].surface = dc_plane;
--		if (new_pcrtc_state->color_mgmt_changed) {
-+		if (new_pcrtc_state->color_mgmt_changed || new_plane_state->color_mgmt_changed) {
- 			bundle->surface_updates[planes_count].gamma = &dc_plane->gamma_correction;
- 			bundle->surface_updates[planes_count].in_transfer_func = &dc_plane->in_transfer_func;
- 			bundle->surface_updates[planes_count].gamut_remap_matrix = &dc_plane->gamut_remap_matrix;
-@@ -11808,6 +11808,10 @@ static bool should_reset_plane(struct drm_atomic_state *state,
- 	if (new_crtc_state->color_mgmt_changed)
- 		return true;
- 
-+	/* Plane color pipeline or its colorop changes. */
-+	if (new_plane_state->color_mgmt_changed)
-+		return true;
-+
- 	/*
- 	 * On zpos change, planes need to be reordered by removing and re-adding
- 	 * them one by one to the dc state, in order of descending zpos.
--- 
-2.53.0
+https://patchwork.freedesktop.org/patch/729166/?series=167539&rev=1
+
+My patch is slightly better since it also moves the function declarations over and not just the structures.
+
+So I think you can just drop this patch here when mine is pushed.
+
+Regards,
+Christian.
+
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu.h    | 32 +-------------
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_sa.h | 61 ++++++++++++++++++++++++++
+>  2 files changed, 62 insertions(+), 31 deletions(-)
+>  create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_sa.h
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> index 5d7bfa59424a..d7d8664854fd 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> @@ -111,6 +111,7 @@
+>  #include "amdgpu_reg_state.h"
+>  #include "amdgpu_userq.h"
+>  #include "amdgpu_eviction_fence.h"
+> +#include "amdgpu_sa.h"
+>  #include "amdgpu_ip.h"
+>  #if defined(CONFIG_DRM_AMD_ISP)
+>  #include "amdgpu_isp.h"
+> @@ -386,37 +387,6 @@ struct amdgpu_clock {
+>  	uint32_t max_pixel_clock;
+>  };
+>  
+> -/* sub-allocation manager, it has to be protected by another lock.
+> - * By conception this is an helper for other part of the driver
+> - * like the indirect buffer or semaphore, which both have their
+> - * locking.
+> - *
+> - * Principe is simple, we keep a list of sub allocation in offset
+> - * order (first entry has offset == 0, last entry has the highest
+> - * offset).
+> - *
+> - * When allocating new object we first check if there is room at
+> - * the end total_size - (last_object_offset + last_object_size) >=
+> - * alloc_size. If so we allocate new object there.
+> - *
+> - * When there is not enough room at the end, we start waiting for
+> - * each sub object until we reach object_offset+object_size >=
+> - * alloc_size, this object then become the sub object we return.
+> - *
+> - * Alignment can't be bigger than page size.
+> - *
+> - * Hole are not considered for allocation to keep things simple.
+> - * Assumption is that there won't be hole (all object on same
+> - * alignment).
+> - */
+> -
+> -struct amdgpu_sa_manager {
+> -	struct drm_suballoc_manager	base;
+> -	struct amdgpu_bo		*bo;
+> -	uint64_t			gpu_addr;
+> -	void				*cpu_ptr;
+> -};
+> -
+>  /*
+>   * IRQS.
+>   */
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sa.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_sa.h
+> new file mode 100644
+> index 000000000000..a878443c8c75
+> --- /dev/null
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sa.h
+> @@ -0,0 +1,61 @@
+> +/* SPDX-License-Identifier: GPL-2.0 OR MIT
+> + *
+> + * Copyright 2026 Advanced Micro Devices, Inc.
+> + *
+> + * Permission is hereby granted, free of charge, to any person obtaining a
+> + * copy of this software and associated documentation files (the "Software"),
+> + * to deal in the Software without restriction, including without limitation
+> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+> + * and/or sell copies of the Software, and to permit persons to whom the
+> + * Software is furnished to do so, subject to the following conditions:
+> + *
+> + * The above copyright notice and this permission notice shall be included in
+> + * all copies or substantial portions of the Software.
+> + *
+> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
+> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+> + * OTHER DEALINGS IN THE SOFTWARE.
+> + */
+> +#ifndef __AMDGPU_SA_H__
+> +#define __AMDGPU_SA_H__
+> +
+> +#include <drm/drm_suballoc.h>
+> +#include <linux/types.h>
+> +
+> +struct amdgpu_bo;
+> +
+> +/* sub-allocation manager, it has to be protected by another lock.
+> + * By conception this is an helper for other part of the driver
+> + * like the indirect buffer or semaphore, which both have their
+> + * locking.
+> + *
+> + * Principe is simple, we keep a list of sub allocation in offset
+> + * order (first entry has offset == 0, last entry has the highest
+> + * offset).
+> + *
+> + * When allocating new object we first check if there is room at
+> + * the end total_size - (last_object_offset + last_object_size) >=
+> + * alloc_size. If so we allocate new object there.
+> + *
+> + * When there is not enough room at the end, we start waiting for
+> + * each sub object until we reach object_offset+object_size >=
+> + * alloc_size, this object then become the sub object we return.
+> + *
+> + * Alignment can't be bigger than page size.
+> + *
+> + * Hole are not considered for allocation to keep things simple.
+> + * Assumption is that there won't be hole (all object on same
+> + * alignment).
+> + */
+> +
+> +struct amdgpu_sa_manager {
+> +	struct drm_suballoc_manager	base;
+> +	struct amdgpu_bo		*bo;
+> +	uint64_t			gpu_addr;
+> +	void				*cpu_ptr;
+> +};
+> +#endif
 
