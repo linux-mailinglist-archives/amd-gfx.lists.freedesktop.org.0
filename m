@@ -2,105 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id X473FmEjKWprRQMAu9opvQ
+	id 0q1SBWgjKWp1RQMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 10:42:09 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 10:42:16 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B96E8667524
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 10:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97C1F66754A
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 10:42:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Vq4v6QBE;
+	dkim=pass header.d=baylibre.com header.s=google header.b=I6WceBb+;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20240605:i=1")
+	dmarc=none
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A1CA10E812;
-	Wed, 10 Jun 2026 08:42:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADA6410E818;
+	Wed, 10 Jun 2026 08:42:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f178.google.com (mail-dy1-f178.google.com
- [74.125.82.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41C6210E315
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 15:30:26 +0000 (UTC)
-Received: by mail-dy1-f178.google.com with SMTP id
- 5a478bee46e88-3074adb8fcaso9886906eec.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 09 Jun 2026 08:30:26 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781019025; cv=none;
- d=google.com; s=arc-20240605;
- b=HaBuT3k8Glm+1/MBq0rnjsQBE7rCUZrMZDJgVBL6xMAkObKg9DH/3sukBJ+5aEz5a9
- nh8k8SrEzudtpEM7ciQpJlvdYWoG4jLyAz66UBQMdtJ+2KMDxGBXgC2i9+ZuWa4vQ2f4
- rh7JXYgapuhVYoCDgeggw1ja+UC+Kx1ft+320nMa1sEG8N3HHOt7d5hP4Pan7VbtbomA
- 1OAfFJw+xo0SxVbzRWcEhWmP01V0c6TNysBGnDXGOPyE7VBZ/qG8/+pEIH3gGcaamtYz
- IznUWxOBmUnKiuCYe4S2Yyd5ZgwEFSzjhnAdIel1Kouq/fj+Qk8j07MkOQtBAUnS8vLx
- mBhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=vJU+o++m0aasR83bRIxN574z9aspy1ro3TGM/ArKaY4=;
- fh=GC3O+tR+Guc3Z7Kqv65aKoK9ZqMprSiuaQe4yMKJTUg=;
- b=i/3yiG0tT2UEygm/xd4Zpk6BVKTrvBMDQVW/Th2wn8RMWTqsLN2Xl2qg7kjRSuCVfd
- Uoqm8yaOLo6Oipitx7qKyvHRYS2om3mSfcFXMEgNB1MOOs9cXbFf14r29SnrZLWrLZZY
- wdwwQNWZXmwe0jdvclb71J0yeWW3T/BkeOwy0uOX2ugJOaWPIzpjpB67F0x4LfHJVBoo
- r2EDTGgPo1BRO2FWLDzwRXtujjaV+IlkpdayZGYXByFfYaO/9L59vbYuFur1feQkBxXK
- KFd3iG6dD66fFqwQUeryeduBehyKJjjLx6AeIoSU94ZgqR657PEs5D10bKjyHaX7+YpL
- QMMQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+ [209.85.221.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F5BA10E2F0
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 15:32:04 +0000 (UTC)
+Received: by mail-wr1-f44.google.com with SMTP id
+ ffacd0b85a97d-45ef372c58aso3035968f8f.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 09 Jun 2026 08:32:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1781019025; x=1781623825; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=vJU+o++m0aasR83bRIxN574z9aspy1ro3TGM/ArKaY4=;
- b=Vq4v6QBEBboFQPVTXbYNm6DI7GbHESlpjC1Oxa95ZCIysVCuyMqxdEH/fMF0uZELCZ
- hsCwX0fa15ahIOk9MszVFklQf4iK/iUIWWwyqxPQnm8BhhbZUQBI5DKWUAhvY0ddV6Q0
- rFqfajeOmYbfIoY3EAPdgK+HP0HYveuGp/0YfLFxLU3Wvet2EccCiw59HS1tnEvYSey3
- nJDYSvYH22wecN9pgMpsYT9rtJ15YeZhmUwAIa7mHERSmJnhDUo/bbMstTZBIypUumt3
- 1OQoKZzlKaj02MDkJ4xzstbS1CMoXxZzuowIJC0rY+nP5jbQhAS6se4t9av3ycvbA7eA
- Omuw==
+ d=baylibre.com; s=google; t=1781019123; x=1781623923;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=Y8s7Qwnb7/jxBSgOlg8nCSNxOUU5XDQ7ABL6iYYnpM8=;
+ b=I6WceBb+zMbVDMTx7sVNDyfDMd/8/LN8oSV48iUmUCkNCcbMquaQH9byt/jX7DbTJP
+ +4zbE9NFN9ZSOqx6S4LwGkSfk8NByj65K/QtB8O9Z14US10rzDkrwePryQII/TxqG9ZJ
+ 2Z4VhQJxbiU6woNU+ONdBFcyrjPCNn+KMB4CNRlH1VAeoyoiNIbYhq05+bHYr2fUIiQk
+ 30ptIfG8mC/QONe9FtiGTRffRWYpRPYQ1o54TCZenqAyEqtfJ49+bIm3vpVXGK1mtONZ
+ Vksx9QQm0cXNn9dcP/JO4kDnVhyW6JNYmjdvbdtX0N3tL6WM3g8XYsE86VDymc70meSu
+ uvFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781019025; x=1781623825;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=vJU+o++m0aasR83bRIxN574z9aspy1ro3TGM/ArKaY4=;
- b=Goh/yinP+sDOJvus1W1tC/CA8S8cYBU/tO0pZL3QLkHPbSutqayqd2BG/0U2F37A/8
- yky7AL8fp4XM+WCJSNqixWhZA94No9Fg/A5wAppw5qCAYe8wIYxl3Mp0zkmYVQOa8LFn
- t8sni4h54g7XpSonrqoTtWDecd8EatugqGbrJU4VX2E2enLK5FPcOMDPvDJEvNLfbiqq
- D72ahcnqtuKIv3rR7A2XcuG3yZWnsOgccZh5nJ5NRgn4HvnLcYKxwQkcwi11V+yp5Qvu
- Vy0HF3tSFLT0Wvbfm7k/DxVjsqAdQjGqOhiIjDni4m9K5z0wxGVsE8M04xKcdcmUmfUn
- ZLrA==
+ d=1e100.net; s=20251104; t=1781019123; x=1781623923;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Y8s7Qwnb7/jxBSgOlg8nCSNxOUU5XDQ7ABL6iYYnpM8=;
+ b=AQPXmP/lTh8Hh07yK3DaC5oBAPdCv4VweuS7q0kq4meETTQHQilb+hbBG+6aEPET+9
+ dbm6d9Vxpr62WAeIoWAtW8uSNeJTSvBFUKlckS3DPnd9SRJ574dJPiBoCuQj0s8P5Ej0
+ e/SCwT8ikTiDtaMsigO0LUPIwkM0FaDFtLE0KGeKob/oGgOJCC6CWUQqVkxpn4PHfIM6
+ j6CFTK51np/yjk/N2kOENnc6FYgA6RBsz3DqZpm7MjR85BrjX0EKnQOwHZdITdIZVZax
+ euXy9IH2N10O+Zhy+UDHtRjyEEMQjoi35M54C+H0rCAopjUuwdUc+d1oog71/EMS8gM4
+ 3XPg==
 X-Forwarded-Encrypted: i=1;
- AFNElJ/MGFmGcXfc45L05LRgTNQfIVm0JUJf7QrihY5Kt9TRhFckfoSzqvMzrFJ3QXnl52YgINysvsUV@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx4TDeRSlILNrQhD0yUoslcmZgCj/jP+T6CIjbCQLcSTzUBppdZ
- Hu1+gsKvLbwNS/bIYTl8N806ueYlX4aFqQdEoRIPF2tgx5MNm2NMwEsRmQaWGHEfO8/PQmvKVky
- cFH/gnGH96KsDhk00F/6WvNBC6Il1N8g=
-X-Gm-Gg: Acq92OEmWlHGwI7ml3KmtcwycwLp4scinrCmcBRikAIxHC4Ttk0OazKx/HoqAo4+Qwa
- um2ERiUs3p9fAyOjXZ5HcNzhSY5RPYBqw9ZhkJZO9nUPiGklbbNFwQKVjBUgoVpny8iAZxf9iVX
- W0dRh23Lr6HCSKcIyTPyB4PDGrtnXsAAhirXRRqnBQ5wP6/bQOTXd72PK9JK2S9CSB6hkB69hQA
- NT69RJJ6rLp722EtIT1q/jDmqMUcYJSmESsO8pZBDekGvrOVA5jpyXQfHJY+P8mX/Z4af8OhbVT
- wDt8ctn4XMmMfUmkoo0=
-X-Received: by 2002:a05:7300:730a:b0:307:2e1c:17f1 with SMTP id
- 5a478bee46e88-3077b1f6abcmr12851372eec.25.1781019025332; Tue, 09 Jun 2026
- 08:30:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260604063943.1412955-1-lgs201920130244@gmail.com>
- <42b82b4f-43ce-4943-bc64-d7386998473c@amd.com>
-In-Reply-To: <42b82b4f-43ce-4943-bc64-d7386998473c@amd.com>
-From: Guangshuo Li <lgs201920130244@gmail.com>
-Date: Tue, 9 Jun 2026 23:30:11 +0800
-X-Gm-Features: AVVi8CcZdB41eilVcYzozusawa1g5tNYIXVlt10eHy4mOCLoqWYvJODpLiDSN_s
-Message-ID: <CANUHTR9YUmkjrDSGL0uSfHHGxhGtOgfPuF2OudbjTyrCAvd1sA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu/userq: clean up VA state on create failure
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Prike Liang <Prike.Liang@amd.com>, 
- Sunil Khatri <sunil.khatri@amd.com>, "Jesse.Zhang" <Jesse.Zhang@amd.com>, 
- Lijo Lazar <lijo.lazar@amd.com>, amd-gfx@lists.freedesktop.org, 
+ AFNElJ8NvtAxmZHF8JO/21kKLa5a6yGwHNlS6aJEJhdeBLHJn6ENnMZC87m9J5YIjt/bsL/Uujz7ptgE@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwPIwQnLloarwXKG4o3hnjUJ3vb7hhJ0PIboXIJz7Jc5bnTZv6/
+ Wr21vjh63QFvBFTf06ESFJSHFTKdF3WNjdW6fmeiI5CcuJcOzdBtKWNE0BZ5ZESrk4I=
+X-Gm-Gg: Acq92OERxCFFFe0ZNnH52t3CYjlMi+UkMjSNqZ8wsqcSJTxGa2uvOhEGWVCbV+RBX9d
+ ee7ktnkH/RL8B86xwnDLXtZ8LchQWuaP7rly36nKl7Cf7KbPIt8XRjip7ry8QiVlUIYS1ircora
+ VZKoNrzKd5lA3RLicKjGH3bt1x9tYgHGOB0CdddtwZxVSIOb4oe9ETtVY6ZjT1LzymdZHmVBuzB
+ ZtY0B2jOyoTrK1saDYuSBLBZ4FxjAA8q8BSXde+4r20P81wITJlgQ6y2yUb5VnOhxTQdp1d4v5E
+ etPMa/8QttAz2c70OOeuBroaKOUUhIKZI1iiQgdZmBkWuYLxzfg+DfRi3CAd7sDUSdGPPWy8UDJ
+ KqozsSu68zam0mLxj8E68PeHUTNZ1kFaCNqu3Y9E1/KrcKR0pL7omRWSl3CSvVfQVuvxHKxNnpY
+ uEnd4mEFI3tIdXhtqrjGl+0gKXy9Bs6zVJO6hfpyVvJtgt0aFAcM/x+3eWNejud9j1fxYXAE3qC
+ OWmBqIjxfKdEhpRS7WvRrNN6Q==
+X-Received: by 2002:a05:6000:4609:b0:460:3234:4472 with SMTP id
+ ffacd0b85a97d-460323444d8mr28986691f8f.40.1781019123266; 
+ Tue, 09 Jun 2026 08:32:03 -0700 (PDT)
+Received: from localhost
+ (p200300f65f47db045b0dbdd314d8a71f.dip0.t-ipconnect.de.
+ [2003:f6:5f47:db04:5b0d:bdd3:14d8:a71f])
+ by smtp.gmail.com with UTF8SMTPSA id
+ ffacd0b85a97d-4601f344762sm67967138f8f.23.2026.06.09.08.32.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 09 Jun 2026 08:32:02 -0700 (PDT)
+Date: Tue, 9 Jun 2026 17:32:00 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig_=28The_Capable_Hub=29?=
+ <u.kleine-koenig@baylibre.com>
+To: Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Jesse Zhang <Jesse.Zhang@amd.com>, 
+ Lijo Lazar <lijo.lazar@amd.com>, Vitaly Prosyak <vitaly.prosyak@amd.com>, 
+ Kees Cook <kees@kernel.org>,
+ =?utf-8?B?QW5kcsOp?= Almeida <andrealmeid@igalia.com>, 
+ "Mario Limonciello (AMD)" <superm1@kernel.org>, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] drm/amdgpu: Don't use UTS_RELEASE directly
+Message-ID: <aigx2xn-59FmGw63@monoceros>
+References: <20260428144704.1114562-2-u.kleine-koenig@baylibre.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="orjnrmynt4uzf4h5"
+Content-Disposition: inline
+In-Reply-To: <20260428144704.1114562-2-u.kleine-koenig@baylibre.com>
 X-Mailman-Approved-At: Wed, 10 Jun 2026 08:41:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -116,199 +107,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-2.41 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[baylibre.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:pierre-eric.pelloux-prayer@amd.com,m:Jesse.Zhang@amd.com,m:lijo.lazar@amd.com,m:vitaly.prosyak@amd.com,m:kees@kernel.org,m:andrealmeid@igalia.com,m:superm1@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:Prike.Liang@amd.com,m:sunil.khatri@amd.com,m:Jesse.Zhang@amd.com,m:lijo.lazar@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[baylibre.com];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[lgs201920130244@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER(0.00)[u.kleine-koenig@baylibre.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[baylibre.com:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lgs201920130244@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[u.kleine-koenig@baylibre.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,amd.com,kernel.org,igalia.com,lists.freedesktop.org,vger.kernel.org];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,monoceros:mid,baylibre.com:dkim,baylibre.com:email,baylibre.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B96E8667524
+X-Rspamd-Queue-Id: 97C1F66754A
 
-Hi Christian,
 
-Thanks for pointing this out.
+--orjnrmynt4uzf4h5
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] drm/amdgpu: Don't use UTS_RELEASE directly
+MIME-Version: 1.0
 
-On Fri, 5 Jun 2026 at 17:32, Christian K=C3=B6nig <christian.koenig@amd.com=
-> wrote:
->
-> On 6/4/26 08:39, Guangshuo Li wrote:
-> > amdgpu_userq_input_va_validate() is not a side-effect-free validator.
-> > When it succeeds, it allocates a VA cursor, links it on
-> > queue->userq_va_list and marks the corresponding bo_va as userq mapped.
->
-> That was already removed, you are looking at outdated code.
->
-> Regards,
-> Christian.
->
-> >
-> > The user queue create path validates queue_va, rptr_va and wptr_va with=
- a
-> > short-circuit OR expression. If an earlier validation succeeds and a
-> > later validation fails, the error path frees the queue directly. The VA
-> > cursor added by the successful validation is leaked and
-> > bo_va->userq_va_mapped remains set even though no user queue was create=
-d.
-> >
-> > The same stale VA tracking state can also survive later create failures
-> > after all VA validations have succeeded, because those paths also free
-> > the queue without unwinding queue->userq_va_list.
-> >
-> > Route the create error paths through common unwind labels and call
-> > amdgpu_userq_buffer_vas_list_cleanup() before freeing the queue. This
-> > releases any VA cursors added during validation and clears the stale
-> > userq VA mapping state.
-> >
-> > Fixes: 9e46b8bb0539 ("drm/amdgpu: validate userq buffer virtual address=
- and size")
-> > Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 32 +++++++++++------------
-> >  1 file changed, 15 insertions(+), 17 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/dr=
-m/amd/amdgpu/amdgpu_userq.c
-> > index 0a1b93259887..dba0f786ae4a 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> > @@ -826,17 +826,15 @@ amdgpu_userq_create(struct drm_file *filp, union =
-drm_amdgpu_userq *args)
-> >             amdgpu_userq_input_va_validate(adev, queue, args->in.rptr_v=
-a, AMDGPU_GPU_PAGE_SIZE) ||
-> >             amdgpu_userq_input_va_validate(adev, queue, args->in.wptr_v=
-a, AMDGPU_GPU_PAGE_SIZE)) {
-> >                 r =3D -EINVAL;
-> > -               kfree(queue);
-> > -               goto unlock;
-> > +               goto free_queue;
-> >         }
-> >
-> >         /* Convert relative doorbell offset into absolute doorbell inde=
-x */
-> >         index =3D amdgpu_userq_get_doorbell_index(uq_mgr, &db_info, fil=
-p);
-> >         if (index =3D=3D (uint64_t)-EINVAL) {
-> >                 drm_file_err(uq_mgr->file, "Failed to get doorbell for =
-queue\n");
-> > -               kfree(queue);
-> >                 r =3D -EINVAL;
-> > -               goto unlock;
-> > +               goto free_queue;
-> >         }
-> >
-> >         queue->doorbell_index =3D index;
-> > @@ -844,15 +842,14 @@ amdgpu_userq_create(struct drm_file *filp, union =
-drm_amdgpu_userq *args)
-> >         r =3D amdgpu_userq_fence_driver_alloc(adev, queue);
-> >         if (r) {
-> >                 drm_file_err(uq_mgr->file, "Failed to alloc fence drive=
-r\n");
-> > -               goto unlock;
-> > +               goto free_queue;
-> >         }
-> >
-> >         r =3D uq_funcs->mqd_create(queue, &args->in);
-> >         if (r) {
-> >                 drm_file_err(uq_mgr->file, "Failed to create Queue\n");
-> >                 amdgpu_userq_fence_driver_free(queue);
-> > -               kfree(queue);
-> > -               goto unlock;
-> > +               goto free_queue;
-> >         }
-> >
-> >         /* drop this refcount during queue destroy */
-> > @@ -862,21 +859,17 @@ amdgpu_userq_create(struct drm_file *filp, union =
-drm_amdgpu_userq *args)
-> >         down_read(&adev->reset_domain->sem);
-> >         r =3D xa_err(xa_store_irq(&adev->userq_doorbell_xa, index, queu=
-e, GFP_KERNEL));
-> >         if (r) {
-> > -               kfree(queue);
-> >                 up_read(&adev->reset_domain->sem);
-> > -               goto unlock;
-> > +               goto free_queue;
-> >         }
-> >
-> >         r =3D xa_alloc(&uq_mgr->userq_xa, &qid, queue,
-> >                      XA_LIMIT(1, AMDGPU_MAX_USERQ_COUNT), GFP_KERNEL);
-> >         if (r) {
-> >                 drm_file_err(uq_mgr->file, "Failed to allocate a queue =
-id\n");
-> > -               amdgpu_userq_fence_driver_free(queue);
-> > -               uq_funcs->mqd_destroy(queue);
-> > -               kfree(queue);
-> >                 r =3D -ENOMEM;
-> >                 up_read(&adev->reset_domain->sem);
-> > -               goto unlock;
-> > +               goto free_queue;
-> >         }
-> >         up_read(&adev->reset_domain->sem);
-> >
-> > @@ -892,10 +885,7 @@ amdgpu_userq_create(struct drm_file *filp, union d=
-rm_amdgpu_userq *args)
-> >                 if (r) {
-> >                         drm_file_err(uq_mgr->file, "Failed to map Queue=
-\n");
-> >                         xa_erase(&uq_mgr->userq_xa, qid);
-> > -                       amdgpu_userq_fence_driver_free(queue);
-> > -                       uq_funcs->mqd_destroy(queue);
-> > -                       kfree(queue);
-> > -                       goto unlock;
-> > +                       goto free_queue;
-> >                 }
-> >         }
-> >
-> > @@ -915,7 +905,15 @@ amdgpu_userq_create(struct drm_file *filp, union d=
-rm_amdgpu_userq *args)
-> >
-> >         args->out.queue_id =3D qid;
-> >         atomic_inc(&uq_mgr->userq_count[queue->queue_type]);
-> > +       goto unlock;
-> >
-> > +free_mqd:
-> > +       uq_funcs->mqd_destroy(queue);
-> > +free_fence_driver:
-> > +       amdgpu_userq_fence_driver_free(queue);
-> > +free_queue:
-> > +       amdgpu_userq_buffer_vas_list_cleanup(adev, queue);
-> > +       kfree(queue);
-> >  unlock:
-> >         mutex_unlock(&uq_mgr->userq_mutex);
-> >
-> > --
-> > 2.43.0
-> >
->
+Hello,
 
-I was looking at an outdated codebase. Sorry for the noise.
+On Tue, Apr 28, 2026 at 04:47:03PM +0200, Uwe Kleine-K=F6nig (The Capable H=
+ub) wrote:
+> UTS_RELEASE evaluates to a static string and changes quite easily (e.g.
+> uncommitted changes in the source tree or new commits). So when checking
+> if a patch introduces changes to the resulting binary each usage of
+> UTS_RELEASE is source of annoyance.
+>=20
+> Instead of using UTS_RELEASE directly use init_utsname()->release which
+> evaluates to the same string but with that a change of UTS_RELEASE
+> doesn't affect amdgpu_dev_coredump.o.
+>=20
+> Signed-off-by: Uwe Kleine-K=F6nig (The Capable Hub) <u.kleine-koenig@bayl=
+ibre.com>
 
-Regards,
-Guangshuo
+Is this patch still on someone's radar?
+
+Best regards
+Uwe
+
+--orjnrmynt4uzf4h5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmooMe0ACgkQj4D7WH0S
+/k7C6AgAk5oykrj4mKghFtxQ6MLq7XvvDTtDyq6p1wIJK4mHnUAQbHKuGi0FRi/8
+hmCko49bG+cT/A3VenZlq5ELpaPU0ve5+GsOaiGwUJ9LCSvGRRIst42AVcastH8f
+ev7B6v5WopQxxY2DUrA+k1MiQSkS+23vNy4bnWq7DnR7Ao4+8NXamZbqluIdp4b+
+C0JDIPX+idjM9u5CwJDQyJyluDQiZ2ucc0SplXzocf+qT1+dTKshcYprC4IZa9b9
+Aw+mvPDiVzKZWSPtDpgCOGRZrtX5b5cRPzMLT4+A90OeNO0RvxX+KL81GcQg3tOH
+miEughCuvcVaS4xTYiILVCgK48uPTg==
+=Wrer
+-----END PGP SIGNATURE-----
+
+--orjnrmynt4uzf4h5--
