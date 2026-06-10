@@ -2,90 +2,112 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id zmoAHIdQKWoWUwMAu9opvQ
+	id lernMZJUKWpTVAMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 13:54:47 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 14:12:02 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4A01668FD9
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 13:54:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2498E6691F0
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 14:12:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=a8m9eQ+P;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dkim=pass header.d=amd.com header.s=selector1 header.b=NLYwRpFZ;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 2610:10:20:722:a800:ff:fe36:1795 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31CA110E483;
-	Wed, 10 Jun 2026 11:54:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7C6F10E55D;
+	Wed, 10 Jun 2026 12:11:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AB4010E483;
- Wed, 10 Jun 2026 11:54:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781092485; x=1812628485;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=IBdSvbniv45jCKX2cc9fNGt2KfPPluvYcMxmenPPBM0=;
- b=a8m9eQ+PQeVhlZTCMjGLPcA2Y9U2Aw912dTp4B+8MOslLy51AuWkbKtU
- MBow95YbLgz+BaMoPWLBeB7YmLCbYg1wbbfOVynoBb84fkXCanK+SIJfr
- XGasThfEMrSvY/sDXk4w7zw+rn29XUHFEpqVtkGYWFBug1XM4P0jjJpHU
- 1JShHhInuxRKbxhmAs6R7cnNKx21NcO1R90rPZwEm5xPK+bs77TnyeWkS
- 3UvzjdUJQrBQ1FaqMokDLsZllB0zyEBHZ0hGkEHfR6sUN5gGjrTgM7AC+
- alGy5IvFrcbRAhaGiSNLEjkHq+OUHzx4xv4KYo/zD7jm58rrRv6sF3WkE A==;
-X-CSE-ConnectionGUID: mZgg+GRvQ5K+oItAoA9a1Q==
-X-CSE-MsgGUID: 3S5gGZ3wQ5OTSR2cw7bZfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="81789866"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="81789866"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 04:54:44 -0700
-X-CSE-ConnectionGUID: YLk1Sbj9TlyqNzCagqc0RQ==
-X-CSE-MsgGUID: /M4SHBnES7ybbKKuTAV9eg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="250439091"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.244.3])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 04:54:32 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Harry Wentland
- <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira
- <siqueira@igalia.com>, Alex Deucher <alexander.deucher@amd.com>, Christian
- =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang
- <hjc@rock-chips.com>, Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan
- <andy.yan@rock-chips.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, Jonathan Corbet
- <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, Daniel Stone
- <daniel@fooishbar.org>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org, wayland-devel@lists.freedesktop.org
-Subject: Re: [PATCH v17 21/28] drm/tests: bridge: Add KUnit tests for bridge
- chain format selection
-In-Reply-To: <gnicb4WkT1S4aQIC2G_naw@collabora.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260609-color-format-v17-0-35739b5782cc@collabora.com>
- <20260609-color-format-v17-21-35739b5782cc@collabora.com>
- <04ff70850213ae0f75486b1a27a7edb6fb4e71c3@intel.com>
- <gnicb4WkT1S4aQIC2G_naw@collabora.com>
-Date: Wed, 10 Jun 2026 14:54:29 +0300
-Message-ID: <596f0f063d6ef2ffb4c6640e3df5ed89d95b11dd@intel.com>
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010050.outbound.protection.outlook.com [52.101.61.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83EB410E55D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jun 2026 12:11:52 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bwkCAWGOCdMUlOT/2HREWUOW8JfLxCj3hVL6cw8PgoPqsjvURNIqI/L/gGfXaksOv5zlSD70hUu/iegB4lhooz8siHDMYHYoY+kLx0/+HAEHoPhnDyHANoVaU4uSqhGZQqWrhZMXoc/eGthvbmCSQ/lYqCdfuQqhTKvMfURzfdtl9/vPUSEcViuCJPEfExSp4WL37/WxZYCrTabh4D+w3VnasGsUVKxvYJyShpk32C1TJCfiAsvAnuXfI0fsQiKRCPlvIAY8shfROM72eG4Z93nSkh6SFQI1DPV2nRvv8OSHqCQDUEZHomKnrWfghgtKMq+k+8DSscyzSiaw0r921A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ljj12r+yiNEpcbP1O3SOg6RC9y8haSEzmfMAez8aLlM=;
+ b=W3juNurMr4qo/2ZABUUXo/fsMkvg87oKXScgKL4rHeF2IzJ2d7VbEjZF4nsxI+szokhIpGLkg35mWfRcUp4wskpttqH4CDmyN7b4KigPuCuqwxegx2S/YOFDxLoa+tOE7D4F/A33q/kHdAik+4ZjmIau4XkR9ZOBoAOL5r+nee9261kLDEXxpbsxjzLSuIFj2rFdD9l4ZyC1sokxr2+BZo+K6HbLRCc9PLAbkZ2E9kxepNXQemM+I4P/FQ7rFPke0ecBzpc5MQOXbftuLTCdGCQ31DMkubpXuBtftzh2L+/lT07mSjZhieFO6z2dS+yy1hkS9HPQ9WWyDz578iwIvg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ljj12r+yiNEpcbP1O3SOg6RC9y8haSEzmfMAez8aLlM=;
+ b=NLYwRpFZNKapeR3zs94D9RCGbVgvtxqQD0c74ENZ1iPp8Zr+szzlrXTpQE4gOqAxJZViv0EM0dQqamMtHzLe8vdy5NxYy4INEe8Vci3KzOHGLGdaDtHE/DFftuTCYcaEkxmCLiEwx8ac9tbfoCoJPI4rldGHgX77Q/cMZ2/A7xk=
+Received: from CH0PR03CA0238.namprd03.prod.outlook.com (2603:10b6:610:e7::33)
+ by PH0PR12MB7837.namprd12.prod.outlook.com (2603:10b6:510:282::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.14; Wed, 10 Jun
+ 2026 12:11:49 +0000
+Received: from CH2PEPF00000148.namprd02.prod.outlook.com
+ (2603:10b6:610:e7:cafe::2a) by CH0PR03CA0238.outlook.office365.com
+ (2603:10b6:610:e7::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.11 via Frontend Transport; Wed,
+ 10 Jun 2026 12:11:48 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ CH2PEPF00000148.mail.protection.outlook.com (10.167.244.105) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.113.7 via Frontend Transport; Wed, 10 Jun 2026 12:11:48 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 10 Jun
+ 2026 07:11:45 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 10 Jun
+ 2026 05:09:47 -0700
+Received: from rtg-MAPLE.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
+ Transport; Wed, 10 Jun 2026 07:09:44 -0500
+From: Priya Hosur <Priya.Hosur@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <Lijo.Lazar@amd.com>,
+ <Alexander.Deucher@amd.com>, <Christian.Koenig@amd.com>,
+ <Mario.Limonciello@amd.com>, <Kenneth.Feng@amd.com>
+CC: <Pratik.Vishwakarma@amd.com>, <Veerabadhran.Gopalakrishnan@amd.com>,
+ <Priya.Hosur@amd.com>
+Subject: [PATCH 0/4] drm/amd/pm: smu_v14_0_0: fix pp_dpm_* clock reporting on
+ SMU v14.0.0/v14.0.1 APUs
+Date: Wed, 10 Jun 2026 17:39:40 +0530
+Message-ID: <20260610120944.124040-1-Priya.Hosur@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PEPF00000148:EE_|PH0PR12MB7837:EE_
+X-MS-Office365-Filtering-Correlation-Id: 232f9f16-cadc-489d-6dac-08dec6e9728e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|1800799024|376014|36860700016|82310400026|6133799003|56012099006|18002099003|11063799006;
+X-Microsoft-Antispam-Message-Info: 9VMpguSklcDy47NTf0rO9+vpage7JSU9X1XstOKpIhg12+n1MKp9s8ESkmmkNdUrMo0abahvK8gD0oY5s2Y3ZKgQRLzRhqWzRcJOsfgCgZsdWIUf8HVOZo1Tc55EzX5VQBapmu9iFcrcjkJ90oAJjm2U429eXyNYIqzvV1FnLV+xdzr1D/Oej9paoh+asuhFWtIcD8axa7WVahUoD7EhAujWtECQYwFMmwo3g7Lx0PLG1GviCvU5XhJUcRWjN87O0ruw3/v0sZag1GrWO12yOHAxdFbWplSZ2oSL+pUzVU0LMhPY4dnHoGdqOVVBRt+IRqQZ3zikKzE/ZUh9q8l4hQc7rl+Jcftuw0Ek8JD4s6/PXPynSY1GMPPjaDk31W7QI5IiSyScl7QvLjqnVjzaahsJ+k/8Iu//HZCoLJoBOuvakMXcAgIA6YcyGAMBXiI5xTAn51O09c0owAFjNbnsv6JqmMFf0IOWQ6oe16oIHqt0D7Am0q89uG7zxSWBDnfDsrOMjGZDw9Cl+RzIsHvXaTghK/CznZt47jrjmkfmHTyen0O6YkACtPejXfrZB6+ppMlefxHTsp2w4HHhwoA9koLtrVMPDrYEZluSzims64IBo38WzybG9UPdhVlm32KUsXBppQJXQuWB0zB3O4zUh0FcGBMfqBqcJtMOhgbs3/IXLXj/Q+cVoBxb1YJPAwDHXYJv/me/Nyo5bBk+9ki6PEfONdXeLvPHtoxsLrJ47S0=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(23010399003)(1800799024)(376014)(36860700016)(82310400026)(6133799003)(56012099006)(18002099003)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: VZF7awjSDe72i+yc+jQgIKEjok1qVKTNrtvh16nAU43uIvX6e8Ocy3kg1Z0T97FpVPuG0h9i8NPxQpZybDCr6HAI3oDh5v16uuQisFlaq5P1xJIu1+kz3y535VCs+zyI93TAgRsCDT0+sNWFVsEEgv/mtqcdVw2IvPc84fkhsIPW/uTrg/Q9VABjH4UQZ+qr514sHVy3lysA+kloeGlDDcMY628oAFUAD4A3tvD/cdk4sckVVAPDB3mhfGzdGoGqb4ncaV0jBAgzq6UPwXSrdJJRzRwrGs6z+pWqvWR9CIg+DjS5HhGZSFdUMqgboQujcTHQEC7cv+WNaIwYFxqyVjbP456Iz7vMvneJAT8w4+1zc9D5/nzGG5yBlfIGzN3tKderG7pN6AEpfdkkWqP18fcrzK/CtYxMTAJQPxoumnJB+X1J57Q1Nbmzt+HM2aYS
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2026 12:11:48.4450 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 232f9f16-cadc-489d-6dac-08dec6e9728e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF00000148.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7837
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,54 +122,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.71 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[39];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FREEMAIL_TO(0.00)[collabora.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,fooishbar.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:mid,amd.com:from_mime,lists.freedesktop.org:from_smtp];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Priya.Hosur@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_NONE(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,intel.com:dkim,intel.com:mid,linux.intel.com:from_mime]
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A4A01668FD9
+X-Rspamd-Queue-Id: 2498E6691F0
 
-On Wed, 10 Jun 2026, Nicolas Frattaroli <nicolas.frattaroli@collabora.com> wrote:
-> If you don't want __maybe_unused, then sure, I'll move them into a new
-> .c file. Though I think the two are roughly equivalent in that I don't
-> think anyone is really trying to minimise the size of their KUnit
-> binaries.
+This series fixes multiple pp_dpm_* sysfs clocks reporting N/A or missing
+the * current-level marker on SMU v14.0.0/v14.0.1 APUs (GC 11.5.1).
 
-I think placing arrays in headers is bad practice, and we shouldn't set
-that example, kunit or not.
+Background
+----------
+On GC 11.5.1 APUs, amd-smi reports N/A for VCLK, DCLK, VCLK1, DCLK1 and
+DCEFCLK clocks. Additionally, MCLK and FCLK show DPM levels but lack the
+* marker indicating the current level.
 
-> I'll send a patch to move them to a .c
+The N/A clocks are caused by missing IP_VERSION(11,5,1) entries in the
+sysfs visibility whitelists and absent metric handlers. The missing *
+marker is caused by the SMU reporting time-filtered average frequencies
+that do not match any DPM level exactly.
 
-Thanks.
+Fix
+---
+1. Merge METRICS_AVERAGE_VCLK and METRICS_AVERAGE_DCLK into a single
+   fall-through case mapping both to VclkFrequency (SmuMetrics_t has no
+   DclkFrequency field; DCLK tracks VCLK on VCN). Add VCLK1/DCLK1
+   metric handlers returning 0.
 
-BR,
-Jani.
+2. Add IP_VERSION(11,5,1) to pp_dpm_vclk, pp_dpm_dclk, pp_dpm_vclk1
+   and pp_dpm_dclk1 whitelists. The target APU has two VCN instances.
 
+3. Add SMU_DCEFCLK to get_dpm_freq_by_index and get_dpm_level_count
+   using DcfClocks[]/NumDcfClkLevelsEnabled. Add DCEFCLK case in
+   emit_clk_levels.
+
+4. Add closest-match fallback in emit_clk_levels: first pass tries
+   exact match; if no match (averaged frequency), mark the DPM level
+   with the smallest absolute frequency difference. Reverse DPM index
+   for SMU_MCLK since MemPstateTable stores levels high-to-low.
+
+Validation
+----------
+Tested on GC 11.5.1, SMU 14.0.1 APU. All pp_dpm_* clocks now report
+correct DPM levels with * markers via both sysfs and amd-smi.
+
+Priya Hosur (4):
+  drm/amd/pm: smu_v14_0_0: add DCLK and VCLK1/DCLK1 metric handlers
+  drm/amd/pm: add IP_VERSION(11,5,1) to vclk/dclk DPM sysfs whitelists
+  drm/amd/pm: smu_v14_0_0: add SMU_DCEFCLK support in DPM frequency
+    queries
+  drm/amd/pm: smu_v14_0_0: add closest-match fallback for DPM level
+    marking
+
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c            |  8 +-
+ .../drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c  | 76 +++++++++++++++++--
+ 2 files changed, 76 insertions(+), 8 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.43.0
+
