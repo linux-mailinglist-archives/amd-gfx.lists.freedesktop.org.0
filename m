@@ -2,105 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ua9sL51AKWorTAMAu9opvQ
+	id Pj67JcmSKmr/sgMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 12:46:53 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jun 2026 12:49:45 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 223B06686AC
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Jun 2026 12:46:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B0C3671044
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jun 2026 12:49:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=VoYmOR+j;
+	dkim=pass header.d=collabora.com header.s=zohomail header.b="jyo/yFGO";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=none) header.from=collabora.com;
+	arc=pass ("zohomail.com:s=zohoarc:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAE4210E47D;
-	Wed, 10 Jun 2026 10:46:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F72510EE58;
+	Thu, 11 Jun 2026 10:49:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010066.outbound.protection.outlook.com [52.101.56.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBB5710E47D
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jun 2026 10:46:50 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cuKxN6RI6OMJvVVtPRv9Jaa67ajPaJ6e2Qp3EJJn3xcYKuoSJh9SlF3IHAqhk86PikTDMbJKkZ8UkrGXH/qs8/C31SE3zUBMCagsBaYW4Fn9emDMIiQxNRaAV9IdCLtA/F2g8mLNaj7sJHO0e6UkxFdAkC9GyjlNn1WEcaR1Wfv8+weE5ycY9OmWbzUzjB4/p74tZwDOliwp0SM7IvzxXCWOegkyKgp0IB2Kbbwq9NsYCpjtajXvNKtH4JFLokVfx1PR9kcMOt7oFUmS/wnDCtKvEMi3y/35Kx3RYdu2YBCSt5X0JiYyrgBnE4mj16/k5UeNuH2R9D2pFSZ+weUtvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nIs3AVAWzGmxrQath3f9vSd2TaihcGK3pGeId//oGP8=;
- b=deUniV2yN6tMXPGAFMaKDwS+besHKYrtHtdVapYZ2pnMGxn+NfmKijWZ6rB48qL8CSIM44wIryBnpWoAWqpBs3/+O2sqym0+x302y0rozFRVeKzrW7+PSsBytWnQ+/IwcpvicxWm3sqtLS0CZM9JGMAqdCrx+6nXlwReD8SYGYLS9EAVZpli3DZWAgBxio2dJXZqq1IZDf/JXphKHFoeM4L8rZvzZq06zEoIjmLcAdPoEltVOMaIyHBta4NudcOcgn3PX4XiuF4xnbVEwUk7wTgMqMbjJj+XIMuz9BE8HrU2yP8me3OQc9Sj3pmfFXkiw6mDErm/nfA2Rmo6NfQxkg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nIs3AVAWzGmxrQath3f9vSd2TaihcGK3pGeId//oGP8=;
- b=VoYmOR+jnoN/LyWyPSw8RKieLDX4OE1R8p+zYT5tf5OuIhvLviGeW3FLt2GRkTkHF3kXpm9JmIRwWK2juCNKMFJYBFmhAIhdFdxfJAlwfnsplTJw/Yjp7iZ6NGCGdWlnXHrrmsWkbz08gSDYj0cyDWHemDPy5rDhQsErf+7sQ+0=
-Received: from CH2PR04CA0009.namprd04.prod.outlook.com (2603:10b6:610:52::19)
- by IA1PR12MB7495.namprd12.prod.outlook.com (2603:10b6:208:419::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.12; Wed, 10 Jun
- 2026 10:46:43 +0000
-Received: from DS3PEPF0000C37B.namprd04.prod.outlook.com
- (2603:10b6:610:52:cafe::6e) by CH2PR04CA0009.outlook.office365.com
- (2603:10b6:610:52::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.11 via Frontend Transport; Wed,
- 10 Jun 2026 10:46:43 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- DS3PEPF0000C37B.mail.protection.outlook.com (10.167.23.5) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.113.7 via Frontend Transport; Wed, 10 Jun 2026 10:46:42 +0000
-Received: from sunce-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 10 Jun
- 2026 05:46:41 -0500
-From: Ce Sun <cesun102@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <YiPeng.Chai@amd.com>, <Tao.Zhou1@amd.com>, "Ce
- Sun" <cesun102@amd.com>
-Subject: [PATCH] drm/amdgpu/ras: Add address sanity check for uniras
-Date: Wed, 10 Jun 2026 18:46:32 +0800
-Message-ID: <20260610104632.615416-1-cesun102@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59A3310E483;
+ Wed, 10 Jun 2026 11:43:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1781091768; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=gzlZb4bSFV52eLdMUMh9PyeGOrd9EAvWXGBw2jHcFBez9EqYAjtGB/rBytbYZIUK6a12QL1SlCxeqoIPXF+WzqlsBu4n/yAbJwi+RR3V7M43DIuKsOYChbJdSZvXFNf59VpSiTkU1K1NG9Qnao5wVDw+LS7peRgWb4eELJ9H3pw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1781091768;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=KzcKfN/o2MeODUvVqRl2cwiGf5DJAZJN2X6vhvr6p0k=; 
+ b=dJ1XCpFp3xrtGi+Xng/mVdtES2/WZzNzmFiiNSAVW0WLpjerZ5mPw4hJmgDxaiCDx2oY1WcDhdhgiDSBwTe+WCe6yc8iMLFSTotK51j39yI5I+WTHP8RqpoOw9PtS+AKiFxdXij/Cb/hasI2G+Nm6IpwGas9uD6xF7iz9dG0lZI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1781091768; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=KzcKfN/o2MeODUvVqRl2cwiGf5DJAZJN2X6vhvr6p0k=;
+ b=jyo/yFGOjDLNt4JhkO14FnSIQsSy+FTdAqSukJAOK58KWAD816pk2Arn9Z7jNWXm
+ WdMv4NJl+kvtBgFV37FFKH7qdVcXN7tUe3ggtGdVIHrpwK/bUoTr4UnAzKE2nvbl0G4
+ jX7HgyRw1kEauHhxa6WUd4d+hzfrSqQKD9xSKqgk=
+Received: by mx.zohomail.com with SMTPS id 1781091766388431.86406877104446;
+ Wed, 10 Jun 2026 04:42:46 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ Daniel Stone <daniel@fooishbar.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, wayland-devel@lists.freedesktop.org
+Subject: Re: [PATCH v17 21/28] drm/tests: bridge: Add KUnit tests for bridge
+ chain format selection
+Date: Wed, 10 Jun 2026 13:42:35 +0200
+Message-ID: <gnicb4WkT1S4aQIC2G_naw@collabora.com>
+In-Reply-To: <04ff70850213ae0f75486b1a27a7edb6fb4e71c3@intel.com>
+References: <20260609-color-format-v17-0-35739b5782cc@collabora.com>
+ <20260609-color-format-v17-21-35739b5782cc@collabora.com>
+ <04ff70850213ae0f75486b1a27a7edb6fb4e71c3@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37B:EE_|IA1PR12MB7495:EE_
-X-MS-Office365-Filtering-Correlation-Id: ef175e35-054c-434a-eef0-08dec6dd8f6d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|23010399003|1800799024|36860700016|82310400026|18002099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: F3ADPbUKPU0rNWcFXkxNzXI6SRM4ATpTIzX2sO+vCaLqnzqk/AeGMUVPTVOwoltM1cuAqtHGRnuw7Ah3ZkKIFDG87+zHnnwcarbeq0ph9iMO0vC7lj4MSBMQijSCfCMeZPQAIjVpK8iz9NUx+FaWMG3XFBnDFcgobddkciTgWbwnf4uEF7At1kuDb7l/W6toeQ2KJzDD9ucN4sFvBIavhezn6ULVVU1SApBuiz86u1wNF+8DlO3LntpcSqCBbW4XbfEeu+MifeyDj5Q8PRR55kwJrIt2BYqblajfT5g1krMFjR+7AtUBvTG8zLkwemuZjifkHWCN8nPGxm0Pw68/PctcVnycJgXWVJdClCrshO6Zy50uzFTSAPKEtO6DsOg1/Dja47A8RcJ2gMae2R0VAE1IjTMYuhaYrOd56fAwr/gsPSWQUxbiHm9rkoKod50uU6uWu5D7pA/ePRau7m4jFv7gm9JGdQAQa+bwRNXkr8ObM2tSfWzhNUBO1FJJrho1yHm17lph7A/5myiJhxfh6imXv5eqd9M22h+tuBCJVuqeqEqcwG91akQFwHwtcV6JAUCVIQR0ZrYJnA2bapecN2g3AnTVqH8WDcBBh4OnNs94rDAhSPgeFDc4sOhyu3kwgZSRfGXFCktQu+DnR5bQx1gr5hkM0tJWTSFs735vHTYFCLdfL7lMw1Pgb4swkfTw3vGp68HP0nszxiJgrXblyGSle881J1a69qy7viD3tn8=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(1800799024)(36860700016)(82310400026)(18002099003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: F+R5pkApXxbV9q2TuGVn7xcOORQ2Mg/BYEBln3HJVq9ZKPuHKDFxKSY3i8c5so0w0ztDCQQ3y/NyArM10gPAY0+BzLfI2BcwyqIjaxnU5vUPb02IkiwWY/O6NPJ1nQw44GevkJtH3n5c+lfKdEGuHuwI1Cgie4cBOwfR/+UOFcUL6W7H024L1EPfOzZTJd7gStoE+wWfsZ9WZMlyGzpZ3UblFWYfXIc3QbMAovI5W29dsX6yaPxUijj5mLjtNjywwFwc68ijWztv/z5npivp70HxuRozgHDLEuVvupt7hlWX+/WjQNGP5qbc5z5Q5e4XJgIkA7+ZDITh8zj+vus89BJdQ5UBQQ9vjlKs1c2/F0ItWZJFCDIQDn5kPtz6Ri8ZdCaqj3l3AKHE/fZGVweMotf6LdOtbe5N4UzOpYFyp7hmtJTg5iRuGZ2LDeNTBsLV
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2026 10:46:42.8969 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef175e35-054c-434a-eef0-08dec6dd8f6d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF0000C37B.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7495
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Mailman-Approved-At: Thu, 11 Jun 2026 10:49:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,244 +97,165 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,fooishbar.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[cesun102@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[39];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 223B06686AC
+X-Rspamd-Queue-Id: 2B0C3671044
 
-Add address sanity check for uniras
+On Wednesday, 10 June 2026 12:32:29 Central European Summer Time Jani Nikul=
+a wrote:
+> On Tue, 09 Jun 2026, Nicolas Frattaroli <nicolas.frattaroli@collabora.com=
+> wrote:
+> > diff --git a/drivers/gpu/drm/tests/drm_bridge_test.c b/drivers/gpu/drm/=
+tests/drm_bridge_test.c
+> > index 64b665580a88..92f142ca6695 100644
+> > --- a/drivers/gpu/drm/tests/drm_bridge_test.c
+> > +++ b/drivers/gpu/drm/tests/drm_bridge_test.c
+> > @@ -2,15 +2,23 @@
+> >  /*
+> >   * Kunit test for drm_bridge functions
+> >   */
+> > +#include <linux/cleanup.h>
+> > +#include <linux/media-bus-format.h>
+> > +
+> >  #include <drm/drm_atomic_state_helper.h>
+> > +#include <drm/drm_atomic_uapi.h>
+> >  #include <drm/drm_bridge.h>
+> >  #include <drm/drm_bridge_connector.h>
+> >  #include <drm/drm_bridge_helper.h>
+> > +#include <drm/drm_edid.h>
+> >  #include <drm/drm_kunit_helpers.h>
+> > +#include <drm/drm_managed.h>
+> > =20
+> >  #include <kunit/device.h>
+> >  #include <kunit/test.h>
+> > =20
+> > +#include "drm_kunit_edid.h"
+>=20
+> So here's the problem with adding *any* arrays into headers: every
+> compilation unit that includes them duplicates all the arrays. It's only
+> really okay for single use.
+>=20
+> And, in this case, most of the included arrays are unused, leading to
+> build failures:
+>=20
+>   CC [M]  drivers/gpu/drm/tests/drm_bridge_test.o
+> In file included from ../drivers/gpu/drm/tests/drm_bridge_test.c:21:
+> ../drivers/gpu/drm/tests/drm_kunit_edid.h:958:28: error: =E2=80=98test_ed=
+id_hdmi_4k_rgb_yuv420_dc_max_340mhz=E2=80=99 defined but not used [-Werror=
+=3Dunused-const-variable=3D]
+>   958 | static const unsigned char test_edid_hdmi_4k_rgb_yuv420_dc_max_34=
+0mhz[] =3D {
+>       |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~~~
+> ../drivers/gpu/drm/tests/drm_kunit_edid.h:726:28: error: =E2=80=98test_ed=
+id_hdmi_1080p_rgb_yuv_dc_max_340mhz=E2=80=99 defined but not used [-Werror=
+=3Dunused-const-variable=3D]
+>   726 | static const unsigned char test_edid_hdmi_1080p_rgb_yuv_dc_max_34=
+0mhz[] =3D {
+>       |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~~~
+> ../drivers/gpu/drm/tests/drm_kunit_edid.h:612:28: error: =E2=80=98test_ed=
+id_hdmi_1080p_rgb_yuv_dc_max_200mhz=E2=80=99 defined but not used [-Werror=
+=3Dunused-const-variable=3D]
+>   612 | static const unsigned char test_edid_hdmi_1080p_rgb_yuv_dc_max_20=
+0mhz[] =3D {
+>       |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~~~
+> ../drivers/gpu/drm/tests/drm_kunit_edid.h:498:28: error: =E2=80=98test_ed=
+id_hdmi_1080p_rgb_max_340mhz=E2=80=99 defined but not used [-Werror=3Dunuse=
+d-const-variable=3D]
+>   498 | static const unsigned char test_edid_hdmi_1080p_rgb_max_340mhz[] =
+=3D {
+>       |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> ../drivers/gpu/drm/tests/drm_kunit_edid.h:390:28: error: =E2=80=98test_ed=
+id_hdmi_1080p_rgb_max_200mhz_hdr=E2=80=99 defined but not used [-Werror=3Du=
+nused-const-variable=3D]
+>   390 | static const unsigned char test_edid_hdmi_1080p_rgb_max_200mhz_hd=
+r[] =3D {
+>       |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> ../drivers/gpu/drm/tests/drm_kunit_edid.h:271:28: error: =E2=80=98test_ed=
+id_hdmi_1080p_rgb_max_200mhz=E2=80=99 defined but not used [-Werror=3Dunuse=
+d-const-variable=3D]
+>   271 | static const unsigned char test_edid_hdmi_1080p_rgb_max_200mhz[] =
+=3D {
+>       |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> ../drivers/gpu/drm/tests/drm_kunit_edid.h:163:28: error: =E2=80=98test_ed=
+id_hdmi_1080p_rgb_max_100mhz=E2=80=99 defined but not used [-Werror=3Dunuse=
+d-const-variable=3D]
+>   163 | static const unsigned char test_edid_hdmi_1080p_rgb_max_100mhz[] =
+=3D {
+>       |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> ../drivers/gpu/drm/tests/drm_kunit_edid.h:57:28: error: =E2=80=98test_edi=
+d_dvi_1080p=E2=80=99 defined but not used [-Werror=3Dunused-const-variable=
+=3D]
+>    57 | static const unsigned char test_edid_dvi_1080p[] =3D {
+>       |                            ^~~~~~~~~~~~~~~~~~~
+> cc1: all warnings being treated as errors
+>=20
+> This breaks the build for me, I don't know how it didn't for any of you.
 
-Signed-off-by: Ce Sun <cesun102@amd.com>
----
- .../gpu/drm/amd/ras/ras_mgr/amdgpu_ras_cmd.c  |  3 ---
- .../gpu/drm/amd/ras/ras_mgr/amdgpu_ras_sys.c  | 18 +++++++++++++
- drivers/gpu/drm/amd/ras/ras_mgr/ras_sys.h     |  3 +++
- drivers/gpu/drm/amd/ras/rascore/ras.h         |  2 ++
- drivers/gpu/drm/amd/ras/rascore/ras_core.c    | 10 ++++++++
- drivers/gpu/drm/amd/ras/rascore/ras_umc.c     | 25 +++++++++++++++++--
- drivers/gpu/drm/amd/ras/rascore/ras_umc.h     |  1 +
- .../gpu/drm/amd/ras/rascore/ras_umc_v12_0.c   |  9 +++++--
- 8 files changed, 64 insertions(+), 7 deletions(-)
+It broke the build for me in the past[1], but then I couldn't repro
+it anymore when challenged on my fix[2].
 
-diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_cmd.c b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_cmd.c
-index cb6498c30834..473b387fa3db 100644
---- a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_cmd.c
-+++ b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_cmd.c
-@@ -30,9 +30,6 @@
- #include "amdgpu_ras_mgr.h"
- #include "amdgpu_virt_ras_cmd.h"
- 
--/* inject address is 52 bits */
--#define	RAS_UMC_INJECT_ADDR_LIMIT	(0x1ULL << 52)
--
- #define AMDGPU_RAS_TYPE_RASCORE  0x1
- #define AMDGPU_RAS_TYPE_AMDGPU   0x2
- #define AMDGPU_RAS_TYPE_VF       0x3
-diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_sys.c b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_sys.c
-index 7d728e523604..eb840f0861fe 100644
---- a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_sys.c
-+++ b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_sys.c
-@@ -266,6 +266,23 @@ static int amdgpu_ras_sys_put_gpu_mem(struct ras_core_context *ras_core,
- 
- 	return 0;
- }
-+static int amdgpu_ras_sys_check_address_sanity(struct ras_core_context *ras_core,
-+						uint64_t addr)
-+{
-+	struct amdgpu_device *adev = (struct amdgpu_device *)ras_core->dev;
-+
-+	if ((addr >= adev->gmc.mc_vram_size &&
-+	    adev->gmc.mc_vram_size) ||
-+	    (addr >= RAS_UMC_INJECT_ADDR_LIMIT))
-+		return -EINVAL;
-+
-+	if (addr >= adev->gmc.real_vram_size) {
-+		RAS_DEV_WARN(ras_core->dev, "Recorded address out of range: 0x%llx!\n", addr);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
- 
- const struct ras_sys_func amdgpu_ras_sys_fn = {
- 	.ras_notifier = amdgpu_ras_sys_event_notifier,
-@@ -277,4 +294,5 @@ const struct ras_sys_func amdgpu_ras_sys_fn = {
- 	.detect_ras_interrupt = amdgpu_ras_sys_detect_ras_interrupt,
- 	.get_gpu_mem = amdgpu_ras_sys_get_gpu_mem,
- 	.put_gpu_mem = amdgpu_ras_sys_put_gpu_mem,
-+	.check_address_sanity = amdgpu_ras_sys_check_address_sanity,
- };
-diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/ras_sys.h b/drivers/gpu/drm/amd/ras/ras_mgr/ras_sys.h
-index 8156531a7b63..239e56732e3e 100644
---- a/drivers/gpu/drm/amd/ras/ras_mgr/ras_sys.h
-+++ b/drivers/gpu/drm/amd/ras/ras_mgr/ras_sys.h
-@@ -30,6 +30,9 @@
- #include <linux/mempool.h>
- #include "amdgpu.h"
- 
-+/* inject address is 52 bits */
-+#define RAS_UMC_INJECT_ADDR_LIMIT       (0x1ULL << 52)
-+
- #define RAS_DEV_ERR(device, fmt, ...)                                               \
- 	do {                                                                      \
- 		if (device)                                                             \
-diff --git a/drivers/gpu/drm/amd/ras/rascore/ras.h b/drivers/gpu/drm/amd/ras/rascore/ras.h
-index 6449d7b8627d..44ddb7943a48 100644
---- a/drivers/gpu/drm/amd/ras/rascore/ras.h
-+++ b/drivers/gpu/drm/amd/ras/rascore/ras.h
-@@ -231,6 +231,7 @@ struct ras_sys_func {
- 		enum gpu_mem_type mem_type, struct gpu_mem_block *gpu_mem);
- 	int (*put_gpu_mem)(struct ras_core_context *ras_core,
- 		enum gpu_mem_type mem_type, struct gpu_mem_block *gpu_mem);
-+	int (*check_address_sanity)(struct ras_core_context *ras_core, uint64_t addr);
- };
- 
- struct ras_ecc_count {
-@@ -399,4 +400,5 @@ int ras_core_get_device_system_info(struct ras_core_context *ras_core,
- 		struct device_system_info *dev_info);
- int ras_core_convert_soc_pa_to_cur_nps_pages(struct ras_core_context *ras_core,
- 		uint64_t soc_pa, uint64_t *page_pfn, uint32_t max_pages);
-+int ras_core_check_address_sanity(struct ras_core_context *ras_core, uint64_t addr);
- #endif
-diff --git a/drivers/gpu/drm/amd/ras/rascore/ras_core.c b/drivers/gpu/drm/amd/ras/rascore/ras_core.c
-index 29b1b8f0cc26..cfab7a7d2623 100644
---- a/drivers/gpu/drm/amd/ras/rascore/ras_core.c
-+++ b/drivers/gpu/drm/amd/ras/rascore/ras_core.c
-@@ -676,3 +676,13 @@ int ras_core_convert_soc_pa_to_cur_nps_pages(struct ras_core_context *ras_core,
- 
- 	return count;
- }
-+
-+int ras_core_check_address_sanity(struct ras_core_context *ras_core,
-+		uint64_t addr)
-+{
-+	if (ras_core && ras_core->sys_fn &&
-+		ras_core->sys_fn->check_address_sanity)
-+		return ras_core->sys_fn->check_address_sanity(ras_core, addr);
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/amd/ras/rascore/ras_umc.c b/drivers/gpu/drm/amd/ras/rascore/ras_umc.c
-index d4072350f48f..0d4405a975b5 100644
---- a/drivers/gpu/drm/amd/ras/rascore/ras_umc.c
-+++ b/drivers/gpu/drm/amd/ras/rascore/ras_umc.c
-@@ -480,6 +480,27 @@ int ras_umc_load_bad_pages(struct ras_core_context *ras_core)
- 	return ret;
- }
- 
-+static int __calc_bad_page_count(struct ras_core_context *ras_core,
-+		struct eeprom_umc_record *record, const u32 num)
-+{
-+	uint64_t *pfns;
-+	uint32_t pfns_sz = ras_core->ras_umc.retire_unit;
-+	int i, ret, count = 0;
-+
-+	pfns = kcalloc(pfns_sz, sizeof(*pfns), GFP_KERNEL);
-+	if (!pfns)
-+		return pfns_sz;
-+
-+	for (i = 0; i < num; i++) {
-+		ret = ras_core_convert_soc_pa_to_cur_nps_pages(ras_core,
-+			RAS_PFN_TO_ADDR(record[i].retired_row_pfn), pfns, pfns_sz);
-+		count  += (ret <= 0) ? pfns_sz : ret;
-+	}
-+
-+	kfree(pfns);
-+	return count;
-+}
-+
- /*
-  * write error record array to eeprom, the function should be
-  * protected by recovery_lock
-@@ -515,8 +536,8 @@ static int ras_umc_save_bad_pages(struct ras_core_context *ras_core)
- 			ret = -EIO;
- 			goto exit;
- 		}
--
--		RAS_DEV_INFO(ras_core->dev, "Saved %d pages to EEPROM table.\n", save_count);
-+		RAS_DEV_INFO(ras_core->dev, "Saved %d pages to EEPROM table.\n",
-+			__calc_bad_page_count(ras_core, &data->bps[eeprom_record_num], save_count));
- 	}
- 
- exit:
-diff --git a/drivers/gpu/drm/amd/ras/rascore/ras_umc.h b/drivers/gpu/drm/amd/ras/rascore/ras_umc.h
-index 1d3026be509b..05edacc165ba 100644
---- a/drivers/gpu/drm/amd/ras/rascore/ras_umc.h
-+++ b/drivers/gpu/drm/amd/ras/rascore/ras_umc.h
-@@ -139,6 +139,7 @@ struct ras_umc {
- 	struct mutex  pending_ecc_lock;
- 	struct ras_umc_err_data umc_err_data;
- 	struct list_head pending_ecc_list;
-+	u32 retire_unit;
- };
- 
- int ras_umc_sw_init(struct ras_core_context *ras);
-diff --git a/drivers/gpu/drm/amd/ras/rascore/ras_umc_v12_0.c b/drivers/gpu/drm/amd/ras/rascore/ras_umc_v12_0.c
-index b809a2f21d73..fe5f92eb94a1 100644
---- a/drivers/gpu/drm/amd/ras/rascore/ras_umc_v12_0.c
-+++ b/drivers/gpu/drm/amd/ras/rascore/ras_umc_v12_0.c
-@@ -26,6 +26,8 @@
- #include "ras_core_status.h"
- #include "ras_umc_v12_0.h"
- 
-+#define RAS_UMC_V12_0_ADDR_LIMIT       (0x1ULL << 52)
-+
- #define NumDieInterleaved 4
- 
- static const uint32_t umc_v12_0_channel_idx_tbl[]
-@@ -110,6 +112,7 @@ static void __get_nps_pa_flip_bits(struct ras_core_context *ras_core,
- 			"Unknown HBM type, set RAS retire flip bits to the value in NPS1 mode.\n");
- 		break;
- 	}
-+	ras_core->ras_umc.retire_unit = 0x1 << flip_bits->bit_num;
- }
- 
- static uint64_t  convert_nps_pa_to_row_pa(struct ras_core_context *ras_core,
-@@ -166,7 +169,7 @@ static int lookup_bad_pages_in_a_row(struct ras_core_context *ras_core,
- 
- 	idx = 0;
- 	row = 0;
--	retire_unit = 0x1 << flip_bits.bit_num;
-+	retire_unit = ras_core->ras_umc.retire_unit;
- 	/* loop for all possibilities of retire bits */
- 	for (column = 0; column < retire_unit; column++) {
- 		soc_pa = row_pa;
-@@ -186,7 +189,9 @@ static int lookup_bad_pages_in_a_row(struct ras_core_context *ras_core,
- 				record->cur_nps_bank, record->mem_channel);
- 
- 
--		if (pfns && (idx < num))
-+		if (pfns && (idx < num) &&
-+		   (soc_pa < RAS_UMC_V12_0_ADDR_LIMIT) &&
-+		   !ras_core_check_address_sanity(ras_core, soc_pa))
- 			pfns[idx++] = RAS_ADDR_TO_PFN(soc_pa);
- 	}
- 
--- 
-2.34.1
+>=20
+> Reverting these two fixes it:
+>=20
+> ce1d0139adac ("drm/tests: bridge: Add test for HDMI output bus formats he=
+lper")
+> 082fbc179c01 ("drm/tests: bridge: Add KUnit tests for bridge chain format=
+ selection")
+>=20
+> I think the proper fix would be to move the arrays into a .c file, and
+> only have declarations in the headers. But that needs to happen real
+> soon or the commits need to be reverted.
+
+If you don't want __maybe_unused, then sure, I'll move them into a new
+=2Ec file. Though I think the two are roughly equivalent in that I don't
+think anyone is really trying to minimise the size of their KUnit
+binaries.
+
+I'll send a patch to move them to a .c
+
+[1]: https://lore.kernel.org/dri-devel/20260121-color-format-v7-20-ef790dae=
+780c@collabora.com/
+[2]: https://lore.kernel.org/dri-devel/20260210-didactic-okapi-of-modernism=
+=2Dff00d9@houat/
+
+Kind regards,
+Nicolas Frattaroli
+
+>=20
+> BR,
+> Jani.
+>=20
+>=20
+>=20
+
+
+
 
