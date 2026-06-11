@@ -2,79 +2,111 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4XinA3m5K2qzDAQAu9opvQ
+	id V6naE1vFKmqKwgMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:47:05 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jun 2026 16:25:31 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A234C677644
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:47:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0798672B35
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jun 2026 16:25:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=IAsd6abO;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=2m4OY1Sf;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC4D610F2F4;
-	Fri, 12 Jun 2026 07:47:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33E5210E1E6;
+	Thu, 11 Jun 2026 14:25:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEC2C10EF51;
- Thu, 11 Jun 2026 14:23:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781187815; x=1812723815;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=awhOvbKuIT8kazUlxYlfnhoiupJ7K7wXsTHZirjffKQ=;
- b=IAsd6abOryFZMYHzNZocqrIcTXvSkE14kuXvNaVtDRBNCipFP1ZaiXEk
- 3SeZMMe55JcVQeBQB6lxbwnXu9X/34BnkN9DjYdDyPeBS649vFMy3PMJB
- K7FwW0vJmUfPSBXCAFK84j408iTAn4jJwTR1TXCSPJROfXqb+ElsROpPU
- mwL39xwoSf4ToeF24pFu9uSYMgDDpB4NN2NODQppbYFDfOMl/dcPUzLKh
- H3e5lIc1VumsFoDCfL9dMlqq3Yb4x1RMVePsaT5vr9VxuPWoASsbSjkw3
- +HzMpGmFuCzgGDqf7n+5CkGUI/qMXsYXEbDAS9ZX6xhtez33+PY2qv7+I g==;
-X-CSE-ConnectionGUID: BHRFwIDwS5exlJ979ea/jQ==
-X-CSE-MsgGUID: u9+eTrt6R7u/xpDTEY9csQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81983467"
-X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="81983467"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 07:23:34 -0700
-X-CSE-ConnectionGUID: 7XeEKXDxQ/a37dPKAsAtfw==
-X-CSE-MsgGUID: zK/aDci3QaeXjSjER8BUcw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="284574385"
-Received: from amilburn-desk.amilburn-desk (HELO fedora) ([10.245.244.169])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 07:23:30 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>,
- Tejun Heo <tj@kernel.org>,
- =?UTF-8?q?Michal=20Koutn=C3=BD?= <mkoutny@suse.com>,
- cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
- David Airlie <airlied@gmail.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 6/6] drm/amdgpu: Wire up dmem cgroup reclaim for VRAM
- manager
-Date: Thu, 11 Jun 2026 16:22:42 +0200
-Message-ID: <20260611142242.2529-7-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260611142242.2529-1-thomas.hellstrom@linux.intel.com>
-References: <20260611142242.2529-1-thomas.hellstrom@linux.intel.com>
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013032.outbound.protection.outlook.com
+ [40.107.201.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E9DC10E1E6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 14:25:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mddarfsPi4/tSlhSsBuOD2tFOQEDQcKJKYn11T3cuHiSqbpctZaCeiBxwPWWPQomKkSpC22u7H6jwJfQaQz+V4ZwwltyvSSy08Z+3gZCl+9b4Y9p2uQhvGJScgLPIslfnNd5VU3h56ykQln9E+jzfLjVNH6Pkw7A7bKuBA7l/mW3eY81jMADS7UABzA22nHxatAOSi+Dlgd4wHs1gBA0cyMH+7ygjJ6XJqCp7vVIEenTzGAH3QDTeN/mD49QsJJwE+m+3vQdsK4+ebdlLwSRoNxWdBmSkONF3P5ThajOp/WfDHwxX4P45n+UNWqG0nzPg5wZDBdB4iVtH6mkoc+TUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=n8/dF5eVvl2QWp06699kEODkpWc43hx0xkue8O1lUKM=;
+ b=OFrXtd0RlvdZsLeIPVmN+3akztPVWqw774+1XU4JrlWJNfRPmRunOhOrNWwBHIn76jouHSwDYT/Nj6mTjwcNaVyiYQ/MkUyUuzdcA0Q/BfIp6KdQ/Hds3ZtFZd8o31HqQjHGUYBHVZvSXqubBQKh7jYPzsCO8ew7NgQaFJoBfzWQNqQsgvQ9XZHXPQDKAeErzY799QoB1XlH++g2Yff35uziD4UpSBvYnKZOiMzKAnKANguYWc8k28DGtJ2WobyCfDs1KS0isHfY+TXn9NHEbjF2RAYNYPh9O+CEyUX8g7UFv30wfpg2vtsNHSCjhNq8Dr4HxlrjVeOhNmf/UKxo1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n8/dF5eVvl2QWp06699kEODkpWc43hx0xkue8O1lUKM=;
+ b=2m4OY1SfTarnwk3xyqmbveXsNOqasJcjHR7iNXmi2+ohQ6o+tOUxjwnaFCZy0x39OBaMxCyQp1rFpN17Zk3TFyFXrrTb/riYp4g5dLq+YuOlZcVugjh60Gc0futKhfiwWCFi1BUhilepcgkjWhMjL8xcIBgaGSX/us3E5giTT7c=
+Received: from MN0P222CA0025.NAMP222.PROD.OUTLOOK.COM (2603:10b6:208:531::33)
+ by DS0PR12MB8765.namprd12.prod.outlook.com (2603:10b6:8:14e::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.11; Thu, 11 Jun
+ 2026 14:25:23 +0000
+Received: from BL6PEPF0001AB74.namprd02.prod.outlook.com
+ (2603:10b6:208:531:cafe::2f) by MN0P222CA0025.outlook.office365.com
+ (2603:10b6:208:531::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.13 via Frontend Transport; Thu,
+ 11 Jun 2026 14:25:23 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ BL6PEPF0001AB74.mail.protection.outlook.com (10.167.242.167) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.113.7 via Frontend Transport; Thu, 11 Jun 2026 14:25:22 +0000
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 11 Jun
+ 2026 09:25:22 -0500
+Received: from [127.0.1.1] (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
+ Transport; Thu, 11 Jun 2026 09:25:20 -0500
+Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 12 Jun 2026 07:46:58 +0000
+Content-Transfer-Encoding: 7bit
+From: Priya Hosur <Priya.Hosur@amd.com>
+To: Lijo Lazar <Lijo.Lazar@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, <Alexander.Deucher@amd.com>,
+ <Christian.Koenig@amd.com>, <Mario.Limonciello@amd.com>,
+ <Kenneth.Feng@amd.com>, <Pratik.Vishwakarma@amd.com>,
+ <Veerabadhran.Gopalakrishnan@amd.com>
+Subject: Re: [PATCH v3 1/4] drm/amd/pm: smu_v14_0_0: add DCLK metric handler
+ via VCLK fall-through
+In-Reply-To: <20260611113628.3217-2-Priya.Hosur@amd.com>
+References: <20260611113628.3217-1-Priya.Hosur@amd.com>
+ <20260611113628.3217-2-Priya.Hosur@amd.com>
+Message-ID: <6e0b1840-5428-482a-ab92-aea6c21d2e97@satlexmb07.amd.com>
+Date: Thu, 11 Jun 2026 09:25:20 -0500
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB74:EE_|DS0PR12MB8765:EE_
+X-MS-Office365-Filtering-Correlation-Id: 57f208b3-4c3a-4f18-4cf3-08dec7c545ee
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|1800799024|82310400026|36860700016|376014|18002099003|22082099003|4143699003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: +W2cP1uKa+Ppbzlyp1RPTXXNFMwZR8CvK/W0/N3iFPo5tE7TzP+LYa6AEpxmLOnMK7QB+7HV56XXA5AoMkTCb4Ux+vlSdn8ves23IgRdcuck3eVlWQuKpu0i/fCtPrtpShA8TI/HWSaBWsZ24ZjsqIp+P4oOIs24kdcb/S1qs1TJicWNeKY3vKbYIVqDU5dy69YwepqzKar0MWOM3M2JeaBC8UGG+EfLcvuzJjoc8GSPsTmDQfn5DSTIPtcEgihNXWfXcmSSz2xAMj8kNefyew6lD0P5uoCZqlDRbni+lUO165tCm794s58iDPehnvwEZ3GULekn84eNFEBktDR0hGLLYf8oAmHgkHJU9GrL3t1JyyvqeemXAsLm7Jj4LArdynWBLm0XCG6Pd+AFKWWLzalUv2FaeTPO6qfdLjojYBGI0WolBw2uAzdIJ7/0rN3d2NpQfX2sPYBCJeNITBi7arJfyyJQd970LUPKpVjSpsv78g3BUrWgTnioIEAeGmRJVnYE/aGaVU+3mVL3rUiQAFReMfni3PxHrVZFYuLlz1EYTH4eq2s2h4TFmywYz+Ebxm7X6WeOo0EARKEqvBZrorKei5dji0Tf8W9Z6rNR2wjqc6qPjGj+bglbkqLQJTrLvhqyfsW2l4y4XsHT4AYat3jXCuUGq9dk0/eGY0Y8CZBfW4/PsqjSNzFXlX63da3aUNCFzwxQ5x14EhtULqRlgrTKSzj7aNz811yTyVAvgnY=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(23010399003)(1800799024)(82310400026)(36860700016)(376014)(18002099003)(22082099003)(4143699003)(11063799006)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 2oW5/k7WvqWKgtnCX6noKf69Y6v8euagpvE81mlPvi44tsQx56pM/dRESQK6ShDG2YOyngmb3ZIKgPMCMM5x8C5CI1xdacid+WayYWo/nY25tmT7UjJ35C+MBeylp4Co0PUAKMl7VbIiT53UYkaqBFsdYu3p6LJUN3wE5SqrC2/7QDaJYmAUNDTON6V0DTM6vUbJb63lq40Gh57NLcnrv0IJiiOyRqTns54BYKgw+bZrOwnuTd6r3KNouMu60aLFBtTO9Rp9gkfRg4zsnVjYJVcIy8n8C9qtZgyrWIStLwS5GIPhzxz9n7Yw4sxyYnbiZM2/0ZZbZSk/NRkg/1k1I+nonswO/BnRITatK3UsTSqkZjTFdbv5Kk64qnxzRs062daGybe2mV8SL305OwMk3nJ5ywsjxLwJKHa5MaFSphNtH4nydwgrTbWGGbYdwoIv
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2026 14:25:22.8484 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 57f208b3-4c3a-4f18-4cf3-08dec7c545ee
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB74.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8765
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,155 +121,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[linux.intel.com,gmx.de,cmpxchg.org,kernel.org,suse.com,vger.kernel.org,amd.com,intel.com,suse.de,ffwll.ch,gmail.com,lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS(0.00)[m:Lijo.Lazar@amd.com,m:Alexander.Deucher@amd.com,m:Christian.Koenig@amd.com,m:Mario.Limonciello@amd.com,m:Kenneth.Feng@amd.com,m:Pratik.Vishwakarma@amd.com,m:Veerabadhran.Gopalakrishnan@amd.com,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp];
+	FORGED_SENDER(0.00)[Priya.Hosur@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DKIM_TRACE(0.00)[intel.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[Priya.Hosur@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A234C677644
+X-Rspamd-Queue-Id: A0798672B35
 
-Register the VRAM manager with the dmem cgroup reclaim infrastructure
-so that lowering dmem.max below current VRAM usage triggers TTM
-eviction rather than failing with -EBUSY.
+Hi Lijo,
 
-Guard place->flags in amdgpu_ttm_bo_eviction_valuable() against NULL,
-as the TTM reclaim path passes a NULL place in cgroup drain mode.
+Thanks for the suggestion. I confirmed that the DPM tables are
+indeed different on this hardware (GC 11.5.1, SMU 14.0.1):
 
-v3:
-- Rebased on fix for uninitialized list and buddy allocator on the
-  drmm_cgroup_register_region() error path.
+pp_dpm_vclk: 800, 1472, 1605, 1766, 1962, 2208, 2523, 2944 MHz
+pp_dpm_dclk: 800, 981, 1104, 1177, 1358, 1472, 1766, 2208 MHz
 
-v5:
-- Rebased on the introduction of struct dmem_cgroup_init.
-- Clear the reclaim callback in amdgpu_vram_mgr_fini() to prevent
-  use-after-free if cgroup reclaim is triggered after driver unbind
-  while userspace holds an open DRM file descriptor. (Sashiko-bot)
-- Switch from drmm_cgroup_register_region() to the raw
-  dmem_cgroup_register_region() and store the region in
-  amdgpu_vram_mgr.cg_region. Explicitly call
-  dmem_cgroup_unregister_region() at the top of amdgpu_vram_mgr_fini()
-  before any manager teardown, draining in-flight reclaim callbacks via
-  the rwsem before the manager is destroyed. This is required because
-  amdgpu's vram manager fini is called explicitly during driver unbind,
-  which may precede the DRM device release and thus precede any
-  drmm-based cleanup. (Sashiko-bot)
+The original code was returning 0 for METRICS_AVERAGE_DCLK, so the
+fall-through to VclkFrequency was an improvement but not fully
+correct given the different DPM tables.
 
-Assisted-by: GitHub_Copilot:claude-sonnet-4.6
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c      |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 29 ++++++++++++++++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h |  2 ++
- 3 files changed, 26 insertions(+), 7 deletions(-)
+Since VcnClkLevelsEnabled applies to both VCLK and DCLK with the
+same level count, I'll update patch 1 to match VclkFrequency to its
+DPM level index and then report the DCLK frequency at that same
+level for METRICS_AVERAGE_DCLK.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 2740de94e93c..8cbcd33f51a5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1488,7 +1488,7 @@ static bool amdgpu_ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
- 	dma_resv_for_each_fence(&resv_cursor, bo->base.resv,
- 				DMA_RESV_USAGE_BOOKKEEP, f) {
- 		if (amdkfd_fence_check_mm(f, current->mm) &&
--		    !(place->flags & TTM_PL_FLAG_CONTIGUOUS))
-+		    !(place && (place->flags & TTM_PL_FLAG_CONTIGUOUS)))
- 			return false;
- 	}
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-index 08f05c3aed1d..ee98b963e84a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-@@ -906,6 +906,10 @@ static const struct ttm_resource_manager_func amdgpu_vram_mgr_func = {
- 	.debug	= amdgpu_vram_mgr_debug
- };
- 
-+static const struct dmem_cgroup_ops amdgpu_vram_mgr_dmem_ops = {
-+	.reclaim = ttm_resource_manager_dmem_reclaim,
-+};
-+
- /**
-  * amdgpu_vram_mgr_init - init VRAM manager and DRM MM
-  *
-@@ -917,6 +921,7 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
- {
- 	struct amdgpu_vram_mgr *mgr = &adev->mman.vram_mgr;
- 	struct ttm_resource_manager *man = &mgr->manager;
-+	struct dmem_cgroup_region *cg;
- 	int err;
- 
- 	ttm_resource_manager_init(man, &adev->mman.bdev,
-@@ -933,12 +938,15 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
- 	if (err)
- 		return err;
- 
--	man->cg = drmm_cgroup_register_region(adev_to_drm(adev), "vram",
--					      &(struct dmem_cgroup_init){
--						.size = adev->gmc.real_vram_size,
--					      });
--	if (IS_ERR(man->cg))
--		return PTR_ERR(man->cg);
-+	cg = dmem_cgroup_register_region(&(struct dmem_cgroup_init){
-+					     .size = adev->gmc.real_vram_size,
-+					     .ops = &amdgpu_vram_mgr_dmem_ops,
-+					     .reclaim_priv = man,
-+					 }, "vram");
-+	if (IS_ERR(cg))
-+		return PTR_ERR(cg);
-+
-+	ttm_resource_manager_set_dmem_region(man, cg);
- 
- 	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, &mgr->manager);
- 	ttm_resource_manager_set_used(man, true);
-@@ -960,6 +968,15 @@ void amdgpu_vram_mgr_fini(struct amdgpu_device *adev)
- 	int ret;
- 	struct amdgpu_vram_reservation *rsv, *temp;
- 
-+	/*
-+	 * Drain any in-flight dmem cgroup reclaim callbacks and remove the
-+	 * region from the global list before tearing down the manager.
-+	 * This must happen first so no reclaim callback can access the
-+	 * manager after this point.
-+	 */
-+	dmem_cgroup_unregister_region(mgr->cg_region);
-+	mgr->cg_region = NULL;
-+
- 	ttm_resource_manager_set_used(man, false);
- 
- 	ret = ttm_resource_manager_evict_all(&adev->mman.bdev, man);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h
-index 429a21a2e9b2..07103cddb335 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h
-@@ -36,6 +36,8 @@ struct amdgpu_vram_mgr {
- 	atomic64_t vis_usage;
- 	u64 default_page_size;
- 	struct list_head allocated_vres_list;
-+	/** @cg_region: dmem cgroup region for VRAM; unregistered in fini. */
-+	struct dmem_cgroup_region *cg_region;
- };
- 
- struct amdgpu_vres_task {
--- 
-2.54.0
+Will also check with the FW team about adding a DclkFrequency field
+to SmuMetrics_t.
 
+Will send v4 with the fix.
+
+Regards,
+Priya
