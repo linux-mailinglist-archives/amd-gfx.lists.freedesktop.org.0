@@ -2,82 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CKaDB3q5K2q1DAQAu9opvQ
+	id XDCDKX25K2q+DAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:47:06 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:47:09 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AAD5677641
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:47:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFAE2677658
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:47:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=usp.br header.s=usp-google header.b=JMOQxeVM;
+	dkim=pass header.d=usp.br header.s=usp-google header.b=nbT5dJn1;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=usp.br
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DD4410F2ED;
-	Fri, 12 Jun 2026 07:47:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5765810F2FB;
+	Fri, 12 Jun 2026 07:47:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com
- [209.85.221.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A66E10F0DE
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 19:51:34 +0000 (UTC)
-Received: by mail-vk1-f175.google.com with SMTP id
- 71dfb90a1353d-59c2a81ca92so104562e0c.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 12:51:34 -0700 (PDT)
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com
+ [209.85.221.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 087C610F0F3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 19:52:00 +0000 (UTC)
+Received: by mail-vk1-f178.google.com with SMTP id
+ 71dfb90a1353d-59ebde7d704so51531e0c.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 12:51:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=usp.br; s=usp-google; t=1781207493; x=1781812293; darn=lists.freedesktop.org;
+ d=usp.br; s=usp-google; t=1781207519; x=1781812319; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=72nkF1wkrOnPx9OWBQRisWDqaTILiCPcJlAlZTpPq2A=;
- b=JMOQxeVMsfgQkW4OlTUNUNWiIBczG3LYXFcpjSEGQlihv4KhmvOxfW0sQSjm3soQOS
- GgMfftR6R62rM+4au+JaIXjic17x+H5d8z7bFC8INdzJwjTvfFF79j4KIFDyj+gjxS9s
- J9jhqd5mZEwypJnyI+bTr8qMBp6+kGspfZvw+7LCzjuqYGG9drAa+d2nYSLDHz2i9fhk
- BwFn5GhnzXoydbPP/AWyybqWBPTwY759HANGY9jfw6ETRbUcqz+LdF6GD0B6ZywKAfGq
- aTbqJ1sI1u/4g2wpJwUO3WFmQXQDSj3/15orLCS5THyWAAv5bR1euH5b1bR8vTNc5H7M
- X6zA==
+ bh=hizmGFeGIKLsiG1PAA8nrLlhLcFzv1q22RtftzUoG94=;
+ b=nbT5dJn1HqRB3X8Rd8+zczJM3Btv4speLZhqKootfWh3QtAv7eWQysfgqaU0q8X0wo
+ 40QjNTXGJ3/feEFXWjYoW6JQctHkVAarzF3ZaD7t2GKNXKo+aIYKNjpDXTlr8AXAQziY
+ daFQ3+UZV4uHboU8Wml9OOW+srFwWwC8X6qYuFTZ4uOMtyMOXCK5uC6z98JcmMOvRMdX
+ vpR0DvFCUgOQoJtwrcTssbJ4lUHJSNvMab+16vP0yvvKEbyAGwvTaSW4AhEODS4QvOoD
+ rYVN55xrTKSThjtNT4gEW56YZR1FuuhnvBr76mH3jYBncocfm/NFuM54HVr2rHTuWMEH
+ 6Rqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781207493; x=1781812293;
+ d=1e100.net; s=20251104; t=1781207519; x=1781812319;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=72nkF1wkrOnPx9OWBQRisWDqaTILiCPcJlAlZTpPq2A=;
- b=lsg9ESVCffBazgfAXjHrhGnGJzb6ofSLUKrO+jix2AZPRI8vB6YTQlBFBrKCCEF6rK
- 1mC/yGzJ4igcR7pVRC1ZJ3hFX8qB8xNLXK46wyR+LX81sl0+VslVZ4MstiwfdDWnpIkr
- O6jxvY7T+DxHW3D+QuuLJe4WAiE5FCU4296OMmakp4LmF1yvLjJMpTw794tYh0APEh79
- jJ0Yui0azy6taTvmTgopl76mSVU3lNaI19B+0wsZlWZp3+mocsfWokNn0QNHml7heAiw
- 2RG2+lDNL3JQCPhH/m1pdKIbAe9zB4mKD5R4BZVw7y//el7P1lsPMkqc/RFFLWgT/Oam
- MvnA==
+ bh=hizmGFeGIKLsiG1PAA8nrLlhLcFzv1q22RtftzUoG94=;
+ b=rMI8wnqkkK7bitoyywcmDlCJyOMrV1XFCc1fCiQbk/qwmxf7vdRJPXUWfu/9HZd/XM
+ t7T2lWRvtRXSzVEgXOYJAT1gH17++y4YdA00/JXisC3mMCqMfnw8ume5yZJiHu5b3Ayf
+ yB1jAOX7SmEucI2NjNwDq6WQioLFJ29gXiQSftQxXTOcI1V4hM1z/2pztN1cAD7k1HO7
+ HcEp7SHQgKfMfiMxfHohBgvusnsdGEn1HhFu9AtkfXBkbNs/dz2SUtM9Zf7HmYKMr4LM
+ 6/PxZqwyn5v81cjZxE4x6xufkdNJcTUfAzgzVeeHuGA7KfKmbN87pgRhNu/IYDfWWVGn
+ 7ZBA==
 X-Forwarded-Encrypted: i=1;
- AFNElJ9t/ZReHOJnTjFx9ad7bT6W2NCVTqGQzJvi1xE4yJ+y0OyKHtI2FuZD6qj4eCzWk4G+T7+J8TGa@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwmQEcDfocm97BwdnJVedv4mpKcu5VFHTQKBbUkPViCCct6wSY3
- XjbWsmHhxgbrGyKDacQv3FqZc2Z8YZ9HK/R0ax0oItRGtBGddZA35I21YRAcieechF4=
-X-Gm-Gg: Acq92OGmLxKU1/GIl5TDFG7oxg2Af1lsHaOHPwi5mOt1TdKUG5YymDc4ZUZbcVtR3Wg
- MjVaDYKXqOHjlLMUvvQOSOzcKBJmf5r0gaOCGmShVGn4gczco/FTgc/I/PAdBGifQio90C8q0Oo
- B0S4gzt/jKgzaR45tamwUO6uCAywi+JuBuneWJTi+NY+HYVWysADd9CJDuamIzQsL04oWL1qPIA
- 0/goQwsMFpPR53qTCGm4sTFzpoLKFxLovwaGPP1+jH93bdi8Y2GWJnf++zsTNFXzrw5vBsEugEr
- 9ZPgx23x24keh6HoYIAt8jEN55WUZfMM2pMMsAcKyzmUonEnY33bnCQ3bfoRbXADh9s8Es3hr1A
- syP0aa6dLgfsKEn/daZpa8u0Z3+xBByofQ6EbO35oNa9g8nHHCYysQq0P+N4xrnjFv1yyxdKNuv
- R4G2VwdJnfHCb8IZB7pVglmbxP+s9WFyvfSNd046RiCxT2W3fetMHFiU+gmNBL6iA39O1jVNc/G
- kd3DJNH7hsFFwazFq5gDOpqw8xA//T8anShTlRnWQzFvxJwCYjnX4DoWC4o
-X-Received: by 2002:a05:6122:3c53:b0:567:4e8a:fb13 with SMTP id
- 71dfb90a1353d-5baffcd3d22mr2941326e0c.8.1781207493222; 
- Thu, 11 Jun 2026 12:51:33 -0700 (PDT)
+ AFNElJ9JkkwmmkWKDnQdt8k2vO6+FZru59x/fiWaeUB21ORKdF8kaSo9qL71lA6+fOzxPmQ89tKBSz4g@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx55fqh5lpMteVBXqjM/NH/Cb5ABC5nlzGOajcVBhfOzyjSCTUS
+ /lxg82HuB4nUmXox/7WeA1AN6Iay0pSQ4D8BTSm2HYRIqeRtLq81hOeCWvDJWO5nWcs=
+X-Gm-Gg: Acq92OHfpoIMo7xYwy4lPzC6JLbvk84Yuo+r+aHAWzN4ZsW55PdFrmfgOzebThVqOSF
+ LFuCFT2NZGwM1fLppX2AhJIKrVXhZepBmB1PzHV2HoGihwJpkj0DJm5TIJMuyMSAoTwXFI9KoUV
+ VAwCQ0O2QA3bbQVRBrP0vySNy0obTEEJmO2Yy1BGv8sVtNPhECesJ/D0hujVjVANlWEXHewnuMr
+ wo04XZZNh2ah2FbggqfC1TKPBTWVQLm5Bpvke8mlYNZfyYQlWPZkVEOa/NnXvNSc6GxGaz21we6
+ 9pO5Ss7fIcN7lTiSOa4H24vqTNoaFycU4ZfIrfhVmzGmbD3AJ7e2Vwv59UMyNTjrqfde+geeHdS
+ XRJ4ohWJsPOSUTui0qan5UJUVIF/KexTjVuYlDIMEJJvEC2TgtVUs7UfXyQEjtJ/wWAikF5anJW
+ chDM5yR1tZ114l/qMC/O4z8f5Hla+yn5QXA5DYjZYsZEmV60Hn6rgc5ME9tNkae4rlr7VBZP26z
+ qZPKm3GA7Ubf6cMwLgoef6sP8OZXz+P6fhMuX+LBjJCV0HYFQ==
+X-Received: by 2002:a05:6122:1d03:b0:56e:f071:d4ef with SMTP id
+ 71dfb90a1353d-5baffcd4b47mr2443887e0c.8.1781207518846; 
+ Thu, 11 Jun 2026 12:51:58 -0700 (PDT)
 Received: from gui-host.Dlink ([186.220.219.98])
  by smtp.gmail.com with ESMTPSA id
- 71dfb90a1353d-5bb691bb8a4sm345359e0c.10.2026.06.11.12.51.29
+ 71dfb90a1353d-5bb691bb8a4sm345359e0c.10.2026.06.11.12.51.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Jun 2026 12:51:32 -0700 (PDT)
+ Thu, 11 Jun 2026 12:51:58 -0700 (PDT)
 From: Guilherme Ivo Bozi <guilherme.bozi@usp.br>
 To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
  harry.wentland@amd.com, simona@ffwll.ch, siqueira@igalia.com,
  sunpeng.li@amd.com
 Cc: Guilherme Ivo Bozi <guilherme.bozi@usp.br>, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH RESEND 1/9] drm/amd/display: add GPIO HW translation helpers
-Date: Thu, 11 Jun 2026 16:49:01 -0300
-Message-ID: <20260611195026.25125-2-guilherme.bozi@usp.br>
+Subject: [PATCH RESEND 2/9] drm/amd/display: convert dcn10 GPIO translation to
+ lookup tables
+Date: Thu, 11 Jun 2026 16:49:02 -0300
+Message-ID: <20260611195026.25125-3-guilherme.bozi@usp.br>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260611195026.25125-1-guilherme.bozi@usp.br>
 References: <20260611195026.25125-1-guilherme.bozi@usp.br>
@@ -111,8 +112,8 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:harry.wentland@amd.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:sunpeng.li@amd.com,m:guilherme.bozi@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[guilherme.bozi@usp.br,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[guilherme.bozi@usp.br,amd-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[gmail.com,amd.com,ffwll.ch,igalia.com];
@@ -130,216 +131,534 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9AAD5677641
+X-Rspamd-Queue-Id: EFAE2677658
 
-Add generic helpers and lookup table types for GPIO hardware
-translation.
+Replace dcn10 GPIO translation switch statements with the
+generic table-based translation helpers.
 
-The new helpers provide reusable conversions between GPIO IDs,
-register offsets and DDC lines, allowing ASIC-specific drivers
-to replace large switch statements with static lookup tables.
+This simplifies the GPIO mapping logic and reduces duplicated
+translation code.
 
 No functional changes intended.
 
 Signed-off-by: Guilherme Ivo Bozi <guilherme.bozi@usp.br>
 ---
- .../drm/amd/display/dc/gpio/hw_translate.c    | 86 +++++++++++++++++++
- .../drm/amd/display/dc/gpio/hw_translate.h    | 21 +++++
- .../gpu/drm/amd/display/include/gpio_types.h  | 48 +++++++++++
- 3 files changed, 155 insertions(+)
+ .../dc/gpio/dcn10/hw_translate_dcn10.c        | 484 +++++++-----------
+ 1 file changed, 173 insertions(+), 311 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_translate.c b/drivers/gpu/drm/amd/display/dc/gpio/hw_translate.c
-index 64a5e11fce5c..b58af86dee10 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/hw_translate.c
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_translate.c
-@@ -133,3 +133,89 @@ bool dal_hw_translate_init(
- 		return false;
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dcn10/hw_translate_dcn10.c b/drivers/gpu/drm/amd/display/dc/gpio/dcn10/hw_translate_dcn10.c
+index fecc8688048d..000f603def58 100644
+--- a/drivers/gpu/drm/amd/display/dc/gpio/dcn10/hw_translate_dcn10.c
++++ b/drivers/gpu/drm/amd/display/dc/gpio/dcn10/hw_translate_dcn10.c
+@@ -58,146 +58,180 @@
+ /* macros to expend register list macro defined in HW object header file
+  * end *********************/
+ 
++static const struct gpio_id_offset_entry gpio_offsets[] = {
++	/* GENERIC */
++	GPIO_MASK_ENTRY(DC_GPIO_GENERIC_A,
++		DC_GPIO_GENERIC_A__DC_GPIO_GENERICA_A_MASK,
++		GPIO_ID_GENERIC, GPIO_GENERIC_A),
++	GPIO_MASK_ENTRY(DC_GPIO_GENERIC_A,
++		DC_GPIO_GENERIC_A__DC_GPIO_GENERICB_A_MASK,
++		GPIO_ID_GENERIC, GPIO_GENERIC_B),
++	GPIO_MASK_ENTRY(DC_GPIO_GENERIC_A,
++		DC_GPIO_GENERIC_A__DC_GPIO_GENERICC_A_MASK,
++		GPIO_ID_GENERIC, GPIO_GENERIC_C),
++	GPIO_MASK_ENTRY(DC_GPIO_GENERIC_A,
++		DC_GPIO_GENERIC_A__DC_GPIO_GENERICD_A_MASK,
++		GPIO_ID_GENERIC, GPIO_GENERIC_D),
++	GPIO_MASK_ENTRY(DC_GPIO_GENERIC_A,
++		DC_GPIO_GENERIC_A__DC_GPIO_GENERICE_A_MASK,
++		GPIO_ID_GENERIC, GPIO_GENERIC_E),
++	GPIO_MASK_ENTRY(DC_GPIO_GENERIC_A,
++		DC_GPIO_GENERIC_A__DC_GPIO_GENERICF_A_MASK,
++		GPIO_ID_GENERIC, GPIO_GENERIC_F),
++	GPIO_MASK_ENTRY(DC_GPIO_GENERIC_A,
++		DC_GPIO_GENERIC_A__DC_GPIO_GENERICG_A_MASK,
++		GPIO_ID_GENERIC, GPIO_GENERIC_G),
++	/* HPD */
++	GPIO_MASK_ENTRY(DC_GPIO_HPD_A,
++		DC_GPIO_HPD_A__DC_GPIO_HPD1_A_MASK,
++		GPIO_ID_HPD, GPIO_HPD_1),
++	GPIO_MASK_ENTRY(DC_GPIO_HPD_A,
++		DC_GPIO_HPD_A__DC_GPIO_HPD2_A_MASK,
++		GPIO_ID_HPD, GPIO_HPD_2),
++	GPIO_MASK_ENTRY(DC_GPIO_HPD_A,
++		DC_GPIO_HPD_A__DC_GPIO_HPD3_A_MASK,
++		GPIO_ID_HPD, GPIO_HPD_3),
++	GPIO_MASK_ENTRY(DC_GPIO_HPD_A,
++		DC_GPIO_HPD_A__DC_GPIO_HPD4_A_MASK,
++		GPIO_ID_HPD, GPIO_HPD_4),
++	GPIO_MASK_ENTRY(DC_GPIO_HPD_A,
++		DC_GPIO_HPD_A__DC_GPIO_HPD5_A_MASK,
++		GPIO_ID_HPD, GPIO_HPD_5),
++	GPIO_MASK_ENTRY(DC_GPIO_HPD_A,
++		DC_GPIO_HPD_A__DC_GPIO_HPD6_A_MASK,
++		GPIO_ID_HPD, GPIO_HPD_6),
++	/* SYNCA */
++	GPIO_MASK_ENTRY(DC_GPIO_SYNCA_A,
++		DC_GPIO_SYNCA_A__DC_GPIO_HSYNCA_A_MASK,
++		GPIO_ID_SYNC, GPIO_SYNC_HSYNC_A),
++	GPIO_MASK_ENTRY(DC_GPIO_SYNCA_A,
++		DC_GPIO_SYNCA_A__DC_GPIO_VSYNCA_A_MASK,
++		GPIO_ID_SYNC, GPIO_SYNC_VSYNC_A),
++	/* GSL */
++	GPIO_MASK_ENTRY(DC_GPIO_GENLK_A,
++		DC_GPIO_GENLK_A__DC_GPIO_GENLK_CLK_A_MASK,
++		GPIO_ID_GSL, GPIO_GSL_GENLOCK_CLOCK),
++	GPIO_MASK_ENTRY(DC_GPIO_GENLK_A,
++		DC_GPIO_GENLK_A__DC_GPIO_GENLK_VSYNC_A_MASK,
++		GPIO_ID_GSL, GPIO_GSL_GENLOCK_VSYNC),
++	GPIO_MASK_ENTRY(DC_GPIO_GENLK_A,
++		DC_GPIO_GENLK_A__DC_GPIO_SWAPLOCK_A_A_MASK,
++		GPIO_ID_GSL, GPIO_GSL_SWAPLOCK_A),
++	GPIO_MASK_ENTRY(DC_GPIO_GENLK_A,
++		DC_GPIO_GENLK_A__DC_GPIO_SWAPLOCK_B_A_MASK,
++		GPIO_ID_GSL, GPIO_GSL_SWAPLOCK_B),
++};
++
++/* DDC */
++static const struct gpio_ddc_offset_entry ddc_offset_map[] = {
++	{ REG(DC_GPIO_DDC1_A), GPIO_DDC_LINE_DDC1 },
++	{ REG(DC_GPIO_DDC2_A), GPIO_DDC_LINE_DDC2 },
++	{ REG(DC_GPIO_DDC3_A), GPIO_DDC_LINE_DDC3 },
++	{ REG(DC_GPIO_DDC4_A), GPIO_DDC_LINE_DDC4 },
++	{ REG(DC_GPIO_DDC5_A), GPIO_DDC_LINE_DDC5 },
++	{ REG(DC_GPIO_DDC6_A), GPIO_DDC_LINE_DDC6 },
++	{ REG(DC_GPIO_DDCVGA_A), GPIO_DDC_LINE_DDC_VGA },
++	{ REG(DC_GPIO_I2CPAD_A), GPIO_DDC_LINE_I2C_PAD },
++};
++
++static const struct gpio_pin_entry gpio_pins[] = {
++	/* DDC */
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC1,
++		DC_GPIO_DDC1_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6DATA_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC2,
++		DC_GPIO_DDC2_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6DATA_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC3,
++		DC_GPIO_DDC3_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6DATA_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC4,
++		DC_GPIO_DDC4_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6DATA_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC5,
++		DC_GPIO_DDC5_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6DATA_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC6,
++		DC_GPIO_DDC6_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6DATA_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC_VGA,
++		DC_GPIO_DDCVGA_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6DATA_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_I2C_PAD,
++		DC_GPIO_I2CPAD_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6DATA_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC1,
++		DC_GPIO_DDC1_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6CLK_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC2,
++		DC_GPIO_DDC2_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6CLK_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC3,
++		DC_GPIO_DDC3_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6CLK_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC4,
++		DC_GPIO_DDC4_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6CLK_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC5,
++		DC_GPIO_DDC5_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6CLK_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC6,
++		DC_GPIO_DDC6_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6CLK_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC_VGA,
++		DC_GPIO_DDCVGA_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6CLK_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_I2C_PAD,
++		   DC_GPIO_I2CPAD_A, DC_GPIO_DDC6_A__DC_GPIO_DDC6CLK_A_MASK),
++	/* GENERIC */
++	GPIO_PIN_ENTRY(GPIO_ID_GENERIC, GPIO_GENERIC_A,
++		DC_GPIO_GENERIC_A, DC_GPIO_GENERIC_A__DC_GPIO_GENERICA_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_GENERIC, GPIO_GENERIC_B,
++		DC_GPIO_GENERIC_A, DC_GPIO_GENERIC_A__DC_GPIO_GENERICB_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_GENERIC, GPIO_GENERIC_C,
++		DC_GPIO_GENERIC_A, DC_GPIO_GENERIC_A__DC_GPIO_GENERICC_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_GENERIC, GPIO_GENERIC_D,
++		DC_GPIO_GENERIC_A, DC_GPIO_GENERIC_A__DC_GPIO_GENERICD_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_GENERIC, GPIO_GENERIC_E,
++		DC_GPIO_GENERIC_A, DC_GPIO_GENERIC_A__DC_GPIO_GENERICE_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_GENERIC, GPIO_GENERIC_F,
++		DC_GPIO_GENERIC_A, DC_GPIO_GENERIC_A__DC_GPIO_GENERICF_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_GENERIC, GPIO_GENERIC_G,
++		DC_GPIO_GENERIC_A, DC_GPIO_GENERIC_A__DC_GPIO_GENERICG_A_MASK),
++	/* HPD */
++	GPIO_PIN_ENTRY(GPIO_ID_HPD, GPIO_HPD_1,
++		DC_GPIO_HPD_A, DC_GPIO_HPD_A__DC_GPIO_HPD1_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_HPD, GPIO_HPD_2,
++		DC_GPIO_HPD_A, DC_GPIO_HPD_A__DC_GPIO_HPD2_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_HPD, GPIO_HPD_3,
++		DC_GPIO_HPD_A, DC_GPIO_HPD_A__DC_GPIO_HPD3_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_HPD, GPIO_HPD_4,
++		DC_GPIO_HPD_A, DC_GPIO_HPD_A__DC_GPIO_HPD4_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_HPD, GPIO_HPD_5,
++		DC_GPIO_HPD_A, DC_GPIO_HPD_A__DC_GPIO_HPD5_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_HPD, GPIO_HPD_6,
++		DC_GPIO_HPD_A, DC_GPIO_HPD_A__DC_GPIO_HPD6_A_MASK),
++	/* SYNCA */
++	GPIO_PIN_ENTRY(GPIO_ID_SYNC, GPIO_SYNC_HSYNC_A,
++		DC_GPIO_SYNCA_A, DC_GPIO_SYNCA_A__DC_GPIO_HSYNCA_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_SYNC, GPIO_SYNC_VSYNC_A,
++		DC_GPIO_SYNCA_A, DC_GPIO_SYNCA_A__DC_GPIO_VSYNCA_A_MASK),
++	/* GSL */
++	GPIO_PIN_ENTRY(GPIO_ID_GSL, GPIO_GSL_GENLOCK_CLOCK,
++		DC_GPIO_GENLK_A, DC_GPIO_GENLK_A__DC_GPIO_GENLK_CLK_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_GSL, GPIO_GSL_GENLOCK_VSYNC,
++		DC_GPIO_GENLK_A, DC_GPIO_GENLK_A__DC_GPIO_GENLK_VSYNC_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_GSL, GPIO_GSL_SWAPLOCK_A,
++		DC_GPIO_GENLK_A, DC_GPIO_GENLK_A__DC_GPIO_SWAPLOCK_A_A_MASK),
++	GPIO_PIN_ENTRY(GPIO_ID_GSL, GPIO_GSL_SWAPLOCK_B,
++		DC_GPIO_GENLK_A, DC_GPIO_GENLK_A__DC_GPIO_SWAPLOCK_B_A_MASK),
++};
++
+ static bool offset_to_id(
+ 	uint32_t offset,
+ 	uint32_t mask,
+ 	enum gpio_id *id,
+ 	uint32_t *en)
+ {
+-	switch (offset) {
+-	/* GENERIC */
+-	case REG(DC_GPIO_GENERIC_A):
+-		*id = GPIO_ID_GENERIC;
+-		switch (mask) {
+-		case DC_GPIO_GENERIC_A__DC_GPIO_GENERICA_A_MASK:
+-			*en = GPIO_GENERIC_A;
+-			return true;
+-		case DC_GPIO_GENERIC_A__DC_GPIO_GENERICB_A_MASK:
+-			*en = GPIO_GENERIC_B;
+-			return true;
+-		case DC_GPIO_GENERIC_A__DC_GPIO_GENERICC_A_MASK:
+-			*en = GPIO_GENERIC_C;
+-			return true;
+-		case DC_GPIO_GENERIC_A__DC_GPIO_GENERICD_A_MASK:
+-			*en = GPIO_GENERIC_D;
+-			return true;
+-		case DC_GPIO_GENERIC_A__DC_GPIO_GENERICE_A_MASK:
+-			*en = GPIO_GENERIC_E;
+-			return true;
+-		case DC_GPIO_GENERIC_A__DC_GPIO_GENERICF_A_MASK:
+-			*en = GPIO_GENERIC_F;
+-			return true;
+-		case DC_GPIO_GENERIC_A__DC_GPIO_GENERICG_A_MASK:
+-			*en = GPIO_GENERIC_G;
+-			return true;
+-		default:
+-			ASSERT_CRITICAL(false);
+-			return false;
+-		}
+-	break;
+-	/* HPD */
+-	case REG(DC_GPIO_HPD_A):
+-		*id = GPIO_ID_HPD;
+-		switch (mask) {
+-		case DC_GPIO_HPD_A__DC_GPIO_HPD1_A_MASK:
+-			*en = GPIO_HPD_1;
+-			return true;
+-		case DC_GPIO_HPD_A__DC_GPIO_HPD2_A_MASK:
+-			*en = GPIO_HPD_2;
+-			return true;
+-		case DC_GPIO_HPD_A__DC_GPIO_HPD3_A_MASK:
+-			*en = GPIO_HPD_3;
+-			return true;
+-		case DC_GPIO_HPD_A__DC_GPIO_HPD4_A_MASK:
+-			*en = GPIO_HPD_4;
+-			return true;
+-		case DC_GPIO_HPD_A__DC_GPIO_HPD5_A_MASK:
+-			*en = GPIO_HPD_5;
+-			return true;
+-		case DC_GPIO_HPD_A__DC_GPIO_HPD6_A_MASK:
+-			*en = GPIO_HPD_6;
+-			return true;
+-		default:
+-			ASSERT_CRITICAL(false);
+-			return false;
+-		}
+-	break;
+-	/* SYNCA */
+-	case REG(DC_GPIO_SYNCA_A):
+-		*id = GPIO_ID_SYNC;
+-		switch (mask) {
+-		case DC_GPIO_SYNCA_A__DC_GPIO_HSYNCA_A_MASK:
+-			*en = GPIO_SYNC_HSYNC_A;
+-			return true;
+-		case DC_GPIO_SYNCA_A__DC_GPIO_VSYNCA_A_MASK:
+-			*en = GPIO_SYNC_VSYNC_A;
+-			return true;
+-		default:
+-			ASSERT_CRITICAL(false);
+-			return false;
+-		}
+-	break;
+-	/* REG(DC_GPIO_GENLK_MASK */
+-	case REG(DC_GPIO_GENLK_A):
+-		*id = GPIO_ID_GSL;
+-		switch (mask) {
+-		case DC_GPIO_GENLK_A__DC_GPIO_GENLK_CLK_A_MASK:
+-			*en = GPIO_GSL_GENLOCK_CLOCK;
+-			return true;
+-		case DC_GPIO_GENLK_A__DC_GPIO_GENLK_VSYNC_A_MASK:
+-			*en = GPIO_GSL_GENLOCK_VSYNC;
+-			return true;
+-		case DC_GPIO_GENLK_A__DC_GPIO_SWAPLOCK_A_A_MASK:
+-			*en = GPIO_GSL_SWAPLOCK_A;
+-			return true;
+-		case DC_GPIO_GENLK_A__DC_GPIO_SWAPLOCK_B_A_MASK:
+-			*en = GPIO_GSL_SWAPLOCK_B;
+-			return true;
+-		default:
+-			ASSERT_CRITICAL(false);
+-			return false;
+-		}
+-	break;
+-	/* DDC */
+-	/* we don't care about the GPIO_ID for DDC
+-	 * in DdcHandle it will use GPIO_ID_DDC_DATA/GPIO_ID_DDC_CLOCK
+-	 * directly in the create method */
+-	case REG(DC_GPIO_DDC1_A):
+-		*en = GPIO_DDC_LINE_DDC1;
+-		return true;
+-	case REG(DC_GPIO_DDC2_A):
+-		*en = GPIO_DDC_LINE_DDC2;
+-		return true;
+-	case REG(DC_GPIO_DDC3_A):
+-		*en = GPIO_DDC_LINE_DDC3;
+-		return true;
+-	case REG(DC_GPIO_DDC4_A):
+-		*en = GPIO_DDC_LINE_DDC4;
+-		return true;
+-	case REG(DC_GPIO_DDC5_A):
+-		*en = GPIO_DDC_LINE_DDC5;
+-		return true;
+-	case REG(DC_GPIO_DDC6_A):
+-		*en = GPIO_DDC_LINE_DDC6;
++	if (dal_hw_translate_gpio_ddc_offset_to_id(
++			ddc_offset_map,
++			ARRAY_SIZE(ddc_offset_map),
++			offset, en))
+ 		return true;
+-	case REG(DC_GPIO_DDCVGA_A):
+-		*en = GPIO_DDC_LINE_DDC_VGA;
+-		return true;
+-	/* GPIO_I2CPAD */
+-	case REG(DC_GPIO_I2CPAD_A):
+-		*en = GPIO_DDC_LINE_I2C_PAD;
++
++	if (dal_hw_translate_gpio_offset_to_id(
++			gpio_offsets,
++			ARRAY_SIZE(gpio_offsets),
++			offset, mask, id, en))
+ 		return true;
+-	/* Not implemented */
+-	case REG(DC_GPIO_PWRSEQ_A):
+-	case REG(DC_GPIO_PAD_STRENGTH_1):
+-	case REG(DC_GPIO_PAD_STRENGTH_2):
+-	case REG(DC_GPIO_DEBUG):
+-		return false;
+-	/* UNEXPECTED */
+-	default:
+-		ASSERT_CRITICAL(false);
+-		return false;
+-	}
++
++	ASSERT_CRITICAL(false);
++	return false;
  }
-+
-+bool dal_hw_translate_gpio_offset_to_id(
-+	const struct gpio_id_offset_entry *table,
-+	uint32_t table_size,
-+	uint32_t offset,
-+	uint32_t mask,
-+	enum gpio_id *id,
-+	uint32_t *en)
-+{
-+	uint32_t i;
-+
-+	for (i = 0; i < table_size; i++) {
-+		const struct gpio_id_offset_entry *entry = &table[i];
-+
-+		if (entry->offset != offset)
-+			continue;
-+
-+		if (entry->check_mask && entry->mask != mask)
-+			continue;
-+
-+		*id = entry->id;
-+		*en = entry->en;
-+
+ 
+ static bool id_to_offset(
+@@ -205,186 +239,14 @@ static bool id_to_offset(
+ 	uint32_t en,
+ 	struct gpio_pin_info *info)
+ {
+-	bool result = true;
+-
+-	switch (id) {
+-	case GPIO_ID_DDC_DATA:
+-		info->mask = DC_GPIO_DDC6_A__DC_GPIO_DDC6DATA_A_MASK;
+-		switch (en) {
+-		case GPIO_DDC_LINE_DDC1:
+-			info->offset = REG(DC_GPIO_DDC1_A);
+-		break;
+-		case GPIO_DDC_LINE_DDC2:
+-			info->offset = REG(DC_GPIO_DDC2_A);
+-		break;
+-		case GPIO_DDC_LINE_DDC3:
+-			info->offset = REG(DC_GPIO_DDC3_A);
+-		break;
+-		case GPIO_DDC_LINE_DDC4:
+-			info->offset = REG(DC_GPIO_DDC4_A);
+-		break;
+-		case GPIO_DDC_LINE_DDC5:
+-			info->offset = REG(DC_GPIO_DDC5_A);
+-		break;
+-		case GPIO_DDC_LINE_DDC6:
+-			info->offset = REG(DC_GPIO_DDC6_A);
+-		break;
+-		case GPIO_DDC_LINE_DDC_VGA:
+-			info->offset = REG(DC_GPIO_DDCVGA_A);
+-		break;
+-		case GPIO_DDC_LINE_I2C_PAD:
+-			info->offset = REG(DC_GPIO_I2CPAD_A);
+-		break;
+-		default:
+-			ASSERT_CRITICAL(false);
+-			result = false;
+-		}
+-	break;
+-	case GPIO_ID_DDC_CLOCK:
+-		info->mask = DC_GPIO_DDC6_A__DC_GPIO_DDC6CLK_A_MASK;
+-		switch (en) {
+-		case GPIO_DDC_LINE_DDC1:
+-			info->offset = REG(DC_GPIO_DDC1_A);
+-		break;
+-		case GPIO_DDC_LINE_DDC2:
+-			info->offset = REG(DC_GPIO_DDC2_A);
+-		break;
+-		case GPIO_DDC_LINE_DDC3:
+-			info->offset = REG(DC_GPIO_DDC3_A);
+-		break;
+-		case GPIO_DDC_LINE_DDC4:
+-			info->offset = REG(DC_GPIO_DDC4_A);
+-		break;
+-		case GPIO_DDC_LINE_DDC5:
+-			info->offset = REG(DC_GPIO_DDC5_A);
+-		break;
+-		case GPIO_DDC_LINE_DDC6:
+-			info->offset = REG(DC_GPIO_DDC6_A);
+-		break;
+-		case GPIO_DDC_LINE_DDC_VGA:
+-			info->offset = REG(DC_GPIO_DDCVGA_A);
+-		break;
+-		case GPIO_DDC_LINE_I2C_PAD:
+-			info->offset = REG(DC_GPIO_I2CPAD_A);
+-		break;
+-		default:
+-			ASSERT_CRITICAL(false);
+-			result = false;
+-		}
+-	break;
+-	case GPIO_ID_GENERIC:
+-		info->offset = REG(DC_GPIO_GENERIC_A);
+-		switch (en) {
+-		case GPIO_GENERIC_A:
+-			info->mask = DC_GPIO_GENERIC_A__DC_GPIO_GENERICA_A_MASK;
+-		break;
+-		case GPIO_GENERIC_B:
+-			info->mask = DC_GPIO_GENERIC_A__DC_GPIO_GENERICB_A_MASK;
+-		break;
+-		case GPIO_GENERIC_C:
+-			info->mask = DC_GPIO_GENERIC_A__DC_GPIO_GENERICC_A_MASK;
+-		break;
+-		case GPIO_GENERIC_D:
+-			info->mask = DC_GPIO_GENERIC_A__DC_GPIO_GENERICD_A_MASK;
+-		break;
+-		case GPIO_GENERIC_E:
+-			info->mask = DC_GPIO_GENERIC_A__DC_GPIO_GENERICE_A_MASK;
+-		break;
+-		case GPIO_GENERIC_F:
+-			info->mask = DC_GPIO_GENERIC_A__DC_GPIO_GENERICF_A_MASK;
+-		break;
+-		case GPIO_GENERIC_G:
+-			info->mask = DC_GPIO_GENERIC_A__DC_GPIO_GENERICG_A_MASK;
+-		break;
+-		default:
+-			ASSERT_CRITICAL(false);
+-			result = false;
+-		}
+-	break;
+-	case GPIO_ID_HPD:
+-		info->offset = REG(DC_GPIO_HPD_A);
+-		switch (en) {
+-		case GPIO_HPD_1:
+-			info->mask = DC_GPIO_HPD_A__DC_GPIO_HPD1_A_MASK;
+-		break;
+-		case GPIO_HPD_2:
+-			info->mask = DC_GPIO_HPD_A__DC_GPIO_HPD2_A_MASK;
+-		break;
+-		case GPIO_HPD_3:
+-			info->mask = DC_GPIO_HPD_A__DC_GPIO_HPD3_A_MASK;
+-		break;
+-		case GPIO_HPD_4:
+-			info->mask = DC_GPIO_HPD_A__DC_GPIO_HPD4_A_MASK;
+-		break;
+-		case GPIO_HPD_5:
+-			info->mask = DC_GPIO_HPD_A__DC_GPIO_HPD5_A_MASK;
+-		break;
+-		case GPIO_HPD_6:
+-			info->mask = DC_GPIO_HPD_A__DC_GPIO_HPD6_A_MASK;
+-		break;
+-		default:
+-			ASSERT_CRITICAL(false);
+-			result = false;
+-		}
+-	break;
+-	case GPIO_ID_SYNC:
+-		switch (en) {
+-		case GPIO_SYNC_HSYNC_A:
+-			info->offset = REG(DC_GPIO_SYNCA_A);
+-			info->mask = DC_GPIO_SYNCA_A__DC_GPIO_HSYNCA_A_MASK;
+-		break;
+-		case GPIO_SYNC_VSYNC_A:
+-			info->offset = REG(DC_GPIO_SYNCA_A);
+-			info->mask = DC_GPIO_SYNCA_A__DC_GPIO_VSYNCA_A_MASK;
+-		break;
+-		case GPIO_SYNC_HSYNC_B:
+-		case GPIO_SYNC_VSYNC_B:
+-		default:
+-			ASSERT_CRITICAL(false);
+-			result = false;
+-		}
+-	break;
+-	case GPIO_ID_GSL:
+-		switch (en) {
+-		case GPIO_GSL_GENLOCK_CLOCK:
+-			info->offset = REG(DC_GPIO_GENLK_A);
+-			info->mask = DC_GPIO_GENLK_A__DC_GPIO_GENLK_CLK_A_MASK;
+-		break;
+-		case GPIO_GSL_GENLOCK_VSYNC:
+-			info->offset = REG(DC_GPIO_GENLK_A);
+-			info->mask =
+-				DC_GPIO_GENLK_A__DC_GPIO_GENLK_VSYNC_A_MASK;
+-		break;
+-		case GPIO_GSL_SWAPLOCK_A:
+-			info->offset = REG(DC_GPIO_GENLK_A);
+-			info->mask = DC_GPIO_GENLK_A__DC_GPIO_SWAPLOCK_A_A_MASK;
+-		break;
+-		case GPIO_GSL_SWAPLOCK_B:
+-			info->offset = REG(DC_GPIO_GENLK_A);
+-			info->mask = DC_GPIO_GENLK_A__DC_GPIO_SWAPLOCK_B_A_MASK;
+-		break;
+-		default:
+-			ASSERT_CRITICAL(false);
+-			result = false;
+-		}
+-	break;
+-	case GPIO_ID_VIP_PAD:
+-	default:
+-		ASSERT_CRITICAL(false);
+-		result = false;
+-	}
+-
+-	if (result) {
+-		info->offset_y = info->offset + 2;
+-		info->offset_en = info->offset + 1;
+-		info->offset_mask = info->offset - 1;
+-
+-		info->mask_y = info->mask;
+-		info->mask_en = info->mask;
+-		info->mask_mask = info->mask;
+-	}
++	if (dal_hw_translate_id_to_offset(
++			gpio_pins,
++			ARRAY_SIZE(gpio_pins),
++			id, en, info))
 +		return true;
-+	}
-+
+ 
+-	return result;
++	ASSERT_CRITICAL(false);
 +	return false;
-+}
-+
-+/* we don't care about the GPIO_ID for DDC
-+ * in DdcHandle it will use GPIO_ID_DDC_DATA/GPIO_ID_DDC_CLOCK
-+ * directly in the create method
-+ */
-+bool dal_hw_translate_gpio_ddc_offset_to_id(
-+	const struct gpio_ddc_offset_entry *table,
-+	uint32_t table_size,
-+	uint32_t offset,
-+	uint32_t *en)
-+{
-+	uint32_t i;
-+
-+	for (i = 0; i < table_size; i++) {
-+		const struct gpio_ddc_offset_entry *entry = &table[i];
-+
-+		if (entry->offset != offset)
-+			continue;
-+
-+		*en = entry->en;
-+
-+		return true;
-+	}
-+
-+	return false;
-+}
-+
-+bool dal_hw_translate_id_to_offset(
-+	const struct gpio_pin_entry *table,
-+	uint32_t table_size,
-+	enum gpio_id id,
-+	uint32_t en,
-+	struct gpio_pin_info *info)
-+{
-+	uint32_t i;
-+
-+	for (i = 0; i < table_size; i++) {
-+		const struct gpio_pin_entry *entry = &table[i];
-+
-+		if (entry->id != id || entry->en != en)
-+			continue;
-+
-+		info->offset = entry->offset;
-+		info->mask = entry->mask;
-+
-+		info->offset_y = info->offset + 2;
-+		info->offset_en = info->offset + 1;
-+		info->offset_mask = info->offset - 1;
-+
-+		info->mask_y = info->mask;
-+		info->mask_en = info->mask;
-+		info->mask_mask = info->mask;
-+
-+		return true;
-+	}
-+
-+	return false;
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/hw_translate.h b/drivers/gpu/drm/amd/display/dc/gpio/hw_translate.h
-index 3a7d89ca1605..339e381f8fde 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/hw_translate.h
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/hw_translate.h
-@@ -47,4 +47,25 @@ bool dal_hw_translate_init(
- 	enum dce_version dce_version,
- 	enum dce_environment dce_environment);
+ }
  
-+bool dal_hw_translate_gpio_offset_to_id(
-+	const struct gpio_id_offset_entry *table,
-+	uint32_t table_size,
-+	uint32_t offset,
-+	uint32_t mask,
-+	enum gpio_id *id,
-+	uint32_t *en);
-+
-+bool dal_hw_translate_gpio_ddc_offset_to_id(
-+	const struct gpio_ddc_offset_entry *table,
-+	uint32_t table_size,
-+	uint32_t offset,
-+	uint32_t *en);
-+
-+bool dal_hw_translate_id_to_offset(
-+	const struct gpio_pin_entry *table,
-+	uint32_t table_size,
-+	enum gpio_id id,
-+	uint32_t en,
-+	struct gpio_pin_info *info);
-+
- #endif
-diff --git a/drivers/gpu/drm/amd/display/include/gpio_types.h b/drivers/gpu/drm/amd/display/include/gpio_types.h
-index 8dd46ed799e5..afd3fc73a911 100644
---- a/drivers/gpu/drm/amd/display/include/gpio_types.h
-+++ b/drivers/gpu/drm/amd/display/include/gpio_types.h
-@@ -277,6 +277,49 @@ enum gpio_config_type {
- 	GPIO_CONFIG_TYPE_I2C_AUX_DUAL_MODE
- };
- 
-+struct gpio_id_offset_entry {
-+	uint32_t offset;
-+	uint32_t mask;
-+
-+	bool check_mask;
-+
-+	enum gpio_id id;
-+	uint32_t en;
-+};
-+
-+#define GPIO_ENTRY(_offset, _id, _en) \
-+	{ \
-+		.offset = REG(_offset), \
-+		.check_mask = false, \
-+		.id = (_id), \
-+		.en = (_en), \
-+	}
-+
-+#define GPIO_MASK_ENTRY(_offset, _mask, _id, _en) \
-+	{ \
-+		.offset = REG(_offset), \
-+		.mask = (_mask), \
-+		.check_mask = true, \
-+		.id = (_id), \
-+		.en = (_en), \
-+	}
-+
-+struct gpio_pin_entry {
-+	enum gpio_id id;
-+	uint32_t en;
-+
-+	uint32_t offset;
-+	uint32_t mask;
-+};
-+
-+#define GPIO_PIN_ENTRY(_id, _en, _offset, _mask) \
-+	{ \
-+		.id = (_id), \
-+		.en = (_en), \
-+		.offset = REG(_offset), \
-+		.mask = (_mask), \
-+	}
-+
- /* DDC configuration */
- 
- enum gpio_ddc_config_type {
-@@ -293,6 +336,11 @@ struct gpio_ddc_config {
- 	bool clock_en_bit_present;
- };
- 
-+struct gpio_ddc_offset_entry {
-+	uint32_t offset;
-+	uint32_t en;
-+};
-+
- /* HPD configuration */
- 
- struct gpio_hpd_config {
+ /* function table */
 -- 
 2.47.3
 
