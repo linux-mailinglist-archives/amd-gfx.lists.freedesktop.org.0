@@ -2,76 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uWmUBn65K2rADAQAu9opvQ
+	id BAl3Bnq5K2q2DAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:47:10 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:47:06 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5DCD67765D
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B1E2677642
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:47:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=KO5G2tCE;
+	dkim=pass header.d=usp.br header.s=usp-google header.b=GuJyaSky;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=pass (policy=quarantine) header.from=usp.br
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7E8310F304;
-	Fri, 12 Jun 2026 07:47:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B6E410F2EA;
+	Fri, 12 Jun 2026 07:47:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4C2910E28C;
- Thu, 11 Jun 2026 19:41:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781206897; x=1812742897;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=XGA8XvGhar3Z1r6Oh+DGdi0DMjCB5+1+8ldPsokTHIE=;
- b=KO5G2tCE96w4Na6uToqh1+gUtdxWoPHX1fjFG2wThAnn/9swpN4kweCI
- XoSCSJX3hT7irJ14MZGZuD272QLlADhJnzDd1lJ/O3/FRo++DT2cqj4ir
- jSBl+aTzAyxuhk+KRvwaizMMoi059H8KnLX+aCVHEyqE655W+K2YRNLym
- f7M5Sp/qGy7uD8yhST7KAM1VZuw5WAfHpBwqCEPXSuRL1rM+Ih35Yl6ji
- MCh3WOOvpx7dOlArcF8XKn1Qg5+NAin/V9J1++73uzidfcw3PcdsGvIIE
- CRrOD4Iy/CgW0plUaSJw2P/HvGvK3h3HDkBlwKp0u24m7oHhIeeyA+inA w==;
-X-CSE-ConnectionGUID: JLaPrXbiQ/S1j4kHIf3mBQ==
-X-CSE-MsgGUID: VPFG16J+Q8W82dktiX1q4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="93520563"
-X-IronPort-AV: E=Sophos;i="6.24,199,1774335600"; d="scan'208";a="93520563"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 12:41:36 -0700
-X-CSE-ConnectionGUID: vvwdwSeZRd228JgWLwt3IQ==
-X-CSE-MsgGUID: NS0KcAVJTj2pqMYozOfh6Q==
-X-ExtLoop1: 1
-Received: from amilburn-desk.amilburn-desk (HELO [10.245.244.169])
- ([10.245.244.169])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2026 12:41:31 -0700
-Message-ID: <c4dec5fa460cdbeb3706410c6fb3375ab36012ab.camel@linux.intel.com>
-Subject: Re: [PATCH v6 6/6] drm/amdgpu: Wire up dmem cgroup reclaim for VRAM
- manager
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner
- <hannes@cmpxchg.org>,  Tejun Heo <tj@kernel.org>, Michal
- =?ISO-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>, 	cgroups@vger.kernel.org,
- Huang Rui <ray.huang@amd.com>, Matthew Brost	 <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann	 <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
- David Airlie	 <airlied@gmail.com>, Christian =?ISO-8859-1?Q?K=F6nig?=	
- <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, 	linux-kernel@vger.kernel.org
-Date: Thu, 11 Jun 2026 21:41:28 +0200
-In-Reply-To: <20260611173301.17473-7-thomas.hellstrom@linux.intel.com>
-References: <20260611173301.17473-1-thomas.hellstrom@linux.intel.com>
- <20260611173301.17473-7-thomas.hellstrom@linux.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com
+ [209.85.221.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3390A10E28C
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 19:51:21 +0000 (UTC)
+Received: by mail-vk1-f181.google.com with SMTP id
+ 71dfb90a1353d-59d6e44e5c8so107708e0c.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 12:51:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=usp.br; s=usp-google; t=1781207481; x=1781812281; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=AqexdJuQhvZ4SiuJdYKxfTsj0ya3VX999FM6ttvHo3w=;
+ b=GuJyaSky66coFT+f6bwMNiSkpxaqD4zQ6+JlujatE/JHORU4xVmaaZgbcWrTq0+hsP
+ 0GtHci1Tqu28fm8M4y3/TNFZrasZQ/9RYny05nAtTX1gqqUklcQqpOLi9OY278iY9sta
+ D2KAh/AabOc5ox0w3EkzitEsweqZRht3/19TYGzBZD9TTqvxpOeM1Ts4oD7c95zo64kp
+ InS7QLxDF+2cY+L/yWx22JrKsYq+S955q9ux+U+3o/lzknIYrqL9DvQIXg/dM+dLqe+e
+ ieKI/7rUoaauKGSf8O9BvE495Vb0KacT1gMmByH1cUmGmLX9OxbBo2cxZ/By6HSvRiPv
+ ojfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1781207481; x=1781812281;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=AqexdJuQhvZ4SiuJdYKxfTsj0ya3VX999FM6ttvHo3w=;
+ b=FOL2JwMsvy3oFcCHt6w4gqAhrLp50NZ9Pg+DaMdCdK7CrI+sWFpoe4L277l/U1EipC
+ /WmghF7vl8BOs537Kp4lXRz6SiEAGDBdGEQrbw3mLtPv3S6qFecbLvAYoGPvMjTIAUht
+ 3FutMoRczVscNKjp5wfZrxHMAV42ONljH4yNTOLri4V8qYFvvVVKsTOZWUXZL7gbdwut
+ FZyXRSx2UCh7B9EhnCM7W5qFCjWWHpcjuupRMy1FuOsHrJ+K33lMXIPC25dsamRtT+sL
+ /XkoJebrQSsfiPHw1genOnyi4oesRkaaKBPceBkug8uz8v7drv5MqAoi0mLvRhbczpCu
+ GRfw==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ8X4o+adPenFHsCETQFOIDTtMYXdgdmQHBO/JKZuNJ8bz68n0l3ycRSI6UsLZs75rJrHJn+zFi1@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzELUQhQodQV9PZ7v9/7SaI3ALbg2R5eifbLfuvC3wKiLgdvZ2l
+ ea4SCUVUYkIm0yWbw99xdr0W0n11nsCDGlNlGYrD16hIkQMKqCv6q44+bOEQMesuu4o=
+X-Gm-Gg: Acq92OGdaAG3G8+N5U56xOktVWbWdMQuTPAAd2LOUsK6g6wqc9QTgmRvyBB1IA7NYFn
+ Ijg3rnmeePdJHpB2y16+Az+EjEOHSEwY6Il6uaZERG8W096gC0nNDKPEnfPsGmXvo4TzCz6ep9N
+ gXaiIlU5gLimn59zG6Qg1RzW02fR5ERrxmZVk9Wr8bL0Hzndd9CG0dpZDDyxR988quUxZgk2VkQ
+ 9i+oizqhPahixiNQbR6oY2LX4bfwj0UwQNIGm5UDIiM8K3DzqvLEGzpX4pqgocd+V7XPSs15v0h
+ ZpztpfRv+hVeh9x0KNZxHqMBuB2lW2qyhSADp904rnAkzcyQuRd0rckgAJ1uO3ZRe+ySi2pgup/
+ cEfgB1G4Fz4ja+VqIifYVdxXmezSZo1AiQeXhdM58s76wayX7PSZff7oB0F9rdEmNPJr1Dmc8+8
+ qjca0SI0mLy09Fhf+GRDl6zL5srFwZ42sKZZ314nKP0eb4DMEi7WCFqO5rgegjWYS8ILBemVfBr
+ LcpQbL73TxjejjOH7qVDHLFGISdcAbcR7kCQLilkn6SggdSbA==
+X-Received: by 2002:a05:6122:2485:b0:56f:6b46:28be with SMTP id
+ 71dfb90a1353d-5bb00d816ffmr2885899e0c.8.1781207480684; 
+ Thu, 11 Jun 2026 12:51:20 -0700 (PDT)
+Received: from gui-host.Dlink ([186.220.219.98])
+ by smtp.gmail.com with ESMTPSA id
+ 71dfb90a1353d-5bb691bb8a4sm345359e0c.10.2026.06.11.12.51.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 11 Jun 2026 12:51:20 -0700 (PDT)
+From: Guilherme Ivo Bozi <guilherme.bozi@usp.br>
+To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ harry.wentland@amd.com, simona@ffwll.ch, siqueira@igalia.com,
+ sunpeng.li@amd.com
+Cc: Guilherme Ivo Bozi <guilherme.bozi@usp.br>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH RESEND 0/9] drm/amd/display: convert GPIO translation logic to
+ lookup tables
+Date: Thu, 11 Jun 2026 16:49:00 -0300
+Message-ID: <20260611195026.25125-1-guilherme.bozi@usp.br>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 12 Jun 2026 07:46:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,192 +96,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:harry.wentland@amd.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:sunpeng.li@amd.com,m:guilherme.bozi@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[guilherme.bozi@usp.br,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[gmx.de,cmpxchg.org,kernel.org,suse.com,vger.kernel.org,amd.com,intel.com,linux.intel.com,suse.de,ffwll.ch,gmail.com,lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,amd.com,ffwll.ch,igalia.com];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[guilherme.bozi@usp.br,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[usp.br:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,linux.intel.com:mid,linux.intel.com:from_mime]
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,gitlab.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B5DCD67765D
+X-Rspamd-Queue-Id: 9B1E2677642
 
-On Thu, 2026-06-11 at 19:33 +0200, Thomas Hellstr=C3=B6m wrote:
-> Register the VRAM manager with the dmem cgroup reclaim infrastructure
-> so that lowering dmem.max below current VRAM usage triggers TTM
-> eviction rather than failing with -EBUSY.
->=20
-> Guard place->flags in amdgpu_ttm_bo_eviction_valuable() against NULL,
-> as the TTM reclaim path passes a NULL place in cgroup drain mode.
->=20
-> v3:
-> - Rebased on fix for uninitialized list and buddy allocator on the
-> =C2=A0 drmm_cgroup_register_region() error path.
->=20
-> v5:
-> - Rebased on the introduction of struct dmem_cgroup_init.
-> - Clear the reclaim callback in amdgpu_vram_mgr_fini() to prevent
-> =C2=A0 use-after-free if cgroup reclaim is triggered after driver unbind
-> =C2=A0 while userspace holds an open DRM file descriptor. (Sashiko-bot)
-> - Switch from drmm_cgroup_register_region() to the raw
-> =C2=A0 dmem_cgroup_register_region() and store the region in
-> =C2=A0 amdgpu_vram_mgr.cg_region. Call dmem_cgroup_unregister_region()
-> =C2=A0 in amdgpu_vram_mgr_fini() after ttm_resource_manager_evict_all()
-> =C2=A0 to drain in-flight reclaim callbacks, and clear man->cg afterwards=
-.
-> =C2=A0 This is required because amdgpu's vram manager fini is called
-> =C2=A0 explicitly during driver unbind, which may precede the DRM device
-> =C2=A0 release and thus precede any drmm-based cleanup. (Sashiko-bot)
->=20
-> v6:
-> - Fix mgr->cg_region never being assigned, so
-> =C2=A0 dmem_cgroup_unregister_region() in fini silently no-ops on NULL
-> =C2=A0 and leaks the region. (Sashiko-bot)
-> - Reorder fini to call set_used(false) and evict_all() before
-> =C2=A0 dmem_cgroup_unregister_region(), so ttm_resource_free() can
-> =C2=A0 uncharge via man->cg during eviction; clear man->cg after
-> =C2=A0 unregister. (Sashiko-bot)
->=20
-> Assisted-by: GitHub_Copilot:claude-sonnet-4.6
-> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> ---
-> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0 2 +-
-> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 31 ++++++++++++++++-=
--
-> --
-> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h |=C2=A0 2 ++
-> =C2=A03 files changed, 28 insertions(+), 7 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> index 2740de94e93c..8cbcd33f51a5 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> @@ -1488,7 +1488,7 @@ static bool
-> amdgpu_ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
-> =C2=A0	dma_resv_for_each_fence(&resv_cursor, bo->base.resv,
-> =C2=A0				DMA_RESV_USAGE_BOOKKEEP, f) {
-> =C2=A0		if (amdkfd_fence_check_mm(f, current->mm) &&
-> -		=C2=A0=C2=A0=C2=A0 !(place->flags & TTM_PL_FLAG_CONTIGUOUS))
-> +		=C2=A0=C2=A0=C2=A0 !(place && (place->flags &
-> TTM_PL_FLAG_CONTIGUOUS)))
-> =C2=A0			return false;
-> =C2=A0	}
-> =C2=A0
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> index 08f05c3aed1d..2250bab0970d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> @@ -906,6 +906,10 @@ static const struct ttm_resource_manager_func
-> amdgpu_vram_mgr_func =3D {
-> =C2=A0	.debug	=3D amdgpu_vram_mgr_debug
-> =C2=A0};
-> =C2=A0
-> +static const struct dmem_cgroup_ops amdgpu_vram_mgr_dmem_ops =3D {
-> +	.reclaim =3D ttm_resource_manager_dmem_reclaim,
-> +};
+This series converts the GPIO HW translation logic used by
+multiple DCN generations from large switch statements to
+static lookup tables with shared helper functions.
 
-Probably might want to block reclaim after device unbind, just like xe.
-I'll look at that for v7.
+The new implementation reduces duplicated translation logic
+across generations and makes the GPIO mappings easier to
+maintain and extend.
 
-> +
-> =C2=A0/**
-> =C2=A0 * amdgpu_vram_mgr_init - init VRAM manager and DRM MM
-> =C2=A0 *
-> @@ -917,6 +921,7 @@ int amdgpu_vram_mgr_init(struct amdgpu_device
-> *adev)
-> =C2=A0{
-> =C2=A0	struct amdgpu_vram_mgr *mgr =3D &adev->mman.vram_mgr;
-> =C2=A0	struct ttm_resource_manager *man =3D &mgr->manager;
-> +	struct dmem_cgroup_region *cg;
-> =C2=A0	int err;
-> =C2=A0
-> =C2=A0	ttm_resource_manager_init(man, &adev->mman.bdev,
-> @@ -933,12 +938,16 @@ int amdgpu_vram_mgr_init(struct amdgpu_device
-> *adev)
-> =C2=A0	if (err)
-> =C2=A0		return err;
-> =C2=A0
-> -	man->cg =3D drmm_cgroup_register_region(adev_to_drm(adev),
-> "vram",
-> -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &(struct
-> dmem_cgroup_init){
-> -						.size =3D adev-
-> >gmc.real_vram_size,
-> -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 });
-> -	if (IS_ERR(man->cg))
-> -		return PTR_ERR(man->cg);
-> +	cg =3D dmem_cgroup_register_region(&(struct dmem_cgroup_init){
-> +					=C2=A0=C2=A0=C2=A0=C2=A0 .size =3D adev-
-> >gmc.real_vram_size,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0 .ops =3D
-> &amdgpu_vram_mgr_dmem_ops,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0 .reclaim_priv =3D man,
-> +					 }, "vram");
-> +	if (IS_ERR(cg))
-> +		return PTR_ERR(cg);
-> +
-> +	mgr->cg_region =3D cg;
-> +	ttm_resource_manager_set_dmem_region(man, cg);
-> =C2=A0
-> =C2=A0	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, &mgr-
-> >manager);
-> =C2=A0	ttm_resource_manager_set_used(man, true);
-> @@ -966,6 +975,16 @@ void amdgpu_vram_mgr_fini(struct amdgpu_device
-> *adev)
-> =C2=A0	if (ret)
-> =C2=A0		return;
-> =C2=A0
-> +	/*
-> +	 * Drain any in-flight dmem cgroup reclaim callbacks and
-> remove the
-> +	 * region from the global list.=C2=A0 This must happen after
-> evict_all()
-> +	 * so that ttm_resource_free() can still uncharge via man-
-> >cg while
-> +	 * BOs are being evicted.
-> +	 */
-> +	dmem_cgroup_unregister_region(mgr->cg_region);
-> +	mgr->cg_region =3D NULL;
-> +	man->cg =3D NULL;
-> +
-> =C2=A0	mutex_lock(&mgr->lock);
-> =C2=A0	list_for_each_entry_safe(rsv, temp, &mgr-
-> >reservations_pending, blocks)
-> =C2=A0		kfree(rsv);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h
-> index 429a21a2e9b2..07103cddb335 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h
-> @@ -36,6 +36,8 @@ struct amdgpu_vram_mgr {
-> =C2=A0	atomic64_t vis_usage;
-> =C2=A0	u64 default_page_size;
-> =C2=A0	struct list_head allocated_vres_list;
-> +	/** @cg_region: dmem cgroup region for VRAM; unregistered in
-> fini. */
-> +	struct dmem_cgroup_region *cg_region;
-> =C2=A0};
-> =C2=A0
-> =C2=A0struct amdgpu_vres_task {
+The series introduces generic GPIO translation helpers first,
+followed by per-generation conversions.
+
+The following generations were converted:
+
+  - dcn10
+  - dcn20
+  - dcn21
+  - dcn30
+  - dcn315
+  - dcn32
+  - dcn401
+  - dcn42
+
+The dce60, dce80, dce110 and dce120 implementations were
+left unchanged for now.
+
+dce60 and dce80 contain special switch-case handling paths
+that currently do not map cleanly to the new table-based
+representation, so they were intentionally excluded from
+this refactor.
+
+No functional changes intended.
+
+v1 resend:
+
+No changes since original submission.
+
+Automated review:
+https://lore.gitlab.freedesktop.org/drm-ai-reviews/review-overall-20260512190019.228440-1-guilherme.bozi@usp.br/
+
+Guilherme Ivo Bozi (9):
+  drm/amd/display: add GPIO HW translation helpers
+  drm/amd/display: convert dcn10 GPIO translation to lookup tables
+  drm/amd/display: convert dcn20 GPIO translation to lookup tables
+  drm/amd/display: convert dcn21 GPIO translation to lookup tables
+  drm/amd/display: convert dcn30 GPIO translation to lookup tables
+  drm/amd/display: convert dcn315 GPIO translation to lookup tables
+  drm/amd/display: convert dcn32 GPIO translation to lookup tables
+  drm/amd/display: convert dcn401 GPIO translation to lookup tables
+  drm/amd/display: convert dcn42 GPIO translation to lookup tables
+
+ .../dc/gpio/dcn10/hw_translate_dcn10.c        | 484 +++++++-----------
+ .../dc/gpio/dcn20/hw_translate_dcn20.c        | 432 ++++++----------
+ .../dc/gpio/dcn21/hw_translate_dcn21.c        | 417 ++++++---------
+ .../dc/gpio/dcn30/hw_translate_dcn30.c        | 432 ++++++----------
+ .../dc/gpio/dcn315/hw_translate_dcn315.c      | 418 ++++++---------
+ .../dc/gpio/dcn32/hw_translate_dcn32.c        | 386 +++++---------
+ .../dc/gpio/dcn401/hw_translate_dcn401.c      | 392 +++++---------
+ .../dc/gpio/dcn42/hw_translate_dcn42.c        | 193 +++----
+ .../drm/amd/display/dc/gpio/hw_translate.c    |  86 ++++
+ .../drm/amd/display/dc/gpio/hw_translate.h    |  21 +
+ .../gpu/drm/amd/display/include/gpio_types.h  |  48 ++
+ 11 files changed, 1274 insertions(+), 2035 deletions(-)
+
+-- 
+2.47.3
+
