@@ -2,109 +2,87 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7Ih0F3cWKmovigMAu9opvQ
+	id e+u0BMqSKmoBswMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jun 2026 03:59:19 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jun 2026 12:49:46 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B275066DBA3
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jun 2026 03:59:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7762F671045
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jun 2026 12:49:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=PGm470HD;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=TikirlpU;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 123E710EC61;
-	Thu, 11 Jun 2026 01:59:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC70110EE5C;
+	Thu, 11 Jun 2026 10:49:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013053.outbound.protection.outlook.com
- [40.107.201.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25D2310EC61
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 01:59:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=b/k4fEObQGOUh9wu3e2UTU9nfWVlZ7Vbv7Xo6AYxjEA08NOTXNlp1/BlO9S/zPTy5xlrbaVoYzLT3pzMfhcrWhF4gRXLl/RpfrS0+lvyJXdSQESvpXzZnDMzMVv/gYoPBkoldFixs1GE6zBLD2XuZedjajXjEyF1bIg5ZuFOqf6bG7gWD/1i6NoFT7Odnd24B8jfwjjq5m7ggZ+PvXHSOkBzCnhw4Oim1hvKhtEi1/T0t+FV6SSHJOWM3ftSz1AgIg4uCyBTftYJD8nrvefxIzbmXlIYo11fXUoxZW0XM60vWOZ9Z2DQDFCpr+BE1IChuO3hEWv9kDM70sVTRz/kbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oIy07ll1V+hTmqL0N1Mhqs1gQcn4ZoWUhobVXl0kdfU=;
- b=ywRrkj3ifIqFA0HxvhnlOWMdMxx+BL3bwcjhey3A8AWSZAtqquPyZuiFaSho8Ckt0xkPjmqhk7rmHJebvW2PdIa1AkdUXtohiV0LkskNVEW0cEsPNBVb7M6c141EMvy9jvPqgk2Dfy40H1PMnVAeSn2ZqBhV1eeeCnWcG04VmXNNEYTPHZ/tN2fIOQp9VMwsSgRIafpjf2cDnLCKFZZVGo3v08diHK0sCHJT+5MscLO+ezOwDU1YwIA1gbWS90XY8SxPV8iAVmaVtYcgzAckncOEdDJQdJbArLDbOU5jHAFiK8kqz0stVO5dDeuet73ix6kTXZL6feB4v+ZKs0pIFQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oIy07ll1V+hTmqL0N1Mhqs1gQcn4ZoWUhobVXl0kdfU=;
- b=PGm470HDSSaYGCsXhVvIcJRykSuxY2JanAnGa4eRCa6WUrl5ZzwhQ+yJnVoNxs1pjxZb2PtB5Drq0vLNDLtJbC6zO+O+80rezFTG2nF+vifBby6q0BCEgE/tJkR2zddzq+7B+eXWyhV8IKrJNExme3t8zfF0tVwN+E7gErHFPac=
-Received: from CH5PR04CA0003.namprd04.prod.outlook.com (2603:10b6:610:1f4::12)
- by SJ2PR12MB7822.namprd12.prod.outlook.com (2603:10b6:a03:4ca::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.13; Thu, 11 Jun
- 2026 01:59:10 +0000
-Received: from CH1PEPF0000A34C.namprd04.prod.outlook.com
- (2603:10b6:610:1f4:cafe::51) by CH5PR04CA0003.outlook.office365.com
- (2603:10b6:610:1f4::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.13 via Frontend Transport; Thu,
- 11 Jun 2026 01:59:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CH1PEPF0000A34C.mail.protection.outlook.com (10.167.244.6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.113.7 via Frontend Transport; Thu, 11 Jun 2026 01:59:10 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 10 Jun
- 2026 20:59:09 -0500
-Received: from rtg-MAPLE.amd.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 10 Jun 2026 20:59:06 -0500
-From: Priya Hosur <Priya.Hosur@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <Lijo.Lazar@amd.com>,
- <Alexander.Deucher@amd.com>, <Christian.Koenig@amd.com>,
- <Mario.Limonciello@amd.com>, <Kenneth.Feng@amd.com>
-CC: <Pratik.Vishwakarma@amd.com>, <Veerabadhran.Gopalakrishnan@amd.com>,
- <Priya.Hosur@amd.com>
-Subject: [PATCH v2 0/4] drm/amd/pm: smu_v14_0_0: fix pp_dpm_* clock reporting
- on SMU v14.0.0/v14.0.1 APUs
-Date: Thu, 11 Jun 2026 07:29:06 +0530
-Message-ID: <20260611015906.8291-1-Priya.Hosur@amd.com>
+Received: from mail-dy1-f194.google.com (mail-dy1-f194.google.com
+ [74.125.82.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A10510EC69
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 02:42:51 +0000 (UTC)
+Received: by mail-dy1-f194.google.com with SMTP id
+ 5a478bee46e88-304d7f31215so6727164eec.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Jun 2026 19:42:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1781145770; x=1781750570; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=HZ3tnpLmuxVn6RG46V9wPX6GdF132bX99ersePpQd08=;
+ b=TikirlpUrRJBk4acnsjCNhjjr22bB5P1jeoKItQyBS2FKBq402U7dudxhTiqibxb6+
+ Dn4cM2ghKCYnZA+Y/gkN2iy/8jhA01GSs/DLD4o2pTUAenhc9QbVug8gLiAfdpGIp7FS
+ lwyr+/TLYgCQ3RE/XH93KontZ2EB00po+kNihIuN/I+JgnxIKx925KMBkp4v3eZqp6Fm
+ MztJ9kHsCvx2RRNLFOCu3rdr8Z4zI8LyDjaivOIyX82/KM7UBqI9e4ixslPdimAVIdco
+ pSJGh8COHFbv+Gs49n2oTcb45xtqsZWNCAjJlzPtC6hiUrgfqLkWAvdowDLN2Wt5waA9
+ geig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1781145770; x=1781750570;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=HZ3tnpLmuxVn6RG46V9wPX6GdF132bX99ersePpQd08=;
+ b=Fbno2TlY1M4ulnfnFrofAsMojC4oujRQ+CcvMSolshEZnLW9XAVdYZKOdPJk3KmKwJ
+ uGrEjpcMQ8QKJmU6KyYSI43pEAuYWzoNAlFVwIIFzr/Rz1r78jyzFMEFRPHuHLIYx1eH
+ frDr7Xq0oabOpUQqZlUPCA/0kRFyIwyMJwMEokcnmc2Y5Dj8XSU6C0CHZMv4ESCVJxat
+ xEKLHtBjKmOfWOWvyEvLT9FgsRJDlGbatDaM4XvFeQ81aCe2GpqnVSXqfpXL9+ddT7Tq
+ 0Pv3WntygsYKVc9ZIlDF/5QHIgMA16B1+5oZoBvksvmAarKiSk2+GvRuFPpJAisOX3Ye
+ dyFg==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ9BCfyOKZQjsyW7Lx3UjgDSEqLSf+29NV6DZplFTkgxEWIIVqqcESt1+t1IuL9ffHtXsCOmKKRX@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxqHg5PI+ePtxLZXJ4J04LpESI346/cqny5NUlWpvCEMG6kt0VR
+ LG8FeWaEHgj4nuLGjcFGNo0k6LBC5+m4m1iFhuM8lkkmnDaAVWr/s3wt
+X-Gm-Gg: Acq92OE3GjprXfxrRywDPNRpJMBaz+nBo6NBImtWUQxdCi/1Mrf+Dn4/J1IGeGX91k0
+ Brj2lYBaZl5Q/OlwSqFGJEclX+UdUdi/B5x1CAsKSUNFdP9mc4N62ZYWqS7XPK6L5/zAn36lAFX
+ m1RL6QoFSqkGoEYrlIqA0DM//aWt8X+FYyVMyf2uP2Kto4cyu8cVsmXNbLBfao3l01OMbMvuCa2
+ iSW7nyHhfqUwyJHvtxaeEyIpfJwqvtewJ16a6J26/rwCU6XV2So3P1QksbiZRKCzoiVijBZFnI1
+ ZhUnxNJOAF72lS1P7BKJGFvI5hbFKPBffKj1ArH3G0ixI0w5nKWP6PPFBFSM64B2DhqcrdBERdn
+ GXuZlxa3Pnjrbf/cWALBFTQ9G8DJSMQCzPz5HivTbWQZ40/FuCEXA+lUkT7ClNIoRQlDTUx5pkF
+ eZ+uLSArZti4NxzMxGfnW3G7uIH/w4vMQ5D4o5BtqJzSc6Y+iOzjhk
+X-Received: by 2002:a05:7300:2306:b0:2d9:a799:3c4f with SMTP id
+ 5a478bee46e88-30804ced98cmr649040eec.24.1781145770308; 
+ Wed, 10 Jun 2026 19:42:50 -0700 (PDT)
+Received: from andrel-LOQ.. ([2804:1b3:a540:e4c5:8689:633f:71cf:5300])
+ by smtp.gmail.com with ESMTPSA id
+ 5a478bee46e88-30806ee1253sm316973eec.27.2026.06.10.19.42.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 10 Jun 2026 19:42:49 -0700 (PDT)
+From: Andre Luiz Batista Bueno <andrebueno.mac@gmail.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: Andre Luiz Batista Bueno <andrebueno.mac@gmail.com>,
+ Enzo Furegatti Spinella <enzo.spinella@usp.br>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH v2] drm/amdgpu: deduplicate JPEG v5.0 interrupt routine
+Date: Wed, 10 Jun 2026 23:40:52 -0300
+Message-ID: <20260611024211.233876-1-andrebueno.mac@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <CADnq5_POUhiOuusWBXgZMLCUhoRutMoH0NaLJgjWqapXd0eRcw@mail.gmail.com>
+References: <CADnq5_POUhiOuusWBXgZMLCUhoRutMoH0NaLJgjWqapXd0eRcw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000A34C:EE_|SJ2PR12MB7822:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1354813f-0d0d-4676-bc5a-08dec75d0751
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|36860700016|1800799024|82310400026|376014|11063799006|56012099006|6133799003|18002099003;
-X-Microsoft-Antispam-Message-Info: C12T0pppNPhcg6WhiLoKw2jbqyTzJBlL/VRur1vue1kOQtvYwgHFn/ojJTMQtXV7vfhjU9O1Yt4g0Ni7QtvYymOjFAIDXYOb9QF7sOA8A2hBYsXrNCNTxbN1Ko1UG4qGWTvEEuTTXY254tQxkuo2kpdLQs4fgEkZ+ywSIGyMxsm2YmuD8v1mVcEzHYxkyxd4cSnt40h9gs5lyEWTNm2P0qG5VVcwH03nX47YHnf4m8Ovgd6s0gxwV7fzEZudRfryJ6AoJy2jWdKc+p6bKZam4HNZ2C29mC8taIoFzZ8mkH2iQPcvb8fLnWOAX7VnfaTPGjYaxqbhhbnh5/bdBpfUwDyk932ox2LFHyMHD8Wd/KGUjQ7VTAZVJ3cY20C8p37Yey1G40SK97cMHi+Bbkh7F/5+Lk7SNBnP5bFmDSaKSLtHzvrZ2eo/f6lnDZhZoV72w9P1EOgbSus7op7TMlhlBfkJDMnwq9DPvr8XDvm7XRrqsmfzby9YtBDb73jDvs0J90Ltv7xU6JU2pTwNJTmyU4Of8cgw74Y5fzm1jei19Np7M7LzD/P1MbrqGHLOcHQb4cpGgO3Y0H/IkNC7VYPLViSjf8EIAKAI1wsTJdz6NwKl1sW+wPkbDAAJg4zU6/X03iIPbsLb4uw36BmHMjntJO5Hu2iZG8znzZ/uBvdOUBz6I5Smn4D4q/AJcnbh7wq501VtFazaJ9zhIT6MIj0nBkyGzQZ/PPW/MkrnlfJ/QkY=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(23010399003)(36860700016)(1800799024)(82310400026)(376014)(11063799006)(56012099006)(6133799003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: ICsg/vt4sRxWWrvsGJqcqzsod8gwj44MTKycF0W0V/D03Qc3ERgMYa5w0lYhJniEI8fr4n6MK4xs8L6om/RywZkdEhkNOMq9XcH3DRNr5a+RtcGI/ry2GkXuMGhgKisF8j7fe9EGzEuSVjFMUilO+TjwVRXmTl3j08PIcFcAG8iGP1ZTvP3rF3UdIAVMmYeq6H7TJts99EydwwTFpMwK68nCMnnXT7iDHPJ0nis4SH2RxGaXglMvNOLq8Qt5M0yk2eb1H5WfqH4DCvl6dbaqBUVAiJVYJbfF4hla6LtiMWsCV1dEQvzRZKNMnN2ko0voU+pXowWFk8NDOD+rv0mGl2Rb7HyEGzhE33aZaM0rkPuGvpIR7aSXGya8GSgiFuCvPlX8KFAdlWbKBf0AfddfhhlrUT60w97EETyp6h0SidNxpfWouyN3ECl1H+hdHdWp
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2026 01:59:10.1327 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1354813f-0d0d-4676-bc5a-08dec75d0751
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000A34C.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7822
+X-Mailman-Approved-At: Thu, 11 Jun 2026 10:49:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,86 +97,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[Priya.Hosur@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:andrebueno.mac@gmail.com,m:enzo.spinella@usp.br,m:dri-devel@lists.freedesktop.org,m:andrebuenomac@gmail.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[andrebuenomac@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
+	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,usp.br,lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrebuenomac@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B275066DBA3
+X-Rspamd-Queue-Id: 7762F671045
 
-This series fixes multiple pp_dpm_* sysfs clocks reporting N/A or missing
-the * current-level marker on SMU v14.0.0/v14.0.1 APUs (GC 11.5.1).
+Both jpeg_v5_0_1.c and jpeg_v5_0_2.c implement identical
+interrupt processing routines. To avoid code duplication,
+make the implementation in jpeg_v5_0_1.c non-static and
+call it directly from jpeg_v5_0_2.c.
 
-Background
-----------
-On GC 11.5.1 APUs, amd-smi reports N/A for VCLK, DCLK, and DCEFCLK
-clocks. Additionally, MCLK and FCLK show DPM levels but lack the *
-marker indicating the current level.
-
-Fix
+Signed-off-by: Andre Luiz Batista Bueno <andrebueno.mac@gmail.com>
+Co-developed-by: Enzo Furegatti Spinella <enzo.spinella@usp.br>
+Signed-off-by: Enzo Furegatti Spinella <enzo.spinella@usp.br>
 ---
-1. Merge METRICS_AVERAGE_VCLK and METRICS_AVERAGE_DCLK into a single
-   fall-through case mapping both to VclkFrequency (SmuMetrics_t has no
-   DclkFrequency field; DCLK tracks VCLK on VCN).
 
-2. Add IP_VERSION(11,5,1) to pp_dpm_vclk, pp_dpm_dclk, pp_dpm_vclk1
-   and pp_dpm_dclk1 whitelists. The target APU has two VCN instances.
+v2:
+ - Dropped the new jpeg_v5_0_interrupt.c/h files and Makefile changes.
+ - Kept the interrupt routine in jpeg_v5_0_1.c but removed the 'static' modifier.
+ - Declared the function prototype in jpeg_v5_0_1.h and included it in jpeg_v5_0_2.c to call it directly, as suggested by Alex Deucher.
 
-3. Add SMU_DCEFCLK to get_dpm_freq_by_index and get_dpm_level_count
-   using DcfClocks[]/NumDcfClkLevelsEnabled. Add DCEFCLK case in
-   emit_clk_levels.
+ drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c |  2 +-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.h |  8 +++
+ drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c | 63 ++----------------------
+ 3 files changed, 12 insertions(+), 61 deletions(-)
 
-4. Add closest-match fallback in emit_clk_levels: on exact match, set
-   closest_idx and break immediately; otherwise track the DPM level
-   with the smallest absolute frequency difference, with early exit
-   when the diff starts increasing. Reverse DPM index for SMU_MCLK
-   since MemPstateTable stores levels high-to-low.
-
-Validation
-----------
-Tested on GC 11.5.1, SMU 14.0.1 APU. All pp_dpm_* clocks now report
-correct DPM levels with * markers via both sysfs and amd-smi.
-
-Changes since v1:
-- Patch 1: Dropped VCLK1/DCLK1 metric handlers; let them fall through
-  to default UINT_MAX (N/A) as suggested by Lijo.
-- Patch 4: On exact match, set closest_idx and break instead of
-  continuing the loop. Added early exit when diff starts increasing
-  (monotonic DPM levels), as suggested by Lijo.
-
-Priya Hosur (4):
-  drm/amd/pm: smu_v14_0_0: add DCLK metric handler via VCLK fall-through
-  drm/amd/pm: add IP_VERSION(11,5,1) to vclk/dclk DPM sysfs whitelists
-  drm/amd/pm: smu_v14_0_0: add SMU_DCEFCLK support in DPM frequency
-    queries
-  drm/amd/pm: smu_v14_0_0: add closest-match fallback for DPM level
-    marking
-
- drivers/gpu/drm/amd/pm/amdgpu_pm.c            |  8 +-
- .../drm/amd/pm/swsmu/smu14/smu_v14_0_0_ppt.c  | 82 +++++++++++++++++--
- 2 files changed, 80 insertions(+), 10 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
+index edecbfe66c79..46bcbecd89e8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
+@@ -755,7 +755,7 @@ static int jpeg_v5_0_1_set_ras_interrupt_state(struct amdgpu_device *adev,
+ 
+ 
+ 
+-static int jpeg_v5_0_1_process_interrupt(struct amdgpu_device *adev,
++int jpeg_v5_0_1_process_interrupt(struct amdgpu_device *adev,
+ 					 struct amdgpu_irq_src *source,
+ 					 struct amdgpu_iv_entry *entry)
+ {
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.h b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.h
+index a7e58d5fb246..67346faecb47 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.h
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.h
+@@ -108,4 +108,12 @@ enum amdgpu_jpeg_v5_0_1_sub_block {
+ 	AMDGPU_JPEG_V5_0_1_MAX_SUB_BLOCK,
+ };
+ 
++struct amdgpu_irq_src;
++struct amdgpu_iv_entry;
++struct amdgpu_device;
++
++int jpeg_v5_0_1_process_interrupt(struct amdgpu_device *adev,
++					struct amdgpu_irq_src *source,
++					struct amdgpu_iv_entry *entry);
++
+ #endif /* __JPEG_V5_0_1_H__ */
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c
+index 285c459379c4..250e7f849037 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c
+@@ -34,6 +34,8 @@
+ #include "vcn/vcn_5_0_0_sh_mask.h"
+ #include "ivsrcid/vcn/irqsrcs_vcn_5_0.h"
+ 
++#include "jpeg_v5_0_1.h"
++
+ static void jpeg_v5_0_2_set_dec_ring_funcs(struct amdgpu_device *adev);
+ static void jpeg_v5_0_2_set_irq_funcs(struct amdgpu_device *adev);
+ static int jpeg_v5_0_2_set_powergating_state(struct amdgpu_ip_block *ip_block,
+@@ -583,65 +585,6 @@ static int jpeg_v5_0_2_set_interrupt_state(struct amdgpu_device *adev,
+ 	return 0;
+ }
+ 
+-static int jpeg_v5_0_2_process_interrupt(struct amdgpu_device *adev,
+-					 struct amdgpu_irq_src *source,
+-					 struct amdgpu_iv_entry *entry)
+-{
+-	u32 i, inst;
+-
+-	i = node_id_to_phys_map[entry->node_id];
+-	DRM_DEV_DEBUG(adev->dev, "IH: JPEG TRAP\n");
+-
+-	for (inst = 0; inst < adev->jpeg.num_jpeg_inst; ++inst)
+-		if (adev->jpeg.inst[inst].aid_id == i)
+-			break;
+-
+-	if (inst >= adev->jpeg.num_jpeg_inst) {
+-		dev_WARN_ONCE(adev->dev, 1,
+-			      "Interrupt received for unknown JPEG instance %d",
+-			      entry->node_id);
+-		return 0;
+-	}
+-
+-	switch (entry->src_id) {
+-	case VCN_5_0__SRCID__JPEG_DECODE:
+-		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[0]);
+-		break;
+-	case VCN_5_0__SRCID__JPEG1_DECODE:
+-		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[1]);
+-		break;
+-	case VCN_5_0__SRCID__JPEG2_DECODE:
+-		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[2]);
+-		break;
+-	case VCN_5_0__SRCID__JPEG3_DECODE:
+-		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[3]);
+-		break;
+-	case VCN_5_0__SRCID__JPEG4_DECODE:
+-		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[4]);
+-		break;
+-	case VCN_5_0__SRCID__JPEG5_DECODE:
+-		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[5]);
+-		break;
+-	case VCN_5_0__SRCID__JPEG6_DECODE:
+-		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[6]);
+-		break;
+-	case VCN_5_0__SRCID__JPEG7_DECODE:
+-		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[7]);
+-		break;
+-	case VCN_5_0__SRCID__JPEG8_DECODE:
+-		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[8]);
+-		break;
+-	case VCN_5_0__SRCID__JPEG9_DECODE:
+-		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[9]);
+-		break;
+-	default:
+-		DRM_DEV_ERROR(adev->dev, "Unhandled interrupt: %d %d\n",
+-			      entry->src_id, entry->src_data[0]);
+-		break;
+-	}
+-
+-	return 0;
+-}
+ 
+ static void jpeg_v5_0_2_core_stall_reset(struct amdgpu_ring *ring)
+ {
+@@ -749,7 +692,7 @@ static void jpeg_v5_0_2_set_dec_ring_funcs(struct amdgpu_device *adev)
+ 
+ static const struct amdgpu_irq_src_funcs jpeg_v5_0_2_irq_funcs = {
+ 	.set = jpeg_v5_0_2_set_interrupt_state,
+-	.process = jpeg_v5_0_2_process_interrupt,
++	.process = jpeg_v5_0_1_process_interrupt,
+ };
+ 
+ static void jpeg_v5_0_2_set_irq_funcs(struct amdgpu_device *adev)
 -- 
 2.43.0
 
