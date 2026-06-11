@@ -2,89 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id eJUDAoC5K2rJDAQAu9opvQ
+	id 6k0WHEcVK2p12QMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:47:12 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jun 2026 22:06:31 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2B0B677679
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:47:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A56B1674F1F
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Jun 2026 22:06:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=usp.br header.s=usp-google header.b="zR/vVR3s";
+	dkim=pass header.d=amd.com header.s=selector1 header.b=pRKSzX51;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=usp.br
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 674DB10F30C;
-	Fri, 12 Jun 2026 07:47:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 406C010E292;
+	Thu, 11 Jun 2026 20:06:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com
- [209.85.221.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4557210F118
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 19:53:12 +0000 (UTC)
-Received: by mail-vk1-f182.google.com with SMTP id
- 71dfb90a1353d-59b074ec7ceso58296e0c.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 12:53:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=usp.br; s=usp-google; t=1781207591; x=1781812391; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=sbId00WAHp2KabBC0vsQBfXuDPvPFs92EuJ0J29qKqs=;
- b=zR/vVR3s28rokfeO9IwHQGra815A13g/K5JJSmopcW0Homrl0Icp+S/iSbEJaYDakQ
- +cH6P7/kwWrnIGaUaliiivtkEEAw1swb/qHpWONTLnj0srwrn9MMRukCpvykLf2/rwMt
- 0dPS7EqEpQwJliIZbGErpqG8PWLqqF0UTCsMAnYB7+bs7BYeaKeJEkLgAXKPHJSR2xHR
- 97TTucayWq5qWCaLglfA2A+gMOj9He/v0M1NyQrLKUt0H+cOlKx8Z4LfCyvp2L8FHntJ
- FuMSSWQtURC1KxFE5VCkKXanE3Fkp5rHuo20RnW+eDoF71ObY7liifE45YKe7qihAeUX
- 9fsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781207591; x=1781812391;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=sbId00WAHp2KabBC0vsQBfXuDPvPFs92EuJ0J29qKqs=;
- b=EtYhJhrcxHfQcX/JsTH2PbrdMiQ3KpgDfATnNZDSlNTt8VsUTQCrruXa+2Wjx3qtat
- FHjzi4DqTf/6+8j3MHWnbb1weJ7kGfiuP+YNdyDX13rs9ALmi9TjgValDbL+oIIELlMo
- +KHx+Is50q9wc7IWsRDh9u4SGBgqg9/xzvbKJxj56KNenZ0syGGfzulNkJt7UwADSFgH
- E3yNzZh5+V6DeE3n+AN2knbvdmY7n2gr0yyAjiCPP0/QNKjzX6OypCA3tXHF6UvaJbeA
- FFyUpfMLjgzFdicbMyP2h+LjUghXw2e3PMLz6xkGGkEVU+BI7WJpvkwnE0YgkG5knCfz
- iSsA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8DCmWJ7Clh+1Syz63xBec0G0G84IKPXWgPfHLY57b/6U7+pP/W9UqC/yXdgYB07CZNQ+0x4bnJ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxb4DHMZOT0sayQiaU7+aYqc66HG5XVTP1k6B848L0XTQW6KKWa
- WwQSCUZ3GBIQ0PYrz7oZntjO2Asad7K3CV1QYZNqqxXSAD9lAX+rp9cJkEyMaf/EYRA=
-X-Gm-Gg: Acq92OHaTe2aLpbZDpars7aRdsvhE8MRsAQ373MU/SmoEUtWDAfY4Mvv6mn6CgXEzRh
- jQH6ckseCTuHqQyqly+GoXtgHAdKv2f9sYVMA4fRO/S3LxXljOkiKKLJzjeK2MpJ23i+OjJGaKj
- kkC5lsM6pdb2LGPJq8IY9LY3FlAujTWaKUzRN7WUBzY43PztP2TMFYOVxzk0gM7ixOa85dTxaUH
- lP7Gb2btPnIJ++ZX96Z0p1ysdHiFIx2XWh967u26NMPI+pu3Ed4A6OlMvqWS0LZsOR85aVcu81W
- R7he6iD9XMIhS4ia45/Y1Wx9yUSBWJU/buacXvLcRa7OKUOlbxhl9kMRR09jRRfZqkz7yCAlkhn
- c0Mls2NhsXPASyWG7JAAb3SozeV7JX5lQngmyVXhFFyMzG2TqRltK03JFIy37iVFOwwZaeQD0GB
- LcHo2+uYB/CuhvC3aUBqqMwieKLFw3oulo33Zj7c0IlmwTJ/igwFTEijeN6V62v+H+7bdhtzF+M
- qA9r+HqV1sUbe7VnL5ofdcml8Ze/kNd+FpiI0Qv0T3FYoXO+w==
-X-Received: by 2002:a05:6122:21a6:b0:583:5e28:17b1 with SMTP id
- 71dfb90a1353d-5bb01c400a0mr2865749e0c.12.1781207591262; 
- Thu, 11 Jun 2026 12:53:11 -0700 (PDT)
-Received: from gui-host.Dlink ([186.220.219.98])
- by smtp.gmail.com with ESMTPSA id
- 71dfb90a1353d-5bb691bb8a4sm345359e0c.10.2026.06.11.12.53.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Jun 2026 12:53:10 -0700 (PDT)
-From: Guilherme Ivo Bozi <guilherme.bozi@usp.br>
-To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
- harry.wentland@amd.com, simona@ffwll.ch, siqueira@igalia.com,
- sunpeng.li@amd.com
-Cc: Guilherme Ivo Bozi <guilherme.bozi@usp.br>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH RESEND 9/9] drm/amd/display: convert dcn42 GPIO translation to
- lookup tables
-Date: Thu, 11 Jun 2026 16:49:09 -0300
-Message-ID: <20260611195026.25125-10-guilherme.bozi@usp.br>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260611195026.25125-1-guilherme.bozi@usp.br>
-References: <20260611195026.25125-1-guilherme.bozi@usp.br>
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011031.outbound.protection.outlook.com
+ [40.93.194.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BCA010E292
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 20:06:28 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=U+MppBvRHzYk0m/45iPo+hrquPzYskYtijtbgixhXIXMQEu8Z3g8GYNcpBL+C74S9bC4Sd8F4R+yQwmQeMvNg8ggbP1cs9brZ5GdT0paAhdrB302VeMXckBhJK1imohIA/+6oDq/9Yolwwq/Fpgma/1wzW5ytaqxNkIRSYgaflwGMRPiOZddGlUYzANlydK/m7KWReu04veLlLfKEj05zL6AWp0G7EWgfiNvVxC/sarYdmaSv4jJrYTF7vf7u98j3LyesOl31zyn2IZTVEqHhkD0tqc6HJYyjpDWL0H1u3rMJQ1MlMiGiP+huZhEy6GDAUhnM4xI1cu8EXslc9CM3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OboOsZAhOdZUVf/c9koYzYzYbyjvsX5hbh/xaQDOcJ4=;
+ b=C5oPbkd4c3Yl07H8RvZF7n6FT4prilX3kvAqozo2qaDoMS/kDtBE8xJv3lmayDyDg74FzGMTBxcsHYcQ0EVuMn2r9ogJW50aMmVFwVWzeOZPZIX83Hqtn45zo0PBAWZ45TQRExrR+uvSyyQ3pfNy0ikjUbFBcYZmnQARxVKSHjFKT6AlKLk/JWhErOL3lTboEq5jxD+Z2nlwHoPEAwTKNmgsjJBiwqrop8idhrcMe0f6NTH7O44iimXj+dfGaXC+J1UAEybmiyDhnCRPeCc9oroLGX5JaNxFEKKvDR5taqNdk4jeRMHrwdQpj0t4fRUj49WcKIA5Q3aNcol/93w2YA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OboOsZAhOdZUVf/c9koYzYzYbyjvsX5hbh/xaQDOcJ4=;
+ b=pRKSzX51yOMNcJdm31WSUBPsuU+UmHB83TI/LoNxVfyNeB4doR8zhsON5dEHD13oBiKONJ49UkVwMH3R/sF8mSLDqkeF1V8wSfkMSMssSuyyF8N4KWGp94P6ZBHtLNNhnvSmuUXuz/ipesz72Iw508ahlr7Hd1Z0l77LXlAsLgw=
+Received: from DS1P221CA0027.NAMP221.PROD.OUTLOOK.COM (2603:10b6:8:242::11) by
+ SJ2PR12MB7865.namprd12.prod.outlook.com (2603:10b6:a03:4cc::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.113.13; Thu, 11 Jun 2026 20:06:24 +0000
+Received: from DS3PEPF000099DB.namprd04.prod.outlook.com
+ (2603:10b6:8:242:cafe::8d) by DS1P221CA0027.outlook.office365.com
+ (2603:10b6:8:242::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.14 via Frontend Transport; Thu,
+ 11 Jun 2026 20:06:24 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ DS3PEPF000099DB.mail.protection.outlook.com (10.167.17.197) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.113.7 via Frontend Transport; Thu, 11 Jun 2026 20:06:23 +0000
+Received: from 0yonsun-linux-dev.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.41; Thu, 11 Jun 2026 15:06:23 -0500
+From: Yongqiang Sun <Yongqiang.Sun@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Yongqiang Sun <Yongqiang.Sun@amd.com>
+Subject: [PATCH 1/2] drm/amdkfd: remove obsolete events page mmap support
+Date: Thu, 11 Jun 2026 16:06:10 -0400
+Message-ID: <20260611200610.320178-1-Yongqiang.Sun@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 12 Jun 2026 07:46:58 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099DB:EE_|SJ2PR12MB7865:EE_
+X-MS-Office365-Filtering-Correlation-Id: 02af6ba8-7cc7-4714-75dc-08dec7f4e9b7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|376014|23010399003|1800799024|36860700016|11063799006|56012099006|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: EFCVtTWZRUqquCsR5RcSPA/L55Xg8ykCwZFJtmgPJ8jSaB2gpYgTWhe9XQg0NL71RoNjKVnPjcuQtgu7DNGi9nHgmLEf5JzA15Vg/pM/W13Hgh6Scpcf24mjcqrAPYQThOBzXa2KrUjzVuxq653EmBFuWKGqlu+AASt+K1TsM37jcoh9eqPeQz7zOOY06YpA/0ECdq27BTB287I+98EOjoppHRy/ugCKeU1MQpSfvkM3Zn7C31+T5bn5gGhGDA7bn5KLj0B3toXzOgAz4c2GL/WpjtiMsF8FdjaQC5k4A+Mx0GVJzdjYGQ1fOvEeVk9iT+CC4nyg6aE6oH5CFY0RACf5plUaTxd5PEobGtMzVuL/Nfg/W8lZX0J+0pJ2sx+OuA6hT678xWmvNdeP2tVitcBUnyBSh/rUAdxs0vGl8xu8IFrK3JaUdemEtI1thBsUo4v2lyNfKf4xL+36vr+wjpkuTN5aM0BBXGR6xKNcZ5RgVXOUIR53T1dpfCeyu+tRGnQ8ydWlF9XS8sJxJc4dfb2ae/Ff0JX+O7E1A81ROm+xePL+ZvrniFpRNDf0wJkv6fCHP5RW0B49X7EGmwZpf226/m4JNOdh32AktK0C6D05vO83bZT+ciBhXBV+WjjeJnAnd4b8KmGLyPpKw/w2A6nGwZaUvUCb1a3wOUSjYixTVtYvIG1LDrFOMI0HPH9wXPxEBMSO5CsGnUqj+dXOt52KS18ly9mNet+bvTMCkT0=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(376014)(23010399003)(1800799024)(36860700016)(11063799006)(56012099006)(18002099003)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: tn20wWzA6Xr8vAmBeuPpK6Au0BjyPs3Ppk1QejhCt9q8V89vGmytUR1Ys+pcrigUxpcw9/VWw66Na1puk8YC1j9eqHhBXcc/Scik3wmwVWk00iyrDpCprcwAL+g6AartuZhFxAE99Yc6Y0kAt7qn8f+YImIrdAaG1ED3PBbHjdQ0r3aDAIlg8JXV1RwPfSHAHwU8tBi4u50i/ulSwGr4Gs0+IGCTmlgmEGC3SlQXimdvvffn6ivXq8GO6TEnRWLrQPrWB/AGJ2HyiSMe0sV23XWlLi8IIlJjpGviDDeCe85pabLVJ/xEDZdjsy9KHYj1eZQ8sXWexl7dxR5YmpCh3XccKUcFc2WElqvFVfW6UZ8OakhrNQvxRJJAO6KS1lPpJalGGVKiWkYfyj05gnxr1JZS5WcSbHuPWU0KD6477PE7zdJj6ubNbwgas7BWcBkA
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2026 20:06:23.9880 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 02af6ba8-7cc7-4714-75dc-08dec7f4e9b7
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF000099DB.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7865
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,274 +115,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:harry.wentland@amd.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:sunpeng.li@amd.com,m:guilherme.bozi@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[guilherme.bozi@usp.br,amd-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com,ffwll.ch,igalia.com];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[guilherme.bozi@usp.br,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[usp.br:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[Yongqiang.Sun@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A2B0B677679
+X-Rspamd-Queue-Id: A56B1674F1F
 
-Replace dcn42 GPIO translation switch statements with the
-generic table-based translation helpers.
+The mmap of the events (signal) page from /dev/kfd via
+KFD_MMAP_TYPE_EVENTS was only needed on APUs using IOMMUv2, which is no
+longer supported by the kernel mode driver. For dGPUs (and modern APUs)
+the events page is allocated in user mode and mapped to the kernel
+through the event_page_offset of the create event IOCTL
+(kfd_kmap_event_page), so the KFD_MMAP_TYPE_EVENTS mmap path is no longer
+functional.
 
-This simplifies the GPIO mapping logic and reduces duplicated
-translation code.
+Remove kfd_event_mmap() and reject KFD_MMAP_TYPE_EVENTS in kfd_mmap,
+similar to the recent removal of KFD_MMAP_TYPE_RESERVED_MEM. This also
+removes a way for user space to abuse KFD_MMAP_TYPE_EVENTS of kfd_mmap.
 
-No functional changes intended.
-
-Signed-off-by: Guilherme Ivo Bozi <guilherme.bozi@usp.br>
+Signed-off-by: Yongqiang Sun <Yongqiang.Sun@amd.com>
 ---
- .../dc/gpio/dcn42/hw_translate_dcn42.c        | 193 +++++++-----------
- 1 file changed, 70 insertions(+), 123 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c |  3 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c  | 45 ------------------------
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h    |  1 -
+ 3 files changed, 2 insertions(+), 47 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dcn42/hw_translate_dcn42.c b/drivers/gpu/drm/amd/display/dc/gpio/dcn42/hw_translate_dcn42.c
-index e7e1d9979876..7b2c4cd42450 100644
---- a/drivers/gpu/drm/amd/display/dc/gpio/dcn42/hw_translate_dcn42.c
-+++ b/drivers/gpu/drm/amd/display/dc/gpio/dcn42/hw_translate_dcn42.c
-@@ -39,62 +39,76 @@
-  * end *********************/
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+index 349e462f8ee9..c322cec9e216 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+@@ -3762,7 +3762,8 @@ static int kfd_mmap(struct file *filep, struct vm_area_struct *vma)
+ 		return kfd_doorbell_mmap(dev, process, vma);
  
+ 	case KFD_MMAP_TYPE_EVENTS:
+-		return kfd_event_mmap(process, vma);
++		pr_warn("KFD_MMAP_TYPE_EVENTS is no longer supported\n");
++		return -EINVAL;
  
-+static const struct gpio_id_offset_entry gpio_offsets[] = {
-+	/* HPD */
-+	GPIO_ENTRY(HPD0_DC_HPD_INT_STATUS, GPIO_ID_HPD, GPIO_HPD_1),
-+	GPIO_ENTRY(HPD1_DC_HPD_INT_STATUS, GPIO_ID_HPD, GPIO_HPD_2),
-+	GPIO_ENTRY(HPD2_DC_HPD_INT_STATUS, GPIO_ID_HPD, GPIO_HPD_3),
-+	GPIO_ENTRY(HPD3_DC_HPD_INT_STATUS, GPIO_ID_HPD, GPIO_HPD_4),
-+	GPIO_ENTRY(HPD4_DC_HPD_INT_STATUS, GPIO_ID_HPD, GPIO_HPD_5),
-+};
-+
-+
-+/* DDC */
-+static const struct gpio_ddc_offset_entry ddc_offset_map[] = {
-+	{ REG(DC_GPIO_DDC1_A), GPIO_DDC_LINE_DDC1 },
-+	{ REG(DC_GPIO_DDC2_A), GPIO_DDC_LINE_DDC2 },
-+	{ REG(DC_GPIO_DDC3_A), GPIO_DDC_LINE_DDC3 },
-+	{ REG(DC_GPIO_DDC4_A), GPIO_DDC_LINE_DDC4 },
-+	{ REG(DC_GPIO_DDC5_A), GPIO_DDC_LINE_DDC5 },
-+	{ REG(DC_GPIO_DDCVGA_A), GPIO_DDC_LINE_DDC_VGA },
-+};
-+
-+
-+static const struct gpio_pin_entry gpio_pins[] = {
-+	/* DDC */
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC1,
-+		DC_GPIO_DDC1_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1DATA_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC2,
-+		DC_GPIO_DDC2_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1DATA_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC3,
-+		DC_GPIO_DDC3_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1DATA_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC4,
-+		DC_GPIO_DDC4_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1DATA_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC5,
-+		DC_GPIO_DDC5_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1DATA_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_DATA, GPIO_DDC_LINE_DDC_VGA,
-+		DC_GPIO_DDCVGA_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1DATA_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC1,
-+		DC_GPIO_DDC1_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1CLK_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC2,
-+		DC_GPIO_DDC2_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1CLK_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC3,
-+		DC_GPIO_DDC3_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1CLK_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC4,
-+		DC_GPIO_DDC4_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1CLK_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC5,
-+		DC_GPIO_DDC5_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1CLK_A_MASK),
-+	GPIO_PIN_ENTRY(GPIO_ID_DDC_CLOCK, GPIO_DDC_LINE_DDC_VGA,
-+		DC_GPIO_DDCVGA_A, DC_GPIO_DDC1_A__DC_GPIO_DDC1CLK_A_MASK),
-+};
-+
-+
- static bool offset_to_id(
- 	uint32_t offset,
- 	uint32_t mask,
- 	enum gpio_id *id,
- 	uint32_t *en)
- {
--	(void)mask;
--	switch (offset) {
--	/* HPD */
--	case REG(HPD0_DC_HPD_INT_STATUS):
--		*id = GPIO_ID_HPD;
--		*en = GPIO_HPD_1;
--		return true;
--	case REG(HPD1_DC_HPD_INT_STATUS):
--		*id = GPIO_ID_HPD;
--		*en = GPIO_HPD_2;
-+	if (dal_hw_translate_gpio_ddc_offset_to_id(
-+			ddc_offset_map,
-+			ARRAY_SIZE(ddc_offset_map),
-+			offset, en))
- 		return true;
--	case REG(HPD2_DC_HPD_INT_STATUS):
--		*id = GPIO_ID_HPD;
--		*en = GPIO_HPD_3;
--		return true;
--	case REG(HPD3_DC_HPD_INT_STATUS):
--		*id = GPIO_ID_HPD;
--		*en = GPIO_HPD_4;
--		return true;
--	case REG(HPD4_DC_HPD_INT_STATUS):
--		*id = GPIO_ID_HPD;
--		*en = GPIO_HPD_5;
--		return true;
--	/* DDC */
--	/* we don't care about the GPIO_ID for DDC
--	 * in DdcHandle it will use GPIO_ID_DDC_DATA/GPIO_ID_DDC_CLOCK
--	 * directly in the create method
--	 */
--	case REG(DC_GPIO_DDC1_A):
--		*en = GPIO_DDC_LINE_DDC1;
--		return true;
--	case REG(DC_GPIO_DDC2_A):
--		*en = GPIO_DDC_LINE_DDC2;
--		return true;
--	case REG(DC_GPIO_DDC3_A):
--		*en = GPIO_DDC_LINE_DDC3;
--		return true;
--	case REG(DC_GPIO_DDC4_A):
--		*en = GPIO_DDC_LINE_DDC4;
--		return true;
--	case REG(DC_GPIO_DDC5_A):
--		*en = GPIO_DDC_LINE_DDC5;
--		return true;
--	case REG(DC_GPIO_DDCVGA_A):
--		*en = GPIO_DDC_LINE_DDC_VGA;
-+
-+	if (dal_hw_translate_gpio_offset_to_id(
-+			gpio_offsets,
-+			ARRAY_SIZE(gpio_offsets),
-+			offset, mask, id, en))
- 		return true;
--	default:
--		ASSERT_CRITICAL(false);
--		return false;
--	}
-+
-+	ASSERT_CRITICAL(false);
-+	return false;
+ 	case KFD_MMAP_TYPE_RESERVED_MEM:
+ 		pr_warn("KFD_MMAP_TYPE_RESERVED_MEM is no longer supported\n");
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+index 9d717303c8ab..e44f1d1bc516 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_events.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+@@ -1070,51 +1070,6 @@ int kfd_wait_on_events(struct kfd_process *p,
+ 	return ret;
  }
  
- 
-@@ -103,81 +117,14 @@ static bool id_to_offset(
- 	uint32_t en,
- 	struct gpio_pin_info *info)
- {
--	bool result = true;
+-int kfd_event_mmap(struct kfd_process *p, struct vm_area_struct *vma)
+-{
+-	unsigned long pfn;
+-	struct kfd_signal_page *page;
+-	int ret;
 -
--	switch (id) {
--	case GPIO_ID_DDC_DATA:
--		info->mask = DC_GPIO_DDC1_A__DC_GPIO_DDC1DATA_A_MASK;
--		switch (en) {
--		case GPIO_DDC_LINE_DDC1:
--			info->offset = REG(DC_GPIO_DDC1_A);
--		break;
--		case GPIO_DDC_LINE_DDC2:
--			info->offset = REG(DC_GPIO_DDC2_A);
--		break;
--		case GPIO_DDC_LINE_DDC3:
--			info->offset = REG(DC_GPIO_DDC3_A);
--		break;
--		case GPIO_DDC_LINE_DDC4:
--			info->offset = REG(DC_GPIO_DDC4_A);
--		break;
--		case GPIO_DDC_LINE_DDC5:
--			info->offset = REG(DC_GPIO_DDC5_A);
--		break;
--		case GPIO_DDC_LINE_DDC_VGA:
--			info->offset = REG(DC_GPIO_DDCVGA_A);
--		break;
--		case GPIO_DDC_LINE_I2C_PAD:
--		default:
--			ASSERT_CRITICAL(false);
--			result = false;
--		}
--	break;
--	case GPIO_ID_DDC_CLOCK:
--		info->mask = DC_GPIO_DDC1_A__DC_GPIO_DDC1CLK_A_MASK;
--		switch (en) {
--		case GPIO_DDC_LINE_DDC1:
--			info->offset = REG(DC_GPIO_DDC1_A);
--		break;
--		case GPIO_DDC_LINE_DDC2:
--			info->offset = REG(DC_GPIO_DDC2_A);
--		break;
--		case GPIO_DDC_LINE_DDC3:
--			info->offset = REG(DC_GPIO_DDC3_A);
--		break;
--		case GPIO_DDC_LINE_DDC4:
--			info->offset = REG(DC_GPIO_DDC4_A);
--		break;
--		case GPIO_DDC_LINE_DDC5:
--			info->offset = REG(DC_GPIO_DDC5_A);
--		break;
--		case GPIO_DDC_LINE_DDC_VGA:
--			info->offset = REG(DC_GPIO_DDCVGA_A);
--		break;
--		case GPIO_DDC_LINE_I2C_PAD:
--		default:
--			ASSERT_CRITICAL(false);
--			result = false;
--		}
--	break;
--	case GPIO_ID_SYNC:
--	case GPIO_ID_VIP_PAD:
--	default:
--		ASSERT_CRITICAL(false);
--		result = false;
+-	/* check required size doesn't exceed the allocated size */
+-	if (get_order(KFD_SIGNAL_EVENT_LIMIT * 8) <
+-			get_order(vma->vm_end - vma->vm_start)) {
+-		pr_err("Event page mmap requested illegal size\n");
+-		return -EINVAL;
 -	}
 -
--	if (result) {
--		info->offset_y = info->offset + 2;
--		info->offset_en = info->offset + 1;
--		info->offset_mask = info->offset - 1;
--
--		info->mask_y = info->mask;
--		info->mask_en = info->mask;
--		info->mask_mask = info->mask;
+-	page = p->signal_page;
+-	if (!page) {
+-		/* Probably KFD bug, but mmap is user-accessible. */
+-		pr_debug("Signal page could not be found\n");
+-		return -EINVAL;
 -	}
 -
--	return result;
-+	if (dal_hw_translate_id_to_offset(
-+			gpio_pins,
-+			ARRAY_SIZE(gpio_pins),
-+			id, en, info))
-+		return true;
-+
-+	ASSERT_CRITICAL(false);
-+	return false;
- }
+-	pfn = __pa(page->kernel_address);
+-	pfn >>= PAGE_SHIFT;
+-
+-	vm_flags_set(vma, VM_IO | VM_DONTCOPY | VM_DONTEXPAND | VM_NORESERVE
+-		       | VM_DONTDUMP | VM_PFNMAP);
+-
+-	pr_debug("Mapping signal page\n");
+-	pr_debug("     start user address  == 0x%08lx\n", vma->vm_start);
+-	pr_debug("     end user address    == 0x%08lx\n", vma->vm_end);
+-	pr_debug("     pfn                 == 0x%016lX\n", pfn);
+-	pr_debug("     vm_flags            == 0x%08lX\n", vma->vm_flags);
+-	pr_debug("     size                == 0x%08lX\n",
+-			vma->vm_end - vma->vm_start);
+-
+-	page->user_address = (uint64_t __user *)vma->vm_start;
+-
+-	/* mapping the page to user process */
+-	ret = remap_pfn_range(vma, vma->vm_start, pfn,
+-			vma->vm_end - vma->vm_start, vma->vm_page_prot);
+-	if (!ret)
+-		p->signal_mapped_size = vma->vm_end - vma->vm_start;
+-
+-	return ret;
+-}
+-
+ /*
+  * Assumes that p is not going away.
+  */
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+index 3a8bd3eaf12b..13a021b0e6e5 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+@@ -1540,7 +1540,6 @@ extern const struct kfd_device_global_init_class device_global_init_class_cik;
  
- 
+ int kfd_event_init_process(struct kfd_process *p);
+ void kfd_event_free_process(struct kfd_process *p);
+-int kfd_event_mmap(struct kfd_process *process, struct vm_area_struct *vma);
+ int kfd_wait_on_events(struct kfd_process *p,
+ 		       uint32_t num_events, void __user *data,
+ 		       bool all, uint32_t *user_timeout_ms,
 -- 
-2.47.3
+2.43.0
 
