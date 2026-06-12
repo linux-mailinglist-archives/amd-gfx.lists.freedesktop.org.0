@@ -2,126 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DsFxNr//K2osJQQAu9opvQ
+	id 0ABnNmW2L2rwEwUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 14:46:55 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jun 2026 10:23:01 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 418E9679763
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 14:46:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 433546847F3
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jun 2026 10:23:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("body hash did not verify") header.d=amd.com header.s=selector1 header.b="W/JJ0q1O";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="l98ndnW/";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=amd.com (policy=quarantine);
-	arc=reject ("signature check failed: fail, {[1] = sig:microsoft.com:reject}")
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("google.com:s=arc-20240605:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DD2210E44F;
-	Fri, 12 Jun 2026 12:46:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B456B10E286;
+	Mon, 15 Jun 2026 08:22:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011068.outbound.protection.outlook.com [52.101.62.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C11510E44F
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 12:46:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NOgV6LWYykDBfbJ/TimAoEriEpRyWMuXeEAF7NxW5IAYRYhCEuNcd87Wvpu6nfA2+BerOLLa2iXTHhtF0cLZUA8rRgix+XQ2rae4YbZMDwm7nyepn9D8yNCd/cEutJAMQbqfKpJo04YY8yG/lkcTmMOZWzeoIeUg6RDDUMcEL2VHWNeQ6sptE7FLmNCbtzxDJnlnVXG5P6veae226lqlcnIaz8+5GIaC2wApUDNKWT2ku3LFzxxLbWQeHqA0POj/pA0t8SX+b8Egtj/V0BWpUgDdokaUBPgh/sY2CkNLHpAk/Q6FY1VBMmv7HGcbFfUM+M0XB6yrYA3bvTSTrDYWgQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8YUGGS+IU31fNgkKIsFf4D4vfDk/iRyV0iKcn45/r8s=;
- b=tF6/6arUfWcm9z6Fp4s8rqJbBcZqsIsrsrj9VnVH+K4XLoNb98cCgGpAMy7QalMJSxxmZ7fYoKjtjmy+hut2m4K6vFbe5k9p4jitkOH7nDZS+bPRKZEQGHhQMRBNzN/mi4LJPNvDSQx9lw6w55jonvao/0eZUnjXHHI95HNio6MRfB1AOPttUg3Lf9U85w/gHxYzgYa0iWg0KYs6M8F3nvgdRpTiR6MTbfVit2JGPdjYboZI6gvcTGfURc7c8O2uKlyg5qJd7CLL0uwnWypEANqvLaGrc3GrkNxp8lfKuU1kB5KNNQQ8NVQIuAHazUR2aLbVHnPeHGT1QG25R96+6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8YUGGS+IU31fNgkKIsFf4D4vfDk/iRyV0iKcn45/r8s=;
- b=W/JJ0q1Oc+RP00WF3uj5h0E3mvpuDAODuCJvm8LOhBw6twkxCr1vEKbxa1AYtk7Gpi5EHGpgIFTByuXjE0QnLzx+Ju0rNKG6j+ArSghDmv8Pr6lqBAwOqvMpKDmofYzkJOv3ftjGKAvDGhdYuetlpuKeoX+RhzITgtDKmeiMqZc=
-Received: from SJ2PR12MB8690.namprd12.prod.outlook.com (2603:10b6:a03:540::10)
- by SJ1PR12MB6027.namprd12.prod.outlook.com (2603:10b6:a03:48a::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.14; Fri, 12 Jun
- 2026 12:46:49 +0000
-Received: from SJ2PR12MB8690.namprd12.prod.outlook.com
- ([fe80::18c4:be41:febf:7e45]) by SJ2PR12MB8690.namprd12.prod.outlook.com
- ([fe80::18c4:be41:febf:7e45%3]) with mapi id 15.21.0113.013; Fri, 12 Jun 2026
- 12:46:48 +0000
-Date: Fri, 12 Jun 2026 20:46:29 +0800
-From: Huang Rui <ray.huang@amd.com>
-To: Jiqian Chen <Jiqian.Chen@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org,
- Timur =?iso-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>,
- Samuel Pitoiset <samuel.pitoiset@gmail.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Huang Trigger <Trigger.Huang@amd.com>
-Subject: Re: [PATCH v3 1/1] drm/amdgpu/gfx9: Fix Ring and IB test fail after
- mode2
-Message-ID: <aiv/pVFgBDwZKWOM@amd.com>
-References: <20260612092654.1632603-1-Jiqian.Chen@amd.com>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260612092654.1632603-1-Jiqian.Chen@amd.com>
-X-ClientProxiedBy: SI2PR04CA0015.apcprd04.prod.outlook.com
- (2603:1096:4:197::21) To SJ2PR12MB8690.namprd12.prod.outlook.com
- (2603:10b6:a03:540::10)
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com
+ [209.85.208.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46C4410F532
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 13:12:58 +0000 (UTC)
+Received: by mail-ed1-f43.google.com with SMTP id
+ 4fb4d7f45d1cf-68bac6e24fdso1378758a12.1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 06:12:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781269977; cv=none;
+ d=google.com; s=arc-20240605;
+ b=fvi6YJh2N+OQvaTNmc+2zpe7/93P9YECFEOCJow2x2fe898a3pXFpRzwQL0PtwWaQJ
+ 0I8KGmzs9OWWngVcNwN0WhMS4JhCm4PC1ddseTas5wsfwaZGO3N9dd6Vz88BNSB1FmOR
+ mI0KicZzoTc02egl68Sy9mZdaP/FCfBfgMuiFzd4vNmSmsjSEuZe1LVuBeaT+49XEiZr
+ DbhL5pU/jYToYjikYqEtckqP1omdt9FzFi5I1b+rtPfI8rrYJCeRM0Dne3HvgOQ78yQp
+ jrgzcmNBy859Ey8BQkpb6WHuAKoEaYG3utEdlmtd09gO2966myhjHTwc28aoPdP0mkBL
+ j54w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+ bh=GSSknmasOOr0Sk4JQ3Fp8HwhccUZOTuxyttvWjwU/xQ=;
+ fh=cEzkBcAwPRFfNJNEZvYrTvCyjGQ21UcqxHoc4leqpzQ=;
+ b=Hjd0/V6CJRUgNYyUpseo0etgV8G6HxXN71WMCW808f8j/JbU0c59/KaMcdUpk42swd
+ 84Y10TiWB37I/LUQEDWM4/WHfxfoIYgyLE4vpa63Uc23iG9fX3S9Gi340rRpaTL2nMq7
+ vKIc3JCWWdrhSzlyg25eR7/9GFwXib2J9uNy58p+2HUf2a3yJkPUaq0yvpjDUVJExJRa
+ u7bZ04veUeqZLjDA0NFq9J27dV/4oUdm1nIREX+1os7mEaTZ9HJf3Ha8Pux1nTLeDV19
+ WD5W/wcmDA9I/u/8T5y6fEEGpOnSMyzhARlk6OVzIGCHB0Zzh+Yf1kLMgEe3Zqmrbglq
+ y4uQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1781269977; x=1781874777; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=GSSknmasOOr0Sk4JQ3Fp8HwhccUZOTuxyttvWjwU/xQ=;
+ b=l98ndnW/VIY/2MfAHU+mvFpkSrh7mnR714glXDeBrDF9g5YIlYd6pY0GgPjb1U4NSE
+ bKwr59szzsO2ebx1ksSkxId1x2vw1CHLAG69OXEUAKp19SaXvAlhKHA9sr9HGgCJmo6p
+ b6wHdP0lCa8S1ljV0CuQg7S+aKyfOt0WY9cBv0blWnQL5+TdYTGz5xYv+IbxXy1QovHv
+ hUQNR8DiSCBjlAs2rCZ1+LrXYRsr6C7or3wLnoo82zRvfuzEood3/GyDpg8d951JEL00
+ ww7/u3WaiIgqC3jvUwy8wHtcdW4/0mbEIsrTziUfBPZDDqiRZQPKY8G3kUCYb5lfsiqk
+ LJvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1781269977; x=1781874777;
+ h=cc:to:subject:message-id:date:from:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=GSSknmasOOr0Sk4JQ3Fp8HwhccUZOTuxyttvWjwU/xQ=;
+ b=ipmo2BX/fdMc8ZqDV+EnOFN4oTlx8/qZ9TZhMueTit6bz/4b9qkyU/bq2T+No7hP5w
+ I6hOFeCBn2581N94XP8LxuVt5mYL88M5Ea+uwIvNomQehjMXkqH+Be9m0Uq3fPQ0jFdv
+ ypKpnfGD2bWHG+rqaXuiyrXBkNogMDDJ4Nxxo2bFCsubCK/zJqUAyCVpAwnhMc+HCSxF
+ 0Zsr3pBnLO2YfEP/fevlZ9PypTKtGRSkJC2YRbzV0/hEOcFhEpyBD3Ju/111H4mTNBcF
+ JYxw+LthgEKD1xc418memUf1W4UalOXVF9mcYRkVFOG2MRmZJOGEtBe4SLsAyfTwaP09
+ 3xRg==
+X-Gm-Message-State: AOJu0Yz9MgUUZbUZOiT4kwHb9dK0gGKRL3LWfI9dCcKlNaCYB4NfsoVF
+ 6n+dNVjXpPmZm8/yiww1/tZIVkUpN+YoRM6kwXO6ozlgjou+IMySOlMbB7Ih7LlCSQ4yelV0d1e
+ qJXArA0w09BDN20uXWFy/AXYWoc+KksPgah0RemE=
+X-Gm-Gg: Acq92OFz4a7WIg5lks2hXNjKTGejD+Mlme6I0Sw93uBr9Sqe09J7K4FHnISinTeWE+V
+ TddM6xuvgsYP0ANC3zbK12bW5qQBlUPBhbbG7Ndukp4RNEL7aC8HCg5DmqF//0Q1+PFHqQMVBwU
+ 1pshEdGFl06KkVVhwG8ie6ZPC7cf+/RNZ1imchRDnj4cg/Kme36z5lehBSatwNZjGjUo2SDgF5n
+ PEfX33TDzQqsJZO+5i71JiAG6PFpTJhfcDL5smZ3LHboIGT/d1Q9rCAVytE6d24UDjfEYz7X/qg
+ sJ8sK4unDEs1c9d62AOa3KNf6FVEHvxzQpiJAHVm1UrpeQnfEwOfqnGxVisAaYEbRTZhXA==
+X-Received: by 2002:a05:6402:e02:b0:68e:4c0:f5b1 with SMTP id
+ 4fb4d7f45d1cf-693786035c8mr1207306a12.2.1781269976597; Fri, 12 Jun 2026
+ 06:12:56 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB8690:EE_|SJ1PR12MB6027:EE_
-X-MS-Office365-Filtering-Correlation-Id: 956820df-109e-4b7f-90d6-08dec880aab0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|23010399003|1800799024|366016|18002099003|22082099003|56012099006|11063799006|6133799003;
-X-Microsoft-Antispam-Message-Info: LjcPxJFchgjdxdYU4DDJuCkukNVBbVS5U3fmeGBNNpvWNqDfka5wqOZAIaLVhcdFoCwuA2IN+aOIC8P6k1bQl5SEvFsMW8FIq4Ts7z5r2KUGbwBE/AKgTGNQ0na+7n2Qn/OQQZPgSU9X3p+RxXrN6yxRnnF2PlZ3K7UARzNtnwlGUo1coBd8otQXWvLXcvNfetVMOmz3S7mvPd0CfI5YLcpR4kG3QcidA+0dEUkuzlhP+vzSLaMb38MgM5jKCf8YJQCYOTqwkf/YgAoXuIkUACBU5cGW+/FOwMwpjrgCWL/FjjFYz+/oGulhe1eofUGIRqLZDjheygkM8wl8tqA/tX2hYoMbHcJIoaVEBjZ1FaBewZ3Xc6b0rYtfZEqzVxsHXIiNVzJrfMV0XozCVp+2LQ34AZ4VGBMGyuE78BMG3ghfvwvg70VOMb58Mh3lseXn8FMDjqJlCPcH8RyPpDsjRJHmHFItlnXWTcblQXYbJrF2JKK/5uUAYt634seBxaiQgcKTEz4AXHDi9hyWeelJSMSLo7Ltw9KLf5oUCIWWYk/L7n/QxxtRuWUrgbGlc0Z3fy6OsO/sicMLs8vev9r0ZTdGUW8MFnFEGjVv/xUym2CeaUwJpUIY1gATmbqL4DcRnwVFc3eN3Jyc0hh1vfU+OCK/EFjbxIet54tWtg1UH/F+Os46A2F2VXpSSWbHEdnh
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ2PR12MB8690.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(18002099003)(22082099003)(56012099006)(11063799006)(6133799003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?rlS/u0qSDwDlLCpxI+KCYy6WWmXwMKN+68VCSYEOP2q+K4XTkOWYpQKJLw?=
- =?iso-8859-1?Q?NCzUlgULaH3n5Z2SeeTjxmlCebLXAjocyqb4m4WSDhm0EYWUdStlIxVG5P?=
- =?iso-8859-1?Q?WMdLxHwi6alDs6BYemg8xnN3zb0ulkT7yR1qzfWwe/SByi/oGGe5ZoM/IY?=
- =?iso-8859-1?Q?LiLs264GyxOnkO3L1lZBE/I4wVXKnri+XOvWCtDrrDNDGaKOvPo6zGiSz3?=
- =?iso-8859-1?Q?UHfplU+sZyZnMK55QbUul8nDKXOk6ry7jzV3zbDVTEipiBQrm8K0f+ONCC?=
- =?iso-8859-1?Q?KhrsCoESd6Ze86+nPPQwBPCWcxhpXLjECYuM8h4WqruEU7p786tn800onO?=
- =?iso-8859-1?Q?4PUfzlpO0s6zOqsg5VpC4jkgx4FQLp9ubn7kfEaSfrgLGxRZPf7nvrRNlO?=
- =?iso-8859-1?Q?zWQfsFfQJUVtOcECt3Y+RsLWEL65FcqixYd4iH9z+7eCAS6bMluHqXy/x+?=
- =?iso-8859-1?Q?ebgUHTlGaPgGQrt9aoTj1oluuLyD2ZznTxi11EEyD52BiYxrSLVAHqls5F?=
- =?iso-8859-1?Q?o38lfSp+xG3IjeINLa9h2YP7avArIfmOd071SzeP1V4aJKqL7WQE7e+ui8?=
- =?iso-8859-1?Q?rKOuqHxyscTs1fS0wwXD61lP8210DAY59sda5Ro9osRdzsb9CPbwstJkqU?=
- =?iso-8859-1?Q?x3szF3BmgvjdyHPUQoYJRt4pDHoOuEplHyr9JD8SOBhquLErztJzpGMxld?=
- =?iso-8859-1?Q?zwG2Al60RN2fL6aow9SEBZVpz1/Y9vHMVd6h8JDXHSNhBNTZ3YTpGextTj?=
- =?iso-8859-1?Q?XAsWsOzcBNKCmQGg/RpD8XdkfqtxwJc7W2bJqBTSkfQ4llEpsGcBgFhwT9?=
- =?iso-8859-1?Q?CvfI8gUWT0EO7yTVTB7CWSRN+e6pd4pfMsHeLX9if7gI5EVCOC3EI0Q0Dw?=
- =?iso-8859-1?Q?1HR4YYpr8UjqKTLk9AeEkPz77MXVN+U32yzEWPhngZo1CDyR1LJH0FVt0p?=
- =?iso-8859-1?Q?4y6chVik9RJpwF2UOFBhRi+cut1sO360h3Jp/NE5PG2yk3bgzzCbSvpO1L?=
- =?iso-8859-1?Q?qEREFptXUPK8eZiW6tqgsdhn4xE3upbwvdFR+euS3Xqux5UGx6pLO2l709?=
- =?iso-8859-1?Q?DnSL8g31MKxSqCZUKTCtGNNhGAJ2dcr/OXN2YtCtGSUFMAgQBubpMlmGSi?=
- =?iso-8859-1?Q?BVQ+wXOeXOIMZnE5I2kMqB3b5L5I0Xij553Nfa0rTHSW2B6iox97mytO/D?=
- =?iso-8859-1?Q?gB+eqKPjqE8rVVQuy+1hfRD1zCdahRa95dd6MT+tl708O1Zpfuknjp+YZh?=
- =?iso-8859-1?Q?ThVH5LbhI+K3Ky1UwM/Wyqf/bf2ayb76To52mviJqY0wWaw615TFunhrc/?=
- =?iso-8859-1?Q?kmiKTFJfI8+rESWhccyWgQI728Qn5L1rOaTpHVmQbbb1nvNWjNpfh7nbmj?=
- =?iso-8859-1?Q?Xiew+aJuyakfyZiMvzBBQaNy+3P/ciyhpDMIWy2xD2cgddsPsFY3jS+FTx?=
- =?iso-8859-1?Q?dcfej90TKUugQSjl9S7ZbmbpbrHUq+WL1sRXDpPtINInOtbsq6Pyyo/3wu?=
- =?iso-8859-1?Q?lfRMGESlsmGXUvpGQnGEKIxZ/Q3bD44mEMAMdd8CrhWG1adxfDSFGk9DU0?=
- =?iso-8859-1?Q?KlIJGa73ZFxweE9SmireihfIKsr3tCYV1st8IRGaAz2E9ZrMOxrjTGBPrO?=
- =?iso-8859-1?Q?4H5Lb1d9In2S+ZkPUL7bnRg/cNOKDKPbRFStDpHE+kg9Zn5htaLDQCPaHZ?=
- =?iso-8859-1?Q?2tBex9WcLTPg6BI0JZFLRwUiUwA7kQ1l36vOzNFs4iX11KnxXlbwp/eUcM?=
- =?iso-8859-1?Q?osazva1O3InoZ/aKoKMkpNFbp9rC5W6N2xvayVpIu40Td4M5qNmGC6AmHx?=
- =?iso-8859-1?Q?x5UDlgtkKg=3D=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 956820df-109e-4b7f-90d6-08dec880aab0
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8690.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2026 12:46:48.7797 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gwHSmlLH47iNatWjfOg2Nbtg9UFQy7fKm+NsaGXuu/sOynuTiyDv10r5RX6AL/ndAfE/mRPp/FPVV1QAvgTWyw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6027
+From: "Jonathan L." <jonaphin@gmail.com>
+Date: Fri, 12 Jun 2026 09:12:29 -0400
+X-Gm-Features: AVVi8Cfa_fmFnHK-LMWO6VadNW3EvoWNvQ7mkgsssnLWKCJOqUEzCNB57SX61lQ
+Message-ID: <CAPs_=oyWXJuQ4VS7LNQgM=jGKPMDoj1OnagU9YNQY+7aEeabHw@mail.gmail.com>
+Subject: =?UTF-8?Q?Linux_7=2E1=2Drc7_regression_=E2=80=94_ROCm_GPU_memory_ops_han?=
+ =?UTF-8?Q?g_on_Strix_Halo_=28gfx1151=29?=
+To: amd-gfx@lists.freedesktop.org
+Cc: Alexander.Deucher@amd.com, christian.koenig@amd.com, 
+ Harish.Kasiviswanathan@amd.com, timur.kristof@gmail.com
+Content-Type: multipart/alternative; boundary="00000000000034497906540e3c7a"
+X-Mailman-Approved-At: Mon, 15 Jun 2026 08:22:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,156 +105,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [4.39 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed),quarantine];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	R_DKIM_REJECT(1.00)[amd.com:s=selector1];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DATE_IN_PAST(1.00)[67];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	GREYLIST(0.00)[pass,meta];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:Jiqian.Chen@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:timur.kristof@gmail.com,m:samuel.pitoiset@gmail.com,m:tvrtko.ursulin@igalia.com,m:Trigger.Huang@amd.com,m:timurkristof@gmail.com,m:samuelpitoiset@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[ray.huang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,lists.freedesktop.org,gmail.com,igalia.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ray.huang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:-];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jonaphin@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:email,amd.com:mid,amd.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 418E9679763
+X-Rspamd-Queue-Id: 433546847F3
 
-On Fri, Jun 12, 2026 at 05:26:54PM +0800, Jiqian Chen wrote:
-> For Renior APU with gfx9, in some test scenarios with disabling
-> ring_reset, like accessing an unmapped invalid address, it can
-> trigger a gpu job timeout event, then driver uses Mode2 reset
-> to reset GPU, but after Mode2 compute Ring test and IB test fail
-> randomly. It because the HQDs of MECs are always active before or
-> after Mode2, that causes MECs use stale HQDs when MECs are unhalted
-> before driver restore MQDs, and causes CPC and CPF are still stuck
-> after Mode2, then causes compute Ring and IB tests fail.
-> 
-> So, add sequences to deactivate HQDs of MECs in suspend IP function
-> of the resetting process.
-> 
-> v2: Move all sequences into a new function gfx_v9_0_cp_mode2_clear_state (Ray Huang)
->     To check reset Mode2 method in the if condition (Ray Huang)
-> v3: Move all sequences before Mode2 instead of after Mode2 (Timur Kristóf)
-> 
-> Signed-off-by: Jiqian Chen <Jiqian.Chen@amd.com>
+--00000000000034497906540e3c7a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Huang Rui <ray.huang@amd.com>
+Hi team,
 
-> ---
-> v2->v3 changes:
-> * Move all sequencess before Mode2 instead of after Mode2, and add a new
->   function gfx_v9_0_deactivate_kcq_hqd to do the disable compute HQDs
->   sequences.
->   Then the resetting CPC and CPF are not needed since we have already
->   move all sequences before Mode2 and they are not stuck
-> 
-> v1->v2 changes:
-> * Move my sequences into a new function gfx_v9_0_cp_mode2_clear_state
-> * Add reset Mode2 method check to the if condition that call my sequences
-> 
-> v1:
-> Hi all,
-> 
-> My board is Renior APU with gfx9, smu12. I run a testcase that
-> accesses an invalid address to trigger a amdgpu_job_timedout()
-> with disabling ring_reset, so that driver will call mode2 reset
-> directly. After mode2 reset I found compute Ring tests and compute
-> IB tests fail randomly on random compute ring.
-> 
-> We checked the scan dump of GPU, we can see the CPC and CPF are
-> still stuck, that caused Compute Ring tests fail.
-> 
-> I added printings in driver codes (gfx_v9_0_cp_resume), and found
-> the HQDs of MECs are still active, that may cause MECs use stale
-> HQDs when MECs are unhalted before mapping compute queues (restoring
-> MQDs to HQDs).
-> 
-> So, I send this patch to fix above problems.
-> There are two main changes of my patch:
-> One is to reset CPC and CPF before resuming KCQ.
-> Another is to disable HQDs beofre unhalting MECs.
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 37 +++++++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> index 90bbddb45730..0c01701488e7 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> @@ -4071,6 +4071,39 @@ static int gfx_v9_0_hw_init(struct amdgpu_ip_block *ip_block)
->  	return r;
->  }
->  
-> +static void gfx_v9_0_deactivate_kcq_hqd(struct amdgpu_device *adev)
-> +{
-> +	for (int i = 0; i < adev->gfx.num_compute_rings; i++) {
-> +		u32 tmp;
-> +		struct amdgpu_ring *ring = &adev->gfx.compute_ring[i];
-> +
-> +		mutex_lock(&adev->srbm_mutex);
-> +		soc15_grbm_select(adev, ring->me, ring->pipe, ring->queue, 0, 0);
-> +		tmp = RREG32_SOC15(GC, 0, mmCP_HQD_ACTIVE);
-> +		/* disable the queue if it's active */
-> +		if (tmp & CP_HQD_ACTIVE__ACTIVE_MASK) {
-> +			int j;
-> +
-> +			WREG32_SOC15(GC, 0, mmCP_HQD_DEQUEUE_REQUEST, 1);
-> +			for (j = 0; j < adev->usec_timeout; j++) {
-> +				tmp = RREG32_SOC15(GC, 0, mmCP_HQD_ACTIVE);
-> +				if (!(tmp & CP_HQD_ACTIVE__ACTIVE_MASK))
-> +					break;
-> +				udelay(1);
-> +			}
-> +			if (j == AMDGPU_MAX_USEC_TIMEOUT) {
-> +				DRM_DEBUG("comp_%u_%u_%u dequeue request failed.\n",
-> +							ring->me, ring->pipe, ring->queue);
-> +				/* Manual disable if dequeue request times out */
-> +				WREG32_SOC15(GC, 0, mmCP_HQD_ACTIVE, 0);
-> +			}
-> +			WREG32_SOC15(GC, 0, mmCP_HQD_DEQUEUE_REQUEST, 0);
-> +		}
-> +		soc15_grbm_select(adev, 0, 0, 0, 0, 0);
-> +		mutex_unlock(&adev->srbm_mutex);
-> +	}
-> +}
-> +
->  static int gfx_v9_0_hw_fini(struct amdgpu_ip_block *ip_block)
->  {
->  	struct amdgpu_device *adev = ip_block->adev;
-> @@ -4095,6 +4128,10 @@ static int gfx_v9_0_hw_fini(struct amdgpu_ip_block *ip_block)
->  		return 0;
->  	}
->  
-> +	if ((adev->flags & AMD_IS_APU) && amdgpu_in_reset(adev) &&
-> +		amdgpu_asic_reset_method(adev) == AMD_RESET_METHOD_MODE2)
-> +		gfx_v9_0_deactivate_kcq_hqd(adev);
-> +
->  	/* Use deinitialize sequence from CAIL when unbinding device from driver,
->  	 * otherwise KIQ is hanging when binding back
->  	 */
-> -- 
-> 2.39.5
-> 
+I am reporting a regression in the AMDGPU driver affecting the Strix Halo
+APU (Radeon 8060S, gfx1151). While everything works correctly on kernel
+7.1.0-rc5, upgrading to 7.1.0-rc7 causes GPU memory operations to hang
+indefinitely. This occurs during tasks like torch.empty() or model weight
+transfers in ComfyUI (PyTorch 2.11.0+rocm7.13).
+
+I have bisected the changes in drivers/gpu/drm/amd/ between rc5 and rc7 and
+identified the following potential causes:
+
+1.  amdgpu_hmm.c (Christian K=C3=B6nig):
+
+  - 1c824497d: Changing the invalidate callback to wait on the VM root BO
+reservation lock may be introducing a deadlock.
+  - 962d684b5: Moving the notifier_seq read outside the retry loop could
+cause infinite retries with a stale sequence number.
+  - 58bafc666: Changes to userptr submission waiting.
+
+2.  gfxhub_v12_0.c (Timur Krist=C3=B3f):
+
+  - 40bab7c60: The change to CRASH_ON_*_FAULT bits might be causing the GPU
+to retry failed memory accesses indefinitely rather than surfacing a fault.
+
+3.  gmc_v12_0.c (Harish Kasiviswanathan):
+
+  - ae4e30f24 and e3fa02872: If the new per-version PTE address masks for
+gfx1151 are incorrect, it could result in corrupted page table entries.
+
+4.  amdgpu_gart.c (Donet Tom):
+
+  - ec4c462e2: The updated PTE iteration grouping may be producing
+incorrect page tables when combined with the new PTE mask.
+
+Downgrading to 7.1.0-rc5 resolves the issue. Please let me know if you
+require any specific debug output or further testing.
+
+Best regards,
+Jonathan
+
+--00000000000034497906540e3c7a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi team,<br><br>I am reporting a regression in the AMDGPU =
+driver affecting the Strix Halo APU (Radeon 8060S, gfx1151). While everythi=
+ng works correctly on kernel 7.1.0-rc5, upgrading to 7.1.0-rc7 causes GPU m=
+emory operations to hang indefinitely. This occurs during tasks like torch.=
+empty() or model weight transfers in ComfyUI (PyTorch 2.11.0+rocm7.13).<br>=
+<br>I have bisected the changes in drivers/gpu/drm/amd/ between rc5 and rc7=
+ and identified the following potential causes:<br><br>1. =C2=A0amdgpu_hmm.=
+c (Christian K=C3=B6nig):<br><br>=C2=A0 - 1c824497d: Changing the invalidat=
+e callback to wait on the VM root BO reservation lock may be introducing a =
+deadlock.<br>=C2=A0 - 962d684b5: Moving the notifier_seq read outside the r=
+etry loop could cause infinite retries with a stale sequence number.<br>=C2=
+=A0 - 58bafc666: Changes to userptr submission waiting.<br><br>2. =C2=A0gfx=
+hub_v12_0.c (Timur Krist=C3=B3f):<br><br>=C2=A0 - 40bab7c60: The change to =
+CRASH_ON_*_FAULT bits might be causing the GPU to retry failed memory acces=
+ses indefinitely rather than surfacing a fault.<br><br>3. =C2=A0gmc_v12_0.c=
+ (Harish Kasiviswanathan):<br><br>=C2=A0 - ae4e30f24 and e3fa02872: If the =
+new per-version PTE address masks for gfx1151 are incorrect, it could resul=
+t in corrupted page table entries.<br><br>4. =C2=A0amdgpu_gart.c (Donet Tom=
+):<br><br>=C2=A0 - ec4c462e2: The updated PTE iteration grouping may be pro=
+ducing incorrect page tables when combined with the new PTE mask.<br><br>Do=
+wngrading to 7.1.0-rc5 resolves the issue. Please let me know if you requir=
+e any specific debug output or further testing.<br><br>Best regards,<br>Jon=
+athan<br><br></div>
+
+--00000000000034497906540e3c7a--
