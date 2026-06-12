@@ -2,106 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NIC7LkpQLGr7PAQAu9opvQ
+	id p3BdDkRQLGr0PAQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 20:30:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 20:30:28 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67B5267BB73
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 20:30:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A33D67BB56
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 20:30:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=ivZnQjum;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=RhyQ4sX7;
+	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=fFyj2AKo;
+	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=WeDuU5Wm;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=reject) header.from=qualcomm.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2B3910F634;
-	Fri, 12 Jun 2026 18:30:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2862D10EB0D;
+	Fri, 12 Jun 2026 18:30:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
  [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7573110F62D
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 18:30:28 +0000 (UTC)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3332B10EB0D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 18:30:25 +0000 (UTC)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
  by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 65CGVrvw4113453
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 18:30:27 GMT
+ 65CGVIRL047494
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 18:30:24 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
  cc:content-transfer-encoding:content-type:date:from:in-reply-to
  :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- VAc5Ikptycwe+SAdBBV6cT/v4cLIQIAkYHbY8Re0nJ8=; b=ivZnQjumAYn2ffrl
- Is7Sqx+bhSIzdvC7QxA7pmrNJEMhayWPE0cI+oG5wiLKNDeGlQayknv61BqZtUEf
- 67MjnN7JcLD5O8FfZ+hDb5kLXtfidZb6E6gg1YmI4eFOmmjuc2UKM//YSgSWs/R0
- +seWyK/ZwXEJhtPfySsS6VMAkDWHI7Q4SdFa+SIjW/wY0aF+LEuO4M2bFJxRXjfa
- y12GojzejfbWsQSiK5GYXPfHPu+OOJTAxo11p2LznsRppvPat9ihKmXDafdqicG0
- g1AhstVX2RVdddrKeSIhnvNsk2BxVw6kF2SD+uqShvJaTNzGfGk5hI7sBbs1feBs
- RuRDVQ==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4er30gc2pb-1
+ 49OPqlKhqHIeEAhBZzcXi+3lZ4PA+n7d2F3AhuDo47c=; b=fFyj2AKooKHoOJKA
+ NJgTtdivW3JLm+klRZc4PpTlm1VQTdUOBgkHjpNv+opgjkfzFCbs/xXVHNoIb8IP
+ tIY4D0YKYKra6h+5juTT/O0WTaHR67EJ8J9eZpI12fu03EjveSnXBiJXWkJnotN8
+ BdHxG7ipbukle14/tTq9WSiXQCQUTi+u0CK0zUnFql52yCXNdoNswkDV6/5bc4w3
+ 3cUFwu5KE94MOEUlr6lGn10HTuHcGo+wfQfcqerphjxnbSWG7LPtvgR/XM5w+7vZ
+ D+ZXrEgYUErJiDyl2MUJrkd4VornswnCb0xo0hjn6So7K1550uobZwDtjyCuJpC6
+ oR3wgQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4er2u440mw-1
  (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 18:30:27 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id
- af79cd13be357-9159bc52211so181385185a.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 11:30:27 -0700 (PDT)
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 18:30:24 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id
+ af79cd13be357-9157f1be083so216136385a.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 11:30:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1781289027; x=1781893827;
+ d=oss.qualcomm.com; s=google; t=1781289024; x=1781893824;
  darn=lists.freedesktop.org; 
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=VAc5Ikptycwe+SAdBBV6cT/v4cLIQIAkYHbY8Re0nJ8=;
- b=RhyQ4sX7M4ohz1zG3P8q+wesKnp3ujSilqLXcIDsYFQGPCBm9K0Xb7MX+7egvJw1WL
- x6ZNfaWbFtCtvuWmTLZQKWurREQooKy3H6CqkEspFD/So9HVRX2s8YURbXOrDpKGwnYq
- lBgsD3yIgu5zEiHkySawrFj98hzs/t9VHkeLe4nxoKCp6joa1JaBWBo9hMoDCnl8zfoa
- uzWZWYOWFnddzcr8a5vZuFx601mQcS4oEVKoEqfLQWSeX7LhaUjUNgJZmOUKd4s/HwnK
- 4sjMjTH0sZbcVG+LtOIwLSz/k4ZexqEwYD7FXV7K8kbzFV6qExQY0Br9VyviBbRsbek9
- 29QQ==
+ :reply-to; bh=49OPqlKhqHIeEAhBZzcXi+3lZ4PA+n7d2F3AhuDo47c=;
+ b=WeDuU5Wmp4zwK0K2sEmfKOw47rzScO0aJFKEpiXYu9uuQN1LHyg9vx5YH1KjhEhXP3
+ 0kwuRUn1xfy0GD2iace/wRnPlqq0JeBWu+K1eLBBvmSLgHbwhvVFhuuczwCUjkLhVY8J
+ QWClvvc1ZoUzOq28nlUPb2ierKyBwuUDsBnPZsJRap+JLcOaE2Y3yWMtKRBK2KhfvERJ
+ JsGexio3Qt7S7hggxqoFaV4+JQ5cBG6ddH5917b89sE/bX2qByn4BSEjj1j4xMRAk7de
+ Kuz/10ldVEFZcv0XCHzMJ4Kuh1SPTz38tqjGzKmEmja8S4wkBwCoywkcQc24RgzY5NM0
+ HoDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781289027; x=1781893827;
+ d=1e100.net; s=20251104; t=1781289024; x=1781893824;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
  :cc:subject:date:message-id:reply-to;
- bh=VAc5Ikptycwe+SAdBBV6cT/v4cLIQIAkYHbY8Re0nJ8=;
- b=qtGCRB+GzohsphobXyUNWLY4es1/K3M8dyz/W1J/fUUYpQ0aehS/oBBjRdqbSInlm9
- 0e7zFPi3gZO+IOjGXZTYDnJ2uC89Qyoy8fQxBC7sPD9N+uVgwkfDEwoxSgv4cr9mMHrr
- YdXju6BRW7V95yyrYJzl7Zb0llbwg83ElKtIQJHTJEVV4toOCfK4443ivXdAT9MSTcqE
- 8gl0ShT8x4I67DnALOro+uNA4KiCHCz8k3AtAFgAem52uAWEfJTr0JOl4V7n8xMQ+fMG
- f/wQbQZcygYh40hVpdScnEu8RGl/0+eBvAIwfyseI8dRhFxPFjMUrYA+ATEM6m2DlTjC
- zjlQ==
+ bh=49OPqlKhqHIeEAhBZzcXi+3lZ4PA+n7d2F3AhuDo47c=;
+ b=Z+h1m/4phRyq6Kl3yO6DLVTvBbaChzqiCWm6uaLSunBfuXo7I7RJdNZpMjYKyiO1GR
+ SNmQD8XDkHTvyJ732FcT0u8YbtQolrbApYFAOqryJWWjTYLwf0M/1OBeHJp6FDFrqzmq
+ AB72K9HT2ITZRiPMHH7dTQOcEZ3ySxIgm7h7RNNg1nWrpsNWvTQzsrTpCc07mCqi3i0o
+ zXHy66/rMH6fI9EhtHJ99s7tFsQ2zve7yIQAuVV1biygFsVxT6dSdkyfokgQdUWwbT3z
+ ks2IVoBspgYhH6xi2n1XSY2LVz3q4/WS0s6ixnIVIOdaRWxoPck5cOGo3+bJRyjHA8d3
+ 5raA==
 X-Forwarded-Encrypted: i=1;
- AFNElJ+1pYVizX+rnB+nXDyJ79kl0650QUKAXuSRJuqalQtUHVKdloFE3Qfl3TW9NRWp1/Z5TP+OsJo3@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy9BbKySWdcmBRupnzXyW872sfrvD7XgT54bbZSAwTtrtuoExOV
- Uqi/kHD8QYQbQKt/u+tRkI1kqtuSUIiZwbji98wD/ByuqfkJ6KUIEH6pVWqXCBmbFvsa/su7RAl
- k2FDUm2LxEKyZr68TUnC7vyIzeBrmX6b7GyzsGfjpNthfUYm0IHSD4z8Qa+8inwTKWhWD
-X-Gm-Gg: Acq92OHqblsNkysyGUCfwyQeI7vjtvj/HMbVSMCQz9HKCXSdOLyKf23YID5O+UoprFF
- VyWDqbbmi5SSXJthbpud0iTcEe4BD8450P4AsCNiXVe3InnS2TF1gXIa+f0D8TSNqr/4/jKpXy0
- 7+EMuhXSnvBygjoLZ1WNjNmHKf3MTMP7N7eZoAjk5WKNPZuaYCDnGEXuR+AR+EIEUKduBpj8gmu
- lRAk5OTSwDLcF7YfbVeU+odO0TvPBztDZv8HmHulb+SBOGKvjGOzIbfr/ZM4AH+OtAdbrJrgPAF
- JUPTX5ec6bCNPlmeZ1D54NLvWQm5YJkrtKYWq5edKwzcNeE0P/fuhMlPn5qsgKK19My0yJfet8E
- 21UfICzsETCS+PQcf9jpXLLQPQW4li0jt+GlpXkBo92+BEpSuwGT+RZXnRcv7QpW6wzeY0FQYDv
- 1CrsYjMOURD6ihz7QZGOWHe9Q5rZK7nxjcqAk=
-X-Received: by 2002:a05:620a:bc8:b0:915:a73e:3544 with SMTP id
- af79cd13be357-917f1c56720mr144563285a.56.1781289024544; 
- Fri, 12 Jun 2026 11:30:24 -0700 (PDT)
-X-Received: by 2002:a05:620a:bc8:b0:915:a73e:3544 with SMTP id
- af79cd13be357-917f1c56720mr144477285a.56.1781289020618; 
- Fri, 12 Jun 2026 11:30:20 -0700 (PDT)
+ AFNElJ+1P+ImmxMqC+TsT+ZmUxeW6U2nk2jmbWitEDDwlDRbWMJYJIuUKPpCv9JxXRtkGNR0LtkIvgvk@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzjL69zYvX28DFo3xakMg4luDHzNGQEtcU1RqBAqIMVMMK8jbXk
+ PEHKWFL+6T09cKhUeP9MYHqC2wnaT9lqlR5nC4+1s/hSjJrVlfh+JR2p8xMTtnDtvRFCtBKi7Aw
+ PAusJNPuaoYvswFpz4NUNjr9786YNU4fwKlbIiJGfdTfx+I/rTDShzHWsaSmzBPaOWeQH
+X-Gm-Gg: Acq92OHVg4jxCs6UyZ2j9qaPV5rEovKrqMn9BFwY9JrDIrvgpFW3EYr74E5oYDKEtu2
+ 9nwPbeZZokvEniYwG02WxKfgiGpP8RlosWNfFCzYlV6V5efZrcQy6kXdXWOmRcPdWJwzlU5yVOG
+ ynWqI5a2c/lJi0nkP11eoktB9f6nL8hAU2c92pt/AiiSzviImRaeTlkhT4jBrtKX6Hymb26wC2P
+ 6fqFdzk3OZ/gEQNf7CEiWn++/K4wfRzU9bzKS5GxV10TDVyEMXPjWmS1Lz489POZTidO+l1tPTr
+ qFnGghPFIn8fcq02P3VRd5Nks1dk7yGI0xfZduWLZQ17sqwKdLUAAyisY0gcYxMvNYFtf6E5nAy
+ /rKpVw/WJ8kDzE4Y0w1gtqLdCHUZ/lV431QR+szNsBxnb60gFXOs67Qy3zkB79o2DVTbnjsBV2d
+ C0I8L45qdMt0bkZqX3rADAoQolhhgWuJjawp0=
+X-Received: by 2002:a05:620a:a0d2:10b0:917:fcec:cfe0 with SMTP id
+ af79cd13be357-917fcfc208bmr80222685a.33.1781289023482; 
+ Fri, 12 Jun 2026 11:30:23 -0700 (PDT)
+X-Received: by 2002:a05:620a:a0d2:10b0:917:fcec:cfe0 with SMTP id
+ af79cd13be357-917fcfc208bmr80214285a.33.1781289022999; 
+ Fri, 12 Jun 2026 11:30:22 -0700 (PDT)
 Received: from umbar.lan
  (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
  [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
  by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5ad2e161fefsm742173e87.8.2026.06.12.11.30.18
+ 2adb3069b0e04-5ad2e161fefsm742173e87.8.2026.06.12.11.30.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 12 Jun 2026 11:30:19 -0700 (PDT)
+ Fri, 12 Jun 2026 11:30:21 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Fri, 12 Jun 2026 21:30:11 +0300
-Subject: [PATCH v6 1/9] drm/managed: implement managed versions of
- kzalloc_obj/objs()
+Date: Fri, 12 Jun 2026 21:30:12 +0300
+Subject: [PATCH v6 2/9] drm/amd/display: use drmm allocation for writeback
+ connector
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260612-wb-drop-encoder-v6-1-9f3a54f81310@oss.qualcomm.com>
+Message-Id: <20260612-wb-drop-encoder-v6-2-9f3a54f81310@oss.qualcomm.com>
 References: <20260612-wb-drop-encoder-v6-0-9f3a54f81310@oss.qualcomm.com>
 In-Reply-To: <20260612-wb-drop-encoder-v6-0-9f3a54f81310@oss.qualcomm.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -122,46 +122,50 @@ To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
  Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
 Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
+ amd-gfx@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Alex Hung <alex.hung@amd.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1773;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1809;
  i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=ns6ZF2Athx6EXhPPsCUzdeEz8OHVy14bl5aTVdNnAU0=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBqLFA2BP6d00ejrEHxJYdHp2X9IJejczYLfY75d
- jXdts+qMaCJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaixQNgAKCRCLPIo+Aiko
- 1YyuB/4/+1uiqA2fryPtK0Q7ctr1kG3ePgcUSkHFnblElLxP9p5KAV0NVSrsZu64PP9Uw8QhEHn
- eku5gVTB4fteWoAdmRV6MqED5jUCgtzKxXw31I6q2yE0HMzROPxsuZqjck649m6vQ+6gjWPoIYP
- tSvCAE8vpvPK2pQ8s47BDO71QWO174Xdq0Kyv6QPCsjDT1q5muBBfuIckdqMamMRRmXbJArYrNK
- GKbQ97M3DoUAW3s0S8dCBmtmiaDK2EvYKKZZ6xfYMjkleX/ieanilprQ/xFXxojPr8xMZnF96Zd
- t+bDLo/Q7QnIlQtPjN+RW8IeT2wx6PpYUovOoPNAnHFW6kFr
+ bh=hLu1cwKI2bwQjArWh6mX4nFC7KW8Gok04gwgDGIykRs=;
+ b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ5ZOgNlx2RvH1rmncgWo3DgW+vltmevq93dm7mxf+Ev8u
+ rbv61fHOhmNWRgYuRhkxRRZfApapsZsSg77sGNqPcwgViaQKQxcnAIwEbuv7P/965vCjkxfXj1Z
+ UqjpR6ueWrD5vk8ixa0SSz5WMc8XTdxVdIpFd45lkOOtyH1s6ZwvigtCTzD8fhQZfGuZeX2NUCq
+ jmUp84FsuuWjFjMrJO77/tTW6rmfIOl34nbv22bvT7/Dc//0o77D/+iLWy91JDV08gkb6s9lfTW
+ VNm6U5rWI3x6HVK/ReKMvapE1RNnNg+CSurmvqGlGnONeQZa6/z4+jq6umiH9n4PvAu5/3Q8KN1
+ W9MOYN1eZLy/2icMarpbZNht9+lvoApLGfRMod9v/TO1drvk6y2Cj3qeNzSJHICi9vs7BbRTRoF
+ aZuU0ta+m+y9gUWj4lbMr8edy14G3DWIM5qz+Ob2RttTAA==
 X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjEyMDE3MyBTYWx0ZWRfX6BmdqArQCBLS
- TW5DZa7TlfLQWlmuaI425bfAYU81z/2YAI/OOmTPjZTXVsyCpnkXw4TVVGqeMtFwcmTxgzDx+j9
- CvGxb/7n039kSDA1s8gEo+5b46xRVMI=
-X-Proofpoint-GUID: wk2p1WP-ruD8wCMwW16A49v5Jdbjg6dZ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjEyMDE3MyBTYWx0ZWRfXxj+k8fmq5K6Q
- F9sqyfBH1KsKC08/v0RSrQJ+Dn+ay5VVoDPZwkTc3oB2ur3ib9WLmrGFSwNvXB68XLiU/aZEVSB
- /6m1OzVV34FwvBfnVyXz69ccR0RYhf9e/Gm4/9ZYUEv2Dn+zzY/3O1Lj3Mf4s6tLyvjEkjoZ4r9
- gB5D1LhHPJBLvIBUM7CLqHJJcNzroKMUasy4EJUWCfPNC2L3Zs1DjS8D2I0QlvzjWRfjO91FXBz
- jk6LboViUlwHVl17PUutuvPo3J4I4Ux7H/J/S/JKmtDHl93eVWi6TQfe5cw7FeH8keqsXHVnbij
- BurJR0wJTod0Gt5JiFTM6+5zUvJouAeIe1WUKFZVnxF7xoMq6qjFQH8+k09nEToFD4Aun6r4dp9
- p5GfRlKeFfYwQQ84kt4dYrEUCD2ILLr0O9kolqmlXWNbj1fuGz6R3iLE1XLA7rcDDgzMLEbGoa4
- YmhjRIpTNlKfntswElA==
-X-Authority-Analysis: v=2.4 cv=evnvCIpX c=1 sm=1 tr=0 ts=6a2c5043 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+X-Proofpoint-GUID: JQhDsuVrKD8RQvFv6_BFF3TKBLVARKYE
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNjEyMDE3MyBTYWx0ZWRfX5e3xD/sK4CWe
+ lYfLE7qHzvB+izyFU8Y6tBWiKzMjRuQmWURfdCNWN14rUEGYmIyeEFWdVekFoqIX3aJ9evhnU8N
+ tCirWJHNyyAIJqH5bnMK1S0+MGljluM=
+X-Proofpoint-ORIG-GUID: JQhDsuVrKD8RQvFv6_BFF3TKBLVARKYE
+X-Authority-Analysis: v=2.4 cv=N94Z0W9B c=1 sm=1 tr=0 ts=6a2c5040 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
  a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=EUspDBNiAAAA:8
- a=6OF_V-VfZv2apoI2bYYA:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-ORIG-GUID: wk2p1WP-ruD8wCMwW16A49v5Jdbjg6dZ
+ a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=zd2uoN0lAAAA:8
+ a=EUspDBNiAAAA:8 a=6a0IvY6ZUD0qJKO7u2MA:9 a=QEXdDO2ut3YA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjEyMDE3MyBTYWx0ZWRfXy88vhvs9VAmZ
+ 6Pb5x4Sorfx98exIc87TUcwgGKpyl5Z5zSVAo/Y2Ci7mhz6zZbcd5P60kIGR9DQ96XjD7PxuR2J
+ H72wmY7uB6zV5rwd7zMgfGa64aKa8onN2U7oprKUAeWXPsWOTBpWBxbKbDBY8pth/EbcLj8Co2H
+ Dguo4Wyw9Ya1NjVzQijJvK2x1vl+eulf9CtfpVTIDCEK7wV0qr+UkSkjO1dG/M1u7fgSy6ZrRfz
+ O6UK3XLF+GgqYUwxUQadiC1sHVLO/FKg8Z4hVfCHZWkzK8mhhhUo+IIBWMFN2N1tNx0A8sSuKJ6
+ w+Ma0q7NZeetX4D0no7D3ECFea2A2cGoJzu3zZwPpcGgW9FEwwIRtYeTtIExy8Q7Db3jTBWklRe
+ FdkWf+51ZySAoc4Y1xdZAHcfob/pt2d4fyVhvLKXHXsUTTkN31jA3MLsedcPgdY8nxRBSGw/v92
+ 2lVGKWnK8NcXoDWKmxw==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
  definitions=2026-06-12_02,2026-06-12_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 bulkscore=0 priorityscore=1501 phishscore=0
- spamscore=0 impostorscore=0 malwarescore=0 adultscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606040000 definitions=main-2606120173
+ spamscore=0 lowpriorityscore=0 impostorscore=0 malwarescore=0
+ priorityscore=1501 adultscore=0 suspectscore=0 bulkscore=0 clxscore=1015
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606040000
+ definitions=main-2606120173
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,86 +183,82 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:liviu.dudau@arm.com,m:laurent.pinchart+renesas@ideasonboard.com,m:tomi.valkeinen+renesas@ideasonboard.com,m:kieran.bingham+renesas@ideasonboard.com,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:dave.stevenson@raspberrypi.com,m:mcanal@igalia.com,m:kernel-list@raspberrypi.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:laurent.pinchart@ideasonboard.com,m:tomi.valkeinen@ideasonboard.com,m:kieran.bingham@ideasonboard.com,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:liviu.dudau@arm.com,m:laurent.pinchart+renesas@ideasonboard.com,m:tomi.valkeinen+renesas@ideasonboard.com,m:kieran.bingham+renesas@ideasonboard.com,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:dave.stevenson@raspberrypi.com,m:mcanal@igalia.com,m:kernel-list@raspberrypi.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:christophe.jaillet@wanadoo.fr,m:alex.hung@amd.com,m:laurent.pinchart@ideasonboard.com,m:tomi.valkeinen@ideasonboard.com,m:kieran.bingham@ideasonboard.com,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,arm.com,ideasonboard.com,glider.be,raspberrypi.com];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
 	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,wanadoo.fr,amd.com];
 	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx,renesas];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,lists.freedesktop.org:from_smtp,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 67B5267BB73
+X-Rspamd-Queue-Id: 8A33D67BB56
 
-The kzalloc_obj() and kzalloc_objs() functions proven to be useful and
-widely used for the reset of the kernel. Implement a drm_device-managed
-versions of those macros to mix the nice interface with the automatic
-freeing of the pointers.
+Currently memory used for writeback connectors isn't freed on driver
+unbinding, leaking the memory. Use drm_device-memory allocation
+function for the writeback connector, making sure that the memory is
+freed on the driver unbinding.
 
-Note: the original macros accept optional GFP_foo arguments. They are
-skipped for now, making all allocations use GFP_KERNEL. If necessary,
-support for overriding the GFP type can be introduced later.
-
+Reported-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Suggested-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
- include/drm/drm_managed.h | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
-index 72d0d68be226..79049bec277d 100644
---- a/include/drm/drm_managed.h
-+++ b/include/drm/drm_managed.h
-@@ -105,6 +105,28 @@ static inline void *drmm_kcalloc(struct drm_device *dev,
- 	return drmm_kmalloc_array(dev, n, size, flags | __GFP_ZERO);
- }
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index ece581609cf7..436562e32e63 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -91,6 +91,7 @@
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_edid.h>
+ #include <drm/drm_eld.h>
++#include <drm/drm_managed.h>
+ #include <drm/drm_mode.h>
+ #include <drm/drm_utils.h>
+ #include <drm/drm_vblank.h>
+@@ -5807,7 +5808,7 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
+ 		link = dc_get_link_at_index(dm->dc, i);
  
-+/**
-+ * drmm_kzalloc_objs - &drm_device-managed kzalloc_objs()
-+ * @dev: DRM device
-+ * @p: Variable or type to allocate an array of
-+ * @count: How many elements in the array
-+ *
-+ * Returns: newly allocated pointer to the zeroed array of @P on success, or
-+ * NULL on failure.
-+ */
-+#define drmm_kzalloc_objs(dev, p, count) \
-+	drmm_kcalloc(dev, count, sizeof(typeof(p)), GFP_KERNEL)
-+
-+/**
-+ * drmm_kzalloc_obj - &drm_device-managed kzalloc_obj()
-+ * @dev: DRM device
-+ * @p: Variable or type to allocate
-+ *
-+ * Returns: newly allocated pointer to a @p on success, or NULL on failure.
-+ */
-+#define drmm_kzalloc_obj(dev, P) \
-+	drmm_kzalloc_objs(dev, P, 1)
-+
- char *drmm_kstrdup(struct drm_device *dev, const char *s, gfp_t gfp);
+ 		if (link->connector_signal == SIGNAL_TYPE_VIRTUAL) {
+-			struct amdgpu_dm_wb_connector *wbcon = kzalloc_obj(*wbcon);
++			struct amdgpu_dm_wb_connector *wbcon = drmm_kzalloc_obj(adev_to_drm(adev), *wbcon);
  
- void drmm_kfree(struct drm_device *dev, void *data);
+ 			if (!wbcon) {
+ 				drm_err(adev_to_drm(adev), "KMS: Failed to allocate writeback connector\n");
+@@ -5816,7 +5817,7 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
+ 
+ 			if (amdgpu_dm_wb_connector_init(dm, wbcon, i)) {
+ 				drm_err(adev_to_drm(adev), "KMS: Failed to initialize writeback connector\n");
+-				kfree(wbcon);
++				drmm_kfree(wbcon);
+ 				continue;
+ 			}
+ 
 
 -- 
 2.47.3
