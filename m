@@ -2,170 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YsW7EGBQLGoPPQQAu9opvQ
+	id uTIFNWi2L2r2EwUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 20:30:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jun 2026 10:23:04 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E28AE67BBB0
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 20:30:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65D73684802
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jun 2026 10:23:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qualcomm.com header.s=qcppdkim1 header.b=UCgfg1hi;
-	dkim=pass header.d=oss.qualcomm.com header.s=google header.b=Q3Nf7gKm;
+	dkim=pass header.d=usp.br header.s=usp-google header.b=t9D9nNrP;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=reject) header.from=qualcomm.com
+	dmarc=pass (policy=quarantine) header.from=usp.br;
+	arc=pass ("google.com:s=arc-20240605:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7064F10F644;
-	Fri, 12 Jun 2026 18:30:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2264810E29B;
+	Mon, 15 Jun 2026 08:23:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A02F710F64A
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 18:30:52 +0000 (UTC)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 65CGWE8p019985
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 18:30:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- y4rDxNdRWU+aebNlPWMdizg27R+flJppZJLNZrroSxs=; b=UCgfg1hivTnuWEjv
- nioBWrIUwJRrqQ7jqClIPM7Q9GYwG0HQ7iDh8MAi0XjxAVvMqTyoEbx8KK/TIL3y
- vqjX7Rvr8tZ7E9ALoeN+8V6TSaiQUZ3EWRoKcR1R13mevpluMOzlrgeNrqcVQpg5
- sBrUTk1uTzm2v0AP//5vx4kISvAxP7Rm7WRRSNQHBb2rEjHbae0bNQ67GMPV/GBk
- lI579hdewc4qZOzJT1FAnZWNBV2OWdHak+EwLedV+VXZE+mFynZmpx7f7TXmqhtd
- b5TCpsU79jhUL3L3pGUHnRxQ6y/3aa/h2ik5gFKkR7c4kQMG2ITTkq30i2qTU/Rw
- MBQNtA==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4er1cbmh3m-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 18:30:51 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id
- af79cd13be357-915d1d4fc5aso214172985a.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 11:30:51 -0700 (PDT)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
+ [209.85.208.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC7AD10F666
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 18:43:56 +0000 (UTC)
+Received: by mail-ed1-f42.google.com with SMTP id
+ 4fb4d7f45d1cf-68cec9f4c6cso1796970a12.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 11:43:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781289835; cv=none;
+ d=google.com; s=arc-20240605;
+ b=E71duln4SCQ4smNZB5bU5OqCXvzzzdLF3RPAZW3NNaxefB8Pr6BfMPJc3oTrtSLj92
+ hYdiq62Fp3yI1Ae1tOQ/xwSCwKkImTFtzOWfzogMbS1N/sVvSnwiH0/s82ah2LVQ/h2/
+ lmvpYAA5fUx6QnOn5HGMbInzl7yU7QarN77cEwAmJ9zR3uFODRXpBh7q4lStnmzr49Hv
+ 0KyM7I7yAQw5dHi8DYTdxwIIKJXMZhmkjM2lGY0Yl5yJlaGTV6reZeuPU4IfYAK942P2
+ 7wr9KCPt7dBve/HVNPvdvGx5Pp6r9DGur8lAP1qKqaFIU4tx91iDx0/Pk4ZzzalWzwwI
+ FjHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=6DnumblQJH/uXGfU059VkkZKwxZmNHcGuyxEw+XU2qE=;
+ fh=VNN4LOExbvA5JZ/lcGi/djL07gaA2OHX3LS30Lq68ho=;
+ b=H9KRrHjTJMQ4jTGo0DgLFqWzVw6HDOOTWGbrv3cRsqGzWKqWGVs2+RkaG+Ckl75+da
+ uwPj/BVrp+St2jGZoitv180wsJ/OhlBx4XxazyAL6SKS6ClVycc5rasLfWclzxjrutKn
+ JVaQBiPTadYGjtrkzEheGGVdg7F4aCEkL6B+plMbWApAc7cYxpZgkV1+MHkuN72f5glL
+ vVsaJDsnpfvK4Z3oooJunmpS2hjUUmqSPPNRHhP4JmZRZc5xMcywUXvPM1TQJ4dmovcs
+ 4rQUNm7z++tQO7J1MQUUqkcNoUuCNjx9/5yE/eePYwR4sS3yR8/3SsRgeW0fdfJPh63n
+ 78Ug==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1781289051; x=1781893851;
- darn=lists.freedesktop.org; 
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=y4rDxNdRWU+aebNlPWMdizg27R+flJppZJLNZrroSxs=;
- b=Q3Nf7gKmH5j+J/+pyQkW1GAUWHamjoTtC+BnjO0XS/rYU53rZMjZ3Vhz2wjc0+SaYE
- Mqqo41DXIKvD9kV9nPcJHJc09zopZVIQT4ew+L3O+9jwESOyTEmtQidgu92W8SdBg9yH
- DLueqB/S69s3/w6APLsV65fP5IFhCnQZEASGZRJHc7vsJB5/mCu/ZkkYJd/SsXX0LqMn
- iRGibq+17AnM0qIXa1LbmcnD8lPoPfunXy0GqfXerxxWcXd6BzkXThPwITDA3J8yd6sr
- lMTGoAp9Y6BEyX8GtJcHCvjjIwkgo8NOh7rM5hUyJo6wPtNTqTWbXMdi9Dm4z930eYlT
- xcsg==
+ d=usp.br; s=usp-google; t=1781289835; x=1781894635; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=6DnumblQJH/uXGfU059VkkZKwxZmNHcGuyxEw+XU2qE=;
+ b=t9D9nNrPoDo6ftXuNApa2mKr7APo9WSckCfd5/tp/tdZN+lObIJiwHeWWaW5rRc0Gy
+ iasYRngq+9UWDO0R24kXkePwbL+PCDuUQEmu607hhpePJQzOiBwC5SB/pTqdXm0LRuas
+ TKP08Fb/SOwAdUglUTloexF8YmvwVmQIYnSdDYOZXzUfdlfeiufucPcTarOYug12pkiY
+ xoH3tAGTS++L7EwkHbIMDQPtzcgyuEWUZ1BYEzqbdoBiFTM2AybSv81QIU0gAx1iBWvF
+ j0/DGuNgXRTEgP2Y0uKpcYQqpwzxQ3p3TGFdWUdUrb2cwtxDNZw+qs6EzlCsp7N8EsTi
+ JElg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781289051; x=1781893851;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=y4rDxNdRWU+aebNlPWMdizg27R+flJppZJLNZrroSxs=;
- b=es54KiFhtw0/4MVD2d74H8Oa9CQwfRxH2SQZ6aBa6ZmVgG21Vyx161J13gV5R48s75
- LdXnCHQYzYwiKpIXJLTJnPZJsS1F3+PoraLWgxSlqE7PtYZ0kdxHNnuGkDNIqTM6Ij7f
- CI33j///DI0JPdlbAdDS5qsvq7Nhf0eBGMsKndAGccaGaWV9prvFoiFOjIzPvxHOKPxP
- rqoWKDJBoNOtPiPgQxpR4fbFTLF5RgB9gbg4AfFvm/x9zUIcVQc4LxdW2HPA0JjH07Tb
- PdsC6oN6G7L/6GUiXaeVeA9DwNkfCPa/DUTtXbpymJclXIjoK96+80nNtWBfXqf49z7j
- MqGg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8C4gsPiCHCQ1xHaETW4b8sRKvLZjTzgwoEWorwUwiZncGenjufgZtiUyWNoRMSD5RB0POYjm60@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyKgvIM3Wfy1jAniqMYlMNl4rGO4SaNEh4cGSvb/R52t54xL7dS
- WwiuB98lw61xk51fDUfGFyikgCEP3iLj8//jpeUeh5LjYjyk21meZQW7mlNUyw/N+/T3VPRnASD
- 7M1y6gQyVT1/0L43GLr5Q2d9qeeYiLqzq09TZBWk7gF/d+czVf350iS1rgvb0I2mPdn0x
-X-Gm-Gg: Acq92OERNbFJE3dQUKjSDm1EKsQvdLlaqKENo1DDeNgH16hSfZpvG98Vfzu5Lz17Muj
- YHa0kxdtTuwy51azn7n4k92XedUU08V7L2Bm0lQjfp7VDNm1FznvW5OHmHZu3pRwVQ0SDEeazub
- m8UPRxhzENSpCYQUpyoOaZmmaBfsiWFU8anFEqgGQusF5O7iFlq7l2tivfZUipKUaqKgzU4cf6M
- LfoYDbx9QLISXMVHYto1BcLwM0FFetzpE5IrUzRwp2E8WuwMrXCMEHOI/5VMzwQvr3JrMDPih8V
- AqLq/RD4YjkhuC1YckPhVmIrbD78fRYzEgR9FSrr7KyJsSIZXYwRjCa9M57Dsg2sXfximTcWMWD
- qG9qp1IpQG/VwbSjK/oB1sWpg+jUKM1PYajdLstGw863biO3FH+shCfPLSRT5VjVkXIt5qYnwPH
- RDvcfNi1zVM3LJOGqhG3mQm5gDqToG6ykkTTs=
-X-Received: by 2002:a05:620a:bce:b0:90c:a08f:c5f0 with SMTP id
- af79cd13be357-9161bccaed3mr616314285a.33.1781289047391; 
- Fri, 12 Jun 2026 11:30:47 -0700 (PDT)
-X-Received: by 2002:a05:620a:bce:b0:90c:a08f:c5f0 with SMTP id
- af79cd13be357-9161bccaed3mr616175885a.33.1781289037649; 
- Fri, 12 Jun 2026 11:30:37 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5ad2e161fefsm742173e87.8.2026.06.12.11.30.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 12 Jun 2026 11:30:36 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Fri, 12 Jun 2026 21:30:19 +0300
-Subject: [PATCH v6 9/9] drm: writeback: rename
- drm_writeback_connector_init_with_encoder()
+ d=1e100.net; s=20251104; t=1781289835; x=1781894635;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=6DnumblQJH/uXGfU059VkkZKwxZmNHcGuyxEw+XU2qE=;
+ b=HNuV4pVtERtt1cgUia7uHw2aoeiEfLD6H35P6puc+Mv8Upg5s5nrIRzxWnUgTDCGPH
+ yGiV/AEaUXkw8Tfkb0R5TxvOrHCVWX68EZ9e/S46TPLEKUp3zipLF/PNsLIdYIxAwOfw
+ 5TaK04892rpS3+57/JUiyTtOQIqCIdfLOSUN+sTBxT8FmMRJ1WurWiGLeSiIkToNiKo8
+ G8x8P1CKUXkOGLvtl99zAXI+a7+NMWWy5IS+o307heaYrlYKaK/T9NYZ9qO3dtE9gahB
+ nof9JFJXmMGBZUXoOY3hkMRJbUtRPhx14JOqhnohydcq26wuxJ0d3o94lc1Dps3nTcdX
+ 6kDw==
+X-Gm-Message-State: AOJu0Yy1zZQFuRAIf6aGQeXHDTqQWbhIgYUjCvg8Qg5YWnXkFBsd0kBo
+ kamTluE3cBWbxnjNY86YBaEIly2b6XLvcHjckVr8xY1v+qirotFujy2P/RW2w8AR43dQAf4UumT
+ IXCEp+Z30piGWNogNW0LPEbE8H0rEK6bSOPlQc1Xtmjdq4NLYr3iMPg2N8A==
+X-Gm-Gg: Acq92OGRpg90ZIZHkMcSOwa5uhcYBu3HK2CoUadfWvQl6YY3hB3cbvrK5+88JaIwxEq
+ ookuIKTxe91HvRWvZuwGCBz4NbkpQcv3YHkBl8JblZsdgQT1FAQaM1xDmn3cSRGdmCT3fDGmJk2
+ 6es47c/K+oLih06Fngax/GiKYoUPUFZ/KklJJX6V6MdSsFKTJxhBdJDaPzK7w4PFjOL71cfMPPs
+ dsIGdfvUtwwjTB3IkKIn7g7xDeJ20O2kaGY51c95XVNw1D6H/rT3HmSRyuJq7ZyryCHxySxwc+C
+ w1Kpx+yP70jojKZmksn1jc+m/rzg5y0ZJ6lDLtQAgKApqLSe/kJWItofYwA3Ncp8xXFtzCRh4hN
+ L26cnJUlRSn4Qoo79DR47kNBVuyCl21vO6OSo
+X-Received: by 2002:a05:6402:e85:b0:691:a699:da5c with SMTP id
+ 4fb4d7f45d1cf-693c6a6ae83mr166917a12.17.1781289835396; Fri, 12 Jun 2026
+ 11:43:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260612-wb-drop-encoder-v6-9-9f3a54f81310@oss.qualcomm.com>
-References: <20260612-wb-drop-encoder-v6-0-9f3a54f81310@oss.qualcomm.com>
-In-Reply-To: <20260612-wb-drop-encoder-v6-0-9f3a54f81310@oss.qualcomm.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3014;
- i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=mE50BYUB/UAw+zq2VOqPPalyAMn1gAB1RtsYcBWwgx8=;
- b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ5ZOgPm7hKVaN3b0hT6bcClZSGAmt9jj62VfnGUivxSkl
- FVM9wnvZDRmYWDkYpAVU2TxKWiZGrMpOezDjqn1MINYmUCmMHBxCsBE0nay//c/97a2SbnxVfwx
- od8Z9RozxE2/d3rfOSh1P0zje3yeaSB/S/XRfVc0gwKz1j4p+rh++94Wl+wgxd8TAkNsea+yRuk
- IzkpZFXNW2f/Zg8wPmw1neZh0rLrQlVETKHpl3VR5PfVNW16uC39wPqQnxifsyP7V/znnhfAU8f
- 19MOXqHOZwNj8mX8a7OduLjdh/1QqcVFZQWWhREPJEaN6UF5xep5gyFXZbeHiX64vXxD6IMfQwS
- a6umKp2szu778CpkNkNe9qmsWueMrZnvzTvmvj93HkySrOP3JyWoKt/4CG/r2KBWtvqmXUH9zu7
- xsdlhL1pebleUHSPr0iMxOp6xdx2Hdk7Pz6Lsx63C/cDAA==
-X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-GUID: vEXu8jsPtNLaCQpNxZB4GtGXQb10gd1t
-X-Proofpoint-ORIG-GUID: vEXu8jsPtNLaCQpNxZB4GtGXQb10gd1t
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNjEyMDE3MyBTYWx0ZWRfX+OFHBpCxown6
- SZwIqV1k/W6k3ZjnVLs4jlginE7xPrmyhoy47tcENoBYm8cAIc3J/UMIMlj/s8ox8AO8WN3JcoK
- HnXIeW/GAy2wqM+WUUwUB1sSlgFbkCM=
-X-Authority-Analysis: v=2.4 cv=S57pBosP c=1 sm=1 tr=0 ts=6a2c505b cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=FelO9ux0wxsA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=QyXUC8HyAAAA:8
- a=P-IC7800AAAA:8 a=EUspDBNiAAAA:8 a=By2WwYRBACVvdXAjiroA:9 a=QEXdDO2ut3YA:10
- a=IoWCM6iH3mJn3m4BftBB:22 a=d3PnA9EDa4IxuAV0gXij:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNjEyMDE3MyBTYWx0ZWRfX1SEGBnSTseNI
- PevywgvuX3lT4K0wbi/UKq/IXuboCJ6xy9/uTonCRxYHxR1ZHPFEiutn8lcsXVuEGhwe0hows4W
- qFESJ3sjmd2zDwJLu4AMQZCYOlQ/HwvuMZ9RsgEUeONsJhs87v2ti5k46i62+69BEWEHknKfWxz
- pVvXhEWpwhv0HQTcWEME4Mt002Ek64kjStHveOajJdGTEDbnj0zSi1PHKe1WwVUnh8LfYw5uR6c
- OBrmSrAnlHIZUXaH3Mx8waAXceD1n2QR3IAawnMcED6XA2tdzt/Z4c4jPfGKf45/qKGChUjEF5p
- oWeBwN6r3OcRzIKcECU4FhN/KJphokclRUAYPQPCl0UtElhBhtRfpYRHEpTa9BORi8xUeFIxvSj
- 3VTtOJfY05idspCn+7HFVV+WCv6C6OhHRIpDYulAc7c/+Yx/bQOxzAAVoo7qN/H2+hHgRs8zKnR
- RXJaXnVwC3Mn3ECi0Lg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.125,FMLib:17.12.100.49
- definitions=2026-06-12_02,2026-06-12_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 impostorscore=0 adultscore=0 phishscore=0 bulkscore=0
- lowpriorityscore=0 priorityscore=1501 malwarescore=0 clxscore=1015
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606040000
- definitions=main-2606120173
+References: <20260611195026.25125-1-guilherme.bozi@usp.br>
+ <33b42033-a5ae-4fa2-bafa-ea007a29eab1@amd.com>
+In-Reply-To: <33b42033-a5ae-4fa2-bafa-ea007a29eab1@amd.com>
+From: Guilherme Ivo Bozi <guilherme.bozi@usp.br>
+Date: Fri, 12 Jun 2026 15:43:42 -0300
+X-Gm-Features: AVVi8CcfB6VWasgjDsXNWWEnkpmrEqTP8ocKbH7N_vHLj19h1d7NE8oW539gptM
+Message-ID: <CAJgF-xtvOSwB4S8Xw1JwkyWQVEMEMfpmVyTxAKaESi0s9XoRkQ@mail.gmail.com>
+Subject: Re: [PATCH RESEND 0/9] drm/amd/display: convert GPIO translation
+ logic to lookup tables
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ airlied@gmail.com, alexander.deucher@amd.com, harry.wentland@amd.com, 
+ simona@ffwll.ch, siqueira@igalia.com, sunpeng.li@amd.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 15 Jun 2026 08:22:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,115 +114,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DATE_IN_PAST(1.00)[61];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:liviu.dudau@arm.com,m:laurent.pinchart+renesas@ideasonboard.com,m:tomi.valkeinen+renesas@ideasonboard.com,m:kieran.bingham+renesas@ideasonboard.com,m:geert+renesas@glider.be,m:magnus.damm@gmail.com,m:dave.stevenson@raspberrypi.com,m:mcanal@igalia.com,m:kernel-list@raspberrypi.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-renesas-soc@vger.kernel.org,m:suraj.kandpal@intel.com,m:louis.chauvet@bootlin.com,m:laurent.pinchart@ideasonboard.com,m:tomi.valkeinen@ideasonboard.com,m:kieran.bingham@ideasonboard.com,m:geert@glider.be,m:magnusdamm@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,igalia.com,arm.com,ideasonboard.com,glider.be,raspberrypi.com];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:airlied@gmail.com,m:alexander.deucher@amd.com,m:harry.wentland@amd.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:sunpeng.li@amd.com,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,igalia.com];
+	FORGED_SENDER(0.00)[guilherme.bozi@usp.br,amd-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx,renesas];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[guilherme.bozi@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[usp.br:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,qualcomm.com:dkim,qualcomm.com:email,bootlin.com:email,intel.com:email,lists.freedesktop.org:from_smtp,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,oss.qualcomm.com:from_mime]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,gitlab.freedesktop.org:url,usp.br:dkim,usp.br:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E28AE67BBB0
+X-Rspamd-Queue-Id: 65D73684802
 
-Rename drm_writeback_connector_init_with_encoder() to
-drm_writeback_connector_init() and adapt its interface to follow
-drmm_writeback_connector_init().
+On Fri, Jun 12, 2026 at 4:34=E2=80=AFAM Christian K=C3=B6nig
+<christian.koenig@amd.com> wrote:
+>
+> On 6/11/26 21:49, Guilherme Ivo Bozi wrote:
+> > This series converts the GPIO HW translation logic used by
+> > multiple DCN generations from large switch statements to
+> > static lookup tables with shared helper functions.
+>
+> Not to block this patch set, but please keep in mind that when some array=
+ index comes from userspace to use array_index_nospec() to avoid security p=
+roblems caused by speculative execution.
+>
 
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
----
- drivers/gpu/drm/drm_writeback.c | 14 +++++++-------
- include/drm/drm_writeback.h     | 10 +++++-----
- 2 files changed, 12 insertions(+), 12 deletions(-)
+Thanks for the feedback. I reviewed the relevant GPIO and DDC paths.
+In all cases, the offsets and indices are derived from DC BIOS tables
+or internal DC GPIO service mappings, not userspace-controlled input.
 
-diff --git a/drivers/gpu/drm/drm_writeback.c b/drivers/gpu/drm/drm_writeback.c
-index 9fc15168c34f..68fdac745f42 100644
---- a/drivers/gpu/drm/drm_writeback.c
-+++ b/drivers/gpu/drm/drm_writeback.c
-@@ -235,7 +235,7 @@ static int __drm_writeback_connector_init(struct drm_device *dev,
- }
- 
- /**
-- * drm_writeback_connector_init_with_encoder - Initialize a writeback connector with
-+ * drm_writeback_connector_init - Initialize a writeback connector with
-  * a custom encoder
-  *
-  * @dev: DRM device
-@@ -263,11 +263,11 @@ static int __drm_writeback_connector_init(struct drm_device *dev,
-  *
-  * Returns: 0 on success, or a negative error code
-  */
--int drm_writeback_connector_init_with_encoder(struct drm_device *dev,
--					      struct drm_writeback_connector *wb_connector,
--					      struct drm_encoder *enc,
--					      const struct drm_connector_funcs *con_funcs,
--					      const u32 *formats, int n_formats)
-+int drm_writeback_connector_init(struct drm_device *dev,
-+				 struct drm_writeback_connector *wb_connector,
-+				 const struct drm_connector_funcs *con_funcs,
-+				 struct drm_encoder *enc,
-+				 const u32 *formats, int n_formats)
- {
- 	struct drm_connector *connector = &wb_connector->base;
- 	int ret;
-@@ -284,7 +284,7 @@ int drm_writeback_connector_init_with_encoder(struct drm_device *dev,
- 
- 	return ret;
- }
--EXPORT_SYMBOL(drm_writeback_connector_init_with_encoder);
-+EXPORT_SYMBOL(drm_writeback_connector_init);
- 
- /**
-  * drm_writeback_connector_cleanup - Cleanup the writeback connector
-diff --git a/include/drm/drm_writeback.h b/include/drm/drm_writeback.h
-index 879ca103320c..958466a05e60 100644
---- a/include/drm/drm_writeback.h
-+++ b/include/drm/drm_writeback.h
-@@ -137,11 +137,11 @@ drm_connector_to_writeback(struct drm_connector *connector)
- 	return container_of(connector, struct drm_writeback_connector, base);
- }
- 
--int drm_writeback_connector_init_with_encoder(struct drm_device *dev,
--				struct drm_writeback_connector *wb_connector,
--				struct drm_encoder *enc,
--				const struct drm_connector_funcs *con_funcs, const u32 *formats,
--				int n_formats);
-+int drm_writeback_connector_init(struct drm_device *dev,
-+				 struct drm_writeback_connector *wb_connector,
-+				 const struct drm_connector_funcs *con_funcs,
-+				 struct drm_encoder *enc,
-+				 const u32 *formats, int n_formats);
- 
- int drmm_writeback_connector_init(struct drm_device *dev,
- 				  struct drm_writeback_connector *wb_connector,
+If you still prefer additional hardening for consistency, I can send a
+v2 with array_index_nospec().
 
--- 
-2.47.3
+> We already had problems with that in the past when people converted switc=
+h statements into an array lockup.
+>
 
+I=E2=80=99ll keep this in mind for other paths where array indices may be
+influenced by userspace.
+
+Kind regards,
+Guilherme Ivo
+
+
+> Regards,
+> Christian.
+>
+> >
+> > The new implementation reduces duplicated translation logic
+> > across generations and makes the GPIO mappings easier to
+> > maintain and extend.
+> >
+> > The series introduces generic GPIO translation helpers first,
+> > followed by per-generation conversions.
+> >
+> > The following generations were converted:
+> >
+> >   - dcn10
+> >   - dcn20
+> >   - dcn21
+> >   - dcn30
+> >   - dcn315
+> >   - dcn32
+> >   - dcn401
+> >   - dcn42
+> >
+> > The dce60, dce80, dce110 and dce120 implementations were
+> > left unchanged for now.
+> >
+> > dce60 and dce80 contain special switch-case handling paths
+> > that currently do not map cleanly to the new table-based
+> > representation, so they were intentionally excluded from
+> > this refactor.
+> >
+> > No functional changes intended.
+> >
+> > v1 resend:
+> >
+> > No changes since original submission.
+> >
+> > Automated review:
+> > https://lore.gitlab.freedesktop.org/drm-ai-reviews/review-overall-20260=
+512190019.228440-1-guilherme.bozi@usp.br/
+> >
+> > Guilherme Ivo Bozi (9):
+> >   drm/amd/display: add GPIO HW translation helpers
+> >   drm/amd/display: convert dcn10 GPIO translation to lookup tables
+> >   drm/amd/display: convert dcn20 GPIO translation to lookup tables
+> >   drm/amd/display: convert dcn21 GPIO translation to lookup tables
+> >   drm/amd/display: convert dcn30 GPIO translation to lookup tables
+> >   drm/amd/display: convert dcn315 GPIO translation to lookup tables
+> >   drm/amd/display: convert dcn32 GPIO translation to lookup tables
+> >   drm/amd/display: convert dcn401 GPIO translation to lookup tables
+> >   drm/amd/display: convert dcn42 GPIO translation to lookup tables
+> >
+> >  .../dc/gpio/dcn10/hw_translate_dcn10.c        | 484 +++++++-----------
+> >  .../dc/gpio/dcn20/hw_translate_dcn20.c        | 432 ++++++----------
+> >  .../dc/gpio/dcn21/hw_translate_dcn21.c        | 417 ++++++---------
+> >  .../dc/gpio/dcn30/hw_translate_dcn30.c        | 432 ++++++----------
+> >  .../dc/gpio/dcn315/hw_translate_dcn315.c      | 418 ++++++---------
+> >  .../dc/gpio/dcn32/hw_translate_dcn32.c        | 386 +++++---------
+> >  .../dc/gpio/dcn401/hw_translate_dcn401.c      | 392 +++++---------
+> >  .../dc/gpio/dcn42/hw_translate_dcn42.c        | 193 +++----
+> >  .../drm/amd/display/dc/gpio/hw_translate.c    |  86 ++++
+> >  .../drm/amd/display/dc/gpio/hw_translate.h    |  21 +
+> >  .../gpu/drm/amd/display/include/gpio_types.h  |  48 ++
+> >  11 files changed, 1274 insertions(+), 2035 deletions(-)
+> >
+>
