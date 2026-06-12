@@ -2,132 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id M6GWJJy2K2p2CgQAu9opvQ
+	id I8EtMOK5K2oPDQQAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:34:52 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:48:50 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F181677448
-	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 270786776AB
+	for <lists+amd-gfx@lfdr.de>; Fri, 12 Jun 2026 09:48:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=HnQaHBcH;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=U+qaMuAo;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 152D910E984;
-	Fri, 12 Jun 2026 07:34:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4B7E10F310;
+	Fri, 12 Jun 2026 07:48:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013029.outbound.protection.outlook.com
- [40.93.196.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EACC10F2B7;
- Fri, 12 Jun 2026 07:34:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=f3Hei6S26jaXz5BaUJqblIuAAgWFRiAN8ymN0crcTAW7eam5y/W1CPZhKLwIW0LIou0Bi52zK/M+L2i81OvpAzrinv9QIATzyaMOw5R3FUVePBfw2XH9jxyR8uBVd57UpuKysyNBCJJk5BDhe9jm6FeRJBUDodLVvEu97WnyrFBFmFXet1p798aHQERACb8ocYBc2WDMVbIgPmCi0kcUGeKL9Mr5JgD+0gVdZHhU95di0GVrsiFgEs5jUIyReMCEdtr1u6laidQu33AYc6rb4jGiAGEpOsnwfCMBx5WrPcCO51XsYakIt6adrewXk7SoNlGif+Gz/TgU5rZrKrWmjg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hrYN6bfyIyFwuKgg16nSfVZbgPU0JZFJKUU0KC1iGSs=;
- b=DwTbASKjpaM7fOyLWzxGO5+BmhnvYjy6rQFYA94TjXh156rVFFCy1QZ27dBlnyfKn004wCN5lqDlx1Tsrei7s2pCiaq4B5VpVgBubxmQByVb5zApKRZZyzYQhsj0oKbnrC/pmz+YNZBJ9saQdThkLddUPDTCRl3aD2LLbnoHWYqvAo9h/a5G0qZqp55bkVe3PCsBrUB/TPl8V2b/A9EdHErXEp7ShrSrpaY7I0xKUAdusMZ5dtSV/CgYiP7af3zHBQrRixX+ANLg3Ch5mW0/PuzsxE/zIJ3oGdtZNifcVwbUu+NBK0afyhxB/PnwaxaiQMKIe12C0+0K08dGOCjkgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hrYN6bfyIyFwuKgg16nSfVZbgPU0JZFJKUU0KC1iGSs=;
- b=HnQaHBcH5MT7SrehPBguYoNl3dijbeOreBlahuoUcPOrZkY1ogY3NahUzSSe4L2/TK3eXSuZfZ2DcKGIIuLU9hRfOOSwWp0qYSAPMGJ6+buT2TCiAuyhpn9mLprgHyHW3L9BwvMEQ4ohQbuaXYhfuDyIovQtfl+PtPrNgnrSs24=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by DS2PR12MB9751.namprd12.prod.outlook.com (2603:10b6:8:2ad::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.14; Fri, 12 Jun
- 2026 07:34:41 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0092.006; Fri, 12 Jun 2026
- 07:34:41 +0000
-Message-ID: <33b42033-a5ae-4fa2-bafa-ea007a29eab1@amd.com>
-Date: Fri, 12 Jun 2026 09:34:35 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 0/9] drm/amd/display: convert GPIO translation
- logic to lookup tables
-To: Guilherme Ivo Bozi <guilherme.bozi@usp.br>, airlied@gmail.com,
- alexander.deucher@amd.com, harry.wentland@amd.com, simona@ffwll.ch,
- siqueira@igalia.com, sunpeng.li@amd.com
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20260611195026.25125-1-guilherme.bozi@usp.br>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260611195026.25125-1-guilherme.bozi@usp.br>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR2P281CA0175.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9f::12) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C274810F310
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 07:48:47 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ 5b1f17b1804b1-490b915ded5so5714005e9.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 12 Jun 2026 00:48:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1781250526; x=1781855326; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=jsSpYYN9fCJTIX2eacScZiY08CAYt7mz+jYWybXIw4o=;
+ b=U+qaMuAoeCweDamAtAkTSKNNDsbs/6GhJbdarnnJwW0+YnNER60/wA0zdzm77IBDk0
+ 7qeOEE29MlNrsYksKaB+DeK4dpzz294AfkktNlMf7XUyn8e/B8yTYYoa19bS8ZaX470m
+ gy3YdEZTsFiqz/dFEWLUM1tHOsaIxPh7CZz0b3dXHahIb1G49AlgHhiPOLx7VozDoveL
+ M6beryvzg3ZaDGOIMnR6ux4YltTjTxVufUD2e+SZExQX5LvfZseQglAa+mevD5Lo6Efo
+ 9ebKESWETO9lumnRHoKtPTWjsN43Z7a8w4lNDiWbXI19cuy5vBXSx3843JYNGyrHAn5X
+ G70Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1781250526; x=1781855326;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=jsSpYYN9fCJTIX2eacScZiY08CAYt7mz+jYWybXIw4o=;
+ b=daDm3+HE70NFNKfoaS6i9Mre2iDiducF7FADiNaK3t2FEpwFFsLpnXe+r0Ap817Mfz
+ qutKvv9VxNZjllP1tVqCr1kT46gWrl0tecZoCgcc1J5cnReo7kput/gv3ubS2Hl2xeRr
+ k9UFlXdUkvBiz7LAZnr/NUA6/xSoqnDvDtscv/vdH4wkiV1W+qHDXdJy2250YqCne34G
+ c8e0GlyIu8qTPQLQXr6bTeDz6aKFGwJ8eiO7gQblKnTTmUE7oqSMp5xYTxM4pcQV6c3C
+ AeenAXYa3+ASAx2v9d5jBN+mpxeR6ijZxZwc6UoBpq4WGwhMmmfSE3kDiKHykPd8UTDe
+ YfXA==
+X-Gm-Message-State: AOJu0YzGSZLF/Oy56DIKGRNPQU2nhDiexUM2taqQ+cnIKceFXG77yuc/
+ ZOvJdAL3BY6JpNqnGmK8jvFKt5nSz7UIs6ER+zNhc86PTEK+ZeidYbDr
+X-Gm-Gg: Acq92OEANQoXFmqWdKHdahohAFWmG6ANoOc3kHrrRtJDMvH55ybJHbMTEGu2hzP9qA8
+ K2LtRGsfxEbIoHFwjvnse9T9zSUCW2MKcgMKGmxi7LiZkBDZx2aWFebnWERoRgpk3eLfRspR9n3
+ S8r4h+s+P18SH0x6sSc/gjcE3lyHZA1B3MdS+14K3AZQ49PIPRfo3je9vUNhzZyjmaHvWR7EOMS
+ Cnib+W3fPVRwFAownywaDTHDRWO7tok9M3SgZQ+Zng1XOrje26sTwdwT5p/NsUylREvao7coKjZ
+ nI71n3tFTY4QUUTaEFISjlHm4P4le1QnO4T/+hrwkVD8wntPZKQ0UjV6qUi3AGJAdMl0kpD3JgU
+ fne1FtTRL5UfgJssVwCza2wkj+5t9mckvMA0mx4WNx7bmlEPwMHBy8P3XJlhuWid3PA66dOG/0Z
+ UghqI6ICvuiQ+LUGPJso+adAiw/ub2EkQ1cYUE5Z1+2fDWXzES651snKji+lPAD5bUj7QOZZCLh
+ F/hQfA80zCQYyVwYE/c38swNFWMpRD7TY4uOCPq
+X-Received: by 2002:a5d:5f82:0:b0:45e:ed7f:1d9 with SMTP id
+ ffacd0b85a97d-4606dba7bf9mr2237500f8f.17.1781250526209; 
+ Fri, 12 Jun 2026 00:48:46 -0700 (PDT)
+Received: from timur-max.localnet
+ (20014C4E24EDFA00ACE56DB4A62D1E35.dsl.pool.telekom.hu.
+ [2001:4c4e:24ed:fa00:ace5:6db4:a62d:1e35])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-4606f26f23fsm3236866f8f.9.2026.06.12.00.48.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 12 Jun 2026 00:48:45 -0700 (PDT)
+From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "Chen, Jiqian" <Jiqian.Chen@amd.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Samuel Pitoiset <samuel.pitoiset@gmail.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, "Huang, Ray" <Ray.Huang@amd.com>, 
+ "Huang, Trigger" <Trigger.Huang@amd.com>
+Subject: Re: [PATCH v2 1/1] drm/amdgpu/gfx9: Fix Ring and IB test fail after
+ mode2
+Date: Fri, 12 Jun 2026 09:48:45 +0200
+Message-ID: <2014755.b9uPGUboIS@timur-max>
+In-Reply-To: <BL1PR12MB5849F914400E06407D2C9451E7182@BL1PR12MB5849.namprd12.prod.outlook.com>
+References: <20260611055715.1142135-1-Jiqian.Chen@amd.com>
+ <3694190.dWV9SEqChM@timur-hyperion>
+ <BL1PR12MB5849F914400E06407D2C9451E7182@BL1PR12MB5849.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DS2PR12MB9751:EE_
-X-MS-Office365-Filtering-Correlation-Id: a726c98d-8d90-4b5f-afb4-08dec85510bf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|23010399003|376014|18002099003|22082099003|6133799003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: e2Rfj/gm9E+QYfaOQc5mZcN5hAgQCwDdm84ZI7F01Hij5qE9lSguhK/E+vR1ll3Lbas6Sj7hffqo7T8jIZzWHxRE47TMVEIfPvhckISnp0KEtDs6b1eFleMexqrj1nleUYrlVSgfvDVAet0Vpo2YbJbnKGOe6evouWNkEJuxUx+AEn7XfCcMFif4hAXn8OUFFciLWZXvtd5lRdfaF+c+GSAgkgWaPuzIQHYNwV6OBxRjFPe1xY5NhE+AuOJQ51xVEBOYIb6zh1Niu1FkX2eXObIAgTJUThkpMf4guHlJP1Vm+9KSlCDskHa3vBTNMt++SK+1Od4ylaKeKIHHFSn/Y/mxTolkQYQhueSHQNG1MCEkgPfewFc0U2kCRXFN/PbIBgT2uTZF2DrfxXvwELU7fsTSgoJ91dqUCz3YmdsiSMy0uFlGKkdSKHVYdb0pLlXMoiviOmikjQ3ARno6X1WVFWobJ/dd64RVHO52PAvt8tYxw+3JYDlX5y68RAd9XbgZOOYOaEchEg6MfaXaHRKBlq2NumdbFz6gzcV9iJ3n51UjjuxWW6lUsNZ9GioJHO1NXPOSr0ffARacaISloyMIUh0AUox2dPAE0QIdL8ma2/rbgSdNh/2eaYHDTOWTEIpC4PGc4gpk94ykR4pfbuodyA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(18002099003)(22082099003)(6133799003)(56012099006)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d0hWU0R6Z0R3VVgralJhQVFWcWtEaUlQT1BFeERYS3YrUnlNZEpHZm5uTlNh?=
- =?utf-8?B?K3UrWlZ3NWhackFVMFFrZkdUNlQrNzFKM2YvS3RWWFpNZ2ZBaGFIT3Q2aURk?=
- =?utf-8?B?MGxXMkU1M3pZOFBuSm9LelRmNTloa0JPcVgvWEdzM0V2bG1USTFzWUVJTHcv?=
- =?utf-8?B?WmtQV0pVMDF1dXNiMzZVdFpvcEhYenFzNXk0Qm81Z055TTExRVd6SVhscEtT?=
- =?utf-8?B?Tis4TmZuWDVVKzN3YzVKcGVlbnhJL3plajBpNzRldkgwRXNpWW1ja0xJeVlB?=
- =?utf-8?B?K2doQnRucHhaeFNrc1FSZFBiT0FHSWxBZ1dSR1Ria2dCbUpNUml2c1ZRMzFR?=
- =?utf-8?B?MDR4YlRhZExtUjdyR1pUalhRaU1tUjVTOUtZTGJlUmlTMEY3UWMzOUVpbFND?=
- =?utf-8?B?T00zdkJPZWdRdGJjSEhYRS9UeHNsOFhrbHFxY2g1aXRIdUtqaUhqemtGd2g2?=
- =?utf-8?B?aVRBSGFTTWlIRkg4VXZ0SXJDMUR3YXF3bTFRNUVZUW9Nalh2c1dDemgzdU50?=
- =?utf-8?B?MFpNYlZtd21nUHRiOCsrQjNINEdsNWFnZHI0bmthVlFabTdSMVpUaUx3M0pq?=
- =?utf-8?B?S1p3bHQ3emNZOUhJbUVuMlY0a1FMMUFGek5DUlB5ekJvK243QnNCSmMzcGdw?=
- =?utf-8?B?MHdCdXB4aUtyZXdVZXd5SFI4VmIyeHliYkJiQktQbUNCTitNZWlLNWR2U0xN?=
- =?utf-8?B?UFlsZVlQb1ZXaWpFUHpKelZnK2hqRUlyUFBUR3NOcTlHQnM4ZjNVVjErcXRR?=
- =?utf-8?B?Y25YK3lKdUx3UUVPRlNRMFlGdktEamtxN3F3UzhkN0VHZFZvRCtQWGwyWERE?=
- =?utf-8?B?THhpcHhHOU11QUJIMlpManN3bkV6MmtLZ2RCanlRbVpyRXhuaDFuWEMrayt6?=
- =?utf-8?B?R1d2bTlnMjNPT09kekF2OVNRU0dtNnpJa3cwamIzeHZGeGdLcnF3R254RWZj?=
- =?utf-8?B?VHFQaWx2UlFvYjBDQzlkM01xYWl6NUhReU1CSVhDZFpZeXE1bjVRRThWSGds?=
- =?utf-8?B?eGRuQUxUajc4NmRNS1ZOT1dzc3NQdEgrOHZRVnJaRlRGRFJpSzE0RnBydkc1?=
- =?utf-8?B?eXI1aDVwUDdFNFk0R3p2N3pZVlZpSFFJT1FINU80TmJDZ045aTVWTTQ3bXpN?=
- =?utf-8?B?ZDk4QkpVM1JnMHRHNWFGYmVTYktSVXBtZWtiVzdjOHJ0K3F0VjJJeHhJb0dv?=
- =?utf-8?B?ckxzSjFXOXVuWVNCNjNKK1luSVhwNjIwbEpxeE9nREY5Y2k4dm44Tmp5K1cw?=
- =?utf-8?B?QzZQdDROWm5YYTRoY2lJamlCWmxPeFZpZGNnaHAwOVRaRk5IdUZNNkNYRVFJ?=
- =?utf-8?B?UGxXMkIzeFRkSCtVdlQxSmV5cVYweFZTczNibm9DYkQreGRvdmZGak50ZC9q?=
- =?utf-8?B?dlAvUzBNTFlONERqSlkwTVZBbXpYRFFrMjVOZ2pWUHNzVEU3MzF3VEVjNnlF?=
- =?utf-8?B?dHk0bkFacnhJUzBhWStBZkJMM0dqK3lQQU5Bc2FnN08xdEZGaGdmZy9xaGo2?=
- =?utf-8?B?NEdXNXBzb2N2aHNMVm9NUzBrVEwxbmJvZVk0Mk9HYUUxMGpIMVlETTBFVVFI?=
- =?utf-8?B?WHF5UEVsdDBuaERzWXRhK3AvYkdoSW95bTZMaUxhdlR0WnRXVXNzaWdSbU42?=
- =?utf-8?B?RzVkUjV5NThnbmh4b3hOSjRIUjliYjUzam5ZejFEUllRMUtvLzk3ZU9GOTY5?=
- =?utf-8?B?WkFWaUt0b3pOaFdUOVd1SDNacC9mRmNubXp0NnBoQnRJd0RFQVBFUGEvTUhi?=
- =?utf-8?B?YXYyVXQ3eTAvK3d6N0ViV3RHNm8zdlJGTkFsNkJ1WnVxRHVZblYvaWhMS0tu?=
- =?utf-8?B?Q0VscHF3NGJzcVJ5Vm40N0M0ZXFMeURZZHBjcDRmL1c4enoxeVkzQTVlVytK?=
- =?utf-8?B?cjBEWnIyRVJQcUY2UEF1QzlPV2paMjhzaHhkNzltOVJFRlJGbC9zbkg2UHM1?=
- =?utf-8?B?NmM3aXM4b3RRK1BFNGcrb1dCdkdmVUI4RkpDR3ZabDZHZitITFkwTE54eXFJ?=
- =?utf-8?B?QlJCWXlVUHhGS3c1Nk55RnBJK2lnMWRJK2JwN1l2N1psbkhPSHlWR0xYcEtY?=
- =?utf-8?B?NDlhaExVSXgzSVRCdlBCT3hVODdNNG9OQ3d2NFhtUHRjZEk4TmdjcTZ0clpL?=
- =?utf-8?B?MDk4dzhDYUxNaHFud2M4VWRUU3lZSDd2d3BjMVA2aWhWMFRwODBCcDJSK1dC?=
- =?utf-8?B?bStqQSt1Z0tDUVFDanFKcVVpRlgvSm5DVWpsU1dhdWZ1N0gvK3A4WVVxbWUv?=
- =?utf-8?B?M1EwOEZXM0FEb3cvUVVEOGV0ZGtWczVLTm42eXVreFp4bWRHTitEc01WdlAx?=
- =?utf-8?Q?4t1ZB6D8KtwAYX9LPk?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a726c98d-8d90-4b5f-afb4-08dec85510bf
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jun 2026 07:34:41.4895 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: g3m+uaI7T4VrXhvd80KrhrysIJoloW2ajk0tABvW8OMXQbmFYShzROIkDna1kUHf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS2PR12MB9751
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,103 +102,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [1.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	CTE_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[usp.br,gmail.com,amd.com,ffwll.ch,igalia.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:Alexander.Deucher@amd.com,m:Christian.Koenig@amd.com,m:Jiqian.Chen@amd.com,m:samuel.pitoiset@gmail.com,m:tvrtko.ursulin@igalia.com,m:Ray.Huang@amd.com,m:Trigger.Huang@amd.com,m:samuelpitoiset@gmail.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com,igalia.com,amd.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3F181677448
+X-Rspamd-Queue-Id: 270786776AB
 
-On 6/11/26 21:49, Guilherme Ivo Bozi wrote:
-> This series converts the GPIO HW translation logic used by
-> multiple DCN generations from large switch statements to
-> static lookup tables with shared helper functions.
+Hi Jiqian,
 
-Not to block this patch set, but please keep in mind that when some array index comes from userspace to use array_index_nospec() to avoid security problems caused by speculative execution.
+> > Indeed I've seen similar issues on other GPUs, as I've been looking into 
+> > improving GPU recovery.
+> > 
+> > Instead of forcing the HQD_ACTIVE to zero, I suggest to deactivate the HQD
+> >  before reset. We should introduce a gfx_v9_0_deactivate_hqd() function
+> > similar to what gfx_v8_0_deactivate_hqd() is doing, and call that from
+> > somewhere in gfx_v9_0_hw_fini() when disabling the compute queues.
+> 
+> Make sense, that look like a more suitable place, I will try to move my
+> sequences into gfx_v9_0_hw_fini() in next version.
+ 
+Sounds good.
 
-We already had problems with that in the past when people converted switch statements into an array lockup.
+> > In fact, it looks like it already deactivates HQD, but only for the KIQ
+> > and  only when it isn't in reset or suspend. That looks wrong to me and
+> > I think it should do that for all compute queues (in addition to the KIQ)
+> > either unconditionally or before a mode2 reset.
+> 
+> So, you think the if condition checks are not needed?
+> 	if ((adev->flags & AMD_IS_APU) && amdgpu_in_reset(adev) &&
+> 			amdgpu_asic_reset_method(adev) == 
+AMD_RESET_METHOD_MODE2)
+> Since I only reproduced and verified when mode2 on APU, I think keeping this
+> check would be better.
 
-Regards,
-Christian.
+Yes, I think the checks may not be needed or need to be adjusted.
+Additionally, the same sequence needs to be repeated for every compute ring.
 
+> > I don't have a Renoir APU yet but if you need help, I can try to see if I
+> > can  reproduce something like this on a Vega 10 dGPU.
 > 
-> The new implementation reduces duplicated translation logic
-> across generations and makes the GPIO mappings easier to
-> maintain and extend.
-> 
-> The series introduces generic GPIO translation helpers first,
-> followed by per-generation conversions.
-> 
-> The following generations were converted:
-> 
->   - dcn10
->   - dcn20
->   - dcn21
->   - dcn30
->   - dcn315
->   - dcn32
->   - dcn401
->   - dcn42
-> 
-> The dce60, dce80, dce110 and dce120 implementations were
-> left unchanged for now.
-> 
-> dce60 and dce80 contain special switch-case handling paths
-> that currently do not map cleanly to the new table-based
-> representation, so they were intentionally excluded from
-> this refactor.
-> 
-> No functional changes intended.
-> 
-> v1 resend:
-> 
-> No changes since original submission.
-> 
-> Automated review:
-> https://lore.gitlab.freedesktop.org/drm-ai-reviews/review-overall-20260512190019.228440-1-guilherme.bozi@usp.br/
-> 
-> Guilherme Ivo Bozi (9):
->   drm/amd/display: add GPIO HW translation helpers
->   drm/amd/display: convert dcn10 GPIO translation to lookup tables
->   drm/amd/display: convert dcn20 GPIO translation to lookup tables
->   drm/amd/display: convert dcn21 GPIO translation to lookup tables
->   drm/amd/display: convert dcn30 GPIO translation to lookup tables
->   drm/amd/display: convert dcn315 GPIO translation to lookup tables
->   drm/amd/display: convert dcn32 GPIO translation to lookup tables
->   drm/amd/display: convert dcn401 GPIO translation to lookup tables
->   drm/amd/display: convert dcn42 GPIO translation to lookup tables
-> 
->  .../dc/gpio/dcn10/hw_translate_dcn10.c        | 484 +++++++-----------
->  .../dc/gpio/dcn20/hw_translate_dcn20.c        | 432 ++++++----------
->  .../dc/gpio/dcn21/hw_translate_dcn21.c        | 417 ++++++---------
->  .../dc/gpio/dcn30/hw_translate_dcn30.c        | 432 ++++++----------
->  .../dc/gpio/dcn315/hw_translate_dcn315.c      | 418 ++++++---------
->  .../dc/gpio/dcn32/hw_translate_dcn32.c        | 386 +++++---------
->  .../dc/gpio/dcn401/hw_translate_dcn401.c      | 392 +++++---------
->  .../dc/gpio/dcn42/hw_translate_dcn42.c        | 193 +++----
->  .../drm/amd/display/dc/gpio/hw_translate.c    |  86 ++++
->  .../drm/amd/display/dc/gpio/hw_translate.h    |  21 +
->  .../gpu/drm/amd/display/include/gpio_types.h  |  48 ++
->  11 files changed, 1274 insertions(+), 2035 deletions(-)
-> 
+> It seems Vega 10 dGPU uses Moed1 or BACO reset. I am not sure if it has the
+> same issue. When you "see similar issues on other GPUs", are they all APUs?
+> What's the gfx version? And what reset method they use. If they are not, I
+> may find a same hardware as your to verify my changes. I tried other APU
+> with gfx10, there is no this issue.
+
+You are correct that dGPUs don't use mode2 reset. I saw a similar issue while 
+working on a patch series to improve GFX IP block soft reset on GFX8. I am 
+testing that on a Carrizo APU as well as Fiji and Polaris 10 dGPUs.
+
+The problem I saw is very similar to yours: compute rings fail to resume after 
+the reset and are "stuck". I managed to solve that by making sure the HQD is 
+deactivated before the reset and ensuring that the MQD is cleaned up after the 
+reset.
+
+Best regards,
+Timur
+
+
+
+
+
+
+
 
