@@ -2,104 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GYGCE2BGMWqQfwUAu9opvQ
+	id Ra5wMxoEMGpGLwUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 14:49:36 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jun 2026 15:54:34 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A363368F938
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 14:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 584AF686E03
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Jun 2026 15:54:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=SsKljXJr;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=b6y8JQBs;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("google.com:s=arc-20240605:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C11110E030;
-	Tue, 16 Jun 2026 12:49:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA3D310E436;
+	Mon, 15 Jun 2026 13:54:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
- [209.85.208.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1027B10E42B
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Jun 2026 13:33:45 +0000 (UTC)
-Received: by mail-ed1-f50.google.com with SMTP id
- 4fb4d7f45d1cf-68b90fc6a1dso6536847a12.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Jun 2026 06:33:44 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781530423; cv=none;
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com
+ [209.85.221.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D2CA10E436
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Jun 2026 13:54:31 +0000 (UTC)
+Received: by mail-vk1-f174.google.com with SMTP id
+ 71dfb90a1353d-59ebc9135edso120285e0c.2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 15 Jun 2026 06:54:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781531670; cv=none;
  d=google.com; s=arc-20240605;
- b=Bc9s55HwZrSWH2oJz8gPhVkIrZrGxp58Vhcp10un1GdJsdpJHIurOplcT0vK4Vlixg
- N2fuzGAekcNmrGedH+5hT/gKLULhKpnqbSkS+q6Sr4sdJr8U1njqa4X4B2qBicmJIz1X
- PMb/AoGaMsGWBUVkiYscqlHur0+0dIIZ7kDEL0UAk+NOo2yNOFCmED2Bx69qqKKy4bg1
- fKEkvFdEgf6knrVzZAFxOjajybnG4amInHpHh3ZmXiiKxGGXSdBUd6I5P4qGEJa8KOix
- CvvbtNdfIp+6aSsY5Oy4TUIyzrLFQ6uL50pJzj2dRXRUDmFBj5TGOflqPl2aqtmEGb89
- vkPQ==
+ b=KME0v78PD/QQmro8pg0+sA6Ywl2j0+vNFa6rg67Qv1fv4J0TGRbNottXiVJA3LFgH4
+ ion5pz3dbAxID1wiNIy60Y6aDngJhUv7D5KQAbfUpfgOf/EgZKmSS0reDiz4MszI+Rh7
+ mNTI5WWQfgktqQbplUGkCa0KkNH/QKnCpKZdl1E1x/83WpHeG0PlVHgyWXBxNkriJ0jj
+ Rc9s392Duy8h2+My6SFnO1QoSrF9mzBP318TafRMoMcg+M8dMKf0uZYxIrFd88Z085az
+ TXEzmj/Hr8b2iat+e8eW3jAxvupW6sw0MojWnKnk9xkIvOBVSLrHUfw+5t6Tii6YhTlN
+ 0KmQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=hIpLTQp8c/NSnuk0PoBcY1wUcRDkSj3E+f8vFJi+pa0=;
- fh=KF+1tpWp/GK4GYhmaS/K0pmpHo1wv48nDWT+vrx0R98=;
- b=YWjo5mdzs9Cif0JherrbcxE2twDyrfgd/DbCXqOkePD/uiE+fqii5rfcKmSri5oIST
- B2iwgdNbjT2cFQmt+RtwRPEodqBATMy0J9h7PPeCqeOgdopjoFN1Vjyeuo6cDw8/svqb
- JJvfdNxNiMgIfK0hRCYNC6E+HjXjYsMgnU5ebmEfIibSUPWL6B/4XX3QzeSKnWvVgdmk
- 5H20MhNQnt4+A9fgeD6oSyJgSN9eMFE08/YDXcWBmdpe+J2GkQLzl0C7Fv4gDa98SgXu
- bcERRYDhJkmyjZHQFeHDTptUForPPFALcJtViHkW3TQdp0wYSqYdBrS2eP7CgeReP9Kx
- vD8w==; darn=lists.freedesktop.org
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=20u8IcsIKSPRT/ptwVuz0JdY/Ou6LJfrAtPgq31H6r8=;
+ fh=wmrUFF5CAH2Kir5OCD0KmqRLkRC9GgHOreJOcDjH8mM=;
+ b=NUv/CjLBKL1AwRwYpyjpwlL/cO7uuRN+knUbY1k1nw95qFR952cFzHsvoo9Kv5xGRx
+ LZshKMjih2EICGlpZZh/nJIa2dPcgZQmwanUO0NmRZ+YdJ5qtVbEup4ZnDBHLe19Yw9W
+ 2HFVwiFK/z9Q5lH1hdwyfuIA6TELT4JFexS419nmz4pjulHkjyOJm/wePdOs85oPPomC
+ 9zZD080FH5AjCIZG0ITvNwXvHrYx1L0gm0w14/jGxA3sYHclCvIp3MkT38j9lksouVxJ
+ kzP3NBs7ESnatObA5iZ023JX4GsEtPtBGWuiVVASVyuAocfJJZmtsoRNBr2TQwM3EFIR
+ 4Drw==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1781530423; x=1782135223; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=hIpLTQp8c/NSnuk0PoBcY1wUcRDkSj3E+f8vFJi+pa0=;
- b=SsKljXJrGckjZJfd0m+mIOz8ac9iDyGTEp923F/LiIdgPPP7HTkZtwMcWNe53mg9/w
- tBOOIR7sag9lEf0QfJw8DY4w1NtmRQWyz2pHNu/aHUluCL5Y7PXO8+iSi3KCkckckBD8
- JwMxQttpdcI47DnLVTYHhJtiPxxqIkUaTSkV4ift621t8p/lOeCX57qwmU7CIl5N/78I
- XWyTbsRtCfbSB+VTbviKO3y6HbvRk3v6cm0rRkXZ4Dl894cLlsod6ViYXqsapE6eSQpO
- OcIUsDHFiHAchJcz1n37TYV0zQ7J+INmcjoHQQYVQZkEft7q7NdsWAtM883lQc7YRa1V
- 9Q+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781530423; x=1782135223;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20251104; t=1781531670; x=1782136470; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=hIpLTQp8c/NSnuk0PoBcY1wUcRDkSj3E+f8vFJi+pa0=;
- b=VRh/HuCiPZ4F/7QQyCknY0+y6i/n9khBlaSFKT6t4uPNLfH9ZKVhLPGgpOOl8lFg2+
- kHsFn2Rk7sYfiOTBtRBQR6ioKPUtSw3NF/PP3R/f5SGkQDDvDm3w+TCJhoM7fEWqbCd1
- aBHj5KSBLGVDtY+BhUTkkBi0qhE942958zYmDtSOO/pqDn9Cv7hasgh7VU+4iI7pw0ZU
- mZmWXE4+dj61SjwqpRoe9nqHtKkH4RB6J174G1JnGhAjVSLbu+4y3w5V5JXhGy7cAzAa
- yuHOvr97pMhl+eNO0DJuqXKlFGUagO6b6AAsv1eYrAfVJcbuHG0DepVXMOPGblQ58h1W
- 9Clg==
+ bh=20u8IcsIKSPRT/ptwVuz0JdY/Ou6LJfrAtPgq31H6r8=;
+ b=b6y8JQBsS5gFw0Oa4M/PUB6EYnBAuu+J+ZEkTu0m5Kf0zPPDLzAPGMIN3ah1WQKt2v
+ 2/7p6FCzDRdccmdmbyU/Bl546UQmPpxUpDmoQ0+RF/3yikIaF2VBvH0gzdHPsQMFgRu5
+ OWEW1ul9VGLH4zNFSirNstyBM4Y79F8UyAw5m9SGINpsiAtbj8jcRKG3zaW+ap9i488z
+ uZ+RVC15pd1XYnRQZxXYrsAjwyydSbkI1wu+sYKpp+BLue2aP5346ddsXWDWW3vXkIwj
+ EIt1JmmnaX3LQVTAtC4zqkZwlqPd8m2lX/7EEMxaZDhuD9IXzbW6ScD12swqQZAyhjJ9
+ /uug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1781531670; x=1782136470;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=20u8IcsIKSPRT/ptwVuz0JdY/Ou6LJfrAtPgq31H6r8=;
+ b=mB0pTsAF5F/FhUQCvOKjO26nnfeJXkh1+gPberPj2XDlPMGpNIdE6JcdJLg+YNS3Bo
+ XjgfYG0kos9MlHImO6g/tFlEcPk+pask6Mcte8Z+AW+nK9FhgKLCVJAG3iEE9PzyxelB
+ etS1BM1UzOaP/dprQ3t2/G+9wiZMU/Y+7e2wOuObAuFftLwd1Ow2ZEwkL66PDJuIwi1r
+ 5KeFOw3ZXbHAr877GuMPi6LcHzKOPLcYa4avdR2zWtoNMZMKXIkY4hra5ALbVUaZiqbD
+ cBXel3qe3i7yhi8kL+b1kwL0ClBWQHtGuPHEgoi8mM7mCtWXPp5/o2z4+Ddw039bYGyy
+ mdNg==
 X-Forwarded-Encrypted: i=1;
- AFNElJ91a3NfHf6d0OvYvfA+GmZmAFnGdeIW2grtvEOrVpSdCOpJQTjRtvX1oigCb6BmErqxXJlZAqk0@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyBZbRuy0OUEK/doqwmIlqsn24F64FyXNkfWfh5NnhsBto23MpE
- Mylpy3DUSlMyRBKwhaOSyM1oOYAQBrxhvcTfmE3yZTHtFqC8C/J9H4CjZaCcOq12rHf5EW0orVB
- 79NjfPFt+vXmWvxo7XiiL6cmqpwfZ+2Q=
-X-Gm-Gg: Acq92OHs3ecE2zc0Yudf8crppvkaRcZY84C7lh4fwCpiEuC0JQYuIjNYLQzZqF/8bCq
- Hb3OUv4DniRi9vLSLkfe+j1sA5SRSlegYyIeCrcVJP0WwEXIrDXN7pueZTB9kFEQynLfX5JL3m7
- 7gQCIXoBAcBoP/MfQIGWmBcalBrs7dE38SYMbfqgkuBXLly6utxRztDVkl8d+76FQ14p9tailc/
- 2cgmE7ceU2qHeoP2cwF7Z68PTcZHmeJtnN8BlgJxd1DsFH/aTopEwitdkLtFYB38Arm4cMnyNG1
- RbtuFjBpiGpfawGbKB9luaNBd9kRw2Iw8BI1B4NyxyKLLzb44HS74BF/95RkUM0w1sSuxA==
-X-Received: by 2002:a05:6402:a54e:20b0:67c:34bb:1bd1 with SMTP id
- 4fb4d7f45d1cf-6936833fa9fmr4116863a12.1.1781530423302; Mon, 15 Jun 2026
- 06:33:43 -0700 (PDT)
+ AFNElJ8Znw6Gvvi07JWTOxxals03REe23fIUx25SSaJhMFwhTMTL3tBGryiTN2Yo1noiB60jNJB1mH6h@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxhAqwVLMRZdyEqALulc6uCY/OWcqzfadwzmUxVX6XRH+jnM01C
+ 6enj9lYtEEMifKW9SBsf5vweRNfKN7qBpHvPsARPiiSFkFT0PIqcwMb7oUZcjBkjMe79IQelm1S
+ gIlo/IJ7TkKsDs/q/V/H0ZMlg8kR7E1U=
+X-Gm-Gg: Acq92OFRbUfITS83+/MjOHvxhbJmc+xwo0d4RngaLEgGeBXkNb8JlJZQUMKFSQwDgoO
+ OP/Df9suB2I5QI2wpDbwY5S+UXlWf/swWLJRZhhu1mKebiEhwe7+vZsJap+En65bklFZylV6pUz
+ 8SYyAjlkJ2uymmeyOKSy1ovf8UXdKfNoNf8rNULXuyEZirkt87jCx4jG3r8T/Xs68jX0QU+63Uy
+ zoIM6RLfTVJOwXvBBIGer0yWGejBIWe6byWigk8aIIaNqTFRx9t1BSALeoDm26pBUwEomsippni
+ jpPu48hE8uKOICAbqvdkRrV+Bc+ZHH8tz35AWNhC0WjY7gkZK/PD8FFZIH4V+jKsHzvkhA==
+X-Received: by 2002:a05:6102:5121:b0:605:53ef:d53f with SMTP id
+ ada2fe7eead31-71e88ae95c7mr2022720137.2.1781531669932; Mon, 15 Jun 2026
+ 06:54:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAPs_=oyWXJuQ4VS7LNQgM=jGKPMDoj1OnagU9YNQY+7aEeabHw@mail.gmail.com>
- <4898269.vXUDI8C0e8@timur-hyperion>
- <bf77a811-bce8-4257-b3bf-207c3a01a44e@amd.com>
-In-Reply-To: <bf77a811-bce8-4257-b3bf-207c3a01a44e@amd.com>
-From: "Jonathan L." <jonaphin@gmail.com>
-Date: Mon, 15 Jun 2026 09:33:17 -0400
-X-Gm-Features: AVVi8CfuS64dLUKCOzDmSG_gJFFuqxU0yfd8jPHI70m1fDagSkICaLI744Sn1OU
-Message-ID: <CAPs_=oxcHA8zRWBpZOn3Nq_pJajePtrzpYkYTxaQmjroCjbjRg@mail.gmail.com>
-Subject: =?UTF-8?Q?Re=3A_Linux_7=2E1=2Drc7_regression_=E2=80=94_ROCm_GPU_memory_ops?=
- =?UTF-8?Q?_hang_on_Strix_Halo_=28gfx1151=29?=
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>, 
- amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com, 
- Harish.Kasiviswanathan@amd.com
-Content-Type: multipart/alternative; boundary="000000000000099d0806544ae042"
-X-Mailman-Approved-At: Tue, 16 Jun 2026 12:49:33 +0000
+References: <20260612092654.1632603-1-Jiqian.Chen@amd.com>
+In-Reply-To: <20260612092654.1632603-1-Jiqian.Chen@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 15 Jun 2026 09:54:17 -0400
+X-Gm-Features: AVVi8CfnFZYO5Hd7oJy5kzsa5knWo6A7-OgaUbbbKBzf7hRHhgCPtkjfqQHR3dM
+Message-ID: <CADnq5_Puhk0vEsYkM3uUs+n5i_a0eMFx=0NPwm5WKfEaYDabWg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/1] drm/amdgpu/gfx9: Fix Ring and IB test fail after
+ mode2
+To: Jiqian Chen <Jiqian.Chen@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ amd-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>, 
+ Samuel Pitoiset <samuel.pitoiset@gmail.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, 
+ Huang Rui <ray.huang@amd.com>, Huang Trigger <Trigger.Huang@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,262 +117,175 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:timur.kristof@gmail.com,m:Alexander.Deucher@amd.com,m:Harish.Kasiviswanathan@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[jonaphin@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org,amd.com];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Jiqian.Chen@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:timur.kristof@gmail.com,m:samuel.pitoiset@gmail.com,m:tvrtko.ursulin@igalia.com,m:ray.huang@amd.com,m:Trigger.Huang@amd.com,m:timurkristof@gmail.com,m:samuelpitoiset@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,lists.freedesktop.org,gmail.com,igalia.com];
+	RCVD_COUNT_THREE(0.00)[3];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonaphin@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,mail.gmail.com:mid,amd.com:email]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,mail.gmail.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A363368F938
+X-Rspamd-Queue-Id: 584AF686E03
 
---000000000000099d0806544ae042
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi team,
-
-Thank you for the prompt replies.
-
-Christian, I have tested the amd-staging-drm-next branch, and ComfyUI is
-now working as expected. I did encounter an error when setting
-AMD_SERIALIZE_KERNEL=3D3, as it appears only 0 and 1 are supported, but thi=
-s
-seems unrelated to the primary issue.
-
-Thank you all for the excellent work!
-
-Best regards,
-Jonathan Lancar
-
-
-On Mon, Jun 15, 2026 at 8:39=E2=80=AFAM Christian K=C3=B6nig <christian.koe=
-nig@amd.com>
-wrote:
-
+On Fri, Jun 12, 2026 at 5:44=E2=80=AFAM Jiqian Chen <Jiqian.Chen@amd.com> w=
+rote:
 >
+> For Renior APU with gfx9, in some test scenarios with disabling
+> ring_reset, like accessing an unmapped invalid address, it can
+> trigger a gpu job timeout event, then driver uses Mode2 reset
+> to reset GPU, but after Mode2 compute Ring test and IB test fail
+> randomly. It because the HQDs of MECs are always active before or
+> after Mode2, that causes MECs use stale HQDs when MECs are unhalted
+> before driver restore MQDs, and causes CPC and CPF are still stuck
+> after Mode2, then causes compute Ring and IB tests fail.
 >
-> On 6/15/26 14:01, Timur Krist=C3=B3f wrote:
-> > On Friday, June 12, 2026 3:12:29=E2=80=AFPM Central European Summer Tim=
-e
-> Jonathan L.
-> > wrote:
-> >> Hi team,
-> >>
-> >> I am reporting a regression in the AMDGPU driver affecting the Strix
-> Halo
-> >> APU (Radeon 8060S, gfx1151). While everything works correctly on kerne=
-l
-> >> 7.1.0-rc5, upgrading to 7.1.0-rc7 causes GPU memory operations to hang
-> >> indefinitely. This occurs during tasks like torch.empty() or model
-> weight
-> >> transfers in ComfyUI (PyTorch 2.11.0+rocm7.13).
-> >>
-> >> I have bisected the changes in drivers/gpu/drm/amd/ between rc5 and rc=
-7
-> and
-> >> identified the following potential causes:
-> >
-> > Hi Jonathan,
-> >
-> > Can you please bisect which of those four patches causes your issue?
-> >
-> > Thanks,
-> > Timur
-> >
-> >>
-> >> 1.  amdgpu_hmm.c (Christian K=C3=B6nig):
-> >>
-> >>   - 1c824497d: Changing the invalidate callback to wait on the VM root
-> BO
-> >> reservation lock may be introducing a deadlock.
+> So, add sequences to deactivate HQDs of MECs in suspend IP function
+> of the resetting process.
 >
-> No, that was done before anyway. Just with a different BO.
+> v2: Move all sequences into a new function gfx_v9_0_cp_mode2_clear_state =
+(Ray Huang)
+>     To check reset Mode2 method in the if condition (Ray Huang)
+> v3: Move all sequences before Mode2 instead of after Mode2 (Timur Krist=
+=C3=B3f)
 >
-> >>   - 962d684b5: Moving the notifier_seq read outside the retry loop cou=
-ld
-> >> cause infinite retries with a stale sequence number.
+> Signed-off-by: Jiqian Chen <Jiqian.Chen@amd.com>
+> ---
+> v2->v3 changes:
+> * Move all sequencess before Mode2 instead of after Mode2, and add a new
+>   function gfx_v9_0_deactivate_kcq_hqd to do the disable compute HQDs
+>   sequences.
+>   Then the resetting CPC and CPF are not needed since we have already
+>   move all sequences before Mode2 and they are not stuck
 >
-> That was indeed an issue but should be fixed on amd-staging-drm-next. Can
-> you re-test with that branch?
+> v1->v2 changes:
+> * Move my sequences into a new function gfx_v9_0_cp_mode2_clear_state
+> * Add reset Mode2 method check to the if condition that call my sequences
 >
-> Thanks,
-> Christian.
+> v1:
+> Hi all,
 >
+> My board is Renior APU with gfx9, smu12. I run a testcase that
+> accesses an invalid address to trigger a amdgpu_job_timedout()
+> with disabling ring_reset, so that driver will call mode2 reset
+> directly. After mode2 reset I found compute Ring tests and compute
+> IB tests fail randomly on random compute ring.
 >
-> >>   - 58bafc666: Changes to userptr submission waiting.
-> >>
-> >> 2.  gfxhub_v12_0.c (Timur Krist=C3=B3f):
-> >>
-> >>   - 40bab7c60: The change to CRASH_ON_*_FAULT bits might be causing th=
-e
-> GPU
-> >> to retry failed memory accesses indefinitely rather than surfacing a
-> fault.
-> >
-> > Your Strix Halo chip has a GFX11.5 core which uses gfxhub_v11_5.c
-> > Changes to gfxhub_v12_0.c will not affect your chip.
-> >
-> > Note that retry faults are not enabled on Strix Halo by default, and
-> don't
-> > behave the way you described.
-> >
-> >>
-> >> 3.  gmc_v12_0.c (Harish Kasiviswanathan):
-> >>
-> >>   - ae4e30f24 and e3fa02872: If the new per-version PTE address masks
-> for
-> >> gfx1151 are incorrect, it could result in corrupted page table entries=
-.
-> >>
-> >> 4.  amdgpu_gart.c (Donet Tom):
-> >>
-> >>   - ec4c462e2: The updated PTE iteration grouping may be producing
-> >> incorrect page tables when combined with the new PTE mask.
-> >>
-> >> Downgrading to 7.1.0-rc5 resolves the issue. Please let me know if you
-> >> require any specific debug output or further testing.
-> >>
-> >> Best regards,
-> >> Jonathan
-> >
-> >
-> >
+> We checked the scan dump of GPU, we can see the CPC and CPF are
+> still stuck, that caused Compute Ring tests fail.
 >
+> I added printings in driver codes (gfx_v9_0_cp_resume), and found
+> the HQDs of MECs are still active, that may cause MECs use stale
+> HQDs when MECs are unhalted before mapping compute queues (restoring
+> MQDs to HQDs).
 >
+> So, I send this patch to fix above problems.
+> There are two main changes of my patch:
+> One is to reset CPC and CPF before resuming KCQ.
+> Another is to disable HQDs beofre unhalting MECs.
+> ---
+>  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 37 +++++++++++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/=
+amdgpu/gfx_v9_0.c
+> index 90bbddb45730..0c01701488e7 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> @@ -4071,6 +4071,39 @@ static int gfx_v9_0_hw_init(struct amdgpu_ip_block=
+ *ip_block)
+>         return r;
+>  }
+>
+> +static void gfx_v9_0_deactivate_kcq_hqd(struct amdgpu_device *adev)
+> +{
 
---000000000000099d0806544ae042
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Should probably also add amdgpu_gfx_rlc_enter_safe_mode() here.
 
-<div dir=3D"ltr">Hi team,<br><br>Thank you for the prompt replies.<br><br>C=
-hristian, I have tested the amd-staging-drm-next branch, and ComfyUI is now=
- working as expected. I did encounter an error when setting AMD_SERIALIZE_K=
-ERNEL=3D3, as it appears only 0 and 1 are supported, but this seems unrelat=
-ed to the primary issue.<div><br></div><div>Thank you all for the excellent=
- work!<br><br>Best regards,<br>Jonathan Lancar<br><br></div></div><br><div =
-class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Mon, Jun 15, 2026 at 8:39=E2=80=AFAM Christian K=C3=B6nig &lt;<a =
-href=3D"mailto:christian.koenig@amd.com">christian.koenig@amd.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><br>
-<br>
-On 6/15/26 14:01, Timur Krist=C3=B3f wrote:<br>
-&gt; On Friday, June 12, 2026 3:12:29=E2=80=AFPM Central European Summer Ti=
-me Jonathan L. <br>
-&gt; wrote:<br>
-&gt;&gt; Hi team,<br>
-&gt;&gt;<br>
-&gt;&gt; I am reporting a regression in the AMDGPU driver affecting the Str=
-ix Halo<br>
-&gt;&gt; APU (Radeon 8060S, gfx1151). While everything works correctly on k=
-ernel<br>
-&gt;&gt; 7.1.0-rc5, upgrading to 7.1.0-rc7 causes GPU memory operations to =
-hang<br>
-&gt;&gt; indefinitely. This occurs during tasks like torch.empty() or model=
- weight<br>
-&gt;&gt; transfers in ComfyUI (PyTorch 2.11.0+rocm7.13).<br>
-&gt;&gt;<br>
-&gt;&gt; I have bisected the changes in drivers/gpu/drm/amd/ between rc5 an=
-d rc7 and<br>
-&gt;&gt; identified the following potential causes:<br>
-&gt; <br>
-&gt; Hi Jonathan,<br>
-&gt; <br>
-&gt; Can you please bisect which of those four patches causes your issue?<b=
-r>
-&gt; <br>
-&gt; Thanks,<br>
-&gt; Timur<br>
-&gt; <br>
-&gt;&gt;<br>
-&gt;&gt; 1.=C2=A0 amdgpu_hmm.c (Christian K=C3=B6nig):<br>
-&gt;&gt;<br>
-&gt;&gt;=C2=A0 =C2=A0- 1c824497d: Changing the invalidate callback to wait =
-on the VM root BO<br>
-&gt;&gt; reservation lock may be introducing a deadlock.<br>
-<br>
-No, that was done before anyway. Just with a different BO.<br>
-<br>
-&gt;&gt;=C2=A0 =C2=A0- 962d684b5: Moving the notifier_seq read outside the =
-retry loop could<br>
-&gt;&gt; cause infinite retries with a stale sequence number.<br>
-<br>
-That was indeed an issue but should be fixed on amd-staging-drm-next. Can y=
-ou re-test with that branch?<br>
-<br>
-Thanks,<br>
-Christian.<br>
-<br>
-<br>
-&gt;&gt;=C2=A0 =C2=A0- 58bafc666: Changes to userptr submission waiting.<br=
+> +       for (int i =3D 0; i < adev->gfx.num_compute_rings; i++) {
+> +               u32 tmp;
+> +               struct amdgpu_ring *ring =3D &adev->gfx.compute_ring[i];
+> +
+> +               mutex_lock(&adev->srbm_mutex);
+> +               soc15_grbm_select(adev, ring->me, ring->pipe, ring->queue=
+, 0, 0);
+> +               tmp =3D RREG32_SOC15(GC, 0, mmCP_HQD_ACTIVE);
+> +               /* disable the queue if it's active */
+> +               if (tmp & CP_HQD_ACTIVE__ACTIVE_MASK) {
+> +                       int j;
+> +
+> +                       WREG32_SOC15(GC, 0, mmCP_HQD_DEQUEUE_REQUEST, 1);
+> +                       for (j =3D 0; j < adev->usec_timeout; j++) {
+> +                               tmp =3D RREG32_SOC15(GC, 0, mmCP_HQD_ACTI=
+VE);
+> +                               if (!(tmp & CP_HQD_ACTIVE__ACTIVE_MASK))
+> +                                       break;
+> +                               udelay(1);
+> +                       }
+> +                       if (j =3D=3D AMDGPU_MAX_USEC_TIMEOUT) {
+> +                               DRM_DEBUG("comp_%u_%u_%u dequeue request =
+failed.\n",
+> +                                                       ring->me, ring->p=
+ipe, ring->queue);
+> +                               /* Manual disable if dequeue request time=
+s out */
+> +                               WREG32_SOC15(GC, 0, mmCP_HQD_ACTIVE, 0);
+> +                       }
+> +                       WREG32_SOC15(GC, 0, mmCP_HQD_DEQUEUE_REQUEST, 0);
+> +               }
+> +               soc15_grbm_select(adev, 0, 0, 0, 0, 0);
+> +               mutex_unlock(&adev->srbm_mutex);
+> +       }
+
+and amdgpu_gfx_rlc_exit_safe_mode() here.
+
+Alex
+
+> +}
+> +
+>  static int gfx_v9_0_hw_fini(struct amdgpu_ip_block *ip_block)
+>  {
+>         struct amdgpu_device *adev =3D ip_block->adev;
+> @@ -4095,6 +4128,10 @@ static int gfx_v9_0_hw_fini(struct amdgpu_ip_block=
+ *ip_block)
+>                 return 0;
+>         }
 >
-&gt;&gt;<br>
-&gt;&gt; 2.=C2=A0 gfxhub_v12_0.c (Timur Krist=C3=B3f):<br>
-&gt;&gt;<br>
-&gt;&gt;=C2=A0 =C2=A0- 40bab7c60: The change to CRASH_ON_*_FAULT bits might=
- be causing the GPU<br>
-&gt;&gt; to retry failed memory accesses indefinitely rather than surfacing=
- a fault.<br>
-&gt; <br>
-&gt; Your Strix Halo chip has a GFX11.5 core which uses gfxhub_v11_5.c<br>
-&gt; Changes to gfxhub_v12_0.c will not affect your chip.<br>
-&gt; <br>
-&gt; Note that retry faults are not enabled on Strix Halo by default, and d=
-on&#39;t <br>
-&gt; behave the way you described.<br>
-&gt; <br>
-&gt;&gt;<br>
-&gt;&gt; 3.=C2=A0 gmc_v12_0.c (Harish Kasiviswanathan):<br>
-&gt;&gt;<br>
-&gt;&gt;=C2=A0 =C2=A0- ae4e30f24 and e3fa02872: If the new per-version PTE =
-address masks for<br>
-&gt;&gt; gfx1151 are incorrect, it could result in corrupted page table ent=
-ries.<br>
-&gt;&gt;<br>
-&gt;&gt; 4.=C2=A0 amdgpu_gart.c (Donet Tom):<br>
-&gt;&gt;<br>
-&gt;&gt;=C2=A0 =C2=A0- ec4c462e2: The updated PTE iteration grouping may be=
- producing<br>
-&gt;&gt; incorrect page tables when combined with the new PTE mask.<br>
-&gt;&gt;<br>
-&gt;&gt; Downgrading to 7.1.0-rc5 resolves the issue. Please let me know if=
- you<br>
-&gt;&gt; require any specific debug output or further testing.<br>
-&gt;&gt;<br>
-&gt;&gt; Best regards,<br>
-&gt;&gt; Jonathan<br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-<br>
-</blockquote></div>
-
---000000000000099d0806544ae042--
+> +       if ((adev->flags & AMD_IS_APU) && amdgpu_in_reset(adev) &&
+> +               amdgpu_asic_reset_method(adev) =3D=3D AMD_RESET_METHOD_MO=
+DE2)
+> +               gfx_v9_0_deactivate_kcq_hqd(adev);
+> +
+>         /* Use deinitialize sequence from CAIL when unbinding device from=
+ driver,
+>          * otherwise KIQ is hanging when binding back
+>          */
+> --
+> 2.39.5
+>
