@@ -2,109 +2,109 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KxqCJHG9MWqdpgUAu9opvQ
+	id bRDfI2jBMWoCpwUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 23:17:37 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 23:34:32 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD9B1695656
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 23:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA6DF6956F4
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 23:34:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=hjOSzXJj;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=cCj40NG3;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 776BF10E85D;
-	Tue, 16 Jun 2026 21:17:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78E9710E865;
+	Tue, 16 Jun 2026 21:34:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010054.outbound.protection.outlook.com [52.101.46.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DDB010E85D
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jun 2026 21:17:33 +0000 (UTC)
+Received: from BN8PR05CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11011033.outbound.protection.outlook.com [52.101.57.33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D32B210E865
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jun 2026 21:34:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NRw02ZKD6n7iGHpfVL+csULqnicKlEXIMMdfmfV6hfArgek6oqFkFpJjE4eF1yMhgIZwxw1pGE2fwo2M6qrnboGFKhFy/MIXE1b1KgFdvqgt6AhQoAYsQDdMIID5m3sFxJ70WqR7Us9pHinJJUnmSFM+7r7luOWMQmhBaOsoZ439WOyi7IPHerlZAqhb9Lmp22TJlqi6+yMW02e9KOLlzaPoDcXngNs9HBC7xCDncnP58fGurR6szNuK1gd26APf/A+p6GDPZy42cOdvD8JXeQqFoEzoSOgqj1tIIZxrcxL7b/kcOo6IsHgYsEV2CGiJKn6v1ZF5a/dN3P2/O5XZjw==
+ b=lkxicDTOGS1ETaDx5wM2GxsA3W4ah/ukd0ZnN6IrcIaYrVFIvCyTFQGGCbUcPxykWhN8slTR1K7cFjmPyUh5NApLZU7Yquk+ROEx3Jwcy5LaHUOlx0epIQEoIjdzaTDRFMoWG5rZKWOs6v9GN+jT4QqBPO4HSFgVTOxnEyKWTr8//7B0pU3GucCG2LP8GDlF6NKwujOfVj/vb4s/KiAtQ5718frP/OaiRxSusA2NoTJyBo9dI67JWYYmN0O7qpCEw4N0P7bTMz02u5EkjoT8BmbTemFy6r5uE0ZHskRqb5F079k8N1rnmr6vLHTT+dqsXwjpudKfHlEwx+sOxsodWw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GkO9Y0+Rt6R45+kz3FwQaF+YThGMKXVtLpiY0NW5zL8=;
- b=ykVIi7GnbJPK8xNZBN6xgVmawdYzY8073HSPgARJuiZcTBbq6JDRGcsIBJxJ7jVTn0eK84xXoEWbDYyZ1piX060t8q8lP9lvp/S5uxdLCfHXinfpvVEVgRW6K5mZzz8+UkEh+fmn/gPMBusYWjP4X7tKF8v0svHzTl1trbx3TsuHq0mzrNJxZAsWeVz/f64m7APJX6//Nco2SJGQ2H3zAVIkd+HDneraZLQakOXQStgUmyf513P91FotntYFH1O4+7IXCF8nbo7Z1jw/gxJKwJ3t8YbbsuESFyGpRTtM0uh7HfkuwNAySS0wvG/q7DOkB/EPURNN3pGeSRTx9ZxS1g==
+ bh=gBzpOW/ohLAyXdqHlMg2G3xmRKdXM1rahNarRwD1P9w=;
+ b=twver73JtuxMvtrLZ19+vOPfzyDBHlueWyZVJpZxtzAb1ayEqcYlytLFCJtJSmFb7Agf7xB74g+HyfmbfucC0sQRcMtt72CqTPpfaHkCD5QTuOKGpa5ON4LNct5qGG0R+gInIQVJfjY84oQHx8MvXHqDdvdUcedSBFgM1czwRyH2kHTXoq5cGdlnxUw/WCe08Ev939ujTFF3crXeO0e0ucXZvheZzW1RezGJK6o1+ESgueGLBb0WZGIdjjuv+bNJ/9AnZD9cX7Iqb9ogio64TjuKJSSS9Q4mC0NBkvl+TKs/bpgTo7ODwAN7hqdJzKtXimqwR0urdtOG/sMsEuJ47w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GkO9Y0+Rt6R45+kz3FwQaF+YThGMKXVtLpiY0NW5zL8=;
- b=hjOSzXJjtKOx6e6qV+i3G49LwCioF5KuVLnpozpLSmTJpx1pa9oxhORzG3ZyTV/KR9P0nzSIzpePodUdkaB60pcXix/mun64hDHfDBecypYq8qacQFncAWlG3Z8e/KHQTNbZCJoHUcXSH1SHDN07I9EDaURJOAnKqcgUg6uJ/pU=
-Received: from BL1PR13CA0317.namprd13.prod.outlook.com (2603:10b6:208:2c1::22)
- by IA1PR12MB8359.namprd12.prod.outlook.com (2603:10b6:208:3fc::15)
+ bh=gBzpOW/ohLAyXdqHlMg2G3xmRKdXM1rahNarRwD1P9w=;
+ b=cCj40NG3B0TAWoevVfFXeVgtfUdwrVlb5Jjgl2unnEiWQz8SHIIEeseHkhY5tksi397UR6ee/Q4AmjrmdiCtWxTz9Q8nmzMjuZrW4EYxaDZnGbbV7MJuPklAO+1C1+plgWnil24BJ4F4dJ24DTRJY8aP9lSoOYEOtKLckC6WlXM=
+Received: from MN0P221CA0016.NAMP221.PROD.OUTLOOK.COM (2603:10b6:208:52a::19)
+ by LV8PR12MB9619.namprd12.prod.outlook.com (2603:10b6:408:2a1::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Tue, 16 Jun
- 2026 21:17:27 +0000
-Received: from MN1PEPF0000F0E4.namprd04.prod.outlook.com
- (2603:10b6:208:2c1:cafe::5a) by BL1PR13CA0317.outlook.office365.com
- (2603:10b6:208:2c1::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.11 via Frontend Transport; Tue,
- 16 Jun 2026 21:17:27 +0000
+ 2026 21:34:25 +0000
+Received: from BL02EPF0001A108.namprd05.prod.outlook.com
+ (2603:10b6:208:52a:cafe::5c) by MN0P221CA0016.outlook.office365.com
+ (2603:10b6:208:52a::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.18 via Frontend Transport; Tue,
+ 16 Jun 2026 21:34:25 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- MN1PEPF0000F0E4.mail.protection.outlook.com (10.167.242.42) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ BL02EPF0001A108.mail.protection.outlook.com (10.167.241.138) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.139.8 via Frontend Transport; Tue, 16 Jun 2026 21:17:27 +0000
-Received: from Philip-Dev.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.139.8 via Frontend Transport; Tue, 16 Jun 2026 21:34:25 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 16 Jun
- 2026 16:17:26 -0500
-From: Philip Yang <Philip.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <Felix.Kuehling@amd.com>,
- <Harish.Kasiviswanathan@amd.com>, <Amir.Shetaia@amd.com>,
- <Kent.Russell@amd.com>
-CC: Philip Yang <Philip.Yang@amd.com>, Kent Russell <kent.russell@amd.com>
-Subject: [PATCH 2/2] drm/amdkfd: Drain retry faults before SVM range no-access
- unmap
-Date: Tue, 16 Jun 2026 17:16:52 -0400
-Message-ID: <20260616211652.1962285-3-Philip.Yang@amd.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260616211652.1962285-1-Philip.Yang@amd.com>
-References: <20260616211652.1962285-1-Philip.Yang@amd.com>
+ 2026 16:34:25 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 16 Jun
+ 2026 16:34:24 -0500
+Received: from Xiaogang-ROCM-Dev.amd.com (10.180.168.240) by
+ satlexmb08.amd.com (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41
+ via Frontend Transport; Tue, 16 Jun 2026 16:34:24 -0500
+From: Xiaogang.Chen <xiaogang.chen@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Xiaogang Chen <xiaogang.chen@amd.com>
+Subject: [PATCH] drm/amdkfd: Guard m->cp_hqd_eop_control setting by
+ q->eop_ring_buffer_size
+Date: Tue, 16 Jun 2026 16:33:25 -0500
+Message-ID: <20260616213325.444949-1-xiaogang.chen@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000F0E4:EE_|IA1PR12MB8359:EE_
-X-MS-Office365-Filtering-Correlation-Id: 05a110b9-74da-4254-f9d3-08decbecab24
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A108:EE_|LV8PR12MB9619:EE_
+X-MS-Office365-Filtering-Correlation-Id: 08b80f03-1b03-4e0c-98cb-08decbef09b1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|36860700016|82310400026|23010399003|18002099003|22082099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: Y5VzTbAs4U3LpXCVpIA/axlou+osuemiGho40NLWZU1jOazbVv7qgLDZM/FGspOWFEhttoiCx0Y9vyi7H/+auUSwS/U07W3mDSWzKFwcH5FTFcgaPpB5shoWb9xl5LvvhSrZhqP+HFmcg7t/w0h/3YxDO8+Mqm/NmaOOrO2xlg4ObYap2F3oK3SPCjwmdlnzQ6NDgzdvyjdZqgSDdl2uxTrG0Zf1DR/wRRYwBNgGtUUxhuXK3VmmR6qT9oo0uivqYgYMDstrjDhVUnYUMCm+IvqA1ssgYI1b7jRUgnvDZIlbTTGQdo4v7uT3Bxl8aSyIIG11s4We+JKvIb/adX+2YJwCMrNGgkfi2DsNdu2rdJEKvLXFfbt6na8QeoHDHtORlFrOy5Juub+rsavvJPndlAW9iS8XYCz95UWpH+/TYG3Dlqv+WdVtOCAbuJKxpIQByBp5vstAgiPAzyok6rXjiYyNce+HXBQdkvsE3NkWMUw9ArqK3LSr2sYLuuKk2oiBsUQL4ykwlW6860mdu+hprNRpWLpBpCSNUCN5sTnRDCpeVVlTBKBB/dWAbcmQOvT5pjfmY1KlVDpcLnbe8eplUp1pKWwBQlzXaH5nH3oe6KZYqN9g2/DgPrgpAek51RfnK+wRDtnvLw8K8w0TSAhHEKcLTl8r/+4o/B3LX52PyNGwZCrKyms4hnytnfB8nsb8xug5egViyzl0i89SD81xX+fr5PdP27jRyUQty70lQs8=
+ ARA:13230040|376014|1800799024|36860700016|82310400026|23010399003|18002099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: /s6k1ZKHH0jbP0FmKnh1bE4M2MM1Et+di2uhU9PJWfaKsFhjilYhFITeUFv+3bPamYJ07EQpOrSf6h6ivZYU9Gudo9Cv/5u/t1aGszk5LA5TG/76dIkRCcA22MtEcdnBUGyFQIcWCS7gdrY5WVfbyMmH6Ve7hf0It5Gc1/64D0uJyQRJrBJuDvbw3GHuIYDVevXo/U7XzCa7hfPTFWV8+fOQqYFK2blOEeCnbl+PyyBnqdTvRZcLQyZ9LXfZ+XpB6S9ne7UkHgS+cHZj8le5WXIdqA7J+G6C8ld5y9qgrD/nNSAKJkUTEzO27H42qZJwgHW6Xt7j2L04JEHr2AE5ynsV97sayGaQBZnDIX1HDPLnjqLRQJX0FvLPORGrVrxGSLcFnZrOXBnXPsUJwgKFFHHZKleZ14t8cdXo+EdpkZIyp1moJnIJ2H6mnfdnrgOwU4H4IcGF73tDBGUSN77DcNUqjKwZB/DbWhlYJBN7+Y7AtHFg8MBcsK8XA/vGB9pnXjrEQW58Ja2+o/eJtfLua8piXuTxeq6QApGr7VzT/teBCOhZOZ+PX+l2VexMF0dd28SDU0wg1FPSevPV7JPXqgrDVcKoNnGdxBzsJw5Yo30c9zUqDDJkEHKFVX20CBL19jPm2MhlvIIUwBTkoNZLCRmS1gDj/vftvpztJOMRr8XVlLqPabNDQd0bTrI0fs8ueiq9iHUBgj9Vrvbj6dfiGLbbXVhZJR1PR5rStuXo/FU=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(36860700016)(82310400026)(23010399003)(18002099003)(22082099003)(11063799006)(56012099006);
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(36860700016)(82310400026)(23010399003)(18002099003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: /9qvPC8sL1ssACQo/TxFvSxgcL3DEdh+gIbOBjpniQSf3HPAXr+3+LsuEZJJedXITO0+J9DjUHe2XV3V3mouWCd4lgK5FsDuf9C+zBqHTGDws9QwiZschZbmLFLhb352ChyTX91DDU+fPl814/N2OGFstbxBnmCOm3x2fBZLC0Ht/KoKW/528Dz0PbOHUWEN4g5uaTGEfFt5wX4Fh6V+tGrxedTWEv3vPaHG21SC+CjsWtWLoYRaKHy9Iwhh0d5t/04J7/iIe7OnMjR57ADjNDvFF8QebCZ/6wD3+3A4eIRbibNBWGL56xl54y+3sCsE32RvwwU1wdxtiIXVd7TxHc0RTuYUSjW6HSDsEYukTSP3N1mRQaQoEftcBGXE+yqf6WxEMItTZUrpabCeYYrcQZfIhzPrv4Fgs18aQ+UfZ7K3VUGNKpSR/rbWg3Nvopt3
+X-MS-Exchange-AntiSpam-MessageData-0: tcDwSiXG2VeAD6BEVV+cHiF/vOx/Tur+lZgK53PC2mDgXn/OEPcehgis1kGxGY1UYvl1FmeCVK2KYvtuyvj8a6Pz9lE2ZRIJQtThCsR0FJ+tW4vE6Q2Rf9YnxFGOCC/13IX0SbRnGTyo1MXf8dZZrCvQCCQO3kPF3QKtL6WNXSrk7bCtbLrH9PahsRsIe7oF6+auunXhqxUjWrHJVFLXy7yvib5Mv/9TNE6MUEEtZhMWIkLggRlVd38BtIXJRV/TxSgTIH61aCSdRgw+CieVyTmVOPKDKk+X2EUmxjDrPOURcYQvGY1PFYKq18N1nosFswdMkl6dI9J6aRX6FTj1DXjqlKDbv3+T4b0hQl9wACPgKmUpOwhcbXrzNCpT2ufnCT+vFW3+Ow9PpcfR3vMJ3j740WfvUFLi093r8t7B7Bx8k2OBa5evlKJdqj/JBZ0S
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2026 21:17:27.6802 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 05a110b9-74da-4254-f9d3-08decbecab24
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2026 21:34:25.3066 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08b80f03-1b03-4e0c-98cb-08decbef09b1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000F0E4.namprd04.prod.outlook.com
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A108.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8359
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9619
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,197 +122,102 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[Philip.Yang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[amd.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	HAS_XOIP(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_FIVE(0.00)[6];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCPT_COUNT_SEVEN(0.00)[7];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	FROM_NEQ_ENVFROM(0.00)[xiaogang.chen@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
+	ALIAS_RESOLVED(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DD9B1695656
+X-Rspamd-Queue-Id: EA6DF6956F4
 
-When svm_range_needs_unmap() unmaps a range, retry faults queued in the
-soft IH ring before set_attr no-access was called must be dropped, since
-those faults arrived before the app chose to revoke GPU access and should
-not re-map the range.
+From: Xiaogang Chen <xiaogang.chen@amd.com>
 
-Extract and add helper svm_range_update_checkpoint_timestamp() from
-svm_range_unmap_from_cpu() so both callers share the same logic.
-
-Change checkpoint_ts in svm_range_list from uint64_t to atomic64_t so
-svm_range_restore_pages() can read it safely from the page fault handler
-without holding the svms lock.
-
-Signed-off-by: Philip Yang <Philip.Yang@amd.com>
-Acked-by: Kent Russell <kent.russell@amd.com>
+Signed-off-by: Xiaogang Chen <xiaogang.chen@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h |  2 +-
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c  | 85 +++++++++++++++------------
- 2 files changed, 50 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c   | 4 ++--
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c   | 4 ++--
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c   | 4 ++--
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c | 4 ++--
+ 4 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index f00c522fba74..d3dcc3b8d546 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -893,7 +893,7 @@ struct svm_range_list {
- 	DECLARE_BITMAP(bitmap_supported, MAX_GPU_INSTANCE);
- 	struct task_struct		*faulting_task;
- 	/* check point ts decides if page fault recovery need be dropped */
--	uint64_t			checkpoint_ts[MAX_GPU_INSTANCE];
-+	atomic64_t			checkpoint_ts[MAX_GPU_INSTANCE];
- 
- 	/* Default granularity to use in buffer migration
- 	 * and restoration of backing memory while handling
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index e039b6f2942f..acaa364244d0 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -759,6 +759,48 @@ svm_range_check_attr(struct kfd_process *p,
- 	return 0;
- }
- 
-+static void svm_range_update_checkpoint_timestamp(struct kfd_process *p)
-+{
-+	struct svm_range_list *svms;
-+	int i;
-+
-+	svms = &p->svms;
-+
-+	/* calculate time stamps that are used to decide which page faults need be
-+	 * dropped or handled before unmap pages from gpu vm
-+	 */
-+	for_each_set_bit(i, svms->bitmap_supported, p->n_pdds) {
-+		struct kfd_process_device *pdd;
-+		struct amdgpu_device *adev;
-+		struct amdgpu_ih_ring *ih;
-+		uint32_t checkpoint_wptr;
-+
-+		pdd = p->pdds[i];
-+		if (!pdd)
-+			continue;
-+
-+		adev = pdd->dev->adev;
-+
-+		/* Check and drain ih1 ring if cam not available */
-+		if (!adev->irq.retry_cam_enabled && adev->irq.ih1.ring_size) {
-+			ih = &adev->irq.ih1;
-+			checkpoint_wptr = amdgpu_ih_get_wptr(adev, ih);
-+			if (ih->rptr != checkpoint_wptr) {
-+				atomic64_set(&svms->checkpoint_ts[i],
-+					amdgpu_ih_decode_iv_ts(adev, ih, checkpoint_wptr, -1));
-+				continue;
-+			}
-+		}
-+
-+		/* check if dev->irq.ih_soft is not empty */
-+		ih = &adev->irq.ih_soft;
-+		checkpoint_wptr = amdgpu_ih_get_wptr(adev, ih);
-+		if (ih->rptr != checkpoint_wptr)
-+			atomic64_set(&svms->checkpoint_ts[i],
-+				     amdgpu_ih_decode_iv_ts(adev, ih, checkpoint_wptr, -1));
-+	}
-+}
-+
- static void
- svm_range_apply_attrs(struct kfd_process *p, struct svm_range *prange,
- 		      uint32_t nattr, struct kfd_ioctl_svm_attribute *attrs,
-@@ -784,6 +826,8 @@ svm_range_apply_attrs(struct kfd_process *p, struct svm_range *prange,
- 			gpuidx = kfd_process_gpuidx_from_gpuid(p,
- 							       attrs[i].value);
- 			if (attrs[i].type == KFD_IOCTL_SVM_ATTR_NO_ACCESS) {
-+				svm_range_update_checkpoint_timestamp(p);
-+
- 				bitmap_clear(prange->bitmap_access, gpuidx, 1);
- 				bitmap_clear(prange->bitmap_aip, gpuidx, 1);
- 				bitmap_set(prange->bitmap_needs_unmap, gpuidx, 1);
-@@ -2560,7 +2604,6 @@ svm_range_unmap_from_cpu(struct mm_struct *mm, struct svm_range *prange,
- 	struct kfd_process *p;
- 	unsigned long s, l;
- 	bool unmap_parent;
--	uint32_t i;
- 
- 	if (atomic_read(&prange->queue_refcount)) {
- 		int r;
-@@ -2580,38 +2623,7 @@ svm_range_unmap_from_cpu(struct mm_struct *mm, struct svm_range *prange,
- 	pr_debug("svms 0x%p prange 0x%p [0x%lx 0x%lx] [0x%lx 0x%lx]\n", svms,
- 		 prange, prange->start, prange->last, start, last);
- 
--	/* calculate time stamps that are used to decide which page faults need be
--	 * dropped or handled before unmap pages from gpu vm
--	 */
--	for_each_set_bit(i, svms->bitmap_supported, p->n_pdds) {
--		struct kfd_process_device *pdd;
--		struct amdgpu_device *adev;
--		struct amdgpu_ih_ring *ih;
--		uint32_t checkpoint_wptr;
--
--		pdd = p->pdds[i];
--		if (!pdd)
--			continue;
--
--		adev = pdd->dev->adev;
--
--		/* Check and drain ih1 ring if cam not available */
--		if (!adev->irq.retry_cam_enabled && adev->irq.ih1.ring_size) {
--			ih = &adev->irq.ih1;
--			checkpoint_wptr = amdgpu_ih_get_wptr(adev, ih);
--			if (ih->rptr != checkpoint_wptr) {
--				svms->checkpoint_ts[i] =
--					amdgpu_ih_decode_iv_ts(adev, ih, checkpoint_wptr, -1);
--				continue;
--			}
--		}
--
--		/* check if dev->irq.ih_soft is not empty */
--		ih = &adev->irq.ih_soft;
--		checkpoint_wptr = amdgpu_ih_get_wptr(adev, ih);
--		if (ih->rptr != checkpoint_wptr)
--			svms->checkpoint_ts[i] = amdgpu_ih_decode_iv_ts(adev, ih, checkpoint_wptr, -1);
--	}
-+	svm_range_update_checkpoint_timestamp(p);
- 
- 	unmap_parent = start <= prange->start && last >= prange->last;
- 
-@@ -3121,8 +3133,9 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
- 	mutex_lock(&svms->lock);
- 
- 	/* check if this page fault time stamp is before svms->checkpoint_ts */
--	if (svms->checkpoint_ts[gpuidx] != 0) {
--		if (amdgpu_ih_ts_after_or_equal(ts,  svms->checkpoint_ts[gpuidx])) {
-+	if (atomic64_read(&svms->checkpoint_ts[gpuidx]) != 0) {
-+		if (amdgpu_ih_ts_after_or_equal(ts,
-+		    atomic64_read(&svms->checkpoint_ts[gpuidx]))) {
- 			pr_debug("draining retry fault, drop fault 0x%llx\n", addr);
- 			if (write_locked)
- 				mmap_write_downgrade(mm);
-@@ -3132,7 +3145,7 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
- 			/* ts is after svms->checkpoint_ts now, reset svms->checkpoint_ts
- 			 * to zero to avoid following ts wrap around give wrong comparing
- 			 */
--			svms->checkpoint_ts[gpuidx] = 0;
-+			atomic64_set(&svms->checkpoint_ts[gpuidx], 0);
- 		}
- 	}
- 
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
+index 82f194ea2a21..5f8bf87f475e 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
+@@ -203,8 +203,8 @@ static void update_mqd(struct mqd_manager *mm, void *mqd,
+ 	 * more than (EOP entry count - 1) so a queue size of 0x800 dwords
+ 	 * is safe, giving a maximum field value of 0xA.
+ 	 */
+-	m->cp_hqd_eop_control = min(0xA,
+-		ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 - 1);
++	m->cp_hqd_eop_control = q->eop_ring_buffer_size ? min(0xA,
++		ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 - 1) : 0;
+ 	m->cp_hqd_eop_base_addr_lo =
+ 			lower_32_bits(q->eop_ring_buffer_address >> 8);
+ 	m->cp_hqd_eop_base_addr_hi =
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
+index dff016c9c65c..7506a1410385 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
+@@ -241,8 +241,8 @@ static void update_mqd(struct mqd_manager *mm, void *mqd,
+ 	 * more than (EOP entry count - 1) so a queue size of 0x800 dwords
+ 	 * is safe, giving a maximum field value of 0xA.
+ 	 */
+-	m->cp_hqd_eop_control = min(0xA,
+-		ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 - 1);
++	m->cp_hqd_eop_control = q->eop_ring_buffer_size ? min(0xA,
++		ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 - 1) : 0;
+ 	m->cp_hqd_eop_base_addr_lo =
+ 			lower_32_bits(q->eop_ring_buffer_address >> 8);
+ 	m->cp_hqd_eop_base_addr_hi =
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
+index 51dde2c86eb3..f1f923eb0ea5 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
+@@ -216,8 +216,8 @@ static void update_mqd(struct mqd_manager *mm, void *mqd,
+ 	 * more than (EOP entry count - 1) so a queue size of 0x800 dwords
+ 	 * is safe, giving a maximum field value of 0xA.
+ 	 */
+-	m->cp_hqd_eop_control = min(0xA,
+-		ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 - 1);
++	m->cp_hqd_eop_control = q->eop_ring_buffer_size ? min(0xA,
++		ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 - 1) : 0;
+ 	m->cp_hqd_eop_base_addr_lo =
+ 			lower_32_bits(q->eop_ring_buffer_address >> 8);
+ 	m->cp_hqd_eop_base_addr_hi =
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
+index 9014912ed82c..a6fff8032dce 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
+@@ -294,8 +294,8 @@ static void update_mqd(struct mqd_manager *mm, void *mqd,
+ 	 * more than (EOP entry count - 1) so a queue size of 0x800 dwords
+ 	 * is safe, giving a maximum field value of 0xA.
+ 	 */
+-	m->cp_hqd_eop_control = min(0xA,
+-		ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 - 1);
++	m->cp_hqd_eop_control = q->eop_ring_buffer_size ? min(0xA,
++		ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 - 1) : 0;
+ 	m->cp_hqd_eop_base_addr_lo =
+ 			lower_32_bits(q->eop_ring_buffer_address >> 8);
+ 	m->cp_hqd_eop_base_addr_hi =
 -- 
-2.50.1
+2.34.1
 
