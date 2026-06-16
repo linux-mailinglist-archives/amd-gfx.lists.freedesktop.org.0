@@ -2,106 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1d79E/4YMWpWbgUAu9opvQ
+	id 4Z5VF2RGMWqXfwUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 11:35:58 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 14:49:40 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9017568D988
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 11:35:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D976968F950
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 14:49:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=4Zc5JLtD;
+	dkim=fail ("headers rsa verify failed") header.d=oflebbe.de header.s=strato-dkim-0002 header.b=LVcSxBCk;
+	dkim=fail ("headers eddsa verify failed") header.d=oflebbe.de header.s=strato-dkim-0003 header.b=p1i8YMIB;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=oflebbe.de (policy=quarantine);
+	arc=reject ("signature check failed: fail, {[1] = sig:strato.com:reject}")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 320E210E993;
-	Tue, 16 Jun 2026 09:35:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34EE310EB72;
+	Tue, 16 Jun 2026 12:49:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013053.outbound.protection.outlook.com
- [40.93.196.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD51A10E7A6
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jun 2026 09:35:54 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qgUQU16H8lbzMjxJlOikywRqx7vrKAr0nGbJIz8H6PLF7Gx70tfNUvwfgkeWJdm2iXYwIb6X+HsGJa12shTWruAZKtR0bodPklUL1Qn+ErWmvj+B2ZJIDooNYo+iPZR7ug7Yv5qGhr/yv8klh31Dkh/5U6EmcFgrATTJ77mvlyuPtiCdNbzzIo67BXeMaUNkPzoBBcwBd9lYfJThzJS0qnokGsfJ8KIxeUfwnKY6/tJIWCgcqB+ge2ME4xym3MZbokrL0ns53yYa8ChQF60ExGbhcCwBmIlsPuORKk9efN/BY2cTSC/COrqvZ8WEqN3eelDNZPkZ/xFvRNpiSJclsQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RnN1Ur4ztYkJxo8zVXGqWVzq6g1OsOmnx2rOoXj3fm0=;
- b=WZrtqR/38U7/g0nJUotlkmq9x1ldq8hYww58eexQca2DPaTF6o5mvt7nsNRE4YP012i4vur0g8kLW2x4AnovXYyN/BnCMbdE2SRiPbZwzjbPUuYPzzar+Bg+1a6kVk+xevIT3uwo0LpS1YHx2agkeURNVvQ8eaEI1F2SJmqkGS4gtPQxRvbADHuKIJCCBZWDQs0WCNxBYdP2EMRaHnqUsKkm957IOJXYoaDKnUT/iHNcduyXrYHtsB/DLPNXCzMuOjI+X+oPl36xIa5IEx/7exSxP/ftxF6JKFjPlt/B5DBo7QNRZ9hsGCAE+dkaeZ8L8148Sw4GZHt3HljnPb2JNA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RnN1Ur4ztYkJxo8zVXGqWVzq6g1OsOmnx2rOoXj3fm0=;
- b=4Zc5JLtDbXR3JLiSEmL04ZwHV4gmjFkdxptpC/CSMMZ88EnpFO0UGG+PuxZDs8Y7q2kPY4HOXOwijBbawrqNAPP3WjIe8pVJseU+WUxW8I3ZFhjuFFH4v1QX2AcPjsbe8dpnexSuWs3UJiSmp9LGZUWovJfceqTx87OCb/mH6Do=
-Received: from CH0PR03CA0200.namprd03.prod.outlook.com (2603:10b6:610:e4::25)
- by LV8PR12MB9407.namprd12.prod.outlook.com (2603:10b6:408:1f9::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Tue, 16 Jun
- 2026 09:35:51 +0000
-Received: from CH1PEPF0000A345.namprd04.prod.outlook.com
- (2603:10b6:610:e4:cafe::21) by CH0PR03CA0200.outlook.office365.com
- (2603:10b6:610:e4::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.18 via Frontend Transport; Tue,
- 16 Jun 2026 09:35:51 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CH1PEPF0000A345.mail.protection.outlook.com (10.167.244.8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.139.8 via Frontend Transport; Tue, 16 Jun 2026 09:35:50 +0000
-Received: from gangliang-mlse-vm.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.41; Tue, 16 Jun 2026 04:35:49 -0500
-From: Gangliang Xie <ganglxie@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <tao.zhou1@amd.com>, Gangliang Xie
- <ganglxie@amd.com>
-Subject: [PATCH] drm/amdgpu: add buf length check
-Date: Tue, 16 Jun 2026 17:35:08 +0800
-Message-ID: <20260616093508.37315-1-ganglxie@amd.com>
-X-Mailer: git-send-email 2.34.1
+X-Greylist: delayed 359 seconds by postgrey-1.36 at gabe;
+ Tue, 16 Jun 2026 09:43:03 UTC
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
+ [81.169.146.220])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE8EF10E99E
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jun 2026 09:43:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1781602622; cv=none;
+ d=strato.com; s=strato-dkim-0002;
+ b=DERqs9D9ccf6uLWy/fyisoea/+5+tWoM8slYYOTo9jjtPHhBvRbc3e3EYL+tvh1CBw
+ 3/BIqg1DV9vQAhH8soPDzwYlmQt5Il9Ta773OkhgREhVv5ocgq2BPmE8CHIxG/+UkkCG
+ NShKWxCYATg66FG9IdgJsmDhWsHHWJO652znFidzEs9oQvauHgAyoMIRrjlZRXe0jGnU
+ Juwjw472JcAq9mp/M1wIOEEmgpaPLBA1GNYsXpZnbKZIMxQMWlCxen6x+tXs2XQe5811
+ xGJLkDMcKAt7eTrOKc0vxOMza7zX4DHSAMz5Ru01HDDbcE6xIZkY1kZad3u6eVNsXlcL
+ dwOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1781602622;
+ s=strato-dkim-0002; d=strato.com;
+ h=In-Reply-To:References:Cc:To:Subject:From:Date:Message-ID:Cc:Date:
+ From:Subject:Sender;
+ bh=8GBfxWYLCo0gflMvIxRMycwkRuM4XTcnpEBx8LI7pmk=;
+ b=Ctu1z1ACTvBt2gyDin8CiXkl9NKk1N1118lzbHt2eTFWACAXX4QmXfjHy8kocZRei2
+ nxQhqPJnzmHLbo0XzBzwT9chsY58VgxqrMgP7vkpQkCvZMUOdkrossmm3m9d2LOYI9Qs
+ XE6NQemX4SO5CgJhfgG8WoaAx61Ok3BZP8NG3hk9mucCakmQDfxSMJuDZdRxJS7txKPd
+ jfMyyqoNNgK7Hl+7qIojnBm9OzKla7KW9MFR0rftfEdyI8N1OIT74ND9Omh/2NMwoK7J
+ XqLlHVbedohMzObsZRpIfsYfzXTPNYN9F6esMbfmGBtl5xx1NTexAS8WLqfgpT/XTG6T
+ 092Q==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo00
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1781602622;
+ s=strato-dkim-0002; d=oflebbe.de;
+ h=In-Reply-To:References:Cc:To:Subject:From:Date:Message-ID:Cc:Date:
+ From:Subject:Sender;
+ bh=8GBfxWYLCo0gflMvIxRMycwkRuM4XTcnpEBx8LI7pmk=;
+ b=LVcSxBCk++wT/h809wD+jwIMvfhHO/B3KuMaHcXN/aUWnJDvHBsea89ee9pI5FLsG1
+ bIly+Ha7tWnv56KeEBloQVIw9O8h6thSiFG/Io62/omSdlKl6o7W5LeUrO9gTIYRPvQF
+ nnVFj9HdIlaIRxnX294YsmXJFgClD9Eu1q7vaHEN0Ym8cmkNCLoaO5z40Ewgp382gO9z
+ ZM3SvXI+ka8/GX48+WZN06sprnSIrRoWhn+h/xmkWCqzc8efetKkfenWB+eiezA+orWW
+ E0WhcKlKrZ4d1yUAIDHbVCC11b02S5jTOLgjqJOJGbiCQNR71jd65RP+re4+kIFtZBdL
+ JbXQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1781602622;
+ s=strato-dkim-0003; d=oflebbe.de;
+ h=In-Reply-To:References:Cc:To:Subject:From:Date:Message-ID:Cc:Date:
+ From:Subject:Sender;
+ bh=8GBfxWYLCo0gflMvIxRMycwkRuM4XTcnpEBx8LI7pmk=;
+ b=p1i8YMIBE+XVBVgulkoU1jmng5FFAs50SfwB9B3OMkp3ri7YJeHV+Zb2dtybDEIzXd
+ 3uc+GNGiKQC1f88tFeCA==
+X-RZG-AUTH: ":I2okekakfv3mKNs8YSFayssNXg+upC3+tYLZLO1stc+1hkqAuvcOy6wvdE5WbzifFxif/QVyZs25ArOB3Qml3cp6q04="
+Received: from [IPV6:2003:df:7703:a900:8ccc:d9dd:c1b9:4f33]
+ by smtp.strato.de (RZmta 55.0.1 AUTH) with ESMTPSA id gce03325G9b2cCT
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+ (Client did not present a certificate);
+ Tue, 16 Jun 2026 11:37:02 +0200 (CEST)
+Message-ID: <6bd010df-cb3e-4ef4-8439-dbc0ac54749e@oflebbe.de>
+Date: Tue, 16 Jun 2026 11:37:01 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Olaf Flebbe <of@oflebbe.de>
+Subject: Re: list_del corruption in amdgpu (Was: Bug#1139599:
+ linux-base-7.0.10+deb14-amd64: amdgpu (ttm?) two Oops, locking the computer)
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: 1139599@bugs.debian.org, amd-gfx@lists.freedesktop.org
+References: <178107486943.12919.15197186152368989316.reportbug@frame>
+ <ajEQr3IXQ8byLFvC@monoceros>
+Content-Language: de-DE, en-US
+In-Reply-To: <ajEQr3IXQ8byLFvC@monoceros>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000A345:EE_|LV8PR12MB9407:EE_
-X-MS-Office365-Filtering-Correlation-Id: 553e7fef-3c8c-47c5-063a-08decb8aa771
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700016|23010399003|376014|18002099003|56012099006|5023799004|11063799006|6133799003;
-X-Microsoft-Antispam-Message-Info: jVunJ8Q++vnc3C/CekqwCsXNVw6h5ZVR8JTdgXw/WNAU+mzzYKaHQC8IHnm7bSbFkjOS2ZJxQHhXOnnx+H4EcyluWrG7iYFIpFzN0BS283pZj8jK0ryQ/znn2LIvAWwwCh5BDLkPQxc6ilhJ4Y0n/RqqGYCAyYmiztXuDcpSYoab8JiHvnGFdeg8U7Y+eL3xF1KxKZi3JfLC+64XbRKud/BDqKaiE6n5zmqdG4M8E4TggAYTNowBvcarTd85fJza72ytm9almLZC85YrahMSmVKEHHAzijQCBuoiK/uv03SnTK0aDJsHSozlooDY4blfgl1YsQnB5tQjjMllpqwFgaoqxEwe9NhCQXP4fT7vWDYrj3sjOtG5ZPJ+nTQwbERN+gNdGZGgcWHr+fcEimdphsjTCpxTf7SWJiOaIWyuvSnGuBfXVs+eVbE1zwok2RlPpX/kAAf6xJxhg7Z+Bpc8k/GIT51ur6Ln1mO4JJxSg/6RJg7McYtyiYWHAhOeE6p8qI67xJt+LV4E4vYhkKEb0cIvoKbYIGjqosAffvSl8urjXeEU/uTLIwvS39LaA+wxR+KJsN53VdjEUl1o0jb+JADRNKHYCkRKaiZjaECG/ZBQVQL2qXdO7IpPmd2gfoj81DWjyBCkx5K9OPNF0on2qcRMbJMhFpd2XqwBOcsUIZ/mjvQ2FODIKn1P4lGLiDopKm9oi9/YaCWmWDY9xIPR5c65miZxulTvTENVcuVjUnQ=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700016)(23010399003)(376014)(18002099003)(56012099006)(5023799004)(11063799006)(6133799003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: zGxpzE4xDXFdL5Szt3GecBmlj2iPjo2bHJ4VizXFyByHHayJSDtPgDXzwdjnEYcQInOXhguWgqpunJ0T6YZKK/i+rjgFOsCUlXey/vrH8gALohTNFvP1sLrK4B4ANAOAUR6/yjvL/+w31iP39BrM5F4kGh/e2Bt88vNDaM39IpKbN5w/FWk9+TKxfvqq2z2X/LLKSG8UcziBW0ufyKb4hhuMsMPwlPtOoW3NVvWlK1BP4pryqjQ1QcopVql0yS84ziWDkZ7j8a+O4BQ/5int8/e7EjrlEI2ioiwUGN30S+PORJqjRYr4q8DwbZQU2DBhmNiTt4JzXcefCR2qnbzhMlIMlM6k2foylluHtOTSBnJmtqx4boIPvBmT5QdFPcmu/E8uhC0IYdKJNmYYtpWSGNGEL5I+RLz7F0ju1zx/CCAM9iq1UR5H+wtywgyGtB8T
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2026 09:35:50.8006 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 553e7fef-3c8c-47c5-063a-08decb8aa771
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000A345.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9407
+X-Mailman-Approved-At: Tue, 16 Jun 2026 12:49:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,67 +105,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [2.89 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[oflebbe.de : SPF not aligned (relaxed),quarantine];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:strato.com:reject}];
+	R_DKIM_REJECT(1.00)[oflebbe.de:s=strato-dkim-0002,oflebbe.de:s=strato-dkim-0003];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[ganglxie@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:ukleinek@debian.org,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:1139599@bugs.debian.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[of@oflebbe.de,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[oflebbe.de:-];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[of@oflebbe.de,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	SUBJECT_HAS_QUESTION(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9017568D988
+X-Rspamd-Queue-Id: D976968F950
 
-add buf length check before using it to access data
 
-Signed-off-by: Gangliang Xie <ganglxie@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+On 6/16/26 11:12, Uwe Kleine-König wrote:
+> Control: forwarded -1https://lore.kernel.org/amd-gfx/ajEQr3IXQ8byLFvC@monoceros
+>
+> Hello,
+>
+> a Debian user reported an issue while using the amdgpu user. The full
+> details are available athttps://bugs.debian.org/1139599. The relvant (I
+> hope) parts are also in this mail, but you can find more logs there if
+> you want to take a look.
+>
+> On Wed, Jun 10, 2026 at 09:01:09AM +0200, Olaf Flebbe wrote:
+>>     * What led up to the situation?
+>>             Heavy use of LM-Studio with local GPU accellerated models.
+>>             HW: AMD Ryzen™ 7 7840U w/ Radeon™ 780M Graphics × 16 (Framework 13 Laptop)
+>>
+>>     * What exactly did you do (or not do) that was effective (or
+>>       ineffective)?
+>>
+>>     Normal use (use gnome-calc for instance) while LM-Studio was active.
+>>
+>>     * What was the outcome of this action?
+>>          Moved the mouse: Computer totally locked, hat to power off.
+>>
+>>     * What outcome did you expect instead?
+>>          Mouse movement :)
+>>
+>>     Happend two times with Kernel reports both mentioning "ttm something" and "amdgpu_bo_move"
+> @Olaf: If you still have both issues in your logs, providing both might
+> help to identify the issue. Also it would be great to know, how reliably
+> you can reproduce the issue, in case we have to resort to bisecting or
+> testing a fix. Is this a regression, i.e. did the same workflow work
+> fine before, with an older kernel version? If so, which one?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
-index 0d3c18f04ac3..8ae72c862d11 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp_ta.c
-@@ -166,7 +166,8 @@ static ssize_t ta_if_load_debugfs_write(struct file *fp, const char *buf, size_t
- 	if (ret)
- 		return -EFAULT;
- 
--	if (ta_bin_len > PSP_1_MEG)
-+	if (ta_bin_len < sizeof(struct common_firmware_header) ||
-+	    ta_bin_len > PSP_1_MEG)
- 		return -EINVAL;
- 
- 	copy_pos += sizeof(uint32_t);
-@@ -321,6 +322,8 @@ static ssize_t ta_if_invoke_debugfs_write(struct file *fp, const char *buf, size
- 	ret = copy_from_user((void *)&shared_buf_len, &buf[copy_pos], sizeof(uint32_t));
- 	if (ret)
- 		return -EFAULT;
-+	if (!shared_buf_len || shared_buf_len > PSP_1_MEG)
-+		return -EINVAL;
- 	copy_pos += sizeof(uint32_t);
- 
- 	shared_buf = memdup_user(&buf[copy_pos], shared_buf_len);
--- 
-2.34.1
+I found 5 of these Oopses starting in June 9 with  kernel 7.0.10-1.
+
+Found out that some of these oopses happened while waking up for 
+hibernation or running LLM's.
+(some hangs when waking up did not leave traces in the logs)
+
+It happens  almost every 2 days.
+
+Hibernation worked great before (factoring out  the issues with the 
+parport module race when booting).
+
+
+Best
+
+Olaf
 
