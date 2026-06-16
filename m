@@ -2,64 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nynlN21JMmqVyAUAu9opvQ
+	id HUCrGN9uMWrYjAUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 09:14:53 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 17:42:23 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26F58697184
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 09:14:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAB66691500
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 17:42:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=pm.me header.s=protonmail3 header.b=OojBAbqr;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=quarantine) header.from=pm.me
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68B0010EE55;
-	Wed, 17 Jun 2026 07:14:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 599DB10E7BB;
+	Tue, 16 Jun 2026 15:42:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F4F010E042;
- Tue, 16 Jun 2026 15:35:17 +0000 (UTC)
-Received: from dfae2b116770.home.arpa (unknown [36.110.52.2])
- by APP-05 (Coremail) with SMTP id zQCowAD3Z+subTFqAR3GEw--.19654S2;
- Tue, 16 Jun 2026 23:35:10 +0800 (CST)
-From: Wentao Liang <vulab@iscas.ac.cn>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch
-Cc: lijo.lazar@amd.com, aurabindo.pillai@amd.com, superm1@kernel.org,
- xiaogang.chen@amd.com, chongli2@amd.com,
- pierre-eric.pelloux-prayer@amd.com, Victor.Zhao@amd.com,
- Jesse.Zhang@amd.com, lang.yu@amd.com, vulab@iscas.ac.cn, Jack.Xiao@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: [PATCH v2] drm/amdgpu: fix fence reference leak in
- amdgpu_gfx_run_cleaner_shader_job
-Date: Tue, 16 Jun 2026 15:35:06 +0000
-Message-Id: <20260616153506.1713376-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-4316.protonmail.ch (mail-4316.protonmail.ch [185.70.43.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9BE310E7BB
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jun 2026 15:42:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
+ s=protonmail3; t=1781624538; x=1781883738;
+ bh=+oKTVJXIqijwrbl5Sd4QMiLl8gU26y5uU8LzNVyH+Vw=;
+ h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+ Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+ b=OojBAbqr2npX4+dEUe9tBXBYHDwa4cZm+FignIGgmgHsV0eV5vBqflKPQDyRmwdqU
+ NoW24dIYLAJo4SZ/itA+0wWjv5nArShnUfiDr3DKYrlV6XmNPvAenq9mGvvCBvXfGJ
+ d5Ni25h5uqap8BPeKWvEtzVHpDsX0QIIipL5IQ4Vsg6OTIGzBGnjx/jvoCNjpudWWg
+ 1Ll5oxc68t4hDHX80vi8mtaPbw0UsCnVXdPsAxl376na/GQ7W/bmtFrA9rgQbBBG0j
+ pg/vYarL32lD1H2ePJO3EHKmsJ908QSuyTjNRoblNnnpJbpeqHhaBW6m0lK7hK5T0C
+ NI7bTPhAT9ZNA==
+Date: Tue, 16 Jun 2026 15:42:11 +0000
+To: Alex Deucher <alexdeucher@gmail.com>
+From: Gerhard Schwanzer <geschw@pm.me>
+Cc: Xiaogang Chen <xiaogang.chen@amd.com>, amd-gfx@lists.freedesktop.org,
+ Alexander Deucher <Alexander.Deucher@amd.com>,
+ Philip Yang <Philip.Yang@amd.com>
+Subject: Re: [PATCH] drm/amdkfd: Use last + 1 of vm range to check 2MB huge
+ page alignment
+Message-ID: <20260616154200.66824-1-geschw@pm.me>
+Feedback-ID: 110185885:user:proton
+X-Pm-Message-ID: e0639863b9f42eca51c1dce08d1066afa0e7d5d0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: zQCowAD3Z+subTFqAR3GEw--.19654S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Zr13AFWUur43Cr45Ar18Krg_yoW8AF4xpF
- s3Kry3tr48Za17K347A3Wjqa409w13XFy8WrnFya4I93Z8JFn8Jr15JayFqF1kurWkCa17
- Kryqg3y5X3Z0kF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9014x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
- 6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
- 0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
- jxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWxJr0_GcWlOx8S6xCaFVCjc4AY6r1j6r
- 4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
- n2kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
- kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
- 67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
- CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
- MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
- VFxhVjvjDU0xZFpf9x0JUFdgAUUUUU=
-X-Originating-IP: [36.110.52.2]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBgoAA2oxZbUPKgABsg
-X-Mailman-Approved-At: Wed, 17 Jun 2026 07:14:49 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,87 +60,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.89 / 15.00];
+X-Spamd-Result: default: False [0.69 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	FAKE_REPLY(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	DMARC_NA(0.00)[iscas.ac.cn];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:xiaogang.chen@amd.com,m:Alexander.Deucher@amd.com,m:Philip.Yang@amd.com,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[geschw@pm.me,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	ARC_NA(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vulab@iscas.ac.cn,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[pm.me:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_XOIP(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[geschw@pm.me,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,iscas.ac.cn:email,iscas.ac.cn:mid,iscas.ac.cn:from_mime]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,pm.me:dkim,pm.me:mid,pm.me:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 26F58697184
+X-Rspamd-Queue-Id: DAB66691500
 
-In amdgpu_gfx_run_cleaner_shader_job(), amdgpu_job_submit() returns a
-dma_fence with an elevated reference count. The function correctly
-releases this reference on the success path after dma_fence_wait().
-However, if dma_fence_wait() fails (though with infinite timeout and
-non-interruptible it never does), the code jumps to the error label
-without calling dma_fence_put(), resulting in a reference leak.
+Hi Alex, Xiaogang,
 
-Fix the potential leak by adding dma_fence_put(f) before the goto err
-when dma_fence_wait() returns an error.
+thanks for looking at this quickly.
 
-Fixes: 559a285816af ("drm/amdgpu: Replace 'amdgpu_job_submit_direct' with 'drm_sched_entity' in cleaner shader")
-Cc: stable@vger.kernel.org
-Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
----
-v2: Also cleanup the scheduler entity and simplify error handling paths.
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+Replying here because this patch instance carries my Tested-by tag.
+One clarification: my runtime testing covers the reproduced split-tail
+fault on the RX 7600 XT. It does not validate the head-side boundary
+condition in this exact patch.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index b8ca876694ff..be13ce6ce377 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -1658,7 +1658,7 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
- 				  &sched, 1, NULL);
- 	if (r) {
- 		dev_err(adev->dev, "Failed setting up GFX kernel entity.\n");
--		goto err;
-+		return r;
- 	}
- 
- 	/*
-@@ -1686,16 +1686,13 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
- 	f = amdgpu_job_submit(job);
- 
- 	r = dma_fence_wait(f, false);
--	if (r)
--		goto err;
-+	goto err;
- 
- 	dma_fence_put(f);
- 
-+err:
- 	/* Clean up the scheduler entity */
- 	drm_sched_entity_destroy(&entity);
--	return 0;
--
--err:
- 	return r;
- }
- 
--- 
-2.34.1
+The remaining concern is the head-side condition: this version still uses
+head->last there. In svm_range_split_head(), the generated head range is
+[old_start, new_start - 1], so the split boundary is new_start, i.e.
+head->last + 1. I replied with the concrete boundary examples here:
+
+https://lore.kernel.org/all/20260616152320.60210-1-geschw@pm.me/
+
+For that reason I think the head-side condition should use the exclusive
+split boundary, e.g. new_start as in v2:
+
+https://lore.kernel.org/all/20260616105553.13062-1-geschw@pm.me/
+
+To avoid my Tested-by tag being read as covering the head-side boundary
+logic, please either use an exclusive-boundary version or drop my
+Tested-by from this exact version. My test result covers the reproduced
+split-tail regression, not the head-side boundary logic.
+
+Thanks,
+Gerhard
 
