@@ -2,103 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yibNHwKZMWo/nwUAu9opvQ
+	id wjYcMWtJMmqRyAUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 20:42:10 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 09:14:51 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E764C694599
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 20:42:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B85069717A
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 09:14:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Bbka80Jt;
+	dkim=pass header.d=usp.br header.s=usp-google header.b=TquJnotm;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20240605:i=1")
+	dmarc=pass (policy=quarantine) header.from=usp.br
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64D3C10E82D;
-	Tue, 16 Jun 2026 18:42:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0BB210EE44;
+	Wed, 17 Jun 2026 07:14:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f180.google.com (mail-dy1-f180.google.com
- [74.125.82.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1594110E82D
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jun 2026 18:42:07 +0000 (UTC)
-Received: by mail-dy1-f180.google.com with SMTP id
- 5a478bee46e88-30bca8ef052so17791eec.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jun 2026 11:42:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781635326; cv=none;
- d=google.com; s=arc-20240605;
- b=bAvHyDpI9P9JlLkMOqlQwEipZE/e/G1yQ8CnSNfxjf/e20xJ7p1RSAoCrYxhr1ihzU
- tN1UgaGOFE8Wsy3Qw8X22N3CKSUIOtZDWsEJ2t1yJM8cRbLUVh7rfyI/gTxUqe3OzIcD
- ChCD2wpZYrqChFDzejXVcJRiC74UoItFxXlcx24XVO2Tasg4P36guLP5bVUoWdjQzGiU
- taDGNs1h2dzv56yvyev2p8QGvHWyUew59miKcdPW/la4qFasQ+xznqDAKeftrUVaoirX
- gDEMjdFdBjXFyT9QjUJ73Pzf+toGG9Etccs6e/aW9MLHxNrohWrbAnFaXI1fnHVWwpLc
- R12Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=xmPMTeJS/xt/8mX+0OpU5PUYi7ifD0AyLPnnk6Y9dWg=;
- fh=cv1FzeVZXCbMHmfVuZLczL/+ob1y9pdOhdAlfvtOVdk=;
- b=XA9127XRd9nJtlPrUoOPvtm5CC6N6GcA0pp86PrHNVNkJgPauYuv5OK2ZpP4n8Gf8C
- 9gFiufLWYle0h8K/Zo//lMMhw52NS1cOm2b5rt7lry7LiZ0ZLHn77idZOuCm5sPmew+u
- zsrVpqY0FBcfOQHrdM8q0qStD5T5lAZyUZKjQq1feNhLqHdWKixj1enZmR6XJEbDkKkp
- c+sFeSQwTVOO/oLg2rFwmoEbKXfnpt7E00UFSJEmXO9LNEyeca9sEAU1Kyl0sy7OP++v
- 6SXcNC95AzO2wfLtIqs3G+Vf8RYnw7M1tiKIsRtent5nSXFkl1fD5LBd4K6+ymaWea09
- RiyA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com
+ [209.85.222.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15C7A10ECF8
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jun 2026 18:43:17 +0000 (UTC)
+Received: by mail-qk1-f173.google.com with SMTP id
+ af79cd13be357-9159951f05aso538990785a.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jun 2026 11:43:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1781635326; x=1782240126; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=xmPMTeJS/xt/8mX+0OpU5PUYi7ifD0AyLPnnk6Y9dWg=;
- b=Bbka80JthwStve0tPciUCEx143WIpoJeE48kvr6pGEENMbaW4JnIquX/BZiyKt+QU9
- iLP/vv89092t/8FFZtkq5a58CWiswUIUFV0THPuTlGs8WdSwcdRhB1oVViRBi86MtRv8
- 7ETYFPW9wKnikNV72ATTB1QrYoG1YF65QKX+LO967CG/hcXUSBSigNeZ9gZ0komKBOoG
- 3TKpQnGHd39HFSiUsECBNg5pF/5YlCtIiMhRuX0oPbV+CV3Pwh9lADNOAsmmGTn1o0jX
- 3It853D1Jti4enpJJxaDeECYCADK08NQeRgzAx4vTGrLTdhIVmfZElJKC6GcAvt1dyA1
- h1NA==
+ d=usp.br; s=usp-google; t=1781635396; x=1782240196; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Dd83DKF3frqmG4DXmGPzNS34lS70vyOR5YrJhziAaCg=;
+ b=TquJnotmrTH2YNFI75AnpJzkBg+P8iwc46FjiIKaFgT5Id+NiAwyhPvtM5t/UDgfat
+ NhGDk9KdsxsDwlmq/vzDT88j3T6n0E9rbNG0wxUnC4nAK8pRt8rDmDTm4u5NjFXYFhsV
+ 6lTcHjT4FC43bBf2UI/V1gOdVGZXW77Vfv12MiuGjSxGy3co5V5fLjUloEmdF3HN4BBU
+ zPlmM/YDww8sdsS8712HZ/MmjczNnW1wxKzHSfUHiOHIt53EtkB66nndIH7ogfwubjyM
+ yHe/MbM3GmzPE61KMATy2204tsnlVbbgO4aiKe/b2Dj8OaFEsBvmwRSYrjfb9vTI6z/8
+ ItwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781635326; x=1782240126;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=xmPMTeJS/xt/8mX+0OpU5PUYi7ifD0AyLPnnk6Y9dWg=;
- b=URrSc8gONU0Mn7QRxBJGF1eTqkPQ5f9KhbHcarnusjYp6G4LF8CQoNOxBmPeBUVc+f
- 8yJ3bEAfZCi5h+usafhmSPGblO87zcoT7wYV4pNAZocgOVlcDfu3KtZ+El553ib1FUlU
- N9ne/bhGgO4Vw+u7+uDI4ZGr1HDcyELK1ujCtntT9PzJnVXtT/MkGgsXUmF/jwQ1Z1zK
- SxWNyFwS1Lw//jTeMnCs8JfqmV+O7q+x/sDZPjsYTUIXJu6aWY+Lm6MFGLRKW71yr4Xk
- Wuu1T/ODc1HfkRHhntqQOrETh7WTfMxYtuHnI4esJsQjRJ7I/jnUu8q329YbWw9eBvk3
- sFvw==
-X-Gm-Message-State: AOJu0Ywms4w5g0/nhi5SLnAPgWoVXzebWSk6fN0BqqHCp3nXhm4H7TJD
- wnDMAuzl5pPxvlFZxrXyTXDDU6zAjm78M4hga6L36Gbx7SvU8A0ZMeLxV9380m1PSG9a3V2FSFT
- ktJt9zamr181++rbF+2o14HZUWD6ohuc=
-X-Gm-Gg: Acq92OHPFQu38mcu9WMO5gYiIybnVxDdfWKAVR1qNJl5pKaSnwKDpCC/gz2V6YJhXPS
- jpX+JR/q8WxFLYYsF8b8JPi9uMWtJ/0R9Pi5Wcr+6tuZ/dmqwy3k6EX17xCy1sTwodwBy02wrE4
- /zy18Z0/Pnj9PX+tFH4PQqy7QfGzWMnApVJJffShib0YPR2ODILmgsfoi0yymLrCtBirZKR6kEg
- 2vhboaINa1JQr/8jyY57PkWiWwNaT0il999LWUWvfgRe+TNN9Og79u7PCdXm8viAsCnOwg+bfoG
- NUW3/hYxFnjEf6s/a0CVLqDUTAixmgIhYB/moDeXpeVbc+1v5A+BIOpID7wym9WSXAYSeA==
-X-Received: by 2002:a05:7022:2204:b0:136:b71d:a90b with SMTP id
- a92af1059eb24-1398f5a71f5mr46360c88.0.1781635326150; Tue, 16 Jun 2026
- 11:42:06 -0700 (PDT)
+ d=1e100.net; s=20251104; t=1781635396; x=1782240196;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Dd83DKF3frqmG4DXmGPzNS34lS70vyOR5YrJhziAaCg=;
+ b=DQwT0ImkpnyJqC5IqJZfy1rxiA1iESjCmWafgNsNIPSpOx39S6Jrs98eyOLdaCk5SD
+ OT4vrEWRAgisg3JFTQ3RqcK2kfeBL9QJE7j2OclECe1U/NSeedAbid5hzCOIYoDqM0rw
+ DgqCal7Se6nsRqjEf8VZeQV6JBuSZGyqlv0K19+UozhHEeBXVAJxhvIK/JgMR44vwsUo
+ cOVm0znqk6jdIQb+M068ThLid0EOeBWHxCH91z8oNeM0vJRc/yQ/ca2rYgbjyMh+4sHc
+ ZPclOnYQoxAAG3qX4VbtNW1e63rsXTyasomsVLC0aezXSbUL4Wcm98unUC+buddn4Mlv
+ CQkg==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ80qiPIc/TG4blwsMZaAwL+AkR3VGYE5wB7MtPgsCOAxszMQqY1hv6s/DZ10MBDcp++CKF4fvKp@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwroVcV3rgdFv0vpVf75umq9NdUIV5SLjwgnEWpN1d6SpHTG67L
+ mAVJQQAHpMlqtZJHu34j0SXttAFEG6d2hR5aFDbhWn/g4qkaYfvwnkmpTSs+GfIWslw=
+X-Gm-Gg: Acq92OFRVGF9eSWQyU456FoXU8Fh5fJwKLhTxltasPqMlKpCkjkaETItEepUDwl68nf
+ czVkwIPCj8Yx+SLGsp5srtRVIZ4GXDj1UBA5V1U7GzjzhANyPRHol45nEM8DbHSzlMpo4KkYumO
+ ijBUXXUZpmu1SEBgAHT1NBK+DAerI2cNuxsfIbeF65URcBPwrhVdmPZgDz8UOlz0IYp66R9lBHV
+ CDTwzXn1+9WbcUAoMFuIZNfA74SIB10Hm2A4aqE3rFOhApysx8575fEr5Fvcbed9c2PnxEhPCSo
+ sQ6gmE4a6t2BIK2PR3maldSQPq0Z+vwaA82mmS+aNXdTmmGUBYl0RbFjP2/5k720k+jcJ7FNvbe
+ HbXu6EuznKwzcCZRmB8A1pC7OxK6CorbSD7DpjeLji0/vvx6HyN4VaLynblMzAr1DuTnfixkt6g
+ M=
+X-Received: by 2002:a05:620a:4727:b0:915:86c6:8432 with SMTP id
+ af79cd13be357-91db9a804aemr31412185a.14.1781635395939; 
+ Tue, 16 Jun 2026 11:43:15 -0700 (PDT)
+Received: from arch-ideapad ([2804:388:d03b:e57f:9ee:2b4c:ee76:e0e])
+ by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-91619ed7f16sm1504660285a.1.2026.06.16.11.43.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 16 Jun 2026 11:43:15 -0700 (PDT)
+From: Ryan Oliveira <ryan.oliveiraf@usp.br>
+X-Google-Original-From: Ryan Oliveira
+To: alexander.deucher@amd.com
+Cc: airlied@gmail.com, ryan.oliveiraf@usp.br, amd-gfx@lists.freedesktop.org,
+ christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+ kaikycintra@usp.br, simona@ffwll.ch
+Subject: [PATCH RESEND] drm/amdgpu: Unify vm_fault_interrupt_state logic for
+ gmc v10 and v12_0
+Date: Tue, 16 Jun 2026 15:42:09 -0300
+Message-ID: <20260616184209.18014-1-ryan.oliveiraf@usp.br>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-References: <20260525113321.17953-1-timur.kristof@gmail.com>
-In-Reply-To: <20260525113321.17953-1-timur.kristof@gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 16 Jun 2026 14:41:54 -0400
-X-Gm-Features: AVVi8Cf1j0Gn5PbD2qkGdAwpIH5qyNneDjxVyCP4jAnrTeZeUh3Ij-UzaBRfMj4
-Message-ID: <CADnq5_NEqAxn18D51i85YvHwXpMZ3y3_VE1DxuRYAfW-_4vvgA@mail.gmail.com>
-Subject: Re: [PATCH 0/4] drm/amdgpu/uvd: Fix UVD BO memory placement issues
- (v2)
-To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
-Cc: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, 
- christian.koenig@amd.com, Natalie Vock <natalie.vock@gmx.de>, 
- Mario Limonciello <mario.limonciello@amd.com>,
- John Olender <john.olender@gmail.com>, Liu Leo <Leo.Liu@amd.com>, 
- Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 17 Jun 2026 07:14:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,92 +95,236 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:natalie.vock@gmx.de,m:mario.limonciello@amd.com,m:john.olender@gmail.com,m:Leo.Liu@amd.com,m:arunpravin.paneerselvam@amd.com,m:timurkristof@gmail.com,m:johnolender@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_CC(0.00)[gmail.com,usp.br,lists.freedesktop.org,amd.com,ffwll.ch];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:airlied@gmail.com,m:ryan.oliveiraf@usp.br,m:christian.koenig@amd.com,m:dri-devel@lists.freedesktop.org,m:kaikycintra@usp.br,m:simona@ffwll.ch,s:lists@lfdr.de];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,gmx.de,gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_SENDER(0.00)[ryan.oliveiraf@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[usp.br:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ryan.oliveiraf@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[usp.br:dkim,usp.br:email,usp.br:mid,usp.br:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E764C694599
+X-Rspamd-Queue-Id: 2B85069717A
 
-Applied.  Thanks!
+From: Ryan Oliveira <ryan.oliveiraf@usp.br>
 
-Alex
+This patch consolidates vm_fault_interrupt_state handling logic found
+in gmc_v10_0.c and gmc_v12_0.c into a shared helper function inside
+amdgpu_gmc.c
 
-On Mon, May 25, 2026 at 7:39=E2=80=AFAM Timur Krist=C3=B3f <timur.kristof@g=
-mail.com> wrote:
->
-> UVD 4.x and older have two requirements for CS BOs:
-> 1. All BOs must not cross 256M segments
-> 2. MSG and FB BOs must be located in the same segment as the VCPU BO
->
-> The amdgpu_uvd code attempts to solve those requirements,
-> but unfortunately it has hit various limitations:
->
-> * VCPU BO may be placed in a different segment
-> * GTT manager doesn't respect placement requirements
-> * GTT allocations may cross 256M
-> * GTT->GTT moves are not implemented
->
-> Let's solve these issues by fixing the GTT manager,
-> making sure that GTT allocations are placed in 256M segments.
-> Also fix forcing MSG and FB BOs to the UVD segment
-> when the UVD segment isn't the first segment, which can be
-> the case when resizable BAR is enabled.
->
-> This series should be backported to 7.0 and 7.1 because
-> technically this may have been a regression for some users
-> caused by switching to amdgpu by default.
->
-> Changes in v2:
->
-> * Fix GTT->GTT moves instead of specifying a placement in
->   the amdgpu_ttm_alloc_gart() function.
-> * Move MSG and FB BOs to the VCPU segments, leave all other
->   BOs in segment 0 like before.
->
-> Timur Krist=C3=B3f (4):
->   drm/amdgpu: Respect placement requirements in amdgpu_gtt_mgr functions
->   drm/amdgpu: Fix amdgpu_bo_move() when old_mem and new_mem are both GTT
->   drm/amdgpu/uvd: Place VCPU BO only in VRAM for UVD 4.x and older
->   drm/amdgpu/uvd: Fix forcing MSG, FB BOs into VCPU segment when it
->     isn't at 0 (v2)
->
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c | 30 ++++++++++++-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c     | 18 ++++++++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c     | 50 ++++++++++++++-------
->  3 files changed, 81 insertions(+), 17 deletions(-)
->
-> --
-> 2.54.0
->
+Since the v10 and v12_0 implementations are identical copies, moving
+this to amdgpu_gmc simplifies maintenance and reduces code duplication.
+
+Signed-off-by: Ryan Oliveira <ryan.oliveiraf@usp.br>
+Co-developed-by: Kaiky Cintra <kaikycintra@usp.br>
+Signed-off-by: Kaiky Cintra <kaikycintra@usp.br>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 37 +++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h |  3 ++
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  | 39 +------------------------
+ drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c  | 38 +-----------------------
+ 4 files changed, 42 insertions(+), 75 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+index 13bec8461cde..eebf5c17efb4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+@@ -590,6 +590,43 @@ int amdgpu_gmc_handle_retry_fault(struct amdgpu_device *adev,
+ 	return 0;
+ }
+ 
++int amdgpu_gmc_vm_fault_interrupt_state(struct amdgpu_device *adev,
++				   struct amdgpu_irq_src *src, unsigned int type,
++				   enum amdgpu_interrupt_state state)
++{
++	switch (state) {
++	case AMDGPU_IRQ_STATE_DISABLE:
++		/* MM HUB */
++		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), false);
++		/* GFX HUB */
++		/* This works because this interrupt is only
++		 * enabled at init/resume and disabled in
++		 * fini/suspend, so the overall state doesn't
++		 * change over the course of suspend/resume.
++		 */
++		if (!adev->in_s0ix)
++			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), false);
++		break;
++	case AMDGPU_IRQ_STATE_ENABLE:
++		/* MM HUB */
++		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), true);
++		/* GFX HUB */
++		/* This works because this interrupt is only
++		 * enabled at init/resume and disabled in
++		 * fini/suspend, so the overall state doesn't
++		 * change over the course of suspend/resume.
++		 */
++		if (!adev->in_s0ix)
++			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), true);
++		break;
++	default:
++		break;
++	}
++
++	return 0;
++}
++
++
+ int amdgpu_gmc_ras_sw_init(struct amdgpu_device *adev)
+ {
+ 	int r;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+index 676e3aaa1f27..386e5f292c4e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
+@@ -437,6 +437,9 @@ int amdgpu_gmc_handle_retry_fault(struct amdgpu_device *adev,
+ 				  u32 cam_index,
+ 				  u32 node_id,
+ 				  bool write_fault);
++int amdgpu_gmc_vm_fault_interrupt_state(struct amdgpu_device *adev,
++				   struct amdgpu_irq_src *src, unsigned int type,
++				   enum amdgpu_interrupt_state state);
+ int amdgpu_gmc_ras_sw_init(struct amdgpu_device *adev);
+ int amdgpu_gmc_ras_late_init(struct amdgpu_device *adev);
+ void amdgpu_gmc_ras_fini(struct amdgpu_device *adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+index 8523833a74fb..4aaa3c65e186 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+@@ -59,43 +59,6 @@ static int gmc_v10_0_ecc_interrupt_state(struct amdgpu_device *adev,
+ 	return 0;
+ }
+ 
+-static int
+-gmc_v10_0_vm_fault_interrupt_state(struct amdgpu_device *adev,
+-				   struct amdgpu_irq_src *src, unsigned int type,
+-				   enum amdgpu_interrupt_state state)
+-{
+-	switch (state) {
+-	case AMDGPU_IRQ_STATE_DISABLE:
+-		/* MM HUB */
+-		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), false);
+-		/* GFX HUB */
+-		/* This works because this interrupt is only
+-		 * enabled at init/resume and disabled in
+-		 * fini/suspend, so the overall state doesn't
+-		 * change over the course of suspend/resume.
+-		 */
+-		if (!adev->in_s0ix)
+-			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), false);
+-		break;
+-	case AMDGPU_IRQ_STATE_ENABLE:
+-		/* MM HUB */
+-		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), true);
+-		/* GFX HUB */
+-		/* This works because this interrupt is only
+-		 * enabled at init/resume and disabled in
+-		 * fini/suspend, so the overall state doesn't
+-		 * change over the course of suspend/resume.
+-		 */
+-		if (!adev->in_s0ix)
+-			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), true);
+-		break;
+-	default:
+-		break;
+-	}
+-
+-	return 0;
+-}
+-
+ static int gmc_v10_0_process_interrupt(struct amdgpu_device *adev,
+ 				       struct amdgpu_irq_src *source,
+ 				       struct amdgpu_iv_entry *entry)
+@@ -168,7 +131,7 @@ static int gmc_v10_0_process_interrupt(struct amdgpu_device *adev,
+ }
+ 
+ static const struct amdgpu_irq_src_funcs gmc_v10_0_irq_funcs = {
+-	.set = gmc_v10_0_vm_fault_interrupt_state,
++	.set = amdgpu_gmc_vm_fault_interrupt_state,
+ 	.process = gmc_v10_0_process_interrupt,
+ };
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+index 586703ec0dfa..d3eabe3b6dff 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_0.c
+@@ -53,42 +53,6 @@ static int gmc_v12_0_ecc_interrupt_state(struct amdgpu_device *adev,
+ 	return 0;
+ }
+ 
+-static int gmc_v12_0_vm_fault_interrupt_state(struct amdgpu_device *adev,
+-					      struct amdgpu_irq_src *src, unsigned type,
+-					      enum amdgpu_interrupt_state state)
+-{
+-	switch (state) {
+-	case AMDGPU_IRQ_STATE_DISABLE:
+-		/* MM HUB */
+-		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), false);
+-		/* GFX HUB */
+-		/* This works because this interrupt is only
+-		 * enabled at init/resume and disabled in
+-		 * fini/suspend, so the overall state doesn't
+-		 * change over the course of suspend/resume.
+-		 */
+-		if (!adev->in_s0ix)
+-			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), false);
+-		break;
+-	case AMDGPU_IRQ_STATE_ENABLE:
+-		/* MM HUB */
+-		amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_MMHUB0(0), true);
+-		/* GFX HUB */
+-		/* This works because this interrupt is only
+-		 * enabled at init/resume and disabled in
+-		 * fini/suspend, so the overall state doesn't
+-		 * change over the course of suspend/resume.
+-		 */
+-		if (!adev->in_s0ix)
+-			amdgpu_gmc_set_vm_fault_masks(adev, AMDGPU_GFXHUB(0), true);
+-		break;
+-	default:
+-		break;
+-	}
+-
+-	return 0;
+-}
+-
+ static int gmc_v12_0_process_interrupt(struct amdgpu_device *adev,
+ 				       struct amdgpu_irq_src *source,
+ 				       struct amdgpu_iv_entry *entry)
+@@ -160,7 +124,7 @@ static int gmc_v12_0_process_interrupt(struct amdgpu_device *adev,
+ }
+ 
+ static const struct amdgpu_irq_src_funcs gmc_v12_0_irq_funcs = {
+-	.set = gmc_v12_0_vm_fault_interrupt_state,
++	.set = amdgpu_gmc_vm_fault_interrupt_state,
+ 	.process = gmc_v12_0_process_interrupt,
+ };
+ 
+-- 
+2.54.0
+
