@@ -2,99 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JLdoExTHMWrvpwUAu9opvQ
+	id kxVaNG5JMmqYyAUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 23:58:44 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 09:14:54 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95EB16957F7
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 23:58:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7438D69718D
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 09:14:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=UxCuikS4;
+	dkim=pass header.d=post.cz header.s=szn1 header.b=To3mGY8g;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20240605:i=1")
+	dmarc=pass (policy=none) header.from=post.cz
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD9F510E89D;
-	Tue, 16 Jun 2026 21:58:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE90B10EE4A;
+	Wed, 17 Jun 2026 07:14:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f178.google.com (mail-dy1-f178.google.com
- [74.125.82.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 516C010E89D
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jun 2026 21:58:41 +0000 (UTC)
-Received: by mail-dy1-f178.google.com with SMTP id
- 5a478bee46e88-304d3d3d8f8so634679eec.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jun 2026 14:58:41 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781647121; cv=none;
- d=google.com; s=arc-20240605;
- b=JRSgq70InY0DlB+f9zde0/AYJks3X0lUiJy8Jf18lUOJ0I1TyFnr+blX6CT8cDLthR
- xmad5g4euuwwPw9Xi76rhbkvzXI2Ic3EkqSmlzt9OCw/BFI0U+1/+KQxgZ8cgA6ijM50
- AhIQnpPMsATUpOWluAqUyukFWyuy7yiHk+TvCKUyzJj+87nZpKemKIuRhMU4Fav2FhAD
- 4bLlBzaxKvQLa3F0A8FCfDYbTRhGYKwUgWFG8H83x+Oedng27eDXiZadFk1UCHCAdx4g
- 99FquSZvX+fC1Xpq69ba3PWWp4cCPOyQjtZZwiVTAUFaDjWlKZt2IaAXgof6bkB340Lb
- wLeQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=ndtAEfsJHD58tnsDSdArQsoc+D7QiD903i4EMK3NlJk=;
- fh=XzVWXv3p8P1Lr43bDTeBz/bNpjcuLsaYL9GQuk4gQB4=;
- b=Zq+IElkeRsA3AnlgGrZUHsPFDVoN7hG/Vh/2J1LEc0eiiyuCKs8FnBdAFIH4Jprf9e
- bPpVgLIGpu6Pga/01w3+RMK/SXamhDCGFAxQmsYHpcq0SW7yiwMLNlswdCB2UenvbrXz
- tzlM+SZgJcxNCHC7SNG61jqYIDUsF905pzXs3E01YylwQRyE7vIDztMDkW8sjJLLFYMV
- 0kTsYDsfyZllT9nENyTjGPAp7qZh1Z31+cfpd++nTi4pmlFztXWaDDjv8jPhQRl0/9a3
- 5BUh6ViRwrjmZtZYeqIRYw/Nx2V+9bmbRxVrLhAVeQuP2KPH5CAfnFzSEQw2iO6/zx5W
- q+Tw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1781647121; x=1782251921; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ndtAEfsJHD58tnsDSdArQsoc+D7QiD903i4EMK3NlJk=;
- b=UxCuikS4AfbdAKjvSkBKxU7eGcLX8D/wh9Xtc6R2lNbJcMlOapQhuArbNeCdTIZYwi
- Qxke5GExoRyAbvCMAMjgkdxYUKt1FeAtdusNHMX+Rtgd1bdL2gikK/QBPcm2FxzFV+2/
- aZp5UlhgnFpCPqnk1hGotTrQMrc5S2cxLYCMkytUpkkRbf6ZYCVkW5k6fiikiwtaHkeJ
- dZfxaLBcMFhCyyIAC3gXLOXopEo1ZisorrdgnY4k1O8LqqbKDK8lN2Np3qH6vO1MoBXo
- eMiQV+OM1CZ7hI0Lx2BnT5oAVXbtnRM8KjRSvGRBRHHxulDRKePR3qF9V8tEVG40utS8
- cAQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781647121; x=1782251921;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=ndtAEfsJHD58tnsDSdArQsoc+D7QiD903i4EMK3NlJk=;
- b=pZ5mYoNh785uQ05MRohStbojbWb+2cNRfeLfmQn5DK1Viv6V/sZ0kSqnkPA5K2Gp4O
- P64TlYEZ0rzMKDIWj7xOSTq5eMNq0H++qLpCrtoP98WWatYG/nMUsN9QMLUvj7joI1Eq
- D6XNRW7V/lNhikOIzdymMmJx3uC/slzXv0z/Ot7eJK87ssqJ3PlxSi1Xp2SIv2Ja19RO
- +dWTcpUy3ZJWnYcLf8HBJF0ScFdVgBLgQ8G9cm6q44HAhcKj2tQ0xjPBR+/mXxTEFRI2
- s5kWedosfsr7cdtLxFhT+jGg6X0BtOny2cvIeEiNc/7kJu7yOCmoDJvhWdbbMbg7caXx
- K+Og==
-X-Gm-Message-State: AOJu0Ywmn8cpgKfs5+nrqlywE/qsplwwvMlMd+VazOsbc40GC8koJbCx
- Bg1iTfvNrm65+piLrsxLGDVOjuENd/xdWMXcIjcQDzk2QUtNfkYa5CimSBuYX2E1R8S04RVQ6Vo
- fhg9Fh3V80WEWHfkTl5eFlS4QDyJcYqk=
-X-Gm-Gg: Acq92OHhR2Dmwstd+y/EFKv/gOdStbqAtA9BxpdCXOGX/JmDR1Dt6QQlTHWsQ2MsGKD
- 60gr4iopFXvf0+InRCw3p5rxa5HPBg1xIhK9E1W0HwJM8RVaG436SqXz0h1dhPMG8Gyb87ZPPjr
- 2yESTgiv5oLnZstEe5XSBnUS5y4dfNmxdMQzvDzcbcaeecKWfaTPtkSvoRRLjKCcup3jacS87LX
- 8M5mo3ME7iVo+YMEppSW4j2Pocc6TwEbeizho7k+f3PlPXpJWE+nEjNNXhRvrhYTrWYCAlGqjZE
- 6v/S6Ai+FeUslgkfLbckkNEwHg4/ECD09kkznYSvgdq8P+FivJzBE5AL2F0JxfPSwr8fzQ==
-X-Received: by 2002:a05:7300:3254:b0:30b:c8bb:5884 with SMTP id
- 5a478bee46e88-30bc9f15a7cmr302912eec.4.1781647120545; Tue, 16 Jun 2026
- 14:58:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260616213325.444949-1-xiaogang.chen@amd.com>
-In-Reply-To: <20260616213325.444949-1-xiaogang.chen@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 16 Jun 2026 17:58:28 -0400
-X-Gm-Features: AVVi8CefFtNXtV2Fxceo3yaCQO-Cfc305Jk_GBXr1cEFJq-L2hrdjuXwIJRUUlI
-Message-ID: <CADnq5_O386GSntZCt8jEPFnoe3cxDUjqinA52DAofV2wsGLntg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdkfd: Guard m->cp_hqd_eop_control setting by
- q->eop_ring_buffer_size
-To: "Xiaogang.Chen" <xiaogang.chen@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Greylist: delayed 1119 seconds by postgrey-1.36 at gabe;
+ Tue, 16 Jun 2026 22:20:33 UTC
+Received: from mxe.seznam.cz (mxe.seznam.cz [77.75.78.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2ECE10E0B7
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jun 2026 22:20:33 +0000 (UTC)
+Received: from email.seznam.cz by smtpc-mxe-844b97bc4b-29p4c
+ (smtpc-mxe-844b97bc4b-29p4c [2a02:598:64:8a00::1000:a8b])
+ id 183de2480821a33b1895101e; Wed, 17 Jun 2026 00:20:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=post.cz; s=szn1;
+ t=1781648432; bh=NW7VllBvdlma7tFCVfLBkPR1+y0RgKDAZXIoK35DFQA=;
+ h=From:To:Subject:Date:Message-Id:Mime-Version:Content-Type;
+ b=To3mGY8gQr12Ru8fhgkSRBFwkNsfBt4tApuDl3MEvMBG2XXQxB29h+t2XRk7MlzlZ
+ f+aoqxn6ZdXiNo6p//fMjpHWBJ4wJAdNjSG0oL6Af2u4luwdK2cWZ+ucKS6tpbiBpF
+ ffTTyJd57zv7bfrNpwurWTbSEggiPgq8dc+WRLenNau1ddOHj/VJbcgAyyDLyNxoRv
+ snwrxIXq931CpRy04BpX/4Cgxj0ykMAmZYATTEkc1iM8P0VaB9K3hnX9zTXqQvh634
+ qBhKLZ6gdtg8kOQ3EQ0qAqfhlaAvyqbTEMRgyYpZeLx9wm6w8Pxyh91duvR2damEVP
+ jMN9Zr50iFpfA==
+Received: from unknown ([2a0b:9280:a52:0:9e7c:2ab9:aa5:90e6])
+ by email.seznam.cz (szn-UNKNOWN-unknown) with HTTP;
+ Wed, 17 Jun 2026 00:01:32 +0200 (CEST)
+From: =?utf-8?q?Zden=C4=9Bk_Kop=C5=99iv=C3=ADk?= <zdenek.koprivik@post.cz>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: =?utf-8?q?=5BBUG=5D_Zero-fill_formatting_error_for_GPU_power_metr?=
+ =?utf-8?q?ics_in_amdgpu=5Fpm=5Finfo?=
+Date: Wed, 17 Jun 2026 00:01:32 +0200 (CEST)
+Message-Id: <3o8.g4Jl.34rkhuHwbax.1gCSUy@seznam.cz>
+Mime-Version: 1.0 (szn-mime-2.2.5)
+X-Mailer: szn-UNKNOWN-unknown
+Content-Type: multipart/alternative;
+ boundary="=_5bf85124248b4b4226b4c4c4=8cb4469b-1aea-57de-805f-dacd03b8f9c3_="
+X-Mailman-Approved-At: Wed, 17 Jun 2026 07:14:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,139 +63,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [1.47 / 15.00];
+	SUBJ_EXCESS_QP(1.20)[];
+	R_MIXED_CHARSET(1.07)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[post.cz,none];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[post.cz:s=szn1];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:xiaogang.chen@amd.com,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCPT_COUNT_ONE(0.00)[1];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	FREEMAIL_FROM(0.00)[post.cz];
+	FROM_NEQ_ENVFROM(0.00)[zdenek.koprivik@post.cz,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[post.cz:+];
+	TO_DN_NONE(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,seznam.cz:mid,post.cz:dkim,post.cz:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 95EB16957F7
+X-Rspamd-Queue-Id: 7438D69718D
 
-On Tue, Jun 16, 2026 at 5:44=E2=80=AFPM Xiaogang.Chen <xiaogang.chen@amd.co=
-m> wrote:
->
-> From: Xiaogang Chen <xiaogang.chen@amd.com>
->
 
-This needs a patch description.
+--=_5bf85124248b4b4226b4c4c4=8cb4469b-1aea-57de-805f-dacd03b8f9c3_=
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Alex
+Hello,
+I noticed a minor string-formatting issue in the 'amdgpu_pm_info' debugfs =
 
-> Signed-off-by: Xiaogang Chen <xiaogang.chen@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c   | 4 ++--
->  drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c   | 4 ++--
->  drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c   | 4 ++--
->  drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c | 4 ++--
->  4 files changed, 8 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c b/drivers/g=
-pu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-> index 82f194ea2a21..5f8bf87f475e 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-> @@ -203,8 +203,8 @@ static void update_mqd(struct mqd_manager *mm, void *=
-mqd,
->          * more than (EOP entry count - 1) so a queue size of 0x800 dword=
-s
->          * is safe, giving a maximum field value of 0xA.
->          */
-> -       m->cp_hqd_eop_control =3D min(0xA,
-> -               ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 -=
- 1);
-> +       m->cp_hqd_eop_control =3D q->eop_ring_buffer_size ? min(0xA,
-> +               ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 -=
- 1) : 0;
->         m->cp_hqd_eop_base_addr_lo =3D
->                         lower_32_bits(q->eop_ring_buffer_address >> 8);
->         m->cp_hqd_eop_base_addr_hi =3D
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c b/drivers/g=
-pu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
-> index dff016c9c65c..7506a1410385 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v11.c
-> @@ -241,8 +241,8 @@ static void update_mqd(struct mqd_manager *mm, void *=
-mqd,
->          * more than (EOP entry count - 1) so a queue size of 0x800 dword=
-s
->          * is safe, giving a maximum field value of 0xA.
->          */
-> -       m->cp_hqd_eop_control =3D min(0xA,
-> -               ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 -=
- 1);
-> +       m->cp_hqd_eop_control =3D q->eop_ring_buffer_size ? min(0xA,
-> +               ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 -=
- 1) : 0;
->         m->cp_hqd_eop_base_addr_lo =3D
->                         lower_32_bits(q->eop_ring_buffer_address >> 8);
->         m->cp_hqd_eop_base_addr_hi =3D
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c b/drivers/g=
-pu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
-> index 51dde2c86eb3..f1f923eb0ea5 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12.c
-> @@ -216,8 +216,8 @@ static void update_mqd(struct mqd_manager *mm, void *=
-mqd,
->          * more than (EOP entry count - 1) so a queue size of 0x800 dword=
-s
->          * is safe, giving a maximum field value of 0xA.
->          */
-> -       m->cp_hqd_eop_control =3D min(0xA,
-> -               ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 -=
- 1);
-> +       m->cp_hqd_eop_control =3D q->eop_ring_buffer_size ? min(0xA,
-> +               ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 -=
- 1) : 0;
->         m->cp_hqd_eop_base_addr_lo =3D
->                         lower_32_bits(q->eop_ring_buffer_address >> 8);
->         m->cp_hqd_eop_base_addr_hi =3D
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c b/drivers=
-/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
-> index 9014912ed82c..a6fff8032dce 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
-> @@ -294,8 +294,8 @@ static void update_mqd(struct mqd_manager *mm, void *=
-mqd,
->          * more than (EOP entry count - 1) so a queue size of 0x800 dword=
-s
->          * is safe, giving a maximum field value of 0xA.
->          */
-> -       m->cp_hqd_eop_control =3D min(0xA,
-> -               ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 -=
- 1);
-> +       m->cp_hqd_eop_control =3D q->eop_ring_buffer_size ? min(0xA,
-> +               ffs(q->eop_ring_buffer_size / sizeof(unsigned int)) - 1 -=
- 1) : 0;
->         m->cp_hqd_eop_base_addr_lo =3D
->                         lower_32_bits(q->eop_ring_buffer_address >> 8);
->         m->cp_hqd_eop_base_addr_hi =3D
-> --
-> 2.34.1
->
+output when reading power consumption of my Radeon 780M.
+
+The output fails to zero-fill the fractional portion of the Wattage readou=
+t 
+to 3 decimal places. For example, when the hardware returns a value 
+corresponding to 3.084 W (3084 mW), the driver seems to format it as "3.84=
+ 
+W" instead of "3.084 W".
+
+System Info:
+- GPU: AMD Radeon 780M (gfx1103)
+
+- Kernel Version: 7.0
+
+
+Kind regards,
+
+Zdenek
+
+--=_5bf85124248b4b4226b4c4c4=8cb4469b-1aea-57de-805f-dacd03b8f9c3_=
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body>Hello,<br>I noticed a minor string-formatting issue in the 'am=
+dgpu_pm_info' debugfs output when reading power consumption of my Radeon 7=
+80M.<br><br>The output fails to zero-fill the fractional portion of the Wa=
+ttage readout to 3 decimal places. For example, when the hardware returns =
+a value corresponding to 3.084 W (3084 mW), the driver seems to format it =
+as "3.84 W" instead of "3.084 W".<br><br>System Info:<br>- GPU: AMD Radeon=
+ 780M (gfx1103)<br><div>- Kernel Version: 7.0</div><br><div>Kind regards,<=
+/div><div>Zdenek</div></body></html>
+--=_5bf85124248b4b4226b4c4c4=8cb4469b-1aea-57de-805f-dacd03b8f9c3_=--
+
