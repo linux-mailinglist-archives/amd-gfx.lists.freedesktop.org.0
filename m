@@ -2,109 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Lp8jKnTsMGoiYwUAu9opvQ
+	id ompvH2hGMWqgfwUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 08:25:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 14:49:44 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E51F568C80E
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 08:25:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8635868F968
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Jun 2026 14:49:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=jiomT5Sc;
+	dkim=pass header.d=linux.dev header.s=key1 header.b=hzL08NIH;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=none) header.from=linux.dev
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D0E310E83F;
-	Tue, 16 Jun 2026 06:25:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09ED610EB81;
+	Tue, 16 Jun 2026 12:49:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013005.outbound.protection.outlook.com
- [40.107.201.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DA4F10E83F
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Jun 2026 06:25:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tEskG261gYddOKZOV46qvhPSV1dMPThnubxCHuv7BZ3iDlmn4VLhZ3xRiM3vR9kurV4P6AdDWRDwIzkyYgWeUrRm216XRNGQKoivPW0K8DnpT2nwQl5Jvic4uejjC/SAJgHp2SjxMwSuU6SbPJOTwNXKZNoeOWVFrEnYrUW4Z+QScoi60e/hmpLFJtYYFBUJ6kvBMFTyQ+AyKYek4lQWMyRNzoMjqzwLdJqk8QnP02PBjmYhdANgtGASFf9ZPFkuT4TGTaKPOhipaHfWGI+FFCZ7uPCah+p9edAR0tv2BLuHFRyLQEV1elOa+XhYPsFF/4kU+75dn030GmHx1wdzng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lvbKrTkCw8XPRbtE+qFnC3FZ5pboGiZwSd8Hf0H5yI0=;
- b=f8VehKZgiFJ6bOj1rzpOAycXbca0LwNhj4O9yN3DILJreqI3OqYpdgx2SyGecLqXMtjdEGio434F/Shaakw+Zwa6SOHIzwcVyDRSjPfpdVEyqu+NJcBzg0kB4vzkxFAd+TCuSI1vrNLkX9k9eAEFPN3p253R5wln+yZHgK/KL+jzNgjzdkxI+5nxsk6A7W7tbydQRiEJp4ETpcuKM4uDAi+Eg/h7l2HQaFTVChuuyYCq2+35xjER1o2Gvg3kyV57iIzTsma7pwu8CgYco3ZRTIcAa0akZyNeVfPZv8lQsHtVTas8BWUa0f97B+X2xzBs+8f9eJnyIiUKGVis8dfk/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lvbKrTkCw8XPRbtE+qFnC3FZ5pboGiZwSd8Hf0H5yI0=;
- b=jiomT5Sceje/ncQm2as7IOH+fYUS3eyzckLvF8QK8b4MRixAmp9zZTtbKIMAAjbnJ0sr7Ydg7eum13mpAkFaqAxyzWVEKAHVEw48RdXV8VK+foNbCJE8PKfhPnC6jQyGz7GQiPhIQGsOU2pamDA1dxZ3K9BveWicqi63JrkG784=
-Received: from BY3PR03CA0011.namprd03.prod.outlook.com (2603:10b6:a03:39a::16)
- by DM4PR12MB5746.namprd12.prod.outlook.com (2603:10b6:8:5d::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Tue, 16 Jun
- 2026 06:25:48 +0000
-Received: from SJ5PEPF00000204.namprd05.prod.outlook.com
- (2603:10b6:a03:39a:cafe::98) by BY3PR03CA0011.outlook.office365.com
- (2603:10b6:a03:39a::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.18 via Frontend Transport; Tue,
- 16 Jun 2026 06:25:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF00000204.mail.protection.outlook.com (10.167.244.37) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.139.8 via Frontend Transport; Tue, 16 Jun 2026 06:25:48 +0000
-Received: from cjq-desktop.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 16 Jun
- 2026 01:25:23 -0500
-From: Jiqian Chen <Jiqian.Chen@amd.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, =?UTF-8?q?Timur=20Krist=C3=B3f?=
- <timur.kristof@gmail.com>, Samuel Pitoiset <samuel.pitoiset@gmail.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Huang Rui <ray.huang@amd.com>,
- Huang Trigger <Trigger.Huang@amd.com>, Jiqian Chen <Jiqian.Chen@amd.com>
-Subject: [PATCH v4 1/1] drm/amdgpu/gfx9: Fix Ring and IB test fail after mode2
-Date: Tue, 16 Jun 2026 14:25:05 +0800
-Message-ID: <20260616062505.1982738-1-Jiqian.Chen@amd.com>
-X-Mailer: git-send-email 2.39.5
+Received: from out-189.mta0.migadu.com (out-189.mta0.migadu.com
+ [91.218.175.189])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A70310E87F;
+ Tue, 16 Jun 2026 07:13:11 +0000 (UTC)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1781593989;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=/n5ClynN9wECcpRwRUUOPxrDcmCBQxKZrrm5x/CS1ZE=;
+ b=hzL08NIHwOLXET4LriCS3jha/l1h+tfnJXHRFF5PimyEs96MvmK5yzxHmm3eCx+NSquRx7
+ 96INU4Tj8riZJ3BaJ6nwzMPnj+rV16l3jsldze2JOlt8qS6BJedNizu0u35dyXi/WldTF2
+ EoScnkPyfLkGEwT4LUiX08EFbW/tM/Y=
+From: Matthew Schwartz <matthew.schwartz@linux.dev>
+To: Harry Wentland <harry.wentland@amd.com>, Melissa Wen <mwen@igalia.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ christian.koenig@amd.com, Alex Deucher <alexander.deucher@amd.com>,
+ natalie.vock@gmx.de
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ "Pierre-Loup A . Griffais" <pgriffais@valvesoftware.com>,
+ Matthew Schwartz <matthew.schwartz@linux.dev>
+Subject: [RFC PATCH] drm/amd/display: Pin native scanout to VRAM on
+ large-carveout APUs
+Date: Tue, 16 Jun 2026 00:10:37 -0700
+Message-ID: <20260616071037.26718-1-matthew.schwartz@linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF00000204:EE_|DM4PR12MB5746:EE_
-X-MS-Office365-Filtering-Correlation-Id: 24303195-e900-425f-aaf3-08decb701b28
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|82310400026|1800799024|376014|23010399003|18002099003|11063799006|6133799003|56012099006;
-X-Microsoft-Antispam-Message-Info: GHCVb+DySmWRn9iC3PhMk33MEMps/9wf2zle/VKjNkzkk2AQKH3+NMuyCX8z10FOWWmacxuCyF2rfCFKSp6JEwrCT5U0V/04aAEsxkMKhxD+IJffL9+o3MiOBhkajrlxlw1iq6EzNFbjeE4z+vUZnCbr1CGpnjLETeGUv+rB9rhnE5gctec3rvWuix2zxngG7GAGMtVjDxSEHmSt0N43V7TneTKVZnzdk+K3kxqbFCiL+/a1DeiDNSADLLSWrRyMcey1kmOGHrZJwjeA4/v6PejZS0ATJEDJPgAx0ubg78kPhH9oop0qQzFXqZ9/mUftnf7g+yXMF/xelLMbV1DgevQOQ/HHsCgdIVLJBhrrPc3Tcfagi6714Whh9chiojRncXek/o1ravryePDE/j6okHq1G+W8FdvvcPxN1JTM0BxPnDlAyBCzlWnq6FuemFlgiiRaXx5+2z1slrVYKmiBCONA2oiTsdq2TTzu+xPyjbDsfyStw0gI0S4r/5lisMtm8MMTr81NMwqu3D9R++15V5QhRMcIfqCcuUzQJZ3JdWr2Hth4TDrfoQ6l/61zimo4/iP/1aQQnYgtwigEIBOxmCue4rwVaGA8svNpmzqvhJSdpS4TZZuBNiZsyt9dN/QD2yi1HJ4zUoNu5Xoxe2eUgNuUOIDCCTOG/9GZFEW+Jx8vA/6GxRenHRjn7zg0Ue4S4476HbJSdKSqb7p/+if0Ic8svNsJdgyrB4kh5SfZJdg=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(23010399003)(18002099003)(11063799006)(6133799003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: qbJraGEkvXIH0g1s5uZ2yewIn8IqO/1Qpv8dwy4daLiGEOYEBPJpNeEWplJhbJSmprhb9BCDPHoRgQUYSMmBeiqoDKra4n2ho8bcZrp1d+fU9km7crU2Nhma6ThtfYyne2aaTlKPZZ5yzWMrw4iHg4k3k1ay63nI3hzjcwKLCV9uWU1dAS+qBbJHMZz3UusHMEooNyfl1Tr+KSkeNS5OVE1K2KlBVDdGt8LJNSf2NljhxAZ5og9kf1D3jxiiRx+hxlZso76k29DLnLI0xBXRfIY3YU8Ju+YfZ08Z5MHW4MEi/fY00Jurp+VFFZKc14rFluDwANoA9j5ZmQax6SGytpj6jP+6BIwvze/J95YgHRR8qymZCtPyKefHDO1ZRMFG1HKPmyQ1KTiUobV3I12UoNx1IFnxpXPRUq0JDun4TK7CZlAQpbNnd7g7PknHhtnM
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2026 06:25:48.4532 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 24303195-e900-425f-aaf3-08decb701b28
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000204.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5746
+X-Migadu-Flow: FLOW_OUT
+X-Mailman-Approved-At: Tue, 16 Jun 2026 12:49:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,162 +64,145 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com,igalia.com,amd.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmx.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:timur.kristof@gmail.com,m:samuel.pitoiset@gmail.com,m:tvrtko.ursulin@igalia.com,m:ray.huang@amd.com,m:Trigger.Huang@amd.com,m:Jiqian.Chen@amd.com,m:timurkristof@gmail.com,m:samuelpitoiset@gmail.com,s:lists@lfdr.de];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FORGED_SENDER(0.00)[Jiqian.Chen@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[matthew.schwartz@linux.dev,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Jiqian.Chen@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	HAS_XOIP(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.dev:dkim,linux.dev:email,linux.dev:mid,linux.dev:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E51F568C80E
+X-Rspamd-Queue-Id: 8635868F968
 
-For Renior APU with gfx9, in some test scenarios with disabling
-ring_reset, like accessing an unmapped invalid address, it can
-trigger a gpu job timeout event, then driver uses Mode2 reset
-to reset GPU, but after Mode2 compute Ring test and IB test fail
-randomly. It because the HQDs of MECs are always active before or
-after Mode2, that causes MECs use stale HQDs when MECs are unhalted
-before driver restore MQDs, and causes CPC and CPF are still stuck
-after Mode2, then causes compute Ring and IB tests fail.
+Native scanout buffers on APUs are pinned with the VRAM|GTT domain, so
+under VRAM carveout pressure a swapchain can end up split across VRAM and
+GTT. The scanout buffer's memory type then changes from one flip to the
+next, and amdgpu_dm_crtc_mem_type_changed() rejects an async page flip
+across the change. The result is repeated async page flip failures,
+observed as choppy updates under carveout pressure, until the buffers
+reconverge to a single domain.
 
-So, add sequences to deactivate HQDs of MECs in suspend IP function
-of the resetting process.
+Pin native scanout buffers in VRAM only so the swapchain stays in one
+memory domain. Restrict this to APUs whose carveout is larger than
+AMDGPU_SG_THRESHOLD, so small-carveout parts keep their existing VRAM|GTT
+placement, and fall back to GTT when the buffer does not fit in VRAM, so
+the flip still succeeds and the swapchain stays in one domain. Imported
+buffers may only be pinnable in GTT, so leave those on the default
+domains.
 
-v2: Move all sequences into a new function gfx_v9_0_cp_mode2_clear_state (Ray Huang)
-    To check reset Mode2 method in the if condition (Ray Huang)
-v3: Move all sequences before Mode2 instead of after Mode2 (Timur Kristóf)
-v4: Call amdgpu_gfx_rlc_enter/exit_safe_mode int the begin and end of
-    gfx_v9_0_deactivate_kcq_hqd (Alex Deucher)
-
-Signed-off-by: Jiqian Chen <Jiqian.Chen@amd.com>
-Reviewed-by: Huang Rui <ray.huang@amd.com>
-Reviewed-by: Timur Kristóf <timur.kristof@gmail.com>
+Signed-off-by: Matthew Schwartz <matthew.schwartz@linux.dev>
 ---
-v3->v4 changes:
-* Call amdgpu_gfx_rlc_enter/exit_safe_mode() int the begin and end of
-  gfx_v9_0_deactivate_kcq_hqd()
-* Add RB of Ray and Timur
+Hi,
 
-v2->v3 changes:
-* Move all sequencess before Mode2 instead of after Mode2, and add a new
-  function gfx_v9_0_deactivate_kcq_hqd to do the disable compute HQDs
-  sequences.
-  Then the resetting CPC and CPF are not needed since we have already
-  move all sequences before Mode2 and they are not stuck
+This came up while testing my kernel patch to fix mem_type detection for
+async flips here: https://lore.kernel.org/amd-gfx/20260611154438.571685-1-matthew.schwartz@linux.dev/
 
-v1->v2 changes:
-* Move my sequences into a new function gfx_v9_0_cp_mode2_clear_state
-* Add reset Mode2 method check to the if condition that call my sequences
+I found a new issue where splitting a swapchain between VRAM and GTT
+causes a noticeable stutter in gameplay if gamescope is using direct
+scanout and tearing is enabled while a game is already running.
 
-v1:
-Hi all,
+Once a swapchain is split across the VRAM carveout and GTT, the scanout
+buffer's mem_type changes from one flip to the next, so
+amdgpu_dm_crtc_mem_type_changed() rejects the async flip. Under direct
+scanout with tearing that rejection recurs every time the displayed buffer
+crosses domains, which is what surfaces as the choppiness. 
 
-My board is Renior APU with gfx9, smu12. I run a testcase that
-accesses an invalid address to trigger a amdgpu_job_timedout()
-with disabling ring_reset, so that driver will call mode2 reset
-directly. After mode2 reset I found compute Ring tests and compute
-IB tests fail randomly on random compute ring.
+With this patch, I can enable tearing on top of an already-disabled frame
+limit mid-game and no longer reproduce the choppiness.
 
-We checked the scan dump of GPU, we can see the CPC and CPF are
-still stuck, that caused Compute Ring tests fail.
+amdgpu_gem_info confirms the swapchain converges to a single domain
+instead of splitting across VRAM and GTT.
 
-I added printings in driver codes (gfx_v9_0_cp_resume), and found
-the HQDs of MECs are still active, that may cause MECs use stale
-HQDs when MECs are unhalted before mapping compute queues (restoring
-MQDs to HQDs).
+Before:
+0x00000f81:      3981312 byte GTT exported as ino:275 NO_CPU_ACCESS CPU_GTT_USWC VRAM_CLEARED VRAM_CONTIGUOUS EXPLICIT_SYNC     write fence:drm_sched gfx_0.0.0 seq 88248 signalled
+0x00000f82:      3981312 byte GTT exported as ino:276 NO_CPU_ACCESS CPU_GTT_USWC VRAM_CLEARED VRAM_CONTIGUOUS EXPLICIT_SYNC     write fence:drm_sched gfx_0.0.0 seq 88224 signalled
+0x00000f83:      3981312 byte VRAM VISIBLE pin count 1 exported as ino:277 NO_CPU_ACCESS CPU_GTT_USWC VRAM_CLEARED VRAM_CONTIGUOUS EXPLICIT_SYNC        write fence:drm_sched gfx_0.0.0 seq 88236 signalled
 
-So, I send this patch to fix above problems.
-There are two main changes of my patch:
-One is to reset CPC and CPF before resuming KCQ.
-Another is to disable HQDs beofre unhalting MECs.
+After:
+0x00000f82:      3981312 byte VRAM VISIBLE pin count 1 exported as ino:548 NO_CPU_ACCESS CPU_GTT_USWC VRAM_CLEARED VRAM_CONTIGUOUS EXPLICIT_SYNC        write fence:drm_sched gfx_0.0.0 seq 822258 signalled
+0x00000f83:      3981312 byte VRAM VISIBLE exported as ino:549 NO_CPU_ACCESS CPU_GTT_USWC VRAM_CLEARED VRAM_CONTIGUOUS EXPLICIT_SYNC    write fence:drm_sched gfx_0.0.0 seq 822255 signalled
+0x00000f84:      3981312 byte VRAM VISIBLE exported as ino:550 NO_CPU_ACCESS CPU_GTT_USWC VRAM_CLEARED VRAM_CONTIGUOUS EXPLICIT_SYNC    write fence:drm_sched gfx_0.0.0 seq 822261 signalled
+
+Does this seem like the correct approach to take for fixing the observed
+issue? I wanted to start with an RFC to make sure I didn't overlook
+anything obvious or miss any better methods of fixing this.
+
+Thanks,
+Matt
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 39 +++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 29 +++++++++++++++++--
+ 1 file changed, 26 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 90bbddb45730..7704100eae10 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -4071,6 +4071,41 @@ static int gfx_v9_0_hw_init(struct amdgpu_ip_block *ip_block)
- 	return r;
- }
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+index 23a9faa2ea89..b99f938e58ec 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+@@ -932,6 +932,7 @@ static int amdgpu_dm_plane_helper_prepare_fb(struct drm_plane *plane,
+ 	struct amdgpu_bo *rbo;
+ 	struct dm_plane_state *dm_plane_state_new, *dm_plane_state_old;
+ 	uint32_t domain;
++	bool pin_vram_only;
+ 	int r;
  
-+static void gfx_v9_0_deactivate_kcq_hqd(struct amdgpu_device *adev)
-+{
-+	amdgpu_gfx_rlc_enter_safe_mode(adev, 0);
-+	for (int i = 0; i < adev->gfx.num_compute_rings; i++) {
-+		u32 tmp;
-+		struct amdgpu_ring *ring = &adev->gfx.compute_ring[i];
+ 	if (!new_state->fb) {
+@@ -958,13 +959,35 @@ static int amdgpu_dm_plane_helper_prepare_fb(struct drm_plane *plane,
+ 	if (r)
+ 		goto error_unlock;
+ 
+-	if (plane->type != DRM_PLANE_TYPE_CURSOR)
+-		domain = amdgpu_display_supported_domains(adev, rbo->flags);
+-	else
++	/*
++	 * Pin native scanout in VRAM on APUs so a swapchain stays in one
++	 * memory domain. A VRAM/GTT split changes its mem_type between flips
++	 * and amdgpu_dm_crtc_mem_type_changed() rejects the async flip. Skip
++	 * small carveouts that may not fit, and imported buffers.
++	 */
++	pin_vram_only = plane->type != DRM_PLANE_TYPE_CURSOR &&
++			(adev->flags & AMD_IS_APU) &&
++			!rbo->tbo.base.import_attach &&
++			adev->gmc.real_vram_size > AMDGPU_SG_THRESHOLD;
 +
-+		mutex_lock(&adev->srbm_mutex);
-+		soc15_grbm_select(adev, ring->me, ring->pipe, ring->queue, 0, 0);
-+		tmp = RREG32_SOC15(GC, 0, mmCP_HQD_ACTIVE);
-+		/* disable the queue if it's active */
-+		if (tmp & CP_HQD_ACTIVE__ACTIVE_MASK) {
-+			int j;
-+
-+			WREG32_SOC15(GC, 0, mmCP_HQD_DEQUEUE_REQUEST, 1);
-+			for (j = 0; j < adev->usec_timeout; j++) {
-+				tmp = RREG32_SOC15(GC, 0, mmCP_HQD_ACTIVE);
-+				if (!(tmp & CP_HQD_ACTIVE__ACTIVE_MASK))
-+					break;
-+				udelay(1);
-+			}
-+			if (j == AMDGPU_MAX_USEC_TIMEOUT) {
-+				DRM_DEBUG("comp_%u_%u_%u dequeue request failed.\n",
-+							ring->me, ring->pipe, ring->queue);
-+				/* Manual disable if dequeue request times out */
-+				WREG32_SOC15(GC, 0, mmCP_HQD_ACTIVE, 0);
-+			}
-+			WREG32_SOC15(GC, 0, mmCP_HQD_DEQUEUE_REQUEST, 0);
++	if (plane->type == DRM_PLANE_TYPE_CURSOR || pin_vram_only)
+ 		domain = AMDGPU_GEM_DOMAIN_VRAM;
++	else
++		domain = amdgpu_display_supported_domains(adev, rbo->flags);
+ 
+ 	rbo->flags |= AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS;
+ 	r = amdgpu_bo_pin(rbo, domain);
++	if (r == -ENOMEM && pin_vram_only) {
++		/*
++		 * VRAM could not fit the buffer. Fall back to GTT where
++		 * allowed so the swapchain stays in one domain.
++		 */
++		domain = amdgpu_display_supported_domains(adev, rbo->flags);
++		if (domain & AMDGPU_GEM_DOMAIN_GTT) {
++			domain = AMDGPU_GEM_DOMAIN_GTT;
++			r = amdgpu_bo_pin(rbo, domain);
 +		}
-+		soc15_grbm_select(adev, 0, 0, 0, 0, 0);
-+		mutex_unlock(&adev->srbm_mutex);
 +	}
-+	amdgpu_gfx_rlc_exit_safe_mode(adev, 0);
-+}
-+
- static int gfx_v9_0_hw_fini(struct amdgpu_ip_block *ip_block)
- {
- 	struct amdgpu_device *adev = ip_block->adev;
-@@ -4095,6 +4130,10 @@ static int gfx_v9_0_hw_fini(struct amdgpu_ip_block *ip_block)
- 		return 0;
- 	}
- 
-+	if ((adev->flags & AMD_IS_APU) && amdgpu_in_reset(adev) &&
-+		amdgpu_asic_reset_method(adev) == AMD_RESET_METHOD_MODE2)
-+		gfx_v9_0_deactivate_kcq_hqd(adev);
-+
- 	/* Use deinitialize sequence from CAIL when unbinding device from driver,
- 	 * otherwise KIQ is hanging when binding back
- 	 */
+ 	if (unlikely(r != 0)) {
+ 		if (r != -ERESTARTSYS)
+ 			DRM_ERROR("Failed to pin framebuffer with error %d\n", r);
 -- 
-2.39.5
+2.54.0
 
