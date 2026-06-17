@@ -2,53 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id no4RAGyYMmo92gUAu9opvQ
+	id iyiKC3SYMmpA2gUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 14:51:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 14:52:04 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CCD5699DC5
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 14:51:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE5F2699DD3
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 14:52:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=wOLlo7Kc;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=uhaQ42P5;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 330DD10E841;
-	Wed, 17 Jun 2026 12:51:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4377410E9DE;
+	Wed, 17 Jun 2026 12:52:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013055.outbound.protection.outlook.com
- [40.93.196.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8126C10E841
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2026 12:51:52 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010007.outbound.protection.outlook.com [52.101.46.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B0EF10E9F4
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2026 12:52:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Qa6YlWlfIQoOLD2SCABLMXrkkvd82u9d3zls9VM2Hgte7bPMhRsyEGr/WOQwCP/Pp4ySwvVsMgrAD70eT/YWAFTB3rNkON05nvREFRApkFizo/67+9XlTsqBRT/S/6bLkL5YwolEBeqBMiXxI2u1H/j1I2uXvvCL7Cy8HGm4DN7O+Luzrnvnr34tqXyADl84jeyT6os7tv/DeZCYTeKg74QyjAW/533J3mNo41mofxhrA3Z5W5YNkH4+qiXo2hsEKNlhhZWrwv85nobgyFG6OL7zhj9fwlWWv0oXLOkQPbYwq+j9CHiCHPR5BqB7MhcPtrEC6MYHB4G8ntS0QJzDkg==
+ b=iaPP7BsIcnvAKHKpAU4BvhNX58YV1o+aMBxDqZMKvzDgyi75+GeMs+7OeoH+ghRGnRBb3yD23ogLquQkrOfbh/wS/pepxQszq3XP9rH+WMzpu751WAQoC6nktEQyNvZgyiMkaquTGQWZpEHOLHdaIKT8D8g4Gk5FMbgtWh2n49Z2AOjgNjeNh4JCWqRBmrHLm87lFiLlGHCl9Uy9R9OwuFBmucLhxJ7sznWJpgiZD1gQ16KkrFYzp0m5PXqk4Ev2d2BY92alb06Fe/MDQWeqkiBsi9jEoMlbeyvxwEkzHF3H1b57rdazxPEr3/XF+KOJV/SPzYPXIA+ZBRH5d04J2g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/fpmMqpj1BslUiUFU/tL+O7ktZMZ3VPmCL1SyJfABg8=;
- b=g5HmBvEG9hT31ORFST6KIAvH8qbgv4jKx1+7RM7k83HhZf24xv94OnxzdBlIr54CTKr7xnWCkSuDBOxppAVzOItUKbP5L6U+z9egkjzbY4dF31TNe7hWNWo6f/kT5hsdC5lZ85QbJvvhkQNACywucH9EteTfi2WnQqhByc7dy2xr0gRpJQdcbDR9zYHPow6SNS47AJdXdj9gCSjuMv8PTbb1wbsQ1TxHpX4s7NWuOx6RJlC3O4vOgHxAJSgrA7YOtQt1tA3QmHbnlQxhH6aydIAqfY3LNmrb4xuhQssxVzsZyZQz51dEzRnoFUDb/RriV+67d450zlg7GnUbI5iZZg==
+ bh=ARUOH69a3Uc2qgP17xyS/80US0j6gb1vb5ysnabiJZo=;
+ b=s7b84atib7MJpJcjcGswx7irqlqS5t0KbCO8MNotFCaffsgeQMpSRMW9qhtKbHXTq1nbfxYer8f2sJO9g6vPxL4+ovjuJYAK78LbbdnVN00C4y3+JK6xNA1J8sN0R71a5heeLJUUxL2VV9NmGUF4slDpzkvr9DiuytlvJnGTJRMKdAagHofEH41YMfPOOzyrABxYcUy8ygoe1Sw3sRb+j+0oT/ljyAVkIzYhhcSABjHpA+LdGPscTbctvg5vx7X/PizZtkWre/L9wDmyNjULMu20Nguj7pdRZ72zaT1PJtIwvNLHd/nTGw390n4sxU+4w0pFX6IJJYbVJDzYDE4IPA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/fpmMqpj1BslUiUFU/tL+O7ktZMZ3VPmCL1SyJfABg8=;
- b=wOLlo7Kcw5CIc4Pa4WuZUAWAI2b1NBtDyYjZA3hg1UHzqy6oZhGMb1YpLlaKphore+ebrI3u4w11+fqly6SXZ+PGsFWGO/cBT1WuhpVGlBRS7oiMf/1sdpAbfqfRRY/qOCLXfubmeICZ0XxPKQDtRvVZFCnx4px8BAQinkQRRt4=
+ bh=ARUOH69a3Uc2qgP17xyS/80US0j6gb1vb5ysnabiJZo=;
+ b=uhaQ42P5eX8I3nfAt/Ig0BgaJiESE21g2xYhIRdaySs4zphobi6EXPtiSZ+TLUSjycIA803b4O5TM3vwhFhBGnI5pI7ctypYjVLmsHEMG71YglFQGE1Vgrp3C3teyHHedq+IHwAZn1lbhdFpP64aXDX4Q7SEEahg9gDZKb3hOtI=
 Received: from BY3PR03CA0025.namprd03.prod.outlook.com (2603:10b6:a03:39a::30)
- by SJ2PR12MB8805.namprd12.prod.outlook.com (2603:10b6:a03:4d0::20)
+ by PH0PR12MB7485.namprd12.prod.outlook.com (2603:10b6:510:1e9::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Wed, 17 Jun
- 2026 12:51:46 +0000
-Received: from MWH0EPF000C6185.namprd02.prod.outlook.com
- (2603:10b6:a03:39a:cafe::8c) by BY3PR03CA0025.outlook.office365.com
+ 2026 12:51:48 +0000
+Received: from MWH0EPF000C618A.namprd02.prod.outlook.com
+ (2603:10b6:a03:39a:cafe::e) by BY3PR03CA0025.outlook.office365.com
  (2603:10b6:a03:39a::30) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.11 via Frontend Transport; Wed,
- 17 Jun 2026 12:51:46 +0000
+ 17 Jun 2026 12:51:48 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,20 +55,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- MWH0EPF000C6185.mail.protection.outlook.com (10.167.249.117) with Microsoft
+ MWH0EPF000C618A.mail.protection.outlook.com (10.167.249.122) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.139.8 via Frontend Transport; Wed, 17 Jun 2026 12:51:46 +0000
+ 15.21.139.8 via Frontend Transport; Wed, 17 Jun 2026 12:51:48 +0000
 Received: from liuxiang-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 17 Jun
- 2026 07:51:44 -0500
+ 2026 07:51:46 -0500
 From: Xiang Liu <xiang.liu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Hawking.Zhang@amd.com>, <Tao.Zhou1@amd.com>, <Stanley.Yang@amd.com>,
  <YiPeng.Chai@amd.com>, Xiang Liu <xiang.liu@amd.com>
-Subject: [PATCH 2/4] drm/amdgpu: return CSA kernel mapping via out parameter
-Date: Wed, 17 Jun 2026 20:51:19 +0800
-Message-ID: <20260617125121.1838486-2-xiang.liu@amd.com>
+Subject: [PATCH 3/4] drm/amdgpu: read back CE/DE preemption state via a
+ per-ring CSA pointer
+Date: Wed, 17 Jun 2026 20:51:20 +0800
+Message-ID: <20260617125121.1838486-3-xiang.liu@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260617125121.1838486-1-xiang.liu@amd.com>
 References: <20260617125121.1838486-1-xiang.liu@amd.com>
@@ -81,29 +81,29 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000C6185:EE_|SJ2PR12MB8805:EE_
-X-MS-Office365-Filtering-Correlation-Id: a3b7d353-9d6a-4663-e1bc-08decc6f309b
+X-MS-TrafficTypeDiagnostic: MWH0EPF000C618A:EE_|PH0PR12MB7485:EE_
+X-MS-Office365-Filtering-Correlation-Id: 74953236-ea1f-4cd8-3dc1-08decc6f31e7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|1800799024|82310400026|36860700016|11063799006|56012099006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: eMTKsJL8Z3Tg4ro9tW/hXN/WmpiHFsbGN9qap8hk8MAu6zUsk4ZvSFu2HBSjWhVk8XLJGcW1Vg5/2vwWoS3z6UHwec+RBCkDRefrX/Wdb0rHh4MCQSfKs1LTbuJsgFST+ijB5wcHRt3xsqbag9rrl/7Rf8wMe+Edi1gX++Fbpcuu28lL0KwN/abqvdEoNfbSLHugkJJROota+Osor4IgrhpsBU29ZYvxXVnWc4sFKmgUhmW6EyYz7ajxOeeg4aGxlUexADd0/hTRh3HLZ8i9YHRDc/wgL55RxJUiyo0M2uKlt3EMQyUHCP6RDEo2KRWK+XEXhNEUMKT87x8Jxp/Zkt0gWpOLKwO294wdGSlQYPyCMqmuERTdtr2aLSSgf9o8AljInSbBMDuJVpYS02+6v//wDV6IS/xz9d6YRzppegGNBf1iie18+/LzzhbjjyG/0WQ/iAEdcy0GeKbxXCVe1tMotgJinXvq6hIds3TkMMIkclDdIzcOPLWv2vn63w88HF4/+0M0JcN3AYWA7ge0SvZCC1P5mHkF4pgNmQ2PJMv3u6aA6lQ+VwnGyrmT+eI+K0LfCt+dTfJl/8xfu+oxMb/+z9Nl8AKcDl6MhDxuAwD3sI/ThmzaLmTU3MvMvapNx5j2SO0Cso8zMff9+OucQExDZmgEGjBtCwAlKZ+CJX2KgDStX9ZHcfQIjUHCX+OOil+UPH+JBVJwCqccTlmDxBbJVc+mVQ8GHR3w045Vi28=
+ ARA:13230040|1800799024|23010399003|36860700016|376014|82310400026|22082099003|18002099003|56012099006|11063799006|6133799003;
+X-Microsoft-Antispam-Message-Info: 7rBqR/zdsVUPOHT2AmyK4RZTzkbSpgNnwyrK+PH2hlXnHS/Xvut7p8pr+JXfiXZFjaPkszNxTzWbN1QLh5yY93fwS5Un40rkszMiQaMuvy8KjagfsDQutbVAxdQAXyc2LB57lkoxm5Xl7UXMmGqWsIP8WMgn5ilOBd2ONpqCotPqvY50F1RLDq7MT/KYwmnC2krySYnUDavxyOJ103lZ+yub8hDQ4XPp0Bwp5n1j9yih4ZJ8TqwMF584seZHS8OQaGtP9GBLGgGsOwH9GE3yfODq+gibRkobQlVENnbcBTe2bbNOZkBvnTVT7thW90WCKilESw3D3WF602t0EaRYAEDwbpkw/oMoIsVSzRc1ygD+WT9QpF0UY7nk93tLCbNEYenhkG3Ig0v9wJmDfALuUJAeq6KIhonw/SVzxItnXTmdzh/6Tk8bTZS4fvgKlYrdTa4FAKjCFAwz9adZvTZxgkoNy+nh4FZG6fRre5bk6WmxHgwXIroEkTqY8d8J7BzP2kLsAoF1KKK1108vJVBFj3FfhsY/pLRCa11tCPtcTd096eTqZsmiviFPADQ6Ox8Iu2492QjYpaLSqfMleXd5SW0kXBiFaEpR37WzwmVp2CbH9u2Qa5p9LLveGBIumzrnlOPJBSioSS4/BrfK5uWrMmn5gMrjaQQvNCVAvzz6FBTJh7VRNEUx9/c6gzOK42ihrDqWSCSdxbypOit7aADWPxC1UXnOQTPNRcP8tXFmPME=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(1800799024)(82310400026)(36860700016)(11063799006)(56012099006)(18002099003)(22082099003);
+ SFS:(13230040)(1800799024)(23010399003)(36860700016)(376014)(82310400026)(22082099003)(18002099003)(56012099006)(11063799006)(6133799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: HZXp90YUfvOI1v63GTpU3VtX6Z+pP7zR0G616HQXq7jc+qAr07iLRinXnZImopawsJxNz1ujaHgND0CcCV+y/ulDhhOhEu6bypr1mHL0n209pLCPeszAuyHiY5svKyRYT977t8F9gtHhTNzXfbCMRzZ+uFFNOGU5J2LS/ikRX36Wh6//k2Mq1euIBP27YSRg9cPC8EP4XR4mM/F6iFjzF4yD8z+WYyREQouAPoZ/dPT2wdsKc3ExQHSuy56z65c2DZGZ4yAkSqWhZTBE6bHK/7VNk9yEYVulKSyUmKYsgouMsN/gh3k4RPH1XxMfwm5CUEptu1Tzm0fU7t3WxhgW8CUYt5mPDPBJB2EsZuZ0ji4OCA4VHlEEfwlHs2emUkMUE6e+sLP27bYijEBkLZeUCIo7gZKy4hQpA9ObP2gIXyXg6e6wN82UU4xMSyMQZWFy
+X-MS-Exchange-AntiSpam-MessageData-0: OZJhMPoeFbCQi6++8FmJdKggDk7UTXWE1TwuJNT+jMcFj2GTK2Oznt1kq+2m/xD3Xd3inOXqm7PluQhuU0avcYQ6jDQSf6eESSisxo+QVHJhiT37UUntMo7Ndta6dCXNsvpZtw0dlsnoSWFpchTzD3BAvfLn7jjdxIGRGx6DCfTenao2yBMZkmFN9Pe48E3Z3Uyiy37Zo8g6xaq7W8w7HcPf5bkkMD/g2wcn8eBGGTq4VdzWKFdRnh013lpN81xmukD8CtZvMqRdT6gdLUFCTCJt7NAKgfhr6vWR+81TWOs/v8RrlDdQf/+lsuaxAGCJKG5bAE3aesNZabRAHN3WMlO3ZR31X7fX3Np9YTr6gp3J27gbVLHmWQs+Ai2knyAFVhxENZve5aL1LfNOWC4d4llUvsvarDwMuODKw8KLq8QyeysRQo+2hTHKZtalu7Wg
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2026 12:51:46.0844 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3b7d353-9d6a-4663-e1bc-08decc6f309b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2026 12:51:48.3116 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 74953236-ea1f-4cd8-3dc1-08decc6f31e7
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000C6185.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000C618A.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8805
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7485
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,74 +145,231 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9CCD5699DC5
+X-Rspamd-Queue-Id: AE5F2699DD3
 
-amdgpu_allocate_static_csa() stored the kernel CPU mapping of the newly
-created CSA directly into adev->virt.csa_cpu_addr. That hard-codes the
-single device-global CSA and prevents the function from being reused to
-allocate additional CSA buffers.
+The MCBP preemption resume path reads back the saved CE/DE payload from
+the CSA kernel mapping. The gfx9/10/11 emit and patch helpers hard-coded
+adev->virt.csa_cpu_addr, which only works while there is a single
+device-global CSA shared by all processes.
 
-Return the CPU mapping through an out parameter instead and let the
-caller decide where to store it.
+Introduce a per-ring csa_cpu_addr that records which CSA kernel mapping
+the state must be read back from for the jobs currently emitted on that
+ring, and set it in amdgpu_ib_schedule() from the job's VM
+(vm->csa_cpu_addr) with a fallback to the global mapping. For the gfx9
+software-ring mux, carry the value in the saved chunk so the deferred
+resubmission reads back the correct CSA. Convert the gfx9/10/11 helpers
+to use ring->csa_cpu_addr.
+
+vm->csa_cpu_addr is always NULL for now, so every lookup still resolves
+to adev->virt.csa_cpu_addr and there is no functional change. This only
+prepares the readback path for per-process CSA buffers.
 
 Signed-off-by: Xiang Liu <xiang.liu@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c    | 4 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_csa.h    | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 ++-
- 3 files changed, 5 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c       |  3 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h     |  6 ++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c |  2 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.h |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h       |  6 ++++++
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c       |  5 ++---
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c        | 11 ++++-------
+ 8 files changed, 25 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c
-index 814cb9e903586..083a2cf20324b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.c
-@@ -40,7 +40,7 @@ uint64_t amdgpu_csa_vaddr(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+index 3099379af0b29..bec2fe6b35968 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+@@ -150,6 +150,8 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsigned int num_ibs,
+ 	/* ring tests don't use a job */
+ 	if (job) {
+ 		vm = job->vm;
++		ring->csa_cpu_addr = (vm && vm->csa_cpu_addr) ?
++			vm->csa_cpu_addr : adev->virt.csa_cpu_addr;
+ 		fence_ctx = job->base.s_fence ?
+ 			job->base.s_fence->finished.context : 0;
+ 		shadow_va = job->shadow_va;
+@@ -166,6 +168,7 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsigned int num_ibs,
+ 		job->hw_vm_fence->context = fence_ctx;
+ 	} else {
+ 		vm = NULL;
++		ring->csa_cpu_addr = adev->virt.csa_cpu_addr;
+ 		fence_ctx = 0;
+ 		shadow_va = 0;
+ 		csa_va = 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+index 8f28b3bd70106..6d675a08df746 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+@@ -424,6 +424,12 @@ struct amdgpu_ring {
+ 
+ 	bool            is_sw_ring;
+ 	unsigned int    entry_index;
++
++	/* CPU mapping of the CSA whose CE/DE preemption state must be read
++	 * back for jobs currently emitted on this ring. Updated per job.
++	 */
++	void		*csa_cpu_addr;
++
+ 	/* store the cached rptr to restore after reset */
+ 	uint64_t cached_rptr;
+ };
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c
+index 7e7d6c3865bcd..ba8c8ed778d33 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.c
+@@ -107,6 +107,7 @@ static void amdgpu_mux_resubmit_chunks(struct amdgpu_ring_mux *mux)
+ 								    ktime_get());
+ 				if (chunk->sync_seq ==
+ 					le32_to_cpu(*(e->ring->fence_drv.cpu_addr + 2))) {
++					e->ring->csa_cpu_addr = chunk->csa_cpu_addr;
+ 					if (chunk->cntl_offset <= e->ring->buf_mask)
+ 						amdgpu_ring_patch_cntl(e->ring,
+ 								       chunk->cntl_offset);
+@@ -456,6 +457,7 @@ void amdgpu_ring_mux_start_ib(struct amdgpu_ring_mux *mux, struct amdgpu_ring *r
+ 	chunk->cntl_offset = ring->buf_mask + 1;
+ 	chunk->de_offset = ring->buf_mask + 1;
+ 	chunk->ce_offset = ring->buf_mask + 1;
++	chunk->csa_cpu_addr = ring->csa_cpu_addr;
+ 	list_add_tail(&chunk->entry, &e->list);
  }
  
- int amdgpu_allocate_static_csa(struct amdgpu_device *adev, struct amdgpu_bo **bo,
--				u32 domain, uint32_t size)
-+				u32 domain, uint32_t size, void **cpu_ptr)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.h
+index d3186b570b82e..e41e49ad7ddc3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring_mux.h
+@@ -99,6 +99,7 @@ struct amdgpu_mux_chunk {
+ 	u64                     cntl_offset;
+ 	u64                     de_offset;
+ 	u64                     ce_offset;
++	void			*csa_cpu_addr;
+ };
+ 
+ int amdgpu_ring_mux_init(struct amdgpu_ring_mux *mux, struct amdgpu_ring *ring,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+index a1698fb41c4af..5c85c38588374 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+@@ -361,6 +361,12 @@ struct amdgpu_vm {
+ 	bool			evicting;
+ 	unsigned int		saved_flags;
+ 
++	/* Kernel CPU mapping of this VM's private Context Save Area, used
++	 * by the MCBP preemption resume path to read back this VM's saved
++	 * CE/DE state. NULL when the VM has no private CSA.
++	 */
++	void			*csa_cpu_addr;
++
+ 	/* Memory statistics for this vm, protected by stats_lock */
+ 	spinlock_t		stats_lock;
+ 	struct amdgpu_mem_stats stats[__AMDGPU_PL_NUM];
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 07659f039f804..a8a9d54649eb2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -9011,7 +9011,6 @@ static int gfx_v10_0_ring_preempt_ib(struct amdgpu_ring *ring)
+ 
+ static void gfx_v10_0_ring_emit_ce_meta(struct amdgpu_ring *ring, bool resume)
  {
- 	void *ptr;
+-	struct amdgpu_device *adev = ring->adev;
+ 	struct v10_ce_ib_state ce_payload = {0};
+ 	uint64_t offset, ce_payload_gpu_addr;
+ 	void *ce_payload_cpu_addr;
+@@ -9021,7 +9020,7 @@ static void gfx_v10_0_ring_emit_ce_meta(struct amdgpu_ring *ring, bool resume)
  
-@@ -51,7 +51,7 @@ int amdgpu_allocate_static_csa(struct amdgpu_device *adev, struct amdgpu_bo **bo
- 		return -ENOMEM;
+ 	offset = offsetof(struct v10_gfx_meta_data, ce_payload);
+ 	ce_payload_gpu_addr = amdgpu_csa_vaddr(ring->adev) + offset;
+-	ce_payload_cpu_addr = adev->virt.csa_cpu_addr + offset;
++	ce_payload_cpu_addr = ring->csa_cpu_addr + offset;
  
- 	memset(ptr, 0, size);
--	adev->virt.csa_cpu_addr = ptr;
-+	*cpu_ptr = ptr;
- 	return 0;
- }
+ 	amdgpu_ring_write(ring, PACKET3(PACKET3_WRITE_DATA, cnt));
+ 	amdgpu_ring_write(ring, (WRITE_DATA_ENGINE_SEL(2) |
+@@ -9049,7 +9048,7 @@ static void gfx_v10_0_ring_emit_de_meta(struct amdgpu_ring *ring, bool resume)
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.h
-index 7dfc1f2012ebf..34b85cda1cc56 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_csa.h
-@@ -30,7 +30,7 @@
- uint32_t amdgpu_get_total_csa_size(struct amdgpu_device *adev);
- uint64_t amdgpu_csa_vaddr(struct amdgpu_device *adev);
- int amdgpu_allocate_static_csa(struct amdgpu_device *adev, struct amdgpu_bo **bo,
--				u32 domain, uint32_t size);
-+				u32 domain, uint32_t size, void **cpu_ptr);
- int amdgpu_map_static_csa(struct amdgpu_device *adev, struct amdgpu_vm *vm,
- 			  struct amdgpu_bo *bo, struct amdgpu_bo_va **bo_va,
- 			  uint64_t csa_addr, uint32_t size);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 1253df9b1a9d2..a8e76fae11282 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -2422,7 +2422,8 @@ static int amdgpu_device_ip_init(struct amdgpu_device *adev)
- 				r = amdgpu_allocate_static_csa(adev, &adev->virt.csa_obj,
- 							       AMDGPU_GEM_DOMAIN_VRAM |
- 							       AMDGPU_GEM_DOMAIN_GTT,
--							       AMDGPU_CSA_SIZE);
-+							       AMDGPU_CSA_SIZE,
-+							       &adev->virt.csa_cpu_addr);
- 				if (r) {
- 					dev_err(adev->dev,
- 						"allocate CSA failed %d\n", r);
+ 	offset = offsetof(struct v10_gfx_meta_data, de_payload);
+ 	de_payload_gpu_addr = amdgpu_csa_vaddr(ring->adev) + offset;
+-	de_payload_cpu_addr = adev->virt.csa_cpu_addr + offset;
++	de_payload_cpu_addr = ring->csa_cpu_addr + offset;
+ 
+ 	gds_addr = ALIGN(amdgpu_csa_vaddr(ring->adev) +
+ 			 AMDGPU_CSA_SIZE - adev->gds.gds_size,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+index 1941bfbcbfbff..68030391aa17c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+@@ -6252,7 +6252,7 @@ static void gfx_v11_0_ring_emit_de_meta(struct amdgpu_ring *ring, bool resume)
+ 
+ 	offset = offsetof(struct v10_gfx_meta_data, de_payload);
+ 	de_payload_gpu_addr = amdgpu_csa_vaddr(ring->adev) + offset;
+-	de_payload_cpu_addr = adev->virt.csa_cpu_addr + offset;
++	de_payload_cpu_addr = ring->csa_cpu_addr + offset;
+ 
+ 	gds_addr = ALIGN(amdgpu_csa_vaddr(ring->adev) +
+ 			 AMDGPU_CSA_SIZE - adev->gds.gds_size,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index 2152830052ef9..f8e9be9383140 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -5556,14 +5556,13 @@ static void gfx_v9_0_ring_patch_cntl(struct amdgpu_ring *ring,
+ static void gfx_v9_0_ring_patch_ce_meta(struct amdgpu_ring *ring,
+ 					unsigned offset)
+ {
+-	struct amdgpu_device *adev = ring->adev;
+ 	void *ce_payload_cpu_addr;
+ 	uint64_t payload_offset, payload_size;
+ 
+ 	payload_size = sizeof(struct v9_ce_ib_state);
+ 
+ 	payload_offset = offsetof(struct v9_gfx_meta_data, ce_payload);
+-	ce_payload_cpu_addr = adev->virt.csa_cpu_addr + payload_offset;
++	ce_payload_cpu_addr = ring->csa_cpu_addr + payload_offset;
+ 
+ 	if (offset + (payload_size >> 2) <= ring->buf_mask + 1) {
+ 		memcpy((void *)&ring->ring[offset], ce_payload_cpu_addr, payload_size);
+@@ -5580,14 +5579,13 @@ static void gfx_v9_0_ring_patch_ce_meta(struct amdgpu_ring *ring,
+ static void gfx_v9_0_ring_patch_de_meta(struct amdgpu_ring *ring,
+ 					unsigned offset)
+ {
+-	struct amdgpu_device *adev = ring->adev;
+ 	void *de_payload_cpu_addr;
+ 	uint64_t payload_offset, payload_size;
+ 
+ 	payload_size = sizeof(struct v9_de_ib_state);
+ 
+ 	payload_offset = offsetof(struct v9_gfx_meta_data, de_payload);
+-	de_payload_cpu_addr = adev->virt.csa_cpu_addr + payload_offset;
++	de_payload_cpu_addr = ring->csa_cpu_addr + payload_offset;
+ 
+ 	((struct v9_de_ib_state *)de_payload_cpu_addr)->ib_completion_status =
+ 		IB_COMPLETION_STATUS_PREEMPTED;
+@@ -5793,7 +5791,6 @@ static void gfx_v9_ring_emit_sb(struct amdgpu_ring *ring)
+ 
+ static void gfx_v9_0_ring_emit_ce_meta(struct amdgpu_ring *ring, bool resume)
+ {
+-	struct amdgpu_device *adev = ring->adev;
+ 	struct v9_ce_ib_state ce_payload = {0};
+ 	uint64_t offset, ce_payload_gpu_addr;
+ 	void *ce_payload_cpu_addr;
+@@ -5803,7 +5800,7 @@ static void gfx_v9_0_ring_emit_ce_meta(struct amdgpu_ring *ring, bool resume)
+ 
+ 	offset = offsetof(struct v9_gfx_meta_data, ce_payload);
+ 	ce_payload_gpu_addr = amdgpu_csa_vaddr(ring->adev) + offset;
+-	ce_payload_cpu_addr = adev->virt.csa_cpu_addr + offset;
++	ce_payload_cpu_addr = ring->csa_cpu_addr + offset;
+ 
+ 	amdgpu_ring_write(ring, PACKET3(PACKET3_WRITE_DATA, cnt));
+ 	amdgpu_ring_write(ring, (WRITE_DATA_ENGINE_SEL(2) |
+@@ -5891,7 +5888,7 @@ static void gfx_v9_0_ring_emit_de_meta(struct amdgpu_ring *ring, bool resume, bo
+ 
+ 	offset = offsetof(struct v9_gfx_meta_data, de_payload);
+ 	de_payload_gpu_addr = amdgpu_csa_vaddr(ring->adev) + offset;
+-	de_payload_cpu_addr = adev->virt.csa_cpu_addr + offset;
++	de_payload_cpu_addr = ring->csa_cpu_addr + offset;
+ 
+ 	gds_addr = ALIGN(amdgpu_csa_vaddr(ring->adev) +
+ 			 AMDGPU_CSA_SIZE - adev->gds.gds_size,
 -- 
 2.34.1
 
