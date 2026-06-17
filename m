@@ -2,114 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yD0RHzv1MmpC8AUAu9opvQ
+	id TKLOOQibM2qXEAYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 21:27:55 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2026 09:15:20 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D56F369C28D
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 21:27:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73B3C69E03F
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2026 09:15:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=KdPblrc+;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=cFkfjMml;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C3E610EB0E;
-	Wed, 17 Jun 2026 19:27:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 054EF10ECA2;
+	Thu, 18 Jun 2026 07:15:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010055.outbound.protection.outlook.com [52.101.61.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B616D10EB0E
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2026 19:27:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qAru4QGwENE7I4SISqm5vzBZX3fLB1s6u3ArWF5DKy+t3L4aZoNlkax51/GfpKJncf3tilefq901QhUXGV5nPBoREaMS8T2JXF8Qm9RxG7NsLiYuoT8aIj4/4phzD72DGFzJ1nYYy2VWGpMELf/3qIaLGSlzfl+PGaXw2z+OgjWDHmtmBUaVDM0n5NAQw8g1M+aVXrusBc5JyXboAUBlVvAs6M1/BnI1Tp8KeRfVipLRvMbmzXgkisnTaxB8zLvBlYadZ5D2+OVkGqWuIB42CwX3CPvXiG6idgS7PhBIvyPVtWSAuOJlV+B3qQ9BdxkrtwY0A93Huft+LzESf1R9vg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0IZqJsMcYup5T1J63x3YC2DOjiq0C8Ef0QY5zpeczAk=;
- b=XKcGjDxFe4Vju86BJ8VaQ6WWk8Md8BiBinq9kq5lynBs7uzUNG9m17Yj8kr2EXkh3TuPg9Eh6mkI+ikPbNtlKWdJI89mtcRZWEMC3W0KvcbiPc65iTGc3gRtu31r9gIfqj7h1KlJnZ7RKQ9B5mY8C6xd7ehXyy/LBc35f1UhvABZjiWgxS4bE73T50556JIo7K0i4hQNF2QTMH3QVJw3nVmMvhzvnyQeEsrhGN+8+ehgx0R9Ek4lFIUF6y3StBxw5QdHpPFkV2hCBrHryGLR++rCEPU/kmdj0ehuwfRsET0GyxKt+5kzSZu8Y4r02PSxs5xuPVCnQzwY0LS5IEiR1w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=mailbox.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0IZqJsMcYup5T1J63x3YC2DOjiq0C8Ef0QY5zpeczAk=;
- b=KdPblrc+AR4d2O26ygaRp0zzUG1mPKafbFoa89pLeZohHF5AylX8t915wvggtG9+Oovz24sMdcru2Az6B6J5wA936klS5820tbzWHjj3RxNFp++P5cLc615fQkhJpGgj6TZHD4IHVIMumQw5ETtbQn48kWLQ2Evi7BeoYwgJPCQ=
-Received: from PH8P220CA0023.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:345::29)
- by SN7PR12MB7835.namprd12.prod.outlook.com (2603:10b6:806:328::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.12; Wed, 17 Jun
- 2026 19:27:47 +0000
-Received: from CY4PEPF0000E9DC.namprd05.prod.outlook.com
- (2603:10b6:510:345:cafe::25) by PH8P220CA0023.outlook.office365.com
- (2603:10b6:510:345::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.12 via Frontend Transport; Wed,
- 17 Jun 2026 19:27:46 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CY4PEPF0000E9DC.mail.protection.outlook.com (10.167.241.75) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.139.8 via Frontend Transport; Wed, 17 Jun 2026 19:27:46 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 17 Jun
- 2026 14:27:45 -0500
-Received: from [10.254.92.203] (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 17 Jun 2026 14:27:45 -0500
-Message-ID: <7bf196dd-c43a-44b5-91e2-ee7ab40fd6f5@amd.com>
-Date: Wed, 17 Jun 2026 15:27:39 -0400
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
+ [209.85.214.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53FB610F0F1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2026 19:33:41 +0000 (UTC)
+Received: by mail-pl1-f182.google.com with SMTP id
+ d9443c01a7336-2c40397e3caso1973075ad.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2026 12:33:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1781724821; x=1782329621; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:from:to:cc:subject:date:message-id:reply-to;
+ bh=iQZtMnehaDPaW/1htcuGu1b4iDiFaXM/HgU9tJx9XaY=;
+ b=cFkfjMmlX5TmPxmOR6QDqmiShCqSi4gxgvRkMatokxOS0xvDeKgAjHvPvjb+5CvW5U
+ NI2iBMG5fP+8ZjWjie3Yc98yHI19At9/Kl0obWt+bVtmJCSgv8xKvTUhleoQFki1sAqZ
+ X5pPebezk8vOAEESoWs9XfyaOLUtWy2/8I4ZzwkGW5IQfBqRmqr/drJF2CH23nchvFhk
+ YPLu1S2aF3p63FW+Aki/bTHEX1fulARCCMYN6gX4aoEc9B/C66jOueAwEf0F/fD6Rqr1
+ tK2dZbef+jSWXUwDUcam1OnMrM45yTc2wRr1IwLbSbHOzpx3ua1mSnw7kDIdm1Px9GhD
+ LS7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1781724821; x=1782329621;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:to
+ :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=iQZtMnehaDPaW/1htcuGu1b4iDiFaXM/HgU9tJx9XaY=;
+ b=VUFf0l2R+72ahU0ILmekHWTbPo+b7NNBBrDaWknQgxLRTuZtTTy2p/wt8orzjNNUKX
+ kxOdFcPWZskSRrI0wT4OYO2btCKh2vseiSClvHGREQWnwY60dyTpaGQGDmIeaHpVQiYo
+ T7vENRBF1e2fhM2Gi3g9ndkvhDvegGu03uwt98aVyuNkz8EojbiBNf6DncI80NBPQLAI
+ 4sQO/U15PdekBEf46zX0sva5lXas0X3PTAIJeDCOnwPwp7rtt5CV6KnRR1QlvV1KBP6n
+ ssME3GnRY3ftYLdrFDQjsQNKjZIZVyz20Q4lvXz3I9R4O0GUYAwMavQn+kpg6AjQJwLe
+ YeXQ==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ8Kzm1fZjxQ5rf4cByU4vGEGNkYHi6DC/6I3ochpPqonxhYGiL/p31FCvrc/eW8Q8D7ucqbKexZ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyfWs9icIyVemucvAYs/VM8cRWzUKyoi2gntZfUjWn4UvtAk2kN
+ M5hgYSqzQ+XGCszRymq8P485xjVJtXcFRR0htTfE5TJ7MlEMlTKSf370
+X-Gm-Gg: AfdE7cnaZ4B8G3uxO/FO6u6bzRwYLEqQniz9YYQU1puL7kjmFVK4a5vvq3awbC/h/a6
+ ZrgYtBBiH+QtH1eEuuVRlmajMlcC7p4Z0XQdcZxCRipg8upD/g+7UCMmWE2VQRc6v8Vh9fYFDTR
+ uD7Rm5pE/djUfsiyNIT+2/IgFOb7LBrHI+PgTpXY3sm7H0pfKsEINU6evCIFI+LU2DD4Pgk+IYc
+ NPjsE/SeLAQT2we6uZANTENJLvOA4zAdR6X4iYdVzknyI+X7K78lXsw5O2Th45EwLm8b2ApkP8n
+ 60HPPFSjI/8nVmuFWOup53j88AYmBx554OY+NPpaFLSO0i/6kG5w/42C1l4qtXiQScIMaVrObby
+ 7VZisQE5mx4pAX1dSsI+bbPhCPJIIJ5mDV5tvVTZuwRDYxQURCx9FR7KUN7GRiExStBTbp7lFQ1
+ S87AKgxkxWG7avQsjXaHMYNZmbXuRNJFsd
+X-Received: by 2002:a17:902:e892:b0:2c2:bd7f:ccd4 with SMTP id
+ d9443c01a7336-2c6bc20a970mr50252375ad.21.1781724820880; 
+ Wed, 17 Jun 2026 12:33:40 -0700 (PDT)
+Received: from haichao.tail057a43.ts.net
+ ([2001:da8:e000:1206:1886:6b7a:3e78:272c])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-2c4327aca78sm182035555ad.54.2026.06.17.12.33.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 17 Jun 2026 12:33:40 -0700 (PDT)
+From: Ruoyu Wang <ruoyuw560@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v2] drm/amdgpu: initialize ret before UMC error record loop
+Date: Thu, 18 Jun 2026 03:33:35 +0800
+Message-ID: <20260617193335.1662613-1-ruoyuw560@gmail.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] drm/amd/display: check GRPH_FLIP status before
- sending event
-To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-CC: <Harry.Wentland@amd.com>, <mario.limonciello@amd.com>,
- <wiagn233@outlook.com>, <sysdadmin@m1k.cloud>, <timur.kristof@gmail.com>,
- <xaver.hugl@kde.org>, <mario.kleiner.de@gmail.com>, <stable@vger.kernel.org>, 
- <amd-gfx@lists.freedesktop.org>
-References: <20260616201828.389985-1-sunpeng.li@amd.com>
- <20260616201828.389985-3-sunpeng.li@amd.com>
- <a74f1233-d63f-4bcb-a379-3c9a6332cfb4@mailbox.org>
- <75732f3e-8ffd-4cac-b205-8f6cf705daab@mailbox.org>
-Content-Language: en-US
-From: Leo Li <sunpeng.li@amd.com>
-In-Reply-To: <75732f3e-8ffd-4cac-b205-8f6cf705daab@mailbox.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9DC:EE_|SN7PR12MB7835:EE_
-X-MS-Office365-Filtering-Correlation-Id: b511e141-78ac-4d0f-dc26-08decca682c6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|32650700020|376014|23010399003|82310400026|42112799006|1800799024|56012099006|11063799006|18002099003|22082099003|4143699003;
-X-Microsoft-Antispam-Message-Info: nW5VicAudmPKc7FFfRNQU+rFAES0eoxlc5oYjsxp7UZV3d+9Pih0WoecgvgSw5gA3/6UGiuW7vwRbvHBT3AbOnKPVyZ49ZKm/ixBrOvP3ykOE222576cIfWLJQnNG/btMeLinn8vvT8+VeyW/zlVmSowcXScpk0RjlZ2wzP2IaVKSbLuAmpesBt7XzGAqi7qAWUscm5a5YeajFy1NTd+KpZ4xr1/vIWvnFZytgNFQ7mLqXQtAxh+LrYT9rAl7giIp5WfJ3Cfc4kgVJufHKLo5Db6eh+qwhJPxtjWVo1qqTtxKC/7mnQk0KsnS6UAoOdpQwEwPtZkvuB3ZkhHlvFuc0gHXmQTV4CI8chYz/QW30+Lc8g2mIT90kKJVu33K7BM/x1Ke8BaSygX7ewcMTBof1NNbWohlyfn9PU3my+Djz+QkpBGzj9oB5sxE7VNK4bZb33QZtlE/vjdrxcYZ8po0W28MYh+om4F9BGjIjwvw95vylvR+tTn8fae7IGROCOBIvf+Tr/j/6mcXtEK4GmdQsM1XT9p4gdaypv5YDvJ3rWADs17ohmPufmwmENcNmzIeJdJ38E0JLrIHi39o8kEq30ikk6U5piAFZce6r9KVgs7mvHHHYBlrsxdSLG+MRJj3nLig4vougeD7mfAXkAsS5ooycXEVwkBphoFQMSsL+uox2NoJg0O8fEVjFdmX+KothvfiPqeR04NyUrEDWsGh6e/mcmFqvoR4gw5qR+9Gss=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(32650700020)(376014)(23010399003)(82310400026)(42112799006)(1800799024)(56012099006)(11063799006)(18002099003)(22082099003)(4143699003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: FKahdwBIVI3avTxEoDJvhxFG6427/UCTParYR8egpcmgmDs52sAIVYxXF7AkLI6zBjdqclIsxKi0FLdAeXzjMfpV1EUjctvYAU0k5DEGhMjLLbcyujBFvorOcpONNo73rak/+SO0KiID9GnbjTwoSGLoaa1SDrrtPHCuFNc3l6sUEIY22rWdz3zyFyH4uP7e/6brdOt28KEEFNC4G49Nf/9W49kyNfB+zRHgGKflV5HJF6MRxkVSwabuyMdYWIKXuVbIuznadjbclSxigepAXl64HHfl/4hIhNr4cg0VNksA5hauCwbDOkhTbkjvcXsiMiRl5922wmTfq77ZUnPvQiqwJsKVDOimpuh7wLBbV+diRDlOEGeMAxjq82UqtPLnFPf/xL2kLnNtmvDGBhRq2cqTvjZ69Ts+n3iC0Cfb+OX43VxSp6Srw7RuLJXyxQTg
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2026 19:27:46.3007 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b511e141-78ac-4d0f-dc26-08decca682c6
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9DC.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7835
+X-Mailman-Approved-At: Thu, 18 Jun 2026 07:15:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,113 +96,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[amd.com,outlook.com,m1k.cloud,gmail.com,kde.org,vger.kernel.org,lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,lists.freedesktop.org:from_smtp];
-	FORGED_SENDER(0.00)[sunpeng.li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:michel.daenzer@mailbox.org,m:Harry.Wentland@amd.com,m:mario.limonciello@amd.com,m:wiagn233@outlook.com,m:sysdadmin@m1k.cloud,m:timur.kristof@gmail.com,m:xaver.hugl@kde.org,m:mario.kleiner.de@gmail.com,m:stable@vger.kernel.org,m:timurkristof@gmail.com,m:mariokleinerde@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[sunpeng.li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[ruoyuw560@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ruoyuw560@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D56F369C28D
+X-Rspamd-Queue-Id: 73B3C69E03F
 
-Hi Michel, thanks for the review!
+umc_v12_0_fill_error_record() returns ret after walking the pages
+reported by amdgpu_umc_lookup_bad_pages_in_a_row(). That helper can
+return zero entries, leaving the loop skipped and ret uninitialized.
 
-On 2026-06-17 04:56, Michel Dänzer wrote:
-> On 6/17/26 10:07, Michel Dänzer wrote:
->> On 6/16/26 22:18, sunpeng.li@amd.com wrote:
->>>
->>> * Add a flip_programmed completion. Arm it (reinit_completion) under
->>>   event_lock together with prepare_flip_isr(), and signal it
->>>   (complete_all) right after update_planes_and_stream_adapter() programs
->>>   the flip. It starts in the "completed" state at crtc init.
->>
->> Is the completion really necessary? Wouldn't moving the acrtc->pflip_status = AMDGPU_FLIP_SUBMITTED assignment after the flip programming suffice?
+Set ret to 0 immediately before the loop so the zero-page path reports a
+deterministic status instead of returning stack data.
 
-I think this would create a window between HW programming and arming acrtc->event and pflip_status, where HW latch (VUPDATE_NO_LOCK) can fire and run the handler:
+Suggested-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Ruoyu Wang <ruoyuw560@gmail.com>
+---
+v2:
+- Set ret immediately before the loop instead of initializing it in the
+  declaration, as suggested by Christian.
+- Avoid describing the zero-entry case as an allocation-failure fix.
 
-    Thread A:        Thread B:
-    PROGRAM(flip_n)
-                     LATCH(flip_n)
-                     vupdate_no_lock_handler(flip_n) # no event armed; skip sending
-    ARM(flip_n)
+ drivers/gpu/drm/amd/amdgpu/umc_v12_0.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Ah, but the flip_programmed completion has the same issue...
-
-    Thread A:                 Thread B:
-    INIT_(flip_programmed)
-    ARM(flip_n)
-    PROGRAM(flip_n)
-                              LATCH(flip_n)
-                              vupdate_no_lock_handler(flip_n) # flip_programmed not complete; skip sending
-    COMPLETE(flip_programmed)
-
-> 
-> Or even just moving the unlocking of event_lock after the flip programming.
-> 
-
-I initially thought about doing so. But the possibility of update_planes_and_stream_adapter() sleeping made me think otherwise.
-
-I suppose the worst case scenario with arming acrtc->event/pflip_status after programming is we deliver the event a frame later than it needs to be (which is also the case with the current patch), thus stalling the next commit via flip_done, and making userspace think it missed the programming deadline. That is, if the exact scenario above happens.
-
-If it sounds good to you, I'll roll that into v2 as well.
-
-> 
->>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>> index 00f7a3b445ebf..571198c46c0c2 100644
->>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>> @@ -4384,17 +4384,17 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
->>>  		 * from 0 -> n planes we have to skip a hardware generated event
->>>  		 * and rely on sending it from software.
->>>  		 */
->>> +		spin_lock_irqsave(&pcrtc->dev->event_lock, flags);
->>>  		if (acrtc_attach->base.state->event &&
->>>  		    acrtc_state->active_planes > 0) {
->>>  			drm_crtc_vblank_get(pcrtc);
->>>  
->>> -			spin_lock_irqsave(&pcrtc->dev->event_lock, flags);
->>> -
->>>  			WARN_ON(acrtc_attach->pflip_status != AMDGPU_FLIP_NONE);
->>> +			/* Arm flip completion handling and event delivery */
->>> +			reinit_completion(&acrtc_attach->dm_irq_params.flip_programmed);
->>>  			prepare_flip_isr(acrtc_attach);
->>> -
->>> -			spin_unlock_irqrestore(&pcrtc->dev->event_lock, flags);
->>>  		}
->>> +		spin_unlock_irqrestore(&pcrtc->dev->event_lock, flags);
->>>  
->>>  		if (acrtc_state->stream) {
->>>  			if (acrtc_state->freesync_vrr_info_changed)
->> 
->> Pulling event_lock out of the if block doesn't make any difference (other than locking it unnecessarily when the block isn't entered 🙂, does it?
-
-FWIU the crtc_state->event pointer itself should be guarded under event_lock, since it can be NULL'd concurrently.
-
-- Leo
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
+index 14092150336a5..4842340d9d65f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
+@@ -690,6 +690,7 @@ static int umc_v12_0_fill_error_record(struct amdgpu_device *adev,
+ 	count = amdgpu_umc_lookup_bad_pages_in_a_row(adev,
+ 				ecc_err->pa_pfn << AMDGPU_GPU_PAGE_SHIFT,
+ 				page_pfn, ARRAY_SIZE(page_pfn));
++	ret = 0;
+ 
+ 	for (i = 0; i < count; i++) {
+ 		ret = amdgpu_umc_fill_error_record(err_data,
+-- 
+2.51.0
