@@ -2,99 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6tZYCKakMmp63AUAu9opvQ
+	id R9yyNAqlMmqR3AUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 15:44:06 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 15:45:46 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74B5969A385
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 15:44:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3575D69A3BE
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 15:45:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=pBJyR2qM;
+	dkim=pass header.d=damsy.net header.s=202408e header.b=cj96wZ+7;
+	dkim=pass header.d=damsy.net header.s=202408r header.b=uEIE0U+u;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20240605:i=1")
+	dmarc=none
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D87C510E929;
-	Wed, 17 Jun 2026 13:44:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8BFD10EA06;
+	Wed, 17 Jun 2026 13:45:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com
- [74.125.82.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DABE10E929
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2026 13:44:02 +0000 (UTC)
-Received: by mail-dy1-f172.google.com with SMTP id
- 5a478bee46e88-304f8e80b7eso445877eec.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2026 06:44:02 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781703841; cv=none;
- d=google.com; s=arc-20240605;
- b=NVw5siVVaR1miR1fGNxPUT1D+xI7BphgHpiM5qJ5MxJtIaNAjWxgytodGgeT+bv380
- mDnmtVkh3Aq4cDc6/AINahXJqiUxsJb2YgaCXw3f3cN9gpXEscULTdndWLftBy5WTfwD
- cYGMgNploMhA/BL5pdDv5x3UKh/T0tBWsvI2ipQ1WbMmZLXm5h1QQAOYKAdZn02iN/KD
- +Q81s3cnOPU0SzVpG56wH2eA8kACxbj9ScCf+3Z2U2oLvTuEws2hz4osIaW3QIQm/GDe
- gVsgcsbwtSc0dQe6qMUFrhmtT1gVF3HCrWeWxFSp209xDNfn9sfqxlzdl/w+6oU+saGK
- inpQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=xqiQ0MOwNKQI4wxxnrcszlc+jKBDbTWbG2ja2M8I8Ms=;
- fh=hu6edWbrNIbeIZ0Tkzb9Dvke4+sCsh4tKagiLtEFVz0=;
- b=iENJkoat0pXI4qZ9n2jLvT9kzve6vioi/3+Efm4nCFsxtfaHyIZP2s9B6fLKjFjCUh
- XiaM0wOimAZRdG/4rB7YZUOXVoeSowjClljey5K3LBqWRMjd5d9LO3P24c6aGq45NUSB
- 1cTTH47RkAXTtvtNeYhKITnPnX2esxUVWJWCxxDo7XWLHgwYFsrbXaFxVkRtmZODM7ck
- 4rDtFpK3Z3U2covATWVLOOnd3gvbMEffqUkNiyrwMdkM2JVZVztRwjPhLBPlbT6l6NJ9
- mhDI07571ElW80QAUgvMT3ucbfa6mek0KHOrwLXVJcX51ejAa0gJ57JfrvhvTJmHLEn6
- ULKg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1781703841; x=1782308641; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=xqiQ0MOwNKQI4wxxnrcszlc+jKBDbTWbG2ja2M8I8Ms=;
- b=pBJyR2qMNuuuPMhuWK4+nFko/D1t6EoyieQZvBnLi+9nh+bEAR4838DspftUv2jePR
- cIrQ4Yy63cFpjhp+S1jazK8rKrc+LxvGaqCGXdHQp2E3oDLOOoCxV3WkP438zD5x87nF
- xUIKa94jHOKHpFJ+u/oMY6eoDs//lpCjgtuBqOnLxSIFZgVA+XZtsDB8FfSJMzzTJpW5
- CdZQAu9eXtt0hobbmX8Agx/vL/ENbsGNlmJeAEtWERgqdwy5pUpHam0aKqLOuPOVFhQV
- ZkG7Rh5YoxjJYDojT/ZtCtC1XefI16Z0XQUj2WJ7lttmwn0yvf6sBt+U5a3jTQg8eaYD
- vVjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781703841; x=1782308641;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=xqiQ0MOwNKQI4wxxnrcszlc+jKBDbTWbG2ja2M8I8Ms=;
- b=UZeXD/Nvxkirw90OEuKq6sVndXotBMx7HSEpy/sjs66rTVtTGU9eh6wfp03wIJWK9U
- nCP5yMWDO7Ga4eQ5otYuoLlyqYAYMmDD/tCzUhc+vyJWZyIXmqq2L+7RBBkiufdxpmQj
- nK2Xp70nYoyS/l+oSsZAvs9oKsqBhcoK6P7CFPZpdjsuE5VPNghSRlzWhwWJ+JJ2VcSd
- GxNnZjcsUcWnT+xgmILW7QqW+KZhzZFJT0yUxDFdkkzvFkpu+CPSBZAbnQnEBy6uHD5g
- kTBhL8RBgSR7Yb3ErK8C7fOdX1Lt1PLiae1BTm2XlFB0ukwSASimPddTYxvAMtws/e06
- /Pdg==
-X-Gm-Message-State: AOJu0YyPOEiiu24FyMtcbuDaqUxAVzXCP/HG4qUT+6Jo3A+0eh7JnVoq
- NEsjHGBJcIL7qNb6gYzUrXpFwEZ5Zzhy7ddNsvUgFqv5MSH68OpFDVMZBz8M2CokD2YXjC3sq2r
- KNRz4Vi/oO1T19WEOpoV0bzaCI2qktz8=
-X-Gm-Gg: Acq92OHGPqeTwJQH7hmk9h3Fn7tSgZ20+4LaOxh145o88dl/gq4klmqNIQprVBSo7Uv
- rsDjb/q/2vrhM7CVBzkWq4RctrGsoAcuDvzHwMvDdOLxUfewnP1zURbqjaOqmYPKXjk5xZ3TqCm
- x9J6rllz4Uz/vzZn08eCRG4q+XhYe9P64BgyJJNNVI7HCl/kVS62SVfBubl6ozgrC/zjZ+Cu/G1
- UbdPbUllTQDvx+kIPen1j4mqux0ifkj9WqdE5E9cNcbhIKgzQz3hz4aEhNoSUyIaJA2KTp/zQzg
- MSmfkgLe1RXkNWTUtyXnt/gEdMPei8+h4Ycbf5I9JNPos8P5Zk+TPbEB1FE=
-X-Received: by 2002:a05:7022:622:b0:137:ec1a:f405 with SMTP id
- a92af1059eb24-1398f56699bmr724075c88.0.1781703841445; Wed, 17 Jun 2026
- 06:44:01 -0700 (PDT)
+Received: from jeth.damsy.net (jeth.damsy.net [51.159.152.102])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDF0710EA06
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2026 13:45:41 +0000 (UTC)
+DKIM-Signature: v=1; a=ed25519-sha256; s=202408e; d=damsy.net;
+ c=relaxed/relaxed; r=y; 
+ h=From:To:Subject:Date:Message-ID; t=1781703938; bh=HeGNJOmo8KEarrPjWiaHIv5
+ MiTqcwKdtANPH9jARSdw=; b=cj96wZ+7ns9kEvMH3BZ5X3mGYyPBVk6eq0nlxXLJIP/TJ0USZH
+ ZDtoj7btFB7C1Lae82f7dRJKbHhZEGQZgwAQ==;
+DKIM-Signature: v=1; a=rsa-sha256; s=202408r; d=damsy.net; c=relaxed/relaxed;
+ r=y; 
+ h=From:To:Subject:Date:Message-ID; t=1781703938; bh=HeGNJOmo8KEarrPjWiaHIv5
+ MiTqcwKdtANPH9jARSdw=; b=uEIE0U+u/WQsHwBycCxA0Q5UEgHSIgca3oJwUh4HwDAYxBTiW5
+ zG7obW5zv6z9YX1JjeAh5YYcPUo47tKuzICeL0d4fAls9fhdBom6j9WaFeosc0yhvBjHn6fZWm8
+ SlLjRkYvFYGztItGC4/v9WwMJcskBl/YvKGf9vBCkbXxz6/2pf7Jbs39e9nl7R3ntB3XiwXaodN
+ BhdBURHROIEdu2I1//xvBYGbaZXjPdC9e+AzZCMuQtRqKJ8GcAJAgVOA1PzSNHNrtJ9hof0oE1H
+ /yqXz2hvZcG3+hocEroMH/SAJIfA6F+XWOakvRCmvA20ngej3ZzXzllJmZ5ybNJPJSA==;
+Message-ID: <de08e4f5-dad1-441c-9397-48f7991f41ec@damsy.net>
+Date: Wed, 17 Jun 2026 15:45:38 +0200
 MIME-Version: 1.0
-References: <20260617085435.723531-1-lijo.lazar@amd.com>
-In-Reply-To: <20260617085435.723531-1-lijo.lazar@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 17 Jun 2026 09:43:48 -0400
-X-Gm-Features: AVVi8CdCCHHDKRuhIsyQBRDWBAmu0P3rOn5ENC4NQ3czD4H_jxFQX6qmIpU2GjE
-Message-ID: <CADnq5_OA3bsCc7hkWbyaAvPjJDutn30APTfaU+WPAmTW+CGMcw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Fix kobject cleanup in xcp sysfs
-To: Lijo Lazar <lijo.lazar@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, Hawking.Zhang@amd.com, 
- Alexander.Deucher@amd.com, Asad.Kamal@amd.com, candice.li@amd.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] drm/amdgpu: delay ttm buffer func enablement on
+ xgmi
+To: "Lazar, Lijo" <Lijo.Lazar@amd.com>,
+ "Pelloux-Prayer, Pierre-Eric" <Pierre-eric.Pelloux-prayer@amd.com>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20260616125040.9977-1-pierre-eric.pelloux-prayer@amd.com>
+ <20260616125040.9977-2-pierre-eric.pelloux-prayer@amd.com>
+ <SA0PR12MB7091079B864676A8379E6B7997E52@SA0PR12MB7091.namprd12.prod.outlook.com>
+Content-Language: en-US
+From: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>
+In-Reply-To: <SA0PR12MB7091079B864676A8379E6B7997E52@SA0PR12MB7091.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,90 +71,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[damsy.net:s=202408e,damsy.net:s=202408r];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:lijo.lazar@amd.com,m:Hawking.Zhang@amd.com,m:Alexander.Deucher@amd.com,m:Asad.Kamal@amd.com,m:candice.li@amd.com,s:lists@lfdr.de];
+	DMARC_NA(0.00)[damsy.net];
+	FORGED_RECIPIENTS(0.00)[m:Lijo.Lazar@amd.com,m:Pierre-eric.Pelloux-prayer@amd.com,m:Alexander.Deucher@amd.com,m:Christian.Koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[damsy.net:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[pierre-eric@damsy.net,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_TWO(0.00)[2];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pierre-eric@damsy.net,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,amd.com:email,ffwll.ch:email,damsy.net:dkim,damsy.net:mid,damsy.net:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 74B5969A385
+X-Rspamd-Queue-Id: 3575D69A3BE
 
-On Wed, Jun 17, 2026 at 4:55=E2=80=AFAM Lijo Lazar <lijo.lazar@amd.com> wro=
-te:
->
-> Fix the indexing issue. Release the kobject whose init/add failed, and
-> unwind the successfully added ones.
->
-> Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
+Le 16/06/2026 à 16:41, Lazar, Lijo a écrit :
+> Public
+> 
+> -----Original Message-----
+> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Pierre-Eric Pelloux-Prayer
+> Sent: Tuesday, June 16, 2026 6:21 PM
+> To: Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>; David Airlie <airlied@gmail.com>; Simona Vetter <simona@ffwll.ch>; Pelloux-Prayer, Pierre-Eric <Pierre-eric.Pelloux-prayer@amd.com>
+> Cc: amd-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; linux-kernel@vger.kernel.org
+> Subject: [PATCH v1 2/2] drm/amdgpu: delay ttm buffer func enablement on xgmi
+> 
+> When amdgpu_init_minimal_xgmi is used, SDMA engines init is delayed so amdgpu_ttm_enable_buffer_funcs must be called later.
+> 
+> Without this, the check for num_buffer_funcs_scheds will fail and using ttm buffer funcs later will fail.
+> 
+> Fixes: 3a5da695c8d1 ("drm/amdgpu: only use working sdma schedulers for ttm")
+> Signed-off-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_xcp.c
-> index 14cef0264c17..d0d494e00cfe 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
-> @@ -904,7 +904,7 @@ static void amdgpu_xcp_cfg_sysfs_init(struct amdgpu_d=
-evice *adev)
->  {
->         struct amdgpu_xcp_res_details *xcp_res;
->         struct amdgpu_xcp_cfg *xcp_cfg;
-> -       int i, r, j, rid, mode;
-> +       int i, r, rid, mode;
->
->         if (!adev->xcp_mgr)
->                 return;
-> @@ -950,14 +950,16 @@ static void amdgpu_xcp_cfg_sysfs_init(struct amdgpu=
-_device *adev)
->                                          &xcp_cfg_res_sysfs_ktype,
->                                          &xcp_cfg->kobj, "%s",
->                                          xcp_res_names[rid]);
-> -               if (r)
-> +               if (r) {
-> +                       kobject_put(&xcp_res->kobj);
->                         goto err;
-> +               }
->         }
->
->         adev->xcp_mgr->xcp_cfg =3D xcp_cfg;
->         return;
->  err:
-> -       for (j =3D 0; j < i; j++) {
-> +       while (i--) {
->                 xcp_res =3D &xcp_cfg->xcp_res[i];
->                 kobject_put(&xcp_res->kobj);
->         }
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 ++-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c   | 2 ++
+>   2 files changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index 57e10afb4714..2e8954fa5c40 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -2479,7 +2479,8 @@ static int amdgpu_device_ip_init(struct amdgpu_device *adev)
+>          if (r)
+>                  goto init_failed;
+> 
+> -       amdgpu_ttm_enable_buffer_funcs(adev);
+> +       if (amdgpu_ip_member_of_hwini(adev, AMD_IP_BLOCK_TYPE_SDMA))
+> +               amdgpu_ttm_enable_buffer_funcs(adev);
+> 
+>          /* Don't init kfd if whole hive need to be reset during init */
+>          if (adev->init_lvl->level != AMDGPU_INIT_LEVEL_MINIMAL_XGMI) { diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+> index faac80a8a6eb..c0dca209335e 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+> @@ -1663,6 +1663,8 @@ static void amdgpu_xgmi_reset_on_init_work(struct work_struct *work)
+>                  if (r && r != -EHWPOISON)
+>                          dev_err(tmp_adev->dev,
+>                                  "error during bad page data initialization");
+> +
+> +               amdgpu_ttm_enable_buffer_funcs(tmp_adev);
+> 
+> <lijo> This gets enabled in the resume path after xgmi reset. It is not needed here.
+
+Good point. I've modified the patch in v2.
+
+Thanks,
+Pierre-Eric
+
+
+> 
+> Thanks,
+> Lijo
+> 
+>          }
+>   }
+> 
 > --
-> 2.49.0
->
+> 2.43.0
