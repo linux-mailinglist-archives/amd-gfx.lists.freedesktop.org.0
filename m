@@ -2,56 +2,132 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MwfcNW9JMmqZyAUAu9opvQ
+	id 900PFdQrMmpgwAUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 09:14:55 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 07:08:36 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1299D697190
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 09:14:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B53B1696926
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 07:08:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=iAaIKY+4;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=GgCm14CM;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=linux.dev
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFB1D10E953;
-	Wed, 17 Jun 2026 07:14:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 457F410E08E;
+	Wed, 17 Jun 2026 05:08:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out-180.mta1.migadu.com (out-180.mta1.migadu.com
- [95.215.58.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5069510E916
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2026 04:36:25 +0000 (UTC)
-Message-ID: <3ad7d4a1-093b-45ac-b3b2-5df5bbb0fde8@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1781670983;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=oF6TwsV0l6MAzb3NyVYxGJZWoCROeUrwy7UZiyUtELQ=;
- b=iAaIKY+4JTjsghBdT/vLmHC6toDlWjW7NxzeWcBIrELFt9ei3qBqZEQZhwZv3PDC+oeGVe
- /4BKHrVuUkwWnw1opRdI3ovvQXsCqp0YGCoCfyxMCqMtBAbQrLCWhNC1vuVE2d41eDVXRE
- qOjZOHLEx3IqRLh1RUwoutIcNCdX9uE=
-Date: Tue, 16 Jun 2026 21:35:55 -0700
-MIME-Version: 1.0
-Subject: Re: [PATCH 1/3] drm/amd/display: consolidate DCN vblank/flip handling
- onto vupdate_no_lock
-To: sunpeng.li@amd.com, amd-gfx@lists.freedesktop.org
-Cc: Harry.Wentland@amd.com, mario.limonciello@amd.com, wiagn233@outlook.com,
- sysdadmin@m1k.cloud, timur.kristof@gmail.com, xaver.hugl@kde.org,
- mario.kleiner.de@gmail.com
-References: <20260616201828.389985-1-sunpeng.li@amd.com>
- <20260616201828.389985-2-sunpeng.li@amd.com>
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012031.outbound.protection.outlook.com
+ [40.93.195.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3952E10E08E
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2026 05:08:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hDPupZJR4j9YdAK8mGFlsx8bPCxkMFU7CCdo8Q9ZrGq1QnaYh/XR2wUFQXkZmcfOYM/ZtVH/LhxYPipOQsFue2ypr9iwIJ0CgiJ5zyrFK4v6QIaekDzbAaPF64ZO3k6qVQMTQHlZWwvcsWZvnNOs7XqlxDF/RnZfXcDWkz/dj4ONlON1DbxC89LcXtopU8Dvv/ObsJHGNuyNP34iVDzrwzzxPI3zOMefqn20tp7pjumG78plfms02/uuaOdy49dy5P3VymNV1B4CKEvG6VsXoK/IGep68mV8KM4TZc04b4hSbLrgnnQAWAYxKTNMFZQuJviz8gPqtg8C6rV/qtjDbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=srT0a+OYO7sQ4jbUQOcISvEeaIIodNzI3U3eD0H/I0E=;
+ b=Z7ABK80KerzypWZnra/Hz2wP/wlVHLNDgNBxHHRSOs54AFoEGgEtJliShFvXe3MBICL5rqc8GA1HVQuJJ8vMPPpqpAnZjd/7/xpHZAJzRlfYy/vRbT++qOnoqc+ZSG9SFppiyuGAtHPxtuIF00AAx0rhQYwWBshWrey25Py6zdBPRRdQl91xBqAYWb96XB+zCRNrt057CzppaGJs1Yk9crkpHmn+zg5d5HBC39IuOdvi7SeH1npcGs9osAjgoLVjhgLB+Yi9dfx0aVdzMxmgJJowkC6TJJEBYFdb1EUUU/Y4el/GN7UPedQrB82qliojtBNCtbAUT1NLH1n73LTmHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=srT0a+OYO7sQ4jbUQOcISvEeaIIodNzI3U3eD0H/I0E=;
+ b=GgCm14CMTcNEMWr3U/odcShBJ1imsVs/fRUD+m/IJ/zlmHX2w4Krh+duEUnRuCjIg5vPfsSQnb1OLFiVPL17nlKapAHYHSiUw5oyX9JYGO4rAcR4gEty/WoeLKC1+GSDRgOfvtx+GSti3Egk7kjZaUmLPPWUM1K6vG+QDSooWXE=
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
+ by CY5PR12MB6384.namprd12.prod.outlook.com (2603:10b6:930:3c::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Wed, 17 Jun
+ 2026 05:08:28 +0000
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc%3]) with mapi id 15.21.0113.015; Wed, 17 Jun 2026
+ 05:08:28 +0000
+Message-ID: <4872460d-f5bc-4031-93e3-63650ec04479@amd.com>
+Date: Wed, 17 Jun 2026 10:38:23 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] drm/amdgpu: Signal GPU_RESET EVENTFD notifications
+To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx@lists.freedesktop.org
+References: <20260612055226.2879270-1-srinivasan.shanmugam@amd.com>
+ <20260612055226.2879270-6-srinivasan.shanmugam@amd.com>
 Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Matthew Schwartz <matthew.schwartz@linux.dev>
-In-Reply-To: <20260616201828.389985-2-sunpeng.li@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
-X-Mailman-Approved-At: Wed, 17 Jun 2026 07:14:49 +0000
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+In-Reply-To: <20260612055226.2879270-6-srinivasan.shanmugam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5P287CA0255.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1f1::8) To SA0PR12MB7091.namprd12.prod.outlook.com
+ (2603:10b6:806:2d5::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|CY5PR12MB6384:EE_
+X-MS-Office365-Filtering-Correlation-Id: afe35bc8-8027-462c-5bba-08decc2e77b8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|23010399003|1800799024|22082099003|18002099003|56012099006|11063799006|4143699003;
+X-Microsoft-Antispam-Message-Info: FZw1YhvjExGstlM+es8F1x/c8jPWUMBlrkPVvP9d0zLwNBzPvPjF2kWRIelJBOLDGtv6BW8g1FadOmbNWeix+yzqdB0ejH+Gp1rl5jqvJAH3rBHexEBoZNH1KKlJvBcwLb2jWQDewPvaF9JYux9gQAiyJWbjxozeabiHA41CL2vlnLiBC/nwonPnxLlmlpMeUF0Lo7s6mFfDNOeyGzWrd6r4U3kqrQ71g6/KjXYgARqI0dIicr5Zzj8grL4LfdjPNBewqwTAXnMuU0kICS1LS7fINZHdC9ml18VJjMX++yjnINceefCTag4cVQAS6vKDpHpHQ+0D9+TtiaS+T5KBEDQH+aSTGmAx0sspOu96FIH+GqSQvkjC8wMd2omBiz+DJJM9Zw+Iv//cGrAhiwZ1DfjQYI2hLxlas9LRCXMHO/ewF3f9CyHTDy83kGxqFWAoiNBkiyd9lTPeS303fQlsMMyF7zGuAt+ThrF1ilgyunTFLDQgRKBNPF3Vz2rupt/C9NnThzkBKEEYpP+UaMjPpGi0t/gv86AIPYkYjwR1xyUCkN1sMq3bDH57khCA7yBJRt3bJeuz/vtJfkUj8+lvvF+oIxgQLQ5OViu0MjoxNAF5XN+WHyZyhBHsHCDP6nY1UYMtwQwnGyhXjDNW2i6o1u3YHpMD9E72Dnld8JnNtdfZPbnIk/7JmiOH0ojhw2Wy
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(22082099003)(18002099003)(56012099006)(11063799006)(4143699003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VEtFMlNncTZXRzBEV290UGt0VVM4VmREQUZoSWlUVVozM2w5K2l2Z0VrdEYr?=
+ =?utf-8?B?bUcwY0pvaU5DL3R3ZGRrQ3B4d1ZXVDA2WG5heWJpRUIzeXJJMDc3RUZYbkN2?=
+ =?utf-8?B?RTJBNmFDUnNYYkJkQ2R3QVRrd28yNEd5eXJITVFjVzVoSDM0YXRlMG9jQnN4?=
+ =?utf-8?B?VWpGSmFTaEdGNkN1SENKcTJZOXVWcjl6U2Zod25meUs2S0MvcTlWTlczSWky?=
+ =?utf-8?B?aFVVRlBOcVF2QzJBd21ScUw2YlhiVjlCTEhuRUhrYmc5UXp0eDhiNXNjbWZo?=
+ =?utf-8?B?NUU0UHNySWhqUzErZUlUendteVFJU3Z2K1RmbWVsR1hNRkNtcTdoVFdjNjZO?=
+ =?utf-8?B?dGRHY0J6V0w2S09iQ1Q3ZnZnQmVERkMreEE5cXpUTFd4K3pBQlRkVTdqSmdD?=
+ =?utf-8?B?eENpVTFjMktJTlBTdEJBa3N3bnVxS1JzZVp5STU3Znd5MnNVQS9qbFdQK3k2?=
+ =?utf-8?B?ZjcrRjljZUVqcURESmhTRERHWVpzUTlENytWb09kcStVOUZtY3lqQzMxUStN?=
+ =?utf-8?B?TmVVQXQxNGNIM1IxM3pkNU1xSjBCQmF2S2xlYXhNc09YVVJmVVFqVjMyYjJD?=
+ =?utf-8?B?anlNMlZibVArQmp1cUFtc2dwU0FEN3RpRFRwdkpjeWJIb1l3elpXQWdrYWpr?=
+ =?utf-8?B?ZjMzZUVJYXlsMkpaa1FwR09SS0FJOHVxaGVsdFl3UTJYTXFEdEt1MjVvZmI2?=
+ =?utf-8?B?ZmtjS3d4bkpTRXg4MlkvSEY1djFQZFdkd05FZGcyQ3dLMzV5T3lDNGdrbEQz?=
+ =?utf-8?B?SWdoSzVML2tiTmtla3U1dmZMZWgyeUpkcktxdHVNQnJTSDJpTnNEVzJoS1N2?=
+ =?utf-8?B?ZGpmcFgrR0xaVUF1M0VIVVBnREQ0OXVFUExhRFhIbnNnTVpPb1FNendldEVq?=
+ =?utf-8?B?Nis2MGYvZ214YS8yRjlnMFVBcUxhc3FqTjJQTG9iUEtVK3NtZUN6VGMwbkFE?=
+ =?utf-8?B?ZHByZ0FKNVcwb2pINnBwRGlRZTJnNjFzYWhvUjEyeWhYVnZRRzIzczJKZ2J4?=
+ =?utf-8?B?RXZJZUF3TWM5eEU1eXhnT1Jwb1lheUNTbXFGdnBmbU1kQkdTZU9xZUU5VER4?=
+ =?utf-8?B?Wm5aSTFWT21Vc2UwV0loMmkrZHUyeDg5Y25uR0h2eVlMUUJFM2dTTEFreUts?=
+ =?utf-8?B?aEwxRTJtdXVrc3ZGTlhtRjhnd092dlgwYkptZkhNa3VpZWJHL0VuTEpjNkJN?=
+ =?utf-8?B?T3UvNlhsejBLRS9wdnY2eDlzb3ZIUmpvWjJndzViYnd0REplSWJYK0gwMXRm?=
+ =?utf-8?B?Nms0blYxY2RaeGpIY2xVNFBMWEc5VUVSK01DNjRJNEE4cHlhcWwyclNBQmdP?=
+ =?utf-8?B?dm5KbDhDd0s1ZXZYcEFKNDRHdHFzSTNrMzVQVkFoSUowZ3pEcTR5dEdSNlAv?=
+ =?utf-8?B?NlpjbWs4Ti9xdW5CejN3NGxMaXJkWXgvNUw0ZjVqeldMcnEwcDVVUndPSUE0?=
+ =?utf-8?B?ZDFMMXVSYkZrVDAyUTg3RWw0ZGFLM3FPYWZpNDQ1M1ZMeVJRWTZmTEhKYnhi?=
+ =?utf-8?B?VlBLcnZnTzZnbFV3a2pIUC9POEdObmhqQWRrOEZPOE5OYW1WOG1kWm5pRnZ0?=
+ =?utf-8?B?eTlGVmxWTkVGZ3U4NzVEN0o1OFczT2FpRDZvT1AwMUVMYUxocFZwOGtsUnV5?=
+ =?utf-8?B?Qk9NSWtNZXlicHFWOGROQWgxYkZ0S25OdmFEeGU4Mm9qSUVqVVpDYlc4bFJr?=
+ =?utf-8?B?QkZYNXFGcXNQSWU1TWZqaVRmMENxWW1XcGtsWnVvVXpIL1ZaMFc2K0FpTXVi?=
+ =?utf-8?B?dW5vbDZwSCtXdkVNd2IxSkJIU0RwdXFNZFYxMkRKVXpGN2IrRFdUclJXMHdq?=
+ =?utf-8?B?NEhGUmRKUHh3N2R2UE9Md1ZQNUNlcjBQQkZrRlRRS1BZZ1lZZzdQeHc4d1dM?=
+ =?utf-8?B?TlUvZ0VPOU00NmZzdUdLQiszcUZ4VnI1YS9IQkI5TXlyRlZBbzh3MVVtU3Zh?=
+ =?utf-8?B?R2gvdjNBemN2RDdma2dCejdBeGZoUlVpdUhUNjZmVDREWHVhQlR5aFBYWWt1?=
+ =?utf-8?B?NFJ6dFRzTmxpOVpuRUxRc0NEL2UxRGwrTWxxTm5pRDJPUFJ4WTJ4SjNOZDhn?=
+ =?utf-8?B?R29mQzFSbUF2emR3TzNxN081Wk8xNHpEM1dpak81alFpaUxMVm9weWc0Ykpo?=
+ =?utf-8?B?aUdQSnljVFZvRkZqUzVuRWJjbjdyempRZ2ovREN4VlZQbk4xWStZNC85bXpp?=
+ =?utf-8?B?QXJ6bTc5VUZLeklGYnV1N3hPRmtpQm9VOGNRNDJITHFjY0FSQlRjOXBLVDJL?=
+ =?utf-8?B?V0dwVC9sMSs3UjFkVUxDMkNyS3U3VVJ1MytRdnZWZzJYZ0xJQ2VnYXlnYVMz?=
+ =?utf-8?B?ZmtsTGhWVk5weVZwY3NlOFlESmhGWnRJSk45TElDT0xwbmZ2bmUrZz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: afe35bc8-8027-462c-5bba-08decc2e77b8
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2026 05:08:28.4355 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7rviBKNtb+M+9CPcXV7vBK1WKSnKyqMGAYNtzGoSChKqgKjgG7oXfAaEBmn8ZWeI
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6384
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,114 +142,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,outlook.com,m1k.cloud,gmail.com,kde.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linux.dev:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:sunpeng.li@amd.com,m:Harry.Wentland@amd.com,m:mario.limonciello@amd.com,m:wiagn233@outlook.com,m:sysdadmin@m1k.cloud,m:timur.kristof@gmail.com,m:xaver.hugl@kde.org,m:mario.kleiner.de@gmail.com,m:timurkristof@gmail.com,m:mariokleinerde@gmail.com,s:lists@lfdr.de];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[matthew.schwartz@linux.dev,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:srinivasan.shanmugam@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[matthew.schwartz@linux.dev,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,linux.dev:dkim,linux.dev:mid,linux.dev:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1299D697190
+X-Rspamd-Queue-Id: B53B1696926
 
-On 6/16/26 1:18 PM, sunpeng.li@amd.com wrote:
 
-[...]
 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-> index c9916ed0ddc14..8a6b732cf80c8 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-> @@ -281,7 +281,14 @@ static inline int amdgpu_dm_crtc_set_vblank(struct drm_crtc *crtc, bool enable)
->  			drm_crtc_vblank_restore(crtc);
->  	}
->  
-> -	if (dc_supports_vrr(dm->dc->ctx->dce_version)) {
-> +	/*
-> +	 * On DCN, VUPDATE_NO_LOCK is the single OTG interrupt used to deliver
-> +	 * vblank and pageflip completion events, so enable it whenever vblank
-> +	 * is enabled. On DCE, vupdate is only needed in VRR mode.
-> +	 */
-> +	if (amdgpu_ip_version(adev, DCE_HWIP, 0) != 0) {
-> +		rc = amdgpu_dm_crtc_set_vupdate_irq(crtc, enable);
-> +	} else if (dc_supports_vrr(dm->dc->ctx->dce_version)) {
+On 12-Jun-26 11:22 AM, Srinivasan Shanmugam wrote:
+> Signal GPU_RESET EVENTFD subscriptions from the GPU recovery path.
+> 
+> The GPU recovery flow already determines when a device reset has
+> completed successfully. Use that point to wake up matching EVENTFD
+> subscribers.
+> 
 
-Hi Leo (dropping Stable),
+It seems beneficial to send an event before and after the reset, rather 
+than only on successful completion of a reset.
 
-This arms VUPDATE_NO_LOCK on all of DCN, but amdgpu_dm_handle_vrr_transition() still disables it when switching from VRR active -> inactive. This causes a new flip_done timed out event when a compositor like gamescope disables VRR while it's already active.
+> GPU_RESET is a device-scoped event, so no queue object is used.  All
+> processes that subscribed to GPU_RESET on the device are notified.
+> 
+> EVENTFD remains notification-only.
+> 
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 30 +++++++++++++++++++++-
+>   1 file changed, 29 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index e46cdd6ecd42..8f28716912c7 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -5694,6 +5694,32 @@ static int amdgpu_device_asic_reset(struct amdgpu_device *adev,
+>   	return r;
+>   }
+>   
+> +/*
+> + * Signal GPU_RESET EVENTFD subscriptions for all open DRM files.
+> + *
+> + * GPU reset is a device-wide event rather than being associated with a
+> + * specific user queue. Notify every process that subscribed to the
+> + * GPU_RESET event on this device.
+> + */
+> +static void amdgpu_device_eventfd_signal_gpu_reset(struct amdgpu_device *adev)
+> +{
+> +	struct drm_device *ddev = adev_to_drm(adev);
+> +	struct drm_file *file;
+> +
+> +	mutex_lock(&ddev->filelist_mutex);
+> +
+> +	list_for_each_entry(file, &ddev->filelist, lhead) {
+> +		struct amdgpu_fpriv *fpriv = file->driver_priv;
+> +
+> +		if (fpriv)
+> +			amdgpu_eventfd_signal(&fpriv->eventfd_mgr,
+> +					      DRM_AMDGPU_EVENT_TYPE_GPU_RESET,
+> +					      NULL);
+> +	}
+> +
+> +	mutex_unlock(&ddev->filelist_mutex);
+> +}
+> +
+>   static int amdgpu_device_sched_resume(struct list_head *device_list,
+>   			      struct amdgpu_reset_context *reset_context,
+>   			      bool   job_signaled)
+> @@ -5738,6 +5764,9 @@ static int amdgpu_device_sched_resume(struct list_head *device_list,
+>   		} else {
+>   			dev_info(tmp_adev->dev, "GPU reset(%d) succeeded!\n",
+>   				 atomic_read(&tmp_adev->gpu_reset_counter));
+> +
+> +			amdgpu_device_eventfd_signal_gpu_reset(tmp_adev);
+> +
 
-I had to fix it up with something like:
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index e09c0eb9f865..ee337ca816cf 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -10085,8 +10085,16 @@ static void amdgpu_dm_handle_vrr_transition(struct amdgpu_display_manager *dm,
- 					    struct dm_crtc_state *old_state,
- 					    struct dm_crtc_state *new_state)
- {
-+	struct amdgpu_device *adev = dm->adev;
- 	bool old_vrr_active = amdgpu_dm_crtc_vrr_active(old_state);
- 	bool new_vrr_active = amdgpu_dm_crtc_vrr_active(new_state);
-+	/*
-+	 * On DCN, VUPDATE_NO_LOCK is the sole vblank and pageflip completion
-+	 * source and amdgpu_dm_crtc_set_vblank() keeps it armed whenever
-+	 * vblank is enabled, so it must not be toggled with the VRR state.
-+	 * Only DCE gates vupdate on VRR.
-+	 */
-+	bool vrr_gates_vupdate = amdgpu_ip_version(adev, DCE_HWIP, 0) == 0;
- 
- 	if (!old_vrr_active && new_vrr_active) {
- 		/* Transition VRR inactive -> active:
-@@ -10097,7 +10105,8 @@ static void amdgpu_dm_handle_vrr_transition(struct amdgpu_display_manager *dm,
- 		 * We also need vupdate irq for the actual core vblank handling
- 		 * at end of vblank.
- 		 */
--		WARN_ON(amdgpu_dm_crtc_set_vupdate_irq(new_state->base.crtc, true) != 0);
-+		if (vrr_gates_vupdate)
-+			WARN_ON(amdgpu_dm_crtc_set_vupdate_irq(new_state->base.crtc, true) != 0);
- 		WARN_ON(drm_crtc_vblank_get(new_state->base.crtc) != 0);
- 		drm_dbg_driver(new_state->base.crtc->dev, "%s: crtc=%u VRR off->on: Get vblank ref\n",
- 				 __func__, new_state->base.crtc->base.id);
-@@ -10113,7 +10122,8 @@ static void amdgpu_dm_handle_vrr_transition(struct amdgpu_display_manager *dm,
- 		/* Transition VRR active -> inactive:
- 		 * Allow vblank irq disable again for fixed refresh rate.
- 		 */
--		WARN_ON(amdgpu_dm_crtc_set_vupdate_irq(new_state->base.crtc, false) != 0);
-+		if (vrr_gates_vupdate)
-+			WARN_ON(amdgpu_dm_crtc_set_vupdate_irq(new_state->base.crtc, false) != 0);
- 		drm_crtc_vblank_put(new_state->base.crtc);
- 		drm_dbg_driver(new_state->base.crtc->dev, "%s: crtc=%u VRR on->off: Drop vblank ref\n",
- 				 __func__, new_state->base.crtc->base.id);
-
-Feel free to fold some version of this into the next version if it makes sense, or pick it up with my s-o-b.
+This is actually a misleading place. This is also taken for reset-skip 
+path where there is no real reset. The logic to not show reset related 
+messages with skip flag passed in reset_context is a TODO.
 
 Thanks,
-Matthew
+Lijo
+
+>   			if (amdgpu_acpi_smart_shift_update(tmp_adev,
+>   							   AMDGPU_SS_DEV_D0))
+>   				dev_warn(tmp_adev->dev,
+> @@ -5775,7 +5804,6 @@ static void amdgpu_device_gpu_resume(struct amdgpu_device *adev,
+>   	}
+>   }
+>   
+> -
+>   /**
+>    * amdgpu_device_gpu_recover - reset the asic and recover scheduler
+>    *
 
