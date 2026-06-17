@@ -2,70 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 5p/ZIzHyMmrp7wUAu9opvQ
+	id 8GYcKDTyMmrr7wUAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 21:14:57 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 21:15:00 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BA1869C1E0
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 21:14:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43B5569C1E8
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Jun 2026 21:15:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=mfqr2vjl;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=mQA99Oo3;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE3E710F0DE;
-	Wed, 17 Jun 2026 19:14:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5D8910F0E1;
+	Wed, 17 Jun 2026 19:14:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
- [209.85.128.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D3D010F0DE
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2026 19:14:54 +0000 (UTC)
-Received: by mail-wm1-f52.google.com with SMTP id
- 5b1f17b1804b1-490b12270b3so324725e9.1
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
+ [209.85.128.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F39B10F0DE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2026 19:14:55 +0000 (UTC)
+Received: by mail-wm1-f45.google.com with SMTP id
+ 5b1f17b1804b1-4922244f7c7so604275e9.0
  for <amd-gfx@lists.freedesktop.org>; Wed, 17 Jun 2026 12:14:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gmail.com; s=20251104; t=1781723693; x=1782328493; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=vRqIzuw05UinLBAdNpRBnUT1a8q0TkekQSdKnNQ5ucY=;
- b=mfqr2vjlTk5g5hgHFmnCf2VcE39B7fuqUoxlh6uwQxMTRm/CJ9lRjniGvUXg4Ia/8/
- aJWN8YyT78NTrXdItWG1RmTDkqIETiIeGRlcs9XRFxP/0ynOk1n1IWhJBwPfSPsEglQj
- 8o3rQTavw8AIaCmgdXAXE8gNqvn5jWfj7thI+74XbpP+kg45jPpRwlPm4bBn6OQ29ZhE
- c7wAADPfOt6Q3YqyqclpDSpgcnHBY4iHWbThNz+P++1Tyf5U8Keuq2tNT4rlkRDZ7Ye/
- 1g1yCYsZXsFeSlzZjA/OuWPWKn3ImSk7gTcrV9/l2WagM1gQCIyuFnn6ey0qhBeel52t
- R1/Q==
+ bh=yuTGuYVt8fllS4J4qN2aqHiPNgNYSV9TGnIeSi2gAkc=;
+ b=mQA99Oo3zppAMVH2WS6VaChjSSF94M6fSMRWbxrelbOYSumjsMBwkYIbsY3i1dCTBJ
+ hk/SyD1D6p+kVPjxZllpdrgKoNFoOfd49SYw4akTRKsseUSjIuRbAYJrVZRYVjRsH//1
+ ZGFmyDYBsBbqMfIWU94dcRP4UeHHn4GSkXFd6Z3c2CNVGHHuNXTyjfhXsaziBNyhe9gr
+ wEH/USN/vzbE8KYOMKjY5KCq99CvoqlZPo280HUC/9pn6RqSlLFqlyYQjnOCyv3n/BMA
+ BpGnIv/Yw1y9qtKDZy9X0QUiNtVi0wSDrHUFUsdinFvfiFahWYUI9PKotM2Re6RbII9Y
+ iMIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20251104; t=1781723693; x=1782328493;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=vRqIzuw05UinLBAdNpRBnUT1a8q0TkekQSdKnNQ5ucY=;
- b=Fmd3QJm9SLiUTsDKNvACSGIDCJ44nZFc+CZMclqUuJp2Pa+98f6KtIVZG/0ETGnUMC
- 7SqWActkyR28zM6d7hMf2MuLNzhChcR1r8ToIWSxEpAHr05A9aehAv7xpL9c7l6pRWCx
- 4McpsZzJb3xQcQRf+vqhrFqzhx2SJoe0E3mVOToMWr2yKiy+SwIVUFTEblm6Gh+qMd/b
- D/miKuLZWgkwHIW2vQn4kYjvGFLXnavqjLpgWLNS0FF+b37j8HbPMXIS/MMShwCwp3cK
- 43V0yn7hp0Bpyzd4dPibxg5fE/OOqEjFHxICoMcyuDycwTtQGQ2PDHhsMs5mOWMXAsOo
- Tb8Q==
-X-Gm-Message-State: AOJu0YyrUBDdNg2D2jqUOlRi2N8DiGpfVi75AKFAPhapG/6VteHB3u2x
- ZuFZO/syHB1vvqsth47fPc49AwVZsaOuDe4Nz3FGdnDSsOej5Ub1WnHguVEmNw==
-X-Gm-Gg: Acq92OGMAs0zyIc/wXYxgIF0n55/wIHDR+Yah2GeDuhKaCZXns0vMgeEIb5MFPzA9Nu
- o1f3PAObDArTrrbkk+JMDpz1GnN3DsPx6j2lmfbDb4ufggcyCNdo0R4cMfL4Y6hEkHroPITvB4S
- EAQeyzcvQngb2euR/G1HyNhOd4vqLLKi9BBU+gC0+xV4CBpgfDU1uMtZihzb8gS154UGKk5uaRT
- 69MRGPG15yKGt6BrC3CYUvGdQA0oCnQf835Rk+VACJtXO9c4ak/onSTz4pByovek5U87/WEjbhO
- 3hehyoYns1QAlaDsAS7CBoY8bajKK1WfdQMM9n1yVYoli5Tp7Gh3scKkMnp28GOXQWsnoHCTqC5
- QfSMvgjICM8LLPKKkQ29QASob9Pw8gymEcZwledl304z7lIg7yp3sIr4B5z58y0Faoc5WIj7S3D
- CjVhtDweamJSDXzO9jDA7UIGxTSklH9IcJdY7UwoNmEMyjtRoeQP3xrRlJmkEV7Afw
-X-Received: by 2002:a05:600c:470d:b0:490:e5c1:b897 with SMTP id
- 5b1f17b1804b1-4923412f115mr77313675e9.20.1781723692586; 
- Wed, 17 Jun 2026 12:14:52 -0700 (PDT)
+ bh=yuTGuYVt8fllS4J4qN2aqHiPNgNYSV9TGnIeSi2gAkc=;
+ b=T05sihMeJ+EXci4ANojnQYf9TW7TkzB2q7OhNQEYDO8IQTWVS4tZShA0ceGSjx1EaT
+ UpUhZKhNDJMD+rYdWw30P6iA1H8BEsptCgUl7nP6k717dPvkehNIIA1coSzRTnmTIDTT
+ GQVO5NOgpRCTtA8WhU5g2BWjOeoExXWkCVNjzNrGh0L/AM5W73ts0BSsKXx22YYvLHHf
+ Nk7K4N/+1+NOpv/o466VoCkEp/cFd1ZhR42yu14mGVxGaxgTlbGETEVXYMWIJCtq405p
+ GyUPUwxnqjSVVXlzVnFH7lr4VQS9VJ4FfUjD88OE3k5FX5VYkwbvgHxaGX07mnlr4j3L
+ TB0g==
+X-Gm-Message-State: AOJu0YwX1L0hbY6WJuMyZpW3ox7T+uuQ9+PKgQbefW0EubGO27TrcTD0
+ e+sOK96AZOXVKh1e3Ha86G2GzoybBI35Yf4chjXtg7Li3JNvW3HePR05QZ8ogQ==
+X-Gm-Gg: Acq92OH5w9CLQOEBddFpTh6eNSkUqZmAdGQdaLK91QyMqvjVgED93epxAVl20/U3OfE
+ tPcglTR9acDj5notGWOp2/4G/ftNoyZCJB8RQkxpUa8ZCYPHLyoNGFnxdBdygPM3zhrkwHEOpnX
+ enzrhRAx9t1582abF70Kfk2ApRMfpMKjsM6gosXQqCTuihQno0C1dJ8QGuVB/dbpxiDwucapuYy
+ d/bAGq5yKsXyc1+qlEY3yGo/T3CQJWT36xybvpYY4T18vOgovTZLKRgYg0W+8uOIXnuf76CoInF
+ aHmbjoSkNtEVsMQwAYbF2l9F5syH1v9/OPruAKtDl0L/oEv1JkRKTSgsaYJsaoW15d5wZ2C89mZ
+ szXO7DjqnWlUIjnZYSeGf5EtySQguXeFKYqDC4SteuOo3EI1Rz2i5f5Bp0ygA31mpaTDTkVn/z6
+ 483UOCXc3M9Hq0wQzoIrSdhIQhSbMbbcMuoOkocBVk//R8mjZxbxV46g==
+X-Received: by 2002:a05:600c:8010:b0:490:bad9:de43 with SMTP id
+ 5b1f17b1804b1-492381a5b88mr12752385e9.0.1781723693567; 
+ Wed, 17 Jun 2026 12:14:53 -0700 (PDT)
 Received: from Timur-Hyperion.home (54001290.dsl.pool.telekom.hu.
  [84.0.18.144]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4922fa96f0esm204686325e9.12.2026.06.17.12.14.49
+ 5b1f17b1804b1-4922fa96f0esm204686325e9.12.2026.06.17.12.14.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 17 Jun 2026 12:14:51 -0700 (PDT)
+ Wed, 17 Jun 2026 12:14:53 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  christian.koenig@amd.com, Natalie Vock <natalie.vock@gmx.de>,
@@ -74,9 +74,10 @@ To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Lazar Lijo <lijo.lazar@amd.com>, Martin Roukala <martin.roukala@mupuf.org>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 16/17] drm/amdgpu/gfx8: Fixup IP block soft reset
-Date: Wed, 17 Jun 2026 21:14:27 +0200
-Message-ID: <20260617191428.1784083-17-timur.kristof@gmail.com>
+Subject: [PATCH 17/17] drm/amdgpu/gfx8: Enable IP block soft reset as a GPU
+ recovery method
+Date: Wed, 17 Jun 2026 21:14:28 +0200
+Message-ID: <20260617191428.1784083-18-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260617191428.1784083-1-timur.kristof@gmail.com>
 References: <20260617191428.1784083-1-timur.kristof@gmail.com>
@@ -128,143 +129,49 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3BA1869C1E0
+X-Rspamd-Queue-Id: 43B5569C1E8
 
-Always reset everything in the GFX block at once as opposed
-to trying to figure out which blocks need to be reset based
-on their busy flags. This makes the reset more robust and
-predictable.
+Enable IP block soft reset as a GPU recovery method for GFX8
+graphics and compute rings.
 
-Increase delays when waiting for the GRBM and SRBM soft reset
-to complete.
+Tested with the "hard_reset_cp_wait" test case from the
+Hang Test Suite created by Natalie Vock and Konstantin Seurer.
+This Vulkan testcase waits for an event that never occurs,
+effectively a WAIT_REG_MEM packet that intentionally hangs.
+IP block soft reset can resolve that hang and allow
+the rest of the system to move on and keep functioning
+without needing a full ASIC reset.
 
-Call IP block suspend/resume to ensure correct operation now
-that we no longer have pre/post_soft_reset().
+Tested on the following chips:
 
-Call clock/powergating functions, otherwise power consumption
-will increase after the GFX IP block is soft reset.
-
-Return correct error code to signal failure in case not all
-rings are functional after the IP block is soft reset.
+Polaris 10 (Radeon RX 570)
+Polaris 11 (Radeon RX 560)
+Polaris 12 (Radeon RX 550)
+Fiji (Radeon R9 Nano)
+Tonga (Radeon R9 380X)
+Carrizo (A8-9600)
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 --
- drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c   | 43 +++++++++++++++++++------
- 2 files changed, 34 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-index 77050f9884f2..d968e5b6725b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-@@ -479,8 +479,6 @@ struct amdgpu_gfx {
- 	const struct amdgpu_gfx_funcs	*funcs;
- 
- 	/* reset mask */
--	uint32_t                        grbm_soft_reset;
--	uint32_t                        srbm_soft_reset;
- 	uint32_t 			gfx_supported_reset;
- 	uint32_t 			compute_supported_reset;
- 
 diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-index 1366d6070481..e5b25d6b8268 100644
+index e5b25d6b8268..54c974a72f84 100644
 --- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-@@ -4904,13 +4904,19 @@ static int gfx_v8_0_soft_reset(struct amdgpu_ip_block *ip_block)
- 	u32 grbm_soft_reset = 0, srbm_soft_reset = 0;
- 	u32 tmp;
- 	int i;
-+	int r;
+@@ -2035,6 +2035,11 @@ static int gfx_v8_0_sw_init(struct amdgpu_ip_block *ip_block)
+ 	adev->gfx.compute_supported_reset =
+ 		amdgpu_get_soft_full_reset_mask(&adev->gfx.compute_ring[0]);
  
--	if ((!adev->gfx.grbm_soft_reset) &&
--	    (!adev->gfx.srbm_soft_reset))
--		return 0;
-+	grbm_soft_reset =
-+		REG_SET_FIELD(0, GRBM_SOFT_RESET, SOFT_RESET_RLC, 1) |
-+		REG_SET_FIELD(0, GRBM_SOFT_RESET, SOFT_RESET_GFX, 1) |
-+		REG_SET_FIELD(0, GRBM_SOFT_RESET, SOFT_RESET_CP, 1) |
-+		REG_SET_FIELD(0, GRBM_SOFT_RESET, SOFT_RESET_CPF, 1) |
-+		REG_SET_FIELD(0, GRBM_SOFT_RESET, SOFT_RESET_CPC, 1) |
-+		REG_SET_FIELD(0, GRBM_SOFT_RESET, SOFT_RESET_CPG, 1);
- 
--	grbm_soft_reset = adev->gfx.grbm_soft_reset;
--	srbm_soft_reset = adev->gfx.srbm_soft_reset;
-+	srbm_soft_reset =
-+		REG_SET_FIELD(0, SRBM_SOFT_RESET, SOFT_RESET_GRBM, 1) |
-+		REG_SET_FIELD(0, SRBM_SOFT_RESET, SOFT_RESET_SEM, 1);
- 
- 	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
- 		struct amdgpu_ring *ring = &adev->gfx.compute_ring[i];
-@@ -4920,14 +4926,21 @@ static int gfx_v8_0_soft_reset(struct amdgpu_ip_block *ip_block)
- 		gfx_v8_0_deactivate_hqd(adev, 2);
- 		vi_srbm_select(adev, 0, 0, 0, 0);
- 		mutex_unlock(&adev->srbm_mutex);
++	if (!amdgpu_sriov_vf(adev) && !adev->debug_disable_ip_block_soft_reset) {
++		adev->gfx.compute_supported_reset |= AMDGPU_RESET_TYPE_IP_BLOCK_SOFT_RESET;
++		adev->gfx.gfx_supported_reset |= AMDGPU_RESET_TYPE_IP_BLOCK_SOFT_RESET;
++	}
 +
-+		udelay(50);
- 	}
- 
-+	ip_block->version->funcs->set_clockgating_state(ip_block, AMD_CG_STATE_UNGATE);
-+	ip_block->version->funcs->set_powergating_state(ip_block, AMD_PG_STATE_UNGATE);
-+	ip_block->version->funcs->suspend(ip_block);
-+
- 	if (grbm_soft_reset || srbm_soft_reset) {
- 		tmp = RREG32(mmGMCON_DEBUG);
- 		tmp = REG_SET_FIELD(tmp, GMCON_DEBUG, GFX_STALL, 1);
- 		tmp = REG_SET_FIELD(tmp, GMCON_DEBUG, GFX_CLEAR, 1);
- 		WREG32(mmGMCON_DEBUG, tmp);
--		udelay(50);
-+
-+		udelay(100);
- 	}
- 
- 	if (grbm_soft_reset) {
-@@ -4937,11 +4950,13 @@ static int gfx_v8_0_soft_reset(struct amdgpu_ip_block *ip_block)
- 		WREG32(mmGRBM_SOFT_RESET, tmp);
- 		tmp = RREG32(mmGRBM_SOFT_RESET);
- 
--		udelay(50);
-+		udelay(100);
- 
- 		tmp &= ~grbm_soft_reset;
- 		WREG32(mmGRBM_SOFT_RESET, tmp);
- 		tmp = RREG32(mmGRBM_SOFT_RESET);
-+
-+		udelay(100);
- 	}
- 
- 	if (srbm_soft_reset) {
-@@ -4951,11 +4966,13 @@ static int gfx_v8_0_soft_reset(struct amdgpu_ip_block *ip_block)
- 		WREG32(mmSRBM_SOFT_RESET, tmp);
- 		tmp = RREG32(mmSRBM_SOFT_RESET);
- 
--		udelay(50);
-+		udelay(100);
- 
- 		tmp &= ~srbm_soft_reset;
- 		WREG32(mmSRBM_SOFT_RESET, tmp);
- 		tmp = RREG32(mmSRBM_SOFT_RESET);
-+
-+		udelay(100);
- 	}
- 
- 	if (grbm_soft_reset || srbm_soft_reset) {
-@@ -4966,7 +4983,15 @@ static int gfx_v8_0_soft_reset(struct amdgpu_ip_block *ip_block)
- 	}
- 
- 	/* Wait a little for things to settle down */
--	udelay(50);
-+	udelay(100);
-+
-+	r = ip_block->version->funcs->resume(ip_block);
-+	r |= ip_block->version->funcs->late_init(ip_block);
-+	if (r)
-+		return r;
-+
-+	ip_block->version->funcs->set_clockgating_state(ip_block, AMD_CG_STATE_GATE);
-+	ip_block->version->funcs->set_powergating_state(ip_block, AMD_PG_STATE_GATE);
- 
  	return 0;
  }
+ 
 -- 
 2.54.0
 
