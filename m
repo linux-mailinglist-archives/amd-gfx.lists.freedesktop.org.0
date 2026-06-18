@@ -2,112 +2,109 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /5ZDLBVFNGrZTQYAu9opvQ
+	id taQpOBpZNGpZVgYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2026 21:20:53 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2026 22:46:18 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 038DE6A254E
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2026 21:20:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 894796A2A97
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2026 22:46:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="l/8pYz8O";
+	dkim=pass header.d=amd.com header.s=selector1 header.b="K97/bL2S";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20240605:i=1")
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32DDC10EE5B;
-	Thu, 18 Jun 2026 19:20:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AFDB10EE7F;
+	Thu, 18 Jun 2026 20:46:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f47.google.com (mail-dl1-f47.google.com [74.125.82.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FF8610EE5B
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2026 19:20:50 +0000 (UTC)
-Received: by mail-dl1-f47.google.com with SMTP id
- a92af1059eb24-1365eb2a773so86745c88.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2026 12:20:50 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781810449; cv=none;
- d=google.com; s=arc-20240605;
- b=MrAnfvvvqNfj50AEkkBRBXEGyZ4BLgCc7+2Xl9p0ggZgqz513XDUxa4sIWnJMmTIvV
- 6pPQ9i+zG1jUxbJnrWz4GyIzsdcG5uRq3hbku0BVL0JygSUKsRMWSPMHqSbTgflwUYB5
- vnw2seisaSiJXScockWaLzR1RWiU7RvriytJdCTF2LJTxW4cc/ka/GWzX1nj43dk1xvA
- LCptLnXVmId9cfSzyrfZKDqF2OcHqIOC8Ag8GDfjgRAWCHdHgVralzif9zo9x+UtL5D2
- gr1ZtIY0Eb/SyL9jbDONFP1fn5Ms+nPZ5EPB8Hv4qwdCLl++uegl9lmYLZYdtpxLL0mW
- c4Kg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=YC7hCaQEr2sHNRv45GzFykCX3E6WbTP1WYx9de5lAyY=;
- fh=i6fvHB8CLSl+cuOnkdm7KVfR9yZcrrJ1K4hlLs1eZjA=;
- b=j6F5WZBETt4y1KFydq7+bNgJD6IuVdHVrF1oRmuVU9jIKjIP+B3H+e4+zoAfUwLEbu
- th1QgrtEsIeNeMnj7YKm0W7QGESPZUmWcpZ/b8CtbRWCXzqBrF6cFbF1A/UlOyiKyxxe
- xrQ+ZDy5JzjXRCJUI+crz2uO0Mg/ZzAt0KEhUAOwWJm++C80DR1XfW+3jrraesctC1v/
- sgkYjRlQBRq9MWDqv0O3W5YvK3KcT98/cRuhyKd7w/EPMIE2ywbmnjDevqW22+cvwYF6
- 3zl11Hs4vW6Z/cnWbFOaXJHeVwF/JzAty8gISCe9tpD3svmdM23W880jswUoqZgYB1mQ
- 9dpw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1781810449; x=1782415249; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=YC7hCaQEr2sHNRv45GzFykCX3E6WbTP1WYx9de5lAyY=;
- b=l/8pYz8OXEkMxEIlb05XUL/4KDYqPxm8ZQ6HAPkHQj4s+q1apxRfs711zEaoKN+JA6
- Z6QmpvSqpJUomflON+uW9nmv8WNUlKNU1K5mk+0WBolbUsSj/caTuTz0iMlxR4x+kYo3
- kebdiQep6tUtUSUkJTGp1BtVtrAdRRInSm+7TVUSrFvLZTtjEcpgKHns9dK8IohQkW7M
- P96AcVG65nxBQ62+VDY/lFX+FnICYvdfCOVBAaQMHSD8UQd61oBDJensYdCJ6t4vesVK
- gRwu8YCo8tfUy5muRo7yYZdtdQJE2ADPWMA/jiWlsfpYXIwPNdfLc9JYeN6+x4L48hf6
- G8Sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781810449; x=1782415249;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=YC7hCaQEr2sHNRv45GzFykCX3E6WbTP1WYx9de5lAyY=;
- b=IgUyEwv8QjOOeYsOe6/9D2GVkQSmT56rHwbR+6W6B4WJMKXB6cUY8V4K/1Ehr0Pgj+
- sxAWAZIdcfEzLiwEa9Fhb+It+OOOjZyddh0LDTxOK2vZloxO++6vOdIwOdCwadVEMjBE
- EnRfKwTfdOwqrOb6RIYMKN2arbK+F2HBF7wh8WiurGsueo50neJPJnyeFERVTXznqgl0
- pMzwmQIv6W2GF2OFUotZZ0kJyhzmAs060MZ+bFR9mUBPLtiUlPfKJzD5MRiR2NauY7LW
- I56rB+0ddM2ih5ZseZYnOTpMedYbQEmxhuJn5ZLC0EFd3q1WUQ1SVXiRChJX6VoBwtOo
- aRQg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ9VAddMFCy521m8vsvxoom2t9yvdBQID+wYraCwkIFzDUwIl8HGOmsLrrMoCOXyvn+O3c2BmEYx@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwP9z3RBQbjEl2B8I0+jqDSwwVz8ogBdMzRGmwkyRDnv3v8x/p5
- lhzoe+g0ooFDNZdTPBJBZMdjC8W0Udjt6A+zysr6q5S75jWP1G5bqzaidUaR+WLzwosB1JsSNBJ
- qYwD5veEz629M79TlFJfp6B5/AJRCCLE=
-X-Gm-Gg: AfdE7ckndUs9+4bPk3szLLLb30efAn3RMFBQwlCb8LmtlCCcgyW6RO34K3FY/5AFmCg
- WKsTgzLRSIgD5r44SziKCommDbESb1zSNz6HGzDaprCVz3wypoEdLw1kQO01hQ0P9cSoCubV+wv
- RPhNRQkymacBemb+vIE7G8DDOD8Mo5aSpeLcK3J0Fur/29cUrghPw90e5PKIFOTBnFnVogmUHJc
- B4cMV1TWdlEqEdm61T8eiCuVunt1QG86LnEc/70XkpRH7lNDzDHniz73I7UAsZ7qG6vGjvh5idS
- OMzuouKra7/fBWmmk0xsVf6rX/IS1JtbDFwz2KBJrh2a+GCIP+/ETjWDUpWTCXbyPA0h+w==
-X-Received: by 2002:a05:7022:41a2:b0:137:e391:1ae2 with SMTP id
- a92af1059eb24-139a2137351mr376806c88.6.1781810449332; Thu, 18 Jun 2026
- 12:20:49 -0700 (PDT)
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012012.outbound.protection.outlook.com
+ [40.93.195.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1518110EE7F
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2026 20:46:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HfbjhO+Z18TEsYMrqK0PItDpq72PFeY1Uxnp4p+5fYaFOUVTllSr7H9RT8KjWE1L9DmyuKH0H5BrDs+g0OUuvPGv/gKP/NVD2PPo3QdNHc1McC5K18FhGiRqo8oIFvEAhXpskA7N1KXzsomp/KWtl6s0qElFFJu+wMTqxzOH5wzeK69coFi1NIL3e5pON0SVLPVeleayDMe5otrC46oSmT831mgcWiRzDsYrTVdn2kHAX7EL7XvA3hL24fS7ZROMwDy461CY2h5BIDviJ+XnpClDjdZj40Z4AWmBRYmTqe9hN4+sB3JKRg7GcnET19b3UowoqpgDWgePsusd7zPAvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=irMBQ5T2gRWbEOdtpBb+dFL6CyhyP+WE8r/KfFkTzjE=;
+ b=OOGtk55E3yfpMuEdDY3+aK5ed6NHv75/yo9X6wYvB0Q0t0+XzvoPJROVW/EL65ikGVWPEW8s7tnP9XrxjhvA4cU3OZSpcyQP578OhSNObd1BFt7ei6P4wrQxlcTO1SG09OoFliKQ7LQqHD+wEr1uRTWazX2bXOGwmA0rDbgyr8vs5+eY23vAEGLfncu34LVgkTfIVZpZwX7bEJxKMxfneNGud+huepGxXV5pD3RxekH5lr9GC4lowLPL6IB/V7O4dVTih9BwKXvnu32KV2c1Oo6bO5hnIjRMJ8KU7o/fEn8QdR9PMvU9xMrQyisdfyRC3wygm/K4QQVbtI/tDBpDQw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=irMBQ5T2gRWbEOdtpBb+dFL6CyhyP+WE8r/KfFkTzjE=;
+ b=K97/bL2S17iiq7+C9S1rSkxgQIFabioHy1IQdVMkfOFeRCe9BUV5wsOxvjfdp84at2LC4QjETb8eOO7wqPdZDz1iobLOqXYbQFXBsD7YYhcqmu4Mg7/JF806Qny90B5rZKNW7qr5Nrjq4I8G1tpksTGrr3TH1BKGM/xaTJqOBC4=
+Received: from SJ0PR05CA0156.namprd05.prod.outlook.com (2603:10b6:a03:339::11)
+ by CH3PR12MB9284.namprd12.prod.outlook.com (2603:10b6:610:1c7::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Thu, 18 Jun
+ 2026 20:46:01 +0000
+Received: from MWH0EPF000A6734.namprd04.prod.outlook.com
+ (2603:10b6:a03:339:cafe::67) by SJ0PR05CA0156.outlook.office365.com
+ (2603:10b6:a03:339::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.12 via Frontend Transport; Thu,
+ 18 Jun 2026 20:45:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MWH0EPF000A6734.mail.protection.outlook.com (10.167.249.26) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.139.8 via Frontend Transport; Thu, 18 Jun 2026 20:45:57 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 18 Jun
+ 2026 15:45:57 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 18 Jun
+ 2026 15:45:57 -0500
+Received: from p8.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
+ Transport; Thu, 18 Jun 2026 15:45:56 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH] drm/amdgpu/gx12.1: Add ip dump support
+Date: Thu, 18 Jun 2026 16:45:49 -0400
+Message-ID: <20260618204550.753250-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-References: <20260609065123.215816-1-kevinyang.wang@amd.com>
- <6cb5a3be-8cf1-4ce5-8ce9-a6fb363b12fa@amd.com>
- <DM6PR12MB29726384D65C1D1B41A04415821D2@DM6PR12MB2972.namprd12.prod.outlook.com>
- <e3c720a6-497d-43aa-bf7a-0835fc0d799a@amd.com>
- <DM6PR12MB2972ECD8FDD8874557E8EFE3821D2@DM6PR12MB2972.namprd12.prod.outlook.com>
- <09795f1b-43c9-4aac-a652-01bff8b98d81@amd.com>
- <CADnq5_OtH8En_WG3kdeiWYXGtUaL8+xwQMEFYY__xTGevLvR+g@mail.gmail.com>
- <DM6PR12MB29721F2B6EC88D593BB933AE82E32@DM6PR12MB2972.namprd12.prod.outlook.com>
-In-Reply-To: <DM6PR12MB29721F2B6EC88D593BB933AE82E32@DM6PR12MB2972.namprd12.prod.outlook.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 18 Jun 2026 15:20:37 -0400
-X-Gm-Features: AVVi8CczyG81-6Yr6CxK1ndtZjjuC1_Hef8UWNPk3NXKYeuRKuH5Lm6lOB_IkwM
-Message-ID: <CADnq5_PdpDcqqhXb381OEiyjqkSG1jfP6GJwNg5Bv-wRi8TCjQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/pm: refactor DPM clock level reporting
-To: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>
-Cc: "Lazar, Lijo" <Lijo.Lazar@amd.com>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Zhang,
- Hawking" <Hawking.Zhang@amd.com>, 
- "Feng, Kenneth" <Kenneth.Feng@amd.com>, "Liu,
- Shuzhou (Bill)" <Shuzhou.Liu@amd.com>, 
- "Arif, Maisam" <Maisam.Arif@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MWH0EPF000A6734:EE_|CH3PR12MB9284:EE_
+X-MS-Office365-Filtering-Correlation-Id: e3a56b7f-707a-4ba6-1a67-08decd7a9987
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|36860700016|82310400026|23010399003|1800799024|11063799006|6133799003|56012099006|18002099003;
+X-Microsoft-Antispam-Message-Info: GCBtDs/HOrbf9/4qfXbVZMKBroPXCzFREST2UTQbDeQxvH7L1wNZk0KWQFtZZw80ohO0j8A9ATjzEyZaLvpOhdWQI5n3IumPsUJalOmUUlFy16zOxRXQLANkO6J7YcU3Hnd1tBUKuANOm3GqMU2XJxjHrpy5Jdv7Ds/8PeASPNHTAHFrIn28XYqsDIW2thaGy0O9uXszoOAQID3RhcNH3H/TqMrVSicaYAcW0lugLMrYd03enHubxZeGj1UX11briASuG2dMaHEF6txBnzYu5A4phQchQcqeA9M5g93hVCr5RmfVZfT8uPURCGUOhKQBKn1u9rHfdsf6XfDq/qhHvKdI2h3naYojWjyrtafzI5eUTNYQ+kuuDDatVsBwYOeQN9V+mcQ6pFtlyT3pJCMU73pSf1apV5LLd3N3cIY9sQOTbXyzs4VaWX4Mj29T/U2YfK2B/zstGtHUjh0i/ScHxu0RRLtSmxBxlGI6kgInlsWW6FwCSDnes9j7fqSP06LdTVOGjWos3DSGnRqtP16S+ajSy9IzTs67AmnmhE/2Dfp9GE4O+OI+rpbVNZnErIN4/Kfd/NPAzMmQFMmcOQiGUbBI+aJZg9h1wlDQyP5qcD7tbLcaURFPti33L9eMwt5K1Kywyej9kTE7CHXC/8VucM7bjG5TbKqenJVjzdsdrt4IqyJRSy97b2HlvDefWAQanzljKGyOFmi1sA/FCvgEeQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(36860700016)(82310400026)(23010399003)(1800799024)(11063799006)(6133799003)(56012099006)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: yUarTmQ4z1ejQoenfoTJF41GJ25aEPLhxXPle11DANsKG7VSaeTmOM5bsV+66aOFsCC+yrVYoNSrWmnkqghBPsUh7TVF1dWVTxCUiXnrnuOnEMis1tKCXjyEQGYUn5BL+6gbsRSgrJdo+5z3ALPZQlAhG3xGdfuEPL2HmbWWn3fTfhpPzVLF9ctx+PUfC5L4hom1g3oV4v7Kqkltnw7RTciC+zVnA5O03hz/GePa+E1gJNFO3iUhs007O6PDAWY5QTzsBFgOmcjZqVEHdicSs6IImNyn0Skp7Oi/IZgR0gbYbo/KJTBM+PytgJYZPvkSYiOZ+DJNm/S/PdEGzcXaRkZPES2oOVnySrkJqsxvIQ1Xj1BrkYuVBFryM/QmniUtIBzGXmuw9XNjkVc6CstSIcf/n5hgJ9UOElQLacKxmr6/ER0i3We4c2m06Dq9C0UH
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2026 20:45:57.7543 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3a56b7f-707a-4ba6-1a67-08decd7a9987
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000A6734.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9284
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,454 +119,356 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:KevinYang.Wang@amd.com,m:Lijo.Lazar@amd.com,m:Alexander.Deucher@amd.com,m:Hawking.Zhang@amd.com,m:Kenneth.Feng@amd.com,m:Shuzhou.Liu@amd.com,m:Maisam.Arif@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,mail.gmail.com:mid,gitlab.freedesktop.org:url]
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,lists.freedesktop.org:from_smtp];
+	ALIAS_RESOLVED(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 038DE6A254E
+X-Rspamd-Queue-Id: 894796A2A97
 
-On Thu, Jun 18, 2026 at 9:37=E2=80=AFAM Wang, Yang(Kevin)
-<KevinYang.Wang@amd.com> wrote:
->
-> AMD General
->
-> > -----Original Message-----
-> > From: Alex Deucher <alexdeucher@gmail.com>
-> > Sent: Monday, June 15, 2026 11:26 PM
-> > To: Lazar, Lijo <Lijo.Lazar@amd.com>
-> > Cc: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; amd-
-> > gfx@lists.freedesktop.org; Deucher, Alexander
-> > <Alexander.Deucher@amd.com>; Zhang, Hawking
-> > <Hawking.Zhang@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>;
-> > Liu, Shuzhou (Bill) <Shuzhou.Liu@amd.com>; Arif, Maisam
-> > <Maisam.Arif@amd.com>
-> > Subject: Re: [PATCH] drm/amd/pm: refactor DPM clock level reporting
-> >
-> > On Tue, Jun 9, 2026 at 8:20=E2=80=AFAM Lazar, Lijo <lijo.lazar@amd.com>=
- wrote:
-> > >
-> > >
-> > >
-> > > On 09-Jun-26 5:35 PM, Wang, Yang(Kevin) wrote:
-> > > > AMD General
-> > > >
-> > > >> -----Original Message-----
-> > > >> From: Lazar, Lijo <Lijo.Lazar@amd.com>
-> > > >> Sent: Tuesday, June 9, 2026 7:12 PM
-> > > >> To: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; amd-
-> > > >> gfx@lists.freedesktop.org
-> > > >> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Zhang,
-> > Hawking
-> > > >> <Hawking.Zhang@amd.com>; Feng, Kenneth
-> > <Kenneth.Feng@amd.com>; Liu,
-> > > >> Shuzhou (Bill) <Shuzhou.Liu@amd.com>; Arif, Maisam
-> > > >> <Maisam.Arif@amd.com>
-> > > >> Subject: Re: [PATCH] drm/amd/pm: refactor DPM clock level reportin=
-g
-> > > >>
-> > > >>
-> > > >>
-> > > >> On 09-Jun-26 3:49 PM, Wang, Yang(Kevin) wrote:
-> > > >>> AMD General
-> > > >>>
-> > > >>>> -----Original Message-----
-> > > >>>> From: Lazar, Lijo <Lijo.Lazar@amd.com>
-> > > >>>> Sent: Tuesday, June 9, 2026 4:11 PM
-> > > >>>> To: Wang, Yang(Kevin) <KevinYang.Wang@amd.com>; amd-
-> > > >>>> gfx@lists.freedesktop.org
-> > > >>>> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Zhang,
-> > > >>>> Hawking <Hawking.Zhang@amd.com>; Feng, Kenneth
-> > > >>>> <Kenneth.Feng@amd.com>
-> > > >>>> Subject: Re: [PATCH] drm/amd/pm: refactor DPM clock level
-> > > >>>> reporting
-> > > >>>>
-> > > >>>>
-> > > >>>>
-> > > >>>> On 09-Jun-26 12:21 PM, Yang Wang wrote:
-> > > >>>>> Refactor smu_cmn_print_dpm_clk_levels() to build clock entries
-> > > >>>>> before emitting sysfs output.
-> > > >>>>>
-> > > >>>>> For discrete DPM tables, mark the level closest to the reported
-> > > >>>>> current clock. This avoids losing the active '*' marker when th=
-e
-> > > >>>>> SMU-reported clock does not fall within the previous fixed tole=
-rance.
-> > > >>>>>
-> > > >>>>> Keep fine-grained output explicit by reporting the current cloc=
-k
-> > > >>>>> on an 'F' line, and keep deep sleep represented by the 'S' line
-> > > >>>>> without marking a discrete level.
-> > > >>>>>
-> > > >>>>> Active marker placement:
-> > > >>>>>
-> > > >>>>> | Mode         | '*' marker location       | Reason            =
-        |
-> > > >>>>> | ------------ | ------------------------- | ------------------=
-------- |
-> > > >>>>> | discrete     | closest/current DPM level | entries are real l=
-evels   |
-> > > >>>>> | fine-grained | 'F:' current clock line   | min/max are range =
-bounds  |
-> > > >>>>> | deep sleep   | 'S:' line                 | outside normal DPM=
- range  |
-> > > >>>>>
-> > > >>>>> Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/529=
-5
-> > > >>>>> Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
-> > > >>>>> ---
-> > > >>>>>     drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c | 148
-> > > >> +++++++++++++++++--
-> > > >>>> ------
-> > > >>>>>     1 file changed, 101 insertions(+), 47 deletions(-)
-> > > >>>>>
-> > > >>>>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-> > > >>>>> b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-> > > >>>>> index d365f06ac1ac..872c0328f290 100644
-> > > >>>>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-> > > >>>>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-> > > >>>>> @@ -1376,77 +1376,131 @@ void
-> > smu_cmn_reset_custom_level(struct
-> > > >>>> smu_context *smu)
-> > > >>>>>       pstate_table->uclk_pstate.custom.max =3D 0;
-> > > >>>>>     }
-> > > >>>>>
-> > > >>>>> -static inline bool smu_cmn_freqs_match(uint32_t freq1, uint32_=
-t
-> > > >>>>> freq2)
-> > > >>>>> +struct smu_clk_print_entry {
-> > > >>>>> +   uint32_t freq;
-> > > >>>>> +   bool selected;
-> > > >>>>> +};
-> > > >>>>> +
-> > > >>>>> +static inline uint32_t smu_cmn_freq_distance(uint32_t freq1,
-> > > >>>>> +uint32_t
-> > > >>>>> +freq2) {
-> > > >>>>> +   return freq1 > freq2 ? freq1 - freq2 : freq2 - freq1; }
-> > > >>>>> +
-> > > >>>>> +static inline uint32_t smu_cmn_get_dpm_level_count(struct
-> > > >>>>> +smu_dpm_table *dpm_table) {
-> > > >>>>> +   return min_t(uint32_t, dpm_table->count,
-> > > >>>> SMU_MAX_DPM_LEVELS); }
-> > > >>>>> +
-> > > >>>>> +static uint32_t smu_cmn_get_closest_clk_level(struct
-> > > >>>>> +smu_dpm_table *dpm_table, uint32_t cur_clk) {
-> > > >>>>> +   uint32_t min_distance, distance;
-> > > >>>>> +   uint32_t closest_level =3D 0;
-> > > >>>>> +   uint32_t count;
-> > > >>>>> +   uint32_t i;
-> > > >>>>> +
-> > > >>>>> +   count =3D smu_cmn_get_dpm_level_count(dpm_table);
-> > > >>>>> +   if (!count)
-> > > >>>>> +           return SMU_MAX_DPM_LEVELS;
-> > > >>>>> +
-> > > >>>>> +   min_distance =3D smu_cmn_freq_distance(cur_clk, dpm_table-
-> > > >>>>> dpm_levels[0].value);
-> > > >>>>> +   for (i =3D 1; i < count; i++) {
-> > > >>>>> +           distance =3D smu_cmn_freq_distance(cur_clk, dpm_tab=
-le-
-> > > >>>>> dpm_levels[i].value);
-> > > >>>>> +           if (distance < min_distance) {
-> > > >>>>> +                   min_distance =3D distance;
-> > > >>>>> +                   closest_level =3D i;
-> > > >>>>> +           }
-> > > >>>>> +   }
-> > > >>>>> +
-> > > >>>>> +   return closest_level;
-> > > >>>>> +}
-> > > >>>>> +
-> > > >>>>> +static inline int smu_cmn_emit_clk_line(char *buf, int size,
-> > > >>>>> +                                   int level_index, uint32_t
-> > > >>>>> +freq, bool
-> > > >>>> selected) {
-> > > >>>>> +   return sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
-> > > >>>>> +                        level_index, freq, selected ? "*" :
-> > > >>>>> + ""); }
-> > > >>>>> +
-> > > >>>>> +static void smu_cmn_build_fine_grained_levels(uint32_t min_clk=
-,
-> > > >>>>> +uint32_t
-> > > >>>> max_clk,
-> > > >>>>> +                                         struct
-> > > >>>>> + smu_clk_print_entry
-> > > >>>> *entries,
-> > > >>>>> +                                         uint32_t *entry_count=
-) {
-> > > >>>>> +   *entry_count =3D 2;
-> > > >>>>> +   entries[0].freq =3D min_clk;
-> > > >>>>> +   entries[0].selected =3D false;
-> > > >>>>> +   entries[1].freq =3D max_clk;
-> > > >>>>> +   entries[1].selected =3D false; }
-> > > >>>>> +
-> > > >>>>> +static void smu_cmn_build_discrete_levels(struct smu_dpm_table
-> > > >>>> *dpm_table,
-> > > >>>>> +                                     uint32_t selected_level,
-> > > >>>>> +                                     struct smu_clk_print_entr=
-y *entries,
-> > > >>>>> +                                     uint32_t *entry_count) {
-> > > >>>>> +   uint32_t i;
-> > > >>>>> +
-> > > >>>>> +   *entry_count =3D smu_cmn_get_dpm_level_count(dpm_table);
-> > > >>>>> +
-> > > >>>>> +   for (i =3D 0; i < *entry_count; i++) {
-> > > >>>>> +           entries[i].freq =3D dpm_table->dpm_levels[i].value;
-> > > >>>>> +           entries[i].selected =3D (i =3D=3D selected_level);
-> > > >>>>> +   }
-> > > >>>>> +}
-> > > >>>>> +
-> > > >>>>> +static int smu_cmn_emit_clk_prefix(char *buf, int size,
-> > > >>>>> +                              bool is_fine_grained, bool is_de=
-ep_sleep,
-> > > >>>>> +                              uint32_t cur_clk)
-> > > >>>>>     {
-> > > >>>>> -   /* Frequencies within 25 MHz are considered equal */
-> > > >>>>> -   return (abs((int)freq1 - (int)freq2) <=3D 25);
-> > > >>>>> +   if (is_deep_sleep)
-> > > >>>>> +           size +=3D sysfs_emit_at(buf, size, "S: %uMhz *\n", =
-cur_clk);
-> > > >>>>> +   else if (is_fine_grained)
-> > > >>>>> +           size +=3D sysfs_emit_at(buf, size, "F: %uMhz *\n",
-> > > >>>>> + cur_clk);
-> > > >>>>
-> > > >>>> What about keeping the else part as C: <cur_clk> in all cases -
-> > > >>>> instead of just fine grained? * indicates the closest level
-> > > >>>> matched and cur_clk will give the exact frequency.
-> > > >>>>
-> > > >>>> Thanks,
-> > > >>>> Lijo
-> > > >>>
-> > > >>> This is a good idea. However, for now I'd like to retain the
-> > > >>> existing logic to
-> > > >> stay compatible with current parsing tools and prevent potential
-> > regressions.
-> > > >>> Also, note that "F" and "S" are optional labels, which are only
-> > > >>> shown for
-> > > >> unmatched DPM LEVEL entries.
-> > > >>>
-> > > >>
-> > > >> +Bill/Maisam
-> > > >>
-> > > >> What about the case when current clock matches min/max in fine
-> > > >> grained scenario? In the new logic, F is the label for current
-> > > >> clock always for fine grained clocks which is a deviation from the
-> > > >> old logic. Is that to always show 3 levels in fine grained?
-> > > >>
-> > > >> Thanks,
-> > > >> Lijo
-> > > >
-> > > >>> Is that to always show 3 levels in fine grained?
-> > > > yes, this part indeed works differently from the prior logic.
-> > > >
-> > > > The major problem with the current fine-grained implementation is
-> > > > that when the current clock does not hit min/max, the current clock=
- is
-> > shown current clock at position "1" (total 3 lines output) This tends t=
-o confuse
-> > users, who may wonder whether to use position 1 or 2 to set the maximum
-> > value, but 1 is expected value by driver.
-> > > > Therefore, this is one of the issues addressed by this patch.
-> > > >
-> > > > Back to your question: Either adopting a fixed 3-level display or
-> > > > retaining the old logic is reasonable ( which one is your prefer ?)=
- The label
-> > "F" stands for both fine-grained and frequency.
-> > > >
-> > >
-> > > I prefer the new approach to separate out current clock from the leve=
-ls.
-> > >
-> > > For ex: user space sees F label, uses the value as current clock. Res=
-t
-> > > of them used for level information. If it doesn't see F, try to parse
-> > > the legacy way.
-> > >
-> > > Alex, do you have any comments?
-> >
-> > I was never crazy about having the value in the middle be outside of th=
-e
-> > min/max, but IIRC, it was done that way for compatibility.
-> > Whatever is the least disruptive for existing tools.
-> >
-> > Alex
->
-> Hi Alex,
->
-> What do you think of this approach? We add a new label 'F' to display the=
- current frequency value when fine-grain mode is enabled.
-> This patch fixes the below issue related to the new DPM level selection l=
-ogic. (always print '*' to avoid this kind of issue)
->
-> https://gitlab.freedesktop.org/drm/amd/-/work_items/5295
-> https://gitlab.freedesktop.org/drm/amd/-/work_items/5371
+Add support for dumping IP register state.
 
-Seems reasonable to me.
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c | 275 +++++++++++++++++++++++++
+ 1 file changed, 275 insertions(+)
 
-Thanks!
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
+index 5bdf2512f1540..ec4346a6c2af2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
+@@ -69,6 +69,127 @@ MODULE_FIRMWARE("amdgpu/gc_12_1_0_rlc_1.bin");
+ 	 (SH_MEM_ALIGNMENT_MODE_UNALIGNED_GFX12_1_0 << SH_MEM_CONFIG__ALIGNMENT_MODE__SHIFT) | \
+ 	 (3 << SH_MEM_CONFIG__INITIAL_INST_PREFETCH__SHIFT))
+ 
++
++static const struct amdgpu_hwip_reg_entry gc_reg_list_12_1[] = {
++	SOC15_REG_ENTRY_STR(GC, 0, regGRBM_STATUS),
++	SOC15_REG_ENTRY_STR(GC, 0, regGRBM_STATUS2),
++	SOC15_REG_ENTRY_STR(GC, 0, regGRBM_STATUS3),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_STALLED_STAT1),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_STALLED_STAT2),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_STALLED_STAT3),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_CPC_STALLED_STAT1),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_CPF_STALLED_STAT1),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_BUSY_STAT),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_CPC_BUSY_STAT),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_CPF_BUSY_STAT),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_CPC_BUSY_STAT2),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_CPF_BUSY_STAT2),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_CPF_STATUS),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_GFX_ERROR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_GFX_HPD_STATUS0),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_RB_BASE),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_RB_RPTR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_RB_WPTR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_RB0_BASE),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_RB0_RPTR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_RB0_WPTR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_IB1_CMD_BUFSZ),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_IB2_CMD_BUFSZ),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_IB1_BASE_LO),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_IB1_BASE_HI),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_IB1_BUFSZ),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_IB2_BASE_LO),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_IB2_BASE_HI),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_IB2_BUFSZ),
++	SOC15_REG_ENTRY_STR(GC, 0, regCPF_UTCL1_STATUS),
++	SOC15_REG_ENTRY_STR(GC, 0, regCPC_UTCL1_STATUS),
++	SOC15_REG_ENTRY_STR(GC, 0, regCPG_UTCL1_STATUS),
++	SOC15_REG_ENTRY_STR(GC, 0, regIA_UTCL1_STATUS),
++	SOC15_REG_ENTRY_STR(GC, 0, regIA_UTCL1_STATUS_2),
++	SOC15_REG_ENTRY_STR(GC, 0, regPA_CL_CNTL_STATUS),
++	SOC15_REG_ENTRY_STR(GC, 0, regRMI_UTCL1_STATUS),
++	SOC15_REG_ENTRY_STR(GC, 0, regSQC_CACHES),
++	SOC15_REG_ENTRY_STR(GC, 0, regSQG_STATUS),
++	SOC15_REG_ENTRY_STR(GC, 0, regWD_UTCL1_STATUS),
++	SOC15_REG_ENTRY_STR(GC, 0, regGCVM_L2_PROTECTION_FAULT_CNTL2),
++	SOC15_REG_ENTRY_STR(GC, 0, regGCVM_L2_PROTECTION_FAULT_STATUS_LO32),
++	SOC15_REG_ENTRY_STR(GC, 0, regGCVM_L2_PROTECTION_FAULT_STATUS_HI32),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_DEBUG),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_CNTL),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_CNTL),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_INSTR_PNTR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_ME_INSTR_PNTR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_PFP_INSTR_PNTR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_CPC_STATUS),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_GFX_RS64_INSTR_PNTR0),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_GFX_RS64_INSTR_PNTR1),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_RS64_INSTR_PNTR),
++	/* cp header registers */
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
++	/* SE status registers */
++	SOC15_REG_ENTRY_STR(GC, 0, regGRBM_STATUS_SE0),
++	SOC15_REG_ENTRY_STR(GC, 0, regGRBM_STATUS_SE1),
++};
++
++static const struct amdgpu_hwip_reg_entry gc_cp_reg_list_12_1[] = {
++	/* compute registers */
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_VMID),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PERSISTENT_STATE),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PIPE_PRIORITY),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_QUEUE_PRIORITY),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_QUANTUM),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_BASE),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_BASE_HI),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_RPTR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_WPTR_POLL_ADDR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_WPTR_POLL_ADDR_HI),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_DOORBELL_CONTROL),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_CONTROL),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_IB_BASE_ADDR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_IB_BASE_ADDR_HI),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_IB_RPTR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_IB_CONTROL),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_DEQUEUE_REQUEST),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_EOP_BASE_ADDR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_EOP_BASE_ADDR_HI),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_EOP_CONTROL),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_EOP_RPTR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_EOP_WPTR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_EOP_EVENTS),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_CTX_SAVE_BASE_ADDR_LO),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_CTX_SAVE_BASE_ADDR_HI),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_CTX_SAVE_CONTROL),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_CNTL_STACK_OFFSET),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_CNTL_STACK_SIZE),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_WG_STATE_OFFSET),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_CTX_SAVE_SIZE),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_GDS_RESOURCE_STATE),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_ERROR),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_EOP_WPTR_MEM),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_WPTR_LO),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_WPTR_HI),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_SUSPEND_CNTL_STACK_OFFSET),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_SUSPEND_CNTL_STACK_DW_CNT),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_SUSPEND_WG_STATE_OFFSET),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_DEQUEUE_STATUS),
++	/* cp header registers */
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
++	SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
++};
++
+ static void gfx_v12_1_xcc_disable_gpa_mode(struct amdgpu_device *adev, int xcc_id);
+ static void gfx_v12_1_set_ring_funcs(struct amdgpu_device *adev);
+ static void gfx_v12_1_set_irq_funcs(struct amdgpu_device *adev);
+@@ -1148,6 +1269,153 @@ static int gfx_v12_1_rlc_backdoor_autoload_enable(struct amdgpu_device *adev)
+ 	return 0;
+ }
+ 
++static void gfx_v12_1_alloc_ip_dump(struct amdgpu_device *adev)
++{
++	uint32_t reg_count = ARRAY_SIZE(gc_reg_list_12_1);
++	uint32_t *ptr, inst, num_xcc;
++
++	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
++
++	ptr = kcalloc(reg_count * num_xcc, sizeof(uint32_t), GFP_KERNEL);
++	if (!ptr) {
++		DRM_ERROR("Failed to allocate memory for GFX IP Dump\n");
++		adev->gfx.ip_dump_core = NULL;
++	} else {
++		adev->gfx.ip_dump_core = ptr;
++	}
++
++	/* Allocate memory for compute queue registers for all the instances */
++	reg_count = ARRAY_SIZE(gc_cp_reg_list_12_1);
++	inst = adev->gfx.mec.num_mec * adev->gfx.mec.num_pipe_per_mec *
++		adev->gfx.mec.num_queue_per_pipe;
++
++	ptr = kcalloc(reg_count * inst * num_xcc, sizeof(uint32_t), GFP_KERNEL);
++	if (!ptr) {
++		DRM_ERROR("Failed to allocate memory for Compute Queues IP Dump\n");
++		adev->gfx.ip_dump_compute_queues = NULL;
++	} else {
++		adev->gfx.ip_dump_compute_queues = ptr;
++	}
++}
++
++static void gfx_v12_1_ip_print(struct amdgpu_ip_block *ip_block,
++			       struct drm_printer *p)
++{
++	struct amdgpu_device *adev = ip_block->adev;
++	uint32_t i, j, k;
++	uint32_t xcc_id, xcc_offset, inst_offset;
++	uint32_t num_xcc, reg, num_inst;
++	uint32_t reg_count = ARRAY_SIZE(gc_reg_list_12_1);
++
++	if (!adev->gfx.ip_dump_core)
++		return;
++
++	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
++	drm_printf(p, "Number of Instances:%d\n", num_xcc);
++	for (xcc_id = 0; xcc_id < num_xcc; xcc_id++) {
++		xcc_offset = xcc_id * reg_count;
++		drm_printf(p, "\nInstance id:%d\n", xcc_id);
++		for (i = 0; i < reg_count; i++)
++			drm_printf(p, "%-50s \t 0x%08x\n",
++				   gc_reg_list_12_1[i].reg_name,
++				   adev->gfx.ip_dump_core[xcc_offset + i]);
++	}
++
++	/* print compute queue registers for all instances */
++	if (!adev->gfx.ip_dump_compute_queues)
++		return;
++
++	reg_count = ARRAY_SIZE(gc_cp_reg_list_12_1);
++	drm_printf(p, "\nnum_xcc: %d num_mec: %d num_pipe: %d num_queue: %d\n",
++		   num_xcc,
++		   adev->gfx.mec.num_mec,
++		   adev->gfx.mec.num_pipe_per_mec,
++		   adev->gfx.mec.num_queue_per_pipe);
++
++	for (xcc_id = 0; xcc_id < num_xcc; xcc_id++) {
++		xcc_offset = xcc_id * reg_count * num_inst;
++		inst_offset = 0;
++		for (i = 0; i < adev->gfx.mec.num_mec; i++) {
++			for (j = 0; j < adev->gfx.mec.num_pipe_per_mec; j++) {
++				for (k = 0; k < adev->gfx.mec.num_queue_per_pipe; k++) {
++					drm_printf(p,
++						   "\nxcc:%d mec:%d, pipe:%d, queue:%d\n",
++						    xcc_id, i, j, k);
++					for (reg = 0; reg < reg_count; reg++) {
++						drm_printf(p,
++							   "%-50s \t 0x%08x\n",
++							   gc_cp_reg_list_12_1[reg].reg_name,
++							   adev->gfx.ip_dump_compute_queues
++							   [xcc_offset + inst_offset +
++							    reg]);
++					}
++					inst_offset += reg_count;
++				}
++			}
++		}
++	}
++}
++
++static void gfx_v12_1_ip_dump(struct amdgpu_ip_block *ip_block)
++{
++	struct amdgpu_device *adev = ip_block->adev;
++	uint32_t i, j, k;
++	uint32_t num_xcc, reg, num_inst;
++	uint32_t xcc_id, xcc_offset, inst_offset;
++	uint32_t reg_count = ARRAY_SIZE(gc_reg_list_12_1);
++
++	if (!adev->gfx.ip_dump_core)
++		return;
++
++	num_xcc = NUM_XCC(adev->gfx.xcc_mask);
++
++	amdgpu_gfx_off_ctrl(adev, false);
++	for (xcc_id = 0; xcc_id < num_xcc; xcc_id++) {
++		xcc_offset = xcc_id * reg_count;
++		for (i = 0; i < reg_count; i++)
++			adev->gfx.ip_dump_core[xcc_offset + i] =
++				RREG32(SOC15_REG_ENTRY_OFFSET_INST(gc_reg_list_12_1[i],
++								   GET_INST(GC, xcc_id)));
++	}
++	amdgpu_gfx_off_ctrl(adev, true);
++
++	/* dump compute queue registers for all instances */
++	if (!adev->gfx.ip_dump_compute_queues)
++		return;
++
++	num_inst = adev->gfx.mec.num_mec * adev->gfx.mec.num_pipe_per_mec *
++		adev->gfx.mec.num_queue_per_pipe;
++	reg_count = ARRAY_SIZE(gc_cp_reg_list_12_1);
++	amdgpu_gfx_off_ctrl(adev, false);
++	mutex_lock(&adev->srbm_mutex);
++	for (xcc_id = 0; xcc_id < num_xcc; xcc_id++) {
++		xcc_offset = xcc_id * reg_count * num_inst;
++		inst_offset = 0;
++		for (i = 0; i < adev->gfx.mec.num_mec; i++) {
++			for (j = 0; j < adev->gfx.mec.num_pipe_per_mec; j++) {
++				for (k = 0; k < adev->gfx.mec.num_queue_per_pipe; k++) {
++					/* ME0 is for GFX so start from 1 for CP */
++					soc_v1_0_grbm_select(adev, 1 + i, j, k, 0,
++							     GET_INST(GC, xcc_id));
++
++					for (reg = 0; reg < reg_count; reg++) {
++						adev->gfx.ip_dump_compute_queues
++							[xcc_offset +
++							 inst_offset + reg] =
++							RREG32(SOC15_REG_ENTRY_OFFSET_INST(
++								       gc_cp_reg_list_12_1[reg],
++								       GET_INST(GC, xcc_id)));
++					}
++					inst_offset += reg_count;
++				}
++			}
++		}
++	}
++	soc_v1_0_grbm_select(adev, 0, 0, 0, 0, 0);
++	mutex_unlock(&adev->srbm_mutex);
++	amdgpu_gfx_off_ctrl(adev, true);
++}
++
+ static int gfx_v12_1_sw_init(struct amdgpu_ip_block *ip_block)
+ {
+ 	uint16_t major_ver, minor_ver;
+@@ -1282,6 +1550,8 @@ static int gfx_v12_1_sw_init(struct amdgpu_ip_block *ip_block)
+ 	if (r)
+ 		return r;
+ 
++	gfx_v12_1_alloc_ip_dump(adev);
++
+ 	r = amdgpu_gfx_sysfs_init(adev);
+ 	if (r)
+ 		return r;
+@@ -1325,6 +1595,9 @@ static int gfx_v12_1_sw_fini(struct amdgpu_ip_block *ip_block)
+ 	gfx_v12_1_free_microcode(adev);
+ 	amdgpu_gfx_sysfs_fini(adev);
+ 
++	kfree(adev->gfx.ip_dump_core);
++	kfree(adev->gfx.ip_dump_compute_queues);
++
+ 	return 0;
+ }
+ 
+@@ -3905,6 +4178,8 @@ static const struct amd_ip_funcs gfx_v12_1_ip_funcs = {
+ 	.set_clockgating_state = gfx_v12_1_set_clockgating_state,
+ 	.set_powergating_state = gfx_v12_1_set_powergating_state,
+ 	.get_clockgating_state = gfx_v12_1_get_clockgating_state,
++	.dump_ip_state = gfx_v12_1_ip_dump,
++	.print_ip_state = gfx_v12_1_ip_print,
+ };
+ 
+ static const struct amdgpu_ring_funcs gfx_v12_1_ring_funcs_compute = {
+-- 
+2.54.0
 
-Alex
-
->
-> Best Regards,
-> Kevin
-> >
-> > >
-> > > As a minimal representation of user space -
-> > >         Bill/Arif, is it possible to have this changed in amd-smi?
-> > >
-> > > Thanks,
-> > > Lijo
-> > >
-> > > > Best Regards,
-> > > > Kevin
-> > > >>
-> > > >>> Best Regards,
-> > > >>> Kevin
-> > > >>>>
-> > > >>>>> +
-> > > >>>>> +   return size;
-> > > >>>>>     }
-> > > >>>>>
-> > > >>>>>     int smu_cmn_print_dpm_clk_levels(struct smu_context *smu,
-> > > >>>>>                                struct smu_dpm_table *dpm_table,
-> > > >>>>>                                uint32_t cur_clk, char *buf, int=
- *offset)
-> > > >>>>>     {
-> > > >>>>> -   uint32_t min_clk, max_clk, level_index, count;
-> > > >>>>> -   uint32_t freq_values[3];
-> > > >>>>> -   int size, lvl, i;
-> > > >>>>> +   struct smu_clk_print_entry entries[SMU_MAX_DPM_LEVELS];
-> > > >>>>> +   uint32_t min_clk, max_clk, count, entry_count =3D 0;
-> > > >>>>> +   uint32_t selected_level =3D SMU_MAX_DPM_LEVELS;
-> > > >>>>> +   int size, i;
-> > > >>>>>       bool is_fine_grained;
-> > > >>>>>       bool is_deep_sleep;
-> > > >>>>> -   bool freq_match;
-> > > >>>>>
-> > > >>>>>       if (!dpm_table || !buf)
-> > > >>>>>               return -EINVAL;
-> > > >>>>>
-> > > >>>>> -   level_index =3D 0;
-> > > >>>>>       size =3D *offset;
-> > > >>>>> -   count =3D dpm_table->count;
-> > > >>>>>       is_fine_grained =3D dpm_table->flags &
-> > > >>>> SMU_DPM_TABLE_FINE_GRAINED;
-> > > >>>>> -   min_clk =3D SMU_DPM_TABLE_MIN(dpm_table);
-> > > >>>>> -   max_clk =3D SMU_DPM_TABLE_MAX(dpm_table);
-> > > >>>>> +   count =3D smu_cmn_get_dpm_level_count(dpm_table);
-> > > >>>>> +   min_clk =3D count ? dpm_table->dpm_levels[0].value : 0;
-> > > >>>>> +   max_clk =3D count ? dpm_table->dpm_levels[count - 1].value =
-:
-> > > >>>>> + 0;
-> > > >>>>>
-> > > >>>>>       /* Deep sleep - current clock < min_clock/2, TBD: cur_clk
-> > > >>>>> =3D 0 as
-> > > >>>> GFXOFF */
-> > > >>>>>       is_deep_sleep =3D cur_clk < min_clk / 2;
-> > > >>>>> -   if (is_deep_sleep) {
-> > > >>>>> -           size +=3D sysfs_emit_at(buf, size, "S: %uMhz *\n", =
-cur_clk);
-> > > >>>>> -           level_index =3D 1;
-> > > >>>>> -   }
-> > > >>>>>
-> > > >>>>>       if (!is_fine_grained || count =3D=3D 1) {
-> > > >>>>> -           for (i =3D 0; i < count; i++) {
-> > > >>>>> -                   freq_match =3D !is_deep_sleep &&
-> > > >>>>> -                                smu_cmn_freqs_match(
-> > > >>>>> -                                        cur_clk,
-> > > >>>>> -                                        dpm_table->dpm_levels[=
-i].value);
-> > > >>>>> -                   size +=3D sysfs_emit_at(buf, size, "%d: %uM=
-hz %s\n",
-> > > >>>>> -                                         level_index + i,
-> > > >>>>> -                                         dpm_table->dpm_levels=
-[i].value,
-> > > >>>>> -                                         freq_match ? "*" : ""=
-);
-> > > >>>>> +           if (!is_deep_sleep) {
-> > > >>>>> +                   selected_level =3D
-> > > >>>>> +
-> > > >>>>> + smu_cmn_get_closest_clk_level(dpm_table,
-> > > >>>> cur_clk);
-> > > >>>>>               }
-> > > >>>>> +           smu_cmn_build_discrete_levels(dpm_table, selected_l=
-evel,
-> > > >>>>> +                                                 entries,
-> > > >>>>> + &entry_count);
-> > > >>>>>       } else {
-> > > >>>>> -           count =3D 2;
-> > > >>>>> -           freq_values[0] =3D min_clk;
-> > > >>>>> -           freq_values[1] =3D max_clk;
-> > > >>>>> +           smu_cmn_build_fine_grained_levels(min_clk, max_clk,
-> > > >>>>> +                                             entries, &entry_c=
-ount);
-> > > >>>>> +   }
-> > > >>>>>
-> > > >>>>> -           if (!is_deep_sleep) {
-> > > >>>>> -                   if (smu_cmn_freqs_match(cur_clk, min_clk)) =
-{
-> > > >>>>> -                           lvl =3D 0;
-> > > >>>>> -                   } else if (smu_cmn_freqs_match(cur_clk, max=
-_clk)) {
-> > > >>>>> -                           lvl =3D 1;
-> > > >>>>> -                   } else {
-> > > >>>>> -                           /* NOTE: use index '1' to show curr=
-ent clock
-> > > >>>> value */
-> > > >>>>> -                           lvl =3D 1;
-> > > >>>>> -                           count =3D 3;
-> > > >>>>> -                           freq_values[1] =3D cur_clk;
-> > > >>>>> -                           freq_values[2] =3D max_clk;
-> > > >>>>> -                   }
-> > > >>>>> -           }
-> > > >>>>> +   size =3D smu_cmn_emit_clk_prefix(buf, size, is_fine_grained=
-,
-> > > >>>>> +                                  is_deep_sleep, cur_clk);
-> > > >>>>>
-> > > >>>>> -           for (i =3D 0; i < count; i++) {
-> > > >>>>> -                   size +=3D sysfs_emit_at(
-> > > >>>>> -                           buf, size, "%d: %uMhz %s\n", level_=
-index + i,
-> > > >>>>> -                           freq_values[i],
-> > > >>>>> -                           (!is_deep_sleep && i =3D=3D lvl) ? =
-"*" : "");
-> > > >>>>> -           }
-> > > >>>>> -   }
-> > > >>>>> +   for (i =3D 0; i < entry_count; i++)
-> > > >>>>> +           size +=3D smu_cmn_emit_clk_line(buf, size, i,
-> > > >>>>> +                                        entries[i].freq,
-> > > >>>>> +                                        entries[i].selected);
-> > > >>>>>
-> > > >>>>>       *offset =3D size;
-> > > >>>>>
-> > > >>>
-> > > >
-> > >
