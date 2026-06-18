@@ -2,136 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LxLYNA/gM2pNHgYAu9opvQ
+	id TjjDEZrjM2rEHgYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2026 14:09:51 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2026 14:24:58 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39AE369FEF0
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2026 14:09:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE00D6A000D
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2026 14:24:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=a+ClvHDl;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dkim=none;
+	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=amd.com (policy=quarantine);
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5E9D10F2AB;
-	Thu, 18 Jun 2026 12:09:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55DE310F2C7;
+	Thu, 18 Jun 2026 12:24:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013022.outbound.protection.outlook.com
- [40.93.201.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A86D310F2AB
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2026 12:09:48 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=K4FZapOvoPcJ3RovRG5jFf1sT0hsFehSxKHY3CdLccCv0ptzjkBDPrMmt2R6ie5zq3tnforAtJQn7cScT6GhG/XstgNomcws5Fkhhn1PVl9o5ePU0J0BFVXSMHJcgTbea+QLsGqstRu2aZl9r1p62A6b5Qi8JZMm1aBBQOlOZEL6h+l6w7/bP8aUTAXzpPJyAGALHNYgiwqS+kmbshJ4BsKVSk9gVpQTGP/gCos0/farqdXvohDe9Bwt/vZi07wTwTdeUtBjZByJxXb7sr0LX489QsDSQVk2BmYdC2USJcf7IJf1TFFWQOWPAZsm+MGtTkzaEDh7iHsDZYdHXHSdhw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3Ds9gkE4nsxcRuBOf7OEjg1iAKCkVDstl77MVAkps70=;
- b=VpveS3ow8cSnSPspoNKt6scLzNXX19DiH3L4WYgxACWaFtFC5T8KcB2m6/+QThRZHG5J40NSRQ8uZvH8mb+CA2i9P7ztGOrweKBQMx7J53jeblZGZKjqB5020AC2Os7Z6RSzwfUmBLkmkd8ligekPeGkXkYDeQYBHPR9nfv31Y0Uzc96X+UvgPnzg0MGqn1jMeUPWZv97y+rddAs3kTR9wcx2BA8NCB5vZIH70rgEQRuvP7dd+uYU8evOnaXHqmOu5VHyIxBKGV2vmnOhHSCYIJfImzL2fXIm9YbbGpVknw7wS44jnMzYDMif0JAUc+2aMdSwkf2TKr+crpqgVqduQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3Ds9gkE4nsxcRuBOf7OEjg1iAKCkVDstl77MVAkps70=;
- b=a+ClvHDlTgBbT8YnKr1y/v4/jjKFzCacC1zaRm2b1iGbin2n2MEpNzguYI4O9YlJRqjfbVU4NerlYDWNP9c3YEOaeo0Ok9j4RxRU0pmOlsDGvvZvEYkZjNbrhxKlrnEoF5+tb2hLE9jHucc/cN8lOFKuuzNvDquVaQoq/ERf4+g=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by MW4PR12MB7482.namprd12.prod.outlook.com (2603:10b6:303:212::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Thu, 18 Jun
- 2026 12:09:44 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0113.015; Thu, 18 Jun 2026
- 12:09:44 +0000
-Message-ID: <7c1f4cd3-b455-453b-99d3-82a7cb6dc2f3@amd.com>
-Date: Thu, 18 Jun 2026 14:09:40 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/17] drm/amdgpu: Delete soft reset code from legacy
- display driver
-To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Natalie Vock <natalie.vock@gmx.de>,
- Mario Limonciello <mario.limonciello@amd.com>, =?UTF-8?B?TWFyZWsgT2zFocOh?=
- =?UTF-8?Q?k?= <maraeo@gmail.com>, Tvrtko Ursulin
- <tvrtko.ursulin@igalia.com>, Lazar Lijo <lijo.lazar@amd.com>,
- Martin Roukala <martin.roukala@mupuf.org>
-References: <20260617191428.1784083-1-timur.kristof@gmail.com>
- <20260617191428.1784083-5-timur.kristof@gmail.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260617191428.1784083-5-timur.kristof@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BN9PR03CA0637.namprd03.prod.outlook.com
- (2603:10b6:408:13b::12) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+X-Greylist: delayed 817 seconds by postgrey-1.36 at gabe;
+ Thu, 18 Jun 2026 12:24:54 UTC
+Received: from rtg-sunil-navi33.amd.com (unknown [165.204.217.251])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 478EF10EDD1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2026 12:24:53 +0000 (UTC)
+Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
+ 65ICBBwE2794565; Thu, 18 Jun 2026 17:41:11 +0530
+Received: (from sunil@localhost)
+ by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 65ICBBor2794558;
+ Thu, 18 Jun 2026 17:41:11 +0530
+From: Sunil Khatri <sunil.khatri@amd.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Felix Kuehling <felix.kuehling@amd.com>,
+ Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>
+Subject: [PATCH v1 1/2] drm/amdkfd: use pasid to drop non KFD irqs for v11 for
+ sq intr
+Date: Thu, 18 Jun 2026 17:41:08 +0530
+Message-Id: <20260618121109.2794537-1-sunil.khatri@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MW4PR12MB7482:EE_
-X-MS-Office365-Filtering-Correlation-Id: e012f159-5d89-4dac-399a-08decd327bbb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|23010399003|11063799006|4143699003|56012099006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: ZHqxgUIXFVCUhGy5hoNqvYFjfG+2PEtw9R9SO4JahvsgYB5fctRHan0FJUtQv5K9kfQxTEz90TjKfrnNBjI/0iysBX7WnK0xwMZbZW3/+ozssuZkq3I+tsrsRCw1ylviwb9ef+T62jwbNhdpDmdRRr+SKu5QjDMy91RRXMLquf1XSPdn4HsXaJxjub6fy/DoDVwVQk+AxalMEL5hWIzff85ssGgJSG/XpXCeDioLdo3DXizNOCo7DIia6AXAQmdnGyFgFsFaFnZG5wDbHhVIQ5QXitiFOhLN/msfLyFVazFNq8KN7lukR2QB9PMwU+bValX556Zl2LoyLVEOvfUuczFuosSrnLl+mrKPGEGCJh2aknVLOBuMZggI1TOug45lJdcxcX3BUmaYJSFeU2P32AEdYDQK+y2+4aDfY27fio0xfx2GWBB/BJlqoRGqscvrFzg4ZILC3dHUKiDWXr+orHnNgxA4Xp6dlXkGHxULUngBpr7ky4zLreWUQLk7PaQ35FTYcawwaVEg+n+KXCDvxjIaV/L2jYzY/SaMYT0IYB5ywrjEPBHye7AGQUqQwB4XIjmR5jJEIVl81U4u4sV07A6OtiAkWyYquHl0X0daO9CILQ+5oN1g3xyE/ZkD+oQhI2Pit4CK07SlXhXZF1Zrjxrm7xGeW4JbhUE8/pdgZxPddEjTOrmepyQfeZ5V/Btm
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(23010399003)(11063799006)(4143699003)(56012099006)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K2FpejFsdFVORHJNTmY3S3B0dzlHeHQ5T1FjbUw5ZFdGekU1YUFTOGJwamNY?=
- =?utf-8?B?UHRmamg2N1pPbjlROG9VaGJGZlR1YjRvT2x4UVJtN1JvTndjZTRPTzQxWmxv?=
- =?utf-8?B?TVJDd2xWaDQ1UUJmQitsQksxdlM3YVZiZFhpQktNQnZvcHNPUkd6czFPSXRN?=
- =?utf-8?B?OUJHdlFRbTBRUDUxYmptbW90Qklrd2ZoZ2lRRU04Qnh5allhRzQ1N2ptd0Rw?=
- =?utf-8?B?V0lRS1QrTTBTandhYnFFQnRyTzZ6a3loWFpPSjR2cHk0WnBZZXhTYUluZSt2?=
- =?utf-8?B?Q2FmMlo3YmVZamJVUkJTd2UzTnF1SGQ3K1FoWHVsOWtJbitOYzNxTk5HclFu?=
- =?utf-8?B?MnUwajdVei84bEFvaE1kWG1RYkxUanFmbHd3akZ6L2tiNFdkNExkRjdtOTh0?=
- =?utf-8?B?MVdRMkdiakVUZHBKaVJoQkNCN3dlSzRwRzV4QU9xSE95TWVVWjU5YjU4ZzE0?=
- =?utf-8?B?OGwrUjdoVk9XWERubW9UMmxTY05jTExGelczZ01Vc1NKT1Vpa0c4TmU2MWpO?=
- =?utf-8?B?LzNsWERUMWl1aGRZVmllWlZSSjhBVHVEYXFmeSt6cnoyQm5RVnBSQ21IdU5G?=
- =?utf-8?B?TUtVU3gyK3JVeG9aNnArT08xa0hONFo1MmlKclJXVCtnNWxaT3ZBM0FVcjBr?=
- =?utf-8?B?SUZHREgvRWU4MjMrVUFsSUlQQjJqTkJMNFRPSmJxcU5LK3BjU3J4OHkrZmow?=
- =?utf-8?B?b1hzM01jUk5NTEcvbjlaSUN2UWhHK2kyVllsTUUxOUI5bHhVYTBzcWF3ZmNU?=
- =?utf-8?B?b1hWSmk1eWdaMUpZNzhreEl2dERsZ29VV3JYMm1wTDlRWUsydk1JYU9GMHMw?=
- =?utf-8?B?MEdlcWRhWXAyREcwb0dqN205UlJUWWI4OXVZTEdkWDRHWWxmK25IT1FkMEs5?=
- =?utf-8?B?azk0ajJjZUluV1d0N0RGNFJreEVwbW5GSnYwYTFIYUhjaHMxWFJTcXQwZThw?=
- =?utf-8?B?Zk5FcDMrR1lWVlVmeTF4cFA3dVBQWVFBaDdueTRFb2NwRHdBMFl6NVh3SGV2?=
- =?utf-8?B?M0o2YU5pMUZHRmg4WktWanhlKzU0SFAzeUJhcUs0KzFTS0xnMFN6R1NIM0th?=
- =?utf-8?B?VTZneHlpbzlOdUpURDl6aVUxMDJZbFZZdXQ0VjY0VDVuZXVpYm5XL3JMdTdB?=
- =?utf-8?B?cXVjVXY5NjhXYng3RFIzMWpqcVhrWUlsWGpwQTcxTWI2Z0o5Vmhzc0NYOGhB?=
- =?utf-8?B?TjlLcnREbEFxbmxzMXY4d3VBQVJPRFp2aGVkY0l0SlBVZTlJeDB2WXk5ekdL?=
- =?utf-8?B?SXVXK0dpanJMSWRJVy9vTnU0T2FCaVo1SVBuQ0lOajFkZTNlNVlRMEgyNnBI?=
- =?utf-8?B?anpsUEpacnB3VDI1Y0FpcFJJMUluMnBsZVBFSDMxejhjb0FOUzF6NzV2M09C?=
- =?utf-8?B?eUlteFpKUXFmL1JpSEtzY21aN2dqU096ZzNzKzZpbU4zQkhGd3JzT21oRHZU?=
- =?utf-8?B?aTZ4L1ZDSTdPTTlTL0RZNmRqTEhlaTRJTW92OWdCVUZZY1BGVi9TMngwT2Mv?=
- =?utf-8?B?UEEvT0hTUFlkSzVjeG9RTFhnellqZzBLWWlPa2NwMXlWamRoODNyeEJSYUJ5?=
- =?utf-8?B?V01jKzNPZ3FyUEJFRlAya2MvZnRWY2Zrb2UwYlZ0V3I2dGhWUGRLZ240Y3c1?=
- =?utf-8?B?KytqN0lsL2FvMG95a095WlppdHlQOW02d2lCWlRJa2ZCYU5RUzN0T3YyWWVX?=
- =?utf-8?B?Y29iQlMzMDBCcHZ5ZmkxcWQ3dkkxVGdnc1FDTXlUTTZSL3hmNHl6STlNTGVN?=
- =?utf-8?B?SWxKdnJaSGxmUGJHNGhlSXB1NjlBenZ5RkgxSmZKY0Rzcjh0Z3kyVWFrbmpL?=
- =?utf-8?B?cEppWE5ZSEJCUDBlamRYeU11czlrSXBMMzd5VnBRK1ZEUDYwOU5GRTFXUUFQ?=
- =?utf-8?B?ODlIdmlHczFoVGoxZ3RoQkpMTG5PZGwydXBPZ0F6UHlzRzAwd1Z3RnkySjNB?=
- =?utf-8?B?UlpjVkwxZEhXZ1IwOWNuYnY1S3l3cUFyVkJSYURKc2UzT1Y1YVpiK2tDNVBX?=
- =?utf-8?B?alV3SWhjZ25IeXRxcTRVc3JHQ29sQ0w4dVFjbFNTeFFFdTNGZ2lSYkFSZEJV?=
- =?utf-8?B?NSsyZXhDSzFROTdmaVdHWUpDOVpLQVR2eXA0NUh1YTczc1U4cDc1UEhjZXZO?=
- =?utf-8?B?UHpERkZGbFl3MlVjQ0ZQTjl6dHRESy9EK00rdFpGTTdnaWVkRnBsTXV1cFNa?=
- =?utf-8?B?Z1dFdldDK0tMNUx1OGtEY1M2OENQY01yQ1gzOWI0STFFWlJSN213VnhzUkcy?=
- =?utf-8?B?R3pzb1lIdUlEZzhtYUc3TVVJNVloTXNjUWJRc3RNeklSdi9LQTd4aU1kOVpT?=
- =?utf-8?Q?EG/BxNST3Q6MzHgXUt?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e012f159-5d89-4dac-399a-08decd327bbb
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2026 12:09:44.4100 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fiLaPRKfZ6InaraNCRVl97esdccFMea9trcgPOU2iootwoQFaSWl1v9OUqRB8DOp
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7482
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,311 +56,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [2.39 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[amd.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:natalie.vock@gmx.de,m:mario.limonciello@amd.com,m:maraeo@gmail.com,m:tvrtko.ursulin@igalia.com,m:lijo.lazar@amd.com,m:martin.roukala@mupuf.org,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com,gmx.de,igalia.com,mupuf.org];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:felix.kuehling@amd.com,m:Harish.Kasiviswanathan@amd.com,m:sunil.khatri@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sunil.khatri@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 39AE369FEF0
+X-Rspamd-Queue-Id: BE00D6A000D
 
-On 6/17/26 21:14, Timur Kristóf wrote:
-> This was basically dead code, not used or called from anywhere.
-> 
-> Now that DC is the default display driver for all ASICs,
-> it is unlikely that anyone wants to develop this further.
-> Display hang related work should be focused on DC.
-> 
-> Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+With KGD userqueues the VMID's could overlap for userqueues
+and KFD queues and due to which SQ interrupts of KGD process
+are routed to KFD interrupt handlers.
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
+To avoid Noise of SQ interrupt for KGD user queues use the pasid
+id's to identify the non KFD processes and return without any
+interrupt processing in WQ.
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/dce_v10_0.c | 66 --------------------------
->  drivers/gpu/drm/amd/amdgpu/dce_v6_0.c  | 57 ----------------------
->  drivers/gpu/drm/amd/amdgpu/dce_v8_0.c  | 57 ----------------------
->  3 files changed, 180 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-> index 055ec8196f90..20071c24edd5 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-> @@ -410,36 +410,6 @@ static u32 dce_v10_0_hpd_get_gpio_reg(struct amdgpu_device *adev)
->  	return mmDC_GPIO_HPD_A;
->  }
->  
-> -static bool dce_v10_0_is_display_hung(struct amdgpu_device *adev)
-> -{
-> -	u32 crtc_hung = 0;
-> -	u32 crtc_status[6];
-> -	u32 i, j, tmp;
-> -
-> -	for (i = 0; i < adev->mode_info.num_crtc; i++) {
-> -		tmp = RREG32(mmCRTC_CONTROL + crtc_offsets[i]);
-> -		if (REG_GET_FIELD(tmp, CRTC_CONTROL, CRTC_MASTER_EN)) {
-> -			crtc_status[i] = RREG32(mmCRTC_STATUS_HV_COUNT + crtc_offsets[i]);
-> -			crtc_hung |= (1 << i);
-> -		}
-> -	}
-> -
-> -	for (j = 0; j < 10; j++) {
-> -		for (i = 0; i < adev->mode_info.num_crtc; i++) {
-> -			if (crtc_hung & (1 << i)) {
-> -				tmp = RREG32(mmCRTC_STATUS_HV_COUNT + crtc_offsets[i]);
-> -				if (tmp != crtc_status[i])
-> -					crtc_hung &= ~(1 << i);
-> -			}
-> -		}
-> -		if (crtc_hung == 0)
-> -			return false;
-> -		udelay(100);
-> -	}
-> -
-> -	return true;
-> -}
-> -
->  static void dce_v10_0_set_vga_render_state(struct amdgpu_device *adev,
->  					   bool render)
->  {
-> @@ -2956,40 +2926,6 @@ static bool dce_v10_0_is_idle(struct amdgpu_ip_block *ip_block)
->  	return true;
->  }
->  
-> -static bool dce_v10_0_check_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	struct amdgpu_device *adev = ip_block->adev;
-> -
-> -	return dce_v10_0_is_display_hung(adev);
-> -}
-> -
-> -static int dce_v10_0_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	u32 srbm_soft_reset = 0, tmp;
-> -	struct amdgpu_device *adev = ip_block->adev;
-> -
-> -	if (dce_v10_0_is_display_hung(adev))
-> -		srbm_soft_reset |= SRBM_SOFT_RESET__SOFT_RESET_DC_MASK;
-> -
-> -	if (srbm_soft_reset) {
-> -		tmp = RREG32(mmSRBM_SOFT_RESET);
-> -		tmp |= srbm_soft_reset;
-> -		dev_info(adev->dev, "SRBM_SOFT_RESET=0x%08X\n", tmp);
-> -		WREG32(mmSRBM_SOFT_RESET, tmp);
-> -		tmp = RREG32(mmSRBM_SOFT_RESET);
-> -
-> -		udelay(50);
-> -
-> -		tmp &= ~srbm_soft_reset;
-> -		WREG32(mmSRBM_SOFT_RESET, tmp);
-> -		tmp = RREG32(mmSRBM_SOFT_RESET);
-> -
-> -		/* Wait a little for things to settle down */
-> -		udelay(50);
-> -	}
-> -	return 0;
-> -}
-> -
->  static void dce_v10_0_set_crtc_vblank_interrupt_state(struct amdgpu_device *adev,
->  						     int crtc,
->  						     enum amdgpu_interrupt_state state)
-> @@ -3332,8 +3268,6 @@ static const struct amd_ip_funcs dce_v10_0_ip_funcs = {
->  	.suspend = dce_v10_0_suspend,
->  	.resume = dce_v10_0_resume,
->  	.is_idle = dce_v10_0_is_idle,
-> -	.check_soft_reset = dce_v10_0_check_soft_reset,
-> -	.soft_reset = dce_v10_0_soft_reset,
->  	.set_clockgating_state = dce_v10_0_set_clockgating_state,
->  	.set_powergating_state = dce_v10_0_set_powergating_state,
->  };
-> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-> index 0f47044bab5d..0eae0cca39ff 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-> @@ -378,35 +378,6 @@ static u32 dce_v6_0_hpd_get_gpio_reg(struct amdgpu_device *adev)
->  	return mmDC_GPIO_HPD_A;
->  }
->  
-> -static bool dce_v6_0_is_display_hung(struct amdgpu_device *adev)
-> -{
-> -	u32 crtc_hung = 0;
-> -	u32 crtc_status[6];
-> -	u32 i, j, tmp;
-> -
-> -	for (i = 0; i < adev->mode_info.num_crtc; i++) {
-> -		if (RREG32(mmCRTC_CONTROL + crtc_offsets[i]) & CRTC_CONTROL__CRTC_MASTER_EN_MASK) {
-> -			crtc_status[i] = RREG32(mmCRTC_STATUS_HV_COUNT + crtc_offsets[i]);
-> -			crtc_hung |= (1 << i);
-> -		}
-> -	}
-> -
-> -	for (j = 0; j < 10; j++) {
-> -		for (i = 0; i < adev->mode_info.num_crtc; i++) {
-> -			if (crtc_hung & (1 << i)) {
-> -				tmp = RREG32(mmCRTC_STATUS_HV_COUNT + crtc_offsets[i]);
-> -				if (tmp != crtc_status[i])
-> -					crtc_hung &= ~(1 << i);
-> -			}
-> -		}
-> -		if (crtc_hung == 0)
-> -			return false;
-> -		udelay(100);
-> -	}
-> -
-> -	return true;
-> -}
-> -
->  static void dce_v6_0_set_vga_render_state(struct amdgpu_device *adev,
->  					  bool render)
->  {
-> @@ -2901,33 +2872,6 @@ static bool dce_v6_0_is_idle(struct amdgpu_ip_block *ip_block)
->  	return true;
->  }
->  
-> -static int dce_v6_0_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	u32 srbm_soft_reset = 0, tmp;
-> -	struct amdgpu_device *adev = ip_block->adev;
-> -
-> -	if (dce_v6_0_is_display_hung(adev))
-> -		srbm_soft_reset |= SRBM_SOFT_RESET__SOFT_RESET_DC_MASK;
-> -
-> -	if (srbm_soft_reset) {
-> -		tmp = RREG32(mmSRBM_SOFT_RESET);
-> -		tmp |= srbm_soft_reset;
-> -		dev_info(adev->dev, "SRBM_SOFT_RESET=0x%08X\n", tmp);
-> -		WREG32(mmSRBM_SOFT_RESET, tmp);
-> -		tmp = RREG32(mmSRBM_SOFT_RESET);
-> -
-> -		udelay(50);
-> -
-> -		tmp &= ~srbm_soft_reset;
-> -		WREG32(mmSRBM_SOFT_RESET, tmp);
-> -		tmp = RREG32(mmSRBM_SOFT_RESET);
-> -
-> -		/* Wait a little for things to settle down */
-> -		udelay(50);
-> -	}
-> -	return 0;
-> -}
-> -
->  static void dce_v6_0_set_crtc_vblank_interrupt_state(struct amdgpu_device *adev,
->  						     int crtc,
->  						     enum amdgpu_interrupt_state state)
-> @@ -3224,7 +3168,6 @@ static const struct amd_ip_funcs dce_v6_0_ip_funcs = {
->  	.suspend = dce_v6_0_suspend,
->  	.resume = dce_v6_0_resume,
->  	.is_idle = dce_v6_0_is_idle,
-> -	.soft_reset = dce_v6_0_soft_reset,
->  	.set_clockgating_state = dce_v6_0_set_clockgating_state,
->  	.set_powergating_state = dce_v6_0_set_powergating_state,
->  };
-> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-> index a885e8d47f70..c02b1345d9c2 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-> @@ -362,35 +362,6 @@ static u32 dce_v8_0_hpd_get_gpio_reg(struct amdgpu_device *adev)
->  	return mmDC_GPIO_HPD_A;
->  }
->  
-> -static bool dce_v8_0_is_display_hung(struct amdgpu_device *adev)
-> -{
-> -	u32 crtc_hung = 0;
-> -	u32 crtc_status[6];
-> -	u32 i, j, tmp;
-> -
-> -	for (i = 0; i < adev->mode_info.num_crtc; i++) {
-> -		if (RREG32(mmCRTC_CONTROL + crtc_offsets[i]) & CRTC_CONTROL__CRTC_MASTER_EN_MASK) {
-> -			crtc_status[i] = RREG32(mmCRTC_STATUS_HV_COUNT + crtc_offsets[i]);
-> -			crtc_hung |= (1 << i);
-> -		}
-> -	}
-> -
-> -	for (j = 0; j < 10; j++) {
-> -		for (i = 0; i < adev->mode_info.num_crtc; i++) {
-> -			if (crtc_hung & (1 << i)) {
-> -				tmp = RREG32(mmCRTC_STATUS_HV_COUNT + crtc_offsets[i]);
-> -				if (tmp != crtc_status[i])
-> -					crtc_hung &= ~(1 << i);
-> -			}
-> -		}
-> -		if (crtc_hung == 0)
-> -			return false;
-> -		udelay(100);
-> -	}
-> -
-> -	return true;
-> -}
-> -
->  static void dce_v8_0_set_vga_render_state(struct amdgpu_device *adev,
->  					  bool render)
->  {
-> @@ -2873,33 +2844,6 @@ static bool dce_v8_0_is_idle(struct amdgpu_ip_block *ip_block)
->  	return true;
->  }
->  
-> -static int dce_v8_0_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	u32 srbm_soft_reset = 0, tmp;
-> -	struct amdgpu_device *adev = ip_block->adev;
-> -
-> -	if (dce_v8_0_is_display_hung(adev))
-> -		srbm_soft_reset |= SRBM_SOFT_RESET__SOFT_RESET_DC_MASK;
-> -
-> -	if (srbm_soft_reset) {
-> -		tmp = RREG32(mmSRBM_SOFT_RESET);
-> -		tmp |= srbm_soft_reset;
-> -		dev_info(adev->dev, "SRBM_SOFT_RESET=0x%08X\n", tmp);
-> -		WREG32(mmSRBM_SOFT_RESET, tmp);
-> -		tmp = RREG32(mmSRBM_SOFT_RESET);
-> -
-> -		udelay(50);
-> -
-> -		tmp &= ~srbm_soft_reset;
-> -		WREG32(mmSRBM_SOFT_RESET, tmp);
-> -		tmp = RREG32(mmSRBM_SOFT_RESET);
-> -
-> -		/* Wait a little for things to settle down */
-> -		udelay(50);
-> -	}
-> -	return 0;
-> -}
-> -
->  static void dce_v8_0_set_crtc_vblank_interrupt_state(struct amdgpu_device *adev,
->  						     int crtc,
->  						     enum amdgpu_interrupt_state state)
-> @@ -3241,7 +3185,6 @@ static const struct amd_ip_funcs dce_v8_0_ip_funcs = {
->  	.suspend = dce_v8_0_suspend,
->  	.resume = dce_v8_0_resume,
->  	.is_idle = dce_v8_0_is_idle,
-> -	.soft_reset = dce_v8_0_soft_reset,
->  	.set_clockgating_state = dce_v8_0_set_clockgating_state,
->  	.set_powergating_state = dce_v8_0_set_powergating_state,
->  };
+Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_int_process_v11.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v11.c b/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v11.c
+index 12d81abed748..72ffef331418 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v11.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v11.c
+@@ -307,6 +307,7 @@ static bool event_interrupt_isr_v11(struct kfd_node *dev,
+ static void event_interrupt_wq_v11(struct kfd_node *dev,
+ 					const uint32_t *ih_ring_entry)
+ {
++	struct kfd_process *p;
+ 	uint16_t source_id, client_id, ring_id, pasid, vmid;
+ 	uint32_t context_id0, context_id1;
+ 	uint8_t sq_int_enc, sq_int_priv, sq_int_errtype;
+@@ -321,6 +322,14 @@ static void event_interrupt_wq_v11(struct kfd_node *dev,
+ 	context_id0 = SOC15_CONTEXT_ID0_FROM_IH_ENTRY(ih_ring_entry);
+ 	context_id1 = SOC15_CONTEXT_ID1_FROM_IH_ENTRY(ih_ring_entry);
+ 
++	if (source_id == SOC15_INTSRC_SQ_INTERRUPT_MSG) {
++		p = kfd_lookup_process_by_pasid(pasid, NULL);
++		if (!p)
++			return;
++
++		kfd_unref_process(p);
++	}
++
+ 	/* VMC, UTCL2 */
+ 	if (client_id == SOC21_IH_CLIENTID_VMC ||
+ 	     ((client_id == SOC21_IH_CLIENTID_GFX) &&
+-- 
+2.34.1
 
