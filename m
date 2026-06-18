@@ -2,136 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EdaNCZ/hM2p1HgYAu9opvQ
+	id q8NoDcPnM2qyHwYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2026 14:16:31 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2026 14:42:43 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E25A69FF46
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2026 14:16:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 855176A0219
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Jun 2026 14:42:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=XKyi1qLL;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=aEpJ6LbC;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E6AD10ED8A;
-	Thu, 18 Jun 2026 12:16:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAD7E10EB9B;
+	Thu, 18 Jun 2026 12:42:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013054.outbound.protection.outlook.com
- [40.93.201.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 515F810ED8A
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2026 12:16:27 +0000 (UTC)
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010023.outbound.protection.outlook.com [52.101.85.23])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E59C310E3EA
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2026 12:42:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Hh9YxXPnY7KlVMTQY8qmmfT7zi5mqtKUAP+Sh+kBQRiJrznq43Ed8a6kDahPkJeJS6vJxU2nBImqk/BSipgnYnz/Pa++N8YFD1R/cU9WeUMt2AbhKr+5UDI4WFoz/0hdcZTL04hhPXMeyX6Nw+XVTInRTr+Am28lZxmy4rO1T9K0wJ/PAl3B+R2ptfLqa/1F3ja29y5YvSvvgi/WP44bwmD+0sXmVCJWOZSL9idKRpWG7alLJmB0YmEDZ6LUcoiBdJySbBRZ7VGPyl4CxPKQ1M+bRlrP5PR/HlyZzwUbNcwv1Sc7v+pOK8gwruLYpR2kIgjLyU5PT57LTdJmpGfiew==
+ b=oCnfGCZR6NNYpsPAgt0woogA05MWcBgQ/a1pgIBPFWg+3/F1s4jKj8sweyBF+xBM+gnNIbBaSwOsIsIqHz2bpKV1HNyNURE5wsu+u5C6QISYkN7Alrf4i2suEs+CFl8rGcGG3XmOKbjtc62pX8kkfKaihqcs4bZo4azLgNRR3ewnu3PnNp8lz1Pzs+HEWUAzMNuFHCmJXc+I71XTuyPhyfA6e5UfXMSdIauAh/2izHiO/1h6tUyXIVOkleY3/zLyf1JhcYXoYyc/eJyIX11NA2MMDD/5qpFsQxqCafmaov0i5tggCt8BsOkXK3cn91pYmnLpPOYYRAw1hXEmwVNotQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=StEfuK8shF0OGL9Z5U95PbDJwzJ7pfVszgI1Ig3vzCE=;
- b=fkvwfJrnPjS3/qWMwOzHDWTOfaA86OwFedWK8+e7Tomn7+HKXxVHGOYfbXIeMdZmq5tD3QzHKW0A085TfHKjnWI8+nynuaZ1xLMylQVzucufpPY0t2mLt8eJ1Y9Pbz10RE26nYFqPwhxKTanFm3WFPp3COqyVSH7ootfTvnYKZjKPS3VYzrfFEA1PjTrR1ur8woO+KJkic3IiQ1NQUOrJy8oFgea00ulKsmH3NK9UI1SCtB0lPhwv2w9UG5Yav7gFrkj5fCSW9/zBcFMh1Kc5DADO5zWuWEhC0X7iZKzYOQwVk411wBSaDhQT4quL304y7DbmPM/NqSErS0ecwdycw==
+ bh=2zLOfuiEZJQh2F6B0ejfQrtKNf8XRNZYKBM8snMSViQ=;
+ b=GpoRsH1c+ogNv/ucW28aboKZ9injVRU31inU7x7T+U8Gypzvi8Ctol7COsNS+lWEm/w3PSm5Yj/6nYHdQyI4YdjlmyoJfhVb92P45TQiu1SSVpBNyXddOinJEapHodWIk8vIkflPZxpkQRfqGUD6bImbFZsN+q2HvVysrwJNl0U7jnvM55unh7bR6JlCPSKXPvO/b5Dqma136a1RcHP2wZcBA7j9E9i3+ESZa2V2UnSOqQ5FYJfYxqNU1TNmQdAjANV5cROyraM3MeuhC3zK+JV8WuxCmebOga759QwOt2CwACLSa1t9ApW+oR4bNs1xhFvkR7eeVAxepaCDB4N46g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=StEfuK8shF0OGL9Z5U95PbDJwzJ7pfVszgI1Ig3vzCE=;
- b=XKyi1qLL2EAUIcIndWyK5yYBoyDA9xK0C62eV3qu2a+/4gNb4shDZjB5F7dA8gpovlpjeSH4Hzs1XCVNq4//i17w9hL9Wrk6coDpxbF2mWfoPeOTbH9nfY5eL6ai+ub8IYgtWEfgXa5PURjgPih5vd0alQV/Oyo+hsO9ybWKxE8=
+ bh=2zLOfuiEZJQh2F6B0ejfQrtKNf8XRNZYKBM8snMSViQ=;
+ b=aEpJ6LbCZg6Du697fVWUwzgOrcngZUVCDG19o7grel/Kc9aEVzCVcfG503Ml18zCIg4I+52WLPdD9ny1Yk+CVvkuysaBdDwfVKVk+JcsrdDEfRRv7t1ASAFJ+JUoyp6RarWO+y3ErvjEprLa1v5+HSrIWWP4j3jCg1HvljwlJvM=
 Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SJ2PR12MB7918.namprd12.prod.outlook.com (2603:10b6:a03:4cc::20)
+ by CH3PR12MB7764.namprd12.prod.outlook.com (2603:10b6:610:14e::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Thu, 18 Jun
- 2026 12:16:22 +0000
+ 2026 12:42:34 +0000
 Received: from PH7PR12MB5685.namprd12.prod.outlook.com
  ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
  ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0113.015; Thu, 18 Jun 2026
- 12:16:22 +0000
-Message-ID: <6aa74320-eb17-49c8-b90e-d52f01e50c1f@amd.com>
-Date: Thu, 18 Jun 2026 14:16:12 +0200
+ 12:42:34 +0000
+Message-ID: <d2a07581-dae9-45ff-909f-a87795e0b472@amd.com>
+Date: Thu, 18 Jun 2026 14:42:28 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/17] drm/amdgpu: Delete pre/post_soft_reset() from
- amd_ip_funcs
-To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Natalie Vock <natalie.vock@gmx.de>,
- Mario Limonciello <mario.limonciello@amd.com>, =?UTF-8?B?TWFyZWsgT2zFocOh?=
- =?UTF-8?Q?k?= <maraeo@gmail.com>, Tvrtko Ursulin
- <tvrtko.ursulin@igalia.com>, Lazar Lijo <lijo.lazar@amd.com>,
- Martin Roukala <martin.roukala@mupuf.org>
-References: <20260617191428.1784083-1-timur.kristof@gmail.com>
- <20260617191428.1784083-7-timur.kristof@gmail.com>
+Subject: Re: [PATCH] amdgpu: amdgpu_userq_restore_all return errors on failed
+ bo reservation
+To: Zhu Lingshan <lingshan.zhu@amd.com>, Alexander.Deucher@amd.com,
+ "Khatri, Sunil" <Sunil.Khatri@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, Ray.Huang@amd.com
+References: <20260618105158.93562-1-lingshan.zhu@amd.com>
 Content-Language: en-US
 From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260617191428.1784083-7-timur.kristof@gmail.com>
+In-Reply-To: <20260618105158.93562-1-lingshan.zhu@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0204.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:e5::15) To PH7PR12MB5685.namprd12.prod.outlook.com
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BL1PR13CA0206.namprd13.prod.outlook.com
+ (2603:10b6:208:2be::31) To PH7PR12MB5685.namprd12.prod.outlook.com
  (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SJ2PR12MB7918:EE_
-X-MS-Office365-Filtering-Correlation-Id: 88424322-b8b2-4783-118c-08decd336909
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH3PR12MB7764:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8ba48db8-2a4c-4b0f-7814-08decd3711dd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|23010399003|18002099003|22082099003|56012099006|11063799006|6133799003|4143699003;
-X-Microsoft-Antispam-Message-Info: sTAEPvr7+6qSkNC/oPjZh+KoB6jcMJvJl/JQJapcyHceYW6gTq+QgFzxxZtubYBaLzl+xtUXaT/3E9mTdLf077Kn3atQbCrMjsQSEYqcVeL4YMHoHUkevcp5La5P+LuLIc2jSUiwLKkBYdiVUrPyNZ0eaLnwlkeuPC1QrafybOuzpEFzj/4Tss03T0HyR8bmyKIutgi6hOCsjt9kUzUvhGM3VeEwt91qczQ/zHv6h7FhxWdkDv0MpSXErbfOIDJyj/7RLOlXOe//pQBw+ezh07Xtm7gUJK7NMnefYG9f1NfDrQdWH7eHjuRmpjp2C+uqMZCs3EOXuvDj/tVNnsjHs2O9qFQeiROMD8u1f/2FoJAHWHpfmlQJ4EQ54jjPDcKv9wlAkyiLDz23uUysBsWRTa/eCTgLWfE7JkUYu5p31zXS97uwyyLSK2cFn0WOihI4OhNs5SrKSsZYrvG7AGKgSxu2ziOW3zirN7S8uJUMMaekNh9iADHJIA/icKhyRhgvMiUdfszH+wVG370LBw8coD/WcLy2ejMIUfZq/xnkdZti1DO9k5XowKduVDoGw2OsIA0L0m+IS+dLYvV6uZJkvXiuxbg7SK9X/uc62gLcX+BIB/1wkddwRrXMz+b2xxes0pi2pXp5yJCdPVIHQfd4frFOzh26dhRo3yRjj4BOsjMvcHJD8V7VxxPRyopHtXTr
+ ARA:13230040|23010399003|1800799024|376014|366016|56012099006|11063799006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: aNEEk4yJfRR9wpdaF0ko+CZTFxEuQslflvMn/QHaaU1Dns+rD76ppoX+I79Uh4FICAznCUeUG6vZ+Ru3gDc7+Zm8AZTcX4zNNX6dh1smgs/nj7KjDjN7DGD+zJUTfBxW9Xgx2bMm/vsrPTFFI3OYjvD1xUuAdhSa7mz6YAoYv+fna+4wO8CqPxKdf5O+0D8K9ZRqAOHAc3Oa6VYLk9a9A5q3lgnvg4g5NrE49p+XnA0wQSbxZLd5mBMkRzngJ+h/E4gEO3AT3ZdWPsKmnvYAt5Q8L73Wn9e1aGZq6inme0JW3dkvwsRjaBSCWF+4u0R7041GWM5Y0dciYFmaEPtvQBAOJFF+9H5D7NIgC9/Z6v+2zYQNaS/us+IeSbZI2o2kF/siKahcfL4EESJKvJ4dSmZGX0N26ItCw/T77TsEyKRyuY5IJzBelU2w6GT3kl57XWX8/mqOHiRrY4xQ83TeHUtlFhu0Q2cZie6wfJ7jTGFordp7JqHFaB4trYOXevVRmVWOtiHwAU9Jh/RZCMB4wLeUz8ykcHsXinezGPv6HciTFhFTq7TYdtE+attA29AZ/zOstsv4pWHZbiq2dgoBhuWKi5vjwcQYiCzbNXZh8HjQ2R5RN7WIDAb5dHyNxT6jc9gPKbeNu9SBKNyhzzY1bRtRAcsxbM2wlRkQrAUAE4IzlslYU5ElsgS2WzwmWxDa
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(18002099003)(22082099003)(56012099006)(11063799006)(6133799003)(4143699003);
+ SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(56012099006)(11063799006)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Zk5Gc0UwWHM5UmFDYVpNK2VDcTljRTJCQVJiUC9HckFhYlRidWQyZXdBdXNo?=
- =?utf-8?B?RnY4bVFLVjBmZW1kTWF5dHVVL1grdGR2WXNZWXBwTnJTcGI5Nk92eHRPbElh?=
- =?utf-8?B?TUNBKzRxWS9OaEdaVTF6c0N4MHpOSzhkM2E1R0lwWmhTUThCS245YUVJNXlr?=
- =?utf-8?B?VDNVaWtLZjZIaCt6VnJ1R1BjWXpnbXlIbHNEZUppck5ob2ljUnJtMW5mOGF0?=
- =?utf-8?B?dEsycDVUVFcxdjY5ajFzNU13T0htRGpWUUNIQ3lpV29wN0g4aDNHNW92UHFE?=
- =?utf-8?B?WGpESURIMnNNMzNFV1JFUWlhdmh3Y0p4N2pNVEdGNlYxRVRtTC9ySEd0aFRS?=
- =?utf-8?B?NzNNdGV3M0hBcWdySW1xREgvOHZDZWFrRjNhVXFaZURGMVUzcFJNeG9adCt3?=
- =?utf-8?B?SzNyVmRnOWhhL0o1blZhcXVKcEg0ZTNKamxidVFuNmx3OFhrM3RwYzIvMjhN?=
- =?utf-8?B?NWlZMHQ5bVJmSmZvNWt1R3AxRThLd3kzMEhhZ0wzay9odnhpZ1hBdzJLZVhS?=
- =?utf-8?B?R3BwUmJmaFVoK3gwZUVaNitaejNKK2RvSGM5SlU1QWVDeHRmeVNGcTBTWnM1?=
- =?utf-8?B?ZzlQQ1JsamtXK0EvSUd6M1grOFBIMU5vY0FvL1hEVjJ0SmlDbE1ra3JmZFVI?=
- =?utf-8?B?c2hqOUIwSVJJSUlXWWxaUU8rMEdGS1F1dkxqakwrMW1xTEp4a0NyV091bDlC?=
- =?utf-8?B?K0lIRGl6M2tMWUVUOGs0M003QUFkaDhET0VHVmRkaTFPcEw1NHlsZGZuRkFC?=
- =?utf-8?B?RkRkYTZSYzlFdG4rMmhnYlNqM3BWR2FxZ2dTZTN4U21oU3VlbUJJZExIZDNq?=
- =?utf-8?B?VG04WGhQaDJGaEdsWGdoNEp1TDN4YjhCeWJLTTV6TXdTRUlJOGNjYXZKNC8x?=
- =?utf-8?B?YWVxU1ZhK3U3Yit1UzltV29Nb0RRWndZZlhpS2oxU2g0SEx5NFBiQkdNMFlD?=
- =?utf-8?B?bk5qUDU3cVVDNCtZZ3Z1RFhzL0t0MzU1NjlCSjJDeCtjVjB2TFdBTTVQMGEy?=
- =?utf-8?B?MUl0WGRoU2N0M0lUeUNhcTZDR1ZKbWhqblVSYWhTbVViWTdpWXY5ZGxoSSs1?=
- =?utf-8?B?N1cvNi9NcExJTGxBUVlOeWdmRURqS05MR1NmWGdlWEZNZzRidDZLRi9KQzJi?=
- =?utf-8?B?VEJ6UWkxOXZZbFhmYkQxQmcydExqR3dBMDhOcXVyR0d6NFB4RzZhVWRNTU1N?=
- =?utf-8?B?QWFOU0M0SWNtdnQ3cGx6UFZYbXUwRURKaWRJSWFLS1ZwSjcvKzFidUpTTnhu?=
- =?utf-8?B?Zk1lWGQ5cjlDMEorbmliVTNQbGwxR0RZd3VUeXE3YzM4NUtRUVFJaDlFR1Iv?=
- =?utf-8?B?b1hmaGVTTnpGVkNUdEgxdXlJUm5ETi9sa1RhY2xCSy9jbHg2Z0pvdi9zZXRQ?=
- =?utf-8?B?VFQ4Tm9ZaE83eEI0N09SN0lVTlJubEp3MTk5a2swWkFRSVlPY0tnSDVaVVpi?=
- =?utf-8?B?VUhQSk9UYXRNWjNEQ2pXNnFhalQ0cGtiRG1USWpCR0RMU3lCVmJ3c21URUJT?=
- =?utf-8?B?SnN2K0xQWno2R2VxUHNMcFRjR1h4S2t0ekdZdElTZ2YwUVZrM1QwYzhrbERQ?=
- =?utf-8?B?ak9BYVhHUFhQRllXZTBweW8wZkcvam5YRE5aMk4zeEdTcDlRa29ob2VpSDJh?=
- =?utf-8?B?Y05vUnk1UW44TVNtRFkycktXRG9YKzVFQzBXZ2ZyOTZIVHpzVnFIKzhNcUpi?=
- =?utf-8?B?SFlQRGh5Tmd1RGlEZmZRZUNSTFZQVjRCdTBNWU1RSWcwKzNzMW1NdytBakVz?=
- =?utf-8?B?MndPeEhXeW52aGtBaVE1RTlHYkFNWEVjUHVJSGhYYXhWQ3AxS08zSy9hT0dV?=
- =?utf-8?B?UlN5ZlhwZngzOVA0bTlwRXhESmxWSU1zM1N6cENGWGlrTXRUZ3V4Z0Mvb04r?=
- =?utf-8?B?Q1ZtM2dLVkF1YjdBQXE5TE1PRXpoSGFWUTZBZk1NNzZlS3k5U0JYWXFOeDlI?=
- =?utf-8?B?SUNYbkVBYjVYUUJFQ1E2Tjg2WG1QRzJzQUVLaE0vamZmbU15WUxQcmhtWVpp?=
- =?utf-8?B?LzhnVHpaZzdUT2ttb000NWc5M0RYcW9XUmlvN1I3NU9uRERDYXQ3OGtpWWV5?=
- =?utf-8?B?dS8vT1JybU9rL1FUVDNnakhBMzBsYkhEYnhXOEpxbDNvS2I3UzMwZ3REM29i?=
- =?utf-8?B?OU9UaUpVSEdDc1pkZGZmcnVIdnZxRWhGUmF1NVFDQzduNG5HQVZFbzgvRzVl?=
- =?utf-8?B?MXJxMWwvSklWU1NqZEFtOWRNcmdSR2luaUFvdlhQYXpiQjQxZGUzUlpiTngy?=
- =?utf-8?B?WGo2RWx5KzVPZUlVcDQvdi94dy9PenB2OGVTTDhiWTR4dE1LU1JsSmRwdEdS?=
- =?utf-8?Q?1ogQYQQdEQppv4pl5Q?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NnBEK2t4L1BxdWRzUFVZd0RJUUpqUHU3NFEyTGU1bXRUSVBVdVg5U1hwd0xD?=
+ =?utf-8?B?SlphOS8ycFFGcTJrQmwwMXBFNXdjaHdySUp1NmNBVDhnQXk2THNTRGllRTZZ?=
+ =?utf-8?B?S0I1QnVXSXZlOTR0ZXloTUd6SVpmQnQ4SnhtRUhxODQ1b2FOd2pqeVJxYkVj?=
+ =?utf-8?B?R1lVVXNMWTA5OTRsZkpkcXVrV05WaGVscmpBUFZWTUFGL2djYUtmTmhxNWFx?=
+ =?utf-8?B?c09FMDBZaEhQcXZ3LytyQXAyUk5WaFJ4SER3aXBlNkFoVlROYllQdVJNUFR0?=
+ =?utf-8?B?VGI0Q0FEL1VONm9SaGVzeE84K1Y1cVJRUkJva1BFTXlOKzcvakFtS25zTWta?=
+ =?utf-8?B?a2s1YWFiNnhLeXdzK2JqVVkzM3JTMjZ3dDFkUkV1S01JaFlyVGtiS0QrVkFH?=
+ =?utf-8?B?djZJMWJFbWt4NUR3QzYwUXJYSExsWlBMck5ud2dGWHRGOGZINlRHbTVJMUZu?=
+ =?utf-8?B?SzQzVm15TUcvSk9NSkRJWHJMSmczVHRWZ21Ma05FK3IvZ2pjUTZONnBlb0x3?=
+ =?utf-8?B?cXJSVzJndUZXektObFN2ZElZek5INUhOdStQSTJEVHdVSERDZjJOdmdOU0N3?=
+ =?utf-8?B?RWVYMXNreHVWaStvZE05NW9EVktRNU82NHBKcE1JdldDd01xUThCNXpvcGYr?=
+ =?utf-8?B?clVqTGpPOFdRcVF0ZzI5ZU1sVTJxV2hycDI5OS8wQjNMVWMwNDg0QjBOUUdM?=
+ =?utf-8?B?Z3hjZGV4bFlIQmVVWThQem9Zdk5la2ljdjk5MUZDL0Rob0tYSjRIK0ZXNWdu?=
+ =?utf-8?B?M0VpNCtHYUtKRUw2ZnBzNmJxbmxoY1VKQ2ttZ3BPbjRhMDNmV0lGeEdKZnFs?=
+ =?utf-8?B?WngwRWRoVzFDSnBBRXNZV0tnekIvTmZwYmJyMWw0YjA3MVBFeTlWbWlOQzBz?=
+ =?utf-8?B?czVhK3N5SXpSc05Edkl6b3dFRlJxT3h3MEFzanZCdk0zWThGR2lycFdQSElj?=
+ =?utf-8?B?ZGxITU9pK056N0dXc0tuWWNhSmhoZ2xVaUVqNEJ4QjI3WFMrbkFxeFI4Q205?=
+ =?utf-8?B?M3B6Yk56VWZFam0ybDM3T0doSm9tVEZ1R2VJTDZQNEZkMEFXZFZaK25LWm8v?=
+ =?utf-8?B?L3lUQXBuRWgzU2ZYditaV0Fqc21BRFcvQjRwYnZvMmUwMWxqNGJEdnF6clZ2?=
+ =?utf-8?B?YzY1OE1XRlhuMGJROENJbjFhTWNDTVBMYU4xMmZPVlVnY0tneTFkdG1PRjNk?=
+ =?utf-8?B?VlI2ZDV6QmtKR0h6QkZITFdnNXZoNzRqd1AwbzlRdG5mdzYwVnczdGlQOGhX?=
+ =?utf-8?B?MUwrc2wrbjEySE5ib0NDUzhPOGpLR2MvMzFqVThDdmpWZUFsb1dSdXRBTEJj?=
+ =?utf-8?B?UnVVTFBMSjJIOEdtREZsS005UjhaNXBCM0Zaa0VyelIyVGovNmRGQUI4UEZj?=
+ =?utf-8?B?YjhpYzdzVHVHdFpzZ1dXR3R0Q3ptTDJyNmcrSUpobXA1NC9abG9GNGNSS243?=
+ =?utf-8?B?OVFqY1RPRVA1N3V5bEdSUEhYOTR6WWVoWnIwK01kOG1aZ3ZPTmdwbk1ibzlh?=
+ =?utf-8?B?dlFEMFlwMTdBRzdXaHJidGtXNVI3UDgrdHU2dDhIYS9UYjNFbWgyRlY1UkNI?=
+ =?utf-8?B?L2hKenlsUmNGNGJZSDIxU0NCcFpWK3pkdG5pdHpCNjFucmh4akdPWUlUNk8r?=
+ =?utf-8?B?L0VsNW0zL1UrNVFlMThmb2J3Ri9Kd0ZBQ21RclkzMVdsZkYybEtwdmRZNGdw?=
+ =?utf-8?B?RTlGSDZGMWpmN3loNmlmeFlWTG1Ea3RIYUdVdnhCVnZqQVg5SDhzTGVESW1D?=
+ =?utf-8?B?alMrTzlBTy9aYUtTdjdTUEoyYWFVdk9rK25XQXhERC8ybnU1TFZ4cWFETklP?=
+ =?utf-8?B?bmR5ODBIR1puQ0hDOUdsZ2FWeE1EVTlhQlc1RzBJR0Qwb0s0SVNyQUYxUjVs?=
+ =?utf-8?B?dmJUUmlXdC80ZkNZYkQ3OXFJajJVelVhL2UxY1VDb2tqcFdYMFZNOTZNeWx0?=
+ =?utf-8?B?dlVwUGcvUmlkOHd1dCsvVXF3Vk5VUVZ4S1dlQnJLMUd6TjJLT3N0UTlLRW9X?=
+ =?utf-8?B?d01GQ0xpQjZQaytsWEx5K3BPcHh0OHRnZEpaWG10Q2FzWXhQK1ZsTTV5N3pr?=
+ =?utf-8?B?aE42WjFrWUtxZmNkeWlzNGk3QUVlaDNxVy9OblczRzU5djQwUXhCQ3BkOW4r?=
+ =?utf-8?B?dFg1ZG15eFRPMGlFNFFWaVN6bFJ0MlZUTStMc3hWaWRSdDF3ejltYTBFV0Qr?=
+ =?utf-8?B?YXl0b2VXVGNUQTJXdXRVTW0xWStiU3JFUHNEOTV6V2VwWSs2WnQrcTQ4V3VG?=
+ =?utf-8?B?YUN5bEh3VjYzUUpQSTYrcUdOWVJIeEowSWZIZDFFZEhVY3l5VFMvN3RxTHB0?=
+ =?utf-8?Q?mWGb+rPCdOfxs8LWh9?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 88424322-b8b2-4783-118c-08decd336909
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8ba48db8-2a4c-4b0f-7814-08decd3711dd
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2026 12:16:22.5231 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2026 12:42:34.1213 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XSRIjK+Vij+5eft+5BGaTaq27Iw1SJH+NDuP5M5nqhun0NJujmeL5RT6/WpDfzOa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7918
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZC2liALMOv2o1qOcKZL/M/6pfLbzIb2VZksciffqot0WYklqPSFK6GUTB3M22MrA
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7764
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,505 +140,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:lingshan.zhu@amd.com,m:Alexander.Deucher@amd.com,m:Sunil.Khatri@amd.com,m:Ray.Huang@amd.com,s:lists@lfdr.de];
 	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:natalie.vock@gmx.de,m:mario.limonciello@amd.com,m:maraeo@gmail.com,m:tvrtko.ursulin@igalia.com,m:lijo.lazar@amd.com,m:martin.roukala@mupuf.org,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com,gmx.de,igalia.com,mupuf.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[amd.com:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7E25A69FF46
+X-Rspamd-Queue-Id: 855176A0219
 
-On 6/17/26 21:14, Timur Kristóf wrote:
-> These functions were largely redundant with the respective
-> suspend() and resume() functions, the main difference being
-> that they were less used and therefore less likely to be
-> tested and correct.
+On 6/18/26 12:51, Zhu Lingshan wrote:
+> In amdgpu_userq_restore_all(), when failed to reserve
+> a bo, it should return a meaningful error code other than
+> "false" that means SUCCESS, which is wrong.
 > 
-> Move anything relevant from pre/post_soft_reset()
-> that is not already done by suspend()/resume()
-> into the soft_reset() functions.
+> The caller should not ignore the return code of
+> amdgpu_userq_restore_all as well
 > 
-> Note that future uses of soft_reset() will need to call
-> the suspend() / resume() functions and the necessary clock
-> and power gating functions.
+> Signed-off-by: Zhu Lingshan <lingshan.zhu@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
 > 
-> Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> index 95b680fc88c5..8b14870afbf5 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
+> @@ -894,9 +894,9 @@ amdgpu_userq_restore_all(struct amdgpu_userq_mgr *uq_mgr)
+>  	unsigned long queue_id;
+>  	int ret = 0, r;
+>  
+> -
+> -	if (amdgpu_bo_reserve(vm->root.bo, false))
+> -		return false;
+> +	r = amdgpu_bo_reserve(vm->root.bo, false);
+> +	if (r)
+> +		return r;
 
-Acked-by: Christian König <christian.koenig@amd.com>
+Good catch, but that amdgpu_bo_reserve() is called here is a bug in the first place.
 
-Might be better to split that up per IP engine type/generation.
+The call to amdgpu_userq_vm_validate() must be moved into amdgpu_userq_vm_validate(), right before we call drm_exec_fini() and the manual call to amdgpu_bo_reserve() here dropped.
 
-But not 100% sure.
+Otherwise we have a small windows where we drop the BO locks before starting the queues which could make the VM invalid again and cause all kind of issues.
 
 Regards,
 Christian.
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c   | 11 +--
->  drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c    | 95 +++---------------------
->  drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c |  2 -
->  drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c |  2 -
->  drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c   | 40 ----------
->  drivers/gpu/drm/amd/amdgpu/tonga_ih.c    | 20 -----
->  drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c    | 25 -------
->  drivers/gpu/drm/amd/amdgpu/vce_v3_0.c    | 27 -------
->  drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c  |  2 -
->  drivers/gpu/drm/amd/amdgpu/vcn_v5_0_2.c  |  2 -
->  drivers/gpu/drm/amd/include/amd_shared.h |  2 -
->  11 files changed, 15 insertions(+), 213 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> index 0a34c08e251e..e1d478a5e40e 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-> @@ -5191,14 +5191,12 @@ static int gfx_v11_0_soft_reset(struct amdgpu_ip_block *ip_block)
 >  
->  	amdgpu_gfx_rlc_exit_safe_mode(adev, 0);
+>  	mutex_lock(&uq_mgr->userq_mutex);
+>  	/* Resume all the queues for this process */
+> @@ -1133,7 +1133,9 @@ static void amdgpu_userq_restore_worker(struct work_struct *work)
+>  		goto put_fence;
+>  	}
 >  
-> -	return gfx_v11_0_cp_resume(adev);
-> -}
-> +	r = gfx_v11_0_cp_resume(adev);
-> +	if (r)
-> +		return r;
+> -	amdgpu_userq_restore_all(uq_mgr);
+> +	ret = amdgpu_userq_restore_all(uq_mgr);
+> +	if (ret)
+> +		drm_file_err(uq_mgr->file, "Failed to restore user queues, ret=%d\n", ret);
 >  
-> -static int gfx_v11_0_post_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	struct amdgpu_device *adev = ip_block->adev;
->  	/**
-> -	 * GFX soft reset will impact MES, need resume MES when do GFX soft reset
-> +	 * GFX soft reset impacts MES, resume MES after GFX soft reset is finished
->  	 */
->  	return amdgpu_mes_resume(adev, 0);
->  }
-> @@ -7187,7 +7185,6 @@ static const struct amd_ip_funcs gfx_v11_0_ip_funcs = {
->  	.is_idle = gfx_v11_0_is_idle,
->  	.wait_for_idle = gfx_v11_0_wait_for_idle,
->  	.soft_reset = gfx_v11_0_soft_reset,
-> -	.post_soft_reset = gfx_v11_0_post_soft_reset,
->  	.set_clockgating_state = gfx_v11_0_set_clockgating_state,
->  	.set_powergating_state = gfx_v11_0_set_powergating_state,
->  	.get_clockgating_state = gfx_v11_0_get_clockgating_state,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-> index dd1823bd89ad..7bd668f71b41 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-> @@ -4891,52 +4891,12 @@ static int gfx_v8_0_resume(struct amdgpu_ip_block *ip_block)
->  	return gfx_v8_0_hw_init(ip_block);
->  }
->  
-> -static int gfx_v8_0_pre_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	struct amdgpu_device *adev = ip_block->adev;
-> -	u32 grbm_soft_reset = 0;
-> -
-> -	if ((!adev->gfx.grbm_soft_reset) &&
-> -	    (!adev->gfx.srbm_soft_reset))
-> -		return 0;
-> -
-> -	grbm_soft_reset = adev->gfx.grbm_soft_reset;
-> -
-> -	/* stop the rlc */
-> -	adev->gfx.rlc.funcs->stop(adev);
-> -
-> -	if (REG_GET_FIELD(grbm_soft_reset, GRBM_SOFT_RESET, SOFT_RESET_CP) ||
-> -	    REG_GET_FIELD(grbm_soft_reset, GRBM_SOFT_RESET, SOFT_RESET_GFX))
-> -		/* Disable GFX parsing/prefetching */
-> -		gfx_v8_0_cp_gfx_enable(adev, false);
-> -
-> -	if (REG_GET_FIELD(grbm_soft_reset, GRBM_SOFT_RESET, SOFT_RESET_CP) ||
-> -	    REG_GET_FIELD(grbm_soft_reset, GRBM_SOFT_RESET, SOFT_RESET_CPF) ||
-> -	    REG_GET_FIELD(grbm_soft_reset, GRBM_SOFT_RESET, SOFT_RESET_CPC) ||
-> -	    REG_GET_FIELD(grbm_soft_reset, GRBM_SOFT_RESET, SOFT_RESET_CPG)) {
-> -		int i;
-> -
-> -		for (i = 0; i < adev->gfx.num_compute_rings; i++) {
-> -			struct amdgpu_ring *ring = &adev->gfx.compute_ring[i];
-> -
-> -			mutex_lock(&adev->srbm_mutex);
-> -			vi_srbm_select(adev, ring->me, ring->pipe, ring->queue, 0);
-> -			gfx_v8_0_deactivate_hqd(adev, 2);
-> -			vi_srbm_select(adev, 0, 0, 0, 0);
-> -			mutex_unlock(&adev->srbm_mutex);
-> -		}
-> -		/* Disable MEC parsing/prefetching */
-> -		gfx_v8_0_cp_compute_enable(adev, false);
-> -	}
-> -
-> -	return 0;
-> -}
-> -
->  static int gfx_v8_0_soft_reset(struct amdgpu_ip_block *ip_block)
->  {
->  	struct amdgpu_device *adev = ip_block->adev;
->  	u32 grbm_soft_reset = 0, srbm_soft_reset = 0;
->  	u32 tmp;
-> +	int i;
->  
->  	if ((!adev->gfx.grbm_soft_reset) &&
->  	    (!adev->gfx.srbm_soft_reset))
-> @@ -4945,6 +4905,16 @@ static int gfx_v8_0_soft_reset(struct amdgpu_ip_block *ip_block)
->  	grbm_soft_reset = adev->gfx.grbm_soft_reset;
->  	srbm_soft_reset = adev->gfx.srbm_soft_reset;
->  
-> +	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
-> +		struct amdgpu_ring *ring = &adev->gfx.compute_ring[i];
-> +
-> +		mutex_lock(&adev->srbm_mutex);
-> +		vi_srbm_select(adev, ring->me, ring->pipe, ring->queue, 0);
-> +		gfx_v8_0_deactivate_hqd(adev, 2);
-> +		vi_srbm_select(adev, 0, 0, 0, 0);
-> +		mutex_unlock(&adev->srbm_mutex);
-> +	}
-> +
->  	if (grbm_soft_reset || srbm_soft_reset) {
->  		tmp = RREG32(mmGMCON_DEBUG);
->  		tmp = REG_SET_FIELD(tmp, GMCON_DEBUG, GFX_STALL, 1);
-> @@ -4994,47 +4964,6 @@ static int gfx_v8_0_soft_reset(struct amdgpu_ip_block *ip_block)
->  	return 0;
->  }
->  
-> -static int gfx_v8_0_post_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	struct amdgpu_device *adev = ip_block->adev;
-> -	u32 grbm_soft_reset = 0;
-> -
-> -	if ((!adev->gfx.grbm_soft_reset) &&
-> -	    (!adev->gfx.srbm_soft_reset))
-> -		return 0;
-> -
-> -	grbm_soft_reset = adev->gfx.grbm_soft_reset;
-> -
-> -	if (REG_GET_FIELD(grbm_soft_reset, GRBM_SOFT_RESET, SOFT_RESET_CP) ||
-> -	    REG_GET_FIELD(grbm_soft_reset, GRBM_SOFT_RESET, SOFT_RESET_CPF) ||
-> -	    REG_GET_FIELD(grbm_soft_reset, GRBM_SOFT_RESET, SOFT_RESET_CPC) ||
-> -	    REG_GET_FIELD(grbm_soft_reset, GRBM_SOFT_RESET, SOFT_RESET_CPG)) {
-> -		int i;
-> -
-> -		for (i = 0; i < adev->gfx.num_compute_rings; i++) {
-> -			struct amdgpu_ring *ring = &adev->gfx.compute_ring[i];
-> -
-> -			mutex_lock(&adev->srbm_mutex);
-> -			vi_srbm_select(adev, ring->me, ring->pipe, ring->queue, 0);
-> -			gfx_v8_0_deactivate_hqd(adev, 2);
-> -			vi_srbm_select(adev, 0, 0, 0, 0);
-> -			mutex_unlock(&adev->srbm_mutex);
-> -		}
-> -		gfx_v8_0_kiq_resume(adev);
-> -		gfx_v8_0_kcq_resume(adev);
-> -	}
-> -
-> -	if (REG_GET_FIELD(grbm_soft_reset, GRBM_SOFT_RESET, SOFT_RESET_CP) ||
-> -	    REG_GET_FIELD(grbm_soft_reset, GRBM_SOFT_RESET, SOFT_RESET_GFX))
-> -		gfx_v8_0_cp_gfx_resume(adev);
-> -
-> -	gfx_v8_0_cp_test_all_rings(adev);
-> -
-> -	adev->gfx.rlc.funcs->start(adev);
-> -
-> -	return 0;
-> -}
-> -
->  /**
->   * gfx_v8_0_get_gpu_clock_counter - return GPU clock counter snapshot
->   *
-> @@ -6800,9 +6729,7 @@ static const struct amd_ip_funcs gfx_v8_0_ip_funcs = {
->  	.resume = gfx_v8_0_resume,
->  	.is_idle = gfx_v8_0_is_idle,
->  	.wait_for_idle = gfx_v8_0_wait_for_idle,
-> -	.pre_soft_reset = gfx_v8_0_pre_soft_reset,
->  	.soft_reset = gfx_v8_0_soft_reset,
-> -	.post_soft_reset = gfx_v8_0_post_soft_reset,
->  	.set_clockgating_state = gfx_v8_0_set_clockgating_state,
->  	.set_powergating_state = gfx_v8_0_set_powergating_state,
->  	.get_clockgating_state = gfx_v8_0_get_clockgating_state,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
-> index f0707139a745..09c8d95df89f 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
-> @@ -871,9 +871,7 @@ static const struct amd_ip_funcs jpeg_v5_0_1_ip_funcs = {
->  	.resume = jpeg_v5_0_1_resume,
->  	.is_idle = jpeg_v5_0_1_is_idle,
->  	.wait_for_idle = jpeg_v5_0_1_wait_for_idle,
-> -	.pre_soft_reset = NULL,
->  	.soft_reset = NULL,
-> -	.post_soft_reset = NULL,
->  	.set_clockgating_state = jpeg_v5_0_1_set_clockgating_state,
->  	.set_powergating_state = jpeg_v5_0_1_set_powergating_state,
->  	.dump_ip_state = amdgpu_jpeg_dump_ip_state,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c
-> index 717eaf43c9a6..ff02f72352a8 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c
-> @@ -690,9 +690,7 @@ static const struct amd_ip_funcs jpeg_v5_0_2_ip_funcs = {
->  	.resume = jpeg_v5_0_2_resume,
->  	.is_idle = jpeg_v5_0_2_is_idle,
->  	.wait_for_idle = jpeg_v5_0_2_wait_for_idle,
-> -	.pre_soft_reset = NULL,
->  	.soft_reset = NULL,
-> -	.post_soft_reset = NULL,
->  	.set_clockgating_state = jpeg_v5_0_2_set_clockgating_state,
->  	.set_powergating_state = jpeg_v5_0_2_set_powergating_state,
->  	.dump_ip_state = amdgpu_jpeg_dump_ip_state,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-> index e77261a64cf8..c2d098cd72ce 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c
-> @@ -1237,44 +1237,6 @@ static int sdma_v3_0_wait_for_idle(struct amdgpu_ip_block *ip_block)
->  	return -ETIMEDOUT;
->  }
->  
-> -static int sdma_v3_0_pre_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	struct amdgpu_device *adev = ip_block->adev;
-> -	u32 srbm_soft_reset = 0;
-> -
-> -	if (!adev->sdma.srbm_soft_reset)
-> -		return 0;
-> -
-> -	srbm_soft_reset = adev->sdma.srbm_soft_reset;
-> -
-> -	if (REG_GET_FIELD(srbm_soft_reset, SRBM_SOFT_RESET, SOFT_RESET_SDMA) ||
-> -	    REG_GET_FIELD(srbm_soft_reset, SRBM_SOFT_RESET, SOFT_RESET_SDMA1)) {
-> -		sdma_v3_0_ctx_switch_enable(adev, false);
-> -		sdma_v3_0_enable(adev, false);
-> -	}
-> -
-> -	return 0;
-> -}
-> -
-> -static int sdma_v3_0_post_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	struct amdgpu_device *adev = ip_block->adev;
-> -	u32 srbm_soft_reset = 0;
-> -
-> -	if (!adev->sdma.srbm_soft_reset)
-> -		return 0;
-> -
-> -	srbm_soft_reset = adev->sdma.srbm_soft_reset;
-> -
-> -	if (REG_GET_FIELD(srbm_soft_reset, SRBM_SOFT_RESET, SOFT_RESET_SDMA) ||
-> -	    REG_GET_FIELD(srbm_soft_reset, SRBM_SOFT_RESET, SOFT_RESET_SDMA1)) {
-> -		sdma_v3_0_gfx_resume(adev);
-> -		sdma_v3_0_rlc_resume(adev);
-> -	}
-> -
-> -	return 0;
-> -}
-> -
->  static int sdma_v3_0_soft_reset(struct amdgpu_ip_block *ip_block)
->  {
->  	struct amdgpu_device *adev = ip_block->adev;
-> @@ -1531,8 +1493,6 @@ static const struct amd_ip_funcs sdma_v3_0_ip_funcs = {
->  	.resume = sdma_v3_0_resume,
->  	.is_idle = sdma_v3_0_is_idle,
->  	.wait_for_idle = sdma_v3_0_wait_for_idle,
-> -	.pre_soft_reset = sdma_v3_0_pre_soft_reset,
-> -	.post_soft_reset = sdma_v3_0_post_soft_reset,
->  	.soft_reset = sdma_v3_0_soft_reset,
->  	.set_clockgating_state = sdma_v3_0_set_clockgating_state,
->  	.set_powergating_state = sdma_v3_0_set_powergating_state,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/tonga_ih.c b/drivers/gpu/drm/amd/amdgpu/tonga_ih.c
-> index 671f5bf18a3a..a3e883f6f099 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/tonga_ih.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/tonga_ih.c
-> @@ -390,24 +390,6 @@ static int tonga_ih_wait_for_idle(struct amdgpu_ip_block *ip_block)
->  	return -ETIMEDOUT;
->  }
->  
-> -static int tonga_ih_pre_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	if (!ip_block->adev->irq.srbm_soft_reset)
-> -		return 0;
-> -
-> -	return tonga_ih_hw_fini(ip_block);
-> -}
-> -
-> -static int tonga_ih_post_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	struct amdgpu_device *adev = ip_block->adev;
-> -
-> -	if (!adev->irq.srbm_soft_reset)
-> -		return 0;
-> -
-> -	return tonga_ih_hw_init(ip_block);
-> -}
-> -
->  static int tonga_ih_soft_reset(struct amdgpu_ip_block *ip_block)
->  {
->  	struct amdgpu_device *adev = ip_block->adev;
-> @@ -462,9 +444,7 @@ static const struct amd_ip_funcs tonga_ih_ip_funcs = {
->  	.resume = tonga_ih_resume,
->  	.is_idle = tonga_ih_is_idle,
->  	.wait_for_idle = tonga_ih_wait_for_idle,
-> -	.pre_soft_reset = tonga_ih_pre_soft_reset,
->  	.soft_reset = tonga_ih_soft_reset,
-> -	.post_soft_reset = tonga_ih_post_soft_reset,
->  	.set_clockgating_state = tonga_ih_set_clockgating_state,
->  	.set_powergating_state = tonga_ih_set_powergating_state,
->  };
-> diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c b/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
-> index 7a6b6277cadd..8bb9592b0981 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
-> @@ -1166,17 +1166,6 @@ static int uvd_v6_0_wait_for_idle(struct amdgpu_ip_block *ip_block)
->  
->  #define AMDGPU_UVD_STATUS_BUSY_MASK    0xfd
->  
-> -static int uvd_v6_0_pre_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	struct amdgpu_device *adev = ip_block->adev;
-> -
-> -	if (!adev->uvd.inst->srbm_soft_reset)
-> -		return 0;
-> -
-> -	uvd_v6_0_stop(adev);
-> -	return 0;
-> -}
-> -
->  static int uvd_v6_0_soft_reset(struct amdgpu_ip_block *ip_block)
->  {
->  	struct amdgpu_device *adev = ip_block->adev;
-> @@ -1208,18 +1197,6 @@ static int uvd_v6_0_soft_reset(struct amdgpu_ip_block *ip_block)
->  	return 0;
->  }
->  
-> -static int uvd_v6_0_post_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	struct amdgpu_device *adev = ip_block->adev;
-> -
-> -	if (!adev->uvd.inst->srbm_soft_reset)
-> -		return 0;
-> -
-> -	mdelay(5);
-> -
-> -	return uvd_v6_0_start(adev);
-> -}
-> -
->  static int uvd_v6_0_set_interrupt_state(struct amdgpu_device *adev,
->  					struct amdgpu_irq_src *source,
->  					unsigned type,
-> @@ -1519,9 +1496,7 @@ static const struct amd_ip_funcs uvd_v6_0_ip_funcs = {
->  	.resume = uvd_v6_0_resume,
->  	.is_idle = uvd_v6_0_is_idle,
->  	.wait_for_idle = uvd_v6_0_wait_for_idle,
-> -	.pre_soft_reset = uvd_v6_0_pre_soft_reset,
->  	.soft_reset = uvd_v6_0_soft_reset,
-> -	.post_soft_reset = uvd_v6_0_post_soft_reset,
->  	.set_clockgating_state = uvd_v6_0_set_clockgating_state,
->  	.set_powergating_state = uvd_v6_0_set_powergating_state,
->  	.get_clockgating_state = uvd_v6_0_get_clockgating_state,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
-> index e01c4af46db1..9f4e88440c0a 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
-> @@ -662,31 +662,6 @@ static int vce_v3_0_soft_reset(struct amdgpu_ip_block *ip_block)
->  	return 0;
->  }
->  
-> -static int vce_v3_0_pre_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	struct amdgpu_device *adev = ip_block->adev;
-> -
-> -	if (!adev->vce.srbm_soft_reset)
-> -		return 0;
-> -
-> -	mdelay(5);
-> -
-> -	return vce_v3_0_suspend(ip_block);
-> -}
-> -
-> -
-> -static int vce_v3_0_post_soft_reset(struct amdgpu_ip_block *ip_block)
-> -{
-> -	struct amdgpu_device *adev = ip_block->adev;
-> -
-> -	if (!adev->vce.srbm_soft_reset)
-> -		return 0;
-> -
-> -	mdelay(5);
-> -
-> -	return vce_v3_0_resume(ip_block);
-> -}
-> -
->  static int vce_v3_0_set_interrupt_state(struct amdgpu_device *adev,
->  					struct amdgpu_irq_src *source,
->  					unsigned type,
-> @@ -868,9 +843,7 @@ static const struct amd_ip_funcs vce_v3_0_ip_funcs = {
->  	.resume = vce_v3_0_resume,
->  	.is_idle = vce_v3_0_is_idle,
->  	.wait_for_idle = vce_v3_0_wait_for_idle,
-> -	.pre_soft_reset = vce_v3_0_pre_soft_reset,
->  	.soft_reset = vce_v3_0_soft_reset,
-> -	.post_soft_reset = vce_v3_0_post_soft_reset,
->  	.set_clockgating_state = vce_v3_0_set_clockgating_state,
->  	.set_powergating_state = vce_v3_0_set_powergating_state,
->  	.get_clockgating_state = vce_v3_0_get_clockgating_state,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c
-> index a0638bdb9255..437b67c573a1 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_1.c
-> @@ -1657,9 +1657,7 @@ static const struct amd_ip_funcs vcn_v5_0_1_ip_funcs = {
->  	.resume = vcn_v5_0_1_resume,
->  	.is_idle = vcn_v5_0_1_is_idle,
->  	.wait_for_idle = vcn_v5_0_1_wait_for_idle,
-> -	.pre_soft_reset = NULL,
->  	.soft_reset = NULL,
-> -	.post_soft_reset = NULL,
->  	.set_clockgating_state = vcn_v5_0_1_set_clockgating_state,
->  	.set_powergating_state = vcn_set_powergating_state,
->  	.dump_ip_state = amdgpu_vcn_dump_ip_state,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_2.c b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_2.c
-> index 1fb1dea3f129..b9f6ae75ea72 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_2.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v5_0_2.c
-> @@ -1203,9 +1203,7 @@ static const struct amd_ip_funcs vcn_v5_0_2_ip_funcs = {
->  	.resume = vcn_v5_0_2_resume,
->  	.is_idle = vcn_v5_0_2_is_idle,
->  	.wait_for_idle = vcn_v5_0_2_wait_for_idle,
-> -	.pre_soft_reset = NULL,
->  	.soft_reset = NULL,
-> -	.post_soft_reset = NULL,
->  	.set_clockgating_state = vcn_v5_0_2_set_clockgating_state,
->  	.set_powergating_state = vcn_set_powergating_state,
->  };
-> diff --git a/drivers/gpu/drm/amd/include/amd_shared.h b/drivers/gpu/drm/amd/include/amd_shared.h
-> index 2f9e41cf3ac7..e7316e949d11 100644
-> --- a/drivers/gpu/drm/amd/include/amd_shared.h
-> +++ b/drivers/gpu/drm/amd/include/amd_shared.h
-> @@ -467,9 +467,7 @@ struct amd_ip_funcs {
->  	void (*complete)(struct amdgpu_ip_block *ip_block);
->  	bool (*is_idle)(struct amdgpu_ip_block *ip_block);
->  	int (*wait_for_idle)(struct amdgpu_ip_block *ip_block);
-> -	int (*pre_soft_reset)(struct amdgpu_ip_block *ip_block);
->  	int (*soft_reset)(struct amdgpu_ip_block *ip_block);
-> -	int (*post_soft_reset)(struct amdgpu_ip_block *ip_block);
->  	int (*set_clockgating_state)(struct amdgpu_ip_block *ip_block,
->  				     enum amd_clockgating_state state);
->  	int (*set_powergating_state)(struct amdgpu_ip_block *ip_block,
+>  put_fence:
+>  	dma_fence_put(ev_fence);
 
