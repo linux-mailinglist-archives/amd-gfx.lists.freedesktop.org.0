@@ -2,52 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QJMqD/RENWryqgYAu9opvQ
+	id vEIfNvFENWruqgYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:32:36 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:32:33 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D27196A6188
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:32:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 833756A6182
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:32:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=zL4YyBu9;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=BHHJRWdf;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D15C10F5D3;
-	Fri, 19 Jun 2026 13:32:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06BBF10F5E1;
+	Fri, 19 Jun 2026 13:32:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011061.outbound.protection.outlook.com [52.101.52.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4553E10F5DE
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 13:32:31 +0000 (UTC)
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011027.outbound.protection.outlook.com [40.107.208.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 374DE10F5DE
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 13:32:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=I+EEP4fJlXur+MYy6sIdV4QWijZ0ulX6MgU7AFU78CwwA6pBVnsAffHGQC5XsuBHfM5XgqhZa86RRXTjKYiUOfAhh45pm+vE78gDX5N62qC/KO4TRCxmYFFIKrq05A8AP4H10VP59Ch4qZFg8X2iI0qbDG9SEzePuy0RLR4K8t9ouBWECFrY/zRPJrruqJ5F38aQnBooY0cM77kanW5QoSDX6CTlKWYjhZPPnXBisKhcaRpfsrRK2akL2kZQ45Jpq4GoYVrBJwkqlAzGLl4RS+FqixuckC8oz7v0cqxl/LSRkNTehcBulcVKfJQmWHMpiC9L0a/RomHG5uhlZPRFFw==
+ b=pDRPH141oN7vtjAMuKXAr5wGuYAv7oTRRp07BDOnsvS13o5xaTrhYbeaIMOCrKOVZ2VZR68YzpgduYTUEwd9unz37ysUdQOkN3g2pulxMRDNKwuI/tADobPoIdoVD9ZlpYX1d1fsjp+xBS6v5qbBRppowhLdvs9wZKG3BtKnExcbEJKYMgtjXV6fpa91ikzrBVEb4DGkmWyiEVAL+SIt4uOso9QSDdMZGlOpM+7rR6IEKyYCjGYLnT11r3o3EUjOdWq1AljwVZhFY+c5CDHwYrB3JWsL9s9w1EhfqU+jm3Bf7MKiR0Bz6HyJL6gnnrsxmU7jZw2SJkGRbXm+jyyzsA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kmVMjAjuxEdwdGB+GWD2Gi0+BzZJv5tQys/tGcjqec0=;
- b=ZNMyWEAfrczvL9KpQbWT6x3VMfmrVA3Qdwvkb40T1Spqe3fGW5j3uvzf3UC6tX//jb11srT6gdkINv4ww7clHlsQPfs385kOvhxk/4t5dOpUJfdI1J7UnLWDPh/VX1k+YvmNFe3H8NmkL9424A++npxllkJJzgMAmrqenxt2t0u2a+IcK2mcMCUf4W9cMkvh3pVIbqrO3sL3W8Uc1gYskliKiiovQ6VtJCtO3q7Jar9iY/xeDKxv3J4KhOFb5MzzOnbYvFta4tMgykQKzT3kOOlC//gqLpONO77ZepWyWKow+PX2npbTuaQmiqRfXxfePXX0gZ9TwU/XNvWCPhtI1g==
+ bh=QIkYvDwXIQ8gDhZh0UDk2dGd0AMb/o3za0zyd0cBl+4=;
+ b=dyY+K2OtkJ3GIELc4eIOFPREi/ynDnIHXKMACrq3xV5J68yliCqQjQ95vt7zt7m/Ee2uiS9sUnDB7r6zHo41tsaq8ahtUJQNKRR8uALiJNlBAu9a2dhLLf6pzEG48JGUUPIOJetDFCxBDHg37p98vj0UvS8AQGPgjVBLXBmUSUId08/fnVKJSJb8/8VyFoqBNyScDYlKjDz28IhD2FryM/yzcvqRHL4PyFPfetMe9rLHrWaf+1+n2rBo+z32AQ1K5zWOuYsmbXcoWsa8qM5w7uwu8B8+Uv2c1ZYRjoEyJ19ByWxNjr1XA7fAZiHL6E2VooEJ61y8kOupwERSwIHwWw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kmVMjAjuxEdwdGB+GWD2Gi0+BzZJv5tQys/tGcjqec0=;
- b=zL4YyBu9GhxDhbJl/X7/QE8BlssvkroVif38GvV1R2YTSfDLmoH2ZQ5E8Xkou98ob8FmRZCADleFpUIJUFi809s7a0lBK8aXNZlsisKSjFAYXDOTSuaLdghUbodVYIS7avIHK3fxHjGiwPtd57mAwzdCo1P+3d7yL996r9TFR78=
-Received: from BN9PR03CA0843.namprd03.prod.outlook.com (2603:10b6:408:13d::8)
- by MW6PR12MB8757.namprd12.prod.outlook.com (2603:10b6:303:239::20)
+ bh=QIkYvDwXIQ8gDhZh0UDk2dGd0AMb/o3za0zyd0cBl+4=;
+ b=BHHJRWdfrVZbYsF8AD9q7ue+Lf0Sbmzv9g7MAuU+y4j4iMTJD537nDYY+OSYAJDfhCh4USTaOJkx6fzQc34c3csGq542OvntAqqNpcPu1s9I9McU6vaT4GPoxjrthm9vTQ5xbZD1kNofgkR4avAgxfz+amQUMvELlXbdDlk8N5g=
+Received: from BLAPR03CA0108.namprd03.prod.outlook.com (2603:10b6:208:32a::23)
+ by PH7PR12MB5806.namprd12.prod.outlook.com (2603:10b6:510:1d2::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Fri, 19 Jun
- 2026 13:32:22 +0000
-Received: from BN2PEPF00004FBC.namprd04.prod.outlook.com
- (2603:10b6:408:13d:cafe::a7) by BN9PR03CA0843.outlook.office365.com
- (2603:10b6:408:13d::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.13 via Frontend Transport; Fri,
- 19 Jun 2026 13:32:22 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.12; Fri, 19 Jun
+ 2026 13:32:23 +0000
+Received: from BN2PEPF00004FC0.namprd04.prod.outlook.com
+ (2603:10b6:208:32a:cafe::55) by BLAPR03CA0108.outlook.office365.com
+ (2603:10b6:208:32a::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.113.18 via Frontend Transport; Fri,
+ 19 Jun 2026 13:32:23 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,13 +55,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BN2PEPF00004FBC.mail.protection.outlook.com (10.167.243.182) with Microsoft
+ BN2PEPF00004FC0.mail.protection.outlook.com (10.167.243.186) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.139.8 via Frontend Transport; Fri, 19 Jun 2026 13:32:22 +0000
+ 15.21.139.8 via Frontend Transport; Fri, 19 Jun 2026 13:32:23 +0000
 Received: from georzhanmkm (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Fri, 19 Jun
- 2026 08:32:21 -0500
+ 2026 08:32:22 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -70,12 +70,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Lohita Mudimela <lohita.mudimela@amd.com>, "Josip
- Pavic" <josip.pavic@amd.com>, George Zhang <george.zhang@amd.com>
-Subject: [PATCH 04/24] drm/amd/display: Integrate power_helpers.c
- functionality into power.c.
-Date: Fri, 19 Jun 2026 09:21:19 -0400
-Message-ID: <20260619133154.116746-5-george.zhang@amd.com>
+ <Chen-Yu.Chen@amd.com>, Michael Strauss <michael.strauss@amd.com>, "George
+ Shen" <george.shen@amd.com>, George Zhang <george.zhang@amd.com>
+Subject: [PATCH 05/24] drm/amd/display: Add 12bpc Color Ramp Support
+Date: Fri, 19 Jun 2026 09:21:20 -0400
+Message-ID: <20260619133154.116746-6-george.zhang@amd.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260619133154.116746-1-george.zhang@amd.com>
 References: <20260619133154.116746-1-george.zhang@amd.com>
@@ -87,29 +86,29 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF00004FBC:EE_|MW6PR12MB8757:EE_
-X-MS-Office365-Filtering-Correlation-Id: e9532dc7-2a01-4d36-ba59-08dece07317d
+X-MS-TrafficTypeDiagnostic: BN2PEPF00004FC0:EE_|PH7PR12MB5806:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ff56168-f92e-4cc3-d2df-08dece0731fa
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|36860700016|23010399003|82310400026|56012099006|11063799006|3023799007|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: hgGKnTN30Zv7vHFnFN4AU7dsZBJyWmIGcIRO+Ea0fbWeKt8yBnVwXkiRlTBbwIrpmBJk2OwVlVVd0ZG7kyT09/zpbSslz2KJ3b96CPIs3aud/G7VgMKhDUIA0XD9grk0ozh5v6hCxbTzbNqDAhqEQ3lNRxvbkhs/3DC8TAcYmkLJIM4G0dafm4KMo+zsU46OjxDgQ3NDWCL3er71Wbt7q/XmTmO9Ne8ug4EXnHrUuimAUqMVWDp1uKSr4OXBN7Svq2y3OFBWcoLbbOHjV03TyyUnaO7/WCd65CdbQQBFDpCA92Z+/ztH9EcYhU5XnUVWaQpW0lt6F+2RrxLVWYnkBEBvU7U7ssAUrDt9TdTXeQtNJ1rnrBWXktcMnXSxcTWJMq84nHclsbB2ENNLCWOg5Nn5dxtF9MGl05STfC9oBrkGf7On/PpRpeymMl0YbP/55IX2FdPfefEX8cy/1mlzXTjmYdoFrTRmhnGu0yRNxlNNGSvqV6PZ0Z0w3CnxPigC3e0RVEA8GV6W/mdgZKhMKpPL5lycPrHEQQoR318qJHYFS0mScujXalJK+FlY//7jD5RjMfbmMv8cQ9EGvy+NxNtdNMPn+yShuJ/gn4Nh/ZH6bw7cZT9vX8jXyqRdvyYZ9AAgcsYDv9eavemS2M9nrp0R1pIGAli94gr2QaHgUSVr32g+p/HS2S1ZhbAYC3HcbkFVx7xRr4AquXZ3+VJ3uA==
+ ARA:13230040|82310400026|23010399003|1800799024|36860700016|376014|22082099003|18002099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: QB449Z0oPbjg+DtMaBec1QPobGcVNZ5uyNO16nSwCwD2C5pnA9Y1FCChviqnBaF0vOnDFCcTSYhntJHyS0emgrmw6dZRdIdKzhk59htTtUor0r3py95I2ErzJV9Ehil9DLcmv9ScoURu8Gyh/QiKyQt7/NrL+wL6QP4IDSA8/tUCLLS9y08RrXsO5XAGRohC/7+Q8PZRgy5VXZ0RwIf6uFhNEvR7kAIqcFSu0Xtsk1SGuwPBXNCVu2RQgho19wajZk0TE3j3Doje8giZpx8oZczu4kAm+5/tqFrXoZnav20VEftc+9v00+z45Fe8+IWHtIGWwpD2DVr9CACX7bQda6fQslkMEiyBig9j12yAJpTqL9F9jLz1xHHlgfwVKZOexasyVCIvK21VAjWuOdnW1evyK3eH3IAEO447kZibvShszDbRDv3WvA6pFgP3HOGaPCzbZZrGlUHg8lHHoDFEtxXZydxBMxZYV4k72jrW6VaE/Hhjih3+ZqUSIbakXKuiv9VU8WdvlRFZhQM32nXL/n5ZyjjrGC8ZDTueR2tCHg8P+WZYC5RYl09dWn5khr0/euOE7rlSZ4FcEnVHa7SRXKJlv2l7y4kh6F+7LPqFFd7G41Y9hAve71JlXjOVK87r/VcKT6uxmMz5q4YSeYFdmno5rShpvZoXaDheQOTY0vAjOP7dEoIW8FyyUltX9HgvEUwAksaeBWpMK00r3rSFUg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(36860700016)(23010399003)(82310400026)(56012099006)(11063799006)(3023799007)(22082099003)(18002099003);
+ SFS:(13230040)(82310400026)(23010399003)(1800799024)(36860700016)(376014)(22082099003)(18002099003)(56012099006)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: vO6S+RV1J2deIIaRirmLYbowXsUmbtzqK/ax/etuvkZIRVr9wXpaDux1DoiRXRWRA0bYIVjtxqKUm+KkNkQDVWZ5Iix4HpQhi0WWk95X9TUNVtyLEnQybd8jklCDxD7xStMPXslSkAvi0lJvHGbH3lBJDc674tG7OU3hH1H+hnY3kvJxVFIdetTJrHVsm+HLtJm+gFhSnoAbbtuJw2q1OCOJvG+mndznrWQSLa1yULkZkjWCQWO4qK2UNxIxWu0vQ8CLokUxbjtCmQ6EL6lRts2NN479fjJ5QmPDiML6XB9nXl9tfRTDPyB4YXYB5aO+uaAia7xwmDvTJIaUWs06i3UC7A5hYvBA/2K1ZTxgIpn3nKNcvBkIPvoTSeZViGLDzM6JntnOHAc7kP2xM3zLw+DKQ+7o/+Pxzz6BIjD+7WJxyrkVNQBo6rKxDvLG+zGQ
+X-MS-Exchange-AntiSpam-MessageData-0: M2ESs+jTZX/oXEsvAeMHcXziG6JgHOpaLdCkDQqCaeZ0mgfRaRnXo0u+Em7may+NnminYy/CCxHPzGHDqCtbWKZYdbVTuF1qgZ8K+dji8tSHkbr2hgo0JiLUGOkUIHgXsyuwKsDAlubyY0l2ygGvVsSFFcrFzmoevq6iWxTv6mNAv7cEZY0B2Cudd/P2+2LLbeJA7NfC7XgdskrGaVNRrU3RKli9UyLk4ZUV5Em4RkZx/o0/CAq+TFOlsY1Kk/Bg7QiIkKE7FnrNydE+X5AeL8tdemEmt7niQkO9xAqwSX37KfhS1o27ywNZCyI/UhEzhqyxP9Bvk1Mboxrq5pl1AUanO6h7OllRfbHOYSIbprLCJ7rohFCCySr/mWdCJP/a9hnwj8fUOf/lVfMZurLknMwbVOZwyUGj4i1g5JY/47fCVVXHno8f6wvwUNlKnPwO
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 13:32:22.3207 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e9532dc7-2a01-4d36-ba59-08dece07317d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 13:32:23.1353 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ff56168-f92e-4cc3-d2df-08dece0731fa
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF00004FBC.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF00004FC0.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8757
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5806
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,105 +150,94 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D27196A6188
+X-Rspamd-Queue-Id: 833756A6182
 
-From: Lohita Mudimela <lohita.mudimela@amd.com>
+From: Michael Strauss <michael.strauss@amd.com>
 
-[Why]
-Reduces file fragmentation in the power module by consolidating
-power_helpers.c . The helper file contained minimal
-functionality (single utility function and shared includes) that
-didn't warrant a separate compilation unit, leading to increased
-build complexity and maintenance overhead.
+[WHY]
+12bpc color ramp pattern was never implemented.
 
-[How]
-Consolidated power_helpers.c content into the internal module
-implementation. Moved macro outside
-platform-specific conditional block for wider availability.
+[HOW]
+Add correct DPG_RAMP_CONTROL programming to match DP color ramp spec.
 
-Reviewed-by: Josip Pavic <josip.pavic@amd.com>
-Signed-off-by: Lohita Mudimela <lohita.mudimela@amd.com>
+Reviewed-by: George Shen <george.shen@amd.com>
+Signed-off-by: Michael Strauss <michael.strauss@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../drm/amd/display/modules/power/Makefile    |  2 +-
- .../gpu/drm/amd/display/modules/power/power.c |  5 +++
- .../amd/display/modules/power/power_helpers.c | 39 -------------------
- 3 files changed, 6 insertions(+), 40 deletions(-)
- delete mode 100644 drivers/gpu/drm/amd/display/modules/power/power_helpers.c
+ .../drm/amd/display/dc/opp/dcn20/dcn20_opp.c  | 33 ++++++++++++++-----
+ 1 file changed, 25 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/modules/power/Makefile b/drivers/gpu/drm/amd/display/modules/power/Makefile
-index 3000f392bdbc..0746f671eb4d 100644
---- a/drivers/gpu/drm/amd/display/modules/power/Makefile
-+++ b/drivers/gpu/drm/amd/display/modules/power/Makefile
-@@ -23,7 +23,7 @@
- # Makefile for the 'power' sub-module of DAL.
- #
+diff --git a/drivers/gpu/drm/amd/display/dc/opp/dcn20/dcn20_opp.c b/drivers/gpu/drm/amd/display/dc/opp/dcn20/dcn20_opp.c
+index 83730bbe26a8..50b6973ef123 100644
+--- a/drivers/gpu/drm/amd/display/dc/opp/dcn20/dcn20_opp.c
++++ b/drivers/gpu/drm/amd/display/dc/opp/dcn20/dcn20_opp.c
+@@ -149,6 +149,9 @@ void opp2_set_disp_pattern_generator(
+ 		case TEST_PATTERN_COLOR_FORMAT_BPC_10:
+ 			dst_bpc = 10;
+ 		break;
++		case TEST_PATTERN_COLOR_FORMAT_BPC_12:
++			dst_bpc = 12;
++		break;
+ 		default:
+ 			dst_bpc = 8;
+ 		break;
+@@ -192,22 +195,25 @@ void opp2_set_disp_pattern_generator(
 
--MOD_POWER = power_helpers.o power.o power_abm.o power_psr.o power_replay.o
-+MOD_POWER = power.o power_abm.o power_psr.o power_replay.o
-
- AMD_DAL_MOD_POWER = $(addprefix $(AMDDALPATH)/modules/power/,$(MOD_POWER))
- #$(info ************  DAL POWER MODULE MAKEFILE ************)
-diff --git a/drivers/gpu/drm/amd/display/modules/power/power.c b/drivers/gpu/drm/amd/display/modules/power/power.c
-index 5659a38b3366..af6b162a337d 100644
---- a/drivers/gpu/drm/amd/display/modules/power/power.c
-+++ b/drivers/gpu/drm/amd/display/modules/power/power.c
-@@ -501,3 +501,8 @@ bool mod_power_notify_mode_change(struct mod_power *mod_power,
-
- 	return true;
- }
-+
-+bool mod_power_only_edp(const struct dc_state *context, const struct dc_stream_state *stream)
-+{
-+	return context && context->stream_count == 1 && dc_is_embedded_signal(stream->signal);
-+}
-diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-deleted file mode 100644
-index bf0c5901b4ee..000000000000
---- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-+++ /dev/null
-@@ -1,39 +0,0 @@
--/* Copyright 2018 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-- *
-- * Authors: AMD
-- *
-- */
+ 	case CONTROLLER_DP_TEST_PATTERN_COLORRAMP:
+ 	{
+-		mode = (bit_depth ==
+-			TEST_PATTERN_COLOR_FORMAT_BPC_10 ?
+-			TEST_PATTERN_MODE_DUALRAMP_RGB :
+-			TEST_PATTERN_MODE_SINGLERAMP_RGB);
 -
--#include "power_helpers.h"
--#include "dc/inc/hw/dmcu.h"
--#include "dc/inc/hw/abm.h"
--#include "dc.h"
--#include "core_types.h"
--#include "dmub_cmd.h"
--
--#define DIV_ROUNDUP(a, b) (((a)+((b)/2))/(b))
--#define bswap16_based_on_endian(big_endian, value) \
--	((big_endian) ? cpu_to_be16(value) : cpu_to_le16(value))
--
--bool mod_power_only_edp(const struct dc_state *context, const struct dc_stream_state *stream)
--{
--	return context && context->stream_count == 1 && dc_is_embedded_signal(stream->signal);
--}
+ 		switch (bit_depth) {
+ 		case TEST_PATTERN_COLOR_FORMAT_BPC_6:
++			mode = TEST_PATTERN_MODE_SINGLERAMP_RGB;
+ 			dst_bpc = 6;
+ 		break;
+ 		case TEST_PATTERN_COLOR_FORMAT_BPC_8:
++			mode = TEST_PATTERN_MODE_SINGLERAMP_RGB;
+ 			dst_bpc = 8;
+ 		break;
+ 		case TEST_PATTERN_COLOR_FORMAT_BPC_10:
++			mode = TEST_PATTERN_MODE_DUALRAMP_RGB;
+ 			dst_bpc = 10;
+ 		break;
++		case TEST_PATTERN_COLOR_FORMAT_BPC_12:
++			mode = TEST_PATTERN_MODE_DUALRAMP_RGB;
++			dst_bpc = 12;
++		break;
+ 		default:
++			mode = TEST_PATTERN_MODE_SINGLERAMP_RGB;
+ 			dst_bpc = 8;
+ 		break;
+ 		}
+@@ -244,9 +250,20 @@ void opp2_set_disp_pattern_generator(
+ 		case TEST_PATTERN_COLOR_FORMAT_BPC_10:
+ 		{
+ 			REG_SET_3(DPG_RAMP_CONTROL, 0,
+-				DPG_RAMP0_OFFSET, 384 << 6,
+-				DPG_INC0, inc_base,
+-				DPG_INC1, inc_base + 2);
++				DPG_RAMP0_OFFSET, 384 << inc_base, // 384 start point
++				DPG_INC0, inc_base, // step size of 1
++				DPG_INC1, inc_base + 2); // step size of 4 (1 << 2)
++			REG_UPDATE_2(DPG_CONTROL,
++				DPG_VRES, 5,
++				DPG_HRES, 8);
++		}
++		break;
++		case TEST_PATTERN_COLOR_FORMAT_BPC_12:
++		{
++			REG_SET_3(DPG_RAMP_CONTROL, 0,
++				DPG_RAMP0_OFFSET, 1920 << inc_base, // 1920 start point
++				DPG_INC0, inc_base, // step size of 1
++				DPG_INC1, inc_base + 4); // step size of 16 (1 << 4)
+ 			REG_UPDATE_2(DPG_CONTROL,
+ 				DPG_VRES, 5,
+ 				DPG_HRES, 8);
 --
 2.54.0
 
