@@ -2,53 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id st1aGd5ENWrbqgYAu9opvQ
+	id Bs+FL+1ENWroqgYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:32:14 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:32:29 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBF8C6A6168
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:32:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2484B6A6177
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:32:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=IqNkOMh4;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=5BizMzg+;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55A3210E0B9;
-	Fri, 19 Jun 2026 13:32:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C70210F5D0;
+	Fri, 19 Jun 2026 13:32:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013040.outbound.protection.outlook.com
- [40.107.201.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3874F10E0B9
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 13:32:11 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011039.outbound.protection.outlook.com [52.101.52.39])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B67F810F5D0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 13:32:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RBYAEKkfGdmcAs46URO/Bc0UomMk6DQKVpuUbynJZjMcJ7ECh2a4cAFLkTRj4VC+uSM8eBedD64iNAXUtGjndRNwiFtltT4Gyr7pZuxMBQWiPWbJZyea1OuYcz+B030nr6hiuPhlCkOlyf3X8ORSd9pSzwcBWaAreQs3kvSeHGCyGa0NBXQsg2bd/M1u4pcMp/j1sEh4AeCm1KU4oRUuTGTKtkn0Yub5VmW8eqIwJXpFCboJzu0rwXRJ3MsaR18warogW/noy5S49eW/riffcExL50lLeU/m2NHd1FA8jPh1MZsUAjgTel6QbJlRvu36G+ogWqgKoNEXZqo+pivBbw==
+ b=fCzHmL0+1Sj8Q8Uv3tMblUpgrbthKCxceR0jl3g1xoOgc5Y8NLULipo0aGQysJZrz8LzQJ5fpCxlKyvSaXVM6LxaPbWOzbVgjM5ebJsYnRk+Rm/Wp4GZ0I4NnFO/da8rfV3eNw4Mt9hN1buXkzPTszSRnJb5v+tonZS9McI06LAMvIsXWPzWObhEkDS/FN8gX/AUoa7pBMjbLccC2gFHJW9s4g0zvXkpQcBDRIeZnnYym+6CLOWUKmskow+QMWlVOjsDBRCLu9J224iZNzo2FH0QGiIAWq0CfQoN7+PVaYCH8Eko39Phhr+iIHonwgDG2Lr6oZoAzqMBZuuq7euybw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zqS5JsAbCSsq5OnpygdgQiigbebd6DvPeeulvRS2U1U=;
- b=EfYp7oye4OT32/nHpkyRpOI23VYRZAnME/bKHmnkNOOl9tZkwvmViAdwAN+ykdKG2FHMqLR7AeFyff1QW0onEWkFt/wZCMf63fuAQrerNxiMZVhwsNG1CGm0dgFmcSW22blKQrXeGH9tyJTexNywFNjmfGB9H/yLpILOw6bWIAqNewpMELc+9fgYHUM6ExMnH3VLcgnbCXsmq2orrJ8G638OudALAj2G7pB+8/9aFuy1hxkoTkh2dTYwQguJ65rzDNJJpENRE3jf9krrvu5XnlhV0D808+5Gc6ZRNLvPpd3YKxLy2jaCnGvS0/w1Ia7tPJuQvgbyp/y3U01AeqgMzQ==
+ bh=O/k/xF31NIozN2vwxpPDmuoMmy7N+nVljxJvCn9P+ao=;
+ b=mMBYEQxvThfRGYFD7j+7BR/vrGyUhPIYSlxSPnjO5g66Xy0RligS5VeFSyJ+BjJn5kQe3+wLoft09saMpBLXGW85rxJsqydSUISupDj0qtf124+Wh+uEYmyxdCTx9JEjmrVkwC/3GwfLznAyiGfoTbLCz9QSoht5KhLmj04qU+LU6JxoQ0r45oWZlBqseFe0QyugUotFp6kZalrXK0bnnvw9uMTjKynn6in6atXKUYVFQu6Kegvx/dn2VIlpVkusJdA4DrFIlfbUOjepmolkLGOqSuy6QUJGCwizd3WQ46fO0HTX6hBx7udqfHsBA1GtTlEW7kQ0tuocxFeSFMwnTw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zqS5JsAbCSsq5OnpygdgQiigbebd6DvPeeulvRS2U1U=;
- b=IqNkOMh4y+DATUfnYgwNFyXtN0zq6aZbu4EWGoZFK//TkD7BAAGG2Svb/kRaM5Ub1PDQWaiSDpSZYlmS2McPwLMXLmf1mnRAFw7QLzpFwF0ujM8cSvrfU6QRrHPInSuO15VuvgnwcrmuiyDkP9j+STPg5jevGxXyaySEf0i9Ym0=
-Received: from BN9PR03CA0852.namprd03.prod.outlook.com (2603:10b6:408:13d::17)
- by CH2PR12MB4118.namprd12.prod.outlook.com (2603:10b6:610:a4::23)
+ bh=O/k/xF31NIozN2vwxpPDmuoMmy7N+nVljxJvCn9P+ao=;
+ b=5BizMzg+Y4D/GysxOJbMQJcPLk+J9Wsp0ZQyN1vGin1jGvgY9cSk21kZ9ct0LTIaCAQrkq8xTDQ2qcSL/cVq2WIe7j8VhQUJs8iQkyZ6/mvq9cOUGAIHL/g3W4COj3/uCUm6aplx9vh1PkhRS1mrgFypToW1uohq/ZspdMK8H38=
+Received: from BLAPR03CA0112.namprd03.prod.outlook.com (2603:10b6:208:32a::27)
+ by SJ1PR12MB6314.namprd12.prod.outlook.com (2603:10b6:a03:457::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.13; Fri, 19 Jun
- 2026 13:32:06 +0000
-Received: from BN2PEPF00004FBC.namprd04.prod.outlook.com
- (2603:10b6:408:13d:cafe::5d) by BN9PR03CA0852.outlook.office365.com
- (2603:10b6:408:13d::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.16 via Frontend Transport; Fri,
- 19 Jun 2026 13:32:06 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Fri, 19 Jun
+ 2026 13:32:21 +0000
+Received: from BN2PEPF00004FC0.namprd04.prod.outlook.com
+ (2603:10b6:208:32a:cafe::94) by BLAPR03CA0112.outlook.office365.com
+ (2603:10b6:208:32a::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.11 via Frontend Transport; Fri,
+ 19 Jun 2026 13:32:20 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,13 +55,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BN2PEPF00004FBC.mail.protection.outlook.com (10.167.243.182) with Microsoft
+ BN2PEPF00004FC0.mail.protection.outlook.com (10.167.243.186) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.139.8 via Frontend Transport; Fri, 19 Jun 2026 13:32:05 +0000
+ 15.21.139.8 via Frontend Transport; Fri, 19 Jun 2026 13:32:20 +0000
 Received: from georzhanmkm (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Fri, 19 Jun
- 2026 08:32:04 -0500
+ 2026 08:32:19 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -71,42 +70,45 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, George Zhang <george.zhang@amd.com>
-Subject: [PATCH 00/24] DC Patches Jun 19, 2026
-Date: Fri, 19 Jun 2026 09:21:15 -0400
-Message-ID: <20260619133154.116746-1-george.zhang@amd.com>
+ <Chen-Yu.Chen@amd.com>, Matthew Stewart <Matthew.Stewart2@amd.com>, "Dillon
+ Varone" <dillon.varone@amd.com>, George Zhang <george.zhang@amd.com>
+Subject: [PATCH 01/24] drm/amd/display: Add dcn42b_soc_and_ip_translator
+Date: Fri, 19 Jun 2026 09:21:16 -0400
+Message-ID: <20260619133154.116746-2-george.zhang@amd.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260619133154.116746-1-george.zhang@amd.com>
+References: <20260619133154.116746-1-george.zhang@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF00004FBC:EE_|CH2PR12MB4118:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7f6a37d5-64d1-4861-4aff-08dece072786
+X-MS-TrafficTypeDiagnostic: BN2PEPF00004FC0:EE_|SJ1PR12MB6314:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6f85b166-d4a2-4561-94f5-08dece07302d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|82310400026|1800799024|376014|23010399003|11063799006|56012099006|18002099003|3023799007;
-X-Microsoft-Antispam-Message-Info: nEkkzw7Ci2CGu4oxEO/fKp0HInfwINXJPvU+E+HrJoNAN9stHYr2ilvdJrwxuTwRgVj5KtThAPFuBGVAcrzHPiliDsmcccczmBM3fKCvX9jX6SFvUJ2pLIhLIJ1Y5HvRmPuItZT8jiggYdGbEqWLIcB4fTPOWp31K40iBzqiaWCs85oKXSsqHZhmUfQ10p5FRD8VHYH/8UnOsUMc/0E+KIPxLy69IyqKgLRXLS48oq0Y1amPGCd5ZNHIKHdR5ppoE0orFRKzzAhIxo0u8T4Ad9xmoTp/Y5e+dSUWwa++IS/4Ngihv77Z88YXcBgNtDrlAVPFABWPj6xiDf55zxPYpPOb0+Sun/JufR6cG7zwZoSBwWsJSLDsr6R1JDjbbmzqfUtrVVB1kEyaCz5kR5Wht6bh4Y8w1LFtVJEh+2l3k50PXeFAyjp9UL1dehphF2lL77djIUhyWyK6nnyxU84Tl509ZCb5/VuWPv2IQofgCHNUgS3IEEqmaXQaLjVmGpVNq5rDoNLL/wABd5nhX4AF6fn24NSYsBQhEsLa+MJdQJHaTZWZTotLHmbWQF/eQsqfeM3DEnppON90ot+rhZwzfaE0FiNPbIxTbbxGxOpDK9QA5TAY5XXRQuz3hFrWm1V/IJEYtvN9IRc/+u04ZZvcl0gA9GQaWpfOSu9oa+0PuVJQS59fEYoampIHkNCWMK8on5pDyRxt3s85veHuyoxPEw==
+ ARA:13230040|376014|1800799024|23010399003|82310400026|36860700016|18002099003|3023799007|56012099006|5023799004|11063799006|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: Hb9EQ0f9hbGzvDR84HbFgPzCt66/bRG5VQ9Jazz15Qrzcpnv9Ym4n+JJKR0iKsOKHeH2IJGIcTU51oMNCeZOxU3eJQo3bpsDyvJ8FFObLkR0yfCbZqtSHs7WXs/qYgCB2fAvpX7NCu3t/Uuj+uf6LBPTnI91qToJqrxYWZpVboL2g44t0ucZWQNnxRaTdi/Qy3P2KBNAu7NNuMA2waTPvI5RLbJeagbMV+9qCZpGl98QgjGk1MiUXC9mu28qEWNNP9fo4VTnoSXivHXu/v7LTz+vX3rQosRvxEIsLzqwk1hzHkUHISgzUwaSQoZFb9IBTkdepRfBA7bf4HX2pM5Z31csGp/XVAECCmvhX8FqPHlxN5cabS3F94gj8Ll7cVRTC63r6ZU2I3BkRgaMFUTUpe+4gRtMEVcpxcCoIkdEq9jnS/sLBmP1vcpdySX5r5qRv6G81BGm6cBuHDLhMf+IhJo+Xy3WFlxVs2eL9+NCuffmt1TiObY9Y1celaQeCSeI0BS+LN6ysuuvuG0AwYZz7j0KdDZDF4WEegXP0gk7hNNiYn7j9O288xuRYvJHFAJFZzzZJOhRsmOaFW8KDX9sbEkz4C4RTwX2t7DXF7Lu0cK8qV5uuVBOJDFMHatJbJlUSyByVirIRC1PaacpBGeQuQQhQcfl6cAMZUXARxhDsEefKycIClzAqs6kqmD6//vtNqEQPbMnoXXW3l9Ow0VabA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(82310400026)(1800799024)(376014)(23010399003)(11063799006)(56012099006)(18002099003)(3023799007);
+ SFS:(13230040)(376014)(1800799024)(23010399003)(82310400026)(36860700016)(18002099003)(3023799007)(56012099006)(5023799004)(11063799006)(22082099003)(6133799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: lec7pprnvGHCXe1l2jK3XBee7s9xWRKubzOLv60ExdmBTIulHPxuUZZKZ2vbAHNQnTc8CfxRq5R2vjx+AkmAHNfW3UHqBmcL+jQYpjpa0B/y2rtasf1aaI65phWu/nrk2GmgQPJ/BvURYz0UbxQYnV94uvlzlfrdXoXrX/vNAplu/M8umDLkXkphG3s5Ko93uftxfPyf4xUGssqX7JPbrcVC3T99YdmjQSDPqsSqrMgwhzXUW7+jchYIvHKtufA6bhZeiWJKQskQJzMImv7HWmUy+lz6VfmeMTrqBKv4FjW8OzehJEIgehLyMVWul7vfLYKnruPvZC0XDIeP03Wtlpq64OSejAvlava/D/wPkrrjpnz0zlSQo93ohU+tmqkvBwCxuF+KIbscRT0Mll2z3e9tTNjvtwmBzZFlnNunIlJjNshEkgW8YvSUw/85v6WV
+X-MS-Exchange-AntiSpam-MessageData-0: bb/SZrNas5LO1kK4IBdPjQmwDBhPN+dQdzyc1Rcw7eBhMkSaiGHE9x5UdFOJLptOA4WMdgyusekPg/4pF/2xrTunjbHjvc7VOcsPzPJmShJcC51IhIyssU61CNmO43j8aRBDL/dnw8u8dE1EbRlPqpKNyeXCCL3M6lkWn6Jzj+xVcY9QTDGMLLAkawevplDcu6QxvVo1uKBP6ASt0Sw9GT8bf0y/VqSXIitpbI4Bp3xfPnW0JKmvzJSujIenGBG0QnHN3cdEh5596FFQjYVMYdefrndzWkKt/o4Guddb99+8pK7iiW4x+NNbQJe7QF4UazLPPPeIoq0TNtbjRA8ntI9unArKVqTMSWPgEmV4trzCL1xZRXkwTghf+V1++o2dLvhi0l4WYivBGTTqzNoGOqafFCrG+A8PGRak+NdjnHMbuNmSTWhVyZxu8R6rbv/e
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 13:32:05.5966 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f6a37d5-64d1-4861-4aff-08dece072786
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 13:32:20.1145 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6f85b166-d4a2-4561-94f5-08dece07302d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF00004FBC.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF00004FC0.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4118
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6314
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,9 +123,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
@@ -131,144 +134,278 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	FROM_NEQ_ENVFROM(0.00)[george.zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	ALIAS_RESOLVED(0.00)[];
-	TO_DN_SOME(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BBF8C6A6168
+X-Rspamd-Queue-Id: 2484B6A6177
 
-This DC patchset brings improvements in multiple areas. In summary, we have:
+From: Matthew Stewart <Matthew.Stewart2@amd.com>
 
-* Fixes on DCN4, cursor, and others;
-* Improvements on DPM, DCN4, DCC, and others;
-* Code cleanup.
+[why]
 
-Cc: Dan Wheeler <daniel.wheeler@amd.com>
+DCN42B was not using its own max_ip_caps table. Need to create a
+separate soc_and_ip_translator in order to not reuse the DCN42 one.
 
-Alex Hung (1):
-  drm/amd/display: Remove redundant IPS mode case for DCN 4.2
+[how]
 
-Alvin Lee (1):
-  drm/amd/display: Update LSDMA commands to explicitly handle DCC fields
+Separate DCN42B into its own soc_and_ip_translator.c file to handle this.
 
-Austin Zheng (2):
-  drm/amd/display: Allow Per-DPM De-rates Instead Of A Single Global
-    Value
-  Add Debug Option To Enable Per-DPM De-rate Usage
-
-Chandana G B (1):
-  drm/amd/display: Fix intermittently CRC open failure during active
-    rendering
-
-Gabe Teeger (1):
-  drm/amd/display: Enable PSR and Replay on DCN4 variant and fix AUX
-    instance
-
-George Shen (1):
-  drm/amd/display: Add flag to disable dynamic expansion for 12bpc
-
-Harry Wentland (2):
-  drm/amd/display: drop redundant colorop type and TF checks
-  drm/amd/display: split TF/LUT colorop state lookups into separate
-    upfront phases
-
-Ivan Lipski (1):
-  drm/amd/display: Reintroduce "Force validation link training on all
-    ASICs"
-
-Karen Chen (1):
-  drm/amd/display: Disable DPPCLK RCG to fix cursor disappearing
-
-Leo Chen (4):
-  drm/amd/display: Update ONO PG Workaround for DCN42
-  drm/amd/display: Remove unnecessary DSCCLK enable during DSC PG
-  drm/amd/display: Enable HUBP/DPP power gate for DCN42
-  drm/amd/display: Refactor Driver PG's skip PG logic
-
-Lohita Mudimela (1):
-  drm/amd/display: Integrate power_helpers.c functionality into power.c.
-
-Matthew Stewart (4):
-  drm/amd/display: Add dcn42b_soc_and_ip_translator
-  drm/amd/display: Fix DCN42 null registers & register masks
-  drm/amd/display: Rewrite dccg42_init
-  drm/amd/display: Remove DCCG registers not needed in DCN42
-
-Michael Strauss (1):
-  drm/amd/display: Add 12bpc Color Ramp Support
-
-Piotr Maziarz (1):
-  drm/amd/display: Explicitly declare unsigned ints
-
-Taimur Hassan (2):
-  drm/amd/display: [FW Promotion] Release 0.1.64.0
-  drm/amd/display: Promote DC to 3.2.387
-
- .../amd/display/amdgpu_dm/amdgpu_dm_color.c   |  96 +++----
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c |   2 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_dmub.c    |   4 -
- .../amdgpu_dm/tests/amdgpu_dm_dmub_test.c     |  18 --
- .../gpu/drm/amd/display/dc/core/dc_resource.c |  11 +-
- drivers/gpu/drm/amd/display/dc/dc.h           |   6 +-
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  |  29 +-
- drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h  |  34 ++-
- drivers/gpu/drm/amd/display/dc/dc_types.h     |   1 +
- .../amd/display/dc/dccg/dcn42/dcn42_dccg.c    |  53 ++--
- .../amd/display/dc/dccg/dcn42/dcn42_dccg.h    |  63 +++--
- .../dc/dml/dcn31/display_mode_vba_31.c        |   2 +-
- .../dc/dml/dcn314/display_mode_vba_314.c      |   2 +-
- .../dml21/inc/bounding_boxes/dcn42b_soc_bb.h  |  38 +++
- .../dml21/inc/dml_top_soc_parameter_types.h   |  13 +
- .../src/dml2_core/dml2_core_dcn4_calcs.c      |  41 ++-
- drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h  |   1 +
- .../drm/amd/display/dc/link/link_detection.c  |   2 +-
- .../dc/link/protocols/link_dp_panel_replay.c  |   6 +-
- .../link/protocols/link_edp_panel_control.c   |  11 +-
- .../drm/amd/display/dc/opp/dcn20/dcn20_opp.c  |  51 +++-
- .../amd/display/dc/pg/dcn42/dcn42_pg_cntl.c   | 258 +++++++++---------
- .../amd/display/dc/pg/dcn42/dcn42_pg_cntl.h   |  22 +-
- .../dc/resource/dcn30/dcn30_resource.c        |   1 -
- .../dc/resource/dcn302/dcn302_resource.c      |   1 -
- .../dc/resource/dcn303/dcn303_resource.c      |   1 -
- .../dc/resource/dcn31/dcn31_resource.c        |   1 -
- .../dc/resource/dcn315/dcn315_resource.c      |   1 -
- .../dc/resource/dcn316/dcn316_resource.c      |   1 -
- .../dc/resource/dcn32/dcn32_resource.c        |   1 -
- .../dc/resource/dcn321/dcn321_resource.c      |   1 -
- .../dc/resource/dcn35/dcn35_resource.c        |   1 -
- .../dc/resource/dcn351/dcn351_resource.c      |   1 -
- .../dc/resource/dcn36/dcn36_resource.c        |   1 -
- .../dc/resource/dcn42/dcn42_resource.c        |   4 +-
- .../display/dc/soc_and_ip_translator/Makefile |   3 +
- .../dcn401/dcn401_soc_and_ip_translator.c     |  16 ++
- .../dcn42/dcn42_soc_and_ip_translator.c       |  18 +-
- .../dcn42/dcn42_soc_and_ip_translator.h       |   1 +
- .../dcn42b/dcn42b_soc_and_ip_translator.c     |  42 +++
- .../dcn42b/dcn42b_soc_and_ip_translator.h     |  17 ++
- .../soc_and_ip_translator.c                   |   5 +-
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 111 +++++++-
- .../drm/amd/display/modules/power/Makefile    |   2 +-
- .../gpu/drm/amd/display/modules/power/power.c |   5 +
- .../amd/display/modules/power/power_helpers.c |  39 ---
- 46 files changed, 658 insertions(+), 380 deletions(-)
+Reviewed-by: Dillon Varone <dillon.varone@amd.com>
+Signed-off-by: Matthew Stewart <Matthew.Stewart2@amd.com>
+Signed-off-by: George Zhang <george.zhang@amd.com>
+---
+ .../dml21/inc/bounding_boxes/dcn42b_soc_bb.h  | 38 +++++++++++++++++
+ .../display/dc/soc_and_ip_translator/Makefile |  3 ++
+ .../dcn42/dcn42_soc_and_ip_translator.c       | 18 +++-----
+ .../dcn42/dcn42_soc_and_ip_translator.h       |  1 +
+ .../dcn42b/dcn42b_soc_and_ip_translator.c     | 42 +++++++++++++++++++
+ .../dcn42b/dcn42b_soc_and_ip_translator.h     | 17 ++++++++
+ .../soc_and_ip_translator.c                   |  5 ++-
+ 7 files changed, 111 insertions(+), 13 deletions(-)
  create mode 100644 drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42b/dcn42b_soc_and_ip_translator.c
  create mode 100644 drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42b/dcn42b_soc_and_ip_translator.h
- delete mode 100644 drivers/gpu/drm/amd/display/modules/power/power_helpers.c
 
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/bounding_boxes/dcn42b_soc_bb.h b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/bounding_boxes/dcn42b_soc_bb.h
+index eae4a37b0984..60ef56419846 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/bounding_boxes/dcn42b_soc_bb.h
++++ b/drivers/gpu/drm/amd/display/dc/dml2_0/dml21/inc/bounding_boxes/dcn42b_soc_bb.h
+@@ -224,4 +224,42 @@ static const struct dml2_soc_bb dml2_socbb_dcn42b = {
+ 	.max_fclk_for_uclk_dpm_khz = 2200 * 1000,
+ };
+
++static const struct dml2_ip_capabilities dml2_dcn42b_max_ip_caps = {
++	.pipe_count = 4,
++	.otg_count = 3,
++	.num_dsc = 3,
++	.max_num_dp2p0_streams = 3,
++	.max_num_hdmi_frl_outputs = 0,
++	.max_num_dp2p0_outputs = 2,
++	.rob_buffer_size_kbytes = 64,
++	.config_return_buffer_size_in_kbytes = 1792,
++	.config_return_buffer_segment_size_in_kbytes = 64,
++	.meta_fifo_size_in_kentries = 32,
++	.compressed_buffer_segment_size_in_kbytes = 64,
++	.cursor_buffer_size = 24,
++	.max_flip_time_us = 110,
++	.max_flip_time_lines = 50,
++	.hostvm_mode = 0,
++	.subvp_drr_scheduling_margin_us = 100,
++	.subvp_prefetch_end_to_mall_start_us = 15,
++	.subvp_fw_processing_delay = 15,
++	.max_vactive_det_fill_delay_us = 400,
++
++	.fams2 = {
++		.max_allow_delay_us = 100 * 1000,
++		.scheduling_delay_us = 550,
++		.vertical_interrupt_ack_delay_us = 40,
++		.allow_programming_delay_us = 18,
++		.min_allow_width_us = 20,
++		.subvp_df_throttle_delay_us = 100,
++		.subvp_programming_delay_us = 200,
++		.subvp_prefetch_to_mall_delay_us = 18,
++		.drr_programming_delay_us = 35,
++
++		.lock_timeout_us = 5000,
++		.recovery_timeout_us = 5000,
++		.flip_programming_delay_us = 300,
++	},
++};
++
+ #endif
+diff --git a/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/Makefile b/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/Makefile
+index d168fb1eacf7..8a9bb0aef9b7 100644
+--- a/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/Makefile
+@@ -9,13 +9,16 @@ soc_and_ip_translator_rcflags := $(CC_FLAGS_NO_FPU)
+
+ CFLAGS_$(AMDDALPATH)/dc/soc_and_ip_translator/dcn401/dcn401_soc_and_ip_translator.o := $(soc_and_ip_translator_ccflags)
+ CFLAGS_$(AMDDALPATH)/dc/soc_and_ip_translator/dcn42/dcn42_soc_and_ip_translator.o := $(soc_and_ip_translator_ccflags)
++CFLAGS_$(AMDDALPATH)/dc/soc_and_ip_translator/dcn42b/dcn42b_soc_and_ip_translator.o := $(soc_and_ip_translator_ccflags)
+
+ CFLAGS_REMOVE_$(AMDDALPATH)/dc/soc_and_ip_translator/dcn401/dcn401_soc_and_ip_translator.o := $(soc_and_ip_translator_rcflags)
+ CFLAGS_REMOVE_$(AMDDALPATH)/dc/soc_and_ip_translator/dcn42/dcn42_soc_and_ip_translator.o := $(soc_and_ip_translator_rcflags)
++CFLAGS_REMOVE_$(AMDDALPATH)/dc/soc_and_ip_translator/dcn42b/dcn42b_soc_and_ip_translator.o := $(soc_and_ip_translator_rcflags)
+
+ soc_and_ip_translator := soc_and_ip_translator.o
+ soc_and_ip_translator += dcn401/dcn401_soc_and_ip_translator.o
+ soc_and_ip_translator += dcn42/dcn42_soc_and_ip_translator.o
++soc_and_ip_translator += dcn42b/dcn42b_soc_and_ip_translator.o
+
+ AMD_DAL_soc_and_ip_translator := $(addprefix $(AMDDALPATH)/dc/soc_and_ip_translator/, $(soc_and_ip_translator))
+
+diff --git a/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42/dcn42_soc_and_ip_translator.c b/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42/dcn42_soc_and_ip_translator.c
+index ae2c6a2f3f75..c6c1b19b7370 100644
+--- a/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42/dcn42_soc_and_ip_translator.c
++++ b/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42/dcn42_soc_and_ip_translator.c
+@@ -5,22 +5,16 @@
+ #include "dcn42_soc_and_ip_translator.h"
+ #include "../dcn401/dcn401_soc_and_ip_translator.h"
+ #include "bounding_boxes/dcn42_soc_bb.h"
+-#include "bounding_boxes/dcn42b_soc_bb.h"
+
+ /* soc_and_ip_translator component used to get up-to-date values for bounding box.
+  * Bounding box values are stored in several locations and locations can vary with DCN revision.
+  * This component provides an interface to get DCN-specific bounding box values.
+  */
+
+-static void get_default_soc_bb(struct dml2_soc_bb *soc_bb, const struct dc *dc)
++static void get_default_soc_bb(struct dml2_soc_bb *soc_bb)
+ {
+-	if (dc->ctx->dce_version == DCN_VERSION_4_2B) {
+-		memcpy(soc_bb, &dml2_socbb_dcn42b, sizeof(struct dml2_soc_bb));
+-		memcpy(&soc_bb->qos_parameters, &dml_dcn42b_variant_a_soc_qos_params, sizeof(struct dml2_soc_qos_parameters));
+-	} else {
+-		memcpy(soc_bb, &dml2_socbb_dcn42, sizeof(struct dml2_soc_bb));
+-		memcpy(&soc_bb->qos_parameters, &dml_dcn42_variant_a_soc_qos_params, sizeof(struct dml2_soc_qos_parameters));
+-	}
++	memcpy(soc_bb, &dml2_socbb_dcn42, sizeof(struct dml2_soc_bb));
++	memcpy(&soc_bb->qos_parameters, &dml_dcn42_variant_a_soc_qos_params, sizeof(struct dml2_soc_qos_parameters));
+ }
+
+ /*
+@@ -165,7 +159,7 @@ static void dcn42_update_soc_bb_with_values_from_clk_mgr(struct dml2_soc_bb *soc
+ 	}
+ }
+
+-static void apply_soc_bb_updates(struct dml2_soc_bb *soc_bb, const struct dc *dc, const struct dml2_configuration_options *config)
++void dcn42_apply_soc_bb_updates(struct dml2_soc_bb *soc_bb, const struct dc *dc, const struct dml2_configuration_options *config)
+ {
+ 	(void)config;
+ 	/* Individual modification can be overwritten even if it was obtained by a previous function.
+@@ -181,9 +175,9 @@ static void apply_soc_bb_updates(struct dml2_soc_bb *soc_bb, const struct dc *dc
+ void dcn42_get_soc_bb(struct dml2_soc_bb *soc_bb, const struct dc *dc, const struct dml2_configuration_options *config)
+ {
+ 	//get default soc_bb with static values
+-	get_default_soc_bb(soc_bb, dc);
++	get_default_soc_bb(soc_bb);
+ 	//update soc_bb values with more accurate values
+-	apply_soc_bb_updates(soc_bb, dc, config);
++	dcn42_apply_soc_bb_updates(soc_bb, dc, config);
+ }
+
+ static void dcn42_get_ip_caps(struct dml2_ip_capabilities *ip_caps)
+diff --git a/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42/dcn42_soc_and_ip_translator.h b/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42/dcn42_soc_and_ip_translator.h
+index 1dded5426152..8ac90655f276 100644
+--- a/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42/dcn42_soc_and_ip_translator.h
++++ b/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42/dcn42_soc_and_ip_translator.h
+@@ -13,5 +13,6 @@
+
+ void dcn42_construct_soc_and_ip_translator(struct soc_and_ip_translator *soc_and_ip_translator);
+ void dcn42_get_soc_bb(struct dml2_soc_bb *soc_bb, const struct dc *dc, const struct dml2_configuration_options *config);
++void dcn42_apply_soc_bb_updates(struct dml2_soc_bb *soc_bb, const struct dc *dc, const struct dml2_configuration_options *config);
+
+ #endif /* _DCN42_SOC_AND_IP_TRANSLATOR_H_ */
+diff --git a/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42b/dcn42b_soc_and_ip_translator.c b/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42b/dcn42b_soc_and_ip_translator.c
+new file mode 100644
+index 000000000000..50669f458e23
+--- /dev/null
++++ b/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42b/dcn42b_soc_and_ip_translator.c
+@@ -0,0 +1,42 @@
++// SPDX-License-Identifier: MIT
++//
++// Copyright 2026 Advanced Micro Devices, Inc.
++
++#include "../dcn42/dcn42_soc_and_ip_translator.h"
++#include "dcn42b_soc_and_ip_translator.h"
++#include "../dcn401/dcn401_soc_and_ip_translator.h"
++#include "bounding_boxes/dcn42b_soc_bb.h"
++
++/* soc_and_ip_translator component used to get up-to-date values for bounding box.
++ * Bounding box values are stored in several locations and locations can vary with DCN revision.
++ * This component provides an interface to get DCN-specific bounding box values.
++ */
++
++static void get_default_soc_bb(struct dml2_soc_bb *soc_bb)
++{
++	memcpy(soc_bb, &dml2_socbb_dcn42b, sizeof(struct dml2_soc_bb));
++	memcpy(&soc_bb->qos_parameters, &dml_dcn42b_variant_a_soc_qos_params, sizeof(struct dml2_soc_qos_parameters));
++}
++
++void dcn42b_get_soc_bb(struct dml2_soc_bb *soc_bb, const struct dc *dc, const struct dml2_configuration_options *config)
++{
++	//get default soc_bb with static values
++	get_default_soc_bb(soc_bb);
++	//update soc_bb values with more accurate values
++	dcn42_apply_soc_bb_updates(soc_bb, dc, config);
++}
++
++static void dcn42b_get_ip_caps(struct dml2_ip_capabilities *ip_caps)
++{
++	*ip_caps = dml2_dcn42b_max_ip_caps;
++}
++
++static struct soc_and_ip_translator_funcs dcn42b_translator_funcs = {
++	.get_soc_bb = dcn42b_get_soc_bb,
++	.get_ip_caps = dcn42b_get_ip_caps,
++};
++
++void dcn42b_construct_soc_and_ip_translator(struct soc_and_ip_translator *soc_and_ip_translator)
++{
++	soc_and_ip_translator->translator_funcs = &dcn42b_translator_funcs;
++}
+diff --git a/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42b/dcn42b_soc_and_ip_translator.h b/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42b/dcn42b_soc_and_ip_translator.h
+new file mode 100644
+index 000000000000..0d4ea613431a
+--- /dev/null
++++ b/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn42b/dcn42b_soc_and_ip_translator.h
+@@ -0,0 +1,17 @@
++// SPDX-License-Identifier: MIT
++//
++// Copyright 2026 Advanced Micro Devices, Inc.
++
++#ifndef _DCN42B_SOC_AND_IP_TRANSLATOR_H_
++#define _DCN42B_SOC_AND_IP_TRANSLATOR_H_
++
++#include "core_types.h"
++#include "dc.h"
++#include "clk_mgr.h"
++#include "dml_top_soc_parameter_types.h"
++#include "soc_and_ip_translator.h"
++
++void dcn42b_construct_soc_and_ip_translator(struct soc_and_ip_translator *soc_and_ip_translator);
++void dcn42b_get_soc_bb(struct dml2_soc_bb *soc_bb, const struct dc *dc, const struct dml2_configuration_options *config);
++
++#endif /* _DCN42B_SOC_AND_IP_TRANSLATOR_H_ */
+diff --git a/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/soc_and_ip_translator.c b/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/soc_and_ip_translator.c
+index e6887cac5884..ffc9c38eeeed 100644
+--- a/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/soc_and_ip_translator.c
++++ b/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/soc_and_ip_translator.c
+@@ -5,6 +5,7 @@
+ #include "soc_and_ip_translator.h"
+ #include "soc_and_ip_translator/dcn401/dcn401_soc_and_ip_translator.h"
+ #include "soc_and_ip_translator/dcn42/dcn42_soc_and_ip_translator.h"
++#include "soc_and_ip_translator/dcn42b/dcn42b_soc_and_ip_translator.h"
+
+ static void dc_construct_soc_and_ip_translator(struct soc_and_ip_translator *soc_and_ip_translator,
+ 		enum dce_version dc_version)
+@@ -14,9 +15,11 @@ static void dc_construct_soc_and_ip_translator(struct soc_and_ip_translator *soc
+ 		dcn401_construct_soc_and_ip_translator(soc_and_ip_translator);
+ 		break;
+ 	case DCN_VERSION_4_2:
+-	case DCN_VERSION_4_2B:
+ 		dcn42_construct_soc_and_ip_translator(soc_and_ip_translator);
+ 		break;
++	case DCN_VERSION_4_2B:
++		dcn42b_construct_soc_and_ip_translator(soc_and_ip_translator);
++		break;
+ 	default:
+ 		break;
+ 	}
 --
 2.54.0
 
