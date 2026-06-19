@@ -2,52 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id d7i/I/pENWr9qgYAu9opvQ
+	id 3gQ9L/BENWrsqgYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:32:42 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:32:32 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3648B6A61A5
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:32:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65CCA6A617A
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:32:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=felrA2Gy;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=BihlBI4a;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FEB310F5EE;
-	Fri, 19 Jun 2026 13:32:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED90010F5D9;
+	Fri, 19 Jun 2026 13:32:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013006.outbound.protection.outlook.com
- [40.93.196.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3105610F5D6
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 13:32:28 +0000 (UTC)
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011036.outbound.protection.outlook.com [40.107.208.36])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B83D10F5DE
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 13:32:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vT/EXQh6nZfx2yc76yy7iCVZfY/SZcVsvjS6+TGD228zXyWZPHh9aoL0T7KSzkFB7PYfKFudlvxvseMXcS6q+FpON21yqaACpamBGSSwVoGe9fufhBDQZ3oeBA01ivfNMWmWlwAJoOkImO3BGEkLDDTFAy+K/4si6mbcOld+Ol8IBikcW2XTnFv2zes46OIYMc3i/g8etGeyHDRpvkqhlqNZCUAucBOEcBVOoyd/z6mecJdN6w+X9Ei90iqykd34soTes/xgszyKRSB6huGp+cqVjtuH4gQfY7mBxtQtYkeD3iX84AtCtGJ49FHrGglP7vhayr+wIrNS1ijyboTrtg==
+ b=AWmv0N/+GOjssKM1MKWO7FNgCVxnBSytMcJgGloYmuCNdyRMSjZUhDc0ZTjwXhWdX7OOAWhKZcHGCIUZSVdUXfAIo0m4AKbiKCuxO7D4tFty+AWnHqQtBreLOKrD3W/3k4I/8DFcX32NgOVZk6vmlJef8rPGZtPdzT00BoeykebSctFl372VKTqt7tqp7wcLYvYc41lyltAzFAemHAc6bYVPIAJxW7dbXGtL4poqLXsgmkABg6+YycAk1IJMnvZVuRakdRCFFCVRswjQBDOZd10U5AK+l9rxt8g9DucZUttfwOsYPOAbmTLE6iET56d0K7H7Y3lVUlokEStJS7+Ftg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8PGVHeRypSIeIAsIPJ0+LhEpvmZnni16hMEqY5J927Y=;
- b=xAzZ22wkED35IWuQg6oEzv5m/hnzTGxDGIPzrsiyV2Pb0tu4/DJY2M3vK832W+Y1MT1YENWriiGvKjfn/JgEWLuVghMWDKIga+KqxAD6BKFlkIrFo+2StFctp+DdqeQZ5VIBeJKfJtXK85bJlIKoTYKadMw0AW0qDXL5lQhu9+5s2N9mmzsphJwdiA+JfCYwpkmyF6X06pb+vBDeYR0QKEQp1mOZBBjI8+olwIif4mNUh/VjeqyzPfY0kHHswXOGkp/SGzdGYFDWpRuR0C2uZvpgM5uXov3EYG+aUhqAhm0q2s0jqvzJ/s8o4oSsPFVbW9boZq8zH7KPhiI8/eivVQ==
+ bh=AWDIl9oqGf9pETdaRf1RlkjBdewcFnoy3KUfyA2JRDY=;
+ b=cK+3ppmISbQV/cPR66vFgE81MrhiDVMntqMIb20cLWK+bXIgNTottsrOD+6mMoYhs82k+p2eDwPxPJRp4FMu5mMVSAaLjYLoNcoMWQ+PlO5/ALkEYy65P0G3kTb8Fw7aiJRzkRkIZce8DUiktRejfnjVFWbDLYznh2CAefr3K/4dYlF96k/C6tPxTrd6RrG9g1z9gv8mBal3HwsyZfIrs62HE4Alo2MYebbYn/T0jbqs2ulp2u9kfDkSVCMMLpzWS6s0o+RaN8lwAg6HBkmeZRRuwbghQkCiS2P8yEgO2zzrObY0AmVebk02TBd3fh1L4iEpRwyBrlqU0ieJXL37Ow==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8PGVHeRypSIeIAsIPJ0+LhEpvmZnni16hMEqY5J927Y=;
- b=felrA2GyQ6TT1WfWO9IGTNZhhDceygFrcoBbHDBR4rF4DNLZ1BJWitiB+J3ckU2207OgUGgyxJ/jnZ8u9d/+4NvnNZ255W1A6tuZAV6WmZzpvnnDiX9JZSMN+fABl1yOYFdOX1MyczespyJOvHoz4f24VsQNYQOkj9zSgi6hU/Q=
-Received: from BN0PR03CA0020.namprd03.prod.outlook.com (2603:10b6:408:e6::25)
- by PH0PR12MB8173.namprd12.prod.outlook.com (2603:10b6:510:296::14)
+ bh=AWDIl9oqGf9pETdaRf1RlkjBdewcFnoy3KUfyA2JRDY=;
+ b=BihlBI4aRhTUZPr2uSP0glo2fvPc7V5mD/hyOv200Lc7XvHxPGK3ItNBqdq2ZuRiftHYvgBscaBUT/3vNZzY656NgCWW2nMrmLhycpuLymstmnLAecGcqpkuLHz9BfEJpiBYFa8zbXg0/N6onJytnNVd/7r8L8cfrKs+jMiSRJE=
+Received: from BN9PR03CA0346.namprd03.prod.outlook.com (2603:10b6:408:f6::21)
+ by CH2PR12MB4245.namprd12.prod.outlook.com (2603:10b6:610:af::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.12; Fri, 19 Jun
- 2026 13:32:24 +0000
-Received: from BN2PEPF00004FBB.namprd04.prod.outlook.com
- (2603:10b6:408:e6:cafe::95) by BN0PR03CA0020.outlook.office365.com
- (2603:10b6:408:e6::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.12 via Frontend Transport; Fri,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Fri, 19 Jun
+ 2026 13:32:25 +0000
+Received: from BN2PEPF00004FBE.namprd04.prod.outlook.com
+ (2603:10b6:408:f6:cafe::6c) by BN9PR03CA0346.outlook.office365.com
+ (2603:10b6:408:f6::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.11 via Frontend Transport; Fri,
  19 Jun 2026 13:32:24 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -56,9 +55,9 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BN2PEPF00004FBB.mail.protection.outlook.com (10.167.243.181) with Microsoft
+ BN2PEPF00004FBE.mail.protection.outlook.com (10.167.243.184) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.139.8 via Frontend Transport; Fri, 19 Jun 2026 13:32:23 +0000
+ 15.21.139.8 via Frontend Transport; Fri, 19 Jun 2026 13:32:24 +0000
 Received: from georzhanmkm (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Fri, 19 Jun
@@ -71,12 +70,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, "Relja (Reggie) Vojvodic" <relja.vojvodic@amd.com>,
- George Zhang <george.zhang@amd.com>
-Subject: [PATCH 06/24] drm/amd/display: Reintroduce "Force validation link
- training on all ASICs"
-Date: Fri, 19 Jun 2026 09:21:21 -0400
-Message-ID: <20260619133154.116746-7-george.zhang@amd.com>
+ <Chen-Yu.Chen@amd.com>, Matthew Stewart <Matthew.Stewart2@amd.com>, "Ovidiu
+ (Ovi) Bunea" <ovidiu.bunea@amd.com>, George Zhang <george.zhang@amd.com>
+Subject: [PATCH 07/24] drm/amd/display: Fix DCN42 null registers & register
+ masks
+Date: Fri, 19 Jun 2026 09:21:22 -0400
+Message-ID: <20260619133154.116746-8-george.zhang@amd.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260619133154.116746-1-george.zhang@amd.com>
 References: <20260619133154.116746-1-george.zhang@amd.com>
@@ -88,29 +87,29 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF00004FBB:EE_|PH0PR12MB8173:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0403ce08-0344-4c0c-f29e-08dece073274
+X-MS-TrafficTypeDiagnostic: BN2PEPF00004FBE:EE_|CH2PR12MB4245:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8dacb3ae-f248-420b-f2a5-08dece0732e4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|36860700016|82310400026|376014|1800799024|56012099006|11063799006|6133799003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: clWwcz/Vp0O7lusOO4+Q3C0D07DoXuw5m5u06swq0OcDNTNxTjx8Olxx52IIWzwjIfJHPshFXtGDnvmSZ3QGZHGc4z5Nvx3LmrjrpRMlAY7Y9bBoRWVn9Dz+EkVxkFNREmNYe5HsJ53ILhWQn3Mc7qB3MAj0k9xzUNE+MFalpMpx8hp66ll7O5SkyOuItbo+CvP6IbQXGoaS3y+EmnoN4t12I8ztkVVdvgMc3nOW2cfliEM7GfXZER2oPMy4f/IvbyJgjUW7Gf8c2OZbjiWbLuBSdk6Qj4pocT7VI1YtoEeJRnZbsIzXTmDWgtoBBE844LwfI+hBuH4dQeAwv51J2zJA23hK8z4GUndsarApfEelxBv+ACUog0CdBt14S2TrG25ncwsMzMExevt1qbM8kQnDminfUMbUVi85oRrtnf/HKVrFGkxlWujG7dUHXyjv3VBvoLqf2zO5SeamW6j8qcInk5IfweZjva8e4kqzl58Xlb2zDAoyDK47Nfa2P46cMfBiL9QN6buN7JFWfwhTJjVjSZTvrArFHQEn+DHB4anbgVLpdL1fm+rfQD76Lb0gU7IM//+sLk7eX063hfyA7F1nP6H2tYEI+3T1jWLRaeSP0wl2Qwia0rhhl40qHaV8mgXEhPfBBpOZPFkZfSfqQi2IM85NuddsvxglyuCO3enne4Bj6D5b8is6Rwv5KO+S/DLjmlm+bnNV+v5+nMY7Vg==
+ ARA:13230040|1800799024|23010399003|36860700016|376014|82310400026|56012099006|18002099003|22082099003|11063799006;
+X-Microsoft-Antispam-Message-Info: j/4FkNlmrv+DAw7GBXNoM7w9TRcvu4SlY9PDgZlJFKrQ5YEwW5V+fkzSDSPVEK2C1LD6DkbBtTWOnvNDe/ylSJI1m6vsPV3G0mM812gIGofGxHE9WSO8liIlbbhJG0mBREIrUSaoD7hKXhya9b8x3l+ufnAbgSfBaM8M1FvFWFR4bMfxHiIkeqwkQ6rNf6e6LGc/zYHMU1RR/kP0/8u+cypNQLc1vv7PWEzaoIawfHEj8EuMfNCqswXYw8ldGhiJicDOJQlcvv1I7v6oUPJYMUAx1qv9+Ez2h96+t4p9Hy0av2QRoYSeI22bhLoO/RHnnuPyssd7Omw78C/v47imddHmHMZ9QVAFhV/6Z2YcPu87NOWqsaGtOb0JYe1gs+zzvPDxkOX5lEQfAM4G3K2OqZzqHD6ZsvxMVlzDNDJyKQBu4wBeq757+5QhpEUPvvyqP87ufteF7OeBtDwI6qyRWnWWfQTWS14zY7VbcFo/JIcOA4Qe4NKwCZ4l3/XPJkpkmoaxvkc1WTS6lHt1mno4wqtAkIAjxzYkuIEqwbbKe/z/WSUEM3IdSrM7iqjoRvzlPE4kE33gVSDfhcwgRUMk/PjfvqBDxnATDgAbNCxt5RUEEJkumFe+TSnCbLwY3sdqy4tAaXI3aaMpAeMDCgGcGyKvDVpRFKyPezpUxq/ycQdYpWSRj3dWZi3BVP7IlVaYLuk9iV2gDm/nTQ5NcZ9FwA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(23010399003)(36860700016)(82310400026)(376014)(1800799024)(56012099006)(11063799006)(6133799003)(22082099003)(18002099003);
+ SFS:(13230040)(1800799024)(23010399003)(36860700016)(376014)(82310400026)(56012099006)(18002099003)(22082099003)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: Z+hwjIEfWQcKg3B1O2m1YIB5SmGlO64IhEeRrvTXy8pzrNtGYbvqw/u3fqGD60YVxAaUAWF7O4bXG08kKFUkXQbN7NmItC7AuZ8Du1uZYYmYXn3rqte+U4d+2gglSBPhP+x8D+ilmO67dUHxhCef5KE2Rr7Sm3palhZku4SAxJsjvzlupCP2XJ3/OasYDfi6bipE5YnfoijZrhFaqVcOp/Bd/vbg+2150ANzgzTrRKn/IgiASKg7J82Me+z94606PMdSC60TLCQk4HjaEJuloJ2MCaJR0mCGkvUUHbCRUqPsKejKcWnk6seaxCroaiVmsjwo51jlAW/IZP5EEvkCn7W8DhjhhC0MG30v1f/oaKjzKV+aPDbJfVTTMwUEu3rYqU+Jw/PcV9WgiGFuWfv/VHJ6n4E6ZlAHHuCLIHnxJ8YgZFRNKlqEVDT+pmNmrKgJ
+X-MS-Exchange-AntiSpam-MessageData-0: YhPx4CALD8pM84Yf3LbsOkg2voR2VrhyJHfelIoYPCwqblHat9Lm+Y2hnzwnP8NrjGUHk6r7gLbl95KxoWprGMBCURk0nwBNoSDmJiSJzCbhT/fiWtqrIj+Hz/CNjimVTOpA4/CUNLJPAeDaFHt6+tWv7wb+Cwt6ibd5/ztJwgK2fbv7ip/n7312dX2qJ88iysy0dG6GZeybGNAZf0h6brX8Tt3tk+tt/58FV/MSoEv1RYqs9zXUjqLQSEMo18r5y/f7F2s2mClGYsR3U8kbFQYeC37WXt7l1B8MtcqiWX8mKpjkkFTvrZLODoDMvi8sfNvJ/Xb2j/JjQ3dJmsrKxVI6ltpLdX9ViMpazBKTOZQ2B31JCYqlhx18mVFiMxTAreneqMJqSL9dCjqHS33RH/PDK0nafzMFJ9IBV7u9iqblvysO9Oz+BVMsMvfdvql5
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 13:32:23.9381 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0403ce08-0344-4c0c-f29e-08dece073274
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 13:32:24.6713 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8dacb3ae-f248-420b-f2a5-08dece0732e4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF00004FBB.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF00004FBE.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8173
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4245
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,7 +136,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -152,210 +151,51 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3648B6A61A5
+X-Rspamd-Queue-Id: 65CCA6A617A
 
-From: Ivan Lipski <ivan.lipski@amd.com>
+From: Matthew Stewart <Matthew.Stewart2@amd.com>
 
-[Why & How]
-'skip_frl_pretraining' was introduced and enabled along w/ HDMI 2.1
-initial upstream, but is causing HDMI validation link training to be s
-kipped on short hotplugs and compliance issues.
+[why]
 
-Remove this behaviour to force link training on all hotplugs for all
-ASICs.
+The register lists used on DCN42 variants are different. Some reused
+codepaths are trying to access registers not used.
 
-Reviewed-by: Relja (Reggie) Vojvodic <relja.vojvodic@amd.com>
-Reviewed-by: Sun peng (Leo) Li <sunpeng.li@amd.com>
-Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
+[how]
+
+Add DISPCLK_FREQ_CHANGECNTL, HUBPREQ_DEBUG, and HDMISTREAMCLK_CNTL to
+the register lists.
+
+Reviewed-by: Ovidiu (Ovi) Bunea <ovidiu.bunea@amd.com>
+Signed-off-by: Matthew Stewart <Matthew.Stewart2@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h                             | 1 -
- drivers/gpu/drm/amd/display/dc/dc_types.h                       | 1 +
- drivers/gpu/drm/amd/display/dc/link/link_detection.c            | 2 +-
- drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c  | 1 -
- .../gpu/drm/amd/display/dc/resource/dcn302/dcn302_resource.c    | 1 -
- .../gpu/drm/amd/display/dc/resource/dcn303/dcn303_resource.c    | 1 -
- drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c  | 1 -
- .../gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c    | 1 -
- .../gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c    | 1 -
- drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c  | 1 -
- .../gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c    | 1 -
- drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c  | 1 -
- .../gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c    | 1 -
- drivers/gpu/drm/amd/display/dc/resource/dcn36/dcn36_resource.c  | 1 -
- 14 files changed, 2 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 2de0f9cf8264..b21fdea5fca3 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -591,7 +591,6 @@ struct dc_config {
- 	bool enable_mipi_converter_optimization;
- 	bool enable_frl;
- 	bool force_hdmi21_frl_enc_enable;
--	bool skip_frl_pretraining;
- 	bool use_default_clock_table;
- 	bool force_bios_enable_lttpr;
- 	uint8_t force_bios_fixed_vs;
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_types.h b/drivers/gpu/drm/amd/display/dc/dc_types.h
-index db6a89d938b6..90dd1ae7e953 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_types.h
-@@ -183,6 +183,7 @@ struct dc_panel_patch {
- 	unsigned int force_frl;
- 	unsigned int vsdb_rcc_wa;
- 	unsigned int delay_hdmi_link_training;
-+	unsigned int skip_frl_pre_training;
- 	unsigned int skip_avmute;
- 	unsigned int skip_audio_sab_check;
- 	unsigned int mst_start_top_delay;
-diff --git a/drivers/gpu/drm/amd/display/dc/link/link_detection.c b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
-index a3212fd151d1..24b191d39777 100644
---- a/drivers/gpu/drm/amd/display/dc/link/link_detection.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/link_detection.c
-@@ -933,7 +933,7 @@ static bool should_verify_link_capability_destructively(struct dc_link *link,
- 		destrictive = true;
- 		if (is_hdmi_frl_in_use(link)) {
- 			destrictive = false;
--		} else if (link->dc->config.skip_frl_pretraining) {
-+		} else if (link->local_sink->edid_caps.panel_patch.skip_frl_pre_training) {
- 			for (i = 0; i < MAX_PIPES; i++) {
- 				if (pipes[i].stream != NULL &&
- 					pipes[i].stream->link == link) {
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c
-index 70eacb0edfd9..ec74538472ee 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn30/dcn30_resource.c
-@@ -2483,7 +2483,6 @@ static bool dcn30_resource_construct(
- 	dc->caps.post_blend_color_processing = true;
- 	dc->caps.force_dp_tps4_for_cp2520 = true;
- 	dc->caps.hdmi_hpo = true;
--	dc->config.skip_frl_pretraining = true;
- 	dc->caps.extended_aux_timeout_support = true;
- 	dc->caps.dmcub_support = true;
+diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.h b/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.h
+index 2076565b1caa..d45e3af77aad 100644
+--- a/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.h
++++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.h
+@@ -46,6 +46,7 @@
+ 	DCCG_SF(DISPCLK_FREQ_CHANGE_CNTL, DCCG_FIFO_ERRDET_STATE, mask_sh),\
+ 	DCCG_SF(DISPCLK_FREQ_CHANGE_CNTL, DCCG_FIFO_ERRDET_OVR_EN, mask_sh),\
+ 	DCCG_SF(DISPCLK_FREQ_CHANGE_CNTL, DISPCLK_CHG_FWD_CORR_DISABLE, mask_sh),\
++	DCCG_SF(DISPCLK_FREQ_CHANGE_CNTL, RESYNC_FIFO_LEVEL_ADJUST_EN, mask_sh),\
+ 	DCCG_SF(DPPCLK0_DTO_PARAM, DPPCLK0_DTO_PHASE, mask_sh),\
+ 	DCCG_SF(DPPCLK0_DTO_PARAM, DPPCLK0_DTO_MODULO, mask_sh),\
+ 	DCCG_SF(HDMICHARCLK0_CLOCK_CNTL, HDMICHARCLK0_EN, mask_sh),\
+@@ -239,8 +240,7 @@
+ 	DCCG_SF(SYMCLKE_CLOCK_ENABLE, SYMCLKE_SRC_SEL, mask_sh),\
+ 	DCCG_SF(SYMCLKE_CLOCK_ENABLE, SYMCLKE_CLOCK_ENABLE, mask_sh),\
+ 	DCCG_SF(SYMCLKE_CLOCK_ENABLE, SYMCLKE_FE_EN, mask_sh),\
+-	DCCG_SF(SYMCLKE_CLOCK_ENABLE, SYMCLKE_FE_SRC_SEL, mask_sh),\
+-	DCCG_SF(DISPCLK_FREQ_CHANGE_CNTL, RESYNC_FIFO_LEVEL_ADJUST_EN, mask_sh)
++	DCCG_SF(SYMCLKE_CLOCK_ENABLE, SYMCLKE_FE_SRC_SEL, mask_sh)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn302/dcn302_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn302/dcn302_resource.c
-index caeb001dd7de..106f04efed1f 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn302/dcn302_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn302/dcn302_resource.c
-@@ -1378,7 +1378,6 @@ static bool dcn302_resource_construct(
- 	dc->caps.post_blend_color_processing = true;
- 	dc->caps.force_dp_tps4_for_cp2520 = true;
- 	dc->caps.hdmi_hpo = true;
--	dc->config.skip_frl_pretraining = true;
- 	dc->caps.extended_aux_timeout_support = true;
- 	dc->caps.dmcub_support = true;
- 	dc->caps.max_v_total = (1 << 15) - 1;
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn303/dcn303_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn303/dcn303_resource.c
-index 58c314237ce6..f41926eb0761 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn303/dcn303_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn303/dcn303_resource.c
-@@ -1322,7 +1322,6 @@ static bool dcn303_resource_construct(
- 	dc->caps.post_blend_color_processing = true;
- 	dc->caps.force_dp_tps4_for_cp2520 = true;
- 	dc->caps.hdmi_hpo = true;
--	dc->config.skip_frl_pretraining = true;
- 	dc->caps.extended_aux_timeout_support = true;
- 	dc->caps.dmcub_support = true;
- 	dc->caps.max_v_total = (1 << 15) - 1;
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
-index 15730fe1b9db..97c2cd7045b5 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn31/dcn31_resource.c
-@@ -2081,7 +2081,6 @@ static bool dcn31_resource_construct(
- 	if (dc->config.forceHBR2CP2520)
- 		dc->caps.force_dp_tps4_for_cp2520 = false;
- 	dc->caps.hdmi_hpo = true;
--	dc->config.skip_frl_pretraining = true;
- 	dc->caps.dp_hpo = true;
- 	dc->caps.dp_hdmi21_pcon_support = true;
- 	dc->caps.edp_dsc_support = true;
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
-index 0f800f586e08..4e283e4c238c 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn315/dcn315_resource.c
-@@ -2057,7 +2057,6 @@ static bool dcn315_resource_construct(
- 	if (dc->config.forceHBR2CP2520)
- 		dc->caps.force_dp_tps4_for_cp2520 = false;
- 	dc->caps.hdmi_hpo = true;
--	dc->config.skip_frl_pretraining = true;
- 	dc->caps.dp_hpo = true;
- 	dc->caps.dp_hdmi21_pcon_support = true;
- 	dc->caps.edp_dsc_support = true;
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c
-index efbc2a506046..0c8b37520ec3 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn316/dcn316_resource.c
-@@ -1931,7 +1931,6 @@ static bool dcn316_resource_construct(
- 	if (dc->config.forceHBR2CP2520)
- 		dc->caps.force_dp_tps4_for_cp2520 = false;
- 	dc->caps.hdmi_hpo = true;
--	dc->config.skip_frl_pretraining = true;
- 	dc->caps.dp_hpo = true;
- 	dc->caps.dp_hdmi21_pcon_support = true;
- 	dc->caps.edp_dsc_support = true;
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-index e03dc966e121..697463622a10 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn32/dcn32_resource.c
-@@ -2409,7 +2409,6 @@ static bool dcn32_resource_construct(
- 	if (dc->config.forceHBR2CP2520)
- 		dc->caps.force_dp_tps4_for_cp2520 = false;
- 	dc->caps.hdmi_hpo = true;
--	dc->config.skip_frl_pretraining = true;
- 	dc->caps.dp_hpo = true;
- 	dc->caps.dp_hdmi21_pcon_support = true;
- 	dc->caps.edp_dsc_support = true;
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c
-index 65f445f38cfb..6ebab0f185c9 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn321/dcn321_resource.c
-@@ -1901,7 +1901,6 @@ static bool dcn321_resource_construct(
- 	dc->caps.post_blend_color_processing = true;
- 	dc->caps.force_dp_tps4_for_cp2520 = true;
- 	dc->caps.hdmi_hpo = true;
--	dc->config.skip_frl_pretraining = true;
- 	dc->caps.dp_hpo = true;
- 	dc->caps.dp_hdmi21_pcon_support = true;
- 	dc->caps.edp_dsc_support = true;
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-index baf00942b8f3..c94136bf2dcf 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn35/dcn35_resource.c
-@@ -2031,7 +2031,6 @@ static bool dcn35_resource_construct(
- 	if (dc->config.forceHBR2CP2520)
- 		dc->caps.force_dp_tps4_for_cp2520 = false;
- 	dc->caps.hdmi_hpo = true;
--	dc->config.skip_frl_pretraining = true;
- 	dc->caps.dp_hpo = true;
- 	dc->caps.dp_hdmi21_pcon_support = true;
 
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-index 75a0a3dc3052..42c8c01efb0b 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn351/dcn351_resource.c
-@@ -2004,7 +2004,6 @@ static bool dcn351_resource_construct(
- 	if (dc->config.forceHBR2CP2520)
- 		dc->caps.force_dp_tps4_for_cp2520 = false;
- 	dc->caps.hdmi_hpo = true;
--	dc->config.skip_frl_pretraining = true;
- 	dc->caps.dp_hpo = true;
- 	dc->caps.dp_hdmi21_pcon_support = true;
-
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn36/dcn36_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn36/dcn36_resource.c
-index 8e84abdff57a..b7afba548fd4 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn36/dcn36_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn36/dcn36_resource.c
-@@ -2001,7 +2001,6 @@ static bool dcn36_resource_construct(
- 	if (dc->config.forceHBR2CP2520)
- 		dc->caps.force_dp_tps4_for_cp2520 = false;
- 	dc->caps.hdmi_hpo = true;
--	dc->config.skip_frl_pretraining = true;
- 	dc->caps.dp_hpo = true;
- 	dc->caps.dp_hdmi21_pcon_support = true;
-
+ void dccg42_otg_add_pixel(struct dccg *dccg,
 --
 2.54.0
 
