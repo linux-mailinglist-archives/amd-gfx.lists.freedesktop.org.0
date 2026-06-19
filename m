@@ -2,114 +2,110 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id AgfvCwNFNWoKqwYAu9opvQ
+	id kfFhGWxENWqkqgYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:32:51 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:30:20 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA9FB6A61C7
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:32:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4DD86A6133
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 15:30:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=zXrqVeFs;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=MxiYJK4E;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("google.com:s=arc-20240605:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DBDA10F5F4;
-	Fri, 19 Jun 2026 13:32:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D77D10E088;
+	Fri, 19 Jun 2026 13:30:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012038.outbound.protection.outlook.com [40.107.209.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88EFC10F5EB
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 13:32:44 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Oj0i0Lmm9Nmnhdy7d+3U00AhViBEwFCoUNCeDQ00NqfRjJkOlxRialtPhed19nNUWG62ytTyeeExH1HFzIStIUi21AGKS0UTcfQ/Iv3baPpsrCyaE2FePnI52pOY3NAppfr+DbdtOpudbB4evN+7Drj7uIKNq3fYhh047dBwJAOyDNrQREfPXhlUEbaw2FnUmKxre7kLxJjZ+47s+lpDUiy6fBT8kOQb4bssr9LW7N2Gl7cfHFAI3e+XxtPO28TkDuCC+oYu3/cibfqZeeezT+DmsCtYKpZL7LHm2CeAqcsWjx/3OnrYLPn69BlvpF8SrRkf69p5TKFHjlpAIEnnPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AjPdsIMAlwFSNuI+jCaPKuMgz8E4J3S2arGeKVSMQ6I=;
- b=uvH9PHjAFu5GroU8TvK1ihzXAaowK7bYUBKvpbB58R1EqC4Bzunmr3X/b33VBpaLXZy6Ml4Ap0iB6j1jbAc37f83Lj8w1vrsbK3qn9FTKt9djZGAz97rqBY2qgrVm/FJD4yg99WD7BxZ1nwyw3XhpovR+dV9NqBDiTVaqaa/U1VZcExE+owitehf5oZq3ZAQUTOju9DrUgFxtBvIhc1SKkZEjeVPhbJt7a7Aby36VfzlYYrkBtuJ+kNxFUrBgbiszTCtqIrPV4yrnPyFFMoHiRMNrCbo+vF80fPYO5ISZRiEy1gPyVJyoY7ELY5PjoJ/r1lDQkKq/9aN8VGLhO5QgQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AjPdsIMAlwFSNuI+jCaPKuMgz8E4J3S2arGeKVSMQ6I=;
- b=zXrqVeFsitSJlL/jFIgF8FNH34XKXJT4kfUYE9N+5yRIC06fjYVITdpKloJ+mtqF2GR8LeqxTY9aM76/GhlhEjBquCcPKercTR45Ki9siSPUnZUTXBH/x0bRkRgPjv5Kzgk0ONTuTdAjcH0Xh3fvUGMR/uhJsIf35KcEfjSpZK8=
-Received: from BN9PR03CA0859.namprd03.prod.outlook.com (2603:10b6:408:13d::24)
- by CH3PR12MB7641.namprd12.prod.outlook.com (2603:10b6:610:150::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Fri, 19 Jun
- 2026 13:32:39 +0000
-Received: from BN2PEPF00004FBC.namprd04.prod.outlook.com
- (2603:10b6:408:13d:cafe::a5) by BN9PR03CA0859.outlook.office365.com
- (2603:10b6:408:13d::24) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.13 via Frontend Transport; Fri,
- 19 Jun 2026 13:32:39 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BN2PEPF00004FBC.mail.protection.outlook.com (10.167.243.182) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.139.8 via Frontend Transport; Fri, 19 Jun 2026 13:32:39 +0000
-Received: from georzhanmkm (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Fri, 19 Jun
- 2026 08:32:36 -0500
-From: George Zhang <george.zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
- Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
- Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
- <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
- <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Chenyu Chen <chen-yu.chen@amd.com>, George Zhang
- <george.zhang@amd.com>
-Subject: [PATCH 24/24] drm/amd/display: Remove redundant IPS mode case for DCN
- 4.2
-Date: Fri, 19 Jun 2026 09:21:39 -0400
-Message-ID: <20260619133154.116746-25-george.zhang@amd.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260619133154.116746-1-george.zhang@amd.com>
-References: <20260619133154.116746-1-george.zhang@amd.com>
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com
+ [209.85.221.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0581410E088
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 13:30:17 +0000 (UTC)
+Received: by mail-vk1-f179.google.com with SMTP id
+ 71dfb90a1353d-59ebc9135edso67066e0c.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 06:30:16 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781875816; cv=none;
+ d=google.com; s=arc-20240605;
+ b=au/SWYUO42IluBfJidpI/2pMg+SHKVbhK774UebKdf5srx7BGX40D0hBjs740OeF0G
+ GWytzn4S15+nHH50EhgbHAeNJ2n6wg61Pr21hAldI25Rc+U22bHDtUXnQPVWb4GONNWP
+ 32eE/r4T92eHWNGIBl1oeRsTqoKIBQ6+v7Ti5YHEgZsayP8vZIyP72R+wqz5y83rP6ec
+ pCAId2J9R96zTIaFPrtNalGCI2mkGINQpAGqZgSxD+CIbrWLJq2SrDrdpgWiOldM+erg
+ qverbr87LhR149Tux5MX3gwDpwgNFBMYfyWG14eIrBFz0+fSXoxPZbvYIbfTqwY/Z+dw
+ ZPRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=+BAkjpfWQowdjBsNdaaNxgIzUMsqo46Arsowlr/gjUc=;
+ fh=zhfJp64LGfjTDkTFiBkkrx4gm132SO5yqXuHnDwZggY=;
+ b=D5u+6BOfzfcHVVMFI03U05GNMfm39uF5I1Tkq8pd9gmV5g07O2lp4Tcu2KpkmyBokV
+ 1eUZjtuqMGqMPdvVxVD1iWZ3NDsx/fUbKmYX1RcAixdhT4ZzjfKByG0yLHypuQtm+3h4
+ MPXIYmKzo3zMAwakS1QtUbVW5wLxSNK/FLDU7s3ZUcrxJXCr4P9bNzDTFbBaiAAShhlg
+ Uv8Xf9TzZ1QdxsEtUjydXQ9LOzUrAYiLGCWIdMuWXEd8idzPZzmOZ69Il4JWwnO1s5vX
+ VBpoBOXKysYduIdBcyuOh0Dqvm2vP7d+33YCtzG2M5L/5bPv7aOmBtcjPerS0EFA1Pk4
+ cihQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1781875816; x=1782480616; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=+BAkjpfWQowdjBsNdaaNxgIzUMsqo46Arsowlr/gjUc=;
+ b=MxiYJK4E7LO7WpPp+VcNsM/B3/oOCBcjOnezmaYE51fH+k/lCSGQRQhFZE4BrnijNI
+ Op6j3PKx0ISp1E53ASi8r82/CGPVWnIi+sVwgqBUfJVmdR58M7/ijfZg+xvyTpXMq5dr
+ 6rOJUo599cnlx+4a0XY6ExI7lC4YyQY2lPKVJRFCIIf8e84Qh5JyBvY408JqOV0gdp3b
+ mrKvXX0X5O65kH08pGVXF3cEt1rW5ucNoRpoc1hTt+Y4dR9moL9ajd2r4XMIwTVDVhhc
+ SBPTKuz91J05VaIah9LJCSWbc7CtL7qaRBpS0oHVfUZN59gH2H8DnL7SDYpJx6zvPOBw
+ UhDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1781875816; x=1782480616;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=+BAkjpfWQowdjBsNdaaNxgIzUMsqo46Arsowlr/gjUc=;
+ b=Nlbw0J/Y+D0bEQG4CO8ZYqgTs18rYKDnPC9HeXdGhiz7zvbG0J46TFyT+D147WwYBc
+ yuG23O1iQF2bu37LFz/RLZgP9Q5ibu47/n8KWiJMMk4R7GnkXICkdzSSCBKRAJnvn4i8
+ 51IPYH0HS6tsoTZIGx3rVuwt6sHL4/bRkNep7nicEBx6mfUbBc2xYviv0DGS7lvsNpSV
+ 086lj9XaLy4tbd4X7oQCazwHXCmc5FA4JkflUYAz4Jb9+e6/bDrYqKzbn9bvj0G0NoJY
+ +YmQmbCeBkuAMR18FteokCi9G6Lu5iSRwymhIRleB3CVARLJnkv919IqHxBedMSwWEn9
+ Knjw==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ8MEdaFyBfF4FCq3Vj05DP53KPi0W5ar8xLDTnmwi3ig6Iyu/G8D6UL0po4V2SZPSIqc672D3rj@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx3rQmyZCnel9t4U7X2vVLCMTFVQNflcmDlc8OGAI0aTAM6nUtg
+ rHLa+SKeNZ9jwvKFmhx6lsA+KU1y76S2U4x6TqfzeqcIYCUIieSOWjq3sQUH5X/4aZZWD5Ih24b
+ haU3TroBWCAPcJJnONhKKNWGQZfLtM+Q=
+X-Gm-Gg: AfdE7cnEK+iPzQlwaiQYoMxh9JjLJh14+DfyXJ/v9SRzoBin6ffjVb1Ho8KgPq9usOe
+ w9n/3S61t3Q3CdeAb8/FT/oGJjvT7iYIOiPJfv4hOTp0+DCE0g+9W6k6F94L3Mm1u8IfFeyTsdV
+ mmPsVBUERGJUrbu5gAVg7ITH7sO13ZdCsIYdE/1UtZVPQ7zucCPz/8v4INIjHsfmyheMHvOjOnu
+ axbD+w6OAG7XtffH9x8Oddkanx6BUkQccaAkBTOuh4xFJFo5jw+hRNV6S7+5GIqUrlNaXxNHQTj
+ n10KjncmJrs3JQCV01jodQuWp0ZgGbSf6FxWEHuvoziV+dHrCtGEbsk+Wwg=
+X-Received: by 2002:a05:6102:1620:b0:674:84bf:8e0a with SMTP id
+ ada2fe7eead31-72b16d7a278mr196403137.7.1781875815754; Fri, 19 Jun 2026
+ 06:30:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF00004FBC:EE_|CH3PR12MB7641:EE_
-X-MS-Office365-Filtering-Correlation-Id: d85f7d25-7078-4b78-9007-08dece073bed
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|36860700016|1800799024|82310400026|376014|56012099006|11063799006|6133799003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: GLJRYICoUHjWWe4AY1uE5xV7/RxNj+3qV07Oycwf9wQ1CA/6gKOzEwISXiFDPcprQcrBUDIFl1cywpadt1LPMykDtEyr/iv76m1Cb4Epl8ZzecY5CiN93/L0LeoQ4r5JDWpH9fPyQDnVyla9YA0OiTt4BZRFBEw0q1MSKrwWH3rUw0kDcGksT5oUooc2A0xLxiLlvc3f7UTfCK8g4iJ3hrPzwGm+/FeGWfgaPiLSGulmmTT7nTzqkyHjsiZPSNMhXsDTp4kYCLFRIR/sMcbBdrNJN5GeILrbqwFlYcx8KglfVlKOfhcp0OdHIgd5Mtj39ZQzsjwNVecJzOKP/JPCEVb34GnB5gA6oxNchefCeY0Qs+0ckSTMBXfu1sAEO+O9/MMKoZJ6BSKq7Skwuh92oEQCSRie8wfbjteExt7twnHZILmjsQrCWna/HUgCLmFB7EC3gIzJTFH7S69XXKVrbGWfjoMGw5aYmMy7ctB5nx70Vh1CdKX1srLr1nnxZEhMtu/advwnfl47PEti/UWAupixi88ogRR6gvCtxtHqInncjG3D5Vy0SdeRzlWvqa1XmgFAYsggi77LyzG+yUKipw9LzDHjSfqp9ck8ONE5p1GuPVm2PdQdAaNERpwYCHuutFPNFzDnM3DtjBvb+rgUVgTWJSd/AFsbKhKcKWQ97hdjuq8aZshNvoFSNSfrLYHmtZXwuF/R8OwZmRfo3vyROQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(23010399003)(36860700016)(1800799024)(82310400026)(376014)(56012099006)(11063799006)(6133799003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: Co6rguHBJANtbralYaMDCrcChjKGCy/tqpSv/JsR6261iiTjlSpQKs4tsPISo6VUYiEJjfqrcIWNJtHSn6Tenuh/gjbvqkGEcszNWaO2VJfJRISdWuOTJsOwAyl3kWWchP/S8VYcU9udP1eo3wf8Qcz+jpg67t2GSyzdzWDhLdg1fxnhyPxC5uPW4xVzOgY2rNZk54qKMya8rKMo/FK6SI3VLb78xmSfoNhLNE+xVE0bPZfYnCN6i3SQTOE9BIXelKXp88DTm7CmqcFD/tVMfCiNhfSoqA3b36gEnCo6afkHfGgomqwEaluST3iE+OUgQLUWIuUGnpvw0GK8n6zkqFDOZyZ+43mbKphVzSCdbRXu+Qh7BTmcSUo7jgQWkt8tg8a28BYAQrjdcgUzmGnjWijwd1hQFPYCz0f1rhC9zbZhAHhNCf6vzAm2TEDygVi8
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2026 13:32:39.8310 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d85f7d25-7078-4b78-9007-08dece073bed
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF00004FBC.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7641
+References: <20260519030624.51613-1-leorize+oss@disroot.org>
+ <20260519030624.51613-2-leorize+oss@disroot.org>
+ <CADnq5_MrUaLRP70hwb5YGawjfft9qUaH4h_t4TQ17AEgAwj3ww@mail.gmail.com>
+ <1f24aee4-8588-4d54-ba5a-cc5e9c002a54@disroot.org>
+In-Reply-To: <1f24aee4-8588-4d54-ba5a-cc5e9c002a54@disroot.org>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 19 Jun 2026 09:30:02 -0400
+X-Gm-Features: AVVi8CeVOSc_6Z1h6askeKyU8KcBbZJ7fycBobyYUlTtvuSIqWN8dX11pHGRATM
+Message-ID: <CADnq5_NHskZySwM3pt9yPkAGRmS6JHGnh=TyKv4==dkL+9wR=w@mail.gmail.com>
+Subject: Re: [PATCH 1/1] drm/amd/display: set MSA MISC1 bit 6 when using VSC
+ SDP for DCE 11.x
+To: Leorize <leorize+oss@disroot.org>
+Cc: "Leo (Sunpeng) Li" <Sunpeng.Li@amd.com>, "Wentland,
+ Harry" <Harry.Wentland@amd.com>, 
+ linux-kernel@vger.kernel.org, Rodrigo Siqueira <siqueira@igalia.com>, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,104 +121,148 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[george.zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:leorize+oss@disroot.org,m:Sunpeng.Li@amd.com,m:Harry.Wentland@amd.com,m:linux-kernel@vger.kernel.org,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:leorize@disroot.org,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,vger.kernel.org,igalia.com,gmail.com,ffwll.ch,lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx,oss];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mail.gmail.com:mid,gitlab.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CA9FB6A61C7
+X-Rspamd-Queue-Id: B4DD86A6133
 
-From: Alex Hung <alex.hung@amd.com>
+Applied.  Thanks!
 
-[WHAT]
-Remove the redundant IP_VERSION(4, 2, 0) case from
-dm_get_default_ips_mode() since it only reassigns the same
-DMUB_IPS_ENABLE value already set at initialization.
+Alex
 
-Also remove the corresponding KUnit test.
-
-Reviewed-by: Chenyu Chen <chen-yu.chen@amd.com>
-Signed-off-by: Alex Hung <alex.hung@amd.com>
-Signed-off-by: George Zhang <george.zhang@amd.com>
----
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.c |  4 ----
- .../amdgpu_dm/tests/amdgpu_dm_dmub_test.c      | 18 ------------------
- 2 files changed, 22 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.c
-index 579a435dcefc..4f5dd2158417 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_dmub.c
-@@ -453,10 +453,6 @@ enum dmub_ips_disable_type dm_get_default_ips_mode(
- 	case IP_VERSION(3, 5, 1):
- 		ret =  DMUB_IPS_RCG_IN_ACTIVE_IPS2_IN_OFF;
- 		break;
--	case IP_VERSION(4, 2, 0):
--	case IP_VERSION(4, 2, 1):
--		ret =  DMUB_IPS_ENABLE;
--		break;
- 	default:
- 		/* ASICs older than DCN35 do not have IPSs */
- 		if (amdgpu_ip_version(adev, DCE_HWIP, 0) < IP_VERSION(3, 5, 0))
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_dmub_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_dmub_test.c
-index b82dd301a896..bf90ccfbf431 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_dmub_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_dmub_test.c
-@@ -350,23 +350,6 @@ static void dm_test_get_default_ips_mode_dcn36(struct kunit *test)
- 			DMUB_IPS_RCG_IN_ACTIVE_IPS2_IN_OFF);
- }
-
--/**
-- * dm_test_get_default_ips_mode_dcn42 - Test Get default ips mode dcn42
-- * @test: The KUnit test context
-- */
--static void dm_test_get_default_ips_mode_dcn42(struct kunit *test)
--{
--	struct amdgpu_device *adev;
+On Thu, Jun 18, 2026 at 10:03=E2=80=AFPM Leorize <leorize+oss@disroot.org> =
+wrote:
+>
+> Friendly ping. Should I resend this patch?
+>
+> On 5/26/26 7:52 AM, Alex Deucher wrote:
+> > @Leo (Sunpeng) Li
+> > , @Wentland, Harry
+> >
+> > Can you take a look at this?
+> >
+> > On Tue, May 19, 2026 at 3:19=E2=80=AFAM Leorize <leorize+oss@disroot.or=
+g> wrote:
+> >> When BT.2020 colorimetry is selected, the driver sends information usi=
+ng
+> >> VSC SDP but does not set "ignore MSA colorimetry" bit on older GPUs wi=
+th
+> >> DCE-based IPs. This causes certain sinks to prefer colorimetry
+> >> information in DP MSA, resulting in terrible color rendering ("dull"
+> >> colors) when HDR is enabled.
+> >>
+> >> This commit wires up the MISC1 bit 6 for GPUs with DCE 11.x based IPs =
+to
+> >> correctly configure sinks to ignore colorimetry information in MSA,
+> >> resolving the color rendering issue.
+> >>
+> >> Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/4849
+> >> Assisted-by: oh-my-pi:GPT-5.5
+> >> Signed-off-by: Leorize <leorize+oss@disroot.org>
+> >> ---
+> >>  .../drm/amd/display/dc/dce/dce_stream_encoder.c   | 15 ++++++++++++++=
 -
--	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
--
--	adev->ip_versions[DCE_HWIP][0] = IP_VERSION(4, 2, 0);
--
--	KUNIT_EXPECT_EQ(test, dm_get_default_ips_mode(adev),
--			DMUB_IPS_DISABLE_ALL);
--}
--
- /**
-  * dm_test_get_default_ips_mode_older_than_dcn35 - Test Get default ips mode older than dcn35
-  * @test: The KUnit test context
-@@ -572,7 +555,6 @@ static struct kunit_case amdgpu_dm_dmub_tests[] = {
- 	KUNIT_CASE(dm_test_get_default_ips_mode_dcn35),
- 	KUNIT_CASE(dm_test_get_default_ips_mode_dcn351),
- 	KUNIT_CASE(dm_test_get_default_ips_mode_dcn36),
--	KUNIT_CASE(dm_test_get_default_ips_mode_dcn42),
- 	KUNIT_CASE(dm_test_get_default_ips_mode_older_than_dcn35),
- 	KUNIT_CASE(dm_test_get_default_ips_mode_newer_default),
- 	/* dm_dmub_hw_init() */
---
-2.54.0
-
+> >>  .../drm/amd/display/dc/dce/dce_stream_encoder.h   |  3 ++-
+> >>  2 files changed, 16 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c b=
+/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
+> >> index ed407e779c12..2c3a20d35fe9 100644
+> >> --- a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
+> >> +++ b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
+> >> @@ -271,7 +271,6 @@ static void dce110_stream_encoder_dp_set_stream_at=
+tribute(
+> >>         bool use_vsc_sdp_for_colorimetry,
+> >>         uint32_t enable_sdp_splitting)
+> >>  {
+> >> -       (void)use_vsc_sdp_for_colorimetry;
+> >>         (void)enable_sdp_splitting;
+> >>         uint32_t h_active_start;
+> >>         uint32_t v_active_start;
+> >> @@ -334,6 +333,16 @@ static void dce110_stream_encoder_dp_set_stream_a=
+ttribute(
+> >>         if (REG(DP_MSA_MISC))
+> >>                 misc1 =3D REG_READ(DP_MSA_MISC);
+> >>
+> >> +       /* For YCbCr420 and BT2020 Colorimetry Formats, VSC SDP shall =
+be used.
+> >> +        * When MISC1, bit 6, is Set to 1, a Source device uses a VSC =
+SDP to indicate the
+> >> +        * Pixel Encoding/Colorimetry Format and that a Sink device sh=
+all ignore MISC1, bit 7,
+> >> +        * and MISC0, bits 7:1 (MISC1, bit 7, and MISC0, bits 7:1, bec=
+ome "don't care").
+> >> +        */
+> >> +       if (use_vsc_sdp_for_colorimetry)
+> >> +               misc1 =3D misc1 | 0x40;
+> >> +       else
+> >> +               misc1 =3D misc1 & ~0x40;
+> >> +
+> >>         /* set color depth */
+> >>
+> >>         switch (hw_crtc_timing.display_color_depth) {
+> >> @@ -499,6 +508,10 @@ static void dce110_stream_encoder_dp_set_stream_a=
+ttribute(
+> >>                                 hw_crtc_timing.h_addressable + hw_crtc=
+_timing.h_border_right,
+> >>                                 DP_MSA_VHEIGHT, hw_crtc_timing.v_borde=
+r_top +
+> >>                                 hw_crtc_timing.v_addressable + hw_crtc=
+_timing.v_border_bottom);
+> >> +       } else {
+> >> +               /* DCE-only path */
+> >> +               if (REG(DP_MSA_MISC))
+> >> +                       REG_WRITE(DP_MSA_MISC, misc1);   /* MSA_MISC1 =
+*/
+> >>         }
+> >>  }
+> >>
+> >> diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h b=
+/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h
+> >> index 342c0afe6a94..88d6044904d1 100644
+> >> --- a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h
+> >> +++ b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h
+> >> @@ -96,7 +96,8 @@
+> >>
+> >>  #define SE_COMMON_REG_LIST(id)\
+> >>         SE_COMMON_REG_LIST_DCE_BASE(id), \
+> >> -       SRI(AFMT_CNTL, DIG, id)
+> >> +       SRI(AFMT_CNTL, DIG, id), \
+> >> +       SRI(DP_MSA_MISC, DP, id)
+> >>
+> >>  #define SE_DCN_REG_LIST(id)\
+> >>         SE_COMMON_REG_LIST_BASE(id),\
+> >> --
+> >> 2.54.0
+> >>
