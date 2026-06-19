@@ -2,87 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xPoXFJszNWp/ogYAu9opvQ
+	id tZ+aFek5NWo0pQYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 14:18:35 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 14:45:29 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBDA56A5A56
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 14:18:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CCAA6A5D67
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 14:45:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=TtUji9cJ;
+	dkim=pass header.d=intel.com header.s=Intel header.b=B5Iwa2++;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9BA910F550;
-	Fri, 19 Jun 2026 12:18:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D49810F5BF;
+	Fri, 19 Jun 2026 12:45:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
- [209.85.208.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B481110F550
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 12:18:28 +0000 (UTC)
-Received: by mail-lj1-f171.google.com with SMTP id
- 38308e7fff4ca-39977ab0562so21099161fa.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 05:18:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1781871507; x=1782476307; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=dLZ+pCnD0P0yEjXHP7s+d0OIOgshDvs2k5lhyVXVghQ=;
- b=TtUji9cJqns1GVmodR3q+XjhI/mpybhPXKxTQBaT5s3lX9Vz+aMhA4LRylJph1w6cz
- yoJpF3UjL8SZlUWiazRvDvENqNDXBXjJwR/uarKYqw5Mo5Nt1KgRl/THBv86BFIA0glE
- Tmsc4WR8c562yQuyy5LFhClZ7rwV3mBX6UiGlofZGTqyko91iuif9ldzV1xz/DStB0yC
- MSToQV6ZXUDEuMd37lqiZbemaPf69mHcMPZPJ7q0DG/WhipqkB3CSKqFBhs6M/ck9orv
- gc8ZY/1tSatOfLOQguyfAvV4O6qa7zULp62bb4yh7vT6dnKy3k3A9U9ajQtkBffMu5dT
- 2rJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781871507; x=1782476307;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=dLZ+pCnD0P0yEjXHP7s+d0OIOgshDvs2k5lhyVXVghQ=;
- b=M7Vjigrwnvyh0UJopiAGhvIIiOfdfhHzRi48H6R0Bq25FNT7Xl+h39w7aHCikgw809
- DqxEAM6xexwe7toX8gXzT2IiSUcMM2djJqsm/Cs+kJbmETPPHcexQB09VIuw38wRQ/xL
- 8PGxrTRCxNlzRue2xTbIVGqiyRCyLrz/ysVZBfloTu0IER0DgenHXuUStKiOqIhjVKaN
- JQ/wkV6E87k7q7s417sGJ8aRDt3iVyIz/zaJYMJK+JOOb7Eg9Ue/7dLeEFTwhcTIjn7N
- 8IF0V2ksWmlMsyxY8QiniD5e2BKXWWMQOx10Ij92/1s4eEFzQt8Vzqo7T36sxVV2bgQ/
- 8gnQ==
-X-Forwarded-Encrypted: i=1;
- AFNElJ9F1oQGAasO+hhZQXkj1kGYNz9zBbOZhXZLUeHGF87lx8FC1o5Nr6qJ3YbI8it6B8TCtOt383D9@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxku2dJ2kbxT0fMmOuTD07AJX3tP7hxaRnopezFNtW6+NfL9I+f
- C2uYSUwRx/Ae7J+PGCzQRjkwZ1DEdmXlKRVYkIwOiZETOabmE2/joeSA
-X-Gm-Gg: AfdE7clKrQ7GUyoAvddYVYmLcMxHZIT43raLPBOKibjDDw5EDXzhV1caXtFcRYyhLmK
- Cg2+dcNULDAFsLcL6mSN40xC6hGMXjWv0ucjtRSQ4IbxuQLv2PPECAK1fIJUPuLNXdybR6Ui7EI
- 7o6tRkvYP2LkHpHoPr7I5U4ZdGAleWGh/i+d8uAVbKsHghuQap2KoGUnn8b2nQ1qu4mQvrpIsVn
- 9y9+AmlE93l/pCKywgRB1/urKcwH7U/rxJUTxY1QAUyX1jfIGPWHPa3YRhi62V8Sowwhqxp+V0O
- gi7Wg0wakH+jzqtfcuSzbcT9tlib4z30CADv1+jfoVUt8egIitpWbVhux93XuND+ESNQTkMvETH
- HMjudRbZ06jk1bn2ZSAFWz7O55hEmaUZXl601pSMeFAdOR0J2IXotam616ur3gvTL5t7FIFmgJn
- DdqGjhd7M+Z/30sNN6iZ/udw==
-X-Received: by 2002:a05:651c:211f:b0:399:1fbd:8f2f with SMTP id
- 38308e7fff4ca-3998bd06f64mr8439831fa.9.1781871506548; 
- Fri, 19 Jun 2026 05:18:26 -0700 (PDT)
-Received: from localhost ([188.234.148.119]) by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-3998beca743sm4598331fa.5.2026.06.19.05.18.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 19 Jun 2026 05:18:24 -0700 (PDT)
-From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Vitaly Prosyak <vitaly.prosyak@amd.com>
-Cc: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/amdgpu: do not enter fs_reclaim under notifier_lock
- in lockdep training
-Date: Fri, 19 Jun 2026 17:18:18 +0500
-Message-ID: <20260619121819.189293-1-mikhail.v.gavrilov@gmail.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <cbc54f68-b0bd-40ad-b5e7-ed8157128417@amd.com>
-References: <cbc54f68-b0bd-40ad-b5e7-ed8157128417@amd.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFB8A10F5BD;
+ Fri, 19 Jun 2026 12:45:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781873125; x=1813409125;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=TGA2JCPZEyY6tdazTpYaB8HNXLg5+WpDgvXWYYF8kao=;
+ b=B5Iwa2++zPx5F1mZpmxKgOEO18Jtp6AzOuBoQ7U089PbHimLSAKPdfg8
+ JDoYZzr+xwd3kDqJmWuLftZihBFrmowb3trRCvDTNstMRlsXAsQyQ2ygs
+ DE+kRP9vdRGKLPzJy2aTmEqNNj2wHX2k3fxMbAIPmkhXVdXiTUFNi6dbY
+ 5qDDPA7Mfbt5F9NB93n0CWO3Li0EIkuMDgefmv/F1TWLLAKyIqp4oh6kz
+ BRwm8ZV8fFIBjgUd/IAQv5+GgpojxFeDxPcCvQB7SNRH3pqc5XCjXrfDb
+ hG81Yc0iSk24WB0SHx99uDUoPbHSYC8pSM9wu8F32EHPhogba2zgMBUFl w==;
+X-CSE-ConnectionGUID: DzdPcNm8Qw6AoaZcN6j4TA==
+X-CSE-MsgGUID: xSyJ2fhMS72goIUCNyp4xw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11821"; a="82813298"
+X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="82813298"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2026 05:45:24 -0700
+X-CSE-ConnectionGUID: 2pDFDLJBTtKUDhrtwZS5JA==
+X-CSE-MsgGUID: /z4r2GaHTmC1/71lwG4Prw==
+X-ExtLoop1: 1
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.244.211])
+ ([10.245.244.211])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2026 05:45:22 -0700
+Message-ID: <4c7300dc-ab5e-464f-9704-d8da378ee1af@intel.com>
+Date: Fri, 19 Jun 2026 13:45:20 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] gpu/buddy: bail out of try_harder when alignment cannot
+ be honoured
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, =?UTF-8?Q?Timur_Krist=C3=B3f?=
+ <timur.kristof@gmail.com>, John Olender <john.olender@gmail.com>,
+ stable@vger.kernel.org
+References: <20260618124755.2751205-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260618124755.2751205-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,219 +80,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[mikhailvgavrilov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:vitaly.prosyak@amd.com,m:mikhail.v.gavrilov@gmail.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:mikhailvgavrilov@gmail.com,s:lists@lfdr.de];
 	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[mikhailvgavrilov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FROM_HAS_DN(0.00)[]
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[matthew.auld@intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CBDA56A5A56
+X-Rspamd-Queue-Id: 9CCAA6A5D67
 
-Makes sense, thanks. I won't respin this one then.
+On 18/06/2026 13:47, Arunpravin Paneer Selvam wrote:
+> The try_harder contiguous fallback could return a range whose start
+> offset did not match the caller's min_block_size. Check each candidate
+> against the requested alignment and reject the allocation when no
+> candidate satisfies it, instead of handing back a misaligned range.
+> 
+> Suggested-by: Christian König <christian.koenig@amd.com>
+> Fixes: 0a1844bf0b53 ("drm/buddy: Improve contiguous memory allocation")
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Timur Kristóf <timur.kristof@gmail.com>
+> Cc: John Olender <john.olender@gmail.com>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> ---
+>   drivers/gpu/buddy.c | 33 +++++++++++++++++++++------------
+>   1 file changed, 21 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+> index dc81fe0301ce..28ed3250ac57 100644
+> --- a/drivers/gpu/buddy.c
+> +++ b/drivers/gpu/buddy.c
+> @@ -1127,13 +1127,11 @@ static int __alloc_contig_try_harder(struct gpu_buddy *mm,
+>   	struct gpu_buddy_block *block;
+>   	unsigned int tree, order;
+>   	LIST_HEAD(blocks_lhs);
+> -	unsigned long pages;
+>   	u64 modify_size;
+>   	int err;
+>   
+>   	modify_size = rounddown_pow_of_two(size);
+> -	pages = modify_size >> ilog2(mm->chunk_size);
+> -	order = fls(pages) - 1;
+> +	order = ilog2(modify_size) - ilog2(mm->chunk_size);
+>   	if (order == 0)
+>   		return -ENOSPC;
+>   
+> @@ -1149,31 +1147,42 @@ static int __alloc_contig_try_harder(struct gpu_buddy *mm,
+>   		while (iter) {
+>   			block = rbtree_get_free_block(iter);
+>   
+> -			/* Allocate blocks traversing RHS */
+>   			rhs_offset = gpu_buddy_block_offset(block);
+> +
+> +			/* Allocate blocks traversing RHS */
+>   			err =  __gpu_buddy_alloc_range(mm, rhs_offset, size,
+>   						       &filled, blocks);
+> -			if (!err || err != -ENOSPC)
+> +			if (err && err != -ENOSPC)
+>   				return err;
+> +			if (!err && IS_ALIGNED(rhs_offset, min_block_size))
+> +				return 0;
+> +			if (!err)
 
-Vitaly, for the reorder, here is a deterministic reproducer so you can confirm
-the splat on your side without a round-trip. It arms an mmu_interval_notifier
-via GEM_USERPTR over anonymous memory, then forces reclaim of that exact range
-with madvise(MADV_PAGEOUT), so amdgpu_hmm_invalidate_gfx() takes notifier_lock
-under fs_reclaim in the calling thread. Needs CONFIG_PROVE_LOCKING and a fresh
-boot; build/run notes are in the header. Happy to give Tested-by once you post.
+Should we do some kind of rhs = round_down(rhs, min_block_size) at the 
+start? Just wondering if we can get something misaligned here, that 
+should have succeeded if we just applied the round_down first, in some 
+edge case?
 
-// SPDX-License-Identifier: MIT
-/*
- * amdgpu-notifier-reclaim-repro.c
- *
- * Deterministic reproducer for the false circular-locking-dependency splat
- * produced by drivers/gpu/drm/amd/amdgpu/amdgpu_lockdep.c.
- *
- * amdgpu_lockdep_init() (run at module load) calls fs_reclaim_acquire()
- * while holding the dummy notifier_lock, teaching lockdep that it is legal
- * to enter reclaim with the MMU-notifier lock held. The real notifier lock
- * is taken in amdgpu_hmm_invalidate_gfx(), which mm/ calls from inside
- * reclaim, so the reverse edge fs_reclaim -> mmu_notifier -> notifier_lock
- * is mandatory. The cycle is closed the first time reclaim unmaps a page
- * covered by an amdgpu userptr interval notifier.
- *
- * This program installs such a notifier (GEM_USERPTR) over anonymous memory
- * and then forces synchronous reclaim of that exact range with
- * MADV_PAGEOUT, which runs try_to_unmap()->invalidate_range_start() with
- * fs_reclaim held in the calling thread, closing the loop on demand.
- *
- * Requirements:
- *   - kernel built with CONFIG_PROVE_LOCKING (lockdep)
- *   - amdgpu loaded; run from a FRESH boot (the first lockdep splat of any
- *     kind calls debug_locks_off() and silences all later reports)
- *
- * Build:  cc -O2 -o repro amdgpu-notifier-reclaim-repro.c
- * Run:    ./repro                 # picks the first amdgpu render node
- *         ./repro /dev/dri/renderD129
- * Watch:  sudo dmesg -w
- */
+> +				goto next;
+>   
+> -			lhs_size = max((size - filled), min_block_size);
+> -			if (!IS_ALIGNED(lhs_size, min_block_size))
+> -				lhs_size = round_up(lhs_size, min_block_size);
+> +			lhs_size = round_up(max((size - filled), min_block_size),
+> +					    min_block_size);
 
-#define _GNU_SOURCE
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <dirent.h>
-#include <sys/ioctl.h>
-#include <sys/mman.h>
+Can this be simplified as: round_up(size - filled, min_block_size) ?
 
-/* --- minimal amdgpu uapi (self-contained, no libdrm needed) ----------- */
-#ifndef DRM_IOCTL_BASE
-#define DRM_IOCTL_BASE 'd'
-#endif
-#define DRM_COMMAND_BASE 0x40
-#define DRM_AMDGPU_GEM_USERPTR 0x11
+> +
+> +			if (lhs_size > rhs_offset)
 
-struct drm_amdgpu_gem_userptr {
-	uint64_t addr;
-	uint64_t size;
-	uint32_t flags;
-	uint32_t handle;
-};
+What is the idea with this check?
 
-#define DRM_IOCTL_AMDGPU_GEM_USERPTR \
-	_IOWR(DRM_IOCTL_BASE, DRM_COMMAND_BASE + DRM_AMDGPU_GEM_USERPTR, \
-	      struct drm_amdgpu_gem_userptr)
+> +				goto next;
+>   
+>   			/* Allocate blocks traversing LHS */
+> -			lhs_offset = gpu_buddy_block_offset(block) - lhs_size;
+> +			lhs_offset = rhs_offset - lhs_size;
+> +
+> +			if (!IS_ALIGNED(lhs_offset, min_block_size))
+> +				goto next;
 
-#define AMDGPU_GEM_USERPTR_READONLY (1 << 0)
-#define AMDGPU_GEM_USERPTR_ANONONLY (1 << 1)
-#define AMDGPU_GEM_USERPTR_VALIDATE (1 << 2)
-#define AMDGPU_GEM_USERPTR_REGISTER (1 << 3)
+Would it make sense to just align the lhs down, if misaligned, instead 
+of baling? If the final size we get back is slightly too large, we can 
+just apply a trim at the end?
 
-#ifndef MADV_PAGEOUT
-#define MADV_PAGEOUT 21
-#endif
+> +
+>   			err =  __gpu_buddy_alloc_range(mm, lhs_offset, lhs_size,
+>   						       NULL, &blocks_lhs);
+>   			if (!err) {
+>   				list_splice(&blocks_lhs, blocks);
+>   				return 0;
+> -			} else if (err != -ENOSPC) {
+> +			}
+> +			if (err != -ENOSPC) {
+>   				gpu_buddy_free_list_internal(mm, blocks);
+>   				return err;
+>   			}
+> -			/* Free blocks for the next iteration */
+> +next:
+>   			gpu_buddy_free_list_internal(mm, blocks);
+> -
+>   			iter = rb_prev(iter);
+>   		}
+>   	}
+> 
+> base-commit: b9e2d5cdaab05c997be3a69d9b372d7676683e1b
 
-/* ------------------------------------------------------------ */
-
-#define BUF_SIZE (64ull * 1024 * 1024) /* 64 MiB, page aligned by mmap */
-
-static int open_amdgpu_render(const char *forced)
-{
-	if (forced) {
-		int fd = open(forced, O_RDWR | O_CLOEXEC);
-		if (fd < 0)
-			perror(forced);
-		return fd;
-	}
-
-	/* try renderD128..renderD143 and keep the first that accepts GEM_USERPTR */
-	for (int i = 128; i < 144; i++) {
-		char path[64];
-		snprintf(path, sizeof(path), "/dev/dri/renderD%d", i);
-		int fd = open(path, O_RDWR | O_CLOEXEC);
-		if (fd < 0)
-			continue;
-
-		/* probe: a zero-size userptr returns -EINVAL on amdgpu but
-		 * -ENOTTY/-ENODEV on a non-amdgpu driver, which lets us tell
-		 * the nodes apart without pulling in libdrm version ioctls. */
-		struct drm_amdgpu_gem_userptr probe = { 0 };
-		errno = 0;
-		ioctl(fd, DRM_IOCTL_AMDGPU_GEM_USERPTR, &probe);
-		if (errno == ENOTTY || errno == ENODEV || errno == EOPNOTSUPP) {
-			close(fd);
-			continue;
-		}
-		fprintf(stderr, "using %s\n", path);
-		return fd;
-	}
-	fprintf(stderr, "no amdgpu render node found under /dev/dri\n");
-	return -1;
-}
-
-int main(int argc, char **argv)
-{
-	int fd = open_amdgpu_render(argc > 1 ? argv[1] : NULL);
-	if (fd < 0)
-		return 1;
-
-	/* anonymous, private, page-aligned region for the userptr */
-	void *buf = mmap(NULL, BUF_SIZE, PROT_READ | PROT_WRITE,
-			 MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-	if (buf == MAP_FAILED) {
-		perror("mmap");
-		return 1;
-	}
-	memset(buf, 0xa5, BUF_SIZE); /* fault every page in */
-
-	/* REGISTER installs the mmu_interval_notifier (amdgpu_hmm_register());
-	 * VALIDATE additionally faults the pages via hmm_range_fault() and
-	 * binds them into GTT. ANONONLY matches our MAP_ANONYMOUS region. */
-	struct drm_amdgpu_gem_userptr up = {
-		.addr  = (uint64_t)(uintptr_t)buf,
-		.size  = BUF_SIZE,
-		.flags = AMDGPU_GEM_USERPTR_ANONONLY |
-			 AMDGPU_GEM_USERPTR_REGISTER |
-			 AMDGPU_GEM_USERPTR_VALIDATE,
-	};
-	if (ioctl(fd, DRM_IOCTL_AMDGPU_GEM_USERPTR, &up)) {
-		perror("GEM_USERPTR (VALIDATE)");
-		/* retry without VALIDATE: the notifier is still registered, the
-		 * pages are present from the memset, MADV_PAGEOUT still works */
-		up.flags = AMDGPU_GEM_USERPTR_ANONONLY |
-			   AMDGPU_GEM_USERPTR_REGISTER;
-		if (ioctl(fd, DRM_IOCTL_AMDGPU_GEM_USERPTR, &up)) {
-			perror("GEM_USERPTR (REGISTER)");
-			return 1;
-		}
-	}
-	fprintf(stderr, "userptr handle=%u, interval notifier armed over %p..%p\n",
-		up.handle, buf, (char *)buf + BUF_SIZE);
-
-	/* Force synchronous reclaim of the notifier-covered range. MADV_PAGEOUT
-	 * runs shrink_folio_list()->try_to_unmap()->invalidate_range_start()
-	 * with fs_reclaim held in THIS thread, so amdgpu_hmm_invalidate_gfx()
-	 * takes notifier_lock under fs_reclaim and lockdep closes the cycle.
-	 *
-	 * A few iterations (re-touching in between) cover the race where pages
-	 * are already paged out on the first pass. */
-	for (int it = 0; it < 8; it++) {
-		if (madvise(buf, BUF_SIZE, MADV_PAGEOUT))
-			perror("madvise(MADV_PAGEOUT)");
-		usleep(50 * 1000);
-		memset(buf, 0xa5, BUF_SIZE); /* fault back in for the next pass */
-	}
-
-	fprintf(stderr,
-		"done: check dmesg for "
-		"\"possible circular locking dependency\" / amdgpu_hmm_invalidate_gfx\n");
-
-	munmap(buf, BUF_SIZE);
-	close(fd);
-	return 0;
-}
