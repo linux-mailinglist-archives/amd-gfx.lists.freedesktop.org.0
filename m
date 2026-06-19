@@ -2,62 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CmsPDVrsNGrSkAYAu9opvQ
+	id hC3yMVXsNGrQkAYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 09:14:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 09:14:29 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6CA96A446C
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 09:14:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5011E6A4460
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Jun 2026 09:14:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=disroot.org header.s=mail header.b=Q7SYXtir;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=YaT6AVi+;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=reject) header.from=disroot.org
+	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30B0010F477;
-	Fri, 19 Jun 2026 07:14:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7FC610E06E;
+	Fri, 19 Jun 2026 07:14:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5698210E0EA;
- Fri, 19 Jun 2026 02:03:10 +0000 (UTC)
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
- by disroot.org (Postfix) with ESMTP id 5F041278B0;
- Fri, 19 Jun 2026 04:03:08 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id Ash5nrCy94Sf; Fri, 19 Jun 2026 04:03:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
- t=1781834587; bh=IT0W0Uuv93bQks2y1A9gHcgTFoSBWnQ1Xkhp54muBww=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=Q7SYXtirwE4pM37WY8qcr07QvMqMTery1aFg708OPqsl57OuiJQ7WogpjzJ4TTZ2F
- KM0IKx/umi6im1cQxRsnnEg+nJ6X++CINklQMhaUj4hGDkCV529nQfKdZYuIe57ifo
- Sj0p4aiMYoPLpRZVsAEgx6X0Ll4WTuQBZDik+Dv2/RvT7JTb/5Xvy7xlSGpCMP/XJb
- FnSDxkYO9/tieZ62xMb3dK7C5fGowZWrjFK8xbUTq+NsRPV9fEKoCWrPWGxVAiVxEu
- H5muc4x0klGNn2KWPCDlC/byp0AlnhLnqSTVBudQ9HgfPTyD1+XxVXy7bweJcYxeLE
- 0856SuD8nNkPQ==
-Message-ID: <1f24aee4-8588-4d54-ba5a-cc5e9c002a54@disroot.org>
-Date: Thu, 18 Jun 2026 19:03:02 -0700
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
+ [209.85.214.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08F7010E021
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 04:59:43 +0000 (UTC)
+Received: by mail-pl1-f175.google.com with SMTP id
+ d9443c01a7336-2bf20f6be6bso11755645ad.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Jun 2026 21:59:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1781845182; x=1782449982; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=uIYOjMSuKZhWjcQJw9HHG0dGZKivsExPv7gnoCGT+tQ=;
+ b=YaT6AVi+9f216xkkMSloyrfXd2yv2rOUXqgi+P8zRBVk0+w4ZC9ROTtE4DsogKfEbQ
+ pA6LULj4lTH0KcazR7uWa6ljhdQnqx+CS/GcQa1gHkK1O0EjEzU5aGNSpcsSjBwm8CNT
+ RJU+kdcdGapluRGAu+0ViBsxoS90TEtMXrCfUIH8r3l8cbUbEk1+/vvFc2mHd1XJ1bHe
+ O9uOTrO3Z68Fz7hIVRxhp1J7gyFTBXhJ9SPp8ioTfquOR37bq96mXkz+C8YYF+Dtq9mH
+ 9o0tVwsF0NMbb4Lwn8kcUtguHPQfphhbI8Rc96A65QA8R0NOi3h7kyVEnpztlEuPwthq
+ K/hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1781845182; x=1782449982;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=uIYOjMSuKZhWjcQJw9HHG0dGZKivsExPv7gnoCGT+tQ=;
+ b=pIDQ4c3LIAcnkVoA5+OZi8zlhkblyJr/IhLGc6mtWJB0UWxXjfKw/ANSajiD2wVn86
+ OUIO6JxMpGzZdmmh4sdgPtx1C7R2d3vdR6Le7gf6T6SqRfnXAhJ4YSpjdr+VgcrjbBhs
+ 3chPzum0ZCS2ciGAd/QiCjwp9Xd1t5fQejV1+84La1mS6vmb/7qLZhOeAVroUbMLuvik
+ +Tde0kOMY47Bc3Lx6owlJnq2eLyM4/rC2TRTiNe/3HfiuHEl+MPxPReHneZi0tyqtzW2
+ l+zQN0eJenjOscWMjKh6SgBM32Nh8/67NRnVQL4AGMuQjouTWqJX16siCagFIhz0PexH
+ KYnA==
+X-Gm-Message-State: AOJu0YzWfLeoXJ6nznyiv8mi8ajyFDaQ6i6VLRfQmGUoxZkevWFEkf2F
+ 4LMGI7dAMbLVRhzMi/S4QXmmMSG4hmrPe72GuamNXR9yPMIoV45w6ymqckkG5/sG
+X-Gm-Gg: AfdE7cl4nbwGK6PlmWJXdJz0rJAEwiFiN59NeMXR16Fsd18xMPp9w2SUcZgB+TqK2Ij
+ 2st3XBl3PD9oeo7AQpOmZyiCmbMMXHm7cb6ijNW5WrRxApNX7n03gO+PtHYLkULhveaB1zXAxDk
+ JCeM3EWFiXV69AG5uyB07dg3OKSdcKiz2/G66ePjQpo1aqrf8eXPO6vx/pzrY2JVUkp0fMUPjB0
+ rIvguLvyR//IqC7Jbjysh1rYGF075Ia6b/aWQTd/Jb/v3CWb91uTm3Nccbun3m/+EbEyAe8Lwbt
+ lJRZFkZEYPJD5fSpa2M3+nyIgHbiowBXqwCGzbh5ZaVO4oz7CoVDgCREsEeN4GkXrxc8NdnCS+Y
+ SfrADA+s9P1Klh1gORsCQB35Ta6qx5U96sIA1gFAk51xS+rvCI8J/RLRorzs8+93ouoLZfTaSfC
+ b+bkLYiQG4cEeU
+X-Received: by 2002:a17:903:22d1:b0:2c0:ab82:6b99 with SMTP id
+ d9443c01a7336-2c718fc11b2mr23178225ad.33.1781845182503; 
+ Thu, 18 Jun 2026 21:59:42 -0700 (PDT)
+Received: from deskarch ([50.47.212.45]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-2c72089c1cdsm8784255ad.17.2026.06.18.21.59.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 18 Jun 2026 21:59:42 -0700 (PDT)
+From: Charles Munger <charleslmunger@gmail.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: Charles Munger <charleslmunger@gmail.com>
+Subject: [PATCH] drm/amdgpu: Add Paradetech OUI to VRR compat list
+Date: Thu, 18 Jun 2026 21:59:04 -0700
+Message-ID: <20260619045904.5872-1-charleslmunger@gmail.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] drm/amd/display: set MSA MISC1 bit 6 when using VSC
- SDP for DCE 11.x
-To: Alex Deucher <alexdeucher@gmail.com>, Leorize <leorize+oss@disroot.org>,
- "Leo (Sunpeng) Li" <Sunpeng.Li@amd.com>,
- "Wentland, Harry" <Harry.Wentland@amd.com>
-Cc: linux-kernel@vger.kernel.org, Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20260519030624.51613-1-leorize+oss@disroot.org>
- <20260519030624.51613-2-leorize+oss@disroot.org>
- <CADnq5_MrUaLRP70hwb5YGawjfft9qUaH4h_t4TQ17AEgAwj3ww@mail.gmail.com>
-From: Leorize <leorize+oss@disroot.org>
-Content-Language: en-US
-In-Reply-To: <CADnq5_MrUaLRP70hwb5YGawjfft9qUaH4h_t4TQ17AEgAwj3ww@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 19 Jun 2026 07:14:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -75,117 +89,74 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[oss];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	ARC_NA(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,disroot.org,amd.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[leorize@disroot.org,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,igalia.com,amd.com,gmail.com,ffwll.ch,lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx,oss];
-	DKIM_TRACE(0.00)[disroot.org:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWO(0.00)[2];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,disroot.org:dkim,disroot.org:email,disroot.org:mid,disroot.org:from_mime]
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[charleslmunger@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A6CA96A446C
+X-Rspamd-Queue-Id: 5011E6A4460
 
-Friendly ping. Should I resend this patch?
+There's at least two firmware versions on the CalDigit DP20-HDMI21
+adapter, which is powered by the ParadeTech PS196G chip. The first version
+has a bug where it incorrectly neglects to set the DOWN_STREAM_PORT_PRESENT
+field in the DPCD:
 
-On 5/26/26 7:52 AM, Alex Deucher wrote:
-> @Leo (Sunpeng) Li
-> , @Wentland, Harry
->
-> Can you take a look at this?
->
-> On Tue, May 19, 2026 at 3:19 AM Leorize <leorize+oss@disroot.org> wrote:
->> When BT.2020 colorimetry is selected, the driver sends information using
->> VSC SDP but does not set "ignore MSA colorimetry" bit on older GPUs with
->> DCE-based IPs. This causes certain sinks to prefer colorimetry
->> information in DP MSA, resulting in terrible color rendering ("dull"
->> colors) when HDR is enabled.
->>
->> This commit wires up the MISC1 bit 6 for GPUs with DCE 11.x based IPs to
->> correctly configure sinks to ignore colorimetry information in MSA,
->> resolving the color rendering issue.
->>
->> Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/4849
->> Assisted-by: oh-my-pi:GPT-5.5
->> Signed-off-by: Leorize <leorize+oss@disroot.org>
->> ---
->>  .../drm/amd/display/dc/dce/dce_stream_encoder.c   | 15 ++++++++++++++-
->>  .../drm/amd/display/dc/dce/dce_stream_encoder.h   |  3 ++-
->>  2 files changed, 16 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
->> index ed407e779c12..2c3a20d35fe9 100644
->> --- a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
->> +++ b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.c
->> @@ -271,7 +271,6 @@ static void dce110_stream_encoder_dp_set_stream_attribute(
->>         bool use_vsc_sdp_for_colorimetry,
->>         uint32_t enable_sdp_splitting)
->>  {
->> -       (void)use_vsc_sdp_for_colorimetry;
->>         (void)enable_sdp_splitting;
->>         uint32_t h_active_start;
->>         uint32_t v_active_start;
->> @@ -334,6 +333,16 @@ static void dce110_stream_encoder_dp_set_stream_attribute(
->>         if (REG(DP_MSA_MISC))
->>                 misc1 = REG_READ(DP_MSA_MISC);
->>
->> +       /* For YCbCr420 and BT2020 Colorimetry Formats, VSC SDP shall be used.
->> +        * When MISC1, bit 6, is Set to 1, a Source device uses a VSC SDP to indicate the
->> +        * Pixel Encoding/Colorimetry Format and that a Sink device shall ignore MISC1, bit 7,
->> +        * and MISC0, bits 7:1 (MISC1, bit 7, and MISC0, bits 7:1, become "don't care").
->> +        */
->> +       if (use_vsc_sdp_for_colorimetry)
->> +               misc1 = misc1 | 0x40;
->> +       else
->> +               misc1 = misc1 & ~0x40;
->> +
->>         /* set color depth */
->>
->>         switch (hw_crtc_timing.display_color_depth) {
->> @@ -499,6 +508,10 @@ static void dce110_stream_encoder_dp_set_stream_attribute(
->>                                 hw_crtc_timing.h_addressable + hw_crtc_timing.h_border_right,
->>                                 DP_MSA_VHEIGHT, hw_crtc_timing.v_border_top +
->>                                 hw_crtc_timing.v_addressable + hw_crtc_timing.v_border_bottom);
->> +       } else {
->> +               /* DCE-only path */
->> +               if (REG(DP_MSA_MISC))
->> +                       REG_WRITE(DP_MSA_MISC, misc1);   /* MSA_MISC1 */
->>         }
->>  }
->>
->> diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h
->> index 342c0afe6a94..88d6044904d1 100644
->> --- a/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h
->> +++ b/drivers/gpu/drm/amd/display/dc/dce/dce_stream_encoder.h
->> @@ -96,7 +96,8 @@
->>
->>  #define SE_COMMON_REG_LIST(id)\
->>         SE_COMMON_REG_LIST_DCE_BASE(id), \
->> -       SRI(AFMT_CNTL, DIG, id)
->> +       SRI(AFMT_CNTL, DIG, id), \
->> +       SRI(DP_MSA_MISC, DP, id)
->>
->>  #define SE_DCN_REG_LIST(id)\
->>         SE_COMMON_REG_LIST_BASE(id),\
->> --
->> 2.54.0
->>
+$ sudo dpcd_reg read --offset=0x2205 --count=1 --device=0
+0x2205:  00
+$ sudo dpcd_reg read --offset=0x0005 --count=1 --device=0
+0x0005:  00
+
+The newer one fixes this, and with this patch correctly negotiates VRR.
+
+[~]$ sudo dpcd_reg read --offset=0x5 --count=1 --device=2
+0x0005:  1d
+[~]$ sudo dpcd_reg read --offset=0x2205 --count=1 --device=2
+0x2205:  1d
+
+So if you're using a Paradetech adapter and it doesn't negotiate VRR,
+check that it has a firmware that produces the correct DPCD.
+
+Signed-off-by: Charles Munger <charleslmunger@gmail.com>
+---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+index 6c827e6703a0..f463495d1c87 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+@@ -1410,6 +1410,7 @@ bool dm_helpers_is_vrr_pcon_allowed(const struct dc_link *link, const struct drm
+ 	case DP_BRANCH_DEVICE_ID_00E04C:
+ 	case DP_BRANCH_DEVICE_ID_90CC24:
+ 	case DP_BRANCH_DEVICE_ID_2B02F0:
++	case DP_BRANCH_DEVICE_ID_001CF8:
+ 		return true;
+ 	}
+ 
+-- 
+2.54.0
+
