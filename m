@@ -2,139 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GqAkEVHqNWpA6AYAu9opvQ
+	id w1wXMmZUNmrY9QYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 20 Jun 2026 03:18:09 +0200
+	for <lists+amd-gfx@lfdr.de>; Sat, 20 Jun 2026 10:50:46 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC746A8257
-	for <lists+amd-gfx@lfdr.de>; Sat, 20 Jun 2026 03:18:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AF246A89E1
+	for <lists+amd-gfx@lfdr.de>; Sat, 20 Jun 2026 10:50:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=geUxpn4y;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=LEsnoo5i;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("google.com:s=arc-20240605:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22CCB10E16E;
-	Sat, 20 Jun 2026 01:18:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B287B10E1B1;
+	Sat, 20 Jun 2026 08:50:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010020.outbound.protection.outlook.com [52.101.61.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D3F210E16E
- for <amd-gfx@lists.freedesktop.org>; Sat, 20 Jun 2026 01:18:05 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=olanvFT6Tnrao4ndjjus5NKkFWlkjLgDpMSeCzEG3ZjzKDn/ENFcre/1B3qiaT0cTV5lKDtkCp4/qptewjth3IW092oo9jctLn7kZfbrvtgK6XhOiu8GD/nOSTiYfu/KNWrTt8+VhnB8sHHjPePQmZ21iXlCbp/JebViuNIgkirzxgw+wTSqJKxeOiWvH4jnxji48F18RpdKJZRj39cpcJ99MzQ3hRVCM82CLEgpaOB3e+WJYxOCC1AQzYTG5/ygQKc2FrGJK25n2Uk26pyXkaCMUgNM508MFiMdCAoRN+wPoUqrVlk5w3T3MPg2gtowB0ZY2gcsDV7SEXUUStF4sQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WHud2PKJozPR9Isq9JsIrNX+tEx/EX2a37foy8UkNuM=;
- b=GaXYVbwuDz9PZlT2zlWiEbNUULGwvD4CeK+QBAZ4TSHsO8zqV+fY+iuVi5AjRJ6RETcht/j3I2x23DuK/ZgWKMjsFtP1KMRryo2VQYz+yWEPHEzoUDY+dIImial/3z2LnTjhd+PKM1JI43zJDUoaLSsrNix0xDKddi/AnMo7dEYnspzACIlMpWQNPqN4Za2GiitmgaRcTpF7Q24bEPE8HBoT0L/2zcBD+n5eeFLMDLeReSg3fNzgGsG2yFn3J1X96YsbuuC8fgrKVZKrrV4vURBoJRVHpRIlzdIfyV2LnwRj5WH/rwlc70r5mbNZZOf0kOI4iy0R8yPoWD4cdM3acg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WHud2PKJozPR9Isq9JsIrNX+tEx/EX2a37foy8UkNuM=;
- b=geUxpn4yi1iOb7uYDgXFxnlhl3L9vLGIijls+mlvO5460gb7NQ5QjIGyuf9S+2FzpOwTCjUbDjvHW6cg78PpQauD/WCcXyyE3iQEyeW+GbKluJfdJxmR0p3XjPcBf4h7nblfiFfOJM/NrpeYOrlFKAbW9DjItc/SfO8HLK/aq0g=
-Received: from IA0PR12MB8208.namprd12.prod.outlook.com (2603:10b6:208:409::17)
- by DS0PR12MB8414.namprd12.prod.outlook.com (2603:10b6:8:fb::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.139.18; Sat, 20 Jun 2026 01:18:01 +0000
-Received: from IA0PR12MB8208.namprd12.prod.outlook.com
- ([fe80::dbd3:cc22:a850:dc1e]) by IA0PR12MB8208.namprd12.prod.outlook.com
- ([fe80::dbd3:cc22:a850:dc1e%6]) with mapi id 15.21.0139.009; Sat, 20 Jun 2026
- 01:18:00 +0000
-From: "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-CC: "Koenig, Christian" <Christian.Koenig@amd.com>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, =?utf-8?B?VGltdXIgS3Jpc3TDs2Y=?=
- <timur.kristof@gmail.com>
-Subject: RE: [PATCH] drm/amdgpu: Reduce stack usage in IP block soft reset
-Thread-Topic: [PATCH] drm/amdgpu: Reduce stack usage in IP block soft reset
-Thread-Index: AQHdAA+QIv+XVhj5VEWKsTwNX70BhrZGL6CAgAB1R/A=
-Date: Sat, 20 Jun 2026 01:17:59 +0000
-Message-ID: <IA0PR12MB82082DDFC1691693DBAE5C1A90E12@IA0PR12MB8208.namprd12.prod.outlook.com>
-References: <20260619171733.2976352-1-srinivasan.shanmugam@amd.com>
- <CADnq5_MhbBpkV6dyZsWrTTyhQNWBqU8FpQyFgkByzdtOf7MNHQ@mail.gmail.com>
-In-Reply-To: <CADnq5_MhbBpkV6dyZsWrTTyhQNWBqU8FpQyFgkByzdtOf7MNHQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-06-20T01:17:07.0000000Z;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD General
- v26; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=3;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA0PR12MB8208:EE_|DS0PR12MB8414:EE_
-x-ms-office365-filtering-correlation-id: 9ff507f1-c535-439f-b87b-08dece69c512
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|23010399003|38070700021|18002099003|22082099003|56012099006|4143699003|11063799006|6133799003;
-x-microsoft-antispam-message-info: 3Os015rG+j7SjFnLy1sYXFobtVT2qYWRKApK8fcdC7O2MvNjr6Ki7jWs7BakXQ30BsdsloDwgwsGCefF92vIiKqRlv0+ojhNOqWkKAgFCgYXkyarmcJ8Yyn67dDLFeDpB3drbzT98/lRddJ5wUN3ePasnh+S6cLF42HnJ1Bsi9ZG4iOO4u+quXBhqIcHByGmWsNyfMshAVGm1ZI9FU3gw3gb8CuVQXGu0vGoc6HSeZsVv0NdAMmo30xC4FR9+33/KFW6q31hSpLCPlBG8GxtXmaVyR2AjDiK8GrGoRqloml5Bte8+248NAQG85hCAdGvDWFCcqBEsVW/8gL26TQ5yy0PxLAF8rbjY/sD6T0NHEVCef0oyTVUArqdFva2biNT/F8pj+RFZwF1+pCcj2nXsfKJhX2X7V2Ne84V0JjWnFxUC/5nLZcajeO9BE7gjiFfINzOH+wNwZU7FokKoPYVLRk/cPa1Actv8j/qDkbHuGYMhNGJPEGoyzvfGdAMEtx6M0Q623SoY8UT7lf+rflFt8MI6sc9/sfuZNF/+88XJg5S7EQlV2JI+YluQv07KYmniPjUPsr8mh1+v/c0Hezk9jXs+sZ8SpAoxYVoNXjH0B7CWAWAtTvN+4bLAWsLp99laKa83LSDZdh3bWU9dvsbl4QxcIPzYQYbBMPotfSIZE7Bit3V87b6r8OzV6dpvyj/4G9VPwwHlIzfhnOBf0ZtaoJufOqPw8Q/JIY5ofSDUkw=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR12MB8208.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(38070700021)(18002099003)(22082099003)(56012099006)(4143699003)(11063799006)(6133799003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RFJhUlhOTnU1ODlPUUc1UVZtNzVlTklwMlVTNGZVSThXKzljRXVVWlZodmlF?=
- =?utf-8?B?U0R2RGNDM3R2Z2ZCWWtRcllPaHY3S25TZUxBcEhTTXI0QklVR01tMVVCOGpi?=
- =?utf-8?B?SmdiY0Rrb0NmcW05dXdYT2J1YUI0ZnFsVDA3ZWJrbVRQWE9NaDM2a09KalFK?=
- =?utf-8?B?S2pBaDVSZ3hXTGdzUjhmRTR1ZTJja3NaVXhCNzJubFdreW9yZEI1NnVaZTFq?=
- =?utf-8?B?Z1UzN2VSOWdqVkU5VmcrS3hoYXpBS21mWnZveTBIRnpSNjliak96WFVuQWtK?=
- =?utf-8?B?NmVHR0l6eHovMy9tUWRuVzBGckl0R2owV3FXZXZPTkZ6dDhXTVQ5TzZtazZ2?=
- =?utf-8?B?Z3lscFJPaXpLRVFxcXZYOFFrL21vS3RjOVAvaWI4RWJKU3Rya3JrdFFyeWtn?=
- =?utf-8?B?eEIxdXBiaWtVM2h2cGk3YzVvdVN4L1hYMm5xUEdodXgxL2U5bG8vbExzL3lI?=
- =?utf-8?B?VW9lK25kRnRaYzl2SFdqRTJLSGc5eUdwYkdjNjdDMVA1WG9ObUlVNWtiYWc0?=
- =?utf-8?B?RFN1Sjc4d0lpSUoxRlFadW4rMVhRT21DeGF6UENZNU1qdnZoSE5lQXVBdS9k?=
- =?utf-8?B?aUVZSkxmRzRGUVJINCtDMmUyQ1VUVEw4UEMzQmp1K3VNY3JQZlBlMFlteDI2?=
- =?utf-8?B?dVpubWdpbVJXV2F1Q0ZXTnhRaG9NUVlacXFZMUhTaDNuUnRxMHJ3V3dMeDdO?=
- =?utf-8?B?ZXY5NW1ROG0zcURkeThtYVRFTldOZmVrQVY1LzE3dUR1V3RvQk4ybXZJNGRh?=
- =?utf-8?B?TDd2WklDcWlvREpRRWZzc0NaSTdyazhMS1RSb3hYMGQrM3ZaSU1Dc0lBdHZC?=
- =?utf-8?B?TmJRT3VuVjdSTFlQaFZZZHRwdjdYeGpHMTZYLzVsZUdYRGtCVFpQSEdqODBO?=
- =?utf-8?B?eG8zR3RhSk9nVXFZSStQRHp3S2p6aFB6WDlsZE5nOTVJeTRwTXhTU3lucVcv?=
- =?utf-8?B?dFhnZFVFQlkzRUFkT21taC9xZHJOY1Y0SVdSTzhFbFVIWlV6Y01QOE0zSVpV?=
- =?utf-8?B?OXdITllsa2NvTkVtVSt1VzBhL3J4ekRoanNhS3NhdnRhRlBjVU9CRXBWays4?=
- =?utf-8?B?cFNOaVRwYlBIZFdtUk82Rm5yRmFNNVpKbktLdlAweXBYeXg0QXBLQUYrR3Fi?=
- =?utf-8?B?TlNoYlhYaEJ2Zno4ekhRN2ZvQnB5YmhheGsvam5YRDFwQVQyZnJSdmlNSVY0?=
- =?utf-8?B?azBES0hJcUJIZXh0N0U0THpSMXNIU2JtWVd6WVI5bFhHRHNkUStzSmc1cXJE?=
- =?utf-8?B?eTE0Sjd0cWR4VW9tWDJZZGFaODZsRUNXOU90ZndkWXlvLzA3SDBvRnl2eXBp?=
- =?utf-8?B?Y3dXVHZrcm1RUVFObWk0RXZtWEczbFJtVkZGVnVoM0tZRE9CVHBsR3c3bmpT?=
- =?utf-8?B?eTVxYUpNNkVWbXNoeGxIL2tUY0hmeXJodURZMEEzWW1PZ1FhZFRzRFF2c0x6?=
- =?utf-8?B?dUNTc2pPcEtmbndFdkZYYUhud2ZhWk1Zc2FXNlg0UkE5SWNQNnViR0s1WWd2?=
- =?utf-8?B?YnB3bDRkNXQ4SktiV25YZTZ2WWp5YnNPblVqZ2FrdXRBbUpaZEplMm5aSENV?=
- =?utf-8?B?bTJuNEpqVEdySWJNd3BMNkdPdXQ3TG52emNGNW1jSTFiUWdKc3NBUlFwamtH?=
- =?utf-8?B?ZGV1bzR2MDhLWnVXclN1aVVGejl6UnRkRjFpZ3BxdFhHQ0pOTTFhUFBBbXFp?=
- =?utf-8?B?WXU0YjY1WW5LODBhL1N2V05BVFNWdDN2UlhtU3k2VVVLdTkzT1prMjkzaU9r?=
- =?utf-8?B?YUc3NU5XemlLVlp4K1dXRVNwQ3dJbFdSNkQ5ZklsTTN6dFZwSUlybDluK3Qw?=
- =?utf-8?B?WUxMWHdCTk9nMjZES3pqZVJpV3M4ay94MzJJWTAzZE4xbEZJclBCcnRhb2tu?=
- =?utf-8?B?c1hLd0M4MS9hT1hJbndpeDdwc0RvWmQ1ODVPVlFPd1Y2dXdCUkVZK1U4ZkZD?=
- =?utf-8?B?VWs5L3FvdUVNam5PZ2N4U09FUy8zZmJXUlRJOGwvTXZTYjhVZVZoSmtBVVY5?=
- =?utf-8?B?MTF6TVdIVVFJTDVDSVhFMXB2dzlqdXcrNFdON3VZd3JkWHlTMHVVYVgvdENG?=
- =?utf-8?B?ak9PZ21TSUtuNndldjF3VUdhZG5qOFNiUTFoVnY2VE9hMjZsczJHb3BoSmVw?=
- =?utf-8?B?OFlqeVdNQk9iNmlYN3hQbVh4cWU4Skc0dlE1Nlo4ZEsxQ2dPUHYxUFZvbHpi?=
- =?utf-8?B?eG5BVm9TVG9tVjFBSlpUa2dlNEJQOGREQXB6NW1JRTluMHZWZDhJZVJxaGNJ?=
- =?utf-8?B?TExRZFpoVGt4UGh1dVBIVDZTTFRXaDlQdUl3L3dWMWtUakwyWXlQczhqYS9H?=
- =?utf-8?Q?/Ysg0V2whRVPaAfYSO?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com
+ [209.85.222.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7040510E158
+ for <amd-gfx@lists.freedesktop.org>; Sat, 20 Jun 2026 05:39:38 +0000 (UTC)
+Received: by mail-ua1-f46.google.com with SMTP id
+ a1e0cc1a2514c-966db0b76daso2321552241.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 22:39:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781933977; cv=none;
+ d=google.com; s=arc-20240605;
+ b=UKylGrOcQsIIbYNqxWJAfkitDRwdiHQWtqdeoXzMsG5EiWCO+KTfd+xuvgZCrhREpp
+ ov2V/W9AmpgorTg6Rnu0G7LOzRcAT7HM81NMROG6l+1ARt2FYuzg07+GJSptmgMd+0j/
+ QPiTj0HNzSL/Gb2dIRHzaAsXp+2MIK/IymmWsaa1E1d6rkTUR6G5sMthtBglH7JYbO4I
+ Qz0zSy3w7jARJvSj48mDWZneo1hryVToaQpGsZ50N05OxrnGy5rE7XX2qjbI/J33ltFA
+ MSeYuSuaWHysb6L/KoIyGeiQeTN5H7O/NKtyfNqFdyr4oSLroOdFmTgdLHRHH9m8SsmT
+ WhAw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=4APW9WchUIjck1WXvCdDznMYknRjl/S7x9r5ba9yacU=;
+ fh=w59f4Ryu2jo8YxLxJsSj7jf/5UZE5ebtMoKdn4pP8gE=;
+ b=kOme4XxrJMyK3+xuuoLej6R7HkzdtiZE+avoYH9VX3BSiD/cP3TMIf26O7+dXb58RA
+ SOzzhkWEVzCh0MRE1HwP3C64VNCSweS/qDWKE3JyGsybLreO/74DtiDU65ZZUV6xZIxO
+ tTQuJTrMa/bfMSzzr/TkZ89mFWspTht6RIBWrDteYl7DtJHB7AoozTw80p/ltXSlj+KZ
+ bwy8yRAiwUEm0UfjxqKa1e/szwX1yoW0wteS/nWaQc+peeN4Hd07xlY1gf4YgPXE+pvf
+ fyLkyWFnQJXmfTzq3GvXFKUIix+LaASgLwmfOSJ3h0dussfezFmenYTMij3y8LPPX8ME
+ YebA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1781933977; x=1782538777; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=4APW9WchUIjck1WXvCdDznMYknRjl/S7x9r5ba9yacU=;
+ b=LEsnoo5iFdh0kWyHKf7HU8CksVATCuYRj8YVVT9Pwq/LjKesWtopKRlZvG9Hy8+fq0
+ sAVYWeCDFcrI1QB3Pnd4gbnDgCG7+sSOa6hTxy1LbTpFQZ+ss9vYFnAqwk3bfyn0vkjf
+ ot7/H9I+btuLGF4hBjkSWsdW2OGsJ3CVjKOcGf5/bOWOjkR2uvu62WdmVacj2nQczwxZ
+ g72jYE3+UhmSnlfLuMjBdEuFr2q7tr4Nn6lpzHO30/aiPRkzJ0HsCna6Krt1BMWh37xc
+ m6ucH9uPm0WTrAlps/6mXLsCvpSuxKZbQ74FZC8rWk9cmOcWrA4R5wz2JciAsouQ/ZLM
+ Uqgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1781933977; x=1782538777;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=4APW9WchUIjck1WXvCdDznMYknRjl/S7x9r5ba9yacU=;
+ b=tKuquOGv3qoyFZajKJMnuJmAK9gZkUUuzDi+tuPrfT/hrOOy3Dpw/4s/8oy4xsxlyE
+ Yy2vSh4ZUS5QeV/Q3vrMKKjBXjxmgTDP/nhP1926Wc36C5y3wjKr+3tYQW0LDX1jXaGk
+ djIkcr+/sbgsa/NcQutJBuDU9wAwNY7IMCsHtpnVrSaMR05FJU3XeIOx/CCthRWg3Zq4
+ mqmec0Uv1OPIHPtKuC4m4kB/heBqGmggtIvxbUh402BtaIcvxMFQF/vvf+6tw0CzsJng
+ xgmloFQrFwFTNsHrX0UPz+R+rkcRU4/eLTTMpgYifeUgy+c1f+A7FyLEUIDVdTZrxf+V
+ ZtFQ==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/qqEJKCD0sOK64yIgxlINiwO/Y08+Zn0Y8YLRivx02OSjMk13MhU9Sd2r+GzZ0gCOdSV7mYhNB@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw5F7jDVmIi0AFsDowvLx2AInfXOHZ9VU8Dtvh1wNI3i8EFAovX
+ QLuEIAC0HYn4uCmbT/4dBpN8AMqdkZzoWAiIonfn45S+e5SCwZF4gUOfg1BZ8uYX/BYcc8s9FEd
+ ks7MGS3nfaOJgXN1tjo4t0vCxAM0X0ho=
+X-Gm-Gg: AfdE7ckIFNbUmWQ0+lz0jv7DZ6rSf5ZsJZC2YT2j3+5kXYGmBgeiCWY8BQXKxme2KJK
+ mXvpt9Fu8Ez0HTDCFiduJVv332QZWpiT+4Vl8R+8m0YQLkB04FLtCKIRKI1eMWBZz0PqGc9s4s+
+ hjy9E0HGlnqzAW4TPi5dfyBZWoroyFDyasdxDnLgIbyi1tT4Se1nJMqEAm0k6cj5p0oepIsDzmT
+ flIUYUMXpo1OWKQLYe3YIHPjbvdHEd+s2jS1sjTUZlgJITAlg/mvned0c+hAms85BvHXvLzerhc
+X-Received: by 2002:a05:6102:17c5:b0:6cd:23a8:3a31 with SMTP id
+ ada2fe7eead31-72a26e045f4mr1781055137.1.1781933977271; Fri, 19 Jun 2026
+ 22:39:37 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR12MB8208.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9ff507f1-c535-439f-b87b-08dece69c512
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jun 2026 01:18:00.5419 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: NxC5TZqjMnr+OMOrEy62I5wnU5Pa5nZry/rL3KUWJk1e9JTfTZyxiotZ0P4kCQmcHMCNacKvJ46bbZIPSQIkhw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8414
+References: <20260617193335.1662613-1-ruoyuw560@gmail.com>
+ <cee10e27-1bf9-47de-9d72-4f2c7ac606ef@amd.com>
+ <PH7PR12MB8796700AA79490AF65E12D64B0E32@PH7PR12MB8796.namprd12.prod.outlook.com>
+In-Reply-To: <PH7PR12MB8796700AA79490AF65E12D64B0E32@PH7PR12MB8796.namprd12.prod.outlook.com>
+From: Ruoyu Wang <ruoyuw560@gmail.com>
+Date: Sat, 20 Jun 2026 13:39:23 +0800
+X-Gm-Features: AVVi8CfYD_GAaQEP05j_5Lp7OoC_f0RZTesbVzNHdBDTKSPBat01vDG37k3SiEs
+Message-ID: <CAK_7xqxJMr+CgjKDbsWUGsbPt3U_xA_rE_CH__F7bmPW5AxJ0A@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/amdgpu: initialize ret before UMC error record loop
+To: "Zhou1, Tao" <Tao.Zhou1@amd.com>
+Cc: "Koenig, Christian" <Christian.Koenig@amd.com>, 
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Zhang,
+ Hawking" <Hawking.Zhang@amd.com>, "Lazar, Lijo" <Lijo.Lazar@amd.com>
+Content-Type: multipart/alternative; boundary="000000000000ba82dc0654a8d5dd"
+X-Mailman-Approved-At: Sat, 20 Jun 2026 08:50:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,85 +116,233 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.21 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	MIME_BASE64_TEXT(0.10)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:Christian.Koenig@amd.com,m:Alexander.Deucher@amd.com,m:timur.kristof@gmail.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[SRINIVASAN.SHANMUGAM@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Tao.Zhou1@amd.com,m:Christian.Koenig@amd.com,m:Alexander.Deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:Hawking.Zhang@amd.com,m:Lijo.Lazar@amd.com,s:lists@lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER(0.00)[ruoyuw560@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[SRINIVASAN.SHANMUGAM@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,lists.freedesktop.org,gmail.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FROM_NEQ_ENVFROM(0.00)[ruoyuw560@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,amd.com:dkim,amd.com:email,amd.com:from_mime,IA0PR12MB8208.namprd12.prod.outlook.com:mid]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,mail.gmail.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8BC746A8257
+X-Rspamd-Queue-Id: 3AF246A89E1
 
-QU1EIEdlbmVyYWwNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBBbGV4
-IERldWNoZXIgPGFsZXhkZXVjaGVyQGdtYWlsLmNvbT4NCj4gU2VudDogRnJpZGF5LCBKdW5lIDE5
-LCAyMDI2IDExOjQ3IFBNDQo+IFRvOiBTSEFOTVVHQU0sIFNSSU5JVkFTQU4gPFNSSU5JVkFTQU4u
-U0hBTk1VR0FNQGFtZC5jb20+DQo+IENjOiBLb2VuaWcsIENocmlzdGlhbiA8Q2hyaXN0aWFuLktv
-ZW5pZ0BhbWQuY29tPjsgRGV1Y2hlciwgQWxleGFuZGVyDQo+IDxBbGV4YW5kZXIuRGV1Y2hlckBh
-bWQuY29tPjsgYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IFRpbXVyIEtyaXN0w7NmDQo+
-IDx0aW11ci5rcmlzdG9mQGdtYWlsLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSF0gZHJtL2Ft
-ZGdwdTogUmVkdWNlIHN0YWNrIHVzYWdlIGluIElQIGJsb2NrIHNvZnQgcmVzZXQNCj4NCj4gT24g
-RnJpLCBKdW4gMTksIDIwMjYgYXQgMTo1NOKAr1BNIFNyaW5pdmFzYW4gU2hhbm11Z2FtDQo+IDxz
-cmluaXZhc2FuLnNoYW5tdWdhbUBhbWQuY29tPiB3cm90ZToNCj4gPg0KPiA+IGFtZGdwdV9kZXZp
-Y2VfaXBfc29mdF9yZXNldCgpIGFsbG9jYXRlcyBhbiBhcnJheSBvZiBBTURHUFVfTUFYX1JJTkdT
-DQo+ID4gcmluZyBwb2ludGVycyBvbiB0aGUgc3RhY2suIE9uIDY0LWJpdCBidWlsZHMgdGhpcyBj
-b25zdW1lcyBhcm91bmQgMTI4MA0KPiA+IGJ5dGVzIGFuZCB0cmlnZ2VyczoNCj4gPg0KPiA+IHdh
-cm5pbmc6IHN0YWNrIGZyYW1lIHNpemUgKDEzMDQpIGV4Y2VlZHMgbGltaXQgKDEwMjQpDQo+ID4N
-Cj4gPiBNb3ZlIHRoZSB0ZW1wb3JhcnkgcmluZyBwb2ludGVyIGFycmF5IHRvIGhlYXAgYWxsb2Nh
-dGlvbiB0byByZWR1Y2UNCj4gPiBzdGFjayB1c2FnZS4NCj4gPg0KPiA+IEZpeGVzOiBhNjMxOWFj
-MzRhMTMgKCJkcm0vYW1kZ3B1OiBBZGQgSVAgYmxvY2sgc29mdCByZXNldCBhcyBhIEdQVQ0KPiA+
-IHJlY292ZXJ5IG1ldGhvZCIpDQo+ID4gQ2M6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNo
-ZXJAYW1kLmNvbT4NCj4gPiBDYzogVGltdXIgS3Jpc3TDs2YgPHRpbXVyLmtyaXN0b2ZAZ21haWwu
-Y29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFNyaW5pdmFzYW4gU2hhbm11Z2FtIDxzcmluaXZhc2Fu
-LnNoYW5tdWdhbUBhbWQuY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
-ZGdwdS9hbWRncHVfaXAuYyB8IDE5ICsrKysrKysrKysrKysrLS0tLS0NCj4gPiAgMSBmaWxlIGNo
-YW5nZWQsIDE0IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pDQo+ID4NCj4gPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2lwLmMNCj4gPiBiL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9pcC5jDQo+ID4gaW5kZXggNjU1MDViYzUwMzk5
-Li5lZWI5MzgzYjEwMTAgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvYW1kZ3B1X2lwLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
-cHVfaXAuYw0KPiA+IEBAIC01MjQsNyArNTI0LDcgQEAgaW50IGFtZGdwdV9kZXZpY2VfaXBfc29m
-dF9yZXNldChzdHJ1Y3QgYW1kZ3B1X3JpbmcNCj4gKmd1aWx0eV9yaW5nLA0KPiA+ICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IGFtZGdwdV9mZW5jZSAqZ3VpbHR5X2ZlbmNl
-KSAgew0KPiA+ICAgICAgICAgc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYgPSBndWlsdHlfcmlu
-Zy0+YWRldjsNCj4gPiAtICAgICAgIHN0cnVjdCBhbWRncHVfcmluZyAqcmluZ3NbQU1ER1BVX01B
-WF9SSU5HU107DQo+ID4gKyAgICAgICBzdHJ1Y3QgYW1kZ3B1X3JpbmcgKipyaW5nczsNCj4gPiAg
-ICAgICAgIHN0cnVjdCBhbWRncHVfaXBfYmxvY2sgKmlwX2Jsb2NrOw0KPiA+ICAgICAgICAgZW51
-bSBhbWRfaXBfYmxvY2tfdHlwZSBpcF90eXBlOw0KPiA+ICAgICAgICAgdTMyIG51bV9yaW5ncywg
-cmluZ190eXBlX21hc2s7IEBAIC01MzksNiArNTM5LDEwIEBAIGludA0KPiA+IGFtZGdwdV9kZXZp
-Y2VfaXBfc29mdF9yZXNldChzdHJ1Y3QgYW1kZ3B1X3JpbmcgKmd1aWx0eV9yaW5nLA0KPiA+ICAg
-ICAgICAgICAgICAgICByZXR1cm4gLUVPUE5PVFNVUFA7DQo+ID4gICAgICAgICB9DQo+ID4NCj4g
-PiArICAgICAgIHJpbmdzID0ga2NhbGxvYyhBTURHUFVfTUFYX1JJTkdTLCBzaXplb2YoKnJpbmdz
-KSwgR0ZQX0tFUk5FTCk7DQo+DQo+IFdlIGNhbid0IGFsbG9jYXRlIG1lbW9yeSBpbiB0aGUgcmVz
-ZXQgcGF0aCBvdGhlcndpc2Ugd2UgY291bGQgZGVhZGxvY2ssIHRoaXMgbmVlZHMNCj4gdG8gYmUg
-cHJlLWFsbG9jYXRlZCBpZiB5b3UgdXNlIHRoZSBoZWFwLg0KDQpUaGFua3MgQWxleC4gSSdsbCBh
-dm9pZCBhbGxvY2F0aW9uIGluIHRoZSByZXNldCBwYXRoIGFuZCByZXNwaW4gdGhpcyBieQ0KdXNp
-bmcgYSBwcmVhbGxvY2F0ZWQgcGVyLWRldmljZSBzY3JhdGNoIHJpbmcgYXJyYXkgaW5zdGVhZC4N
-Cg0KQmVzdCByZWdhcmRzLA0KU3JpbmkNCg0KPg0KPiBBbGV4DQo=
+--000000000000ba82dc0654a8d5dd
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Tao,
+
+Thanks for taking a look.
+
+I will initialize ret to -EINVAL in v3 to keep the behavior
+aligned with the original logic.
+
+Thanks Christian for the Ack as well.
+
+Thanks,
+Ruoyu Wang
+
+On Thu, Jun 18, 2026 at 7:02=E2=80=AFPM Zhou1, Tao <Tao.Zhou1@amd.com> wrot=
+e:
+
+> AMD General
+>
+> [Tao] In order to align with the original logic, I prefer to "ret =3D
+> -EINVAL"
+>
+> > -----Original Message-----
+> > From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> Christian
+> > K=C3=B6nig
+> > Sent: Thursday, June 18, 2026 3:37 PM
+> > To: Ruoyu Wang <ruoyuw560@gmail.com>; Deucher, Alexander
+> > <Alexander.Deucher@amd.com>; David Airlie <airlied@gmail.com>; Simona
+> Vetter
+> > <simona@ffwll.ch>; amd-gfx@lists.freedesktop.org;
+> dri-devel@lists.freedesktop.org;
+> > linux-kernel@vger.kernel.org; Zhang, Hawking <Hawking.Zhang@amd.com>;
+> Lazar,
+> > Lijo <Lijo.Lazar@amd.com>
+> > Subject: Re: [PATCH v2] drm/amdgpu: initialize ret before UMC error
+> record loop
+> >
+> > On 6/17/26 21:33, Ruoyu Wang wrote:
+> > > umc_v12_0_fill_error_record() returns ret after walking the pages
+> > > reported by amdgpu_umc_lookup_bad_pages_in_a_row(). That helper can
+> > > return zero entries, leaving the loop skipped and ret uninitialized.
+> > >
+> > > Set ret to 0 immediately before the loop so the zero-page path report=
+s
+> > > a deterministic status instead of returning stack data.
+> > >
+> > > Suggested-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > > Signed-off-by: Ruoyu Wang <ruoyuw560@gmail.com>
+> >
+> > Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> >
+> > Someone more familiar with ras should take a look as well, could be tha=
+t
+> returning -
+> > ENOENT is more appropriate here.
+> >
+> > > ---
+> > > v2:
+> > > - Set ret immediately before the loop instead of initializing it in t=
+he
+> > >   declaration, as suggested by Christian.
+> > > - Avoid describing the zero-entry case as an allocation-failure fix.
+> > >
+> > >  drivers/gpu/drm/amd/amdgpu/umc_v12_0.c | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
+> > > b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
+> > > index 14092150336a5..4842340d9d65f 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
+> > > @@ -690,6 +690,7 @@ static int umc_v12_0_fill_error_record(struct
+> > amdgpu_device *adev,
+> > >         count =3D amdgpu_umc_lookup_bad_pages_in_a_row(adev,
+> > >                                 ecc_err->pa_pfn <<
+> AMDGPU_GPU_PAGE_SHIFT,
+> > >                                 page_pfn, ARRAY_SIZE(page_pfn));
+> > > +       ret =3D 0;
+> > >
+> > >         for (i =3D 0; i < count; i++) {
+> > >                 ret =3D amdgpu_umc_fill_error_record(err_data,
+> > > --
+> > > 2.51.0
+>
+>
+
+--000000000000ba82dc0654a8d5dd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><p class=3D"gmail-isSelectedEnd">Hi Tao,</p><p class=3D"gm=
+ail-isSelectedEnd">Thanks for taking a look.</p><p class=3D"gmail-isSelecte=
+dEnd">I will initialize ret to -EINVAL in v3 to keep the behavior<br>aligne=
+d with the original logic.</p><p class=3D"gmail-isSelectedEnd">Thanks Chris=
+tian for the Ack as well.</p><p>Thanks,<br>Ruoyu Wang</p></div><br><div cla=
+ss=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Thu, Jun 18, 2026 at 7:02=E2=80=AFPM Zhou1, Tao &lt;<a href=3D"mailt=
+o:Tao.Zhou1@amd.com">Tao.Zhou1@amd.com</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex">AMD General<br>
+<br>
+[Tao] In order to align with the original logic, I prefer to &quot;ret =3D =
+-EINVAL&quot;<br>
+<br>
+&gt; -----Original Message-----<br>
+&gt; From: amd-gfx &lt;<a href=3D"mailto:amd-gfx-bounces@lists.freedesktop.=
+org" target=3D"_blank">amd-gfx-bounces@lists.freedesktop.org</a>&gt; On Beh=
+alf Of Christian<br>
+&gt; K=C3=B6nig<br>
+&gt; Sent: Thursday, June 18, 2026 3:37 PM<br>
+&gt; To: Ruoyu Wang &lt;<a href=3D"mailto:ruoyuw560@gmail.com" target=3D"_b=
+lank">ruoyuw560@gmail.com</a>&gt;; Deucher, Alexander<br>
+&gt; &lt;<a href=3D"mailto:Alexander.Deucher@amd.com" target=3D"_blank">Ale=
+xander.Deucher@amd.com</a>&gt;; David Airlie &lt;<a href=3D"mailto:airlied@=
+gmail.com" target=3D"_blank">airlied@gmail.com</a>&gt;; Simona Vetter<br>
+&gt; &lt;<a href=3D"mailto:simona@ffwll.ch" target=3D"_blank">simona@ffwll.=
+ch</a>&gt;; <a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_bla=
+nk">amd-gfx@lists.freedesktop.org</a>; <a href=3D"mailto:dri-devel@lists.fr=
+eedesktop.org" target=3D"_blank">dri-devel@lists.freedesktop.org</a>;<br>
+&gt; <a href=3D"mailto:linux-kernel@vger.kernel.org" target=3D"_blank">linu=
+x-kernel@vger.kernel.org</a>; Zhang, Hawking &lt;<a href=3D"mailto:Hawking.=
+Zhang@amd.com" target=3D"_blank">Hawking.Zhang@amd.com</a>&gt;; Lazar,<br>
+&gt; Lijo &lt;<a href=3D"mailto:Lijo.Lazar@amd.com" target=3D"_blank">Lijo.=
+Lazar@amd.com</a>&gt;<br>
+&gt; Subject: Re: [PATCH v2] drm/amdgpu: initialize ret before UMC error re=
+cord loop<br>
+&gt;<br>
+&gt; On 6/17/26 21:33, Ruoyu Wang wrote:<br>
+&gt; &gt; umc_v12_0_fill_error_record() returns ret after walking the pages=
+<br>
+&gt; &gt; reported by amdgpu_umc_lookup_bad_pages_in_a_row(). That helper c=
+an<br>
+&gt; &gt; return zero entries, leaving the loop skipped and ret uninitializ=
+ed.<br>
+&gt; &gt;<br>
+&gt; &gt; Set ret to 0 immediately before the loop so the zero-page path re=
+ports<br>
+&gt; &gt; a deterministic status instead of returning stack data.<br>
+&gt; &gt;<br>
+&gt; &gt; Suggested-by: Christian K=C3=B6nig &lt;<a href=3D"mailto:christia=
+n.koenig@amd.com" target=3D"_blank">christian.koenig@amd.com</a>&gt;<br>
+&gt; &gt; Signed-off-by: Ruoyu Wang &lt;<a href=3D"mailto:ruoyuw560@gmail.c=
+om" target=3D"_blank">ruoyuw560@gmail.com</a>&gt;<br>
+&gt;<br>
+&gt; Acked-by: Christian K=C3=B6nig &lt;<a href=3D"mailto:christian.koenig@=
+amd.com" target=3D"_blank">christian.koenig@amd.com</a>&gt;<br>
+&gt;<br>
+&gt; Someone more familiar with ras should take a look as well, could be th=
+at returning -<br>
+&gt; ENOENT is more appropriate here.<br>
+&gt;<br>
+&gt; &gt; ---<br>
+&gt; &gt; v2:<br>
+&gt; &gt; - Set ret immediately before the loop instead of initializing it =
+in the<br>
+&gt; &gt;=C2=A0 =C2=A0declaration, as suggested by Christian.<br>
+&gt; &gt; - Avoid describing the zero-entry case as an allocation-failure f=
+ix.<br>
+&gt; &gt;<br>
+&gt; &gt;=C2=A0 drivers/gpu/drm/amd/amdgpu/umc_v12_0.c | 1 +<br>
+&gt; &gt;=C2=A0 1 file changed, 1 insertion(+)<br>
+&gt; &gt;<br>
+&gt; &gt; diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c<br>
+&gt; &gt; b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c<br>
+&gt; &gt; index 14092150336a5..4842340d9d65f 100644<br>
+&gt; &gt; --- a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c<br>
+&gt; &gt; +++ b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c<br>
+&gt; &gt; @@ -690,6 +690,7 @@ static int umc_v12_0_fill_error_record(struct=
+<br>
+&gt; amdgpu_device *adev,<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0count =3D amdgpu_umc_lookup_bad_=
+pages_in_a_row(adev,<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ecc_err-&gt;pa_pfn &lt;=
+&lt; AMDGPU_GPU_PAGE_SHIFT,<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0page_pfn, ARRAY_SIZE(pa=
+ge_pfn));<br>
+&gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0ret =3D 0;<br>
+&gt; &gt;<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0for (i =3D 0; i &lt; count; i++)=
+ {<br>
+&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ret =
+=3D amdgpu_umc_fill_error_record(err_data,<br>
+&gt; &gt; --<br>
+&gt; &gt; 2.51.0<br>
+<br>
+</blockquote></div>
+
+--000000000000ba82dc0654a8d5dd--
