@@ -2,88 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HQNiH4nNN2rMUAcAu9opvQ
+	id FCw8NYi6NmrCDwcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 21 Jun 2026 13:39:53 +0200
+	for <lists+amd-gfx@lfdr.de>; Sat, 20 Jun 2026 18:06:32 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 289716AAA88
-	for <lists+amd-gfx@lfdr.de>; Sun, 21 Jun 2026 13:39:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B1C26A9320
+	for <lists+amd-gfx@lfdr.de>; Sat, 20 Jun 2026 18:06:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=usp.br header.s=usp-google header.b=xTvJci8+;
+	dkim=pass header.d=kernel.org header.s=k20201202 header.b=Hhv4RI6D;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=usp.br
+	dmarc=pass (policy=quarantine) header.from=kernel.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B2EA10E375;
-	Sun, 21 Jun 2026 11:39:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2F2510E225;
+	Sat, 20 Jun 2026 16:06:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com
- [209.85.160.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EADA10E220
- for <amd-gfx@lists.freedesktop.org>; Sat, 20 Jun 2026 16:04:20 +0000 (UTC)
-Received: by mail-qt1-f177.google.com with SMTP id
- d75a77b69052e-5176ca6bab1so35079761cf.0
- for <amd-gfx@lists.freedesktop.org>; Sat, 20 Jun 2026 09:04:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=usp.br; s=usp-google; t=1781971459; x=1782576259; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=h9LoTmNWXhl/uf1b0J5TKw+hOQ98YAC1iyy1IKtKZNA=;
- b=xTvJci8+28LnrYC2CQGTopxtDlithKCZSGvujqDdZOXT0CyEe/LgEskrcTtc0TMMD6
- FRvkZVyzYJOoltb69TCslGWZ0kFHlGMKOXaaKcsx+mfaM05dErmcqxMjuSa6mIb2zKNE
- FeSIfKs6zzk04qdewMvp6SudPHRxtiYpi758mbnBZI2GXXat2zhgHsXmPT/Sfg/XDWWD
- NShJTBhF7oHdNdSBDczx14nDRBzz30o1zq367z9MqBkLksOZlyY1xWiCk0hWoSBqzNRu
- +E+P1fP106aTXT53EyZcid7BXRCNjGObs3X3qDbtu3YXrOtw+th77/NEQ7LVeCTOQ+JB
- zWyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781971459; x=1782576259;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=h9LoTmNWXhl/uf1b0J5TKw+hOQ98YAC1iyy1IKtKZNA=;
- b=okgR4KhSA0mnPq8iVXm9I2s/6MQlHgMKRb82Rc8Q4HjR8JmLt0y33Bwkrpt+p1dDAb
- MK1s9OdT8DEmUtNxnqybXcuuAd2MTwkCw+TAkqlWNUYs8CglJkgjLHjz2mFhRhb+R2Qf
- p0WPIuaIWP3F0oOQb3uXT4WMJRph+L41rEEiGOeFKoJYzIsxgwuRAIRrjxPaijydYLSD
- aNbxQy1EIaFPpo7SveHDCRKvlOemUqGCq6dX/GViw8hXvhZdKltPiYLow8np/Bt8It0m
- P/1zPlVSrufM0HUygcH3mIB4N8QG3WwOZSnIM1aGAq0w3XRXSuoQwHd/+cnuE3lzqfib
- kbBQ==
-X-Forwarded-Encrypted: i=1;
- AFNElJ98gBO82U9IvqL3iCMQfhCR+dubKc6KjLHCA+TWFKvpfqFZVREg/Kp3mL7p+h1km3x003Y1qur4@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx7vwupuodb29eC56UcIVQO7Hln0YVoCJU7gz1BA1J+R2I/FWgR
- yoBUVcGK6sVfROiGDhC09OZXYLaiWI+CCZRs0T8pwS7a1bmXX+WePr9MVqRx6cQKz1Q=
-X-Gm-Gg: AfdE7ckOqBfLW7bK76k4RKBkxRs8UWaf+CPMUEqzN/eFluLpGoEofCaKpN4LS59hPFU
- QEAKOJxvqxzUcwzym3EnwqcibOhEZ4xQv5KKRcEGRccpQUVPPu7PUEYtCQRusbwgD+41vxC7WmM
- LOJ3I4c3t2rmas9fxSXojbOvZYKabDNJxq5zGbl7kf92LC+g8aRi2G+1WnBNh4p3saTw/N1c8Vs
- 47Wz1ek8twdOp1M7Pon5EE1KB1mi39TX2uYhnjZHInbxTqNn/Z7x9EeW9VqIaeEA47OR5H+JZqq
- KzGhJEMr1lLUOxbdeUSLpdlcxlHvBcafghTfY6J43hLbS4yfgxXvL21sg7Z8M7MX8UZzfzSA4vD
- JYtDgXSd7bZkhTC3kgrySmXA9p6+43pSIrsRSLKyGT8/75JXPmWyaLMGhjj0ulHja2z0vtg+/rq
- 2iqn955LuLdvENXAI7GYuHXuPJxg==
-X-Received: by 2002:ac8:5a4f:0:b0:50b:3429:a10b with SMTP id
- d75a77b69052e-519e6640873mr100545251cf.12.1781971458814; 
- Sat, 20 Jun 2026 09:04:18 -0700 (PDT)
-Received: from localhost.localdomain ([179.100.109.88])
- by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-51a098528basm24303761cf.16.2026.06.20.09.04.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 20 Jun 2026 09:04:18 -0700 (PDT)
-From: Ulisses Paixao <ulissespaixao@usp.br>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
- simona@ffwll.ch
-Cc: Ulisses Paixao <ulissespaixao@usp.br>, Felipe Sousa <felipesousa@usp.br>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 RESEND] drm/amd/amdgpu: remove duplicated code in gfx_v11
- and gfx_v12
-Date: Sat, 20 Jun 2026 13:04:07 -0300
-Message-Id: <20260620160407.8195-1-ulissespaixao@usp.br>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <96a6ce62-d015-4cc7-8584-bb73171f23a9@usp.br>
-References: 
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61B7310E224;
+ Sat, 20 Jun 2026 16:06:21 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 60665601E3;
+ Sat, 20 Jun 2026 16:06:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 124D1C2BCB7;
+ Sat, 20 Jun 2026 16:06:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1781971579;
+ bh=oQDp/iVxP2L33GYJjkOAVTDBvPk5XRvIgJQynX8l43I=;
+ h=From:Date:Subject:To:Cc:Reply-To:From;
+ b=Hhv4RI6DwA4Qke0XKpYtCpU6Zmfhmet8osY0GqhqJRMcyvoPwHUBKDapvk0rP9kUm
+ RZXBmqPCUc34q+hLVY6HS5nG9kpaQ5qFAA56e18QyJNW9ADSYwMCeUsXTlb7za+KnJ
+ Ny3aynLdZV5yt757srZudBFgXRw/hloIog4fNy7YP2kCGPSZOKyWecV9dW4yja8rkd
+ 5HLOPzIjv4htaBdWTWGV85NAfdAxAigwZXVUWFT/2IJTrX4NcBmAw2Zovw9VAj4n3e
+ SH5O8gUHJ8jqXTwmUXLJIngPcWpYK0jq7fWCem2BvDXZh4bgzlv6sJt/3XKwHIof02
+ 8/9IyLYN3Yirg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+ by smtp.lore.kernel.org (Postfix) with ESMTP id EB840CD98E4;
+ Sat, 20 Jun 2026 16:06:18 +0000 (UTC)
+From: Stephen via B4 Relay <devnull+stevester.codes.gmail.com@kernel.org>
+Date: Sat, 20 Jun 2026 10:06:19 -0600
+Subject: [PATCH RFC 1/3] drm/amd/display: quirk malformed CH7218 PCON topology
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sun, 21 Jun 2026 11:39:50 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260620-ch7218-rfc-v1-b4-v1-1-3412debf44b6@gmail.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: Stephen <stevester.codes@gmail.com>, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, Harry Wentland <harry.wentland@amd.com>, 
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ =?utf-8?q?Tomasz_Paku=C5=82a?= <tomasz.pakula.oficjalny@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1781971578; l=4344;
+ i=stevester.codes@gmail.com; s=ch7218-rfc; h=from:subject:message-id;
+ bh=jeGNZJ9+o/AHn9lk6MUcdhMGJQEt2lPQ9MdS1Ws/0rk=;
+ b=ashBtRxYlhnhRo1J1cKCvKoDCNUKcm/GSSLJzVdHb0bTs2DEyf8TDex8vsyJXd5N4KMWxP1OL
+ IMbTk2tOT6JCeix/HJpj0hJLXBKtOSpBd8QJr+OkHiR3Cf1Qn1yfzvD
+X-Developer-Key: i=stevester.codes@gmail.com; a=ed25519;
+ pk=3Y74rGwtdwPNG9fzfw+7DSf/KWLeW8BsYVkyhPcx5pY=
+X-Endpoint-Received: by B4 Relay for stevester.codes@gmail.com/ch7218-rfc
+ with auth_id=834
+X-Original-From: Stephen <stevester.codes@gmail.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,219 +77,154 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: stevester.codes@gmail.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
+X-Spamd-Result: default: False [2.19 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:ulissespaixao@usp.br,m:felipesousa@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
+	TAGGED_FROM(0.00)[stevester.codes.gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[ulissespaixao@usp.br,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[usp.br:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ulissespaixao@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[stevester.codes@gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org,vger.kernel.org,amd.com,igalia.com,ffwll.ch];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DKIM_TRACE(0.00)[kernel.org:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 289716AAA88
+X-Rspamd-Queue-Id: 6B1C26A9320
 
-The functions gfx_v11_0_handle_priv_fault and
-gfx_v12_0_handle_priv_fault share the same logic for searching and
-triggering a scheduler fault on a ring. This patch moves the shared
-ring-searching logic to a common function, amdgpu_gfx_handle_priv_fault,
-in amdgpu_gfx.c. The hardware-specific decoding of ring IDs remains in
-the version-specific files to maintain proper architectural separation.
+From: Stephen <stevester.codes@gmail.com>
 
-Signed-off-by: Ulisses Paixao <ulissespaixao@usp.br>
-Co-developed-by: Felipe Sousa <felipesousa@usp.br>
-Signed-off-by: Felipe Sousa <felipesousa@usp.br>
-Reviewed-by: Christian König <christian.koenig@amd.com>
+Some Chrontel CH7218 DP-to-HDMI 2.1 adapters expose a branch
+device ID of 0x2b02f0 and branch name CH7218, but report no
+downstream port at DPCD 0x005 and report the detailed downstream
+port at 0x080 as DP.
 
+This leaves AMDGPU treating the link as non-HDMI and bypasses the
+PCON capability path.
+
+When this malformed runtime state is detected, classify the link as a
+DP-HDMI converter and restore the documented converter ceilings needed
+by the existing PCON path: 12 bpc, 48 Gbps FRL, and YCbCr passthrough
+capability. This does not program the PCON or synthesize source-control
+FRL state.
+
+Signed-off-by: Stephen <stevester.codes@gmail.com>
 ---
-Resending v3 as it has been over a month 
-without further comments and v2 was already reviewed by Christian.
+ .../display/dc/link/protocols/link_dp_capability.c | 47 ++++++++++++++++++++--
+ .../drm/amd/display/include/ddc_service_types.h    |  1 +
+ 2 files changed, 45 insertions(+), 3 deletions(-)
 
-v3:
-Return early if the ring is found in the gfx rings loop.
-
-v2:
-Keep the HW-specific decoding in gfx_v11_0.c and gfx_v12_0.c.
-Remove the redundant check for adev->gfx.disable_kq.
-Simplify the search loop in amdgpu_gfx_handle_priv_fault to iterate over
-all gfx and compute rings without a switch statement.
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 34 +++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 ++
- drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 27 +-------------------
- drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  | 27 +-------------------
- 4 files changed, 38 insertions(+), 52 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index b8ca87669..205d35911 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -830,6 +830,40 @@ int amdgpu_gfx_enable_kgq(struct amdgpu_device *adev, int xcc_id)
- 	return r;
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
+index 47abb4066709..c2b48abfe7e6 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
+@@ -1158,6 +1158,31 @@ static void read_and_intersect_post_frl_lt_status(
+ 	}
  }
  
-+/**
-+ * amdgpu_gfx_handle_priv_fault - Handle privileged instruction fault
-+ *
-+ * @adev: amdgpu_device pointer
-+ * @me_id: micro-engine ID of the faulty ring
-+ * @pipe_id: pipe ID of the faulty ring
-+ * @queue_id: queue ID of the faulty ring
-+ *
-+ * This function handles privileged instruction faults by identifying
-+ * the faulty ring (gfx or compute) and triggering a scheduler fault
-+ */
-+void amdgpu_gfx_handle_priv_fault(struct amdgpu_device *adev,
-+					u8 me_id, u8 pipe_id, u8 queue_id)
++static bool is_ch7218_pcon(const struct dc_link *link)
 +{
-+	struct amdgpu_ring *ring;
-+	int i;
-+
-+	for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
-+		ring = &adev->gfx.gfx_ring[i];
-+		if (ring->me == me_id && ring->pipe == pipe_id &&
-+		    ring->queue == queue_id) {
-+			drm_sched_fault(&ring->sched);
-+			return;
-+		}
-+	}
-+
-+	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
-+		ring = &adev->gfx.compute_ring[i];
-+		if (ring->me == me_id && ring->pipe == pipe_id &&
-+		    ring->queue == queue_id)
-+			drm_sched_fault(&ring->sched);
-+	}
++	return link->dpcd_caps.branch_dev_id == DP_BRANCH_DEVICE_ID_2B02F0 &&
++		!memcmp(link->dpcd_caps.branch_dev_name, "CH7218",
++			sizeof(link->dpcd_caps.branch_dev_name));
 +}
 +
- static void amdgpu_gfx_do_off_ctrl(struct amdgpu_device *adev, bool enable,
- 				   bool no_delay)
++static void apply_ch7218_pcon_caps_quirk(struct dc_link *link)
++{
++	if (!link->dc->caps.dp_hdmi21_pcon_support)
++		return;
++
++	/*
++	 * Some CH7218 firmware reports no downstream port, or reports the
++	 * detailed downstream port as DP, while the device identity and EDID
++	 * describe a DP-to-HDMI 2.1 PCON. Restore only the documented converter
++	 * capability ceilings here; do not touch the PCON link state.
++	 */
++	link->dpcd_caps.dongle_caps.dp_hdmi_max_bpc = 12;
++	link->dpcd_caps.dongle_caps.dp_hdmi_frl_max_link_bw_in_kbps = 48000000;
++	link->dpcd_caps.dongle_caps.is_dp_hdmi_ycbcr422_pass_through = true;
++	link->dpcd_caps.dongle_caps.is_dp_hdmi_ycbcr420_pass_through = true;
++	link->dpcd_caps.dongle_caps.extendedCapValid = true;
++}
++
+ static void get_active_converter_info(
+ 	uint8_t data, struct dc_link *link)
  {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-index a0cf0a3b4..0b2f6ce85 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-@@ -611,6 +611,8 @@ bool amdgpu_gfx_is_high_priority_graphics_queue(struct amdgpu_device *adev,
- 						struct amdgpu_ring *ring);
- bool amdgpu_gfx_is_me_queue_enabled(struct amdgpu_device *adev, int me,
- 				    int pipe, int queue);
-+void amdgpu_gfx_handle_priv_fault(struct amdgpu_device *adev,
-+					u8 me_id, u8 pipe_id, u8 queue_id);
- void amdgpu_gfx_off_ctrl(struct amdgpu_device *adev, bool enable);
- void amdgpu_gfx_off_ctrl_immediate(struct amdgpu_device *adev, bool enable);
- int amdgpu_get_gfx_off_status(struct amdgpu_device *adev, uint32_t *value);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-index 2c6f1e25c..888c9f3c4 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
-@@ -6688,37 +6688,12 @@ static void gfx_v11_0_handle_priv_fault(struct amdgpu_device *adev,
- 					struct amdgpu_iv_entry *entry)
- {
- 	u8 me_id, pipe_id, queue_id;
--	struct amdgpu_ring *ring;
--	int i;
+@@ -1166,10 +1191,19 @@ static void get_active_converter_info(
  
- 	me_id = (entry->ring_id & 0x0c) >> 2;
- 	pipe_id = (entry->ring_id & 0x03) >> 0;
- 	queue_id = (entry->ring_id & 0x70) >> 4;
+ 	/* decode converter info*/
+ 	if (!ds_port.fields.PORT_PRESENT) {
+-		link->dpcd_caps.dongle_type = DISPLAY_DONGLE_NONE;
++		if (is_ch7218_pcon(link)) {
++			link->dpcd_caps.is_branch_dev = true;
++			link->dpcd_caps.dongle_type =
++				DISPLAY_DONGLE_DP_HDMI_CONVERTER;
++			link->dpcd_caps.dongle_caps.dongle_type =
++				link->dpcd_caps.dongle_type;
++			apply_ch7218_pcon_caps_quirk(link);
++		} else {
++			link->dpcd_caps.dongle_type = DISPLAY_DONGLE_NONE;
++			link->dpcd_caps.is_branch_dev = false;
++		}
+ 		set_dongle_type(link->ddc,
+ 				link->dpcd_caps.dongle_type);
+-		link->dpcd_caps.is_branch_dev = false;
+ 		return;
+ 	}
  
--	if (!adev->gfx.disable_kq) {
--		switch (me_id) {
--		case 0:
--			for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
--				ring = &adev->gfx.gfx_ring[i];
--				if (ring->me == me_id && ring->pipe == pipe_id &&
--				    ring->queue == queue_id)
--					drm_sched_fault(&ring->sched);
--			}
--			break;
--		case 1:
--		case 2:
--			for (i = 0; i < adev->gfx.num_compute_rings; i++) {
--				ring = &adev->gfx.compute_ring[i];
--				if (ring->me == me_id && ring->pipe == pipe_id &&
--				    ring->queue == queue_id)
--					drm_sched_fault(&ring->sched);
--			}
--			break;
--		default:
--			BUG();
--			break;
--		}
--	}
-+	amdgpu_gfx_handle_priv_fault(adev, me_id, pipe_id, queue_id);
- }
+@@ -1200,7 +1234,14 @@ static void get_active_converter_info(
+ 			switch (port_caps->bits.DWN_STRM_PORTX_TYPE) {
+ 			/*Handle DP case as DONGLE_NONE*/
+ 			case DOWN_STREAM_DETAILED_DP:
+-				link->dpcd_caps.dongle_type = DISPLAY_DONGLE_NONE;
++				link->dpcd_caps.dongle_type = is_ch7218_pcon(link) ?
++					DISPLAY_DONGLE_DP_HDMI_CONVERTER :
++					DISPLAY_DONGLE_NONE;
++				link->dpcd_caps.dongle_caps.dongle_type =
++					link->dpcd_caps.dongle_type;
++				if (link->dpcd_caps.dongle_type ==
++						DISPLAY_DONGLE_DP_HDMI_CONVERTER)
++					apply_ch7218_pcon_caps_quirk(link);
+ 				break;
+ 			case DOWN_STREAM_DETAILED_VGA:
+ 				link->dpcd_caps.dongle_type =
+diff --git a/drivers/gpu/drm/amd/display/include/ddc_service_types.h b/drivers/gpu/drm/amd/display/include/ddc_service_types.h
+index 53210e3aa0e0..4164f8a5ae56 100644
+--- a/drivers/gpu/drm/amd/display/include/ddc_service_types.h
++++ b/drivers/gpu/drm/amd/display/include/ddc_service_types.h
+@@ -37,6 +37,7 @@
+ #define DP_BRANCH_DEVICE_ID_001CF8 0x001CF8
+ #define DP_BRANCH_DEVICE_ID_0060AD 0x0060AD
+ #define DP_BRANCH_DEVICE_ID_001FF2 0x001FF2
++#define DP_BRANCH_DEVICE_ID_2B02F0 0x2B02F0
+ #define DP_BRANCH_HW_REV_10 0x10
+ #define DP_BRANCH_HW_REV_20 0x20
  
- static int gfx_v11_0_priv_reg_irq(struct amdgpu_device *adev,
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-index 6baac533a..3f0d29372 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
-@@ -5019,37 +5019,12 @@ static void gfx_v12_0_handle_priv_fault(struct amdgpu_device *adev,
- 					struct amdgpu_iv_entry *entry)
- {
- 	u8 me_id, pipe_id, queue_id;
--	struct amdgpu_ring *ring;
--	int i;
- 
- 	me_id = (entry->ring_id & 0x0c) >> 2;
- 	pipe_id = (entry->ring_id & 0x03) >> 0;
- 	queue_id = (entry->ring_id & 0x70) >> 4;
- 
--	if (!adev->gfx.disable_kq) {
--		switch (me_id) {
--		case 0:
--			for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
--				ring = &adev->gfx.gfx_ring[i];
--				if (ring->me == me_id && ring->pipe == pipe_id &&
--				    ring->queue == queue_id)
--					drm_sched_fault(&ring->sched);
--			}
--			break;
--		case 1:
--		case 2:
--			for (i = 0; i < adev->gfx.num_compute_rings; i++) {
--				ring = &adev->gfx.compute_ring[i];
--				if (ring->me == me_id && ring->pipe == pipe_id &&
--				    ring->queue == queue_id)
--					drm_sched_fault(&ring->sched);
--			}
--			break;
--		default:
--			BUG();
--			break;
--		}
--	}
-+	amdgpu_gfx_handle_priv_fault(adev, me_id, pipe_id, queue_id);
- }
- 
- static int gfx_v12_0_priv_reg_irq(struct amdgpu_device *adev,
+
 -- 
-2.34.1
+2.54.0
+
 
