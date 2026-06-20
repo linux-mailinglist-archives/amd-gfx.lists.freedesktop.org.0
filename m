@@ -2,105 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id w1wXMmZUNmrY9QYAu9opvQ
+	id owLQNmxUNmrb9QYAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 20 Jun 2026 10:50:46 +0200
+	for <lists+amd-gfx@lfdr.de>; Sat, 20 Jun 2026 10:50:52 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF246A89E1
-	for <lists+amd-gfx@lfdr.de>; Sat, 20 Jun 2026 10:50:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F4C56A89EE
+	for <lists+amd-gfx@lfdr.de>; Sat, 20 Jun 2026 10:50:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=LEsnoo5i;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Y7CPfgVV;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20240605:i=1")
+	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B287B10E1B1;
-	Sat, 20 Jun 2026 08:50:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD7FB10E1C7;
+	Sat, 20 Jun 2026 08:50:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com
- [209.85.222.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7040510E158
- for <amd-gfx@lists.freedesktop.org>; Sat, 20 Jun 2026 05:39:38 +0000 (UTC)
-Received: by mail-ua1-f46.google.com with SMTP id
- a1e0cc1a2514c-966db0b76daso2321552241.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 22:39:38 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781933977; cv=none;
- d=google.com; s=arc-20240605;
- b=UKylGrOcQsIIbYNqxWJAfkitDRwdiHQWtqdeoXzMsG5EiWCO+KTfd+xuvgZCrhREpp
- ov2V/W9AmpgorTg6Rnu0G7LOzRcAT7HM81NMROG6l+1ARt2FYuzg07+GJSptmgMd+0j/
- QPiTj0HNzSL/Gb2dIRHzaAsXp+2MIK/IymmWsaa1E1d6rkTUR6G5sMthtBglH7JYbO4I
- Qz0zSy3w7jARJvSj48mDWZneo1hryVToaQpGsZ50N05OxrnGy5rE7XX2qjbI/J33ltFA
- MSeYuSuaWHysb6L/KoIyGeiQeTN5H7O/NKtyfNqFdyr4oSLroOdFmTgdLHRHH9m8SsmT
- WhAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=4APW9WchUIjck1WXvCdDznMYknRjl/S7x9r5ba9yacU=;
- fh=w59f4Ryu2jo8YxLxJsSj7jf/5UZE5ebtMoKdn4pP8gE=;
- b=kOme4XxrJMyK3+xuuoLej6R7HkzdtiZE+avoYH9VX3BSiD/cP3TMIf26O7+dXb58RA
- SOzzhkWEVzCh0MRE1HwP3C64VNCSweS/qDWKE3JyGsybLreO/74DtiDU65ZZUV6xZIxO
- tTQuJTrMa/bfMSzzr/TkZ89mFWspTht6RIBWrDteYl7DtJHB7AoozTw80p/ltXSlj+KZ
- bwy8yRAiwUEm0UfjxqKa1e/szwX1yoW0wteS/nWaQc+peeN4Hd07xlY1gf4YgPXE+pvf
- fyLkyWFnQJXmfTzq3GvXFKUIix+LaASgLwmfOSJ3h0dussfezFmenYTMij3y8LPPX8ME
- YebA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com
+ [209.85.216.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B0F010E158
+ for <amd-gfx@lists.freedesktop.org>; Sat, 20 Jun 2026 06:12:03 +0000 (UTC)
+Received: by mail-pj1-f41.google.com with SMTP id
+ 98e67ed59e1d1-36b8e1760ccso1351114a91.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 23:12:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1781933977; x=1782538777; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=4APW9WchUIjck1WXvCdDznMYknRjl/S7x9r5ba9yacU=;
- b=LEsnoo5iFdh0kWyHKf7HU8CksVATCuYRj8YVVT9Pwq/LjKesWtopKRlZvG9Hy8+fq0
- sAVYWeCDFcrI1QB3Pnd4gbnDgCG7+sSOa6hTxy1LbTpFQZ+ss9vYFnAqwk3bfyn0vkjf
- ot7/H9I+btuLGF4hBjkSWsdW2OGsJ3CVjKOcGf5/bOWOjkR2uvu62WdmVacj2nQczwxZ
- g72jYE3+UhmSnlfLuMjBdEuFr2q7tr4Nn6lpzHO30/aiPRkzJ0HsCna6Krt1BMWh37xc
- m6ucH9uPm0WTrAlps/6mXLsCvpSuxKZbQ74FZC8rWk9cmOcWrA4R5wz2JciAsouQ/ZLM
- Uqgw==
+ d=gmail.com; s=20251104; t=1781935922; x=1782540722; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=4Xa9wRkzrxIHZBcHMfm9W7lFK3FEnhZDg4Ta4bDB4Rg=;
+ b=Y7CPfgVVhJ2WDoIpv06qc6/LA8/AM8+UfJtsQJonrD8HIDn2gGK4PmFAyf13xdGdng
+ Kc9HtXavydyvdaIhkqd4BrnJua4DlhxjZzWSr+JpqycPcuTKIxferGXLUUYYVAY+To8r
+ oJrRqZKfPoTmx/iRFhNEclKFhuQAJhIlQD7Q8KB3kUcaAFrFzFvrdeVNDWxCaprFIaDt
+ jsUkwvJICV3XwTR7jaUf4ejt2qsrRXlaElp59dZXIbaOfGFsKGrQ9GU9gqS48Po2IGsM
+ IdizPtGXrDWXx5TjashtjLVRXoHtDbQmbWcYZRViiDxgwtx2CSyJ2gF6ASCVWLUUYF8A
+ nh3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781933977; x=1782538777;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=1e100.net; s=20251104; t=1781935922; x=1782540722;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=4APW9WchUIjck1WXvCdDznMYknRjl/S7x9r5ba9yacU=;
- b=tKuquOGv3qoyFZajKJMnuJmAK9gZkUUuzDi+tuPrfT/hrOOy3Dpw/4s/8oy4xsxlyE
- Yy2vSh4ZUS5QeV/Q3vrMKKjBXjxmgTDP/nhP1926Wc36C5y3wjKr+3tYQW0LDX1jXaGk
- djIkcr+/sbgsa/NcQutJBuDU9wAwNY7IMCsHtpnVrSaMR05FJU3XeIOx/CCthRWg3Zq4
- mqmec0Uv1OPIHPtKuC4m4kB/heBqGmggtIvxbUh402BtaIcvxMFQF/vvf+6tw0CzsJng
- xgmloFQrFwFTNsHrX0UPz+R+rkcRU4/eLTTMpgYifeUgy+c1f+A7FyLEUIDVdTZrxf+V
- ZtFQ==
+ bh=4Xa9wRkzrxIHZBcHMfm9W7lFK3FEnhZDg4Ta4bDB4Rg=;
+ b=jDRNB3WLWqyehPn/nEk+otOCl7U+1h/WH4px1Pk/MJnbdX2LmnUKNv2qwR3MsxqLJt
+ bpZK/nQXIovTNo8ZCztGp/uEIa07O7vkCSvJ4UanOzZpkVSxE8mvvl41R2aU5tfxNFa0
+ GcRuhLe2Pt2n92Ox6pnHWAtRhlGiTTZxxRvEfDa83Gwy6UWXazwNcbndHM1uH2wyRreW
+ wbFgr3DDsOyQ1BuAzVc5M5x1TlPa5m8WPZZ9kI3hpSrt90NSvZ87bdeadJ50sA7M1DxL
+ ypLMlizXF0MRDP7tWiLp2euc6PcYaF+ZTWdXvmLhAY2FlvYkgMvTxAXq9F3paIgIttfX
+ r+QA==
 X-Forwarded-Encrypted: i=1;
- AFNElJ/qqEJKCD0sOK64yIgxlINiwO/Y08+Zn0Y8YLRivx02OSjMk13MhU9Sd2r+GzZ0gCOdSV7mYhNB@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw5F7jDVmIi0AFsDowvLx2AInfXOHZ9VU8Dtvh1wNI3i8EFAovX
- QLuEIAC0HYn4uCmbT/4dBpN8AMqdkZzoWAiIonfn45S+e5SCwZF4gUOfg1BZ8uYX/BYcc8s9FEd
- ks7MGS3nfaOJgXN1tjo4t0vCxAM0X0ho=
-X-Gm-Gg: AfdE7ckIFNbUmWQ0+lz0jv7DZ6rSf5ZsJZC2YT2j3+5kXYGmBgeiCWY8BQXKxme2KJK
- mXvpt9Fu8Ez0HTDCFiduJVv332QZWpiT+4Vl8R+8m0YQLkB04FLtCKIRKI1eMWBZz0PqGc9s4s+
- hjy9E0HGlnqzAW4TPi5dfyBZWoroyFDyasdxDnLgIbyi1tT4Se1nJMqEAm0k6cj5p0oepIsDzmT
- flIUYUMXpo1OWKQLYe3YIHPjbvdHEd+s2jS1sjTUZlgJITAlg/mvned0c+hAms85BvHXvLzerhc
-X-Received: by 2002:a05:6102:17c5:b0:6cd:23a8:3a31 with SMTP id
- ada2fe7eead31-72a26e045f4mr1781055137.1.1781933977271; Fri, 19 Jun 2026
- 22:39:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260617193335.1662613-1-ruoyuw560@gmail.com>
- <cee10e27-1bf9-47de-9d72-4f2c7ac606ef@amd.com>
- <PH7PR12MB8796700AA79490AF65E12D64B0E32@PH7PR12MB8796.namprd12.prod.outlook.com>
-In-Reply-To: <PH7PR12MB8796700AA79490AF65E12D64B0E32@PH7PR12MB8796.namprd12.prod.outlook.com>
+ AFNElJ+CJbm3IPiz3+4wYmv2qg1PI1Hk4nv1nl7rxKxrgYkk4O8pQ5Z8DPN3KYi2yiqCaABWFzqOnfnQ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz6/PNILRu+qfWPh3cjwE8emhcSRkkT24DSXA6gdt/gNX+qU3Ga
+ EvAngkPj7tud3DQ0wXMbm/ZXAF9FLopHNDUHwR7pL+vy8bPhHkfRo95e
+X-Gm-Gg: AfdE7ckMIsqyMbe6pVRU7KN9zyvSZFVwPb6BdJxfAYy5l1a/k+E1qFPPnMLEcRjSJHa
+ 8I6B8XuU39GWObIMRPENNAMgTI3vFzdYAPzqayvR3Zpf5wMRHFdMRx1QIxwJdRcUrJuw237c4PL
+ o9O6dqumXDLar+Sig19WDBvSs63/1TwVnSC2iErfZOwJW8lGnHeuGkLwgMIXALV8J/c9rPnk7eX
+ wXER+YFD+sn4BVpeM4U8cbQYz5M+69MWUTEKDkWuaHhUU0eMNZWTRkRmmR+XDyNAhNuBx6Jx4sh
+ fwKtx8EhLWGJQX5i4kFmVVJ1WFNDJNEp5KnsTOmDxktFceLC+AvLEcrDuHQEkHQZ9Ld0emrGEE1
+ ncVzomxtLH3jexI1SYsW+XfctLYTkwwD0FekOBph2QogqbL65kLM3aoxq7AJ31y73V4sFrAtdxf
+ OiNWYfaO1UhDWoz6Eh8Hjl2aInurPgrlqS
+X-Received: by 2002:a17:90b:33c8:b0:368:83e6:ca95 with SMTP id
+ 98e67ed59e1d1-37d15fb0ae4mr6709367a91.0.1781935922584; 
+ Fri, 19 Jun 2026 23:12:02 -0700 (PDT)
+Received: from haichao.tail057a43.ts.net
+ ([2001:da8:e000:1206:8e0e:956e:b09c:23cd])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-37d4eff2387sm1283232a91.5.2026.06.19.23.11.59
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 19 Jun 2026 23:12:02 -0700 (PDT)
 From: Ruoyu Wang <ruoyuw560@gmail.com>
-Date: Sat, 20 Jun 2026 13:39:23 +0800
-X-Gm-Features: AVVi8CfYD_GAaQEP05j_5Lp7OoC_f0RZTesbVzNHdBDTKSPBat01vDG37k3SiEs
-Message-ID: <CAK_7xqxJMr+CgjKDbsWUGsbPt3U_xA_rE_CH__F7bmPW5AxJ0A@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/amdgpu: initialize ret before UMC error record loop
-To: "Zhou1, Tao" <Tao.Zhou1@amd.com>
-Cc: "Koenig, Christian" <Christian.Koenig@amd.com>, 
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Zhang,
- Hawking" <Hawking.Zhang@amd.com>, "Lazar, Lijo" <Lijo.Lazar@amd.com>
-Content-Type: multipart/alternative; boundary="000000000000ba82dc0654a8d5dd"
+To: alexander.deucher@amd.com
+Cc: christian.koenig@amd.com, tao.zhou1@amd.com, lijo.lazar@amd.com,
+ Hawking.Zhang@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Ruoyu Wang <ruoyuw560@gmail.com>
+Subject: [PATCH v3] drm/amdgpu: initialize ret before UMC error record loop
+Date: Sat, 20 Jun 2026 14:11:55 +0800
+Message-ID: <20260620061155.1442056-1-ruoyuw560@gmail.com>
+X-Mailer: git-send-email 2.51.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sat, 20 Jun 2026 08:50:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -116,233 +96,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:tao.zhou1@amd.com,m:lijo.lazar@amd.com,m:Hawking.Zhang@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:ruoyuw560@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:Tao.Zhou1@amd.com,m:Christian.Koenig@amd.com,m:Alexander.Deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:Hawking.Zhang@amd.com,m:Lijo.Lazar@amd.com,s:lists@lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER(0.00)[ruoyuw560@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[ruoyuw560@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[ruoyuw560@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email,lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,mail.gmail.com:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3AF246A89E1
+X-Rspamd-Queue-Id: 4F4C56A89EE
 
---000000000000ba82dc0654a8d5dd
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+umc_v12_0_fill_error_record() returns ret after walking the pages
+reported by amdgpu_umc_lookup_bad_pages_in_a_row(). That helper can
+return zero entries, leaving the loop skipped and ret uninitialized.
 
-Hi Tao,
+Initialize ret to -EINVAL immediately before the loop so the zero-entry
+path returns a deterministic error status while preserving the existing
+loop behavior when at least one page is processed.
 
-Thanks for taking a look.
+Suggested-by: Christian König <christian.koenig@amd.com>
+Suggested-by: Tao Zhou <tao.zhou1@amd.com>
+Signed-off-by: Ruoyu Wang <ruoyuw560@gmail.com>
+---
+v3:
+- Initialize ret to -EINVAL instead of 0 to match the original error
+  semantics preferred by Tao Zhou.
 
-I will initialize ret to -EINVAL in v3 to keep the behavior
-aligned with the original logic.
+v2:
+- Set ret immediately before the loop instead of initializing it in the
+  declaration, as suggested by Christian.
+- Avoid describing the zero-entry case as an allocation-failure fix.
 
-Thanks Christian for the Ack as well.
+ drivers/gpu/drm/amd/amdgpu/umc_v12_0.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks,
-Ruoyu Wang
-
-On Thu, Jun 18, 2026 at 7:02=E2=80=AFPM Zhou1, Tao <Tao.Zhou1@amd.com> wrot=
-e:
-
-> AMD General
->
-> [Tao] In order to align with the original logic, I prefer to "ret =3D
-> -EINVAL"
->
-> > -----Original Message-----
-> > From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> Christian
-> > K=C3=B6nig
-> > Sent: Thursday, June 18, 2026 3:37 PM
-> > To: Ruoyu Wang <ruoyuw560@gmail.com>; Deucher, Alexander
-> > <Alexander.Deucher@amd.com>; David Airlie <airlied@gmail.com>; Simona
-> Vetter
-> > <simona@ffwll.ch>; amd-gfx@lists.freedesktop.org;
-> dri-devel@lists.freedesktop.org;
-> > linux-kernel@vger.kernel.org; Zhang, Hawking <Hawking.Zhang@amd.com>;
-> Lazar,
-> > Lijo <Lijo.Lazar@amd.com>
-> > Subject: Re: [PATCH v2] drm/amdgpu: initialize ret before UMC error
-> record loop
-> >
-> > On 6/17/26 21:33, Ruoyu Wang wrote:
-> > > umc_v12_0_fill_error_record() returns ret after walking the pages
-> > > reported by amdgpu_umc_lookup_bad_pages_in_a_row(). That helper can
-> > > return zero entries, leaving the loop skipped and ret uninitialized.
-> > >
-> > > Set ret to 0 immediately before the loop so the zero-page path report=
-s
-> > > a deterministic status instead of returning stack data.
-> > >
-> > > Suggested-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > > Signed-off-by: Ruoyu Wang <ruoyuw560@gmail.com>
-> >
-> > Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> >
-> > Someone more familiar with ras should take a look as well, could be tha=
-t
-> returning -
-> > ENOENT is more appropriate here.
-> >
-> > > ---
-> > > v2:
-> > > - Set ret immediately before the loop instead of initializing it in t=
-he
-> > >   declaration, as suggested by Christian.
-> > > - Avoid describing the zero-entry case as an allocation-failure fix.
-> > >
-> > >  drivers/gpu/drm/amd/amdgpu/umc_v12_0.c | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-> > > b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-> > > index 14092150336a5..4842340d9d65f 100644
-> > > --- a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-> > > +++ b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-> > > @@ -690,6 +690,7 @@ static int umc_v12_0_fill_error_record(struct
-> > amdgpu_device *adev,
-> > >         count =3D amdgpu_umc_lookup_bad_pages_in_a_row(adev,
-> > >                                 ecc_err->pa_pfn <<
-> AMDGPU_GPU_PAGE_SHIFT,
-> > >                                 page_pfn, ARRAY_SIZE(page_pfn));
-> > > +       ret =3D 0;
-> > >
-> > >         for (i =3D 0; i < count; i++) {
-> > >                 ret =3D amdgpu_umc_fill_error_record(err_data,
-> > > --
-> > > 2.51.0
->
->
-
---000000000000ba82dc0654a8d5dd
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><p class=3D"gmail-isSelectedEnd">Hi Tao,</p><p class=3D"gm=
-ail-isSelectedEnd">Thanks for taking a look.</p><p class=3D"gmail-isSelecte=
-dEnd">I will initialize ret to -EINVAL in v3 to keep the behavior<br>aligne=
-d with the original logic.</p><p class=3D"gmail-isSelectedEnd">Thanks Chris=
-tian for the Ack as well.</p><p>Thanks,<br>Ruoyu Wang</p></div><br><div cla=
-ss=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_at=
-tr">On Thu, Jun 18, 2026 at 7:02=E2=80=AFPM Zhou1, Tao &lt;<a href=3D"mailt=
-o:Tao.Zhou1@amd.com">Tao.Zhou1@amd.com</a>&gt; wrote:<br></div><blockquote =
-class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
-id rgb(204,204,204);padding-left:1ex">AMD General<br>
-<br>
-[Tao] In order to align with the original logic, I prefer to &quot;ret =3D =
--EINVAL&quot;<br>
-<br>
-&gt; -----Original Message-----<br>
-&gt; From: amd-gfx &lt;<a href=3D"mailto:amd-gfx-bounces@lists.freedesktop.=
-org" target=3D"_blank">amd-gfx-bounces@lists.freedesktop.org</a>&gt; On Beh=
-alf Of Christian<br>
-&gt; K=C3=B6nig<br>
-&gt; Sent: Thursday, June 18, 2026 3:37 PM<br>
-&gt; To: Ruoyu Wang &lt;<a href=3D"mailto:ruoyuw560@gmail.com" target=3D"_b=
-lank">ruoyuw560@gmail.com</a>&gt;; Deucher, Alexander<br>
-&gt; &lt;<a href=3D"mailto:Alexander.Deucher@amd.com" target=3D"_blank">Ale=
-xander.Deucher@amd.com</a>&gt;; David Airlie &lt;<a href=3D"mailto:airlied@=
-gmail.com" target=3D"_blank">airlied@gmail.com</a>&gt;; Simona Vetter<br>
-&gt; &lt;<a href=3D"mailto:simona@ffwll.ch" target=3D"_blank">simona@ffwll.=
-ch</a>&gt;; <a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_bla=
-nk">amd-gfx@lists.freedesktop.org</a>; <a href=3D"mailto:dri-devel@lists.fr=
-eedesktop.org" target=3D"_blank">dri-devel@lists.freedesktop.org</a>;<br>
-&gt; <a href=3D"mailto:linux-kernel@vger.kernel.org" target=3D"_blank">linu=
-x-kernel@vger.kernel.org</a>; Zhang, Hawking &lt;<a href=3D"mailto:Hawking.=
-Zhang@amd.com" target=3D"_blank">Hawking.Zhang@amd.com</a>&gt;; Lazar,<br>
-&gt; Lijo &lt;<a href=3D"mailto:Lijo.Lazar@amd.com" target=3D"_blank">Lijo.=
-Lazar@amd.com</a>&gt;<br>
-&gt; Subject: Re: [PATCH v2] drm/amdgpu: initialize ret before UMC error re=
-cord loop<br>
-&gt;<br>
-&gt; On 6/17/26 21:33, Ruoyu Wang wrote:<br>
-&gt; &gt; umc_v12_0_fill_error_record() returns ret after walking the pages=
-<br>
-&gt; &gt; reported by amdgpu_umc_lookup_bad_pages_in_a_row(). That helper c=
-an<br>
-&gt; &gt; return zero entries, leaving the loop skipped and ret uninitializ=
-ed.<br>
-&gt; &gt;<br>
-&gt; &gt; Set ret to 0 immediately before the loop so the zero-page path re=
-ports<br>
-&gt; &gt; a deterministic status instead of returning stack data.<br>
-&gt; &gt;<br>
-&gt; &gt; Suggested-by: Christian K=C3=B6nig &lt;<a href=3D"mailto:christia=
-n.koenig@amd.com" target=3D"_blank">christian.koenig@amd.com</a>&gt;<br>
-&gt; &gt; Signed-off-by: Ruoyu Wang &lt;<a href=3D"mailto:ruoyuw560@gmail.c=
-om" target=3D"_blank">ruoyuw560@gmail.com</a>&gt;<br>
-&gt;<br>
-&gt; Acked-by: Christian K=C3=B6nig &lt;<a href=3D"mailto:christian.koenig@=
-amd.com" target=3D"_blank">christian.koenig@amd.com</a>&gt;<br>
-&gt;<br>
-&gt; Someone more familiar with ras should take a look as well, could be th=
-at returning -<br>
-&gt; ENOENT is more appropriate here.<br>
-&gt;<br>
-&gt; &gt; ---<br>
-&gt; &gt; v2:<br>
-&gt; &gt; - Set ret immediately before the loop instead of initializing it =
-in the<br>
-&gt; &gt;=C2=A0 =C2=A0declaration, as suggested by Christian.<br>
-&gt; &gt; - Avoid describing the zero-entry case as an allocation-failure f=
-ix.<br>
-&gt; &gt;<br>
-&gt; &gt;=C2=A0 drivers/gpu/drm/amd/amdgpu/umc_v12_0.c | 1 +<br>
-&gt; &gt;=C2=A0 1 file changed, 1 insertion(+)<br>
-&gt; &gt;<br>
-&gt; &gt; diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c<br>
-&gt; &gt; b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c<br>
-&gt; &gt; index 14092150336a5..4842340d9d65f 100644<br>
-&gt; &gt; --- a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c<br>
-&gt; &gt; +++ b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c<br>
-&gt; &gt; @@ -690,6 +690,7 @@ static int umc_v12_0_fill_error_record(struct=
-<br>
-&gt; amdgpu_device *adev,<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0count =3D amdgpu_umc_lookup_bad_=
-pages_in_a_row(adev,<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ecc_err-&gt;pa_pfn &lt;=
-&lt; AMDGPU_GPU_PAGE_SHIFT,<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0page_pfn, ARRAY_SIZE(pa=
-ge_pfn));<br>
-&gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0ret =3D 0;<br>
-&gt; &gt;<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0for (i =3D 0; i &lt; count; i++)=
- {<br>
-&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ret =
-=3D amdgpu_umc_fill_error_record(err_data,<br>
-&gt; &gt; --<br>
-&gt; &gt; 2.51.0<br>
-<br>
-</blockquote></div>
-
---000000000000ba82dc0654a8d5dd--
+diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
+index db505ab32fa0f..382e6d2dda9c1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
+@@ -689,6 +689,7 @@ static int umc_v12_0_fill_error_record(struct amdgpu_device *adev,
+ 	count = amdgpu_umc_lookup_bad_pages_in_a_row(adev,
+ 				ecc_err->pa_pfn << AMDGPU_GPU_PAGE_SHIFT,
+ 				page_pfn, ARRAY_SIZE(page_pfn));
++	ret = -EINVAL;
+ 
+ 	for (i = 0; i < count; i++) {
+ 		ret = amdgpu_umc_fill_error_record(err_data,
+-- 
+2.51.0
