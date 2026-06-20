@@ -2,113 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ORi2FOSzNmpDDgcAu9opvQ
+	id HQNiH4nNN2rMUAcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 20 Jun 2026 17:38:12 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 21 Jun 2026 13:39:53 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7679D6A9206
-	for <lists+amd-gfx@lfdr.de>; Sat, 20 Jun 2026 17:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 289716AAA88
+	for <lists+amd-gfx@lfdr.de>; Sun, 21 Jun 2026 13:39:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=H1c4ntUD;
+	dkim=pass header.d=usp.br header.s=usp-google header.b=xTvJci8+;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=quarantine) header.from=usp.br
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F14D310E21F;
-	Sat, 20 Jun 2026 15:38:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B2EA10E375;
+	Sun, 21 Jun 2026 11:39:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012001.outbound.protection.outlook.com [52.101.48.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B95C510E21D
- for <amd-gfx@lists.freedesktop.org>; Sat, 20 Jun 2026 15:38:05 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fyI7t6Iz0SqRQGVsJFOz3Wf99miu/ismoYa36CDEWdavzUBz9MIdUmmSbH86SaYgYOm56HB2jq5RdWe1/vcNWvn4xQV7Fxa3TjW57egKQMXxmua2yF5DWZNqmCz4NktEsopB6kqGvGDSKCVYqMZUerwB9pF68y7XsA3M1n86bTAxTinrIMiSyOfAL9eiAyrj3XgOEAFueoBZrtfbvea8wB7bYqKkeijV0NHQOfLwpdGNb74U7EPLpMshQfWrKF/aBEJt19ViT8pkM2qRDYgWvbBoLCv+u1NyJszXOL3QzW9bYWntRA78hS+WjupO5dq30fuGnSV9H3oR+ZuJ7G37pQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Qc43Gwz/F4Je/MKi2Vyc5flD9mHskjlL/1YDNhkgpSM=;
- b=qnX8D6TECezQNqLwOfQkKS8rK4uj5IfPR5vNWIaCiy1sy7IdgGpQFRf9J7MoTYXjesHHz62q2SpCqILAEsCsH3kil5fTeltwryJrb4kExXEP2B5gEpEHhs7YogTQvUgckg78mxDbOf43g2ebQM+BMxGLUmhgbm89vfu2zWYyrSSFp/wHQuLPriCJYRTrNKI1hzfnMyl59p+fl3KisRB0PRsjd5WBPQN0Dd3ifLsAVzZv+O8MMAKv1Th3HliIon25t0QuH+/4qoD3aFjuUaUXm8KftXJZkCxIVwvjAYIt+3DYSsnSfl7CcgYjyayl8mlQaXXLkDqcS3V2n1IB+QEBBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Qc43Gwz/F4Je/MKi2Vyc5flD9mHskjlL/1YDNhkgpSM=;
- b=H1c4ntUDENMulaSL4pE/J96sFx34B31qW8rkAk2DKMdC28GjWFJ+Muv+SufWq7PjFZ7h8e/SCLhUBKT1OIK0N7KJOh+87tHm6vK+Mj/b26lSh+7uwJNWCzpcQs8bjt+w4EdGiteyAT7FEII/a0BUY4fWzCCIJ4Z5jdMliuPAygw=
-Received: from DS7P220CA0080.NAMP220.PROD.OUTLOOK.COM (2603:10b6:8:259::13) by
- BY5PR12MB4162.namprd12.prod.outlook.com (2603:10b6:a03:201::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.18; Sat, 20 Jun
- 2026 15:38:00 +0000
-Received: from SA2PEPF000015CC.namprd03.prod.outlook.com
- (2603:10b6:8:259:cafe::54) by DS7P220CA0080.outlook.office365.com
- (2603:10b6:8:259::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.25.21 via Frontend Transport; Sat, 20
- Jun 2026 15:38:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- SA2PEPF000015CC.mail.protection.outlook.com (10.167.241.202) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Sat, 20 Jun 2026 15:38:00 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Sat, 20 Jun
- 2026 10:37:59 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Sat, 20 Jun
- 2026 10:37:59 -0500
-Received: from JesseDEV.amd.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Sat, 20 Jun 2026 10:37:58 -0500
-From: Jesse Zhang <Jesse.Zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
- Shaoyun Liu <shaoyun.liu@amd.com>, Amber Lin <Amber.Lin@amd.com>,
- Jesse Zhang <Jesse.Zhang@amd.com>
-Subject: [PATCH 3/3] drm/amdgpu: defer KCQ remap until after MES resume in
- reset flow
-Date: Sat, 20 Jun 2026 23:37:35 +0800
-Message-ID: <20260620153753.3061314-3-Jesse.Zhang@amd.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20260620153753.3061314-1-Jesse.Zhang@amd.com>
-References: <20260620153753.3061314-1-Jesse.Zhang@amd.com>
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com
+ [209.85.160.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EADA10E220
+ for <amd-gfx@lists.freedesktop.org>; Sat, 20 Jun 2026 16:04:20 +0000 (UTC)
+Received: by mail-qt1-f177.google.com with SMTP id
+ d75a77b69052e-5176ca6bab1so35079761cf.0
+ for <amd-gfx@lists.freedesktop.org>; Sat, 20 Jun 2026 09:04:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=usp.br; s=usp-google; t=1781971459; x=1782576259; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=h9LoTmNWXhl/uf1b0J5TKw+hOQ98YAC1iyy1IKtKZNA=;
+ b=xTvJci8+28LnrYC2CQGTopxtDlithKCZSGvujqDdZOXT0CyEe/LgEskrcTtc0TMMD6
+ FRvkZVyzYJOoltb69TCslGWZ0kFHlGMKOXaaKcsx+mfaM05dErmcqxMjuSa6mIb2zKNE
+ FeSIfKs6zzk04qdewMvp6SudPHRxtiYpi758mbnBZI2GXXat2zhgHsXmPT/Sfg/XDWWD
+ NShJTBhF7oHdNdSBDczx14nDRBzz30o1zq367z9MqBkLksOZlyY1xWiCk0hWoSBqzNRu
+ +E+P1fP106aTXT53EyZcid7BXRCNjGObs3X3qDbtu3YXrOtw+th77/NEQ7LVeCTOQ+JB
+ zWyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1781971459; x=1782576259;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=h9LoTmNWXhl/uf1b0J5TKw+hOQ98YAC1iyy1IKtKZNA=;
+ b=okgR4KhSA0mnPq8iVXm9I2s/6MQlHgMKRb82Rc8Q4HjR8JmLt0y33Bwkrpt+p1dDAb
+ MK1s9OdT8DEmUtNxnqybXcuuAd2MTwkCw+TAkqlWNUYs8CglJkgjLHjz2mFhRhb+R2Qf
+ p0WPIuaIWP3F0oOQb3uXT4WMJRph+L41rEEiGOeFKoJYzIsxgwuRAIRrjxPaijydYLSD
+ aNbxQy1EIaFPpo7SveHDCRKvlOemUqGCq6dX/GViw8hXvhZdKltPiYLow8np/Bt8It0m
+ P/1zPlVSrufM0HUygcH3mIB4N8QG3WwOZSnIM1aGAq0w3XRXSuoQwHd/+cnuE3lzqfib
+ kbBQ==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ98gBO82U9IvqL3iCMQfhCR+dubKc6KjLHCA+TWFKvpfqFZVREg/Kp3mL7p+h1km3x003Y1qur4@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx7vwupuodb29eC56UcIVQO7Hln0YVoCJU7gz1BA1J+R2I/FWgR
+ yoBUVcGK6sVfROiGDhC09OZXYLaiWI+CCZRs0T8pwS7a1bmXX+WePr9MVqRx6cQKz1Q=
+X-Gm-Gg: AfdE7ckOqBfLW7bK76k4RKBkxRs8UWaf+CPMUEqzN/eFluLpGoEofCaKpN4LS59hPFU
+ QEAKOJxvqxzUcwzym3EnwqcibOhEZ4xQv5KKRcEGRccpQUVPPu7PUEYtCQRusbwgD+41vxC7WmM
+ LOJ3I4c3t2rmas9fxSXojbOvZYKabDNJxq5zGbl7kf92LC+g8aRi2G+1WnBNh4p3saTw/N1c8Vs
+ 47Wz1ek8twdOp1M7Pon5EE1KB1mi39TX2uYhnjZHInbxTqNn/Z7x9EeW9VqIaeEA47OR5H+JZqq
+ KzGhJEMr1lLUOxbdeUSLpdlcxlHvBcafghTfY6J43hLbS4yfgxXvL21sg7Z8M7MX8UZzfzSA4vD
+ JYtDgXSd7bZkhTC3kgrySmXA9p6+43pSIrsRSLKyGT8/75JXPmWyaLMGhjj0ulHja2z0vtg+/rq
+ 2iqn955LuLdvENXAI7GYuHXuPJxg==
+X-Received: by 2002:ac8:5a4f:0:b0:50b:3429:a10b with SMTP id
+ d75a77b69052e-519e6640873mr100545251cf.12.1781971458814; 
+ Sat, 20 Jun 2026 09:04:18 -0700 (PDT)
+Received: from localhost.localdomain ([179.100.109.88])
+ by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-51a098528basm24303761cf.16.2026.06.20.09.04.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 20 Jun 2026 09:04:18 -0700 (PDT)
+From: Ulisses Paixao <ulissespaixao@usp.br>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: Ulisses Paixao <ulissespaixao@usp.br>, Felipe Sousa <felipesousa@usp.br>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH v3 RESEND] drm/amd/amdgpu: remove duplicated code in gfx_v11
+ and gfx_v12
+Date: Sat, 20 Jun 2026 13:04:07 -0300
+Message-Id: <20260620160407.8195-1-ulissespaixao@usp.br>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <96a6ce62-d015-4cc7-8584-bb73171f23a9@usp.br>
+References: 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="Y"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF000015CC:EE_|BY5PR12MB4162:EE_
-X-MS-Office365-Filtering-Correlation-Id: bff760d9-905c-4ccd-63ab-08decee1e8e6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|82310400026|23010399003|1800799024|376014|22082099003|18002099003|56012099006|11063799006|3023799007;
-X-Microsoft-Antispam-Message-Info: bDnrgcLHvxvVMZJ7JLX/xPWEaFYigc6gO105EcBpPB6b3oBKAepCFgbCVBnx/XtzbSU8fm90oGIFlM0wY5Q8EhOM3YLhpxal+BdA5UwdRklF8bbwhXlNkBPtArNCuu3Rqo/thccBR6KJBxiVSOVHpBWi0kj4XIxR0WhjhlVdESAt4WBJ8LynCdxYJ4O82TeHd+VzOufQH853yuq4C2oSjfx6s7QBtaQVn2VNFXktuOSRpROGgihS2NFRpNdb2RxAC6VkfSCniER7MC0vgYghw8EMJNzWU7K7NR3gI9oS4ZVLDQI51KLChSVa3sxkfTS2F8ME0cqBGJhMUHWzjgouMamDjOWB4agM9CpE9d2vLI67XUZC/uQjCBHZ1RYf0JfZC8CVrd+YanyaqZYx1AOpemNF5mCg1YAavR1v2nh5Y4vN8y6gQSnO0ZcUxp7y3Wg7PPzrghzQI2EELgkd0DdTI9fKPLFVA3LAag0y/gob9krXwJoK7sf2U50meVg/WohmEiolEPJBLLZ7hyKJEHSmz0E0eGZ02Icm+hsQD54wyIVbYV5xXGmaMCzxpf1fpgJ0543Xp5Rk8xTT+fVtRJg/g0y81E5gOiZ6hZ2pj/PyvezAO0t+6b4wUmblK2wi6bc5UZoKRm/Gu3SF9A3dJmSRnyHF270mhVkW2afE5ljYszstU+NmFYkoDqpoGoLwpPy2mb2Dnp4bpVrgdkvPPb7q/Q==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(82310400026)(23010399003)(1800799024)(376014)(22082099003)(18002099003)(56012099006)(11063799006)(3023799007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: UxW2l+3x+Do6GPAuv3qsIpf1ZlSKyarkBMhpYu5Jw5FlvbnzYfrG7Jnw0RDWrgbVnrr2KyKkWQevoIQeCxPquifuKhzMH+og7sV6K+2L53vrqudKFgEi0Bdx6ZzJKiL+gDCSk/o6JIP3etMFsPr/cRR/kGSry6kuutmVq+g3ePs2944SDCVJPuGbuFoSQ1n+XXkb7EyUkairBwvVyW91xg91wwVZdbvqECLdvVp1D2Y+0JkcjGYz2M38HjC/8suUqCwy6i8LTbLpY0ifsDlYqKsMo0N3k5fuUauRSzkRsUhhkRFlu18UjkHsW5wGlCHKOIfYqxbCnjJOiGZ3WA/wR/8JwBqJKoqCShC9ydk/7esDwFPaqHAEV0KltTcWUxGoHuyVxgTaeN2V0zgUzqjy2jXQeUkr17KrELnrx1GaKEdFZ92Qi6uEJ18hEpt8RyjI
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jun 2026 15:38:00.3195 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bff760d9-905c-4ccd-63ab-08decee1e8e6
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF000015CC.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4162
+X-Mailman-Approved-At: Sun, 21 Jun 2026 11:39:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,229 +98,216 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:ulissespaixao@usp.br,m:felipesousa@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[ulissespaixao@usp.br,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Jesse.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
+	DKIM_TRACE(0.00)[usp.br:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	ALIAS_RESOLVED(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ulissespaixao@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7679D6A9206
+X-Rspamd-Queue-Id: 289716AAA88
 
-Split amdgpu_gfx_mes_reset_queue_start() into reset+unmap now and queue
-reinit later, and do the remap only after amdgpu_mes_resume(). Avoids
-re-adding legacy queues while MES gangs are still suspended.
+The functions gfx_v11_0_handle_priv_fault and
+gfx_v12_0_handle_priv_fault share the same logic for searching and
+triggering a scheduler fault on a ring. This patch moves the shared
+ring-searching logic to a common function, amdgpu_gfx_handle_priv_fault,
+in amdgpu_gfx.c. The hardware-specific decoding of ring IDs remains in
+the version-specific files to maintain proper architectural separation.
 
-Suggested-by: Shaoyun Liu <shaoyun.liu@amd.com>
-Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
+Signed-off-by: Ulisses Paixao <ulissespaixao@usp.br>
+Co-developed-by: Felipe Sousa <felipesousa@usp.br>
+Signed-off-by: Felipe Sousa <felipesousa@usp.br>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 70 +++++++++++++++++++------
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  1 +
- 2 files changed, 55 insertions(+), 16 deletions(-)
+Resending v3 as it has been over a month 
+without further comments and v2 was already reviewed by Christian.
+
+v3:
+Return early if the ring is found in the gfx rings loop.
+
+v2:
+Keep the HW-specific decoding in gfx_v11_0.c and gfx_v12_0.c.
+Remove the redundant check for adev->gfx.disable_kq.
+Simplify the search loop in amdgpu_gfx_handle_priv_fault to iterate over
+all gfx and compute rings without a switch statement.
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 34 +++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 ++
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 27 +-------------------
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  | 27 +-------------------
+ 4 files changed, 38 insertions(+), 52 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index 982b41606d48..a5b835d0c166 100644
+index b8ca87669..205d35911 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -1989,10 +1989,24 @@ static ssize_t amdgpu_gfx_get_compute_reset_mask(struct device *dev,
- 	return amdgpu_show_reset_mask(buf, adev->gfx.compute_supported_reset);
+@@ -830,6 +830,40 @@ int amdgpu_gfx_enable_kgq(struct amdgpu_device *adev, int xcc_id)
+ 	return r;
  }
  
-+static int amdgpu_gfx_mes_reset_queue_reinit(struct amdgpu_ring *ring)
++/**
++ * amdgpu_gfx_handle_priv_fault - Handle privileged instruction fault
++ *
++ * @adev: amdgpu_device pointer
++ * @me_id: micro-engine ID of the faulty ring
++ * @pipe_id: pipe ID of the faulty ring
++ * @queue_id: queue ID of the faulty ring
++ *
++ * This function handles privileged instruction faults by identifying
++ * the faulty ring (gfx or compute) and triggering a scheduler fault
++ */
++void amdgpu_gfx_handle_priv_fault(struct amdgpu_device *adev,
++					u8 me_id, u8 pipe_id, u8 queue_id)
 +{
-+	struct amdgpu_device *adev = ring->adev;
-+	int r;
++	struct amdgpu_ring *ring;
++	int i;
 +
-+	amdgpu_gfx_mqd_reset_restore(ring);
++	for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
++		ring = &adev->gfx.gfx_ring[i];
++		if (ring->me == me_id && ring->pipe == pipe_id &&
++		    ring->queue == queue_id) {
++			drm_sched_fault(&ring->sched);
++			return;
++		}
++	}
 +
-+	r = amdgpu_mes_map_legacy_queue(adev, ring, 0);
-+	if (r)
-+		dev_err(adev->dev, "failed to remap kgq\n");
-+
-+	return r;
++	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
++		ring = &adev->gfx.compute_ring[i];
++		if (ring->me == me_id && ring->pipe == pipe_id &&
++		    ring->queue == queue_id)
++			drm_sched_fault(&ring->sched);
++	}
 +}
 +
- static int amdgpu_gfx_mes_reset_queue_start(struct amdgpu_ring *ring,
- 					     unsigned int vmid,
- 					     struct amdgpu_fence *timedout_fence,
--					     bool use_mmio)
-+					     bool use_mmio, bool *need_reinit)
+ static void amdgpu_gfx_do_off_ctrl(struct amdgpu_device *adev, bool enable,
+ 				   bool no_delay)
  {
- 	struct amdgpu_device *adev = ring->adev;
- 	bool reinit_queue;
-@@ -2007,6 +2021,9 @@ static int amdgpu_gfx_mes_reset_queue_start(struct amdgpu_ring *ring,
- 	else
- 		reinit_queue = use_mmio;
- 
-+	if (need_reinit)
-+		*need_reinit = false;
-+
- 	amdgpu_ring_reset_helper_begin(ring, timedout_fence);
- 
- 	r = amdgpu_mes_reset_legacy_queue(ring->adev, ring, vmid, use_mmio, 0);
-@@ -2018,13 +2035,9 @@ static int amdgpu_gfx_mes_reset_queue_start(struct amdgpu_ring *ring,
- 						  RESET_QUEUES, 0, 0, 0);
- 		if (r)
- 			return r;
--		amdgpu_gfx_mqd_reset_restore(ring);
- 
--		r = amdgpu_mes_map_legacy_queue(adev, ring, 0);
--		if (r) {
--			dev_err(adev->dev, "failed to remap kgq\n");
--			return r;
--		}
-+		if (need_reinit)
-+			*need_reinit = true;
- 	}
- 	return 0;
- }
-@@ -2034,12 +2047,19 @@ int amdgpu_gfx_mes_reset_queue(struct amdgpu_ring *ring,
- 			       struct amdgpu_fence *timedout_fence,
- 			       bool use_mmio)
- {
-+	bool need_reinit;
- 	int r;
- 
-+	/* Single-queue reset (no suspend/resume): re-add the queue inline. */
- 	r = amdgpu_gfx_mes_reset_queue_start(ring, vmid, timedout_fence,
--					      use_mmio);
-+					      use_mmio, &need_reinit);
- 	if (r)
- 		return r;
-+	if (need_reinit) {
-+		r = amdgpu_gfx_mes_reset_queue_reinit(ring);
-+		if (r)
-+			return r;
-+	}
- 	return amdgpu_ring_reset_helper_end(ring, timedout_fence);
- }
- 
-@@ -2239,7 +2259,8 @@ static int amdgpu_gfx_reset_mes_kcq(struct amdgpu_device *adev,
- 				    struct amdgpu_ring *guilty_ring,
- 				    unsigned int db,
- 				    struct amdgpu_ring **out_ring,
--				    struct amdgpu_fence **out_fence)
-+				    struct amdgpu_fence **out_fence,
-+				    bool *out_reinit)
- {
- 	bool use_mmio = adev->gfx.mec.use_mmio_for_reset;
- 	struct amdgpu_fence *fence;
-@@ -2248,14 +2269,16 @@ static int amdgpu_gfx_reset_mes_kcq(struct amdgpu_device *adev,
- 
- 	*out_ring = NULL;
- 	*out_fence = NULL;
-+	*out_reinit = false;
- 	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
- 		ring = &adev->gfx.compute_ring[i];
- 		if (ring == guilty_ring)
- 			continue;
- 		if (ring->doorbell_index == db) {
- 			fence = amdgpu_ring_find_guilty_fence(ring);
-+			/* reset + unmap now; re-add (map) is deferred to after resume */
- 			r = amdgpu_gfx_mes_reset_queue_start(ring, 0, fence,
--							      use_mmio);
-+							      use_mmio, out_reinit);
- 			if (r)
- 				return r;
- 			*out_ring = ring;
-@@ -2306,12 +2329,16 @@ int amdgpu_gfx_reset_mes_compute(struct amdgpu_device *adev,
- fence_reset:
- 	/* reset the queue this came from if specified */
- 	if (ring) {
-+		bool reinit = false;
-+
-+		/* reset + unmap now; re-add (map) is deferred to after resume */
- 		r = amdgpu_gfx_mes_reset_queue_start(ring, 0, guilty_fence,
--						      use_mmio);
-+						      use_mmio, &reinit);
- 		if (r)
- 			goto out;
- 		deferred_end[n_deferred].ring = ring;
- 		deferred_end[n_deferred].fence = guilty_fence;
-+		deferred_end[n_deferred].reinit = reinit;
- 		n_deferred++;
- 	}
- 	if (uq) {
-@@ -2322,6 +2349,7 @@ int amdgpu_gfx_reset_mes_compute(struct amdgpu_device *adev,
- 	for (i = 0; i < num_hung; i++) {
- 		struct amdgpu_ring *hr = NULL;
- 		struct amdgpu_fence *hf = NULL;
-+		bool hr_reinit = false;
- 
- 		pipe = hqd_info[i].pipe_index;
- 		queue = hqd_info[i].queue_index;
-@@ -2330,12 +2358,13 @@ int amdgpu_gfx_reset_mes_compute(struct amdgpu_device *adev,
- 		/* reset any KCQs */
- 		r = amdgpu_gfx_reset_mes_kcq(adev, ring,
- 					     adev->gfx.mec.mes_hung_db_array[i],
--					     &hr, &hf);
-+					     &hr, &hf, &hr_reinit);
- 		if (r)
- 			goto out;
- 		if (hr) {
- 			deferred_end[n_deferred].ring = hr;
- 			deferred_end[n_deferred].fence = hf;
-+			deferred_end[n_deferred].reinit = hr_reinit;
- 			n_deferred++;
- 		}
- 		/* reset any KFD queues */
-@@ -2372,12 +2401,21 @@ int amdgpu_gfx_reset_mes_compute(struct amdgpu_device *adev,
- 	/* resume all will enable the non-hung queues */
- 	amdgpu_mes_resume(adev, 0);
- 
--	/* Now CP is running again — replay backed-up commands and ring
--	 * doorbells on each reset queue.
-+	/* Now CP is running again — for queues that were unmapped during the
-+	 * reset, re-add (map) them only now that MES is resumed and back to a
-+	 * normal state, then replay backed-up commands and ring doorbells on
-+	 * each reset queue.
- 	 */
- 	for (i = 0; i < n_deferred; i++) {
--		int er = amdgpu_ring_reset_helper_end(deferred_end[i].ring,
--						      deferred_end[i].fence);
-+		int er;
-+
-+		if (deferred_end[i].reinit) {
-+			er = amdgpu_gfx_mes_reset_queue_reinit(deferred_end[i].ring);
-+			if (er && !r)
-+				r = er;
-+		}
-+		er = amdgpu_ring_reset_helper_end(deferred_end[i].ring,
-+						  deferred_end[i].fence);
- 		if (er && !r)
- 			r = er;
- 	}
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-index aefd4f03b443..9432107c96a1 100644
+index a0cf0a3b4..0b2f6ce85 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-@@ -550,6 +550,7 @@ struct amdgpu_gfx {
- struct amdgpu_gfx_deferred_entry {
- 	struct amdgpu_ring	*ring;
- 	struct amdgpu_fence	*fence;
-+	bool			reinit;
- };
+@@ -611,6 +611,8 @@ bool amdgpu_gfx_is_high_priority_graphics_queue(struct amdgpu_device *adev,
+ 						struct amdgpu_ring *ring);
+ bool amdgpu_gfx_is_me_queue_enabled(struct amdgpu_device *adev, int me,
+ 				    int pipe, int queue);
++void amdgpu_gfx_handle_priv_fault(struct amdgpu_device *adev,
++					u8 me_id, u8 pipe_id, u8 queue_id);
+ void amdgpu_gfx_off_ctrl(struct amdgpu_device *adev, bool enable);
+ void amdgpu_gfx_off_ctrl_immediate(struct amdgpu_device *adev, bool enable);
+ int amdgpu_get_gfx_off_status(struct amdgpu_device *adev, uint32_t *value);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+index 2c6f1e25c..888c9f3c4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+@@ -6688,37 +6688,12 @@ static void gfx_v11_0_handle_priv_fault(struct amdgpu_device *adev,
+ 					struct amdgpu_iv_entry *entry)
+ {
+ 	u8 me_id, pipe_id, queue_id;
+-	struct amdgpu_ring *ring;
+-	int i;
  
- struct amdgpu_gfx_ras_reg_entry {
+ 	me_id = (entry->ring_id & 0x0c) >> 2;
+ 	pipe_id = (entry->ring_id & 0x03) >> 0;
+ 	queue_id = (entry->ring_id & 0x70) >> 4;
+ 
+-	if (!adev->gfx.disable_kq) {
+-		switch (me_id) {
+-		case 0:
+-			for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
+-				ring = &adev->gfx.gfx_ring[i];
+-				if (ring->me == me_id && ring->pipe == pipe_id &&
+-				    ring->queue == queue_id)
+-					drm_sched_fault(&ring->sched);
+-			}
+-			break;
+-		case 1:
+-		case 2:
+-			for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+-				ring = &adev->gfx.compute_ring[i];
+-				if (ring->me == me_id && ring->pipe == pipe_id &&
+-				    ring->queue == queue_id)
+-					drm_sched_fault(&ring->sched);
+-			}
+-			break;
+-		default:
+-			BUG();
+-			break;
+-		}
+-	}
++	amdgpu_gfx_handle_priv_fault(adev, me_id, pipe_id, queue_id);
+ }
+ 
+ static int gfx_v11_0_priv_reg_irq(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+index 6baac533a..3f0d29372 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+@@ -5019,37 +5019,12 @@ static void gfx_v12_0_handle_priv_fault(struct amdgpu_device *adev,
+ 					struct amdgpu_iv_entry *entry)
+ {
+ 	u8 me_id, pipe_id, queue_id;
+-	struct amdgpu_ring *ring;
+-	int i;
+ 
+ 	me_id = (entry->ring_id & 0x0c) >> 2;
+ 	pipe_id = (entry->ring_id & 0x03) >> 0;
+ 	queue_id = (entry->ring_id & 0x70) >> 4;
+ 
+-	if (!adev->gfx.disable_kq) {
+-		switch (me_id) {
+-		case 0:
+-			for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
+-				ring = &adev->gfx.gfx_ring[i];
+-				if (ring->me == me_id && ring->pipe == pipe_id &&
+-				    ring->queue == queue_id)
+-					drm_sched_fault(&ring->sched);
+-			}
+-			break;
+-		case 1:
+-		case 2:
+-			for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+-				ring = &adev->gfx.compute_ring[i];
+-				if (ring->me == me_id && ring->pipe == pipe_id &&
+-				    ring->queue == queue_id)
+-					drm_sched_fault(&ring->sched);
+-			}
+-			break;
+-		default:
+-			BUG();
+-			break;
+-		}
+-	}
++	amdgpu_gfx_handle_priv_fault(adev, me_id, pipe_id, queue_id);
+ }
+ 
+ static int gfx_v12_0_priv_reg_irq(struct amdgpu_device *adev,
 -- 
-2.49.0
+2.34.1
 
