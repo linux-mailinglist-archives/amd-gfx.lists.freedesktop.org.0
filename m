@@ -2,69 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bq5FGIrNN2rRUAcAu9opvQ
+	id 7q4fLcxSN2o/MgcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 21 Jun 2026 13:39:54 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 21 Jun 2026 04:56:12 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B44A56AAA8D
-	for <lists+amd-gfx@lfdr.de>; Sun, 21 Jun 2026 13:39:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D34C16AA0EF
+	for <lists+amd-gfx@lfdr.de>; Sun, 21 Jun 2026 04:56:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=debian.org header.s=smtpauto.stravinsky header.b=ngwkL0ab;
+	dkim=pass header.d=kode54.net header.s=fm1 header.b=aSdXuYBC;
+	dkim=pass header.d=messagingengine.com header.s=fm1 header.b=TKfKhRsj;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=debian.org
+	dmarc=pass (policy=quarantine) header.from=kode54.net
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0E7910E37B;
-	Sun, 21 Jun 2026 11:39:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C01710E2E2;
+	Sun, 21 Jun 2026 02:56:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from stravinsky.debian.org (stravinsky.debian.org [82.195.75.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EA2F10E1BA;
- Sat, 20 Jun 2026 21:53:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org; 
- s=smtpauto.stravinsky;
- h=X-Debian-User:In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=+Pc3ozWWUVFYeoggo3AZJrZF+AfDxlh/3NZlYKMxKuY=; b=ngwkL0abNyshdqa5KF8fyzVtAX
- iS4vGoyqqWJCeQ2cr9XRSaS/H+5AOnlPIznnhbQKA1N7mrBbM80m9PrNPjc8u6YKENI+BVbBBFaTk
- ysCLuZmC5B+dgk3gVLHtfHu4It3EofCYpc1nYqhehPvZgsDh4WOgUkuxqAZscgnILEmxbcHkEc+IL
- fXqa33+LFrMwdhc3UXX7uO/o3SYaiSuurcHbBbrL5xwOVunlin9ox7hqizOp92PYBEvcNK2Z9zZ6h
- 7qJ1SvlbLiiA3bDtMGXqFwpVPIdHCur7Lsqu8cAfpEBoYZs7Wa2UGqZEbMohJ21sTQiZkNYByJMrR
- Ga2Ncfig==;
-Received: from authenticated-user by stravinsky.debian.org with esmtpsa
- (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
- (Exim 4.96) (envelope-from <carnil@debian.org>) id 1wb3cX-00HEO5-39;
- Sat, 20 Jun 2026 21:52:59 +0000
-Received: by eldamar.lan (Postfix, from userid 1000)
- id D3BB4BE2EE7; Sat, 20 Jun 2026 23:52:56 +0200 (CEST)
-Date: Sat, 20 Jun 2026 23:52:56 +0200
-From: Salvatore Bonaccorso <carnil@debian.org>
-To: Jaak Ristioja <jaak@ristioja.ee>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Dianne Skoll <dianne@skoll.ca>, Chris Park <chris.park@amd.com>,
- Matthew Stewart <matthew.stewart2@amd.com>,
- Dan Wheeler <daniel.wheeler@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: 1139950@bugs.debian.org, regressions@lists.linux.dev,
- stable@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [resend] [regression] amdgpu carrizo: no display signal after
- modeset
-Message-ID: <ajcLuO0YZCoPN7Xw@eldamar.lan>
-References: <9fba2020-24d1-4235-9869-319d4aab3a4c@ristioja.ee>
- <178198613176.3658222.16247101620976737948@eldamar.lan>
+X-Greylist: delayed 395 seconds by postgrey-1.36 at gabe;
+ Sun, 21 Jun 2026 02:56:08 UTC
+Received: from fout-a7-smtp.messagingengine.com
+ (fout-a7-smtp.messagingengine.com [103.168.172.150])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A619310E2E2
+ for <amd-gfx@lists.freedesktop.org>; Sun, 21 Jun 2026 02:56:08 +0000 (UTC)
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+ by mailfout.phl.internal (Postfix) with ESMTP id BAB31EC0211;
+ Sat, 20 Jun 2026 22:49:32 -0400 (EDT)
+Received: from phl-frontend-04 ([10.202.2.163])
+ by phl-compute-04.internal (MEProxy); Sat, 20 Jun 2026 22:49:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kode54.net; h=cc
+ :cc:content-type:content-type:date:date:from:from:in-reply-to
+ :in-reply-to:message-id:mime-version:references:reply-to:subject
+ :subject:to:to; s=fm1; t=1782010172; x=1782096572; bh=1ivmjOBmJ5
+ eM+WC4bF6pRdTnhX9iLm15zV4hQYPkrp0=; b=aSdXuYBCTFmpdmR9hlAsd3Vu/E
+ iLeXxA32gbyrkoVk50Mp4PcBdm+mhp30kuesgFUMaJWBw13JK2Onbh2LtZuAnBNN
+ 4ACF7ae8Vg2kkneo7I2emuoGKL5mcOgazSsiLivYA/f4JcfUC/fhRRMm0TwH5M+D
+ O303t1z4l06Lh7mECDPnImAL3z/lUzI1t0M0k30U2PYjDqhvmtKSYiOe0G/wHKxJ
+ Ovmy/MnhAjxQDXT5QvO01eQHdcVUGL34nuc7ICHcQ0a11ZxZlQjF9gjlXdqZQdyr
+ EHMUMuy2VLkPb4Fwga9PhHOeJ/hae1VJVz1d3C/nXZVSacCd1DmcoaGkuHoQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:content-type:date:date
+ :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:subject:subject:to
+ :to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+ 1782010172; x=1782096572; bh=1ivmjOBmJ5eM+WC4bF6pRdTnhX9iLm15zV4
+ hQYPkrp0=; b=TKfKhRsjGnGfQ/LZirmNewZMxA8mI1usqg+2ABYVtipvY1ctde0
+ USXyb83FBT6hxl48eJQbK1VSHE8OotV9bpvVrii0RLM6sROoa3XYOaQI4OggwYjW
+ tTq8Cd2nSsKG7hGR90dINz3iqLxm70GvD0sTGWhEoGOgaIZ0waJEFbcKEHedABTW
+ jr88Y91GumS5VurhzJApn9ChipRCoPRYt7NFM1MdEpHnpbD3iypKve4FkgWzx8JR
+ T+zjSy+BhX98t1Qp46nlH0hPiNk3CivOe+idigoVz56VfzqEHoDaDkMa5Ko29MOt
+ 4+QjuoeND5Nz3T8CDe7ljUmQYbOQoaFabwg==
+X-ME-Sender: <xms:PFE3agYvPgog5qYt_bx1UiK_ifcQXtMGwlPH9b6hSbNHApOMIGYUqA>
+ <xme:PFE3an9QDUDIQSmWx8V20MR5ASLQ1cJpSVdPctl-m0cbnrHNsnygYnerAbAG2inBl
+ nrCu85gxaW2lzWwHtdJxohHLEu4voCfzpnTrMgMtvyksYcQq93NyWQ>
+X-ME-Received: <xmr:PFE3avaYtwbg43pz61zdNXORZqJMezXipfoGOhcORRjvlIIu47mbK4dmyHQ>
+X-ME-Proxy-Cause: dmFkZTG0HY3Mj5QdLP7k3idEvfsdqctGw/DFvevkVsp6UJ/8NghMpBi2tq5HOfFeHbLTmw
+ ze7uNQC7ksIVJHpzZ2Z1y8W8ePFrNEmjMcYAotWxeaw6qmYB+DPMNZ8xxLKSy3IafO7nB1
+ eJDhil8fxAxFcaY+0uPfuASei0JTOkSwpwqBzEX36jhY72ZHcbQBDpeeONZi1KETyLOdi8
+ tzc6xXcYZktK0AKpqlrdiXfOUKXfIJPOSwwMbcVdUrfs0GFTvO0CQSXZxsXb08dYvsu9bR
+ 74q/M2vmFGl2zduRQM4arawRdoXCq9Af3ILk9iLxRkMUGN5fI9iQnyD2Gwukj4UfUuoUZR
+ Zu7G+EbOBE+5KAWbwlodbvjrx4tChyN8AfUhroZRa7uHwD0vCWSYN3Lfszv6tW+v9/J7zk
+ X3g7c7NKq0kDZ7Pde215zgSHJjIqn0MiU/IFaQYylNz7V/rdj/E538mt2rbA1yLEgLvljU
+ rkvw7DqiOARFR6MOgBtSQJ+tCEuuqSlM3dRa8oFutdkoGgUkTAgKbKNoSIk4Xp0yJUiKdI
+ XTaNNLug6TirGreMCetEZExLCK2cjS+cemwEtKzki82Hj6DgA81mqwtQ9ZEmk2eBH00BA5
+ K4YXQAU3aqXEXt2ZNHqVPBbHLNmNx8LZb9Qh+Xo5DcGbex3lmH136k1WPpyA
+X-ME-Proxy: <xmx:PFE3ahcm1lY69M2xPUn4OX_nK9RFYbHgCanMpIRiHd_-xq3krWLfug>
+ <xmx:PFE3asm5uMoQk7bLlb7I3aI9P5FX1MY5xDAcSSv7a9gG5hMam9iaCA>
+ <xmx:PFE3ah0o4LOhcUQfrlk4plXnSuhhN_BEMW5gBKLNI3kJtiLoFz0_1w>
+ <xmx:PFE3aleL966OurBwQptQ3jdpMAOwERfBp93GtXB4xTvC_yf6_tcsNQ>
+ <xmx:PFE3ajjxtZW_Q1JOvyuM3nPqRr8eDL7-jw1SeFAbz5NJI5V_7JRsnlFv>
+Feedback-ID: i9ec6488d:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 20 Jun 2026 22:49:31 -0400 (EDT)
+From: Christopher Snowhill <chris@kode54.net>
+To: Leo Li <sunpeng.li@amd.com>
+Cc: Matthew Schwartz <matthew.schwartz@linux.dev>,
+ amd-gfx@lists.freedesktop.org, Harry.Wentland@amd.com,
+ mario.limonciello@amd.com, wiagn233@outlook.com, sysdadmin@m1k.cloud,
+ timur.kristof@gmail.com, xaver.hugl@kde.org, mario.kleiner.de@gmail.com
+Subject: Re: [PATCH 1/3] drm/amd/display: consolidate DCN vblank/flip handling
+ onto vupdate_no_lock
+Message-ID: <178201017016.57979.9123750843778970394@copycat>
+User-Agent: Dodo
+Date: Sat, 20 Jun 2026 19:49:30 -0700
+In-Reply-To: <cbeaa22b-530b-4fb7-bfe1-813d127d3595@amd.com>
+References: <20260616201828.389985-1-sunpeng.li@amd.com>
+ <20260616201828.389985-2-sunpeng.li@amd.com>
+ <3ad7d4a1-093b-45ac-b3b2-5df5bbb0fde8@linux.dev>
+ <cbeaa22b-530b-4fb7-bfe1-813d127d3595@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <178198613176.3658222.16247101620976737948@eldamar.lan>
-X-Debian-User: carnil
-X-Mailman-Approved-At: Sun, 21 Jun 2026 11:39:50 +0000
+Content-Type: multipart/signed; protocol="application/pgp-signature";
+ micalg="pgp-sha512"; boundary="===============3362420732073399958=="
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,116 +107,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[debian.org,none];
-	R_DKIM_ALLOW(-0.20)[debian.org:s=smtpauto.stravinsky];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.40 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kode54.net,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[kode54.net:s=fm1,messagingengine.com:s=fm1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	XM_UA_NO_VERSION(0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[ristioja.ee,amd.com,skoll.ca,linuxfoundation.org,igalia.com,gmail.com,ffwll.ch];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[carnil@debian.org,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[debian.org:+];
+	FORGED_SENDER(0.00)[chris@kode54.net,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_RECIPIENTS(0.00)[m:sunpeng.li@amd.com,m:matthew.schwartz@linux.dev,m:Harry.Wentland@amd.com,m:mario.limonciello@amd.com,m:wiagn233@outlook.com,m:sysdadmin@m1k.cloud,m:timur.kristof@gmail.com,m:xaver.hugl@kde.org,m:mario.kleiner.de@gmail.com,m:timurkristof@gmail.com,m:mariokleinerde@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[linux.dev,lists.freedesktop.org,amd.com,outlook.com,m1k.cloud,gmail.com,kde.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_ATTACHMENT(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[chris@kode54.net,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[kode54.net:+,messagingengine.com:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linuxfoundation.org:email,gitlab.freedesktop.org:url]
+	FORGED_SENDER_MAILLIST(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B44A56AAA8D
+X-Rspamd-Queue-Id: D34C16AA0EF
 
-Hi
+--===============3362420732073399958==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Resending because of typ in mailing list address.
 
-On Sat, Jun 20, 2026 at 10:11:25PM +0200, Salvatore Bonaccorso wrote:
-> Control: forwarded -1 https://lore.kernel.org/regressions/178198613176.3658222.16247101620976737948@eldamar.lan
-> 
-> Hi
-> 
-> Jaak Ristioja reported the following issue in Debian at
-> https://bugs.debian.org/1139950 . Part of the original report contains
-> Debian specific version information, but Jaak did as well a bisecion
-> for the regression see below:
-> 
-> On Sun, Jun 14, 2026 at 02:27:01AM +0300, Jaak Ristioja wrote:
-> > Package: linux-modules-7.0.10+deb13-amd64
-> > Version: 7.0.10-1~bpo13+1
-> > 
-> > Hi,
-> > 
-> > Upgrading (after a long while) Debian Trixie installations on two different
-> > HP EliteDesk 705 G4 DM 35W computers with AMD PRO A10-9700E R7 (carrizo)
-> > resulted in both machines blanking the screen right after kernel modesetting
-> > activates via amdgpu, with the monitor reporting "no signal". There are no
-> > other symptoms besides losing the display as the system continues to run and
-> > is accessible using keyboard and network.
-> > 
-> > Bug first discovered with stable kernel linux-image-6.12.90+deb13.1-amd64
-> > (6.12.90-2) and the one from trixie-backports. The device is connected to a
-> > monitor using a DisplayPort to HDMI adapter. The bug occurs regardless of
-> > which if the two available physical DisplayPort ports to use.
-> > 
-> > I don't remember this being an issue some months ago, so I tried to
-> > reproduce this booting the Debian 13.1.0 and 13.4.0 install DVD images and
-> > using the kernel modules/firmware therein:
-> > 
-> >   13.1.0 installer:
-> >     firmware-amd-graphics_20250410-2
-> >     linux-image-6.12.43+deb13-amd64_6.12.43-1
-> >   13.4.0 installer:
-> >     firmware-amd-graphics 20250410-2
-> >     linux-image-6.12.73+deb13-amd64_6.12.73-1
-> > 
-> > I essentially unpacked the two *.deb files manually, depmod -a; modprobe drm
-> > debug=0x1ff; modprobe amdgpu.
-> > 
-> > I observed the bug reproduce using the 13.4.0 installer, but not on the
-> > 13.1.0 installer, meaning this is a regression somewhere between kernel
-> > versions 6.12.43-1 and 6.12.73-1.
-> 
-> The reporter did a bisection and found as offending commit:
-> 
->     drm/amd/display: Bump the HDMI clock to 340MHz
-> 
->     commit fee50077656d8a58011f13bca48f743d1b6d6015 upstream.
-> 
->     [Why]
->     DP-HDMI dongles can execeed bandwidth requirements on high resolution
->     monitors. This can lead to pruning the high resolution modes.
-> 
->     HDMI 1.3 bumped the clock to 340MHz, but display code never matched it.
-> 
->     [How]
->     Set default to (DVI) 165MHz.  Once HDMI display is identified update
->     to 340MHz.
-> 
->     Reported-by: Dianne Skoll <dianne@skoll.ca>
->     Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/4780
->     Reviewed-by: Chris Park <chris.park@amd.com>
->     Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
->     Signed-off-by: Matthew Stewart <matthew.stewart2@amd.com>
->     Tested-by: Dan Wheeler <daniel.wheeler@amd.com>
->     Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
->     (cherry picked from commit ac1e65d8ade46c09fb184579b81acadf36dcb91e)
->     Cc: stable@vger.kernel.org
->     Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> 
-> Does this ring any bell?
-> 
-> #regzbot introduced: ae5b1d291c814a2884c3d54a56e83bc99052b1eb
-> #regzbot link: https://bugs.debian.org/1139950
-> 
-> Regards,
-> Salvatore
+
+On Wed 17 Jun 2026 10:32:51 AM , Leo Li wrote:
+>=20
+>=20
+> On 2026-06-17 00:35, Matthew Schwartz wrote:
+> > On 6/16/26 1:18 PM, sunpeng.li@amd.com wrote:
+> >=20
+> > [...]
+> >=20
+> >> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/dr=
+ivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+> >> index c9916ed0ddc14..8a6b732cf80c8 100644
+> >> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+> >> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+> >> @@ -281,7 +281,14 @@ static inline int amdgpu_dm_crtc_set_vblank(struct =
+drm_crtc *crtc, bool enable)
+> >>  			drm_crtc_vblank_restore(crtc);
+> >>  	}
+> >> =20
+> >> -	if (dc_supports_vrr(dm->dc->ctx->dce_version)) {
+> >> +	/*
+> >> +	 * On DCN, VUPDATE_NO_LOCK is the single OTG interrupt used to deliver
+> >> +	 * vblank and pageflip completion events, so enable it whenever vblank
+> >> +	 * is enabled. On DCE, vupdate is only needed in VRR mode.
+> >> +	 */
+> >> +	if (amdgpu_ip_version(adev, DCE_HWIP, 0) !=3D 0) {
+> >> +		rc =3D amdgpu_dm_crtc_set_vupdate_irq(crtc, enable);
+> >> +	} else if (dc_supports_vrr(dm->dc->ctx->dce_version)) {
+> >=20
+> > Hi Leo (dropping Stable),
+> >=20
+> > This arms VUPDATE_NO_LOCK on all of DCN, but amdgpu_dm_handle_vrr_transit=
+ion() still disables it when switching from VRR active -> inactive. This caus=
+es a new flip_done timed out event when a compositor like gamescope disables =
+VRR while it's already active.
+>=20
+> Good catch, I wonder why the kms_vrr IGT tests did not catch this...
+> I'll roll your fix into v2 with your signed-off-by and co-authored-by.
+>=20
+> Thanks,
+> Leo
+
+The Stable backport is also needed for 7.1.1. I tested it specifically
+there, and ran into the same exact VRR transition issue, unknowingly.
+Except in this case, it was with LabWC, configured with VRR set to
+fullscreen only, so it was disabling it immediately on configure. Oh
+well. I'm building 7.1.1 with the backport and this workaround rolled
+into it now, and will report back if there are any further issues.
+
+-Christopher
+
+>=20
+> >=20
+> > I had to fix it up with something like:
+> >=20
+> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
+gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > index e09c0eb9f865..ee337ca816cf 100644
+> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > @@ -10085,8 +10085,16 @@ static void amdgpu_dm_handle_vrr_transition(stru=
+ct amdgpu_display_manager *dm,
+> >  					    struct dm_crtc_state *old_state,
+> >  					    struct dm_crtc_state *new_state)
+> >  {
+> > +	struct amdgpu_device *adev =3D dm->adev;
+> >  	bool old_vrr_active =3D amdgpu_dm_crtc_vrr_active(old_state);
+> >  	bool new_vrr_active =3D amdgpu_dm_crtc_vrr_active(new_state);
+> > +	/*
+> > +	 * On DCN, VUPDATE_NO_LOCK is the sole vblank and pageflip completion
+> > +	 * source and amdgpu_dm_crtc_set_vblank() keeps it armed whenever
+> > +	 * vblank is enabled, so it must not be toggled with the VRR state.
+> > +	 * Only DCE gates vupdate on VRR.
+> > +	 */
+> > +	bool vrr_gates_vupdate =3D amdgpu_ip_version(adev, DCE_HWIP, 0) =3D=3D =
+0;
+> > =20
+> >  	if (!old_vrr_active && new_vrr_active) {
+> >  		/* Transition VRR inactive -> active:
+> > @@ -10097,7 +10105,8 @@ static void amdgpu_dm_handle_vrr_transition(struc=
+t amdgpu_display_manager *dm,
+> >  		 * We also need vupdate irq for the actual core vblank handling
+> >  		 * at end of vblank.
+> >  		 */
+> > -		WARN_ON(amdgpu_dm_crtc_set_vupdate_irq(new_state->base.crtc, true) !=
+=3D 0);
+> > +		if (vrr_gates_vupdate)
+> > +			WARN_ON(amdgpu_dm_crtc_set_vupdate_irq(new_state->base.crtc, true) !=
+=3D 0);
+> >  		WARN_ON(drm_crtc_vblank_get(new_state->base.crtc) !=3D 0);
+> >  		drm_dbg_driver(new_state->base.crtc->dev, "%s: crtc=3D%u VRR off->on: =
+Get vblank ref\n",
+> >  				 __func__, new_state->base.crtc->base.id);
+> > @@ -10113,7 +10122,8 @@ static void amdgpu_dm_handle_vrr_transition(struc=
+t amdgpu_display_manager *dm,
+> >  		/* Transition VRR active -> inactive:
+> >  		 * Allow vblank irq disable again for fixed refresh rate.
+> >  		 */
+> > -		WARN_ON(amdgpu_dm_crtc_set_vupdate_irq(new_state->base.crtc, false) !=
+=3D 0);
+> > +		if (vrr_gates_vupdate)
+> > +			WARN_ON(amdgpu_dm_crtc_set_vupdate_irq(new_state->base.crtc, false) !=
+=3D 0);
+> >  		drm_crtc_vblank_put(new_state->base.crtc);
+> >  		drm_dbg_driver(new_state->base.crtc->dev, "%s: crtc=3D%u VRR on->off: =
+Drop vblank ref\n",
+> >  				 __func__, new_state->base.crtc->base.id);
+> >=20
+> > Feel free to fold some version of this into the next version if it makes =
+sense, or pick it up with my s-o-b.
+> >=20
+> > Thanks,
+> > Matthew
+> >=20
+>=20
+
+--===============3362420732073399958==
+Content-Type: application/pgp-signature
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="signature.asc"
+MIME-Version: 1.0
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEdiLr51NrDwQ29PFjjWyYR59K3nEFAmo3UToACgkQjWyYR59K
+3nGoqhAAp8tPbgfcKAAjIoH7C5vpJ2Gn+m+I5HtGqRaKXCctA5qN+sxrMy1nnPyg
+Q49EAu+Y/Rj0BkIeSfP7TH9wyL98p+B1fSgQHqOPhYdpAfydSXIsTi9+LNj/p0y8
+VmDEU38WcEzjrXA2xKfHXqTbxRsrk7xsrrAqIXC8DbvEzWdOYa9s4CF265RxzZLL
+RrBWMydGvVL1jAxaQLiD+obos5Fn0ZNPcfAe23CGaWPtbVPursT5nGm/lVLoG8S1
+ewaWxqtD2z/EnN/NpVK4LZj05GOhMrlxn8eqllgZwkYUHaJEsiWqreIoI2lT/NdS
+Bjw08sGbk830xIKb0J+EPBPivbYIy0z3ws36SAS6CEl2OAcX+dJwDenFl/zKgsqr
+UvMh+NvH6QBErSm7UmuJKPKMeMSyFlv8rUeOTo6tOPBEdxS6F21uSkK4SyoU6Gxq
+j9CUhMX+omzq6G0rEJzcL76SkVljU7IKBFOxNq56N+Oyk+k1p7+pwEv6VkOf6L3/
+nA9mPUuvVfWWyfggtrQqUh8pdz0P9yGYgxFmFsRAmVhW1y7DmS1yE0JHK3s3nvlH
+CdgBL+SEbENTFVB0ngXVHxFzAc8wWBB3JYGjJeXZvqwuBZFXZX4soPNJYdalaZ0p
+/D53reOlLTJuGs2oVV+YJChs7hDcBt1zpdeinkpQfBeK+mh/XYI=
+=ax08
+-----END PGP SIGNATURE-----
+
+--===============3362420732073399958==--
