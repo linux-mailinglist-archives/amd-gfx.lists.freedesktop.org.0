@@ -2,39 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nwOOMtchOGpOYgcAu9opvQ
+	id OYQuHv8mOGqcYwcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 21 Jun 2026 19:39:35 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 21 Jun 2026 20:01:35 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 408D06AB5FC
-	for <lists+amd-gfx@lfdr.de>; Sun, 21 Jun 2026 19:39:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 311426AB655
+	for <lists+amd-gfx@lfdr.de>; Sun, 21 Jun 2026 20:01:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=shift-computing.de header.s=dkim header.b=iEiZLANt;
+	dkim=pass header.d=shift-computing.de header.s=dkim header.b=k2ccOVTV;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=reject) header.from=shift-computing.de
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18F1F10E1D3;
-	Sun, 21 Jun 2026 17:39:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E34110E3CE;
+	Sun, 21 Jun 2026 18:01:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 477 seconds by postgrey-1.36 at gabe;
- Sun, 21 Jun 2026 17:39:31 UTC
 Received: from mail.teamster.cloud (mail.teamster.cloud [213.136.73.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C10C10E1D3;
- Sun, 21 Jun 2026 17:39:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F8E710E20F;
+ Sun, 21 Jun 2026 18:01:26 +0000 (UTC)
 From: Oz Tiram <oz@shift-computing.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shift-computing.de;
- s=dkim; t=1782063090;
+ s=dkim; t=1782064884;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=DVMW/6FPBK7CX7HpIDz1X8IYcT+kz39FXhgJ250arz8=;
- b=iEiZLANtyMs6lAzY9eQNHUeq4qWCr1LLbnsjRHK4xAGMaZDhNvbtQeTFmUclBjqvk5vAZn
- /H/qnrjzB/LcIqLjBL8EPODLrRmO68K18ipn7fHXpPEnXmYwrr4OdZM3CPeHz18ZmzRaw1
- sa4QulBXqyqeUqeR4cXvhhf2Ho3rM99P8Lko/nQ/X6pPNIlyI+GC4K3zmat7CtK3HEcyA8
- gJjBwpusW6TIR6AUGAcXcYGToQvruOz4cQzAm2kS2vQS4eSO3dIKSjjouUPrrghA0iSoHC
- kL/reuLLggZ0ItUsUEm1lxB+C2oBPKPBSMHssE5FiJZpJvvnGuKHiyaUP49lvQ==
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=fZdQl6cpDNRleiDk+rgSJQzCixdRfIPpLBTexba67Bo=;
+ b=k2ccOVTVDodeVJG9fAUFOGaIbxTredjTz6VwC6zmy+WlwUtG4+sZEw4ALXvIvypcZzhz0J
+ IK3wFL2+Giw2FMC9a2hxxpUOIKWqcnh23xw7Yj5k5ozRDfmjU7lIm8jMSMbnT4p/LOyQ17
+ 6UGNGEDz0qp2k15LfVXNfGgaH6pRCJH2OvGwkEvx4WpzKi3z0X6HyGDixxG2RHL8ETZTxE
+ 9aRyon+d6hYXEQXLaHEZULxv8yP9IVvXeiL6hrw4esCcwqx+alKyAuomLeFrAvWm/s/wIg
+ BDtp3glKU0WJ3QU7r1TEd0xIxYJ926vEuCa1Ty8+glOlkbEfV4pn4+MUqpU/DQ==
 To: amd-gfx@lists.freedesktop.org
 Cc: Oz Tiram <oz@shift-computing.de>, Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -43,11 +42,13 @@ Cc: Oz Tiram <oz@shift-computing.de>, Alex Deucher <alexander.deucher@amd.com>,
  linux-kernel@vger.kernel.org (open list)
 Subject: [PATCH] drm/amd/amdgpu: add firmware file fallback for APU VBIOS
  discovery
-Date: Sun, 21 Jun 2026 17:32:10 +0000
-Message-ID: <20260621173211.28443-1-oz@shift-computing.de>
+Date: Sun, 21 Jun 2026 18:01:54 +0000
+Message-ID: <20260621180154.30421-1-oz@shift-computing.de>
+In-Reply-To: <20260621173211.28443-1-oz@shift-computing.de>
+References: <20260621173211.28443-1-oz@shift-computing.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spamd-Bar: -
+X-Spamd-Bar: -----
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,31 +67,30 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[shift-computing.de,reject];
-	R_DKIM_ALLOW(-0.20)[shift-computing.de:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[shift-computing.de:s=dkim];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[shift-computing.de,amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[shift-computing.de,amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[shift-computing.de:+];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_COUNT_TWO(0.00)[2];
 	FROM_NEQ_ENVFROM(0.00)[oz@shift-computing.de,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	DKIM_TRACE(0.00)[shift-computing.de:+];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 408D06AB5FC
+X-Rspamd-Queue-Id: 311426AB655
 
 APUs (e.g. AMD Radeon 780M / HawkPoint, PCI 1002:1900) have no
 dedicated VBIOS ROM chip.  amdgpu_get_bios_apu() attempts four paths
@@ -125,11 +125,16 @@ so there is no regression risk for boards where VFCT or ROM BAR work.
 
 Signed-off-by: Oz Tiram <oz@shift-computing.de>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+v2: Validate the fetched firmware with check_atom_bios() before accepting
+    it, consistent with all other VBIOS discovery paths.  Save fw->size
+    before release_firmware() so it remains valid for the size check.
+    Release the buffer via amdgpu_bios_release() if validation fails.
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-index aa039e148a5e..491f88f495a6 100644
+index aa039e148a5e..86064c753b09 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
 @@ -26,6 +26,7 @@
@@ -140,21 +145,25 @@ index aa039e148a5e..491f88f495a6 100644
  #include "amdgpu.h"
  #include "atom.h"
  
-@@ -457,6 +458,24 @@ static bool amdgpu_get_bios_apu(struct amdgpu_device *adev)
+@@ -457,6 +458,28 @@ static bool amdgpu_get_bios_apu(struct amdgpu_device *adev)
  		goto success;
  	}
  
 +	{
 +		const struct firmware *fw;
 +		char fw_name[32];
++		size_t fw_size;
 +
 +		snprintf(fw_name, sizeof(fw_name), "amdgpu/%04x_%04x.bin",
 +			 adev->pdev->vendor, adev->pdev->device);
 +		if (request_firmware(&fw, fw_name, adev->dev) == 0) {
 +			adev->bios = kmemdup(fw->data, fw->size, GFP_KERNEL);
-+			adev->bios_size = fw->size;
++			fw_size = fw->size;
 +			release_firmware(fw);
-+			if (adev->bios) {
++			if (!adev->bios || !check_atom_bios(adev, fw_size)) {
++				amdgpu_bios_release(adev);
++			} else {
++				adev->bios_size = fw_size;
 +				dev_info(adev->dev, "Fetched VBIOS from firmware file %s\n",
 +					 fw_name);
 +				goto success;
