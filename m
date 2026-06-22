@@ -2,52 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SDeKFHK9OGp2hQcAu9opvQ
+	id IaeOIXS9OGp5hQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 06:43:30 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 06:43:32 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1BFB6AC9B1
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 06:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34D766AC9B9
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 06:43:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=qiJoIZ2t;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=nZleC5xV;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E50910E48D;
-	Mon, 22 Jun 2026 04:43:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B94F610E490;
+	Mon, 22 Jun 2026 04:43:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012042.outbound.protection.outlook.com [40.107.209.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4712710E48B
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 04:43:26 +0000 (UTC)
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013038.outbound.protection.outlook.com
+ [40.93.201.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 045B910E490
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 04:43:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=s8NwDkiLDXwpK7aE8JU23gAdEEn4pZMIJzD8MQKoS5OPRmxCKZj7Ms6V+OdTuS+xpnBBO1rpMh+/EzT5Bu3pyiYyl/RpUFjoLXlAJeRbBglPclUV+VVC0m0rIwUq1261rSa/Dc6Mh8Jqm8XX1jLvBEgqXsGqsbhje+6v7hhXjgPczwetYWN2evBaFwEHBxqj/LHhEOOOx86jiz6QTfAmE0BCjnMQJ4s9mnAT42tbVembOHmqMNEMJVuV+OvozYkRUCQVo/3ofi/pROWpXDGSETBeLJDBHbVUPNbLPSxG9D1X3tMByx29ZgP0rRBDjYS5EJfcgwPjZ4w8//AnOKbkeA==
+ b=liUeZKk8Q0MOTg4rUAzzajWp3KYLK01AuOGXcuf3F7FyhcAbESrmAOGBxMFSKrFAvFvL+nKCSXy4jsM7E/1GTjel/V+Sk0FsRqUjxYdpmmK4m93zXWjILF3pYFEBWnwOtR1wc47OVVr3czoAi5jgJp0Ko/fULNszyX/NErKFu/Wl2i9PLfJE4T0JPPaxamd3Hz8rhg7EE5lwJkNlHJ+5mlGC1Ce5pjvTfFlb6QXg1CAs+UlEMXtPLgurwS/PLfcHo8tCqxpXHCjLh7YCIDBjYZc4M9UjgWEl5TI1TcKzR7eZGOKAxSQOwwizH1+qChd33UqZ5hdRzN3eEmyVYkAIdw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y38DLTY51/DnTWr+JGPD+KS/J9vq4lF2kJMi7LmKRxI=;
- b=SSgyNEow7OK9bJpFjPwLzig0024OkFqt0NI7xaXXxWvrRlqlb/ujl69uxALnf9IVPjFoZ/IbFlFDsBfb667rfU495FPf/o9ko3WtfCQi5XR+hc4TlEeqW3XAaph2+5qP5gsqrCsj9NRlxcNgVfk51+r/DXH3p2M/EJV6V1cO/T+mdTzUg01k4ZHlLkLHbRBHeHY9jaPZ3UtxVNuApFRu7KyzrC2kLgJOZZCsjPf22vts9tP/kAC54KBu5are7ujBuAgwxHKUmK4PCmSlcjjUpNbv80j/4CyzrBPojDTRE6qlAsAa4Yk2b53svHrE54ylZ4vJWLOcTg/1OyXo6JtS7A==
+ bh=sm7jDeaQ2hh3hhYck+6ipLrH/VyL+r6zqT3HLDdc/dw=;
+ b=j7Yv92KiUeX1x19zBzCZQh1PF5RT2EBlpUnn6UKqxsHHvOJ9QY3H5dyXqWIixGayO+nq1HTr4+yDNzL5pvs1wcsX2uV/t2YD1dzx5L6R4QWHMw9h5FB9c0rKBExKza+jvkwsbui3oTqMbqMdQ6UulwrDa6yD/cAE/D/1vfrCzjK+O/iQO5TJqJOkio1jqrCTI3t9HvDRuJ6ZW9cGgl6c2TD2hu5k2UWPidaZhmdRBqP2s9M/bYyn/LzAfr7qkt0Fimws1mnUpEtSrtn4glHWccBQWTnsHSGX5wl6383XtDWqEuR09W7NTUCaOn7+8orZG6tRvCmiFetVFOpVUzgLOA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y38DLTY51/DnTWr+JGPD+KS/J9vq4lF2kJMi7LmKRxI=;
- b=qiJoIZ2tKT3pCeDl3Yeu9S0Afc/eMjEbetO0L9vHRzgBDWwC/tHYn/YtLwpU0PIOSXoLx3KRZt8odYAHVdEHplj32oceqZa8vX+XbP0KrKYPmITx6kd/jfygz7Ed6xMqvcvyXN72q8S4196mjehIKHEZUVAnkOF1B7sbr9xBcVE=
-Received: from IA4P220CA0011.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:558::11)
- by IA1PR12MB8286.namprd12.prod.outlook.com (2603:10b6:208:3f8::19)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=sm7jDeaQ2hh3hhYck+6ipLrH/VyL+r6zqT3HLDdc/dw=;
+ b=nZleC5xVs/JVJV5qo1I8k4ANjJf/JpCbJF1qAhYA759US3u7vDp+VGnsh2Sjjk97SJTsVJGHW6Lx+eKEgwCQaqwB/W9tCiyd4YmqtHdcDSKY3EO2nUH+EOK+1IxlI3lKgHMPUDDvNYMU/X4ncYO/B6Qqc45YQ392nzFJJU8Nlx8=
+Received: from MN2PR06CA0020.namprd06.prod.outlook.com (2603:10b6:208:23d::25)
+ by CY5PR12MB6082.namprd12.prod.outlook.com (2603:10b6:930:2a::6) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Mon, 22 Jun
- 2026 04:43:23 +0000
-Received: from BL6PEPF00022572.namprd02.prod.outlook.com
- (2603:10b6:208:558:cafe::28) by IA4P220CA0011.outlook.office365.com
- (2603:10b6:208:558::11) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.20 via Frontend Transport; Mon,
- 22 Jun 2026 04:43:23 +0000
+ 2026 04:43:24 +0000
+Received: from BL6PEPF00022573.namprd02.prod.outlook.com
+ (2603:10b6:208:23d:cafe::67) by MN2PR06CA0020.outlook.office365.com
+ (2603:10b6:208:23d::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.19 via Frontend Transport; Mon,
+ 22 Jun 2026 04:43:24 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,21 +56,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BL6PEPF00022572.mail.protection.outlook.com (10.167.249.40) with Microsoft
+ BL6PEPF00022573.mail.protection.outlook.com (10.167.249.41) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Mon, 22 Jun 2026 04:43:22 +0000
+ 15.21.159.10 via Frontend Transport; Mon, 22 Jun 2026 04:43:24 +0000
 Received: from sunce-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Sun, 21 Jun
- 2026 23:43:21 -0500
+ 2026 23:43:22 -0500
 From: Ce Sun <cesun102@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Hawking.Zhang@amd.com>, <YiPeng.Chai@amd.com>, <Tao.Zhou1@amd.com>, "Ce
  Sun" <cesun102@amd.com>
-Subject: [PATCH v1 44/48] drm/amdgpu: retire legacy get_retire_flip_bits for
- UMC
-Date: Mon, 22 Jun 2026 12:40:33 +0800
-Message-ID: <67b11d39d67d4a145ee8e206bcc00881a718019a.1782103074.git.cesun102@amd.com>
+Subject: [PATCH v1 45/48] drm/amdgpu: retire legacy get_retire_flip_bits
+ interface for UMC
+Date: Mon, 22 Jun 2026 12:40:34 +0800
+Message-ID: <d145693829aa4edaa63fca38e11d894550f81c8e.1782103074.git.cesun102@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <cover.1782103073.git.cesun102@amd.com>
 References: <cover.1782103073.git.cesun102@amd.com>
@@ -81,29 +82,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00022572:EE_|IA1PR12MB8286:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71ef5084-855c-49b1-dbbe-08ded018ca9c
+X-MS-TrafficTypeDiagnostic: BL6PEPF00022573:EE_|CY5PR12MB6082:EE_
+X-MS-Office365-Filtering-Correlation-Id: 399394cb-1eb4-4c68-5a67-08ded018cb9d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|1800799024|376014|23010399003|82310400026|18002099003|22082099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: 6mTu+Bz48GuIwklUvo6/9MmjjWVuVFyWs+Mw8rWdrqaBfsaKwsHmoabt6dxt/Mt7xBM9D0jkB4cqpxMRP0Yt4oJ9+jYIUZ9Rq97yWwTYeQAnZ/nuNvEF7SmBZ6hG2EkPK9DJdnXbSSVeujVk1pZV5LEnSvg8F+Duo3+74i0Aux5ZJTZBz343elscTKC2m+ka/sbNIB8s+31LOgjDkmzbUqEFasljnVZKwkFsILmYm2UtDfXWif8Vch2068AnqgfUklpN3fZbI/qzE4TKwXf9MNpX7yTwFfAjlyEkJVQFECQyaMDIsVZ3iYZ+ux9twR+csf1eNS4ejQt/EwxJ0mBKYRQhs/cXjzmJLzV8aq51DMKTYxsWzmk5iHl5L+ZokbdHdGWCvDXodvZoLihI27iL2/4syv2V2YIjiKVDHlsEMwzftDTeiIrg34jkcKoPz0W859WnjqZVlaYZNPVYTW82ejjcMYoeBw0Xm/lBEMrLOYchned73ZqY0vuPrYpkMcEfMA18UJDwdMv3xBzbwETOqxPpvVWyAc9KfT1bJ2NtojbDNQVYSIqQ2J2XEQWQi9Jec/2ZRFF3HxwS6vdG5sEM3epKil0L37tw1mtV/bo/urAAZeUivPJC63F16PVg7GkyPxDnDMWTGzv+PkzzlDlkbWsR23xbwhkqEerLRp/r1ACA6BPdqQYSAKJmMiJkh8CCoh/IbN2JFPj8g47glvQ5ww==
+ ARA:13230040|36860700016|82310400026|376014|23010399003|1800799024|18002099003|22082099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: voqVTQJUFeyFsa+l9f+CK8EbeXJBZBkTVZVRdG4He3McBl2povkl4HuXMLot6VMobEOop/RrBy1FZR7Ir9Fo0JFJlPzOukrurfBL3VY2HRcuv1BaR2Yq5fhpL6avFQtLNTB5MeNeXHRMlY5RLbejjEQdG2WkezQgq2aS+6hUx4Sj4pwveEQSJV0UWDvs0FTpeLtaOAOyWMNOfGfK84bSlYnXBpoxTZONRgcoLpKnXVBznEgkbeDZBYBei6NMQGZfpt0P1TEqwKCbIurpsKf6sDMaWVuqNVNtYQgSYUBLpGdenEreiZzvEfVVVvnsKTa5xMB+3+r/SQffHKF20fcI4B/Hva8/DEtXsfi/9H/cqP0Oi4N4nA1GRwUsBho+YEhXnTUdCQeC7onRdyExgf5v84+M730SvIde/WWTPooBUK8aAUTleoofsrdeMvf9mFix8E0cCGpAcdVc8vWKMLuSKQSfhP++sqqhXQr2nTzVkTnSwwj5fmF85h9wFFDh2p7Sb6MsUIVDNXqvVLGxA3aFuqK/MTGa7Is4sYqGwg4Dr851+VtgjXgB5/JuYmUx3EwPAXhD+YLuAyFWFDXtgcyo/qUycMHMTn429GIzFppLiqqO8bsbgIbX71YRv5xKF2mnUApGoyF9zlDS+VE3dzQEayu+itrhiRDDG3j9FUk8Zng0O0ZaPeey8MKsbhUpJRzTfiMtKuqpQYhZwZND5zpB8A==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(1800799024)(376014)(23010399003)(82310400026)(18002099003)(22082099003)(11063799006)(56012099006);
+ SFS:(13230040)(36860700016)(82310400026)(376014)(23010399003)(1800799024)(18002099003)(22082099003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: KVG0rAAmAHWuzA0D9Z4zMWjuKHcTAwci1HSxYSZf5gVPZlAaTUivX5k//Qy3M/5mn0SPG7c0cgWD0GdVFef4soZdXu+p5HzILyQmZZEPKOHAiJ5w/vGRW8KiXaOVCOih8IMcIkpR519T8hutqPybvWdaAX6SIXLXyIMQ1XemgLYbLFeFvenXWkag53mWPvxWtYEB77hOkT2WGqNx2axTpoK3hPWojMdwqiSOThKAbczRJ5h5qfbpCSBz2OfrETrwA9iUzY6u8SgGchJLm3KNpg20ivqvceFtNhooTO/5OFyoKbk+YaIRuxofUhDQx2DMzdamY4hv6W9wuPpR5yWHaPWUGj1TfnwbLNp8GQNKEqaRcYPPTF5YRVCvT26jcDojn6sMNGUfj5oze5vwHm2IpTJFd3K4gsWLkpkUs9MtBh4bFeYWPY7H2tli0wHLAgqi
+X-MS-Exchange-AntiSpam-MessageData-0: 6tUATePY8IkpqjFGgmUYm1GT+lcebQDe3TAw1rsvcC0P/VndoPjC9GjtexImkdPde/wfAZHAvToP2PufHqD5TSeuWEQWFRWhwaYzO7ttgKZaS/EHbkgvjz/rbJbdvo3WozncHsAcb/jC9BuA5UMYfioTneafh+O2zc3yggmJOOXwks6iQKGcqVAs3UsYCOySTp///I2mfmlzSFMNWasiQJ8H0oOOYzXgnYI/41eFX5WvqsowrLCkFNcr01zkwB2YWFqWrnk/ZJAR66/Comr7hYMkCPY1bKH8lglQ/uuyv2CwfYmlP+Z6fcc9zIuLcrCl7kPyQtCMpJwXSGPnrG8vR02ZZrodW/fDYOLD74BCwlrcmaXuNDkDm9K52O3exfCbcDdj08GCPUDX2e6WltzaKsFauf91fzf6RsDXAiy22YjY1V4xyga9h06A2VIv0PJ8
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2026 04:43:22.9793 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71ef5084-855c-49b1-dbbe-08ded018ca9c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2026 04:43:24.6632 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 399394cb-1eb4-4c68-5a67-08ded018cb9d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00022572.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00022573.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8286
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6082
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,133 +147,69 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RCPT_COUNT_FIVE(0.00)[5];
 	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F1BFB6AC9B1
+X-Rspamd-Queue-Id: 34D766AC9B9
 
-Remove the legacy get_retire_flip_bits implementation for UMC v12
+Remove the legacy general get_retire_flip_bits interface for UMC
 
 Signed-off-by: Ce Sun <cesun102@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/umc_v12_0.c | 106 -------------------------
- 1 file changed, 106 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c |  4 ----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h | 15 ---------------
+ 2 files changed, 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-index d62712324940..d3eeaead7ca2 100644
---- a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-@@ -73,115 +73,9 @@ bool umc_v12_0_is_correctable_error(struct amdgpu_device *adev, uint64_t mc_umc_
- 		!(umc_v12_0_is_uncorrectable_error(adev, mc_umc_status)))));
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index e9583e8f0863..90f746ee90f8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -3202,10 +3202,6 @@ int amdgpu_ras_init_badpage_info(struct amdgpu_device *adev)
+ 	ret = amdgpu_ras_eeprom_init(control);
+ 	control->is_eeprom_valid = !ret;
  
--static void umc_v12_0_get_retire_flip_bits(struct amdgpu_device *adev)
--{
--	enum amdgpu_memory_partition nps = AMDGPU_NPS1_PARTITION_MODE;
--	uint32_t vram_type = adev->gmc.vram_type;
--	struct amdgpu_umc_flip_bits *flip_bits = &(adev->umc.flip_bits);
+-	if (adev->umc.ras &&
+-	    adev->umc.ras->get_retire_flip_bits)
+-		adev->umc.ras->get_retire_flip_bits(adev);
 -
--	if (adev->gmc.gmc_funcs->query_mem_partition_mode)
--		nps = adev->gmc.gmc_funcs->query_mem_partition_mode(adev);
+ 	if (control->ras_num_recs && control->is_eeprom_valid) {
+ 		ret = amdgpu_ras_load_bad_pages(adev);
+ 		if (ret) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
+index 46c42997d314..b2a3db60d231 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
+@@ -77,18 +77,6 @@
+ #define UMC_NPS_SHIFT 40
+ #define UMC_NPS_MASK 0xffULL
+ 
+-/* three column bits and one row bit in MCA address flip
+- * in bad page retirement
+- */
+-#define RETIRE_FLIP_BITS_NUM 4
 -
--	if (adev->gmc.num_umc == 16) {
--		/* default setting */
--		flip_bits->flip_bits_in_pa[0] = UMC_V12_0_PA_C2_BIT;
--		flip_bits->flip_bits_in_pa[1] = UMC_V12_0_PA_C3_BIT;
--		flip_bits->flip_bits_in_pa[2] = UMC_V12_0_PA_C4_BIT;
--		flip_bits->flip_bits_in_pa[3] = UMC_V12_0_PA_R13_BIT;
--		flip_bits->flip_row_bit = 13;
--		flip_bits->bit_num = 4;
--		flip_bits->r13_in_pa = UMC_V12_0_PA_R13_BIT;
+-struct amdgpu_umc_flip_bits {
+-	uint32_t flip_bits_in_pa[RETIRE_FLIP_BITS_NUM];
+-	uint32_t flip_row_bit;
+-	uint32_t r13_in_pa;
+-	uint32_t bit_num;
+-};
 -
--		if (nps == AMDGPU_NPS2_PARTITION_MODE) {
--			flip_bits->flip_bits_in_pa[0] = UMC_V12_0_PA_CH5_BIT;
--			flip_bits->flip_bits_in_pa[1] = UMC_V12_0_PA_C2_BIT;
--			flip_bits->flip_bits_in_pa[2] = UMC_V12_0_PA_B1_BIT;
--			flip_bits->r13_in_pa = UMC_V12_0_PA_R12_BIT;
--		} else if (nps == AMDGPU_NPS4_PARTITION_MODE) {
--			flip_bits->flip_bits_in_pa[0] = UMC_V12_0_PA_CH4_BIT;
--			flip_bits->flip_bits_in_pa[1] = UMC_V12_0_PA_CH5_BIT;
--			flip_bits->flip_bits_in_pa[2] = UMC_V12_0_PA_B0_BIT;
--			flip_bits->r13_in_pa = UMC_V12_0_PA_R11_BIT;
--		}
+ typedef int (*umc_func)(struct amdgpu_device *adev, uint32_t node_inst,
+ 			uint32_t umc_inst, uint32_t ch_inst, void *data);
+ 
+@@ -100,7 +88,6 @@ struct amdgpu_umc_ras {
+ 				      void *ras_error_status);
+ 	void (*ecc_info_query_ras_error_address)(struct amdgpu_device *adev,
+ 					void *ras_error_status);
+-	void (*get_retire_flip_bits)(struct amdgpu_device *adev);
+ };
+ 
+ struct amdgpu_umc_funcs {
+@@ -132,8 +119,6 @@ struct amdgpu_umc {
+ 	/* active mask for umc node instance */
+ 	unsigned long active_mask;
+ 
+-	struct amdgpu_umc_flip_bits flip_bits;
 -
--		switch (vram_type) {
--		case AMDGPU_VRAM_TYPE_HBM:
--			/* other nps modes are taken as nps1 */
--			if (nps == AMDGPU_NPS2_PARTITION_MODE)
--				flip_bits->flip_bits_in_pa[3] = UMC_V12_0_PA_R12_BIT;
--			else if (nps == AMDGPU_NPS4_PARTITION_MODE)
--				flip_bits->flip_bits_in_pa[3] = UMC_V12_0_PA_R11_BIT;
--
--			break;
--		case AMDGPU_VRAM_TYPE_HBM3E:
--			flip_bits->flip_bits_in_pa[3] = UMC_V12_0_PA_R12_BIT;
--			flip_bits->flip_row_bit = 12;
--
--			if (nps == AMDGPU_NPS2_PARTITION_MODE)
--				flip_bits->flip_bits_in_pa[3] = UMC_V12_0_PA_R11_BIT;
--			else if (nps == AMDGPU_NPS4_PARTITION_MODE)
--				flip_bits->flip_bits_in_pa[3] = UMC_V12_0_PA_R10_BIT;
--
--			break;
--		default:
--			dev_warn(adev->dev,
--				"Unknown HBM type, set RAS retire flip bits to the value in NPS1 mode.\n");
--			break;
--		}
--	} else if (adev->gmc.num_umc == 8) {
--		/* default setting */
--		flip_bits->flip_bits_in_pa[0] = UMC_V12_0_PA_CH5_BIT;
--		flip_bits->flip_bits_in_pa[1] = UMC_V12_0_PA_C2_BIT;
--		flip_bits->flip_bits_in_pa[2] = UMC_V12_0_PA_B1_BIT;
--		flip_bits->flip_bits_in_pa[3] = UMC_V12_0_PA_R11_BIT;
--		flip_bits->flip_row_bit = 12;
--		flip_bits->bit_num = 4;
--		flip_bits->r13_in_pa = UMC_V12_0_PA_R12_BIT;
--
--		if (nps == AMDGPU_NPS2_PARTITION_MODE) {
--			flip_bits->flip_bits_in_pa[0] = UMC_V12_0_PA_CH4_BIT;
--			flip_bits->flip_bits_in_pa[1] = UMC_V12_0_PA_CH5_BIT;
--			flip_bits->flip_bits_in_pa[2] = UMC_V12_0_PA_B0_BIT;
--			flip_bits->r13_in_pa = UMC_V12_0_PA_R11_BIT;
--		}
--
--		switch (vram_type) {
--		case AMDGPU_VRAM_TYPE_HBM:
--			flip_bits->flip_bits_in_pa[3] = UMC_V12_0_PA_R12_BIT;
--
--			/* other nps modes are taken as nps1 */
--			if (nps == AMDGPU_NPS2_PARTITION_MODE)
--				flip_bits->flip_bits_in_pa[3] = UMC_V12_0_PA_R11_BIT;
--
--			break;
--		case AMDGPU_VRAM_TYPE_HBM3E:
--			flip_bits->flip_bits_in_pa[3] = UMC_V12_0_PA_R11_BIT;
--			flip_bits->flip_row_bit = 12;
--
--			if (nps == AMDGPU_NPS2_PARTITION_MODE)
--				flip_bits->flip_bits_in_pa[3] = UMC_V12_0_PA_R10_BIT;
--
--			break;
--		default:
--			dev_warn(adev->dev,
--				"Unknown HBM type, set RAS retire flip bits to the value in NPS1 mode.\n");
--			break;
--		}
--	} else {
--		dev_warn(adev->dev,
--			"Unsupported UMC number(%d), failed to set RAS flip bits.\n",
--			adev->gmc.num_umc);
--
--		return;
--	}
--
--	adev->umc.retire_unit = 0x1 << flip_bits->bit_num;
--}
--
- struct amdgpu_umc_ras umc_v12_0_ras = {
- 	.ras_block = {
- 		.hw_ops = NULL,
- 	},
--	.get_retire_flip_bits = umc_v12_0_get_retire_flip_bits,
+ 	unsigned long err_addr_cnt;
  };
  
 -- 
