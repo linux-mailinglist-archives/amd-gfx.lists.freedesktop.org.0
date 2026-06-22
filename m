@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id AX9CM90lOWrdnQcAu9opvQ
+	id CwYFHt0lOWrcnQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:09:01 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E4046AF4DD
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:09:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9F566AF4DC
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:09:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=FyQZ9Y8+;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=W8oa3xnu;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5D5E10E66F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F6B110E66B;
 	Mon, 22 Jun 2026 12:08:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23D4D10E66B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F198810E66B
  for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 12:08:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
@@ -28,23 +28,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=34WjMk9KydpUzsKPkmA/orbQUVn92NgABJLadHQsVwQ=; b=FyQZ9Y8+bwSV34FeZYYpA8krRe
- yB5xISuAyCFLlFwioSduSfqcd98KGFPo9Wk0IdS+RO5iRHwwfxp8G4ikMNpoxIivlgTz4N0M+NLA2
- RmkVfpoYd1pzxK6BQI1YOiaebPUjgxdoHYlC0f02tt7Xs+pDIThTxjf4qMTrVfUUUuFAN+VRVsPNy
- SXcG6YHAklCZrYDDT2gQiN7CwXy1TgygXd3hGcE/CRUOZQwifedgbcpfcPDvzTXmVJBf2HQcHuLcs
- dzC0kJXRxJzBs57v5Dxv+KN2phgjW28NvlewnwwB1V7/nO/ZIHcqQ+0ApnUdUr90dviaGHoJ3jt2e
- CrvbuSqA==;
+ bh=HI/LT9GjqjWSzSWlnrtv/aE3tQx3gE8LUoPI4FJshnU=; b=W8oa3xnudN6W4YMzZhW1aqu0JM
+ gJ1qIPeIW9lqNj8T00XW+ek/SpIe4rajvCEdceiQuCjvND/W3koqBuquGN3URx+qc3gaoSxl/AQPP
+ 1ZAafwbHAgtTjBR4Rnc56QuzuNxi0I7dLAroppASutJAM9aWcVNKR4nkVx39P6QUtSjaWRl9GZo8Y
+ oTksljQ0FieOHn61A0tOB4isUsBUCJHsRoe3gcNTOoCykdXbthyFK7smB9nGHEcTOujGxjNQFOSz2
+ +Bze50N2AQctn4bNkjWnLGcFyERWEtiZhKuz92OIW3c40xWuj7JpltcCH2Ejb7VjsFj/Hz1n2JhiB
+ ioDEhjVg==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wbdSS-003izK-9f; Mon, 22 Jun 2026 14:08:56 +0200
+ id 1wbdST-003izV-2Y; Mon, 22 Jun 2026 14:08:57 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
 	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH 06/16] drm/amdgpu: More compact CIK SDMA IB emission
-Date: Mon, 22 Jun 2026 13:08:25 +0100
-Message-ID: <20260622120835.52473-7-tvrtko.ursulin@igalia.com>
+Subject: [PATCH 07/16] drm/amdgpu: More compact GFX 9.4.2 IB emission
+Date: Mon, 22 Jun 2026 13:08:26 +0100
+Message-ID: <20260622120835.52473-8-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260622120835.52473-1-tvrtko.ursulin@igalia.com>
 References: <20260622120835.52473-1-tvrtko.ursulin@igalia.com>
@@ -92,182 +92,97 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4E4046AF4DD
+X-Rspamd-Queue-Id: D9F566AF4DC
 
 Avoid constant register reloads while emitting IBs by using a local write
 pointer and only updating the size at the end of each helper.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/cik_sdma.c | 105 +++++++++++++++-----------
- 1 file changed, 63 insertions(+), 42 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c | 51 +++++++++++++------------
+ 1 file changed, 26 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/cik_sdma.c b/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
-index 120da838ac28..158357700ab1 100644
---- a/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
-+++ b/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
-@@ -717,16 +717,18 @@ static void cik_sdma_vm_copy_pte(struct amdgpu_ib *ib,
- 				 uint64_t pe, uint64_t src,
- 				 unsigned count)
- {
-+	u32 *ptr = &ib->ptr[ib->length_dw];
- 	unsigned bytes = count * 8;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c
+index 8058ea91ecaf..884c091f40ce 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c
+@@ -354,6 +354,7 @@ static int gfx_v9_4_2_run_shader(struct amdgpu_device *adev,
+ 	int r, i;
+ 	uint32_t total_size, shader_offset;
+ 	u64 gpu_addr;
++	u32 *ptr;
  
--	ib->ptr[ib->length_dw++] = SDMA_PACKET(SDMA_OPCODE_COPY,
--		SDMA_WRITE_SUB_OPCODE_LINEAR, 0);
--	ib->ptr[ib->length_dw++] = bytes;
--	ib->ptr[ib->length_dw++] = 0; /* src/dst endian swap */
--	ib->ptr[ib->length_dw++] = lower_32_bits(src);
--	ib->ptr[ib->length_dw++] = upper_32_bits(src);
--	ib->ptr[ib->length_dw++] = lower_32_bits(pe);
--	ib->ptr[ib->length_dw++] = upper_32_bits(pe);
-+	*ptr++ = SDMA_PACKET(SDMA_OPCODE_COPY, SDMA_WRITE_SUB_OPCODE_LINEAR, 0);
-+	*ptr++ = bytes;
-+	*ptr++ = 0; /* src/dst endian swap */
-+	*ptr++ = lower_32_bits(src);
-+	*ptr++ = upper_32_bits(src);
-+	*ptr++ = lower_32_bits(pe);
-+	*ptr++ = upper_32_bits(pe);
-+
-+	ib->length_dw = ptr - ib->ptr;
- }
- 
- /**
-@@ -744,18 +746,21 @@ static void cik_sdma_vm_write_pte(struct amdgpu_ib *ib, uint64_t pe,
- 				  uint64_t value, unsigned count,
- 				  uint32_t incr)
- {
-+	u32 *ptr = &ib->ptr[ib->length_dw];
- 	unsigned ndw = count * 2;
- 
--	ib->ptr[ib->length_dw++] = SDMA_PACKET(SDMA_OPCODE_WRITE,
--		SDMA_WRITE_SUB_OPCODE_LINEAR, 0);
--	ib->ptr[ib->length_dw++] = lower_32_bits(pe);
--	ib->ptr[ib->length_dw++] = upper_32_bits(pe);
--	ib->ptr[ib->length_dw++] = ndw;
-+	*ptr++ = SDMA_PACKET(SDMA_OPCODE_WRITE,
-+			     SDMA_WRITE_SUB_OPCODE_LINEAR, 0);
-+	*ptr++ = lower_32_bits(pe);
-+	*ptr++ = upper_32_bits(pe);
-+	*ptr++ = ndw;
- 	for (; ndw > 0; ndw -= 2) {
--		ib->ptr[ib->length_dw++] = lower_32_bits(value);
--		ib->ptr[ib->length_dw++] = upper_32_bits(value);
-+		*ptr++ = lower_32_bits(value);
-+		*ptr++ = upper_32_bits(value);
- 		value += incr;
+ 	total_size = (regs_size * 3 + 4 + 5 + 5) * 4;
+ 	total_size = ALIGN(total_size, 256);
+@@ -370,43 +371,43 @@ static int gfx_v9_4_2_run_shader(struct amdgpu_device *adev,
  	}
+ 
+ 	/* load the compute shaders */
+-	for (i = 0; i < shader_size/sizeof(u32); i++)
+-		ib->ptr[i + (shader_offset / 4)] = shader_ptr[i];
++	memcpy(&ib->ptr[shader_offset / sizeof(u32)], shader_ptr, shader_size);
+ 
+-	/* init the ib length to 0 */
+-	ib->length_dw = 0;
++	ptr = ib->ptr;
+ 
+ 	/* write the register state for the compute dispatch */
+ 	for (i = 0; i < regs_size; i++) {
+-		ib->ptr[ib->length_dw++] = PACKET3(PACKET3_SET_SH_REG, 1);
+-		ib->ptr[ib->length_dw++] = SOC15_REG_ENTRY_OFFSET(init_regs[i])
+-								- PACKET3_SET_SH_REG_START;
+-		ib->ptr[ib->length_dw++] = init_regs[i].reg_value;
++		*ptr++ = PACKET3(PACKET3_SET_SH_REG, 1);
++		*ptr++ = SOC15_REG_ENTRY_OFFSET(init_regs[i]) -
++			 PACKET3_SET_SH_REG_START;
++		*ptr++ = init_regs[i].reg_value;
+ 	}
+ 
+ 	/* write the shader start address: mmCOMPUTE_PGM_LO, mmCOMPUTE_PGM_HI */
+ 	gpu_addr = (ib->gpu_addr + (u64)shader_offset) >> 8;
+-	ib->ptr[ib->length_dw++] = PACKET3(PACKET3_SET_SH_REG, 2);
+-	ib->ptr[ib->length_dw++] = SOC15_REG_OFFSET(GC, 0, regCOMPUTE_PGM_LO)
+-							- PACKET3_SET_SH_REG_START;
+-	ib->ptr[ib->length_dw++] = lower_32_bits(gpu_addr);
+-	ib->ptr[ib->length_dw++] = upper_32_bits(gpu_addr);
++	*ptr++ = PACKET3(PACKET3_SET_SH_REG, 2);
++	*ptr++ = SOC15_REG_OFFSET(GC, 0, regCOMPUTE_PGM_LO)
++		 - PACKET3_SET_SH_REG_START;
++	*ptr++ = lower_32_bits(gpu_addr);
++	*ptr++ = upper_32_bits(gpu_addr);
+ 
+ 	/* write the wb buffer address */
+-	ib->ptr[ib->length_dw++] = PACKET3(PACKET3_SET_SH_REG, 3);
+-	ib->ptr[ib->length_dw++] = SOC15_REG_OFFSET(GC, 0, regCOMPUTE_USER_DATA_0)
+-							- PACKET3_SET_SH_REG_START;
+-	ib->ptr[ib->length_dw++] = lower_32_bits(wb_gpu_addr);
+-	ib->ptr[ib->length_dw++] = upper_32_bits(wb_gpu_addr);
+-	ib->ptr[ib->length_dw++] = pattern;
++	*ptr++ = PACKET3(PACKET3_SET_SH_REG, 3);
++	*ptr++ = SOC15_REG_OFFSET(GC, 0, regCOMPUTE_USER_DATA_0) -
++		 PACKET3_SET_SH_REG_START;
++	*ptr++ = lower_32_bits(wb_gpu_addr);
++	*ptr++ = upper_32_bits(wb_gpu_addr);
++	*ptr++ = pattern;
+ 
+ 	/* write dispatch packet */
+-	ib->ptr[ib->length_dw++] = PACKET3(PACKET3_DISPATCH_DIRECT, 3);
+-	ib->ptr[ib->length_dw++] = compute_dim_x; /* x */
+-	ib->ptr[ib->length_dw++] = 1; /* y */
+-	ib->ptr[ib->length_dw++] = 1; /* z */
+-	ib->ptr[ib->length_dw++] =
+-		REG_SET_FIELD(0, COMPUTE_DISPATCH_INITIATOR, COMPUTE_SHADER_EN, 1);
++	*ptr++ = PACKET3(PACKET3_DISPATCH_DIRECT, 3);
++	*ptr++ = compute_dim_x; /* x */
++	*ptr++ = 1; /* y */
++	*ptr++ = 1; /* z */
++	*ptr++ = REG_SET_FIELD(0, COMPUTE_DISPATCH_INITIATOR, COMPUTE_SHADER_EN,
++			       1);
 +
 +	ib->length_dw = ptr - ib->ptr;
- }
  
- /**
-@@ -774,17 +779,21 @@ static void cik_sdma_vm_set_pte_pde(struct amdgpu_ib *ib, uint64_t pe,
- 				    uint64_t addr, unsigned count,
- 				    uint32_t incr, uint64_t flags)
- {
-+	u32 *ptr = &ib->ptr[ib->length_dw];
-+
- 	/* for physically contiguous pages (vram) */
--	ib->ptr[ib->length_dw++] = SDMA_PACKET(SDMA_OPCODE_GENERATE_PTE_PDE, 0, 0);
--	ib->ptr[ib->length_dw++] = lower_32_bits(pe); /* dst addr */
--	ib->ptr[ib->length_dw++] = upper_32_bits(pe);
--	ib->ptr[ib->length_dw++] = lower_32_bits(flags); /* mask */
--	ib->ptr[ib->length_dw++] = upper_32_bits(flags);
--	ib->ptr[ib->length_dw++] = lower_32_bits(addr); /* value */
--	ib->ptr[ib->length_dw++] = upper_32_bits(addr);
--	ib->ptr[ib->length_dw++] = incr; /* increment size */
--	ib->ptr[ib->length_dw++] = 0;
--	ib->ptr[ib->length_dw++] = count; /* number of entries */
-+	*ptr++ = SDMA_PACKET(SDMA_OPCODE_GENERATE_PTE_PDE, 0, 0);
-+	*ptr++ = lower_32_bits(pe); /* dst addr */
-+	*ptr++ = upper_32_bits(pe);
-+	*ptr++ = lower_32_bits(flags); /* mask */
-+	*ptr++ = upper_32_bits(flags);
-+	*ptr++ = lower_32_bits(addr); /* value */
-+	*ptr++ = upper_32_bits(addr);
-+	*ptr++ = incr; /* increment size */
-+	*ptr++ = 0;
-+	*ptr++ = count; /* number of entries */
-+
-+	ib->length_dw = ptr - ib->ptr;
- }
- 
- /**
-@@ -797,18 +806,22 @@ static void cik_sdma_vm_set_pte_pde(struct amdgpu_ib *ib, uint64_t pe,
- static void cik_sdma_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib)
- {
- 	struct amdgpu_sdma_instance *sdma = amdgpu_sdma_get_instance_from_ring(ring);
-+	u32 *ptr = &ib->ptr[ib->length_dw];
- 	u32 pad_count;
- 	int i;
- 
- 	pad_count = (-ib->length_dw) & 7;
-+	if (!pad_count)
-+		return;
-+
- 	for (i = 0; i < pad_count; i++)
- 		if (sdma && sdma->burst_nop && (i == 0))
--			ib->ptr[ib->length_dw++] =
--					SDMA_PACKET(SDMA_OPCODE_NOP, 0, 0) |
--					SDMA_NOP_COUNT(pad_count - 1);
-+			*ptr++ = SDMA_PACKET(SDMA_OPCODE_NOP, 0, 0) |
-+				 SDMA_NOP_COUNT(pad_count - 1);
- 		else
--			ib->ptr[ib->length_dw++] =
--					SDMA_PACKET(SDMA_OPCODE_NOP, 0, 0);
-+			*ptr++ = SDMA_PACKET(SDMA_OPCODE_NOP, 0, 0);
-+
-+	ib->length_dw += pad_count;
- }
- 
- /**
-@@ -1303,13 +1316,17 @@ static void cik_sdma_emit_copy_buffer(struct amdgpu_ib *ib,
- 				      uint32_t byte_count,
- 				      uint32_t copy_flags)
- {
--	ib->ptr[ib->length_dw++] = SDMA_PACKET(SDMA_OPCODE_COPY, SDMA_COPY_SUB_OPCODE_LINEAR, 0);
--	ib->ptr[ib->length_dw++] = byte_count;
--	ib->ptr[ib->length_dw++] = 0; /* src/dst endian swap */
--	ib->ptr[ib->length_dw++] = lower_32_bits(src_offset);
--	ib->ptr[ib->length_dw++] = upper_32_bits(src_offset);
--	ib->ptr[ib->length_dw++] = lower_32_bits(dst_offset);
--	ib->ptr[ib->length_dw++] = upper_32_bits(dst_offset);
-+	u32 *ptr = &ib->ptr[ib->length_dw];
-+
-+	*ptr++ = SDMA_PACKET(SDMA_OPCODE_COPY, SDMA_COPY_SUB_OPCODE_LINEAR, 0);
-+	*ptr++ = byte_count;
-+	*ptr++ = 0; /* src/dst endian swap */
-+	*ptr++ = lower_32_bits(src_offset);
-+	*ptr++ = upper_32_bits(src_offset);
-+	*ptr++ = lower_32_bits(dst_offset);
-+	*ptr++ = upper_32_bits(dst_offset);
-+
-+	ib->length_dw = ptr - ib->ptr;
- }
- 
- /**
-@@ -1327,11 +1344,15 @@ static void cik_sdma_emit_fill_buffer(struct amdgpu_ib *ib,
- 				      uint64_t dst_offset,
- 				      uint32_t byte_count)
- {
--	ib->ptr[ib->length_dw++] = SDMA_PACKET(SDMA_OPCODE_CONSTANT_FILL, 0, 0);
--	ib->ptr[ib->length_dw++] = lower_32_bits(dst_offset);
--	ib->ptr[ib->length_dw++] = upper_32_bits(dst_offset);
--	ib->ptr[ib->length_dw++] = src_data;
--	ib->ptr[ib->length_dw++] = byte_count;
-+	u32 *ptr = &ib->ptr[ib->length_dw];
-+
-+	*ptr++ = SDMA_PACKET(SDMA_OPCODE_CONSTANT_FILL, 0, 0);
-+	*ptr++ = lower_32_bits(dst_offset);
-+	*ptr++ = upper_32_bits(dst_offset);
-+	*ptr++ = src_data;
-+	*ptr++ = byte_count;
-+
-+	ib->length_dw = ptr - ib->ptr;
- }
- 
- static const struct amdgpu_buffer_funcs cik_sdma_buffer_funcs = {
+ 	/* shedule the ib on the ring */
+ 	r = amdgpu_ib_schedule(ring, 1, ib, NULL, fence_ptr);
 -- 
 2.54.0
 
