@@ -2,132 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4kg2GlMoOWpsngcAu9opvQ
+	id NDM/D8Q+OmrW4gcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:19:31 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:32 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1183B6AF626
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:19:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C18046B5231
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=IcSRkg1A;
+	dkim=pass header.d=pm.me header.s=protonmail3 header.b="Aw/urS12";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=quarantine) header.from=pm.me
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 069B310E68A;
-	Mon, 22 Jun 2026 12:19:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B33C10E9F1;
+	Tue, 23 Jun 2026 08:07:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010060.outbound.protection.outlook.com [52.101.85.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3B9210E688;
- Mon, 22 Jun 2026 12:19:27 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EXcwXKkQPKBfzdFAgtRq3FLKpvnZNWggEd1ynK9oAGtMjadbUyaVNoTN1wD4DzjczOE+K4pFOrVX4j6kxE+cFC+K9LNlsfY+mP8L4MlzO013M0zZuL+5kAopnj/UvslSMQ25p0H9bn3rn7/pujqOZeU6rlH4COBdUFFfOCPg0kE8xuOhw33Fog79sYcVSrWRinDsMR0FmRfzua2+CQDg4bjxVAWst8WzUCSzLSVW/4MB+oUSn0dI5HaMaA/2MRFeobHd7UQXfdMW6BxxSw8uGgsnZRekKdT+ODLpgZrnwQvcphK/eP4yAMYzR1wITAgKaknuMOZpw79nSJotH6DNZQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dopx8XEtnMPErtbPEQup5wUXSsRLQ2mvZ4Y4RescDfE=;
- b=p87G8TRvWY9z5vVATf6GUpg3iZfBwtM/ZG8Ll3UTO1FiNRnHBku2QqnpgJ4p+KCAoZHfbAEemodjfnVW3EkrhWSCoWe9Hij2dzlCZ2+kMGlvoQ2QRqmVls37aLcQg4DeHL3h9wTqelnUG+4QM1zE7plddcnqKqZTz8aSAqIi9pBGHoo//B5KQUoqou59fcePfuW/lqjfGKpZEWdL8SSA1r4fXBTEypDabj8n4qIUTzvzzRat0/GRz5YTFR9hYmome42KyoMX619Ui4WLv0Qb9r3hinAMZRuuBG8l3bmAfjNXhhogzgCyE0IH8x1qEYRGWRDad5kuHoz0HskgGrt5wg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dopx8XEtnMPErtbPEQup5wUXSsRLQ2mvZ4Y4RescDfE=;
- b=IcSRkg1AQqNGIIdL4Xv2ClpfW/DTC6CsmDq37KQvgDvKNM012IVp7I6rjGw7Z7UnxMYky76R7S3bWCYNENO93Zc1+i3ShAN5dKVRvTQxLW5NsxPs5g/Gp+LI9cjtxFEu+TNPpTVPSN/q4F58ZxSLaG/nZpgurbBUj7D+Ic7joqU=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by CH2PR12MB4086.namprd12.prod.outlook.com (2603:10b6:610:7c::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.17; Mon, 22 Jun
- 2026 12:19:24 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0113.015; Mon, 22 Jun 2026
- 12:19:24 +0000
-Message-ID: <7a8a2bd8-9da5-48f4-8a42-bb7924f6721f@amd.com>
-Date: Mon, 22 Jun 2026 14:19:19 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] drm/amdgpu: move debug_vm handling to
- amdgpu_cs_parser_fini
-To: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Vitaly Prosyak <vitaly.prosyak@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <20260622092859.3600-1-pierre-eric.pelloux-prayer@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260622092859.3600-1-pierre-eric.pelloux-prayer@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BL1PR13CA0241.namprd13.prod.outlook.com
- (2603:10b6:208:2ba::6) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mail-4327.protonmail.ch (mail-4327.protonmail.ch [185.70.43.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF8FE10E695
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 12:34:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
+ s=protonmail3; t=1782131649; x=1782390849;
+ bh=+5AoqdLbG201OT7SCCKo+uKGJ8LdtVOX3oNnF+s+r8A=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector;
+ b=Aw/urS128ZcnJH8talsKbcLMSK+l+G3iGVs1jkw++Z8aeczor/AT5/YBF5kwWkncx
+ wjyOuFyC635O6s9UJlNMCtbmLODlL8CMe4Cb24qIDRZhd3i4sqgj6rRd/HhLjZVbqi
+ EtS6P4XK7HRTBPyJRjlP+674uVbuNj5ryTUI+x9IcWfnIUan5A/mPJmE6VQpr9FuET
+ QT1dxoQKiHQKO17k7gkLhgMWTFPpnYcTrTO0VKiLz6OKDcvmKNPOcXkY8UGnRrOBgS
+ XFvyVLzOv/zv+wplfHd6sgyIIoBcmwC3dXcZF3AWlcKag/Ga1zvY4694Bo5yEtBn0m
+ CwEC6p0qZhZQg==
+Date: Mon, 22 Jun 2026 12:34:05 +0000
+To: =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+From: Matthew Jacob <feralmatt@pm.me>
+Cc: Matthew Jacob <mjacob@feralsw.com>, alexdeucher@gmail.com,
+ amd-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] Support some Barco AMD based graphics adapters
+Message-ID: <-OvmEF_NM5X1NJ1TKjZKl_nNHJhfQxE-zh4bIGMsBfCfSjyFJFc-sFkaYCXJZD4mhu1KKM0QJ7dbvMkzPJSzvkYhQixNHLNuRbSdNLnhjNU=@pm.me>
+In-Reply-To: <10397a2a-88cf-4070-aced-291e24785a8d@amd.com>
+References: <1b83ac6f-1018-3dee-c029-1b2ed78a8460@feralsw.com>
+ <10397a2a-88cf-4070-aced-291e24785a8d@amd.com>
+Feedback-ID: 169730088:user:proton
+X-Pm-Message-ID: e4254e7b89988bf971a3f3ec6473026fc1b049e2
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH2PR12MB4086:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5a8c33f4-4288-4ef2-a323-08ded0587ee6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|23010399003|1800799024|22082099003|56012099006|18002099003|11063799006;
-X-Microsoft-Antispam-Message-Info: vbUfAX2a/4CsxJSLhY5bBIxDlYEwscx0EUPj00jUjniZHezwY+5eh6xFUgK9w9CMk4IQHjqVt4EUXRUGTjCyz9a/wN0w9JYgfW/EumENpeYW3Vjxf7s4BtchHbkwvn1nGz/fmnYXfWFSYwKAHn8m9dQZ6L5rOMJdVH1NwWvN18sAdmiBTw/kTbN8hziF7TEgXYlLAFsdooPjEFO/MerlOuZl6ooZA/q9zQv3FSFXtaCvAnBXJL6p7IKwhDXXQsom23D4hIroOwwgodiGvSI+JOEArZ4Zxz+2X1BrvJZ1+4HP4k1Vak1oCq7Pt9xuTMAMPyEgUxKlS4XIfHTUZz6xWLWFeqb0Q3/F1lPrrMvclB1p0I2SH9UBgXMMFDHjwFe1YtD6TtA1E1M/DeOcfVI492jN9G+c3yMeH4EAcgzGBldY3KD8sAdFeppz87v/3TfBpFX9cNqJk5QUvxWe2eLwRFPBVFEJCFa0VYVv+yLVg4tO5ydHTo25Xy5exWUjxQMQCTeSI64YzeN2uXUqLSw4lT5hcPYU5bsF0IlBdrD1a/o1t1vNrZXVB3a8D3xmq9sYwRioDpYYsxx6RwG9jSSkjqxWjSIatUMiHjGljukkTFbKbNQ4rT6nhtwxRMuQbSblC5A9r1vf43iXAtVN8060BLxhaCaeDrX5OPDXaIZ1lcs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(22082099003)(56012099006)(18002099003)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UWoyUk1Lc1RlWlhPWDJ5TTBlb0tFTzVmN05EbnhQNU5DMy9jeGFEUFN0OE1r?=
- =?utf-8?B?NzcwcFVkK1RXSXFyMXN6eVcyM0VoUFBxRHJ5bE9taXRqM1crSUtQREc2cnQ3?=
- =?utf-8?B?aGNPQlJmRFhOL0NZUElkRGRyeVN6YzN5aUE3dFRxblhaMDJHRlZnVGgyRk9Q?=
- =?utf-8?B?MXlSdHhDRGdNTnRkUVZHTno4WW5SK2E3QkszQjc1YmJHUWpTN2RndExJMzVw?=
- =?utf-8?B?TzFNYnprQ21xcjNsQ2k4WlJFeDFDZXpkU0NFQkppSUxXc08xci91eUplWmNm?=
- =?utf-8?B?YlFEUW9HWktRbmRHQ1VjeDYvYm05YnA1YWJ6SUsrbm5zbUtrTm1DQ3hJZVYy?=
- =?utf-8?B?WEZoV2pwazhvVDkzT0V0cXFPUmVybitFd2NoV1Z6NWNwUC9pRE12YXlzSHhm?=
- =?utf-8?B?VDhZYWpEM3JDaGdlcG1VZXZMcExSSFhpNVNXRmpMdlpFa3RKV2hqRmJ1ZFlQ?=
- =?utf-8?B?RTlQMGQ3Mk9qc05TTW84YjMvWmk1K3g1SGN0a3ozUy9JS3dyVkdxUHByQWNQ?=
- =?utf-8?B?ZVh3VndCcjFHdzk3UW9yL2Flc3FxMWF6UVlQenJ5ZDhPODh6YUlGZWpGRFJa?=
- =?utf-8?B?TnlabE9aaTZxUjZoTUp4YzJlSzNTdlZRVGlMQ1pxazluYmxtR0ozaU5tUk1r?=
- =?utf-8?B?K0p2TnRETzJzc29tN0tkSU0vOHlVdkFKazNpRW4weityZjNTU1lUOWMxMlR4?=
- =?utf-8?B?cHMydW5NMWJSU2lVRW9QNEtFVmcrUGgxWFNpdE04VEZkNkZhdjdCS1pscjRI?=
- =?utf-8?B?WTg3a2puVFZBcndVdjVXMHVLT2tCRHl5NDUrVjVCQXpQMXl2ejhBcWlNUGdN?=
- =?utf-8?B?cWtaUXR6OFZ0TVV0TkN3ZkYwRkM3MTJxYzFZVnZvS3pkczFEdGNuTTBXTlZF?=
- =?utf-8?B?cUJuT3JXYzBhV3FFeitGWWs4cVlqZzRJdnZOY3E3QlJnWnFMNE8yMjZhT1Zm?=
- =?utf-8?B?Y0VQN0psTERoeWZwdWlrV2d1Z1h4alNtRUN1QlRnV0wvM1VVWllvUmNSUklY?=
- =?utf-8?B?cFZZMGFSTURCMmVtWVoyaXluR0pRNDloNmVxQjVuQjI5eFdST3UrZkdVUy9Y?=
- =?utf-8?B?S2lXSHB2eXFWVlJHcThLM2VLUGxSK3ZoOGwvQm04cmxSV09PcFJWT3JybDZy?=
- =?utf-8?B?aVJ5czY3VVpkL0NxNGFFQldLL0lGWGw4WUtteGhZT0hLOENMVUgzS1IraFZi?=
- =?utf-8?B?cE80OXMxOHlsZVFSckp3WUIyU290WDBVQ1E1Uk5kZTh2RDFQRDhKRWd5SE1k?=
- =?utf-8?B?Zkd5ZktJRjdMT2pJQklUZUV5MHBqbjBXTDNab3FrUkZVTVU0MEVhblJOSlJ1?=
- =?utf-8?B?b3lwL1l0bUVIM2VOS1hRdkN1N1R2SW5OTXJuNTVlVlNEbkZndVJqY2lpdXRN?=
- =?utf-8?B?RERYbmp2SmZRUm90UXIyRlEzTzVoN1Y2eGR4RE1zcXlRNzZlc0oyNnRKem1x?=
- =?utf-8?B?bTFqT2NPWHhCNVhRb3o2Zm8zdGN0NXJtVHdqRDV2Q21aaS9ZRnZhdHRFT3I5?=
- =?utf-8?B?NFFxckdPR3BPdmhBT2gxTDV0alA4dHF0MUpJWk5FdkxneEpkcGhHSmtEYkUy?=
- =?utf-8?B?MERvSzZScTF2aWpLeFUzZmtZVlJsTTVabC93VXRJbCtHWk55Q1Vtd0FnYTNN?=
- =?utf-8?B?K3BzQ1B1dXl0RXBCNGhNaDF1WEdSYVdMdGkvRkFrb01TN0NSVEZMR1RNVFUw?=
- =?utf-8?B?YUdpKzNmOGdrV1gyN0dON0dyS3ljS0xWMWlDVDhSaWNoOVFWak1ZRzV4YUVo?=
- =?utf-8?B?L3AwK1RYUTMwZW9mL0gwVndNa0V4eVdiWkhYQXhOeCtnOXJ5OVRZRm0yczRE?=
- =?utf-8?B?RkIydW9Sb1B5aGZzWjVwL0tlVTM4R3AyL3RPcktNMHBZeStzWHBER2RWdzVM?=
- =?utf-8?B?WlBURExOZXl1MTVVblVlVWNNeXhyaDd3dEtIU0E3ci9pRm14Tld3YjZxLzJV?=
- =?utf-8?B?YXVpNloyaXBUbUVHaWJ3UytEajFSMzg2M1NQakQzZTliS1dEcFFUaUIwbmE0?=
- =?utf-8?B?bHdTSzlKa3lHbDhFVEpDMUVBUW1kOTFwUDNja0k4Sm5MakNLSTFpa2lNRTJC?=
- =?utf-8?B?M3BJZnlXaHVyUXRUTjRoNDdYY2pndTRJbkQwREs1eUxLZmdwRUtGbENaczE2?=
- =?utf-8?B?cWRFcGpjeFp6WHlKR3hnMUNCeHJtSDB5TlRZUTd1aU9Da2QzWkVoRmllNk4x?=
- =?utf-8?B?SnpodzIxNnFoaHhMaldtQVg2Rkc1dmlMMkI0bmIranhCb291NG4rZzRCdlFv?=
- =?utf-8?B?K1NSQVBwd1Jta0tKUzR4SzNKeS9Wa2FtM3V0T29waTNRTEdxbmR6R2NuMmhL?=
- =?utf-8?Q?hsP4SqxfZly4yywNBV?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5a8c33f4-4288-4ef2-a323-08ded0587ee6
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2026 12:19:23.9520 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: F86U56poJRnI4MsZwdrkJVuVZpcHBidfe8OAut7UPaEQiTtNunyFZN5YTrJVtyEG
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4086
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 23 Jun 2026 08:07:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,104 +63,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:mjacob@feralsw.com,m:alexdeucher@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[feralsw.com,gmail.com,lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[feralmatt@pm.me,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[feralmatt@pm.me,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[pm.me:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1183B6AF626
+X-Rspamd-Queue-Id: C18046B5231
 
-On 6/22/26 11:28, Pierre-Eric Pelloux-Prayer wrote:
-> The commit referenced below restarts the CS if the validation is
-> still in progress. When debug_vm is enabled, all BOs from the CS
-> are invalidated so we will hit an infinite loop.
-> 
-> To avoid that, defer BO invalidation to amdgpu_cs_parser_fini.
-> 
-> Fixes: 83ac717d7837 ("drm/amdgpu: restart the CS if some parts of the VM are still invalidated")
-> Signed-off-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+Sorry about the style. Do I need to resubmit?
 
-Reviewed-by: Christian König <christian.koenig@amd.com> for both patches.
+My experience with the boards so far has been fine. Without the change mult=
+iple monitors don't work correctly. With the change they do. Boot up in BIO=
+S seems to operate correctly. Linux version testing has ranged from 5.15 th=
+rough 6.12 and of course once top of tree recently.
 
+Normally I probably wouldn't have bothered to intrude with this change, but=
+ then the now widespread use of secure boot and the impracticality of disab=
+ling secure boot in the Kaiser fleet when booting USB keys practically mean=
+s that I need to get this change rolled out so that at least Debian will pi=
+ck it up and produce signed kernels.
+
+
+Wizard, 3rd Class
+
+Sent from Proton Mail for Android.
+
+-------- Original Message --------
+On Monday, 06/22/26 at 01:22 Christian K=C3=B6nig <christian.koenig@amd.com=
+> wrote:
+On 6/19/26 20:45, Matthew Jacob wrote:
+>
+> These adapters typically are only supported by Barco on the Windows
+> platform. However, with these changes in the linux driver, multiple
+> monitor support should work correctly.
+>
+> Signed-off-by: Matthew Jacob <mjacob@feralsw.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 30 ++++++++++++++------------
->  1 file changed, 16 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> index d63fbc7c568d..7e75c536dab3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> @@ -1180,19 +1180,6 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_parser *p)
->  		job->vm_pd_addr = amdgpu_gmc_pd_addr(vm->root.bo);
->  	}
->  
-> -	if (adev->debug_vm) {
-> -		/* Invalidate all BOs to test for userspace bugs */
-> -		amdgpu_bo_list_for_each_entry(e, p->bo_list) {
-> -			struct amdgpu_bo *bo = e->bo;
-> -
-> -			/* ignore duplicates */
-> -			if (!bo)
-> -				continue;
-> -
-> -			amdgpu_vm_bo_invalidate(bo, false);
-> -		}
-> -	}
-> -
->  	return 0;
->  }
->  
-> @@ -1382,6 +1369,8 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
->  /* Cleanup the parser structure */
->  static void amdgpu_cs_parser_fini(struct amdgpu_cs_parser *parser)
->  {
-> +	struct amdgpu_device *adev = parser->adev;
-> +	struct amdgpu_bo_list_entry *e;
->  	unsigned int i;
->  
->  	amdgpu_sync_free(&parser->sync);
-> @@ -1397,8 +1386,21 @@ static void amdgpu_cs_parser_fini(struct amdgpu_cs_parser *parser)
->  
->  	if (parser->ctx)
->  		amdgpu_ctx_put(parser->ctx);
-> -	if (parser->bo_list)
-> +	if (parser->bo_list) {
-> +		if (adev->debug_vm) {
-> +			/* Invalidate all BOs to test for userspace bugs */
-> +			amdgpu_bo_list_for_each_entry(e, parser->bo_list) {
-> +				struct amdgpu_bo *bo = e->bo;
-> +
-> +				/* ignore duplicates */
-> +				if (!bo)
-> +					continue;
-> +
-> +				amdgpu_vm_bo_invalidate(bo, false);
-> +			}
-> +		}
->  		amdgpu_bo_list_put(parser->bo_list);
-> +	}
->  
->  	for (i = 0; i < parser->nchunks; i++)
->  		kvfree(parser->chunks[i].kdata);
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 4 ++++
+> =C2=A01 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_drv.c
+> index 60debd543e44..e3ba168795cc 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> @@ -1926,6 +1926,7 @@ static const struct pci_device_id pciidlist[] =3D {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6646, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_BONAIRE|AMD_IS_MOBILITY},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6647, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_BONAIRE|AMD_IS_MOBILITY},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6649, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_BONAIRE},
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x664D, PCI_ANY_ID, PCI_AN=
+Y_ID, 0, 0, CHIP_BONAIRE}, // Barco MXRT-5600
+
+Please no // style comments in kernel code.
+
+Apart from that looks good to me, but I'm wondering if we shouldn't print a=
+ warning or similar.
+
+It could be that those boards have non standard VBIOS changes and cause pro=
+blems on Linux.
+
+Regards,
+Christian.
+
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6650, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_BONAIRE},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6651, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_BONAIRE},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6658, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_BONAIRE},
+> @@ -1995,6 +1996,7 @@ static const struct pci_device_id pciidlist[] =3D {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6930, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_TONGA},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6938, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_TONGA},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6939, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_TONGA},
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x693B, PCI_ANY_ID, PCI_AN=
+Y_ID, 0, 0, CHIP_TONGA}, // Barco MXRT-7600
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* fiji */
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x7300, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_FIJI},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x730F, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_FIJI},
+> @@ -2023,6 +2025,7 @@ static const struct pci_device_id pciidlist[] =3D {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x67C4, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_POLARIS10},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x67C7, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_POLARIS10},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x67D0, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_POLARIS10},
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x67D4, PCI_ANY_ID, PCI_AN=
+Y_ID, 0, 0, CHIP_POLARIS10}, // Tentative Barco MXRT-8750
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x67DF, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_POLARIS10},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x67C8, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_POLARIS10},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x67C9, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_POLARIS10},
+> @@ -2036,6 +2039,7 @@ static const struct pci_device_id pciidlist[] =3D {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6985, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_POLARIS12},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6986, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_POLARIS12},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6987, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_POLARIS12},
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x698F, PCI_ANY_ID, PCI_AN=
+Y_ID, 0, 0, CHIP_POLARIS12}, // Tentative Barco MXRT-4700
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6995, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_POLARIS12},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6997, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_POLARIS12},
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x699F, PCI_ANY_ID, PCI_ANY=
+_ID, 0, 0, CHIP_POLARIS12},
+> --
+> 2.47.3
+>
+
 
