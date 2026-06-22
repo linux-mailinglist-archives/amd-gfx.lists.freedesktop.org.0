@@ -2,25 +2,25 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FnV2E9slOWrbnQcAu9opvQ
+	id q8VZB98lOWrfnQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:08:59 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:09:03 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 928D66AF4D6
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA2AF6AF4E7
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:09:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=Tr7CNCcZ;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=gkhjEfGl;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2390E10E667;
-	Mon, 22 Jun 2026 12:08:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01E3E10E671;
+	Mon, 22 Jun 2026 12:09:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB24910E66E
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 12:08:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 976C710E664
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 12:08:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -28,23 +28,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=aucy4g0Tib8sxLxzHhL2VOjhM5SlAAg0MrNNxLiHle8=; b=Tr7CNCcZ54VtHSq62zKXFXZxLU
- lJWLWtYhADUkXBxL/kExP6fucKlIpY12fv5Th9q9umiqYkG/uAdEyRNcXx/NpU2MJpGmeKOI5r/sC
- hU63SN7K2+yAYZfjsH3VRO6OT8sxPYta+Qy2/tXvhtloxAMMfY3zHxu0e3pf9xWCRu/Q9RzmBr7cv
- qKIF1D6SHmc1colgLzHG62AKlk+fHzDVltYyoSnivZfWFw5f8aIR6CVi7HjvnNuF8gKauvPpAKOxH
- hhKzaNa/ru+EZtMUaXNgFohlGjdFXOL7Q1C80pVpzXPX00OaQOaf1em5qBYDR/WfjbaYl46Druk64
- rMfGqfGQ==;
+ bh=Cedt0Kr4nR8a0o2egHDaIBWCcX+0El5pbXgu4KQuReg=; b=gkhjEfGluZhiRoO0uHFFiLsjjp
+ JKMQKl5atY86171SG2lFcfxydqPVYC5c8hhmMDqK5EOb+wJE56nNLwzlbrBYAq6OgmVa0cNKQLW9N
+ UMX8gnuEH0tFIsAU2Q0QJXrbOH7ExR784xlu5XS7+MHEJIGZiqLAq9AyoSg6BYj3MLmmbWAGPsEnJ
+ bnmX9TxbJJldbBUWgVP8r7HuPYIl9CU3SFSLz2I+mJJ22W6eD0TH5phRPs56nbYbzIYJbV+ojjMSs
+ 0Mf9gelRBP+aGBdHjSUgRBWv+RtSVUVtr0JDwSDWbYeF/NKxJmGlJU/y3DgKjEJWhPI9d/hBHNNgk
+ 7wWyvAVw==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wbdSP-003iz0-Qe; Mon, 22 Jun 2026 14:08:53 +0200
+ id 1wbdSQ-003iz4-MO; Mon, 22 Jun 2026 14:08:54 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
 	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH 03/16] drm/amdgpu: More compact UVD 6 IB emission
-Date: Mon, 22 Jun 2026 13:08:22 +0100
-Message-ID: <20260622120835.52473-4-tvrtko.ursulin@igalia.com>
+Subject: [PATCH 04/16] drm/amdgpu: More compact UVD 7 IB emission
+Date: Mon, 22 Jun 2026 13:08:23 +0100
+Message-ID: <20260622120835.52473-5-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260622120835.52473-1-tvrtko.ursulin@igalia.com>
 References: <20260622120835.52473-1-tvrtko.ursulin@igalia.com>
@@ -90,23 +90,23 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,igalia.com:mid,igalia.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 928D66AF4D6
+X-Rspamd-Queue-Id: BA2AF6AF4E7
 
 Avoid constant register reloads while emitting IBs by using a local write
-pointer and only updating the size at the end of each helper.uvd 6
+pointer and only updating the size at the end of each helper.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c | 72 ++++++++++++++-------------
+ drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c | 72 ++++++++++++++-------------
  1 file changed, 38 insertions(+), 34 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c b/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
-index ecd7ead7a60b..d922d80d7257 100644
---- a/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
-@@ -214,7 +214,8 @@ static int uvd_v6_0_enc_get_create_msg(struct amdgpu_ring *ring, uint32_t handle
+diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c b/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c
+index df2c83348315..97e51ec2d525 100644
+--- a/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c
+@@ -222,7 +222,8 @@ static int uvd_v7_0_enc_get_create_msg(struct amdgpu_ring *ring, u32 handle,
  	struct amdgpu_ib *ib;
  	struct dma_fence *f = NULL;
  	uint64_t addr;
@@ -116,7 +116,7 @@ index ecd7ead7a60b..d922d80d7257 100644
  
  	r = amdgpu_job_alloc_with_ib(ring->adev, NULL, NULL, ib_size_dw * 4,
  				     AMDGPU_IB_POOL_DIRECT, &job,
-@@ -223,27 +224,28 @@ static int uvd_v6_0_enc_get_create_msg(struct amdgpu_ring *ring, uint32_t handle
+@@ -231,27 +232,28 @@ static int uvd_v7_0_enc_get_create_msg(struct amdgpu_ring *ring, u32 handle,
  		return r;
  
  	ib = &job->ibs[0];
@@ -127,25 +127,25 @@ index ecd7ead7a60b..d922d80d7257 100644
 -	ib->ptr[ib->length_dw++] = 0x00000018;
 -	ib->ptr[ib->length_dw++] = 0x00000001; /* session info */
 -	ib->ptr[ib->length_dw++] = handle;
--	ib->ptr[ib->length_dw++] = 0x00010000;
+-	ib->ptr[ib->length_dw++] = 0x00000000;
 -	ib->ptr[ib->length_dw++] = upper_32_bits(addr);
 -	ib->ptr[ib->length_dw++] = addr;
 +	*ptr++ = 0x00000018;
 +	*ptr++ = 0x00000001; /* session info */
 +	*ptr++ = handle;
-+	*ptr++ = 0x00010000;
++	*ptr++ = 0x00000000;
 +	*ptr++ = upper_32_bits(addr);
 +	*ptr++ = addr;
  
 -	ib->ptr[ib->length_dw++] = 0x00000014;
 -	ib->ptr[ib->length_dw++] = 0x00000002; /* task info */
 -	ib->ptr[ib->length_dw++] = 0x0000001c;
--	ib->ptr[ib->length_dw++] = 0x00000001;
+-	ib->ptr[ib->length_dw++] = 0x00000000;
 -	ib->ptr[ib->length_dw++] = 0x00000000;
 +	*ptr++ = 0x00000014;
 +	*ptr++ = 0x00000002; /* task info */
 +	*ptr++ = 0x0000001c;
-+	*ptr++ = 0x00000001;
++	*ptr++ = 0x00000000;
 +	*ptr++ = 0x00000000;
  
 -	ib->ptr[ib->length_dw++] = 0x00000008;
@@ -161,7 +161,7 @@ index ecd7ead7a60b..d922d80d7257 100644
  
  	r = amdgpu_job_submit_direct(job, ring, &f);
  	if (r)
-@@ -279,7 +281,8 @@ static int uvd_v6_0_enc_get_destroy_msg(struct amdgpu_ring *ring,
+@@ -286,7 +288,8 @@ static int uvd_v7_0_enc_get_destroy_msg(struct amdgpu_ring *ring, u32 handle,
  	struct amdgpu_ib *ib;
  	struct dma_fence *f = NULL;
  	uint64_t addr;
@@ -171,7 +171,7 @@ index ecd7ead7a60b..d922d80d7257 100644
  
  	r = amdgpu_job_alloc_with_ib(ring->adev, NULL, NULL, ib_size_dw * 4,
  				     AMDGPU_IB_POOL_DIRECT, &job,
-@@ -288,27 +291,28 @@ static int uvd_v6_0_enc_get_destroy_msg(struct amdgpu_ring *ring,
+@@ -295,27 +298,28 @@ static int uvd_v7_0_enc_get_destroy_msg(struct amdgpu_ring *ring, u32 handle,
  		return r;
  
  	ib = &job->ibs[0];
@@ -180,27 +180,27 @@ index ecd7ead7a60b..d922d80d7257 100644
  
 -	ib->length_dw = 0;
 -	ib->ptr[ib->length_dw++] = 0x00000018;
--	ib->ptr[ib->length_dw++] = 0x00000001; /* session info */
+-	ib->ptr[ib->length_dw++] = 0x00000001;
 -	ib->ptr[ib->length_dw++] = handle;
--	ib->ptr[ib->length_dw++] = 0x00010000;
+-	ib->ptr[ib->length_dw++] = 0x00000000;
 -	ib->ptr[ib->length_dw++] = upper_32_bits(addr);
 -	ib->ptr[ib->length_dw++] = addr;
 +	*ptr++ = 0x00000018;
-+	*ptr++ = 0x00000001; /* session info */
++	*ptr++ = 0x00000001;
 +	*ptr++ = handle;
-+	*ptr++ = 0x00010000;
++	*ptr++ = 0x00000000;
 +	*ptr++ = upper_32_bits(addr);
 +	*ptr++ = addr;
  
 -	ib->ptr[ib->length_dw++] = 0x00000014;
--	ib->ptr[ib->length_dw++] = 0x00000002; /* task info */
+-	ib->ptr[ib->length_dw++] = 0x00000002;
 -	ib->ptr[ib->length_dw++] = 0x0000001c;
--	ib->ptr[ib->length_dw++] = 0x00000001;
+-	ib->ptr[ib->length_dw++] = 0x00000000;
 -	ib->ptr[ib->length_dw++] = 0x00000000;
 +	*ptr++ = 0x00000014;
-+	*ptr++ = 0x00000002; /* task info */
++	*ptr++ = 0x00000002;
 +	*ptr++ = 0x0000001c;
-+	*ptr++ = 0x00000001;
++	*ptr++ = 0x00000000;
 +	*ptr++ = 0x00000000;
  
 -	ib->ptr[ib->length_dw++] = 0x00000008;
