@@ -2,80 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7wwaMcQ+OmrX4gcAu9opvQ
+	id RzIRDcfjOGrrjgcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:32 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 09:27:03 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 343D26B5236
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 851E66AD3A8
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 09:27:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=MdDk8HoQ;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="CvjxVwo/";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("google.com:s=arc-20240605:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB7A010E9EB;
-	Tue, 23 Jun 2026 08:07:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C2C210E4F0;
+	Mon, 22 Jun 2026 07:27:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
- [209.85.218.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF31A10E4EC
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 07:16:03 +0000 (UTC)
-Received: by mail-ej1-f51.google.com with SMTP id
- a640c23a62f3a-c0c41ff84a6so247882366b.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 00:16:03 -0700 (PDT)
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
+ [209.85.210.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5C2010E4F0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 07:27:00 +0000 (UTC)
+Received: by mail-ot1-f44.google.com with SMTP id
+ 46e09a7af769-7e92cb77209so2091873a34.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 00:27:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782113220; cv=none;
+ d=google.com; s=arc-20240605;
+ b=OyBrq7HKXCqUWNbAr4xJ5zpH0ZtqeUX8dluKM16PGqxjIVgu3JpoVzIz5SA2k7EAgs
+ nUE8lHE9oHoEFhuOv/4CaNXcRVH0tIcNmxksT1nhtamvdEzKHF/N/PJY9QPa/+S9rRSK
+ nIpMBz8k3RfkWJQIkLOx4qGu5J7jirF3YVmio9PsCv/8VemuWneprCayzamKa29iSe76
+ AiCJb3vFsPULxTJ4PwLymeG4MfY6LXukQcSEjH21Aa+4SJa1JS/UND5FiFurFdA27mOV
+ EI6sK6kx3qJ8RQKT1KmkCgmTKFX142VKuXe62D6ihEm72meC3NMShcGQ68HO06scqBYp
+ VCgg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=b7FQ1aR5OdpNqu3r0SBRqrV7xGbQqLLo0aQcbDX73CQ=;
+ fh=iYv/3yi8WuLe+NLVxQ/LqDQuoNcCBqSo1OPLwfIw798=;
+ b=LJJjZGEK0Juja0Hapa6gzEz97/4mU5+uXAhszv2mzDV4kbB4Ktqsift5vOyqgd0/hd
+ U5RDA3wq1c4xZUcJiki6AtG/LExUP+oh0/0iQF5IHd0HSXq7fiwCplpuMbufDn1ZD5Fy
+ g9ipkPeAb9sBbUuYDscDGOcQ6MsY/hBktbV+ifHjjpwBM0Ajz5GVjIwo2zf56TmlYYrT
+ wUI4DIyycWQwYWWjsksWcTEyfYxIQbrbatttlPEnkPSDsUi02fKB20CUXSdQ4n2HuD5E
+ jP4ZagpPGLS727WcriLFPiODSMt4kxGH8qkNbAqi41/QH3EgJr/a7AABGiCQrnDd1zeW
+ qiJg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782112562; x=1782717362; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=aKUdsREkXdaAnyx5VItgWz8gGsTg5KgkpGw7xwtapMs=;
- b=MdDk8HoQvQFIK6QSQO9ExK2WXobDGCFaRvpHgO3a6s8/huwMmJhIaBDDHimwuLCmJf
- C19i0Js8hrGNvWk1hlZwlIRMcwHQz8f8kMwk+8jftH+ypKUplDwQFMmE6Emi7jMP7oAu
- iimimG5Rj6uRIXWHDRgb+Twm/4iHoTWFyx3gytRrKyJolOA9C4qdQZoYUz+dyn2oXaNQ
- W7A4hR+4OVzxp8DAKFhql4aPCxjUGCGWteVp1Mw0DmIdCEMnDjv4XcfBhprPDL8NN2GH
- m4DMlQty+z9xosWCwPG+U0MQS9op4+QNzZ1BjJ2bZWNkrwNVjyqxXay5RKNK2AVIV4Vx
- 5X4w==
+ d=gmail.com; s=20251104; t=1782113220; x=1782718020; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=b7FQ1aR5OdpNqu3r0SBRqrV7xGbQqLLo0aQcbDX73CQ=;
+ b=CvjxVwo/5XXEcli1YY4aOz/xNYBp9gbfqt7lIRcxyjiD+1IysO2KhB8yH7Xfc3n1cO
+ bRow0ONNc9N/vdySOjKYf7agwaAmmOeugOc642TGM+3P7r1itqhia8xgbzLgg5Duvecl
+ vu4bWAhQgFFeU2jHCYGXqUCFlEcCLAxFaGEfwqc8Do+5tRClzVCNjdw4gjZesP1zBlhH
+ 8WXed2GcdYLX4V0j7X8MfKxm4dvIUSfqreCh7jBfsUH9XIQOL9B9Ga/AcMfHkJIZZCP4
+ jGpV+BjL8+eQcopj/LAHAYk0Qlays34Sr1yrLUpVJVd63m9MJ9UQXVYbhsVlwpWwFItP
+ EvaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782112562; x=1782717362;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=aKUdsREkXdaAnyx5VItgWz8gGsTg5KgkpGw7xwtapMs=;
- b=os4ndXLU0TAXfX2a5Q7aZt7aqEVqoCwOfQh3RRcWAtpT8+j1KnUEr6UhDAB1xUEUM3
- PG6QhmyZjpD/PDXFrJEscNyD75suWZgIcEUQcj1HYjwv1Gi2weim+lNONz8rbW3qqoIZ
- 0kTJH5w1CRy0hpq3W73Tsxuw9zb4m+CFLEk/6nTENTRcnNnRIlACWOkA1+8gp+oALCrt
- PtezxVmdRYlsQ55C9PS2FQMfttWXeh3S5elYV8Vy4Lg/yTZBQoetM8nsWkGS8uEp/+dY
- oEMfGMjxbGEosT9fWY6+ZXIXagfu/50f/eNpaotyN7/7bMO60OdOtn49JZhLOcTbXYiV
- zgrA==
-X-Gm-Message-State: AOJu0YzGVCfqpOLdk8lCPmMdR+7I5SP82plHbdPJM4G4+Ybt4yvf0j+V
- e27+43F+d8gmYb+M6VEmIPIW9TO75hD8ygr8TLh65fZ1lQXgDAvOZjsEo11ZftqX
-X-Gm-Gg: AfdE7cnhxZzpUrAie88gUzdLVEGizlQTbHpqfdt3YZ3xOadhJaUsDCfh8nYfQz6P66S
- XEuNLNgeSRl5/HAgOfnuhtVW4BCungtO4Di3r+ZTP0UrW076PRAKueMzQhL+z5+EzFWpG5JBJjl
- Pb3C39VLiCszIMqe1y3gLHcsAbZQNxSDs4ck0ZA29agY1hXCgdg13I+0fHVqsrdWdlBhmbo/f9D
- 5uY5K79yzZvFZSjm0cz1xerFHGiFhq5dEOs+zOU1UWx6camhyy9eW3f/darL4RJEk8KVJeBsr2X
- W0Gvc+8isiTveBwDXVB5jYMptFKzbFKDI72NiJDP6pvdEgqYTzmhEqBY4Ky0CATnVe215znDQhy
- JW7b0V07irEJJC83NdkYiGwCvBfctT7UfR0a8Cbrf89OJ7k/2qenMqPTeySzPWDjG7QrD7ENMVH
- zts4KSYfNJ
-X-Received: by 2002:a17:907:e153:b0:c0d:cd71:6463 with SMTP id
- a640c23a62f3a-c0dcd716a55mr107647466b.16.1782112561786; 
- Mon, 22 Jun 2026 00:16:01 -0700 (PDT)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-c0c60aca46csm304463266b.36.2026.06.22.00.16.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 Jun 2026 00:16:00 -0700 (PDT)
-Date: Mon, 22 Jun 2026 10:15:57 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: Alex Hung <alex.hung@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
-Subject: [bug report] drm/amd/display: Extract connector and encoder code to
- amdgpu_dm_connector
-Message-ID: <ajjhLdbRJz30TXo2@stanley.mountain>
+ d=1e100.net; s=20251104; t=1782113220; x=1782718020;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=b7FQ1aR5OdpNqu3r0SBRqrV7xGbQqLLo0aQcbDX73CQ=;
+ b=UOypededsaEiU2zW3xRZ7DrjtN3FinxSZ8LfOcB3ALhRIiLLuT5PMtP592s5zRXF03
+ VCX5zNHaa0OaJ2JJaV7uxhdpsMQkbGBiG6xxWuq6Waz/PxYJQPtajQ4HcAdFSJHq8pnL
+ ny+UjId/mCL8EErZTVHSgha2xCWssar0DOaF7QOC4n6PNL/F63Q6gRx9Vd2s/Ys3YDvB
+ zNSGcLygH6W+TbF7lzLG0WgDgc6d7WVSFw++4X7ed/qRtE7xkw6cP+8Pa4ej3k8zn53j
+ /0XHHVnvtm69f/YA534aA2NQ8q17zbUnk3vwSsZFsgTtutsLqGcVHPru9e7CwxO8YTmV
+ x3gA==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ+m3aU2qQH6FWBEiGWLMn4fwmXXbwFt13C87WBpZNCMAkgQV8SysQbBITtvibxfM7scc81PpIwQ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzM+om4Rn3FDY+FS2k5jNPvoaUsUVm9VvijZ66JdAjE1Z31+EWo
+ 7wtVKeuFCBDavdyQkmwAslYPFTnpwMVOx1fv53vXMXECTgaX6Wu2aD0BrffmbtE2mFaZ5wyPOHq
+ H9SVmV53Fb2g8694z/D6PBYTK6jSUMcI=
+X-Gm-Gg: AfdE7cnVfzsmhxKgIKKp2h9KQfoaW4J8YwbhlGTKm9FdQFu6gGdDYHPReNH7GO6Is0v
+ CdMCzJT/trNWRtYdRBBfH1I2pD/lK7AW1QFNMuWDMk/4vczd9Gn8BUrsI+LIrsub52fPXImnIS7
+ H63ClWQkP9+cyzsyNLhsLDyLa/LWuTBXlE54q5tkVHoW8MU1j4n6HWtgQFjVfG1w16c/DH2QamG
+ BniA2ELCwDXiJIyqYgeT7S0qwacoccv7h9Vsn0Wb3PL59r01hPzJ81TyR/ew+yhq4nrl07Tvuk=
+X-Received: by 2002:a05:6830:3493:b0:7e1:f7e9:327e with SMTP id
+ 46e09a7af769-7e9323e5412mr11396887a34.22.1782113219802; Mon, 22 Jun 2026
+ 00:26:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Tue, 23 Jun 2026 08:07:15 +0000
+References: <CABXGCsOuCXr4R+WW60KNuWNS2MqzE9w6iv-t_ykbwmhqDSABAQ@mail.gmail.com>
+ <c084c555-e4f4-48a6-9fad-175932acda01@gmx.de>
+In-Reply-To: <c084c555-e4f4-48a6-9fad-175932acda01@gmx.de>
+From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+Date: Mon, 22 Jun 2026 12:26:48 +0500
+X-Gm-Features: AVVi8CdL5HCS6SzL7JevAxlu8t7MCcOBjE3b4wSUAQVcGGIU9Sqd3fb5ZlnE_Hw
+Message-ID: <CABXGCsNAEapxA3gZis6XCg_KWxzRGsxiwR9-A7Dh-+iDNGpaNQ@mail.gmail.com>
+Subject: Re: [REGRESSION 7.2] drm/amdgpu: ~275 SDMA jobs per sparse VA bind
+ since 4cdbba5a (RE Requiem 90->4 fps)
+To: Natalie Vock <natalie.vock@gmx.de>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <Christian.Koenig@amd.com>, 
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, 
+ Linux List Kernel Mailing <linux-kernel@vger.kernel.org>, 
+ Linux regressions mailing list <regressions@lists.linux.dev>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,125 +115,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	DATE_IN_PAST(1.00)[24];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alex.hung@amd.com,m:SRINIVASAN.SHANMUGAM@amd.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:natalie.vock@gmx.de,m:Christian.Koenig@amd.com,m:Alexander.Deucher@amd.com,m:linux-kernel@vger.kernel.org,m:regressions@lists.linux.dev,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_TO(0.00)[gmx.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[mikhailvgavrilov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	TO_DN_ALL(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mikhailvgavrilov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,gmx.de:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 343D26B5236
+X-Rspamd-Queue-Id: 851E66AD3A8
 
-Hello Alex Hung,
+On Mon, Jun 22, 2026 at 10:44=E2=80=AFAM Natalie Vock <natalie.vock@gmx.de>=
+ wrote:
+>
+> On 6/21/26 22:55, Mikhail Gavrilov wrote:
+> > Hi Christian, Alex,
+> >
+> > git bisect points to
+> >
+> >    4cdbba5a16aa ("drm/amdgpu: restructure VM state machine v4")
+> >
+> > as the first bad commit (its parent tests fine) for a severe
+> > interactivity regression.
+> >
+> > It was merged during the current 7.2 merge window; it is not in any
+> > released kernel yet and will first appear in 7.2-rc1.
+> >
+> > Symptom: Resident Evil Requiem (re9.exe under VKD3D-Proton, RADV, RX
+> > 7900 XTX / Navi31, gfx11) drops from ~90 to 3-4 fps the instant the
+> > camera moves; still scenes are fine. The previous bisect point
+> > d352990bcaab is smooth.
+>
+> I already fixed this in a patchset[1] that should be on its way - seems
+> like it didn't make it into rc1 at least?
+>
+> Christian, Alex, can you make sure that the first patch from that set,
+> "drm/amdgpu: Only set bo->moved when the BO was actually moved", is
+> included in a -fixes PR for 7.2?
+>
+> For the record, I intentionally did not include a Fixes: tag in this
+> patchset, because the commit was not merged anywhere but
+> amd-staging-drm-next at the point of writing, and the same commits in
+> amd-staging-drm-next and upstream have different SHAs. AFAIU, this also
+> prevents me from telling regzbot that a proper fix is underway for now.
+> Not sure if there's a workaround for this?
+>
+> Best,
+> Natalie
+>
+> [1]
+> https://lore.kernel.org/amd-gfx/20260529153051.973261-1-natalie.vock@gmx.=
+de/
 
-Commit 0e967e086e75 ("drm/amd/display: Extract connector and encoder
-code to amdgpu_dm_connector") from Apr 27, 2026, leads to the
-following Smatch complaint:
+Thanks, Natalie. I applied that first patch ("drm/amdgpu: Only set
+bo->moved when the BO was actually moved") on top of ef0c9f75a195 and
+the regression is gone -- camera movement is back to ~90 fps.
 
-    drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_connector.c:1278 apply_dsc_policy_for_stream()
-    warn: variable dereferenced before check 'aconnector->dc_link' (see line 1221)
+Tested-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
 
-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_connector.c
-  1220		link_bandwidth_kbps = dc_link_bandwidth_kbps(aconnector->dc_link,
-                                                             ^^^^^^^^^^^^^^^^^^^
-Unchecked dereference
+Re regzbot: since I opened the regression, I can link your fix from
+here without a Fixes: tag or a matching SHA -- monitor just takes the
+thread URL:
 
-  1221								dc_link_get_link_cap(aconnector->dc_link));
-  1222	
-  1223		/* Set DSC policy according to dsc_clock_en */
-  1224		dc_dsc_policy_set_enable_dsc_when_not_needed(
-  1225			aconnector->dsc_settings.dsc_force_enable == DSC_CLK_FORCE_ENABLE);
-  1226	
-  1227		if (sink->sink_signal == SIGNAL_TYPE_EDP &&
-  1228		    !aconnector->dc_link->panel_config.dsc.disable_dsc_edp &&
+#regzbot monitor:
+https://lore.kernel.org/amd-gfx/20260529153051.973261-1-natalie.vock@gmx.de=
+/
 
-Lots of unchecked dereferefences really...
+Later, once the fix lands upstream, the entry can be closed with a
+regzbot "fixed-by" on that commit's SHA.
 
-  1229		    dc->caps.edp_dsc_support && aconnector->dsc_settings.dsc_force_enable != DSC_CLK_FORCE_DISABLE) {
-  1230	
-  1231			apply_dsc_policy_for_edp(aconnector, sink, stream, dsc_caps, max_dsc_target_bpp_limit_override);
-  1232	
-  1233		} else if (sink->sink_signal == SIGNAL_TYPE_DISPLAY_PORT) {
-  1234			if (sink->link->dpcd_caps.dongle_type == DISPLAY_DONGLE_NONE) {
-  1235				if (dc_dsc_compute_config(aconnector->dc_link->ctx->dc->res_pool->dscs[0],
-  1236							dsc_caps,
-  1237							&dsc_options,
-  1238							link_bandwidth_kbps,
-  1239							&stream->timing,
-  1240							dc_link_get_highest_encoding_format(aconnector->dc_link),
-  1241							&stream->timing.dsc_cfg)) {
-  1242					stream->timing.flags.DSC = 1;
-  1243					drm_dbg_driver(drm_connector->dev, "%s: SST_DSC [%s] DSC is selected from SST RX\n",
-  1244								__func__, drm_connector->name);
-  1245				}
-  1246			} else if (sink->link->dpcd_caps.dongle_type == DISPLAY_DONGLE_DP_HDMI_CONVERTER) {
-  1247				timing_bw_in_kbps = dc_bandwidth_in_kbps_from_timing(&stream->timing,
-  1248						dc_link_get_highest_encoding_format(aconnector->dc_link));
-  1249				converter_bw_in_kbps = aconnector->dc_link->dpcd_caps.dongle_caps.dp_hdmi_frl_max_link_bw_in_kbps;
-  1250				sink_bw_in_kbps = dc_link_bw_kbps_from_raw_frl_link_rate_data(dc, sink->edid_caps.max_frl_rate);
-  1251				dsc_sink_bw_in_kbps = dc_link_bw_kbps_from_raw_frl_link_rate_data(dc, sink->edid_caps.frl_dsc_max_frl_rate);
-  1252	
-  1253				if (dsc_caps->is_frl) {
-  1254					max_supported_bw_in_kbps = min(link_bandwidth_kbps, converter_bw_in_kbps);
-  1255					max_supported_bw_in_kbps = min(max_supported_bw_in_kbps, sink_bw_in_kbps);
-  1256					dsc_max_supported_bw_in_kbps = min(max_supported_bw_in_kbps, dsc_sink_bw_in_kbps);
-  1257				} else {
-  1258					max_supported_bw_in_kbps = link_bandwidth_kbps;
-  1259					dsc_max_supported_bw_in_kbps = link_bandwidth_kbps;
-  1260				}
-  1261	
-  1262				if (timing_bw_in_kbps > max_supported_bw_in_kbps &&
-  1263						max_supported_bw_in_kbps > 0 &&
-  1264						dsc_max_supported_bw_in_kbps > 0)
-  1265					if (dc_dsc_compute_config(aconnector->dc_link->ctx->dc->res_pool->dscs[0],
-  1266							dsc_caps,
-  1267							&dsc_options,
-  1268							dsc_max_supported_bw_in_kbps,
-  1269							&stream->timing,
-  1270							dc_link_get_highest_encoding_format(aconnector->dc_link),
-  1271							&stream->timing.dsc_cfg)) {
-  1272						stream->timing.flags.DSC = 1;
-  1273						drm_dbg_driver(drm_connector->dev, "%s: SST_DSC [%s] DSC is selected from %s\n",
-  1274								__func__, drm_connector->name,
-  1275								(dsc_caps->is_frl == 1) ? "HDMI FRL RX" : "DP-HDMI PCON");
-  1276					}
-  1277			}
-  1278		} else if (aconnector->dc_link && sink->sink_signal == SIGNAL_TYPE_HDMI_FRL) {
-                           ^^^^^^^^^^^^^^^^^^^
-Checked too late.
-
-  1279			struct dc_dsc_policy dsc_policy = {0};
-  1280	
-
-This email is a free service from the Smatch-CI project [smatch.sf.net].
-
-regards,
-dan carpenter
+--=20
+Thanks,
+Mikhail.
