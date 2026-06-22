@@ -2,60 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 7T1vH7c+Omq34gcAu9opvQ
+	id 5pQUC2haOWoBrAcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:19 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 17:53:12 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BDDB6B51EB
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A44F76B0E07
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 17:53:11 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=amd.com header.s=selector1 header.b=QQZClPxl;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8156B10E9CB;
-	Tue, 23 Jun 2026 08:07:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0054A10E614;
+	Mon, 22 Jun 2026 15:53:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 570AF10E773;
- Mon, 22 Jun 2026 15:35:49 +0000 (UTC)
-Received: from localhost.localdomain (unknown [117.182.74.238])
- by APP-01 (Coremail) with SMTP id qwCowADXb8hRVjlqMdHBAg--.32501S2;
- Mon, 22 Jun 2026 23:35:47 +0800 (CST)
-From: Wentao Liang <vulab@iscas.ac.cn>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Received: from BN8PR05CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11011029.outbound.protection.outlook.com [52.101.57.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5147C10E16C;
+ Mon, 22 Jun 2026 15:53:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ju2OW66Mj5JfxuzCvAatamIAgCAs2Xka61OFfkegQyfCmiZjZ9M8JRDdScnxxvKVIxCBvgxOnmGwQWKE4W0c38ViMSZjbuHw71hm73qFwDk/p5ZQzgkUsNPc2DftrI2ppg46IcI+RGE89ZgzGSbES4m7cxyoaU3t3RS1bMSeHnXmEDdVe88GVFDJadHipvpkrKMreL3ANtPodpWHd5VsOVXwwX4PcUSsGIghiWo1hRPaCE7PvwoeJ+7Ni6jmwuZUo1kGzDMyxw9R1tLoLw0zZOMwhUBzs21dmGlRCf/Uy6ATZwhxqwZHrHVLc+2pgl/jJWOgsVfNC82Bs0bbf7pkSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gYyd6LNBvMVam5JGVgGX8SjDlsz5LB4Fjfu1tdogpv4=;
+ b=HVfA32/zXcOfGVDCNOxZxAW5K/V4ZshfWkeC9D2nevHuIEAfoa/6sfNnwFtrVVrhf5rbb2Igzsw9L1kNP+JFh3xvpdccy30iPuZ0yKlSV9zzPHyJCXDYbuhImPJgwRNK0W7h7IiXywaD7eCNPpgOQxwXi6HeaYLi23cxXn6Po465pAjgl9b2fXh1OV8nobxUKcMe5tbLYa0vzIaNLex4QJqA+NvNad731ZQcDWbsxj2HGvwvGk9Y4M2I6u8kE636FISMIsXBqMLKCZRYJy5JpBKaSp3JSz+/GRLDQJTUphOuGD+I/qPsRBoQyEPshbu6P3iQ/7pkOmd99i/jbrzYkw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gYyd6LNBvMVam5JGVgGX8SjDlsz5LB4Fjfu1tdogpv4=;
+ b=QQZClPxlGmZX+lg6t3Hw+rIv2ynn8tjDK5swjSLBYl2ez2QhVW/lkkBU72HkGM4YpsrfjxQQIxFfgM9QPFqese60Plc3GOAFbIwpnYCzikuuHTQ8iGMirqMe3FwqjmaRN7weVvvUY6aOMC59qR35XqMgvwMXEyse4fz8+/Qvb7w=
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by CH3PR12MB8901.namprd12.prod.outlook.com (2603:10b6:610:180::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.11; Mon, 22 Jun
+ 2026 15:53:01 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0113.015; Mon, 22 Jun 2026
+ 15:53:01 +0000
+Message-ID: <ae4a5845-b46b-475b-9f7c-06a6798c9407@amd.com>
+Date: Mon, 22 Jun 2026 17:52:57 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] drm/amdgpu: fix scheduler entity leak in cleaner
+ shader job
+To: Wentao Liang <vulab@iscas.ac.cn>, Alex Deucher <alexander.deucher@amd.com>
 Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Wentao Liang <vulab@iscas.ac.cn>,
- stable@vger.kernel.org
-Subject: [PATCH v3] drm/amdgpu: fix scheduler entity leak in cleaner shader job
-Date: Mon, 22 Jun 2026 23:35:43 +0800
-Message-Id: <20260622153543.50169-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.39.5 (Apple Git-154)
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+References: <20260622153543.50169-1-vulab@iscas.ac.cn>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260622153543.50169-1-vulab@iscas.ac.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR4P281CA0249.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f5::19) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qwCowADXb8hRVjlqMdHBAg--.32501S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7AryfJr1rJry8ZFWDWF48WFg_yoW8WF4rpF
- sYgryUtr18Za17K3yUAF1kXF98Ka4fXa48Wr1I9w1F93Z8JFn5JF15JFy0qrykurWkCa17
- Kryqq3y7X3ZIvaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUkG14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
- 6r4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
- Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
- I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r
- 4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwCY1x0262kKe7AKxVWU
- AVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14
- v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_JF0_Jw1lIxkG
- c2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI
- 0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4U
- MIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUf8nOUUU
- UU=
-X-Originating-IP: [117.182.74.238]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiDAUGA2o5T2kPrAAAsa
-X-Mailman-Approved-At: Tue, 23 Jun 2026 08:07:15 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CH3PR12MB8901:EE_
+X-MS-Office365-Filtering-Correlation-Id: ed3247c2-f6a9-4bda-dcad-08ded0765694
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|23010399003|18002099003|22082099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: 8CkQOsaW+gUjKortDpJwHUvHfyvkGWBM7jXoia9Vv5kHcBaXTVEtcgSmpH0s9ZMp9a+xOAotzn2GK2Fv6919HPO3oeT4cx6sKOHhbISS0djkxZ0Ldhtxy/JzXggMYe13R/X/eo1Cu82rdN0kEx0Ov/QVvuUEViqCGI91EfMx32HIlOY70Pam8r63AkRha/inDl2M0VaRf/eSiW7itvYaDCZzbdw1vJg/KcvINTggun7x68wE2r4PabV1r5fnBKSufXbPALGEBwF2OTY8v5NWnfjXz2VrVoWEjHL0hLDwV2VZlG+wZoziCV1sviyu66j6PNMK6bYg0Ip+Pvz5NjiuvDM/fmer7lm0K9ARGWlh7G8eUVlUskYD/v41Vpu+ghEAWchepHqEFUOzlai0rN/csu/xzOaUCKaCzCfxSWI6k57lVB2iJIHLKhWGtWau810LmwanAhl/ZjL1yjEd0aiwy9Mmx2PF5mF8qUwsFy8sTbTTyGrdNKNmn3cA0CY0WqLCeuY7O9YX3/gDbqz86w/O2VMnkmSbOj5470UrGV8Wqs8Xy2DIEP7+3ucPtIVajSCuJk2CWhQgowbA3M8p24baGDuqPaisGJyzeJFOuS67eQ6eVMpgQd2QQA48/1YSHwaGjjsXY0+lHkmMxadz4gvMYMQ1xV6DIFjdJ65BSy54bQU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(18002099003)(22082099003)(11063799006)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ckhLMDNXcnhLdElVaW9sclVReVRvVDd3cVVUV2ZFUEdwTlJLVjZxK0ViZWlq?=
+ =?utf-8?B?ZkwrVXZoYWhXR2ZDRCtLWnozenoxTWNHNEVxT2t5NVpmSENvSFZtdDNnNmYx?=
+ =?utf-8?B?bXZCelVhLzZnSWs3SkJGVS9QNVhWWnBSZzE3R0p2eXRQOWlpdk50dWZLYjc3?=
+ =?utf-8?B?dXBPSTYyZjZJKzRLaEZkcVdlcnU5MVBrdkpJVkZYRERXcXo2aysybTJDOFpV?=
+ =?utf-8?B?TVNycEVCeXZPOVp0cnRpRjhEQjRhY092dHVTSTlhVHY2c1k1VlU1RXJVSHJv?=
+ =?utf-8?B?Z2d4QmcxOUtKajRXWmFXelAyck5XWitsNEkvM21WSkJBU2xoYldHZHQ1UzB6?=
+ =?utf-8?B?Y01Jb1dKSjJqZ1VtWVgwTnZrU1U2RlNaQ0dZVUdhMHVpdWlyQXZ0S2llcitP?=
+ =?utf-8?B?MVFXWkIybllVRXdjcEhJaStZSGxqbUUyZW1DYnFFd0g2cnMwS0FLVCtzVjQw?=
+ =?utf-8?B?NmNQQUQwOEEyK25rcFhpN1VwZTdoeStEbVdxODVhV2tLYkk3d0xEcEREMXZG?=
+ =?utf-8?B?UzhpZ1VmVzVCcVJNSVhhSnRlc1RlSkZPVUtLK3lIenJKakk4akZ0OFdqVm02?=
+ =?utf-8?B?dzJSMGxURjZXc1pvL3Fzb0pBS3VBUEdFNXVMM2JDUlVuemFhR2U0WE95eGFS?=
+ =?utf-8?B?QzN0RGJvbjVsM1c2dW92RitRMGJlY095bXN2UmQxYnNISVdEZmZuMXhRSk5k?=
+ =?utf-8?B?d0cwSlUvdXNWL05ScUQrOVFVU3JTTTl0MS9nOGI4eHcyR3R5RnFtYlpranFH?=
+ =?utf-8?B?bGV5enRJakllRkMydWJpOUFwRGp3QWNNZ1YyTFpjYWdRYTc3eFA5a3JFTnZW?=
+ =?utf-8?B?RGhDRVhPcndPRTFUY09aTlRKS1E0clg4UWgvais2bjJaT05mRERGYVM0VFM5?=
+ =?utf-8?B?Q0dPTzRRbEFEamc1K2dnb1pVY25pMWEyaEc3Q0wxUGRZdHZFeVJCZUhZK0h3?=
+ =?utf-8?B?SE9QeEVuRzRXa3FkeXlmckJIazRyWTRkQk5FTk9ZWDR4YXRpN2ppT21DejNK?=
+ =?utf-8?B?M2VSeGNPL25ibFNSbERtVjQ5TFJMeEFMcE9uZ0NHTjZVdjcxckprQXN5dWhT?=
+ =?utf-8?B?QUxUSUFsUEpmVmsvQXRoL0w4aEtacjhBUm12ZFRzUVJ3NHdYQmpKZmIyL054?=
+ =?utf-8?B?aDZwUGpwdGJHTHRWbmhXR1R1RGtWZWI1NnpvdUxZR3hXRUxPUGdBWklRbDht?=
+ =?utf-8?B?bXhIMytMbGN1VmtlM2FnU1grUy9acmd5TTRqNW1heGJaTTFPWXhNcUdVbTlT?=
+ =?utf-8?B?ZDhaRDVwZVpJSWtrSmJtUHErbmxtTmEyL3BtQjRuc0RpRmRYWENUVnowTmNh?=
+ =?utf-8?B?YzdNcUpVWTRnWElIdzNJS2lwYTlhZFRoU1FkdDkrekczNmRWeTdvOHhaODRh?=
+ =?utf-8?B?KzJLNmoxc3pVVXBhTjh5cXJvV1NVWE41eEZaUGRoMXRUOTVCZktFNCs0R1BE?=
+ =?utf-8?B?YktoU1dZY2JtSGNCbVhoOXovMDVEbExIeDJqeERkdE5wM1ZIN1MvRGFVcVNB?=
+ =?utf-8?B?WGg4N0dNcW5nYURxL3dPTXVqa2lUZndyeWNwUkthM3ZEbnVYWm5tR1FmNjVS?=
+ =?utf-8?B?S3NQakJsaWh4R0RLL1dLaEFFQXdmY3p0QnY0VSt4b1NLNzk5TnhXcW9UVUJn?=
+ =?utf-8?B?VW9tZG5FeVF1cGNjYzZzbGxWUlA2VjJxQ0xIaHBNeUVpa2tLdVhzRDJpMW8r?=
+ =?utf-8?B?YTlIT0ZtbFpBM2s5V1BWY3Jza05qY05UdXpZU3EwYUF2eXhDek9ydFJzS25K?=
+ =?utf-8?B?TU56N2RzK3RSSm52Yy80U3FDaXY4bUdzd1RiWFNxM2Q3TlJ3REw3ekpmRGNG?=
+ =?utf-8?B?bXpZUXJNZHYwYUVBWlBtSWJqcnlxUFJiQ3MraldzbkpVeWdiQVhTbzV1Vnd3?=
+ =?utf-8?B?elJibEJpdWpEd0h6eEpud0ozVDZCM3ZNVlNlenZyQUVsaHYvYTZNL0lmU2RS?=
+ =?utf-8?B?K1VGcHdBM21vSDczWk13SjdkZTh0N0czYVdGQlYzdmptTG1MTHBYdVpJcytp?=
+ =?utf-8?B?NlJmam9IUzdNTzhWUzlRRnZHTVk3RnZ5YnpmWlBOTHNJTEY0Y1hTNlRoaGgz?=
+ =?utf-8?B?VjRTOVR6a0Q2cFhDeEdML1dEOG0xdFU5ZHhQazRNcjhjU2ZvUXNFVGtZMlJu?=
+ =?utf-8?B?TkRzd1VtbmhpNWFYTEN4Y2FjQkJLQ2dBOGJRODlkdTdyZVZyeDZ2TzlKYzdL?=
+ =?utf-8?B?LzNmUGgxUnhHaUtacStMS2d6Mkl0a3AzbjEweTByVUIzVEYyUDVRQStueDRM?=
+ =?utf-8?B?algxRG5CTUozQ0dzUWJoYkI5cFVFN21wSFV4dWowUzh5UlVLbUE2UGo3UTQx?=
+ =?utf-8?Q?2d9T9OFV+MywepBuV6?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed3247c2-f6a9-4bda-dcad-08ded0765694
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2026 15:53:01.1893 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GMAEZ0nwsWKxBbcj3c9R4XnB3QNc2cMZoDQtK53mdTRHoUK7SwPg3b4kAgAkMkaj
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8901
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,84 +140,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.89 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_XOIP(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vulab@iscas.ac.cn,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,iscas.ac.cn:email];
+	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4BDDB6B51EB
+X-Rspamd-Queue-Id: A44F76B0E07
 
-In amdgpu_gfx_run_cleaner_shader_job(), if amdgpu_job_alloc_with_ib()
-fails, the function returns without destroying the scheduler entity,
-causing a resource leak.
 
-Fix this by adding drm_sched_entity_destroy() to the error path.
 
-Also remove the unnecessary error check for dma_fence_wait() since
-it never fails with intr=false and infinite timeout.
+On 6/22/26 17:35, Wentao Liang wrote:
+> In amdgpu_gfx_run_cleaner_shader_job(), if amdgpu_job_alloc_with_ib()
+> fails, the function returns without destroying the scheduler entity,
+> causing a resource leak.
+> 
+> Fix this by adding drm_sched_entity_destroy() to the error path.
+> 
+> Also remove the unnecessary error check for dma_fence_wait() since
+> it never fails with intr=false and infinite timeout.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: 559a285816af ("drm/amdgpu: Replace 'amdgpu_job_submit_direct' with 'drm_sched_entity' in cleaner shader")
+> Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> index b8ca876694ff..523b681d0da9 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+> @@ -1658,7 +1658,7 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
+>  				  &sched, 1, NULL);
+>  	if (r) {
+>  		dev_err(adev->dev, "Failed setting up GFX kernel entity.\n");
+> -		goto err;
+> +		return r;
+>  	}
+>  
+>  	/*
+> @@ -1685,9 +1685,7 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
+>  
+>  	f = amdgpu_job_submit(job);
+>  
+> -	r = dma_fence_wait(f, false);
+> -	if (r)
+> -		goto err;
+> +	dma_fence_wait(f, false);
+>  
+>  	dma_fence_put(f);
+>  
+> @@ -1696,6 +1694,8 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
+>  	return 0;
+>  
+>  err:
+> +	/* Clean up the scheduler entity */
+> +	drm_sched_entity_destroy(&entity);
 
-Cc: stable@vger.kernel.org
-Fixes: 559a285816af ("drm/amdgpu: Replace 'amdgpu_job_submit_direct' with 'drm_sched_entity' in cleaner shader")
-Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+That is actually redundant. The err label should just be a few more lines up and the "return 0;" changed to "return r;".
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index b8ca876694ff..523b681d0da9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -1658,7 +1658,7 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
- 				  &sched, 1, NULL);
- 	if (r) {
- 		dev_err(adev->dev, "Failed setting up GFX kernel entity.\n");
--		goto err;
-+		return r;
- 	}
- 
- 	/*
-@@ -1685,9 +1685,7 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
- 
- 	f = amdgpu_job_submit(job);
- 
--	r = dma_fence_wait(f, false);
--	if (r)
--		goto err;
-+	dma_fence_wait(f, false);
- 
- 	dma_fence_put(f);
- 
-@@ -1696,6 +1694,8 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
- 	return 0;
- 
- err:
-+	/* Clean up the scheduler entity */
-+	drm_sched_entity_destroy(&entity);
- 	return r;
- }
- 
--- 
-2.39.5 (Apple Git-154)
+Regards,
+Christian.
+
+>  	return r;
+>  }
+>  
 
