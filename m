@@ -2,25 +2,25 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id E4IIOeclOWrtnQcAu9opvQ
+	id oHYDBeklOWrznQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:09:11 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:09:13 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 936676AF50C
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:09:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A42D06AF516
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:09:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=Y1gxFJ2O;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=ikS3SQC4;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00AF810E6AE;
-	Mon, 22 Jun 2026 12:09:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB82B10E683;
+	Mon, 22 Jun 2026 12:09:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4693910E677
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 12:09:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 638F310E676
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 12:09:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -28,23 +28,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=EOjl2ejj8CQR+meZna3xg9QYoDBiMJqwF5obqHW5WXs=; b=Y1gxFJ2O8/besTZG7pNgCg+Cmx
- WAzvu6LLOX7HBzgHA5oAL5T4nq2usLg6Xz/gCrdFWtMsl9FTDdsxenXb/eL5dgcgukU1QrwvULPVC
- 2iNVOfZsZMbwaQOZkPmglgdR3V9AnUT/YDLGqa74kzXnaO47GN7/hVNvxe2uk4AmfvVaH7dsehk9s
- ALpxktjg8KqjlvRIW7AxyZLnkSrZB+ejwPDqZQzDyQyspKUTaMxMBzzlyy5HO0K32ssKVjP9xNcIP
- 8rSzJ4RO5vqMoWcHm0AeF33WvI3MA384Owtu+kFA7VMEFZiphqnab3rz/ozvJ2XOCrFtCzxtWG5Yn
- 8Mjx7e8Q==;
+ bh=ObC2rP7Ywa4tgzL1Q2tB5SLPE7WNEX5bh3cve3d8SvA=; b=ikS3SQC4gS9rAnf1oCzBJUsXG7
+ /+hoQ+/B7MdJ7bKNgSows+OijHOHxUOYncYd6WdEmMkTMvz7VfB/Ou2gYZFyb1YepX+RZEjII+yKm
+ mTJo9i/c1zwvop6odNl/0wLmcADuWvK3KUqXSbrSpoi0HTA/urarC7fjNG5rGmY/QckknqtDV7/Dd
+ L+K/xrsKuduTgsk1+WwsCcx6dieLG2rTj3t9wnbawvhIkhxWrCJ0WWQMMjj/O/HrHyy9KOoJ4JivC
+ bPU3t6+5ayF6uvw9Dnq0C9ogjMKUGhv1732fb6Nm1TpcKPgdT8/wKwz+BUH4b4qGaH70TLBpTKaAp
+ zz/e4UqQ==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wbdSV-003izv-EE; Mon, 22 Jun 2026 14:08:59 +0200
+ id 1wbdSW-003j0B-Ga; Mon, 22 Jun 2026 14:09:00 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com,
 	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [PATCH 10/16] drm/amdgpu: More compact SDMA 4.0 IB emission
-Date: Mon, 22 Jun 2026 13:08:29 +0100
-Message-ID: <20260622120835.52473-11-tvrtko.ursulin@igalia.com>
+Subject: [PATCH 11/16] drm/amdgpu: More compact SDMA 4.4.2 IB emission
+Date: Mon, 22 Jun 2026 13:08:30 +0100
+Message-ID: <20260622120835.52473-12-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260622120835.52473-1-tvrtko.ursulin@igalia.com>
 References: <20260622120835.52473-1-tvrtko.ursulin@igalia.com>
@@ -92,21 +92,21 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 936676AF50C
+X-Rspamd-Queue-Id: A42D06AF516
 
 Avoid constant register reloads while emitting IBs by using a local write
 pointer and only updating the size at the end of each helper.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 ---
- drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c | 109 +++++++++++++++----------
- 1 file changed, 65 insertions(+), 44 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 108 ++++++++++++++---------
+ 1 file changed, 65 insertions(+), 43 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-index cb64d17000df..79e195603525 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-@@ -1586,17 +1586,19 @@ static void sdma_v4_0_vm_copy_pte(struct amdgpu_ib *ib,
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
+index 4b51e9308c54..b2d4d9f49ac3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c
+@@ -1183,16 +1183,19 @@ static void sdma_v4_4_2_vm_copy_pte(struct amdgpu_ib *ib,
  				  uint64_t pe, uint64_t src,
  				  unsigned count)
  {
@@ -129,12 +129,12 @@ index cb64d17000df..79e195603525 100644
 +	*ptr++ = upper_32_bits(src);
 +	*ptr++ = lower_32_bits(pe);
 +	*ptr++ = upper_32_bits(pe);
- 
++
 +	ib->length_dw = ptr - ib->ptr;
+ 
  }
  
- /**
-@@ -1614,18 +1616,21 @@ static void sdma_v4_0_vm_write_pte(struct amdgpu_ib *ib, uint64_t pe,
+@@ -1211,18 +1214,21 @@ static void sdma_v4_4_2_vm_write_pte(struct amdgpu_ib *ib, uint64_t pe,
  				   uint64_t value, unsigned count,
  				   uint32_t incr)
  {
@@ -142,12 +142,11 @@ index cb64d17000df..79e195603525 100644
  	unsigned ndw = count * 2;
  
 -	ib->ptr[ib->length_dw++] = SDMA_PKT_HEADER_OP(SDMA_OP_WRITE) |
--		SDMA_PKT_HEADER_SUB_OP(SDMA_SUBOP_WRITE_LINEAR);
++	*ptr++ = SDMA_PKT_HEADER_OP(SDMA_OP_WRITE) |
+ 		SDMA_PKT_HEADER_SUB_OP(SDMA_SUBOP_WRITE_LINEAR);
 -	ib->ptr[ib->length_dw++] = lower_32_bits(pe);
 -	ib->ptr[ib->length_dw++] = upper_32_bits(pe);
 -	ib->ptr[ib->length_dw++] = ndw - 1;
-+	*ptr++ = SDMA_PKT_HEADER_OP(SDMA_OP_WRITE) |
-+		 SDMA_PKT_HEADER_SUB_OP(SDMA_SUBOP_WRITE_LINEAR);
 +	*ptr++ = lower_32_bits(pe);
 +	*ptr++ = upper_32_bits(pe);
 +	*ptr++ = ndw - 1;
@@ -163,7 +162,7 @@ index cb64d17000df..79e195603525 100644
  }
  
  /**
-@@ -1645,17 +1650,21 @@ static void sdma_v4_0_vm_set_pte_pde(struct amdgpu_ib *ib,
+@@ -1242,17 +1248,21 @@ static void sdma_v4_4_2_vm_set_pte_pde(struct amdgpu_ib *ib,
  				     uint64_t addr, unsigned count,
  				     uint32_t incr, uint64_t flags)
  {
@@ -195,8 +194,8 @@ index cb64d17000df..79e195603525 100644
  }
  
  /**
-@@ -1667,18 +1676,22 @@ static void sdma_v4_0_vm_set_pte_pde(struct amdgpu_ib *ib,
- static void sdma_v4_0_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib)
+@@ -1264,18 +1274,22 @@ static void sdma_v4_4_2_vm_set_pte_pde(struct amdgpu_ib *ib,
+ static void sdma_v4_4_2_ring_pad_ib(struct amdgpu_ring *ring, struct amdgpu_ib *ib)
  {
  	struct amdgpu_sdma_instance *sdma = amdgpu_sdma_get_instance_from_ring(ring);
 +	u32 *ptr = &ib->ptr[ib->length_dw];
@@ -223,7 +222,7 @@ index cb64d17000df..79e195603525 100644
  }
  
  
-@@ -2575,15 +2588,19 @@ static void sdma_v4_0_emit_copy_buffer(struct amdgpu_ib *ib,
+@@ -2288,15 +2302,19 @@ static void sdma_v4_4_2_emit_copy_buffer(struct amdgpu_ib *ib,
  				       uint32_t byte_count,
  				       uint32_t copy_flags)
  {
@@ -252,7 +251,7 @@ index cb64d17000df..79e195603525 100644
  }
  
  /**
-@@ -2601,11 +2618,15 @@ static void sdma_v4_0_emit_fill_buffer(struct amdgpu_ib *ib,
+@@ -2314,11 +2332,15 @@ static void sdma_v4_4_2_emit_fill_buffer(struct amdgpu_ib *ib,
  				       uint64_t dst_offset,
  				       uint32_t byte_count)
  {
@@ -272,7 +271,7 @@ index cb64d17000df..79e195603525 100644
 +	ib->length_dw = ptr - ib->ptr;
  }
  
- static const struct amdgpu_buffer_funcs sdma_v4_0_buffer_funcs = {
+ static const struct amdgpu_buffer_funcs sdma_v4_4_2_buffer_funcs = {
 -- 
 2.54.0
 
