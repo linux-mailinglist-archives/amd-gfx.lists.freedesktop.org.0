@@ -2,128 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id osJ6BFyDOWp+ugcAu9opvQ
+	id 0V/oObg+Omq/4gcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 20:47:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:20 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ED746B1D8C
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 20:47:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23E006B51F3
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=5eBYRZzC;
+	dkim=pass header.d=skoll.ca header.s=canit2 header.b=aKi3naqD;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=reject) header.from=skoll.ca
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A963010E7DB;
-	Mon, 22 Jun 2026 18:47:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6D6910E9D6;
+	Tue, 23 Jun 2026 08:07:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013025.outbound.protection.outlook.com
- [40.107.201.25])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D4EC10E7DB
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 18:47:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Tvd+/GAjvp+3so7FZ2VTk1W/p6pWdZ0gMjVuQcwEM+DUqA/ze1BC2BUMRrj2UzrqkrTz6dkcw27TWq+TjCRHUcakjXCDadLQYd9rTX7Z97zV7Cv/8JqqtiHhwRvRzsmUCisue6FGJwSQP8/OZpIUuLpEB5fUc+unLYYkIUo1bjLl4BYFiO36aRF3dM6nE+LeVmEZlWNjwXLBPl8Nm0QX9hITU2DjiTajQhcFNp3081JCRQ1JsVGs1c6+8dLQzPPPUvun2jbvcGpxJjznqHWiY9VGr3hTLAm2blOansSsbgysZ7lYvXyonAoL2CvjA8OKI23PLJ3dmXbXCvpBph6xKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fp5BLtfTTdX6VVeMVzRXXLhORMaXVGnhlAyqPSXTh9s=;
- b=BydsjIogPWXK95F/OBHAqCuh6vlFu3qRjjx+0uxJ+RGjYYD0AO0KceOtL3LDEH+qwGnJhmlmZTajzbYBVkIKqNf85kKpz14ycQlFQ+8LumfcpY/PoMmjKAVIQflEO5wPdYV/WUbVmFPdn7Vu21ZIY7JoVTRY4ZfKsxRs5ObVpsC6CvgP6Zhi70oX9TY52ckN9l0bss+d5VHBNbbb5XdctHOZnfp1TlJun4eNf6kciwSevmR/ajA8qcBgc4sL/VWup1nBZd18xVDMwjq/8d19pz+viSEW53IuyBra0fIEIRXLCR1m4aF5dAiAN+ohJUQTPBIsNbaTXIG3j8rp7TGNIw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fp5BLtfTTdX6VVeMVzRXXLhORMaXVGnhlAyqPSXTh9s=;
- b=5eBYRZzCAaKamxcrPeuTZwD6GTpX3pxJC5PzVnQLjEHAeeBpkE7XQRPeV75V4Liyne+PPJOuA5wbqSiBtFnvymk/RYdIIFk/hVScuJyTb/hjNbKKm9CWJObkxB4z5QJ5+Ff2d1qvhCpaqYm85gAfSO4K5yn8iKtIylJDpYDwKpQ=
-Received: from SJ2PR12MB8650.namprd12.prod.outlook.com (2603:10b6:a03:544::13)
- by SJ0PR12MB8168.namprd12.prod.outlook.com (2603:10b6:a03:4e7::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Mon, 22 Jun
- 2026 18:47:48 +0000
-Received: from SJ2PR12MB8650.namprd12.prod.outlook.com
- ([fe80::574c:e97b:b0d8:3957]) by SJ2PR12MB8650.namprd12.prod.outlook.com
- ([fe80::574c:e97b:b0d8:3957%7]) with mapi id 15.21.0139.011; Mon, 22 Jun 2026
- 18:47:48 +0000
-From: "Kasiviswanathan, Harish" <Harish.Kasiviswanathan@amd.com>
-To: "Huang, JinHuiEric" <JinHuiEric.Huang@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdkfd: avoid race condition of mqd when reading sdma
- counter
-Thread-Topic: [PATCH] drm/amdkfd: avoid race condition of mqd when reading
- sdma counter
-Thread-Index: AQHc+dIvaRYGUpl1FUq89jITlDw4eLZK+3uX
-Date: Mon, 22 Jun 2026 18:47:48 +0000
-Message-ID: <SJ2PR12MB86508C02519C5843127EAA3A8CEF2@SJ2PR12MB8650.namprd12.prod.outlook.com>
-References: <20260611184303.141724-1-jinhuieric.huang@amd.com>
-In-Reply-To: <20260611184303.141724-1-jinhuieric.huang@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_Enabled=True;
- MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_SetDate=2026-06-22T18:47:48.678Z;
- MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_Name=AMD
- Public; MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_ContentBits=1;
- MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_Method=Privileged; 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ2PR12MB8650:EE_|SJ0PR12MB8168:EE_
-x-ms-office365-filtering-correlation-id: f1321f74-4d12-42cc-db4b-08ded08ec1a3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|376014|366016|38070700021|18002099003|22082099003|56012099006|8096899003|11063799006;
-x-microsoft-antispam-message-info: eTRifp+po0yCBnVFzo4arYM5/XkmPM8TIHpAUyztDRYK+Yl7HEK3Kl3W9l/mCX/T6I+CMJunKwpNR9b8D23gKYg8PCRrkN6d1sU2av3cUjzBn11M/vhIHHYcFD3lmllqeoa1J3VOQbCcxfMG80ecg4pETFTUo53a9ECl7VnxcO6w1i6fg6QMy1HLdJwpk8JcCKLVbJiymEZ3cx3i+vn7Tak1XszO+t4kIlRljf3zBXU17BXExeNPFwY8/cPdY3gyDmgjAMz7yOepGTj1/L5rf0d83Znr55GyCIMW4eOdSzoYV7oenNwvGZZ7Nvauat9+dW6LVI6axoxFf/ZmqdZV3pIUCFsUirM+rIjfqfCWr1qwZqm6XsZeo+AnW5Q41Y9b7zigaUy1pCvkvh8gzVMFKArdVW78rqVPNPJ1OpuIWmRobIusjfYw4S6aH61gYEsM1OnG22WiK1e5cRW5WvGcBxmjEK1Uq+Zdk+ujps/JIjeqTf0U4MhDOKpUuTPBZGVJDe+vhtijUAd4vvL6TLByo7OpSyh2ABptD7sMVfliougkLfjE/oKCStoRRX3JRVORDl8J+4nOOEiGO9vANbLdDxsi1khsH8TgsA9YWjLgkGfKQb6NoDnGwMa1CiyKVbR+IDXm2Bac4E0shmIdUBygdI5WOosGLa0hPFnxnMqWNwNF7RPw/VrpEbZHyfULNTouYyvtft6U6MKWDRGh+ufz7+bg0+3ul+IEwoqV3cquK44=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ2PR12MB8650.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(38070700021)(18002099003)(22082099003)(56012099006)(8096899003)(11063799006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?nohQeCKV6p44tNx63jonZ/uDcef2OY1t5SxvnFWhAxJsVScKvFHDeZgTOfWQ?=
- =?us-ascii?Q?a9HhokGMJTlLg9+dffliRqayyRdhFm6Scgl9kMYQgntzlpXhExyT22HB/g9M?=
- =?us-ascii?Q?NNeVaUpVTj8f1HNDX1ObkAiWBYdszqwfVqG+wbtlGt5pPsesBLS4u6ORGBEL?=
- =?us-ascii?Q?C4Wcc+M+2FYSKqkALDGGCwe1WYdLjv8gETk6WqE4j09Kuc9fe34boE4B3Smf?=
- =?us-ascii?Q?I6MXiu4km7N+8UQD9si1JCSGTA9LVj1w6bkx0uaoehcF10KMp4NGJfPfNLrO?=
- =?us-ascii?Q?0f+uk0CdwmvK9eL9Q82Yai/1F1K8J+IEPWOu3XSNp5hDF6t77/O8whFSpCFz?=
- =?us-ascii?Q?OHhxbgf3AZ0s59CqRZrLq92IXaVR9FvUMwX3azWvLw4ttmgF86ezOrVjWga7?=
- =?us-ascii?Q?IWrBqLKVOXNEQA0pzX6By4j36TLR2iYhC2f2q57CJ5PZ5CdbE17Rr7WX+FVc?=
- =?us-ascii?Q?SK5fIZmak3kVUe6/rNkinB0hWXiDDivlm4+d9r4FpfkSw1E0XEH/YyHmhJmP?=
- =?us-ascii?Q?yp1xipzXhNMmUJeeZB4EPZZagVJjYX/b9BkjhoarFHvtwRH9XLdiRkd5aN8y?=
- =?us-ascii?Q?ny+F6RCanMb+mn4T6m/IgsHrcOcvpNsmcFwD8xUpINWDC4aELq/gZK5otLBt?=
- =?us-ascii?Q?0nFU6FzuR1vgi3gijHHdcvT2512JjsZhBXyAf/u7dgim4liDRCwbgefg+aBQ?=
- =?us-ascii?Q?chkMJL129Ld/BoT3w2wxAFBScvcp+xZDJCxiaTW7G5dNFLtzDDnxEB7qv6RV?=
- =?us-ascii?Q?g5uXt//rMA7zS1P72R9xhX1GG9dA0P5mDVkaw7IznCjIiFecGw7LnxpADzWu?=
- =?us-ascii?Q?RiE5OWwOZQjYF8zNaWF6Bd2n17yVQ4kHTljv+MIYK1vwNrM7sBWVR4WT6WoT?=
- =?us-ascii?Q?G7aOtvgK37PsqVfDdFihgMQUvzv71KdyLqESdCZiZcaNbgT6d14KCwvPNSHD?=
- =?us-ascii?Q?7MtHsVWTWGYa/GfRKdVVAWJPnPB1rcaMXTWUNcNPWiXXdGKXXi9YM6QkaqAz?=
- =?us-ascii?Q?BL0RE4x7JC7591MCm5kcILOizosSab6lZzHaj+qTWwJJuo0CSJn6mdo83xwf?=
- =?us-ascii?Q?ittOMNAObw6cRFTNGbV0fMRfUFVHmabsuLpwjHn4XkdYH8KNOxIMCAazmw3T?=
- =?us-ascii?Q?xNe7F+7CvRnDmmmPsl0oaUvvOvu1lVyHSpDrgSB4QLsE+tmHVbUn01RDXASI?=
- =?us-ascii?Q?2ySd3FaRiezGIoRiQjoHkB2/Jq9nVRyHd8IwnNHI8ytZUx7f37D6D9OfEl70?=
- =?us-ascii?Q?E0EHay1cSJoWmQaDHAslKZBQMB5meg0lHLBW14SxNKHSigeVcjnGBuwhq9Gt?=
- =?us-ascii?Q?y5Sa9CUEWUAdg9dIRPjF0015PnsfNxLJzm3xkKVYgabQ29zYIqRGdvyyNBZE?=
- =?us-ascii?Q?QquucjL+2fEeeP8upN58P5EGlkFM3fSIqKj6WRgdERVuCpoQnRrda5IFpJev?=
- =?us-ascii?Q?DLCJJ6nH/Utd5UPqnM2jPSTvPBP9EbZ1v6MuH37Aa6fcc7Jr6OhiqyZV8Kn0?=
- =?us-ascii?Q?O+WPGpgna+5A7X9+7M4IDJKXWEHhkkrDtNBeSWHhHWA9TMf/eqg//0WJDOZC?=
- =?us-ascii?Q?ew1dXbRRl1At9jMWBgH/oYIg57qBssm7i2iZSzpPRcGPmLEI3VqL5mEEbn7B?=
- =?us-ascii?Q?UGFyy/sl/eE9SBWuK8cL3IqbE/fbZEvGOAsyXRY7LandPfAF6Q60lZEX26bP?=
- =?us-ascii?Q?F2qoiHoGOzxOFdCs7MZ/tjPW4vJKAYmwp9fxIEfdAsC48kC+?=
-Content-Type: multipart/alternative;
- boundary="_000_SJ2PR12MB86508C02519C5843127EAA3A8CEF2SJ2PR12MB8650namp_"
+X-Greylist: delayed 440 seconds by postgrey-1.36 at gabe;
+ Mon, 22 Jun 2026 19:42:33 UTC
+Received: from dianne.skoll.ca (dianne.skoll.ca [144.217.161.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14EA410E7EB;
+ Mon, 22 Jun 2026 19:42:33 +0000 (UTC)
+Received: from pi4.skoll.ca ([192.168.84.18])
+ by dianne.skoll.ca (8.18.1/8.18.1/Debian-6) with ESMTPS id 65MJYotZ452560
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Mon, 22 Jun 2026 15:34:50 -0400
+Received: from gato.skoll.ca (gato.skoll.ca [192.168.83.21])
+ by pi4.skoll.ca (Postfix) with ESMTPS id 4gkdgs6PrZzdZSgV;
+ Mon, 22 Jun 2026 15:34:49 -0400 (EDT)
+Date: Mon, 22 Jun 2026 15:34:49 -0400
+From: Dianne Skoll <dianne@skoll.ca>
+To: Jaak Ristioja <jaak@ristioja.ee>
+Cc: Mario Limonciello <mario.limonciello@amd.com>, Salvatore Bonaccorso
+ <carnil@debian.org>, Chris Park <chris.park@amd.com>, Matthew Stewart
+ <matthew.stewart2@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Alex
+ Deucher <alexander.deucher@amd.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Harry Wentland <harry.wentland@amd.com>, Leo
+ Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, Christian
+ =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ 1139950@bugs.debian.org, regressions@lists.linux.dev,
+ stable@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [resend] [regression] amdgpu carrizo: no display signal after
+ modeset
+Message-ID: <20260622153449.453b493e@gato.skoll.ca>
+In-Reply-To: <6cf6be99-76c3-43b3-854f-96cae180318c@ristioja.ee>
+References: <9fba2020-24d1-4235-9869-319d4aab3a4c@ristioja.ee>
+ <178198613176.3658222.16247101620976737948@eldamar.lan>
+ <ajcLuO0YZCoPN7Xw@eldamar.lan>
+ <e4f60b98-9bd8-491a-9703-a5a7a58a4ca0@amd.com>
+ <82b5026d-2dcc-4dcd-9094-2ccf70057964@ristioja.ee>
+ <6cf6be99-76c3-43b3-854f-96cae180318c@ristioja.ee>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8650.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1321f74-4d12-42cc-db4b-08ded08ec1a3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jun 2026 18:47:48.5473 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XuYWt1rsEsbOAZAsYtC4SH+OSbN1WJTJALoGXqjQ7eE5rkj1vvn0rjxHxf/O+diw5WILKGOgYIdqvokLFMQQNw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB8168
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=skoll.ca; h=date
+ :from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version:content-type:content-transfer-encoding; s=canit2;
+ bh=4YKCsCv6Dg8q+CHcKvgFdReQSfbL8ScgwMWEpw1J2Gw=; b=aKi3naqDtIW0
+ rwnLRqwlTtUGB4KeoXWWFDyebgVE337PqtNWO9EJIEE7N3rBKvbl07mgLFaN2pEk
+ MTX0mEwjvYSYbSjDJIKITwAMbbedhvmtJgEDnplHQVqk8MkovLY1PT/9JT7S2KrI
+ BFZRskstywzSZzeyhJZ/4zNlEwy9WVzDXafBpASbPBT3jY4k6Z5D0IsvjfkRvwOO
+ VrADqTpLA4BohSmK0rAIr58C+YbIqdnJXqCL8Jhh7qBjwtMiL7KNvZiMgUGsSR/N
+ OtAWnWImdP52ZKKt+iSTK1rAB2KGWNoTzG1IBoDPWNphJrDMSevFAemwEQP76zJ1
+ B5/Mk5ITQA==
+X-Scanned-By: CanIt (www . roaringpenguin . com)
+X-Scanned-By: mailmunge 3.20 on 192.168.83.18
+X-Spam-Score: undef - relay 192.168.84.18 marked with skip_spam_scan
+X-CanIt-Geo: No geolocation information available for 192.168.84.18
+X-CanItPRO-Stream: outbound (inherits from default)
+X-Canit-Stats-ID: Bayes signature not available
+X-CanIt-Archive-Cluster: tWKWaF/NcZkqjWIj0BEJTBHJhwY
+X-CanIt-Archived-As: base/20260622 / 01huHyO29
+X-Mailman-Approved-At: Tue, 23 Jun 2026 08:07:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,363 +90,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[skoll.ca,reject];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[skoll.ca:s=canit2];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWO(0.00)[2];
-	FORGED_RECIPIENTS(0.00)[m:JinHuiEric.Huang@amd.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[Harish.Kasiviswanathan@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,debian.org,linuxfoundation.org,igalia.com,gmail.com,ffwll.ch,bugs.debian.org,lists.linux.dev,vger.kernel.org,lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Harish.Kasiviswanathan@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dianne@skoll.ca,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[skoll.ca:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,ristioja.ee:email,gato.skoll.ca:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5ED746B1D8C
+X-Rspamd-Queue-Id: 23E006B51F3
 
---_000_SJ2PR12MB86508C02519C5843127EAA3A8CEF2SJ2PR12MB8650namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Mon, 22 Jun 2026 20:46:44 +0300
+Jaak Ristioja <jaak@ristioja.ee> wrote:
 
-Public
+> Reverting commit fee50077656 ("drm/amd/display: Bump the HDMI clock to 
+> 340MHz") on top of v7.1.1 appears to resolve the issue, as I am now able 
+> to get a picture.
 
-Reviewed-by: Harish Kasiviswanathan@amd.com
-________________________________
-From: Huang, JinHuiEric <JinHuiEric.Huang@amd.com>
-Sent: Thursday, June 11, 2026 2:43 PM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Kasiviswanathan, Harish <Harish.Kasiviswanathan@amd.com>; Huang, JinHui=
-Eric <JinHuiEric.Huang@amd.com>
-Subject: [PATCH] drm/amdkfd: avoid race condition of mqd when reading sdma =
-counter
+Unfortunately, reverting that commit will *break* it for me with my Dasung
+E-Ink monitor. :(
 
-MQD used outside of dpm_lock is unsafe because of the queue
-could be destroyed during the window of dqm_unlock, moving into
-dqm_lock range is the best practice.
+If it's not possible to detect what the maximum HDMI clock should be, perhaps
+a module parameter specifying the HDMI version could be implemented?  Or
+a parameter to specify the maximum HDMI clock directly?
 
-Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_process.c | 32 +++++++++++++-----------
- 1 file changed, 18 insertions(+), 14 deletions(-)
+Regards,
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd=
-/amdkfd/kfd_process.c
-index e0b885b2395a..1cf689cb5e2c 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -91,7 +91,6 @@ struct kfd_sdma_activity_handler_workarea {
-
- struct temp_sdma_queue_list {
-         uint64_t __user *rptr;
--       void *mqd;
-         uint64_t sdma_val;
-         unsigned int queue_id;
-         struct list_head list;
-@@ -154,6 +153,22 @@ static void kfd_sdma_activity_worker(struct work_struc=
-t *work)
-                     (q->properties.type !=3D KFD_QUEUE_TYPE_SDMA_XGMI))
-                         continue;
-
-+               if (KFD_GC_VERSION(dqm->dev) > IP_VERSION(9, 4, 2)) {
-+                       ret =3D dqm->dev->kfd2kgd->hqd_sdma_get_counter ?
-+                             dqm->dev->kfd2kgd->hqd_sdma_get_counter(
-+                                       dqm->dev->adev, q->mqd,
-+                                       dqm->dev->kfd->device_info.num_sdma=
-_queues_per_engine,
-+                                       &val) :
-+                             -EOPNOTSUPP;
-+
-+                       if (ret)
-+                               pr_debug("Failed to read SDMA queue active =
-counter %i\n", ret);
-+                       else
-+                               workarea->sdma_activity_counter +=3D val;
-+
-+                       continue;
-+               }
-+
-                 sdma_q =3D kzalloc(sizeof(struct temp_sdma_queue_list), GF=
-P_KERNEL);
-                 if (!sdma_q) {
-                         dqm_unlock(dqm);
-@@ -162,7 +177,6 @@ static void kfd_sdma_activity_worker(struct work_struct=
- *work)
-
-                 INIT_LIST_HEAD(&sdma_q->list);
-                 sdma_q->rptr =3D (uint64_t __user *)q->properties.read_ptr=
-;
--               sdma_q->mqd =3D q->mqd;
-                 sdma_q->queue_id =3D q->properties.queue_id;
-                 list_add_tail(&sdma_q->list, &sdma_q_list.list);
-         }
-@@ -173,7 +187,7 @@ static void kfd_sdma_activity_worker(struct work_struct=
- *work)
-          * count
-          */
-         if (list_empty(&sdma_q_list.list)) {
--               workarea->sdma_activity_counter =3D pdd->sdma_past_activity=
-_counter;
-+               workarea->sdma_activity_counter +=3D pdd->sdma_past_activit=
-y_counter;
-                 dqm_unlock(dqm);
-                 return;
-         }
-@@ -191,17 +205,7 @@ static void kfd_sdma_activity_worker(struct work_struc=
-t *work)
-
-         list_for_each_entry(sdma_q, &sdma_q_list.list, list) {
-                 val =3D 0;
--
--               if (KFD_GC_VERSION(dqm->dev) <=3D IP_VERSION(9, 4, 2))
--                       ret =3D read_sdma_queue_counter(sdma_q->rptr, &val)=
-;
--               else
--                       ret =3D dqm->dev->kfd2kgd->hqd_sdma_get_counter ?
--                             dqm->dev->kfd2kgd->hqd_sdma_get_counter(
--                                       dqm->dev->adev, sdma_q->mqd,
--                                       dqm->dev->kfd->device_info.num_sdma=
-_queues_per_engine,
--                                       &val) :
--                             -EOPNOTSUPP;
--
-+               ret =3D read_sdma_queue_counter(sdma_q->rptr, &val);
-                 if (ret) {
-                         pr_debug("Failed to read SDMA queue active counter=
- for queue id: %d",
-                                  sdma_q->queue_id);
---
-2.34.1
-
-
---_000_SJ2PR12MB86508C02519C5843127EAA3A8CEF2SJ2PR12MB8650namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div>
-<div style=3D"font-family: Calibri; text-align: left; color: rgb(0, 0, 255)=
-; margin-left: 5pt; font-size: 10pt;">
-Public</div>
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 11pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-Reviewed-by: Harish Kasiviswanathan@amd.com</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Huang, JinHuiEric &lt=
-;JinHuiEric.Huang@amd.com&gt;<br>
-<b>Sent:</b> Thursday, June 11, 2026 2:43 PM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Cc:</b> Kasiviswanathan, Harish &lt;Harish.Kasiviswanathan@amd.com&gt;; =
-Huang, JinHuiEric &lt;JinHuiEric.Huang@amd.com&gt;<br>
-<b>Subject:</b> [PATCH] drm/amdkfd: avoid race condition of mqd when readin=
-g sdma counter</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">MQD used outside of dpm_lock is unsafe because of =
-the queue<br>
-could be destroyed during the window of dqm_unlock, moving into<br>
-dqm_lock range is the best practice.<br>
-<br>
-Signed-off-by: Eric Huang &lt;jinhuieric.huang@amd.com&gt;<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdkfd/kfd_process.c | 32 +++++++++++++----------=
--<br>
-&nbsp;1 file changed, 18 insertions(+), 14 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd=
-/amdkfd/kfd_process.c<br>
-index e0b885b2395a..1cf689cb5e2c 100644<br>
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c<br>
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c<br>
-@@ -91,7 +91,6 @@ struct kfd_sdma_activity_handler_workarea {<br>
-&nbsp;<br>
-&nbsp;struct temp_sdma_queue_list {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t __user *rptr;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void *mqd;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint64_t sdma_val;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsigned int queue_id;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct list_head list;<br>
-@@ -154,6 +153,22 @@ static void kfd_sdma_activity_worker(struct work_struc=
-t *work)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (q-&gt;properties.type !=3D K=
-FD_QUEUE_TYPE_SDMA_XGMI))<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; conti=
-nue;<br>
-&nbsp;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (KFD_GC_VERSION(dqm-&gt;dev) &gt; IP_VERSION(9, 4, 2)) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D dqm-&gt;=
-dev-&gt;kfd2kgd-&gt;hqd_sdma_get_counter ?<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; dqm-&gt;dev-&gt;kfd2kgd-&gt;hqd_sdma_get_counter(<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; dqm-&gt;dev-&gt;adev, q-&gt;mqd,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; dqm-&gt;dev-&gt;kfd-&gt;device_info.num_sdma_queues_per_engine,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; &amp;val) :<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; -EOPNOTSUPP;<br>
-+<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;Failed to read SDMA queue ac=
-tive counter %i\n&quot;, ret);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; workarea-&gt;sdma_activity_counter +=3D val=
-;<br>
-+<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; continue;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; }<br>
-+<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; sdma_q =3D kzalloc(sizeof(struct temp_sdma_queue_list=
-), GFP_KERNEL);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if (!sdma_q) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dqm_u=
-nlock(dqm);<br>
-@@ -162,7 +177,6 @@ static void kfd_sdma_activity_worker(struct work_struct=
- *work)<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; INIT_LIST_HEAD(&amp;sdma_q-&gt;list);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; sdma_q-&gt;rptr =3D (uint64_t __user *)q-&gt;properti=
-es.read_ptr;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; sdma_q-&gt;mqd =3D q-&gt;mqd;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; sdma_q-&gt;queue_id =3D q-&gt;properties.queue_id;<br=
->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; list_add_tail(&amp;sdma_q-&gt;list, &amp;sdma_q_list.=
-list);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-@@ -173,7 +187,7 @@ static void kfd_sdma_activity_worker(struct work_struct=
- *work)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * count<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (list_empty(&amp;sdma_q=
-_list.list)) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; workarea-&gt;sdma_activity_counter =3D pdd-&gt;sdma_past_activit=
-y_counter;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; workarea-&gt;sdma_activity_counter +=3D pdd-&gt;sdma_past_activi=
-ty_counter;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; dqm_unlock(dqm);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-@@ -191,17 +205,7 @@ static void kfd_sdma_activity_worker(struct work_struc=
-t *work)<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list_for_each_entry(sdma_q=
-, &amp;sdma_q_list.list, list) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; val =3D 0;<br>
--<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (KFD_GC_VERSION(dqm-&gt;dev) &lt;=3D IP_VERSION(9, 4, 2))<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D read_sdm=
-a_queue_counter(sdma_q-&gt;rptr, &amp;val);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; else<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D dqm-&gt;=
-dev-&gt;kfd2kgd-&gt;hqd_sdma_get_counter ?<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; dqm-&gt;dev-&gt;kfd2kgd-&gt;hqd_sdma_get_counter(<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; dqm-&gt;dev-&gt;adev, sdma_q-&gt;mqd,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; dqm-&gt;dev-&gt;kfd-&gt;device_info.num_sdma_queues_per_engine,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; &amp;val) :<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; -EOPNOTSUPP;<br>
--<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; ret =3D read_sdma_queue_counter(sdma_q-&gt;rptr, &amp;val);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if (ret) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_de=
-bug(&quot;Failed to read SDMA queue active counter for queue id: %d&quot;,<=
-br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sdma_q-&gt;queue_id);<br>
--- <br>
-2.34.1<br>
-<br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_SJ2PR12MB86508C02519C5843127EAA3A8CEF2SJ2PR12MB8650namp_--
+Dianne.
