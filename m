@@ -2,53 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NDM/D8Q+OmrW4gcAu9opvQ
+	id ebyZMrYsOWq+nwcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:32 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:38:14 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C18046B5231
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BD716AF7C3
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:38:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=pm.me header.s=protonmail3 header.b="Aw/urS12";
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=HBkqTNIE;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=pm.me
+	dmarc=pass (policy=quarantine) header.from=kernel.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B33C10E9F1;
-	Tue, 23 Jun 2026 08:07:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF59310E69B;
+	Mon, 22 Jun 2026 12:38:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-4327.protonmail.ch (mail-4327.protonmail.ch [185.70.43.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF8FE10E695
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 12:34:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
- s=protonmail3; t=1782131649; x=1782390849;
- bh=+5AoqdLbG201OT7SCCKo+uKGJ8LdtVOX3oNnF+s+r8A=;
- h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector;
- b=Aw/urS128ZcnJH8talsKbcLMSK+l+G3iGVs1jkw++Z8aeczor/AT5/YBF5kwWkncx
- wjyOuFyC635O6s9UJlNMCtbmLODlL8CMe4Cb24qIDRZhd3i4sqgj6rRd/HhLjZVbqi
- EtS6P4XK7HRTBPyJRjlP+674uVbuNj5ryTUI+x9IcWfnIUan5A/mPJmE6VQpr9FuET
- QT1dxoQKiHQKO17k7gkLhgMWTFPpnYcTrTO0VKiLz6OKDcvmKNPOcXkY8UGnRrOBgS
- XFvyVLzOv/zv+wplfHd6sgyIIoBcmwC3dXcZF3AWlcKag/Ga1zvY4694Bo5yEtBn0m
- CwEC6p0qZhZQg==
-Date: Mon, 22 Jun 2026 12:34:05 +0000
-To: =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-From: Matthew Jacob <feralmatt@pm.me>
-Cc: Matthew Jacob <mjacob@feralsw.com>, alexdeucher@gmail.com,
- amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] Support some Barco AMD based graphics adapters
-Message-ID: <-OvmEF_NM5X1NJ1TKjZKl_nNHJhfQxE-zh4bIGMsBfCfSjyFJFc-sFkaYCXJZD4mhu1KKM0QJ7dbvMkzPJSzvkYhQixNHLNuRbSdNLnhjNU=@pm.me>
-In-Reply-To: <10397a2a-88cf-4070-aced-291e24785a8d@amd.com>
-References: <1b83ac6f-1018-3dee-c029-1b2ed78a8460@feralsw.com>
- <10397a2a-88cf-4070-aced-291e24785a8d@amd.com>
-Feedback-ID: 169730088:user:proton
-X-Pm-Message-ID: e4254e7b89988bf971a3f3ec6473026fc1b049e2
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6AC910E6A2;
+ Mon, 22 Jun 2026 12:38:11 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id C3E7E42DF9;
+ Mon, 22 Jun 2026 12:38:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B07B1F000E9;
+ Mon, 22 Jun 2026 12:38:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1782131891;
+ bh=aLPqKAV7NdOOeAs34uEEPNQIcuUUtHD4+t3qpP0ZBqM=;
+ h=From:To:Cc:Subject:Date;
+ b=HBkqTNIEGjJS5hE5R8YGUecnvZvxQ7ddtBHMiP7EKEWMM9OzJhNrBEcpW8zpRoUab
+ c9kjjbUfPmR7kEbS0sYhrxgxrCeYlVXC0nzksTNwVVbYchnMDLz+iwxZgD0eWXRbUU
+ 3RpXyhVdjIAFp0LdF4dW7Uo12KCtrfuk8OdywQnQ+Ip1xOSYyJWQNIeolZfnO2V05m
+ s+wtx1P+CgGhESs+dWV0uD9LTM6u5eY7CAxEsAzScigQfpPLUCtIP/nuhhCHT5XNrE
+ gzmF+W+pQv7aNUMCsWErqDeZxevQmQ4ZjK/1VYelrWxhL6F9eoVL+6yPn5opWxAtVV
+ onz/U84y7K4BQ==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Alex Hung <alex.hung@amd.com>, Chenyu Chen <chen-yu.chen@amd.com>,
+ Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, Rodrigo Siqueira <siqueira@igalia.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amd/display: kunit: move dc_link objects off stack
+Date: Mon, 22 Jun 2026 14:36:42 +0200
+Message-Id: <20260622123659.2221930-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 23 Jun 2026 08:07:15 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,151 +67,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:mjacob@feralsw.com,m:alexdeucher@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_CC(0.00)[feralsw.com,gmail.com,lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[feralmatt@pm.me,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
 	ARC_NA(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[feralmatt@pm.me,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[pm.me:+];
+	FROM_NEQ_ENVFROM(0.00)[arnd@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:email]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C18046B5231
+X-Rspamd-Queue-Id: 2BD716AF7C3
 
-Sorry about the style. Do I need to resubmit?
+From: Arnd Bergmann <arnd@arndb.de>
 
-My experience with the boards so far has been fine. Without the change mult=
-iple monitors don't work correctly. With the change they do. Boot up in BIO=
-S seems to operate correctly. Linux version testing has ranged from 5.15 th=
-rough 6.12 and of course once top of tree recently.
+'struct dc_link' is too large to be on the kernel stack, with every instance
+causing a build time warning in some configurations:
 
-Normally I probably wouldn't have bothered to intrude with this change, but=
- then the now widespread use of secure boot and the impracticality of disab=
-ling secure boot in the Kaiser fleet when booting USB keys practically mean=
-s that I need to get this change rolled out so that at least Debian will pi=
-ck it up and produce signed kernels.
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/tests/amdgpu_dm_connector_test.c: In function 'dm_test_subconnector_type_none':
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/tests/amdgpu_dm_connector_test.c:36:1: error: the frame size of 1608 bytes is larger than 1280 bytes [-Werror=frame-larger-than=]
+   36 | }
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c: In function 'dm_mst_test_needs_dsc_aux_workaround_zero_sink_count':
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c:156:1: error: the frame size of 1584 bytes is larger than 1280 bytes [-Werror=frame-larger-than=]
+  156 | }
 
+Since the tests do not need to run concurrently, just make it a per-file
+static object that gets reinitialized for each test case.
 
-Wizard, 3rd Class
+Fixes: a895eb57a55f drm/amd/display: Add KUnit tests for amdgpu_dm_connector
+Fixes: 1c37d1b6c741 drm/amd/display: Add KUnit tests for amdgpu_dm_mst_types
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+The patches causing this seem to have appeared were not in linux-next
+during the first half of the merge window, not sure why they are there,
+but in case these are intended for 7.2, it still needs to get fixed.
+---
+ .../amdgpu_dm/tests/amdgpu_dm_connector_test.c  | 17 +++++++++--------
+ .../amdgpu_dm/tests/amdgpu_dm_mst_types_test.c  | 14 ++++++++------
+ 2 files changed, 17 insertions(+), 14 deletions(-)
 
-Sent from Proton Mail for Android.
-
--------- Original Message --------
-On Monday, 06/22/26 at 01:22 Christian K=C3=B6nig <christian.koenig@amd.com=
-> wrote:
-On 6/19/26 20:45, Matthew Jacob wrote:
->
-> These adapters typically are only supported by Barco on the Windows
-> platform. However, with these changes in the linux driver, multiple
-> monitor support should work correctly.
->
-> Signed-off-by: Matthew Jacob <mjacob@feralsw.com>
-> ---
-> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 4 ++++
-> =C2=A01 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_drv.c
-> index 60debd543e44..e3ba168795cc 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -1926,6 +1926,7 @@ static const struct pci_device_id pciidlist[] =3D {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6646, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_BONAIRE|AMD_IS_MOBILITY},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6647, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_BONAIRE|AMD_IS_MOBILITY},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6649, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_BONAIRE},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x664D, PCI_ANY_ID, PCI_AN=
-Y_ID, 0, 0, CHIP_BONAIRE}, // Barco MXRT-5600
-
-Please no // style comments in kernel code.
-
-Apart from that looks good to me, but I'm wondering if we shouldn't print a=
- warning or similar.
-
-It could be that those boards have non standard VBIOS changes and cause pro=
-blems on Linux.
-
-Regards,
-Christian.
-
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6650, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_BONAIRE},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6651, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_BONAIRE},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6658, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_BONAIRE},
-> @@ -1995,6 +1996,7 @@ static const struct pci_device_id pciidlist[] =3D {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6930, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_TONGA},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6938, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_TONGA},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6939, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_TONGA},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x693B, PCI_ANY_ID, PCI_AN=
-Y_ID, 0, 0, CHIP_TONGA}, // Barco MXRT-7600
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* fiji */
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x7300, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_FIJI},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x730F, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_FIJI},
-> @@ -2023,6 +2025,7 @@ static const struct pci_device_id pciidlist[] =3D {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x67C4, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_POLARIS10},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x67C7, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_POLARIS10},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x67D0, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_POLARIS10},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x67D4, PCI_ANY_ID, PCI_AN=
-Y_ID, 0, 0, CHIP_POLARIS10}, // Tentative Barco MXRT-8750
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x67DF, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_POLARIS10},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x67C8, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_POLARIS10},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x67C9, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_POLARIS10},
-> @@ -2036,6 +2039,7 @@ static const struct pci_device_id pciidlist[] =3D {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6985, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_POLARIS12},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6986, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_POLARIS12},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6987, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_POLARIS12},
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x698F, PCI_ANY_ID, PCI_AN=
-Y_ID, 0, 0, CHIP_POLARIS12}, // Tentative Barco MXRT-4700
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6995, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_POLARIS12},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x6997, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_POLARIS12},
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {0x1002, 0x699F, PCI_ANY_ID, PCI_ANY=
-_ID, 0, 0, CHIP_POLARIS12},
-> --
-> 2.47.3
->
-
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
+index 34e40d2a9d2c..e2c0c2a934a6 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
+@@ -22,6 +22,7 @@
+ #include "include/grph_object_id.h"
+ 
+ /* Tests for get_subconnector_type() */
++static struct dc_link link;
+ 
+ /**
+  * dm_test_subconnector_type_none - Test Subconnector type none
+@@ -29,7 +30,7 @@
+  */
+ static void dm_test_subconnector_type_none(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	memset(&link, 0, sizeof(link));
+ 
+ 	link.dpcd_caps.dongle_type = DISPLAY_DONGLE_NONE;
+ 	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_Native);
+@@ -41,7 +42,7 @@ static void dm_test_subconnector_type_none(struct kunit *test)
+  */
+ static void dm_test_subconnector_type_vga(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	memset(&link, 0, sizeof(link));
+ 
+ 	link.dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_VGA_CONVERTER;
+ 	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_VGA);
+@@ -53,7 +54,7 @@ static void dm_test_subconnector_type_vga(struct kunit *test)
+  */
+ static void dm_test_subconnector_type_dvi_converter(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	memset(&link, 0, sizeof(link));
+ 
+ 	link.dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_DVI_CONVERTER;
+ 	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_DVID);
+@@ -65,7 +66,7 @@ static void dm_test_subconnector_type_dvi_converter(struct kunit *test)
+  */
+ static void dm_test_subconnector_type_dvi_dongle(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	memset(&link, 0, sizeof(link));
+ 
+ 	link.dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_DVI_DONGLE;
+ 	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_DVID);
+@@ -77,7 +78,7 @@ static void dm_test_subconnector_type_dvi_dongle(struct kunit *test)
+  */
+ static void dm_test_subconnector_type_hdmi_converter(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	memset(&link, 0, sizeof(link));
+ 
+ 	link.dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_HDMI_CONVERTER;
+ 	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_HDMIA);
+@@ -89,7 +90,7 @@ static void dm_test_subconnector_type_hdmi_converter(struct kunit *test)
+  */
+ static void dm_test_subconnector_type_hdmi_dongle(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	memset(&link, 0, sizeof(link));
+ 
+ 	link.dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_HDMI_DONGLE;
+ 	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_HDMIA);
+@@ -101,7 +102,7 @@ static void dm_test_subconnector_type_hdmi_dongle(struct kunit *test)
+  */
+ static void dm_test_subconnector_type_mismatched(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	memset(&link, 0, sizeof(link));
+ 
+ 	link.dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_HDMI_MISMATCHED_DONGLE;
+ 	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_Unknown);
+@@ -113,7 +114,7 @@ static void dm_test_subconnector_type_mismatched(struct kunit *test)
+  */
+ static void dm_test_subconnector_type_default_unknown(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	memset(&link, 0, sizeof(link));
+ 
+ 	link.dpcd_caps.dongle_type = (typeof(link.dpcd_caps.dongle_type))0x7f;
+ 	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_Unknown);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c
+index e3b171992be1..f1f728acd373 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c
+@@ -45,6 +45,8 @@ static ssize_t dm_mst_test_aux_transfer(struct drm_dp_aux *aux,
+ 	}
+ }
+ 
++static struct dc_link link;
++
+ /* Tests for needs_dsc_aux_workaround */
+ 
+ /**
+@@ -56,7 +58,7 @@ static ssize_t dm_mst_test_aux_transfer(struct drm_dp_aux *aux,
+  */
+ static void dm_mst_test_needs_dsc_aux_workaround_match(struct kunit *test)
+ {
+-	struct dc_link link = {0};
++	memset(&link, 0, sizeof(link));
+ 
+ 	link.dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
+ 	link.dpcd_caps.dpcd_rev.raw = DPCD_REV_14;
+@@ -74,7 +76,7 @@ static void dm_mst_test_needs_dsc_aux_workaround_match(struct kunit *test)
+  */
+ static void dm_mst_test_needs_dsc_aux_workaround_rev12(struct kunit *test)
+ {
+-	struct dc_link link = {0};
++	memset(&link, 0, sizeof(link));
+ 
+ 	link.dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
+ 	link.dpcd_caps.dpcd_rev.raw = DPCD_REV_12;
+@@ -92,7 +94,7 @@ static void dm_mst_test_needs_dsc_aux_workaround_rev12(struct kunit *test)
+  */
+ static void dm_mst_test_needs_dsc_aux_workaround_wrong_dev_id(struct kunit *test)
+ {
+-	struct dc_link link = {0};
++	memset(&link, 0, sizeof(link));
+ 
+ 	link.dpcd_caps.branch_dev_id = 0x123456;
+ 	link.dpcd_caps.dpcd_rev.raw = DPCD_REV_14;
+@@ -110,7 +112,7 @@ static void dm_mst_test_needs_dsc_aux_workaround_wrong_dev_id(struct kunit *test
+  */
+ static void dm_mst_test_needs_dsc_aux_workaround_wrong_rev(struct kunit *test)
+ {
+-	struct dc_link link = {0};
++	memset(&link, 0, sizeof(link));
+ 
+ 	link.dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
+ 	link.dpcd_caps.dpcd_rev.raw = 0x11; /* DPCD 1.1 */
+@@ -128,7 +130,7 @@ static void dm_mst_test_needs_dsc_aux_workaround_wrong_rev(struct kunit *test)
+  */
+ static void dm_mst_test_needs_dsc_aux_workaround_low_sink_count(struct kunit *test)
+ {
+-	struct dc_link link = {0};
++	memset(&link, 0, sizeof(link));
+ 
+ 	link.dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
+ 	link.dpcd_caps.dpcd_rev.raw = DPCD_REV_14;
+@@ -146,7 +148,7 @@ static void dm_mst_test_needs_dsc_aux_workaround_low_sink_count(struct kunit *te
+  */
+ static void dm_mst_test_needs_dsc_aux_workaround_zero_sink_count(struct kunit *test)
+ {
+-	struct dc_link link = {0};
++	memset(&link, 0, sizeof(link));
+ 
+ 	link.dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
+ 	link.dpcd_caps.dpcd_rev.raw = DPCD_REV_14;
+-- 
+2.39.5
 
