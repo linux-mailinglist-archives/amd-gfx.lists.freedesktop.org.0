@@ -2,108 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tFGoAA9SOWo7qgcAu9opvQ
+	id 2PwsOLc+Omq44gcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 17:17:35 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:19 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AD2E6B0A59
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 17:17:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 574056B51EC
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=lU3XIZmn;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=ToA3PaPb;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6F7710E756;
-	Mon, 22 Jun 2026 15:17:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4B3610E9D7;
+	Tue, 23 Jun 2026 08:07:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012041.outbound.protection.outlook.com
- [40.93.195.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0109910E756
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 15:17:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lhgMkyIanV1gVwp9f55YJZh0xrpgA01unxzaBIT9kMmfkLhAtSxo1BajcX1vsaNmyalQ7/J5ddwNU3dwVWhxFj6SenAZRSFB/CjS9yo6xr67008pvd76MhBxzPFTn3SEh5sUcMnrkyhFDIPS1uooImDbgb/Ph234r7U3aaKbTKKacJ9wjRWlDcyVsrvJOrqwYbm482GmvTBtGMpNC1QWJEA6UKSd+8pvWrW8q29ITl0joCIrTZKOZ2tOKPiuqhX8lSxOukdLPRPlMjvQ/f62rMMa/crLlGwibXyuA9ggde/nE1BcRh3JWxaHdIcwmSOC6BhLtvqb+AElTNESD5XCVQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ODTb37+/L42ZchfyozLkODbpc6d+bHU++IT9Z19ORtk=;
- b=lgt7NpzC0mvsHzz3t3PG0aFENAbuV/jHheEcUsN/+pOCsfuigR4eqx9naJU+R6NqgK3FIItWBbsvLglMLnq+diKvcmD68P9ewwXzQk1WGanlLwC66JZDMtuLxEjDVNdwbJOB+9SWzS4Co7Or6J+KEGQ76AZKOkI0q+Su07zDZBVTV8ZuSkfj4OJ7f8aZCZNAYSOlCt5rmOBaerS1wZz6xo5E8iMempMO6yY3GTkl0AkSQACN82FfBK90GCSg0709yb0F54Lc442n6cncezshddUD98HR09tt8Lm3gt9r3n73c8e0NF3XCiESUUR6AkXBmzmZLXfQ5WX1P5F4rYidHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ODTb37+/L42ZchfyozLkODbpc6d+bHU++IT9Z19ORtk=;
- b=lU3XIZmnj9xC73ytDh8YMSVdZNBQPi7Jq18D7RAadEryiwZTLw6UrXQK7x1tdO1s1VvLcO4x1qK59dM0V14M9vNnX6F8lLbyLe3q7iJrZG1V4Ma2TlLtjtFIBgryjOtFOamvb6xcc+N3Pvo41SYveaFL1T8IBU1jVkaAl4KT23A=
-Received: from BN0PR02CA0057.namprd02.prod.outlook.com (2603:10b6:408:e5::32)
- by BY5PR12MB4196.namprd12.prod.outlook.com (2603:10b6:a03:205::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Mon, 22 Jun
- 2026 15:17:26 +0000
-Received: from BN2PEPF0000449D.namprd02.prod.outlook.com
- (2603:10b6:408:e5:cafe::b) by BN0PR02CA0057.outlook.office365.com
- (2603:10b6:408:e5::32) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.20 via Frontend Transport; Mon,
- 22 Jun 2026 15:17:26 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BN2PEPF0000449D.mail.protection.outlook.com (10.167.243.148) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Mon, 22 Jun 2026 15:17:25 +0000
-Received: from sunce-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Mon, 22 Jun
- 2026 10:17:23 -0500
-From: Ce Sun <cesun102@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Hawking.Zhang@amd.com>, <YiPeng.Chai@amd.com>, <Tao.Zhou1@amd.com>,
- <Stanley.Yang@amd.com>, Ce Sun <cesun102@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu: fix resource leak on ACP reset timeout
-Date: Mon, 22 Jun 2026 23:17:15 +0800
-Message-ID: <8df8e57e7a17f131ab9065b4671780378fbaeb08.1782141279.git.cesun102@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <5db799323a211d12937f69a1ba28d3c740bf2569.1782141279.git.cesun102@amd.com>
-References: <5db799323a211d12937f69a1ba28d3c740bf2569.1782141279.git.cesun102@amd.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7111810E760;
+ Mon, 22 Jun 2026 15:27:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+ Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=PQvYmdv7l/ESIGmByUEb2vrNIzMYdcuiCUtVuj30ZX4=; b=ToA3PaPbYJbNs2g90uuncz9Dw4
+ 2ZbWq0EWGQzrURDbsgz57RWBkFx6e0lQQPO+i6jdclcsL/GRhethVLN7qLtrb+E9/u27a9da9OOxB
+ 0Xtm+MER55DGbLpaUk1Ly+TnBsSVdpcCVcsw78CJWNb1wWWKYbqec6dtnqvMl59VkJ9oB5PYCKk00
+ bY/EpdRn1lzhZQsR5F1iYDRFsxLL1VoNQ51Msn9wuZRw7ZvvoFsjJR9GpK8c3bg3l2ZN3XG9OAh+u
+ bMRnJvfy5qykiZw/5DpKixYTPdUGNu1BHMCykDnrDpI7W4WoTXOhOOm9fTx58PvxteyhmtjtCGE7/
+ r2L1xIeA==;
+Received: from 179-125-64-254-dinamico.pombonet.net.br ([179.125.64.254]
+ helo=quatroqueijos.cascardo.eti.br)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wbgYB-003nTK-5L; Mon, 22 Jun 2026 17:27:03 +0200
+Date: Mon, 22 Jun 2026 12:26:54 -0300
+From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+To: Tejun Heo <tj@kernel.org>
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, Natalie Vock <natalie.vock@gmx.de>,
+ Johannes Weiner <hannes@cmpxchg.org>,
+ Michal =?iso-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>,
+ cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 0/6] [PATCH v6 0/6] Add reclaim to the dmem cgroup
+ controller
+Message-ID: <ajlUPmaMsa2gxOLg@quatroqueijos.cascardo.eti.br>
+References: <20260611173301.17473-1-thomas.hellstrom@linux.intel.com>
+ <ajBJU-Jp2QVy14qt@slm.duckdns.org>
+ <ajBLAsNoKesXmFcs@slm.duckdns.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF0000449D:EE_|BY5PR12MB4196:EE_
-X-MS-Office365-Filtering-Correlation-Id: 10783535-ef6a-4896-7eaf-08ded0715dec
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|1800799024|36860700016|23010399003|18002099003|22082099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: LvCSEQQqVSd8RPN8ZGzBEof/rB9s2m4fmXiCWcST6R7JvowGLfLgCy1hXNt0mkAD8+uOqVdB63QpsyrBjZn8r321/pkiiNAAaGh27d+QsfiDFNfhP0sYn62Mz6BrJtqY4k7Bpfk/gESCgHrPfrQIWUqWbT+WqAsJneLmKX6UH98WeRWLlM+T4+0OckTnEiwQJa6wCiK68kcFxPZTr5hGCgOoKif0OktD/WumvBVpf518oxNinj1ArKdQsDKqTc4bb203gBSi+PS4yT0pKd5d3AzKROA2eu6GOy4a+7VetqEs7pnIYmxMQXBIEHSR6zjxL87hfPtMBNVyksn6LDW/EwdCXFbTLVhDMfqj1U5TsYCPyZj1LzHPYG+LA6NwmgeEhUdvt0/dYqPDBDt3zw72zCJQDmOqrndK7jvAO1OMBqZDQLXVaHQ8t5oA7DhSRahaRkoLxF79JGsihCm7S5aJMhaHNkUYWvaR2iy+cemFGks+pF1vZR7B3xtRI3JwCz+SsfkyhyGGc/OBpk/eBOqvEhtO6esEUaPxw1+KVTliiovmT477b63r/bw/Y87M7LLwAbY/J7dfRklafy+ieCCnJ6/MM9RAVUXCL8J7+4WUk14uaWhECz5V6T1TEstepNlC+A+DTsAq4Hn44zb22o9WeatEihRzI6HdaLGoGTriazbgtASPkxvwq7wp54ncP60H0XucocVFEs4Da1JBJqETbg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(1800799024)(36860700016)(23010399003)(18002099003)(22082099003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: xZbNQBjgqkYGKxYkCE4rtl+tG0h/9KpzlYxZanDGbIpk74CJIyaOY1LBTrL4w1OT6K4+lFLeBsha70ktM6aAxVBOkfLeHTHZRUboSnI9d5Jrm1q5RrV5IFF285N2u39e3gyVPdz+qn1b6EP1vzFe6Ci/aFOlPN0bWF3kd59pp/HmzK6hcz6F75DOBjp9uGAPJzz1aCTL+QuWynxECozhloVDAWCDf826PFeX/e1xVOZU1Sm5MIAclZuYcrI+unjaqh0l3iH+gml4xR4BxzUmD5MXhGKwgc8OZ/7VQHYftlgOftldZuZ55zHAY72hhbpVQ2gVm/hEBK1Q16F/+VhGDSMIS8zyfYJvWZPuJ4nP1g+vrTXIccjdbAaZveHhKOD5/cuK64g4bVlNEPvMncuML9nTiFEmJmfSNfBDmkwmXvabJIsz+zDvntC7AIYMn/aT
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2026 15:17:25.8374 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10783535-ef6a-4896-7eaf-08ded0715dec
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF0000449D.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4196
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ajBLAsNoKesXmFcs@slm.duckdns.org>
+X-Mailman-Approved-At: Tue, 23 Jun 2026 08:07:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,79 +83,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [0.49 / 15.00];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[6];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[cesun102@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[linux.intel.com,lists.freedesktop.org,gmx.de,cmpxchg.org,suse.com,vger.kernel.org,amd.com,intel.com,kernel.org,suse.de,ffwll.ch,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cascardo@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,igalia.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5AD2E6B0A59
+X-Rspamd-Queue-Id: 574056B51EC
 
-When ACP soft reset poll times out, original code returns early without cleanup,
-leaking MFD child devices, genpd links and all ACP heap allocations.
+On Mon, Jun 15, 2026 at 08:57:06AM -1000, Tejun Heo wrote:
+> On Mon, Jun 15, 2026 at 08:49:55AM -1000, Tejun Heo wrote:
+> > The canonical behavior for cgroup2 would be not failing the write at all
+> > even when the usage can't be brought down below the new max. Updating the
+> > target configuration and tracking the current usage are separate operations.
+> > The former should just set max and trigger reclaim and a writer should not
+> > assume that a successful write indicates that the usage is below the written
+> > max value.
+> 
+> Sent too early. One of the reasons is that cgroup is hierarchical and there
+> can be multiple delegation layers and if you tie application of configuration
+> to immediate enforcement, some hierarchical control actions become racy and
+> awkward.
+> 
+> Here's an example: Imagine a system agent trying to lower usage in a subtree
+> which contains multiple delegated containers. If max can be set below what
+> reclaim can achieve immediately, it can just set the max and if the usage is
+> still too high, can go around and e.g. kill some of the containers. If max
+> write fails, it'd have to kill and then try again and inbetween someone else
+> might push up the usage.
+> 
+> Thanks.
+> 
+> -- 
+> tejun
 
-Replace direct early return with goto out to force run all cleanup logic
-regardless of reset success, preserve timeout error code for caller.
+Hi, Tejun.
 
-Signed-off-by: Ce Sun <cesun102@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+As far as I understood the patchset, it doesn't fail the write if it fails
+to reclaim. It sets the new max, then, if the write is blocking, starts
+reclaim and eventually returns after multiple attempts. But it still
+returns success.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c
-index b0db0834bfff..1bb931d1d2c9 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c
-@@ -510,6 +510,7 @@ static int acp_hw_fini(struct amdgpu_ip_block *ip_block)
- 	u32 val = 0;
- 	u32 count = 0;
- 	struct amdgpu_device *adev = ip_block->adev;
-+	int ret = 0;
- 
- 	/* return early if no ACP */
- 	if (!adev->acp.acp_genpd) {
-@@ -531,7 +532,8 @@ static int acp_hw_fini(struct amdgpu_ip_block *ip_block)
- 			break;
- 		if (--count == 0) {
- 			dev_err(&adev->pdev->dev, "Failed to reset ACP\n");
--			return -ETIMEDOUT;
-+			ret = -ETIMEDOUT;
-+			goto out;
- 		}
- 		udelay(100);
- 	}
-@@ -552,7 +554,7 @@ static int acp_hw_fini(struct amdgpu_ip_block *ip_block)
- 		}
- 		udelay(100);
- 	}
--
-+out:
- 	device_for_each_child(adev->acp.parent, NULL,
- 			      acp_genpd_remove_device);
- 
--- 
-2.34.1
+So I believe this is behaving as you would expect.
 
+Regards.
+Cascardo.
