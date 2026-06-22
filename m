@@ -2,50 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LBN4E9slOWranQcAu9opvQ
+	id kJuOId8lOWrgnQcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:08:59 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:09:03 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88BC26AF4D5
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33A1B6AF4EC
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 14:09:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=nYX4L4ti;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=HNvhnKEU;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2375010E664;
-	Mon, 22 Jun 2026 12:08:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 596E010E672;
+	Mon, 22 Jun 2026 12:09:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EC7E10E664
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 12:08:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EA6A10E667
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 12:08:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
- Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=utYkbrL1bc8niYb8vgZbQmInRcJYrBDclmaTAt1h5F4=; b=nYX4L4tiTo3a+98F0AcF/F4Gf3
- W2kSUNqsoIgM4JpLyBpU8GfmeCR3qb7UVwdFj3DjJGuzDt8hiEQs83ZxbGGngoEy4oUMBNCohTfg7
- yUMezAGEJRabbxznSDU3TIi9JpY/W4iJBEipXPhw/8ibjadrfwSq4Uov8yNhC5uZQmBz7Bq01efT7
- pFz411Zf+BDmLbwBEfeJ/Fe6S2jeyJNIZ3dLsndqqkbySA25d8f6k0Mmp+QSGizyLjZvKH/mLN64v
- 92cDeYDSoWPdKXDlG2MNndrXuwXWEDN8SqEeCGoApHnSvZruGIVJU6vXgEgOOokeT8lWgCdKHPHVe
- 6GDIlPjQ==;
+ bh=W+bm4kejcK4fkcqJtKtO60EWwbNIhKiH8mf2kIdNF5g=; b=HNvhnKEUGzLSglSRbgiEZJejIE
+ geZkHgL3qCgnu8+6ll0sUq7wvWeVF9n3ZDMitoV3xVzybRuMFW8k1y0bg6MSUg+cQkaMbi6mLHF72
+ 3E34rCJzflsazQ4hurm6fujPQV2pXe8VRzf3DVj1WsEUmNKnOTpmpszkOTdIS5dYot0qxJbgKiIbw
+ dL1SxECuei+RpQzzfyapdPtzbSoCygFkE+vK2/E+t+mGfl1Nx4+2AeCyV6g07r9+0+9cTU5WI0Iwu
+ pMpCvyJ3uOaOtdt3sfPQiPU7d4KKLIki12VCpRLyhIk5i7dCk0cPn78o7eaXpNhNPn/HuOVAU/9EF
+ 5JXEawhg==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wbdSN-003iyo-CJ; Mon, 22 Jun 2026 14:08:51 +0200
+ id 1wbdSO-003iys-6i; Mon, 22 Jun 2026 14:08:52 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 00/16] IB emission compaction
-Date: Mon, 22 Jun 2026 13:08:19 +0100
-Message-ID: <20260622120835.52473-1-tvrtko.ursulin@igalia.com>
+Cc: kernel-dev@igalia.com,
+	Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Subject: [PATCH 01/16] drm/amdgpu: More compact VCE IB emission
+Date: Mon, 22 Jun 2026 13:08:20 +0100
+Message-ID: <20260622120835.52473-2-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260622120835.52473-1-tvrtko.ursulin@igalia.com>
+References: <20260622120835.52473-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -78,7 +80,7 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
@@ -88,155 +90,162 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,igalia.com:mid,igalia.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 88BC26AF4D5
+X-Rspamd-Queue-Id: 33A1B6AF4EC
 
-Hi,
+Avoid constant register reloads while emitting IBs by using a local write
+pointer and only updating the size at the end of each helper.
 
-We tried this before but it didn't quite work for some non-obvious reason.
-Could we possibly try again? I only added SDMA 7.1 since last time, the rest is
-as it was.
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c | 96 +++++++++++++------------
+ 1 file changed, 50 insertions(+), 46 deletions(-)
 
-Btw the ones which grew in size below AFAICT have been "unrolled" by the
-compiler now that the writes and increments are more optimised. So even if those
-few are larger, they should be faster.
-
-I am also curious about the sdma_inst->burst_nop and wonder if many modern
-files really need to be checking given for SDMA major version > 3 it is set like
-this:
-
-  if (sdma_inst->feature_version >= 20)
-    sdma_inst->burst_nop = true;
-
-How do firmware major and feature map to SDMA ip versions is the question.
-
-Cc: Alex Deucher <alexander.deucher@amd.com>
-
-add/remove: 0/1 grow/shrink: 11/72 up/down: 294/-8261 (-7967)
-Function                                     old     new   delta
-sdma_v7_1_ring_pad_ib                         99     133     +34
-sdma_v7_0_ring_pad_ib                         99     127     +28
-sdma_v6_0_ring_pad_ib                         99     127     +28
-sdma_v5_2_ring_pad_ib                         99     127     +28
-sdma_v5_0_ring_pad_ib                         99     127     +28
-sdma_v4_4_2_ring_pad_ib                       99     127     +28
-sdma_v4_0_ring_pad_ib                         99     127     +28
-sdma_v3_0_ring_pad_ib                         99     127     +28
-sdma_v2_4_ring_pad_ib                         99     127     +28
-cik_sdma_ring_pad_ib                          99     127     +28
-si_dma_ring_pad_ib                            36      44      +8
-vcn_v2_0_dec_ring_insert_nop                 200     198      -2
-vcn_v2_0_dec_ring_insert_start               272     257     -15
-vcn_v2_0_dec_ring_emit_wreg                  402     373     -29
-vcn_v3_0_ring_patch_cs_in_place             1215    1182     -33
-vcn_v2_0_dec_ring_test_ring                  457     422     -35
-si_dma_emit_fill_buffer                      108      71     -37
-amdgpu_vcn_dec_sw_send_msg                   810     773     -37
-vcn_v2_0_dec_ring_emit_ib                    571     530     -41
-si_dma_vm_write_pte                          158     115     -43
-vcn_v2_0_dec_ring_emit_reg_wait              536     492     -44
-amdgpu_jpeg_dec_ring_test_ring               382     337     -45
-si_dma_vm_copy_pte                           137      87     -50
-si_dma_emit_copy_buffer                      134      84     -50
-sdma_v3_0_vm_write_pte                       163     102     -61
-sdma_v2_4_vm_write_pte                       163     102     -61
-cik_sdma_vm_write_pte                        163     102     -61
-sdma_v7_1_vm_write_pte                       168     105     -63
-sdma_v7_1_emit_fill_buffer                   119      56     -63
-sdma_v7_0_vm_write_pte                       168     105     -63
-sdma_v7_0_emit_fill_buffer                   119      56     -63
-sdma_v6_0_vm_write_pte                       168     105     -63
-sdma_v6_0_emit_fill_buffer                   119      56     -63
-sdma_v5_2_vm_write_pte                       168     105     -63
-sdma_v5_2_emit_fill_buffer                   119      56     -63
-sdma_v5_0_vm_write_pte                       168     105     -63
-sdma_v5_0_emit_fill_buffer                   119      56     -63
-sdma_v4_4_2_vm_write_pte                     168     105     -63
-sdma_v4_4_2_emit_fill_buffer                 119      56     -63
-sdma_v4_0_vm_write_pte                       168     105     -63
-sdma_v4_0_emit_fill_buffer                   119      56     -63
-sdma_v3_0_emit_fill_buffer                   116      53     -63
-sdma_v2_4_emit_fill_buffer                   116      53     -63
-cik_sdma_emit_fill_buffer                    116      53     -63
-vcn_v2_0_dec_ring_emit_fence                 938     858     -80
-amdgpu_vcn_dec_send_msg                      590     507     -83
-sdma_v7_1_emit_copy_buffer                   169      76     -93
-sdma_v6_0_emit_copy_buffer                   169      76     -93
-sdma_v5_2_emit_copy_buffer                   169      76     -93
-sdma_v5_0_emit_copy_buffer                   169      76     -93
-sdma_v4_4_2_emit_copy_buffer                 169      76     -93
-sdma_v4_0_emit_copy_buffer                   169      76     -93
-sdma_v3_0_vm_copy_pte                        158      64     -94
-sdma_v3_0_emit_copy_buffer                   155      61     -94
-sdma_v2_4_vm_copy_pte                        158      64     -94
-sdma_v2_4_emit_copy_buffer                   155      61     -94
-cik_sdma_vm_copy_pte                         158      64     -94
-cik_sdma_emit_copy_buffer                    155      61     -94
-sdma_v7_1_vm_copy_pte                        163      68     -95
-sdma_v6_0_vm_copy_pte                        163      68     -95
-sdma_v5_2_vm_copy_pte                        163      68     -95
-sdma_v5_0_vm_copy_pte                        163      68     -95
-sdma_v4_4_2_vm_copy_pte                      163      68     -95
-sdma_v4_0_vm_copy_pte                        163      68     -95
-sdma_v7_0_vm_copy_pte                        183      75    -108
-sdma_v7_0_emit_copy_buffer                   317     202    -115
-si_dma_vm_set_pte_pde                        338     214    -124
-sdma_v7_1_vm_set_pte_pde                     218      72    -146
-sdma_v7_0_vm_set_pte_pde                     218      72    -146
-sdma_v6_0_vm_set_pte_pde                     218      72    -146
-sdma_v5_2_vm_set_pte_pde                     218      72    -146
-sdma_v5_0_vm_set_pte_pde                     218      72    -146
-sdma_v4_4_2_vm_set_pte_pde                   218      72    -146
-sdma_v4_0_vm_set_pte_pde                     218      72    -146
-sdma_v3_0_vm_set_pte_pde                     215      69    -146
-sdma_v2_4_vm_set_pte_pde                     215      69    -146
-cik_sdma_vm_set_pte_pde                      215      69    -146
-amdgpu_vcn_unified_ring_ib_header            172       -    -172
-gfx_v9_4_2_run_shader.constprop              739     480    -259
-amdgpu_vce_get_destroy_msg                   784     496    -288
-amdgpu_vcn_enc_ring_test_ib                 2042    1518    -524
-uvd_v6_0_enc_ring_test_ib                   1464     926    -538
-amdgpu_vce_ring_test_ib                     1357     816    -541
-uvd_v7_0_enc_ring_test_ib                   1464     902    -562
-Total: Before=9988607, After=9980640, chg -0.08%
-
-Tvrtko Ursulin (16):
-  drm/amdgpu: More compact VCE IB emission
-  drm/amdgpu: More compact VCN IB emission
-  drm/amdgpu: More compact UVD 6 IB emission
-  drm/amdgpu: More compact UVD 7 IB emission
-  drm/amdgpu: More compact SI SDMA emission
-  drm/amdgpu: More compact CIK SDMA IB emission
-  drm/amdgpu: More compact GFX 9.4.2 IB emission
-  drm/amdgpu: More compact SDMA 2.4 IB emission
-  drm/amdgpu: More compact SDMA 3.0 IB emission
-  drm/amdgpu: More compact SDMA 4.0 IB emission
-  drm/amdgpu: More compact SDMA 4.4.2 IB emission
-  drm/amdgpu: More compact SDMA 5.0 IB emission
-  drm/amdgpu: More compact SDMA 5.2 IB emission
-  drm/amdgpu: More compact SDMA 6.0 IB emission
-  drm/amdgpu: More compact SDMA 7.0 IB emission
-  drm/amdgpu: More compact SDMA 7.1 IB emission
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c  |  96 ++++++++--------
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c  | 134 +++++++++++++----------
- drivers/gpu/drm/amd/amdgpu/cik_sdma.c    | 105 +++++++++++-------
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c  |  51 ++++-----
- drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c   | 108 ++++++++++--------
- drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c   | 108 ++++++++++--------
- drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c   | 109 ++++++++++--------
- drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 108 ++++++++++--------
- drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c   | 106 +++++++++++-------
- drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c   | 110 +++++++++++--------
- drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c   | 110 +++++++++++--------
- drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c   | 119 +++++++++++---------
- drivers/gpu/drm/amd/amdgpu/sdma_v7_1.c   | 102 ++++++++++-------
- drivers/gpu/drm/amd/amdgpu/si_dma.c      |  84 ++++++++------
- drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c    |  72 ++++++------
- drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c    |  72 ++++++------
- 16 files changed, 927 insertions(+), 667 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+index efdebd9c0a1f..2854c2e465b3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+@@ -468,7 +468,8 @@ static int amdgpu_vce_get_create_msg(struct amdgpu_ring *ring, uint32_t handle,
+ 	struct amdgpu_ib ib_msg;
+ 	struct dma_fence *f = NULL;
+ 	uint64_t addr;
+-	int i, r;
++	u32 *ptr;
++	int r;
+ 
+ 	r = amdgpu_job_alloc_with_ib(ring->adev, &ring->adev->vce.entity,
+ 				     AMDGPU_FENCE_OWNER_UNDEFINED,
+@@ -486,45 +487,46 @@ static int amdgpu_vce_get_create_msg(struct amdgpu_ring *ring, uint32_t handle,
+ 		goto err;
+ 
+ 	ib = &job->ibs[0];
++	ptr = ib->ptr;
+ 	/* let addr point to page boundary */
+ 	addr = AMDGPU_GPU_PAGE_ALIGN(ib_msg.gpu_addr);
+ 
+ 	/* stitch together an VCE create msg */
+-	ib->length_dw = 0;
+-	ib->ptr[ib->length_dw++] = 0x0000000c; /* len */
+-	ib->ptr[ib->length_dw++] = 0x00000001; /* session cmd */
+-	ib->ptr[ib->length_dw++] = handle;
++	*ptr++ = 0x0000000c; /* len */
++	*ptr++ = 0x00000001; /* session cmd */
++	*ptr++ = handle;
+ 
+ 	if ((ring->adev->vce.fw_version >> 24) >= 52)
+-		ib->ptr[ib->length_dw++] = 0x00000040; /* len */
++		*ptr++ = 0x00000040; /* len */
+ 	else
+-		ib->ptr[ib->length_dw++] = 0x00000030; /* len */
+-	ib->ptr[ib->length_dw++] = 0x01000001; /* create cmd */
+-	ib->ptr[ib->length_dw++] = 0x00000000;
+-	ib->ptr[ib->length_dw++] = 0x00000042;
+-	ib->ptr[ib->length_dw++] = 0x0000000a;
+-	ib->ptr[ib->length_dw++] = 0x00000001;
+-	ib->ptr[ib->length_dw++] = 0x00000080;
+-	ib->ptr[ib->length_dw++] = 0x00000060;
+-	ib->ptr[ib->length_dw++] = 0x00000100;
+-	ib->ptr[ib->length_dw++] = 0x00000100;
+-	ib->ptr[ib->length_dw++] = 0x0000000c;
+-	ib->ptr[ib->length_dw++] = 0x00000000;
++		*ptr++ = 0x00000030; /* len */
++	*ptr++ = 0x01000001; /* create cmd */
++	*ptr++ = 0x00000000;
++	*ptr++ = 0x00000042;
++	*ptr++ = 0x0000000a;
++	*ptr++ = 0x00000001;
++	*ptr++ = 0x00000080;
++	*ptr++ = 0x00000060;
++	*ptr++ = 0x00000100;
++	*ptr++ = 0x00000100;
++	*ptr++ = 0x0000000c;
++	*ptr++ = 0x00000000;
+ 	if ((ring->adev->vce.fw_version >> 24) >= 52) {
+-		ib->ptr[ib->length_dw++] = 0x00000000;
+-		ib->ptr[ib->length_dw++] = 0x00000000;
+-		ib->ptr[ib->length_dw++] = 0x00000000;
+-		ib->ptr[ib->length_dw++] = 0x00000000;
++		*ptr++ = 0x00000000;
++		*ptr++ = 0x00000000;
++		*ptr++ = 0x00000000;
++		*ptr++ = 0x00000000;
+ 	}
+ 
+-	ib->ptr[ib->length_dw++] = 0x00000014; /* len */
+-	ib->ptr[ib->length_dw++] = 0x05000005; /* feedback buffer */
+-	ib->ptr[ib->length_dw++] = upper_32_bits(addr);
+-	ib->ptr[ib->length_dw++] = addr;
+-	ib->ptr[ib->length_dw++] = 0x00000001;
++	*ptr++ = 0x00000014; /* len */
++	*ptr++ = 0x05000005; /* feedback buffer */
++	*ptr++ = upper_32_bits(addr);
++	*ptr++ = addr;
++	*ptr++ = 0x00000001;
+ 
+-	for (i = ib->length_dw; i < ib_size_dw; ++i)
+-		ib->ptr[i] = 0x0;
++	ib->length_dw = ptr - ib->ptr;
++
++	memset32(ptr, 0, ib_size_dw - ib->length_dw);
+ 
+ 	r = amdgpu_job_submit_direct(job, ring, &f);
+ 	amdgpu_ib_free(&ib_msg, f);
+@@ -558,7 +560,8 @@ static int amdgpu_vce_get_destroy_msg(struct amdgpu_ring *ring, uint32_t handle,
+ 	struct amdgpu_job *job;
+ 	struct amdgpu_ib *ib;
+ 	struct dma_fence *f = NULL;
+-	int i, r;
++	u32 *ptr;
++	int r;
+ 
+ 	r = amdgpu_job_alloc_with_ib(ring->adev, &ring->adev->vce.entity,
+ 				     AMDGPU_FENCE_OWNER_UNDEFINED,
+@@ -570,27 +573,28 @@ static int amdgpu_vce_get_destroy_msg(struct amdgpu_ring *ring, uint32_t handle,
+ 		return r;
+ 
+ 	ib = &job->ibs[0];
++	ptr = ib->ptr;
+ 
+ 	/* stitch together an VCE destroy msg */
+-	ib->length_dw = 0;
+-	ib->ptr[ib->length_dw++] = 0x0000000c; /* len */
+-	ib->ptr[ib->length_dw++] = 0x00000001; /* session cmd */
+-	ib->ptr[ib->length_dw++] = handle;
++	*ptr++ = 0x0000000c; /* len */
++	*ptr++ = 0x00000001; /* session cmd */
++	*ptr++ = handle;
+ 
+-	ib->ptr[ib->length_dw++] = 0x00000020; /* len */
+-	ib->ptr[ib->length_dw++] = 0x00000002; /* task info */
+-	ib->ptr[ib->length_dw++] = 0xffffffff; /* next task info, set to 0xffffffff if no */
+-	ib->ptr[ib->length_dw++] = 0x00000001; /* destroy session */
+-	ib->ptr[ib->length_dw++] = 0x00000000;
+-	ib->ptr[ib->length_dw++] = 0x00000000;
+-	ib->ptr[ib->length_dw++] = 0xffffffff; /* feedback is not needed, set to 0xffffffff and firmware will not output feedback */
+-	ib->ptr[ib->length_dw++] = 0x00000000;
++	*ptr++ = 0x00000020; /* len */
++	*ptr++ = 0x00000002; /* task info */
++	*ptr++ = 0xffffffff; /* next task info, set to 0xffffffff if no */
++	*ptr++ = 0x00000001; /* destroy session */
++	*ptr++ = 0x00000000;
++	*ptr++ = 0x00000000;
++	*ptr++ = 0xffffffff; /* feedback is not needed, set to 0xffffffff and firmware will not output feedback */
++	*ptr++ = 0x00000000;
+ 
+-	ib->ptr[ib->length_dw++] = 0x00000008; /* len */
+-	ib->ptr[ib->length_dw++] = 0x02000001; /* destroy cmd */
++	*ptr++ = 0x00000008; /* len */
++	*ptr++ = 0x02000001; /* destroy cmd */
+ 
+-	for (i = ib->length_dw; i < ib_size_dw; ++i)
+-		ib->ptr[i] = 0x0;
++	ib->length_dw = ptr - ib->ptr;
++
++	memset32(ptr, 0, ib_size_dw - ib->length_dw);
+ 
+ 	if (direct)
+ 		r = amdgpu_job_submit_direct(job, ring, &f);
 -- 
 2.54.0
 
