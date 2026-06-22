@@ -2,145 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9356NsM+OmrV4gcAu9opvQ
+	id 7wwaMcQ+OmrX4gcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:31 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:32 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68F0C6B5230
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 343D26B5236
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmx.de header.s=s31663417 header.b=FWSCwcec;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=MdDk8HoQ;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=gmx.de
+	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3C6010E9EE;
-	Tue, 23 Jun 2026 08:07:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB7A010E9EB;
+	Tue, 23 Jun 2026 08:07:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E86D10E4A2
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 05:44:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
- s=s31663417; t=1782107043; x=1782711843; i=natalie.vock@gmx.de;
- bh=V4eeF2b39Ld4bgohXAFNOBWICpZf+cb7+dEGi8HIlIE=;
- h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
- References:From:In-Reply-To:Content-Type:
- Content-Transfer-Encoding:cc:content-transfer-encoding:
- content-type:date:from:message-id:mime-version:reply-to:subject:
- to;
- b=FWSCwcecCl0xwBG5OziTXE3b58TA6TyOEaneXAOLmuIV8C/Qjs3naG/I/e+MkRfz
- N2DVhZiVuJ5yzB61mV+S1YIVJhtRIHLKfZcEUiiGFQ5dNsDmRqqy65qKY8vVWEdKM
- hGJ4jkhG8qckl8lxVw/aNlfvmT+vA8CdTbwv1TATqTucnbmR3fgSekzIQQIKDC4qh
- R1yz5mH37J/izcc4mdYt9gRRMc9StK4vjO6wFaldj/2mtNucg8eJHsPEq2ps8kDp5
- 2DC9wBZ2d8eeHy+rKGUzr2iQAql0NQIZNVu7bfvkU1RlwJtsZvC0nRGWkPlzPh4Sj
- BOu1KSH2vFI4VH9DQA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from client.hidden.invalid by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MKsjH-1wsErG0txd-00HmQ3; Mon, 22
- Jun 2026 07:44:03 +0200
-Message-ID: <c084c555-e4f4-48a6-9fad-175932acda01@gmx.de>
-Date: Mon, 22 Jun 2026 07:44:02 +0200
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com
+ [209.85.218.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF31A10E4EC
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 07:16:03 +0000 (UTC)
+Received: by mail-ej1-f51.google.com with SMTP id
+ a640c23a62f3a-c0c41ff84a6so247882366b.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 00:16:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1782112562; x=1782717362; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=aKUdsREkXdaAnyx5VItgWz8gGsTg5KgkpGw7xwtapMs=;
+ b=MdDk8HoQvQFIK6QSQO9ExK2WXobDGCFaRvpHgO3a6s8/huwMmJhIaBDDHimwuLCmJf
+ C19i0Js8hrGNvWk1hlZwlIRMcwHQz8f8kMwk+8jftH+ypKUplDwQFMmE6Emi7jMP7oAu
+ iimimG5Rj6uRIXWHDRgb+Twm/4iHoTWFyx3gytRrKyJolOA9C4qdQZoYUz+dyn2oXaNQ
+ W7A4hR+4OVzxp8DAKFhql4aPCxjUGCGWteVp1Mw0DmIdCEMnDjv4XcfBhprPDL8NN2GH
+ m4DMlQty+z9xosWCwPG+U0MQS9op4+QNzZ1BjJ2bZWNkrwNVjyqxXay5RKNK2AVIV4Vx
+ 5X4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1782112562; x=1782717362;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=aKUdsREkXdaAnyx5VItgWz8gGsTg5KgkpGw7xwtapMs=;
+ b=os4ndXLU0TAXfX2a5Q7aZt7aqEVqoCwOfQh3RRcWAtpT8+j1KnUEr6UhDAB1xUEUM3
+ PG6QhmyZjpD/PDXFrJEscNyD75suWZgIcEUQcj1HYjwv1Gi2weim+lNONz8rbW3qqoIZ
+ 0kTJH5w1CRy0hpq3W73Tsxuw9zb4m+CFLEk/6nTENTRcnNnRIlACWOkA1+8gp+oALCrt
+ PtezxVmdRYlsQ55C9PS2FQMfttWXeh3S5elYV8Vy4Lg/yTZBQoetM8nsWkGS8uEp/+dY
+ oEMfGMjxbGEosT9fWY6+ZXIXagfu/50f/eNpaotyN7/7bMO60OdOtn49JZhLOcTbXYiV
+ zgrA==
+X-Gm-Message-State: AOJu0YzGVCfqpOLdk8lCPmMdR+7I5SP82plHbdPJM4G4+Ybt4yvf0j+V
+ e27+43F+d8gmYb+M6VEmIPIW9TO75hD8ygr8TLh65fZ1lQXgDAvOZjsEo11ZftqX
+X-Gm-Gg: AfdE7cnhxZzpUrAie88gUzdLVEGizlQTbHpqfdt3YZ3xOadhJaUsDCfh8nYfQz6P66S
+ XEuNLNgeSRl5/HAgOfnuhtVW4BCungtO4Di3r+ZTP0UrW076PRAKueMzQhL+z5+EzFWpG5JBJjl
+ Pb3C39VLiCszIMqe1y3gLHcsAbZQNxSDs4ck0ZA29agY1hXCgdg13I+0fHVqsrdWdlBhmbo/f9D
+ 5uY5K79yzZvFZSjm0cz1xerFHGiFhq5dEOs+zOU1UWx6camhyy9eW3f/darL4RJEk8KVJeBsr2X
+ W0Gvc+8isiTveBwDXVB5jYMptFKzbFKDI72NiJDP6pvdEgqYTzmhEqBY4Ky0CATnVe215znDQhy
+ JW7b0V07irEJJC83NdkYiGwCvBfctT7UfR0a8Cbrf89OJ7k/2qenMqPTeySzPWDjG7QrD7ENMVH
+ zts4KSYfNJ
+X-Received: by 2002:a17:907:e153:b0:c0d:cd71:6463 with SMTP id
+ a640c23a62f3a-c0dcd716a55mr107647466b.16.1782112561786; 
+ Mon, 22 Jun 2026 00:16:01 -0700 (PDT)
+Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-c0c60aca46csm304463266b.36.2026.06.22.00.16.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 Jun 2026 00:16:00 -0700 (PDT)
+Date: Mon, 22 Jun 2026 10:15:57 +0300
+From: Dan Carpenter <error27@gmail.com>
+To: Alex Hung <alex.hung@amd.com>
+Cc: amd-gfx@lists.freedesktop.org,
+ "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
+Subject: [bug report] drm/amd/display: Extract connector and encoder code to
+ amdgpu_dm_connector
+Message-ID: <ajjhLdbRJz30TXo2@stanley.mountain>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [REGRESSION 7.2] drm/amdgpu: ~275 SDMA jobs per sparse VA bind
- since 4cdbba5a (RE Requiem 90->4 fps)
-To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <Christian.Koenig@amd.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Linux List Kernel Mailing <linux-kernel@vger.kernel.org>,
- Linux regressions mailing list <regressions@lists.linux.dev>
-References: <CABXGCsOuCXr4R+WW60KNuWNS2MqzE9w6iv-t_ykbwmhqDSABAQ@mail.gmail.com>
-Content-Language: en-US
-From: Natalie Vock <natalie.vock@gmx.de>
-In-Reply-To: <CABXGCsOuCXr4R+WW60KNuWNS2MqzE9w6iv-t_ykbwmhqDSABAQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:0/QIqRsPZJqjDy+IBxH9SWtLNw3ysKmza+JqsC258tsrbp6Niji
- E+vIMi76Qt12PRBIZfCrYHmhUYjLwlOkPbftGdqmtaVT5l3O9FXt9ThqnaAbsxH5enwBzzC
- T/6il34S1C0X2/1jdw8PQXOi6DD2EwULNqMc2JOrhcr7Fm8G7vGBn0y0QX/s61I07t0YAPI
- zQzdIQJBvlMtwrMPdxeBw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:GtGJNbys+ZU=;uk+pU/Sbj3Cyby32VZoCQBGleZa
- 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
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-Mailman-Approved-At: Tue, 23 Jun 2026 08:07:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -156,79 +90,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[26];
-	DMARC_POLICY_ALLOW(-0.50)[gmx.de,quarantine];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	DATE_IN_PAST(1.00)[24];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmx.de:s=s31663417];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:mikhail.v.gavrilov@gmail.com,m:Christian.Koenig@amd.com,m:Alexander.Deucher@amd.com,m:linux-kernel@vger.kernel.org,m:regressions@lists.linux.dev,m:mikhailvgavrilov@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alex.hung@amd.com,m:SRINIVASAN.SHANMUGAM@amd.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[natalie.vock@gmx.de,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com,lists.freedesktop.org,vger.kernel.org,lists.linux.dev];
-	FREEMAIL_FROM(0.00)[gmx.de];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_ALL(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmx.de:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[natalie.vock@gmx.de,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,gmx.de:dkim,gmx.de:mid,gmx.de:from_mime]
+	RCPT_COUNT_THREE(0.00)[3];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 68F0C6B5230
+X-Rspamd-Queue-Id: 343D26B5236
 
-On 6/21/26 22:55, Mikhail Gavrilov wrote:
-> Hi Christian, Alex,
->=20
-> git bisect points to
->=20
->    4cdbba5a16aa ("drm/amdgpu: restructure VM state machine v4")
->=20
-> as the first bad commit (its parent tests fine) for a severe
-> interactivity regression.
->=20
-> It was merged during the current 7.2 merge window; it is not in any
-> released kernel yet and will first appear in 7.2-rc1.
->=20
-> Symptom: Resident Evil Requiem (re9.exe under VKD3D-Proton, RADV, RX
-> 7900 XTX / Navi31, gfx11) drops from ~90 to 3-4 fps the instant the
-> camera moves; still scenes are fine. The previous bisect point
-> d352990bcaab is smooth.
+Hello Alex Hung,
 
-I already fixed this in a patchset[1] that should be on its way - seems=20
-like it didn't make it into rc1 at least?
+Commit 0e967e086e75 ("drm/amd/display: Extract connector and encoder
+code to amdgpu_dm_connector") from Apr 27, 2026, leads to the
+following Smatch complaint:
 
-Christian, Alex, can you make sure that the first patch from that set,=20
-"drm/amdgpu: Only set bo->moved when the BO was actually moved", is=20
-included in a -fixes PR for 7.2?
+    drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_connector.c:1278 apply_dsc_policy_for_stream()
+    warn: variable dereferenced before check 'aconnector->dc_link' (see line 1221)
 
-For the record, I intentionally did not include a Fixes: tag in this=20
-patchset, because the commit was not merged anywhere but=20
-amd-staging-drm-next at the point of writing, and the same commits in=20
-amd-staging-drm-next and upstream have different SHAs. AFAIU, this also=20
-prevents me from telling regzbot that a proper fix is underway for now.=20
-Not sure if there's a workaround for this?
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_connector.c
+  1220		link_bandwidth_kbps = dc_link_bandwidth_kbps(aconnector->dc_link,
+                                                             ^^^^^^^^^^^^^^^^^^^
+Unchecked dereference
 
-Best,
-Natalie
+  1221								dc_link_get_link_cap(aconnector->dc_link));
+  1222	
+  1223		/* Set DSC policy according to dsc_clock_en */
+  1224		dc_dsc_policy_set_enable_dsc_when_not_needed(
+  1225			aconnector->dsc_settings.dsc_force_enable == DSC_CLK_FORCE_ENABLE);
+  1226	
+  1227		if (sink->sink_signal == SIGNAL_TYPE_EDP &&
+  1228		    !aconnector->dc_link->panel_config.dsc.disable_dsc_edp &&
 
-[1]=20
-https://lore.kernel.org/amd-gfx/20260529153051.973261-1-natalie.vock@gmx.d=
-e/
+Lots of unchecked dereferefences really...
+
+  1229		    dc->caps.edp_dsc_support && aconnector->dsc_settings.dsc_force_enable != DSC_CLK_FORCE_DISABLE) {
+  1230	
+  1231			apply_dsc_policy_for_edp(aconnector, sink, stream, dsc_caps, max_dsc_target_bpp_limit_override);
+  1232	
+  1233		} else if (sink->sink_signal == SIGNAL_TYPE_DISPLAY_PORT) {
+  1234			if (sink->link->dpcd_caps.dongle_type == DISPLAY_DONGLE_NONE) {
+  1235				if (dc_dsc_compute_config(aconnector->dc_link->ctx->dc->res_pool->dscs[0],
+  1236							dsc_caps,
+  1237							&dsc_options,
+  1238							link_bandwidth_kbps,
+  1239							&stream->timing,
+  1240							dc_link_get_highest_encoding_format(aconnector->dc_link),
+  1241							&stream->timing.dsc_cfg)) {
+  1242					stream->timing.flags.DSC = 1;
+  1243					drm_dbg_driver(drm_connector->dev, "%s: SST_DSC [%s] DSC is selected from SST RX\n",
+  1244								__func__, drm_connector->name);
+  1245				}
+  1246			} else if (sink->link->dpcd_caps.dongle_type == DISPLAY_DONGLE_DP_HDMI_CONVERTER) {
+  1247				timing_bw_in_kbps = dc_bandwidth_in_kbps_from_timing(&stream->timing,
+  1248						dc_link_get_highest_encoding_format(aconnector->dc_link));
+  1249				converter_bw_in_kbps = aconnector->dc_link->dpcd_caps.dongle_caps.dp_hdmi_frl_max_link_bw_in_kbps;
+  1250				sink_bw_in_kbps = dc_link_bw_kbps_from_raw_frl_link_rate_data(dc, sink->edid_caps.max_frl_rate);
+  1251				dsc_sink_bw_in_kbps = dc_link_bw_kbps_from_raw_frl_link_rate_data(dc, sink->edid_caps.frl_dsc_max_frl_rate);
+  1252	
+  1253				if (dsc_caps->is_frl) {
+  1254					max_supported_bw_in_kbps = min(link_bandwidth_kbps, converter_bw_in_kbps);
+  1255					max_supported_bw_in_kbps = min(max_supported_bw_in_kbps, sink_bw_in_kbps);
+  1256					dsc_max_supported_bw_in_kbps = min(max_supported_bw_in_kbps, dsc_sink_bw_in_kbps);
+  1257				} else {
+  1258					max_supported_bw_in_kbps = link_bandwidth_kbps;
+  1259					dsc_max_supported_bw_in_kbps = link_bandwidth_kbps;
+  1260				}
+  1261	
+  1262				if (timing_bw_in_kbps > max_supported_bw_in_kbps &&
+  1263						max_supported_bw_in_kbps > 0 &&
+  1264						dsc_max_supported_bw_in_kbps > 0)
+  1265					if (dc_dsc_compute_config(aconnector->dc_link->ctx->dc->res_pool->dscs[0],
+  1266							dsc_caps,
+  1267							&dsc_options,
+  1268							dsc_max_supported_bw_in_kbps,
+  1269							&stream->timing,
+  1270							dc_link_get_highest_encoding_format(aconnector->dc_link),
+  1271							&stream->timing.dsc_cfg)) {
+  1272						stream->timing.flags.DSC = 1;
+  1273						drm_dbg_driver(drm_connector->dev, "%s: SST_DSC [%s] DSC is selected from %s\n",
+  1274								__func__, drm_connector->name,
+  1275								(dsc_caps->is_frl == 1) ? "HDMI FRL RX" : "DP-HDMI PCON");
+  1276					}
+  1277			}
+  1278		} else if (aconnector->dc_link && sink->sink_signal == SIGNAL_TYPE_HDMI_FRL) {
+                           ^^^^^^^^^^^^^^^^^^^
+Checked too late.
+
+  1279			struct dc_dsc_policy dsc_policy = {0};
+  1280	
+
+This email is a free service from the Smatch-CI project [smatch.sf.net].
+
+regards,
+dan carpenter
