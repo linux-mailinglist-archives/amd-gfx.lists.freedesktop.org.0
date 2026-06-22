@@ -2,60 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +W4qOrY+Omqy4gcAu9opvQ
+	id Lqj7Eo9IOWqLpwcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:18 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 16:37:03 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DD046B51D9
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:07:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0239A6B05D3
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Jun 2026 16:37:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=fxrvVOz5;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 688CC10E9D5;
-	Tue, 23 Jun 2026 08:07:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 027A210E715;
+	Mon, 22 Jun 2026 14:37:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6743F10E263;
- Mon, 22 Jun 2026 14:23:12 +0000 (UTC)
-Received: from localhost.localdomain (unknown [117.182.74.238])
- by APP-01 (Coremail) with SMTP id qwCowADHa9RMRTlqc07AAg--.26720S2;
- Mon, 22 Jun 2026 22:23:10 +0800 (CST)
-From: Wentao Liang <vulab@iscas.ac.cn>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Wentao Liang <vulab@iscas.ac.cn>,
- stable@vger.kernel.org
-Subject: [PATCH v2] drm/amdgpu: fix cleaner shader IB size and entity cleanup
-Date: Mon, 22 Jun 2026 22:23:05 +0800
-Message-Id: <20260622142305.45791-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.39.5 (Apple Git-154)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3986710E633
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 14:36:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=xecKuYiTv9gp4aGB0mWqNh9PxMPm4U8AFGKas9vvFRY=; b=fxrvVOz542duFxNX3MqoChFQ56
+ qw1QzVEp2T+CCWRMXzJnZbSsRMrtljWK6Jg9wJTt0EMRTWunTuqVwaZB+/oRduagEyWNT4Axrk2tj
+ BBp7ypj3g8uH4yTnJ4M3vCmsI7Q99tgyFE20/LBa16d4R5pwEIPO6Beqod/srTvEFJtpHSb1T4EuC
+ bbcCuGr7J7KWa8rfpeKOIYh3Xq0+uVySpk/wZIahyUrGyiHx8QNOAFuzF6VfmKVvw6W6S1RIv57B8
+ GPLqHvLuIH/REVbMWBlghBFNNSHJREaFfEROmpklUJcWbXAZKOf2F8gul7SV1DERRi4u/wSn8RGdm
+ yqA64mhQ==;
+Received: from [90.240.106.137] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wbflc-003mJo-Ll; Mon, 22 Jun 2026 16:36:52 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Subject: [RFC 0/2] Store SDMA ring instance and index in the ring
+Date: Mon, 22 Jun 2026 15:36:47 +0100
+Message-ID: <20260622143649.54632-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qwCowADHa9RMRTlqc07AAg--.26720S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxur1fJFW3WF43ZrWfJr15XFb_yoW5Wr18pF
- 4Fqr45Jr4UZ3W3Kw1UZ3WDWrn0q3s7Xa4fWr429w109an8XFn5Wa47GFy0grykurW8CFW2
- g34qq3y7W3ZFyw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUkl14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
- 6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
- 0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
- jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
- 1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7MxkF7I0En4kS14v26r12
- 6r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI
- 0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUAVWUtwCIc40Y
- 0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxV
- WUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1l
- IxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbSfO7UUUU
- U==
-X-Originating-IP: [117.182.74.238]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiDAYGA2o5ItJfpgABsU
-X-Mailman-Approved-At: Tue, 23 Jun 2026 08:07:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,114 +62,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.89 / 15.00];
+X-Spamd-Result: default: False [1.99 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	RCVD_COUNT_THREE(0.00)[3];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_XOIP(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vulab@iscas.ac.cn,amd-gfx-bounces@lists.freedesktop.org];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	ALIAS_RESOLVED(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0DD046B51D9
+X-Rspamd-Queue-Id: 0239A6B05D3
 
-Fix two issues in amdgpu_gfx_run_cleaner_shader_job():
+I am not sure TBH if any workloads end up calling these often enough to matter,
+but ages ago I noticed SDMA rings doing runtime lookup of "what instance am I"
+by repeatedly searching the device array, and thought to float it to see if
+there are any comments. At least the init path consolidation could be worth it,
+although that too is not perfect.
 
-1. IB buffer overflow: The indirect buffer is hardcoded to 64 bytes,
-   but the initialization loop writes up to (align_mask + 1) dwords.
-   On modern GFX rings with align_mask = 0xff, this writes 1024 bytes,
-   overflowing the 64-byte allocation and corrupting memory.
+Cc: Alex Deucher <alexander.deucher@amd.com>
 
-2. Scheduler entity leak: The drm_sched_entity is not cleaned up on
-   the error path after amdgpu_job_alloc_with_ib() fails.
+Tvrtko Ursulin (2):
+  drm/amdgpu: Store SDMA instance and index in the ring
+  drm/amdgpu: Drop null SDMA instance checks from SDMA vfuncs
 
-Fix by:
-- Dynamically calculating IB size based on ring->funcs->align_mask
-- Adding drm_sched_entity_destroy() to the error path
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |  6 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.c | 51 +++++++++---------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_sdma.h |  6 +--
+ drivers/gpu/drm/amd/amdgpu/cik_sdma.c    |  4 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v2_4.c   | 17 ++++----
+ drivers/gpu/drm/amd/amdgpu/sdma_v3_0.c   | 17 ++++----
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c   | 23 ++++-------
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4_2.c | 29 ++++++--------
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c   | 21 ++++------
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c   | 22 +++++-----
+ drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c   | 24 +++++------
+ drivers/gpu/drm/amd/amdgpu/sdma_v7_0.c   | 23 +++++------
+ drivers/gpu/drm/amd/amdgpu/sdma_v7_1.c   | 29 ++++++--------
+ 13 files changed, 112 insertions(+), 160 deletions(-)
 
-Cc: stable@vger.kernel.org
-Fixes: d361ad5d2fc0 ("drm/amdgpu: Add sysfs interface for running cleaner shader")
-Fixes: 256576ed6895 ("drm/amdgpu: give each kernel job a unique id")
-Fixes: 559a285816af ("drm/amdgpu: Replace 'amdgpu_job_submit_direct' with 'drm_sched_entity' in cleaner shader")
-Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 16 ++++++++++++----
- 1 file changed, 12 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-index b8ca876694ff..b50ec1a5c645 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-@@ -1651,6 +1651,7 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
- 	struct amdgpu_job *job;
- 	struct amdgpu_ib *ib;
- 	void *owner;
-+	unsigned int ib_size;
- 	int i, r;
- 
- 	/* Initialize the scheduler entity */
-@@ -1658,7 +1659,7 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
- 				  &sched, 1, NULL);
- 	if (r) {
- 		dev_err(adev->dev, "Failed setting up GFX kernel entity.\n");
--		goto err;
-+		return r;
- 	}
- 
- 	/*
-@@ -1668,8 +1669,15 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
- 	 */
- 	owner = (void *)(unsigned long)atomic_inc_return(&counter);
- 
-+	/*
-+	 * Allocate IB with enough space for align_mask + 1 dwords.
-+	 * The initialization loop below writes exactly this many dwords.
-+	 * Each dword is 4 bytes.
-+	 */
-+	ib_size = (ring->funcs->align_mask + 1) * sizeof(uint32_t);
-+
- 	r = amdgpu_job_alloc_with_ib(ring->adev, &entity, owner,
--				     64, 0, &job,
-+				     ib_size, 0, &job,
- 				     AMDGPU_KERNEL_JOB_ID_CLEANER_SHADER);
- 	if (r)
- 		goto err;
-@@ -1686,8 +1694,6 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
- 	f = amdgpu_job_submit(job);
- 
- 	r = dma_fence_wait(f, false);
--	if (r)
--		goto err;
- 
- 	dma_fence_put(f);
- 
-@@ -1696,6 +1702,8 @@ static int amdgpu_gfx_run_cleaner_shader_job(struct amdgpu_ring *ring)
- 	return 0;
- 
- err:
-+	/* Clean up the scheduler entity */
-+	drm_sched_entity_destroy(&entity);
- 	return r;
- }
- 
 -- 
-2.39.5 (Apple Git-154)
+2.54.0
 
