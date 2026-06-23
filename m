@@ -2,107 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NChWFRybOmrwBQgAu9opvQ
+	id 1Z5/B/+LO2ptZggAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 16:41:32 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 09:49:19 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB2846B7FC5
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 16:41:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E18E96BC540
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 09:49:17 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=HIhkq67z;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=G6z1fzDs;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=reject) header.from=mailbox.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CA9010EB2B;
-	Tue, 23 Jun 2026 14:41:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F20110EDE2;
+	Wed, 24 Jun 2026 07:49:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012058.outbound.protection.outlook.com [52.101.48.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B9ED10EB2B
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 14:41:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=liCJSId6AtHAI2s9mNNQuPFJxv2+UUzJjW1bIvnBmRzkO+ujRTGPA4Z1vVVr5/ef1LJ3oSgJhplXJMlsILcDUOS4GanuDr/o6qcR4NJgmh3/2gRLQi39+iZfeTqXfRj7ffWU3Jhdltsn6shzthUfdIaYZ5K00/gX0b6y5RtVGw/E1DDk0iPvN1NkIS10iBXfXL1CuzI2KlePJD6WM2P9y+eGGnAoFid8c2sl00zi3Hgn9QWb2SmFzUMwk+9T2LI/UrKEwAp60fFudMa1RnkxYluO+KWxDQMaahSIK29kfv5kP8huvbEON40iGLQeINYFLApUeeC8dZPOaj5KUGrUYg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HvRbeJFv+wupdEbeSBUAcyXw9od1SIT89m/Nk49BEMQ=;
- b=DdDl0Wxi4oWehx4Q79N2sjE34L92GLD56XQJ71hvztH3EcJ8uOt6SmkRVnIOL5bSEeX+esvLcGCMf5IbRE6a2pOaIU/nM834m4l7bPm7ZKZSSdCFY3Y/deLkFix/kf1NemgLJq8kHqM1lG7MeXBnnB8JLUukFpRhbG6abtxEB8UmFkkPAOfoOYqmDp4O9cQaBuEFgthEdRKiJ7zksm1ltWIDZjHcZNRZwFpl/XDBnqMEdGXLOlBV691iHoMAPFWZiiTLvIbPoiCt9eN6qHzzJNftiY3h7LB6l8y/2YugyBYsDCP/1m9c1enKKwSg19vHywuQz4npndwUratFsQO99g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HvRbeJFv+wupdEbeSBUAcyXw9od1SIT89m/Nk49BEMQ=;
- b=HIhkq67zXWvdXptK/9pQd2bqTLlIZQy0JCCUJfFJ5osbC0LZIwdK59fTPDn9/xNGJd6Ux126YZj1YV5PkuaItzb7ozcjVsKW5K69FWJ8peeNcbcfS5U6FMIhS1DvxFRh4tHIofwcf9x+wif4zOQiBwiYYc8aVzJXY6mfKdHHgzY=
-Received: from PH8P220CA0027.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:348::8)
- by PH0PR12MB5648.namprd12.prod.outlook.com (2603:10b6:510:14b::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Tue, 23 Jun
- 2026 14:41:21 +0000
-Received: from CY4PEPF0000EE34.namprd05.prod.outlook.com
- (2603:10b6:510:348:cafe::5c) by PH8P220CA0027.outlook.office365.com
- (2603:10b6:510:348::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.13 via Frontend Transport; Tue,
- 23 Jun 2026 14:41:20 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CY4PEPF0000EE34.mail.protection.outlook.com (10.167.242.40) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Tue, 23 Jun 2026 14:41:20 +0000
-Received: from asad-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 23 Jun
- 2026 09:41:16 -0500
-From: Asad Kamal <asad.kamal@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <lijo.lazar@amd.com>, <hawking.zhang@amd.com>, <le.ma@amd.com>,
- <shiwu.zhang@amd.com>, <alexander.deucher@amd.com>, <kevinyang.wang@amd.com>, 
- <asad.kamal@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-Subject: [PATCH v2] drm/amdgpu: fix aperture mapping leak
-Date: Tue, 23 Jun 2026 22:41:04 +0800
-Message-ID: <20260623144104.4079805-1-asad.kamal@amd.com>
-X-Mailer: git-send-email 2.46.0
-MIME-Version: 1.0
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1BB810EB9D;
+ Tue, 23 Jun 2026 14:48:16 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4gl7Gj5QJyz9tRh;
+ Tue, 23 Jun 2026 16:48:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1782226093; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=A8j5nWKs6mMPZZTh957WrapzoB3bpv7u3GINWsJiiDM=;
+ b=G6z1fzDsXK2fDgrCCxPdlvhRstrtzjj0wJGidvlrNAtz+S5DYoo/bHrFq20QjjV1WNBNGS
+ hTVyOQiq83uRn+ldcuqdzhAOyoQb7AlMt58xLH3efKwAvP0b5L7Ogr8ptpPItEWZWCniq/
+ Iv0KcCTtYpJu+wpvrRICEzF+8J4jyZY9us2avZNa+8J57gDy6pvbBLQz9J/z+PaAnmx1v1
+ c7aZ7w24Mrpvpx5Mgjhu+Pcq9czVO6wHsGNT49EJEYT+D16oHn2dMStKrNvCG2a7ou/40m
+ fDERGJcTvhX/ZtDOYKKuqaVvj7bXlOXV+w8+i5HEzcx4oUa+f/4VGyNVvAIz+w==
+Message-ID: <ddd953feb2a326ce77851405252a8010c3b23235.camel@mailbox.org>
+Subject: Re: [RFC] drm/sched: Replace completion with a flush
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, phasta@kernel.org, 
+ dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Christian =?ISO-8859-1?Q?K=F6nig?=	
+ <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>, Matthew
+ Brost	 <matthew.brost@intel.com>, amd-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Date: Tue, 23 Jun 2026 16:48:10 +0200
+In-Reply-To: <d505d14d-f62b-4f71-9990-c82411381f48@igalia.com>
+References: <20260611123423.39819-1-tvrtko.ursulin@igalia.com>
+ <ba8ea856526d54753da68deefe7b77f15c908fa3.camel@mailbox.org>
+ <fd5e55f6-c6be-48b4-8b87-c3d6d6d0a6ff@igalia.com>
+ <e9b876bea7a2ef33d5e4ca103721135400c875be.camel@mailbox.org>
+ <d505d14d-f62b-4f71-9990-c82411381f48@igalia.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE34:EE_|PH0PR12MB5648:EE_
-X-MS-Office365-Filtering-Correlation-Id: f8bef06c-7231-46c5-972d-08ded1357dc8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700016|376014|82310400026|23010399003|18002099003|56012099006|5023799004|11063799006;
-X-Microsoft-Antispam-Message-Info: YZUb/7TI7yUaj5t+5HCExP7ejmrXWsL73BAqBfjduekzqvvu2F9urvkD/LBzUV50Jcn79amAuwHY6ELs/FqTJOqPT0tkuC64V7xuBFBt5fe/kwedmkC1K3OSqvRbAGGSdNWbrlWMJxYE5u1lT4JsNxxnBa5NXpX/eJdrh7GcQzxGqnP0tJDurDTYwOEyvVIucsDR6n2QDeXNFeiaN65kBDcutY577WoFDVb6RpjXibG31kr4H3Q8VB5G0gJibpEkpglKWlRFcE7fiMzucqB5v1AmkMEfWfEj11Z4wuOhBwGTdt51l5H6e8mnOgHtNnZEkpkK/O0xGEHuNFCeAh5NqILIygrg58cytaozv8c/qrkKUbVrrly6ucq5ciLJTe3FnlSwQ07a3pC6Z2j5WvA+AFjNlQUPgx//gIyJ65DaizdmYC2NDjZyRVSoIKyPIYYDZ1pJpE7xvt1EKyrpg0nblrDvZnNy2GolQFdGeRngsmNKt6T5Za+kIJ069RCnaxCik3IRNzjpBpVyWLjivBUcqLHJZTxDM8jr9ljVp8p6mgofVJ0VKPdmuF0UpUvBgKGM2U/+OUHEizS9zw4YkBVYLxbmSbyjpUZ70lLumZr0X9FAEL4Y3/yF4thFeyp0MTtvTwfRBeXQpFsePoBnbDVHCbuoWMZJUixcvjPyW7Fi5ATh6/q4TqOHackb/DbsEh5wP4UCZrOoDhx9IAf3ur/kwA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700016)(376014)(82310400026)(23010399003)(18002099003)(56012099006)(5023799004)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: lYmbI1v6Ch6YpjWkSmWFUtpWR0kTInwo4kVB+fJuNpwudEMJ0amlNhSJpW2TJbxeMCTmuV342GHNh/tRSIWsBKBMzAMa4aQ8TmigrARgpwzGfBsADNXXMlpG+1gdhRx3ny8d9bzjdMAINWdpy33DO2nYr/cGLEYRwaE84OT5PBp+ENpniv4SLu/krIaU2wzZo5XSqFe7x9n7p/kIykgRLWm6N8ueiRfH9ppI02e2CcxsMSJ+Dg2rEcCtKWLy6ii/wG1xPGk5IapMKA5bP6speN10HZewEShfwSdmVRTVO84+hExVvfun1TULa6gavMDofee9utZltwlG1KcTsLQKKYCM8WAJtmzhYc6cprpW0j8ufwaxAzOBdM8QyjLNX9ZScDrHDNVp/eMTqprN2ukBJhWpNh0Rsv48u0R9Lz4JkY3PpkEoTQw/0xhW+3NzYVdK
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2026 14:41:20.6059 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f8bef06c-7231-46c5-972d-08ded1357dc8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE34.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5648
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MBO-RS-META: cqahuxwfdidhgi3zrmjxt5hybn1pt5rd
+X-MBO-RS-ID: 9b88dd388e103c9be98
+X-Mailman-Approved-At: Wed, 24 Jun 2026 07:49:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,152 +74,107 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[asad.kamal@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	HAS_XOIP(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[phasta@kernel.org];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[phasta@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,mailbox.org:dkim,mailbox.org:mid,mailbox.org:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AB2846B7FC5
+X-Rspamd-Queue-Id: E18E96BC540
 
-amdgpu_pci_remove() calls drm_dev_unplug() before invoking the driver
-fini routines. This causes drm_dev_enter() in amdgpu_ttm_fini() to
-always return false, so iounmap(aper_base_kaddr) never runs on normal
-driver unload, leaving an orphaned entry in the x86 PAT interval tree.
+On Tue, 2026-06-23 at 15:05 +0100, Tvrtko Ursulin wrote:
+> > > There we have this sequence:
+> > >=20
+> > > =C2=A0=C2=A0=C2=A0 spin_lock(&entity->lock);
+> > > =C2=A0=C2=A0=C2=A0 entity->stopped =3D true;
+> > > =C2=A0=C2=A0=C2=A0 sched =3D drm_sched_rq_remove_entity(entity->rq, e=
+ntity);
+> > > =C2=A0=C2=A0=C2=A0 spin_unlock(&entity->lock);
+> > >=20
+> > > =C2=A0=C2=A0=C2=A0 if (sched)
+> > > =C2=A0=C2=A0=C2=A0=C2=A0	drm_sched_flush_run_work(sched);
+> > >=20
+> > > That is, without that check, in theory, an evil driver could race
+> > > drm_sched_entity_select_rq() (via drm_sched_job_arm()) and
+> > > drm_sched_entity_kill(). I am not sure if any driver can actually do
+> > > that at the moment but it felt sensible to express it in code.
+> >=20
+> > The devil is in the "at the moment".
+> >=20
+> > AFAICS and as your explanation sounds, this is an existing problem that
+> > is unrelated to the Flush RFC. So I suppose that this should be a
+> > separate patch (independent from this one) which precisely focusses on
+> > this robustness work.
+>=20
+> Catch is, and why I thought it is justified to do this it in this patch,=
+=20
+> is because before completion was in the entity so whats happening with=
+=20
+> entity->rq->sched after entity is stopped was irrelevant. With this=20
+> patch is it relevant on paper so I considered it prudent to express that=
+=20
+> in the code as well as the comment.
 
-On connected_to_cpu hardware, the aperture is mapped write-back (WB) via
-ioremap_cache(). On reload, IP discovery calls memremap(..., MEMREMAP_WC)
-over the same range. The WC vs WB conflict causes:
+I'm not sure if I can fully follow, but it seems that the stopped
+boolean + spinlock now protects the scheduler pointer?
 
-  ioremap error for 0x..., requested 0x1, got 0x0
-  amdgpu: discovery failed: -2
 
-Fix by switching to devres-managed mappings so cleanup is guaranteed
-regardless of drm_dev_enter() state:
+IDK, I don't feel comfortable right now.. New docu says
 
-- connected_to_cpu path: devm_memremap(MEMREMAP_WB). For
-  IORESOURCE_SYSTEM_RAM ranges this takes the try_ram_remap() shortcut,
-  returning __va(offset) from the existing kernel direct map. No new
-  ioremap VA or PAT entry is created, so there is nothing to orphan.
-
-- dGPU path: devm_ioremap_wc() registers iounmap() as a devres action,
-  guaranteeing cleanup at device_del() time.
-
-Also remove iounmap(aper_base_kaddr) from amdgpu_device_unmap_mmio()
-since the mapping is now devres-owned.
-
-v2: Remove redundant x86_64 guard (Lijo)
-
-Fixes: 9d0af8b4def0 ("drm/amdgpu: pre-map device buffer as cached for A+A config")
-Signed-off-by: Asad Kamal <asad.kamal@amd.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 --
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c    | 39 +++++++++-------------
- 2 files changed, 15 insertions(+), 26 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 5442a1fc1c37..70d07ca187a3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -4190,8 +4190,6 @@ static void amdgpu_device_unmap_mmio(struct amdgpu_device *adev)
- 
- 	iounmap(adev->rmmio);
- 	adev->rmmio = NULL;
--	if (adev->mman.aper_base_kaddr)
--		iounmap(adev->mman.aper_base_kaddr);
- 	adev->mman.aper_base_kaddr = NULL;
- 
- 	/* Memory manager related */
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index f80371bc74d7..352ea6820fcb 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -2118,20 +2118,20 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
- 
- 	/* Change the size here instead of the init above so only lpfn is affected */
- 	amdgpu_ttm_disable_buffer_funcs(adev);
--#ifdef CONFIG_64BIT
--#ifdef CONFIG_X86
--	if (adev->gmc.xgmi.connected_to_cpu)
--		adev->mman.aper_base_kaddr = ioremap_cache(adev->gmc.aper_base,
--				adev->gmc.visible_vram_size);
--
--	else if (adev->gmc.is_app_apu)
--		DRM_DEBUG_DRIVER(
--			"No need to ioremap when real vram size is 0\n");
--	else
--#endif
--		adev->mman.aper_base_kaddr = ioremap_wc(adev->gmc.aper_base,
--				adev->gmc.visible_vram_size);
--#endif
-+	if (adev->gmc.xgmi.connected_to_cpu) {
-+		void *kaddr = devm_memremap(adev->dev, adev->gmc.aper_base,
-+					    adev->gmc.visible_vram_size,
-+					    MEMREMAP_WB);
-+		if (IS_ERR(kaddr))
-+			return PTR_ERR(kaddr);
-+		adev->mman.aper_base_kaddr = (__force void __iomem *)kaddr;
-+	} else if (IS_ENABLED(CONFIG_64BIT) && !adev->gmc.is_app_apu) {
-+		adev->mman.aper_base_kaddr = devm_ioremap_wc(adev->dev,
-+							     adev->gmc.aper_base,
-+							     adev->gmc.visible_vram_size);
-+		if (!adev->mman.aper_base_kaddr)
-+			return -ENOMEM;
-+	}
- 
- 	amdgpu_ttm_init_vram_resv_regions(adev);
- 
-@@ -2247,8 +2247,6 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
+drm_sched_rq_add_entity(struct drm_sched_entity *entity)
+  * @entity: scheduler entity
+  *
+  * Removes a scheduler entity from the run queue.
++ *
++ * Return: DRM scheduler selected to handle this entity or NULL if entity =
+has
++ * already been removed.
   */
- void amdgpu_ttm_fini(struct amdgpu_device *adev)
- {
--	int idx;
--
- 	if (!adev->mman.initialized)
- 		return;
- 
-@@ -2271,14 +2269,7 @@ void amdgpu_ttm_fini(struct amdgpu_device *adev)
- 	amdgpu_ttm_unmark_vram_reserved(adev, AMDGPU_RESV_FW_VRAM_USAGE);
- 	amdgpu_ttm_unmark_vram_reserved(adev, AMDGPU_RESV_DRV_VRAM_USAGE);
- 
--	if (drm_dev_enter(adev_to_drm(adev), &idx)) {
--
--		if (adev->mman.aper_base_kaddr)
--			iounmap(adev->mman.aper_base_kaddr);
--		adev->mman.aper_base_kaddr = NULL;
--
--		drm_dev_exit(idx);
--	}
-+	adev->mman.aper_base_kaddr = NULL;
- 
- 	if (!adev->gmc.is_app_apu)
- 		amdgpu_vram_mgr_fini(adev);
--- 
-2.46.0
 
+
+Isn't a removed entity by definition stopped since drm_sched can't
+access it anymore? Or do we have race there, too?
+
+If so, then stopped and entity->rq->sched =3D=3D NULL represent the same
+state. IOW, the locked bool must be redundant with something.
+
+Right?
+
+>=20
+> Acceptable or unacceptable?
+
+In any case such changes should, wherever possible, be a separate
+patch. For the fact alone that the distinct commit message and
+especially the position / order of the patch within the series helps
+the reviewer greatly in understanding what that particular change
+enables and thus why it's necessary.
+
+
+P.
