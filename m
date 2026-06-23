@@ -2,107 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KH3kBLVeOmpl7QcAu9opvQ
+	id CjeZADVmOmo18AcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 12:23:49 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 12:55:49 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADBB56B63F2
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 12:23:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5750E6B66A3
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 12:55:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=tF0id5Rd;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=SDIyVjvV;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C13610EA7B;
-	Tue, 23 Jun 2026 10:23:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA92210EA94;
+	Tue, 23 Jun 2026 10:55:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010045.outbound.protection.outlook.com [52.101.201.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6B0210EA75
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 10:23:44 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011059.outbound.protection.outlook.com [52.101.52.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09B4B10EA94
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 10:55:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kqPcF8k89Sk2dzgwXq1NAaPnfOE1uDPaoamoHKD8dpRfQSHElE9ZNcqLuc269D+LuA2wNNmGZ0VjtFzOiK0QPajMixiGjui3YaKa1nlW8jZW+aWrg20Ju2JwYxquJVcDr0gHI0yA2rF5u8Oeyu976LZgA4GnKa1icwQhdYYERa4IiAkYNJBfnSjNrtwOlI9PM+9BEo5Q8Svd6DZBIH5RNGjsTU6XTA8CN51i+BmPymODUflYAU8UfBH0pOMd0wAgB5U1E6eCgY+vN/LCxQu4s/KO1UEkDKsrSt+uIKLRyZLPtKExwB2nhR7xrtVVDZ3MD5usdOgycg0gFzCYxcKuEA==
+ b=MMK804zsgXQRs5Id7a/OkYPmG+8zPiRiC1A3eB2JZ6NQdLu+81b1Xq+e8Xx396YGcR4knsHJPuZRr2y4nRYw2S1HLXrspcXPbyPQB328IAtOBv89aaOYTSUozyJGmZkDnanO3DEwrJtns2lgRjNwcjAsXhavVCrCrb76IfdMTSfCNhPItLjkXm4iQereYS+5wQt4bijY3zJ9aI85BgeBm/brxx5F0qWVHFBdcd4igEeDLglC6uf0kgG/ysCl2oC8DepspT+3AChOkGw07OOXjANLndFooAhDZFhsIZxd+0XQ6ka7tPmcLJioPOwN0y68BACF9iuOkCbJrGlE7rI+Og==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ieWHXWJNRa6v/yQUej4Qr9ak9UPsno5OkPzH8n2FLDw=;
- b=VPehOzOjCw0+UvjVhVCntrEpcJv/+C3MCgvfZExDYNdL0q0mDPGNYzGDaaB31bBoAtR8GNDuKIOBQetiFtPSvfu1jTjkc3NyWAuTdrtsbxXC7qGAEyltuGl0xI3yvvE54I/7kPZg5cmcRWfKZPYpD8dxKTkaRPXGdvamCwAAr8N84ZVN1rnL7b0eoD7phcOOfPUzArHAD6p9Jg/WDz7KaJZY69UQ7g+AbnASCS8/fuyoxQCCwXMJ3r1c/Inw+wvE5zDULyYkEbxpgkbZry9Hf1Kjje4GBDd8UlxMKfKR/+QcdDBVeJpSjnfwbQrU0z6IPSnNafQ/oYn5Lzz9MbGcAg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=UPmAV+yB88GdJoJudVD3UBSfsRXpaukAvM9qgwxZkCo=;
+ b=vUvE3og3PUkBmMMUHJ6ScuhNrTWjzUYMZy7ZCrcQMi/vhtMjsBqSlxr4nG4Ot+Jc2Pa18AwfXP6gL+9HgTaczAbRNgQJVPDNT1iXf+SXrKg0+BqpkA4PGu8XV0k8mQqO+tJYtH9HHs8ZphXdLzhQjarxZnHGrIgo7nhZjWHgxQnLgPTmLO0c6Hwh/Ws6AkhjiSja0+5UZXWdzhx8wko/V20YniQWtuiD3a4VxHCEzWAGor4dFwbGn0FzXtfDsx98xLdQQnLaCuqsWxFYfpMP0QEjOKl4T7iE6AobD7ULs2caW4JIRC9eGNbQVw7VWfD9MS3gMUKz5LAzIALlemmC4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ieWHXWJNRa6v/yQUej4Qr9ak9UPsno5OkPzH8n2FLDw=;
- b=tF0id5RdbRZYUDazBfnUfLrVjbl/I2ztjaJ3Y2wnqxqFU7fSHgZlZ+YR16pkYEbHL7NRRfRHoRXKjdKstguYu1s/5XAByFALInvEdn6GUzjZ6nKEOvzWNKw3l76oTGT3okmxUokX1m7vuM3ax54WXee7BtXgjYJJNeGixdft5M4=
-Received: from CH2PR08CA0030.namprd08.prod.outlook.com (2603:10b6:610:5a::40)
- by CH1PR12MB9647.namprd12.prod.outlook.com (2603:10b6:610:2b0::10)
+ bh=UPmAV+yB88GdJoJudVD3UBSfsRXpaukAvM9qgwxZkCo=;
+ b=SDIyVjvVAFRnYoZtFx6/AjCxGeo4HA+Mf53iR0oDVjK8gO9gvE/Ukm6pOsvZcLOcLB338ESu03mUjlfgcq9tQNeRkLz3b/q+WwHY3VP8Zg9W0V5r8K24Z3ljGMH1UhZ24ZUYml7MDrZjtiMdaaJByhs0MZTipdGX8GrZgVlujls=
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
+ by IA1PR12MB6188.namprd12.prod.outlook.com (2603:10b6:208:3e4::6)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Tue, 23 Jun
- 2026 10:23:38 +0000
-Received: from CH1PEPF0000A34A.namprd04.prod.outlook.com
- (2603:10b6:610:5a:cafe::67) by CH2PR08CA0030.outlook.office365.com
- (2603:10b6:610:5a::40) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.20 via Frontend Transport; Tue,
- 23 Jun 2026 10:23:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CH1PEPF0000A34A.mail.protection.outlook.com (10.167.244.5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Tue, 23 Jun 2026 10:23:38 +0000
-Received: from kevin-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 23 Jun
- 2026 05:23:36 -0500
-From: Yang Wang <kevinyang.wang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <alexander.deucher@amd.com>, <hawking.zhang@amd.com>,
- <kenneth.feng@amd.com>
-Subject: [PATCH 3/3] drm/amd/pm: Validate remaining legacy PPLIB table bounds
-Date: Tue, 23 Jun 2026 18:23:19 +0800
-Message-ID: <20260623102319.413960-3-kevinyang.wang@amd.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260623102319.413960-1-kevinyang.wang@amd.com>
-References: <20260623102319.413960-1-kevinyang.wang@amd.com>
-MIME-Version: 1.0
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.13; Tue, 23 Jun
+ 2026 10:55:42 +0000
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc%3]) with mapi id 15.21.0139.009; Tue, 23 Jun 2026
+ 10:55:42 +0000
+Message-ID: <006655b0-c8c7-467a-b0d3-fdd90be831b9@amd.com>
+Date: Tue, 23 Jun 2026 16:25:31 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: protect XCP scheduler selection
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+To: Xiang Liu <xiang.liu@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Hawking.Zhang@amd.com, Tao.Zhou1@amd.com, Stanley.Yang@amd.com,
+ YiPeng.Chai@amd.com
+References: <20260623042319.561959-1-xiang.liu@amd.com>
+ <5c1d6a5b-e1e7-47f0-962f-55e390fe1da9@amd.com>
+Content-Language: en-US
+In-Reply-To: <5c1d6a5b-e1e7-47f0-962f-55e390fe1da9@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: MA5P287CA0203.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1aa::13) To SA0PR12MB7091.namprd12.prod.outlook.com
+ (2603:10b6:806:2d5::17)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000A34A:EE_|CH1PR12MB9647:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4e34b7bf-c0dc-4dc5-e972-08ded1117d56
+X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|IA1PR12MB6188:EE_
+X-MS-Office365-Filtering-Correlation-Id: 82371fa5-54e9-4c01-07fd-08ded115f7ff
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|1800799024|23010399003|82310400026|376014|6133799003|3023799007|18002099003|22082099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: aGWjeK6ryN8+RLn8eAQaXbv3aEbiFS2CP+9NrQ3gtsmcp2YlwHoTVW0QT51RieH3xByG89MOFB0cB2DIZ47GiF0c/7a2qVrnkkhglcidHZiGsOpY+wYcvA9Lxr6/Arfskwr0Q/fitSaxC1OVg+dugrxgaOMYz4ut3Jr1hwbGboykpJpbjqfsNLDSUkZEAPLS6mxMV3/IR9xme9tBxUD3EtIyIAsEzF+6NKhLZlf6havRNJ5WRe7S+yHxUc6TweldIkn0xWrtFla0gsyQzZ5Of07S2ihaBldNjAmCrdUNKD/uqm3sBIsSPJxs7ZDUt+CwcldBP1Y1+3EPvFEZKNYMPjuXjdJHkjh0qX/8vdtACKCXGxY2V9BGmTX/930BNrSrFOOqRKy8RTVQTa2ec+tiFULQ2AknD4M6+6YNsJJTg1feryBvhI4WugUlNLKjkqia+OtnVSQfs8Wjd4hpbg9YN6E0c99/DJyfi5Kq8fu++Y/YH4BPwLyoDmawr8Xutf92sZjSK41iWuB+LnejmGkzJJ/heqmK17gJ4A0NEP1vKwgCQjh/7Le3H7pCGiOcqLrvCDtOtV5wjZu0sXAZH6r26fBmgaPH+yay5TsbFjJKxGN8U2nZt8Gi3Yyq6bItkeb7uFL5VyfhJxZo/0+zbNlcBcXu+6CeJJ5XMbH26p0KnFZvgJSNH+T/Q7yUpt1xXL9gRMqDy6W7pb4ofVmhbT9SVg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(1800799024)(23010399003)(82310400026)(376014)(6133799003)(3023799007)(18002099003)(22082099003)(11063799006)(56012099006);
+ ARA:13230040|1800799024|376014|366016|23010399003|22082099003|11063799006|5023799004|56012099006|18002099003|4143699003;
+X-Microsoft-Antispam-Message-Info: 217pI/TmbffNADRwC9qY8Fz0nBeSeVadgNZ+qLTdeHYpe64LBrYC6WX6C1A6/ySH8zf4UqIMEXx2b/AtPuzVspN3BTtc5zfMXJDTy7yh2kQyyLsOCZyRGYk4vqbAaAmKD4qgVrFJXChbQQDZYAUpC2OK5962/KUO/ZcGAD0RSMz8I/G0xMq5bm2tyjO+oXWIddVxRgK67WQQsIhbHMn4ve1NMWf6VaJRJeFyBQUKTSjTyDWyEzaz+iwYgNtwdcF3MigqNTVe6DQ5Yh5Em0eO8rc47oIiOrHLkSNNE+/R31Do7XeuGOYBl89IJ/j+WRdIpBJRQukBdHBqrVVGwxCQr7Q1VcpF9j8k6q2nkujHmkVf7WTD2HyjG462GoN85aifwAw1gYEOV7Wj7Vww0nsZi0XKAQV4iA0waNtVIWRRx1+S1IfAC1siR+gl7YIQOwf99QQ8oSsHee1pWqDO5VBjlvLJG3aQUp7H7tyoNarnSMFpfBKSYRWSVTwtgyL+X6PK/BVJh2qjurnKyjsiv0b2vmJ51XJwcFUOGfV0xxxKiKFnyrUypydYkJPvSYwuTNujBFh2LP7Kuiwx5gQ/SVMdrAa42TPA8LjxRmzgdK0aLwg6CP3Pvj/Lfs/vKfbWMSkppbSJbij5IG9TBA+l+RkcdY/a0ZIUqzrkRFXUP7guXMg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(22082099003)(11063799006)(5023799004)(56012099006)(18002099003)(4143699003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: l2JMRfNs0WFfq46WMhFshqnBhLIwoELjUMYf8FjCTUGfCcLb2KtDiWPwv+Sss7peVjvgY6QiYRLLiXTOENVUk65IA0kLJuZEDKNWV0ldzD1B2ypueBJK9Q1GIqkjshVnNiiR2nnCKDaxqmubndwx8SCUfVoQfbIaFjn/v4xVDJ8wyh0NgGWSST6m9sYVe3xixlwjxg/F1uH6DVlmYkpGeqQ1P9L8cjbCwl9CBGbzLB7GtEthD1hzJWeOBuAJafnW72pAqTkFTSzYc6kEFJ2TWJ1BubAJPfBADq4Oj887s/BAzDVqgDsNZSq3O5B96vhP8YDxOZyfuVqc8F4DK4TJMdqzhxWkzfh9J12nzOdDzlDbFq4zjxtX+3hI3Y8cJEAr0WP7hEZf/U1wCKbeGXM+4bfdwWXh2CoMpGJs9FfMbJxvX/DVk0Y1lQ0fWwcsUrrH
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?enlDUFNvYThMS3RLQjBVTjlnNHZ2dWNaWlFyNWZObDE1WXI4WjNza0N4L0tM?=
+ =?utf-8?B?b3JHdU1OQk4xWWgwMEpmeTlnVlR6RmVPblZDOGxYdjRoLzMwN2k5YjI3M3Bh?=
+ =?utf-8?B?WTgzUVNuUGRoL2c5aHFEd0VnVDA5SVFINlhlZUFCTkNTS0FXd1p3R1NKVlVt?=
+ =?utf-8?B?eHZROGUrem9RNk9Nc292YlVVUnFPZlFWY2JZendpcm02V1VEaDlaM0FsTUtJ?=
+ =?utf-8?B?cFNkaHhvVnpyR3RDenNlOE53Q1lGUS9aWFlZc1kwcWtlL3k2RlRrTWJEVnJB?=
+ =?utf-8?B?S2JlSXVMbUlsT05nVlJ2Yk9hZTZHYjRHZHhuUFVhbnoyQ3hEeW9QTnBrVXNx?=
+ =?utf-8?B?Z0FWSFFxS1lvMFBjemxEOWxyRUdFOHVQampRQldLUmx0eDJIRGx2azVEays4?=
+ =?utf-8?B?WXlJUUNuRXJ0dGZOVXpjVWgvb1JsaXUxeVpRQUZNSTJUKytYbEdWelpERkNp?=
+ =?utf-8?B?a2ZmK3dvQjRKOWNkZnhyU1VXeWhjbCtYYzF6cEN5a1luVC8wa1R1NmRUS1J3?=
+ =?utf-8?B?NmJERnl5bVZERFNXdFdJZm8vaEZScitPeXhlN1F6Yzh2RDJTWVlFcHcwWmxy?=
+ =?utf-8?B?amNNeUsvbjFMbDlaN1lwNzdQQldqWk5INmc4N3BHVkdXRDZZbkJxdExDTy9w?=
+ =?utf-8?B?eEwzcnZBUnFyYkExUFNrMVpYc201TlNmTEFWZkl0eEsvN2VGZUNrWUNjdExV?=
+ =?utf-8?B?Z0p6K1VKSjJpc0JuY0RPV05CRTBicmF5VWIvN3FJMEJuSHVMc3JrL0UxcitQ?=
+ =?utf-8?B?T1pYTXdSUEVBeVV4RFp1V1IrQ0huQitmQldjSmlsL1prVmFuZzMzRFVpeE5D?=
+ =?utf-8?B?VS9vYmJnOFNjZFYvVExHaENLcEZ1SXZVa2RJcno4cnV4eXlhODJUMS9PdE1t?=
+ =?utf-8?B?NlFPeDZwamp0UGYxNnRvL0t1T2syUjFuaXRjRUpSSzlmQk1qcmMwaUk5b1pG?=
+ =?utf-8?B?dzVYaStIWlRlT2h5UjFtSzVreGlQYUdKZHlRWU53TER1T2V1WUszTGpYTWJW?=
+ =?utf-8?B?cys3Q3NNVEZrK2F3Zjd1M1hGVEJwOXlNYXdVUE01bGdGQlRjWkQxRUptM2NH?=
+ =?utf-8?B?MndMRDlxa3VIaFNHZ2tWL2ZMVFdxYks4WS9XN0VlWElUNmsvVW5EMW1qb0FP?=
+ =?utf-8?B?TERmcUZUSWc0Njg3OHRJUFlGVGxBbVEzS2srM2pnTlFsRXE2ZW1VempvZW9y?=
+ =?utf-8?B?ZEJidzc1R1Q1SEo3VzNrb3hKd3RhYjRNMWxEUzZzQ09wTHliN2w1bjdTS2xC?=
+ =?utf-8?B?OGNseFM0VVBoYmlHZ0RvbU1wZENla2hUdy9GMHZhM3V6aWdnQTRTRDRtWm9V?=
+ =?utf-8?B?TDlCZjJmeXMxSmVOdEsydlZYQmw2KzJSMVVNN2c0OFhGdktGSWdkUTBVcUNC?=
+ =?utf-8?B?aVdHTVZMT3U1dEtvQjVLb2lnSzVVOXNhTVM4Q2F5RjZIQVdVb0ZjN3BuZWpH?=
+ =?utf-8?B?OER3SkhmbUNaQXR4RXZzVjBnMDRsSkdWYUVxMGJId0NyWEtQY2xhUk5Oc2tt?=
+ =?utf-8?B?aFNpZVIzdTZQYUZqdnF5U0VxUWhTYWN4NG5RVk9TWS91WVZiYlRqSXU1cnhZ?=
+ =?utf-8?B?S2RibDE5akkrWXJReHUrU0p5blQ3bXdNYXh3S1FiSDBBWUVvbUxmWlhubEl6?=
+ =?utf-8?B?azZEdWEvRENMT0V5cGxyR25YMVNMclBOSDFDcFRVK0FGOG4xUDVubmlyUEVI?=
+ =?utf-8?B?VU9VSXFlRUFnVDlFc3MwWjZ5SnpDMVpzN05ZSnlWbWt6ei95ZnE2NWZ3UXg3?=
+ =?utf-8?B?d3N1RDlrZ3dmcU9rMUxqMFVkeTQraW8vSHNoNGErUjE2eE1QMFhZTnNhdHpI?=
+ =?utf-8?B?WTdaMmpaenQxc1lmOFJNSVhDeUhRR1BOMFZ3OSt0eFpxRFVxVzhFWER3SE5n?=
+ =?utf-8?B?emVYRTBtMWl4T0xHTm9lSjVKNFI3TmFHb2hrMEFPRWRvN1NlK0tLRmdEQUpi?=
+ =?utf-8?B?MjZRUHVJRDAxTTBld2doRUM1M3AzRVhBVVJ1c29RdWJGTExGOHhQdVBWNS9G?=
+ =?utf-8?B?bHhteEJzUEh5bnBJYzg5QjlVeExzVXB3WWt6NU5sV0lSdHhJNVV6WHpPQk1J?=
+ =?utf-8?B?bDUxR2JpN3JYS1B0K1Z4dndEcFE5M0xTY01aaW9PZ2c4aE9WN0tuKys5Q1Fy?=
+ =?utf-8?B?QVhOcmU0ajFZd0V5b1VkMXNTQmUwSjVkTGtKVHpBQ0UyUlNHVjlLT0s1U3Rq?=
+ =?utf-8?B?cnAvb0RmWjY0VkhrbGh0dWVhZlF0QW54ZUhsQ240UXhRZVZZTGFkR1R6Ti9w?=
+ =?utf-8?B?NkwwUVJaQWNIekg3RjA1bUFCVXV4RkpXZEN3RTUxQmIwcFhxOGxuemo3aEln?=
+ =?utf-8?Q?5FUPVs3R4HGA6aHEfj?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2026 10:23:38.0130 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e34b7bf-c0dc-4dc5-e972-08ded1117d56
+X-MS-Exchange-CrossTenant-Network-Message-Id: 82371fa5-54e9-4c01-07fd-08ded115f7ff
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2026 10:55:42.0155 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000A34A.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PR12MB9647
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: auYbae1DwvKccloo+d8mLElpSTTdbQrsO0KRsWZJsTU6pT8GHmsZgn0/kNUxX6Y7
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6188
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,645 +140,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:xiang.liu@amd.com,m:Hawking.Zhang@amd.com,m:Tao.Zhou1@amd.com,m:Stanley.Yang@amd.com,m:YiPeng.Chai@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kevinyang.wang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
-	RCVD_COUNT_FIVE(0.00)[6];
-	HAS_XOIP(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[amd.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: ADBB56B63F2
+X-Rspamd-Queue-Id: 5750E6B66A3
 
-The legacy PPLIB parser still had paths that consumed VBIOS offsets,
-entry counts and clock-info indices before proving the referenced data
-fit within soft_pp_table_size. Malformed tables can trigger
-out-of-bounds reads while parsing clock-voltage, CAC, fan, PPM and
-phase-shedding data.
 
-Add shared bounds checks for the remaining fixed and variable-length
-legacy subtables. Also validate UVD/VCE clock-info indices before
-indexing their clock-info arrays.
 
-Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
----
- .../amd/pm/powerplay/hwmgr/processpptables.c  | 427 ++++++++++++++----
- 1 file changed, 338 insertions(+), 89 deletions(-)
+On 23-Jun-26 11:22 AM, Lazar, Lijo wrote:
+> 
+> 
+> On 23-Jun-26 9:53 AM, Xiang Liu wrote:
+>> amdgpu_xcp_select_scheds() reads the per-XCP scheduler list.
+>> Partition switching rebuilds the same table under xcp_lock.
+>>
+>> Take xcp_lock around XCP scheduler selection and release.
+>> This prevents readers from observing partially rebuilt state.
+>>
+>> Also revalidate the selected XCP id before indexing the table.
+>> An open file can outlive a switch to another partition mode.
+>>
+>> Signed-off-by: Xiang Liu <xiang.liu@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c | 37 +++++++++++++++++--------
+>>   1 file changed, 26 insertions(+), 11 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c b/drivers/gpu/ 
+>> drm/amd/amdgpu/amdgpu_xcp.c
+>> index 88e6eab91bc6..1db7d2ad01fc 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c
+>> @@ -469,16 +469,21 @@ void amdgpu_xcp_release_sched(struct 
+>> amdgpu_device *adev,
+>>   {
+>>       struct drm_gpu_scheduler *sched;
+>>       struct amdgpu_ring *ring;
+>> +    struct amdgpu_xcp_mgr *xcp_mgr = adev->xcp_mgr;
+>> -    if (!adev->xcp_mgr)
+>> +    if (!xcp_mgr)
+>>           return;
+>>       sched = entity->entity.rq->sched;
+>> -    if (drm_sched_wqueue_ready(sched)) {
+>> -        ring = to_amdgpu_ring(entity->entity.rq->sched);
+>> -        if (ring->xcp_id < MAX_XCP)
+>> -            atomic_dec(&adev->xcp_mgr->xcp[ring->xcp_id].ref_cnt);
+>> -    }
+>> +    if (!drm_sched_wqueue_ready(sched))
+>> +        return;
+>> +
+>> +    ring = to_amdgpu_ring(sched);
+>> +
+>> +    mutex_lock(&xcp_mgr->xcp_lock);
+>> +    if (ring->xcp_id < xcp_mgr->num_xcps && xcp_mgr->xcp[ring- 
+>> >xcp_id].valid)
+>> +        atomic_dec(&xcp_mgr->xcp[ring->xcp_id].ref_cnt);
+>> +    mutex_unlock(&xcp_mgr->xcp_lock);
+>>   }
+>>   int amdgpu_xcp_select_scheds(struct amdgpu_device *adev,
+>> @@ -490,7 +495,9 @@ int amdgpu_xcp_select_scheds(struct amdgpu_device 
+>> *adev,
+>>       u32 sel_xcp_id;
+>>       int i;
+>>       struct amdgpu_xcp_mgr *xcp_mgr = adev->xcp_mgr;
+>> +    int r = 0;
+>> +    mutex_lock(&xcp_mgr->xcp_lock);
+>>       if (fpriv->xcp_id == AMDGPU_XCP_NO_PARTITION) {
+>>           u32 least_ref_cnt = ~0;
+>> @@ -507,19 +514,27 @@ int amdgpu_xcp_select_scheds(struct 
+>> amdgpu_device *adev,
+>>       }
+>>       sel_xcp_id = fpriv->xcp_id;
+>> +    if (sel_xcp_id >= xcp_mgr->num_xcps || !xcp_mgr- 
+>> >xcp[sel_xcp_id].valid) {
+>> +        dev_err(adev->dev, "Selected partition #%d is not valid.", 
+>> sel_xcp_id);
+>> +        r = -ENODEV;
+>> +        goto out;
+>> +    }
+>> +
+>>       if (xcp_mgr->xcp[sel_xcp_id].gpu_sched[hw_ip] 
+>> [hw_prio].num_scheds) {
+>>           *num_scheds =
+>> -            xcp_mgr->xcp[fpriv->xcp_id].gpu_sched[hw_ip] 
+>> [hw_prio].num_scheds;
+>> +            xcp_mgr->xcp[sel_xcp_id].gpu_sched[hw_ip] 
+>> [hw_prio].num_scheds;
+>>           *scheds =
+>> -            xcp_mgr->xcp[fpriv->xcp_id].gpu_sched[hw_ip][hw_prio].sched;
+>> -        atomic_inc(&adev->xcp_mgr->xcp[sel_xcp_id].ref_cnt);
+>> +            xcp_mgr->xcp[sel_xcp_id].gpu_sched[hw_ip][hw_prio].sched;
+>> +        atomic_inc(&xcp_mgr->xcp[sel_xcp_id].ref_cnt);
+>>           dev_dbg(adev->dev, "Selected partition #%d", sel_xcp_id);
+>>       } else {
+>>           dev_err(adev->dev, "Failed to schedule partition #%d.", 
+>> sel_xcp_id);
+>> -        return -ENOENT;
+>> +        r = -ENOENT;
+> 
+> Doesn't this require goto out as well? Or, for simplicity you could use 
+> guard(mutex)
+> 
+> Thanks,
+> Lijo>       }
+>> -    return 0;
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c
-index b2e1123844ec..678c31abe4c4 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/processpptables.c
-@@ -55,6 +55,159 @@ static bool pp_table_has_space(struct pp_hwmgr *hwmgr, size_t offset,
- 	return offset <= table_size && size <= table_size - offset;
- }
- 
-+static int get_pplib_subtable(struct pp_hwmgr *hwmgr,
-+			      const ATOM_PPLIB_POWERPLAYTABLE *powerplay_table,
-+			      u16 table_offset, size_t table_size,
-+			      const void **table)
-+{
-+	PP_ASSERT_WITH_CODE((table_offset != 0),
-+			    "Invalid PowerPlay Table!", return -1);
-+	PP_ASSERT_WITH_CODE((pp_table_has_space(hwmgr, table_offset,
-+						table_size)),
-+			    "Invalid PowerPlay Table!", return -1);
-+
-+	*table = (const void *)(((unsigned long)powerplay_table) + table_offset);
-+
-+	return 0;
-+}
-+
-+static int validate_pplib_table_entries(struct pp_hwmgr *hwmgr,
-+					u16 table_offset, size_t entries_offset,
-+					u8 num_entries, size_t entry_size)
-+{
-+	size_t table_size;
-+
-+	PP_ASSERT_WITH_CODE((num_entries != 0),
-+			    "Invalid PowerPlay Table!", return -1);
-+
-+	table_size = entries_offset + num_entries * entry_size;
-+	PP_ASSERT_WITH_CODE((pp_table_has_space(hwmgr, table_offset,
-+						table_size)),
-+			    "Invalid PowerPlay Table!", return -1);
-+
-+	return 0;
-+}
-+
-+static int validate_pplib_optional_table_entries(struct pp_hwmgr *hwmgr,
-+					u16 table_offset, size_t entries_offset,
-+					u8 num_entries, size_t entry_size)
-+{
-+	size_t table_size;
-+
-+	table_size = entries_offset + num_entries * entry_size;
-+	PP_ASSERT_WITH_CODE((pp_table_has_space(hwmgr, table_offset,
-+						table_size)),
-+			    "Invalid PowerPlay Table!", return -1);
-+
-+	return 0;
-+}
-+
-+static int get_pplib_clock_voltage_dependency_table(struct pp_hwmgr *hwmgr,
-+			const ATOM_PPLIB_POWERPLAYTABLE *powerplay_table,
-+			u16 table_offset,
-+			const ATOM_PPLIB_Clock_Voltage_Dependency_Table **table)
-+{
-+	const ATOM_PPLIB_Clock_Voltage_Dependency_Table *dep_table;
-+	int ret;
-+
-+	ret = get_pplib_subtable(hwmgr, powerplay_table, table_offset,
-+				 sizeof(*dep_table), (const void **)&dep_table);
-+	if (ret)
-+		return ret;
-+
-+	ret = validate_pplib_table_entries(hwmgr, table_offset,
-+					   offsetof(ATOM_PPLIB_Clock_Voltage_Dependency_Table,
-+						    entries),
-+					   dep_table->ucNumEntries,
-+					   sizeof(ATOM_PPLIB_Clock_Voltage_Dependency_Record));
-+	if (ret)
-+		return ret;
-+
-+	*table = dep_table;
-+
-+	return 0;
-+}
-+
-+static int get_pplib_clock_voltage_limit_table(struct pp_hwmgr *hwmgr,
-+			const ATOM_PPLIB_POWERPLAYTABLE *powerplay_table,
-+			u16 table_offset,
-+			const ATOM_PPLIB_Clock_Voltage_Limit_Table **table)
-+{
-+	const ATOM_PPLIB_Clock_Voltage_Limit_Table *limit_table;
-+	int ret;
-+
-+	ret = get_pplib_subtable(hwmgr, powerplay_table, table_offset,
-+				 sizeof(*limit_table),
-+				 (const void **)&limit_table);
-+	if (ret)
-+		return ret;
-+
-+	ret = validate_pplib_table_entries(hwmgr, table_offset,
-+					   offsetof(ATOM_PPLIB_Clock_Voltage_Limit_Table,
-+						    entries),
-+					   limit_table->ucNumEntries,
-+					   sizeof(ATOM_PPLIB_Clock_Voltage_Limit_Record));
-+	if (ret)
-+		return ret;
-+
-+	*table = limit_table;
-+
-+	return 0;
-+}
-+
-+static int get_pplib_cac_leakage_table(struct pp_hwmgr *hwmgr,
-+			const ATOM_PPLIB_POWERPLAYTABLE *powerplay_table,
-+			u16 table_offset,
-+			const ATOM_PPLIB_CAC_Leakage_Table **table)
-+{
-+	const ATOM_PPLIB_CAC_Leakage_Table *leakage_table;
-+	int ret;
-+
-+	ret = get_pplib_subtable(hwmgr, powerplay_table, table_offset,
-+				 sizeof(*leakage_table),
-+				 (const void **)&leakage_table);
-+	if (ret)
-+		return ret;
-+
-+	ret = validate_pplib_optional_table_entries(hwmgr, table_offset,
-+					   offsetof(ATOM_PPLIB_CAC_Leakage_Table,
-+						    entries),
-+					   leakage_table->ucNumEntries,
-+					   sizeof(ATOM_PPLIB_CAC_Leakage_Record));
-+	if (ret)
-+		return ret;
-+
-+	*table = leakage_table;
-+
-+	return 0;
-+}
-+
-+static int get_pplib_phase_shedding_table(struct pp_hwmgr *hwmgr,
-+			const ATOM_PPLIB_POWERPLAYTABLE *powerplay_table,
-+			u16 table_offset,
-+			const ATOM_PPLIB_PhaseSheddingLimits_Table **table)
-+{
-+	const ATOM_PPLIB_PhaseSheddingLimits_Table *phase_table;
-+	int ret;
-+
-+	ret = get_pplib_subtable(hwmgr, powerplay_table, table_offset,
-+				 sizeof(*phase_table), (const void **)&phase_table);
-+	if (ret)
-+		return ret;
-+
-+	ret = validate_pplib_optional_table_entries(hwmgr, table_offset,
-+					   offsetof(ATOM_PPLIB_PhaseSheddingLimits_Table,
-+						    entries),
-+					   phase_table->ucNumEntries,
-+					   sizeof(ATOM_PPLIB_PhaseSheddingLimits_Record));
-+	if (ret)
-+		return ret;
-+
-+	*table = phase_table;
-+
-+	return 0;
-+}
-+
- static const ATOM_PPLIB_EXTENDEDHEADER *
- get_extended_header(struct pp_hwmgr *hwmgr,
- 		    const ATOM_PPLIB_POWERPLAYTABLE *powerplay_table,
-@@ -1143,14 +1296,36 @@ static int init_thermal_controller(
-         if (powerplay_table->usTableSize >= sizeof(ATOM_PPLIB_POWERPLAYTABLE3)) {
- 		const ATOM_PPLIB_POWERPLAYTABLE3 *powerplay_table3 =
- 			(const ATOM_PPLIB_POWERPLAYTABLE3 *)powerplay_table;
-+		u16 fan_table_offset;
- 
- 		if (0 == le16_to_cpu(powerplay_table3->usFanTableOffset)) {
- 			hwmgr->thermal_controller.use_hw_fan_control = 1;
- 			return 0;
- 		} else {
--			const ATOM_PPLIB_FANTABLE *fan_table =
--				(const ATOM_PPLIB_FANTABLE *)(((unsigned long)powerplay_table) +
--							      le16_to_cpu(powerplay_table3->usFanTableOffset));
-+			const ATOM_PPLIB_FANTABLE *fan_table;
-+			size_t fan_table_size;
-+
-+			fan_table_offset = le16_to_cpu(powerplay_table3->usFanTableOffset);
-+			if (!pp_table_has_space(hwmgr, fan_table_offset,
-+						sizeof(*fan_table)))
-+				return -EINVAL;
-+
-+			fan_table = (const ATOM_PPLIB_FANTABLE *)
-+				(((unsigned long)powerplay_table) + fan_table_offset);
-+			if (fan_table->ucFanTableFormat >= 7)
-+				fan_table_size = sizeof(ATOM_PPLIB_FANTABLE5);
-+			else if (fan_table->ucFanTableFormat >= 6)
-+				fan_table_size = sizeof(ATOM_PPLIB_FANTABLE4);
-+			else if (fan_table->ucFanTableFormat >= 3)
-+				fan_table_size = sizeof(ATOM_PPLIB_FANTABLE3);
-+			else if (fan_table->ucFanTableFormat >= 2)
-+				fan_table_size = sizeof(ATOM_PPLIB_FANTABLE2);
-+			else
-+				fan_table_size = sizeof(ATOM_PPLIB_FANTABLE);
-+
-+			if (!pp_table_has_space(hwmgr, fan_table_offset,
-+						fan_table_size))
-+				return -EINVAL;
- 
- 			if (1 <= fan_table->ucFanTableFormat) {
- 				hwmgr->thermal_controller.advanceFanControlParameters.ucTHyst =
-@@ -1176,16 +1351,14 @@ static int init_thermal_controller(
- 
- 			if (2 <= fan_table->ucFanTableFormat) {
- 				const ATOM_PPLIB_FANTABLE2 *fan_table2 =
--					(const ATOM_PPLIB_FANTABLE2 *)(((unsigned long)powerplay_table) +
--								       le16_to_cpu(powerplay_table3->usFanTableOffset));
-+					(const ATOM_PPLIB_FANTABLE2 *)fan_table;
- 				hwmgr->thermal_controller.advanceFanControlParameters.usTMax =
- 					le16_to_cpu(fan_table2->usTMax);
- 			}
- 
- 			if (3 <= fan_table->ucFanTableFormat) {
- 				const ATOM_PPLIB_FANTABLE3 *fan_table3 =
--					(const ATOM_PPLIB_FANTABLE3 *) (((unsigned long)powerplay_table) +
--									le16_to_cpu(powerplay_table3->usFanTableOffset));
-+					(const ATOM_PPLIB_FANTABLE3 *)fan_table;
- 
- 				hwmgr->thermal_controller.advanceFanControlParameters.ucFanControlMode =
- 					fan_table3->ucFanControlMode;
-@@ -1206,8 +1379,7 @@ static int init_thermal_controller(
- 
- 			if (6 <= fan_table->ucFanTableFormat) {
- 				const ATOM_PPLIB_FANTABLE4 *fan_table4 =
--					(const ATOM_PPLIB_FANTABLE4 *)(((unsigned long)powerplay_table) +
--								       le16_to_cpu(powerplay_table3->usFanTableOffset));
-+					(const ATOM_PPLIB_FANTABLE4 *)fan_table;
- 
- 				phm_cap_set(hwmgr->platform_descriptor.platformCaps,
- 					    PHM_PlatformCaps_FanSpeedInTableIsRPM);
-@@ -1218,8 +1390,7 @@ static int init_thermal_controller(
- 
- 			if (7 <= fan_table->ucFanTableFormat) {
- 				const ATOM_PPLIB_FANTABLE5 *fan_table5 =
--					(const ATOM_PPLIB_FANTABLE5 *)(((unsigned long)powerplay_table) +
--								       le16_to_cpu(powerplay_table3->usFanTableOffset));
-+					(const ATOM_PPLIB_FANTABLE5 *)fan_table;
- 
- 				if (0x67A2 == adev->pdev->device ||
- 				    0x67A9 == adev->pdev->device ||
-@@ -1351,8 +1522,14 @@ static int get_uvd_clock_voltage_limit_table(struct pp_hwmgr *hwmgr,
- 	uvd_table->count = table->numEntries;
- 
- 	for (i = 0; i < table->numEntries; i++) {
--		const UVDClockInfo *entry =
--			&array->entries[table->entries[i].ucUVDClockInfoIndex];
-+		const UVDClockInfo *entry;
-+
-+		if (table->entries[i].ucUVDClockInfoIndex >= array->ucNumEntries) {
-+			kfree(uvd_table);
-+			return -EINVAL;
-+		}
-+
-+		entry = &array->entries[table->entries[i].ucUVDClockInfoIndex];
- 		uvd_table->entries[i].v = (unsigned long)le16_to_cpu(table->entries[i].usVoltage);
- 		uvd_table->entries[i].vclk = ((unsigned long)entry->ucVClkHigh << 16)
- 					 | le16_to_cpu(entry->usVClkLow);
-@@ -1380,7 +1557,14 @@ static int get_vce_clock_voltage_limit_table(struct pp_hwmgr *hwmgr,
- 
- 	vce_table->count = table->numEntries;
- 	for (i = 0; i < table->numEntries; i++) {
--		const VCEClockInfo *entry = &array->entries[table->entries[i].ucVCEClockInfoIndex];
-+		const VCEClockInfo *entry;
-+
-+		if (table->entries[i].ucVCEClockInfoIndex >= array->ucNumEntries) {
-+			kfree(vce_table);
-+			return -EINVAL;
-+		}
-+
-+		entry = &array->entries[table->entries[i].ucVCEClockInfoIndex];
- 
- 		vce_table->entries[i].v = (unsigned long)le16_to_cpu(table->entries[i].usVoltage);
- 		vce_table->entries[i].evclk = ((unsigned long)entry->ucEVClkHigh << 16)
-@@ -1474,12 +1658,20 @@ static int init_clock_voltage_dependency(struct pp_hwmgr *hwmgr,
- 		const VCEClockInfoArray *array = (const VCEClockInfoArray *)
- 				(((unsigned long) powerplay_table) +
- 				vce_clock_info_array_offset);
--		const ATOM_PPLIB_VCE_Clock_Voltage_Limit_Table *table =
--				(const ATOM_PPLIB_VCE_Clock_Voltage_Limit_Table *)
--				(((unsigned long) powerplay_table) + table_offset);
--		result = get_vce_clock_voltage_limit_table(hwmgr,
--				&hwmgr->dyn_state.vce_clock_voltage_dependency_table,
--				table, array);
-+		const ATOM_PPLIB_VCE_Clock_Voltage_Limit_Table *table;
-+
-+		result = get_pplib_subtable(hwmgr, powerplay_table, table_offset,
-+				sizeof(*table), (const void **)&table);
-+		if (!result)
-+			result = validate_pplib_optional_table_entries(hwmgr, table_offset,
-+				offsetof(ATOM_PPLIB_VCE_Clock_Voltage_Limit_Table,
-+					 entries),
-+				table->numEntries,
-+				sizeof(ATOM_PPLIB_VCE_Clock_Voltage_Limit_Record));
-+		if (!result)
-+			result = get_vce_clock_voltage_limit_table(hwmgr,
-+					&hwmgr->dyn_state.vce_clock_voltage_dependency_table,
-+					table, array);
- 	}
- 
- 	uvd_clock_info_array_offset = get_uvd_clock_info_array_offset(hwmgr, powerplay_table);
-@@ -1489,40 +1681,78 @@ static int init_clock_voltage_dependency(struct pp_hwmgr *hwmgr,
- 		const UVDClockInfoArray *array = (const UVDClockInfoArray *)
- 				(((unsigned long) powerplay_table) +
- 				uvd_clock_info_array_offset);
--		const ATOM_PPLIB_UVD_Clock_Voltage_Limit_Table *ptable =
--				(const ATOM_PPLIB_UVD_Clock_Voltage_Limit_Table *)
--				(((unsigned long) powerplay_table) + table_offset);
--		result = get_uvd_clock_voltage_limit_table(hwmgr,
--				&hwmgr->dyn_state.uvd_clock_voltage_dependency_table, ptable, array);
-+		const ATOM_PPLIB_UVD_Clock_Voltage_Limit_Table *ptable;
-+
-+		result = get_pplib_subtable(hwmgr, powerplay_table, table_offset,
-+				sizeof(*ptable), (const void **)&ptable);
-+		if (!result)
-+			result = validate_pplib_optional_table_entries(hwmgr, table_offset,
-+				offsetof(ATOM_PPLIB_UVD_Clock_Voltage_Limit_Table,
-+					 entries),
-+				ptable->numEntries,
-+				sizeof(ATOM_PPLIB_UVD_Clock_Voltage_Limit_Record));
-+		if (!result)
-+			result = get_uvd_clock_voltage_limit_table(hwmgr,
-+					&hwmgr->dyn_state.uvd_clock_voltage_dependency_table,
-+					ptable, array);
- 	}
- 
- 	table_offset = get_samu_clock_voltage_limit_table_offset(hwmgr,
- 							    powerplay_table);
- 
- 	if (table_offset > 0) {
--		const ATOM_PPLIB_SAMClk_Voltage_Limit_Table *ptable =
--				(const ATOM_PPLIB_SAMClk_Voltage_Limit_Table *)
--				(((unsigned long) powerplay_table) + table_offset);
--		result = get_samu_clock_voltage_limit_table(hwmgr,
--				&hwmgr->dyn_state.samu_clock_voltage_dependency_table, ptable);
-+		const ATOM_PPLIB_SAMClk_Voltage_Limit_Table *ptable;
-+
-+		result = get_pplib_subtable(hwmgr, powerplay_table, table_offset,
-+				sizeof(*ptable), (const void **)&ptable);
-+		if (!result)
-+			result = validate_pplib_optional_table_entries(hwmgr, table_offset,
-+				offsetof(ATOM_PPLIB_SAMClk_Voltage_Limit_Table,
-+					 entries),
-+				ptable->numEntries,
-+				sizeof(ATOM_PPLIB_SAMClk_Voltage_Limit_Record));
-+		if (!result)
-+			result = get_samu_clock_voltage_limit_table(hwmgr,
-+					&hwmgr->dyn_state.samu_clock_voltage_dependency_table,
-+					ptable);
- 	}
- 
- 	table_offset = get_acp_clock_voltage_limit_table_offset(hwmgr,
- 							     powerplay_table);
- 
- 	if (table_offset > 0) {
--		const ATOM_PPLIB_ACPClk_Voltage_Limit_Table *ptable =
--				(const ATOM_PPLIB_ACPClk_Voltage_Limit_Table *)
--				(((unsigned long) powerplay_table) + table_offset);
--		result = get_acp_clock_voltage_limit_table(hwmgr,
--				&hwmgr->dyn_state.acp_clock_voltage_dependency_table, ptable);
-+		const ATOM_PPLIB_ACPClk_Voltage_Limit_Table *ptable;
-+
-+		result = get_pplib_subtable(hwmgr, powerplay_table, table_offset,
-+				sizeof(*ptable), (const void **)&ptable);
-+		if (!result)
-+			result = validate_pplib_optional_table_entries(hwmgr, table_offset,
-+				offsetof(ATOM_PPLIB_ACPClk_Voltage_Limit_Table,
-+					 entries),
-+				ptable->numEntries,
-+				sizeof(ATOM_PPLIB_ACPClk_Voltage_Limit_Record));
-+		if (!result)
-+			result = get_acp_clock_voltage_limit_table(hwmgr,
-+					&hwmgr->dyn_state.acp_clock_voltage_dependency_table,
-+					ptable);
- 	}
- 
- 	table_offset = get_cacp_tdp_table_offset(hwmgr, powerplay_table);
- 	if (table_offset > 0) {
--		UCHAR rev_id = *(UCHAR *)(((unsigned long)powerplay_table) + table_offset);
-+		const void *tune_table;
-+		UCHAR rev_id;
- 
--		if (rev_id > 0) {
-+		if (!pp_table_has_space(hwmgr, table_offset, sizeof(rev_id)))
-+			return -EINVAL;
-+
-+		rev_id = *(UCHAR *)(((unsigned long)powerplay_table) + table_offset);
-+		result = get_pplib_subtable(hwmgr, powerplay_table, table_offset,
-+				(rev_id > 0) ?
-+				sizeof(ATOM_PPLIB_POWERTUNE_Table_V1) :
-+				sizeof(ATOM_PPLIB_POWERTUNE_Table),
-+				(const void **)&tune_table);
-+
-+		if (!result && rev_id > 0) {
- 			const ATOM_PPLIB_POWERTUNE_Table_V1 *tune_table =
- 				(const ATOM_PPLIB_POWERTUNE_Table_V1 *)
- 				(((unsigned long) powerplay_table) + table_offset);
-@@ -1531,7 +1761,7 @@ static int init_clock_voltage_dependency(struct pp_hwmgr *hwmgr,
- 				le16_to_cpu(tune_table->usMaximumPowerDeliveryLimit));
- 			hwmgr->dyn_state.cac_dtp_table->usDefaultTargetOperatingTemp =
- 				le16_to_cpu(tune_table->usTjMax);
--		} else {
-+		} else if (!result) {
- 			const ATOM_PPLIB_POWERTUNE_Table *tune_table =
- 				(const ATOM_PPLIB_POWERTUNE_Table *)
- 				(((unsigned long) powerplay_table) + table_offset);
-@@ -1546,35 +1776,44 @@ static int init_clock_voltage_dependency(struct pp_hwmgr *hwmgr,
- 		const ATOM_PPLIB_POWERPLAYTABLE4 *powerplay_table4 =
- 				(const ATOM_PPLIB_POWERPLAYTABLE4 *)powerplay_table;
- 		if (0 != powerplay_table4->usVddcDependencyOnSCLKOffset) {
--			table = (ATOM_PPLIB_Clock_Voltage_Dependency_Table *)
--				(((unsigned long) powerplay_table4) +
--				 le16_to_cpu(powerplay_table4->usVddcDependencyOnSCLKOffset));
--			result = get_clock_voltage_dependency_table(hwmgr,
--				&hwmgr->dyn_state.vddc_dependency_on_sclk, table);
-+			result = get_pplib_clock_voltage_dependency_table(hwmgr,
-+				powerplay_table,
-+				le16_to_cpu(powerplay_table4->usVddcDependencyOnSCLKOffset),
-+				(const ATOM_PPLIB_Clock_Voltage_Dependency_Table **)&table);
-+			if (!result)
-+				result = get_clock_voltage_dependency_table(hwmgr,
-+					&hwmgr->dyn_state.vddc_dependency_on_sclk, table);
- 		}
- 
- 		if (result == 0 && (0 != powerplay_table4->usVddciDependencyOnMCLKOffset)) {
--			table = (ATOM_PPLIB_Clock_Voltage_Dependency_Table *)
--				(((unsigned long) powerplay_table4) +
--				 le16_to_cpu(powerplay_table4->usVddciDependencyOnMCLKOffset));
--			result = get_clock_voltage_dependency_table(hwmgr,
--				&hwmgr->dyn_state.vddci_dependency_on_mclk, table);
-+			result = get_pplib_clock_voltage_dependency_table(hwmgr,
-+				powerplay_table,
-+				le16_to_cpu(powerplay_table4->usVddciDependencyOnMCLKOffset),
-+				(const ATOM_PPLIB_Clock_Voltage_Dependency_Table **)&table);
-+			if (!result)
-+				result = get_clock_voltage_dependency_table(hwmgr,
-+					&hwmgr->dyn_state.vddci_dependency_on_mclk, table);
- 		}
- 
- 		if (result == 0 && (0 != powerplay_table4->usVddcDependencyOnMCLKOffset)) {
--			table = (ATOM_PPLIB_Clock_Voltage_Dependency_Table *)
--				(((unsigned long) powerplay_table4) +
--				 le16_to_cpu(powerplay_table4->usVddcDependencyOnMCLKOffset));
--			result = get_clock_voltage_dependency_table(hwmgr,
--				&hwmgr->dyn_state.vddc_dependency_on_mclk, table);
-+			result = get_pplib_clock_voltage_dependency_table(hwmgr,
-+				powerplay_table,
-+				le16_to_cpu(powerplay_table4->usVddcDependencyOnMCLKOffset),
-+				(const ATOM_PPLIB_Clock_Voltage_Dependency_Table **)&table);
-+			if (!result)
-+				result = get_clock_voltage_dependency_table(hwmgr,
-+					&hwmgr->dyn_state.vddc_dependency_on_mclk, table);
- 		}
- 
- 		if (result == 0 && (0 != powerplay_table4->usMaxClockVoltageOnDCOffset)) {
--			limit_table = (ATOM_PPLIB_Clock_Voltage_Limit_Table *)
--				(((unsigned long) powerplay_table4) +
--				 le16_to_cpu(powerplay_table4->usMaxClockVoltageOnDCOffset));
--			result = get_clock_voltage_limit(hwmgr,
--				&hwmgr->dyn_state.max_clock_voltage_on_dc, limit_table);
-+			result = get_pplib_clock_voltage_limit_table(hwmgr,
-+				powerplay_table,
-+				le16_to_cpu(powerplay_table4->usMaxClockVoltageOnDCOffset),
-+				(const ATOM_PPLIB_Clock_Voltage_Limit_Table **)&limit_table);
-+			if (!result)
-+				result = get_clock_voltage_limit(hwmgr,
-+					&hwmgr->dyn_state.max_clock_voltage_on_dc,
-+					limit_table);
- 		}
- 
- 		if (result == 0 && (NULL != hwmgr->dyn_state.vddc_dependency_on_mclk) &&
-@@ -1589,11 +1828,14 @@ static int init_clock_voltage_dependency(struct pp_hwmgr *hwmgr,
- 				hwmgr->dyn_state.vddc_dependency_on_sclk);
- 
- 		if (result == 0 && (0 != powerplay_table4->usMvddDependencyOnMCLKOffset)) {
--			table = (ATOM_PPLIB_Clock_Voltage_Dependency_Table *)
--				(((unsigned long) powerplay_table4) +
--				 le16_to_cpu(powerplay_table4->usMvddDependencyOnMCLKOffset));
--			result = get_clock_voltage_dependency_table(hwmgr,
--				&hwmgr->dyn_state.mvdd_dependency_on_mclk, table);
-+			result = get_pplib_clock_voltage_dependency_table(hwmgr,
-+				powerplay_table,
-+				le16_to_cpu(powerplay_table4->usMvddDependencyOnMCLKOffset),
-+				(const ATOM_PPLIB_Clock_Voltage_Dependency_Table **)&table);
-+			if (!result)
-+				result = get_clock_voltage_dependency_table(hwmgr,
-+					&hwmgr->dyn_state.mvdd_dependency_on_mclk,
-+					table);
- 		}
- 	}
- 
-@@ -1601,10 +1843,13 @@ static int init_clock_voltage_dependency(struct pp_hwmgr *hwmgr,
- 								powerplay_table);
- 
- 	if (table_offset > 0) {
--		table = (ATOM_PPLIB_Clock_Voltage_Dependency_Table *)
--			(((unsigned long) powerplay_table) + table_offset);
--		result = get_clock_voltage_dependency_table(hwmgr,
--			&hwmgr->dyn_state.vdd_gfx_dependency_on_sclk, table);
-+		result = get_pplib_clock_voltage_dependency_table(hwmgr,
-+			powerplay_table, table_offset,
-+			(const ATOM_PPLIB_Clock_Voltage_Dependency_Table **)&table);
-+		if (!result)
-+			result = get_clock_voltage_dependency_table(hwmgr,
-+				&hwmgr->dyn_state.vdd_gfx_dependency_on_sclk,
-+				table);
- 	}
- 
- 	return result;
-@@ -1676,12 +1921,6 @@ static int init_dpm2_parameters(struct pp_hwmgr *hwmgr,
- 	    sizeof(ATOM_PPLIB_POWERPLAYTABLE5)) {
- 		const  ATOM_PPLIB_POWERPLAYTABLE5 *ptable5 =
- 				(const ATOM_PPLIB_POWERPLAYTABLE5 *)powerplay_table;
--		const  ATOM_PPLIB_POWERPLAYTABLE4 *ptable4 =
--				(const ATOM_PPLIB_POWERPLAYTABLE4 *)
--				(&ptable5->basicTable4);
--		const  ATOM_PPLIB_POWERPLAYTABLE3 *ptable3 =
--				(const ATOM_PPLIB_POWERPLAYTABLE3 *)
--				(&ptable4->basicTable3);
- 		const  ATOM_PPLIB_EXTENDEDHEADER  *extended_header;
- 		uint16_t table_offset;
- 		ATOM_PPLIB_PPM_Table *atom_ppm_table;
-@@ -1711,28 +1950,34 @@ static int init_dpm2_parameters(struct pp_hwmgr *hwmgr,
- 		hwmgr->dyn_state.cac_leakage_table = NULL;
- 
- 		if (0 != ptable5->usCACLeakageTableOffset) {
--			const ATOM_PPLIB_CAC_Leakage_Table *pCAC_leakage_table =
--				(ATOM_PPLIB_CAC_Leakage_Table *)(((unsigned long)ptable5) +
--				le16_to_cpu(ptable5->usCACLeakageTableOffset));
--			result = get_cac_leakage_table(hwmgr,
--				&hwmgr->dyn_state.cac_leakage_table, pCAC_leakage_table);
-+			const ATOM_PPLIB_CAC_Leakage_Table *pCAC_leakage_table;
-+
-+			result = get_pplib_cac_leakage_table(hwmgr, powerplay_table,
-+				le16_to_cpu(ptable5->usCACLeakageTableOffset),
-+				&pCAC_leakage_table);
-+			if (!result)
-+				result = get_cac_leakage_table(hwmgr,
-+					&hwmgr->dyn_state.cac_leakage_table,
-+					pCAC_leakage_table);
- 		}
- 
- 		hwmgr->platform_descriptor.LoadLineSlope = le16_to_cpu(ptable5->usLoadLineSlope);
- 
- 		hwmgr->dyn_state.ppm_parameter_table = NULL;
- 
--		if (0 != ptable3->usExtendendedHeaderOffset) {
--			extended_header = (const ATOM_PPLIB_EXTENDEDHEADER *)
--					(((unsigned long)powerplay_table) +
--					le16_to_cpu(ptable3->usExtendendedHeaderOffset));
-+		extended_header = get_extended_header(hwmgr, powerplay_table,
-+						      SIZE_OF_ATOM_PPLIB_EXTENDEDHEADER_V5);
-+		if (extended_header) {
- 			if ((extended_header->usPPMTableOffset > 0) &&
- 				le16_to_cpu(extended_header->usSize) >=
- 				    SIZE_OF_ATOM_PPLIB_EXTENDEDHEADER_V5) {
- 				table_offset = le16_to_cpu(extended_header->usPPMTableOffset);
--				atom_ppm_table = (ATOM_PPLIB_PPM_Table *)
--					(((unsigned long)powerplay_table) + table_offset);
--				if (0 == get_platform_power_management_table(hwmgr, atom_ppm_table))
-+				result = get_pplib_subtable(hwmgr, powerplay_table,
-+					table_offset, sizeof(*atom_ppm_table),
-+					(const void **)&atom_ppm_table);
-+				if (!result &&
-+				    !get_platform_power_management_table(hwmgr,
-+									 atom_ppm_table))
- 					phm_cap_set(hwmgr->platform_descriptor.platformCaps,
- 						PHM_PlatformCaps_EnablePlatformPowerManagement);
- 			}
-@@ -1750,13 +1995,17 @@ static int init_phase_shedding_table(struct pp_hwmgr *hwmgr,
- 				(const ATOM_PPLIB_POWERPLAYTABLE4 *)powerplay_table;
- 
- 		if (0 != powerplay_table4->usVddcPhaseShedLimitsTableOffset) {
--			const ATOM_PPLIB_PhaseSheddingLimits_Table *ptable =
--				(ATOM_PPLIB_PhaseSheddingLimits_Table *)
--				(((unsigned long)powerplay_table4) +
--				le16_to_cpu(powerplay_table4->usVddcPhaseShedLimitsTableOffset));
-+			const ATOM_PPLIB_PhaseSheddingLimits_Table *ptable;
- 			struct phm_phase_shedding_limits_table *table;
- 			unsigned long i;
-+			int result;
- 
-+			result = get_pplib_phase_shedding_table(hwmgr,
-+				powerplay_table,
-+				le16_to_cpu(powerplay_table4->usVddcPhaseShedLimitsTableOffset),
-+				&ptable);
-+			if (result)
-+				return result;
- 
- 			table = kzalloc(struct_size(table, entries, ptable->ucNumEntries),
- 					GFP_KERNEL);
--- 
-2.47.3
+Please ignore. Didn't notice this one earlier.
+
+Thanks,
+Lijo
+
+>> +out:
+>> +    mutex_unlock(&xcp_mgr->xcp_lock);
+>> +    return r;
+>>   }
+>>   static void amdgpu_set_xcp_id(struct amdgpu_device *adev,
+> 
 
