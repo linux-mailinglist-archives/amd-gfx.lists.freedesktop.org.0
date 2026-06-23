@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nQ6xEoqUOmqxAggAu9opvQ
+	id 9krMD42UOmq0AggAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 16:13:30 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 16:13:33 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E1436B7C40
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 16:13:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B602F6B7C47
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 16:13:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=SBDyxv5N;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=UcOujvbT;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C4D510EB6F;
-	Tue, 23 Jun 2026 14:13:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5777A10E6DD;
+	Tue, 23 Jun 2026 14:13:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 109AB10EB6F
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 14:13:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF77A10EB73
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 14:13:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=xpoipWDPEQ2xr5NX2Qr61jrOC93Id91hyu1/cGdo8kQ=; b=SBDyxv5NOMeXDmH0WSjLHmBjE6
- hx7VTgdfvo2ec1/3LEz8YwVyDnn6WZVL5MwZ4mKxZvDMYhSm9OfsAM88gyMyaIBM91kwEgv5Ke62L
- gFXXtJKzqcuosZ3A2fwJkSIPWdtO3ye8i0w1REO9YmIXntVTfWFSJYK3RxEgua3q66PlSrNkljAl5
- oJBFbBSU/VE4Dw6adItBfRSkPrwBs660StiCFmj0uCbmkpCYi6BgLxKaGkDFVtbklmJiYYt/Yy6cs
- pwAeQwrafCwcH4YDIgUvwRc00K44njMfJIv0TAh2jyDUNlcfM0BQoBPQ7T/fUKTJ+lMU2rN1nOb2h
- 9Fpqj3LA==;
+ bh=jfvooDLfP5YSvok7uhLtY4MFXp+I0OotwD028CnTNGk=; b=UcOujvbTherMLw4sU+evhELbfP
+ wML2YQK2zHkOQZ7FgaG/4VXUEQFKMgmQXRWhoSS8XN9Sqw8FhKQLdl5qULQVuopUc1s2vFO7gly2m
+ sWCD+lL5ywDQww/dcVg2z8HKTdgM9MMkhCm3IsdkwpC7CreEDhdtbvgxKv3nEpLStuCyFSGpRyHZL
+ hJUrMCN3Z9WalIiSRc5/TXTmc+HRs2ywSJyKYGCbuJPaaUDyuoTXxkk3ig8YiuBMQ5RS0oeGe4pfL
+ JwiHnavzP8EEPJJCZ5TXj9s0J2FcwJKcibu9uc/aDQbblUNUt6uAndSHs46V+IkrE4OMYv2hnRid/
+ Qw1eV2OQ==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wc1sQ-004DBx-OC; Tue, 23 Jun 2026 16:13:25 +0200
+ id 1wc1sU-004DC5-LK; Tue, 23 Jun 2026 16:13:26 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, David Francis <David.Francis@amd.com>,
@@ -46,12 +46,14 @@ Cc: kernel-dev@igalia.com, David Francis <David.Francis@amd.com>,
  Felix Kuehling <Felix.Kuehling@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Subject: [RFC v2 0/4] Tiny steps towards amdgpu checkpoint and restore
-Date: Tue, 23 Jun 2026 15:12:53 +0100
-Message-ID: <20260623141257.66086-1-tvrtko.ursulin@igalia.com>
+Subject: [RFC v2 1/4] drm/amdgpu: Extend listing of buffer handles with the
+ userptr object flag
+Date: Tue, 23 Jun 2026 15:12:54 +0100
+Message-ID: <20260623141257.66086-2-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260623141257.66086-1-tvrtko.ursulin@igalia.com>
+References: <20260623141257.66086-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,131 +69,226 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.49 / 15.00];
+X-Spamd-Result: default: False [1.99 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[igalia.com:-];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[igalia.com:-];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,criu.org:url,igalia.com:mid,igalia.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,igalia.com:mid,igalia.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7E1436B7C40
+X-Rspamd-Queue-Id: B602F6B7C47
 
-I am sending this early with the main goal of getting a feel on how it will be
-received etc.
+Add a new flag (AMDGPU_GEM_LIST_HANDLES_FLAG_IS_USERPTR) to the
+DRM_IOCTL_AMDGPU_GEM_LIST_CONTEXTS ioctl.
 
-Cover letter is written mostly for people who already know what checkpoint and
-restore is, so I will just restate the high level goal - To be able to
-checkpoint and restore purely a rendernode process (so no kfd in the picture).
+This is required to allow for checkpoint and restore of userptr objects.
 
-And for people not too familiar what it is, probably best to first read about it
-here: https://criu.org/Main_Page.
+The existing struct drm_amdgpu_gem_list_handles_entry is used with the
+userptr creation flags places in alloc_flags, while the alignment field
+contains the userspace address.
 
-There are three pieces of work here:
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 18 +++++++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 40 +++++++++++++++++--------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h | 19 +++++++++++-
+ include/uapi/drm/amdgpu_drm.h           | 14 ++++++---
+ 4 files changed, 67 insertions(+), 24 deletions(-)
 
-1.
-This kernel series which adds new uapi to amdgpu.
-
-2.
-A new IGT test case which helped me find what doesn't work and to verify what I
-added.
-
-https://cgit.freedesktop.org/~tursulin/intel-gpu-tools/log/?h=amd-criu
-
-The IGT starts out adding some very basic tests (first commit) which are laid
-out in order of increasing complexity.
-
-Following commits then add more tests and by the end, with all these series
-combined, they all pass apart from the forking subtest. But that one I am
-leaving out of scope for now.
-
-(And to be clear, before this work, none of the tests cases can pass.)
-
-3.
-Changes to the amdgpu CRIU plugin which use the above uapi, among other changes.
-
-https://github.com/tursulin/criu/pull/new/amdgpu-render-node-rfc
-
-As a picture is worth a thousand words the best I can do is some from terminal
-pastes showing it all in action.
-
-Terminal 1:
-
-$ sudo ~/build-holo/tests/amdgpu/amd_criu --r busy-client-content
-IGT-Version: 2.3-ge37a85b91 (x86_64) (Linux: 7.1.0-rc2-cfs x86_64)
-Using IGT_SRANDOM=1779805687 for randomisation
-Opened device: /dev/dri/renderD128
-Starting subtest: busy-client-content
-Start checkpointing within 10 seconds...
-
-Now switch to terminal 2:
-
-$ sudo /usr/local/sbin/criu dump -t `pgrep amd_criu | head -1` \
-  -L /usr/local/lib/criu/ -vvv -o criu.log -j --link-remap --tcp-established \
-  --file-locks --ext-unix-sk
-
-Back to terminal 1:
-
-...
-Killed # This is normal - CRIU dump has saved and terminated the process
-
-Back to terminal 2, lets restore it:
-
-$ sudo /usr/local/sbin/criu restore  -L /usr/local/lib/criu/ -vvv \
-  -o restore.log --shell-job --link-remap --tcp-established --file-locks 
-  --ext-unix-sk
-Subtest busy-client-content: SUCCESS (10.739s)
-
-And that is it. Client which was busy looping submitting a SDMA_NOP IB was
-successfuly checkpointed and restored to completion. It both ran for the
-remainder of the indented duration and we checked buffer content was as
-expected at the end.
-
-There is definitely more to do. Play more with exported buffers, syncobjs,
-fences, buffer objects lists, but for now, as said, I am looking for some early
-feedback etc.
-
-v2:
- * Dropped the reserved VM ID query.
- * Made userptr address an explicit union in the bo list entry uapi.
- * Changed copy buffer from synchronous to providing a fence to userspace.
- * Rebased for removal of ctx->guilty.
-
-Tvrtko Ursulin (4):
-  drm/amdgpu: Extend listing of buffer handles with the userptr object
-    flag
-  drm/amdgpu: Add a new ioctl for listing client contexts
-  drm/amdgpu: Add context handle renaming operation
-  drm/amdgpu: Add driver managed buffer copy
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 130 ++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |   2 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 122 ++++++++++++++++++++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h |   4 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |  54 ++++++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h |  26 ++++-
- include/uapi/drm/amdgpu_drm.h           |  62 ++++++++++-
- 7 files changed, 369 insertions(+), 31 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+index 862fbc2e125f..e75026aba874 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+@@ -1204,14 +1204,20 @@ int amdgpu_gem_list_handles_ioctl(struct drm_device *dev, void *data,
+ 
+ 		bo_entry = &bo_entries[bo_index];
+ 
+-		bo_entry->size = amdgpu_bo_size(bo);
+-		bo_entry->alloc_flags = bo->flags & AMDGPU_GEM_CREATE_SETTABLE_MASK;
+-		bo_entry->preferred_domains = bo->preferred_domains;
+ 		bo_entry->gem_handle = id;
+-		bo_entry->alignment = bo->tbo.page_alignment;
++		bo_entry->size = amdgpu_bo_size(bo);
++		if (amdgpu_ttm_tt_is_userptr(bo->tbo.ttm)) {
++			bo_entry->flags = AMDGPU_GEM_LIST_HANDLES_FLAG_IS_USERPTR;
++			bo_entry->alloc_flags = amdgpu_ttm_tt_get_userptr_flags(bo->tbo.ttm);
++			bo_entry->userptr = amdgpu_ttm_tt_get_userptr_addr(bo->tbo.ttm);
++		} else {
++			bo_entry->alloc_flags = bo->flags & AMDGPU_GEM_CREATE_SETTABLE_MASK;
++			bo_entry->preferred_domains = bo->preferred_domains;
++			bo_entry->alignment = bo->tbo.page_alignment;
+ 
+-		if (bo->tbo.base.import_attach)
+-			bo_entry->flags |= AMDGPU_GEM_LIST_HANDLES_FLAG_IS_IMPORT;
++			if (bo->tbo.base.import_attach)
++				bo_entry->flags = AMDGPU_GEM_LIST_HANDLES_FLAG_IS_IMPORT;
++		}
+ 
+ 		bo_index += 1;
+ 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index 16c060badaee..7ce9e0e194c3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -785,6 +785,33 @@ int amdgpu_ttm_tt_get_user_pages(struct amdgpu_bo *bo,
+ 	return r;
+ }
+ 
++/*
++ * amdgpu_ttm_tt_is_userptr - Have the pages backing by userptr?
++ */
++bool amdgpu_ttm_tt_is_userptr(struct ttm_tt *ttm)
++{
++	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(ttm);
++
++	if (gtt == NULL || !gtt->userptr)
++		return false;
++
++	return true;
++}
++
++u32 amdgpu_ttm_tt_get_userptr_flags(struct ttm_tt *ttm)
++{
++	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(ttm);
++
++	return gtt->userflags;
++}
++
++u64 amdgpu_ttm_tt_get_userptr_addr(struct ttm_tt *ttm)
++{
++	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(ttm);
++
++	return gtt->userptr;
++}
++
+ #endif
+ 
+ /*
+@@ -1392,19 +1419,6 @@ bool amdgpu_ttm_tt_affect_userptr(struct ttm_tt *ttm, unsigned long start,
+ 	return true;
+ }
+ 
+-/*
+- * amdgpu_ttm_tt_is_userptr - Have the pages backing by userptr?
+- */
+-bool amdgpu_ttm_tt_is_userptr(struct ttm_tt *ttm)
+-{
+-	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(ttm);
+-
+-	if (gtt == NULL || !gtt->userptr)
+-		return false;
+-
+-	return true;
+-}
+-
+ /*
+  * amdgpu_ttm_tt_is_readonly - Is the ttm_tt object read only?
+  */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+index 2d72fa217274..e1b3495b902f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+@@ -209,12 +209,30 @@ uint64_t amdgpu_ttm_domain_start(struct amdgpu_device *adev, uint32_t type);
+ #if IS_ENABLED(CONFIG_DRM_AMDGPU_USERPTR)
+ int amdgpu_ttm_tt_get_user_pages(struct amdgpu_bo *bo,
+ 				 struct amdgpu_hmm_range *range);
++bool amdgpu_ttm_tt_is_userptr(struct ttm_tt *ttm);
++u32 amdgpu_ttm_tt_get_userptr_flags(struct ttm_tt *ttm);
++u64 amdgpu_ttm_tt_get_userptr_addr(struct ttm_tt *ttm);
+ #else
+ static inline int amdgpu_ttm_tt_get_user_pages(struct amdgpu_bo *bo,
+ 					       struct amdgpu_hmm_range *range)
+ {
+ 	return -EPERM;
+ }
++
++static inline bool amdgpu_ttm_tt_is_userptr(struct ttm_tt *ttm)
++{
++	return false;
++}
++
++static inline u32 amdgpu_ttm_tt_get_userptr_flags(struct ttm_tt *ttm)
++{
++	return -1;
++}
++
++static inline u64 amdgpu_ttm_tt_get_userptr_addr(struct ttm_tt *ttm)
++{
++	return 0;
++}
+ #endif
+ 
+ /**
+@@ -249,7 +267,6 @@ bool amdgpu_ttm_tt_affect_userptr(struct ttm_tt *ttm, unsigned long start,
+ 				  unsigned long end, unsigned long *userptr);
+ bool amdgpu_ttm_tt_userptr_invalidated(struct ttm_tt *ttm,
+ 				       int *last_invalidated);
+-bool amdgpu_ttm_tt_is_userptr(struct ttm_tt *ttm);
+ bool amdgpu_ttm_tt_is_readonly(struct ttm_tt *ttm);
+ uint64_t amdgpu_ttm_tt_pde_flags(struct ttm_tt *ttm, struct ttm_resource *mem);
+ uint64_t amdgpu_ttm_tt_pte_flags(struct amdgpu_device *adev, struct ttm_tt *ttm,
+diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
+index 9f3090db2f16..24f2dffc0789 100644
+--- a/include/uapi/drm/amdgpu_drm.h
++++ b/include/uapi/drm/amdgpu_drm.h
+@@ -836,6 +836,7 @@ struct drm_amdgpu_gem_op {
+ };
+ 
+ #define AMDGPU_GEM_LIST_HANDLES_FLAG_IS_IMPORT	(1 << 0)
++#define AMDGPU_GEM_LIST_HANDLES_FLAG_IS_USERPTR	(1 << 1)
+ 
+ struct drm_amdgpu_gem_list_handles {
+ 	/* User pointer to array of drm_amdgpu_gem_bo_info_entry */
+@@ -851,7 +852,7 @@ struct drm_amdgpu_gem_list_handles_entry {
+ 	/* gem handle of buffer object */
+ 	__u32 gem_handle;
+ 
+-	/* Currently just one flag: IS_IMPORT */
++	/* AMDGPU_GEM_LIST_HANDLES_FLAG_* */
+ 	__u32 flags;
+ 
+ 	/* Size of bo */
+@@ -860,11 +861,16 @@ struct drm_amdgpu_gem_list_handles_entry {
+ 	/* Preferred domains for GEM_CREATE */
+ 	__u64 preferred_domains;
+ 
+-	/* GEM_CREATE flags for re-creation of buffer */
++	/* GEM_CREATE flags for re-creation of buffer or drm_amdgpu_gem_userptr.flags */
+ 	__u64 alloc_flags;
+ 
+-	/* physical start_addr alignment in bytes for some HW requirements */
+-	__u64 alignment;
++	union {
++		/* physical start_addr alignment in bytes for some HW requirements */
++		__u64 alignment;
++
++		/* drm_amdgpu_gem_userptr.addr for userptr objects */
++		__u64 userptr;
++	};
+ };
+ 
+ #define AMDGPU_VA_OP_MAP			1
 -- 
 2.54.0
 
