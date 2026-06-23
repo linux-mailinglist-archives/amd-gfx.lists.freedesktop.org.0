@@ -2,130 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qdrvKs48OmoX4gcAu9opvQ
+	id nLQYIyZAOmo24wcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 09:59:10 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:13:26 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A4656B50B3
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 09:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DED076B52F4
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 10:13:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=h07yepLO;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=3TfiBbvJ;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83C6110E9BA;
-	Tue, 23 Jun 2026 07:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7817910E9EF;
+	Tue, 23 Jun 2026 08:13:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012010.outbound.protection.outlook.com
- [40.93.195.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE7DD10E9B6
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 07:59:06 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010003.outbound.protection.outlook.com [52.101.46.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABC2710E9E8
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 08:13:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vSmG5TGPkx51Yu5ysazXfbTC7hklYgDDb0h9cXNug5bzOilqGKn+xqsu2xcmQNWxNC78aADWm9NKzaWxY/Zdxr6gZYljJHMRmVzpffxSAEK6vog754OBnU2ZcwiDYMcUMStPfVoTYUEbNXeEEMU0QzlurSy5o8wCVKkre3fYMg+bYT2rPinIOHdjuQJgD+EcSYdXbWXTdH0ayniHFm4aLXb947L68uZJFo7W9S/p7LlzJizE7Fw9DTkpDrt6lNLPSbJhRLBhD8aJrljx9fCWBTZC1RHKmyxzTrYfKxVrg0WFDCJdDeXs4YkNS2rMfpy+bnnjFDiah6hW54oc+sQTjQ==
+ b=dq+ETiHfmvd8rMxgmwx0Xif9EXzElTQfyLMoQ4TJ2AruVEpuvhlqUedlVttUXEezws2re4LwgyoA8Rb2KfMwgSp0BCbjgy6Q/SThTVkXiWVJua2UhYD0YmWs6C3GIBiZpxLFXAaOnER3fUeW2UKvfUfwGho8oLUHdxz07Kr6wPUEixQAgKxjVg5ra+PGh0soCGHB3hnOqLezEiVhs1Ggv8OzBv9c+XDQRLxqk89It9Z9M8feqY2jNOV3gfzzEvcs9Zhq2mStTbQd3C+T1OKNmLINLlas3d4n9RDSYt9vZ1Ln2e0bi3FbgIAkrNgxECwsLFQiNF/HyF7bruNC5qGUVQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=u79yQNZEhdFAZ+9fmvbVSUvk4gxbK3fKsHNPmPkqEus=;
- b=QnHgHcS1Z0awkAzxt4qnIjMchjgR88Io1egb0N2l3wNhmfZX+Vw38uVTkQ/GHOmh/f/NpaGa6CWrlynhvtQP8hnoUjio8hij1LYYFat8DNYKYojZZrKX/32kFFisSyFOz/5JfENRhCR2UT4DaKCSV4FI0rdjtpNLcTD0S5EyNsUvjzN2tS5Zkhnk88qa8jUwcXe12Uk4/Rfis6/u/9su4iUQ2upI9nS6ugvrxF1gBwvsT8RZlR4ftWFPZWmlupnHu5JF4AX/r5FpwyZQM/y6LlGIUVZSd5FK3E0k7sQnDVFXoXMskiZ/qKXAUi74uIdd8ohdJjyOp87HgVL/FhixvQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=eiSlvQgttK5abf2eBLfs90u5Yx4nS2VkDBj1crdvL4g=;
+ b=s5drfDtGGwB7gYTecFUmJ/hqogsPP5eoNfdUAKU3ZGvHPmXfWs/2PVN3G89rStXsArmk6PXXw+6mhCWDa7fU+ZPVHuiRUo3qfKSrDOVvlVfzQox+4Qb+VzM6/TvbTN/72YpvUwEffLyKRbZSca7AUI0xihSyiSR39x4L5+NCdvX/Rxdtw1/gL+cPOzxN1V3R/86WDsCy1AQ6s1zbNFfr4j1t8tLJoglA09aEv6DeMq4Z1haW/IIlfQ0KE6Jyx0VVxGXriivnPHS3oiiOaQQL4iuISoOrseqykfm0R5VeeMVVPB8G+h+N2JGoBCqqVVe0WNf/xZ3j7l95RsMuK8Se0A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u79yQNZEhdFAZ+9fmvbVSUvk4gxbK3fKsHNPmPkqEus=;
- b=h07yepLOBxKA3HvtpnFCXc5smfw1AwmTvtJjjdmfmZNfGSxXNWZ+oHloEGgQ05r8hoau8YLqBuOW3N4JpaVSPdL2o+8bnzsLk0R60qUyTbE1rTO7tdLbz1yI5A0Hk5Dy0aNuV0MolbDE75UPFcjZTi1rzBPOCQ2bCM4fzQJtoaw=
-Received: from PH7PR12MB8796.namprd12.prod.outlook.com (2603:10b6:510:272::22)
- by SA1PR12MB7294.namprd12.prod.outlook.com (2603:10b6:806:2b8::19)
+ bh=eiSlvQgttK5abf2eBLfs90u5Yx4nS2VkDBj1crdvL4g=;
+ b=3TfiBbvJ3jzlSLnK53UtgaAfuTuAaVYolGwNax7MOycsDtG5eXk3juJMOh6a2QkL4UAPIqLjZKlOZOkL3Y95J9sC3h/H3/M+16+snvXwcSH5ewFxTNHGVGWanh2P/M1Sf5ucrnME5Uj0sbZyXey+Fkjoa/ihDu4eUh7HlVI6ItE=
+Received: from BN0PR04CA0115.namprd04.prod.outlook.com (2603:10b6:408:ec::30)
+ by PH8PR12MB7208.namprd12.prod.outlook.com (2603:10b6:510:224::7)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Tue, 23 Jun
- 2026 07:59:02 +0000
-Received: from PH7PR12MB8796.namprd12.prod.outlook.com
- ([fe80::716d:8670:35b1:27a9]) by PH7PR12MB8796.namprd12.prod.outlook.com
- ([fe80::716d:8670:35b1:27a9%5]) with mapi id 15.21.0139.018; Tue, 23 Jun 2026
- 07:59:02 +0000
-From: "Zhou1, Tao" <Tao.Zhou1@amd.com>
-To: "Sun, Ce(Overlord)" <Ce.Sun@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Zhang, Hawking" <Hawking.Zhang@amd.com>, "Chai, Thomas"
- <YiPeng.Chai@amd.com>, "Yang, Stanley" <Stanley.Yang@amd.com>, "Sun,
- Ce(Overlord)" <Ce.Sun@amd.com>
-Subject: RE: [PATCH v1 2/2] drm/amdgpu: fix resource leak on ACP reset timeout
-Thread-Topic: [PATCH v1 2/2] drm/amdgpu: fix resource leak on ACP reset timeout
-Thread-Index: AQHdAuO7ZoQJ4s+uT02rMYfwfqkxLLZLxnyg
-Date: Tue, 23 Jun 2026 07:59:02 +0000
-Message-ID: <PH7PR12MB87964B7689BFC0C84CB3FCC8B0EE2@PH7PR12MB8796.namprd12.prod.outlook.com>
-References: <5db799323a211d12937f69a1ba28d3c740bf2569.1782200200.git.cesun102@amd.com>
- <59a681f3168143ef939bdd806a2b30ea4be441d5.1782200200.git.cesun102@amd.com>
-In-Reply-To: <59a681f3168143ef939bdd806a2b30ea4be441d5.1782200200.git.cesun102@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-06-23T07:58:52.0000000Z;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD General
- v26; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=3;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR12MB8796:EE_|SA1PR12MB7294:EE_
-x-ms-office365-filtering-correlation-id: cc27b34a-4f37-4138-7bdc-08ded0fd4a2c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|23010399003|56012099006|11063799006|4143699003|18002099003|22082099003|38070700021;
-x-microsoft-antispam-message-info: 9/ipuRWfQZ90ORY2p1g4aAxEJMARJoQKg8bxOe3aB+X/T3kkmregcHOaP9cjiSg5y5XVrVHdvmLfEMB62QqL79shQbB+3vm0fkRYZDNLCyXY3nydTMmnKHAsBIc81K/yjypt3eUIhvnyFJgGfgQxsHtS3IV/cAglc1tNaW5CZPV5iIObTV+eWdEqEZW0iN1To2PiPIg8JGPqfRO8WGc18RJGlQZVvsj++AgzD3AHJ7WLL75qkfA154r7NIkOqLVn82mB6zOpy5mcxFe0uTXhFG+GEP2lWFLoydaSl7Jt0iazdeWNhWAOz1EPxrPnaN87vJ8twX0l+cUYb5HB4TtHWQyFWirtu77UPRj1Hp4QzrAokBcAK4eNG99YbHy+Uun/j7lzSRN2I7jeA/MEOtVsnoFLMQ2JUpK42aMXA0gr6/A83FUjAqJ96lrmnipQhn0UaU5ZorIoamvlmOoBR2/9cFgpzQlu8Y3jJsC0d9sIxEkGUag3MKWBPtbRRmZObfKOUqcJCZGGMvzHot7ZvKDFRQpirxqTeh8lvgm2UDoO6PRWcpKFwmFCae8hTVqDdjKMEPp7z5ttHVKk8lQ2Yrrp2jqqUfzH3E6kWSWa6ElkCvY0kILBoHqoMpCeOoijl30X7wtKLXHjUG0FLsj2ausUwFl0Rf5i/R8xPTCc4jjLc6xLt3JXky7goxyRbR1MSM1EJroQrZM6QF9LRlr5nIueIe/h1WyB0r+RmbeQ1dXRRWY=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB8796.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(56012099006)(11063799006)(4143699003)(18002099003)(22082099003)(38070700021);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?vR3uTDTSlfCTbt2aiXKd1qH6z7vaWgVyDl+rnEjCuXKwN3tPD9bXFshnzQnh?=
- =?us-ascii?Q?OP1g4McmRDEegbG1VEhON5gsnEjKyILnQjFvQB/hlOiDnKWFkh5SwGzMLJeo?=
- =?us-ascii?Q?aCn4lxdvF5eWLsQEHxYPhjwY65sM/5RB7mGdHgEoSEYVoZJIVmvv1lzEtzdM?=
- =?us-ascii?Q?EYXAbsyZP2GjaXnnHZOVnNdv1fjLgxIylXWnqdzCUVnJKdaaLo77pNYK6W3b?=
- =?us-ascii?Q?8JtfemXOg2pJ/kT9xVUQn2WKVN5OoLcqcxJNTcnJNgQA50oVvVDMGloWYWj0?=
- =?us-ascii?Q?GcoMyJFKki2aG1fC4AUVmYitACIFfFfALsCWnaEQ66ai3wG11Jenoh1bPMBA?=
- =?us-ascii?Q?WtxVVbCt2kXNfhBwApiwScxfHCwYlTRVE57PoT6bOIqYP+EtLtuv979mHw1q?=
- =?us-ascii?Q?7P9IwIJpwz9B52gcTtZI2J3v1VxDQfdVZzoTY3C23MfrvWQZOUMkXpaG21V2?=
- =?us-ascii?Q?ih4iUDiRRrysqzKL5WCYjhN/JshcYWElYsqoVB2tf3ER8N97RinI722+SJ77?=
- =?us-ascii?Q?8aoXBJiRbIxC30l65LdZn09UW4v4AiNo4EiQnBsplbyawtxrM/l09bc3W5rp?=
- =?us-ascii?Q?4m71EA2JWfTUuoOiEBQcnVhylGD0oFgKDjmOiSQtA+vQP09MCMvRypzcAOGS?=
- =?us-ascii?Q?yGldtO1KfwJzymK/3QBM3/JSqkNE8XgfIDybfPNH1RpDbanXiKWWVvrIUztd?=
- =?us-ascii?Q?3Szn4yxtCZlj45igll1R7skB1KJq+hp1tBrjG1zNr8jXPSaj61ujuTziVHUk?=
- =?us-ascii?Q?2zj7qHgPDD8KcJGNIlHbO7tRK7i0oDTDF5C37rR+rog/QESIEzcc6kS0kmRH?=
- =?us-ascii?Q?idnspzCnwoB8saUBjGJUPyXUlxb/fETYAt//MW4X1XJiBN3RI78CpPs+6c1/?=
- =?us-ascii?Q?MUXQ4NrcXXpZiZcxlOpcuEGbkHYLmgVHRDVPkV0Wg9MqVAbaV31C780SNyH+?=
- =?us-ascii?Q?O50nGJizh80tYAm45ajLsVd4H2jx6BBWVydy2BwRRj1lxvziZzvcVa06BpLL?=
- =?us-ascii?Q?yQAwh1sKKQBnwCZrnCcTgRo3dOkWzAj8ut3BJo+C/sZtkBVdTBD2ypiY6AG1?=
- =?us-ascii?Q?JnpKXrMzkQBkD0uTBvfYZk6SGc/9QvFIurT4CrCqHvRsYmHneR5SbZ6fpRvn?=
- =?us-ascii?Q?mc6iYF52+UJWyQarPrdV/YTTKi47TnhEZcPnRm6f1kHDQOhkTNFJ8oZvAeZZ?=
- =?us-ascii?Q?FduCspu1SWQJ+VHS2dbpcz+fqjixOZDTLCCEoNi9oXmqcptn3ivwMlt6OPFu?=
- =?us-ascii?Q?JYdRdEXjB8YRY+CJ88AbYbGYAkbWe/VLj5K54Zy17BmDEsXTnIg4poSBNfU0?=
- =?us-ascii?Q?9TVRp/KPnO53Rqf6jCyEBiilfJuWFulMLaMYDX/y6YVUDnAsBWuYtg+hSI3W?=
- =?us-ascii?Q?RIxRezSCOMGw80QwQvz52iezUtexNSTByirmOQ/+xcxskhv4W54dY9hlDRY1?=
- =?us-ascii?Q?1mO10MiUdzwUI59A3Uv141/U7z09I1p2c/Qx8rMWcK6W8xDJxBD7s/pDLXsw?=
- =?us-ascii?Q?wbOrQiUH3Tdr1pgHmYoBmxIWoFsTtE3RQDhLciyG6vXp/WXJOYT2jyPJISri?=
- =?us-ascii?Q?db7e2/4pB+bzqyEzloRQaAYB2ef1XrIlxhTs4dnijhvVgm3I8REcnNhjd3qN?=
- =?us-ascii?Q?ONqEwe6R21gkAM31i79MObemoFMj+djWqXjP8wcR1dfZZf/6J1nj7RDnlYXF?=
- =?us-ascii?Q?jfsKoes/gYhvqsnw3td9MxncHG7ZXp5SfkZMnaMnFmSfD+p3?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ 2026 08:13:19 +0000
+Received: from BN2PEPF00004FC1.namprd04.prod.outlook.com
+ (2603:10b6:408:ec:cafe::f) by BN0PR04CA0115.outlook.office365.com
+ (2603:10b6:408:ec::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.12 via Frontend Transport; Tue,
+ 23 Jun 2026 08:13:19 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BN2PEPF00004FC1.mail.protection.outlook.com (10.167.243.187) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.159.10 via Frontend Transport; Tue, 23 Jun 2026 08:13:19 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.41; Tue, 23 Jun 2026 03:13:16 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "Alex
+ Deucher" <alexander.deucher@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>
+Subject: [RFC PATCH 0/3] Add PASID to fpriv lookup infrastructure
+Date: Tue, 23 Jun 2026 13:42:58 +0530
+Message-ID: <20260623081301.3046023-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF00004FC1:EE_|PH8PR12MB7208:EE_
+X-MS-Office365-Filtering-Correlation-Id: d86db94f-77a7-42e4-1f50-08ded0ff4908
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|82310400026|23010399003|376014|36860700016|56012099006|18002099003|11063799006;
+X-Microsoft-Antispam-Message-Info: khtwnMZCHE+9FAwqRaox7u6BEm99CDxzGueEfLYRMcFtscw17zuhBV42A7cWwM9zRZgBLpAu4ZxnWkFm7cp0/si6PmVrF+GB37F5mDXrfwroXA3NoqVmXQj35vOXBkHq5nIwbMedSSZjF0YS4Yw5sNScwpPZ+RKjAEz0FFwasSV0ORYpWREVZ5rk/aeFzMPm4Q6OidCz6Z3ZVN/kYU7m7oFNYjJJHYOleuxgoMBCcqhqFKFMX+Rtp8MzIATh/h6uCal0m9IEf0kTnEbdVBhL8TARi5hy6Mg4BG23BEzATH3FY8KoRQ5KNBcIYvsodB3y83fmd4RdgqNEeEGeBbyuLwTPgmQtVbtbo8ykui5c6kaq2JIJf2DN7b5F5auOxr2miIX2UWjMx1yVRCEDfEP+DkrVWuLCV0+MQmB9WsWrUsbVsJtwqv/C8K336qIk0zKTCIaGQ495QI9WWLp6hTIzPjZ/fgvmBRF3vLwWvJtS4fxZZ1xKns5F/5IoSAxVUsJR15fONGwbPT1QY0niSMS5BHCQdIfvZQiMGX0i9h+hLzTXzUHpfp0O3mApam1BFV6cqhgdLlihzxJzwpUKGpZAQKM35xcKzMTAQvCHUjZkrZ3bzBDMktKke+KfxhL9/mt7EhaUdPBbzXO/BCJ90mhykF25iznRH1Ina5HeL7A1Q/4gOgDAN/UHrKS/OSnA+8NnY42zMQEbVNdVQPcbNUWIzQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(23010399003)(376014)(36860700016)(56012099006)(18002099003)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: HIJ6Ll5ONbK7uocG2Bq/HOlt6z28z+qJHU0BWbshBo50+qgPz8PWuEma87NhziJSYum5yK2Rmja9jdj6M3JMVFGe1QQhoPsmvzyhYLxs3ozXQmLloaLPIyfODhyzzLqwp/zHEvXfYhpVlTpjMTplJwGyt6Uq34g9kQTOFSUdMmq8SdPYoZ1LiD1XXRGrj2ST4Sz63Ezu7SSeTABl7x4U4mlc2QpBy9rKjg5DSjVE+LZ+nPuy5HiAy6ZcP4dz9yhZHGkGzxQPTCMC+PH95lA3F2aRx0MVnnckA1U4yomNOiBL13uKgNkxI0fn7ZfW190nCxrZi7ViX9C03moiWf18QiGk0DYPoDHUbvC6FZlersV/fMCQfSFt9WLqtCjlwGbIMKTKnqBOuaTghq5/vZPcppT/VD//NcMQV2HLhcxg4VHa3AQwB4MzEms+uf2s4rVC
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB8796.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc27b34a-4f37-4138-7bdc-08ded0fd4a2c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jun 2026 07:59:02.2416 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: UJsVJqOP8Sx1Kvw2ZJ9upvD7HgSmFnS2J5nW8oyRw6uMBCrqskLa3wnxmWu55gs/
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7294
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2026 08:13:19.3276 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d86db94f-77a7-42e4-1f50-08ded0ff4908
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF00004FC1.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7208
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,118 +116,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:Ce.Sun@amd.com,m:Hawking.Zhang@amd.com,m:YiPeng.Chai@amd.com,m:Stanley.Yang@amd.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[Tao.Zhou1@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:srinivasan.shanmugam@amd.com,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Tao.Zhou1@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[srinivasan.shanmugam@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[amd.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	HAS_XOIP(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:from_mime]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:mid,amd.com:from_mime,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0A4656B50B3
+X-Rspamd-Queue-Id: DED076B52F4
 
-AMD General
+Current VM fault handling resolves PASIDs through VM state:
 
-The series is:  Reviewed-by: Tao Zhou <tao.zhou1@amd.com>
+PASID -> VM
 
-> -----Original Message-----
-> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Ce
-> Sun
-> Sent: Tuesday, June 23, 2026 3:39 PM
-> To: amd-gfx@lists.freedesktop.org
-> Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Chai, Thomas
-> <YiPeng.Chai@amd.com>; Zhou1, Tao <Tao.Zhou1@amd.com>; Yang, Stanley
-> <Stanley.Yang@amd.com>; Sun, Ce(Overlord) <Ce.Sun@amd.com>
-> Subject: [PATCH v1 2/2] drm/amdgpu: fix resource leak on ACP reset timeou=
-t
->
-> When ACP soft reset poll times out, original code returns early without
-> cleanup, leaking MFD child devices, genpd links and all ACP heap allocati=
-ons.
->
-> Replace direct early return with goto out to force run all cleanup logic
-> regardless of reset success, preserve timeout error code for caller.
->
-> Signed-off-by: Ce Sun <cesun102@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c | 11 +++++++----
->  1 file changed, 7 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c
-> b/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c
-> index b0db0834bfff..1d77d0cd3ec3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acp.c
-> @@ -510,6 +510,7 @@ static int acp_hw_fini(struct amdgpu_ip_block
-> *ip_block)
->       u32 val =3D 0;
->       u32 count =3D 0;
->       struct amdgpu_device *adev =3D ip_block->adev;
-> +     int ret =3D 0;
->
->       /* return early if no ACP */
->       if (!adev->acp.acp_genpd) {
-> @@ -531,7 +532,8 @@ static int acp_hw_fini(struct amdgpu_ip_block
-> *ip_block)
->                       break;
->               if (--count =3D=3D 0) {
->                       dev_err(&adev->pdev->dev, "Failed to reset ACP\n");
-> -                     return -ETIMEDOUT;
-> +                     ret =3D -ETIMEDOUT;
-> +                     goto out;
->               }
->               udelay(100);
->       }
-> @@ -548,11 +550,12 @@ static int acp_hw_fini(struct amdgpu_ip_block
-> *ip_block)
->                       break;
->               if (--count =3D=3D 0) {
->                       dev_err(&adev->pdev->dev, "Failed to reset ACP\n");
-> -                     return -ETIMEDOUT;
-> +                     ret =3D -ETIMEDOUT;
-> +                     goto out;
->               }
->               udelay(100);
->       }
-> -
-> +out:
->       device_for_each_child(adev->acp.parent, NULL,
->                             acp_genpd_remove_device);
->
-> @@ -564,7 +567,7 @@ static int acp_hw_fini(struct amdgpu_ip_block
-> *ip_block)
->       adev->acp.acp_genpd =3D NULL;
->       kfree(adev->acp.acp_cell);
->
-> -     return 0;
-> +     return ret;
->  }
->
->  static int acp_suspend(struct amdgpu_ip_block *ip_block)
-> --
-> 2.34.1
+Process-scoped event delivery paths such as EVENTFD notifications,
+debugger events, SQ messages and future WAIT_EVENT support may instead
+need to identify the owning DRM file-private object:
+
+PASID -> amdgpu_fpriv
+
+This RFC introduces a prototype PASID to fpriv lookup infrastructure
+for DRM file-private PASIDs.
+
+The existing PASID to VM mapping remains unchanged for VM fault
+handling, while this RFC adds a separate PASID to fpriv mapping for
+process-scoped event delivery.
+
+Architectural design discussion points:
+
+ - Is PASID -> amdgpu_fpriv the correct routing direction for
+   process-scoped events?
+ - How should asynchronous users protect fpriv lifetime?
+
+Series is only compilation tested.
+
+Srinivasan Shanmugam (3):
+  drm/amdgpu: Add PASID fpriv lookup manager
+  drm/amdgpu: Register DRM fpriv PASID ownership
+  drm/amdgpu: Add PASID to fpriv lookup helper
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 12 +++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  | 60 +++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  | 22 +++++++++
+ 3 files changed, 94 insertions(+)
+
+-- 
+2.34.1
 
