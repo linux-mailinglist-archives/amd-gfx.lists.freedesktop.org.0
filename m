@@ -2,52 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id D3vtE7NeOmpk7QcAu9opvQ
+	id Nk7TBbJeOmpj7QcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 12:23:47 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 12:23:46 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB1966B63EF
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 12:23:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B2146B63EA
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 12:23:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=OjdbqP3c;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=iHyq2h5N;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DEA010EA77;
-	Tue, 23 Jun 2026 10:23:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDF9E10EA74;
+	Tue, 23 Jun 2026 10:23:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011042.outbound.protection.outlook.com [52.101.57.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C62F10EA75
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 10:23:44 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011016.outbound.protection.outlook.com [52.101.52.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B35E10EA5C
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 10:23:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PZYRdOLvZvJpyYqpPBAcdNPYaG7ZSVo2LgbzV635ivLMyRciMxiinla+7OiqZwdVa91ipFsy8uljytpRI3Trq8B5NLyxGxAhnELAMxP3wJaJBEDZfbJ2FzEbOOfxd/jCSRqX/6SriWy0dKQ4yRPYbIfK952lUlIns6yLRqHKhMUf5kHHL+zUlfHzFgUIk6k57Ihe8HCNwM7q2U9jqTRd+A78ssk65oNXRFvg+S6+WNWFvXDFT4KhrOfqf/I1WvaefAXlOB/D5MSmxZw0a+sYNR1bUJnpVPxS02aw6h64USQPQBuik6m1OVdP2cafWFZm9ctvHK/K2DPm+mSIpI+6xg==
+ b=yZvHp75kMcYmYSg2ROh3gs7bvcVWR4ZBkozeZEUSha8jNfas/i/WD2H+cUQJ5Hn/QMrO1sR6iayvc3Bivte/K+Rv+f7GSj14ddpSQO4QKXICDsMXgOlFqSbYrOaq1iC8r1YS3tLxptyCazyAdWlDv3IGKxj57/9zC2GR+nVApVYf4ZJDpCqAV16HcEblPVAhz0n5dqNTOicfAdGPcBOX/YZNxKnfndQ2ybr6sQYzHVKTYlarE4OxBnpbbHCynQwWrn1Bh3tcwPPWwz3RUQM6TufRLqcadn8L2vKGF2UGodCtWKocf3K0zS1veU5lTGzoixRDkgF+JSE0wGi04weEtQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p3Pa+8F5XseVgiEXMTxGhy4IS9B2DJpbquIKs0/e5IM=;
- b=Pe6Na2ty8RyuBR3E+htE75/anA46lu3kkUWMAWNmN8XqZ660fQKLPJhYZvUNFTkJNrKpoKEJ3obNe0Y5KlQhMTyTjfkBIPXcjjavVNbwsq+egqyzgGQH6qOy1pzJ4eoAMZxJ5myDVJuaPbS0BUGzKpQ0UL1b6Am32hG+g+htHGfM37aZpsNZN8nfBlWXcm23Nirenk5hiLTsb/6nB3zhca6Q4vhyXCYPxleUx/lIZaMTn5QHjHeLf5SqDTwrjoFIWJOK//JFzYD0ORnnrt6Pd/arEgJJQ412UjMlEsuXn/tJy2CX23QcPtTDUQa8PG5qyHOoI3tHAoJtPAMbjlYcpA==
+ bh=3qALKC8YFZDOb6yULuKER5HobwmINbhvpSuS8PkiL7I=;
+ b=hPobjU2hdoROcv6hwOV0Jh2//4nY0mWY+5i4ssO+T0Pua5CZiOdHmEtzEC0uovVWc1gSusnmQt5mzq6Q+5a9nCuEXF6Qc8NP2wXHQ52uU3+Sr0IXlyhpDR31b+NX6uHZ2LHnNDIAiArx5fLmSB1DYQUblaufO73UJ2g8DgfdyZ96Hns37vR2PVKSzp5Y/uK5mFnSwi8ItpkhBIGQSC7a1yIDUqOcwfFI9BLGRWLDvBv3WmGeMwcfue9HcwBOlH18Muz/7Vd0RxyB9JXxd5yOfHqNVW0ceh4byo8CmNqMD0tu176C0tWr2ZkFgVnIrQuQmHmffehGCm3ZPcUNs0gMoA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p3Pa+8F5XseVgiEXMTxGhy4IS9B2DJpbquIKs0/e5IM=;
- b=OjdbqP3c1EFUVo7/l2Tr2QAHRl53eRgkOiDkFTld4I3N+8q5/Mp3Qs2gvasvnoj59SNq9UIrbkEvo9nJlzN6V0+/XPbXkaJVq8kT7LIUk/4zKa5Bm12gSBcO3l0fRUTIEmi/J7OrOMk6YAvRHL3J9dkL+/50+941e4ttefPcufw=
+ bh=3qALKC8YFZDOb6yULuKER5HobwmINbhvpSuS8PkiL7I=;
+ b=iHyq2h5NftP2SbD4nIWXwuIciYjDXgjDIQSM2HLNyp5urgeM6p0bceOP3hRHNESHSml5I7WhPcO/FuxS2rSVdxNg8IFRKP5kZp/0j8vlgzm7exhQm8ApRKWUxOc5RS4xtej+Emia4b545Sw8Roh+8VVuFyyUwjwC78yuYKYyaoA=
 Received: from CH0PR03CA0364.namprd03.prod.outlook.com (2603:10b6:610:119::15)
- by SA3PR12MB7880.namprd12.prod.outlook.com (2603:10b6:806:305::18)
+ by CH3PR12MB9078.namprd12.prod.outlook.com (2603:10b6:610:196::11)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Tue, 23 Jun
- 2026 10:23:35 +0000
+ 2026 10:23:36 +0000
 Received: from CH1PEPF0000A34B.namprd04.prod.outlook.com
- (2603:10b6:610:119:cafe::14) by CH0PR03CA0364.outlook.office365.com
+ (2603:10b6:610:119:cafe::8f) by CH0PR03CA0364.outlook.office365.com
  (2603:10b6:610:119::15) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.12 via Frontend Transport; Tue,
- 23 Jun 2026 10:23:35 +0000
+ 23 Jun 2026 10:23:36 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -57,19 +57,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  CH1PEPF0000A34B.mail.protection.outlook.com (10.167.244.10) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Tue, 23 Jun 2026 10:23:34 +0000
+ 15.21.159.10 via Frontend Transport; Tue, 23 Jun 2026 10:23:36 +0000
 Received: from kevin-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 23 Jun
- 2026 05:23:33 -0500
+ 2026 05:23:34 -0500
 From: Yang Wang <kevinyang.wang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <alexander.deucher@amd.com>, <hawking.zhang@amd.com>,
  <kenneth.feng@amd.com>
-Subject: [PATCH 1/3] drm/amd/pm: Validate Vega10 PPTable subtable bounds
-Date: Tue, 23 Jun 2026 18:23:17 +0800
-Message-ID: <20260623102319.413960-1-kevinyang.wang@amd.com>
+Subject: [PATCH 2/3] drm/amd/pm: Validate Tonga PPTable subtable bounds
+Date: Tue, 23 Jun 2026 18:23:18 +0800
+Message-ID: <20260623102319.413960-2-kevinyang.wang@amd.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260623102319.413960-1-kevinyang.wang@amd.com>
+References: <20260623102319.413960-1-kevinyang.wang@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -78,29 +80,29 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH1PEPF0000A34B:EE_|SA3PR12MB7880:EE_
-X-MS-Office365-Filtering-Correlation-Id: 92b8d869-9657-46e0-4abe-08ded1117b79
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000A34B:EE_|CH3PR12MB9078:EE_
+X-MS-Office365-Filtering-Correlation-Id: d875f048-729b-42ec-ac91-08ded1117c6b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|1800799024|23010399003|82310400026|376014|18002099003|56012099006|3023799007|11063799006;
-X-Microsoft-Antispam-Message-Info: Jk/IL8StZ1qPiQvZNsqz2U/d0+L08cgd3mMRCSaoYhY+cYVOEiDnqE1OeoRuW/2M1U2JUlwFDvYaNwRRyY9eSf8+3LdPt5kyeZDcT27/NZXc+djN//OgGkBflvdpCSD1dcxmpqeyAwFYVhVdkih0/jxv//r6gTM8000OfwctkxV+pMXUmpwnfvtJUGqIRmVIh2VEp3McyhxmOxw1lsH/zZbD1Y5/Bjp3yCo1eJ3gVB5h0SbG+f/IxL3nC2XEk5G3pQGqZ5dD836ZKDYhp/W4bpfDscWkypgXo2t0fJ7PtUC/ChVCJnJ65W0uINWXxUfdSM55jCpBMmbl4UDlDhPyioXlJwKg/ceNzLRKqg6cVFeINRVf037gPtVOq2kV1ltfk93KlfPssN6GFgjX8jb8NIcpbpZkEMdR88KjVEELRMz/nOXfoxRtEHQIsgxZ9XtubkhiKyAwpHmotmuEFBOuoUjcPpdPp6iBhHGIV5VwVpQaHuH37t0c0B5UXRcIewrwuzJ9Q0VCNRDWi6Jt+7w2SaMDCKugHGYrZVptFyz/iQO7eCuog+FsfDVrZg1s78U5rBRfQQNh8XQdSc4v9pjw8G1zFHkelbs+zeg3q1/h6mWnoIK18QG/Zj8O9OVXAkxo8xqndpIXWOisQxAvFbW0K+gW+SMxE+frpvV1uuRvv0eNptiqvhCW6RoShXwE0V+W
+ ARA:13230040|376014|82310400026|36860700016|23010399003|1800799024|11063799006|3023799007|18002099003|22082099003|56012099006;
+X-Microsoft-Antispam-Message-Info: zqEHjkiVsL3w4qwH19hLmgApz/w6QULtLeN6Y8zkw6R6LiGjYsTQvHWG34a5r1FpbqOdeWWVJjjz6oAIdLPGageFIvYw9jOd+YejpYPK1nye/dod3lSH2nMs61W/2L/jT+m5uH8zQkE/Lpq2GbtMkjj1RrCz9Xi5EehBOQKg54A+4eKYG09KswvYSFC7HtkwwcCtQdAdXVHfMbowgbmu2cUjra9MlXCY3bYPa7WqsaxPVCicZB0hMPv5g4qRylSFF9hvb0G6eac9NLp/VTKsh3BBuLh/7lHI7wFmMRRFz7uIq0HsKfk4IgtUiir0nhAVfz55B0fq0IfqUmE6eR34BexIWaaMTnqrlH+76KX3FDMMJnFJ4d3RntPHzz06l0lPVwXA60B4GNYhEpdZyBl9JMJ/9HupyexhjSwSyrKIHq9Wikuif0hCJnnp6+pF/qjOKFerEVY3yzgtTv8RPRr2AIE7KsaSSwI+yS7YwCOlZN6PtZ4d/UbEPs8DiSYLrGYTnLNd59OzG6IkKultyj31iYehoJ55T8wrLRP9PaoWYDWfitIZ1ifG43S6y4W9tQkiA4/Nw48ywAJMunWbJuoUkm3arCqynynhvDLk32PVIdLZwBGVUCHzEIJQ1sD8OSm5SzzkYPsZmdxtIjvSQbjCwEWaqBElrrCinPnUjRTduWWM5OJzsCcfVdeJDjQAkdxW
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(1800799024)(23010399003)(82310400026)(376014)(18002099003)(56012099006)(3023799007)(11063799006);
+ SFS:(13230040)(376014)(82310400026)(36860700016)(23010399003)(1800799024)(11063799006)(3023799007)(18002099003)(22082099003)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: uA/qh10xhaIPnKAGiFWuvtf9eWztJLCWICcQQCo/hMSUlux5iqM+K468D0d9lA3vdqHDsfnBj0qK0/AU15cjyyuhxARbM13yc6eLD6h/xkt9yDxaVdara8Ul26rKdwHyp6jXA9lGVw7DE70DP610ZEFHkGVwVmaM4s1dc3nJwCe4Y9bEKBfHWk4Zli5AaL/YT9bnM/s49XizrfTzn1KbUz4hCveLHWZmrJ39u7xoHlLqB8D/4qPBsWf/fEoYzeUWfuUL/fSwjozd3BtKk7AGxhNsIcwA/7rb/ApLqIbtTmR+w8cjy7zMPpQVM4OuH7D8hCBJ5uYCzvKzWPa57aMsvTeN09JoKkiYorKB9YqS6ejyxN210K1kBRuelUwa4fA1z+MWQ882J6MECRn+4kT/Mk1ppOh5PSvJZhGyVtfayI27RnrudMorBsZQ/a5OaHed
+X-MS-Exchange-AntiSpam-MessageData-0: wZRnGD6Rebx82lYBPXLYxTCw8les6KM3yH76nR/w0SSSYXywx/gMZXfuYJajRGlH0TgPwvhOtAaX7MSBS4w568tuBAn6bDDv/DrkGMKXYt7MIb7rKiH7BIC1lLptfZKndvxpg/Ux47CtWveLaTw4sBu6vTEK67Hfn9lp1y6HmpkLT2ox0GYUQ+bqwpekP1TcBTZIDNFQj6Gjv2jG9hLpoUIQa8fxyjb/wZXyfLVNLELycu/tc5DT+PSGa0zr9FuJSgl2QG/tEJBxz0jrCA6onSO6hlECNJJwUP3jnD9pl9SLWiwReL02QevxyqIwDUnsphDJE332/ZAj1Nb1OTy7lPuMjL/sZRyIDJYZcOf7EcsrM4fjow0c4Uxi3cWK5Tab6776e7gynRoFBJ3WlM/oQCdgjzTVrqg9nIf46parK0C0g7vxadbkKHm5gO9bOuUP
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2026 10:23:34.8848 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 92b8d869-9657-46e0-4abe-08ded1117b79
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2026 10:23:36.4727 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d875f048-729b-42ec-ac91-08ded1117c6b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000A34B.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7880
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9078
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,47 +146,47 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EB1966B63EF
+X-Rspamd-Queue-Id: 5B2146B63EA
 
-Vega10 PPTable parsing uses VBIOS-provided offsets, revision fields
-and entry counts to locate subtables. Malformed data can otherwise
-drive out-of-bounds reads from soft_pp_table_size, and voltage lookup
-tables can overrun their fixed-size destination arrays.
+Tonga PPTable parsing also relies on VBIOS offsets, revision fields
+and entry counts for several subtables. Malformed data can cause
+out-of-bounds reads, while voltage lookup tables can overrun their
+fixed-size destination arrays.
 
-Add shared bounds helpers and validate fixed-size subtables, dynamic
-entry arrays and revision-specific layouts before consuming thermal,
-fan, power-tune, clock dependency, PCIE, hard-limit and voltage lookup
-data.
+Add common bounds helpers and validate fixed subtables, dynamic entry
+arrays and revision-specific layouts before consuming voltage lookup,
+dependency, PCIE, power-tune, hard-limit, thermal, fan, GPIO, PPM and
+VCE state data.
 
 Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
 ---
- .../powerplay/hwmgr/vega10_processpptables.c  | 564 ++++++++++++++----
- 1 file changed, 459 insertions(+), 105 deletions(-)
+ .../powerplay/hwmgr/process_pptables_v1_0.c   | 604 +++++++++++++++---
+ 1 file changed, 519 insertions(+), 85 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_processpptables.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_processpptables.c
-index 64cff9f4850a..5dc6cd2b0c54 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_processpptables.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_processpptables.c
-@@ -63,6 +63,46 @@ static const void *get_powerplay_table(struct pp_hwmgr *hwmgr)
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/process_pptables_v1_0.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/process_pptables_v1_0.c
+index 94c1e2c10370..831f5e240105 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/process_pptables_v1_0.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/process_pptables_v1_0.c
+@@ -150,6 +150,368 @@ static const void *get_powerplay_table(struct pp_hwmgr *hwmgr)
  	return table_address;
  }
  
-+static bool vega10_pp_table_has_space(struct pp_hwmgr *hwmgr, size_t offset,
-+				      size_t size)
++static bool tonga_pp_table_has_space(struct pp_hwmgr *hwmgr, size_t offset,
++				     size_t size)
 +{
 +	size_t table_size = hwmgr->soft_pp_table_size;
 +
 +	return offset <= table_size && size <= table_size - offset;
 +}
 +
-+static int get_vega10_subtable(struct pp_hwmgr *hwmgr,
-+		const ATOM_Vega10_POWERPLAYTABLE *powerplay_table,
++static int get_tonga_subtable(struct pp_hwmgr *hwmgr,
++		const ATOM_Tonga_POWERPLAYTABLE *powerplay_table,
 +		u16 table_offset, size_t table_size, const void **table)
 +{
 +	PP_ASSERT_WITH_CODE((table_offset != 0),
 +			    "Invalid PowerPlay Table!", return -1);
-+	PP_ASSERT_WITH_CODE((vega10_pp_table_has_space(hwmgr, table_offset,
-+						       table_size)),
++	PP_ASSERT_WITH_CODE((tonga_pp_table_has_space(hwmgr, table_offset,
++						      table_size)),
 +			    "Invalid PowerPlay Table!", return -1);
 +
 +	*table = (const void *)(((unsigned long)powerplay_table) + table_offset);
@@ -192,7 +194,7 @@ index 64cff9f4850a..5dc6cd2b0c54 100644
 +	return 0;
 +}
 +
-+static int validate_vega10_table_entries(struct pp_hwmgr *hwmgr,
++static int validate_tonga_table_entries(struct pp_hwmgr *hwmgr,
 +		u16 table_offset, size_t entries_offset,
 +		u8 num_entries, size_t entry_size)
 +{
@@ -202,107 +204,61 @@ index 64cff9f4850a..5dc6cd2b0c54 100644
 +			    "Invalid PowerPlay Table!", return -1);
 +
 +	table_size = entries_offset + num_entries * entry_size;
-+	PP_ASSERT_WITH_CODE((vega10_pp_table_has_space(hwmgr, table_offset,
-+						       table_size)),
++	PP_ASSERT_WITH_CODE((tonga_pp_table_has_space(hwmgr, table_offset,
++						      table_size)),
 +			    "Invalid PowerPlay Table!", return -1);
 +
 +	return 0;
 +}
 +
- static int get_vega10_state_array(struct pp_hwmgr *hwmgr,
- 	const ATOM_Vega10_POWERPLAYTABLE *powerplay_table,
- 	const ATOM_Vega10_State_Array **state_array)
-@@ -102,6 +142,293 @@ static int get_vega10_state_array(struct pp_hwmgr *hwmgr,
- 	return 0;
- }
- 
-+static int get_vega10_gfxclk_dependency_table(struct pp_hwmgr *hwmgr,
-+		const ATOM_Vega10_POWERPLAYTABLE *powerplay_table,
-+		const ATOM_Vega10_GFXCLK_Dependency_Table **gfxclk_dep_table)
++static int get_tonga_voltage_lookup_table(struct pp_hwmgr *hwmgr,
++		const ATOM_Tonga_POWERPLAYTABLE *powerplay_table,
++		u16 table_offset, uint32_t max_levels,
++		const ATOM_Tonga_Voltage_Lookup_Table **lookup_table)
 +{
-+	const ATOM_Vega10_GFXCLK_Dependency_Table *table;
-+	u16 table_offset;
++	const ATOM_Tonga_Voltage_Lookup_Table *table;
 +	size_t table_size;
-+	size_t entry_size;
-+
-+	table_offset = le16_to_cpu(powerplay_table->usGfxclkDependencyTableOffset);
-+	if (!table_offset)
-+		return -EINVAL;
-+
-+	PP_ASSERT_WITH_CODE((vega10_pp_table_has_space(hwmgr, table_offset,
-+						       sizeof(*table))),
-+			    "Invalid PowerPlay Table!", return -1);
-+
-+	table = (const ATOM_Vega10_GFXCLK_Dependency_Table *)
-+		(((unsigned long)powerplay_table) + table_offset);
-+	PP_ASSERT_WITH_CODE((table->ucNumEntries != 0),
-+			    "Invalid PowerPlay Table!", return -1);
-+
-+	if (table->ucRevId == 0)
-+		entry_size = sizeof(ATOM_Vega10_GFXCLK_Dependency_Record);
-+	else if (table->ucRevId == 1)
-+		entry_size = sizeof(ATOM_Vega10_GFXCLK_Dependency_Record_V2);
-+	else
-+		PP_ASSERT_WITH_CODE(false,
-+			"Unsupported GFXClockDependencyTable Revision!",
-+			return -EINVAL);
-+
-+	table_size = offsetof(ATOM_Vega10_GFXCLK_Dependency_Table, entries) +
-+		table->ucNumEntries * entry_size;
-+	PP_ASSERT_WITH_CODE((vega10_pp_table_has_space(hwmgr, table_offset,
-+						       table_size)),
-+			    "Invalid PowerPlay Table!", return -1);
-+
-+	*gfxclk_dep_table = table;
-+
-+	return 0;
-+}
-+
-+static int get_vega10_clk_dependency_table(struct pp_hwmgr *hwmgr,
-+		const ATOM_Vega10_POWERPLAYTABLE *powerplay_table,
-+		u16 table_offset,
-+		const ATOM_Vega10_SOCCLK_Dependency_Table **clk_dep_table)
-+{
-+	const ATOM_Vega10_SOCCLK_Dependency_Table *table;
 +	int ret;
 +
-+	ret = get_vega10_subtable(hwmgr, powerplay_table, table_offset,
-+				  sizeof(*table), (const void **)&table);
++	ret = get_tonga_subtable(hwmgr, powerplay_table, table_offset,
++				 sizeof(*table), (const void **)&table);
 +	if (ret)
 +		return ret;
 +
-+	ret = validate_vega10_table_entries(hwmgr, table_offset,
-+					    offsetof(ATOM_Vega10_SOCCLK_Dependency_Table,
-+						     entries),
-+					    table->ucNumEntries,
-+					    sizeof(ATOM_Vega10_CLK_Dependency_Record));
-+	if (ret)
-+		return ret;
++	PP_ASSERT_WITH_CODE((table->ucNumEntries != 0 &&
++			     table->ucNumEntries <= max_levels),
++			    "Invalid PowerPlay Table!", return -1);
 +
-+	*clk_dep_table = table;
++	table_size = offsetof(ATOM_Tonga_Voltage_Lookup_Table, entries) +
++		table->ucNumEntries * sizeof(ATOM_Tonga_Voltage_Lookup_Record);
++	PP_ASSERT_WITH_CODE((tonga_pp_table_has_space(hwmgr, table_offset,
++						      table_size)),
++			    "Invalid PowerPlay Table!", return -1);
++
++	*lookup_table = table;
 +
 +	return 0;
 +}
 +
-+static int get_vega10_mclk_dependency_table(struct pp_hwmgr *hwmgr,
-+		const ATOM_Vega10_POWERPLAYTABLE *powerplay_table,
-+		const ATOM_Vega10_MCLK_Dependency_Table **mclk_dep_table)
++static int get_tonga_mclk_dependency_table(struct pp_hwmgr *hwmgr,
++		const ATOM_Tonga_POWERPLAYTABLE *powerplay_table,
++		const ATOM_Tonga_MCLK_Dependency_Table **mclk_dep_table)
 +{
-+	const ATOM_Vega10_MCLK_Dependency_Table *table;
++	const ATOM_Tonga_MCLK_Dependency_Table *table;
 +	u16 table_offset;
 +	int ret;
 +
 +	table_offset = le16_to_cpu(powerplay_table->usMclkDependencyTableOffset);
-+	ret = get_vega10_subtable(hwmgr, powerplay_table, table_offset,
-+				  sizeof(*table), (const void **)&table);
++	ret = get_tonga_subtable(hwmgr, powerplay_table, table_offset,
++				 sizeof(*table), (const void **)&table);
 +	if (ret)
 +		return ret;
 +
-+	ret = validate_vega10_table_entries(hwmgr, table_offset,
-+					    offsetof(ATOM_Vega10_MCLK_Dependency_Table,
-+						     entries),
-+					    table->ucNumEntries,
-+					    sizeof(ATOM_Vega10_MCLK_Dependency_Record));
++	ret = validate_tonga_table_entries(hwmgr, table_offset,
++					   offsetof(ATOM_Tonga_MCLK_Dependency_Table,
++						    entries),
++					   table->ucNumEntries,
++					   sizeof(ATOM_Tonga_MCLK_Dependency_Record));
 +	if (ret)
 +		return ret;
 +
@@ -311,25 +267,25 @@ index 64cff9f4850a..5dc6cd2b0c54 100644
 +	return 0;
 +}
 +
-+static int get_vega10_mm_dependency_table(struct pp_hwmgr *hwmgr,
-+		const ATOM_Vega10_POWERPLAYTABLE *powerplay_table,
-+		const ATOM_Vega10_MM_Dependency_Table **mm_dep_table)
++static int get_tonga_mm_dependency_table(struct pp_hwmgr *hwmgr,
++		const ATOM_Tonga_POWERPLAYTABLE *powerplay_table,
++		const ATOM_Tonga_MM_Dependency_Table **mm_dep_table)
 +{
-+	const ATOM_Vega10_MM_Dependency_Table *table;
++	const ATOM_Tonga_MM_Dependency_Table *table;
 +	u16 table_offset;
 +	int ret;
 +
 +	table_offset = le16_to_cpu(powerplay_table->usMMDependencyTableOffset);
-+	ret = get_vega10_subtable(hwmgr, powerplay_table, table_offset,
-+				  sizeof(*table), (const void **)&table);
++	ret = get_tonga_subtable(hwmgr, powerplay_table, table_offset,
++				 sizeof(*table), (const void **)&table);
 +	if (ret)
 +		return ret;
 +
-+	ret = validate_vega10_table_entries(hwmgr, table_offset,
-+					    offsetof(ATOM_Vega10_MM_Dependency_Table,
-+						     entries),
-+					    table->ucNumEntries,
-+					    sizeof(ATOM_Vega10_MM_Dependency_Record));
++	ret = validate_tonga_table_entries(hwmgr, table_offset,
++					   offsetof(ATOM_Tonga_MM_Dependency_Table,
++						    entries),
++					   table->ucNumEntries,
++					   sizeof(ATOM_Tonga_MM_Dependency_Record));
 +	if (ret)
 +		return ret;
 +
@@ -338,57 +294,111 @@ index 64cff9f4850a..5dc6cd2b0c54 100644
 +	return 0;
 +}
 +
-+static int get_vega10_pcie_table(struct pp_hwmgr *hwmgr,
-+		const ATOM_Vega10_POWERPLAYTABLE *powerplay_table,
-+		const Vega10_PPTable_Generic_SubTable_Header **pcie_table)
++static int get_tonga_sclk_dependency_table(struct pp_hwmgr *hwmgr,
++		const ATOM_Tonga_POWERPLAYTABLE *powerplay_table,
++		const PPTable_Generic_SubTable_Header **sclk_dep_table)
 +{
-+	const ATOM_Vega10_PCIE_Table *table;
++	const PPTable_Generic_SubTable_Header *header;
 +	u16 table_offset;
++	size_t entries_offset;
++	size_t entry_size;
++	u8 num_entries;
 +	int ret;
 +
-+	table_offset = le16_to_cpu(powerplay_table->usPCIETableOffset);
-+	ret = get_vega10_subtable(hwmgr, powerplay_table, table_offset,
-+				  sizeof(*table), (const void **)&table);
++	table_offset = le16_to_cpu(powerplay_table->usSclkDependencyTableOffset);
++	ret = get_tonga_subtable(hwmgr, powerplay_table, table_offset,
++				 sizeof(*header), (const void **)&header);
 +	if (ret)
 +		return ret;
 +
-+	if (!table->ucNumEntries) {
-+		*pcie_table = (const Vega10_PPTable_Generic_SubTable_Header *)table;
-+		return 0;
++	if (header->ucRevId < 1) {
++		const ATOM_Tonga_SCLK_Dependency_Table *table =
++			(const ATOM_Tonga_SCLK_Dependency_Table *)header;
++
++		entries_offset = offsetof(ATOM_Tonga_SCLK_Dependency_Table, entries);
++		entry_size = sizeof(ATOM_Tonga_SCLK_Dependency_Record);
++		num_entries = table->ucNumEntries;
++	} else {
++		const ATOM_Polaris_SCLK_Dependency_Table *table =
++			(const ATOM_Polaris_SCLK_Dependency_Table *)header;
++
++		entries_offset = offsetof(ATOM_Polaris_SCLK_Dependency_Table, entries);
++		entry_size = sizeof(ATOM_Polaris_SCLK_Dependency_Record);
++		num_entries = table->ucNumEntries;
 +	}
 +
-+	ret = validate_vega10_table_entries(hwmgr, table_offset,
-+					    offsetof(ATOM_Vega10_PCIE_Table,
-+						     entries),
-+					    table->ucNumEntries,
-+					    sizeof(ATOM_Vega10_PCIE_Record));
++	ret = validate_tonga_table_entries(hwmgr, table_offset, entries_offset,
++					   num_entries, entry_size);
 +	if (ret)
 +		return ret;
 +
-+	*pcie_table = (const Vega10_PPTable_Generic_SubTable_Header *)table;
++	*sclk_dep_table = header;
 +
 +	return 0;
 +}
 +
-+static int get_vega10_hard_limit_table(struct pp_hwmgr *hwmgr,
-+		const ATOM_Vega10_POWERPLAYTABLE *powerplay_table,
-+		const ATOM_Vega10_Hard_Limit_Table **hard_limit_table)
++static int get_tonga_pcie_table(struct pp_hwmgr *hwmgr,
++		const ATOM_Tonga_POWERPLAYTABLE *powerplay_table,
++		const PPTable_Generic_SubTable_Header **pcie_table)
 +{
-+	const ATOM_Vega10_Hard_Limit_Table *table;
++	const PPTable_Generic_SubTable_Header *header;
++	u16 table_offset;
++	size_t entries_offset;
++	size_t entry_size;
++	u8 num_entries;
++	int ret;
++
++	table_offset = le16_to_cpu(powerplay_table->usPCIETableOffset);
++	ret = get_tonga_subtable(hwmgr, powerplay_table, table_offset,
++				 sizeof(*header), (const void **)&header);
++	if (ret)
++		return ret;
++
++	if (header->ucRevId < 1) {
++		const ATOM_Tonga_PCIE_Table *table =
++			(const ATOM_Tonga_PCIE_Table *)header;
++
++		entries_offset = offsetof(ATOM_Tonga_PCIE_Table, entries);
++		entry_size = sizeof(ATOM_Tonga_PCIE_Record);
++		num_entries = table->ucNumEntries;
++	} else {
++		const ATOM_Polaris10_PCIE_Table *table =
++			(const ATOM_Polaris10_PCIE_Table *)header;
++
++		entries_offset = offsetof(ATOM_Polaris10_PCIE_Table, entries);
++		entry_size = sizeof(ATOM_Polaris10_PCIE_Record);
++		num_entries = table->ucNumEntries;
++	}
++
++	ret = validate_tonga_table_entries(hwmgr, table_offset, entries_offset,
++					   num_entries, entry_size);
++	if (ret)
++		return ret;
++
++	*pcie_table = header;
++
++	return 0;
++}
++
++static int get_tonga_hard_limit_table(struct pp_hwmgr *hwmgr,
++		const ATOM_Tonga_POWERPLAYTABLE *powerplay_table,
++		const ATOM_Tonga_Hard_Limit_Table **hard_limit_table)
++{
++	const ATOM_Tonga_Hard_Limit_Table *table;
 +	u16 table_offset;
 +	int ret;
 +
 +	table_offset = le16_to_cpu(powerplay_table->usHardLimitTableOffset);
-+	ret = get_vega10_subtable(hwmgr, powerplay_table, table_offset,
-+				  sizeof(*table), (const void **)&table);
++	ret = get_tonga_subtable(hwmgr, powerplay_table, table_offset,
++				 sizeof(*table), (const void **)&table);
 +	if (ret)
 +		return ret;
 +
-+	ret = validate_vega10_table_entries(hwmgr, table_offset,
-+					    offsetof(ATOM_Vega10_Hard_Limit_Table,
-+						     entries),
-+					    table->ucNumEntries,
-+					    sizeof(ATOM_Vega10_Hard_Limit_Record));
++	ret = validate_tonga_table_entries(hwmgr, table_offset,
++					   offsetof(ATOM_Tonga_Hard_Limit_Table,
++						    entries),
++					   table->ucNumEntries,
++					   sizeof(ATOM_Tonga_Hard_Limit_Record));
 +	if (ret)
 +		return ret;
 +
@@ -397,45 +407,43 @@ index 64cff9f4850a..5dc6cd2b0c54 100644
 +	return 0;
 +}
 +
-+static int get_vega10_thermal_controller_table(struct pp_hwmgr *hwmgr,
-+		const ATOM_Vega10_POWERPLAYTABLE *powerplay_table,
-+		const ATOM_Vega10_Thermal_Controller **thermal_controller)
++static int get_tonga_thermal_controller_table(struct pp_hwmgr *hwmgr,
++		const ATOM_Tonga_POWERPLAYTABLE *powerplay_table,
++		const ATOM_Tonga_Thermal_Controller **thermal_controller)
 +{
 +	u16 table_offset;
 +
 +	table_offset = le16_to_cpu(powerplay_table->usThermalControllerOffset);
 +
-+	return get_vega10_subtable(hwmgr, powerplay_table, table_offset,
-+				   sizeof(**thermal_controller),
-+				   (const void **)thermal_controller);
++	return get_tonga_subtable(hwmgr, powerplay_table, table_offset,
++				  sizeof(**thermal_controller),
++				  (const void **)thermal_controller);
 +}
 +
-+static int get_vega10_fan_table(struct pp_hwmgr *hwmgr,
-+		const ATOM_Vega10_POWERPLAYTABLE *powerplay_table,
-+		const Vega10_PPTable_Generic_SubTable_Header **fan_table)
++static int get_tonga_fan_table(struct pp_hwmgr *hwmgr,
++		const ATOM_Tonga_POWERPLAYTABLE *powerplay_table,
++		const PPTable_Generic_SubTable_Header **fan_table)
 +{
-+	const Vega10_PPTable_Generic_SubTable_Header *header;
++	const PPTable_Generic_SubTable_Header *header;
 +	u16 table_offset;
 +	size_t table_size;
 +	int ret;
 +
 +	table_offset = le16_to_cpu(powerplay_table->usFanTableOffset);
-+	ret = get_vega10_subtable(hwmgr, powerplay_table, table_offset,
-+				  sizeof(*header), (const void **)&header);
++	ret = get_tonga_subtable(hwmgr, powerplay_table, table_offset,
++				 sizeof(*header), (const void **)&header);
 +	if (ret)
 +		return ret;
 +
-+	if (header->ucRevId == 10)
-+		table_size = sizeof(ATOM_Vega10_Fan_Table);
-+	else if (header->ucRevId == 0xb)
-+		table_size = sizeof(ATOM_Vega10_Fan_Table_V2);
-+	else if (header->ucRevId > 0xb)
-+		table_size = sizeof(ATOM_Vega10_Fan_Table_V3);
++	if (header->ucRevId < 8)
++		table_size = sizeof(ATOM_Tonga_Fan_Table);
++	else if (header->ucRevId == 8)
++		table_size = sizeof(ATOM_Fiji_Fan_Table);
 +	else
-+		return -EINVAL;
++		table_size = sizeof(ATOM_Polaris_Fan_Table);
 +
-+	PP_ASSERT_WITH_CODE((vega10_pp_table_has_space(hwmgr, table_offset,
-+						       table_size)),
++	PP_ASSERT_WITH_CODE((tonga_pp_table_has_space(hwmgr, table_offset,
++						      table_size)),
 +			    "Invalid PowerPlay Table!", return -1);
 +
 +	*fan_table = header;
@@ -443,30 +451,30 @@ index 64cff9f4850a..5dc6cd2b0c54 100644
 +	return 0;
 +}
 +
-+static int get_vega10_power_tune_table(struct pp_hwmgr *hwmgr,
-+		const ATOM_Vega10_POWERPLAYTABLE *powerplay_table,
-+		const Vega10_PPTable_Generic_SubTable_Header **power_tune_table)
++static int get_tonga_power_tune_table(struct pp_hwmgr *hwmgr,
++		const ATOM_Tonga_POWERPLAYTABLE *powerplay_table,
++		const PPTable_Generic_SubTable_Header **power_tune_table)
 +{
-+	const Vega10_PPTable_Generic_SubTable_Header *header;
++	const PPTable_Generic_SubTable_Header *header;
 +	u16 table_offset;
 +	size_t table_size;
 +	int ret;
 +
 +	table_offset = le16_to_cpu(powerplay_table->usPowerTuneTableOffset);
-+	ret = get_vega10_subtable(hwmgr, powerplay_table, table_offset,
-+				  sizeof(*header), (const void **)&header);
++	ret = get_tonga_subtable(hwmgr, powerplay_table, table_offset,
++				 sizeof(*header), (const void **)&header);
 +	if (ret)
 +		return ret;
 +
-+	if (header->ucRevId == 5)
-+		table_size = sizeof(ATOM_Vega10_PowerTune_Table);
-+	else if (header->ucRevId == 6)
-+		table_size = sizeof(ATOM_Vega10_PowerTune_Table_V2);
++	if (header->ucRevId < 3)
++		table_size = sizeof(ATOM_Tonga_PowerTune_Table);
++	else if (header->ucRevId < 4)
++		table_size = sizeof(ATOM_Fiji_PowerTune_Table);
 +	else
-+		table_size = sizeof(ATOM_Vega10_PowerTune_Table_V3);
++		table_size = sizeof(ATOM_Polaris_PowerTune_Table);
 +
-+	PP_ASSERT_WITH_CODE((vega10_pp_table_has_space(hwmgr, table_offset,
-+						       table_size)),
++	PP_ASSERT_WITH_CODE((tonga_pp_table_has_space(hwmgr, table_offset,
++						      table_size)),
 +			    "Invalid PowerPlay Table!", return -1);
 +
 +	*power_tune_table = header;
@@ -474,355 +482,413 @@ index 64cff9f4850a..5dc6cd2b0c54 100644
 +	return 0;
 +}
 +
-+static int get_vega10_voltage_lookup_table(struct pp_hwmgr *hwmgr,
-+		const ATOM_Vega10_POWERPLAYTABLE *powerplay_table,
-+		u16 table_offset, uint32_t max_levels,
-+		const ATOM_Vega10_Voltage_Lookup_Table **lookup_table)
++static int get_tonga_ppm_table(struct pp_hwmgr *hwmgr,
++		const ATOM_Tonga_POWERPLAYTABLE *powerplay_table,
++		const ATOM_Tonga_PPM_Table **ppm_table)
 +{
-+	const ATOM_Vega10_Voltage_Lookup_Table *table;
-+	size_t table_size;
++	u16 table_offset;
++
++	table_offset = le16_to_cpu(powerplay_table->usPPMTableOffset);
++
++	return get_tonga_subtable(hwmgr, powerplay_table, table_offset,
++				  sizeof(**ppm_table), (const void **)ppm_table);
++}
++
++static int get_tonga_gpio_table(struct pp_hwmgr *hwmgr,
++		const ATOM_Tonga_POWERPLAYTABLE *powerplay_table,
++		const ATOM_Tonga_GPIO_Table **gpio_table)
++{
++	u16 table_offset;
++
++	table_offset = le16_to_cpu(powerplay_table->usGPIOTableOffset);
++
++	return get_tonga_subtable(hwmgr, powerplay_table, table_offset,
++				  sizeof(**gpio_table), (const void **)gpio_table);
++}
++
++static int get_tonga_vce_state_table(struct pp_hwmgr *hwmgr,
++		const ATOM_Tonga_POWERPLAYTABLE *powerplay_table,
++		const ATOM_Tonga_VCE_State_Table **vce_state_table)
++{
++	const ATOM_Tonga_VCE_State_Table *table;
++	u16 table_offset;
 +	int ret;
 +
-+	ret = get_vega10_subtable(hwmgr, powerplay_table, table_offset,
-+				  sizeof(*table), (const void **)&table);
++	table_offset = le16_to_cpu(powerplay_table->usVCEStateTableOffset);
++	ret = get_tonga_subtable(hwmgr, powerplay_table, table_offset,
++				 sizeof(*table), (const void **)&table);
 +	if (ret)
 +		return ret;
 +
-+	PP_ASSERT_WITH_CODE((table->ucNumEntries != 0 &&
-+			     table->ucNumEntries <= max_levels),
-+			    "Invalid PowerPlay Table!", return -1);
++	ret = validate_tonga_table_entries(hwmgr, table_offset,
++					   offsetof(ATOM_Tonga_VCE_State_Table,
++						    entries),
++					   table->ucNumEntries,
++					   sizeof(ATOM_Tonga_VCE_State_Record));
++	if (ret)
++		return ret;
 +
-+	table_size = offsetof(ATOM_Vega10_Voltage_Lookup_Table, entries) +
-+		table->ucNumEntries * sizeof(ATOM_Vega10_Voltage_Lookup_Record);
-+	PP_ASSERT_WITH_CODE((vega10_pp_table_has_space(hwmgr, table_offset,
-+						       table_size)),
-+			    "Invalid PowerPlay Table!", return -1);
-+
-+	*lookup_table = table;
++	*vce_state_table = table;
 +
 +	return 0;
 +}
 +
- static int check_powerplay_tables(struct pp_hwmgr *hwmgr,
- 	const ATOM_Vega10_POWERPLAYTABLE *powerplay_table)
+ static int get_vddc_lookup_table(
+ 		struct pp_hwmgr	*hwmgr,
+ 		phm_ppt_v1_voltage_lookup_table	**lookup_table,
+@@ -198,7 +560,7 @@ static int get_vddc_lookup_table(
+  */
+ static int get_platform_power_management_table(
+ 		struct pp_hwmgr *hwmgr,
+-		ATOM_Tonga_PPM_Table *atom_ppm_table)
++		const ATOM_Tonga_PPM_Table *atom_ppm_table)
  {
-@@ -149,14 +476,16 @@ static int init_thermal_controller(
- 	const ATOM_Vega10_Fan_Table *fan_table_v1;
- 	const ATOM_Vega10_Fan_Table_V2 *fan_table_v2;
- 	const ATOM_Vega10_Fan_Table_V3 *fan_table_v3;
+ 	struct phm_ppm_table *ptr = kzalloc(sizeof(*ptr), GFP_KERNEL);
+ 	struct phm_ppt_v1_information *pp_table_information =
+@@ -246,7 +608,7 @@ static int init_dpm_2_parameters(
+ {
+ 	int result = 0;
+ 	struct phm_ppt_v1_information *pp_table_information = (struct phm_ppt_v1_information *)(hwmgr->pptable);
+-	ATOM_Tonga_PPM_Table *atom_ppm_table;
++	const ATOM_Tonga_PPM_Table *atom_ppm_table;
+ 	uint32_t disable_ppm = 0;
+ 	uint32_t disable_power_control = 0;
+ 
+@@ -275,30 +637,37 @@ static int init_dpm_2_parameters(
+ 	}
+ 
+ 	if (0 != powerplay_table->usVddcLookupTableOffset) {
+-		const ATOM_Tonga_Voltage_Lookup_Table *pVddcCACTable =
+-			(ATOM_Tonga_Voltage_Lookup_Table *)(((unsigned long)powerplay_table) +
+-			le16_to_cpu(powerplay_table->usVddcLookupTableOffset));
 -
--	thermal_controller = (ATOM_Vega10_Thermal_Controller *)
--			(((unsigned long)powerplay_table) +
--			le16_to_cpu(powerplay_table->usThermalControllerOffset));
+-		result = get_vddc_lookup_table(hwmgr,
+-			&pp_table_information->vddc_lookup_table, pVddcCACTable, 16);
++		const ATOM_Tonga_Voltage_Lookup_Table *pVddcCACTable;
++
++		result = get_tonga_voltage_lookup_table(hwmgr, powerplay_table,
++				le16_to_cpu(powerplay_table->usVddcLookupTableOffset),
++				16, &pVddcCACTable);
++		if (!result)
++			result = get_vddc_lookup_table(hwmgr,
++				&pp_table_information->vddc_lookup_table,
++				pVddcCACTable, 16);
+ 	}
+ 
+-	if (0 != powerplay_table->usVddgfxLookupTableOffset) {
+-		const ATOM_Tonga_Voltage_Lookup_Table *pVddgfxCACTable =
+-			(ATOM_Tonga_Voltage_Lookup_Table *)(((unsigned long)powerplay_table) +
+-			le16_to_cpu(powerplay_table->usVddgfxLookupTableOffset));
++	if (!result && 0 != powerplay_table->usVddgfxLookupTableOffset) {
++		const ATOM_Tonga_Voltage_Lookup_Table *pVddgfxCACTable;
+ 
+-		result = get_vddc_lookup_table(hwmgr,
+-			&pp_table_information->vddgfx_lookup_table, pVddgfxCACTable, 16);
++		result = get_tonga_voltage_lookup_table(hwmgr, powerplay_table,
++				le16_to_cpu(powerplay_table->usVddgfxLookupTableOffset),
++				16, &pVddgfxCACTable);
++		if (!result)
++			result = get_vddc_lookup_table(hwmgr,
++				&pp_table_information->vddgfx_lookup_table,
++				pVddgfxCACTable, 16);
+ 	}
+ 
+ 	disable_ppm = 0;
+ 	if (0 == disable_ppm) {
+-		atom_ppm_table = (ATOM_Tonga_PPM_Table *)
+-			(((unsigned long)powerplay_table) + le16_to_cpu(powerplay_table->usPPMTableOffset));
+-
+ 		if (0 != powerplay_table->usPPMTableOffset) {
+-			if (get_platform_power_management_table(hwmgr, atom_ppm_table) == 0) {
++			result = get_tonga_ppm_table(hwmgr, powerplay_table,
++						     &atom_ppm_table);
++			if (!result &&
++			    get_platform_power_management_table(hwmgr,
++							       atom_ppm_table) == 0) {
+ 				phm_cap_set(hwmgr->platform_descriptor.platformCaps,
+ 					PHM_PlatformCaps_EnablePlatformPowerManagement);
+ 			}
+@@ -792,28 +1161,13 @@ static int init_clock_voltage_dependency(
+ 	int result = 0;
+ 	struct phm_ppt_v1_information *pp_table_information =
+ 		(struct phm_ppt_v1_information *)(hwmgr->pptable);
+-
+-	const ATOM_Tonga_MM_Dependency_Table *mm_dependency_table =
+-		(const ATOM_Tonga_MM_Dependency_Table *)(((unsigned long) powerplay_table) +
+-		le16_to_cpu(powerplay_table->usMMDependencyTableOffset));
+-	const PPTable_Generic_SubTable_Header *pPowerTuneTable =
+-		(const PPTable_Generic_SubTable_Header *)(((unsigned long) powerplay_table) +
+-		le16_to_cpu(powerplay_table->usPowerTuneTableOffset));
+-	const ATOM_Tonga_MCLK_Dependency_Table *mclk_dep_table =
+-		(const ATOM_Tonga_MCLK_Dependency_Table *)(((unsigned long) powerplay_table) +
+-		le16_to_cpu(powerplay_table->usMclkDependencyTableOffset));
+-	const PPTable_Generic_SubTable_Header *sclk_dep_table =
+-		(const PPTable_Generic_SubTable_Header *)(((unsigned long) powerplay_table) +
+-		le16_to_cpu(powerplay_table->usSclkDependencyTableOffset));
+-	const ATOM_Tonga_Hard_Limit_Table *pHardLimits =
+-		(const ATOM_Tonga_Hard_Limit_Table *)(((unsigned long) powerplay_table) +
+-		le16_to_cpu(powerplay_table->usHardLimitTableOffset));
+-	const PPTable_Generic_SubTable_Header *pcie_table =
+-		(const PPTable_Generic_SubTable_Header *)(((unsigned long) powerplay_table) +
+-		le16_to_cpu(powerplay_table->usPCIETableOffset));
+-	const ATOM_Tonga_GPIO_Table *gpio_table =
+-		(const ATOM_Tonga_GPIO_Table *)(((unsigned long) powerplay_table) +
+-		le16_to_cpu(powerplay_table->usGPIOTableOffset));
++	const ATOM_Tonga_MM_Dependency_Table *mm_dependency_table;
++	const PPTable_Generic_SubTable_Header *pPowerTuneTable;
++	const ATOM_Tonga_MCLK_Dependency_Table *mclk_dep_table;
++	const PPTable_Generic_SubTable_Header *sclk_dep_table;
++	const ATOM_Tonga_Hard_Limit_Table *pHardLimits;
++	const PPTable_Generic_SubTable_Header *pcie_table;
++	const ATOM_Tonga_GPIO_Table *gpio_table;
+ 
+ 	pp_table_information->vdd_dep_on_sclk = NULL;
+ 	pp_table_information->vdd_dep_on_mclk = NULL;
+@@ -821,29 +1175,58 @@ static int init_clock_voltage_dependency(
+ 	pp_table_information->pcie_table = NULL;
+ 	pp_table_information->gpio_table = NULL;
+ 
+-	if (powerplay_table->usMMDependencyTableOffset != 0)
+-		result = get_mm_clock_voltage_table(hwmgr,
+-		&pp_table_information->mm_dep_table, mm_dependency_table);
++	if (powerplay_table->usMMDependencyTableOffset != 0) {
++		result = get_tonga_mm_dependency_table(hwmgr, powerplay_table,
++						       &mm_dependency_table);
++		if (!result)
++			result = get_mm_clock_voltage_table(hwmgr,
++				&pp_table_information->mm_dep_table,
++				mm_dependency_table);
++	}
+ 
+-	if (result == 0 && powerplay_table->usPowerTuneTableOffset != 0)
+-		result = get_cac_tdp_table(hwmgr,
+-		&pp_table_information->cac_dtp_table, pPowerTuneTable);
++	if (result == 0 && powerplay_table->usPowerTuneTableOffset != 0) {
++		result = get_tonga_power_tune_table(hwmgr, powerplay_table,
++						    &pPowerTuneTable);
++		if (!result)
++			result = get_cac_tdp_table(hwmgr,
++				&pp_table_information->cac_dtp_table,
++				pPowerTuneTable);
++	}
+ 
+-	if (result == 0 && powerplay_table->usSclkDependencyTableOffset != 0)
+-		result = get_sclk_voltage_dependency_table(hwmgr,
+-		&pp_table_information->vdd_dep_on_sclk, sclk_dep_table);
++	if (result == 0 && powerplay_table->usSclkDependencyTableOffset != 0) {
++		result = get_tonga_sclk_dependency_table(hwmgr, powerplay_table,
++							 &sclk_dep_table);
++		if (!result)
++			result = get_sclk_voltage_dependency_table(hwmgr,
++				&pp_table_information->vdd_dep_on_sclk,
++				sclk_dep_table);
++	}
+ 
+-	if (result == 0 && powerplay_table->usMclkDependencyTableOffset != 0)
+-		result = get_mclk_voltage_dependency_table(hwmgr,
+-		&pp_table_information->vdd_dep_on_mclk, mclk_dep_table);
++	if (result == 0 && powerplay_table->usMclkDependencyTableOffset != 0) {
++		result = get_tonga_mclk_dependency_table(hwmgr, powerplay_table,
++							 &mclk_dep_table);
++		if (!result)
++			result = get_mclk_voltage_dependency_table(hwmgr,
++				&pp_table_information->vdd_dep_on_mclk,
++				mclk_dep_table);
++	}
+ 
+-	if (result == 0 && powerplay_table->usPCIETableOffset != 0)
+-		result = get_pcie_table(hwmgr,
+-		&pp_table_information->pcie_table, pcie_table);
++	if (result == 0 && powerplay_table->usPCIETableOffset != 0) {
++		result = get_tonga_pcie_table(hwmgr, powerplay_table,
++					      &pcie_table);
++		if (!result)
++			result = get_pcie_table(hwmgr,
++				&pp_table_information->pcie_table, pcie_table);
++	}
+ 
+-	if (result == 0 && powerplay_table->usHardLimitTableOffset != 0)
+-		result = get_hard_limits(hwmgr,
+-		&pp_table_information->max_clock_voltage_on_dc, pHardLimits);
++	if (result == 0 && powerplay_table->usHardLimitTableOffset != 0) {
++		result = get_tonga_hard_limit_table(hwmgr, powerplay_table,
++						    &pHardLimits);
++		if (!result)
++			result = get_hard_limits(hwmgr,
++				&pp_table_information->max_clock_voltage_on_dc,
++				pHardLimits);
++	}
+ 
+ 	hwmgr->dyn_state.max_clock_voltage_on_dc.sclk =
+ 		pp_table_information->max_clock_voltage_on_dc.sclk;
+@@ -864,9 +1247,13 @@ static int init_clock_voltage_dependency(
+ 		result = get_valid_clk(hwmgr, &pp_table_information->valid_sclk_values,
+ 		pp_table_information->vdd_dep_on_sclk);
+ 
+-	if (!result && gpio_table)
+-		result = get_gpio_table(hwmgr, &pp_table_information->gpio_table,
+-				gpio_table);
++	if (!result && powerplay_table->usGPIOTableOffset) {
++		result = get_tonga_gpio_table(hwmgr, powerplay_table,
++					      &gpio_table);
++		if (!result)
++			result = get_gpio_table(hwmgr,
++				&pp_table_information->gpio_table, gpio_table);
++	}
+ 
+ 	return result;
+ }
+@@ -911,14 +1298,17 @@ static int init_thermal_controller(
+ 		)
+ {
+ 	const PPTable_Generic_SubTable_Header *fan_table;
+-	ATOM_Tonga_Thermal_Controller *thermal_controller;
++	const ATOM_Tonga_Thermal_Controller *thermal_controller;
 +	int ret;
  
- 	PP_ASSERT_WITH_CODE((powerplay_table->usThermalControllerOffset != 0),
- 			"Thermal controller table not set!", return -EINVAL);
+-	thermal_controller = (ATOM_Tonga_Thermal_Controller *)
+-		(((unsigned long)powerplay_table) +
+-		le16_to_cpu(powerplay_table->usThermalControllerOffset));
+ 	PP_ASSERT_WITH_CODE((0 != powerplay_table->usThermalControllerOffset),
+ 		"Thermal controller table not set!", return -1);
  
-+	ret = get_vega10_thermal_controller_table(hwmgr, powerplay_table,
-+						  &thermal_controller);
++	ret = get_tonga_thermal_controller_table(hwmgr, powerplay_table,
++						 &thermal_controller);
 +	if (ret)
 +		return ret;
 +
  	hwmgr->thermal_controller.ucType = thermal_controller->ucType;
  	hwmgr->thermal_controller.ucI2cLine = thermal_controller->ucI2cLine;
  	hwmgr->thermal_controller.ucI2cAddress = thermal_controller->ucI2cAddress;
-@@ -185,9 +514,9 @@ static int init_thermal_controller(
- 	if (!powerplay_table->usFanTableOffset)
+@@ -946,12 +1336,13 @@ static int init_thermal_controller(
+ 		return 0;
+ 	}
+ 
+-	fan_table = (const PPTable_Generic_SubTable_Header *)
+-		(((unsigned long)powerplay_table) +
+-		le16_to_cpu(powerplay_table->usFanTableOffset));
+-
+ 	PP_ASSERT_WITH_CODE((0 != powerplay_table->usFanTableOffset),
+ 		"Fan table not set!", return -1);
++
++	ret = get_tonga_fan_table(hwmgr, powerplay_table, &fan_table);
++	if (ret)
++		return ret;
++
+ 	PP_ASSERT_WITH_CODE((0 < fan_table->ucRevId),
+ 		"Unsupported fan table format!", return -1);
+ 
+@@ -1313,13 +1704,15 @@ static int ppt_get_num_of_vce_state_table_entries_v1_0(struct pp_hwmgr *hwmgr)
+ {
+ 	const ATOM_Tonga_POWERPLAYTABLE *pp_table = get_powerplay_table(hwmgr);
+ 	const ATOM_Tonga_VCE_State_Table *vce_state_table;
++	int ret;
+ 
+ 
+ 	if (pp_table == NULL)
  		return 0;
  
--	header = (const Vega10_PPTable_Generic_SubTable_Header *)
--			(((unsigned long)powerplay_table) +
--			le16_to_cpu(powerplay_table->usFanTableOffset));
-+	ret = get_vega10_fan_table(hwmgr, powerplay_table, &header);
+-	vce_state_table = (void *)pp_table +
+-			le16_to_cpu(pp_table->usVCEStateTableOffset);
++	ret = get_tonga_vce_state_table(hwmgr, pp_table, &vce_state_table);
 +	if (ret)
-+		return ret;
++		return 0;
  
- 	if (header->ucRevId == 10) {
- 		fan_table_v1 = (ATOM_Vega10_Fan_Table *)header;
-@@ -332,12 +661,15 @@ static int init_over_drive_limits(
- 		struct pp_hwmgr *hwmgr,
- 		const ATOM_Vega10_POWERPLAYTABLE *powerplay_table)
+ 	return vce_state_table->ucNumEntries;
+ }
+@@ -1328,18 +1721,39 @@ static int ppt_get_vce_state_table_entry_v1_0(struct pp_hwmgr *hwmgr, uint32_t i
+ 		struct amd_vce_state *vce_state, void **clock_info, uint32_t *flag)
  {
--	const ATOM_Vega10_GFXCLK_Dependency_Table *gfxclk_dep_table =
--			(const ATOM_Vega10_GFXCLK_Dependency_Table *)
--			(((unsigned long) powerplay_table) +
--			le16_to_cpu(powerplay_table->usGfxclkDependencyTableOffset));
-+	const ATOM_Vega10_GFXCLK_Dependency_Table *gfxclk_dep_table;
- 	bool is_acg_enabled = false;
- 	ATOM_Vega10_GFXCLK_Dependency_Record_V2 *patom_record_v2;
+ 	const ATOM_Tonga_VCE_State_Record *vce_state_record;
+-	ATOM_Tonga_SCLK_Dependency_Record *sclk_dep_record;
++	ATOM_Tonga_SCLK_Dependency_Record *sclk_dep_record = NULL;
++	ATOM_Polaris_SCLK_Dependency_Record *polaris_sclk_dep_record = NULL;
+ 	ATOM_Tonga_MCLK_Dependency_Record *mclk_dep_record;
+ 	ATOM_Tonga_MM_Dependency_Record *mm_dep_record;
+ 	const ATOM_Tonga_POWERPLAYTABLE *pptable = get_powerplay_table(hwmgr);
+-	const ATOM_Tonga_VCE_State_Table *vce_state_table = (ATOM_Tonga_VCE_State_Table *)(((unsigned long)pptable)
+-							  + le16_to_cpu(pptable->usVCEStateTableOffset));
+-	const ATOM_Tonga_SCLK_Dependency_Table *sclk_dep_table = (ATOM_Tonga_SCLK_Dependency_Table *)(((unsigned long)pptable)
+-							  + le16_to_cpu(pptable->usSclkDependencyTableOffset));
+-	const ATOM_Tonga_MCLK_Dependency_Table *mclk_dep_table = (ATOM_Tonga_MCLK_Dependency_Table *)(((unsigned long)pptable)
+-							  + le16_to_cpu(pptable->usMclkDependencyTableOffset));
+-	const ATOM_Tonga_MM_Dependency_Table *mm_dep_table = (ATOM_Tonga_MM_Dependency_Table *)(((unsigned long)pptable)
+-							  + le16_to_cpu(pptable->usMMDependencyTableOffset));
++	const ATOM_Tonga_VCE_State_Table *vce_state_table;
++	const PPTable_Generic_SubTable_Header *sclk_dep_table_header;
++	const ATOM_Tonga_SCLK_Dependency_Table *sclk_dep_table;
++	const ATOM_Tonga_MCLK_Dependency_Table *mclk_dep_table;
++	const ATOM_Tonga_MM_Dependency_Table *mm_dep_table;
 +	int ret;
 +
-+	ret = get_vega10_gfxclk_dependency_table(hwmgr, powerplay_table,
-+						 &gfxclk_dep_table);
++	if (!pptable)
++		return -EINVAL;
++
++	ret = get_tonga_vce_state_table(hwmgr, pptable, &vce_state_table);
++	if (ret)
++		return ret;
++
++	ret = get_tonga_sclk_dependency_table(hwmgr, pptable,
++					      &sclk_dep_table_header);
++	if (ret)
++		return ret;
++	sclk_dep_table = (const ATOM_Tonga_SCLK_Dependency_Table *)
++		sclk_dep_table_header;
++
++	ret = get_tonga_mclk_dependency_table(hwmgr, pptable, &mclk_dep_table);
++	if (ret)
++		return ret;
++
++	ret = get_tonga_mm_dependency_table(hwmgr, pptable, &mm_dep_table);
 +	if (ret)
 +		return ret;
  
- 	if (gfxclk_dep_table->ucRevId == 1) {
- 		patom_record_v2 =
-@@ -900,51 +1232,13 @@ static int init_powerplay_extended_tables(
- 	int result = 0;
- 	struct phm_ppt_v2_information *pp_table_info =
- 		(struct phm_ppt_v2_information *)(hwmgr->pptable);
--
--	const ATOM_Vega10_MM_Dependency_Table *mm_dependency_table =
--			(const ATOM_Vega10_MM_Dependency_Table *)
--			(((unsigned long) powerplay_table) +
--			le16_to_cpu(powerplay_table->usMMDependencyTableOffset));
--	const Vega10_PPTable_Generic_SubTable_Header *power_tune_table =
--			(const Vega10_PPTable_Generic_SubTable_Header *)
--			(((unsigned long) powerplay_table) +
--			le16_to_cpu(powerplay_table->usPowerTuneTableOffset));
--	const ATOM_Vega10_SOCCLK_Dependency_Table *socclk_dep_table =
--			(const ATOM_Vega10_SOCCLK_Dependency_Table *)
--			(((unsigned long) powerplay_table) +
--			le16_to_cpu(powerplay_table->usSocclkDependencyTableOffset));
--	const ATOM_Vega10_GFXCLK_Dependency_Table *gfxclk_dep_table =
--			(const ATOM_Vega10_GFXCLK_Dependency_Table *)
--			(((unsigned long) powerplay_table) +
--			le16_to_cpu(powerplay_table->usGfxclkDependencyTableOffset));
--	const ATOM_Vega10_DCEFCLK_Dependency_Table *dcefclk_dep_table =
--			(const ATOM_Vega10_DCEFCLK_Dependency_Table *)
--			(((unsigned long) powerplay_table) +
--			le16_to_cpu(powerplay_table->usDcefclkDependencyTableOffset));
--	const ATOM_Vega10_MCLK_Dependency_Table *mclk_dep_table =
--			(const ATOM_Vega10_MCLK_Dependency_Table *)
--			(((unsigned long) powerplay_table) +
--			le16_to_cpu(powerplay_table->usMclkDependencyTableOffset));
--	const ATOM_Vega10_Hard_Limit_Table *hard_limits =
--			(const ATOM_Vega10_Hard_Limit_Table *)
--			(((unsigned long) powerplay_table) +
--			le16_to_cpu(powerplay_table->usHardLimitTableOffset));
--	const Vega10_PPTable_Generic_SubTable_Header *pcie_table =
--			(const Vega10_PPTable_Generic_SubTable_Header *)
--			(((unsigned long) powerplay_table) +
--			le16_to_cpu(powerplay_table->usPCIETableOffset));
--	const ATOM_Vega10_PIXCLK_Dependency_Table *pixclk_dep_table =
--			(const ATOM_Vega10_PIXCLK_Dependency_Table *)
--			(((unsigned long) powerplay_table) +
--			le16_to_cpu(powerplay_table->usPixclkDependencyTableOffset));
--	const ATOM_Vega10_PHYCLK_Dependency_Table *phyclk_dep_table =
--			(const ATOM_Vega10_PHYCLK_Dependency_Table *)
--			(((unsigned long) powerplay_table) +
--			le16_to_cpu(powerplay_table->usPhyClkDependencyTableOffset));
--	const ATOM_Vega10_DISPCLK_Dependency_Table *dispclk_dep_table =
--			(const ATOM_Vega10_DISPCLK_Dependency_Table *)
--			(((unsigned long) powerplay_table) +
--			le16_to_cpu(powerplay_table->usDispClkDependencyTableOffset));
-+	const ATOM_Vega10_MM_Dependency_Table *mm_dependency_table;
-+	const Vega10_PPTable_Generic_SubTable_Header *power_tune_table;
-+	const ATOM_Vega10_GFXCLK_Dependency_Table *gfxclk_dep_table;
-+	const ATOM_Vega10_MCLK_Dependency_Table *mclk_dep_table;
-+	const ATOM_Vega10_Hard_Limit_Table *hard_limits;
-+	const Vega10_PPTable_Generic_SubTable_Header *pcie_table;
-+	const ATOM_Vega10_SOCCLK_Dependency_Table *clk_dep_table;
- 
- 	pp_table_info->vdd_dep_on_socclk = NULL;
- 	pp_table_info->vdd_dep_on_sclk = NULL;
-@@ -956,63 +1250,114 @@ static int init_powerplay_extended_tables(
- 	pp_table_info->vdd_dep_on_phyclk = NULL;
- 	pp_table_info->vdd_dep_on_dispclk = NULL;
- 
--	if (powerplay_table->usMMDependencyTableOffset)
--		result = get_mm_clock_voltage_table(hwmgr,
-+	if (powerplay_table->usMMDependencyTableOffset) {
-+		result = get_vega10_mm_dependency_table(hwmgr, powerplay_table,
-+							&mm_dependency_table);
-+		if (!result)
-+			result = get_mm_clock_voltage_table(hwmgr,
- 				&pp_table_info->mm_dep_table,
- 				mm_dependency_table);
-+	}
- 
--	if (!result && powerplay_table->usPowerTuneTableOffset)
--		result = get_tdp_table(hwmgr,
-+	if (!result && powerplay_table->usPowerTuneTableOffset) {
-+		result = get_vega10_power_tune_table(hwmgr, powerplay_table,
-+						     &power_tune_table);
-+		if (!result)
-+			result = get_tdp_table(hwmgr,
- 				&pp_table_info->tdp_table,
- 				power_tune_table);
-+	}
- 
--	if (!result && powerplay_table->usSocclkDependencyTableOffset)
--		result = get_socclk_voltage_dependency_table(hwmgr,
-+	if (!result && powerplay_table->usSocclkDependencyTableOffset) {
-+		result = get_vega10_clk_dependency_table(hwmgr, powerplay_table,
-+				le16_to_cpu(powerplay_table->usSocclkDependencyTableOffset),
-+				&clk_dep_table);
-+		if (!result)
-+			result = get_socclk_voltage_dependency_table(hwmgr,
- 				&pp_table_info->vdd_dep_on_socclk,
--				socclk_dep_table);
-+				(const ATOM_Vega10_SOCCLK_Dependency_Table *)
-+				clk_dep_table);
-+	}
- 
--	if (!result && powerplay_table->usGfxclkDependencyTableOffset)
--		result = get_gfxclk_voltage_dependency_table(hwmgr,
--				&pp_table_info->vdd_dep_on_sclk,
--				gfxclk_dep_table);
-+	if (!result && powerplay_table->usGfxclkDependencyTableOffset) {
-+		result = get_vega10_gfxclk_dependency_table(hwmgr,
-+			powerplay_table, &gfxclk_dep_table);
-+		if (!result)
-+			result = get_gfxclk_voltage_dependency_table(hwmgr,
-+					&pp_table_info->vdd_dep_on_sclk,
-+					gfxclk_dep_table);
-+	}
- 
--	if (!result && powerplay_table->usPixclkDependencyTableOffset)
--		result = get_pix_clk_voltage_dependency_table(hwmgr,
-+	if (!result && powerplay_table->usPixclkDependencyTableOffset) {
-+		result = get_vega10_clk_dependency_table(hwmgr, powerplay_table,
-+				le16_to_cpu(powerplay_table->usPixclkDependencyTableOffset),
-+				&clk_dep_table);
-+		if (!result)
-+			result = get_pix_clk_voltage_dependency_table(hwmgr,
- 				&pp_table_info->vdd_dep_on_pixclk,
- 				(const ATOM_Vega10_PIXCLK_Dependency_Table *)
--				pixclk_dep_table);
-+				clk_dep_table);
-+	}
- 
--	if (!result && powerplay_table->usPhyClkDependencyTableOffset)
--		result = get_pix_clk_voltage_dependency_table(hwmgr,
-+	if (!result && powerplay_table->usPhyClkDependencyTableOffset) {
-+		result = get_vega10_clk_dependency_table(hwmgr, powerplay_table,
-+				le16_to_cpu(powerplay_table->usPhyClkDependencyTableOffset),
-+				&clk_dep_table);
-+		if (!result)
-+			result = get_pix_clk_voltage_dependency_table(hwmgr,
- 				&pp_table_info->vdd_dep_on_phyclk,
- 				(const ATOM_Vega10_PIXCLK_Dependency_Table *)
--				phyclk_dep_table);
-+				clk_dep_table);
-+	}
- 
--	if (!result && powerplay_table->usDispClkDependencyTableOffset)
--		result = get_pix_clk_voltage_dependency_table(hwmgr,
-+	if (!result && powerplay_table->usDispClkDependencyTableOffset) {
-+		result = get_vega10_clk_dependency_table(hwmgr, powerplay_table,
-+				le16_to_cpu(powerplay_table->usDispClkDependencyTableOffset),
-+				&clk_dep_table);
-+		if (!result)
-+			result = get_pix_clk_voltage_dependency_table(hwmgr,
- 				&pp_table_info->vdd_dep_on_dispclk,
- 				(const ATOM_Vega10_PIXCLK_Dependency_Table *)
--				dispclk_dep_table);
-+				clk_dep_table);
-+	}
- 
--	if (!result && powerplay_table->usDcefclkDependencyTableOffset)
--		result = get_dcefclk_voltage_dependency_table(hwmgr,
-+	if (!result && powerplay_table->usDcefclkDependencyTableOffset) {
-+		result = get_vega10_clk_dependency_table(hwmgr, powerplay_table,
-+				le16_to_cpu(powerplay_table->usDcefclkDependencyTableOffset),
-+				&clk_dep_table);
-+		if (!result)
-+			result = get_dcefclk_voltage_dependency_table(hwmgr,
- 				&pp_table_info->vdd_dep_on_dcefclk,
--				dcefclk_dep_table);
-+				(const ATOM_Vega10_DCEFCLK_Dependency_Table *)
-+				clk_dep_table);
-+	}
- 
--	if (!result && powerplay_table->usMclkDependencyTableOffset)
--		result = get_mclk_voltage_dependency_table(hwmgr,
-+	if (!result && powerplay_table->usMclkDependencyTableOffset) {
-+		result = get_vega10_mclk_dependency_table(hwmgr, powerplay_table,
-+							  &mclk_dep_table);
-+		if (!result)
-+			result = get_mclk_voltage_dependency_table(hwmgr,
- 				&pp_table_info->vdd_dep_on_mclk,
- 				mclk_dep_table);
-+	}
- 
--	if (!result && powerplay_table->usPCIETableOffset)
--		result = get_pcie_table(hwmgr,
-+	if (!result && powerplay_table->usPCIETableOffset) {
-+		result = get_vega10_pcie_table(hwmgr, powerplay_table,
-+					       &pcie_table);
-+		if (!result)
-+			result = get_pcie_table(hwmgr,
- 				&pp_table_info->pcie_table,
- 				pcie_table);
-+	}
- 
--	if (!result && powerplay_table->usHardLimitTableOffset)
--		result = get_hard_limits(hwmgr,
-+	if (!result && powerplay_table->usHardLimitTableOffset) {
-+		result = get_vega10_hard_limit_table(hwmgr, powerplay_table,
-+						     &hard_limits);
-+		if (!result)
-+			result = get_hard_limits(hwmgr,
- 				&pp_table_info->max_clock_voltage_on_dc,
- 				hard_limits);
-+	}
- 
- 	hwmgr->dyn_state.max_clock_voltage_on_dc.sclk =
- 			pp_table_info->max_clock_voltage_on_dc.sclk;
-@@ -1140,30 +1485,39 @@ static int init_dpm_2_parameters(
- 	}
- 
- 	if (powerplay_table->usVddcLookupTableOffset) {
--		const ATOM_Vega10_Voltage_Lookup_Table *vddc_table =
--				(ATOM_Vega10_Voltage_Lookup_Table *)
--				(((unsigned long)powerplay_table) +
--				le16_to_cpu(powerplay_table->usVddcLookupTableOffset));
--		result = get_vddc_lookup_table(hwmgr,
--				&pp_table_info->vddc_lookup_table, vddc_table, 8);
-+		const ATOM_Vega10_Voltage_Lookup_Table *vddc_table;
+ 	PP_ASSERT_WITH_CODE((i < vce_state_table->ucNumEntries),
+ 			 "Requested state entry ID is out of range!",
+@@ -1348,10 +1762,27 @@ static int ppt_get_vce_state_table_entry_v1_0(struct pp_hwmgr *hwmgr, uint32_t i
+ 	vce_state_record = GET_FLEXIBLE_ARRAY_MEMBER_ADDR(
+ 					ATOM_Tonga_VCE_State_Record,
+ 					entries, vce_state_table, i);
+-	sclk_dep_record = GET_FLEXIBLE_ARRAY_MEMBER_ADDR(
+-					ATOM_Tonga_SCLK_Dependency_Record,
+-					entries, sclk_dep_table,
+-					vce_state_record->ucSCLKIndex);
++	PP_ASSERT_WITH_CODE((vce_state_record->ucSCLKIndex <
++			     sclk_dep_table->ucNumEntries),
++			    "Invalid PowerPlay Table!", return -EINVAL);
++	PP_ASSERT_WITH_CODE((vce_state_record->ucVCEClockIndex <
++			     mm_dep_table->ucNumEntries),
++			    "Invalid PowerPlay Table!", return -EINVAL);
++	PP_ASSERT_WITH_CODE((mclk_dep_table->ucNumEntries != 0),
++			    "Invalid PowerPlay Table!", return -EINVAL);
 +
-+		result = get_vega10_voltage_lookup_table(hwmgr, powerplay_table,
-+				le16_to_cpu(powerplay_table->usVddcLookupTableOffset),
-+				8, &vddc_table);
-+		if (!result)
-+			result = get_vddc_lookup_table(hwmgr,
-+					&pp_table_info->vddc_lookup_table,
-+					vddc_table, 8);
- 	}
++	if (sclk_dep_table_header->ucRevId < 1)
++		sclk_dep_record = GET_FLEXIBLE_ARRAY_MEMBER_ADDR(
++						ATOM_Tonga_SCLK_Dependency_Record,
++						entries, sclk_dep_table,
++						vce_state_record->ucSCLKIndex);
++	else
++		polaris_sclk_dep_record = GET_FLEXIBLE_ARRAY_MEMBER_ADDR(
++						ATOM_Polaris_SCLK_Dependency_Record,
++						entries,
++						(ATOM_Polaris_SCLK_Dependency_Table *)
++						sclk_dep_table_header,
++						vce_state_record->ucSCLKIndex);
+ 	mm_dep_record = GET_FLEXIBLE_ARRAY_MEMBER_ADDR(
+ 					ATOM_Tonga_MM_Dependency_Record,
+ 					entries, mm_dep_table,
+@@ -1360,7 +1791,10 @@ static int ppt_get_vce_state_table_entry_v1_0(struct pp_hwmgr *hwmgr, uint32_t i
  
--	if (powerplay_table->usVddmemLookupTableOffset) {
--		const ATOM_Vega10_Voltage_Lookup_Table *vdd_mem_table =
--				(ATOM_Vega10_Voltage_Lookup_Table *)
--				(((unsigned long)powerplay_table) +
--				le16_to_cpu(powerplay_table->usVddmemLookupTableOffset));
--		result = get_vddc_lookup_table(hwmgr,
--				&pp_table_info->vddmem_lookup_table, vdd_mem_table, 4);
-+	if (!result && powerplay_table->usVddmemLookupTableOffset) {
-+		const ATOM_Vega10_Voltage_Lookup_Table *vdd_mem_table;
-+
-+		result = get_vega10_voltage_lookup_table(hwmgr, powerplay_table,
-+				le16_to_cpu(powerplay_table->usVddmemLookupTableOffset),
-+				4, &vdd_mem_table);
-+		if (!result)
-+			result = get_vddc_lookup_table(hwmgr,
-+					&pp_table_info->vddmem_lookup_table,
-+					vdd_mem_table, 4);
- 	}
+ 	vce_state->evclk = le32_to_cpu(mm_dep_record->ulEClk);
+ 	vce_state->ecclk = le32_to_cpu(mm_dep_record->ulEClk);
+-	vce_state->sclk = le32_to_cpu(sclk_dep_record->ulSclk);
++	if (sclk_dep_record)
++		vce_state->sclk = le32_to_cpu(sclk_dep_record->ulSclk);
++	else
++		vce_state->sclk = le32_to_cpu(polaris_sclk_dep_record->ulSclk);
  
--	if (powerplay_table->usVddciLookupTableOffset) {
--		const ATOM_Vega10_Voltage_Lookup_Table *vddci_table =
--				(ATOM_Vega10_Voltage_Lookup_Table *)
--				(((unsigned long)powerplay_table) +
--				le16_to_cpu(powerplay_table->usVddciLookupTableOffset));
--		result = get_vddc_lookup_table(hwmgr,
--				&pp_table_info->vddci_lookup_table, vddci_table, 4);
-+	if (!result && powerplay_table->usVddciLookupTableOffset) {
-+		const ATOM_Vega10_Voltage_Lookup_Table *vddci_table;
-+
-+		result = get_vega10_voltage_lookup_table(hwmgr, powerplay_table,
-+				le16_to_cpu(powerplay_table->usVddciLookupTableOffset),
-+				4, &vddci_table);
-+		if (!result)
-+			result = get_vddc_lookup_table(hwmgr,
-+					&pp_table_info->vddci_lookup_table,
-+					vddci_table, 4);
- 	}
- 
- 	return result;
+ 	if (vce_state_record->ucMCLKIndex >= mclk_dep_table->ucNumEntries)
+ 		mclk_dep_record = GET_FLEXIBLE_ARRAY_MEMBER_ADDR(
 -- 
 2.47.3
 
