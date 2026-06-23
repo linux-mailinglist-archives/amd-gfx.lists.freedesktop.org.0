@@ -2,106 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id UWOmJEPQOmqHHggAu9opvQ
+	id 3iA4LDvROmrtHggAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 20:28:19 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 20:32:27 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9FED6B96D9
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 20:28:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B7E16B9724
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 20:32:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=joVVtMI2;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=1vFdI+Hd;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60C3410E179;
-	Tue, 23 Jun 2026 18:28:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 794C910EC6A;
+	Tue, 23 Jun 2026 18:32:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013044.outbound.protection.outlook.com
- [40.107.201.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 966A610E179
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 18:28:16 +0000 (UTC)
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012050.outbound.protection.outlook.com [52.101.53.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE94810EC67;
+ Tue, 23 Jun 2026 18:32:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cgNdtFe8qwMFaOujeZyn1nYBKTrT8m8K9dxGjhpjibn2MtcYpWqSRyDnSEc8IoIKz8EQ9FmajASYcNukfjByVrJBJ91MOk5yR/rsAfWovmcGaqfzoVWm6ivPsYGOj29+IwElwvwlqi8lPQnmfM1YyZUROK7tTXHdsM9BiG3tuItZivkxAvQapyOQiwkBJzB3IYGEnKOBzF8YrM2bx8NYANztQE7os3caOuAd+9W8zR1wsB2RWOmw7IfyNZiEjCjeIrRulIFGsytS6NOTwz09uZqtHW4/2ebYQzJtl33P5TWfLGXU50H0RbGbVYOHeOP1Km4T4CaMkuMyrJU3E/e1fQ==
+ b=GCB/eKbbjwhu76PB+kd2CJxsuare7XlAs6CdoYHfnKnicgTPDDwtrK0v+y0GLWT60YLFQF3QXy4+CyKaFNd88HSitytYivK3fl1zX1YVl9MMUX7ZzRT1yN2BmK8Sw9JUywec0Z3QZ5FRwV3r1WooTDU/1+8AJz9TGUR1Y461GNPFJvWv12qRUlj8OVu9Cs7LAnptirZcanKH+Caiht5nIIz29ipoGPf/PihsS20GxgkOUPE8c2OqmPOwIfh4eO5HyHmOa1gD3/vPfZbxl0a76Defe9xWOUIYnzWgyhcMVbPirYT5WLsNaxy+ZKWqy4TZVE6jcGLbPdEbYY4bUfKe6w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cnjZ78x1UHxGbj4Mvo0Mlr9pTieUPjW7rN49saxFQ2M=;
- b=IejJGIsNal6us+E/magk7pr6yRoEXKXlZo527d1YtK+pyeP5YJdtNIFuGI8j88/yQ3OzTvS9A1LkINJPFRMl08uSZ4XwzNXyo2M2YUxNoDO0cV3/WWIi7WTwaoAAySZVvqmYN0f731W3toO+Gqj/Sp376r8un4It7Owl1AtEUBo9KwmwIWBScxKbncSFIh/P38CM2f6csZtYDgEAgKDyInLkCFssdAp+5QVcYFwxLyZZ5MXCNQiQOosjdH2+KdS5LDG8ZdP97VmxEwk8+BAVO9OIhg7GS0kdhLhYPoiUzk1ja58y0llpD6+Y16kvUnS2HieMY1IkAVhQ7ImbrmbHog==
+ bh=SgueUKHwPGkw94eyrlButMT07BG7Yhr+x2+Z2YPrYsA=;
+ b=ji+pbBk0/XusYcbJLb2EwKVCT+SFt7hOlwbLUz7YIe7P2uRv6fJ4Yc0pcjrDAQDEIwlxy05jZoGB6Tj3rUqPWvn3jlnwI1RkFkKkM/xuxXEOhdB6rTPk6sbNWdpmyMGbEo8W16UXS1pbCuhNAVqyAV09f+0g6eYo4wBMLdNr2DaTipNN1iqshH7TSwDIIGI70F2wSLftzvv1GGM3jxsV/zVDtzz8jzxznziodQ4C4tZckcnD0SjG+9wJ9U/EEIK+d2hr9nBdpfxR4FKfej09+uXFKvTBH37g2MXohWCutLbSRjAA6ye7J/NAcE8vnErPxRrnWLx+zDBRkVwVZODh1Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cnjZ78x1UHxGbj4Mvo0Mlr9pTieUPjW7rN49saxFQ2M=;
- b=joVVtMI2la3ShxCK0b9XnuEjr/EDdBHHmTm6e4NnOJbR3RZXhaKe1SJ63cDEuPD/OB3uhRuPg6v/fTleAOk7n9KEN6mruIfRbpmWy6QEbUSMWGgJtVHGjtqxYADY3cyibIr8Gwz1YmA4tRZr/vwPHL1QWXI8+unlKim4WIyKA48=
-Received: from DS7PR03CA0053.namprd03.prod.outlook.com (2603:10b6:5:3b5::28)
- by PH8PR12MB7208.namprd12.prod.outlook.com (2603:10b6:510:224::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Tue, 23 Jun
- 2026 18:28:13 +0000
-Received: from DS3PEPF0000C37C.namprd04.prod.outlook.com
- (2603:10b6:5:3b5:cafe::60) by DS7PR03CA0053.outlook.office365.com
- (2603:10b6:5:3b5::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.13 via Frontend Transport; Tue,
- 23 Jun 2026 18:28:12 +0000
+ bh=SgueUKHwPGkw94eyrlButMT07BG7Yhr+x2+Z2YPrYsA=;
+ b=1vFdI+Hd3Uaq3Uvk6xGUfGCedDRpJh2pNcN05TAk5jHkTEfOJv5BcR4iqE5k58DQtWIgWCsLM8KL6wzZAM3xgnAEYr4CP1C0Wn3mierSaFgGfVqigmJtxSMvQXPv4JI2qu9n1H+hxDrbxysO4FGOGtuGkc+18QVYEUVf60pWxTs=
+Received: from SJ0PR13CA0087.namprd13.prod.outlook.com (2603:10b6:a03:2c4::32)
+ by BN7PPFFF39339DD.namprd12.prod.outlook.com
+ (2603:10b6:40f:fc02::6eb) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.13; Tue, 23 Jun
+ 2026 18:32:20 +0000
+Received: from SJ5PEPF000001F3.namprd05.prod.outlook.com
+ (2603:10b6:a03:2c4:cafe::88) by SJ0PR13CA0087.outlook.office365.com
+ (2603:10b6:a03:2c4::32) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.9 via Frontend Transport; Tue, 23
+ Jun 2026 18:32:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- DS3PEPF0000C37C.mail.protection.outlook.com (10.167.23.6) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Tue, 23 Jun 2026 18:28:12 +0000
-Received: from 0yonsun-linux-dev.amd.com (10.180.168.240) by
- satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.41; Tue, 23 Jun 2026 13:28:11 -0500
-From: Yongqiang Sun <Yongqiang.Sun@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Yongqiang Sun <Yongqiang.Sun@amd.com>
-Subject: [PATCH] drm/amdkfd: fix integer overflow in CWSR buffer size
- validation
-Date: Tue, 23 Jun 2026 14:27:56 -0400
-Message-ID: <20260623182756.4163267-1-Yongqiang.Sun@amd.com>
-X-Mailer: git-send-email 2.43.0
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ SJ5PEPF000001F3.mail.protection.outlook.com (10.167.242.71) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.159.10 via Frontend Transport; Tue, 23 Jun 2026 18:32:19 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 23 Jun
+ 2026 13:31:58 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 23 Jun
+ 2026 11:31:56 -0700
+Received: from hwentlanryzen (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
+ Transport; Tue, 23 Jun 2026 13:31:56 -0500
+From: Harry Wentland <harry.wentland@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
+CC: Harry Wentland <harry.wentland@amd.com>
+Subject: [PATCH 0/2] Expose AMD's Gamma 2.4 and 2.6 TFs
+Date: Tue, 23 Jun 2026 14:31:53 -0400
+Message-ID: <20260623183155.212394-1-harry.wentland@amd.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PEPF0000C37C:EE_|PH8PR12MB7208:EE_
-X-MS-Office365-Filtering-Correlation-Id: 825dd28f-1dfd-46f0-3077-08ded1552f0c
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F3:EE_|BN7PPFFF39339DD:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7d0405df-a3ce-4c23-fc4a-08ded155c25b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|376014|23010399003|1800799024|82310400026|56012099006|11063799006|18002099003;
-X-Microsoft-Antispam-Message-Info: VIOc9N9MAeEC+Fp1hxkU20pCvPK8ys550orNk59tiydj7kgncwHASPd1t83RGvIP/kNDqPV4t6mROdhDO4v8V+sIscMaHK3IQllCU3bnIwOxLILKRtxnluEnUq/PGO8wgeXJjJS+XkLCpDxhWtnqWRtKvYeV3K+cVsyDusDrmbugexeMGBnqFhAERtUQmV+UWw/axd6ayO4xESx9z7j//yyI/UnIhK7ykrzQeK0zXSzXsGaRtohmaNsM5j9WWy5ZMNVAVfBBreCpYrXX/HukiYMyj5M0FnFYxBfg1jfGKFoRByy/4HjrnZ1sjpD3gJCJpNspcO3T+eaoh4V4FHuZi97dtdieRIWArfiFX7ULDf8l1wspJX/5kv/UeNhU1Jw8KAoeQz4ht96zwAZN3OpTlUxsLZmwSkeA1wO7DtTcECzULNgqNNMZiCVbR4NCMzJGbolkmR7DNqMloJHQKCUbKU8UBTjxS4ECSGsUccmD7vepBSmClQg3eH30EmKvB2Vn8nfQQLZ5oEp+1Vqp/yIwoV1wyDdUo4ONZ30sgluGly7oG9S8kxGZQo5gkcaDXjlbSt5kS62i4f96h0Xj9GHB1Jc5XVLAZ76y5qKfD55GkppvitjoWLZpUl1DRDz5Jedxzq+ot+4LADT5qVXU/FT04OylH+RmbFcF7dBiKyTUbyrz4ArCJt7kqYrf5m93Of/uYfKqmKBzRcucC51pmYORGg==
+ ARA:13230040|36860700016|23010399003|376014|1800799024|82310400026|6133799003|18002099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: 74ndv/w2bze8PI18Dbh6+XGOogXcoZZ6SDt0ap4aJ5B55Pwe1kXsQ/AYB9q+42DQ/rv3M4CXFKloZwYyI5qEIR5Ai7dJkXD+tW3qJiFD9zAHSd2Oc1LQhO4cAJr7oM/gHJtsL8Ocg72QevE774e4ivtKFJLEAYdXGf6QIjO1cvRT9aNMjC+tLzwoWra12NqhiD38AflmKgJGZZH3iEeM/Y+PkyH0LaBfr1k65JUuDq/gl3hoVxQplJiAxKii4B0xpCMhgzdu3yF5AfscaAqll+KLjaWOSMZeM64+i/SSkSREW+ZlvgkWhSdvrbaH+OPQocDx2G+ueaPRj4GVWiD8RXzXBHuLt5C3xWpZY2826wjxRt4WiiRwG1M8r/mtsOy9fDGopuO6UELnLZnynwjY/KQcvodIrQohLKKPvIuXEXJ6W5w7aIn1ZPgYzYfIeo0FqutwMhPcX8xfB7rY8lLH9EiGEsp88eee4JhOm/LM6GhdBs7dbJgDX+OVuS9UmbuUWw8+SdJMsIok8CZnNS5G0dXmhg/SjMKh0MKDG/HK/r3Ddo5MM595t5T4N43J/FCqV3XEaT/YaaK1hgqQORoEw7HI2Rk+BdWkNzu2NjAnMzZBVQFJ6erFPr8sgx3pNz33Te4ZLvz3SDs7b1zymdfErRaUSUqkg4neSFg7UFQzwwJxoPahfQivXcxSYZtr336G5+oJfsAx27SErXgfE7/rNg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(376014)(23010399003)(1800799024)(82310400026)(56012099006)(11063799006)(18002099003);
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700016)(23010399003)(376014)(1800799024)(82310400026)(6133799003)(18002099003)(56012099006)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: fLqtfrbj3KZZ6K3rjTo8+lKN3Z8tFf9cSZzhGUeFrgemgQGNneRJtaVjYm0mM5XYkf1Hv6KOI1cUjr6+DZr03hoiJv9284CyudCT2WDRgiPHFi11fglZBGzgMF3ElT17Ve75JCFPFAoLhJHzVQ5dj6inbJfzJfc/2g5PygHU4IN/7jEnWa5DGknvgIOBUz3XolgTC82UnZhneE1tdRt7IMyRCVBF1hWe9Kh+RxMlcw4AFZSkOgsN81+ujW6WhBFQH3wf1k6eQMygv1br/eUJuu3lAzTmFuqEOO7YdDZtmwYf7MaMXLrohcOHVIctflpluz+Js6PLX4a5KXwJxIwcK4H/G0IFsQQhwsZ8/QjKo+9JgP2xMDc0DOmG+yIjr7OuApCg9a+hfMH33GIAVhU33vDc6rTT0Q3A48fuFuBgzlzf6TSJX93n2yMBnSxU7HR8
+X-MS-Exchange-AntiSpam-MessageData-0: dFTV7QPsr/dSeZYUixwG9KywbDvWS2+moRL5B37P32u27X+6tAAxz6VK1SSybEQ4f6YX+QAXjZajt1g7XrLypVvSHluNzZJiV6Ji79RuneWmAFsyxS4qIbO04ziynErLyX4utUOsCfoF/C3u1CVJ5s1g4KTR0ax4QI6XCa2LBfkZ53SMYmLzQzTR6/hMCfVnmYeCXu+rZhupG0+Uk9PjozNg1sp3s1SwsIXyoUbfBLeaYu0ze93ZbYk9Z84QeENz9QixRZS4SNWHTyPZP43aJ9KCwzgywniIxPU+PuwyYL65T9M04ax2gSayK02nmrPJnVBZZm31Lp4xXondKr1O1PxATlPg3n1SZI4zeYzdIs7mjEzKK1qsvzfEGPkLfDchwl3QI/8kG9aq5eLsBV6xK32/50F56Ii2oe4xz5rWC5HAjRJqWHqjZo+lJXoWYs04
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2026 18:28:12.4311 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 825dd28f-1dfd-46f0-3077-08ded1552f0c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2026 18:32:19.5196 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d0405df-a3ce-4c23-fc4a-08ded155c25b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS3PEPF0000C37C.namprd04.prod.outlook.com
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F3.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7208
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PPFFF39339DD
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,237 +119,47 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
 	DKIM_TRACE(0.00)[amd.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[Yongqiang.Sun@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:mid,amd.com:from_mime];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,lists.freedesktop.org:from_smtp]
+	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D9FED6B96D9
+X-Rspamd-Queue-Id: 5B7E16B9724
 
-CREATE_QUEUE takes an unprivileged, only lower-bounded
-ctx_save_restore_area_size. kfd_queue_acquire_buffers() computes the
-total CWSR size as (ctx_save_restore_area_size + debug_memory_size) *
-NUM_XCC() in a u32 with no overflow check. On multi-XCC parts (NUM_XCC
-up to 8) a large size wraps to a small value, so an undersized BO passes
-validation while init_mqd_v9_4_3() still strides by the raw size -- a
-GPU-side out-of-bounds write from an unprivileged /dev/kfd caller.
+During the Hackfest there was some interest in possibly using the 2.4 and
+2.6 gamma curves that AMD HW supports. Add the colorop definitions and
+expose them for amdgpu.
 
-Compute the total with check_add/mul_overflow() and reject on overflow,
-and bound-check the per-XCC CWSR stride in the MQD managers.
+Harry Wentland (2):
+  drm/colorop: Define Gamma 2.4 and 2.6 and its Inverse
+  drm/amd/display: Add support for 2.4 and 2.6 Gamma and its Inverse
 
-Signed-off-by: Yongqiang Sun <Yongqiang.Sun@amd.com>
----
- .../drm/amd/amdkfd/kfd_mqd_manager_v12_1.c    |  8 ++-
- .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c   |  8 ++-
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h         | 31 ++++++++++++
- drivers/gpu/drm/amd/amdkfd/kfd_queue.c        | 49 ++++++++++++++++---
- 4 files changed, 88 insertions(+), 8 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_color.c   |  6 +++
+ .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c | 12 ++++--
+ drivers/gpu/drm/drm_colorop.c                 |  4 ++
+ include/drm/drm_colorop.h                     | 39 +++++++++++++++++++
+ 4 files changed, 58 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
-index a6fff8032dce..d45b3fc3baec 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v12_1.c
-@@ -473,7 +473,8 @@ static void init_mqd_v12_1(struct mqd_manager *mm, void **mqd,
- 		 * and CWSR area is allocated in thunk
- 		 */
- 		if (mm->dev->kfd->cwsr_enabled &&
--		    q->ctx_save_restore_area_address) {
-+		    q->ctx_save_restore_area_address &&
-+		    !WARN_ON_ONCE(!kfd_queue_cwsr_xcc_in_bounds(q, xcc))) {
- 			xcc_ctx_save_restore_area_address =
- 				q->ctx_save_restore_area_address +
- 				(xcc * q->ctx_save_restore_area_size);
-@@ -596,6 +597,11 @@ static int get_wave_state_v12_1(struct mqd_manager *mm, void *mqd,
- 	u32 tmp_ctl_stack_used_size = 0, tmp_save_area_used_size = 0;
- 
- 	for (xcc = 0; xcc < NUM_XCC(mm->dev->xcc_mask); xcc++) {
-+		if (WARN_ON_ONCE(!kfd_queue_cwsr_xcc_in_bounds(q, xcc))) {
-+			err = -EINVAL;
-+			break;
-+		}
-+
- 		xcc_mqd = mqd + mqd_stride_size * xcc;
- 		xcc_ctl_stack = (void __user *)((uintptr_t)ctl_stack +
- 					q->ctx_save_restore_area_size * xcc);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-index ce379ab17916..83a4cb67c01f 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-@@ -727,7 +727,8 @@ static void init_mqd_v9_4_3(struct mqd_manager *mm, void **mqd,
- 		 * and CWSR area is allocated in thunk
- 		 */
- 		if (mm->dev->kfd->cwsr_enabled &&
--		    q->ctx_save_restore_area_address) {
-+		    q->ctx_save_restore_area_address &&
-+		    !WARN_ON_ONCE(!kfd_queue_cwsr_xcc_in_bounds(q, xcc))) {
- 			xcc_ctx_save_restore_area_address =
- 				q->ctx_save_restore_area_address +
- 				(xcc * q->ctx_save_restore_area_size);
-@@ -918,6 +919,11 @@ static int get_wave_state_v9_4_3(struct mqd_manager *mm, void *mqd,
- 	u32 tmp_ctl_stack_used_size = 0, tmp_save_area_used_size = 0;
- 
- 	for (xcc = 0; xcc < NUM_XCC(mm->dev->xcc_mask); xcc++) {
-+		if (WARN_ON_ONCE(!kfd_queue_cwsr_xcc_in_bounds(q, xcc))) {
-+			err = -EINVAL;
-+			break;
-+		}
-+
- 		xcc_mqd = mqd + mqd_stride_size * xcc;
- 		xcc_ctl_stack = (void __user *)((uintptr_t)ctl_stack +
- 					q->ctx_save_restore_area_size * xcc);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index ad4897f094a2..f227942f50ec 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -540,6 +540,14 @@ struct queue_properties {
- 	uint32_t eop_ring_buffer_size;
- 	uint64_t ctx_save_restore_area_address;
- 	uint32_t ctx_save_restore_area_size;
-+	/*
-+	 * Total, overflow-checked size of the CWSR buffer across all XCCs as
-+	 * validated against the pinned BO in kfd_queue_acquire_buffers(). The
-+	 * MQD managers use this as an upper bound when programming the per-XCC
-+	 * CWSR save base so the raw per-XCC stride can never index past the
-+	 * validated allocation.
-+	 */
-+	uint32_t cwsr_area_total_size;
- 	uint32_t ctl_stack_size;
- 	uint64_t tba_addr;
- 	uint64_t tma_addr;
-@@ -552,6 +560,29 @@ struct queue_properties {
- 	struct amdgpu_bo *cwsr_bo;
- };
- 
-+/*
-+ * Bound-check a per-XCC CWSR save area against the validated total CWSR buffer
-+ * size. The MQD managers program the per-XCC CWSR base using the raw
-+ * ctx_save_restore_area_size as the stride; this confirms the save area for
-+ * @xcc lies within the allocation that kfd_queue_acquire_buffers() validated.
-+ *
-+ * Returns true when the access is in bounds. A false return indicates a kernel
-+ * bug (the overflow-checked validation in kfd_queue_acquire_buffers() should
-+ * have already rejected the queue), and the caller must not program an
-+ * out-of-bounds CWSR base. When no validated size was recorded
-+ * (cwsr_area_total_size == 0, e.g. non-CWSR queues) the legacy behavior is
-+ * preserved.
-+ */
-+static inline bool kfd_queue_cwsr_xcc_in_bounds(const struct queue_properties *q,
-+						unsigned int xcc)
-+{
-+	if (!q->cwsr_area_total_size)
-+		return true;
-+
-+	return (u64)(xcc + 1) * q->ctx_save_restore_area_size <=
-+	       q->cwsr_area_total_size;
-+}
-+
- #define QUEUE_IS_ACTIVE(q) ((q).queue_size > 0 &&	\
- 			    (q).queue_address != 0 &&	\
- 			    (q).queue_percent > 0 &&	\
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-index 9d4838461168..6bb7aa0fdf1a 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_queue.c
-@@ -23,6 +23,7 @@
-  */
- 
- #include <linux/slab.h>
-+#include <linux/overflow.h>
- #include "kfd_priv.h"
- #include "kfd_topology.h"
- #include "kfd_svm.h"
-@@ -230,6 +231,40 @@ void kfd_queue_buffer_put(struct amdgpu_bo **bo)
- 	amdgpu_bo_unref(bo);
- }
- 
-+/*
-+ * Compute the total CWSR buffer size across all XCCs.
-+ *
-+ * The per-XCC size and the NUM_XCC multiply are both attacker-influenced
-+ * (ctx_save_restore_area_size comes straight from the CREATE_QUEUE ioctl and
-+ * is only lower-bounded), so the arithmetic must be overflow-checked. A wrapped
-+ * result would let an undersized BO pass the exact-match validation in
-+ * kfd_queue_buffer_get() while the per-XCC CWSR hardware stride still uses the
-+ * raw user size, causing a GPU-side out-of-bounds write on multi-XCC parts.
-+ */
-+static int kfd_queue_compute_cwsr_size(struct kfd_process_device *pdd,
-+				       struct kfd_topology_device *topo_dev,
-+				       struct queue_properties *properties,
-+				       u32 *total_cwsr_size)
-+{
-+	u32 per_xcc_size;
-+
-+	if (check_add_overflow(properties->ctx_save_restore_area_size,
-+			       topo_dev->node_props.debug_memory_size,
-+			       &per_xcc_size))
-+		return -EINVAL;
-+
-+	if (check_mul_overflow(per_xcc_size, NUM_XCC(pdd->dev->xcc_mask),
-+			       total_cwsr_size))
-+		return -EINVAL;
-+
-+	/* PAGE_ALIGN() must not wrap either. */
-+	if (*total_cwsr_size > U32_MAX - (PAGE_SIZE - 1))
-+		return -EINVAL;
-+	*total_cwsr_size = ALIGN(*total_cwsr_size, PAGE_SIZE);
-+
-+	return 0;
-+}
-+
- int kfd_queue_acquire_buffers(struct kfd_process_device *pdd, struct queue_properties *properties)
- {
- 	struct kfd_topology_device *topo_dev;
-@@ -308,9 +343,12 @@ int kfd_queue_acquire_buffers(struct kfd_process_device *pdd, struct queue_prope
- 		goto out_err_unreserve;
- 	}
- 
--	total_cwsr_size = (properties->ctx_save_restore_area_size +
--			   topo_dev->node_props.debug_memory_size) * NUM_XCC(pdd->dev->xcc_mask);
--	total_cwsr_size = ALIGN(total_cwsr_size, PAGE_SIZE);
-+	err = kfd_queue_compute_cwsr_size(pdd, topo_dev, properties, &total_cwsr_size);
-+	if (err)
-+		goto out_err_unreserve;
-+
-+	/* Carry the validated size to the MQD managers as a per-XCC bound. */
-+	properties->cwsr_area_total_size = total_cwsr_size;
- 
- 	err = kfd_queue_buffer_get(vm, (void *)properties->ctx_save_restore_area_address,
- 				   &properties->cwsr_bo, total_cwsr_size);
-@@ -355,9 +393,8 @@ int kfd_queue_release_buffers(struct kfd_process_device *pdd, struct queue_prope
- 	topo_dev = kfd_topology_device_by_id(pdd->dev->id);
- 	if (!topo_dev)
- 		return -EINVAL;
--	total_cwsr_size = (properties->ctx_save_restore_area_size +
--			   topo_dev->node_props.debug_memory_size) * NUM_XCC(pdd->dev->xcc_mask);
--	total_cwsr_size = ALIGN(total_cwsr_size, PAGE_SIZE);
-+	if (kfd_queue_compute_cwsr_size(pdd, topo_dev, properties, &total_cwsr_size))
-+		return -EINVAL;
- 
- 	kfd_queue_buffer_svm_put(pdd, properties->ctx_save_restore_area_address, total_cwsr_size);
- 	return 0;
--- 
-2.43.0
+--
+2.54.0
 
