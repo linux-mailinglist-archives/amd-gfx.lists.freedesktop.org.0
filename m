@@ -2,52 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id b1PQOnwoOmoQ3AcAu9opvQ
+	id VpE3Mz4uOmr33QcAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 08:32:28 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 08:57:02 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A5B76B4895
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 08:32:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2416D6B4AAF
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 08:57:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=YUp1JjUE;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=PBWecxGX;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 953A910E975;
-	Tue, 23 Jun 2026 06:32:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 287BC10E984;
+	Tue, 23 Jun 2026 06:57:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011035.outbound.protection.outlook.com [52.101.62.35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28B2610E957
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 06:32:25 +0000 (UTC)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011002.outbound.protection.outlook.com
+ [40.93.194.2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEB9710E32E
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 06:56:58 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JvKbxJNhb6w+gJqCNrbHEnhQ11thcG/mPdBwxl/LUXqNDB4tZGYp7Io86o+MJtCnGD3I0yJBXMmnGRzkdQsYrPI61TYmc2pI+jND3oCyjQliJrBmzEqW3G/6GZZOPmQmQ2NesEhbbol8ksN9EF4Lpz3Io3HzA0StQ/kGV63D7I25CBtxiGIouEFFq/oQtQIk2F63JCia8CqbnI4lZ9QFBt6WVcxH2hXzKNI1itLVGf3ngt732F+3T1HoP9LMq5diOJbI+xu4aOywpwOhK28hlq0rNtugCnBFeNrFSRAqR0A0gQzJeUwTzAuOa1lcfdclGIwM+6fg4n2XKgbgGmQZMw==
+ b=PTwPQRo37xBuE7kRxiUGMaKbWRPHHs6UzWz23bFpf045EBK0hZ+YHBfsuXUXYvQoFUs2ALlZrpenlv7ZbdrRdJegljl/BE0rFzA2aG8qlhkQmeHTymhMRttIvZTg45sQ3VTNhXI4rUC2khTNLrDOPzNAYWCB6aDM2/OmT5lwj8VA7m9Q01i38bKGxWqJ8eFOg/xcC68ZwkGmp+KVY7/sBFg3l307ITiNbQNKPmsEbfg9X35kfS/lvijf96N34JNPVj5ajlsO5Kvrp1NHxJb87yrZSMBi6h5ARhCXsFqPg1Qi6eUNurzV2ygQsMqtWhmjYmcphzZTfT4JOna1WYdUPA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pmywznQotrv0cEQvd2J9llvxKWvfGmbT5UnAw4988OU=;
- b=zLSAL1gtFHW1l+smrfLzEf1EqIQ6KK1lNcxhwwOfx7z5eVm4cdVUDVG8ScwUEkKLXfQQjtAiRp9A5d185u/lpP7RXwkupyD3GuXr3kY0AKXpBRASdDHp70g2mgwHbg5dHuLlLEY4RAAdVm8fSPCt+/ETFi683l0mG0rJn534rm29cqxOolUnlQKS66byCf/8TGOaYNSnSDnqGK3Z9yc2xiE5LO+inCdxCFsFAwQvvqnJa/NMRXgan7ZRdYHuE6usDSHmFdG9BKQi6UQWioqWxG8zuJvpqxMfIcxY59d/OUcNDecCvJGTMlUQrEsht3LW2sK6IdpKIO2/difZmbj5zw==
+ bh=EQx7QrQA0QthYEsixky0iRR3yNwrymY/yM5Z8hdn+qU=;
+ b=BDAmV6r7hTsmus2N44VZEmGe4RB/Iu1dl26KhDhSROxLEisC38OFsebRWD9VtWDRRscKMUEIqE58a1Xj8cHOAIwNBdhlpxbp+jZ0CsacLLWP4ryvsakt/hYexVgntyVyQzyNT5nUv9rZCtuCML13ZoMrK/FXpLdVQmOOWy+zUhfXNXb8V5K0cRJBHO3ig400J+j2A0wjpBYU2xTct2tiLlHMBvkjJ4tgKPddpeRQuo8R0SiPoJlem34irhtJsrwwmGtQuzu7PNV17Wp/Hz5YI/fehRk33Yatr5B3dWUmkgAFzT4EEv/HRGAa4iX2J6gPa8/56aIrkU5Ku54EMfDTxw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ 165.204.84.17) smtp.rcpttodomain=igalia.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pmywznQotrv0cEQvd2J9llvxKWvfGmbT5UnAw4988OU=;
- b=YUp1JjUEjxQyhvAxXolVu0jt3Z2bMZ9aSYCPwenfBZnYTCo1/IHWZWr9RVB+PDPBU38ZFc1uywlQqthceetNGzCHnCbxfe5MeGPgxFJZkYs0ltDX7WBdDnZrTtF87FsDUKBeyeoppE5i3/qgzMBL20+CqhpJVVMXEHsVJQonAfM=
-Received: from SJ2P220CA0013.NAMP220.PROD.OUTLOOK.COM (2603:10b6:a03:5da::16)
- by CHAPR12MB999250.namprd12.prod.outlook.com (2603:10b6:610:300::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.19; Tue, 23 Jun
- 2026 06:32:21 +0000
-Received: from SJ1PEPF000026C9.namprd04.prod.outlook.com
- (2603:10b6:a03:5da:cafe::98) by SJ2P220CA0013.outlook.office365.com
- (2603:10b6:a03:5da::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.12 via Frontend Transport; Tue,
- 23 Jun 2026 06:32:21 +0000
+ bh=EQx7QrQA0QthYEsixky0iRR3yNwrymY/yM5Z8hdn+qU=;
+ b=PBWecxGXkLk2KFcWvTXjdMNccE1oEFoIJ4cVpYV29XUxz/RUX/g/SebPBf5ueWhOgG2jA53agJsNyGf19PfglXn+TU2VshiTKRROn16eVk4XTGKuddD7d5588yvrJrMdNXvcXIEnYTwWewK3MWhaJmqFfOyWrhTIMANAP9Fkn70=
+Received: from MW4PR03CA0045.namprd03.prod.outlook.com (2603:10b6:303:8e::20)
+ by DS0PR12MB7770.namprd12.prod.outlook.com (2603:10b6:8:138::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Tue, 23 Jun
+ 2026 06:56:53 +0000
+Received: from MWH0EPF000C618B.namprd02.prod.outlook.com
+ (2603:10b6:303:8e:cafe::39) by MW4PR03CA0045.outlook.office365.com
+ (2603:10b6:303:8e::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.20 via Frontend Transport; Tue,
+ 23 Jun 2026 06:56:53 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,54 +56,54 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ1PEPF000026C9.mail.protection.outlook.com (10.167.244.106) with Microsoft
+ MWH0EPF000C618B.mail.protection.outlook.com (10.167.249.123) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Tue, 23 Jun 2026 06:32:21 +0000
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb07.amd.com
+ 15.21.159.10 via Frontend Transport; Tue, 23 Jun 2026 06:56:51 +0000
+Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 23 Jun
- 2026 01:32:20 -0500
-Received: from JesseDEV.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Tue, 23 Jun 2026 01:32:19 -0500
-From: Jesse Zhang <Jesse.Zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
- Shaoyun Liu <shaoyun.liu@amd.com>, Amber Lin <Amber.Lin@amd.com>,
- Jesse Zhang <Jesse.Zhang@amd.com>
-Subject: [PATCH] drm/amdgpu/mes11: set remove_queue_after_reset for reset
- unmap path
-Date: Tue, 23 Jun 2026 14:31:21 +0800
-Message-ID: <20260623063218.188781-1-Jesse.Zhang@amd.com>
-X-Mailer: git-send-email 2.49.0
+ 2026 01:56:49 -0500
+From: Honglei Huang <honghuan@amd.com>
+To: <harry.wentland@amd.com>, <sunpeng.li@amd.com>, <siqueira@igalia.com>,
+ <Christian.Koenig@amd.com>, <Mario.Limonciello@amd.com>,
+ <amd-gfx@lists.freedesktop.org>
+CC: <Alexander.Deucher@amd.com>, <Ray.Huang@amd.com>, Honglei Huang
+ <honghuan@amd.com>
+Subject: [PATCH] drm/amd/display: use kvzalloc to allocate struct dc
+Date: Tue, 23 Jun 2026 14:56:35 +0800
+Message-ID: <20260623065635.2525331-1-honghuan@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000026C9:EE_|CHAPR12MB999250:EE_
-X-MS-Office365-Filtering-Correlation-Id: 06040cd3-688b-43e9-bbdf-08ded0f12e59
+X-MS-TrafficTypeDiagnostic: MWH0EPF000C618B:EE_|DS0PR12MB7770:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2311c4b8-9415-4a0c-3cdf-08ded0f49aac
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|23010399003|36860700016|376014|18002099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: J8DO5K7SDaux8hef3lM+aW9QA6IqKDKsPsR8y/+SDxR3JXC/63jjm6Kl3rRVCtkwrIoLOr+SSJJd9AZ8E1+v8UDuamdfid8y5YRdl9PX9GUjMa+6DJ2dF2BGUijOzBHJhWKoBxd72i70CINm+p44nzZyw0Z+3i4fon2u8Cvb5AYCmofzV5dW5ijPZhzW0yMDYIZSd2zL4oNta4kpqXQ8fGPSk/VgP0Nw9wxhosYPpINnqp8+umw2IsRegGrzqgIewbC0qK5vBVLwqFcLwZoUQa1GdrHCSdZwFxKlM3qQxG/3GLFn12zNZO/I9USh9TjNw/dGYmssfUbl3yQwPHxDAeVENp7roz6l2joHZpizfFxRPoODcE+QrZrKQxuC4EKcZLkBUrB0l1t1P086oHPsGGRK0m2CG1FlLjd6WtFgxhJgHlnBJ3JuRVhXtQLdZXaH4JMR11sPWEeiEHpn6vUoxFKo+eiau0OOFmlkocLiLPCErOliQL2HYCM5Do5bshYb1ep/Hr7IMrCynzCJNBpvxB/K+xm9tP8UayuTECxeNGWDv1si7bld4Y3Yv4L0gGavHWmNkM96VFbUxaTtzH/+YruvJWE2z0TiIVhlaINjzfXGL1kkSp1SvZflYmsmR1UIdPr5rueS78S6qy3vvMwpxt0ElCfeYAf489vY+3MDFRZS3B4hp09iBHs2kTl20MW2TzMVmZPy95amxH/uR+CwgA==
+ ARA:13230040|1800799024|36860700016|23010399003|376014|82310400026|56012099006|11063799006|18002099003;
+X-Microsoft-Antispam-Message-Info: SahLBeZz8SdZRyefldCpRsGgJbRVNx/bJrxaiOZttuuSBwf6kV5Ufimww6cIoGUWx+RDsj3XJL+Gf1518zbTca5hNgCHR3X1D12vn4TY4kPPQgPvaTXK+DF4R2AYxQfHTUcKxx+pQa+mq8eaEnceu2OnKiHZSgfjzd45YA/61rgBzll16Odu1TnxlvNvPpwJzha+0z6GbnksMTWTr/kSnspToIppZt2/bbAq+4AiYI56hjo36VCwngTGbAuWl/fPHPsdliLXrWlztGftvPOXbgxiWTDrW9iLnahVbypJyFE+/Lu+eQouHAYqL9NDFSy493xW0TyUtEdH6p3YiDw4iYlUrC8EEldqTb04qEqDcxHjQi9CfB1KZUQ9s4h8h0dVxYxiXj+PK5qadd6jsmUbGppqy2dbNNL6qJPtI7CsEgejmlws9lue8SYMmFDW+74u9Bx+OhLavU+P+besPojvlvIDbYPrwHgOCTpodQdT/cccHuB/hBGy9I8CB1Z1ydt2zv/7fv0VNzsvaTpsUHMyx0RQN7qeTWDLBvygcJi/sQ6n+NnuzIhAc7JtNa0gTNzww3aGaexWtJz174bkpvX2eEXm2Jdyi+wDX81QmGhgsLMM0vad+TyZ7D3jTSlK17ndjSOliGBvdWLJJsHLtdomNLXXacpSI340lSPW2FgVayyd7TiJl6/Y82Vt2v71GoAF/g/Xbyqy12jkFZwYgVGxyw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(23010399003)(36860700016)(376014)(18002099003)(11063799006)(56012099006);
+ SFS:(13230040)(1800799024)(36860700016)(23010399003)(376014)(82310400026)(56012099006)(11063799006)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: /yKkBheF/H2uTWqWFiZpxBV5EEFvfNipwLs2mCTmJPJ8LS424kq3VSkvOd/0mLGh3EcgirglRdQKj6hcp3YwchHUCZbmmRe7CQTiag6Sz2OCX1X9sJMRQmO/wLMbXA3AB1u/Qn884jptj/AHzYKQMTpb4LPzMQu87C6cUT9or9G9TnS0EWSj0yNLe5ixFCYxuUsqhr8Esk5K/+MQSsAUNe46Hfny8iDxp6C9T2IXUnaT5+OAiQ7AFHSzDMDILshtzsowZGWqBLZhVwXKtBiMmUJ0vOYSWzJzDhE11n68zVowP+D4sleHKc79+8zGF9xJMG3hQe71FnkjXU3RyBmQ6hsVb3OYMMtMX4N0BZk+YUYoMLwS9t7WW/HYwgomit22P/Sl6hCby5pmiOfhZ3gHCKaFoHnBzzJNOne8oLJ7/5ck46LKc0nvR9vhUCLmckig
+X-MS-Exchange-AntiSpam-MessageData-0: ylOFz50YRQtN0SKXqiwbCs44U+OdASF8WaiciUsk7rzcOqR1AxYXY/dnKlhYm9pVbTBvxUs9aFMFOnE1KnWATRSeuiOzFlGU1i2+F+d2pnldaI5inFUdlfhC+i2lgs765NfpKPxWaDfXpSJXKxkKj2+MPQ0qpAA8957R3avjosgJQuUYjaF/bdq1iNRZGzUN9G+vnN+1sCrxXIdByJ6NHyjPVVXB/8SJUZm7G/GP/RqRu0FsJVt0iZ6fX3QJNgCH56zqIWnRLABN2AlE6MlVR8uFW1JDgA/R9yK9rGyZDaE7vlb/x770XY3a/s3qaV3E/ixwFl+1uE7CTXOaEJqjG8/OxBmeF3yZhY7VLZyOzf0hLFj7+Gf/BQaEZukESBfrAAUcJR2XwFJjqXj03DVaTVjKanhWjObU1waQdcSreK25kc1o5c3B56WPd6dA86ek
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2026 06:32:21.5258 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 06040cd3-688b-43e9-bbdf-08ded0f12e59
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2026 06:56:51.7421 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2311c4b8-9415-4a0c-3cdf-08ded0f49aac
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000026C9.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000C618B.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CHAPR12MB999250
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7770
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,60 +121,102 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[Jesse.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:Christian.Koenig@amd.com,m:Mario.Limonciello@amd.com,m:Alexander.Deucher@amd.com,m:Ray.Huang@amd.com,m:honghuan@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER(0.00)[honghuan@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[honghuan@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	HAS_XOIP(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4A5B76B4895
+X-Rspamd-Queue-Id: 2416D6B4AAF
 
-In mes_v11_0_unmap_legacy_queue(), set
-remove_queue_after_reset=1 for RESET_QUEUES.
-The queue may already be MMIO-reset. This
-flag tells MES to drop internal queue state directly instead of issuing
-another CP unmap flow, reducing timeout risk during recovery.
+struct dc has grown large over time (most of it the two inlined
+dc_scratch_space copies) and now sits close to the page allocator's 4 MiB
+contiguous allocation limit. Its actual size is not fixed by the source
+alone, it also depends on the compiler and the .configk, so it can
+easily cross 4 MiB, e.g. with a newer GCC or a config change, and once it
+does dc_create() fails.
 
-Suggested-by: Shaoyun Liu <shaoyun.liu@amd.com>
-Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
+dc_create() allocates it with kzalloc(). Once struct dc exceeds 4 MiB the
+request is rounded up to order 11 (8 MiB), which is above MAX_PAGE_ORDER,
+so the page allocator warns and returns NULL. dc_create() then fails, DM
+init fails and amdgpu probe aborts with -EINVAL:
+
+  WARNING: mm/page_alloc.c:5197 at __alloc_frozen_pages_noprof+0x2f9/0x380
+  RSI: ...000b   RBP: ...000b      <- order = 11 (8 MiB)
+   __kmalloc_large_noprof+0x1e/0xc0
+   dc_create+0x38/0x660 [amdgpu]
+   amdgpu_dm_init+0x2d9/0x510 [amdgpu]
+   dm_hw_init+0x1b/0x90 [amdgpu]
+  amdgpu 0000:03:00.0: hw_init of IP block <dm> failed -22
+  amdgpu 0000:03:00.0: probe with driver amdgpu failed with error -22
+
+struct dc is software only state, never DMAed and only kept as an opaque
+pointer, so it needs no physically contiguous memory. Use kvzalloc()/
+kvfree() so it falls back to vmalloc(), removing the dependency on
+MAX_PAGE_ORDER. The underlying bloat of struct dc should be addressed
+separately.
+
+Signed-off-by: Honglei Huang <honghuan@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/mes_v11_0.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-index 9e27d01cbfa3..7bc756ce7aba 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-@@ -761,6 +761,11 @@ static int mes_v11_0_unmap_legacy_queue(struct amdgpu_mes *mes,
- 		mes_remove_queue_pkt.unmap_legacy_queue = 1;
- 		mes_remove_queue_pkt.queue_type =
- 			convert_to_mes_queue_type(input->queue_type);
-+
-+		if (input->action == RESET_QUEUES &&
-+		    (mes->sched_version & AMDGPU_MES_VERSION_MASK) >= 0x60)
-+			mes_remove_queue_pkt.remove_queue_after_reset = 1;
-+
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index b3530fbf32f..65bd927435e 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -1507,7 +1507,7 @@ static void disable_vbios_mode_if_required(
  
- 	return mes_v11_0_submit_pkt_and_poll_completion(mes,
+ struct dc *dc_create(const struct dc_init_data *init_params)
+ {
+-	struct dc *dc = kzalloc_obj(*dc);
++	struct dc *dc = kvzalloc_obj(*dc);
+ 	unsigned int full_pipe_count;
+ 
+ 	if (!dc)
+@@ -1555,7 +1555,7 @@ struct dc *dc_create(const struct dc_init_data *init_params)
+ 
+ destruct_dc:
+ 	dc_destruct(dc);
+-	kfree(dc);
++	kvfree(dc);
+ 	return NULL;
+ }
+ 
+@@ -1604,7 +1604,7 @@ void dc_deinit_callbacks(struct dc *dc)
+ void dc_destroy(struct dc **dc)
+ {
+ 	dc_destruct(*dc);
+-	kfree(*dc);
++	kvfree(*dc);
+ 	*dc = NULL;
+ }
+ 
 -- 
-2.49.0
+2.34.1
 
