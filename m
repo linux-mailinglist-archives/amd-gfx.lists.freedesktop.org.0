@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hJ2+J+mtOmpNDggAu9opvQ
+	id CqvpJumtOmpODggAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 18:01:45 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 310BA6B8862
+	by mail.lfdr.de (Postfix) with ESMTPS id E57D56B8863
 	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 18:01:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=HA4dhCuc;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=TP4TDWhY;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EB9D10EBD1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADD2A10EBD9;
 	Tue, 23 Jun 2026 16:01:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1921610EBDB
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 16:01:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E905B10E874
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 16:01:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=E69dOhbDhHYohz8t0cvbyS/yN26OMOECjWvN+URAYhg=; b=HA4dhCucRFV/58+eIHydTfjUTF
- qZumVX8G3mhGnB9A0K8/aZEP5Hbk62kD3uOk0IBBO/xvXle98vIr5gqaeLzy3QVe9PqT2CLfDkZfR
- nEw6lzmksZFRRQ9nzcESxVkASz7ekFsSLTYF9w01ZBK4JikmkDeclWyrMw4dGZLcMFx6eR8/bRDL0
- VR4IvevDI6y7WxBY5jlt2h6TqfiZSVOQfu24dwFSjgm3obXSo7hWweCDG4Lv95P9uHD3bo9xayqG7
- gFKKuTffA3K2zvwmKlBfMURfgqKnCB9FM6nOFn9Ol5WNJ456OvsgXdENbeRHJ8fFtL7vD1ckJELB6
- t7YhGAtA==;
+ bh=cnSBFXCd5pL6ihoKW9sa7Vs11XeZIKEy1sP0Zhk5fIU=; b=TP4TDWhY/dPl9wuvJX1jtwXn+J
+ XwYgIZMdN1v1lHdMPzbKHVWwRWW7y82ry2UTN8pghPa1q/vcOx3AC7I6/Ve7zbsJ0H+ms/1iFbH0R
+ ducUhxFiite2i9PsNx/7R42tx2+xw6Nx8ZVxUgRCKpqPipuyfcxF7rMzjoULTK8nxv9fxyKw6/Vvh
+ 8IPWoW2T5ocEJ8qMII+BsitOFOepG2JTDAMkfYuOmrwTiFjV1CZ8sckyR7eQeAcYUidN/WV+fp2od
+ WSjxtd6jmI1goyhKGhMVgmTLzaaPgztb1YBeIaeAiuysv/wCQSS5vHDaSUVX+cTNgv9ZibILkPl+A
+ boU+9RgA==;
 Received: from 5.red-79-144-94.dynamicip.rima-tde.net ([79.144.94.5]
  helo=killbill.Home) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wc3Yn-004FI4-Ds; Tue, 23 Jun 2026 18:01:13 +0200
+ id 1wc3Yo-004FI4-5l; Tue, 23 Jun 2026 18:01:14 +0200
 From: Melissa Wen <mwen@igalia.com>
 To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
  harry.wentland@amd.com, simona@ffwll.ch, siqueira@igalia.com,
@@ -50,12 +50,14 @@ Cc: Krunoslav Kovac <Krunoslav.Kovac@amd.com>,
  pekka.paalanen@collabora.com, Xaver Hugl <xaver.hugl@kde.org>,
  robert.mader@posteo.de, amd-gfx@lists.freedesktop.org,
  kernel-dev@igalia.com
-Subject: [PATCH v3 0/5] drm/amd/display: better LUT segmentation for EOTFs
-Date: Tue, 23 Jun 2026 17:58:56 +0200
-Message-ID: <20260623160112.1636801-1-mwen@igalia.com>
+Subject: [PATCH v3 1/5] drm/amd/display: use GAMCOR for degamma private props
+ in subsampled format
+Date: Tue, 23 Jun 2026 17:58:57 +0200
+Message-ID: <20260623160112.1636801-2-mwen@igalia.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260623160112.1636801-1-mwen@igalia.com>
+References: <20260623160112.1636801-1-mwen@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,115 +73,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.49 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+X-Spamd-Result: default: False [1.99 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:harry.wentland@amd.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:sunpeng.li@amd.com,m:Krunoslav.Kovac@amd.com,m:linux@treblig.org,m:Bhawanpreet.Lakha@amd.com,m:alex.hung@amd.com,m:Aurabindo.Pillai@amd.com,m:matthew.schwartz@linux.dev,m:pekka.paalanen@collabora.com,m:xaver.hugl@kde.org,m:robert.mader@posteo.de,m:kernel-dev@igalia.com,s:lists@lfdr.de];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com,amd.com,ffwll.ch,igalia.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[igalia.com:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	DKIM_TRACE(0.00)[igalia.com:-];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,igalia.com:mid,igalia.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,linux.dev:email,lists.freedesktop.org:from_smtp,igalia.com:email,igalia.com:mid,igalia.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 310BA6B8862
+X-Rspamd-Queue-Id: E57D56B8863
 
-With an external HDR monitor, we can see gradient banding around the sun
-in the intro of Ori and the Will of the Wisps game on steamOS/Gamescope.
-Gamescope uses AMD predefined transfer functions for degamma,
-shaper/pre-3D-LUT and blend/post-3D-LUT plus CRTC regamma, however, only
-degamma block has hardware curves. Shaper, blend, regamma predefined TFs
-are software-computed by AMD color module into PWL LUTs. In addition, we
-cannot use hardware curves on PRE_DEGAM with subsampled format, so that,
-predefined TFs are also translated to LUTs in this situation, using
-GAMCOR block instead. In this translation, the driver originally used
-the same helper for EOTFs and inverse EOTFs, even though they differ in
-input domain, number of regions and number of TF points per region.
+When setting plane degamma TF via AMD driver-specific color properties,
+the driver uses PRE_DEGAM color block (ROM). However, this block cannot
+be used with subsampled formats as it affects the linearity of color
+space in which HW scaler operates. For subsampled format, use the AMD
+color module to map plane degamma predefined curve to LUT and use GAMCOR
+block instead (RAM).
 
-Baring this in mind, patch 1 maps degamma predefined curves as LUT using
-GAMCOR block for AMD driver-specific property that are still in use by
-current gamescope. This was inspired by a similar patch from Harry for
-colorop [1]. Patch 2 reverts commit 8b89acc0b2ba ("drm/amd/display:
-Remove unused cm3_helper_translate_curve_to_degamma_hw_format") to
-reintroduce cm3_helper_translate_curve_to_degamma_hw_format() and patch
-3 wire it up for encoded -> linear-light LUTs (degamma/blend). With 16
-samples per region across 12 regions for blend LUT (where hardware
-fixed-function curves are not available and predefined TFs are
-software-computed into LUTs), banding becomes almost imperceptible.
+This is based on Harry's implementation for Fixed Matrix Colorop.
 
-Patch 4 and 5 increase precision in the brightest half, where PQ/SRGB
-EOTFs are steeper, by enabling up to 256 samples per region and halving
-the per-region point count across 9 regions (128 in [0.5, 1], 64 in
-[0.25, 0.5], …). This better matches the shape of PQ/SRGB EOTFs.
-Although patches 4 and 5 seem conceptually correct to me, I couldn't see
-clear improvement in the bright end with or without them.
+Link: https://lore.kernel.org/dri-devel/20260330153451.99472-1-harry.wentland@amd.com/
+Co-developed-by: Harry Wentland <harry.wentland@amd.com>
+Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+Tested-by: Matthew Schwartz <matthew.schwartz@linux.dev>
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+Signed-off-by: Melissa Wen <mwen@igalia.com>
+---
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_color.c  | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
 
-This series targets DCN3+ hw families. With this series:
-- degamma and blend LUTs use
-  cm3_helper_translate_curve_to_degamma_hw_format(): encoded input,
-  non-zero end slope, up to 256 points linearly interpolated between
-  adjacent TF pts, fitting [0,1] encoded input range;
-- shaper and regamma LUTs continue using
-  cm3_helper_translate_curve_to_hw_format(): linear-light input, zero
-  end slope, 16 points per region across 32 regions;
-- in the AMD-specific path, GAMCOR block is used for subsampled format
-  instead of PRE_DEGAM.
-
-[1] https://lore.kernel.org/dri-devel/20260330153451.99472-8-harry.wentland@amd.com/
-
-[v1] https://lore.kernel.org/dri-devel/20260414220237.184289-1-mwen@igalia.com/
-Changes:
-- new patch for GAMCOR usage in case of degamma predefined TF with subsampled formats
-- fix misleading information regarding degamma hw curves (Kruno)
-- clarify LUT segmentation choice using 8-bit sRGB as a reference (Kruno)
-
-[v2] https://lore.kernel.org/dri-devel/20260506191606.15022-1-mwen@igalia.com/
-Changes:
-- rebase on top of asdn
-- add t-b and r-b tags
-
-Best Regards,
-
-Melissa
-
-Melissa Wen (5):
-  drm/amd/display: use GAMCOR for degamma private props in subsampled
-    format
-  Revert "drm/amd/display: Remove unused
-    cm3_helper_translate_curve_to_degamma_hw_format"
-  drm/amd/display: use a separate helper to translate degamma curves
-  drm/amd/display: support up to 256 samples per region in degamma/blend
-    LUT
-  drm/amd/display: use halving distribution for PQ/sRGB linearizing LUT
-
- .../amd/display/amdgpu_dm/amdgpu_dm_color.c   |  16 +-
- .../amd/display/dc/dcn30/dcn30_cm_common.c    | 184 ++++++++++++++++++
- .../display/dc/dwb/dcn30/dcn30_cm_common.h    |   4 +
- .../amd/display/dc/hwss/dcn32/dcn32_hwseq.c   |  11 +-
- 4 files changed, 204 insertions(+), 11 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+index a9a741c21663..df781788ceec 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+@@ -1469,7 +1469,7 @@ __set_dm_plane_degamma(struct drm_plane_state *plane_state,
+ 	const struct drm_color_lut *degamma_lut;
+ 	enum amdgpu_transfer_function tf = AMDGPU_TRANSFER_FUNCTION_DEFAULT;
+ 	uint32_t degamma_size;
+-	bool has_degamma_lut;
++	bool has_degamma_lut, is_subsampled_format;
+ 	int ret;
+ 
+ 	degamma_lut = __extract_blob_lut(dm_plane_state->degamma_lut,
+@@ -1499,12 +1499,20 @@ __set_dm_plane_degamma(struct drm_plane_state *plane_state,
+ 		if (ret)
+ 			return ret;
+        } else {
+-		dc_plane_state->in_transfer_func.type =
+-			TF_TYPE_PREDEFINED;
++	       /* Check if format requires post-scale color processing (subsampled formats) */
++		is_subsampled_format = (dc_plane_state->format >= SURFACE_PIXEL_FORMAT_VIDEO_BEGIN &&
++					dc_plane_state->format < SURFACE_PIXEL_FORMAT_SUBSAMPLE_END);
++
++		dc_plane_state->in_transfer_func.type = TF_TYPE_PREDEFINED;
+ 
+ 		if (!mod_color_calculate_degamma_params(color_caps,
+-		    &dc_plane_state->in_transfer_func, NULL, false))
++							&dc_plane_state->in_transfer_func,
++							NULL,
++							is_subsampled_format)) {
++			drm_err(plane_state->state->dev,
++				"Failed to calculate degamma params.\n");
+ 			return -ENOMEM;
++		}
+ 	}
+ 	return 0;
+ }
 -- 
 2.53.0
 
