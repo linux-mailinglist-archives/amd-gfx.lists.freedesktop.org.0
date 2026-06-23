@@ -2,111 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YhHsHOy4OmoIFAgAu9opvQ
+	id ntZ7Av2LO2pWZggAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 18:48:44 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 09:49:17 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DAED6B8DC4
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 18:48:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CA746BC52D
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 09:49:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b="0W/MLK3p";
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=ItjX+I8J;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89BC010EC1F;
-	Tue, 23 Jun 2026 16:48:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2285710EDE8;
+	Wed, 24 Jun 2026 07:49:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012047.outbound.protection.outlook.com [52.101.48.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 687B510EC1B;
- Tue, 23 Jun 2026 16:48:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZLQS1TjBieCLl+W8WLKBfs5E7IZU5iVTZRqRV0ie7dYa/gIkmei9819y1ZZjVbkmwH+SmU2Yuevmhki0TWrKljyfFy6GgRPmTAkoKeSUTxX+h/ULNypr6xSFOdEdxa/yBrcH/KS9CaDxZnRM6RJs+G5BgXiyQpkVazY+ZJBOvtX7TsCNix/f+PATahDENgvZMMm5L5Sb9xK2flFB9E5ICm6WHg5V4eGSBdVj9EaEhKG8UGXkbLhWGXfl6Xq3O9rgLHINNmHByxm9/DeXsRsQvp8On0pvIVYwA7wrvRy2G7Fb/XytjrKPtbYbwCjf1/KZrUJz4r4WzjCwheTWd/TJBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fg/bCBaXKD6Nq74ubYWoPaOCU31VEaAQGDMZ4La6HoE=;
- b=vVpZoO3SIJqNlT8xGMne9UZlxbJlcmZ8JP8zL8snoLgWIFWNybhRT8WQfkuhhO54/wAJ4TLIWNB/O0al3mw0SP0UDZiPc//Gfyz2fY5ZgkHM3uKH7SkkE2vhwR5DPEhMm37rsikpR6cB1vok9Hs6JOJzi7FmInmAZIXptVr80IW3iM0pu1Yja55JuBBnjnKAutMVyaauyQLA2/X1IFkoRhhuEcFyRlx7EEHOb+IRJ3Uxz3X/Gj4w9X0NcUQxec+/yZHC9JrHVdWzJWJ+D9s6m091a668R8AqJIQlFtkhvJv/o+wTWul3xzU0wt4KEJzya1Ge2dqmVKADdPjXtgaj2Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fg/bCBaXKD6Nq74ubYWoPaOCU31VEaAQGDMZ4La6HoE=;
- b=0W/MLK3pCvnBvZFl5NUT5+WuD9xVpAlAaw8GIDT2USiuw0aQhinCkryp8SyaiPNqhdvJrOawPsUBxBkAzRTBtsjQW9RJq2fREXrLAadTwfvjJxduahmf9AiRPfI9uDSGDE8ibo6l+CkzMKnH9hJ7oPY6rMjn1g5FXrPwAZ25e7o=
-Received: from BY3PR05CA0044.namprd05.prod.outlook.com (2603:10b6:a03:39b::19)
- by PH7PR12MB7354.namprd12.prod.outlook.com (2603:10b6:510:20d::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Tue, 23 Jun
- 2026 16:48:28 +0000
-Received: from SJ5PEPF000001D7.namprd05.prod.outlook.com
- (2603:10b6:a03:39b:cafe::8f) by BY3PR05CA0044.outlook.office365.com
- (2603:10b6:a03:39b::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.12 via Frontend Transport; Tue,
- 23 Jun 2026 16:48:28 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF000001D7.mail.protection.outlook.com (10.167.242.59) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Tue, 23 Jun 2026 16:48:28 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 23 Jun
- 2026 11:48:24 -0500
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 23 Jun
- 2026 11:48:23 -0500
-Received: from hwentlanryzen (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Tue, 23 Jun 2026 11:48:23 -0500
-From: Harry Wentland <harry.wentland@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
-CC: Harry Wentland <harry.wentland@amd.com>, <stable@vger.kernel.org>
-Subject: [PATCH v3 11/11] drm/amd/display: Force GAMCOR for subsampled
- surfaces with PQ/Gamma22/HLG
-Date: Tue, 23 Jun 2026 12:48:12 -0400
-Message-ID: <20260623164812.81110-12-harry.wentland@amd.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260623164812.81110-1-harry.wentland@amd.com>
-References: <20260623164812.81110-1-harry.wentland@amd.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5ED10E1F5;
+ Tue, 23 Jun 2026 17:43:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=a5Ly8geR1oWprQ4p41w/ISJHm3yE4aBgqiuOQnF2jfY=; b=ItjX+I8JgOR4L4+aK2jMH1WigB
+ ucnCBu9+QPQHFfIuoWPfqaNg5PzCw+yDRz9Y0j/j8V62upD2Uv6WLH/MMVr+RZLEZ3CX3mgM23bHZ
+ BUK5sbEJxZjZYFIuyKu4Zq9gGJ90cJIkK3aYBplIZBUmn+NwhHKfmU2OK4wfLu2eDobd9QIOtn/b8
+ IjlqCGkWTItVpwqmVLjr14ISQ9hrnbmA2gGHPySH6jJ8ClFKWp7wyRrogAqV3ujxHhpDc3plSj6VU
+ cggC2RSrlE3kGcZ6H7E2/S/nib/R6NkokSayaUAzyJnSGaMi0XqLXqrmRfDQNh7wkBDjjyRXqOpT4
+ DePmqqMw==;
+Received: from 179-125-64-254-dinamico.pombonet.net.br ([179.125.64.254]
+ helo=quatroqueijos.lan) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wc59o-004HEi-TG; Tue, 23 Jun 2026 19:43:33 +0200
+From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+To: igt-dev@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org,
+ Christian Koenig <christian.koenig@amd.com>,
+ maarten.lankhorst@linux.intel.com,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>,
+ Natalie Vock <natalie.vock@gmx.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, kernel-dev@igalia.com,
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+Subject: [PATCH i-g-t 0/7] add dmem_cgroups test
+Date: Tue, 23 Jun 2026 14:43:12 -0300
+Message-ID: <20260623174319.4138648-1-cascardo@igalia.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001D7:EE_|PH7PR12MB7354:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9953d323-8857-4eb3-76bd-08ded1474070
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|1800799024|23010399003|82310400026|376014|18002099003|22082099003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: 3smlFf/8xPlboOJMR5SNHqW6R3G0948VqyEAuTXUMePQ1BL/IYPdoR81fC60T79eOcSqVnIMqHgyNxI3FNUz7BSMn7bTqfKR+51iONpSX9LMgeyGlOS9VbANBO4HixtvzziHNQEuKbVQYHvwKwP3i2GvKXUGE1dvUZsfJ2GBoQPi/oEi2/6hRR697WSYCgSVCMbLdqGpuTxzsnMUkBylatrOhpsfRglxqbkUb2h/DHvxe9+Nz8lLA+eX8cGqrdU4hv5evwCgdlzBziZt1DtEbhj5NwIt1q89MSXMS0GRaInUF8APa53YYdln+37DYKj2jAYHVPVXka6U8xjPkFlj1EKxQ6IuR96TTW75ju2gf1cZe4Yfa/vMTtyI35oxLAG7yA37s/Pl0XqZZ+fz6z9ukkfgZ/+lNjBuLG19UxvcyzElGq9mi465CnrkGlgE/n7MCvmiENTwmo6xsWHD2utp8YszQNGtZ7rL4PxSd9GkD4Fhnbz0WzoOp0QdZyVin6lShPMQiBLnstlWfX8xZULdJ5Hqe/5Blayjkq4P9Q+/99osuJZVRbpQc1rNp8o44HUZsP6yuHXgNCoNNT/Nb1awYFG42XkvdvegMI9AlQqQlXFosG6gqkweDvpjT5DwRoDMhxR4IYfU75TQyEj8s0M/g+w9Q6Z2I71IItCk1rZU0CsE0gibndX5h+M5UfpDpONMiY0J+x0ASX+XN3rmUcpKrQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(1800799024)(23010399003)(82310400026)(376014)(18002099003)(22082099003)(56012099006)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: If+qC22uU2BIx1OXLci0lJKM/ORNJ00xR25Y+EMvy9z9HjukfMSQgw2Oztj26cP0SSS4oAhb9fm8Urkk6Kqk9veeZ/ee1eSMHOgC3ZqxwdHUlN36fPStOAl6ovbed97TykEftRRz1+h7IAaSw+eookKuLffr3QjKizyxtA/u7cBph5UffxASiK+ixjjpn3wUcq48vYk4L4d2ljgaa7PLTLVrTtIdWdHTtOMwB6xvbvSLpvzVb6mE0P3clbsDbEaFno7TK7HfSqH4J9JbboQsSXJpC61n9VkWzbDSAHHkRPnW18iAJqPsBh+y+1YgWPKMtkFI/jBDr+PF4ABrL9yE5MaejlXMKe2BgknIm5Cv3ET+SfVdkuBJJB6/6UkwNugnKwmo8LOsq6Zw2a4QUiSWu4Ms4q+S6l+fY+3f3O004xZuBMYObOxj2n7P4bxtoOoj
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2026 16:48:28.6450 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9953d323-8857-4eb3-76bd-08ded1474070
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001D7.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7354
+X-Mailman-Approved-At: Wed, 24 Jun 2026 07:49:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,72 +73,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [1.49 / 15.00];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cascardo@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,linux.intel.com,gmx.de,igalia.com];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,gitlab.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1DAED6B8DC4
+X-Rspamd-Queue-Id: 6CA746BC52D
 
-The ROM early-return checks for PQ, Gamma 2.2, and HLG in
-mod_color_calculate_degamma_params() do not consider the map_user_ramp
-parameter. When map_user_ramp is true (indicating a subsampled surface
-that requires post-scaler degamma via GAMCOR), the function still takes
-the ROM path, programming PRE_DEGAM instead.
+This patchset is based on the work of Thomas Hellström at [1] and a
+followup I have submitted at [2].
 
-For subsampled formats the chroma channels must be upsampled by the
-scaler before degamma is applied. PRE_DEGAM sits before the scaler in
-the pipeline (CNVC domain), while GAMCOR sits after it (CM domain).
-Using the ROM for subsampled surfaces means degamma is applied to
-subsampled chroma before upsampling, producing incorrect results.
+With this version, I reverted the order in which to apply the patchsets, as
+this one adds the infrastructure and the drivers mechanisms, and a test for
+dmem.current and its behavior around dmem.max that is currently supported
+in the kernel.
 
-Fix by gating the dcn_arch ROM capability checks on !map_user_ramp,
-forcing PQ/Gamma22/HLG through the GAMCOR LUT path when the surface
-is subsampled.
+As for the new dmem.max eviction behavior, introduced by [3], it has been
+pushed to a branch at [4]. If preferred, I can submit the two patches
+independently.
 
-Fixes: a8bf71649088 ("drm/amd/display: Internal refactoring to abstract color caps")
-Cc: stable@vger.kernel.org
-Assisted-by: Copilot:claude-opus-4.6
-Signed-off-by: Harry Wentland <harry.wentland@amd.com>
----
- drivers/gpu/drm/amd/display/modules/color/color_gamma.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+I have run the tests, including the ones that test dmem.max eviction
+behavior on a system with a 1GiB VRAM amdgpu card. I have not been able to
+run it on a Xe system so far. I would appreciate if people can do it. I
+have applied the patchset at [3] on top of current linux origin/master [5],
+with a fixup for the amdgpu driver.
 
-diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-index 03d88e78165d..5786ef5787ac 100644
---- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-+++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-@@ -1696,7 +1696,8 @@ bool mod_color_calculate_degamma_params(struct dc_color_caps *dc_caps,
- 			return true;
- 
- 		if (dc_caps != NULL &&
--			dc_caps->dpp.dcn_arch == 1) {
-+			dc_caps->dpp.dcn_arch == 1 &&
-+			!map_user_ramp) {
- 
- 			if (input_tf->tf == TRANSFER_FUNCTION_PQ &&
- 					dc_caps->dpp.dgam_rom_caps.pq == 1)
+Now, for the changes since v1 [2]:
+- Changed the test name from drv_dmem_cgroups to dmem_cgroups.
+- Have system includes before igt ones.
+- Documented the current SUBTEST.
+- Changed free_vram driver hook to only release a given BO. This allows for
+  the eviction trigger by a new allocation added by write_eviction_nonblock
+  subtest.
+- Changed allocate_vram to keep more state necessary for releasing a single BO.
+- Added a global free_vram helper to free all allocated VRAM.
+
+Compared to v3 of [1]:
+- I have kept wait_for_usage_drop as release can be lazy and we test for it
+  on test_current SUBTEST, but had USAGE_DROP_TIMEOUT_MS be a little
+  longer.
+- Changed BO_SIZE and EVICT_STEP to allow for more than two eviction steps
+  on a 1GiB VRAM system.
+- Reduced USAGE_SLACK to avoid false positives, but still allow for some
+  page table accounting.
+
+[1] https://patchwork.freedesktop.org/series/163935/#rev3
+[2] https://patchwork.freedesktop.org/series/166496/
+[3] https://lore.kernel.org/dri-devel/20260611173301.17473-1-thomas.hellstrom@linux.intel.com/
+[4] https://gitlab.freedesktop.org/cascardo/igt-gpu-tools/-/commits/dmem_max?ref_type=heads
+[5] 502d801f0ab0 ("Merge tag 'erofs-for-7.2-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs")
+
+Thadeu Lima de Souza Cascardo (4):
+  lib/xe: Introduce dmem driver and implement Xe support
+  lib/amdgpu: add amdgpu_cgroup_region_name
+  lib/amdgpu: add amdgpu support to igt_dmem_driver
+  tests/dmem_cgroups: add test for dmem.current
+
+Thomas Hellström (3):
+  lib/igt_cgroup: add cgroup v2 and dmem controller helpers
+  tests/cgroup_dmem: add dmem cgroup controller test
+  lib/xe: add xe_cgroup_region_name() helper
+
+ lib/amdgpu/amd_dmem.c   |  99 +++++++
+ lib/amdgpu/amd_memory.c |  25 ++
+ lib/amdgpu/amd_memory.h |   2 +
+ lib/igt.h               |   1 +
+ lib/igt_cgroup.c        | 638 ++++++++++++++++++++++++++++++++++++++++
+ lib/igt_cgroup.h        |  56 ++++
+ lib/igt_dmem_driver.h   |  25 ++
+ lib/meson.build         |   3 +
+ lib/xe/xe_dmem.c        | 159 ++++++++++
+ lib/xe/xe_query.c       |  32 ++
+ lib/xe/xe_query.h       |   2 +
+ tests/cgroup_dmem.c     |  92 ++++++
+ tests/dmem_cgroups.c    | 241 +++++++++++++++
+ tests/meson.build       |   2 +
+ 14 files changed, 1377 insertions(+)
+ create mode 100644 lib/amdgpu/amd_dmem.c
+ create mode 100644 lib/igt_cgroup.c
+ create mode 100644 lib/igt_cgroup.h
+ create mode 100644 lib/igt_dmem_driver.h
+ create mode 100644 lib/xe/xe_dmem.c
+ create mode 100644 tests/cgroup_dmem.c
+ create mode 100644 tests/dmem_cgroups.c
+
 -- 
-2.54.0
+2.47.3
 
