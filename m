@@ -2,25 +2,25 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id zCuZMvyLO2pTZggAu9opvQ
+	id nt3XDP+LO2pwZggAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 09:49:16 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 09:49:19 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1073C6BC52B
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 09:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1997F6BC542
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 09:49:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=e8RpEkEc;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=dtqVGPWa;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C625510EDE6;
-	Wed, 24 Jun 2026 07:49:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1A0610EDEB;
+	Wed, 24 Jun 2026 07:49:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87D0F10E1F5;
- Tue, 23 Jun 2026 17:43:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 730E510EC27;
+ Tue, 23 Jun 2026 17:43:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -28,16 +28,16 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=6TVXvKXi2fz4NFUSpDpWa+zkRcGFMS2H8TncLOLuN0w=; b=e8RpEkEcfLyZ/FbgulR4wYdqpe
- Q12uCG9SSR6B6k98EJd5ZjNKXX7JHSPAARzley5T5YRcOeDY9cao5bwJ5fCOeWZvW/ltvVjs1fIgY
- DOaK6mNjkt5anFdkHwjMJtkMKxnM6J1xZIYWJ3kZVri7RCyRtqIJGFeMqklsDJWGOxiJflDStP0ON
- 4snlic9LpX96MKWI1pjSvSnuCEM61XmpPIKw+u3Zluhn46KQ2SyxaW3SIQuqGE622c3DKhBvhbp0J
- +RtSWn1s56oQvvlggY1KDurZTcw21tL5SJlAyUT3nt9d10GuAj5Ths5VWs2IAcbPoCnJIn7zD9tkI
- RGIKqOsg==;
+ bh=4YTsZIaFwU6ZukbX4Jr8mkIV/CwaU7Ymxm/ypzFkYPM=; b=dtqVGPWaEkWVbOj2EfkebuanDW
+ 0IcmKQnsJW9plnJBrOYoAOmaGaWkAdyYBqX/uw+bR6qHuXFETuktb71a6o/h+VZstPaefua9lFh7y
+ RJD9oyHyctcjfE+DsEV/wensmp3Ynb9RsACcEGbYKQrj2ho+86qjKq+hxHlds9EvndqbxQKh4Wsk0
+ VKpOyVrljrU4Ih5h/KJyHN13r7iBhd01RsGD7NKRkjg7tzj8QzXtFHEOecoTBjNlN+P3m6pcOlSRx
+ 3jxiTVKCj/n8ZrBcvO8z+G2833EMura81RST+ZqBO1IzLZPNHHA0CGEF5l07AwE8VlL1x/w7Te0P8
+ tDAmPHSA==;
 Received: from 179-125-64-254-dinamico.pombonet.net.br ([179.125.64.254]
  helo=quatroqueijos.lan) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wc5A3-004HEi-1A; Tue, 23 Jun 2026 19:43:47 +0200
+ id 1wc5A8-004HEi-0u; Tue, 23 Jun 2026 19:43:52 +0200
 From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 To: igt-dev@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
@@ -49,10 +49,12 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
  Vitaly Prosyak <vitaly.prosyak@amd.com>,
  Natalie Vock <natalie.vock@gmx.de>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, kernel-dev@igalia.com
-Subject: [PATCH i-g-t 3/7] lib/xe: add xe_cgroup_region_name() helper
-Date: Tue, 23 Jun 2026 14:43:15 -0300
-Message-ID: <20260623174319.4138648-4-cascardo@igalia.com>
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, kernel-dev@igalia.com,
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+Subject: [PATCH i-g-t 4/7] lib/xe: Introduce dmem driver and implement Xe
+ support
+Date: Tue, 23 Jun 2026 14:43:16 -0300
+Message-ID: <20260623174319.4138648-5-cascardo@igalia.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260623174319.4138648-1-cascardo@igalia.com>
 References: <20260623174319.4138648-1-cascardo@igalia.com>
@@ -75,119 +77,258 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [1.49 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
 	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+	MID_CONTAINS_FROM(1.00)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,linux.intel.com,gmx.de,igalia.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[igalia.com:-];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cascardo@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cascardo@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,linux.intel.com,gmx.de,igalia.com];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1073C6BC52B
+X-Rspamd-Queue-Id: 1997F6BC542
 
-From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+In order to be reuse the same dmem tests with multiple drivers, we need to
+abstract a few operations. That includes getting the region name, and
+allocating and releasing VRAM. As there is some initialization also when
+multiple allocations are done, also provide init and deinit functions.
 
-Add xe_cgroup_region_name(fd, region) which constructs the dmem cgroup
-region path for a given xe memory region.  The returned string has the
-form "drm/<pci-slot>/<region>" (e.g. "drm/0000:03:00.0/vram0"),
-matching the name registered by the kernel via drmm_cgroup_register_region().
+The Xe implementation is based on the original operations from
+xe_cgroups.c written by Thomas Hellström.
 
-Only VRAM regions are tracked by the dmem controller; system and stolen
-memory regions return NULL.
-
-Assisted-by: GitHub Copilot:claude-sonnet-4.6
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 ---
- lib/xe/xe_query.c | 32 ++++++++++++++++++++++++++++++++
- lib/xe/xe_query.h |  2 ++
- 2 files changed, 34 insertions(+)
+ lib/igt_dmem_driver.h |  24 +++++++
+ lib/meson.build       |   1 +
+ lib/xe/xe_dmem.c      | 159 ++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 184 insertions(+)
+ create mode 100644 lib/igt_dmem_driver.h
+ create mode 100644 lib/xe/xe_dmem.c
 
-diff --git a/lib/xe/xe_query.c b/lib/xe/xe_query.c
-index f0799f268cf4..192d9566178a 100644
---- a/lib/xe/xe_query.c
-+++ b/lib/xe/xe_query.c
-@@ -7,6 +7,7 @@
-  */
- 
- #include <fcntl.h>
-+#include <limits.h>
- #include <stdlib.h>
- #include <pthread.h>
- 
-@@ -21,6 +22,7 @@
- 
- #include "drmtest.h"
- #include "igt_debugfs.h"
-+#include "igt_device.h"
- #include "ioctl_wrappers.h"
- #include "igt_map.h"
- #include "intel_pat.h"
-@@ -1290,6 +1292,36 @@ int xe_query_eu_thread_count(int fd, int gt)
- 		xe_hwconfig_lookup_value_u32(fd, INTEL_HWCONFIG_NUM_THREADS_PER_EU);
- }
- 
-+/**
-+ * xe_cgroup_region_name() - Build the dmem cgroup region name for an xe memory region.
-+ * @fd: xe device fd.
-+ * @region: Region mask (as used by xe_mem_region(), xe_region_name(), etc.).
-+ *
-+ * Constructs the full dmem cgroup region path for @region on the device
-+ * identified by @fd.  The returned string has the form
-+ * ``drm/<pci-slot>/<region>`` (e.g. ``drm/0000:03:00.0/vram0``), matching
-+ * the name registered by the kernel driver via drmm_cgroup_register_region().
-+ *
-+ * Only VRAM regions are registered with the dmem controller; passing a
-+ * system-memory region returns %NULL.
-+ *
-+ * Return: A newly allocated string that the caller must free(), or %NULL if
-+ * @region is not tracked by the dmem cgroup controller.
+diff --git a/lib/igt_dmem_driver.h b/lib/igt_dmem_driver.h
+new file mode 100644
+index 000000000000..2f4a4673ab16
+--- /dev/null
++++ b/lib/igt_dmem_driver.h
+@@ -0,0 +1,24 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright 2026 Valve Corporation
++ * Authors:
++ *  Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 + */
-+char *xe_cgroup_region_name(int fd, uint64_t region)
-+{
-+	char pci_slot[NAME_MAX];
-+	char *name;
 +
-+	if (xe_region_class(fd, region) != DRM_XE_MEM_REGION_CLASS_VRAM)
++#ifndef __IGT_DMEM_DRIVER_H__
++#define __IGT_DMEM_DRIVER_H__
++
++#include <stdlib.h>
++
++struct igt_dmem_driver {
++	const char *name;
++	char * (*get_region_name)(int fd);
++	int (*init)(void **ctx, int fd, int max_bo);
++	void (*deinit)(void *ctx);
++	int (*allocate_vram)(void *ctx, int n_bo, size_t len);
++	void (*free_vram)(void *ctx, int n_bo);
++};
++
++extern const struct igt_dmem_driver xe_dmem_driver;
++
++#endif
+diff --git a/lib/meson.build b/lib/meson.build
+index 3aaebc5b1948..cd7a3805accb 100644
+--- a/lib/meson.build
++++ b/lib/meson.build
+@@ -125,6 +125,7 @@ lib_sources = [
+ 	'igt_msm.c',
+ 	'igt_dsc.c',
+ 	'igt_hook.c',
++	'xe/xe_dmem.c',
+ 	'xe/xe_gt.c',
+ 	'xe/xe_ioctl.c',
+ 	'xe/xe_legacy.c',
+diff --git a/lib/xe/xe_dmem.c b/lib/xe/xe_dmem.c
+new file mode 100644
+index 000000000000..b979dfa7f4cf
+--- /dev/null
++++ b/lib/xe/xe_dmem.c
+@@ -0,0 +1,159 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright 2026 Valve Corporation
++ * Authors:
++ *  Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
++ */
++
++#include <errno.h>
++
++#include "igt.h"
++#include "igt_cgroup.h"
++#include "igt_dmem_driver.h"
++#include "xe_drm.h"
++#include "xe/xe_ioctl.h"
++#include "xe/xe_query.h"
++
++static char * xe_dmem_get_region_name(int fd)
++{
++	uint64_t vram_region = 0;
++	uint64_t region;
++	char *cg_region;
++
++	/* Find first VRAM region */
++	xe_for_each_mem_region(fd, all_memory_regions(fd), region) {
++		if (xe_region_class(fd, region) == DRM_XE_MEM_REGION_CLASS_VRAM) {
++			vram_region = region;
++			break;
++		}
++	}
++	if (!vram_region)
 +		return NULL;
 +
-+	igt_device_get_pci_slot_name(fd, pci_slot);
++	cg_region = xe_cgroup_region_name(fd, vram_region);
 +
-+	igt_assert(asprintf(&name, "drm/%s/%s", pci_slot, xe_region_name(region)) > 0);
-+	return name;
++	return cg_region;
 +}
 +
- igt_constructor
- {
- 	xe_device_cache_init();
-diff --git a/lib/xe/xe_query.h b/lib/xe/xe_query.h
-index 9f04a7422042..a34e9a6592b9 100644
---- a/lib/xe/xe_query.h
-+++ b/lib/xe/xe_query.h
-@@ -205,4 +205,6 @@ void xe_device_put(int fd);
- int xe_query_eu_count(int fd, int gt);
- int xe_query_eu_thread_count(int fd, int gt);
- 
-+char *xe_cgroup_region_name(int fd, uint64_t region);
++struct xe_bo {
++	uint32_t handle;
++	uint64_t addr;
++	size_t len;
++};
 +
- #endif	/* XE_QUERY_H */
++struct xe_dmem_ctx {
++	int fd;
++	uint32_t vm;
++	struct xe_bo *bos;
++	uint64_t addr;
++	uint64_t vram_region;
++	int max_bo;
++};
++
++#define BIND_BASE		0x100000000ULL	/* 4 GiB VA base */
++
++static int xe_dmem_init(void **ctx, int fd, int max_bo)
++{
++	struct xe_dmem_ctx *xe_ctx;
++	uint64_t region;
++
++	xe_ctx = malloc(sizeof(*xe_ctx));
++	if (!xe_ctx)
++		return -ENOMEM;
++
++	xe_ctx->bos = calloc(max_bo, sizeof(xe_ctx->bos[0]));
++	if (!xe_ctx->bos)
++		goto out;
++	memset(xe_ctx->bos, 0, max_bo * sizeof(xe_ctx->bos[0]));
++	xe_ctx->max_bo = max_bo;
++
++	xe_ctx->vram_region = 0;
++	/* Find first VRAM region */
++	xe_for_each_mem_region(fd, all_memory_regions(fd), region) {
++		if (xe_region_class(fd, region) == DRM_XE_MEM_REGION_CLASS_VRAM) {
++			xe_ctx->vram_region = region;
++			break;
++		}
++	}
++	if (!xe_ctx->vram_region)
++		goto out;
++
++	xe_ctx->addr = BIND_BASE;
++	xe_ctx->fd = fd;
++
++	xe_ctx->vm = xe_vm_create(fd, DRM_XE_VM_CREATE_FLAG_LR_MODE, 0);
++
++	*ctx = xe_ctx;
++
++	return 0;
++
++out:
++	if (xe_ctx->bos)
++		free(xe_ctx->bos);
++	free(xe_ctx);
++
++	return -ENOMEM;
++}
++
++static void xe_dmem_deinit(void *ctx)
++{
++	struct xe_dmem_ctx *xe_ctx = ctx;
++
++	xe_vm_destroy(xe_ctx->fd, xe_ctx->vm);
++	free(xe_ctx->bos);
++	free(xe_ctx);
++}
++
++static int xe_dmem_allocate_vram(void *ctx, int n_bo, size_t len)
++{
++	struct xe_dmem_ctx *xe_ctx = ctx;
++	uint32_t handle;
++	int err;
++
++	if (n_bo >= xe_ctx->max_bo)
++		return -ENOMEM;
++
++	err = __xe_bo_create(xe_ctx->fd, 0, len, xe_ctx->vram_region,
++			     DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING,
++			     NULL, &handle);
++	if (err)
++		goto out;
++
++	err = __xe_vm_bind_lr_sync(xe_ctx->fd, xe_ctx->vm, handle, 0,
++				   xe_ctx->addr, len, 0);
++	if (err)
++		goto out;
++
++	xe_ctx->bos[n_bo].handle = handle;
++	xe_ctx->bos[n_bo].len = len;
++	xe_ctx->bos[n_bo].addr = xe_ctx->addr;
++
++	xe_ctx->addr += len;
++
++out:
++	return err;
++}
++
++static void xe_dmem_free_vram(void *ctx, int n_bo)
++{
++	struct xe_dmem_ctx *xe_ctx = ctx;
++	size_t len;
++	if (n_bo >= xe_ctx->max_bo)
++		return;
++	len = xe_ctx->bos[n_bo].len;
++	if (len) {
++		uint64_t addr = xe_ctx->bos[n_bo].addr;
++		xe_vm_unbind_lr_sync(xe_ctx->fd, xe_ctx->vm, 0, addr, len);
++		gem_close(xe_ctx->fd, xe_ctx->bos[n_bo].handle);
++		xe_ctx->bos[n_bo].len = 0;
++	}
++}
++
++const struct igt_dmem_driver xe_dmem_driver = {
++	.name = "xe",
++	.get_region_name = xe_dmem_get_region_name,
++	.init = xe_dmem_init,
++	.deinit = xe_dmem_deinit,
++	.allocate_vram = xe_dmem_allocate_vram,
++	.free_vram = xe_dmem_free_vram,
++};
 -- 
 2.47.3
 
