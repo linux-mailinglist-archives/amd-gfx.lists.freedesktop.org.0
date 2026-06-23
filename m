@@ -2,76 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JmgEJ+K4OmrzEwgAu9opvQ
+	id PB3IIdy4OmrrEwgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 18:48:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 18:48:28 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E6A06B8D93
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 18:48:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF3606B8D71
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 18:48:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=NJQgVefv;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=tfWJtixB;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6D9710EC14;
-	Tue, 23 Jun 2026 16:48:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D3BE10EC03;
+	Tue, 23 Jun 2026 16:48:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012043.outbound.protection.outlook.com [52.101.43.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D70210EC0F;
- Tue, 23 Jun 2026 16:48:31 +0000 (UTC)
+Received: from BN8PR05CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11011055.outbound.protection.outlook.com [52.101.57.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B81D10EC02;
+ Tue, 23 Jun 2026 16:48:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vzTDYfQlv9LLgKTLkHebHPFOvdDFw/MzNZYxWZZOPJhyo2woqW1Hb3syBgCW8O4leGoBA3koY0uPfK1bBbBQMq1SNO2cHqxyg/HEdb+pynAb0RNbAGtJUz2r9X6AtnPzERX/j34GLEgsFSD7w02XqnWRJcCJilKAopP2sPe7dX4r508pAjMqNexlneZJyhuioxNx0VfraRyYGHcHOy3E96b75rFeiThFYVwTi6bH8c04KxEJ6WmOE7G8jG66fKkyKSowPdUH19u7GyAL1qfXf5FWTa6eyhdqqM4yE/f0U7CcUx4OXnvM3K7P+UTVA20dUCV3VUaXnO4T8Hg/xzvYWA==
+ b=QY2xm2Y1L8vE5ak99fGxpetMOiDw42b+3xliVWvp3DIRgQgCtjTZ0FUVTdrZus2BeFTIDHFB+yukr54ndWhQfPkYVY7XRnVtK/lBucONZRhCEMU+w3XwKnbWGCKfPfeOK1WFTRdoJUAbe2zEM9rfVUDZ4xoAeBVhQdbRuo+ptptpBjO3s9JDmPOXE3cO10wGbnh1cV7N/3cuL9RyJ6o7bChw0mkud8Lqyj39WPtoIIAlRkusu46MQyUjiy50LDjQZVpQiowejyVJywToYNWwGSdfaDhqbmxwkpaxBv+lvh3ko42yT9ET/4zeiKSAWkfbkEcW5gc2brDi97XEQXVVNw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=03j/yCtNlLepPzUgWl+iJ+GbqFW4ybchtlEdkKMUcxU=;
- b=KdRvniXEl1EusV3M/3hK0zJ2gLuwgzQ/PqKNcwrnhJr0BnJ0gNOihClsGGMwDU2HBK+1fKQIq3lsq1pz44zB/tK/gSO6p3sfjSkJxpu2AyDsvtfAww+3xEQRTJ7kn0HIInaGihrJ5efptk2ZM55QXvWkUNiShJuIqVV+YvQbbaI7Mwn4sLvOAa+wKeJchQAq0Nh6YankW/hy/5doRGtWtapPWabu1dRm5zzv//AjtW4V5NiymyWuSi/UH8Duh+i/VWjav8AyNTFEc5qQaS6KIKx5igukhcAJYrk/A/94n1b76pVCE7yVE2fJrvA0SwnuinpRfsBAphFhvNDH7JnzUg==
+ bh=4mgvfisGGrEbvUcx0sdLaqPDXFRRCwfL7xIFD+JZPSU=;
+ b=K85aAjSAOJ+sz2cSWC6a7++EKF9U0KOIMBfToTOs6g4ZuqZucQ+TMKOLVf67KJ6iG8EHC7OnNHjYCODFvouPivVCMy9ZdIchtGd22GWNrpI4K75kldLtZ4zow0+qaRPRAzR9JMECclZ6oQnhg+uo/l26/IA6IU84mYunNg77T5a5BFgamuomP5/z0GMC3KU01OI9kPzaPkib8qDWGsnc9fybq5/l4OUDrpVT8dFW0O9TDtKNR3LejqGTkWefADBB6M3DEGPQRNgl+jzAP4Bgeq7UVYWY7bE1zlaaeylG9eK7AeEhcC94eM/gcTGiDxd14unMyMKNYaQmoGHb5MQyXQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=03j/yCtNlLepPzUgWl+iJ+GbqFW4ybchtlEdkKMUcxU=;
- b=NJQgVefvLh2wqHLGVtfVRotPGy9RnWPNiMfBYQ5y14n/wFQok6X0P51CIjarMiL1jcYbB88vsSNR4xT7QaEgufZRkNnW7Hb0AyvsOaIVDfrQkageXr6liVUZE91OpqWAqwFM5314i7aekGwIyX7b9R9pITmJUZhWUEDGZYNFkmE=
-Received: from BY3PR05CA0057.namprd05.prod.outlook.com (2603:10b6:a03:39b::32)
- by DS7PR12MB6215.namprd12.prod.outlook.com (2603:10b6:8:95::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.139.20; Tue, 23 Jun 2026 16:48:24 +0000
-Received: from SJ5PEPF000001D7.namprd05.prod.outlook.com
- (2603:10b6:a03:39b:cafe::59) by BY3PR05CA0057.outlook.office365.com
- (2603:10b6:a03:39b::32) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.12 via Frontend Transport; Tue,
- 23 Jun 2026 16:48:23 +0000
+ bh=4mgvfisGGrEbvUcx0sdLaqPDXFRRCwfL7xIFD+JZPSU=;
+ b=tfWJtixB868QgavwG2zkA4sgz2N6Z6IUqY9i9FxsuOI8VLXSu1EkO1ZizYWFJTToADoY07W3utDT1WJSDM3F+1OMb5wFVN6z5W+stkm6CjJtAg/WlttgvUaL0n6M83SAQIOrDaqHLqYLk+TwpBJqLPAzHVNRDJXprPwZavmBHLs=
+Received: from DS7PR05CA0050.namprd05.prod.outlook.com (2603:10b6:8:2f::9) by
+ SA5PPF5D41D38AD.namprd12.prod.outlook.com (2603:10b6:80f:fc04::8cb)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Tue, 23 Jun
+ 2026 16:48:18 +0000
+Received: from DS1PEPF00017099.namprd05.prod.outlook.com
+ (2603:10b6:8:2f:cafe::8a) by DS7PR05CA0050.outlook.office365.com
+ (2603:10b6:8:2f::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.13 via Frontend Transport; Tue,
+ 23 Jun 2026 16:48:18 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF000001D7.mail.protection.outlook.com (10.167.242.59) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ DS1PEPF00017099.mail.protection.outlook.com (10.167.18.103) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Tue, 23 Jun 2026 16:48:23 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.159.10 via Frontend Transport; Tue, 23 Jun 2026 16:48:18 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 23 Jun
- 2026 11:48:16 -0500
+ 2026 11:48:17 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 23 Jun
+ 2026 11:48:17 -0500
 Received: from hwentlanryzen (10.180.168.240) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Tue, 23 Jun 2026 11:48:16 -0500
+ Transport; Tue, 23 Jun 2026 11:48:17 -0500
 From: Harry Wentland <harry.wentland@amd.com>
 To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
-CC: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>, Melissa Wen
- <mwen@igalia.com>, Harry Wentland <harry.wentland@amd.com>
-Subject: [PATCH v3 01/11] drm/colorop: Add DRM_COLOROP_FIXED_MATRIX
-Date: Tue, 23 Jun 2026 12:48:02 -0400
-Message-ID: <20260623164812.81110-2-harry.wentland@amd.com>
+CC: Harry Wentland <harry.wentland@amd.com>, Alex Hung <alex.hung@amd.com>
+Subject: [PATCH v3 02/11] drm/colorop: Add limited-range YUV-to-RGB fixed
+ matrix enum values
+Date: Tue, 23 Jun 2026 12:48:03 -0400
+Message-ID: <20260623164812.81110-3-harry.wentland@amd.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260623164812.81110-1-harry.wentland@amd.com>
 References: <20260623164812.81110-1-harry.wentland@amd.com>
@@ -80,29 +84,29 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001D7:EE_|DS7PR12MB6215:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4db39586-7d19-4ed1-97c8-08ded1473d6e
+X-MS-TrafficTypeDiagnostic: DS1PEPF00017099:EE_|SA5PPF5D41D38AD:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7740c1ef-7eb2-432d-c572-08ded1473a4c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|82310400026|1800799024|36860700016|18002099003|22082099003|11063799006|56012099006|6133799003;
-X-Microsoft-Antispam-Message-Info: a/U4C+a5qAU6eycalmxOJkiaZ1AkFW1KU3lpQbA8nDRtO8b2OdDfi+oewG+l6c7lc51o3FmxOx6YHvbZ/iUuOW34ONBkbXQw7D6QonWJRWcb0PU/pRXrR1wXh0x9m8BCG+Rn8CP5elUoQ51MGlqXUKe+2UAmCHCMspVt1XQ78MgAqdZL9gq/sYOtY4SWwGyrTjXlQLFumhpL/FvGt40F913nLjkMPbxEvvWuGCG+1YoUQIbS51esO6eQWsVyg9XXpzL+4mtWy3Ujonvffkc07PG1bJNUrAC1pUP3BdXpBiRV36Y+o2zwUUtYhM5FyfJSKMTh4CbsVCxnz9V7i2s31QTAFbxwn2u84YUSLo52bZvjd/s0ooVrQDmL66sah61RJHXScnsHb5DWsXr/4/UQ1mhrNIgFGClaaacgLDQl7Kl+A0Vtmz5quf6mf5XcNCBeLsy+AcJdaGu+/7RnGyK6ZpVsV5wg81bK6GD+n1WK3wRyo5rJjyuLy6n/Bs8pv5GY93YZWx5hoIt5SZEwpWLfEeGpUxAvK/8Q/xo0UhsnkusjeOt/JCuxw5GSqEO2HhDMmromhqhTId9gHdpBvNUWSc7AfhmVbFVzCv3xAkTA3Kyld6vwd3s7C3UcOXe4pGX93mHU2nspVdoUsfvfCm0jHZNRomwVMhqgrXnXeUMgn0g1/AZvHfs8V6cYhoyMQJf4O8wLAh3kZtbkR5M9W34kBQ==
+ ARA:13230040|82310400026|1800799024|23010399003|36860700016|376014|56012099006|11063799006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: Uu7aLUDn+rNTxbyy/B98npjmq6Zd3HNlRWGdkrNc7ZN60Oxwug2Q+fkbXZnVwf0Up3aPctSAcnHHpxndqj1IFLi4RdlNAlm+Q40IHD/z5nYrX3cmn7EmI0LT3Df5Rgg3vGDgSo0R7TFfbaESxj+gOw3MORvvN9oGiTJcId70LqCy/IG5I4XG4MDCv38MwhFlvonM/RR8CCnzxwKVml1fu2IXEV5HEPhnkEeb8U8sNYtsxzd25UWjjyZ+I52leM8XefBIht72VjgYIfb25SG+i+vkfE89+Eur9Pfz4WnR+x7+SGHfqhhnfMDm292zkf4ZNTsEB4eIDjkW0eO1p0N14rwQUGkTQtrGQG5wRQEP78TCF78B/OY/zAk5mrLr+6svbWHdlHfeEGgrD1K8oYwF/ye55o8PnRmu2mdSuw9/V71xJreiyul7uWfemhz+xg+objnfPY/ha7Za30Sc/BtyGA0bIosiBhYm5z2mgqu3Ho0JRJr7JmpZiwypeuw0et6te5WzRSe7Nl5PDjGMvz1I+f3+jtiY2YfpTBiLAsosRjbWK2cIwcQcBwwsoFkgwXf7n5NX+3SDWtAtmTObI0lURybvwYXjsAjHJI6hDI9BAtd3yNtrTMb5Zu5p8U7eQQLopTbdyfkCD9PsPzbzRwfu+TFD4ryYXjkXtYSu0Ehtiv2SkxPqyEH8yKm1rFW7sOtApaMBzGzJO/XtfH59qQ3ABw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(82310400026)(1800799024)(36860700016)(18002099003)(22082099003)(11063799006)(56012099006)(6133799003);
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(23010399003)(36860700016)(376014)(56012099006)(11063799006)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: mdDbZ7dRn6umYD8PEZf2avQXKLy7lincjVPbfwJ/YHIgCw+Tw/RXXt/a6FkVlALLtSq5naEX2bOwEvfq4sZE/IdhvLgKeMlqUBh5CAHuHTbeXqjPyj441GlPs3/D53W4SoZrL6HsMEkzUzcgL/reBBfUnXfSwwT8jZmu2iS/t+El58oDD5X+O83QZ1miw4aqFwBvZ9n944BaBiDoLMg9g7L/ynfbunW/XDHjl+q8oqJ2EngzsS7u/+OzYlR6Y95+rehuazmRhMDRmD2qHk0CCEMivS+uoPn+Jo9x2wUpOGu8c2ZYPohpB5pslwHZSTQOks8Cat2Rhi8ePyl8ha/jd42j9+Yfv/lk3XYEHak2Tt7XNMI7UNFrLPokHeljKVy+dR+u1hRFFDdv0CVdLfQPUpdcwfy3SKJBYcNswIW1EIEbym/vrE950o3cBU1RbeDN
+X-MS-Exchange-AntiSpam-MessageData-0: V0b5A3uDITcFt5NR7JszhtRnwvkFqox6A2P0RLtN0/N22AiDiBK83xfDwVKgJe1THKJK2mwGTowxKHxEt88fURtobDRf3+uWCtliLBYKsFkVFgiWVr9c+uGZPYS8qQgL0MXNy8okF+G13pKBMSMdIG663SG+crfvzGWHVUjNIY23yLmFwfpKW8/+sCfSzPUVf5BqbZC3RUK2xJFJbgAUc8hdc/qwcaAtFtQkfifkfRnCUsDaeMK3+//W4sFiZVgmtLWzyL4/C4kHGPrytUS4dxB6L8uTqc2ZMJULBoZcvUhbUlU7L7sTBvWk1iBIt2Wqt7MvOrMDF3zpyizLl60haiNQ9b9v7+OkQ9scj/upOoNtT565BrD+x6evOuXHfy6PJTJ7tB8DwPOqZUwXbGD5O7pOUpp13yh+zlcTXJYJXtsymsv5CMI5C2jolVBq4mt8
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2026 16:48:23.5458 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4db39586-7d19-4ed1-97c8-08ded1473d6e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jun 2026 16:48:18.3444 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7740c1ef-7eb2-432d-c572-08ded1473a4c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001D7.namprd05.prod.outlook.com
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017099.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6215
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPF5D41D38AD
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,391 +127,114 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,lists.freedesktop.org:from_smtp,intel.com:email,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime];
+	RCPT_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ALIAS_RESOLVED(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3E6A06B8D93
+X-Rspamd-Queue-Id: EF3606B8D71
 
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Add three new limited-range YUV-to-RGB conversion presets to the
+Fixed Matrix colorop enum:
 
-Introduce DRM_COLOROP_FIXED_MATRIX, a new colorop type representing a
-hardware that performs a fixed matrix operation.
+  - DRM_COLOROP_FM_YCBCR601_LIMITED_RGB
+  - DRM_COLOROP_FM_YCBCR709_LIMITED_RGB
+  - DRM_COLOROP_FM_YCBCR2020_NC_LIMITED_RGB
 
-Unlike CTM-based colorops, this block does not expose programmable
-coefficients. Instead, userspace selects one of the predefined
-hardware modes via a new FIXED_MATRIX_TYPE enum property. Supported modes
-include common YCbCr->RGB and RGB709->RGB2020 conversions.
-
-v2:
- - Naming changes (Pekka)
-
-v3:
- - Fix NC matrix enum name and string (Melissa)
- - Rebase
-
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Reviewed-by: Melissa Wen <mwen@igalia.com>
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+Assisted-by: Claude:claude-opus-4.6
+Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+Reviewed-by: Alex Hung <alex.hung@amd.com>
 ---
- drivers/gpu/drm/drm_atomic.c      |   4 ++
- drivers/gpu/drm/drm_atomic_uapi.c |   4 ++
- drivers/gpu/drm/drm_colorop.c     | 106 ++++++++++++++++++++++++++++++
- include/drm/drm_colorop.h         |  84 +++++++++++++++++++++++
- include/uapi/drm/drm_mode.h       |  12 ++++
- 5 files changed, 210 insertions(+)
+ drivers/gpu/drm/drm_colorop.c |  3 +++
+ include/drm/drm_colorop.h     | 30 ++++++++++++++++++++++++++++++
+ 2 files changed, 33 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-index 3af1b9cc9a06..ced591c4a0bd 100644
---- a/drivers/gpu/drm/drm_atomic.c
-+++ b/drivers/gpu/drm/drm_atomic.c
-@@ -925,6 +925,10 @@ static void drm_atomic_colorop_print_state(struct drm_printer *p,
- 				  drm_get_colorop_lut3d_interpolation_name(colorop->lut3d_interpolation));
- 		drm_printf_indent(p, 1, "data blob id=%d\n", state->data ? state->data->base.id : 0);
- 		break;
-+	case DRM_COLOROP_FIXED_MATRIX:
-+		drm_printf_indent(p, 1, "fixed_matrix_type=%s\n",
-+				  drm_get_colorop_fixed_matrix_type_name(state->fixed_matrix_type));
-+		break;
- 	default:
- 		break;
- 	}
-diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-index c7f80d90794c..cee4550ffdbd 100644
---- a/drivers/gpu/drm/drm_atomic_uapi.c
-+++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -761,6 +761,8 @@ static int drm_atomic_colorop_set_property(struct drm_colorop *colorop,
- 	} else if (property == colorop->data_property) {
- 		return drm_atomic_color_set_data_property(colorop, state,
- 							  property, val);
-+	} else if (property == colorop->fixed_matrix_type_property) {
-+		state->fixed_matrix_type = val;
- 	} else {
- 		drm_dbg_atomic(colorop->dev,
- 			       "[COLOROP:%d:%d] unknown property [PROP:%d:%s]\n",
-@@ -793,6 +795,8 @@ drm_atomic_colorop_get_property(struct drm_colorop *colorop,
- 		*val = colorop->lut3d_interpolation;
- 	else if (property == colorop->data_property)
- 		*val = (state->data) ? state->data->base.id : 0;
-+	else if (property == colorop->fixed_matrix_type_property)
-+		*val = state->fixed_matrix_type;
- 	else
- 		return -EINVAL;
- 
 diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
-index c0eecde8c176..c11c3012fcc5 100644
+index c11c3012fcc5..9cf89153b365 100644
 --- a/drivers/gpu/drm/drm_colorop.c
 +++ b/drivers/gpu/drm/drm_colorop.c
-@@ -68,6 +68,7 @@ static const struct drm_prop_enum_list drm_colorop_type_enum_list[] = {
- 	{ DRM_COLOROP_CTM_3X4, "3x4 Matrix"},
- 	{ DRM_COLOROP_MULTIPLIER, "Multiplier"},
- 	{ DRM_COLOROP_3D_LUT, "3D LUT"},
-+	{ DRM_COLOROP_FIXED_MATRIX, "Fixed Matrix"},
+@@ -93,8 +93,11 @@ static const struct drm_prop_enum_list drm_colorop_lut3d_interpolation_list[] =
+ 
+ static const char * const colorop_fixed_matrix_type_names[] = {
+ 	[DRM_COLOROP_FM_YCBCR601_FULL_RGB] = "YCbCr 601 Full to RGB",
++	[DRM_COLOROP_FM_YCBCR601_LIMITED_RGB] = "YCbCr 601 Limited to RGB",
+ 	[DRM_COLOROP_FM_YCBCR709_FULL_RGB] = "YCbCr 709 Full to RGB",
++	[DRM_COLOROP_FM_YCBCR709_LIMITED_RGB] = "YCbCr 709 Limited to RGB",
+ 	[DRM_COLOROP_FM_YCBCR2020_NC_FULL_RGB] = "YCbCr 2020 NC Full to RGB",
++	[DRM_COLOROP_FM_YCBCR2020_NC_LIMITED_RGB] = "YCbCr 2020 NC Limited to RGB",
+ 	[DRM_COLOROP_FM_YCBCR_LIMITED_FULL] = "YCbCr limited to full",
+ 	[DRM_COLOROP_FM_RGB709_RGB2020] = "RGB709 to RGB2020",
  };
- 
- static const char * const colorop_curve_1d_type_names[] = {
-@@ -90,6 +91,14 @@ static const struct drm_prop_enum_list drm_colorop_lut3d_interpolation_list[] =
- 	{ DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL, "Tetrahedral" },
- };
- 
-+static const char * const colorop_fixed_matrix_type_names[] = {
-+	[DRM_COLOROP_FM_YCBCR601_FULL_RGB] = "YCbCr 601 Full to RGB",
-+	[DRM_COLOROP_FM_YCBCR709_FULL_RGB] = "YCbCr 709 Full to RGB",
-+	[DRM_COLOROP_FM_YCBCR2020_NC_FULL_RGB] = "YCbCr 2020 NC Full to RGB",
-+	[DRM_COLOROP_FM_YCBCR_LIMITED_FULL] = "YCbCr limited to full",
-+	[DRM_COLOROP_FM_RGB709_RGB2020] = "RGB709 to RGB2020",
-+};
-+
- /* Init Helpers */
- 
- static int drm_plane_colorop_init(struct drm_device *dev, struct drm_colorop *colorop,
-@@ -455,6 +464,80 @@ int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *col
- }
- EXPORT_SYMBOL(drm_plane_colorop_3dlut_init);
- 
-+/**
-+ * drm_plane_colorop_fixed_matrix_init - Initialize a DRM_COLOROP_FIXED_MATRIX
-+ *
-+ * @dev: DRM device
-+ * @colorop: The drm_colorop object to initialize
-+ * @plane: The associated drm_plane
-+ * @funcs: control functions for the new colorop
-+ * @supported_fm: A bitfield of supported drm_colorop_fixed_matrix_type enum values,
-+ *               created using BIT(fixed_matrix_type) and combined with the OR '|'
-+ *               operator.
-+ * @flags: bitmask of misc, see DRM_COLOROP_FLAG_* defines.
-+ * @return zero on success, -E value on failure
-+ */
-+int drm_plane_colorop_fixed_matrix_init(struct drm_device *dev, struct drm_colorop *colorop,
-+					struct drm_plane *plane,
-+					const struct drm_colorop_funcs *funcs,
-+					u64 supported_fm, uint32_t flags)
-+{
-+	struct drm_prop_enum_list enum_list[DRM_COLOROP_FM_COUNT];
-+	int i, len;
-+	struct drm_property *prop;
-+	int ret;
-+
-+	if (!supported_fm) {
-+		drm_err(dev,
-+			"No supported FM type op for new Fixed Matrix colorop on [PLANE:%d:%s]\n",
-+			plane->base.id, plane->name);
-+		return -EINVAL;
-+	}
-+
-+	if ((supported_fm & -BIT(DRM_COLOROP_FM_COUNT)) != 0) {
-+		drm_err(dev, "Unknown Fixed Matrix provided on [PLANE:%d:%s]\n",
-+			plane->base.id, plane->name);
-+		return -EINVAL;
-+	}
-+
-+	ret = drm_plane_colorop_init(dev, colorop, plane, funcs, DRM_COLOROP_FIXED_MATRIX, flags);
-+	if (ret)
-+		return ret;
-+
-+	len = 0;
-+	for (i = 0; i < DRM_COLOROP_FM_COUNT; i++) {
-+		if ((supported_fm & BIT(i)) == 0)
-+			continue;
-+
-+		enum_list[len].type = i;
-+		enum_list[len].name = colorop_fixed_matrix_type_names[i];
-+		len++;
-+	}
-+
-+	if (WARN_ON(len <= 0))
-+		return -EINVAL;
-+
-+	prop = drm_property_create_enum(dev, DRM_MODE_PROP_ATOMIC, "FIXED_MATRIX_TYPE",
-+					enum_list, len);
-+
-+	if (!prop)
-+		return -ENOMEM;
-+
-+	colorop->fixed_matrix_type_property = prop;
-+	/*
-+	 * Default to the first supported CSC mode as provided by the driver.
-+	 * Intuitively this should be something that keeps the colorop in pixel bypass
-+	 * mode but that is already handled via the standard colorop bypass
-+	 * property.
-+	 */
-+	drm_object_attach_property(&colorop->base, colorop->fixed_matrix_type_property,
-+				   enum_list[0].type);
-+	drm_colorop_reset(colorop);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(drm_plane_colorop_fixed_matrix_init);
-+
- static void __drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colorop,
- 							struct drm_colorop_state *state)
- {
-@@ -521,6 +604,13 @@ static void __drm_colorop_state_init(struct drm_colorop_state *colorop_state,
- 							   &val))
- 			colorop_state->curve_1d_type = val;
- 	}
-+
-+	if (colorop->fixed_matrix_type_property) {
-+		if (!drm_object_property_get_default_value(&colorop->base,
-+							   colorop->fixed_matrix_type_property,
-+							   &val))
-+			colorop_state->fixed_matrix_type = val;
-+	}
- }
- 
- /**
-@@ -584,6 +674,7 @@ static const char * const colorop_type_name[] = {
- 	[DRM_COLOROP_CTM_3X4] = "3x4 Matrix",
- 	[DRM_COLOROP_MULTIPLIER] = "Multiplier",
- 	[DRM_COLOROP_3D_LUT] = "3D LUT",
-+	[DRM_COLOROP_FIXED_MATRIX] = "Fixed Matrix",
- };
- 
- static const char * const colorop_lu3d_interpolation_name[] = {
-@@ -640,6 +731,21 @@ const char *drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_inte
- 	return colorop_lu3d_interpolation_name[type];
- }
- 
-+/**
-+ * drm_get_colorop_fixed_matrix_type_name: return a string for fixed matrix type
-+ * @type: fixed matrix type to compute name of
-+ *
-+ * In contrast to the other drm_get_*_name functions this one here returns a
-+ * const pointer and hence is threadsafe.
-+ */
-+const char *drm_get_colorop_fixed_matrix_type_name(enum drm_colorop_fixed_matrix_type type)
-+{
-+	if (WARN_ON(type >= ARRAY_SIZE(colorop_fixed_matrix_type_names)))
-+		return "unknown";
-+
-+	return colorop_fixed_matrix_type_names[type];
-+}
-+
- /**
-  * drm_colorop_set_next_property - sets the next pointer
-  * @colorop: drm colorop
 diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
-index b4b9e4f558ab..88933d5b4d8b 100644
+index 88933d5b4d8b..5c542c264a36 100644
 --- a/include/drm/drm_colorop.h
 +++ b/include/drm/drm_colorop.h
-@@ -134,6 +134,71 @@ enum drm_colorop_curve_1d_type {
- 	DRM_COLOROP_1D_CURVE_COUNT
- };
+@@ -150,6 +150,16 @@ enum drm_colorop_fixed_matrix_type {
+ 	 */
+ 	DRM_COLOROP_FM_YCBCR601_FULL_RGB,
  
-+/**
-+ * enum drm_colorop_fixed_matrix_type - type of Fixed Matrix
-+ *
-+ * Describes a Fixed Matrix operation to be applied by the DRM_COLOROP_FIXED_MATRIX
-+ */
-+enum drm_colorop_fixed_matrix_type {
 +	/**
-+	 * @DRM_COLOROP_FM_YCBCR601_FULL_RGB:
++	 * @DRM_COLOROP_FM_YCBCR601_LIMITED_RGB:
 +	 *
-+	 * enum string "YCbCr 601 Full to RGB"
++	 * enum string "YCbCr 601 Limited to RGB"
 +	 *
-+	 * This selects the matrix that converts full range YCbCr into RGB
++	 * This selects the matrix that converts limited range YCbCr into RGB
 +	 * according to the BT.601 coefficients.
 +	 */
-+	DRM_COLOROP_FM_YCBCR601_FULL_RGB,
-+
-+	/**
-+	 * @DRM_COLOROP_FM_YCBCR709_FULL_RGB:
-+	 *
-+	 * enum string "YCbCr 709 Full to RGB"
-+	 *
-+	 * This selects the matrix that converts full range YCbCr into RGB
-+	 * according to the BT.709 coefficients.
-+	 */
-+	DRM_COLOROP_FM_YCBCR709_FULL_RGB,
-+
-+	/**
-+	 * @DRM_COLOROP_FM_YCBCR2020_NC_FULL_RGB:
-+	 *
-+	 * enum string "YCbCr 2020 NC Full to RGB"
-+	 *
-+	 * This selects the matrix that converts full range YCbCr into RGB
-+	 * according to the BT.2020 non-constant luminance coefficients.
-+	 */
-+	DRM_COLOROP_FM_YCBCR2020_NC_FULL_RGB,
-+
-+	/**
-+	 * @DRM_COLOROP_FM_YCBCR_LIMITED_FULL:
-+	 *
-+	 * enum string "YCbCr limited to full"
-+	 *
-+	 * This selects the matrix that converts limited range YCbCr into
-+	 * full range YCbCr. Though not strictly a matrix operation but
-+	 * can be represented as one.
-+	 */
-+	DRM_COLOROP_FM_YCBCR_LIMITED_FULL,
-+
-+	/**
-+	 * @DRM_COLOROP_FM_RGB709_RGB2020:
-+	 *
-+	 * enum string "RGB709 to RGB2020"
-+	 *
-+	 * Selects the fixed-function CSC preset that converts RGB
-+	 * (BT.709) colorimetry to RGB (BT.2020).
-+	 */
-+	DRM_COLOROP_FM_RGB709_RGB2020,
-+
-+	/**
-+	 * @DRM_COLOROP_FM_COUNT:
-+	 *
-+	 * enum value denoting the size of the enum
-+	 */
-+	DRM_COLOROP_FM_COUNT
-+};
-+
- /**
-  * struct drm_colorop_state - mutable colorop state
-  */
-@@ -183,6 +248,13 @@ struct drm_colorop_state {
- 	 */
- 	struct drm_property_blob *data;
- 
-+	/**
-+	 * @fixed_matrix_type:
-+	 *
-+	 * Type of Fixed Matrix operation.
-+	 */
-+	enum drm_colorop_fixed_matrix_type fixed_matrix_type;
-+
- 	/** @state: backpointer to global drm_atomic_commit */
- 	struct drm_atomic_commit *state;
- };
-@@ -368,6 +440,13 @@ struct drm_colorop {
- 	 */
- 	struct drm_property *data_property;
- 
-+	/**
-+	 * @fixed_matrix_type_property:
-+	 *
-+	 * Sub-type for DRM_COLOROP_FIXED_MATRIX type.
-+	 */
-+	struct drm_property *fixed_matrix_type_property;
++	DRM_COLOROP_FM_YCBCR601_LIMITED_RGB,
 +
  	/**
- 	 * @next_property:
+ 	 * @DRM_COLOROP_FM_YCBCR709_FULL_RGB:
  	 *
-@@ -424,6 +503,10 @@ int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *col
- 				 uint32_t lut_size,
- 				 enum drm_colorop_lut3d_interpolation_type interpolation,
- 				 uint32_t flags);
-+int drm_plane_colorop_fixed_matrix_init(struct drm_device *dev, struct drm_colorop *colorop,
-+					struct drm_plane *plane,
-+					const struct drm_colorop_funcs *funcs,
-+					u64 supported_fm, uint32_t flags);
- 
- struct drm_colorop_state *
- drm_atomic_helper_colorop_create_state(struct drm_colorop *colorop);
-@@ -482,6 +565,7 @@ drm_get_colorop_lut1d_interpolation_name(enum drm_colorop_lut1d_interpolation_ty
- 
- const char *
- drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_interpolation_type type);
-+const char *drm_get_colorop_fixed_matrix_type_name(enum drm_colorop_fixed_matrix_type type);
- 
- void drm_colorop_set_next_property(struct drm_colorop *colorop, struct drm_colorop *next);
- 
-diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-index 381a3e857d4e..bff6dba08d50 100644
---- a/include/uapi/drm/drm_mode.h
-+++ b/include/uapi/drm/drm_mode.h
-@@ -954,6 +954,18 @@ enum drm_colorop_type {
- 	 *         color = lut3d[index]
+@@ -160,6 +170,16 @@ enum drm_colorop_fixed_matrix_type {
  	 */
- 	DRM_COLOROP_3D_LUT,
-+
-+	/**
-+	 * @DRM_COLOROP_FIXED_MATRIX:
-+	 *
-+	 * enum string "Fixed Matrix"
-+	 *
-+	 * A Colorop block that performs a pre-defined matrix operation selected
-+	 * via the FIXED_MATRIX_TYPE enum property. The driver advertises the supported
-+	 * operations through this property.
-+	 */
-+	DRM_COLOROP_FIXED_MATRIX,
-+
- };
+ 	DRM_COLOROP_FM_YCBCR709_FULL_RGB,
  
- /**
++	/**
++	 * @DRM_COLOROP_FM_YCBCR709_LIMITED_RGB:
++	 *
++	 * enum string "YCbCr 709 Limited to RGB"
++	 *
++	 * This selects the matrix that converts limited range YCbCr into RGB
++	 * according to the BT.709 coefficients.
++	 */
++	DRM_COLOROP_FM_YCBCR709_LIMITED_RGB,
++
+ 	/**
+ 	 * @DRM_COLOROP_FM_YCBCR2020_NC_FULL_RGB:
+ 	 *
+@@ -170,6 +190,16 @@ enum drm_colorop_fixed_matrix_type {
+ 	 */
+ 	DRM_COLOROP_FM_YCBCR2020_NC_FULL_RGB,
+ 
++	/**
++	 * @DRM_COLOROP_FM_YCBCR2020_NC_LIMITED_RGB:
++	 *
++	 * enum string "YCbCr 2020 NC Limited to RGB"
++	 *
++	 * This selects the matrix that converts limited range YCbCr into RGB
++	 * according to the BT.2020 non-constant luminance coefficients.
++	 */
++	DRM_COLOROP_FM_YCBCR2020_NC_LIMITED_RGB,
++
+ 	/**
+ 	 * @DRM_COLOROP_FM_YCBCR_LIMITED_FULL:
+ 	 *
 -- 
 2.54.0
 
