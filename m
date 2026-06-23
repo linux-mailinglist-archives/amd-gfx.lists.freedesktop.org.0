@@ -2,25 +2,25 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cur1JemtOmpLDggAu9opvQ
+	id wo0hAuutOmpRDggAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 18:01:45 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 18:01:47 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E8766B8861
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 18:01:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A73766B8873
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Jun 2026 18:01:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=T5LdpuVM;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b="YKwf/Wz8";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 084A110EBB8;
-	Tue, 23 Jun 2026 16:01:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CDF310EBE5;
+	Tue, 23 Jun 2026 16:01:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B0D410EBD9
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 16:01:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2C7E10EBD1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Jun 2026 16:01:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -28,16 +28,16 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=0UN5/pRiA/GyWCoBPcJzPN1yIe5nYwcCDhT9GBo8X7M=; b=T5LdpuVMEtGlnJ4oP6VbPG7pVQ
- nGMFEjIxnGi73Bb6LtetPMo/o1EsZloqbjSCkyXUmsVMoOWIjle5wfhvWxqUybg7hocLG77Rl9BY6
- 1lzGAvrmnD7oT3Mnts+RdNEKj/bvgo/aV6M/qQmLexlmtexK4Dt1iFT0K2hW+NO8EWro6tvv6pUnN
- 52gxRLAerGN2QVB8DwuVt9+RkgJX1dSZ9Ha36c9CJz337XwzSk11Ca55IM0FDrxy1z5Vj25jrDAXb
- xJsEHozy0IEbmJekd3nyo9XMvz0Sycz30DsuGINbmqC0o+i1I77DjGhOkCMtPUO3DTc9OLu+cP81N
- MCxYoGmA==;
+ bh=oYO76o9jNr8cmbTT9DOZQgO+n5hLWpqXw5ms/uWgos4=; b=YKwf/Wz8jLdfgO1THqvcAZLOvq
+ 1KoCmw+8wR8udHmBj7wWYswNmumP9LGq58Y8wNatUAeIrIO8VFwxfOPKqZqcoXDawqb528FpLtBht
+ GliC6W3mGzMQtIokUf+WHeVV8+UV35T9YUfQdrR69s5wFe0Kg6VRmnjDVuPdMaQhq+RBSjrY/0Nn+
+ jVJJCKFJb1gHs/P80exgnmeCxkGQzi7RaRaKMOZ9KndzvztYFwwNZgU1Sy63dLAdB+tbR+bNfMEpN
+ CwZUY677dHazxYa2J6oSaytXt58cI5tPCPtHAOMN4B5W+q8sReIyS4s6qv61yVZFyVIvqRByn1CfU
+ 9pbm4FCg==;
 Received: from 5.red-79-144-94.dynamicip.rima-tde.net ([79.144.94.5]
  helo=killbill.Home) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wc3Yo-004FI4-U2; Tue, 23 Jun 2026 18:01:14 +0200
+ id 1wc3Yp-004FI4-L2; Tue, 23 Jun 2026 18:01:15 +0200
 From: Melissa Wen <mwen@igalia.com>
 To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
  harry.wentland@amd.com, simona@ffwll.ch, siqueira@igalia.com,
@@ -50,10 +50,10 @@ Cc: Krunoslav Kovac <Krunoslav.Kovac@amd.com>,
  pekka.paalanen@collabora.com, Xaver Hugl <xaver.hugl@kde.org>,
  robert.mader@posteo.de, amd-gfx@lists.freedesktop.org,
  kernel-dev@igalia.com
-Subject: [PATCH v3 2/5] Revert "drm/amd/display: Remove unused
- cm3_helper_translate_curve_to_degamma_hw_format"
-Date: Tue, 23 Jun 2026 17:58:58 +0200
-Message-ID: <20260623160112.1636801-3-mwen@igalia.com>
+Subject: [PATCH v3 3/5] drm/amd/display: use a separate helper to translate
+ degamma curves
+Date: Tue, 23 Jun 2026 17:58:59 +0200
+Message-ID: <20260623160112.1636801-4-mwen@igalia.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260623160112.1636801-1-mwen@igalia.com>
 References: <20260623160112.1636801-1-mwen@igalia.com>
@@ -83,14 +83,14 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:harry.wentland@amd.com,m:simona@ffwll.ch,m:siqueira@igalia.com,m:sunpeng.li@amd.com,m:Krunoslav.Kovac@amd.com,m:linux@treblig.org,m:Bhawanpreet.Lakha@amd.com,m:alex.hung@amd.com,m:Aurabindo.Pillai@amd.com,m:matthew.schwartz@linux.dev,m:pekka.paalanen@collabora.com,m:xaver.hugl@kde.org,m:robert.mader@posteo.de,m:kernel-dev@igalia.com,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	FREEMAIL_TO(0.00)[gmail.com,amd.com,ffwll.ch,igalia.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -107,200 +107,58 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,igalia.com:mid,igalia.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,linux.dev:email,amd.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7E8766B8861
+X-Rspamd-Queue-Id: A73766B8873
 
-This reverts commit 8b89acc0b2baecfe331f5336e7ff1fcc5a44b062.
+In newer DCN families, there is no hw predefined curves for shaper,
+blend and regamma. When userspace sets pre-defined curves for these
+blocks, the driver uses AMD color module to program predefined curve as
+LUT. However, it was using the same LUT segmentation for EOTF and
+inverse EOTF by using the same color management helper. This is causing
+banding on blend when PQ predefined curve is set. Besides that, degamma
+predefined HW curve cannot be used with subsampled 4:2:0/4:2:2 formats
+as it affects the linearity of color space in which HW scaler operates.
 
-So that we can detach NL->L LUT programming from L->NL one, i.e., we can
-use cm3_helper_translate_curve_to_degamma_hw_format for plane degamma and
-blend (post-3DLUT curve) and cm3_helper_translate_curve_to_hw_format for
-plane shaper (pre-3DLUT curve) and stream regamma.
+To mitigate banding when using the blend block and better support
+subsampled format on degamma, use different translation helpers when
+linearizing and delinearizing.
 
 Tested-by: Matthew Schwartz <matthew.schwartz@linux.dev>
 Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 Signed-off-by: Melissa Wen <mwen@igalia.com>
 ---
- .../amd/display/dc/dcn30/dcn30_cm_common.c    | 151 ++++++++++++++++++
- .../display/dc/dwb/dcn30/dcn30_cm_common.h    |   4 +
- 2 files changed, 155 insertions(+)
+ .../gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c   | 11 ++++-------
+ 1 file changed, 4 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_cm_common.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_cm_common.c
-index bfd5515c2f4f..0949b1dffc63 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_cm_common.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_cm_common.c
-@@ -303,6 +303,157 @@ bool cm3_helper_translate_curve_to_hw_format(struct dc_context *ctx,
- 	return true;
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
+index 1340f673ec3b..c2ea25927765 100644
+--- a/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn32/dcn32_hwseq.c
+@@ -493,11 +493,9 @@ bool dcn32_set_mcm_luts(
+ 	if (plane_state->cm.blend_func.type == TF_TYPE_HWPWL)
+ 		lut_params = &plane_state->cm.blend_func.pwl;
+ 	else if (plane_state->cm.blend_func.type == TF_TYPE_DISTRIBUTED_POINTS) {
+-		result = cm3_helper_translate_curve_to_hw_format(
+-			plane_state->ctx,
++		result = cm3_helper_translate_curve_to_degamma_hw_format(
+ 			&plane_state->cm.blend_func,
+-			&dpp_base->regamma_params,
+-			false);
++			&dpp_base->regamma_params);
+ 		if (!result)
+ 			return result;
  
-+#define NUM_DEGAMMA_REGIONS    12
-+
-+
-+bool cm3_helper_translate_curve_to_degamma_hw_format(
-+				const struct dc_transfer_func *output_tf,
-+				struct pwl_params *lut_params)
-+{
-+	struct curve_points3 *corner_points;
-+	struct pwl_result_data *rgb_resulted;
-+	struct pwl_result_data *rgb;
-+	struct pwl_result_data *rgb_plus_1;
-+
-+	int32_t region_start, region_end;
-+	int32_t i;
-+	uint32_t j, k, seg_distr[MAX_REGIONS_NUMBER], increment, start_index, hw_points;
-+
-+	if (output_tf == NULL || lut_params == NULL || output_tf->type == TF_TYPE_BYPASS)
-+		return false;
-+
-+	corner_points = lut_params->corner_points;
-+	rgb_resulted = lut_params->rgb_resulted;
-+	hw_points = 0;
-+
-+	memset(lut_params, 0, sizeof(struct pwl_params));
-+	memset(seg_distr, 0, sizeof(seg_distr));
-+
-+	region_start = -NUM_DEGAMMA_REGIONS;
-+	region_end   = 0;
-+
-+
-+	for (i = region_end - region_start; i < MAX_REGIONS_NUMBER ; i++)
-+		seg_distr[i] = -1;
-+	/* 12 segments
-+	 * segments are from 2^-12 to 0
-+	 */
-+	for (i = 0; i < NUM_DEGAMMA_REGIONS ; i++)
-+		seg_distr[i] = 4;
-+
-+	for (k = 0; k < MAX_REGIONS_NUMBER; k++) {
-+		if (seg_distr[k] != -1)
-+			hw_points += (1 << seg_distr[k]);
-+	}
-+
-+	j = 0;
-+	for (k = 0; k < (region_end - region_start); k++) {
-+		increment = NUMBER_SW_SEGMENTS / (1 << seg_distr[k]);
-+		start_index = (region_start + k + MAX_LOW_POINT) *
-+				NUMBER_SW_SEGMENTS;
-+		for (i = start_index; i < start_index + NUMBER_SW_SEGMENTS;
-+				i += increment) {
-+			if (j == hw_points - 1)
-+				break;
-+			if (i >= TRANSFER_FUNC_POINTS)
-+				return false;
-+			rgb_resulted[j].red = output_tf->tf_pts.red[i];
-+			rgb_resulted[j].green = output_tf->tf_pts.green[i];
-+			rgb_resulted[j].blue = output_tf->tf_pts.blue[i];
-+			j++;
-+		}
-+	}
-+
-+	/* last point */
-+	start_index = (region_end + MAX_LOW_POINT) * NUMBER_SW_SEGMENTS;
-+	rgb_resulted[hw_points - 1].red = output_tf->tf_pts.red[start_index];
-+	rgb_resulted[hw_points - 1].green = output_tf->tf_pts.green[start_index];
-+	rgb_resulted[hw_points - 1].blue = output_tf->tf_pts.blue[start_index];
-+
-+	corner_points[0].red.x = dc_fixpt_pow(dc_fixpt_from_int(2),
-+					     dc_fixpt_from_int(region_start));
-+	corner_points[0].green.x = corner_points[0].red.x;
-+	corner_points[0].blue.x = corner_points[0].red.x;
-+	corner_points[1].red.x = dc_fixpt_pow(dc_fixpt_from_int(2),
-+					     dc_fixpt_from_int(region_end));
-+	corner_points[1].green.x = corner_points[1].red.x;
-+	corner_points[1].blue.x = corner_points[1].red.x;
-+
-+	corner_points[0].red.y = rgb_resulted[0].red;
-+	corner_points[0].green.y = rgb_resulted[0].green;
-+	corner_points[0].blue.y = rgb_resulted[0].blue;
-+
-+	/* see comment above, m_arrPoints[1].y should be the Y value for the
-+	 * region end (m_numOfHwPoints), not last HW point(m_numOfHwPoints - 1)
-+	 */
-+	corner_points[1].red.y = rgb_resulted[hw_points - 1].red;
-+	corner_points[1].green.y = rgb_resulted[hw_points - 1].green;
-+	corner_points[1].blue.y = rgb_resulted[hw_points - 1].blue;
-+	corner_points[1].red.slope = dc_fixpt_zero;
-+	corner_points[1].green.slope = dc_fixpt_zero;
-+	corner_points[1].blue.slope = dc_fixpt_zero;
-+
-+	if (output_tf->tf == TRANSFER_FUNCTION_PQ) {
-+		/* for PQ, we want to have a straight line from last HW X point,
-+		 * and the slope to be such that we hit 1.0 at 10000 nits.
-+		 */
-+		const struct fixed31_32 end_value =
-+				dc_fixpt_from_int(125);
-+
-+		corner_points[1].red.slope = dc_fixpt_div(
-+			dc_fixpt_sub(dc_fixpt_one, corner_points[1].red.y),
-+			dc_fixpt_sub(end_value, corner_points[1].red.x));
-+		corner_points[1].green.slope = dc_fixpt_div(
-+			dc_fixpt_sub(dc_fixpt_one, corner_points[1].green.y),
-+			dc_fixpt_sub(end_value, corner_points[1].green.x));
-+		corner_points[1].blue.slope = dc_fixpt_div(
-+			dc_fixpt_sub(dc_fixpt_one, corner_points[1].blue.y),
-+			dc_fixpt_sub(end_value, corner_points[1].blue.x));
-+	}
-+
-+	lut_params->hw_points_num = hw_points;
-+
-+	k = 0;
-+	for (i = 1; i < MAX_REGIONS_NUMBER; i++) {
-+		if (seg_distr[k] != -1) {
-+			lut_params->arr_curve_points[k].segments_num =
-+					seg_distr[k];
-+			lut_params->arr_curve_points[i].offset =
-+					lut_params->arr_curve_points[k].offset + (1 << seg_distr[k]);
-+		}
-+		k++;
-+	}
-+
-+	if (seg_distr[k] != -1)
-+		lut_params->arr_curve_points[k].segments_num = seg_distr[k];
-+
-+	rgb = rgb_resulted;
-+	rgb_plus_1 = rgb_resulted + 1;
-+
-+	i = 1;
-+	while (i != hw_points + 1) {
-+		if (dc_fixpt_lt(rgb_plus_1->red, rgb->red))
-+			rgb_plus_1->red = rgb->red;
-+		if (dc_fixpt_lt(rgb_plus_1->green, rgb->green))
-+			rgb_plus_1->green = rgb->green;
-+		if (dc_fixpt_lt(rgb_plus_1->blue, rgb->blue))
-+			rgb_plus_1->blue = rgb->blue;
-+
-+		rgb->delta_red   = dc_fixpt_sub(rgb_plus_1->red,   rgb->red);
-+		rgb->delta_green = dc_fixpt_sub(rgb_plus_1->green, rgb->green);
-+		rgb->delta_blue  = dc_fixpt_sub(rgb_plus_1->blue,  rgb->blue);
-+
-+		++rgb_plus_1;
-+		++rgb;
-+		++i;
-+	}
-+	cm3_helper_convert_to_custom_float(rgb_resulted,
-+						lut_params->corner_points,
-+						hw_points, false);
-+
-+	return true;
-+}
-+
- bool cm3_helper_convert_to_custom_float(
- 		struct pwl_result_data *rgb_resulted,
- 		struct curve_points3 *corner_points,
-diff --git a/drivers/gpu/drm/amd/display/dc/dwb/dcn30/dcn30_cm_common.h b/drivers/gpu/drm/amd/display/dc/dwb/dcn30/dcn30_cm_common.h
-index 95f9318a54ef..c23dc1bb29bf 100644
---- a/drivers/gpu/drm/amd/display/dc/dwb/dcn30/dcn30_cm_common.h
-+++ b/drivers/gpu/drm/amd/display/dc/dwb/dcn30/dcn30_cm_common.h
-@@ -63,6 +63,10 @@ bool cm3_helper_translate_curve_to_hw_format(struct dc_context *ctx,
- 	const struct dc_transfer_func *output_tf,
- 	struct pwl_params *lut_params, bool fixpoint);
+@@ -554,9 +552,8 @@ bool dcn32_set_input_transfer_func(struct dc *dc,
+ 	if (plane_state->in_transfer_func.type == TF_TYPE_HWPWL)
+ 		params = &plane_state->in_transfer_func.pwl;
+ 	else if (plane_state->in_transfer_func.type == TF_TYPE_DISTRIBUTED_POINTS &&
+-		cm3_helper_translate_curve_to_hw_format(plane_state->ctx,
+-							&plane_state->in_transfer_func,
+-							&dpp_base->degamma_params, false))
++		cm3_helper_translate_curve_to_degamma_hw_format(&plane_state->in_transfer_func,
++								&dpp_base->degamma_params))
+ 		params = &dpp_base->degamma_params;
  
-+bool cm3_helper_translate_curve_to_degamma_hw_format(
-+				const struct dc_transfer_func *output_tf,
-+				struct pwl_params *lut_params);
-+
- bool cm3_helper_convert_to_custom_float(
- 		struct pwl_result_data *rgb_resulted,
- 		struct curve_points3 *corner_points,
+ 	dpp_base->funcs->dpp_program_gamcor_lut(dpp_base, params);
 -- 
 2.53.0
 
