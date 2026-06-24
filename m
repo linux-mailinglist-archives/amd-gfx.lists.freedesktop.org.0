@@ -2,53 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NVyDFHEdPGpykAgAu9opvQ
+	id 6Z9SGoAdPGp6kAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:09:53 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:10:08 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF94F6C0A91
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:09:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF56E6C0AB3
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:10:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=yb66Srt6;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=0sg21zyG;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6703010F0A8;
-	Wed, 24 Jun 2026 18:09:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5423610F09E;
+	Wed, 24 Jun 2026 18:10:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013071.outbound.protection.outlook.com
- [40.93.201.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AF3410F096
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 18:09:48 +0000 (UTC)
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012037.outbound.protection.outlook.com [52.101.53.37])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A6B710F0A3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 18:10:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qc0dhXphWB/zcUL7qN/ohgvGGAN6RvIs1S2jvtwoQG2tafEm/TymZwAT/yOq1IrUubNh44UI2QN0qY0OtrfQM2ShWLIRj3ed5/rbnNR43N5rKDkv6/96fZ+3uoT9aUeHtqAw2EYG+yl1+cGtqZcToug2K2lA2ZQgopMuqe5y1U5X9hs6X2soedwLGopXx4zuR+VVbO8ICmmCXOulDu1gAMWXPdvBDXlyFzGJQEVC2919jtrGurcZwwPYcbSLsgKtQNe9/kNq+vZfzaXLF8q7gs40ZDfaOZI3pOTY9es0umiIaDIfoktPwezZQDmrwJExUeEff+krwAW3fYs7U90B/w==
+ b=hsDgwTYJT4jNsvZ6cv8vvoKY7XvVZT9xNyqSNzc5oPSYQuEw4E52CrmzdcBO4SUoUetuyM9cSvjJRWIFF+mUsa83KCqjTp+GiIJvxq/b9dFUQQM/uxhXvUQsjIEBDtmZ1TYDXc+RFRPxQbJxKS42qLzsl1vzqZ7qBpxc3XU1HH0utZD9Zrtup7FI6wWClgqvrx4+cvD2quyOwKqpIsU4Ad5N3ZY7iIeeHZKAeBsvcuH9OY6MPDEZA2OmY87LQfrSh4EP7EjSIMPz13wd3AbEsoKJLz5wU4JTVkGJ+KODK7O9Fo6UQz4d56efbsD8C+1/ZfTEDlO87x0UfNxzuXO88Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8zQ60OUgysFARDJ9IFBnpl2Ar1daGyuwxMriUF5YlTo=;
- b=O77zl2dIsPJ21qL5DF+dAO3LFzHSFBrAntuc7elcvs1u1IzCncShJ7T3HMZdNHsWxdpLqslRR23YUg9KQNsVCHKTFNZRK0fk1FZI/EJM+EoJcr51YRv8Mu4tyH0/k0hU+bihCPcxMWYf9QCDUDDVDGOmJB93tYiXCBqL7oZZAFBSzZsQhNet7VcqsLDCN4D9KZeStXz/cX08UoPKHfHzeBSnozLGbP6xdoESOMC9CvB/XxnxJWktCfTUxgoUuPiBCdbdJQHHIgmSF/iamDp7h8NUS7dz/WezdNcdmDNA/EdEcJWPQwa/PTje/Ldwz1XOuNjs8pCFMvFEtbt8kJg0Aw==
+ bh=0EAHFIB4uHONGcanjopQaCur36ISr68i1WQDxZl8Auk=;
+ b=thIfEKBBZP61LLbEs3KA9FPjFv0y+8eWDIIDWZcaaAlfNjijTtnX+v6ATxVfh1Tih+Q7Y+lcj2Zu4fpoxPFX+DJyWkPFIkm1xgfMTMtxz18waVdlgdZKF1LSDFuKFeqamjK9eLVHCqp061lhv+tddOMWQbG1ZYPYgIjShaMhS6DDxYcVwK5SxwSOoaHBCTc9GdNfsyMEA7AeeyioxDUHQGlajFlV7V0vl7DziZA0pFzBeMn5rqpLvBaNqdpjrpQw/Al3Tt3rS7VMGIQ8yIzj2op+OHH4JIdWVGS5KAMuUkSIjWZVjHwrnICkWXedB6ASPBAfBXdIlljG4apVEmeWXw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8zQ60OUgysFARDJ9IFBnpl2Ar1daGyuwxMriUF5YlTo=;
- b=yb66Srt60DO6IuK+J/xPzCxmUvMhxGkY+fwAugZDPIzRDUe25+GA4oARvBRSun/XCHOvUd9CgROpFtlP/A/gady8kWWWINRo0iXs9CbvKZ0ThQVTBH6aiPvuq+5v8JRwSUSyg9fQgixHsvk6MAH4egXtXWR+53mqXYHa+OJ5QIw=
-Received: from SJ0PR03CA0012.namprd03.prod.outlook.com (2603:10b6:a03:33a::17)
- by IA0PR12MB8351.namprd12.prod.outlook.com (2603:10b6:208:40e::5)
+ bh=0EAHFIB4uHONGcanjopQaCur36ISr68i1WQDxZl8Auk=;
+ b=0sg21zyGMrptG0lh1GgYalEWyRiJstsUKiUEF6xhGz8/hJxs7hSsJExyFG7qIc0U05VZ6EABAS0E/kcX28phVZL/UWW1TjdIJZasVQvBNIzPvDicX98+q9z+bTcvyZ+KWqyYrRktMTfizMKWDocArl8aXvsP6ud/YsOMx/XYY2E=
+Received: from MW4PR03CA0218.namprd03.prod.outlook.com (2603:10b6:303:b9::13)
+ by SA3PR12MB8804.namprd12.prod.outlook.com (2603:10b6:806:31f::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.16; Wed, 24 Jun
- 2026 18:09:46 +0000
-Received: from SJ5PEPF000001CD.namprd05.prod.outlook.com
- (2603:10b6:a03:33a:cafe::d) by SJ0PR03CA0012.outlook.office365.com
- (2603:10b6:a03:33a::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.12 via Frontend Transport; Wed,
- 24 Jun 2026 18:09:46 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.14; Wed, 24 Jun
+ 2026 18:09:49 +0000
+Received: from SJ5PEPF000001CF.namprd05.prod.outlook.com
+ (2603:10b6:303:b9:cafe::18) by MW4PR03CA0218.outlook.office365.com
+ (2603:10b6:303:b9::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.14 via Frontend Transport; Wed,
+ 24 Jun 2026 18:09:48 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,13 +55,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF000001CD.mail.protection.outlook.com (10.167.242.42) with Microsoft
+ SJ5PEPF000001CF.mail.protection.outlook.com (10.167.242.43) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Wed, 24 Jun 2026 18:09:46 +0000
+ 15.21.159.10 via Frontend Transport; Wed, 24 Jun 2026 18:09:48 +0000
 Received: from MKMGEORZHAN02.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 24 Jun
- 2026 13:09:40 -0500
+ 2026 13:09:41 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -71,12 +70,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Leo Chen <leo.chen@amd.com>, Charlene Liu
- <charlene.liu@amd.com>, George Zhang <george.zhang@amd.com>
-Subject: [PATCH 26/28] drm/amd/display: revert "Enable HUBP/DPP power gate for
- DCN42"
-Date: Wed, 24 Jun 2026 14:03:24 -0400
-Message-ID: <20260624180829.4775-27-george.zhang@amd.com>
+ <Chen-Yu.Chen@amd.com>, kernel test robot <lkp@intel.com>, George Zhang
+ <george.zhang@amd.com>
+Subject: [PATCH 27/28] drm/amd/amdgpu: Fix stack frame size warnings in KUnit
+ tests
+Date: Wed, 24 Jun 2026 14:03:25 -0400
+Message-ID: <20260624180829.4775-28-george.zhang@amd.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260624180829.4775-1-george.zhang@amd.com>
 References: <20260624180829.4775-1-george.zhang@amd.com>
@@ -88,29 +87,29 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CD:EE_|IA0PR12MB8351:EE_
-X-MS-Office365-Filtering-Correlation-Id: c416c65b-ba9e-42d8-dfd5-08ded21bc64c
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CF:EE_|SA3PR12MB8804:EE_
+X-MS-Office365-Filtering-Correlation-Id: 77d9fcc9-f80d-4c6a-c76e-08ded21bc77a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700016|1800799024|376014|23010399003|22082099003|18002099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: nzab1LIcfTMrNIKpg23amtf2elCqtQPKMsFc3gxXvdr6kdxb8zrz0wSz/IVLqPCAh08ODbj4C54vevl/VeS4uiDyQxiuwdaqf3qYUM5X+/y01Emt4WLw/K9VXJE46KfL1dWoS9EG1zFijrUb8Uk5Pkd/VKtrWaYUzDPwNP2/cIofq+kGc3xhIyBFeCeA9QKgAX1xIAACGfKrag+u9TGGhN/iEjtjF+xCR5YN1aZVCxWTItG3Sfj4Pai+E+ezYnmoI7+6+/oKDeJ2ywgwQ0tEftweOOkl3v3410QnWrvVlcB50T+xpXyq94WrLMKMSHvz5Rg+bSQMllBbaoH3tm3UgLTla18mybbZ6p2cig+ttfZxlDuMrcaCxHjYWsTltfpBN408NsJ2cuO8hil0bQkEZ4mWcBalLM8HsiLCApP2MSqRZ5zIHZ9YDZWymnEWqtV8Aew4zVLxxz0ktyUj9iUsYKGJYRXeLpEPBmlSLvVr6/cf3HjAxo9x94CroDS875OQrOTde9rWRFbk88UiHdiuSC666PpXyDwpVHmpHtfyL7KZsPCdbHUE8a6Bs9BgH+S/UeW3Fivzx0WE7nDZ/9X2NKPAVYZeYOJzXHaIbw453DQXmm2lyO43rOfLH7NDfqPG992OXTNBWx57hnyywjhTAZNAlJJKcjZtofTVIxlty69QsTk9UN0iKW9i3Qlgabhh/2qnib2pPaHmi2cB/rbvKw==
+ ARA:13230040|36860700016|23010399003|82310400026|1800799024|376014|6133799003|18002099003|22082099003|3023799007|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: mOMT+NQp/qOn3dcFbGZlNVSOy/IbGKRzJ3IhIdaRhlenDm59kmAKkvm1AD9trndwkDeeIWnCBroTEyVH1Y1Fpd+PTKHNAf0mDW6Ng8JenGGfHaVckWO5Mt11zCo8cHzm2+jc7MjIbkVIhD6g411+UaNMb3UjYZa2OH8JKHO4Y+AOXG32GCv69VAx5ugh1mZtZo2o5BfFeKc0IRn1EHdygGq2FLdm6/BJ6Aq5tKO0ephublUv9OOIehxHeUIspX2yfuWyKdor6ChLqu41ReP0weoe9PBsY6W1HBue76mVVOzUtdskRdxKuVHqNoD2FKVeeru3rURnku39P0iOhzer76p5XNGIgfxcS5atCVjhmFh3wBWzIi6wWkWUg1XXMufxgPTjKfl4K8/ycXSBjcBwZDkAdd1wVSlYnHyPmNgAzg7nobbu6OYM/KZg0/gHMlUZzwx4NPT+aGJJg53R9H8+VwqmqQCI/iu0uzPOU6O9mrS1yIlp6kIoNN0YfZvj7TKXDdlaalI8Fv1U1G8cvLKBWYSNt43eAHdwuhK6zzVmUMJ1TQwTRhwD5XCsiyq1UP7s3hJWm/nMLKPENv8AWccF18CuqGgSQZwhKuN7hTPhcIVwz3fi4ahMFvWLjrQ7NcHDF8vqMgcy0FOVqOBkUYRyI9YxG5oB4i71L5TnepMOlY4euoAe+dtsl/BoR1PC4I4NEt9hsqCEqtjQyAmSO4Pv7A==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700016)(1800799024)(376014)(23010399003)(22082099003)(18002099003)(11063799006)(56012099006);
+ SFS:(13230040)(36860700016)(23010399003)(82310400026)(1800799024)(376014)(6133799003)(18002099003)(22082099003)(3023799007)(56012099006)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: qfbAsYS8TgE6onpnbWN1wSMCaXIv5a8Dzvu4PPYPtjizzDKucirNZ26eFgS/PV3SG86B012Sfygc+lmQm4YrpPI/PYNYaly8G92yplH87Ou2OshJrGrz4NzB3Qn5QMsJFcTWpYAFFmdEYv33H8OSWWhcPAxR2HmSACtMR5may703lDM72eU+yRCHOMlMMflpnVQjmYN/mLH0bjFt5VInFg4i7JwV5+k6AWowNWNIcAJlzEWCv3KTE2/RTHSNjci6UtIMO5E3rC47JbokV71ehMus5IidGbG25HEEzpwY+vDAtVGMbf/LCPZi1RvqDIvgUf+r7ykp4TR28yHn4Hf5r9jB3SiuFI3PBEgwklyxbxwwHXb5ryLazEQGcGWwS7YpSXjdufiakB9Z3I44mnWbHWHYbbuLI/z03sNhbPuWNPhaJdBsTrZGZlwZEFsLMaNj
+X-MS-Exchange-AntiSpam-MessageData-0: 60S7Y7gJwiWAxUgXXG1mP9WL+jh3mUrzgQGXGkV6BYX+dO5pURIjyfpBh+JJ4lJUQX/MpHa9I3rnsxM1RKlP5SVH0/eXGXb0dBoTU4cSviCe+pKgFWkDR9WfgF8HE7Y+R4fNmqi8XLwpRT10iD79DtlgsCG09RjC+C4fSz7hGNdTw/IOSPFVdAyM37l4x+Qt/kB92EShym7eIkdbrg5DhFflRI+99YXZIxtVgGv1JEQwVrYmjxnEEYeEmhPuwKR8fxFMy2SnnJefv/a9cBKMldFAFKR+8c6Z0o6ZPTE3kFsOZ2E/3UG+46GuWuCI4M5dbb7uyuIfR6pbhbTRGvTbUssps5K/Ch+PMEM5A2Xgy5U4UaghIskLyFbCMfnNjLdMxV7Xi6iQ1Qu3yGkBqgHHX5u3MvWUxmBaQIpMKYVMsNYvEBy48csKIbxsvFMDpAha
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 18:09:46.5317 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c416c65b-ba9e-42d8-dfd5-08ded21bc64c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 18:09:48.4749 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 77d9fcc9-f80d-4c6a-c76e-08ded21bc77a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CD.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CF.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8351
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8804
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,7 +136,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -152,38 +151,671 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,plane.dev:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EF94F6C0A91
+X-Rspamd-Queue-Id: BF56E6C0AB3
 
-From: Leo Chen <leo.chen@amd.com>
+From: Alex Hung <alex.hung@amd.com>
 
-[why]
-Disabling HUBP/DPP Driver PG as it's causing corruption issues.
-This reverts commit a07a9b8295758e5c2b14684bb90738ac20e77406.
+[WHAT]
+Replace stack-allocated large structs with kunit_kzalloc() in KUnit
+test functions that exceed the kernel 1280-byte stack frame limit.
+Also add CONFIG_FRAME_WARN=1024 to .kunitconfig to enforce the limit.
 
-Reviewed-by: Charlene Liu <charlene.liu@amd.com>
-Signed-off-by: Leo Chen <leo.chen@amd.com>
+Affected structs and files:
+- struct dc_link in amdgpu_dm_connector_test.c and
+  amdgpu_dm_mst_types_test.c
+- struct drm_plane, drm_plane_state, drm_framebuffer in
+  amdgpu_dm_plane_test.c
+- struct drm_connector_state, drm_atomic_state in
+  amdgpu_dm_mst_types_test.c
+- struct dm_connector_state in amdgpu_dm_test.c
+
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202606230825.9qMV9L0g-lkp@intel.com/
+Assisted-by: Copilot:Claude-Opus-4.6
+Signed-off-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c    | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../amd/display/amdgpu_dm/tests/.kunitconfig  |   3 +
+ .../tests/amdgpu_dm_connector_test.c          |  64 +++++++----
+ .../tests/amdgpu_dm_mst_types_test.c          | 104 ++++++++++--------
+ .../amdgpu_dm/tests/amdgpu_dm_plane_test.c    |  99 ++++++++++-------
+ .../display/amdgpu_dm/tests/amdgpu_dm_test.c  |  72 +++++++-----
+ 5 files changed, 208 insertions(+), 134 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
-index c999db12d0a5..7620da96ffc1 100644
---- a/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
-@@ -729,8 +729,8 @@ static const struct dc_debug_options debug_defaults_drv = {
- 	.clock_trace = true,
- 	.disable_pplib_clock_request = false,
- 	.ignore_pg = false,
--	.disable_dpp_power_gate = false,
--	.disable_hubp_power_gate = false,
-+	.disable_dpp_power_gate = true,
-+	.disable_hubp_power_gate = true,
- 	.disable_optc_power_gate = true,
- 	.disable_dsc_power_gate = false,
- 	.disable_dio_power_gate = true,
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/.kunitconfig b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/.kunitconfig
+index 1e93bd8b44ce..c7c8527dbb10 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/.kunitconfig
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/.kunitconfig
+@@ -15,6 +15,9 @@ CONFIG_I2C=y
+ CONFIG_POWER_SUPPLY=y
+ CONFIG_CRC16=y
+ 
++# Limit stack size to 1280
++CONFIG_FRAME_WARN=1280
++
+ # Treat warnings as errors
+ CONFIG_WERROR=y
+ 
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
+index 34e40d2a9d2c..aa451064b30c 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
+@@ -29,10 +29,12 @@
+  */
+ static void dm_test_subconnector_type_none(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	struct dc_link *link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
+ 
+-	link.dpcd_caps.dongle_type = DISPLAY_DONGLE_NONE;
+-	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_Native);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, link);
++
++	link->dpcd_caps.dongle_type = DISPLAY_DONGLE_NONE;
++	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(link), (int)DRM_MODE_SUBCONNECTOR_Native);
+ }
+ 
+ /**
+@@ -41,10 +43,12 @@ static void dm_test_subconnector_type_none(struct kunit *test)
+  */
+ static void dm_test_subconnector_type_vga(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	struct dc_link *link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
++
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, link);
+ 
+-	link.dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_VGA_CONVERTER;
+-	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_VGA);
++	link->dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_VGA_CONVERTER;
++	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(link), (int)DRM_MODE_SUBCONNECTOR_VGA);
+ }
+ 
+ /**
+@@ -53,10 +57,12 @@ static void dm_test_subconnector_type_vga(struct kunit *test)
+  */
+ static void dm_test_subconnector_type_dvi_converter(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	struct dc_link *link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
+ 
+-	link.dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_DVI_CONVERTER;
+-	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_DVID);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, link);
++
++	link->dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_DVI_CONVERTER;
++	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(link), (int)DRM_MODE_SUBCONNECTOR_DVID);
+ }
+ 
+ /**
+@@ -65,10 +71,12 @@ static void dm_test_subconnector_type_dvi_converter(struct kunit *test)
+  */
+ static void dm_test_subconnector_type_dvi_dongle(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	struct dc_link *link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
++
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, link);
+ 
+-	link.dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_DVI_DONGLE;
+-	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_DVID);
++	link->dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_DVI_DONGLE;
++	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(link), (int)DRM_MODE_SUBCONNECTOR_DVID);
+ }
+ 
+ /**
+@@ -77,10 +85,12 @@ static void dm_test_subconnector_type_dvi_dongle(struct kunit *test)
+  */
+ static void dm_test_subconnector_type_hdmi_converter(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	struct dc_link *link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
+ 
+-	link.dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_HDMI_CONVERTER;
+-	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_HDMIA);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, link);
++
++	link->dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_HDMI_CONVERTER;
++	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(link), (int)DRM_MODE_SUBCONNECTOR_HDMIA);
+ }
+ 
+ /**
+@@ -89,10 +99,12 @@ static void dm_test_subconnector_type_hdmi_converter(struct kunit *test)
+  */
+ static void dm_test_subconnector_type_hdmi_dongle(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	struct dc_link *link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
++
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, link);
+ 
+-	link.dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_HDMI_DONGLE;
+-	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_HDMIA);
++	link->dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_HDMI_DONGLE;
++	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(link), (int)DRM_MODE_SUBCONNECTOR_HDMIA);
+ }
+ 
+ /**
+@@ -101,10 +113,12 @@ static void dm_test_subconnector_type_hdmi_dongle(struct kunit *test)
+  */
+ static void dm_test_subconnector_type_mismatched(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	struct dc_link *link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
+ 
+-	link.dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_HDMI_MISMATCHED_DONGLE;
+-	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_Unknown);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, link);
++
++	link->dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_HDMI_MISMATCHED_DONGLE;
++	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(link), (int)DRM_MODE_SUBCONNECTOR_Unknown);
+ }
+ 
+ /**
+@@ -113,10 +127,12 @@ static void dm_test_subconnector_type_mismatched(struct kunit *test)
+  */
+ static void dm_test_subconnector_type_default_unknown(struct kunit *test)
+ {
+-	struct dc_link link = {};
++	struct dc_link *link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
++
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, link);
+ 
+-	link.dpcd_caps.dongle_type = (typeof(link.dpcd_caps.dongle_type))0x7f;
+-	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(&link), (int)DRM_MODE_SUBCONNECTOR_Unknown);
++	link->dpcd_caps.dongle_type = (typeof(link->dpcd_caps.dongle_type))0x7f;
++	KUNIT_EXPECT_EQ(test, (int)get_subconnector_type(link), (int)DRM_MODE_SUBCONNECTOR_Unknown);
+ }
+ 
+ /* Tests for get_output_content_type() */
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c
+index 99d9fdaa4a4a..3f591e3914d9 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c
+@@ -129,13 +129,15 @@ static ssize_t dm_mst_test_desc_aux_transfer(struct drm_dp_aux *aux,
+  */
+ static void dm_mst_test_needs_dsc_aux_workaround_match(struct kunit *test)
+ {
+-	struct dc_link link = {0};
++	struct dc_link *link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
+ 
+-	link.dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
+-	link.dpcd_caps.dpcd_rev.raw = DPCD_REV_14;
+-	link.dpcd_caps.sink_count.bits.SINK_COUNT = 2;
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, link);
+ 
+-	KUNIT_EXPECT_TRUE(test, needs_dsc_aux_workaround(&link));
++	link->dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
++	link->dpcd_caps.dpcd_rev.raw = DPCD_REV_14;
++	link->dpcd_caps.sink_count.bits.SINK_COUNT = 2;
++
++	KUNIT_EXPECT_TRUE(test, needs_dsc_aux_workaround(link));
+ }
+ 
+ /**
+@@ -147,13 +149,15 @@ static void dm_mst_test_needs_dsc_aux_workaround_match(struct kunit *test)
+  */
+ static void dm_mst_test_needs_dsc_aux_workaround_rev12(struct kunit *test)
+ {
+-	struct dc_link link = {0};
++	struct dc_link *link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
+ 
+-	link.dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
+-	link.dpcd_caps.dpcd_rev.raw = DPCD_REV_12;
+-	link.dpcd_caps.sink_count.bits.SINK_COUNT = 3;
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, link);
+ 
+-	KUNIT_EXPECT_TRUE(test, needs_dsc_aux_workaround(&link));
++	link->dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
++	link->dpcd_caps.dpcd_rev.raw = DPCD_REV_12;
++	link->dpcd_caps.sink_count.bits.SINK_COUNT = 3;
++
++	KUNIT_EXPECT_TRUE(test, needs_dsc_aux_workaround(link));
+ }
+ 
+ /**
+@@ -165,13 +169,15 @@ static void dm_mst_test_needs_dsc_aux_workaround_rev12(struct kunit *test)
+  */
+ static void dm_mst_test_needs_dsc_aux_workaround_wrong_dev_id(struct kunit *test)
+ {
+-	struct dc_link link = {0};
++	struct dc_link *link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
++
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, link);
+ 
+-	link.dpcd_caps.branch_dev_id = 0x123456;
+-	link.dpcd_caps.dpcd_rev.raw = DPCD_REV_14;
+-	link.dpcd_caps.sink_count.bits.SINK_COUNT = 2;
++	link->dpcd_caps.branch_dev_id = 0x123456;
++	link->dpcd_caps.dpcd_rev.raw = DPCD_REV_14;
++	link->dpcd_caps.sink_count.bits.SINK_COUNT = 2;
+ 
+-	KUNIT_EXPECT_FALSE(test, needs_dsc_aux_workaround(&link));
++	KUNIT_EXPECT_FALSE(test, needs_dsc_aux_workaround(link));
+ }
+ 
+ /**
+@@ -183,13 +189,15 @@ static void dm_mst_test_needs_dsc_aux_workaround_wrong_dev_id(struct kunit *test
+  */
+ static void dm_mst_test_needs_dsc_aux_workaround_wrong_rev(struct kunit *test)
+ {
+-	struct dc_link link = {0};
++	struct dc_link *link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
++
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, link);
+ 
+-	link.dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
+-	link.dpcd_caps.dpcd_rev.raw = 0x11; /* DPCD 1.1 */
+-	link.dpcd_caps.sink_count.bits.SINK_COUNT = 2;
++	link->dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
++	link->dpcd_caps.dpcd_rev.raw = 0x11; /* DPCD 1.1 */
++	link->dpcd_caps.sink_count.bits.SINK_COUNT = 2;
+ 
+-	KUNIT_EXPECT_FALSE(test, needs_dsc_aux_workaround(&link));
++	KUNIT_EXPECT_FALSE(test, needs_dsc_aux_workaround(link));
+ }
+ 
+ /**
+@@ -201,13 +209,15 @@ static void dm_mst_test_needs_dsc_aux_workaround_wrong_rev(struct kunit *test)
+  */
+ static void dm_mst_test_needs_dsc_aux_workaround_low_sink_count(struct kunit *test)
+ {
+-	struct dc_link link = {0};
++	struct dc_link *link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
+ 
+-	link.dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
+-	link.dpcd_caps.dpcd_rev.raw = DPCD_REV_14;
+-	link.dpcd_caps.sink_count.bits.SINK_COUNT = 1;
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, link);
++
++	link->dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
++	link->dpcd_caps.dpcd_rev.raw = DPCD_REV_14;
++	link->dpcd_caps.sink_count.bits.SINK_COUNT = 1;
+ 
+-	KUNIT_EXPECT_FALSE(test, needs_dsc_aux_workaround(&link));
++	KUNIT_EXPECT_FALSE(test, needs_dsc_aux_workaround(link));
+ }
+ 
+ /**
+@@ -219,13 +229,15 @@ static void dm_mst_test_needs_dsc_aux_workaround_low_sink_count(struct kunit *te
+  */
+ static void dm_mst_test_needs_dsc_aux_workaround_zero_sink_count(struct kunit *test)
+ {
+-	struct dc_link link = {0};
++	struct dc_link *link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
+ 
+-	link.dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
+-	link.dpcd_caps.dpcd_rev.raw = DPCD_REV_14;
+-	link.dpcd_caps.sink_count.bits.SINK_COUNT = 0;
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, link);
+ 
+-	KUNIT_EXPECT_FALSE(test, needs_dsc_aux_workaround(&link));
++	link->dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
++	link->dpcd_caps.dpcd_rev.raw = DPCD_REV_14;
++	link->dpcd_caps.sink_count.bits.SINK_COUNT = 0;
++
++	KUNIT_EXPECT_FALSE(test, needs_dsc_aux_workaround(link));
+ }
+ 
+ /* Tests for dm_mst_get_pbn_divider */
+@@ -943,17 +955,23 @@ static void dm_mst_test_create_fake_mst_encoders(struct kunit *test)
+  */
+ static void dm_mst_test_atomic_check_no_old_crtc(struct kunit *test)
+ {
+-	struct drm_connector_state old_conn_state = { 0 };
+-	struct drm_connector_state new_conn_state = { 0 };
+-	struct drm_atomic_state state = { 0 };
++	struct drm_connector_state *old_conn_state;
++	struct drm_connector_state *new_conn_state;
++	struct drm_atomic_state *state;
+ 	struct amdgpu_dm_connector *aconnector;
+ 	struct amdgpu_dm_connector *root;
+ 	struct drm_dp_mst_port *port;
+ 	unsigned int connector_index = 2;
+ 
++	old_conn_state = kunit_kzalloc(test, sizeof(*old_conn_state), GFP_KERNEL);
++	new_conn_state = kunit_kzalloc(test, sizeof(*new_conn_state), GFP_KERNEL);
++	state = kunit_kzalloc(test, sizeof(*state), GFP_KERNEL);
+ 	aconnector = kunit_kzalloc(test, sizeof(*aconnector), GFP_KERNEL);
+ 	root = kunit_kzalloc(test, sizeof(*root), GFP_KERNEL);
+ 	port = kunit_kzalloc(test, sizeof(*port), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, old_conn_state);
++	KUNIT_ASSERT_NOT_NULL(test, new_conn_state);
++	KUNIT_ASSERT_NOT_NULL(test, state);
+ 	KUNIT_ASSERT_NOT_NULL(test, aconnector);
+ 	KUNIT_ASSERT_NOT_NULL(test, root);
+ 	KUNIT_ASSERT_NOT_NULL(test, port);
+@@ -962,18 +980,18 @@ static void dm_mst_test_atomic_check_no_old_crtc(struct kunit *test)
+ 	aconnector->mst_root = root;
+ 	aconnector->mst_output_port = port;
+ 	port->connector = &aconnector->base;
+-	old_conn_state.connector = &aconnector->base;
+-	new_conn_state.connector = &aconnector->base;
+-	state.num_connector = connector_index + 1;
+-	state.connectors = kunit_kzalloc(test,
+-					 sizeof(*state.connectors) * state.num_connector,
++	old_conn_state->connector = &aconnector->base;
++	new_conn_state->connector = &aconnector->base;
++	state->num_connector = connector_index + 1;
++	state->connectors = kunit_kzalloc(test,
++					 sizeof(*state->connectors) * state->num_connector,
+ 					 GFP_KERNEL);
+-	KUNIT_ASSERT_NOT_NULL(test, state.connectors);
+-	state.connectors[connector_index].ptr = &aconnector->base;
+-	state.connectors[connector_index].old_state = &old_conn_state;
+-	state.connectors[connector_index].new_state = &new_conn_state;
++	KUNIT_ASSERT_NOT_NULL(test, state->connectors);
++	state->connectors[connector_index].ptr = &aconnector->base;
++	state->connectors[connector_index].old_state = old_conn_state;
++	state->connectors[connector_index].new_state = new_conn_state;
+ 
+-	KUNIT_EXPECT_EQ(test, dm_dp_mst_atomic_check(&aconnector->base, &state), 0);
++	KUNIT_EXPECT_EQ(test, dm_dp_mst_atomic_check(&aconnector->base, state), 0);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
+index 071c28abaa8a..46c9af432e37 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
+@@ -185,22 +185,26 @@ static void dm_test_fill_blending_coverage_alpha_format(struct kunit *test)
+ static void dm_test_fill_blending_global_alpha(struct kunit *test)
+ {
+ 	struct amdgpu_device *adev;
+-	struct drm_plane plane = {0};
+-	struct drm_plane_state state = { 0 };
++	struct drm_plane *plane;
++	struct drm_plane_state *state;
+ 	bool per_pixel_alpha;
+ 	bool pre_multiplied_alpha;
+ 	bool global_alpha;
+ 	int global_alpha_value;
+ 
+ 	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	plane = kunit_kzalloc(test, sizeof(*plane), GFP_KERNEL);
++	state = kunit_kzalloc(test, sizeof(*state), GFP_KERNEL);
+ 	KUNIT_ASSERT_NOT_NULL(test, adev);
++	KUNIT_ASSERT_NOT_NULL(test, plane);
++	KUNIT_ASSERT_NOT_NULL(test, state);
+ 
+-	plane.dev = &adev->ddev;
+-	state.plane = &plane;
+-	state.pixel_blend_mode = DRM_MODE_BLEND_PIXEL_NONE;
+-	state.alpha = 0x8000;
++	plane->dev = &adev->ddev;
++	state->plane = plane;
++	state->pixel_blend_mode = DRM_MODE_BLEND_PIXEL_NONE;
++	state->alpha = 0x8000;
+ 
+-	amdgpu_dm_plane_fill_blending_from_plane_state(&state,
++	amdgpu_dm_plane_fill_blending_from_plane_state(state,
+ 						       &per_pixel_alpha,
+ 						       &pre_multiplied_alpha,
+ 						       &global_alpha,
+@@ -250,23 +254,28 @@ static void dm_test_modifier_gfx9_swizzle_mode(struct kunit *test)
+  */
+ static void dm_test_get_plane_formats(struct kunit *test)
+ {
+-	struct drm_plane plane = {0};
+-	struct dc_plane_cap cap = {0};
++	struct drm_plane *plane;
++	struct dc_plane_cap *cap;
+ 	uint32_t formats[32] = {0};
+ 
+-	plane.type = DRM_PLANE_TYPE_PRIMARY;
+-	KUNIT_EXPECT_EQ(test, amdgpu_dm_plane_get_plane_formats(&plane, NULL, formats, 32), 14);
++	plane = kunit_kzalloc(test, sizeof(*plane), GFP_KERNEL);
++	cap = kunit_kzalloc(test, sizeof(*cap), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, plane);
++	KUNIT_ASSERT_NOT_NULL(test, cap);
++
++	plane->type = DRM_PLANE_TYPE_PRIMARY;
++	KUNIT_EXPECT_EQ(test, amdgpu_dm_plane_get_plane_formats(plane, NULL, formats, 32), 14);
+ 
+-	cap.pixel_format_support.nv12 = true;
+-	cap.pixel_format_support.p010 = true;
+-	cap.pixel_format_support.fp16 = true;
+-	KUNIT_EXPECT_EQ(test, amdgpu_dm_plane_get_plane_formats(&plane, &cap, formats, 32), 20);
++	cap->pixel_format_support.nv12 = true;
++	cap->pixel_format_support.p010 = true;
++	cap->pixel_format_support.fp16 = true;
++	KUNIT_EXPECT_EQ(test, amdgpu_dm_plane_get_plane_formats(plane, cap, formats, 32), 20);
+ 
+-	plane.type = DRM_PLANE_TYPE_OVERLAY;
+-	KUNIT_EXPECT_EQ(test, amdgpu_dm_plane_get_plane_formats(&plane, NULL, formats, 32), 9);
++	plane->type = DRM_PLANE_TYPE_OVERLAY;
++	KUNIT_EXPECT_EQ(test, amdgpu_dm_plane_get_plane_formats(plane, NULL, formats, 32), 9);
+ 
+-	plane.type = DRM_PLANE_TYPE_CURSOR;
+-	KUNIT_EXPECT_EQ(test, amdgpu_dm_plane_get_plane_formats(&plane, NULL, formats, 32), 1);
++	plane->type = DRM_PLANE_TYPE_CURSOR;
++	KUNIT_EXPECT_EQ(test, amdgpu_dm_plane_get_plane_formats(plane, NULL, formats, 32), 1);
+ }
+ 
+ /**
+@@ -433,30 +442,36 @@ static void dm_test_get_cursor_position(struct kunit *test)
+ {
+ 	struct amdgpu_device *adev;
+ 	struct amdgpu_crtc *amdgpu_crtc;
+-	struct drm_plane plane = {0};
+-	struct drm_plane_state state = {0};
+-	struct drm_framebuffer fb = {0};
++	struct drm_plane *plane;
++	struct drm_plane_state *state;
++	struct drm_framebuffer *fb;
+ 	struct dc_cursor_position position = {0};
+ 
+ 	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
+ 	amdgpu_crtc = kunit_kzalloc(test, sizeof(*amdgpu_crtc), GFP_KERNEL);
++	plane = kunit_kzalloc(test, sizeof(*plane), GFP_KERNEL);
++	state = kunit_kzalloc(test, sizeof(*state), GFP_KERNEL);
++	fb = kunit_kzalloc(test, sizeof(*fb), GFP_KERNEL);
+ 	KUNIT_ASSERT_NOT_NULL(test, adev);
+ 	KUNIT_ASSERT_NOT_NULL(test, amdgpu_crtc);
++	KUNIT_ASSERT_NOT_NULL(test, plane);
++	KUNIT_ASSERT_NOT_NULL(test, state);
++	KUNIT_ASSERT_NOT_NULL(test, fb);
+ 
+ 	adev->ip_versions[DCE_HWIP][0] = IP_VERSION(4, 0, 0);
+ 	amdgpu_crtc->max_cursor_width = 64;
+ 	amdgpu_crtc->max_cursor_height = 64;
+ 
+-	plane.dev = &adev->ddev;
+-	plane.state = &state;
+-	state.fb = &fb;
+-	state.crtc_x = -5;
+-	state.crtc_y = -7;
+-	state.crtc_w = 32;
+-	state.crtc_h = 32;
++	plane->dev = &adev->ddev;
++	plane->state = state;
++	state->fb = fb;
++	state->crtc_x = -5;
++	state->crtc_y = -7;
++	state->crtc_w = 32;
++	state->crtc_h = 32;
+ 
+ 	KUNIT_ASSERT_EQ(test,
+-			amdgpu_dm_plane_get_cursor_position(&plane, &amdgpu_crtc->base, &position),
++			amdgpu_dm_plane_get_cursor_position(plane, &amdgpu_crtc->base, &position),
+ 			0);
+ 	KUNIT_EXPECT_TRUE(test, position.enable);
+ 	KUNIT_EXPECT_EQ(test, position.x, 0);
+@@ -466,10 +481,10 @@ static void dm_test_get_cursor_position(struct kunit *test)
+ 	KUNIT_EXPECT_TRUE(test, position.translate_by_source);
+ 
+ 	memset(&position, 0, sizeof(position));
+-	state.crtc_x = -64;
+-	state.crtc_y = 0;
++	state->crtc_x = -64;
++	state->crtc_y = 0;
+ 	KUNIT_ASSERT_EQ(test,
+-			amdgpu_dm_plane_get_cursor_position(&plane, &amdgpu_crtc->base, &position),
++			amdgpu_dm_plane_get_cursor_position(plane, &amdgpu_crtc->base, &position),
+ 			0);
+ 	KUNIT_EXPECT_FALSE(test, position.enable);
+ }
+@@ -483,35 +498,37 @@ static void dm_test_get_cursor_position(struct kunit *test)
+ static void dm_test_format_mod_supported(struct kunit *test)
+ {
+ 	struct amdgpu_device *adev;
+-	struct drm_plane plane = {0};
++	struct drm_plane *plane;
+ 	uint64_t listed_mod;
+ 
+ 	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	plane = kunit_kzalloc(test, sizeof(*plane), GFP_KERNEL);
+ 	KUNIT_ASSERT_NOT_NULL(test, adev);
++	KUNIT_ASSERT_NOT_NULL(test, plane);
+ 
+ 	adev->family = AMDGPU_FAMILY_NV;
+-	plane.dev = &adev->ddev;
++	plane->dev = &adev->ddev;
+ 
+ 	KUNIT_EXPECT_TRUE(test,
+-			  amdgpu_dm_plane_format_mod_supported(&plane, DRM_FORMAT_XRGB8888,
++			  amdgpu_dm_plane_format_mod_supported(plane, DRM_FORMAT_XRGB8888,
+ 							       DRM_FORMAT_MOD_LINEAR));
+ 	KUNIT_EXPECT_TRUE(test,
+-			  amdgpu_dm_plane_format_mod_supported(&plane, DRM_FORMAT_XRGB8888,
++			  amdgpu_dm_plane_format_mod_supported(plane, DRM_FORMAT_XRGB8888,
+ 							       DRM_FORMAT_MOD_INVALID));
+ 
+ 	KUNIT_EXPECT_FALSE(test,
+-			   amdgpu_dm_plane_format_mod_supported(&plane, DRM_FORMAT_XRGB8888,
++			   amdgpu_dm_plane_format_mod_supported(plane, DRM_FORMAT_XRGB8888,
+ 								DRM_FORMAT_MOD_VENDOR_AMD));
+ 
+ 	listed_mod = AMD_FMT_MOD |
+ 		     AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_S_X) |
+ 		     AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX9) |
+ 		     AMD_FMT_MOD_SET(DCC, 1);
+-	plane.modifiers = &listed_mod;
+-	plane.modifier_count = 1;
++	plane->modifiers = &listed_mod;
++	plane->modifier_count = 1;
+ 
+ 	KUNIT_EXPECT_FALSE(test,
+-			   amdgpu_dm_plane_format_mod_supported(&plane, DRM_FORMAT_NV12, listed_mod));
++			   amdgpu_dm_plane_format_mod_supported(plane, DRM_FORMAT_NV12, listed_mod));
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_test.c
+index 31194ab42f04..0b29bf0a7d04 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_test.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_test.c
+@@ -452,14 +452,19 @@ static void dm_test_get_plane_scale_zero_src_width(struct kunit *test)
+  */
+ static void dm_test_scaling_state_same(struct kunit *test)
+ {
+-	struct dm_connector_state a = { 0 };
+-	struct dm_connector_state b = { 0 };
++	struct dm_connector_state *a;
++	struct dm_connector_state *b;
+ 
+-	a.scaling = RMX_FULL;
+-	a.underscan_enable = false;
+-	b = a;
++	a = kunit_kzalloc(test, sizeof(*a), GFP_KERNEL);
++	b = kunit_kzalloc(test, sizeof(*b), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, a);
++	KUNIT_ASSERT_NOT_NULL(test, b);
+ 
+-	KUNIT_EXPECT_FALSE(test, is_scaling_state_different(&a, &b));
++	a->scaling = RMX_FULL;
++	a->underscan_enable = false;
++	*b = *a;
++
++	KUNIT_EXPECT_FALSE(test, is_scaling_state_different(a, b));
+ }
+ 
+ /**
+@@ -468,13 +473,18 @@ static void dm_test_scaling_state_same(struct kunit *test)
+  */
+ static void dm_test_scaling_state_scaling_changed(struct kunit *test)
+ {
+-	struct dm_connector_state a = { 0 };
+-	struct dm_connector_state b = { 0 };
++	struct dm_connector_state *a;
++	struct dm_connector_state *b;
++
++	a = kunit_kzalloc(test, sizeof(*a), GFP_KERNEL);
++	b = kunit_kzalloc(test, sizeof(*b), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, a);
++	KUNIT_ASSERT_NOT_NULL(test, b);
+ 
+-	a.scaling = RMX_FULL;
+-	b.scaling = RMX_CENTER;
++	a->scaling = RMX_FULL;
++	b->scaling = RMX_CENTER;
+ 
+-	KUNIT_EXPECT_TRUE(test, is_scaling_state_different(&a, &b));
++	KUNIT_EXPECT_TRUE(test, is_scaling_state_different(a, b));
+ }
+ 
+ /**
+@@ -483,16 +493,21 @@ static void dm_test_scaling_state_scaling_changed(struct kunit *test)
+  */
+ static void dm_test_scaling_state_underscan_enabled(struct kunit *test)
+ {
+-	struct dm_connector_state old_state = { 0 };
+-	struct dm_connector_state new_state = { 0 };
++	struct dm_connector_state *old_state;
++	struct dm_connector_state *new_state;
++
++	old_state = kunit_kzalloc(test, sizeof(*old_state), GFP_KERNEL);
++	new_state = kunit_kzalloc(test, sizeof(*new_state), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, old_state);
++	KUNIT_ASSERT_NOT_NULL(test, new_state);
+ 
+ 	/* new enables underscan with non-zero borders, old has it disabled */
+-	new_state.underscan_enable = true;
+-	new_state.underscan_hborder = 16;
+-	new_state.underscan_vborder = 16;
+-	old_state.underscan_enable = false;
++	new_state->underscan_enable = true;
++	new_state->underscan_hborder = 16;
++	new_state->underscan_vborder = 16;
++	old_state->underscan_enable = false;
+ 
+-	KUNIT_EXPECT_TRUE(test, is_scaling_state_different(&new_state, &old_state));
++	KUNIT_EXPECT_TRUE(test, is_scaling_state_different(new_state, old_state));
+ }
+ 
+ /**
+@@ -501,16 +516,21 @@ static void dm_test_scaling_state_underscan_enabled(struct kunit *test)
+  */
+ static void dm_test_scaling_state_underscan_border_changed(struct kunit *test)
+ {
+-	struct dm_connector_state a = { 0 };
+-	struct dm_connector_state b = { 0 };
++	struct dm_connector_state *a;
++	struct dm_connector_state *b;
++
++	a = kunit_kzalloc(test, sizeof(*a), GFP_KERNEL);
++	b = kunit_kzalloc(test, sizeof(*b), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, a);
++	KUNIT_ASSERT_NOT_NULL(test, b);
+ 
+-	a.underscan_enable = true;
+-	a.underscan_hborder = 16;
+-	a.underscan_vborder = 16;
+-	b = a;
+-	b.underscan_hborder = 32;
++	a->underscan_enable = true;
++	a->underscan_hborder = 16;
++	a->underscan_vborder = 16;
++	*b = *a;
++	b->underscan_hborder = 32;
+ 
+-	KUNIT_EXPECT_TRUE(test, is_scaling_state_different(&a, &b));
++	KUNIT_EXPECT_TRUE(test, is_scaling_state_different(a, b));
+ }
+ 
+ /* Tests for is_timing_unchanged_for_freesync() */
 -- 
 2.53.0
 
