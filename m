@@ -2,137 +2,110 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id l9dVABwaPGqHjwgAu9opvQ
+	id sFU/KUUdPGpNkAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 19:55:40 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:09:09 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C0D06C0875
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 19:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32C4C6C0A22
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:09:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=AL53kXPD;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=PJ6QK60d;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0150A10E0DA;
-	Wed, 24 Jun 2026 17:55:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DBF610F080;
+	Wed, 24 Jun 2026 18:09:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010003.outbound.protection.outlook.com [52.101.201.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A075C10E0C6;
- Wed, 24 Jun 2026 17:55:34 +0000 (UTC)
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012071.outbound.protection.outlook.com [52.101.48.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A536010F080
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 18:09:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=y7tZ/btR1sG40Pz9DFriTUGyS7TgYmi4EasQlhxJAR2cpu+5cJgPq+gKBI0fIWaW5aw7vc8aok5496TU/Jj0ndmMISEbbLXwThyq2/dUmBDr0c1eSUFuLqpuFU7OenOKewPC338jsqxqnGoVo7RTF8k7l2SPc8NpAeKG+gJ4vC9acCIrzos9pNnr5KDDE9eJxpjuy51f1tc1MIsxpzIu7a1XS7prhSheB+WOH6TKM4PPaXOY5yF9gw6UaCTA+qOtkgbV9cqjIVX/aXtfV3OzDXFK0Q5Io5Jz/6m39ipPFlY8pWJVFfMapEr9z5G1D1pPanvOiCfXWHN6+6IS5yFZWQ==
+ b=H+/w1cGfqlRMqOupgpbWF9vqG6ZHXlBIAUkAeuIfcnGgn5Y7CYVAcmHSAjA8lFnTYtd28fb6CJ77Wy9MPj5xwUXcqng6rMYdUH/3hbVi/gll5VR5WN3Dlcd/8rQ8vd275HOIrIxSfrOpYgPxvnUUxbnfz8iVj4BWt1lxm6HQ+PnyfzlCJqkKr7sH/7TZC5KhZLvPltPAMIjw41hpB3u9oytxtG5qR8oNFKMWAHR/0EsAbDhhgFc2JYhG0CTywBvGuckHC4w0pnAzfCydPglC+x3Jvl9i45HGIC5oVRrsPikyrxmXgyIGgoCT2wu14bfrtEQqDkI5SpR8ARNtvfrJGw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=m0j10DBz6sMFGFR+1nvmsXMB450XWQZmX/qeMY/ZF+0=;
- b=t985mA6hWUftXtzkFqcBZUfvAtjRSLBUiVH/8fuznay2ooZepbGWp9JB0vdDmhnZPDH+g9X49zy1sjyAq+R8RGBrKnvsLuWqO4EVFr9OhVy3XnTl5eI8A9QLAzCfN/Y2bD4J88Tn89MUCSYPCHLu7xVvsveJiYcnVgXRm31FTTvEuGgu6hKHRmTn9u1Lj16/Ue07gKtOrxkV2o7C5wRcwiZtMlCHYrYfhRel45plPeW7a+tNimcBCCNPahdlzXixt2f0SY8d7FmWlrk7GYvuG2q35VIcX0KmGmgeH4xNMj6USna5YtLTQa+33dWtZTv+kTu7ZbJgmTiUhzsypgld0A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=d15xpKqpGlpFaiH5czE7ul7TR/jjSaToEqsslqub3/o=;
+ b=kgfNn9XsOSG3SKnu9ij3RHf0Mp9ZGvdVskE7zN66/xg+3xwh0ELFnPuCWNN8MArTrUU/mA6MFwgDA07XgnYtqLT55vOdB+m575I8u9uEhB3mJfvvHwAh1iHs489oesfw6AwrUc0gj55c5H4xNM/Oi4/qN9cjZdZZWzoCuhuoqtFKCKKniS1mgndTW2bnWrS+8iU/t+Pd1PaDiCPoband+W5YAERApkwIBlaIxUjums2DxK9ln3daMR1GOwY8EXcH/cPx/nMz7kpavKo/OvIZEZlfGmEPvDvBEK1UB7+xcjYBB3Hf2bdfTNuzS/TVZQbYTQgf+SQPueGN9KwvwHV0QA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m0j10DBz6sMFGFR+1nvmsXMB450XWQZmX/qeMY/ZF+0=;
- b=AL53kXPDnKH4N2zVtAPjZ38kAoZD9ObHrLjh2ZJzPKPtDXaER/4D2gRsZliA/YsDxQYyjYYJO9TCY8C0H15KAjgTGpYrxQ5D22Q0dwpXeUIRqzuas2NjAl08ItN7H0DuuhsO334BK7+mJ8pCekYq59nNXf142bQBV+vDY0bl/G0=
-Received: from SJ0PR12MB7007.namprd12.prod.outlook.com (2603:10b6:a03:486::8)
- by MW6PR12MB8897.namprd12.prod.outlook.com (2603:10b6:303:24a::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.15; Wed, 24 Jun
- 2026 17:55:31 +0000
-Received: from SJ0PR12MB7007.namprd12.prod.outlook.com
- ([fe80::6f95:c4a2:894d:9e8a]) by SJ0PR12MB7007.namprd12.prod.outlook.com
- ([fe80::6f95:c4a2:894d:9e8a%5]) with mapi id 15.21.0139.018; Wed, 24 Jun 2026
- 17:55:30 +0000
-Message-ID: <faa1c424-2282-4e70-9934-e29f437f8bbb@amd.com>
-Date: Wed, 24 Jun 2026 13:55:26 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] drm/amd/display: Pin native scanout to VRAM on
- large-carveout APUs
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>, Melissa Wen
- <mwen@igalia.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, natalie.vock@gmx.de
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- "Pierre-Loup A . Griffais" <pgriffais@valvesoftware.com>
-References: <20260616071037.26718-1-matthew.schwartz@linux.dev>
- <334d4642-a7ce-4d04-ab14-6b95653e6f86@amd.com>
- <09a37c38-3f99-40bf-9a87-f88298ce349a@amd.com>
- <9b96d6a5-7c3c-4bd5-8785-76c9642bc933@amd.com>
-Content-Language: en-US
-From: Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <9b96d6a5-7c3c-4bd5-8785-76c9642bc933@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YQZPR01CA0007.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:85::25) To SJ0PR12MB7007.namprd12.prod.outlook.com
- (2603:10b6:a03:486::8)
+ bh=d15xpKqpGlpFaiH5czE7ul7TR/jjSaToEqsslqub3/o=;
+ b=PJ6QK60d7EoUgHp0iAeEP8vm+vQBK+OKjMv7xB0d3NDwSlvQdi4zv4ZsSeih5ei/NG4Qx4Z1WCI+QYhAnaETJ4hkDl834aKYQDgmCtctVwa+EEdTQNS/59LZD8HPo0YVnZtYAWtI5K+mskAXEAYorcXDPtM2DJ195EoKqnMUncM=
+Received: from SJ0PR05CA0201.namprd05.prod.outlook.com (2603:10b6:a03:330::26)
+ by BN7PPFEDA8E6F1A.namprd12.prod.outlook.com
+ (2603:10b6:40f:fc02::6e8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.13; Wed, 24 Jun
+ 2026 18:09:00 +0000
+Received: from SJ5PEPF000001CB.namprd05.prod.outlook.com
+ (2603:10b6:a03:330:cafe::65) by SJ0PR05CA0201.outlook.office365.com
+ (2603:10b6:a03:330::26) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.9 via Frontend Transport; Wed, 24
+ Jun 2026 18:08:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ5PEPF000001CB.mail.protection.outlook.com (10.167.242.40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Wed, 24 Jun 2026 18:08:58 +0000
+Received: from MKMGEORZHAN02.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 24 Jun
+ 2026 13:08:55 -0500
+From: George Zhang <george.zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, Roman Li <roman.li@amd.com>,
+ Wayne Lin <wayne.lin@amd.com>, Tom Chung <chiahsuan.chung@amd.com>, "Fangzhi
+ Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
+ <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
+ <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
+ <Chen-Yu.Chen@amd.com>, George Zhang <george.zhang@amd.com>
+Subject: [PATCH 00/28] DC Patches Jun 24, 2026
+Date: Wed, 24 Jun 2026 14:02:58 -0400
+Message-ID: <20260624180829.4775-1-george.zhang@amd.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR12MB7007:EE_|MW6PR12MB8897:EE_
-X-MS-Office365-Filtering-Correlation-Id: 25d9b742-f743-4316-9179-08ded219c80e
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CB:EE_|BN7PPFEDA8E6F1A:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2f60f463-b1a2-4b1e-40cc-08ded21ba965
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|376014|366016|18002099003|22082099003|11063799006|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info: 8b1pGfGBCZgTo6nh4GX/1LkJl6C9x1GiIkvS3zLy536dHQgyXSmo8wko+8RDaB1GgVW+dY+uGiIspe72xJxjPYABSlnQuVJHDgRFcfdyDW2LAxujlxa0GAbSoqW0kIY6dnvr2/he7n26HT5dry/RKXQ/1I5dGg5PZxsuO6d0I3ewIll37dQiJ6X8IEPIgFKtk9PeC5U4KohoVbD3zOKNZvjYxn2oEoEC/v/X7DrJH93LAhPr4Kgfe8uXW5y3NhTbsStErfLUDOA8c8S6K3CS1bako34c50YlInFLCkS8/3AVerGbALU08NLM6aGNDBnx0h4mZkD0SuQuQlygjUiov4J8Le0prFw+kMNEijBlQ1/MfH1Mrhqag3vOkcRR4wUtsw9LHgBGpMhT7hyRT7Bf/Ekw+I2oNm8+ydBkjjLJsbg134nM6iiKb0xI+NkZ8WqEH/xeCTvJSDt5TaqPIVikP/6XJvNVosiHEo1rrkbxRVXrg5/c9RqzlVEVh3O11zDL3xmej4QKnsD3LlbxZb2uPVykxFbLniVrq7NPkuGRRyZEYOLM81KNpKq8GI/N/ua33QbmCr9QisKOhQN9BvMb/2i7Nc4z42lmyQ2Yr3HGvwl5h5TopMvwfr4vX5+ODX4zceaxDhiZK5oBU9kxb5vxrGFML/wWJL/gMCcxHPBuxzQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR12MB7007.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(18002099003)(22082099003)(11063799006)(4143699003)(56012099006);
+ ARA:13230040|82310400026|36860700016|1800799024|23010399003|376014|6133799003|3023799007|18002099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: ryNJ6mD/fZQLfWWXfIWyuHlWKN6oZjFnEkQ7MawN56gbS5GoLr5A4QLf7/yQQxXsmJ1/hCSSsjXJJapRfNmpnNjJiQNJuX1v3fvkQGHk9bV2/hqoHp1fzTLmjRK3/zn0p8wyV5JwOl8g1eG9RZgIuZJGPLph+bItXFs2wZ2GHjg0XthTgb9XOzuqwbn2FIqhVg1DB0K1U9dxxHdpZTF6Q87uxC7amxu78ub80PKjYRqVH4/NdvxW6GrSFqNWVU3BoeSksKIeGdhqIZ5Y+72eLpGVrAlvdEUBAWtNgU4AFD+MFpMfrnreC7EsiDn60OF2cmJWg09tbta7VY5onoR8vpGhFshejKnFeW9PhIEjz1ikLwI83qtCpnh9riPIXXrdtsJivjOham9BMsqk8QQLYtMKZ4isnDAXP8yE2oj2hdnOE1nTpAY88YAObVIhA6BRsyypOuafPAV6CTeNxjYkPCg9GSRJddBK4WLMpbH/b9sZIuSurNDxXc1Pf3C4bXsZ7dcT6W8zU3DocO6t8suGEMeUEreqf44XqMaxLPHE5yNbV8uDcuvl8R5RROn+xr45NaHS7412dgKWvv9JE5qHsmlCzuZxoDcUWui3it+Dpsm7W9gV0KcxfZ6QG2Rv7P8fA0KVQtga3HB9PnZoWSYsktO7rByOgpUUM9xxoyp1F6BM7tY5UjN9hpOyIyLLHrXXuSBFfE6rRJzF1nFT5GWI3Q==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(36860700016)(1800799024)(23010399003)(376014)(6133799003)(3023799007)(18002099003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bytwV1FJblVIaERZZ2xRTFNYazMzcDl1VnF6aVFPa3FKT1BEK3F4SjhUUkxP?=
- =?utf-8?B?V2JDa1RleHZkOHBuUGxiL1llVjdPbEVvYVRSVnFIa3Rlck9NUnA4cmNXV3cr?=
- =?utf-8?B?bmdBSDhLTllwVUdSRE5FVTZkaW51R2VyeTFhWWxWNWVzMlh5VHhueXhLRlU2?=
- =?utf-8?B?c2FhbkZMMmx0N2J6T01HMUZoWWZQWjE2cGdxeE55c2F6ZjBDblp4L0IyV2Q2?=
- =?utf-8?B?Y1lyMjRPKytIZlEvSUxKbDZRc1J6ZzcrNHNhSjNnazkreXhzNnF6S28zNW9N?=
- =?utf-8?B?RmhwRnRXaWp6U014RzNBVzNSRU9qVDJROUJFWitjc0dweE5MTDBaVVBtYzQz?=
- =?utf-8?B?RWNLRmNMS3laS2lYRDZnT1M2djRQc3FSMXpmWVN6bm85RktjRWpLaS85eDI2?=
- =?utf-8?B?M3J4akVLSGdaUHJ2ckRBb2w2R1QvME9EUVZSek5WM0lxcWJmbGdVZ05adTd2?=
- =?utf-8?B?VW5IUzlKNjFONUpDUGsrZTlBRWpiMFFvaXZobGtEYm1rMFM0OVl0R01KQnFm?=
- =?utf-8?B?cG9oU2lrbzJMM0g1aXFTUXE5UlVKcm1laXdSQ25ZcTNUSWJUNkQwZ2pxS0pa?=
- =?utf-8?B?ejFUdjJ2cUFCc3hQNG5OY0RMbVU3UDdvQVFYSlEydnNMMWdabTVEVitYem9P?=
- =?utf-8?B?aXA3OUJRdVh1K1FnVVMvRnY0cFZYS1Rwa0JvNURpQWVic2Y3NWdFR3JyTjRT?=
- =?utf-8?B?ZkN5di9vbWdabzdNVE84Ny9lY0U0WTEyeTdGL2Z2QmhzSjNvMW9UQmlpelYy?=
- =?utf-8?B?UXNwWFVJU0VNdVBxbm5FVmFyaTdzNEJNSW5vU3BYNFB3dGQ5NGtqQ0hCMXdn?=
- =?utf-8?B?ZDJwLzJnUGQ1RzJhS3BKUHRhRnpFRHdCaHlvbTloQ3BaRktGTmI4Y0Q5TC8v?=
- =?utf-8?B?Yjd3QlB1MFVJQmtaL2o5eHMwQWJVVmhscTE0LzkrTmpZcEhtZnBuVVM3VVNJ?=
- =?utf-8?B?eXJ5cE8ya1IvMGd5c3pvd3dXd3h5MDRybDNkd2ZqMzVUZHozSG5GRjZUSDZw?=
- =?utf-8?B?TlZLUzNqSW5TSjJNUzU4dzBFN2Y2LzZqNjRDbll5OHhLRjlqUkVtMmxNd0xB?=
- =?utf-8?B?UmxNNC9MWXFXdW5ZaHc0YTRBeVN5LzZhYUZHMUUwYW9JUnpITkJXVXduVFQ2?=
- =?utf-8?B?aFgvRjZ6MG43MjN4UytoZ2FobzdDd2dNdjcrbi9nakJHSTFYWVNpdWptUlRW?=
- =?utf-8?B?M1FwaVNLYUp5SXk5WGMwUUdPUENUVm5NYXEvUXJVdFcydXpXWWN4VmhPeng1?=
- =?utf-8?B?NXE5eExmejI0NTJyd0UzRk1vRlFxdS9OR0pVQjVPZ2ZYT3FlQmg1MGtEellr?=
- =?utf-8?B?SHR6OFRCZU43WEtoaGxidUMrb3FhcUlIOU81Q0kwRG94bEdZbklaWktjdHgx?=
- =?utf-8?B?VnJBRkE1VzFIVjd6elJiKzQydGQrUGNoeGNQMDdrZlo1VXNTMWc3QVNBZTBv?=
- =?utf-8?B?Nm9sYktlMDQ1N3Y4N3ZNNnU3dXFweVU2dldKemZocXY0WG5kWlNxRWUzcmhj?=
- =?utf-8?B?NlkyTklvYXFOdm1VZWxLd2c4c05QbFFacEY5QlZRMTJzcEZqTklBY0plNVFj?=
- =?utf-8?B?Q2Z4SkVWTUJmOCtRT2tPY0NiOGJLL3dXdkMwSk8rYmlzUDdUZ1JrSStlOEdE?=
- =?utf-8?B?eTNYQ1JYVXlCL3BMaDlBM2U5VjdyNktZWlJDZFJFRU9wZm1nT3llOGJ4SFhm?=
- =?utf-8?B?aTVjUWt2dVlmaXZLSytRV0FJMnkzbXFmc2Z4RWpHSTJPcEcycEhKQkp3b0d0?=
- =?utf-8?B?MUZkN1hPQUZkVGZWRUV4N0lWeTFDVUl1eVZrRGxNRFl1SG1PM3ZYYWF6NWJI?=
- =?utf-8?B?UUlyWSs5d0VySXBjTTVGcnVJOERvWHZlTC9UTStlelZtNTFPdnk5NTd3aVJM?=
- =?utf-8?B?dXB3RnRWTXRKVU5OaThhL2llQ21uZFdWMUoySEhSOUpRcTNRVG8zSXVtUThy?=
- =?utf-8?B?YWNBaHRqK3lYVk5JY0RPYjhBSFZkM1JWem1BMldXOGJSQVdwY1E1QmswMCtE?=
- =?utf-8?B?R1djdkhpUzFWT2VBUTRwN1lXcXM2c0F3Mi9hSndpajBwUzhyeHBvRjFpclU0?=
- =?utf-8?B?dUlCT3dLNDJyT1hJV1BzdjQ5d1VBL1FuVkJzRCtSWWRSa1NsYmhJdXduY2Rm?=
- =?utf-8?B?MGtEYUlBb2VrVFczYVJMSFZMRmo4d0xPdmkvUjMrUjdFTG43MmhZcG5kWVFE?=
- =?utf-8?B?QjUvVUxNZmJSdm9NeStoKzQ3Unk3Wnd0cTcxS2FrbUJjbTE4V0VncDJMaGxa?=
- =?utf-8?B?eTNzL1NrVjFiUXA1RnJSNnQzNnRYWFQ2N1ZyNUdqRllkSzB1UWlycUtQQkRM?=
- =?utf-8?Q?zGdLmz8WQ23qAecp20?=
+X-MS-Exchange-AntiSpam-MessageData-0: DHFDFLtiFCieF5zPsc8fMHbppBX0lIqoM14gF2LaOcyL0GDZtkvY+Rmetzc8XTxg6KvhLYAh2t923JXfuzCOCbHdkaTZugehpIsupZz0oZebbRlyS/CYQukKgpho6ycAyrb/3mJfFngiNnwHNAVTHZUOivay36fGdMvhNp8TlDa0MsQnf4IzA6OORf1QoLHNOBNV2IJ/ywduk43m0O+I7IVdnDeeiRF6IJmREm50sXb5lwElBF/f75eANt+DTMLfEcHc2Q+SX3FJE0YzCPbZP997/G8K5OCHTmxTx0kAri+kvS8TfW8TXWNS1tcEUsCSTHO995y5RnZGJ/LYh54Q20TvDO34evYRRxhk7iKlORXoeNGXp6a1MbCaGXwpPSy5x3QfbWWUUxhG5JFSfc9LpQzQv/ZRouE2e6IIhRWCZwnEfkkwNMkG06a1Rdo3dQ1J
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 25d9b742-f743-4316-9179-08ded219c80e
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB7007.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 17:55:30.7245 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 18:08:58.0016 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f60f463-b1a2-4b1e-40cc-08ded21ba965
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uiR+rUEDwQMe4G9ft8WBT+nGBQ0y2SsUJiWjU1siygoQWVijW09MZ1VWr1RUFZYeSQqKJrJroBt48MPyKJ59tg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8897
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CB.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PPFEDA8E6F1A
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,8 +120,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
@@ -156,182 +131,169 @@ X-Spamd-Result: default: False [-2.31 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[amd.com,linux.dev,igalia.com,gmx.de];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[amd.com:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:mid,amd.com:from_mime,linux.dev:email]
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[george.zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:mid,amd.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9C0D06C0875
+X-Rspamd-Queue-Id: 32C4C6C0A22
 
+This DC patchset brings improvements in multiple areas. In summary, we have:
 
+* Fixes on DCN4, encoder, debugfs output, and others
+* Enhanced KUnit coverage
+* Code cleanup
 
-On 2026-06-24 11:52, Christian König wrote:
-> On 6/24/26 17:30, Harry Wentland wrote:
->> On 2026-06-16 03:31, Christian König wrote:
->>> On 6/16/26 09:10, Matthew Schwartz wrote:
->>>> Native scanout buffers on APUs are pinned with the VRAM|GTT domain, so
->>>> under VRAM carveout pressure a swapchain can end up split across VRAM and
->>>> GTT. The scanout buffer's memory type then changes from one flip to the
->>>> next, and amdgpu_dm_crtc_mem_type_changed() rejects an async page flip
->>>> across the change. The result is repeated async page flip failures,
->>>> observed as choppy updates under carveout pressure, until the buffers
->>>> reconverge to a single domain.
->>>
->>> That's intentional behavior.
->>>
->>>> Pin native scanout buffers in VRAM only so the swapchain stays in one
->>>> memory domain. Restrict this to APUs whose carveout is larger than
->>
->> Above you mention that under VRAM pressure a swapchain can end up split
->> across VRAM and GTT. Wouldn't restricting the swapchain to VRAM now mean
->> that in those cases you fail to allocate the swapchain entirely?
-> 
-> Yes, exactly that.
-> 
-> My educated guess is that the display server then falls back to using a copy instead of a flip and that helps saving memory somehow (e.g. less scanout buffers alocated concurrently).
-> 
-> Would it somehow be possible to get DC to dynamically switch between VRAM and GTT?
-> 
+Alex Hung (12):
+  drm/amd/display: Extract backlight helpers for KUnit tests
+  drm/amd/display: Add more KUnit tests for amdgpu_dm_colorop
+  drm/amd/display: Simplify boolean checks
+  drm/amd/display: Simplify DMUB notify registration
+  drm/amd/display: Fix KUnit test crash after global alpha change
+  drm/amd/display: Add KUnit test for amdgpu_dm_wb
+  drm/amd/display: Add KUnit tests for amdgpu_dm_replay
+  drm/amd/display: Add KUnit tests for amdgpu_dm_psr
+  drm/amd/display: Add KUnit tests for amdgpu_dm_pp_smu
+  drm/amd/display: Add KUnit tests for mst_types
+  drm/amd/display: Extract shared KUnit test helpers
+  drm/amd/amdgpu: Fix stack frame size warnings in KUnit tests
 
-DCN can't switch between mapped and unmapped memory. I'm not a memory
-management expert but wouldn't GTT be in GART (mapped) and VRAM in
-the (unmapped) FB aperture?
+Andrew Lichmanov (1):
+  drm/amd/display: Disable mem gating for DCHVM on DCHVM init
 
-From DCHUB HW doc:
-"No change from mapped to unmapped or unmapped to mapped is 
-allowed for immediate f lip"
+Austin Zheng (1):
+  drm/amd/display: Revert "Add Debug Option To Enable Per-DPM De-rate
+    Usage"
 
-If so, we can't async flip between them.
+Bhawanpreet Lakha (1):
+  drm/amd/display: Add kunit tests for amdgpu_dm_plane
 
-Harry
+Bhuvanachandra Pinninti (2):
+  drm/amd/display: Cleaned up headers
+  drm/amd/display: Add block sequence support for bandwidth programming
+    operations
 
-> Regards,
-> Christian
-> 
->>
->> Harry
->>
->>>> AMDGPU_SG_THRESHOLD, so small-carveout parts keep their existing VRAM|GTT
->>>> placement, and fall back to GTT when the buffer does not fit in VRAM, so
->>>> the flip still succeeds and the swapchain stays in one domain. Imported
->>>> buffers may only be pinnable in GTT, so leave those on the default
->>>> domains.
->>>
->>> The display guys need to take a closer look at that, but it sounds like what we used to have before and that caused problems.
->>>
->>> We somehow need to change the DC stuff to allow switching between VRAM and GTT frame buffers to fully fix this.
->>>
->>> Regards,
->>> Christian.
->>>
->>>>
->>>> Signed-off-by: Matthew Schwartz <matthew.schwartz@linux.dev>
->>>> ---
->>>> Hi,
->>>>
->>>> This came up while testing my kernel patch to fix mem_type detection for
->>>> async flips here: https://lore.kernel.org/amd-gfx/20260611154438.571685-1-matthew.schwartz@linux.dev/
->>>>
->>>> I found a new issue where splitting a swapchain between VRAM and GTT
->>>> causes a noticeable stutter in gameplay if gamescope is using direct
->>>> scanout and tearing is enabled while a game is already running.
->>>>
->>>> Once a swapchain is split across the VRAM carveout and GTT, the scanout
->>>> buffer's mem_type changes from one flip to the next, so
->>>> amdgpu_dm_crtc_mem_type_changed() rejects the async flip. Under direct
->>>> scanout with tearing that rejection recurs every time the displayed buffer
->>>> crosses domains, which is what surfaces as the choppiness. 
->>>>
->>>> With this patch, I can enable tearing on top of an already-disabled frame
->>>> limit mid-game and no longer reproduce the choppiness.
->>>>
->>>> amdgpu_gem_info confirms the swapchain converges to a single domain
->>>> instead of splitting across VRAM and GTT.
->>>>
->>>> Before:
->>>> 0x00000f81:      3981312 byte GTT exported as ino:275 NO_CPU_ACCESS CPU_GTT_USWC VRAM_CLEARED VRAM_CONTIGUOUS EXPLICIT_SYNC     write fence:drm_sched gfx_0.0.0 seq 88248 signalled
->>>> 0x00000f82:      3981312 byte GTT exported as ino:276 NO_CPU_ACCESS CPU_GTT_USWC VRAM_CLEARED VRAM_CONTIGUOUS EXPLICIT_SYNC     write fence:drm_sched gfx_0.0.0 seq 88224 signalled
->>>> 0x00000f83:      3981312 byte VRAM VISIBLE pin count 1 exported as ino:277 NO_CPU_ACCESS CPU_GTT_USWC VRAM_CLEARED VRAM_CONTIGUOUS EXPLICIT_SYNC        write fence:drm_sched gfx_0.0.0 seq 88236 signalled
->>>>
->>>> After:
->>>> 0x00000f82:      3981312 byte VRAM VISIBLE pin count 1 exported as ino:548 NO_CPU_ACCESS CPU_GTT_USWC VRAM_CLEARED VRAM_CONTIGUOUS EXPLICIT_SYNC        write fence:drm_sched gfx_0.0.0 seq 822258 signalled
->>>> 0x00000f83:      3981312 byte VRAM VISIBLE exported as ino:549 NO_CPU_ACCESS CPU_GTT_USWC VRAM_CLEARED VRAM_CONTIGUOUS EXPLICIT_SYNC    write fence:drm_sched gfx_0.0.0 seq 822255 signalled
->>>> 0x00000f84:      3981312 byte VRAM VISIBLE exported as ino:550 NO_CPU_ACCESS CPU_GTT_USWC VRAM_CLEARED VRAM_CONTIGUOUS EXPLICIT_SYNC    write fence:drm_sched gfx_0.0.0 seq 822261 signalled
->>>>
->>>> Does this seem like the correct approach to take for fixing the observed
->>>> issue? I wanted to start with an RFC to make sure I didn't overlook
->>>> anything obvious or miss any better methods of fixing this.
->>>>
->>>> Thanks,
->>>> Matt
->>>> ---
->>>>  .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 29 +++++++++++++++++--
->>>>  1 file changed, 26 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
->>>> index 23a9faa2ea89..b99f938e58ec 100644
->>>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
->>>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
->>>> @@ -932,6 +932,7 @@ static int amdgpu_dm_plane_helper_prepare_fb(struct drm_plane *plane,
->>>>  	struct amdgpu_bo *rbo;
->>>>  	struct dm_plane_state *dm_plane_state_new, *dm_plane_state_old;
->>>>  	uint32_t domain;
->>>> +	bool pin_vram_only;
->>>>  	int r;
->>>>  
->>>>  	if (!new_state->fb) {
->>>> @@ -958,13 +959,35 @@ static int amdgpu_dm_plane_helper_prepare_fb(struct drm_plane *plane,
->>>>  	if (r)
->>>>  		goto error_unlock;
->>>>  
->>>> -	if (plane->type != DRM_PLANE_TYPE_CURSOR)
->>>> -		domain = amdgpu_display_supported_domains(adev, rbo->flags);
->>>> -	else
->>>> +	/*
->>>> +	 * Pin native scanout in VRAM on APUs so a swapchain stays in one
->>>> +	 * memory domain. A VRAM/GTT split changes its mem_type between flips
->>>> +	 * and amdgpu_dm_crtc_mem_type_changed() rejects the async flip. Skip
->>>> +	 * small carveouts that may not fit, and imported buffers.
->>>> +	 */
->>>> +	pin_vram_only = plane->type != DRM_PLANE_TYPE_CURSOR &&
->>>> +			(adev->flags & AMD_IS_APU) &&
->>>> +			!rbo->tbo.base.import_attach &&
->>>> +			adev->gmc.real_vram_size > AMDGPU_SG_THRESHOLD;
->>>> +
->>>> +	if (plane->type == DRM_PLANE_TYPE_CURSOR || pin_vram_only)
->>>>  		domain = AMDGPU_GEM_DOMAIN_VRAM;
->>>> +	else
->>>> +		domain = amdgpu_display_supported_domains(adev, rbo->flags);
->>>>  
->>>>  	rbo->flags |= AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS;
->>>>  	r = amdgpu_bo_pin(rbo, domain);
->>>> +	if (r == -ENOMEM && pin_vram_only) {
->>>> +		/*
->>>> +		 * VRAM could not fit the buffer. Fall back to GTT where
->>>> +		 * allowed so the swapchain stays in one domain.
->>>> +		 */
->>>> +		domain = amdgpu_display_supported_domains(adev, rbo->flags);
->>>> +		if (domain & AMDGPU_GEM_DOMAIN_GTT) {
->>>> +			domain = AMDGPU_GEM_DOMAIN_GTT;
->>>> +			r = amdgpu_bo_pin(rbo, domain);
->>>> +		}
->>>> +	}
->>>>  	if (unlikely(r != 0)) {
->>>>  		if (r != -ERESTARTSYS)
->>>>  			DRM_ERROR("Failed to pin framebuffer with error %d\n", r);
->>>
->>
-> 
+Charlene Liu (1):
+  drm/amd/display: remove dead code related to forcevrr
+
+Harry Wentland (4):
+  drm/amd/display: fix malformed link_settings debugfs output
+  drm/amd/display: clamp DMUB AUX reply length to payload buffer
+  drm/amd/display: guard against overflow in HDCP message dump
+  drm/amd/display: hold a vblank ref while writeback is pending
+
+James Lin (1):
+  drm/amd/display: scale plane global alpha to 12 bits on DCN 4.2
+
+Leo Chen (1):
+  drm/amd/display: revert "Enable HUBP/DPP power gate for DCN42"
+
+Peichen Huang (1):
+  drm/amd/display: correct encoder minimal creation
+
+Relja Vojvodic (1):
+  drm/amd/display: Update link bw
+
+Taimur Hassan (1):
+  drm/amd/display: Promote DC to 3.2.388
+
+Wenjing Liu (1):
+  drm/amd/display: Replace repeated no-native-i2c checks with
+    force_i2c_over_aux field
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   64 +-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |    2 +
+ .../display/amdgpu_dm/amdgpu_dm_backlight.c   |   84 +-
+ .../display/amdgpu_dm/amdgpu_dm_backlight.h   |    8 +
+ .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c |    1 +
+ .../display/amdgpu_dm/amdgpu_dm_connector.c   |    2 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c |   20 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_dmub.c    |   32 +-
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c |   53 +-
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |   19 +-
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.h   |    7 +
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  127 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.h   |   51 +
+ .../amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c  |   52 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_pp_smu.h  |   23 +
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c |   51 +-
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_psr.h |    5 +
+ .../amd/display/amdgpu_dm/amdgpu_dm_replay.c  |    3 +
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c  |    1 +
+ .../amd/display/amdgpu_dm/tests/.kunitconfig  |    3 +
+ .../drm/amd/display/amdgpu_dm/tests/Makefile  |    3 +
+ .../tests/amdgpu_dm_backlight_test.c          |  140 +-
+ .../amdgpu_dm/tests/amdgpu_dm_colorop_test.c  |  140 +-
+ .../tests/amdgpu_dm_connector_test.c          |   64 +-
+ .../amdgpu_dm/tests/amdgpu_dm_crtc_test.c     |   15 +-
+ .../amdgpu_dm/tests/amdgpu_dm_helpers_test.c  |   19 +-
+ .../amdgpu_dm/tests/amdgpu_dm_irq_test.c      |   37 +-
+ .../amdgpu_dm/tests/amdgpu_dm_ism_test.c      |   39 +-
+ .../amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c |  142 ++
+ .../tests/amdgpu_dm_kunit_test_helpers.h      |   32 +
+ .../tests/amdgpu_dm_mst_types_test.c          |  643 ++++++-
+ .../amdgpu_dm/tests/amdgpu_dm_plane_test.c    | 1228 +++++++++++++
+ .../amdgpu_dm/tests/amdgpu_dm_pp_smu_test.c   | 1535 ++++++++++++++++-
+ .../amdgpu_dm/tests/amdgpu_dm_psr_test.c      |  518 +++++-
+ .../amdgpu_dm/tests/amdgpu_dm_replay_test.c   |  432 ++++-
+ .../display/amdgpu_dm/tests/amdgpu_dm_test.c  |   72 +-
+ .../amdgpu_dm/tests/amdgpu_dm_wb_test.c       |   56 +
+ .../dc/clk_mgr/dcn401/dcn401_clk_mgr.c        |   57 +-
+ .../dc/clk_mgr/dcn401/dcn401_clk_mgr.h        |    9 +
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |    4 +-
+ .../drm/amd/display/dc/core/dc_hw_sequencer.c |  154 ++
+ drivers/gpu/drm/amd/display/dc/dc.h           |    9 +-
+ drivers/gpu/drm/amd/display/dc/dce/dce_aux.c  |    9 +-
+ .../amd/display/dc/dce110/dce110_compressor.c |    2 -
+ .../display/dc/dce110/dce110_mem_input_v.c    |    2 -
+ .../amd/display/dc/dce112/dce112_compressor.c |    8 +-
+ .../dc/dio/dcn31/dcn31_dio_link_encoder.c     |    4 +
+ .../dc/dio/dcn31/dcn31_dio_link_encoder.h     |    2 +
+ .../dc/gpio/dce80/hw_translate_dce80.c        |    5 +-
+ .../display/dc/hubbub/dcn35/dcn35_hubbub.c    |    2 +-
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c |   97 +-
+ .../amd/display/dc/hwss/dcn401/dcn401_hwseq.h |   10 +
+ .../amd/display/dc/hwss/dcn401/dcn401_init.c  |    2 +
+ .../drm/amd/display/dc/hwss/hw_sequencer.h    |   82 +
+ .../gpu/drm/amd/display/dc/inc/hw/clk_mgr.h   |    8 +
+ .../gpu/drm/amd/display/dc/inc/link_service.h |    1 +
+ .../drm/amd/display/dc/link/link_factory.c    |    7 +-
+ .../amd/display/dc/link/protocols/link_ddc.c  |   20 +-
+ .../amd/display/dc/link/protocols/link_ddc.h  |    2 +
+ .../dc/link/protocols/link_dp_capability.c    |    8 +-
+ .../dc/link/protocols/link_dp_panel_replay.c  |    7 +-
+ .../link/protocols/link_edp_panel_control.c   |   13 +-
+ .../dc/resource/dcn31/dcn31_resource.c        |    4 +-
+ .../dc/resource/dcn314/dcn314_resource.c      |    4 +-
+ .../dc/resource/dcn315/dcn315_resource.c      |    4 +-
+ .../dc/resource/dcn316/dcn316_resource.c      |    4 +-
+ .../dc/resource/dcn35/dcn35_resource.c        |    4 +-
+ .../dc/resource/dcn351/dcn351_resource.c      |    4 +-
+ .../dc/resource/dcn36/dcn36_resource.c        |    4 +-
+ .../dc/resource/dcn42/dcn42_resource.c        |    8 +-
+ .../dc/resource/dcn42b/dcn42b_resource.c      |    4 +-
+ .../dcn401/dcn401_soc_and_ip_translator.c     |   16 -
+ .../drm/amd/display/modules/hdcp/hdcp_log.c   |   30 +-
+ .../gpu/drm/amd/display/modules/power/power.c |    7 +-
+ .../drm/amd/display/modules/power/power_abm.c |   14 +-
+ 75 files changed, 5875 insertions(+), 479 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_kunit_test_helpers.h
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
+
+-- 
+2.53.0
 
