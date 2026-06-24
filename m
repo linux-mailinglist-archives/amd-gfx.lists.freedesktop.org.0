@@ -2,86 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id J8jzNePSPGqyswgAu9opvQ
+	id qyhAIzUjPGqZkQgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 09:04:03 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:34:29 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73DF56C33B6
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 09:03:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E75F16C0C0D
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:34:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=YwQYtC4+;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=3zBTrsBf;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B58BB10F153;
-	Thu, 25 Jun 2026 07:03:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FEB110E0E3;
+	Wed, 24 Jun 2026 18:34:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
- [209.85.210.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4DF610EFFE
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 18:35:42 +0000 (UTC)
-Received: by mail-pf1-f173.google.com with SMTP id
- d2e1a72fcca58-84537d04408so192575b3a.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 11:35:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782326142; x=1782930942; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=CkQrwyqUtbEBwCw+6J77RIBxcGN7JfNHmCCOvnM/ljo=;
- b=YwQYtC4+wGcGnHcsR+qZjXN4BzjmaZth6W3sS2G8hoJ3ovuxzabd8KbRmxMAt7tGZR
- cq5z4kTqjyGYYNH013k8cbm1yRDNBdN+/zIhI4cLcS+hD4h9EOCA2wH3HCUjC7El+Oiv
- iKywFtBiVUoNULZGJ6fp6AIlEb4B4Yuf9UyHMCPu4Y78YYUIL7KcgkopZ6C3+fG03HWx
- Z/ykcXWpcSscmm/5/4CK7IMaASA73iBNiGYDI4uw/1pOYnWvP5kk0VC8QxIQPfB+L3ch
- pvMhrBlvIcKOrMMaa1edWAoMDStssfuUoxATW9Re3fs8Zo33yOsAYzSLDwNJpdmQniZZ
- jLSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782326142; x=1782930942;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=CkQrwyqUtbEBwCw+6J77RIBxcGN7JfNHmCCOvnM/ljo=;
- b=MgAdazxXUVWF9G/xFBVhf/JyiYQcCGHoAqrJpsl+Cu9kx7ySLj5Mnpb6uR/M8x1yK9
- nu3hfx7sNYDuCFNRSnOa+M5Fq3r7EaOLJJe9nSZScp0WIDzXTb3S9Wrb7Rhfvo5FaV37
- hYlFIWcpobf6QvigbtGX36rYZIWIp1fZHqUSW2+i5CTvRqlIOVqmWL4OaHbBRdg6XxFd
- W3H/51M4SVum5Lgs7+Ifrz6P3m5aVwr/TyROqAaseIPZD5hNN+yC6pOw6pLszCp5kkOv
- zmR37NCPSAoPta+jhJu9jrMBdboOaO5cax5Zl8EYVKXjamWJtJM6Ul7onbzLtrzIH0Vw
- +GAw==
-X-Forwarded-Encrypted: i=1;
- AHgh+RpSudXI/rNCL0YnpcfJa/jf77zbB3MmPiQSOZUzeAyu8x2e9ZWvkNZOWlzyUgDjpXBy7KLbJvLq@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwXlzeoUy6Bib9KcXZksV4rIEi4KDGm4vgCYsBcZAzDZlyQmu2h
- uGsDqW3HIrrNRB7XqJ523fi27zk1unDRSpSjufc27b8RD3ZbWm36n9f1
-X-Gm-Gg: AfdE7ckDrDODmghOB54vN2Ia4LFgjR0xEyq1T0KBvo1jsLZ8plypJBLzDPLbJOthNFQ
- pyGIgoEe4oyrvDBevSAoRbXnbeTbx9DSXBd+/gYrwjL/uruK1xx7Y1IamgZ1ovRfwbkCn1ZAv5k
- 0mVBIs7zy88zhsTEVP3K98rWdymS9Ujn60PgR4esmz/bDUCCfurtBPTEvVwERsgzpWAd0G9d9Ci
- gtnUfODNlV3ey8YkewKo5Jup0lXQT5zAMznplFQEF4bih+vBvuMzoXMiDi/nv+N6xhKWjQULkrz
- i+B+2544nzxN7LbJsJM/B1TkyNFBaSwqx3vOy+17+fjkgKrKzppalwD9NRgsH9aJ4PYQD5NTJvs
- eCErPXx3evJ69JHZnn5qEv9qt5rgdAPy5V1jZ0b363EWNL8gzgtwqhV1Tk1/jt71ohSwjJLY/Gy
- gSs1n/ALw80jzXdssh
-X-Received: by 2002:a17:903:b0e:b0:2c4:397:dd7a with SMTP id
- d9443c01a7336-2c7bf1a5354mr52776825ad.4.1782326142285; 
- Wed, 24 Jun 2026 11:35:42 -0700 (PDT)
-Received: from kali ([2402:e280:3d7c:a2:536a:b505:93f5:9d5d])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2c7f63b2bd7sm3348575ad.48.2026.06.24.11.35.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 Jun 2026 11:35:41 -0700 (PDT)
-From: Pavitra Jha <jhapavitra98@gmail.com>
-To: alexander.deucher@amd.com,
-	christian.koenig@amd.com
-Cc: airlied@gmail.com, simona@ffwll.ch, amd-gfx@lists.freedesktop.org,
- gregkh@linuxfoundation.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- Pavitra Jha <jhapavitra98@gmail.com>
-Subject: [PATCH] drm/amdgpu/discovery: fix OOB read via unchecked die_offset
- in IP discovery parsing
+Received: from PH8PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11012046.outbound.protection.outlook.com [40.107.209.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F00A410E0E3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 18:34:25 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eZYwIbWo1aTZT1J+H4WPP+ofuvpO5gkB1eIKTJMMOVYn0ap7aXO7kJXGb2G1TxNzjBsXFiOLf1ypWuGs0tZx3NfeBSQP4k3YpWcDFqqj9RR3qK+JHk6fLQI/WYIQYZ9Y7wYgtB39yFSk0HTyzKl6g63RKr5DMZ8UHv+y5lkalwwKG2h9s0d9dlrNxIg7uSTTyQ2cnaFar5kck2JfzCE4HJLZDOiKOucLZC8D4KICXjbQKe0Ulk42vpwpo7Afp5N5GeFezr814c46sQCL1GPOTxCmSkBZugfk1zOmP37KhDVXoNNe0Yd3+wz/hWdF6w97qYMraE7xts7ZkI3LqnZ/hw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sx51wHTgtAusAc5DFbb2fAyUWUQuYibfkU5hFDb6Ezg=;
+ b=LrGk467DwQfSMYbsnvXfmE7MZJD0p6nUdBQJVj6XE0OWLwb5AW7NXEzZlkFSIrJXvicFDBJ0bTn+X348gW9QYLv0WTYDG6OlSIP/Qo9cRk5hcAPOGIIwdUTOFjV5equ4rDR0oKBtXGr2lzb5EZs0sKOJ1yJOdw36WfwNQySVnzZSIgsiO6Jom1Vd92wEBz622Avq2bBC1XOJyPEipvDxX7822cHUlGdSUaDRtsxc/N1bmzz1bcP7lUW0gAzD0bx8NkzQuNoUsu8t6xedqNwIsYX4A/rIwLMwqT+J8oNvlAYuZJ3QcUKJpy3yWYe2LWVsSPPZCtFg5RvEMDJWKjGllQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sx51wHTgtAusAc5DFbb2fAyUWUQuYibfkU5hFDb6Ezg=;
+ b=3zBTrsBfZCGzWnC8/yzmGKAF+ff+tcKHxd6C2XhYMt7evVbpI7O8yytF+IpU19OQ2WaFaenMOU/L1FULdcG7wYTdwZa9aPkYWJwbJn5X4rtyJwJBkHCosK3Hry3C+c6iBC3ftNLeJJTBQbMTTib2bym2bPvTMdenahSWZ1Q333Y=
+Received: from MN0P223CA0018.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:52b::35)
+ by MN2PR12MB4360.namprd12.prod.outlook.com (2603:10b6:208:266::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.13; Wed, 24 Jun
+ 2026 18:34:22 +0000
+Received: from BL6PEPF00020E60.namprd04.prod.outlook.com
+ (2603:10b6:208:52b:cafe::38) by MN0P223CA0018.outlook.office365.com
+ (2603:10b6:208:52b::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.13 via Frontend Transport; Wed,
+ 24 Jun 2026 18:34:22 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BL6PEPF00020E60.mail.protection.outlook.com (10.167.249.21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Wed, 24 Jun 2026 18:34:22 +0000
+Received: from jz-tester2.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 24 Jun
+ 2026 13:34:21 -0500
+From: James Zhu <James.Zhu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <philip.yang@amd.com>, <Hawking.Zhang@amd.com>, <Bob.Zhou@amd.com>,
+ <Harish.Kasiviswanathan@amd.com>, <jamesz@amd.com>, Vladimir Indic
+ <vladimir.indic@amd.com>
+Subject: [PATCH v3 2/2] drm/amdkfd: move TBA/TMA from system to device memory
 Date: Wed, 24 Jun 2026 14:34:09 -0400
-Message-ID: <20260624183409.1079288-1-jhapavitra98@gmail.com>
-X-Mailer: git-send-email 2.53.0
+Message-ID: <20260624183409.2038354-2-James.Zhu@amd.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260624183409.2038354-1-James.Zhu@amd.com>
+References: <20260624183409.2038354-1-James.Zhu@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 25 Jun 2026 07:03:56 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF00020E60:EE_|MN2PR12MB4360:EE_
+X-MS-Office365-Filtering-Correlation-Id: 33050903-1076-42db-6bcc-08ded21f35e9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|82310400026|23010399003|36860700016|376014|18002099003|22082099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: GPVn8ZHjSjmM9S+C9GB+Z7M5RWTbKCJdOpK/QINZHe3dk3reW6A40Uo8sf4/dDss1XG1YNGF1VdJoA/QrxrludhNVIg+CJuZbcThSgIpKgnbdQRlWsEdo9VD+AHL1A66aI5xnpp6FX7tOvNiY0lo3EYFqgjWuNhv471sdbVyYlo7d0T8cW9xpnlGunPwtytmul5H0NLMZFvs5xZ5E3Ukq5RD1ySR1LTZ0lwQ7xJjSbw3liRx+zEdRJfTXu3PzN5snRvhkf0b4mH0QScx/qsYOkbiNiKNnnTXn5o4qVPM2h+i1lhqtK3CZVpPR2cNBZPo1cgdmqyfXWCx1adCJYavMArDFekWsD+USugy7Jefyvn9g0rfX0LLSFGoat1U3VbNDtr+oOfuNuk9oKZmaHijgfgDJbQ6VAt9Uj7PU3sQUZ7CiPqgHAShdtwmBk9l5Nsbb9U8A58DdScl9OUZlfcw8Q2JabutrnpRnfBGzzNzRio2AsCirw43dAG2prs99BiFMpqWuqr1/146RWwWSBU6mHJZq82V4JU3NtskF0fLXXObK7gPsRlny48387E6nbAAFKftHUYEbQGz6mi8FFe3UNtnMLsh9dC3zsmlMAxCrgQeLUdvkYW3UEaeuu4Z6oggUOFJLNIO/WpddHRH63NWSil7I43BgO9ObKj5H8NiiHk9OjS9/uYO4v0nmQ4O6zSmp5ECAgTeX/s5+OA8hUCOqw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(82310400026)(23010399003)(36860700016)(376014)(18002099003)(22082099003)(56012099006)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: TmtSrFumG7L7rJSem75x2qHFQ3JMFiEPRQiiTAYpfaN2oXu1KPa6VfVZguZkxhZVqTZ/Vs7ehMqp16aqSGqQ1qMWqBL6J453bkgV6K/l3m37QMwQ6cbv5rfr6DjZdmqKwHkaURFpYrmu63Q08oGG+qlGWX4w76PAMkYvTlgikkh848c6O65o/mPDttoGLvsFebkXIA9SmP/5pJDYOwaTPbuy0qQprDJnYDOh/LqFZH0K8j2OLI9IHCPgDcesj2gbGDOgoEC4xj4ZC4wm2dH2UVwZXXU5dnFetKD2z99OQ6rntW+9QBHukiX4/K+UfcdBE6fDtfPvO98Iur5kJy3guTSWsAOKR4L/u3mqjQv3O9yJU7Q8JhR1/e4zRgAoZFs8L/KRlWKS0+5lCo5xZAnsx4ASYiCA+nTWQF4/BfVmTMnXLxp9bMnCGhFolj+MVgm8
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 18:34:22.3038 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 33050903-1076-42db-6bcc-08ded21f35e9
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00020E60.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4360
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,261 +118,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[James.Zhu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.freedesktop.org,linuxfoundation.org,vger.kernel.org];
-	FORGED_SENDER(0.00)[jhapavitra98@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:gregkh@linuxfoundation.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:stable@vger.kernel.org,m:jhapavitra98@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jhapavitra98@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RSPAMD_EMAILBL_FAIL(0.00)[jhapavitra98@gmail.com:query timed out];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_HAS_DN(0.00)[]
+	HAS_XOIP(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_FIVE(0.00)[6];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 73DF56C33B6
+X-Rspamd-Queue-Id: E75F16C0C0D
 
-Three call sites in amdgpu_discovery.c dereference firmware-controlled
-die_offset values without validating them against adev->discovery.size:
+for GFX9.4.2 and above.
 
-  amdgpu_discovery_read_harvest_bit_per_ip() line 776-777
-  amdgpu_discovery_sysfs_init()              line 1298-1299
-  amdgpu_discovery_reg_base_init()           line 1524-1525
+-v2: keep APU with GTT allocation
+-v3: use dev->adev->apu_prefer_gtt instead
 
-In all three sites the pattern is:
-
-  die_offset = le16_to_cpu(ihdr->die_info[i].die_offset);
-  dhdr = (struct die_header *)(discovery_bin + die_offset);
-
-die_offset is a firmware-controlled u16 (max 65535). The discovery
-binary is allocated as adev->discovery.size bytes (DISCOVERY_TMR_SIZE
-= 10240 by default). No bounds check exists between the le16_to_cpu()
-call and the pointer cast, so a crafted blob with die_offset >= 10240
-produces a pointer past the end of the allocation. The subsequent reads
-of dhdr->die_id and dhdr->num_ips are then slab-out-of-bounds reads.
-
-The ip_offset advancement inside the inner loop also uses
-struct_size(ip, base_address, ip->num_base_address) where
-num_base_address is firmware-controlled, enabling unbounded advancement
-past the allocation on each iteration.
-
-ASAN report (kernel 7.1.0+, QEMU/x86_64, nokaslr, slub_debug=FZPUA):
-
-==================================================================
-BUG: KASAN: slab-out-of-bounds in poc_init+0x453/0x1000 [amd_oob_harness]
-Read of size 2 at addr ffff88800318a801 by task insmod/22
-
-CPU: 0 UID: 0 PID: 22 Comm: insmod Tainted: G           O        7.1.0+ #26 PREEMPTLAZY
-Tainted: [O]=OOT_MODULE
-Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1 04/01/2014
-Call Trace:
- <TASK>
- dump_stack_lvl+0x2b/0x40
- print_report+0x14f/0x4d0
- ? wake_up_klogd_work_func+0x70/0x70
- ? poc_exit+0xfc0/0xfc0 [amd_oob_harness]
- kasan_report+0xd4/0x100
- ? poc_init+0x453/0x1000 [amd_oob_harness]
- ? poc_init+0x453/0x1000 [amd_oob_harness]
- poc_init+0x453/0x1000 [amd_oob_harness]
- ? poc_exit+0xfc0/0xfc0 [amd_oob_harness]
- ? poc_exit+0xfc0/0xfc0 [amd_oob_harness]
- do_one_initcall+0xb0/0x230
- ? initcall_blacklisted+0x150/0x150
- ? kasan_unpoison+0x40/0x60
- do_init_module+0x263/0x810
- ? kasan_save_free_info+0x37/0x50
- ? free_module+0x300/0x300
- ? kfree+0xf1/0x390
- load_module+0x3e12/0x51e0
- ? sysvec_apic_timer_interrupt+0xa/0x80
- ? asm_sysvec_apic_timer_interrupt+0x16/0x20
- ? module_frob_arch_sections+0x20/0x20
- ? kernel_read_file+0x4d9/0x790
- ? kernel_read_file+0x36c/0x790
- init_module_from_file+0x136/0x150
- ? __do_sys_init_module+0x180/0x180
- ? do_sys_openat2+0xeb/0x140
- ? fdget+0x64/0x200
- __x64_sys_finit_module+0x39f/0x7a0
- ? __x64_sys_init_module+0xc0/0xc0
- ? __x64_sys_open+0x180/0x180
- do_syscall_64+0x56/0x3f0
- entry_SYSCALL_64_after_hwframe+0x4b/0x53
-RIP: 0033:0x4d1259
-Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
-RSP: 002b:00007fffb68052f8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
-RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00000000004d1259
-RDX: 0000000000000000 RSI: 000000000a529cf0 RDI: 0000000000000003
-RBP: 000000000a529cf0 R08: 0000000000000007 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000246 R12: 000000000a528dd0
-R13: 0000000000000003 R14: 0000000000000000 R15: 0000000000000000
- </TASK>
-
-The buggy address belongs to the physical page:
-page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x3188
-head: order:2 mapcount:0 entire_mapcount:0 nr_pages_mapped:0 pincount:0
-flags: 0x4000000000000040(head|zone=1)
-page_type: f8(unknown)
-raw: 4000000000000040 0000000000000000 dead000000000122 0000000000000000
-raw: 0000000000000000 0000000000000000 00000000f8000000 0000000000000000
-head: 4000000000000040 0000000000000000 dead000000000122 0000000000000000
-head: 0000000000000000 0000000000000000 00000000f8000000 0000000000000000
-head: 4000000000000002 ffffea00000c6201 00000000ffffffff 00000000ffffffff
-head: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000000
-page dumped because: kasan: bad access detected
-
-Memory state around the buggy address:
- ffff88800318a700: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
- ffff88800318a780: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->ffff88800318a800: fe fe fe fe fe fe fe fe fe fe fe fe fe fe fe fe
-                   ^
- ffff88800318a880: fe fe fe fe fe fe fe fe fe fe fe fe fe fe fe fe
- ffff88800318a900: fe fe fe fe fe fe fe fe fe fe fe fe fe fe fe fe
-==================================================================
-BUG: KASAN: slab-out-of-bounds in poc_init+0x4b3/0x1000 [amd_oob_harness]
-Read of size 2 at addr ffff88800318a803 by task insmod/22
-
-CPU: 0 UID: 0 PID: 22 Comm: insmod Tainted: G    B      O        7.1.0+ #26 PREEMPTLAZY
-Tainted: [B]=BAD_PAGE, [O]=OOT_MODULE
-Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1 04/01/2014
-Call Trace:
- <TASK>
- dump_stack_lvl+0x2b/0x40
- print_report+0x14f/0x4d0
- ? add_taint+0x50/0x70
- kasan_report+0xd4/0x100
- ? poc_init+0x4b3/0x1000 [amd_oob_harness]
- ? poc_init+0x4b3/0x1000 [amd_oob_harness]
- poc_init+0x4b3/0x1000 [amd_oob_harness]
- ? poc_exit+0xfc0/0xfc0 [amd_oob_harness]
- ? poc_exit+0xfc0/0xfc0 [amd_oob_harness]
- do_one_initcall+0xb0/0x230
- ? initcall_blacklisted+0x150/0x150
- ? kasan_unpoison+0x40/0x60
- do_init_module+0x263/0x810
- ? kasan_save_free_info+0x37/0x50
- ? free_module+0x300/0x300
- ? kfree+0xf1/0x390
- load_module+0x3e12/0x51e0
- ? sysvec_apic_timer_interrupt+0xa/0x80
- ? asm_sysvec_apic_timer_interrupt+0x16/0x20
- ? module_frob_arch_sections+0x20/0x20
- ? kernel_read_file+0x4d9/0x790
- ? kernel_read_file+0x36c/0x790
- init_module_from_file+0x136/0x150
- ? __do_sys_init_module+0x180/0x180
- ? do_sys_openat2+0xeb/0x140
- ? fdget+0x64/0x200
- __x64_sys_finit_module+0x39f/0x7a0
- ? __x64_sys_init_module+0xc0/0xc0
- ? __x64_sys_open+0x180/0x180
- do_syscall_64+0x56/0x3f0
- entry_SYSCALL_64_after_hwframe+0x4b/0x53
-RIP: 0033:0x4d1259
-Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
-RSP: 002b:00007fffb68052f8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
-RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00000000007ffff0 RDI: 0000000000000003
-RBP: 000000000a529cf0 R08: 0000000000000007 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000246 R12: 000000000a528dd0
-R13: 0000000000000003 R14: 0000000000000000 R15: 0000000000000000
- </TASK>
-
-The buggy address belongs to the physical page:
-page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x3188
-head: order:2 mapcount:0 entire_mapcount:0 nr_pages_mapped:0 pincount:0
-flags: 0x4000000000000040(head|zone=1)
-page_type: f8(unknown)
-raw: 4000000000000040 0000000000000000 dead000000000122 0000000000000000
-raw: 0000000000000000 0000000000000000 00000000f8000000 0000000000000000
-head: 4000000000000040 0000000000000000 dead000000000122 0000000000000000
-head: 0000000000000000 0000000000000000 00000000f8000000 0000000000000000
-head: 4000000000000002 ffffea00000c6201 00000000ffffffff 00000000ffffffff
-head: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000000
-page dumped because: kasan: bad access detected
-
-Memory state around the buggy address:
- ffff88800318a700: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
- ffff88800318a780: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
->ffff88800318a800: fe fe fe fe fe fe fe fe fe fe fe fe fe fe fe fe
-                   ^
- ffff88800318a880: fe fe fe fe fe fe fe fe fe fe fe fe fe fe fe fe
- ffff88800318a900: fe fe fe fe fe fe fe fe fe fe fe fe fe fe fe fe
-==================================================================
-
-Fix by adding a bounds check on die_offset against adev->discovery.size
-before the pointer cast in all three sites.
-
-Fixes: d0c647a6aae2 ("drm/amdgpu/discovery: support new discovery binary header")
-Cc: stable@vger.kernel.org
-Signed-off-by: Pavitra Jha <jhapavitra98@gmail.com>
+Signed-off-by: James Zhu <James.Zhu@amd.com>
+Reviewed-by: Vladimir Indic <vladimir.indic@amd.com>
+Reviewed-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
+Reviewed-by: Philip Yang <philip.yang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c | 19 ++++++++++++++-----
+ 1 file changed, 14 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index be5069642..41ca01e2b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -774,6 +774,11 @@ static void amdgpu_discovery_read_harvest_bit_per_ip(struct amdgpu_device *adev,
- 	/* scan harvest bit of all IP data structures */
- 	for (i = 0; i < num_dies; i++) {
- 		die_offset = le16_to_cpu(ihdr->die_info[i].die_offset);
-+		if (die_offset + sizeof(*dhdr) > adev->discovery.size) {
-+			dev_err(adev->dev, "invalid die_offset %u in harvest table\n",
-+				die_offset);
-+			return;
-+		}
- 		dhdr = (struct die_header *)(discovery_bin + die_offset);
- 		num_ips = le16_to_cpu(dhdr->num_ips);
- 		ip_offset = die_offset + sizeof(*dhdr);
-@@ -1296,6 +1301,11 @@ static int amdgpu_discovery_sysfs_recurse(struct amdgpu_device *adev)
- 		struct ip_die_entry *ip_die_entry;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+index 08f6db864bf9..8e701dcda8ec 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+@@ -776,9 +776,14 @@ static int kfd_process_alloc_gpuvm(struct kfd_process_device *pdd,
+ 	}
  
- 		die_offset = le16_to_cpu(ihdr->die_info[ii].die_offset);
-+		if (die_offset + sizeof(*dhdr) > adev->discovery.size) {
-+			dev_err(adev->dev, "invalid die_offset %u in sysfs init\n",
-+				die_offset);
-+			return -EINVAL;
-+		}
- 		dhdr = (struct die_header *)(discovery_bin + die_offset);
- 		num_ips = le16_to_cpu(dhdr->num_ips);
- 		ip_offset = die_offset + sizeof(*dhdr);
-@@ -1522,6 +1532,11 @@ static int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
+ 	if (kptr) {
++		u32 domain;
++
++		if (flags & KFD_IOC_ALLOC_MEM_FLAGS_VRAM)
++			domain = AMDGPU_GEM_DOMAIN_VRAM;
++		else
++			domain = AMDGPU_GEM_DOMAIN_GTT;
+ 		err = amdgpu_amdkfd_gpuvm_map_bo_to_kernel((struct kgd_mem *)*mem,
+-							   kptr, NULL,
+-							   AMDGPU_GEM_DOMAIN_GTT);
++							   kptr, NULL, domain);
+ 		if (err) {
+ 			pr_debug("Map BO to kernel failed err %d\n", err);
+ 			goto sync_memory_failed;
+@@ -1490,8 +1495,7 @@ static int kfd_process_device_init_cwsr_dgpu(struct kfd_process_device *pdd)
+ {
+ 	struct kfd_node *dev = pdd->dev;
+ 	struct qcm_process_device *qpd = &pdd->qpd;
+-	uint32_t flags = KFD_IOC_ALLOC_MEM_FLAGS_GTT
+-			| KFD_IOC_ALLOC_MEM_FLAGS_NO_SUBSTITUTE
++	u32 flags = KFD_IOC_ALLOC_MEM_FLAGS_NO_SUBSTITUTE
+ 			| KFD_IOC_ALLOC_MEM_FLAGS_EXECUTABLE;
+ 	struct kgd_mem *mem;
+ 	void *kaddr;
+@@ -1500,7 +1504,12 @@ static int kfd_process_device_init_cwsr_dgpu(struct kfd_process_device *pdd)
+ 	if (!dev->kfd->cwsr_enabled || qpd->cwsr_kaddr || !qpd->cwsr_base)
+ 		return 0;
  
- 	for (i = 0; i < num_dies; i++) {
- 		die_offset = le16_to_cpu(ihdr->die_info[i].die_offset);
-+		if (die_offset + sizeof(*dhdr) > adev->discovery.size) {
-+			dev_err(adev->dev, "invalid die_offset %u in reg base init\n",
-+				die_offset);
-+			return -EINVAL;
-+		}
- 		dhdr = (struct die_header *)(discovery_bin + die_offset);
- 		num_ips = le16_to_cpu(dhdr->num_ips);
- 		ip_offset = die_offset + sizeof(*dhdr);
+-	/* cwsr_base is only set for dGPU */
++	if (KFD_GC_VERSION(dev) >= IP_VERSION(9, 4, 2) && !dev->adev->apu_prefer_gtt)
++		flags |= KFD_IOC_ALLOC_MEM_FLAGS_VRAM;
++	else
++		flags |= KFD_IOC_ALLOC_MEM_FLAGS_GTT;
++
++	/* Allocate CWSR TBA/TMA buffers */
+ 	ret = kfd_process_alloc_gpuvm(pdd, qpd->cwsr_base,
+ 				      KFD_CWSR_TBA_TMA_SIZE, flags, &mem, &kaddr);
+ 	if (ret)
 -- 
-2.53.0
+2.43.0
 
