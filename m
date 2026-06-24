@@ -2,103 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XP6pD+TSPGq0swgAu9opvQ
+	id HCiIBwY5PGrQlQgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 09:04:04 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 22:07:34 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4D5E6C33B7
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 09:03:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B70026C12C4
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 22:07:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=SU4QdkFM;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b="QfCoim/I";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20240605:i=1")
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A01610F144;
-	Thu, 25 Jun 2026 07:03:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04F2110E123;
+	Wed, 24 Jun 2026 20:07:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com
- [209.85.218.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D44DA10F014
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 19:11:38 +0000 (UTC)
-Received: by mail-ej1-f48.google.com with SMTP id
- a640c23a62f3a-c0c41ff84a6so229742566b.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 12:11:38 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1782328297; cv=none;
- d=google.com; s=arc-20240605;
- b=N5x2GmqTlhuFTH0OrHJAPlHwUj7jaALoY7K8UB76/RPjXXA2JalFNOFue3rdp7h+tJ
- 9kk8NY7KAE9vA9y7LHowZmqdUrJeq4byxHUQJOtZapLMdFgkQaEKvFgdnFKmevyFvkFP
- fUnTs7m6MwfmKl+sn/2oyoPYKauW1ltaiNRfoYKlyZ6BRS86mDlOrmv8iARX9zw+udpQ
- PbHwMcMo8ORsKvIPCj7yNN1J0W3/km+lM0NxTOIwlMOsQE+fZSsZcYpf+8mS9Kxg/7/R
- oy9dNihF7AbDD9u4Jn3+1YvNgJOU0FWdJAZPQhfRgbi15jvKQDYwmWOO6V+NJ339Mrye
- ntVA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=DRZlMNeqeOXmhfrFdEkWOyTOPJY3Aueu6qa43DQrvIA=;
- fh=kkyWXs/SyB2nWsTNelRVpetDjnWw9OXADfzVMNQSVDM=;
- b=iEIOiYbTahmn25V34X9hzfVaoxC0w5P1DPIuzHr9NAEN7ejI1HppsHthHhbU2Z8MAc
- Fn+/oqU74NebTApwPYBG+GPpec6QTx800OEM5EIxLny9QTgmJukR2p0vSX6TSYU8cBeB
- QIiFBkigHS9cboo5DtXvW9tq8zbWgbsAkwUn1U760gfKwmYvDa7SxlLQK5OaKz52JhBv
- QrACrE8emKxt9hsHgfUZ8SjHnBYYBIyJ8yqEFfVmRAL1dt7P0W3aaKhJr2dcRLfivU11
- EKg6RMFYG2sWndturgA1o2/ku4C4M3EuprY/RBpdbQWJ168O6tI5cmYd+I+z4oJRf1I1
- +13A==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782328297; x=1782933097; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=DRZlMNeqeOXmhfrFdEkWOyTOPJY3Aueu6qa43DQrvIA=;
- b=SU4QdkFMV5gcJ2ZQkWX696E9PUEfvSklmw4wcmKqUe95Q7MdTJ9mIg5DVlR/MEuDxl
- QgSxSvRVKNpthrHpWWMqwl2IyvDoxaT6/OoFhFw9pnrOCXhROhtYveGVWew41hPwn/PX
- Rl6UCyJz1jfYQ2O9QEFKYWn2AUblFETheMg0xbqJBbeyDJNreT9CmUkNcxZPixaqwyEg
- nIxxAHvCtbKErWXsb5PPGL5WXXCqlkQb4MaOY8jC/ZFOSx46FOew5rmuqgTwXhgS+dpw
- 4d0z9viH8miYWP/+2AXXH5lNITjDNq0WOpVkB2qvF5rgGRREFQnq92lrkBayM8B57nLb
- YVdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782328297; x=1782933097;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=DRZlMNeqeOXmhfrFdEkWOyTOPJY3Aueu6qa43DQrvIA=;
- b=Kw30VHqIG6lCVhlOXjR2Y70i1sK05HsKgflG6MpGjmNpseJ7zXF2ZEX8GUrdYn+yQi
- Q1Wq4+/QsTQJzfSzMNWGdBc97VoporHjBTShMK2kEBby0RwT/sx4Ek61sSg5NBiNspwk
- MLQ5oywcjTYvyOBjpDmSOVEW4wtfs9Xn5uQTNKyk8R/JWDyhydJ+v4amv4Wp0oB+QWgt
- qZpBMJTabh82rwASXoEmOvUjs92+yCsEBE1y0200zcpYcgYyGjUarrMolrIYjLsCyxBh
- mU+EiSMtfhVewEb0VjK4ruYjCD6U8pxlgx3oh/e8PffBUKDig/bu4ztTpghnPtFRK3gh
- gMWQ==
-X-Forwarded-Encrypted: i=1;
- AFNElJ/3j68jbA393YO1MTVKxzPkaF7U918m1PACp4FL9Cg2vPSp4lyQd1wGr6dAhbmp6OtbZFoL+yC/@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzUijRrngRns/xUzuPVTBCfK2w0T2xgccV8V3hILCalyH+v0eQ0
- h/5Si1oJHi0gX1+KkYL0Ml/47IRKfOrx3Ljayf2aBrFuab4cFo4F948YETUpwqxoZz8EubPVPSN
- C4mG7VZd/WI73CpsUy/yNpjrdpdNtOYgp6Q==
-X-Gm-Gg: AfdE7ckAEa1cHN6SkS1Cis2j7NMoCN4yP00RWj/jy6YkLRceRlIvdoJ+qY5nC97PmZ0
- N66UdaXHXsIqN/77b+UKtr/9HJBQH2fevBJozfSjcRxWSbhuYGGpdq2IJ2WkzOwRLRCnu1geT3G
- H15P+dqyJRI490xw8RYnd+N/mBC+lYuCrx2O0nMYvXs9eE8qJ2w06/LApFlUr8zea+6g8+hs7XG
- JzWEppWUcHI0HaV7GqjLfQvSTavcrj2wU006A4nJI3kk4Lo1FXAOCVzVNMwR3F5tR+qmM4URjb+
- 1sNulz9Ld92QejRqPQ3TUqZlsUFXNQ==
-X-Received: by 2002:a17:907:6092:b0:bd8:6ac6:d722 with SMTP id
- a640c23a62f3a-c119e444c81mr277136066b.24.1782328297041; Wed, 24 Jun 2026
- 12:11:37 -0700 (PDT)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5D3210E0F4;
+ Wed, 24 Jun 2026 20:07:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=B0ETmLsDz/XVBuwzqitBH0wFYxmqpWrL4BOyECmY5VQ=; b=QfCoim/IEI+aHDNEu1lC4dJOu4
+ RNM5LFfLgb4TBaUai3COr23X+5WPn85amiGspv3/AtOFswEmd54+XjyY9JHks3sK4l5ZMDj/DwH5O
+ CiY1PWraq9zSxsZHZCsrxm4bvuupAGRn9wgoX21xeWWbXPQB4gduXNH1eS3Un0M1ql+l1SP2CM/8u
+ vPS6n9p68tvLqvBlAlbVOyQ3+BfMKebUfROxgDiqR/GhJ1ZVDaAuREHtn+aySX0pDxaxW8oTPYnQM
+ LoD1yRsfYFVpbOL4d3lEG2oxFlbHU15W2RPZKJ0wXncbAAMOkI2LZzegBJxFVBtrB/0qttutlcWfU
+ FsjhBlWw==;
+Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
+ helo=[192.168.1.133]) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1wcTrs-004kP9-Tm; Wed, 24 Jun 2026 22:06:41 +0200
+Message-ID: <d1e604dd-5e84-464e-ba85-4183eef6bb0e@Igalia.com>
+Date: Wed, 24 Jun 2026 22:06:30 +0200
 MIME-Version: 1.0
-References: <20260619045904.5872-1-charleslmunger@gmail.com>
- <BL1PR12MB514432F894701A3CBAD341E9F7E22@BL1PR12MB5144.namprd12.prod.outlook.com>
- <436f03eb-0b19-4eb6-b884-c45a79a067e7@amd.com>
-In-Reply-To: <436f03eb-0b19-4eb6-b884-c45a79a067e7@amd.com>
-From: Charles Munger <charleslmunger@gmail.com>
-Date: Wed, 24 Jun 2026 12:11:27 -0700
-X-Gm-Features: AVVi8CcEGjymuWq3uJuO3En_gQCm00HiBrgDU0ZGxpWsN3GrOfsE7_3YrPFYjqY
-Message-ID: <CACf9n8Sdu5KxKAn75SwCDpjzd+Sg-p0UFnok6BqSoOTxhQPnEA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Add Paradetech OUI to VRR compat list
-To: Harry Wentland <harry.wentland@amd.com>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- amd-gfx@lists.freedesktop.org, 
- "Hung, Alex" <Alex.Hung@amd.com>, "Li, Sun peng (Leo)" <Sunpeng.Li@amd.com>
-Content-Type: multipart/alternative; boundary="00000000000004b1f3065504a5b7"
-X-Mailman-Approved-At: Thu, 25 Jun 2026 07:03:56 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/atomic: only add states of active or transient
+ active colorops
+To: Harry Wentland <harry.wentland@amd.com>, Melissa Wen <mwen@igalia.com>,
+ "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Alex Hung <alex.hung@amd.com>,
+ airlied@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ simona@ffwll.ch, tzimmermann@suse.de
+Cc: Simon Ser <contact@emersion.fr>, Uma Shankar <uma.shankar@intel.com>,
+ Xaver Hugl <xaver.hugl@kde.org>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Matthew Schwartz <matthew.schwartz@linux.dev>,
+ Rodrigo Siqueira <siqueira@igalia.com>, amd-gfx@lists.freedesktop.org,
+ kernel-dev@igalia.com, Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar
+ <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20260526142940.504911-1-mwen@igalia.com>
+ <20260526142940.504911-2-mwen@igalia.com>
+ <e8aaf4da-8fb6-4d6a-95d6-563ac0562b49@amd.com>
+ <4452e675c4853faf665b520a8932a960946206bb@intel.com>
+ <f9e5f9ed-ed15-40ae-9330-44f8c42f5f98@intel.com>
+ <cb0599d2-9dd5-4e93-b21e-b843f4a79182@igalia.com>
+ <0a0a4d13-9821-4a74-82f5-5309a1e168ca@Igalia.com>
+ <09d1d978-0519-466b-8c81-fc045c415209@amd.com>
+Content-Language: en-GB
+From: John Harrison <John.Harrison@Igalia.com>
+In-Reply-To: <09d1d978-0519-466b-8c81-fc045c415209@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,233 +89,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [0.49 / 15.00];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:Alexander.Deucher@amd.com,m:Alex.Hung@amd.com,m:Sunpeng.Li@amd.com,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RSPAMD_URIBL_FAIL(0.00)[amd.com:query timed out];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[charleslmunger@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RSPAMD_EMAILBL_FAIL(0.00)[charleslmunger@gmail.com:query timed out];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,intel.com,linux.intel.com,gmail.com,kernel.org,ffwll.ch,suse.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[emersion.fr,intel.com,kde.org,collabora.com,bootlin.com,linux.dev,igalia.com,lists.freedesktop.org,oss.qualcomm.com,kernel.org,gmail.com,poorly.run,somainline.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charleslmunger@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[John.Harrison@Igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[igalia.com:-];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[5]
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D4D5E6C33B7
+X-Rspamd-Queue-Id: B70026C12C4
 
---00000000000004b1f3065504a5b7
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Yes, and that's what I tested it with.
-
-On Wed, Jun 24, 2026, 11:54=E2=80=AFAM Harry Wentland <harry.wentland@amd.c=
-om>
-wrote:
-
->
->
-> On 2026-06-19 12:17, Deucher, Alexander wrote:
-> > Public
-> >
-> > Adding a few display folks to review.
-> >
-> > Thanks,
-> >
-> > Alex
-> >
-> >> -----Original Message-----
-> >> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> >> Charles Munger
-> >> Sent: Friday, June 19, 2026 12:59 AM
-> >> To: amd-gfx@lists.freedesktop.org
-> >> Cc: Charles Munger <charleslmunger@gmail.com>
-> >> Subject: [PATCH] drm/amdgpu: Add Paradetech OUI to VRR compat list
-> >>
-> >> There's at least two firmware versions on the CalDigit DP20-HDMI21
-> adapter,
-> >> which is powered by the ParadeTech PS196G chip. The first version has =
-a
-> bug
-> >> where it incorrectly neglects to set the DOWN_STREAM_PORT_PRESENT fiel=
-d
-> >> in the DPCD:
-> >>
-> >> $ sudo dpcd_reg read --offset=3D0x2205 --count=3D1 --device=3D0
-> >> 0x2205:  00
-> >> $ sudo dpcd_reg read --offset=3D0x0005 --count=3D1 --device=3D0
-> >> 0x0005:  00
-> >>
-> >> The newer one fixes this, and with this patch correctly negotiates VRR=
-.
-> >>
-> >> [~]$ sudo dpcd_reg read --offset=3D0x5 --count=3D1 --device=3D2
-> >> 0x0005:  1d
-> >> [~]$ sudo dpcd_reg read --offset=3D0x2205 --count=3D1 --device=3D2
-> >> 0x2205:  1d
-> >>
-> >> So if you're using a Paradetech adapter and it doesn't negotiate VRR,
-> check
-> >> that it has a firmware that produces the correct DPCD.
-> >>
-> >> Signed-off-by: Charles Munger <charleslmunger@gmail.com>
-> >> ---
-> >>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 1 +
-> >>  1 file changed, 1 insertion(+)
-> >>
-> >> diff --git
-> >> a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-> >> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-> >> index 6c827e6703a0..f463495d1c87 100644
-> >> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-> >> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-> >> @@ -1410,6 +1410,7 @@ bool dm_helpers_is_vrr_pcon_allowed(const
->
-> Looks like this is based on the "drm/amd: VRR fixes, HDMI Gaming Features=
-"
-> series, not directly on amd-staging-drm-next. I'll have to take another
-> closer look at that series.
+On 6/24/26 21:01, Harry Wentland wrote:
+> On 2026-06-09 13:23, John Harrison wrote:
+>> On 6/3/26 04:27, Melissa Wen wrote:
+>>> On 01/06/2026 11:24, Borah, Chaitanya Kumar wrote:
+>>>> On 5/29/2026 7:16 PM, Jani Nikula wrote:
+>>>>> On Tue, 26 May 2026, Alex Hung <alex.hung@amd.com> wrote:
+>>>>>> On 5/26/26 08:17, Melissa Wen wrote:
+>>>>>>> Only consider affected colorop states those that are part of an active
+>>>>>>> color pipeline or a pipeline that is about to be activated or
+>>>>>>> deactivated in the same atomic commit, i.e., colorop is in the chain of
+>>>>>>> old/new plane color pipeline property. To cover color_pipeline
+>>>>>>> deactivation, remove the condition for plane_state->color_pipeline.
+>>>>>>>
+>>>>>>> Signed-off-by: Melissa Wen <mwen@igalia.com>
+>>>>>>> ---
+>>>>>>>     drivers/gpu/drm/drm_atomic.c | 67 +++++++++++++++++++++++++++++++-----
+>>>>>>>     1 file changed, 58 insertions(+), 9 deletions(-)
+>>>>>>>
+>>>>>>> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+>>>>>>> index 170de30c28ae..4fb3a23e862a 100644
+>>>>>>> --- a/drivers/gpu/drm/drm_atomic.c
+>>>>>>> +++ b/drivers/gpu/drm/drm_atomic.c
+>>>>>>> @@ -812,6 +812,59 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
+>>>>>>>         return 0;
+>>>>>>>     }
+>>>>>>>     +/*
+>>>>>>> + * This function walks old and new plane state color pipelines and adds all
+>>>>>>> + * colorops in use by @plane to the atomic configuration @state. This is useful
+>>>>>>> + * when an atomic commit needs to check all currently enabled or about to be
+>>>>>>> + * enabled colorop on @plane, e.g. when changing the mode. This also avoids
+>>>>>>> + * including colorop states that are not part of the atomic state.
+>>>>>>> + *
+>>>>>>> + * Returns:
+>>>>>>> + * 0 on success or can fail with -EDEADLK or -ENOMEM. When the error is EDEADLK
+>>>>>>> + * then the w/w mutex code has detected a deadlock and the entire atomic
+>>>>>>> + * sequence must be restarted. All other errors are fatal.
+>>>>>>> + */
+>>>>>>> +static int
+>>>>>>> +drm_atomic_add_pipeline_colorops(struct drm_atomic_commit *state,
+>>>>>>> +                 struct drm_plane *plane)
+>>>>>>> +{
+>>>>>>> +    struct drm_colorop *colorop;
+>>>>>>> +    struct drm_colorop_state *colorop_state;
+>>>>>>> +    struct drm_plane_state *new_plane_state, *old_plane_state;
+>>>>>>> +
+>>>>>>> +    new_plane_state = drm_atomic_get_new_plane_state(state, plane);
+>>>>>>> +    old_plane_state = drm_atomic_get_old_plane_state(state, plane);
+>>>>>>> +
+>>>>>>> +    if (WARN_ON(!new_plane_state || !old_plane_state))
+>>>>>>> +        return -EINVAL;
+>>>>>>> +
+>>>>>>> +    drm_dbg_atomic(plane->dev,
+>>>>>>> +               "Adding old+new pipeline colorops for [PLANE:%d:%s]\n",
+>>>>>>> +               plane->base.id, plane->name);
+>>>>>>> +
+>>>>>>> +    for (colorop = new_plane_state->color_pipeline;
+>>>>>>> +         colorop;
+>>>>>>> +         colorop = colorop->next) {
+>>>>>> This for-loop is used 5 times in this patchset. How about a macro in
+>>>>>> drm_colorop.h?
+>>>>>>
+>>>>>> #define drm_for_each_colorop_in_pipeline(colorop, pipeline) \
+>>>>>>        for ((colorop) = (pipeline); (colorop); (colorop) = (colorop)->next)
+>>>>> Is there a reason struct drm_colorop reinvents lists and doesn't have
+>>>>> struct list_head node?
+>>>>>
+>>>> I believe that's because the "next" colorop is exposed as a property (of the current colorop) to userspace. Since the chain is already described by the property, a struct list_head would be redundant.
+>>> Also, each color pipeline is an immutable chain of colorops where the sequence and position matter: once the chain is built, colorops are never added, removed, replaced or walked in reverse. It's a forward-only chain that ends when next == NULL, and it directly matches userspace mapping. Another point to take into account is that there is no struct drm_color_pipeline to hold a list_head yet, since each color pipeline is identified by the first colorop element in the chain. Maybe we will want a container to link a given pre-blend color pipeline to a specific post-blend color pipeline for example, but linking pre- to post-blend color pipelines is something we are still not clear about.
+>>>
+>>> Melissa
+>>>
+>> "there is no struct drm_color_pipeline to hold a list_head" <-- I think this is the real reason. It is possible to convert to use a proper list structure, but the result is slightly messy. I had a quick go at it to see how messy:
+>>      https://patchwork.freedesktop.org/series/168200/
+>>
+> Yeah, Melissa and Chaitanya pretty much described why they work the way they do. I'm not sure it makes sense to replace the mechanism with lists and any attempt to do so should make sure not to break userspace ABI. I'm not opposed to improvements either if anyone finds a solution that makes everyone's lives easier.
 >
 > Harry
->
-> >> struct dc_link *link, const struct drm
-> >>       case DP_BRANCH_DEVICE_ID_00E04C:
-> >>       case DP_BRANCH_DEVICE_ID_90CC24:
-> >>       case DP_BRANCH_DEVICE_ID_2B02F0:
-> >> +     case DP_BRANCH_DEVICE_ID_001CF8:
-> >>               return true;
-> >>       }
-> >>
-> >> --
-> >> 2.54.0
-> >
->
->
+@Harry, the patch series I linked above does the conversion. It does not 
+affect the user space ABI at all, only the internal kernel operation is 
+changed. I think it is better in some ways but maybe not in others. If 
+you would like to take a look, any feedback would be appreciated.
 
---00000000000004b1f3065504a5b7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Thanks,
+John.
 
-<div dir=3D"auto">Yes, and that&#39;s what I tested it with.</div><br><div =
-class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Wed, Jun 24, 2026, 11:54=E2=80=AFAM Harry Wentland &lt;<a href=3D=
-"mailto:harry.wentland@amd.com">harry.wentland@amd.com</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><br>
-<br>
-On 2026-06-19 12:17, Deucher, Alexander wrote:<br>
-&gt; Public<br>
-&gt; <br>
-&gt; Adding a few display folks to review.<br>
-&gt; <br>
-&gt; Thanks,<br>
-&gt; <br>
-&gt; Alex<br>
-&gt; <br>
-&gt;&gt; -----Original Message-----<br>
-&gt;&gt; From: amd-gfx &lt;<a href=3D"mailto:amd-gfx-bounces@lists.freedesk=
-top.org" target=3D"_blank" rel=3D"noreferrer">amd-gfx-bounces@lists.freedes=
-ktop.org</a>&gt; On Behalf Of<br>
-&gt;&gt; Charles Munger<br>
-&gt;&gt; Sent: Friday, June 19, 2026 12:59 AM<br>
-&gt;&gt; To: <a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_bl=
-ank" rel=3D"noreferrer">amd-gfx@lists.freedesktop.org</a><br>
-&gt;&gt; Cc: Charles Munger &lt;<a href=3D"mailto:charleslmunger@gmail.com"=
- target=3D"_blank" rel=3D"noreferrer">charleslmunger@gmail.com</a>&gt;<br>
-&gt;&gt; Subject: [PATCH] drm/amdgpu: Add Paradetech OUI to VRR compat list=
-<br>
-&gt;&gt;<br>
-&gt;&gt; There&#39;s at least two firmware versions on the CalDigit DP20-HD=
-MI21 adapter,<br>
-&gt;&gt; which is powered by the ParadeTech PS196G chip. The first version =
-has a bug<br>
-&gt;&gt; where it incorrectly neglects to set the DOWN_STREAM_PORT_PRESENT =
-field<br>
-&gt;&gt; in the DPCD:<br>
-&gt;&gt;<br>
-&gt;&gt; $ sudo dpcd_reg read --offset=3D0x2205 --count=3D1 --device=3D0<br=
->
-&gt;&gt; 0x2205:=C2=A0 00<br>
-&gt;&gt; $ sudo dpcd_reg read --offset=3D0x0005 --count=3D1 --device=3D0<br=
->
-&gt;&gt; 0x0005:=C2=A0 00<br>
-&gt;&gt;<br>
-&gt;&gt; The newer one fixes this, and with this patch correctly negotiates=
- VRR.<br>
-&gt;&gt;<br>
-&gt;&gt; [~]$ sudo dpcd_reg read --offset=3D0x5 --count=3D1 --device=3D2<br=
->
-&gt;&gt; 0x0005:=C2=A0 1d<br>
-&gt;&gt; [~]$ sudo dpcd_reg read --offset=3D0x2205 --count=3D1 --device=3D2=
-<br>
-&gt;&gt; 0x2205:=C2=A0 1d<br>
-&gt;&gt;<br>
-&gt;&gt; So if you&#39;re using a Paradetech adapter and it doesn&#39;t neg=
-otiate VRR, check<br>
-&gt;&gt; that it has a firmware that produces the correct DPCD.<br>
-&gt;&gt;<br>
-&gt;&gt; Signed-off-by: Charles Munger &lt;<a href=3D"mailto:charleslmunger=
-@gmail.com" target=3D"_blank" rel=3D"noreferrer">charleslmunger@gmail.com</=
-a>&gt;<br>
-&gt;&gt; ---<br>
-&gt;&gt;=C2=A0 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | =
-1 +<br>
-&gt;&gt;=C2=A0 1 file changed, 1 insertion(+)<br>
-&gt;&gt;<br>
-&gt;&gt; diff --git<br>
-&gt;&gt; a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c<br>
-&gt;&gt; b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c<br>
-&gt;&gt; index 6c827e6703a0..f463495d1c87 100644<br>
-&gt;&gt; --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c<br=
->
-&gt;&gt; +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c<br=
->
-&gt;&gt; @@ -1410,6 +1410,7 @@ bool dm_helpers_is_vrr_pcon_allowed(const<br=
->
-<br>
-Looks like this is based on the &quot;drm/amd: VRR fixes, HDMI Gaming Featu=
-res&quot;<br>
-series, not directly on amd-staging-drm-next. I&#39;ll have to take another=
-<br>
-closer look at that series.<br>
-<br>
-Harry<br>
-<br>
-&gt;&gt; struct dc_link *link, const struct drm<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0case DP_BRANCH_DEVICE_ID_00E04C:<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0case DP_BRANCH_DEVICE_ID_90CC24:<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0case DP_BRANCH_DEVICE_ID_2B02F0:<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0case DP_BRANCH_DEVICE_ID_001CF8:<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return true;=
-<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt;&gt;<br>
-&gt;&gt; --<br>
-&gt;&gt; 2.54.0<br>
-&gt; <br>
-<br>
-</blockquote></div>
 
---00000000000004b1f3065504a5b7--
+>
+>> John.
+>>
+>>>> Harry, others can chime in.
+>>>>
+>>>> ==
+>>>> Chaitanya
+>>>>
+>>>>> BR,
+>>>>> Jani.
+>>>>>
+>>>>>>> +        colorop_state = drm_atomic_get_colorop_state(state, colorop);
+>>>>>>> +        if (IS_ERR(colorop_state))
+>>>>>>> +            return PTR_ERR(colorop_state);
+>>>>>>> +    }
+>>>>>>> +
+>>>>>>> +    /* Same color pipeline as new; no point walking old. */
+>>>>>>> +    if (new_plane_state->color_pipeline == old_plane_state->color_pipeline)
+>>>>>>> +        return 0;
+>>>>>>> +
+>>>>>>> +    for (colorop = old_plane_state->color_pipeline;
+>>>>>>> +         colorop;
+>>>>>>> +         colorop = colorop->next) {
+>>>>>>> +        colorop_state = drm_atomic_get_colorop_state(state, colorop);
+>>>>>>> +        if (IS_ERR(colorop_state))
+>>>>>>> +            return PTR_ERR(colorop_state);
+>>>>>>> +    }
+>>>>>>> +
+>>>>>>> +    return 0;
+>>>>>>> +}
+>>>>>>> +
+>>>>>>>     static void drm_atomic_colorop_print_state(struct drm_printer *p,
+>>>>>>>                            const struct drm_colorop_state *state)
+>>>>>>>     {
+>>>>>>> @@ -1591,11 +1644,9 @@ drm_atomic_add_affected_planes(struct drm_atomic_commit *state,
+>>>>>>>             if (IS_ERR(plane_state))
+>>>>>>>                 return PTR_ERR(plane_state);
+>>>>>>>     -        if (plane_state->color_pipeline) {
+>>>>>>> -            ret = drm_atomic_add_affected_colorops(state, plane);
+>>>>>>> -            if (ret)
+>>>>>>> -                return ret;
+>>>>>>> -        }
+>>>>>>> +        ret = drm_atomic_add_pipeline_colorops(state, plane);
+>>>>>>> +        if (ret)
+>>>>>>> +            return ret;
+>>>>>>>         }
+>>>>>>>         return 0;
+>>>>>>>     }
+>>>>>>> @@ -1607,10 +1658,8 @@ EXPORT_SYMBOL(drm_atomic_add_affected_planes);
+>>>>>>>      * @plane: DRM plane
+>>>>>>>      *
+>>>>>>>      * This function walks the current configuration and adds all colorops
+>>>>>>> - * currently used by @plane to the atomic configuration @state. This is useful
+>>>>>>> - * when an atomic commit also needs to check all currently enabled colorop on
+>>>>>>> - * @plane, e.g. when changing the mode. It's also useful when re-enabling a plane
+>>>>>>> - * to avoid special code to force-enable all colorops.
+>>>>>>> + * currently used by @plane to the atomic configuration @state. It's useful
+>>>>>>> + * when re-enabling a plane to avoid special code to force-enable all colorops.
+>>>>>>>      *
+>>>>>>>      * Since acquiring a colorop state will always also acquire the w/w mutex of the
+>>>>>>>      * current plane for that colorop (if there is any) adding all the colorop states for
+
