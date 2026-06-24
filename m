@@ -2,87 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tTmrOmzlO2r+ewgAu9opvQ
+	id yI0REHPpO2r6fAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 16:10:52 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 16:28:03 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DC1B6BEFA0
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 16:10:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF08D6BF1AF
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 16:28:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=mJByVxgn;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=xATUp8jv;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7AE510E0A8;
-	Wed, 24 Jun 2026 14:10:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51F2F10E088;
+	Wed, 24 Jun 2026 14:28:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
- [209.85.218.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24E1210E0A8
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 14:10:50 +0000 (UTC)
-Received: by mail-ej1-f42.google.com with SMTP id
- a640c23a62f3a-c0d6c75c58cso189679066b.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 07:10:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782310248; x=1782915048; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=TciN1Xqt1hFRE0qAoFMgzpxL9xrSsf1wzBczJJBqllk=;
- b=mJByVxgnEAjYkkp3l8nElncoCsb6A1EFWLJm6kAZsd4TSZ1MCA5viw2QJyqZqDzjO4
- we2/27NKfnhVLHlfD+akG6QDA1uSnl7B12S0SQPT/dclI95j/NmGxtOYX8iVFJ8TClIj
- fhH4SUqpZVbUMhGVlupdeCxHTFnUGwxIK8QprEbiscFShSxHnHMlCnlJDLWRcdmKPocr
- aY0K9TP4eGuKqqzpEkOqwAOFL7XR/acB79I3Bb7mI+/z8A5qV+nR4xlpeCl/P2lhgl2n
- nMgRbJQQ8gkHI3rGl+OuiJ6deB0ZPAZoGFVestm3f4fSBE04wY8o29qBIPEYZKkgepkV
- 8sUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782310248; x=1782915048;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=TciN1Xqt1hFRE0qAoFMgzpxL9xrSsf1wzBczJJBqllk=;
- b=O+DIwSr71h2DhtrxPNkyR5pShIUa2oGA9gJBzPXkN2nEn8JeH84nZYJ/NNUmDCCqcH
- aLrADRx5/gr3JpUo8PaneiGe2POfMwzclNkNPsaSZkRsKvoIo+U3z15IvOaUY3cs0cD/
- JbAcBuKsplmKlBGHez/isA/LUtkEZ3UJuK8C/215wK2Eq6zZC+ctbZOHW/Y69fTFVvPS
- IAwfkKIZSnx1CgSzPsXsrlOWPrE/FJdeN0PNs8TaAzkdFmZcgG+usF7g6kP0fUWAaqfi
- K6Tw781dvs0ZkU0jGdsOsW1I8/nJyBEHM85NnJj9dshnEeFZMQTq66vSia6e4Lzb+LA2
- v92A==
-X-Gm-Message-State: AOJu0Yzb1shdqvEzwnGAMuw5yKDwQTX1xrFN/jwzVtCOFBbSgDWguqfU
- W5iMnyyoH5BZerhQzVHQoFXr69Yn/yANTK8gYwB1kqdP75W3SfkPjxaO+RBUGQ==
-X-Gm-Gg: AfdE7clsJtaqk4Nphcs43A8meW2nB1AHG5etmqQb35ejAnIGIAxJBi7NFcecSAAZXV6
- StCAPQPCfX8/NxxRHgk0yk4wT9VZK70EolSfUKmy34SQE/YtdgK8eC17f8xE+pImO+firih1JYX
- oEl+fnkGQEmDIBCIvZL11n9ulkOPPAp3Ey47UDt8GMH064NVZ80N5m8p2GSsglGO/UpcljbCzgL
- ClUHJECDgGjxMo79z16Y1Bba4PvlaUnZVcrhLo7kv2iaYlKrLr3Wd+sMQL5ZVTrx2JfC5FogzOO
- mABtEoqxu73Kd2qvgzsOXX0CzC3z1ABi7ceWbJ6JVl6JQQdvy4vFzSXzrXCL/ilsnNz7wAj9Un4
- nWGEL2IGib9OMCwOtVvMSjy/FGMPoYCDv1IW/69yWSLqQNFBx1m1n4Ihun9HSrs7+ZyCCtoiBlI
- 6a30IYPQOOBedHkyGGjRTjrsm51bomYQJ+cs6Row==
-X-Received: by 2002:a17:907:7244:b0:bab:cab:c372 with SMTP id
- a640c23a62f3a-c0c64694cc8mr1087959666b.22.1782310248027; 
- Wed, 24 Jun 2026 07:10:48 -0700 (PDT)
-Received: from timur-max.localnet (netacc-gpn-7-144-116.pool.yettel.hu.
- [176.77.144.116]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-c0c5b304722sm660245966b.0.2026.06.24.07.10.45
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 Jun 2026 07:10:47 -0700 (PDT)
-From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
-To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Natalie Vock <natalie.vock@gmx.de>, Amir Shetaia <Amir.Shetaia@amd.com>,
- Marek =?UTF-8?B?T2zFocOhaw==?= <maraeo@gmail.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: Re: [PATCH 1/7] drm/amdgpu/vm: Add fence argument to
- amdgpu_vm_handle_fault()
-Date: Wed, 24 Jun 2026 16:09:54 +0200
-Message-ID: <5790868.rdbgypaU67@timur-max>
-In-Reply-To: <5dc2e31f-7e28-4076-9842-2c4245c01e67@ursulin.net>
-References: <20260529103059.21470-1-timur.kristof@gmail.com>
- <20260529103059.21470-2-timur.kristof@gmail.com>
- <5dc2e31f-7e28-4076-9842-2c4245c01e67@ursulin.net>
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013009.outbound.protection.outlook.com
+ [40.93.201.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D053D10E088
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 14:27:59 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wfQX0BI61nUFqMMFcqLeBNlbnn2ZTGWijwkb89pvS7/vwwLjQN6qI8THoUCOJsM2YoNtvem7DvFcMO5PUVoF0Qp3ccm0PjMI6sd4WmDignIeP1WLIoStsCCZW6yYrPrE+PHSPgx/zDIlwEFqebUzgrgJdolBf1OlkFwRVGNq0S0kLXW15DjAFKyN0yRVw6mHd3AoMHxTuEWdMa+kPk0eMhJRVToO315NsDWhn51ZzMBf0pzPp5rCD6DiZ1G7ktnh94uHXcAbhgdWG0qya5CP97G/VqQDzxvNYUnfYnJGtFfkPEvop+upW0keh2n2gHYPwHQtWxbxb47dkNa6VJVIdg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/Wyru00Y9hSz03YJOjYDlJxzgVA3jlFkLX5Rn61Z/mc=;
+ b=nzIGIxK1pEyG0P9i0l9MBY+c7aTLY39RNyGzaiNxGxfC1uovbHyvb16X0Sl1N6hoaNr7i20VRDDcRsa6ODmVGYqhVeT+gGmWbMLkOWTpbx7kbEXUASImd2EF5gn9qaqGXBoyb4C6Ygw6/wMdoDE7qB/FigVgUJ0hyEyOE7dyV8gegEf2uoRd0n54gzumKlVAEuBCuflmzl8m2Q4iyT1e2GsOYuwN0z1co3RniyzJrsdRfHsbPLQdh3idLwfnt/QpfZq/QRuy+IzXjKCSUADDt1uF6HEtIPw9rLzc/d3tBm69HM+w3rmqWNB91ktRK/J4VZekKnJkjRALUsyH+Du9kQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/Wyru00Y9hSz03YJOjYDlJxzgVA3jlFkLX5Rn61Z/mc=;
+ b=xATUp8jvVzZ7AB9YWxleOpT9CAP6NRXAknF7oIFu5779eORh1WhQ5XCUnZG1+HtNfVTfcRhZ7Ra/L/USibAPHJub3z5M4dpwInd8v8yDdezDD1lx5UAbu0GHbQt0+gqYBsycf+yFGFhrOC+XdEcX5C5RUqxLPHJL8wO0Vjlvhg0=
+Received: from CH2PR10CA0003.namprd10.prod.outlook.com (2603:10b6:610:4c::13)
+ by IA0PR12MB8838.namprd12.prod.outlook.com (2603:10b6:208:483::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Wed, 24 Jun
+ 2026 14:27:54 +0000
+Received: from CH1PEPF0000A34B.namprd04.prod.outlook.com
+ (2603:10b6:610:4c:cafe::6f) by CH2PR10CA0003.outlook.office365.com
+ (2603:10b6:610:4c::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.13 via Frontend Transport; Wed,
+ 24 Jun 2026 14:27:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CH1PEPF0000A34B.mail.protection.outlook.com (10.167.244.10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.159.10 via Frontend Transport; Wed, 24 Jun 2026 14:27:49 +0000
+Received: from jz-tester2.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 24 Jun
+ 2026 09:27:49 -0500
+From: James Zhu <James.Zhu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <philip.yang@amd.com>, <Hawking.Zhang@amd.com>, <Bob.Zhou@amd.com>,
+ <Harish.Kasiviswanathan@amd.com>, <jamesz@amd.com>, Vladimir Indic
+ <vladimir.indic@amd.com>
+Subject: [PATCH v2 1/2] drm/amdkfd: support kfd map bo to kernel
+Date: Wed, 24 Jun 2026 10:27:26 -0400
+Message-ID: <20260624142727.1946258-1-James.Zhu@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000A34B:EE_|IA0PR12MB8838:EE_
+X-MS-Office365-Filtering-Correlation-Id: 66c08d07-f597-46dd-81ba-08ded1fcc4fe
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|36860700016|1800799024|82310400026|376014|18002099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: iZvFrGbEUWQ1KWrHhVLonwRJX0z09UVAHH89uncRMipmef2di/68t6nmAwle/7w7BA3AzHoX7qhV2OlRhuryMrRGnceaS5opUD1y3yO2lpVNpYUjZ1DivuNuNvrlLbRDGUN+UPKZOcR0ulvU4JBb/LgNiwGH/jDqvr3RZd5FdiMcaNoc2U2AFI4GW1F9hRg4hSaWxYkrAFkVkw5oUnbeNhWNDYZLiZdweE+4ogmY8auPFe7UO/9a0b2k5ZpZ+IknupeEjfAEwBEpuIKPZlrcXn+SdkKI2hZYCtCP1ygEcoxjSBBRqGBw+N6l9YRgovvaYx+wwAK5VU/3TZnw43oo5VjS6KSHvBIUNX993Mz+LDnZ8/plcgknPOf8lw5Tzl0knDvqOSFI5bVRwyG23m7XeCsFkVJJPslcEh0FpEJ6TWDxyGRkrB/82nvblCHrIKhxBkvaAyu10tHq5Lz5Ll7jufMRKqNo0ZKXUooT6kfERqroDS6/FgT8oV0zNfenXnDw7p8BhJ5qoJ4HKkszm4Bzn3oX/iulQwXopIOJijEFQ0lLBhvBGqNiTHzOMvMja8h1Er6inTUjreYXsTIr1k48mYtJIOW7381Ic9jn6L/99ycANLDB4nb5RR4NxLC9B1OU+l6VlS7lB4TkTU8GYjEvUZJdvdZIMPYatX81vAiLbVgzzdr8W1+2ZOlRU2q1WjvXiUuikt4BBpn19mw+Osw21w==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(23010399003)(36860700016)(1800799024)(82310400026)(376014)(18002099003)(11063799006)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: GORMtqgGCcmKegUuHMaEIeyTK/NccEdc+ichuy3YzUxghoV1cCs1PMw6A7xtyZPfN6B6/xXM4u2vDMj4dq3g8ETUVPdilUB6POnVn4RLvqxjM/9Xq4MQhbDF2CKkzcwFh2arYB38i31APgZoQ1Q/SOy69+Ok1fDf78pRopJJGM6zX2jq975rLUv/aFplpHzf9aNS7Mr74ZsakDB7w6AovoW8DN8dLc1jTdm1iiTXgBUw10ULZTHm7NBCSYgVlv7h87o4/Fy1iuPHFfLrTTtuZadJ+I7mMFmRgjVCon5Nq5xMxIFLL4LT3OgWRZNJa3+5/HCORIeUuOVO2u1Nhb/6l+EtgyeSpR6jLGyX6ptAmB1KJ/A8LNMB/aF6clAdujngR6n/rK9e96BBBaBUoFi963l0ske25cjKe4zdZwXF1r5jlVxfbc5L/3NnIADy9l+M
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 14:27:49.9612 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66c08d07-f597-46dd-81ba-08ded1fcc4fe
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH1PEPF0000A34B.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8838
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,223 +118,179 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,gmx.de,gmail.com,ursulin.net];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[James.Zhu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	HAS_XOIP(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_FIVE(0.00)[6];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3DC1B6BEFA0
+X-Rspamd-Queue-Id: DF08D6BF1AF
 
-On 2026. j=C3=BAnius 24., szerda 15:54:30 k=C3=B6z=C3=A9p-eur=C3=B3pai ny=
-=C3=A1ri id=C5=91 Tvrtko Ursulin=20
-wrote:
-> On 29/05/2026 11:30, Timur Krist=C3=B3f wrote:
-> > Allow the caller to respond to when the VM update is finished.
-> >=20
-> > Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
-> > ---
-> >=20
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 4 ++--
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  | 5 ++++-
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h  | 2 +-
-> >   drivers/gpu/drm/amd/amdgpu/gmc_v12_1.c  | 4 ++--
-> >   4 files changed, 9 insertions(+), 6 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c index
-> > d790b7619ccd4..26aea960e2759 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-> > @@ -564,7 +564,7 @@ int amdgpu_gmc_handle_retry_fault(struct amdgpu_dev=
-ice
-> > *adev,>=20
-> >   		}
-> >   	=09
-> >   		ret =3D amdgpu_vm_handle_fault(adev, entry->pasid,=20
-entry->vmid, node_id,
-> >=20
-> > -					     addr, entry-
->timestamp, write_fault);
-> > +					     addr, entry-
->timestamp, write_fault, NULL);
-> >=20
-> >   		adev->irq.ih_funcs->retry_cam_ack(adev, cam_index);
-> >   		if (ret)
-> >   	=09
-> >   			return 1;
-> >=20
-> > @@ -587,7 +587,7 @@ int amdgpu_gmc_handle_retry_fault(struct amdgpu_dev=
-ice
-> > *adev,>=20
-> >   		 * tables
-> >   		 */
-> >   	=09
-> >   		if (amdgpu_vm_handle_fault(adev, entry->pasid, entry-
->vmid, node_id,
-> >=20
-> > -					   addr, entry-
->timestamp, write_fault))
-> > +					   addr, entry-
->timestamp, write_fault, NULL))
-> >=20
-> >   			return 1;
-> >   =09
-> >   	}
-> >   	return 0;
-> >=20
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c index
-> > b523a7b97d6f1..8c3ba7213eb22 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> > @@ -2962,13 +2962,14 @@ struct amdgpu_vm *amdgpu_vm_lock_by_pasid(struct
-> > amdgpu_device *adev,>=20
-> >    *           GFX 9.4.3.
-> >    * @addr: Address of the fault
-> >    * @write_fault: true is write fault, false is read fault
-> >=20
-> > + * @fence: optional resulting fence, signaled after update is done
-> >=20
-> >    *
-> >    * Try to gracefully handle a VM fault. Return true if the fault was
-> >    handled and * shouldn't be reported any more.
-> >    */
-> >  =20
-> >   bool amdgpu_vm_handle_fault(struct amdgpu_device *adev, u32 pasid,
-> >  =20
-> >   			    u32 vmid, u32 node_id, uint64_t addr,
-> >=20
-> > -			    uint64_t ts, bool write_fault)
-> > +			    uint64_t ts, bool write_fault, struct=20
-dma_fence **fence)
-> >=20
-> >   {
-> >  =20
-> >   	bool is_compute_context =3D false;
-> >   	struct amdgpu_bo *root;
-> >=20
-> > @@ -3034,6 +3035,8 @@ bool amdgpu_vm_handle_fault(struct amdgpu_device
-> > *adev, u32 pasid,>=20
-> >   	r =3D amdgpu_vm_update_pdes(adev, vm, true);
-> >=20
-> > +	*fence =3D vm->last_update;
->=20
-> Unless the heat wave is severely interfering with my ability to read
-> code, fence here is mostly NULL and who owns the reference is suspect.
-> Did you mean like this:
->=20
-> if (fence)
-> 	*fence =3D dma_fence_get(vm->last_update);
->=20
-> Kernel doc should perhaps clarify along the lines of:
->=20
-> "@fence: If non-null, returns a fence with an extra reference for the
-> caller, which is signaled after update is done.".
->=20
-> Regards,
->=20
-> Tvrtko
+with different domain.
 
-Thank you!
-Yes, that's a valid point. I will fix this.
+Signed-off-by: James Zhu <James.Zhu@amd.com>
+Reviewed-by: Vladimir Indic <vladimir.indic@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h       |  6 +++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 13 +++++++------
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c          |  5 +++--
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c         | 10 +++++-----
+ 4 files changed, 18 insertions(+), 16 deletions(-)
 
-Note that I will likely drop this patch from the next version of the series=
-=20
-and submit it separately, because it conflicts with Christian's series.
->=20
-> > +
-> >=20
-> >   error_unlock:
-> >   	amdgpu_bo_unreserve(root);
-> >   	if (r < 0)
-> >=20
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h index
-> > cc096c005e348..72da6b3d98c70 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> > @@ -589,7 +589,7 @@ void amdgpu_vm_put_task_info(struct amdgpu_task_info
-> > *task_info);>=20
-> >   bool amdgpu_vm_handle_fault(struct amdgpu_device *adev, u32 pasid,
-> >  =20
-> >   			    u32 vmid, u32 node_id, uint64_t addr,=20
-uint64_t ts,
-> >=20
-> > -			    bool write_fault);
-> > +			    bool write_fault, struct dma_fence=20
-**fence);
-> >=20
-> >   struct amdgpu_vm *amdgpu_vm_lock_by_pasid(struct amdgpu_device *adev,
-> >  =20
-> >   					  struct amdgpu_bo=20
-**root, u32 pasid);
-> >=20
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v12_1.c
-> > b/drivers/gpu/drm/amd/amdgpu/gmc_v12_1.c index
-> > 855cd29cbffaa..da18c02013966 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/gmc_v12_1.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v12_1.c
-> > @@ -155,7 +155,7 @@ static int gmc_v12_1_process_interrupt(struct
-> > amdgpu_device *adev,>=20
-> >   			cam_index =3D entry->src_data[3] & 0x3ff;
-> >   		=09
-> >   			ret =3D amdgpu_vm_handle_fault(adev, entry-
->pasid, entry->vmid,
-> >   			node_id,
-> >=20
-> > -						=09
-addr, entry->timestamp, write_fault);
-> > +						=09
-addr, entry->timestamp, write_fault, NULL);
-> >=20
-> >   			WDOORBELL32(adev-
->irq.retry_cam_doorbell_index, cam_index);
-> >   			if (ret)
-> >   		=09
-> >   				return 1;
-> >=20
-> > @@ -178,7 +178,7 @@ static int gmc_v12_1_process_interrupt(struct
-> > amdgpu_device *adev,>=20
-> >   			 * tables
-> >   			 */
-> >   		=09
-> >   			if (amdgpu_vm_handle_fault(adev, entry-
->pasid, entry->vmid, node_id,
-> >=20
-> > -						   addr,=20
-entry->timestamp, write_fault))
-> > +						   addr,=20
-entry->timestamp, write_fault, NULL))
-> >=20
-> >   				return 1;
-> >   	=09
-> >   		}
-> >   =09
-> >   	}
-
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+index 5b49fa50a47d..e40e71f35bb9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+@@ -336,9 +336,9 @@ int amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu(
+ int amdgpu_amdkfd_gpuvm_dmaunmap_mem(struct kgd_mem *mem, void *drm_priv);
+ int amdgpu_amdkfd_gpuvm_sync_memory(
+ 		struct amdgpu_device *adev, struct kgd_mem *mem, bool intr);
+-int amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(struct kgd_mem *mem,
+-					     void **kptr, uint64_t *size);
+-void amdgpu_amdkfd_gpuvm_unmap_gtt_bo_from_kernel(struct kgd_mem *mem);
++int amdgpu_amdkfd_gpuvm_map_bo_to_kernel(struct kgd_mem *mem,
++					     void **kptr, uint64_t *size, uint32_t domain);
++void amdgpu_amdkfd_gpuvm_unmap_bo_from_kernel(struct kgd_mem *mem);
+ 
+ int amdgpu_amdkfd_map_gtt_bo_to_gart(struct amdgpu_bo *bo, struct amdgpu_bo **bo_gart);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index 5bb3e28441a5..ec0901aa923c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+@@ -2271,11 +2271,12 @@ int amdgpu_amdkfd_map_gtt_bo_to_gart(struct amdgpu_bo *bo, struct amdgpu_bo **bo
+ 	return ret;
+ }
+ 
+-/** amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel() - Map a GTT BO for kernel CPU access
++/** amdgpu_amdkfd_gpuvm_map_bo_to_kernel() - Map a GTT BO for kernel CPU access
+  *
+  * @mem: Buffer object to be mapped for CPU access
+  * @kptr[out]: pointer in kernel CPU address space
+  * @size[out]: size of the buffer
++ * @domain[IN]: domain of the buffer
+  *
+  * Pins the BO and maps it for kernel CPU access. The eviction fence is removed
+  * from the BO, since pinned BOs cannot be evicted. The bo must remain on the
+@@ -2284,8 +2285,8 @@ int amdgpu_amdkfd_map_gtt_bo_to_gart(struct amdgpu_bo *bo, struct amdgpu_bo **bo
+  *
+  * Return: 0 on success, error code on failure
+  */
+-int amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(struct kgd_mem *mem,
+-					     void **kptr, uint64_t *size)
++int amdgpu_amdkfd_gpuvm_map_bo_to_kernel(struct kgd_mem *mem,
++					     void **kptr, uint64_t *size, uint32_t domain)
+ {
+ 	int ret;
+ 	struct amdgpu_bo *bo = mem->bo;
+@@ -2303,7 +2304,7 @@ int amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(struct kgd_mem *mem,
+ 		goto bo_reserve_failed;
+ 	}
+ 
+-	ret = amdgpu_bo_pin(bo, AMDGPU_GEM_DOMAIN_GTT);
++	ret = amdgpu_bo_pin(bo, domain);
+ 	if (ret) {
+ 		pr_err("Failed to pin bo. ret %d\n", ret);
+ 		goto pin_failed;
+@@ -2336,7 +2337,7 @@ int amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(struct kgd_mem *mem,
+ 	return ret;
+ }
+ 
+-/** amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel() - Unmap a GTT BO for kernel CPU access
++/** amdgpu_amdkfd_gpuvm_map_bo_to_kernel() - Unmap a GTT BO for kernel CPU access
+  *
+  * @mem: Buffer object to be unmapped for CPU access
+  *
+@@ -2344,7 +2345,7 @@ int amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(struct kgd_mem *mem,
+  * eviction fence, so this function should only be used for cleanup before the
+  * BO is destroyed.
+  */
+-void amdgpu_amdkfd_gpuvm_unmap_gtt_bo_from_kernel(struct kgd_mem *mem)
++void amdgpu_amdkfd_gpuvm_unmap_bo_from_kernel(struct kgd_mem *mem)
+ {
+ 	struct amdgpu_bo *bo = mem->bo;
+ 
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+index 3ffe9a52f3e1..d6fa5d71f581 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_events.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+@@ -314,7 +314,8 @@ int kfd_kmap_event_page(struct kfd_process *p, uint64_t event_page_offset)
+ 		return -EINVAL;
+ 	}
+ 
+-	err = amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(mem, &kern_addr, &size);
++	err = amdgpu_amdkfd_gpuvm_map_bo_to_kernel(mem, &kern_addr, &size,
++						AMDGPU_GEM_DOMAIN_GTT);
+ 	if (err) {
+ 		pr_err("Failed to map event page to kernel\n");
+ 		return err;
+@@ -323,7 +324,7 @@ int kfd_kmap_event_page(struct kfd_process *p, uint64_t event_page_offset)
+ 	err = kfd_event_page_set(p, kern_addr, size, event_page_offset);
+ 	if (err) {
+ 		pr_err("Failed to set event page\n");
+-		amdgpu_amdkfd_gpuvm_unmap_gtt_bo_from_kernel(mem);
++		amdgpu_amdkfd_gpuvm_unmap_bo_from_kernel(mem);
+ 		return err;
+ 	}
+ 	return err;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+index 71b36a4613fa..21a90fc3adff 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+@@ -736,7 +736,7 @@ static void kfd_process_free_gpuvm(struct kgd_mem *mem,
+ 	struct kfd_node *dev = pdd->dev;
+ 
+ 	if (kptr && *kptr) {
+-		amdgpu_amdkfd_gpuvm_unmap_gtt_bo_from_kernel(mem);
++		amdgpu_amdkfd_gpuvm_unmap_bo_from_kernel(mem);
+ 		*kptr = NULL;
+ 	}
+ 
+@@ -776,10 +776,10 @@ static int kfd_process_alloc_gpuvm(struct kfd_process_device *pdd,
+ 	}
+ 
+ 	if (kptr) {
+-		err = amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(
+-				(struct kgd_mem *)*mem, kptr, NULL);
++		err = amdgpu_amdkfd_gpuvm_map_bo_to_kernel(
++				(struct kgd_mem *)*mem, kptr, NULL, domain);
+ 		if (err) {
+-			pr_debug("Map GTT BO to kernel failed\n");
++			pr_debug("Map BO to kernel failed\n");
+ 			goto sync_memory_failed;
+ 		}
+ 	}
+@@ -1140,7 +1140,7 @@ static void kfd_process_kunmap_signal_bo(struct kfd_process *p)
+ 	if (!mem)
+ 		goto out;
+ 
+-	amdgpu_amdkfd_gpuvm_unmap_gtt_bo_from_kernel(mem);
++	amdgpu_amdkfd_gpuvm_unmap_bo_from_kernel(mem);
+ 
+ out:
+ 	mutex_unlock(&p->mutex);
+-- 
+2.43.0
 
