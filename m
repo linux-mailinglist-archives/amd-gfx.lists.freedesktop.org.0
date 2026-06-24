@@ -2,53 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 5UFsLVgdPGpjkAgAu9opvQ
+	id fdmOClgdPGpbkAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:09:28 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D0D36C0A4C
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:09:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF9346C0A41
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:09:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=tRahE4kS;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=RZE7e8c6;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FCFA10F08D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48B8D10F087;
 	Wed, 24 Jun 2026 18:09:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012030.outbound.protection.outlook.com
- [40.107.200.30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0677710F087
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 18:09:24 +0000 (UTC)
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012054.outbound.protection.outlook.com [52.101.48.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D61210F086
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 18:09:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lGUNhb+uwbKoTI7fIk9nMjeIvtmPaBSQcJb4dr2Ghfwu7dZVMZ+5nKEoRM8lPfbVFRFE2TVrq+PjUA/unmiImsWBIxDCJDwpW9DfOn22mkYKjq6+Vp+lYXg9z4gYdsKvVhlw80aVCGAcC54GgdNkWG3l4l07O3xLH/OsiiarUfCDyVw9GQIg8xzprWNtKndfmzTIMK5d83IEiUCWVR6a04HYGsgNK5E0I1d4uVL82GmknpMH7ko5cVZPA3h/+tru22gYlEST0GlOQ3O7Ek3zAHYaxaxXjLg6NHxMWjlomXL2dkAaZshIOWX6xeQIlWH4bsd8YkMB710uanTB+gVG2A==
+ b=ywuxyBZOtyux4dAnFMegkH1TwvEqmgUq+WW1kBzOS6App/KDjbqWx0BJxWtSn7/sdJD3iVxgEDira281EKvhM7t4fYwe5EkWeSfAFNyfWSY1f3ndg42p6kptvFmKqW1jGlVP6gTLVHK1bgDdQaUnQvIiSd9cp5PvG/jQumMHOFU20Sl6QtXjE/VMEbsgrpS4CjJ5s3S7eR6/IkYU4ULMvrM/VzmzE+CdOLdJBCPKKQZu9SiXE1VHBEJw8JLyDSwMhTtgSPtgAtKpMsmPmJ7ISKDbFy2vv8RKLAtyHtGlJkbYee/YZ+O/CfBCkO7IlgR6PhoW4SYE20BTth5Z9lGKcg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A39GRa8WvufJfE3LJiFH3ZFTOp9/ntqIZya/fTS7cSY=;
- b=I5jYet/hcpSZxX9Mngbutm0x3JU3kga0XS4qAFiiFgSI3pLcXQScKT66YoZJWb7KCoDi5i7r9k1/+dRQdH4zfXCt2ZhRvEooUL9DAuy1lzNhJvz9qmDK1p1cIXpemMFV4xu28VkRdTwhPjxfSjmpIuJ+F2IqFOzPfpHJjRxCRxOp7lNoXZPnh8sUSaYVBhUn5zjNA3Ej/TPX3RCAfqJrSI1t7hXJCuk7eC37MrpQDGSp3kyCUHhCLF3D3xk1iV90HilaKkAgYoC2yPrFFz70h/Lgj9OJHIlASn5owfJjXnmyxyQx+Wdx5YBE4J+uRMRhR9YO/gnAYzuVB5u0Tm/low==
+ bh=HiUVgMs+mNLBUAgm9U64AM2eEWHIpCdN26gKd942jU4=;
+ b=CIlWraPe4xA1RZ2ODba3n8SqdBz1Pc681kaC52QOJmzMLAIMJjcx5evt8CcWz1lXyVGWWiU/OzQ9jz4bC6fi/JodlCKmUYexTlXR6musqWdpVsfYwwP+ylvTVHS9Drq6lsgj7B2o6yh4FrYYxuMsQIqHxgz5MwuTa6NZZurJInhWfA8ilyeUFLGIoipKjx7+Hy2a4oa1VaJ3NRU+gSFSpEvqJKjk923Xs/tojdOcS4qnl19mlK98ev/fz19ZbXfQYtDJ2XMcak2JKI4/Pa/5j4CwuszZrRGZxKn/dmzQ+6uS64JyrPMLzYlHJajMHyEYcZftW0kqQxLYYJZNg6bsfQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A39GRa8WvufJfE3LJiFH3ZFTOp9/ntqIZya/fTS7cSY=;
- b=tRahE4kSoUSWbqsmtvRGZVppbaF2QrKXeTSrOfRZe/U0lCdMgscDQiOuR0PjRJMn6Botc9lUjjd2pD1y6wUYKEVgdWRUcqg001voqZckfFr6ggN1saBbcSLKR93ThGMWjRgiAdykQNy1USMkbErAG4nDEJ0z64A3s3f/WqG5rno=
-Received: from SJ0PR03CA0022.namprd03.prod.outlook.com (2603:10b6:a03:33a::27)
- by CH3PR12MB8728.namprd12.prod.outlook.com (2603:10b6:610:171::12)
+ bh=HiUVgMs+mNLBUAgm9U64AM2eEWHIpCdN26gKd942jU4=;
+ b=RZE7e8c6c8UTnAONWxMyx6C2nRlXVIWmcvEt+2MuSyDhZKFpIllph0AjFj8OCFgJ9cr0OZgb1jmR4O66Z04FqEkQNRLJPOMtHbB2aTKdMPJJJYZAwHJM+iAttVzizJg5YnzYBBbfgk2qA32IbI63bF2WfP7ptqCmQoZ5b2/5T/k=
+Received: from SJ0PR03CA0019.namprd03.prod.outlook.com (2603:10b6:a03:33a::24)
+ by IA0PR12MB8839.namprd12.prod.outlook.com (2603:10b6:208:493::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.13; Wed, 24 Jun
- 2026 18:09:17 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.14; Wed, 24 Jun
+ 2026 18:09:19 +0000
 Received: from SJ5PEPF000001CD.namprd05.prod.outlook.com
- (2603:10b6:a03:33a:cafe::10) by SJ0PR03CA0022.outlook.office365.com
- (2603:10b6:a03:33a::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.13 via Frontend Transport; Wed,
- 24 Jun 2026 18:09:17 +0000
+ (2603:10b6:a03:33a:cafe::2d) by SJ0PR03CA0019.outlook.office365.com
+ (2603:10b6:a03:33a::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.14 via Frontend Transport; Wed,
+ 24 Jun 2026 18:09:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -58,11 +57,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  SJ5PEPF000001CD.mail.protection.outlook.com (10.167.242.42) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Wed, 24 Jun 2026 18:09:17 +0000
+ 15.21.159.10 via Frontend Transport; Wed, 24 Jun 2026 18:09:19 +0000
 Received: from MKMGEORZHAN02.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 24 Jun
- 2026 13:09:14 -0500
+ 2026 13:09:15 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -71,11 +70,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, George Zhang <george.zhang@amd.com>
-Subject: [PATCH 08/28] drm/amd/display: scale plane global alpha to 12 bits on
- DCN 4.2
-Date: Wed, 24 Jun 2026 14:03:06 -0400
-Message-ID: <20260624180829.4775-9-george.zhang@amd.com>
+ <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
+ "George Zhang" <george.zhang@amd.com>
+Subject: [PATCH 09/28] drm/amd/display: Fix KUnit test crash after global
+ alpha change
+Date: Wed, 24 Jun 2026 14:03:07 -0400
+Message-ID: <20260624180829.4775-10-george.zhang@amd.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260624180829.4775-1-george.zhang@amd.com>
 References: <20260624180829.4775-1-george.zhang@amd.com>
@@ -87,29 +87,29 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CD:EE_|CH3PR12MB8728:EE_
-X-MS-Office365-Filtering-Correlation-Id: f653cb8d-6f30-46da-bb2f-08ded21bb4d2
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CD:EE_|IA0PR12MB8839:EE_
+X-MS-Office365-Filtering-Correlation-Id: 09084cab-af9d-48a4-c05a-08ded21bb605
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|376014|82310400026|23010399003|1800799024|18002099003|22082099003|11063799006|56012099006|3023799007;
-X-Microsoft-Antispam-Message-Info: T9G3nyGvxP6Gt3RrbduspvHvrvBdUNkMbbG3qmYc1ZAkK5gidKUb80arNItUVucHPp+vgUKqV7j+QL+6BUqHhlPM09JgVsU5PQxos5kO0T33TdIZ5XKq5l3BvOjAgpc7AkokvKew1VjbQLbPiSWxyXLlmXhyOQy1xUbLLx7QPhQIz5FpC3dN2mcRURmKhn5bqkIzjeyMVGWfjyNt9vHT3cSwavnuep6MOd1tt3gUMGhmxKEntjfdIJYy5HZKFAB+2303z60O8sfwhBJBtOETI6UKw8G1hC/vUgeOLEkPVOAQXrlgdovKMAqcqZLEFaK/5Z3IFoD1KrraQgqlUwVg4dG9lho6an3Ukc0zakOYeXyL74RNVXPaOOCqGrNz8J0gEIt4azK/Hhh4QFpbBOSWSpoEOTtlv5gimEzZloLcLDAUuDtBlfgD09btFZCzDfCnI0eSDmoBJcruLEHygfZKOecnE9gqXQKkkb8JNXkAEyWO5RrXoT9XMZJnzHUACr2CLVXKB5FzKh/tNPRqlqJL+Xu+ugNu9E5eX7L60J4lS7Wq/g23dS7fyeuprWxn+0dijaX5zmeWCURbhkafRtzEubFiOFmMDmmxJrwLLhEPhOYjHi/ofqWsh1L+HNKFmY4JCEc49KniVhnIUySwyaIjaNi8fGsN5mjFmK8U2UMTFsAcRtDQ7YRWrIA5eNtrgfTJmxrdY/QKbzDYbtFXdOz7VA==
+ ARA:13230040|1800799024|82310400026|36860700016|376014|23010399003|18002099003|22082099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: JbvLVXpgxOMWZ6HfxVTGlgbXS9vViN0NYFJddaWtsZmZdbq+CWkauIT0B4u0ys9tB4fYhdrMTvbecoUOvKJzTasHlIGOBEBUSI3hlgLBUG7GHjkHaV06JTyCT/Nuf8FB+lay44UfjdiNM5LodcBr5nUpj6HEJVa7WxuhZ2ZyGCygzhluzG0uWEqF5Dzocb7iyt1Sdr8/m5+vxwSt1gTO+yONY007xOCmVnO8FvTjNkIHGWWrNV2dBiXb8zhoHJ3QTZzGpgZ4QYab6q1JPFePiX+9Nh095jvWwfBWjBhNUZKNlU+bJBKenQpx/bF2DJQEge5lOAgZqg+JqYK5Hzm4/Xz9OaEtLGQEI4KPg85dmPlnexsGsvLE45K6Mrp+fyr+ohQ+uwCyobKeyyUJmuM1/gdLK6HxromvCc0tt1HRNz3rnDuE8qzhmi3+9HraCmtH6zdcObPVOUyJG8Vo8Hk47p4Kbx0zFTuJwI8XQIeOFJ6Q/kqvzVjkwe3BviWkynfgmHUtJh5C1SPvQTBCUH9/Fn7lLkaeImlgeAGsnmoljpmVPH/a0nXs+f/KRvjyrTbhIaB/EbiDYdK6DGslkKXh0iny0nLtXTKUvCnoxz+adYhkGw0ifDXUEA9nhUcSY/uK1tnfibyiBrGj2YuabiMvba+VJZY1Vy20hjQWEqjNWLDQF7zolmLJPo/dMerGe9XF6pW9QlM22/KVWrfRXD6f9Q==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(376014)(82310400026)(23010399003)(1800799024)(18002099003)(22082099003)(11063799006)(56012099006)(3023799007);
+ SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(23010399003)(18002099003)(22082099003)(56012099006)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: m53OxNFUJayy12GYeYFa4xzmzvmxxDE0rYW3BSlNXS5rhFWca11aA2uv35bT5KnOz5z1Ah+/Be+ShhfpEQg8+Hi0nGXBoq8T+2C3ZAFz+Ig5D6UqigN1RrlC2BkSIdFWcMbYAF+yghpKnk25UL/2Gy26Zbt2fa+wkQODLKONSqXXLtnGz8E/ow9j1BpszcUngIQDhQ33RSzPQ82E+irvyYMQZkSY/mzMPACGuoBdil7woDZIQ72Avc4db0aKiKRiCfN1H+ElVK4DWDxL1ygvDahfoOm/cNWxEmYdx4jBAgPAwQfh9hpw0W4iWL9Erfi11msTgMsz8b++AL5JepxVP8SPHIcBxOeSJpurNC7GFGHzm6Cx0oPisGuWEDXl2Rb49++AfV2Q+TqsN6Yo0CxS87T0TF1YZZM2gRv6PjKTd7sJzCbtTxvdJzC7PwL+21Pw
+X-MS-Exchange-AntiSpam-MessageData-0: Fjk/xs3V/X18whhT2a3CFESEWWz2CTNjyvpeTAlJ+mFL+pn8FOwSsT/+XWzjkNIm8bs60ZlHGAcmQazpbjEtasJgNHU1C6HYIpgiCO8BPRl5I43KqxE+l9sTsTuG2iTmgnJqTKwaaF/Q5S9qaMfOz47LJ4ViQGFcMUXsQKr+9dotpf6Nh8Qjzhu9kzUvi90PBqAgFIH4Zu9fn7Wtn+LSKw91cI2t2SuN2t71KE8m83cL6GvSu7v7jrRZhzTFP2AK4uezGtgv18ZbPzgX5YusnsVOV21HSwSe+ECS9kNh8pkHgZB0YQjQrVoNJvZk23C9chwTu5z7OoQAT0I2D4ZxSFA/btJ7IQHpfeTNy8S75jXyIDWs5XZ1LFveJPfOeAuf18fEmowcz9vZ/rR+2Ds28LZy+faPU54okOyI6tKPLRt1C2mmOogeLnCf1vouls8/
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 18:09:17.1419 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f653cb8d-6f30-46da-bb2f-08ded21bb4d2
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 18:09:19.1503 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09084cab-af9d-48a4-c05a-08ded21bb605
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CD.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8728
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8839
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,7 +136,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -151,59 +151,55 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5D0D36C0A4C
+X-Rspamd-Queue-Id: BF9346C0A41
 
-From: James Lin <PingLei.Lin@amd.com>
+From: Alex Hung <alex.hung@amd.com>
 
-[why]
-On DCN 4.2 the global alpha is reported using 12 bits
-(MPCC_GLOBAL_ALPHA spans bits [0:11]), whereas other ASICs such as
-DCN 3.1.4 use an 8-bit field (MPCC_GLOBAL_ALPHA spans bits
-[16:23]). The DRM plane alpha property is 16-bit and amdgpu_dm
-unconditionally scaled it down by >> 8, which only matches the 8-bit
-hardware field. On DCN 4.2 this fed a value that was 4 bits too small
-into the 12-bit field, so the hardware applied the wrong global alpha
-and the resulting blended output did not match the expected hw * alpha
-value.
+[WHY]
+amdgpu_dm_plane_fill_blending_from_plane_state added drm_to_adev() but
+dm_test_fill_blending_global_alpha did not initialize
+plane_state->plane, causing a NULL pointer dereference.
 
-[how]
-Detect DCN 4.2 via amdgpu_ip_version(adev, DCE_HWIP, 0) and scale the
-16-bit plane alpha by >> 4 to fill the 12-bit MPCC_GLOBAL_ALPHA field.
-All other ASICs keep the existing >> 8 behavior for their 8-bit field.
+[HOW]
+Add an amdgpu_device and drm_plane so the plane->dev
+dereference is valid in the test.
 
-Reviewed-by: ChiaHsuan (Tom) Chung <chiahsuan.chung@amd.com>
-Signed-off-by: James Lin <PingLei.Lin@amd.com>
+Fixes: cba0cc70f251 ("drm/amd/display: scale plane global alpha to 12 bits on DCN 4.2")
+Cc: PingLei.Lin@amd.com
+Assisted-by: Copilot:Claude-Opus-4.6
+Reviewed-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
+Signed-off-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c  | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+ .../drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-index 20bac36be335..458b3dcdbfa3 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-@@ -137,8 +137,18 @@ void amdgpu_dm_plane_fill_blending_from_plane_state(const struct drm_plane_state
- 	}
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
+index deec75857c0e..071c28abaa8a 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
+@@ -184,12 +184,19 @@ static void dm_test_fill_blending_coverage_alpha_format(struct kunit *test)
+  */
+ static void dm_test_fill_blending_global_alpha(struct kunit *test)
+ {
++	struct amdgpu_device *adev;
++	struct drm_plane plane = {0};
+ 	struct drm_plane_state state = { 0 };
+ 	bool per_pixel_alpha;
+ 	bool pre_multiplied_alpha;
+ 	bool global_alpha;
+ 	int global_alpha_value;
  
- 	if (plane_state->alpha < 0xffff) {
-+		struct amdgpu_device *adev = drm_to_adev(plane_state->plane->dev);
- 		*global_alpha = true;
--		*global_alpha_value = plane_state->alpha >> 8;
-+		/*
-+		 * DCN 4.2 uses a 12-bit MPCC_GLOBAL_ALPHA field, while
-+		 * other ASICs use an 8-bit field. The DRM plane alpha is
-+		 * 16-bit, so scale it down to the width the hardware expects.
-+		 */
-+		if (amdgpu_ip_version(adev, DCE_HWIP, 0) == IP_VERSION(4, 2, 0))
-+			*global_alpha_value = plane_state->alpha >> 4;
-+		else
-+			*global_alpha_value = plane_state->alpha >> 8;
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, adev);
 +
- 	}
- }
- EXPORT_IF_KUNIT(amdgpu_dm_plane_fill_blending_from_plane_state);
++	plane.dev = &adev->ddev;
++	state.plane = &plane;
+ 	state.pixel_blend_mode = DRM_MODE_BLEND_PIXEL_NONE;
+ 	state.alpha = 0x8000;
+ 
 -- 
 2.53.0
 
