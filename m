@@ -2,51 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QFAfKnodPGp3kAgAu9opvQ
+	id s0YlIXsdPGp5kAgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:10:02 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:10:03 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F34776C0AA6
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:10:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E933A6C0AAC
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Jun 2026 20:10:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=AN6QU5df;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=Tz1tn0IF;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B7FC10F0A2;
-	Wed, 24 Jun 2026 18:10:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B73110F0A1;
+	Wed, 24 Jun 2026 18:10:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012006.outbound.protection.outlook.com [52.101.48.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAC3410F09A
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 18:09:55 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011021.outbound.protection.outlook.com [52.101.52.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8366410F0AC
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 18:09:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RaFHgCKTpnQpAqIV6q5zdDlLV0dTygMUFiFGqrO5wI2SAmDqsHcHWjxJz4l88irTpnQWCQbsVWPoSdb2UCSqHNP3XO9daUNHH7E+sqZuTHJ4YWywGbs1CaOfYoJPV3MVUgHGRjkhbyp2u2RhwJseVGGjIpl8GzSKMdnFOURpmMhc8JyuVh8ctIi0KduxrSpbuGkicerqsSnERO/09PmLv8otYFIrn9lT3793paHWIqkC1aufrGFyEmWDh96vk/agICwBtJOL2K5U1TAnncnD9ptS+SnxXEdWEkCUMgx+KKJffDDZlsR0dSB1k0fDlhhtkn+wQlFcn6jOtQOLigv3Ig==
+ b=jSXGZifzMA1Btdo3byH27OV+YL1FzLmsFJsbdekBgsj/sknH+/+osvqEokc+gXgytG+VZj6hXaBSU5pdvFMJh6fXhfhxzVXV4346rXzyCWpYf5q4+FzOWurG/+X2Zib3iU1V1jV2OPn+gYF2z1lDpXehyXKE9oxlE4Hs+5ZX7JC1R93NreTAU4m/46jUbLJR4HR11Xwhsu/CtHSVEz99Y5eYSIl64/vT0CBZNTsVOgIfPhUCLd6u/S7BFBSjaAiGjX9UAXvF58xm7Pp8EAESi2YeE9ZqInHmiMKqvRoFyLigLPCxPgc2JsJxgWdjiNv4t1DVscLY9hIvHTrv2bu70A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QXE5D7kuGbB8h+2VOPta3QSn4kMFAqnAG8UaQKRxs7U=;
- b=ubHuWiGvVcEeKOhPuXwHiD2q19YBep/UPR6g0k9MWeKOvNkZD1E21sR2Hx7BB3+2PO4aU2SkE7dRGLaVB7eYyWguxJq8P8sH8YwQ2ZPEbMd4Z2wNqPz1/DwBR9/xjWmlUOEhOrsBa+dN1BpPlSmQAHclGstXjECJx7SMCfqpqjYBkv66H3eLhBPuU55lSH+/EG3ykMoKi1Ycjm+k6oSkKTGVkzvWmyc2yYdEOE3d/oiQ3wKYjnkpMU+wBat4mVS8xGctzj7IaqRswOdjLtQ66myDipPdtHxba4TWOGWhJefpv118eRxK+kFAgra0bAFu3zljSKSP9BZrnrxz1p/nUQ==
+ bh=IZvAL9tFBio67IMiXZP9BISqD8gmy8qnhXyQpUSMRMc=;
+ b=ykj0iqU4TA2dVFlQ7F6C3AXFhjktbK3cjEKHVbbvqvzIrAvseb7mcuGVyxlul12ngV7+TSzxCikT+QlSFsEwo4r1OZ83lIykarLGGN7xnFDS1oNxmAdldXzPqLWSce2A1GL9QN84T1yntkFJvJLLSxHwj3Hcn2x6n6052J5i5KioZs4/7mhQEB8f8j9uWKMEKPFI8AYaVWWd0ZzlS3ZHKogxbAxVH8zLGUcy7nS4hSM7KVW6LCCF05qHCioBz01Ln0dC3EPwctSjU/NbrjJ+E3EtGWHGcIxO+/gDQgZUsCbRz3aAwNI/EyIGk95BNBMeVNawOH8MOYVukrBzGH0IFA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QXE5D7kuGbB8h+2VOPta3QSn4kMFAqnAG8UaQKRxs7U=;
- b=AN6QU5df3A4KsJUA74klu5RDbhtfCeGMEcEFlhcZ/ZweM0k6ejX8jCJQ8ZfNL/XlaoKYVQ/N4CFtqdXM7xFYU8oG6QmKX6U8vyzKrk1xX/x5zYOvDalP0Z2yEJiKO1RFhCwaDES8BfX9NLib1PhnaCIZ3RWskPoDeT6jSjpADaA=
-Received: from SJ0PR03CA0042.namprd03.prod.outlook.com (2603:10b6:a03:33e::17)
- by SA1PR12MB8697.namprd12.prod.outlook.com (2603:10b6:806:385::10)
+ bh=IZvAL9tFBio67IMiXZP9BISqD8gmy8qnhXyQpUSMRMc=;
+ b=Tz1tn0IFyJp8VRY6i5OZLiK37u5Ruf7HAConB1tZCiYD6/XHPe4aPol1Vd+ODffWmYYv9jVM+2qCHjoSUCE2/nrFYaFTHkZWM0H9IwBe6WaunRLCbqCy71L0pymAF6xOqtUGR7TuhiG8CyihWJ+yVTmvXQayilOxbGcBsU280Nc=
+Received: from SJ0PR03CA0007.namprd03.prod.outlook.com (2603:10b6:a03:33a::12)
+ by PH8PR12MB7376.namprd12.prod.outlook.com (2603:10b6:510:214::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.18; Wed, 24 Jun
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.13; Wed, 24 Jun
  2026 18:09:44 +0000
-Received: from SJ5PEPF000001C8.namprd05.prod.outlook.com
- (2603:10b6:a03:33e:cafe::ab) by SJ0PR03CA0042.outlook.office365.com
- (2603:10b6:a03:33e::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.13 via Frontend Transport; Wed,
+Received: from SJ5PEPF000001CD.namprd05.prod.outlook.com
+ (2603:10b6:a03:33a:cafe::6b) by SJ0PR03CA0007.outlook.office365.com
+ (2603:10b6:a03:33a::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.139.14 via Frontend Transport; Wed,
  24 Jun 2026 18:09:44 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -55,13 +55,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SJ5PEPF000001C8.mail.protection.outlook.com (10.167.242.36) with Microsoft
+ SJ5PEPF000001CD.mail.protection.outlook.com (10.167.242.42) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.159.10 via Frontend Transport; Wed, 24 Jun 2026 18:09:43 +0000
+ 15.21.159.10 via Frontend Transport; Wed, 24 Jun 2026 18:09:44 +0000
 Received: from MKMGEORZHAN02.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 24 Jun
- 2026 13:09:35 -0500
+ 2026 13:09:37 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -70,11 +70,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
- "George Zhang" <george.zhang@amd.com>
-Subject: [PATCH 23/28] drm/amd/display: Extract shared KUnit test helpers
-Date: Wed, 24 Jun 2026 14:03:21 -0400
-Message-ID: <20260624180829.4775-24-george.zhang@amd.com>
+ <Chen-Yu.Chen@amd.com>, Charlene Liu <Charlene.Liu@amd.com>, "Ovidiu (Ovi)
+ Bunea" <ovidiu.bunea@amd.com>, George Zhang <george.zhang@amd.com>
+Subject: [PATCH 24/28] drm/amd/display: remove dead code related to forcevrr
+Date: Wed, 24 Jun 2026 14:03:22 -0400
+Message-ID: <20260624180829.4775-25-george.zhang@amd.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260624180829.4775-1-george.zhang@amd.com>
 References: <20260624180829.4775-1-george.zhang@amd.com>
@@ -86,29 +86,29 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001C8:EE_|SA1PR12MB8697:EE_
-X-MS-Office365-Filtering-Correlation-Id: dafd18f3-4394-45bd-6a1a-08ded21bc4c8
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CD:EE_|PH8PR12MB7376:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6e1015c3-55ef-4993-97dc-08ded21bc511
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700016|1800799024|376014|23010399003|18002099003|22082099003|6133799003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: n0JPbfhWY+Qrc+/mb59wJ/lgx7JOVToo93UfTUv1HdeTc4cIWrJG26UKOBJNCqYuTpdut/252SuJNnKelz0KwbnHgsxbqIUwJS0dPkbxchrNsnAPJJaizbX58vfrtvoNJv1Ir4hj8kpeEPGDhjkfq5fPCfk73xCWonNcEMysrApmimTSv/1SJr0UPEu8lYTIZPIzgLHsKd+++gcg8AhoVCRyrNnypa8iZU07lpJQHbIP4NCFGMwUZER5EsF2MY9KX4h5ev02aUdOQQIbYYbKEccklbFT2u+5hEgkL1ah0hxz5peAtaVELCsLwTH/HOaCYKlHfzhkqIAe5t/Q+BwcHh+IYwBXD9A+E38A1vC5RzZ4bR1lS1BbzS4tyaIsTJ0MtM7XByJoCC3bbZ8bXXT8mq0PkxsxVwWxOtHYWVhAvfDsFTxIkCQxEvyPFrxqwWipz1lCcHRx0pKKGhEi6eyB/x+vGfUA08pv4TtWGi6tehkQ/9TjVasPswkyIwUQaCvlKOamPQizeOO5SL3HNNqbMJMizqb0FbsVR+8UzXzOL1Td3xgNawsrRtwFMKVAeCb9RR40xUo3qp5OINtlrP8BnrELiTDpdSh6aP+v6o19db0w7+q03Es9qxMcb86t5QKjJn6wEANPe5t/vFpZEqWgtPn9gykfMyC/wrVEfvodkszA8LMv0/8349W1zWYoqpUM0YrsxbrT2LQBw5y6PHPtGQ==
+ ARA:13230040|1800799024|82310400026|376014|23010399003|36860700016|56012099006|18002099003|22082099003|3023799007|11063799006;
+X-Microsoft-Antispam-Message-Info: ypf5LSZP6iqNlBqY2/3voKjfpW6aQ88kJIEiZettZsisF+k1ZBqhdaOC5AT1SLg7Zkarb0/HYeY7BJbmBQogwjidsArhU7O6H12viDhXUlfmztJwevhTf9TmkJovgC5j46GA3G8q2A7mpwBehTAi3abSh6y5gLwkJdbW9lFuk477tVOqXMtVWeJ5BpL3rGOzwct7JsOYJvdf+6uyDGK8PauMcv0UnmI9WiROPeNxD5qxvgnWyywpx9DMLsO3rDbdDlMBIb7/LJpuG+2a6Sdf4Oe+AgWdb7G2By6yZyl2f89re8cKj7q2IymCqiTaKCenokJdN+8FI+rMv/9uOJ/a6YE16+SGMH2wFwEuoV9+iWz6Al1TxEU0uFtvtXSFWbZHZmppCMUg+NjK+9XA728Zosxe/tzQJq++Gd3V7j8d+CGb00JHEXqc9S5shj3njPzKDYD6Z0uz4AxReG4kdyFxXg/JKJq1l5e+hCPl/c9nCJ8uepI3gZALXkH9d6t9Guc9ybvRs1DohsK/a6yb9fio+x+NsEGETj/bkfk7p0ud9rBanIa3hoyOgwI3NeO+n9mf97YBYfRrKwFx7Rmx3PfiUA6TB0LnBoEks4civsJV2dvrWrGzJYWezYV+YpXTPHzJ50PzrAgz3C4bdPXuV2apWtdxNQaYPQrG4afmLNeOFdexwA7tZyZR4MzrVBnk6DE45lMnaArbBQumEbJHEUpygw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700016)(1800799024)(376014)(23010399003)(18002099003)(22082099003)(6133799003)(11063799006)(56012099006);
+ SFS:(13230040)(1800799024)(82310400026)(376014)(23010399003)(36860700016)(56012099006)(18002099003)(22082099003)(3023799007)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: JorkMXFcLmJXwyA3psMH1w5RCdfXq8K15/Hxhi8T+aWoZeQYmiSTWqsCATrccRlcUZotBZxsoD4prp/qY4Uay5VHuNKe9Va+RgUgGW5oBjwvYSBFO8AVJ3y8V9XwDrY96/UAfk3jLcuyaSj9qUvBChUwp+I9yZ/Z5tuCDX72m9+1PyNIASkuhqZCsHszae3FzhaBFkhpizV23xzyVMA4nipAqo/VNNyFz3WhfSSut8oP/lKSGNJLiKVkZITsjFHKtqb8XRoU93q1i3dkBR3mmQoNYe6hnCd1ioV7vRll6FYjBJHLd1DC6hD8GhI757XDTlG60VQ65Ho9/pgWOXK+pPTeM/YniNFCxHjhgZctwt/9dFw3ZkDpmfaJoHJvvgI/BFB6+/4fJqtVK8b+Uxg36bFPJS6x2ERxgwAK1cIPxeF04IficFtAdM8eckSwM6YC
+X-MS-Exchange-AntiSpam-MessageData-0: NkE1pmxPVxt6uNrAm3rLLmyE9VPPtEniW41NEiIeKTRkoS4IbcWIGtG/GZ/9ZdbkH297TuN3EVJUyNIyY0hlEJntYo3bALB3V7NiTEZff1FXEL5vTya52pyfTUPHFcAywhfgAe4zJ6ESXXa7WvCBCbdxhEh9Gsv6l8akUDvQ97QAuD0ZjOSj29MBMIUIzx+SP9hJilxmIcFMCBZV+3K7nwK4ejyBMhVeIe7AefNz0Hi3eceOqHsk8J7kfNQUNyUd+sgMjhaZ2eNMxhBlUre2wP+P+N8inIN/lHQBpyDhke3hYP/IQxr/6gaPPyGopYh1B18/AIovfoG7vuiqkY2HrWtPWIko2jWLCShtaGKuh2DcA0zyFWnZdcuVP//mutSFN6hF5gIgTKEDeoYVWOZqkolCPntuKN2rh2Iw2NBJ9Ej9Wi0DuUqRS4hji1vZRzXz
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 18:09:43.9509 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dafd18f3-4394-45bd-6a1a-08ded21bc4c8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 18:09:44.4577 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e1015c3-55ef-4993-97dc-08ded21bc511
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001C8.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001CD.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8697
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7376
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,7 +135,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -152,1078 +152,32 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F34776C0AA6
+X-Rspamd-Queue-Id: E933A6C0AAC
 
-From: Alex Hung <alex.hung@amd.com>
+From: Charlene Liu <Charlene.Liu@amd.com>
 
-Extract common allocation and setup patterns from KUnit test
-files into a dedicated helpers module to reduce duplication.
+[why]
+remove the forcevrr related which are not used any more.
 
-Add tests/amdgpu_dm_kunit_helpers.c with shared helpers:
-- dm_kunit_alloc_adev: allocate amdgpu_device via DRM mock
-- dm_kunit_alloc_link: allocate zeroed dc_link
-- dm_kunit_alloc_link_with_ctx: allocate dc_link with dc_context
-- dm_kunit_alloc_dm: allocate display_manager with DC state
-- dm_kunit_alloc_stream: allocate dc_stream_state with link
-- dm_kunit_add_stream_to_state: wire stream into dc_state
-- dm_kunit_alloc_connector: allocate connector wired to device
-
-Update 10 test files to use the shared helpers, removing
-duplicated local alloc_test_adev, alloc_test_link,
-alloc_test_dm, alloc_test_stream, and add_test_stream
-functions.
-
-Add missing MODULE_DESCRIPTION() macro to suppress modpost warning:
-WARNING: modpost: missing MODULE_DESCRIPTION() in
-amdgpu_dm_kunit_helpers.o
-
-Assisted-by: Copilot:Claude-Opus-4.6
-Reviewed-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
-Signed-off-by: Alex Hung <alex.hung@amd.com>
+Reviewed-by: Ovidiu (Ovi) Bunea <ovidiu.bunea@amd.com>
+Signed-off-by: Charlene Liu <Charlene.Liu@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../drm/amd/display/amdgpu_dm/tests/Makefile  |   1 +
- .../tests/amdgpu_dm_backlight_test.c          |  21 +--
- .../amdgpu_dm/tests/amdgpu_dm_colorop_test.c  |  13 +-
- .../amdgpu_dm/tests/amdgpu_dm_crtc_test.c     |  15 +-
- .../amdgpu_dm/tests/amdgpu_dm_helpers_test.c  |  19 +--
- .../amdgpu_dm/tests/amdgpu_dm_irq_test.c      |  37 +----
- .../amdgpu_dm/tests/amdgpu_dm_ism_test.c      |  39 ++---
- .../amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c | 142 ++++++++++++++++++
- .../tests/amdgpu_dm_kunit_test_helpers.h      |  32 ++++
- .../tests/amdgpu_dm_mst_types_test.c          |  13 +-
- .../amdgpu_dm/tests/amdgpu_dm_psr_test.c      | 126 ++++------------
- .../amdgpu_dm/tests/amdgpu_dm_replay_test.c   |  19 +--
- .../amdgpu_dm/tests/amdgpu_dm_wb_test.c       |  18 +--
- 13 files changed, 252 insertions(+), 243 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c
- create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_kunit_test_helpers.h
+ drivers/gpu/drm/amd/display/dc/dc.h | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile
-index 4d89ad8a6df6..1592e8dae1a9 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile
-@@ -11,6 +11,7 @@ ccflags-y += -I$(src)/../../../amdgpu
- ccflags-y += -I$(src)/../../../amdkfd
- ccflags-y += -I$(src)/../../../include
- 
-+obj-$(CONFIG_DRM_AMD_DC_KUNIT_TEST) += amdgpu_dm_kunit_helpers.o
- obj-$(CONFIG_DRM_AMD_DC_KUNIT_TEST) += amdgpu_dm_crc_test.o
- obj-$(CONFIG_DRM_AMD_DC_KUNIT_TEST) += amdgpu_dm_hdcp_test.o
- obj-$(CONFIG_DRM_AMD_DC_KUNIT_TEST) += amdgpu_dm_audio_test.o
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
-index 0e9de940e5a8..fff50c1325c6 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
-@@ -13,6 +13,7 @@
- #include "amdgpu_mode.h"
- #include "amdgpu_dm.h"
- #include "amdgpu_dm_backlight.h"
-+#include "amdgpu_dm_kunit_test_helpers.h"
- #include "amd_shared.h"
- #include "dc/inc/hw/panel_cntl.h"
- 
-@@ -22,16 +23,6 @@ struct dm_backlight_connector_fixture {
- 	struct dc_link *link;
- };
- 
--static struct amdgpu_display_manager *alloc_test_dm(struct kunit *test)
--{
--	struct amdgpu_display_manager *dm;
--
--	dm = kunit_kzalloc(test, sizeof(*dm), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_NULL(test, dm);
--
--	return dm;
--}
--
- static void setup_test_connector(struct kunit *test,
- 				 struct dm_backlight_connector_fixture *fixture,
- 				 int bl_idx, enum signal_type signal)
-@@ -57,7 +48,7 @@ static void setup_test_connector(struct kunit *test,
-  */
- static void dm_test_backlight_device_index_matches_second(struct kunit *test)
- {
--	struct amdgpu_display_manager *dm = alloc_test_dm(test);
-+	struct amdgpu_display_manager *dm = dm_kunit_alloc_dm(test);
- 	struct backlight_device *bd0;
- 	struct backlight_device *bd1;
- 
-@@ -79,7 +70,7 @@ static void dm_test_backlight_device_index_matches_second(struct kunit *test)
-  */
- static void dm_test_backlight_device_index_missing_fallback(struct kunit *test)
- {
--	struct amdgpu_display_manager *dm = alloc_test_dm(test);
-+	struct amdgpu_display_manager *dm = dm_kunit_alloc_dm(test);
- 	struct backlight_device *known_bd;
- 	struct backlight_device *unknown_bd;
- 
-@@ -102,7 +93,7 @@ static void dm_test_backlight_device_index_missing_fallback(struct kunit *test)
-  */
- static void dm_test_backlight_caps_valid_short_circuit(struct kunit *test)
- {
--	struct amdgpu_display_manager *dm = alloc_test_dm(test);
-+	struct amdgpu_display_manager *dm = dm_kunit_alloc_dm(test);
- 	struct amdgpu_dm_backlight_caps *caps = &dm->backlight_caps[0];
- 
- 	caps->caps_valid = true;
-@@ -125,7 +116,7 @@ static void dm_test_backlight_caps_valid_short_circuit(struct kunit *test)
-  */
- static void dm_test_backlight_caps_aux_support_noop(struct kunit *test)
- {
--	struct amdgpu_display_manager *dm = alloc_test_dm(test);
-+	struct amdgpu_display_manager *dm = dm_kunit_alloc_dm(test);
- 	struct amdgpu_dm_backlight_caps *caps = &dm->backlight_caps[0];
- 
- 	caps->caps_valid = false;
-@@ -146,7 +137,7 @@ static void dm_test_backlight_caps_aux_support_noop(struct kunit *test)
-  */
- static void dm_test_backlight_caps_non_aux_sets_defaults(struct kunit *test)
- {
--	struct amdgpu_display_manager *dm = alloc_test_dm(test);
-+	struct amdgpu_display_manager *dm = dm_kunit_alloc_dm(test);
- 	struct amdgpu_dm_backlight_caps *caps = &dm->backlight_caps[0];
- 
- 	caps->caps_valid = false;
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_colorop_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_colorop_test.c
-index b28a165b213e..2e557ff66818 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_colorop_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_colorop_test.c
-@@ -12,6 +12,7 @@
- #include "dc.h"
- #include "amdgpu.h"
- #include "amdgpu_dm_colorop.h"
-+#include "amdgpu_dm_kunit_test_helpers.h"
- 
- /* Tests for amdgpu_dm_supported_degam_tfs */
- 
-@@ -222,19 +223,11 @@ static void dm_test_initialize_default_pipeline_caps(struct kunit *test,
- 	struct amdgpu_device *adev;
- 	struct drm_device *drm;
- 	struct drm_plane *plane;
--	struct device *dev;
- 	struct dc *dc;
- 	int ret;
- 
--	dev = drm_kunit_helper_alloc_device(test);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
--
--	drm = __drm_kunit_helper_alloc_drm_device(test, dev,
--						   sizeof(*adev),
--						   offsetof(struct amdgpu_device, ddev),
--						   DRIVER_MODESET);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, drm);
--	adev = drm_to_adev(drm);
-+	adev = dm_kunit_alloc_adev(test);
-+	drm = &adev->ddev;
- 
- 	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
- 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dc);
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_crtc_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_crtc_test.c
-index c83bd3e074f1..0edaf969f16b 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_crtc_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_crtc_test.c
-@@ -15,6 +15,7 @@
- #include "amdgpu_mode.h"
- #include "amdgpu_dm.h"
- #include "amdgpu_dm_crtc.h"
-+#include "amdgpu_dm_kunit_test_helpers.h"
- #include "amdgpu_dm_irq_params.h"
- 
- /* Tests for amdgpu_dm_crtc_modeset_required() */
-@@ -435,23 +436,13 @@ static void dm_test_crtc_set_vupdate_irq_no_otg(struct kunit *test)
- {
- 	struct amdgpu_crtc *acrtc;
- 	struct amdgpu_device *adev;
--	struct drm_device *drm;
--	struct device *dev;
- 
--	dev = drm_kunit_helper_alloc_device(test);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
--
--	drm = __drm_kunit_helper_alloc_drm_device(test, dev,
--						   sizeof(*adev),
--						   offsetof(struct amdgpu_device, ddev),
--						   DRIVER_MODESET);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, drm);
--	adev = drm_to_adev(drm);
-+	adev = dm_kunit_alloc_adev(test);
- 
- 	acrtc = kunit_kzalloc(test, sizeof(*acrtc), GFP_KERNEL);
- 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, acrtc);
- 
--	acrtc->base.dev = drm;
-+	acrtc->base.dev = &adev->ddev;
- 	acrtc->otg_inst = -1;
- 
- 	KUNIT_EXPECT_EQ(test, amdgpu_dm_crtc_set_vupdate_irq(&acrtc->base, true), 0);
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_helpers_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_helpers_test.c
-index 14004ff87c9b..33014a2d2222 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_helpers_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_helpers_test.c
-@@ -16,6 +16,7 @@
- #include "dm_helpers.h"
- #include "ddc_service_types.h"
- #include "amdgpu_dm_helpers.h"
-+#include "amdgpu_dm_kunit_test_helpers.h"
- 
- /* Tests for edid_extract_panel_id() */
- 
-@@ -552,26 +553,14 @@ static void dm_test_mst_start_top_mgr_boot(struct kunit *test)
- {
- 	struct amdgpu_dm_connector *aconnector;
- 	struct amdgpu_device *adev;
--	struct drm_device *drm;
--	struct device *dev;
- 	struct dc_link *link;
- 
--	dev = drm_kunit_helper_alloc_device(test);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
-+	adev = dm_kunit_alloc_adev(test);
- 
--	drm = __drm_kunit_helper_alloc_drm_device(test, dev,
--						  sizeof(*adev),
--						  offsetof(struct amdgpu_device, ddev),
--						  DRIVER_MODESET);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, drm);
--	adev = drm_to_adev(drm);
-+	link = dm_kunit_alloc_link(test);
- 
--	aconnector = kunit_kzalloc(test, sizeof(*aconnector), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_NULL(test, aconnector);
--	aconnector->base.dev = drm;
-+	aconnector = dm_kunit_alloc_connector(test, adev, NULL);
- 
--	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_NULL(test, link);
- 	link->priv = aconnector;
- 
- 	KUNIT_EXPECT_TRUE(test, dm_helpers_dp_mst_start_top_mgr(NULL, link, true));
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c
-index 525caa0b1f6a..a73a6dd146d6 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c
-@@ -13,6 +13,7 @@
- #include "amdgpu_mode.h"
- #include "amdgpu_dm.h"
- #include "amdgpu_dm_irq.h"
-+#include "amdgpu_dm_kunit_test_helpers.h"
- #include "dmub/dmub_srv.h"
- 
- static void dm_test_irq_handler(void *arg)
-@@ -778,17 +779,9 @@ static void dm_test_get_crtc_by_otg_inst_returns_match(struct kunit *test)
- 	struct amdgpu_crtc *acrtc_a, *acrtc_b;
- 	struct amdgpu_device *adev;
- 	struct drm_device *drm;
--	struct device *dev;
- 
--	dev = drm_kunit_helper_alloc_device(test);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
--
--	drm = __drm_kunit_helper_alloc_drm_device(test, dev,
--						   sizeof(*adev),
--						   offsetof(struct amdgpu_device, ddev),
--						   DRIVER_MODESET);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, drm);
--	adev = drm_to_adev(drm);
-+	adev = dm_kunit_alloc_adev(test);
-+	drm = &adev->ddev;
- 
- 	acrtc_a = kunit_kzalloc(test, sizeof(*acrtc_a), GFP_KERNEL);
- 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, acrtc_a);
-@@ -819,17 +812,9 @@ static void dm_test_get_crtc_by_otg_inst_returns_null(struct kunit *test)
- 	struct amdgpu_crtc *acrtc;
- 	struct amdgpu_device *adev;
- 	struct drm_device *drm;
--	struct device *dev;
--
--	dev = drm_kunit_helper_alloc_device(test);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
- 
--	drm = __drm_kunit_helper_alloc_drm_device(test, dev,
--						   sizeof(*adev),
--						   offsetof(struct amdgpu_device, ddev),
--						   DRIVER_MODESET);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, drm);
--	adev = drm_to_adev(drm);
-+	adev = dm_kunit_alloc_adev(test);
-+	drm = &adev->ddev;
- 
- 	acrtc = kunit_kzalloc(test, sizeof(*acrtc), GFP_KERNEL);
- 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, acrtc);
-@@ -851,18 +836,8 @@ static void dm_test_get_crtc_by_otg_inst_returns_null(struct kunit *test)
- static void dm_test_get_crtc_by_otg_inst_empty_list(struct kunit *test)
- {
- 	struct amdgpu_device *adev;
--	struct drm_device *drm;
--	struct device *dev;
--
--	dev = drm_kunit_helper_alloc_device(test);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
- 
--	drm = __drm_kunit_helper_alloc_drm_device(test, dev,
--						   sizeof(*adev),
--						   offsetof(struct amdgpu_device, ddev),
--						   DRIVER_MODESET);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, drm);
--	adev = drm_to_adev(drm);
-+	adev = dm_kunit_alloc_adev(test);
- 
- 	KUNIT_EXPECT_NULL(test, amdgpu_dm_get_crtc_by_otg_inst(adev, 0));
- }
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_ism_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_ism_test.c
-index f3b3f77aafd5..7dfb3b351d20 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_ism_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_ism_test.c
-@@ -9,20 +9,7 @@
- 
- #include "dc.h"
- #include "amdgpu_dm_ism.h"
--
--/*
-- * Helper: allocate and zero-initialise a dc_stream_state for timing tests.
-- * Only the timing sub-struct is accessed by the functions under test.
-- */
--static struct dc_stream_state *alloc_test_stream(struct kunit *test)
--{
--	struct dc_stream_state *stream;
--
--	stream = kunit_kzalloc(test, sizeof(*stream), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_NULL(test, stream);
--
--	return stream;
--}
-+#include "amdgpu_dm_kunit_test_helpers.h"
- 
- /*
-  * Helper: allocate and zero-initialise an ISM instance.
-@@ -275,7 +262,7 @@ static void dm_test_ism_sso_delay_null_stream(struct kunit *test)
- static void dm_test_ism_sso_delay_zero_frames(struct kunit *test)
- {
- 	struct amdgpu_dm_ism *ism = alloc_test_ism(test);
--	struct dc_stream_state *stream = alloc_test_stream(test);
-+	struct dc_stream_state *stream = dm_kunit_alloc_stream(test, NULL);
- 
- 	stream->timing.v_total = 1125;
- 	stream->timing.h_total = 2200;
-@@ -288,7 +275,7 @@ static void dm_test_ism_sso_delay_zero_frames(struct kunit *test)
- static void dm_test_ism_sso_delay_1080p60_3frames(struct kunit *test)
- {
- 	struct amdgpu_dm_ism *ism = alloc_test_ism(test);
--	struct dc_stream_state *stream = alloc_test_stream(test);
-+	struct dc_stream_state *stream = dm_kunit_alloc_stream(test, NULL);
- 	uint64_t expected_one_frame_ns, expected;
- 
- 	/*
-@@ -311,7 +298,7 @@ static void dm_test_ism_sso_delay_1080p60_3frames(struct kunit *test)
- static void dm_test_ism_sso_delay_4k60_1frame(struct kunit *test)
- {
- 	struct amdgpu_dm_ism *ism = alloc_test_ism(test);
--	struct dc_stream_state *stream = alloc_test_stream(test);
-+	struct dc_stream_state *stream = dm_kunit_alloc_stream(test, NULL);
- 	uint64_t expected_one_frame_ns;
- 
- 	/*
-@@ -347,7 +334,7 @@ static void dm_test_ism_idle_delay_null_stream(struct kunit *test)
- static void dm_test_ism_idle_delay_zero_filter_frames(struct kunit *test)
- {
- 	struct amdgpu_dm_ism *ism = alloc_test_ism(test);
--	struct dc_stream_state *stream = alloc_test_stream(test);
-+	struct dc_stream_state *stream = dm_kunit_alloc_stream(test, NULL);
- 
- 	stream->timing.v_total = 1125;
- 	stream->timing.h_total = 2200;
-@@ -361,7 +348,7 @@ static void dm_test_ism_idle_delay_zero_filter_frames(struct kunit *test)
- static void dm_test_ism_idle_delay_zero_entry_count(struct kunit *test)
- {
- 	struct amdgpu_dm_ism *ism = alloc_test_ism(test);
--	struct dc_stream_state *stream = alloc_test_stream(test);
-+	struct dc_stream_state *stream = dm_kunit_alloc_stream(test, NULL);
- 
- 	stream->timing.v_total = 1125;
- 	stream->timing.h_total = 2200;
-@@ -376,7 +363,7 @@ static void dm_test_ism_idle_delay_zero_entry_count(struct kunit *test)
- static void dm_test_ism_idle_delay_zero_delay_frames(struct kunit *test)
- {
- 	struct amdgpu_dm_ism *ism = alloc_test_ism(test);
--	struct dc_stream_state *stream = alloc_test_stream(test);
-+	struct dc_stream_state *stream = dm_kunit_alloc_stream(test, NULL);
- 
- 	stream->timing.v_total = 1125;
- 	stream->timing.h_total = 2200;
-@@ -392,7 +379,7 @@ static void dm_test_ism_idle_delay_zero_delay_frames(struct kunit *test)
- static void dm_test_ism_idle_delay_no_short_idles(struct kunit *test)
- {
- 	struct amdgpu_dm_ism *ism = alloc_test_ism(test);
--	struct dc_stream_state *stream = alloc_test_stream(test);
-+	struct dc_stream_state *stream = dm_kunit_alloc_stream(test, NULL);
- 	uint64_t one_frame_ns;
- 
- 	/*
-@@ -426,7 +413,7 @@ static void dm_test_ism_idle_delay_no_short_idles(struct kunit *test)
- static void dm_test_ism_idle_delay_enough_short_idles(struct kunit *test)
- {
- 	struct amdgpu_dm_ism *ism = alloc_test_ism(test);
--	struct dc_stream_state *stream = alloc_test_stream(test);
-+	struct dc_stream_state *stream = dm_kunit_alloc_stream(test, NULL);
- 	uint64_t one_frame_ns, expected;
- 
- 	/*
-@@ -461,7 +448,7 @@ static void dm_test_ism_idle_delay_enough_short_idles(struct kunit *test)
- static void dm_test_ism_idle_delay_wraps_around_buffer(struct kunit *test)
- {
- 	struct amdgpu_dm_ism *ism = alloc_test_ism(test);
--	struct dc_stream_state *stream = alloc_test_stream(test);
-+	struct dc_stream_state *stream = dm_kunit_alloc_stream(test, NULL);
- 	uint64_t one_frame_ns, expected;
- 
- 	/*
-@@ -497,7 +484,7 @@ static void dm_test_ism_idle_delay_wraps_around_buffer(struct kunit *test)
- static void dm_test_ism_idle_delay_old_history_cutoff(struct kunit *test)
- {
- 	struct amdgpu_dm_ism *ism = alloc_test_ism(test);
--	struct dc_stream_state *stream = alloc_test_stream(test);
-+	struct dc_stream_state *stream = dm_kunit_alloc_stream(test, NULL);
- 	uint64_t one_frame_ns;
- 
- 	/*
-@@ -545,7 +532,7 @@ static void dm_test_ism_idle_delay_old_history_cutoff(struct kunit *test)
- static void dm_test_ism_idle_delay_mixed_durations(struct kunit *test)
- {
- 	struct amdgpu_dm_ism *ism = alloc_test_ism(test);
--	struct dc_stream_state *stream = alloc_test_stream(test);
-+	struct dc_stream_state *stream = dm_kunit_alloc_stream(test, NULL);
- 	uint64_t one_frame_ns;
- 
- 	/*
-@@ -586,7 +573,7 @@ static void dm_test_ism_idle_delay_mixed_durations(struct kunit *test)
- static void dm_test_ism_idle_delay_entry_count_exceeds_history_size(struct kunit *test)
- {
- 	struct amdgpu_dm_ism *ism = alloc_test_ism(test);
--	struct dc_stream_state *stream = alloc_test_stream(test);
-+	struct dc_stream_state *stream = dm_kunit_alloc_stream(test, NULL);
- 	uint64_t one_frame_ns, expected;
- 
- 	/*
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c
-new file mode 100644
-index 000000000000..58615cdbe854
---- /dev/null
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c
-@@ -0,0 +1,142 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * KUnit test helpers for amdgpu_dm tests.
-+ *
-+ * Copyright 2026 Advanced Micro Devices, Inc.
-+ */
-+
-+#include <kunit/test.h>
-+#include <linux/module.h>
-+#include <drm/drm_kunit_helpers.h>
-+
-+#include "dc.h"
-+#include "core_types.h"
-+#include "amdgpu.h"
-+#include "amdgpu_mode.h"
-+#include "amdgpu_dm.h"
-+#include "amdgpu_dm_kunit_test_helpers.h"
-+
-+struct amdgpu_device *dm_kunit_alloc_adev(struct kunit *test)
-+{
-+	struct drm_device *drm;
-+	struct device *dev;
-+
-+	dev = drm_kunit_helper_alloc_device(test);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
-+
-+	drm = __drm_kunit_helper_alloc_drm_device(test, dev,
-+						   sizeof(struct amdgpu_device),
-+						   offsetof(struct amdgpu_device, ddev),
-+						   DRIVER_MODESET | DRIVER_ATOMIC);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, drm);
-+
-+	return drm_to_adev(drm);
-+}
-+EXPORT_SYMBOL(dm_kunit_alloc_adev);
-+
-+struct dc_link *dm_kunit_alloc_link(struct kunit *test)
-+{
-+	struct dc_link *link;
-+
-+	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, link);
-+
-+	return link;
-+}
-+EXPORT_SYMBOL(dm_kunit_alloc_link);
-+
-+struct dc_link *dm_kunit_alloc_link_with_ctx(struct kunit *test)
-+{
-+	struct dc_link *link;
-+	struct dc_context *ctx;
-+	struct dc *dc;
-+
-+	link = dm_kunit_alloc_link(test);
-+
-+	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, ctx);
-+
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, dc);
-+
-+	link->ctx = ctx;
-+	ctx->dc = dc;
-+	dc->ctx = ctx;
-+
-+	return link;
-+}
-+EXPORT_SYMBOL(dm_kunit_alloc_link_with_ctx);
-+
-+struct amdgpu_display_manager *dm_kunit_alloc_dm(struct kunit *test)
-+{
-+	struct amdgpu_display_manager *dm;
-+	struct dc *dc;
-+	struct dc_state *state;
-+
-+	dm = kunit_kzalloc(test, sizeof(*dm), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, dm);
-+
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, dc);
-+
-+	state = kunit_kzalloc(test, sizeof(*state), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, state);
-+
-+	dm->dc = dc;
-+	dc->current_state = state;
-+
-+	return dm;
-+}
-+EXPORT_SYMBOL(dm_kunit_alloc_dm);
-+
-+struct dc_stream_state *dm_kunit_alloc_stream(struct kunit *test,
-+					      struct dc_link *link)
-+{
-+	struct dc_stream_state *stream;
-+
-+	stream = kunit_kzalloc(test, sizeof(*stream), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, stream);
-+
-+	stream->link = link;
-+	kref_init(&stream->refcount);
-+
-+	return stream;
-+}
-+EXPORT_SYMBOL(dm_kunit_alloc_stream);
-+
-+void dm_kunit_add_stream_to_state(struct kunit *test, struct dc_state *state,
-+				  unsigned int index, struct dc_link *link)
-+{
-+	struct dc_stream_state *stream;
-+
-+	KUNIT_ASSERT_LT(test, index, (unsigned int)MAX_PIPES);
-+
-+	stream = kunit_kzalloc(test, sizeof(*stream), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, stream);
-+
-+	stream->link = link;
-+	state->streams[index] = stream;
-+	if (state->stream_count <= index)
-+		state->stream_count = index + 1;
-+}
-+EXPORT_SYMBOL(dm_kunit_add_stream_to_state);
-+
-+struct amdgpu_dm_connector *dm_kunit_alloc_connector(struct kunit *test,
-+						     struct amdgpu_device *adev,
-+						     struct dc_link *link)
-+{
-+	struct amdgpu_dm_connector *aconnector;
-+
-+	aconnector = kunit_kzalloc(test, sizeof(*aconnector), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, aconnector);
-+
-+	if (adev)
-+		aconnector->base.dev = &adev->ddev;
-+	aconnector->dc_link = link;
-+
-+	return aconnector;
-+}
-+EXPORT_SYMBOL(dm_kunit_alloc_connector);
-+
-+MODULE_LICENSE("Dual MIT/GPL");
-+MODULE_DESCRIPTION("KUnit test helpers for amdgpu_dm tests");
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_kunit_test_helpers.h b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_kunit_test_helpers.h
-new file mode 100644
-index 000000000000..0f1c48fa2128
---- /dev/null
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_kunit_test_helpers.h
-@@ -0,0 +1,32 @@
-+/* SPDX-License-Identifier: GPL-2.0 OR MIT */
-+/*
-+ * KUnit test helpers for amdgpu_dm tests.
-+ *
-+ * Copyright 2026 Advanced Micro Devices, Inc.
-+ */
-+
-+#ifndef AMDGPU_DM_KUNIT_TEST_HELPERS_H
-+#define AMDGPU_DM_KUNIT_TEST_HELPERS_H
-+
-+#include <kunit/test.h>
-+
-+struct amdgpu_device;
-+struct amdgpu_display_manager;
-+struct amdgpu_dm_connector;
-+struct dc_link;
-+struct dc_state;
-+struct dc_stream_state;
-+
-+struct amdgpu_device *dm_kunit_alloc_adev(struct kunit *test);
-+struct dc_link *dm_kunit_alloc_link(struct kunit *test);
-+struct dc_link *dm_kunit_alloc_link_with_ctx(struct kunit *test);
-+struct amdgpu_display_manager *dm_kunit_alloc_dm(struct kunit *test);
-+struct dc_stream_state *dm_kunit_alloc_stream(struct kunit *test,
-+					      struct dc_link *link);
-+void dm_kunit_add_stream_to_state(struct kunit *test, struct dc_state *state,
-+				  unsigned int index, struct dc_link *link);
-+struct amdgpu_dm_connector *dm_kunit_alloc_connector(struct kunit *test,
-+						     struct amdgpu_device *adev,
-+						     struct dc_link *link);
-+
-+#endif /* AMDGPU_DM_KUNIT_TEST_HELPERS_H */
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c
-index 638e6fa97a11..99d9fdaa4a4a 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c
-@@ -20,6 +20,7 @@
- #include "amdgpu_mode.h"
- #include "amdgpu_dm.h"
- #include "amdgpu_dm_mst_types.h"
-+#include "amdgpu_dm_kunit_test_helpers.h"
- #include "inc/link_service.h"
- 
- /*
-@@ -914,18 +915,10 @@ static void dm_mst_test_create_fake_mst_encoders(struct kunit *test)
- {
- 	struct amdgpu_device *adev;
- 	struct drm_device *drm;
--	struct device *dev;
- 	int i;
- 
--	dev = drm_kunit_helper_alloc_device(test);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
--
--	drm = __drm_kunit_helper_alloc_drm_device(test, dev,
--						   sizeof(*adev),
--						   offsetof(struct amdgpu_device, ddev),
--						   DRIVER_MODESET | DRIVER_ATOMIC);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, drm);
--	adev = drm_to_adev(drm);
-+	adev = dm_kunit_alloc_adev(test);
-+	drm = &adev->ddev;
- 	adev->dm.display_indexes_num = 3;
- 	adev->mode_info.num_crtc = 3;
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_psr_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_psr_test.c
-index 2dd870f650db..09bd98e93047 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_psr_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_psr_test.c
-@@ -12,79 +12,17 @@
- #include "amdgpu_mode.h"
- #include "amdgpu_dm.h"
- #include "amdgpu_dm_psr.h"
-+#include "amdgpu_dm_kunit_test_helpers.h"
- #include "power_helpers.h"
- 
--/*
-- * Helper: allocate and zero-initialise a dc_link sufficient for
-- * amdgpu_dm_psr_fill_caps() testing.  The function only accesses
-- * embedded members (dpcd_caps, psr_settings) so no pointer fields
-- * need to be wired up.
-- */
--static struct dc_link *alloc_test_link(struct kunit *test)
--{
--	struct dc_link *link;
--
--	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_NULL(test, link);
--
--	return link;
--}
--
--/*
-- * Helper: allocate and wire the minimal DM/DC state needed for
-- * amdgpu_dm_psr_is_active_allowed() testing.
-- */
--static struct amdgpu_display_manager *alloc_test_dm(struct kunit *test)
--{
--	struct amdgpu_display_manager *dm;
--	struct dc *dc;
--	struct dc_state *state;
--
--	dm = kunit_kzalloc(test, sizeof(*dm), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_NULL(test, dm);
--
--	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_NULL(test, dc);
--
--	state = kunit_kzalloc(test, sizeof(*state), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_NULL(test, state);
--
--	dm->dc = dc;
--	dc->current_state = state;
--
--	return dm;
--}
--
--static void add_test_stream(struct kunit *test, struct dc_state *state,
--		unsigned int index, struct dc_link *link)
--{
--	struct dc_stream_state *stream;
--
--	KUNIT_ASSERT_LT(test, index, (unsigned int)MAX_PIPES);
--
--	stream = kunit_kzalloc(test, sizeof(*stream), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_NULL(test, stream);
--
--	stream->link = link;
--	state->streams[index] = stream;
--	if (state->stream_count <= index)
--		state->stream_count = index + 1;
--}
--
- static struct dc_stream_state *alloc_test_psr_stream(struct kunit *test)
- {
--	struct dc_stream_state *stream;
- 	struct dc_link *link;
- 
--	stream = kunit_kzalloc(test, sizeof(*stream), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_NULL(test, stream);
--
--	link = alloc_test_link(test);
-+	link = dm_kunit_alloc_link(test);
- 	link->psr_settings.psr_feature_enabled = true;
--	stream->link = link;
--	kref_init(&stream->refcount);
- 
--	return stream;
-+	return dm_kunit_alloc_stream(test, link);
- }
- 
- static struct core_power *create_test_power_module(struct kunit *test,
-@@ -108,7 +46,7 @@ static struct core_power *create_test_power_module(struct kunit *test,
- 
- static struct dc_link *alloc_test_psrsu_link(struct kunit *test)
- {
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct dc_context *ctx;
- 	struct dc *dc;
- 
-@@ -359,7 +297,7 @@ static void dm_test_set_psr_caps_no_dpcd_psr(struct kunit *test)
- static void dm_test_set_psr_caps_edp1_disabled(struct kunit *test)
- {
- 	struct dc_link *link = alloc_test_psr_caps_link(test);
--	struct dc_link *edp0 = alloc_test_link(test);
-+	struct dc_link *edp0 = dm_kunit_alloc_link(test);
- 	struct amdgpu_dm_connector *aconnector = alloc_test_aconnector(test);
- 	struct dc *dc = link->ctx->dc;
- 
-@@ -393,7 +331,7 @@ static void dm_test_set_psr_caps_success_psr1(struct kunit *test)
- 
- static void dm_test_psr_fill_caps_version_1(struct kunit *test)
- {
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct psr_caps caps;
- 
- 	memset(&caps, 0, sizeof(caps));
-@@ -406,7 +344,7 @@ static void dm_test_psr_fill_caps_version_1(struct kunit *test)
- 
- static void dm_test_psr_fill_caps_version_su1(struct kunit *test)
- {
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct psr_caps caps;
- 
- 	memset(&caps, 0, sizeof(caps));
-@@ -419,7 +357,7 @@ static void dm_test_psr_fill_caps_version_su1(struct kunit *test)
- 
- static void dm_test_psr_fill_caps_version_unsupported(struct kunit *test)
- {
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct psr_caps caps;
- 
- 	memset(&caps, 0, sizeof(caps));
-@@ -438,7 +376,7 @@ static void dm_test_psr_fill_caps_version_unsupported(struct kunit *test)
- 
- static void dm_test_psr_fill_caps_setup_time_zero(struct kunit *test)
- {
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct psr_caps caps;
- 
- 	memset(&caps, 0, sizeof(caps));
-@@ -452,7 +390,7 @@ static void dm_test_psr_fill_caps_setup_time_zero(struct kunit *test)
- 
- static void dm_test_psr_fill_caps_setup_time_mid(struct kunit *test)
- {
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct psr_caps caps;
- 
- 	memset(&caps, 0, sizeof(caps));
-@@ -466,7 +404,7 @@ static void dm_test_psr_fill_caps_setup_time_mid(struct kunit *test)
- 
- static void dm_test_psr_fill_caps_setup_time_max(struct kunit *test)
- {
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct psr_caps caps;
- 
- 	memset(&caps, 0, sizeof(caps));
-@@ -482,7 +420,7 @@ static void dm_test_psr_fill_caps_setup_time_max(struct kunit *test)
- 
- static void dm_test_psr_fill_caps_link_training_required(struct kunit *test)
- {
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct psr_caps caps;
- 
- 	memset(&caps, 0, sizeof(caps));
-@@ -495,7 +433,7 @@ static void dm_test_psr_fill_caps_link_training_required(struct kunit *test)
- 
- static void dm_test_psr_fill_caps_link_training_not_required(struct kunit *test)
- {
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct psr_caps caps;
- 
- 	memset(&caps, 0, sizeof(caps));
-@@ -510,7 +448,7 @@ static void dm_test_psr_fill_caps_link_training_not_required(struct kunit *test)
- 
- static void dm_test_psr_fill_caps_dpcd_fields(struct kunit *test)
- {
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct psr_caps caps;
- 
- 	memset(&caps, 0, sizeof(caps));
-@@ -536,7 +474,7 @@ static void dm_test_psr_fill_caps_dpcd_fields(struct kunit *test)
- 
- static void dm_test_psr_fill_caps_dpcd_fields_unset(struct kunit *test)
- {
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct psr_caps caps;
- 
- 	memset(&caps, 0xFF, sizeof(caps));
-@@ -557,7 +495,7 @@ static void dm_test_psr_fill_caps_dpcd_fields_unset(struct kunit *test)
- 
- static void dm_test_psr_fill_caps_rate_control_always_zero(struct kunit *test)
- {
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct psr_caps caps;
- 
- 	/* Pre-fill caps with non-zero to verify overwrite */
-@@ -570,7 +508,7 @@ static void dm_test_psr_fill_caps_rate_control_always_zero(struct kunit *test)
- 
- static void dm_test_psr_fill_caps_power_opts_z10_always_set(struct kunit *test)
- {
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct psr_caps caps;
- 
- 	memset(&caps, 0, sizeof(caps));
-@@ -588,7 +526,7 @@ static void dm_test_psr_fill_caps_power_opts_z10_always_set(struct kunit *test)
- 
- static void dm_test_psr_fill_caps_power_opts_smu_opt_set(struct kunit *test)
- {
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 	struct psr_caps caps;
- 	unsigned int old_feature_mask;
- 
-@@ -647,7 +585,7 @@ static void dm_test_psr_set_event_psr_not_enabled(struct kunit *test)
-  */
- static void dm_test_psr_set_event_get_event_fails(struct kunit *test)
- {
--	struct amdgpu_display_manager *dm = alloc_test_dm(test);
-+	struct amdgpu_display_manager *dm = dm_kunit_alloc_dm(test);
- 	struct dc_stream_state *stream = alloc_test_psr_stream(test);
- 
- 	dm->power_module = NULL;
-@@ -661,7 +599,7 @@ static void dm_test_psr_set_event_get_event_fails(struct kunit *test)
-  */
- static void dm_test_psr_set_event_already_set(struct kunit *test)
- {
--	struct amdgpu_display_manager *dm = alloc_test_dm(test);
-+	struct amdgpu_display_manager *dm = dm_kunit_alloc_dm(test);
- 	struct dc_stream_state *stream = alloc_test_psr_stream(test);
- 	struct psr_caps caps = {0};
- 	struct core_power *core_power;
-@@ -682,7 +620,7 @@ static void dm_test_psr_set_event_already_set(struct kunit *test)
-  */
- static void dm_test_psr_set_event_updates_event(struct kunit *test)
- {
--	struct amdgpu_display_manager *dm = alloc_test_dm(test);
-+	struct amdgpu_display_manager *dm = dm_kunit_alloc_dm(test);
- 	struct dc_stream_state *stream = alloc_test_psr_stream(test);
- 	struct psr_caps caps = {0};
- 	struct core_power *core_power;
-@@ -706,7 +644,7 @@ static void dm_test_psr_set_event_updates_event(struct kunit *test)
-  */
- static void dm_test_psr_is_active_allowed_no_streams(struct kunit *test)
- {
--	struct amdgpu_display_manager *dm = alloc_test_dm(test);
-+	struct amdgpu_display_manager *dm = dm_kunit_alloc_dm(test);
- 
- 	KUNIT_EXPECT_FALSE(test, amdgpu_dm_psr_is_active_allowed(dm));
- }
-@@ -717,10 +655,10 @@ static void dm_test_psr_is_active_allowed_no_streams(struct kunit *test)
-  */
- static void dm_test_psr_is_active_allowed_null_link(struct kunit *test)
- {
--	struct amdgpu_display_manager *dm = alloc_test_dm(test);
-+	struct amdgpu_display_manager *dm = dm_kunit_alloc_dm(test);
- 	struct dc_state *state = dm->dc->current_state;
- 
--	add_test_stream(test, state, 0, NULL);
-+	dm_kunit_add_stream_to_state(test, state, 0, NULL);
- 
- 	KUNIT_EXPECT_FALSE(test, amdgpu_dm_psr_is_active_allowed(dm));
- }
-@@ -732,11 +670,11 @@ static void dm_test_psr_is_active_allowed_null_link(struct kunit *test)
-  */
- static void dm_test_psr_is_active_allowed_requires_enabled_and_allowed(struct kunit *test)
- {
--	struct amdgpu_display_manager *dm = alloc_test_dm(test);
-+	struct amdgpu_display_manager *dm = dm_kunit_alloc_dm(test);
- 	struct dc_state *state = dm->dc->current_state;
--	struct dc_link *link = alloc_test_link(test);
-+	struct dc_link *link = dm_kunit_alloc_link(test);
- 
--	add_test_stream(test, state, 0, link);
-+	dm_kunit_add_stream_to_state(test, state, 0, link);
- 	link->psr_settings.psr_allow_active = true;
- 	KUNIT_EXPECT_FALSE(test, amdgpu_dm_psr_is_active_allowed(dm));
- 
-@@ -752,17 +690,17 @@ static void dm_test_psr_is_active_allowed_requires_enabled_and_allowed(struct ku
-  */
- static void dm_test_psr_is_active_allowed_any_stream(struct kunit *test)
- {
--	struct amdgpu_display_manager *dm = alloc_test_dm(test);
-+	struct amdgpu_display_manager *dm = dm_kunit_alloc_dm(test);
- 	struct dc_state *state = dm->dc->current_state;
--	struct dc_link *disabled_link = alloc_test_link(test);
--	struct dc_link *allowed_link = alloc_test_link(test);
-+	struct dc_link *disabled_link = dm_kunit_alloc_link(test);
-+	struct dc_link *allowed_link = dm_kunit_alloc_link(test);
- 
- 	disabled_link->psr_settings.psr_allow_active = true;
- 	allowed_link->psr_settings.psr_feature_enabled = true;
- 	allowed_link->psr_settings.psr_allow_active = true;
- 
--	add_test_stream(test, state, 0, disabled_link);
--	add_test_stream(test, state, 1, allowed_link);
-+	dm_kunit_add_stream_to_state(test, state, 0, disabled_link);
-+	dm_kunit_add_stream_to_state(test, state, 1, allowed_link);
- 
- 	KUNIT_EXPECT_TRUE(test, amdgpu_dm_psr_is_active_allowed(dm));
- }
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_replay_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_replay_test.c
-index 68f2f4d70407..6f633b1bbaca 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_replay_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_replay_test.c
-@@ -12,6 +12,7 @@
- #include "amdgpu_mode.h"
- #include "amdgpu_dm.h"
- #include "amdgpu_dm_replay.h"
-+#include "amdgpu_dm_kunit_test_helpers.h"
- #include "modules/power/power_helpers.h"
- #include "dmub/dmub_srv.h"
- 
-@@ -35,8 +36,9 @@ static struct replay_test_ctx *alloc_replay_ctx(struct kunit *test)
- 	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
- 	KUNIT_ASSERT_NOT_NULL(test, ctx);
- 
--	ctx->link = kunit_kzalloc(test, sizeof(*ctx->link), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_NULL(test, ctx->link);
-+	ctx->link = dm_kunit_alloc_link_with_ctx(test);
-+	ctx->dc_ctx = ctx->link->ctx;
-+	ctx->dc = ctx->dc_ctx->dc;
- 
- 	ctx->aconnector = kunit_kzalloc(test, sizeof(*ctx->aconnector), GFP_KERNEL);
- 	KUNIT_ASSERT_NOT_NULL(test, ctx->aconnector);
-@@ -44,21 +46,10 @@ static struct replay_test_ctx *alloc_replay_ctx(struct kunit *test)
- 	ctx->dm_state = kunit_kzalloc(test, sizeof(*ctx->dm_state), GFP_KERNEL);
- 	KUNIT_ASSERT_NOT_NULL(test, ctx->dm_state);
- 
--	ctx->dc = kunit_kzalloc(test, sizeof(*ctx->dc), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_NULL(test, ctx->dc);
--
--	ctx->dc_ctx = kunit_kzalloc(test, sizeof(*ctx->dc_ctx), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_NULL(test, ctx->dc_ctx);
--
--	ctx->stream = kunit_kzalloc(test, sizeof(*ctx->stream), GFP_KERNEL);
--	KUNIT_ASSERT_NOT_NULL(test, ctx->stream);
-+	ctx->stream = dm_kunit_alloc_stream(test, ctx->link);
- 
- 	/* Wire connector state so to_dm_connector_state() works */
- 	ctx->aconnector->base.state = &ctx->dm_state->base;
--	ctx->link->ctx = ctx->dc_ctx;
--	ctx->dc_ctx->dc = ctx->dc;
--	ctx->dc->ctx = ctx->dc_ctx;
--	ctx->stream->link = ctx->link;
- 
- 	return ctx;
- }
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_wb_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_wb_test.c
-index f9a839c10bf4..c71f61a2438d 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_wb_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_wb_test.c
-@@ -20,6 +20,7 @@
- #include "amdgpu.h"
- #include "amdgpu_dm.h"
- #include "amdgpu_dm_wb.h"
-+#include "amdgpu_dm_kunit_test_helpers.h"
- 
- 
- /* Helper functions */
-@@ -71,22 +72,7 @@ static struct drm_connector_state *alloc_test_conn_state(struct kunit *test,
- 	return conn_state;
- }
- 
--static struct amdgpu_device *alloc_test_adev(struct kunit *test)
--{
--	struct drm_device *drm;
--	struct device *dev;
--
--	dev = drm_kunit_helper_alloc_device(test);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
- 
--	drm = __drm_kunit_helper_alloc_drm_device(test, dev,
--						   sizeof(struct amdgpu_device),
--						   offsetof(struct amdgpu_device, ddev),
--						   DRIVER_MODESET | DRIVER_ATOMIC);
--	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, drm);
--
--	return drm_to_adev(drm);
--}
- 
- /* Tests for amdgpu_dm_wb_encoder_atomic_check */
- 
-@@ -350,7 +336,7 @@ static void dm_test_wb_connector_init_success(struct kunit *test)
- 	struct dc *dc;
- 	int ret;
- 
--	adev = alloc_test_adev(test);
-+	adev = dm_kunit_alloc_adev(test);
- 	adev->mode_info.num_crtc = 1;
- 	dm = &adev->dm;
- 	dm->adev = adev;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 92f84277c522..04d4eaa784ef 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -1149,7 +1149,6 @@ struct dc_debug_options {
+ 	bool validate_dml_output;
+ 	bool enable_dmcub_surface_flip;
+ 	bool usbc_combo_phy_reset_wa;
+-	bool force_vrr;
+ 	bool force_fva;
+ 	int max_frl_rate;
+ 	unsigned int  force_frl_rate;
 -- 
 2.53.0
 
