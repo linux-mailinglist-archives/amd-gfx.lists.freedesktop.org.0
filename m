@@ -2,128 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id IKYyBgyAPWr33ggAu9opvQ
+	id oLWlN0YwPmq4BAkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 21:22:52 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:46 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55B756C859E
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 21:22:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55CDF6CB258
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b="w7UeyYu/";
+	dkim=pass header.d=haghiri.net header.s=s670074 header.b=ThcTqgIF;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=none
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55E9610E258;
-	Thu, 25 Jun 2026 19:22:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F1A410F4BD;
+	Fri, 26 Jun 2026 07:54:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012041.outbound.protection.outlook.com
- [40.93.195.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09A4010E258
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 19:22:48 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sx7b/ExbDJIecmQlNkg5wKPSyHXt67bbpTOyiXx62oT8pr4n+ZLyXhaowG7OLpUyPn3Ts4Y7TvdDn8VqFURqkVdNFBKnECNtRMCShCYge5cMYfZCmByZGmG1GEUblnlH0pVGVzhDBE6453ZQDgm8rOBMgH/A2PBT6yVTcXpAYwcLU37yW3NslUFmXpzfnMX5VcUtJ897wCUVM8ZuvFN/aDbM7qKhDZC+jd5qsZ6KebbJ62voUAZlvDXVhFJIV4Db0wGdjNdOY6D4a1D/kV0iBHbWMxzu/aH39dDiyBYQM8jDH3uoUaBjL1qDIXe+JARjK1H8czHuvbQY5rBX1DyNwA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I7M8U669EUDrz2gqaJHeiPGJdeIsMCk7pSINji2hVqI=;
- b=SpImoCivo2b5TaiRrFBAsfsJMzrDOh3CDjSpW6XbecaAxklnj/ejxd52UMoD1QstyITV3NKPJx3Ow3iXEXdr6SaKpWdowf6vfqrLYoUNsPTnBYOWG764ej+xMDU30WfuMjDIsp23q372/cnI0eAuaw8PkMnTtGzXP+M0eetpln9sIxLzdhSurKpCHprBtyU9+wXXY6Azrc2RcQZg3yhcMve3JQl8geijoMWTdLHDqLeTKAkxNNmKDhuYd0IY4RkP5UDPn3CXGIBSlhC93KlPRJS/UfWRX+hvo7ZKl+ss+jaU/Kts7FY/MCqFQyQJgSSCoZ4/z3C1N0WEQA1pipa43A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I7M8U669EUDrz2gqaJHeiPGJdeIsMCk7pSINji2hVqI=;
- b=w7UeyYu/sVBeT9oyhqPDvFfvqZ4gzQpvqliL7yP4DGcMfpiucSWBzrivanlR/gREI8xVoFd5ssVp3ecjGJTytLfbxsTIk9aVNhntKHEdm09K9h2/Jrb1Cy5Z5kNWh/1FXdAYyjw4WNTvaTnMX8k4CfLKm/7qd+YmVErNXXG4B3A=
-Received: from SA1PR12MB8144.namprd12.prod.outlook.com (2603:10b6:806:337::15)
- by SJ0PR12MB6941.namprd12.prod.outlook.com (2603:10b6:a03:448::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.13; Thu, 25 Jun
- 2026 19:22:42 +0000
-Received: from SA1PR12MB8144.namprd12.prod.outlook.com
- ([fe80::56ac:f44f:8336:d7ec]) by SA1PR12MB8144.namprd12.prod.outlook.com
- ([fe80::56ac:f44f:8336:d7ec%7]) with mapi id 15.21.0159.015; Thu, 25 Jun 2026
- 19:22:41 +0000
-From: "Francis, David" <David.Francis@amd.com>
-To: "Sun, Yongqiang" <Yongqiang.Sun@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdkfd: use node XCC count for v9 CRIU control stack
- restore
-Thread-Topic: [PATCH] drm/amdkfd: use node XCC count for v9 CRIU control stack
- restore
-Thread-Index: AQHdBNO8YbltkvBPE0CoICaZDv8f7LZPpj8d
-Date: Thu, 25 Jun 2026 19:22:41 +0000
-Message-ID: <SA1PR12MB814402FF9F14BFAF56153D0DEFEC2@SA1PR12MB8144.namprd12.prod.outlook.com>
-References: <20260625185145.733651-1-Yongqiang.Sun@amd.com>
-In-Reply-To: <20260625185145.733651-1-Yongqiang.Sun@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-06-25T19:22:41.019Z;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD
- General; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=1;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard; 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SA1PR12MB8144:EE_|SJ0PR12MB6941:EE_
-x-ms-office365-filtering-correlation-id: 350fd78d-37b0-415c-fb58-08ded2ef2056
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|376014|366016|18002099003|22082099003|38070700021|56012099006|11063799006;
-x-microsoft-antispam-message-info: 0Bj/ioZmQxIOpFx5N6o7N9setQBIm/HqA2Be/EGO61lD0Odrj3gTj/R8oKKikDYXmoUdlstAwLiXSIzpf7Jf0T756GYkjt8fPSS24NhKw8BsQLwgOFrJMiKrOdj/f3+JeGz96s3XLEVUzmJiSafsD2DRdQDuz/XdkSgsGR35ZnYl7/I+61TqcOmP8Kx+S1PS1ipw/bN+rPdCqhJjrfNOH8TUJOoLr4vGskL4FTzbYuIgSOzAC1ldqAmIxLWP1GugjT/HA3vsiCveP8XmoD6KH2+pCClNEqkady/JrEsHjMohdLoa571I8by9DDMxAfzJk4jaAKa2QLzejrAiXHPDaJe615guM3t7JKgWMRvvu7fFmSRZnav3lJyLLE8dL9KuKDfd8LU47BIP/YGvjlOl9KLTdY/7xiTegXYKS1mdd1Ri+hcL+z3x7+D7NxbJmSTCfDyvvwJXme+uAWKbzIHNH72HsnngwH1X0aR+9WlcnvQnHN9Ia0cHxQZuFXlP+1/QPOGiI5MTizYn9oSLeuNUv2X3GdvGzu3euEtsX7ICGu2tdLUBOSDlpevHTVzoyC+x6USzlsMM/ZOfl5GXakCP034JL4D576rxaJMX1KKjIAEhqgaE8lODkLd/ISbGfM1sPOIQyPzQDDZCvtfNvbAK0Prv20rAjahi3ilSYQrBfUWM4+5NkjG6Y2oC1ZPr8bZ4B2icNnqvyKJziBur82wmqgVvEIKQhyIZ13wQUL9o0yY=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA1PR12MB8144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(18002099003)(22082099003)(38070700021)(56012099006)(11063799006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Pxji/IfqYxJ10bkJA9gaI0l09w4eWAx/53swXlMsgXOge+0K6mA2FMPrPucZ?=
- =?us-ascii?Q?PA17vUz4qOqhx3k6R0hMzX6J3OVt3nJo2KSooftgQaGM8O7q5pcC+eLQQf3q?=
- =?us-ascii?Q?LBblm6u4QbjUiVMqLoaNQBnVVIzfTzNTUj+Hdv06ZfEbt27lxPtdnNTCFEjE?=
- =?us-ascii?Q?SozO7eosW2U5IyRPwhzPAiPHY36TqO7CKUKBInf2BBzh+t6LZtkDUk9Y/KdU?=
- =?us-ascii?Q?cME3tr+aWbyj3u7xhPNjH390LdHdmD5LcdG4rM/2GunEQ27qNJjRYsiI+ZgO?=
- =?us-ascii?Q?B+GpfuqUnyCgjrTxu14h8BJuo8pub5QrzrCNRL6kmsY4IbOIPotPTUyBjCy3?=
- =?us-ascii?Q?M/kCLazWJBsi11MZ+8Pv4Y643jr1/J7O5hAnCVPkCqATfqJbacRcHuEowu8Y?=
- =?us-ascii?Q?oAkzFe67wyF4bE/AcVuAYxBBAmvodgbC/LRwC7IJaItXnUYNq8b5skqjtXoK?=
- =?us-ascii?Q?ecYbN6N+1CIgccO7KYN00pshQjwtEJD4xFMjcxgj4IC5n+zMY0PKJRmBe3WQ?=
- =?us-ascii?Q?Hb1d8VwIpBGNHHz+JB5jJ1zvAZAg34yBkHU/ehfMy+R/EY5PvsT7aI8oDxCs?=
- =?us-ascii?Q?Z8cI5dOoCpop+n7+riTAC8HkfU1Ef0mXtXgJBKG7SwnnsNd468Y9Et79obsm?=
- =?us-ascii?Q?7aFCG3P89Y49riL/74PEz3M9RD4tYfV9sJ6r7oporHZk08yMsN3zFGNwraVo?=
- =?us-ascii?Q?aoju3C8v9M07xNdy5GbeaM7u+J+e7RmMOQLTFA5PlcPrPLwgYKZOOYO9XpAh?=
- =?us-ascii?Q?ki93sSDG7lHVD0LHVUSPvxcp4Y1JA3YaXmDkGGuQ+5rPaNr+1op8bVhyO3xh?=
- =?us-ascii?Q?/mN3Nsb+m3Tz7ve01NDJbPegs0rHyK/7Ox5h0M3rTjhObJ4qqUljPpjnW62R?=
- =?us-ascii?Q?YHxyBnUET1dhbcmyrxguCfNE9r2PR1fhc/qjbl2NlOscIa8+1glyTHZd0GOP?=
- =?us-ascii?Q?u9OWggaqzJB8WTezg3/X31mPIxGbMQFSqHDw7cCq625SPj/UCmIS4KH0VieJ?=
- =?us-ascii?Q?TwgD4aO0WSf8j7ogEw2VGZ96sd0AHhZLbDlzyhNrRciRRcI6RMHYwj1Opggy?=
- =?us-ascii?Q?xXLPG8pWhiGXtIxp1SYUgfGHPyd7AWyRnUREhyG0jyemNShzw/U7jEQimaNc?=
- =?us-ascii?Q?QgzHPqcoqO/9p0EnEhBBSYIOSrn7Iy4k8Opee2sSYEoPepRdI6tGM8WG2V97?=
- =?us-ascii?Q?k96eKOs1SrOywvdc+yMOpaGWLzABRlx8oaEfrWlzBmDpJGz8L8hCnq5oYuT2?=
- =?us-ascii?Q?f8vwE2oGu6MUUwyZtD9WQBFp3Wq+7GSp/9MxwvnLqnJA50oH3OlL/wNuiiXR?=
- =?us-ascii?Q?gPEG39kfjwg993sRsaxtQSe7zxVwlqMS724ZHw2NFQLhtS9MTUbX6C5QxJcj?=
- =?us-ascii?Q?HrV1O16fsEtQ80ieUg5SIZHb7JQVIGWbtFhJMDFJdM5/DOYFpUJgex9r/l93?=
- =?us-ascii?Q?pwfXAr21z6G/ferQ5KGrdvZ7J3VTMJMSNXQNLxPGfV5dwjGqHfHqDaLqvch1?=
- =?us-ascii?Q?bNWOH22VULTCXxYIgGwznTwx4O+7xWQT8WW62RseJnGOpr5GXEzLC2Ja7nXC?=
- =?us-ascii?Q?RG9C8+yTrDAtne/4AnzqhA/V/orInkd6BkoIryiaYCTHhxXOp/uuCN9n83zz?=
- =?us-ascii?Q?FfMU4U7vF0cOASnY2vwOIc4Xj/LjGnpSAml+ajJmwVvfUDx330f+nebCh4K2?=
- =?us-ascii?Q?pz18qKMPKks3d/VnB762MGZJI+hUHcZEks+YFt+8poFyv7PC?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-Greylist: delayed 601 seconds by postgrey-1.36 at gabe;
+ Thu, 25 Jun 2026 20:01:02 UTC
+Received: from a4i518.smtp2go.com (a4i518.smtp2go.com [158.120.82.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11AD710E270
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 20:01:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=haghiri.net;
+ i=@haghiri.net; q=dns/txt; s=s670074; t=1782416768; h=from : subject :
+ to : message-id : date;
+ bh=4FDASpAZewTAw9aVPec4IBz0vmR8o1gLUU6QhtvS7Ek=;
+ b=ThcTqgIFIuT4nw4QYLMUqWElVNOfmsY6cb+ldUT2D+g79tkiWPaQiw74bc9OZbe2FOWIB
+ DkOLU92GIn5eQ20TuqOAWq/ehVRqZB58UwMyOZkreqcj3kIp7Z5Br0ZDzrtkGh2HpQb9sZ+
+ YW4LwGlrWnBGZX1jhQXBNRho/f+y5AxmUsy8H25xGwtz/h8CMzknEu8NxuALLwGp6e9IL8w
+ J5eBa4iXlSSghC+u8kkVgaQpBhmq/ksoRPWHtkHmop+f68sglOO92+Hu0ykkXWCzrwKEZNo
+ HfMGo3WR3DLnNNaN39GLuvolv6XbQWjZPmISs/cNvQcdG/ZL9v0kbK/h/nSA==
+Received: from [10.132.241.142] (helo=[10.161.48.225])
+ by smtpcorp.com with esmtpsa
+ (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128)
+ (Exim 4.99.4) (envelope-from <nick@haghiri.net>)
+ id 1wcq1C-4o5NDgrhWwe-hkHe; Thu, 25 Jun 2026 19:45:46 +0000
+Message-ID: <8e62f139-1d61-433e-8029-b10025a289d3@haghiri.net>
+Date: Thu, 25 Jun 2026 15:45:44 -0400
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR12MB8144.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 350fd78d-37b0-415c-fb58-08ded2ef2056
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jun 2026 19:22:41.4516 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vAp+dosEY3QIPEq1VsPv10N0Dzfk941rsFbeCVeLak16b36zbLd5RQawwuWPqBdp
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6941
+User-Agent: Betterbird (Linux)
+Subject: Re: [RFC PATCH] drm/amd/display: extend HPD debounce filter to
+ DisplayPort SST
+To: Ivan Lipski <ivlipski@amd.com>, amd-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Ivan Lipski <ivan.lipski@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20260625150439.330875-1-nick@haghiri.net>
+ <928d4c2a-d8b7-43d7-995e-a3e6996d2952@amd.com>
+Content-Language: en-US
+From: Nick Haghiri <nick@haghiri.net>
+In-Reply-To: <928d4c2a-d8b7-43d7-995e-a3e6996d2952@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Report-Abuse: Please forward a copy of this message, including all headers,
+ to <abuse-report@smtp2go.com>
+Feedback-ID: 670074m:670074aX29xAY:670074syjoatcHpi
+X-smtpcorp-track: Gs7evT_GYhrg.u16CnetuVI8X.WWWAOwN7scx
+X-Mailman-Approved-At: Fri, 26 Jun 2026 07:54:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,86 +75,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.80 / 15.00];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[haghiri.net:s=s670074];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Yongqiang.Sun@amd.com,s:lists@lfdr.de];
-	RCPT_COUNT_TWO(0.00)[2];
-	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ivlipski@amd.com,m:alexander.deucher@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:ivan.lipski@amd.com,m:siqueira@igalia.com,m:christian.koenig@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[haghiri.net];
+	ARC_NA(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[David.Francis@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[nick@haghiri.net,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[David.Francis@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nick@haghiri.net,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[haghiri.net:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,SA1PR12MB8144.namprd12.prod.outlook.com:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 55B756C859E
+X-Rspamd-Queue-Id: 55CDF6CB258
 
-Nice catch
+On 6/25/26 3:15 PM, Ivan Lipski wrote:
+ > I don't think I've encountered a situation when a monitor with DP can
+ > wake a system up from DPMS, so that's interesting. What distro and
+ > desktop environment are you using? I'd like to reproduce this issue
+ > and help with it.
 
-Patch is
-Reviewed-by: David Francis <David.Francis@amd.com>
+openSUSE Tumbleweed, KDE Plasma 6.7 on Wayland (KWin). GPU is an RX 9070
+XT (RDNA4), monitor is an MSI MPG 274U over DisplayPort SST.
 
-________________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Yongqian=
-g Sun <Yongqiang.Sun@amd.com>
-Sent: Thursday, June 25, 2026 2:51 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Sun, Yongqiang
-Subject: [PATCH] drm/amdkfd: use node XCC count for v9 CRIU control stack r=
-estore
+What happens: when the output goes DPMS-off and the monitor drops into
+deep sleep, it briefly de-asserts and re-asserts HPD. amdgpu forwards
+that as a hotplug, KWin re-probes and re-enables the output, and the
+panel comes right back on, so it never actually stays asleep while
+connected.
 
-set_queue_properties_from_criu() divided the checkpointed control stack
-size by NUM_XCC(adev->gfx.xcc_mask) (whole GPU), while the checkpoint
-size was recorded, the MQD buffer allocated, and the control stack
-restored using the per-node mask NUM_XCC(mm->dev->xcc_mask). On spatially
-partitioned GFX9.4.3 (CPX/QPX) these differ, so the per-XCC control stack
-size used for the restore memcpy could exceed the region sized for the
-MQD allocation, writing past the BO into adjacent kernel memory; it also
-broke legitimate restore on partitioned parts. Divide by the per-node XCC
-count so allocation and copy agree, leaving kfd_queue_acquire_buffers()
-to bound the size against the node's advertised control stack size.
+I suspect the monitor's input auto-scan plays a part, but disabling 
+auto-scan on the monitor did not stop the HPD toggle, so it looks like 
+panel-side behavior on entering deep sleep rather than something the 
+user can turn off.
 
-Signed-off-by: Yongqiang Sun <Yongqiang.Sun@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+To watch it, enable drm logging:
+   echo 0x16 > /sys/module/drm/parameters/debug
+then force DPMS-off on the DP output (kscreen-doctor --dpms off, or just 
+let it idle). On the stock driver you get a link_set_dpms_off quickly 
+followed by a spurious detect and a link_set_dpms_on. With the debounce 
+set, the toggle is coalesced and it stays off.
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drive=
-rs/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-index 071f956f183c..0a7276eadf79 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-@@ -1040,7 +1040,7 @@ int kfd_criu_restore_queue(struct kfd_process *p,
-        ctl_stack =3D mqd + q_data->mqd_size;
+I am happy to send the monitor's EDID and a full drm.debug trace 
+off-list if that helps. Its EDID identifies as manufacturer MSI, product 
+code 0x3CF0, i.e. drm_edid_encode_panel_id('M', 'S', 'I', 0x3CF0) for 
+the apply_edid_quirks() switch.
 
-        memset(&qp, 0, sizeof(qp));
--       set_queue_properties_from_criu(&qp, q_data, NUM_XCC(pdd->dev->adev-=
->gfx.xcc_mask));
-+       set_queue_properties_from_criu(&qp, q_data, NUM_XCC(pdd->dev->xcc_m=
-ask));
+ > I think generalizing the hpd_debounce_delay for both DP and HDMI would
+ > be better.
 
-        ret =3D kfd_queue_acquire_buffers(pdd, &qp);
-        if (ret) {
+If you're open to it, I will fold it into a single hpd_debounce_delay_ms 
+that applies to both HDMI and DP SST (eDP and MST still excluded), and 
+rename the internal hdmi_* field, work, and prev_sink to generic hpd_* 
+while I am there.
+
+One question on the existing knob: hdmi_hpd_debounce_delay_ms already 
+shipped. Would you rather I keep it as a back-compat alias of the 
+generic one, or just replace it since it is only a couple of cycles old? 
+I will go with whichever you prefer.
+
+ > Maybe we can also enable hpd_debounce_delay by default for monitors,
+ > that are known to have this issue, using apply_edid_quirks
+
+I like that. It could make it work out of the box instead of needing a 
+module param. I can add an apply_edid_quirks() case for the MSI MPG 274U 
+(panel id above) that sets a sane default, and keep the module param as 
+a global override. 1500 ms is what reliably works in the testing I've 
+done, but I can tune that down if you want a smaller default.
+
+Thanks for the quick and helpful review.
+
 --
-2.43.0
+
+Nick Haghiri
 
