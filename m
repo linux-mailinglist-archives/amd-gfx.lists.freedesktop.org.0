@@ -2,67 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NwzZFV8wPmrHBAkAu9opvQ
+	id iacvLdd4PWr63QgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:55:11 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 20:52:07 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57C236CB28D
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:55:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF77E6C8492
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 20:52:06 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=yandex.ru header.s=mail header.b="QXcT2dL/";
+	dkim=pass header.d=amd.com header.s=selector1 header.b=LVUXe0ma;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=yandex.ru
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E726A10F4AD;
-	Fri, 26 Jun 2026 07:55:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 744F810E1C6;
+	Thu, 25 Jun 2026 18:52:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 367 seconds by postgrey-1.36 at gabe;
- Thu, 25 Jun 2026 15:24:33 UTC
-Received: from forward202b.mail.yandex.net (forward202b.mail.yandex.net
- [178.154.239.155])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4833A10E216;
- Thu, 25 Jun 2026 15:24:33 +0000 (UTC)
-Received: from forward102b.mail.yandex.net (forward102b.mail.yandex.net
- [IPv6:2a02:6b8:c02:900:1:45:d181:d102])
- by forward202b.mail.yandex.net (Yandex) with ESMTPS id 88A4EC3663;
- Thu, 25 Jun 2026 18:18:26 +0300 (MSK)
-Received: from mail-nwsmtp-smtp-production-main-67.sas.yp-c.yandex.net
- (mail-nwsmtp-smtp-production-main-67.sas.yp-c.yandex.net
- [IPv6:2a02:6b8:c24:221f:0:640:b03f:0])
- by forward102b.mail.yandex.net (Yandex) with ESMTPS id 629CDC00F6;
- Thu, 25 Jun 2026 18:18:23 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-67.sas.yp-c.yandex.net (smtp)
- with ESMTPSA id DIbMBTIdH0U0-mdd7Epgp; 
- Thu, 25 Jun 2026 18:18:22 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
- t=1782400702; bh=8NQg9mqw8zBbJMcwecVSvlZHJ1JE4BFnWrwrF2BbF7A=;
- h=Message-ID:Date:Cc:Subject:To:From;
- b=QXcT2dL/k8M5RbOhYNhFlUOU5jtWfYXUCyN5lxYd3RQc2Ih1VuzyCV144MsLJ+eHs
- qjLoDS/5rH18f4VfKFmj2Qgdo4N7a3yFPn/PwLx1tRFzCq7Zc9H661N+X6DPS4TpPH
- 1caTrKIfigb01wfGFnpOzrSoAMWSOQbL7WH5OW4M=
-From: Evgenii Burenchev <evg28bur@yandex.ru>
-To: stable@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Evgenii Burenchev <evg28bur@yandex.ru>, harry.wentland@amd.com,
- sunpeng.li@amd.com, siqueira@igalia.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
- alex.hung@amd.com, mwen@igalia.com, tzimmermann@suse.de,
- Alvin.Lee2@amd.com, ray.wu@amd.com, dmitry.baryshkov@oss.qualcomm.com,
- chaitanya.kumar.borah@intel.com, pierre-eric.pelloux-prayer@amd.com,
- HaoPing.Liu@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- lvc-project@linuxtesting.org
-Subject: [PATCH] drm/amd/display: Fix dangling pointer in plane state reset on
- allocation failure
-Date: Thu, 25 Jun 2026 18:17:12 +0300
-Message-ID: <20260625151717.27757-1-evg28bur@yandex.ru>
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011063.outbound.protection.outlook.com [40.107.208.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B226410E1C6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 18:52:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gTRCeJoE0VgMzWWSQ/jz9woZiwFRQbWaTQsbWsGGDwtpKuE3RTV4CfBRKnGEo7jbk9uUvY3oq0RXJDEVrcmsMyouJrf75dZ+O/tIrw7GBET/7J4ZOCq96SwjC2zS6C+Vzrg3fAD8So75ptFi8eq7CnPjWN+wxO5zCed5M3dpB0p4NJBFBky4BN5gWJiMI1t8fjdLq4U6jJeTySTvmT/cpzXmkYDA53sjlX+Dyer1dBQXRVArOacFlG3jqdWME9hjzNT4I03d1U4oRqc0PGMVxPwY0sT5cUNNXurkWjXbOEcKpWtSjG9Fc5RlcvBfEDMcKH9Z6jomW2Hb5fWyTjzeyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GY64r92BwgvhIT/s+QWsb7tpmcDKvmOzbeThc+qHd7E=;
+ b=zITtIKlYWmvjo4HLQwGeBqCaGHgFGkxBkxXO23CPklwnKGYPkXa4Pv3TYbHAN0upATL0UFx2hr1BNnUPvvOtsJ8Dy0+eiR8R2lLiv6grjDDBlvmgwI3yoyZY8S4Ybvc9iJzxEwUG2iUAIGYYG6R23Y2egn3pDUheYND8rfyVs+zlX20aoWaEz8BoUcgNSyO93k2LHyx03GhFz4veVJuKOGHUUy6tqKVVbvyqiLRWz9s0VrlGRaJtWgHa/VqNmk1D303Yj4aURN10xh0+3na62YdLmMzcyHdkFG7k0g0/fDSQ3fDGcRSA78WMZ7uJrdHmOkQ30nGmojPeeBKwxjMffQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=temperror (sender ip
+ is 165.204.84.17)
+ smtp.rcpttodomain=lists.freedesktop.org
+ smtp.mailfrom=amd.com; dmarc=temperror action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GY64r92BwgvhIT/s+QWsb7tpmcDKvmOzbeThc+qHd7E=;
+ b=LVUXe0maagESFCETxnOe9U0w34BWBtnNQZ262ZkSY4bYJW11Vu51uMTZOV0zL3etk3jGkufAOcFs9x2J78Ehj6aVdjynNfKOa41gujlPOcGMr4rq8mDwSg7MOWD6RJBBnElIWo+aAcT7Od+brlLvoBvROF4S3yldxSCoAarI8Yg=
+Received: from DM6PR05CA0049.namprd05.prod.outlook.com (2603:10b6:5:335::18)
+ by CH2PR12MB4070.namprd12.prod.outlook.com (2603:10b6:610:ae::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.13; Thu, 25 Jun
+ 2026 18:51:58 +0000
+Received: from SN1PEPF0002BA4F.namprd03.prod.outlook.com
+ (2603:10b6:5:335:cafe::26) by DM6PR05CA0049.outlook.office365.com
+ (2603:10b6:5:335::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.7 via Frontend Transport; Thu, 25
+ Jun 2026 18:51:57 +0000
+X-MS-Exchange-Authentication-Results: spf=temperror (sender IP is
+ 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=temperror action=none header.from=amd.com;
+Received-SPF: TempError (protection.outlook.com: error in processing during
+ lookup of amd.com: DNS Timeout)
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SN1PEPF0002BA4F.mail.protection.outlook.com (10.167.242.72) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Thu, 25 Jun 2026 18:51:57 +0000
+Received: from 0yonsun-linux-dev.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.41; Thu, 25 Jun 2026 13:51:56 -0500
+From: Yongqiang Sun <Yongqiang.Sun@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Yongqiang Sun <Yongqiang.Sun@amd.com>
+Subject: [PATCH] drm/amdkfd: use node XCC count for v9 CRIU control stack
+ restore
+Date: Thu, 25 Jun 2026 14:51:45 -0400
+Message-ID: <20260625185145.733651-1-Yongqiang.Sun@amd.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 26 Jun 2026 07:54:04 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4F:EE_|CH2PR12MB4070:EE_
+X-MS-Office365-Filtering-Correlation-Id: 369ee3fd-b44a-433b-48c9-08ded2ead516
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|23010399003|376014|36860700016|1800799024|56012099006|11063799006|18002099003;
+X-Microsoft-Antispam-Message-Info: 6ReL3lmCtZ3r389gNsGKa/iT/zbY0CkOVPHLEaqyGsZILk0B9CYU67rzVbal/jWhZRkKtDkXpMrJb0hvf9sdEjDYbnVKs5SW1U5kh6gzTku/Ags1D9Khs6A/8tQihsz0UElhVkgH4PpbuFsGasrGWmjcRhx+4e9NRjOEnaYuAc0zxnru8CKkV3oBzwhF9OncaHPdBxqAFt01yGpAQ4YDNJF71SHFElZmazQHc8OVKYPOiM2TY2hCE6o1dMazq2g1vB2RFAivQJOilyKOW1vMwJ7ckGJ1xZLF5Nn/Ekk1P3a+mSnKczXUSfK6LDj6ecuV3eGMTpncCfZktIb4HjEz4sIzq5L0TOS+Sw8jGChzRs2jR332K/bo3KDI9e8vRWKE5e3IXxFPRVw8iYiDIEYfxBjHBis1We+YR8pvOxEnncBXJm3GGW6E9wUf0NjVeI6G598Z18pI6vPK5fizy/UhnETi67LFpyum1pdtz3GSnveLGoauzXJqwVzDnahnAew4orrTKkBLwM+C5HJG7JhswEyiJ4nCuZYtjeHy+048MaAylEfJT83Xhh00BgLI4w3/WyviR2feOzw5lX0rvTtxlZ2xE5hbdTA98FkwDYuBkSu1FhxJdOfaeVV78d46RRI+iiyBr5uDrHwJNKYJbkf/5EcgkaN3i1St6gjpesW/GjKkwyaqiTDz12fUMj2a5vkQlrZ6NwvGpEZ07aFGGcKJfQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(23010399003)(376014)(36860700016)(1800799024)(56012099006)(11063799006)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 0kYfRCpn3LFNlqTq9Zd3V0ps+CiM2k0DJiSmov07e2anl8iG/BsyC4CHK6hzR3lBSGMcz8jydlgwNedNFD4S2/RS+e0YO2ywbkxVrQY8xz41AvYSU1f0csYP23CTefjU182DC3Q5DxyFwd/CyrDFmzoMY2UEJ2ZuKWZaeqjV5m7tVNiLYsscekjvRDYYE1nZuTSPNHeiiMAUwrlACOG0IT/XstcBC8CcggL9umkKyWCpyi+Ph6Rjn+rgZhtXmtpMUcFEkgZBvClnVxsNEK0R0th5UDEUlLk4w0j7ub3XoGElwWiGi7C7jZke9FRj4PdkHHs/Mlmt/4jl78tHIRw8T+MjHXDO9P8N7TKwAn/llno4g5pLz0uP7Nbc4Iz8wagaf4PKpXIH+39H2EBeff9V7y8kcYUWEGHXT+B4vkgI5GeURMNtILbfFNyYuK+/jWz8
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2026 18:51:57.1767 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 369ee3fd-b44a-433b-48c9-08ded2ead516
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA4F.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4070
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,94 +115,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[yandex.ru,none];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[yandex.ru:s=mail];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[yandex.ru,amd.com,igalia.com,gmail.com,ffwll.ch,suse.de,oss.qualcomm.com,intel.com,lists.freedesktop.org,vger.kernel.org,linuxtesting.org];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[yandex.ru];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[evg28bur@yandex.ru,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[yandex.ru:+];
-	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[Yongqiang.Sun@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 57C236CB28D
+X-Rspamd-Queue-Id: EF77E6C8492
 
-In amdgpu_dm_plane_drm_plane_reset(), the old plane state is freed
-before allocating a new one. If kzalloc_obj() fails, the function
-returns without updating plane->state, leaving a dangling pointer
-to already freed memory.
+set_queue_properties_from_criu() divided the checkpointed control stack
+size by NUM_XCC(adev->gfx.xcc_mask) (whole GPU), while the checkpoint
+size was recorded, the MQD buffer allocated, and the control stack
+restored using the per-node mask NUM_XCC(mm->dev->xcc_mask). On spatially
+partitioned GFX9.4.3 (CPX/QPX) these differ, so the per-XCC control stack
+size used for the restore memcpy could exceed the region sized for the
+MQD allocation, writing past the BO into adjacent kernel memory; it also
+broke legitimate restore on partitioned parts. Divide by the per-node XCC
+count so allocation and copy agree, leaving kfd_queue_acquire_buffers()
+to bound the size against the node's advertised control stack size.
 
-Fix this by allocating the new state first. If allocation fails,
-free the old state (if present) and set plane->state to NULL to
-prevent any dangling references.
-
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
-
-Fixes: 5d945cbcd4b1 ("drm/amd/display: Create a file dedicated to planes")
-Signed-off-by: Evgenii Burenchev <evg28bur@yandex.ru>
+Signed-off-by: Yongqiang Sun <Yongqiang.Sun@amd.com>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 20 ++++++++++++++-----
- 1 file changed, 15 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-index e957657b06c7..0d81cef5fdaa 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-@@ -1490,20 +1490,30 @@ static void amdgpu_dm_plane_drm_plane_reset(struct drm_plane *plane)
- {
- 	struct dm_plane_state *amdgpu_state = NULL;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
+index 071f956f183c..0a7276eadf79 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
+@@ -1040,7 +1040,7 @@ int kfd_criu_restore_queue(struct kfd_process *p,
+ 	ctl_stack = mqd + q_data->mqd_size;
  
--	if (plane->state)
--		plane->funcs->atomic_destroy_state(plane, plane->state);
--
- 	amdgpu_state = kzalloc_obj(*amdgpu_state);
--	WARN_ON(amdgpu_state == NULL);
+ 	memset(&qp, 0, sizeof(qp));
+-	set_queue_properties_from_criu(&qp, q_data, NUM_XCC(pdd->dev->adev->gfx.xcc_mask));
++	set_queue_properties_from_criu(&qp, q_data, NUM_XCC(pdd->dev->xcc_mask));
  
- 	if (!amdgpu_state)
--		return;
-+		goto err_alloc;
-+
-+	/* Old state can now be safely destroyed. The new state is already allocated and will be assigned */
-+	if (plane->state)
-+		plane->funcs->atomic_destroy_state(plane, plane->state);
- 
- 	__drm_atomic_helper_plane_reset(plane, &amdgpu_state->base);
- 	amdgpu_state->degamma_tf = AMDGPU_TRANSFER_FUNCTION_DEFAULT;
- 	amdgpu_state->hdr_mult = AMDGPU_HDR_MULT_DEFAULT;
- 	amdgpu_state->shaper_tf = AMDGPU_TRANSFER_FUNCTION_DEFAULT;
- 	amdgpu_state->blend_tf = AMDGPU_TRANSFER_FUNCTION_DEFAULT;
-+
-+	return;
-+
-+err_alloc:
-+	/* Allocation failed: free old state (if present) and set plane->state to NULL */
-+	if (plane->state) {
-+		plane->funcs->atomic_destroy_state(plane, plane->state);
-+		plane->state = NULL;
-+	}
-+	WARN_ON(amdgpu_state == NULL);
- }
- 
- static struct drm_plane_state *amdgpu_dm_plane_drm_plane_duplicate_state(struct drm_plane *plane)
+ 	ret = kfd_queue_acquire_buffers(pdd, &qp);
+ 	if (ret) {
 -- 
 2.43.0
 
