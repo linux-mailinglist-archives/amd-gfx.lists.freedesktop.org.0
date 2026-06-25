@@ -2,68 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id AHqbMd7tPGoyuggAu9opvQ
+	id ARpnGUQwPmqyBAkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 10:59:10 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:44 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2347B6C4043
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 10:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D7F6CB23C
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=v6PB8gUB;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=RCC2guPd;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=reject) header.from=mailbox.org
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("google.com:s=arc-20260327:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EEA310F1C4;
-	Thu, 25 Jun 2026 08:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57B1F10F49F;
+	Fri, 26 Jun 2026 07:54:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFA8410F1C4;
- Thu, 25 Jun 2026 08:59:05 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4gmCQs2h9Hz9tfx;
- Thu, 25 Jun 2026 10:59:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1782377941;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=QqIEwzv1RmZSABsvckz2P9dhAjK2UikqkQENvnsyIuw=;
- b=v6PB8gUBhjvoaxMgTEkCKc9WkDBq3OA9MQ9QoL8q/TIRe290WWlx8j4r1hlt7MCvrFXhjN
- buEcaVDL0dTZAVkqwIbtViY8AJFcqq2cw719wHbvfdIAlmMJMHIiEA83kwpp31dLvaKXH+
- eTcUBeYoFugvRbicDxQun6aDYJ5u/ePYHovhwkkJ4wwFuCFMCwxTVyy6AhUcTzrwBpFBsR
- 3aC6eLPZMfqQeSO4OMB/jpgg7KcYR6Qc+9YHoFpf2vQajGiIO5+KQKbFVqQXu48YE5cNrj
- 75v3bdF4ty906899UUdloRZYhHn9al/6RzBvlxcIAEn8oxZsH7fsjHePcxV4fw==
-Message-ID: <ac206a38-65cf-466a-ad12-36d3f2e3372a@mailbox.org>
-Date: Thu, 25 Jun 2026 10:58:57 +0200
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com
+ [209.85.128.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABD5610E1B7
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 09:07:07 +0000 (UTC)
+Received: by mail-yw1-f170.google.com with SMTP id
+ 00721157ae682-80af6f707b5so665627b3.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 02:07:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782378426; cv=none;
+ d=google.com; s=arc-20260327;
+ b=sv7zHz9oOW4cowgHL2/WuZs4y5U/7Bq/emdIbjPbSFqFCAbAt42grcltTzlNu8mu1I
+ F+KUsqd6oewOQ85PBqLLfSLXGwrrgGWJQKUNr6gj5LZXe/TKDGAH+WdamSwWgGG+Bi39
+ mbGNSK3p2yx6442IbCjYWiIzEDA6DIaoVpMlV/v/LrxKZiIcXKJ7/LfOVR0MdNF5peO9
+ zLEgJ2ixcwjjMWjeyH07ENkHegvKNXzfuoFWLydjeg52UYCF+AyD7ad5Ek4OiJXUCpBB
+ cePFFdupdLvUwQLzoWyA69j3GfqfkcDsjG011KlL0UTK2SWpKoNZGj2EEzbmq61I4flw
+ HiWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:references:in-reply-to:dkim-signature;
+ bh=1lF2p0zapEf+xhq/90YUTa1Z2VnVgWZbekIEo47QZ4A=;
+ fh=GQCCKYWZorMjIqEt1OoBoi+ydYpCUmfg/wswxkzamm4=;
+ b=qa0h9ems1Tcy/2EAlE/dISUF7mdumk3bMkz9+ymRuGh5aPsOjEEJXyeBFsOpXLz/VK
+ qcg/b9wAmGInwzO/8mhgzR2bLFI8bJebmr8/TZN9kxu4T/rPqQCGowaLL6J+qD+LXOZJ
+ EfN3BUZEtWcboOsX+a9BTmuDKfCL3lcJsla3FYnR3e2WyvHxYmTWNqr2CDNV/9sH7Id2
+ Jb7zBqQHMv9Nx+z1vbIaRgAcqCmA6yLNZeDqdA0iqkzHEq9aTSfLFSUrANWpmHCNH90g
+ n9Jwi3+auY63LvrFYSywsAEX3GyOkmJeMxwdLE6p+ae1uIUavUyC3pvur01gCVnRIIZq
+ QFvw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1782378426; x=1782983226; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:references:in-reply-to:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=1lF2p0zapEf+xhq/90YUTa1Z2VnVgWZbekIEo47QZ4A=;
+ b=RCC2guPdJ+UWt8NUcwdYaIbBdmV86R/G2bx6yD2UiunTWMNt7J25mZnpnNMWftON+K
+ uO3rPO1T4Pe/wGDxhYHr29tTjYizC4ZEovjFgRvs3X8Kf9uuRb8OFwQsLHFi2/GmkHbE
+ G5FkCrdjL+yPpSHKII6LdTTr7jIFSRp7Gi6momLbUD5EdYCQpJ/4H/RD5co1b+4aZa3Z
+ HYwF+Y9JytdQ1Ud1GQALqdxGNCmPXtGkdNKXAQZZSijJaFEg5lXEOw3tg5+TCYC3j7KW
+ hAtkjcOwnK6cV0BExQ8cWl2QzcSwifXN1g8XOgSzSsdvMWKZW5su9pwjXb3hyPqPFSJ8
+ jJXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1782378426; x=1782983226;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:references:in-reply-to:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=1lF2p0zapEf+xhq/90YUTa1Z2VnVgWZbekIEo47QZ4A=;
+ b=mNid6mRTzexurPz6R1W2tRCPgMTO7yO4OvXMazYqTL/MtJFtum4NP7IVnU7bsEfmrp
+ mUnbiGpcf58Fs1L6CN68PbebAsHVlKp6rHVxWqcO+EyoWt4PHyGAh5W98vs0T1jZUkpm
+ 0Rifs4OaEe6lykH4YP+Es9QZ9I+sy9jXXTnJPuBPbLngYKf+c2YFd3iiJR/qQ5xLDmXW
+ yyMT2hRTaTFwQZ/2SfeZyOVs/RHaK0DLGzFypJwQU1xea0oCVoYL7M95uXGyZ9ONVy15
+ 98vYR3AYBBh4OikfBlQHCHd76oe7UCIGwelJT3cqSvv7BCz6UW2SzoyPUk2Pdybu/F5v
+ vkgQ==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RrC5xG8OpJ8N6lACMFUwtU1mysoNKJSDFzoQtWLdyaiQ1TckhZZ2RiMKZLgJrgfeCsQ0UUZA24L@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzHsapdU1brB1FdPNsgJwF/xI66AqYnFUNEmFO6GT71G3vPPn8A
+ e8bEErSwmpb48cmF2M6yZ6SWxYXBiDEz72TXcYMtlH1Ifi2kXQzewVxUOPNieVwcKdWo19DdXA+
+ ewdfDggxtLt4wg/lXHBHYHh2a8CTT/9M=
+X-Gm-Gg: AfdE7cmaHyO01A1c6fBI8ITaUQvWnWhfpjSO4qtEY/6zJFXd3qlNy3ZdiDixHjz1cVd
+ y4PIFlPfdH3nfObKjeltWtWOpETIzQgC0ssnVsuviTevjl1FUBY188D2PwVofYaI353Bsg/CHVs
+ sWMgCdwr0T6AqQcV8G6M9xW/lN3yOX9ShVpryip8ZzNLlR2+QDH4JqWmzsSM3GwPBw+K6bIDBLP
+ 41LfAwWZkBInRR090BB+OmONY1R/C5rXaq5D/8gwWJfCNKVA0p12B2Ke9OPeexO6fk9W0gJyA==
+X-Received: by 2002:a05:690c:f06:b0:7bd:cf35:e33b with SMTP id
+ 00721157ae682-80a680fd6b5mr15809967b3.17.1782378426348; Thu, 25 Jun 2026
+ 02:07:06 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
+ Thu, 25 Jun 2026 02:07:05 -0700
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
+ Thu, 25 Jun 2026 02:07:05 -0700
+In-Reply-To: <72aa8cb3-2b48-4b08-ab17-788c3dd18fe6@amd.com>
+References: <20260624172029.2508-1-alhouseenyousef@gmail.com>
+ <72aa8cb3-2b48-4b08-ab17-788c3dd18fe6@amd.com>
 MIME-Version: 1.0
-Subject: Re: [RFC PATCH] drm/amd/display: Pin native scanout to VRAM on
- large-carveout APUs
-To: Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>, Melissa Wen
- <mwen@igalia.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, natalie.vock@gmx.de
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- "Pierre-Loup A . Griffais" <pgriffais@valvesoftware.com>
-References: <20260616071037.26718-1-matthew.schwartz@linux.dev>
- <334d4642-a7ce-4d04-ab14-6b95653e6f86@amd.com>
- <09a37c38-3f99-40bf-9a87-f88298ce349a@amd.com>
- <9b96d6a5-7c3c-4bd5-8785-76c9642bc933@amd.com>
- <faa1c424-2282-4e70-9934-e29f437f8bbb@amd.com>
-From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-Content-Language: en-CA
-In-Reply-To: <faa1c424-2282-4e70-9934-e29f437f8bbb@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: 61jgk4mtwaxym58hnqu4yeiu8ueddh3d
-X-MBO-RS-ID: b0abf692e43af43f1a5
+From: Yousef Alhouseen <alhouseenyousef@gmail.com>
+Date: Thu, 25 Jun 2026 02:07:05 -0700
+X-Gm-Features: AVVi8CediwaEU0lbA3vIZaDjcsLl9lonps5TiuUPNt_1EGi3rRkszgQM2DjFHFE
+Message-ID: <CAMuQ4bXYumKw9jTJ-FpCYfnzipR9jcFVSbp_k=LAbModoinRsQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: reject mapping info for unmapped BOs
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 26 Jun 2026 07:54:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,76 +118,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,linux.dev,igalia.com,gmx.de];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[alhouseenyousef@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alhouseenyousef@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michel.daenzer@mailbox.org,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[mailbox.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:email,mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2347B6C4043
+X-Rspamd-Queue-Id: 12D7F6CB23C
 
-On 6/24/26 19:55, Harry Wentland wrote:
-> On 2026-06-24 11:52, Christian König wrote:
->> On 6/24/26 17:30, Harry Wentland wrote:
->>> On 2026-06-16 03:31, Christian König wrote:
->>>> On 6/16/26 09:10, Matthew Schwartz wrote:
->>>>> Native scanout buffers on APUs are pinned with the VRAM|GTT domain, so
->>>>> under VRAM carveout pressure a swapchain can end up split across VRAM and
->>>>> GTT. The scanout buffer's memory type then changes from one flip to the
->>>>> next, and amdgpu_dm_crtc_mem_type_changed() rejects an async page flip
->>>>> across the change. The result is repeated async page flip failures,
->>>>> observed as choppy updates under carveout pressure, until the buffers
->>>>> reconverge to a single domain.
->>>>
->>>> That's intentional behavior.
->>>>
->>>>> Pin native scanout buffers in VRAM only so the swapchain stays in one
->>>>> memory domain. Restrict this to APUs whose carveout is larger than
->>>
->>> Above you mention that under VRAM pressure a swapchain can end up split
->>> across VRAM and GTT. Wouldn't restricting the swapchain to VRAM now mean
->>> that in those cases you fail to allocate the swapchain entirely?
->>
->> Yes, exactly that.
->>
->> My educated guess is that the display server then falls back to using a copy instead of a flip and that helps saving memory somehow (e.g. less scanout buffers alocated concurrently).
->>
->> Would it somehow be possible to get DC to dynamically switch between VRAM and GTT?
-> 
-> DCN can't switch between mapped and unmapped memory. I'm not a memory
-> management expert but wouldn't GTT be in GART (mapped) and VRAM in
-> the (unmapped) FB aperture?
-> 
-> From DCHUB HW doc:
-> "No change from mapped to unmapped or unmapped to mapped is 
-> allowed for immediate f lip"
-> 
-> If so, we can't async flip between them.
+Hi Christian,
 
-A possible alternative solution then might be explicitly pinning the BO to either VRAM or GTT for an async commit, wherever the current scanout BO is located.
+You're right. I rechecked the handle-open path and bo_va should
+already be created for this file, so I do not have a valid reproducer
+for the NULL case.
 
+Please drop this patch.
 
--- 
-Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
-https://redhat.com             \               Libre software enthusiast
+Thanks,
+Yousef
+
+On Thu, 25 Jun 2026 10:46:24 +0200, "Christian K=C3=B6nig"
+<christian.koenig@amd.com> wrote:
+> On 6/24/26 19:20, Yousef Alhouseen wrote:
+> > AMDGPU_GEM_OP_GET_MAPPING_INFO looks up the BO's VM mapping and then
+> > iterates the valid and invalid mapping lists unconditionally. A GEM BO =
+can
+> > be queried before it has been mapped into the file VM, in which case
+> > amdgpu_vm_bo_find() returns NULL and the list walk dereferences it.
+>
+> Mhm, that is not correct at all.
+>
+> The bo_va is created when the handle is opened inside the filp and not wh=
+en the first mapping is created.
+>
+> Do you have a test case to reproduce the issue?
+>
+> Thanks,
+> Christian.
+>
+> >
+> > Return -ENOENT for an unmapped BO, matching the VA operation path that
+> > already rejects missing BO-VA state before touching the mapping lists.
+> >
+> > Signed-off-by: Yousef Alhouseen <alhouseenyousef@gmail.com>
+> > ---
+> > drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 6 ++++++
+> > 1 file changed, 6 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/=
+amd/amdgpu/amdgpu_gem.c
+> > index 212c14d99..4b2699931 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> > @@ -1087,6 +1087,12 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, =
+void *data,
+> > struct drm_amdgpu_gem_vm_entry *vm_entries;
+> > struct amdgpu_bo_va_mapping *mapping;
+> > int num_mappings =3D 0;
+> > +
+> > + if (!bo_va) {
+> > + r =3D -ENOENT;
+> > + goto out_exec;
+> > + }
+> > +
+> > /*
+> > * num_entries is set as an input to the size of the user-allocated arra=
+y of
+> > * drm_amdgpu_gem_vm_entry stored at args->value.
+> > --
+> > 2.54.0
+> >
