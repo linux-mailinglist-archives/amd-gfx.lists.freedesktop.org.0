@@ -2,107 +2,100 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ARpnGUQwPmqyBAkAu9opvQ
+	id TVeyJkowPmrABAkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:44 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:50 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12D7F6CB23C
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0258A6CB276
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=RCC2guPd;
+	dkim=pass header.d=suse.com header.s=google header.b=FS2ks8jw;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20260327:i=1")
+	dmarc=pass (policy=quarantine) header.from=suse.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57B1F10F49F;
-	Fri, 26 Jun 2026 07:54:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A75B10F4B2;
+	Fri, 26 Jun 2026 07:54:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com
- [209.85.128.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABD5610E1B7
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 09:07:07 +0000 (UTC)
-Received: by mail-yw1-f170.google.com with SMTP id
- 00721157ae682-80af6f707b5so665627b3.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 02:07:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1782378426; cv=none;
- d=google.com; s=arc-20260327;
- b=sv7zHz9oOW4cowgHL2/WuZs4y5U/7Bq/emdIbjPbSFqFCAbAt42grcltTzlNu8mu1I
- F+KUsqd6oewOQ85PBqLLfSLXGwrrgGWJQKUNr6gj5LZXe/TKDGAH+WdamSwWgGG+Bi39
- mbGNSK3p2yx6442IbCjYWiIzEDA6DIaoVpMlV/v/LrxKZiIcXKJ7/LfOVR0MdNF5peO9
- zLEgJ2ixcwjjMWjeyH07ENkHegvKNXzfuoFWLydjeg52UYCF+AyD7ad5Ek4OiJXUCpBB
- cePFFdupdLvUwQLzoWyA69j3GfqfkcDsjG011KlL0UTK2SWpKoNZGj2EEzbmq61I4flw
- HiWA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :mime-version:references:in-reply-to:dkim-signature;
- bh=1lF2p0zapEf+xhq/90YUTa1Z2VnVgWZbekIEo47QZ4A=;
- fh=GQCCKYWZorMjIqEt1OoBoi+ydYpCUmfg/wswxkzamm4=;
- b=qa0h9ems1Tcy/2EAlE/dISUF7mdumk3bMkz9+ymRuGh5aPsOjEEJXyeBFsOpXLz/VK
- qcg/b9wAmGInwzO/8mhgzR2bLFI8bJebmr8/TZN9kxu4T/rPqQCGowaLL6J+qD+LXOZJ
- EfN3BUZEtWcboOsX+a9BTmuDKfCL3lcJsla3FYnR3e2WyvHxYmTWNqr2CDNV/9sH7Id2
- Jb7zBqQHMv9Nx+z1vbIaRgAcqCmA6yLNZeDqdA0iqkzHEq9aTSfLFSUrANWpmHCNH90g
- n9Jwi3+auY63LvrFYSywsAEX3GyOkmJeMxwdLE6p+ae1uIUavUyC3pvur01gCVnRIIZq
- QFvw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9F4710E1B0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 09:19:24 +0000 (UTC)
+Received: by mail-wm1-f41.google.com with SMTP id
+ 5b1f17b1804b1-490b7866869so17854095e9.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 02:19:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782378426; x=1782983226; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :mime-version:references:in-reply-to:from:to:cc:subject:date
- :message-id:reply-to;
- bh=1lF2p0zapEf+xhq/90YUTa1Z2VnVgWZbekIEo47QZ4A=;
- b=RCC2guPdJ+UWt8NUcwdYaIbBdmV86R/G2bx6yD2UiunTWMNt7J25mZnpnNMWftON+K
- uO3rPO1T4Pe/wGDxhYHr29tTjYizC4ZEovjFgRvs3X8Kf9uuRb8OFwQsLHFi2/GmkHbE
- G5FkCrdjL+yPpSHKII6LdTTr7jIFSRp7Gi6momLbUD5EdYCQpJ/4H/RD5co1b+4aZa3Z
- HYwF+Y9JytdQ1Ud1GQALqdxGNCmPXtGkdNKXAQZZSijJaFEg5lXEOw3tg5+TCYC3j7KW
- hAtkjcOwnK6cV0BExQ8cWl2QzcSwifXN1g8XOgSzSsdvMWKZW5su9pwjXb3hyPqPFSJ8
- jJXw==
+ d=suse.com; s=google; t=1782379163; x=1782983963; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=ECEn+V2NhWD3Cl+wFoaowjzh5mZpSqtDy2oOQW/aJbc=;
+ b=FS2ks8jw2gnHlF0ksmkAV3+FuaABl+YUDnA6qcsTIELaroYsoYuJlUh8G3FsZvq5jJ
+ dYAYawETVSwA4lYCORlXqHPZye7Jc8/B7vNxQGvnXG4pVpOjIfUdXQYZmQH3CmaL7nMC
+ 1ojQGh2ZcbKR3EnAsK01CV5jdsUtLS/dGcFdJZsAuol2bas+7x8fTMGo3Ao6A7Q5HUBF
+ EyGiLZYdbdgRFcxi4i8E2CN6foNib5ZxLNmTBKUKpRpX4+5QDfkmkRxLpCGIgy5S4k83
+ TO0clZXiqNE9gNdbgcFKxfZtokUqs5jEkL4PAZmdmImAVKWTmfym43L8I9tcuIuuEC73
+ qquA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782378426; x=1782983226;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :mime-version:references:in-reply-to:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=1lF2p0zapEf+xhq/90YUTa1Z2VnVgWZbekIEo47QZ4A=;
- b=mNid6mRTzexurPz6R1W2tRCPgMTO7yO4OvXMazYqTL/MtJFtum4NP7IVnU7bsEfmrp
- mUnbiGpcf58Fs1L6CN68PbebAsHVlKp6rHVxWqcO+EyoWt4PHyGAh5W98vs0T1jZUkpm
- 0Rifs4OaEe6lykH4YP+Es9QZ9I+sy9jXXTnJPuBPbLngYKf+c2YFd3iiJR/qQ5xLDmXW
- yyMT2hRTaTFwQZ/2SfeZyOVs/RHaK0DLGzFypJwQU1xea0oCVoYL7M95uXGyZ9ONVy15
- 98vYR3AYBBh4OikfBlQHCHd76oe7UCIGwelJT3cqSvv7BCz6UW2SzoyPUk2Pdybu/F5v
- vkgQ==
+ d=1e100.net; s=20251104; t=1782379163; x=1782983963;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ECEn+V2NhWD3Cl+wFoaowjzh5mZpSqtDy2oOQW/aJbc=;
+ b=addaKAMDlwtvujkjBOLHNdgUkYRhnFyaQfTEo2Uy13QtEnhIwQ7XbKkhxWOsxLpnwz
+ 8Tgp6+3APmHetzU2GkQhVGsfixv9Ug8YszF4KeiqH/dA6RkihSyZ++PmtmWb+oJsgd3m
+ T9OapirvUbxm2MEfXDdLmgAYbXkKsX7mttGB5HotXt1ytcCbhbWIl3/bQ6tiJLFiIMej
+ bymWPJD8iYYB/kLmH7GyqvTWefdjkbqA4e+sPgAvAuJy7n4NLPVg5DBS3QCsGm8bruzs
+ +f8XZDnB+alGIs3cmeNbIB+LrvqnlwV0uSro6YXfDgBIucho4tZKylqjcqNvoDX0oo/J
+ m5jw==
 X-Forwarded-Encrypted: i=1;
- AHgh+RrC5xG8OpJ8N6lACMFUwtU1mysoNKJSDFzoQtWLdyaiQ1TckhZZ2RiMKZLgJrgfeCsQ0UUZA24L@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzHsapdU1brB1FdPNsgJwF/xI66AqYnFUNEmFO6GT71G3vPPn8A
- e8bEErSwmpb48cmF2M6yZ6SWxYXBiDEz72TXcYMtlH1Ifi2kXQzewVxUOPNieVwcKdWo19DdXA+
- ewdfDggxtLt4wg/lXHBHYHh2a8CTT/9M=
-X-Gm-Gg: AfdE7cmaHyO01A1c6fBI8ITaUQvWnWhfpjSO4qtEY/6zJFXd3qlNy3ZdiDixHjz1cVd
- y4PIFlPfdH3nfObKjeltWtWOpETIzQgC0ssnVsuviTevjl1FUBY188D2PwVofYaI353Bsg/CHVs
- sWMgCdwr0T6AqQcV8G6M9xW/lN3yOX9ShVpryip8ZzNLlR2+QDH4JqWmzsSM3GwPBw+K6bIDBLP
- 41LfAwWZkBInRR090BB+OmONY1R/C5rXaq5D/8gwWJfCNKVA0p12B2Ke9OPeexO6fk9W0gJyA==
-X-Received: by 2002:a05:690c:f06:b0:7bd:cf35:e33b with SMTP id
- 00721157ae682-80a680fd6b5mr15809967b3.17.1782378426348; Thu, 25 Jun 2026
- 02:07:06 -0700 (PDT)
-Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
- Thu, 25 Jun 2026 02:07:05 -0700
-Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
- Thu, 25 Jun 2026 02:07:05 -0700
-In-Reply-To: <72aa8cb3-2b48-4b08-ab17-788c3dd18fe6@amd.com>
-References: <20260624172029.2508-1-alhouseenyousef@gmail.com>
- <72aa8cb3-2b48-4b08-ab17-788c3dd18fe6@amd.com>
+ AFNElJ/OBcdHpLgJrJEzR6cfSs+ejP395/spCH8GpGyHIbTgFSzkn/dUSd0zEZtBgsz9yzMFnNQ2utQg@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyuSkpVLCeQH6n5Zv0B7pA19H0a2eN3lnjkmiej2OE6bmboleXn
+ ZLqOHNxhLj9V/Zt3TXur1GsU/caVDYZKYl0ZMg1viPv4jI876w61UNIV++SL/O/shPo=
+X-Gm-Gg: AfdE7ckKyABWnYymoMI2ASamfiQqMB0prlkJ5796MFggK+RMZ7tHUYQl1ymZ9l/7M/B
+ iIJCCS+fuK5mqYrfO+EBIoAxCM5RYcKLANImMtFdPOm4oWVN1H+Z+h6yIE/n9ikfO11H2CkzOg+
+ wFOZpzq3ED4e66mICON0Amp9S09PhMa3v94KoTLp1Dd4Lqfiqhv8NnC+pDQJ/6CpEefLD7Und4L
+ r3dkoYWLi1boy+TUSSX4kcCH23hnWt8FwxNbc/NDa8kq0VjaQVOQhnJGzKNws68tjbgu2bdXbkp
+ JV2R8mNPUUgZo1TJhJppKJGQaBQwDb4kil5+fwSRVRIeXn0X1iT9UZnZm26f0fLAAjFWu3IRH5l
+ B299cPquI9WyWomwBZJMTq2rxM4aUcFAtibeL7MBkaZ46i7XYohSnUVB5CWjvT9vRvC/lzezpd9
+ rQBz4Ilbq8G3bXlOEOHw==
+X-Received: by 2002:a05:600d:8443:10b0:490:d32b:39c3 with SMTP id
+ 5b1f17b1804b1-4926685feb6mr16924745e9.6.1782379163017; 
+ Thu, 25 Jun 2026 02:19:23 -0700 (PDT)
+Received: from localhost.localdomain ([62.77.90.70])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-49264082426sm60418065e9.9.2026.06.25.02.19.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 25 Jun 2026 02:19:22 -0700 (PDT)
+Date: Thu, 25 Jun 2026 11:19:19 +0200
+From: Michal =?utf-8?Q?Koutn=C3=BD?= <mkoutny@suse.com>
+To: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+Cc: Tejun Heo <tj@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, 
+ Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>,
+ cgroups@vger.kernel.org, 
+ Huang Rui <ray.huang@amd.com>, Matthew Brost <matthew.brost@intel.com>, 
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 0/6] [PATCH v6 0/6] Add reclaim to the dmem cgroup
+ controller
+Message-ID: <ajzxLABtnWym81Dp@localhost.localdomain>
+References: <20260611173301.17473-1-thomas.hellstrom@linux.intel.com>
+ <ajBJU-Jp2QVy14qt@slm.duckdns.org>
+ <ajBLAsNoKesXmFcs@slm.duckdns.org>
+ <ajlUPmaMsa2gxOLg@quatroqueijos.cascardo.eti.br>
 MIME-Version: 1.0
-From: Yousef Alhouseen <alhouseenyousef@gmail.com>
-Date: Thu, 25 Jun 2026 02:07:05 -0700
-X-Gm-Features: AVVi8CediwaEU0lbA3vIZaDjcsLl9lonps5TiuUPNt_1EGi3rRkszgQM2DjFHFE
-Message-ID: <CAMuQ4bXYumKw9jTJ-FpCYfnzipR9jcFVSbp_k=LAbModoinRsQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: reject mapping info for unmapped BOs
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="lrl2vho5y5eomexp"
+Content-Disposition: inline
+In-Reply-To: <ajlUPmaMsa2gxOLg@quatroqueijos.cascardo.eti.br>
 X-Mailman-Approved-At: Fri, 26 Jun 2026 07:54:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -118,101 +111,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-3.41 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[alhouseenyousef@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:cascardo@igalia.com,m:tj@kernel.org,m:thomas.hellstrom@linux.intel.com,m:intel-xe@lists.freedesktop.org,m:natalie.vock@gmx.de,m:hannes@cmpxchg.org,m:cgroups@vger.kernel.org,m:ray.huang@amd.com,m:matthew.brost@intel.com,m:matthew.auld@intel.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:airlied@gmail.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:rodrigo.vivi@intel.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[mkoutny@suse.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,lists.freedesktop.org,gmx.de,cmpxchg.org,vger.kernel.org,amd.com,intel.com,suse.de,ffwll.ch,gmail.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alhouseenyousef@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[mkoutny@suse.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[suse.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:email,mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,suse.com:dkim,suse.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 12D7F6CB23C
+X-Rspamd-Queue-Id: 0258A6CB276
 
-Hi Christian,
 
-You're right. I rechecked the handle-open path and bo_va should
-already be created for this file, so I do not have a valid reproducer
-for the NULL case.
+--lrl2vho5y5eomexp
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v6 0/6] [PATCH v6 0/6] Add reclaim to the dmem cgroup
+ controller
+MIME-Version: 1.0
 
-Please drop this patch.
+On Mon, Jun 22, 2026 at 12:26:54PM -0300, Thadeu Lima de Souza Cascardo <ca=
+scardo@igalia.com> wrote:
+> As far as I understood the patchset, it doesn't fail the write if it fails
+> to reclaim. It sets the new max, then, if the write is blocking, starts
+> reclaim and eventually returns after multiple attempts. But it still
+> returns success.
+>=20
+> So I believe this is behaving as you would expect.
 
-Thanks,
-Yousef
+I was alarmed by the EBUSY mention similarly to Tejun but then I
+couldn't find it in pre-patch (840ef6c78e6a2) nor in patched (v5) code.
+Please make sure the EBUSY return behavior is not introduced
+(essentially match memory.max behavior) and that the accompanying
+message refers up to date code ;-)
 
-On Thu, 25 Jun 2026 10:46:24 +0200, "Christian K=C3=B6nig"
-<christian.koenig@amd.com> wrote:
-> On 6/24/26 19:20, Yousef Alhouseen wrote:
-> > AMDGPU_GEM_OP_GET_MAPPING_INFO looks up the BO's VM mapping and then
-> > iterates the valid and invalid mapping lists unconditionally. A GEM BO =
-can
-> > be queried before it has been mapped into the file VM, in which case
-> > amdgpu_vm_bo_find() returns NULL and the list walk dereferences it.
->
-> Mhm, that is not correct at all.
->
-> The bo_va is created when the handle is opened inside the filp and not wh=
-en the first mapping is created.
->
-> Do you have a test case to reproduce the issue?
->
-> Thanks,
-> Christian.
->
-> >
-> > Return -ENOENT for an unmapped BO, matching the VA operation path that
-> > already rejects missing BO-VA state before touching the mapping lists.
-> >
-> > Signed-off-by: Yousef Alhouseen <alhouseenyousef@gmail.com>
-> > ---
-> > drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 6 ++++++
-> > 1 file changed, 6 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/=
-amd/amdgpu/amdgpu_gem.c
-> > index 212c14d99..4b2699931 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-> > @@ -1087,6 +1087,12 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, =
-void *data,
-> > struct drm_amdgpu_gem_vm_entry *vm_entries;
-> > struct amdgpu_bo_va_mapping *mapping;
-> > int num_mappings =3D 0;
-> > +
-> > + if (!bo_va) {
-> > + r =3D -ENOENT;
-> > + goto out_exec;
-> > + }
-> > +
-> > /*
-> > * num_entries is set as an input to the size of the user-allocated arra=
-y of
-> > * drm_amdgpu_gem_vm_entry stored at args->value.
-> > --
-> > 2.54.0
-> >
+Michal
+
+--lrl2vho5y5eomexp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJEEABYKADkWIQRCE24Fn/AcRjnLivR+PQLnlNv4CAUCajzykhsUgAAAAAAEAA5t
+YW51MiwyLjUrMS4xMiwyLDIACgkQfj0C55Tb+AihGwEA1SCEBfnAwyeubLR7IllY
+8xY1mJBt88wz9mCIeM9+iY8A/0e+2PnPs29VJ7kdk24/ZbM72Eltcu2Pv4++6deM
+lMAL
+=i/jW
+-----END PGP SIGNATURE-----
+
+--lrl2vho5y5eomexp--
