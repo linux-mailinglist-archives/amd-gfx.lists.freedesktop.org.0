@@ -2,52 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id i54SM+Y3PWo7zQgAu9opvQ
+	id 3LABGOY3PWo6zQgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 16:15:02 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 789FE6C67C9
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 16:15:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3DC86C67C6
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 16:15:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=sCyQUHhL;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=WQJqJbZA;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CE7D10F2D1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C5E110F2CD;
 	Thu, 25 Jun 2026 14:15:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6794210F2CD
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 785F310F2D1
  for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 14:14:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Wg1NdVj+d82DRQG0tz1bwmU/jF6ULOTWhs0g1be4YQU=; b=sCyQUHhL4z/J0QrCjLi3UEckH7
- 8oqr90zzHbfx9BiNozO5uuOqxXjt4juWBRw1fZrG0StyctJscyRHMV0llGgEfUBbjmT7KyGWLZuWl
- KQPwJ3iPMa+gfKr5IWTQKZe3IKC67vCbTF9TdD43KcF8xeebgki8vH6CrWfM9UIWTElyUFCkbQx/o
- ERLZ8xLKupQ61sSOhPFbdKTsESmwSU4ndHmCQZeNU8ud0pJDypTQcIVimGqHqDeTird68Uh1rehjS
- Y8L0Ad0FIISFjjrxvyGZp+wNM85Un2CU36rHOPlP2uSovwBa53kS4ZCP6hDu734pv1seDQMWt3JR7
- ojfNyXIw==;
+ bh=WJ9QibhEm+C894LhqiIc+I7gRh1EQckMZoQNOVqS0sc=; b=WQJqJbZAMpl+xFvTPAtILSheXf
+ uLsRFz89+Z7Ec0ElR/kwk34UQYeOOZ9NIq2U4KAxECwozT8yGu2kkQeuXvj6Wv9pgUtY/muW+Bzbn
+ W2zFt+fq3FTKuKSxHVuCHZtbm1syzEXUcQHjQngROUBY8rdnSG9+FLZSBRvZ0KU8KYlpgNBhmOZrP
+ KT4p76Zp5xoYa2yhjXyef+7DU5c65We1vWwcLfd2divz57XmsW0eMaq5JQuyDaKzWrfzETEb5WLC8
+ SKj8hjQOfeFGWECXkr1BSwvRhX7OLlPzj3Eq6jhLPXUOpQ56WmRhRcweNX1ZCIWOjLMive6n4Tutj
+ rQ/GKVsw==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wckr1-0055O4-PO; Thu, 25 Jun 2026 16:14:55 +0200
+ id 1wckr2-0055O9-HG; Thu, 25 Jun 2026 16:14:56 +0200
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [RFC 1/2] drm/amdgpu: Save some cycles on the job submission path
-Date: Thu, 25 Jun 2026 15:14:52 +0100
-Message-ID: <20260625141453.83100-1-tvrtko.ursulin@igalia.com>
+Subject: [RFC 2/2] drm/amdgpu: Remove unused amdgpu_device_ip_is_hw
+Date: Thu, 25 Jun 2026 15:14:53 +0100
+Message-ID: <20260625141453.83100-2-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260625141453.83100-1-tvrtko.ursulin@igalia.com>
+References: <20260625141453.83100-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -74,120 +76,83 @@ X-Spamd-Result: default: False [1.49 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
 	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[igalia.com,amd.com,gmail.com];
 	DKIM_TRACE(0.00)[igalia.com:-];
-	RCPT_COUNT_FIVE(0.00)[6];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[igalia.com,amd.com,gmail.com];
+	RCPT_COUNT_FIVE(0.00)[6];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 789FE6C67C9
+X-Rspamd-Queue-Id: B3DC86C67C6
 
-Every job submission on the Steam Deck ends up walking the list of IP
-blocks looking for AMD_IP_BLOCK_TYPE_SMC. Half of the call chain is like
-the below, while the second half is from amdgpu_gfx_profile_ring_end_use:
-
- amdgpu_gfx_profile_ring_begin_use
-  amdgpu_dpm_is_overdrive_enabled
-   is_support_sw_smu
-    amdgpu_device_ip_is_valid
-
-On a game menu screen at 90Hz refresh rate we end up with ~840 calls per
-second which sticks out when the submission worker is profiled with perf:
-
-  13.78%  [kernel]  [k] __lock_text_start
-  10.86%  [kernel]  [k] __lookup_object
-   8.76%  [kernel]  [k] __mod_timer
-   4.94%  [kernel]  [k] queued_spin_lock_slowpath
-   1.66%  [kernel]  [k] amdgpu_device_ip_is_valid
-   1.54%  [kernel]  [k] preempt_count_add
-   1.42%  [kernel]  [k] amdgpu_sync_peek_fence
-   1.18%  [kernel]  [k] amdgpu_vmid_grab
-   1.17%  [kernel]  [k] amdgpu_ib_schedule
-   1.14%  [kernel]  [k] kthread_worker_fn
-
-Lets short-circuit this walk by simply remembering a mask of valid IP
-blocks. We could go a step further and remove a function call as well if
-wanted.
-
-I do not think the improvement here is easy to measure but it is at
-least conceptually nicer to avoid repeating the same walk so much.
+This function is unused so lets remove it.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: Alex Deucher <alexander.deucher@amd.com>
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h        | 1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 +++
- drivers/gpu/drm/amd/amdgpu/amdgpu_ip.c     | 8 +-------
- 3 files changed, 5 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ip.c | 21 ---------------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ip.h |  2 --
+ 2 files changed, 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 7b09410d6d8f..5b3dd6c0baf8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -1029,6 +1029,7 @@ struct amdgpu_device {
- 	struct amdgpu_cper		cper;
- 
- 	struct amdgpu_ip_block          ip_blocks[AMDGPU_MAX_IP_NUM];
-+	uint32_t			ip_block_type_valid;
- 	uint32_t		        harvest_ip_mask;
- 	int				num_ip_blocks;
- 	struct mutex	mn_lock;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 1e6b75ecafe4..e3c51ae2e61a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -2071,9 +2071,11 @@ static int amdgpu_device_ip_early_init(struct amdgpu_device *adev)
- 				total = false;
- 			} else {
- 				adev->ip_blocks[i].status.valid = true;
-+				adev->ip_block_type_valid |= BIT(adev->ip_blocks[i].version->type);
- 			}
- 		} else {
- 			adev->ip_blocks[i].status.valid = true;
-+			adev->ip_block_type_valid |= BIT(adev->ip_blocks[i].version->type);
- 		}
- 		/* get the vbios after the asic_funcs are set up */
- 		if (adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_COMMON) {
-@@ -2923,6 +2925,7 @@ static int amdgpu_device_ip_fini(struct amdgpu_device *adev)
- 		}
- 		adev->ip_blocks[i].status.sw = false;
- 		adev->ip_blocks[i].status.valid = false;
-+		adev->ip_block_type_valid &= ~BIT(adev->ip_blocks[i].version->type);
- 	}
- 
- 	for (i = adev->num_ip_blocks - 1; i >= 0; i--) {
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ip.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ip.c
-index 6aa54156bbc9..d5cd3f19d2bf 100644
+index d5cd3f19d2bf..0036b992330e 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ip.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ip.c
-@@ -401,11 +401,5 @@ bool amdgpu_device_ip_is_hw(struct amdgpu_device *adev,
- bool amdgpu_device_ip_is_valid(struct amdgpu_device *adev,
- 			       enum amd_ip_block_type block_type)
- {
+@@ -368,27 +368,6 @@ int amdgpu_device_ip_wait_for_idle(struct amdgpu_device *adev,
+ 	return 0;
+ }
+ 
+-/**
+- * amdgpu_device_ip_is_hw - is the hardware IP enabled
+- *
+- * @adev: amdgpu_device pointer
+- * @block_type: Type of hardware IP (SMU, GFX, UVD, etc.)
+- *
+- * Check if the hardware IP is enable or not.
+- * Returns true if it the IP is enable, false if not.
+- */
+-bool amdgpu_device_ip_is_hw(struct amdgpu_device *adev,
+-			    enum amd_ip_block_type block_type)
+-{
 -	struct amdgpu_ip_block *ip_block;
 -
 -	ip_block = amdgpu_device_ip_get_ip_block(adev, block_type);
 -	if (ip_block)
--		return ip_block->status.valid;
+-		return ip_block->status.hw;
 -
 -	return false;
-+	return adev->ip_block_type_valid & BIT(block_type);
- }
+-}
+-
+ /**
+  * amdgpu_device_ip_is_valid - is the hardware IP valid
+  *
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ip.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ip.h
+index 1d0df6d93957..11739fbdeaa6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ip.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ip.h
+@@ -146,8 +146,6 @@ void amdgpu_device_ip_get_clockgating_state(struct amdgpu_device *adev,
+ 					    u64 *flags);
+ int amdgpu_device_ip_wait_for_idle(struct amdgpu_device *adev,
+ 				   enum amd_ip_block_type block_type);
+-bool amdgpu_device_ip_is_hw(struct amdgpu_device *adev,
+-			    enum amd_ip_block_type block_type);
+ bool amdgpu_device_ip_is_valid(struct amdgpu_device *adev,
+ 			       enum amd_ip_block_type block_type);
+ 
 -- 
 2.54.0
 
