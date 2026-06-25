@@ -2,51 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LpO9EkYwPmq3BAkAu9opvQ
+	id DLxpNEIwPmquBAkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:46 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:42 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA0D36CB255
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6168C6CB22E
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=hotmail.com header.s=selector1 header.b=aVizIMNR;
+	dkim=pass header.d=hotmail.com header.s=selector1 header.b=e21l9zR2;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=hotmail.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EABC010F4BC;
-	Fri, 26 Jun 2026 07:54:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F12410F497;
+	Fri, 26 Jun 2026 07:54:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from SY5PR01CU010.outbound.protection.outlook.com
- (mail-australiaeastazolkn19012065.outbound.protection.outlook.com
- [52.103.72.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFA4110E109;
- Thu, 25 Jun 2026 11:00:30 +0000 (UTC)
+ (mail-australiaeastazolkn19012067.outbound.protection.outlook.com
+ [52.103.72.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 104EA10E1D2;
+ Thu, 25 Jun 2026 11:00:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YEO7EncGJYNZSnRs5y91M6C3aWGgC3F6WWGKnJsyJ/Fektq0SJunmJBtkVvs9jhOkYYISwAt56A7LEdW2VYrtwhRM4ReX/B4uAZ6U3+dELpj2gYt7NNVX7e+ygdUfLh4y4vBxkP7UIyeM+oUrxLvZugV/3S8qI9H20YnFwZhfPl1kwlMIBstYjv4G2nbh4ABt2Rk162J2vukqdomnBPnhcS0TiY6dpclcF0sbun0Z4mApEr4uXJwZ0ztxHc1AYHd31wy0hxON8Mh+YJkZW8zH9l87EDtxjfsJqs+PTBMt006PvgXxTPfHOM3IxYgVZxSrPEMGoaq4wfErbPcyJHXag==
+ b=vfhMZW85VptMRaXlP77injUK4TrgMj/JMN48vfoNlqOI8aj1/zmQimUC2JfrQx/Ol6uO9jHGQXQwSyJzbV0HkSg6rMj2D4Xwy8xi3PkYOJ/VxjQC/qKnULHAQW2jlqkT1IPHKQqv8z05leFWUtYSP+3gobzmBjA8QtzQOsLus/8xjY2egSkZmlaUEnn3s3b6ORY5GB5R+AL5lSnOmjUE9mzu1p0cUmHkFrxwQ2EW9I1pZ1r1K12OpEavdbPpjUrAfl7ewHea0wuYZN4EJAJ2+8gVfWei6Lo+7WalaUrbiZRtM+iK5Kz0bhq+L2VVM/IQLGRUWcSHo/Sbs4zxaqzTTg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=plP1Mpcw8Xprc2kCb50fb6i+G2ud9L4zxpNqy85Ru2s=;
- b=bmI15q5Ma9kr68pgxUBY6ugCC3SOgdiOIJNK7nEHknVxWepx/3W5FLt6BnGViG5sDulN5OKRR2L7hc0Mnqxr02tle7yjOPh9Shgbsf/5xIB8QnMmNFS3adTp19XAcC0Vqj/TGhhDeTxXF4LkCPCPEE62qdCeCLZ5TBp6m+UGfO3AbL1wULGiaZHTTyRe4R1zhxvTfIxT3U2exmm3fXNEyhdFw88NPCzCKrrb+Q6o+3eKPrNuRLwwd3/L0P8Dsn9B729Q7UeucjqvBq0xmlWJUfrkxmiQOhjv83pgod+BEJ+4KK0CfHfDSOrGIq4X2yifIzgyt3LOuJDhUOCMLcJx9g==
+ bh=sTczvt0gPSfN1SkRS2gBttZyynqdIzQ0CvBkdRrStTc=;
+ b=cKL6QqUfeHOcoDy3OTiiCCsxTog1zuWt5UaJKcsiLOZTOqS1z+xgge2NkW2FlegU7wuiOdVxwCgU7+LomEaaKaZHCuXXvjJn64HVZNt4SsM3jMqpkutv9Q1inF6j4WkHnC8mTXUx3y2fTi4ozwKJIOa0tBsdVe9h0d3P8q/gj80qyoDnCDwuztsTrfcXgm//TpGc8W4IZMlwXKNhvPcKpg56p1lUpmvjjp4z3BvBbHFr73OkPc2ix3Kyt7FWsWZeOrU3Eegr7YHSxbR1GLGj/DIJLCgv+ZImFQiU4FJq6TbPYH8TOqn3J0dTvHMoPV2LubpwD0oQvYdSEsnx/KkS3Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=plP1Mpcw8Xprc2kCb50fb6i+G2ud9L4zxpNqy85Ru2s=;
- b=aVizIMNRA35D2OumtdZLWb57RZvrAcBUVu2m7Q6ZOk7Y+AD6J6VkXYZAW7ZEN0xfBHqZ+ICKYyUqC0JpSoZD81bOHkN+Qi3S4k00qjfLSs4YaMjY9R1PnLtQi5uM14NpNet6i4qq6kuz7W5lQH4zYb6S6kEiJ+DTOvWtev2rXrVdPC8uxUJqbh2VAa0LYoqyTakdiPg27jHHT7NxCpAZJAI6KUsa+p+RP2i0ISU1TI6hXR4pdR3yUPQ2p9AJuCiNUo0h3RHOBehANMjwPMqqqB5eRYYtrrWFXPNS9Ac1iJ1H7PRAy4VAGLxjdANj9v2PGFXye+oYn8MWFrfcPYrOjQ==
+ bh=sTczvt0gPSfN1SkRS2gBttZyynqdIzQ0CvBkdRrStTc=;
+ b=e21l9zR2V28BdzNQzICu2oIPwBuFvcnvIBXi2AM27nqDELG7Q5NGC4hCwqWj4i2jppUI/nu8NA9ovBOB2w8asLl0SvHMsPbvV4JDNNt63xhGANKP3oPjZlfFkRHL0Y8dI7IRWpSc51Y5onevErrarnNzfxEsu+IjML1m8Nd2640kNa27UKwn9tFboUfEbOvPQ2+hkXx5YYNT+MFpV2XwnFal47OiyQPP0xDoUfgDreRq1Sevb5WMgRVaoOeJDYwEetp0OxrWny2r/hQHxcDapgpyZkyq0q7PblLNBN9+u1p7BXi+59/G1iApbKqQrV/sz6FyFBCfmvfr/ANbgJEicA==
 Received: from SY1PR01MB10596.ausprd01.prod.outlook.com (2603:10c6:10:31a::15)
  by ME5PR01MB10091.ausprd01.prod.outlook.com (2603:10c6:220:24c::5)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.17; Thu, 25 Jun
- 2026 11:00:22 +0000
+ 2026 11:00:29 +0000
 Received: from SY1PR01MB10596.ausprd01.prod.outlook.com
  ([fe80::7ab4:1f80:a8a0:7d3f]) by SY1PR01MB10596.ausprd01.prod.outlook.com
  ([fe80::7ab4:1f80:a8a0:7d3f%6]) with mapi id 15.21.0159.012; Thu, 25 Jun 2026
- 11:00:22 +0000
+ 11:00:29 +0000
 From: Yitao Jiang <jytscientist@hotmail.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -63,9 +63,9 @@ Cc: Zi Yan <ziy@nvidia.com>, Baolin Wang <baolin.wang@linux.alibaba.com>,
  Jann Horn <jannh@google.com>, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  linux-mm@kvack.org, Yitao Jiang <jytscientist@hotmail.com>
-Subject: [PATCH 2/3] drm/amdgpu: block THP for HSA userptr notifiers
-Date: Thu, 25 Jun 2026 18:59:52 +0800
-Message-ID: <SY1PR01MB1059636EEFF3E5C5156F899B8C0EC2@SY1PR01MB10596.ausprd01.prod.outlook.com>
+Subject: [PATCH 3/3] drm/amdkfd: block THP for non-replayable SVM ranges
+Date: Thu, 25 Jun 2026 18:59:53 +0800
+Message-ID: <SY1PR01MB10596F9476BAA5333F02F5A6BC0EC2@SY1PR01MB10596.ausprd01.prod.outlook.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <SY1PR01MB10596EB75463208A8E1EBBA0FC0EC2@SY1PR01MB10596.ausprd01.prod.outlook.com>
 References: <SY1PR01MB10596EB75463208A8E1EBBA0FC0EC2@SY1PR01MB10596.ausprd01.prod.outlook.com>
@@ -74,63 +74,63 @@ Content-Type: text/plain
 X-ClientProxiedBy: TP0P295CA0028.TWNP295.PROD.OUTLOOK.COM (2603:1096:910:5::8)
  To SY1PR01MB10596.ausprd01.prod.outlook.com
  (2603:10c6:10:31a::15)
-X-Microsoft-Original-Message-ID: <20260625105953.70647-3-jytscientist@hotmail.com>
+X-Microsoft-Original-Message-ID: <20260625105953.70647-4-jytscientist@hotmail.com>
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: SY1PR01MB10596:EE_|ME5PR01MB10091:EE_
-X-MS-Office365-Filtering-Correlation-Id: e1ae0c4e-dede-4a14-b197-08ded2a8f402
+X-MS-Office365-Filtering-Correlation-Id: c1d8599f-808b-4277-0763-08ded2a8f82e
 X-Microsoft-Antispam: BCL:0;
  ARA:14566002|8060799015|51005399006|23021999003|24021099003|16051099003|19110799012|41001999006|25010399006|5072599009|15080799012|40105399003|440099028|3412199025|1710799026;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?fP0jNFORvB7y/LSRAH20Wxj20lQdoZBmRv/v/OFwrObdWUWoxE9DPudQJQH+?=
- =?us-ascii?Q?CtrHwYycoI8K7BuL83ZugdhoZ3R0PhtsbWnrdt5HZt04XcRlS/FnsrnoalXy?=
- =?us-ascii?Q?TsrRylve53IWqkTpKa+aHiWECU7opPkaWRk48/K73aldh3pKte/CQSAvHTda?=
- =?us-ascii?Q?CTQKuzPnw3X2Jlrb+kUGU2V8aG8xzkVakANMYFMz3MAIy6DIJqx2uTYknI9u?=
- =?us-ascii?Q?8QLqYf/f7QNSOM2YGelaQ6/1zL0H0sVCRC8wulR6HgyBWIpqkyzCA7aYY4Zh?=
- =?us-ascii?Q?0n79BVvQy7SUmXnwZkqrbA56DxqQSYnuebtwfV1+zPUhD9o08pH4CH+eIcWm?=
- =?us-ascii?Q?e7UEPcFTmzawXk6WjhQtOb/dNBhir40H+FP4hyhRlV+7H4fISuO8SpgMADtK?=
- =?us-ascii?Q?q+nsnyJQqrKouCq5CNZFMPeu2+dXiwAdHqFDCtfxYF4nxRDtVgtYG9yjRBH+?=
- =?us-ascii?Q?83tqzSQrNfHB6n4bUt6DFDxBf0+KbNKrbGxlaQuB2ebN3IBHJ994Sp8gGf7B?=
- =?us-ascii?Q?Vpc2Pcd8r3aeiYn32yaHs89oUKumk+jv1wo7062bHVmdcBOv4IbKkmcsIyoR?=
- =?us-ascii?Q?8uKEeozh6FSn481Ak7+rILvAN5N66IaeB75vtD0F3I3QgSskunnoV9sMLwHq?=
- =?us-ascii?Q?oh4155LO8ppZ8SydfwH5Ob9/fhxH3XvpJYz2UkdvmeRyrWc+3ZioNPPQXax1?=
- =?us-ascii?Q?cX10uja44qlrovGHQK1g7FMNYNrRbTJ5LMj9Gzf/IWCe/794piLvZPIiN8iC?=
- =?us-ascii?Q?zxe6GxKoLPTqTRTMHa/loD6Uq6A4umXqaGRAwp10cik3OPEaunO5AIXNpEEQ?=
- =?us-ascii?Q?PgBxii4hfE4+478ARhQC1mJpOCATHBIU9xmW/Kdj4lCooBQp/BjSA2KjPwbL?=
- =?us-ascii?Q?CghJHsk/ASefXGpd8cAHwgUGBBxFSQ0LCUNDagfzgLwT6ZFyyq2Ov4fXByaD?=
- =?us-ascii?Q?4uFvfbWxM5xUHbbGq4v8MoK+RuwBp6g2S541I+F2PAgtcNbNqY++nkw4w7GO?=
- =?us-ascii?Q?Z3JpbAU6sUdpkn9Qxr6ssfJ/ug=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?8uS0tXjATlovJwRmlYiRe1hijqWvf9h7aEyKjdY94TXaN7GvWFlBnmO5Bwu2?=
+ =?us-ascii?Q?8tjW/sg6YXOBWkYax/Q3pHhr4GzyQbhRKJx4wwBq5JFqewEMqzslLxWHYmRG?=
+ =?us-ascii?Q?dkFLcvK2eJlzry+Hv+fuBJZfJ78/0r9IT6yPZAOUtMRFtXuTepQwnHFVa6BL?=
+ =?us-ascii?Q?IU1wgX8uaTKOB7sxtpILxVy7C2ZSjTIWrfg6bsSZq89dzC7bpcRR4saFoNB6?=
+ =?us-ascii?Q?6h69Z/1BOixgk96ieDhXzMHY7QXi6W4QT7jpxVtnsWEhtRg9lfGpJ7QhIFiL?=
+ =?us-ascii?Q?xaySSxjDxrlmwgS3zpEsVBmO2PtoGosos9kKv772HpHZk2yx2nneGqn6Z+JK?=
+ =?us-ascii?Q?dFzrCzZZrO4sYT+Q4hbqKK66j16QY2cAJvRMd/r3vyi0CzViBh04GsUdyMDB?=
+ =?us-ascii?Q?77wH9QGXFLUmPfsSVmuOSb3OlFMFrxIhFVtryUp2JFhUHePdgPhDGMTs6jHC?=
+ =?us-ascii?Q?hp7qJC6bQyhNgiFDrrxqoaXhx5ZGmLTv8RFx8hYzqhML6zij3AFCnHOcFgZa?=
+ =?us-ascii?Q?x+Ol6Ra9TNX1oCkZjsAyQfTuTC0Y6ZRvUaWbS8NegTn5oU96Un6+BVt6kBdP?=
+ =?us-ascii?Q?BvrbaDpx76UTHx46ALTWv7lkb0ZXsEj1eTSW4IgsDPBi1U6CTu4QP/qTj9fM?=
+ =?us-ascii?Q?JG64hl/W9mSra4q8J2Og6A8FWnjX/uRPqPpfrDQDpxsMiNHcDoKg6EsFTpTy?=
+ =?us-ascii?Q?Qtfvv0kZqingbXPzzYIHcRJHNgnarhlOW8RQUbGDj0AU94Gkot/E4XJOqhR8?=
+ =?us-ascii?Q?WKcarTactzEGFA0qq/Pr4a3pYT4TaGQ8tVhOjMzICzmMgO1wMAfGUDJM7apm?=
+ =?us-ascii?Q?j6WShZWPmAezVXBDcgdYwB34LRpwbOWLVeCLUaBI1UTsk2nvpwHh0l1/sH7E?=
+ =?us-ascii?Q?g4+hgaVa2RcE5B6uhiSB05FlwIi4Zpn/+xA9GVLpMXUfWd7UinPAnUjIeBIU?=
+ =?us-ascii?Q?Dr093MkvD2l7uUBjOzHpDrrLNQ9QHMEu/ec96rcK1M8SWWjK4tClSteDPGrC?=
+ =?us-ascii?Q?J86Ws/UcPy75SCcsTNIDSMjjhQ=3D=3D?=
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XCWtRY+TcNXCqXQf/tnak73lP8IG4xRteO4xFB+Vcf5UCDAestnIAJlRwHyw?=
- =?us-ascii?Q?Uu8brPtVLnShsRqwiND3PSNeZff2COCduYxHds0+NCNF/5s11daHMBJRrEUV?=
- =?us-ascii?Q?UHc/aoEXUrxmCkxwDX5RZpDI33yNDnaivvI4HMtX2jl718VzRhj1NOmWriFg?=
- =?us-ascii?Q?Z+9lOmfe9V/PX1ab+VnVo3WIPQNcovhJcE89z/Sb9gJ/l4w4lAURi3PM5wD9?=
- =?us-ascii?Q?S9gmVxOnD+huCOM9YvJU56XOPKtD5+1oNlVcJVg0CRIDBPBy9D7zAh2+3FJZ?=
- =?us-ascii?Q?faKz9Pyz0tdnGp8Uic7TMZGQidrWtEMIYjO7fTtbulerS7tKeMBFYPiFGOM6?=
- =?us-ascii?Q?eCOhdA7S3Q6bYYR8D8zdcCglX+L3KmjDHk4BZKv2poVUoVWJ3Krng8aLFxVH?=
- =?us-ascii?Q?gACYzhoq0bPl4d+hTjnSAc3+wdhHCBakdt/NTlWZrqdcZ2ALA1KNfITXxr/Y?=
- =?us-ascii?Q?ZZjaR/6yOelAsncHzTcgx49TlXc5ARFGT+r69XeSXwe+0DveKVitQJfkb/Os?=
- =?us-ascii?Q?nWENhc2pcEAJ58vF7PoKMS47R+n/bxHy+9cpgpKuGKixpDsNxL/HIBFhr2vN?=
- =?us-ascii?Q?9j/SGJZgO6m+kYa+QzY8qKzclJLW19H4eKYOTnPb/48JpS1nJVVOkjF7uXpw?=
- =?us-ascii?Q?5CAiYqXCJVsDqj+BFLU9lrDmN5yA7GwhMwV6pnoD6zQgAfzaMwRHiSYzBlqp?=
- =?us-ascii?Q?rL38bZ5ke/P8T0WBUAbe6yiVuXH4GnzwYGqd/fJGrogHH+fnBHuLvxUcROnI?=
- =?us-ascii?Q?SFg/iSTWclodq1qQFQJv1oWfLHKlcBDMEIAF5EJlJyM/7gjJLv1N9l4pVs7o?=
- =?us-ascii?Q?eG4kRpaTZl+k3drssPZ1trYTNsCokm3T+EmlvEUJ0JSdZ7LcPiaqRmQVy7JS?=
- =?us-ascii?Q?079qkRAMm6YTTh5UqVAznKh6y9WlDC4OPPaEKV0PuXi/o3kH+e56FRTDxpOF?=
- =?us-ascii?Q?W6z6Y3SmG2ZEx8HOE/hjAJldWYhFlXXjweLE7zSoRQGyz+/2C00EvtHd5Z2/?=
- =?us-ascii?Q?P5sm9PLw9aVrYz4hIXEVQbEfW5ubk8P0lGAWYA71KFjY0HWkkUcE82C02ZBP?=
- =?us-ascii?Q?LvJLEzcYzfdBf86TDn7TSP4Iy7UdI4co0tSxmLcxBqd7B/a9J3f+qzfwdfFR?=
- =?us-ascii?Q?9da3zGRktHbShpIL03xxn+5Ie6w2m1+8CxrgwqltMtOlmC8mkyraELtANjU8?=
- =?us-ascii?Q?BFZCt9sT2EkShB0ZDVqdiX8HbdAFcTXtF7Hkph4hkfMmWnmbNrvCjOr2On+4?=
- =?us-ascii?Q?v5FqINWq4bgd5BobcdGgw88mWuFeWVEapL41VO/r/8srgNJQJIQFBGoDPhFw?=
- =?us-ascii?Q?jp/8/D8Kwq8WF5Ugs5Z5F6oR70aBKWdXeGqzyPbhFK3ECrFcceYNob8oBuuY?=
- =?us-ascii?Q?32rvUyNwiqbyco0gakm6vFxNlUB07MJB7MChntq2OwGivd6TseDWFGCrUY/R?=
- =?us-ascii?Q?4WSykx4ANOXa+iqgmaBydz5lqyOJrqkyYXrisiUB+nfl+JOT5QrZ0Q=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Rd4kRz/7raU9XZfYF32Ji5qwecWw2rqvSzuAvIR3HC9vmd+V0Kst8F15KiDT?=
+ =?us-ascii?Q?PpWWVH5wTI1TfRmekI0V2E4A439XHzBbz1+SNu2VPMhBDzOkrEyhUP46h4x1?=
+ =?us-ascii?Q?kII5IzaEapnJrD9Ee9JYD9nMAIgjbbY1Zdr/CnYeSz6VJsbUC2VpdNKrGoJs?=
+ =?us-ascii?Q?otVCg/z1Uq98HB55R2rd8+6/0RuEEPoLCroR+FteSi4wCjtIrJkmoWY8t6fx?=
+ =?us-ascii?Q?PSBe3ip3CdaT66ZHrZc5ujmqwYGl5CwYhgLM6uCRvfaOgqsw1n/zPxhyUC81?=
+ =?us-ascii?Q?ejkZnCCKrfvWxDoFoGFNOqVsrRdqplhtIqgc7AlqutZbExAJ1xsGsaiBP92f?=
+ =?us-ascii?Q?E89JSWZOrgb/8msv7+66tUFRyZfF7guFxCe2O36jNZDxQoitDosZRWMs6zgb?=
+ =?us-ascii?Q?6++z59pTC7BgnXbpaTwpcgR4bM1ROBrrFCB56EkRv2fVVCo4ygYCE7ENDSZf?=
+ =?us-ascii?Q?1vNKUobubPR6nhyX6yyZHh4ccNBm1xpjCrm2gavX4rxU+pp1dJ2TKIyCO3LU?=
+ =?us-ascii?Q?4U9SbbMv/lKR5wK5GOq54uXWpgV88YSrameVeDHYPaiT+L5WaUmkBbvQ5MYh?=
+ =?us-ascii?Q?Eif7rfUvCF8lldIcFNrXRgGuJk7manwDKaRFhL91+ofh/TBV0q6MxQlEZ6d2?=
+ =?us-ascii?Q?XlCE+5NKGtydUVSE4oXqkQvAuyYPl9WDHKxQv3Ez6RHzeyF+qiphE7jD7c7z?=
+ =?us-ascii?Q?cT8FU6V6mvb5Q1qmooQ30nlDt+cFE2f92zxI+pqP8v+aXJlmH9jr8WJmpSNE?=
+ =?us-ascii?Q?cidYnK4KXOeNhochPhZigdAijh/MR0s7xv/fiCv+xMLFR4nkinm9UJVa4MYl?=
+ =?us-ascii?Q?p1nzINQI/YFcQO6mPHYRsKlVpMSH9FKhA7UrlH/8KXlood4bkMfhwrRnTMu5?=
+ =?us-ascii?Q?bXYkCbuIXZavlF3AFySyez/y/F3vc8/Rbdjz9bjglmx77D36paVTbcPJRgaT?=
+ =?us-ascii?Q?g0pMZm+0Xav8k/dWVWuRe+VA7JHeuvdZgVcwyNK/2z8w6IJgF1oYR7yqQUsO?=
+ =?us-ascii?Q?jr+6HAHCsPGElLDUcKWJVPAZow4l6nQycv5ov+lAJtiI+g+336A/r50qcbOc?=
+ =?us-ascii?Q?q39rXCShkY6Mklq9Bj6g9ruLtfvStYnDWVX1B437vmk5eQTmzqCArj4eW5X7?=
+ =?us-ascii?Q?1Zolk75iFJ/1lxO1OxGk5Nb9X5dBEQMUjO6IpCJED/ZQQeYPiVwgXeLueCl0?=
+ =?us-ascii?Q?+sp+pYz4+axSqcTEx4prA6Zi3MDW8SLWqgRcDTfOvnyg6Jzglh7AbD1teaXA?=
+ =?us-ascii?Q?PGjuozpZQ/chvz+2oyzH2inpHKeyCpLN3DRwwNOGYbfUICR1uPXuznFKb/85?=
+ =?us-ascii?Q?o+xHzDNZUlpP2MPBKE/x+P+XvxPz+yYs00uencd/yfnnfe85f33KoGfnkFFY?=
+ =?us-ascii?Q?AEui9VBQez2tEqfw4kHQyqUxGfWB047Ac8o/vD48crtoBD6XCyBYMdQd3aLs?=
+ =?us-ascii?Q?WWmVB8RiTYcLsAllJpCY4wz84FiI+QUnfh8Tg4f0OQNaYg+kPRXXoQ=3D=3D?=
 X-OriginatorOrg: sct-15-20-9412-4-msonline-outlook-feddd.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: e1ae0c4e-dede-4a14-b197-08ded2a8f402
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1d8599f-808b-4277-0763-08ded2a8f82e
 X-MS-Exchange-CrossTenant-AuthSource: SY1PR01MB10596.ausprd01.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2026 11:00:22.5044 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2026 11:00:29.5020 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
@@ -176,71 +176,94 @@ X-Spamd-Result: default: False [-1.81 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,SY1PR01MB10596.ausprd01.prod.outlook.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,SY1PR01MB10596.ausprd01.prod.outlook.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EA0D36CB255
+X-Rspamd-Queue-Id: 6168C6CB22E
 
-HSA userptr buffer objects are used by KFD compute queues. On systems
-where the GPU cannot reliably tolerate a CPU THP remap of an active
-userptr range, allowing khugepaged or MADV_COLLAPSE to replace PTE
-mappings with a PMD mapping can leave later GPU work failing
-asynchronously.
+KFD SVM ranges on processes without XNACK, and ranges requested as
+GPU_ALWAYS_MAPPED, cannot rely on replayable GPU faults after a CPU THP
+remap of the registered VA range. Keep those ranges backed by base
+pages while their interval notifier is active.
 
-Register HSA userptr interval notifiers with
-MMU_INTERVAL_NOTIFIER_BLOCK_THP. GFX userptrs keep the existing
-notifier path and do not opt in.
+Opt those SVM interval notifiers into MMU_INTERVAL_NOTIFIER_BLOCK_THP
+and update the flag when SVM attributes change. XNACK-enabled ranges
+that can handle remaps through replayable faults remain eligible for
+THP unless GPU_ALWAYS_MAPPED is requested.
 
 Assisted-by: OpenAI-Codex:GPT-5.5
 Signed-off-by: Yitao Jiang <jytscientist@hotmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c | 25 +++++++++++++++++--------
- 1 file changed, 17 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 36 ++++++++++++++++++++++++----
+ 1 file changed, 32 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
-index 99bc9ad67..c0b36164c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
-@@ -44,6 +44,7 @@
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+index 3841943da..0d0feba7b 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+@@ -22,6 +22,7 @@
   */
  
- #include <linux/firmware.h>
+ #include <linux/types.h>
 +#include <linux/mm.h>
- #include <linux/module.h>
- #include <drm/drm.h>
+ #include <linux/sched/task.h>
+ #include <linux/dynamic_debug.h>
+ #include <drm/ttm/ttm_tt.h>
+@@ -81,6 +82,26 @@ static const struct mmu_interval_notifier_ops svm_range_mn_ops = {
+ 	.invalidate = svm_range_cpu_invalidate_pagetables,
+ };
  
-@@ -130,16 +131,24 @@ static const struct mmu_interval_notifier_ops amdgpu_hmm_hsa_ops = {
-  */
- int amdgpu_hmm_register(struct amdgpu_bo *bo, unsigned long addr)
- {
-+	struct mm_struct *mm = current->mm;
-+	unsigned long size = amdgpu_bo_size(bo);
- 	int r;
- 
--	if (bo->kfd_bo)
--		r = mmu_interval_notifier_insert(&bo->notifier, current->mm,
--						    addr, amdgpu_bo_size(bo),
--						    &amdgpu_hmm_hsa_ops);
--	else
--		r = mmu_interval_notifier_insert(&bo->notifier, current->mm, addr,
--							amdgpu_bo_size(bo),
--							&amdgpu_hmm_gfx_ops);
-+	if (unlikely(!mm))
-+		return -ESRCH;
++static unsigned int
++svm_range_mn_flags(struct svm_range *prange)
++{
++	struct kfd_process *p = container_of(prange->svms, struct kfd_process,
++					     svms);
 +
-+	if (bo->kfd_bo) {
-+		mmap_write_lock(mm);
-+		r = mmu_interval_notifier_insert_locked_flags(&bo->notifier, mm,
-+							      addr, size,
-+							      &amdgpu_hmm_hsa_ops,
-+							      MMU_INTERVAL_NOTIFIER_BLOCK_THP);
-+		mmap_write_unlock(mm);
-+	} else {
-+		r = mmu_interval_notifier_insert(&bo->notifier, mm, addr, size,
-+						 &amdgpu_hmm_gfx_ops);
-+	}
- 	if (r)
- 		/*
- 		 * Make sure amdgpu_hmm_unregister() doesn't call
++	if (!p->xnack_enabled ||
++	    (prange->flags & KFD_IOCTL_SVM_FLAG_GPU_ALWAYS_MAPPED))
++		return MMU_INTERVAL_NOTIFIER_BLOCK_THP;
++
++	return 0;
++}
++
++static int
++svm_range_update_mn_flags_locked(struct svm_range *prange)
++{
++	return mmu_interval_notifier_set_flags_locked(&prange->notifier,
++						      svm_range_mn_flags(prange));
++}
++
+ /**
+  * svm_range_unlink - unlink svm_range from lists and interval tree
+  * @prange: svm range structure to be removed
+@@ -112,10 +133,11 @@ svm_range_add_notifier_locked(struct mm_struct *mm, struct svm_range *prange)
+ 	pr_debug("svms 0x%p prange 0x%p [0x%lx 0x%lx]\n", prange->svms,
+ 		 prange, prange->start, prange->last);
+ 
+-	mmu_interval_notifier_insert_locked(&prange->notifier, mm,
+-				     prange->start << PAGE_SHIFT,
+-				     prange->npages << PAGE_SHIFT,
+-				     &svm_range_mn_ops);
++	mmu_interval_notifier_insert_locked_flags(&prange->notifier, mm,
++						  prange->start << PAGE_SHIFT,
++						  prange->npages << PAGE_SHIFT,
++						  &svm_range_mn_ops,
++						  svm_range_mn_flags(prange));
+ }
+ 
+ /**
+@@ -3763,6 +3785,12 @@ svm_range_set_attr(struct kfd_process *p, struct mm_struct *mm,
+ 	}
+ 	list_for_each_entry(prange, &update_list, update_list) {
+ 		svm_range_apply_attrs(p, prange, nattr, attrs, &update_mapping);
++		r = svm_range_update_mn_flags_locked(prange);
++		if (r) {
++			mutex_unlock(&svms->lock);
++			mmap_write_unlock(mm);
++			goto out;
++		}
+ 		/* TODO: unmap ranges from GPU that lost access */
+ 	}
+ 	update_mapping |= !p->xnack_enabled && !list_empty(&remap_list);
 -- 
 2.53.0
 
