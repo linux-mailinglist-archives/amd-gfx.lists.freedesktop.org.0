@@ -2,102 +2,111 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JHTPCUkwPmq+BAkAu9opvQ
+	id f5hjD1oVPWolwwgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:49 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 13:47:38 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A025F6CB26E
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F3286C5428
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 13:47:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=RVx48wg2;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=G5Vm4Dz0;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20260327:i=1")
+	dmarc=pass (policy=quarantine) header.from=kernel.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A66B10F4AA;
-	Fri, 26 Jun 2026 07:54:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C4EB10E1F4;
+	Thu, 25 Jun 2026 11:47:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
- [209.85.221.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9168F10E1D2
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 11:00:29 +0000 (UTC)
-Received: by mail-wr1-f52.google.com with SMTP id
- ffacd0b85a97d-46e335379cbso148983f8f.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 04:00:29 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1782385228; cv=none;
- d=google.com; s=arc-20260327;
- b=WTHMxoZxFQlPjnFSzYtBWgVYVkImuR97Cakk0yU1gQ+OUp1W2wZxp1/WMm6YLsIdli
- h7mGARUjXZTIt0WzDFgbgFYR/UwGXlY7658W9pN6zKzBwk06CtMJqQOzHxC/aVXUAfpN
- fYyYC1L5Pz8s+w2xhFV4evB/YkIY+rjdlkdETR17V8LIqE/xdnspR5RVetPx4V4lNGrf
- OlBKtpcAM/KWxQ4BPhhCM4QcRfpyQI00vKJjhW4HVIwGJzvKVNzG0pmCo//x/MBrMcB2
- XcRQEmSIZopkX08cPCl5xr0p6/8J3/YP7k416nHKUsvqPTApLndX+2OME715it5vHbQf
- AFiw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=SYJ9K/irCjAHZhFgkU4tEC3o9IbVrQ1kbJDsUWJW4tg=;
- fh=Y8VWvczhtA2+qfWV4n3yFIjz11C0Tu5ciM95NunAusE=;
- b=bznkXlTe1MsW3fhu3xgPuK4XDW0/JFsI+oS2UzVKV0sXhLO7is6VmDZAz8Rxp2yyuL
- wHV59APvk7hpTipIvsfAaqxeKKKSf9HTmKYjF2B8+6yIu/NJvs57nvkzZf0VNUS9sNm9
- 9zezLzdeCnztiY7IxQE8g4DydT7iYplnnufIfV4pEumQqlcfL8Q9uA5zCSqRtU8Kx7bh
- Vgs/SSp43q4aBrLycAst7M6I77caa3PNSUohxO3Ao6yjBhBc6eZ6tJTd1c/x7MaBcTIF
- nK0Yn6I7dKPyZiBi4wopnjUGyPBBHs/laFxp/fisXx51Op9w3bj48/SZCyskHGhdujrw
- 9OpQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782385228; x=1782990028; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=SYJ9K/irCjAHZhFgkU4tEC3o9IbVrQ1kbJDsUWJW4tg=;
- b=RVx48wg2CRlAt2vHkWcWHnrDX63x98TLxSUHTJakoDYvq2qSxe+ePYe/GwUc7a1Ez8
- nS+oYxaeotuJWEeVvNN5hAbsVm8YJlz6iKjSw3CBn42wZX2KvsYyHEU44vqP95817Wa3
- dgAZODUj/gaxSt1St4UJ05iPDYosNUTNEtN5RIYpG01Nfu4s4HFwHd4iytB5BzkaVOzh
- 45wdiWe3ODdu7z+i+3XIRZ6bBwYZ1QydXS3EhEZSTOWHR+l65ZYXQvLSR0I5pUHiEyki
- VHdzzVI4P9nigE8/O2p5XBOWwvJKofN4Susalr9h/6HbN+4CnNdBr8+8d/wofab0+zWa
- tYUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782385228; x=1782990028;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=SYJ9K/irCjAHZhFgkU4tEC3o9IbVrQ1kbJDsUWJW4tg=;
- b=Q5iRMIW6rcLSF3kK9YmedCJ69367+rXXJhYPTnBg0FUN2yTrQRzV92fEACg5ZBpexr
- j4QVpzxAxF8jEaDXkRB30CjKIStuKbdMPgFgIqYzLWQHg1PKKAzUEObnoHP7TDUuNqll
- 6eWG2KRQ3WQwE/Jhv33W2BI3OoOaTsv98QAEktEn5PCfamK6+45fdi0zyOFHTnG8vb/3
- CU9AGIaQLcN5CqQZbV+fsxqlUxSvtsKPre1OR85CajsbhPEsCuUdP+gNkp41/0zhOFmG
- EfeNc1kTCIXVBF3W4Cft4y/J7j7EHQEy+CnqoqPH7moJzEnmWMdRYcZwfv/TDG7o3KwF
- i1Ww==
-X-Forwarded-Encrypted: i=1;
- AHgh+RpLHG+AaTjnW64KiEzNFWto2Wzg0V+MVMbG530WqxkA6utbdgGji1IqhEP1fKzJ8W51gA4TeGfZ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwWrUuLv288Uj5MKXSM88x33Ig8COAQpH4Duw/YESI+2Blq/skl
- S/7dpiXQVynPGcg+xCHCj3GXH4q3pUoONtWfFj9QqFhGOS8sDQZ/J2clUPNFVUwWqLfRiJbfAHr
- 5/b8ihUIz2iEnDGhGXihIE/ARFGT13s0=
-X-Gm-Gg: AfdE7clLFi5QjGxzeAgZ5ZjVwASQIII7EmunYWU8e5ODr3Ntzv2lowxU7jab3N1+HO6
- 7nwdM5mU3681hYJhE7Z38jCvuce3XgWGARfI8eUNT4BfwQHkMfZqgLKdfqQQzXCtoaZyHeahd9H
- hJwuJKeIizOg8RlkiKXZhAdq33KaH6V89Bk5t1qlPRGSDB8Gt+Xm+3PjRV5zThWvcvPuPh8yjs7
- 22Y0BtNXB6+3wrwgqhi4fZoOl9vhaEJ8uPm40JszaBbugiQaFMxM1oWupaHihmOE4AeDQFg
-X-Received: by 2002:a05:6000:98b:b0:46e:1bcd:6a0f with SMTP id
- ffacd0b85a97d-46e1bcd6be1mr1709213f8f.10.1782385227477; Thu, 25 Jun 2026
- 04:00:27 -0700 (PDT)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6BE910E1F4;
+ Thu, 25 Jun 2026 11:47:34 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id EE1106021E;
+ Thu, 25 Jun 2026 11:47:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44B4F1F00A3A;
+ Thu, 25 Jun 2026 11:47:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1782388053;
+ bh=Lp9WB6zXi8E2sTZp694xYWZZj+zJNQ67XHQgfj0Z/o8=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To;
+ b=G5Vm4Dz00Z/WLyF8vee9vI6yArVVZqfevw4mjzc3wX4tYDj+DouC6+0eeQLgfB03H
+ x2jAUEEpx/TBBsYrCT376J3HvRA1EzqIWgal0oyWDYQ6DD3pmUV+VlpkMm/DR8HeqO
+ 7O7OdjZ6cKAEES2+cqf1mfUzHFYwePzNC+2GqSiA68T9O6m1JwsKrqaLwfUZ/AbH5I
+ o62zOrANcxlik21ipb5n71ccrMDxphD0BksXrXd4lk7BtftRXoLCuZkKl/n8I3hJz0
+ UR0RrkVhQyAlcMPjuoAhH3ejl1q/Saw984qzf2c45g9y2Bb2JokMEchZI7FS7dYewe
+ zyN/Lek5/TJGw==
+Message-ID: <d462612c-508c-4682-a776-92f4f4a40e28@kernel.org>
+Date: Thu, 25 Jun 2026 13:47:25 +0200
 MIME-Version: 1.0
-References: <20260521133537.3438468-1-maoyixie.tju@gmail.com>
-In-Reply-To: <20260521133537.3438468-1-maoyixie.tju@gmail.com>
-From: Maoyi Xie <maoyixie.tju@gmail.com>
-Date: Thu, 25 Jun 2026 19:00:14 +0800
-X-Gm-Features: AVVi8CdjQVfdmvFjsaSWCi4UnNz1OBoLuP5LUHLjBHGhcG0i8c0m07TuDEVi3ZA
-Message-ID: <CAHPEe=GiP6GKaFWrd1M2Oc2Dod5PECD0nCwX1OfdP88nQM+z2Q@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: remove dead empty checks in ring_mux
- ib_mark_offset and end_ib
-To: Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Fri, 26 Jun 2026 07:54:04 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] mm/mmu_notifier, drm/amdgpu: block THP for GPU user
+ mappings
+To: Yitao Jiang <jytscientist@hotmail.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Lorenzo Stoakes <ljs@kernel.org>
+Cc: Zi Yan <ziy@nvidia.com>, Baolin Wang <baolin.wang@linux.alibaba.com>,
+ "Liam R . Howlett" <liam@infradead.org>, Nico Pache <npache@redhat.com>,
+ Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
+ Barry Song <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Jann Horn <jannh@google.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-mm@kvack.org
+References: <SY1PR01MB10596EB75463208A8E1EBBA0FC0EC2@SY1PR01MB10596.ausprd01.prod.outlook.com>
+From: "David Hildenbrand (Arm)" <david@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=david@kernel.org; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <SY1PR01MB10596EB75463208A8E1EBBA0FC0EC2@SY1PR01MB10596.ausprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,45 +121,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[hotmail.com,amd.com,gmail.com,ffwll.ch,linux-foundation.org,kernel.org];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[maoyixietju@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maoyixietju@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[david@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A025F6CB26E
+X-Rspamd-Queue-Id: 8F3286C5428
 
-Ping. Christian acked the approach in the inquiry thread, could this be applied?
+On 6/25/26 12:59, Yitao Jiang wrote:
+> Hi,
+> 
+> This series fixes a THP policy problem I found while debugging
+> frequent ROCm GPU failures on an AMD Radeon 780M system during ML
+> training.
+> 
+> Some AMDGPU/KFD user mappings are registered through interval
+> notifiers and cannot safely tolerate the backing VMA changing from base
+> pages to a transparent huge page after registration. Userspace can
+> still apply MADV_HUGEPAGE or MADV_COLLAPSE, and khugepaged can also
+> collapse the range, after the GPU mapping has been registered.
 
-https://lore.kernel.org/amd-gfx/ecab2606-e54b-4d21-93f0-0feaade64e6c@amd.com/
+Huh, why? As a memory notifier user, you must be prepared from memory to get
+unmapped+remapped at random points in time.
 
-Best,
-Maoyi
+What is the precise problem here? How are you handling THPs at registration time?
+
+Letting arbitrary drivers make THP policies sounds like the very wrong approach.
+
+-- 
+Cheers,
+
+David
