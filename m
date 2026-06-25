@@ -2,105 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jtC0HGE4PWpnzQgAu9opvQ
+	id ldPZN0cwPmq7BAkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 16:17:05 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:47 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C21216C6812
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 16:17:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 798A46CB263
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=oru4CYH6;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=KaT1iddS;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("google.com:s=arc-20260327:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6295B10F2D0;
-	Thu, 25 Jun 2026 14:17:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02FF410F49B;
+	Fri, 26 Jun 2026 07:54:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013046.outbound.protection.outlook.com
- [40.93.201.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4259A10F2D0
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 14:17:02 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=v2/ZNkrbEjdaeDygeAHTV7talWEVK3v+xMXhWkXBKj1tELURNRl3rFhuRikFowUrvUxypze1AuaUdedNuhdMxBkLGrJnjpsUMrzZnCVfQAlucWfT2N5J7s8zudE0d397Oz+R2PjzMuCKUvcZHo9xpj0Ig+TTbWZncTeYXe3Huhdw+P0lvLgcRFVYpUbcYX2t+S/dY7l5ovM4ReNqPHkEXfEYo3wbE4LxdPSMowrsHsl3FE4ADN0cNKC7z/ok8BIvLeik1E8NORurb9zUyubiP5z/5Smcgpvmk0hZRkCItD/7a+8g0fWDVcUsMB4OcL8X+6WrCQOvppLyZ6Np3QwzmQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KKXIRF+mPszLNt3IdFe5kK6fK8eicSZYr6pt25fYqoM=;
- b=hPd+4hJ5gBrrZtRur9C7u81oLOz0CyE10vjNGXHBEbbCwNMcT5o6ZEDxv8mfx4SjApOu0hglLCO81OQ34MXfosLC6zQe59RmjMSfG/joTFJ4Qd/RTg9tTIsYtKjkuY4uM9D8LkXGAOpxR/NlA2cYZ3cW+CNoOkyK54YgzHntsRXl68xFRFGwEKBM0+Pi+fr1IswcKW7D+gvVMnq6fsGEkNwoQOyz/aAF8d14UPNPvncA+CTJd/kR1NjktwLIlfBGzyXVIpjBmE4zZlQxmkrYP7CVO10LqwDab5ZcSYObW68St1Y6ZbQDJ6T3ufjxN6HX3gHRGUOA+cTQIUby9r6AIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KKXIRF+mPszLNt3IdFe5kK6fK8eicSZYr6pt25fYqoM=;
- b=oru4CYH6o7V2ysUCO/b4umWUIaNvxrFsi5rqUc6csZc33XinzEC4Qoc9Khqey3b/yvjl99lJuiQ4+BLkhNJD+EWFjroRrjEg5DseQxkwzyNF2MEEvb2TjQ/gMPw8HdlJJPE67WmLYaPx2eP6tp33XXHismrD+6jCCooGRXz3k64=
-Received: from MW4P220CA0011.NAMP220.PROD.OUTLOOK.COM (2603:10b6:303:115::16)
- by PH7PR12MB6908.namprd12.prod.outlook.com (2603:10b6:510:1ba::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.16; Thu, 25 Jun
- 2026 14:16:55 +0000
-Received: from MWH0EPF000C618A.namprd02.prod.outlook.com
- (2603:10b6:303:115:cafe::27) by MW4P220CA0011.outlook.office365.com
- (2603:10b6:303:115::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.14 via Frontend Transport; Thu,
- 25 Jun 2026 14:16:55 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- MWH0EPF000C618A.mail.protection.outlook.com (10.167.249.122) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 25 Jun 2026 14:16:54 +0000
-Received: from fdavid-dev.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 25 Jun
- 2026 09:16:54 -0500
-From: David Francis <David.Francis@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: David Francis <David.Francis@amd.com>
-Subject: [PATCH] drm/amdkfd: Use kvmalloc_array to allocate arrays
-Date: Thu, 25 Jun 2026 10:16:41 -0400
-Message-ID: <20260625141641.1826100-1-David.Francis@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com
+ [209.85.128.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D4D710F2DF
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 14:26:38 +0000 (UTC)
+Received: by mail-yw1-f176.google.com with SMTP id
+ 00721157ae682-7f69b71f7b2so26576627b3.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 07:26:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782397597; cv=none;
+ d=google.com; s=arc-20260327;
+ b=gSwhw5VzEN84ckMCbNM+KeQLEOU8RmHp+5+jhUn2cl0L7LmGuSqL5Eh9CAd30ny0kQ
+ E0hYWS6Q1spSQSYbDG07JJR5ZNur9EbwcZ63px+Ej7btM8c4KL8dHb/sFRddt8D47N9M
+ Vq8fNfz6vgeytj9A+zM0br8keaalvnUHoftpxwWftxOA9W9qShKnn7Pn4of/5o59CeMs
+ tZWf6NaZaiw+mZP6uBDUcOZul7/TWaspNYvVMT0J46rTiGXu0LVARTuAplv2Eat/GMVu
+ uPqPz7ZpvvNuIL/Q49VuNl+/dGGByxksCDRHcJyTysrvG0mGJnTmj1FeZMA9TfL4aMZu
+ 4M3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:references:in-reply-to:dkim-signature;
+ bh=zG0ziIrnl5+Uq7ZzfQ6z6EifKGZA4Cbm70aG+1ToxjY=;
+ fh=9X7mPNQiEIoOX2Mrz8M7YhToZFNWV/p2ZuZ/YnRRxrg=;
+ b=EEVK53VLuRhpkv/1TBStERtvhhlSKyWWtJdP8aD6KRE7xxOdbAyvm0isn8EturUq+C
+ gJdQF2MXC11LSjp6Qbu3krc+9W+6ZkAJ769hebLC9asW3bnXQKvi5+aAGLQIQmIcYbfT
+ Be3RhXMTRwqla5MMa/ow0fKZ+IQ5yRRIAgKPtXsX9ueSjHO5/oimzFLNKUSUNKWPLR8S
+ z6PuuHNIS+nl8Vvkd307ikXWf6f7Ci0a+WkWIBTUzTs/tAIsOQMml5YRzFztccDOEOoJ
+ ZFn0i1hS7jVyfcoT8Es55EpsB7z+8z2IVhNw1Gs7YAi922gqHbpkvyuLXCReKofEEPcw
+ X5Qg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1782397597; x=1783002397; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:references:in-reply-to:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=zG0ziIrnl5+Uq7ZzfQ6z6EifKGZA4Cbm70aG+1ToxjY=;
+ b=KaT1iddSxn/bETwnP6DZu3AsNZ19jacJhqD8V7Ib26Ti0VIRUKtl1xCEZPvGoRvksN
+ tvMy01A6CVEp80kwHurjVL+worT6UAWZxUjKxzLX0Tg42MrV96cvNnqgmV0Z6QIPbNTl
+ k9JDlp4yUN18QY7BhGDHJOexwEk9CNXcrTvzU00M2CxbeMouOzGjxND2iJDjBct3bi5o
+ cRUtwdOVJWZmoaqgbF/OhR/3cnn7ywNnzsPdXXzWdO+8mKHQpL+308yEE2KGdjwfENQ+
+ hmwtXcdmTlHf9v9cfuJDlH32PAYOs3EWmCY/C64xssEYE2LS45HhbXLoKVncGkWshtfK
+ gcFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1782397597; x=1783002397;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:references:in-reply-to:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=zG0ziIrnl5+Uq7ZzfQ6z6EifKGZA4Cbm70aG+1ToxjY=;
+ b=Q5uEuSsmEfjAF9/BKDATquqWczWs97eDTw/fGrpzg1Myg8m918YYaOJ1h+32y6P9S3
+ CsD8GGIR0ae/uCrjWTrF2IeLSxtvbMq50K1LbVurdv0t18qiOt+j9XNL/zXKgbRQhLT3
+ X2G6ZKRnJZYi68zRN1SAZC/QRdSXHehaTEwEeyn9reyYrZ40kGAa+4JLyDRbtZRXCQdV
+ iCcJG1JkibueklyoMs/wKLA0UqUYspSPWr0Yi+Jgd9mr6dHMkDaEqoLLNXkVjlBgvX/7
+ p5FO+kdNeByK9ENgUMeDNAgNmRD3knq38f9rEF59BMp2a0BaKHYnNUX6RV6MePtKNDKX
+ s5sA==
+X-Forwarded-Encrypted: i=1;
+ AHgh+Ro1CxHlSOdapu4rYN7bnjwHJO5Pdq3BumgmnkKmffnO4xnAZ3lC1BuV0ooxwoLR/cmc+X3xalJN@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw+09raemDPgpxnaO2ZBGtSkZYIDRdzS2EG9WIXzQOjvnJeDX9R
+ 42o2dG+0cjLe3bm5PGLCvEZpJ69iLZLmt3PgqrITNseqU8xqrKrZ677sAo4V7GVXOvzaGb20BSE
+ 9F2TTqm6eaF/v3bgwcN2I2PNIIU60aKGEAeMAqgw=
+X-Gm-Gg: AfdE7ckZnU0HcS7NW9suqw44m+tSjM49CKSASduvUYicW1tr26TVA4Cd++HHtvF8okY
+ dK26HE3XPCU7KIfL/teamxlaKVzNxi74gxXZrCHatJahTFyNLQz8B9peOPxNtBkDfpSHSafycZP
+ 9Zh1Lep5l9b8IheVwoQ7ra9/Dn7pOpEss56IUiO72cjyEhWwyUpM8ZC0p4f0EiQkBP0c2JrZCrd
+ gOdH5lRq7bD/r1dpH3PiocrCYI6xVvR4w3PknU5P8r6II+AjsP7a6WJFQISLZq1YH2dzzmnwg==
+X-Received: by 2002:a05:690c:368d:b0:7be:fedd:726b with SMTP id
+ 00721157ae682-80a6d262368mr24686747b3.42.1782397597299; Thu, 25 Jun 2026
+ 07:26:37 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
+ Thu, 25 Jun 2026 07:26:36 -0700
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
+ Thu, 25 Jun 2026 07:26:36 -0700
+In-Reply-To: <20260625135341.1159-1-alhouseenyousef@gmail.com>
+References: <20260624172029.2508-1-alhouseenyousef@gmail.com>
+ <20260625135341.1159-1-alhouseenyousef@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000C618A:EE_|PH7PR12MB6908:EE_
-X-MS-Office365-Filtering-Correlation-Id: f9ff079f-6000-45cc-6437-08ded2c4690d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700016|1800799024|23010399003|82310400026|18002099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: X0lKAM2kQdgbAjQs72cwKr+2jepFqi4ArV62IVmq3Tlvg5M0LPxmpc7aAfE96kTWAfYaQrZmdlSc1vS7TBsya4jqgYen8ACNeU3J3PxEI7wG6UiKpj/61H6NpRK9HHuDO/CUnzMv2abQBLgTOTfI8rhXPDloipLjqj/pxVSCm5SHAoa/9Sm6B0cTWGjKnhBRjnfdwnvFMQZBbpAxWEPAviVHaCqq/nTB21zM97yxVgeKmUjIEMrZhIELsLYPy+IbeIbhYtfXX+tWEMD2L5kL0etXZb4Ut6pUffAKthggbpF+MY6fyAOYPd9oBR+zmUI3sTB4WU4+lacXQ9x0RrFIkT2Ox5QIFEJVV8PFjqHEyotauTQYFOBO5pLt7wVAqrH8GfQ7HkdmggOhXRo6h3DTtBK035avkLHv3Htk34GDyWtBmAXa8z/c0TV30TCwDNZovLMld4NayYyMm87KNJMq9RSDWuKzBJxPG8r8hGa7182H9BL5COZAI3IcGKyjkIe78h4wGnUEWDzCPvDei486qFd4QstYb+ysEwxjsv+ET3sDtd9oA13PZ16Qa0fkl4fjELus0K4I+DMBvfO/pkP9U/YRy5oRlFTX30JlUayBSiKhyzgsUMYi1rqVGCc4U0kelqztGaAlMDgoNrIUgbX2wWtk4ip2sm/1aCS/5N7+Ckjtb1nleuB70fG9g191SVofrcrwM2ySSXGaP9BUkgApSw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700016)(1800799024)(23010399003)(82310400026)(18002099003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: jc3F8nGjetwhoVPv2DWxCZ9Ep+JOos1+Mm0GHjHxgqhIS4O38P4CauerNLwdjLmSfVWnxvosAXJkn2dCkw1HndQRU9y7vIzWK1um6VOpXI2MDTtk3uADLoTA2jMd5k0cUPzQjvZ7xJzngvbxHYCkNtg48zoHM1eWQEOVkjMmWbMzlRZleR4iF7t8JVmB4v2wsXg1PO1Zbq7umh0sbeHbMg4tMMMpMAz63n6OGbkNIwv/4x/fn9Qfp1wUeKNa9DMFRzhIJARxaie4RXx1Gi9rp4fvs9/yFjIPoOQQrg/fgTeLDwbCEdL20nnejOzAPfe8y00MZVjHKGlCCO90CWSrd90Om/V2IcgW0yvvvbTNAIy6wlljIPVdSm6hkIHHNjW7pTaMYV5oXtNXLFvDyYGFLuAjT946EbRbDmF3XK/a5Uuco7DWc+msRWo8hE+w379v
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2026 14:16:54.9800 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f9ff079f-6000-45cc-6437-08ded2c4690d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000C618A.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6908
+From: Yousef Alhouseen <alhouseenyousef@gmail.com>
+Date: Thu, 25 Jun 2026 07:26:36 -0700
+X-Gm-Features: AVVi8CesCW6iLL67hakaynYG37WtYiPVPjL9y6jKGomdujasLZOfkHuY3iSrjGg
+Message-ID: <CAMuQ4bWVb-vxCWMxF_JpJmBnKD=rVH2KZWf36jnzPbC35CdrmA@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/amdgpu: reject mapping info when BO VA is gone
+To: Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 26 Jun 2026 07:54:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,99 +118,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[David.Francis@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[alhouseenyousef@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alhouseenyousef@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:email,mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C21216C6812
+X-Rspamd-Queue-Id: 798A46CB263
 
-There were a few instances in kfd_chardev.c of kvzalloc being
-used to allocate memory for an array.
+Hi Alex, Christian,
 
-Switch those to kvmalloc_array, which
-- is the standard way of doing this
-- does a check for the mul overflowing
+Please drop this v2 as well.
 
-Signed-off-by: David Francis <David.Francis@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+I rechecked the target tree and missed the existing !bo_va check in
+AMDGPU_GEM_OP_GET_MAPPING_INFO. The close-race case is already handled
+before the mapping list walks, so this patch only makes the later check
+unreachable and changes the errno.
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index ab9e53dc8deb..dbfb574f4fed 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -1917,13 +1917,13 @@ static int criu_checkpoint_devices(struct kfd_process *p,
- 	struct kfd_criu_device_bucket *device_buckets = NULL;
- 	int ret = 0, i;
- 
--	device_buckets = kvzalloc(num_devices * sizeof(*device_buckets), GFP_KERNEL);
-+	device_buckets = kvmalloc_array(num_devices, sizeof(*device_buckets), GFP_KERNEL);
- 	if (!device_buckets) {
- 		ret = -ENOMEM;
- 		goto exit;
- 	}
- 
--	device_priv = kvzalloc(num_devices * sizeof(*device_priv), GFP_KERNEL);
-+	device_priv = kvmalloc_array(num_devices, sizeof(*device_priv), GFP_KERNEL);
- 	if (!device_priv) {
- 		ret = -ENOMEM;
- 		goto exit;
-@@ -2043,17 +2043,17 @@ static int criu_checkpoint_bos(struct kfd_process *p,
- 	int ret = 0, pdd_index, bo_index = 0, id;
- 	void *mem;
- 
--	bo_buckets = kvzalloc(num_bos * sizeof(*bo_buckets), GFP_KERNEL);
-+	bo_buckets = kvmalloc_array(num_bos, sizeof(*bo_buckets), GFP_KERNEL);
- 	if (!bo_buckets)
- 		return -ENOMEM;
- 
--	bo_privs = kvzalloc(num_bos * sizeof(*bo_privs), GFP_KERNEL);
-+	bo_privs = kvmalloc_array(num_bos, sizeof(*bo_privs), GFP_KERNEL);
- 	if (!bo_privs) {
- 		ret = -ENOMEM;
- 		goto exit;
- 	}
- 
--	files = kvzalloc(num_bos * sizeof(struct file *), GFP_KERNEL);
-+	files = kvmalloc_array(num_bos, sizeof(struct file *), GFP_KERNEL);
- 	if (!files) {
- 		ret = -ENOMEM;
- 		goto exit;
-@@ -2584,7 +2584,7 @@ static int criu_restore_bos(struct kfd_process *p,
- 	if (!bo_buckets)
- 		return -ENOMEM;
- 
--	files = kvzalloc(args->num_bos * sizeof(struct file *), GFP_KERNEL);
-+	files = kvmalloc_array(args->num_bos, sizeof(struct file *), GFP_KERNEL);
- 	if (!files) {
- 		ret = -ENOMEM;
- 		goto exit;
--- 
-2.34.1
+Sorry for the churn.
 
+Thanks,
+Yousef
+
+On Thu, 25 Jun 2026 15:53:41 +0200, Yousef Alhouseen
+<alhouseenyousef@gmail.com> wrote:
+> AMDGPU_GEM_OP_GET_MAPPING_INFO looks up the GEM object from the file
+> handle and then locks the object and VM before resolving the BO-VA. The
+> GEM object reference keeps the BO alive, but it does not keep the
+> per-file handle open.
+>
+> If a racing close drops the last handle reference in that window,
+> amdgpu_gem_object_close() can remove the BO-VA before
+> amdgpu_vm_bo_find() runs. The ioctl then walks the BO-VA mapping lists
+> unconditionally.
+>
+> Return -EINVAL if the BO is no longer associated with this VM.
+>
+> Suggested-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Signed-off-by: Yousef Alhouseen <alhouseenyousef@gmail.com>
+> ---
+> Changes in v2:
+> - Describe the handle-close race instead of an initially unmapped BO.
+> - Return -EINVAL instead of -ENOENT.
+>
+> drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 6 ++++++
+> 1 file changed, 6 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_gem.c
+> index 212c14d99..6f5b6f4c2 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> @@ -1087,6 +1087,12 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, vo=
+id *data,
+> struct drm_amdgpu_gem_vm_entry *vm_entries;
+> struct amdgpu_bo_va_mapping *mapping;
+> int num_mappings =3D 0;
+> +
+> + if (!bo_va) {
+> + r =3D -EINVAL;
+> + goto out_exec;
+> + }
+> +
+> /*
+> * num_entries is set as an input to the size of the user-allocated array =
+of
+> * drm_amdgpu_gem_vm_entry stored at args->value.
+> --
+> 2.54.0
