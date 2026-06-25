@@ -2,46 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id f5hjD1oVPWolwwgAu9opvQ
+	id /06zOS4WPWpuwwgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 13:47:38 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 13:51:10 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F3286C5428
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 13:47:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D3D56C545D
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 13:51:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=G5Vm4Dz0;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Zp0mOr9q;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=kernel.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C4EB10E1F4;
-	Thu, 25 Jun 2026 11:47:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F234C10E1E4;
+	Thu, 25 Jun 2026 11:51:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6BE910E1F4;
- Thu, 25 Jun 2026 11:47:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D34AB10E0B4;
+ Thu, 25 Jun 2026 11:51:05 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id EE1106021E;
- Thu, 25 Jun 2026 11:47:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44B4F1F00A3A;
- Thu, 25 Jun 2026 11:47:26 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 212376021A;
+ Thu, 25 Jun 2026 11:51:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B48451F00A3A;
+ Thu, 25 Jun 2026 11:50:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1782388053;
- bh=Lp9WB6zXi8E2sTZp694xYWZZj+zJNQ67XHQgfj0Z/o8=;
+ s=k20260515; t=1782388264;
+ bh=hh8oiOowWZMfYNh0sdl9wulo1T9jtJmItc3jEmb/BRQ=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=G5Vm4Dz00Z/WLyF8vee9vI6yArVVZqfevw4mjzc3wX4tYDj+DouC6+0eeQLgfB03H
- x2jAUEEpx/TBBsYrCT376J3HvRA1EzqIWgal0oyWDYQ6DD3pmUV+VlpkMm/DR8HeqO
- 7O7OdjZ6cKAEES2+cqf1mfUzHFYwePzNC+2GqSiA68T9O6m1JwsKrqaLwfUZ/AbH5I
- o62zOrANcxlik21ipb5n71ccrMDxphD0BksXrXd4lk7BtftRXoLCuZkKl/n8I3hJz0
- UR0RrkVhQyAlcMPjuoAhH3ejl1q/Saw984qzf2c45g9y2Bb2JokMEchZI7FS7dYewe
- zyN/Lek5/TJGw==
-Message-ID: <d462612c-508c-4682-a776-92f4f4a40e28@kernel.org>
-Date: Thu, 25 Jun 2026 13:47:25 +0200
+ b=Zp0mOr9qz+03Ut2IAL4eKFy70V+zu4xxF7zOUb2dMiEV9vt16RlHbXGQjkMyL9V98
+ wShk+N+RcCDDFqbuVcE+GTlWWUB6q1XfMc2XScidYrpVb09st/L4PCwBBWDendu9X0
+ F7Dj5BF3PTUWhJSDXugXl9U7iwka7wnWSEL42l7kmB5WuQxstKUEzBzgYlTiM99Xbm
+ 18LXMeu9fwdI4OXrilzTIh9APTUu428rMcrSgBnx50k9kxyLkWIwAqpSa/aebbjE+S
+ 3VbVWPgLsbImNMrCYd7vX/UFSEICqHmiBmmmz9Wlw9JGo0KMlZ3BX85TVdj03HEp2+
+ jMaBwadRxBTgg==
+Message-ID: <b23506ad-544e-40b9-a940-66a6d899768d@kernel.org>
+Date: Thu, 25 Jun 2026 13:50:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] mm/mmu_notifier, drm/amdgpu: block THP for GPU user
- mappings
+Subject: Re: [PATCH 1/3] mm/mmu_notifier: let interval notifiers block THP
 To: Yitao Jiang <jytscientist@hotmail.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -58,6 +57,7 @@ Cc: Zi Yan <ziy@nvidia.com>, Baolin Wang <baolin.wang@linux.alibaba.com>,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  linux-mm@kvack.org
 References: <SY1PR01MB10596EB75463208A8E1EBBA0FC0EC2@SY1PR01MB10596.ausprd01.prod.outlook.com>
+ <SY1PR01MB1059616E59F213B6FB4F4E3C5C0EC2@SY1PR01MB10596.ausprd01.prod.outlook.com>
 From: "David Hildenbrand (Arm)" <david@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=david@kernel.org; keydata=
@@ -104,7 +104,7 @@ Autocrypt: addr=david@kernel.org; keydata=
  3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
  CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
  qIws/H2t
-In-Reply-To: <SY1PR01MB10596EB75463208A8E1EBBA0FC0EC2@SY1PR01MB10596.ausprd01.prod.outlook.com>
+In-Reply-To: <SY1PR01MB1059616E59F213B6FB4F4E3C5C0EC2@SY1PR01MB10596.ausprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -148,27 +148,18 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8F3286C5428
+X-Rspamd-Queue-Id: 8D3D56C545D
 
 On 6/25/26 12:59, Yitao Jiang wrote:
-> Hi,
-> 
-> This series fixes a THP policy problem I found while debugging
-> frequent ROCm GPU failures on an AMD Radeon 780M system during ML
-> training.
-> 
-> Some AMDGPU/KFD user mappings are registered through interval
-> notifiers and cannot safely tolerate the backing VMA changing from base
-> pages to a transparent huge page after registration. Userspace can
-> still apply MADV_HUGEPAGE or MADV_COLLAPSE, and khugepaged can also
-> collapse the range, after the GPU mapping has been registered.
+> Some secondary MMUs cannot safely tolerate a user VMA becoming backed
+> by transparent huge pages after the range has been registered with an
+> interval notifier. Drivers can observe the page-table layout change
+> through invalidations, but devices without replayable faults, or ranges
+> that must stay mapped,
 
-Huh, why? As a memory notifier user, you must be prepared from memory to get
-unmapped+remapped at random points in time.
+Then you shouldn't be using MMU notifiers.
 
-What is the precise problem here? How are you handling THPs at registration time?
-
-Letting arbitrary drivers make THP policies sounds like the very wrong approach.
+Use good old nasty page pinning. :)
 
 -- 
 Cheers,
