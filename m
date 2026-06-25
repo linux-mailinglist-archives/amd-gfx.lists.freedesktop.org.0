@@ -2,53 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0glLFwHlPGrntwgAu9opvQ
+	id sn2sJ/jkPGrltwgAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 10:21:21 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 10:21:12 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF9966C3B29
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 10:21:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B8A76C3B1F
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Jun 2026 10:21:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b="y5b/AQLc";
+	dkim=pass header.d=amd.com header.s=selector1 header.b=FcXn9Xv6;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51BAA10F190;
-	Thu, 25 Jun 2026 08:21:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B938410F194;
+	Thu, 25 Jun 2026 08:21:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013036.outbound.protection.outlook.com
- [40.93.201.36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70AB010F196
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 08:21:17 +0000 (UTC)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012027.outbound.protection.outlook.com [52.101.43.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1147F10E18E
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 08:21:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=muEKkfCGCIZ20dGfdmgvXjuRku+QU31oyVFIc0wAGAHTnhgikQLxIMp9ASXxJE82ZdYqfi4uQ6dzbyiXDumwoYmgS0EB8MWcxwAPdEm6bmVnb2Hcc7j/p4WkepqXktZJtskVpTWjc4S9T6wEuRUvSXlLvZ2Wb9e1Fn43zG1rfpnk6ooFwr7n/GS8N5yOKCAdl8lzw0pSesgZpbY2vytQKdSeZpo79Cd08C6+zYOh20S+U/ffTxjgj0HH9AuyoR1naJvykMiE65y4H3q8Qa3735e5OYPBU+nCnasYy80h4ZbrdWVjKYr0w7HP4g0z41Pb0T3QTzyvhLbtwk6WyXWqlw==
+ b=FWb6Z3KAJNr/oVFritV1MJD9K3sOuvsQx/7JVAbgiZT1Yju26elM4yLohgzdYqgN5kZxb3KJAZ1yMWRQHGNS4IjsGUk2QCT26aRkj+VYK7wWb/knfO92KoHIKq+a2bQIyK4MyQRRpIQJjhO48R+ZeIdpRW+xdJRmRsp7i84DIJcx9VnFrQtyo1aiY7kkE7DaZTJ2Ct/Wb3iCgcY9+XAZre3Q9P0TzeJuQE8u3LT/QlcrDmDxqxMd5s+Sc8amcI0qy/N5c2Oq7CJQ/6okzOxL14XqdJppu/aUzWsfVE57uanJhdVExWT6AgRgLOR5WNhMHEZf4jaWW5q3wWuzcM/KJA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9FjVlr5U5jnvucmTqwtasVvgMZApSwA0qstmCeJvG5I=;
- b=IYh9jJwpZeUgtMJy2Nq9cEfj/mcBCxOKbWfpSIbrCCUBr/QKtbGOthgseQeM9eZ9aZ5RzDwdcVT+zz9o7J0/EuFhfgqnhANrt3pnfc+b8DgPnaTD/ivR76cCXRsPqcFVb2bkaNAcIpB9+CUSttMfvZuwTi9Xmv5/Tj/tmg1z6g/F7uNYkFRzcQvEDyVGpoTHkGsyGq/KHGzVILlivrFMsfSVUOStGGBf4y66n5IZtErVOeqRua6c0HwYwpK1iBitPJPMpfkLHgIvq2fBtiZWDYN9aaNZ2ED9q/x9jeKtdI+I1TXzzIYqGpNbTvT5Tp8i/H3b+Rm5qwhmGU/kdFSBwQ==
+ bh=Eu2riU0nOC+yL2Auw38ntJINvlj7M8B6Je+X6w0AnY0=;
+ b=mxohz/bQPSh6Pu5425Pb0PA2JDI3li9bQaU5VSgEQh88BSvTyqW2+mY85LZB19+Bh0T+ulffnL74LCL2Ldh2qiuoxLGIClGpzykDspfQe7hkKimTkC0CdRfNGiYsIXFuZMT+t1zZHhp1yui3UacezXZkdWpZlm/Uj5BRwq7aZJd97ClS02IbnAlzDmbzRv4ROh4Q8oylnRHrbutVgfPvmNV25GfSBvB1wRFfM05Bn7eBwlrT8gKgts/1VXg0KJQjKxoj5H6qPCvuHV4t6neKm8sn6qRndEibZmvReUpVMYtEcTehHk9uM2hqn37Kz2IMPtsOnknT9brJkGXhwlmE9Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9FjVlr5U5jnvucmTqwtasVvgMZApSwA0qstmCeJvG5I=;
- b=y5b/AQLcz8pxlomAzd8MZAFkH9CrE7WzAfCiqBsKt9oFcq5kCOFQ6EbvbFzyktmOcogtjRxBLBlqTU9q3E1s4+C8IDRpuBBUkh3P7vPtvNM1lNdTge0f9UxdZLBQ4LppXRbQEtTUszgfAavhzHeJHqAAsItcvdrl3OWIWACsp0g=
-Received: from PH7P220CA0011.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:326::18)
- by CY8PR12MB7196.namprd12.prod.outlook.com (2603:10b6:930:58::12)
+ bh=Eu2riU0nOC+yL2Auw38ntJINvlj7M8B6Je+X6w0AnY0=;
+ b=FcXn9Xv68Ukf+56g4c4Ur5gplq/FNzUNRxiyB/W29DO9bu8iNtFeprVif+5xYEdO4Iwc4SzUg4N4B/rtkisJrjt8SAaUSrEGB/R0iFz7r/xEAJYkbM0IHbArs1ixOG7u+540taoC05fEraO6V+0m8DHsbp61dt31C4R/l9W/QCw=
+Received: from PH7P220CA0024.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:326::11)
+ by CY3PR12MB9554.namprd12.prod.outlook.com (2603:10b6:930:109::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.13; Thu, 25 Jun
- 2026 08:21:04 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.16; Thu, 25 Jun
+ 2026 08:21:06 +0000
 Received: from CY4PEPF0000EDD5.namprd03.prod.outlook.com
- (2603:10b6:510:326:cafe::7f) by PH7P220CA0011.outlook.office365.com
- (2603:10b6:510:326::18) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.16 via Frontend Transport; Thu,
- 25 Jun 2026 08:21:04 +0000
+ (2603:10b6:510:326:cafe::97) by PH7P220CA0024.outlook.office365.com
+ (2603:10b6:510:326::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.15 via Frontend Transport; Thu,
+ 25 Jun 2026 08:21:06 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -58,19 +57,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  CY4PEPF0000EDD5.mail.protection.outlook.com (10.167.241.201) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 25 Jun 2026 08:21:04 +0000
+ 15.21.181.6 via Frontend Transport; Thu, 25 Jun 2026 08:21:06 +0000
 Received: from sunce-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 25 Jun
- 2026 03:21:02 -0500
+ 2026 03:21:04 -0500
 From: Ce Sun <cesun102@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Hawking.Zhang@amd.com>, <YiPeng.Chai@amd.com>, <Tao.Zhou1@amd.com>,
  <Stanley.Yang@amd.com>, Ce Sun <cesun102@amd.com>
-Subject: [PATCH v3 27/44] drm/amdgpu: remove operations related to legacy
- address
-Date: Thu, 25 Jun 2026 16:19:20 +0800
-Message-ID: <24faea2deb8e1657cf6163dc09bc49513723d592.1782373702.git.cesun102@amd.com>
+Subject: [PATCH v3 28/44] drm/amdgpu: retire legacy PMFW eeprom RAS bad page
+ handling
+Date: Thu, 25 Jun 2026 16:19:21 +0800
+Message-ID: <158a8e07fd67bf94ee3b5ef5c7c1040f16942d16.1782373702.git.cesun102@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <b5587fca5f57f8f352245edf2c76606ad3307923.1782373701.git.cesun102@amd.com>
 References: <b5587fca5f57f8f352245edf2c76606ad3307923.1782373701.git.cesun102@amd.com>
@@ -82,29 +81,29 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD5:EE_|CY8PR12MB7196:EE_
-X-MS-Office365-Filtering-Correlation-Id: e8bc367d-3a99-40ef-109f-08ded292b2f4
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD5:EE_|CY3PR12MB9554:EE_
+X-MS-Office365-Filtering-Correlation-Id: 115f3407-1ba6-47f8-916b-08ded292b41d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|23010399003|376014|36860700016|1800799024|56012099006|11063799006|6133799003|18002099003|22082099003|3023799007;
-X-Microsoft-Antispam-Message-Info: Jorxbrg145SxEE1Bo9q9z5qYGvXDELPjJuX4hzVAVln4/VgK4jFGaxOkV2VCy22QjlAwlgbeRbvs7KWEpz7KpLDitJyhSthBMTtyvr0N+Bpdf2Ju2cUmecmHDWwX+ACg1cjBaycNB3a43gLpsfTx2cyVt5UrbImEjSvT7XL6GQct34t2pOXV3YDY+UAl1UAQaQUTX2xwuPqn5tXTm8wpoIUOOjZVYTEJi2OTJ/EvjhCa0bgutwXrvcGq168YZ21Ic/29eV9uT94Y22Ctq+oRoMB93L/e0YSO8uOX/p19bIrvDs5n60hNG1C58Jy5+PRBeuMEhfN0NzRHwP6gG2rCE9u/jxo5UZW7HAsmGC+4dOByEIrRxX3nCF4AuvV2HsW4Ew77zppGG0DeUk/pDBTSEtTe1i5xJZZbpXCg+kLyx2Zq2HcqyA2T49JTu3XWs8WF8P5SyKlGVmLWj1Wv0LUC7bD31K4ouKx07qriTgWQN3+4s7SDf6phv/kAgZIFzf+Yf0fgc6b8hcRvB0/+8MmEX1GJyGu/yYW9yRgRu2XU6XPrrs9eFP4qF4ArOMkDTaVbaYxJECXBUaQQOQ2Dngb7cf1wfctw8iMdjsoH4bkF3jtBZ5IoowB2EbPkCO8no/UyIQtLXxF7hlvA1XHEeKIjSC1hkbnsN8zdt1tcH/vSHnd2CM/4yb9ATeN9/tg9mxtmrrVKwi7I2piZTto6RobhDg==
+ ARA:13230040|36860700016|82310400026|376014|1800799024|23010399003|18002099003|22082099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: VpD3eVQhlGan3pExvjF3J8ufLS4iPBk2tJlrzFhdCO29tm1ORd0yTjiffSGaRnhQUkgOpuJlxq/WqpY41yNkapoXvidg+VbOsEt2HAFntuFyfdjpW9h6hVCc+V4Hil1omoDc1BbTg61/lQ2ZUqdVTi2Ta0C506K1Z9JcejRYk4tHhSrzck7NaD7Y6eWrHvxA37dGM+Yi8e/d4ANOxZDiPqiXslapidrWCDqqCb15btjU0KFUDh1NVCpsOo0TuCrkTCZEgPnIabuXIXkxDiCJr9fT7hVH7tGOQYaX1fRunu59+BJz2fHdKGIk1F2u5xdR7XdjFa66vf5znq0vnpa8Zt1BX/LA8yLCb3ajvpS7Nv0wUDwK3mI5BVsIVR2Aa8XA4ObA7NoOgsHFasswbCr4mMSXBItZCpCGyEKQY77c0kCATxMvD4Z0nI3/a9k5uphOaS8/SXcUMp8/Eq7JN+IS689hMVMJYfp4if+iIsvNDDz6YyXMrdWRHIuVvxRaHRXxjZF6DdIM9OhCfZfNJta1HIEVdsaRXeNfpS5PCmgkmWoIhii4jMrU7eOZo9ihJazerPym2xz7/vyyVDL7l3p4krX+aadDARE7w9MAzDd42KMXCz6QZ6KxNhai/3WQpMi+XmG+u0JPzh8hQeqqDvQ9XoiSpohfJidbVWd1avKsHFKbO1BO4+bLBJlKLu7GUXkVikkE0c0dbY06Vb1N7V+sZg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(23010399003)(376014)(36860700016)(1800799024)(56012099006)(11063799006)(6133799003)(18002099003)(22082099003)(3023799007);
+ SFS:(13230040)(36860700016)(82310400026)(376014)(1800799024)(23010399003)(18002099003)(22082099003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: aqaqNjprUhh29jOhfpWL+nofc5mlDR6/8y1Ex3a9xpc6WQtBVP4w3Cf1/W9UizcvE9DG2AynzqhQXGMdWsWZvSLa822kQcW0pti2G6bNWt61WVYFDuezCAjYqnPrdwH7NZCBREahU1dqApOWI12s+zgRzdd3TkqMBGIbZ871AIUm2kHxblFMJ40Vbx4GwTxms5BA068L5HZDX+McVgmKJdKTmm2Un8Tlw5ohj3ogJJY7LnFUUOdKSbemXvsEr7ivQXGlV+9KyZgZE38DrDXM/aQdKywry9EBF70CsMZX1MnWiHc0pNIF9KnYPWZQRTTvl2Of/eP25cWALhbPgNReJ70GJiUZn9rF9iqDA1ppwWBwW53pQSaHl1RX2RXUR+TFcmLoMMofcb08JxdNGuGF7cjdDPyOiOpIjBIctQ94IH7dUtnlnGxhlDWGWfpnVTUa
+X-MS-Exchange-AntiSpam-MessageData-0: XAIhmdv/SImdXo5xlANCYhUKbEvzcrESGEQAtcIsDnHDHFis56cvoW94MMecNH8r9Z0f2TlOj2AYloVR9L+aYdalqjKdzKWdpMo3m8Xd5jdar4OfJ0NOoTYVExyjgfcDIOxENPgaEYrBULQI5C88bJ3a/vtapSZcHxyZRPGhM/tgyR3p0yj/zUKCcOCt4fOCdrSF1y0eJPaqs1ueb78jOZQYECQ8pqtew5gksprLhfiPyL0qsxmDioCeJusiRG5aNH0z0TJWOr/HLUkqkv1+ShcS+MvNjwC/rjXwRMw8JHxbZ0izCnlkTQBT/SSagAu+BVbXKngNi7WCIe8CcWsGZrGP/HeMBNl2ztvqcndvhdBO8ewfMzfhVPzJKxqg/b+/3AE3Rcwccj7eOU+atQOePvG1igxSixdPNJJEu9NlJuH2qzCvL9gnIMsC5O68s35W
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2026 08:21:04.2182 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e8bc367d-3a99-40ef-109f-08ded292b2f4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2026 08:21:06.1677 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 115f3407-1ba6-47f8-916b-08ded292b41d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD5.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7196
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9554
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,493 +145,73 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,pa.pa:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BF9966C3B29
+X-Rspamd-Queue-Id: 4B8A76C3B1F
 
-Remove operations related to legacy address conversion
+retire legacy PMFW eeprom RAS bad page handling
 
 Signed-off-by: Ce Sun <cesun102@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c       | 248 +-----------------
- .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c    |   6 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c       |  40 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h       |  13 -
- drivers/gpu/drm/amd/amdgpu/umc_v12_0.c        |  26 --
- 5 files changed, 12 insertions(+), 321 deletions(-)
+ .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c    | 33 ++-----------------
+ 1 file changed, 2 insertions(+), 31 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index e7156b85e727..69fca6aacdc7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -2882,77 +2882,6 @@ static int amdgpu_ras_realloc_eh_data_space(struct amdgpu_device *adev,
- 	return 0;
- }
- 
--static int amdgpu_ras_mca2pa_by_idx(struct amdgpu_device *adev,
--			struct eeprom_table_record *bps,
--			struct ras_err_data *err_data)
--{
--	struct ta_ras_query_address_input addr_in;
--	uint32_t socket = 0;
--	int ret = 0;
--
--	if (adev->smuio.funcs && adev->smuio.funcs->get_socket_id)
--		socket = adev->smuio.funcs->get_socket_id(adev);
--
--	/* reinit err_data */
--	err_data->err_addr_cnt = 0;
--	err_data->err_addr_len = adev->umc.retire_unit;
--
--	memset(&addr_in, 0, sizeof(addr_in));
--	addr_in.ma.err_addr = bps->address;
--	addr_in.ma.socket_id = socket;
--	addr_in.ma.ch_inst = bps->mem_channel;
--	if (!amdgpu_ras_smu_eeprom_supported(adev)) {
--		/* tell RAS TA the node instance is not used */
--		addr_in.ma.node_inst = TA_RAS_INV_NODE;
--	} else {
--		addr_in.ma.umc_inst = bps->mcumc_id;
--		addr_in.ma.node_inst = bps->cu;
--	}
--
--	if (adev->umc.ras && adev->umc.ras->convert_ras_err_addr)
--		ret = adev->umc.ras->convert_ras_err_addr(adev, err_data,
--				&addr_in, NULL, false);
--
--	return ret;
--}
--
--static int amdgpu_ras_mca2pa(struct amdgpu_device *adev,
--			struct eeprom_table_record *bps,
--			struct ras_err_data *err_data)
--{
--	struct ta_ras_query_address_input addr_in;
--	uint32_t die_id, socket = 0;
--
--	if (adev->smuio.funcs && adev->smuio.funcs->get_socket_id)
--		socket = adev->smuio.funcs->get_socket_id(adev);
--
--	/* although die id is gotten from PA in nps1 mode, the id is
--	 * fitable for any nps mode
--	 */
--	if (adev->umc.ras && adev->umc.ras->get_die_id_from_pa)
--		die_id = adev->umc.ras->get_die_id_from_pa(adev, bps->address,
--					bps->retired_page << AMDGPU_GPU_PAGE_SHIFT);
--	else
--		return -EINVAL;
--
--	/* reinit err_data */
--	err_data->err_addr_cnt = 0;
--	err_data->err_addr_len = adev->umc.retire_unit;
--
--	memset(&addr_in, 0, sizeof(addr_in));
--	addr_in.ma.err_addr = bps->address;
--	addr_in.ma.ch_inst = bps->mem_channel;
--	addr_in.ma.umc_inst = bps->mcumc_id;
--	addr_in.ma.node_inst = die_id;
--	addr_in.ma.socket_id = socket;
--
--	if (adev->umc.ras && adev->umc.ras->convert_ras_err_addr)
--		return adev->umc.ras->convert_ras_err_addr(adev, err_data,
--					&addr_in, NULL, false);
--	else
--		return  -EINVAL;
--}
--
- static bool __check_record_in_range(struct amdgpu_device *adev,
- 			struct eeprom_table_record *bps, int count)
- {
-@@ -3013,117 +2942,13 @@ static int __amdgpu_ras_convert_rec_array_from_rom(struct amdgpu_device *adev,
- 				struct eeprom_table_record *bps, struct ras_err_data *err_data,
- 				enum amdgpu_memory_partition nps)
- {
--	int i = 0;
--	uint64_t chan_idx_v2;
--	enum amdgpu_memory_partition save_nps;
--
--	save_nps = (bps[0].retired_page >> UMC_NPS_SHIFT) & UMC_NPS_MASK;
--	chan_idx_v2 = bps[0].retired_page & UMC_CHANNEL_IDX_V2;
--
- 	/*old asics just have pa in eeprom*/
--	if (IP_VERSION_MAJ(amdgpu_ip_version(adev, UMC_HWIP, 0)) < 12) {
--		memcpy(err_data->err_addr, bps,
--			sizeof(struct eeprom_table_record) * adev->umc.retire_unit);
--		goto out;
--	}
--
--	for (i = 0; i < adev->umc.retire_unit; i++)
--		bps[i].retired_page &= ~(UMC_NPS_MASK << UMC_NPS_SHIFT);
--
--	if (save_nps || chan_idx_v2) {
--		if (save_nps == nps) {
--			if (amdgpu_umc_pages_in_a_row(adev, err_data,
--					bps[0].retired_page << AMDGPU_GPU_PAGE_SHIFT))
--				return -EINVAL;
--			for (i = 0; i < adev->umc.retire_unit; i++) {
--				err_data->err_addr[i].address = bps[0].address;
--				err_data->err_addr[i].mem_channel = bps[0].mem_channel;
--				err_data->err_addr[i].bank = bps[0].bank;
--				err_data->err_addr[i].err_type = bps[0].err_type;
--				err_data->err_addr[i].mcumc_id = bps[0].mcumc_id;
--			}
--		} else {
--			if (amdgpu_ras_mca2pa_by_idx(adev, &bps[0], err_data))
--				return -EINVAL;
--		}
--	} else {
--		if (bps[0].address == 0) {
--			/* for specific old eeprom data, mca address is not stored,
--			 * calc it from pa
--			 */
--			if (amdgpu_umc_pa2mca(adev, bps[0].retired_page << AMDGPU_GPU_PAGE_SHIFT,
--				&(bps[0].address), AMDGPU_NPS1_PARTITION_MODE))
--				return -EINVAL;
--		}
-+	memcpy(err_data->err_addr, bps,
-+		sizeof(struct eeprom_table_record) * adev->umc.retire_unit);
- 
--		if (amdgpu_ras_mca2pa(adev, &bps[0], err_data)) {
--			if (nps == AMDGPU_NPS1_PARTITION_MODE)
--				memcpy(err_data->err_addr, bps,
--					sizeof(struct eeprom_table_record) * adev->umc.retire_unit);
--			else
--				return -EOPNOTSUPP;
--		}
--	}
--
--out:
- 	return __amdgpu_ras_restore_bad_pages(adev, err_data->err_addr, adev->umc.retire_unit);
- }
- 
--static int __amdgpu_ras_convert_rec_from_rom(struct amdgpu_device *adev,
--				struct eeprom_table_record *bps, struct ras_err_data *err_data,
--				enum amdgpu_memory_partition nps)
--{
--	int i = 0;
--	uint64_t chan_idx_v2;
--	enum amdgpu_memory_partition save_nps;
--
--	if (!amdgpu_ras_smu_eeprom_supported(adev)) {
--		save_nps = (bps->retired_page >> UMC_NPS_SHIFT) & UMC_NPS_MASK;
--		chan_idx_v2 = bps->retired_page & UMC_CHANNEL_IDX_V2;
--		bps->retired_page &= ~(UMC_NPS_MASK << UMC_NPS_SHIFT);
--	} else {
--		/* if pmfw manages eeprom, save_nps is not stored on eeprom,
--		 * we should always convert mca address into physical address,
--		 * make save_nps different from nps
--		 */
--		save_nps = nps + 1;
--	}
--
--	if (save_nps == nps) {
--		if (amdgpu_umc_pages_in_a_row(adev, err_data,
--				bps->retired_page << AMDGPU_GPU_PAGE_SHIFT))
--			return -EINVAL;
--		for (i = 0; i < adev->umc.retire_unit; i++) {
--			err_data->err_addr[i].address = bps->address;
--			err_data->err_addr[i].mem_channel = bps->mem_channel;
--			err_data->err_addr[i].bank = bps->bank;
--			err_data->err_addr[i].err_type = bps->err_type;
--			err_data->err_addr[i].mcumc_id = bps->mcumc_id;
--		}
--	} else {
--		if (save_nps || chan_idx_v2) {
--			if (amdgpu_ras_mca2pa_by_idx(adev, bps, err_data))
--				return -EINVAL;
--		} else {
--			/* for specific old eeprom data, mca address is not stored,
--			 * calc it from pa
--			 */
--			if (bps->address == 0)
--				if (amdgpu_umc_pa2mca(adev,
--					bps->retired_page << AMDGPU_GPU_PAGE_SHIFT,
--					&(bps->address),
--					AMDGPU_NPS1_PARTITION_MODE))
--					return -EINVAL;
--
--			if (amdgpu_ras_mca2pa(adev, bps, err_data))
--				return -EOPNOTSUPP;
--		}
--	}
--
--	return __amdgpu_ras_restore_bad_pages(adev, err_data->err_addr,
--									adev->umc.retire_unit);
--}
--
- /* it deal with vram only. */
- int amdgpu_ras_add_bad_pages(struct amdgpu_device *adev,
- 		struct eeprom_table_record *bps, int pages, bool from_rom)
-@@ -3156,8 +2981,7 @@ int amdgpu_ras_add_bad_pages(struct amdgpu_device *adev,
- 
- 	if (from_rom) {
- 		/* there is no pa recs in V3, so skip pa recs processing */
--		if ((control->tbl_hdr.version < RAS_TABLE_VER_V3) &&
--		    !amdgpu_ras_smu_eeprom_supported(adev)) {
-+		if (control->tbl_hdr.version < RAS_TABLE_VER_V3) {
- 			for (i = 0; i < pages; i++) {
- 				if (control->ras_num_recs - i >= adev->umc.retire_unit) {
- 					if ((bps[i].address == bps[i + 1].address) &&
-@@ -3174,10 +2998,8 @@ int amdgpu_ras_add_bad_pages(struct amdgpu_device *adev,
- 				}
- 			}
- 		}
--		for (; i < pages; i++) {
--			ret = __amdgpu_ras_convert_rec_from_rom(adev,
--				&bps[i], &err_data, nps);
--		}
-+		for (; i < pages; i++)
-+			bps[i].retired_page &= ~(UMC_NPS_MASK << UMC_NPS_SHIFT);
- 
- 		con->eh_data->count_saved = con->eh_data->count;
- 	} else {
-@@ -3202,7 +3024,7 @@ int amdgpu_ras_save_bad_pages(struct amdgpu_device *adev,
- 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
- 	struct ras_err_handler_data *data;
- 	struct amdgpu_ras_eeprom_control *control;
--	int save_count, unit_num, i;
-+	int save_count, unit_num;
- 
- 	if (!con || !con->eh_data) {
- 		if (new_cnt)
-@@ -3239,21 +3061,10 @@ int amdgpu_ras_save_bad_pages(struct amdgpu_device *adev,
- 	/* only new entries are saved */
- 	if (unit_num && save_count) {
- 		/*old asics only save pa to eeprom like before*/
--		if (IP_VERSION_MAJ(amdgpu_ip_version(adev, UMC_HWIP, 0)) < 12) {
--			if (amdgpu_ras_eeprom_append(control,
--					&data->bps[data->count_saved], unit_num)) {
--				dev_err(adev->dev, "Failed to save EEPROM table data!");
--				return -EIO;
--			}
--		} else {
--			for (i = 0; i < unit_num; i++) {
--				if (amdgpu_ras_eeprom_append(control,
--						&data->bps[data->count_saved +
--						i * adev->umc.retire_unit], 1)) {
--					dev_err(adev->dev, "Failed to save EEPROM table data!");
--					return -EIO;
--				}
--			}
-+		if (amdgpu_ras_eeprom_append(control,
-+				&data->bps[data->count_saved], unit_num)) {
-+			dev_err(adev->dev, "Failed to save EEPROM table data!");
-+			return -EIO;
- 		}
- 
- 		dev_info(adev->dev, "Saved %d pages to EEPROM table.\n", save_count);
-@@ -3272,7 +3083,7 @@ static int amdgpu_ras_load_bad_pages(struct amdgpu_device *adev)
- 	struct amdgpu_ras_eeprom_control *control =
- 		&adev->psp.ras_context.ras->eeprom_control;
- 	struct eeprom_table_record *bps;
--	int ret, i = 0;
-+	int ret;
- 
- 	/* no bad page record, skip eeprom access */
- 	if (control->ras_num_recs == 0 || amdgpu_bad_page_threshold == 0)
-@@ -3286,33 +3097,6 @@ static int amdgpu_ras_load_bad_pages(struct amdgpu_device *adev)
- 	if (ret) {
- 		dev_err(adev->dev, "Failed to load EEPROM table records!");
- 	} else {
--		if (adev->umc.ras && adev->umc.ras->convert_ras_err_addr) {
--			/*In V3, there is no pa recs, and some cases(when address==0) may be parsed
--			as pa recs, so add verion check to avoid it.
--			*/
--			if ((control->tbl_hdr.version < RAS_TABLE_VER_V3) &&
--			    !amdgpu_ras_smu_eeprom_supported(adev)) {
--				for (i = 0; i < control->ras_num_recs; i++) {
--					if ((control->ras_num_recs - i) >= adev->umc.retire_unit) {
--						if ((bps[i].address == bps[i + 1].address) &&
--							(bps[i].mem_channel == bps[i + 1].mem_channel)) {
--							control->ras_num_pa_recs += adev->umc.retire_unit;
--							i += (adev->umc.retire_unit - 1);
--						} else {
--							control->ras_num_mca_recs +=
--										(control->ras_num_recs - i);
--							break;
--						}
--					} else {
--						control->ras_num_mca_recs += (control->ras_num_recs - i);
--						break;
--					}
--				}
--			} else {
--				control->ras_num_mca_recs = control->ras_num_recs;
--			}
--		}
--
- 		ret = amdgpu_ras_add_bad_pages(adev, bps, control->ras_num_recs, true);
- 		if (ret)
- 			goto out;
-@@ -3424,9 +3208,6 @@ int amdgpu_ras_init_badpage_info(struct amdgpu_device *adev)
- 	ret = amdgpu_ras_eeprom_init(control);
- 	control->is_eeprom_valid = !ret;
- 
--	if (!adev->umc.ras || !adev->umc.ras->convert_ras_err_addr)
--		control->ras_num_pa_recs = control->ras_num_recs;
--
- 	if (adev->umc.ras &&
- 	    adev->umc.ras->get_retire_flip_bits)
- 		adev->umc.ras->get_retire_flip_bits(adev);
-@@ -3446,13 +3227,6 @@ int amdgpu_ras_init_badpage_info(struct amdgpu_device *adev)
- 				adev, control->bad_channel_bitmap);
- 			con->update_channel_flag = false;
- 		}
--
--		/* The format action is only applied to new ASICs */
--		if (IP_VERSION_MAJ(amdgpu_ip_version(adev, UMC_HWIP, 0)) >= 12 &&
--		    control->tbl_hdr.version < RAS_TABLE_VER_V3)
--			if (!amdgpu_ras_eeprom_reset_table(control))
--				if (amdgpu_ras_save_bad_pages(adev, NULL))
--					dev_warn(adev->dev, "Failed to format RAS EEPROM data in V3 version!\n");
- 	}
- 
- 	return 0;
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-index 36f584f05e2f..292d76021644 100644
+index 292d76021644..d28e8958b0ff 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
-@@ -665,7 +665,6 @@ amdgpu_ras_eeprom_append_table(struct amdgpu_ras_eeprom_control *control,
- 			       const u32 num)
- {
- 	struct amdgpu_ras *con = amdgpu_ras_get_context(to_amdgpu_device(control));
--	struct amdgpu_device *adev = to_amdgpu_device(control);
- 	u32 a, b, i;
- 	u8 *buf, *pp;
- 	int res;
-@@ -770,10 +769,7 @@ amdgpu_ras_eeprom_append_table(struct amdgpu_ras_eeprom_control *control,
- 		% control->ras_max_record_count;
- 
- 	/*old asics only save pa to eeprom like before*/
--	if (IP_VERSION_MAJ(amdgpu_ip_version(adev, UMC_HWIP, 0)) < 12)
--		control->ras_num_pa_recs += num;
--	else
--		control->ras_num_mca_recs += num;
-+	control->ras_num_pa_recs += num;
- 
- 	control->ras_num_bad_pages = con->bad_page_num;
- Out:
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c
-index 516ae7a5cfeb..a99f1bae7a8f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.c
-@@ -501,43 +501,3 @@ int amdgpu_umc_loop_channels(struct amdgpu_device *adev,
- 
- 	return 0;
+@@ -916,33 +916,6 @@ int amdgpu_ras_eeprom_update_record_num(struct amdgpu_ras_eeprom_control *contro
+ 	return ret;
  }
--
--int amdgpu_umc_pages_in_a_row(struct amdgpu_device *adev,
--			struct ras_err_data *err_data, uint64_t pa_addr)
+ 
+-static int amdgpu_ras_smu_eeprom_append(struct amdgpu_ras_eeprom_control *control)
 -{
--	struct ta_ras_query_address_output addr_out;
+-	struct amdgpu_device *adev = to_amdgpu_device(control);
+-	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
 -
--	/* reinit err_data */
--	err_data->err_addr_cnt = 0;
--	err_data->err_addr_len = adev->umc.retire_unit;
+-	if (!amdgpu_ras_smu_eeprom_supported(adev) || !con)
+-		return 0;
 -
--	addr_out.pa.pa = pa_addr;
--	if (adev->umc.ras && adev->umc.ras->convert_ras_err_addr)
--		return adev->umc.ras->convert_ras_err_addr(adev, err_data, NULL,
--				&addr_out, false);
--	else
--		return -EINVAL;
--}
+-	control->ras_num_bad_pages = con->bad_page_num;
 -
--int amdgpu_umc_pa2mca(struct amdgpu_device *adev,
--		uint64_t pa, uint64_t *mca, enum amdgpu_memory_partition nps)
--{
--	struct ta_ras_query_address_input addr_in;
--	struct ta_ras_query_address_output addr_out;
--	int ret;
+-	if (amdgpu_bad_page_threshold != 0 &&
+-	    control->ras_num_bad_pages > con->bad_page_cnt_threshold) {
+-		dev_warn(adev->dev,
+-			"Saved bad pages %d reaches threshold value %d\n",
+-			control->ras_num_bad_pages, con->bad_page_cnt_threshold);
 -
--	/* nps: the pa belongs to */
--	addr_in.pa.pa = pa | ((uint64_t)nps << 58);
--	addr_in.addr_type = TA_RAS_PA_TO_MCA;
--	ret = psp_ras_query_address(&adev->psp, &addr_in, &addr_out);
--	if (ret) {
--		dev_warn(adev->dev, "Failed to query RAS MCA address for 0x%llx",
--			pa);
+-		if (adev->cper.enabled && amdgpu_cper_generate_bp_threshold_record(adev))
+-			dev_warn(adev->dev, "fail to generate bad page threshold cper records\n");
 -
--		return ret;
+-		if ((amdgpu_bad_page_threshold != -1) &&
+-		    (amdgpu_bad_page_threshold != -2))
+-			con->is_rma = true;
 -	}
--
--	*mca = addr_out.ma.err_addr;
 -
 -	return 0;
 -}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
-index f65f3e082c64..cdaee4a049c3 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umc.h
-@@ -103,13 +103,6 @@ struct amdgpu_umc_ras {
- 					void *ras_error_status);
- 	bool (*check_ecc_err_status)(struct amdgpu_device *adev,
- 			enum amdgpu_mca_error_type type, void *ras_error_status);
--	int (*convert_ras_err_addr)(struct amdgpu_device *adev,
--			struct ras_err_data *err_data,
--			struct ta_ras_query_address_input *addr_in,
--			struct ta_ras_query_address_output *addr_out,
--			bool dump_addr);
--	uint32_t (*get_die_id_from_pa)(struct amdgpu_device *adev,
--			uint64_t mca_addr, uint64_t retired_page);
- 	void (*get_retire_flip_bits)(struct amdgpu_device *adev);
- 	void (*mca_ipid_parse)(struct amdgpu_device *adev, uint64_t ipid,
- 			uint32_t *did, uint32_t *ch, uint32_t *umc_inst, uint32_t *sid);
-@@ -179,10 +172,4 @@ int amdgpu_umc_loop_channels(struct amdgpu_device *adev,
- 
- void amdgpu_umc_handle_bad_pages(struct amdgpu_device *adev,
- 			void *ras_error_status);
--int amdgpu_umc_pages_in_a_row(struct amdgpu_device *adev,
--			struct ras_err_data *err_data, uint64_t pa_addr);
--int amdgpu_umc_lookup_bad_pages_in_a_row(struct amdgpu_device *adev,
--			uint64_t pa_addr, uint64_t *pfns, int len);
--int amdgpu_umc_pa2mca(struct amdgpu_device *adev,
--		uint64_t pa, uint64_t *mca, enum amdgpu_memory_partition nps);
- #endif
-diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-index 4d6197c0efb1..beb89b0f9f3e 100644
---- a/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/umc_v12_0.c
-@@ -197,31 +197,6 @@ static bool umc_v12_0_check_ecc_err_status(struct amdgpu_device *adev,
- 	return false;
- }
- 
--static uint32_t umc_v12_0_get_die_id(struct amdgpu_device *adev,
--		uint64_t mca_addr, uint64_t retired_page)
--{
--	uint32_t die = 0;
 -
--	/* we only calculate die id for nps1 mode right now */
--	die += ((((retired_page >> 12) & 0x1ULL)^
--	    ((retired_page >> 20) & 0x1ULL) ^
--	    ((retired_page >> 27) & 0x1ULL) ^
--	    ((retired_page >> 34) & 0x1ULL) ^
--	    ((retired_page >> 41) & 0x1ULL)) << 0);
--
--	/* the original PA_C4 and PA_R13 may be cleared in retired_page, so
--	 * get them from mca_addr.
--	 */
--	die += ((((retired_page >> 13) & 0x1ULL) ^
--	    ((mca_addr >> 5) & 0x1ULL) ^
--	    ((retired_page >> 28) & 0x1ULL) ^
--	    ((mca_addr >> 23) & 0x1ULL) ^
--	    ((retired_page >> 42) & 0x1ULL)) << 1);
--	die &= 3;
--
--	return die;
--}
--
- static void umc_v12_0_mca_ipid_parse(struct amdgpu_device *adev, uint64_t ipid,
- 		uint32_t *did, uint32_t *ch, uint32_t *umc_inst, uint32_t *sid)
+ /**
+  * amdgpu_ras_eeprom_append -- append records to the EEPROM RAS table
+  * @control: pointer to control structure
+@@ -961,15 +934,13 @@ int amdgpu_ras_eeprom_append(struct amdgpu_ras_eeprom_control *control,
+ 			     const u32 num)
  {
-@@ -240,7 +215,6 @@ struct amdgpu_umc_ras umc_v12_0_ras = {
- 		.hw_ops = NULL,
- 	},
- 	.check_ecc_err_status = umc_v12_0_check_ecc_err_status,
--	.get_die_id_from_pa = umc_v12_0_get_die_id,
- 	.get_retire_flip_bits = umc_v12_0_get_retire_flip_bits,
- 	.mca_ipid_parse = umc_v12_0_mca_ipid_parse,
- };
+ 	struct amdgpu_device *adev = to_amdgpu_device(control);
++	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
+ 	int res, i;
+ 	uint64_t nps = AMDGPU_NPS1_PARTITION_MODE;
+ 
+-	if (!__is_ras_eeprom_supported(adev))
++	if (!__is_ras_eeprom_supported(adev) || !con)
+ 		return 0;
+ 
+-	if (amdgpu_ras_smu_eeprom_supported(adev))
+-		return amdgpu_ras_smu_eeprom_append(control);
+-
+ 	if (num == 0) {
+ 		dev_err(adev->dev, "will not append 0 records\n");
+ 		return -EINVAL;
 -- 
 2.34.1
 
