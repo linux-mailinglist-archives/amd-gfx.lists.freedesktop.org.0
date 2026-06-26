@@ -2,65 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VnXYKX22Pmp+KgkAu9opvQ
+	id /TjLAXy2Pmp7KgkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 19:27:25 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 19:27:24 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0055C6CF69B
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 19:27:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 638586CF693
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 19:27:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=yandex.ru header.s=mail header.b=LIj3K3Es;
+	dkim=pass header.d=collabora.com header.s=zohomail header.b=gjuVN2pA;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=yandex.ru
+	dmarc=pass (policy=none) header.from=collabora.com;
+	arc=pass ("zohomail.com:s=zohoarc:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B40DA10E287;
-	Fri, 26 Jun 2026 17:27:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53E2510F6C8;
+	Fri, 26 Jun 2026 17:27:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from forward100a.mail.yandex.net (forward100a.mail.yandex.net
- [178.154.239.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DD5210F2F9;
- Fri, 26 Jun 2026 13:40:04 +0000 (UTC)
-Received: from mail-nwsmtp-smtp-production-main-55.vla.yp-c.yandex.net
- (mail-nwsmtp-smtp-production-main-55.vla.yp-c.yandex.net
- [IPv6:2a02:6b8:c1f:582e:0:640:200:0])
- by forward100a.mail.yandex.net (Yandex) with ESMTPS id C44DDC0735;
- Fri, 26 Jun 2026 16:40:01 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-55.vla.yp-c.yandex.net (smtp)
- with ESMTPSA id rdanEUkf5Gk0-AkfTld3r; 
- Fri, 26 Jun 2026 16:40:00 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
- t=1782481200; bh=e9YMAmOw7IfaTS4/uOeKkF1326th313osWzDsbfnnqo=;
- h=Message-ID:Date:Cc:Subject:To:From;
- b=LIj3K3EsdqMFaoe1y6wJVJzk0ObBELltGEm3Mf5hqdoomBHz5B2NUaF4Gw2FEtyXT
- +n5leGC6MSBb1Zqj9s6SMJcVDK52G/Xo0i5Cm26D73OT6z6W+//x+GXD9n1vD36dcG
- 0dYGAWirlFQF0LxVv7qo8YNHWpATZ4FaoOM4sLZg=
-From: Evgenii Burenchev <evg28bur@yandex.ru>
-To: stable@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Evgenii Burenchev <evg28bur@yandex.ru>, harry.wentland@amd.com,
- sunpeng.li@amd.com, siqueira@igalia.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
- mario.limonciello@amd.com, alex.hung@amd.com, superm1@kernel.org,
- timur.kristof@gmail.com, ivan.lipski@amd.com, ray.wu@amd.com,
- aurabindo.pillai@amd.com, chen-yu.chen@amd.com, mripard@kernel.org,
- Dillon.Varone@amd.com, mwen@igalia.com, chiahsuan.chung@amd.com,
- kenneth.feng@amd.com, srinivasan.shanmugam@amd.com, contact@emersion.fr,
- Alvin.Lee2@amd.com, chaitanya.kumar.borah@intel.com,
- dmitry.baryshkov@oss.qualcomm.com, pierre-eric.pelloux-prayer@amd.com,
- ekurzinger@gmail.com, HaoPing.Liu@amd.com, Tony.Cheng@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org
-Subject: [PATCH v2] drm/amd/display: Fix dangling pointers in state reset
- functions on allocation failure
-Date: Fri, 26 Jun 2026 16:38:49 +0300
-Message-ID: <20260626133859.21492-1-evg28bur@yandex.ru>
-X-Mailer: git-send-email 2.43.0
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2A0410E391;
+ Fri, 26 Jun 2026 14:20:16 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1782483606; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=amMJ57mcMYX52UjAj+HszuIE2Wpn6141jOUIQiNz6hWeEZHyTUZACdnt1b2kqzs1GQS8mJ9uIZMYA5vM7iWVR+iovc3YnKxzeWgKcECk7pHpSa+mlpWtaQ+v6j1MZmlxfpPKG3jSdZacMB+Mb4GCY/Su73MJPDWHBpOD0XhqHOg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1782483606;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=cQyjiVRTcXnC6EW1WnK2c+p4P+ZHsMUWyzuRTT8Dx98=; 
+ b=YF+ruGfeObIm2RzRLnhhKl9Eal3cDF0dRad497sqPARzXVoYEPfihlbhGiq/LM4HtQgjAlZPcQ0AFvyZXe6at0t9n0EcptHbNKwS3cGe2Wp1LC56QyLic+jbGPw91Z+ctvbRLsvZi8P+qYgMsMOrMLIEz2UnApXedeTcyt/qDPs=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nfraprado@collabora.com;
+ dmarc=pass header.from=<nfraprado@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1782483606; 
+ s=zohomail; d=collabora.com; i=nfraprado@collabora.com;
+ h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:To:To:Cc:Cc:Reply-To;
+ bh=cQyjiVRTcXnC6EW1WnK2c+p4P+ZHsMUWyzuRTT8Dx98=;
+ b=gjuVN2pAzQSyvU1/0pyfP3dLYWgXBEcA8X/m9z1jTh9S3okyDwG8gf3EFsjQxMLj
+ 6g5VpyeKOeAF8ccF3wir1WYDcWKRAjBLRBRWWJ66NPJbNY4t565z09N5dTomFZRN5Nw
+ nfOZKEBNPdM1SfLlvzHHKuikJ/ttlcsVhsx6Owio=
+Received: by mx.zohomail.com with SMTPS id 1782483604203501.78261578975673;
+ Fri, 26 Jun 2026 07:20:04 -0700 (PDT)
+From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Date: Fri, 26 Jun 2026 10:18:06 -0400
+Subject: [PATCH] drm/amd/display: Always notify the HDA driver on connector
+ disconnect
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 26 Jun 2026 17:27:19 +0000
+Message-Id: <20260626-amdgpu-dm-always-eld-notify-on-disconnect-v1-1-40ce473cd724@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAB2KPmoC/x3NywqEMAxA0V+RrCegBTuPXxlmUZrUCWgqjfMQ8
+ d8tLs/m3g2Mi7DBo9mg8FdMslZ0lwbiO+jAKFQNrnW+9a7HMNEwf5AmDOMvrIY8EmpeJK2YFUk
+ sZlWOC977jv01Bb4xQe3NhZP8z9fzte8HAUqwbHsAAAA=
+X-Change-ID: 20260625-amdgpu-dm-always-eld-notify-on-disconnect-951e67fae8ed
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+X-Mailer: b4 0.14.3
+X-ZohoMailClient: External
+X-Mailman-Approved-At: Fri, 26 Jun 2026 17:27:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,181 +81,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[yandex.ru,none];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[yandex.ru:s=mail];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[36];
-	FREEMAIL_FROM(0.00)[yandex.ru];
-	ARC_NA(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[yandex.ru,amd.com,igalia.com,gmail.com,ffwll.ch,kernel.org,emersion.fr,intel.com,oss.qualcomm.com,lists.freedesktop.org,vger.kernel.org,linuxtesting.org];
-	DKIM_TRACE(0.00)[yandex.ru:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[evg28bur@yandex.ru,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_NEQ_ENVFROM(0.00)[nfraprado@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,linuxtesting.org:url]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0055C6CF69B
+X-Rspamd-Queue-Id: 638586CF693
 
-Multiple reset functions in amdgpu_dm free the old state before allocating
-a new one. If kzalloc_obj() fails, the function returns without updating
-the state pointer, leaving a dangling pointer to already freed memory.
+amdgpu_dm_audio_eld_notify() is currently only called in atomic commits.
+This results in the state of the HDA driver never getting updated when
+an audio sink is removed and an atomic commit never comes. (eg the HDMI
+audio jack switch in ALSA stays 'on' after the HDMI cable is
+disconnected if no other display is connected to cause the compositor to
+submit an atomic commit)
 
-Fix this by allocating the new state first. If allocation fails, warn and
-return without touching the old state, as it remains valid and the caller
-will handle the error appropriately.
+Call amdgpu_dm_audio_eld_notify() in
+amdgpu_dm_update_connector_after_detect() when a sink is no longer
+available to ensure that the HDA driver always gets notified on
+disconnect regardless of atomic commits.
 
-This affects three functions:
-- amdgpu_dm_plane_drm_plane_reset()
-- amdgpu_dm_crtc_reset_state()
-- amdgpu_dm_connector_funcs_reset()
-
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
-
-Fixes: 5d945cbcd4b1 ("drm/amd/display: Create a file dedicated to planes")
-Fixes: 473683a03495 ("drm/amd/display: Create a file dedicated for CRTC")
-Fixes: e7b07ceef2a6 ("drm/amd/display: Merge amdgpu_dm_types and amdgpu_dm")
-Signed-off-by: Evgenii Burenchev <evg28bur@yandex.ru>
+Assisted-by: Copilot:claude-sonnet-4.6
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 ---
-Changes in v2:
-- Also fix amdgpu_dm_crtc_reset_state() and amdgpu_dm_connector_funcs_reset()
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 48 ++++++++++---------
- .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |  8 ++--
- .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 14 +++---
- 3 files changed, 37 insertions(+), 33 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c     | 2 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.h     | 2 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c | 9 +++++++++
+ 3 files changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 97ab1e83b318..6ef1b07ec251 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -8151,33 +8151,35 @@ static void amdgpu_dm_connector_destroy(struct drm_connector *connector)
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c
+index 13c9a9d145ba..c9da19335eac 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c
+@@ -168,7 +168,7 @@ void amdgpu_dm_audio_fini(struct amdgpu_device *adev)
+ }
+ EXPORT_IF_KUNIT(amdgpu_dm_audio_fini);
  
- void amdgpu_dm_connector_funcs_reset(struct drm_connector *connector)
+-STATIC_IFN_KUNIT void amdgpu_dm_audio_eld_notify(struct amdgpu_device *adev, int pin)
++void amdgpu_dm_audio_eld_notify(struct amdgpu_device *adev, int pin)
  {
--	struct dm_connector_state *state =
--		to_dm_connector_state(connector->state);
--
--	if (connector->state)
--		__drm_atomic_helper_connector_destroy_state(connector->state);
--
--	kfree(state);
-+	struct dm_connector_state *state;
+ 	struct drm_audio_component *acomp = adev->dm.audio_component;
  
-+	/* Allocate new state first */
- 	state = kzalloc_obj(*state);
-+	if (WARN_ON(!state))
-+		return;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.h
+index 7acfc5ef69b3..d0361fd95f60 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.h
+@@ -40,6 +40,7 @@ void amdgpu_dm_commit_audio(struct drm_device *dev,
+ void amdgpu_dm_fill_audio_info(struct audio_info *audio_info,
+ 		     const struct drm_connector *drm_connector,
+ 		     const struct dc_sink *dc_sink);
++void amdgpu_dm_audio_eld_notify(struct amdgpu_device *adev, int pin);
  
--	if (state) {
--		state->scaling = RMX_OFF;
--		state->underscan_enable = false;
--		state->underscan_hborder = 0;
--		state->underscan_vborder = 0;
--		state->base.max_requested_bpc = 8;
--		state->vcpi_slots = 0;
--		state->pbn = 0;
--
--		if (connector->connector_type == DRM_MODE_CONNECTOR_eDP) {
--			if (amdgpu_dm_abm_level <= 0)
--				state->abm_level = ABM_LEVEL_IMMEDIATE_DISABLE;
--			else
--				state->abm_level = amdgpu_dm_abm_level;
--		}
-+	/* Destroy old state only after successful allocation */
-+	if (connector->state)
-+		__drm_atomic_helper_connector_destroy_state(connector->state);
+ #if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
+ struct device;
+@@ -48,7 +49,6 @@ int amdgpu_dm_audio_component_bind(struct device *kdev,
+ 				   struct device *hda_kdev, void *data);
+ void amdgpu_dm_audio_component_unbind(struct device *kdev,
+ 				      struct device *hda_kdev, void *data);
+-void amdgpu_dm_audio_eld_notify(struct amdgpu_device *adev, int pin);
+ int amdgpu_dm_audio_get_param(void);
+ void amdgpu_dm_audio_set_param(int val);
+ #endif
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
+index 300ee26f26ff..9286f86a20cd 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
+@@ -464,6 +464,8 @@ void amdgpu_dm_update_connector_after_detect(
+ 	struct drm_connector *connector = &aconnector->base;
+ 	struct dc_sink *sink __free(sink_release) = NULL;
+ 	struct drm_device *dev = connector->dev;
++	struct amdgpu_device *adev = drm_to_adev(dev);
++	int inst;
  
--		__drm_atomic_helper_connector_reset(connector, &state->base);
-+	/* Let DRM core install the new state */
-+	__drm_atomic_helper_connector_reset(connector, &state->base);
+ 	/* MST handled by drm_mst framework */
+ 	if (aconnector->mst_mgr.mst_state == true)
+@@ -601,6 +603,13 @@ void amdgpu_dm_update_connector_after_detect(
+ 		/* Set CP to DESIRED if it was ENABLED, so we can re-enable it again on hotplug */
+ 		if (connector->state->content_protection == DRM_MODE_CONTENT_PROTECTION_ENABLED)
+ 			connector->state->content_protection = DRM_MODE_CONTENT_PROTECTION_DESIRED;
 +
-+	/* Initialize driver-specific fields */
-+	state->scaling = RMX_OFF;
-+	state->underscan_enable = false;
-+	state->underscan_hborder = 0;
-+	state->underscan_vborder = 0;
-+	state->base.max_requested_bpc = 8;
-+	state->vcpi_slots = 0;
-+	state->pbn = 0;
-+
-+	/* eDP-specific initialization */
-+	if (connector->connector_type == DRM_MODE_CONNECTOR_eDP) {
-+		if (amdgpu_dm_abm_level <= 0)
-+			state->abm_level = ABM_LEVEL_IMMEDIATE_DISABLE;
-+		else
-+			state->abm_level = amdgpu_dm_abm_level;
++		mutex_lock(&adev->dm.audio_lock);
++		inst = aconnector->audio_inst;
++		aconnector->audio_inst = -1;
++		mutex_unlock(&adev->dm.audio_lock);
++		if (inst != -1)
++			amdgpu_dm_audio_eld_notify(adev, inst);
  	}
- }
  
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-index 3dcedaa67ed8..6146fbc528c3 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-@@ -437,13 +437,15 @@ static void amdgpu_dm_crtc_reset_state(struct drm_crtc *crtc)
- {
- 	struct dm_crtc_state *state;
- 
--	if (crtc->state)
--		amdgpu_dm_crtc_destroy_state(crtc, crtc->state);
--
-+	/* Allocate new state first */
- 	state = kzalloc_obj(*state);
- 	if (WARN_ON(!state))
- 		return;
- 
-+	/* Destroy old state only after successful allocation */
-+	if (crtc->state)
-+		amdgpu_dm_crtc_destroy_state(crtc, crtc->state);
-+
- 	__drm_atomic_helper_crtc_reset(crtc, &state->base);
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-index e957657b06c7..eb1c0a26f20d 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-@@ -1488,17 +1488,17 @@ static const struct drm_plane_helper_funcs dm_primary_plane_helper_funcs = {
- 
- static void amdgpu_dm_plane_drm_plane_reset(struct drm_plane *plane)
- {
--	struct dm_plane_state *amdgpu_state = NULL;
--
--	if (plane->state)
--		plane->funcs->atomic_destroy_state(plane, plane->state);
-+	struct dm_plane_state *amdgpu_state;
- 
-+	/* Allocate new state first */
- 	amdgpu_state = kzalloc_obj(*amdgpu_state);
--	WARN_ON(amdgpu_state == NULL);
--
--	if (!amdgpu_state)
-+	if (WARN_ON(!amdgpu_state))
- 		return;
- 
-+	/* Destroy old state only after successful allocation */
-+	if (plane->state)
-+		plane->funcs->atomic_destroy_state(plane, plane->state);
-+
- 	__drm_atomic_helper_plane_reset(plane, &amdgpu_state->base);
- 	amdgpu_state->degamma_tf = AMDGPU_TRANSFER_FUNCTION_DEFAULT;
- 	amdgpu_state->hdr_mult = AMDGPU_HDR_MULT_DEFAULT;
+ 	update_subconnector_property(aconnector);
+
+---
+base-commit: 30ffa8de54e5cc80d93fd211ca134d1764a7011f
+change-id: 20260625-amdgpu-dm-always-eld-notify-on-disconnect-951e67fae8ed
+
+Best regards,
 -- 
-2.43.0
+Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
