@@ -2,70 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /TjLAXy2Pmp7KgkAu9opvQ
+	id nCz4IYG2PmqHKgkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 19:27:24 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 19:27:29 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 638586CF693
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 19:27:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E171B6CF6A2
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 19:27:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=zohomail header.b=gjuVN2pA;
+	dkim=fail ("headers rsa verify failed") header.d=alerinaldi.it header.s=default header.b="bMdFF/Cp";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	arc=pass ("zohomail.com:s=zohoarc:i=1")
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=alerinaldi.it (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53E2510F6C8;
-	Fri, 26 Jun 2026 17:27:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C12A010F6D0;
+	Fri, 26 Jun 2026 17:27:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2A0410E391;
- Fri, 26 Jun 2026 14:20:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1782483606; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=amMJ57mcMYX52UjAj+HszuIE2Wpn6141jOUIQiNz6hWeEZHyTUZACdnt1b2kqzs1GQS8mJ9uIZMYA5vM7iWVR+iovc3YnKxzeWgKcECk7pHpSa+mlpWtaQ+v6j1MZmlxfpPKG3jSdZacMB+Mb4GCY/Su73MJPDWHBpOD0XhqHOg=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1782483606;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=cQyjiVRTcXnC6EW1WnK2c+p4P+ZHsMUWyzuRTT8Dx98=; 
- b=YF+ruGfeObIm2RzRLnhhKl9Eal3cDF0dRad497sqPARzXVoYEPfihlbhGiq/LM4HtQgjAlZPcQ0AFvyZXe6at0t9n0EcptHbNKwS3cGe2Wp1LC56QyLic+jbGPw91Z+ctvbRLsvZi8P+qYgMsMOrMLIEz2UnApXedeTcyt/qDPs=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nfraprado@collabora.com;
- dmarc=pass header.from=<nfraprado@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1782483606; 
- s=zohomail; d=collabora.com; i=nfraprado@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:To:To:Cc:Cc:Reply-To;
- bh=cQyjiVRTcXnC6EW1WnK2c+p4P+ZHsMUWyzuRTT8Dx98=;
- b=gjuVN2pAzQSyvU1/0pyfP3dLYWgXBEcA8X/m9z1jTh9S3okyDwG8gf3EFsjQxMLj
- 6g5VpyeKOeAF8ccF3wir1WYDcWKRAjBLRBRWWJ66NPJbNY4t565z09N5dTomFZRN5Nw
- nfOZKEBNPdM1SfLlvzHHKuikJ/ttlcsVhsx6Owio=
-Received: by mx.zohomail.com with SMTPS id 1782483604203501.78261578975673;
- Fri, 26 Jun 2026 07:20:04 -0700 (PDT)
-From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Date: Fri, 26 Jun 2026 10:18:06 -0400
-Subject: [PATCH] drm/amd/display: Always notify the HDA driver on connector
- disconnect
+X-Greylist: delayed 2776 seconds by postgrey-1.36 at gabe;
+ Fri, 26 Jun 2026 15:22:45 UTC
+Received: from server22.dominiok.net (server22.dominiok.net [198.136.49.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EED8910E3AE;
+ Fri, 26 Jun 2026 15:22:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=alerinaldi.it; s=default; h=Content-Transfer-Encoding:MIME-Version:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=mE1OMUqnSgvpT6rWa4HUfXLZAPWVbKlraUuGYFi42p4=; b=bMdFF/Cpu6AzlHbplO98QQrmN6
+ d7vwj43kH3Le2EMTJHpvNw7OnmgSpeled91CBo3MvQLdjzjS+kl4GvbTIs9JGwYmW5GCp556kLFyL
+ fdeOIFc6ZXOROM/DvJbftCuGZL3cYTfGW7gqy9P/5tfd5C6ejyMgVtW3MRn+o3pSCa3UxR0UY91IE
+ NNFfl2fqdGd61FXdIwvRiqppclk4ctfVsrMNFk8gb4czqZARcfDTpylfcpeXT2F6b6gaUH+wpQK+E
+ Nh+42CQMphNImFUZZTmi9/JAO7kPSyGvT8/IIFwyNgRGyb8jRPMBPV/zQxMZiyO7k6EkcO0Db81w7
+ IhCvH2oA==;
+Received: from mailnull by server22.dominiok.net with spam-scanner (Exim
+ 4.99.4) (envelope-from <ale@alerinaldi.it>)
+ id 1wd7fQ-00000002VCb-0m1s; Fri, 26 Jun 2026 16:36:28 +0200
+X-ImunifyEmail-Filter-Score: -0.64
+X-ImunifyEmail-Filter-Version: 3.8.25/202606241025
+X-ImunifyEmail-Filter-Action: no action
+X-ImunifyEmail-Filter-Info: Ul9NSVNTSU5HX0NIQVJTRVQgTUlNRV9UUkFDRSBSQ1ZEX1RM
+ U19BTEw
+ gVE9fRE5fU09NRSBSQ1ZEX1ZJQV9TTVRQX0FVVEggTUlNRV9VTktOT1
+ dOIFZFUklMT0NLX0NCIEZST01fSEFTX0ROIFJDUFRfQ09VTlRfU0VWR
+ U4gQVNOIEJBWUVTX0hBTSBBUkNfTkEgUkNWRF9DT1VOVF9PTkUgRlJP
+ TV9FUV9FTlZGUk9NIFRPX01BVENIX0VOVlJDUFRfU09NRSBNSURfQ09
+ OVEFJTlNfRlJPTQ==
+Received: from [45.137.234.149] (port=56066
+ helo=alerinaldi-legion.tail281c59.ts.net)
+ by server22.dominiok.net with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+ (Exim 4.99.4) (envelope-from <ale@alerinaldi.it>)
+ id 1wd7fQ-00000002VA4-32Zy; Fri, 26 Jun 2026 16:36:27 +0200
+From: Alessandro Rinaldi <ale@alerinaldi.it>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: Rodrigo Siqueira <siqueira@igalia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Werner Sembach <wse@tuxedocomputers.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Alessandro Rinaldi <ale@alerinaldi.it>
+Subject: [PATCH] drm/amd/display: Force PWM backlight on Lenovo Legion 5
+ 15ARH05
+Date: Fri, 26 Jun 2026 16:36:00 +0200
+Message-ID: <20260626143600.13531-1-ale@alerinaldi.it>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260626-amdgpu-dm-always-eld-notify-on-disconnect-v1-1-40ce473cd724@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAB2KPmoC/x3NywqEMAxA0V+RrCegBTuPXxlmUZrUCWgqjfMQ8
- d8tLs/m3g2Mi7DBo9mg8FdMslZ0lwbiO+jAKFQNrnW+9a7HMNEwf5AmDOMvrIY8EmpeJK2YFUk
- sZlWOC977jv01Bb4xQe3NhZP8z9fzte8HAUqwbHsAAAA=
-X-Change-ID: 20260625-amdgpu-dm-always-eld-notify-on-disconnect-951e67fae8ed
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-X-Mailer: b4 0.14.3
-X-ZohoMailClient: External
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server22.dominiok.net
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - alerinaldi.it
+X-Get-Message-Sender-Via: server22.dominiok.net: authenticated_id:
+ ale@alerinaldi.it
+X-Authenticated-Sender: server22.dominiok.net: ale@alerinaldi.it
 X-Mailman-Approved-At: Fri, 26 Jun 2026 17:27:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,120 +92,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+X-Spamd-Result: default: False [1.99 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_DKIM_REJECT(1.00)[alerinaldi.it:s=default];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[alerinaldi.it : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	HAS_X_GMSV(0.00)[ale@alerinaldi.it];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_X_AS(0.00)[ale@alerinaldi.it];
+	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[alerinaldi.it:-];
+	HAS_X_ANTIABUSE(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nfraprado@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[ale@alerinaldi.it,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,alerinaldi.it:email,alerinaldi.it:mid,alerinaldi.it:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 638586CF693
+X-Rspamd-Queue-Id: E171B6CF6A2
 
-amdgpu_dm_audio_eld_notify() is currently only called in atomic commits.
-This results in the state of the HDA driver never getting updated when
-an audio sink is removed and an atomic commit never comes. (eg the HDMI
-audio jack switch in ALSA stays 'on' after the HDMI cable is
-disconnected if no other display is connected to cause the compositor to
-submit an atomic commit)
+The Lenovo Legion 5 15ARH05 (Renoir) ships a BOE 0x08DF eDP panel that
+advertises AUX/DPCD backlight control, so amdgpu's automatic detection
+(amdgpu_backlight == -1) selects AUX. On this panel the AUX backlight
+path has no effect: brightness writes are accepted but the panel level
+never changes, the display is stuck at a fixed brightness and
+max_brightness is reported as a bogus 511000. As a result neither the
+desktop brightness slider nor the brightness hotkeys do anything.
 
-Call amdgpu_dm_audio_eld_notify() in
-amdgpu_dm_update_connector_after_detect() when a sink is no longer
-available to ensure that the HDA driver always gets notified on
-disconnect regardless of atomic commits.
+Forcing PWM backlight (amdgpu.backlight=0) restores working control:
+max_brightness becomes 65535 and the level tracks writes. This has long
+been applied by users as a manual kernel-parameter workaround.
 
-Assisted-by: Copilot:claude-sonnet-4.6
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Extend the generic panel backlight quirk with a force_pwm flag, add an
+entry for the Legion 5 15ARH05 / BOE 0x08DF panel, and have amdgpu
+disable AUX backlight (use PWM) when the quirk matches and the user
+lets the driver auto-select the backlight type.
+
+Signed-off-by: Alessandro Rinaldi <ale@alerinaldi.it>
+Tested-by: Alessandro Rinaldi <ale@alerinaldi.it>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c     | 2 +-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.h     | 2 +-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c | 9 +++++++++
- 3 files changed, 11 insertions(+), 2 deletions(-)
+This overlaps with the "force backlight type" patches for TUXEDO devices
+(amd and i915). If a single shared mechanism for forcing PWM is preferred,
+I'm happy to respin on top of it.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c
-index 13c9a9d145ba..c9da19335eac 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c
-@@ -168,7 +168,7 @@ void amdgpu_dm_audio_fini(struct amdgpu_device *adev)
- }
- EXPORT_IF_KUNIT(amdgpu_dm_audio_fini);
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c  | 7 +++++--
+ drivers/gpu/drm/drm_panel_backlight_quirks.c             | 9 +++++++++
+ include/drm/drm_utils.h                                  | 1 +
+ 3 files changed, 15 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
+index f19092a32..9ae1c1b0f 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
+@@ -486,6 +486,8 @@ void amdgpu_dm_update_connector_ext_caps(struct amdgpu_dm_connector *aconnector)
+ 	caps->ext_caps = &aconnector->dc_link->dpcd_sink_ext_caps;
+ 	caps->aux_support = false;
  
--STATIC_IFN_KUNIT void amdgpu_dm_audio_eld_notify(struct amdgpu_device *adev, int pin)
-+void amdgpu_dm_audio_eld_notify(struct amdgpu_device *adev, int pin)
- {
- 	struct drm_audio_component *acomp = adev->dm.audio_component;
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.h
-index 7acfc5ef69b3..d0361fd95f60 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.h
-@@ -40,6 +40,7 @@ void amdgpu_dm_commit_audio(struct drm_device *dev,
- void amdgpu_dm_fill_audio_info(struct audio_info *audio_info,
- 		     const struct drm_connector *drm_connector,
- 		     const struct dc_sink *dc_sink);
-+void amdgpu_dm_audio_eld_notify(struct amdgpu_device *adev, int pin);
- 
- #if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
- struct device;
-@@ -48,7 +49,6 @@ int amdgpu_dm_audio_component_bind(struct device *kdev,
- 				   struct device *hda_kdev, void *data);
- void amdgpu_dm_audio_component_unbind(struct device *kdev,
- 				      struct device *hda_kdev, void *data);
--void amdgpu_dm_audio_eld_notify(struct amdgpu_device *adev, int pin);
- int amdgpu_dm_audio_get_param(void);
- void amdgpu_dm_audio_set_param(int val);
- #endif
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
-index 300ee26f26ff..9286f86a20cd 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
-@@ -464,6 +464,8 @@ void amdgpu_dm_update_connector_after_detect(
- 	struct drm_connector *connector = &aconnector->base;
- 	struct dc_sink *sink __free(sink_release) = NULL;
- 	struct drm_device *dev = connector->dev;
-+	struct amdgpu_device *adev = drm_to_adev(dev);
-+	int inst;
- 
- 	/* MST handled by drm_mst framework */
- 	if (aconnector->mst_mgr.mst_state == true)
-@@ -601,6 +603,13 @@ void amdgpu_dm_update_connector_after_detect(
- 		/* Set CP to DESIRED if it was ENABLED, so we can re-enable it again on hotplug */
- 		if (connector->state->content_protection == DRM_MODE_CONTENT_PROTECTION_ENABLED)
- 			connector->state->content_protection = DRM_MODE_CONTENT_PROTECTION_DESIRED;
++	panel_backlight_quirk = drm_get_panel_backlight_quirk(aconnector->drm_edid);
 +
-+		mutex_lock(&adev->dm.audio_lock);
-+		inst = aconnector->audio_inst;
-+		aconnector->audio_inst = -1;
-+		mutex_unlock(&adev->dm.audio_lock);
-+		if (inst != -1)
-+			amdgpu_dm_audio_eld_notify(adev, inst);
- 	}
+ 	if (caps->ext_caps->bits.oled == 1
+ 	    /*
+ 	     * ||
+@@ -498,6 +500,9 @@ void amdgpu_dm_update_connector_ext_caps(struct amdgpu_dm_connector *aconnector)
+ 		caps->aux_support = false;
+ 	else if (amdgpu_backlight == 1)
+ 		caps->aux_support = true;
++	else if (!IS_ERR_OR_NULL(panel_backlight_quirk) &&
++		 panel_backlight_quirk->force_pwm)
++		caps->aux_support = false;
+ 	if (caps->aux_support)
+ 		aconnector->dc_link->backlight_control_type = BACKLIGHT_CONTROL_AMD_AUX;
  
- 	update_subconnector_property(aconnector);
-
----
-base-commit: 30ffa8de54e5cc80d93fd211ca134d1764a7011f
-change-id: 20260625-amdgpu-dm-always-eld-notify-on-disconnect-951e67fae8ed
-
-Best regards,
+@@ -513,8 +518,6 @@ void amdgpu_dm_update_connector_ext_caps(struct amdgpu_dm_connector *aconnector)
+ 	else
+ 		caps->aux_min_input_signal = 1;
+ 
+-	panel_backlight_quirk =
+-		drm_get_panel_backlight_quirk(aconnector->drm_edid);
+ 	if (!IS_ERR_OR_NULL(panel_backlight_quirk)) {
+ 		if (panel_backlight_quirk->min_brightness) {
+ 			caps->min_input_signal =
+diff --git a/drivers/gpu/drm/drm_panel_backlight_quirks.c b/drivers/gpu/drm/drm_panel_backlight_quirks.c
+index 537dc6dd0..2d0238382 100644
+--- a/drivers/gpu/drm/drm_panel_backlight_quirks.c
++++ b/drivers/gpu/drm/drm_panel_backlight_quirks.c
+@@ -21,6 +21,15 @@ struct drm_get_panel_backlight_quirk {
+ };
+ 
+ static const struct drm_get_panel_backlight_quirk drm_panel_min_backlight_quirks[] = {
++	/* Lenovo Legion 5 15ARH05, AUX backlight non-functional, force PWM */
++	{
++		.dmi_match.field = DMI_SYS_VENDOR,
++		.dmi_match.value = "LENOVO",
++		.dmi_match_other.field = DMI_PRODUCT_VERSION,
++		.dmi_match_other.value = "Lenovo Legion 5 15ARH05",
++		.ident.panel_id = drm_edid_encode_panel_id('B', 'O', 'E', 0x08df),
++		.quirk = { .force_pwm = true, },
++	},
+ 	/* 13 inch matte panel */
+ 	{
+ 		.dmi_match.field = DMI_BOARD_VENDOR,
+diff --git a/include/drm/drm_utils.h b/include/drm/drm_utils.h
+index 6a46f755d..7e077484c 100644
+--- a/include/drm/drm_utils.h
++++ b/include/drm/drm_utils.h
+@@ -19,6 +19,7 @@ int drm_get_panel_orientation_quirk(int width, int height);
+ struct drm_panel_backlight_quirk {
+ 	u16 min_brightness;
+ 	u32 brightness_mask;
++	bool force_pwm;
+ };
+ 
+ const struct drm_panel_backlight_quirk *
 -- 
-Nícolas F. R. A. Prado <nfraprado@collabora.com>
+2.53.0
+
 
