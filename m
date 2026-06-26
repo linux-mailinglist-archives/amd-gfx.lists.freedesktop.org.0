@@ -2,66 +2,100 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id X4S2KuEZQmrp0AkAu9opvQ
+	id YVn7F5DTPmqkMAkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:08:17 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 21:31:28 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E6756D6C3E
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:08:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A02596CFE45
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 21:31:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=yandex.ru header.s=mail header.b=V3Yc3L7o;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=XeeFVPTH;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=yandex.ru
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("google.com:s=arc-20260327:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF12D10E713;
-	Mon, 29 Jun 2026 07:08:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64AFC10E23D;
+	Fri, 26 Jun 2026 19:31:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from forward103d.mail.yandex.net (forward103d.mail.yandex.net
- [178.154.239.214])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 659D510E405;
- Fri, 26 Jun 2026 19:13:43 +0000 (UTC)
-Received: from mail-nwsmtp-smtp-production-main-81.klg.yp-c.yandex.net
- (mail-nwsmtp-smtp-production-main-81.klg.yp-c.yandex.net
- [IPv6:2a02:6b8:c43:1743:0:640:287f:0])
- by forward103d.mail.yandex.net (Yandex) with ESMTPS id D03C8C005D;
- Fri, 26 Jun 2026 22:13:40 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-81.klg.yp-c.yandex.net (smtp)
- with ESMTPSA id VDgZvirmX8c0-CwsHMUqk; 
- Fri, 26 Jun 2026 22:13:39 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
- t=1782501219; bh=jNeglCViEBka8yVtR4z5raXj3iuBh/ECJABlpgTpemQ=;
- h=Message-ID:Date:Cc:Subject:To:From;
- b=V3Yc3L7oLn1exA8LeYfoQtfnj8/pVwN991YkA4uX0bX/F4bCEtKyyEWA8yZ1Xig8U
- IoHAfosCeg281DD+G8MtnSgQntE1iWpso+GSozZ91pxSPZbsrH8kUolwUZ6p7ANXLX
- 6ELXikKk032hyzfftzeWqSnzUmgWenfzGRpDshOI=
-From: Evgenii Burenchev <evg28bur@yandex.ru>
-To: stable@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Evgenii Burenchev <evg28bur@yandex.ru>, harry.wentland@amd.com,
- sunpeng.li@amd.com, siqueira@igalia.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
- mario.limonciello@amd.com, alex.hung@amd.com, superm1@kernel.org,
- timur.kristof@gmail.com, ivan.lipski@amd.com, ray.wu@amd.com,
- aurabindo.pillai@amd.com, chen-yu.chen@amd.com, mripard@kernel.org,
- Dillon.Varone@amd.com, mwen@igalia.com, chiahsuan.chung@amd.com,
- kenneth.feng@amd.com, srinivasan.shanmugam@amd.com, tzimmermann@suse.de,
- Alvin.Lee2@amd.com, dmitry.baryshkov@oss.qualcomm.com,
- chaitanya.kumar.borah@intel.com, ekurzinger@gmail.com,
- pierre-eric.pelloux-prayer@amd.com, HaoPing.Liu@amd.com,
- Tony.Cheng@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- lvc-project@linuxtesting.org
-Subject: [PATCH v3] drm/amd/display: Fix dangling pointers in state reset
- functions on allocation failure
-Date: Fri, 26 Jun 2026 22:13:03 +0300
-Message-ID: <20260626191314.29933-1-evg28bur@yandex.ru>
-X-Mailer: git-send-email 2.43.0
+Received: from mail-dl1-f49.google.com (mail-dl1-f49.google.com [74.125.82.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84A4A10E23D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 26 Jun 2026 19:31:23 +0000 (UTC)
+Received: by mail-dl1-f49.google.com with SMTP id
+ a92af1059eb24-1397a4855beso82892c88.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 26 Jun 2026 12:31:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782502283; cv=none;
+ d=google.com; s=arc-20260327;
+ b=QR4i2LfK31WbdfKu1F3rHp0bSE6f5kX8PRzjHUj2PPKklxq3vgLhjmPkYWaGSSzoTG
+ kO1YSouPEd2YHSfm6ni+iCl7ySU8r7BrU7/obKdus5bDM8RPohXuR43hQTvJa+k1/YFu
+ f82bnTE0yh++pY5lb8LzzLHLbKfbC7XbF3ZEQuNrm+HQUTNyyl/hsu5zZCK1w6GUNcnl
+ WN0PwI+aV1QZt2alnlyBHfTucE1BbxsokmBODvbzuEHNdoaUYp90+EkofA+Ecvks//Z3
+ Os2glFVCL35CKH2P9BuKVN3NhKftClGuLQTb9OO9ljdS98fkl+VxW39mG3fvC29t3/RM
+ 2oIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=HrlxuybmI8Y66r+W/TceSqlvs9Lyp8GdVA7sVMol1AI=;
+ fh=T6luZhFAIbrG4Mp7ur79m9u6UAR2uzuFUw/q97Yq65w=;
+ b=d4snjMYg8dXGz1MnzS5oabBIvP7ZOVOJqrLhSUMqWqXP9wyF/BC701R2f0PK9acApA
+ EhwFgJULc+HB+DuejqDy0kvwPGaQZUu771Otx7IZqHe71/rtw7ncN5BnXrOwOhOHMzUq
+ wToipE2Q6nnDc53Iza73GHTx5PzizWMpFl0bI9krO2GkucNU3+Keo88cEsAdxuqmfwYn
+ PfouoIx9E+cYoJlopSDPcV5uQz1tLaoYuUB7FOsg2s1ZBh7G3m5fm/++JocDmX9TlcvQ
+ 85IRETFpNsx2Iy8M8Ofr/5N4Uwt+Jvgi0eW3gUKGwKrjsaQaYEBsw/9jNNIN+n/Q3UQ8
+ TvJQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1782502283; x=1783107083; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=HrlxuybmI8Y66r+W/TceSqlvs9Lyp8GdVA7sVMol1AI=;
+ b=XeeFVPTHThnNiAAYJREiTBmbUUic8nSy1pUFzJbp9ipDxe9JwhUl889664C8E47NMQ
+ Q29A8ohe8gT8lLl1NO9IqvMh/23fV2Q9Qn2nRzOevmon6mIoB+S+nYR7zrnWy073AbOF
+ wMmIdaeF00llGtWPSKCnb1uRGeSt/1XmviHct0GNwqB+PlXWZoS6mYj1yqyIz7uwkCVY
+ iF5TFJx67+9um4D8HFQ8T7yIsPRq0BqHuSlUPED0oE1fNVD0/5ibdoluormnqqDkug74
+ 8JFa3auukZZ6BHmwM+ZsJFCKp05t8QK3j3IcGRbe5OVnNowbUGz4tj6z9VoFPQzwfc0j
+ kcaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1782502283; x=1783107083;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=HrlxuybmI8Y66r+W/TceSqlvs9Lyp8GdVA7sVMol1AI=;
+ b=PlCM4zdqgg6HeabajJivm5mgUpnU93OkPKk8pBRZiR7vulmESY6fAl1FSkMN5/ziku
+ ynMnMsJmdg2wh1zRnnnsXhqywrmBgE3zCJdmRRtfYKTnfsEB15UQiP1JzSrg+u6/jpCG
+ gI1J9Xz2iJXBu491DCD9du3hOo4x1SmCsITEdx2P2JvtwdBRDyvGB1iFDKwEFGqVqMGw
+ IusuZFd0PdnpLqfohEcVqNU4l4oTTeyx27yfB5w8FC8jBkrc/Ip0758xonDoCNKqapw1
+ lrlcPSuvzbPqRbAj3EP5mNxC5Rtb8ld8zbS8SLWxcuoP73DIwxAw8ystkmRua3l8iMrW
+ +Akg==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ9A8qEtLeqBHTtDT7zdLhPf3eAWkiEyd1jq54XmuXEBq1l15mOvv/xjMaXWNRWB51RQMDgj/M5P@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwzwDAFyRckL3VlJLs/j9OZSIsGbx3T8yryuRmfaWgqaMyZ8uGg
+ WsZOY7X4pF9ayo/EbxkoBVqOhyBux0EJ5kdX4q5is8cNEP+zFPRhcLQn+k7ltvuEylHvUptCTyE
+ 6uFGI5Qvk+E7ucSbN65Y3UpGGTuxElcA=
+X-Gm-Gg: AfdE7cnCM83RI1nA1P9B+d3eipFBS1IFQ5S1pi66T89pNdQ0rRAaDkq7NAyI5cWLoqV
+ +NYIleO7rMMHEHoN7HHJDMGfnY+vvZduvfy54A26umce+1WXmNH3qc6ATM99kqlokl/dUsK1IFb
+ IA6hn/taBMY73F7TQ59g/nVkZ1XlVboPQUamM8ZuYHg3cY2S4+s2/BpRmKmEslRw70/3IUoZMkL
+ zRmGyuyUbpnVNsX5chNbV0QW44GUgpxWLw0ElCJtXxHntOUIvFJ3vNIH1yhjznhcQ+K35IhHJj6
+ dv73KxXcF1KnUmVKlXRV8qwEWW2bmxjWKLqHviuoDNDVpoOvFoYjKGLCrfM=
+X-Received: by 2002:a05:7022:fe04:b0:12c:888b:aa92 with SMTP id
+ a92af1059eb24-139db9e78bcmr2876349c88.1.1782502282587; Fri, 26 Jun 2026
+ 12:31:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 29 Jun 2026 07:07:55 +0000
+References: <20260626180145.6213-1-christian.koenig@amd.com>
+In-Reply-To: <20260626180145.6213-1-christian.koenig@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 26 Jun 2026 15:31:11 -0400
+X-Gm-Features: AVVi8CdrCwHa3usuHv5pFKhT8Etf0BCQPRAtu-XRrHuWcOLoq2RZxP8a5jpo3J8
+Message-ID: <CADnq5_MQfj8svtHLj5bB6R8hBnTX8tC5r1qdRn+wHH-DdfeBaw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: fix check in amdgpu_hmm_invalidate_gfx
+To: christian.koenig@amd.com
+Cc: Alexander.Deucher@amd.com, amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,193 +110,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[59];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[yandex.ru,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[yandex.ru:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[36];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[yandex.ru];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[yandex.ru,amd.com,igalia.com,gmail.com,ffwll.ch,kernel.org,suse.de,oss.qualcomm.com,intel.com,lists.freedesktop.org,vger.kernel.org,linuxtesting.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[evg28bur@yandex.ru,amd-gfx-bounces@lists.freedesktop.org];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DKIM_TRACE(0.00)[yandex.ru:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:Alexander.Deucher@amd.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MISSING_XM_UA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_NONE(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[3];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,amd.com:email,gitlab.freedesktop.org:url,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1E6756D6C3E
+X-Rspamd-Queue-Id: A02596CFE45
 
-Multiple reset functions in amdgpu_dm free the old state before allocating
-a new one. If kzalloc_obj() fails, the function returns without updating
-the state pointer, leaving a dangling pointer to already freed memory.
+On Fri, Jun 26, 2026 at 2:01=E2=80=AFPM Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
+>
+> For a short moment during alloc/free the userptr BO is not part of his VM=
+,
+> so bo->vm_bo can be NULL.
+>
+> Keep a reference to the VM root PD as parent of the userptr BO so that
+> we can always use that to wait for all submissions of the VM instead of
+> only the one involving the userptr BO.
+>
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Fixes: 5cd5f99b7b9b ("drm/amdgpu: fix waiting for all submissions for use=
+rptrs")
 
-Fix this by allocating the new state first. In case of allocation failure,
-the old state remains untouched and the function safely returns, preserving
-the existing state.
+Closes: https://gitlab.freedesktop.org/drm/amd/-/work_items/5399
 
-For amdgpu_dm_connector_funcs_reset(), additionally restore the explicit
-kfree(old_state) which was lost when the function was refactored, as
-__drm_atomic_helper_connector_destroy_state() only frees resources but not
-the state structure itself.
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 1 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c | 3 +--
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_gem.c
+> index 28f89ae8ca74..686be2bb8c37 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> @@ -535,6 +535,7 @@ int amdgpu_gem_userptr_ioctl(struct drm_device *dev, =
+void *data,
+>         bo =3D gem_to_amdgpu_bo(gobj);
+>         bo->preferred_domains =3D AMDGPU_GEM_DOMAIN_GTT;
+>         bo->allowed_domains =3D AMDGPU_GEM_DOMAIN_GTT;
+> +       bo->parent =3D amdgpu_bo_ref(fpriv->vm.root.bo);
 
-This affects three functions:
-- amdgpu_dm_plane_drm_plane_reset()
-- amdgpu_dm_crtc_reset_state()
-- amdgpu_dm_connector_funcs_reset()
+Do you need an unref to match this?
 
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
+Alex
 
-Fixes: 5d945cbcd4b1 ("drm/amd/display: Create a file dedicated to planes")
-Fixes: 473683a03495 ("drm/amd/display: Create a file dedicated for CRTC")
-Fixes: e7b07ceef2a6 ("drm/amd/display: Merge amdgpu_dm_types and amdgpu_dm")
-Signed-off-by: Evgenii Burenchev <evg28bur@yandex.ru>
----
-Changes in v3:
-- Restore explicit kfree(old_state) in amdgpu_dm_connector_funcs_reset()
-  to prevent memory leak (reviewer Mario Limonciello <mario.limonciello@amd.com>)
-
-Changes in v2:
-- Also fix amdgpu_dm_crtc_reset_state() and amdgpu_dm_connector_funcs_reset()
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 46 +++++++++++--------
- .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |  8 ++--
- .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 14 +++---
- 3 files changed, 39 insertions(+), 29 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 97ab1e83b318..8829e884167b 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -8151,33 +8151,41 @@ static void amdgpu_dm_connector_destroy(struct drm_connector *connector)
- 
- void amdgpu_dm_connector_funcs_reset(struct drm_connector *connector)
- {
--	struct dm_connector_state *state =
-+	/* Remember the old state */
-+	struct dm_connector_state *old_state =
- 		to_dm_connector_state(connector->state);
- 
-+	struct dm_connector_state *state;
-+
-+	/* Allocate new state */
-+	state = kzalloc_obj(*state);
-+	if (WARN_ON(!state))
-+		return;
-+
-+	/* Release resources owned by the previous state and free memory */
- 	if (connector->state)
- 		__drm_atomic_helper_connector_destroy_state(connector->state);
- 
--	kfree(state);
-+	kfree(old_state);
- 
--	state = kzalloc_obj(*state);
-+	/* Install and initialize the new DRM connector state */
-+	__drm_atomic_helper_connector_reset(connector, &state->base);
- 
--	if (state) {
--		state->scaling = RMX_OFF;
--		state->underscan_enable = false;
--		state->underscan_hborder = 0;
--		state->underscan_vborder = 0;
--		state->base.max_requested_bpc = 8;
--		state->vcpi_slots = 0;
--		state->pbn = 0;
--
--		if (connector->connector_type == DRM_MODE_CONNECTOR_eDP) {
--			if (amdgpu_dm_abm_level <= 0)
--				state->abm_level = ABM_LEVEL_IMMEDIATE_DISABLE;
--			else
--				state->abm_level = amdgpu_dm_abm_level;
--		}
-+	/* Initialize AMD-specific connector state */
-+	state->scaling = RMX_OFF;
-+	state->underscan_enable = false;
-+	state->underscan_hborder = 0;
-+	state->underscan_vborder = 0;
-+	state->base.max_requested_bpc = 8;
-+	state->vcpi_slots = 0;
-+	state->pbn = 0;
- 
--		__drm_atomic_helper_connector_reset(connector, &state->base);
-+	/* Initialize eDP-specific defaults */
-+	if (connector->connector_type == DRM_MODE_CONNECTOR_eDP) {
-+		if (amdgpu_dm_abm_level <= 0)
-+			state->abm_level = ABM_LEVEL_IMMEDIATE_DISABLE;
-+		else
-+			state->abm_level = amdgpu_dm_abm_level;
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-index 3dcedaa67ed8..6146fbc528c3 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
-@@ -437,13 +437,15 @@ static void amdgpu_dm_crtc_reset_state(struct drm_crtc *crtc)
- {
- 	struct dm_crtc_state *state;
- 
--	if (crtc->state)
--		amdgpu_dm_crtc_destroy_state(crtc, crtc->state);
--
-+	/* Allocate new state first */
- 	state = kzalloc_obj(*state);
- 	if (WARN_ON(!state))
- 		return;
- 
-+	/* Destroy old state only after successful allocation */
-+	if (crtc->state)
-+		amdgpu_dm_crtc_destroy_state(crtc, crtc->state);
-+
- 	__drm_atomic_helper_crtc_reset(crtc, &state->base);
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-index e957657b06c7..eb1c0a26f20d 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-@@ -1488,17 +1488,17 @@ static const struct drm_plane_helper_funcs dm_primary_plane_helper_funcs = {
- 
- static void amdgpu_dm_plane_drm_plane_reset(struct drm_plane *plane)
- {
--	struct dm_plane_state *amdgpu_state = NULL;
--
--	if (plane->state)
--		plane->funcs->atomic_destroy_state(plane, plane->state);
-+	struct dm_plane_state *amdgpu_state;
- 
-+	/* Allocate new state first */
- 	amdgpu_state = kzalloc_obj(*amdgpu_state);
--	WARN_ON(amdgpu_state == NULL);
--
--	if (!amdgpu_state)
-+	if (WARN_ON(!amdgpu_state))
- 		return;
- 
-+	/* Destroy old state only after successful allocation */
-+	if (plane->state)
-+		plane->funcs->atomic_destroy_state(plane, plane->state);
-+
- 	__drm_atomic_helper_plane_reset(plane, &amdgpu_state->base);
- 	amdgpu_state->degamma_tf = AMDGPU_TRANSFER_FUNCTION_DEFAULT;
- 	amdgpu_state->hdr_mult = AMDGPU_HDR_MULT_DEFAULT;
--- 
-2.43.0
-
+>         r =3D amdgpu_ttm_tt_set_userptr(&bo->tbo, args->addr, args->flags=
+);
+>         if (r)
+>                 goto release_object;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_hmm.c
+> index b38788228d0b..eaf02f90fddf 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
+> @@ -67,7 +67,6 @@ static bool amdgpu_hmm_invalidate_gfx(struct mmu_interv=
+al_notifier *mni,
+>  {
+>         struct amdgpu_bo *bo =3D container_of(mni, struct amdgpu_bo, noti=
+fier);
+>         struct amdgpu_device *adev =3D amdgpu_ttm_adev(bo->tbo.bdev);
+> -       struct amdgpu_bo *vm_root =3D bo->vm_bo->vm->root.bo;
+>         long r;
+>
+>         if (!mmu_notifier_range_blockable(range))
+> @@ -78,7 +77,7 @@ static bool amdgpu_hmm_invalidate_gfx(struct mmu_interv=
+al_notifier *mni,
+>         mmu_interval_set_seq(mni, cur_seq);
+>
+>         amdgpu_vm_bo_invalidate(bo, false);
+> -       r =3D dma_resv_wait_timeout(vm_root->tbo.base.resv,
+> +       r =3D dma_resv_wait_timeout(bo->parent->tbo.base.resv,
+>                                   DMA_RESV_USAGE_BOOKKEEP, false,
+>                                   MAX_SCHEDULE_TIMEOUT);
+>         mutex_unlock(&adev->notifier_lock);
+> --
+> 2.43.0
+>
