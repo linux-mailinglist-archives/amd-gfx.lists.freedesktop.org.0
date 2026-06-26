@@ -2,79 +2,83 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EnHzD3QwPmrJBAkAu9opvQ
+	id 0jsfMkQwPmqzBAkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:55:32 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:44 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C92206CB298
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:55:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 676356CB240
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:54:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=usp.br header.s=usp-google header.b=XDIHEVEA;
+	dkim=pass header.d=usp.br header.s=usp-google header.b=VF3kHbnc;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=usp.br
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 655FE10F4B9;
-	Fri, 26 Jun 2026 07:55:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7E8D10F4A2;
+	Fri, 26 Jun 2026 07:54:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dl1-f54.google.com (mail-dl1-f54.google.com [74.125.82.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24A9E10E2A1
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Jun 2026 03:00:22 +0000 (UTC)
-Received: by mail-dl1-f54.google.com with SMTP id
- a92af1059eb24-1384ebe7a10so42476c88.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 20:00:22 -0700 (PDT)
+Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E454A10E2A1
+ for <amd-gfx@lists.freedesktop.org>; Fri, 26 Jun 2026 03:00:24 +0000 (UTC)
+Received: by mail-dl1-f48.google.com with SMTP id
+ a92af1059eb24-1397e093f90so1755068c88.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 20:00:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=usp.br; s=usp-google; t=1782442821; x=1783047621; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=xyfqQaJzQGqQ+w3Wgkei2isTk6qDBF7q1W+qeueb6IQ=;
- b=XDIHEVEAP6VRrDX4ISUVY1fASNy/8hg5AvqjAaHwHDBxIHLXwP/xRi8Zk2XIdUsYwM
- icW+EYvSJkmoyVh3e3Qc9O/qIEe2LEKV0ZsMqT7oWQtjvTOYmcZzOxWLxbVXISl7JP1f
- b1pFveKjDnyhfmXeFyqLkJdvBtwBdyYiVFEcNnL5brkel39L1+EHPJIeff3qWPByLwt8
- VrDeqBUjvfW7+KvThYMrcrTWpNxSKcBqBOXtqfDIApdIOwh2n6q6t/3LbsZ0raEfkxIe
- iUGiGI0masL54D7Vyh4ZtTrYwVngTC5SZkPnysL/SuQVm11mEDn1eh1cXm9EmKqiAt3K
- HJ2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782442821; x=1783047621;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=usp.br; s=usp-google; t=1782442824; x=1783047624; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=xyfqQaJzQGqQ+w3Wgkei2isTk6qDBF7q1W+qeueb6IQ=;
- b=RtA/undE9/6CVNpejzGEQ+TLKpCWqsvzmbUG5Idf14W+vFLdUfxJvaOjYBfzGi61QX
- YIk7YHzfnjYxbfZrcgttQZJ1QqyVO2jKv+MaGxIVOnkKcuoOX36gpaPoslljjCYOCajL
- GupTkJ4NVEwqMwaKcYf/NkBnSUlytEtAXiASRUB7tvm/XZBBHOvM3aLng0KnN14YTmrf
- IrIhr/fRs0rfJ9xgyB9gDZxS9FWmNkcv2ZHoideBVo7T2xQZMAQsUzB4KhR7utpAEErO
- qeuaJ8peDOL9rAZyqbjaRG/SmB05x6V3tlwpn+l0cu7xZZCzsw1NIBKCv3xfeGDaZv0X
- Z1Rw==
+ bh=Yq2opASfg/ddj/DpE+EyMQATEY25HCM9sOHt/sCT3XM=;
+ b=VF3kHbncwjiavamhDe506pLyLvitlXD2mwS4kS3Fd0glNuc/ZR/U0rnU/LCE4ooJ17
+ hxo9EPi9gZ6DUIo2pT2gK+HLV/9oQ14VWvF3OylHO5QccEZ5omr8chJDlh7MnT8ZRWEn
+ gdv7TzXAeOoUhQEnS7WYQkUyoOo7bqzhXHB7EtBYjB01oS/YGpTsQTQ20Kxg7n1HFV64
+ QcGnMeEgyq4efv/XnA9r8+rfdcU1fF3ft7SYw7gYoTtmnSyvLeGICrFzkTvBsekMUF1z
+ PWz5n3rpG/7CaBI4jzNuFcQaSP/7saCriOenvV3Sal7UKyxKfJ1z1hZSADadieSlUXEI
+ NVDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1782442824; x=1783047624;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=Yq2opASfg/ddj/DpE+EyMQATEY25HCM9sOHt/sCT3XM=;
+ b=Kytn8hi4IeYW93tzO1lLIVjNm47RbcjX0+eRI5/rWwsk6/i9ViNACixujXzIuJDUYH
+ UnGY/UVVjyM5Sibfd0sefWYGQFteMusxVEkik8j/I/3y+EsQbnsrinn+hJdBasaj1ebJ
+ qha/T588Kpjm3XbJ3Z7eSqXoC6tQRohVN6Jipu4EdQ5laqzOO8XcgPNsv8J7S22BVI0W
+ TZfU3svaRqeApI3X+xKJFDhR0mL8vSLVjM57OJeUkbBCuPWmWod0QwLrv2oShY+T/Tt9
+ ujlfFBPLIF973KRRNOELVoX2zOeRwzUNH0xvxuenLE7Slbr+yxTHEBfE+vL+E6aUVjTs
+ Mi7Q==
 X-Forwarded-Encrypted: i=1;
- AFNElJ8K8pFBY2IeMFSNtL1yZF5iK6dXgqkuvogDx9qzcAPRJ5azaS6YcLl8/zggKCPY18jMZ5DBE3LD@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwEK4cnX8tiMo29U+EIW6tsNsbNzPVz7E27BXknxA/G1apmiDMB
- 9Yz4HNXRyxDGMwplUH+SjP/o60p7YLPfkwapOC62E/Q9gOYd9LfSmOmWqoTWRyClphE=
-X-Gm-Gg: AfdE7cnSVKgC9A7FVpunDuRgSHFOTU7xvRSFL8jBI+hBCLgPkuUkMHWDIbcNyH9EBtR
- Fbh1uUaaLwB0gdiNdqSUbsUOUEfjFztPI21ekc+eczQnZPBtMC4hqGNaMUqd3p1KraUZNH+5LT0
- 5EixWidXrQO1ixVjq/n409PTTdUSoELvs+CP06LyMgGJk2/mH130DU4tro95m+d1yCj7xJLsIYT
- yiRFBlrz/jBDsMSV/4q5Y1TT3lVxKKwobg2r6RzSsDaAg3oktlqKygmQRZvSP+vcuUnie7fkS+p
- 3O4MKYf1xFOGBKk1hQXu2or09CeAk9/BPvRX/lxgYWwna8lLvDpIKBCYyKXdN+hUT8FCaTbxNWK
- DDB+0QaRmtUhDmGxD0DonJ1C1gXs+qiFR3LH8aBqiTvbQw0EFxLPsM5PiXksQJF21Fy6Jq/M96L
- F6HZlRajT8bZmR7U7p+tuVtH5JIXy3BgPDNogaRveVafV7HzaXCu+rRoz3vWZP69CQFJ/k9g==
-X-Received: by 2002:a05:7022:5f08:b0:139:dfe9:c8b1 with SMTP id
- a92af1059eb24-139dfe9c90emr1949342c88.8.1782442821140; 
- Thu, 25 Jun 2026 20:00:21 -0700 (PDT)
+ AFNElJ+3Vf3ZeSiTFoaGtR1A2Mki0MdIONZHKWPlmQDVOl+w9hvQ+pIPaSh3DmpuBJ2sYEdJbuIXNRs5@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxuVAQdaeDS4EVfEwgrI1Ugc8KtOyQ+4NRzn1uuqxUaQ+SydaTN
+ oqYBTdDj6adhD21x6rAoTpkXm4LXHEpeobRB/uP+nRKdvuYkV/tw8svrmpYeGpxYxS0=
+X-Gm-Gg: AfdE7ckLy3M/0ZbvjD1/gDPjGqVKv5TjbTqanlH4lBl9u8wGCbkU2OfQqvnGgiJJmZD
+ GY870xBobapMoZ0swh8LOyHlJ3k/rI3IG5JQmI98YFotqUVgFzHBt5P7/QR3EzPpWwte9X03FwF
+ AtOjaQmlsUVEJ5MC4gnUXxMlgLittA5k73NhegpwfknDPVRw3/V5Frb0+eRtyuReW36H9siQVCt
+ LOTu5wGTJGF0lTtE3YJZuDIywpUf9rrJc621B2oec2F8TtDoDkzMD/X16LSPcoAenAg7Fr1z8n4
+ WCgA+R5csBic4OuV28Ro0hRUn6+5MMGFbHiYT/pjeiGbckAMYEaRTBvXlArDd7R2FD/klNKx8K0
+ OYdO6i8xahVVCbVm2G9jLlz1ME4G5S6QNQXNanb1e4xTFfv/EiAV2ck6hHXxj2RLBS6Ezn/14iS
+ 4pYTymkwl1twA/vVpIu49e5aJScDxKWao3Nonik5vHG0Lu0aj2naU5wqNctsC1Qyz+aER3zA==
+X-Received: by 2002:a05:7022:390:b0:139:c4e3:9499 with SMTP id
+ a92af1059eb24-139db9edd39mr4209752c88.2.1782442824088; 
+ Thu, 25 Jun 2026 20:00:24 -0700 (PDT)
 Received: from voyager.. ([179.119.40.186]) by smtp.gmail.com with ESMTPSA id
- a92af1059eb24-139d8f6acf9sm13048415c88.6.2026.06.25.20.00.18
+ a92af1059eb24-139d8f6acf9sm13048415c88.6.2026.06.25.20.00.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Jun 2026 20:00:20 -0700 (PDT)
+ Thu, 25 Jun 2026 20:00:23 -0700 (PDT)
 From: Tiago Dourado <tiagodourado@usp.br>
 To: kernel@lists.ime.usp.br, airlied@gmail.com, alexander.deucher@amd.com,
  christian.koenig@amd.com, simona@ffwll.ch
-Cc: Tiago Dourado <tiagodourado@usp.br>, amd-gfx@lists.freedesktop.org,
+Cc: Tiago Dourado <tiagodourado@usp.br>,
+ Luiz Fernandes <luiz.f.f.fernandes@usp.br>, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 0/2] drm/amdgpu/jpeg: deduplicate process_interrupt across
- JPEG versions
-Date: Thu, 25 Jun 2026 23:59:11 -0300
-Message-ID: <20260626030013.20569-1-tiagodourado@usp.br>
+Subject: [PATCH v2 1/2] drm/amdgpu/jpeg: deduplicate jpeg_v3_0
+ process_interrupt
+Date: Thu, 25 Jun 2026 23:59:12 -0300
+Message-ID: <20260626030013.20569-2-tiagodourado@usp.br>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260626030013.20569-1-tiagodourado@usp.br>
+References: <20260626030013.20569-1-tiagodourado@usp.br>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 26 Jun 2026 07:54:04 +0000
@@ -102,7 +106,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:kernel@lists.ime.usp.br,m:airlied@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:simona@ffwll.ch,m:tiagodourado@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:kernel@lists.ime.usp.br,m:airlied@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:simona@ffwll.ch,m:tiagodourado@usp.br,m:luiz.f.f.fernandes@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
@@ -121,30 +125,99 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[usp.br:dkim,usp.br:mid,usp.br:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,usp.br:dkim,usp.br:email,usp.br:mid,usp.br:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C92206CB298
+X-Rspamd-Queue-Id: 676356CB240
 
-The JPEG versions v3_0 and v5_3_0 have process_interrupt implementations identical to their predecessor versions (v2_0, v5_0_0 respectively). This patchset removes these duplicates by exporting the original functions and reusing them.
+The jpeg_v3_0_process_interrupt function is identical to
+jpeg_v2_0_process_interrupt. Remove the duplicate implementation
+in jpeg_v3_0 and assign the jpeg_v2_0 version directly to the irq_funcs struct.
+Export jpeg_v2_0_process_interrupt through jpeg_v2_0.h to allow
+cross-version reuse.
+
+Signed-off-by: Tiago Dourado <tiagodourado@usp.br>
+Co-developed-by: Luiz Fernandes <luiz.f.f.fernandes@usp.br>
+Signed-off-by: Luiz Fernandes <luiz.f.f.fernandes@usp.br>
+---
 
 v2:
-- Replaced macro alias with direct function pointer assignment in the irq_funcs struct, as requested by Alex Deucher.
+- Assigned function directly to irq_funcs instead of using a macro.
 
-Tiago Dourado (2):
-  drm/amdgpu/jpeg: deduplicate jpeg_v3_0 process_interrupt
-  drm/amdgpu/jpeg: deduplicate jpeg_v5_3_0 process_interrupt
+ drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c |  2 +-
+ drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.h |  4 ++++
+ drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c | 21 +--------------------
+ 3 files changed, 6 insertions(+), 21 deletions(-)
 
- drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c   |  2 +-
- drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.h   |  4 ++++
- drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c   | 21 +--------------------
- drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.c |  2 +-
- drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_0.h |  4 ++++
- drivers/gpu/drm/amd/amdgpu/jpeg_v5_3_0.c | 22 ++--------------------
- 6 files changed, 13 insertions(+), 42 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
+index 9fe8d10ab..9006fc57e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
+@@ -747,7 +747,7 @@ static int jpeg_v2_0_set_interrupt_state(struct amdgpu_device *adev,
+ 	return 0;
+ }
+ 
+-static int jpeg_v2_0_process_interrupt(struct amdgpu_device *adev,
++int jpeg_v2_0_process_interrupt(struct amdgpu_device *adev,
+ 				      struct amdgpu_irq_src *source,
+ 				      struct amdgpu_iv_entry *entry)
+ {
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.h b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.h
+index 654e43e83..4f400fb47 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.h
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.h
+@@ -58,6 +58,10 @@ void jpeg_v2_0_dec_ring_emit_vm_flush(struct amdgpu_ring *ring,
+ void jpeg_v2_0_dec_ring_emit_wreg(struct amdgpu_ring *ring, uint32_t reg, uint32_t val);
+ void jpeg_v2_0_dec_ring_nop(struct amdgpu_ring *ring, uint32_t count);
+ 
++int jpeg_v2_0_process_interrupt(struct amdgpu_device *adev,
++				struct amdgpu_irq_src *source,
++				struct amdgpu_iv_entry *entry);
++
+ extern const struct amdgpu_ip_block_version jpeg_v2_0_ip_block;
+ 
+ #endif /* __JPEG_V2_0_H__ */
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
+index 98f5e0622..2f3a5a17e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
+@@ -539,25 +539,6 @@ static int jpeg_v3_0_set_interrupt_state(struct amdgpu_device *adev,
+ 	return 0;
+ }
+ 
+-static int jpeg_v3_0_process_interrupt(struct amdgpu_device *adev,
+-				      struct amdgpu_irq_src *source,
+-				      struct amdgpu_iv_entry *entry)
+-{
+-	DRM_DEBUG("IH: JPEG TRAP\n");
+-
+-	switch (entry->src_id) {
+-	case VCN_2_0__SRCID__JPEG_DECODE:
+-		amdgpu_fence_process(adev->jpeg.inst->ring_dec);
+-		break;
+-	default:
+-		DRM_ERROR("Unhandled interrupt: %d %d\n",
+-			  entry->src_id, entry->src_data[0]);
+-		break;
+-	}
+-
+-	return 0;
+-}
+-
+ static int jpeg_v3_0_ring_reset(struct amdgpu_ring *ring,
+ 				unsigned int vmid,
+ 				struct amdgpu_fence *timedout_fence)
+@@ -629,7 +610,7 @@ static void jpeg_v3_0_set_dec_ring_funcs(struct amdgpu_device *adev)
+ 
+ static const struct amdgpu_irq_src_funcs jpeg_v3_0_irq_funcs = {
+ 	.set = jpeg_v3_0_set_interrupt_state,
+-	.process = jpeg_v3_0_process_interrupt,
++	.process = jpeg_v2_0_process_interrupt,
+ };
+ 
+ static void jpeg_v3_0_set_irq_funcs(struct amdgpu_device *adev)
 -- 
 2.43.0
 
