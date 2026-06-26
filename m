@@ -2,70 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GjtNEIG2PmqEKgkAu9opvQ
+	id Yzn5EGOkPmrXJQkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 19:27:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 18:10:11 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D7256CF6A0
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 19:27:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 772806CEC81
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 18:10:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=oCqBGv2u;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=g58uvLvi;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6082D10F6CB;
-	Fri, 26 Jun 2026 17:27:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1421710E3C3;
+	Fri, 26 Jun 2026 16:10:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3942C10F684;
- Fri, 26 Jun 2026 15:55:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782489353; x=1814025353;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=U/gjwRcby5HPhUf6tNl2cTSPH3fsDm/J33wljVCYVj0=;
- b=oCqBGv2uirYwro/OK78LpMw9o/rPIrAJTHXjDtl9c+VHiQZJU8ymhjQr
- mA6uQhTbVLdnUO5/+Ryh2P70mDzA4GjpHEUcq81EOJmx56HteqDkqkbTP
- odHSUzFfQgrTl7Ku1MrhUTYYJy3+pSlVh/+wgari4peTOdiGRzxttiF4o
- x3RPYj/kjEEq1oDUfDXFAph+t2CKIWpnxGrlpSdjy1HSdWERI2Kt3RRzB
- r3CEI46T/5+ZZLru3x0l//fzecG2nuGUXOfdHBP482B56zYhaGPBelkNJ
- N9NKjuGV6dy1RLYlv4I1dsH0jf2HIk27JwAngfOrtJaviOUA5w3F3fXLd A==;
-X-CSE-ConnectionGUID: 6wcv3M7WQ56tGAfIUuCGtQ==
-X-CSE-MsgGUID: tDCF/uUlQx6lVZi49NpPww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11829"; a="87183618"
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="87183618"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 08:55:52 -0700
-X-CSE-ConnectionGUID: S877QZZyQQOObyLatAhVgg==
-X-CSE-MsgGUID: NBuwpKe6SnCUGibKYFd2Kw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="244958602"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.22])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 08:55:49 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Chenyu Chen <chen-yu.chen@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Ray
- Wu <Ray.Wu@amd.com>, Limonciello Mario <Mario.Limonciello@amd.com>, Chenyu
- Chen <chen-yu.chen@amd.com>
-Subject: Re: [PATCH v3 2/3] drm/edid: parse panel type from DisplayID 2.x
- Display Parameters
-In-Reply-To: <20260526030254.1460480-3-chen-yu.chen@amd.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260526030254.1460480-1-chen-yu.chen@amd.com>
- <20260526030254.1460480-3-chen-yu.chen@amd.com>
-Date: Fri, 26 Jun 2026 18:55:47 +0300
-Message-ID: <1957bee7418e347b9c548e3be2e2d90da551ff93@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C838010E3C3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 26 Jun 2026 16:10:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=p8IPpt/pyLro+wEocJFrjk2OlKWomIKnv1ZGPLIRg9I=; b=g58uvLviPShdGKofqOJ5U5dGjK
+ cG5pJTEQvlPiwuR+JmiVDYNumF1OgSOzeA8C9UZN3U7yRDAAE2sy3hQZ4ya815QfxBxk5Zo5L0C7/
+ hCvbaY4MSc6PpxlsRZ8V3O5h25ef2JW6So1nwHebFz+Ysr1c6eSANrr+/7NNMY5PvVu0vaa0pSp9y
+ be1hN1tv48nQ07NL38V6TyVnx7tnsetuatcuNaii6RMa02601u3pwwZI1aFHZ2TavFECiotIr0UPD
+ Qi4fJFCwHBTbOPpXJOeDh1jdY9KNv1AG/Ay1IqHw31e+cJ6ruXvMEBsLT0hJrBqBs5117ziDYCoPA
+ RT3pSavw==;
+Received: from [90.240.106.137] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wd980-005Zq8-IU; Fri, 26 Jun 2026 18:10:04 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: [RFC] drm/amdgpu: Simplify amdgpu_vmid_grab?
+Date: Fri, 26 Jun 2026 17:10:02 +0100
+Message-ID: <20260626161002.13908-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Mailman-Approved-At: Fri, 26 Jun 2026 17:27:19 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,226 +63,391 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [2.49 / 15.00];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+	MID_CONTAINS_FROM(1.00)[];
+	SUBJECT_ENDS_QUESTION(1.00)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	ARC_NA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[igalia.com:-];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4D7256CF6A0
+X-Rspamd-Queue-Id: 772806CEC81
 
-On Tue, 26 May 2026, Chenyu Chen <chen-yu.chen@amd.com> wrote:
-> Parse the Display Parameters Data Block (tag 0x21) defined in
-> DisplayID v2.1a Section 4.2.6. Extract the Display Device Technology
-> field from the color depth and device technology byte, which indicates
-> whether the panel uses LCD or OLED technology.
->
-> Add a panel_type field to struct drm_display_info and populate it
-> during DisplayID iteration so downstream drivers can use it for
-> panel-type-dependent behavior. Add DRM_MODE_PANEL_TYPE_LCD to the UAPI
-> panel type property alongside the existing OLED value.
->
-> Assisted-by: Copilot:Claude-Opus-4.6
-> Signed-off-by: Chenyu Chen <chen-yu.chen@amd.com>
+This is not a proper commit message but a conversation starter:
 
-Some nitpicks inline, but regardless of whether you decide to do
-something about them or not, overall,
+I found the flow of amdgpu_vmid_grab a bit confusing and decided to
+butcher it, heavily, to see what will happen. To my surprise, I was able
+to start a dozen of parallel 3d apps and nothing broke.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+In no particular order:
 
-> ---
->  drivers/gpu/drm/drm_connector.c          |  3 +-
->  drivers/gpu/drm/drm_displayid_internal.h | 24 +++++++++++++
->  drivers/gpu/drm/drm_edid.c               | 45 ++++++++++++++++++++++++
->  include/drm/drm_connector.h              |  6 ++++
->  include/uapi/drm/drm_mode.h              |  1 +
->  5 files changed, 78 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index aec05adbc889..f2ac4542a7d3 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -1176,6 +1176,7 @@ static const struct drm_prop_enum_list drm_link_status_enum_list[] = {
->  static const struct drm_prop_enum_list drm_panel_type_enum_list[] = {
->  	{ DRM_MODE_PANEL_TYPE_UNKNOWN, "unknown" },
->  	{ DRM_MODE_PANEL_TYPE_OLED, "OLED" },
-> +	{ DRM_MODE_PANEL_TYPE_LCD, "LCD" },
->  };
->  
->  /**
-> @@ -1508,7 +1509,7 @@ EXPORT_SYMBOL(drm_hdmi_connector_get_output_format_name);
->   * 	never read back the value of "DPMS" because it can be incorrect.
->   * panel_type:
->   * 	Immutable enum property to indicate the type of connected panel.
-> - * 	Possible values are "unknown" (default) and "OLED".
-> + * 	Possible values are "unknown" (default), "OLED", and "LCD".
->   * PATH:
->   * 	Connector path property to identify how this sink is physically
->   * 	connected. Used by DP MST. This should be set by calling
-> diff --git a/drivers/gpu/drm/drm_displayid_internal.h b/drivers/gpu/drm/drm_displayid_internal.h
-> index 5b1b32f73516..6f431aafafcf 100644
-> --- a/drivers/gpu/drm/drm_displayid_internal.h
-> +++ b/drivers/gpu/drm/drm_displayid_internal.h
-> @@ -142,6 +142,30 @@ struct displayid_formula_timing_block {
->  	struct displayid_formula_timings_9 timings[];
->  } __packed;
->  
-> +#define DISPLAYID_DEVICE_TECH_UNSPECIFIED	0
-> +#define DISPLAYID_DEVICE_TECH_LCD		1
-> +#define DISPLAYID_DEVICE_TECH_OLED		2
-> +
-> +#define DISPLAYID_DISPLAY_PARAMS_DEVICE_TECH	GENMASK(6, 4)
+ - Amdgpu_vmid_grab_idle cannot return an error despite the code claims it
+   can.
+ - Also, why it is called before attempting to re-use the previously
+   assigned vmid?
+ - And why it is called before the reserved vmid path and then not used?
+ - What is the point of ring->vmid_wait? It is never cleared and isn't
+   the same effect achieved by simply waiting on the last LRU entry?
 
-For masks, I'd add _MASK suffix. There's GENMASK_U8() for 8-bit masks.
+What am I missing and what have I broke? :) Or if nothing, then:
 
-> +
-> +struct displayid_display_params_block {
-> +	struct displayid_block base;
-> +	__le16 horiz_image_size;
-> +	__le16 vert_image_size;
-> +	__le16 horiz_pixel_count;
-> +	__le16 vert_pixel_count;
-> +	u8 features;
-> +	u8 primary_color1[3];
-> +	u8 primary_color2[3];
-> +	u8 primary_color3[3];
-> +	u8 white_point[3];
-> +	__le16 max_luminance_full;
-> +	__le16 max_luminance_10;
-> +	__le16 min_luminance;
-> +	u8 color_depth_and_tech;	/* [2:0] depth, [6:4] device tech, [7] theme */
-> +	u8 gamma_eotf;
-> +} __packed;
-> +
->  #define DISPLAYID_VESA_MSO_OVERLAP	GENMASK(3, 0)
->  #define DISPLAYID_VESA_MSO_MODE		GENMASK(6, 5)
->  
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 7ad3f939dbe6..a9d480981c8f 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -6713,6 +6713,8 @@ static void drm_reset_display_info(struct drm_connector *connector)
->  
->  	info->source_physical_address = CEC_PHYS_ADDR_INVALID;
->  	memset(&info->amd_vsdb, 0, sizeof(info->amd_vsdb));
-> +
-> +	info->panel_type = DRM_MODE_PANEL_TYPE_UNKNOWN;
->  }
->  
->  static void drm_displayid_process_base_section_header(struct drm_connector *connector,
-> @@ -6731,6 +6733,45 @@ static void drm_displayid_process_base_section_header(struct drm_connector *conn
->  		info->non_desktop = true;
->  }
->  
-> +static void
-> +drm_displayid_parse_display_params(struct drm_connector *connector,
-> +				   const struct displayid_block *block)
-> +{
-> +	struct drm_display_info *info = &connector->display_info;
-> +	const struct displayid_display_params_block *params =
-> +		(const struct displayid_display_params_block *)block;
-> +	u8 tech;
-> +
-> +	if (block->num_bytes < sizeof(*params) - sizeof(params->base)) {
+ 3 files changed, 64 insertions(+), 99 deletions(-)
 
-I actually like using the size inline when it comes to parsing specs
-like this. The point is, the spec may get amended, with more fields
-added to the end, but we'll still need to be able to parse all sizes.
+And:
 
-> +		drm_dbg_kms(connector->dev,
-> +			    "[CONNECTOR:%d:%s] DisplayID Display Parameters block too short (%u < %zu)\n",
-> +			    connector->base.id, connector->name,
-> +			    block->num_bytes,
-> +			    sizeof(*params) - sizeof(params->base));
-> +		return;
-> +	}
-> +
-> +	tech = FIELD_GET(DISPLAYID_DISPLAY_PARAMS_DEVICE_TECH,
-> +			 params->color_depth_and_tech);
-> +
-> +	drm_dbg_kms(connector->dev,
-> +		    "[CONNECTOR:%d:%s] DisplayID Display Parameters: device technology %s\n",
-> +		    connector->base.id, connector->name,
-> +		    tech == DISPLAYID_DEVICE_TECH_LCD ? "LCD" :
-> +		    tech == DISPLAYID_DEVICE_TECH_OLED ? "OLED" : "unspecified");
-> +
-> +	switch (tech) {
-> +	case DISPLAYID_DEVICE_TECH_LCD:
-> +		info->panel_type = DRM_MODE_PANEL_TYPE_LCD;
-> +		break;
-> +	case DISPLAYID_DEVICE_TECH_OLED:
-> +		info->panel_type = DRM_MODE_PANEL_TYPE_OLED;
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +}
-> +
->  static void update_displayid_info(struct drm_connector *connector,
->  				  const struct drm_edid *drm_edid)
->  {
-> @@ -6744,6 +6785,10 @@ static void update_displayid_info(struct drm_connector *connector,
->  			drm_displayid_process_base_section_header(connector, &iter);
->  			base_section_header_processed = true;
->  		}
-> +
-> +		if (displayid_version(&iter) == DISPLAY_ID_STRUCTURE_VER_20 &&
-> +		    block->tag == DATA_BLOCK_2_DISPLAY_PARAMETERS)
-> +			drm_displayid_parse_display_params(connector, block);
->  	}
->  	displayid_iter_end(&iter);
->  }
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index c398dbc68bbc..745cd917fe40 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -899,6 +899,12 @@ struct drm_display_info {
->  	 * @amd_vsdb: AMD-specific VSDB information.
->  	 */
->  	struct drm_amd_vsdb_info amd_vsdb;
-> +
-> +	/**
-> +	 * @panel_type: Panel type from DisplayID Display Parameters
-> +	 * Data Block (tag 0x21). Uses DRM_MODE_PANEL_TYPE_* constants.
-> +	 */
-> +	u8 panel_type;
->  };
->  
->  int drm_display_info_set_bus_formats(struct drm_display_info *info,
-> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-> index 3693d82b5279..d7ca1040b92e 100644
-> --- a/include/uapi/drm/drm_mode.h
-> +++ b/include/uapi/drm/drm_mode.h
-> @@ -169,6 +169,7 @@ extern "C" {
->  /* Panel type property */
->  #define DRM_MODE_PANEL_TYPE_UNKNOWN	0
->  #define DRM_MODE_PANEL_TYPE_OLED	1
-> +#define DRM_MODE_PANEL_TYPE_LCD		2
->  
->  /*
->   * DRM_MODE_ROTATE_<degrees>
+add/remove: 0/0 grow/shrink: 0/1 up/down: 0/-465 (-465)
+Function                                     old     new   delta
+amdgpu_vmid_grab                            2917    2452    -465
 
+Which is not bad? Not least the clearer flow of amdgpu_vmid_grab(),
+one of the hottest functions in the submit worker after all.
+
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c  | 159 +++++++++--------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c |   3 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h |   1 -
+ 3 files changed, 64 insertions(+), 99 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
+index 124fb38eb465..37405f9ff7e5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
+@@ -199,48 +199,35 @@ static bool amdgpu_vmid_compatible(struct amdgpu_vmid *id,
+  * amdgpu_vmid_grab_idle - grab idle VMID
+  *
+  * @ring: ring we want to submit job to
+- * @idle: resulting idle VMID
+  * @fence: fence to wait for if no id could be grabbed
+  *
+  * Try to find an idle VMID, if none is idle add a fence to wait to the sync
+- * object. Returns -ENOMEM when we are out of memory.
++ * object.
+  */
+-static int amdgpu_vmid_grab_idle(struct amdgpu_ring *ring,
+-				 struct amdgpu_vmid **idle,
+-				 struct dma_fence **fence)
++static struct amdgpu_vmid *amdgpu_vmid_grab_idle(struct amdgpu_ring *ring,
++						 struct dma_fence **fence)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+-	unsigned vmhub = ring->vm_hub;
+-	struct amdgpu_vmid_mgr *id_mgr = &adev->vm_manager.id_mgr[vmhub];
+-
+-	/* If anybody is waiting for a VMID let everybody wait for fairness */
+-	if (!dma_fence_is_signaled(ring->vmid_wait)) {
+-		*fence = dma_fence_get(ring->vmid_wait);
+-		return 0;
+-	}
++	struct amdgpu_vmid_mgr *id_mgr = &adev->vm_manager.id_mgr[ring->vm_hub];
++	struct amdgpu_vmid *idle;
+ 
+ 	/* Check if we have an idle VMID */
+-	list_for_each_entry_reverse((*idle), &id_mgr->ids_lru, list) {
++	list_for_each_entry_reverse(idle, &id_mgr->ids_lru, list) {
+ 		/* Don't use per engine and per process VMID at the same time */
+ 		struct amdgpu_ring *r = adev->vm_manager.concurrent_flush ?
+ 			NULL : ring;
+ 
+-		*fence = amdgpu_sync_peek_fence(&(*idle)->active, r);
++		*fence = amdgpu_sync_peek_fence(&idle->active, r);
+ 		if (!(*fence))
+-			return 0;
++			return idle;
+ 	}
+ 
+ 	/*
+ 	 * If we can't find a idle VMID to use, wait on a fence from the least
+ 	 * recently used in the hope that it will be available soon.
+ 	 */
+-	*idle = NULL;
+-	dma_fence_put(ring->vmid_wait);
+-	ring->vmid_wait = dma_fence_get(*fence);
+-
+-	/* This is the reference we return */
+ 	dma_fence_get(*fence);
+-	return 0;
++	return NULL;
+ }
+ 
+ /**
+@@ -249,34 +236,33 @@ static int amdgpu_vmid_grab_idle(struct amdgpu_ring *ring,
+  * @vm: vm to allocate id for
+  * @ring: ring we want to submit job to
+  * @job: job who wants to use the VMID
+- * @id: resulting VMID
+  * @fence: fence to wait for if no id could be grabbed
+  *
+  * Try to assign a reserved VMID.
+  */
+-static int amdgpu_vmid_grab_reserved(struct amdgpu_vm *vm,
+-				     struct amdgpu_ring *ring,
+-				     struct amdgpu_job *job,
+-				     struct amdgpu_vmid **id,
+-				     struct dma_fence **fence)
++static struct amdgpu_vmid *
++amdgpu_vmid_grab_reserved(struct amdgpu_vm *vm,
++			  struct amdgpu_ring *ring,
++			  struct amdgpu_job *job,
++			  struct dma_fence **fence)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+-	unsigned vmhub = ring->vm_hub;
+ 	uint64_t fence_context = adev->fence_context + ring->idx;
+ 	bool needs_flush = vm->use_cpu_for_update;
+ 	uint64_t updates = amdgpu_vm_tlb_seq(vm);
++	struct amdgpu_vmid *id;
+ 	int r;
+ 
+-	*id = vm->reserved_vmid[vmhub];
+-	if ((*id)->owner != vm->immediate.fence_context ||
+-	    !amdgpu_vmid_compatible(*id, job) ||
+-	    (*id)->flushed_updates < updates ||
+-	    !(*id)->last_flush ||
+-	    ((*id)->last_flush->context != fence_context &&
+-	     !dma_fence_is_signaled((*id)->last_flush)))
++	id = vm->reserved_vmid[ring->vm_hub];
++	if (id->owner != vm->immediate.fence_context ||
++	    !amdgpu_vmid_compatible(id, job) ||
++	    id->flushed_updates < updates ||
++	    !id->last_flush ||
++	    (id->last_flush->context != fence_context &&
++	     !dma_fence_is_signaled(id->last_flush)))
+ 		needs_flush = true;
+ 
+-	if ((*id)->owner != vm->immediate.fence_context ||
++	if (id->owner != vm->immediate.fence_context ||
+ 	    (!adev->vm_manager.concurrent_flush && needs_flush)) {
+ 		struct dma_fence *tmp;
+ 
+@@ -287,26 +273,25 @@ static int amdgpu_vmid_grab_reserved(struct amdgpu_vm *vm,
+ 			ring = NULL;
+ 
+ 		/* to prevent one context starved by another context */
+-		(*id)->pd_gpu_addr = 0;
+-		tmp = amdgpu_sync_peek_fence(&(*id)->active, ring);
++		id->pd_gpu_addr = 0;
++		tmp = amdgpu_sync_peek_fence(&id->active, ring);
+ 		if (tmp) {
+-			*id = NULL;
+ 			*fence = dma_fence_get(tmp);
+-			return 0;
++			return NULL;
+ 		}
+ 	}
+ 
+ 	/* Good we can use this VMID. Remember this submission as
+ 	* user of the VMID.
+ 	*/
+-	r = amdgpu_sync_fence(&(*id)->active, &job->base.s_fence->finished,
++	r = amdgpu_sync_fence(&id->active, &job->base.s_fence->finished,
+ 			      GFP_ATOMIC);
+ 	if (r)
+-		return r;
++		return ERR_PTR(r);
+ 
+ 	job->vm_needs_flush = needs_flush;
+ 	job->spm_update_needed = true;
+-	return 0;
++	return id;
+ }
+ 
+ /**
+@@ -319,57 +304,46 @@ static int amdgpu_vmid_grab_reserved(struct amdgpu_vm *vm,
+  *
+  * Try to reuse a VMID for this submission.
+  */
+-static int amdgpu_vmid_grab_used(struct amdgpu_vm *vm,
+-				 struct amdgpu_ring *ring,
+-				 struct amdgpu_job *job,
+-				 struct amdgpu_vmid **id)
++static struct amdgpu_vmid *
++amdgpu_vmid_grab_used(struct amdgpu_vm *vm,
++		      struct amdgpu_ring *ring,
++		      struct amdgpu_job *job)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+-	unsigned vmhub = ring->vm_hub;
+-	struct amdgpu_vmid_mgr *id_mgr = &adev->vm_manager.id_mgr[vmhub];
++	struct amdgpu_vmid_mgr *id_mgr = &adev->vm_manager.id_mgr[ring->vm_hub];
+ 	uint64_t fence_context = adev->fence_context + ring->idx;
+ 	uint64_t updates = amdgpu_vm_tlb_seq(vm);
+-	int r;
++	struct amdgpu_vmid *id;
+ 
+ 	job->vm_needs_flush = vm->use_cpu_for_update;
+ 
+ 	/* Check if we can use a VMID already assigned to this VM */
+-	list_for_each_entry_reverse((*id), &id_mgr->ids_lru, list) {
++	list_for_each_entry_reverse(id, &id_mgr->ids_lru, list) {
+ 		bool needs_flush = vm->use_cpu_for_update;
+ 
+ 		/* Check all the prerequisites to using this VMID */
+-		if ((*id)->owner != vm->immediate.fence_context)
++		if (id->owner != vm->immediate.fence_context)
+ 			continue;
+ 
+-		if (!amdgpu_vmid_compatible(*id, job))
++		if (!amdgpu_vmid_compatible(id, job))
+ 			continue;
+ 
+-		if (!(*id)->last_flush ||
+-		    ((*id)->last_flush->context != fence_context &&
+-		     !dma_fence_is_signaled((*id)->last_flush)))
++		if (!id->last_flush ||
++		    (id->last_flush->context != fence_context &&
++		     !dma_fence_is_signaled(id->last_flush)))
+ 			needs_flush = true;
+ 
+-		if ((*id)->flushed_updates < updates)
++		if (id->flushed_updates < updates)
+ 			needs_flush = true;
+ 
+ 		if (needs_flush && !adev->vm_manager.concurrent_flush)
+ 			continue;
+ 
+-		/* Good, we can use this VMID. Remember this submission as
+-		 * user of the VMID.
+-		 */
+-		r = amdgpu_sync_fence(&(*id)->active,
+-				      &job->base.s_fence->finished,
+-				      GFP_ATOMIC);
+-		if (r)
+-			return r;
+-
+ 		job->vm_needs_flush |= needs_flush;
+-		return 0;
++		return id;
+ 	}
+ 
+-	*id = NULL;
+-	return 0;
++	return NULL;
+ }
+ 
+ /**
+@@ -386,39 +360,34 @@ int amdgpu_vmid_grab(struct amdgpu_vm *vm, struct amdgpu_ring *ring,
+ 		     struct amdgpu_job *job, struct dma_fence **fence)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+-	unsigned vmhub = ring->vm_hub;
++	const unsigned vmhub = ring->vm_hub;
+ 	struct amdgpu_vmid_mgr *id_mgr = &adev->vm_manager.id_mgr[vmhub];
+-	struct amdgpu_vmid *idle = NULL;
+-	struct amdgpu_vmid *id = NULL;
++	struct amdgpu_vmid *id;
+ 	int r = 0;
+ 
+ 	mutex_lock(&id_mgr->lock);
+-	r = amdgpu_vmid_grab_idle(ring, &idle, fence);
+-	if (r || !idle)
+-		goto error;
+ 
+ 	if (amdgpu_vmid_uses_reserved(vm, vmhub)) {
+-		r = amdgpu_vmid_grab_reserved(vm, ring, job, &id, fence);
+-		if (r || !id)
+-			goto error;
++		id = amdgpu_vmid_grab_reserved(vm, ring, job, fence);
++		if (IS_ERR_OR_NULL(id)) {
++			r = PTR_ERR(id);
++			goto out;
++		}
+ 	} else {
+-		r = amdgpu_vmid_grab_used(vm, ring, job, &id);
++		id = amdgpu_vmid_grab_used(vm, ring, job);
++		if (!id)
++			id = amdgpu_vmid_grab_idle(ring, fence);
++		if (!id)
++			goto out;
++
++		/* Remember this submission as user of the VMID */
++		r = amdgpu_sync_fence(&id->active,
++				      &job->base.s_fence->finished,
++				      GFP_ATOMIC);
+ 		if (r)
+-			goto error;
++			goto out;
+ 
+-		if (!id) {
+-			/* Still no ID to use? Then use the idle one found earlier */
+-			id = idle;
+-
+-			/* Remember this submission as user of the VMID */
+-			r = amdgpu_sync_fence(&id->active,
+-					      &job->base.s_fence->finished,
+-					      GFP_ATOMIC);
+-			if (r)
+-				goto error;
+-
+-			job->vm_needs_flush = true;
+-		}
++		job->vm_needs_flush = true;
+ 
+ 		list_move_tail(&id->list, &id_mgr->ids_lru);
+ 	}
+@@ -443,7 +412,7 @@ int amdgpu_vmid_grab(struct amdgpu_vm *vm, struct amdgpu_ring *ring,
+ 
+ 	trace_amdgpu_vm_grab_id(vm, ring, job);
+ 
+-error:
++out:
+ 	mutex_unlock(&id_mgr->lock);
+ 	return r;
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+index 09593fcdb2f7..6614682eaa89 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+@@ -254,7 +254,6 @@ int amdgpu_ring_init(struct amdgpu_device *adev, struct amdgpu_ring *ring,
+ 		ring->adev = adev;
+ 		ring->num_hw_submission = sched_hw_submission;
+ 		ring->sched_score = sched_score;
+-		ring->vmid_wait = dma_fence_get_stub();
+ 
+ 		ring->idx = adev->num_rings++;
+ 		adev->rings[ring->idx] = ring;
+@@ -413,8 +412,6 @@ void amdgpu_ring_fini(struct amdgpu_ring *ring)
+ 	kvfree(ring->ring_backup);
+ 	ring->ring_backup = NULL;
+ 
+-	dma_fence_put(ring->vmid_wait);
+-	ring->vmid_wait = NULL;
+ 	ring->me = 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+index 8f28b3bd7010..33dd39dd21cc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+@@ -414,7 +414,6 @@ struct amdgpu_ring {
+ 	u64			set_q_mode_token;
+ 	unsigned		vm_hub;
+ 	unsigned		vm_inv_eng;
+-	struct dma_fence	*vmid_wait;
+ 	bool			has_compute_vm_bug;
+ 	bool			no_scheduler;
+ 	bool			no_user_submission;
 -- 
-Jani Nikula, Intel
+2.54.0
+
