@@ -2,82 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nCz4IYG2PmqHKgkAu9opvQ
+	id 0rCYGTeQPmoqIAkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 19:27:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 16:44:07 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E171B6CF6A2
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 19:27:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 118666CE0B5
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 16:44:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=alerinaldi.it header.s=default header.b="bMdFF/Cp";
+	dkim=pass header.d=amd.com header.s=selector1 header.b=KIRKpC6p;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=alerinaldi.it (policy=none)
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C12A010F6D0;
-	Fri, 26 Jun 2026 17:27:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A19C210F61E;
+	Fri, 26 Jun 2026 14:44:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 2776 seconds by postgrey-1.36 at gabe;
- Fri, 26 Jun 2026 15:22:45 UTC
-Received: from server22.dominiok.net (server22.dominiok.net [198.136.49.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EED8910E3AE;
- Fri, 26 Jun 2026 15:22:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=alerinaldi.it; s=default; h=Content-Transfer-Encoding:MIME-Version:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=mE1OMUqnSgvpT6rWa4HUfXLZAPWVbKlraUuGYFi42p4=; b=bMdFF/Cpu6AzlHbplO98QQrmN6
- d7vwj43kH3Le2EMTJHpvNw7OnmgSpeled91CBo3MvQLdjzjS+kl4GvbTIs9JGwYmW5GCp556kLFyL
- fdeOIFc6ZXOROM/DvJbftCuGZL3cYTfGW7gqy9P/5tfd5C6ejyMgVtW3MRn+o3pSCa3UxR0UY91IE
- NNFfl2fqdGd61FXdIwvRiqppclk4ctfVsrMNFk8gb4czqZARcfDTpylfcpeXT2F6b6gaUH+wpQK+E
- Nh+42CQMphNImFUZZTmi9/JAO7kPSyGvT8/IIFwyNgRGyb8jRPMBPV/zQxMZiyO7k6EkcO0Db81w7
- IhCvH2oA==;
-Received: from mailnull by server22.dominiok.net with spam-scanner (Exim
- 4.99.4) (envelope-from <ale@alerinaldi.it>)
- id 1wd7fQ-00000002VCb-0m1s; Fri, 26 Jun 2026 16:36:28 +0200
-X-ImunifyEmail-Filter-Score: -0.64
-X-ImunifyEmail-Filter-Version: 3.8.25/202606241025
-X-ImunifyEmail-Filter-Action: no action
-X-ImunifyEmail-Filter-Info: Ul9NSVNTSU5HX0NIQVJTRVQgTUlNRV9UUkFDRSBSQ1ZEX1RM
- U19BTEw
- gVE9fRE5fU09NRSBSQ1ZEX1ZJQV9TTVRQX0FVVEggTUlNRV9VTktOT1
- dOIFZFUklMT0NLX0NCIEZST01fSEFTX0ROIFJDUFRfQ09VTlRfU0VWR
- U4gQVNOIEJBWUVTX0hBTSBBUkNfTkEgUkNWRF9DT1VOVF9PTkUgRlJP
- TV9FUV9FTlZGUk9NIFRPX01BVENIX0VOVlJDUFRfU09NRSBNSURfQ09
- OVEFJTlNfRlJPTQ==
-Received: from [45.137.234.149] (port=56066
- helo=alerinaldi-legion.tail281c59.ts.net)
- by server22.dominiok.net with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
- (Exim 4.99.4) (envelope-from <ale@alerinaldi.it>)
- id 1wd7fQ-00000002VA4-32Zy; Fri, 26 Jun 2026 16:36:27 +0200
-From: Alessandro Rinaldi <ale@alerinaldi.it>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: Rodrigo Siqueira <siqueira@igalia.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Werner Sembach <wse@tuxedocomputers.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Alessandro Rinaldi <ale@alerinaldi.it>
-Subject: [PATCH] drm/amd/display: Force PWM backlight on Lenovo Legion 5
- 15ARH05
-Date: Fri, 26 Jun 2026 16:36:00 +0200
-Message-ID: <20260626143600.13531-1-ale@alerinaldi.it>
-X-Mailer: git-send-email 2.53.0
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010002.outbound.protection.outlook.com [52.101.85.2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEC9C10F61E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 26 Jun 2026 14:44:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yCOTw3jp/REYadNV+JrZJggpCTpWlaYcXntdcuf9OVg53mr5llA4iIWpr+djCeiaQXGSdc+QdN5bg2jFZtMmMr/+9gf1DQTcUsuE+CcV7Zm5Dp8utTmCLKVAaEviQyncSxbSMxGB8+cXf4+AQsoHjb2wtfvhyeMmuqQF7F5gG+GCbS6RktQN5GMJ8IwQYau+GCBqbXc+dx1RHKm9a9GZdCSCNkq+jtPgZE/h62TP//P3jquJi/ucZcMnzxalg6UuLDbZHKw+/1pdnz3GyEfoBl5WA2x+kNrjXzf88r3WHGUbYCFv1PRaPuvMRvxF0XEcNYBqPPAZtu6RRhd+9GgcOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TdEVS1BfZ3bFiLhA8/NbmIHaVHdV5CkU6WvWbUcDpNc=;
+ b=ykD/jndYGOI7T4bENGNyHFTMKX/ysMhG52Rt6brU5UFf71ZKKcIiKGh48RGVoSzcrqUZsZES6kedO8r2GqpnrWst7XBABZCHuEW8miTttzhnIKzgwpB93mgxbD/DnXCfmpUAof2Sr+8tlGdO7o6o3Ei8vYWtgcq/4bJ2duqrXYr6f5dtgYFyLM2zmBkJP4AUJ3LbqjFpoRc9piN+6okBw8Q4ikwcVwRF6DcHEB8IKYnUiyRwdegomzT1wINS4WQaCvjsjBogebe3HKR3C8zP1su+P0nBNhabyIbLy/IKTthS+rX5kZLJqoBmuIUjj9ze58U4gr5URhaRdxuJuALNPg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TdEVS1BfZ3bFiLhA8/NbmIHaVHdV5CkU6WvWbUcDpNc=;
+ b=KIRKpC6pQtxC52rQ5QgzvtUhIYZSgIwJeGNBsc8tDbIxXF6NzW6dcWsQ282F+68Epkd8nGte7QX2I/QIiFjcxRaUm/bAkO6IqGCy1HPrnv7Lxytbms2JC5S32vxRuFiYW5f4Y8cVYJa/wALiCWs6o7WNF52IbzNNgZfZczAAbi4=
+Received: from SJ0PR03CA0174.namprd03.prod.outlook.com (2603:10b6:a03:338::29)
+ by MN0PR12MB6366.namprd12.prod.outlook.com (2603:10b6:208:3c1::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.17; Fri, 26 Jun
+ 2026 14:43:55 +0000
+Received: from CO1PEPF00012E64.namprd05.prod.outlook.com
+ (2603:10b6:a03:338:cafe::49) by SJ0PR03CA0174.outlook.office365.com
+ (2603:10b6:a03:338::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.13 via Frontend Transport; Fri,
+ 26 Jun 2026 14:43:55 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CO1PEPF00012E64.mail.protection.outlook.com (10.167.249.73) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Fri, 26 Jun 2026 14:43:55 +0000
+Received: from atitest-Rembrandt.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.41; Fri, 26 Jun 2026 09:43:54 -0500
+From: <boyuan.zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <leo.liu@amd.com>, <alexander.deucher@amd.com>, <david.wu3@amd.com>,
+ Boyuan Zhang <boyuan.zhang@amd.com>, David Wu <David.Wu3@amd.com>
+Subject: [PATCH 1/2] drm/amdgpu/jpeg: fix jpeg_v5_0_1_is_idle detection
+Date: Fri, 26 Jun 2026 10:43:18 -0400
+Message-ID: <20260626144319.313979-1-boyuan.zhang@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server22.dominiok.net
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - alerinaldi.it
-X-Get-Message-Sender-Via: server22.dominiok.net: authenticated_id:
- ale@alerinaldi.it
-X-Authenticated-Sender: server22.dominiok.net: ale@alerinaldi.it
-X-Mailman-Approved-At: Fri, 26 Jun 2026 17:27:20 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF00012E64:EE_|MN0PR12MB6366:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8d6b2598-17f1-4108-34b5-08ded391590c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|82310400026|376014|1800799024|36860700016|11063799006|56012099006|18002099003;
+X-Microsoft-Antispam-Message-Info: rssN6yapCkpEg7kzhEKrqvWYkc7SFddzpiSa5dUDA1u4x+SZldrU5pA69YwkO8GxKUW/9ziTLSVCgK1eFwPuJJLPSee+3109Vnp7UjmcFyQAYfsJWf1Xfk/tVy752vRG2yKJZ3nhC/yqOEqqLZXmIX5M2rVDZBf4qTQlPwqLW+sRkk0hJ/fqI+Wea2U2WpmqYdrUGpCPtGazTk6ppQffw28Vv7DoQyB42NNPnh2eObd6b2nNXIYYyOnG/tdufv5wwXX+nbb/ToJiYrk32HFuuZKNAh/SEItYznYGMX/HxrUrhP3XplCirVEYzROhIm/L83uygY/XtFo/GgZsVxSRRnfdOqKzpL5AkOxBHShObXLR+2PVX+gtsO9n1V0cvJoPtO5U55bMBV7mguKyFFUQi+lPNLpfJyGmSebJ1eAUcCxi8YhBEXw3AizPJ6wMqfprW4+/8UKnxxcexsTzmCqmGEooQ+txwae9Fggt6OQav9WD1W2i3Wm1lw9+XO1NdGrHozYn0QBiSnt67d4XyBv9bDmcSaYhs69STNyGI8uWnkRiJ+s4rFLEUtpQxE1gOlrfsvV+dIHUDv30PDAjpAsiyIsG9sOwM762U6V2+gkOiBmexKdCUh+z/tj5d7cvw7I4E+lfX37fgOhwh/oiLGCQ66cHuS/YIAXDe4J3t3W96vHdms73COzeUCr78MlGXyLnPSyld+HEJvv66nD7it1G3A==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(23010399003)(82310400026)(376014)(1800799024)(36860700016)(11063799006)(56012099006)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 685tbse9RhKRzrePtRhAuTOdGTDYnuvZtY/tytWRcDrsm6JTlAPEkI3XUwc0yO9/kJtD0GzGr75bb9BLaR9vSCV3CjjUd33hV29pJHCKQBeeUu+Kv/tuE+bItr2IFk1qrJFNU046vmz7toQ1hNl7lfR700NErZ9BGYvP6X8HZz0sFWWS528r36W3nZRlXVs5gGxmWhBppeo0PVmj+gypUjnh1W6o/iN11onnZCqIJacRcjZjy7QM0csPsBcIDu/TGr4NEoGFDt0LY4LvoZtnxtqUBYFwKD/u1+yeNjOj0LJUueVIXIPDH84uURIGzS/5UbAJ+yhVBc1kmq3oLUgNgYwRYIQZGbs53l/SjC/ysTASLbOvQGRAOIZ5CDII4anjRftJlQAIHMcFP2EoOKqU0O0zMM9ELtiNUBz/UH+NaC16GJdWG/mxiZmPJC/xu/Pf
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2026 14:43:55.0035 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d6b2598-17f1-4108-34b5-08ded391590c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF00012E64.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6366
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,132 +115,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.99 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_REJECT(1.00)[alerinaldi.it:s=default];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	DMARC_POLICY_SOFTFAIL(0.10)[alerinaldi.it : SPF not aligned (relaxed),none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	HAS_X_GMSV(0.00)[ale@alerinaldi.it];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_X_AS(0.00)[ale@alerinaldi.it];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[alerinaldi.it:-];
-	HAS_X_ANTIABUSE(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ale@alerinaldi.it,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[boyuan.zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,alerinaldi.it:email,alerinaldi.it:mid,alerinaldi.it:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E171B6CF6A2
+X-Rspamd-Queue-Id: 118666CE0B5
 
-The Lenovo Legion 5 15ARH05 (Renoir) ships a BOE 0x08DF eDP panel that
-advertises AUX/DPCD backlight control, so amdgpu's automatic detection
-(amdgpu_backlight == -1) selects AUX. On this panel the AUX backlight
-path has no effect: brightness writes are accepted but the panel level
-never changes, the display is stuck at a fixed brightness and
-max_brightness is reported as a bogus 511000. As a result neither the
-desktop brightness slider nor the brightness hotkeys do anything.
+From: Boyuan Zhang <boyuan.zhang@amd.com>
 
-Forcing PWM backlight (amdgpu.backlight=0) restores working control:
-max_brightness becomes 65535 and the level tracks writes. This has long
-been applied by users as a manual kernel-parameter workaround.
+jpeg_v5_0_1_is_idle() initializes ret to false and then accumulates ring
+idle status using &=. Since false & condition always remains false, the
+function can never report the JPEG block as idle.
 
-Extend the generic panel backlight quirk with a force_pwm flag, add an
-entry for the Legion 5 15ARH05 / BOE 0x08DF panel, and have amdgpu
-disable AUX backlight (use PWM) when the quirk matches and the user
-lets the driver auto-select the backlight type.
+Initialize ret to true so the function returns true only when all JPEG
+rings report RB_JOB_DONE.
 
-Signed-off-by: Alessandro Rinaldi <ale@alerinaldi.it>
-Tested-by: Alessandro Rinaldi <ale@alerinaldi.it>
+Signed-off-by: Boyuan Zhang <boyuan.zhang@amd.com>
+Reviewed-by: David (Ming Qiang) Wu <David.Wu3@amd.com>
 ---
-This overlaps with the "force backlight type" patches for TUXEDO devices
-(amd and i915). If a single shared mechanism for forcing PWM is preferred,
-I'm happy to respin on top of it.
+ drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c  | 7 +++++--
- drivers/gpu/drm/drm_panel_backlight_quirks.c             | 9 +++++++++
- include/drm/drm_utils.h                                  | 1 +
- 3 files changed, 15 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-index f19092a32..9ae1c1b0f 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-@@ -486,6 +486,8 @@ void amdgpu_dm_update_connector_ext_caps(struct amdgpu_dm_connector *aconnector)
- 	caps->ext_caps = &aconnector->dc_link->dpcd_sink_ext_caps;
- 	caps->aux_support = false;
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
+index a562369d2d81..01cafa6a4fed 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
+@@ -674,7 +674,7 @@ static void jpeg_v5_0_1_dec_ring_set_wptr(struct amdgpu_ring *ring)
+ static bool jpeg_v5_0_1_is_idle(struct amdgpu_ip_block *ip_block)
+ {
+ 	struct amdgpu_device *adev = ip_block->adev;
+-	bool ret = false;
++	bool ret = true;
+ 	int i, j;
  
-+	panel_backlight_quirk = drm_get_panel_backlight_quirk(aconnector->drm_edid);
-+
- 	if (caps->ext_caps->bits.oled == 1
- 	    /*
- 	     * ||
-@@ -498,6 +500,9 @@ void amdgpu_dm_update_connector_ext_caps(struct amdgpu_dm_connector *aconnector)
- 		caps->aux_support = false;
- 	else if (amdgpu_backlight == 1)
- 		caps->aux_support = true;
-+	else if (!IS_ERR_OR_NULL(panel_backlight_quirk) &&
-+		 panel_backlight_quirk->force_pwm)
-+		caps->aux_support = false;
- 	if (caps->aux_support)
- 		aconnector->dc_link->backlight_control_type = BACKLIGHT_CONTROL_AMD_AUX;
- 
-@@ -513,8 +518,6 @@ void amdgpu_dm_update_connector_ext_caps(struct amdgpu_dm_connector *aconnector)
- 	else
- 		caps->aux_min_input_signal = 1;
- 
--	panel_backlight_quirk =
--		drm_get_panel_backlight_quirk(aconnector->drm_edid);
- 	if (!IS_ERR_OR_NULL(panel_backlight_quirk)) {
- 		if (panel_backlight_quirk->min_brightness) {
- 			caps->min_input_signal =
-diff --git a/drivers/gpu/drm/drm_panel_backlight_quirks.c b/drivers/gpu/drm/drm_panel_backlight_quirks.c
-index 537dc6dd0..2d0238382 100644
---- a/drivers/gpu/drm/drm_panel_backlight_quirks.c
-+++ b/drivers/gpu/drm/drm_panel_backlight_quirks.c
-@@ -21,6 +21,15 @@ struct drm_get_panel_backlight_quirk {
- };
- 
- static const struct drm_get_panel_backlight_quirk drm_panel_min_backlight_quirks[] = {
-+	/* Lenovo Legion 5 15ARH05, AUX backlight non-functional, force PWM */
-+	{
-+		.dmi_match.field = DMI_SYS_VENDOR,
-+		.dmi_match.value = "LENOVO",
-+		.dmi_match_other.field = DMI_PRODUCT_VERSION,
-+		.dmi_match_other.value = "Lenovo Legion 5 15ARH05",
-+		.ident.panel_id = drm_edid_encode_panel_id('B', 'O', 'E', 0x08df),
-+		.quirk = { .force_pwm = true, },
-+	},
- 	/* 13 inch matte panel */
- 	{
- 		.dmi_match.field = DMI_BOARD_VENDOR,
-diff --git a/include/drm/drm_utils.h b/include/drm/drm_utils.h
-index 6a46f755d..7e077484c 100644
---- a/include/drm/drm_utils.h
-+++ b/include/drm/drm_utils.h
-@@ -19,6 +19,7 @@ int drm_get_panel_orientation_quirk(int width, int height);
- struct drm_panel_backlight_quirk {
- 	u16 min_brightness;
- 	u32 brightness_mask;
-+	bool force_pwm;
- };
- 
- const struct drm_panel_backlight_quirk *
+ 	for (i = 0; i < adev->jpeg.num_jpeg_inst; ++i) {
 -- 
-2.53.0
-
+2.43.0
 
