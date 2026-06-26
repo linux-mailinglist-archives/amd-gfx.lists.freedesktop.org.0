@@ -2,64 +2,160 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fyuVLJErPmpWAwkAu9opvQ
+	id ZrdXLNQ0PmrZBQkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:34:41 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 10:14:12 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27E2A6CAFAA
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 09:34:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B54D6CB3FE
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Jun 2026 10:14:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b="nJadz/P9";
+	dkim=pass header.d=intel.com header.s=Intel header.b=hzXF7PUk;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=kernel.org
+	dmarc=pass (policy=none) header.from=intel.com;
+	arc=reject ("signature check failed: fail, {[1] = sig:microsoft.com:reject}")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5AAC10F441;
-	Fri, 26 Jun 2026 07:34:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FB1810E33F;
+	Fri, 26 Jun 2026 08:14:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0564410E315;
- Fri, 26 Jun 2026 07:34:38 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id C3AB040682;
- Fri, 26 Jun 2026 07:34:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0740E1F000E9;
- Fri, 26 Jun 2026 07:34:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1782459277;
- bh=jsadCdyumN0KCHx9a0TVh+QixmrCkSwpQjl838q6tIg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=nJadz/P9MFSux4EG+jKMAxKW6uZ7cS2BI/to+rGTVu/rsVrN7+lYxBcT8iqmyyQ/0
- 1CNT9X+lnVehcd6+IvyO5baaADlv+yunFV9MwaXaQOZpnt5PrsVv1WdwtC750CuhpO
- BnaT6LCcKg8ynY/ATC7/ceyFDiPDPv+9JuwCnQ7ZgM6K4G42ixQcKAfpcvIgnmQUWz
- m2sBojKBkFX2xAYBcpt6LJhGeciAXRUy3XEHEcKu7g/N9bk5w5NuIUcE8Q5TFWN+As
- q2iUIohiV91jv1jP3IN8plu08S8fAoeou9sYeCfYAOhL1fZAUZIdglU/6zsobfat+S
- 15cxj3ti9fzEA==
-Date: Fri, 26 Jun 2026 09:34:34 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Mario Limonciello <mario.limonciello@amd.com>
-Cc: dri-devel@lists.freedesktop.org, harry.wentland@amd.com, 
- Simona Vetter <simona@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Xaver Hugl <xaver.hugl@gmail.com>,
- amd-gfx@lists.freedesktop.org, 
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>, 
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-xe@lists.freedesktop.org>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: Re: [PATCH v6 03/10] drm: link connectors to backlight devices
-Message-ID: <20260626-warping-quizzical-cuttlefish-beb8be@houat>
-References: <20260624165751.2014759-1-mario.limonciello@amd.com>
- <20260624165751.2014759-4-mario.limonciello@amd.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="orbeno6uw645omls"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7359E10F4D3;
+ Fri, 26 Jun 2026 08:14:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782461647; x=1813997647;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=gZya5T7a9cCEzEUqG9MR4k8TtbLs7YNiBO9Z3kGgPGI=;
+ b=hzXF7PUklD+eYfTAZbsCuPpKd+lk7QGUsHlMCf3wEJRE8y53RLfVBZ6T
+ 8hCM87JUrMkern8VoSoakcjb9lQNn7FE7JGkAu5893/hLEMS/6LXTYfYs
+ 5xi5FCflDIZnpM4jodob4p25wUKDZi3qff0L7B96dPWZWPrzpZrLsa2nG
+ j9KwBooh6WywhExyB4WpeO3x9nbfvoc/8sLUmvbwJwg9Jgk7EsHelVYsp
+ iQr3kv8LQP35eq04/TXOabucdufHoxKO5aTfSg2PS16j7z+xTImrx/nj5
+ a+TYC4qU0u5YV2/qHCc/7Ul6BJMNcVPqACsNn7L7zx9sNN99wpSODu2Ps g==;
+X-CSE-ConnectionGUID: lX5yFmrSTzO8SeauBLZeYw==
+X-CSE-MsgGUID: TrYwdjRvQ6Omj5rBTKde3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="93606734"
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="93606734"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 01:14:06 -0700
+X-CSE-ConnectionGUID: ox7ijuVTS4emC003Iae6yw==
+X-CSE-MsgGUID: LXo1+zr+RZWqAwbGtUBwCA==
+X-ExtLoop1: 1
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 01:14:06 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 26 Jun 2026 01:14:05 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Fri, 26 Jun 2026 01:14:05 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.26) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 26 Jun 2026 01:14:05 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nbLpCioIvDqWf2d/Xs+jE9lwMwrbAxd1N6n99224dETARnfl8VuvUBXR77WxnT46cy6TzAamrPkZ8jtAabNjG7SGCQfZCEL8NhNT/G5pchyOZTu3/7V7B5n08IsNGE5e2uu7ND7WX9Bs8TR1JwGo3nbohpckUxWYBlvHc8/2g0Z2rJ+bVD6Ngs3tZ91TvNsJxSPbapBghp3B4W8cMZ3R3BWH5pJBsr/DuFGr7GxMavcLp3kFzZNJRyaToE6l8TIp+cfX2OBEgra7q7Yz3t9lmImL7YV5ve2cpVnzcxVDRZIrQbmAyhMs/TYStqyEwGqNuxbhOEExCUBb4ZVIyhVqCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fdTAVAcB/xPg2aUbsRocMgetcjgpug78KLLTSdzUgz8=;
+ b=H0zCnDxCNs3MXsOCwSn3YqSLV2p/zKGeE2XEWcOuFUN9lgQ4OZ/KI7IZlRj0F0yZJlajsXFXdQ0XqphYkJmFGmEkXXd/GsED9335OY/f7TuPt8FJG/BDmC1YqlPw3sTy3DpQPU40UywY9V77ca2PmYG54ydgF917CU/0iV90lW1fYCMQFWsxnggAPzQhCg1NZm+v8MknBPpY44sjexi5DBYhHgXN4znFlIr00zP7csVOpWjYKRBCHb7V7hrxJJyROlHbSXXRJq/HIVwQ3Tzw8hVPQz0jy58D+/FSOy0GJ/CXIp8YNL3pJOWoIPq1JuwKqutlbJ4tBgi1hMgMTPASrg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by SA0PR11MB4766.namprd11.prod.outlook.com (2603:10b6:806:92::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.17; Fri, 26 Jun
+ 2026 08:14:00 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0159.016; Fri, 26 Jun 2026
+ 08:14:00 +0000
+Date: Fri, 26 Jun 2026 01:13:57 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Honglei Huang <honglei1.huang@amd.com>
+CC: <sima@ffwll.ch>, <rodrigo.vivi@intel.com>,
+ <thomas.hellstrom@linux.intel.com>, <dakr@kernel.org>,
+ <aliceryhl@google.com>, <Alexander.Deucher@amd.com>,
+ <Felix.Kuehling@amd.com>, <Christian.Koenig@amd.com>, <Oak.Zeng@amd.com>,
+ <Jenny-Jing.Liu@amd.com>, <Philip.Yang@amd.com>, <Xiaogang.Chen@amd.com>,
+ <Ray.Huang@amd.com>, <Lingshan.Zhu@amd.com>, <Junhua.Shen@amd.com>,
+ <Yiru.Ma@amd.com>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <honghuan@amd.com>
+Subject: Re: [PATCH v3 1/5] drm/gpusvm: split MM state flags out of
+ drm_gpusvm_pages_flags
+Message-ID: <aj40xcAiXlj6/z6S@gsse-cloud1.jf.intel.com>
+References: <20260618080902.1527255-1-honglei1.huang@amd.com>
+ <20260618080902.1527255-2-honglei1.huang@amd.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260624165751.2014759-4-mario.limonciello@amd.com>
+In-Reply-To: <20260618080902.1527255-2-honglei1.huang@amd.com>
+X-ClientProxiedBy: SJ0PR03CA0177.namprd03.prod.outlook.com
+ (2603:10b6:a03:338::32) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA0PR11MB4766:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9d18aba-0a7b-401a-7397-08ded35ae0a3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|23010399003|376014|7416014|1800799024|6133799003|11063799006|4143699003|56012099006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: +75ml/qkqiIyahg3CFUeEn850GQFlRdXhnHSAqDUJTAXVnzlhnbUUwVgLHIuTxZ8iD6xoW7NxLoZV7WQeBaNUTLhJwyPW6ClkW4si3PFytkBLCqsn+4nJtiuRvZIqi2PchwqiNdmhq1elcNqhyhAKvzpSUd8oHvxAm/nAk3rKv2O5YPdzPTM8hwuu6dY72qJLMUxiedMHSkbS+5bG4T0zP6ucZiRa+bTCh5XgmzwiQNG3dJ0ayTfSPydYcNu/cntpxRT8kLfBjp3EdWRGt/UqNtdGPWEOzyOHMUCmXYsc6NV8PXnS3qLYnMzogUBgzlHMdCH2TdazvTkAmzezSn/jR88Q+HHGILDNyfo87TUwrPZfdlCA6MZM7eyqbV7Hu8zM8K/O9ynspMLRv7gOO/8pXcLVRwzoybUfueg0oWmGXIWktbwdg5Q0ih3b9NKLzE4TUFSsDm1gQiaFgqrB5pl3MIS0IQUGqPv13HIev9kattTpt0M2TQtRQUzXTJyaAE4Hu6ColT+a5pe50uSomOoPbt5Q+urTJdeNw1VVPuHnLQpkaWvU4ggELNxNe5r0QKpouvJUH0wkc8d/WYyzDDcjSOYlGz4i6Yt+TySEel6PBb/0xMFW+++lWEKn6cSin7m
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(23010399003)(376014)(7416014)(1800799024)(6133799003)(11063799006)(4143699003)(56012099006)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zFPyvE0owmRWhf78AO8OSS1Y7Nt1gbMp8luwKL1JSI3BJQCukW/nozI5Arjv?=
+ =?us-ascii?Q?IsQF1SXpEwcLiPj7RVFl3RSecVBW9NyF3/Q8hSlNk2sDrXuwB2LTsJrvOUpe?=
+ =?us-ascii?Q?sr8Mu93SSaWUsf/J2o/ahfV/a90dgJbe2Xu8MBm/0XcZrAtWGfD6+zm64wES?=
+ =?us-ascii?Q?GNK0yWm+yCM7uZLeBo/SarPFBwizDeFavULl7Pf5jH34xRxb92ljGXf47i1G?=
+ =?us-ascii?Q?R18AZ/rHF6TZUQ+jiOod7hD03fUr/bcLYGXMvepIWbWHwQifxWA1R/GDyFNo?=
+ =?us-ascii?Q?cX1Vs3Avswh1OwXeGaYxv0cWyJzrd0nt/5enxm76NcXhKYZzbd2ZthfkkkOY?=
+ =?us-ascii?Q?tiEFOKIMZV6HB8Bxkq9X9cryf1bzvJ+r3MZsi9wK3bStA47A92CMZ9+O0MfU?=
+ =?us-ascii?Q?YiGEioHrbKARTY2WhT9QHyOoKHO3qRBA1rkUXjPrId/7yW9fuLtGirXGbILS?=
+ =?us-ascii?Q?PdAWh9IFh7RHSwdoMsBaJ8kk8vBNVtSGrne7WjV9jRkovBiS70/yMkucsfPw?=
+ =?us-ascii?Q?3wN4OKnaUFNqCdR3QUWv21n9rjMGWe5svwxGQE/wwpmSOvR0JU+qHT/DkIav?=
+ =?us-ascii?Q?AGUpfK0s+TQy0u1WzTTXayBDKxdU5MGcM2/yZ38F1tibJEQ+r6a4O972nC5a?=
+ =?us-ascii?Q?fVGG4jKYeRWEQe3+k/yo3wyS0tI9+jH7rPy8ppizz/wMOB7dqxhQ/oaRXkbU?=
+ =?us-ascii?Q?5w/UqdUlT3Rj64/6CSz+9YmWPvYhDJ/OmSz493q2J2q0MyemXtneWjB+CCoS?=
+ =?us-ascii?Q?uus4Tj1Ld/nVyENys4DTnSkiP/WMotLl+kjidpuaxF0TZpr+MT1FgJpWOmWl?=
+ =?us-ascii?Q?r/vK+WTwVXk9A0XpG8fbdpXmG3aHOFOuxrHCY34aZ3g2xKSP6KyE9eMjVCs/?=
+ =?us-ascii?Q?/SB1RIHUzvMXym7tHTWKMRmO73HDKb8x6FoaYe+8LdqgcYifitGPWgWpbshv?=
+ =?us-ascii?Q?b6RXZZB/fjP0GuXDwtRUZMp/5wla5B5xOBzAJmfitrhv5pDQaaJzI0Sgtn3K?=
+ =?us-ascii?Q?Qm8Uvqgfou/OTDPj58RqNWXnV+IbalgDQCjNAyP+VeFtoOCZ0hINyJWmDi+B?=
+ =?us-ascii?Q?gV5bCiWzrVTkR3Jo47VZrCT/zKfzFQCUSFltLiIgX1dNKmFxbB/zRw2RXV2v?=
+ =?us-ascii?Q?SVY21CFVu4krJD3VPOsax5phCFnKkwIr5t6WB6bpbjmXbnvdNbc/PBEHsbYV?=
+ =?us-ascii?Q?v8u6wCO+BtuKnd7Na9+ioiy7U9HVxu+mf7Vi7AiG9xQjIbzybGRIyBjbyJie?=
+ =?us-ascii?Q?mw2x6mDhjeb8eaiURnxE1iTMfAMijBdUF0hLc1PMu6pyi/vXNmbSbVpEzLqp?=
+ =?us-ascii?Q?FWjkYKn9Eq5J/5syvuXfi6zV/iarEsQDwN+dNo9mLFlrlAt9m2SBY6xQFBwP?=
+ =?us-ascii?Q?yDoi6RntzTIMQUoFXa6bUdtWRw3PcT6EqXEpgUEQW76yD8MLuSIxtxUT70iS?=
+ =?us-ascii?Q?h8Ya3iQ5yarqFfTVSfcN9ezkRS5VmzzeVSu58ynWaTmWw7V9YxU0fs5SEFF6?=
+ =?us-ascii?Q?h0IxZAKSQwWKNCvdPyQdoi3tMvUkXdlvUxKgtPuIBR4WWj/PEWFDQNd64qxn?=
+ =?us-ascii?Q?wjmaOkKra+CRL9EDNfdeRvcikZr8w+fYJ+tqET0d9mz7jARNWOlZBkkxlu5I?=
+ =?us-ascii?Q?uxtAwXTPgabVtmXih/nxZa5iphmavDiKrvRjAq1GJjL0vpryUkn3dfZ0RWM4?=
+ =?us-ascii?Q?EVWXLH917zPWcr0T5g4tR61zbfmzveXuWONH8gR/qORYqnNETOE22oUePLa0?=
+ =?us-ascii?Q?xfMg5wXwHuGtCRq4yceQpjuKNX+LAD4=3D?=
+X-Exchange-RoutingPolicyChecked: EiGrjLexlokzhxAjFpY91uLAeN677NR+r3K9o1boV1f9ewNp0qFcwko5qYUzt8Qbx4BciNMA8UhNzqiUkihcWuBJq5dZgbXw3vSaHzrhWPznAq/J0sLRjt/fQuQUcpqdyKA0LMUd9YmIV3FchjeMbG+Zms2vka1rcrTtED92ZxV1vb+/SOjx4/aHaH6m6MTuzW6ZYqel2PkZXU48gbcBNEgBMVTfdo+AEUwuzm/yXhwQXuVBijhmw4Kud1YZ43d2zRp++MumpIwqgpe1T0tR4xAurDJJ9ZT1kXEKEP1v32qMLNNbHRPY5EMqjrSZ1tbVEz09rFzZt9vVfkK7vYpLQQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9d18aba-0a7b-401a-7397-08ded35ae0a3
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2026 08:14:00.4263 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uZ1czwvPEowI01IfyTIbfR45/NIqkWvdiTB31XxhvTfyJ3pPK1lTUjlR5pKuMhi7/EIReDbDC0SWR1FRM++mEg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4766
+X-OriginatorOrg: intel.com
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,967 +170,254 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.41 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,intel.com:dkim,intel.com:email,intel.com:from_mime,gsse-cloud1.jf.intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,gitlab.freedesktop.org:url];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,ffwll.ch,linux.intel.com,suse.de,gmail.com,kernel.org,oss.qualcomm.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,qualcomm.com:email]
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[matthew.brost@intel.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 27E2A6CAFAA
+X-Rspamd-Queue-Id: 5B54D6CB3FE
 
+On Thu, Jun 18, 2026 at 04:08:58PM +0800, Honglei Huang wrote:
+> From: Honglei Huang <honghuan@amd.com>
+> 
+> drm_gpusvm_pages_flags currently mixes two status:
+>   - MM / virtual-address state: whether the range has been (partially)
+>     unmapped by the Linux MM, these follow the lifetime of the VMA and
+>     are a single per VA range fact.
+>   - Device mapping state: has_devmem_pages and has_dma_mapping,
+>     which describe the current page mapping status held by device
+>     itself.
+> 
+> Keeping both on the pages object blurs the semantics of the
+> abstraction of pages and VA range. So move the MM state flags onto the
+> range, and keep drm_gpusvm_pages_flags strictly for mapping state.
+> 
+>   - Introduce drm_gpusvm_range_flags { migrate_devmem, unmapped,
+>     partial_unmap } on drm_gpusvm_range.
+>   - Shrink drm_gpusvm_pages_flags to just has_devmem_pages and
+>     has_dma_mapping.
+> 
+> Side effect: drivers now need to check the unmap flags in the driver
+> itself to avoid handling the unmapped pages.
+> 
+> Mirror that bit onto drm_gpusvm_pages so the framework can
+> still short circuit drm_gpusvm_get_pages() under the notifier lock, and
+> make drm_gpusvm_range_set_unmapped() propagate it to the backing pages.
+> This follows Matt's review fixup for the v0 series; see the Link below.
+> 
+> Suggested-by: Matthew Brost <matthew.brost@intel.com>
 
---orbeno6uw645omls
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 03/10] drm: link connectors to backlight devices
-MIME-Version: 1.0
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-On Wed, Jun 24, 2026 at 09:57:43AM -0700, Mario Limonciello wrote:
-> From: "Mario Limonciello (AMD)" <superm1@kernel.org>
->=20
-> This will show which connector in sysfs matches which backlight.
->=20
-> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> # SM8150-=
-HDK
-> Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
+> Link: https://gitlab.freedesktop.org/mbrost/xe-kernel-driver-svn-perf-6-15-2025/-/commit/623f6a50c037d9e44f6c9fbe6859a0ba7ad50177
+> Signed-off-by: Honglei Huang <honghuan@amd.com>
 > ---
->  drivers/gpu/drm/Kconfig             |   1 +
->  drivers/gpu/drm/Makefile            |   1 +
->  drivers/gpu/drm/drm_backlight.c     | 371 ++++++++++++++++++++++++++++
->  drivers/gpu/drm/drm_connector.c     |  12 +
->  drivers/gpu/drm/drm_drv.c           |   8 +
->  drivers/gpu/drm/drm_mode_config.c   |   7 +
->  drivers/gpu/drm/drm_mode_object.c   |  66 ++++-
->  drivers/gpu/drm/drm_sysfs.c         |  28 ++-
->  drivers/video/backlight/backlight.c |  17 ++
->  include/drm/drm_backlight.h         |  51 ++++
->  include/drm/drm_connector.h         |   3 +
->  include/drm/drm_mode_config.h       |   5 +
->  include/linux/backlight.h           |  13 +
->  13 files changed, 578 insertions(+), 5 deletions(-)
->  create mode 100644 drivers/gpu/drm/drm_backlight.c
->  create mode 100644 include/drm/drm_backlight.h
->=20
-> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> index 323422861e8f6..d6035bbbdc83f 100644
-> --- a/drivers/gpu/drm/Kconfig
-> +++ b/drivers/gpu/drm/Kconfig
-> @@ -17,6 +17,7 @@ menuconfig DRM
->  # device and dmabuf fd. Let's make sure that is available for our usersp=
-ace.
->  	select KCMP
->  	select VIDEO
-> +	select BACKLIGHT_CLASS_DEVICE
->  	help
->  	  Kernel-level support for the Direct Rendering Infrastructure (DRI)
->  	  introduced in XFree86 4.0. If you say Y here, you need to select
-> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> index e97faabcd7830..bf980a2ac1e6b 100644
-> --- a/drivers/gpu/drm/Makefile
-> +++ b/drivers/gpu/drm/Makefile
-> @@ -78,6 +78,7 @@ drm-$(CONFIG_DRM_CLIENT) +=3D \
->  	drm_client_event.o \
->  	drm_client_modeset.o \
->  	drm_client_sysrq.o
-> +drm-y +=3D drm_backlight.o
->  drm-$(CONFIG_COMPAT) +=3D drm_ioc32.o
->  drm-$(CONFIG_DRM_PANEL) +=3D drm_panel.o
->  drm-$(CONFIG_OF) +=3D drm_of.o
-> diff --git a/drivers/gpu/drm/drm_backlight.c b/drivers/gpu/drm/drm_backli=
-ght.c
-> new file mode 100644
-> index 0000000000000..b1ec470be86ca
-> --- /dev/null
-> +++ b/drivers/gpu/drm/drm_backlight.c
-> @@ -0,0 +1,371 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * DRM Backlight Helpers
-> + * Copyright (c) 2014 David Herrmann
-> + * Copyright (c) 2026 Advanced Micro Devices, Inc.
-> + */
-> +
-> +#include <linux/backlight.h>
-> +#include <linux/fs.h>
-> +#include <linux/list.h>
-> +#include <linux/math64.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/notifier.h>
-> +#include <linux/slab.h>
-> +#include <linux/spinlock.h>
-> +#include <drm/drm_backlight.h>
-> +#include <drm/drm_connector.h>
-> +#include <drm/drm_device.h>
-> +#include <drm/drm_mode_config.h>
-> +
-> +/**
-> + * DOC: Backlight Devices
-> + *
-> + * Backlight devices have always been managed as a separate subsystem,
-> + * independent of DRM. They are usually controlled via separate hardware
-> + * interfaces than the display controller, so the split works out fine.
-> + * However, backlight brightness is a property of a display, and thus a
-> + * property of a DRM connector. We already manage DPMS states via connec=
-tor
-> + * properties, so it is natural to keep brightness control at the same p=
-lace.
-> + *
-> + * This DRM backlight interface implements generic backlight properties =
-on
-> + * connectors. It does not handle any hardware backends but simply forwa=
-rds
-> + * the requests to a linked backlight device. The links between connecto=
-rs and
-> + * backlight devices are established by DRM drivers; user-space cannot c=
-reate
-> + * or modify these links. A 'change' uevent is sent whenever the brightn=
-ess is
-> + * updated.
-
-I think we should explain why, because if it's a property and comes from
-the userspace, then why would luminance be special and trigger a uevent
-when it's updated, unlike any other property?
-
-> + * Drivers have to call drm_backlight_alloc() after allocating a connect=
-or via
-> + * drm_connector_init(). This will automatically add a backlight device =
-to the
-> + * given connector. Drivers must then link a hardware backlight by calli=
-ng
-> + * drm_backlight_link() with the registered backlight_device. If no link=
- is
-> + * established, the DRM backlight property reports an empty range and
-> + * brightness changes are no-ops.
-> + */
-
-It's not clear to me why we need to dynamically allocate them at all. If
-we're using the backlight subsystem we'll already have a handle to it.
-If we don't and want to implement something like DDC/CI, then it just
-becomes a hassle. Why not treat it like i2c, add a backlight field to
-drm_connector, and create the link at registration, add a new hook to
-set luminance, and then provide helpers to either use the backlight API,
-or anything else if the driver wants to.
-
-> +struct drm_backlight {
-> +	struct list_head list;
-> +	struct drm_connector *connector;
-> +	struct backlight_device *link;
-> +	/*
-> +	 * Number of luminance-aware DRM clients that have taken over this
-> +	 * connector's backlight. While > 0, legacy sysfs writes to the
-> +	 * linked backlight_device return -EBUSY. Protected by
-> +	 * drm_backlight_lock.
-> +	 */
-> +	unsigned int luminance_clients;
-> +};
-> +
-> +static LIST_HEAD(drm_backlight_list);
-> +static DEFINE_SPINLOCK(drm_backlight_lock);
-> +
-> +/* caller must hold @drm_backlight_lock */
-> +static bool __drm_backlight_is_registered(struct drm_backlight *b)
-> +{
-> +	lockdep_assert_held(&drm_backlight_lock);
-> +	/* a device is live if it is linked to @drm_backlight_list */
-> +	return !list_empty(&b->list);
-> +}
-> +
-> +/* caller must hold @drm_backlight_lock */
-> +static void __drm_backlight_real_changed(struct drm_backlight *b, uint64=
-_t v)
-> +{
-> +	unsigned int max, set;
-> +
-> +	lockdep_assert_held(&drm_backlight_lock);
-> +
-> +	if (!b->link)
-> +		return;
-> +
-> +	max =3D b->link->props.max_brightness;
-> +	if (max < 1)
-> +		return;
-> +
-> +	set =3D v;
-> +	if (set >=3D max)
-> +		set =3D max;
-> +}
-> +
-> +/**
-> + * __drm_backlight_update_prop_range - update the luminance property ran=
-ge
-> + * @b: backlight device
-> + *
-> + * Updates the luminance property range based on the linked backlight de=
-vice's
-> + * max_brightness. If no device is linked, sets range to 0-0 to indicate
-> + * unavailability.
-> + */
-> +static void __drm_backlight_update_prop_range(struct drm_backlight *b)
-> +{
-> +	struct drm_device *dev =3D b->connector->dev;
-> +	struct drm_property *prop =3D dev->mode_config.luminance_property;
-> +	unsigned int max =3D 0;
-> +
-> +	lockdep_assert_held(&drm_backlight_lock);
-> +
-> +	if (b->link && b->link->props.max_brightness > 0)
-> +		max =3D b->link->props.max_brightness;
-> +
-> +	/* Update property range to match hardware capabilities.
-> +	 * Range of 0-0 indicates no backing device.
-> +	 * Range of 1-max for normal operation (0 reserved for display off).
-> +	 */
-> +	if (prop->values[1] !=3D max) {
-> +		prop->values[0] =3D max ? 1 : 0;
-> +		prop->values[1] =3D max;
-> +	}
-> +}
-> +
-> +/* caller must hold @drm_backlight_lock */
-> +static bool __drm_backlight_link(struct drm_backlight *b,
-> +				 struct backlight_device *bd)
-> +{
-> +	if (bd =3D=3D b->link)
-> +		return false;
-> +
-> +	backlight_device_unref(b->link);
-> +	b->link =3D bd;
-> +	backlight_device_ref(b->link);
-> +	if (bd)
-> +		__drm_backlight_real_changed(b, bd->props.brightness);
-> +	__drm_backlight_update_prop_range(b);
-> +
-> +	return true;
-> +}
-> +
-> +/**
-> + * drm_backlight_alloc - add backlight capability to a connector
-> + * @connector: connector to add backlight to
-> + *
-> + * This allocates a new DRM-backlight device and attaches it to @connect=
-or.
-> + * This *must* be called before registering the connector. The backlight
-> + * device will be automatically registered in sync with the connector. I=
-t will
-> + * also get removed once the connector is removed.
-> + *
-> + * No hardware backlight is linked by default. Drivers must call
-> + * drm_backlight_link() to associate a registered backlight_device with =
-the
-> + * connector. User-space cannot create or modify this link.
-> + *
-> + * Returns: 0 on success, negative error code on failure.
-> + */
-> +int drm_backlight_alloc(struct drm_connector *connector)
-> +{
-> +	struct drm_mode_config *config =3D &connector->dev->mode_config;
-> +	struct drm_backlight *b;
-> +
-> +	b =3D kzalloc_obj(*b, GFP_KERNEL);
-> +	if (!b)
-> +		return -ENOMEM;
-> +
-> +	INIT_LIST_HEAD(&b->list);
-> +	b->connector =3D connector;
-> +	connector->backlight =3D b;
-> +
-> +	drm_object_attach_property(&connector->base,
-> +				   config->luminance_property, 0);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_backlight_alloc);
-> +
-> +void drm_backlight_free(struct drm_connector *connector)
-> +{
-> +	struct drm_backlight *b =3D connector->backlight;
-> +
-> +	if (!b)
-> +		return;
-> +
-> +	WARN_ON(__drm_backlight_is_registered(b));
-> +	WARN_ON(b->link);
-> +
-> +	kfree(b);
-> +	connector->backlight =3D NULL;
-> +}
-> +EXPORT_SYMBOL(drm_backlight_free);
-> +
-> +void drm_backlight_register(struct drm_backlight *b)
-> +{
-> +	if (!b)
-> +		return;
-> +
-> +	WARN_ON(__drm_backlight_is_registered(b));
-> +
-> +	guard(spinlock)(&drm_backlight_lock);
-> +	list_add(&b->list, &drm_backlight_list);
-> +}
-> +EXPORT_SYMBOL(drm_backlight_register);
-> +
-> +void drm_backlight_unregister(struct drm_backlight *b)
-> +{
-> +	if (!b)
-> +		return;
-> +
-> +	WARN_ON(!__drm_backlight_is_registered(b));
-> +
-> +	scoped_guard(spinlock, &drm_backlight_lock) {
-> +		list_del_init(&b->list);
-> +		__drm_backlight_link(b, NULL);
-> +	}
-> +}
-> +EXPORT_SYMBOL(drm_backlight_unregister);
-> +
-> +/**
-> + * drm_backlight_link - link a backlight device to a DRM backlight
-> + * @b: DRM backlight to modify
-> + * @bd: backlight device to link, or NULL to unlink
-> + *
-> + * Establish the link between a DRM connector's backlight property and a
-> + * registered backlight_device. Drivers must call this with the
-> + * backlight_device they registered for the connector. Passing NULL unli=
-nks
-> + * any previously linked device.
-> + *
-> + * The caller is responsible for ensuring @bd remains valid until either=
- it
-> + * is unlinked via drm_backlight_link(b, NULL) or the connector is
-> + * unregistered.
-> + *
-> + * Whenever a hardware backlight is linked or unlinked, a uevent with
-> + * "BACKLIGHT=3D1" is generated on the connector.
-> + */
-> +void drm_backlight_link(struct drm_backlight *b, struct backlight_device=
- *bd)
-> +{
-> +	if (!b)
-> +		return;
-> +
-> +	guard(spinlock)(&drm_backlight_lock);
-> +	__drm_backlight_link(b, bd);
-> +}
-> +EXPORT_SYMBOL(drm_backlight_link);
-> +
-> +/**
-> + * drm_backlight_get_device - get the backlight_device linked to a DRM b=
-acklight
-> + * @b: DRM backlight
-> + *
-> + * Returns the &backlight_device linked to @b, or NULL if no device is l=
-inked
-> + * or @b is NULL. The caller must hold the appropriate lock to prevent t=
-he
-> + * link from changing while the pointer is in use.
-> + */
-> +struct backlight_device *drm_backlight_get_device(struct drm_backlight *=
-b)
-> +{
-> +	if (!b)
-> +		return NULL;
-> +
-> +	guard(spinlock)(&drm_backlight_lock);
-> +	return b->link;
-> +}
-> +EXPORT_SYMBOL(drm_backlight_get_device);
-> +
-> +/**
-> + * drm_backlight_inhibit_legacy - disable legacy sysfs control of the li=
-nked bd
-> + * @b: DRM backlight to inhibit
-> + *
-> + * Record that one more luminance-aware DRM client has taken over @b. Wh=
-ile
-> + * any clients are recorded, writes to the linked backlight_device's leg=
-acy
-> + * ``brightness`` sysfs attribute return ``-EBUSY``. The takeover follows
-> + * @b->link if the link changes.
-> + *
-> + * Calls must be balanced with drm_backlight_uninhibit_legacy().
-> + */
-> +void drm_backlight_inhibit_legacy(struct drm_backlight *b)
-> +{
-> +	if (!b)
-> +		return;
-> +}
-> +EXPORT_SYMBOL(drm_backlight_inhibit_legacy);
-> +
-> +/**
-> + * drm_backlight_uninhibit_legacy - re-enable legacy sysfs control
-> + * @b: DRM backlight to uninhibit
-> + *
-> + * Balances a previous drm_backlight_inhibit_legacy() call. When the last
-> + * luminance-aware client goes away, legacy sysfs writes are allowed aga=
-in.
-> + */
-> +void drm_backlight_uninhibit_legacy(struct drm_backlight *b)
-> +{
-> +	if (!b)
-> +		return;
-> +}
-> +EXPORT_SYMBOL(drm_backlight_uninhibit_legacy);
-> +
-> +/**
-> + * drm_backlight_inhibit_legacy_all - inhibit legacy sysfs on every conn=
-ector
-> + * @dev: DRM device whose connectors should be inhibited
-> + *
-> + * Walks all connectors on @dev and calls drm_backlight_inhibit_legacy()=
- on
-> + * each connector that has a DRM backlight attached. Used when a client
-> + * declares it is luminance-aware via DRM_CLIENT_CAP_LUMINANCE.
-> + */
-> +void drm_backlight_inhibit_legacy_all(struct drm_device *dev)
-> +{
-> +	struct drm_connector_list_iter iter;
-> +	struct drm_connector *connector;
-> +
-> +	drm_connector_list_iter_begin(dev, &iter);
-> +	drm_for_each_connector_iter(connector, &iter)
-> +		drm_backlight_inhibit_legacy(connector->backlight);
-> +	drm_connector_list_iter_end(&iter);
-> +}
-> +EXPORT_SYMBOL(drm_backlight_inhibit_legacy_all);
-> +
-> +/**
-> + * drm_backlight_uninhibit_legacy_all - reverse drm_backlight_inhibit_le=
-gacy_all()
-> + * @dev: DRM device whose connectors should be uninhibited
-> + */
-> +void drm_backlight_uninhibit_legacy_all(struct drm_device *dev)
-> +{
-> +	struct drm_connector_list_iter iter;
-> +	struct drm_connector *connector;
-> +
-> +	drm_connector_list_iter_begin(dev, &iter);
-> +	drm_for_each_connector_iter(connector, &iter)
-> +		drm_backlight_uninhibit_legacy(connector->backlight);
-> +	drm_connector_list_iter_end(&iter);
-> +}
-> +EXPORT_SYMBOL(drm_backlight_uninhibit_legacy_all);
-> +
-> +void drm_backlight_set_luminance(struct drm_backlight *b, unsigned int v=
-alue)
-> +{
-> +	guard(spinlock)(&drm_backlight_lock);
-> +	__drm_backlight_real_changed(b, value);
-> +}
-> +EXPORT_SYMBOL(drm_backlight_set_luminance);
-> +
-> +static int drm_backlight_notify(struct notifier_block *self,
-> +				unsigned long event, void *data)
-> +{
-> +	struct backlight_device *bd =3D data;
-> +	struct drm_backlight *b;
-> +
-> +	guard(spinlock)(&drm_backlight_lock);
-> +
-> +	switch (event) {
-> +	case BACKLIGHT_UNREGISTERED:
-> +		list_for_each_entry(b, &drm_backlight_list, list)
-> +			if (b->link =3D=3D bd)
-> +				__drm_backlight_link(b, NULL);
-> +
-> +		break;
-> +	case BACKLIGHT_BRIGHTNESS_CHANGED:
-> +		/* Update DRM property value when hardware backlight changes */
-> +		list_for_each_entry(b, &drm_backlight_list, list)
-> +			if (b->link =3D=3D bd)
-> +				__drm_backlight_real_changed(b, bd->props.brightness);
-> +
-> +		break;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static struct notifier_block drm_backlight_notifier =3D {
-> +	.notifier_call =3D drm_backlight_notify,
-> +};
-> +
-> +int drm_backlight_init(void)
-> +{
-> +	return backlight_register_notifier(&drm_backlight_notifier);
-> +}
-> +
-> +void drm_backlight_exit(void)
-> +{
-> +	backlight_unregister_notifier(&drm_backlight_notifier);
-> +}
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connec=
-tor.c
-> index 3fa4d2082cd72..128d431f0d6b0 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -21,6 +21,7 @@
->   */
-> =20
->  #include <drm/drm_auth.h>
-> +#include <drm/drm_backlight.h>
->  #include <drm/drm_connector.h>
->  #include <drm/drm_drv.h>
->  #include <drm/drm_edid.h>
-> @@ -760,6 +761,7 @@ void drm_connector_cleanup(struct drm_connector *conn=
-ector)
->  	struct drm_device *dev =3D connector->dev;
->  	struct drm_display_mode *mode, *t;
-> =20
-> +	drm_backlight_free(connector);
->  	/* The connector should have been removed from userspace long before
->  	 * it is finally destroyed.
->  	 */
-> @@ -845,6 +847,8 @@ int drm_connector_register(struct drm_connector *conn=
-ector)
->  	if (connector->registration_state !=3D DRM_CONNECTOR_INITIALIZING)
->  		goto unlock;
-> =20
-> +	drm_backlight_register(connector->backlight);
-> +
->  	ret =3D drm_sysfs_connector_add(connector);
->  	if (ret)
->  		goto unlock;
-> @@ -931,6 +935,8 @@ EXPORT_SYMBOL(drm_connector_dynamic_register);
->  void drm_connector_unregister(struct drm_connector *connector)
->  {
->  	mutex_lock(&connector->mutex);
-> +	drm_backlight_unregister(connector->backlight);
-> +
->  	if (connector->registration_state !=3D DRM_CONNECTOR_REGISTERED) {
->  		mutex_unlock(&connector->mutex);
->  		return;
-> @@ -3252,10 +3258,16 @@ int drm_connector_set_obj_prop(struct drm_mode_ob=
-ject *obj,
->  {
->  	int ret =3D -EINVAL;
->  	struct drm_connector *connector =3D obj_to_connector(obj);
-> +	struct drm_mode_config *config =3D &connector->dev->mode_config;
-> =20
->  	/* Do DPMS ourselves */
->  	if (property =3D=3D connector->dev->mode_config.dpms_property) {
->  		ret =3D (*connector->funcs->dpms)(connector, (int)value);
-> +	} else if (property =3D=3D config->luminance_property) {
-> +		if (connector->backlight && connector->dpms =3D=3D DRM_MODE_DPMS_ON)
-> +			drm_backlight_set_luminance(connector->backlight,
-> +						    value);
-> +		ret =3D 0;
->  	} else if (connector->funcs->set_property)
->  		ret =3D connector->funcs->set_property(connector, property, value);
-> =20
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index 675675480da49..5bf402197867a 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -42,6 +42,7 @@
->  #include <linux/xarray.h>
-> =20
->  #include <drm/drm_accel.h>
-> +#include <drm/drm_backlight.h>
->  #include <drm/drm_bridge.h>
->  #include <drm/drm_cache.h>
->  #include <drm/drm_client_event.h>
-> @@ -1230,6 +1231,7 @@ static void drm_core_exit(void)
->  	drm_privacy_screen_lookup_exit();
->  	drm_panic_exit();
->  	accel_core_exit();
-> +	drm_backlight_exit();
->  	unregister_chrdev(DRM_MAJOR, "drm");
->  	drm_debugfs_remove_root();
->  	drm_sysfs_destroy();
-> @@ -1253,6 +1255,12 @@ static int __init drm_core_init(void)
->  	drm_debugfs_init_root();
->  	drm_debugfs_bridge_params();
-> =20
-> +	ret =3D drm_backlight_init();
-> +	if (ret < 0) {
-> +		DRM_ERROR("Cannot initialize backlight interface\n");
-> +		goto error;
-> +	}
-> +
->  	ret =3D register_chrdev(DRM_MAJOR, "drm", &drm_stub_fops);
->  	if (ret < 0)
->  		goto error;
-> diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode=
-_config.c
-> index 66f7dc37b5970..25c5d29694624 100644
-> --- a/drivers/gpu/drm/drm_mode_config.c
-> +++ b/drivers/gpu/drm/drm_mode_config.c
-> @@ -32,6 +32,7 @@
->  #include <drm/drm_print.h>
->  #include <drm/drm_colorop.h>
->  #include <linux/dma-resv.h>
-> +#include <drm/drm_backlight.h>
-> =20
->  #include "drm_crtc_internal.h"
->  #include "drm_internal.h"
-> @@ -407,6 +408,12 @@ static int drm_mode_create_standard_properties(struc=
-t drm_device *dev)
->  		return -ENOMEM;
->  	dev->mode_config.size_hints_property =3D prop;
-> =20
-> +	prop =3D drm_property_create_range(dev, DRM_MODE_PROP_ATOMIC,
-> +					 "LUMINANCE", 0, 0);
-> +	if (!prop)
-> +		return -ENOMEM;
-> +	dev->mode_config.luminance_property =3D prop;
-> +
->  	return 0;
+>  drivers/gpu/drm/drm_gpusvm.c | 21 ++++++++++++++++++---
+>  drivers/gpu/drm/xe/xe_svm.c  | 11 ++++++-----
+>  include/drm/drm_gpusvm.h     | 30 +++++++++++++++++++++++++-----
+>  3 files changed, 49 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+> index 958cb605aed..df900553f21 100644
+> --- a/drivers/gpu/drm/drm_gpusvm.c
+> +++ b/drivers/gpu/drm/drm_gpusvm.c
+> @@ -641,7 +641,7 @@ drm_gpusvm_range_alloc(struct drm_gpusvm *gpusvm,
+>  	range->itree.last = ALIGN(fault_addr + 1, chunk_size) - 1;
+>  	INIT_LIST_HEAD(&range->entry);
+>  	range->pages.notifier_seq = LONG_MAX;
+> -	range->pages.flags.migrate_devmem = migrate_devmem ? 1 : 0;
+> +	range->flags.migrate_devmem = migrate_devmem ? 1 : 0;
+>  
+>  	return range;
 >  }
-> =20
-> diff --git a/drivers/gpu/drm/drm_mode_object.c b/drivers/gpu/drm/drm_mode=
-_object.c
-> index 21fc9deda4371..a50d33af95e8c 100644
-> --- a/drivers/gpu/drm/drm_mode_object.c
-> +++ b/drivers/gpu/drm/drm_mode_object.c
-> @@ -30,6 +30,7 @@
->  #include <drm/drm_mode_object.h>
->  #include <drm/drm_plane.h>
->  #include <drm/drm_print.h>
-> +#include <drm/drm_backlight.h>
-> =20
->  #include "drm_crtc_internal.h"
-> =20
-> @@ -287,11 +288,72 @@ int drm_object_property_set_value(struct drm_mode_o=
-bject *obj,
->  {
->  	int i;
-> =20
-> -	WARN_ON(drm_drv_uses_atomic_modeset(property->dev) &&
-> -		!(property->flags & DRM_MODE_PROP_IMMUTABLE));
-
-drm_object_property_set_value() is explicitly documented to be for
-legacy properties only. This warning is here for a reason, you should
-update the atomic path.
-
-> +	/* Exempt dpms and luminance properties from the atomic warning, as the=
-se
-> +	 * have special interdependencies managed internally in this function
-> +	 */
-> +	if (obj->type =3D=3D DRM_MODE_OBJECT_CONNECTOR) {
-> +		struct drm_connector *connector =3D obj_to_connector(obj);
-> +		struct drm_mode_config *config =3D &connector->dev->mode_config;
-> +
-> +		if (property !=3D config->dpms_property &&
-> +		    property !=3D config->luminance_property) {
-> +			WARN_ON(drm_drv_uses_atomic_modeset(property->dev) &&
-> +				!(property->flags & DRM_MODE_PROP_IMMUTABLE));
-> +		}
-> +	} else {
-> +		WARN_ON(drm_drv_uses_atomic_modeset(property->dev) &&
-> +			!(property->flags & DRM_MODE_PROP_IMMUTABLE));
-> +	}
-> =20
->  	for (i =3D 0; i < obj->properties->count; i++) {
-> +		/* If properties depends on each other
-> +		 * this is where to resolve that issue
-> +		 */
-
-This is not the right commit style:
-https://www.kernel.org/doc/html/latest/process/coding-style.html#commenting
-
->  		if (obj->properties->properties[i] =3D=3D property) {
-> +			/* Connector-specific property interdependencies */
-> +			if (obj->type =3D=3D DRM_MODE_OBJECT_CONNECTOR) {
-> +				struct drm_connector *connector =3D obj_to_connector(obj);
-> +				struct drm_property *dpms_property =3D
-> +					connector->dev->mode_config.dpms_property;
-> +				struct drm_property *luminance_property =3D
-> +					connector->dev->mode_config.luminance_property;
-> +
-> +				if (property =3D=3D dpms_property) {
-> +					/* When DPMS goes from ON -> OFF,
-> +					 * set the brightness to the minimum possible
-> +					 * to save power.
-> +					 */
-> +					if (obj->properties->values[i] !=3D
-> +					    DRM_MODE_DPMS_OFF &&
-> +					    val =3D=3D DRM_MODE_DPMS_OFF)
-> +						drm_backlight_set_luminance(
-> +							connector->backlight, 0);
-> +					/* When DPMS OFF -> ON, reset the brightness
-> +					 * to the original level
-> +					 */
-> +					else if (obj->properties->values[i] =3D=3D
-> +						 DRM_MODE_DPMS_OFF &&
-> +						 val !=3D DRM_MODE_DPMS_OFF) {
-> +						uint64_t value;
-> +
-> +						drm_object_property_get_value(
-> +							obj, luminance_property,
-> +							&value);
-> +						drm_backlight_set_luminance(
-> +							connector->backlight, value);
-> +					}
-> +				} else if (property =3D=3D luminance_property) {
-> +					/* Always update the property value to remember
-> +					 * the user's desired brightness, but only update
-> +					 * hardware when DPMS is ON.
-> +					 */
-> +					obj->properties->values[i] =3D val;
-> +					if (connector->dpms =3D=3D DRM_MODE_DPMS_ON)
-> +						drm_backlight_set_luminance(
-> +							connector->backlight, val);
-> +					return 0;
-> +				}
-> +			}
-
-And this all shouldn't be plugged into the function directly, but a helper =
-ideally.
-
->  			obj->properties->values[i] =3D val;
->  			return 0;
->  		}
-> diff --git a/drivers/gpu/drm/drm_sysfs.c b/drivers/gpu/drm/drm_sysfs.c
-> index ef4e923a87284..8609e1660f210 100644
-> --- a/drivers/gpu/drm/drm_sysfs.c
-> +++ b/drivers/gpu/drm/drm_sysfs.c
-> @@ -11,6 +11,7 @@
->   */
-> =20
->  #include <linux/acpi.h>
-> +#include <linux/backlight.h>
->  #include <linux/component.h>
->  #include <linux/device.h>
->  #include <linux/err.h>
-> @@ -27,6 +28,7 @@
->  #include <drm/drm_device.h>
->  #include <drm/drm_file.h>
->  #include <drm/drm_modes.h>
-> +#include <drm/drm_backlight.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_property.h>
->  #include <drm/drm_sysfs.h>
-> @@ -391,15 +393,35 @@ int drm_sysfs_connector_add(struct drm_connector *c=
-onnector)
-> =20
->  int drm_sysfs_connector_add_late(struct drm_connector *connector)
->  {
-> -	if (connector->ddc)
-> -		return sysfs_create_link(&connector->kdev->kobj,
-> -					 &connector->ddc->dev.kobj, "ddc");
-> +	if (connector->ddc) {
-> +		int ret =3D sysfs_create_link(&connector->kdev->kobj,
-> +					    &connector->ddc->dev.kobj, "ddc");
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	if (connector->backlight) {
-> +		struct backlight_device *bd =3D drm_backlight_get_device(connector->ba=
-cklight);
-> +
-> +		if (bd) {
-> +			int ret =3D sysfs_create_link(&connector->kdev->kobj,
-> +						    &bd->dev.kobj, "backlight");
-> +			if (ret) {
-> +				if (connector->ddc)
-> +					sysfs_remove_link(&connector->kdev->kobj, "ddc");
-> +				return ret;
-> +			}
-> +		}
-> +	}
-> =20
->  	return 0;
->  }
-> =20
->  void drm_sysfs_connector_remove_early(struct drm_connector *connector)
->  {
-> +	if (connector->backlight && drm_backlight_get_device(connector->backlig=
-ht))
-> +		sysfs_remove_link(&connector->kdev->kobj, "backlight");
-> +
->  	if (connector->ddc)
->  		sysfs_remove_link(&connector->kdev->kobj, "ddc");
->  }
-> diff --git a/drivers/video/backlight/backlight.c b/drivers/video/backligh=
-t/backlight.c
-> index cd1a161ae7bc6..13954c2220b7e 100644
-> --- a/drivers/video/backlight/backlight.c
-> +++ b/drivers/video/backlight/backlight.c
-> @@ -126,6 +126,9 @@ static void backlight_generate_event(struct backlight=
-_device *bd,
->  	case BACKLIGHT_UPDATE_HOTKEY:
->  		envp[0] =3D "SOURCE=3Dhotkey";
->  		break;
-> +	case BACKLIGHT_UPDATE_DRM:
-> +		envp[0] =3D "SOURCE=3Ddrm";
-> +		break;
->  	default:
->  		envp[0] =3D "SOURCE=3Dunknown";
->  		break;
-> @@ -579,6 +582,20 @@ int backlight_unregister_notifier(struct notifier_bl=
-ock *nb)
->  }
->  EXPORT_SYMBOL(backlight_unregister_notifier);
-> =20
-> +/**
-> + * backlight_notify_brightness - notify brightness change to listeners
-> + * @bd: backlight device that changed
-> + *
-> + * Notify registered listeners that the backlight brightness has changed.
-> + * This is called automatically after successful brightness updates.
-> + */
-> +void backlight_notify_brightness(struct backlight_device *bd)
-> +{
-> +	blocking_notifier_call_chain(&backlight_notifier,
-> +				     BACKLIGHT_BRIGHTNESS_CHANGED, bd);
-> +}
-> +EXPORT_SYMBOL(backlight_notify_brightness);
-> +
-
-This should be in separate commits.
-
+> @@ -1784,20 +1784,35 @@ EXPORT_SYMBOL_GPL(drm_gpusvm_has_mapping);
 >  /**
->   * devm_backlight_device_register - register a new backlight device
->   * @dev: the device to register
-> diff --git a/include/drm/drm_backlight.h b/include/drm/drm_backlight.h
-> new file mode 100644
-> index 0000000000000..e0e09e38f7c06
-> --- /dev/null
-> +++ b/include/drm/drm_backlight.h
-> @@ -0,0 +1,51 @@
-> +/* SPDX-License-Identifier: MIT */
-> +#ifndef __DRM_BACKLIGHT_H__
-> +#define __DRM_BACKLIGHT_H__
+>   * drm_gpusvm_range_set_unmapped() - Mark a GPU SVM range as unmapped
+>   * @range: Pointer to the GPU SVM range structure.
+> + * @pages: Pointer to the GPU SVM pages structure(s).
+> + * @pages_count: Number of GPU SVM pages structure(s) passed in.
+>   * @mmu_range: Pointer to the MMU notifier range structure.
+>   *
+>   * This function marks a GPU SVM range as unmapped and sets the partial_unmap flag
+>   * if the range partially falls within the provided MMU notifier range.
+>   */
+>  void drm_gpusvm_range_set_unmapped(struct drm_gpusvm_range *range,
+> +				   struct drm_gpusvm_pages *pages,
+> +				   unsigned int pages_count,
+>  				   const struct mmu_notifier_range *mmu_range)
+>  {
+> +	unsigned int i;
 > +
-> +/*
-> + * Copyright (c) 2014 David Herrmann <dh.herrmann at gmail.com>
-> + *
-> + * Permission is hereby granted, free of charge, to any person obtaining=
- a
-> + * copy of this software and associated documentation files (the "Softwa=
-re"),
-> + * to deal in the Software without restriction, including without limita=
-tion
-> + * the rights to use, copy, modify, merge, publish, distribute, sublicen=
-se,
-> + * and/or sell copies of the Software, and to permit persons to whom the
-> + * Software is furnished to do so, subject to the following conditions:
-> + *
-> + * The above copyright notice and this permission notice shall be includ=
-ed in
-> + * all copies or substantial portions of the Software.
-> + *
-> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRE=
-SS OR
-> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILI=
-TY,
-> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SH=
-ALL
-> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES=
- OR
-> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-> + * OTHER DEALINGS IN THE SOFTWARE.
-> + */
+>  	lockdep_assert_held_write(&range->gpusvm->notifier_lock);
+>  
+> -	range->pages.flags.unmapped = true;
+> +	range->flags.unmapped = true;
+> +	for (i = 0; i < pages_count; ++i) {
+> +		struct drm_gpusvm_pages_flags flags = {
+> +			.__flags = pages[i].flags.__flags,
+> +		};
 > +
-> +#include <linux/kernel.h>
-> +#include <linux/types.h>
-> +
-> +struct backlight_device;
-> +struct drm_backlight;
-> +struct drm_connector;
-> +struct drm_device;
-> +struct drm_mode_object;
-> +
-> +int drm_backlight_init(void);
-> +void drm_backlight_exit(void);
-> +
-> +int drm_backlight_alloc(struct drm_connector *connector);
-> +void drm_backlight_free(struct drm_connector *connector);
-> +void drm_backlight_register(struct drm_backlight *b);
-> +void drm_backlight_unregister(struct drm_backlight *b);
-> +
-> +void drm_backlight_link(struct drm_backlight *b, struct backlight_device=
- *bd);
-> +struct backlight_device *drm_backlight_get_device(struct drm_backlight *=
-b);
-> +void drm_backlight_set_luminance(struct drm_backlight *b, unsigned int v=
-alue);
-> +void drm_backlight_inhibit_legacy(struct drm_backlight *b);
-> +void drm_backlight_uninhibit_legacy(struct drm_backlight *b);
-> +void drm_backlight_inhibit_legacy_all(struct drm_device *dev);
-> +void drm_backlight_uninhibit_legacy_all(struct drm_device *dev);
-> +#endif /* __DRM_BACKLIGHT_H__ */
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index 5ad62c207d009..d78ac1068d12e 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -2410,6 +2410,9 @@ struct drm_connector {
->  	 * @cec: CEC-related data.
->  	 */
->  	struct drm_connector_cec cec;
-> +
-> +	/* backlight link */
-> +	struct drm_backlight *backlight;
+> +		flags.unmapped = true;
+> +		/* WRITE_ONCE pairs with READ_ONCE for opportunistic checks */
+> +		WRITE_ONCE(pages[i].flags.__flags, flags.__flags);
+> +	}
+>  	if (drm_gpusvm_range_start(range) < mmu_range->start ||
+>  	    drm_gpusvm_range_end(range) > mmu_range->end)
+> -		range->pages.flags.partial_unmap = true;
+> +		range->flags.partial_unmap = true;
+>  }
+>  EXPORT_SYMBOL_GPL(drm_gpusvm_range_set_unmapped);
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+> index e1651e70c8f..63da149f3b7 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -134,7 +134,8 @@ xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct xe_svm_range *range,
+>  
+>  	range_debug(range, "GARBAGE COLLECTOR ADD");
+>  
+> -	drm_gpusvm_range_set_unmapped(&range->base, mmu_range);
+> +	drm_gpusvm_range_set_unmapped(&range->base, &range->base.pages, 1,
+> +				      mmu_range);
+>  
+>  	spin_lock(&vm->svm.garbage_collector.lock);
+>  	if (list_empty(&range->garbage_collector_link))
+> @@ -166,7 +167,7 @@ xe_svm_range_notifier_event_begin(struct xe_vm *vm, struct drm_gpusvm_range *r,
+>  	range_debug(range, "NOTIFIER");
+>  
+>  	/* Skip if already unmapped or if no binding exist */
+> -	if (range->base.pages.flags.unmapped || !range->tile_present)
+> +	if (range->base.flags.unmapped || !range->tile_present)
+>  		return 0;
+>  
+>  	range_debug(range, "NOTIFIER - EXECUTE");
+> @@ -1136,7 +1137,7 @@ bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vm
+>  	struct xe_vm *vm = range_to_vm(&range->base);
+>  	u64 range_size = xe_svm_range_size(range);
+>  
+> -	if (!range->base.pages.flags.migrate_devmem || !dpagemap)
+> +	if (!range->base.flags.migrate_devmem || !dpagemap)
+>  		return false;
+>  
+>  	xe_assert(vm->xe, IS_DGFX(vm->xe));
+> @@ -1248,7 +1249,7 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+>  
+>  	xe_svm_range_fault_count_stats_incr(gt, range);
+>  
+> -	if (ctx.devmem_only && !range->base.pages.flags.migrate_devmem) {
+> +	if (ctx.devmem_only && !range->base.flags.migrate_devmem) {
+>  		err = -EACCES;
+>  		goto out;
+>  	}
+> @@ -1623,7 +1624,7 @@ int xe_svm_alloc_vram(struct xe_svm_range *range, const struct drm_gpusvm_ctx *c
+>  	int err, retries = 1;
+>  	bool write_locked = false;
+>  
+> -	xe_assert(range_to_vm(&range->base)->xe, range->base.pages.flags.migrate_devmem);
+> +	xe_assert(range_to_vm(&range->base)->xe, range->base.flags.migrate_devmem);
+>  	range_debug(range, "ALLOCATE VRAM");
+>  
+>  	migration_state = drm_gpusvm_scan_mm(&range->base,
+> diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+> index 8a4d7134a9a..251a7266a73 100644
+> --- a/include/drm/drm_gpusvm.h
+> +++ b/include/drm/drm_gpusvm.h
+> @@ -109,9 +109,7 @@ struct drm_gpusvm_notifier {
+>  /**
+>   * struct drm_gpusvm_pages_flags - Structure representing a GPU SVM pages flags
+>   *
+> - * @migrate_devmem: Flag indicating whether the pages can be migrated to device memory
+>   * @unmapped: Flag indicating if the pages has been unmapped
+> - * @partial_unmap: Flag indicating if the pages has been partially unmapped
+>   * @has_devmem_pages: Flag indicating if the pages has devmem pages
+>   * @has_dma_mapping: Flag indicating if the pages has a DMA mapping
+>   * @__flags: Flags for pages in u16 form (used for READ_ONCE)
+> @@ -119,11 +117,8 @@ struct drm_gpusvm_notifier {
+>  struct drm_gpusvm_pages_flags {
+>  	union {
+>  		struct {
+> -			/* All flags below must be set upon creation */
+> -			u16 migrate_devmem : 1;
+>  			/* All flags below must be set / cleared under notifier lock */
+>  			u16 unmapped : 1;
+> -			u16 partial_unmap : 1;
+>  			u16 has_devmem_pages : 1;
+>  			u16 has_dma_mapping : 1;
+>  		};
+> @@ -151,6 +146,27 @@ struct drm_gpusvm_pages {
+>  	struct drm_gpusvm_pages_flags flags;
 >  };
-> =20
->  #define obj_to_connector(x) container_of(x, struct drm_connector, base)
-> diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
-> index e584652ddf676..b6d88319d5d0f 100644
-> --- a/include/drm/drm_mode_config.h
-> +++ b/include/drm/drm_mode_config.h
-> @@ -852,6 +852,11 @@ struct drm_mode_config {
->  	 * the position of the output on the host's screen.
->  	 */
->  	struct drm_property *suggested_y_property;
-> +	/**
-> +	 * @luminance_property: Default connector property to control the
-> +	 * connector's backlight luminance.
-> +	 */
-> +	struct drm_property *luminance_property;
-> =20
->  	/**
->  	 * @non_desktop_property: Optional connector property with a hint
-> diff --git a/include/linux/backlight.h b/include/linux/backlight.h
-> index 204eea9256fd7..26a7281d179c1 100644
-> --- a/include/linux/backlight.h
-> +++ b/include/linux/backlight.h
-> @@ -29,6 +29,7 @@ enum backlight_update_reason {
->  	 * @BACKLIGHT_UPDATE_SYSFS: The backlight was updated using sysfs.
->  	 */
->  	BACKLIGHT_UPDATE_SYSFS,
-> +	BACKLIGHT_UPDATE_DRM,
-
-Doc?
-
-Maxime
-
---orbeno6uw645omls
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaj4rgQAKCRAnX84Zoj2+
-dogrAX4wRD+LVAZQ/YdIsy8ewrRfpq+NbX2jLWGiA/lT1CpnGR5+9GbN3Jt59imX
-Xe6XNYgBgPcJT38/KBbCbZ8ghpOHlKikve7Bf+8rVpwvGyUI1EBvEsDL4hx7vpXf
-y6jBLdxiSw==
-=31+/
------END PGP SIGNATURE-----
-
---orbeno6uw645omls--
+>  
+> +/**
+> + * struct drm_gpusvm_range_flags - Range-level GPU SVM flags
+> + *
+> + * @migrate_devmem: Flag indicating whether the range can be migrated to device memory
+> + * @unmapped: Flag indicating if the range has been unmapped
+> + * @partial_unmap: Flag indicating if the range has been partially unmapped
+> + * @__flags: All flags in u16 form (used for READ_ONCE)
+> + */
+> +struct drm_gpusvm_range_flags {
+> +	union {
+> +		struct {
+> +			/* All flags below must be set upon creation */
+> +			u16 migrate_devmem	: 1;
+> +			/* All flags below must be set / cleared under notifier lock */
+> +			u16 unmapped		: 1;
+> +			u16 partial_unmap	: 1;
+> +		};
+> +		u16 __flags;
+> +	};
+> +};
+> +
+>  /**
+>   * struct drm_gpusvm_range - Structure representing a GPU SVM range
+>   *
+> @@ -160,6 +176,7 @@ struct drm_gpusvm_pages {
+>   * @itree: Interval tree node for the range (inserted in GPU SVM notifier)
+>   * @entry: List entry to fast interval tree traversal
+>   * @pages: The pages for this range.
+> + * @flags: Flags for range see &struct drm_gpusvm_range_flags
+>   *
+>   * This structure represents a GPU SVM range used for tracking memory ranges
+>   * mapped in a DRM device.
+> @@ -171,6 +188,7 @@ struct drm_gpusvm_range {
+>  	struct interval_tree_node itree;
+>  	struct list_head entry;
+>  	struct drm_gpusvm_pages pages;
+> +	struct drm_gpusvm_range_flags flags;
+>  };
+>  
+>  /**
+> @@ -310,6 +328,8 @@ drm_gpusvm_range_find(struct drm_gpusvm_notifier *notifier, unsigned long start,
+>  		      unsigned long end);
+>  
+>  void drm_gpusvm_range_set_unmapped(struct drm_gpusvm_range *range,
+> +				   struct drm_gpusvm_pages *pages,
+> +				   unsigned int pages_count,
+>  				   const struct mmu_notifier_range *mmu_range);
+>  
+>  int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+> -- 
+> 2.34.1
+> 
