@@ -2,59 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id q22HLuAZQmrm0AkAu9opvQ
+	id ICcaMs4ZQmrK0AkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:08:16 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:07:58 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C36A6D6C34
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:08:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5126D6D6BD6
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:07:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=yeah.net header.s=s110527 header.b=Dr8VXd1u;
+	dkim=pass header.d=ispras.ru header.s=default header.b="Td/Em6wY";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=yeah.net
+	dmarc=pass (policy=none) header.from=ispras.ru
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A90510E719;
-	Mon, 29 Jun 2026 07:08:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4669310E6F5;
+	Mon, 29 Jun 2026 07:07:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6ED1510E493;
- Sat, 27 Jun 2026 10:11:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
- s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=KW
- X5+vprFnXLDKPTmWQAkhi6vZfjmPxXd9dYCoHzojI=; b=Dr8VXd1uP/X5z2lU3X
- S/dlpNPP1mXeNE0P/WlJ2rhd9mtMvqFI9SnBpFunZN7yMtRF6hlT1u9oomgenOqd
- 2YYlhdMN5/n0bpASw6s7Y/PAnl2CiPrnxdRVXQq+K+buFnqw0tT/2crl+6GTCZUJ
- vC8/1GUnSAXzxbVyCl3os//RI=
-Received: from zhang.. (unknown [])
- by gzsmtp1 (Coremail) with UTF8SMTPSA id Mc8vCgD3vy2boT9q9PdfAA--.30002S4;
- Sat, 27 Jun 2026 18:10:41 +0800 (CST)
-From: Ziran Zhang <zhangcoder@yeah.net>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Markus Elfring <Markus.Elfring@web.de>
-Cc: Rodrigo Siqueira <siqueira@igalia.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Ziran Zhang <zhangcoder@yeah.net>
-Subject: [PATCH v2] drm/amd/display: Remove redundant NULL check before kfree
- in mod_power_create()
-Date: Sat, 27 Jun 2026 18:09:45 +0800
-Message-ID: <20260627100945.5826-1-zhangcoder@yeah.net>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260627092612.5282-1-zhangcoder@yeah.net>
-References: <20260627092612.5282-1-zhangcoder@yeah.net>
+X-Greylist: delayed 525 seconds by postgrey-1.36 at gabe;
+ Sat, 27 Jun 2026 10:38:23 UTC
+Received: from mail.ispras.ru (mail.ispras.ru [83.149.199.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0358310E499;
+ Sat, 27 Jun 2026 10:38:23 +0000 (UTC)
+Received: from localhost (unknown [10.10.165.10])
+ by mail.ispras.ru (Postfix) with ESMTPSA id 60E1D40F9A49;
+ Sat, 27 Jun 2026 10:29:34 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.ispras.ru 60E1D40F9A49
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ispras.ru;
+ s=default; t=1782556174;
+ bh=HefoXOaX7iDWeVdJoA+Z44Cqogqv/SbYCDDilQ/lrZc=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Td/Em6wYzVFSgEpJlmiCF/PlqhNZH96DvffaHrobgmo5aEnGrHjXeb/Lu7trF+LZE
+ cejW6hLiRlcFB0/xqxg0WQ5O21pR+tNCxBcZUj4CDkyYwxB/QHfVwVG33reJ16I5M9
+ Lp206/2msW9GRs8eaNr/Acgj6p2b/MhStzCLRR6E=
+Date: Sat, 27 Jun 2026 13:29:34 +0300
+From: Fedor Pchelkin <pchelkin@ispras.ru>
+To: Evgenii Burenchev <evg28bur@yandex.ru>
+Cc: stable@vger.kernel.org, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, lvc-project@linuxtesting.org,
+ superm1@kernel.org, 
+ dri-devel@lists.freedesktop.org, mario.limonciello@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, 
+ ray.wu@amd.com, amd-gfx@lists.freedesktop.org, chen-yu.chen@amd.com, 
+ aurabindo.pillai@amd.com, Alvin.Lee2@amd.com, kenneth.feng@amd.com,
+ ekurzinger@gmail.com, 
+ siqueira@igalia.com, HaoPing.Liu@amd.com, pierre-eric.pelloux-prayer@amd.com, 
+ srinivasan.shanmugam@amd.com, sunpeng.li@amd.com, mripard@kernel.org,
+ mwen@igalia.com, 
+ Dillon.Varone@amd.com, chaitanya.kumar.borah@intel.com, ivan.lipski@amd.com, 
+ Tony.Cheng@amd.com, dmitry.baryshkov@oss.qualcomm.com, chiahsuan.chung@amd.com,
+ timur.kristof@gmail.com, harry.wentland@amd.com, linux-kernel@vger.kernel.org, 
+ alex.hung@amd.com, tzimmermann@suse.de, alexander.deucher@amd.com, 
+ christian.koenig@amd.com
+Subject: Re: [PATCH v3] drm/amd/display: Fix dangling pointers in state reset
+ functions on allocation failure
+Message-ID: <20260627131809-033f104c2b15b742e1ba441e-pchelkin@ispras>
+References: <20260626191314.29933-1-evg28bur@yandex.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: Mc8vCgD3vy2boT9q9PdfAA--.30002S4
-X-Coremail-Antispam: 1Uf129KBjvJXoW7ZF17KFy8Ar48CFyDCw1Dtrb_yoW8urWUpF
- srKw15tw48G3W8KFnFg3W8XFy8Wa1kAFW3Wr47C3Wa9a43Zr9YkF18Aw1YgFWDWFy7tF1x
- tF1UWF4UXFy3Cw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRUUUUUUUUU=
-X-Originating-IP: [116.149.202.60]
-X-CM-SenderInfo: x2kd0wpfrgv2o61htxgoqh3/1tbiNgH6u2o-oaHlNQAA3z
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260626191314.29933-1-evg28bur@yandex.ru>
 X-Mailman-Approved-At: Mon, 29 Jun 2026 07:07:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,97 +76,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.19 / 15.00];
+X-Spamd-Result: default: False [1.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	DATE_IN_PAST(1.00)[44];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[yeah.net,none];
-	R_MISSING_CHARSET(0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ispras.ru,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[yeah.net:s=s110527];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[ispras.ru:s=default];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_FROM(0.00)[yeah.net];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[36];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,web.de];
 	ARC_NA(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[igalia.com,lists.freedesktop.org,vger.kernel.org,yeah.net];
+	FREEMAIL_TO(0.00)[yandex.ru];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DKIM_TRACE(0.00)[yeah.net:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhangcoder@yeah.net,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,yeah.net:dkim,yeah.net:email,yeah.net:mid,yeah.net:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_NEQ_ENVFROM(0.00)[pchelkin@ispras.ru,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,linuxfoundation.org,linuxtesting.org,kernel.org,lists.freedesktop.org,amd.com,gmail.com,ffwll.ch,igalia.com,intel.com,oss.qualcomm.com,suse.de];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[ispras.ru:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,ispras:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8C36A6D6C34
+X-Rspamd-Queue-Id: 5126D6D6BD6
 
-kfree() safely handles NULL pointers, so there is no need to check for
-NULL before calling kfree().
+On Fri, 26. Jun 22:13, Evgenii Burenchev wrote:
+> Fixes: 5d945cbcd4b1 ("drm/amd/display: Create a file dedicated to planes")
+> Fixes: 473683a03495 ("drm/amd/display: Create a file dedicated for CRTC")
+> Fixes: e7b07ceef2a6 ("drm/amd/display: Merge amdgpu_dm_types and amdgpu_dm")
+> Signed-off-by: Evgenii Burenchev <evg28bur@yandex.ru>
 
-Remove redundant NULL check.
+Having three different Fixes tags implies the big patch could be split up
+into three separate patches which do one thing at a time.  They can be
+combined in a series for ease of handling.
 
-Found by Coccinelle ifnullfree script.
+> @@ -8151,33 +8151,41 @@ static void amdgpu_dm_connector_destroy(struct drm_connector *connector)
+>  
+>  void amdgpu_dm_connector_funcs_reset(struct drm_connector *connector)
+>  {
+> -	struct dm_connector_state *state =
+> +	/* Remember the old state */
+> +	struct dm_connector_state *old_state =
+>  		to_dm_connector_state(connector->state);
+>  
+> +	struct dm_connector_state *state;
 
-Signed-off-by: Ziran Zhang <zhangcoder@yeah.net>
----
-Changes in v2:
-- Remove unnecessary brackets.
+No empty lines inside local variable declaration block, please.
 
- .../gpu/drm/amd/display/modules/power/power.c    | 16 ++++++----------
- 1 file changed, 6 insertions(+), 10 deletions(-)
+> +
+> +	/* Allocate new state */
 
-diff --git a/drivers/gpu/drm/amd/display/modules/power/power.c b/drivers/gpu/drm/amd/display/modules/power/power.c
-index 5659a38b3..97889867a 100644
---- a/drivers/gpu/drm/amd/display/modules/power/power.c
-+++ b/drivers/gpu/drm/amd/display/modules/power/power.c
-@@ -270,13 +270,11 @@ struct mod_power *mod_power_create(struct dc *dc,
- fail_bad_brightness_range:
- fail_alloc_backlight_array:
- 	for (inst = 0; inst < edp_num; inst++)
--		if (core_power->bl_prop[inst].backlight_lut)
--			kfree(core_power->bl_prop[inst].backlight_lut);
-+		kfree(core_power->bl_prop[inst].backlight_lut);
- fail_construct:
--	for (i = 0; i < MOD_POWER_MAX_CONCURRENT_STREAMS; i++) {
--		if (core_power->map[i].psr_context)
--			kfree(core_power->map[i].psr_context);
--	}
-+	for (i = 0; i < MOD_POWER_MAX_CONCURRENT_STREAMS; i++)
-+		kfree(core_power->map[i].psr_context);
-+
- 	kfree(core_power->map);
- 
- fail_alloc_map:
-@@ -295,8 +293,7 @@ void mod_power_destroy(struct mod_power *mod_power)
- 				MOD_POWER_TO_CORE(mod_power);
- 
- 		for (i = 0; i < MOD_POWER_MAX_CONCURRENT_STREAMS; i++)
--			if (core_power->map[i].psr_context)
--				kfree(core_power->map[i].psr_context);
-+			kfree(core_power->map[i].psr_context);
- 
- 		for (i = 0; i < core_power->num_entities; i++)
- 			if (core_power->map[i].stream)
-@@ -305,8 +302,7 @@ void mod_power_destroy(struct mod_power *mod_power)
- 		kfree(core_power->map);
- 
- 		for (i = 0; i < MAX_NUM_EDP; i++)
--			if (core_power->bl_prop[i].backlight_lut)
--				kfree(core_power->bl_prop[i].backlight_lut);
-+			kfree(core_power->bl_prop[i].backlight_lut);
- 
- 		kfree(core_power);
- 	}
--- 
-2.43.0
+Well, all the comments added with the patch - IMO they duplicate what the
+code is doing - that doesn't add any real value and just bloats the
+codebase.
 
+> +	state = kzalloc_obj(*state);
+> +	if (WARN_ON(!state))
+> +		return;
+
+It's not common to WARN on memory allocation errors.  If this code is ever
+fuzzed with fault-injections enabled, that'd be one of the first issues to
+pop up.
+
+I think if the system is in a state when it can't allocate a bunch of
+GFP_KERNEL memory, there'd definitely be some noticeable activity in
+dmesg.  Some (random) assertion triggered inside amdgpu won't help much -
+that will only halt those machines booted with panic_on_warn=1.
