@@ -2,68 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KC8KLd8ZQmrf0AkAu9opvQ
+	id w0eILt8ZQmrh0AkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
 	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:08:15 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9BC86D6C24
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:08:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F09A6D6C26
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:08:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=yeah.net header.s=s110527 header.b=LJWJ7WI8;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=none) header.from=yeah.net
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBD8D10E711;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E74A410E714;
 	Mon, 29 Jun 2026 07:08:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A71710E4B8;
- Sat, 27 Jun 2026 11:54:54 +0000 (UTC)
-Received: from smtpclient.apple (unknown [117.182.75.66])
- by APP-03 (Coremail) with SMTP id rQCowADHq+IEuj9qIkkMFg--.11853S2;
- Sat, 27 Jun 2026 19:54:46 +0800 (CST)
-Content-Type: text/plain;
-	charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81.1.8\))
-Subject: Re: [PATCH] fix: drm/amd/display: dm_update_crtc_state: skip_modeset
- path leaves new_stream dangling, causing double release
-From: WenTao Liang <vulab@iscas.ac.cn>
-In-Reply-To: <35dee3d1-f114-4eda-8185-244bc429c021@amd.com>
-Date: Sat, 27 Jun 2026 19:54:34 +0800
-Cc: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
- siqueira@igalia.com, alex.hung@amd.com, superm1@kernel.org,
- timur.kristof@gmail.com, ivan.lipski@amd.com, aurabindo.pillai@amd.com,
- chen-yu.chen@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <785A9F48-8192-4C1A-B61F-FFBAC9E92D41@iscas.ac.cn>
-References: <20260626124128.36625-1-vulab@iscas.ac.cn>
- <35dee3d1-f114-4eda-8185-244bc429c021@amd.com>
-To: Mario Limonciello <mario.limonciello@amd.com>
-X-Mailer: Apple Mail (2.3826.700.81.1.8)
-X-CM-TRANSID: rQCowADHq+IEuj9qIkkMFg--.11853S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Zr43uFW5Jw45JrWDZrWxCrg_yoW8CF48pr
- 4fJw1Yvr9rZ3WIqa47C3WY9Fyjk34fX340kr4UAw1Sv345Ar15Ja4rXr1kWrZ7uFW2vw4a
- qFyDG39rXF1qv3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUUvCb7Iv0xC_Zr1lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
- 0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
- A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
- jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I
- 8E87Iv6xkF7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
- 64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVW8JVWxJw
- Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkI
- wI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr
- 0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY
- 17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcV
- C0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY
- 6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4UJVWxJrUvcSsGvfC2Kf
- nxnUUI43ZEXa7IUnTq2tUUUUU==
-X-Originating-IP: [117.182.75.66]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiDAQLA2o-mA9ApAAAsm
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C10D310E4D6;
+ Sat, 27 Jun 2026 13:08:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+ s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version:
+ Content-Type; bh=tw6vHd1kpotBxMS/R2XHC2hK5mWlceulqu+FlD1T30o=;
+ b=LJWJ7WI8NIEqO2XToldTO86DDmhZnJ4LwRTfkTMmNKpuJUBKXZbFYXwNP2u39i
+ zbs3wIi5EXoPHJEmN4V/YKSEI9Z8n6UYADzzVerCaj4/fxAFXF9JiKpg2p0UZrG/
+ lBkr62UpArvUAm2BmV4xCnhCkQNT042uN+18jGK5KydHs=
+Received: from zhang.. (unknown [])
+ by gzsmtp1 (Coremail) with UTF8SMTPSA id Mc8vCgD3vy05yz9qcWJiAA--.32977S4;
+ Sat, 27 Jun 2026 21:08:12 +0800 (CST)
+From: Ziran Zhang <zhangcoder@yeah.net>
+To: markus.elfring@web.de
+Cc: airlied@gmail.com, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
+ dri-devel@lists.freedesktop.org, harry.wentland@amd.com,
+ linux-kernel@vger.kernel.org, simona@ffwll.ch, siqueira@igalia.com,
+ sunpeng.li@amd.com, zhangcoder@yeah.net
+Subject: Re: [PATCH] drm/amd/display: Remove redundant NULL check before
+ kfree() in mod_power_create()
+Date: Sat, 27 Jun 2026 21:07:03 +0800
+Message-ID: <20260627130712.4339-1-zhangcoder@yeah.net>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <0d82b2ff-5451-4ba5-9a02-fec93b93484f@web.de>
+References: <0d82b2ff-5451-4ba5-9a02-fec93b93484f@web.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: Mc8vCgD3vy05yz9qcWJiAA--.32977S4
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+ VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvj4RJUUUUUUUU
+X-Originating-IP: [116.149.202.60]
+X-CM-SenderInfo: x2kd0wpfrgv2o61htxgoqh3/1tbiNhxsLWo-yzwqdQAA3W
 X-Mailman-Approved-At: Mon, 29 Jun 2026 07:07:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,99 +67,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.39 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[43];
-	MV_CASE(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DATE_IN_PAST(1.00)[42];
+	DMARC_POLICY_ALLOW(-0.50)[yeah.net,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[yeah.net:s=s110527];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_FROM(0.00)[yeah.net];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[web.de];
 	ARC_NA(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,igalia.com,kernel.org,lists.freedesktop.org,vger.kernel.org];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	HAS_XOIP(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vulab@iscas.ac.cn,amd-gfx-bounces@lists.freedesktop.org];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_XOIP(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zhangcoder@yeah.net,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,amd.com,lists.freedesktop.org,vger.kernel.org,ffwll.ch,igalia.com,yeah.net];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DKIM_TRACE(0.00)[yeah.net:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,yeah.net:dkim,yeah.net:mid,yeah.net:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B9BC86D6C24
+X-Rspamd-Queue-Id: 6F09A6D6C26
 
+On Sat, 27 Jun 2026 13:53:13 +0200, Markus Elfring wrote:
+> > kfree() safely handles NULL pointers, so there is no need to check for
+> > NULL before calling kfree().
+> …
 
+> How do you think about to append parentheses to another function name
+> in the summary phrase?
 
-> 2026=E5=B9=B46=E6=9C=8827=E6=97=A5 00:45=EF=BC=8CMario Limonciello =
-<mario.limonciello@amd.com> =E5=86=99=E9=81=93=EF=BC=9A
->=20
->=20
->=20
-> On 6/26/26 07:41, WenTao Liang wrote:
->> The skip_modeset path calls dc_stream_release(new_stream) but does =
-not
->>   set new_stream to NULL. If a subsequent error (e.g., color =
-management
->>   failure) triggers goto fail, the fail label executes a second
->>   dc_stream_release on the same pointer, causing a use-after-free or =
-excess
->>   put on the stream reference.
->> Cc: stable@vger.kernel.org
->> Fixes: 3ce51649cdf2 ("drm/amdgpu/display: add quirk handling for =
-stutter mode")
->> Signed-off-by: WenTao Liang <vulab@iscas.ac.cn>
->=20
-> The code change looks good to me, but this Fixes hash doesn't really =
-make sense to me.
->=20
-> Are you sure about that?
->=20
-> I /think/ this is the correct hash:
->=20
-> Fixes: 9b690ef3c7042 ("drm/amd/display: Avoid full modeset when not =
-required")
->=20
->> ---
->>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 1 +
->>  1 file changed, 1 insertion(+)
->> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c =
-b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> index 5fc5d5608506..acf0b01d6f62 100644
->> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->> @@ -11708,6 +11708,7 @@ static int dm_update_crtc_state(struct =
-amdgpu_display_manager *dm,
->>  	/* Release extra reference */
->>  	if (new_stream)
->>  		dc_stream_release(new_stream);
->> +	new_stream =3D NULL;
->>    	/*
->>  	 * We want to do dc stream updates that do not require a
+> Regards,
+> Markus
 
+Oops!  I will send a v3.
+Thanks for the review!
 
-
-Thank you for the review and for catching this. You are right =E2=80=94 =
-I used
-the wrong Fixes hash. The correct one is indeed:
-
-Fixes: 9b690ef3c7042 ("drm/amd/display: Avoid full modeset when not =
-required")
-
-I will update it in the next version.
-
-Thanks again for your help.
-
-Best regards,
-WenTao Liang
+Regards,
+Ziran Zhang
 
