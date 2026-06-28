@@ -2,60 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id dkvmLtAZQmrP0AkAu9opvQ
+	id bho0Csm3QGoFhgkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:08:00 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 28 Jun 2026 07:57:29 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F9686D6BE4
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:08:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 395B46D3401
+	for <lists+amd-gfx@lfdr.de>; Sun, 28 Jun 2026 07:57:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=yeah.net header.s=s110527 header.b=Epgq3UxM;
+	dkim=pass header.d=amd.com header.s=selector1 header.b="OS7/BtwI";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=yeah.net
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9748510E6F9;
-	Mon, 29 Jun 2026 07:07:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1D2C10E57B;
+	Sun, 28 Jun 2026 05:57:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50A8110E4D3;
- Sat, 27 Jun 2026 13:16:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
- s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=rS
- cztThxqMJbnsrmUCiqJo7gdmh7LmFjJRjuznF/ZKU=; b=Epgq3UxMFPfUkowsbX
- A9p9PBTPo9kX1vMzfnmJ1ZC9TQs3USqKlroecITzE3N4MIXhUJgFYhMHoVrj8NTc
- PAuTCYJhN49160VDBs747R2aBEYcYb2uefP7wdIKiN91LnZ0ScAk9WbGoNyS7Ql/
- 3BJOa+ocI8BXSrS898pJ/veAc=
-Received: from zhang.. (unknown [])
- by gzsmtp3 (Coremail) with UTF8SMTPSA id M88vCgD3nzkfzT9qCdkOAw--.16958S4;
- Sat, 27 Jun 2026 21:16:17 +0800 (CST)
-From: Ziran Zhang <zhangcoder@yeah.net>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Markus Elfring <Markus.Elfring@web.de>
-Cc: Rodrigo Siqueira <siqueira@igalia.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Ziran Zhang <zhangcoder@yeah.net>
-Subject: [PATCH v3] drm/amd/display: Remove redundant NULL check before
- kfree() in mod_power_create()
-Date: Sat, 27 Jun 2026 21:13:54 +0800
-Message-ID: <20260627131354.5811-1-zhangcoder@yeah.net>
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010044.outbound.protection.outlook.com
+ [52.101.193.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41B4710E57B
+ for <amd-gfx@lists.freedesktop.org>; Sun, 28 Jun 2026 05:57:24 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sBbYPHRUtlcYAd+ymrBC6XPItKvGDOhtEcmq1a2GFh1IGaz+kGE8pF60V1XcUHtzeqx721Qrk8Z/xirRuXSgKJ9EqR4qgoGnHsGgOH+ZHWrj8i4Zv+xwRAXjLG3fpJbst4dpQbCQwbSBqgyPGHY0rUmbdz6a3tquZ8ta48klvt7XuKPas6PpWGV/U2t42lwegJsOw0n4c9YnQvPxxnGMX+Autmi6LcwmBrjwgF22S/NLdq3M9xDmwdKGG0Jbk5m4W+FoHP3ShUfLsTe3eBpuwt/pZ5VT/xtPB8tkNooxWkanUaFMbwA0osuRuDWQcO76REu/FQEuwHn0OWuaLn6UhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=C3iOwMONI3Dtk6jhygUl+zRNs8NVQcaWoiRmmHlyGag=;
+ b=OeLmHUfDoXk8Ajj/tU3xe9Fk8C7J8Wtf/rEcttXlB+VL5hap+XA14eufvYd1qo1LRMwaWusk+dC/pRVsysDlW7D85iT9KkuVPFNhzY2Vivg3TBee3NidcDpRo8H7zHPqvAXmK/jwQm5xF29ClTcU9rw1dyNwQMv0eWM2UXHxmRDCjFPFueTqh2THQO8YEk7vztljw6gApYs/KV37mNoJxsH4hZAmgjDQW0hbdCzMadUtKfsAyavrsf2tuu4kTBZpiGCGdZFSl1pwacf4XWh9W2BhCGqH10sQu0yRVhC2BqEfadV183+8FVO1YWmZnUT3qoyW0fMmHE3wa5QbR10stA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=C3iOwMONI3Dtk6jhygUl+zRNs8NVQcaWoiRmmHlyGag=;
+ b=OS7/BtwIkKoVL+UcoI9m1wQnqKokk2s1r2WlKSg5s+2w0tLO8RX3GvWZkWQlfSkSLaBpRnMD5H/4bpwOHn3EN4gGFHd8zWhgmRpYBUGfMmBI1QK3FDAv1u/uB6mbc7m/AHKlhSU8GB+RWVE++EOalJJ6HNTzLyj45wyawTKHyeg=
+Received: from SA0PR11CA0187.namprd11.prod.outlook.com (2603:10b6:806:1bc::12)
+ by CH0PR12MB8505.namprd12.prod.outlook.com (2603:10b6:610:193::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.18; Sun, 28 Jun
+ 2026 05:57:17 +0000
+Received: from SA2PEPF00001509.namprd04.prod.outlook.com
+ (2603:10b6:806:1bc:cafe::94) by SA0PR11CA0187.outlook.office365.com
+ (2603:10b6:806:1bc::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.18 via Frontend Transport; Sun,
+ 28 Jun 2026 05:57:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SA2PEPF00001509.mail.protection.outlook.com (10.167.242.41) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Sun, 28 Jun 2026 05:57:16 +0000
+Received: from amd.com (10.180.168.240) by satlexmb07.amd.com (10.181.42.216)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Sun, 28 Jun
+ 2026 00:57:13 -0500
+From: Geoffrey McRae <geoffrey.mcrae@amd.com>
+To: <alexander.deucher@amd.com>
+CC: <christian.koenig@amd.com>, <Amber.Lin@amd.com>,
+ <amd-gfx@lists.freedesktop.org>, Geoffrey McRae <geoffrey.mcrae@amd.com>
+Subject: [PATCH] drm/amdgpu/mes: Fix hung_queue_db_array loop limit for
+ multi-XCC
+Date: Sun, 28 Jun 2026 15:57:01 +1000
+Message-ID: <20260628055701.1561570-1-geoffrey.mcrae@amd.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260627100945.5826-1-zhangcoder@yeah.net>
-References: <20260627100945.5826-1-zhangcoder@yeah.net>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: M88vCgD3nzkfzT9qCdkOAw--.16958S4
-X-Coremail-Antispam: 1Uf129KBjvJXoW7ZF17KFy8AF47Cr4DXFy8uFg_yoW8uF4xpF
- 4DKw15tw48G3W8KFnFg3W8XFy8Wa1kAFW3Wr47C3Wa9a45Zr9YkF18A34YgFWDWFy7tF18
- tF1UKF4UXFy3Cw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRUUUUUUUUU=
-X-Originating-IP: [116.149.202.60]
-X-CM-SenderInfo: x2kd0wpfrgv2o61htxgoqh3/1tbiIQLlpmo-zSI18AAA3f
-X-Mailman-Approved-At: Mon, 29 Jun 2026 07:07:55 +0000
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00001509:EE_|CH0PR12MB8505:EE_
+X-MS-Office365-Filtering-Correlation-Id: bf5e014d-3a09-4b61-d428-08ded4da1bce
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|82310400026|36860700016|1800799024|23010399003|11063799006|56012099006|18002099003;
+X-Microsoft-Antispam-Message-Info: +nsd19aRBg8LMu7VOd8CrA1FdxN+Cbl+XYLSf4UHcvLsu5XbxQ2Bii+KeLBrcLLsDz1OYqXTvqyhqX+URpqPBeAECe4CLfbiDUutxtPZbHnlUj5yg84DKyA4LIh7d6aSFNXM9wcP4UQfV7jVU8pxv5j3+HTPQwUdSVwF11z8oPIac5kbi4N1XlqBUBTVVyPtyAuxR9UkXM2xYADA4sxH8yB+cdK9C8u6mE/3gax8/NJJAL1DRmi5KWnRqaGXG1Poh3IpIZ3OVQGuVAHiAzY/oXy+FWRZR5ukhRlCtqZ4TxjedVVuKEmXYOnrdqB/0HEhoOWBdIF+TVtf8Kl16UAqAP6Wez+i1QS7H6OjKSZykoE7Ru1MgQnL0JE6AO3iZGeY02+F3TMCq4G+aE2vZcNjkUVfVbmoW6OdLT8Tr/ztXK5+S0pQbHUH7ZwpMBEqEVFvXZucIrO52ModdRlI8DcLobsvdm+uJdQDTk8BoYaCztrXupvCM8k9Nm3/dfEfLYKo4J79tMf4I8XS9lVrGLoUUuyyBu5vK9tMTK+AWeYK11R6FvkKTEFnOGD2rRcjgQTQV/n8k2f4JqX3YPTxQGGYaAKE3JUFXWLA2S6JBvdUokyBGNIEMU4sV0QsY/IIIydYB//2gRG/gaY3LgasxO6jV9YG/VdBp9uh/GkLcXxPkViEh5Jw7WfkzaOkvruZSz7jBdhPWf1NQcLKOFQj24MAqg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(82310400026)(36860700016)(1800799024)(23010399003)(11063799006)(56012099006)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: EJ8GxazlE42kswFKVlL+OeDFQD509p8N0ouM2oXZ+Wf+4lzzfJL8E1Fl50zDSUfgExnMssiPOE2gL8Xwjp15QxzApKRIUy++FHkCjlNnpUrBGIje5gMFFUXV4R3BkvMu7x+I1zwhEXIBo6U++YjDa/fgO7HlupefskZXukQkm8trl0XNv0lLaOaCHqCgTGDEqSdzdQylWKFyS+sMc1XrdBMtmMoSRoTKzRvfD2zemWyq0jbnal7kvsoJtc1v/jhNth1hlZhNEjLdYP8RLvtkX6fLqAvYgMnIIKEbvpOuelpGKtXmsAhcuhtZNUXgV0PAYQHVU5q8ksW1yBX0H8adVwL2nDI3/7qYY/21bt/ucQ9Q6XHGkNn0HCN1pKZ94g0sfibR0nIkBcVVBaWybwV5VIGtbzKcPHZDaQmtTKfZ2+WsBvLl161s6YjE120xJzXW
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2026 05:57:16.7029 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf5e014d-3a09-4b61-d428-08ded4da1bce
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00001509.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB8505
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,98 +117,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.19 / 15.00];
-	DATE_IN_PAST(1.00)[41];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[yeah.net,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[yeah.net:s=s110527];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_FROM(0.00)[yeah.net];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,web.de];
-	ARC_NA(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:Amber.Lin@amd.com,m:geoffrey.mcrae@amd.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[igalia.com,lists.freedesktop.org,vger.kernel.org,yeah.net];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DKIM_TRACE(0.00)[yeah.net:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhangcoder@yeah.net,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	FORGED_SENDER(0.00)[geoffrey.mcrae@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geoffrey.mcrae@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	HAS_XOIP(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2F9686D6BE4
+X-Rspamd-Queue-Id: 395B46D3401
 
-kfree() safely handles NULL pointers, so there is no need to check for
-NULL before calling kfree().
+The loop iterated only AMDGPU_MAX_MES_PIPES times, leaving entries
+uninitialized for multi-XCC GPUs. This causes null pointer dereferences
+when accessing arrays indexed by XCC ID >= 2. Extend the loop to cover
+all XCCs (AMDGPU_MAX_MES_PIPES * num_xcc), matching other per-XCC
+arrays.
 
-Remove redundant NULL check.
-
-Found by Coccinelle ifnullfree script.
-
-Signed-off-by: Ziran Zhang <zhangcoder@yeah.net>
+Fixes: 723b3bc87afb ("drm/amdgpu: Fixup boost mes detect hang array size")
+Signed-off-by: Geoffrey McRae <geoffrey.mcrae@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Amber Lin <Amber.Lin@amd.com>
 ---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Changes in v3:
-- Add parentheses to "kfree" in subject line for consistency.
-
- .../gpu/drm/amd/display/modules/power/power.c    | 16 ++++++----------
- 1 file changed, 6 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/modules/power/power.c b/drivers/gpu/drm/amd/display/modules/power/power.c
-index 5659a38b3..97889867a 100644
---- a/drivers/gpu/drm/amd/display/modules/power/power.c
-+++ b/drivers/gpu/drm/amd/display/modules/power/power.c
-@@ -270,13 +270,11 @@ struct mod_power *mod_power_create(struct dc *dc,
- fail_bad_brightness_range:
- fail_alloc_backlight_array:
- 	for (inst = 0; inst < edp_num; inst++)
--		if (core_power->bl_prop[inst].backlight_lut)
--			kfree(core_power->bl_prop[inst].backlight_lut);
-+		kfree(core_power->bl_prop[inst].backlight_lut);
- fail_construct:
--	for (i = 0; i < MOD_POWER_MAX_CONCURRENT_STREAMS; i++) {
--		if (core_power->map[i].psr_context)
--			kfree(core_power->map[i].psr_context);
--	}
-+	for (i = 0; i < MOD_POWER_MAX_CONCURRENT_STREAMS; i++)
-+		kfree(core_power->map[i].psr_context);
-+
- 	kfree(core_power->map);
- 
- fail_alloc_map:
-@@ -295,8 +293,7 @@ void mod_power_destroy(struct mod_power *mod_power)
- 				MOD_POWER_TO_CORE(mod_power);
- 
- 		for (i = 0; i < MOD_POWER_MAX_CONCURRENT_STREAMS; i++)
--			if (core_power->map[i].psr_context)
--				kfree(core_power->map[i].psr_context);
-+			kfree(core_power->map[i].psr_context);
- 
- 		for (i = 0; i < core_power->num_entities; i++)
- 			if (core_power->map[i].stream)
-@@ -305,8 +302,7 @@ void mod_power_destroy(struct mod_power *mod_power)
- 		kfree(core_power->map);
- 
- 		for (i = 0; i < MAX_NUM_EDP; i++)
--			if (core_power->bl_prop[i].backlight_lut)
--				kfree(core_power->bl_prop[i].backlight_lut);
-+			kfree(core_power->bl_prop[i].backlight_lut);
- 
- 		kfree(core_power);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+index 6c0dde3786e3..6ec4f1d537d2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+@@ -237,7 +237,7 @@ int amdgpu_mes_init(struct amdgpu_device *adev)
  	}
+ 
+ 	if (adev->mes.hung_queue_db_array_size) {
+-		for (i = 0; i < AMDGPU_MAX_MES_PIPES; i++) {
++		for (i = 0; i < AMDGPU_MAX_MES_PIPES * num_xcc; i++) {
+ 			r = amdgpu_bo_create_kernel(adev,
+ 						    adev->mes.hung_queue_db_array_size * sizeof(u32),
+ 						    PAGE_SIZE,
 -- 
 2.43.0
 
