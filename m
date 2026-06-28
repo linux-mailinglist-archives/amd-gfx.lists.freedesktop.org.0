@@ -2,114 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id RYJ/K2UCQWrDkAkAu9opvQ
+	id 9s0ZMs4ZQmrJ0AkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 28 Jun 2026 13:15:49 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:07:58 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B8A26D3AB2
-	for <lists+amd-gfx@lfdr.de>; Sun, 28 Jun 2026 13:15:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 219A06D6BD5
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:07:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=MkjP+jrZ;
+	dkim=pass header.d=ptr1337.dev header.s=dkim header.b=gdIhKDZs;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=quarantine) header.from=ptr1337.dev
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B74C10E5D1;
-	Sun, 28 Jun 2026 11:15:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F61B10E6F6;
+	Mon, 29 Jun 2026 07:07:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013067.outbound.protection.outlook.com
- [40.93.201.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3117D10E5C7;
- Sun, 28 Jun 2026 11:15:44 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gp62MqguUbvdLQt8RKbmZg4CKP5lasG9yA/G+1HII336ZYUAOtT0X/3bOOPTTEI3YrE3A0Iv9d1ZHL+bGZr8HhGT7tqTuWseGTMJ/r4h1I+F9HTqDZC3IQqRm8TTBIaGttfG/wDINH6kfA294KjzPh4BrFM0mrLPGM1yYlBX0rqf+zeR1H4C9OASzvAY06v+SawoSwfLq/KFKPFRscbzC4MQ3fH5LpUqIXLJmA4ANBl0ioniT4758QaDtxU05o4+rEFcLRD6D9j31gSUQCz6/a1FMRrN5seluo0SmPeFIQNXMT/YMJrToWBQcIy5IIslT2x50GuhTasiGxsm2/9mlQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WLCTAJMW0tWigGt9c2XIkQmpQbrXvm3wN3mV+mzV+4Y=;
- b=sXturZHTIigMoO6vH/ogUfcIXfk9KnO149Vjt9InhBmkKfhzzuu9DQJkbsrTFkGQapiqRvDJeUe3oHx3pQXGcXxDZuRCrJpcWCtjlE60Deh0BAUeeuI0jOPOhhkgejf3/HzhvBSt3JPhs3ekxTd/Qly0CFlyx+Qv7mqO2uL6UhCnJEbfX/7PyVhHi1miDK9SGwB31deAX/VeFrMikGbMat4I9o/bKcWQj/ulIlovUxagyThF8R/pOh1hXgayiMFbLfdSYYVqHIgDFIAHHLMTJm3P/jDdF4rSrXoBtPunkKPm43njAzspaZo0HHT5f8HnrXH3Guym8wZuL2nggPCksA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=ffwll.ch smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WLCTAJMW0tWigGt9c2XIkQmpQbrXvm3wN3mV+mzV+4Y=;
- b=MkjP+jrZleSCUEcgl+PTUZdhp6QwwxnzXKJvBN16wAJ7FQh73QiC2AMXTXVbhSAY8sSnQ8o0Hff6A33dwqlAi0ggpG518I9nyr6m7eYGcauKQJxZWsMtZqobHnTVtinMBWdPSv2QR7g8+h6/49iRAGNR6iRRtD5qQthp/BFJaiA=
-Received: from IA1P220CA0012.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:461::16)
- by SN7PR12MB7180.namprd12.prod.outlook.com (2603:10b6:806:2a8::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.17; Sun, 28 Jun
- 2026 11:15:37 +0000
-Received: from BL02EPF0001A106.namprd05.prod.outlook.com
- (2603:10b6:208:461:cafe::f) by IA1P220CA0012.outlook.office365.com
- (2603:10b6:208:461::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.19 via Frontend Transport; Sun,
- 28 Jun 2026 11:15:37 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A106.mail.protection.outlook.com (10.167.241.139) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Sun, 28 Jun 2026 11:15:37 +0000
-Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Sun, 28 Jun
- 2026 06:15:33 -0500
-From: Honglei Huang <honglei1.huang@amd.com>
-To: <sima@ffwll.ch>, <matthew.brost@intel.com>, <rodrigo.vivi@intel.com>,
- <thomas.hellstrom@linux.intel.com>, <dakr@kernel.org>,
- <intel-xe@lists.freedesktop.org>
-CC: <aliceryhl@google.com>, <Alexander.Deucher@amd.com>,
- <Felix.Kuehling@amd.com>, <Christian.Koenig@amd.com>, <Ray.Huang@amd.com>,
- <Lingshan.Zhu@amd.com>, <Junhua.Shen@amd.com>, <Yiru.Ma@amd.com>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <honghuan@amd.com>
-Subject: [PATCH v7 5/5] drm/gpusvm: let the drm_gpusvm core context purely MM
- level
-Date: Sun, 28 Jun 2026 19:14:55 +0800
-Message-ID: <20260628111455.9831-6-honglei1.huang@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260628111455.9831-1-honglei1.huang@amd.com>
-References: <20260628111455.9831-1-honglei1.huang@amd.com>
+X-Greylist: delayed 311 seconds by postgrey-1.36 at gabe;
+ Sun, 28 Jun 2026 14:07:59 UTC
+Received: from mail.ptr1337.dev (mail.ptr1337.dev [202.61.224.105])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44B5410E60E;
+ Sun, 28 Jun 2026 14:07:59 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id 32997281B77; Sun, 28 Jun 2026 16:02:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ptr1337.dev; s=dkim;
+ t=1782655366; h=from:subject:date:message-id:to:cc:mime-version:
+ content-transfer-encoding; bh=tWKGlT6wB5yIkBQ1IVMQpAlFUJImHkHUwhQrv3J4WdM=;
+ b=gdIhKDZsokGzQkXsqhoOcrahLCQaF3QbF8tpBbelw8P5FOt/hes0a87S6KLSwviGHPLj1G
+ +8BRuRJQmVZXgMWng2yLjG1MxVryJQw+37fXXMp4SVXTQn7z/0zpXH5qohA4q3yLlKI91B
+ 0IU1RgqFm5sJanWGzg5LB8bP2LzMJpy893ZBURrktuD6UCUu+UsVjghDfgr+0J9bi+R2hR
+ oLY5MeMKundDWbc/BG4+jH8VTV6U5anTPj9Dv0UsAlYa+cr2I3dsoXYeaQixcQGPEWhjY7
+ 3OyyofglmMSXpFqF6CSZlzryZz9zDqVIAKqcWA3luo9C8JioZEgjG+en6wDMWg==
+From: Peter Jung <admin@ptr1337.dev>
+To: stable@vger.kernel.org
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ alexander.deucher@amd.com, ray.wu@amd.com, superm1@kernel.org,
+ "Sun peng (Leo) Li" <sunpeng.li@amd.com>,
+ Ivan Lipski <ivan.lipski@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>,
+ Peter Jung <admin@ptr1337.dev>
+Subject: [PATCH 7.1.y] drm/amd/display: Fix ISM dc_lock deadlock during suspend
+Date: Sun, 28 Jun 2026 16:01:48 +0200
+Message-ID: <20260628140148.59923-1-admin@ptr1337.dev>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A106:EE_|SN7PR12MB7180:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5ca1d985-ce88-4b00-ad35-08ded50694a1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|82310400026|36860700016|1800799024|376014|22082099003|11063799006|18002099003|56012099006;
-X-Microsoft-Antispam-Message-Info: yr3Dy/rs5saeZUGZteH056IcIUXrapMHdvuckdZunSPbYHDm4a45R/cI2Wv+Mq3pRcj8Lgg/4Cjm5uPATCL0i71mw8zd3+K03LvCJ23aKqRaqnybIaHsLcb2ud8nx6gS7TL/sGTIPJdA8ZtLvT8RaZwyuXI1LwCjxOGMQvtSHnt2+qRNv/VPsi/5oI8S2N3BAL83zJZpB/bV8gRAZq+fk6WZvYM+JDLWdiFClObBBzgqUlZe2p6CpJQABzLkNwdZbbZPf08kLrnmymXMeNt0PY+SjaIA+yddo4xEGUzVwhiBNkUvtuYkbNKgUNHyCh0SNLHRYB3m7s7O7J2/OP9M2735G5732nCAIzSnCTfVbV6sDD4CeL+Xgzuypvb8ufJJMNnXmHTnmyV/uE1q3e+dnr8AK7ShTSGCf0YfakmBWjOUV2pjd0YcqLyo47IDB409txbkwE/ZJUbMP1s8JjsSXBSDr9uwleFk4Ng1xLK6NPWDtQFzyiQhhsHoUHWyuNvrABIkxBS2aLz+lItdLeZquCvUlSeWC7W5myyXuoiE6ur98sn6rse2yvwJwf5B96PH0tBfM+t6iKDTBn3ZKQRUpF1FbPxnbivhvtZuPIxkGN3eIzi1STtX/NVr+F4eT+KrYk7n8WKh5w6WufAvyy+GQHK0gwCLifvAxC5OwH+9UPpso7CaknfWvBsKAd/3WkQVmwKukfeXP/54vmNHo9+oIg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(23010399003)(82310400026)(36860700016)(1800799024)(376014)(22082099003)(11063799006)(18002099003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 3rWRTrdyFdzYLSlaBmwx37X9eqKwMfN6E5utxMupULjWK7U0TWf9/mbMeAoGPA2NkEARGT4MEdSxKlsrsnDC4jhmjdLrYtFZ+ULBTyoIW4/M+IkrXuaOADCtqNTGu5Dh06hQ1HsfT8O4q78ogn24c9KaVtCuP557RRrrfyIxxXnJ7MOWfDL72CiV6foUnYOGSbsb+l3T3NFTZfwNBNf+QS3GKjiZ6zuVlSeQDuDa4CAzFzFX2n/WH8yg//AWB3reI4d8SdmvqRrme2E+q5aaebkLzxpVMgL1tB6j70nA3U5uuE9D7sDMqHdqAT/oODrLMVPLRfTDLpSEqxr7xTUTTcLk1G/7bdd1Ii40ivfUNA3FR03GG2vA7OsLtfY5S+UnMU6KVqqt41aZCiQqBm1dOucYWhxZCJ+woj4IGauRzCiSxC5BpTG5pzW0XuNY8iIq
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2026 11:15:37.2884 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ca1d985-ce88-4b00-ad35-08ded50694a1
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A106.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7180
+X-Last-TLS-Session-Version: TLSv1.3
+X-Mailman-Approved-At: Mon, 29 Jun 2026 07:07:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,168 +62,229 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ptr1337.dev,quarantine];
+	R_DKIM_ALLOW(-0.20)[ptr1337.dev:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[honglei1.huang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FROM_NEQ_ENVFROM(0.00)[admin@ptr1337.dev,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ptr1337.dev:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5B8A26D3AB2
+X-Rspamd-Queue-Id: 219A06D6BD5
 
-From: Honglei Huang <honghuan@amd.com>
+From: Ray Wu <ray.wu@amd.com>
 
-The core mechanism of drm_gpusvm is HMM, which is fundamentally an
-MM side subsystem. A drm_device, enters the picture on the device side at
-DMA mapping / GPU bind.
+[ Upstream commit 3714fe242592e3699ac5e2c19d68b275a210be7d ]
 
-So move struct drm_device from struct drm_gpusvm in drm_gpusvm. Let
-drm_gpusvm keep its core neutral and leave device side decisions to
-the driver. Make drm_gpusvm a pure MM level object.
+CachyOS users reported a regression in shutdown/reboot behavior on 7.1
+kernels: the display turns off, but the machine does not power down.
+Reverting ISM fixes the regression, and this upstream fix addresses the
+same ISM dc_lock/workqueue deadlock in the suspend/shutdown paths.
 
-  - Move the drm_device from struct drm_gpusvm. drm_device now stored in
-    drm_gpusvm_pages.
-  - Drop the drm parameter from drm_gpusvm_init()
-  - Update the xe call sites in xe_svm_init() and other callers.
+[Why]
+System hang observed during suspend/resume while video is playing.
+amdgpu_dm_ism_disable() is called under dc_lock and waits for ISM
+delayed work via disable_delayed_work_sync(). The work handlers
+themselves take dc_lock, producing an ABBA deadlock when a worker is
+in flight at suspend time.
 
-drm_device does not disappear from the framework, it is
-relocated onto each drm_gpusvm_pages where DMA actually happens.
+[How]
+Split the disable path into two phases with opposite locking
+contracts:
+  1. amdgpu_dm_ism_disable() -- quiesces workers, must NOT hold
+     dc_lock.
+  2. amdgpu_dm_ism_force_full_power() (new) -- drives the ISM FSM
+     back to FULL_POWER_RUNNING, must hold dc_lock.
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Honglei Huang <honghuan@amd.com>
+Fixes: 754003486c3c ("drm/amd/display: Add Idle state manager(ISM)")
+Link: https://github.com/CachyOS/linux-cachyos/issues/900
+Cc: stable@vger.kernel.org # 7.1.y
+Reviewed-by: Sun peng (Leo) Li <sunpeng.li@amd.com>
+Signed-off-by: Ray Wu <ray.wu@amd.com>
+Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
+Tested-by: Dan Wheeler <daniel.wheeler@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Peter Jung <admin@ptr1337.dev>
 ---
- drivers/gpu/drm/drm_gpusvm.c | 8 ++++----
- drivers/gpu/drm/xe/xe_svm.c  | 4 ++--
- drivers/gpu/drm/xe/xe_svm.h  | 2 +-
- include/drm/drm_gpusvm.h     | 4 +---
- 4 files changed, 8 insertions(+), 10 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 25 +++++++--
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c | 56 ++++++++++++++++---
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h |  1 +
+ 3 files changed, 70 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index e0fd0b2fcc5..fcfe635bc19 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -439,7 +439,6 @@ static const struct mmu_interval_notifier_ops drm_gpusvm_notifier_ops = {
-  * drm_gpusvm_init() - Initialize the GPU SVM.
-  * @gpusvm: Pointer to the GPU SVM structure.
-  * @name: Name of the GPU SVM.
-- * @drm: Pointer to the DRM device structure.
-  * @mm: Pointer to the mm_struct for the address space.
-  * @mm_start: Start address of GPU SVM.
-  * @mm_range: Range of the GPU SVM.
-@@ -453,7 +452,9 @@ static const struct mmu_interval_notifier_ops drm_gpusvm_notifier_ops = {
-  * This function initializes the GPU SVM.
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index f8c13bad4ac2..560ab3298911 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -2260,9 +2260,16 @@ static void amdgpu_dm_fini(struct amdgpu_device *adev)
+ 		adev->dm.idle_workqueue = NULL;
+ 	}
+ 
+-	/* Disable ISM before dc_destroy() invalidates dm->dc */
++	/*
++	 * Disable ISM before dc_destroy() invalidates dm->dc.
++	 *
++	 * Quiesce workers first without dc_lock (they take dc_lock
++	 * themselves, so syncing under it would deadlock), then drive the
++	 * FSM back to FULL_POWER_RUNNING under dc_lock.
++	 */
++	amdgpu_dm_ism_disable(&adev->dm);
+ 	scoped_guard(mutex, &adev->dm.dc_lock)
+-		amdgpu_dm_ism_disable(&adev->dm);
++		amdgpu_dm_ism_force_full_power(&adev->dm);
+ 
+ 	amdgpu_dm_destroy_drm_device(&adev->dm);
+ 
+@@ -3290,9 +3297,14 @@ static int dm_suspend(struct amdgpu_ip_block *ip_block)
+ 	if (amdgpu_in_reset(adev)) {
+ 		enum dc_status res;
+ 
++		/* Quiesce ISM workers before taking dc_lock (workers take
++		 * dc_lock themselves; syncing under it would deadlock).
++		 */
++		amdgpu_dm_ism_disable(dm);
++
+ 		mutex_lock(&dm->dc_lock);
+ 
+-		amdgpu_dm_ism_disable(dm);
++		amdgpu_dm_ism_force_full_power(dm);
+ 		dc_allow_idle_optimizations(adev->dm.dc, false);
+ 
+ 		dm->cached_dc_state = dc_state_create_copy(dm->dc->current_state);
+@@ -3326,8 +3338,13 @@ static int dm_suspend(struct amdgpu_ip_block *ip_block)
+ 
+ 	amdgpu_dm_irq_suspend(adev);
+ 
++	/*
++	 * Quiesce ISM workers before taking dc_lock (workers take dc_lock
++	 * themselves; syncing under it would deadlock).
++	 */
++	amdgpu_dm_ism_disable(dm);
+ 	scoped_guard(mutex, &dm->dc_lock)
+-		amdgpu_dm_ism_disable(dm);
++		amdgpu_dm_ism_force_full_power(dm);
+ 
+ 	hpd_rx_irq_work_suspend(dm);
+ 
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+index a64e95860e99..b32c8d3ac152 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+@@ -524,13 +524,20 @@ static void dm_ism_sso_delayed_work_func(struct work_struct *work)
+ }
+ 
+ /**
+- * amdgpu_dm_ism_disable - Disable the ISM
++ * amdgpu_dm_ism_disable - Quiesce ISM workers
   *
-  * Note: If only using the simple drm_gpusvm_pages API (get/unmap/free),
-- * then only @gpusvm, @name, and @drm are expected. However, the same base
-+ * then only @gpusvm and @name are expected. The @drm drm_device for dma
-+ * mappings is bound per-pages via drm_gpusvm_init_pages() before the first
-+ * drm_gpusvm_get_pages() call. However, the same base
-  * @gpusvm can also be used with both modes together in which case the full
-  * setup is needed, where the core drm_gpusvm_pages API will simply never use
-  * the other fields.
-@@ -461,7 +462,7 @@ static const struct mmu_interval_notifier_ops drm_gpusvm_notifier_ops = {
-  * Return: 0 on success, a negative error code on failure.
+  * @dm: The amdgpu display manager
+  *
+- * Disable the idle state manager by disabling any ISM work, canceling pending
+- * work, and waiting for in-progress work to finish. After disabling, the system
+- * is left in DM_ISM_STATE_FULL_POWER_RUNNING state.
++ * Cancels and disables any pending or in-flight ISM delayed work and waits
++ * for in-progress work to finish. After this returns, no ISM worker can run
++ * and subsequent mod_delayed_work() calls become no-ops via
++ * clear_pending_if_disabled().
++ *
++ * Must NOT be called with dc_lock held: the workers themselves take dc_lock,
++ * so a synchronous wait under dc_lock would deadlock.
++ *
++ * The caller is responsible for driving the FSM back to FULL_POWER_RUNNING
++ * (under dc_lock) by calling amdgpu_dm_ism_force_full_power().
   */
- int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
--		    const char *name, struct drm_device *drm,
-+		    const char *name,
- 		    struct mm_struct *mm,
- 		    unsigned long mm_start, unsigned long mm_range,
- 		    unsigned long notifier_size,
-@@ -479,7 +480,6 @@ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
- 	}
- 
- 	gpusvm->name = name;
--	gpusvm->drm = drm;
- 	gpusvm->mm = mm;
- 	gpusvm->mm_start = mm_start;
- 	gpusvm->mm_range = mm_range;
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index d515647192e..3283b74f7d5 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -911,7 +911,7 @@ int xe_svm_init(struct xe_vm *vm)
- 			return err;
- 		}
- 
--		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM", &vm->xe->drm,
-+		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM",
- 				      current->mm, 0, vm->size,
- 				      xe_modparam.svm_notifier_size * SZ_1M,
- 				      &gpusvm_ops, fault_chunk_sizes,
-@@ -925,7 +925,7 @@ int xe_svm_init(struct xe_vm *vm)
- 		}
- 	} else {
- 		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)",
--				      &vm->xe->drm, NULL, 0, 0, 0, NULL,
-+				      NULL, 0, 0, 0, NULL,
- 				      NULL, 0);
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index 1423ab2f1d6..63ea991e2cb 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -235,7 +235,7 @@ static inline
- int xe_svm_init(struct xe_vm *vm)
+ void amdgpu_dm_ism_disable(struct amdgpu_display_manager *dm)
  {
- #if IS_ENABLED(CONFIG_DRM_GPUSVM)
--	return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)", &vm->xe->drm,
-+	return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)",
- 			       NULL, 0, 0, 0, NULL, NULL, 0);
- #else
- 	return 0;
-diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-index 2862104aa1b..b7d987bf76a 100644
---- a/include/drm/drm_gpusvm.h
-+++ b/include/drm/drm_gpusvm.h
-@@ -195,7 +195,6 @@ struct drm_gpusvm_range {
-  * struct drm_gpusvm - GPU SVM structure
-  *
-  * @name: Name of the GPU SVM
-- * @drm: Pointer to the DRM device structure
-  * @mm: Pointer to the mm_struct for the address space
-  * @mm_start: Start address of GPU SVM
-  * @mm_range: Range of the GPU SVM
-@@ -219,7 +218,6 @@ struct drm_gpusvm_range {
-  */
- struct drm_gpusvm {
- 	const char *name;
--	struct drm_device *drm;
- 	struct mm_struct *mm;
- 	unsigned long mm_start;
- 	unsigned long mm_range;
-@@ -271,7 +269,7 @@ struct drm_gpusvm_ctx {
- };
+@@ -538,21 +545,54 @@ void amdgpu_dm_ism_disable(struct amdgpu_display_manager *dm)
+ 	struct amdgpu_crtc *acrtc;
+ 	struct amdgpu_dm_ism *ism;
  
- int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
--		    const char *name, struct drm_device *drm,
-+		    const char *name,
- 		    struct mm_struct *mm,
- 		    unsigned long mm_start, unsigned long mm_range,
- 		    unsigned long notifier_size,
+-	ASSERT(mutex_is_locked(&dm->dc_lock));
++	/*
++	 * Caller must NOT hold dc_lock: the ISM delayed work handlers
++	 * acquire dc_lock themselves, so waiting for them via
++	 * disable_delayed_work_sync() while holding dc_lock would
++	 * self-deadlock against an in-flight worker.
++	 */
++	lockdep_assert_not_held(&dm->dc_lock);
+ 
+ 	drm_for_each_crtc(crtc, dm->ddev) {
+ 		acrtc = to_amdgpu_crtc(crtc);
+ 		ism = &acrtc->ism;
+ 
+-		/* Cancel and disable any pending work */
+ 		disable_delayed_work_sync(&ism->delayed_work);
+ 		disable_delayed_work_sync(&ism->sso_delayed_work);
++	}
++}
++
++/**
++ * amdgpu_dm_ism_force_full_power - Force every CRTC's ISM FSM to FULL_POWER
++ *
++ * @dm: The amdgpu display manager
++ *
++ * Sends DM_ISM_EVENT_EXIT_IDLE_REQUESTED to every CRTC's ISM, leaving each
++ * FSM in FULL_POWER_RUNNING. Intended to be paired with
++ * amdgpu_dm_ism_disable(): callers should first quiesce workers (without
++ * dc_lock), then take dc_lock and call this helper.
++ *
++ * Must be called with dc_lock held.
++ */
++void amdgpu_dm_ism_force_full_power(struct amdgpu_display_manager *dm)
++{
++	struct drm_crtc *crtc;
++	struct amdgpu_crtc *acrtc;
++
++	/*
++	 * Caller must hold dc_lock: commit_event() drives the FSM and
++	 * may touch dc state via dc_allow_idle_optimizations() etc.
++	 */
++	lockdep_assert_held(&dm->dc_lock);
++
++	drm_for_each_crtc(crtc, dm->ddev) {
++		acrtc = to_amdgpu_crtc(crtc);
+ 
+ 		/*
+ 		 * When disabled, leave in FULL_POWER_RUNNING state.
+-		 * EXIT_IDLE will not queue any work
++		 * EXIT_IDLE will not queue any work.
+ 		 */
+-		amdgpu_dm_ism_commit_event(ism,
++		amdgpu_dm_ism_commit_event(&acrtc->ism,
+ 					   DM_ISM_EVENT_EXIT_IDLE_REQUESTED);
+ 	}
+ }
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h
+index fde0ddc8d4e4..964408cd9a83 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h
+@@ -146,6 +146,7 @@ void amdgpu_dm_ism_fini(struct amdgpu_dm_ism *ism);
+ void amdgpu_dm_ism_commit_event(struct amdgpu_dm_ism *ism,
+ 				enum amdgpu_dm_ism_event event);
+ void amdgpu_dm_ism_disable(struct amdgpu_display_manager *dm);
++void amdgpu_dm_ism_force_full_power(struct amdgpu_display_manager *dm);
+ void amdgpu_dm_ism_enable(struct amdgpu_display_manager *dm);
+ 
+ #endif
 -- 
-2.34.1
+2.54.0
 
