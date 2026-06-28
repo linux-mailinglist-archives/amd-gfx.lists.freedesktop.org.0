@@ -2,51 +2,148 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9s0ZMs4ZQmrJ0AkAu9opvQ
+	id 2t/BEOEZQmro0AkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:07:58 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:08:17 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 219A06D6BD5
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:07:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB5816D6C3C
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 09:08:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ptr1337.dev header.s=dkim header.b=gdIhKDZs;
+	dkim=pass header.d=web.de header.s=s29768273 header.b=LDG+V3zc;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=ptr1337.dev
+	dmarc=pass (policy=quarantine) header.from=web.de
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F61B10E6F6;
-	Mon, 29 Jun 2026 07:07:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 715C710E71A;
+	Mon, 29 Jun 2026 07:08:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 311 seconds by postgrey-1.36 at gabe;
- Sun, 28 Jun 2026 14:07:59 UTC
-Received: from mail.ptr1337.dev (mail.ptr1337.dev [202.61.224.105])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44B5410E60E;
- Sun, 28 Jun 2026 14:07:59 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 32997281B77; Sun, 28 Jun 2026 16:02:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ptr1337.dev; s=dkim;
- t=1782655366; h=from:subject:date:message-id:to:cc:mime-version:
- content-transfer-encoding; bh=tWKGlT6wB5yIkBQ1IVMQpAlFUJImHkHUwhQrv3J4WdM=;
- b=gdIhKDZsokGzQkXsqhoOcrahLCQaF3QbF8tpBbelw8P5FOt/hes0a87S6KLSwviGHPLj1G
- +8BRuRJQmVZXgMWng2yLjG1MxVryJQw+37fXXMp4SVXTQn7z/0zpXH5qohA4q3yLlKI91B
- 0IU1RgqFm5sJanWGzg5LB8bP2LzMJpy893ZBURrktuD6UCUu+UsVjghDfgr+0J9bi+R2hR
- oLY5MeMKundDWbc/BG4+jH8VTV6U5anTPj9Dv0UsAlYa+cr2I3dsoXYeaQixcQGPEWhjY7
- 3OyyofglmMSXpFqF6CSZlzryZz9zDqVIAKqcWA3luo9C8JioZEgjG+en6wDMWg==
-From: Peter Jung <admin@ptr1337.dev>
-To: stable@vger.kernel.org
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- alexander.deucher@amd.com, ray.wu@amd.com, superm1@kernel.org,
- "Sun peng (Leo) Li" <sunpeng.li@amd.com>,
- Ivan Lipski <ivan.lipski@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>,
- Peter Jung <admin@ptr1337.dev>
-Subject: [PATCH 7.1.y] drm/amd/display: Fix ISM dc_lock deadlock during suspend
-Date: Sun, 28 Jun 2026 16:01:48 +0200
-Message-ID: <20260628140148.59923-1-admin@ptr1337.dev>
-X-Mailer: git-send-email 2.54.0
+Received: from mout.web.de (mout.web.de [212.227.17.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06D6C10E609;
+ Sun, 28 Jun 2026 14:07:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1782655643; x=1783260443; i=markus.elfring@web.de;
+ bh=gHPalfsU5wE1c0RD4yvrjdXqDpFK15Icd+0cY2JgUqs=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+ Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+ cc:content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=LDG+V3zcR6Gn5l3HWYnGObZwRoKL1tEFMcZkEYeEbDQsikFSTUtYPDqlrUzDNAtp
+ oVsTSvozUs+7fXnCOB0AguKdhx3blhDCwzkJCXqYi3lCkrwAW0MdTa5PZY+Fkl16p
+ bcTndgmM+VctG9uDi2kzj85SaBbkb85QbuKkJL7D0zLh7s0vjKH/+QW0eCpwGa8S2
+ VREJNrA5J0UufxhuXg8bUHmVfnGLCoRPMXGBqNstDekzicN3a6N4hqyuHGbeNxooG
+ 68RPNL5Dsq32iS6RpJizE4Bk2NL62WuU9OIZoIwR1ssZ58W1eeED+BLQLVW+0B2QW
+ 20UQRUWOco8DPzKsRA==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from client.hidden.invalid by smtp.web.de (mrweb105
+ [213.165.67.124]) with ESMTPSA (Nemesis) id 1MsaW1-1wy6u82NUx-00udVd; Sun, 28
+ Jun 2026 16:07:23 +0200
+Message-ID: <8457d83d-436a-431b-9674-749dcf01a860@web.de>
+Date: Sun, 28 Jun 2026 16:07:09 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+To: Dan Carpenter <error27@gmail.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>
+Cc: kernel-janitors@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>, Chenyu Chen
+ <chen-yu.chen@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, David Airlie <airlied@gmail.com>,
+ Leo Li <sunpeng.li@amd.com>, Ray Wu <ray.wu@amd.com>,
+ Simona Vetter <simona@ffwll.ch>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Ziran Zhang <zhangcoder@yeah.net>
+References: <aenFoICS1syeOPEm@stanley.mountain>
+Subject: Re: [PATCH] drm/amd/display: Clean up allocation in
+ initialize_backlight_caps()
+Content-Language: en-GB, de-DE
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <aenFoICS1syeOPEm@stanley.mountain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:/47ArnQuA+PLkw/OAJpuzdeov8LuL3TO/fyxUNHTBwhPfNbzU5y
+ pKV5WsyCGXCdE09VAN1C99i1rxiEbLmSx5KB/IKwpyIX21WzDx7Wv+acnHtQex8zUFx9IdY
+ BrNbgb9q4wtn8slHy4KbKOlDf2EoP7Aw10xzcm14fezEEYCpEuVvkdjLo2gZ0kUWLc84wwF
+ hv5CExrviD8WqoCylTRLQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:ZP6bkgsCfj4=;ZQAq9nk3hTHjnBtoY5fB30T38Vf
+ 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
+ fl++EKKUl0z43LE4Ag=
 X-Mailman-Approved-At: Mon, 29 Jun 2026 07:07:55 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,229 +159,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ptr1337.dev,quarantine];
-	R_DKIM_ALLOW(-0.20)[ptr1337.dev:s=dkim];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[web.de,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[web.de:s=s29768273];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com];
+	FREEMAIL_FROM(0.00)[web.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[vger.kernel.org,amd.com,gmail.com,ffwll.ch,igalia.com,yeah.net];
+	DKIM_TRACE(0.00)[web.de:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[admin@ptr1337.dev,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[Markus.Elfring@web.de,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ptr1337.dev:+];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 219A06D6BD5
+X-Rspamd-Queue-Id: DB5816D6C3C
 
-From: Ray Wu <ray.wu@amd.com>
+> Just a small cleanup:
+> 1) Remove unnecessary initialization.
+> 2) Use the new kzalloc_obj() macro.
+> 3) Reformat the NULL check to make checkpatch happy.
+> 4) Remove the unnecessary NULL check before kfree() since the pointer
+>    is not NULL and anyway kfree() accepts NULL pointers.
 
-[ Upstream commit 3714fe242592e3699ac5e2c19d68b275a210be7d ]
+Do these source code adjustments represent a patch squashing approach?
 
-CachyOS users reported a regression in shutdown/reboot behavior on 7.1
-kernels: the display turns off, but the machine does not power down.
-Reverting ISM fixes the regression, and this upstream fix addresses the
-same ISM dc_lock/workqueue deadlock in the suspend/shutdown paths.
+How good does it fit to known development requirements?
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?h=v7.1#n81
 
-[Why]
-System hang observed during suspend/resume while video is playing.
-amdgpu_dm_ism_disable() is called under dc_lock and waits for ISM
-delayed work via disable_delayed_work_sync(). The work handlers
-themselves take dc_lock, producing an ABBA deadlock when a worker is
-in flight at suspend time.
-
-[How]
-Split the disable path into two phases with opposite locking
-contracts:
-  1. amdgpu_dm_ism_disable() -- quiesces workers, must NOT hold
-     dc_lock.
-  2. amdgpu_dm_ism_force_full_power() (new) -- drives the ISM FSM
-     back to FULL_POWER_RUNNING, must hold dc_lock.
-
-Fixes: 754003486c3c ("drm/amd/display: Add Idle state manager(ISM)")
-Link: https://github.com/CachyOS/linux-cachyos/issues/900
-Cc: stable@vger.kernel.org # 7.1.y
-Reviewed-by: Sun peng (Leo) Li <sunpeng.li@amd.com>
-Signed-off-by: Ray Wu <ray.wu@amd.com>
-Signed-off-by: Ivan Lipski <ivan.lipski@amd.com>
-Tested-by: Dan Wheeler <daniel.wheeler@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Peter Jung <admin@ptr1337.dev>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 25 +++++++--
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c | 56 ++++++++++++++++---
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h |  1 +
- 3 files changed, 70 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index f8c13bad4ac2..560ab3298911 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -2260,9 +2260,16 @@ static void amdgpu_dm_fini(struct amdgpu_device *adev)
- 		adev->dm.idle_workqueue = NULL;
- 	}
- 
--	/* Disable ISM before dc_destroy() invalidates dm->dc */
-+	/*
-+	 * Disable ISM before dc_destroy() invalidates dm->dc.
-+	 *
-+	 * Quiesce workers first without dc_lock (they take dc_lock
-+	 * themselves, so syncing under it would deadlock), then drive the
-+	 * FSM back to FULL_POWER_RUNNING under dc_lock.
-+	 */
-+	amdgpu_dm_ism_disable(&adev->dm);
- 	scoped_guard(mutex, &adev->dm.dc_lock)
--		amdgpu_dm_ism_disable(&adev->dm);
-+		amdgpu_dm_ism_force_full_power(&adev->dm);
- 
- 	amdgpu_dm_destroy_drm_device(&adev->dm);
- 
-@@ -3290,9 +3297,14 @@ static int dm_suspend(struct amdgpu_ip_block *ip_block)
- 	if (amdgpu_in_reset(adev)) {
- 		enum dc_status res;
- 
-+		/* Quiesce ISM workers before taking dc_lock (workers take
-+		 * dc_lock themselves; syncing under it would deadlock).
-+		 */
-+		amdgpu_dm_ism_disable(dm);
-+
- 		mutex_lock(&dm->dc_lock);
- 
--		amdgpu_dm_ism_disable(dm);
-+		amdgpu_dm_ism_force_full_power(dm);
- 		dc_allow_idle_optimizations(adev->dm.dc, false);
- 
- 		dm->cached_dc_state = dc_state_create_copy(dm->dc->current_state);
-@@ -3326,8 +3338,13 @@ static int dm_suspend(struct amdgpu_ip_block *ip_block)
- 
- 	amdgpu_dm_irq_suspend(adev);
- 
-+	/*
-+	 * Quiesce ISM workers before taking dc_lock (workers take dc_lock
-+	 * themselves; syncing under it would deadlock).
-+	 */
-+	amdgpu_dm_ism_disable(dm);
- 	scoped_guard(mutex, &dm->dc_lock)
--		amdgpu_dm_ism_disable(dm);
-+		amdgpu_dm_ism_force_full_power(dm);
- 
- 	hpd_rx_irq_work_suspend(dm);
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
-index a64e95860e99..b32c8d3ac152 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
-@@ -524,13 +524,20 @@ static void dm_ism_sso_delayed_work_func(struct work_struct *work)
- }
- 
- /**
-- * amdgpu_dm_ism_disable - Disable the ISM
-+ * amdgpu_dm_ism_disable - Quiesce ISM workers
-  *
-  * @dm: The amdgpu display manager
-  *
-- * Disable the idle state manager by disabling any ISM work, canceling pending
-- * work, and waiting for in-progress work to finish. After disabling, the system
-- * is left in DM_ISM_STATE_FULL_POWER_RUNNING state.
-+ * Cancels and disables any pending or in-flight ISM delayed work and waits
-+ * for in-progress work to finish. After this returns, no ISM worker can run
-+ * and subsequent mod_delayed_work() calls become no-ops via
-+ * clear_pending_if_disabled().
-+ *
-+ * Must NOT be called with dc_lock held: the workers themselves take dc_lock,
-+ * so a synchronous wait under dc_lock would deadlock.
-+ *
-+ * The caller is responsible for driving the FSM back to FULL_POWER_RUNNING
-+ * (under dc_lock) by calling amdgpu_dm_ism_force_full_power().
-  */
- void amdgpu_dm_ism_disable(struct amdgpu_display_manager *dm)
- {
-@@ -538,21 +545,54 @@ void amdgpu_dm_ism_disable(struct amdgpu_display_manager *dm)
- 	struct amdgpu_crtc *acrtc;
- 	struct amdgpu_dm_ism *ism;
- 
--	ASSERT(mutex_is_locked(&dm->dc_lock));
-+	/*
-+	 * Caller must NOT hold dc_lock: the ISM delayed work handlers
-+	 * acquire dc_lock themselves, so waiting for them via
-+	 * disable_delayed_work_sync() while holding dc_lock would
-+	 * self-deadlock against an in-flight worker.
-+	 */
-+	lockdep_assert_not_held(&dm->dc_lock);
- 
- 	drm_for_each_crtc(crtc, dm->ddev) {
- 		acrtc = to_amdgpu_crtc(crtc);
- 		ism = &acrtc->ism;
- 
--		/* Cancel and disable any pending work */
- 		disable_delayed_work_sync(&ism->delayed_work);
- 		disable_delayed_work_sync(&ism->sso_delayed_work);
-+	}
-+}
-+
-+/**
-+ * amdgpu_dm_ism_force_full_power - Force every CRTC's ISM FSM to FULL_POWER
-+ *
-+ * @dm: The amdgpu display manager
-+ *
-+ * Sends DM_ISM_EVENT_EXIT_IDLE_REQUESTED to every CRTC's ISM, leaving each
-+ * FSM in FULL_POWER_RUNNING. Intended to be paired with
-+ * amdgpu_dm_ism_disable(): callers should first quiesce workers (without
-+ * dc_lock), then take dc_lock and call this helper.
-+ *
-+ * Must be called with dc_lock held.
-+ */
-+void amdgpu_dm_ism_force_full_power(struct amdgpu_display_manager *dm)
-+{
-+	struct drm_crtc *crtc;
-+	struct amdgpu_crtc *acrtc;
-+
-+	/*
-+	 * Caller must hold dc_lock: commit_event() drives the FSM and
-+	 * may touch dc state via dc_allow_idle_optimizations() etc.
-+	 */
-+	lockdep_assert_held(&dm->dc_lock);
-+
-+	drm_for_each_crtc(crtc, dm->ddev) {
-+		acrtc = to_amdgpu_crtc(crtc);
- 
- 		/*
- 		 * When disabled, leave in FULL_POWER_RUNNING state.
--		 * EXIT_IDLE will not queue any work
-+		 * EXIT_IDLE will not queue any work.
- 		 */
--		amdgpu_dm_ism_commit_event(ism,
-+		amdgpu_dm_ism_commit_event(&acrtc->ism,
- 					   DM_ISM_EVENT_EXIT_IDLE_REQUESTED);
- 	}
- }
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h
-index fde0ddc8d4e4..964408cd9a83 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.h
-@@ -146,6 +146,7 @@ void amdgpu_dm_ism_fini(struct amdgpu_dm_ism *ism);
- void amdgpu_dm_ism_commit_event(struct amdgpu_dm_ism *ism,
- 				enum amdgpu_dm_ism_event event);
- void amdgpu_dm_ism_disable(struct amdgpu_display_manager *dm);
-+void amdgpu_dm_ism_force_full_power(struct amdgpu_display_manager *dm);
- void amdgpu_dm_ism_enable(struct amdgpu_display_manager *dm);
- 
- #endif
--- 
-2.54.0
-
+Regards,
+Markus
