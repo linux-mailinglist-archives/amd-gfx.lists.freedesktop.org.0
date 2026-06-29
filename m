@@ -2,105 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JrAgNkKLQmr09QkAu9opvQ
+	id 9aWuJhNuQ2pBYQoAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 17:12:02 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 09:19:47 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D2DC6DC7DD
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 17:12:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DAA96E10F5
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 09:19:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=mPwNpomk;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="bReqqF0/";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20260327:i=1")
+	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C93FE10E0C5;
-	Mon, 29 Jun 2026 15:12:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C58E710EB3F;
+	Tue, 30 Jun 2026 07:19:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com
- [74.125.82.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B5AF10E0C5
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 15:11:59 +0000 (UTC)
-Received: by mail-dy1-f177.google.com with SMTP id
- 5a478bee46e88-30ca276118eso247410eec.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 08:11:59 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1782745919; cv=none;
- d=google.com; s=arc-20260327;
- b=Q9lfpHbFclu6I5fNpaLKylJMmDnAvCm8zPlXGeUjN4Pu/Hd6tAouTVaYy1CZBcU+Xu
- +rWw6W1wEx4TIurULQ/z4orzL7nL46ZnMu88I6/Xaelp4cb/eTuIif8UjLh8s8eSQ3HG
- 6C3uNB5sFc57UqgrjL8u05PHqqSvfEpJyrUgX5aSlBuGByFjL6IVTS35o3/YMTp/WC4G
- VJjNT8Iiu5CiB+gED5HPeSORBqjWEXX58ZnN1Z5ngYX0xVcVKAAPs17RW4CpmILCod5k
- hwA2uqrIwFCGLObZIf6HQb/57gbedbNVvR1KSgSPqIqLMBe5NgWS5CTEhdpNGh8ceP5G
- Hoaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=RPeYvIyMGwvIDg96FUikLSPEOO0sj0qckPGMnXvJqio=;
- fh=1brykveYuWu5qciH6VrNzgjV2vepFhXzTCozvxMcUKQ=;
- b=U4Mjt1hT7u8hq0bnm+bfxZ8EVkTQ+TnXbsTtc1p7RNRLBpgv1io7SVvt4s0qjY8V86
- C3H2vouIM3HjDgMD/Dz5973wzxO9CGjUCStbzWoSk7MOc+sNi/ShZ2jGlPqWpuCzxFsV
- /tUZ++yVpePNfme0plt/lzul/qRCxj3I68Ll8XeGON4vZdBzUX7ggVnmppqmBu3cxpBU
- 9acFuKuRei0jFKQkQz838JbtBI9md9QZnwgDHk64W5Yx2bF8u0ppDawj5meS8aecGnVV
- BHqFIBTJyI9Y+o0rkX/4aivRnbtii/mZqoOoM04634hdwIzPZqiOaVzs/nrT3qGdX9X8
- JNxw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CA0A10E6C0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 15:28:49 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-493ad116e05so7619665e9.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 08:28:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782745919; x=1783350719; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=RPeYvIyMGwvIDg96FUikLSPEOO0sj0qckPGMnXvJqio=;
- b=mPwNpomknPCgVG5CdaJe5BBqFDwaF87MnKV8WG1Livy4IWtFf8ni8lQKkDLCVf3KzP
- B6mQVtlHn6GzvbfkJZ2zapxMh+9f6Y2MnsvoSYNIt5xDx6Rmib4K4AkjEpurqfTty5zh
- pRsUZitOVQaTY7iFWzCttNOmRd/3SB1R41VkPi4SvuF7fRqIqtv9PFVcttXDAtvymyP2
- coB57lRI+ROqPun2psSMjPE8F+g+pX8K62lwAFBtV7Hk2hzzkfcG5veahsEs0an5llO7
- zkCz0WFLkxbNPSMz07k+15IueZgUvheEgFrsaI5iq44Qkeml5eHEmZFwLv0YxJiuQoOa
- J0Rw==
+ d=gmail.com; s=20251104; t=1782746928; x=1783351728; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=HFhwRQO/XnDqnsNCNRMiUIQQuhF/q4kw4HCjqPfc1vw=;
+ b=bReqqF0/CtTYtcKbjZyeVugl+OjTwLWqr+CVLT0pT2XsoQSXXXmPF5eKKYfF+/7xNZ
+ 4I0knfqB2hk4o1bVaPGs0HLe8GgflvhqkeR0P8qOKwpYdYIVY51m9h4lyCT093xhULj0
+ h97TDH/yc97CtrwbbrGIN392jJS6cr/tK3Xx9qm3c8juJDQkw9n9VEcg2+q3Md8wvf78
+ ADS7G5/i5OpriPPXZYqSFE4CJ7XT8G7cVbyvb1e6GT7N89C8EecgqzMGtVHqLmY70vVF
+ metLevno1pQMO7Gt+5Up+8Jnmj5rlonCQTbGGsKJoO4KTGDe86cS6D11l5cdzAHFtlSr
+ 1hQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782745919; x=1783350719;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=RPeYvIyMGwvIDg96FUikLSPEOO0sj0qckPGMnXvJqio=;
- b=VM85FiLsjzpgZ6HLmpxtJfB4CO/D4qv0ZUxjCoXa5YZgT2Ugk2AmrfdBaTNmVri4SW
- BcMcDc/TV34bUSBGqoWxbm6hNLlYPLZIa0QR6Ik8MtXiYNh8MV6YTFQl++MUKc1loL8I
- QGfX9G+zZ8iZlCb+h6RihpNQrGLVgraxJzxm220Ebzr54L6KAJWmFUtK6i8b13SnYmMo
- zRT8lXDniF+upezEPVB+L+1Tzm5Kq+szh6rYirHWiF9jZkugkEYdhrIu1H6EjJ/VcTG2
- PJ7nd5UxkdeuT1LsNErYGLBjhb33oXWQWG+k3eC99X6w4X2r1U93bK8cvnr1gV75axdQ
- kyhQ==
-X-Gm-Message-State: AOJu0Yy5AYhyHbQRb/b8ErfElbqjy9796Fve3fQ9iEg8VZKhzJHlhtfS
- naYcvPyk8bqPR8iMNIlznu1Xd/Twee9Dpq5GhKrm/qmtBsdcsv9Ho1Fh261AT98sKB76nZIak/t
- 2vqoH1zGHtvqDOVVkidRCoWTW+fyxd5M=
-X-Gm-Gg: AfdE7clMeXlKsfd1AC3sS2x0iSyZpOkan8mlGsmia1Zws5faGjrjaqWHn2XhIbzx/8A
- 0UpApZ309wd2GlFADF/E2GCjRCC8MgylBCeyh3QvbrqF8nlcqRLE/Cy8ehFwDAg9OESGVomuv59
- GFBnK9zYVPlKqBjQ5nrXcdDJhUY8qyKqYdqNyp6UxDQTmAipkfdeu1wy/auF1MBz6WtuB8oqBfz
- RktVCHIj99v5sYAi8vM5IRvQUn+lK7T0M/ijuNBZko+BRUS7YErYuAXiSDSo9FsPkUodJ71VITq
- feauIrExQgYnBisPhxOnIzS89SRsqQlNs+qZ+yNOzu0XX6rsIKYe/CEGFfZHXASrbDThPw==
-X-Received: by 2002:a05:7023:b0f:b0:134:cf44:5fa9 with SMTP id
- a92af1059eb24-139db9529c6mr6434587c88.0.1782745918756; Mon, 29 Jun 2026
- 08:11:58 -0700 (PDT)
+ d=1e100.net; s=20251104; t=1782746928; x=1783351728;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=HFhwRQO/XnDqnsNCNRMiUIQQuhF/q4kw4HCjqPfc1vw=;
+ b=E7WIgrXj6rAdc12q7ls82EbEipJdE+9EvuKSCyPsBbXBTCZT3Gitwa1ZOXyKLTorVq
+ neY40HWcwCKAzKL2AWwb1QJrVagmHJMRAYf91u4vsvLnTrSICZY+PkNpG4KssersADU/
+ ddW8xQSk7XRulFPf9wWrXSoa8sv7iRQhmfABLR5A3AAxPF6q10u8BwR6BCRa4zmtoOBs
+ Vl6kxEJM26biF9dKA0u2wk+Hh2CL0oNCB7Q616o/WLGCAHHBNEMey+QX7pq+sPMxm4PH
+ 0cEetgWj7mqbtoALaBO1FJQ88qsqwRonb+fY5tlAH+CsQqrvNd2gkMr3bIvM7Ge/hFU4
+ aQzg==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ+BQ9aflGUgemCoCp2Zj3tcHZJQdDhEhBbyBkzby7L/ZKmoYdKR6XkGzLv70if4Hf2/KMylFEDK@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzFjgdM9dUBuY1t8OoekrnXtUyBsWNp5nhcP67v39APiYQul2h2
+ b1VgNDIduVTIKHQ6eKG6XM3Nc3OHalRabhxPg1EiouPMAb5jrOHiK3b9
+X-Gm-Gg: AfdE7ckwZiTGKmo2lloFk4tBlpGmjd2037JIorpbO8GOmK21MJkhA0KW7/D6xQviriz
+ eYUXboTn04Xof3r1VfLV187LA5SjZlkteFkvfmMTd/v/FmtNBvyQocVDfVFg7LK6U0FRd3Wy7rT
+ ayupTsBrl3giOctxfDCKm/zoAjyfra9J3isBS0SdmdXcxofeewKixT6wQ9e1CNML92FJgPEdv4B
+ UpToPNARck3ddmXe4DhYcn1CJYxNeNTMUUQKJk5GYq2q9IzcOxcnnbVq1+VDcke+Wz1BA0GBAMI
+ IVw5GhXIdc6OBscsnRFBsa2eMqcXQi7XzezTaVl2yT7mBqEhEKR+wON2ZvP+28ZzExi+53j/eDh
+ S5y+geM7McRV70TzBenAfLmSKqvBjjadpSBJavTiCS5CXpCqhW2ZsKfDo7gg8N5NoxeZl517VXB
+ vSn13Rv00zdbXDtwuvigmUPVfMcQ==
+X-Received: by 2002:a7b:cd96:0:b0:490:6237:5200 with SMTP id
+ 5b1f17b1804b1-493b828c480mr1572865e9.10.1782746927577; 
+ Mon, 29 Jun 2026 08:28:47 -0700 (PDT)
+Received: from Dev-Null-MSI ([2a0d:3344:52ac:a808:98a4:4381:be45:536f])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-49268f700c0sm371321555e9.0.2026.06.29.08.28.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 29 Jun 2026 08:28:46 -0700 (PDT)
+From: Yousef Alhouseen <alhouseenyousef@gmail.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Yousef Alhouseen <alhouseenyousef@gmail.com>
+Subject: [PATCH v3] drm/amdgpu: reject mapping info when BO VA is gone
+Date: Mon, 29 Jun 2026 17:28:07 +0200
+Message-ID: <20260629152807.13492-1-alhouseenyousef@gmail.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-References: <20260625075206.1105650-1-donettom@linux.ibm.com>
-In-Reply-To: <20260625075206.1105650-1-donettom@linux.ibm.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 29 Jun 2026 11:11:47 -0400
-X-Gm-Features: AVVi8Cde4vMWdpSZRbJTJDZOctaS3dT5ztUcMZBFxATne-kzRK_EAscILlOhPVQ
-Message-ID: <CADnq5_Nx7HjPw9O5TttBhS2MY6JhOr-vf05VnuVx91ThFVH5qQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Fix AMDGPU_GTT_MAX_TRANSFER_SIZE for non-4K
- systems
-To: Donet Tom <donettom@linux.ibm.com>
-Cc: amd-gfx@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>, christian.koenig@amd.com, 
- Philip Yang <yangp@amd.com>, pierre-eric.pelloux-prayer@amd.com,
- David.YatSin@amd.com, 
- Kent.Russell@amd.com, Ritesh Harjani <ritesh.list@gmail.com>, 
- Vaidyanathan Srinivasan <svaidy@linux.ibm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 30 Jun 2026 07:19:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,208 +95,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:alhouseenyousef@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:donettom@linux.ibm.com,m:Felix.Kuehling@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:yangp@amd.com,m:pierre-eric.pelloux-prayer@amd.com,m:David.YatSin@amd.com,m:Kent.Russell@amd.com,m:ritesh.list@gmail.com,m:svaidy@linux.ibm.com,m:riteshlist@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,gmail.com,linux.ibm.com];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[alhouseenyousef@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[alhouseenyousef@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mail.gmail.com:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3D2DC6DC7DD
+X-Rspamd-Queue-Id: 2DAA96E10F5
 
-On Thu, Jun 25, 2026 at 3:52=E2=80=AFAM Donet Tom <donettom@linux.ibm.com> =
-wrote:
->
-> Running RCCL unit tests on a system with a 64K PAGE_SIZE triggers
-> the following warning and causes the test to terminate on latest
-> upstream kernel:
->
-> WARNING: drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1335 at
-> amdgpu_bo_release_notify+0x1bc/0x280 [amdgpu],
-> CPU#18: rccl-UnitTests/33151
->
-> Call trace:
-> amdgpu_bo_release_notify
-> ttm_bo_release
-> amdgpu_gem_object_free
-> drm_gem_object_free
-> amdgpu_bo_unref
-> amdgpu_bo_create
-> amdgpu_bo_create_user
-> amdgpu_gem_object_create
-> amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu
-> kfd_ioctl_alloc_memory_of_gpu
-> kfd_ioctl
-> sys_ioctl
->
-> The warning is triggered because
-> amdgpu_ttm_next_clear_entity() returns NULL when a clear buffer
-> operation is requested. This happens because the GART window
-> allocation for the default_entity, clear_entity and move_entity
-> fails during initialization.
->
-> Commit [1] introduced separate GART windows for the
-> default_entity, clear_entity and move_entity of each SDMA
-> instance. Their sizes are derived from
-> AMDGPU_GTT_MAX_TRANSFER_SIZE, which is currently defined as 1024
-> pages. This implicitly assumes a 4K PAGE_SIZE, where 1024 pages
-> correspond to a 4MB transfer. On a 64K PAGE_SIZE system, however,
-> the same value expands to 64MB.
->
-> The default_entity and clear_entity each allocate one
-> AMDGPU_GTT_MAX_TRANSFER_SIZE GART window, while the move_entity
-> allocates two such windows. This results in 16MB of GART space
-> per SDMA instance on a 4K PAGE_SIZE system, but 256MB per SDMA
-> instance on a 64K PAGE_SIZE system.
->
-> On an MI210 system with five SDMA instances and a 512MB GART
-> aperture, the total GART space required becomes 1.25GB,
-> exceeding the available GART aperture. Consequently, GART window
-> allocation fails, amdgpu_ttm_next_clear_entity() returns NULL,
-> and the above warning is triggered.
->
-> Redefine AMDGPU_GTT_MAX_TRANSFER_SIZE in bytes instead of page
-> units. Where a page count is required, convert it using
-> PAGE_SHIFT. This preserves the existing 4MB transfer size across
-> all PAGE_SIZE configurations while keeping GART window
-> allocations within the available GART aperture.
->
-> [1] https://lore.kernel.org/all/20260408100327.1372-3-pierre-eric.pelloux=
--prayer@amd.com/#t
->
-> Signed-off-by: Donet Tom <donettom@linux.ibm.com>
+AMDGPU_GEM_OP_GET_MAPPING_INFO looks up the GEM object before taking
+the object and VM locks. The object reference keeps the BO alive, but a
+concurrent handle close can remove the per-file BO VA before
+amdgpu_vm_bo_find() runs.
 
-Applied.  Thanks!
+The mapping-list walks then dereference the NULL BO VA. Return -EINVAL
+when the BO is no longer associated with the VM.
 
-Alex
+Suggested-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Yousef Alhouseen <alhouseenyousef@gmail.com>
+---
+Changes in v3:
+- Generate a clean patch against drm-misc-next instead of stacking on v1.
+- Keep only the intended !bo_va guard for the handle-close race.
+- Clarify the v2 withdrawal confusion in thread replies.
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c  | 10 ++++++----
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h  |  2 +-
->  drivers/gpu/drm/amd/amdkfd/kfd_migrate.c |  2 +-
->  3 files changed, 8 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_ttm.c
-> index 2740de94e93c..bad33b3368eb 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-> @@ -208,9 +208,10 @@ static int amdgpu_ttm_map_buffer(struct amdgpu_ttm_b=
-uffer_entity *entity,
->         void *cpu_addr;
->         uint64_t flags;
->         int r;
-> +       const u64 GTT_MAX_PAGES =3D (AMDGPU_GTT_MAX_TRANSFER_SIZE >> PAGE=
-_SHIFT);
->
->         BUG_ON(adev->mman.buffer_funcs->copy_max_bytes <
-> -              AMDGPU_GTT_MAX_TRANSFER_SIZE * 8);
-> +              GTT_MAX_PAGES * AMDGPU_GPU_PAGES_IN_CPU_PAGE * 8);
->
->         if (WARN_ON(mem->mem_type =3D=3D AMDGPU_PL_PREEMPT))
->                 return -EINVAL;
-> @@ -230,7 +231,7 @@ static int amdgpu_ttm_map_buffer(struct amdgpu_ttm_bu=
-ffer_entity *entity,
->         offset =3D mm_cur->start & ~PAGE_MASK;
->
->         num_pages =3D PFN_UP(*size + offset);
-> -       num_pages =3D min_t(uint32_t, num_pages, AMDGPU_GTT_MAX_TRANSFER_=
-SIZE);
-> +       num_pages =3D min_t(uint32_t, num_pages, GTT_MAX_PAGES);
->
->         *size =3D min(*size, (uint64_t)num_pages * PAGE_SIZE - offset);
->
-> @@ -2015,6 +2016,7 @@ static int amdgpu_ttm_buffer_entity_init(struct amd=
-gpu_gtt_mgr *mgr,
->                                          u32 num_gart_windows)
->  {
->         int i, r, num_pages;
-> +       const u64 GTT_MAX_PAGES =3D (AMDGPU_GTT_MAX_TRANSFER_SIZE >> PAGE=
-_SHIFT);
->
->         r =3D drm_sched_entity_init(&entity->base, prio, scheds, num_sche=
-dulers, NULL);
->         if (r)
-> @@ -2027,7 +2029,7 @@ static int amdgpu_ttm_buffer_entity_init(struct amd=
-gpu_gtt_mgr *mgr,
->         if (num_gart_windows =3D=3D 0)
->                 return 0;
->
-> -       num_pages =3D num_gart_windows * AMDGPU_GTT_MAX_TRANSFER_SIZE;
-> +       num_pages =3D num_gart_windows * GTT_MAX_PAGES;
->         r =3D amdgpu_gtt_mgr_alloc_entries(mgr, &entity->gart_node, num_p=
-ages,
->                                          DRM_MM_INSERT_BEST);
->         if (r) {
-> @@ -2038,7 +2040,7 @@ static int amdgpu_ttm_buffer_entity_init(struct amd=
-gpu_gtt_mgr *mgr,
->         for (i =3D 0; i < num_gart_windows; i++) {
->                 entity->gart_window_offs[i] =3D
->                         amdgpu_gtt_node_to_byte_offset(&entity->gart_node=
-) +
-> -                               i * AMDGPU_GTT_MAX_TRANSFER_SIZE * PAGE_S=
-IZE;
-> +                               i * GTT_MAX_PAGES * PAGE_SIZE;
->         }
->
->         return 0;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_ttm.h
-> index 2d72fa217274..b5d938b31383 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-> @@ -39,7 +39,7 @@
->  #define AMDGPU_PL_MMIO_REMAP   (TTM_PL_PRIV + 5)
->  #define __AMDGPU_PL_NUM        (TTM_PL_PRIV + 6)
->
-> -#define AMDGPU_GTT_MAX_TRANSFER_SIZE   1024
-> +#define AMDGPU_GTT_MAX_TRANSFER_SIZE   (1ULL << 22)
->
->  extern const struct attribute_group amdgpu_vram_mgr_attr_group;
->  extern const struct attribute_group amdgpu_gtt_mgr_attr_group;
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/a=
-md/amdkfd/kfd_migrate.c
-> index 28dc6886c1ff..8aec1ae60ca1 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-> @@ -128,7 +128,7 @@ svm_migrate_copy_memory_gart(struct amdgpu_device *ad=
-ev, dma_addr_t *sys,
->                              enum MIGRATION_COPY_DIR direction,
->                              struct dma_fence **mfence)
->  {
-> -       const u64 GTT_MAX_PAGES =3D AMDGPU_GTT_MAX_TRANSFER_SIZE;
-> +       const u64 GTT_MAX_PAGES =3D (AMDGPU_GTT_MAX_TRANSFER_SIZE >> PAGE=
-_SHIFT);
->         struct amdgpu_ring *ring;
->         struct amdgpu_ttm_buffer_entity *entity;
->         u64 gart_s, gart_d;
-> --
-> 2.54.0
->
+Changes in v2:
+- Describe the handle-close race instead of an initially unmapped BO.
+- Return -EINVAL instead of -ENOENT.
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+index 27be5083f2af..83ec994ad36b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+@@ -1087,6 +1087,12 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
+ 		struct drm_amdgpu_gem_vm_entry *vm_entries;
+ 		struct amdgpu_bo_va_mapping *mapping;
+ 		int num_mappings = 0;
++
++		if (!bo_va) {
++			r = -EINVAL;
++			goto out_exec;
++		}
++
+ 		/*
+ 		 * num_entries is set as an input to the size of the user-allocated array of
+ 		 * drm_amdgpu_gem_vm_entry stored at args->value.
+-- 
+2.54.0
