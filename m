@@ -2,129 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cMGpMWJCQmqm2wkAu9opvQ
+	id vvTTHb5rQmok6wkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 12:01:06 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 14:57:34 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E24426D890D
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 12:01:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FEF96DAA04
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 14:57:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b="4V/PgT8Z";
+	dkim=pass header.d=yandex.ru header.s=mail header.b=Scp36FMo;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=none) header.from=yandex.ru
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 805CA10E806;
-	Mon, 29 Jun 2026 10:01:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B25E410E89C;
+	Mon, 29 Jun 2026 12:57:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012056.outbound.protection.outlook.com [52.101.53.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4A4910E803
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 10:01:02 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RHGlkhs/8nh1gZSd9hS2b0yd2VVgYIve66GqF9lYhKab+53Vn2HgbQckOizOEIKdS4BeKHmJB17R9FP//WGj5hlYs3HKBAf+0olNudomV2UDPp2DUvAksECrJ07SHVCwqb/g6RDgPEc1uHEF6UyfpLu3N/lVdYdj9UP57UlYCpeZq8adtkWuO4Yy4fIWpv5cN0rRvEcir0hw68zX0a81KabtS9CDr81Hv4xJZM0zN4+C1f6lsAmqXNO1H59J+d+oa7WLm8KNymLJ4bbcmdSJpsw+VSt7H5vHwxxgXMeexB9civ8PMKJrbISp2ZeA3IFjc0+Zoq4ZS1oqnQDbkwPdog==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=95ib/m5wPPWeVdd3qfWIjS/jBHbQGyn/fSvcvms82W4=;
- b=fFGiFAW//5Zg5tqYWUZQ1EKfxS4rT8uTKTepp1yCb80ptGOvd/AOgvi8sWSP9w6Iyw8T9Az98I+xfDRda8pAJyM/xUfIEnUKJvliDjVLBn4dgqTtCr37IVD1soMslzfZMrMPq3XmeuoQYi5b/6QI5gp44cWg8rmvwXZbteyU1+DX5p62YFLypos0NwkckOcx0n2j039s3p2jwD+YsF+ZuayTMZZmaUEoKSupmryUzz80D1cycWZO/axeLghpv2ljKLR/LPv0wTNvbLpCgtazJ/nASKdtxAarN4CusyrIvBqWK/zwqriHlCv3xpL+xytwFCdL0QveeO3JR6C8snWVmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=95ib/m5wPPWeVdd3qfWIjS/jBHbQGyn/fSvcvms82W4=;
- b=4V/PgT8ZvcVGkH0Rm8MU+/+z9bjnxRlqYXWkHmx+24nW5uWhhBJadNlWGAWYLb7UZ14FUZr+B4Lp6Oj+/typ3nxG0PASc2AvDJuoUigLpUueMFztI1r6BEYqYhVPwWpH9YaeVagTobrVTk4BPimJd8gX+x+4Y6AvvDeOr8FXkXI=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by IA1PR12MB8518.namprd12.prod.outlook.com (2603:10b6:208:447::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Mon, 29 Jun
- 2026 10:00:59 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0159.018; Mon, 29 Jun 2026
- 10:00:59 +0000
-Message-ID: <db4d886f-7310-42a8-a480-5b4c4c99e4de@amd.com>
-Date: Mon, 29 Jun 2026 12:00:55 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/amdgpu: remove gfx sysfs files on device unbind
-To: Geoffrey McRae <geoffrey.mcrae@amd.com>, alexander.deucher@amd.com
-Cc: amd-gfx@lists.freedesktop.org
-References: <20260627043801.1025055-1-geoffrey.mcrae@amd.com>
- <20260627055720.1543432-1-geoffrey.mcrae@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260627055720.1543432-1-geoffrey.mcrae@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BL1PR13CA0450.namprd13.prod.outlook.com
- (2603:10b6:208:2c3::35) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from forward103a.mail.yandex.net (forward103a.mail.yandex.net
+ [178.154.239.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 238E310E805;
+ Mon, 29 Jun 2026 10:33:25 +0000 (UTC)
+Received: from mail-nwsmtp-smtp-production-main-95.vla.yp-c.yandex.net
+ (mail-nwsmtp-smtp-production-main-95.vla.yp-c.yandex.net
+ [IPv6:2a02:6b8:c15:340d:0:640:ad51:0])
+ by forward103a.mail.yandex.net (postfix) with ESMTPS id BBC1E806C0;
+ Mon, 29 Jun 2026 13:33:22 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-95.vla.yp-c.yandex.net (smtp)
+ with ESMTPSA id mWaU7PLg7Gk0-zr3sTh1k; 
+ Mon, 29 Jun 2026 13:33:21 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
+ t=1782729201; bh=bkbr8BQEH5XYv/QZbwbCjGjbwygqzEt5NhSM1N730sw=;
+ h=Message-ID:Date:In-Reply-To:Cc:Subject:References:To:From;
+ b=Scp36FMoYe+GiOzC5BrP3iXWVS3eqZdc2Wp7VLUWWWevEJSEuNth5Rv5kKFNfZoQ8
+ 6LRo0RsiQ/cmMmiG3I28tj3PwK9xXvpLXyctwZ9q80Co+CDvzkMAxouUdMEDZDbnc9
+ 4KKP7F2THNb8a84zDstVDFOZCvYuGQtWDGM/CfFg=
+From: Evgenii Burenchev <evg28bur@yandex.ru>
+To: sashiko-bot@kernel.org
+Cc: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, mario.limonciello@amd.com, alex.hung@amd.com,
+ superm1@kernel.org, timur.kristof@gmail.com, ivan.lipski@amd.com,
+ ray.wu@amd.com, aurabindo.pillai@amd.com, chen-yu.chen@amd.com,
+ mripard@kernel.org, Dillon.Varone@amd.com, mwen@igalia.com,
+ chiahsuan.chung@amd.com, kenneth.feng@amd.com,
+ srinivasan.shanmugam@amd.com, tzimmermann@suse.de, Alvin.Lee2@amd.com,
+ dmitry.baryshkov@oss.qualcomm.com, chaitanya.kumar.borah@intel.com,
+ ekurzinger@gmail.com, pierre-eric.pelloux-prayer@amd.com,
+ HaoPing.Liu@amd.com, Tony.Cheng@amd.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ lvc-project@linuxtesting.org, sashiko-reviews@lists.linux.dev,
+ Evgenii Burenchev <evg28bur@yandex.ru>
+Subject: Re: [PATCH v4 1/3] drm/amd/display: Fix dangling pointer in plane
+ reset function
+Date: Mon, 29 Jun 2026 13:32:36 +0300
+Message-ID: <20260629103236.12380-1-evg28bur@yandex.ru>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260629092538.4D19B1F000E9@smtp.kernel.org>
+References: <20260629092538.4D19B1F000E9@smtp.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA1PR12MB8518:EE_
-X-MS-Office365-Filtering-Correlation-Id: 943685de-3df2-4ec1-a7f3-08ded5c551b3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|376014|1800799024|22082099003|18002099003|4143699003|11063799006|6133799003|56012099006;
-X-Microsoft-Antispam-Message-Info: n9USJQQkjJFqPGjG0hnYvIzA84Qg+imnfnZDFHd0He9LU6jlaBZq4wdpMQbyxTICjTI4UjKb6CMQreodlwTMOBgjn2ALG6bK+yM9id8tIi2xNQ1ePGFt7HmmZTqeYXklEEoML1A9Q0pkyqnMU4dj8oYjZN4xzH4D4pdxazW91nsB1Rnq/jMAfXSiNAv3okfA+QOax8H/U5gXTWEi2Yvfin0WlDhBiRbdH87FSRhWGhs/D4pjhdp0pyCSYWhx5zQ4oj2s8xuL0rrKaF5DkYxyI5tcgIcMaCV2hhQkEMW7n8u2PDwL6AR9o4NIcPY6Wg+8ib5Q80rgI0oYbHr5zcuJuSzplUd8iUMUuw5ZBKnRhz+fOOQyjLSC2vBc7HV6h4T8j8YNFPzl97L3mpMW4XAngqEprIBxsUw4ibg5I6y6DIwWkPF56pVmmqnCurKaSbCr8Ax/MFi+WaSeyo22ua0BgXnRm+tPUqW57LH7gkt8+OcK1TtFwCMVUS4iCMHcbrnqQObt7FWsOphr84Wrnc+FkQbOqJmqBpvLIY1FejqAgEIO97bZkrwN5N8tK2Jt+6WTLLduGd/XgfKpWjsjqq1ybrGZWbCf1tAR0A2wiGm/CjD2CkzNHSHfOFzkIZUxqitLH40UGc+ufHJt3jMQ5ZZ0LVjUbIqAmBA33TnWLFbD70s=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(22082099003)(18002099003)(4143699003)(11063799006)(6133799003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VlFnRkdPYTF1dFBWdXlYS2xsQlExQnM3aHRhelNuVjd1YVRFTTVpQkN5dENj?=
- =?utf-8?B?K3dRdmJjNjBLNlgzckZ1MXY3NEp3bmN0ZnBpVzRoWkgrYjBOd2txMHFvQUE5?=
- =?utf-8?B?UUZVVHFRY3J1V202V0gyeWRiYXlOeUh6bmlWN3NDNW9HM2R4SHArcDVlNUFB?=
- =?utf-8?B?SHhrQUhmYk9ydnNUcGFROFl5SWxCZk9KZWxHcFdTZkhjbktrelFOcWhBL3Nl?=
- =?utf-8?B?eXpldnRiWkxMZHNDQkhhaDBLQXZ1UmQ0YkJMQ3JRekZDcmRpaEtha0MxdCtr?=
- =?utf-8?B?d295UG81REh1bDFoU1V1Mm5hRVFFYWhCMTNpdXlrejVPdWQrWFZCSmFpeDIy?=
- =?utf-8?B?RDR1QVRGQjAxNWJvQkppbFpUSHVOVGhMVTliVjNPYkljL1B5eUtUZnJIRTJK?=
- =?utf-8?B?Wmc0cEQrRlJRQXo3WHFIK3Ara21UNjlCMkZsZlhmU0Ryamo5dCsyTmwyNXp0?=
- =?utf-8?B?N0VxOE04NnpjVUEyNzR3b01TQ3B5djM2MDZqcksvMUZkYXVXZU5UQldiK3Nv?=
- =?utf-8?B?M1RoMUdWRjJFR21SRC9RUTlYRzByYUZjZGc5dXZXc21JUlNoZ3BFZ0RFT1Zl?=
- =?utf-8?B?TjRVOERnc1lSdm5vQ0Qrc2FwY0xqdTFsb0phK3M4Y2k5aEF6YzRON0tzNlI3?=
- =?utf-8?B?OHlKbGtJa2ZObzU3akJaYWtwNXdzRU5SZCtBTmZtSlc5SlgzWnprM1NnR1Fa?=
- =?utf-8?B?Mm9LTzZReWdMelpMVTNRK2N4ZjFOUENuOVd3dFJiVkRTUStCMFpxQndSMUpD?=
- =?utf-8?B?NG5KREJNYk1ZS3FGOVhBK2dQVXdlYml5bitvK0lMcUwvbzJEdXFjUTFQOGl0?=
- =?utf-8?B?TmVEQWJUaklmNWMyMHpFVTAxZThud3F3VHk4K3hGdHBobUNVQmUzVFJ4MUZ0?=
- =?utf-8?B?RWV2UlFBWGszVm9xemplWGp3WmdlQXlDVVBSNWI1d2FjMTF1ZEFOYy9ESklF?=
- =?utf-8?B?ZmMyeHN4MUdhOWpIakRnUXlhLzFubll1MDRGMWhhcllsdmF2QlQvd0lUaDJM?=
- =?utf-8?B?elFHcStvdVhCcVJHYjlvOEJObFoxbXFjSDlETmxJd2dsZmpibVMxVy85Z3Z5?=
- =?utf-8?B?MzlSKzdXQlJWM0laVmRFckxWUG1uSjdUSWw2ZVcyWjlzOHZmcllma1MrdHcv?=
- =?utf-8?B?ZnlzeVpGWHc1UjNOcTgwV0l2NTAwNHhiM0RhaHRvdklQWk5kRjZUSWxkMlVq?=
- =?utf-8?B?eWZNZDRzNmRiRVZUNG5pbUpEQWsrcG1YQ0dsbXZiUjFMbVluVkhWZ29id1Bo?=
- =?utf-8?B?SjJXdFQrdHFOcUowMG96TTdGeURWWUxJK2RZSVBKaTZYVUpCd29kNktjK3Uy?=
- =?utf-8?B?Q2JFSHVHbERvZEZXRnVIaGJRSGl2YjdiNFJmOFcxTjY2dzRlbG94ZUFWRkJG?=
- =?utf-8?B?dS9nUWE4MjQydTdCL1hobVBob3lMUUN5L3R5Z3FPREFBOUROMGIwK0o1Mk1w?=
- =?utf-8?B?Q09XTWRhYWVxMjlEUGdBZW1BNllOWGNhK1RZOGFoSnBOMXpZRk9LT3liQmJW?=
- =?utf-8?B?V1l2Mmh1Qm0rZDJzL0xsZVpoTUxZalFBNnFPZWxBOHlaNkY5b3ZsWkIxS0RZ?=
- =?utf-8?B?NUNQbm1rSXVITzgyb1A1NTFkb0FkVjhKVklSZHhFbVlpUm9wNFdhazcvakJx?=
- =?utf-8?B?b1JqL21UK0piS3c2dVFjaWhBK0NjQ3A4ZTJZZzVWbExrR2JHV2NHL1BrNndM?=
- =?utf-8?B?TTFTWVluKzJtRU5LZit3SEtKbVBodThpbXBXWEdYZmdqR1FzMGkxWGlvRHYw?=
- =?utf-8?B?dTRlSDF6VWgrclk2eUUzdWw5UDYxWUY1VWdyVERNQWhmL3NPQlRPNzBoM1dI?=
- =?utf-8?B?OHhHVHFVTnpvWXdQUmNGVS9vZnhtVFlNUCsxYXlmWWhNdkE3RlBIaVJkUHht?=
- =?utf-8?B?elJseUhUeWFBODNsTFFqaUJFSGJKVTV0akZKOWtxdXNqTldLdi84Mm9xS2xp?=
- =?utf-8?B?ZVdiRDFwTFRjcVkxZ1RvVHUxSVQ4RzVYSHluOUdEZVF5UmJSMlVDSW15ZE5m?=
- =?utf-8?B?dnI1K1c5aFU3V0FVeVBWNi83djNiKzBERUVsaG11L3VMOEtlT1ZuKzRENmNZ?=
- =?utf-8?B?NkhmbmRTNGtvRXYxVmNVckZQV1k5T3cwS3FjUTdoSmpGQy85NUVBN1dtZ3NL?=
- =?utf-8?B?SlMzY0NwQm90K1R3U2VuSjdnQXMwd1I2d2hacmlOOTZOYUd2MG9kcTY1a0tV?=
- =?utf-8?B?YlByQnl5WEQySlBieVg0ZG15N3NjTHlMbVBLVDJOU1VwcCtvVWZtRjBsbGpQ?=
- =?utf-8?B?MytIMFNBVXdySmE0akVXTkdHUDJ6cTFjQVQ3a3JWMFBuRmZsWEhzMlhyRC90?=
- =?utf-8?Q?Rajc52Du0cD4bFKa1X?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 943685de-3df2-4ec1-a7f3-08ded5c551b3
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2026 10:00:59.1638 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: njFtfBvmCDF51T6gEpc6ZIVt9rdG+tj8/Qr8UR3aSmhlPpw52Q50IclEBVDtm3Po
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8518
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 29 Jun 2026 12:57:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,173 +77,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [1.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[yandex.ru,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[yandex.ru:s=mail];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[36];
+	FREEMAIL_FROM(0.00)[yandex.ru];
+	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:geoffrey.mcrae@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,kernel.org,suse.de,oss.qualcomm.com,intel.com,lists.freedesktop.org,vger.kernel.org,linuxtesting.org,lists.linux.dev,yandex.ru];
+	DKIM_TRACE(0.00)[yandex.ru:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[evg28bur@yandex.ru,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E24426D890D
+X-Rspamd-Queue-Id: 1FEF96DAA04
 
-On 6/27/26 07:57, Geoffrey McRae wrote:
-> Fix more sysfs file duplication errors when reinitializing the device:
-> 
->   sysfs: cannot create duplicate filename '.../enforce_isolation'
->   sysfs: cannot create duplicate filename '.../sdma_reset_mask'
->   sysfs: cannot create duplicate filename '.../vcn_reset_mask'
->   sysfs: cannot create duplicate filename '.../jpeg_reset_mask'
->   sysfs: cannot create duplicate filename '.../vpe_reset_mask'
->   sysfs: cannot create duplicate filename '.../current_memory_partition'
->   sysfs: cannot create duplicate filename '.../available_memory_partition'
-> 
-> Fix this by:
->   - improve amdgpu_gfx_sysfs_init error unwinding so partially-created
->     gfx sysfs files are removed on registration failure.
->   - added adev->gfx.sysfs_registered tracking so gfx sysfs cleanup is
->     idempotent when harware teardown runs before the existing software
->     teardown cleanup path.
->   - calling amdgpu_gfx_sysfs_fini, amdgpu_sdma_sysfs_reset_mask_fini,
->     amdgpu_vcn_sysfs_reset_mask_fini, amdgpu_jpeg_sysfs_reset_mask_fini,
->     amdgpu_vpe_sysfs_reset_mask_fini and amdgpu_gmc_sysfs_fini from
->     amdgpu_device_sys_interface_fini
-> 
-> Signed-off-by: Geoffrey McRae <geoffrey.mcrae@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
+On Mon, Jun 29, 2026 at 09:25:37AM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
+>
+> Pre-existing issues:
+> - [High] Dangling pointer (Use-After-Free) vulnerability in vmwgfx component reset hooks on memory allocation failure.
+> - [High] Missing NULL pointer checks in amdgpu duplicate_state hooks lead to NULL pointer dereference on allocation failure.
 
-Alex can you take a look at this?
+Thank you for the review.
 
-In general the coding seems correct, but Greg usually insists that we use the managed sysfs functions which remove stuff automatically on driver unbind.
+> [Severity: High]
+> This is a pre-existing issue, but returning here when plane->state is
+> initially NULL means plane->state remains NULL. Later, when the DRM core
+> attempts to duplicate the state, it calls the driver's duplicate hook.
+>
+> In amdgpu_dm_plane_drm_plane_duplicate_state(), there is no check if
+> plane->state is NULL:
+>
+> amdgpu_dm_plane_drm_plane_duplicate_state() {
+>     ...
+>         dm_plane_state = kzalloc_obj(*dm_plane_state);
+>         if (!dm_plane_state)
+>                 return NULL;
+>
+>         __drm_atomic_helper_plane_duplicate_state(plane, &dm_plane_state->base);
+>     ...
+> }
+>
+> Will this cause a NULL pointer dereference in
+> __drm_atomic_helper_plane_duplicate_state() since it will crash when trying
+> to memcpy from a NULL plane->state?
 
-But if I'm not completely mistaken that doesn't work here because the device structure is not released before all userspace refs drop.
+The DRM core guarantees that duplicate_state() is never called on an object
+with a NULL state. The state pointer is always valid when duplication is
+requested, as DRM only calls this hook on objects that are already fully
+initialized and have an active state.
 
-If the device is re-created before that happens we run into the error above.
+Therefore, the scenario described above is not possible in practice.
+This patch does not introduce any new NULL pointer risks.
 
-Regards,
-Christian.
- 
+> The same pattern appears in amdgpu_dm_connector_atomic_duplicate_state(),
+> where to_dm_connector_state(connector->state) will resolve to an invalid
+> pointer offset from NULL, causing kmemdup to panic:
+>
+> Could these duplicate_state hooks be updated to handle a NULL state?
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  8 ++++++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c    | 32 +++++++++++++++++-----
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h    |  2 ++
->  3 files changed, 35 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 70d07ca187a3..c0a22d2411f2 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -3674,6 +3674,14 @@ static int amdgpu_device_sys_interface_init(struct amdgpu_device *adev)
->  
->  static void amdgpu_device_sys_interface_fini(struct amdgpu_device *adev)
->  {
-> +	amdgpu_gfx_sysfs_fini(adev);
-> +	amdgpu_sdma_sysfs_reset_mask_fini(adev);
-> +	amdgpu_vcn_sysfs_reset_mask_fini(adev);
-> +	amdgpu_jpeg_sysfs_reset_mask_fini(adev);
-> +	amdgpu_vpe_sysfs_reset_mask_fini(adev);
-> +	if (amdgpu_is_multi_aid(adev))
-> +		amdgpu_gmc_sysfs_fini(adev);
-> +
->  	if (adev->pm.sysfs_initialized)
->  		amdgpu_pm_sysfs_fini(adev);
->  	if (adev->ucode_sysfs_en)
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> index 982b41606d48..ab37c4a9f415 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> @@ -2175,6 +2175,8 @@ int amdgpu_gfx_sysfs_init(struct amdgpu_device *adev)
->  {
->  	int r;
->  
-> +	adev->gfx.sysfs_registered = false;
-> +
->  	r = amdgpu_gfx_sysfs_xcp_init(adev);
->  	if (r) {
->  		dev_err(adev->dev, "failed to create xcp sysfs files");
-> @@ -2182,23 +2184,39 @@ int amdgpu_gfx_sysfs_init(struct amdgpu_device *adev)
->  	}
->  
->  	r = amdgpu_gfx_sysfs_isolation_shader_init(adev);
-> -	if (r)
-> +	if (r) {
->  		dev_err(adev->dev, "failed to create isolation sysfs files");
-> +		goto err_isolation_shader;
-> +	}
->  
->  	r = amdgpu_gfx_sysfs_reset_mask_init(adev);
-> -	if (r)
-> +	if (r) {
->  		dev_err(adev->dev, "failed to create reset mask sysfs files");
-> +		goto err_reset_mask;
-> +	}
->  
-> +	adev->gfx.sysfs_registered = true;
-> +
-> +	return 0;
-> +
-> +err_reset_mask:
-> +	amdgpu_gfx_sysfs_reset_mask_fini(adev);
-> +	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
-> +err_isolation_shader:
-> +	amdgpu_gfx_sysfs_xcp_fini(adev);
->  	return r;
->  }
->  
->  void amdgpu_gfx_sysfs_fini(struct amdgpu_device *adev)
->  {
-> -	if (adev->dev->kobj.sd) {
-> -		amdgpu_gfx_sysfs_xcp_fini(adev);
-> -		amdgpu_gfx_sysfs_isolation_shader_fini(adev);
-> -		amdgpu_gfx_sysfs_reset_mask_fini(adev);
-> -	}
-> +	if (!adev->gfx.sysfs_registered)
-> +		return;
-> +
-> +	amdgpu_gfx_sysfs_xcp_fini(adev);
-> +	amdgpu_gfx_sysfs_isolation_shader_fini(adev);
-> +	amdgpu_gfx_sysfs_reset_mask_fini(adev);
-> +
-> +	adev->gfx.sysfs_registered = false;
->  }
->  
->  static void amdgpu_gfx_reset_start_compute_scheds(struct amdgpu_device *adev,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> index aefd4f03b443..df7ce026bfa9 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
-> @@ -477,6 +477,8 @@ struct amdgpu_gfx {
->  	struct amdgpu_irq_src		rlc_poison_irq;
->  	struct sq_work			sq_work;
->  
-> +	bool				sysfs_registered;
-> +
->  	/* gfx status */
->  	uint32_t			gfx_current_status;
->  	/* ce ram size*/
+As explained above, DRM core guarantees that duplicate_state is only called
+with a valid state. Adding NULL checks in duplicate_state hooks would be
+redundant and unnecessary.
 
+> [Severity: High]
+> This isn't a bug introduced by this patch, but I noticed the exact same
+> dangling pointer pattern this patch fixes also exists in the vmwgfx driver.
+>
+> In vmw_du_connector_reset(), if kzalloc_obj() fails, it returns without
+> updating the state pointer, leaving a dangling pointer:
+>
+> The identical issue also occurs in vmw_du_crtc_reset() and
+> vmw_du_plane_reset().
+>
+> Since unhandled use-after-free bugs in core DRM state structures can cause
+> severe stability issues, do these vmwgfx component reset hooks need a similar
+> fix to allocate the new state before freeing the old one?
+
+This is a separate pre-existing issue in a different driver (vmwgfx).
+While it does appear to suffer from the same dangling pointer pattern,
+it is unrelated to this patch series and should be addressed in a
+separate patch by the vmwgfx maintainers.
+
+This patch series only addresses the dangling pointer issue in the
+amdgpu_dm reset functions.
+
+Signed-off-by: Evgenii Burenchev <evg28bur@yandex.ru>
