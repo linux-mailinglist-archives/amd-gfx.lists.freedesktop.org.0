@@ -2,85 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9aWuJhNuQ2pBYQoAu9opvQ
+	id aNl3KR6PQmr59gkAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 09:19:47 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 17:28:30 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DAA96E10F5
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 09:19:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13D7B6DCA9D
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 17:28:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="bReqqF0/";
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=AtmZzUYn;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("google.com:s=arc-20260327:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C58E710EB3F;
-	Tue, 30 Jun 2026 07:19:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87B9C10E666;
+	Mon, 29 Jun 2026 15:28:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CA0A10E6C0
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 15:28:49 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id
- 5b1f17b1804b1-493ad116e05so7619665e9.3
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 08:28:49 -0700 (PDT)
+Received: from mail-dy1-f182.google.com (mail-dy1-f182.google.com
+ [74.125.82.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18CC810E666
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 15:28:27 +0000 (UTC)
+Received: by mail-dy1-f182.google.com with SMTP id
+ 5a478bee46e88-30cb5001e5bso162772eec.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 08:28:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782746906; cv=none;
+ d=google.com; s=arc-20260327;
+ b=mPN37OgqsroUheeWPGsI1ZZkv3xijqL7d24L9mRM6uTTc38XR91ygFZE8yZCHcTXu4
+ go6GAz4mjJ/9vjp6XWcmHjBfDNSMDuNoUuFEknjbPSW2/XPwOjpGZWu+FJOsfBLSP4JC
+ 66h+9ZIrMJKHcNbQYV5ASJfSnfCMendXmKQjwjnJ6p9mID3mIlCVcVHWiG6GjoOG1PyV
+ m8qVXRrV6Nc3ZlRNTs0hpg/DwgvtC/tbFnfwxCj3/rjSjIdg2AieOKtR55KzYZIKWbg/
+ CTfkh6DhTfETneREkvFiRszCEnmaX6p0neolh78C9tOEUU8MVueR/UbRGdxnLCkf9JbG
+ h+lQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=233bFXjxRjH5Zjbc9QTxFdkTjBLkLABDwT56ZmykFtA=;
+ fh=9k/4C+jNX/+ca5X4cGefuZ/zsq/hRrtFLKCoNzV1rIk=;
+ b=qjs6TtB08gHDVMc6aT5lGNExV6af0lhR+hEURMhqzd87fe8miHw2Co9DQJ1790FpNs
+ RazOLMlf9SCsw1+7bPT+n27ELg035zqHCvxqcOxAnYUXNJ/Y8yu32CqXDrP56E/d8cJM
+ /IYMVZOp4VwvfWG6B7Yrnap8/pb1hxOzqZMNXhPmCPskFh9AnaVej3l95J0MYRrgtHMB
+ eOEE5P+g/yFkbhoI7jf6iB/HGHHEinqzTdW3jUV6DtmlEeaykjcXZwAiGhhRxWY+ivHW
+ T2/0TraGW+/5PH0McXU+nmczj9GEmz//o25gkwULLmHJfx90LxR6qprgAF7qPykT+pWv
+ Nlvw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782746928; x=1783351728; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=HFhwRQO/XnDqnsNCNRMiUIQQuhF/q4kw4HCjqPfc1vw=;
- b=bReqqF0/CtTYtcKbjZyeVugl+OjTwLWqr+CVLT0pT2XsoQSXXXmPF5eKKYfF+/7xNZ
- 4I0knfqB2hk4o1bVaPGs0HLe8GgflvhqkeR0P8qOKwpYdYIVY51m9h4lyCT093xhULj0
- h97TDH/yc97CtrwbbrGIN392jJS6cr/tK3Xx9qm3c8juJDQkw9n9VEcg2+q3Md8wvf78
- ADS7G5/i5OpriPPXZYqSFE4CJ7XT8G7cVbyvb1e6GT7N89C8EecgqzMGtVHqLmY70vVF
- metLevno1pQMO7Gt+5Up+8Jnmj5rlonCQTbGGsKJoO4KTGDe86cS6D11l5cdzAHFtlSr
- 1hQA==
+ d=gmail.com; s=20251104; t=1782746906; x=1783351706; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=233bFXjxRjH5Zjbc9QTxFdkTjBLkLABDwT56ZmykFtA=;
+ b=AtmZzUYnkllRccXp/pZ4WDXb/A6yOfzvQjjcFRRbQAP+hx0qvyg7/DVw60KiTqOTgB
+ b0MxNoGmWngdPgZPw9c4cBGABGx9xBfV7MkyEecnZ5ncRYqpI7mqyBUlZKNLs/Ba1MYE
+ 61FZHjDaM4Nl0jTnTj5sPvnMKM8i5W+gNEcaBGgDLoCWhQLsbLIhuMq+DTxr4n9awFT+
+ dsy1kGI2Edq1iartAfHlt+31SHQ62Jm0Ue+hVGTHT3Cf2iYZa+KFMOCbdULPk/Iw/wkO
+ niWpaGwtDJP7kn7qFLOieSUkQEMQu97uOM1VqwdlXnITOD4Jg6ndNUFEn/rn3Vm3bIq2
+ RLMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782746928; x=1783351728;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=HFhwRQO/XnDqnsNCNRMiUIQQuhF/q4kw4HCjqPfc1vw=;
- b=E7WIgrXj6rAdc12q7ls82EbEipJdE+9EvuKSCyPsBbXBTCZT3Gitwa1ZOXyKLTorVq
- neY40HWcwCKAzKL2AWwb1QJrVagmHJMRAYf91u4vsvLnTrSICZY+PkNpG4KssersADU/
- ddW8xQSk7XRulFPf9wWrXSoa8sv7iRQhmfABLR5A3AAxPF6q10u8BwR6BCRa4zmtoOBs
- Vl6kxEJM26biF9dKA0u2wk+Hh2CL0oNCB7Q616o/WLGCAHHBNEMey+QX7pq+sPMxm4PH
- 0cEetgWj7mqbtoALaBO1FJQ88qsqwRonb+fY5tlAH+CsQqrvNd2gkMr3bIvM7Ge/hFU4
- aQzg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+BQ9aflGUgemCoCp2Zj3tcHZJQdDhEhBbyBkzby7L/ZKmoYdKR6XkGzLv70if4Hf2/KMylFEDK@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzFjgdM9dUBuY1t8OoekrnXtUyBsWNp5nhcP67v39APiYQul2h2
- b1VgNDIduVTIKHQ6eKG6XM3Nc3OHalRabhxPg1EiouPMAb5jrOHiK3b9
-X-Gm-Gg: AfdE7ckwZiTGKmo2lloFk4tBlpGmjd2037JIorpbO8GOmK21MJkhA0KW7/D6xQviriz
- eYUXboTn04Xof3r1VfLV187LA5SjZlkteFkvfmMTd/v/FmtNBvyQocVDfVFg7LK6U0FRd3Wy7rT
- ayupTsBrl3giOctxfDCKm/zoAjyfra9J3isBS0SdmdXcxofeewKixT6wQ9e1CNML92FJgPEdv4B
- UpToPNARck3ddmXe4DhYcn1CJYxNeNTMUUQKJk5GYq2q9IzcOxcnnbVq1+VDcke+Wz1BA0GBAMI
- IVw5GhXIdc6OBscsnRFBsa2eMqcXQi7XzezTaVl2yT7mBqEhEKR+wON2ZvP+28ZzExi+53j/eDh
- S5y+geM7McRV70TzBenAfLmSKqvBjjadpSBJavTiCS5CXpCqhW2ZsKfDo7gg8N5NoxeZl517VXB
- vSn13Rv00zdbXDtwuvigmUPVfMcQ==
-X-Received: by 2002:a7b:cd96:0:b0:490:6237:5200 with SMTP id
- 5b1f17b1804b1-493b828c480mr1572865e9.10.1782746927577; 
- Mon, 29 Jun 2026 08:28:47 -0700 (PDT)
-Received: from Dev-Null-MSI ([2a0d:3344:52ac:a808:98a4:4381:be45:536f])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-49268f700c0sm371321555e9.0.2026.06.29.08.28.46
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Jun 2026 08:28:46 -0700 (PDT)
-From: Yousef Alhouseen <alhouseenyousef@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Yousef Alhouseen <alhouseenyousef@gmail.com>
-Subject: [PATCH v3] drm/amdgpu: reject mapping info when BO VA is gone
-Date: Mon, 29 Jun 2026 17:28:07 +0200
-Message-ID: <20260629152807.13492-1-alhouseenyousef@gmail.com>
-X-Mailer: git-send-email 2.54.0
+ d=1e100.net; s=20251104; t=1782746906; x=1783351706;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=233bFXjxRjH5Zjbc9QTxFdkTjBLkLABDwT56ZmykFtA=;
+ b=blYh2GXhR9ukjM+we9MiJqqD6TK5TC39i8EtemmrHkJUXw2HFQ67O94p9Q8NQKGBKh
+ AxC3al5iKVY6bOxt01s/ZQSfNw3EVflTs3rADqedd4VvxBDKNce6W8smzTimQynsh+kX
+ jG2cbemAznlhhrew55GEWdFme7lD+lBfS6y5O3/13z+Do7GNgatmsc/r8T7YlGNGQuQ0
+ v0RCD+qBTG80mDQDS7XwvAhAgw/I65GqHYi35H55o6bUk5z8YLqwLa/hWVm6rnCayt8m
+ EWTxoa/9vUNl5MsK0P1olBocFpqkwPgz8xe/jLDAdLirOZ6csilKdajGQqBWsvJwMW1v
+ IiVg==
+X-Gm-Message-State: AOJu0Yyrg5LhMzIORqQFGhXKazHpUy0Fiu+faOLAll8n6u75Uvbbobir
+ hUa/Tb3Hk4zqGt+yRpqosTHZRNIlsle1+AEFPodgEiLxPVxpbwtjYCHkLdF+i7BA4dwmSwK7WHe
+ BHfxckIp/4oBeNqiun5IK/EOCcJehD2k=
+X-Gm-Gg: AfdE7cmgaPTisCVFlQK8gt3LNtr1yGCkcDcB2vwShXI2DyB4zigkVd21xRg+Rb7v5HM
+ b19qW9FYW+FBQSA4Dqvnf2WZ1yFOwdNAXwNE0KEmzKHf2t0TZI6JtLLUlP+b0FOxdVO8rXeQOj6
+ DdtzIuDDZ579sVnc4Uuo0Cy+OOE2ybTGTCxjXMFljRnCJ6i9ARrUcYY3cLH7xR6Hr8RHmhV6C5O
+ SJTpWtg14o0Z2SwA6E8RZnZAAgUUeRRTWYJLd67y44JCYgH52xhePOXkvcv94e7pjtaFZX0g1rF
+ HG5WHWE+AnqDKYi7ou8VbZePUBMHXuOIM3Td+KNZy4Bejp38e4KYu/HXZ3g=
+X-Received: by 2002:a05:7022:6295:b0:137:fea7:9297 with SMTP id
+ a92af1059eb24-139dba00013mr6884997c88.1.1782746906072; Mon, 29 Jun 2026
+ 08:28:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 30 Jun 2026 07:19:28 +0000
+References: <20260626085558.97923-1-tvrtko.ursulin@igalia.com>
+ <20260626085558.97923-3-tvrtko.ursulin@igalia.com>
+ <3694635.dWV9SEqChM@timur-max>
+In-Reply-To: <3694635.dWV9SEqChM@timur-max>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 29 Jun 2026 11:28:14 -0400
+X-Gm-Features: AVVi8CeordtiVHL8RXRJMySgdkOJ93IZmDGNbwcoQMvW5S-bBTwE9OJgo78AN9s
+Message-ID: <CADnq5_MiRc2Gei3QcmxVgtykLNfC+QwyxC7W=LsAVjMfCAT5_g@mail.gmail.com>
+Subject: Re: [PATCH 2/3] drm/amdgpu: Save some cycles on the job submission
+ path
+To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>
+Cc: amd-gfx@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, 
+ kernel-dev@igalia.com, Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,81 +114,223 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:alhouseenyousef@gmail.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:tvrtko.ursulin@igalia.com,m:kernel-dev@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[alhouseenyousef@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alhouseenyousef@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,igalia.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2DAA96E10F5
+X-Rspamd-Queue-Id: 13D7B6DCA9D
 
-AMDGPU_GEM_OP_GET_MAPPING_INFO looks up the GEM object before taking
-the object and VM locks. The object reference keeps the BO alive, but a
-concurrent handle close can remove the per-file BO VA before
-amdgpu_vm_bo_find() runs.
+On Fri, Jun 26, 2026 at 1:10=E2=80=AFPM Timur Krist=C3=B3f <timur.kristof@g=
+mail.com> wrote:
+>
+> On 2026. j=C3=BAnius 26., p=C3=A9ntek 10:55:57 k=C3=B6z=C3=A9p-eur=C3=B3p=
+ai ny=C3=A1ri id=C5=91 Tvrtko Ursulin
+> wrote:
+> > Every job submission on the Steam Deck ends up walking the list of IP
+> > blocks looking for AMD_IP_BLOCK_TYPE_SMC. Half of the call chain is lik=
+e
+> > the below, while the second half is from amdgpu_gfx_profile_ring_end_us=
+e:
+> >
+> >  amdgpu_gfx_profile_ring_begin_use
+> >   amdgpu_dpm_is_overdrive_enabled
+> >    is_support_sw_smu
+> >     amdgpu_device_ip_is_valid
+> >
+> > On a game menu screen at 90Hz refresh rate we end up with ~840 calls pe=
+r
+> > second which sticks out when the submission worker is profiled with per=
+f:
+> >
+> >   13.78%  [kernel]  [k] __lock_text_start
+> >   10.86%  [kernel]  [k] __lookup_object
+> >    8.76%  [kernel]  [k] __mod_timer
+> >    4.94%  [kernel]  [k] queued_spin_lock_slowpath
+> >    1.66%  [kernel]  [k] amdgpu_device_ip_is_valid
+> >    1.54%  [kernel]  [k] preempt_count_add
+> >    1.42%  [kernel]  [k] amdgpu_sync_peek_fence
+> >    1.18%  [kernel]  [k] amdgpu_vmid_grab
+> >    1.17%  [kernel]  [k] amdgpu_ib_schedule
+> >    1.14%  [kernel]  [k] kthread_worker_fn
+> >
+> > Lets short-circuit this walk by simply caching the result of
+> > is_support_sw_smu() in the device.
+> >
+> > This is a micro-improvement but it is at least conceptually nicer to av=
+oid
+> > repeating the same walk so much.
+>
+> Hi,
+>
+> I agree with cleaning up this thing.
+> Reviewed-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
+>
+> That being said, I think is_support_sw_smu() is horrible and should be re=
+moved
+> alltogether, because it goes against how the rest of the power management=
+ code
+> works.
+>
+> In my opinion, we should instead:
+>
+> 1. Hook up some function pointers and check those instead,
+> For example in amdgpu_pm_acpi_event_handler() we should just hook up
+> smu_set_ac_dc() to the notify_ac_dc() function pointer. There are plenty =
+of
+> other similar cases.
+> Another example, for amdgpu_dpm_mode1_reset() we should introduce a new
+> asic_reset_mode_1() pointer in amd_pm_funcs() similar to how it works wit=
+h
+> MODE2 reset for consistency.
+>
+> 2. Eliminate redundant functions where the same thing is already done
+> elsewhere.
+> For example in amdgpu_dpm_is_mode1_reset_supported() it checks
+> smu_mode1_reset_is_support() which is redundant because the supported res=
+et
+> type is available on the ASIC functions already and we can just use that.
+>
+> What do you think?
 
-The mapping-list walks then dereference the NULL BO VA. Return -EINVAL
-when the BO is no longer associated with the VM.
+I agree.  This has been a todo for a while.
 
-Suggested-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: Yousef Alhouseen <alhouseenyousef@gmail.com>
----
-Changes in v3:
-- Generate a clean patch against drm-misc-next instead of stacking on v1.
-- Keep only the intended !bo_va guard for the handle-close race.
-- Clarify the v2 withdrawal confusion in thread replies.
+Alex
 
-Changes in v2:
-- Describe the handle-close race instead of an initially unmapped BO.
-- Return -EINVAL instead of -ENOENT.
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index 27be5083f2af..83ec994ad36b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -1087,6 +1087,12 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
- 		struct drm_amdgpu_gem_vm_entry *vm_entries;
- 		struct amdgpu_bo_va_mapping *mapping;
- 		int num_mappings = 0;
-+
-+		if (!bo_va) {
-+			r = -EINVAL;
-+			goto out_exec;
-+		}
-+
- 		/*
- 		 * num_entries is set as an input to the size of the user-allocated array of
- 		 * drm_amdgpu_gem_vm_entry stored at args->value.
--- 
-2.54.0
+>
+> Thanks & best regards,
+> Timur
+>
+> >
+> > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > Cc: Timur Krist=C3=B3f <timur.kristof@gmail.com>
+> > ---
+> > v2:
+> >  * Approach changed to cache sw_smu status only.
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  1 +
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  3 +++
+> >  drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 14 +++++---------
+> >  drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |  8 +++++++-
+> >  4 files changed, 16 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > b/drivers/gpu/drm/amd/amdgpu/amdgpu.h index 7b09410d6d8f..9803967d15f9
+> > 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > @@ -851,6 +851,7 @@ struct amdgpu_device {
+> >       struct dev_pm_domain            vga_pm_domain;
+> >       bool                            have_disp_power_ref;
+> >       bool                            have_atomics_support;
+> > +     bool                            is_sw_smu;
+> >
+> >       /* BIOS */
+> >       bool                            is_atom_fw;
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c index
+> > 1e6b75ecafe4..7f935a5778b0 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > @@ -74,6 +74,7 @@
+> >  #include "amdgpu_ras.h"
+> >  #include "amdgpu_ras_mgr.h"
+> >  #include "amdgpu_pmu.h"
+> > +#include "amdgpu_smu.h"
+> >  #include "amdgpu_fru_eeprom.h"
+> >  #include "amdgpu_reset.h"
+> >  #include "amdgpu_virt.h"
+> > @@ -2130,6 +2131,8 @@ static int amdgpu_device_ip_early_init(struct
+> > amdgpu_device *adev) adev->cg_flags &=3D amdgpu_cg_mask;
+> >       adev->pg_flags &=3D amdgpu_pg_mask;
+> >
+> > +     amdgpu_smu_early_init(adev);
+> > +
+> >       return 0;
+> >  }
+> >
+> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> > b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c index
+> > 208a2fba6d40..82c9ae6a5092 100644
+> > --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> > +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+> > @@ -591,17 +591,13 @@ static int smu_get_power_num_states(void *handle,
+> >       return 0;
+> >  }
+> >
+> > -bool is_support_sw_smu(struct amdgpu_device *adev)
+> > +void amdgpu_smu_early_init(struct amdgpu_device *adev)
+> >  {
+> >       /* vega20 is 11.0.2, but it's supported via the powerplay code */
+> > -     if (adev->asic_type =3D=3D CHIP_VEGA20)
+> > -             return false;
+> > -
+> > -     if ((amdgpu_ip_version(adev, MP1_HWIP, 0) >=3D IP_VERSION(11, 0, =
+0))
+> &&
+> > -         amdgpu_device_ip_is_valid(adev, AMD_IP_BLOCK_TYPE_SMC))
+> > -             return true;
+> > -
+> > -     return false;
+> > +     adev->is_sw_smu =3D adev->asic_type !=3D CHIP_VEGA20 &&
+> > +                       (amdgpu_ip_version(adev, MP1_HWIP, 0) >=3D
+> > +                        IP_VERSION(11, 0, 0) &&
+> > +                        amdgpu_device_ip_is_valid(adev,
+> AMD_IP_BLOCK_TYPE_SMC));
+> >  }
+> >
+> >  bool is_support_cclk_dpm(struct amdgpu_device *adev)
+> > diff --git a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+> > b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h index
+> > d76e0b005308..efc52d97058b 100644
+> > --- a/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+> > +++ b/drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h
+> > @@ -1952,7 +1952,13 @@ int smu_link_reset(struct smu_context *smu);
+> >
+> >  extern const struct amd_ip_funcs smu_ip_funcs;
+> >
+> > -bool is_support_sw_smu(struct amdgpu_device *adev);
+> > +void amdgpu_smu_early_init(struct amdgpu_device *adev);
+> > +
+> > +static inline bool is_support_sw_smu(struct amdgpu_device *adev)
+> > +{
+> > +     return adev->is_sw_smu;
+> > +}
+> > +
+> >  bool is_support_cclk_dpm(struct amdgpu_device *adev);
+> >  int smu_write_watermarks_table(struct smu_context *smu);
+>
+>
+>
+>
