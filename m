@@ -2,99 +2,111 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id kILHCaF0Qmpu7gkAu9opvQ
+	id zeiUHwpuQ2o+YQoAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 15:35:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 09:19:38 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85C056DB49E
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Jun 2026 15:35:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E441D6E10ED
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 09:19:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Lkw9q4eW;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ifaenfxb;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=gmail.com;
 	arc=pass ("google.com:s=arc-20260327:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28E1910E8E4;
-	Mon, 29 Jun 2026 13:35:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75CBB10E198;
+	Tue, 30 Jun 2026 07:19:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f175.google.com (mail-dy1-f175.google.com
- [74.125.82.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B96A210E8E4
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 13:35:26 +0000 (UTC)
-Received: by mail-dy1-f175.google.com with SMTP id
- 5a478bee46e88-30e869ebc19so129998eec.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 06:35:26 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1782740126; cv=none;
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com
+ [209.85.128.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61F1810E8DF
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 13:57:01 +0000 (UTC)
+Received: by mail-yw1-f181.google.com with SMTP id
+ 00721157ae682-80c5cb9a888so19017487b3.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 06:57:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782741420; cv=none;
  d=google.com; s=arc-20260327;
- b=Uv3c+GGI8ezmHkuXKQ9zsaoifzfxXKkLkffHGyIM24caXYI9TT6hQJrNzaQFB3/9Au
- HhD2sZyg1EYIKYpY+7Ff8X1/Ju8jSHwQcyxqgvj33ApA4ubP3YD0p3ffJGF5L7UWpI9U
- XnSmv13AjFQb80P5D1yd7t3H9KiGScZgDGyTjyZ6NMTvRDK18j4to4XdoKAmrXFDMpOk
- 4PomfsEc5MNJBJy6HJwxYpWFrdL/k4657tRVwSDq3LNzXv3+g+M+/doxwcfzXpN0dZB9
- UNw0bhL2mm+OHvrh/5FVGmzIIsmXx6nvVJboxxX1BClmik/HEw3pGIHb1A18QsqP09OB
- x5gw==
+ b=DyEe5vp73u8xtgRMJq8Wa6yvRMZY9zQjQewUW42mQENXsZ0nPokoKbuqr/7HuisfZH
+ iDGlcAUWRY4BNaoLWw4bAEOup68FYJA2TFv8/zdDJw3Ry4GAY8JrCMm2KzJueoknuEyu
+ O9CydUMGMVRCeHzxG/mkpVM1UneyQbIk+m3KOMQK38Cp1TK2gF5VESPFyxCHXZzYN+yr
+ Z9q43aGmhlyQkvKnZ0QeP1dnR4+2fimZBOLJj+6Epo+S39ORqWFHJ7H+w1CCm4mPx2Kq
+ xJLLSWDyI6IBnFpPUJHoASia1SUvIQUdfc/686Hogsgf1lddaIGjD5jbXPim1V6fKtt/
+ K+kw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20260327; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=M4EBbNbMCFlSnwASewhNQtdDsv2158+niDnSjHsJc+E=;
- fh=advj4YxN8NmzRI1C4RdCPL3MlBHBQPZW0GAWMPKaSnc=;
- b=pGeM7gyyrt71rudf9/EjCp4L7N2xX1tW3qpdtWWXMyO1urz8SYF/GPTJ+7FmceerJi
- yLk9t1HL4hVtQUc2+67MmzWQlAXfs58k+MsaTDK8iiYX1KacSCv5p408kRa16qans2oY
- x3RUcZs820yAwoMVIAbx3PEW1umuDMaMp7sfH9BkQjy9mFRXVBXgETsAAhdlGPnNjK63
- c+pvKbW/ldq1lBB5UIUgcUMUElLlZRVcihj5Pu01POZ8IAFvbiF12WWayTbzNDULLxFE
- 3UbRwY20eDcV0dQXbPsnu8znSp5XcOE5reDP1/XpEJxF74m8ML4kUhNOF2DZnBad7prm
- 1zHw==; darn=lists.freedesktop.org
+ :mime-version:references:in-reply-to:dkim-signature;
+ bh=GgwHmQNiGftfM4Rvb8+WbihD7Vl9XT13f1KvcgOYD/4=;
+ fh=R0kX7RA/NbHkF43LaZBt/Dipjej1ROGpha1btKAupWI=;
+ b=DJ+m4g8lsCWZOM84/Xhc3IGJf8JGBCkTAyBw9uzW8dSXjXwUaplioykbqRo/at5/m3
+ 0ipftHF1dKAH8E2KJhqFzcuh/wP3JhWUVI0YueEq5LTXO/QOsOyOldscXCoYSgtUTA0S
+ K/YwZZD7DCac9Bi7OUJWngr2+jy6L+KiYgwGGJXYpt043wXQ2x4VzrDDfJAr+eE8RoTd
+ sQ671gBUv+Mgxmwuqk04+kGWXF+dCNEa6MPYNE8wQZ8Xlzi2JIkWYW6MusyJxcpCniOa
+ x9v4px/Z36F9bg1D7a2lpl9Tafxg/RKJfKpXlZBuHj76ke1n6shk/6NozLmyuzalhtH9
+ yYJg==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782740126; x=1783344926; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=M4EBbNbMCFlSnwASewhNQtdDsv2158+niDnSjHsJc+E=;
- b=Lkw9q4eWlU6Lvh77icge42FdroBjgETYnpteXIgjWs09mDdCIRZ1kNc9G/arsbPizI
- 6Vc9Fg+gXnsaa5b8pccWKqmI3UHgXU7OGEcEDT4A75FWcrCXgceidzcvsya7V/Jki7HX
- /R1pQk9TFDgwdeQC5muisI+BffboSfC7kGaPhViP1hfwcSsKAqzi04j0H+2+GyvIRl+c
- rCCn4LP8Hpz2qHxKR1HK8sTaBOOF2Yn0O+SSzsRlU8NA4TCYmfCy79zh0avemUT+L92m
- nyMv94/ZN4xPgpZhIjzzMewZJdJjq4Gr7vXIvchDnPQ7CqU4xE1/l7DKGMxXThz45Gwo
- LR7w==
+ d=gmail.com; s=20251104; t=1782741420; x=1783346220; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:references:in-reply-to:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=GgwHmQNiGftfM4Rvb8+WbihD7Vl9XT13f1KvcgOYD/4=;
+ b=ifaenfxbuypCxdYbmNMAyRH3xUSRGtpiiDcsZaa3DoEb2PM9Y7FTCexWFiVVkaK4di
+ IRWl9Bv+YQNikIgGXVr7jOaql0d9DkZBTr1GD+E+QxcjobWAyYKd1WtfKZUDSD7f6YtY
+ 9zqw+9HASwaifyUl4YU789kar4tGa73QLtgaDDWH6hF1tVc1GO87QNPSnVbCJQVs0EYn
+ BtFhZf1aRY1TNQ2YAf/+KYOHQ2/QkM1FyIPf7KvADWGIOSGs/0e6/CwotSSL7S/FB/jm
+ E4EwZbtSpU7jB7GeDtKM1VhsntNnefDFyICpAgKIsc2kf8KpbSEsHOQxkP93GmhXfVEo
+ puYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782740126; x=1783344926;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=M4EBbNbMCFlSnwASewhNQtdDsv2158+niDnSjHsJc+E=;
- b=RwRhkFjPq8qDBsby6aHaEGMGdk0+4hOL+i/0XtyNjCdnFoaob3Mc4npJOMG0fSqBun
- J8PVxuwXkyFeQfQSdz/T/rB+N4hhpePezbXfXvkEJMTFRw5DXbjBIzbFs7hzmzkqgVKV
- X8Sh54Zwec5Bi4PWvKsjbiRvBowNf/v8RgbtMbGQALUT0JSucrqhAJ/9JIpkEYlP9Dzb
- rmD7cjtfNCnGFObzmNKtOGIcFLL4eaASHJRk90ZpQjVySCcGNHZjBqgquFdfxKnSLNSy
- P1HDhar2M4bAJMtUJl4kMv4PVvKz+m31lVa8xFAF4CmGdYPNV1HOo0F2eNmlJykaGaV+
- Ye3w==
-X-Gm-Message-State: AOJu0YzIGxp/i/JVUQFDx0Oil1x03vRfmTQSI7jVq3XMsOy61VPvEkQN
- WATvgyO/GPHUPxZNqc81IUTvCZCiLLkzcOra6V6ypiTx0dvFQbjY3pDCoTDxvNtoDRbxwiMZSGP
- KILL3u4t4ZfWI9Sah/deLhBZrEODHkVw=
-X-Gm-Gg: AfdE7clhIKxxRXRHxIiwAIPmRZ3Vn3pvMFrZF6Hk/RckmnITXJkBDXHkGQSu07TCPLF
- UuTeUnAMhgjA6gxn1P3gUzCOes3t7bxbKZ6Ri03wPMZQgAYZnjGmDYCPHtO9EwMgAmrKZr1jRgg
- oSkpY+WPXVACvA7dlLJp6W0al74fMCBn4/rj9KiiqnvFxollrVdrLiw+czrzDMjOp6F2LcjLw91
- +T8zS3UCik4WivMmeHGQjQdxTHt/H1s+t51x5Jkbzl/SSZMcsMUFE54OEsPPF6oydeSSdqzZYTO
- /1VDbS5X6qVRqAqxY8bwfpdOZ4AVAb/8CwzFq26nzqOM2rgC/hGT/bfzZsg=
-X-Received: by 2002:a05:7022:2641:b0:12d:ce63:d8c5 with SMTP id
- a92af1059eb24-139dba00a1dmr4870006c88.2.1782740125921; Mon, 29 Jun 2026
- 06:35:25 -0700 (PDT)
+ d=1e100.net; s=20251104; t=1782741420; x=1783346220;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:references:in-reply-to:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=GgwHmQNiGftfM4Rvb8+WbihD7Vl9XT13f1KvcgOYD/4=;
+ b=SLgG+Nqvk3f2flCNudu+1A0dRwXb6KbgdWeno7JhrHszivcrZC6y5mZRMWLRU6zrnl
+ pLNQK3jnidG5U/7evcRXN26ZvJc4JI5ijQEFW4hl0cWzNgNUa+vUgHflYTEA6x6UILPz
+ X/MFyW8CwI6b20KJ7VSZkDbeb+wYXa4aZ3Uxgd02Q9o4wRXtLrMqTyCam6zbuSqZ28eG
+ kCiEcFxBslZZgfSLpXtQgNr7dqe1FPg4BeRjcjG3EUwaEZaJjggqtCP+BDhejGNKL1B7
+ 33SkwR8eCw8bfTVMr49h+N7gWk5WXESsbxAG898j6QN6AhjevLQDAy5NCnTT0Th8nPA3
+ CggA==
+X-Forwarded-Encrypted: i=1;
+ AHgh+Ro3yggaLwZtw4PmNiKFUN6+64t66uQN5TG40kGFpZIyZ1Jz6CkOzqZrCDg+Q6rS9TxJLib2sCeQ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyYChMAEnIKo4g6be7Mq+SUITyVwwKD5GBCVhIwfxIg10mBovf+
+ hmx7D/IjFifDYnpopQO5h/i8urB/CUAgWgiRUuC1D344qSlwojHOyVAqLrjo8QKmDLPoAkAIPpo
+ gsPGKIoxDMSl+GFWV2wWX7S+1k2aXSDbA2Sz+
+X-Gm-Gg: AfdE7cnYENFK5gEDsL6OkDfMuo0Yjb7oeIiIH/qQutMtbosWZQekUzM/K4K1E7/GPvI
+ CRyaVRYVKPl4/32TvU+PYu5rkdtXkNcbXSr9V0d6BP6XMfGWBr9r+RVyo0LnL06HhJ0OyYyvz66
+ zdjcEhUERjvtQAIumNupyhvypas4zfz6PqljbQciPdphYWXLnMuGwcYsBul2bRhLOYZNelrahd6
+ ehntFTrNQm+DsnQ/YrQVSrEC2qXrcIiNNcBdS+cO4KLMzRZSCcFffCjwNxObXd9vNu7HYDiFcau
+ b+PJ0dQ=
+X-Received: by 2002:a05:690c:6386:b0:80c:85b6:75be with SMTP id
+ 00721157ae682-8109186d88emr5241967b3.71.1782741419655; Mon, 29 Jun 2026
+ 06:56:59 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
+ Mon, 29 Jun 2026 08:56:57 -0500
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
+ Mon, 29 Jun 2026 08:56:57 -0500
+In-Reply-To: <63537951-2c16-4ce0-ab8a-067315833bac@amd.com>
+References: <20260624172029.2508-1-alhouseenyousef@gmail.com>
+ <20260625135341.1159-1-alhouseenyousef@gmail.com>
+ <CAMuQ4bWVb-vxCWMxF_JpJmBnKD=rVH2KZWf36jnzPbC35CdrmA@mail.gmail.com>
+ <63537951-2c16-4ce0-ab8a-067315833bac@amd.com>
 MIME-Version: 1.0
-References: <20260629132837.2288044-1-David.Francis@amd.com>
-In-Reply-To: <20260629132837.2288044-1-David.Francis@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 29 Jun 2026 09:35:12 -0400
-X-Gm-Features: AVVi8CdW6P02PpLMqjng2xRC9mp4CIU7R1Ki9R3VToHTpoHJSI-SEMU2nuggAo8
-Message-ID: <CADnq5_Pn_fiEV3u1JOWOucFk3CpqA5HfK1FibGD6u1Opmo3MTQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdkfd: Use kvcalloc to allocate arrays
-To: David Francis <David.Francis@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
+From: Yousef Alhouseen <alhouseenyousef@gmail.com>
+Date: Mon, 29 Jun 2026 08:56:57 -0500
+X-Gm-Features: AVVi8Ce95FJU1tUzW1L8s63UJlluxab-3LuvsLRAn19TFAa3RcTbRjB_TqHo-4k
+Message-ID: <CAMuQ4bUio-XcOTDMY6r+Momg24uy7j0UXT=Bsk85jTbvjiCN7g@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/amdgpu: reject mapping info when BO VA is gone
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 30 Jun 2026 07:19:28 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,116 +125,121 @@ X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:David.Francis@amd.com,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[alhouseenyousef@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alhouseenyousef@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,mail.gmail.com:mid,amd.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 85C056DB49E
+X-Rspamd-Queue-Id: E441D6E10ED
 
-On Mon, Jun 29, 2026 at 9:29=E2=80=AFAM David Francis <David.Francis@amd.co=
-m> wrote:
->
-> There were a few instances in kfd_chardev.c of kvzalloc being
-> used to allocate memory for an array.
->
-> Switch those to kvcalloc, which
-> - is the standard way of allocating a xero-initialized array
-> - does a check for the mul overflowing
->
-> Signed-off-by: David Francis <David.Francis@amd.com>
+No, you are not blind. I generated v2 from a local branch that still
+contained v1, so the v2 diff added a second check on top of the
+intended one. I then mistook that local state for the target tree when
+withdrawing it.
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+The close-handle race you identified still calls for the single check,
+but neither of my postings is suitable as sent. I will prepare a clean
+v3 against the target branch.
 
-> ---
->  drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+Sorry for the confusion.
+
+Thanks,
+Yousef
+
+On Mon, 29 Jun 2026 14:33:37 +0200, "Christian K=C3=B6nig"
+<christian.koenig@amd.com> wrote:
+> On 6/25/26 16:26, Yousef Alhouseen wrote:
+> > Hi Alex, Christian,
+> >
+> > Please drop this v2 as well.
+> >
+> > I rechecked the target tree and missed the existing !bo_va check in
+> > AMDGPU_GEM_OP_GET_MAPPING_INFO.
 >
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/a=
-md/amdkfd/kfd_chardev.c
-> index ab9e53dc8deb..7d8215169c10 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-> @@ -1917,13 +1917,13 @@ static int criu_checkpoint_devices(struct kfd_pro=
-cess *p,
->         struct kfd_criu_device_bucket *device_buckets =3D NULL;
->         int ret =3D 0, i;
+> Am I blind? As far as I can see at least the code in drm-misc-next doesn'=
+t have such a check.
 >
-> -       device_buckets =3D kvzalloc(num_devices * sizeof(*device_buckets)=
-, GFP_KERNEL);
-> +       device_buckets =3D kvcalloc(num_devices, sizeof(*device_buckets),=
- GFP_KERNEL);
->         if (!device_buckets) {
->                 ret =3D -ENOMEM;
->                 goto exit;
->         }
+> Regards,
+> Christian.
 >
-> -       device_priv =3D kvzalloc(num_devices * sizeof(*device_priv), GFP_=
-KERNEL);
-> +       device_priv =3D kvcalloc(num_devices, sizeof(*device_priv), GFP_K=
-ERNEL);
->         if (!device_priv) {
->                 ret =3D -ENOMEM;
->                 goto exit;
-> @@ -2043,17 +2043,17 @@ static int criu_checkpoint_bos(struct kfd_process=
- *p,
->         int ret =3D 0, pdd_index, bo_index =3D 0, id;
->         void *mem;
->
-> -       bo_buckets =3D kvzalloc(num_bos * sizeof(*bo_buckets), GFP_KERNEL=
-);
-> +       bo_buckets =3D kvcalloc(num_bos, sizeof(*bo_buckets), GFP_KERNEL)=
-;
->         if (!bo_buckets)
->                 return -ENOMEM;
->
-> -       bo_privs =3D kvzalloc(num_bos * sizeof(*bo_privs), GFP_KERNEL);
-> +       bo_privs =3D kvcalloc(num_bos, sizeof(*bo_privs), GFP_KERNEL);
->         if (!bo_privs) {
->                 ret =3D -ENOMEM;
->                 goto exit;
->         }
->
-> -       files =3D kvzalloc(num_bos * sizeof(struct file *), GFP_KERNEL);
-> +       files =3D kvcalloc(num_bos, sizeof(struct file *), GFP_KERNEL);
->         if (!files) {
->                 ret =3D -ENOMEM;
->                 goto exit;
-> @@ -2584,7 +2584,7 @@ static int criu_restore_bos(struct kfd_process *p,
->         if (!bo_buckets)
->                 return -ENOMEM;
->
-> -       files =3D kvzalloc(args->num_bos * sizeof(struct file *), GFP_KER=
-NEL);
-> +       files =3D kvcalloc(args->num_bos, sizeof(struct file *), GFP_KERN=
-EL);
->         if (!files) {
->                 ret =3D -ENOMEM;
->                 goto exit;
-> --
-> 2.34.1
->
+> > The close-race case is already handled
+> > before the mapping list walks, so this patch only makes the later check
+> > unreachable and changes the errno.
+> >
+> > Sorry for the churn.
+> >
+> > Thanks,
+> > Yousef
+> >
+> > On Thu, 25 Jun 2026 15:53:41 +0200, Yousef Alhouseen
+> > <alhouseenyousef@gmail.com> wrote:
+> >> AMDGPU_GEM_OP_GET_MAPPING_INFO looks up the GEM object from the file
+> >> handle and then locks the object and VM before resolving the BO-VA. Th=
+e
+> >> GEM object reference keeps the BO alive, but it does not keep the
+> >> per-file handle open.
+> >>
+> >> If a racing close drops the last handle reference in that window,
+> >> amdgpu_gem_object_close() can remove the BO-VA before
+> >> amdgpu_vm_bo_find() runs. The ioctl then walks the BO-VA mapping lists
+> >> unconditionally.
+> >>
+> >> Return -EINVAL if the BO is no longer associated with this VM.
+> >>
+> >> Suggested-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> >> Signed-off-by: Yousef Alhouseen <alhouseenyousef@gmail.com>
+> >> ---
+> >> Changes in v2:
+> >> - Describe the handle-close race instead of an initially unmapped BO.
+> >> - Return -EINVAL instead of -ENOENT.
+> >>
+> >> drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 6 ++++++
+> >> 1 file changed, 6 insertions(+)
+> >>
+> >> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_gem.c
+> >> index 212c14d99..6f5b6f4c2 100644
+> >> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> >> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> >> @@ -1087,6 +1087,12 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev,=
+ void *data,
+> >> struct drm_amdgpu_gem_vm_entry *vm_entries;
+> >> struct amdgpu_bo_va_mapping *mapping;
+> >> int num_mappings =3D 0;
+> >> +
+> >> + if (!bo_va) {
+> >> + r =3D -EINVAL;
+> >> + goto out_exec;
+> >> + }
+> >> +
+> >> /*
+> >> * num_entries is set as an input to the size of the user-allocated arr=
+ay of
+> >> * drm_amdgpu_gem_vm_entry stored at args->value.
+> >> --
+> >> 2.54.0
