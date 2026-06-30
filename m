@@ -2,59 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9y0lKanTQ2q7jgoAu9opvQ
+	id uxkMK3e/RGrW0AoAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 16:33:13 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:19:19 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FA456E5782
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 16:33:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A21B6EA91B
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:19:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=iMYjVUNt;
+	dkim=fail ("body hash did not verify") header.d=139.com header.s=dkim header.b=VIcaokEu;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=kernel.org
+	dmarc=none
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4855710E1F9;
-	Tue, 30 Jun 2026 14:33:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A40B10EDFA;
+	Wed,  1 Jul 2026 07:11:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D13D510E122;
- Tue, 30 Jun 2026 14:33:09 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 8257941678;
- Tue, 30 Jun 2026 14:33:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A9591F000E9;
- Tue, 30 Jun 2026 14:33:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1782829989;
- bh=9cuy7lk5rNB9ZhHqRD+Vl3cVGdgfWsb157w8wga2ThU=;
- h=Date:Subject:Cc:To:From:References:In-Reply-To;
- b=iMYjVUNtefm4X23CkoLXpK2X/IjrUyzA5uFcK1DYOIfNX60vOQr+djGJBjh9s0WZK
- xWcwGgToDKfvdSJVUtAuF/BsNpXbBHthrNNB/OqwEnBax4MSi64XhKWEjdNhB2HTOl
- mkEX0UIBYcYgS5tE8Q47pERpTu7GRh+JqvhZSLZMJyANNVGOUUd0lBMbwS8APfPKkB
- 6USv1YIhzFXPS585M/4aa1YnQrYJC/BbLNzVQNmgR0pgUjwi138Yp7MDKQVAM7plfa
- 7EFharRUUu/Km5UQu/mdtfE5LWYA36z6EvDeZ290yYM8YB5F7sbcYJ6spjw0/2njFw
- jzalZJhqGZ8dg==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 30 Jun 2026 16:33:04 +0200
-Message-Id: <DJMGHGBIJTOI.3FTGPA92WVGC6@kernel.org>
-Subject: Re: [PATCH v10 0/5] drm/gpusvm: split MM and device state across
- gpusvm/range/pages
-Cc: "Honglei Huang" <honghuan@amd.com>, <sima@ffwll.ch>,
- <rodrigo.vivi@intel.com>, <thomas.hellstrom@linux.intel.com>,
- <intel-xe@lists.freedesktop.org>, <aliceryhl@google.com>,
- <Alexander.Deucher@amd.com>, <Felix.Kuehling@amd.com>,
- <Christian.Koenig@amd.com>, <Ray.Huang@amd.com>, <Lingshan.Zhu@amd.com>,
- <Junhua.Shen@amd.com>, <Yiru.Ma@amd.com>, <amd-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260630102127.392396-1-honghuan@amd.com>
- <akPSENdX3vz8PvdY@gsse-cloud1.jf.intel.com>
-In-Reply-To: <akPSENdX3vz8PvdY@gsse-cloud1.jf.intel.com>
+X-Greylist: delayed 552 seconds by postgrey-1.36 at gabe;
+ Tue, 30 Jun 2026 15:09:52 UTC
+Received: from n169-113.mail.139.com (n169-113.mail.139.com [120.232.169.113])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6EAE710E06B;
+ Tue, 30 Jun 2026 15:09:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=139.com; s=dkim; l=0;
+ h=from:subject:message-id:to:cc:mime-version;
+ bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+ b=VIcaokEuiOIFYvtdM48QKVnsxwG2kkrmSLbyDxYqtAGXRcYVFgbt30lU1YJ37wO9T86QTK2lae+uA
+ lJares/U6mm3pae0kau4OqH7BRnBt3voSE8so0jC1LQF9Mf/dirufMdgji2tfCnN4Y4SD2SazAllpF
+ ByPYHPn6/5XytH1w=
+X-RM-TagInfo: emlType=0                                       
+X-RM-SPAM: 
+X-RM-SPAM-FLAG: 00000000
+Received: from yoga-Yoga-Pro-7-15ASH11..
+ (unknown[2409:8A00:7882:4A80:26A:22CB:C855:10DC])
+ by rmsmtp-lg-appmail-34-12048 (RichMail) with SMTP id 2f106a43d9f90a9-020d0;
+ Tue, 30 Jun 2026 23:00:22 +0800 (CST)
+X-RM-TRANSID: 2f106a43d9f90a9-020d0
+From: Jackie Dong <xy-jackie@139.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, alex.hung@amd.com, ivan.lipski@amd.com,
+ wenjing.liu@amd.com, robin.chen@amd.com, superm1@kernel.org,
+ meenakshikumar.somasundaram@amd.com, Derek.Lai@amd.com,
+ wei-guang.li@amd.com, gaghik.khachatrian@amd.com, jack.chang@amd.com,
+ Duncan.Ma@amd.com, PeiChen.Huang@amd.com, aurabindo.pillai@amd.com,
+ zhao.xichao@vivo.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Jackie Dong <xy-jackie@139.com>
+Subject: [PATCH] drm/amd/display:Check dp_128b_132b_supported_link_rates.raw
+ before link_rate setting
+Date: Tue, 30 Jun 2026 22:59:55 +0800
+Message-ID: <20260630145955.13994-1-xy-jackie@139.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 01 Jul 2026 07:11:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,45 +70,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [5.69 / 15.00];
+	SEM_URIBL(3.50)[139.com:email,139.com:mid,139.com:from_mime];
+	R_DKIM_REJECT(1.00)[139.com:s=dkim];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[139.com];
+	GREYLIST(0.00)[pass,body];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MISSING_XM_UA(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dakr@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[139.com];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,kernel.org,vivo.com];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,139.com];
+	DKIM_TRACE(0.00)[139.com:-];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[xy-jackie@139.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	ALIAS_RESOLVED(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip4:131.252.210.177:c];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,139.com:email,139.com:mid,139.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2FA456E5782
+X-Rspamd-Queue-Id: 3A21B6EA91B
 
-On Tue Jun 30, 2026 at 4:26 PM CEST, Matthew Brost wrote:
-> If we merge the patches in drm-xe-next and pick them up via a rebase in t=
-he
-> AMD trees, that works.
+[WHY]
+In the evolution of displays from DP 1.4 to DP 2.0, due to considerations 
+some factors,such as cost, some displays support 128b/132b encoding but 
+do not support UHBR rate transmission. The values can be read from DPCD 
+register address as below.
 
-IIUC what your are proposing this will create duplicate commits, which shou=
-ld be
-avoided.
+0x00006 is 03
+0x02215 is 00
 
-If the series is needed in multiple trees it is better to pick a common bas=
-e and
-share via a tag that can be merged in all relevant trees.
+For such displays, the current kernel reports the following error message.
+
+[drm:dp_retrieve_lttpr_cap [amdgpu]] *ERROR* retrieve_link_cap: Invalid RX 
+128b_132b_supported_link_rates
+
+[HOW]
+Add new judgment: if all bits in dp_128b_132b_supported_link_rates.raw 
+are non-zero, then further determine the specific UHBR type; otherwise, 
+determine that the display does not support UHBR.
+
+Signed-off-by: Jackie Dong <xy-jackie@139.com>
+---
+ .../gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
+index 47abb4066709..58cbb7ac8f9e 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c
+@@ -2079,7 +2079,8 @@ static bool retrieve_link_cap(struct dc_link *link)
+ 	if (!dpcd_read_sink_ext_caps(link))
+ 		link->dpcd_sink_ext_caps.raw = 0;
+ 
+-	if (link->dpcd_caps.channel_coding_cap.bits.DP_128b_132b_SUPPORTED) {
++	if (link->dpcd_caps.channel_coding_cap.bits.DP_128b_132b_SUPPORTED &&
++			link->dpcd_caps.dp_128b_132b_supported_link_rates.raw) {
+ 		DC_LOG_DP2("128b/132b encoding is supported at link %d", link->link_index);
+ 
+ 		/* Read 128b/132b suppoerted link rates */
+-- 
+2.43.0
+
+
