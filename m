@@ -2,133 +2,132 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ApM+F5C+Q2pAgQoAu9opvQ
+	id rGzkFy3CQ2p6gwoAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 15:03:12 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 15:18:37 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46A126E4951
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 15:03:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC9046E4C09
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 15:18:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b="nzTk/tQR";
+	dkim=pass header.d=amd.com header.s=selector1 header.b="yYi2rb4/";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3B9610EC86;
-	Tue, 30 Jun 2026 13:03:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F4A710EC9B;
+	Tue, 30 Jun 2026 13:18:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH0PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11011020.outbound.protection.outlook.com [40.107.208.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D607510E1FC
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 13:03:08 +0000 (UTC)
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012064.outbound.protection.outlook.com [52.101.53.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A25A10EC9E
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 13:18:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mEe5MJItgupylYy1nXVa81pv8Bsq2ZjbNlhqiX+957jSyHZDenrPDYiZMvAUXOvDUPYEPYychrbLUwSciP5xb60/XZoW6CU1nd2BmhQJXQ7OqV9hYX/Cifp+Urn/FZB0uUsAxeQrfmlc57f2qRIHfjEkAa5eRg2n+mHc4qtUZYmv0ZK+lnU9694lWOh0QC/xFBGriJEuKK7MV9zfwFksuWzJaTA7DhBOZdi7tAe/O/JQSM4nSZJMDRYHRO22ja2ssArZstdYHSpTfFySgpk6ecrpPJdPHaHjT4BBhNd3T5h6Rgzm0TN6B3zLd3dmiHvISQN3A6LR8d+GDXAYgvs4OQ==
+ b=beaK63LVfv34ELHSsQK+c8QUZvy/enVlAbSS31hBHOZyoZI+Wr4UQ3Kn3G16tExlqYJ8/zjD9kRdONqymmwBjyHZy8j/ILZ+el0Mq0PQasCOTXhTCeQKI8OTJHX5Q5kPWG+3UYcPAn658fFtlrilHORs9v3z6hyBLfQF/t+XMWf4J5BgoFg/mkB/7/PBNwcIG7xXMbFVeJ+6QwGHKDSyTbpHXmuSeAduyIGPKelxMVvl9tXcz5LQRH068W2S3okrz1mWshI5t5SdWwG2RLcEsBMfKCy8rhwBMbefdNGHnMTZrQPgQIe9+KOOlrJ3JFyB+fTAKW0rULW9qBS76lxbpA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cATyS8qaIqg2zulIt90lO7d8eFK70KaMNJ+9oMvWyEA=;
- b=jpP3+F5egyTjqSTCnFHOXHM6l/zIive+mUAGVR31vNHpEKPSs1XbnxH4K+Sm9N0s/CmAColtcqwWNkrxWCqPxUzB4/pGm6o/0s/Kjci1vqkATui+StU5U2Duod5GJky/c5aaCTYE65lB5vzu2WzGQRSO683IPEyBDwN1QMc9NjJWVijUz73c7Dt2mf4q3IiweXZLv7XaC2a/9iF7MB8J1itDo4rDcqa0MFXl699ADoUwajG2gfltqr+7IcCcc2SFY7Bi43hkO2sLqezFkJiWnZ80UQKA6+ukQH84taH0CYdtUHAiEnFP88+12bs7WJt8uVj+mODueWIGHZV3g1/xTA==
+ bh=B2VOqvW/lYrxPENft77d+4biO6Qk5JtTF04FJy/GhyU=;
+ b=Vd8eraAhKw5CjHl6NcK1iFLn0WjYJgLcZidU8TPbzhS6cRxuA9JW/gsdlLiQkm/kgDNbbk2nH8DIM0s5lZpbj3t5POE2Bxo3vlj7ZtlqKGCpMDu9GpdFgpFU3f9EyjE4/CrZdJCGyFRNOW0lSDrAouIqnJadjde62CA7ZUQdDyug3FxMFtbiCFYaUAoiT/5V0RPbdP7bJJmECUeqY0B489sxO3aCPKW/oP4w9zoY5ECg4oYIbxJFZ2yiotq4AcP2PJ5JNGbtHByuL0DDTRHxh9EsqGS+8ZiU1edTnHRQf0joyL8VYsZ7DmFgypEuH+GyfYqddPabBFYOc7ZyBQfeug==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cATyS8qaIqg2zulIt90lO7d8eFK70KaMNJ+9oMvWyEA=;
- b=nzTk/tQRgDGW6U17aU14/d+95JlaSpRYmqm4I7kVjhCaKu65rHFSwLbqS10Q7ecxpUyrxMf8rEJ53yzyeKO5TExaax0JVpvQb1w3YI939vKnhdLmTkvzVbSuaCdK5+8ihaMlewbBEihIyUUkSsDbWDLqTVDjeP2nobfRc2wacsY=
+ bh=B2VOqvW/lYrxPENft77d+4biO6Qk5JtTF04FJy/GhyU=;
+ b=yYi2rb4/quWzztu56oDQcUsw5Epe7+s2tTknmWmAboPTzYQkmaaM614wAM9ELAAVawsaZbDRYDKk56q59IYJDC9OSrT9bZAECRVC2gpAVo//mmcsigS2X4Ghf4/mMTuEUuT07qGBL2OoLew0UvVSy7ePkq75numwGCrAxkkjgvc=
 Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SJ1PR12MB6025.namprd12.prod.outlook.com (2603:10b6:a03:48c::7)
+ by MW3PR12MB4490.namprd12.prod.outlook.com (2603:10b6:303:2f::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Tue, 30 Jun
- 2026 13:02:58 +0000
+ 2026 13:18:28 +0000
 Received: from PH7PR12MB5685.namprd12.prod.outlook.com
  ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
  ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0159.018; Tue, 30 Jun 2026
- 13:02:58 +0000
-Message-ID: <109ee3c0-2111-4256-bcac-59da1f76d2d5@amd.com>
-Date: Tue, 30 Jun 2026 15:02:47 +0200
+ 13:18:28 +0000
+Message-ID: <67d1e917-9c35-4161-893c-51d3490a4e04@amd.com>
+Date: Tue, 30 Jun 2026 15:18:20 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v2 2/4] drm/amdgpu: Add a new ioctl for listing client
- contexts
+Subject: Re: [RFC v2 4/4] drm/amdgpu: Add driver managed buffer copy
 To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, amd-gfx@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, David Francis <David.Francis@amd.com>,
  Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  Felix Kuehling <Felix.Kuehling@amd.com>
 References: <20260623141257.66086-1-tvrtko.ursulin@igalia.com>
- <20260623141257.66086-3-tvrtko.ursulin@igalia.com>
+ <20260623141257.66086-5-tvrtko.ursulin@igalia.com>
 Content-Language: en-US
 From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260623141257.66086-3-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20260623141257.66086-5-tvrtko.ursulin@igalia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BN9P223CA0023.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:408:10b::28) To PH7PR12MB5685.namprd12.prod.outlook.com
+X-ClientProxiedBy: BN9PR03CA0177.namprd03.prod.outlook.com
+ (2603:10b6:408:f4::32) To PH7PR12MB5685.namprd12.prod.outlook.com
  (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SJ1PR12MB6025:EE_
-X-MS-Office365-Filtering-Correlation-Id: d035be32-adeb-4b6b-5045-08ded6a7e865
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MW3PR12MB4490:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4d0ff87d-f69b-420b-e979-08ded6aa12e1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|1800799024|376014|18002099003|22082099003|4143699003|11063799006|3023799007|56012099006;
-X-Microsoft-Antispam-Message-Info: FDDGMvGXCUBpQ5laXQ3y4iOjiuywghacY24viBE5Y0Au1Qntoh6s+JPrdsdjmKI8F8KYxOUuCnoz0Ad8xGbifljj/HwMvyQtTM8WV42Dq+g9fdz0ZfP5Uo4viurVcEzX2jiPrEuSWBDsPMPZAYRn+ZT0Tgb2y0HB2ByoIy8a/Vx80eyUypjHgZgmxCsaCWADoDjP2ti22lDkJJsskXfY5U270gtaordtU5UNKE0LQG8NVar76azSGLaqvYzfihUNtFeckFvOLAtEkP0E6W7aCiHUWuIpB5WiEQFhg9lsBDUeiir+sluhHjc93oDNFVvEbwiejJtQkvHnDDYkPMct++75BrqP0rnJq4dbUNnnj+KDzIZxCYT6mLMYJw5bhx7260lDPQHDBpBUXkGlE9L+jvKm8o00yaEldiqBhaKqcDSi4bw//gXs7pjOxYZTrI65kMSoVq1+QDqbsz8wuTu3u0oSTNZs+EWlT52RWUHUeggPXq/EqJYy7eSU9siqdLpiWl+xNZTWMwy6qKFKq17xkyBxlsS4mm5gKFwxbpnuBcJAgkjEffQbYp8d4c+Vta3Sr38JKtOu31F3Imf2mJ+StUf/oIJLtMuASou0/go63lUebr72V1GbLd+MMH3a3BxLWG+7F4lO+hsuEznsSJs2MOuxNpmXw7S2N4GFTtWNOaI=
+ ARA:13230040|366016|23010399003|1800799024|376014|22082099003|11063799006|4143699003|18002099003|56012099006;
+X-Microsoft-Antispam-Message-Info: 3sKUoOXNl8XFyxFhfJaj19jDnuVjGkLY3GaeNd+uNSkHvJzODypzbAcuS8KZdJVZdnnfNP60PdDnLrmc/WcG2QZFY7RJ5L8HqcJb0OPZB5KHLNIkMXkfpU2qlXY4+JzQYuBq7Zsk/KSbFb4fFa+G4wENihO87mc2ZsuMGY5CXpLdPc7A8PaBRlYrj32D4DwKAhDTzfpoPdVEXt84hxTVZjNRr4lnBizfQ2BWRmOst9f+6bUND5YAGfV/UFMK11xqWP43ZvFjwNkLPYzFBh4fn5cEVodcOy++QUKl7ZKzz+W1w3rglzOxKI1XbbiQOTkvisfyA87wUFLYYfvO1v7qaob83wMM7oQzjsw6MuBc5B7bhrz46iZqj6eO32xIPT7ZcSf/vc6VDW6HvElVAi0dpmB3MbV9FZE/v7gWfLjiOsD/+wNutwInvsYzszFbe6GeZXSgbznK9jKslD1Par5qfG3MaN2Yb9qFpSZMt/Ok/m/Achfd/TqWR71WvmhXGuT81okLReEe71AU2wjv5F5PZ6QYwKw8WaxO2KGvoV3aBbWu0TsBw8iGTHr4oZQzxkv70CR1TZ+H5hunpM/XQcBWsONoJugZNTXo/3AvqXteJxmy8NwDjWbbYACE9y0CsjRF/LdeH/Qqp0GmMYOIaf3JF1tthdpdevpQrETpVEDnnYU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(18002099003)(22082099003)(4143699003)(11063799006)(3023799007)(56012099006);
+ SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(22082099003)(11063799006)(4143699003)(18002099003)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S0FPVGlEdFpxMHpUU2F6RXZIMnNLaXVTQmZjSTRtTS91R3BPQUNFUFlqRyth?=
- =?utf-8?B?UmJtalphUUJZUXl3U1l1a1FocG9zOE1hL2IxUGZIV05lYWxPcFUzMzd1Z1dj?=
- =?utf-8?B?VktNdmNGY1V2cFVDcTZPK0x5ZnpTOWVaRndBd3lsUVg5RzhDTTBpV2oyNmxp?=
- =?utf-8?B?QytZZ1Z3bEl5SWJuU2doS25aNUMxaEFZV3ZNdkhaK0tKZzUwSHpjRWxKNjBy?=
- =?utf-8?B?SGh2OG1BeS9QNkVtRE1kSmZyQlpQWjIwZEluZkpWbVVYZVMxWGg2d2FQU0Nz?=
- =?utf-8?B?Nk5rUTlRTTRudG5kR3RFVkxaS0lFNDIwNW9WNFJyMDhCa2tQejNqZFRJbHBs?=
- =?utf-8?B?WUNPZHgwZzc2bzVlTDZ2SDl3SGRNcXljTnNwcy9LaFNEUS9vU1YwVFdNQXRh?=
- =?utf-8?B?ZU9HRmw5ZXREQlBCZkl0REZPaW1xbmJ5Uk45RFFGSXNRbHhmNzhxdUR0Y3RL?=
- =?utf-8?B?Ti9DdHFaQW1hL25LR01VeFNhRVI5Y1J2Qmo0N2hvU0RIY1ZTQTc1cmI5K2cy?=
- =?utf-8?B?cHA1eGp4U3NLek1lUjRUSjRzYzNmR1ZPYXVjNHNjcG5YYkZPaTlLU0k3UEVS?=
- =?utf-8?B?ZWpMRGJDcloydk4wMHdqUGJCNnRQMTl4Z3VCWnNtTEUrVTZSaXlqM2tJbU1p?=
- =?utf-8?B?cXpCalNkaDVmbnNsdm43azZJd0NQZnpYOWhaOS82M1ExTk03b1dnOHlYRTFt?=
- =?utf-8?B?ZXNETHJ6QkR2TEdTNXE0Zi95SnM5REZ2UFNXMnZ2eXc2U25QT3IwMTZld0hE?=
- =?utf-8?B?dGdFRVlCVlozRUJUZEZlYVBvazcrMWZYdU9SaEt3RjhkNC9ySUlSYUFxY2V2?=
- =?utf-8?B?MWtRTVVRNWloZWdoNkZTeUxxWXF2cU1aK3JZWFZRQnNSZGZ2Y1cxNUZUUjFy?=
- =?utf-8?B?a2tBMWZOa09nb3hRL09Jenp2UjdYS0R1Y0pMTlFvN3BoV0MzOTZ6eHlMMHpD?=
- =?utf-8?B?eWJsbytrVy9lTGJtUEJBTHl0VS94a29sUE1Dc3BFanowdDQwb0JTUGJ5eE1r?=
- =?utf-8?B?ZkFmTEtKRHJaS2FubkJlMCswVGJ5RTlZUThvS1lRL0FBV2oyYTJabndrZzJQ?=
- =?utf-8?B?b3g1T00vdy9qZ085dkFqaGZvdVc2Wmp3a05pNDlrWDVuVzNWMjh1OUJwL3Jt?=
- =?utf-8?B?S3pJbHpzVFE5MENxeG5OeklpeXpxcXhWUTZadHN3VHB3WjFreG1qU0R5NTdS?=
- =?utf-8?B?Q29LZ2ZjN2ZaU2ZmdlRjZUEyUW5rSVlkNUZyL1dZczd2WUpoa0J3NldCSEUw?=
- =?utf-8?B?M2s5dkx3TWlESm9rZnpvbFhBYkVCUTRBY1FKWEJkMVhGUmg4Wmt6UjdFdHBr?=
- =?utf-8?B?OWVjL3MxdGp1QWJxUzlQeHlHV3ZzOFFHRWl6SENxVVFKeDMvWkxuU3RjbDd2?=
- =?utf-8?B?SVd4MC9iMkd0RHRMZW5WUEVnOUFxRGJudVpOcDRwZmNkMkJQSnZudFVDUk12?=
- =?utf-8?B?dDIxdkg4QzVSNmh1eUc5YUhpZHgwOFY0YjFQUENBL3A2MlVma0xZL0QrZXlz?=
- =?utf-8?B?K1J0SG4xRGUxU3ZvZFc1TmlBU3k1WGZsaHJtUGttNzl6TDl6Wno5Nm9NQ1hE?=
- =?utf-8?B?TDZGcUkzcjVBQ0ZmOVJjdktuM0RVcENCcnp6clVGWG8ycDA1dG9QK2taSDht?=
- =?utf-8?B?YmF6Nk14MFoya0hybDV1bitRSXlrNFp1VHNNUTlVNTRtYkRJdG9IYWt6L1V3?=
- =?utf-8?B?eG4rQldacVdxekZsdlJsa0JJcFdTNTh2NVkwYjZKL1ZZMnF0Q21vZWdrTkJZ?=
- =?utf-8?B?YjJodGYvaEwrc1EwMUdWZnhtSE5MdVJ4ZHN5eTZWOEdPSG93eHNHSFBaMXhP?=
- =?utf-8?B?L1lmdVMyajlCdXQvZzBCTG45b21MQ1dpbEt5YTN4WERJdVJOZkg5M0pYWXZy?=
- =?utf-8?B?eEJrTjZnZk5pREU1QjQ1OUY0OXhqMGhPOTdEY0lFcXF2YTdLeWdFNyt5SXBO?=
- =?utf-8?B?c0ZOL1V6M0RRSHpmZ1RuQTlGOUYzYjNGRnljQ2NvZnB6VmJNR1J6eWlWaEZv?=
- =?utf-8?B?eDdrNjJPc1AreVpibG9iM29LaW9OOXJoZzJjOGdWT0RIN25oVHhqSmJWcU94?=
- =?utf-8?B?TzR5anpkMVlQV3N3QVVycTIzTzdidHUzVFRiZG5jSjVCMkpySHBFWXFobCt1?=
- =?utf-8?B?M2g2WUNSVUxSbUVRZDZSTnVnUUoyQUpGS3ZHZzR3MUVHdzlTUG4zM1hvN09N?=
- =?utf-8?B?b3FLcG1vNG91eXNHVnE0cVFxK3RQdUNlUWFMUzk1NnFqV2k0TGg3d3MzTTFn?=
- =?utf-8?B?Mm1CMXRCeHZOMUZ3QXB1Y1UzcFExejBPMzl3Q0NHZDBqbE5EbzYzS2NoRjlS?=
- =?utf-8?Q?mFz/uCmxvWTWRBJz46?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bDUvYjMrb1h4aE95VkQrb3Bmcm1uTXNCQXh6Yk9vY3gwVDNyUkdwV3cwcFVP?=
+ =?utf-8?B?aHR4dy8wVy8vMXB1ZWEwTGJBbk1tamxPdDdUZFZqTEtqQmdYRkRtWVgvZnVE?=
+ =?utf-8?B?RXVHK2RkZ1JYSVg1eXVhdURrUFNSdjI2cGNOYnRjQjNHY3RCbXgzNk9sMkY3?=
+ =?utf-8?B?WmZlQ2dJVXVRdEJFQkxYV2o2UXBLL1Jzc01ZT1dTMmpMRDZucTZDSGJrZWFq?=
+ =?utf-8?B?TDdLS1pTdjM2TTIvLzRGcFBISWJqKzY0NFZsZk03aEZpWlN5OEpVZVNUZFlQ?=
+ =?utf-8?B?cDFKNmphNE9wQmhBVHo1RDVDUVFWUkhhWkIxaC9YVU5MU1ZFOTFPdmNYVm9z?=
+ =?utf-8?B?WXhRRWZ4NDZ3eTRyL21WaU5rbDROMm82aTJxKzQ1M1BlMVh0dWQ5QzB6U2pY?=
+ =?utf-8?B?TlNRcU92UXV6WFdWdUdpRzI2Unc2dHhBMno2bEpDQWgyYStkTnpHY2hWZGUv?=
+ =?utf-8?B?RUlBRUFxK2VkSktUYktCZXhSZ3Q4TVhxN2dQeENuZE44M3JoYWxWTy9aY3Vz?=
+ =?utf-8?B?QkRmQW9QWVg1UGd4MDZzN1JKTGp1Qi9IQTRmbHQrZThiLy8zcGd6SlIwRHY3?=
+ =?utf-8?B?SWVJangxT1MyYmtNTXg2YlhRL01EZmNDN0lCazNTNTl0WGJtd3EzVzdlOCsy?=
+ =?utf-8?B?NFdYSEhBVFN0T0VFU0ovdHViUjdMQ2tLbEdSdmFZRG1FMW1ralZxS0xyOWt3?=
+ =?utf-8?B?K1JXWDNzaGpGY1BtaEtuY01WQWNLTDd1TTBRU29QMWl6WnlacWpDZStqakYr?=
+ =?utf-8?B?dnRWdW1hNEVXOWt1M05KNGk3RWRHY2M4dVBPdW81Ni9lUFZ2VDlUK1p1WUwx?=
+ =?utf-8?B?QWRtaUlzaU85NVdIQ3lBL3N5N1ZlSW9XeUZTZHpZQW9xRWRMVFNTdnp2SDBy?=
+ =?utf-8?B?ZWlVSGJmSHhVR0FLU0MyQVloYkViT2N0QlZZOUZMUE9Jd2t2SkQzWHdPQlhP?=
+ =?utf-8?B?V29mRFZZQktTNkxKWE1rRElscmxkVTd2Yk40T0VTbHFPN0hndG9NODZUZWJN?=
+ =?utf-8?B?cUxMK1Z1UmJuN011QW9FNExUMzNPVURxNTlHVGlDdUJ6eXIvZHd2QnlnSC9t?=
+ =?utf-8?B?amJZYmcyWGNrSXo5NUU3cVNCZGY5Y1lETHFqcWRUZ1NaYVhQNUNYNzFBNFVQ?=
+ =?utf-8?B?Y0JVbGZBazFPbThEdTZCNE5hKytzYWF0OC9GeW1jeEl0NnQrZmxZeXRDZjJX?=
+ =?utf-8?B?cmNPTTZ5QThueGwrVEg0c0Z1cVR2NklYKzdpbDRUZ1d4b1BHMDVNazNzZXdk?=
+ =?utf-8?B?aGtuSlRWcHZNbzBlanlqQ2ZCN0Z4LzJETXNEa0Qvbm00NGM0YlZqVTJrZkYw?=
+ =?utf-8?B?VHJZclhlN3I2dW9aNDUzc2I4alJMUHEyTUNQSWZkYml3Z0ppTnI2d0x2ZGJ5?=
+ =?utf-8?B?OEdzbWR1QkdaODFYMVlnRzNmTHQrWUlnZXZua0NpZElyd00wTGtiQno2Ykhs?=
+ =?utf-8?B?bHZpTkZYbWlkQkl3VFFDRkN0L1g2Qm9kNC9tbVJZZmJlTzB2andySXFJU0dB?=
+ =?utf-8?B?YXA0bjQ4WVRJV0NUU2UvZzRNdk5DdkpndFpSR1U1N29Na2VRbmZEcmN2d2ls?=
+ =?utf-8?B?M3dLdjM3ZFIweXZreHhqTldRZDlFNVhJVVh3QWwzYjJ5eWZvOGF4U2prbmM0?=
+ =?utf-8?B?VjRTZGVLMkZOQUNaUHZZa3pZUm9nNVdubFVadzBFR21ESnlicUY2MHdyKzht?=
+ =?utf-8?B?bjJPNU5sSjNnajRBeGt0eVVTWGlZK2RnWUUxblhMK2ZaQ3YrYWo5VGJoajNn?=
+ =?utf-8?B?emJIcGpQZENwT1hYSzVmanVXcEFsUEwzWDZYcUFkYm90Sk4rcEUxYUUycFB2?=
+ =?utf-8?B?Q3FQSVJwK0Y1dlRVNS9McEZGdFZBSmozcG1CYkFFK0Rtd3dya0dma2tUejZa?=
+ =?utf-8?B?N0xqR0NjSVVMOStBbDRXc1ZlS2ErREhnODNsRHFUVUk2elNGd05Pdm9XRG5J?=
+ =?utf-8?B?QkVxOE1KdUdkcVp5QWprSmlJOExSV0ZKeTIrSXFid3laNWFMU09jb3FjMldH?=
+ =?utf-8?B?dnBsY0FkMm10aUttUlNKMkhTdW5yUzB0dk4yZ3Y4ejlVOW8wOFJIbEhvcU5W?=
+ =?utf-8?B?VWlFc25GR0VOMllQYUQrTkpwZjRMdVp6K0pVbmEwd1I1VjBaT2Z1MzVHVm9G?=
+ =?utf-8?B?THFTN2ZIMm5OU1NoUVErSVhkdkxrU0wxaHlPODZPeHNoNm1YTnBmdjFUZ2F0?=
+ =?utf-8?B?OW0wOFF2elJ2TVFYTDhrbDBtV0NCMGxveFEwdHVoTnA0SkYvSVVrdHIxMk5B?=
+ =?utf-8?B?T09OdmN6dDduMW9IQU12MzVnZHZpTmVqZWhhYmU3Tm1LeklGVEdlQnF0clNK?=
+ =?utf-8?Q?uzYXZZrTx8LvysHz/e?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d035be32-adeb-4b6b-5045-08ded6a7e865
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d0ff87d-f69b-420b-e979-08ded6aa12e1
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 13:02:58.1886 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 13:18:28.4928 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eLfOjYiOGBo2wqOEqAGFUYxhXPRc4/i6abBBzbOfLmrZLlg4lRBrqgwVn89Fbv+j
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6025
+X-MS-Exchange-CrossTenant-UserPrincipalName: vwoVuOvscMwgpvt+8qwoeYLXX53bflp7LILI241yxB3ieAdBRmSLJL/Fdj91n00c
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4490
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,11 +152,11 @@ X-Spamd-Result: default: False [-2.31 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:tvrtko.ursulin@igalia.com,m:kernel-dev@igalia.com,m:David.Francis@amd.com,m:Harish.Kasiviswanathan@amd.com,m:alexander.deucher@amd.com,m:Felix.Kuehling@amd.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:tvrtko.ursulin@igalia.com,m:kernel-dev@igalia.com,m:David.Francis@amd.com,m:Harish.Kasiviswanathan@amd.com,m:alexander.deucher@amd.com,m:Felix.Kuehling@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[amd.com:+];
@@ -172,231 +171,288 @@ X-Spamd-Result: default: False [-2.31 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:mid,amd.com:from_mime,igalia.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:mid,amd.com:from_mime,igalia.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,src_mem.bo:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 46A126E4951
+X-Rspamd-Queue-Id: AC9046E4C09
 
 On 6/23/26 16:12, Tvrtko Ursulin wrote:
-> Similar in principle to DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES, we need a new
-> ioctl to list any contexts created by the client.
+> Saving and restoring buffer object content poses a challenge for the
+> checkpoint and restore process for at least two reasons.
 > 
-> Lets add it as DRM_IOCTL_AMDGPU_GEM_LIST_CONTEXTS, and the respective uapi
-> data structures.
+> For example not all objects can be exported as dma-buf to enable copying
+> from a separate client context, neither can any objects be easily copied
+> from the same context since the injected CRIU code is unaware of the GPU
+> virtual memory free and allocated ranges.
 > 
-> Structures contain all information required to re-create the context,
-> modulo the handle id replication, which will be handled in a following
-> patch.
+> Lets bypass both problems by simply exposing access to the alrady present
+
+Typo "already".
+
+> fast kernel copy via a new DRM_IOCTL_AMDGPU_GEM_COPY_BUFFER ioctl.
+> 
+> By giving the kernel simply the source and destination handles it is able
+> to copy them without the need for objects to be mapped, or shared with a
+> separate client.
+> 
+
+
+> For now this is implemented fully synchronous but can easily be extended
+> for more parallelsim.
+
+I think that sentence can be dropped now.
+
 > 
 > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 100 ++++++++++++++++++++++++
 >  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |   1 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c | 104 ++++++++++++++++++++++++
 >  drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h |   2 +
->  include/uapi/drm/amdgpu_drm.h           |  31 ++++++++
->  4 files changed, 134 insertions(+)
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |  14 ++--
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h |   7 ++
+>  include/uapi/drm/amdgpu_drm.h           |  16 ++++
+>  6 files changed, 137 insertions(+), 7 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-> index ce35b415093d..b9bbf8677174 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-> @@ -768,6 +768,106 @@ int amdgpu_ctx_ioctl(struct drm_device *dev, void *data,
->  	return r;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> index f61f0ddd3ccf..993f38d70086 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> @@ -3077,6 +3077,7 @@ const struct drm_ioctl_desc amdgpu_ioctls_kms[] = {
+>  	DRM_IOCTL_DEF_DRV(AMDGPU_USERQ_WAIT, amdgpu_userq_wait_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+>  	DRM_IOCTL_DEF_DRV(AMDGPU_GEM_LIST_HANDLES, amdgpu_gem_list_handles_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+>  	DRM_IOCTL_DEF_DRV(AMDGPU_GEM_LIST_CONTEXTS, amdgpu_gem_list_contexts_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+> +	DRM_IOCTL_DEF_DRV(AMDGPU_GEM_COPY_BUFFER, amdgpu_gem_copy_buffer_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
+>  };
+>  
+>  static const struct drm_driver amdgpu_kms_driver = {
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> index e75026aba874..ccc0ecfe6603 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
+> @@ -32,6 +32,7 @@
+>  #include <linux/pci.h>
+>  #include <linux/dma-buf.h>
+>  #include <linux/dma-fence-unwrap.h>
+> +#include <linux/sync_file.h>
+>  #include <linux/uaccess.h>
+>  
+>  #include <drm/amdgpu_drm.h>
+> @@ -1234,6 +1235,109 @@ int amdgpu_gem_list_handles_ioctl(struct drm_device *dev, void *data,
+>  	return ret;
 >  }
 >  
 > +/**
-> + * amdgpu_gem_list_contexts_ioctl - get information about clients contexts
+> + * amdgpu_gem_copy_buffer_ioctl - copy buffer object content
 > + *
 > + * @dev: drm device pointer
-> + * @data: drm_amdgpu_gem_list_handles
+> + * @data: drm_amdgpu_gem_copy_buffer
 > + * @filp: drm file pointer
 > + *
 > + * Returns:
 > + * 0 for success, -errno for errors.
 > + */
-> +int amdgpu_gem_list_contexts_ioctl(struct drm_device *dev, void *data,
-> +				   struct drm_file *filp)
+> +int amdgpu_gem_copy_buffer_ioctl(struct drm_device *dev, void *data,
+> +				 struct drm_file *filp)
 > +{
-> +	struct drm_amdgpu_gem_list_contexts *args = data;
-> +	struct drm_amdgpu_gem_list_contexts_entry *contexts;
-> +	struct amdgpu_fpriv *fpriv = filp->driver_priv;
-> +	struct amdgpu_ctx_mgr *mgr = &fpriv->ctx_mgr;
-> +	struct amdgpu_device *adev = mgr->adev;
-> +	unsigned long num = 0, idx = 0;
-> +	struct amdgpu_ctx *ctx;
-> +	int ret = 0;
-> +	u32 id;
+> +	struct amdgpu_copy_mem src_mem = {}, dst_mem = {};
+> +	union drm_amdgpu_gem_copy_buffer *args = data;
+> +	struct amdgpu_device *adev = drm_to_adev(dev);
+> +	struct drm_gem_object *src_gobj, *dst_gobj;
+> +	struct amdgpu_bo *src_bo, *dst_bo;
+> +	struct dma_fence *fence = NULL;
+> +	struct sync_file *sync_file;
+> +	struct drm_exec exec;
+> +	unsigned int e;
+> +	int r;
 > +
-> +	if (args->padding)
-> +		return -EINVAL;
+> +	src_gobj = drm_gem_object_lookup(filp, args->in.src_handle);
+> +	if (!src_gobj)
+> +		return -ENOENT;
 > +
-> +	mutex_lock(&mgr->lock);
-> +	idr_for_each_entry(&mgr->ctx_handles, ctx, id)
-> +		num++;
-> +	mutex_unlock(&mgr->lock);
-> +
-> +	if (num == 0 || args->num_contexts < num) {
-> +		args->num_contexts = num;
-> +		return 0;
-
-For the args->num_contexts < num case I would expect an error return.
-
+> +	dst_gobj = drm_gem_object_lookup(filp, args->in.dst_handle);
+> +	if (!dst_gobj) {
+> +		r = -ENOENT;
+> +		goto err_dst;
 > +	}
 > +
-> +	contexts = kvzalloc_objs(*contexts, num);
-> +	if (!contexts)
-> +		return -ENOMEM;
+> +	src_bo = gem_to_amdgpu_bo(src_gobj);
+> +	dst_bo = gem_to_amdgpu_bo(dst_gobj);
 > +
-> +	mutex_lock(&mgr->lock);
-> +	idr_for_each_entry(&mgr->ctx_handles, ctx, id) {
-> +		struct drm_amdgpu_gem_list_contexts_entry *context;
-> +		enum amd_dpm_forced_level level;
-> +
-> +		if (idx >= num) {
-> +			ret = -EAGAIN;
-> +			break;
-> +		}
-> +
-> +		context = &contexts[idx];
-> +
-> +		context->handle = id;
-> +		context->init_priority = ctx->init_priority;
-> +		context->override_priority = ctx->override_priority;
-> +
-> +		mutex_lock(&adev->pm.stable_pstate_ctx_lock);
-> +		if (ctx == adev->pm.stable_pstate_ctx) {
-> +			level = amdgpu_dpm_get_performance_level(adev);
-> +
-> +			switch (level) {
-> +			case AMD_DPM_FORCED_LEVEL_AUTO:
-> +				context->pstate_flags = AMDGPU_CTX_STABLE_PSTATE_NONE;
-> +				break;
-> +			case AMD_DPM_FORCED_LEVEL_PROFILE_STANDARD:
-> +				context->pstate_flags = AMDGPU_CTX_STABLE_PSTATE_STANDARD;
-> +				break;
-> +			case AMD_DPM_FORCED_LEVEL_PROFILE_MIN_SCLK:
-> +				context->pstate_flags = AMDGPU_CTX_STABLE_PSTATE_MIN_SCLK;
-> +				break;
-> +			case AMD_DPM_FORCED_LEVEL_PROFILE_MIN_MCLK:
-> +				context->pstate_flags = AMDGPU_CTX_STABLE_PSTATE_MIN_MCLK;
-> +				break;
-> +			case AMD_DPM_FORCED_LEVEL_PROFILE_PEAK:
-> +				context->pstate_flags = AMDGPU_CTX_STABLE_PSTATE_PEAK;
-> +				break;
-> +			default:
-> +				ret = -EIO;
-> +				break;
-> +			};
-> +
-> +		}
-> +		mutex_unlock(&adev->pm.stable_pstate_ctx_lock);
-
-Looks good to me of hand, but Alex should probably take a look at this power stuff as well.
-
-> +
-> +		idx++;
+> +	if (amdgpu_bo_size(src_bo) < amdgpu_bo_size(dst_bo)) {
+> +		r = -E2BIG;
+> +		goto err_sizes;
 > +	}
-> +	mutex_unlock(&mgr->lock);
+
+No sub range copy? I would expect something like a ~8MiB transfer buffer to copy a 1GiB buffer in chunks of 2MiB.
+
 > +
-> +	args->num_contexts = idx;
+> +	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
 > +
-> +	if (!ret)
-> +		if (copy_to_user(u64_to_user_ptr(args->contexts), contexts,
-> +				 num * sizeof(*contexts)))
-> +			ret = -EFAULT;
+> +	drm_exec_until_all_locked(&exec) {
+> +		r = drm_exec_prepare_obj(&exec, &src_bo->tbo.base, 1);
+> +		drm_exec_retry_on_contention(&exec);
+> +		if (r)
+> +			goto err_unlock;
 > +
-> +	kvfree(contexts);
+> +		r = drm_exec_prepare_obj(&exec, &dst_bo->tbo.base, 1);
+> +		drm_exec_retry_on_contention(&exec);
+> +		if (r)
+> +			goto err_unlock;
+> +	}
 > +
-> +	return ret;
+> +	src_mem.bo = &src_bo->tbo;
+> +	src_mem.mem = src_bo->tbo.resource;
+> +	dst_mem.bo = &dst_bo->tbo;
+> +	dst_mem.mem = dst_bo->tbo.resource;
+> +	e = atomic_inc_return(&adev->mman.next_move_entity) %
+> +			      adev->mman.num_move_entities;
+> +	r = amdgpu_ttm_copy_mem_to_mem(adev, &adev->mman.move_entities[e],
+> +				       &src_mem, &dst_mem,
+> +				       amdgpu_bo_size(src_bo),
+> +				       amdgpu_bo_encrypted(src_bo),
+> +				       dst_bo->tbo.base.resv, &fence);
+> +	if (r) {
+> +		goto err_unlock;
+> +	} else if (!fence) {
+> +		r = -ENXIO;
+> +		goto err_unlock;
+> +	}
+> +
+> +	dma_resv_add_fence(src_bo->tbo.base.resv, fence, DMA_RESV_USAGE_READ);
+> +	dma_resv_add_fence(dst_bo->tbo.base.resv, fence, DMA_RESV_USAGE_WRITE);
+
+That should be DMA_RESV_USAGE_BOOKKEEP. READ/WRITE are only for implicit sync here and we clearly don't want that here.
+
+> +
+> +	r = get_unused_fd_flags(O_CLOEXEC);
+> +	if (r < 0)
+> +		goto err_put_fence;
+> +
+> +	sync_file = sync_file_create(fence);
+
+Oh, please no sync_file!
+
+Use a drm_syncobj, e.g. drm_syncobj_find() + dma_fence_chain_alloc() before the copy and then drm_syncobj_add_point() when it is done.
+
+Regards,
+Christian.
+
+> +	if (!sync_file) {
+> +		put_unused_fd(r);
+> +		r = -ENOMEM;
+> +		goto err_put_fence;
+> +	}
+> +
+> +	fd_install(r, sync_file->file);
+> +	args->out.fence_fd = r;
+> +	r = 0;
+> +
+> +err_put_fence:
+> +	dma_fence_put(fence);
+> +err_unlock:
+> +	drm_exec_fini(&exec);
+> +err_sizes:
+> +	drm_gem_object_put(dst_gobj);
+> +err_dst:
+> +	drm_gem_object_put(src_gobj);
+> +	return r;
 > +}
 > +
->  struct amdgpu_ctx *amdgpu_ctx_get(struct amdgpu_fpriv *fpriv, uint32_t id)
->  {
->  	struct amdgpu_ctx *ctx;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> index bf4260269681..f61f0ddd3ccf 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -3076,6 +3076,7 @@ const struct drm_ioctl_desc amdgpu_ioctls_kms[] = {
->  	DRM_IOCTL_DEF_DRV(AMDGPU_USERQ_SIGNAL, amdgpu_userq_signal_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
->  	DRM_IOCTL_DEF_DRV(AMDGPU_USERQ_WAIT, amdgpu_userq_wait_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
->  	DRM_IOCTL_DEF_DRV(AMDGPU_GEM_LIST_HANDLES, amdgpu_gem_list_handles_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
-> +	DRM_IOCTL_DEF_DRV(AMDGPU_GEM_LIST_CONTEXTS, amdgpu_gem_list_contexts_ioctl, DRM_AUTH|DRM_RENDER_ALLOW),
->  };
->  
->  static const struct drm_driver amdgpu_kms_driver = {
+>  static unsigned int amdgpu_gem_align_pitch(struct amdgpu_device *adev,
+>  					   unsigned int width,
+>  					   unsigned int cpp,
 > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
-> index b558336bc4c6..0e17d9fc665f 100644
+> index 0e17d9fc665f..64529680fdad 100644
 > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
 > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
-> @@ -69,6 +69,8 @@ int amdgpu_gem_op_ioctl(struct drm_device *dev, void *data,
->  			struct drm_file *filp);
->  int amdgpu_gem_list_handles_ioctl(struct drm_device *dev, void *data,
+> @@ -71,6 +71,8 @@ int amdgpu_gem_list_handles_ioctl(struct drm_device *dev, void *data,
 >  				  struct drm_file *filp);
-> +int amdgpu_gem_list_contexts_ioctl(struct drm_device *dev, void *data,
-> +				   struct drm_file *filp);
+>  int amdgpu_gem_list_contexts_ioctl(struct drm_device *dev, void *data,
+>  				   struct drm_file *filp);
+> +int amdgpu_gem_copy_buffer_ioctl(struct drm_device *dev, void *data,
+> +				 struct drm_file *filp);
 >  
 >  int amdgpu_gem_metadata_ioctl(struct drm_device *dev, void *data,
 >  				struct drm_file *filp);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> index 7ce9e0e194c3..fb1e4d7a87ec 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@ -294,13 +294,13 @@ static int amdgpu_ttm_map_buffer(struct amdgpu_ttm_buffer_entity *entity,
+>   *
+>   */
+>  __attribute__((nonnull))
+> -static int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,
+> -				      struct amdgpu_ttm_buffer_entity *entity,
+> -				      const struct amdgpu_copy_mem *src,
+> -				      const struct amdgpu_copy_mem *dst,
+> -				      uint64_t size, bool tmz,
+> -				      struct dma_resv *resv,
+> -				      struct dma_fence **f)
+> +int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,
+> +			       struct amdgpu_ttm_buffer_entity *entity,
+> +			       const struct amdgpu_copy_mem *src,
+> +			       const struct amdgpu_copy_mem *dst,
+> +			       uint64_t size, bool tmz,
+> +			       struct dma_resv *resv,
+> +			       struct dma_fence **f)
+>  {
+>  	struct amdgpu_res_cursor src_mm, dst_mm;
+>  	struct dma_fence *fence = NULL;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> index e1b3495b902f..0c3aefaca085 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> @@ -284,4 +284,11 @@ void amdgpu_ttm_mmio_remap_free_sgt(struct device *dev,
+>  				    enum dma_data_direction dir,
+>  				    struct sg_table *sgt);
+>  
+> +int amdgpu_ttm_copy_mem_to_mem(struct amdgpu_device *adev,
+> +			       struct amdgpu_ttm_buffer_entity *entity,
+> +			       const struct amdgpu_copy_mem *src,
+> +			       const struct amdgpu_copy_mem *dst,
+> +			       uint64_t size, bool tmz,
+> +			       struct dma_resv *resv,
+> +			       struct dma_fence **f);
+>  #endif
 > diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-> index 24f2dffc0789..3191ae1a0549 100644
+> index 7f5c4de7f9a5..b79c3d4c2ec2 100644
 > --- a/include/uapi/drm/amdgpu_drm.h
 > +++ b/include/uapi/drm/amdgpu_drm.h
-> @@ -58,6 +58,7 @@ extern "C" {
->  #define DRM_AMDGPU_USERQ_SIGNAL		0x17
+> @@ -59,6 +59,7 @@ extern "C" {
 >  #define DRM_AMDGPU_USERQ_WAIT		0x18
 >  #define DRM_AMDGPU_GEM_LIST_HANDLES	0x19
-> +#define DRM_AMDGPU_GEM_LIST_CONTEXTS	0x20
+>  #define DRM_AMDGPU_GEM_LIST_CONTEXTS	0x20
+> +#define DRM_AMDGPU_GEM_COPY_BUFFER	0x21
 >  
 >  #define DRM_IOCTL_AMDGPU_GEM_CREATE	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_CREATE, union drm_amdgpu_gem_create)
 >  #define DRM_IOCTL_AMDGPU_GEM_MMAP	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_MMAP, union drm_amdgpu_gem_mmap)
-> @@ -79,6 +80,7 @@ extern "C" {
->  #define DRM_IOCTL_AMDGPU_USERQ_SIGNAL	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_SIGNAL, struct drm_amdgpu_userq_signal)
+> @@ -81,6 +82,7 @@ extern "C" {
 >  #define DRM_IOCTL_AMDGPU_USERQ_WAIT	DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_USERQ_WAIT, struct drm_amdgpu_userq_wait)
 >  #define DRM_IOCTL_AMDGPU_GEM_LIST_HANDLES DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_HANDLES, struct drm_amdgpu_gem_list_handles)
-> +#define DRM_IOCTL_AMDGPU_GEM_LIST_CONTEXTS DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_CONTEXTS, struct drm_amdgpu_gem_list_contexts)
+>  #define DRM_IOCTL_AMDGPU_GEM_LIST_CONTEXTS DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_LIST_CONTEXTS, struct drm_amdgpu_gem_list_contexts)
+> +#define DRM_IOCTL_AMDGPU_GEM_COPY_BUFFER DRM_IOWR(DRM_COMMAND_BASE + DRM_AMDGPU_GEM_COPY_BUFFER, union drm_amdgpu_gem_copy_buffer)
 >  
 >  /**
 >   * DOC: memory domains
-> @@ -873,6 +875,35 @@ struct drm_amdgpu_gem_list_handles_entry {
->  	};
+> @@ -206,6 +208,20 @@ union drm_amdgpu_gem_create {
+>  	struct drm_amdgpu_gem_create_out	out;
 >  };
 >  
-> +struct drm_amdgpu_gem_list_contexts {
-> +	/* User pointer to array of drm_amdgpu_gem_list_contexts_entry */
-> +	__u64 contexts;
-> +
-> +	/* Size of the contexts buffer / Number of contexts in the client (if larger than size of buffer, must retry) */
-
-That comment looks to long and needs to be broken into multiple lines.
-
-Apart from that looks really good to me,
-Christian.
-
-> +	__u32 num_contexts;
-> +
-> +	__u32 padding;
+> +struct drm_amdgpu_gem_copy_buffer_in {
+> +	__u32	src_handle;
+> +	__u32	dst_handle;
 > +};
 > +
-> +struct drm_amdgpu_gem_list_contexts_entry {
-> +	/* gem context handle */
-> +	__u32 handle;
-> +
-> +	/* AMDGPU_GEM_LIST_CONTEXTS_FLAG_* */
-> +	__u32 flags;
-> +
-> +	/* context initial priority */
-> +	__s32 init_priority;
-> +
-> +	/* context override priority */
-> +	__s32 override_priority;
-> +
-> +	/* pstate flags */
-> +	__u32 pstate_flags;
-> +
-> +	__u32 padding;
+> +struct drm_amdgpu_gem_copy_buffer_out {
+> +	__u32	fence_fd;
 > +};
 > +
->  #define AMDGPU_VA_OP_MAP			1
->  #define AMDGPU_VA_OP_UNMAP			2
->  #define AMDGPU_VA_OP_CLEAR			3
+> +union drm_amdgpu_gem_copy_buffer {
+> +	struct drm_amdgpu_gem_copy_buffer_in	in;
+> +	struct drm_amdgpu_gem_copy_buffer_out	out;
+> +};
+> +
+>  /** Opcode to create new residency list.  */
+>  #define AMDGPU_BO_LIST_OP_CREATE	0
+>  /** Opcode to destroy previously created residency list */
 
