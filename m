@@ -2,67 +2,109 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nAmiMoH1Q2qUmAoAu9opvQ
+	id nD2hBv8ERGpTnQoAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 18:57:37 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 20:03:43 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 448196E6ACD
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 18:57:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F28626E713F
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 20:03:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=e4brlJz0;
+	dkim=pass header.d=amd.com header.s=selector1 header.b="Phv4S/vR";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF07510E23B;
-	Tue, 30 Jun 2026 16:57:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 806DF10E231;
+	Tue, 30 Jun 2026 18:03:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C040510E23B;
- Tue, 30 Jun 2026 16:57:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Qrq29s1UmcG3ZbaxpiVVbSt+a5Mn05Ll4PFR7ojZOso=; b=e4brlJz0fiay1/iAA2Rhi9OPP6
- bG1+8VfWCnz87sz/T3sHuxkBBAvZTYVhPfUSomlqxkdTb1ClIs2bYzESk3aCB0MzEn3ATF+MT6J1S
- kWOG8t6zQAH0fcG/cEVfNm+FApVGSBv9R8Dhq/RX8hfxZTrMxiwBkmnVlW9TzRkisJ8g/A5x8lWkx
- /wPzHsZUJ0Cg/MYxa/2XhUCtds4mL5VJ5oDscP5DWiHTnlLL1AcW55JtlbSmWOVPvD3E+9mYWI+O5
- 0zCN6nt6qgioPyGVxuaQH7lfxwrsQz4BrOORt6KFrKnOSjbjH2eIFPsDbVpkH/TK1YRk0r0MIObGN
- U0Ca56SQ==;
-Received: from 100.red-79-144-92.dynamicip.rima-tde.net ([79.144.92.100]
- helo=[192.168.1.128]) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1webm3-007Bke-Tz; Tue, 30 Jun 2026 18:57:27 +0200
-Message-ID: <0570d22d-bf3c-4c17-b50e-58f522f25ffb@igalia.com>
-Date: Tue, 30 Jun 2026 18:57:20 +0200
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012063.outbound.protection.outlook.com [52.101.53.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED31D10E1AC
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 18:03:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=F5+NSK3reiadOa1Ts4bdRb98mnFAiClRtVQ+JjFZT933Py8Hbda0tLXVC9eZ9RBoYRtlJbSu4cDyc5aUXgXnXlSSZ3Xxm3vw1Oko6TrC4yLndc2kQzLqB2Ria43oZkIyyec3kGgwhgoIKmKT5v8+T3w2lWGxNunCfErvWMkBq2M3fVvBAAak3EB3cBZEUc7Q/e9KcSeFx6Pba9nASFPi8nSxv5mYltxX18obB0GsMyElrNPWdd0TwsfvOcTZGb6jZiUsaVXz/zLvWDBUWINbqGJncWthXiAdsQkVEtUacnRmsdoweuU4YGrYJwaiycHoSX4ZRJzHVGz9H4d5ArE6iA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xp7/4MSwtVIi08Qhqbk+utZf1X0uAnIWqDXKbebi77s=;
+ b=j+ON+bjk/DmkcPuD+y2k/PuS5dbxc+VeWFOa0lehdREcjJlzIZqV5tav3cQfQlHOtWW2ckVULoheUGhR3+8RsJNeLt4v461ecWJGrxwWcSENeuHiknf0CcTILMoFoLJ4RhqvXAdcOEPmQG/GHyaqQma3YRszMsjq1rJAGrBDJ/Ca9MTlWga4TepQnSw3z4PlLS+JJZomGmIaCx0PubfvyVkq6t84zm0htm9HUlLbVgkK/tH79Ibd1YlfhdgH2yHjZGDrbA9y+0tavPBJcby1aLnorer5t2HeEu/In4eq8CaVCp0D9aXrSUsVlFBwjbhVG24KBjTW24tk0vBXjRvoBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xp7/4MSwtVIi08Qhqbk+utZf1X0uAnIWqDXKbebi77s=;
+ b=Phv4S/vRnEzxyR2aMT/yJzDIzSVRI7kJRjL+GAZd9JzgTUECw8Y2A1/9cN54xAoTJNGbBIFkZs5HImU73Md5n/udQI3P/75NX68V/Yy3Z5ytag1h88wwUbGIuEh27CZxnNE3pFIBtzME10linfI6HD551VdZTrN10jed4SqUHIA=
+Received: from BN9PR03CA0491.namprd03.prod.outlook.com (2603:10b6:408:130::16)
+ by SJ0PR12MB8615.namprd12.prod.outlook.com (2603:10b6:a03:484::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Tue, 30 Jun
+ 2026 18:03:24 +0000
+Received: from BN2PEPF000055DC.namprd21.prod.outlook.com
+ (2603:10b6:408:130:cafe::9d) by BN9PR03CA0491.outlook.office365.com
+ (2603:10b6:408:130::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.19 via Frontend Transport; Tue,
+ 30 Jun 2026 18:03:24 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ BN2PEPF000055DC.mail.protection.outlook.com (10.167.245.6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.202.0 via Frontend Transport; Tue, 30 Jun 2026 18:03:23 +0000
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 30 Jun
+ 2026 13:03:23 -0500
+Received: from flamewok (10.180.168.240) by satlexmb07.amd.com (10.181.42.216)
+ with Microsoft SMTP Server id 15.2.2562.41 via Frontend Transport;
+ Tue, 30 Jun 2026 13:03:22 -0500
+From: <sunpeng.li@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Harry.Wentland@amd.com>, <mario.limonciello@amd.com>,
+ <wiagn233@outlook.com>, <sysdadmin@m1k.cloud>, <timur.kristof@gmail.com>,
+ <xaver.hugl@kde.org>, <mario.kleiner.de@gmail.com>,
+ <michel.daenzer@mailbox.org>, <matthew.schwartz@linux.dev>,
+ <chris@kode54.net>, Leo Li <sunpeng.li@amd.com>
+Subject: [PATCH v3 0/3] Fixes for flip_done timed outs and PSR/Replay
+ corruption
+Date: Tue, 30 Jun 2026 14:02:58 -0400
+Message-ID: <20260630180301.362070-1-sunpeng.li@amd.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/4] drm: Guard DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE
- behind driver feature
-To: Robert Mader <robert.mader@collabora.com>, dri-devel@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
- Daniel Stone <daniels@collabora.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Uma Shankar <uma.shankar@intel.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>, Simon Ser <contact@emersion.fr>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Leandro Ribeiro <leandro.ribeiro@collabora.com>
-References: <20260630084229.529682-1-robert.mader@collabora.com>
- <20260630084229.529682-2-robert.mader@collabora.com>
-Content-Language: en-US
-From: Melissa Wen <mwen@igalia.com>
-In-Reply-To: <20260630084229.529682-2-robert.mader@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF000055DC:EE_|SJ0PR12MB8615:EE_
+X-MS-Office365-Filtering-Correlation-Id: 10fb5e66-471b-417d-70ce-08ded6d1e0b4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|36860700016|1800799024|376014|32650700020|23010399003|11063799006|56012099006|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: c6VkIpkPPgBWlgCJJYZfg63TVH6bSFIIjtCexYExe8yxBbFpJG2kHhn0geSQS7Em91savdF8ImpQ/SGn7Hyk832Xm0wkmNq0GyBS17xV8jv3Ka8xi+9QERW39NzMtm5chdZ+dB972+Io33lqsuQKRz8QVNPmyMP75QMUsuDZFV94j+8q90f5xf9Hfnb/DDtKjkZChpCfX4mZ+klmlI0CnqIUUof7nu4xu4wKGVX3kxiMVSmhWh7SOtV/Lc54QJtRKO53OqjT1NAxHLKnMm4wafQbDXGFPjrTxffjQm8RBlPcf2WyuwdOzQ8N20co4IA9yrNmGGwNzfnTGAyNkJqBKVVjtunkesP3S6WVXk47Zo4NLIvbdg0TNI5TLxSu8TlqIA9C/CGLs6o7SkuYUfeMDE5/9tNFwo1VMvsTj0TLcsv8d5vNsHgo9GP1AjsiFv6UqR6Fpq0AuDj8fppZiuM1Q8Kp/hNuQ0QkJMS6oPJ1CowFquyONbAlfoF6QS4C70DjmXnnmLNLOdp706sJCZdxHIieRNGrBaHxeMsRdmis5HgwBh82UZbx7XIA3idJzp+FBfAnMhHrTx89IrjGorGWgsDVStElHzWlsSgM2q30Gx4fEiyrnqes9fQ+rwTtouv7unMtRWIkJ7c/CzGQoCixzw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(36860700016)(1800799024)(376014)(32650700020)(23010399003)(11063799006)(56012099006)(18002099003)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: MwIKfook26nJAFQfIM2ERGjBUK08jkM3DeuOkRAJ6yCfeicXlnB0tCCBWpKcDXY/194sndHgNMhyCQ7MPZyNiAJaWZAum1iBDVpdzjou1IOPEO8c5ImB6189S7Q+300zygACz9eZVpdgLAndON8CExMcrVR8Q3bRry7X0xaAErDeTaVVM0jL8QXWx/LZHStNBn/m5FE8+YfRDGPUe+5kj8zs4fqy7Wst+QdaTTvM5MfqGTem244vhMLPUbXNjF8AxyF5KRuTd0M/l1T+yDb+cR5yCgm9H9m+y1mq80R9PchjXPiM11/RO96HqvGaGbbvQ3xN9yPv8XzGSwWVyl5dg8kNE7CXpHPFcd9Rc3NGiHdS38xihuC7Hp3e+5R/vHtwonQyAsQ0pRfX+cN1i7AJh4xF3AwejRW6ihoXLRLx1Ox71fFlhb144rydMzloomN1
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 18:03:23.9199 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 10fb5e66-471b-417d-70ce-08ded6d1e0b4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF000055DC.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB8615
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,93 +119,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.49 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_CC(0.00)[amd.com,outlook.com,m1k.cloud,gmail.com,kde.org,mailbox.org,linux.dev,kode54.net];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,vger.kernel.org,lists.freedesktop.org,amd.com,collabora.com,intel.com,bootlin.com,emersion.fr];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime];
+	FROM_NEQ_ENVFROM(0.00)[sunpeng.li@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_NO_DN(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 448196E6ACD
+X-Rspamd-Queue-Id: F28626E713F
+
+From: Leo Li <sunpeng.li@amd.com>
+
+v1 here:
+https://lore.kernel.org/amd-gfx/20260616201828.389985-1-sunpeng.li@amd.com/
+v2 here:
+https://lore.kernel.org/amd-gfx/20260622171752.73374-1-sunpeng.li@amd.com/
+
+Summary of changes since v2:
+
+* Fixed a regression in kms_vrr@flip-basic, which exposed a scenario in
+  optimistic event delivery where wrong vblank timestamps were attached.
+  See new docstrings in patch 2/3 for details.
+* Readability cleanups in patch 2/3, thanks Michel!
+
+v7.0.y based branch here (drops the revert and resolves merge conflicts
+due to recent refactor of IRQ handlers from amdgpu_dm.c into
+amdgpu_dm_irq.c):
+https://gitlab.freedesktop.org/leoli/linux-asdn/-/commits/lileo/flip_done_timeout_corruption_fixes?ref_type=heads
+
+A Note on LLM use:
+
+Claude helped with code plumbing and IGT testing. The effort of
+reporting, debugging, spinning up fixes, and testing them, were from
+humans. Kudos to individuals who collaborated on the amd-gfx mailing
+list, gitlab, 2026 Display Hackfest, and AMD internal chats, to finally
+nail down a fix.
 
 
+Leo Li (3):
+  drm/amd/display: consolidate DCN vblank/flip handling onto
+    vupdate_no_lock
+  drm/amd/display: check GRPH_FLIP status before sending event
+  Revert "drm/amd/display: Restore 5s vbl offdelay for NV3x+ DGPUs"
 
-On 30/06/2026 10:42, Robert Mader wrote:
-> The client cap is currently advertised unconditionally, even for drivers that do
-> not support plane color pipelines. If clients supporting the later, like Wayland
-> compositors and drm_info, enable the client cap on sich drivers they will be
-> left without both color pipeline and the legacy properties COLOR_ENCODING and
-> COLOR_RANGE, effectively breaking YUV->RGB conversion support.
->
-> Add a new driver feature and guard the client cap behind it, allowing
-> plane color pipeline and legacy YUV->RGB support to co-exist.
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 234 +++++++++++---
+ .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |  70 ++--
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c | 299 +++++++++---------
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |  45 +++
+ drivers/gpu/drm/amd/display/dc/dc.h           |   1 +
+ 5 files changed, 417 insertions(+), 232 deletions(-)
 
-Ouch, that's indeed a problem. Nice catch!
-
-I'm not sure if this is the right way to go because plane color pipeline 
-can be supported per plane and per hw family.
-My suggestion would be to only deprecate COLOR_ENCODING and COLOR_RANGE 
-in drm_mode_object_get_properties() if a plane COLOR_PIPELINE property 
-is attached.
-WDYT?
-
-Melissa
-
->
-> Signed-off-by: Robert Mader <robert.mader@collabora.com>
-> ---
->   drivers/gpu/drm/drm_ioctl.c | 2 ++
->   include/drm/drm_drv.h       | 6 ++++++
->   2 files changed, 8 insertions(+)
->
-> diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
-> index ff193155129e..96fda92e31b9 100644
-> --- a/drivers/gpu/drm/drm_ioctl.c
-> +++ b/drivers/gpu/drm/drm_ioctl.c
-> @@ -374,6 +374,8 @@ drm_setclientcap(struct drm_device *dev, void *data, struct drm_file *file_priv)
->   		file_priv->supports_virtualized_cursor_plane = req->value;
->   		break;
->   	case DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE:
-> +		if (!drm_core_check_feature(dev, DRIVER_PLANE_COLOR_PIPELINE))
-> +			return -EOPNOTSUPP;
->   		if (!file_priv->atomic)
->   			return -EINVAL;
->   		if (req->value > 1)
-> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> index e09559495c5b..108ddd2c8d30 100644
-> --- a/include/drm/drm_drv.h
-> +++ b/include/drm/drm_drv.h
-> @@ -116,6 +116,12 @@ enum drm_driver_feature {
->   	 * the cursor planes to work correctly).
->   	 */
->   	DRIVER_CURSOR_HOTSPOT           = BIT(9),
-> +	/**
-> +	 * @DRIVER_PLANE_COLOR_PIPELINE:
-> +	 *
-> +	 * Driver supports PLANE_COLOR_PIPELINE.
-> +	 */
-> +	DRIVER_PLANE_COLOR_PIPELINE	= BIT(10),
->   
->   	/* IMPORTANT: Below are all the legacy flags, add new ones above. */
->   
+--
+2.54.0
 
