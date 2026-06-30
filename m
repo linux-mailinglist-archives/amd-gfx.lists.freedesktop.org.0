@@ -2,58 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +N3EF429RGrRzwoAu9opvQ
+	id hlY+O469RGrVzwoAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:09 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:10 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDA976EA825
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 479926EA830
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=zohomail header.b=H9AtX5gv;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b="kBF/B6d1";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 2610:10:20:722:a800:ff:fe36:1795 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	arc=pass ("zohomail.com:s=zohoarc:i=1")
+	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 334C210EDFD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75E9710EE01;
 	Wed,  1 Jul 2026 07:11:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com
- [136.143.188.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0188510ED40
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 20:28:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1782851306; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=QeshbaSU6hizs4JI6RTD0I+xIOKSfJ+BzzRbbaXOoh36dtqA83XU7zY63DiOtPtDdK9EnAvyCNOP+Mym34E5UeWNCMCfx/GdBba3hiaTAEHYtdauiMifofYhkcigp8T43O09N/pTTw2Bmw5ta/SJM3vLTZaXCd5urxuZtjCqHns=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1782851306;
- h=Content-Type:Content-Transfer-Encoding:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
- bh=/xxStwIF61bn3ZqA6+M8xNVE8MJdolxYpTE31ogRu80=; 
- b=Q27/1FCC1Yecxiu8Ycjcn0we7lyb1KuRCzPLUau1a3PyQs6CcGSZXJADxY6krCcnoG1CRL7eJOcDPp4ifDyzcwfe8D0uBpXxmvbj+vEs+jiZGcdwZLjYM4zXWBpUwZQkPK1yxrHpAKTiX5GGDZfjnoDDBZzdcbrXIbbdArIO4ak=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=mark.filion@collabora.com;
- dmarc=pass header.from=<mark.filion@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1782851306; 
- s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
- h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To:Cc;
- bh=/xxStwIF61bn3ZqA6+M8xNVE8MJdolxYpTE31ogRu80=;
- b=H9AtX5gvsE/h6k/VgvBl0++qclp1i6kMqdsXkXgoGl5+fDL+UbnmnDKjaNYFMXLS
- 9HIOrsYzBf3wvVkz40VodOmY9lssOPVb4CrMSVy0Qt3uLhsZgxikHjKKBGPWVcJrMVA
- IAMCVLa/d57+NSZzSDegNvdvrW8OYekyPozQOg18=
-Received: by mx.zohomail.com with SMTPS id 178285130449927.213119788359222;
- Tue, 30 Jun 2026 13:28:24 -0700 (PDT)
-Message-ID: <102a923307828ec347c99fc982cf2665097218c9.camel@collabora.com>
-Subject: Reminder: Call for Proposals closing soon for XDC 2026!
-From: Mark Filion <mark.filion@collabora.com>
-To: amd-gfx@lists.freedesktop.org
-Date: Tue, 30 Jun 2026 16:28:23 -0400
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.60.2 (3.60.2-1.fc44app2) 
+Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com
+ [74.125.82.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFC810E1C4
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 20:53:50 +0000 (UTC)
+Received: by mail-dy1-f172.google.com with SMTP id
+ 5a478bee46e88-30ec3dfbcd1so4460724eec.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 13:53:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1782852829; x=1783457629; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+ bh=Im/Cgy1KPUJRDkgmPppKUBi9RUAthiZthPAkYs4iPWE=;
+ b=kBF/B6d1LSv10StRkyWO2EWVJj3/7UDcUEF+uwy3I9DbCqsijXzXEFGzRysWna96Me
+ oufP43gIWQwiTdI3wKrVdKsoG/uxRGUxizGkNmt/xjry9nSgSSrwR0b2uKEs+JFt/bSh
+ YLQ699ev7J6+Tt3fw6SRG3PmFid9VwgYa+MvkYGZhoIipMi054WrVZCTh1zstqqjCNpt
+ NTx6Q2vMCsT1GUpq6Ny5Y4JYgj7XuRqU7mUiXHbmI1/DvTDVt9LsJU2e6tKkn1nS3y6d
+ ePMTxI9ap7V2tGXy6fYhHhw4gtQdvqbSxMeCuOPlKv0vunNxRoUY/dQJ3wspdLq/EyDV
+ N4rQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1782852829; x=1783457629;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=Im/Cgy1KPUJRDkgmPppKUBi9RUAthiZthPAkYs4iPWE=;
+ b=KXpjU5CAEhdYx/6+mEHk/IVzIdAxbfn4ZmWabRB5G2qmsW2MJ6XwqZh82UjYuhxH6f
+ 2xnVW6sX5HEdA7zGEonvjka1yF7a9bsUOmYu/JAEXcaxkQBw2+zxQuIpdY+ThLjNs3fC
+ YhDBtCB9hOa7yPalE/76hTSKN1ay4UH5GP3mtWJGjlpkJnTaeT6b4dCdREMLTVrhq84O
+ X2cC3uob1KhjP6Gqlxi8mjNRObRCAIqB9qhIWByRhGBfQrq9ZmMzMSR7VT10ENszTwt7
+ qynbaE3CEE/TzFg4e7KLal8diEja7nJCfjUpq2+4o/y6vrNa/ukXLJH/8ELeXXER0DU1
+ UiPA==
+X-Forwarded-Encrypted: i=1;
+ AHgh+Rq+22OWiZpcVMfs+Ob9rJpAfcSEBses8MKC+FsCfaO2gp2z+MCmUAU1sIbG8jsWpzYUw2oPRRDo@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxcDzkEJhz3GGg3O5DcqNB/eIuUP7XIUJkeSDiLxRo4+pws0h84
+ 3H9vSMr/P6daWYHvzab9AoT1g24FzNvwUS3iEEyVFoylBOyfT1v9oKja
+X-Gm-Gg: AfdE7cmym/0Pd7+1onNPYFA0pWQqLTVkfs3SVj6IUnwxGDu7xHIMQOr8VApB0GvyHGi
+ q9hBPvF7CND4RJfG8W3KEICQSgSTG58s0Y1EsJ8OHgrihiHhZyaJRzUl6LfBOqRo5eSq59tZujm
+ OveXnThaeO8B1yw/C4X180FT9I2G8Bx0PXFY/CXEdT3B8uqLwHqUm66n9xrYUcBePE25YxuCB7W
+ zwNi1nmD4v50tbsJ5G7IDoULcFYQJm0pTKspVrq0cM12vwqqnueK7OyHVQTuoKKGWz4G9eu8cSZ
+ iMuPNuzaVD9iLl2PQQTCYv39+PkX85aFGumtzga67/RSMabmqU41CzRIhf6K154Sq4jJJ8oBHsl
+ A5l6uuyw1xB4JKo9ReloJ3o8JeDR+Y0CGXniZf67kPbmyWAl1D3M+OKH9+8ACWPftQ97YBzHFUf
+ PHBIk048zs0/PtehgKMiTffKjB0Ezs8uTADlNYdX3S0IkCnB4Nj+1B1XQ=
+X-Received: by 2002:a05:7300:3207:b0:30c:2932:ab98 with SMTP id
+ 5a478bee46e88-30ee1374657mr3437692eec.18.1782852829102; 
+ Tue, 30 Jun 2026 13:53:49 -0700 (PDT)
+Received: from Biostar-A520MT.. ([187.94.15.127])
+ by smtp.gmail.com with ESMTPSA id
+ 5a478bee46e88-30ee316bf4dsm11359306eec.17.2026.06.30.13.53.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 30 Jun 2026 13:53:48 -0700 (PDT)
+From: Breno Rodrigues Alves <breno3011alves@gmail.com>
+X-Google-Original-From: Breno Rodrigues Alves <breno301alves@gmail.com>
+To: alexander.deucher@amd.com,
+	gregkh@linuxfoundation.org,
+	ojeda@kernel.org
+Cc: christian.koenig@amd.com, arnd@arndb.de, rust-for-linux@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Breno Rodrigues Alves <breno301alves@gmail.com>
+Subject: [PATCH] rust: core: implement rx580 state optimization engine and
+ c-to-rust char dev
+Date: Tue, 30 Jun 2026 17:53:42 -0300
+Message-ID: <20260630205342.22301-1-breno301alves@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 01 Jul 2026 07:11:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,54 +97,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.21 / 15.00];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+X-Spamd-Result: default: False [-0.71 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	SUBJECT_ENDS_EXCLAIM(0.00)[];
-	RCPT_COUNT_ONE(0.00)[1];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
-	FROM_NEQ_ENVFROM(0.00)[mark.filion@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_THREE(0.00)[3];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	TO_DN_NONE(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,arndb.de,vger.kernel.org,lists.freedesktop.org,gmail.com];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:gregkh@linuxfoundation.org,m:ojeda@kernel.org,m:christian.koenig@amd.com,m:arnd@arndb.de,m:rust-for-linux@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:breno301alves@gmail.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[breno3011alves@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,freedesktop.org:url];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[breno3011alves@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BDA976EA825
+X-Rspamd-Queue-Id: 479926EA830
 
-Hello!
+This patch introduces an automated indexed state mechanism to optimize
+VRAM latency and command loops for the Radeon RX 580 architecture.
+Additionally, it provides a converted C-to-Rust sample char driver.
 
-Reminder - The deadline for submissions for XDC 2026 is this coming
-Friday, 3 July 2026.
+Signed-off-by: Breno Rodrigues Alves <breno301alves@gmail.com>
+---
+ RUST_GUIDELINES.md                       |  3 ++
+ drivers/char/Kconfig                     |  8 +++++
+ drivers/char/Makefile                    |  1 +
+ drivers/char/alves_char_dev.rs           | 26 ++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/Kbuild        |  1 +
+ drivers/gpu/drm/amd/amdgpu/alves_core.rs | 45 ++++++++++++++++++++++++
+ 6 files changed, 84 insertions(+)
+ create mode 100644 RUST_GUIDELINES.md
+ create mode 100644 drivers/char/alves_char_dev.rs
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/Kbuild
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/alves_core.rs
 
-    https://xdc2026.x.org
+diff --git a/RUST_GUIDELINES.md b/RUST_GUIDELINES.md
+new file mode 100644
+index 000000000..f6afa63de
+--- /dev/null
++++ b/RUST_GUIDELINES.md
+@@ -0,0 +1,3 @@
++# Rust for Linux - Core Guidelines
++- Style: Linear, pragmatic, flat, Linus Torvalds style.
++- Constraints: Zero-cost abstractions, strict RAII, no binary bloat.
+diff --git a/drivers/char/Kconfig b/drivers/char/Kconfig
+index 9865227af..d6cbf317c 100644
+--- a/drivers/char/Kconfig
++++ b/drivers/char/Kconfig
+@@ -372,3 +372,11 @@ config ADI
+ 	  driver include crash and makedumpfile.
+ 
+ endmenu
++config ALVES_CHAR_DEV
++	tristate "Alves C-to-Rust Character Device Driver"
++	dependson RUST
++	help
++	  This is a character device driver migrated from C to Rust.
++	  It acts as a core showcase of 2% module conversions.
++	  It provides foundational structures for execution validation.
++	  Say Y or M here if you want to test the Rust infrastructure.
+diff --git a/drivers/char/Makefile b/drivers/char/Makefile
+index a46d7bf7c..bf967e910 100644
+--- a/drivers/char/Makefile
++++ b/drivers/char/Makefile
+@@ -41,3 +41,4 @@ obj-$(CONFIG_PS3_FLASH)		+= ps3flash.o
+ obj-$(CONFIG_XILLYBUS_CLASS)	+= xillybus/
+ obj-$(CONFIG_POWERNV_OP_PANEL)	+= powernv-op-panel.o
+ obj-$(CONFIG_ADI)		+= adi.o
++obj-$(CONFIG_ALVES_CHAR_DEV) += alves_char_dev.o
+diff --git a/drivers/char/alves_char_dev.rs b/drivers/char/alves_char_dev.rs
+new file mode 100644
+index 000000000..48440ab32
+--- /dev/null
++++ b/drivers/char/alves_char_dev.rs
+@@ -0,0 +1,26 @@
++// SPDX-License-Identifier: GPL-2.0 OR MIT
++//! Simple Character Device converted from legacy C to Rust.
++
++use kernel::prelude::*;
++use kernel::chrdev::Registration;
++
++module! {
++    type: AlvesCharDevice,
++    name: "alves_char_dev",
++    author: "Breno Rodrigues Alves",
++    description: "Pragmatic C-to-Rust converted character device driver",
++    license: "GPL OR MIT",
++}
++
++struct AlvesCharDevice {
++    _dev: Registration,
++}
++
++impl kernel::Module for AlvesCharDevice {
++    fn init(_module: $'static ThisModule$') -> Result<Self> {
++        pr_info!("Alves C-to-Rust module initialized successfully\n");
++        Ok(AlvesCharDevice {
++            _dev: Registration::new(c_str!("alves_char_dev"), 0)?,
++        })
++    }
++}
+diff --git a/drivers/gpu/drm/amd/amdgpu/Kbuild b/drivers/gpu/drm/amd/amdgpu/Kbuild
+new file mode 100644
+index 000000000..9f3589689
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/Kbuild
+@@ -0,0 +1 @@
++amdgpu-y += alves_core.o
+diff --git a/drivers/gpu/drm/amd/amdgpu/alves_core.rs b/drivers/gpu/drm/amd/amdgpu/alves_core.rs
+new file mode 100644
+index 000000000..e16d06908
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/alves_core.rs
+@@ -0,0 +1,45 @@
++// SPDX-License-Identifier: GPL-2.0 OR MIT
++//! AMDGPU RX 580 State Optimization Engine.
++//!
++//! Copyright (C) 2026 Breno Rodrigues Alves.
++
++use kernel::prelude::*;
++
++#[derive(Copy, Clone, PartialEq, Eq)]
++#[repr(u8)]
++enum GpuState {
++    Idling = 0,
++    LowPower = 1,
++    ComputeActive = 2,
++    VramMaxPerf = 3,
++}
++
++pub struct Rx580Engine {
++    current_state: GpuState,
++    command_tape: [u8; 16],
++    tape_pointer: usize,
++}
++
++impl Rx580Engine {
++    pub fn process_tape(&mut self) -> Result<()> {
++        while self.tape_pointer < self.command_tape.len() {
++            let symbol = self.command_tape[self.tape_pointer];
++
++            self.current_state = match (self.current_state, symbol) {
++                (GpuState::Idling, 0x01) => GpuState::LowPower,
++                (GpuState::LowPower, 0x02) => GpuState::ComputeActive,
++                (GpuState::ComputeActive, 0x03) => GpuState::VramMaxPerf,
++                (GpuState::VramMaxPerf, 0x00) => GpuState::Idling,
++                (state, _) => state,
++            };
++
++            // SAFETY: Volatile hardware write override for Polaris performance profiling.
++            unsafe {
++                core::ptr::write_volatile(&mut self.command_tape[self.tape_pointer], 0xFF);
++            }
++            self.tape_pointer += 1;
++        }
++        self.tape_pointer = 0;
++        Ok(())
++    }
++}
+-- 
+2.43.0
 
-While any serious proposal will be gratefully considered, topics of
-interest to X.Org and freedesktop.org developers are encouraged. The
-program focus is on new development, ongoing challenges and anything
-else that will spark discussions among attendees in the hallway track.
-
-We are open to talks across all layers of the graphics stack, from the
-kernel to desktop environments / graphical applications and about how
-to make things better for the developers who build them. Head to the
-CfP page to learn more!
- =20
-As usual, the conference is free of charge and open to the general
-public. If you plan on attending, please make sure to register as early
-as possible!
-
-Best,
-
-Mark
