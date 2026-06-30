@@ -2,104 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bn0SMOQMRGrSngoAu9opvQ
+	id +N3EF429RGrRzwoAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 20:37:24 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:09 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 256ED6E7373
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Jun 2026 20:37:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDA976EA825
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=wA7+pHqM;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dkim=pass header.d=collabora.com header.s=zohomail header.b=H9AtX5gv;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 2610:10:20:722:a800:ff:fe36:1795 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=none) header.from=collabora.com;
+	arc=pass ("zohomail.com:s=zohoarc:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FEE310E236;
-	Tue, 30 Jun 2026 18:37:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 334C210EDFD;
+	Wed,  1 Jul 2026 07:11:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010000.outbound.protection.outlook.com [52.101.201.0])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14C5810E236
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 18:37:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=i9Da3rzWEIwoEGvfVzByoIGJaKdu5b6LrIUR3bSrHpw7qaqPLwwtMS9Un9beY2vd6kO8ARrWlmHKQjbv+hb7YS8vHFiekq/zGh/Eq+8WeeAhI4P+xFv+wtSJFXUb7VRtLodgQmmaD4twO3Fun81Ofe+0y6voYkd2VKRXnkBpUsFNcPoIim3LJSokZJufsOJ4aodn2WgMvVbmh6MpXvozXU1rHFG2aVWscBLmjqjHXooFjOAShn2kBVx6qwIvlXuczfc+DTPCHm1QNnXlou4R8k3669ki4DZthAUFdyJ++y8nykXqU75OVoFFXMNF10TzkjrLQt1MXuB7Glr60Ok8bg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IFw5iaygPUnzhQQd+MDsnglT6iLVIMJkxCJ+v9EtNuw=;
- b=mWZnZafMRa4Zufk6C2n81KNPFIJQqUhZ0Y9JW5enKFQ1CYdbOofFgWAd1ct0QSUPD0SADOLPZao71dPIQpHI13zCH8KIvpmJKUvnX1mI3j6oQpfxjGWXDyp+vAnVOLmDjill2cc91L7jjAAxgz0CELGxqBsKY2N1dgX2Tt+DVeTUP3d5Kdk7mCsSir30J1N03OCOLzJpsOdXSd9zpP3hQYvsDnnQsGQXPk3sXlRY0bkA29fxx092HtYtvoageQnQdKURViZb1m1DL3sA5HZ1s2P7eesmtCVkzG0sv19oXIDlzxpfASZihM4b83Ewczdr5IbdFDZdH0S6+1P1S1fq0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IFw5iaygPUnzhQQd+MDsnglT6iLVIMJkxCJ+v9EtNuw=;
- b=wA7+pHqMNLYgSznQnq7w1svyV/3LuWa2xj1Ru1Mgd3vn027Od0XWtSG4JKbHwzLqgPaDHT4GNwjTuCBCnPtM+4UnQyJsKLQ9zVknr0MjiQBu3Nnf1wX/sZZTQX/ya2Vt0xsXQ8WVOhSx60G3gYDsXkUJ0+WCk4xm/VTIxk99Jb4=
-Received: from MN0P220CA0021.NAMP220.PROD.OUTLOOK.COM (2603:10b6:208:52e::11)
- by DM4PR12MB6037.namprd12.prod.outlook.com (2603:10b6:8:b0::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Tue, 30 Jun
- 2026 18:37:13 +0000
-Received: from MN1PEPF0000ECD4.namprd02.prod.outlook.com
- (2603:10b6:208:52e:cafe::95) by MN0P220CA0021.outlook.office365.com
- (2603:10b6:208:52e::11) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.8 via Frontend Transport; Tue, 30
- Jun 2026 18:37:13 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- MN1PEPF0000ECD4.mail.protection.outlook.com (10.167.242.132) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Tue, 30 Jun 2026 18:37:13 +0000
-Received: from fdavid-dev.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 30 Jun
- 2026 13:37:12 -0500
-From: David Francis <David.Francis@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: David Francis <David.Francis@amd.com>
-Subject: [PATCH] drm/amdkfd: Don't acquire buffers during CRIU queue restore.
-Date: Tue, 30 Jun 2026 14:36:55 -0400
-Message-ID: <20260630183655.2408549-1-David.Francis@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from sender4-op-o16.zoho.com (sender4-op-o16.zoho.com
+ [136.143.188.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0188510ED40
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 20:28:26 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1782851306; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=QeshbaSU6hizs4JI6RTD0I+xIOKSfJ+BzzRbbaXOoh36dtqA83XU7zY63DiOtPtDdK9EnAvyCNOP+Mym34E5UeWNCMCfx/GdBba3hiaTAEHYtdauiMifofYhkcigp8T43O09N/pTTw2Bmw5ta/SJM3vLTZaXCd5urxuZtjCqHns=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1782851306;
+ h=Content-Type:Content-Transfer-Encoding:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
+ bh=/xxStwIF61bn3ZqA6+M8xNVE8MJdolxYpTE31ogRu80=; 
+ b=Q27/1FCC1Yecxiu8Ycjcn0we7lyb1KuRCzPLUau1a3PyQs6CcGSZXJADxY6krCcnoG1CRL7eJOcDPp4ifDyzcwfe8D0uBpXxmvbj+vEs+jiZGcdwZLjYM4zXWBpUwZQkPK1yxrHpAKTiX5GGDZfjnoDDBZzdcbrXIbbdArIO4ak=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=mark.filion@collabora.com;
+ dmarc=pass header.from=<mark.filion@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1782851306; 
+ s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
+ h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To:Cc;
+ bh=/xxStwIF61bn3ZqA6+M8xNVE8MJdolxYpTE31ogRu80=;
+ b=H9AtX5gvsE/h6k/VgvBl0++qclp1i6kMqdsXkXgoGl5+fDL+UbnmnDKjaNYFMXLS
+ 9HIOrsYzBf3wvVkz40VodOmY9lssOPVb4CrMSVy0Qt3uLhsZgxikHjKKBGPWVcJrMVA
+ IAMCVLa/d57+NSZzSDegNvdvrW8OYekyPozQOg18=
+Received: by mx.zohomail.com with SMTPS id 178285130449927.213119788359222;
+ Tue, 30 Jun 2026 13:28:24 -0700 (PDT)
+Message-ID: <102a923307828ec347c99fc982cf2665097218c9.camel@collabora.com>
+Subject: Reminder: Call for Proposals closing soon for XDC 2026!
+From: Mark Filion <mark.filion@collabora.com>
+To: amd-gfx@lists.freedesktop.org
+Date: Tue, 30 Jun 2026 16:28:23 -0400
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.60.2 (3.60.2-1.fc44app2) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD4:EE_|DM4PR12MB6037:EE_
-X-MS-Office365-Filtering-Correlation-Id: b97f4c03-c5e9-4fed-0bbf-08ded6d69a45
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700016|376014|23010399003|6133799003|18002099003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: MBZs8xrcOIHNYetUQVrChQrQU8mj2CampyNTxp3WscaQP6BEIWM2rc81sl2I/JBqTyTZsjEQEUytPwKGbx3dTKTl/qBlLvO4mHOIBJ/sRahNJNEu4HC62nmMSXHAOJiCkxexud3ajfpgJ9bWV/Tpp4ICrL3ZDuTe6cAFeZwsMTvpvkIiKgJQCbxr6rPkhSkMJsv+y9KPeQLwchV1ToPkL0jJhu2NuYQdCQO45d9NvCQOL5Gv/7sykrgzIcWAoSVGHGSTOKAXkgGdcXm5gk+i2A+DUagiYklFYitxm7ZH7+Iw2jr3Iyh1jfe0gI9K90YPm3Ctw3gQSxh7J7k7EZG6GvxaPyPRkT8KtqI4ldy+AoqeQVOU5v5kTfmYoV/GdPXI4TiWzN0qLjQLLr0YYFZfGX8cJ4RB77mMVTA2QklRa38FXl9g6hGFa2Cnyt65gOjjjtceqGiH3KgBz155y00WfFzRyGcdedfcFKwRvXLatU6XVwGMLyMAEQLsz+pftT8hGFCZlymY8HS4LKqSS5z75MGe2K9d88XdBtABBk83/nmM1BRGKS4gZY8gonDtp0jtKLdXfbG7lSlmvZUgXod6AWm6ES6nHh7UhQFQnUHIvhAT9pnzo60kdu3XNo/0fivFpsYUgwj1DNLoFs+kc06WuD8zaddghD4DJIuKaYieIFhklCXfssqw4JmZ0CP07mR/sCEd6QQDTIEqa8wiDN4AFg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(23010399003)(6133799003)(18002099003)(56012099006)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 3Iw0/znRkD4BU1ZNge6YvG0kRDLM1OP0Qr09TZq56KEbIgqIGzKVCG6kpOjYjH95sM1jb2kjDwzgk3zvnCZD0RD+b1OqX9sUdaUhimWf++FwViT5hn3AuTZ4Q9Ds+MrEtIksRhYj9+8lTP0ZNEqVi97RYin9XVbZoqNw1jsaVL3uTFs5Pbltp1iLXcpivXFrsR9W8R31OBSMoQZ2scWkZkqBPPCRHoxBY1LBuHi5Wd9TKl5wd1xXWAxsHB0/WuuzgmLnutHumyjGgGz3KUc3SkZOYvI/B0i4TIOm45x/MJlyJ4/9DUM5q/aKvvaNlzJDyi53jfB0nXPVRCVrTkNzwv5tsr3iAVbhqI/ySaD4aa6sZsGmaRNMlqnh1ZAnespt4crmiucQHS6EfXygiq4gbSgLKi1su0HZEZxba5/i4S+Pyf4TmOEBdlI3UcS6FyEy
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2026 18:37:13.2315 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b97f4c03-c5e9-4fed-0bbf-08ded6d69a45
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD4.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6037
+X-ZohoMailClient: External
+X-Mailman-Approved-At: Wed, 01 Jul 2026 07:11:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,95 +69,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-2.21 / 15.00];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[David.Francis@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
+	SUBJECT_ENDS_EXCLAIM(0.00)[];
+	RCPT_COUNT_ONE(0.00)[1];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	FROM_NEQ_ENVFROM(0.00)[mark.filion@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	RCVD_COUNT_THREE(0.00)[3];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TO_DN_NONE(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,freedesktop.org:url];
+	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 256ED6E7373
+X-Rspamd-Queue-Id: BDA976EA825
 
-kfd_criu_restore_queue's call of kfd_queue_acquire_buffers was
-failing for multiple reasons
-- The ctl_stack_size set by the CRIU plugin doesn't match
-what is expected by acquire_buffers
-- The svm buffer cannot be acquired at this point because
-CRIU may not have restored it, or may have restored it
-to a different address.
+Hello!
 
-The only reason acquire_buffers was necessary here was to
-avoid a null ptr dereference in init_user_queue.
+Reminder - The deadline for submissions for XDC 2026 is this coming
+Friday, 3 July 2026.
 
-Just put in a check for that dereference; it doesn't appear to
-come up in real use cases right now. That is, there is no
-usage of CRIU with shared MES.
+    https://xdc2026.x.org
 
-This is a partial revert of d3f670cfb535f
-(drm/amdkfd: Properly acquire queue buffers in CRIU restore)
+While any serious proposal will be gratefully considered, topics of
+interest to X.Org and freedesktop.org developers are encouraged. The
+program focus is on new development, ongoing challenges and anything
+else that will spark discussions among attendees in the hallway track.
 
-Signed-off-by: David Francis <David.Francis@amd.com>
----
- .../gpu/drm/amd/amdkfd/kfd_process_queue_manager.c  | 13 +++++--------
- 1 file changed, 5 insertions(+), 8 deletions(-)
+We are open to talks across all layers of the graphics stack, from the
+kernel to desktop environments / graphical applications and about how
+to make things better for the developers who build them. Head to the
+CfP page to learn more!
+ =20
+As usual, the conference is free of charge and open to the general
+public. If you plan on attending, please make sure to register as early
+as possible!
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-index 071f956f183c..3bbda47a4439 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-@@ -265,6 +265,11 @@ static int init_user_queue(struct process_queue_manager *pqm,
- 	(*q)->process = pqm->process;
- 
- 	if (dev->kfd->shared_resources.enable_mes) {
-+		if (!q_properties->wptr_bo) {
-+			pr_debug("Queue initialization with shared MES requires queue buffers to be initialized\n");
-+			return -EINVAL;
-+		}
-+
- 		retval = amdgpu_amdkfd_alloc_kernel_mem(dev->adev,
- 						AMDGPU_MES_GANG_CTX_SIZE,
- 						AMDGPU_GEM_DOMAIN_GTT,
-@@ -1042,18 +1047,10 @@ int kfd_criu_restore_queue(struct kfd_process *p,
- 	memset(&qp, 0, sizeof(qp));
- 	set_queue_properties_from_criu(&qp, q_data, NUM_XCC(pdd->dev->adev->gfx.xcc_mask));
- 
--	ret = kfd_queue_acquire_buffers(pdd, &qp);
--	if (ret) {
--		pr_debug("failed to acquire user queue buffers for CRIU\n");
--		goto exit;
--	}
--
- 	print_queue_properties(&qp);
- 
- 	ret = pqm_create_queue(&p->pqm, pdd->dev, &qp, &queue_id, q_data, mqd, ctl_stack, NULL);
- 	if (ret) {
--		kfd_queue_unref_bo_vas(pdd, &qp);
--		kfd_queue_release_buffers(pdd, &qp);
- 		pr_err("Failed to create new queue err:%d\n", ret);
- 		goto exit;
- 	}
--- 
-2.34.1
+Best,
 
+Mark
