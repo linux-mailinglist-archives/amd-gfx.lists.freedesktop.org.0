@@ -2,85 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hlY+O469RGrVzwoAu9opvQ
+	id wZ32F5G9RGrbzwoAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:10 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:13 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 479926EA830
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AADF66EA840
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b="kBF/B6d1";
+	dkim=pass header.d=usp.br header.s=usp-google header.b="dfJnc/NP";
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 2610:10:20:722:a800:ff:fe36:1795 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com
+	dmarc=pass (policy=quarantine) header.from=usp.br
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75E9710EE01;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5A8810EE06;
 	Wed,  1 Jul 2026 07:11:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com
- [74.125.82.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFC810E1C4
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 20:53:50 +0000 (UTC)
-Received: by mail-dy1-f172.google.com with SMTP id
- 5a478bee46e88-30ec3dfbcd1so4460724eec.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 13:53:50 -0700 (PDT)
+Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBEF310E267
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 20:55:53 +0000 (UTC)
+Received: by mail-dl1-f52.google.com with SMTP id
+ a92af1059eb24-13a97ffb312so4409634c88.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 13:55:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782852829; x=1783457629; darn=lists.freedesktop.org;
+ d=usp.br; s=usp-google; t=1782852953; x=1783457753; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=Im/Cgy1KPUJRDkgmPppKUBi9RUAthiZthPAkYs4iPWE=;
- b=kBF/B6d1LSv10StRkyWO2EWVJj3/7UDcUEF+uwy3I9DbCqsijXzXEFGzRysWna96Me
- oufP43gIWQwiTdI3wKrVdKsoG/uxRGUxizGkNmt/xjry9nSgSSrwR0b2uKEs+JFt/bSh
- YLQ699ev7J6+Tt3fw6SRG3PmFid9VwgYa+MvkYGZhoIipMi054WrVZCTh1zstqqjCNpt
- NTx6Q2vMCsT1GUpq6Ny5Y4JYgj7XuRqU7mUiXHbmI1/DvTDVt9LsJU2e6tKkn1nS3y6d
- ePMTxI9ap7V2tGXy6fYhHhw4gtQdvqbSxMeCuOPlKv0vunNxRoUY/dQJ3wspdLq/EyDV
- N4rQ==
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Q15Zw2luJWYA16XSjllrT6+cPa1JqXGGEaoXxQ4s5kU=;
+ b=dfJnc/NPECC2Y+r+sWzyDXH/R4v4ZvqFwGmRpCf+INRg+xhH5+aLOkAZt1KW/ANiMs
+ vMsneIXqtbe/sq/aNQdvYVSTrh429VRA/xzZ8N2msxtg3Jcr8+CmvCkVcAj8fqZaFJLV
+ /ehJWRWWQt/SiyLPjRBMSk6eGiZO/2JlI/n9NNZGdTgQ7M7+YTefEZQxGwA7dl9g0otR
+ dQY5HXVTwJE5HTaEjMkmrSbtOCnIlsiiEWEuqRDg+hozUA5U18uCBECBz76RpdnDNIPx
+ zf9dDgJOBFzhFFgS2EVhoNMCUAih4VOjIfGylEi2VtbCODUTeaan1OjGGM9G8y8ZZPCO
+ HO4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782852829; x=1783457629;
+ d=1e100.net; s=20251104; t=1782852953; x=1783457753;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=Im/Cgy1KPUJRDkgmPppKUBi9RUAthiZthPAkYs4iPWE=;
- b=KXpjU5CAEhdYx/6+mEHk/IVzIdAxbfn4ZmWabRB5G2qmsW2MJ6XwqZh82UjYuhxH6f
- 2xnVW6sX5HEdA7zGEonvjka1yF7a9bsUOmYu/JAEXcaxkQBw2+zxQuIpdY+ThLjNs3fC
- YhDBtCB9hOa7yPalE/76hTSKN1ay4UH5GP3mtWJGjlpkJnTaeT6b4dCdREMLTVrhq84O
- X2cC3uob1KhjP6Gqlxi8mjNRObRCAIqB9qhIWByRhGBfQrq9ZmMzMSR7VT10ENszTwt7
- qynbaE3CEE/TzFg4e7KLal8diEja7nJCfjUpq2+4o/y6vrNa/ukXLJH/8ELeXXER0DU1
- UiPA==
+ :message-id:reply-to;
+ bh=Q15Zw2luJWYA16XSjllrT6+cPa1JqXGGEaoXxQ4s5kU=;
+ b=M0c66Z37hM33Ru6oWtdNzdgt5UxZ3wodELIqRbAN52AH0Z16H/rkX1PDxg697ZS8mn
+ I2tnY8CVfAOXBfHaCCZEsUHN+A4IoXiPhb8HYp/UyrgMSdDTqOC8+06febujyv2XBWSi
+ xK496h95Rg1zMGo0iInUavLOEdNaMkN2JAPyU07k2DLK3tYAb0yXZJdPPgCmYvPfRha9
+ UURfaIK3f4rBod1yuC9XY+RIZT5TLwcluSvZ1k7YGx755cDQ0IMinpoM44mtvqxTOEul
+ 0+kg9j/pOQ0iXeXV6cLBkaJ55OAF6piZcwWvZwEZQT3sbQotEAyYT9k1G9JgkhHzfilS
+ LQ8g==
 X-Forwarded-Encrypted: i=1;
- AHgh+Rq+22OWiZpcVMfs+Ob9rJpAfcSEBses8MKC+FsCfaO2gp2z+MCmUAU1sIbG8jsWpzYUw2oPRRDo@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxcDzkEJhz3GGg3O5DcqNB/eIuUP7XIUJkeSDiLxRo4+pws0h84
- 3H9vSMr/P6daWYHvzab9AoT1g24FzNvwUS3iEEyVFoylBOyfT1v9oKja
-X-Gm-Gg: AfdE7cmym/0Pd7+1onNPYFA0pWQqLTVkfs3SVj6IUnwxGDu7xHIMQOr8VApB0GvyHGi
- q9hBPvF7CND4RJfG8W3KEICQSgSTG58s0Y1EsJ8OHgrihiHhZyaJRzUl6LfBOqRo5eSq59tZujm
- OveXnThaeO8B1yw/C4X180FT9I2G8Bx0PXFY/CXEdT3B8uqLwHqUm66n9xrYUcBePE25YxuCB7W
- zwNi1nmD4v50tbsJ5G7IDoULcFYQJm0pTKspVrq0cM12vwqqnueK7OyHVQTuoKKGWz4G9eu8cSZ
- iMuPNuzaVD9iLl2PQQTCYv39+PkX85aFGumtzga67/RSMabmqU41CzRIhf6K154Sq4jJJ8oBHsl
- A5l6uuyw1xB4JKo9ReloJ3o8JeDR+Y0CGXniZf67kPbmyWAl1D3M+OKH9+8ACWPftQ97YBzHFUf
- PHBIk048zs0/PtehgKMiTffKjB0Ezs8uTADlNYdX3S0IkCnB4Nj+1B1XQ=
-X-Received: by 2002:a05:7300:3207:b0:30c:2932:ab98 with SMTP id
- 5a478bee46e88-30ee1374657mr3437692eec.18.1782852829102; 
- Tue, 30 Jun 2026 13:53:49 -0700 (PDT)
-Received: from Biostar-A520MT.. ([187.94.15.127])
+ AHgh+RqvhZkL0drdAYqezbOtr60oGOlUhAXN7FFUp1trewY3V0rVAwOrgFFTbqUa9PGUHq3exCIjKCZj@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzSHNrq8ozXyar6LIuG8sBrVxZQr5fAQP0PEZ60hZBk3XuH9NEH
+ UWTsz31j8TN6EPm6jhjhEPErjTNoNicRowNNF2VRANB+co6ciNx0jkS1/qikw+sbXvs=
+X-Gm-Gg: AfdE7cne4eB9f8sxVjfPxPNhm51WMLqpepvXFsYY2/0jmsOsjzPCuK6GZCEy/Rojzvu
+ VtTmGcJ/MDyNyDMAL4cZQDRZ718bYYXk4P0tRY7PDjca/Gi/rRE+jky+PzSY7W8+dSN482wDylk
+ GrF2uOXcNm69H64K/YNbGDHJyJpnaZJFM+LGCanZ2XN9FNP1yLQnhDDdqUKcxsasDwOau1N3yWG
+ 3gnRn4MyoyJFmjzyHy4BGnSEkwNC0imdSN1yK7c6ThDVVAYQIjGCGYgerU0PIcgpcFPwlzRHmx+
+ hoMKaiGMKdqWCB9v7OYIvy3ciGLQc+L6WBGqESEF9bw2RTKizBn2aUPHQTE5BU8Np/onN4f2eGK
+ V5RpRTeG0UXcuZWixXZ8LKndspff2TxNqQVV4hVyY1Ku26qMA0qs+CXPh63Mv5zSb9+waaPWcLX
+ pQFmnfauvSULpYOqx6+xUg0uIIYg==
+X-Received: by 2002:a05:7300:6401:b0:30c:38ed:46b0 with SMTP id
+ 5a478bee46e88-30ee135837emr3998893eec.16.1782852952717; 
+ Tue, 30 Jun 2026 13:55:52 -0700 (PDT)
+Received: from localhost.localdomain ([179.100.109.21])
  by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-30ee316bf4dsm11359306eec.17.2026.06.30.13.53.46
+ 5a478bee46e88-30ee327cea7sm12321464eec.31.2026.06.30.13.55.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Jun 2026 13:53:48 -0700 (PDT)
-From: Breno Rodrigues Alves <breno3011alves@gmail.com>
-X-Google-Original-From: Breno Rodrigues Alves <breno301alves@gmail.com>
-To: alexander.deucher@amd.com,
-	gregkh@linuxfoundation.org,
-	ojeda@kernel.org
-Cc: christian.koenig@amd.com, arnd@arndb.de, rust-for-linux@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Breno Rodrigues Alves <breno301alves@gmail.com>
-Subject: [PATCH] rust: core: implement rx580 state optimization engine and
- c-to-rust char dev
-Date: Tue, 30 Jun 2026 17:53:42 -0300
-Message-ID: <20260630205342.22301-1-breno301alves@gmail.com>
-X-Mailer: git-send-email 2.43.0
+ Tue, 30 Jun 2026 13:55:52 -0700 (PDT)
+From: Ulisses Paixao <ulissespaixao@usp.br>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: Ulisses Paixao <ulissespaixao@usp.br>, Felipe Sousa <felipesousa@usp.br>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH v4] drm/amd/amdgpu: remove duplicated code in gfx_v11 and
+ gfx_v12
+Date: Tue, 30 Jun 2026 17:55:45 -0300
+Message-Id: <20260630205545.23920-1-ulissespaixao@usp.br>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 01 Jul 2026 07:11:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -97,184 +94,219 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.71 / 15.00];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-0.21 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
+	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
 	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:ulissespaixao@usp.br,m:felipesousa@usp.br,m:dri-devel@lists.freedesktop.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[amd.com,arndb.de,vger.kernel.org,lists.freedesktop.org,gmail.com];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:gregkh@linuxfoundation.org,m:ojeda@kernel.org,m:christian.koenig@amd.com,m:arnd@arndb.de,m:rust-for-linux@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:breno301alves@gmail.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[breno3011alves@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[ulissespaixao@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[breno3011alves@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ulissespaixao@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[usp.br:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:email,usp.br:dkim,usp.br:email,usp.br:mid,usp.br:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 479926EA830
+X-Rspamd-Queue-Id: AADF66EA840
 
-This patch introduces an automated indexed state mechanism to optimize
-VRAM latency and command loops for the Radeon RX 580 architecture.
-Additionally, it provides a converted C-to-Rust sample char driver.
+The functions gfx_v11_0_handle_priv_fault and
+gfx_v12_0_handle_priv_fault share the same logic for searching and
+triggering a scheduler fault on a ring. This patch moves the shared
+ring-searching logic to a common function, amdgpu_gfx_handle_priv_fault,
+in amdgpu_gfx.c. The hardware-specific decoding of ring IDs remains in
+the version-specific files to maintain proper architectural separation.
 
-Signed-off-by: Breno Rodrigues Alves <breno301alves@gmail.com>
+Signed-off-by: Ulisses Paixao <ulissespaixao@usp.br>
+Co-developed-by: Felipe Sousa <felipesousa@usp.br>
+Signed-off-by: Felipe Sousa <felipesousa@usp.br>
+Reviewed-by: Christian König <christian.koenig@amd.com>
 ---
- RUST_GUIDELINES.md                       |  3 ++
- drivers/char/Kconfig                     |  8 +++++
- drivers/char/Makefile                    |  1 +
- drivers/char/alves_char_dev.rs           | 26 ++++++++++++++
- drivers/gpu/drm/amd/amdgpu/Kbuild        |  1 +
- drivers/gpu/drm/amd/amdgpu/alves_core.rs | 45 ++++++++++++++++++++++++
- 6 files changed, 84 insertions(+)
- create mode 100644 RUST_GUIDELINES.md
- create mode 100644 drivers/char/alves_char_dev.rs
- create mode 100644 drivers/gpu/drm/amd/amdgpu/Kbuild
- create mode 100644 drivers/gpu/drm/amd/amdgpu/alves_core.rs
+Note that v2 was already reviewed by Christian.
 
-diff --git a/RUST_GUIDELINES.md b/RUST_GUIDELINES.md
-new file mode 100644
-index 000000000..f6afa63de
---- /dev/null
-+++ b/RUST_GUIDELINES.md
-@@ -0,0 +1,3 @@
-+# Rust for Linux - Core Guidelines
-+- Style: Linear, pragmatic, flat, Linus Torvalds style.
-+- Constraints: Zero-cost abstractions, strict RAII, no binary bloat.
-diff --git a/drivers/char/Kconfig b/drivers/char/Kconfig
-index 9865227af..d6cbf317c 100644
---- a/drivers/char/Kconfig
-+++ b/drivers/char/Kconfig
-@@ -372,3 +372,11 @@ config ADI
- 	  driver include crash and makedumpfile.
+v4:
+Restore the adev->gfx.disable_kq check to prevent falsely triggering
+scheduler faults on idle kernel rings when MES is managing user queues.
+
+v3:
+Return early if the ring is found in the gfx rings loop.
+
+v2:
+Keep the HW-specific decoding in gfx_v11_0.c and gfx_v12_0.c.
+Remove the redundant check for adev->gfx.disable_kq.
+Simplify the search loop in amdgpu_gfx_handle_priv_fault to iterate over
+all gfx and compute rings without a switch statement.
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c | 36 +++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h |  2 ++
+ drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c  | 27 +------------------
+ drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c  | 27 +------------------
+ 4 files changed, 40 insertions(+), 52 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index b8ca87669..98035129a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -830,6 +830,42 @@ int amdgpu_gfx_enable_kgq(struct amdgpu_device *adev, int xcc_id)
+ 	return r;
+ }
  
- endmenu
-+config ALVES_CHAR_DEV
-+	tristate "Alves C-to-Rust Character Device Driver"
-+	dependson RUST
-+	help
-+	  This is a character device driver migrated from C to Rust.
-+	  It acts as a core showcase of 2% module conversions.
-+	  It provides foundational structures for execution validation.
-+	  Say Y or M here if you want to test the Rust infrastructure.
-diff --git a/drivers/char/Makefile b/drivers/char/Makefile
-index a46d7bf7c..bf967e910 100644
---- a/drivers/char/Makefile
-+++ b/drivers/char/Makefile
-@@ -41,3 +41,4 @@ obj-$(CONFIG_PS3_FLASH)		+= ps3flash.o
- obj-$(CONFIG_XILLYBUS_CLASS)	+= xillybus/
- obj-$(CONFIG_POWERNV_OP_PANEL)	+= powernv-op-panel.o
- obj-$(CONFIG_ADI)		+= adi.o
-+obj-$(CONFIG_ALVES_CHAR_DEV) += alves_char_dev.o
-diff --git a/drivers/char/alves_char_dev.rs b/drivers/char/alves_char_dev.rs
-new file mode 100644
-index 000000000..48440ab32
---- /dev/null
-+++ b/drivers/char/alves_char_dev.rs
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+//! Simple Character Device converted from legacy C to Rust.
-+
-+use kernel::prelude::*;
-+use kernel::chrdev::Registration;
-+
-+module! {
-+    type: AlvesCharDevice,
-+    name: "alves_char_dev",
-+    author: "Breno Rodrigues Alves",
-+    description: "Pragmatic C-to-Rust converted character device driver",
-+    license: "GPL OR MIT",
++/**
++ * amdgpu_gfx_handle_priv_fault - Handle privileged instruction fault
++ *
++ * @adev: amdgpu_device pointer
++ * @me_id: micro-engine ID of the faulty ring
++ * @pipe_id: pipe ID of the faulty ring
++ * @queue_id: queue ID of the faulty ring
++ *
++ * This function handles privileged instruction faults by identifying
++ * the faulty ring (gfx or compute) and triggering a scheduler fault
++ */
++void amdgpu_gfx_handle_priv_fault(struct amdgpu_device *adev,
++					u8 me_id, u8 pipe_id, u8 queue_id)
++{
++	struct amdgpu_ring *ring;
++	int i;
++	
++	if (!adev->gfx.disable_kq) {
++		for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
++			ring = &adev->gfx.gfx_ring[i];
++			if (ring->me == me_id && ring->pipe == pipe_id &&
++			    ring->queue == queue_id) {
++				drm_sched_fault(&ring->sched);
++				return;
++			}
++		}
++	
++		for (i = 0; i < adev->gfx.num_compute_rings; i++) {
++			ring = &adev->gfx.compute_ring[i];
++			if (ring->me == me_id && ring->pipe == pipe_id &&
++			    ring->queue == queue_id)
++				drm_sched_fault(&ring->sched);
++		}
++	}
 +}
 +
-+struct AlvesCharDevice {
-+    _dev: Registration,
-+}
-+
-+impl kernel::Module for AlvesCharDevice {
-+    fn init(_module: $'static ThisModule$') -> Result<Self> {
-+        pr_info!("Alves C-to-Rust module initialized successfully\n");
-+        Ok(AlvesCharDevice {
-+            _dev: Registration::new(c_str!("alves_char_dev"), 0)?,
-+        })
-+    }
-+}
-diff --git a/drivers/gpu/drm/amd/amdgpu/Kbuild b/drivers/gpu/drm/amd/amdgpu/Kbuild
-new file mode 100644
-index 000000000..9f3589689
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/Kbuild
-@@ -0,0 +1 @@
-+amdgpu-y += alves_core.o
-diff --git a/drivers/gpu/drm/amd/amdgpu/alves_core.rs b/drivers/gpu/drm/amd/amdgpu/alves_core.rs
-new file mode 100644
-index 000000000..e16d06908
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/alves_core.rs
-@@ -0,0 +1,45 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+//! AMDGPU RX 580 State Optimization Engine.
-+//!
-+//! Copyright (C) 2026 Breno Rodrigues Alves.
-+
-+use kernel::prelude::*;
-+
-+#[derive(Copy, Clone, PartialEq, Eq)]
-+#[repr(u8)]
-+enum GpuState {
-+    Idling = 0,
-+    LowPower = 1,
-+    ComputeActive = 2,
-+    VramMaxPerf = 3,
-+}
-+
-+pub struct Rx580Engine {
-+    current_state: GpuState,
-+    command_tape: [u8; 16],
-+    tape_pointer: usize,
-+}
-+
-+impl Rx580Engine {
-+    pub fn process_tape(&mut self) -> Result<()> {
-+        while self.tape_pointer < self.command_tape.len() {
-+            let symbol = self.command_tape[self.tape_pointer];
-+
-+            self.current_state = match (self.current_state, symbol) {
-+                (GpuState::Idling, 0x01) => GpuState::LowPower,
-+                (GpuState::LowPower, 0x02) => GpuState::ComputeActive,
-+                (GpuState::ComputeActive, 0x03) => GpuState::VramMaxPerf,
-+                (GpuState::VramMaxPerf, 0x00) => GpuState::Idling,
-+                (state, _) => state,
-+            };
-+
-+            // SAFETY: Volatile hardware write override for Polaris performance profiling.
-+            unsafe {
-+                core::ptr::write_volatile(&mut self.command_tape[self.tape_pointer], 0xFF);
-+            }
-+            self.tape_pointer += 1;
-+        }
-+        self.tape_pointer = 0;
-+        Ok(())
-+    }
-+}
+ static void amdgpu_gfx_do_off_ctrl(struct amdgpu_device *adev, bool enable,
+ 				   bool no_delay)
+ {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index a0cf0a3b4..0b2f6ce85 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -611,6 +611,8 @@ bool amdgpu_gfx_is_high_priority_graphics_queue(struct amdgpu_device *adev,
+ 						struct amdgpu_ring *ring);
+ bool amdgpu_gfx_is_me_queue_enabled(struct amdgpu_device *adev, int me,
+ 				    int pipe, int queue);
++void amdgpu_gfx_handle_priv_fault(struct amdgpu_device *adev,
++					u8 me_id, u8 pipe_id, u8 queue_id);
+ void amdgpu_gfx_off_ctrl(struct amdgpu_device *adev, bool enable);
+ void amdgpu_gfx_off_ctrl_immediate(struct amdgpu_device *adev, bool enable);
+ int amdgpu_get_gfx_off_status(struct amdgpu_device *adev, uint32_t *value);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+index 2c6f1e25c..888c9f3c4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v11_0.c
+@@ -6688,37 +6688,12 @@ static void gfx_v11_0_handle_priv_fault(struct amdgpu_device *adev,
+ 					struct amdgpu_iv_entry *entry)
+ {
+ 	u8 me_id, pipe_id, queue_id;
+-	struct amdgpu_ring *ring;
+-	int i;
+ 
+ 	me_id = (entry->ring_id & 0x0c) >> 2;
+ 	pipe_id = (entry->ring_id & 0x03) >> 0;
+ 	queue_id = (entry->ring_id & 0x70) >> 4;
+ 
+-	if (!adev->gfx.disable_kq) {
+-		switch (me_id) {
+-		case 0:
+-			for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
+-				ring = &adev->gfx.gfx_ring[i];
+-				if (ring->me == me_id && ring->pipe == pipe_id &&
+-				    ring->queue == queue_id)
+-					drm_sched_fault(&ring->sched);
+-			}
+-			break;
+-		case 1:
+-		case 2:
+-			for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+-				ring = &adev->gfx.compute_ring[i];
+-				if (ring->me == me_id && ring->pipe == pipe_id &&
+-				    ring->queue == queue_id)
+-					drm_sched_fault(&ring->sched);
+-			}
+-			break;
+-		default:
+-			BUG();
+-			break;
+-		}
+-	}
++	amdgpu_gfx_handle_priv_fault(adev, me_id, pipe_id, queue_id);
+ }
+ 
+ static int gfx_v11_0_priv_reg_irq(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+index 6baac533a..3f0d29372 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_0.c
+@@ -5019,37 +5019,12 @@ static void gfx_v12_0_handle_priv_fault(struct amdgpu_device *adev,
+ 					struct amdgpu_iv_entry *entry)
+ {
+ 	u8 me_id, pipe_id, queue_id;
+-	struct amdgpu_ring *ring;
+-	int i;
+ 
+ 	me_id = (entry->ring_id & 0x0c) >> 2;
+ 	pipe_id = (entry->ring_id & 0x03) >> 0;
+ 	queue_id = (entry->ring_id & 0x70) >> 4;
+ 
+-	if (!adev->gfx.disable_kq) {
+-		switch (me_id) {
+-		case 0:
+-			for (i = 0; i < adev->gfx.num_gfx_rings; i++) {
+-				ring = &adev->gfx.gfx_ring[i];
+-				if (ring->me == me_id && ring->pipe == pipe_id &&
+-				    ring->queue == queue_id)
+-					drm_sched_fault(&ring->sched);
+-			}
+-			break;
+-		case 1:
+-		case 2:
+-			for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+-				ring = &adev->gfx.compute_ring[i];
+-				if (ring->me == me_id && ring->pipe == pipe_id &&
+-				    ring->queue == queue_id)
+-					drm_sched_fault(&ring->sched);
+-			}
+-			break;
+-		default:
+-			BUG();
+-			break;
+-		}
+-	}
++	amdgpu_gfx_handle_priv_fault(adev, me_id, pipe_id, queue_id);
+ }
+ 
+ static int gfx_v12_0_priv_reg_irq(struct amdgpu_device *adev,
 -- 
-2.43.0
+2.34.1
 
