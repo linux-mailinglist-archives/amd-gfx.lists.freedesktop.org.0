@@ -2,83 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FFcRIo+9RGrWzwoAu9opvQ
+	id EPaVIpG9RGrczwoAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:11 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:13 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CC4E6EA836
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C3146EA845
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=Aa0chqnf;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=GyFCnhcu;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 2610:10:20:722:a800:ff:fe36:1795 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CF8A10EE02;
-	Wed,  1 Jul 2026 07:11:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F113210EE0A;
+	Wed,  1 Jul 2026 07:11:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f176.google.com (mail-dy1-f176.google.com
- [74.125.82.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8858010E1C4
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 20:56:32 +0000 (UTC)
-Received: by mail-dy1-f176.google.com with SMTP id
- 5a478bee46e88-30ec3dfbcd1so4464920eec.0
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 13:56:32 -0700 (PDT)
+Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com
+ [74.125.82.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 414A210E1C4
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 20:57:57 +0000 (UTC)
+Received: by mail-dy1-f177.google.com with SMTP id
+ 5a478bee46e88-30bc871ecdfso6867939eec.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 13:57:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782852992; x=1783457792; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1782853076; x=1783457876; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=x6HiwsfvjPmDRHwoix/a9VYdRRXV1hUXI65/5jT+lC4=;
- b=Aa0chqnf008KGiEzQDvpX51CweXE0dS5kOgW55MZCx0ddhWQ6d3MO9O2PH+N8I+e8M
- oSWu38ldQhCc/9duCHJ7Q0hrukTqAam8Cp8wIyLP34qJ5rkqEPVfM9rH7cNWa4fOi3Kt
- xjt2g6cOaOuA7EVOzdrtsz994tBuogIBAUimBg9fnJ/dOXt2IhgT97hKtqurGUsdZCpF
- Wc+lhNRWdyBEULuU/G17WwkiP2CNqC8JN96miFnMnEc/a+U65TG5BDOsxyCtYdfjMBbt
- OuyzglRHSPIglsQJ2LVL1bRQneYgve3TZ/iwALiZQGdp6uVOEhM6cd9dDJrTKDXLT3b3
- cNUg==
+ bh=B9Z5xnCi27i9C9A2sCgfs7Wzronwnuanh/3BE+vBDfs=;
+ b=GyFCnhcuouhY2c4+ZjEC38jg4UOq4L/jwh7LPKUeE2InKKVWfi0d1K2Hm0fSA+cm30
+ QaioW/bDoGBQ71MeEsOr25HrcXXmGFWhnFOFWDTF8UsklA/+Uu8dmryNeDu/bVd3dsbc
+ 1nsRtNxgdJHey4vIwKBTz2svuYO3Us4XOPBRkG6eX8MHE8XNaoNYQVi7+wL3VGaGEZ+i
+ Nf2iL8JB4/yn1c1nVLrjzve+ujHUDnNh8AFqH0Bhi/Z2j+WwphsA28wtX1EEQ7DIeBGU
+ c23Fu2UHVHiGHAQPLwpT5SBNkJUdyqZ56eDUbKjqu2TNuMZ9WwHQ9VduXBM+muA7Kd9n
+ hGDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782852992; x=1783457792;
+ d=1e100.net; s=20251104; t=1782853076; x=1783457876;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to:content-type;
- bh=x6HiwsfvjPmDRHwoix/a9VYdRRXV1hUXI65/5jT+lC4=;
- b=kqStG6jCu7FU2YMWOGIX19tMfpKV/63LtLLf9O/5uxKqX9M7hGy6w3KZo9iotJlxFD
- ZLkmTvk93NFz9MQbuWho/WO0pSUgDeqEeULe91euMzdUhaAsCfNZTbdyhl5pLKIVVKZg
- pVHfLCxDLpWcfB06xMVm55CfnXjiz8pPNoEGo63tb6tTVztXru5ZK6rM+7+XB8D6b/GN
- UGgxVqf6krCSwKWmQkA1QK8PujGlbxgjHMTAIjo6Sir1dBIa447b6JfDCQfGc8Ma9tKO
- goWsbM8wGCzluuK7p5pXBWnEshta3DGdmOGR8LvUfXV6gppIsO3XCt39GIqHp4Z4E8w/
- jmSg==
+ bh=B9Z5xnCi27i9C9A2sCgfs7Wzronwnuanh/3BE+vBDfs=;
+ b=HtH8cO909Dti9ratPjeLCeUAvk/p9lnQknep54jlgoU1W8ev2/nz7Y66adF+Iy+sYB
+ VEi9Qgh2d1xsJNnJAXn15NcnTsCidQN3flzuL4u4rR21VWcwOtoHaKooFOZCwucf8pp3
+ C0eOAQogMIZt2PVw1IelwtwocS02UtApgXF65951Thxnd1Sygln5YFgTPIMGZsIG/Ki/
+ DUFE59GmFVZGdunb/F95iKVOUPnr95FTJzHCb+Cahb51EYKwIeZZDVaoM89/p36ufjSn
+ cgBUDOPcULbprKMnvY9jmTEfY27bd09eZbX7OGjQkyXzpw4z29uvl8x/6svPWLkLfrvg
+ Rrdg==
 X-Forwarded-Encrypted: i=1;
- AHgh+RrNW9w5pe7A8Bbyq6MxmhtlfB6mwX6ZaumMJuSwPIOMSxeeWMNKN6foqT6ksc1YNAFBVeicRtAt@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzgQtU4Q6gr4I0uXKKO3Z7MOf1lg6hKV/eaGbis59CYXJmEgMbK
- WMEq/I0T1xJgC2D6rHQmECb06khFkzRr0ibMgXJMY35MCdxyMkyWQeiECJkDTBxSywg=
-X-Gm-Gg: AfdE7cnYU0Z6/LTWzsAG1Q7ZbjqbEpno0IZ5SD67g9RzAu+gtLK26JGEsc7yh1iczK9
- GbCXaEcqF7TW4WdNCdzInJYHoZaI7ChLmb3Cy6tO4McNNfWIAASYJoB3BJU++QPOEVkWWAYKd4s
- 0vrJa2GMWeQsLsRr9QiqRERnN3Ktp3umKQ3/M8QQWwb5YssZym/d1xvEtxWm5fcGf7ut0H6O1Jh
- JdNcffprNGtWXulQNCxksjm6F6xvHDZtXPWEgTRBrtWC6o+x/+AJh3tqEQkve5uKlWV+MZll2cv
- cWJ8cWh3jHJRSCHvtHFT+WGYfOzP0weQoIMW1xgOp17dOiE0bJAxDW9nIzieneoBvgTWKN1A/KP
- IDDR8+DL+ELHblQfESQ0H78AyTJu5vfLq5yRRCPZXW05TjqRkZjuoe8UMrHFxvS2TY5TAeBleij
- K9VWFgk+dcx3o5xMO8iLZWfsPTeuD3B4S1B1EhNhGyC6YO0zdCjkQ52750
-X-Received: by 2002:a05:7300:3207:b0:30c:2932:ab98 with SMTP id
- 5a478bee46e88-30ee1374657mr3444273eec.18.1782852991437; 
- Tue, 30 Jun 2026 13:56:31 -0700 (PDT)
+ AHgh+RqbZoNxaDZT3OUnECcQo2N49st1Bwji4/yzdKgEzOHt/F3yPlmzbU2w4SOSyNdHqHqRa0FcVKxo@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwfMdVBPVDj7O3mNP97aEKM0uSHaIKRq3S3pAdPl74/+1i7Lx9D
+ bB5mEzI/2Wi9dtQUU/SZ3xwVif07WoEThUa1BkpaeE4orTRjn62DLcMt
+X-Gm-Gg: AfdE7clvIw7Z2cwBMHpcb+8VBZ47HsYor8X2SOguYpVMxOwb4X5XGYLZlAjRR9WHB6Z
+ WgCMrBLpEa70j4coYs7vGDsi1YeRLBxbRnSrzzEJrF2EyKyMtlHE9G/19kiEdQDtyLTr0uiHJMJ
+ cqxoPkZM0mprUqSkVgZOarjaHvVZNTf/iPToqDdmM6DhtGycEBXVWhXwQL32r4bevcWKy8Dl5Vk
+ CMXz6Us1evGOh3/OdltoeVcvqO0K0rReH36OMnsnaT6VurQdvBLXxTZg5zW2S6uVnl3SlRXgY37
+ c+tjsWfFGOhD8M0UJZtbrpDsaO2ovNKXXCbVrzoi0Z3z+rBlpXwGOQytBZ0CjppL/2TASJczUfT
+ VoR9l8k32puhrwXQd6Eu7K8r/J3HWKN1DxdCkAqPQUuYaujBnW3vdrUYhf53nEBOhSqMJm1jO17
+ pmV6drl1tpGAVi/+zWpyMmFyuizZ5PoHcGc3j6HuKn50QU7/7+kmkDEyB2
+X-Received: by 2002:a05:7301:e8d:b0:30c:2af0:1cc with SMTP id
+ 5a478bee46e88-30ee14c4090mr3943097eec.34.1782853076312; 
+ Tue, 30 Jun 2026 13:57:56 -0700 (PDT)
 Received: from Biostar-A520MT.. ([187.94.15.127])
  by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-30ee31711acsm10767689eec.18.2026.06.30.13.56.28
+ 5a478bee46e88-30ee326c7a7sm11647045eec.29.2026.06.30.13.57.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Jun 2026 13:56:30 -0700 (PDT)
+ Tue, 30 Jun 2026 13:57:55 -0700 (PDT)
 From: Breno Rodrigues Alves <breno3011alves@gmail.com>
 To: alexander.deucher@amd.com,
 	gregkh@linuxfoundation.org,
 	ojeda@kernel.org
 Cc: christian.koenig@amd.com, arnd@arndb.de, rust-for-linux@vger.kernel.org,
  amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Breno Rodrigues Alves <breno3011alves@gmail.com>,
- Breno Rodrigues Alves <breno301alves@gmail.com>
-Subject: [PATCH] rust: core: implement rx580 state optimization engine and
+ Breno Rodrigues Alves <breno3011alves@gmail.com>
+Subject: [PATCH v2] rust: core: implement rx580 state optimization engine and
  c-to-rust char dev
-Date: Tue, 30 Jun 2026 17:56:25 -0300
-Message-ID: <20260630205625.22569-1-breno3011alves@gmail.com>
+Date: Tue, 30 Jun 2026 17:57:50 -0300
+Message-ID: <20260630205750.22673-1-breno3011alves@gmail.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -108,7 +107,7 @@ X-Spamd-Result: default: False [0.29 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[amd.com,arndb.de,vger.kernel.org,lists.freedesktop.org,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:gregkh@linuxfoundation.org,m:ojeda@kernel.org,m:christian.koenig@amd.com,m:arnd@arndb.de,m:rust-for-linux@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:breno3011alves@gmail.com,m:breno301alves@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:gregkh@linuxfoundation.org,m:ojeda@kernel.org,m:christian.koenig@amd.com,m:arnd@arndb.de,m:rust-for-linux@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:breno3011alves@gmail.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
@@ -120,24 +119,23 @@ X-Spamd-Result: default: False [0.29 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[breno3011alves@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2CC4E6EA836
+X-Rspamd-Queue-Id: 2C3146EA845
 
 This patch introduces an automated indexed state mechanism to optimize
 VRAM latency and command loops for the Radeon RX 580 architecture.
 Additionally, it provides a converted C-to-Rust sample char driver.
 
-Signed-off-by: Breno Rodrigues Alves <breno301alves@gmail.com>
 Signed-off-by: Breno Rodrigues Alves <breno3011alves@gmail.com>
 ---
  RUST_GUIDELINES.md                       |  3 ++
