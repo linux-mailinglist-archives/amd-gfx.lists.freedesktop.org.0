@@ -2,71 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EPaVIpG9RGrczwoAu9opvQ
+	id bxDUJJC9RGrXzwoAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:13 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:12 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C3146EA845
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 372BA6EA83D
+	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 09:11:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=GyFCnhcu;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=KoJRjT0n;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 2610:10:20:722:a800:ff:fe36:1795 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F113210EE0A;
-	Wed,  1 Jul 2026 07:11:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4F6710EE05;
+	Wed,  1 Jul 2026 07:11:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com
- [74.125.82.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 414A210E1C4
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 20:57:57 +0000 (UTC)
-Received: by mail-dy1-f177.google.com with SMTP id
- 5a478bee46e88-30bc871ecdfso6867939eec.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 13:57:57 -0700 (PDT)
+Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com
+ [74.125.82.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E440210E262
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 21:04:52 +0000 (UTC)
+Received: by mail-dy1-f173.google.com with SMTP id
+ 5a478bee46e88-30c591fb1cbso7774570eec.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Jun 2026 14:04:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782853076; x=1783457876; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1782853492; x=1783458292; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=B9Z5xnCi27i9C9A2sCgfs7Wzronwnuanh/3BE+vBDfs=;
- b=GyFCnhcuouhY2c4+ZjEC38jg4UOq4L/jwh7LPKUeE2InKKVWfi0d1K2Hm0fSA+cm30
- QaioW/bDoGBQ71MeEsOr25HrcXXmGFWhnFOFWDTF8UsklA/+Uu8dmryNeDu/bVd3dsbc
- 1nsRtNxgdJHey4vIwKBTz2svuYO3Us4XOPBRkG6eX8MHE8XNaoNYQVi7+wL3VGaGEZ+i
- Nf2iL8JB4/yn1c1nVLrjzve+ujHUDnNh8AFqH0Bhi/Z2j+WwphsA28wtX1EEQ7DIeBGU
- c23Fu2UHVHiGHAQPLwpT5SBNkJUdyqZ56eDUbKjqu2TNuMZ9WwHQ9VduXBM+muA7Kd9n
- hGDA==
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=eJX1L/9ll74nIauy0WzTLN96io2W3a6GrFJb/6SuBK0=;
+ b=KoJRjT0nFsqbQ/1tMey/y5dNlkNJIsH++LQJaMlXrIeGcemDT+G7Xo4ODZn1y0ICTq
+ UJUaP4rynz+PAS1uEpCZR2bh8DOx3GaCD2iYwRRwVYeG6W7htl4sHf9+eKXj+OLmw8fy
+ t0OP+sOZGE5tNhEJ8Bq8e3dfJ93hVKGYIfTwKq7laXWtf6UvXQ9VLdDTLuFL8IPPRmeI
+ DtSZMiakFqHLp8J1+8bCh5Cbh8gtJUfYfcknOXNreZR5PfM/6sxaEaseeJYCQtXgnhLO
+ vncDb0o+yG8Id10fM0gHij9toX++RUi/tgXmUYuxEdIhqO3WR9TKNy4cNWPaY+k5f44k
+ L0ZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782853076; x=1783457876;
+ d=1e100.net; s=20251104; t=1782853492; x=1783458292;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=B9Z5xnCi27i9C9A2sCgfs7Wzronwnuanh/3BE+vBDfs=;
- b=HtH8cO909Dti9ratPjeLCeUAvk/p9lnQknep54jlgoU1W8ev2/nz7Y66adF+Iy+sYB
- VEi9Qgh2d1xsJNnJAXn15NcnTsCidQN3flzuL4u4rR21VWcwOtoHaKooFOZCwucf8pp3
- C0eOAQogMIZt2PVw1IelwtwocS02UtApgXF65951Thxnd1Sygln5YFgTPIMGZsIG/Ki/
- DUFE59GmFVZGdunb/F95iKVOUPnr95FTJzHCb+Cahb51EYKwIeZZDVaoM89/p36ufjSn
- cgBUDOPcULbprKMnvY9jmTEfY27bd09eZbX7OGjQkyXzpw4z29uvl8x/6svPWLkLfrvg
- Rrdg==
+ :message-id:reply-to;
+ bh=eJX1L/9ll74nIauy0WzTLN96io2W3a6GrFJb/6SuBK0=;
+ b=nXmx6SP3KP8fcgU+QjoTSc4BAuBCdJ+uIBMgQVWFHZKoUBLWgOkxGppsbJpKzv0cre
+ bKqnI+N3ZYA9gBz4RRACdYd4SrX+n7pXS4zNa1GRtikTAWcPqOlPrnK6LQsZsoSWFo4W
+ /rFDwKj6s7nY3UI+4u4glqSLWIufOEpXQevPw3PGU3XIlxIZEA9rSmR3QF5IxawV9yeD
+ Y4XhxWAZA0V/YPT5U4l8m/8BScXn9X3Dv2ejlqkpUHew8YWC/3FJRqqXYsclz3X2jI0T
+ FYczT6EEaAHUIIBxFtvOY6itYlRRI3OvinLZmcslBO3gtQJ4RztZUC+klvyLPNPtbM3J
+ zJCw==
 X-Forwarded-Encrypted: i=1;
- AHgh+RqbZoNxaDZT3OUnECcQo2N49st1Bwji4/yzdKgEzOHt/F3yPlmzbU2w4SOSyNdHqHqRa0FcVKxo@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwfMdVBPVDj7O3mNP97aEKM0uSHaIKRq3S3pAdPl74/+1i7Lx9D
- bB5mEzI/2Wi9dtQUU/SZ3xwVif07WoEThUa1BkpaeE4orTRjn62DLcMt
-X-Gm-Gg: AfdE7clvIw7Z2cwBMHpcb+8VBZ47HsYor8X2SOguYpVMxOwb4X5XGYLZlAjRR9WHB6Z
- WgCMrBLpEa70j4coYs7vGDsi1YeRLBxbRnSrzzEJrF2EyKyMtlHE9G/19kiEdQDtyLTr0uiHJMJ
- cqxoPkZM0mprUqSkVgZOarjaHvVZNTf/iPToqDdmM6DhtGycEBXVWhXwQL32r4bevcWKy8Dl5Vk
- CMXz6Us1evGOh3/OdltoeVcvqO0K0rReH36OMnsnaT6VurQdvBLXxTZg5zW2S6uVnl3SlRXgY37
- c+tjsWfFGOhD8M0UJZtbrpDsaO2ovNKXXCbVrzoi0Z3z+rBlpXwGOQytBZ0CjppL/2TASJczUfT
- VoR9l8k32puhrwXQd6Eu7K8r/J3HWKN1DxdCkAqPQUuYaujBnW3vdrUYhf53nEBOhSqMJm1jO17
- pmV6drl1tpGAVi/+zWpyMmFyuizZ5PoHcGc3j6HuKn50QU7/7+kmkDEyB2
-X-Received: by 2002:a05:7301:e8d:b0:30c:2af0:1cc with SMTP id
- 5a478bee46e88-30ee14c4090mr3943097eec.34.1782853076312; 
- Tue, 30 Jun 2026 13:57:56 -0700 (PDT)
+ AHgh+Rp1YTu71NlQZXf4wiXan6PdmrZ+daBQUxfQdF2fAvvJ+Kgt7Y7SHQWk0xRA5ikwB1aQr3tTt8iq@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyZR9it21PEZU45fm9PxF0T++/x+CNpf6sKjVWIrxNT3OdCJgZ2
+ Jr9efFCO7IPtMdL6ywYVweRYADkXevgAHGUFCPUBquiUFtbvh7fekcoU
+X-Gm-Gg: AfdE7cl8WQvJKou7bf1z9UkjwuWS1cZXcrydhTV6k32aEnzcu2mUGfIdN9pq6hXmSXs
+ O2pJ/M0Im6HvFsZ5hRuzUtYTYFlEYJZA0lmeyfXaZgdGyofj64TIYZA22B0F8d6p4Las+alE/i9
+ ycTFn4aBZLxgufvFoIpVO/MRSzbNMHPkanat8lse00e+xlnS3aCa3do/eV4zaD6v47ZfEGEDswI
+ +XkpGSKuZos8FGV6YsXcvfgM8ALpafz0rCaASgOpaorn0L/Ys3zQg2RqA+RwmLHZZ+3In9AUsMW
+ MB0phhMd+kQHhkQ7XxjP1+pqUxO+omLwlXdzbMm5dP882y7gjRIwOndRHkzIVAEqCtvEiIELcG7
+ l5+sQT6yfD7UeyipZSDQnBLLjyEA3QjZngORBkS48xv2Jj4HuR7gXzjQUL3yTGcTKNzNrarnnYO
+ 6PeSAGkQ0iaD3/g0fWSbTKPcFp0LziLnCeB57HkyrsLkkd2P729AsE9aJFg4Nf1yFDt8U=
+X-Received: by 2002:a05:7300:d505:b0:30e:c71e:dbc with SMTP id
+ 5a478bee46e88-30ef09c05dfmr1472628eec.30.1782853491807; 
+ Tue, 30 Jun 2026 14:04:51 -0700 (PDT)
 Received: from Biostar-A520MT.. ([187.94.15.127])
  by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-30ee326c7a7sm11647045eec.29.2026.06.30.13.57.53
+ 5a478bee46e88-30ee32519aesm10995383eec.27.2026.06.30.14.04.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Jun 2026 13:57:55 -0700 (PDT)
+ Tue, 30 Jun 2026 14:04:51 -0700 (PDT)
 From: Breno Rodrigues Alves <breno3011alves@gmail.com>
 To: alexander.deucher@amd.com,
 	gregkh@linuxfoundation.org,
@@ -74,10 +74,10 @@ To: alexander.deucher@amd.com,
 Cc: christian.koenig@amd.com, arnd@arndb.de, rust-for-linux@vger.kernel.org,
  amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  Breno Rodrigues Alves <breno3011alves@gmail.com>
-Subject: [PATCH v2] rust: core: implement rx580 state optimization engine and
+Subject: [PATCH v3] rust: core: implement rx580 state optimization engine and
  c-to-rust char dev
-Date: Tue, 30 Jun 2026 17:57:50 -0300
-Message-ID: <20260630205750.22673-1-breno3011alves@gmail.com>
+Date: Tue, 30 Jun 2026 18:04:45 -0300
+Message-ID: <20260630210445.23103-1-breno3011alves@gmail.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -119,8 +119,8 @@ X-Spamd-Result: default: False [0.29 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[breno3011alves@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[breno3011alves@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
@@ -130,7 +130,7 @@ X-Spamd-Result: default: False [0.29 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2C3146EA845
+X-Rspamd-Queue-Id: 372BA6EA83D
 
 This patch introduces an automated indexed state mechanism to optimize
 VRAM latency and command loops for the Radeon RX 580 architecture.
@@ -138,63 +138,51 @@ Additionally, it provides a converted C-to-Rust sample char driver.
 
 Signed-off-by: Breno Rodrigues Alves <breno3011alves@gmail.com>
 ---
- RUST_GUIDELINES.md                       |  3 ++
- drivers/char/Kconfig                     |  8 +++++
- drivers/char/Makefile                    |  1 +
- drivers/char/alves_char_dev.rs           | 26 ++++++++++++++
- drivers/gpu/drm/amd/amdgpu/Kbuild        |  1 +
- drivers/gpu/drm/amd/amdgpu/alves_core.rs | 45 ++++++++++++++++++++++++
- 6 files changed, 84 insertions(+)
- create mode 100644 RUST_GUIDELINES.md
+ Documentation/rust/alves_guidelines.rst  |  3 ++
+ drivers/char/Kconfig                     |  7 +++++
+ drivers/char/alves_char_dev.rs           | 31 +++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/Makefile      |  1 +
+ drivers/gpu/drm/amd/amdgpu/alves_core.rs | 38 ++++++++++++++++++++++++
+ 5 files changed, 80 insertions(+)
+ create mode 100644 Documentation/rust/alves_guidelines.rst
  create mode 100644 drivers/char/alves_char_dev.rs
- create mode 100644 drivers/gpu/drm/amd/amdgpu/Kbuild
  create mode 100644 drivers/gpu/drm/amd/amdgpu/alves_core.rs
 
-diff --git a/RUST_GUIDELINES.md b/RUST_GUIDELINES.md
+diff --git a/Documentation/rust/alves_guidelines.rst b/Documentation/rust/alves_guidelines.rst
 new file mode 100644
 index 000000000..f6afa63de
 --- /dev/null
-+++ b/RUST_GUIDELINES.md
++++ b/Documentation/rust/alves_guidelines.rst
 @@ -0,0 +1,3 @@
 +# Rust for Linux - Core Guidelines
 +- Style: Linear, pragmatic, flat, Linus Torvalds style.
 +- Constraints: Zero-cost abstractions, strict RAII, no binary bloat.
 diff --git a/drivers/char/Kconfig b/drivers/char/Kconfig
-index 9865227af..d6cbf317c 100644
+index 9865227af..ace4df826 100644
 --- a/drivers/char/Kconfig
 +++ b/drivers/char/Kconfig
-@@ -372,3 +372,11 @@ config ADI
+@@ -372,3 +372,10 @@ config ADI
  	  driver include crash and makedumpfile.
  
  endmenu
 +config ALVES_CHAR_DEV
 +	tristate "Alves C-to-Rust Character Device Driver"
-+	dependson RUST
++	depends on RUST
 +	help
 +	  This is a character device driver migrated from C to Rust.
 +	  It acts as a core showcase of 2% module conversions.
-+	  It provides foundational structures for execution validation.
 +	  Say Y or M here if you want to test the Rust infrastructure.
-diff --git a/drivers/char/Makefile b/drivers/char/Makefile
-index a46d7bf7c..bf967e910 100644
---- a/drivers/char/Makefile
-+++ b/drivers/char/Makefile
-@@ -41,3 +41,4 @@ obj-$(CONFIG_PS3_FLASH)		+= ps3flash.o
- obj-$(CONFIG_XILLYBUS_CLASS)	+= xillybus/
- obj-$(CONFIG_POWERNV_OP_PANEL)	+= powernv-op-panel.o
- obj-$(CONFIG_ADI)		+= adi.o
-+obj-$(CONFIG_ALVES_CHAR_DEV) += alves_char_dev.o
 diff --git a/drivers/char/alves_char_dev.rs b/drivers/char/alves_char_dev.rs
 new file mode 100644
-index 000000000..48440ab32
+index 000000000..5ccb80ea4
 --- /dev/null
 +++ b/drivers/char/alves_char_dev.rs
-@@ -0,0 +1,26 @@
+@@ -0,0 +1,31 @@
 +// SPDX-License-Identifier: GPL-2.0 OR MIT
-+//! Simple Character Device converted from legacy C to Rust.
++//! Simple Character Device converted from legacy C to Rust using core Miscdev API.
 +
 +use kernel::prelude::*;
-+use kernel::chrdev::Registration;
++use kernel::miscdev;
 +
 +module! {
 +    type: AlvesCharDevice,
@@ -205,32 +193,39 @@ index 000000000..48440ab32
 +}
 +
 +struct AlvesCharDevice {
-+    _dev: Registration,
++    _dev: miscdev::Registration<AlvesCharDevice>,
++}
++
++#[vtable]
++impl miscdev::Options for AlvesCharDevice {
++    const NAME: \&"static CStr = c_str!("alves_char_dev");
 +}
 +
 +impl kernel::Module for AlvesCharDevice {
-+    fn init(_module: $'static ThisModule$') -> Result<Self> {
-+        pr_info!("Alves C-to-Rust module initialized successfully\n");
-+        Ok(AlvesCharDevice {
-+            _dev: Registration::new(c_str!("alves_char_dev"), 0)?,
-+        })
++    fn init(module: \&"static ThisModule) -> Result<Self> {
++        pr_info!("Alves C-to-Rust module initialized successfully
++");
++        let dev = miscdev::Registration::new_reg(module)?;
++        Ok(AlvesCharDevice { _dev: dev })
 +    }
 +}
-diff --git a/drivers/gpu/drm/amd/amdgpu/Kbuild b/drivers/gpu/drm/amd/amdgpu/Kbuild
-new file mode 100644
-index 000000000..9f3589689
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/Kbuild
-@@ -0,0 +1 @@
+diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
+index ba80542ea..b9f98c3e4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/Makefile
++++ b/drivers/gpu/drm/amd/amdgpu/Makefile
+@@ -349,3 +349,4 @@ include $(AMD_GPU_RAS_FULL_PATH)/Makefile
+ amdgpu-y += $(AMD_GPU_RAS_FILES)
+ 
+ obj-$(CONFIG_DRM_AMDGPU)+= amdgpu.o
 +amdgpu-y += alves_core.o
 diff --git a/drivers/gpu/drm/amd/amdgpu/alves_core.rs b/drivers/gpu/drm/amd/amdgpu/alves_core.rs
 new file mode 100644
-index 000000000..e16d06908
+index 000000000..aa436763e
 --- /dev/null
 +++ b/drivers/gpu/drm/amd/amdgpu/alves_core.rs
-@@ -0,0 +1,45 @@
+@@ -0,0 +1,38 @@
 +// SPDX-License-Identifier: GPL-2.0 OR MIT
-+//! AMDGPU RX 580 State Optimization Engine.
++//! AMDGPU RX 580 State Optimization Engine (Turing-inspired state machine)
 +//!
 +//! Copyright (C) 2026 Breno Rodrigues Alves.
 +
@@ -245,34 +240,27 @@ index 000000000..e16d06908
 +    VramMaxPerf = 3,
 +}
 +
-+pub struct Rx580Engine {
++struct Rx580Engine {
 +    current_state: GpuState,
-+    command_tape: [u8; 16],
-+    tape_pointer: usize,
 +}
 +
 +impl Rx580Engine {
-+    pub fn process_tape(&mut self) -> Result<()> {
-+        while self.tape_pointer < self.command_tape.len() {
-+            let symbol = self.command_tape[self.tape_pointer];
-+
-+            self.current_state = match (self.current_state, symbol) {
-+                (GpuState::Idling, 0x01) => GpuState::LowPower,
-+                (GpuState::LowPower, 0x02) => GpuState::ComputeActive,
-+                (GpuState::ComputeActive, 0x03) => GpuState::VramMaxPerf,
-+                (GpuState::VramMaxPerf, 0x00) => GpuState::Idling,
-+                (state, _) => state,
-+            };
-+
-+            // SAFETY: Volatile hardware write override for Polaris performance profiling.
-+            unsafe {
-+                core::ptr::write_volatile(&mut self.command_tape[self.tape_pointer], 0xFF);
-+            }
-+            self.tape_pointer += 1;
-+        }
-+        self.tape_pointer = 0;
-+        Ok(())
++    fn transition(&mut self, symbol: u8) {
++        self.current_state = match (self.current_state, symbol) {
++            (GpuState::Idling, 0x01) => GpuState::LowPower,
++            (GpuState::LowPower, 0x02) => GpuState::ComputeActive,
++            (GpuState::ComputeActive, 0x03) => GpuState::VramMaxPerf,
++            (GpuState::VramMaxPerf, 0x00) => GpuState::Idling,
++            (state, _) => state,
++        };
 +    }
++}
++
++#[no_mangle]
++pub extern "C" fn amdgpu_rust_rx580_optimize(register_sample: u32) {
++    let mut engine = Rx580Engine { current_state: GpuState::Idling };
++    let symbol = (register_sample \& 0xFF) as u8;
++    engine.transition(symbol);
 +}
 -- 
 2.43.0
