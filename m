@@ -2,111 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FPBjHK7rRGq23AoAu9opvQ
+	id nUTRCkIcRmqTKAsAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 12:27:58 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 10:07:30 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3C4F6EC234
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 12:27:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88D536F4939
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 10:07:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=e8NYauTF;
+	dkim=pass header.d=linuxfoundation.org header.s=korg header.b=v7kBGXlS;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=none) header.from=linuxfoundation.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40DA010E281;
-	Wed,  1 Jul 2026 10:27:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C312710F210;
+	Thu,  2 Jul 2026 08:07:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013021.outbound.protection.outlook.com
- [40.93.201.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C10710E281
- for <amd-gfx@lists.freedesktop.org>; Wed,  1 Jul 2026 10:27:54 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sSvurLt9VxM9n3DUB2FDuce0CoIW140ecynYZoGTKekhAeMUp1i+6VkbBYxDrGf24/1h1FdaoA+Ziuoa4226dsscZ3mMjpDtoUrtG64OBARcyBUE+YbgiC52VzsktqfXJ1yIxvtJc6L4pQDvDrG3lc3zF+ki5SqK0MrRjzI5iIfRN7ceVrd4lz6cEpPQYHQvS8BK+Bg8UuJeWZww6e7jBsHE5jz8c9+7uyHTs/P9oL9RNw+gFyYwGujESmvpp6vd9kC4IeJ/ZChw7ZWTR9XgCC/GPL8BtuBIUinQKF9F9AaWDuavRi077Yx2tvIsXWkYFktW2EQXvDew2qBWWddcOA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I+jMbWndEacOtH5eOL38YnhBt/krSKkgRcKDBCk9tpo=;
- b=THRKHVWdYcHRxXLrEbJ69DAAmDXOOUDJyEOhk1ZqHLyALmx3ZveuKtJzXzX9wUIwrxRwAGN4seqAGrhx9VPBaKTswfPjOlimnNoPe6REal6NrlnzTCZdOHUPrTWx6qivBZo7e69GfqpCfcwkRO9NmaxC3sqXLlu1K2VCttefqySZ5PxXq7VxLsOPyuug1uaSq4qR1RjVkW9IEUjQFN5dEELXLSJMQD/eiItcgAMa8aDF5gzHspZXnKxhpVI6TUlbY6Y8RlVk/cagBHOms/QH9NnxACzjeQaknqk0sY7prRLYSog5lyhGG8CljcQgkfcdQljakLY677ejDti8rYyLfw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I+jMbWndEacOtH5eOL38YnhBt/krSKkgRcKDBCk9tpo=;
- b=e8NYauTF/Ix/jPRVxQlSe0KL8z2svz9lW8HQdAyI1n8MPAx18j90rjjo3BhyTnYaDBxtSUWM8rKlSFgplMieu/Ct0ajRrYiQdnFdoUO7Bj/TB8HPBwYKSvNo59fQGOR5hBX98sQjecsEA36TnyDQX7+MM+X0Jjtcz8P6oBMPmPI=
-Received: from SN7P220CA0020.NAMP220.PROD.OUTLOOK.COM (2603:10b6:806:123::25)
- by DS0PR12MB7898.namprd12.prod.outlook.com (2603:10b6:8:14c::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Wed, 1 Jul 2026
- 10:27:51 +0000
-Received: from SA2PEPF00003F63.namprd04.prod.outlook.com
- (2603:10b6:806:123:cafe::a1) by SN7P220CA0020.outlook.office365.com
- (2603:10b6:806:123::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.8 via Frontend Transport; Wed, 1
- Jul 2026 10:27:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- SA2PEPF00003F63.mail.protection.outlook.com (10.167.248.38) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Wed, 1 Jul 2026 10:27:50 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 1 Jul
- 2026 05:27:50 -0500
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 1 Jul
- 2026 05:27:49 -0500
-Received: from JesseDEV.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
- Transport; Wed, 1 Jul 2026 05:27:48 -0500
-From: Jesse Zhang <Jesse.Zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Alexander.Deucher@amd.com>, Christian Koenig <christian.koenig@amd.com>, 
- Jesse Zhang <Jesse.Zhang@amd.com>
-Subject: [PATCH] drm/amdgpu: trigger GPU recovery when userq destroy fails to
- unmap a hung queue
-Date: Wed, 1 Jul 2026 18:27:41 +0800
-Message-ID: <20260701102748.1261029-1-Jesse.Zhang@amd.com>
-X-Mailer: git-send-email 2.49.0
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F44410E332
+ for <amd-gfx@lists.freedesktop.org>; Wed,  1 Jul 2026 10:33:02 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id DFC404033F;
+ Wed,  1 Jul 2026 10:33:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DD1C1F000E9;
+ Wed,  1 Jul 2026 10:33:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
+ s=korg; t=1782901981;
+ bh=aTZX0gXiTEE7JDt7/JZtMtv5Tbg1fdLtCyTAywHrS8c=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=v7kBGXlSYYVGshBfp+N1nKM+kvPQ/oC8Ib7Am3whQXZVLiX3RI4/pYFF7m+ppYLJx
+ YS9xHEqgZ2mlgbhr2IvgL3Tfu5nw4bBgD0cAdedyVNxuvfHoNkjn1Rz0Da0OopuC4R
+ BI285oLaLgyRzX1cBz+0WCYfZII6uWAzv0zhxjiA=
+Date: Wed, 1 Jul 2026 12:32:57 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Breno Rodrigues Alves <breno3011alves@gmail.com>
+Cc: alexander.deucher@amd.com, ojeda@kernel.org, christian.koenig@amd.com,
+ arnd@arndb.de, rust-for-linux@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] rust: core: implement rx580 state optimization engine
+ and c-to-rust char dev
+Message-ID: <2026070136-unbent-mothball-49ba@gregkh>
+References: <20260630210445.23103-1-breno3011alves@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003F63:EE_|DS0PR12MB7898:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1eeae806-7598-4d9e-15ef-08ded75b671d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|82310400026|376014|1800799024|36860700016|18002099003|11063799006|6133799003|56012099006;
-X-Microsoft-Antispam-Message-Info: rINGWOuXulMDpRL3EJcLMk4NpCe+j+HRewzyPsm4ywM1rfedwb/Gyfv3zprBUBjkIJ6xegXYX1SFykqfF7gXSxABOsIbqEMloHx/eskWu2J4CRe65rRdhk6oAoMjOT6Uwm4j5Y0VAhlgl82+TLZewEEZ8ePZdZWbqfjxEIdHO5m/YYsrV2lmVN7BboudIrfV27Z/DHc34oEZipqm3FQvucRKUlpjaYJIn92DizA2Z9YMMTFJ9/oQkfbzk8kb80hkoRCZAuwO7JmPTMAD4XPneadZyu/7YERYQmioyN929DeZ3zVbzBmP6Mk8v9NcGGkcp848O8RY8tUZCqe10sDj2e7oNQiC0m6dnF+wroc0yS65BcaIAl8F9rVitP3szaFoVYEefs8jUn3dk3XiCOzfMGGqYyKn2RXhQXeFBOXuzq8bDhqf+q8eW5eHeKkglobSlcIScrEaNUhll1vXR6oWpfefty9jbim3it1UmnfXCcbAjXyQlshiwJhji3X+ixab7KV4xIIZuaIV5zbxiWBwpF3YItauMs/SmhMSK40za80R/H2j68HeMcEledfgdG9WsRZKKbq9QzPHYTdinSdB0ciL1yHzYQ9lVlbfyGVFSTwPA4YwzAQVNiY5xW7OcKc7tX9aBi1/pAbj4Z8oFxUxGE0D0qG2W4cS+4EPuzFMfRQjnKbuGBvaJjbQBM8E50nQmyl+2YOGSsEmRxnVeQueEA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(23010399003)(82310400026)(376014)(1800799024)(36860700016)(18002099003)(11063799006)(6133799003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: WIA+EIe2jqtyrXE+a1hyYVLFqTZ4GTV/+y/WNYv5tZ3Z1lTEdduQ+K8IHn0HsIUz64lX35m1zvw1DsV4qnMf6YHZBtrqtsQTSNg3tD/p/UyNUioB9VhFQ5dbiFprMDqZfDhdkGHZnhQsKAFLxh8u5WzrzTmc7hXj4y/YDe1o9mdLaMy1iF8eZh6oUvG4+vqrVcXjWgb/YzNDgCAkjq3Wb3XlVGW50Rb09/2KDAuTvFD4Aqfqi45KKIm68MSqfWdXWPdN99pvL3Q3mTLnKvheuY3IDUYmaOK/14bsG2I7+yj1OqviNBalY5QBzlh5EwjRrIRAUjwzhd6XzV7tfEPOpKySSdTDiYtgBWHFdGtL6rGpRxSuSJbmX0nsLAfztBnM2PrLcanG86CqlDs3NdYf6HK7N7SJz4D5WZvx5MptYJ4+Bfj3hh2G8Zg71bnkG46P
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2026 10:27:50.4520 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1eeae806-7598-4d9e-15ef-08ded75b671d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F63.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7898
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260630210445.23103-1-breno3011alves@gmail.com>
+X-Mailman-Approved-At: Thu, 02 Jul 2026 08:07:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,67 +62,187 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [3.19 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:breno3011alves@gmail.com,m:alexander.deucher@amd.com,m:ojeda@kernel.org,m:christian.koenig@amd.com,m:arnd@arndb.de,m:rust-for-linux@vger.kernel.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Jesse.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[linuxfoundation.org:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,gregkh:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C3C4F6EC234
+X-Rspamd-Queue-Id: 88D536F4939
 
-Destroying a hung user queue issues a MES REMOVE_QUEUE that times out,
-The destroy path only logged the error and freed the queue, so the
-next userq submission failed and forced a GPU reset attributed to an innocent workload.
+On Tue, Jun 30, 2026 at 06:04:45PM -0300, Breno Rodrigues Alves wrote:
+> This patch introduces an automated indexed state mechanism to optimize
+> VRAM latency and command loops for the Radeon RX 580 architecture.
+> Additionally, it provides a converted C-to-Rust sample char driver.
+> 
+> Signed-off-by: Breno Rodrigues Alves <breno3011alves@gmail.com>
+> ---
+>  Documentation/rust/alves_guidelines.rst  |  3 ++
+>  drivers/char/Kconfig                     |  7 +++++
+>  drivers/char/alves_char_dev.rs           | 31 +++++++++++++++++++
+>  drivers/gpu/drm/amd/amdgpu/Makefile      |  1 +
+>  drivers/gpu/drm/amd/amdgpu/alves_core.rs | 38 ++++++++++++++++++++++++
+>  5 files changed, 80 insertions(+)
+>  create mode 100644 Documentation/rust/alves_guidelines.rst
+>  create mode 100644 drivers/char/alves_char_dev.rs
+>  create mode 100644 drivers/gpu/drm/amd/amdgpu/alves_core.rs
+> 
+> diff --git a/Documentation/rust/alves_guidelines.rst b/Documentation/rust/alves_guidelines.rst
+> new file mode 100644
+> index 000000000..f6afa63de
+> --- /dev/null
+> +++ b/Documentation/rust/alves_guidelines.rst
+> @@ -0,0 +1,3 @@
+> +# Rust for Linux - Core Guidelines
+> +- Style: Linear, pragmatic, flat, Linus Torvalds style.
+> +- Constraints: Zero-cost abstractions, strict RAII, no binary bloat.
+> diff --git a/drivers/char/Kconfig b/drivers/char/Kconfig
+> index 9865227af..ace4df826 100644
+> --- a/drivers/char/Kconfig
+> +++ b/drivers/char/Kconfig
+> @@ -372,3 +372,10 @@ config ADI
+>  	  driver include crash and makedumpfile.
+>  
+>  endmenu
+> +config ALVES_CHAR_DEV
+> +	tristate "Alves C-to-Rust Character Device Driver"
+> +	depends on RUST
+> +	help
+> +	  This is a character device driver migrated from C to Rust.
+> +	  It acts as a core showcase of 2% module conversions.
+> +	  Say Y or M here if you want to test the Rust infrastructure.
+> diff --git a/drivers/char/alves_char_dev.rs b/drivers/char/alves_char_dev.rs
+> new file mode 100644
+> index 000000000..5ccb80ea4
+> --- /dev/null
+> +++ b/drivers/char/alves_char_dev.rs
+> @@ -0,0 +1,31 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +//! Simple Character Device converted from legacy C to Rust using core Miscdev API.
 
-Kick the userq reset work when unmap fails so the GPU is recovered at
-destroy time.
+Where is the original C code?
 
-Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+And what is going to interact with this in userspace?  And how?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-index fb7e18c841ee..aa5cc5642e87 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-@@ -542,6 +542,15 @@ amdgpu_userq_destroy(struct amdgpu_userq_mgr *uq_mgr, struct amdgpu_usermode_que
- 	amdgpu_userq_cleanup(queue);
- 	mutex_unlock(&uq_mgr->userq_mutex);
- 
-+	/*
-+	 * A failed unmap means MES could not remove the hung queue and is now
-+	 * unresponsive.  Recover the GPU here so the wedged MES does not fail
-+	 * the next, unrelated queue submission and trigger a reset attributed
-+	 * to an innocent workload.
-+	 */
-+	if (r)
-+		queue_work(adev->reset_domain->wq, &uq_mgr->reset_work);
-+
- 	cancel_delayed_work_sync(&queue->hang_detect_work);
- 	uq_funcs->mqd_destroy(queue);
- 	queue->userq_mgr = NULL;
--- 
-2.49.0
+> +
+> +use kernel::prelude::*;
+> +use kernel::miscdev;
+> +
+> +module! {
+> +    type: AlvesCharDevice,
+> +    name: "alves_char_dev",
+> +    author: "Breno Rodrigues Alves",
+> +    description: "Pragmatic C-to-Rust converted character device driver",
+> +    license: "GPL OR MIT",
+> +}
+> +
+> +struct AlvesCharDevice {
+> +    _dev: miscdev::Registration<AlvesCharDevice>,
+> +}
+> +
+> +#[vtable]
+> +impl miscdev::Options for AlvesCharDevice {
+> +    const NAME: \&"static CStr = c_str!("alves_char_dev");
+> +}
+> +
+> +impl kernel::Module for AlvesCharDevice {
+> +    fn init(module: \&"static ThisModule) -> Result<Self> {
+> +        pr_info!("Alves C-to-Rust module initialized successfully
+> +");
+> +        let dev = miscdev::Registration::new_reg(module)?;
+> +        Ok(AlvesCharDevice { _dev: dev })
+> +    }
+> +}
 
+This code doesn't actually do anything at all, how was it tested?
+
+
+> diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
+> index ba80542ea..b9f98c3e4 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/Makefile
+> +++ b/drivers/gpu/drm/amd/amdgpu/Makefile
+> @@ -349,3 +349,4 @@ include $(AMD_GPU_RAS_FULL_PATH)/Makefile
+>  amdgpu-y += $(AMD_GPU_RAS_FILES)
+>  
+>  obj-$(CONFIG_DRM_AMDGPU)+= amdgpu.o
+> +amdgpu-y += alves_core.o
+> diff --git a/drivers/gpu/drm/amd/amdgpu/alves_core.rs b/drivers/gpu/drm/amd/amdgpu/alves_core.rs
+> new file mode 100644
+> index 000000000..aa436763e
+> --- /dev/null
+> +++ b/drivers/gpu/drm/amd/amdgpu/alves_core.rs
+> @@ -0,0 +1,38 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +//! AMDGPU RX 580 State Optimization Engine (Turing-inspired state machine)
+> +//!
+> +//! Copyright (C) 2026 Breno Rodrigues Alves.
+> +
+> +use kernel::prelude::*;
+> +
+> +#[derive(Copy, Clone, PartialEq, Eq)]
+> +#[repr(u8)]
+> +enum GpuState {
+> +    Idling = 0,
+> +    LowPower = 1,
+> +    ComputeActive = 2,
+> +    VramMaxPerf = 3,
+> +}
+> +
+> +struct Rx580Engine {
+> +    current_state: GpuState,
+> +}
+> +
+> +impl Rx580Engine {
+> +    fn transition(&mut self, symbol: u8) {
+> +        self.current_state = match (self.current_state, symbol) {
+> +            (GpuState::Idling, 0x01) => GpuState::LowPower,
+> +            (GpuState::LowPower, 0x02) => GpuState::ComputeActive,
+> +            (GpuState::ComputeActive, 0x03) => GpuState::VramMaxPerf,
+> +            (GpuState::VramMaxPerf, 0x00) => GpuState::Idling,
+> +            (state, _) => state,
+> +        };
+> +    }
+> +}
+> +
+> +#[no_mangle]
+> +pub extern "C" fn amdgpu_rust_rx580_optimize(register_sample: u32) {
+> +    let mut engine = Rx580Engine { current_state: GpuState::Idling };
+> +    let symbol = (register_sample \& 0xFF) as u8;
+> +    engine.transition(symbol);
+> +}
+
+Same here, this code doesn't do anything that I can tell.  How was it
+tested?
+
+confused,
+
+greg k-h
