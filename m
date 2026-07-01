@@ -2,137 +2,138 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GN01MDwcRmqIKAsAu9opvQ
+	id 7m1iOkAcRmqQKAsAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 10:07:24 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 10:07:28 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10BA86F4920
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 10:07:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97E8E6F4933
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 10:07:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmx.de header.s=s31663417 header.b=BXBTqTUk;
+	dkim=pass header.d=gmx.de header.s=s31663417 header.b=j240Lp46;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=gmx.de
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7703C10F1ED;
-	Thu,  2 Jul 2026 08:07:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7581510F20F;
+	Thu,  2 Jul 2026 08:07:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAD7B10EF04
- for <amd-gfx@lists.freedesktop.org>; Wed,  1 Jul 2026 11:34:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33AB010EF04
+ for <amd-gfx@lists.freedesktop.org>; Wed,  1 Jul 2026 11:34:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
  s=s31663417; t=1782905638; x=1783510438; i=natalie.vock@gmx.de;
- bh=6O3VyoprwvQdHEFnrRxtwacSWvdL5gugEf8Ue1Oc4pA=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
- MIME-Version:Content-Transfer-Encoding:cc:
+ bh=0G5IKpbt84pxHoOIL9jbgJa+SVs+TmfkWyCjKYKWuXc=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
+ References:MIME-Version:Content-Transfer-Encoding:cc:
  content-transfer-encoding:content-type:date:from:message-id:
  mime-version:reply-to:subject:to;
- b=BXBTqTUkbylSgxBxL3BiguoULnt8w4oT8IunmxSM7vTE5hBZDKrxkpTzEr4ISBak
- CmZvS4GwXr+2MJA3AFgC1/zPK6uv/PjiF22eYXFxNPCU7pi5tmUELEy/3o2MSi0R5
- xJG/y20s4eC4kzQccwCi2jmaxsEVdspbtH98lfiuGlw1K9uiBELd5hqZSA13hWGxw
- oNEKl4CpNWSZzw8qfAYUPNZaD8Z4x+iOrI1VQyfrb8KYeP2a1WgDhj0VYF1MSKpTP
- m7yTZrTUn/LY2DuqMuzBhFXyiUizXO53fOlLfKoZOiUp69DOo1pVgZ28GgmUjX/b1
- m4eh9bQEOe3QnJv6vQ==
+ b=j240Lp46wiAUHTa3WPRoN9Yf3xp44wmPWVElwL6cVNstYW3IvbqEE8Q+/IN9QRdt
+ D1mhsJYAhcZGHsJExeEGmQkhhuQ0UMR7DPVn2Ni/cCa02b+pbYIm+aUIfUGKyaL4g
+ a+LuA1XpNMFG19OowqeTz0KpzeQTjyJAUUOzlwThosNqxd0Ywpvv/pkdyJNvZH1O4
+ EV2rFJETSYxRVCDTzhGE3n2IN1rMND2sXunprhcFBZ82KTnciEHwH1tCurbso0qwA
+ GvPFzjnev3W+QFG609reA8mpqdWKZFgKZ1IPKMfwq8TH6qe5psUndAH/iUe4O+GEt
+ 5drRyEPMuAryo9EP+Q==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from client.hidden.invalid by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MEFzr-1wmpgB1A8L-002UUZ; Wed, 01
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MCsPy-1wnecw1ltQ-003JIw; Wed, 01
  Jul 2026 13:33:58 +0200
 From: Natalie Vock <natalie.vock@gmx.de>
 To: amd-gfx@lists.freedesktop.org
 Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 1/2] drm/amdgpu: Fix VM status/vm_bo->moved locking
-Date: Wed,  1 Jul 2026 13:33:39 +0200
-Message-ID: <20260701113340.466177-1-natalie.vock@gmx.de>
+Subject: [PATCH 2/2] drm/amdgpu: Remove superfluous re-validation of CS BOs
+Date: Wed,  1 Jul 2026 13:33:40 +0200
+Message-ID: <20260701113340.466177-2-natalie.vock@gmx.de>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260701113340.466177-1-natalie.vock@gmx.de>
+References: <20260701113340.466177-1-natalie.vock@gmx.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:imEgbKcHbBpirhBfU8Sp1IKIIqahy2WolBlyTOytBJ/nx53hgqV
- 3wz0xMqIUJGqMx299mgylaeFbVEJ32ji1kGgprGMxICIZZYPf+R4ITp2tOzxj/+Da8aM9Ph
- o8qs+JbZbACLWs8AGTa2cQQVYIpzebWW8bA5166T9Qw3zO2Dr9mMn/B52B8lctct+L72uJn
- 6Qb6WSnuSxT2LCLIMQ+Mw==
+X-Provags-ID: V03:K1:goKYSA1Ixhd+NpSgs1hx/6ePvm5TFIe5YofKNid9xPgN9oNfbwA
+ G7X9Gek1GFEi8+nD+0Dkq84OdGzg+MbFnF33sSPlFlGazWc3m4xTvThdtxDtgTFKfWXXOgZ
+ ej8d6xzZoUMSTOOJMvYReRzhvxMakK4a2f8OmRqiceERPY62dVRWIP435nQ8ZuggSCjzg+T
+ FfZWR3pogj8UZ0TdTWBHg==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:ie1rL7Xxm0U=;kdPQqYN3iwDGUjfXUPp8tWr5074
- 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
+UI-OutboundReport: notjunk:1;M01:P0:m6/0ZjLgaZI=;NTYMijoH/5QAI3mtzng2Iao9vhk
+ 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
 X-Mailman-Approved-At: Thu, 02 Jul 2026 08:07:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -175,349 +176,52 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:dkim,gmx.de:email,gmx.de:mid,gmx.de:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,gmx.de:dkim,gmx.de:email,gmx.de:mid,gmx.de:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 10BA86F4920
+X-Rspamd-Queue-Id: 97E8E6F4933
 
-We claimed vm_bo->moved was protected by the BO being reserved, but then
-accessed it in a bunch of places without a reservation to the BO anyway.
+The root cause of the mentioned test regressions was a sync issue due to
+missing/wrong locking of VM status-related fields. It is fixed now, so
+the FIXME can go.
 
-It's not sensible to protect this by BO reservation in any case - it's a
-property relating to VM state, just like vm_status. Let's protect this
-by vm->status_lock as well. We usually grab the lock at some point when
-we access the field anyway, so it fits well with the current usage of
-the field.
-
-We also need to remove some unprotected accesses of the field when
-removing a mapping. Checking for the field there was a microoptimization
-anyway.
-
-Lastly, and most critically, we also need to handle buffer
-moves/invalidations racing with amdgpu_vm_bo_update. Otherwise we might
-accidentally undo the invalidation without the PTs actually being
-properly updated.
-
-Fixes: d38ceaf99ed0 ("drm/amdgpu: add core driver (v4)")
 Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
 =2D--
-FWIW, I'm not 100% positive on whether the Fixes tag is correct - I'm
-fairly certain the VM update <-> invalidation race existed ever since
-the driver's inception, but it may have been hidden in the initial
-revision. I suspect backporting it all the way to wherever the race
-started manifesting is roughly similarly painful, though.
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 20 --------------------
+ 1 file changed, 20 deletions(-)
 
-Also, this patchset is based on my previous one to rename the "moved" VM
-state to "needs_update". I think it got reviewed and should've been
-picked up, but I'm not sure I see it in amd-staging-drm-next?
-=2D--
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 108 +++++++++++++++++--------
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h |   3 +-
- 2 files changed, 75 insertions(+), 36 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_vm.c
-index 32719f31b6c9e..3451dca7de194 100644
-=2D-- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -214,11 +214,12 @@ static void amdgpu_vm_bo_evicted(struct amdgpu_vm_bo=
-_base *vm_bo)
-  * amdgpu_vm_bo_needs_update - vm_bo needs pagetable update
-  *
-  * @vm_bo: vm_bo which is out of date
-+ * @moved: whether the vm_bo was moved
-  *
-  * State for vm_bo objects meaning the underlying BO had mapping changes =
-(move, PRT bind/unbind)
-  * but the new location is not yet reflected in the page tables.
-  */
--static void amdgpu_vm_bo_needs_update(struct amdgpu_vm_bo_base *vm_bo)
-+static void amdgpu_vm_bo_needs_update(struct amdgpu_vm_bo_base *vm_bo, bo=
-ol moved)
- {
- 	struct amdgpu_vm_bo_status *lists;
- 	struct amdgpu_bo *bo =3D vm_bo->bo;
-@@ -232,11 +233,28 @@ static void amdgpu_vm_bo_needs_update(struct amdgpu_=
-vm_bo_base *vm_bo)
- 		vm_bo->moved =3D false;
- 		list_move(&vm_bo->vm_status, &lists->idle);
- 	} else {
-+		if (moved)
-+			vm_bo->moved =3D true;
- 		list_move(&vm_bo->vm_status, &lists->needs_update);
- 	}
- 	amdgpu_vm_bo_unlock_lists(vm_bo);
- }
-=20
-+/**
-+ * amdgpu_vm_bo_idle_locked - vm_bo is idle, already-locked version
-+ *
-+ * @vm_bo: vm_bo which is now idle
-+ *
-+ * State for vm_bo objects meaning we are done with the state machine and=
- no
-+ * further action is necessary. Needs to supply a locked status list.
-+ */
-+static void amdgpu_vm_bo_idle_locked(struct amdgpu_vm_bo_base *vm_bo,
-+			      struct amdgpu_vm_bo_status *lists)
-+{
-+	if (!amdgpu_vm_is_bo_always_valid(vm_bo->vm, vm_bo->bo))
-+		vm_bo->moved =3D false;
-+	list_move(&vm_bo->vm_status, &lists->idle);
-+}
- /**
-  * amdgpu_vm_bo_idle - vm_bo is idle
-  *
-@@ -250,9 +268,7 @@ static void amdgpu_vm_bo_idle(struct amdgpu_vm_bo_base=
- *vm_bo)
- 	struct amdgpu_vm_bo_status *lists;
-=20
- 	lists =3D amdgpu_vm_bo_lock_lists(vm_bo);
--	if (!amdgpu_vm_is_bo_always_valid(vm_bo->vm, vm_bo->bo))
--		vm_bo->moved =3D false;
--	list_move(&vm_bo->vm_status, &lists->idle);
-+	amdgpu_vm_bo_idle_locked(vm_bo, lists);
- 	amdgpu_vm_bo_unlock_lists(vm_bo);
- }
-=20
-@@ -273,9 +289,9 @@ static void amdgpu_vm_bo_reset_state_machine(struct am=
-dgpu_vm *vm)
- 	 */
- 	amdgpu_vm_assert_locked(vm);
- 	list_for_each_entry_safe(vm_bo, tmp, &vm->kernel.idle, vm_status)
--		amdgpu_vm_bo_needs_update(vm_bo);
-+		amdgpu_vm_bo_needs_update(vm_bo, false);
- 	list_for_each_entry_safe(vm_bo, tmp, &vm->always_valid.idle, vm_status)
--		amdgpu_vm_bo_needs_update(vm_bo);
-+		amdgpu_vm_bo_needs_update(vm_bo, false);
-=20
- 	spin_lock(&vm->individual_lock);
- 	list_for_each_entry_safe(vm_bo, tmp, &vm->individual.idle, vm_status) {
-@@ -435,7 +451,7 @@ void amdgpu_vm_bo_base_init(struct amdgpu_vm_bo_base *=
-base,
- 	 */
- 	if (bo->preferred_domains &
- 	    amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type))
--		amdgpu_vm_bo_needs_update(base);
-+		amdgpu_vm_bo_needs_update(base, false);
- 	else
- 		amdgpu_vm_bo_evicted(base);
- }
-@@ -607,8 +623,7 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, str=
-uct amdgpu_vm *vm,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_cs.c
+index 6e5db173f6462..4c72162ec331e 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+@@ -1139,26 +1139,6 @@ static int amdgpu_cs_vm_handling(struct amdgpu_cs_p=
+arser *p)
  			return r;
-=20
- 		vm->update_funcs->map_table(to_amdgpu_bo_vm(bo_base->bo));
--		bo_base->moved =3D true;
--		amdgpu_vm_bo_needs_update(bo_base);
-+		amdgpu_vm_bo_needs_update(bo_base, true);
  	}
 =20
- 	/*
-@@ -625,8 +640,7 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, str=
-uct amdgpu_vm *vm,
- 		if (r)
- 			return r;
-=20
--		bo_base->moved =3D true;
--		amdgpu_vm_bo_needs_update(bo_base);
-+		amdgpu_vm_bo_needs_update(bo_base, true);
- 	}
-=20
- 	if (!ticket)
-@@ -646,8 +660,7 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, str=
-uct amdgpu_vm *vm,
- 		if (r)
- 			return r;
-=20
--		bo_base->moved =3D true;
--		amdgpu_vm_bo_needs_update(bo_base);
-+		amdgpu_vm_bo_needs_update(bo_base, true);
-=20
- 		/* It's a bit inefficient to always jump back to the start, but
- 		 * we would need to re-structure the KFD for properly fixing
-@@ -1266,16 +1279,38 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev=
-, struct amdgpu_bo_va *bo_va,
- 	struct amdgpu_bo *bo =3D bo_va->base.bo;
- 	struct amdgpu_vm *vm =3D bo_va->base.vm;
- 	struct amdgpu_bo_va_mapping *mapping;
-+	struct amdgpu_vm_bo_status *lists;
- 	struct dma_fence **last_update;
- 	dma_addr_t *pages_addr =3D NULL;
- 	struct ttm_resource *mem;
- 	struct amdgpu_sync sync;
- 	bool flush_tlb =3D clear;
-+	bool uncached, moved;
- 	uint64_t vram_base;
- 	uint64_t flags;
--	bool uncached;
- 	int r;
-=20
-+	/* Everything we access in here is protected by the VM PD lock. */
-+	amdgpu_vm_assert_locked(vm);
-+
-+	lists =3D amdgpu_vm_bo_lock_lists(&bo_va->base);
-+	/*
-+	 * We can't hold the spinlock for the entire VM update, so temporarily r=
-emove
-+	 * the BO from the state machine entirely. This does not prevent all typ=
-es of
-+	 * races: We might not hold the BO's resv here, so TTM is free to move t=
-he buffer
-+	 * and thereby invalidate it. However, it allows us to detect if we race=
-d with
-+	 * something that invalidated the BO again and handle that appropriately=
- below.
-+	 */
-+	list_del_init(&bo_va->base.vm_status);
-+
-+	/*
-+	 * The moved flag is also protected by the status lock. It's fine if som=
-e buffer
-+	 * update changes bo_va->base.moved while we're updating the PTs after u=
-nlocking
-+	 * the status lock, since that also invalidates the BO's VM status again=
-.
-+	 */
-+	moved =3D bo_va->base.moved;
-+	amdgpu_vm_bo_unlock_lists(&bo_va->base);
-+
- 	amdgpu_sync_create(&sync);
- 	if (clear) {
- 		mem =3D NULL;
-@@ -1343,7 +1378,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev, =
-struct amdgpu_bo_va *bo_va,
- 	else
- 		last_update =3D &bo_va->last_pt_update;
-=20
--	if (!clear && bo_va->base.moved) {
-+	if (!clear && moved) {
- 		flush_tlb =3D true;
- 		list_splice_init(&bo_va->valids, &bo_va->invalids);
-=20
-@@ -1389,20 +1424,38 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev=
-, struct amdgpu_bo_va *bo_va,
- 		else
- 			amdgpu_vm_bo_idle(&bo_va->base);
- 	} else {
--		amdgpu_vm_bo_idle(&bo_va->base);
-+		lists =3D amdgpu_vm_bo_lock_lists(&bo_va->base);
-+		/*
-+		 * Now that we're holding the lock again, check if the
-+		 * buffer got invalidated while we weren't looking.
-+		 * We initialized vm_status to an empty list head above,
-+		 * if that's still the case we can safely mark the BO as
-+		 * done.
-+		 *
-+		 * Note: We only need to do this for BOs that are not
-+		 * VM-always-valid, because we hold the VM's reservation
-+		 * which by definition reserves all VM-always-valid BOs.
-+		 */
-+		if (list_empty(&bo_va->base.vm_status))
-+			amdgpu_vm_bo_idle_locked(&bo_va->base, lists);
-+		amdgpu_vm_bo_unlock_lists(&bo_va->base);
- 	}
-=20
- 	list_splice_init(&bo_va->invalids, &bo_va->valids);
- 	bo_va->cleared =3D clear;
--	bo_va->base.moved =3D false;
-=20
- 	if (trace_amdgpu_vm_bo_mapping_enabled()) {
- 		list_for_each_entry(mapping, &bo_va->valids, list)
- 			trace_amdgpu_vm_bo_mapping(mapping);
- 	}
-=20
-+	amdgpu_sync_free(&sync);
-+	return 0;
-+
- error_free:
- 	amdgpu_sync_free(&sync);
-+	if (r)
-+		amdgpu_vm_bo_needs_update(&bo_va->base, false);
- 	return r;
- }
-=20
-@@ -1779,7 +1832,6 @@ static void amdgpu_vm_bo_insert_map(struct amdgpu_de=
-vice *adev,
- 				    struct amdgpu_bo_va_mapping *mapping)
- {
- 	struct amdgpu_vm *vm =3D bo_va->base.vm;
--	struct amdgpu_bo *bo =3D bo_va->base.bo;
-=20
- 	mapping->bo_va =3D bo_va;
- 	list_add(&mapping->list, &bo_va->invalids);
-@@ -1788,8 +1840,7 @@ static void amdgpu_vm_bo_insert_map(struct amdgpu_de=
-vice *adev,
- 	if (mapping->flags & AMDGPU_VM_PAGE_PRT)
- 		amdgpu_vm_prt_get(adev);
-=20
--	if (amdgpu_vm_is_bo_always_valid(vm, bo) && !bo_va->base.moved)
--		amdgpu_vm_bo_needs_update(&bo_va->base);
-+	amdgpu_vm_bo_needs_update(&bo_va->base, false);
-=20
- 	trace_amdgpu_vm_bo_map(bo_va, mapping);
- }
-@@ -2090,30 +2141,22 @@ int amdgpu_vm_bo_clear_mappings(struct amdgpu_devi=
-ce *adev,
-=20
- 	/* Insert partial mapping before the range */
- 	if (!list_empty(&before->list)) {
--		struct amdgpu_bo *bo =3D before->bo_va->base.bo;
--
- 		amdgpu_vm_it_insert(before, &vm->va);
- 		if (before->flags & AMDGPU_VM_PAGE_PRT)
- 			amdgpu_vm_prt_get(adev);
-=20
--		if (amdgpu_vm_is_bo_always_valid(vm, bo) &&
--		    !before->bo_va->base.moved)
--			amdgpu_vm_bo_needs_update(&before->bo_va->base);
-+		amdgpu_vm_bo_needs_update(&before->bo_va->base, false);
- 	} else {
- 		kfree(before);
- 	}
-=20
- 	/* Insert partial mapping after the range */
- 	if (!list_empty(&after->list)) {
--		struct amdgpu_bo *bo =3D after->bo_va->base.bo;
--
- 		amdgpu_vm_it_insert(after, &vm->va);
- 		if (after->flags & AMDGPU_VM_PAGE_PRT)
- 			amdgpu_vm_prt_get(adev);
-=20
--		if (amdgpu_vm_is_bo_always_valid(vm, bo) &&
--		    !after->bo_va->base.moved)
--			amdgpu_vm_bo_needs_update(&after->bo_va->base);
-+		amdgpu_vm_bo_needs_update(&after->bo_va->base, false);
- 	} else {
- 		kfree(after);
- 	}
-@@ -2285,10 +2328,7 @@ void amdgpu_vm_bo_invalidate(struct amdgpu_bo *bo, =
-bool evicted)
- 			continue;
- 		}
-=20
--		if (bo_base->moved)
+-	/* FIXME: In theory this loop shouldn't be needed any more when
+-	 * amdgpu_vm_handle_moved handles all moved BOs that are reserved
+-	 * with p->ticket. But removing it caused test regressions, so I'm
+-	 * leaving it here for now.
+-	 */
+-	amdgpu_bo_list_for_each_entry(e, p->bo_list) {
+-		bo_va =3D e->bo_va;
+-		if (bo_va =3D=3D NULL)
 -			continue;
--		bo_base->moved =3D true;
--		amdgpu_vm_bo_needs_update(bo_base);
-+		amdgpu_vm_bo_needs_update(bo_base, true);
- 	}
- }
-=20
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_vm.h
-index c1bd4d35831e0..0acd889568a38 100644
-=2D-- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-@@ -212,8 +212,7 @@ struct amdgpu_vm_bo_base {
- 	 * protected by vm BO being reserved */
- 	bool				shared;
-=20
--	/* if the BO was moved and all mappings are invalid
--	 * protected by the BO being reserved */
-+	/* protected by the vm's status lock */
- 	bool				moved;
- };
-=20
+-
+-		r =3D amdgpu_vm_bo_update(adev, bo_va, false);
+-		if (r)
+-			return r;
+-
+-		r =3D amdgpu_sync_fence(&p->sync, bo_va->last_pt_update,
+-				      GFP_KERNEL);
+-		if (r)
+-			return r;
+-	}
+-
+ 	r =3D amdgpu_vm_handle_moved(adev, vm, &p->exec.ticket);
+ 	if (r)
+ 		return r;
 =2D-=20
 2.54.0
 
