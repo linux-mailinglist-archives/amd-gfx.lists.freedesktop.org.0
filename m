@@ -2,131 +2,138 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xbUrBEHxRGrN3goAu9opvQ
+	id GN01MDwcRmqIKAsAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 12:51:45 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 10:07:24 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D0FE6EC618
-	for <lists+amd-gfx@lfdr.de>; Wed, 01 Jul 2026 12:51:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10BA86F4920
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 10:07:24 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=oq3HzeKe;
+	dkim=pass header.d=gmx.de header.s=s31663417 header.b=BXBTqTUk;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=quarantine) header.from=gmx.de
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D33B310EEDC;
-	Wed,  1 Jul 2026 10:51:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7703C10F1ED;
+	Thu,  2 Jul 2026 08:07:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012029.outbound.protection.outlook.com [52.101.48.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8EA710EED2
- for <amd-gfx@lists.freedesktop.org>; Wed,  1 Jul 2026 10:51:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Nz0NYNSW952ORQ4+bCzI3b0hygIQu37DXzxkfmMtXJJsSb2vPr2aOP951o8kdu+XDhIjpXroxxPIi8awnz1djW0HZPcOsDLgln847Uy2WMnJ9cJIKprq2OZqtt4YZbZpSxZ00+BjGren+sCWgbBMxfYTJgcmAUYi6Sd76SQvwAKBbxE1jIYq4YsiF1NelaV/3Tp0l6XI/kX8ZnxIWVq0hL7Z17ZcqkpvP+LoZpINPoBBsbg5rtrGniIXC00TDCbhmwRJZ3s65poEwO3dZVF4T1khoZZFr1yeL5iX62WkpL7ZiJFwoOGBmXvfT0gxvkv8E7E5g53TppQ6Bo4F5QVEBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Qy69dojHpiMs8y/a6nTh4NfW2I7L25PxNyqDEDR5Cis=;
- b=DICewrTe1z8gvfGD9RCrNNPQJ+bQp/yW8Ojx+t9bNarHrjj81hzKfrlaWDrfaqu0AstN2SkDACO78ldph4VIMt9mH6zmGGq3jy2XMUNOwH17ocJULbAsqECMtrdeG8xwVLAbKVdwvIJg0e5Cy10KIIorqQTj8MACr8zU/UnLV6TPGGI4OM1AA2Llus2noGY+pHacLh7B/SuiDOFuK4Es9dOzoR2mek2IGBqs8B0k9nbCqDB+RMVgs8B/AdmabpfJVzJGEv304nNXmnY7TGWIzpt8pFulzneuXTlKKMocuy4mJAaw847ByAQDi4ClsqBM3HFjD6zvIM88cXR1Fd3Tpw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Qy69dojHpiMs8y/a6nTh4NfW2I7L25PxNyqDEDR5Cis=;
- b=oq3HzeKepL5phyz+j5Bu1+8am3Q5Prh2aD5JHm/MdbuDSRNKr+3ZW7J19I0BHhLYnTCGSbbctPvy8auWD39VyIyz/6eaozhp53D2xhHm3GncAtElwbcLrExTb06uxnoKcTIkgjj2Vi8VtHlhaFRzLrWGhl0g4wGXXQ09FDMZPho=
-Received: from CH2PR12MB9457.namprd12.prod.outlook.com (2603:10b6:610:27c::7)
- by LV3PR12MB9236.namprd12.prod.outlook.com (2603:10b6:408:1a5::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Wed, 1 Jul 2026
- 10:51:37 +0000
-Received: from CH2PR12MB9457.namprd12.prod.outlook.com
- ([fe80::85a8:1df:840a:cd4c]) by CH2PR12MB9457.namprd12.prod.outlook.com
- ([fe80::85a8:1df:840a:cd4c%5]) with mapi id 15.21.0181.008; Wed, 1 Jul 2026
- 10:51:37 +0000
-Content-Type: multipart/alternative;
- boundary="------------pkpbmRF5TdiZG72mViemwJsJ"
-Message-ID: <6c2a8b01-bf87-48f0-baef-3a8e5ac94d20@amd.com>
-Date: Wed, 1 Jul 2026 18:51:31 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: split amdgpu_bo_create_reserved into create
- and map helpers
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Alexander.Deucher@amd.com
-Cc: amd-gfx@lists.freedesktop.org, Ray.Huang@amd.com
-References: <20260617065442.16432-1-lingshan.zhu@amd.com>
- <c76044ce-6466-4909-b3d5-6ef13df192a9@amd.com>
-Content-Language: en-US
-From: "Zhu, Lingshan" <lingshan.zhu@amd.com>
-In-Reply-To: <c76044ce-6466-4909-b3d5-6ef13df192a9@amd.com>
-X-ClientProxiedBy: SI1PR02CA0012.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::8) To DS7PR12MB9475.namprd12.prod.outlook.com
- (2603:10b6:8:251::6)
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAD7B10EF04
+ for <amd-gfx@lists.freedesktop.org>; Wed,  1 Jul 2026 11:34:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+ s=s31663417; t=1782905638; x=1783510438; i=natalie.vock@gmx.de;
+ bh=6O3VyoprwvQdHEFnrRxtwacSWvdL5gugEf8Ue1Oc4pA=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
+ MIME-Version:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=BXBTqTUkbylSgxBxL3BiguoULnt8w4oT8IunmxSM7vTE5hBZDKrxkpTzEr4ISBak
+ CmZvS4GwXr+2MJA3AFgC1/zPK6uv/PjiF22eYXFxNPCU7pi5tmUELEy/3o2MSi0R5
+ xJG/y20s4eC4kzQccwCi2jmaxsEVdspbtH98lfiuGlw1K9uiBELd5hqZSA13hWGxw
+ oNEKl4CpNWSZzw8qfAYUPNZaD8Z4x+iOrI1VQyfrb8KYeP2a1WgDhj0VYF1MSKpTP
+ m7yTZrTUn/LY2DuqMuzBhFXyiUizXO53fOlLfKoZOiUp69DOo1pVgZ28GgmUjX/b1
+ m4eh9bQEOe3QnJv6vQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from client.hidden.invalid by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MEFzr-1wmpgB1A8L-002UUZ; Wed, 01
+ Jul 2026 13:33:58 +0200
+From: Natalie Vock <natalie.vock@gmx.de>
+To: amd-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 1/2] drm/amdgpu: Fix VM status/vm_bo->moved locking
+Date: Wed,  1 Jul 2026 13:33:39 +0200
+Message-ID: <20260701113340.466177-1-natalie.vock@gmx.de>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PR12MB9457:EE_|LV3PR12MB9236:EE_
-X-MS-Office365-Filtering-Correlation-Id: 88218d12-706d-4c13-e405-08ded75eb929
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|376014|366016|22082099003|18002099003|8096899003|11063799006|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info: iiIZISvO2mn/C1s6+Dt9lzwg9lxGfq8WgPLe8/QMndLpfW3hGlorRDqbL629otVlePvGj/mkxZWxSCvCfiymMuBWmPQF0twlgsISPZRg9qJIKRLRjxocHUg6I5yy96spVz0Jbye4Fxkz16fgH3nAtYHoSLH75Rc3IS1BHxK/JFv3IEeExQ72zSaG5qkF0Xl2INlyTXLdAj4JxQqdIsoYPw5F7ARi5eYyNmHa4n0NA4tC95bFsZXD6/aJ7zrOLgHEeyaOedaWICBRoXscDCDNvnzfWQ0EDUWWuHKRiqi6sZFCAYfqVp6pswIla9w4QS8+SkBHe/LHuECbgYjfQVE3akf9SlsHs3nt6fsHnLs6a3tVH5LzL7T7QR+zRDIOvQpXUGXibaitlihbdYAJdiYNEbr8GHpO/nwAVWPgQrKumvRiTYLKvhtube6mvEu1bv+ipewbtzIuQ+aWpEuatQ7eDwCCwmAU+wWV90OWrBb9aNGw/rQX56tcbHUS9DlBWXTy1NwUHPgB1M2mJSrxwivCSMuI6h+Im63Q8A1RrDcy0is7wDH5A/e0jR2nnNXkvLuobvHwH+faVwamCVDqjyjEyvG+0ERWqiGJKYhuupFSYZLiIwU5/0quUr+sP8i3b063sKg0qPT3+Q4vWbCi+InCvSXku4IxnasrXqE/SU7CmKY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH2PR12MB9457.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(22082099003)(18002099003)(8096899003)(11063799006)(4143699003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZWZ2cEFJSnBVZUYrU3pRcFlITk9OdTQyNll1K3c2cS9HRkJyYmZYNGQwcVVF?=
- =?utf-8?B?c3BITkFWTGxMdU9hbEFqdHBsMXpEVzl6TTVyNVZBa1hCTEJ5OXlGaVVBemxQ?=
- =?utf-8?B?T25yMFdEN1VkcWNrTERZSVFNOUJuQ3hjMkFYTW0wL2tJbFF2VUxPMDVraHNv?=
- =?utf-8?B?T3l4NHp6VnBkbVBqVjZTSHJoMTdwaEV0V0Q1b2RYVUkvUWVNR2szdDJXVVRE?=
- =?utf-8?B?R2FDSEl6dlhadDg5cjF3TFphUDBOVnZXZ09jaWNTakxtVFY4ekRzaFZ4RHhr?=
- =?utf-8?B?VWJ1a2gwbUtiellnY0FLQlJ2RkRIMkV4VzFEbWZ3eWhDSm11VzAxOUpkSGJT?=
- =?utf-8?B?NmNSekpOQjQwTHAwaUtGK1Nkd1lQNWFkUFN1WElYcnpxOU5uS1FBeTlZOE5Y?=
- =?utf-8?B?czhuVmgyTmRxMXFFdWlIUjF1aVFmZ1VreEVTb0RadHl2cklHS0VhaTF2ZnJu?=
- =?utf-8?B?N1U5My8zanIwRUQ0T3crRmNBN0xPNVBUMDZ4UTBHSjByVmlrajd5eVhBK3BW?=
- =?utf-8?B?WXJ1dENMcXYxOE5YM09aaDNQeVZ4YnRybVdMZ0krZHBEL3pTdVFiY1dDbXoz?=
- =?utf-8?B?MVJjaWEveWxJYUpGdFI4MUdwMkZYeGplN2tZZy9MMXo3dXEzWjJYaHJHS0R3?=
- =?utf-8?B?UUJyV3F3SzYwcTByM1ZtZkQybGRtaUdwS3NJQy9tbUkzemVLK0tQeGVFaFpz?=
- =?utf-8?B?QVlMcHpmOGdnSFFleXBMU2E4OGt3bE9LRU5DNkhwRlppdm52aFNrbXVOWXla?=
- =?utf-8?B?OG40ckU1NzArUWUyTHFiaUZ1dHNqYzBJM3VRZzlBU2JSY0V2dmxKL3hzbmo3?=
- =?utf-8?B?d0tQQmx4akx6YVJNdGdtMnJoaHZuY1p1R21wYS8vRFI4eDlxUE1uRlJEOTJv?=
- =?utf-8?B?QUJGaTFTYkhybUM3cVZyMjRUMW9mZERTbjNEczJYMnpBRit6bjVFK3I1TmZp?=
- =?utf-8?B?bndiVGNYcXd6RXNRd1cvQS92ZnArTlg1YngyeTk0dFdSNkhnVzllTTdmL0NT?=
- =?utf-8?B?clA1azZVNjcvQmdmbWpTc0JySFZOV2FCZTBueGtoeWVrQ0RZaElteHJIRjJV?=
- =?utf-8?B?U25QR20xOVRsenRpR3JJNEVKRzhwdjUyYitJU2QxWXBud1dxY2ZXZ2puYnBz?=
- =?utf-8?B?Y3AxRVM3eXZkeVpQbkthNEZzM1p0cTFtU0YweE83KzJ5TCtyK3ptQnc4UHZD?=
- =?utf-8?B?UU1IV0pTVmVkdG1iYmNBN3ZkUjBrNFNJUEIrWXBBUHRVai94RXpmaEZoSHcv?=
- =?utf-8?B?T09mQ25telpqcEJteUI1MXg1ZUxGZVZ3UkttbU40bXZLamJJNEpwd3ROZlhp?=
- =?utf-8?B?b3pobzFjcFNVaDVZQkViSFhWaDBHVC9jWTFJY3VxeHZhdCtFTU55emJPK2pP?=
- =?utf-8?B?bUo2R1ZMR1h2UXB2WkhRQU4rWHB5VEtkZEFmVTl3d2ZwL0FLMXRFZm4xc08w?=
- =?utf-8?B?eko0cnBudG5UTE9RWkpJV0o0UUZuU1Y4M1Q0TzJpWHBzL2tLYkE5a0RIK0Rn?=
- =?utf-8?B?MXdrdkRCVjRITHpGZHNhTDVmZGRidGx6SllJTVUvNGp0UFErQkU2UzFWc00r?=
- =?utf-8?B?R2MrTklUeTdGTGE4S3JzNFFwRWVhdUJIT0VEeXhva0pwZXBzMlhJQ0FkdDht?=
- =?utf-8?B?dWhpeE90RU5reVlpVnhHSkNFWTFJUWNUUzBlZXQrWUJtRmtzTzRmcHZrbDRQ?=
- =?utf-8?B?NmZMMk1CZ2J3TjlsMnZNMFlsQnBDaThoV3VKOTYrdVIwR0ROeklEUFFRZXVv?=
- =?utf-8?B?Ynh5VkkrMlJZMkQxSHdaNlhsY0lXTXF1eUExaTRpc2dRMG5WRWFWT3pyZnRa?=
- =?utf-8?B?VUFtWnZsSnVyY2tOLzFtd2RMTURxczR6UXJmdjZRdStCNE1veFpLOVczS1pB?=
- =?utf-8?B?NTJGZmFwNTBxWXBQNnlKUFhpMlYzajV4OGg2TXp0SVhla1l0amcvZGVFc1Fp?=
- =?utf-8?B?U3Q1Q0NaeFl2ZDNkVklhNnFTeFZYcEY2WHpkSWlxODRJK3BPTDZMUVdaNkJy?=
- =?utf-8?B?NjEvYllNTkMva09mOUVvczYrMGZZQVQzeklvamlZMVZZTmpFRVIrckc0anRj?=
- =?utf-8?B?eUJpdXkyTUxqdlpIWmphQ3VYY1E0eTlYU3VDS2p1bjVvQTJ0TmRiTUljWW55?=
- =?utf-8?B?ZXFiampsQmhlRnRvSXFMWUpFMHczQkh3OFlLZU40U28rZ0xIOE81em9VREFj?=
- =?utf-8?B?MWpZMVZkWkY5V3UyZjFyNVpiN3BBUzhaRFRic0lJZGsxU3YzYld0bUpQM045?=
- =?utf-8?B?RlNMc0RyaXZXbGxhTlhHNzNoRjRPOW54bVlHcXU1eWRkdHpodkl5Q2RKeHF5?=
- =?utf-8?Q?YCdy8IwuCKCIe/htqM?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 88218d12-706d-4c13-e405-08ded75eb929
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB9475.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2026 10:51:37.3358 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: I/jzEZ/oV/DZYdNM+/eVG2xcpmMQz2/DQUE91SYmwv6uSvn0OaP935uuskAq6l5YRHT5OI8kqHHpiWmeUIS4Jw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9236
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:imEgbKcHbBpirhBfU8Sp1IKIIqahy2WolBlyTOytBJ/nx53hgqV
+ 3wz0xMqIUJGqMx299mgylaeFbVEJ32ji1kGgprGMxICIZZYPf+R4ITp2tOzxj/+Da8aM9Ph
+ o8qs+JbZbACLWs8AGTa2cQQVYIpzebWW8bA5166T9Qw3zO2Dr9mMn/B52B8lctct+L72uJn
+ 6Qb6WSnuSxT2LCLIMQ+Mw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:ie1rL7Xxm0U=;kdPQqYN3iwDGUjfXUPp8tWr5074
+ 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
+X-Mailman-Approved-At: Thu, 02 Jul 2026 08:07:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,639 +148,376 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmx.de,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_DKIM_ALLOW(-0.20)[gmx.de:s=s31663417];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:Alexander.Deucher@amd.com,m:Ray.Huang@amd.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[lingshan.zhu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_FROM(0.00)[gmx.de];
+	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[gmx.de:+];
+	RCPT_COUNT_THREE(0.00)[3];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lingshan.zhu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
+	FROM_NEQ_ENVFROM(0.00)[natalie.vock@gmx.de,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	TO_DN_SOME(0.00)[]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:dkim,gmx.de:email,gmx.de:mid,gmx.de:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5D0FE6EC618
+X-Rspamd-Queue-Id: 10BA86F4920
 
---------------pkpbmRF5TdiZG72mViemwJsJ
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+We claimed vm_bo->moved was protected by the BO being reserved, but then
+accessed it in a bunch of places without a reservation to the BO anyway.
 
-On 7/1/2026 5:13 PM, Christian König wrote:
+It's not sensible to protect this by BO reservation in any case - it's a
+property relating to VM state, just like vm_status. Let's protect this
+by vm->status_lock as well. We usually grab the lock at some point when
+we access the field anyway, so it fits well with the current usage of
+the field.
 
-> On 6/17/26 08:54, Zhu Lingshan wrote:
->> amdgpu_bo_create_reserved() only allocates a new BO when
->> *bo_ptr (struct amdgpu_bo **bo_ptr as input parameter) is
->> NULL, it simply skips creation when *bo_ptr is non-NULL.
->> But it unconditionally reserves, pins, gart allocates
->> and maps the BO afterwards.
->>
->> When the same non-NULL BO pointer is passed in again,
->> for example firmware buffers that live in adev and are
->> re-loaded on every resume / cp_resume / start
->> under AMDGPU_FW_LOAD_DIRECT, amdgpu_bo_pin() just increases
->> pin_count unconditionally, however the matching teardown only unpins
->> once, so pin_count never drops to zero, so TTM is not able
->> to move, swap or evict a BO, causing BO leaks.
-> That's a good catch.
->
->> Ideally the BO should only be pinned once at creation. So this commit
->> splits current amdgpu_bo_create_reserved() into two helpers:
->>
->>  - amdgpu_bo_create_pinned(): create + reserve + pin + alloc_gart and
->>    return the BO unreserved. It requires *bo_ptr == NULL on entry,
->>    so only pins the BO once.
-> That sounds like a bad idea to me, just move the pinning under the if as well.
->
-> This just creates a wrapper function for a wrapper function.
+We also need to remove some unprotected accesses of the field when
+removing a mapping. Checking for the field there was a microoptimization
+anyway.
 
-Yeah, that is a good idea, will send V2 soon.
+Lastly, and most critically, we also need to handle buffer
+moves/invalidations racing with amdgpu_vm_bo_update. Otherwise we might
+accidentally undo the invalidation without the PTs actually being
+properly updated.
 
-Thanks
-Lingshan
+Fixes: d38ceaf99ed0 ("drm/amdgpu: add core driver (v4)")
+Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
+=2D--
+FWIW, I'm not 100% positive on whether the Fixes tag is correct - I'm
+fairly certain the VM update <-> invalidation race existed ever since
+the driver's inception, but it may have been hidden in the initial
+revision. I suspect backporting it all the way to wherever the race
+started manifesting is roughly similarly painful, though.
 
->
-> Regards,
-> Christian.
->
->>  - amdgpu_bo_get_access(): reserve + map gpu/cpu addr + unreserve.
->>    This function is idempotent and is safe to call multiple times
->>    on an existing pinned BO, for example, on every resume path.
->>
->> amdgpu_bo_create_reserved() now calls amdgpu_bo_create_pinned()
->> only when *bo_ptr is NULL, then calls amdgpu_bo_get_access() for
->> CPU/GPU address mapping, and reserves the BO before returning.
->> Repeated calls no longer take additional pin references.
->>
->> Signed-off-by: Zhu Lingshan <lingshan.zhu@amd.com>
->> ---
->>  drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 175 +++++++++++++++++----
->>  1 file changed, 143 insertions(+), 32 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->> index 4dd7c712b8c3..dd0a59137028 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
->> @@ -217,57 +217,53 @@ void amdgpu_bo_placement_from_domain(struct amdgpu_bo *abo, u32 domain)
->>  }
->>  
->>  /**
->> - * amdgpu_bo_create_reserved - create reserved BO for kernel use
->> + * amdgpu_bo_create_pinned - create and pin a BO for kernel use
->>   *
->>   * @adev: amdgpu device object
->>   * @size: size for the new BO
->>   * @align: alignment for the new BO
->>   * @domain: where to place it
->> - * @bo_ptr: used to initialize BOs in structures
->> - * @gpu_addr: GPU addr of the pinned BO
->> - * @cpu_addr: optional CPU address mapping
->> + * @bo_ptr: used to return the newly created BO, must point to NULL on entry
->> + * @cpu_access: true if the BO needs to be CPU accessible
->>   *
->> - * Allocates and pins a BO for kernel internal use, and returns it still
->> - * reserved.
->> + * Allocates and pins a BO for kernel internal use, and returns it unreserved
->>   *
->> - * Note: For bo_ptr new BO is only created if bo_ptr points to NULL.
->> + * Note: *bo_ptr must be NULL on entry, this helper always creates
->> + * a new BO and never reuses an existing one,
->> + * so it never pins the same BO twice.
->>   *
->>   * Returns:
->>   * 0 on success, negative error code otherwise.
->>   */
->> -int amdgpu_bo_create_reserved(struct amdgpu_device *adev,
->> -			      unsigned long size, int align,
->> -			      u32 domain, struct amdgpu_bo **bo_ptr,
->> -			      u64 *gpu_addr, void **cpu_addr)
->> +static int amdgpu_bo_create_pinned(struct amdgpu_device *adev,
->> +				   unsigned long size, int align,
->> +				   u32 domain, struct amdgpu_bo **bo_ptr,
->> +				   bool cpu_access)
->>  {
->>  	struct amdgpu_bo_param bp;
->> -	bool free = false;
->>  	int r;
->>  
->> -	if (!size) {
->> -		amdgpu_bo_unref(bo_ptr);
->> -		return 0;
->> -	}
->> +	if (WARN_ON(!bo_ptr || *bo_ptr))
->> +		return -EINVAL;
->> +
->> +	if (WARN_ON(!size))
->> +		return -EINVAL;
->>  
->>  	memset(&bp, 0, sizeof(bp));
->>  	bp.size = size;
->>  	bp.byte_align = align;
->>  	bp.domain = domain;
->> -	bp.flags = cpu_addr ? AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED
->> +	bp.flags = cpu_access ? AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED
->>  		: AMDGPU_GEM_CREATE_NO_CPU_ACCESS;
->>  	bp.flags |= AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS;
->>  	bp.type = ttm_bo_type_kernel;
->>  	bp.resv = NULL;
->>  	bp.bo_ptr_size = sizeof(struct amdgpu_bo);
->>  
->> -	if (!*bo_ptr) {
->> -		r = amdgpu_bo_create(adev, &bp, bo_ptr);
->> -		if (r) {
->> -			dev_err(adev->dev, "(%d) failed to allocate kernel bo\n",
->> -				r);
->> -			return r;
->> -		}
->> -		free = true;
->> +	r = amdgpu_bo_create(adev, &bp, bo_ptr);
->> +	if (r) {
->> +		dev_err(adev->dev, "(%d) failed to allocate kernel bo\n", r);
->> +		return r;
->>  	}
->>  
->>  	r = amdgpu_bo_reserve(*bo_ptr, false);
->> @@ -288,27 +284,142 @@ int amdgpu_bo_create_reserved(struct amdgpu_device *adev,
->>  		goto error_unpin;
->>  	}
->>  
->> +	amdgpu_bo_unreserve(*bo_ptr);
->> +	return 0;
->> +
->> +error_unpin:
->> +	amdgpu_bo_unpin(*bo_ptr);
->> +error_unreserve:
->> +	amdgpu_bo_unreserve(*bo_ptr);
->> +error_free:
->> +	amdgpu_bo_unref(bo_ptr);
->> +	return r;
->> +}
->> +
->> +/**
->> + * amdgpu_bo_get_access - get CPU/GPU access to a BO
->> + *
->> + * @bo: the input BO, must be pinned
->> + * @gpu_addr: optional, returns the GPU address of the BO
->> + * @cpu_addr: optional, returns the CPU address of the BO
->> + *
->> + * Note: *bo must be already pinned!
->> + *
->> + * Returns:
->> + * 0 on success, negative error code otherwise.
->> + */
->> +static int amdgpu_bo_get_access(struct amdgpu_bo *bo, u64 *gpu_addr,
->> +				void **cpu_addr)
->> +{
->> +	struct amdgpu_device *adev;
->> +	int r;
->> +
->> +	if (WARN_ON(!bo))
->> +		return -EINVAL;
->> +
->> +	adev = amdgpu_ttm_adev(bo->tbo.bdev);
->> +
->> +	r = amdgpu_bo_reserve(bo, false);
->> +	if (r) {
->> +		dev_err(adev->dev, "(%d) failed to reserve kernel bo\n", r);
->> +		return r;
->> +	}
->> +
->> +	/*
->> +	 * The BO must already be pinned. A GPU or CPU address of an
->> +	 * unpinned BO would become meaningless because TTM
->> +	 * may then move or evict it at any time.
->> +	 */
->> +	if (WARN_ON_ONCE(!bo->tbo.pin_count)) {
->> +		r = -EINVAL;
->> +		goto error_unreserve;
->> +	}
->> +
->>  	if (gpu_addr)
->> -		*gpu_addr = amdgpu_bo_gpu_offset(*bo_ptr);
->> +		*gpu_addr = amdgpu_bo_gpu_offset(bo);
->>  
->>  	if (cpu_addr) {
->> -		r = amdgpu_bo_kmap(*bo_ptr, cpu_addr);
->> +		r = amdgpu_bo_kmap(bo, cpu_addr);
->>  		if (r) {
->>  			dev_err(adev->dev, "(%d) kernel bo map failed\n", r);
->> -			goto error_unpin;
->> +			goto error_unreserve;
->>  		}
->>  	}
->>  
->> +	amdgpu_bo_unreserve(bo);
->>  	return 0;
->>  
->> -error_unpin:
->> -	amdgpu_bo_unpin(*bo_ptr);
->>  error_unreserve:
->> -	amdgpu_bo_unreserve(*bo_ptr);
->> +	amdgpu_bo_unreserve(bo);
->> +	return r;
->> +}
->> +
->> +/**
->> + * amdgpu_bo_create_reserved - create reserved BO for kernel use
->> + *
->> + * @adev: amdgpu device object
->> + * @size: size for the new BO
->> + * @align: alignment for the new BO
->> + * @domain: where to place it
->> + * @bo_ptr: used to initialize BOs in structures
->> + * @gpu_addr: GPU addr of the pinned BO
->> + * @cpu_addr: optional CPU address mapping
->> + *
->> + * Allocates and pins a BO for kernel internal use, and returns it still
->> + * reserved.
->> + *
->> + * Note: For bo_ptr new BO is only created if bo_ptr points to NULL. An
->> + * existing BO is only re-accessed (get CPU/GPU mapping) and not pinned again,
->> + * so repeated calls with the same BO do not leak pin references.
->> + *
->> + * Returns:
->> + * 0 on success, negative error code otherwise.
->> + */
->> +int amdgpu_bo_create_reserved(struct amdgpu_device *adev,
->> +			      unsigned long size, int align,
->> +			      u32 domain, struct amdgpu_bo **bo_ptr,
->> +			      u64 *gpu_addr, void **cpu_addr)
->> +{
->> +	bool created = false;
->> +	int r;
->> +
->> +	if (WARN_ON(!bo_ptr))
->> +		return -EINVAL;
->> +
->> +	if (!size) {
->> +		amdgpu_bo_unref(bo_ptr);
->> +		return 0;
->> +	}
->> +
->> +	if (!*bo_ptr) {
->> +		r = amdgpu_bo_create_pinned(adev, size, align, domain, bo_ptr,
->> +					    !!cpu_addr);
->> +		if (r)
->> +			return r;
->> +		created = true;
->> +	}
->> +
->> +	r = amdgpu_bo_get_access(*bo_ptr, gpu_addr, cpu_addr);
->> +	if (r)
->> +		goto error_free;
->> +
->> +	r = amdgpu_bo_reserve(*bo_ptr, false);
->> +	if (r) {
->> +		dev_err(adev->dev, "(%d) failed to reserve kernel bo\n", r);
->> +		goto error_free;
->> +	}
->> +
->> +	return 0;
->>  
->>  error_free:
->> -	if (free)
->> +	if (created) {
->> +		if (amdgpu_bo_reserve(*bo_ptr, true) == 0) {
->> +			amdgpu_bo_kunmap(*bo_ptr);
->> +			amdgpu_bo_unpin(*bo_ptr);
->> +			amdgpu_bo_unreserve(*bo_ptr);
->> +		}
->>  		amdgpu_bo_unref(bo_ptr);
->> +	}
->>  
->>  	return r;
->>  }
---------------pkpbmRF5TdiZG72mViemwJsJ
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Also, this patchset is based on my previous one to rename the "moved" VM
+state to "needs_update". I think it got reviewed and should've been
+picked up, but I'm not sure I see it in amd-staging-drm-next?
+=2D--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 108 +++++++++++++++++--------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h |   3 +-
+ 2 files changed, 75 insertions(+), 36 deletions(-)
 
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <pre>On 7/1/2026 5:13 PM, Christian König wrote:</pre>
-    <blockquote type="cite" cite="mid:c76044ce-6466-4909-b3d5-6ef13df192a9@amd.com">
-      <pre wrap="" class="moz-quote-pre">On 6/17/26 08:54, Zhu Lingshan wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">amdgpu_bo_create_reserved() only allocates a new BO when
-*bo_ptr (struct amdgpu_bo **bo_ptr as input parameter) is
-NULL, it simply skips creation when *bo_ptr is non-NULL.
-But it unconditionally reserves, pins, gart allocates
-and maps the BO afterwards.
-
-When the same non-NULL BO pointer is passed in again,
-for example firmware buffers that live in adev and are
-re-loaded on every resume / cp_resume / start
-under AMDGPU_FW_LOAD_DIRECT, amdgpu_bo_pin() just increases
-pin_count unconditionally, however the matching teardown only unpins
-once, so pin_count never drops to zero, so TTM is not able
-to move, swap or evict a BO, causing BO leaks.
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-That's a good catch.
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">
-Ideally the BO should only be pinned once at creation. So this commit
-splits current amdgpu_bo_create_reserved() into two helpers:
-
- - amdgpu_bo_create_pinned(): create + reserve + pin + alloc_gart and
-   return the BO unreserved. It requires *bo_ptr == NULL on entry,
-   so only pins the BO once.
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-That sounds like a bad idea to me, just move the pinning under the if as well.
-
-This just creates a wrapper function for a wrapper function.</pre>
-    </blockquote>
-    <pre>Yeah, that is a good idea, will send V2 soon.
-
-Thanks
-Lingshan</pre>
-    <blockquote type="cite" cite="mid:c76044ce-6466-4909-b3d5-6ef13df192a9@amd.com">
-      <pre wrap="" class="moz-quote-pre">
-
-Regards,
-Christian.
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">
- - amdgpu_bo_get_access(): reserve + map gpu/cpu addr + unreserve.
-   This function is idempotent and is safe to call multiple times
-   on an existing pinned BO, for example, on every resume path.
-
-amdgpu_bo_create_reserved() now calls amdgpu_bo_create_pinned()
-only when *bo_ptr is NULL, then calls amdgpu_bo_get_access() for
-CPU/GPU address mapping, and reserves the BO before returning.
-Repeated calls no longer take additional pin references.
-
-Signed-off-by: Zhu Lingshan <a class="moz-txt-link-rfc2396E" href="mailto:lingshan.zhu@amd.com">&lt;lingshan.zhu@amd.com&gt;</a>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 175 +++++++++++++++++----
- 1 file changed, 143 insertions(+), 32 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 4dd7c712b8c3..dd0a59137028 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -217,57 +217,53 @@ void amdgpu_bo_placement_from_domain(struct amdgpu_bo *abo, u32 domain)
- }
- 
- /**
-- * amdgpu_bo_create_reserved - create reserved BO for kernel use
-+ * amdgpu_bo_create_pinned - create and pin a BO for kernel use
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_vm.c
+index 32719f31b6c9e..3451dca7de194 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -214,11 +214,12 @@ static void amdgpu_vm_bo_evicted(struct amdgpu_vm_bo=
+_base *vm_bo)
+  * amdgpu_vm_bo_needs_update - vm_bo needs pagetable update
   *
-  * @adev: amdgpu device object
-  * @size: size for the new BO
-  * @align: alignment for the new BO
-  * @domain: where to place it
-- * @bo_ptr: used to initialize BOs in structures
-- * @gpu_addr: GPU addr of the pinned BO
-- * @cpu_addr: optional CPU address mapping
-+ * @bo_ptr: used to return the newly created BO, must point to NULL on entry
-+ * @cpu_access: true if the BO needs to be CPU accessible
+  * @vm_bo: vm_bo which is out of date
++ * @moved: whether the vm_bo was moved
   *
-- * Allocates and pins a BO for kernel internal use, and returns it still
-- * reserved.
-+ * Allocates and pins a BO for kernel internal use, and returns it unreserved
-  *
-- * Note: For bo_ptr new BO is only created if bo_ptr points to NULL.
-+ * Note: *bo_ptr must be NULL on entry, this helper always creates
-+ * a new BO and never reuses an existing one,
-+ * so it never pins the same BO twice.
-  *
-  * Returns:
-  * 0 on success, negative error code otherwise.
+  * State for vm_bo objects meaning the underlying BO had mapping changes =
+(move, PRT bind/unbind)
+  * but the new location is not yet reflected in the page tables.
   */
--int amdgpu_bo_create_reserved(struct amdgpu_device *adev,
--			      unsigned long size, int align,
--			      u32 domain, struct amdgpu_bo **bo_ptr,
--			      u64 *gpu_addr, void **cpu_addr)
-+static int amdgpu_bo_create_pinned(struct amdgpu_device *adev,
-+				   unsigned long size, int align,
-+				   u32 domain, struct amdgpu_bo **bo_ptr,
-+				   bool cpu_access)
+-static void amdgpu_vm_bo_needs_update(struct amdgpu_vm_bo_base *vm_bo)
++static void amdgpu_vm_bo_needs_update(struct amdgpu_vm_bo_base *vm_bo, bo=
+ol moved)
  {
- 	struct amdgpu_bo_param bp;
--	bool free = false;
- 	int r;
- 
--	if (!size) {
--		amdgpu_bo_unref(bo_ptr);
--		return 0;
--	}
-+	if (WARN_ON(!bo_ptr || *bo_ptr))
-+		return -EINVAL;
-+
-+	if (WARN_ON(!size))
-+		return -EINVAL;
- 
- 	memset(&amp;bp, 0, sizeof(bp));
- 	bp.size = size;
- 	bp.byte_align = align;
- 	bp.domain = domain;
--	bp.flags = cpu_addr ? AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED
-+	bp.flags = cpu_access ? AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED
- 		: AMDGPU_GEM_CREATE_NO_CPU_ACCESS;
- 	bp.flags |= AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS;
- 	bp.type = ttm_bo_type_kernel;
- 	bp.resv = NULL;
- 	bp.bo_ptr_size = sizeof(struct amdgpu_bo);
- 
--	if (!*bo_ptr) {
--		r = amdgpu_bo_create(adev, &amp;bp, bo_ptr);
--		if (r) {
--			dev_err(adev-&gt;dev, &quot;(%d) failed to allocate kernel bo\n&quot;,
--				r);
--			return r;
--		}
--		free = true;
-+	r = amdgpu_bo_create(adev, &amp;bp, bo_ptr);
-+	if (r) {
-+		dev_err(adev-&gt;dev, &quot;(%d) failed to allocate kernel bo\n&quot;, r);
-+		return r;
+ 	struct amdgpu_vm_bo_status *lists;
+ 	struct amdgpu_bo *bo =3D vm_bo->bo;
+@@ -232,11 +233,28 @@ static void amdgpu_vm_bo_needs_update(struct amdgpu_=
+vm_bo_base *vm_bo)
+ 		vm_bo->moved =3D false;
+ 		list_move(&vm_bo->vm_status, &lists->idle);
+ 	} else {
++		if (moved)
++			vm_bo->moved =3D true;
+ 		list_move(&vm_bo->vm_status, &lists->needs_update);
  	}
- 
- 	r = amdgpu_bo_reserve(*bo_ptr, false);
-@@ -288,27 +284,142 @@ int amdgpu_bo_create_reserved(struct amdgpu_device *adev,
- 		goto error_unpin;
- 	}
- 
-+	amdgpu_bo_unreserve(*bo_ptr);
-+	return 0;
-+
-+error_unpin:
-+	amdgpu_bo_unpin(*bo_ptr);
-+error_unreserve:
-+	amdgpu_bo_unreserve(*bo_ptr);
-+error_free:
-+	amdgpu_bo_unref(bo_ptr);
-+	return r;
-+}
-+
+ 	amdgpu_vm_bo_unlock_lists(vm_bo);
+ }
+=20
 +/**
-+ * amdgpu_bo_get_access - get CPU/GPU access to a BO
++ * amdgpu_vm_bo_idle_locked - vm_bo is idle, already-locked version
 + *
-+ * @bo: the input BO, must be pinned
-+ * @gpu_addr: optional, returns the GPU address of the BO
-+ * @cpu_addr: optional, returns the CPU address of the BO
++ * @vm_bo: vm_bo which is now idle
 + *
-+ * Note: *bo must be already pinned!
-+ *
-+ * Returns:
-+ * 0 on success, negative error code otherwise.
++ * State for vm_bo objects meaning we are done with the state machine and=
+ no
++ * further action is necessary. Needs to supply a locked status list.
 + */
-+static int amdgpu_bo_get_access(struct amdgpu_bo *bo, u64 *gpu_addr,
-+				void **cpu_addr)
++static void amdgpu_vm_bo_idle_locked(struct amdgpu_vm_bo_base *vm_bo,
++			      struct amdgpu_vm_bo_status *lists)
 +{
-+	struct amdgpu_device *adev;
-+	int r;
++	if (!amdgpu_vm_is_bo_always_valid(vm_bo->vm, vm_bo->bo))
++		vm_bo->moved =3D false;
++	list_move(&vm_bo->vm_status, &lists->idle);
++}
+ /**
+  * amdgpu_vm_bo_idle - vm_bo is idle
+  *
+@@ -250,9 +268,7 @@ static void amdgpu_vm_bo_idle(struct amdgpu_vm_bo_base=
+ *vm_bo)
+ 	struct amdgpu_vm_bo_status *lists;
+=20
+ 	lists =3D amdgpu_vm_bo_lock_lists(vm_bo);
+-	if (!amdgpu_vm_is_bo_always_valid(vm_bo->vm, vm_bo->bo))
+-		vm_bo->moved =3D false;
+-	list_move(&vm_bo->vm_status, &lists->idle);
++	amdgpu_vm_bo_idle_locked(vm_bo, lists);
+ 	amdgpu_vm_bo_unlock_lists(vm_bo);
+ }
+=20
+@@ -273,9 +289,9 @@ static void amdgpu_vm_bo_reset_state_machine(struct am=
+dgpu_vm *vm)
+ 	 */
+ 	amdgpu_vm_assert_locked(vm);
+ 	list_for_each_entry_safe(vm_bo, tmp, &vm->kernel.idle, vm_status)
+-		amdgpu_vm_bo_needs_update(vm_bo);
++		amdgpu_vm_bo_needs_update(vm_bo, false);
+ 	list_for_each_entry_safe(vm_bo, tmp, &vm->always_valid.idle, vm_status)
+-		amdgpu_vm_bo_needs_update(vm_bo);
++		amdgpu_vm_bo_needs_update(vm_bo, false);
+=20
+ 	spin_lock(&vm->individual_lock);
+ 	list_for_each_entry_safe(vm_bo, tmp, &vm->individual.idle, vm_status) {
+@@ -435,7 +451,7 @@ void amdgpu_vm_bo_base_init(struct amdgpu_vm_bo_base *=
+base,
+ 	 */
+ 	if (bo->preferred_domains &
+ 	    amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type))
+-		amdgpu_vm_bo_needs_update(base);
++		amdgpu_vm_bo_needs_update(base, false);
+ 	else
+ 		amdgpu_vm_bo_evicted(base);
+ }
+@@ -607,8 +623,7 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, str=
+uct amdgpu_vm *vm,
+ 			return r;
+=20
+ 		vm->update_funcs->map_table(to_amdgpu_bo_vm(bo_base->bo));
+-		bo_base->moved =3D true;
+-		amdgpu_vm_bo_needs_update(bo_base);
++		amdgpu_vm_bo_needs_update(bo_base, true);
+ 	}
+=20
+ 	/*
+@@ -625,8 +640,7 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, str=
+uct amdgpu_vm *vm,
+ 		if (r)
+ 			return r;
+=20
+-		bo_base->moved =3D true;
+-		amdgpu_vm_bo_needs_update(bo_base);
++		amdgpu_vm_bo_needs_update(bo_base, true);
+ 	}
+=20
+ 	if (!ticket)
+@@ -646,8 +660,7 @@ int amdgpu_vm_validate(struct amdgpu_device *adev, str=
+uct amdgpu_vm *vm,
+ 		if (r)
+ 			return r;
+=20
+-		bo_base->moved =3D true;
+-		amdgpu_vm_bo_needs_update(bo_base);
++		amdgpu_vm_bo_needs_update(bo_base, true);
+=20
+ 		/* It's a bit inefficient to always jump back to the start, but
+ 		 * we would need to re-structure the KFD for properly fixing
+@@ -1266,16 +1279,38 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev=
+, struct amdgpu_bo_va *bo_va,
+ 	struct amdgpu_bo *bo =3D bo_va->base.bo;
+ 	struct amdgpu_vm *vm =3D bo_va->base.vm;
+ 	struct amdgpu_bo_va_mapping *mapping;
++	struct amdgpu_vm_bo_status *lists;
+ 	struct dma_fence **last_update;
+ 	dma_addr_t *pages_addr =3D NULL;
+ 	struct ttm_resource *mem;
+ 	struct amdgpu_sync sync;
+ 	bool flush_tlb =3D clear;
++	bool uncached, moved;
+ 	uint64_t vram_base;
+ 	uint64_t flags;
+-	bool uncached;
+ 	int r;
+=20
++	/* Everything we access in here is protected by the VM PD lock. */
++	amdgpu_vm_assert_locked(vm);
 +
-+	if (WARN_ON(!bo))
-+		return -EINVAL;
-+
-+	adev = amdgpu_ttm_adev(bo-&gt;tbo.bdev);
-+
-+	r = amdgpu_bo_reserve(bo, false);
-+	if (r) {
-+		dev_err(adev-&gt;dev, &quot;(%d) failed to reserve kernel bo\n&quot;, r);
-+		return r;
-+	}
++	lists =3D amdgpu_vm_bo_lock_lists(&bo_va->base);
++	/*
++	 * We can't hold the spinlock for the entire VM update, so temporarily r=
+emove
++	 * the BO from the state machine entirely. This does not prevent all typ=
+es of
++	 * races: We might not hold the BO's resv here, so TTM is free to move t=
+he buffer
++	 * and thereby invalidate it. However, it allows us to detect if we race=
+d with
++	 * something that invalidated the BO again and handle that appropriately=
+ below.
++	 */
++	list_del_init(&bo_va->base.vm_status);
 +
 +	/*
-+	 * The BO must already be pinned. A GPU or CPU address of an
-+	 * unpinned BO would become meaningless because TTM
-+	 * may then move or evict it at any time.
++	 * The moved flag is also protected by the status lock. It's fine if som=
+e buffer
++	 * update changes bo_va->base.moved while we're updating the PTs after u=
+nlocking
++	 * the status lock, since that also invalidates the BO's VM status again=
+.
 +	 */
-+	if (WARN_ON_ONCE(!bo-&gt;tbo.pin_count)) {
-+		r = -EINVAL;
-+		goto error_unreserve;
-+	}
++	moved =3D bo_va->base.moved;
++	amdgpu_vm_bo_unlock_lists(&bo_va->base);
 +
- 	if (gpu_addr)
--		*gpu_addr = amdgpu_bo_gpu_offset(*bo_ptr);
-+		*gpu_addr = amdgpu_bo_gpu_offset(bo);
- 
- 	if (cpu_addr) {
--		r = amdgpu_bo_kmap(*bo_ptr, cpu_addr);
-+		r = amdgpu_bo_kmap(bo, cpu_addr);
- 		if (r) {
- 			dev_err(adev-&gt;dev, &quot;(%d) kernel bo map failed\n&quot;, r);
--			goto error_unpin;
-+			goto error_unreserve;
- 		}
+ 	amdgpu_sync_create(&sync);
+ 	if (clear) {
+ 		mem =3D NULL;
+@@ -1343,7 +1378,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev, =
+struct amdgpu_bo_va *bo_va,
+ 	else
+ 		last_update =3D &bo_va->last_pt_update;
+=20
+-	if (!clear && bo_va->base.moved) {
++	if (!clear && moved) {
+ 		flush_tlb =3D true;
+ 		list_splice_init(&bo_va->valids, &bo_va->invalids);
+=20
+@@ -1389,20 +1424,38 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev=
+, struct amdgpu_bo_va *bo_va,
+ 		else
+ 			amdgpu_vm_bo_idle(&bo_va->base);
+ 	} else {
+-		amdgpu_vm_bo_idle(&bo_va->base);
++		lists =3D amdgpu_vm_bo_lock_lists(&bo_va->base);
++		/*
++		 * Now that we're holding the lock again, check if the
++		 * buffer got invalidated while we weren't looking.
++		 * We initialized vm_status to an empty list head above,
++		 * if that's still the case we can safely mark the BO as
++		 * done.
++		 *
++		 * Note: We only need to do this for BOs that are not
++		 * VM-always-valid, because we hold the VM's reservation
++		 * which by definition reserves all VM-always-valid BOs.
++		 */
++		if (list_empty(&bo_va->base.vm_status))
++			amdgpu_vm_bo_idle_locked(&bo_va->base, lists);
++		amdgpu_vm_bo_unlock_lists(&bo_va->base);
  	}
- 
-+	amdgpu_bo_unreserve(bo);
- 	return 0;
- 
--error_unpin:
--	amdgpu_bo_unpin(*bo_ptr);
- error_unreserve:
--	amdgpu_bo_unreserve(*bo_ptr);
-+	amdgpu_bo_unreserve(bo);
-+	return r;
-+}
-+
-+/**
-+ * amdgpu_bo_create_reserved - create reserved BO for kernel use
-+ *
-+ * @adev: amdgpu device object
-+ * @size: size for the new BO
-+ * @align: alignment for the new BO
-+ * @domain: where to place it
-+ * @bo_ptr: used to initialize BOs in structures
-+ * @gpu_addr: GPU addr of the pinned BO
-+ * @cpu_addr: optional CPU address mapping
-+ *
-+ * Allocates and pins a BO for kernel internal use, and returns it still
-+ * reserved.
-+ *
-+ * Note: For bo_ptr new BO is only created if bo_ptr points to NULL. An
-+ * existing BO is only re-accessed (get CPU/GPU mapping) and not pinned again,
-+ * so repeated calls with the same BO do not leak pin references.
-+ *
-+ * Returns:
-+ * 0 on success, negative error code otherwise.
-+ */
-+int amdgpu_bo_create_reserved(struct amdgpu_device *adev,
-+			      unsigned long size, int align,
-+			      u32 domain, struct amdgpu_bo **bo_ptr,
-+			      u64 *gpu_addr, void **cpu_addr)
-+{
-+	bool created = false;
-+	int r;
-+
-+	if (WARN_ON(!bo_ptr))
-+		return -EINVAL;
-+
-+	if (!size) {
-+		amdgpu_bo_unref(bo_ptr);
-+		return 0;
-+	}
-+
-+	if (!*bo_ptr) {
-+		r = amdgpu_bo_create_pinned(adev, size, align, domain, bo_ptr,
-+					    !!cpu_addr);
-+		if (r)
-+			return r;
-+		created = true;
-+	}
-+
-+	r = amdgpu_bo_get_access(*bo_ptr, gpu_addr, cpu_addr);
-+	if (r)
-+		goto error_free;
-+
-+	r = amdgpu_bo_reserve(*bo_ptr, false);
-+	if (r) {
-+		dev_err(adev-&gt;dev, &quot;(%d) failed to reserve kernel bo\n&quot;, r);
-+		goto error_free;
-+	}
-+
+=20
+ 	list_splice_init(&bo_va->invalids, &bo_va->valids);
+ 	bo_va->cleared =3D clear;
+-	bo_va->base.moved =3D false;
+=20
+ 	if (trace_amdgpu_vm_bo_mapping_enabled()) {
+ 		list_for_each_entry(mapping, &bo_va->valids, list)
+ 			trace_amdgpu_vm_bo_mapping(mapping);
+ 	}
+=20
++	amdgpu_sync_free(&sync);
 +	return 0;
- 
++
  error_free:
--	if (free)
-+	if (created) {
-+		if (amdgpu_bo_reserve(*bo_ptr, true) == 0) {
-+			amdgpu_bo_kunmap(*bo_ptr);
-+			amdgpu_bo_unpin(*bo_ptr);
-+			amdgpu_bo_unreserve(*bo_ptr);
-+		}
- 		amdgpu_bo_unref(bo_ptr);
-+	}
- 
+ 	amdgpu_sync_free(&sync);
++	if (r)
++		amdgpu_vm_bo_needs_update(&bo_va->base, false);
  	return r;
  }
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-</pre>
-    </blockquote>
-  </body>
-</html>
+=20
+@@ -1779,7 +1832,6 @@ static void amdgpu_vm_bo_insert_map(struct amdgpu_de=
+vice *adev,
+ 				    struct amdgpu_bo_va_mapping *mapping)
+ {
+ 	struct amdgpu_vm *vm =3D bo_va->base.vm;
+-	struct amdgpu_bo *bo =3D bo_va->base.bo;
+=20
+ 	mapping->bo_va =3D bo_va;
+ 	list_add(&mapping->list, &bo_va->invalids);
+@@ -1788,8 +1840,7 @@ static void amdgpu_vm_bo_insert_map(struct amdgpu_de=
+vice *adev,
+ 	if (mapping->flags & AMDGPU_VM_PAGE_PRT)
+ 		amdgpu_vm_prt_get(adev);
+=20
+-	if (amdgpu_vm_is_bo_always_valid(vm, bo) && !bo_va->base.moved)
+-		amdgpu_vm_bo_needs_update(&bo_va->base);
++	amdgpu_vm_bo_needs_update(&bo_va->base, false);
+=20
+ 	trace_amdgpu_vm_bo_map(bo_va, mapping);
+ }
+@@ -2090,30 +2141,22 @@ int amdgpu_vm_bo_clear_mappings(struct amdgpu_devi=
+ce *adev,
+=20
+ 	/* Insert partial mapping before the range */
+ 	if (!list_empty(&before->list)) {
+-		struct amdgpu_bo *bo =3D before->bo_va->base.bo;
+-
+ 		amdgpu_vm_it_insert(before, &vm->va);
+ 		if (before->flags & AMDGPU_VM_PAGE_PRT)
+ 			amdgpu_vm_prt_get(adev);
+=20
+-		if (amdgpu_vm_is_bo_always_valid(vm, bo) &&
+-		    !before->bo_va->base.moved)
+-			amdgpu_vm_bo_needs_update(&before->bo_va->base);
++		amdgpu_vm_bo_needs_update(&before->bo_va->base, false);
+ 	} else {
+ 		kfree(before);
+ 	}
+=20
+ 	/* Insert partial mapping after the range */
+ 	if (!list_empty(&after->list)) {
+-		struct amdgpu_bo *bo =3D after->bo_va->base.bo;
+-
+ 		amdgpu_vm_it_insert(after, &vm->va);
+ 		if (after->flags & AMDGPU_VM_PAGE_PRT)
+ 			amdgpu_vm_prt_get(adev);
+=20
+-		if (amdgpu_vm_is_bo_always_valid(vm, bo) &&
+-		    !after->bo_va->base.moved)
+-			amdgpu_vm_bo_needs_update(&after->bo_va->base);
++		amdgpu_vm_bo_needs_update(&after->bo_va->base, false);
+ 	} else {
+ 		kfree(after);
+ 	}
+@@ -2285,10 +2328,7 @@ void amdgpu_vm_bo_invalidate(struct amdgpu_bo *bo, =
+bool evicted)
+ 			continue;
+ 		}
+=20
+-		if (bo_base->moved)
+-			continue;
+-		bo_base->moved =3D true;
+-		amdgpu_vm_bo_needs_update(bo_base);
++		amdgpu_vm_bo_needs_update(bo_base, true);
+ 	}
+ }
+=20
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_vm.h
+index c1bd4d35831e0..0acd889568a38 100644
+=2D-- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
+@@ -212,8 +212,7 @@ struct amdgpu_vm_bo_base {
+ 	 * protected by vm BO being reserved */
+ 	bool				shared;
+=20
+-	/* if the BO was moved and all mappings are invalid
+-	 * protected by the BO being reserved */
++	/* protected by the vm's status lock */
+ 	bool				moved;
+ };
+=20
+=2D-=20
+2.54.0
 
---------------pkpbmRF5TdiZG72mViemwJsJ--
