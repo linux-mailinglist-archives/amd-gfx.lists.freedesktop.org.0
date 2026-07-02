@@ -2,90 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NvimAYtfR2rhXAAAu9opvQ
+	id s8FfBJBfR2rpXAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:51 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:56 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7E776FF623
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D32056FF647
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=gmail.com header.s=20251104 header.b=CKucUvA6;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=gmail.com (policy=none);
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ASrJMy1P;
+	dmarc=pass (policy=none) header.from=gmail.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B15E910F671;
-	Fri,  3 Jul 2026 07:06:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A901710F689;
+	Fri,  3 Jul 2026 07:06:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6091010F52C
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 18:50:07 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-49241dbf9c1so17879635e9.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 02 Jul 2026 11:50:07 -0700 (PDT)
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
+ [209.85.214.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E72F710F599
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 19:48:45 +0000 (UTC)
+Received: by mail-pl1-f174.google.com with SMTP id
+ d9443c01a7336-2c6770f12e4so1859485ad.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 02 Jul 2026 12:48:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783018205; x=1783623005; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:in-reply-to:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=tXG6OHs7oPiK0kfLO0F3MKN7dPnCD1zMj8jc2BcBAJs=;
- b=CKucUvA6Imjqf+hcvHRK8rZyqznXZ5eyq0chs6XuDYtKWY6YMosEILYRp8T24R5MTo
- YY3s6n+jKLfyURLFRF38GTfCRaRTkICijPC3haiN6E/dL+j4PDoH90Nc9KbIr1v7f/Zu
- RwAP2y+CaxQCrovW/hVGiCnObULQgA+QJQAFRW6LYAeTyufVQPJsfonQYjhGty25PYpK
- g4iLgGUSODmv9yRuhora8uKz7c/L1bpc9GQm+Fq0WLB+9ucjVRELAbJqKsb6pAbrBDw+
- 08QxWxwK/Yc9gF+EiViX0EUbR87698bGQjnpMDQQLuwvBKp8L1NJwWd1X21n9KZiDos6
- oW4A==
+ d=gmail.com; s=20251104; t=1783021725; x=1783626525; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=68hLmhb2rJT6HC8MF+9I9bjhr7Jl54P+QNhqjh8bKmw=;
+ b=ASrJMy1P7XOgl9qrEGeBSCZqd3v/LmpovEkiMTk08pAtDMt7EmZHxYGowtaMsxAy+M
+ pomP2poBnkRnvNRZ0uhN4WcnzX6ceg7yTTjutu6RapC35xdPsdnqiziih7CpMFmy8Jl/
+ XSsgCRLiQMZuHWz4z0X3ssSYjLqZkdtE66r4cCBAApjclKjx5oLr2s7WHAaFIIpHE7vu
+ UhE4lw4d9msD0fl93cePz1RTqhlx48GNS+0ijM1osiIp34/4/rrSctAyILcKZvNuN8U/
+ l8QVlJC/20AVvS5ID3itDf6pl0gU1ppesJwjoTxXLUnwpyFxzRk/+mrKnxmjO3y6tiaZ
+ yGyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783018205; x=1783623005;
- h=content-transfer-encoding:content-type:in-reply-to:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to:content-type;
- bh=tXG6OHs7oPiK0kfLO0F3MKN7dPnCD1zMj8jc2BcBAJs=;
- b=HYg/XeEII4RUeyv7YFmLEZZ96oAbxrC+89t7cUhwTnE11IlmynGiLIv595yqe7vlAF
- x0Fddc0URHO2kqrEy7lJptp3igQFpeGWgs91o70ghXNnof8RmAgrojmsuqV3w9vnwJUC
- VsYXJ7MpMpzXxXYh5M2r8qi50s5OWFxU1zIvvy9FSDDLG3/gaKw629urFYs8JmZUpNiQ
- x6eU0/yBdWNpzVSNb9ooKEPnkTV/R4uaBOd87p5BzSTEG2UR+ajncqkwZUUtQmAUIt/7
- XIl19jDPC5RHkxnnHrpIoEUOeicSXrL0XFLGbIT0NoBmMtv4virNkLKo8XYOfGPQGqT2
- 85/A==
+ d=1e100.net; s=20251104; t=1783021725; x=1783626525;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=68hLmhb2rJT6HC8MF+9I9bjhr7Jl54P+QNhqjh8bKmw=;
+ b=opHoK/nKpd5Pg7yf1OOprpH8nY6s40K5Lr330qPPW0lRrMQuAtfdGcjcb4aypjlQJV
+ E0sUvegoM2gbX7MZt3RYRf0eRqte4511I7Y0bchY3dvD9ey4src1U0Xvx4hp7volTB36
+ wfXFaKLtppM6ZlHAWQethzWqwbf99B6LATR/U/Z9QnuBWoOLAjT4NeRVzDV9rrf4c+7/
+ 6BKQhSWkGlrjHJ36L6331OtNZsaeMEeMlHyD6IIniVxRYIZesk8lAn7w3OXJlam23Y50
+ p94/Jl6wAzk/9XlLGZlfZ6fuVAFjd/WcycTgvNpskJAQJVOyAmq8JedYFdRv1UXGuJ4s
+ fHNg==
 X-Forwarded-Encrypted: i=1;
- AFNElJ9TGs1vj+xxZZmeZRMNaH4nNGNHzCISzGlsg1/NoeJUHZXRpuO9RMZVSSaByHAkccCT7HCywRZa@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzsjxCsgoPMK/4LIyyIxtOkp+OQKvUp9g5cnfIeZsdoTT2o7RMg
- 9oK8jSQA0ejeBL8S5uCnrkhl09QCROfkoo7CQyciaPtrAuG2Az7S0EGW
-X-Gm-Gg: AfdE7clFdBriDjNAbPl5Uuvyk05yCYHTG0uITJUtB6H3HRU/KKUpm32p8X9X7FJZTdd
- KVuNGIQRlhj0Pm+rrbgsRjXl4MKyzVdYbfYN926wDG7Djxm00u05YzPONUfKc/9ASG/GnGMgquc
- ThwkMgR3CBwYipMASH+B5kyRUvZzFb7kHcc+7fnRhbYOaH/Uff1sv44c0H9d/xJ2NdQkQsVlm/3
- YFUoNsdV9ETHjRf3mq8lzB63c32eRWRo776X6VbQe9w3v1CvKpAtnMQG19rRE1ty2zqBf6RWPia
- br863rafYwrrXZZy368tO0OHm1hQJZDHETfSjvK768pO9BWNPOwnTVu2RgsgSQGiEpX8ePqymyG
- HfIIffOTkkAQUg09P69AHNb7C+HJHJoTlMlcrUcn3VhNjukYrsX7iyaipSzDNo41Jiy5FvghlTn
- tV6RYAW5gL48pvC08nbPeRFHbPMq3rrjFLrEtNJ0FJRbynX8oVzwEWHkSc5NyVJI9Z2YnMVBeYi
- izKnAfeJN2bRHjFS/c=
-X-Received: by 2002:a05:600d:844f:20b0:492:5bb6:6d4b with SMTP id
- 5b1f17b1804b1-493c3df77eamr74808995e9.34.1783018205423; 
- Thu, 02 Jul 2026 11:50:05 -0700 (PDT)
-Received: from [10.128.11.240] (195-23-151-163.net.novis.pt. [195.23.151.163])
+ AHgh+RqqTnKn7B9y+m0aP2kmNIM+OEksQqDBo+UE4LWue5jFKUUDulzCGUsxQaPe7soQJa5oETtSUaqy@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyfci0nxoX3YofGElGhXHTFNP8Bo3hdwKDsEeBjPLB+T2/tkR2x
+ usxK2DZ8tFrG6HdwFZPP6L06Q4T3iLxcARUvVu4WrVpcJLEHHEhskHgf
+X-Gm-Gg: AfdE7clW4rAJuQv9E0e4ArXJH6+nC9SnztwItPktwMq27i0TGPXx4p/VNM4OBw/9xo3
+ /TTwSUEek0CQE39raFZYhO4/qm+fLm8QRaseq7WY/5lGASlwD3yTiG6L2qjDVIM+Ptpqt71Tjvy
+ 32caAKpU17jM0/ksE2koNv6Vnh1O6tJKEZgO2oGRnV6CuVZW/G/S0TMhis70Wnw9Ntm8ykI0IOg
+ DinDfSqnOUTMULRtzUWWn82uzyiDAQcpn81QyuMHYNUrQK6fFP/aYjTmQknyfUxUAvyjxwma2SG
+ ThD3TtjuSABhQ6VZlDBxWTZfbqPCBF9rF7iLIezS5HXoElKb6rWkMKVgeryaH0HA6+TA0u49M+T
+ 6DYabz7f8dW196UCfCTekI9ZLjC5X6KBYLFYwzM3cSq3xG1Gc8seifq3bfNJxgaANN9lcvvX6B/
+ BvfB2R16vVEC6rLT1BhsSq6tR/Y/aTryw2d6lG7mSk436JlTTyCahv2KNLIQMvtX5iHDdZ8Q7cB
+ 8Oy1f7yZjD6Y589f/TfkajEoV0suo0W7xrwUXHA7veK8o/TzMogn9UC01nGP2tI8ZufPLR/tBJC
+ Dh7ES51aVPCPuf4zR0QJ2oo8TkcQ9JSY+b5eyw==
+X-Received: by 2002:a17:902:d490:b0:2c4:397:dd7a with SMTP id
+ d9443c01a7336-2ca7e8cf2e3mr46822875ad.4.1783021725266; 
+ Thu, 02 Jul 2026 12:48:45 -0700 (PDT)
+Received: from midnightair ([2401:4900:1c94:62e8:bc10:77d0:2fda:415d])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-477db3dba3csm10877210f8f.3.2026.07.02.11.50.04
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 02 Jul 2026 11:50:04 -0700 (PDT)
-Message-ID: <dc6ec395-ff15-46b0-ad0d-0f173b4d405e@gmail.com>
-Date: Thu, 2 Jul 2026 19:50:04 +0100
+ a92af1059eb24-13b3c7ef5b3sm16339527c88.1.2026.07.02.12.48.41
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Thu, 02 Jul 2026 12:48:44 -0700 (PDT)
+From: Anas Khan <anxkhn28@gmail.com>
+To: Harry Wentland <harry.wentland@amd.com>,
+	Leo Li <sunpeng.li@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Peichen Huang <PeiChen.Huang@amd.com>, Chen Ni <nichen@iscas.ac.cn>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Anas Khan <anxkhn28@gmail.com>
+Subject: Re: [PATCH] drm/amd/display: remove duplicate link_dp_panel_replay.h
+ include
+Date: Fri,  3 Jul 2026 01:18:38 +0530
+Message-ID: <20260702194838.66361-1-anxkhn28@gmail.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260702112828.34698-1-anxkhn28@gmail.com>
+References: <20260702112828.34698-1-anxkhn28@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] rust: core: implement rx580 state optimization engine
- and c-to-rust char dev
-To: Breno Rodrigues Alves <breno3011alves@gmail.com>,
- alexander.deucher@amd.com, gregkh@linuxfoundation.org, ojeda@kernel.org
-Cc: christian.koenig@amd.com, arnd@arndb.de, rust-for-linux@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-References: <20260630210445.23103-1-breno3011alves@gmail.com>
-Content-Language: en-US
-From: Julian Braha <julianbraha@gmail.com>
-In-Reply-To: <20260630210445.23103-1-breno3011alves@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 03 Jul 2026 07:06:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -101,52 +102,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.49 / 15.00];
-	R_DKIM_REJECT(1.00)[gmail.com:s=20251104];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:breno3011alves@gmail.com,m:alexander.deucher@amd.com,m:gregkh@linuxfoundation.org,m:ojeda@kernel.org,m:christian.koenig@amd.com,m:arnd@arndb.de,m:rust-for-linux@vger.kernel.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com,linuxfoundation.org,kernel.org];
-	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:alexander.deucher@amd.com,m:siqueira@igalia.com,m:PeiChen.Huang@amd.com,m:nichen@iscas.ac.cn,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:anxkhn28@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,iscas.ac.cn,lists.freedesktop.org,vger.kernel.org,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[julianbraha@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[anxkhn28@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[julianbraha@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:-];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[anxkhn28@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A7E776FF623
+X-Rspamd-Queue-Id: D32056FF647
 
-Hi Breno,
+Please disregard this patch. I did not notice that Chen Ni had already
+posted the identical change back in February:
 
-On 6/30/26 22:04, Breno Rodrigues Alves wrote:
-> This patch introduces an automated indexed state mechanism to optimize
-> VRAM latency and command loops for the Radeon RX 580 architecture.
-> Additionally, it provides a converted C-to-Rust sample char driver.
-> 
-> Signed-off-by: Breno Rodrigues Alves <breno3011alves@gmail.com>
-> ---
-In each revision of your patch, could you include the changelog and
-links to previous iterations, here below the ---?
+  https://lore.kernel.org/all/20260211021953.2504249-1-nichen@iscas.ac.cn/
 
-- Julian Braha
+Sorry for the duplicate.
+
+Thanks,
+Anas
