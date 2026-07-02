@@ -2,52 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bRxIAY1fR2rjXAAAu9opvQ
+	id l/UoOYpfR2rgXAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:53 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:50 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C65506FF62F
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F9B46FF622
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=rere.qmqm.pl header.s=1 header.b=SsZUx1jS;
+	dkim=pass header.d=rere.qmqm.pl header.s=1 header.b="Xi2/p22H";
 	dmarc=pass (policy=reject) header.from=rere.qmqm.pl;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F7F510F676;
-	Fri,  3 Jul 2026 07:06:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF8D710F66C;
+	Fri,  3 Jul 2026 07:06:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from rere.qmqm.pl (rere.qmqm.pl [91.227.64.183])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32EB010F4D9;
- Thu,  2 Jul 2026 16:29:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AB4910F4DE;
+ Thu,  2 Jul 2026 16:29:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
- t=1783009480; bh=xYz8IsIbgJ2pPSj19g3xtCx6A7aGJCN0ZFyKL/P6/8U=;
+ t=1783009482; bh=xtfEKNw6wJCBOVy7WR/hQK9kzhH/JkuJxV7BK+/tQEg=;
  h=Date:In-Reply-To:References:Subject:From:To:Cc:From;
- b=SsZUx1jSEp2BtBWZnGydCsR9uJgrP41ZXNH0a9qrZqozAcPYilTr4inXcV/UUnxWw
- PIoPPLLzfePBSvhPjvMHw6jVkkcHOFtr5uF7cNTwgGtPgDQ0Zv12fPisfomJo7VGag
- TWfVwoqFaSVuG8u2TP4wi09+IZHvi9BS67b+8l2WkV5kD6vTGmgQHcyD5GihwkFcJV
- fnLJszXRJ8D32gyM2iXDMR1nmyS8ofTYGqL6iRPEPemhxOhKc8rbwCoz3kCFJfWZlY
- XllEfYkH8IJnT0V9gMVi8Sv+vwEt4b8Nc6cQ+cvKQ3NU+TulD8h5ie18TpsVJHcLJ7
- 0CovN6xvTqj0A==
+ b=Xi2/p22HDNkf9hsbUGrRhYTbZIWuuLON7SqzXHNmMSIGL9uc3fLzsxSIsYyySHIOA
+ xW6BTR+g2j5Hqn0Vzo2StBM952H4DQEd/mB5XCeX0RHe6wSxExMxQ6cT4Q9zHgZmCM
+ pp7wvTmPoXWdMV/7buFDKk4YMeNhG/gtFZJx2px1a9Sh01dhJkSSfmKs0d8Wp+tofx
+ Ai4eCeaVjgVdHakIQJQOxS+8nC/h4D8AUSAnV9c6ktSrgoCMMugVzaArvm0m5NX4GP
+ iBq9craGKulxnO7o3iG8N5+RCEF3ssumI4aSpcucK2LL1IuRucZf2X2oStBLASLeDP
+ bAcnrGEM3Ss7A==
 Received: from remote.user (localhost [127.0.0.1])
- by rere.qmqm.pl (Postfix) with UTF8SMTPSA id 4grhzr54H1zP4;
- Thu, 02 Jul 2026 18:24:40 +0200 (CEST)
+ by rere.qmqm.pl (Postfix) with UTF8SMTPSA id 4grhzt35GnzZr;
+ Thu, 02 Jul 2026 18:24:42 +0200 (CEST)
 X-Virus-Status: Clean
 X-Virus-Scanned: clamav-milter 1.4.3 at mail
-Date: Thu, 02 Jul 2026 18:24:40 +0200
-Message-ID: <b284acc0dd71b46fbb402ed60f1da23604259e0a.1783009338.git.mirq-linux@rere.qmqm.pl>
+Date: Thu, 02 Jul 2026 18:24:41 +0200
+Message-ID: <982728e51afbb9d400372e98676ad76335a56410.1783009338.git.mirq-linux@rere.qmqm.pl>
 In-Reply-To: <cover.1783009338.git.mirq-linux@rere.qmqm.pl>
 References: <cover.1783009338.git.mirq-linux@rere.qmqm.pl>
-Subject: [PATCH 3/5] drm/amd/pm/smu7: return error on message send failure
+Subject: [PATCH 5/5] drm/amdgpu: debugfs: avoid extra EOLs in amdgpu_gem_info
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 From: =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
 To: Alex Deucher <alexander.deucher@amd.com>,
  Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Kenneth Feng <kenneth.feng@amd.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Kenneth Feng <kenneth.feng@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Rodrigo Siqueira <siqueira@igalia.com>
 Cc: amd-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -66,9 +66,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.31 / 15.00];
+X-Spamd-Result: default: False [0.40 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MIXED_CHARSET(0.62)[subject];
+	R_MIXED_CHARSET(0.71)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[rere.qmqm.pl,reject];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
@@ -91,40 +91,30 @@ X-Spamd-Result: default: False [0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,qmqm.pl:email,rere.qmqm.pl:from_mime,rere.qmqm.pl:dkim,rere.qmqm.pl:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,rere.qmqm.pl:from_mime,rere.qmqm.pl:dkim,rere.qmqm.pl:mid,qmqm.pl:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C65506FF62F
+X-Rspamd-Queue-Id: 5F9B46FF622
 
 Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
 ---
- .../gpu/drm/amd/pm/powerplay/smumgr/smu7_smumgr.c    | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu7_smumgr.c b/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu7_smumgr.c
-index ffe3ce87d907..2e6dfe864306 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu7_smumgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/smumgr/smu7_smumgr.c
-@@ -141,12 +141,16 @@ int smu7_send_msg_to_smc(struct pp_hwmgr *hwmgr, uint16_t msg)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+index 4dd7c712b8c3..9ee894e0dbe2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+@@ -1696,8 +1696,9 @@ u64 amdgpu_bo_print_info(int id, struct amdgpu_bo *bo, struct seq_file *m)
+ 	if (dma_resv_trylock(bo->tbo.base.resv)) {
+ 		dma_resv_describe(bo->tbo.base.resv, m);
+ 		dma_resv_unlock(bo->tbo.base.resv);
++	} else {
++		seq_puts(m, "\n");
+ 	}
+-	seq_puts(m, "\n");
  
- 	ret = PHM_READ_FIELD(hwmgr->device, SMC_RESP_0, SMC_RESP);
- 
--	if (ret == 0xFE)
-+	switch (ret) {
-+	case 1:
-+		return 0;
-+	case 0xFE:
- 		dev_dbg(adev->dev, "SMU message %#x was not supported\n", msg);
--	else if (ret != 1)
-+		return -EOPNOTSUPP;
-+	default:
- 		dev_info(adev->dev, "SMU message %#x failed: response is %d\n", msg, ret);
--
--	return 0;
-+		return ret != 0xFFFF ? -EIO : -ENXIO;
-+	}
+ 	return size;
  }
- 
- int smu7_send_msg_to_smc_with_parameter(struct pp_hwmgr *hwmgr, uint16_t msg, uint32_t parameter)
 -- 
 2.47.3
 
