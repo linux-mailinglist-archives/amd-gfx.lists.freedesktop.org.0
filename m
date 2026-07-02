@@ -2,93 +2,63 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id hS6rEpNgRmqbSAsAu9opvQ
+	id gjPhJ4xfR2riXAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 14:58:59 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:52 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B93596F804B
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 14:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ABEA6FF62A
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=k0zMmH5B;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=rS6IE0DH;
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none);
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC7710E4C0;
-	Thu,  2 Jul 2026 12:58:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD07C10F673;
+	Fri,  3 Jul 2026 07:06:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
- [209.85.128.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4740610E4C0
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 12:58:55 +0000 (UTC)
-Received: by mail-wm1-f50.google.com with SMTP id
- 5b1f17b1804b1-493b786d6c0so9261965e9.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 02 Jul 2026 05:58:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782997134; x=1783601934; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=0Xm6/w28NpRMiecM4TI1l6kCk2CrQuSS9yDQYpe0kl4=;
- b=k0zMmH5BeB1X6vFOqfkvvuJEmwrSij4cV9bbIFkWpFUmP17+N4CQtbQfqcwosQRF0E
- a+5ccfahHijzzlQRt/SAiAfcd1FBk3c4EHtICwziVvIuSQ0RKMg+1e570KE3A4IiUjhY
- 22sklxvu8HjJO/nUfEBqSgc1QGI75RXhbU4ppAzhWEvK+k6+jn19HtiDwA2v5wjQhHX7
- 1FXQhf1k31U/wDK09HhrmeImA0kLIss9/uxWQdqoGNGYwGbUTU4DGoLPK7EVDx0fQtyG
- 46Boul7Nz0dIfuFQd+qLyEYp96Dcrd2sfhX4XTfocWDmi1c1lTrJ96cf3mo03nF8eze4
- /I/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782997134; x=1783601934;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=0Xm6/w28NpRMiecM4TI1l6kCk2CrQuSS9yDQYpe0kl4=;
- b=V+rCduTMLAE1gBbcebX0Dy3uTeMwWytsdzZZVl4+KI+BqoE1Oo0pUXkSuBwRLlPxiu
- OJuUsB2RqCxm6OeiA6GV6kDZ7HOpzrJVZOmJgtb/zsYwCbkhONuYA97dj9CI3SrNUHmK
- 5Q3x90b1wfEp/gk7aMaMg0xQYvUdrbFjVfpI5QXcuxSmKps2ZS1PQcctlQ+EpDBJcyfb
- fzStVrqOe6i6izaqcePsT/hk0hJkpxOgYfJOBSoS8tGixuIu8JfTFNZ4Y5I9w2UEaCDR
- gw8yLXV+a5ixoqNe9lM5QxdfEVV47+sNmkIgZpN0nedMq05abvT+5gXQqCc0l0r0KbbH
- LI+g==
-X-Gm-Message-State: AOJu0YzCo60FdOH1SP6E+CPZeAIWeomo38IKo/m3kn/Iizv0YWSM4UEp
- asgS6l6Pfjx4VRQ+Oli5hvyI1Hz/ImIsTSHqjWjX62FIdmgeeGlrRv6L/OMByqAi
-X-Gm-Gg: AfdE7cniy8HLk+zNIiYEeyu4LIWxF+mcizejhLYCN6BK0ojhECmld528I+oJrN2ib0F
- SuR6VjdhXkE9BJjlcSsf+Kl9CQeYIFY1NlPF5RNNkRtxBOhzNkMizvQJgZNNwQzbwoYeX8BKgbS
- tb7UGzroG/LmUT0p4cWGQmrCxhbP4h3A+MGzFHU2ExHC/6FXRntSN8X9SxZP/vi+tRAT0IObXLZ
- ReK+6EC0wtkOT4w6O5PmhxuToUOfCYNDtboDGQw1001PewYMfkOk71ExpUlLpjyQnkm16jjsot5
- 69LFzmsHkngWg2VtO78z/nvt9Z2zCgw3QtoGkiE7tMSTKrzokM9+TWJDtUAc10d4hjGPCaO7wUA
- ti3XdIik3kBIO86DDKZOx0aHp88QxsSG60h6lanbAIL9yWb3j1EQgmjrAAk73pinDoAojoUNpIO
- FY0abTT3NkXTJt2ZUKwhUtb8glBxHuUdnBwfA8U/IIkwfmycd6PL/DQlSExBC0Cr68Ephazk736
- Mz7tqxrSFWlXNMJxQ==
-X-Received: by 2002:a05:600d:c:b0:492:454c:347c with SMTP id
- 5b1f17b1804b1-493c2b3a758mr75868125e9.7.1782997133418; 
- Thu, 02 Jul 2026 05:58:53 -0700 (PDT)
-Received: from timur-max.localnet
- (20014C4E24EF0F0080162CDB5B2DFACF.dsl.pool.telekom.hu.
- [2001:4c4e:24ef:f00:8016:2cdb:5b2d:facf])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-493c63172fesm83049815e9.0.2026.07.02.05.58.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 02 Jul 2026 05:58:52 -0700 (PDT)
-From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
-To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
- Natalie Vock <natalie.vock@gmx.de>, Amir Shetaia <Amir.Shetaia@amd.com>,
- Marek =?UTF-8?B?T2zFocOhaw==?= <maraeo@gmail.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Felix Kuehling <Felix.Kuehling@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Siwei He <siwei.he@amd.com>, Philip Yang <philip.yang@amd.com>,
- Mukul Joshi <mukul.joshi@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Subject: Re: [PATCH 10/14] drm/amdgpu/vm: Use init PTE flags and NOALLOC in
- amdgpu_vm_handle_fault()
-Date: Thu, 02 Jul 2026 14:58:51 +0200
-Message-ID: <16536545.Emhk5qWAgF@timur-max>
-In-Reply-To: <24718594-f84a-46a6-8c27-ec6729647554@amd.com>
-References: <20260701161721.85681-1-timur.kristof@gmail.com>
- <27457954.1r3eYUQgxm@timur-max>
- <24718594-f84a-46a6-8c27-ec6729647554@amd.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7990D10E4E7;
+ Thu,  2 Jul 2026 13:01:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=HAXYzsPcNYY9Q8dQYe8XBPgchSJ1FXkCry5jFDXeHic=; b=rS6IE0DHe0x4Z8dxgn7Wt2oQ+q
+ 5azPsgzojcn0FuIdaZSVXizcUfiHF+dYZ0jQZJnEi5WqV+2T8UHKCgTNNQJjda3Fnqdbk12yzD8qV
+ v0ozrEKN2MUdzfyEE5igDs4oS+EaVXTFbeq4vtzLYITPVi6uxGo8Nk4r2bf+KXdqwgq4/JRi9PJbj
+ fc1Hc0KkjGAs8jGXhA0ygtYVnIdU9ysB7eJBN0Dv5AhsIXePcEFQumKIE4i3m63BnilrW7dbprHfd
+ oFPO+2kTE9aiFTp9dA7UXWGR12D1HAouErhUViWcFjPtl00Ddoq0EgScbkMYqhteGaM0/VCSVzgtg
+ RgBW8a7w==;
+Received: from [179.125.94.247] (helo=quatroqueijos.lan)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wfH32-0082Ji-4u; Thu, 02 Jul 2026 15:01:44 +0200
+From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+To: igt-dev@lists.freedesktop.org
+Cc: siqueira@igalia.com, Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org,
+ Christian Koenig <christian.koenig@amd.com>,
+ maarten.lankhorst@linux.intel.com,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>,
+ Natalie Vock <natalie.vock@gmx.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, kernel-dev@igalia.com
+Subject: [PATCH i-g-t v3 0/7] add dmem_cgroups test
+Date: Thu,  2 Jul 2026 10:00:51 -0300
+Message-ID: <20260702130108.1397444-1-cascardo@igalia.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 03 Jul 2026 07:06:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,154 +73,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [1.49 / 15.00];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+	MID_CONTAINS_FROM(1.00)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[igalia.com,lists.freedesktop.org,amd.com,linux.intel.com,gmx.de];
 	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,gmx.de,gmail.com,ursulin.net];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[cascardo@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,timur-max:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,igalia.com:mid,igalia.com:from_mime,gitlab.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B93596F804B
+X-Rspamd-Queue-Id: 0ABEA6FF62A
 
-On 2026. j=C3=BAlius 2., cs=C3=BCt=C3=B6rt=C3=B6k 14:18:45 k=C3=B6z=C3=A9p-=
-eur=C3=B3pai ny=C3=A1ri id=C5=91 Christian K=C3=B6nig=20
-wrote:
-> On 7/2/26 13:28, Timur Krist=C3=B3f wrote:
-> > On 2026. j=C3=BAlius 2., cs=C3=BCt=C3=B6rt=C3=B6k 12:22:23 k=C3=B6z=C3=
-=A9p-eur=C3=B3pai ny=C3=A1ri id=C5=91 Christian
-> > K=C3=B6nig>=20
-> > wrote:
-> >> On 7/1/26 18:17, Timur Krist=C3=B3f wrote:
-> >>> PTE_IS_PTE seems necessary for handling retry faults on GFX12.
-> >>>=20
-> >>> For reference see:
-> >>> amdgpu_vm_pte_update_flags() that explains the problem
-> >>> svm_range_get_pte_flags() that uses the flag on GFX12
-> >>>=20
-> >>> Also add NOALLOC on GFX10.3+ as we don't need to allocate
-> >>> the fault handling PTE in the infinity cache (MALL).
-> >>>=20
-> >>> Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
-> >>> ---
-> >>>=20
-> >>>  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 8 ++++++--
-> >>>  1 file changed, 6 insertions(+), 2 deletions(-)
-> >>>=20
-> >>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> >>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c index
-> >>> 32719f31b6c9..a915d061085f
-> >>> 100644
-> >>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> >>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> >>> @@ -3044,7 +3044,8 @@ bool amdgpu_vm_handle_fault(struct amdgpu_device
-> >>> *adev, u32 pasid,>
-> >>>=20
-> >>>  	}
-> >>>  =09
-> >>>  	addr /=3D AMDGPU_GPU_PAGE_SIZE;
-> >>>=20
-> >>> -	flags =3D AMDGPU_PTE_VALID | AMDGPU_PTE_SNOOPED |
-> >>> +	flags =3D adev->gmc.init_pte_flags |
-> >>> +		AMDGPU_PTE_VALID | AMDGPU_PTE_SNOOPED |
-> >>>=20
-> >>>  		AMDGPU_PTE_SYSTEM;
-> >>=20
-> >> That doesn't make sense the PTE flags should be adjusted to the device
-> >> specific flags by the callbacks.
-> >=20
-> > Can you please elaborate on what is it that doesn't make sense here and
-> > why, and what you recommend to do instead?
->=20
-> I had to dig up what the problem here is as well. We use the ASIC specific
-> AMDGPU_PTE_* flags directly.
->=20
-> Instead we should use the AMDGPU_VM_PAGE_* flags and then call
-> amdgpu_gmc_get_vm_pte(adev, vm, NULL, in_flags, &out_flags) to translate
-> the AMDGPU_VM_PAGE_* flags into the ASIC specific ones.
->=20
-> This will automatically add flags like AMDGPU_PTE_TF and AMDGPU_PTE_IS_PTE
-> etc...
+v3 TLDR:
+Sending again for fixes when running on top of Xe.
 
-As far as I understand, the init_pte_flags was added specifically for this=
-=20
-purpose, and that's what SVM uses too.
+This patchset is based on the work of Thomas Hellström at [1] and a
+followup I have submitted at [2]. This is now a v3, since I submitted [6].
 
-Are you suggesting to call to amdgpu_gmc_get_vm_pte() here?
-As far as I see the implementation of that function for Navi 4 is=20
-gmc_v12_0_get_vm_pte() which doesn't set the PTE_IS_PTE flag so it wouldn't=
-=20
-resolve the issue with the fault that this commit is fixing.
+With this version, I reverted the order in which to apply the patchsets, as
+this one adds the infrastructure and the drivers mechanisms, and a test for
+dmem.current and its behavior around dmem.max that is currently supported
+in the kernel.
 
-> >>>  	if (is_compute_context) {
-> >>>=20
-> >>> @@ -3054,11 +3055,14 @@ bool amdgpu_vm_handle_fault(struct amdgpu_dev=
-ice
-> >>> *adev, u32 pasid,>
-> >>>=20
-> >>>  		flags =3D AMDGPU_VM_NORETRY_FLAGS;
-> >>>  		value =3D 0;
-> >>>  =09
-> >>>  	} else if (amdgpu_vm_fault_stop =3D=3D AMDGPU_VM_FAULT_STOP_NEVER) {
-> >>>=20
-> >>> +		/* Don't allocate this PTE in the MALL */
-> >>> +		if (amdgpu_ip_version(adev, GC_HWIP, 0) >=3D
-> >=20
-> > IP_VERSION(10, 3, 0))
-> >=20
-> >>> +			flags |=3D AMDGPU_PTE_NOALLOC;
-> >>> +
-> >>=20
-> >> This doesn't make sense either, mall allocation for the dummy page sho=
-uld
-> >> be perfectly fine.
-> >=20
-> > I think we shouldn't waste space for this PTE in the MALL.
->=20
-> Hui? The PTE doesn't enter the MALL, it is the dummy page which enters the
-> MALL and since it is only 4k it basically doesn't waste much space.
->=20
+As for the new dmem.max eviction behavior, introduced by [3], it has been
+pushed to a branch at [4]. If preferred, I can submit the two patches
+independently.
 
-Sure I can remove this line if you feel that strongly about it.
-Do we gain any benefit from allowing this page in the MALL?
+I have run the tests, including the ones that test dmem.max eviction
+behavior on a system with a 1GiB VRAM amdgpu card. Rodrigo Siqueira helped
+me run it on a Xe system. We have applied the patchset at [3] on top of
+current linux origin/master [5], with a fixup for the amdgpu driver.
+
+Now, for the changes since v1 [2]:
+- Changed the test name from drv_dmem_cgroups to dmem_cgroups.
+- Have system includes before igt ones.
+- Documented the current SUBTEST.
+- Changed free_vram driver hook to only release a given BO. This allows for
+  the eviction trigger by a new allocation added by write_eviction_nonblock
+  subtest.
+- Changed allocate_vram to keep more state necessary for releasing a single BO.
+- Added a global free_vram helper to free all allocated VRAM.
+
+Compared to v3 of [1]:
+- I have kept wait_for_usage_drop as release can be lazy and we test for it
+  on test_current SUBTEST, but had USAGE_DROP_TIMEOUT_MS be a little
+  longer.
+- Changed BO_SIZE and EVICT_STEP to allow for more than two eviction steps
+  on a 1GiB VRAM system.
+- Reduced USAGE_SLACK to avoid false positives, but still allow for some
+  page table accounting.
+
+Compared to v2 of this one [6]:
+
+- Ignore -ENOMEM and -ENOSPC when trying to fill VRAM.
+- When limiting max memory, allow for some slack, as there might be some
+  overhead.
+- On Xe, allocate GEM object with no deferred backing, and skip binding.
+
+[1] https://patchwork.freedesktop.org/series/163935/#rev3
+[2] https://patchwork.freedesktop.org/series/166496/
+[3] https://lore.kernel.org/dri-devel/20260611173301.17473-1-thomas.hellstrom@linux.intel.com/
+[4] https://gitlab.freedesktop.org/cascardo/igt-gpu-tools/-/commits/dmem_max?ref_type=heads
+[5] 502d801f0ab0 ("Merge tag 'erofs-for-7.2-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs")
+[6] https://lore.kernel.org/dri-devel/20260623174319.4138648-1-cascardo@igalia.com/
 
 
->=20
-> >>>  		/* Redirect the access to the dummy page */
-> >>>  		value =3D adev->dummy_page_addr;
-> >>>  		flags |=3D AMDGPU_PTE_EXECUTABLE | AMDGPU_PTE_READABLE |
-> >>>  	=09
-> >>>  			AMDGPU_PTE_WRITEABLE;
-> >>>=20
-> >>> -
-> >>>=20
-> >>>  	} else {
-> >>>  =09
-> >>>  		/* Let the hw retry silently on the PTE */
-> >>>  		value =3D 0;
+Thadeu Lima de Souza Cascardo (4):
+  lib/xe: Introduce dmem driver and implement Xe support
+  lib/amdgpu: add amdgpu_cgroup_region_name
+  lib/amdgpu: add amdgpu support to igt_dmem_driver
+  tests/dmem_cgroups: add test for dmem.current
 
+Thomas Hellström (3):
+  lib/igt_cgroup: add cgroup v2 and dmem controller helpers
+  tests/cgroup_dmem: add dmem cgroup controller test
+  lib/xe: add xe_cgroup_region_name() helper
 
+ lib/amdgpu/amd_dmem.c   |  99 +++++++
+ lib/amdgpu/amd_memory.c |  25 ++
+ lib/amdgpu/amd_memory.h |   2 +
+ lib/igt.h               |   1 +
+ lib/igt_cgroup.c        | 638 ++++++++++++++++++++++++++++++++++++++++
+ lib/igt_cgroup.h        |  56 ++++
+ lib/igt_dmem_driver.h   |  25 ++
+ lib/meson.build         |   3 +
+ lib/xe/xe_dmem.c        | 143 +++++++++
+ lib/xe/xe_query.c       |  32 ++
+ lib/xe/xe_query.h       |   2 +
+ tests/cgroup_dmem.c     |  92 ++++++
+ tests/dmem_cgroups.c    | 245 +++++++++++++++
+ tests/meson.build       |   2 +
+ 14 files changed, 1365 insertions(+)
+ create mode 100644 lib/amdgpu/amd_dmem.c
+ create mode 100644 lib/igt_cgroup.c
+ create mode 100644 lib/igt_cgroup.h
+ create mode 100644 lib/igt_dmem_driver.h
+ create mode 100644 lib/xe/xe_dmem.c
+ create mode 100644 tests/cgroup_dmem.c
+ create mode 100644 tests/dmem_cgroups.c
 
+-- 
+2.47.3
 
