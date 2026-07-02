@@ -2,82 +2,137 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Aa61KkEcRmqSKAsAu9opvQ
+	id YCW6AVIaRmowKAsAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 10:07:29 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 09:59:14 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15D676F4938
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 10:07:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5951F6F4823
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 09:59:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=leemhuis.info header.s=key2 header.b=TjtJ1wMw;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=j64eAxpJ;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=none
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73C4910F20E;
-	Thu,  2 Jul 2026 08:07:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35D8E10F1E8;
+	Thu,  2 Jul 2026 07:59:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 350 seconds by postgrey-1.36 at gabe;
- Thu, 02 Jul 2026 07:50:13 UTC
-Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
- [188.68.61.107])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E713210F1C4
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 07:50:13 +0000 (UTC)
-Received: from mors-relay-8405.netcup.net (localhost [127.0.0.1])
- by mors-relay-8405.netcup.net (Postfix) with ESMTPS id 4grTRT0yj5z78xf;
- Thu,  2 Jul 2026 09:44:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
- s=key2; t=1782978261;
- bh=TsN6WMMBCEo3X7M+PaHTEiPe/r/MX65+aVkikPoZo+8=;
- h=Date:Subject:To:References:From:Cc:In-Reply-To:From;
- b=TjtJ1wMwyQhbAj5p3WcdecFKurKvL1gKgOZBAFY7bOfBZpq7hogycwScebDww3mTi
- SEjfzI7PBhKif6OHy6RC2pR8cm6hObzSgIhJgn5n0SX5Ps9wcYHjvOHGDh7iQD3KGW
- q6m7bEHFEPxQ+4Eqyci7OJgHSzMWDDvRg46UIX9qK3t+yFiSAZomCJDrccs4014Sio
- bvmkdw4r88FNxN9R8Oga14/X3X0tDHtOCsh7eSGZjzEeL2W54VJUQfiOv0Ufdo58pO
- 1WmFrpF5xzXENt1jiSpgyVPvra+Jtq6gXQcwAEUChK9xnEQm4y6aGdzPGR4Knzd0+b
- dCZNlHSOXtQYA==
-Received: from policy01-mors.netcup.net (unknown [46.38.225.35])
- by mors-relay-8405.netcup.net (Postfix) with ESMTPS id 4grTRT0Gcvz78xd;
- Thu,  2 Jul 2026 09:44:21 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at policy01-mors.netcup.net
-X-Spam-Flag: NO
-X-Spam-Score: -2.901
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.901 required=6.31 tests=[ALL_TRUSTED=-1,
- BAYES_00=-1.9, SPF_PASS=-0.001] autolearn=ham autolearn_force=no
-Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
- SHA256) (No client certificate requested)
- by policy01-mors.netcup.net (Postfix) with ESMTPS id 4grTRR5mvhz8tYM;
- Thu,  2 Jul 2026 09:44:19 +0200 (CEST)
-Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
- [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
- by mxe9fb.netcup.net (Postfix) with ESMTPSA id A4244603E0;
- Thu,  2 Jul 2026 09:44:18 +0200 (CEST)
-Received-SPF: pass (mxe9fb: connection is authenticated)
-Message-ID: <64546a50-5593-4083-aaa7-6f772f8c81b5@leemhuis.info>
-Date: Thu, 2 Jul 2026 09:44:17 +0200
-MIME-Version: 1.0
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010027.outbound.protection.outlook.com [52.101.56.27])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39F1610F1E8
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 07:59:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=h6BW6agS7mCcRG1E5i+KrX7EsX1Wq26oR7x22Hd6YGI+yhvuubA1gMlZQ87edPyyeH/0HNkKVXvVT/LCy8xQWCSLf6rffydID/6iZqal7oEvlecuGcju2lztkutsJb5jov7KfhhCGF8xs6DHhY2QFpg9cRWSc8dmdC1OIyKjQlzSy8z9Jvyn+Knl+oJhAg3G+r1u2OIccNqryO13uweNrHxkNspqplQJMwGCj439Fpebqm9WsY4YBJBtXZBMx98vGohvyV+EI7WlzhvqgRFqyufY6iuZUmBiEkTn+UhVm/j54XcB3VSiFD8fWEaivPKYpIhPUNlUyhWvldR8ZlTDkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iLhLRs+RXShtwy5K090FTlJpRYxliX1S/FH2SnssZL0=;
+ b=tLh5ykSqqaD6vlV4YKmacHWANQ3JwJUfIE8R1BRHWq9ZC8ILnuxvIsFCdhFaKATEbjVtwCN8oTvXrRFUYSPhJ5rpqC+DtgLwxvLstZDZelZmjeFN8WN5l+Ed7yoAK32SEzwqPWqKgG398XNVmqlSqQmN70u6qcs9DKI6KQ1eamJqYUXmilqsqTf/VpGTnM5Fpdc7bWip53EMJvWenJ9PQEmbyOz4K9JCCdm90vWsHvD8nP9vaPYHCz7kH+hJIWB/9cr+eRrZumAafqlqj7Wm5XWH5vKorSaKUQExfOuE80ijZ6inn+qjQYofEc3/h9jKltXZt9wKvDyspK6jrQvI8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iLhLRs+RXShtwy5K090FTlJpRYxliX1S/FH2SnssZL0=;
+ b=j64eAxpJBpWHAOTKCjOi++aM5vKbHFa5MiE0E2hBGhzhvID1nCDX4qboWXj55ssV0GYEA4WiQR8nGRMlHKD8ehmh5roUhkGuSN1tU1UdHsL5t9tid3EX/aRHZTGRxKpI1LdvxLCFsLtbzUKkr/XLhFQJuQJjS7YOVF4itKQaCqw=
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SA1PR12MB6728.namprd12.prod.outlook.com (2603:10b6:806:257::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Thu, 2 Jul
+ 2026 07:59:05 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0181.008; Thu, 2 Jul 2026
+ 07:59:05 +0000
+Message-ID: <2995c497-ce60-4274-93a8-80b027190c87@amd.com>
+Date: Thu, 2 Jul 2026 09:58:24 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [BUG] linux-firmware-amdgpu 20260622 prevents clean poweroff on
- AMD RX 6800
-To: IT4roundtheW0rd <IT4roundtheW0rd@protonmail.com>,
- "linux-firmware@kernel.org" <linux-firmware@kernel.org>
-References: <q7ZKOKwwFDcWVkxZpaMuCo3xjbQ0XzrMZfuVec--VZXX94D5vdqLIRMR6xMaoGI27_uGJ-ILsWrXlXwbfGLf2ozY5bz8QV0Al3JUH7y3f4o=@protonmail.com>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-Content-Language: de-DE, en-US
-Cc: Linux kernel regressions list <regressions@lists.linux.dev>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-In-Reply-To: <q7ZKOKwwFDcWVkxZpaMuCo3xjbQ0XzrMZfuVec--VZXX94D5vdqLIRMR6xMaoGI27_uGJ-ILsWrXlXwbfGLf2ozY5bz8QV0Al3JUH7y3f4o=@protonmail.com>
+Subject: Re: [PATCH 01/14] drm/amdgpu: Respect noretry flag for retry faults
+ on GFX12.1
+To: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
+ Natalie Vock <natalie.vock@gmx.de>, Amir Shetaia <Amir.Shetaia@amd.com>,
+ =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ Siwei He <siwei.he@amd.com>, Philip Yang <philip.yang@amd.com>,
+ Mukul Joshi <mukul.joshi@amd.com>
+References: <20260701161721.85681-1-timur.kristof@gmail.com>
+ <20260701161721.85681-2-timur.kristof@gmail.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260701161721.85681-2-timur.kristof@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-PPP-Message-ID: <178297825897.3306651.13862513967389606757@mxe9fb.netcup.net>
-X-NC-CID: WQUHJuKIRcozFvv2yzdqCWxTh1SrywKG3JrO4uvjTbwvR5T3U8o=
-X-Mailman-Approved-At: Thu, 02 Jul 2026 08:07:22 +0000
+X-ClientProxiedBy: FR4P281CA0100.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:cb::14) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA1PR12MB6728:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7ee19f53-6838-4887-4775-08ded80fc948
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|376014|1800799024|366016|921020|56012099006|11063799006|4143699003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: MsmrRiIh9oeY6oACaxdYVt5hr1rgw7F5R1aJ2OztIpbb24JQpgEMXKKwRwpm201tF0g2koXTu4N1QCTXnqSQ+ro86GWz+YcYvDxf212aM+nhpcg5Bv8N6k+0jjEjEXw1eBK2XIG3aucgLRGvL4ZQYmdh2Ebsj4Iof8EJCdHLj/Xj70bC6g+dqARxNc2f9nSsXUlrQk8GABG6nxP7+NKlU9dFCi+lsWbrBgMDF54e2wEnUgsKzYGmNV2youPf40opfmf4llpLqJgDy+x+xYwE3ifLCw+xLUpskMqqtWmLqPT5jrYnr/50Gc36D+E/421zAV7ny3c5UkWoiUU9JwF5jlgqTqW3A01JBHb+M0EO2rbSRPq+egd6PHfldi/trRP/2L4ljKCjWCJDmWlG06NYFsn2kwH5wTDe0roAI/9vfoeIiEPQSWmfcmXYfrbpESXEkBzTkO3bCzcDnYMBN+NKMNQkFiIUcObYIrjodkbyy+vaeU2l0q7UN948nQDhgmJDdPUvYxT3kqKeK/MfOsBKIZUxJGYAampQY20B4tN4EhZk+niTA54i9eMuAa6vGi30zLrHeNLd2p22GUiR6J1/OPmVi9ee/f3KmErsV9dNUrNpmm8tWP8t+lGTBuFNdfHxdAwzVx/E294fCewdoCLIVGlxt018WI+odMETmmOGeizMaVV4+6lvCUMfBYfG569w+K9kGRtKbiR5mBvVQw0JfA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(921020)(56012099006)(11063799006)(4143699003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eGpxOXFHV1hvWXpIQ05sMkdWU3V0S3VNWWZLWVB4a2JLejVUQ09Lelpobk9Y?=
+ =?utf-8?B?QWJGS2U5aGM2NjZIL09ncVprTlF2UFh6eCtKK0dXRUVOa2I2NXc2YVlXZUhq?=
+ =?utf-8?B?UU1zWVJhUFhWTnBFOCtBLzJKMEZ0ekVQVlo4emhNOU0zeWw0SE1DWmhKemp0?=
+ =?utf-8?B?dmltTk1KUTZOWHZNS1VVQ280SWJ4ODZzd1NRZTNMSGFhMTBTUDZUVUFWYUUy?=
+ =?utf-8?B?VCt2bmd4L1ArQTlGUnBIY2hZUEIrcnJhZHVzNjFvL0JaUkFjdW9oTmFYSWVN?=
+ =?utf-8?B?M0VRUFFBUDM4SUN2dDJnbUE4YUtaMElPTjE4VkViL01kU3ZnYjJ3dFJiQWNj?=
+ =?utf-8?B?MGk2NVhHTG9MSkU1eXFzS05YTUgxbFpCbVZ4QThwSnpFaE0wK2dQbHRTQWd1?=
+ =?utf-8?B?NW5zbDNWMG1OM2c4NTRXMTFiYmp6bFlTRHBGMmtWYm8yb0F4NDJ4aU1iVzA5?=
+ =?utf-8?B?c3BybjE3NVRwTm1BRHNIT2thdEU2d3BSTExiR3puV2t0MzNtS1FoWkV5dmUr?=
+ =?utf-8?B?RUx5Q3I2UE8xT09BbjQrTXBlTlRHczFldFFNOVFtS0xlTnk1ck1xVFU4bFdj?=
+ =?utf-8?B?T3dFNHNJMnNOVkJiYWpRbkVORVFadFRReVFsOCtSdlF5dzZmSHVGdnBublJD?=
+ =?utf-8?B?NXRjQVhDeHJFNEtUNFFTdWM2cWZrdlpjcHlRbWlFRVllSFQ3TkhLOXBQdzNW?=
+ =?utf-8?B?c0JSMFFrM3hqYVhsanE1U3hXb2I4RW83UXRTVWhMcVVVc0Jkd2tzY3duWlNW?=
+ =?utf-8?B?clgxM2JINEs2VU1wWitOK0FERWg4QTROeGpaSzczS011eHVscnJxZmV2bXN3?=
+ =?utf-8?B?K0lLMlRrNUpvS2lycjhqOVJBY1hxem9LVnJKMHJWVCtlTjVORTgzei83QUo1?=
+ =?utf-8?B?SWtVUTQrT3RvSkk5S0xaUUh3YitsNmwvYnp5K0k3WjdCb3NlbjVLbFNRdnJw?=
+ =?utf-8?B?Sk5IUHNmd21HYUtVT1liRHlYcDFoeVAwYm53bmxmNklYclV2ZmdSTUhJM3V1?=
+ =?utf-8?B?eUVYbTI5S2ZUMFZOd1MyK2tEa0h1R1E5d1hYakdrdkVjd3BlMzFWNm9QcElR?=
+ =?utf-8?B?cFlkVFZSK3JaZzAvb2VyWXBlM3pmelM4ekpyZTdHYkM4WnliOHpyWkdEWkJm?=
+ =?utf-8?B?NFN5QUtqZ1dRckR1QWJTYXp3VktMZ0dtNThKZEtSSExkZVVlMVpUMTZSakEv?=
+ =?utf-8?B?amxsRGtIOUprOXhFakdseE05QWtuN0N2MzYxUlcway8wQWZGbmY4RzFpYkRp?=
+ =?utf-8?B?ajFsTDV1Y25QWFhQWWxPakdMajRPdlY0d1Y4Yi90YWQ2MU9PN2ZpWDA2eTdu?=
+ =?utf-8?B?NS96MXlJN3paMFpGbG5rbUxUQVVBS2o2ZHpjK0dlRmJjOGdqTElKbFdpcmdu?=
+ =?utf-8?B?Yng2QWVhTlNpTElVOWI1ditxcFhnVW1CN1JaOExhSjRieUNyZEgxTndOaStX?=
+ =?utf-8?B?eFk0SXBjMnFlcU5EQjNTVWlLc01mdXBvWE94STkwQm9WaW9KMHUwdlEyTVc5?=
+ =?utf-8?B?US92QlhuQ0lDU0J0SUduVWlEbG8xQXdLZXR3alZ3dlhyTWIrT2pwMHpBRUJB?=
+ =?utf-8?B?RmtFd2xtcmFLWVJTNklLdEsxeXF1SEJiVmh1c2dndDYxbWlzbytQMXVYdlh5?=
+ =?utf-8?B?UHdlc2ZyVUZxK2hBNy95SkRXT2QycFlScGh2WWNSVXdYUVhLclkyT1ZZYUFB?=
+ =?utf-8?B?OEdVNHl3QnBGMnNTdGFGVGd2ZkN2VjlDc09QMEwyVDRFcHVsalp2ZlE3WUJT?=
+ =?utf-8?B?cVJzdVZLL3QvU2NVN1hmTDFyMGRWMTFnSlkvVnJMcXNzLzQrcnEwSWhINXFj?=
+ =?utf-8?B?ZVVIZGJFYlNEYkJIV1FVV3h2WVU0Q2xRdTdUTlprdzZSUCs3THE3dkJzQ05K?=
+ =?utf-8?B?alRkOVlxN1NSV2hrVlgvS2pjSytDVERWN0sxUFg0dC9JMDhuZGtSSzYyQ1Np?=
+ =?utf-8?B?bjZ3UDNIbW5CelFOWUdvSlVKekI2UG1LZ01aUmZKbWtET2J2SXRiejAzSXZR?=
+ =?utf-8?B?VVZsZldoTmw2ZkwxS1BhcnhQRUNubTN1clRVZmdKQ0twM0QvVWh0MmYyWVlH?=
+ =?utf-8?B?SzlFa2oyQlRsbW5xTkNocjk5NExMRTFxUXBHc1JUMktQMlhXVnAxWm1JcWgx?=
+ =?utf-8?B?cWYvZEpWZWJoS2VMTEZwY3prTlNBK2pPa2NHTEZVdTV3K1BNbG1YV2JJZ3RF?=
+ =?utf-8?B?TjJMRGFCSlpXRUF5b1QzUkRhVUJueHJTY1JEQzhxNVNFZ0F6SENwNHFNUGxK?=
+ =?utf-8?B?eUo3Z2FGZDJjWmxBUjRkL3pYYzI0WUE1OENta1FKejdmd3RUU0Z4NnAwRUQ5?=
+ =?utf-8?Q?nH3+MAjNfX1tTEGmLW?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ee19f53-6838-4887-4775-08ded80fc948
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2026 07:59:04.8538 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tbPcYUNZ5vc6wCP+flU4kgeI6zwFv3i2nyCZCsXYOPZbjIbsArlbID8eVAg4cUY8
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6728
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,97 +148,89 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[leemhuis.info];
-	FORGED_RECIPIENTS(0.00)[m:IT4roundtheW0rd@protonmail.com,m:linux-firmware@kernel.org,m:regressions@lists.linux.dev,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[protonmail.com,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[leemhuis.info:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:Alexander.Deucher@amd.com,m:natalie.vock@gmx.de,m:Amir.Shetaia@amd.com,m:maraeo@gmail.com,m:mario.limonciello@amd.com,m:tursulin@ursulin.net,m:Felix.Kuehling@amd.com,m:lijo.lazar@amd.com,m:siwei.he@amd.com,m:philip.yang@amd.com,m:mukul.joshi@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org,amd.com,gmx.de,ursulin.net];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,leemhuis.info:dkim,leemhuis.info:mid,leemhuis.info:from_mime]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 15D676F4938
+X-Rspamd-Queue-Id: 5951F6F4823
 
-[adding a few people to the CC]
+On 7/1/26 18:17, Timur Kristóf wrote:
+> When retry faults are disabled (amdgpu.noretry=1),
+> the ENABLE_RETRY_FAULT_INTERRUPT bit should be programmed to 0.
+> 
+> Note that retry faults are enabled by default on GFX12.1
+> so this just fixes the case when they are explicitly disabled.
+> 
+> Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 
-On 6/27/26 02:42, IT4roundtheW0rd wrote:
-> 
-> I'd like to report a regression in linux-firmware-amdgpu introduced with
-> the 20260622 release.
-> 
-> *System:*
-> - Distro: CachyOS
-> - Kernel: 7.1.1-2-cachyos
-> - GPU: AMD RX 6800-series
-> - Bootloader: GRUB
-> 
-> *Problem:*
-> After updating linux-firmware-amdgpu from 1:20260519-1 to 1:20260622-1,
-> the system no longer shuts down completely when running `poweroff`.
-> Fans, keyboard LEDs, and power button LED remain active after the
-> shutdown sequence. The system hangs after "Sending SIGTERM to remaining
-> processes..." and never reaches full power-off (ACPI *S5).*
+Reviewed-by: Christian König <christian.koenig@amd.com>
 
-A few questions:
-
-* Which firmware files does your GPU use exactly (a full dmesg log
-should answer this)
-* Does the problem happen with a vanilla kernel as well (it most likely
-will, but would be good to confirm, as heavily patched vendor kernels
-can lead to all sort of issues).
-
-Ciao, Thorsten
-
-> *Relevant log excerpt (journalctl -b -1):*
+> ---
+>  drivers/gpu/drm/amd/amdgpu/gfxhub_v12_1.c | 4 ++--
+>  drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.c | 2 +-
+>  2 files changed, 3 insertions(+), 3 deletions(-)
 > 
->     Jun 27 02:04:14 cachyos systemd-shutdown[1]: Sending SIGTERM to
-> remaining processes...
-> 
-> (no further entries — system hangs here)
-> 
-> *Workaround:*
-> Downgrading to linux-firmware-amdgpu 1:20260519-1 resolves the issue
-> completely.
-> 
-> *Steps to reproduce:*
-> 1. Update linux-firmware-amdgpu to 1:20260622-1
-> 2. Run `poweroff`
-> 3. System hangs — power is not cut
-> 
-> *Additional notes:*
-> The root cause appears to be that the new firmware blob prevents the
-> amdgpu driver from cleanly releasing the GPU before the ACPI S5 power
-> state transition. No other packages were updated in the same transaction
-> that could explain this behavior.
-> 
-> This issue was researched and this report was drafted with the
-> assistance of Claude (Anthropic AI).
-> 
-> Best regards,
-> 
-> Benjamin Maas 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_1.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_1.c
+> index 4c2fd1e6616e..0cada13d92a4 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_1.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v12_1.c
+> @@ -243,7 +243,7 @@ static void gfxhub_v12_1_xcc_init_system_aperture_regs(struct amdgpu_device *ade
+>  		tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
+>  				    ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
+>  		tmp = REG_SET_FIELD(tmp, GCVM_L2_PROTECTION_FAULT_CNTL2,
+> -				    ENABLE_RETRY_FAULT_INTERRUPT, 0x1);
+> +				    ENABLE_RETRY_FAULT_INTERRUPT, !adev->gmc.noretry);
+>  		WREG32_SOC15(GC, GET_INST(GC, i),
+>  			     regGCVM_L2_PROTECTION_FAULT_CNTL2, tmp);
+>  	}
+> @@ -447,7 +447,7 @@ static void gfxhub_v12_1_xcc_setup_vmid_config(struct amdgpu_device *adev,
+>  			/* Send no-retry XNACK on fault to suppress VM fault storm */
+>  			tmp = REG_SET_FIELD(tmp, GCVM_CONTEXT1_CNTL,
+>  					    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
+> -					    1);
+> +					    !adev->gmc.noretry);
+>  			WREG32_SOC15_OFFSET(GC, GET_INST(GC, j), regGCVM_CONTEXT1_CNTL,
+>  					    i * hub->ctx_distance, tmp);
+>  			WREG32_SOC15_OFFSET(GC, GET_INST(GC, j),
+> diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.c
+> index 49b7f16a941f..f2c549737e02 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v4_2_0.c
+> @@ -320,7 +320,7 @@ static void mmhub_v4_2_0_mid_init_system_aperture_regs(struct amdgpu_device *ade
+>  		tmp = REG_SET_FIELD(tmp, MMVM_L2_PROTECTION_FAULT_CNTL2,
+>  				    ACTIVE_PAGE_MIGRATION_PTE_READ_RETRY, 1);
+>  		tmp = REG_SET_FIELD(tmp, MMVM_L2_PROTECTION_FAULT_CNTL2,
+> -				    ENABLE_RETRY_FAULT_INTERRUPT, 0x1);
+> +				    ENABLE_RETRY_FAULT_INTERRUPT, !adev->gmc.noretry);
+>  		WREG32_SOC15(MMHUB, GET_INST(MMHUB, i),
+>  			     regMMVM_L2_PROTECTION_FAULT_CNTL2, tmp);
+>  	}
 
