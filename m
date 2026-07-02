@@ -2,65 +2,112 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4/5jJJFfR2rvXAAAu9opvQ
+	id rRjRFxRnRmozSwsAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:57 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 15:26:44 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 414A56FF653
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A9656F8552
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 15:26:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=GP1c3W3o;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none);
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=NEPJrg78;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	arc=pass ("google.com:s=arc-20260327:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5829110F690;
-	Fri,  3 Jul 2026 07:06:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14C2E10F39C;
+	Thu,  2 Jul 2026 13:26:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 123EE10F366;
- Thu,  2 Jul 2026 13:02:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=lT15FuhNiGFpf49I/crr9KaNiaPJlLwK5Gm5jsQ8X34=; b=GP1c3W3oH5IW53D51EEkvOxQQO
- Q54Jq4M1aBR5RXg8fPfM8tHoGhnh1PmpmbqUUsagvkol2123e3Sk0aksiG6EX+wwQEiTMREbhS/5g
- 5byJyF0CFPUOasqrX0k6WlOT+be1I96FittLxeK6Ajfqe4Sjed7/n6ELn4dlwctmGKhGhbSQcVcMA
- iuEppI2vvsKaCxiBwBc3B7QmKfNS0RrCYmKtGP2bAmCz0Pxh3fvjXqX4YJQbWwD5XDshX4W3bQ+V+
- sVzVPxXttWKOiYVcSdhHkoVRBXPRQGHjLJz+KPeXZvjG/YF8JmY8jKlis5jp7elvhJnHf7eY0igdt
- nCzteSFA==;
-Received: from [179.125.94.247] (helo=quatroqueijos.lan)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wfH3i-0082Ji-HB; Thu, 02 Jul 2026 15:02:27 +0200
-From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-To: igt-dev@lists.freedesktop.org
-Cc: siqueira@igalia.com, Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org,
- Christian Koenig <christian.koenig@amd.com>,
- maarten.lankhorst@linux.intel.com,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Vitaly Prosyak <vitaly.prosyak@amd.com>,
- Natalie Vock <natalie.vock@gmx.de>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, kernel-dev@igalia.com
-Subject: [PATCH i-g-t v2 7/7] tests/dmem_cgroups: add test for dmem.current
-Date: Thu,  2 Jul 2026 10:00:58 -0300
-Message-ID: <20260702130108.1397444-8-cascardo@igalia.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260702130108.1397444-1-cascardo@igalia.com>
-References: <20260702130108.1397444-1-cascardo@igalia.com>
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com
+ [209.85.217.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D44310F39C
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 13:26:40 +0000 (UTC)
+Received: by mail-vs1-f52.google.com with SMTP id
+ ada2fe7eead31-73843e514a3so60921137.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 02 Jul 2026 06:26:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1782998799; cv=none;
+ d=google.com; s=arc-20260327;
+ b=PV0rMULZfHkgTQdeg3bbme78vwKtubPFVcHPGf2nO7lBq1CZsjDpHlK2Yf398rqNXg
+ 5O1vtW0Dj8YJqFvvIorZIDEDxfYXvBwbdVnDAq4y9cOV5rMPGSUwVl0jm44zEq5Kyo02
+ vfvDAWM3pcJshmgqp0eLYHcViB85Zq5kSAU2MyFkTnCHrFFpHwfDhGFK7/2t0/7aLkcR
+ ImbNEua+BDghLHisX6W85W71SJap3L3GtX4f/KcCC1iwEZzAdqf28IUCoKSfP3EKT4lv
+ YQrZWr+MQEPkLqKRbfbo7ho1vwHmJ01TEeohb6yieUxRZbNldD/mcG++bBVffDb/bN7C
+ VEqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=KRJdaSWQpWusfVL4aaGi+nNDXjgiftmBc+N5woofPDI=;
+ fh=ZiX8erw0mInmQQ7pXBvY8+wP8odNg9wiMnzkd6waQes=;
+ b=IWWEV9w7lSBloJaGtzgAWuIon0bc2Us+J6vp23zqlvMR1hJmnll5I1GFiI2lwlVLqF
+ SDCmmIw62zduu+Tm9i7pEDiB7pdy0lMIvQ4qqTPrN3n7Yw7faHI/uV/BHiPqg+Ebulef
+ Bxad2oLMIj7FxfddRVPd83CUsqJjPetu8E07sfdfYZ1COgHPjoEUMR2sHCYR/AdhG+1Y
+ dh1NcfrKr4+eGuUeR/l9IndKKiKU2fueMsGl797SVcCkSxOADWv8buPkxCqFCQqP0wMt
+ mU1JMjMCayA3buRk7ngNH7EBandMoxH5Ar2gm25w10jiU4C0B6LUeu5+qbsC99CMHI0m
+ rKcg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1782998799; x=1783603599; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=KRJdaSWQpWusfVL4aaGi+nNDXjgiftmBc+N5woofPDI=;
+ b=NEPJrg78aLkGKOL1WLSQREm6qr9EC4lHZPQmm8uwWdrKeM4BgmcD6VLkPQP4C4pUOz
+ HyOvYgShSGzKV64LCjUiu3wu8NHBivE+0t0jTneqwfE9QbqcUsNcduEs4mHx9VGpAncN
+ rXD7H4kKkTgtbutFt/ENjygG3nO2PFZ5u2tahZT3N7u4TOPaBOP1M8VIJ8vtUaDhDQn6
+ tzS62Bh4Kpj2rLe2+xVTcRnAvUd90rAqwVdi+e9DNa51yXbD9exk8J0S9ldlvmdHCJvH
+ /bRfDJoOePQUDC7W2qLLfzGJ2ndIqJYA2kH5Gv+R1COJfTGLqAdy2OOzvM8il47YkYXb
+ WeYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1782998799; x=1783603599;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=KRJdaSWQpWusfVL4aaGi+nNDXjgiftmBc+N5woofPDI=;
+ b=AjOZ0NqLNzQAdnzvKWUPiN56dKk5dJNeC8Mf+Ke8dg+fFGfOdZqkq82NeCdUWciWhF
+ 5JyA8HF+f+Hyw9zegr4sFsOGQi2BOk2rM/QsrDx6oDOyUHmhRLtL3n2rayQsneXsXdS+
+ 5Jyu3A6IiK2Bs9sSMAZwE6S7iOa03/tlM9WhbdkrQdg1nuG8oVxero+WpPjtwEMNRsXX
+ BuzuRWCd3RDgCuHsHlNvwoYm0nbEvYLec1IveyYrzWzxzMPKkxcLobRMYBAuLifNQuQd
+ 6fu2cNje9Q7x/nop4qXmrelrlbo+p2VBJtFnRtsSBCtQVy5zmgd0rganV9+IpQD1Xp5U
+ uA8Q==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RoeYkf0dhR+hOKHa7qnd6NzdLv/7eYjZScnuTSnivBbTsF45Zjq3d4MqL3GHCOv3CZTDqmUZYx+@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzXqdaTKTcmT6K5otfHezCy5F3U9ucHR/WfCBmmMzIY+vzIDcDl
+ nt9n4s8nYoYt1o9wne4RHykqsWNwFWd6OcnqRNjFZetnr2ZSWI8kuRKlYihGCoWbGiuyoxJa+Vr
+ qzT5XxKD8Tm0LNhdJNau80mFqyfBFsxI=
+X-Gm-Gg: AfdE7clDBM3GJfhl5D211nCx2SNLzJyBBycx9Z2jWz5sugCVo27njC80j84vvnEZ1Kr
+ CoRGnNRohBue9tukdMKkM7HOA6RctlR/cCrE9HRfj/OaU86FFc/EtMedtMM1Ow3mLSMPkLaFjYa
+ bkakYctkZOAdzMY22Y2ZMgMw5AghmWPDMLEnac/khIl2UEEYOAM/nvGn+D6iNjkLW93tpDSQTrk
+ e5Pn/2SR4KSLkOvcI14GzYM7l4an17pk3Fxyf1PU2JmOCrF55R0jzvU/cBN1S/7I3I+tQo1uhwQ
+ D7BRr4oBo9ETZGfh8NAIPMw4zdk75IqO17tk6dmkFiDHs+6iQnlQlBfFwWo=
+X-Received: by 2002:a05:6102:1483:b0:739:64ad:bf4e with SMTP id
+ ada2fe7eead31-73dab0f643amr917912137.7.1782998798899; Thu, 02 Jul 2026
+ 06:26:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 03 Jul 2026 07:06:48 +0000
+References: <20260701161721.85681-1-timur.kristof@gmail.com>
+ <20260701161721.85681-15-timur.kristof@gmail.com>
+ <dee4f6f3-0494-40e6-94d9-e0249633d0bc@amd.com>
+ <5873192.ZASKD2KPVS@timur-max> <15459d84-24fd-404c-b90f-97d2ecfb7af8@amd.com>
+In-Reply-To: <15459d84-24fd-404c-b90f-97d2ecfb7af8@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 2 Jul 2026 09:26:25 -0400
+X-Gm-Features: AVVi8CcgqqfX6rCZ3WxgEf1PaLlFPebLI4PJ3-HYjejub4-j4j-xg0VVNX0ITWg
+Message-ID: <CADnq5_PFyqkXwwWHNipu5QEYCLFA_VdCV5OKA6uhKz=TPQ9YJw@mail.gmail.com>
+Subject: Re: [PATCH 14/14] drm/amdgpu/ih7.0: Enable retry CAM on Navi 4 dGPUs
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>, 
+ amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com, 
+ Natalie Vock <natalie.vock@gmx.de>, Amir Shetaia <Amir.Shetaia@amd.com>, 
+ =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>, 
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Felix Kuehling <Felix.Kuehling@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ Siwei He <siwei.he@amd.com>, 
+ Philip Yang <philip.yang@amd.com>, Mukul Joshi <mukul.joshi@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,315 +122,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.49 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:timur.kristof@gmail.com,m:Alexander.Deucher@amd.com,m:natalie.vock@gmx.de,m:Amir.Shetaia@amd.com,m:maraeo@gmail.com,m:mario.limonciello@amd.com,m:tursulin@ursulin.net,m:Felix.Kuehling@amd.com,m:lijo.lazar@amd.com,m:siwei.he@amd.com,m:philip.yang@amd.com,m:mukul.joshi@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cascardo@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[igalia.com,lists.freedesktop.org,amd.com,linux.intel.com,gmx.de];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org,amd.com,gmx.de,ursulin.net];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,igalia.com:from_mime,igalia.com:email,igalia.com:mid]
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 414A56FF653
+X-Rspamd-Queue-Id: 8A9656F8552
 
-Based on the work of Thomas Hellström to test dmem.max eviction, add a test
-for dmem.current usage after allocations and setting dmem.max.
+On Thu, Jul 2, 2026 at 9:09=E2=80=AFAM Christian K=C3=B6nig <christian.koen=
+ig@amd.com> wrote:
+>
+>
+>
+> On 7/2/26 13:53, Timur Krist=C3=B3f wrote:
+> > On 2026. j=C3=BAlius 2., cs=C3=BCt=C3=B6rt=C3=B6k 12:38:12 k=C3=B6z=C3=
+=A9p-eur=C3=B3pai ny=C3=A1ri id=C5=91 Christian K=C3=B6nig
+> > wrote:
+> >> On 7/1/26 18:17, Timur Krist=C3=B3f wrote:
+> >>> The retry CAM can filter interrupts which occur repeatedly,
+> >>> such as page fault interrupts when retry faults are enabled.
+> >>> This makes processing those interrupts much more efficient,
+> >>> because the CPU won't have to deal with processing the same
+> >>> interrupt repeatedly.
+> >>>
+> >>> Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
+> >>> ---
+> >>>
+> >>>  drivers/gpu/drm/amd/amdgpu/ih_v7_0.c | 3 ++-
+> >>>  1 file changed, 2 insertions(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/amd/amdgpu/ih_v7_0.c
+> >>> b/drivers/gpu/drm/amd/amdgpu/ih_v7_0.c index 291326d2ee8b..ec0919fa82=
+54
+> >>> 100644
+> >>> --- a/drivers/gpu/drm/amd/amdgpu/ih_v7_0.c
+> >>> +++ b/drivers/gpu/drm/amd/amdgpu/ih_v7_0.c
+> >>> @@ -390,7 +390,8 @@ static int ih_v7_0_irq_init(struct amdgpu_device
+> >>> *adev)
+> >>>
+> >>>     pci_set_master(adev->pdev);
+> >>>
+> >>> -   if (amdgpu_ip_version(adev, OSSSYS_HWIP, 0) =3D=3D IP_VERSION(7, =
+1,
+> > 0)) {
+> >>> +   if (amdgpu_ip_version(adev, OSSSYS_HWIP, 0) =3D=3D IP_VERSION(7, =
+1, 0)
+> > ||
+> >>> +       !(adev->flags & AMD_IS_APU)) {
+> >>
+> >> I think the check should be the other way around.
+> >>
+> >> In other words we can enable the cam on dGPU or APUs with IP version 7=
+.1
+> >> because that one has the CAM as well.
+> >
+> > What do you mean by the other way around?
+> >
+> > The patch keeps pre-existing behaviour on IH 7.1 and additionally enabl=
+es the
+> > retry CAM on dGPUs. The patch makes no functional changes to IH 7.1, on=
+ that
+> > version the retry CAM is always enabled regardless of whether it's an A=
+PU or
+> > dGPU.
+>
+> I just wanted to make the logic more readable. In other words:
+>
+> if (!(adev->flags & AMD_IS_APU) ||
+>     amdgpu_ip_version(adev, OSSSYS_HWIP, 0) =3D=3D IP_VERSION(7, 1, 0))
+> ...
+>
+> I still need to double check why we have the exception for OSSSYS 7.1.
+>
+> Could be that this is for some MI* product, but I'm not 100% sure yet.
 
-Create a dmem cgroup, allocate close to capacity (or at most 4GiB), check
-current usage is within a small slack of the expected allocation.  Then,
-set max to a small value and check allocations and current usage are
-limited to the max set.  Set max to 0, then check no allocations are
-allowed and current usage is also within the slack.  After each allocation,
-release memory and check current usage has gone down.
+oss 7.1 is for an datacenter part.
 
-Signed-off-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
----
- tests/dmem_cgroups.c | 245 +++++++++++++++++++++++++++++++++++++++++++
- tests/meson.build    |   1 +
- 2 files changed, 246 insertions(+)
- create mode 100644 tests/dmem_cgroups.c
+Alex
 
-diff --git a/tests/dmem_cgroups.c b/tests/dmem_cgroups.c
-new file mode 100644
-index 000000000000..da2475a14ff9
---- /dev/null
-+++ b/tests/dmem_cgroups.c
-@@ -0,0 +1,245 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+/**
-+ * TEST: dmem_cgroups
-+ * DESCRIPTION: Tests exercising the dmem cgroup controller on devices.
-+ * Category: Core
-+ * Mega feature: General Core features
-+ * Sub-category: cgroup
-+ * FUNCTIONALITY: cgroup dmem controller
-+ */
-+
-+#include <errno.h>
-+#include <signal.h>
-+#include <stdatomic.h>
-+#include <stdint.h>
-+#include <stdlib.h>
-+#include <string.h>
-+#include <unistd.h>
-+
-+#include "drmtest.h"
-+#include "igt.h"
-+#include "igt_aux.h"
-+#include "igt_cgroup.h"
-+#include "igt_dmem_driver.h"
-+
-+#define BO_SIZE			SZ_64M
-+#define MAX_LIMIT		((uint64_t)4 * SZ_1G)
-+#define USAGE_SLACK		SZ_4M		/* tolerance above the set max */
-+#define USAGE_POLL_MS		10
-+#define USAGE_DROP_TIMEOUT_MS	1000
-+
-+/**
-+ * SUBTEST: current
-+ * DESCRIPTION:
-+ *  Create a dmem cgroup, allocate close to capacity (or at most 4GiB),
-+ *  check current usage is within a small slack of the expected allocation.
-+ *  Then, set max to a small value and check allocations and current usage
-+ *  are limited to the max set.
-+ *  Set max to 0, then check no allocations are allowed and current usage
-+ *  is also within the slack.
-+ *  After each allocation, release memory and check current usage has gone
-+ *  down.
-+ * REQUIREMENTS: xe or amdgpu device with at least one VRAM region
-+ */
-+
-+static uint64_t wait_for_usage_drop(struct igt_cgroup *cg, const char *region,
-+				    uint64_t limit)
-+{
-+	uint64_t current;
-+	unsigned int elapsed = 0;
-+
-+	do {
-+		igt_cgroup_dmem_get_current(cg, region, &current);
-+		if (current <= limit)
-+			return current;
-+		usleep(USAGE_POLL_MS * 1000);
-+		elapsed += USAGE_POLL_MS;
-+	} while (elapsed < USAGE_DROP_TIMEOUT_MS);
-+
-+	return current;
-+}
-+
-+static int allocate_vram(const struct igt_dmem_driver *drv, void *ctx, int fd, int max_bo, size_t len)
-+{
-+	int n_bo, err = 0;
-+	for (n_bo = 0; n_bo < max_bo; n_bo++) {
-+		err = drv->allocate_vram(ctx, n_bo, len);
-+		if (err)
-+			break;
-+	}
-+	/* These are expected failures we can ignore. */
-+	if (err == -ENOMEM || err == -ENOSPC)
-+		err = 0;
-+	return err ?: n_bo;
-+}
-+
-+static void free_vram(const struct igt_dmem_driver *drv, void *ctx, int max_bo)
-+{
-+	int i;
-+	for (i = 0; i < max_bo; i++)
-+		drv->free_vram(ctx, i);
-+}
-+
-+static void test_current(int fd, char *cg_region, unsigned int flags, const struct igt_dmem_driver *drv)
-+{
-+	struct igt_cgroup *cg;
-+	void *ctx;
-+	uint64_t current, capacity, cg_max;
-+	int n_bo = 0, max_bo;
-+	int err;
-+
-+	igt_cgroup_dmem_get_capacity(cg_region, &capacity);
-+	igt_require_f(capacity >= 4 * BO_SIZE,
-+		      "VRAM capacity (%"PRIu64" MiB) too small to test\n",
-+		      capacity / SZ_1M);
-+
-+	/*
-+	 * Use up to 4 GiB, or the full capacity if the device has less.
-+	 * Leave one BO_SIZE worth of headroom so the device isn't completely
-+	 * exhausted before the cgroup limit is hit.
-+	 */
-+	cg_max = min(MAX_LIMIT, capacity - BO_SIZE - USAGE_SLACK);
-+	cg_max = ALIGN_DOWN(cg_max, BO_SIZE);
-+
-+	/* Create cgroup and move into it */
-+	cg = igt_cgroup_new("igt_cgroups_test");
-+	igt_cgroup_move_current(cg);
-+
-+	max_bo = cg_max / BO_SIZE;
-+
-+	err = drv->init(&ctx, fd, max_bo);
-+	igt_assert_f(!err, "Failed to initialize driver");
-+
-+	n_bo = allocate_vram(drv, ctx, fd, max_bo, BO_SIZE);
-+	igt_assert_f(n_bo > 0, "failed to allocate VRAM\n");
-+
-+	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-+	igt_debug("After fill: cgroup current = %"PRIu64" MiB, "
-+		  "max = %"PRIu64" MiB\n",
-+		  current / SZ_1M, cg_max / SZ_1M);
-+	igt_assert_f(current < cg_max + USAGE_SLACK && current > cg_max - USAGE_SLACK,
-+		     "current usage (%"PRIu64" MiB) is not within margin of allocation (%"PRIu64" MiB)\n",
-+		     current / SZ_1M, cg_max / SZ_1M);
-+
-+	free_vram(drv, ctx, n_bo);
-+	wait_for_usage_drop(cg, cg_region, USAGE_SLACK);
-+
-+	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-+	igt_debug("After free: cgroup current = %"PRIu64" MiB, "
-+		  "max = %"PRIu64" MiB\n",
-+		  current / SZ_1M, cg_max / SZ_1M);
-+	igt_assert_f(current < USAGE_SLACK,
-+		     "current usage (%"PRIu64" MiB) is not within margin (%d MiB)\n",
-+		     current / SZ_1M, USAGE_SLACK / SZ_1M);
-+
-+	/* Allow for a slack as there might be some extra pages allocated. */
-+	igt_cgroup_dmem_set_max(cg, cg_region, 2 * BO_SIZE + USAGE_SLACK, false);
-+
-+	n_bo = allocate_vram(drv, ctx, fd, max_bo, BO_SIZE);
-+	igt_assert_f(n_bo > 0, "failed to allocate VRAM\n");
-+
-+	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-+	igt_debug("After fill: cgroup current = %"PRIu64" MiB, "
-+		  "max = %"PRIu64" MiB\n",
-+		  current / SZ_1M, cg_max / SZ_1M);
-+	igt_assert_f(current < 2 * BO_SIZE + USAGE_SLACK && current > 2 * BO_SIZE - USAGE_SLACK,
-+		     "current usage (%"PRIu64" MiB) is not within margin of allocation (%"PRIu64" MiB)\n",
-+		     current / SZ_1M, cg_max / SZ_1M);
-+
-+	free_vram(drv, ctx, n_bo);
-+	wait_for_usage_drop(cg, cg_region, USAGE_SLACK);
-+
-+	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-+	igt_debug("After free: cgroup current = %"PRIu64" MiB, "
-+		  "max = %"PRIu64" MiB\n",
-+		  current / SZ_1M, cg_max / SZ_1M);
-+	igt_assert_f(current < USAGE_SLACK,
-+		     "current usage (%"PRIu64" MiB) is not within margin (%d MiB)\n",
-+		     current / SZ_1M, USAGE_SLACK / SZ_1M);
-+
-+	igt_cgroup_dmem_set_max(cg, cg_region, USAGE_SLACK, false);
-+
-+	n_bo = allocate_vram(drv, ctx, fd, max_bo, BO_SIZE);
-+	igt_assert_f(n_bo != -ENOMEM, "VRAM allocation succeeded despite max set to 0\n");
-+
-+	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-+	igt_debug("After fill: cgroup current = %"PRIu64" MiB, "
-+		  "max = %"PRIu64" MiB\n",
-+		  current / SZ_1M, cg_max / SZ_1M);
-+	igt_assert_f(current < USAGE_SLACK,
-+		     "current usage (%"PRIu64" MiB) is not within margin\n",
-+		     current / SZ_1M);
-+
-+	if (n_bo > 0)
-+		free_vram(drv, ctx, n_bo);
-+	wait_for_usage_drop(cg, cg_region, USAGE_SLACK);
-+
-+	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-+	igt_debug("After free: cgroup current = %"PRIu64" MiB, "
-+		  "max = %"PRIu64" MiB\n",
-+		  current / SZ_1M, cg_max / SZ_1M);
-+	igt_assert_f(current < USAGE_SLACK,
-+		     "current usage (%"PRIu64" MiB) is not within margin (%d MiB)\n",
-+		     current / SZ_1M, USAGE_SLACK / SZ_1M);
-+
-+	drv->deinit(ctx);
-+	igt_cgroup_free(cg);
-+}
-+
-+static const struct {
-+	const char *name;
-+	void (*test_fn)(int fd, char *cg_region, unsigned int flags, const struct igt_dmem_driver *drv);
-+	unsigned int flags;
-+} subtests[] = {
-+	{ "current", test_current, 0 },
-+	{ }
-+};
-+
-+static const struct {
-+	int driver_flag;
-+	const struct igt_dmem_driver *driver;
-+} drivers[] = {
-+	{ DRIVER_XE, &xe_dmem_driver },
-+	{ DRIVER_AMDGPU, &amdgpu_dmem_driver },
-+	{ },
-+};
-+
-+int igt_main()
-+{
-+	igt_fixture() {
-+		igt_require_f(getuid() == 0, "Test requires root\n");
-+		/* Check dmem cgroup controller is available before doing anything else */
-+		igt_require_f(igt_cgroup_dmem_available(),
-+			      "dmem cgroup controller not available (no cgroup v2 or no registered regions)\n");
-+
-+	}
-+
-+	for (int d = 0; drivers[d].driver; d++) {
-+		igt_subtest_group() {
-+			int fd = -1;
-+			char *cg_region;
-+			igt_fixture() {
-+				fd = drm_open_driver(drivers[d].driver_flag);
-+				igt_require_f(fd >= 0,
-+					"No %s device found, skipping\n",
-+					drivers[d].driver->name);
-+				cg_region = drivers[d].driver->get_region_name(fd);
-+				igt_require_f(cg_region, "Region not tracked by dmem cgroup controller\n");
-+			}
-+
-+			for (int i = 0; subtests[i].name; i++)
-+				igt_subtest_f("%s-%s", drivers[d].driver->name, subtests[i].name)
-+					subtests[i].test_fn(fd, cg_region, subtests[i].flags, drivers[d].driver);
-+
-+			igt_fixture() {
-+				if (fd >= 0)
-+					drm_close_driver(fd);
-+				free(cg_region);
-+			}
-+		}
-+	}
-+}
-diff --git a/tests/meson.build b/tests/meson.build
-index 88a0ce224432..dfdaab41825a 100644
---- a/tests/meson.build
-+++ b/tests/meson.build
-@@ -11,6 +11,7 @@ test_progs = [
- 	'core_sysfs',
- 	'dmabuf',
- 	'dmabuf_sync_file',
-+	'dmem_cgroups',
- 	'device_reset',
- 	'dumb_buffer',
- 	'drm_buddy',
--- 
-2.47.3
-
+>
+> Regards,
+> Christian.
+>
+> >
+> >>
+> >>>             /* Enable IH Retry CAM */
+> >>>             tmp =3D RREG32_SOC15(OSSSYS, 0,
+> > regIH_RETRY_INT_CAM_CNTL);
+> >>>             tmp =3D REG_SET_FIELD(tmp, IH_RETRY_INT_CAM_CNTL, ENABLE,
+> > 1);
+> >
+> >
+> >
+> >
+>
