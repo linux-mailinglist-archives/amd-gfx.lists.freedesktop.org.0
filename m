@@ -2,89 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CXykOpBfR2rrXAAAu9opvQ
+	id PoRxGe9QRmqRQgsAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 13:52:15 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A38C6FF64B
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B095B6F70D3
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 13:52:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=EcGPNAat;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=GZCQLuDm;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 005A810F68B;
-	Fri,  3 Jul 2026 07:06:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C372710E4AA;
+	Thu,  2 Jul 2026 11:52:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com
- [209.85.216.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCFCB10F2F2
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 11:28:34 +0000 (UTC)
-Received: by mail-pj1-f41.google.com with SMTP id
- 98e67ed59e1d1-380f3c1b087so39739a91.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 02 Jul 2026 04:28:34 -0700 (PDT)
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
+ [209.85.221.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37DF510E4AA
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 11:52:12 +0000 (UTC)
+Received: by mail-wr1-f45.google.com with SMTP id
+ ffacd0b85a97d-461edb387ddso1620710f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 02 Jul 2026 04:52:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782991714; x=1783596514; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=vwpv11A8Wqk34ZvqVFhL1Yv/Rbg0bjinwLUWjlhF31w=;
- b=EcGPNAat4oLuA406gmVGA7c4OaI7UU7Nlr4iz/qLZNnz3xvCPxTfXSIltLoxJIpo+3
- 7U2Lmzxf4fTNgrJmTScdBlkcLRT+m9Ul0VlvYHTGVe7xFstGeqxx4bPX1UYpepr+Jj5P
- jMida/VmgbS2kksHtTBFYxkAyNaAYLpq9Ha2s0ACDzKxO1XdMw4yQMdNvSOX64lDKzfo
- SXv5hg/Du/wbDOWmvWr6cClG5are6tDUFNS/kK9SX3zJ5Cn2TvvtywAh98ofmo95aVtA
- aQq5DifiG63DyGHEXLpzMc8nbi7jIFs9Z11d/DsCLdBgk6v1/7uedUR2b3k0U5zYtvsL
- c8aA==
+ d=gmail.com; s=20251104; t=1782993130; x=1783597930; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=fcOdzUMYycvpjMN9JW0mbn3wsyAtYM+j1SiK+GfZmzo=;
+ b=GZCQLuDm8x3fBtyV8O43Duik/THIMdJwgY5ZCtRClIEnR2GEeAmx2PJdy3+VwEv7tK
+ Jk5BzBVbn0yRs3M1RXtGqH6CO9BjzGohULAbIerTtTekiWh17Lfyg6CG/aHphkU0vziV
+ KPw3M8S68uh5WSnyKD08bctIbAXj93B3TLr2Tqx+o8YFmTgRHkUYynm1VnkyizOcx2an
+ hv/gDLtTaoRMT14m1Rl5LeUdaXXFpwoxbh6BNHKBjQqSjqwKnm9os2ZDtGv30reKS2km
+ UV9qAe7ctbnqeUHebAzbCKyh4uNVCH+UktGUtiUVy1LQ/EIEV6RbTt5hQhYIIgJt/X+p
+ tRHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782991714; x=1783596514;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=vwpv11A8Wqk34ZvqVFhL1Yv/Rbg0bjinwLUWjlhF31w=;
- b=ekC1z+8WRn2vd7x4amWSof/3CJuQ0ZfsiIQDQCl1BlRMDxsO2EblOIS5qMeno+xN3U
- ahTGRBGCYTMNDHuQKSCN/Ti1mQpKiKLChoWncqjCNiIi6jF8Xd/474PTXopLwYkYM96y
- MkLATNNrkBgTjHn6Mk0B1beYN6UQfMbNuMNR8rQtmIFQgVYRaJTPDy2B6HCcbFp1mXbK
- hAmy8swiMPwOeUku1q4OoxooG6Vjly19zEfKKpHcg87JfSawa+9oyhFoYLCm4ti+NN9t
- LTJg/A3GrIFTv2Bf4/z1PV5so8qXDWpCk5XrXQxbc6R+VDG0HLTRKiYrCTMiYE2PcbN9
- 9ESw==
-X-Forwarded-Encrypted: i=1;
- AHgh+RpyzQbmLJ/cHNhuu3svTbP+c0KbXWVhxTgoDbp4qY0Kpc6IO+clrc4aEMHaBDFfMlQ1zicQ6SUn@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxiQwD2xFq9/6j8b8yKQeweDMJS1PJZDEep5azwwvpiXFrtoa7E
- 3eyXYZiSQKYXmyV4kT5Ijm1ub12TtJ/qC6AgpCl8tkevxSYDpWeGBFDP
-X-Gm-Gg: AfdE7ckXn9N+sSJ+FuySwgfeDacRopzVCn5O+328/B2Nq1tYDktz18obBLUIaCpXzE3
- /YR2eyxcPmz/HWqJibtPMt0NkSm9Gqa+XEepXFic5i4xG1GL3FjFMys50PMAyXKC9XcQoYCID5+
- U7gd3vzUvVYBTsQydnPjR8FQjBTLXGd84TdaKltpvuxQGpPsdeqebSInUpEti1cHbn18viu9g/w
- PG1dbRinzBwlaO1IqhTnDkrkzc8BXHGFCdmj+H8SN0/+VDva2N9fAt8O+l1DpK3zGEZ04+qNXz0
- 143H6KUjll8UtlUEoNXN9eMmMdEuuj8QLY+tdl3xSvIpg8fPS5fXwxTBO3II5/aZQE6QjteNMbK
- Jiho/imO4MOgrPAPInWww/C281+wzPj/TdQdvkdsPmQKw/FP2IjcvOJ8Z33PzLIiShxyP7W3pP5
- poGPCebDog12rt5P/UtA6cR9NaDJrFhEO8sb1dLKrCv5DotcgJQkunaWM17GA7Eud3TsWy9r/2F
- FLIMKkxdBKBTFgYRsW9nTwcEB7S3JxVtp0hQbKO7umFaj+3AnWXwaU+CnOg/+80mfcUv5w5bL71
- jg4E6t0aho8oy7wZ5krH420pdVgktoLcZ9iMnb4jLdyQ/TSs
-X-Received: by 2002:a17:90b:258c:b0:37d:f70f:fbf8 with SMTP id
- 98e67ed59e1d1-380a9e471dcmr3852595a91.0.1782991714179; 
- Thu, 02 Jul 2026 04:28:34 -0700 (PDT)
-Received: from midnightair ([2401:4900:1c94:62e8:bc10:77d0:2fda:415d])
+ d=1e100.net; s=20251104; t=1782993130; x=1783597930;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=fcOdzUMYycvpjMN9JW0mbn3wsyAtYM+j1SiK+GfZmzo=;
+ b=TBGDgUsRdw7PzC3sT3C4wpPsZ77+L9JVUHNKigsR7BewmqC3DxcZVgtlgV03EMeVgT
+ xnrS+XTpEsk9BZnZQkhBn+EaK7aF0GhpQ9d/039nwkVEYkNbonCB96e5Ndu95lpMJqtC
+ qyG7SJurwSdI1d6iFeRejH9GdUgRL8jM7jOYeGrlB1imPnMLbdKrAIrGLYC/aKs5SWrP
+ Dakpjh1SqcacpAmeGLXlXIvkUI5wTd7smWQzzBLjpfVV542Q09vFaKN61RKtHcT/cKxj
+ 05M1KzpDB8G1eehGMLJ6hZwIWxd2mZ5nUzlfHe+E0B+YA7mVnfKS9Edxq5VkcCxKzlW4
+ pqaQ==
+X-Gm-Message-State: AOJu0Yyp9+VoTCTKLxbkJjRU9f8PByytFKr9HCMxlSRaluQhjrNGoAIq
+ YfIEuaZpnSllC6fUFZf5FGy2kJIVx6b4fHB6qHKTkF2gZYJ8lEFZRpMHSjNRUILX
+X-Gm-Gg: AfdE7ck984sn0AquvVBxYG60nQI7NQwq/UQpsR8tdxded8/MBX7KjnsThbK2/M36Z6X
+ g8N7CH+A64D/HbNNNBJ2lCaZRE1g4DYcNgQgcMmfNC6WIsHz++iQA9C1e5IfemtoBlm/45c1pnL
+ G+hFQq8TvnMagpzuz8G7Krv+1KZYPR3XAe+gfsMVxm2zvHzGC58VXjy4mwb+rztDmInsDKBBwDn
+ oVJZ/tnxCVB42t00A1bkfUj06LMOqxhuBL59ZZIG3Pi09Z3xoLNnlN929LfciK420JooDjmFK7c
+ uIflcloYSWHxBbzzeNGA1/DdM0o9SXIf5QXQwYuazEdLQXgaLU5BOlHVfF8VJx9RNGreyjnhE3H
+ eoMOwfgGTXYblf+yBA+ikDC6C+DVAH+kN3i0E5QC8XgK52P9glckqPADYwJRq+KlYfFp/8PuxfI
+ j2rh1e3odEPXEJ4eRgKDWwxEkymZnLj3X5+mKwOyg0twGxYEiKIdZj8dCcoNHHCeYEqhJgf/AhQ
+ GifKfcJfZzGeKlBqwceDl7LhbWH
+X-Received: by 2002:a5d:474a:0:b0:475:f0d1:eb62 with SMTP id
+ ffacd0b85a97d-477b225850emr5514595f8f.61.1782993130424; 
+ Thu, 02 Jul 2026 04:52:10 -0700 (PDT)
+Received: from timur-max.localnet
+ (20014C4E24EF0F0080162CDB5B2DFACF.dsl.pool.telekom.hu.
+ [2001:4c4e:24ef:f00:8016:2cdb:5b2d:facf])
  by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-380e1636a03sm954793a91.1.2026.07.02.04.28.31
- (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
- Thu, 02 Jul 2026 04:28:33 -0700 (PDT)
-From: Anas Khan <anxkhn28@gmail.com>
-To: Harry Wentland <harry.wentland@amd.com>,
-	Leo Li <sunpeng.li@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Peichen Huang <PeiChen.Huang@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Anas Khan <anxkhn28@gmail.com>
-Subject: [PATCH] drm/amd/display: remove duplicate link_dp_panel_replay.h
- include
-Date: Thu,  2 Jul 2026 16:58:28 +0530
-Message-ID: <20260702112828.34698-1-anxkhn28@gmail.com>
-X-Mailer: git-send-email 2.54.0
+ ffacd0b85a97d-477dbe617b1sm8295835f8f.16.2026.07.02.04.52.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 02 Jul 2026 04:52:10 -0700 (PDT)
+From: Timur =?UTF-8?B?S3Jpc3TDs2Y=?= <timur.kristof@gmail.com>
+To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
+ Natalie Vock <natalie.vock@gmx.de>, Amir Shetaia <Amir.Shetaia@amd.com>,
+ Marek =?UTF-8?B?T2zFocOhaw==?= <maraeo@gmail.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ Siwei He <siwei.he@amd.com>, Philip Yang <philip.yang@amd.com>,
+ Mukul Joshi <mukul.joshi@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Subject: Re: [PATCH 11/14] drm/amdgpu/ih6.0: Use MMIO ACK for retry CAM on IH
+ 6.0
+Date: Thu, 02 Jul 2026 13:52:08 +0200
+Message-ID: <2030676.7Z3S40VBb9@timur-max>
+In-Reply-To: <4547ddd3-974a-4c9c-8fec-939dc132f7d0@amd.com>
+References: <20260701161721.85681-1-timur.kristof@gmail.com>
+ <20260701161721.85681-12-timur.kristof@gmail.com>
+ <4547ddd3-974a-4c9c-8fec-939dc132f7d0@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 03 Jul 2026 07:06:48 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,65 +103,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:alexander.deucher@amd.com,m:siqueira@igalia.com,m:PeiChen.Huang@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:anxkhn28@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,lists.freedesktop.org,vger.kernel.org,gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[anxkhn28@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[anxkhn28@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,gmx.de,gmail.com,ursulin.net];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,amd.com:email,timur-max:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9A38C6FF64B
+X-Rspamd-Queue-Id: B095B6F70D3
 
-link_dp_irq_handler.c includes "link_dp_panel_replay.h" twice. Drop the
-redundant second include; this is a non-functional cleanup flagged by
-scripts/checkincludes.pl.
+On 2026. j=C3=BAlius 2., cs=C3=BCt=C3=B6rt=C3=B6k 12:23:42 k=C3=B6z=C3=A9p-=
+eur=C3=B3pai ny=C3=A1ri id=C5=91 Christian K=C3=B6nig=20
+wrote:
+> On 7/1/26 18:17, Timur Krist=C3=B3f wrote:
+> > The doorbell is not working on Navi 31.
+> > Use the IH_RETRY_CAM_ACK register.
+> >=20
+> > Signed-off-by: Timur Krist=C3=B3f <timur.kristof@gmail.com>
+>=20
+> Acked-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+>=20
+> I still haven't found any explanation why we use a doorbell for the CAM in
+> the first place? Lijo, Alex, Felix does anybody know that?
 
-Fixes: 1e5cd4adfc54 ("drm/amd/display: move panel replay out from edp")
-Signed-off-by: Anas Khan <anxkhn28@gmail.com>
----
- .../gpu/drm/amd/display/dc/link/protocols/link_dp_irq_handler.c  | 1 -
- 1 file changed, 1 deletion(-)
+The first mention of the retry CAM in the kernel is:
+commit 318e431b306e - drm/amdgpu: Enable IH retry CAM on GFX9
+which was written by Mukul (also on CC for this series).
+Mukul - can you please give us some information on that?
 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_irq_handler.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_irq_handler.c
-index 54ce768ae6ad..da679fb7d89c 100644
---- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_irq_handler.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_irq_handler.c
-@@ -39,7 +39,6 @@
- #include "link/link_dpms.h"
- #include "dm_helpers.h"
- #include "link_dp_dpia_bw.h"
--#include "link_dp_panel_replay.h"
- 
- #define DC_LOGGER \
- 	link->ctx->logger
--- 
-2.54.0
+It seems that the IH 7.1 code was just copied from there.
+
+As far as I see, Vega 20 already has the mmIH_RETRY_CAM_ACK register, thoug=
+h I=20
+don't know why that wasn't used. I guess you guys would have heard from you=
+r=20
+datacenter customers if the current code didn't work on Vega 20 and CDNA.
+I can say with certainty that I couldn't get the doorbell working on Navi 3=
+1=20
+or Navi 48.
+
+Unfortunately I don't have a Vega 20 card (or any datacenter GPU) so I can'=
+t=20
+test what actually works there. I have a Vega 10, but it's unclear if that =
+has=20
+a retry CAM or not.
+
+Thanks & best regards,
+Timur
+
+>=20
+> > ---
+> >=20
+> >  drivers/gpu/drm/amd/amdgpu/ih_v6_0.c | 8 +++++++-
+> >  1 file changed, 7 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
+> > b/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c index 65e5d21753f9..a97c85b0cb99
+> > 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/ih_v6_0.c
+> > @@ -307,6 +307,11 @@ static int ih_v6_0_enable_ring(struct amdgpu_device
+> > *adev,>=20
+> >  	return 0;
+> > =20
+> >  }
+> >=20
+> > +static void ih_v6_0_retry_cam_ack(struct amdgpu_device *adev, u32
+> > cam_index) +{
+> > +	WREG32_SOC15(OSSSYS, 0, regIH_RETRY_CAM_ACK, cam_index);
+> > +}
+> > +
+> >=20
+> >  /**
+> > =20
+> >   * ih_v6_0_irq_init - init and enable the interrupt ring
+> >   *
+> >=20
+> > @@ -807,7 +812,8 @@ static const struct amdgpu_ih_funcs ih_v6_0_funcs =
+=3D {
+> >=20
+> >  	.get_wptr =3D ih_v6_0_get_wptr,
+> >  	.decode_iv =3D amdgpu_ih_decode_iv_helper,
+> >  	.decode_iv_ts =3D amdgpu_ih_decode_iv_ts_helper,
+> >=20
+> > -	.set_rptr =3D ih_v6_0_set_rptr
+> > +	.set_rptr =3D ih_v6_0_set_rptr,
+> > +	.retry_cam_ack =3D ih_v6_0_retry_cam_ack,
+> >=20
+> >  };
+> > =20
+> >  static void ih_v6_0_set_interrupt_funcs(struct amdgpu_device *adev)
+
+
+
 
