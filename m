@@ -2,131 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fE0wAKoPRmqdIgsAu9opvQ
+	id Aa61KkEcRmqSKAsAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 09:13:46 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 10:07:29 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 652276F40EA
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 09:13:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15D676F4938
+	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 10:07:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=WHxdKf1i;
+	dkim=pass header.d=leemhuis.info header.s=key2 header.b=TjtJ1wMw;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=none
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BB9510E462;
-	Thu,  2 Jul 2026 07:13:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73C4910F20E;
+	Thu,  2 Jul 2026 08:07:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013035.outbound.protection.outlook.com
- [40.93.196.35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 850BF10E462
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 07:13:42 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KwdNwxLpflut4iHt4ARFTI8N3PD9Fa95Osdtt+g3aaYpOSCG4sSJAKiD/t/V4yWAbuZxCRDDaZ0L8IPuKROf6ytzdpJ4/nNXjQvEb7yRSO8slNss41fsDxANbbS2nwMNuqnYFUPwDrhb3F9iNXPzutXTHRYCPnoIhZp+xIfkWr0oREvgAW2Eg0vRQbD8II73GzjI5b2Umd3mUN7p6n+zQbzYvcuvPjdhXzupvX4J1SR4biX9ZqwvD1wzN9pd4K5OewLOlw+IodGPQjlQNgW9piQ8fjvjpr64hF3A9tkzC5ClXX4th5XcePM4ePjWHMCFUasIKlHsFj5ruHasOW5qZg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3OYGDw/5c0Fp9XhOBDUpu3G6u1uwbS/Qs20xdo5FpBY=;
- b=tNuASphH7CIR0hcRBjXwA9wXcprUP9zujAXJw7bDRI0pV53HIFAIU/HQzGPmYD6ZlKeqm6n6qpAwP4DgBCkuArQjB4nW0emNOthkfRrx6+xoQItdhmUm6eV9JERgCm10JOL0BzfcQhC1p5qKroMFwoF0PIbzmm3WWO6XIIJJOxekTilidVkKqiumLwyjjYVPALeL9FwqQ8sxeLzjtqKXLTUht6b8G8vFl/Tq9Nqf6GkPB8QIM5m8n47dVseNECLfpoYQ+IHmWukJWU1BO3NvwqkWJDU77x1tHZWrwDruQc8dagXwRTG23NJ2183+OcjyyFgRzz0ScCxudGCm2ctTpA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3OYGDw/5c0Fp9XhOBDUpu3G6u1uwbS/Qs20xdo5FpBY=;
- b=WHxdKf1iqpwxeOnknnPmJ5OxFJpUywPy/ccXyLAf8PZvH7w2wfNq8hisPUeWFWM2vpt2T2rKnlfJMdaomQexPAzijv9xzHivTEIZL03YW1x0zVVWePiCN5FNjiXC9vP4bVLHFtw2MTGypSaTUonuk7Xhrk8xP3fEHX2IVQPBSVI=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by MW4PR12MB6753.namprd12.prod.outlook.com (2603:10b6:303:1ec::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Thu, 2 Jul
- 2026 07:13:37 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0181.008; Thu, 2 Jul 2026
- 07:13:37 +0000
-Message-ID: <291edb05-6bd6-4b3d-b013-6ad76e53b004@amd.com>
-Date: Thu, 2 Jul 2026 09:13:33 +0200
+X-Greylist: delayed 350 seconds by postgrey-1.36 at gabe;
+ Thu, 02 Jul 2026 07:50:13 UTC
+Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
+ [188.68.61.107])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E713210F1C4
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 07:50:13 +0000 (UTC)
+Received: from mors-relay-8405.netcup.net (localhost [127.0.0.1])
+ by mors-relay-8405.netcup.net (Postfix) with ESMTPS id 4grTRT0yj5z78xf;
+ Thu,  2 Jul 2026 09:44:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
+ s=key2; t=1782978261;
+ bh=TsN6WMMBCEo3X7M+PaHTEiPe/r/MX65+aVkikPoZo+8=;
+ h=Date:Subject:To:References:From:Cc:In-Reply-To:From;
+ b=TjtJ1wMwyQhbAj5p3WcdecFKurKvL1gKgOZBAFY7bOfBZpq7hogycwScebDww3mTi
+ SEjfzI7PBhKif6OHy6RC2pR8cm6hObzSgIhJgn5n0SX5Ps9wcYHjvOHGDh7iQD3KGW
+ q6m7bEHFEPxQ+4Eqyci7OJgHSzMWDDvRg46UIX9qK3t+yFiSAZomCJDrccs4014Sio
+ bvmkdw4r88FNxN9R8Oga14/X3X0tDHtOCsh7eSGZjzEeL2W54VJUQfiOv0Ufdo58pO
+ 1WmFrpF5xzXENt1jiSpgyVPvra+Jtq6gXQcwAEUChK9xnEQm4y6aGdzPGR4Knzd0+b
+ dCZNlHSOXtQYA==
+Received: from policy01-mors.netcup.net (unknown [46.38.225.35])
+ by mors-relay-8405.netcup.net (Postfix) with ESMTPS id 4grTRT0Gcvz78xd;
+ Thu,  2 Jul 2026 09:44:21 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at policy01-mors.netcup.net
+X-Spam-Flag: NO
+X-Spam-Score: -2.901
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.901 required=6.31 tests=[ALL_TRUSTED=-1,
+ BAYES_00=-1.9, SPF_PASS=-0.001] autolearn=ham autolearn_force=no
+Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by policy01-mors.netcup.net (Postfix) with ESMTPS id 4grTRR5mvhz8tYM;
+ Thu,  2 Jul 2026 09:44:19 +0200 (CEST)
+Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
+ [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
+ by mxe9fb.netcup.net (Postfix) with ESMTPSA id A4244603E0;
+ Thu,  2 Jul 2026 09:44:18 +0200 (CEST)
+Received-SPF: pass (mxe9fb: connection is authenticated)
+Message-ID: <64546a50-5593-4083-aaa7-6f772f8c81b5@leemhuis.info>
+Date: Thu, 2 Jul 2026 09:44:17 +0200
+MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 1/4] drm/amdgpu: Add PASID fpriv ownership helpers
-To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-References: <20260630134324.3118873-1-srinivasan.shanmugam@amd.com>
- <20260630134324.3118873-2-srinivasan.shanmugam@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260630134324.3118873-2-srinivasan.shanmugam@amd.com>
+Subject: Re: [BUG] linux-firmware-amdgpu 20260622 prevents clean poweroff on
+ AMD RX 6800
+To: IT4roundtheW0rd <IT4roundtheW0rd@protonmail.com>,
+ "linux-firmware@kernel.org" <linux-firmware@kernel.org>
+References: <q7ZKOKwwFDcWVkxZpaMuCo3xjbQ0XzrMZfuVec--VZXX94D5vdqLIRMR6xMaoGI27_uGJ-ILsWrXlXwbfGLf2ozY5bz8QV0Al3JUH7y3f4o=@protonmail.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+Content-Language: de-DE, en-US
+Cc: Linux kernel regressions list <regressions@lists.linux.dev>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+In-Reply-To: <q7ZKOKwwFDcWVkxZpaMuCo3xjbQ0XzrMZfuVec--VZXX94D5vdqLIRMR6xMaoGI27_uGJ-ILsWrXlXwbfGLf2ozY5bz8QV0Al3JUH7y3f4o=@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR0P281CA0218.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ac::14) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MW4PR12MB6753:EE_
-X-MS-Office365-Filtering-Correlation-Id: ef62f5c0-9e7f-4554-6425-08ded8096fc1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|23010399003|366016|4143699003|11063799006|22082099003|18002099003|6133799003|56012099006;
-X-Microsoft-Antispam-Message-Info: p6I8UofAwqm0TQhLuHlPSmwlVvNy5Kej7CmAd5bf+otcjtQEUG5FHBzNPblW9SFKYqfQW/vuXO2kitblG4GoraUSTy9KIt40j4Ld3pT/ukJL1EwOXP4MYJoLQjyUEdrbv5GGhp2uo4taC6bvh0GDC0tVllfNwBjdg7jIhURwJtkMw4kN6J4cCDUA1p+HXtVb07xsV56kI0o9DRhu5s8iVBmO3G3T5+h3Xy2lvJOOhpGXwPFfkX+sEaHFpXewWOdSc8wrHCpGi4lYrLyJlOrLekaL29j491ZkxpP82fZcBfmlvFg29onrP6Mfg9kM+DwKMyVbjiDcmYiS8/WyHD4MuNJJz3auuSoHS+OhA85YELySEUD7W70xOLocdliEj2r+fuMSimL9Vp+rW29W5SyxLFAqHiwXhJbYQAHdYD0nnhQkErfL4Z/RA6W4KWuJ4tw4iN4NBseXAvvMcdaHi5MtDpqe5wnys2r38s0gmPqUWCdtnM6KDZ565HCClzOlrdefTxzLr8Qgnjb7h/Bygr5uvP2xHeH92vjyrrnoOT2urvRXJJ8vSUl3BeRa5fwlNo0PRg/1nPeKP8QXHPm0KMWXGH+pKhgzO3SUb6jL+AyiOnwV5ttRkG6Ah8lY4FfFvzZnUt7VO3ve3mWtedxf1eDX0vzirKZ/Of4gzZM1Xw52mJo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(4143699003)(11063799006)(22082099003)(18002099003)(6133799003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZzRXNEluMnZTMFRVK3hUNmMrNlJNMUZJc3ZRS0dWekdjSDNTWVJXWWRXL0xJ?=
- =?utf-8?B?OHBXUnVwYUVGL0E3UTJYNjlkZlY0UmZ4TXFnQkN0b0xSWjRReG5QLzJlUFFL?=
- =?utf-8?B?bkJxWEZRZWxXSGlzY01Vek5ZSjdLUVBzaGZvNzQwN2dBU2JERnVFTzYrZVpm?=
- =?utf-8?B?VVZyRXNhbm94ajFoS0dLek4ydkdObUdwLzVTV2Fjb2Y4alVCVXo2dWgrTXdw?=
- =?utf-8?B?QXdNWCtzdVdyNmtvQUZIQjFzUm80dVlkb2FWbk5xVnNERmpCanJNQTViQlpR?=
- =?utf-8?B?U0dDWUx1UUdlWVZiQnlxMHNZakdJWDM4aTVuWHVTSVNMZmFybUNvSlBnSGRp?=
- =?utf-8?B?cy9YQlpJMGtYV3ZEZHY4UU5xbDJsT1RJVmpCekpFbFU3dTJSNFYzcW5XWG1M?=
- =?utf-8?B?VDFXZVNhRFhBNGt6aEl4aUJEY3lvRi84QWE5VDNmd1RqRTJTbU5CYXZLU1NN?=
- =?utf-8?B?V3VkczAyeGRUaUF3MHlMVWpkVlhWaTVkYzMvdVFvaXpvQncvbWZxR3hva0FZ?=
- =?utf-8?B?SnVSVzlkZ1JyTW04bnF4UTB0L2RhRWswblBHd0J6NUsrYVFzOC9sc2lpcUlU?=
- =?utf-8?B?SnVmYXZRS004cTZiVy96ZkdBYzFjM1VaZGhRQlJ0ZHlKUE56aTBBM0RsU0lT?=
- =?utf-8?B?N0E0QzFRajljdTJFaHlUWmt4UVBwcGpGaUxBM2djN24ra0pVanZmWkllVFZz?=
- =?utf-8?B?eWpkZkVUTmJDWVJnNUlEQldRYnFjVHc4NHk4U3Z4b3IxdTQ4MzNQOGJYL1BV?=
- =?utf-8?B?Wi9vaHJUQllMY0JQU1NBb2JZRTlkaXhYWldMU3Q0N1lKR3V2aTc4cFhnL1RW?=
- =?utf-8?B?Z052bDhOMkdleit3ZlFXVmhieE14N3R4bVNFUWZobkJKaS96S285NUExek9F?=
- =?utf-8?B?NXUrSlpMTFp0TVVjL1RpcXhwNkRDNW55c0V5UElreEFLNjZpYU1JOENiT0k3?=
- =?utf-8?B?SnRWamlzNUk2ZVgvaENielBzNGE0b2VuWTZ1VnJtaUxwWG5xZjF5TjM3d1dU?=
- =?utf-8?B?c0Y2MkZ5NnhyQTh4dWh3NXdBL1RrNENteGhVSEFEQnBSeDMvVGd0cnA0TERZ?=
- =?utf-8?B?alc4bUgrd1lTRzVUdG1Jc1JTNGpKS05KaDFuNDEzaG5MZFdhNHNKaTIzaE0z?=
- =?utf-8?B?ZnBGSEpMZXR0RnVwMi8vRG9jT2o1S3FSTVlDdHhGeUZvREFMNWJDREdHRm44?=
- =?utf-8?B?UE1UUHNHcjNqcTh6cldBZjJobEJaMmR6M1U3bzZJblNyUUhIM3pEcDR6Qld0?=
- =?utf-8?B?RytFVWE5VUpUSDNZYlQ0VUYya0dna0RIUk9qSzUxdWlPVDRaMU5OQnNrSUxX?=
- =?utf-8?B?Nis1VGNUVUNPRUNhblpUK0NDQ2tSeUpmb2hWSEZKV2pabWVhWEJMMDY2eW1Y?=
- =?utf-8?B?QUs4bUdQK0M4L0lwd0ZIUzNYQWxhL0NlVm1pUWtRNjNRZDN3UFZEZlI0bENp?=
- =?utf-8?B?VndDdGh5aWlQWkhIbUIxejVPcS9GNTl2bDBXbjRCSTB4d0U0VkpGSW5wcmZl?=
- =?utf-8?B?blV1bzNpMHYxd3A5WTR4NStiYUl0UTV3RlA2TWdoVlptSVpsKzNzVFJqK1M2?=
- =?utf-8?B?SGd1N2VocGpDM2xweTNOY1ZpVjhsMzRnWnJoT2VCelYvamNqVjlQNUZaVXJT?=
- =?utf-8?B?MWxqeFJISjl2ZlVjSnJaU255SE0wTmtMazlaRXhPNEdTM3RRY1o1K1lnRUda?=
- =?utf-8?B?bDVyUjduVEw4ZXovdFpiOGIwSXB1U3ZLclJaNUVLdjJ1M0lLWjg4T2VnQ1cx?=
- =?utf-8?B?c251b0FQdlZDeC9HYStqaFRVRmVwNytxaTUzMHhWdDRWYVpYUGQ3VktGU1hQ?=
- =?utf-8?B?aWt4NzIrZW1GOEF0dzJqUHRUNEJLWEtUdDBZMHp0dGlVN20zK3hla00wQ0R3?=
- =?utf-8?B?Z2tiT1JJMlRIamwzZ3hiRlBRRHkwNUltQkJVRjc3TFhmWHZ3aVFodjZJMTJR?=
- =?utf-8?B?VFhvbkt2aXFtV1ppTitxRGM2RVhNbUs3T1RCY05hV1lOWnF3M1QxYlltYlN0?=
- =?utf-8?B?QzZGTkxZbU9KQmpVVk9USmpNUWlzam1mcDFKc0p4QXFuQlRZQXhJdzFjMkox?=
- =?utf-8?B?cFJjY0xYaFg2dllwZ1NURmdsbm9rcVVSYjlNNzZWSWRNazN3ZnZHaE10a29W?=
- =?utf-8?B?NVVQMlVzcGVHNjhjOGZTK1VTc3dkUTNMRmgxRjFrT3hzcjZrMWF4R1JpUWR6?=
- =?utf-8?B?V0xrM3RSaGp3bGcwaVlLTlFXZVBodnJBeThMK1BKVG9ldlJwcjhSemoxRWFX?=
- =?utf-8?B?d20zemw0STNsQXkvcUM2M1VyOEhoMGR3dDkyS1VCWi9QblIzNklLTnNwUjB1?=
- =?utf-8?Q?RnSkCqqMYpD+JJim1L?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef62f5c0-9e7f-4554-6425-08ded8096fc1
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2026 07:13:37.6526 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SDiw5+8tiyLYxF8sgzXhVhKuX5nY13J/midEDC/wQzItV3WHX+uTvrf9NpYrNveW
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6753
+X-PPP-Message-ID: <178297825897.3306651.13862513967389606757@mxe9fb.netcup.net>
+X-NC-CID: WQUHJuKIRcozFvv2yzdqCWxTh1SrywKG3JrO4uvjTbwvR5T3U8o=
+X-Mailman-Approved-At: Thu, 02 Jul 2026 08:07:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,200 +92,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[leemhuis.info];
+	FORGED_RECIPIENTS(0.00)[m:IT4roundtheW0rd@protonmail.com,m:linux-firmware@kernel.org,m:regressions@lists.linux.dev,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[protonmail.com,kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:srinivasan.shanmugam@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DKIM_TRACE(0.00)[leemhuis.info:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:dkim,amd.com:email,amd.com:mid,amd.com:from_mime]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,leemhuis.info:dkim,leemhuis.info:mid,leemhuis.info:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 652276F40EA
+X-Rspamd-Queue-Id: 15D676F4938
 
-On 6/30/26 15:43, Srinivasan Shanmugam wrote:
-> AMDGPU already has a global PASID xarray used by the PASID allocator.
-> 
-> Currently allocated PASIDs store a dummy value in that xarray.
-> 
-> Add helper functions so DRM-owned PASIDs can store and retrieve their
-> owning DRM file-private object.
-> 
-> This prepares for using:
-> 
-> 	PASID -> fpriv -> vm
-> 
-> instead of the separate per-device:
-> 
-> 	PASID -> vm
-> 
-> mapping.
-> 
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Suggested-by: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c | 91 +++++++++++++++++++++++++
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h | 13 ++++
->  2 files changed, 104 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
-> index 684f40fce73f..f65d57b4cc04 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.c
-> @@ -78,6 +78,97 @@ int amdgpu_pasid_alloc(unsigned int bits)
->  	return pasid;
->  }
->  
-> +int amdgpu_pasid_set_fpriv(u32 pasid,
-> +			   struct amdgpu_fpriv *fpriv)
+[adding a few people to the CC]
 
-What exactly is the reason that this isn't part of the amdgpu_pasid_alloc() function?
+On 6/27/26 02:42, IT4roundtheW0rd wrote:
+> 
+> I'd like to report a regression in linux-firmware-amdgpu introduced with
+> the 20260622 release.
+> 
+> *System:*
+> - Distro: CachyOS
+> - Kernel: 7.1.1-2-cachyos
+> - GPU: AMD RX 6800-series
+> - Bootloader: GRUB
+> 
+> *Problem:*
+> After updating linux-firmware-amdgpu from 1:20260519-1 to 1:20260622-1,
+> the system no longer shuts down completely when running `poweroff`.
+> Fans, keyboard LEDs, and power button LED remain active after the
+> shutdown sequence. The system hangs after "Sending SIGTERM to remaining
+> processes..." and never reaches full power-off (ACPI *S5).*
 
-Regards,
-Christian.
+A few questions:
 
-> +{
-> +	unsigned long flags;
-> +	void *entry;
-> +	int r = 0;
-> +
-> +	if (!pasid || !fpriv)
-> +		return -EINVAL;
-> +
-> +	xa_lock_irqsave(&amdgpu_pasid_xa, flags);
-> +
-> +	entry = xa_load(&amdgpu_pasid_xa, pasid);
-> +
-> +	if (!entry) {
-> +		r = -ENOENT;
-> +		goto unlock;
-> +	}
-> +
-> +	if (!xa_is_value(entry)) {
-> +		r = -EBUSY;
-> +		goto unlock;
-> +	}
-> +
-> +	entry = __xa_store(&amdgpu_pasid_xa, pasid,
-> +			   fpriv, GFP_ATOMIC);
-> +	r = xa_err(entry);
-> +
-> +unlock:
-> +	xa_unlock_irqrestore(&amdgpu_pasid_xa, flags);
-> +
-> +	return r;
-> +}
-> +
-> +void amdgpu_pasid_clear_fpriv(u32 pasid,
-> +			      struct amdgpu_fpriv *fpriv)
-> +{
-> +	unsigned long flags;
-> +	void *entry;
-> +
-> +	if (!pasid || !fpriv)
-> +		return;
-> +
-> +	xa_lock_irqsave(&amdgpu_pasid_xa, flags);
-> +
-> +	entry = xa_load(&amdgpu_pasid_xa, pasid);
-> +
-> +	if (entry == fpriv)
-> +		__xa_store(&amdgpu_pasid_xa,
-> +			   pasid,
-> +			   xa_mk_value(0),
-> +			   GFP_ATOMIC);
-> +
-> +	xa_unlock_irqrestore(&amdgpu_pasid_xa, flags);
-> +}
-> +
-> +void amdgpu_pasid_lock(unsigned long *flags)
-> +{
-> +	xa_lock_irqsave(&amdgpu_pasid_xa, *flags);
-> +}
-> +
-> +void amdgpu_pasid_unlock(unsigned long flags)
-> +{
-> +	xa_unlock_irqrestore(&amdgpu_pasid_xa, flags);
-> +}
-> +
-> +/**
-> + * amdgpu_pasid_get_fpriv_locked - get fpriv from PASID
-> + * @pasid: PASID to resolve
-> + *
-> + * Caller must hold the PASID XA lock.
-> + *
-> + * The returned pointer is only protected by the PASID XA lock.
-> + * Callers must not continue using it after dropping the lock
-> + * unless additional lifetime protection exists.
-> + *
-> + * This intentionally does not add kref/RCU lifetime handling.
-> + */
-> +	struct amdgpu_fpriv *
-> +amdgpu_pasid_get_fpriv_locked(u32 pasid)
-> +{
-> +	void *entry;
-> +
-> +	entry = xa_load(&amdgpu_pasid_xa, pasid);
-> +
-> +	if (!entry || xa_is_value(entry))
-> +		return NULL;
-> +
-> +	return entry;
-> +}
-> +
->  /**
->   * amdgpu_pasid_free - Free a PASID
->   * @pasid: PASID to free
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h
-> index a57919478d3b..220a0ba0cfb6 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ids.h
-> @@ -38,6 +38,7 @@ struct amdgpu_vm;
->  struct amdgpu_ring;
->  struct amdgpu_sync;
->  struct amdgpu_job;
-> +struct amdgpu_fpriv;
->  
->  struct amdgpu_vmid {
->  	struct list_head	list;
-> @@ -92,4 +93,16 @@ void amdgpu_vmid_reset_all(struct amdgpu_device *adev);
->  void amdgpu_vmid_mgr_init(struct amdgpu_device *adev);
->  void amdgpu_vmid_mgr_fini(struct amdgpu_device *adev);
->  
-> +int amdgpu_pasid_set_fpriv(u32 pasid,
-> +			   struct amdgpu_fpriv *fpriv);
-> +
-> +void amdgpu_pasid_clear_fpriv(u32 pasid,
-> +			      struct amdgpu_fpriv *fpriv);
-> +
-> +void amdgpu_pasid_lock(unsigned long *flags);
-> +void amdgpu_pasid_unlock(unsigned long flags);
-> +
-> +struct amdgpu_fpriv *
-> +amdgpu_pasid_get_fpriv_locked(u32 pasid);
-> +
->  #endif
+* Which firmware files does your GPU use exactly (a full dmesg log
+should answer this)
+* Does the problem happen with a vanilla kernel as well (it most likely
+will, but would be good to confirm, as heavily patched vendor kernels
+can lead to all sort of issues).
+
+Ciao, Thorsten
+
+> *Relevant log excerpt (journalctl -b -1):*
+> 
+>     Jun 27 02:04:14 cachyos systemd-shutdown[1]: Sending SIGTERM to
+> remaining processes...
+> 
+> (no further entries — system hangs here)
+> 
+> *Workaround:*
+> Downgrading to linux-firmware-amdgpu 1:20260519-1 resolves the issue
+> completely.
+> 
+> *Steps to reproduce:*
+> 1. Update linux-firmware-amdgpu to 1:20260622-1
+> 2. Run `poweroff`
+> 3. System hangs — power is not cut
+> 
+> *Additional notes:*
+> The root cause appears to be that the new firmware blob prevents the
+> amdgpu driver from cleanly releasing the GPU before the ACPI S5 power
+> state transition. No other packages were updated in the same transaction
+> that could explain this behavior.
+> 
+> This issue was researched and this report was drafted with the
+> assistance of Claude (Anthropic AI).
+> 
+> Best regards,
+> 
+> Benjamin Maas 
 
