@@ -2,78 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id W798NbGHRmrCXwsAu9opvQ
+	id 0q+0M45fR2rmXAAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 17:45:53 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:54 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CC866F9981
-	for <lists+amd-gfx@lfdr.de>; Thu, 02 Jul 2026 17:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0A766FF63A
+	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 09:06:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=deeplearntech.com header.s=E11F0DAC-414D-11E7-97F0-308B22DE3479 header.b=PNG7cuOX;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=deeplearntech.com
+	dkim=pass header.d=rere.qmqm.pl header.s=1 header.b=Z4I2NWrM;
+	dmarc=pass (policy=reject) header.from=rere.qmqm.pl;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F5BF10F493;
-	Thu,  2 Jul 2026 15:45:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 655F910F685;
+	Fri,  3 Jul 2026 07:06:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 567 seconds by postgrey-1.36 at gabe;
- Thu, 02 Jul 2026 15:45:49 UTC
-Received: from zmailpro.com (zmailpro.com [174.129.240.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFCBA10F494
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 15:45:49 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by zmailpro.com (Postfix) with ESMTP id 812B88EDC47;
- Thu,  2 Jul 2026 11:36:21 -0400 (EDT)
-Received: from zmailpro.com ([127.0.0.1])
- by localhost (zmailpro.com [127.0.0.1]) (amavis, port 10032) with ESMTP
- id xUs2QFPxW_UB; Thu,  2 Jul 2026 11:36:20 -0400 (EDT)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by zmailpro.com (Postfix) with ESMTP id 8E61F8EDC48;
- Thu,  2 Jul 2026 11:36:20 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 zmailpro.com 8E61F8EDC48
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=deeplearntech.com;
- s=E11F0DAC-414D-11E7-97F0-308B22DE3479; t=1783006580;
- bh=RtjhN4hzzUcgdFyzNrzwF/kg6AW9MyBHZxzUuimsCEU=;
- h=From:Mime-Version:Date:Message-Id:To;
- b=PNG7cuOXPRlpsCXQC13h4Gz/obnw4yKDQopuZ8Q7zBLJI9BwKg/+6UI03XNMVVqLB
- D3xzFQm0rDl976obCmpUtMPkRgDfLoil6+AWBu5TcFALCoa7Sw4zccOpkSvCmPnkO8
- XsCd79S+xJU5/weQpEGlaaaKM/dZ3dNZ69ctnaOSh6WZ4nra2Bh6wczTcHZD4XaAXF
- duiMRBq+o8peX30bTV6Y5NotLbjYfEs2yVEbppbt0+DiOVM2dOSaQq2LheyibH+Nhu
- LZCXWD6G1Fvm1ybO/2uSH9U3MFAesOOJ7xGYJHqPXu0M9hd01QF6dDU8rVOh4/1eHa
- 3Fsiv0XbgSS5Q==
-X-Virus-Scanned: amavis at zmailpro.com
-Received: from zmailpro.com ([127.0.0.1])
- by localhost (zmailpro.com [127.0.0.1]) (amavis, port 10026) with ESMTP
- id Rwmb9SNgP1ch; Thu,  2 Jul 2026 11:36:20 -0400 (EDT)
-Received: from zmailpro.com (zmailpro.com [174.129.240.60])
- by zmailpro.com (Postfix) with ESMTP id 6398F8EDC46;
- Thu,  2 Jul 2026 11:36:20 -0400 (EDT)
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: base64
-From: Harris Landgarten <harrisl@deeplearntech.com>
-Mime-Version: 1.0
-Subject: Re: [BUG] linux-firmware-amdgpu 20260622 prevents clean poweroff on
- AMD RX 6800
-Date: Thu, 2 Jul 2026 11:36:19 -0400 (EDT)
-Message-Id: <1337579792.18818.1783006579737.JavaMail.zimbra@zmailpro>
-References: <64546a50-5593-4083-aaa7-6f772f8c81b5@leemhuis.info>
-Cc: IT4roundtheW0rd <IT4roundtheW0rd@protonmail.com>, linux-firmware@kernel.org,
- Linux kernel regressions list <regressions@lists.linux.dev>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- amd-gfx@lists.freedesktop.org
-In-Reply-To: <64546a50-5593-4083-aaa7-6f772f8c81b5@leemhuis.info>
-To: Thorsten Leemhuis <regressions@leemhuis.info>
-X-ZxMobile-Command: SmartReply
-X-ZxMobile-Version: 3.20.0
-X-Originating-IP: [72.89.182.14]
-X-Mailer: Zimbra 9.0.0_ZEXTRAS_20240927
-Thread-Topic: linux-firmware-amdgpu 20260622 prevents clean poweroff on AMD RX
- 6800
-Thread-Index: Pp2FXLDtWZLWhI2Pyw2GKLf8ubymbg==
+X-Greylist: delayed 314 seconds by postgrey-1.36 at gabe;
+ Thu, 02 Jul 2026 16:29:55 UTC
+Received: from rere.qmqm.pl (rere.qmqm.pl [91.227.64.183])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F355C10F496;
+ Thu,  2 Jul 2026 16:29:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
+ t=1783009479; bh=IY5C6F1/QEO/Tb6bgJrWUfZwUAuddxbrXqk1mvKaQME=;
+ h=Date:Subject:From:To:Cc:From;
+ b=Z4I2NWrMuK7o6dkdA3eom/gnVJMtzM+pHTiA+poVFlYWJRbtobsG4Xv4rZx79uHxi
+ yCC2zVVXuHk3djLK1MOBT1AsabhBlDHL1d1H3vGz76lKp8B4AN+8gvodq44Bf7jK7x
+ IZDm3svpa4fuBFJW7XUC3nqcpFBE777f4RwKZopIQawIIgxf4+6v+TFpgaqVKVVrDq
+ fZgIj44mMOMkyH6OxHuW/lq+AaBUuG7IcFMEda7wgP9a6sshAHk4pn26+q8SKlTJUJ
+ HKd97VMEV/a5PcniZobXzDEISnH7QGuO2gOoURezeYSW9EUGV0JRrwMfoLQjhMtIpQ
+ iXnDd0VEzjyaQ==
+Received: from remote.user (localhost [127.0.0.1])
+ by rere.qmqm.pl (Postfix) with UTF8SMTPSA id 4grhzp0HGWzBL;
+ Thu, 02 Jul 2026 18:24:37 +0200 (CEST)
+X-Virus-Status: Clean
+X-Virus-Scanned: clamav-milter 1.4.3 at mail
+Date: Thu, 02 Jul 2026 18:24:37 +0200
+Message-ID: <cover.1783009338.git.mirq-linux@rere.qmqm.pl>
+Subject: [PATCH 0/5] Random debugging quality-of-life improvements
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+From: =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Kenneth Feng <kenneth.feng@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>
+Cc: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+X-Mailman-Approved-At: Fri, 03 Jul 2026 07:06:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,82 +66,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.21 / 15.00];
-	MV_CASE(0.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[deeplearntech.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[deeplearntech.com:s=E11F0DAC-414D-11E7-97F0-308B22DE3479];
+X-Spamd-Result: default: False [0.52 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MIXED_CHARSET(0.83)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[rere.qmqm.pl,reject];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_BASE64_TEXT(0.10)[];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[rere.qmqm.pl:s=1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:IT4roundtheW0rd@protonmail.com,m:linux-firmware@kernel.org,m:regressions@lists.linux.dev,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:regressions@leemhuis.info,s:lists@lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,zmailpro:mid];
-	FORGED_SENDER(0.00)[harrisl@deeplearntech.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[deeplearntech.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	HAS_XOIP(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[harrisl@deeplearntech.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[protonmail.com,kernel.org,lists.linux.dev,amd.com,lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mirq-linux@rere.qmqm.pl,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[rere.qmqm.pl:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,rere.qmqm.pl:from_mime,rere.qmqm.pl:dkim,rere.qmqm.pl:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0CC866F9981
+X-Rspamd-Queue-Id: A0A766FF63A
 
-SXQgaXMgdW5saWtlbHkgdGhhdCBpdCBpcyB0aGUgZmlybXdhcmUuIEkgaGFkIHRoZSBzYW1lIGlz
-c3VlIGFuZCBpdCBzdGFydGVkIHdpdGggNy4xLXJjMi4gSSBhbSBydW5uaW5nIGdmeDExNTAuIFRo
-ZSBpc3N1ZSBhcHBlYXJzIHRvIGhhdmUgYmVlbiBmaXhlZCBieSA3LjItcmMxDQpTZW50IGZyb20g
-bXkgaVBob25lDQoNCj4gT24gSnVsIDIsIDIwMjYsIGF0IDQ6MDfigK9BTSwgVGhvcnN0ZW4gTGVl
-bWh1aXMgPHJlZ3Jlc3Npb25zQGxlZW1odWlzLmluZm8+IHdyb3RlOg0KPiANCj4g77u/W2FkZGlu
-ZyBhIGZldyBwZW9wbGUgdG8gdGhlIENDXQ0KPiANCj4gT24gNi8yNy8yNiAwMjo0MiwgSVQ0cm91
-bmR0aGVXMHJkIHdyb3RlOg0KPiA+DQo+ID4gSSdkIGxpa2UgdG8gcmVwb3J0IGEgcmVncmVzc2lv
-biBpbiBsaW51eC1maXJtd2FyZS1hbWRncHUgaW50cm9kdWNlZCB3aXRoDQo+ID4gdGhlIDIwMjYw
-NjIyIHJlbGVhc2UuDQo+ID4NCj4gPiAqU3lzdGVtOioNCj4gPiAtIERpc3RybzogQ2FjaHlPUw0K
-PiA+IC0gS2VybmVsOiA3LjEuMS0yLWNhY2h5b3MNCj4gPiAtIEdQVTogQU1EIFJYIDY4MDAtc2Vy
-aWVzDQo+ID4gLSBCb290bG9hZGVyOiBHUlVCDQo+ID4NCj4gPiAqUHJvYmxlbToqDQo+ID4gQWZ0
-ZXIgdXBkYXRpbmcgbGludXgtZmlybXdhcmUtYW1kZ3B1IGZyb20gMToyMDI2MDUxOS0xIHRvIDE6
-MjAyNjA2MjItMSwNCj4gPiB0aGUgc3lzdGVtIG5vIGxvbmdlciBzaHV0cyBkb3duIGNvbXBsZXRl
-bHkgd2hlbiBydW5uaW5nIGBwb3dlcm9mZmAuDQo+ID4gRmFucywga2V5Ym9hcmQgTEVEcywgYW5k
-IHBvd2VyIGJ1dHRvbiBMRUQgcmVtYWluIGFjdGl2ZSBhZnRlciB0aGUNCj4gPiBzaHV0ZG93biBz
-ZXF1ZW5jZS4gVGhlIHN5c3RlbSBoYW5ncyBhZnRlciAiU2VuZGluZyBTSUdURVJNIHRvIHJlbWFp
-bmluZw0KPiA+IHByb2Nlc3Nlcy4uLiIgYW5kIG5ldmVyIHJlYWNoZXMgZnVsbCBwb3dlci1vZmYg
-KEFDUEkgKlM1KS4qDQo+IA0KPiBBIGZldyBxdWVzdGlvbnM6DQo+IA0KPiAqIFdoaWNoIGZpcm13
-YXJlIGZpbGVzIGRvZXMgeW91ciBHUFUgdXNlIGV4YWN0bHkgKGEgZnVsbCBkbWVzZyBsb2cNCj4g
-c2hvdWxkIGFuc3dlciB0aGlzKQ0KPiAqIERvZXMgdGhlIHByb2JsZW0gaGFwcGVuIHdpdGggYSB2
-YW5pbGxhIGtlcm5lbCBhcyB3ZWxsIChpdCBtb3N0IGxpa2VseQ0KPiB3aWxsLCBidXQgd291bGQg
-YmUgZ29vZCB0byBjb25maXJtLCBhcyBoZWF2aWx5IHBhdGNoZWQgdmVuZG9yIGtlcm5lbHMNCj4g
-Y2FuIGxlYWQgdG8gYWxsIHNvcnQgb2YgaXNzdWVzKS4NCj4gDQo+IENpYW8sIFRob3JzdGVuDQo+
-IA0KPiA+ICpSZWxldmFudCBsb2cgZXhjZXJwdCAoam91cm5hbGN0bCAtYiAtMSk6Kg0KPiA+DQo+
-ID4gICAgIEp1biAyNyAwMjowNDoxNCBjYWNoeW9zIHN5c3RlbWQtc2h1dGRvd25bMV06IFNlbmRp
-bmcgU0lHVEVSTSB0bw0KPiA+IHJlbWFpbmluZyBwcm9jZXNzZXMuLi4NCj4gPg0KPiA+IChubyBm
-dXJ0aGVyIGVudHJpZXMg4oCUIHN5c3RlbSBoYW5ncyBoZXJlKQ0KPiA+DQo+ID4gKldvcmthcm91
-bmQ6Kg0KPiA+IERvd25ncmFkaW5nIHRvIGxpbnV4LWZpcm13YXJlLWFtZGdwdSAxOjIwMjYwNTE5
-LTEgcmVzb2x2ZXMgdGhlIGlzc3VlDQo+ID4gY29tcGxldGVseS4NCj4gPg0KPiA+ICpTdGVwcyB0
-byByZXByb2R1Y2U6Kg0KPiA+IDEuIFVwZGF0ZSBsaW51eC1maXJtd2FyZS1hbWRncHUgdG8gMToy
-MDI2MDYyMi0xDQo+ID4gMi4gUnVuIGBwb3dlcm9mZmANCj4gPiAzLiBTeXN0ZW0gaGFuZ3Mg4oCU
-IHBvd2VyIGlzIG5vdCBjdXQNCj4gPg0KPiA+ICpBZGRpdGlvbmFsIG5vdGVzOioNCj4gPiBUaGUg
-cm9vdCBjYXVzZSBhcHBlYXJzIHRvIGJlIHRoYXQgdGhlIG5ldyBmaXJtd2FyZSBibG9iIHByZXZl
-bnRzIHRoZQ0KPiA+IGFtZGdwdSBkcml2ZXIgZnJvbSBjbGVhbmx5IHJlbGVhc2luZyB0aGUgR1BV
-IGJlZm9yZSB0aGUgQUNQSSBTNSBwb3dlcg0KPiA+IHN0YXRlIHRyYW5zaXRpb24uIE5vIG90aGVy
-IHBhY2thZ2VzIHdlcmUgdXBkYXRlZCBpbiB0aGUgc2FtZSB0cmFuc2FjdGlvbg0KPiA+IHRoYXQg
-Y291bGQgZXhwbGFpbiB0aGlzIGJlaGF2aW9yLg0KPiA+DQo+ID4gVGhpcyBpc3N1ZSB3YXMgcmVz
-ZWFyY2hlZCBhbmQgdGhpcyByZXBvcnQgd2FzIGRyYWZ0ZWQgd2l0aCB0aGUNCj4gPiBhc3Npc3Rh
-bmNlIG9mIENsYXVkZSAoQW50aHJvcGljIEFJKS4NCj4gPg0KPiA+IEJlc3QgcmVnYXJkcywNCj4g
-Pg0KPiA+IEJlbmphbWluIE1hYXMgDQo+IA0K
+This is a set of small improvements to debugging and error handling in
+amdgpu driver. Please consider each patch independently.
+
+Michał Mirosław (5):
+  drm/amd/display/amdgpu_dm: show error names
+  drm/amd/pm/smu7: make SMU message reports more readable
+  drm/amd/pm/smu7: return error on message send failure
+  drm/amd/amdgpu/cgs: Avoid redundant copying of firmware filename
+  drm/amdgpu: debugfs: avoid extra EOLs in amdgpu_gem_info
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cgs.c       | 54 +++++++++----------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c    |  3 +-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 40 +++++++-------
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   | 20 +++----
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c  | 12 +++--
+ .../drm/amd/pm/powerplay/smumgr/smu7_smumgr.c | 25 ++++-----
+ 6 files changed, 76 insertions(+), 78 deletions(-)
+
+-- 
+2.47.3
+
