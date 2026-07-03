@@ -2,65 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cX+yIO+YR2p2bwAAu9opvQ
+	id GzqBCWspSWqFywAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 13:11:43 +0200
+	for <lists+amd-gfx@lfdr.de>; Sat, 04 Jul 2026 17:40:27 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA03B701A88
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 13:11:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5084B707DF8
+	for <lists+amd-gfx@lfdr.de>; Sat, 04 Jul 2026 17:40:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=CtOD0Ip6;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=jaV+6YTM;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none);
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F8BA10F7A9;
-	Fri,  3 Jul 2026 11:11:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3075C10E0B1;
+	Sat,  4 Jul 2026 15:40:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C730310F7A9;
- Fri,  3 Jul 2026 11:11:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E98510F7B3;
+ Fri,  3 Jul 2026 11:18:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=mWhG/3B5p+cytMrHUS2CX7qSff04CYcetqlRRCHBSkM=; b=CtOD0Ip6idv4wU06MB+2dM9hlw
- NbGjwIzxWDu38Tobx0NODliiarFl4/RPYplorwMzX2H/74cz/KjPLkmout/na1tN/MYu7705Gy15G
- VM9L6pQ5Ul1BP9T9QKgf3U44ZhAX2rPdJ20unt9qNX5RFepy6wnXvbHE5LgP/XWU7cM81DGSjvJR6
- OYhk3lOhpYYiSKEm6wDv6TPsxUs23F2kJZiYGc12Fr8nc6/3nEIUZbgkm+8vJq/UD6plAsRcYT4eK
- F+iykSo6oiJ2zSXhenUZcD9okNUebF10f0ALRBBBsLnbhPz04vVFhXnLh2XhED6PdpBxzWtw8vnGM
- VCLiXZRQ==;
-Received: from [178.139.163.86] (helo=[192.168.1.126])
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=XO41EM9tVb7m+F1IE4/cZwrXVnDnScz819jSskznFwo=; b=jaV+6YTMJ5HTQPCdpk0O+PZwLj
+ /JZNMp7cRJle8J1LWYX6gjIWWoqaKBaGZId9uR3/QHjBgAwilWQNsUHWDJ1IQOcSZbpd5VQ2WHsDx
+ fBmwmWyYHaPMmBAA7cV7wlx5il02qntESXJS+q3jQmdS24ra1Tmae3BsFT9rXpIdWGsn4NDGIfRN0
+ QfSD2oXgDJETDwluhPjETm4uo/tO2RtppVXIfnAVStOldnG/05JomvlxvLzr8YBDAaDQC49VbXh6g
+ gv57FhbVJuwvDmyP+RykA8UdZusO+6oipr73fUHEjh1SywWT2FQztFWjO+Yj8vqg727Q24on36Fna
+ NPuMaqjw==;
+Received: from [179.125.94.247] (helo=quatroqueijos.cascardo.eti.br)
  by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1wfbnx-008STX-6Y; Fri, 03 Jul 2026 13:11:33 +0200
-Message-ID: <a4d0034a-4aec-4880-86a7-699390e21a06@igalia.com>
-Date: Fri, 3 Jul 2026 13:11:30 +0200
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wfbv5-008ScI-Cg; Fri, 03 Jul 2026 13:18:55 +0200
+Date: Fri, 3 Jul 2026 08:18:48 -0300
+From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+To: "Sokolowski, Jan" <jan.sokolowski@intel.com>
+Cc: "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>,
+ "siqueira@igalia.com" <siqueira@igalia.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ Christian Koenig <christian.koenig@amd.com>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>,
+ Natalie Vock <natalie.vock@gmx.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ "kernel-dev@igalia.com" <kernel-dev@igalia.com>
+Subject: Re: [PATCH i-g-t v3 0/7] add dmem_cgroups test
+Message-ID: <akeamIYrRSTph5St@quatroqueijos.cascardo.eti.br>
+References: <20260702130108.1397444-1-cascardo@igalia.com>
+ <IA4PR11MB9251D24975F81CFD242F88F299F42@IA4PR11MB9251.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm: Guard DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE
-To: Robert Mader <robert.mader@collabora.com>, dri-devel@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
- Daniel Stone <daniels@collabora.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Uma Shankar <uma.shankar@intel.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>, Simon Ser <contact@emersion.fr>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Leandro Ribeiro <leandro.ribeiro@collabora.com>
-References: <20260703073230.19982-1-robert.mader@collabora.com>
-Content-Language: en-US
-From: Melissa Wen <mwen@igalia.com>
-In-Reply-To: <20260703073230.19982-1-robert.mader@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <IA4PR11MB9251D24975F81CFD242F88F299F42@IA4PR11MB9251.namprd11.prod.outlook.com>
+X-Mailman-Approved-At: Sat, 04 Jul 2026 15:40:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,112 +79,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.49 / 15.00];
+X-Spamd-Result: default: False [1.49 / 15.00];
+	DATE_IN_PAST(1.00)[28];
 	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,vger.kernel.org,lists.freedesktop.org,amd.com,collabora.com,intel.com,bootlin.com,emersion.fr];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,igalia.com,amd.com,linux.intel.com,gmx.de];
 	DKIM_TRACE(0.00)[igalia.com:-];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cascardo@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,igalia.com:from_mime,igalia.com:email,igalia.com:mid,collabora.com:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BA03B701A88
+X-Rspamd-Queue-Id: 5084B707DF8
 
+On Fri, Jul 03, 2026 at 09:54:14AM +0000, Sokolowski, Jan wrote:
+> I don't know if that's a problem or not, but your patches in patch series are titled as v2 instead of v3, at least that's how I see them.
+> 
+> Jan
+> 
 
+I decided to name this one v3, though I did not call the previous one v2,
+because I have submitted a patchset earlier that was on top of Thomas
+Hellström patchset.
 
-On 03/07/2026 09:32, Robert Mader wrote:
-> The client cap is currently advertised unconditionally, even for drivers
-> that do not support plane color pipelines. If clients supporting the later,
-> like Wayland compositors or tools like drm_info, enable the client cap on
-> such drivers they will be left without both color pipeline and the legacy
-> properties COLOR_ENCODING and COLOR_RANGE, effectively breaking YUV->RGB
-> conversion support.
->
-> Prevent that by only marking the cap supported if there are actually planes
-> with color pipelines.
+I think it tracks the history of the patchset better. I am sorry if this
+got confusing.
 
-Hi Robert,
+Cascardo.
 
-I think Maarten probably wants to take one last look.
-
-But just to add that this approach looks good to me. Thanks for working 
-on it.
-
-Reviewed-by: Melissa Wen <mwen@igalia.com>
-
->
-> Note: while the color pipeline replacement for the legacy properties is
-> still under review (1), we can assume that it will work as a drop-in
-> replacement. That means any plane on any hardware currently supporting
-> the legacy properties will be able to offer a functionally equal color
-> pipeline and there will be no technical reason keep using the legacy
-> properties if both the driver and the client support the new API.
->
-> 1: https://lore.kernel.org/dri-devel/20260623164812.81110-1-harry.wentland@amd.com/
->
-> Signed-off-by: Robert Mader <robert.mader@collabora.com>
->
-> ---
->
-> Changes in v3:
->   - Move the new check behind the existing EINVAL ones
->   - Rebase on latest drm-misc-next
->
-> Changes in v2:
->   - Replace the driver feature with a simple check (suggested by Maarten
->     Lankhorst <maarten.lankhorst@linux.intel.com>)
->   - Expand the commit message slightly and change the title
-> ---
->   drivers/gpu/drm/drm_ioctl.c | 14 +++++++++++++-
->   1 file changed, 13 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
-> index e2df4becce62..9039a39c4324 100644
-> --- a/drivers/gpu/drm/drm_ioctl.c
-> +++ b/drivers/gpu/drm/drm_ioctl.c
-> @@ -373,13 +373,25 @@ drm_setclientcap(struct drm_device *dev, void *data, struct drm_file *file_priv)
->   			return -EINVAL;
->   		file_priv->supports_virtualized_cursor_plane = req->value;
->   		break;
-> -	case DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE:
-> +	case DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE: {
-> +		struct drm_plane *plane;
-> +		bool has_plane_with_color_pipeline = false;
-> +
->   		if (!file_priv->atomic)
->   			return -EINVAL;
->   		if (req->value > 1)
->   			return -EINVAL;
-> +		drm_for_each_plane(plane, dev) {
-> +			if (plane->color_pipeline_property) {
-> +				has_plane_with_color_pipeline = true;
-> +				break;
-> +			}
-> +		}
-> +		if (!has_plane_with_color_pipeline)
-> +			return -EOPNOTSUPP;
->   		file_priv->plane_color_pipeline = req->value;
->   		break;
-> +	}
->   	default:
->   		return -EINVAL;
->   	}
-
+> > -----Original Message-----
+> > From: igt-dev <igt-dev-bounces@lists.freedesktop.org> On Behalf Of Thadeu
+> > Lima de Souza Cascardo
+> > Sent: Thursday, July 2, 2026 3:01 PM
+> > To: igt-dev@lists.freedesktop.org
+> > Cc: siqueira@igalia.com; Thadeu Lima de Souza Cascardo
+> > <cascardo@igalia.com>; dri-devel@lists.freedesktop.org; amd-
+> > gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; Christian Koenig
+> > <christian.koenig@amd.com>; maarten.lankhorst@linux.intel.com; Thomas
+> > Hellström <thomas.hellstrom@linux.intel.com>; Kamil Konieczny
+> > <kamil.konieczny@linux.intel.com>; Janusz Krzysztofik
+> > <janusz.krzysztofik@linux.intel.com>; Vitaly Prosyak
+> > <vitaly.prosyak@amd.com>; Natalie Vock <natalie.vock@gmx.de>; Tvrtko
+> > Ursulin <tvrtko.ursulin@igalia.com>; kernel-dev@igalia.com
+> > Subject: [PATCH i-g-t v3 0/7] add dmem_cgroups test
+> > 
+> > v3 TLDR:
+> > Sending again for fixes when running on top of Xe.
+> > 
+> > This patchset is based on the work of Thomas Hellström at [1] and a
+> > followup I have submitted at [2]. This is now a v3, since I submitted [6].
+> > 
+> > With this version, I reverted the order in which to apply the patchsets, as
+> > this one adds the infrastructure and the drivers mechanisms, and a test for
+> > dmem.current and its behavior around dmem.max that is currently
+> > supported
+> > in the kernel.
+> > 
+> > As for the new dmem.max eviction behavior, introduced by [3], it has been
+> > pushed to a branch at [4]. If preferred, I can submit the two patches
+> > independently.
+> > 
+> > I have run the tests, including the ones that test dmem.max eviction
+> > behavior on a system with a 1GiB VRAM amdgpu card. Rodrigo Siqueira
+> > helped
+> > me run it on a Xe system. We have applied the patchset at [3] on top of
+> > current linux origin/master [5], with a fixup for the amdgpu driver.
+> > 
+> > Now, for the changes since v1 [2]:
+> > - Changed the test name from drv_dmem_cgroups to dmem_cgroups.
+> > - Have system includes before igt ones.
+> > - Documented the current SUBTEST.
+> > - Changed free_vram driver hook to only release a given BO. This allows for
+> >   the eviction trigger by a new allocation added by write_eviction_nonblock
+> >   subtest.
+> > - Changed allocate_vram to keep more state necessary for releasing a single
+> > BO.
+> > - Added a global free_vram helper to free all allocated VRAM.
+> > 
+> > Compared to v3 of [1]:
+> > - I have kept wait_for_usage_drop as release can be lazy and we test for it
+> >   on test_current SUBTEST, but had USAGE_DROP_TIMEOUT_MS be a little
+> >   longer.
+> > - Changed BO_SIZE and EVICT_STEP to allow for more than two eviction steps
+> >   on a 1GiB VRAM system.
+> > - Reduced USAGE_SLACK to avoid false positives, but still allow for some
+> >   page table accounting.
+> > 
+> > Compared to v2 of this one [6]:
+> > 
+> > - Ignore -ENOMEM and -ENOSPC when trying to fill VRAM.
+> > - When limiting max memory, allow for some slack, as there might be some
+> >   overhead.
+> > - On Xe, allocate GEM object with no deferred backing, and skip binding.
+> > 
+> > [1] https://patchwork.freedesktop.org/series/163935/#rev3
+> > [2] https://patchwork.freedesktop.org/series/166496/
+> > [3] https://lore.kernel.org/dri-devel/20260611173301.17473-1-
+> > thomas.hellstrom@linux.intel.com/
+> > [4] https://gitlab.freedesktop.org/cascardo/igt-gpu-tools/-
+> > /commits/dmem_max?ref_type=heads
+> > [5] 502d801f0ab0 ("Merge tag 'erofs-for-7.2-rc1' of
+> > git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs")
+> > [6] https://lore.kernel.org/dri-devel/20260623174319.4138648-1-
+> > cascardo@igalia.com/
+> > 
+> > 
+> > Thadeu Lima de Souza Cascardo (4):
+> >   lib/xe: Introduce dmem driver and implement Xe support
+> >   lib/amdgpu: add amdgpu_cgroup_region_name
+> >   lib/amdgpu: add amdgpu support to igt_dmem_driver
+> >   tests/dmem_cgroups: add test for dmem.current
+> > 
+> > Thomas Hellström (3):
+> >   lib/igt_cgroup: add cgroup v2 and dmem controller helpers
+> >   tests/cgroup_dmem: add dmem cgroup controller test
+> >   lib/xe: add xe_cgroup_region_name() helper
+> > 
+> >  lib/amdgpu/amd_dmem.c   |  99 +++++++
+> >  lib/amdgpu/amd_memory.c |  25 ++
+> >  lib/amdgpu/amd_memory.h |   2 +
+> >  lib/igt.h               |   1 +
+> >  lib/igt_cgroup.c        | 638 ++++++++++++++++++++++++++++++++++++++++
+> >  lib/igt_cgroup.h        |  56 ++++
+> >  lib/igt_dmem_driver.h   |  25 ++
+> >  lib/meson.build         |   3 +
+> >  lib/xe/xe_dmem.c        | 143 +++++++++
+> >  lib/xe/xe_query.c       |  32 ++
+> >  lib/xe/xe_query.h       |   2 +
+> >  tests/cgroup_dmem.c     |  92 ++++++
+> >  tests/dmem_cgroups.c    | 245 +++++++++++++++
+> >  tests/meson.build       |   2 +
+> >  14 files changed, 1365 insertions(+)
+> >  create mode 100644 lib/amdgpu/amd_dmem.c
+> >  create mode 100644 lib/igt_cgroup.c
+> >  create mode 100644 lib/igt_cgroup.h
+> >  create mode 100644 lib/igt_dmem_driver.h
+> >  create mode 100644 lib/xe/xe_dmem.c
+> >  create mode 100644 tests/cgroup_dmem.c
+> >  create mode 100644 tests/dmem_cgroups.c
+> > 
+> > --
+> > 2.47.3
+> 
