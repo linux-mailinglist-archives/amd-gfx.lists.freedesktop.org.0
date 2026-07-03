@@ -2,50 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1Ib/EmMpSWpwywAAu9opvQ
+	id UUbRHGYpSWp3ywAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 04 Jul 2026 17:40:19 +0200
+	for <lists+amd-gfx@lfdr.de>; Sat, 04 Jul 2026 17:40:22 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88C1C707DC1
-	for <lists+amd-gfx@lfdr.de>; Sat, 04 Jul 2026 17:40:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A48F707DD2
+	for <lists+amd-gfx@lfdr.de>; Sat, 04 Jul 2026 17:40:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmx.de header.s=s31663417 header.b=hhLQwlX1;
+	dkim=pass header.d=gmx.de header.s=s31663417 header.b=TTs4BOpX;
 	dmarc=pass (policy=quarantine) header.from=gmx.de;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72D1B10E086;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA08B10E0A8;
 	Sat,  4 Jul 2026 15:40:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E856010E63D
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Jul 2026 16:32:55 +0000 (UTC)
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D18EA10F857;
+ Fri,  3 Jul 2026 16:33:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
- s=s31663417; t=1783096371; x=1783701171; i=natalie.vock@gmx.de;
- bh=li6JD5BzxFrXyhk2BReSodr3KolfnDlr1k9+PHB66B4=;
+ s=s31663417; t=1783096372; x=1783701172; i=natalie.vock@gmx.de;
+ bh=Rm+VRdqIFplNcwupWSFVQ20wUcYY6y1Q1wNpZTO2Mbw=;
  h=X-UI-Sender-Class:From:Date:Subject:MIME-Version:Content-Type:
  Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:
  cc:content-transfer-encoding:content-type:date:from:message-id:
  mime-version:reply-to:subject:to;
- b=hhLQwlX1jkeKN24vaTbhVBSQ8Ji34v/69i5AhHRynzVwVEYWLgJj0zyjisfJ7dVy
- gpOo7Kc7rLxq5Aq06FNKnCId4UQITMuBrBXqw5VG55koJ7BReGBjilHEJTzu4YSUv
- qFJgleyebEsBsRfgdsMvaIX3QxpPlBT64yfBgB/2VbhWMUzvamaK1Tz3KO+g1Lipn
- fKtcPTicikuWkuWtT+YAdaFkuQiPSQ0y05MXNmw9B+GFLUH4eWZWBd6xMWeZon4tT
- fSu8R9lNzUzVy1SUe9OyISPVZSLZcCQKVfP2mGKawsfCQlGKiICqZwnW7Y5xEWRvG
- fT9nx+rOMvnEMxyd9w==
+ b=TTs4BOpXo3ZnGzVGYlGMwyScuDa6GZLXG6wIg1tzixe8U19p+LOdSS8hEFiLWVxl
+ 2qNC8/II3yBzq2+TMQ9YSYDqlDkPGf0BSGq+gVRvnqAVOSaWgbrvquHjC3cIjd4Im
+ 0pTX85+NEVbK1nq1w1XF6tRRHFiWfpsRT653L9GRunSBqK5sRvLBiObrrk/2i9UEg
+ socRR7dO4svJlq9ZID3/5eb+ACw30JwudpnBMJ7lqtE5U5PCUsaY2sB/4RUkZmuCP
+ 8YYwGOw/x296qwVD1htRX5diqEXx7oNesGsUfoBK05b9gBBmsLKNnpGGw5zXkfoNq
+ 8Pd2HeOMBiS11CHuRg==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from client.hidden.invalid by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MV67y-1wV8RY40hS-00TsuG; Fri, 03
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MgesG-1xKGtj3awO-00fKxO; Fri, 03
  Jul 2026 18:32:51 +0200
 From: Natalie Vock <natalie.vock@gmx.de>
-Date: Fri, 03 Jul 2026 18:31:25 +0200
-Subject: [PATCH 05/10] drm/ttm: switch to
- ttm_bo_lru_for_each_reserved_guarded for swapout
+Date: Fri, 03 Jul 2026 18:31:26 +0200
+Subject: [PATCH 06/10] drm/ttm: move zombie handling into ttm_bo_evict
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <20260703-ttm_2_drm_exec-v1-5-43685ac1286b@gmx.de>
+Message-Id: <20260703-ttm_2_drm_exec-v1-6-43685ac1286b@gmx.de>
 References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
 In-Reply-To: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -64,90 +63,90 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  amd-gfx@lists.freedesktop.org
 X-Mailer: b4 0.15.2
-X-Provags-ID: V03:K1:TyKwjnSWrx97wHMmNHlof2HVSIzmL9oN3qV5qkMyaHWrnjXtP2U
- 7yHv1eoullH+6Rpgpi4Lxx8lVWxKqYkrwLDqN3o/sdijuyLuNBCaJO9g4tYnxComAkjfLd5
- rULbVL272mY+pG8MoUPIExCqsae445mtAOmw32CFJi2QL9HfCl7XbkyBLUaPOL5VJ2KwZg3
- RO8Qt9obHkSdHNhEnVxlg==
+X-Provags-ID: V03:K1:srm/kuzYQ4VjFw563aMDUD/lTSVxS4VTYTlxdzxHf55AUusOIBi
+ EukvUwg7NV3uL60mZQsubopTbKzQHTRwjHkLrRjT1Wa9qMYeIBNgQs5NnofmYfdJNLNfZNF
+ MLwV9QH2Ho5zLPCISlS+vPXoXCMOG2lHEMQ+kKkJGKGaxIFxtfG3Yhx/AXfOsT0vzhAg9Xi
+ 0OmL5dsi2t00x8eRPb70g==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:uqo61cKQ6gY=;+YGARjrHCnQWijs1LsexEELFWYe
- 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
+UI-OutboundReport: notjunk:1;M01:P0:yg2Xj8zjZH0=;ozpV9xt2PXs6MYW3RwrP+mIAfj4
+ NKQOwdX487iytuGg24+6JayVPLaXLvYNrZ2b1KgU6Vqno6x+54so6dZdz1CE11a3ovXk/fPN6
+ WI5E8m0FJnRlDsMJ0hqDBKws1RIhGUZuX6CiP2p+Q96XYhgebWyYEfTzk/SDqzoBr7Yxad2av
+ SRnFcMjVn82NNtO54qxSTRD206UnTEHdGyfuKtL1pw+mm7VGxph5r3PacujWU67ZzR/O9n6U8
+ qioc9j5bE3q/V+i2M9ARrhQ2UkKcgG2MXQaPFsh7JIuT/jm1Hde9qasMDpADqqeXJofQDP72q
+ VxW/kwXxo40+mrm0TPYl7/ZowIdKb5wBxzfmPKJaqoBlqoX8BRyDMndyQakXlgjpjZDoATKOj
+ kpmAoe/7/OEqPVwiJfiWs04X5a/kbCtletZ8+fMHY/5VC1XzUlYIMl4iLMjaTYge/7Gp+TIaV
+ LaVajwCX6C0jaxGAQHZuTu0K8XleEVtOzi11o0msDitQbjrGLnjO0K0OxFxnon7ziogce33mp
+ 9jIpCIFH9daBn+JrRPrcwPtMUU2J2jhlFi+7I18HE+ZC1I1bxkFitfqrSXeIeeS/3WCnT4CW5
+ cpeyC9BuyCIIHxFOZclN+ATgqcg54N5bu/KgBf0Vz2yftbVDp23z80QPZ4aqQfeZ25DuMqlj2
+ BETKEBHlc3WQkvlkx4Eq0YwxhAOM88mntefxlpSw5wkaCoqVhAUuF6dlieOObh9gcONSWDakQ
+ Kl9cA7GffOPtk6CpjF51JcKEM50f2HOpqlCv+nq0FmSul1/ppcKfdEblJrpUPYevBKrnpMTgF
+ lpEwpxU4THsXPdykO+GV84gbURahtgyoqCSt29jzgEk4BxFbKgfCB62M5eKvDEUwpIgxsN3/h
+ zpZBJp80MmYA07pBcyc/OR/wS9OsUwGIeDJ5HA+TbnyzL2wvHabDAoyCWCZ3AMBkG1HGlXKIX
+ +BjpedzKBuSCkF4+JYJxdl7sF6xSy/2x0dqhrSAg3jcNUMu8AX2wAgab8enVOX5wStfs+mc/I
+ 97w1voY4s1pMcoUe+vIG3/OnySLB/wDtX605g1poEeMIoSMvpdHmYiipQOQwNLOpcLu6k8EGV
+ OSXIO+DJOeKp5wuTYK7T1exaia3Nh4B/DhkvwT+elpv+A5T5nl2JqFvEsSjx+Crz+AwG85kqH
+ ZNw40PkeLZ6OOIuS/gXPOtWTV3MyMN4/4dt0vaXJHJaAdN1C1nV+93HbfbdUJg0N7fvIE+xK7
+ 1aK4K6XGdYvXv0MVqY+LQ7N/sRnjV8InscQZGV8qQvW4oRudLDGJtijnWwIYUyfugUjUuG8rI
+ erCD2bFZoVnyMEF1C/NUssz/JN/asQHCxqLJMST+xbce9UxXT/vDAJuuwe70eU9sNZeOp/Hqz
+ g8WvBOL+nA6gF8BfBlFK698XsEDAhdFUIWpzsQQkthnson7Qm+r4i+4P+PfIqmLTletBwd9Es
+ aegR5MZwgorMnbAAVfLNFl0fg6XRyZvYU7TqPXYiQm1q+aWGFVg0ePRbc0DWnIS83+F4brPfa
+ YdxCxMWd/cEEkKkzjOCb5DQtZfLLJKov73jAp3rg/mJ71SvG4Oax+mOX3guAxrmazZZ3tOhry
+ 7R6Ug6q0Rqn2jzwU2sqXJz+EqrF97P+pwh1UizDr57wSaxPBG2F7++XC4xSHsictNz/6Cpxkj
+ fXI2P2YphKVT/h+6j/shYcc7bXQAPLAmzIx8YWqBFi6qwOGxU1klEJt8uaGy9xGtQIZq+y+j8
+ ND83xZLESIROlEbZ8tE2n8tNXrZFclsWdLyQhNEdt33B6/O/VaFqsJHL7xNCE0bMCYIMHFV5z
+ yuBFjvadgMGFocSqQffgb0mBGEGFRAQ3gf4iy2epE7lznLwjms4wHBZkM0PFbHcqRFAiPyj30
+ ewg/QBDlmOt0/s2AKA6XwWtc0qlOBWAu6nbn9PWzoy83Yrdb67qaYt29PGf1diDBVQ900XrOS
+ PnF6fjrbIIIXTdeqXJuivMWZETRVtyGdkm9xg9RYB8SXIg5Km2tVa1pkxZ6x4H1ZCcCT9HurL
+ R1GhLJfYYRzKOIDQVY5JTxpCJSb30earL5a3KAh/xjJJCGvLUFjl5pzOwLDke25YrMZb1wvT9
+ 0VXWOipPQKo29sTXgiG6K8bh65IkTZdSVTTTSVfP1HTr4883SDzRBNtNO7QbMbG22aXb9/kW7
+ mtEl9Yrodu7Ke+HVtGHvRbUKq+TnsFanpWB5KJKx7abE3+q/We6Gtsbu2J0iZTB9btOE2L/z3
+ FEMO+ThxG/Riwry8kUC67JQO88OzHUkFzZwgVaNpI+I7VRaVlNtNoomv96rojtXZl/2PqC30h
+ lyAal7pHQhD5yDGLmOzxwNVbaIHSmBd4KloLBswEOtR3DbGUIoJnwznnZCPLBNDpx30/CzUJb
+ kEnVxJ5kq0RQCGQUMM6ebaZsA7Dj3QmNuZRkrhSNes+w3KyYPcODnZ55twH6+BmDjwMvO+x0P
+ 3BNji01j7uFsOGeS3b+HNIAHr1QQKHoYfRLizlkBB5Wjxe7jHng1b9Z8aglPbWdr5VyDaqaJu
+ DWdDk+mv4PM2pirWoOlaVFmwWO2i6gzkUCf3VHx0sTcBVJCPQGZJT3N3k9MEBe0hUAZYXivR8
+ byePun2Ma0W+bIWwKF8fgrN7j9oQ3lYNDKEfN9B1TsRNdvuUSxJoqybVWkVuiDjT5vOrjEG9s
+ Qy66Gv9aMDXNJ6u07sz4RVzxcdTzvsY/p4AblhEQYDEblsLy0hjvD2W/e2AiFH9TGryQ171s7
+ /NrNxl1Cx7sLrjkM7BUr0CqOHbax5/GtDKaBY/I8o+xh0DSPELhb6qc8UF1SinUgWuqLNQuPC
+ IfqOoHNO+ls8IT0nEr4B93JOs2M3ZYMpshSi/vC3WGQmdTYJu4Gbn1aA61sevP+G5bOXclIuX
+ v+AhgnKIdjqFnhfnRufDI4CTo7IZ/hTMbx8NrqEEcvdV2hkgkYwXs8cTpP6DQUaU/OOIswhJa
+ vj3g4xOPBU7S7K4rlkytufHZgNYM0FFwR8Lj+7bamQusQMepoFWGLPJQOqWCB8oP7UbpLkiT2
+ UUh+BhwIzIiMnZkEfMTbEULbGAfIDMkp19HxAIbGBTQVdB8X0Rm1gOi+DRMWB/LOHUTX+x9Sn
+ vhkuugSexUhc1jiuEuPQvhdoJOqy2mOf8H+fc+PDABcqsHYA4nfrKg4nror9Op7XcI83jejAI
+ CMAhYBwlpSQjggrLbXPUXbEMZ3YSXwwMEM5mBhqV8WH2lL11tgfXQyew0nggjpGbRJGafrNsB
+ jSCEJCIuo6+Mo3w+7kRqOTx/9p6Gb3sv8Bz1YXJshmK8M+qBWHDh9mj6STRzGfoteMSEucQwJ
+ ESmsYGxewxrj/Sjo5Gm/gewbYk8OolD5BfK/LOoCaEerNucMpPJpxvm9wsc4mbuxY06JizJCn
+ Cdn3DXgZZp1OgExwZ9GqmeEW7KCrwSgUbW3qVNcEE8rub7Y12M2icNIzro22qcTs47KvbBbl/
+ aDr+iboxUxS2L1hCFVeeUhKNnh/uduKJEfzKycSI1XTjNvDyKRv0cl+TdHoaci5tdEhQosey8
+ +UlEtn638fqDywd9/HE1nT4IKm4MaC1X99i5IocF4CONRFyhrPNPslaFnoMQI4UX/ZhWHzMbE
+ ZqVW2I/eNOPgZDBKBesy0hOqT/MHWPYUi8gTw2wK0SexUOnm2WYoXEPUd0JCVtFAfF0SJmMsz
+ xf3aT/ygivoZ/lSbKJK8ffBVejcXC/SL0PhoWOLFYKi+9A1o0+Vgh5zAZPe09tnXdNyu+52rT
+ SysgOjlp4pcV1xEZU1ZJtnuQMHg+9ygTMwteRa9zYZfbsNT1FcaAxt7AXpzxxldMOqqMbIc4h
+ 790EYwvdNu5rxOwD0Rmn2FEqCh1H13YpOC9k2RNBzYuhM4S64nV4k+2Tuifu+vSn7HyHL6P/P
+ 49KahdaRLFy/l8mIgQOe9W0GI/914kTS+shXlsOcH/iQx42CX2rJylHDIUlcdJCfFhFyio3Zc
+ +aW36OGU43lwkYwQ21QaNkF2aAbFBilCxqZO7JECmXqjOw5l61xqVlK3yMQ5Weq1dq3XCmdha
+ IPw1iugEct6hUrjbkY/UPVk42pjk9Y71m1eJr+GSUG65688XMEt04i9wm/Rqvgx8a5hz2Zjch
+ AOhoxsn9YJmH7qvpfw8039Hy48aRWs3tgyh1m+8l0EiU8plAdVd0I2YsUzzp1T8tx9a3fMigh
+ TTQREKm2TzXiKucAWcA8YhEOtPqnzZxRmD/Yww2XiwLXriZ7IQ6ftMXsGHthoUS8GUNxlS2Ry
+ cCcgPqXkvfrtFRLfKsWyBL48FbVhbKttIin4Hss6Nv4VgUNS91B/39qS9n2xQMyBy4tMZdPxS
+ dCMBGKgAW8esrM7dvc5CJ+2Y6DkO57Zs9ZG8IV+jRmcZ9HBaRjOTIcXJx6NE3Np7EOmqY7v2d
+ yk280twNhYptbP8P7o9FShKAq7k4RbgEOK/aeXJ+AM7xrZUvnfFLJOYrsRhVRcyH07rHRbwDF
+ A2q9RHWbIHVLdfC/r326hWfApSTk7epzTTE7euFlbvUv59kJDwjF9YtEyi5KMogWpT/HaKErU
+ /bEaQbAdEBDPkr1GfqkCjOHPdj7tH2c3AhgXr+zTKG97CceWCN3YKO+S82nonrzp02oA4sKkZ
+ QaGKQL2+rfHdqlrgnWG9Pin2HUUvE7xj+0mvFHZQVN+KBOAWev+3KBUVKTcWGzS6VF27cmRJ1
+ rgX/RW/c9wYUnEotGskLejKkWPggPeaVTEKqoTd0BGNud6iGgz55BbLD/2aFO6oZjGQVVz0HQ
+ EQCjmSlYWDOigzmjcxHpexR5DpPCQMKo4q7qz26hEB/5qFmaOSsg4ZD2/Nn5t+8dKr5d9IahV
+ zSbBQGYjDuXtrTgAm2TVVcVN0eae/G/l8j+i6nM1SyvFM60oDsywIBvzet2X9OKiNR8iiOyM5
+ 3fhEl+sYakY91ZUrBz2D/KcMvIUZB/WphtgvGHVyeZCi7EXbZCeS3EidzNcBvcyo8Br5GQG7/
+ nvU0lfELxldOr9VVhluW/2kR7DAx/J8FUpTpRMMKXwa6iqp/ITVYrbr8sPOAwbKKPap+BfzLU
+ zg/LKhF9h1lgiWmDHRbOhdKjW6hB6ZTFtRx/RWrarL8Bt2mcGPaXamNRO3RvE14NPyQzCUCif
+ qFML31n+NHUj6CcO7n9GE7YcoYWwEleaYCcmRc/eHCXPKl4j+R9C1wfYOq+p69aHNTUBr2s1L
+ uQteLky+ewpSyXuyZ6Lxj4Fi7C/T/v4EsmRyRGGZwqHPSt0vg84IisQ9fhbaa8svZU9SHLQ1/
+ WxrvTqamHz0X3ExudMItZEQcCg92BctQEdpRRPZtwpvkHJ1UE1tMWqCC3sur1XqZ9vodXsrZO
+ kPh1RrsScLLI8lh4hoK7+Ys9EaYG62Iab/YCr/Ty7twS2/PuZdkhCU+ReD9mvHAtfGotxoFEN
+ tsMwgQFEpQ6p43Vt6Uro8PI7FmSPCxCRVwZ6kTgC/DbLrGFSqKr2TWNmDticlEosIscUDFFVz
+ 0hCflrSBtWOkglEhXz5JF2y5Ter7C7LjQEKc6N/GA2cVolBpa182Sso/JtF1pV3lb+0ad/CDW
+ EnyD6mtU6BCrim4B5N+47ONxOBovxfG4UdohTrVZUxL4Rd822erabgzF/Ynur3IlPNfigQ==
 X-Mailman-Approved-At: Sat, 04 Jul 2026 15:40:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -166,209 +165,95 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[gmx.de,quarantine];
 	R_DKIM_ALLOW(-0.20)[gmx.de:s=s31663417];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_FROM(0.00)[gmx.de];
 	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:christian.koenig@amd.com,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:alexander.deucher@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:intel-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,amd.com];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[natalie.vock@gmx.de,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmx.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[natalie.vock@gmx.de,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmx.de:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:from_mime,gmx.de:email,gmx.de:mid,gmx.de:dkim,amd.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 88C1C707DC1
+X-Rspamd-Queue-Id: 1A48F707DD2
 
 From: Christian K=C3=B6nig <christian.koenig@amd.com>
 
-Instead of the walker wrapper use the underlying foreach. Saves us quite
-a bunch of complexity and loc.
+Both callers do the same thing, so we can trivially unify that.
 
 Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
 Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
 =2D--
- drivers/gpu/drm/ttm/ttm_bo.c     | 58 +++++++----------------------------=
-=2D----
- drivers/gpu/drm/ttm/ttm_device.c | 19 ++++++++++---
- include/drm/ttm/ttm_bo.h         |  5 ++--
- 3 files changed, 27 insertions(+), 55 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo.c | 24 +++++++++---------------
+ 1 file changed, 9 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 1fb8c53da0362..24c52df169ac8 100644
+index 24c52df169ac8..54f01611ec823 100644
 =2D-- a/drivers/gpu/drm/ttm/ttm_bo.c
 +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -1080,25 +1080,18 @@ int ttm_bo_wait_ctx(struct ttm_buffer_object *bo, =
-struct ttm_operation_ctx *ctx)
- EXPORT_SYMBOL(ttm_bo_wait_ctx);
+@@ -359,6 +359,13 @@ static int ttm_bo_evict(struct ttm_buffer_object *bo,
+ 	struct ttm_place hop;
+ 	int ret =3D 0;
 =20
- /**
-- * struct ttm_bo_swapout_walk - Parameters for the swapout walk
-+ * ttm_bo_swapout() - Swap out buffer objects on the LRU list to shmem.
-+ * @bo: The buffer to swap out.
-+ * @ctx: The ttm_operation_ctx governing the swapout operation.
-+ * @gfp_flags: The gfp flags used for shmem page allocations.
-+ *
-+ * Return: The number of bytes actually swapped out, or negative error co=
-de
-+ * on error.
-  */
--struct ttm_bo_swapout_walk {
--	/** @walk: The walk base parameters. */
--	struct ttm_lru_walk walk;
--	/** @gfp_flags: The gfp flags to use for ttm_tt_swapout() */
--	gfp_t gfp_flags;
--	/** @hit_low: Whether we should attempt to swap BO's with low watermark =
-threshold */
--	/** @evict_low: If we cannot swap a bo when @try_low is false (first pas=
-s) */
--	bool hit_low, evict_low;
--};
++	if (ttm_bo_is_zombie(bo)) {
++		ret =3D ttm_bo_wait_ctx(bo, ctx);
++		if (!ret)
++			ttm_bo_cleanup_memtype_use(bo);
++		return ret;
++	}
++
+ 	memset(&hop, 0, sizeof(hop));
+=20
+ 	dma_resv_assert_held(bo->base.resv);
+@@ -466,13 +473,7 @@ int ttm_bo_evict_first(struct ttm_device *bdev, struc=
+t ttm_resource_manager *man
+ 	if (!bo->resource || bo->resource->mem_type !=3D mem_type)
+ 		goto out_bo_moved;
+=20
+-	if (ttm_bo_is_zombie(bo)) {
+-		ret =3D ttm_bo_wait_ctx(bo, ctx);
+-		if (!ret)
+-			ttm_bo_cleanup_memtype_use(bo);
+-	} else {
+-		ret =3D ttm_bo_evict(bo, ctx);
+-	}
++	ret =3D ttm_bo_evict(bo, ctx);
+ out_bo_moved:
+ 	dma_resv_unlock(bo->base.resv);
+ out_no_lock:
+@@ -520,14 +521,7 @@ static s64 ttm_bo_evict_cb(struct ttm_lru_walk *walk,=
+ struct ttm_buffer_object *
+ 	if (bo->pin_count || !bo->bdev->funcs->eviction_valuable(bo, evict_walk-=
+>place))
+ 		return 0;
+=20
+-	if (ttm_bo_is_zombie(bo)) {
+-		lret =3D ttm_bo_wait_ctx(bo, walk->arg.ctx);
+-		if (!lret)
+-			ttm_bo_cleanup_memtype_use(bo);
+-	} else {
+-		lret =3D ttm_bo_evict(bo, walk->arg.ctx);
+-	}
 -
--static s64
--ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo=
-)
-+s64 ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx=
- *ctx,
-+		   gfp_t gfp_flags)
- {
- 	struct ttm_place place =3D { .mem_type =3D bo->resource->mem_type };
--	struct ttm_bo_swapout_walk *swapout_walk =3D
--		container_of(walk, typeof(*swapout_walk), walk);
--	struct ttm_operation_ctx *ctx =3D walk->arg.ctx;
- 	struct ttm_device *bdev =3D bo->bdev;
- 	struct ttm_tt *tt =3D bo->ttm;
- 	s64 ret;
-@@ -1166,7 +1159,7 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct =
-ttm_buffer_object *bo)
- 		bdev->funcs->swap_notify(bo);
++	lret =3D ttm_bo_evict(bo, walk->arg.ctx);
+ 	if (lret)
+ 		goto out;
 =20
- 	if (ttm_tt_is_populated(tt)) {
--		ret =3D ttm_tt_swapout(bdev, tt, swapout_walk->gfp_flags);
-+		ret =3D ttm_tt_swapout(bdev, tt, gfp_flags);
- 		if (!ret) {
- 			spin_lock(&bdev->lru_lock);
- 			ttm_resource_del_bulk_move_unevictable(bo->resource, bo);
-@@ -1183,37 +1176,6 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct=
- ttm_buffer_object *bo)
- 	return ret;
- }
-=20
--/**
-- * ttm_bo_swapout() - Swap out buffer objects on the LRU list to shmem.
-- * @bdev: The ttm device.
-- * @ctx: The ttm_operation_ctx governing the swapout operation.
-- * @man: The resource manager whose resources / buffer objects are
-- * goint to be swapped out.
-- * @gfp_flags: The gfp flags used for shmem page allocations.
-- * @target: The desired number of pages to swap out.
-- *
-- * Return: The number of pages actually swapped out, or negative error co=
-de
-- * on error.
-- */
--s64 ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx=
-,
--		   struct ttm_resource_manager *man, gfp_t gfp_flags,
--		   s64 target)
--{
--	struct ttm_bo_swapout_walk swapout_walk =3D {
--		.walk =3D {
--			.process_bo =3D ttm_bo_swapout_cb,
--			.arg =3D {
--				.ctx =3D ctx,
--				.trylock_only =3D true,
--			},
--		},
--		.gfp_flags =3D gfp_flags,
--	};
--
--	return ttm_lru_walk_for_evict(&swapout_walk.walk, bdev, man, target);
--}
--EXPORT_SYMBOL_FOR_TESTS_ONLY(ttm_bo_swapout);
--
- void ttm_bo_tt_destroy(struct ttm_buffer_object *bo)
- {
- 	if (bo->ttm =3D=3D NULL)
-diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_de=
-vice.c
-index d3bfb9a696a74..e4188e2ee7ab1 100644
-=2D-- a/drivers/gpu/drm/ttm/ttm_device.c
-+++ b/drivers/gpu/drm/ttm/ttm_device.c
-@@ -171,6 +171,12 @@ int ttm_device_swapout(struct ttm_device *bdev, struc=
-t ttm_operation_ctx *ctx,
- 		       gfp_t gfp_flags)
- {
- 	struct ttm_resource_manager *man;
-+	struct ttm_bo_lru_cursor cursor;
-+	struct ttm_buffer_object *bo;
-+	struct ttm_lru_walk_arg arg =3D {
-+		.ctx =3D ctx,
-+		.trylock_only =3D true
-+	};
- 	unsigned i;
- 	s64 lret;
-=20
-@@ -179,10 +185,15 @@ int ttm_device_swapout(struct ttm_device *bdev, stru=
-ct ttm_operation_ctx *ctx,
- 		if (!man || !man->use_tt)
- 			continue;
-=20
--		lret =3D ttm_bo_swapout(bdev, ctx, man, gfp_flags, 1);
--		/* Can be both positive (num_pages) and negative (error) */
--		if (lret)
--			return lret;
-+		ttm_bo_lru_for_each_reserved_guarded(&cursor, man, &arg, bo) {
-+			lret =3D ttm_bo_swapout(bo, ctx, gfp_flags);
-+				continue;
-+			/* Can be both positive (num_pages) and negative (error) */
-+			if (lret && lret !=3D -EBUSY && lret !=3D -EALREADY)
-+				return lret;
-+		}
-+		if (IS_ERR(bo))
-+			return PTR_ERR(bo);
- 	}
- 	return 0;
- }
-diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-index 0fcd5082a7080..bbed63064c9a9 100644
-=2D-- a/include/drm/ttm/ttm_bo.h
-+++ b/include/drm/ttm/ttm_bo.h
-@@ -408,9 +408,8 @@ void *ttm_bo_kmap_try_from_panic(struct ttm_buffer_obj=
-ect *bo, unsigned long pag
- int ttm_bo_vmap(struct ttm_buffer_object *bo, struct iosys_map *map);
- void ttm_bo_vunmap(struct ttm_buffer_object *bo, struct iosys_map *map);
- int ttm_bo_mmap_obj(struct vm_area_struct *vma, struct ttm_buffer_object =
-*bo);
--s64 ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx=
-,
--		   struct ttm_resource_manager *man, gfp_t gfp_flags,
--		   s64 target);
-+s64 ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx=
- *ctx,
-+		   gfp_t gfp_flags);
- void ttm_bo_pin(struct ttm_buffer_object *bo);
- void ttm_bo_unpin(struct ttm_buffer_object *bo);
- int ttm_bo_evict_first(struct ttm_device *bdev,
 
 =2D-=20
 2.55.0
