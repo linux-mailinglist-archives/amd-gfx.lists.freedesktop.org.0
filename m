@@ -2,135 +2,142 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0rXJMditR2qEdQAAu9opvQ
+	id hsj3NG4pSWqSywAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 14:40:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Sat, 04 Jul 2026 17:40:30 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 418067026F7
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 14:40:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D2EE707E2B
+	for <lists+amd-gfx@lfdr.de>; Sat, 04 Jul 2026 17:40:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=yTmu2cve;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dkim=pass header.d=web.de header.s=s29768273 header.b=ChWOzd1I;
+	dmarc=pass (policy=quarantine) header.from=web.de;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C681810E5E0;
-	Fri,  3 Jul 2026 12:40:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CC0B10E6D9;
+	Sat,  4 Jul 2026 15:40:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013009.outbound.protection.outlook.com
- [40.93.201.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CE1510E5D9
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Jul 2026 12:40:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MetdPF0ICE2iizFRr94D+hnFL/dljXTRJ/oYqH3hZ3T5+AdJHggrVK0iYwWxJUmRUU1ppxIkrGlqcZUNS6yKdXzZa4sxZ1FtGFeUFde+TYVyrvohNkL5EesctdNBnHOjc300eDQsfJf3uS7LFoNFHCIQUeIZkl1ItnsjQLoTGVtjiuqDdK9FsBwR76Ht/M75JVo7LFp/Qi4iShTwGpqp5k6zN1d16bbTkqj601EXLXVQTbEvgnf1l5wFyTOT9C8RM4DLaOFeVNwmQowq3D7MPP17Ybb3rbYWVclJDeHwqI0eFBB/b9ezCZwwjFaRmLxMOoEmG7j+VAeNtInSHlAISA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BPw57LEZvAmyv+PFY4r7zaVOeDDvOD3jmooBVgjDA6A=;
- b=vCdj9BZP3exd8xTx6rPcUpHQSXWqQbmTawlk4Uz+Eb9qXu+NVL/ky+JI1AZSSxFRJLNxvFcDMQsJaWQ9DKbEnYAB+q/P7wltRkegXzYf2rP1IDQXRd9oQjJfph1uO6u/RC7R9QJWooHwqHItYKfN52RTuGaNQ6mT/hvrseIoqJ4PBoPP7pXy/B3OsQgJ0UmtBtQjU+gUV7ySQpxY7GYJf4PxJVDanataLQnW2jYgeikRZYGaMUFJI9r8nPxwVtN/Vd67wMK0KexVhV7v84Vxi2qZKn2oF8avcsz/9TPsx10hDhXD8bucQQulRFbuYVr/rVJR3xoUnH/HlwWTqtX+9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BPw57LEZvAmyv+PFY4r7zaVOeDDvOD3jmooBVgjDA6A=;
- b=yTmu2cve8yxY0l8pelwgUe643ARxSSkPow6EL4gmT62Nn0kOOoXOVFTL7G9x5/FDi8pr3C4m7Upu7J0D2j8nZlfNAebTdwQR0eFfRVsZHbJv5hhGOjA89i2EKTCSJ1S1t3S3KOF/kgFcRDCpuRhdEVgsx7BBymT8T0Vo0qT+1eY=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA3PR12MB7998.namprd12.prod.outlook.com (2603:10b6:806:320::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Fri, 3 Jul
- 2026 12:40:49 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0181.008; Fri, 3 Jul 2026
- 12:40:49 +0000
-Message-ID: <dd39eb43-d9f4-481b-824a-58fed6298bdd@amd.com>
-Date: Fri, 3 Jul 2026 14:40:44 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v2 4/4] drm/amdgpu: Add driver managed buffer copy
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, amd-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, David Francis <David.Francis@amd.com>,
- Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>
-References: <20260623141257.66086-1-tvrtko.ursulin@igalia.com>
- <20260623141257.66086-5-tvrtko.ursulin@igalia.com>
- <67d1e917-9c35-4161-893c-51d3490a4e04@amd.com>
- <3c4fdab0-0273-4d01-ace7-1a252be7ad9e@igalia.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <3c4fdab0-0273-4d01-ace7-1a252be7ad9e@igalia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BL1PR13CA0430.namprd13.prod.outlook.com
- (2603:10b6:208:2c3::15) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+X-Greylist: delayed 309 seconds by postgrey-1.36 at gabe;
+ Fri, 03 Jul 2026 12:49:21 UTC
+Received: from mout.web.de (mout.web.de [212.227.15.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFF810E5E3
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 Jul 2026 12:49:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1783082959; x=1783687759; i=spasswolf@web.de;
+ bh=WEtXfoqWT8u7TfvcGQ6O9maQtegVSFyhpY9XCAZTjiM=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
+ MIME-Version:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=ChWOzd1IWHw1Ps1bpZxjv+iGL7xMZXROogEEtMeQ3Glft/A73t9vPD7yJGp25CvL
+ Lc+BsKgVchM2/Xa1U9hQOQ9HXUnFOBadNGJqzm5VrFySjUV18KLQ2Enj9ECRCWcyW
+ zP2bQCCFzQIde5I2NEVoizfcPrjNYz3axhMLEEaRy0689kahacnlJ3Mn2iBt0Tbfr
+ Au4gKmizsEkdZg/wpAluftTw0+B0s2Emf4zHhN5+PGcxw8H9vigsI3OHDg6TSkqg7
+ kZVnKHIvZLox3xs+HwKefZqNnO425ljC6Q7euBwiK71H53CN9ExAhWMDGbBwS3d8p
+ ltwYOhjFZa9+LsVnmg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from client.hidden.invalid by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1N3GgY-1x5NJM36Bu-00sGpr; Fri, 03
+ Jul 2026 14:44:06 +0200
+From: Bert Karwatzki <spasswolf@web.de>
+To: Alex Deucher <alexander.deucher@amd.com>
+Cc: Bert Karwatzki <spasswolf@web.de>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-next@vger.kernel.org,
+ Jesse Zhang <jesse.zhang@amd.com>, Amber Lin <Amber.Lin@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Subject: GPU reset when running the ROCm hsa runtime tests on gfx12 and
+ next-20260701
+Date: Fri,  3 Jul 2026 14:44:03 +0200
+Message-ID: <20260703124405.56248-1-spasswolf@web.de>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA3PR12MB7998:EE_
-X-MS-Office365-Filtering-Correlation-Id: f36da849-725a-4f70-3960-08ded9004f4b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|1800799024|376014|4143699003|11063799006|56012099006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: RT4zJ5IA+3nAPZt861OMOfenV2fS5PC2K44DrG1LaIPjeHe0EEo52LyxtXJLEe8VJRvndDGYaCIbzvobSS1XnbUqTyKpjB4dwyJEj7Ir2X8NAh4FoJExGV+Q+TLWvqQNIB1yNiev92Wp/cgUps3Tqh+3SAhHwdKCf0C2BIWqx7VWJ+4ZmVoiYlcQnnI1eRSafM2laGtAsdpRAF/rXtXyfJnELOKGAGsl0UTSjCdwJ3QqRNHHFxFlPh2e7iYzinz5O1wG9fes5gnZwuDBxMF3P4zb7Tk0QbUcOT8P6+JmNyNtUZB+XOwgFMuqCuvORE1r88LYxWFWXI6dIBa6/nimBjylpDDDxx8Vv8bnkpGZEhw0LDZsfGEDuwvKomoOVdZ2nUIV5AwhTtvibEFNMyMSOFhLfrf9mKVZG3g+GKzbyTybqpC7+IZYoXuxaILsd7iA9VOxbiE3QwHAfLf9mEvLBmsZ1HiRFEoVQ8mT+HuXCuoFfPtK2mD+yv7iYNtIY1yejvCsw/oGp4mw4JvrLEgNgbjikq+DyzsugBexiofC3MRouzWmBtYcwr/fGgroOQEb0ghYz2t5Ft+XYPKLY9wPU/cUj/QTgJEnKrcZQCzwACnnnwZCma2UzLJeaE2N+jNo666+S3nsjuxPD3Zmed0olvpnlJbF/4RGVTiVNozO82Y=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(4143699003)(11063799006)(56012099006)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VnVCUk5iSVloY1RzYVJaUTEyUVpiU0YzYWtlMDk3Zk1wZDVVUEU4Y3BtOStx?=
- =?utf-8?B?MG5xVzR0RjBKNkVtV0N4SE5aMmZpVk85blVZSzBmUHV6eDJSZVVTcGN1VVVG?=
- =?utf-8?B?WkVNWmxDN1RNWE9OeGpzbmYzamdXWHAzbTkwY3B6RVI4ZjVaY2VCU2ZQUHhy?=
- =?utf-8?B?bkZiblF5UzBPd3ZEeHNwZDNTSGlPQ0hlQzFtdnhCSmRiUHV1VHRUNjdrUElp?=
- =?utf-8?B?SytTTy9SY3R6cS8vZXphdGw3Rkp5QU1QdTBBc3NFRWc4c3VWaWdkZnkwdlgx?=
- =?utf-8?B?VmoxSVpCM0VUMUM1amVGVy8zUkQ0VHIrSVhkU0pXOGFEelFVNUtRUTJRNnZl?=
- =?utf-8?B?K0FKWFBFNCtmSTJETEFpcllnUS9xdUJzeWtDbTlJWVB6R1drWEFxZDZLOXk4?=
- =?utf-8?B?bDlVT2NMYWJYMVBDQ1hVK214Z0gxZVJLSlFUUlk1czdvQVgrSTRrSlA3ZFhN?=
- =?utf-8?B?eXVNMzhjVzFEU2V3QS9wbTVtMVIydDN3SUJZL1p0L2hkb25NT3VSMG1WeitE?=
- =?utf-8?B?Q3dUUklYbE55a0hwQnJXM24rY0Y0ajlMejVuY3NGUTRmUWwvWTVtNkQzZU1h?=
- =?utf-8?B?RTVEZlNlQnYvTEhwbU9jVVNTaHpOMDQ4UTFQWm1HaXVmWkoyQm9qblR1QXdZ?=
- =?utf-8?B?M29IdHRPdHg4djN2WGpacEVock1WQTBGZWpzaXZWcjEzOFJTS1Q5d2o2bGZj?=
- =?utf-8?B?dkNORTBkSW1vNXZlSDdrSTBReTY5eWVNV2NsU3RycXVHOUkvSmN1TUhEQksz?=
- =?utf-8?B?RlpmRkp0d0t2RGRCV0hnaWt2NGkvUkZzWGkwSnJSZzlibHh5dzNub0xFUnVF?=
- =?utf-8?B?N2FnOGEyS0w4QXdaS0c2UzRZWXJ2WnplZjJtamdjSEFqUDZYSlFuM3dSVnVr?=
- =?utf-8?B?RE50U05vUlZEaldOU3pITGRxck45cGdWclhySHFIRFRGSjFTaUlIVVVWaWRW?=
- =?utf-8?B?bURvd252d0ZodHdNQzl6aTlpTnVPblNqWGVPaHh6ZWo3SUQvTDZrODNEajQx?=
- =?utf-8?B?bWNPRWNpbm1KYnJCU1c4Uzg5UG41MlpDVmZmRTZBZ3VlNVZQTXJRNllwdzd3?=
- =?utf-8?B?Vi9xOWp0blBQVFZ1a0tjWDBzTXpRcDZhUkZNeVBwd2ZNNnhLNjVjaXAzSkZj?=
- =?utf-8?B?NzA5YS8vNlozTnY2bmJSVUM1MXJ1SzNzZnFUVXQ2OEVIV25EY1JadjlzTEN1?=
- =?utf-8?B?TWFZV2luUVNpbjI3NFFTTVpKRmxkeWN6U2Ezc05YNEtNcWdMcEphZHNLZ25S?=
- =?utf-8?B?Y3R3cWFSQ05JcDR6a1B4SjMreis2SWRuTW1mVGVCK0hQd3ZqdEg4TTBBTHNP?=
- =?utf-8?B?RHR2MjR4Y1dIQjJKaDlzSlVjek13dlhJZjFYcW9iWTVKa1VKMDdMdjh5UVB6?=
- =?utf-8?B?OUhXTnQ4aVRISWpGYjVhOGJmN0dnTjdpMW1paGhzelRRVWhRUVZTNW5ZeHhW?=
- =?utf-8?B?Zk9HTTRhMEtSOVQ4MFRWclVTTmRYcHlKaUpzeXRMdDBPb05IUWxaMGlPS1NI?=
- =?utf-8?B?d1JaNWZUbVNYOEl5MitBTWNkK3FLK0lMQjBEdkFsVzlZT1pjZzQ0bW1SNmZZ?=
- =?utf-8?B?Y1lLY1JPT1F0NG5ZMDJVdEt1Ynd6a0UwVWhaekdsbzY3dEVJQkZ1WnFhQjEw?=
- =?utf-8?B?azdFWGM1a0k3NVRDKzVxWHExT1hCa1RsKzVUbHlhQ09EWXFDTCtiVXZmVDAz?=
- =?utf-8?B?RW9aNVJuWVNabHV0b245cWFsZXFFTWtZVWFELys4QXMzQ2ZpQ0hFMzluUzQ1?=
- =?utf-8?B?U21hYWVWRStrVEJIU1dyOXZtZWNSSGwwenM2WEdOV1pwS2x1QnB3cDhGeTQw?=
- =?utf-8?B?YmJYUCtRdkQ5d2xjYkpjT0FHVnFYci9TbmljYjZCQ1ZDQ3dOWS9hdzZ6YU9M?=
- =?utf-8?B?L2FxQksvblJBT3dTK2FmSUJzSXhtbkRhMHkwZEdKRHB1bGpaZnNzMU1JaTg5?=
- =?utf-8?B?L3BYS0JDVldmOWpSQUdNVjlCTk9uSkhha0xIY1pvNnQxeHNIZ2pXem5xdmsr?=
- =?utf-8?B?d2sranpGS0lCMjFlNm9iNUo0aUJmUWhRL0k0WTVEamllYWxIVW1HU04vL3dD?=
- =?utf-8?B?UVVQN256bUpZaFJwdHBJTHpleWtxcXR2YjJJZHlIeFdRSHVjU0dNSGJORG1m?=
- =?utf-8?B?bmQwU2xYbzlvZ2laeElPcVFicThPTnZPaGl5MlBIS0p0NndIcW9hTGZnb05W?=
- =?utf-8?B?enZjaVJXWVAzRVBmOFR5bC9SK0dwamM0cm1abkcwY3JVTUYwTjNZM2hOTU1z?=
- =?utf-8?B?di9KU3VOb0tGR2NwRitCRzZOa3VleTVNa1RFNGhyUkZ2U0t4ak0xQmk5bjly?=
- =?utf-8?Q?DDDLppnzI/aqeZ2Dj3?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f36da849-725a-4f70-3960-08ded9004f4b
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2026 12:40:48.9746 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ziVMtNWTVXXwnATUnsL2o2gqLHrIQiJD6iLLHhqtiU+V5b/2LDcntdLNfU1uzTBw
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7998
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:MdgM1gHWnnqABmfITQOcZ7/JkUOH9lnunASZUuddm4UxiLJQ6oy
+ r3lxtEyOzXXzrAoEKv7KZ3Gt4Sz0k+tafN/SYhRLbIQrDzLZ0SITahGhtTRAdUArcO29vWA
+ wTfoz137iu40xliEzwFmjiJDBvUdDiBBlQXklfaBIRogoRYStSbJLPen6LpaGY/Z9j63AjA
+ E+rzQQY6zfCj8NVD+3F2A==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:/EaTLjzLIsI=;hyznk6OdB2TrNwTljif11YOhFn8
+ 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
+ phV9xg==
+X-Mailman-Approved-At: Sat, 04 Jul 2026 15:40:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,107 +152,213 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [1.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DATE_IN_PAST(1.00)[26];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[web.de,quarantine];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[web.de:s=s29768273];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:spasswolf@web.de,m:linux-kernel@vger.kernel.org,m:linux-next@vger.kernel.org,m:jesse.zhang@amd.com,m:Amber.Lin@amd.com,m:mario.limonciello@amd.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:tvrtko.ursulin@igalia.com,m:kernel-dev@igalia.com,m:David.Francis@amd.com,m:Harish.Kasiviswanathan@amd.com,m:alexander.deucher@amd.com,m:Felix.Kuehling@amd.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[spasswolf@web.de,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[web.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[web.de,vger.kernel.org,lists.freedesktop.org,amd.com];
+	DKIM_TRACE(0.00)[web.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[spasswolf@web.de,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:from_mime,amd.com:dkim,amd.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 418067026F7
+X-Rspamd-Queue-Id: 7D2EE707E2B
 
-On 7/3/26 12:37, Tvrtko Ursulin wrote:
-...
->>>   +/**
->>> + * amdgpu_gem_copy_buffer_ioctl - copy buffer object content
->>> + *
->>> + * @dev: drm device pointer
->>> + * @data: drm_amdgpu_gem_copy_buffer
->>> + * @filp: drm file pointer
->>> + *
->>> + * Returns:
->>> + * 0 for success, -errno for errors.
->>> + */
->>> +int amdgpu_gem_copy_buffer_ioctl(struct drm_device *dev, void *data,
->>> +                 struct drm_file *filp)
->>> +{
->>> +    struct amdgpu_copy_mem src_mem = {}, dst_mem = {};
->>> +    union drm_amdgpu_gem_copy_buffer *args = data;
->>> +    struct amdgpu_device *adev = drm_to_adev(dev);
->>> +    struct drm_gem_object *src_gobj, *dst_gobj;
->>> +    struct amdgpu_bo *src_bo, *dst_bo;
->>> +    struct dma_fence *fence = NULL;
->>> +    struct sync_file *sync_file;
->>> +    struct drm_exec exec;
->>> +    unsigned int e;
->>> +    int r;
->>> +
->>> +    src_gobj = drm_gem_object_lookup(filp, args->in.src_handle);
->>> +    if (!src_gobj)
->>> +        return -ENOENT;
->>> +
->>> +    dst_gobj = drm_gem_object_lookup(filp, args->in.dst_handle);
->>> +    if (!dst_gobj) {
->>> +        r = -ENOENT;
->>> +        goto err_dst;
->>> +    }
->>> +
->>> +    src_bo = gem_to_amdgpu_bo(src_gobj);
->>> +    dst_bo = gem_to_amdgpu_bo(dst_gobj);
->>> +
->>> +    if (amdgpu_bo_size(src_bo) < amdgpu_bo_size(dst_bo)) {
->>> +        r = -E2BIG;
->>> +        goto err_sizes;
->>> +    }
->>
->> No sub range copy? I would expect something like a ~8MiB transfer buffer to copy a 1GiB buffer in chunks of 2MiB.
-> 
-> To preemptively make it generic or you already have an use case in mind? But sure, I can add that no problem.
+When running the ROCm hsa selftests on debian unstable (with ROCm packages=
+ from experimental)
+with linux next-20260701, the GPU will reset with the following error mess=
+age:
 
-If I'm not completely mistaken that will be needed for CRIU of large buffers at some point. Especially for system without a large BAR.
+$ /usr/libexec/rocm/libhsa-runtime64-tests/run-tests
 
-Additional to that we need this for KFD/DRM render node unification as well and IIRC the existing KFD IOCTL can do sub range copies.
+[ T2548] amdgpu 0000:03:00.0: failed to suspend gangs from MES
+[ T2548] amdgpu 0000:03:00.0: MES might be in unrecoverable state, issue a=
+ GPU reset
+[  T360] amdgpu 0000:03:00.0: GPU reset begin!. Source:  3
+[T28252] amdgpu 0000:03:00.0: Failed to evict queue 0
+[T28252] amdgpu: Failed to quiesce KFD
+[  T360] amdgpu 0000:03:00.0: Dumping IP State
+[  T360] amdgpu 0000:03:00.0: Dumping IP State Completed
+[  T360] amdgpu 0000:03:00.0: MODE1 reset
+[  T360] amdgpu 0000:03:00.0: GPU mode1 reset
+[  T360] amdgpu 0000:03:00.0: GPU smu mode1 reset
+[  T360] amdgpu 0000:03:00.0: GPU reset succeeded, trying to resume
+[drm] PCIE GART of 512M enabled (table at 0x00000083DAB00000).
+[drm] AMDGPU device coredump file has been created
+[drm] Check your /sys/class/drm/card0/device/devcoredump/data
+[  T360] amdgpu 0000:03:00.0: VRAM is lost due to GPU reset!
+[  T360] amdgpu 0000:03:00.0: PSP is resuming...
+[  T360] amdgpu 0000:03:00.0: RAS: optional ras ta ucode is not available
+[  T360] amdgpu 0000:03:00.0: RAP: optional rap ta ucode is not available
+[  T360] amdgpu 0000:03:00.0: SECUREDISPLAY: optional securedisplay ta uco=
+de is not available
+[  T360] amdgpu 0000:03:00.0: SMU is resuming...
+[  T360] amdgpu 0000:03:00.0: SMU is resumed successfully!
+[  T360] amdgpu 0000:03:00.0: program CP_MES_CNTL : 0x4000000
+[  T360] amdgpu 0000:03:00.0: program CP_MES_CNTL : 0xc000000
+[drm] DMUB hardware initialized: version=3D0x00010300
+[  T360] amdgpu 0000:03:00.0: ring gfx_0.0.0 uses VM inv eng 0 on hub 0
+[  T360] amdgpu 0000:03:00.0: ring comp_1.0.0 uses VM inv eng 1 on hub 0
+[  T360] amdgpu 0000:03:00.0: ring comp_1.1.0 uses VM inv eng 4 on hub 0
+[  T360] amdgpu 0000:03:00.0: ring comp_1.0.1 uses VM inv eng 7 on hub 0
+[  T360] amdgpu 0000:03:00.0: ring comp_1.1.1 uses VM inv eng 8 on hub 0
+[  T360] amdgpu 0000:03:00.0: ring sdma0 uses VM inv eng 9 on hub 0
+[  T360] amdgpu 0000:03:00.0: ring sdma1 uses VM inv eng 10 on hub 0
+[  T360] amdgpu 0000:03:00.0: ring vcn_unified_0 uses VM inv eng 0 on hub =
+8
+[  T360] amdgpu 0000:03:00.0: ring jpeg_dec uses VM inv eng 1 on hub 8
+[  T360] amdgpu 0000:03:00.0: GPU reset(1) succeeded!
+[drm] device wedged, but no recovery needed
+[ T2050] amdgpu 0000:03:00.0: VM memory stats for proc xfwm4(2105) task xf=
+wm4:cs0(2050) is non-zero when fini
+[ T1932] amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non=
+-zero when fini
+[ T2293] amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non=
+-zero when fini
+[ T1929] amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non=
+-zero when fini
+[ T1930] amdgpu 0000:03:00.0: VM memory stats for proc (0) task (0) is non=
+-zero when fini
+[ T2263] amdgpu 0000:03:00.0: VM memory stats for proc firefox-esr(3483) t=
+ask firefox-es:cs0(2263) is non-zero when fini
+[ T3590] amdgpu 0000:03:00.0: VM memory stats for proc RDD Process(4755) t=
+ask firefox-es:cs0(3590) is non-zero when fini
+[ T1469] amdgpu 0000:03:00.0: VM memory stats for proc Xorg(1495) task Xor=
+g:cs0(1469) is non-zero when fini
 
->>> +
->>> +    r = get_unused_fd_flags(O_CLOEXEC);
->>> +    if (r < 0)
->>> +        goto err_put_fence;
->>> +
->>> +    sync_file = sync_file_create(fence);
->>
->> Oh, please no sync_file!
->>
->> Use a drm_syncobj, e.g. drm_syncobj_find() + dma_fence_chain_alloc() before the copy and then drm_syncobj_add_point() when it is done.
-> 
-> Why not, is sync_file so out of fashion? Syncobj feels heavy weight for what this is and it would require the CRIU side to create and destroy the syncobj.
 
-The sync_file framework is only used by Android. It has quite a number of shortcommings and is pretty much dead everywhere else.
+As this does not occur on v7.2-rc1 I bisected the issue and found
+commit f94bbd648bb4 ("drm/amdgpu: use a single entry point for mes compute=
+ reset")
+as responsible.
+Unfortunately the does not revert cleanly in linux-next-20260701, so I had=
+ to revert these
+commits to fix the issue in next-20260701:
 
-For basically all modern IOCTLs we only use drm_syncobj timeline semaphores.
+b789664e3e30 ("drm/amdkfd: Clean up suspend_all and resume_all mes")
+a665d09b10af ("drm/amdkfd: Pass known bad queue info to reset")
+a4e4d945cba8 ("drm/amdgpu/gfx: defer per-queue helper_end until after MES =
+resume")
+f401a2633e02 ("drm/amdgpu: Remove faulty queue before resume")
+f94bbd648bb4 ("drm/amdgpu: use a single entry point for mes compute reset"=
+)
 
-Regards,
-Christian.
+GPU used:
+03:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AM=
+D/ATI] Navi 44 [Radeon RX 9060 XT] [1002:7590] (rev c0)
+CPU used:
+model name	: AMD Ryzen 9 9950X 16-Core Processor
+
+Installed ROCm packages (from debian experimental)
+
+bert@homer:~$ dpkg -l | grep 7.2.4
+ii  hip-utils                                                        7.2.4=
+-1~exp1                             amd64        utilities for HIP languag=
+e development
+ii  hipcc                                                            7.2.4=
++dfsg-1~exp1                        amd64        C++ Runtime API and Kerne=
+l Language for AMD and NVIDIA GPUs
+ii  libamd-comgr-dev                                                 7.2.4=
++dfsg-1~exp1                        amd64        ROCm code object manager =
+- development package
+ii  libamd-comgr3:amd64                                              7.2.4=
++dfsg-1~exp1                        amd64        ROCm code object manager
+ii  libamdhip64-7:amd64                                              7.2.4=
+-1~exp1                             amd64        HIP runtime for AMD GPUs =
+- library
+ii  libamdhip64-dev                                                  7.2.4=
+-1~exp1                             amd64        HIP runtime for AMD GPUs =
+- headers
+ii  libhiprtc-builtins7:amd64                                        7.2.4=
+-1~exp1                             amd64        HIP runtime compilation l=
+ibrary - builtins
+ii  libhiprtc7:amd64                                                 7.2.4=
+-1~exp1                             amd64        HIP runtime compilation l=
+ibrary
+ii  libhsa-runtime-dev:amd64                                         7.2.4=
++dfsg-1~exp1                        amd64        HSA Runtime API and runti=
+me for ROCm - development files
+ii  libhsa-runtime64-1:amd64                                         7.2.4=
++dfsg-1~exp1                        amd64        HSA Runtime API and runti=
+me for ROCm
+ii  libhsa-runtime64-tests                                           7.2.4=
++dfsg-1~exp1                        amd64        HSA Runtime test suites f=
+or ROCm
+ii  librocblas-dev                                                   7.2.4=
+-1~exp1                             amd64        ROCm library for basic li=
+near algebra - headers
+ii  librocblas-doc                                                   7.2.4=
+-1~exp1                             all          ROCm library for basic li=
+near algebra - documentation
+ii  librocblas5                                                      7.2.4=
+-1~exp1                             amd64        ROCm library for basic li=
+near algebra - library
+ii  librocblas5-bench                                                7.2.4=
+-1~exp1                             amd64        ROCm library for basic li=
+near algebra - benchmarks
+ii  librocblas5-tests                                                7.2.4=
+-1~exp1                             amd64        ROCm library for basic li=
+near algebra - tests
+ii  librocblas5-tests-data                                           7.2.4=
+-1~exp1                             all          ROCm library for basic li=
+near algebra - test data
+ii  librocm-core-dev                                                 7.2.4=
+-1~exp1                             amd64        provides methods to get i=
+nformation about installed ROCm - headers
+ii  librocm-core1                                                    7.2.4=
+-1~exp1                             amd64        provides methods to get i=
+nformation about installed ROCm
+ii  librocm-smi64-7                                                  7.2.4=
+-1~exp1                             amd64        ROCm System Management In=
+terface (ROCm SMI) library
+ii  librocsolver-dev                                                 7.2.4=
+-1~exp1                             amd64        ROCm library for numerica=
+l linear algebra - headers
+ii  librocsolver0                                                    7.2.4=
+-1~exp1                             amd64        ROCm library for numerica=
+l linear algebra - library
+ii  librocsolver0-tests                                              7.2.4=
+-1~exp1                             amd64        ROCm library for numerica=
+l linear algebra - tests
+ii  libroctx64-4                                                     7.2.4=
+-1~exp1                             amd64        ROCm library for profiler=
+ annotations - library
+ii  rocm-device-libs-22                                              7.2.4=
++dfsg-1~exp1                        amd64        AMD specific device-side =
+language runtime libraries
+ii  rocm-opencl-icd:amd64                                            7.2.4=
+-1~exp1                             amd64        AMD ROCm implementation o=
+f the OpenCL API - ICD runtime
+ii  rocminfo                                                         7.2.4=
+-1~exp1                             amd64        ROCm Application for Repo=
+rting System Info
+
+
+Bert Karwatzki
+   =20
