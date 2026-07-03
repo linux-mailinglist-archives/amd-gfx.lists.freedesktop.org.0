@@ -2,128 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id x711L6e/R2qnegAAu9opvQ
+	id QMZdM2spSWqGywAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 15:56:55 +0200
+	for <lists+amd-gfx@lfdr.de>; Sat, 04 Jul 2026 17:40:27 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BCEF70325E
-	for <lists+amd-gfx@lfdr.de>; Fri, 03 Jul 2026 15:56:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3760C707E04
+	for <lists+amd-gfx@lfdr.de>; Sat, 04 Jul 2026 17:40:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=iTZTyT7k;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b="E/kfhRlT";
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none);
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A636910E5FA;
-	Fri,  3 Jul 2026 13:56:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 926EB10E0C5;
+	Sat,  4 Jul 2026 15:40:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010048.outbound.protection.outlook.com [52.101.46.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56B6310E5FA
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Jul 2026 13:56:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ro1jILpcsEP1B4e6ip2ZtOTFP5yzc2bXEvDvP26ZKAvPlxysC2xRCjIqPip3oIv5C/uat4NSbtIlJsY0N6jtvxiCiCa/fHjm7F0/u+qdf7md3nSmQ7soOnYPdjtjmr7i2fzgOmpduO5VWEUswuAqjCoEDQn9d0lZ2UlL63tI/UtzzJDYgGlOHKwV5pFxSXoVf/JiD5MdB/NQseF70b7JPRF9i9pbFLWPQQkwU75i2mUokBLxWSfBTTm7TX1vnYObzn1wVVgXno3bjpF9RkByUwlaenPk3Rs8ewaoThuTAEYo1M+vrqIwueahunwKHJeUDMlvtIRcNci1DwXzIG7M6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k2ndKGpkmB0pcdgsDrqvPbzf0f8MO5EJ8z5+YzqA72k=;
- b=pi7Df0+zXDRj1jKafliU+qsW8ZsEF1MEppbu9NsH6UMKRZQJzcGvoYGc4qgqG2n6pMXjgnrk9YUSLgx6knWCEEjeQTUVIoHWqkTnA7Q7wXvb38ps4dMCJFWd6OcPkktA9jXHUgpWJM88jRSFIx0S3Wz6gU4OXyf2BApCFGFK3O7uR+VfxBjUd6lAKQL3FV+X1wxpDCOYr66KRnGDrNEf6xcEiyD6c3cYUCn3ZqMZCAZtdtfJxJT9pKQgqhDgXhCHNpUErsDXn+BH/Ik9OfspDe/6uKEbi+b61KX6xOvuapyjIguWOK3GNSK7jSwxXakEsA/wR0fsf0BF1RLG7OadIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k2ndKGpkmB0pcdgsDrqvPbzf0f8MO5EJ8z5+YzqA72k=;
- b=iTZTyT7krfyrSgleU+DDEtUDBcL1TEXzGXwAH1E2DFdpiquULIyRDehOWaqW0vk0yZsGAgb5JfZLDt7p/5+C22njxPDYSxSPW7kIAEKy7U1fkg+hU32JakonAq1jD2qxz4FC6TmbnqVNvOHodhiEy+BIOPnn/67uBGfLDjoQG6g=
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com (2603:10b6:408:11e::16)
- by SJ1PR12MB6291.namprd12.prod.outlook.com (2603:10b6:a03:456::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Fri, 3 Jul
- 2026 13:56:48 +0000
-Received: from BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::1aeb:47e6:faf1:5f13]) by BN9PR12MB5257.namprd12.prod.outlook.com
- ([fe80::1aeb:47e6:faf1:5f13%5]) with mapi id 15.21.0181.010; Fri, 3 Jul 2026
- 13:56:48 +0000
-From: "Zhang, Hawking" <Hawking.Zhang@amd.com>
-To: "Yang, Stanley" <Stanley.Yang@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Yang, Stanley" <Stanley.Yang@amd.com>
-Subject: RE: [PATCH V2 1/1] drm/amdgpu/ras: only check bad page for
- address-based UMC injection
-Thread-Topic: [PATCH V2 1/1] drm/amdgpu/ras: only check bad page for
- address-based UMC injection
-Thread-Index: AQHdCg44zj3JYJb6g0Cg58TryNnJcbZb0m2Q
-Date: Fri, 3 Jul 2026 13:56:48 +0000
-Message-ID: <BN9PR12MB52571AD6187A07E48068BBB0FCF42@BN9PR12MB5257.namprd12.prod.outlook.com>
-References: <20260702103201.299749-1-Stanley.Yang@amd.com>
-In-Reply-To: <20260702103201.299749-1-Stanley.Yang@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-07-03T13:53:04.0000000Z;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD General
- v26; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=3;
- MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR12MB5257:EE_|SJ1PR12MB6291:EE_
-x-ms-office365-filtering-correlation-id: 3a78e0a6-d78f-4ac5-f042-08ded90aed49
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|23010399003|11063799006|56012099006|22082099003|18002099003|6133799003|38070700021;
-x-microsoft-antispam-message-info: WFka1us+JLC4/lR8Is8FQ6IZ4/9BmwrHhkUhVKDBrT89CxW/XnbRrO1JjtSDOzWkY5UXtNf0P6zorfZhDeeO5ZKNVOPUGGxVeJjEqPKslB038+vCohQwmZwejjzbHVEXW0PNsczOImNzgx5dkeqwDqXAYiS1IIISxdHmDUkMBLtLJ3N5ET1vIo5461xu/d2GtS07TcReEBgieU3PSuFSdKDQlfPvgCUplxv9QvfVmRwW8rUm9cvtgTtvq1tmVLjUuW0y/TjFjZsACNUvfMfhIAE34+KzbQe7jrIH09sSfL/jk9uOVBvUrao/Jwdf71Lyixga1kxAV5PSFf4fv4gKFThTJQjVB4xNNg1odt2Tb5QPHGgTZKr0KnYMhRXyhFSAIYsc+u+oCxptpfXJClwHKy1QWprgRB/+rrHSYe0OsLYcx1BGwRJsHN9CYpQkmTA4wjnARX1OShfDOj9b3YtYXzkxiakWnXLzKh+YnlDiQ83vaX+aMJre/IV/kWKJr8MH0iiHIBfeD/lg9w80qxFk2uYWCHp8waYhWD1IuTf/ZSG616mXGU5uKRA7vslhNwV0J4JuSIMK1HooTabRtl+aJX5H//mN8lJCtn8FsTWe0f6j+uC5ZKGdh6g8SSK7Ennc8qds02ttyUiX8x8kCrMn6FqG/K9RRSgSkWMv3zu8JMj4+ztghTCzMnjljvNSfArwhEfKHogec849pt3bb6/PwsO9vRNtrLttSiBZxWIVboc=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5257.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(11063799006)(56012099006)(22082099003)(18002099003)(6133799003)(38070700021);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?GWBVv8j9IfMdcS6qsjsjlG0eGON1xzKJvsLlFCrL+jvw0zyE/JmiX1S3Wn1e?=
- =?us-ascii?Q?D/qrhum6NTn70yb4Kw+QMsKJZTN+ULqxkNgUOFt08UGBFJrtmbcmLf4OBuyl?=
- =?us-ascii?Q?EGANDtyFh/yQ6zYR+uB38pbt4RuWNlS98ORZVcO0ljQKwcZX5qWh/ARjGs2y?=
- =?us-ascii?Q?JR+SVtWWtFWsoXpNIxMhx2cgsPWdOZPPbO9nagnxAdZs/l3JfmvJWB/oqdfq?=
- =?us-ascii?Q?Pwwp6B9IOCJB38MJJNC1JiKeaO0SPHpLUpT7q9j9HMSRlzMqhRlYOG2wYgN8?=
- =?us-ascii?Q?WVb38XSF+ejPhdvdLllk+0vcJUh4ZyALIttWuzHklCm11MuG8d1fRc5bEUJJ?=
- =?us-ascii?Q?FMfOYCfcD5iCUNb2LmeFUvuhEFa2+IAxF2yZqGtYmWFk4botdECcMpEClNXT?=
- =?us-ascii?Q?apJY0t+WCkFAxULdi6oTSEiPxGaX2RsppD98JWazNaGj6ey8hEZO0vdnDbGk?=
- =?us-ascii?Q?G2wgVGMMsVfVs1nQUeCYauzqUFCCn/x5076fjdd5+ILVKlvkxs5Z5qP9RMFp?=
- =?us-ascii?Q?Gpl7wjPVtQ27JXh921AkA51KbKvOdBwZXx44R7qDCnLR0NTg23YDBhBECuoQ?=
- =?us-ascii?Q?wHhfjYNXiLCQxvWbJet+VbQXA5T2ZjISqZagt8k+RZpVrlgxyOM3Xan/klCc?=
- =?us-ascii?Q?Mw7D7DkYPJYESYniM7GinBwWf0qfsrRfbraLt5+blAySB6bPRdIIsVbtXFQi?=
- =?us-ascii?Q?PVtGle1kuU7EszVGxhYJnEVnQLOQkHmHKocyLGL6D6dOiNcjNdlEYDAssJD3?=
- =?us-ascii?Q?mlFNO5oTpF+cSjqofoGoMboFAL75nxUk/VnwxY2zWvy+jG6i4pFMlSbiQbym?=
- =?us-ascii?Q?gBI3VWLXrzMRCfQhHjDmQCjMP+gGbH0FfBLMYLSKRUFZtFVu4faT1VnLqOcd?=
- =?us-ascii?Q?tUPMEHFDlHZ+8keMfYe74bPyxFOiWC2OSdIRsKIB8XnqlTiK4xqWMthiR3U6?=
- =?us-ascii?Q?4KxMM4aP/M9JcB6KQT4GjtSde7da5V9d2PH6/2o8m3zKpZC4gbdfsFh0plV7?=
- =?us-ascii?Q?JOK6VP2gE1GOnFRXRRiR8EYrfzn5YxaqmdrarEvGHiEBUK6YC3sjIWvKBdEl?=
- =?us-ascii?Q?MpVrZ7VFKkjpKhgkrVv8htDRw89M7UiTNab5lFVqbucIjHrZfgybmYjzU3GB?=
- =?us-ascii?Q?u9oFjrG8Qmk2yN66OwskJuAMVPPq6cjdiKWh6EwF+1/2doyloPW3jesOclyK?=
- =?us-ascii?Q?PZbQX1L8ZV/xOh+CBFSo2HRASxkvN57S4nSevmSTySNvKW0NVvo1Q2FuktHC?=
- =?us-ascii?Q?TmoMtrrWWiIG3RT8R+d8n74ZD0QePOYeQh442IdhSSmJQf3PJIj2N28tSFWF?=
- =?us-ascii?Q?QNpu/FD9ZIYcrR/g6NZU+dADzL/lLmLER2OsBnLWU0KNOmVe/H4JDuA1tMMw?=
- =?us-ascii?Q?5PAfU1s0AaOq3wBfoTtYyxYmlTe9/5MRhfiyQvPfHh/hQVAUAfPAUMjS3F8v?=
- =?us-ascii?Q?fUPQsTYpYPgRQOK5sdnVlkuSbCqdKdG9Thy4+f8qmkHoBKg/elUNMuLFnLAQ?=
- =?us-ascii?Q?eKO9flK5fc4VQguqo2h/u8st2f9g+k5CGFgJ/9LhlOyiAQ6K3I2yEojiezjO?=
- =?us-ascii?Q?Iph4HQNlC8mqPvOXTiBY7kCvvD2FaSmhmvKm8GuWbzyr5Tl1F4oidi5FUd4k?=
- =?us-ascii?Q?MnNKvAhM3DdX5KLs8+G6TtlK6nYoPBZ4zDmR9J0daLb+i8f34cEI6uv9xGC2?=
- =?us-ascii?Q?1khbvtqMJfoWZe4bLz87659tEtte+ivejL7KISWbQDPMpf9F?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D016110F82D;
+ Fri,  3 Jul 2026 14:37:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=ItYwpTbyvNc16g21hJAWFbnwcID7dz49KV1NZJHO8Q4=; b=E/kfhRlTQ1y6SRPWoAILqfYpIg
+ YIQka3gNttc06p0AXrUyZSjTpHSRHWqiUgNBUgE3VzXOLLREiK5QnPH35p32/ToLaeQV9gr7WQwR/
+ +XAbfG+ET47MPDbHRZ60DlYIWQiyzUrgXn9JjbIhLSCf1vyiJCWl/kk6v6keA0nvC1qNj8xmttig0
+ CB/Dgso2yh9b37K1/7St4tvERkS/AUhuqcwEZz6Xr5CalVhHn9I+YxopmyCvNaGlrNNR5oeaTUxmg
+ FCRaMb0voxLxN2m8LubOaTYCOpQcyUIU8jkZw7r1GscfIPsW3Rpkmpt7PkKBHTiEMWEq8ohOMv8nT
+ GKGOJZcQ==;
+Received: from [179.125.94.247] (helo=quatroqueijos.cascardo.eti.br)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wff1S-008WYn-QY; Fri, 03 Jul 2026 16:37:43 +0200
+Date: Fri, 3 Jul 2026 11:37:33 -0300
+From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, Natalie Vock <natalie.vock@gmx.de>,
+ Johannes Weiner <hannes@cmpxchg.org>, Tejun Heo <tj@kernel.org>,
+ Michal =?iso-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>,
+ cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 0/6] Add reclaim to the dmem cgroup controller
+Message-ID: <akfJLT66vRrPvBqX@quatroqueijos.cascardo.eti.br>
+References: <20260703130541.2686-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5257.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a78e0a6-d78f-4ac5-f042-08ded90aed49
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jul 2026 13:56:48.6916 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +aZDjejRziwbY7U+8fy927Ys+Q/8LJWkgriPNJ9W0rIBlqZcVQZUpeujX8ssq7+7ctXBUdl0dfNKyfxvDGVXxg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6291
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260703130541.2686-1-thomas.hellstrom@linux.intel.com>
+X-Mailman-Approved-At: Sat, 04 Jul 2026 15:40:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,204 +79,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [1.49 / 15.00];
+	DATE_IN_PAST(1.00)[25];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:Stanley.Yang@amd.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[Hawking.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmx.de,cmpxchg.org,kernel.org,suse.com,vger.kernel.org,amd.com,intel.com,linux.intel.com,suse.de,ffwll.ch,gmail.com];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Hawking.Zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cascardo@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:from_mime,amd.com:email,amd.com:dkim,BN9PR12MB5257.namprd12.prod.outlook.com:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1BCEF70325E
+X-Rspamd-Queue-Id: 3760C707E04
 
-AMD General
+On Fri, Jul 03, 2026 at 03:05:35PM +0200, Thomas Hellström wrote:
+> When writing a "max" limit lower than the current usage, the
+> existing code silently failed. This series aims to improve
+> on that by returning -EBUSY on failure and also attempt
+> to synchronously reclaim device memory to push the usage
+> under the new max limit to avoid the error.
+> 
+> Patch 1 fixes a pre-existing amdgpu_vram_mgr_init() error path
+> Patch 2 introduces struct dmem_cgroup_init for extensible region
+>       registration.
+> Patch 3 implements and documents a reclaim callback interface
+>       for the dmem controller.
+> Patch 4 implements a TTM reclaim callback.
+> Patches 5-6 hook up the reclaim callback to the dmem cgroup-aware
+>       drivers xe and amdgpu.
+> 
+> v2:
+> - Remove the error propagation that was in a previous series (Maarten)
+> - A number of updates in patch 1. See its commit message for
+>   details (Maarten)
+> 
+> v3:
+> - Add patch 1 fixing a pre-existing amdgpu_vram_mgr_init() error path
+>   bug where drmm_cgroup_register_region() was called before
+>   INIT_LIST_HEAD() and gpu_buddy_init(), causing a kernel panic on
+>   failure. (Sashiko-bot)
+> - Use an rwsem to protect reclaim callback registration and region
+>   unregister against concurrent reclaim invocations. (Sashiko-bot)
+> - Fix ttm_resource_manager_set_dmem_region() storing an error pointer
+>   in man->cg unconditionally. (Sashiko-bot)
+> - Fix kernel-doc function name format for ttm_bo_evict_cgroup() and
+>   ttm_resource_manager_set_dmem_region().
+> 
+> v4:
+> - Rebased on drm-tip; dropped the XE_PL_STOLEN guard in the xe patch
+>   as stolen memory uses a separate TTM manager.
+> 
+> v5:
+> - Add patch 2 introducing struct dmem_cgroup_init to make the
+>   dmem_cgroup_register_region() API extensible without adding positional
+>   arguments in the future.
+> - Use nonblock=true in reset_all_resource_limits() to avoid sleeping
+>   inside rcu_read_lock() in dmemcs_offline(). (Sashiko-bot)
+> - Compare usage against the truncated limit stored in cnt.max, not the
+>   original u64. (Sashiko-bot)
+> - Use DMEM_MAX_RECLAIM_RETRIES (16) retry budget instead of 5, matching
+>   the memcg controller; only -ENOSPC (no progress) counts against the
+>   budget, other errors abort immediately.
+> - Handle NULL region in ttm_resource_manager_set_dmem_region() to clear
+>   the reclaim callback, preventing use-after-free when the manager is
+>   torn down while the dmem region outlives it. (Sashiko-bot)
+> - Return 0 on any eviction progress; reserve -ENOSPC for zero progress.
+> - Clear the reclaim callback in xe and amdgpu fini paths to prevent
+>   use-after-free after driver unbind with open DRM file descriptors.
+>   (Sashiko-bot)
+> - Register xe fini devres action before drmm_cgroup_register_region()
+>   so LIFO teardown runs unregister first, draining callbacks before the
+>   manager is destroyed. (Sashiko-bot)
+> - Switch amdgpu to explicit dmem_cgroup_unregister_region() at the top
+>   of amdgpu_vram_mgr_fini() before any manager teardown, since amdgpu's
+>   fini is called explicitly during driver unbind before drmm cleanup.
+>   (Sashiko-bot)
+> - Wrap the xe reclaim callback with drm_dev_enter()/drm_dev_exit() to
+>   prevent TTM reclaim from running after driver unbind.
+> 
+> v6:
+> - Move the ops check inside down_read() in set_resource_max(), guarded
+>   by region->unregistered, to close a UAF race against
+>   dmem_cgroup_unregister_region(). (Sashiko-bot)
+> - Fix dmem_cgroup_ops->reclaim docstring: -ENOSPC is retried up to
+>   DMEM_MAX_RECLAIM_RETRIES times, not an immediate stop. (Sashiko-bot)
+> - Fix mgr->cg_region never being assigned in amdgpu_vram_mgr_init(),
+>   causing dmem_cgroup_unregister_region() in fini to silently no-op.
+>   (Sashiko-bot)
+> - Reorder amdgpu_vram_mgr_fini() to call set_used(false) and
+>   evict_all() before dmem_cgroup_unregister_region(), so
+>   ttm_resource_free() can uncharge via man->cg during eviction; clear
+>   man->cg after unregister. (Sashiko-bot)
+> 
+> v7:
+> - Replace the per-region rw_semaphore with a static SRCU domain
+>   (dmemcg_srcu). SRCU is a better fit: it avoids per-region lock
+>   overhead on every reclaim call, and synchronize_srcu() at unregister
+>   time is a rare, shutdown-time operation. (Maarten)
+> - Trim in-function comments to focus on what rather than how.
+> - Switch back to drmm_cgroup_register_region() with a drm_dev_enter/
+>   exit guard in the reclaim callback (matching xe), rather than manual
+>   register/unregister.  drm_dev_unplug() fires before vram_mgr_fini(),
+>   so drm_dev_enter() returning false prevents any reclaim from touching
+>   the manager during teardown.  This also fixes the "vram" name
+>   collision on multi-GPU systems, since drmm_cgroup_register_region()
+>   automatically prefixes with "drm/<pci-addr>/". (Sashiko-bot)
+> 
+> User-space tests are at
+> https://patchwork.freedesktop.org/series/163935/
+> 
+> Test-with: 20260428065411.4222-1-thomas.hellstrom@linux.intel.com
+> 
 
-Thinking about it more, would it be better to add error-checking logic in t=
-he debugfs parser?
+I used the branch at [1] to run tests over amdgpu and they pass.
 
-When the address parameter is set, we should also check the sub_block param=
-eter to ensure the injection method is applied correctly to the intended su=
-b-blocks. Otherwise, we should reject the debugfs ctrl command.
+[1] https://gitlab.freedesktop.org/cascardo/igt-gpu-tools/-/commits/dmem_max?ref_type=heads
 
-Any thoughts?
+Tested-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 
-Regards,
-Hawking
-
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Stanley.=
-Yang
-Sent: Thursday, July 2, 2026 6:32 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Yang, Stanley <Stanley.Yang@amd.com>
-Subject: [PATCH V2 1/1] drm/amdgpu/ras: only check bad page for address-bas=
-ed UMC injection
-
-UMC error injection on MI300 series is dispatched by the RAS TA via the (su=
-b-block, method) pair; only the "coherent" methods are address based, the s=
-ingle-shot/persistent/ac-parity ones ignore the address.
-
-The debugfs control path validated the injection address against the bad pa=
-ge list for every UMC injection. Restrict that check to address-based injec=
-tions and warn when a non address-based one is given a non-zero address. Ot=
-her ASICs keep injecting by address.
-
-Changed from V1:
-        move address based checking to uniras layer
-
-Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c       | 10 +++-
- .../gpu/drm/amd/ras/ras_mgr/amdgpu_ras_cmd.c  | 58 ++++++++++++++++++-
- 2 files changed, 65 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_ras.c
-index af48dd2ebd16..f280a312b0a7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -606,8 +606,14 @@ static ssize_t amdgpu_ras_debugfs_ctrl_write(struct fi=
-le *f,
-                ret =3D amdgpu_ras_feature_enable(adev, &data.head, 1);
-                break;
-        case 2:
--               /* umc ce/ue error injection for a bad page is not allowed =
-*/
--               if (data.head.block =3D=3D AMDGPU_RAS_BLOCK__UMC)
-+               /*
-+                * UMC ce/ue error injection for a bad page is not allowed.=
- For
-+                * uniras (SMU v13+) devices the injection address is valid=
-ated by
-+                * the ras_mgr inject handler, so only run the legacy bad p=
-age
-+                * check for the legacy RAS path.
-+                */
-+               if (data.head.block =3D=3D AMDGPU_RAS_BLOCK__UMC &&
-+                   !amdgpu_uniras_enabled(adev))
-                        ret =3D amdgpu_ras_check_bad_page(adev, data.inject=
-.address);
-                if (ret =3D=3D -EINVAL) {
-                        dev_warn(adev->dev, "RAS WARN: input address 0x%llx=
- is invalid.", diff --git a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_cmd.=
-c b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_cmd.c
-index bfbfdffbfbe6..063c7b0a7b00 100644
---- a/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_cmd.c
-+++ b/drivers/gpu/drm/amd/ras/ras_mgr/amdgpu_ras_cmd.c
-@@ -82,6 +82,57 @@ static uint64_t local_addr_to_xgmi_global_addr(struct ra=
-s_core_context *ras_core
-        return (addr + xgmi->physical_node_id * xgmi->node_segment_size);  =
-}
-
-+/*
-+ * UMC error injection is dispatched by the RAS TA using the
-+(sub-block, method)
-+ * pair carried in struct ras_cmd_inject_error_req as subblock_id (enum
-+ * error_sub_block_umc) and method (enum inject_method_umc). Only the "coh=
-erent"
-+ * methods program an explicit injection address and are therefore
-+address-based;
-+ * the single-shot, persistent and ac-parity methods ignore the address.
-+ *
-+ * Keep the values below in sync with the RAS TA.
-+ */
-+enum umc_error_sub_block {
-+       UMC_ERROR_CRC                   =3D 0,
-+       UMC_ERROR_SRAM                  =3D 1,
-+       UMC_ERROR_ODECC                 =3D 2,
-+       UMC_ERROR_PARITY_DATA           =3D 3,
-+       UMC_ERROR_PARITY_CMD            =3D 4,
-+};
-+
-+enum umc_inject_method {
-+       UMC_METH_COHERENT               =3D 0,
-+       UMC_METH_SINGLE_SHOT            =3D 1,
-+       UMC_METH_PERSISTENT             =3D 2,
-+       UMC_METH_PERSISTENT_DISABLE     =3D 3,
-+       UMC_METH_COHERENT_NO_DETECTION  =3D 4,
-+       UMC_METH_COHERENT_WR            =3D 5,
-+       UMC_METH_SINGLE_SHOT_WR         =3D 6,
-+       UMC_METH_PERSISTENT_WR          =3D 7,
-+       UMC_METH_SINGLE_SHOT_CLEAN      =3D 8,
-+};
-+
-+/*
-+ * Return true if a UMC error injection using @sub_block and @method is
-+ * address-based, i.e. it programs an explicit injection address that
-+must be
-+ * validated. The non address-based methods ignore the address.
-+ */
-+static bool amdgpu_ras_umc_inject_is_address_based(u32 sub_block, u64
-+method) {
-+       switch (sub_block) {
-+       case UMC_ERROR_CRC:
-+               return method =3D=3D UMC_METH_COHERENT ||
-+                      method =3D=3D UMC_METH_COHERENT_NO_DETECTION ||
-+                      method =3D=3D UMC_METH_COHERENT_WR;
-+       case UMC_ERROR_ODECC:
-+               return method =3D=3D UMC_METH_COHERENT;
-+       case UMC_ERROR_PARITY_DATA:
-+               return method =3D=3D UMC_METH_COHERENT ||
-+                      method =3D=3D UMC_METH_COHERENT_WR;
-+       default:
-+               return false;
-+       }
-+}
-+
- static int amdgpu_ras_inject_error(struct ras_core_context *ras_core,
-                        struct ras_cmd_ctx *cmd, void *data)  { @@ -90,7 +1=
-41,8 @@ static int amdgpu_ras_inject_error(struct ras_core_context *ras_cor=
-e,
-                (struct ras_cmd_inject_error_req *)cmd->input_buff_raw;
-        int ret =3D RAS_CMD__ERROR_GENERIC;
-
--       if (req->block_id =3D=3D RAS_BLOCK_ID__UMC) {
-+       if (req->block_id =3D=3D RAS_BLOCK_ID__UMC &&
-+               amdgpu_ras_umc_inject_is_address_based(req->subblock_id,
-+req->method)) {
-                if (amdgpu_ras_mgr_check_retired_addr(adev, req->address)) =
-{
-                        RAS_DEV_WARN(ras_core->dev,
-                                "RAS WARN: inject: 0x%llx has already been =
-marked as bad!\n", @@ -111,6 +163,10 @@ static int amdgpu_ras_inject_error(=
-struct ras_core_context *ras_core,
-                        req->block_id !=3D RAS_BLOCK_ID__GFX) {
-                        req->address =3D local_addr_to_xgmi_global_addr(ras=
-_core, req->address);
-                }
-+       } else if (req->block_id =3D=3D RAS_BLOCK_ID__UMC && req->address) =
-{
-+               RAS_DEV_WARN(adev,
-+                       "RAS WARN: non address based injection, ignore the =
-injection address 0x%llx\n",
-+                       req->address);
-        }
-
-        amdgpu_ras_trigger_error_prepare(ras_core, req);
---
-2.43.0
-
+> Thomas Hellström (6):
+>   drm/amdgpu: Fix init ordering in amdgpu_vram_mgr_init()
+>   cgroup/dmem: Introduce struct dmem_cgroup_init for region
+>     initialization
+>   cgroup/dmem: Add reclaim callback for lowering max below current usage
+>   drm/ttm: Hook up a cgroup-aware reclaim callback for the dmem
+>     controller
+>   drm/xe: Wire up dmem cgroup reclaim for VRAM manager
+>   drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager
+> 
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c      |  2 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 38 +++++++-
+>  drivers/gpu/drm/drm_drv.c                    |  8 +-
+>  drivers/gpu/drm/ttm/ttm_bo.c                 | 95 +++++++++++++++++++-
+>  drivers/gpu/drm/ttm/ttm_bo_util.c            |  3 +-
+>  drivers/gpu/drm/ttm/ttm_resource.c           | 50 +++++++++++
+>  drivers/gpu/drm/xe/xe_ttm_vram_mgr.c         | 53 +++++++++--
+>  include/drm/drm_drv.h                        |  4 +-
+>  include/drm/ttm/ttm_bo.h                     | 10 +++
+>  include/drm/ttm/ttm_resource.h               |  7 ++
+>  include/linux/cgroup_dmem.h                  | 38 +++++++-
+>  kernel/cgroup/dmem.c                         | 91 +++++++++++++++----
+>  12 files changed, 362 insertions(+), 37 deletions(-)
+> 
+> -- 
+> 2.54.0
+> 
