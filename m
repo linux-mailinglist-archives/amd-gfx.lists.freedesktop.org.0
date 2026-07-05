@@ -2,142 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id r70JGzVXS2rFPgEAu9opvQ
+	id U5nkFYsrSmr/+wAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 09:20:21 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 05 Jul 2026 12:01:47 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD72D70D723
-	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 09:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A46FC709A8D
+	for <lists+amd-gfx@lfdr.de>; Sun, 05 Jul 2026 12:01:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=web.de header.s=s29768273 header.b=IhmL96HM;
-	dmarc=pass (policy=quarantine) header.from=web.de;
+	dkim=pass header.d=shift-computing.de header.s=dkim header.b=qhch+gqH;
+	dmarc=pass (policy=reject) header.from=shift-computing.de;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BAB410E637;
-	Mon,  6 Jul 2026 07:20:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84E4D10E011;
+	Sun,  5 Jul 2026 10:01:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.web.de (mout.web.de [212.227.15.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AF5610E10C
- for <amd-gfx@lists.freedesktop.org>; Sun,  5 Jul 2026 00:35:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
- s=s29768273; t=1783211705; x=1783816505; i=spasswolf@web.de;
- bh=XI7crHPYzaUYyMnD41HPJv7MDtUrviFMCHZRU0xBtnM=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
- References:MIME-Version:Content-Transfer-Encoding:cc:
- content-transfer-encoding:content-type:date:from:message-id:
- mime-version:reply-to:subject:to;
- b=IhmL96HM6P7dwDBU4FrXEAjBp96Fl14h+9e9w08/UqEin2nRXctVCYmpP1zssWiz
- +Wslxs834Jk6yUsKXDuMDw4LUALwHmNogEeRJWel9LddODQ2pE9pt7G3fe89TnMx2
- 2jzxoj2/EvFttpz0nmJARKZlqjnYgHKux+U2M6nt0A8ayI/5nq+G4isBcznPsu6XZ
- K80+XCSM2830U92ZqEhGX1JwQYCCztYKAyXh6pRf7sYxkozHcu/IvAdZh1+KmoyW0
- o8FAJvEvmLTGCpje5RSgLpGqs5deZl1WdDYXQn4I9V2x2hnekmqDWqI0DTA5oV7HC
- jM4++zSI+fboQPHaxg==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1Meler-1xG3TQ1cSj-00ibpi; Sun, 05
- Jul 2026 02:35:05 +0200
-From: Bert Karwatzki <spasswolf@web.de>
-To: Alex Deucher <alexander.deucher@amd.com>
-Cc: Bert Karwatzki <spasswolf@web.de>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-next@vger.kernel.org,
- Jesse Zhang <jesse.zhang@amd.com>, Amber Lin <Amber.Lin@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>
-Subject: [Re] GPU reset when running the ROCm hsa runtime tests on gfx12 and
- next-20260701
-Date: Sun,  5 Jul 2026 02:35:02 +0200
-Message-ID: <20260705003504.31425-1-spasswolf@web.de>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260703124405.56248-1-spasswolf@web.de>
-References: 
+Received: from mail.teamster.cloud (mail.teamster.cloud [213.136.73.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C38F610E011;
+ Sun,  5 Jul 2026 10:01:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="------------aXquASgd4bfF5C0BLT6MRedz"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shift-computing.de;
+ s=dkim; t=1783245699;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=1DWz5iFPQbgOXTbscbgpXgMQyuhwr4aUySyAtckuOzQ=;
+ b=qhch+gqHapGnpF3ESkEHyLl8Jfe3MTAcPO40L5KapxJHWpfGaYHILSpzOZAwqRAadbc2LO
+ 32rGlxFMHm7VuLFAyHMLV4WDHeAbg1nCIl9BfAuEbTCtRud2XOeqLWDGbXnOAkCelkz07Z
+ coLUZpC4CqXnu66AmqKUbnV50tp3/syGLp/AdKkwvB5OImSCZJjYOGpPnWhX8CubR4SC4V
+ kwG5faxHrKf7kbYAprE/VjUGDjr15soVB/JpiU/8wir7JnpnNf3o42jkISS9tnN8Z9uJ6y
+ oaGE+VSPRE3XKjWOpw6fgxqMisMRSPUzqHzXsuk43ndROMWNtJmMQAdOhHHpDg==
+Message-ID: <1d26dd23-924d-434f-bfb8-34c6c7a5b6e0@shift-computing.de>
+Date: Sun, 5 Jul 2026 12:01:19 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:OJYITrLKLMkaU+TKpVljLrgsgcatRa3Ku0JK7Ln1FTBPeJXShfU
- SeTTUofRfUDtH5n+bGdXDLVELCwgOwQK6slPlRs5WO9B+p05ideWj/BJ/XOSnI7RTnyTk9I
- q4ztDBFFG1PkQevOI3jp7bGaOKazTFBNhiDmYLAoD7pnF2HhA6Ryy/x9qL4IGr0WOW5MPA/
- TEnSz9znmBbEOGmMit1eA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:YFWIs0cImuM=;ddEHmr1AhnoFYKOZ5HhNI4iPIWD
- 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
-X-Mailman-Approved-At: Mon, 06 Jul 2026 07:20:18 +0000
+Subject: Re: [PATCH] drm/amd/amdgpu: add firmware file fallback for APU VBIOS
+ discovery
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ amd-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>
+References: <20260621173211.28443-1-oz@shift-computing.de>
+ <20260621180154.30421-1-oz@shift-computing.de>
+ <716a31c5-0484-4ef9-b49e-b71310f92d86@amd.com>
+Content-Language: en-US
+From: Oz Tiram <oz@shift-computing.de>
+In-Reply-To: <716a31c5-0484-4ef9-b49e-b71310f92d86@amd.com>
+X-Spamd-Bar: ---
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,150 +67,419 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DATE_IN_PAST(1.00)[30];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[web.de,quarantine];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[shift-computing.de,reject];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[web.de:s=s29768273];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[shift-computing.de:s=dkim];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[spasswolf@web.de,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	FREEMAIL_FROM(0.00)[web.de];
-	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:spasswolf@web.de,m:linux-kernel@vger.kernel.org,m:linux-next@vger.kernel.org,m:jesse.zhang@amd.com,m:Amber.Lin@amd.com,m:mario.limonciello@amd.com,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[web.de,vger.kernel.org,lists.freedesktop.org,amd.com];
-	DKIM_TRACE(0.00)[web.de:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[spasswolf@web.de,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[shift-computing.de:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[oz@shift-computing.de,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[shift-computing.de:from_mime,shift-computing.de:email,shift-computing.de:mid,shift-computing.de:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BD72D70D723
+X-Rspamd-Queue-Id: A46FC709A8D
 
-I identified the problem in =20
-f94bbd648bb4 ("drm/amdgpu: use a single entry point for mes compute reset"=
-)
-it's reset_queues_mes() being called unconditionally. f94bbd648bb4 can be =
-fixed
-like this:
+This is a multi-part message in MIME format.
+--------------aXquASgd4bfF5C0BLT6MRedz
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drive=
-rs/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index 6054c8e216b8..ed1ffa8b1743 100644
-=2D-- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -484,15 +484,18 @@ static int suspend_all_queues_mes(struct device_queu=
-e_manager *dqm)
- 	if (!down_read_trylock(&adev->reset_domain->sem))
- 		return -EIO;
-=20
-+	r =3D amdgpu_mes_suspend(adev, ffs(dqm->dev->xcc_mask) - 1);
-=20
--	if (!reset_queues_mes(dqm)) {
--		r =3D 0;
--		goto out;
--	}
-+	if (r) {
-+		if (!reset_queues_mes(dqm)) {
-+			r =3D 0;
-+			goto out;
-+		}
-=20
--	dev_err(adev->dev, "failed to suspend gangs from MES\n");
--	dev_err(adev->dev, "MES might be in unrecoverable state, issue a GPU res=
-et\n");
--	kfd_hws_hang(dqm);
-+		dev_err(adev->dev, "failed to suspend gangs from MES\n");
-+		dev_err(adev->dev, "MES might be in unrecoverable state, issue a GPU re=
-set\n");
-+		kfd_hws_hang(dqm);
-+	}
- out:
-=20
- 	up_read(&adev->reset_domain->sem);
+Hi Mario,
 
+Sorry for the slow response, I'm new to the kernel contribution process. 
+Thanks for the review. v2 addresses your questions: -
 
-But when I try to fix next-20260701 like this
+The VFCT does contain the iGPU entry, but with a stale PCIBus value from 
+BIOS POST time (0x6A). With pci=realloc,assign-busses the iGPU lands on 
+bus 0x0B at runtime, so amdgpu_acpi_vfct_bios() never matches it
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drive=
-rs/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index 5c9dfb0c424f..5a78b1504f8c 100644
-=2D-- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -493,7 +493,10 @@ static int recover_bad_queue_mes(struct device_queue_=
-manager *dqm, struct queue
- 	if (!down_read_trylock(&adev->reset_domain->sem))
- 		return -EIO;
-=20
--	r =3D reset_queues_mes(dqm, q);
-+	r =3D amdgpu_mes_suspend(adev, ffs(dqm->dev->xcc_mask) - 1);
-+
-+	if (r)
-+		r =3D reset_queues_mes(dqm, q);
-=20
- 	up_read(&adev->reset_domain->sem);
- 	return r;
+This is clarified in the commit message along with a note that the UEFI 
+GOP driver initializes the iGPU successfully, confirming the hardware is 
+functional.
 
-I still get GPUVM errors (but no GPU reset) and when running
+The VBIOS image data in the VFCT is valid — only the PCIBus metadata is 
+wrong.
 
-$ /usr/libexec/rocm/libhsa-runtime64-tests/run-tests
+The firmware file was extracted directly from the VFCT with dd, skipping 
+past the ACPI header and VFCT_IMAGE_HEADER. The commit message now 
+documents the exact command and byte offsets.
 
-[  146.577245] [    T418] amdgpu 0000:03:00.0: [gfxhub] page fault (src_id=
-:0 ring:157 vmid:0 pasid:0)
-[  146.577247] [    T418] amdgpu 0000:03:00.0:   in page starting at addre=
-ss 0x00000000002ba000 from client 10
-[  146.577248] [    T418] amdgpu 0000:03:00.0: GCVM_L2_PROTECTION_FAULT_ST=
-ATUS:0x00000B3A
-[  146.577249] [    T418] amdgpu 0000:03:00.0: 	 Faulty UTCL2 client ID: C=
-PC (0x5)
-[  146.577249] [    T418] amdgpu 0000:03:00.0: 	 MORE_FAULTS: 0x0
-[  146.577250] [    T418] amdgpu 0000:03:00.0: 	 WALKER_ERROR: 0x5
-[  146.577250] [    T418] amdgpu 0000:03:00.0: 	 PERMISSION_FAULTS: 0x3
-[  146.577250] [    T418] amdgpu 0000:03:00.0: 	 MAPPING_ERROR: 0x1
-[  146.577251] [    T418] amdgpu 0000:03:00.0: 	 RW: 0x0
-[  146.577606] [    T418] amdgpu 0000:03:00.0: [gfxhub] page fault (src_id=
-:0 ring:157 vmid:0 pasid:0)
-[  146.577608] [    T418] amdgpu 0000:03:00.0:   in page starting at addre=
-ss 0x00000000002ba000 from client 10
-[  146.577609] [    T418] amdgpu 0000:03:00.0: GCVM_L2_PROTECTION_FAULT_ST=
-ATUS:0x00000B3A
-[  146.577609] [    T418] amdgpu 0000:03:00.0: 	 Faulty UTCL2 client ID: C=
-PC (0x5)
-[  146.577610] [    T418] amdgpu 0000:03:00.0: 	 MORE_FAULTS: 0x0
-[  146.577611] [    T418] amdgpu 0000:03:00.0: 	 WALKER_ERROR: 0x5
-[  146.577611] [    T418] amdgpu 0000:03:00.0: 	 PERMISSION_FAULTS: 0x3
-[  146.577611] [    T418] amdgpu 0000:03:00.0: 	 MAPPING_ERROR: 0x1
-[  146.577612] [    T418] amdgpu 0000:03:00.0: 	 RW: 0x0
+The patch follows.
 
-This means there's at least another error in these commits (reverting all =
-these in
-next-20260701 fixes the issue)
+Oz
 
-b789664e3e30 ("drm/amdkfd: Clean up suspend_all and resume_all mes")
-a665d09b10af ("drm/amdkfd: Pass known bad queue info to reset")
-a4e4d945cba8 ("drm/amdgpu/gfx: defer per-queue helper_end until after MES =
-resume")
-f401a2633e02 ("drm/amdgpu: Remove faulty queue before resume")
-f94bbd648bb4 ("drm/amdgpu: use a single entry point for mes compute reset"=
-)
+On 6/26/26 19:42, Mario Limonciello wrote:
+>
+>
+> On 6/21/26 13:01, Oz Tiram wrote:
+>> APUs (e.g. AMD Radeon 780M / HawkPoint, PCI 1002:1900) have no
+>> dedicated VBIOS ROM chip.  amdgpu_get_bios_apu() attempts four paths
+>> before giving up:
+>>
+>>    1. ACPI VFCT table
+>>    2. VRAM BAR read
+>>    3. ROM BAR read
+>>    4. platform BIOS
+>>
+>> On some systems all four fail:
+>
+> That's pretty odd to me.  Isn't this a BIOS bug?  Can you share more 
+> about why all of these are failing?
+>
+> Does the UEFI GOP driver work?
+>
+>>
+>>    - The VFCT table is absent or contains only the discrete GPU entry
+>>      (e.g. when a custom ACPI override is present for the dGPU only).
+>>    - The VRAM BAR is unmapped at probe time.
+>>    - The ROM BAR is zero (PCI firmware did not assign it; observed even
+>>      with pci=realloc,assign-busses).
+>>    - No platform BIOS mapping exists.
+>>
+>> The driver then prints "Unable to locate a BIOS ROM" and refuses to
+>> bind, leaving the APU completely unusable under Linux even though the
+>> hardware is functional.
+>>
+>> Add a fifth fallback: request a firmware file named
+>> "amdgpu/<vendor>_<device>.bin" (e.g. "amdgpu/1002_1900.bin") via
+>> request_firmware().  This allows a VBIOS image extracted from the
+>> running hardware 
+>
+> I thought you just said this didn't work.  How did you extract it?
+>
+>> to be shipped as a firmware blob in /lib/firmware/ and
+>> makes the binding succeed without any change to the ACPI tables.
+>>
+>> The fallback is only reached if all existing paths have already failed,
+>> so there is no regression risk for boards where VFCT or ROM BAR work.
+>>
+>> Signed-off-by: Oz Tiram <oz@shift-computing.de>
+>> ---
+>> v2: Validate the fetched firmware with check_atom_bios() before 
+>> accepting
+>>      it, consistent with all other VBIOS discovery paths. Save fw->size
+>>      before release_firmware() so it remains valid for the size check.
+>>      Release the buffer via amdgpu_bios_release() if validation fails.
+>>
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 23 +++++++++++++++++++++++
+>>   1 file changed, 23 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+>> index aa039e148a5e..86064c753b09 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+>> @@ -26,6 +26,7 @@
+>>    *          Jerome Glisse
+>>    */
+>>   +#include <linux/firmware.h>
+>>   #include "amdgpu.h"
+>>   #include "atom.h"
+>>   @@ -457,6 +458,28 @@ static bool amdgpu_get_bios_apu(struct 
+>> amdgpu_device *adev)
+>>           goto success;
+>>       }
+>>   +    {
+>> +        const struct firmware *fw;
+>> +        char fw_name[32];
+>> +        size_t fw_size;
+>> +
+>> +        snprintf(fw_name, sizeof(fw_name), "amdgpu/%04x_%04x.bin",
+>> +             adev->pdev->vendor, adev->pdev->device);
+>> +        if (request_firmware(&fw, fw_name, adev->dev) == 0) {
+>> +            adev->bios = kmemdup(fw->data, fw->size, GFP_KERNEL);
+>> +            fw_size = fw->size;
+>> +            release_firmware(fw);
+>> +            if (!adev->bios || !check_atom_bios(adev, fw_size)) {
+>> +                amdgpu_bios_release(adev);
+>> +            } else {
+>> +                adev->bios_size = fw_size;
+>> +                dev_info(adev->dev, "Fetched VBIOS from firmware 
+>> file %s\n",
+>> +                     fw_name);
+>> +                goto success;
+>> +            }
+>> +        }
+>> +    }
+>> +
+>>       dev_err(adev->dev, "Unable to locate a BIOS ROM\n");
+>>       return false;
+>
+--------------aXquASgd4bfF5C0BLT6MRedz
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Bert Karwatzki
-   =20
+<!DOCTYPE html>
+<html data-lt-installed="true">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body style="padding-bottom: 1px;">
+    <font face="monospace">Hi Mario,                                   
+                                       <br>
+    </font>
+    <p><font face="monospace">Sorry for the slow response, I'm new to
+        the kernel contribution process.                               
+                  </font><font face="monospace">Thanks for the review.
+        v2 addresses your questions:                                   
+                                    </font><font face="monospace">- </font></p>
+    <p><font face="monospace">The VFCT does contain the iGPU entry, but
+        with a stale PCIBus value from BIOS POST time (0x6A). With
+        pci=realloc,assign-busses the iGPU </font><font face="monospace">lands
+        on bus 0x0B at runtime, so amdgpu_acpi_vfct_bios() never
+        matches </font><font face="monospace">it</font></p>
+    <p><font face="monospace">This is clarified in the commit message
+        along with a note that the </font><font face="monospace">UEFI
+        GOP driver initializes the iGPU successfully, confirming the </font><font
+        face="monospace">hardware is functional.                       
+                                                              </font></p>
+    <p><font face="monospace">The VBIOS image data in the VFCT is valid
+        — only the PCIBus metadata </font><font face="monospace">is
+        wrong.</font></p>
+    <p><font face="monospace">The firmware file was extracted directly
+        from the VFCT with dd, </font><font face="monospace">skipping
+        past the ACPI header and VFCT_IMAGE_HEADER. The commit </font><font
+        face="monospace">message now documents the exact command and
+        byte offsets.</font></p>
+    <p><font face="monospace">The patch follows.</font></p>
+    <font face="monospace">Oz<br>
+      <br>
+    </font>
+    <div class="moz-cite-prefix"><font face="monospace">On 6/26/26
+        19:42, Mario Limonciello wrote:<br>
+      </font></div>
+    <blockquote type="cite"
+      cite="mid:716a31c5-0484-4ef9-b49e-b71310f92d86@amd.com">
+      <font face="monospace"><br>
+      </font>
+      <font face="monospace"><br>
+        On 6/21/26 13:01, Oz Tiram wrote:
+        <br>
+      </font>
+      <blockquote type="cite"><font face="monospace">APUs (e.g. AMD
+          Radeon 780M / HawkPoint, PCI 1002:1900) have no
+          <br>
+          dedicated VBIOS ROM chip.  amdgpu_get_bios_apu() attempts four
+          paths
+          <br>
+          before giving up:
+          <br>
+        </font>
+        <font face="monospace"><br>
+             1. ACPI VFCT table
+          <br>
+             2. VRAM BAR read
+          <br>
+             3. ROM BAR read
+          <br>
+             4. platform BIOS
+          <br>
+        </font>
+        <font face="monospace"><br>
+          On some systems all four fail:
+          <br>
+        </font></blockquote>
+      <font face="monospace"><br>
+        That's pretty odd to me.  Isn't this a BIOS bug?  Can you share
+        more about why all of these are failing?
+        <br>
+      </font>
+      <font face="monospace"><br>
+        Does the UEFI GOP driver work?
+        <br>
+      </font>
+      <font face="monospace"><br>
+      </font>
+      <blockquote type="cite">
+        <font face="monospace"><br>
+             - The VFCT table is absent or contains only the discrete
+          GPU entry
+          <br>
+               (e.g. when a custom ACPI override is present for the dGPU
+          only).
+          <br>
+             - The VRAM BAR is unmapped at probe time.
+          <br>
+             - The ROM BAR is zero (PCI firmware did not assign it;
+          observed even
+          <br>
+               with pci=realloc,assign-busses).
+          <br>
+             - No platform BIOS mapping exists.
+          <br>
+        </font>
+        <font face="monospace"><br>
+          The driver then prints "Unable to locate a BIOS ROM" and
+          refuses to
+          <br>
+          bind, leaving the APU completely unusable under Linux even
+          though the
+          <br>
+          hardware is functional.
+          <br>
+        </font>
+        <font face="monospace"><br>
+          Add a fifth fallback: request a firmware file named
+          <br>
+          "amdgpu/&lt;vendor&gt;_&lt;device&gt;.bin" (e.g.
+          "amdgpu/1002_1900.bin") via
+          <br>
+          request_firmware().  This allows a VBIOS image extracted from
+          the
+          <br>
+          running hardware </font></blockquote>
+      <font face="monospace"><br>
+        I thought you just said this didn't work.  How did you extract
+        it?
+        <br>
+      </font>
+      <font face="monospace"><br>
+      </font>
+      <blockquote type="cite"><font face="monospace">to be shipped as a
+          firmware blob in /lib/firmware/ and
+          <br>
+          makes the binding succeed without any change to the ACPI
+          tables.
+          <br>
+        </font>
+        <font face="monospace"><br>
+          The fallback is only reached if all existing paths have
+          already failed,
+          <br>
+          so there is no regression risk for boards where VFCT or ROM
+          BAR work.
+          <br>
+        </font>
+        <font face="monospace"><br>
+          Signed-off-by: Oz Tiram <a class="moz-txt-link-rfc2396E" href="mailto:oz@shift-computing.de">&lt;oz@shift-computing.de&gt;</a>
+          <br>
+          ---
+          <br>
+          v2: Validate the fetched firmware with check_atom_bios()
+          before accepting
+          <br>
+               it, consistent with all other VBIOS discovery paths. 
+          Save fw-&gt;size
+          <br>
+               before release_firmware() so it remains valid for the
+          size check.
+          <br>
+               Release the buffer via amdgpu_bios_release() if
+          validation fails.
+          <br>
+        </font>
+        <font face="monospace"><br>
+            drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 23
+          +++++++++++++++++++++++
+          <br>
+            1 file changed, 23 insertions(+)
+          <br>
+        </font>
+        <font face="monospace"><br>
+          diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+          b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+          <br>
+          index aa039e148a5e..86064c753b09 100644
+          <br>
+          --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+          <br>
+          +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+          <br>
+          @@ -26,6 +26,7 @@
+          <br>
+             *          Jerome Glisse
+          <br>
+             */
+          <br>
+            +#include &lt;linux/firmware.h&gt;
+          <br>
+            #include "amdgpu.h"
+          <br>
+            #include "atom.h"
+          <br>
+            @@ -457,6 +458,28 @@ static bool amdgpu_get_bios_apu(struct
+          amdgpu_device *adev)
+          <br>
+                    goto success;
+          <br>
+                }
+          <br>
+            +    {
+          <br>
+          +        const struct firmware *fw;
+          <br>
+          +        char fw_name[32];
+          <br>
+          +        size_t fw_size;
+          <br>
+          +
+          <br>
+          +        snprintf(fw_name, sizeof(fw_name),
+          "amdgpu/%04x_%04x.bin",
+          <br>
+          +             adev-&gt;pdev-&gt;vendor,
+          adev-&gt;pdev-&gt;device);
+          <br>
+          +        if (request_firmware(&amp;fw, fw_name, adev-&gt;dev)
+          == 0) {
+          <br>
+          +            adev-&gt;bios = kmemdup(fw-&gt;data, fw-&gt;size,
+          GFP_KERNEL);
+          <br>
+          +            fw_size = fw-&gt;size;
+          <br>
+          +            release_firmware(fw);
+          <br>
+          +            if (!adev-&gt;bios || !check_atom_bios(adev,
+          fw_size)) {
+          <br>
+          +                amdgpu_bios_release(adev);
+          <br>
+          +            } else {
+          <br>
+          +                adev-&gt;bios_size = fw_size;
+          <br>
+          +                dev_info(adev-&gt;dev, "Fetched VBIOS from
+          firmware file %s\n",
+          <br>
+          +                     fw_name);
+          <br>
+          +                goto success;
+          <br>
+          +            }
+          <br>
+          +        }
+          <br>
+          +    }
+          <br>
+          +
+          <br>
+                dev_err(adev-&gt;dev, "Unable to locate a BIOS ROM\n");
+          <br>
+                return false;
+          <br>
+            </font></blockquote>
+      <font face="monospace"><br>
+      </font></blockquote>
+  </body>
+  <lt-container></lt-container>
+</html>
+
+--------------aXquASgd4bfF5C0BLT6MRedz--
