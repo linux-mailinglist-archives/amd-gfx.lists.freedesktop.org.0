@@ -2,102 +2,142 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id V59EH1jvSGosvgAAu9opvQ
+	id r70JGzVXS2rFPgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 04 Jul 2026 13:32:40 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 09:20:21 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF38D7076C9
-	for <lists+amd-gfx@lfdr.de>; Sat, 04 Jul 2026 13:32:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD72D70D723
+	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 09:20:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=nZptEJEt;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	arc=pass ("google.com:s=arc-20260327:i=1")
+	dkim=pass header.d=web.de header.s=s29768273 header.b=IhmL96HM;
+	dmarc=pass (policy=quarantine) header.from=web.de;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2912210E063;
-	Sat,  4 Jul 2026 11:32:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BAB410E637;
+	Mon,  6 Jul 2026 07:20:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com
- [209.85.210.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63F5310E063
- for <amd-gfx@lists.freedesktop.org>; Sat,  4 Jul 2026 11:32:35 +0000 (UTC)
-Received: by mail-ot1-f45.google.com with SMTP id
- 46e09a7af769-7e9f69ee6f4so1209664a34.2
- for <amd-gfx@lists.freedesktop.org>; Sat, 04 Jul 2026 04:32:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783164754; cv=none;
- d=google.com; s=arc-20260327;
- b=pKLT73JbxGzD34L+7p1oe6f4uQNC6CL/Ak8jyA8bcGSOHv2pPrGicHFuFBP2kU39Ox
- qWlL57NEXR0VE88/qFKRSPDLH/yZ0w+A81XZ07cKL9UQx33jZkSmlE3PDf8/yRIhpzXC
- bj3ZcqzUsvzxKBrxtK9t3ESNiL+kYaM4vT1mUAJj1HFNtoZxayWNtBs79YbV5JnvoCH0
- XjHphFjgtJLHb2mM+OKX02OYzVolxyueSZlpdRor1Vwlut1gf4pyhNIvDnrjElMQeqtA
- dOHtcY4Pyo7DPH49w08GZrdUIubiAkdH/OjIflN74kDJLwgLwxFbpOroAcOEBDtZ+7bB
- kO0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=EWxbVxt0bUrbMOVyYOzNg2L9Hi49TedpZAPD1zNG07k=;
- fh=SJrMnRkxp8IQkIbiKOUW3HLQIzmrYPNSiXSbnrjdcUA=;
- b=dp/v2Wwv59onM+enxBBAo/Wk/XCiPNZRW4mizLXh+6MFz0JeQGmCfht/QfkUj5iL2T
- 1fIT8TEePF20q4AqvpxlCHme4minXrwaihnNlY6nWLYsnaGgrcOjoRSDWw9PFyFJExKN
- 0fwxIIj+z9CJch3FBBkdxzRwHToi7u8/sB5z3fBkWiHNxL/1ZUnT9HgQ1/H2+cLo/qtF
- aKRaHU8pe2N7Fec0meZPLToS59zfs2bw5EIz3lnHHbVdKrVXnf6u61GcDRqcF/l7Pw2g
- WuzQSkkAyhuAg/I5RWEOY/ond4SqZ4KLf13us4wQcYatAEJzyII4bQ09VY2PubnAg1rb
- 1gAA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783164754; x=1783769554; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=EWxbVxt0bUrbMOVyYOzNg2L9Hi49TedpZAPD1zNG07k=;
- b=nZptEJEtjI4Rozy82GimeG8VlLPXyNWrLTOBL8X9XF/19WloZKBZFELr4dA2RT/u13
- gkorxCGho7x++GXwzTaQQvx6zIxY5Jz7r24mb93fU8lUQ9skTCxchCpdudZm4rj91Mr5
- tF/IOpem/yiPOo7f+cLswbwkRrmnV7YEKTazcBCsRYKixhAlSMtdXVXV8opE64APxNaJ
- Qgp1xJvZdOzc6PIV9pnhaXdMEawzPpP+wch7TLYeo7ud3M0xIFlGpdzRveW5XiRqxsEj
- UHazDjo11TKp7JNNPTg0xwDzVlRV65zK01ugyC6RHuaDDJj6tDmB+/m151o/DnfgKl+f
- yRxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783164754; x=1783769554;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=EWxbVxt0bUrbMOVyYOzNg2L9Hi49TedpZAPD1zNG07k=;
- b=KbOSdQRvzhCbrqQY6LkOaE14n0eNLUretM312JjOVwTzgLDuEf17zesrx1V7urI48v
- culxOHVG+ulaMX/nu4ci5pRNHleIz2Qe9Xi16MkxbGCQeMdeBCtlSsHMrABu+5uyu7OA
- 0sYetFcxm3vsUKLYdkBVkDxlGy0orMoSZHBrqnOFXKowWUF546le/zNNGvVLKGGDiuxn
- 9JW4kVykEsJBsQH8o5GKxBCW2qtFYARgZsoOC0ff2SRVjb+v3oDy6G9hWHrb4OyMsUJ5
- oSwg+dm2AHvasKD8oU2Dn8ZsZkaft/12fhtkT0OPkFs5qIqLugAS5iYhsbU1gl11p08S
- 43Ow==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+65a3BorZ61PA5akroamVA0ZtDoQSGfWyZyUHRkPk/+D3PAjkcb6nsFVS07UEkJLkzn+aDtJM6@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywl0qFoqQ+1IS541btHhu2Y8qtGKg2F6GBgYf2EynET1gxkz+4C
- HUZM1jeEq06MzZj8ppjcYNfPA4lZTZPwQ0+RPnF5MVHOESLrdn8mnFgbyeghHlX+e59J1O13NuK
- z4yoqvY/O98BXeYVTJIqYrjOigI1TzKA=
-X-Gm-Gg: AfdE7cmVeTS2NgWf9mBdenu5r41AwcX7Yg+zZNtHQA3o7l/lak0TkNinzFtcG8OoFou
- Ou93cO6Zl1fjgw7hq0NQFyF7Qyj+wq2SnhcPsdJR30bTw8zrf6UJ4Tu632SZPTNrw5C/bSznsIw
- MYVO+OvMjzmiRrvvVjN2iMXGEP1iG7oS+ioUFkkn+spMP+3RR5C5d2REFYEbOMMLFLH6SrLlbVg
- r2WWpbr88ubm5zSlfFi4fOiIlsgKvp5zg7IQkS5YOE3E97lgR/mdIklMfG+IBKdGXIbutRnp3M=
-X-Received: by 2002:a05:6830:258e:b0:7e6:f2dd:93c3 with SMTP id
- 46e09a7af769-7eb7ff1bee0mr1941047a34.15.1783164754180; Sat, 04 Jul 2026
- 04:32:34 -0700 (PDT)
+Received: from mout.web.de (mout.web.de [212.227.15.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AF5610E10C
+ for <amd-gfx@lists.freedesktop.org>; Sun,  5 Jul 2026 00:35:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1783211705; x=1783816505; i=spasswolf@web.de;
+ bh=XI7crHPYzaUYyMnD41HPJv7MDtUrviFMCHZRU0xBtnM=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
+ References:MIME-Version:Content-Transfer-Encoding:cc:
+ content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=IhmL96HM6P7dwDBU4FrXEAjBp96Fl14h+9e9w08/UqEin2nRXctVCYmpP1zssWiz
+ +Wslxs834Jk6yUsKXDuMDw4LUALwHmNogEeRJWel9LddODQ2pE9pt7G3fe89TnMx2
+ 2jzxoj2/EvFttpz0nmJARKZlqjnYgHKux+U2M6nt0A8ayI/5nq+G4isBcznPsu6XZ
+ K80+XCSM2830U92ZqEhGX1JwQYCCztYKAyXh6pRf7sYxkozHcu/IvAdZh1+KmoyW0
+ o8FAJvEvmLTGCpje5RSgLpGqs5deZl1WdDYXQn4I9V2x2hnekmqDWqI0DTA5oV7HC
+ jM4++zSI+fboQPHaxg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from client.hidden.invalid by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1Meler-1xG3TQ1cSj-00ibpi; Sun, 05
+ Jul 2026 02:35:05 +0200
+From: Bert Karwatzki <spasswolf@web.de>
+To: Alex Deucher <alexander.deucher@amd.com>
+Cc: Bert Karwatzki <spasswolf@web.de>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-next@vger.kernel.org,
+ Jesse Zhang <jesse.zhang@amd.com>, Amber Lin <Amber.Lin@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>
+Subject: [Re] GPU reset when running the ROCm hsa runtime tests on gfx12 and
+ next-20260701
+Date: Sun,  5 Jul 2026 02:35:02 +0200
+Message-ID: <20260705003504.31425-1-spasswolf@web.de>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260703124405.56248-1-spasswolf@web.de>
+References: 
 MIME-Version: 1.0
-References: <20260704084133.122053-1-christian.koenig@amd.com>
-In-Reply-To: <20260704084133.122053-1-christian.koenig@amd.com>
-From: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-Date: Sat, 4 Jul 2026 16:32:22 +0500
-X-Gm-Features: AVVi8CcK_S66JOwlm4n0LTy0xr_IGeFKHbpsM77Kmo3cE5f0eLtGIWRvXB6zhGs
-Message-ID: <CABXGCsPB4V6h-vUHwQ0Fo=bsdn66xP4fOOOezwWw2hiKh5TRJQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/drm_exec: avoid indirect goto
-To: christian.koenig@amd.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- peterz@infradead.org, jpoimboe@kernel.org, llvm@lists.linux.dev, 
- oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:OJYITrLKLMkaU+TKpVljLrgsgcatRa3Ku0JK7Ln1FTBPeJXShfU
+ SeTTUofRfUDtH5n+bGdXDLVELCwgOwQK6slPlRs5WO9B+p05ideWj/BJ/XOSnI7RTnyTk9I
+ q4ztDBFFG1PkQevOI3jp7bGaOKazTFBNhiDmYLAoD7pnF2HhA6Ryy/x9qL4IGr0WOW5MPA/
+ TEnSz9znmBbEOGmMit1eA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:YFWIs0cImuM=;ddEHmr1AhnoFYKOZ5HhNI4iPIWD
+ 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
+X-Mailman-Approved-At: Mon, 06 Jul 2026 07:20:18 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,261 +152,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+X-Spamd-Result: default: False [1.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DATE_IN_PAST(1.00)[30];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[web.de,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[web.de:s=s29768273];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:dri-devel@lists.freedesktop.org,m:peterz@infradead.org,m:jpoimboe@kernel.org,m:llvm@lists.linux.dev,m:oe-kbuild-all@lists.linux.dev,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[spasswolf@web.de,amd-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[web.de];
+	FORGED_RECIPIENTS(0.00)[m:alexander.deucher@amd.com,m:spasswolf@web.de,m:linux-kernel@vger.kernel.org,m:linux-next@vger.kernel.org,m:jesse.zhang@amd.com,m:Amber.Lin@amd.com,m:mario.limonciello@amd.com,s:lists@lfdr.de];
+	TO_DN_SOME(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[mikhailvgavrilov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[web.de,vger.kernel.org,lists.freedesktop.org,amd.com];
+	DKIM_TRACE(0.00)[web.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TO_DN_NONE(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mikhailvgavrilov@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[spasswolf@web.de,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,mail.gmail.com:mid,infradead.org:email,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BF38D7076C9
+X-Rspamd-Queue-Id: BD72D70D723
 
-On Sat, Jul 4, 2026 at 1:41=E2=80=AFPM Christian K=C3=B6nig
-<ckoenig.leichtzumerken@gmail.com> wrote:
->
-> The drm_exec component uses a variable with scope limited to the for() an=
-d
-> an indirect goto to allow instantiating multiple macros in the same
-> function.
->
-> This unfortunately doesn't work well with certain compilers when the
-> indirect goto can't be lowered to a direct jump.
->
-> Switch the indirect goto to a direct goto, the drawback is that we now
-> can't use the dma_exec_until_all_locked() macro in the same function
-> multiple times.
->
-> The is currently only one user of this and only as a hacky workaround
-> which is about to be removed.
->
-> So document that the __label__ statement should be used when the macro is
-> used multiple times and fix the tests and the only use case where that is
-> necessary.
->
-> Suggested-by: Peter Zijlstra <peterz@infradead.org>
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c |  2 ++
->  drivers/gpu/drm/tests/drm_exec_test.c  | 24 ++++++++++++------
->  include/drm/drm_exec.h                 | 34 ++++++++++++++------------
->  3 files changed, 36 insertions(+), 24 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu_vm.c
-> index fee4c94c2585..fc28d0fdad37 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> @@ -3011,6 +3011,8 @@ bool amdgpu_vm_handle_fault(struct amdgpu_device *a=
-dev, u32 pasid,
->         is_compute_context =3D vm->is_compute_context;
->
->         if (is_compute_context) {
-> +               __label__ drm_exec_retry;
-> +
->                 /* Release the root PD lock since svm_range_restore_pages
->                  * might try to take it.
->                  * TODO: rework svm_range_restore_pages so that this isn'=
-t
-> diff --git a/drivers/gpu/drm/tests/drm_exec_test.c b/drivers/gpu/drm/test=
-s/drm_exec_test.c
-> index 2fc47f3b463b..7a374e462348 100644
-> --- a/drivers/gpu/drm/tests/drm_exec_test.c
-> +++ b/drivers/gpu/drm/tests/drm_exec_test.c
-> @@ -180,19 +180,27 @@ static void test_multiple_loops(struct kunit *test)
->  {
->         struct drm_exec exec;
->
-> -       drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
-> -       drm_exec_until_all_locked(&exec)
->         {
-> -               break;
-> +               __label__ drm_exec_retry;
-> +
-> +               drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
-> +               drm_exec_until_all_locked(&exec)
-> +               {
-> +                       break;
-> +               }
-> +               drm_exec_fini(&exec);
->         }
-> -       drm_exec_fini(&exec);
->
-> -       drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
-> -       drm_exec_until_all_locked(&exec)
->         {
-> -               break;
-> +               __label__ drm_exec_retry;
-> +
-> +               drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT, 0);
-> +               drm_exec_until_all_locked(&exec)
-> +               {
-> +                       break;
-> +               }
-> +               drm_exec_fini(&exec);
->         }
-> -       drm_exec_fini(&exec);
->         KUNIT_SUCCEED(test);
->  }
->
-> diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
-> index 8725ba92ff91..cc2937185a9f 100644
-> --- a/include/drm/drm_exec.h
-> +++ b/include/drm/drm_exec.h
-> @@ -101,17 +101,6 @@ drm_exec_obj(struct drm_exec *exec, unsigned long in=
-dex)
->  #define drm_exec_for_each_locked_object_reverse(exec, obj)             \
->         __drm_exec_for_each_locked_object_reverse(exec, obj, __UNIQUE_ID(=
-drm_exec))
->
-> -/*
-> - * Helper to drm_exec_until_all_locked(). Don't use directly.
-> - *
-> - * Since labels can't be defined local to the loop's body we use a jump =
-pointer
-> - * to make sure that the retry is only used from within the loop's body.
-> - */
-> -#define __drm_exec_until_all_locked(exec, _label)                       =
-\
-> -_label:                                                                 =
-        \
-> -       for (void *const __maybe_unused __drm_exec_retry_ptr =3D &&_label=
-; \
-> -            drm_exec_cleanup(exec);)
-> -
->  /**
->   * drm_exec_until_all_locked - loop until all GEM objects are locked
->   * @exec: drm_exec object
-> @@ -119,9 +108,18 @@ _label:                                             =
-                        \
->   * Core functionality of the drm_exec object. Loops until all GEM object=
-s are
->   * locked and no more contention exists. At the beginning of the loop it=
- is
->   * guaranteed that no GEM object is locked.
-> + *
-> + * A global label name drm_exec_retry is used, if you need to use more t=
-han one
-> + * instance of this macro in the same function the label needs to be mad=
-e local
-> + * to the block with the __label__ keyword.
->   */
->  #define drm_exec_until_all_locked(exec)                                 =
-       \
-> -       __drm_exec_until_all_locked(exec, __UNIQUE_ID(drm_exec))
-> +       for (bool const __maybe_unused __drm_exec_loop =3D false;        =
- \
-> +            drm_exec_cleanup(exec);)                                   \
-> +               if (false) {                                            \
-> +drm_exec_retry: __maybe_unused;                                         =
-       \
-> +                       continue;                                       \
-> +               } else
->
->  /**
->   * drm_exec_retry_on_contention - restart the loop to grap all locks
-> @@ -129,12 +127,14 @@ _label:                                            =
-                        \
->   *
->   * Control flow helper to continue when a contention was detected and we=
- need to
->   * clean up and re-start the loop to prepare all GEM objects.
-> + * The __drm_exec_loop check exists to prevent usage outside of an
-> + * drm_exec_until_all_locked() loop.
->   */
->  #define drm_exec_retry_on_contention(exec)                     \
->         do {                                                    \
->                 if (unlikely(drm_exec_is_contended(exec)))      \
-> -                       goto *__drm_exec_retry_ptr;             \
-> -       } while (0)
-> +                       goto drm_exec_retry;                    \
-> +       } while (__drm_exec_loop)
->
->  /**
->   * drm_exec_is_contended - check for contention
-> @@ -154,12 +154,14 @@ static inline bool drm_exec_is_contended(struct drm=
-_exec *exec)
->   *
->   * Unconditionally retry the loop to lock all objects. For consistency,
->   * the exec object needs to be newly initialized.
-> + * The __drm_exec_loop check exists to prevent usage outside of an
-> + * drm_exec_until_all_locked() loop.
->   */
->  #define drm_exec_retry(_exec)                                  \
->         do {                                                    \
->                 WARN_ON((_exec)->contended !=3D DRM_EXEC_DUMMY);  \
-> -               goto *__drm_exec_retry_ptr;                     \
-> -       } while (0)
-> +               goto drm_exec_retry;                            \
-> +       } while (__drm_exec_loop)
->
->  /**
->   * drm_exec_ticket - return the ww_acquire_ctx for this exec context
-> --
-> 2.43.0
->
+I identified the problem in =20
+f94bbd648bb4 ("drm/amdgpu: use a single entry point for mes compute reset"=
+)
+it's reset_queues_mes() being called unconditionally. f94bbd648bb4 can be =
+fixed
+like this:
 
-Tested on the configs that originally tripped objtool, the error is gone
-with this patch:
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drive=
+rs/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index 6054c8e216b8..ed1ffa8b1743 100644
+=2D-- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -484,15 +484,18 @@ static int suspend_all_queues_mes(struct device_queu=
+e_manager *dqm)
+ 	if (!down_read_trylock(&adev->reset_domain->sem))
+ 		return -EIO;
+=20
++	r =3D amdgpu_mes_suspend(adev, ffs(dqm->dev->xcc_mask) - 1);
+=20
+-	if (!reset_queues_mes(dqm)) {
+-		r =3D 0;
+-		goto out;
+-	}
++	if (r) {
++		if (!reset_queues_mes(dqm)) {
++			r =3D 0;
++			goto out;
++		}
+=20
+-	dev_err(adev->dev, "failed to suspend gangs from MES\n");
+-	dev_err(adev->dev, "MES might be in unrecoverable state, issue a GPU res=
+et\n");
+-	kfd_hws_hang(dqm);
++		dev_err(adev->dev, "failed to suspend gangs from MES\n");
++		dev_err(adev->dev, "MES might be in unrecoverable state, issue a GPU re=
+set\n");
++		kfd_hws_hang(dqm);
++	}
+ out:
+=20
+ 	up_read(&adev->reset_domain->sem);
 
-  - gcc, non-LTO: amdgpu_vm.o builds clean
-    (was amdgpu_vm_handle_fault+0x169 / +0x97)
-  - clang, non-LTO: amdgpu_vm.o builds clean
-    (was amdgpu_vm_handle_fault+0x12d)
-  - clang + ThinLTO + KASAN, OBJTOOL_WERROR=3Dy: full vmlinux.o link
-    passes objtool (was amdgpu_vm_handle_fault+0x186 / +0x16b)
 
-x86_64, clang 22.1.8.
+But when I try to fix next-20260701 like this
 
-Tested-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drive=
+rs/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index 5c9dfb0c424f..5a78b1504f8c 100644
+=2D-- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -493,7 +493,10 @@ static int recover_bad_queue_mes(struct device_queue_=
+manager *dqm, struct queue
+ 	if (!down_read_trylock(&adev->reset_domain->sem))
+ 		return -EIO;
+=20
+-	r =3D reset_queues_mes(dqm, q);
++	r =3D amdgpu_mes_suspend(adev, ffs(dqm->dev->xcc_mask) - 1);
++
++	if (r)
++		r =3D reset_queues_mes(dqm, q);
+=20
+ 	up_read(&adev->reset_domain->sem);
+ 	return r;
 
-FWIW the kernel test robot reported this many times across trees (clang
-LTO, clang non-LTO, and gcc builds); it's all the same drm_exec
-computed-goto pattern. Full list if you want to add Reported-by/Closes:
+I still get GPUVM errors (but no GPU reset) and when running
 
-Fixes: 9920249a5288 ("drm/amdgpu: convert amdgpu_vm_lock_by_pasid() to
-drm_exec")
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202606231854.7LeCtlLe-lkp@int=
-el.com/
-Closes: https://lore.kernel.org/oe-kbuild-all/202606232356.gwHMAJAW-lkp@int=
-el.com/
-Closes: https://lore.kernel.org/oe-kbuild-all/202606240753.kYjobJVl-lkp@int=
-el.com/
-Closes: https://lore.kernel.org/oe-kbuild-all/202606241110.iUga5vVw-lkp@int=
-el.com/
-Closes: https://lore.kernel.org/oe-kbuild-all/202607031446.1PWG18mN-lkp@int=
-el.com/
-Closes: https://lore.kernel.org/oe-kbuild-all/202607031837.HSmBj8pr-lkp@int=
-el.com/
-Closes: https://lore.kernel.org/oe-kbuild-all/202607040159.GopyEswS-lkp@int=
-el.com/
+$ /usr/libexec/rocm/libhsa-runtime64-tests/run-tests
 
---=20
-Best Regards,
-Mike Gavrilov.
+[  146.577245] [    T418] amdgpu 0000:03:00.0: [gfxhub] page fault (src_id=
+:0 ring:157 vmid:0 pasid:0)
+[  146.577247] [    T418] amdgpu 0000:03:00.0:   in page starting at addre=
+ss 0x00000000002ba000 from client 10
+[  146.577248] [    T418] amdgpu 0000:03:00.0: GCVM_L2_PROTECTION_FAULT_ST=
+ATUS:0x00000B3A
+[  146.577249] [    T418] amdgpu 0000:03:00.0: 	 Faulty UTCL2 client ID: C=
+PC (0x5)
+[  146.577249] [    T418] amdgpu 0000:03:00.0: 	 MORE_FAULTS: 0x0
+[  146.577250] [    T418] amdgpu 0000:03:00.0: 	 WALKER_ERROR: 0x5
+[  146.577250] [    T418] amdgpu 0000:03:00.0: 	 PERMISSION_FAULTS: 0x3
+[  146.577250] [    T418] amdgpu 0000:03:00.0: 	 MAPPING_ERROR: 0x1
+[  146.577251] [    T418] amdgpu 0000:03:00.0: 	 RW: 0x0
+[  146.577606] [    T418] amdgpu 0000:03:00.0: [gfxhub] page fault (src_id=
+:0 ring:157 vmid:0 pasid:0)
+[  146.577608] [    T418] amdgpu 0000:03:00.0:   in page starting at addre=
+ss 0x00000000002ba000 from client 10
+[  146.577609] [    T418] amdgpu 0000:03:00.0: GCVM_L2_PROTECTION_FAULT_ST=
+ATUS:0x00000B3A
+[  146.577609] [    T418] amdgpu 0000:03:00.0: 	 Faulty UTCL2 client ID: C=
+PC (0x5)
+[  146.577610] [    T418] amdgpu 0000:03:00.0: 	 MORE_FAULTS: 0x0
+[  146.577611] [    T418] amdgpu 0000:03:00.0: 	 WALKER_ERROR: 0x5
+[  146.577611] [    T418] amdgpu 0000:03:00.0: 	 PERMISSION_FAULTS: 0x3
+[  146.577611] [    T418] amdgpu 0000:03:00.0: 	 MAPPING_ERROR: 0x1
+[  146.577612] [    T418] amdgpu 0000:03:00.0: 	 RW: 0x0
+
+This means there's at least another error in these commits (reverting all =
+these in
+next-20260701 fixes the issue)
+
+b789664e3e30 ("drm/amdkfd: Clean up suspend_all and resume_all mes")
+a665d09b10af ("drm/amdkfd: Pass known bad queue info to reset")
+a4e4d945cba8 ("drm/amdgpu/gfx: defer per-queue helper_end until after MES =
+resume")
+f401a2633e02 ("drm/amdgpu: Remove faulty queue before resume")
+f94bbd648bb4 ("drm/amdgpu: use a single entry point for mes compute reset"=
+)
+
+Bert Karwatzki
+   =20
