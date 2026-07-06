@@ -2,110 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uefAIla9S2rhZQEAu9opvQ
+	id wF6NFv73TGoiswEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 16:36:06 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 14:58:38 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE6387120AE
-	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 16:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89C6F71B9A6
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 14:58:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=aL935ela;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C33510E3A3;
-	Mon,  6 Jul 2026 14:36:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44D7A10ECD9;
+	Tue,  7 Jul 2026 12:58:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011012.outbound.protection.outlook.com
- [40.93.194.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 185C210E3A3
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jul 2026 14:36:03 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tqeJUV+rlLKnivk70F8bV+bZT1rdwaNwWJ4V78Ek/31gNV4/stl9801pAHP441WqwpXELIUqbHINoVBI2eC4++BM8W9xLSD40j5W8/eGhBC34l0b2m3bJ1LNZS2V+5qdtRej+uNpyd3Gcn9FYGjpoRtwdGx/GTAy1/pyYMRhoxbfPfjO/6gQWDHxWdb2UR+dyRxIoGsSkEBrY/Ftpp45JgkgQkMWQQVg/ddI5Ei9nFk55DNlVWCdVWx008lsrRJiz8bPyL2eLjLKEjgl1yus4jsKskeMTzL0M0xHFdwdsB/0HWo0NFI0ruwIT+4w0KkRzF3aC9q3WqxoYKuOh1ApAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YVzijzAIaf9uAfhkTx3KMr0j+ymL/H5EVu02mQzpG0M=;
- b=IrvmdOoK9pxD9o0QQwGLB4qYMD/DeyJy8wsjRVVBu9/dosE1sy1vJWCl7YV987xz53gjzZ6WLYlJkux7YYtdyu04754mVtxby3DwKqOobM09c3NlKC6N94/9BvzkrDdML01E2OWDJdBeN9ec1JTxoZnA+UTgLVWx4EYiGWwkaLBACFPOeuonGXrudGfBZaBZBjtbzFDZiSrJNs0BZFcqH5bXIdik7OrBV2Jf5/di/BkuOjWBDZ+kGyvoSYERNXX2KwNWM4/TEarOCDx5nG3mKzS8otJSd+CluJuqMdbyHzv0Og2UEDgMiMdy0ML4wz3iXXApVYiHpvtxkXnOkB0uwA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YVzijzAIaf9uAfhkTx3KMr0j+ymL/H5EVu02mQzpG0M=;
- b=aL935elaATvlqs72rppIlKXdJ89ysZ9sJKEHmgHlLyjvrNUwtFZHM5CWb0hnNf7ro9lwBFjcXaoVGTUgkyA6o4a64e7KxEUXuFOT/kHKHpdYVOphpTApZ0mpe5jMNuMTYHYQBXU/KEQggKrgDiGLbaqtLmlN11l7HAlrJrXRClM=
-Received: from BLAPR03CA0004.namprd03.prod.outlook.com (2603:10b6:208:32b::9)
- by SA1PR12MB6774.namprd12.prod.outlook.com (2603:10b6:806:259::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Mon, 6 Jul 2026
- 14:35:58 +0000
-Received: from BL6PEPF0001AB55.namprd02.prod.outlook.com
- (2603:10b6:208:32b:cafe::9a) by BLAPR03CA0004.outlook.office365.com
- (2603:10b6:208:32b::9) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.181.8 via Frontend Transport; Mon, 6
- Jul 2026 14:35:57 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- BL6PEPF0001AB55.mail.protection.outlook.com (10.167.241.7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Mon, 6 Jul 2026 14:35:57 +0000
-Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Mon, 6 Jul
- 2026 09:35:57 -0500
-Received: from alysaliu-dev.amd.com (10.180.168.240) by satlexmb09.amd.com
- (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Mon, 6 Jul
- 2026 07:35:57 -0700
-From: William Palacek <William.Palacek@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Harish.Kasiviswanathan@amd.com>, <Alysa.Liu@amd.com>, William Palacek
- <William.Palacek@amd.com>
-Subject: [PATCH] drm/amdkfd: Add bounds check for CRAT subtype length
-Date: Mon, 6 Jul 2026 10:35:44 -0400
-Message-ID: <20260706143544.133714-1-William.Palacek@amd.com>
+X-Greylist: delayed 18681 seconds by postgrey-1.36 at gabe;
+ Mon, 06 Jul 2026 14:36:47 UTC
+Received: from zg8tmja5ljk3lje4mi4ymjia.icoremail.net
+ (zg8tmja5ljk3lje4mi4ymjia.icoremail.net [209.97.182.222])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C8A1210E3B2;
+ Mon,  6 Jul 2026 14:36:47 +0000 (UTC)
+Received: from zju.edu.cn (unknown [10.98.66.117])
+ by mtasvr (Coremail) with SMTP id _____wA3lWV7vUtqkwsSAA--.40276S3;
+ Mon, 06 Jul 2026 22:36:44 +0800 (CST)
+Received: from localhost.localdomain (unknown [10.98.66.117])
+ by mail-app1 (Coremail) with SMTP id yy_KCgCXUpp7vUtqr5qdAg--.62646S2;
+ Mon, 06 Jul 2026 22:36:43 +0800 (CST)
+From: Fan Wu <fanwu01@zju.edu.cn>
+To: alexander.deucher@amd.com, harry.wentland@amd.com, sunpeng.li@amd.com,
+ siqueira@igalia.com
+Cc: christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ Fan Wu <fanwu01@zju.edu.cn>
+Subject: [PATCH v2] drm/amd/display: fix HDCP workqueue use-after-free on
+ destroy
+Date: Mon,  6 Jul 2026 14:35:48 +0000
+Message-Id: <20260706143548.136979-1-fanwu01@zju.edu.cn>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb09.amd.com
- (10.181.42.218)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB55:EE_|SA1PR12MB6774:EE_
-X-MS-Office365-Filtering-Correlation-Id: 15f7fe04-4828-497e-8a68-08dedb6be4b3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|23010399003|1800799024|36860700016|18002099003|56012099006|11063799006|6133799003;
-X-Microsoft-Antispam-Message-Info: N07liVfsOskOpmiesDNI7tmIux7A5/ykYOkSf93+7OV/KkBGXdtcGl58zJeMnmO1iFobf4nrwoUlnDudHgk07lt+j/oboKio68u2i/1MyuRNMww6XUTB+Ce50XJ6srtYphYunvU5lwF54Y6w7dmnAwobnSW9Rf/m9JhhH9MTmWGENLPDwfsqgOeMP+WGWmDIBxtauPa1oVPVLx0cW+yTG/xQ8vGMIaUXrKl9aj8DK+TxkdCi6NJzfDpqFmsQ8mRG3lJMsQMQnCfEyzP8zeajsoE7Kg+lypAChbOsUtDD2N99vEIHf31nn0a/Jn3sPrTwQ/foX9yVKNQEICpD7UDRrG/HrNoRIlseLP8zgh+wDOQynYzekRXe3QXlATAcQUchhMsuxbmT+WBoF5tPmoweOX7RJWLHz1pu+df5kWpcju83AFsvK2hvuY3TVyAPFAwovz+CXCY34BoML7gslZ6XkZ01BBwJQ/XDTcIA4X2+VGbNfu84q1HLB7R4tn/6WuMBJAyTP4BsI7o4sKOBO69RnHdRzn5C64Hbacd4QJKUI1vWtCJHDVi2ygailWzYHsMbzKMebkhAJWHHPmypc0pIrC4UOwxUuRVwbkh1UUMwm5v5gd1bdR4KvUFvOuwdCu3TAHpUfqpAl77VCsX0K+ZAIp9BZO9be33KZkTutlBrAR0/n8+Oqz/3MvfwaXpX7ODBEtU1qburSNndXVhUlMzazA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(23010399003)(1800799024)(36860700016)(18002099003)(56012099006)(11063799006)(6133799003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: EWlzbjbNxGtZi0Nn4ZWriEQV7u44bmlEPLfQNoEgBV+26jLXlgPinw2A9pksKGgDvdgUcWtghgA0GH6czK5HVd19ZdiHw+61+9/eUdN1refVa2Gjq7/RNYvkhM6khhCwIxfisqQyOsAv449haqKrhJFfmKr+nFddpcyYt/OhQTmKPd0/wo6RMIUlTJb7HGDI8/MDDVcIPtft3RkZOveYTWg6JPGXcfMO/OVNZ1jzE/nes4pZ0T44rOgxi7fPsWxuZb1L/9tVG+htasF14Ee2tSzdf3gqHejHwxADL7jSHc9gfXmJ2dDyPqTz1PpkXXCMnK9yxyyu2/4lfvk3KEHc9pye2dLtdZVDWDrfXQDsJiubWsnGjmPeZhyRGSZonnLguEkrth9S040o3u3i8ki2plWZjONICW67mrQIgwo+cWAeKGMXR9peEegF9jiW6Bkq
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2026 14:35:57.7708 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15f7fe04-4828-497e-8a68-08dedb6be4b3
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF0001AB55.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6774
+X-CM-TRANSID: yy_KCgCXUpp7vUtqr5qdAg--.62646S2
+X-CM-SenderInfo: qrstjiaswqq6lmxovvfxof0/
+X-CM-DELIVERINFO: =?B?hJKP1wXKKxbFmtjJiESix3B1w3vZ3A9ovKVTomAyoQazvoRs/NHSP8GI2EvgeEEW7R
+ sfnVCjTgEH9dVomQuWcozCBBGoR3dPZ79r59DHMQ051o0gjtqxuCbEIjiKMJGoEUvIi0Pt
+ AvxUW0K5SLWfMxk7ti+p9E6mavGmQbzmcFsnzP86
+X-Coremail-Antispam: 1Uk129KBj93XoWxXFW7ZFWkWr47tF4kKr4ftFc_yoWrAw4rpr
+ WYqr1Yyw4UAr42qr9rXF1kWF90k3ZYqFW0kr4xCw4ay3yrGr13tw1rJFy2gF4xWFWDZa1a
+ vF4UX39rZrn0vwcCm3ZEXasCq-sJn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7ZEXa
+ sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+ 0xBIdaVrnRJUUUP0b4IE77IF4wAFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2
+ IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+ e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+ 0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AK
+ xVW0oVCq3wAac4AC62xK8xCEY4vEwIxC4wAS0I0E0xvYzxvE52x082IY62kv0487Mc804V
+ CY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AK
+ xVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48Icx
+ kI7VAKI48JM4x0Y48IcxkI7VAKI48G6xCjnVAKz4kxM4IIrI8v6xkF7I0E8cxan2IY04v7
+ MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr
+ 0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0E
+ wIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JV
+ WxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAI
+ cVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU85l1PUUUUU==
+X-Mailman-Approved-At: Tue, 07 Jul 2026 12:58:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,70 +81,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [0.89 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[zju.edu.cn];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim];
-	FROM_NEQ_ENVFROM(0.00)[William.Palacek@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[fanwu01@zju.edu.cn,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,zju.edu.cn];
 	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DE6387120AE
+X-Rspamd-Queue-Id: 89C6F71B9A6
 
-The CRAT parser validates that the subtype header fits within the image,
-but does not verify that the advertised subtype length fits. A malformed
-CRAT table with an oversized length field causes out-of-bounds reads when
-kfd_parse_subtype() casts the header to specific subtype structures.
+hdcp_destroy() cancels callback_dwork, watchdog_timer_dwork and
+property_validate_dwork, but leaves cpirq_work and property_update_work
+queued. These works are queued with schedule_work(), recover struct
+hdcp_workqueue through container_of(), and dereference it. If either work
+runs after hdcp_destroy() frees hdcp_work, it can trigger a
+use-after-free.
 
-Add validation that sub_type_hdr + length does not exceed the image
-boundary before parsing the subtype contents.
+The HDCP callbacks also call process_output(), which can requeue the HDCP
+works: it always queues property_validate_dwork and may queue
+callback_dwork or watchdog_timer_dwork depending on the state-machine
+output. A simple cancel sequence can therefore miss work requeued by
+another callback. hdcp_handle_cpirq() can also queue cpirq_work from
+outside the callback path.
 
-Signed-off-by: William Palacek <William.Palacek@amd.com>
+Set a teardown flag under hdcp_work->mutex before draining the works.
+The callbacks already hold this mutex while calling process_output(), and
+hdcp_handle_cpirq() takes it before queueing cpirq_work, so once teardown
+is set no path can requeue work. Then cancel cpirq_work, the delayed
+works, and property_update_work before freeing hdcp_work.
+
+This bug was found by static analysis.
+
+Fixes: a193ed2094ba ("drm/amd/display: Create amdgpu_dm_hdcp")
+Fixes: da3fd7ac0bcf ("drm/amd/display: Update CP property based on HW query")
+Cc: stable@vger.kernel.org
+Signed-off-by: Fan Wu <fanwu01@zju.edu.cn>
+
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_crat.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Changes in v2:
+- Gate hdcp_handle_cpirq() with the teardown flag so late CPIRQ handling
+  cannot requeue cpirq_work after hdcp_destroy() starts.
+---
+ .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.c    | 20 ++++++++++++++++++-
+ .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.h    |  2 ++
+ 2 files changed, 21 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-index 2a239f45fc24..6e0df685503d 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-@@ -1412,6 +1412,15 @@ int kfd_parse_crat_table(void *crat_image, struct list_head *device_list,
- 			break;
- 		}
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
+index 4c164ae4a4f9..2293e9761891 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
+@@ -164,6 +164,9 @@ void process_output(struct hdcp_workqueue *hdcp_work)
+ {
+ 	struct mod_hdcp_output output = hdcp_work->output;
  
-+		/* Validate subtype fits within remaining image */
-+		if ((char *)sub_type_hdr + sub_type_hdr->length >
-+		    (char *)crat_image + image_len) {
-+			pr_warn("CRAT subtype length %u exceeds image bounds\n",
-+				sub_type_hdr->length);
-+			ret = -EINVAL;
-+			break;
-+		}
++	if (hdcp_work->teardown)
++		return;
 +
- 		if (sub_type_hdr->flags & CRAT_SUBTYPE_FLAGS_ENABLED) {
- 			ret = kfd_parse_subtype(sub_type_hdr, device_list);
- 			if (ret)
+ 	if (output.callback_stop)
+ 		cancel_delayed_work(&hdcp_work->callback_dwork);
+ 
+@@ -310,7 +313,10 @@ void hdcp_handle_cpirq(struct hdcp_workqueue *hdcp_work, unsigned int link_index
+ {
+ 	struct hdcp_workqueue *hdcp_w = &hdcp_work[link_index];
+ 
+-	schedule_work(&hdcp_w->cpirq_work);
++	mutex_lock(&hdcp_w->mutex);
++	if (!hdcp_w->teardown)
++		schedule_work(&hdcp_w->cpirq_work);
++	mutex_unlock(&hdcp_w->mutex);
+ }
+ 
+ static void event_callback(struct work_struct *work)
+@@ -487,9 +493,21 @@ void hdcp_destroy(struct kobject *kobj, struct hdcp_workqueue *hdcp_work)
+ 	int i = 0;
+ 
+ 	for (i = 0; i < hdcp_work->max_link; i++) {
++		/*
++		 * process_output() can requeue the HDCP works. Set teardown
++		 * under the callback mutex first so no callback can requeue
++		 * work after destroy starts, then drain any work already
++		 * queued.
++		 */
++		mutex_lock(&hdcp_work[i].mutex);
++		hdcp_work[i].teardown = true;
++		mutex_unlock(&hdcp_work[i].mutex);
++
++		cancel_work_sync(&hdcp_work[i].cpirq_work);
+ 		cancel_delayed_work_sync(&hdcp_work[i].callback_dwork);
+ 		cancel_delayed_work_sync(&hdcp_work[i].watchdog_timer_dwork);
+ 		cancel_delayed_work_sync(&hdcp_work[i].property_validate_dwork);
++		cancel_work_sync(&hdcp_work[i].property_update_work);
+ 	}
+ 
+ 	sysfs_remove_bin_file(kobj, &hdcp_work[0].attr);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
+index 90b18c450ca6..2313434b57c0 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
+@@ -54,6 +54,8 @@ struct hdcp_workqueue {
+ 	struct amdgpu_dm_connector *aconnector[AMDGPU_DM_MAX_DISPLAY_INDEX];
+ 	struct mutex mutex;
+ 
++	bool teardown;
++
+ 	struct mod_hdcp hdcp;
+ 	struct mod_hdcp_output output;
+ 	struct mod_hdcp_display display;
 -- 
 2.34.1
 
