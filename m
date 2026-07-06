@@ -2,77 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0IBZOCepS2p5YAEAu9opvQ
+	id A4L3HyipS2p6YAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 15:09:59 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 15:10:00 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72A00711104
-	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 15:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 232F0711109
+	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 15:10:00 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=bPJVyIhY;
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=mandelbit.com header.s=MBO0001 header.b=acYn9BoT;
+	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 103A710E988;
-	Mon,  6 Jul 2026 13:09:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61C2310E97B;
+	Mon,  6 Jul 2026 13:09:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A04BE8992E;
- Mon,  6 Jul 2026 12:34:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783341282; x=1814877282;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=AjdEjDtBFbvjvVxJoJ5SlDaBQB688NDaizFmhEW3Nis=;
- b=bPJVyIhYo50iFYH6wqToOl1y23voNs92Plwhrr9x3CvgiGnUYyflHATa
- iA3CDFNFsdGBIa00AeQhW1KwISmZSsjg5qp7+bjvy/j+94atazerZVTm3
- lPTmMEpFtSsew0ZoG3E0XM4nqIvEefn+O8dik6q0DLYmGMx1f4Ax4mhYu
- Dz0ZYpQKN9722f8AkWpA1br1qhhmN0XlMu4qy2wdcXIbfJ/oVmlOzUMJG
- ebjcNIpvu1lzvIhuKaLP+k2ZZlgi71AZXCHa66WhsXN8peN8iFQqGudeq
- Tzx86UQ/C8QJDZf2+98Xf8Znn27DWs9ZbpU8Nh44waNuk9NliluMSXMKP Q==;
-X-CSE-ConnectionGUID: ScrV74j9Syic1+hpJ7LmKw==
-X-CSE-MsgGUID: xEFcI8ctRFKT6raGlGU7og==
-X-IronPort-AV: E=McAfee;i="6800,10657,11838"; a="94577997"
-X-IronPort-AV: E=Sophos;i="6.25,149,1779174000"; d="scan'208";a="94577997"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2026 05:34:41 -0700
-X-CSE-ConnectionGUID: U4nwPfDJRziJpg6YmuuCcQ==
-X-CSE-MsgGUID: fPhyb6icQpe9KQjbrpTEQw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,149,1779174000"; d="scan'208";a="253805642"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.244.132])
- ([10.245.244.132])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2026 05:34:36 -0700
-Message-ID: <247fece24913008be6d42ab0b6f19da1cb95abe1.camel@linux.intel.com>
-Subject: Re: [PATCH 03/10] drm/ttm: remove ttm_lru_walk_ops
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Natalie Vock <natalie.vock@gmx.de>, Maarten Lankhorst	
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula	
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Christian Koenig	
- <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>, Matthew Auld	
- <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>, Alex
- Deucher	 <alexander.deucher@amd.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org
-Date: Mon, 06 Jul 2026 14:34:13 +0200
-In-Reply-To: <20260703-ttm_2_drm_exec-v1-3-43685ac1286b@gmx.de>
-References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
- <20260703-ttm_2_drm_exec-v1-3-43685ac1286b@gmx.de>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-Greylist: delayed 595 seconds by postgrey-1.36 at gabe;
+ Mon, 06 Jul 2026 12:50:52 UTC
+Received: from mout-b-206.mailbox.org (mout-b-206.mailbox.org [195.10.208.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8577B89FA5
+ for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jul 2026 12:50:52 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-b-206.mailbox.org (Postfix) with ESMTPS id 4gv3qn4Zzxz9x7y;
+ Mon,  6 Jul 2026 14:40:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mandelbit.com;
+ s=MBO0001; t=1783341653;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Z3udRbydwVE61lXU936pG6FZ28P5TZrDPN5TpKML3yw=;
+ b=acYn9BoTPhyAqnZtzAh0t0CcMotsndj5f3fmsJGN69hGU54/ePBrkAz/1C0P6KursiexkK
+ sprzfQXiTfvNMVtfusTE7A/FTfcjZ55eDGWS+/+sOgA3duG+RfoJIrN7RotBXXaGO/EX6L
+ WkMm9e15l0BHZvToNRtnO3dHXwzzgSMxTY90Otbd5ZJW2sjN/BxyQ2EW5nneNmh2g02vel
+ aT0SG8eiQ7PJgFNAOz+mS+sBUtnEN6UEPaAp+wDVecsLAAiAIFYUsEuqRvjMoDBIWwRdZA
+ FW8V6qRUoRxl8RKBlJAL8GyJKz/wgMx9UsAJiv6w5YYq3ml/YMXWDiSGPehNJA==
+Message-ID: <4e7f73d5-5407-4ed4-8b91-483b97ad70f0@mandelbit.com>
+Date: Mon, 6 Jul 2026 14:40:44 +0200
 MIME-Version: 1.0
+Subject: Re: [PATCH 23/24] drm/amd/display: fix compressed buffer config
+ routine waiting time
+To: Aurabindo Pillai <aurabindo.pillai@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Roman Li <roman.li@amd.com>, Wayne Lin <wayne.lin@amd.com>,
+ Tom Chung <chiahsuan.chung@amd.com>, Fangzhi Zuo <jerry.zuo@amd.com>,
+ Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu <Ray.Wu@amd.com>,
+ Ivan Lipski <ivan.lipski@amd.com>, Alex Hung <alex.hung@amd.com>,
+ James Lin <PingLei.Lin@amd.com>, Chenyu Chen <Chen-Yu.Chen@amd.com>
+References: <20260604145428.809959-1-aurabindo.pillai@amd.com>
+ <20260604145428.809959-24-aurabindo.pillai@amd.com>
+Content-Language: en-US
+From: Antonio Quartulli <antonio@mandelbit.com>
+Organization: Mandelbit SRL
+In-Reply-To: <20260604145428.809959-24-aurabindo.pillai@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 06 Jul 2026 13:09:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,189 +77,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[mandelbit.com:s=MBO0001];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[mandelbit.com];
+	FORGED_RECIPIENTS(0.00)[m:aurabindo.pillai@amd.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:roman.li@amd.com,m:wayne.lin@amd.com,m:chiahsuan.chung@amd.com,m:jerry.zuo@amd.com,m:daniel.wheeler@amd.com,m:Ray.Wu@amd.com,m:ivan.lipski@amd.com,m:alex.hung@amd.com,m:PingLei.Lin@amd.com,m:Chen-Yu.Chen@amd.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmx.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,amd.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[antonio@mandelbit.com,amd-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[antonio@mandelbit.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mandelbit.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gmx.de:email,amd.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid,linux.intel.com:from_mime]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:email,gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mandelbit.com:dkim,mandelbit.com:mid,mandelbit.com:from_mime,mandelbit.com:url,mandelbit.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 72A00711104
+X-Rspamd-Queue-Id: 232F0711109
 
-Hi,
+Hi all,
 
-On Fri, 2026-07-03 at 18:31 +0200, Natalie Vock wrote:
-> From: Christian K=C3=B6nig <christian.koenig@amd.com>
->=20
-> It's just another layer of indirection.
->=20
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
+On 04/06/2026 16:52, Aurabindo Pillai wrote:
+> From: Antonio Quartulli <antonio@mandelbit.com>
+> 
+> Replace the four open-coded REG_WAIT calls with calls to
+> dcn31_wait_for_det_apply() so the compressed buffer (compbuf) sizing
+> path waits long enough for the DET size update to take effect, and the
+> wait timing stays consistent across the driver.
+> 
+> No functional change beyond the corrected timeout.
+> 
+> Signed-off-by: Antonio Quartulli <antonio@mandelbit.com>
+> Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+> Reviewed-by: Alex Hung <alex.hung@amd.com>
 
-Personally I don't have a strong opinion on this, but the reason for
-separating out the ops is that adding function pointers in the walk
-iterator itself was once pushed back on quite forcefully by Linus when
-I tried to do that in mm/pagewalk. Claiming for various reasons the
-standard way of doing that in Linux is using a const ops struct that
-ends up in unmodifiable memory.
+Sorry to bother, but I was just wondering if this patch/series got 
+dropped or if it's simply in the pipe for more review/merge?
 
-/Thomas
+Am I right it should pop-up in https://gitlab.freedesktop.org/drm/kernel 
+before going to Linus?
 
+Thanks a lot!
+Regards,
 
-> ---
-> =C2=A0drivers/gpu/drm/ttm/ttm_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 12 ++-=
----------
-> =C2=A0drivers/gpu/drm/ttm/ttm_bo_util.c |=C2=A0 2 +-
-> =C2=A0include/drm/ttm/ttm_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 34 ++++++++++++++---------------
-> -----
-> =C2=A03 files changed, 17 insertions(+), 31 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
-> b/drivers/gpu/drm/ttm/ttm_bo.c
-> index 2b470c1746f60..1fb8c53da0362 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-> @@ -545,10 +545,6 @@ static s64 ttm_bo_evict_cb(struct ttm_lru_walk
-> *walk, struct ttm_buffer_object *
-> =C2=A0	return lret;
-> =C2=A0}
-> =C2=A0
-> -static const struct ttm_lru_walk_ops ttm_evict_walk_ops =3D {
-> -	.process_bo =3D ttm_bo_evict_cb,
-> -};
-> -
-> =C2=A0static int ttm_bo_evict_alloc(struct ttm_device *bdev,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_resource_manager *man,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct ttm_place *place,
-> @@ -560,7 +556,7 @@ static int ttm_bo_evict_alloc(struct ttm_device
-> *bdev,
-> =C2=A0{
-> =C2=A0	struct ttm_bo_evict_walk evict_walk =3D {
-> =C2=A0		.walk =3D {
-> -			.ops =3D &ttm_evict_walk_ops,
-> +			.process_bo =3D ttm_bo_evict_cb,
-> =C2=A0			.arg =3D {
-> =C2=A0				.ctx =3D ctx,
-> =C2=A0				.ticket =3D ticket,
-> @@ -1187,10 +1183,6 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk,
-> struct ttm_buffer_object *bo)
-> =C2=A0	return ret;
-> =C2=A0}
-> =C2=A0
-> -const struct ttm_lru_walk_ops ttm_swap_ops =3D {
-> -	.process_bo =3D ttm_bo_swapout_cb,
-> -};
-> -
-> =C2=A0/**
-> =C2=A0 * ttm_bo_swapout() - Swap out buffer objects on the LRU list to
-> shmem.
-> =C2=A0 * @bdev: The ttm device.
-> @@ -1209,7 +1201,7 @@ s64 ttm_bo_swapout(struct ttm_device *bdev,
-> struct ttm_operation_ctx *ctx,
-> =C2=A0{
-> =C2=A0	struct ttm_bo_swapout_walk swapout_walk =3D {
-> =C2=A0		.walk =3D {
-> -			.ops =3D &ttm_swap_ops,
-> +			.process_bo =3D ttm_bo_swapout_cb,
-> =C2=A0			.arg =3D {
-> =C2=A0				.ctx =3D ctx,
-> =C2=A0				.trylock_only =3D true,
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> index 7ed085adf1c9b..29f068944a972 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> @@ -919,7 +919,7 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk
-> *walk, struct ttm_device *bdev,
-> =C2=A0	s64 lret;
-> =C2=A0
-> =C2=A0	ttm_bo_lru_for_each_reserved_guarded(&cursor, man, &walk-
-> >arg, bo) {
-> -		lret =3D walk->ops->process_bo(walk, bo);
-> +		lret =3D walk->process_bo(walk, bo);
-> =C2=A0		if (lret =3D=3D -EBUSY || lret =3D=3D -EALREADY)
-> =C2=A0			lret =3D 0;
-> =C2=A0		progress =3D (lret < 0) ? lret : progress + lret;
-> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-> index 1eae9eea5ff32..0fcd5082a7080 100644
-> --- a/include/drm/ttm/ttm_bo.h
-> +++ b/include/drm/ttm/ttm_bo.h
-> @@ -189,24 +189,6 @@ struct ttm_operation_ctx {
-> =C2=A0	uint64_t bytes_moved;
-> =C2=A0};
-> =C2=A0
-> -struct ttm_lru_walk;
-> -
-> -/** struct ttm_lru_walk_ops - Operations for a LRU walk. */
-> -struct ttm_lru_walk_ops {
-> -	/**
-> -	 * process_bo - Process this bo.
-> -	 * @walk: struct ttm_lru_walk describing the walk.
-> -	 * @bo: A locked and referenced buffer object.
-> -	 *
-> -	 * Return: Negative error code on error, User-defined
-> positive value
-> -	 * (typically, but not always, size of the processed bo) on
-> success.
-> -	 * On success, the returned values are summed by the walk
-> and the
-> -	 * walk exits when its target is met.
-> -	 * 0 also indicates success, -EBUSY means this bo was
-> skipped.
-> -	 */
-> -	s64 (*process_bo)(struct ttm_lru_walk *walk, struct
-> ttm_buffer_object *bo);
-> -};
-> -
-> =C2=A0/**
-> =C2=A0 * struct ttm_lru_walk_arg - Common part for the variants of BO LRU
-> walk.
-> =C2=A0 */
-> @@ -223,8 +205,20 @@ struct ttm_lru_walk_arg {
-> =C2=A0 * struct ttm_lru_walk - Structure describing a LRU walk.
-> =C2=A0 */
-> =C2=A0struct ttm_lru_walk {
-> -	/** @ops: Pointer to the ops structure. */
-> -	const struct ttm_lru_walk_ops *ops;
-> +	/**
-> +	 * process_bo - Process this bo.
-> +	 * @walk: struct ttm_lru_walk describing the walk.
-> +	 * @bo: A locked and referenced buffer object.
-> +	 *
-> +	 * Return: Negative error code on error, User-defined
-> positive value
-> +	 * (typically, but not always, size of the processed bo) on
-> success.
-> +	 * On success, the returned values are summed by the walk
-> and the
-> +	 * walk exits when its target is met.
-> +	 * 0 also indicates success, -EBUSY means this bo was
-> skipped.
-> +	 */
-> +	s64 (*process_bo)(struct ttm_lru_walk *walk,
-> +			=C2=A0 struct ttm_buffer_object *bo);
-> +
-> =C2=A0	/** @arg: Common bo LRU walk arguments. */
-> =C2=A0	struct ttm_lru_walk_arg arg;
-> =C2=A0};
+-- 
+Antonio Quartulli
+
+CEO and Co-Founder
+Mandelbit Srl
+https://www.mandelbit.com
+
