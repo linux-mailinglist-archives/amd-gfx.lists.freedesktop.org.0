@@ -2,129 +2,143 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QUr0Lc5CS2pjOQEAu9opvQ
+	id U3TkL8ZqS2o/RAEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 07:53:18 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 10:43:50 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 145A270CB62
-	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 07:53:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B1C970E3D3
+	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 10:43:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=SoPoxZIS;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=WZUZydKu;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2399E10E2ED;
-	Mon,  6 Jul 2026 05:53:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61F7610E827;
+	Mon,  6 Jul 2026 08:43:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012008.outbound.protection.outlook.com
- [40.107.200.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DE5210E2ED
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Jul 2026 05:53:14 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010044.outbound.protection.outlook.com [52.101.46.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5B5A10E827;
+ Mon,  6 Jul 2026 08:43:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ThArkjQfeX/W9zuAqBEC8ljRclyxRmJhQuuAkBSduC0nr2ZZ2a0h/PFAquwJr3LP1QpijO0uGw7OUE56tvtROWk+wGyHbQSgQTcOUYKmRFJ1LnnTMh1g1aT0i/X17phJeqrMKNqiVuOAqavjTcmUOvEEHVs9EW9FEDCWhrYpiU22rNfzdQYPkfBdbHOAiprIMSjuo20XXQo3ICv00IaKfkCj/4/YYt/tjbTgfw2Y5MM8ykqf6x/xM8e7Jnoisa6yAx5PY8Yn2a0PIZOVLEXFyElE3PRK+442psFb+0RePcm7IbRtASbgTzkExHtpzUz9L7Oo8MqFRHGvZkLpieeVKA==
+ b=IoxtQVu9EpOX2kkt0lYdHySa6lSKnoyf+zhtF9nWhMWN+fRAvoXRTgAE7MlpWzQYSoJIxVAkQpm2rIbWnFNBn9iBRlNG6h8RZbVhYFq/6gDd/rlfzd4Ev1cXD6MhM2TwglQ/lCi6SqrJqDn9p+hmL6f6NWpN6RVJfinShrge/lvFa5ceTwtf2BccWrwS1R5F8X6oheXUanKf8m9xV/OymVfJEJTFgF0mumrmGgdicLtEX3zLGDUlu/Us5y5iWKBvHd4Y4a2xWI83RU52UKZSYDAvvFcGPbM24PwJN/oHY1W9OPL3So/zEBB8KtB5ptAIb6UmblWt+AZT+halvaCgXQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IpFJE6bt+hOHiywVQUPzGLfNaRqKDLI0MPpKII624lg=;
- b=H+zGXuQgl//H8BtR1bUTSKKRTXzA4PKw3rc446QgbJW7nciuPDoILs9/GId03nIuCIYNF6nb64hO3xm+oTJEmrw/wYLsXd3eH7ihil5OYZagmr6AwMDMF/5NwS4JQVvGSneTy0G+2QOB/vu9bw2dMY5s6FnGlQHa1Omch0tYiL714xLew0VAED7+IazRmFeuDIMxZ/ZJ8dgTJJWeCEwc58jGVXSSAiLSaq16qJbz9tAosJ5kMmt9/ziEsh2fg43BjRq+s1/+mLhmOrfOtLnsbUKCAy6gH20/SaMeUKRPqj9wicg/63/SbW9RsCGF+Fh4mNsWilCQvUjQEvNumltZtQ==
+ bh=rduim58xNR9xaovaeUrX+Z3fnbrBJg8nBV11gj9AODQ=;
+ b=sCZOFXCTrY1S3Ee5RYNsSPaKEBFMI75Sv/Squx3vgJnBLRPQ/Thf2xRHjOfxNdtEgxyacxIq/Oql3zTrEnCEpFTfoN8zUS/U9vIQMbBu40rnM2kaWAGBH916quD5LJ0L4GU30yutzInR2Iq38ix+4elw7FVHFpGdOl4QkGr8tmrimhMpOzZMkF5UojNoAs7hfuI1XK7TTDhYZ61Ooh++uIwYs9tZoUiII+ABu0e0vfwrSK9f7W6GweQGQI0XY4DNQ3axu/WiR/4TTx5xhgxT0fJNzUcpCVcFavNIFAdgxIykMgAdysDJ+XvHR2RIFFqPe47No9x8lY0UWUIrtz0AiQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IpFJE6bt+hOHiywVQUPzGLfNaRqKDLI0MPpKII624lg=;
- b=SoPoxZIS6gUQkzbDmHHrmsiUK/BBv/MnXGgboAvTRA+oAnvud7XMa3Il1gxwCO3blKfkKtZfjtB3UhkqjQdQNWWrE4Zuh2qlmImn6PZ0LzHkhiVYPJGrImDx3bnObIG9hoNKIYMxmEfd3H1Mv+LtlMKWYzV5G+q7E/MSfaFcCx0=
-Received: from SJ0PR12MB7082.namprd12.prod.outlook.com (2603:10b6:a03:4ae::12)
- by DS7PR12MB6215.namprd12.prod.outlook.com (2603:10b6:8:95::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.10; Mon, 6 Jul 2026 05:53:10 +0000
-Received: from SJ0PR12MB7082.namprd12.prod.outlook.com
- ([fe80::fcf5:4106:dc85:4819]) by SJ0PR12MB7082.namprd12.prod.outlook.com
- ([fe80::fcf5:4106:dc85:4819%3]) with mapi id 15.21.0181.008; Mon, 6 Jul 2026
- 05:53:10 +0000
-Message-ID: <6e10a3d6-bce9-4e85-bb17-e5f530f90b49@amd.com>
-Date: Mon, 6 Jul 2026 11:23:04 +0530
+ bh=rduim58xNR9xaovaeUrX+Z3fnbrBJg8nBV11gj9AODQ=;
+ b=WZUZydKuTQEAY9VQBo+SSiOQDgjaHWWfO5ygYvpWSxDu3ueyaaj9xrgugVaEy8JzvfRnmywtTXxciTdMwfNGd+JwMaXtnARTPwyEBoaeE2Svp9TcA+tAuA/TQvczC6QSE0Q3v1zef/Ol0sHPMAKt+RISvwOFjRNSTOVUavfRH6U=
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by CY8PR12MB8361.namprd12.prod.outlook.com (2603:10b6:930:7b::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Mon, 6 Jul
+ 2026 08:43:42 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0181.008; Mon, 6 Jul 2026
+ 08:43:41 +0000
+Message-ID: <84fe315a-bbf2-4dc8-bc75-89e5743d0ea8@amd.com>
+Date: Mon, 6 Jul 2026 10:43:34 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amd/pm: fix smu14 power limit range calculation
-To: Yang Wang <kevinyang.wang@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: alexander.deucher@amd.com, hawking.zhang@amd.com, kenneth.feng@amd.com
-References: <20260706013807.1051660-1-kevinyang.wang@amd.com>
+Subject: Re: [PATCH 01/10] drm/exec: Add helper to bypass IGNORE_DUPLICATES
+ flag
+To: Natalie Vock <natalie.vock@gmx.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
+ <20260703-ttm_2_drm_exec-v1-1-43685ac1286b@gmx.de>
 Content-Language: en-US
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20260706013807.1051660-1-kevinyang.wang@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260703-ttm_2_drm_exec-v1-1-43685ac1286b@gmx.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0079.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ae::7) To SJ0PR12MB7082.namprd12.prod.outlook.com
- (2603:10b6:a03:4ae::12)
+X-ClientProxiedBy: YT4PR01CA0061.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:111::7) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR12MB7082:EE_|DS7PR12MB6215:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5ac2855d-1451-4658-d959-08dedb22dc31
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|CY8PR12MB8361:EE_
+X-MS-Office365-Filtering-Correlation-Id: 345c064d-6df2-447e-83fe-08dedb3aae74
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|1800799024|366016|6133799003|56012099006|11063799006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: QojLJe2lV3WJws9auhhRE3HWYkrt4bseT4f6it2BQYLBNTLUW8pyUGEc0/YqTKfENFa6pKNoIkg47prumGJDzRoDdNawBaE0PSsnCCszrLTk3j533qOW8KbP+wlRNdG7kjWTyqRQ1tSIo8WURY4J7tBB/RwKMmWYMArA4wAb+e5tq9eEoBXi65TAgOYqJ2S0nn4LTcF/f58xyfXNJM6jmc2avZ0OG1my2YO8m/G/n0g57Y+BjepUHXMvjF9ApXS5we5e2G0tJw9eY5XSAaoE6KklJqzUfpEx/OTCVxapiFJPm4BRJsBzxLhJpEghRn4MZHaWq4rHMMDnzFq8GfXJbo5clbc+WAMpR+q18g0GmEwTW4d++q5bmIIhWGTV8+GyESrbQZ3rK9oahLTakMNvAaurGUSCI9g6KFZE/SAT3JOE0ArCyQWo6hy7ARns1IcrFhHNWB4FySQduXgcz7hYEWJUV/nYPvOEZlL/Th5K2uXthu6RAi1qbbK87HT2hIjRyev0pJxmMtWTLKWxeg84SR/07AK2OaY5cnMhvhIBJafo68DYX4NII76tHW3zgGkIBRaBH3E4JWfjSFNMeRyykRwOKLRmGbR7G8fUld+I6EEiFz7YreIhEFdq5KkBZrE9C5ncjglLJBBfS/7ea9a6dbmvzELH9OqhdGDOgkvRCX8=
+ ARA:13230040|376014|23010399003|7416014|1800799024|366016|921020|22082099003|4143699003|56012099006|18002099003|11063799006;
+X-Microsoft-Antispam-Message-Info: QqQ80lAojKsEAR0lnEl9DZDGXJoj5PThOLypXSDJkEtAY5XJyM6+x1dyjgfCHI+9tO1Ld2VvwIMmppBM7seucmSwbFXrRwX0CBV2nJ86+a8bHoOB0ZOSkweDRfEypRsPj9XoXafX80x45qOcK86e+EPWSYDKW1GdTzx7V5sj9mwy/d8DkDqdJw6QvJ1rZkmJEu193wHIs5D36e7oEFajT6nojdeNLR9p3CHDssCxHYLs9mIdHmVTArOvhmN7C/HGn6AgokVU6uJU99P3WLsQnaBJf3x8M+enyo15oLZ74GklXqE8oLN2xCKpZggnSFfL9UPkU2sDN5zeVwKoYC7cjLd6KljGEZq722zdqCd3Lwg4w+e8I3dcdZXONnV3HHX7bOimkKZsaSlN2RJYZAEoHRQwhFNUMKPbhbtuTr/OlQ+I9t0rl4MqpmB4FzB0ue8VZRplFe6D6DXncbMviHpsvQQnWLB8fM4JYKDFHwzGxGS0everNsbS/+6pA0i7t4ngZJ382tp11pWCotJQT+NzPmVqMl5zfcgQ0PXKjBDpIdESPa0VkUfX9ENUa2X0yoaaqpRqg6+nt43TtdzaeSVKf7y2+2JRNonbkF+e7Q1QuQlOAc4TXRDFpKDxV6l2rlF8R9Gkwvl/26p9GOTTxZ1P7CGEHzareH2akx5e3nXFAIc206lsVEPTaJd+ms4+9pjbxKEc3Llwtt9Q56LQy8XCEw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR12MB7082.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(6133799003)(56012099006)(11063799006)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(7416014)(1800799024)(366016)(921020)(22082099003)(4143699003)(56012099006)(18002099003)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cUQweXE1NG5WOUxzTlBtQ3EySnk0b1QyWndhSmZXelp3V1lzOE1KWGwrdEFN?=
- =?utf-8?B?bkMrVWhPTlJ6WGhFM3F1OVlINm1VK3BuM3J0K0NOQVJ5OFRvYjB3a0RlWmhR?=
- =?utf-8?B?M1dqYTJsTnVGN01NT1hTN0RyYVBza213Sm0vS3hhc3FGdFp3VVpab0trMmJI?=
- =?utf-8?B?S3ZJMHBhSzNhb1gxWE5iSXhOeEd1cXhpd0FvQUlVZTE2a1N0SGQ4VG9qSE91?=
- =?utf-8?B?dTJkaEppRVVTQlh0SWJMdWJxckJnMTl2Nkw0TmNySm9OZjY2ODBVRklEeHRF?=
- =?utf-8?B?WFZmYkFpZWVPZHgycVhJVmlVUTZBaENSeUNNT1VoZWJhamJ1TW1YTmhwYWIv?=
- =?utf-8?B?VldabVowSmhxcS9nRTlpTHZDRzUyWnZRbzd1NUZTQWZIMDJNTjNJOXcvcU0z?=
- =?utf-8?B?dlIrR2Y4UTBSaGRnUWVQa0t0Ri9WWXZ1ZGpHT1NmNmxXcXlTMmkzU0JwNG55?=
- =?utf-8?B?VEVzY2VzVTRNSXNERHcwa2w2RlpicG1CV01ONUZ4b0ZMOXdBcTdNZUdOYnNB?=
- =?utf-8?B?LzZ5dVc5M1Bmd1VFYlpPUFNpM0tTclpoa3dOR3k0ZDVrVElNS3dtMndLd01m?=
- =?utf-8?B?aEZGb1JIZXU0TE9IR0d4WTZaSXp3Tm52eHRmTW5SWFhxVjRZbXJCeGtNOFda?=
- =?utf-8?B?VmkrOUFDNmRBSDdwMzRrNkFHMmFic2lyRTFrc2lqVmhMakQxZEY3UmVKMUdX?=
- =?utf-8?B?NTZpQ25ORHByc3VTZGc1UUpoakF6WFVwWWJCaDA0c2ZvWWJyK2ZnZW80Y3lO?=
- =?utf-8?B?VUxZUGRrV0ZiMmtpVjY5dTN1NnRSMys5UDFyb0xjdzNCZ0FXaEsyT2ZVVzk4?=
- =?utf-8?B?SGcxVGZiM0tENGMwL1JEODlJV0pXeGUvdXhQY2lmbkNFQnBjdXZ2MDcyV25y?=
- =?utf-8?B?OXVhRi9HSXRsQWd2YjV4aE4yS0YzK1IxdkYvN00xYWVYN1BNK0Y2MkpmTmo2?=
- =?utf-8?B?ZWFjYkZLRS9KTlZIWjc1ZjNnZHZXcmpGbFNHNW1WOFhQWFhCT1NpUmpvSHQx?=
- =?utf-8?B?cTc4WDYyZ1NBcHlCQmVuR0ZCTE0wa09WNFNkNS9Pcit0Q1ZpcS93VWhyNG55?=
- =?utf-8?B?VEFPQTdQclFqNE5KRzJIYzZxNzYwZnBWdVJxOEZSMWtqa2hreDVhcXYxY3Zy?=
- =?utf-8?B?REdTYk9IdGc5ZFhrazdOcHhHeS9yNzVzcTJDcWJ3angzZWx5UWJHNE9XQ0p3?=
- =?utf-8?B?Vk4zSmloRTN4SUhvdnhVZDFBTENSWi81UUVBWDhnbEg1anJ5RmlaNjdNRUpO?=
- =?utf-8?B?ekdRK1BaTVZtQ3poMVBiaTAzVFRyQW1wbXZyMjZEM0lWeHVhMlY1a1VpNjZ2?=
- =?utf-8?B?Mm9PMUhXY05ocW11d3E4OEhrNVBHWEZsMkNzUTRuTVNQN0dRTEY4emVUVlRM?=
- =?utf-8?B?eEhlcHFyYVlpaXVaUkIvQndDeWNvV0VsM3dteWt0RStRWTJTMENMT0sxNXZJ?=
- =?utf-8?B?Ui8vV3VYNXMwdFB6RytzdUdiWVZSU0o3clVYTEtJM3V6TlpxRUQvRE9iYXll?=
- =?utf-8?B?aXFzdzV0V3JFazZGZm9jT0RXSFdLcmp2N01RbEx3cUJ6TzVxMVlhdWErZGR1?=
- =?utf-8?B?WUFSVGF3cnNHaUYyR2RxV3pWdGhiSVdYeW12dmNPdVdXT0JoWVZmWUswVk9z?=
- =?utf-8?B?eG04alNBNHY2Tjc2R1E2ekh1Y1hXK05TOUNiUTBqaDNaSUtJdFZoZ1BwT1pB?=
- =?utf-8?B?T1kzOWV2elpya1BCNUJtZWRsQWVmZUp6NmxuZndpazd1UkU2bGhQWW51emNV?=
- =?utf-8?B?SWFpT0tCT2N3aXd5bTNQN0cxYlFGdE5HaFB0QU5McFp6YmdMNldrRUFWSDg5?=
- =?utf-8?B?L1pWcGNORGQ3UzJDZ2JHNmZYeVRQYTFKMU8xdUF3RnQrYVVMc0ptcTR3S1pj?=
- =?utf-8?B?eHdHNU9HeEt3ZnJNVFI3RzdCaDRiWU1xbmVOWTltczhydy8raElZVlhwQW1Z?=
- =?utf-8?B?azdZajhJZW5MajVqczZvZGZuV0dqMXlkSXM0aDVqbmhzUTVnbC9lekd1YSs0?=
- =?utf-8?B?QU9nYjRHVWQxZ29CSncrYnFTTENrK3dYeHNsTGFsbktXdHV3b25QaXN0MTRM?=
- =?utf-8?B?RmdCeTVPQnNRaks5RVFiUWluSzBjUUk5WGxyMzZ0T2FrZ3UzTTJjTVZGbjhh?=
- =?utf-8?B?TVc0cjVLTk5sZWlLWHA3UVNGOE5WMGVLS0JaMU55MkgzWmlWM3pJV3RSMEFP?=
- =?utf-8?B?Yks2MmltVXgyZE1IUk9odGxwV3R3anpYUmZ0Rm4vTU41bTF2QnNmS05zZ1NH?=
- =?utf-8?B?N2hBa2t1dlJPMjY2YjF6M0lUa2NVY0lZQ1p5M2ViY09GWUVZOHJSTHU2Tnh6?=
- =?utf-8?B?RGlzMmk5djFmeG9hZERnZ0o1dzd0c2duZ05CdnJ3djAxTmkvZS81UT09?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bmxaUGR5aHhNZGhxNy9RZnNQUjZSTVNjbWZ0b2dFUzNGMGJHODM0L0kraHAv?=
+ =?utf-8?B?Z0xkYXRmbHQ5QjRyV3dxWXlWZGRCblZzcjNoc1IzVWJZSzR0N2NsM21xWVdO?=
+ =?utf-8?B?Y3ZXUlNPOGx4SmlNeWJVb0djYWdmSFBUeFJYUm9RbU1zWHJRS3JZTWhveVhj?=
+ =?utf-8?B?bnVJMytiTjZRUnZmdHVlOTFyZlhXYy9sc1N3R0NkaVFNd1hTMWgxcDBQM2lm?=
+ =?utf-8?B?bXgrVzlHK1NOVTVFVGZGYWJLTDZCOUFrcWw3NkRick1IQ3VheDNmUkNpZFo2?=
+ =?utf-8?B?OGtPWTh2VXh0c0FtVzlQekt3cFhCcWkvYURoa29STVUrUjMwNGlPbXE0TEhZ?=
+ =?utf-8?B?V2RqSGtQbGpFam5SQ1Q2bmx3ZWpDQi93cEFndWtRNVYveFk1MUZDdzBzaWJs?=
+ =?utf-8?B?RmJOdjNXZi9oRDVaZ0p3N1lPU1Y4d01CRS9tWlUvT0xSNzA3Y1hHMExCdDNr?=
+ =?utf-8?B?c1phNFU4a0xVaWdnU0NiRk5pR2pVY1dPZ1BpbkM0bCt4WkNVVGVkaXBpRVRB?=
+ =?utf-8?B?Z0NEMm9LUzZaS2hUQlpqVjhKV1N1YmpSM1A5Y2hpaUoyMzM5UU94N1BBeE1r?=
+ =?utf-8?B?dXFWYTAwcnZIT1NDc3N0OE5LRkJuTng2M3FUajN3T3pvL0J2NmgrTHh4RUZl?=
+ =?utf-8?B?cDdTZzZjb2Y5SjJTUll6V3lFMFd4OTlWTVVyWFdqMlFTK0VtS2ExWEoxL0Vm?=
+ =?utf-8?B?b1g2M0FhSkFoVlNtYXFHUFFudHd0MC9wTlp3Y2ZJdWVRanE4Y3VrWmwwWGJQ?=
+ =?utf-8?B?dnRrY2k0dHVYZ3hhZkJzemd6THZrZnZTK1lQNC92dSthSDF1aXFPdzdaL2JY?=
+ =?utf-8?B?dTgzeVJMUjdIMXpjZk5nWGZXWFp1MEhGM3VNNkNQRXB0K0hvSmlmZVp2WGlI?=
+ =?utf-8?B?dlEwS0xkRHl2QkN2dWxubzBzS0t5RHVFRWZ2eE1Jb25aV1FyUTJKQ1ZJUzk2?=
+ =?utf-8?B?cjNXUGZ5NWFzbTNOSVFqOGh3T0FkT1FoZ01TOTdmTzZDZGlHTGFiY0NMOHpF?=
+ =?utf-8?B?dVRWc0p3RG5UdVd5eFhESUZBamlORXVQdGFGekhINU11cDRSTTJIYXhtRGdR?=
+ =?utf-8?B?UXV2TGxndkV6TTBvLzZiVEJPNm5vbnN5M2FPd2s4SnJNaDVrTFpUZklONjY5?=
+ =?utf-8?B?MFZnMXYxUUVBSU1LZnZOR3QzdC9VamR4K3ZSb244U2RQczlQY2FmR3BsNWlL?=
+ =?utf-8?B?MmkwZjNNTDRJNVdpWVk0LzhUaUFJTkkrclM3Yy90SUJiRnoyQ0VETktjclJX?=
+ =?utf-8?B?enYwR0JzbS9raGJ0S04vY3RhZ1pITFZUMTFJaGFDNmRIdTFoMU9mMjVyeCtR?=
+ =?utf-8?B?dTFRN1BUWlE2a2ZLRGRTSXdKTFVScmJoNW5MSFRXcGNTK3V6ZEkvdkk3TkFG?=
+ =?utf-8?B?NzJvbEp4UXdpbXJSUTVqazltZngwOStOL3pzWG8wSnlZZHo5bmtnd1dMbENL?=
+ =?utf-8?B?SWlhUjlQTnJReHRTaVBhYm5oTFFCQkptZExqSklTVjRjMGFuZDh3QVBJTk9W?=
+ =?utf-8?B?T0d5bjgweUtnaExuekdFSjByTVhpemgvZXpock1yZTlyNnd0TCtJbkpYRVdk?=
+ =?utf-8?B?UHdHOHdDbnpzSDY5eTdlY21qVFc1cURvWWN5UVIzVDJncWpQLzlSWWtURVVI?=
+ =?utf-8?B?OHRxaFFxYlhyUDgzUUR6ZjYxeG9lcDFkYkdzanFrZXlrZ3Z3VXlxWEpPMGlx?=
+ =?utf-8?B?eE1VVmU3WElUT2dVWm4wWURXVmJZcjdlMlJ2cUlRaXREVnVXYnc2ZGdMbmxS?=
+ =?utf-8?B?R0xuSHc2VXRvWG1CNFpFUDJmZUErdTZSQ2FHOGlpdFRIa1lTL1BScUtoZmpC?=
+ =?utf-8?B?Ymx1UDNFbEsxMWpnME5OeWVIdVo3cXRrbUdhVHd6VXliSDNXaVlzamVyYWo4?=
+ =?utf-8?B?eiswaERSa0ppWGNnSkllSm5SMzIrUmM0MjBIQkpyRUdtK25WWnduSjduRklS?=
+ =?utf-8?B?bjNJRnprK25la1Q2alAzZ1RwR1hNV2RRaWhYUWhkUEEwTU9EZVQxQW15N2Nl?=
+ =?utf-8?B?SlVYTVMwY1hQdUE4NTJMc1M5dk02aUtUWUdZM1ptUENicTFkbzZ1L2pQSStR?=
+ =?utf-8?B?b2ZNWHByMU4rNWNIMFlNNE05Q24wT1N0Rk45dmJVaEpqRkUySXdIS0dBcm1r?=
+ =?utf-8?B?cFdDQkhLRnFZVGpxNEtYZlM4MlV4enNJZXlTMExWcDdWdDlMcEdvd1k0VlZO?=
+ =?utf-8?B?N1Irb2o0OG1JUGsyZnJNTExHM05kdkZYaE84d0lNU2ZlZldwWk9xT0dRczJq?=
+ =?utf-8?B?Z1QzblFuSkhESmFTQUR3cE5aWHBVWDY1Y2J6ZGU3ODZWRElGK09HNkluNk9p?=
+ =?utf-8?B?L2xBNVRtYjI3cFpCNUZwNk5pVmhYcjlNWjE3bHVUK1V2UFBMWTlFZz09?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ac2855d-1451-4658-d959-08dedb22dc31
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB7082.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 345c064d-6df2-447e-83fe-08dedb3aae74
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2026 05:53:10.6355 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2026 08:43:41.7024 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7Mxbm52OWYqMLCY8wY/7kX4/ZRzjMRlWXNRNRLMp/q/X2f2gD8ntfECpWe7Xup3e
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6215
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ox2Vx7TvMeXcltIBq2PpsLqag+PiGnhcL7+FiwM8t/OlinejHfzHTpo9ntNUJZTE
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8361
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,115 +156,151 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:kevinyang.wang@amd.com,m:alexander.deucher@amd.com,m:hawking.zhang@amd.com,m:kenneth.feng@amd.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmx.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,amd.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:from_mime,amd.com:dkim,amd.com:mid,gmx.de:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 145A270CB62
+X-Rspamd-Queue-Id: 6B1C970E3D3
 
-
-
-On 06-Jul-26 7:08 AM, Yang Wang wrote:
-> SMU14 derives the default PPT limit from SocketPowerLimitAc/Dc, but
-> MsgLimits.Power may expose a different firmware limit for the same PPT0
-> throttler. Using those values independently as fixed min/max bases can
-> report an incorrect configurable power range.
+On 7/3/26 18:31, Natalie Vock wrote:
+> TTM is about to switch to drm_exec for locking objects
+> in the LRU list. When we're done processing the object, we want to
+> unlock it only if the caller doesn't already hold that lock. If
+> DRM_EXEC_IGNORE_DUPLICATES is set on the exec object (which callers may
+> require for unrelated reasons), we have no way of knowing whether the
+> lock is already held.
 > 
-> Keep the socket power limit as the default value and as the fallback for
-> current-limit queries. Calculate the reported range from both firmware
-> values instead, using the lower value as the minimum base and the higher
-> value as the maximum base before applying OD percentages.
+> To remedy this, add a separate helper that forcefully bypasses the
+> IGNORE_DUPLICATES flag for only a single locking operation.
 > 
-> Signed-off-by: Yang Wang <kevinyang.wang@amd.com>
+> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
 > ---
->   .../drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c  | 28 +++++++++++--------
->   1 file changed, 16 insertions(+), 12 deletions(-)
+>  drivers/gpu/drm/drm_exec.c | 52 ++++++++++++++++++++++++++++++++++------------
+>  include/drm/drm_exec.h     |  2 ++
+>  2 files changed, 41 insertions(+), 13 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-> index edc5140f6ab6..b8584a1e6bcc 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu14/smu_v14_0_2_ppt.c
-> @@ -1622,19 +1622,23 @@ static int smu_v14_0_2_get_power_limit(struct smu_context *smu,
->   		table_context->power_play_table;
->   	PPTable_t *pptable = table_context->driver_pptable;
->   	CustomSkuTable_t *skutable = &pptable->CustomSkuTable;
-> -	int16_t od_percent_upper = 0, od_percent_lower = 0;
-> +	uint32_t pp_limit = smu->adev->pm.ac_power ?
-> +		skutable->SocketPowerLimitAc[PPT_THROTTLER_PPT0] :
-> +		skutable->SocketPowerLimitDc[PPT_THROTTLER_PPT0];
->   	uint32_t msg_limit = pptable->SkuTable.MsgLimits.Power[PPT_THROTTLER_PPT0][POWER_SOURCE_AC];
+> diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
+> index 7988f5e7d56a3..91de6b4d29df8 100644
+> --- a/drivers/gpu/drm/drm_exec.c
+> +++ b/drivers/gpu/drm/drm_exec.c
+> @@ -190,18 +190,9 @@ static int drm_exec_lock_contended(struct drm_exec *exec)
+>  	return ret;
+>  }
+>  
+> -/**
+> - * drm_exec_lock_obj - lock a GEM object for use
+> - * @exec: the drm_exec object with the state
+> - * @obj: the GEM object to lock
+> - *
+> - * Lock a GEM object for use and grab a reference to it.
+> - *
+> - * Returns: -EDEADLK if a contention is detected, -EALREADY when object is
+> - * already locked (can be suppressed by setting the DRM_EXEC_IGNORE_DUPLICATES
+> - * flag), -ENOMEM when memory allocation failed and zero for success.
+> - */
+> -int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+> +static int __drm_exec_lock_obj(struct drm_exec *exec,
+> +			       struct drm_gem_object *obj,
+> +			       bool always_report_duplicates)
 
-May not be related to the current patch. Is there a DC msg limit also 
-which needs to be picked for DC case?
+Rename the new parameter to ignore_duplicates.
 
-Thanks,
-Lijo
+>  {
+>  	int ret;
+>  
+> @@ -226,7 +217,7 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+>  		return -EDEADLK;
+>  	}
+>  
+> -	if (unlikely(ret == -EALREADY) &&
+> +	if (unlikely(ret == -EALREADY) && !always_report_duplicates &&
+>  	    exec->flags & DRM_EXEC_IGNORE_DUPLICATES)
+>  		return 0;
+>  
+> @@ -243,8 +234,43 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+>  	dma_resv_unlock(obj->resv);
+>  	return ret;
+>  }
+> +
+> +/**
+> + * drm_exec_lock_obj - lock a GEM object for use
+> + * @exec: the drm_exec object with the state
+> + * @obj: the GEM object to lock
+> + *
+> + * Lock a GEM object for use and grab a reference to it.
+> + *
+> + * Returns: -EDEADLK if a contention is detected, -EALREADY when object is
+> + * already locked (can be suppressed by setting the DRM_EXEC_IGNORE_DUPLICATES
+> + * flag), -ENOMEM when memory allocation failed and zero for success.
+> + */
+> +int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+> +{
+> +	return __drm_exec_lock_obj(exec, obj, false);
 
-> -	uint32_t power_limit;
-> +	uint32_t min_limit = min_t(uint32_t, pp_limit, msg_limit);
-> +	uint32_t max_limit = max_t(uint32_t, pp_limit, msg_limit);
-> +	int16_t od_percent_upper = 0, od_percent_lower = 0;
-> +	int ret;
->   
-> -	if (smu_v14_0_get_current_power_limit(smu, &power_limit))
-> -		power_limit = smu->adev->pm.ac_power ?
-> -			      skutable->SocketPowerLimitAc[PPT_THROTTLER_PPT0] :
-> -			      skutable->SocketPowerLimitDc[PPT_THROTTLER_PPT0];
-> +	if (current_power_limit) {
-> +		ret = smu_v14_0_get_current_power_limit(smu, current_power_limit);
-> +		if (ret)
-> +			*current_power_limit = pp_limit;
-> +	}
->   
-> -	if (current_power_limit)
-> -		*current_power_limit = power_limit;
->   	if (default_power_limit)
-> -		*default_power_limit = power_limit;
-> +		*default_power_limit = pp_limit;
->   
->   	if (powerplay_table) {
->   		if (smu->od_enabled &&
-> @@ -1648,15 +1652,15 @@ static int smu_v14_0_2_get_power_limit(struct smu_context *smu,
->   	}
->   
->   	dev_dbg(smu->adev->dev, "od percent upper:%d, od percent lower:%d (default power: %d)\n",
-> -					od_percent_upper, od_percent_lower, power_limit);
-> +					od_percent_upper, od_percent_lower, pp_limit);
->   
->   	if (max_power_limit) {
-> -		*max_power_limit = msg_limit * (100 + od_percent_upper);
-> +		*max_power_limit = max_limit * (100 + od_percent_upper);
->   		*max_power_limit /= 100;
->   	}
->   
->   	if (min_power_limit) {
-> -		*min_power_limit = power_limit * (100 + od_percent_lower);
-> +		*min_power_limit = min_limit * (100 + od_percent_lower);
->   		*min_power_limit /= 100;
->   	}
->   
+And then use "exec->flags & DRM_EXEC_IGNORE_DUPLICATES" here.
+
+> +}
+>  EXPORT_SYMBOL(drm_exec_lock_obj);
+>  
+> +/**
+> + * drm_exec_lock_obj_report_dup - lock a GEM object for use, but always report duplicates
+> + * @exec: the drm_exec object with the state
+> + * @obj: the GEM object to lock
+> + *
+> + * Like drm_exec_lock_obj, lock a GEM object for use and grab a reference to it.
+> + * Unlike drm_exec_lock_obj, DRM_EXEC_IGNORE_DUPLICATES is ignored and duplicates are
+> + * always reported.
+> + *
+> + * Returns: -EDEADLK if a contention is detected, -EALREADY when object is
+> + * already locked, -ENOMEM when memory allocation failed and zero for success.
+> + */
+> +int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
+> +				 struct drm_gem_object *obj)
+> +{
+> +	return __drm_exec_lock_obj(exec, obj, false);
+
+BTW That here is buggy, it should have been true.
+
+Apart from that looks good to me,
+Christian.
+
+> +}
+> +EXPORT_SYMBOL(drm_exec_lock_obj_report_dup);
+> +
+>  /**
+>   * drm_exec_unlock_obj - unlock a GEM object in this exec context
+>   * @exec: the drm_exec object with the state
+> diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+> index 8725ba92ff916..ff80dd2b72240 100644
+> --- a/include/drm/drm_exec.h
+> +++ b/include/drm/drm_exec.h
+> @@ -176,6 +176,8 @@ void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr);
+>  void drm_exec_fini(struct drm_exec *exec);
+>  bool drm_exec_cleanup(struct drm_exec *exec);
+>  int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
+> +int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
+> +				 struct drm_gem_object *obj);
+>  void drm_exec_unlock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
+>  int drm_exec_prepare_obj(struct drm_exec *exec, struct drm_gem_object *obj,
+>  			 unsigned int num_fences);
+> 
 
