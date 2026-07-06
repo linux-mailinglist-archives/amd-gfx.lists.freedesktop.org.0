@@ -2,74 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1Z++JsTaS2r0bQEAu9opvQ
+	id I1N7FGPcS2pWbgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 18:41:40 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 18:48:35 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE8C17136C1
-	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 18:41:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A28807137DA
+	for <lists+amd-gfx@lfdr.de>; Mon, 06 Jul 2026 18:48:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=krdw+o6S;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=RHMAEZLD;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none);
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADA6710EA09;
-	Mon,  6 Jul 2026 16:41:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 807FE10E3D1;
+	Mon,  6 Jul 2026 16:48:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4553E10E3DE;
- Mon,  6 Jul 2026 16:41:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C78E10E3D1;
+ Mon,  6 Jul 2026 16:48:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=7guCZdTD2KAERz8f6MPx3Klbbmu2md0ZZwoWL4nEApU=; b=krdw+o6SiF86wGukpkdCg723JC
- Wm6xOUm6oOfBYk3+ZOem8KIP5ugPm+GZvAdWCcGg2KqKBR4PXXvweAQNZBjKCIPEYXSkw6pTGrnwm
- Denu+4/x0rTy00y70Xmutt9C85sr7lwu5XeMTey21CRdJQwqP0pUaOypX+amjG8QkySVT9Js1kIh/
- nBCu7mbB/muzjTPOvUOTN+7vrkiFd8ehIKyBIrmJi/9KbJdQ2bSY0rU8X5nYS0at3H2rQcpzjMz12
- 6mKu33XOAPtO1i68diKTyOM5DIdbMY1FhlVF/SthmJqPtBac90bif6f81ie29rBawlTZDY3ni6fv2
- AMajf0gQ==;
+ bh=Upk4tNhUzSa45KpTzjfX++wsP0s9fIj5d8Z8PGV+dgY=; b=RHMAEZLDq01U6HvRLT6A8Fqxzh
+ A/60Gn5kKN+IyFSfrkHnju6z5BtcQNLaNAQY8/bSSmVJinD+BdFLsO+raFuLhJRBhBveQsx2ywIPY
+ G+Zm/+fW7LKyOTB1KAi0f/gs3caiwOk6w0R9OuGPi2EVI/aHjBjJYlSQbxL3+0e3eRo7bgIf2VyLi
+ iGtCZq0Mk/oQl+JUO+KafwJUHsNtMBwBdRukjEUofL9ctd9m9mpkMLPhNoTlbfiQUzVP8MG4zrIvn
+ hrwUNrtyzgSDJ1FJ1EwahtPgkcvfMc3h6CziVsf2A+HnxhISEOUgxz5IijQpdQk50TPsm1mZa61cL
+ hG4TBKOQ==;
 Received: from d209-89-236-181.abhsia.telus.net ([209.89.236.181]
  helo=atmagalia) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wgmNd-009psZ-UQ; Mon, 06 Jul 2026 18:41:14 +0200
-Date: Mon, 6 Jul 2026 10:41:04 -0600
+ id 1wgmUe-009q0s-Vy; Mon, 06 Jul 2026 18:48:29 +0200
+Date: Mon, 6 Jul 2026 10:48:22 -0600
 From: Rodrigo Siqueira <siqueira@igalia.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
- Liviu Dudau <liviu.dudau@arm.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, 
- John Harrison <John.Harrison@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
- Alex Hung <alex.hung@amd.com>
-Subject: Re: [PATCH v6 2/9] drm/amd/display: use drmm allocation for
- writeback connector
-Message-ID: <akvOKjElA-gfEk_E@atmagalia>
-References: <20260612-wb-drop-encoder-v6-0-9f3a54f81310@oss.qualcomm.com>
- <20260612-wb-drop-encoder-v6-2-9f3a54f81310@oss.qualcomm.com>
+To: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+Cc: igt-dev@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Christian Koenig <christian.koenig@amd.com>, maarten.lankhorst@linux.intel.com,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>, 
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>, 
+ Natalie Vock <natalie.vock@gmx.de>, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ kernel-dev@igalia.com
+Subject: Re: [PATCH i-g-t v3 0/7] add dmem_cgroups test
+Message-ID: <akvbAndvXJBGFS6O@atmagalia>
+References: <20260702130108.1397444-1-cascardo@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20260612-wb-drop-encoder-v6-2-9f3a54f81310@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260702130108.1397444-1-cascardo@igalia.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,95 +72,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [2.49 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [0.99 / 15.00];
 	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
 	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[3];
-	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[igalia.com:-];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,linux.intel.com,gmx.de,igalia.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[siqueira@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,amd.com,arm.com,ideasonboard.com,glider.be,raspberrypi.com,igalia.com,lists.freedesktop.org,vger.kernel.org,wanadoo.fr];
-	TAGGED_RCPT(0.00)[amd-gfx,renesas];
+	DKIM_TRACE(0.00)[igalia.com:-];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,qualcomm.com:email,lists.freedesktop.org:from_smtp,atmagalia:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[atmagalia:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,siqueira.tech:url,patchwork.freedesktop.org:url,igalia.com:from_mime,igalia.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EE8C17136C1
+X-Rspamd-Queue-Id: A28807137DA
 
-On 06/12, Dmitry Baryshkov wrote:
-> Currently memory used for writeback connectors isn't freed on driver
-> unbinding, leaking the memory. Use drm_device-memory allocation
-> function for the writeback connector, making sure that the memory is
-> freed on the driver unbinding.
+On 07/02, Thadeu Lima de Souza Cascardo wrote:
+> v3 TLDR:
+> Sending again for fixes when running on top of Xe.
 > 
-> Reported-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-> Suggested-by: Alex Hung <alex.hung@amd.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+> This patchset is based on the work of Thomas Hellström at [1] and a
+> followup I have submitted at [2]. This is now a v3, since I submitted [6].
 > 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index ece581609cf7..436562e32e63 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -91,6 +91,7 @@
->  #include <drm/drm_fourcc.h>
->  #include <drm/drm_edid.h>
->  #include <drm/drm_eld.h>
-> +#include <drm/drm_managed.h>
->  #include <drm/drm_mode.h>
->  #include <drm/drm_utils.h>
->  #include <drm/drm_vblank.h>
-> @@ -5807,7 +5808,7 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
->  		link = dc_get_link_at_index(dm->dc, i);
->  
->  		if (link->connector_signal == SIGNAL_TYPE_VIRTUAL) {
-> -			struct amdgpu_dm_wb_connector *wbcon = kzalloc_obj(*wbcon);
-> +			struct amdgpu_dm_wb_connector *wbcon = drmm_kzalloc_obj(adev_to_drm(adev), *wbcon);
->  
->  			if (!wbcon) {
->  				drm_err(adev_to_drm(adev), "KMS: Failed to allocate writeback connector\n");
-> @@ -5816,7 +5817,7 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
->  
->  			if (amdgpu_dm_wb_connector_init(dm, wbcon, i)) {
->  				drm_err(adev_to_drm(adev), "KMS: Failed to initialize writeback connector\n");
-> -				kfree(wbcon);
-> +				drmm_kfree(wbcon);
+> With this version, I reverted the order in which to apply the patchsets, as
+> this one adds the infrastructure and the drivers mechanisms, and a test for
+> dmem.current and its behavior around dmem.max that is currently supported
+> in the kernel.
+> 
+> As for the new dmem.max eviction behavior, introduced by [3], it has been
+> pushed to a branch at [4]. If preferred, I can submit the two patches
+> independently.
+> 
+> I have run the tests, including the ones that test dmem.max eviction
+> behavior on a system with a 1GiB VRAM amdgpu card. Rodrigo Siqueira helped
+> me run it on a Xe system. We have applied the patchset at [3] on top of
+> current linux origin/master [5], with a fixup for the amdgpu driver.
+> 
+> Now, for the changes since v1 [2]:
+> - Changed the test name from drv_dmem_cgroups to dmem_cgroups.
+> - Have system includes before igt ones.
+> - Documented the current SUBTEST.
+> - Changed free_vram driver hook to only release a given BO. This allows for
+>   the eviction trigger by a new allocation added by write_eviction_nonblock
+>   subtest.
+> - Changed allocate_vram to keep more state necessary for releasing a single BO.
+> - Added a global free_vram helper to free all allocated VRAM.
+> 
+> Compared to v3 of [1]:
+> - I have kept wait_for_usage_drop as release can be lazy and we test for it
+>   on test_current SUBTEST, but had USAGE_DROP_TIMEOUT_MS be a little
+>   longer.
+> - Changed BO_SIZE and EVICT_STEP to allow for more than two eviction steps
+>   on a 1GiB VRAM system.
+> - Reduced USAGE_SLACK to avoid false positives, but still allow for some
+>   page table accounting.
+> 
+> Compared to v2 of this one [6]:
+> 
+> - Ignore -ENOMEM and -ENOSPC when trying to fill VRAM.
+> - When limiting max memory, allow for some slack, as there might be some
+>   overhead.
+> - On Xe, allocate GEM object with no deferred backing, and skip binding.
 
-Hi Dmitry,
+Hi,
 
-It looks like drmm_kfree is missing one parameter. It looks like it
-should be something like this:
+I tested this series with the following hardware:
+- RX9060XT
+- RX570
+- Intel ARC B580
 
+Based on that, this series was:
 
-  drmm_kfree(&adev->ddev, wbcon);
-
-
-If I missed a new series where you address this issue, please ignore
-this comment.
+Tested-by: Rodrigo Siqueira <siqueira@igalia.com>
 
 Thanks
 
->  				continue;
->  			}
->  
+> 
+> [1] https://patchwork.freedesktop.org/series/163935/#rev3
+> [2] https://patchwork.freedesktop.org/series/166496/
+> [3] https://lore.kernel.org/dri-devel/20260611173301.17473-1-thomas.hellstrom@linux.intel.com/
+> [4] https://gitlab.freedesktop.org/cascardo/igt-gpu-tools/-/commits/dmem_max?ref_type=heads
+> [5] 502d801f0ab0 ("Merge tag 'erofs-for-7.2-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs")
+> [6] https://lore.kernel.org/dri-devel/20260623174319.4138648-1-cascardo@igalia.com/
+> 
+> 
+> Thadeu Lima de Souza Cascardo (4):
+>   lib/xe: Introduce dmem driver and implement Xe support
+>   lib/amdgpu: add amdgpu_cgroup_region_name
+>   lib/amdgpu: add amdgpu support to igt_dmem_driver
+>   tests/dmem_cgroups: add test for dmem.current
+> 
+> Thomas Hellström (3):
+>   lib/igt_cgroup: add cgroup v2 and dmem controller helpers
+>   tests/cgroup_dmem: add dmem cgroup controller test
+>   lib/xe: add xe_cgroup_region_name() helper
+> 
+>  lib/amdgpu/amd_dmem.c   |  99 +++++++
+>  lib/amdgpu/amd_memory.c |  25 ++
+>  lib/amdgpu/amd_memory.h |   2 +
+>  lib/igt.h               |   1 +
+>  lib/igt_cgroup.c        | 638 ++++++++++++++++++++++++++++++++++++++++
+>  lib/igt_cgroup.h        |  56 ++++
+>  lib/igt_dmem_driver.h   |  25 ++
+>  lib/meson.build         |   3 +
+>  lib/xe/xe_dmem.c        | 143 +++++++++
+>  lib/xe/xe_query.c       |  32 ++
+>  lib/xe/xe_query.h       |   2 +
+>  tests/cgroup_dmem.c     |  92 ++++++
+>  tests/dmem_cgroups.c    | 245 +++++++++++++++
+>  tests/meson.build       |   2 +
+>  14 files changed, 1365 insertions(+)
+>  create mode 100644 lib/amdgpu/amd_dmem.c
+>  create mode 100644 lib/igt_cgroup.c
+>  create mode 100644 lib/igt_cgroup.h
+>  create mode 100644 lib/igt_dmem_driver.h
+>  create mode 100644 lib/xe/xe_dmem.c
+>  create mode 100644 tests/cgroup_dmem.c
+>  create mode 100644 tests/dmem_cgroups.c
 > 
 > -- 
 > 2.47.3
@@ -180,3 +211,4 @@ Thanks
 
 -- 
 Rodrigo Siqueira
+https://siqueira.tech
