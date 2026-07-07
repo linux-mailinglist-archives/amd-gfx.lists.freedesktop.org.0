@@ -2,74 +2,72 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3i9eH/33TGodswEAu9opvQ
+	id U30DI//3TGonswEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 14:58:37 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 14:58:39 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28D9F71B9A3
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 14:58:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30F8B71B9B4
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 14:58:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=Ls3K45+T;
+	dkim=pass header.d=intel.com header.s=Intel header.b=ORyrNEqw;
 	dmarc=pass (policy=none) header.from=intel.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5022110ECDA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB0AC10ECE1;
 	Tue,  7 Jul 2026 12:58:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FD9789226;
- Tue,  7 Jul 2026 12:41:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB30F10E4B1;
+ Tue,  7 Jul 2026 12:48:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783428120; x=1814964120;
+ t=1783428537; x=1814964537;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=oLxyLktYGNMszk3W/9KmRAP6Lv0GJ8nHgtRDf5wsq7Q=;
- b=Ls3K45+TD4se66v4g7vQW+pVBZLuSCXhNMHcO1/x7JYg/ZJGxdW+Wr2L
- ioDnVEmPAC9QeLOoiHb6JBKV6jZFcSnBZIvypw26G1sVqkzXxYb2Gv0sP
- RkD3irW2cQ15o9gjgxKEmn8LuZ+pU917H7Cf+3EgVpxzXUqZ9tAWEnvtS
- DnbpGewLgLCRzGsB4VZWWmcgZ2AGuCxzbVEDMuGhY9r7daby+2+Op0MO7
- vYF5meT6WG1iJOMCoOKoV2sbNmpAPeBR6br3G5UOJUT0Nd77VlLd8OEAh
- 97hPW0mGuMNxeS+b9pzDQBNWtwiKcpLxxzlVl8DiyD1N3yevRg2whD/EM w==;
-X-CSE-ConnectionGUID: 5zJbvexJQHKOf0izA32bZw==
-X-CSE-MsgGUID: NCIU4sCgSPuHGOUnuKXu7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="95452012"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="95452012"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 05:41:59 -0700
-X-CSE-ConnectionGUID: mPdUbNyyRx+oyuNH9e3/dw==
-X-CSE-MsgGUID: XEnS8VB2QBa4q5tY8f8zYQ==
+ bh=c3xJLGT78382H2wwUUXrHkSRAD2v/5i9yMYobiMW27o=;
+ b=ORyrNEqwR+PyCgLnzJM1twMbyGPZPQM4NjvVkCElfhe0VHiU0myQv4yj
+ NzDpZE74B7blXwXFLlq7Z2XAKIhqsiYdpG8HhRIwo1Qh4WYQgQnyy1+YL
+ U0wj4CT+krUVNyWMUlRlyqQ1j+k///wuOI/O/W2KfNrr9DLG2dzjGE+ya
+ XuzmCKtifKWaIGj4BjiAIzdhdopI2tu0cXSyAAZ0XVFT6MsnQ8GjAKWjQ
+ eoOuxMOIRs/wIkiXnjj5t1DNFcYIIn6QBoS0YEa8XfQVaZrSV/OVUlTyW
+ C0Sh4chLJweUocl+IQMNvCcNGhY8YH8ygsVgDp7I3kC6uTmVp3eWUMUB4 Q==;
+X-CSE-ConnectionGUID: J0EFLz0GQ+aB0L4UqdwNmw==
+X-CSE-MsgGUID: Q8jydyYYQoSAmPiBx8CGaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="84263705"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84263705"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 05:48:57 -0700
+X-CSE-ConnectionGUID: xQhwTzvLQ/eZltsfvJDHDg==
+X-CSE-MsgGUID: 6++/c9N0RRSb04ShGpxCbg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="258299506"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="251321073"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.199])
  ([10.245.244.199])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 05:41:54 -0700
-Message-ID: <6fac8343dc71b1dbf17e77390cc878cfaeb6d650.camel@linux.intel.com>
-Subject: Re: [PATCH 01/10] drm/exec: Add helper to bypass IGNORE_DUPLICATES
- flag
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 05:48:52 -0700
+Message-ID: <944807b30e00606dc3f4a8ad57c3e8e70ddd2d10.camel@linux.intel.com>
+Subject: Re: [PATCH 09/10] drm/ttm: support using drm_exec during eviction v4
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Natalie
- Vock <natalie.vock@gmx.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen	 <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
- <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Matthew Brost
- <matthew.brost@intel.com>, Alex Deucher <alexander.deucher@amd.com>
+To: Natalie Vock <natalie.vock@gmx.de>, Maarten Lankhorst	
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula	
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Christian Koenig	
+ <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>, Matthew Auld	
+ <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>, Alex
+ Deucher	 <alexander.deucher@amd.com>
 Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  amd-gfx@lists.freedesktop.org
-Date: Tue, 07 Jul 2026 14:41:52 +0200
-In-Reply-To: <0f85e12e-7d34-40a8-9efc-0d1a00b7c24c@amd.com>
+Date: Tue, 07 Jul 2026 14:48:50 +0200
+In-Reply-To: <20260703-ttm_2_drm_exec-v1-9-43685ac1286b@gmx.de>
 References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
- <20260703-ttm_2_drm_exec-v1-1-43685ac1286b@gmx.de>
- <673ae71a1fc4dcce0e6a1655985a141d6f08c06f.camel@linux.intel.com>
- <0f85e12e-7d34-40a8-9efc-0d1a00b7c24c@amd.com>
+ <20260703-ttm_2_drm_exec-v1-9-43685ac1286b@gmx.de>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -102,7 +100,7 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,gmx.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net];
+	FREEMAIL_TO(0.00)[gmx.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,amd.com];
 	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
@@ -115,194 +113,152 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid,linux.intel.com:from_mime,lists.freedesktop.org:from_smtp,lists.freedesktop.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:email,intel.com:dkim,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid,linux.intel.com:from_mime,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 28D9F71B9A3
+X-Rspamd-Queue-Id: 30F8B71B9B4
 
-On Tue, 2026-07-07 at 14:28 +0200, Christian K=C3=B6nig wrote:
-> On 7/7/26 14:09, Thomas Hellstr=C3=B6m wrote:
-> > On Fri, 2026-07-03 at 18:31 +0200, Natalie Vock wrote:
-> > > TTM is about to switch to drm_exec for locking objects
-> > > in the LRU list. When we're done processing the object, we want
-> > > to
-> > > unlock it only if the caller doesn't already hold that lock. If
-> > > DRM_EXEC_IGNORE_DUPLICATES is set on the exec object (which
-> > > callers
-> > > may
-> > > require for unrelated reasons), we have no way of knowing whether
-> > > the
-> > > lock is already held.
-> > >=20
-> > > To remedy this, add a separate helper that forcefully bypasses
-> > > the
-> > > IGNORE_DUPLICATES flag for only a single locking operation.
-> > >=20
-> > > Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
-> >=20
-> > The first, more complete attempt to try to tackle the exhaustive
-> > eviction introduced a drm_exec snapshot ability instead.
-> >=20
-> > https://lists.freedesktop.org/archives/intel-xe/2024-May/035820.html
-> >=20
-> > The idea was that one would want to incrementally lock more buffer
-> > objects until the validation succeeded, rather than dropping each
-> > single lock after processing the eviction. That's actually what
-> > guarantees forward progress. Restoring the snapshot unlocked all
-> > locks
-> > that we grabbed in the process, and would work also for single
-> > locks.
+On Fri, 2026-07-03 at 18:31 +0200, Natalie Vock wrote:
+> From: Christian K=C3=B6nig <christian.koenig@amd.com>
 >=20
-> That's actually not what this patch here tries to solve.
+> Allow specifying a drm_exec object in TTMs operation context which is
+> used to lock objects during eviction.
 >=20
-> The problem is rather since we don't remove the BOs from the LRU list
-> that we try to evict some which are actually part of our working set.
+> This allows to handle deadlocks much more gracefully and with that
+> avoid returning -ENOMEM on heavily contended domains.
 >=20
-> So when we lock for eviction we can't ignore duplicates no matter
-> what the global flag says.
+> v2: rebased on top of Thomas work
+> v3: rebased again
+> v4: rebased, fixed locks of already-reserved buffers being dropped
+>=20
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
+> ---
+> =C2=A0drivers/gpu/drm/ttm/ttm_bo_util.c | 30 ++++++++++++++++++++++------=
+-
+> -
+> =C2=A0include/drm/ttm/ttm_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0 5 +++++
+> =C2=A02 files changed, 27 insertions(+), 8 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c
+> b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> index a53b25e8c2967..96699532817c2 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> @@ -38,6 +38,7 @@
+> =C2=A0#include <drm/ttm/ttm_tt.h>
+> =C2=A0
+> =C2=A0#include <drm/drm_cache.h>
+> +#include <drm/drm_exec.h>
+> =C2=A0
+> =C2=A0#include "ttm_bo_internal.h"
+> =C2=A0
+> @@ -837,6 +838,8 @@ static bool ttm_lru_walk_trylock(struct
+> ttm_bo_lru_cursor *curs,
+> =C2=A0	struct ttm_operation_ctx *ctx =3D curs->arg->ctx;
+> =C2=A0
+> =C2=A0	curs->needs_unlock =3D false;
+> +	if (ctx->exec)
+> +		return false;
 
-Ah yes, I see that now when I've gotten to patch 9. But then I think
-the commit message is a bit misleading. It talks about unlocking an
-already processed object?
+The first passes of eviction typically trylocks, and no_wait_gpu also
+skips sleeping locks since they can be held why waiting for fences.
+Otoh we could check that no_wait_gpu and exec is mutually exclusive.
+
+But I think trylocking should be tried before exec locking to also
+avoid costly rollbacks, in line with mutex lock stealing.
+
+> =C2=A0
+> =C2=A0	if (dma_resv_trylock(bo->base.resv)) {
+> =C2=A0		curs->needs_unlock =3D true;
+> @@ -857,7 +860,9 @@ static int ttm_lru_walk_ticketlock(struct
+> ttm_bo_lru_cursor *curs,
+> =C2=A0	struct ttm_lru_walk_arg *arg =3D curs->arg;
+> =C2=A0	int ret;
+> =C2=A0
+> -	if (arg->ctx->interruptible)
+> +	if (arg->ctx->exec)
+> +		ret =3D drm_exec_lock_obj_report_dup(arg->ctx->exec,
+> &bo->base);
+> +	else if (arg->ctx->interruptible)
+> =C2=A0		ret =3D dma_resv_lock_interruptible(bo->base.resv,
+> arg->ticket);
+> =C2=A0	else
+> =C2=A0		ret =3D dma_resv_lock(bo->base.resv, arg->ticket);
+> @@ -871,7 +876,11 @@ static int ttm_lru_walk_ticketlock(struct
+> ttm_bo_lru_cursor *curs,
+> =C2=A0		 * trylocking for this walk.
+> =C2=A0		 */
+> =C2=A0		arg->ticket =3D NULL;
+> -	} else if (ret =3D=3D -EDEADLK) {
+> +
+> +	} else if (arg->ctx->exec && arg->ctx->allow_res_evict &&
+> +		=C2=A0=C2=A0 ret =3D=3D -EALREADY) {
+> +		ret =3D 0;
+> +	} else if (!arg->ctx->exec && ret =3D=3D -EDEADLK) {
+> =C2=A0		/* Caller needs to exit the ww transaction. */
+> =C2=A0		ret =3D -ENOSPC;
+> =C2=A0	}
+> @@ -937,12 +946,17 @@ static void ttm_bo_lru_cursor_cleanup_bo(struct
+> ttm_bo_lru_cursor *curs)
+> =C2=A0{
+> =C2=A0	struct ttm_buffer_object *bo =3D curs->bo;
+> =C2=A0
+> -	if (bo) {
+> -		if (curs->needs_unlock)
+> +	if (!bo)
+> +		return;
+> +
+> +	if (curs->needs_unlock) {
+> +		if (curs->arg->ctx->exec)
+> +			drm_exec_unlock_obj(curs->arg->ctx->exec,
+> &bo->base);
+
+Unlocking after each locks sort of defeats the purpose of ww locking,
+since it can't guarantee forward progress, but I guess will work as an
+initial attempt.
 
 Thanks,
 Thomas
 
 
->=20
-> Regards,
-> Christian.
->=20
-> >=20
-> > Thanks,
-> > Thomas
-> >=20
-> >=20
-> > > ---
-> > > =C2=A0drivers/gpu/drm/drm_exec.c | 52
-> > > ++++++++++++++++++++++++++++++++++--
-> > > ----------
-> > > =C2=A0include/drm/drm_exec.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
-> > > =C2=A02 files changed, 41 insertions(+), 13 deletions(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/drm_exec.c
-> > > b/drivers/gpu/drm/drm_exec.c
-> > > index 7988f5e7d56a3..91de6b4d29df8 100644
-> > > --- a/drivers/gpu/drm/drm_exec.c
-> > > +++ b/drivers/gpu/drm/drm_exec.c
-> > > @@ -190,18 +190,9 @@ static int drm_exec_lock_contended(struct
-> > > drm_exec *exec)
-> > > =C2=A0	return ret;
-> > > =C2=A0}
-> > > =C2=A0
-> > > -/**
-> > > - * drm_exec_lock_obj - lock a GEM object for use
-> > > - * @exec: the drm_exec object with the state
-> > > - * @obj: the GEM object to lock
-> > > - *
-> > > - * Lock a GEM object for use and grab a reference to it.
-> > > - *
-> > > - * Returns: -EDEADLK if a contention is detected, -EALREADY when
-> > > object is
-> > > - * already locked (can be suppressed by setting the
-> > > DRM_EXEC_IGNORE_DUPLICATES
-> > > - * flag), -ENOMEM when memory allocation failed and zero for
-> > > success.
-> > > - */
-> > > -int drm_exec_lock_obj(struct drm_exec *exec, struct
-> > > drm_gem_object
-> > > *obj)
-> > > +static int __drm_exec_lock_obj(struct drm_exec *exec,
-> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_gem_object *obj,
-> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool always_report_duplicate=
-s)
-> > > =C2=A0{
-> > > =C2=A0	int ret;
-> > > =C2=A0
-> > > @@ -226,7 +217,7 @@ int drm_exec_lock_obj(struct drm_exec *exec,
-> > > struct drm_gem_object *obj)
-> > > =C2=A0		return -EDEADLK;
-> > > =C2=A0	}
-> > > =C2=A0
-> > > -	if (unlikely(ret =3D=3D -EALREADY) &&
-> > > +	if (unlikely(ret =3D=3D -EALREADY) &&
-> > > !always_report_duplicates
-> > > &&
-> > > =C2=A0	=C2=A0=C2=A0=C2=A0 exec->flags & DRM_EXEC_IGNORE_DUPLICATES)
-> > > =C2=A0		return 0;
-> > > =C2=A0
-> > > @@ -243,8 +234,43 @@ int drm_exec_lock_obj(struct drm_exec *exec,
-> > > struct drm_gem_object *obj)
-> > > =C2=A0	dma_resv_unlock(obj->resv);
-> > > =C2=A0	return ret;
-> > > =C2=A0}
-> > > +
-> > > +/**
-> > > + * drm_exec_lock_obj - lock a GEM object for use
-> > > + * @exec: the drm_exec object with the state
-> > > + * @obj: the GEM object to lock
-> > > + *
-> > > + * Lock a GEM object for use and grab a reference to it.
-> > > + *
-> > > + * Returns: -EDEADLK if a contention is detected, -EALREADY when
-> > > object is
-> > > + * already locked (can be suppressed by setting the
-> > > DRM_EXEC_IGNORE_DUPLICATES
-> > > + * flag), -ENOMEM when memory allocation failed and zero for
-> > > success.
-> > > + */
-> > > +int drm_exec_lock_obj(struct drm_exec *exec, struct
-> > > drm_gem_object
-> > > *obj)
-> > > +{
-> > > +	return __drm_exec_lock_obj(exec, obj, false);
-> > > +}
-> > > =C2=A0EXPORT_SYMBOL(drm_exec_lock_obj);
-> > > =C2=A0
-> > > +/**
-> > > + * drm_exec_lock_obj_report_dup - lock a GEM object for use, but
-> > > always report duplicates
-> > > + * @exec: the drm_exec object with the state
-> > > + * @obj: the GEM object to lock
-> > > + *
-> > > + * Like drm_exec_lock_obj, lock a GEM object for use and grab a
-> > > reference to it.
-> > > + * Unlike drm_exec_lock_obj, DRM_EXEC_IGNORE_DUPLICATES is
-> > > ignored
-> > > and duplicates are
-> > > + * always reported.
-> > > + *
-> > > + * Returns: -EDEADLK if a contention is detected, -EALREADY when
-> > > object is
-> > > + * already locked, -ENOMEM when memory allocation failed and
-> > > zero
-> > > for success.
-> > > + */
-> > > +int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
-> > > +				 struct drm_gem_object *obj)
-> > > +{
-> > > +	return __drm_exec_lock_obj(exec, obj, false);
-> > > +}
-> > > +EXPORT_SYMBOL(drm_exec_lock_obj_report_dup);
-> > > +
-> > > =C2=A0/**
-> > > =C2=A0 * drm_exec_unlock_obj - unlock a GEM object in this exec
-> > > context
-> > > =C2=A0 * @exec: the drm_exec object with the state
-> > > diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
-> > > index 8725ba92ff916..ff80dd2b72240 100644
-> > > --- a/include/drm/drm_exec.h
-> > > +++ b/include/drm/drm_exec.h
-> > > @@ -176,6 +176,8 @@ void drm_exec_init(struct drm_exec *exec, u32
-> > > flags, unsigned nr);
-> > > =C2=A0void drm_exec_fini(struct drm_exec *exec);
-> > > =C2=A0bool drm_exec_cleanup(struct drm_exec *exec);
-> > > =C2=A0int drm_exec_lock_obj(struct drm_exec *exec, struct
-> > > drm_gem_object
-> > > *obj);
-> > > +int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
-> > > +				 struct drm_gem_object *obj);
-> > > =C2=A0void drm_exec_unlock_obj(struct drm_exec *exec, struct
-> > > drm_gem_object *obj);
-> > > =C2=A0int drm_exec_prepare_obj(struct drm_exec *exec, struct
-> > > drm_gem_object *obj,
-> > > =C2=A0			 unsigned int num_fences);
+> +		else
+> =C2=A0			dma_resv_unlock(bo->base.resv);
+> -		ttm_bo_put(bo);
+> -		curs->bo =3D NULL;
+> =C2=A0	}
+> +	ttm_bo_put(bo);
+> +	curs->bo =3D NULL;
+> =C2=A0}
+> =C2=A0
+> =C2=A0/**
+> @@ -1016,8 +1030,8 @@ __ttm_bo_lru_cursor_next(struct
+> ttm_bo_lru_cursor *curs)
+> =C2=A0		if (ttm_lru_walk_trylock(curs, bo)) {
+> =C2=A0			bo_locked =3D true;
+> =C2=A0
+> -		} else if (!arg->ticket || arg->ctx->no_wait_gpu ||
+> -			=C2=A0=C2=A0 arg->trylock_only) {
+> +		} else if ((!arg->ticket || arg->ctx->no_wait_gpu ||
+> +			=C2=A0=C2=A0=C2=A0 arg->trylock_only) && !arg->ctx->exec) {
+> =C2=A0			spin_unlock(lru_lock);
+> =C2=A0			ttm_bo_put(bo);
+> =C2=A0			spin_lock(lru_lock);
+> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+> index a4060e44d23d0..156444b5e85d8 100644
+> --- a/include/drm/ttm/ttm_bo.h
+> +++ b/include/drm/ttm/ttm_bo.h
+> @@ -187,6 +187,11 @@ struct ttm_operation_ctx {
+> =C2=A0	 * @bytes_moved: Statistics on how many bytes have been
+> moved.
+> =C2=A0	 */
+> =C2=A0	uint64_t bytes_moved;
+> +	/**
+> +	 * @exec: optional drm_exec object to use for locking BOs
+> and
+> +	 * tracking which are locked.
+> +	 */
+> +	struct drm_exec *exec;
+> =C2=A0};
+> =C2=A0
+> =C2=A0/**
