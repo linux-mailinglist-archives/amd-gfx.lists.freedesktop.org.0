@@ -2,102 +2,93 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xSf9Dsj9TGqFtAEAu9opvQ
+	id bYknO80FTWqctgEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 15:23:20 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:33 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A43C71BD90
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 15:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EB1F71C337
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=MHw8Nhg3;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	arc=pass ("google.com:s=arc-20260327:i=1")
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=JZMcKQXP;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=C+RyRdWP;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=JZMcKQXP;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=C+RyRdWP;
+	dmarc=pass (policy=none) header.from=suse.de;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDAA888784;
-	Tue,  7 Jul 2026 13:23:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E018610ED38;
+	Tue,  7 Jul 2026 13:57:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com
- [209.85.222.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A41C688784
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jul 2026 13:23:16 +0000 (UTC)
-Received: by mail-ua1-f47.google.com with SMTP id
- a1e0cc1a2514c-96942d43d65so98151241.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 07 Jul 2026 06:23:16 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783430595; cv=none;
- d=google.com; s=arc-20260327;
- b=J+28VYDj6ZKsPekgVF6NOJ6TGn/i8p07BmNaKhOGz72IL2uJYnX6lurFXjxjWYnESR
- 3MjIc1g/P0/nknjoRGlSTtMwzoqNKZDpI1+5NQNxVfy1fX49kwYxw2VySmet74vji0V5
- nQJfgcYGoY+itb2tSL8NzWUrVOtevpGksoNnLuf8uMH4su1Y6s+5sy8IbPRYcXL+326y
- uRNvinQphKKpCdrtRdXp3oj8YzWJ+V6q6IopEvrdFqbCFJYy/FsukG3jamQuLy3CMMkn
- AyL+UilSoj7Psncsy7GKpNVN23eRLDGCDT6V8nbCU/DztbUgL3cl3+VHWmSdS8+e0+4Q
- d0Eg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=zsRbd2iXQS4Pv9VQ95qVDWTuZqDNYcSM1NPff7gLUVQ=;
- fh=qsxv4CT9Glly1JpmFCnYUVR+2SiI27sX2Y2K4GsxsPc=;
- b=PRlK4rDBV87cSPZbyifz30i0wvromEacJ40br/e9ZHcYAy7n+1AZyB+E3gVUzttpDQ
- +Sc+W6PZwPJBxP5PgFZR2Yplq4kz35DxSLhxQvSKQ1tXC9JGC9OtV4Zf3JMLDFDjbr1E
- WLyy2059v/b/pNJTW19JCANu91IjJ03m2OVRYoqnpYBlsDlnsBgEiu0YYjG2yOWe2x4U
- vFF6ZKHFtiF5YZJOEOp5/lS6f/05lYgS4x7ruX+38whS20FiINCQ7uV/mbhOhEQDGrdS
- +nEZzq4sDPoA/lbfBsrnSQE396p6DbenhJkjugQ92dmrHnjZYoqEAnLfY9YrBoQwG9/7
- srAQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783430595; x=1784035395; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=zsRbd2iXQS4Pv9VQ95qVDWTuZqDNYcSM1NPff7gLUVQ=;
- b=MHw8Nhg3xWAIw2j1Irci47rMLoBbpR5/db1W1MGJ1KWZmBeAn6B1ueqOp8xH3f/0In
- ev9j9/o1eq3/8yvjaPTlSHGR52NkIwc1ZgLEzHXjZFxdsQ4ePEAmdgFcSUZ4eBHKLXBJ
- oei4wktKspFPvof+Wn3Fk7mJcXQRj7dS9iUN05z6n1kvSzJxeZP3gryTVnvoCueTj1yh
- Oo50T0siyUBAFJlmXXIzZxe4eF83Tyzva9B0DJCcLupaSXOO0cTbUxO+XZ4lltSiYGLn
- MM+mbe0Pog5JCBYV8Fai8UgC8MltsvwTlKGMMrFyEYW9andQIBvlA2vvrV6zYTtDhe+u
- s2ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783430595; x=1784035395;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=zsRbd2iXQS4Pv9VQ95qVDWTuZqDNYcSM1NPff7gLUVQ=;
- b=azFy+lf9ZARNR5SWaTYuQMfyn4H6kxk7XzPKHgiPo8opqXhsJu0JGZb+42AqDpgb9N
- rTvWEJbBb+hlpiYTd3XNzkebJqTpu0OC/VK0Uf2KLiUAUgcr6DCcH/ago5FBZjuEr+WL
- lsycIrgsk73me7aBEcpAeeb950xCOAufPhewnN65CF7pjwKlzuTUp8ucocfocSrJsuFo
- oWAE4ZhgKMW+k9EPlldegiEoB7fxHFMZOFdFRaRYXVFTFXFtqRLoqayLTbylCsIgHKNE
- Rh0HF3Vh4W4YeZ6KJgAdhM/7vVe1dgi5JuepizHjsKnBBDKE1YUm/wHbSUdLhRUU9gi1
- jPbw==
-X-Forwarded-Encrypted: i=1;
- AHgh+Rq5iejOrIvUvU51G9ryprPRS2ONT5Rwvh1qFsAJapc2jiFQhBap2gC0okTO2xbKFdXE4G7rfDkq@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx8+GsDFXHqW/gc5Gs/zNnN3k4pssjSgVE4pomEPnzoPWoQYOGB
- pJtCPwNQD9rN67IyPSy4B9oyZua9Vcp7znpEjxatcKrbF+P3bdWXzTj2T/hywFrb2eSOHaef5J9
- C7EWyHfUdWbTkMbKwXgIDV7J4rtzbs+Y=
-X-Gm-Gg: AfdE7cla5cstCABXj2fRfq5oqOrxK6CGFpsKuK2Rny/O0REugPwYLS6Mec/egTj9hcP
- Znmt9iq67NJjDdUnbHNsUt3m9BbpPBGtsdO0xKwfyQy64yc0GUgTp4zapCnwuqty9+U2e1femXO
- qScB6TNHZgagu25J3XPHzYpHdl0Sg1NJnmF+nKHrKY3QSwSNSEHAHKJiuRb5dPD5oJbTHk9bQZ+
- myNbgqocBEaSQoAGY+E3LkjBFUieC4595oS5hv9fShyefMpyCdIsZdi2lv9W1bDIDe7ROQbBgLM
- q29ldZVj5mDRCPtsxBJ9Lf8iBReM95eVR/AztdfGd2LRaypTDF6pLIxf8Ho=
-X-Received: by 2002:a05:6102:5f05:b0:62f:46c:40bb with SMTP id
- ada2fe7eead31-744c115adcamr680244137.5.1783430595240; Tue, 07 Jul 2026
- 06:23:15 -0700 (PDT)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BF4C10ED38
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jul 2026 13:57:31 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 9DF37726F2;
+ Tue,  7 Jul 2026 13:57:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1783432649; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=/BZajym9uebxwqSIz0M7fPVZU/Sl2uebGIt4iYrAV9g=;
+ b=JZMcKQXPD3wy5PFRcdEITfw+miSKvKJ5RTlRAuxpEpPsS5l8wPBhu7f94fvq1bAr/WOr+0
+ pUsglwjcyaxwYnrT281uqhdnEzEsoLSpufH5gEu8rNbl0G+vLT7wj+TNMpLAvAf9fzIZ7E
+ SO+h0aYfew01KkkLL+kgOIcGFv6WVZE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1783432649;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=/BZajym9uebxwqSIz0M7fPVZU/Sl2uebGIt4iYrAV9g=;
+ b=C+RyRdWPPLFcwhiNscmhIGQS0IMWLqWZiaNhJ0EJauZjg3KpsekXPUg7vgQhjJxISCOmvl
+ +TLK6kAXvGZsgVAQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1783432649; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=/BZajym9uebxwqSIz0M7fPVZU/Sl2uebGIt4iYrAV9g=;
+ b=JZMcKQXPD3wy5PFRcdEITfw+miSKvKJ5RTlRAuxpEpPsS5l8wPBhu7f94fvq1bAr/WOr+0
+ pUsglwjcyaxwYnrT281uqhdnEzEsoLSpufH5gEu8rNbl0G+vLT7wj+TNMpLAvAf9fzIZ7E
+ SO+h0aYfew01KkkLL+kgOIcGFv6WVZE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1783432649;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=/BZajym9uebxwqSIz0M7fPVZU/Sl2uebGIt4iYrAV9g=;
+ b=C+RyRdWPPLFcwhiNscmhIGQS0IMWLqWZiaNhJ0EJauZjg3KpsekXPUg7vgQhjJxISCOmvl
+ +TLK6kAXvGZsgVAQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 19C6C779AE;
+ Tue,  7 Jul 2026 13:57:29 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 1EnlBMkFTWoFSgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 07 Jul 2026 13:57:29 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: lukas@wunner.de, jfalempe@redhat.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, lyude@redhat.com,
+ dakr@kernel.org, deller@gmx.de
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org, sashiko-reviews@lists.linux.dev,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH 00/10] vga_switcheroo,
+ drm: Push fbcon handling into DRM clients
+Date: Tue,  7 Jul 2026 15:38:07 +0200
+Message-ID: <20260707135724.247562-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-References: <20260706200600.15071-1-alexander.deucher@amd.com>
- <6513b774-2d75-4819-b76c-20c6447705f2@amd.com>
-In-Reply-To: <6513b774-2d75-4819-b76c-20c6447705f2@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 7 Jul 2026 09:23:02 -0400
-X-Gm-Features: AVVi8Ce8t43Zlfo70RiTLljoF7rYdkcg3rnzMk-O1LbUrdJrXdDxhoJJbiZJqqc
-Message-ID: <CADnq5_NDnqvuRbKDQySF0w-1HW-5ckUK4C+O2eC9BWBE69kK+A@mail.gmail.com>
-Subject: Re: [PATCH 1/7] drm/amdgpu/gfx10: disallow gfxoff around GPU reset
-To: "Lazar, Lijo" <lijo.lazar@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Spam-Flag: NO
+X-Spam-Score: -3.01
+X-Spam-Level: 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,187 +103,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:lijo.lazar@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:lukas@wunner.de,m:jfalempe@redhat.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:lyude@redhat.com,m:dakr@kernel.org,m:deller@gmx.de,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:nouveau@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:sashiko-reviews@lists.linux.dev,m:tzimmermann@suse.de,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[wunner.de,redhat.com,amd.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,intel.com,ursulin.net,gmx.de];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FORGED_SENDER(0.00)[tzimmermann@suse.de,amd-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[suse.de:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.de:from_mime,suse.de:dkim,suse.de:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8A43C71BD90
+X-Rspamd-Queue-Id: 4EB1F71C337
 
-On Tue, Jul 7, 2026 at 8:04=E2=80=AFAM Lazar, Lijo <lijo.lazar@amd.com> wro=
-te:
->
->
->
-> On 07-Jul-26 1:35 AM, Alex Deucher wrote:
-> > If gfx is hung, we shouldn't need this since gfx won't be
-> > powered down, but we could potentially have a case where
-> > a queue can be preempted, but due logic errors in the commands,
-> > the fence never signals.  GFX could potentially go into
-> > the off state.  Protect against that.
-> >
-> > Assisted-by: Claude:claude-opus-4.6
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > ---
-> >   drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 34 +++++++++++++++++--------=
--
-> >   1 file changed, 23 insertions(+), 11 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/a=
-md/amdgpu/gfx_v10_0.c
-> > index f03cbf358cd7b..516a621d11faa 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-> > @@ -9528,6 +9528,7 @@ static int gfx_v10_0_reset_kgq(struct amdgpu_ring=
- *ring,
-> >               return -ENOMEM;
-> >       }
-> >
-> > +     amdgpu_gfx_off_ctrl(adev, false);
->
-> Can this be moved to helper begin/end logic - check against
-> sdma/compute/gfx rings? It doesn't harm to include sdma even for SOCs
-> where it's outside of GFX domain.
+Vga_switcheroo currently invokes fb_switch_outputs() to inform fbcon
+about switching of the physical outputs among framebuffer devices. But
+new DRM clients to not use fbdev/fbcon and might require their own
+vga_switcheroo support. Let's strictly separate them from each other.
 
-If something in the reset path fails, the end helper doesn't get run
-so the ref count will be off.  It could potentially be moved to the
-job_timedout() and kfd queue reset paths however.
+Remove fbdev/fbcon from vga_switcheroo. Introduce a pre_switch callback
+for vga_switcheroo clients to do the fbcon update. Allows for removing
+all direct interactions between vga_switcheroo and fbdev/fbcon.
 
-Alex
+Also replace the existing reprobe hook with post_switch for symetry.
 
->
-> Thanks,
-> Lijo
->
->
-> >       addr =3D amdgpu_bo_gpu_offset(ring->mqd_obj) +
-> >               offsetof(struct v10_gfx_mqd, cp_gfx_hqd_active);
-> >       tmp =3D REG_SET_FIELD(0, CP_VMID_RESET, RESET_REQUEST, 1 << vmid)=
-;
-> > @@ -9547,28 +9548,33 @@ static int gfx_v10_0_reset_kgq(struct amdgpu_ri=
-ng *ring,
-> >       r =3D amdgpu_ring_test_ring(kiq_ring);
-> >       spin_unlock_irqrestore(&kiq->ring_lock, flags);
-> >       if (r)
-> > -             return r;
-> > +             goto fail;
-> >
-> >       r =3D gfx_v10_0_kgq_init_queue(ring, true);
-> >       if (r) {
-> >               DRM_ERROR("fail to init kgq\n");
-> > -             return r;
-> > +             goto fail;
-> >       }
-> >
-> >       spin_lock_irqsave(&kiq->ring_lock, flags);
-> >
-> >       if (amdgpu_ring_alloc(kiq_ring, kiq->pmf->map_queues_size)) {
-> >               spin_unlock_irqrestore(&kiq->ring_lock, flags);
-> > -             return -ENOMEM;
-> > +             r =3D -ENOMEM;
-> > +             goto fail;
-> >       }
-> >       kiq->pmf->kiq_map_queues(kiq_ring, ring);
-> >       amdgpu_ring_commit(kiq_ring);
-> >       r =3D amdgpu_ring_test_ring(kiq_ring);
-> >       spin_unlock_irqrestore(&kiq->ring_lock, flags);
-> >       if (r)
-> > -             return r;
-> > +             goto fail;
-> >
-> > -     return amdgpu_ring_reset_helper_end(ring, timedout_fence);
-> > +     r =3D amdgpu_ring_reset_helper_end(ring, timedout_fence);
-> > +
-> > +fail:
-> > +     amdgpu_gfx_off_ctrl(adev, true);
-> > +     return r;
-> >   }
-> >
-> >   static int gfx_v10_0_reset_kcq(struct amdgpu_ring *ring,
-> > @@ -9593,13 +9599,14 @@ static int gfx_v10_0_reset_kcq(struct amdgpu_ri=
-ng *ring,
-> >               return -ENOMEM;
-> >       }
-> >
-> > +     amdgpu_gfx_off_ctrl(adev, false);
-> >       kiq->pmf->kiq_unmap_queues(kiq_ring, ring, RESET_QUEUES,
-> >                                  0, 0);
-> >       amdgpu_ring_commit(kiq_ring);
-> >       r =3D amdgpu_ring_test_ring(kiq_ring);
-> >       spin_unlock_irqrestore(&kiq->ring_lock, flags);
-> >       if (r)
-> > -             return r;
-> > +             goto fail;
-> >
-> >       /* make sure dequeue is complete*/
-> >       amdgpu_gfx_rlc_enter_safe_mode(adev, 0);
-> > @@ -9617,28 +9624,33 @@ static int gfx_v10_0_reset_kcq(struct amdgpu_ri=
-ng *ring,
-> >       amdgpu_gfx_rlc_exit_safe_mode(adev, 0);
-> >       if (r) {
-> >               dev_err(adev->dev, "fail to wait on hqd deactivate\n");
-> > -             return r;
-> > +             goto fail;
-> >       }
-> >
-> >       r =3D gfx_v10_0_kcq_init_queue(ring, true);
-> >       if (r) {
-> >               dev_err(adev->dev, "fail to init kcq\n");
-> > -             return r;
-> > +             goto fail;
-> >       }
-> >
-> >       spin_lock_irqsave(&kiq->ring_lock, flags);
-> >       if (amdgpu_ring_alloc(kiq_ring, kiq->pmf->map_queues_size)) {
-> >               spin_unlock_irqrestore(&kiq->ring_lock, flags);
-> > -             return -ENOMEM;
-> > +             r =3D -ENOMEM;
-> > +             goto fail;
-> >       }
-> >       kiq->pmf->kiq_map_queues(kiq_ring, ring);
-> >       amdgpu_ring_commit(kiq_ring);
-> >       r =3D amdgpu_ring_test_ring(kiq_ring);
-> >       spin_unlock_irqrestore(&kiq->ring_lock, flags);
-> >       if (r)
-> > -             return r;
-> > +             goto fail;
-> > +
-> > +     r =3D amdgpu_ring_reset_helper_end(ring, timedout_fence);
-> >
-> > -     return amdgpu_ring_reset_helper_end(ring, timedout_fence);
-> > +fail:
-> > +     amdgpu_gfx_off_ctrl(adev, true);
-> > +     return r;
-> >   }
-> >
-> >   static void gfx_v10_ip_print(struct amdgpu_ip_block *ip_block, struct=
- drm_printer *p)
->
+At the same time, push the fbcon update into DRM's client for fbdev
+emulation. Do this with the new DRM client callback acquire_outputs,
+so that other clients can have their own handling of vga_switcheroo.
+
+There are only four drivers that support vga_switcheroo: amdgpu,
+radeon, i915 and nouveau. Update each of them with the new callbacks.
+When vga_switcheroo now invokes pre_switch, each DRM driver forwards
+to aquire_outputs and lets the DRM clients handle the new outputs.
+
+Tested with radeon on a notebook with Radeon HD 4225 and HD 5430.
+
+Thomas Zimmermann (10):
+  drm/edid: Include <linux/fb.h>
+  drm/client: Add acquire_outputs callback; implement for fbdev
+    emulation
+  vga_switcheroo: Add pre_switch callback to client ops
+  vga_switcheroo: Add post_switch callback to client ops
+  drm/amdgpu: Implement struct vga_switcheroo_client_ops.pre_switch
+  drm/i915: Implement vga_switcheroo_client_ops.pre_switch
+  drm/nouveau: Implement vga_switcheroo_client_ops.pre_switch
+  drm/nouveau: Implement vga_switcheroo_client_ops.post_switch
+  drm/radeon: Implement struct vga_switcheroo_client_ops.pre_switch
+  vga-switcheroo: Remove unused interfaces
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  9 ++++-
+ drivers/gpu/drm/clients/drm_fbdev_client.c | 23 ++++++++----
+ drivers/gpu/drm/drm_client_event.c         | 18 ++++++++++
+ drivers/gpu/drm/drm_edid.c                 |  1 +
+ drivers/gpu/drm/i915/i915_switcheroo.c     | 11 +++++-
+ drivers/gpu/drm/nouveau/nouveau_vga.c      | 28 +++++++++------
+ drivers/gpu/drm/radeon/radeon_device.c     |  9 ++++-
+ drivers/gpu/vga/vga_switcheroo.c           | 41 +++++-----------------
+ drivers/video/fbdev/core/fbcon.c           |  8 -----
+ include/drm/drm_client.h                   | 14 ++++++++
+ include/drm/drm_client_event.h             |  3 ++
+ include/linux/vga_switcheroo.h             | 30 +++++++++-------
+ 12 files changed, 122 insertions(+), 73 deletions(-)
+
+
+base-commit: cd8abe2554ec7eba16c1d48ab508732bf93534eb
+-- 
+2.54.0
+
