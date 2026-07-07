@@ -2,134 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id HwBaMTPqTGoWsAEAu9opvQ
+	id vpUPFvn3TGoWswEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 13:59:47 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 14:58:33 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F66B71B296
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 13:59:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A02A871B982
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 14:58:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=ZvRMj9bc;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dkim=pass header.d=intel.com header.s=Intel header.b=hGJNyRMN;
+	dmarc=pass (policy=none) header.from=intel.com;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F246510E499;
-	Tue,  7 Jul 2026 11:59:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8962410ECC9;
+	Tue,  7 Jul 2026 12:58:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010000.outbound.protection.outlook.com [52.101.85.0])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4D0210E499;
- Tue,  7 Jul 2026 11:59:42 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QgKHxnVhVLEl+cWocFpEXObHPJEYfnERvXWMkzpqgeqPU2PUpeB6tVd0KhqEfJcTSPJ2s9yxWaFpsPK2aAz9NRmBepRt9LSMxEhNv5PKHV1UwRXmfTpdfLZ8CrgGuIogsLNxZTyb+viMWjedHXhQcMtkgFYSBstgAhbZJlUskKJgXoP1iYM7h3kXwUUGU1NIGfZ9YUi0gPwb/Ib6tbrtgKnfO/RgP2Z404te+sYaFUY15iCU/TZ2pYzHN0H0H31mqxOb8Jd+VhWBFfqVtKCKRqfPMgiEe+59xcA9ETOcyxFbF7PsMGERClpgW17fSnCbtdK5CJmDo3RP4UJdUy0Q0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7s8LtkdXWND95p7R2Kp5RintstWFqnr3jmpRnegkKZo=;
- b=CPsda5ybbI3BCrsxgyaOs4HEGZJO/GT+2dCAzZY6X0HbylD58ebuYUc+nKa9J5mZaegFmmJjVZdyFSB/oaE5SonOP4zBUIcaY+K+9OsJgu2BidAprf8UwYnufnQheDeFvZcM7NA1spzss7kM52orWbx+SHcUN8vZjS6KLFDhRZnt1w15+GE4ShY7v/5DnGOqxgy74ktX6NDazOFJ8YTXQldVAvxngBffts47ESiuovSi/xnCLOEMxsvqI5ZsSZbwmwznPn3bDQj0rlvvhB/5cQxzkeH5oRievJkPD1Vap9RTz3yOGA9I6iophhd7Vl4rZBPHN3/Ip2z527pAfbx9/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7s8LtkdXWND95p7R2Kp5RintstWFqnr3jmpRnegkKZo=;
- b=ZvRMj9bcohe7e3gApx1KuFfdKeQ7TJkRme2FvUGYmuipuEJEsXE6SLReNfOKzltSJjRoZG8YvphQd1eS4n6km05LEllGhIDca7dWsf6itJ5ORf4Tc7S22SgU5VkqrZwDOigflL5xUJtfkh1mWhxObX7JXqOkYKkIUEXWDiHJ/k0=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by MW6PR12MB7085.namprd12.prod.outlook.com (2603:10b6:303:238::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Tue, 7 Jul 2026
- 11:59:39 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0181.008; Tue, 7 Jul 2026
- 11:59:38 +0000
-Message-ID: <76b6a6c3-f1c7-4e44-957a-3e9cf143aa28@amd.com>
-Date: Tue, 7 Jul 2026 13:59:33 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/drm_exec: avoid indirect goto
-To: Dave Airlie <airlied@gmail.com>
-Cc: mikhail.v.gavrilov@gmail.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, peterz@infradead.org, jpoimboe@kernel.org,
- llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>
-References: <20260704084133.122053-1-christian.koenig@amd.com>
- <c575453f-d798-4745-b67d-4476825dfa64@amd.com>
- <CAPM=9tz38o_p--FGjgkcDCV43jwmbx_zYDyc8fyHKBteiHDRrQ@mail.gmail.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <CAPM=9tz38o_p--FGjgkcDCV43jwmbx_zYDyc8fyHKBteiHDRrQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MN0P223CA0013.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:208:52b::15) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E82B10EC85;
+ Tue,  7 Jul 2026 12:09:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783426163; x=1814962163;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=x0l1kKnL6j79RAY4+8oDLD9kaVDBsEYUGkbraGHeQw0=;
+ b=hGJNyRMNNTVN/qEKf8ezUzEEd6JPfLkbq2FLxqglxd1v0DRhpcB841dS
+ MhFPqk3wtP7uThiNboZRdQeoxMs9+sxfrdkdJL46ee4jfamwR0vAmyxx6
+ wB0RqH0oMo8cPtQpbDFtfp8wYXMiw4GNeVDLYIAKw0liwu3gL8BVzWN1g
+ lkNK4GCP/IiaN1PtmnZ8fm/T8Owiw7LA4tUGQUfiYfIwm5mKbc1zho2R6
+ gspYnOPrwsgJ880+UjrqrEDGXaO71FqVSg270sWRMt/na+3bDL9DlJ2Ys
+ mWmzcxNxjkaMyOLHzzFZqvraIhSfXDmclQD+vfbY1K8KExHMhk6n3Wl6K w==;
+X-CSE-ConnectionGUID: Dii9Ov++TvuJTybEok2gyQ==
+X-CSE-MsgGUID: h4Ds653JQsqa5rGc1gH7bQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="109613072"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="109613072"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 05:09:23 -0700
+X-CSE-ConnectionGUID: sFANOmuZTLGAhA0v9Vpy4A==
+X-CSE-MsgGUID: 3QxxN87WRGuaIkA0psNGnw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="255907659"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.199])
+ ([10.245.244.199])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 05:09:18 -0700
+Message-ID: <673ae71a1fc4dcce0e6a1655985a141d6f08c06f.camel@linux.intel.com>
+Subject: Re: [PATCH 01/10] drm/exec: Add helper to bypass IGNORE_DUPLICATES
+ flag
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Natalie Vock <natalie.vock@gmx.de>, Maarten Lankhorst	
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula	
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Christian Koenig	
+ <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>, Matthew Auld	
+ <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>, Alex
+ Deucher	 <alexander.deucher@amd.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org
+Date: Tue, 07 Jul 2026 14:09:16 +0200
+In-Reply-To: <20260703-ttm_2_drm_exec-v1-1-43685ac1286b@gmx.de>
+References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
+ <20260703-ttm_2_drm_exec-v1-1-43685ac1286b@gmx.de>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MW6PR12MB7085:EE_
-X-MS-Office365-Filtering-Correlation-Id: a9691381-a6ba-4866-e56b-08dedc1f38ae
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|366016|1800799024|23010399003|376014|56012099006|4143699003|11063799006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: mAJIrJfeA76XSUSkNYLKqFDKYhFS0xtjlIuJ4+EzHGZ0B4ECnkCB3A0dzmoOQZ8L4OQnIhXlnoBu59L5wyuI2SzEMXKhl3PEjmvgjFCLfrkD6TIu4Z6tjX0CxmMVOTWqP5+AYXLcwZR9SQNxnHhhmrQsoqpuI1VDZqpHTfREFrdzKjqhIVl3Jxa0H/eZhqVqATpgHDXa8JMI7sqjNHTjAMX4PdEu4o9MFBT+R9xFtdcrsfBPs+HJQeiCWPXU10jGtWkaYW6bkwv+7hRgZsTVW8qHhWz7Qeq0+Kq78pSzLCoIn+V14CFiBmfyrymfmIVPefM/AUwSLsc5G55Vjkg8Y7XvZDeFeoQft5WK7Uf2dld2W6GDR6gFfjGbGgARoEIqJ6knmddOYwSIn+Geto6jQXfeaGsIlZFYWw2r3BwkIoc/HN95XRzP/lV3olAdEkND0mXCpnIYxAcqqhYnyRqQ3CqaXa4jpSdeKzHrQ5jC6swyN6pW013iLhToxPNjjSV4m3fnGuUJ4b8FwLvYYK0KZMUp2Yz2k5ZFVvtEuhqaeSFCAtkZ6cCVr9vOnDKUr9+DfL1yDnHpqDqV6vf2zLo5336tOIKtdU6gLmh8mhoCg8DVcCDPdy7sRXGKcfW9fBVKoZUIQkJ7pr4pJ/uw4WyGdH11GIEJ4vou8zAexNHgACY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(366016)(1800799024)(23010399003)(376014)(56012099006)(4143699003)(11063799006)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WmdzKy9yWFc5R1E0eU9lajY1TldUQlgwc3YwOHlaOHVjbnZwMHBGZmlqWE1o?=
- =?utf-8?B?SWh3SUNhZmVHVGIzaTUyN1h5VzBqWDZGNVRQME56OFRDOFpXak5FdTEwb1lO?=
- =?utf-8?B?Ulc4aFVITGFpNUFDTHArU3ZNOXpPbk1qWFo0VXl4WXZtam9jMkNsaWxkazYz?=
- =?utf-8?B?ejlxOHVsR2VtaklHbWFUcmVRTU12Y1UxT2hNU3lvZGdmZFBUaUoyQ2NuWWFp?=
- =?utf-8?B?cFh1ZHc0bzlKZzlzZGxhdGtyWE55MUJkdmg2MytpS1VQY1ZTdm9LNm1lN29S?=
- =?utf-8?B?aGNMbkdCajBQbFM4cXc5N0p6aXQxYVJSRVA2clUxZ0FRTUp0MmpMeG1MaFB2?=
- =?utf-8?B?VUVab1hlK3J1Q3VlOW15UWR6WjZKdG1sa0VUbWtENVZhYWM3U2Y4NW14V2lh?=
- =?utf-8?B?ZVFJdWRlRVl2UmFXdEVGZXFvenhmSlVyYmxzMndwenFXc1NnaHU5amk1VmtX?=
- =?utf-8?B?RnFZVzEzdXhhOFk0dWdqcHd4dEhVWmQ5azBxQVlKc0pWQXFwajVCdXRNQmRO?=
- =?utf-8?B?TG9sVEk5Y2VhVXRuaVpzK0VtdVpZUFRkdEE5ajdtb2VvRDNEWVVPS1ZxVEpq?=
- =?utf-8?B?bCtVa1lJWjJzUDh2WDFtaE50L2tHbk1Md0RKTjJCNzlVdldHWjBiWSt1Ulo2?=
- =?utf-8?B?NzdVcWsxUVhMQ1FOQno5S01NZUFTQ2Rpdk0xVnRETnVwU0VOK3ZkV2Qwejk4?=
- =?utf-8?B?YUNIbGRUK1NreXMwVmJ1dXpjTkNaSU9CZ2t6SW96T29MS2F1NFprUGp3VWZy?=
- =?utf-8?B?d1dVem1pcmYybUJtaXFDbWFaRzFxYTZUT055MzZ2dm5xV0tuVmx0Uk82dXZN?=
- =?utf-8?B?OEF5ZDNRYnM3NGtpa1NYMEFIMktURHNQdmxJVHoybll5Q2t3ZXU0NFdiVG9j?=
- =?utf-8?B?dEtUTTRFNUMvcElyR1E3RGExUTdVeURsM0dmTTQwdDhMZUNwYTdIc0hQTGd4?=
- =?utf-8?B?Zm9OK3oxeFpiSEs2VTJJWEJKY2tDQTd0NlExdUNwOVJqMzZQSGJEcmtlbzVS?=
- =?utf-8?B?bTEyOFR0U0FjaTZxUVRTZkJ6SFA3SGNsdnpEN2lCbTlBR3JaWFFFTFJnZ2l0?=
- =?utf-8?B?MXNsR0M0azJ4SERzVFhjRFBiajUzV21xcFFEREpSV0hDaElKZU1wSGYvUzlv?=
- =?utf-8?B?TnBvTGNSZFpOVWlIN1BmOGJIdzlDODVwanh0ckU4UkxEaENVN2c5bDJnMjRy?=
- =?utf-8?B?eGF6T3VjTTJZNnBlaUl4MmxrMGUyK0VQWHNiRnpGTVFRdWx6WmtuYUh3UXBJ?=
- =?utf-8?B?T3NuYVN6VEpKamdnTzVsUU5NUVdaYll5MTU2cTZlaFB1T2JxM2daWFZmaXIw?=
- =?utf-8?B?ZVZpeUNZbUlyMmtTMkI3ak5sYjVNZnNvR01PeFZLZVNyTHBVS2pQVEdJcDlw?=
- =?utf-8?B?Qk5LbTQ4WWJ1bzBoVHl6dFhBNEc4MjczZmpPazNDZDhxYjk4SUNmS2pPZmlm?=
- =?utf-8?B?VG1sNEsyWDhYUDRacHd5V1dPUlJna1RIT1VQOHdGYTFVYVA1WDM4TUdVWnl4?=
- =?utf-8?B?T21LY2VoZVQ1akRCMSt0cElMNFlFYkNaS0d2c2NKb3NveG5GRWE0SzkwakF3?=
- =?utf-8?B?K0JEUXpEK0ZDOEZ2N2xVN3oraUEybEVqbGpReVpYRDZPakFPcXcvSm9LL0xj?=
- =?utf-8?B?blp1RUJPUnh2WjZ5UFFFMXNzRFJJRFVlUmh1OE0vRWhTSFVQMG5lVE9BWmlY?=
- =?utf-8?B?eFo1aWFxY0svRjdaM1UxOGgxZ0JXUTd6UEZLdlZPRjh2NlR3TnZRcXRmTFhr?=
- =?utf-8?B?Z2FIWWVOem43aTh0VFpYR3lRYnVjTGI4L1krangzRjFva05mU3poNHRjSVJr?=
- =?utf-8?B?MEhJOHRHN3czbEhDNVVBQ1JuSGxWbm5SaE9SWk5ZeG5wblV6VjAyQUR4V1B0?=
- =?utf-8?B?eTVrU0ptZHpTU2VFYjFWQ3M1aExJY09XZ2ZvT2F3dmJrd2RCSi8zbFRDaWJz?=
- =?utf-8?B?S0krWXdpem5MVExwR1RPOW5OSUJMbllYblVwYU9IT0JCcWtlWHlOOEk3elBs?=
- =?utf-8?B?cnFKU25JQVJqMVZ2OTlzdG9oRE42bXpuQm9Hb0UxSzNrYmNVc1JXV0dCTGc1?=
- =?utf-8?B?b1dsa0k2TEdYUHA0WFFSZExjSll2d3BEUEhacWNMUHR1K2tBRlpaUEVuRndr?=
- =?utf-8?B?OEo4NXpkVk5xREJsTW1DbWphWk96QXg4TnFGQ3ZObVVLNk8rNDhJZTZEeHJl?=
- =?utf-8?B?d2ZPME8ydTdpNFErVlh3L3VXeUpkNHBRdWNRN2dZa0JKd3MwTWZPYlhsQkM4?=
- =?utf-8?B?VUJFaXdPbkNqd2xkVkhnUHNMeGxVMVpnRVE2anBtaWFYS0VIYVZZTjVONFZv?=
- =?utf-8?Q?3o5yp+orfo73tosaSx?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a9691381-a6ba-4866-e56b-08dedc1f38ae
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 11:59:38.7848 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: McG4w+4ADqGQBZ//DkPtDbwgunlB2LYGxILj9G3U7V4geeruX9AFk0JA/3/ih3iM
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB7085
+X-Mailman-Approved-At: Tue, 07 Jul 2026 12:58:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,61 +89,181 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmx.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,amd.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
 	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org,infradead.org,kernel.org,lists.linux.dev,vger.kernel.org,suse.de,ffwll.ch];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid,linux.intel.com:from_mime,lists.freedesktop.org:from_smtp,lists.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6F66B71B296
+X-Rspamd-Queue-Id: A02A871B982
 
-On 7/7/26 13:43, Dave Airlie wrote:
-> On Tue, 7 Jul 2026 at 19:11, Christian König <christian.koenig@amd.com> wrote:
->>
->> Adding a few more people to comment and review.
->>
->> Thanks Mike for the pointers, going to add them to the patch before pushing it to drm-misc-fixes.
->>
->> @Thomas, Maxime, Simona, Dave can anybody give me an rb or comment?
-> 
-> I don't like it, but I also don't think the thing it replaces was
-> spectacular, so until we can figure out a nicer way let's go with it,
+On Fri, 2026-07-03 at 18:31 +0200, Natalie Vock wrote:
+> TTM is about to switch to drm_exec for locking objects
+> in the LRU list. When we're done processing the object, we want to
+> unlock it only if the caller doesn't already hold that lock. If
+> DRM_EXEC_IGNORE_DUPLICATES is set on the exec object (which callers
+> may
+> require for unrelated reasons), we have no way of knowing whether the
+> lock is already held.
+>=20
+> To remedy this, add a separate helper that forcefully bypasses the
+> IGNORE_DUPLICATES flag for only a single locking operation.
+>=20
+> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
 
-Yeah agree. C is just lacking the functionality to cleanly do this.
+The first, more complete attempt to try to tackle the exhaustive
+eviction introduced a drm_exec snapshot ability instead.
 
-> Like I was wondering if putting the label in a macro would make it
-> more explainable, but I don't think it would help much.
+https://lists.freedesktop.org/archives/intel-xe/2024-May/035820.html
 
-I was playing with that idea as well, but then decided against it for the simple reason that a __label__ can eventually contain multiple labels unrelated to each other.
-
-> 
-> Reviewed-by: Dave Airlie <airlied@redhat.com>
+The idea was that one would want to incrementally lock more buffer
+objects until the validation succeeded, rather than dropping each
+single lock after processing the eviction. That's actually what
+guarantees forward progress. Restoring the snapshot unlocked all locks
+that we grabbed in the process, and would work also for single locks.
 
 Thanks,
-Christian.
+Thomas
 
-> 
-> Dave.
 
+> ---
+> =C2=A0drivers/gpu/drm/drm_exec.c | 52 ++++++++++++++++++++++++++++++++++-=
+-
+> ----------
+> =C2=A0include/drm/drm_exec.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
+> =C2=A02 files changed, 41 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
+> index 7988f5e7d56a3..91de6b4d29df8 100644
+> --- a/drivers/gpu/drm/drm_exec.c
+> +++ b/drivers/gpu/drm/drm_exec.c
+> @@ -190,18 +190,9 @@ static int drm_exec_lock_contended(struct
+> drm_exec *exec)
+> =C2=A0	return ret;
+> =C2=A0}
+> =C2=A0
+> -/**
+> - * drm_exec_lock_obj - lock a GEM object for use
+> - * @exec: the drm_exec object with the state
+> - * @obj: the GEM object to lock
+> - *
+> - * Lock a GEM object for use and grab a reference to it.
+> - *
+> - * Returns: -EDEADLK if a contention is detected, -EALREADY when
+> object is
+> - * already locked (can be suppressed by setting the
+> DRM_EXEC_IGNORE_DUPLICATES
+> - * flag), -ENOMEM when memory allocation failed and zero for
+> success.
+> - */
+> -int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object
+> *obj)
+> +static int __drm_exec_lock_obj(struct drm_exec *exec,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_gem_object *obj,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool always_report_duplicates)
+> =C2=A0{
+> =C2=A0	int ret;
+> =C2=A0
+> @@ -226,7 +217,7 @@ int drm_exec_lock_obj(struct drm_exec *exec,
+> struct drm_gem_object *obj)
+> =C2=A0		return -EDEADLK;
+> =C2=A0	}
+> =C2=A0
+> -	if (unlikely(ret =3D=3D -EALREADY) &&
+> +	if (unlikely(ret =3D=3D -EALREADY) && !always_report_duplicates
+> &&
+> =C2=A0	=C2=A0=C2=A0=C2=A0 exec->flags & DRM_EXEC_IGNORE_DUPLICATES)
+> =C2=A0		return 0;
+> =C2=A0
+> @@ -243,8 +234,43 @@ int drm_exec_lock_obj(struct drm_exec *exec,
+> struct drm_gem_object *obj)
+> =C2=A0	dma_resv_unlock(obj->resv);
+> =C2=A0	return ret;
+> =C2=A0}
+> +
+> +/**
+> + * drm_exec_lock_obj - lock a GEM object for use
+> + * @exec: the drm_exec object with the state
+> + * @obj: the GEM object to lock
+> + *
+> + * Lock a GEM object for use and grab a reference to it.
+> + *
+> + * Returns: -EDEADLK if a contention is detected, -EALREADY when
+> object is
+> + * already locked (can be suppressed by setting the
+> DRM_EXEC_IGNORE_DUPLICATES
+> + * flag), -ENOMEM when memory allocation failed and zero for
+> success.
+> + */
+> +int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object
+> *obj)
+> +{
+> +	return __drm_exec_lock_obj(exec, obj, false);
+> +}
+> =C2=A0EXPORT_SYMBOL(drm_exec_lock_obj);
+> =C2=A0
+> +/**
+> + * drm_exec_lock_obj_report_dup - lock a GEM object for use, but
+> always report duplicates
+> + * @exec: the drm_exec object with the state
+> + * @obj: the GEM object to lock
+> + *
+> + * Like drm_exec_lock_obj, lock a GEM object for use and grab a
+> reference to it.
+> + * Unlike drm_exec_lock_obj, DRM_EXEC_IGNORE_DUPLICATES is ignored
+> and duplicates are
+> + * always reported.
+> + *
+> + * Returns: -EDEADLK if a contention is detected, -EALREADY when
+> object is
+> + * already locked, -ENOMEM when memory allocation failed and zero
+> for success.
+> + */
+> +int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
+> +				 struct drm_gem_object *obj)
+> +{
+> +	return __drm_exec_lock_obj(exec, obj, false);
+> +}
+> +EXPORT_SYMBOL(drm_exec_lock_obj_report_dup);
+> +
+> =C2=A0/**
+> =C2=A0 * drm_exec_unlock_obj - unlock a GEM object in this exec context
+> =C2=A0 * @exec: the drm_exec object with the state
+> diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+> index 8725ba92ff916..ff80dd2b72240 100644
+> --- a/include/drm/drm_exec.h
+> +++ b/include/drm/drm_exec.h
+> @@ -176,6 +176,8 @@ void drm_exec_init(struct drm_exec *exec, u32
+> flags, unsigned nr);
+> =C2=A0void drm_exec_fini(struct drm_exec *exec);
+> =C2=A0bool drm_exec_cleanup(struct drm_exec *exec);
+> =C2=A0int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object
+> *obj);
+> +int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
+> +				 struct drm_gem_object *obj);
+> =C2=A0void drm_exec_unlock_obj(struct drm_exec *exec, struct
+> drm_gem_object *obj);
+> =C2=A0int drm_exec_prepare_obj(struct drm_exec *exec, struct
+> drm_gem_object *obj,
+> =C2=A0			 unsigned int num_fences);
