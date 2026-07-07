@@ -2,102 +2,136 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bP08HuQFTWrdtgEAu9opvQ
+	id pYo5OKgCTWrLtQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:56 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 15:44:08 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22ECB71C3F0
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11D3E71C0F9
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 15:44:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=tVlgev5g;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=ZDZ29cXP;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=tVlgev5g;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=ZDZ29cXP;
-	dmarc=pass (policy=none) header.from=suse.de;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=amd.com header.s=selector1 header.b=1fpuhUUl;
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FA1210ED7B;
-	Tue,  7 Jul 2026 13:57:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 006CC10E4CF;
+	Tue,  7 Jul 2026 13:44:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABD6010ED65
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jul 2026 13:57:49 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id CA7F475BE3;
- Tue,  7 Jul 2026 13:57:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783432655; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=nZDP+FXYpLLRmRc0CTaqRe3wdSkMkupXUUZLfTjeGo8=;
- b=tVlgev5gxk9WuTGw7t0f8TTZ97YNMfpPkFMMukAIHQjZtSKdoegJPl7WmxkXgpONkmlQUh
- 7/4oz9rpHKg7aAoieF4rlNIvbscPyMYlOAySEkA0rxL1bH4BIZ9xZ12EslP9E20DeR7g4g
- j665+ukuJTjKjW436suQwHqdY2FWm6o=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783432655;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=nZDP+FXYpLLRmRc0CTaqRe3wdSkMkupXUUZLfTjeGo8=;
- b=ZDZ29cXPvnCgBBEqGSxilQRHln9XEt1uX6sqQga3afgK6z3+jAI/jdUULgQ1B+svCZeuxa
- Y4ci1nOi4NfZeiDA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783432655; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=nZDP+FXYpLLRmRc0CTaqRe3wdSkMkupXUUZLfTjeGo8=;
- b=tVlgev5gxk9WuTGw7t0f8TTZ97YNMfpPkFMMukAIHQjZtSKdoegJPl7WmxkXgpONkmlQUh
- 7/4oz9rpHKg7aAoieF4rlNIvbscPyMYlOAySEkA0rxL1bH4BIZ9xZ12EslP9E20DeR7g4g
- j665+ukuJTjKjW436suQwHqdY2FWm6o=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783432655;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=nZDP+FXYpLLRmRc0CTaqRe3wdSkMkupXUUZLfTjeGo8=;
- b=ZDZ29cXPvnCgBBEqGSxilQRHln9XEt1uX6sqQga3afgK6z3+jAI/jdUULgQ1B+svCZeuxa
- Y4ci1nOi4NfZeiDA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 454AA779AE;
- Tue,  7 Jul 2026 13:57:35 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id iOFUD88FTWoFSgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 07 Jul 2026 13:57:35 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: lukas@wunner.de, jfalempe@redhat.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, lyude@redhat.com,
- dakr@kernel.org, deller@gmx.de
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org, sashiko-reviews@lists.linux.dev,
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 10/10] vga-switcheroo: Remove unused interfaces
-Date: Tue,  7 Jul 2026 15:38:17 +0200
-Message-ID: <20260707135724.247562-11-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260707135724.247562-1-tzimmermann@suse.de>
-References: <20260707135724.247562-1-tzimmermann@suse.de>
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010057.outbound.protection.outlook.com [52.101.85.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BADBA10E4CF
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jul 2026 13:44:04 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rc0++P0CJC9IyvNoOm3sgrbw2DhWLknwf9hXIDNfdsf74yJuqKDy5SwwOdwDsDHmLcCk+DK7UVs25tWBkxWq/votVnK+QK3qwVlMzYujKeUiF+dIH+nxLQSpM4AaoPFTX/t9WFyfev98vFFLttmzhO3TNL4Y/WdPsVohHdzBSyO8y61GD2bmLfEN8JZvfnzYrHRk4wNJyo/J8UIdvBycVD5bb+cHyM/6rT5tYi1DO0TOX3eFvEAAXQ65PWekNtJORTUT2p0gDypqXmV7KbWZdJ5irL4OioNpE/cRsV8V0EEFKXrN4mdTFjE4pRbnO32J4A/YlafQb38IxnWAGnC8aQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iTEvOzyFdnh+eRhAzLzlppoDNjTcRjjVl26fuesyXqo=;
+ b=ZUKdrW87EUc/f/vdMTacIBWSJorhL+hQpsrs4H8Bn12SGH40T42v+CeqeE6Wg6bx0Mo3XnCbJn5Zkj7IIAjX3UyX6yuZITvV+OxFTfONJ5FaBFfRytC783OVQF7QmG+E7SXxmcSzkgueTwmSGFlZX11Hh//OJ2L5R2UKHp4uGLLJetXMgWIAiNC79kdMoNZovcqauwtx/0OM8euo5yNbsw+FZhp8mEOH3fpzPpoFeUNHJrhgYGhvN138mWtS+Z01/LhA477FtzUembWuPxupBLzYytx24Do7g/X/EVW13B8SZfjmzKrQ4HOv1YgPesXjg9wiSArMypOkM2e+a89UpA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iTEvOzyFdnh+eRhAzLzlppoDNjTcRjjVl26fuesyXqo=;
+ b=1fpuhUUlDNiafaBFZF3dgBLx0MI466OugHDOm7kLEjS3Tw+0XSI+Dxw2UgwgaBNnzjSWHtkQ2hR1RELb+lmpDC0Id/ZAqBPeh2AC7C2h/tVzvElNp/rrNVSH+4oxqzkRee0iQ4BDBEp0RqvAiyA3xcnNsXq2JhCgE4dKzDBOz+c=
+Received: from DS7PR12MB5910.namprd12.prod.outlook.com (2603:10b6:8:7b::7) by
+ DS7PR12MB6238.namprd12.prod.outlook.com (2603:10b6:8:96::11) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.10; Tue, 7 Jul 2026 13:43:56 +0000
+Received: from DS7PR12MB5910.namprd12.prod.outlook.com
+ ([fe80::bdc1:eca6:c7fb:acb4]) by DS7PR12MB5910.namprd12.prod.outlook.com
+ ([fe80::bdc1:eca6:c7fb:acb4%4]) with mapi id 15.21.0181.008; Tue, 7 Jul 2026
+ 13:43:55 +0000
+From: "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>
+To: Antonio Quartulli <antonio@mandelbit.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+CC: "Wentland, Harry" <Harry.Wentland@amd.com>, "Li, Sun peng (Leo)"
+ <Sunpeng.Li@amd.com>, "Li, Roman" <Roman.Li@amd.com>, "Lin, Wayne"
+ <Wayne.Lin@amd.com>, "Chung, ChiaHsuan (Tom)" <ChiaHsuan.Chung@amd.com>,
+ "Zuo, Jerry" <Jerry.Zuo@amd.com>, "Wheeler, Daniel" <Daniel.Wheeler@amd.com>, 
+ "Wu, Ray" <Ray.Wu@amd.com>, "LIPSKI, IVAN" <IVAN.LIPSKI@amd.com>, "Hung,
+ Alex" <Alex.Hung@amd.com>, "Lin, Ping Lei" <PingLei.Lin@amd.com>, "Chen,
+ Chen-Yu" <Chen-Yu.Chen@amd.com>
+Subject: Re: [PATCH 23/24] drm/amd/display: fix compressed buffer config
+ routine waiting time
+Thread-Topic: [PATCH 23/24] drm/amd/display: fix compressed buffer config
+ routine waiting time
+Thread-Index: AQHc9DI6G2ZJNQTHDEKDbu6GTAnHJ7ZgoO4AgAGi4pw=
+Date: Tue, 7 Jul 2026 13:43:54 +0000
+Message-ID: <DS7PR12MB591098F429A582F50D15AF4B8BF02@DS7PR12MB5910.namprd12.prod.outlook.com>
+References: <20260604145428.809959-1-aurabindo.pillai@amd.com>
+ <20260604145428.809959-24-aurabindo.pillai@amd.com>
+ <4e7f73d5-5407-4ed4-8b91-483b97ad70f0@mandelbit.com>
+In-Reply-To: <4e7f73d5-5407-4ed4-8b91-483b97ad70f0@mandelbit.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-07-07T13:43:54.425Z;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD
+ General; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=1;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard; 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS7PR12MB5910:EE_|DS7PR12MB6238:EE_
+x-ms-office365-filtering-correlation-id: 11f052f9-7eaf-4b35-cddd-08dedc2dc9b8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|23010399003|1800799024|366016|13003099007|22082099003|18002099003|38070700021|11063799006|56012099006|4143699003|8096899003;
+x-microsoft-antispam-message-info: cm/zhGgaBrZTgPJh8caY+f7xLeCWaWVtRF0XIvxPmkjrjGGR5v5IMIrEVyBRkhbRur/mi6+Sq1O5B11G88EWRPxSA+Br+97xM+mqNLr9Tlyy790aSb3hlECePtWbTnuZZhSE3QMdpqdBTGQ8ycrsFlLvgNXBLO8dePb45cCj2PbvokiOGyJdTp2e85YPtmP5C7Mc9H1ATsTKcjLQkk75HbsMUlaNmU8LsjvFmdfHoc6E1SlzIZjUrLd0JtKLGyy7f1V1W5AKD3RTlCtXl4tshna/0Kq3F3LFuGFsLhCXo/wIPIlxIY2sD7i0i4nONjwa5Uk8WM0iJYKJEv1qT82jj9qQNnoAGJQFXvG91QMqucNsfyimoxInUGiCOqx34Jg860OcuKwLkyyyDCR2QiSV0jw3E6QU1w8byqmrBS3gDpL+edVrhChPWCjpg2VD90+JUwdSjHA+F9AzWEBhzNhTsjrWbkSG6OXC9CHr4eisOnZLXrx/cZXu4ZDnQnBFfCBQkVfpkczwtDfID2QYIIiHq6v3WbUjnDC1ES9XVAINQw/SYtQbGb+K6L8xD9eH+WdpccuMAt2R2L7dlIXyNpD2nPXPMOVVNVQ0IT2ZWPfAuMmMg0+KqykSMp8w7MxRLQfEF8Jiru2JKSATTMG5f+wCE9kZZWCkklndMsGwMs6eT98=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR12MB5910.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(13003099007)(22082099003)(18002099003)(38070700021)(11063799006)(56012099006)(4143699003)(8096899003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?yChe6HpTCt9+01f50wuYLzPz5ifjYPAmkoKnZLUL9F6+iwHD+yTYgHsoxTyx?=
+ =?us-ascii?Q?35l9JnUSXoFSLbfuPXi+e+gcsEHFgbY+egOIGLsXsXbteXs0/MKEdOWGRJnD?=
+ =?us-ascii?Q?HoAkg8gFty7wcfWONOBfaCcMY8xLbIB1YDGeZZmTC6Q+I6ULNVtHZSKgRfVa?=
+ =?us-ascii?Q?MppYYr7M0nB41PhX1f7jnuhxjrqxHwztTFDKrSVvmdowcKJI17HChUkFnnF1?=
+ =?us-ascii?Q?lpmI3tAOIFHM1CS5xhC4rSfC+55dU3PEvctMrR4lpy+YPg7mHE3QkN+iE5m2?=
+ =?us-ascii?Q?wVkPAumiJE72xAahndTJfz2Jc4zZ+k/i1sY0qsJstvimIGiDyI82hLooW6Ba?=
+ =?us-ascii?Q?Lzhy/dbo0BDUcZCvSY/8VngSHb1K6DUBXEqKTqF4Y/7kmude8hy3HQu157DA?=
+ =?us-ascii?Q?sCYmdnwAzAx7RzS0dNx2/POdzxZSTFlETF18CUZVcd5ZvNBJnl9vS/8iDals?=
+ =?us-ascii?Q?mshjP/rQKYik/Ghp44/KFmuXnCy3gop+tlhdIAXpTB2k+flCuuYdZlBJPfkK?=
+ =?us-ascii?Q?HewD6BLL126aZP1s8mWzyip9rRcPjEXw5SmCJTjowWFxPQRA+s6hVgHzzivg?=
+ =?us-ascii?Q?EsQii8n6Dqcaz/yYogCMEbQiH4//XovWhBdyhj9dKQ78Ro0PUemBCQXP48hf?=
+ =?us-ascii?Q?UvmnBTcVKY0e19GlYNf4kijktmf9iDGvtvLRmlVm0AOJ+oGV6H5f0wsHLX7l?=
+ =?us-ascii?Q?PT8grfUCq/GXUiuiHtqlgYFbrVslX6s9+hRJiabMzeQzrkkb9x3R8U2QfXBb?=
+ =?us-ascii?Q?udj6sd2epi8hsGIhm0RxT13xyzqpFjJwtDdGv6mwoBo8ji3GL5rrJNLOwORv?=
+ =?us-ascii?Q?Q84dUJrkyd0bJG3DaWaXzUEC8dOleGhSD554ZH+1JdK3Q/8arTDcZtovZkNO?=
+ =?us-ascii?Q?3WSq/9nn+VvyJaygabQ+lM2jU3HDpZRIRWMjTXPLRBtkZYTXSCB/lSRWCdx7?=
+ =?us-ascii?Q?bmjp8sRhZBtBkgQB0po9VL5uqZn+bawEqsVaykMGXSNLjzJWr22+VL6zslSQ?=
+ =?us-ascii?Q?Qvvbhp5DOxHUMSayZuPkMIbtK6+tkI3FfxPoLTTmLUS97OCV8GYjyt9+TmdO?=
+ =?us-ascii?Q?xSurSivn/l5SgqPkb8UDWcRmZhdR5+BVt/BlBChtaG6njy9A4XODEbpA5kzI?=
+ =?us-ascii?Q?G1OqYnGFddDC5FU+xj0NnhMdluKG9LcOwis/HGPnrSD4YAMU/n3Ko8APRuJf?=
+ =?us-ascii?Q?Cx8xME/c9kziAFGsl4vMpWvmv+JdvLmwxnVQeO/eS2YiUNRV6+uvsWzPQCvi?=
+ =?us-ascii?Q?CsDHjj89RcYxBjTddYR17YKCC36GhPzgUNX26Rjmu2SRriZKxK0PWnFyK3Fw?=
+ =?us-ascii?Q?i0CY5y2IJcsAlm4Nh9v7aTvHEmveJjTRNK3eT8ifzfwH//hqEKH8KhmX1z/l?=
+ =?us-ascii?Q?hWOK6rldd44vBr+gYcQoTgfwRViFGzevhpr44SWPJk5cIYY9UsIQez9P5DuO?=
+ =?us-ascii?Q?eF/cgJrgMZgIvu9+AjYK3kIlYUVsDkhEIci6IeLUU9cZqX3GoCLhCKtiPwDf?=
+ =?us-ascii?Q?HmDKLzNWBKlVX9LcU6L6Qe2JUQp7mSxydtkH+6XNKMJQEcE0f7DihmkrAlZo?=
+ =?us-ascii?Q?0vMTzLOdL/MXUQ6NIxL/ujQhzODy1DD14JojABwJwwkkidB95KoN/DthmP8D?=
+ =?us-ascii?Q?Uu3EfFd8ra4954JpgQQbSJJRQosjTKv/tmlYDAWHoDbutVllZ4HPfDPB6qNL?=
+ =?us-ascii?Q?YhbDIN+GJ26fjbMiUV2LWFtR/0NlSdwrXXDEg0OLqjRU0y7o?=
+Content-Type: multipart/alternative;
+ boundary="_000_DS7PR12MB591098F429A582F50D15AF4B8BF02DS7PR12MB5910namp_"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Flag: NO
-X-Spam-Level: 
-X-Spam-Score: -3.01
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB5910.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11f052f9-7eaf-4b35-cddd-08dedc2dc9b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jul 2026 13:43:54.8616 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: EEofrl0IlswR+e+fVQWuUuVayCeGasLJ1tKxYRtQ+OATShh+9XbTvzMnJf3612Hm925l9o1/LHNjWyP4zlfG7Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6238
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,274 +146,250 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:lukas@wunner.de,m:jfalempe@redhat.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:lyude@redhat.com,m:dakr@kernel.org,m:deller@gmx.de,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:nouveau@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:sashiko-reviews@lists.linux.dev,m:tzimmermann@suse.de,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[wunner.de,redhat.com,amd.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,intel.com,ursulin.net,gmx.de];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FORGED_SENDER(0.00)[tzimmermann@suse.de,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:antonio@mandelbit.com,m:Harry.Wentland@amd.com,m:Sunpeng.Li@amd.com,m:Roman.Li@amd.com,m:Wayne.Lin@amd.com,m:ChiaHsuan.Chung@amd.com,m:Jerry.Zuo@amd.com,m:Daniel.Wheeler@amd.com,m:Ray.Wu@amd.com,m:IVAN.LIPSKI@amd.com,m:Alex.Hung@amd.com,m:PingLei.Lin@amd.com,m:Chen-Yu.Chen@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER(0.00)[Aurabindo.Pillai@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[suse.de:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[amd.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,amd-gfx-bounces@lists.freedesktop.org];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[Aurabindo.Pillai@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.de:from_mime,suse.de:email,suse.de:mid,suse.de:dkim]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	REDIRECTOR_URL(0.00)[aka.ms];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 22ECB71C3F0
+X-Rspamd-Queue-Id: 11D3E71C0F9
 
-Remove all unused interfaces that used to implement the functionality
-of pre_switch and post_switch.
+--_000_DS7PR12MB591098F429A582F50D15AF4B8BF02DS7PR12MB5910namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-For pre_switch, drop calls to vga_switcheroo_client_fb_set() from
-fbcon. Each client that implements pre_switch holds references to
-its resources; either fbcon's fb_info or something else. Also remove
-vga_switcheroo_client_fb_set(). This further allows for removing all
-symbols and data structures that refer to fbdev; such as fb_info and
-fb_switch_outputs().
+AMD General
 
-For post_switch, remove the reprobe callback from the client ops.
-Nouveau, the only driver that implemented the interface, now uses
-post_switch.
+Hi,
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  1 -
- drivers/gpu/drm/i915/i915_switcheroo.c     |  1 -
- drivers/gpu/drm/radeon/radeon_device.c     |  1 -
- drivers/gpu/vga/vga_switcheroo.c           | 37 +++-------------------
- drivers/video/fbdev/core/fbcon.c           |  8 -----
- include/linux/vga_switcheroo.h             | 12 +++----
- 6 files changed, 9 insertions(+), 51 deletions(-)
+Your patch is already on amd-staging-drm-next: https://gitlab.freedesktop.o=
+rg/agd5f/linux/-/commit/b9f2c37d211967386ce5860082db54bc01ac3efa
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 87a59a79a019..5bb1567d512d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -1708,7 +1708,6 @@ static void amdgpu_switcheroo_pre_switch(struct pci_dev *pdev)
- 
- static const struct vga_switcheroo_client_ops amdgpu_switcheroo_ops = {
- 	.set_gpu_state = amdgpu_switcheroo_set_state,
--	.reprobe = NULL,
- 	.can_switch = amdgpu_switcheroo_can_switch,
- 	.pre_switch = amdgpu_switcheroo_pre_switch,
- };
-diff --git a/drivers/gpu/drm/i915/i915_switcheroo.c b/drivers/gpu/drm/i915/i915_switcheroo.c
-index 6b306ece0556..d97057722fde 100644
---- a/drivers/gpu/drm/i915/i915_switcheroo.c
-+++ b/drivers/gpu/drm/i915/i915_switcheroo.c
-@@ -69,7 +69,6 @@ static void i915_switcheroo_pre_switch(struct pci_dev *pdev)
- 
- static const struct vga_switcheroo_client_ops i915_switcheroo_ops = {
- 	.set_gpu_state = i915_switcheroo_set_state,
--	.reprobe = NULL,
- 	.can_switch = i915_switcheroo_can_switch,
- 	.pre_switch = i915_switcheroo_pre_switch,
- };
-diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
-index 8697a9eb5d13..9523240110a6 100644
---- a/drivers/gpu/drm/radeon/radeon_device.c
-+++ b/drivers/gpu/drm/radeon/radeon_device.c
-@@ -1267,7 +1267,6 @@ static void radeon_switcheroo_pre_switch(struct pci_dev *pdev)
- 
- static const struct vga_switcheroo_client_ops radeon_switcheroo_ops = {
- 	.set_gpu_state = radeon_switcheroo_set_state,
--	.reprobe = NULL,
- 	.can_switch = radeon_switcheroo_can_switch,
- 	.pre_switch = radeon_switcheroo_pre_switch,
- };
-diff --git a/drivers/gpu/vga/vga_switcheroo.c b/drivers/gpu/vga/vga_switcheroo.c
-index 7b0af4a8aa7d..9431d83b38a9 100644
---- a/drivers/gpu/vga/vga_switcheroo.c
-+++ b/drivers/gpu/vga/vga_switcheroo.c
-@@ -32,9 +32,9 @@
- 
- #include <linux/apple-gmux.h>
- #include <linux/debugfs.h>
--#include <linux/fb.h>
-+#include <linux/export.h>
- #include <linux/fs.h>
--#include <linux/module.h>
-+#include <linux/mutex.h>
- #include <linux/pci.h>
- #include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
-@@ -90,7 +90,6 @@
- /**
-  * struct vga_switcheroo_client - registered client
-  * @pdev: client pci device
-- * @fb_info: framebuffer to which console is remapped on switching
-  * @pwr_state: current power state if manual power control is used.
-  *	For driver power control, call vga_switcheroo_pwr_state().
-  * @ops: client callbacks
-@@ -105,12 +104,11 @@
-  * @vga_dev: pci device, indicate which GPU is bound to current audio client
-  *
-  * Registered client. A client can be either a GPU or an audio device on a GPU.
-- * For audio clients, the @fb_info and @active members are bogus. For GPU
-- * clients, the @vga_dev is bogus.
-+ * For audio clients, the @active member is bogus. For GPU clients, the @vga_dev
-+ * is bogus.
-  */
- struct vga_switcheroo_client {
- 	struct pci_dev *pdev;
--	struct fb_info *fb_info;
- 	enum vga_switcheroo_state pwr_state;
- 	const struct vga_switcheroo_client_ops *ops;
- 	enum vga_switcheroo_client_id id;
-@@ -514,27 +512,6 @@ void vga_switcheroo_unregister_client(struct pci_dev *pdev)
- }
- EXPORT_SYMBOL(vga_switcheroo_unregister_client);
- 
--/**
-- * vga_switcheroo_client_fb_set() - set framebuffer of a given client
-- * @pdev: client pci device
-- * @info: framebuffer
-- *
-- * Set framebuffer of a given client. The console will be remapped to this
-- * on switching.
-- */
--void vga_switcheroo_client_fb_set(struct pci_dev *pdev,
--				 struct fb_info *info)
--{
--	struct vga_switcheroo_client *client;
--
--	mutex_lock(&vgasr_mutex);
--	client = find_client_from_pci(&vgasr_priv.clients, pdev);
--	if (client)
--		client->fb_info = info;
--	mutex_unlock(&vgasr_mutex);
--}
--EXPORT_SYMBOL(vga_switcheroo_client_fb_set);
--
- /**
-  * vga_switcheroo_lock_ddc() - temporarily switch DDC lines to a given client
-  * @pdev: client pci device
-@@ -735,10 +712,6 @@ static int vga_switchto_stage2(struct vga_switcheroo_client *new_client)
- 
- 	if (new_client->ops->pre_switch)
- 		new_client->ops->pre_switch(new_client->pdev);
--#if defined(CONFIG_FB)
--	else if (new_client->fb_info)
--		fb_switch_outputs(new_client->fb_info);
--#endif
- 
- 	mutex_lock(&vgasr_priv.mux_hw_lock);
- 	ret = vgasr_priv.handler->switchto(new_client->id);
-@@ -748,8 +721,6 @@ static int vga_switchto_stage2(struct vga_switcheroo_client *new_client)
- 
- 	if (new_client->ops->post_switch)
- 		new_client->ops->post_switch(new_client->pdev);
--	else if (new_client->ops->reprobe)
--		new_client->ops->reprobe(new_client->pdev);
- 
- 	if (vga_switcheroo_pwr_state(active) == VGA_SWITCHEROO_ON)
- 		vga_switchoff(active);
-diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
-index 9f5c4c101581..974c7dcf5251 100644
---- a/drivers/video/fbdev/core/fbcon.c
-+++ b/drivers/video/fbdev/core/fbcon.c
-@@ -78,7 +78,6 @@
- #include <linux/interrupt.h>
- #include <linux/crc32.h> /* For counting font checksums */
- #include <linux/uaccess.h>
--#include <linux/vga_switcheroo.h>
- #include <asm/irq.h>
- 
- #include "fbcon.h"
-@@ -2851,9 +2850,6 @@ void fbcon_fb_unregistered(struct fb_info *info)
- 
- 	console_lock();
- 
--	if (info->device && dev_is_pci(info->device))
--		vga_switcheroo_client_fb_set(to_pci_dev(info->device), NULL);
--
- 	fbcon_registered_fb[info->node] = NULL;
- 	fbcon_num_registered_fb--;
- 
-@@ -2987,10 +2983,6 @@ static int do_fb_registered(struct fb_info *info)
- 		}
- 	}
- 
--	/* Set the fb info for vga_switcheroo clients. Does nothing otherwise. */
--	if (info->device && dev_is_pci(info->device))
--		vga_switcheroo_client_fb_set(to_pci_dev(info->device), info);
--
- 	return ret;
- }
- 
-diff --git a/include/linux/vga_switcheroo.h b/include/linux/vga_switcheroo.h
-index 38047fe6ea60..e0198cffb4d6 100644
---- a/include/linux/vga_switcheroo.h
-+++ b/include/linux/vga_switcheroo.h
-@@ -31,8 +31,12 @@
- #ifndef _LINUX_VGA_SWITCHEROO_H_
- #define _LINUX_VGA_SWITCHEROO_H_
- 
--#include <linux/fb.h>
-+#include <linux/errno.h>
-+#include <linux/types.h>
- 
-+struct device;
-+struct dev_pm_domain;
-+struct fb_info;
- struct pci_dev;
- 
- /**
-@@ -128,7 +132,6 @@ struct vga_switcheroo_handler {
-  * 	Mandatory. This should not cut power to the discrete GPU,
-  * 	which is the job of the handler
-  * @gpu_bound: Optional. Called before switching the outputs to the device.
-- * @reprobe: deprecated
-  * @can_switch: check if the device is in a position to switch now.
-  * 	Mandatory. The client should return false if a user space process
-  * 	has one of its device files open
-@@ -148,7 +151,6 @@ struct vga_switcheroo_handler {
-  */
- struct vga_switcheroo_client_ops {
- 	void (*set_gpu_state)(struct pci_dev *dev, enum vga_switcheroo_state);
--	void (*reprobe)(struct pci_dev *dev);
- 	bool (*can_switch)(struct pci_dev *dev);
- 	void (*pre_switch)(struct pci_dev *dev);
- 	void (*post_switch)(struct pci_dev *dev);
-@@ -164,9 +166,6 @@ int vga_switcheroo_register_audio_client(struct pci_dev *pdev,
- 					 const struct vga_switcheroo_client_ops *ops,
- 					 struct pci_dev *vga_dev);
- 
--void vga_switcheroo_client_fb_set(struct pci_dev *dev,
--				  struct fb_info *info);
--
- int vga_switcheroo_register_handler(const struct vga_switcheroo_handler *handler,
- 				    enum vga_switcheroo_handler_flags_t handler_flags);
- void vga_switcheroo_unregister_handler(void);
-@@ -186,7 +185,6 @@ void vga_switcheroo_fini_domain_pm_ops(struct device *dev);
- static inline void vga_switcheroo_unregister_client(struct pci_dev *dev) {}
- static inline int vga_switcheroo_register_client(struct pci_dev *dev,
- 		const struct vga_switcheroo_client_ops *ops, bool driver_power_control) { return 0; }
--static inline void vga_switcheroo_client_fb_set(struct pci_dev *dev, struct fb_info *info) {}
- static inline int vga_switcheroo_register_handler(const struct vga_switcheroo_handler *handler,
- 		enum vga_switcheroo_handler_flags_t handler_flags) { return 0; }
- static inline int vga_switcheroo_register_audio_client(struct pci_dev *pdev,
--- 
-2.54.0
+It will land in the next mainline. Since the patch doesnt have Cc: stable, =
+if you'd like this applied to other stable trees, then it'll have to be sen=
+t separately.
 
+
+--
+
+Regards,
+Jay
+________________________________
+From: Antonio Quartulli <antonio@mandelbit.com>
+Sent: Monday, July 6, 2026 8:40 AM
+To: Pillai, Aurabindo <Aurabindo.Pillai@amd.com>; amd-gfx@lists.freedesktop=
+.org <amd-gfx@lists.freedesktop.org>
+Cc: Wentland, Harry <Harry.Wentland@amd.com>; Li, Sun peng (Leo) <Sunpeng.L=
+i@amd.com>; Li, Roman <Roman.Li@amd.com>; Lin, Wayne <Wayne.Lin@amd.com>; C=
+hung, ChiaHsuan (Tom) <ChiaHsuan.Chung@amd.com>; Zuo, Jerry <Jerry.Zuo@amd.=
+com>; Wheeler, Daniel <Daniel.Wheeler@amd.com>; Wu, Ray <Ray.Wu@amd.com>; L=
+IPSKI, IVAN <IVAN.LIPSKI@amd.com>; Hung, Alex <Alex.Hung@amd.com>; Lin, Pin=
+g Lei <PingLei.Lin@amd.com>; Chen, Chen-Yu <Chen-Yu.Chen@amd.com>
+Subject: Re: [PATCH 23/24] drm/amd/display: fix compressed buffer config ro=
+utine waiting time
+
+[Some people who received this message don't often get email from antonio@m=
+andelbit.com. Learn why this is important at https://aka.ms/LearnAboutSende=
+rIdentification ]
+
+Hi all,
+
+On 04/06/2026 16:52, Aurabindo Pillai wrote:
+> From: Antonio Quartulli <antonio@mandelbit.com>
+>
+> Replace the four open-coded REG_WAIT calls with calls to
+> dcn31_wait_for_det_apply() so the compressed buffer (compbuf) sizing
+> path waits long enough for the DET size update to take effect, and the
+> wait timing stays consistent across the driver.
+>
+> No functional change beyond the corrected timeout.
+>
+> Signed-off-by: Antonio Quartulli <antonio@mandelbit.com>
+> Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+> Reviewed-by: Alex Hung <alex.hung@amd.com>
+
+Sorry to bother, but I was just wondering if this patch/series got
+dropped or if it's simply in the pipe for more review/merge?
+
+Am I right it should pop-up in https://gitlab.freedesktop.org/drm/kernel
+before going to Linus?
+
+Thanks a lot!
+Regards,
+
+--
+Antonio Quartulli
+
+CEO and Co-Founder
+Mandelbit Srl
+https://www.mandelbit.com
+
+
+--_000_DS7PR12MB591098F429A582F50D15AF4B8BF02DS7PR12MB5910namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<div>
+<div style=3D"font-family: Calibri; text-align: left; color: rgb(0, 0, 255)=
+; margin-left: 5pt; font-size: 10pt;">
+AMD General</div>
+<br>
+</div>
+Hi,</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+Your patch is already on amd-staging-drm-next: <a href=3D"https://gitlab.fr=
+eedesktop.org/agd5f/linux/-/commit/b9f2c37d211967386ce5860082db54bc01ac3efa=
+">
+https://gitlab.freedesktop.org/agd5f/linux/-/commit/b9f2c37d211967386ce5860=
+082db54bc01ac3efa</a></div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+It will land in the next mainline. Since the patch doesnt have Cc: stable, =
+if you'd like this applied to other stable trees, then it'll have to be sen=
+t separately.</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature" class=3D"elementToProof">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
+ca, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+--</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
+ca, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
+ca, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Regards,</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
+ca, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Jay<br>
+</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Antonio Quartulli &lt=
+;antonio@mandelbit.com&gt;<br>
+<b>Sent:</b> Monday, July 6, 2026 8:40 AM<br>
+<b>To:</b> Pillai, Aurabindo &lt;Aurabindo.Pillai@amd.com&gt;; amd-gfx@list=
+s.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&gt;<br>
+<b>Cc:</b> Wentland, Harry &lt;Harry.Wentland@amd.com&gt;; Li, Sun peng (Le=
+o) &lt;Sunpeng.Li@amd.com&gt;; Li, Roman &lt;Roman.Li@amd.com&gt;; Lin, Way=
+ne &lt;Wayne.Lin@amd.com&gt;; Chung, ChiaHsuan (Tom) &lt;ChiaHsuan.Chung@am=
+d.com&gt;; Zuo, Jerry &lt;Jerry.Zuo@amd.com&gt;; Wheeler, Daniel &lt;Daniel=
+.Wheeler@amd.com&gt;;
+ Wu, Ray &lt;Ray.Wu@amd.com&gt;; LIPSKI, IVAN &lt;IVAN.LIPSKI@amd.com&gt;; =
+Hung, Alex &lt;Alex.Hung@amd.com&gt;; Lin, Ping Lei &lt;PingLei.Lin@amd.com=
+&gt;; Chen, Chen-Yu &lt;Chen-Yu.Chen@amd.com&gt;<br>
+<b>Subject:</b> Re: [PATCH 23/24] drm/amd/display: fix compressed buffer co=
+nfig routine waiting time</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">[Some people who received this message don't often=
+ get email from antonio@mandelbit.com. Learn why this is important at
+<a href=3D"https://aka.ms/LearnAboutSenderIdentification">https://aka.ms/Le=
+arnAboutSenderIdentification</a> ]<br>
+<br>
+Hi all,<br>
+<br>
+On 04/06/2026 16:52, Aurabindo Pillai wrote:<br>
+&gt; From: Antonio Quartulli &lt;antonio@mandelbit.com&gt;<br>
+&gt;<br>
+&gt; Replace the four open-coded REG_WAIT calls with calls to<br>
+&gt; dcn31_wait_for_det_apply() so the compressed buffer (compbuf) sizing<b=
+r>
+&gt; path waits long enough for the DET size update to take effect, and the=
+<br>
+&gt; wait timing stays consistent across the driver.<br>
+&gt;<br>
+&gt; No functional change beyond the corrected timeout.<br>
+&gt;<br>
+&gt; Signed-off-by: Antonio Quartulli &lt;antonio@mandelbit.com&gt;<br>
+&gt; Signed-off-by: Aurabindo Pillai &lt;aurabindo.pillai@amd.com&gt;<br>
+&gt; Reviewed-by: Alex Hung &lt;alex.hung@amd.com&gt;<br>
+<br>
+Sorry to bother, but I was just wondering if this patch/series got<br>
+dropped or if it's simply in the pipe for more review/merge?<br>
+<br>
+Am I right it should pop-up in <a href=3D"https://gitlab.freedesktop.org/dr=
+m/kernel">
+https://gitlab.freedesktop.org/drm/kernel</a><br>
+before going to Linus?<br>
+<br>
+Thanks a lot!<br>
+Regards,<br>
+<br>
+--<br>
+Antonio Quartulli<br>
+<br>
+CEO and Co-Founder<br>
+Mandelbit Srl<br>
+<a href=3D"https://www.mandelbit.com">https://www.mandelbit.com</a><br>
+<br>
+</div>
+</span></font></div>
+</body>
+</html>
+
+--_000_DS7PR12MB591098F429A582F50D15AF4B8BF02DS7PR12MB5910namp_--
