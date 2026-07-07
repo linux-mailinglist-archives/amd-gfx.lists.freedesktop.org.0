@@ -2,76 +2,132 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ww3zE4b4TGpZswEAu9opvQ
+	id 4qStJmn5TGqEswEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 15:00:54 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 15:04:41 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4641471BA2D
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 15:00:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B11B71BAA4
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 15:04:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b="HCfkxPK/";
-	dmarc=pass (policy=none) header.from=intel.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=amd.com header.s=selector1 header.b=4oYKVX5z;
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6C0E10ECDB;
-	Tue,  7 Jul 2026 13:00:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A713610E4C3;
+	Tue,  7 Jul 2026 13:04:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35CDD10ECCA;
- Tue,  7 Jul 2026 13:00:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783429250; x=1814965250;
- h=message-id:date:mime-version:from:subject:to:cc:
- references:in-reply-to:content-transfer-encoding;
- bh=uJ/15sSLEddnwXrw2pLnwQ0IxlEn7Wg8w7D+lx2nZvs=;
- b=HCfkxPK/dE4aZdcwhJXDuP8T9vUFUHtya8nusCu0BjaOJCpN9NgT4vAi
- KBIrphNCI7pXEJJcvC6HZ9BPrl3RAPXswEUDF3OouNQpwm7hANxQAMbi0
- d/60tujDDjp3Zvhhrr5TJw6jZqBia8CLbgXnPCG2Aalo2zO0F8S7kfxVY
- flZTpWoYaiGqeAkKsopAAiorIr49WhlP7CwyGKARbb8I6DN/5jYsSOd8N
- LnAIZIA8g2BRWdrTHI/ORcQEl/VurQ1gXCNrlDq26iLfGZ4amn+GybhQC
- aiTFyc6ujH0Avm0/aSehkwhaMEK2KxIa4rjnZPMqwvYMVv5BgMk/8ES1g Q==;
-X-CSE-ConnectionGUID: oSG86aZxTKmp+opk0gl3uw==
-X-CSE-MsgGUID: rizzNf+hS5aXck3OrmPTyw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="84264300"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84264300"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 06:00:49 -0700
-X-CSE-ConnectionGUID: jDywhpQ9St6f+1uM0T/NIg==
-X-CSE-MsgGUID: 1xKxb15/Q4uDE9Oc5cgOzg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="284097910"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO [10.245.244.223])
- ([10.245.244.223])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 06:00:44 -0700
-Message-ID: <bb5918f5-a6da-4908-9332-18e0df39c005@linux.intel.com>
-Date: Tue, 7 Jul 2026 15:01:20 +0200
-MIME-Version: 1.0
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012019.outbound.protection.outlook.com [52.101.53.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D71AB10E4C3
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jul 2026 13:04:37 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pGm9V41UUi+rqSKvRJMxDRtbCQAXu83NOicFBIFlgDS8nvj25fnlxf2ifQ+KPQdP1yvVDDtbcS4AbVKWNUFJe24M56K8W787lEHi+JLZY2dW5RDzuKU+po1xgATpEkVuTYDqNAgIXl8+eJPmF1VKgEyaPepY/4WDk5u3JiAJbwoCSd/gN6A2fL3j8RTbHYXr/EFczswmU1JywFmWvbiYP+JIflvAdg2YC8jxPkGuDeIXd2bDl68VjlzyntbrUB/H0dcs0KX3wATEPGZUi7Oq3OYHAaJoOjcKUsclZRwX/+InJnn17f52ErNpayThThV2i6l8EBhjqFkEFZKryzsbbQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qq51QS1CnFt3b6xaMpsITPN7FB8mao2eh++xNz07YsE=;
+ b=gn/IjbYufgrf/vr5Y2mH+CjoyhU1ZHOcAJiQqBb6YURprYeNc/F3Te+WPLyor9vL9ig1s45QZlfWw3/4MDkDc+Z2c0lRTNidqDA+FFmTOksouxnWhRofpvLMsI3MALzCqnR5SAVHlqCM5xoVnyNBhQr51+t34rQgdAsvWHdzuGAjgBab4DZhRTpoD+PY+ER3dGBgh8zEk2we6X1Sj2qR8UJmGjqUzJXYd8nQ4tgFsLf3q9nzjrzq+KLgHTeu3u4ScQhsARTaymHcx9Hg1+yX2E5iWOVH3YPRTiqyT68B+8N6y5aD68UsHTAzyNATd1PUXs2WrY1744JQEvS3TqNTyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qq51QS1CnFt3b6xaMpsITPN7FB8mao2eh++xNz07YsE=;
+ b=4oYKVX5zkXmSMgzHdzcWzmXKTRSb0wk6kZ80YboTn5UlTU+tSfuz+ey/Mdby8xRCxPdzMnuKvbH6P4xoiFFJXSv8b4aFf9oH3fpppnIAKlXh9FSsIPupgABaPugi/BJ982aAVOaUf+nANPRy3JJG8tsUDC3zb+M+XDigCRC0aHM=
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by DM6PR12MB4340.namprd12.prod.outlook.com (2603:10b6:5:2a8::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.12; Tue, 7 Jul
+ 2026 13:04:34 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0181.008; Tue, 7 Jul 2026
+ 13:04:34 +0000
+Message-ID: <7645febb-2256-4e39-bcbe-3b61dab7db80@amd.com>
+Date: Tue, 7 Jul 2026 15:04:29 +0200
 User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH v3] drm: Guard DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- Robert Mader <robert.mader@collabora.com>, dri-devel@lists.freedesktop.org
-Cc: Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>, Daniel Stone
- <daniels@collabora.com>, Uma Shankar <uma.shankar@intel.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>, Melissa Wen <mwen@igalia.com>,
- Simon Ser <contact@emersion.fr>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Leandro Ribeiro <leandro.ribeiro@collabora.com>
-References: <20260703073230.19982-1-robert.mader@collabora.com>
- <6d8806b8-fc71-4699-82c4-7189a0ea2284@intel.com>
+Subject: Re: [PATCH v4 3/3] drm/amdgpu: Drop vm_manager PASID to VM mapping
+To: "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+References: <20260703061833.3163913-1-srinivasan.shanmugam@amd.com>
+ <20260703061833.3163913-4-srinivasan.shanmugam@amd.com>
+ <3f732fbc-5a36-4818-9247-4539ed791872@amd.com>
+ <IA0PR12MB82085C8E4A1E00B94B602B8B90F42@IA0PR12MB8208.namprd12.prod.outlook.com>
 Content-Language: en-US
-In-Reply-To: <6d8806b8-fc71-4699-82c4-7189a0ea2284@intel.com>
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <IA0PR12MB82085C8E4A1E00B94B602B8B90F42@IA0PR12MB8208.namprd12.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BLAPR03CA0173.namprd03.prod.outlook.com
+ (2603:10b6:208:32f::35) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DM6PR12MB4340:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2e0569c3-349e-4409-9f91-08dedc284a6a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|23010399003|6133799003|18002099003|56012099006|22082099003|11063799006|4143699003;
+X-Microsoft-Antispam-Message-Info: HN4noeuQsVxREvIsM9GPCES75uT3+e0KRhlj7+lsF8Nf49jnBxgFWNtIeDVlyrBgKkVM0YxtwotwrEaFvoHnh4hwGW4vzjefIuvBlOTM7Mpa4NaT/sxYwMdY6n13ccVakxjV6WIV4AbdE1YITzG1boFBodWuhCaIDi7jNnOPIqaGc5yxen60H7hXL3kFVfZYFewJyFcVYf6mDY5ikOfyMgeyZ3geDD+Zf2gkFQGgQqwKfQn0sybs+BPajSF2Le3zPef/8Icq9NmUmCcHEjWqObecs8I4p96hB85zBosiYQ1v1Nw3VaQGLC/OnyTgpw5RsdywQbgXfXhNBx9ngItQx/Zg9j9wicAk3Np3/fOUl39E00orJdnPQNBLFqcMNoMp9tob3+PJjacauA/alVCCbhdGmIV7C894KPGhafOJxrMy/ZAFnas3llG7ljiTQMAVQT0FQJR0Po/kuMySZBhW/it5FDNjD1yYhrZqmZIHC5SNGNO+qPFIZ33weGcyoqnMZb7BQETB3NdV6C5DlkvvUAsCXMtrRQVxWC3HpNQ3b/8CCYLGfDO5EZNgO47IHHMoVNTNpQJ6KGXs+50MJ9jDVhJfd51jGoms+77t/S0H9rtJ5qfFwM7WGQmwTEZ0hsY12GJ1tVSFqnMNwzhVxm5XQcvlsf50JajLKNk/nsqLGeE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(23010399003)(6133799003)(18002099003)(56012099006)(22082099003)(11063799006)(4143699003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YlRYOXZvazlDZTFiMjV0WE1DQ1E2dTVoY2hRbkk0RmtXT0xObXM3cG54SVRO?=
+ =?utf-8?B?c2t6dkR0U0U1dXIvYTkvcnpwM3pWS3BacE5BRUQ1UWJSNFgyMTdaRGk2ei9a?=
+ =?utf-8?B?UlltRU9KTmNIbkxiNm16RFlrcStNZzI3NkkxRUZzV3drNlJNLzZnNEdudFkw?=
+ =?utf-8?B?K25wSFlPSDhwM0hVZTl2aEVtU3Nyd1ppK0FWZE9zQ2J4ekl2T3BUdzMrNWEr?=
+ =?utf-8?B?b2VvdEVqNG9SZ2NVRjhBL2ZyR3NvQVc1SzdJVTdZOHdvN1VFYTJtV0NrbWlx?=
+ =?utf-8?B?WlZGL3VGZ1l4Z0hCSjVZQmdmYUFjbWNrZEpPanhkanNyVjJpb0l5T2xwUjdK?=
+ =?utf-8?B?bmhBUUUrb1F5SUxTTnVMRHh6bmx3UkZIVEttTGM2T2hTelZ5Rkt2T2RiL1VT?=
+ =?utf-8?B?STNvM0ZiK0M0WHhjWDZsdHdEeVpha0hXaWdLZEZTMjRtK3UvWUR5WkJFeXht?=
+ =?utf-8?B?b2lGUW1nQUc2MHJ2bnY2cm42RnJkQXVJOENsdEdRMlAzcUwwZ0hSajM0VGpn?=
+ =?utf-8?B?eTFDTWI4WWxUWU1kMjQ5OTJnd2hGQlRDR3IwUmZQYy9KYXJCYXpoSWkwbmta?=
+ =?utf-8?B?S0NMT3FtZzVRZ1FZcE1odWhsNGJTV2lmRHFJMWhnVHRGcFRTcVRHSzM5a010?=
+ =?utf-8?B?ajFQZGhEdGZnT3RjVVIzeUZNa1FFbDlsOWdBR05CRmgzSUxjclpxSGE0Y2ky?=
+ =?utf-8?B?Slk3Ymw2MU9uWmQ2ZGExb0p3MCtqdEpOSTliNmFoQi9KTnZsekZqTlNMNGpt?=
+ =?utf-8?B?d0Y3RkpQK0JzVDcwSEZUM0I3STBjTE1qcTF0TjlmTHRoeGp2ZEt2OEVXMFpo?=
+ =?utf-8?B?VjRZV1lKc3lRU0xnQlpXUXBwOWxoVUkwL0Nsd1JNemx6ZlB0SWV2OC91aFRx?=
+ =?utf-8?B?Tmh1YWpDendIVkNiTk1OdiswMXBPSVNwWWRwY2ZTbHhuNnlYR1ZVOEs1dGN3?=
+ =?utf-8?B?SVFQTHVHTHpvYjRkWmZRbTM1Zk13MklYeGJWOXB4NndLdWU1TUkzMUtHSzFY?=
+ =?utf-8?B?S2IwYVRValJmS3d3QWd0Z2Zscm56RVFHNHFWQVhacHV5QnB6M3lFWmNEakZw?=
+ =?utf-8?B?UTNKR3IrNlFYbkJvazZ6ajVNVWJLblc2WEI5QjFseEZOelBrdFhFRUhsOU52?=
+ =?utf-8?B?N0RqcDdPeTdvbjRVUlg3YUtZZEE2VzNGMmMzcGV5QVFHYkZiUUNDWncrSjNE?=
+ =?utf-8?B?RkljREl2dVI1VDVHL1o0dTA5REpLSVhqRkRoQXRhdXBGU3lvSSt2Mm8wTlNo?=
+ =?utf-8?B?S1lPLzQ4VE5rOUN4K1A0YXNYQWVsMFFXVG4xVEhhUEZReXN3OXIySFVuOGZE?=
+ =?utf-8?B?OGhBQlVHcURiWEpTSjArcFFiS2k2V0lkMVFxVVJvcFNqc0xkMWVtSmIyNlp1?=
+ =?utf-8?B?cEZTQ2ZCY3g2TmdOZWF2ZnF3aTQvUkd0cTgyRXZGWkRsSmlxc2VMUmV2clVv?=
+ =?utf-8?B?QllGWm5vQnpZeWdnaDlLYWg5cCs2VnZUSVZNSm9YQkRhaDZDQVdjZGZ2dUdE?=
+ =?utf-8?B?ekJxc0JzNzRQaithNWtXUjRzb3IvR1RBV0pocFk0UVM4WGFsMFdjaTd3Y1cv?=
+ =?utf-8?B?TGRSWXlMMmVObEp3RlNhY2h4TmxuRFh5Y1M1WHBYbU9BOG95c2F4NjNoTmwy?=
+ =?utf-8?B?aG1kMmdZTTM3STQ5dFdRNlBxekNXMU9QeE43RXNYRkVzZWVNdTJFdHJWN3Rt?=
+ =?utf-8?B?dWtWSitDb2J4RjJwbEdDYXlHVDBBUlppUERzQnBRS2dRUFY2Qy9uemdtMk1U?=
+ =?utf-8?B?R0luQytGWi9WNWdNS05FMjF1a2dIRHE4SDVhSm9aUXdSRDBaa2xzb2hCL2kr?=
+ =?utf-8?B?b2dVbUZSOHRsbmlnK1ZVOFJoYUIxMGhlZjRQdUdGbzRzYUR2V3c0M2hvUnNE?=
+ =?utf-8?B?ejVlZ0pwWno2eW5heDJmOW5VazMraElPdDhjUnlhdlpYNEJoUE5vZHA1elpz?=
+ =?utf-8?B?aEs4blc5aytjUGZqVG1iVVp4OEdNT2MwbThQWXBhaWMvMzMxR09Ha0pkc2Yx?=
+ =?utf-8?B?Z1hFSmdSMUJ1VVQwbHFLUVlydnJsY1c1ckkvbEtMZXIzVXp5YjhaQzlFZFJk?=
+ =?utf-8?B?MkhOZWdNYU9tRTdGMUt5bFcvc0VGSWQ0Vkw0ejhuall3Wnp0Tmo5Y21PTTBy?=
+ =?utf-8?B?MzdEYjdQMkZOZmhkRVNBazA3RU1rNStGVjdoRFZaSlNtSUNnTS9GSjFseHJy?=
+ =?utf-8?B?MXNMZHpWeXE1ZXJsSE1wTVdLdEl1bW1yQVV0WDhETjQwTXdhVFFWNDdyTnJE?=
+ =?utf-8?B?MExaSFBiTDYwcU9Zb3lNM01JSG9pNkdjTk5oOEp5ZGFSY1FLNWN5VzE2K2RE?=
+ =?utf-8?Q?WdlmuZAo3tkK5eFKZl?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2e0569c3-349e-4409-9f91-08dedc284a6a
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 13:04:34.2969 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aSf6iMVKoLSkKZdVoyYH9oiiEe17opEHXS/R169SwhQOlksnWIRiyjSk13CE1a9W
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4340
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,63 +142,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:SRINIVASAN.SHANMUGAM@amd.com,m:Alexander.Deucher@amd.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maarten.lankhorst@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[kernel.org,suse.de,gmail.com,ffwll.ch,vger.kernel.org,lists.freedesktop.org,amd.com,collabora.com,intel.com,bootlin.com,igalia.com,emersion.fr];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,intel.com:dkim,linux.intel.com:mid,linux.intel.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4641471BA2D
+X-Rspamd-Queue-Id: 2B11B71BAA4
 
-Hey,
-
-On 7/7/26 10:03, Borah, Chaitanya Kumar wrote:
+On 7/3/26 12:36, SHANMUGAM, SRINIVASAN wrote:
+> AMD General
 > 
+> Hi Christian,
 > 
-> On 7/3/2026 1:02 PM, Robert Mader wrote:
->> The client cap is currently advertised unconditionally, even for drivers
->> that do not support plane color pipelines. If clients supporting the later,
-> 
-> s/later/latter
-> 
->> like Wayland compositors or tools like drm_info, enable the client cap on
->> such drivers they will be left without both color pipeline and the legacy
->> properties COLOR_ENCODING and COLOR_RANGE, effectively breaking YUV->RGB
->> conversion support.
+>> -----Original Message-----
+>> From: Koenig, Christian <Christian.Koenig@amd.com>
+>> Sent: Friday, July 3, 2026 1:14 PM
+>> To: SHANMUGAM, SRINIVASAN <SRINIVASAN.SHANMUGAM@amd.com>;
+>> Deucher, Alexander <Alexander.Deucher@amd.com>
+>> Cc: amd-gfx@lists.freedesktop.org
+>> Subject: Re: [PATCH v4 3/3] drm/amdgpu: Drop vm_manager PASID to VM
+>> mapping
 >>
->> Prevent that by only marking the cap supported if there are actually planes
->> with color pipelines.
+>> On 7/3/26 08:18, Srinivasan Shanmugam wrote:
+>>> VM lookup users now resolve DRM PASIDs through the global PASID xarray:
+>>>
+>>>     PASID -> fpriv -> VM
+>>>
+>>> The per-device vm_manager.pasids xarray is no longer needed.
+>>>
+>>> Remove PASID registration and teardown from VM init/fini paths, drop
+>>> vm_manager PASID initialization/cleanup, and remove the xarray from
+>>> struct amdgpu_vm_manager.
+>>>
+>>> Cc: Alex Deucher <alexander.deucher@amd.com>
+>>> Cc: Christian König <christian.koenig@amd.com>
+>>> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+>>> ---
+>>>  drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 25 ++-----------------------
+>>> drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h |  4 ----
+>>>  2 files changed, 2 insertions(+), 27 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+>>> index 9092ff227a55..74836240edbb 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+>>> @@ -2647,14 +2647,7 @@ int amdgpu_vm_init(struct amdgpu_device *adev,
+>> struct amdgpu_vm *vm,
+>>>     if (r)
+>>>             dev_dbg(adev->dev, "Failed to create task info for VM\n");
+>>>
+>>> -   /* Store new PASID in XArray (if non-zero) */
+>>> -   if (pasid != 0) {
+>>> -           r = xa_err(xa_store_irq(&adev->vm_manager.pasids, pasid, vm,
+>> GFP_KERNEL));
+>>> -           if (r < 0)
+>>> -                   goto error_free_root;
+>>> -
+>>> -           vm->pasid = pasid;
+>>> -   }
+>>> +   vm->pasid = pasid;
 >>
->> Note: while the color pipeline replacement for the legacy properties is
->> still under review (1), we can assume that it will work as a drop-in
->> replacement.
+>> What do we actually still need the pasid in the VM for?
 > 
-> This change will but a driver can also choose to export colorops like programmable CTM_3x4 to achieve the same.
+> I checked the remaining vm->pasid users. It looks like vm->pasid is still needed for existing hardware programming paths (TLB flushes, PASID mapping packets, tracepoints, etc.), while this series only removes the separate vm_manager.pasids lookup table.
+
+Ah, yes. Especially the TLB flushes are a good point.
+
 > 
-> We should also perhaps document this somewhere that if a driver supports LEGACY properties, it is imperative to implement some version of it with the color pipeline line property.
+> My understanding is therefore that:
+> 
+> vm->pasid
+>     remains as per-VM state
+> 
+> vm_manager.pasids
+>     can be removed because lookups now go
+>     PASID -> fpriv -> VM
+> 
+> May I kno pls, does that match your expectation, or were you thinking of removing vm->pasid as well?
 
-Would this be doable inside drm core? Implement the color pipeline properties, get the fixed pipeline for free?
+Please go ahead with the current plan of removing vm_manager.pasids but keeping vm->pasid.
 
-But thanks for all feedback, as I was about to push this patch, I noticed it still uses -EOPNOTSUPP, can it be changed to -EINVAL?
+Thanks,
+Christian.
 
-~Maarten
+> 
+> Regards,
+> Srini
+> 
+>>
+>> Regards,
+>> Christian.
+
