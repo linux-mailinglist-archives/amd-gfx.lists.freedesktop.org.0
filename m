@@ -2,79 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id n5dyInUKTWo8uAEAu9opvQ
+	id oUdgAHwOTWpRuQEAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 16:17:25 +0200
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 16:34:36 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD2A171C76D
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 16:17:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 471D871CAE3
+	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 16:34:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=KdFQjeIX;
-	dmarc=pass (policy=none) header.from=intel.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=amd.com header.s=selector1 header.b="A/OePpbb";
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3005C10ED8C;
-	Tue,  7 Jul 2026 14:17:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEF6C89A5D;
+	Tue,  7 Jul 2026 14:34:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12FA410E4D1;
- Tue,  7 Jul 2026 14:17:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783433842; x=1814969842;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=n6IDX0ZcCgLBKVR2hEqdAQZ+aHjY/cRF0MzfnOL8oQc=;
- b=KdFQjeIX/fkPw0DjjSusRds90MWkJw/wT0B1NjNG8uOF9jnVPGzsbvTE
- 2FH4whIfFEi3KFl5SINv618iJUjBSQl21VQmuYkLODZmJzfHTuDRgK4Q0
- lsr3E1vSeTvc0Wd+5ZW6UJqEAJ0Bys5KLw714XnQkLnV+Ur/UwxPizqob
- CXZrb2ASbEuZNF5fgqtMBs5KIvX3bcz8qeVwtEePi5f76dCYalljswtZP
- hHGRt0V1SzqxjkpCjDwnhkJBp0i2yIluT+IBdY3CwF1jO1ofuLSuenTjC
- H+cyEw3M758loUxN8oyLMFW3202KJ67EhHd56SfgxyIFGEYuTxXUKVfol w==;
-X-CSE-ConnectionGUID: OJcX1zQwQ0K94WepV/hgew==
-X-CSE-MsgGUID: OhWFRznQS6OidqA2kB9Lfg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11840"; a="109623897"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="109623897"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 07:17:21 -0700
-X-CSE-ConnectionGUID: azXCJv3QRBqATUv6ZUoP7g==
-X-CSE-MsgGUID: 86IffxY4TpGK38ceQPgUYg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="250653344"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO [10.245.244.223])
- ([10.245.244.223])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 07:17:17 -0700
-Message-ID: <d0aaa4c0-280c-4796-b8fd-d5908ff7b279@linux.intel.com>
-Date: Tue, 7 Jul 2026 16:17:57 +0200
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011044.outbound.protection.outlook.com [52.101.52.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7167689A5D
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jul 2026 14:34:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=MKgo2zZCauxYuyVHnxd9G6c3tLQnMAYiAr891IQ9DqLGEqiDzRIswOst9v/UBL4NuEBjLv+UgF8l7kmG+Gieuf6uocGS+wzTMAW4rNRA2wPtTZksRUSyH7zRJhP1eh1vL+OjSG6fnJ43sGrecKF+mO02KxCfe9m+9hoHYglOxtRodikxp5+iXJKelqSbX5cIA9jSoJPl0SfgZGGvnDVwIGCHN0X5s/tQrbY/VeFaLGpsBt2rAT3S3+Ck3eJfQ2GQL2BPVBACDlyS6j1YhdpWDs6L9pKWFn4A4rUSKt4he0rrpsJBIiid9t1E7nMGhuN2o029Vj9/JxN8BNrlUHWkRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QkLwDJdjdOzZ33m5HZHza+b4SyVmJxtv8tL4HGWH/lo=;
+ b=IScW689qRs9M7k+TP7ZyX3Vj0Q+wjlX//jZ/1cuIvv77soQ88P2tkxtxZnnz0nWGlc7ROSfWGInRPkZoH7uHT/7mOZkuYZwkJTYgfe0qV4wg7VI8pOEnTbNKCXzM5oYyDfQp8azWhF+ip4bw2F2SplmfbhV5xOeIBOwN9jbf6T5w5Rs2mcO9njw9+vmAopdd9uxvX5DsPmqGfXO/tfITTJr7YJbFf7IVYAGjyUjQIPD+iib2du+2rivvP0JY87+KVfya1LNapLDPCLm5djPaZaRa2crwYnVGlTVQ3mx6v1H/70WWtRsCMeTmD0cgxvp/loXw71AsxPq2xcS56ZPllg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QkLwDJdjdOzZ33m5HZHza+b4SyVmJxtv8tL4HGWH/lo=;
+ b=A/OePpbbitaTzneDL4YV33EWoSz+az+CgoYu161tlYY/236qqCHZ5zPqYCIEgYr3UOh0xAbAomvUwKV4ay+DDLa1eUtRGC0gY6mRBb5vjan/Bv4xLuPZL1ETp90XEuBrbjOnI51PAtWEZ9fPN4CkNT+jg2Ou4dSESZa9UOIwvEA=
+Received: from BYAPR21CA0004.namprd21.prod.outlook.com (2603:10b6:a03:114::14)
+ by DM6PR12MB4484.namprd12.prod.outlook.com (2603:10b6:5:28f::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.14; Tue, 7 Jul
+ 2026 14:34:30 +0000
+Received: from SJ1PEPF00001CDE.namprd05.prod.outlook.com
+ (2603:10b6:a03:114:cafe::72) by BYAPR21CA0004.outlook.office365.com
+ (2603:10b6:a03:114::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.223.2 via Frontend Transport; Tue, 7
+ Jul 2026 14:34:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ1PEPF00001CDE.mail.protection.outlook.com (10.167.242.6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Tue, 7 Jul 2026 14:34:29 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 7 Jul
+ 2026 09:34:29 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Tue, 7 Jul
+ 2026 07:34:29 -0700
+Received: from p8.amd.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
+ Transport; Tue, 7 Jul 2026 09:34:28 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 1/6] drm/amdgpu/sdma6: don't do MMIO in MQD init
+Date: Tue, 7 Jul 2026 10:34:15 -0400
+Message-ID: <20260707143420.2104857-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm: Guard DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE
-To: Robert Mader <robert.mader@collabora.com>,
- "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- dri-devel@lists.freedesktop.org
-Cc: Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>, Daniel Stone
- <daniels@collabora.com>, Uma Shankar <uma.shankar@intel.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>, Melissa Wen <mwen@igalia.com>,
- Simon Ser <contact@emersion.fr>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Leandro Ribeiro <leandro.ribeiro@collabora.com>
-References: <20260703073230.19982-1-robert.mader@collabora.com>
- <6d8806b8-fc71-4699-82c4-7189a0ea2284@intel.com>
- <bb5918f5-a6da-4908-9332-18e0df39c005@linux.intel.com>
- <d3e954dd-381f-480b-8f48-698d8aead017@collabora.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <d3e954dd-381f-480b-8f48-698d8aead017@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CDE:EE_|DM6PR12MB4484:EE_
+X-MS-Office365-Filtering-Correlation-Id: 14c7fd65-5957-461b-27f7-08dedc34daa0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|82310400026|36860700016|23010399003|18002099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: czsyaR9fiUNnx7IOQ3aee8yUJaZ1//APDx/8JHVAUIWpYayvji08aoeiFRdUNMkG5m5FGjp9B0wbJTeMxLh5vuyCUezjFDUx5+CwkBKont2rR0wJeRkJpeLjmz6ZhjA9n10sz2+dBuWoann5/IgjfvaEZ2DpXKM+NbaKpPTipn89t/rzggryidzFmBwugWX2P00dFUlT+8x5uC5d4siqu0PDMpUzbbOX0k2QTxYrPuXhmzHNgfh9E0y4iXH8Tq0KPMrR5ERPxqN+xe5gWHNlrDv8iLGhBJjQ7bg6klSkr46lZptomjJfHF4hAyVPkQLji175uPPYR5l5iZBCwiiNeA/6lq3a6IG/GIJqbTztMMTC0LsLJJe9sOd8C/HrnrfU9sOdZfnFeV+syHDrWe+Ac22Apxx8L+eAB39nif3YAvhKcnytd8M5bf/P6gIY7xyWToaOZArNf5EwJXvpYydbLVeosu+7r77sH0S1MW/ZjFCzh5MtE4EjSK15yiHCc+GeGzEone3LVjHa1JUSfnpyIIzm9oWttE8Cwc2p80UL7IlubbU41QiJ8/g5bdPz5MiHY9wrdTam3Uq+5UTTKGzvfCX9NDZx/yR5WxjtubtkMZk6OvNMTLbQxXm8t7w6TR/CMTm3ASkZYQgLdQEIpF6GUDiDeLOQSdR5MU+BAQmJs+kbGSdY3LtZARRkp7RFgyu3f7hGVKD9P3lI6JMXGS2pag==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700016)(23010399003)(18002099003)(56012099006)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: pJsktkflBJxAE/3P1Xy3iIhuRv5Q20lhZFRcgAYz7Z3F8e8NlR8KdOFWYvBFKDngCxp+JM+fr+9RBR7rm2aVbZJGhjuy20RNyJuEJWHZb6Qc8Wxm2ZSbAeZvW/eq69hcJRytp0ND/E4F145zLnm2aQl9LWjDgnSIIh147dpEh1BgOFSAB2IAU4gGsQl2mDLkknQ9kpsXRb8J70hqIHRHH8Rwer7+qSD7WigsAl71mh1Ti7hbf88W/X2WdR9XTeWQv76KLgDWSjJDMzYa/3t9IzmXjUIFPt4UTxpBxp3B+/yMPnMm73JTxeycqZGlPS1CzbaGrkeo/SX8fp4EktBbUlpAwLPC285F/wPua7lKLO84OPjMVVAfvcnDBHPB/1l4vzNw0IZ9dwZK28B7PZHIeVv6scM5XENZtOuCLLp0/Bd4bgS0B8qaBP5n0ubVqt4u
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 14:34:29.6500 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 14c7fd65-5957-461b-27f7-08dedc34daa0
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00001CDE.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4484
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,73 +118,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,suse.de,gmail.com,ffwll.ch,vger.kernel.org,lists.freedesktop.org,amd.com,collabora.com,intel.com,bootlin.com,igalia.com,emersion.fr];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maarten.lankhorst@linux.intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,linux.intel.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim]
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim];
+	ALIAS_RESOLVED(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DD2A171C76D
+X-Rspamd-Queue-Id: 471D871CAE3
 
-Hello Robert,
+There's no need to read the register, just use the default
+value.
 
-On 7/7/26 15:15, Robert Mader wrote:
-> Hi,
-> 
-> On 07.07.26 15:01, Maarten Lankhorst wrote:
->> Hey,
->>
->> On 7/7/26 10:03, Borah, Chaitanya Kumar wrote:
->>>
->>> On 7/3/2026 1:02 PM, Robert Mader wrote:
->>>> The client cap is currently advertised unconditionally, even for drivers
->>>> that do not support plane color pipelines. If clients supporting the later,
->>> s/later/latter
->>>
->>>> like Wayland compositors or tools like drm_info, enable the client cap on
->>>> such drivers they will be left without both color pipeline and the legacy
->>>> properties COLOR_ENCODING and COLOR_RANGE, effectively breaking YUV->RGB
->>>> conversion support.
->>>>
->>>> Prevent that by only marking the cap supported if there are actually planes
->>>> with color pipelines.
->>>>
->>>> Note: while the color pipeline replacement for the legacy properties is
->>>> still under review (1), we can assume that it will work as a drop-in
->>>> replacement.
->>> This change will but a driver can also choose to export colorops like programmable CTM_3x4 to achieve the same.
->>>
->>> We should also perhaps document this somewhere that if a driver supports LEGACY properties, it is imperative to implement some version of it with the color pipeline line property.
->> Would this be doable inside drm core? Implement the color pipeline properties, get the fixed pipeline for free?
->>
->> But thanks for all feedback, as I was about to push this patch, I noticed it still uses -EOPNOTSUPP, can it be changed to -EINVAL?
-> 
-> For existing users it shouldn't make a difference. drm_info and Weston just check for "drmSetClientCap() == 0" - and old kernels without the cap will also return -EINVAL AFAICS.
-> 
-> I personally find -EOPNOTSUPP more appropriate and more in line with other return values in that function - but no strong opinion, thus feel free to change while applying (or I can resend the patch accordingly if you prefer).
+Assisted-by: Claude:claude-opus-4.6
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Yeah no worries, I looked at the code and it seems -EOPNOTSUPP is used a lot in getcap/setcap. In particular when driver support is missing
-for features, I'll leave it as is and push it now.
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
+index 96c350d5fef24..8d3bde9fbb426 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v6_0.c
+@@ -860,8 +860,7 @@ static int sdma_v6_0_mqd_init(struct amdgpu_device *adev, void *mqd,
+ 	m->sdmax_rlcx_rb_rptr_addr_lo = lower_32_bits(wb_gpu_addr);
+ 	m->sdmax_rlcx_rb_rptr_addr_hi = upper_32_bits(wb_gpu_addr);
+ 
+-	m->sdmax_rlcx_ib_cntl = RREG32_SOC15_IP(GC, sdma_v6_0_get_reg_offset(adev, 0,
+-							regSDMA0_QUEUE0_IB_CNTL));
++	m->sdmax_rlcx_ib_cntl = regSDMA0_QUEUE0_IB_CNTL_DEFAULT;
+ 
+ 	m->sdmax_rlcx_doorbell_offset =
+ 		prop->doorbell_index << SDMA0_QUEUE0_DOORBELL_OFFSET__OFFSET__SHIFT;
+-- 
+2.55.0
 
-Kind regards,
-~Maarten
