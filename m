@@ -2,103 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id eGb1M29DTWoMxgEAu9opvQ
+	id LIyFGKpMTmqoKQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 20:20:31 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 15:12:10 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B35D71E971
-	for <lists+amd-gfx@lfdr.de>; Tue, 07 Jul 2026 20:20:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D9B0726A98
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 15:12:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=SUFZNpCN;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	arc=pass ("google.com:s=arc-20260327:i=1")
+	dkim=pass header.d=usp.br header.s=usp-google header.b=HaEE3nPf;
+	dmarc=pass (policy=quarantine) header.from=usp.br;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BED7A10E217;
-	Tue,  7 Jul 2026 18:20:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D51A10E5E7;
+	Wed,  8 Jul 2026 13:12:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
- [209.85.214.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A31E210E217
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jul 2026 18:20:28 +0000 (UTC)
-Received: by mail-pl1-f178.google.com with SMTP id
- d9443c01a7336-2ccae46de39so2716295ad.3
- for <amd-gfx@lists.freedesktop.org>; Tue, 07 Jul 2026 11:20:28 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783448428; cv=none;
- d=google.com; s=arc-20260327;
- b=jMARjV0FCxlTh1pvNQoQs/JeyQltcSz9ce2/UawPGgYIw+PDy8nZPBDHf2JkZIIGhE
- X7GL9VZhlcRSS2ecEWIHcnsX3Joef+ajY2kesOq9JWvBEScAepO08TZFO4oPG/kNoYLN
- qlJ8vX24K4q85yp7OAztAMaZqoHe5mW8jV8d5EH3X+8nzhEnHUQnJH+2KFZb0spbrRn/
- wk6QqNWgEBvKDdFBpEQvhF3EEX+cVE6XR0LIBu6LsuFh05ZWBm5lZnZpI2Ax6sSs07kg
- 4Rvoi2bhhvqbmYQCp7xfjsTmHliARZ307dimJr81hl4273ECisVh5BPRPVMPl401HbjZ
- DCQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=7FLFAqUAb+IhdQzk0m7mjDj+EixUh+byFPy2bjyN8v8=;
- fh=D/WwHOQEydKi+O2iY7If+mmjyr1shGLfCLS2FRv42iE=;
- b=cCVYg/UlPVph0/D2J8KYUObQhtkPgGf8R2WoMei/3pxAgugjZWwGVgXMKjnosVtlMf
- qajOv7OCO9wd5qPTf9lIQS38lBIf3I+QjkSTR02TB9rjFREgHyG+6FiMQkBkKFKW2eqv
- jL6Z4WxqLvuQhnI860Z3/qPcHnovAzYm+nhFPXC9Oli+ZCF0vMppvqGD/jthkMJIwZn2
- HLFyxDCtVlQJvYx2r+uQ+OVcsqXAsGoFMDHCrzP9sl9z0kHVWOUXaJFgEfYdiREsTknL
- n73AwbA5bWGMQXey1lir2moPGuLykVBqm4vH1MQNOl5DKvM4koFmEHbav/hGd0cqBxHN
- hArw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
+ [209.85.215.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6BF510E522
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jul 2026 23:42:56 +0000 (UTC)
+Received: by mail-pg1-f177.google.com with SMTP id
+ 41be03b00d2f7-c9d1fc053e0so25621a12.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 07 Jul 2026 16:42:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783448428; x=1784053228; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=7FLFAqUAb+IhdQzk0m7mjDj+EixUh+byFPy2bjyN8v8=;
- b=SUFZNpCNxjKBNebifde1iJVzjmmqPc06N4AF3jMpmw0MlgpX6u3WcXF87ZlzDcA6Jc
- Kjzl1bj9BPVaG9JXTeP13KizwEn3OnTjYIn/yrg077aQeSM2v2kctYS2mE5tm00IUXR/
- NGrDaOAemFqz0e7xtxo7gaPuq4ZdVVF7ltks6giOf930d7YO1MpowwGz0nOZng6iJgw5
- nHOp+bVJ/mwOVJwDNI5pgqCgR0mhlc7VZSe0E1udeQEF3aXqTbM8eJ5knLNKWbTv1n8L
- 87SbOOj1Eyk0TeZe6KD5FU6DHcXpTLeLuUkjryGjY9O8t3PCyxAlvnX4xJvhbwrca+6S
- mxGg==
+ d=usp.br; s=usp-google; t=1783467776; x=1784072576; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=NTsYOw6uHozsquujsNCqPDcOi1VuziUuLK4jzy115/c=;
+ b=HaEE3nPfzYK8A6we1C/cLxDaf9Zr0uwk6MuGIRVZUfKUPwwld3UUyPHnA5GzTOD9qp
+ iFNU8+tAtNxgILnApH8EiHyVZj15V89UshCtZFa8MHk7bl4w2+/mx+Jf2g4wY9QK18C7
+ r4FckETGKGPhMw6pg1ktQMvJV6C/tNFwqCSL+JHCa77fLmuLd9A2stRJg1dijnFuWRyu
+ FEC49nSq8xsck3XiANMLRbyB7pfE3MIq+d3ZfABqsyLlWHf4VU2pBGFGpeED4KJBAuve
+ aj6idYJ6/qIxoC3nKywnZ8uf3ECgwGGfo9z6OPu1FGG8tqm3gsvsthXMcYTgdU7W1AIX
+ 7gXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783448428; x=1784053228;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=7FLFAqUAb+IhdQzk0m7mjDj+EixUh+byFPy2bjyN8v8=;
- b=D33Jes645K8gLbBiBeY/x+OKew/gVKF9k/ejybQgs8ChT29RSZC9RIkTXVTYrPDGDX
- +jmiKyqO/bJ8oyLRklNYc5FFe9lZ7RJtOQr2RG5GN3qzSpzUQ5oGGLaxkFLZF7DQI5tu
- ffsY107Jh2wtFNT9VjICyeUX71geJf2+4jaGnv86Y3XY7zdZyHd184FOwRVJXO4KtW9B
- RqQCxGt8KbqQTnkFx6u7nxIRB4QHPkJ/hj9NsFNPQD4GyX5s/j8lMfQW5/TMC44OLezT
- xGTlj7qjTfoDcANw4f2Y39Yyq69QBH1UEE2+uAB2L4uYjhuQ2aH9wyfYbV/swC9WNdgk
- q0+w==
+ d=1e100.net; s=20251104; t=1783467776; x=1784072576;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=NTsYOw6uHozsquujsNCqPDcOi1VuziUuLK4jzy115/c=;
+ b=kSBRON/pWkvxqC9rjRkPxdinnvLT6854TH+yWj7O0ChoGw1AoC+9wpgQxMgFCPelWf
+ gq73/WCFIOZlAgkLpQnWyXQhsEEEKmUgjPlgef5tWbg1PzRvgLDwVj4c1YZsv5W4Ve3G
+ EtcL17ibUx0qH/+VZz20X7niG2yoqvdDZte9bX5Zc3Qy+OkB9g1jZjQSv1puO1vdOD3B
+ 8St/A4ytsSO+1UMbrmDsfwWsFe0ZpwvXCvSBtd7RDuJBLrSmS944IL2jH+iSIBSZXQmP
+ aZEP8UHMYSFIkmFrzfk2ol5cK3iggDVb/jz+ivkTAh4oq1JNt/IN1rh4qd2xTCwR52c0
+ Ujlg==
 X-Forwarded-Encrypted: i=1;
- AHgh+RqwtgjIUzlL1kpjNFacAziro9jxKGCXseWWo+DOmjTP/vE7ns/NzRJIBP55P4vj1hhBudojZwYk@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy1p541Ub0J8Gm9Q/mFZk7wjDWe+F6eqKBOrTwrJ+1UxVqgevNu
- U1RQcRh4p1z1ZfgjRqWj4iydmwBCczyMVhT7mBdm8KRkoXrjL878BQcheuYZqyx2m7gNWbU4kP7
- wYkJn2OOiPw4B1EiziKbO4sHzmB/G9t39Kg==
-X-Gm-Gg: AfdE7cnB4iQPhvPxsXVYimVDH/i9BLQLMlvVE/SFAufi5a2dSaiSgGzVaPAuOOhqd+1
- I11tnXHnq6+H65gSFQ1pToU5woG+JVEUXpMDbEuLgkrgN51ec89b+drfoEKeRd3gL0teY8OUZ2q
- ToPTb0Xk/2ARURZn11MCZX7H3Vt2VviK61TbUcJrISSW3QtDI/dvMlN5RMlYME9VmzxLwuiYWjd
- EZN1NbOXnWsVSFbyzNsRKkBCtGPm5eKKjDDt8dtwY7SvdRti5SMdpqUbvhTdi057Bl56I9VXctz
- FDqPiX6XV2J7VpXbps7M1L6hNIKin2KEhr40s385IxJVVncQLhZxUBhSuik=
-X-Received: by 2002:a17:902:ef02:b0:2ca:d344:7752 with SMTP id
- d9443c01a7336-2cbb9f5cc1bmr119128405ad.8.1783448428027; Tue, 07 Jul 2026
- 11:20:28 -0700 (PDT)
+ AHgh+RqAOilXZMhw3O3thmoFGiubZJqKAKNzC3RbpITNKEj0vJ3HTbRMdSepttajnkBlZAQKw/oy/kuI@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyDvwrVdd+nPm1Fw+M9HqyA5nAQz/k7JvynsCZSQuk8yUvF1ASc
+ AqyZ9jkzbBBhYXpbbx3Kmu2GIjcO6J3zhiBNaJNb7iXGp1P+auN4EP+H1g0VBsbC1lo=
+X-Gm-Gg: AfdE7cll1/DMBUN6oUO7I8H797P0xJrGV/l25BSyzx+GXGr0lGv+1AVx7nys9t3RLcu
+ wa0CCcTVqSlg1LVaQiXVvWXHIlguUCJEDIAIUO6bb/ItAkxA3x7a6mF+7edQSm3cBjfN4clYt1j
+ HbWGYJ53zpbsh+68ezoMjXMT54RPs8wnTEIsIpHCduWBKsTHfw6avEU3dZUN3p34k3DsTAL2Lu4
+ Xz0dxC9y0dPU6YFb3fwWj21x5yFWARwF2mYf/yHaqvb4AzBjm8ELqcZ4tTOcjK/2KlYEMFf9mGI
+ OVvpbViYLZutC5RTdyG5H4VZBB2FuyHtbkBckzFPPqglp2IGT/mqYLwvYt6FuoGzUcKTjQZ5th8
+ tbU38jUc6R/8MpDSUciL9HtzPtF0rfxRxofEObw8PyIL4z/11MQG70jSdS2KeaqpU7OQERj2r8o
+ k=
+X-Received: by 2002:a05:6a21:684:b0:3b5:6b5a:4f29 with SMTP id
+ adf61e73a8af0-3c08ee38980mr7590280637.30.1783467775848; 
+ Tue, 07 Jul 2026 16:42:55 -0700 (PDT)
+Received: from arch-ideapad ([2804:7f0:3df:3dbf:fd10:7260:dc20:84b7])
+ by smtp.gmail.com with ESMTPSA id
+ 5a478bee46e88-31174ae6cd9sm13637822eec.31.2026.07.07.16.42.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 07 Jul 2026 16:42:55 -0700 (PDT)
+From: Ryan Oliveira <ryan.oliveiraf@usp.br>
+X-Google-Original-From: Ryan Oliveira
+To: ryan.oliveiraf@usp.br
+Cc: airlied@gmail.com, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
+ dri-devel@lists.freedesktop.org, kaikycintra@usp.br, simona@ffwll.ch
+Subject: Re: [PATCH RESEND] drm/amdgpu: Unify vm_fault_interrupt_state logic
+ for gmc v10 and v12_0
+Date: Tue,  7 Jul 2026 20:42:21 -0300
+Message-ID: <20260707234221.34738-1-ryan.oliveiraf@usp.br>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260616184209.18014-1-ryan.oliveiraf@usp.br>
+References: <20260616184209.18014-1-ryan.oliveiraf@usp.br>
 MIME-Version: 1.0
-References: <20260707180021.2642432-1-alexander.deucher@amd.com>
- <20260707180021.2642432-5-alexander.deucher@amd.com>
- <9cdf7dfd-4c78-48c5-9cd1-d6523b8039d2@amd.com>
-In-Reply-To: <9cdf7dfd-4c78-48c5-9cd1-d6523b8039d2@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 7 Jul 2026 14:20:15 -0400
-X-Gm-Features: AVVi8CdKgxFpFk1ogrqfjBhb5CHYYmQ1B3Axa-GJBjvon2A_AMbIrC7RxH_7YR8
-Message-ID: <CADnq5_MHwzBZcfTUsEOyjYK9aJL4nHXZUFxDQjY2-tfjO8rCQg@mail.gmail.com>
-Subject: Re: [PATCH 5/5] drm/amdgpu/gx12.1: Add ip dump support
-To: Mukul Joshi <mukul.joshi@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 08 Jul 2026 13:12:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,387 +98,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:mukul.joshi@amd.com,m:alexander.deucher@amd.com,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,amd.com,lists.freedesktop.org,usp.br,ffwll.ch];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:ryan.oliveiraf@usp.br,m:airlied@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:dri-devel@lists.freedesktop.org,m:kaikycintra@usp.br,m:simona@ffwll.ch,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[ryan.oliveiraf@usp.br,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[ryan.oliveiraf@usp.br,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[usp.br:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,amd.com:email,lists.freedesktop.org:from_smtp]
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2B35D71E971
+X-Rspamd-Queue-Id: 2D9B0726A98
 
-On Tue, Jul 7, 2026 at 2:19=E2=80=AFPM Mukul Joshi <mukul.joshi@amd.com> wr=
-ote:
->
-> Please do before pushing:
->
-> s/gx12.1/gfx12.1 in the patch headline
+Hi everyone,
 
-Yup.  Already fixed.  thanks!
+Just a quick ping on this patch. Let me know if you need any changes or if there is anything I can do to help here.
 
->
-> Regards,
->
-> Mukul
->
-> On 7/7/2026 2:00 PM, Alex Deucher wrote:
->
-> Add support for dumping IP register state.
->
-> v2: fixes suggested by Mukul
->
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c | 277 +++++++++++++++++++++++++
->  1 file changed, 277 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c b/drivers/gpu/drm/amd=
-/amdgpu/gfx_v12_1.c
-> index 408fd23c6bd43..1d09f1771dde3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v12_1.c
-> @@ -69,6 +69,127 @@ MODULE_FIRMWARE("amdgpu/gc_12_1_0_rlc_1.bin");
->   (SH_MEM_ALIGNMENT_MODE_UNALIGNED_GFX12_1_0 << SH_MEM_CONFIG__ALIGNMENT_=
-MODE__SHIFT) | \
->   (3 << SH_MEM_CONFIG__INITIAL_INST_PREFETCH__SHIFT))
->
-> +
-> +static const struct amdgpu_hwip_reg_entry gc_reg_list_12_1[] =3D {
-> + SOC15_REG_ENTRY_STR(GC, 0, regGRBM_STATUS),
-> + SOC15_REG_ENTRY_STR(GC, 0, regGRBM_STATUS2),
-> + SOC15_REG_ENTRY_STR(GC, 0, regGRBM_STATUS3),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_STALLED_STAT1),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_STALLED_STAT2),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_STALLED_STAT3),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_CPC_STALLED_STAT1),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_CPF_STALLED_STAT1),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_BUSY_STAT),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_CPC_BUSY_STAT),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_CPF_BUSY_STAT),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_CPC_BUSY_STAT2),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_CPF_BUSY_STAT2),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_CPF_STATUS),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_GFX_ERROR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_GFX_HPD_STATUS0),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_RB_BASE),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_RB_RPTR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_RB_WPTR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_RB0_BASE),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_RB0_RPTR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_RB0_WPTR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_IB1_CMD_BUFSZ),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_IB2_CMD_BUFSZ),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_IB1_BASE_LO),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_IB1_BASE_HI),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_IB1_BUFSZ),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_IB2_BASE_LO),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_IB2_BASE_HI),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_IB2_BUFSZ),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCPF_UTCL1_STATUS),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCPC_UTCL1_STATUS),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCPG_UTCL1_STATUS),
-> + SOC15_REG_ENTRY_STR(GC, 0, regIA_UTCL1_STATUS),
-> + SOC15_REG_ENTRY_STR(GC, 0, regIA_UTCL1_STATUS_2),
-> + SOC15_REG_ENTRY_STR(GC, 0, regPA_CL_CNTL_STATUS),
-> + SOC15_REG_ENTRY_STR(GC, 0, regRMI_UTCL1_STATUS),
-> + SOC15_REG_ENTRY_STR(GC, 0, regSQC_CACHES),
-> + SOC15_REG_ENTRY_STR(GC, 0, regSQG_STATUS),
-> + SOC15_REG_ENTRY_STR(GC, 0, regWD_UTCL1_STATUS),
-> + SOC15_REG_ENTRY_STR(GC, 0, regGCVM_L2_PROTECTION_FAULT_CNTL2),
-> + SOC15_REG_ENTRY_STR(GC, 0, regGCVM_L2_PROTECTION_FAULT_STATUS_LO32),
-> + SOC15_REG_ENTRY_STR(GC, 0, regGCVM_L2_PROTECTION_FAULT_STATUS_HI32),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_DEBUG),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_CNTL),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_CNTL),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_INSTR_PNTR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_ME_INSTR_PNTR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_PFP_INSTR_PNTR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_CPC_STATUS),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_GFX_RS64_INSTR_PNTR0),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_GFX_RS64_INSTR_PNTR1),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_RS64_INSTR_PNTR),
-> + /* cp header registers */
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MES_HEADER_DUMP),
-> + /* SE status registers */
-> + SOC15_REG_ENTRY_STR(GC, 0, regGRBM_STATUS_SE0),
-> + SOC15_REG_ENTRY_STR(GC, 0, regGRBM_STATUS_SE1),
-> +};
-> +
-> +static const struct amdgpu_hwip_reg_entry gc_cp_reg_list_12_1[] =3D {
-> + /* compute registers */
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_VMID),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PERSISTENT_STATE),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PIPE_PRIORITY),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_QUEUE_PRIORITY),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_QUANTUM),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_BASE),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_BASE_HI),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_RPTR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_WPTR_POLL_ADDR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_WPTR_POLL_ADDR_HI),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_DOORBELL_CONTROL),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_CONTROL),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_IB_BASE_ADDR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_IB_BASE_ADDR_HI),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_IB_RPTR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_IB_CONTROL),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_DEQUEUE_REQUEST),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_EOP_BASE_ADDR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_EOP_BASE_ADDR_HI),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_EOP_CONTROL),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_EOP_RPTR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_EOP_WPTR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_EOP_EVENTS),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_CTX_SAVE_BASE_ADDR_LO),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_CTX_SAVE_BASE_ADDR_HI),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_CTX_SAVE_CONTROL),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_CNTL_STACK_OFFSET),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_CNTL_STACK_SIZE),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_WG_STATE_OFFSET),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_CTX_SAVE_SIZE),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_GDS_RESOURCE_STATE),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_ERROR),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_EOP_WPTR_MEM),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_WPTR_LO),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_PQ_WPTR_HI),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_SUSPEND_CNTL_STACK_OFFSET),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_SUSPEND_CNTL_STACK_DW_CNT),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_SUSPEND_WG_STATE_OFFSET),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_HQD_DEQUEUE_STATUS),
-> + /* cp header registers */
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
-> + SOC15_REG_ENTRY_STR(GC, 0, regCP_MEC_ME1_HEADER_DUMP),
-> +};
-> +
->  static void gfx_v12_1_xcc_disable_gpa_mode(struct amdgpu_device *adev, i=
-nt xcc_id);
->  static void gfx_v12_1_set_ring_funcs(struct amdgpu_device *adev);
->  static void gfx_v12_1_set_irq_funcs(struct amdgpu_device *adev);
-> @@ -1148,6 +1269,155 @@ static int gfx_v12_1_rlc_backdoor_autoload_enable=
-(struct amdgpu_device *adev)
->   return 0;
->  }
->
-> +static void gfx_v12_1_alloc_ip_dump(struct amdgpu_device *adev)
-> +{
-> + uint32_t reg_count =3D ARRAY_SIZE(gc_reg_list_12_1);
-> + uint32_t *ptr, inst, num_xcc;
-> +
-> + num_xcc =3D NUM_XCC(adev->gfx.xcc_mask);
-> +
-> + ptr =3D kcalloc(reg_count * num_xcc, sizeof(uint32_t), GFP_KERNEL);
-> + if (!ptr) {
-> + DRM_ERROR("Failed to allocate memory for GFX IP Dump\n");
-> + adev->gfx.ip_dump_core =3D NULL;
-> + } else {
-> + adev->gfx.ip_dump_core =3D ptr;
-> + }
-> +
-> + /* Allocate memory for compute queue registers for all the instances */
-> + reg_count =3D ARRAY_SIZE(gc_cp_reg_list_12_1);
-> + inst =3D adev->gfx.mec.num_mec * adev->gfx.mec.num_pipe_per_mec *
-> + adev->gfx.mec.num_queue_per_pipe;
-> +
-> + ptr =3D kcalloc(reg_count * inst * num_xcc, sizeof(uint32_t), GFP_KERNE=
-L);
-> + if (!ptr) {
-> + DRM_ERROR("Failed to allocate memory for Compute Queues IP Dump\n");
-> + adev->gfx.ip_dump_compute_queues =3D NULL;
-> + } else {
-> + adev->gfx.ip_dump_compute_queues =3D ptr;
-> + }
-> +}
-> +
-> +static void gfx_v12_1_ip_print(struct amdgpu_ip_block *ip_block,
-> +       struct drm_printer *p)
-> +{
-> + struct amdgpu_device *adev =3D ip_block->adev;
-> + uint32_t i, j, k;
-> + uint32_t xcc_id, xcc_offset, inst_offset;
-> + uint32_t num_xcc, reg, num_inst;
-> + uint32_t reg_count =3D ARRAY_SIZE(gc_reg_list_12_1);
-> +
-> + if (!adev->gfx.ip_dump_core)
-> + return;
-> +
-> + num_xcc =3D NUM_XCC(adev->gfx.xcc_mask);
-> + drm_printf(p, "Number of Instances:%d\n", num_xcc);
-> + for (xcc_id =3D 0; xcc_id < num_xcc; xcc_id++) {
-> + xcc_offset =3D xcc_id * reg_count;
-> + drm_printf(p, "\nInstance id:%d\n", xcc_id);
-> + for (i =3D 0; i < reg_count; i++)
-> + drm_printf(p, "%-50s \t 0x%08x\n",
-> +   gc_reg_list_12_1[i].reg_name,
-> +   adev->gfx.ip_dump_core[xcc_offset + i]);
-> + }
-> +
-> + /* print compute queue registers for all instances */
-> + if (!adev->gfx.ip_dump_compute_queues)
-> + return;
-> +
-> + reg_count =3D ARRAY_SIZE(gc_cp_reg_list_12_1);
-> + drm_printf(p, "\nnum_xcc: %d num_mec: %d num_pipe: %d num_queue: %d\n",
-> +   num_xcc,
-> +   adev->gfx.mec.num_mec,
-> +   adev->gfx.mec.num_pipe_per_mec,
-> +   adev->gfx.mec.num_queue_per_pipe);
-> +
-> + num_inst =3D adev->gfx.mec.num_mec * adev->gfx.mec.num_pipe_per_mec *
-> + adev->gfx.mec.num_queue_per_pipe;
-> + for (xcc_id =3D 0; xcc_id < num_xcc; xcc_id++) {
-> + xcc_offset =3D xcc_id * reg_count * num_inst;
-> + inst_offset =3D 0;
-> + for (i =3D 0; i < adev->gfx.mec.num_mec; i++) {
-> + for (j =3D 0; j < adev->gfx.mec.num_pipe_per_mec; j++) {
-> + for (k =3D 0; k < adev->gfx.mec.num_queue_per_pipe; k++) {
-> + drm_printf(p,
-> +   "\nxcc:%d mec:%d, pipe:%d, queue:%d\n",
-> +    xcc_id, i, j, k);
-> + for (reg =3D 0; reg < reg_count; reg++) {
-> + drm_printf(p,
-> +   "%-50s \t 0x%08x\n",
-> +   gc_cp_reg_list_12_1[reg].reg_name,
-> +   adev->gfx.ip_dump_compute_queues
-> +   [xcc_offset + inst_offset +
-> +    reg]);
-> + }
-> + inst_offset +=3D reg_count;
-> + }
-> + }
-> + }
-> + }
-> +}
-> +
-> +static void gfx_v12_1_ip_dump(struct amdgpu_ip_block *ip_block)
-> +{
-> + struct amdgpu_device *adev =3D ip_block->adev;
-> + uint32_t i, j, k;
-> + uint32_t num_xcc, reg, num_inst;
-> + uint32_t xcc_id, xcc_offset, inst_offset;
-> + uint32_t reg_count =3D ARRAY_SIZE(gc_reg_list_12_1);
-> +
-> + if (!adev->gfx.ip_dump_core)
-> + return;
-> +
-> + num_xcc =3D NUM_XCC(adev->gfx.xcc_mask);
-> +
-> + amdgpu_gfx_off_ctrl(adev, false);
-> + for (xcc_id =3D 0; xcc_id < num_xcc; xcc_id++) {
-> + xcc_offset =3D xcc_id * reg_count;
-> + for (i =3D 0; i < reg_count; i++)
-> + adev->gfx.ip_dump_core[xcc_offset + i] =3D
-> + RREG32(SOC15_REG_ENTRY_OFFSET_INST(gc_reg_list_12_1[i],
-> +   GET_INST(GC, xcc_id)));
-> + }
-> + amdgpu_gfx_off_ctrl(adev, true);
-> +
-> + /* dump compute queue registers for all instances */
-> + if (!adev->gfx.ip_dump_compute_queues)
-> + return;
-> +
-> + num_inst =3D adev->gfx.mec.num_mec * adev->gfx.mec.num_pipe_per_mec *
-> + adev->gfx.mec.num_queue_per_pipe;
-> + reg_count =3D ARRAY_SIZE(gc_cp_reg_list_12_1);
-> + amdgpu_gfx_off_ctrl(adev, false);
-> + mutex_lock(&adev->srbm_mutex);
-> + for (xcc_id =3D 0; xcc_id < num_xcc; xcc_id++) {
-> + xcc_offset =3D xcc_id * reg_count * num_inst;
-> + inst_offset =3D 0;
-> + for (i =3D 0; i < adev->gfx.mec.num_mec; i++) {
-> + for (j =3D 0; j < adev->gfx.mec.num_pipe_per_mec; j++) {
-> + for (k =3D 0; k < adev->gfx.mec.num_queue_per_pipe; k++) {
-> + /* ME0 is for GFX so start from 1 for CP */
-> + soc_v1_0_grbm_select(adev, 1 + i, j, k, 0,
-> +     GET_INST(GC, xcc_id));
-> +
-> + for (reg =3D 0; reg < reg_count; reg++) {
-> + adev->gfx.ip_dump_compute_queues
-> + [xcc_offset +
-> + inst_offset + reg] =3D
-> + RREG32(SOC15_REG_ENTRY_OFFSET_INST(
-> +       gc_cp_reg_list_12_1[reg],
-> +       GET_INST(GC, xcc_id)));
-> + }
-> + inst_offset +=3D reg_count;
-> + }
-> + }
-> + }
-> + }
-> + soc_v1_0_grbm_select(adev, 0, 0, 0, 0, 0);
-> + mutex_unlock(&adev->srbm_mutex);
-> + amdgpu_gfx_off_ctrl(adev, true);
-> +}
-> +
->  static int gfx_v12_1_sw_init(struct amdgpu_ip_block *ip_block)
->  {
->   uint16_t major_ver, minor_ver;
-> @@ -1286,6 +1556,8 @@ static int gfx_v12_1_sw_init(struct amdgpu_ip_block=
- *ip_block)
->   if (r)
->   return r;
->
-> + gfx_v12_1_alloc_ip_dump(adev);
-> +
->   mutex_init(&adev->gfx.mec.reset_mutex);
->
->   return 0;
-> @@ -1325,6 +1597,9 @@ static int gfx_v12_1_sw_fini(struct amdgpu_ip_block=
- *ip_block)
->   gfx_v12_1_free_microcode(adev);
->   amdgpu_gfx_sysfs_fini(adev);
->
-> + kfree(adev->gfx.ip_dump_core);
-> + kfree(adev->gfx.ip_dump_compute_queues);
-> +
->   return 0;
->  }
->
-> @@ -3914,6 +4189,8 @@ static const struct amd_ip_funcs gfx_v12_1_ip_funcs=
- =3D {
->   .set_clockgating_state =3D gfx_v12_1_set_clockgating_state,
->   .set_powergating_state =3D gfx_v12_1_set_powergating_state,
->   .get_clockgating_state =3D gfx_v12_1_get_clockgating_state,
-> + .dump_ip_state =3D gfx_v12_1_ip_dump,
-> + .print_ip_state =3D gfx_v12_1_ip_print,
->  };
->
->  static const struct amdgpu_ring_funcs gfx_v12_1_ring_funcs_compute =3D {
+Best regards,
+Ryan O.
