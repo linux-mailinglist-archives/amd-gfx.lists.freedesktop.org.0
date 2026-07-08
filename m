@@ -2,52 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id x+hZIoymTmrHRQIAu9opvQ
+	id qzGWKY+mTmrJRQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:35:40 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:35:43 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24C90729E44
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:35:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47639729E4C
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:35:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=KLe3MH+J;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=IiVMKSFF;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7972E10F255;
-	Wed,  8 Jul 2026 19:35:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AABEB10F258;
+	Wed,  8 Jul 2026 19:35:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010004.outbound.protection.outlook.com
- [40.93.198.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4025A10F255
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jul 2026 19:35:37 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011023.outbound.protection.outlook.com [52.101.52.23])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD43110F257
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jul 2026 19:35:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d6nCDt8+REgcCrSiIFQo4YS8Zl4ongAbnEjcPDkbivcvDb9/RGhGpz2fr8jKIXiwLt8dfoKJofPldMgKLRnjbsb4j6ZuBfOLTzkweiy0ugQ21WlBZO6zIiE+giIFJtd1YQFYCaEaIsc4X7fBwmDr8H3ayxp+rTDgsnQ/5IZyuL6y5y5i2suwttectynRVn58PeDOx/RoBEfih+27en0FEcLRjVPH/DIBsfXjuhFhuZNbf3s89g+kMMLmiDBtI0/IazXZhNRirk0rpoiuo9Gkj11pyfIQ2Urg9AcrKv7PqEZnf8VVAkUfMoIwHD3IxQLr2s7qo7oOwhvBCRehhtGgjA==
+ b=fXu2FbD9R/PK6HLsEHtPnARDt0K9vGJ3nQKFbQoOgBoKiY6ql/aTAdMXGIgu7K/Nigyjgv/rq2/Hd3yoIdw1MpyiCFB4IEeIOwbS952EnaMTbAsJLLnv/PAHj1Nj8NerjS1HwfKIAVeiBHBIEvERKrl6p2snza1DtfpJFso8Gt87B2Jnh1kKZcYkD5hsIxNK+tkgpy/zOiSvI0svgIz24xY3QaOFytX2uZkRIb1sCDUMFT7dchjCvVayCYm1FnEfPizWI1Tboy/sNthnh9T59SvFmHSeiso5SRoVpivmwOgrg8YyQnaIH4z40K4GYFx1DM6Va9OK77miWga7CtaSXQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UFp65RFDb1lb3GXpz57LMea9KwydmwzLpEyH8BXjW00=;
- b=fLfWzLysksKnzbyP1h33iP0oYglIAo+V7a+hRACt3MXihLmD4O9Ya7LQ9/cuz54/vgghP5tZzhqK9xdJNql+HzXoaiej88r2AfvqTzL4Nvx8pgVM1yrOSyAmW6jRuHyFrIto1vDEKfL8WZ3qA+Ers4tyMsYT6T/5xBixh30HMPZP2xs5UZoDEw6DbgjNUuAlawk8gaKUOOXUZpWMPk6OcR3RQLuA4FnYHH8A3ZqlAvuf02cuF2cpRSqaYaasZNLX6uPeMUtAnfEDQdwJTEDFNReW+zild5Bie8iGTzF+LNMt73sqS82QZpTWIKNI/1Hrzp+Lx4NalytI1jXxVe0lpA==
+ bh=cgVyJQRPyuq8bFDHkknrd5JZWIrg4kVl9ktcCUw2KKQ=;
+ b=BvQm0PV2k4nP6jI4o3vkR1XyUeRQgNgnQ4tieBVAzOmUnYU6ZlpGJJO8R6yoGmanNPwhpc1MI7YP4QhJ38WCGAyjNbvqepEhonj8Ipw8Be+K0e5+r4QGnlHsmKSDi3XfLmXP30gqR9Gn/AWrXVYW7yZxDT87awmxpGdVkrQ0RL7EiOmIlRrJ8l5K7RneEA+fXPatEJSfdFHxN+Okg6T9dJCoL+UPF8w5jUtSTJdXuW5R6wjtPECXU3LIOUDc+1usHTOG9SKVL9lJdWnGkAdJP6lONkq6l2aBD4gh4FbsaaPhHvS04yaiv2SsIgLydCJ3bzjSScMxLJivKroyV4WHvg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UFp65RFDb1lb3GXpz57LMea9KwydmwzLpEyH8BXjW00=;
- b=KLe3MH+JdJoxhQ0SuNufg4Q6PemU6dhbgFABdhV2AMjrw7rdN7rJKvxShqklG+Vt+f7FFz8zjuQYazjvNWd5qnlq2Zkb1pfZ+tJiHj3wJlKWiNbU7I3j1ul5B8GXYlGTr8Th397n34zXL7kf4724ODH2kJWA7f8lqyulycWF1zg=
-Received: from BN9PR03CA0918.namprd03.prod.outlook.com (2603:10b6:408:107::23)
- by SA0PR12MB4384.namprd12.prod.outlook.com (2603:10b6:806:9f::22)
+ bh=cgVyJQRPyuq8bFDHkknrd5JZWIrg4kVl9ktcCUw2KKQ=;
+ b=IiVMKSFF6sY1Jrrtfiz20gD18HSX2us0KHsAC56GQ/bgI3Zb/RaVXcGCom9lxUYp0Q+eD/E0gP1BgfbkvkZoiTzhXGb+T9vWYNuEslHj0m4A2MGaj9fpGaulWxzXE+3ECWOIrvmWGTR9zE/HpbGp/zITBMr4M4RXoVbJRcJ1ezQ=
+Received: from BN9PR03CA0929.namprd03.prod.outlook.com (2603:10b6:408:107::34)
+ by SJ0PR12MB5609.namprd12.prod.outlook.com (2603:10b6:a03:42c::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Wed, 8 Jul
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Wed, 8 Jul
  2026 19:35:33 +0000
 Received: from BN3PEPF0000B075.namprd04.prod.outlook.com
- (2603:10b6:408:107:cafe::7d) by BN9PR03CA0918.outlook.office365.com
- (2603:10b6:408:107::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.10 via Frontend Transport; Wed, 8
+ (2603:10b6:408:107:cafe::25) by BN9PR03CA0929.outlook.office365.com
+ (2603:10b6:408:107::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.9 via Frontend Transport; Wed, 8
  Jul 2026 19:35:33 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -67,9 +66,9 @@ From: Mario Limonciello <mario.limonciello@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Mario Limonciello <mario.limonciello@amd.com>, Oz Tiram
  <oz@shift-computing.de>
-Subject: [PATCH 2/5] drm/amdgpu: Release VFCT ACPI table reference
-Date: Wed, 8 Jul 2026 14:35:15 -0500
-Message-ID: <20260708193518.702584-3-mario.limonciello@amd.com>
+Subject: [PATCH 3/5] drm/radeon: Modernize VFCT error handling
+Date: Wed, 8 Jul 2026 14:35:16 -0500
+Message-ID: <20260708193518.702584-4-mario.limonciello@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260708193518.702584-1-mario.limonciello@amd.com>
 References: <20260708193518.702584-1-mario.limonciello@amd.com>
@@ -81,29 +80,29 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B075:EE_|SA0PR12MB4384:EE_
-X-MS-Office365-Filtering-Correlation-Id: a3654e69-939c-497a-475a-08dedd2813b3
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B075:EE_|SJ0PR12MB5609:EE_
+X-MS-Office365-Filtering-Correlation-Id: 728af407-0f2f-48e8-674d-08dedd2813e4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|23010399003|82310400026|1800799024|36860700016|18002099003|22082099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: drO6gm0+f+n87DSvW6ljwPnZwcrbFpfEkoHZudkajn/rC1ap79Lk3GhYsJdaimYVkMaRZkTtVQnO9sPNUvhBB4oYv/MDeDjR61YCgi5w14UR98ACYoxSCBVJL6ILN6j0vdBKdYewc1CVMtaK/42tpeN+6yTgTnMJXUFC/ERkU6NSepOXXs+KQ7pXkMKzCRMTZkrvlt5v7S9msAHN3e7hE0B7edzw4Nzzv0HKqud7q0MjK6tEUTvT5Ps9KMS817dhhq7y8l+7C+4cL0aI6oKPfwMX6Fk9WlQY7jMS9lDopJqQXJsM6BLDat9OBfORGSJ9ftEcxS9kaTKWSuhtAirBz/bnLaH6Q6sbZSdMfufNLQ5GqaMBFOfqpSqyMDo31CzDqHGvvRgRD4XAdbDPG+ypNNE+NjMUOSckONxqj+Rvs+Cp1pibWfIARJKcHfgTTu31nJdv1zh1/Zs2NSZWOVHXQ3bTmHVFfEpbTmy+tMBaWhuBSrGYQgHus3DkvTlCibZCJWdxEfDPpFjv3oJv2uxpzER76uTpGck1H8NYARC87bWdMfzKBHRC9KLRSa03sQKytvumNMV+pRyJZFh+Ku1iDeauXbrZvuLlt2Jz+gXWcNfAa3UBM52qRAUkHJcRhU9cN8J9Vf+jXSJR3ycCKN5xKBr0NObFcezCclsLMjKRms2SUbVerBLQ7PyIzWaNZlSsWMJHA0py9Q4rownRGA7iag==
+ ARA:13230040|1800799024|82310400026|376014|23010399003|36860700016|22082099003|18002099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: zyR+rmH0xnD6QsXhvXfNEAwxsVr6oA6FPmqoYMYFXQBDSejplrDfYzkhjWkaygUjS/Ev25kcNgpLBdygM1jxYSQbTxIYfxiAfqSTC7pb8yAEbyUYq8vVOilCfEcy542WepM2663q+QQRTVS+73KjlGjapSIGvOVyHuhcVEcyCA5dYTIyuULNegRf6ZsNDFtwxwXbV8fKeqE0VqTEjmI3L9Pef8KJOns2e0uqrD7j77FSR6ChswfPNlAHJmds4fLbdYxanApLhMwObOugr0d3ncng2uDINOY18b2v++E7UFsj+cwBn8tXIvpz1P9BK1OtduPlj1C7niP9UkAwJD27Xo6xReTn9u5Ah/aIIBulbu5738G+DzI1KtWonC3+vSzzaD/eqlhw7Q1QckMCqYGrlqhwtYY1KsHxmEHrB4maRJfP5389vSEiO6SOiElfivj+n7Dx628triJEV6u7FdWaqsUt5zIfPfOsyMt5hYGjpzrDgSRXq8/c07TPhIo9tkMp0llS27k8Lto9PxS+FAzI/dP3RkjXIBkVgVXZWwLXehSsT355Nqfcmy56k2zyQ3c7jB/Vx/H2zIZV7mm9Ufz6311Pdoez5uTT3UnZBkYvEUxn12sSRaO3AMyrUCJJQjfIVa9C4SF2Y/ObjrJq1q50rHlEXFcejR/DfgUsob4bGONrXWarTmi2vD5OHj/8eEqFciC6JMJkWorp9PSa8rzrlw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(82310400026)(1800799024)(36860700016)(18002099003)(22082099003)(11063799006)(56012099006);
+ SFS:(13230040)(1800799024)(82310400026)(376014)(23010399003)(36860700016)(22082099003)(18002099003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: ttvmUrzx5Z32Uj5UQeYY1kbGT+oZcZNQ2vwtnceheDmodu4qFQWOuwZT0gMaSkarhffmD8FHcsRWpMuNF/d66ZK2qar1Z64IldpLCA2dVQNzSoPcquqbyZgyH0Ck97DKcbXE7FmaYehP6YHa1Gf6QS+mq6Yc1d/oObL8SHpp8u2RCy6K40sJcSFo2c3J2+UZo6b3Jw/eJKsaV1Qhn39Ofn7CpBpzdt/GXBywPdII+T8uAMHh+ddHWtwjhvt1GqKBZtFGIbSJmYyjL+10G+kEFjS25MHhjxsk31GWbLDJ6cQPdH/8HiA1ByFdkoAQFIzB/4q5ke2uNM59lxykAFTQy2JGtDQK3NaBZNCh52kH4VaHrCbybDwmt/HSpaSu9yKnbTQ0GZbSzWCBvz6xwZdQ6R2SV0VPNmNraFd9ZdDJLYm6NhugVmXE61YfMpnXugLw
+X-MS-Exchange-AntiSpam-MessageData-0: lU7gZA13Y0gFCgQSLZtaNwitCo+V/W5wWP9QHsqxdL7NeHGVfLBVDeUSQl5rtB97pVqbDcIHzsbXjaBWKdI47d3W5A610wZD1/4+UH0NhUP48HQU2SGNF9AUv04qTlA8ygeHKbGl2FtZ2Np8Xb684s3+SHkx+XRv4LYyNHOEm30S93fnKnC8fkzoUKCbUZN2HpcJ0vqAMArEsZ+7ExbU9UeFo2RxLD+pzAJBhcTXMmqtgwY8Cfg2GIuyp4f7thUOZ+VPAW+ELAtjAK9bQb3lnINsGQv4PZgrnl1mkCDzMphbIQ67BggVVjNxk/fIV++EvqkZSqR3zHatIbM1fVBJEMpPitD+aiyno6tQCzviFBAjy+NkEDjPdu8wX6fBNuiV7lY2CTXQkO2Tn9dwz5U/0khTM8usqnO1cKOLqnJGqk+D1N096gg8G8FOlj43X044
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 19:35:33.1709 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3654e69-939c-497a-475a-08dedd2813b3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 19:35:33.4925 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 728af407-0f2f-48e8-674d-08dedd2813e4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B075.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4384
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5609
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,83 +146,73 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 24C90729E44
+X-Rspamd-Queue-Id: 47639729E4C
 
-amdgpu_acpi_vfct_bios() fetches the VFCT table with acpi_get_table()
-but never releases it. acpi_get_table() takes a reference on the
-table (incrementing its validation_count and mapping it on the 0->1
-transition); without a paired acpi_put_table() the mapping is leaked
-on every call, whether or not a matching VBIOS image is found.
+Clean up radeon_acpi_vfct_bios() logging:
 
-Route all exit paths after the table is acquired through a common
-acpi_put_table(). The VBIOS image is copied out with kmemdup() before
-the table is released, so it remains valid for the caller.
+- Replace DRM_ERROR with dev_warn tied to the PCI device
+- Use unsigned int rather than bare unsigned for the offset
+
+A malformed or missing VFCT table is not fatal: radeon falls back
+to the other BIOS fetch methods, so warn rather than error on these
+paths.
+
+The goto out label is retained: acpi_get_table() takes a reference on
+the table (incrementing its validation_count and mapping it), which
+must be released with a paired acpi_put_table() on every exit path.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
 Cc: Oz Tiram <oz@shift-computing.de>
- drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 17 +++++++++++------
- 1 file changed, 11 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/radeon/radeon_bios.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-index d8fd047295d9d..bf6df87e0bafd 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-@@ -423,13 +423,14 @@ static bool amdgpu_acpi_vfct_bios(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/radeon/radeon_bios.c b/drivers/gpu/drm/radeon/radeon_bios.c
+index 3a8c5199a0fe7..c6df799c3cf4a 100644
+--- a/drivers/gpu/drm/radeon/radeon_bios.c
++++ b/drivers/gpu/drm/radeon/radeon_bios.c
+@@ -602,14 +602,14 @@ static bool radeon_acpi_vfct_bios(struct radeon_device *rdev)
+ 	struct acpi_table_header *hdr;
  	acpi_size tbl_size;
  	UEFI_ACPI_VFCT *vfct;
- 	unsigned int offset;
-+	bool r = false;
+-	unsigned offset;
++	unsigned int offset;
+ 	bool r = false;
  
  	if (!ACPI_SUCCESS(acpi_get_table("VFCT", 1, &hdr)))
  		return false;
  	tbl_size = hdr->length;
  	if (tbl_size < sizeof(UEFI_ACPI_VFCT)) {
- 		dev_info(adev->dev, "ACPI VFCT table present but broken (too short #1),skipping\n");
--		return false;
-+		goto out;
+-		DRM_ERROR("ACPI VFCT table present but broken (too short #1)\n");
++		dev_warn(&rdev->pdev->dev, "ACPI VFCT table present but broken (too short #1),skipping\n");
+ 		goto out;
  	}
  
- 	vfct = (UEFI_ACPI_VFCT *)hdr;
-@@ -442,13 +443,13 @@ static bool amdgpu_acpi_vfct_bios(struct amdgpu_device *adev)
+@@ -622,13 +622,13 @@ static bool radeon_acpi_vfct_bios(struct radeon_device *rdev)
+ 
  		offset += sizeof(VFCT_IMAGE_HEADER);
  		if (offset > tbl_size) {
- 			dev_info(adev->dev, "ACPI VFCT image header truncated,skipping\n");
--			return false;
-+			goto out;
+-			DRM_ERROR("ACPI VFCT image header truncated\n");
++			dev_warn(&rdev->pdev->dev, "ACPI VFCT image header truncated,skipping\n");
+ 			goto out;
  		}
  
  		offset += vhdr->ImageLength;
  		if (offset > tbl_size) {
- 			dev_info(adev->dev, "ACPI VFCT image truncated,skipping\n");
--			return false;
-+			goto out;
+-			DRM_ERROR("ACPI VFCT image truncated\n");
++			dev_warn(&rdev->pdev->dev, "ACPI VFCT image truncated,skipping\n");
+ 			goto out;
  		}
  
- 		if (vhdr->ImageLength &&
-@@ -459,15 +460,19 @@ static bool amdgpu_acpi_vfct_bios(struct amdgpu_device *adev)
- 
- 			if (!check_atom_bios(adev, vhdr->ImageLength)) {
- 				amdgpu_bios_release(adev);
--				return false;
-+				goto out;
- 			}
- 			adev->bios_size = vhdr->ImageLength;
--			return true;
-+			r = true;
-+			goto out;
+@@ -648,7 +648,7 @@ static bool radeon_acpi_vfct_bios(struct radeon_device *rdev)
  		}
  	}
  
- 	dev_info(adev->dev, "ACPI VFCT table present but broken (too short #2),skipping\n");
--	return false;
-+
-+out:
-+	acpi_put_table(hdr);
-+	return r;
- }
- #else
- static inline bool amdgpu_acpi_vfct_bios(struct amdgpu_device *adev)
+-	DRM_ERROR("ACPI VFCT table present but broken (too short #2)\n");
++	dev_warn(&rdev->pdev->dev, "ACPI VFCT table present but broken (too short #2),skipping\n");
+ 
+ out:
+ 	acpi_put_table(hdr);
 -- 
 2.43.0
 
