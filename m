@@ -2,46 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0bbYM0xMTmp9KQIAu9opvQ
+	id 0rIYN/9MTmq6KQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 15:10:36 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 15:13:35 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C6BF726A2E
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 15:10:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F022726AD4
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 15:13:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=shift-computing.de header.s=dkim header.b=yBAcjNRw;
-	dmarc=pass (policy=reject) header.from=shift-computing.de;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=amd.com header.s=selector1 header.b=OKE5Ou2S;
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B450310E110;
-	Wed,  8 Jul 2026 13:10:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6E3610E5E9;
+	Wed,  8 Jul 2026 13:13:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.teamster.cloud (mail.teamster.cloud [213.136.73.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 972F610E110;
- Wed,  8 Jul 2026 13:10:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="------------CCDUz4vjeoeh1Zq5hUI00ac0"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shift-computing.de;
- s=dkim; t=1783516230;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=1306caePV0eL3QTcHMb8P2hoRGdgLrKRtCqXS5HIOPw=;
- b=yBAcjNRwOBHW3C+CT0I/7QuJXY5Y1e6ZtsbQpowW4dSwrrISNVIV8KurHWEQ42BKI14p2r
- 3m0BX3xglJrP3JYPaaMOieWaeVhJGbrgkFU0jkb/t6jiQQ+bwyasKlTBrWXAK4kmzw6exx
- FN590J4chxsDSkkGVlNo/XUQi4k++6+nb82OICpiKBolH86lZmyP6Rgj6SnpDy7nVh9NCo
- iedWfONBjPLZNnKXNzirT2QXHHKeGbQ3tYU1kPgmWVhLSyYxkl7WYdGkYk5u2x37tu36Ky
- 3bOP9GnoePOpm3tYx+7lfGoSO0Ey3woEPsWJ6KyXyHHAe8eWspmc1g8KXMewYw==
-Message-ID: <cc849fb3-224e-43c0-bc50-67fd025009e7@shift-computing.de>
-Date: Wed, 8 Jul 2026 15:10:08 +0200
-MIME-Version: 1.0
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012007.outbound.protection.outlook.com [52.101.53.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9971A10E5E9;
+ Wed,  8 Jul 2026 13:13:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Yy0GiLbwsv4a5ctRlkQrGwz9LZjUTMx3ejxv6SRKHfPW7bt8pM7fUdxhKlL0FqOTYmp5MMbG2Rt3O5DhWTjU84+dFkoWvjLJlN+C5jjtIT0cjBJhYBfRCp/GG3lcAfDNvy6VPBROw7SApfXhdv0hQlBgQog+OsZMdVeRL282+3+KWVZmv3dbsyUrxPeHCdbFt09t7AGKVX25rBQtfSvZvJ6JsSGzxyiqdJE0oBz7Ia6kbdJltBKjXW7ji6cWnwtsyZqRYEDCLz1bogMEeM/Dn1pOBDiulnQm7Nbt5bWukXQdFbZFnrV+MtKNix86wm+/SBTmgswAvBYHRSf8c2Qy0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jyk7kMeDKarlFPNymyhcRUwwyIKN37E+O/hy+1lw0ys=;
+ b=mVXFmMGT+pZ24sBjUy2EHKPb8Pmp3jTJJlFtam1U4CgEOKzNwq9/LI8cxMEio6uJnbRIApTPSK7uAiYfD0GxmAlfihe/stQWq36FiKwXNbXAWj+7NuTQBV6Vjtg4R5W29DA/dJ/wrt9CV1aVjnzLGFxKCoWR+LVC+idur6RQjnCHp65ikyWuP181DrRwDr9DoqwdxfTExX3iosnEIQJlSq5bypFZf3KhYSyES4EqMSkvkfzFXryyD1UBJQuvRXCMRB+oXOH3eAguJ+aow2WP/6EftTiNisJk3oKwQtES1kWy0DWTJ656tU/H0Pzw9a15FMLQFNGm3G507ezK6xYRKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jyk7kMeDKarlFPNymyhcRUwwyIKN37E+O/hy+1lw0ys=;
+ b=OKE5Ou2SkA9hoiRqCjXZy6OP70t3Wl63MSl4Dki2CJk29KxFT4nt/dIoKUzfNsWHr6LS0EXzOqtZUfNCNbcx/1gOH/DWrD3Wwdt3LuFBvVSlN2iHfDKVYYc1n6yLRofxMnFHqNxRCThanCDwshGw2Z9fZPyFUG/V14yPTwtMz8E=
+Received: from PH8PR12MB6914.namprd12.prod.outlook.com (2603:10b6:510:1cb::21)
+ by DM6PR12MB4484.namprd12.prod.outlook.com (2603:10b6:5:28f::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Wed, 8 Jul
+ 2026 13:13:29 +0000
+Received: from PH8PR12MB6914.namprd12.prod.outlook.com
+ ([fe80::2893:177a:72b0:6000]) by PH8PR12MB6914.namprd12.prod.outlook.com
+ ([fe80::2893:177a:72b0:6000%6]) with mapi id 15.21.0181.008; Wed, 8 Jul 2026
+ 13:13:28 +0000
+Message-ID: <0478bdcd-dc55-4eeb-b7a3-6c5e625ac5c1@amd.com>
+Date: Wed, 8 Jul 2026 08:13:26 -0500
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2] drm/amd/amdgpu: add firmware file fallback for APU
  VBIOS discovery
 Content-Language: en-US
-To: Mario Limonciello <mario.limonciello@amd.com>,
- amd-gfx@lists.freedesktop.org
+To: Oz Tiram <oz@shift-computing.de>, amd-gfx@lists.freedesktop.org
 Cc: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
  simona@ffwll.ch, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
@@ -52,9 +63,77 @@ References: <716a31c5-0484-4ef9-b49e-b71310f92d86@amd.com>
  <bd1f1632-f53d-4bfd-9d28-5b66e466366c@amd.com>
  <80f34509-9781-421e-b60f-1b8c772a01a9@shift-computing.de>
  <8dd56d76-e46d-43b6-831d-27e66fa2879a@amd.com>
-From: Oz Tiram <oz@shift-computing.de>
-In-Reply-To: <8dd56d76-e46d-43b6-831d-27e66fa2879a@amd.com>
-X-Spamd-Bar: ---
+ <cc849fb3-224e-43c0-bc50-67fd025009e7@shift-computing.de>
+From: Mario Limonciello <mario.limonciello@amd.com>
+In-Reply-To: <cc849fb3-224e-43c0-bc50-67fd025009e7@shift-computing.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: DS7PR03CA0008.namprd03.prod.outlook.com
+ (2603:10b6:5:3b8::13) To PH8PR12MB6914.namprd12.prod.outlook.com
+ (2603:10b6:510:1cb::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR12MB6914:EE_|DM6PR12MB4484:EE_
+X-MS-Office365-Filtering-Correlation-Id: b87e6b0c-172f-4717-e996-08dedcf2b397
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|23010399003|1800799024|366016|22082099003|18002099003|6133799003|4143699003|11063799006|56012099006|5023799004;
+X-Microsoft-Antispam-Message-Info: PUIsChanDQ+8vQZ1Nd88oBQHVJGo0KY12aqwLsy1yX2paPQ1Hwkc5q+eCVQNOnOZo7652JE8s7MtUJwZ6ymdv5FcSs+HNqkX/fbGytvOHc5KZAyrFxRRhQTwRg3/jFPoH+ICeF8XuITNHStyLojR9NOku9ztuHOxrJD8sJEsH+N2tbzQB7mB90+Q8Pynf2Mh67FVwMUSu/oMdgbxB3V/UxPhCjic9/ob6zbWBZpDAE/QyT07Kjj2MYNpBGl4DswyBe4c4mFJId7ffHUPDICOQWlzbRGIZtutqirwBaDsc3XTaAzBnER+XYYN1/zgjesOmMJ9GxCblNkVk1gjEm2tl3dgIGO0h2pJco5N4Ap0te99VYnkJSbk07JKpQyZ0KgdQH5iPRhMefguXsmiEs7DNhMStAgoPrZuKPNLMUH8zqG2GHKpClVxzywNI9f4tbuIdgxaLVKfQM9gn/kDyLHhdDjLVlGrr95oPbqITYLbPqavlG9s+uzJq+0r65PvCGgN20r7LFR4UCAcv91OkofLaDfir0KssWYy1ox6exMY8qZkSLrOEfh+Vb3GYlT1/mE43UpTBSYuAYY7vJSKL4pUfyWSJuN9KVkITgIlAIoWACS4/4tSCfrRnmiPO00+iG9qN8QT2fkWUvwLh1PGzJndSCJQKIBznhEJrCB7ExB+ZUs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR12MB6914.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(22082099003)(18002099003)(6133799003)(4143699003)(11063799006)(56012099006)(5023799004);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cDZnKy80cDVBZTBmcXJKOWFnSU1HcllJNFhoeGgxalcvdkp6RU0vakw5UUhh?=
+ =?utf-8?B?Ym1BanVZSTBCcTVheW1GNDJXOWQrSTRYNVRYVDM3ZnRTdVhMYk1hdnQwOURq?=
+ =?utf-8?B?YXpZdGRIR1c3SFQvZ2RwbGJUMzlWRVMwbUJtZ0IxeDlEdno1bUwyUytwcisz?=
+ =?utf-8?B?blBCMTNPUnN3cHR1VmNneVpRR05SSGJ0c1BDQ0YwNFZBVlVSR1FIV0ZxcEhE?=
+ =?utf-8?B?K3JmZGUvanBOZHJ6eVUxUWttdmRSSzQwYTVKdDNYa0p2b2tNVFVYejRGQ1Iw?=
+ =?utf-8?B?aWI0R1ZCZ000bU5mdjVRUVVpZjljRWpGSUFYNFpNY1U4QzdTUXY1eUNjZzVE?=
+ =?utf-8?B?VDJHdFdpTHVCS1VLSmNDYzJVOTcyZVRHTDhYY1ZzMmIwcFVVdXVTZi9NUmc4?=
+ =?utf-8?B?TUpCZHRVQ3VoSFFmTEE5eGxyZCsrZGZUc3pKb3kvV0tpbC9ZaXZYU3dPbjFU?=
+ =?utf-8?B?OWU3Wm5oMGZaN3lxKzZkRU92MDBra2N6cUNvVGQraGcrQ2ZnaStVZnFzSEdj?=
+ =?utf-8?B?SjNFMm83R1lWdkhjeThyQTFjTitPcW1ha2x1MW5IYmJEcU5SOCtCWDZSUlVj?=
+ =?utf-8?B?cHBUcGowbVpWZDVYTlNMTCt5RDByVi9UOXIxQ29KdzZFT0o5ekRZT21CMnl0?=
+ =?utf-8?B?OFpJOHUyOGZ2dHFiMFkxdDZIQUY3QkVaazRnU0IvOGZTTUdrSjNlZ3gwRUpt?=
+ =?utf-8?B?anYxa1M1a0RSSE9BYU84RERFNEpBTGUzRXpJdEdPMkhUaSt0WU4rR3FVY1ZL?=
+ =?utf-8?B?THNqb1pXM01JZUJRbjRkdGhhUUhDNnFyRXBDRk5MTFZ4UkZEZVZpVytIWmh3?=
+ =?utf-8?B?RFp6Uis0Z0t6R25RYUhVRWVON05pU2NEa09ocVZ0elI3UkZucEtkekRlRmM2?=
+ =?utf-8?B?Q3ZRbFlObDU5d0RjVEZoSVl5TVJqV1ZMa01JU0RRRDJURzh4YjRYMDJBVnN1?=
+ =?utf-8?B?NEQxd1VGL2h2Nm9YUTd0dk93M0VoUnh4UHkvSEVXRG5vcjdyOHFXb2UwYStZ?=
+ =?utf-8?B?TDMzRGJtTWk0WXQrdFNnVXZ5bnd5cDRwRUQyV1hmWXBYdXEyaDkxVDBDQTVx?=
+ =?utf-8?B?M1Nla0Y4TWRGR3BDMWh3UEhuOExqdGVuRFBzSWVaZFF0dWFHMU5Iemk0WHUr?=
+ =?utf-8?B?NG9oMnV3dkg4QldVbFByaDU0T1dsc3NkZkM5ZUprVGdDbUgzRlNFdW1XVWNW?=
+ =?utf-8?B?RXJPVXZPYWg5bnJEYjArTzBLbE1rdE5JSEZEang2ZlZhbVEvbXhhTUNyWnNT?=
+ =?utf-8?B?QVBma0Mrem9tL21VK2JVY3VySFREd2x6SitzVTFiWDZPNUM2aWJVK3RJa2xk?=
+ =?utf-8?B?SUpLVkhVZThROU52S2kwMzJzVzFwNFNiNy8vdVBDZ0c4Rnp5VStURkszNUNH?=
+ =?utf-8?B?dGhwUDZGclVDNWcwSzFBdENHRzM3NWc3THNNdmxuQU45dElvQ09uajdjWWo3?=
+ =?utf-8?B?STFXcmlCMkZuaWJuWXZ5WFZ2azlJSWswemRmQmdnbnQremNpTlBxTVhia2Vh?=
+ =?utf-8?B?bCtESEh3WExSTFhKYVdwUWI5TVl3RGJYZ0ZlbWhRRnZNV0VhWW95cVpRVm5T?=
+ =?utf-8?B?WUNzZktjUXVzVmFTY2tNcy9IWEZYMFdXZi9pcEtZdGg5bDV1eW1QS2VhWlFN?=
+ =?utf-8?B?QzljQzRMVzJIekZlZDlyNFc0SnEzZnlPM0RpUzNCZGE2QWFuaGJHYkw4QUZR?=
+ =?utf-8?B?TkpjMThqRmxLZDhQeTNOaHJsWHJQa280K2g5OEFWRWl2VG9UWmZheCt1SjZL?=
+ =?utf-8?B?MkIvdEpveFFHT3dCb01sQ09KeXpjVk9kcU1saTFUOHk3TFR2bFRwRUc5VHVQ?=
+ =?utf-8?B?RmFJV002YWZrQ1dlM1FsZ201OVpFTTU5YmNuUUZhRU42MWJnQlRNN3BSaVdS?=
+ =?utf-8?B?K1lFQXBTakdUeTJoMzJTK1VOSUpTVDZ0U0FkWU9RMlRLOGpYSHdEckVINk5T?=
+ =?utf-8?B?aDF6TWdnMlh5SjFrZnNkbzVwUDVsdzd1UHlNcG9rMkVEV085Q1l2aDhBSndU?=
+ =?utf-8?B?VmwxN1pDN3BaYmNRL2ZXQ1Fkb3g5eEIzUVRVbmJyZTZ2cFZFanlHM3I5Qnhw?=
+ =?utf-8?B?eFU5TG84YnZEaXBWNHdGYWxDYTJSTzRoaXZRbXZFVDN2NGFjUHErRXhFU2Yr?=
+ =?utf-8?B?eHRZdFp2enJlWlJCeXJyTGdkbXFpRFlUV0FFd2FKV0xab2toQnFZSXMwZWdS?=
+ =?utf-8?B?dzEvRFVXRUEwVzNXek5lMS84T2FZbHd5dFRQVlZvS2krdnE4Y2pYOFJlUlNG?=
+ =?utf-8?B?aThmQzlpMzJCV2MxUmc1dmUySEZlMkdyM0FzNDlsa1N4Y2ZOL05pRituQkI3?=
+ =?utf-8?Q?7fUQ2f8eiMJeIn60yB?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b87e6b0c-172f-4717-e996-08dedcf2b397
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB6914.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 13:13:28.8419 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0q7r5DBLt4+sJgqTtmHNi+UChaeUj3Y9S2SzOrxetYEcMzw9PMmKT095aEyXdk/9XRwAhFTJ8O31kCy6qcxKyA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4484
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,679 +148,278 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[shift-computing.de,reject];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[shift-computing.de:s=dkim];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mario.limonciello@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[shift-computing.de:+];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[oz@shift-computing.de,amd-gfx-bounces@lists.freedesktop.org];
-	MISSING_XM_UA(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_SENDER_MAILLIST(0.00)[]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2C6BF726A2E
-
-This is a multi-part message in MIME format.
---------------CCDUz4vjeoeh1Zq5hUI00ac0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Hi Mario,
-
- > If you drop that - does this notice still come up?
-
-No, the notice does not appear without pci=realloc,assign-busses. The 
-iGPU  stays at its POST bus (0x6A = 106), VFCT matches directly, and it 
-fetches the VBIOS without any mismatch.
-
-However, dropping the kernel argument is not an option on this machine:
-without it the discrete GPU (0x7449) fails to probe entirely:
-
-   amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
-   amdgpu 0000:03:00.0: probe with driver amdgpu failed with error -12
-
-The firmware BARs cannot be mapped without resource reallocation, so
-pci=realloc,assign-busses is required for the dGPU, which in turn reassigns
-the iGPU to bus 0x0B and triggers the mismatch your patch resolves.
+X-Rspamd-Queue-Id: 3F022726AD4
 
 
-Thank you,
+On 7/8/26 08:10, Oz Tiram wrote:
+> Hi Mario,
+> 
+>  > If you drop that - does this notice still come up?
+> 
+> No, the notice does not appear without pci=realloc,assign-busses. The 
+> iGPU  stays at its POST bus (0x6A = 106), VFCT matches directly, and it 
+> fetches the VBIOS without any mismatch.
+> 
+> However, dropping the kernel argument is not an option on this machine:
+> without it the discrete GPU (0x7449) fails to probe entirely:
+> 
+>    amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+>    amdgpu 0000:03:00.0: probe with driver amdgpu failed with error -12
+> 
+> The firmware BARs cannot be mapped without resource reallocation, so
+> pci=realloc,assign-busses is required for the dGPU, which in turn reassigns
+> the iGPU to bus 0x0B and triggers the mismatch your patch resolves.
 
-Oz
+Got it; thanks for clarifying.  I would like to dig a little bit futher 
+into that though.  What kernel are you finding this behavior and can it 
+still reproduce with 7.2-rc2 if it's older?  There was a bunch of 
+pci/realloc changes that happened in the last cycle that might have 
+helped this.
 
+Also; is it an eGPU (external) or dGPU (internal)?
 
-On 7/8/26 14:55, Mario Limonciello wrote:
-> Hi Oz,
->
-> On 7/8/26 07:36, Oz Tiram wrote:
->> Hi Mario,
+If it's an dGPU IMO this is arguably a BIOS issue that not enough 
+resources were applied in the first place.
+
+Thanks,
+
+> 
+> 
+> Thank you,
+> 
+> Oz
+> 
+> 
+> On 7/8/26 14:55, Mario Limonciello wrote:
+>> Hi Oz,
 >>
->> Tested on a Morefine MNAS X1 AI Workstation (AMD Ryzen 7 Pro 8845HS / 
->> Radeon 780M iGPU) with pci=realloc,assign-busses.
->>
->> The VFCT entry for the iGPU has PCIBus=106 (0x6A, recorded at POST) 
->> while the
->> runtime bus is 11 (0x0B). Your patch fires exactly as expected:
->>
->>    amdgpu 0000:0b:00.0: amdgpu: VFCT bus number mismatch: table 106 
->> != runtime 11,
->>        matching by device identity (vendor 0x1002 device 0x1900)
->>    amdgpu 0000:0b:00.0: amdgpu: Fetched VBIOS from VFCT
->>
->> The iGPU initialises fully and drives the framebuffer.
->>
->> One minor nit: the dev_notice format string ends with \\n (two 
->> characters) rather
->> than \n. The resulting kernel message has a literal "\n" at the end. 
->> Same issue
->> exists in the nearby "too short #2" dev_info -- not introduced by 
->> your patch, but
->> might be worth cleaning up.
->>
->> Tested-by: Oz Tiram <oz@shift-computing.de>
->>
->
-> Thanks for confirming.  Before I split up this patch and post it in 
-> smaller logical pieces can you confirm my proposed root cause is right 
-> that this issue happens because "pci=realloc,assign-busses" was on 
-> your kernel command line?
->
-> If you drop that - does this notice still come up?
->
-> Thanks,
->
->> On 7/6/26 02:56, Mario Limonciello wrote:
+>> On 7/8/26 07:36, Oz Tiram wrote:
+>>> Hi Mario,
 >>>
+>>> Tested on a Morefine MNAS X1 AI Workstation (AMD Ryzen 7 Pro 8845HS / 
+>>> Radeon 780M iGPU) with pci=realloc,assign-busses.
 >>>
->>> On 7/5/26 14:10, Oz Tiram wrote:
->>>> Hi Mario,
+>>> The VFCT entry for the iGPU has PCIBus=106 (0x6A, recorded at POST) 
+>>> while the
+>>> runtime bus is 11 (0x0B). Your patch fires exactly as expected:
+>>>
+>>>    amdgpu 0000:0b:00.0: amdgpu: VFCT bus number mismatch: table 106 ! 
+>>> = runtime 11,
+>>>        matching by device identity (vendor 0x1002 device 0x1900)
+>>>    amdgpu 0000:0b:00.0: amdgpu: Fetched VBIOS from VFCT
+>>>
+>>> The iGPU initialises fully and drives the framebuffer.
+>>>
+>>> One minor nit: the dev_notice format string ends with \\n (two 
+>>> characters) rather
+>>> than \n. The resulting kernel message has a literal "\n" at the end. 
+>>> Same issue
+>>> exists in the nearby "too short #2" dev_info -- not introduced by 
+>>> your patch, but
+>>> might be worth cleaning up.
+>>>
+>>> Tested-by: Oz Tiram <oz@shift-computing.de>
+>>>
+>>
+>> Thanks for confirming.  Before I split up this patch and post it in 
+>> smaller logical pieces can you confirm my proposed root cause is right 
+>> that this issue happens because "pci=realloc,assign-busses" was on 
+>> your kernel command line?
+>>
+>> If you drop that - does this notice still come up?
+>>
+>> Thanks,
+>>
+>>> On 7/6/26 02:56, Mario Limonciello wrote:
 >>>>
->>>>    To make sure I understand correctly: are you suggesting that the 
->>>> bus
->>>>    number in the VFCT was legitimate at BIOS POST time, and that
->>>>    pci=realloc,assign-busses is what changes it at runtime, causing 
->>>> the
->>>>    mismatch?
->>>
->>> That's what it sounds like right now.  You can easily drop all the 
->>> superfluous kernel command line optiosn and see.
->>>
 >>>>
->>>>    I'm not familiar enough with the PCI subsystem to know the right 
->>>> way to
->>>>    implement that — could you point me in the right direction?
->>>
->>> Well there's a variety of ways to do it.  But how about we start 
->>> here - if we make that specific busnr match optional and instead 
->>> make a VID/DID match.
->>>
->>> See if the attached patch helps.
->>>
+>>>> On 7/5/26 14:10, Oz Tiram wrote:
+>>>>> Hi Mario,
+>>>>>
+>>>>>    To make sure I understand correctly: are you suggesting that the 
+>>>>> bus
+>>>>>    number in the VFCT was legitimate at BIOS POST time, and that
+>>>>>    pci=realloc,assign-busses is what changes it at runtime, causing 
+>>>>> the
+>>>>>    mismatch?
 >>>>
->>>>    Oz
+>>>> That's what it sounds like right now.  You can easily drop all the 
+>>>> superfluous kernel command line optiosn and see.
 >>>>
->>>> On 7/5/26 20:37, Mario Limonciello wrote:
 >>>>>
+>>>>>    I'm not familiar enough with the PCI subsystem to know the right 
+>>>>> way to
+>>>>>    implement that — could you point me in the right direction?
+>>>>
+>>>> Well there's a variety of ways to do it.  But how about we start 
+>>>> here - if we make that specific busnr match optional and instead 
+>>>> make a VID/DID match.
+>>>>
+>>>> See if the attached patch helps.
+>>>>
 >>>>>
->>>>> On 7/5/26 05:04, Oz Tiram wrote:
->>>>>> APUs (e.g. AMD Radeon 780M / HawkPoint, PCI 1002:1900) have no
->>>>>> dedicated VBIOS ROM chip.  amdgpu_get_bios_apu() attempts four paths
->>>>>> before giving up:
->>>>>>
->>>>>>    1. ACPI VFCT table
->>>>>>    2. VRAM BAR read
->>>>>>    3. ROM BAR read
->>>>>>    4. platform BIOS
->>>>>>
->>>>>> On some systems all four fail.  The specific case motivating this 
->>>>>> patch
->>>>>> is a hybrid graphics machine (dGPU + APU) where:
->>>>>>
->>>>>>    - The VFCT table contains the iGPU entry but with a stale 
->>>>>> PCIBus value
->>>>>>      from BIOS POST time (0x6A).  When the kernel boots with
->>>>>>      pci=realloc,assign-busses, PCI bus numbers are reassigned 
->>>>>> dynamically
->>>>>>      and the iGPU lands on bus 0x0B at runtime. 
->>>>>> amdgpu_acpi_vfct_bios()
->>>>>>      matches entries by bus number, so the entry is never found.
->>>>>>    - The VRAM BAR is unmapped at probe time.
->>>>>>    - The ROM BAR is zero (PCI firmware did not assign it).
->>>>>>    - No platform BIOS mapping exists.
->>>>>>
->>>>>> The UEFI GOP driver initialises the iGPU successfully for early 
->>>>>> display,
->>>>>> confirming the hardware is functional.  The VBIOS image data 
->>>>>> embedded in
->>>>>> the VFCT is also valid; only the PCIBus metadata is wrong.
+>>>>>    Oz
 >>>>>
->>>>> So the BIOS on this machine is actually totally fine; it's just 
->>>>> when the kernel is booted to reassign busses there is a problem?
->>>>>
->>>>> In that case; why not detect the kernel was booted this way and 
->>>>> keep track of the original bus number when reassigned to avoid the 
->>>>> issue?
->>>>>
->>>>>> The firmware
->>>>>> file can be extracted directly from the VFCT using dd:
+>>>>> On 7/5/26 20:37, Mario Limonciello wrote:
 >>>>>>
->>>>>>    dd if=/sys/firmware/acpi/tables/VFCT bs=1 skip=$((0x68)) 
->>>>>> count=16896 \
->>>>>>       of=/lib/firmware/amdgpu/1002_1900.bin
 >>>>>>
->>>>>> (0x68 is the byte offset of the VBIOS image after the ACPI table 
->>>>>> header
->>>>>> and VFCT_IMAGE_HEADER; the image length 16896 comes from the 
->>>>>> ImageLength
->>>>>> field in VFCT_IMAGE_HEADER.)
+>>>>>> On 7/5/26 05:04, Oz Tiram wrote:
+>>>>>>> APUs (e.g. AMD Radeon 780M / HawkPoint, PCI 1002:1900) have no
+>>>>>>> dedicated VBIOS ROM chip.  amdgpu_get_bios_apu() attempts four paths
+>>>>>>> before giving up:
+>>>>>>>
+>>>>>>>    1. ACPI VFCT table
+>>>>>>>    2. VRAM BAR read
+>>>>>>>    3. ROM BAR read
+>>>>>>>    4. platform BIOS
+>>>>>>>
+>>>>>>> On some systems all four fail.  The specific case motivating this 
+>>>>>>> patch
+>>>>>>> is a hybrid graphics machine (dGPU + APU) where:
+>>>>>>>
+>>>>>>>    - The VFCT table contains the iGPU entry but with a stale 
+>>>>>>> PCIBus value
+>>>>>>>      from BIOS POST time (0x6A).  When the kernel boots with
+>>>>>>>      pci=realloc,assign-busses, PCI bus numbers are reassigned 
+>>>>>>> dynamically
+>>>>>>>      and the iGPU lands on bus 0x0B at runtime. 
+>>>>>>> amdgpu_acpi_vfct_bios()
+>>>>>>>      matches entries by bus number, so the entry is never found.
+>>>>>>>    - The VRAM BAR is unmapped at probe time.
+>>>>>>>    - The ROM BAR is zero (PCI firmware did not assign it).
+>>>>>>>    - No platform BIOS mapping exists.
+>>>>>>>
+>>>>>>> The UEFI GOP driver initialises the iGPU successfully for early 
+>>>>>>> display,
+>>>>>>> confirming the hardware is functional.  The VBIOS image data 
+>>>>>>> embedded in
+>>>>>>> the VFCT is also valid; only the PCIBus metadata is wrong.
 >>>>>>
->>>>>> The driver then prints "Unable to locate a BIOS ROM" and refuses to
->>>>>> bind, leaving the APU completely unusable under Linux.
+>>>>>> So the BIOS on this machine is actually totally fine; it's just 
+>>>>>> when the kernel is booted to reassign busses there is a problem?
 >>>>>>
->>>>>> Add a fifth fallback: request a firmware file named
->>>>>> "amdgpu/<vendor>_<device>.bin" (e.g. "amdgpu/1002_1900.bin") via
->>>>>> request_firmware().  This allows a VBIOS image extracted as above 
->>>>>> to be
->>>>>> placed in /lib/firmware/ and makes the binding succeed without 
->>>>>> patching
->>>>>> ACPI tables or BIOS.
+>>>>>> In that case; why not detect the kernel was booted this way and 
+>>>>>> keep track of the original bus number when reassigned to avoid the 
+>>>>>> issue?
 >>>>>>
->>>>>> The fallback is only reached if all existing paths have already 
->>>>>> failed,
->>>>>> so there is no regression risk for boards where VFCT or ROM BAR 
->>>>>> work.
->>>>>
->>>>> What happens if the VBIOS changes in another way one boot to 
->>>>> another? You might have some other stateful information that isn't 
->>>>> updated.
->>>>>
->>>>> The whole thing to me feels like a hack for a behavior we can 
->>>>> control in the kernel when doing reassignments.
+>>>>>>> The firmware
+>>>>>>> file can be extracted directly from the VFCT using dd:
+>>>>>>>
+>>>>>>>    dd if=/sys/firmware/acpi/tables/VFCT bs=1 skip=$((0x68)) 
+>>>>>>> count=16896 \
+>>>>>>>       of=/lib/firmware/amdgpu/1002_1900.bin
+>>>>>>>
+>>>>>>> (0x68 is the byte offset of the VBIOS image after the ACPI table 
+>>>>>>> header
+>>>>>>> and VFCT_IMAGE_HEADER; the image length 16896 comes from the 
+>>>>>>> ImageLength
+>>>>>>> field in VFCT_IMAGE_HEADER.)
+>>>>>>>
+>>>>>>> The driver then prints "Unable to locate a BIOS ROM" and refuses to
+>>>>>>> bind, leaving the APU completely unusable under Linux.
+>>>>>>>
+>>>>>>> Add a fifth fallback: request a firmware file named
+>>>>>>> "amdgpu/<vendor>_<device>.bin" (e.g. "amdgpu/1002_1900.bin") via
+>>>>>>> request_firmware().  This allows a VBIOS image extracted as above 
+>>>>>>> to be
+>>>>>>> placed in /lib/firmware/ and makes the binding succeed without 
+>>>>>>> patching
+>>>>>>> ACPI tables or BIOS.
+>>>>>>>
+>>>>>>> The fallback is only reached if all existing paths have already 
+>>>>>>> failed,
+>>>>>>> so there is no regression risk for boards where VFCT or ROM BAR 
+>>>>>>> work.
 >>>>>>
->>>>>> Signed-off-by: Oz Tiram <oz@shift-computing.de>
->>>>>> ---
->>>>>> v2: Fix commit message: clarify that VFCT contains the iGPU entry 
->>>>>> but
->>>>>>      with a stale PCIBus from BIOS POST that mismatches the 
->>>>>> runtime bus
->>>>>>      number assigned by pci=realloc,assign-busses. Explain that 
->>>>>> the VBIOS
->>>>>>      image data is valid and document the dd extraction command 
->>>>>> and byte
->>>>>>      offsets.  Note that the UEFI GOP driver initialises the iGPU
->>>>>>      successfully, confirming the hardware is functional.
+>>>>>> What happens if the VBIOS changes in another way one boot to 
+>>>>>> another? You might have some other stateful information that isn't 
+>>>>>> updated.
 >>>>>>
->>>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 23 
->>>>>> +++++++++++++++++++ ++++
->>>>>>   1 file changed, 23 insertions(+)
+>>>>>> The whole thing to me feels like a hack for a behavior we can 
+>>>>>> control in the kernel when doing reassignments.
+>>>>>>>
+>>>>>>> Signed-off-by: Oz Tiram <oz@shift-computing.de>
+>>>>>>> ---
+>>>>>>> v2: Fix commit message: clarify that VFCT contains the iGPU entry 
+>>>>>>> but
+>>>>>>>      with a stale PCIBus from BIOS POST that mismatches the 
+>>>>>>> runtime bus
+>>>>>>>      number assigned by pci=realloc,assign-busses. Explain that 
+>>>>>>> the VBIOS
+>>>>>>>      image data is valid and document the dd extraction command 
+>>>>>>> and byte
+>>>>>>>      offsets.  Note that the UEFI GOP driver initialises the iGPU
+>>>>>>>      successfully, confirming the hardware is functional.
+>>>>>>>
+>>>>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 23 +++++++++++++++++ 
+>>>>>>> ++ ++++
+>>>>>>>   1 file changed, 23 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/ 
+>>>>>>> gpu/ drm/amd/amdgpu/amdgpu_bios.c
+>>>>>>> index aa039e148a5e..86064c753b09 100644
+>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+>>>>>>> @@ -26,6 +26,7 @@
+>>>>>>>    *          Jerome Glisse
+>>>>>>>    */
+>>>>>>>   +#include <linux/firmware.h>
+>>>>>>>   #include "amdgpu.h"
+>>>>>>>   #include "atom.h"
+>>>>>>>   @@ -457,6 +458,28 @@ static bool amdgpu_get_bios_apu(struct 
+>>>>>>> amdgpu_device *adev)
+>>>>>>>           goto success;
+>>>>>>>       }
+>>>>>>>   +    {
+>>>>>>> +        const struct firmware *fw;
+>>>>>>> +        char fw_name[32];
+>>>>>>> +        size_t fw_size;
+>>>>>>> +
+>>>>>>> +        snprintf(fw_name, sizeof(fw_name), "amdgpu/%04x_%04x.bin",
+>>>>>>> +             adev->pdev->vendor, adev->pdev->device);
+>>>>>>> +        if (request_firmware(&fw, fw_name, adev->dev) == 0) {
+>>>>>>> +            adev->bios = kmemdup(fw->data, fw->size, GFP_KERNEL);
+>>>>>>> +            fw_size = fw->size;
+>>>>>>> +            release_firmware(fw);
+>>>>>>> +            if (!adev->bios || !check_atom_bios(adev, fw_size)) {
+>>>>>>> +                amdgpu_bios_release(adev);
+>>>>>>> +            } else {
+>>>>>>> +                adev->bios_size = fw_size;
+>>>>>>> +                dev_info(adev->dev, "Fetched VBIOS from firmware 
+>>>>>>> file %s\n",
+>>>>>>> +                     fw_name);
+>>>>>>> +                goto success;
+>>>>>>> +            }
+>>>>>>> +        }
+>>>>>>> +    }
+>>>>>>> +
+>>>>>>>       dev_err(adev->dev, "Unable to locate a BIOS ROM\n");
+>>>>>>>       return false;
 >>>>>>
->>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/ 
->>>>>> gpu/ drm/amd/amdgpu/amdgpu_bios.c
->>>>>> index aa039e148a5e..86064c753b09 100644
->>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
->>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
->>>>>> @@ -26,6 +26,7 @@
->>>>>>    *          Jerome Glisse
->>>>>>    */
->>>>>>   +#include <linux/firmware.h>
->>>>>>   #include "amdgpu.h"
->>>>>>   #include "atom.h"
->>>>>>   @@ -457,6 +458,28 @@ static bool amdgpu_get_bios_apu(struct 
->>>>>> amdgpu_device *adev)
->>>>>>           goto success;
->>>>>>       }
->>>>>>   +    {
->>>>>> +        const struct firmware *fw;
->>>>>> +        char fw_name[32];
->>>>>> +        size_t fw_size;
->>>>>> +
->>>>>> +        snprintf(fw_name, sizeof(fw_name), "amdgpu/%04x_%04x.bin",
->>>>>> +             adev->pdev->vendor, adev->pdev->device);
->>>>>> +        if (request_firmware(&fw, fw_name, adev->dev) == 0) {
->>>>>> +            adev->bios = kmemdup(fw->data, fw->size, GFP_KERNEL);
->>>>>> +            fw_size = fw->size;
->>>>>> +            release_firmware(fw);
->>>>>> +            if (!adev->bios || !check_atom_bios(adev, fw_size)) {
->>>>>> +                amdgpu_bios_release(adev);
->>>>>> +            } else {
->>>>>> +                adev->bios_size = fw_size;
->>>>>> +                dev_info(adev->dev, "Fetched VBIOS from firmware 
->>>>>> file %s\n",
->>>>>> +                     fw_name);
->>>>>> +                goto success;
->>>>>> +            }
->>>>>> +        }
->>>>>> +    }
->>>>>> +
->>>>>>       dev_err(adev->dev, "Unable to locate a BIOS ROM\n");
->>>>>>       return false;
->>>>>
->
---------------CCDUz4vjeoeh1Zq5hUI00ac0
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+>>
 
-<!DOCTYPE html>
-<html data-lt-installed="true">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body style="padding-bottom: 1px;">
-    Hi Mario,                                                           
-                                                                       
-                                     <br>
-    <br>
-    &gt; If you drop that - does this notice still come up?
-                                                                       
-                                                                       
-                                  <br>
-    <p>No, the notice does not appear without pci=realloc,assign-busses.
-      The iGPU  stays at its POST bus (0x6A = 106), VFCT matches
-      directly, and it fetches the VBIOS without any mismatch.         
-                                                                       
-                                                                     </p>
-    However, dropping the kernel argument is not an option on this
-    machine:<br>
-    without it the discrete GPU (0x7449) fails to probe entirely:<br>
-    <br>
-      amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init<br>
-      amdgpu 0000:03:00.0: probe with driver amdgpu failed with error
-    -12<br>
-    <br>
-    The firmware BARs cannot be mapped without resource reallocation, so<br>
-    pci=realloc,assign-busses is required for the dGPU, which in turn
-    reassigns<br>
-    the iGPU to bus 0x0B and triggers the mismatch your patch resolves.<br>
-    <br>
-    <br>
-    Thank you, <br>
-    <br>
-    Oz
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 7/8/26 14:55, Mario Limonciello
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:8dd56d76-e46d-43b6-831d-27e66fa2879a@amd.com">Hi Oz,
-      <br>
-      <br>
-      On 7/8/26 07:36, Oz Tiram wrote:
-      <br>
-      <blockquote type="cite">Hi Mario,
-        <br>
-        <br>
-        Tested on a Morefine MNAS X1 AI Workstation (AMD Ryzen 7 Pro
-        8845HS / Radeon 780M iGPU) with pci=realloc,assign-busses.
-        <br>
-        <br>
-        The VFCT entry for the iGPU has PCIBus=106 (0x6A, recorded at
-        POST) while the
-        <br>
-        runtime bus is 11 (0x0B). Your patch fires exactly as expected:
-        <br>
-        <br>
-           amdgpu 0000:0b:00.0: amdgpu: VFCT bus number mismatch: table
-        106 != runtime 11,
-        <br>
-               matching by device identity (vendor 0x1002 device 0x1900)
-        <br>
-           amdgpu 0000:0b:00.0: amdgpu: Fetched VBIOS from VFCT
-        <br>
-        <br>
-        The iGPU initialises fully and drives the framebuffer.
-        <br>
-        <br>
-        One minor nit: the dev_notice format string ends with \\n (two
-        characters) rather
-        <br>
-        than \n. The resulting kernel message has a literal "\n" at the
-        end. Same issue
-        <br>
-        exists in the nearby "too short #2" dev_info -- not introduced
-        by your patch, but
-        <br>
-        might be worth cleaning up.
-        <br>
-        <br>
-        Tested-by: Oz Tiram <a class="moz-txt-link-rfc2396E" href="mailto:oz@shift-computing.de">&lt;oz@shift-computing.de&gt;</a>
-        <br>
-        <br>
-      </blockquote>
-      <br>
-      Thanks for confirming.  Before I split up this patch and post it
-      in smaller logical pieces can you confirm my proposed root cause
-      is right that this issue happens because
-      "pci=realloc,assign-busses" was on your kernel command line?
-      <br>
-      <br>
-      If you drop that - does this notice still come up?
-      <br>
-      <br>
-      Thanks,
-      <br>
-      <br>
-      <blockquote type="cite">On 7/6/26 02:56, Mario Limonciello wrote:
-        <br>
-        <blockquote type="cite">
-          <br>
-          <br>
-          On 7/5/26 14:10, Oz Tiram wrote:
-          <br>
-          <blockquote type="cite">Hi Mario,
-            <br>
-            <br>
-               To make sure I understand correctly: are you suggesting
-            that the bus
-            <br>
-               number in the VFCT was legitimate at BIOS POST time, and
-            that
-            <br>
-               pci=realloc,assign-busses is what changes it at runtime,
-            causing the
-            <br>
-               mismatch?
-            <br>
-          </blockquote>
-          <br>
-          That's what it sounds like right now.  You can easily drop all
-          the superfluous kernel command line optiosn and see.
-          <br>
-          <br>
-          <blockquote type="cite">
-            <br>
-               I'm not familiar enough with the PCI subsystem to know
-            the right way to
-            <br>
-               implement that — could you point me in the right
-            direction?
-            <br>
-          </blockquote>
-          <br>
-          Well there's a variety of ways to do it.  But how about we
-          start here - if we make that specific busnr match optional and
-          instead make a VID/DID match.
-          <br>
-          <br>
-          See if the attached patch helps.
-          <br>
-          <br>
-          <blockquote type="cite">
-            <br>
-               Oz
-            <br>
-            <br>
-            On 7/5/26 20:37, Mario Limonciello wrote:
-            <br>
-            <blockquote type="cite">
-              <br>
-              <br>
-              On 7/5/26 05:04, Oz Tiram wrote:
-              <br>
-              <blockquote type="cite">APUs (e.g. AMD Radeon 780M /
-                HawkPoint, PCI 1002:1900) have no
-                <br>
-                dedicated VBIOS ROM chip.  amdgpu_get_bios_apu()
-                attempts four paths
-                <br>
-                before giving up:
-                <br>
-                <br>
-                   1. ACPI VFCT table
-                <br>
-                   2. VRAM BAR read
-                <br>
-                   3. ROM BAR read
-                <br>
-                   4. platform BIOS
-                <br>
-                <br>
-                On some systems all four fail.  The specific case
-                motivating this patch
-                <br>
-                is a hybrid graphics machine (dGPU + APU) where:
-                <br>
-                <br>
-                   - The VFCT table contains the iGPU entry but with a
-                stale PCIBus value
-                <br>
-                     from BIOS POST time (0x6A).  When the kernel boots
-                with
-                <br>
-                     pci=realloc,assign-busses, PCI bus numbers are
-                reassigned dynamically
-                <br>
-                     and the iGPU lands on bus 0x0B at runtime.
-                amdgpu_acpi_vfct_bios()
-                <br>
-                     matches entries by bus number, so the entry is
-                never found.
-                <br>
-                   - The VRAM BAR is unmapped at probe time.
-                <br>
-                   - The ROM BAR is zero (PCI firmware did not assign
-                it).
-                <br>
-                   - No platform BIOS mapping exists.
-                <br>
-                <br>
-                The UEFI GOP driver initialises the iGPU successfully
-                for early display,
-                <br>
-                confirming the hardware is functional.  The VBIOS image
-                data embedded in
-                <br>
-                the VFCT is also valid; only the PCIBus metadata is
-                wrong.
-                <br>
-              </blockquote>
-              <br>
-              So the BIOS on this machine is actually totally fine; it's
-              just when the kernel is booted to reassign busses there is
-              a problem?
-              <br>
-              <br>
-              In that case; why not detect the kernel was booted this
-              way and keep track of the original bus number when
-              reassigned to avoid the issue?
-              <br>
-              <br>
-              <blockquote type="cite">The firmware
-                <br>
-                file can be extracted directly from the VFCT using dd:
-                <br>
-                <br>
-                   dd if=/sys/firmware/acpi/tables/VFCT bs=1
-                skip=$((0x68)) count=16896 \
-                <br>
-                      of=/lib/firmware/amdgpu/1002_1900.bin
-                <br>
-                <br>
-                (0x68 is the byte offset of the VBIOS image after the
-                ACPI table header
-                <br>
-                and VFCT_IMAGE_HEADER; the image length 16896 comes from
-                the ImageLength
-                <br>
-                field in VFCT_IMAGE_HEADER.)
-                <br>
-                <br>
-                The driver then prints "Unable to locate a BIOS ROM" and
-                refuses to
-                <br>
-                bind, leaving the APU completely unusable under Linux.
-                <br>
-                <br>
-                Add a fifth fallback: request a firmware file named
-                <br>
-                "amdgpu/&lt;vendor&gt;_&lt;device&gt;.bin" (e.g.
-                "amdgpu/1002_1900.bin") via
-                <br>
-                request_firmware().  This allows a VBIOS image extracted
-                as above to be
-                <br>
-                placed in /lib/firmware/ and makes the binding succeed
-                without patching
-                <br>
-                ACPI tables or BIOS.
-                <br>
-                <br>
-                The fallback is only reached if all existing paths have
-                already failed,
-                <br>
-                so there is no regression risk for boards where VFCT or
-                ROM BAR work.
-                <br>
-              </blockquote>
-              <br>
-              What happens if the VBIOS changes in another way one boot
-              to another? You might have some other stateful information
-              that isn't updated.
-              <br>
-              <br>
-              The whole thing to me feels like a hack for a behavior we
-              can control in the kernel when doing reassignments.
-              <br>
-              <blockquote type="cite">
-                <br>
-                Signed-off-by: Oz Tiram <a class="moz-txt-link-rfc2396E" href="mailto:oz@shift-computing.de">&lt;oz@shift-computing.de&gt;</a>
-                <br>
-                ---
-                <br>
-                v2: Fix commit message: clarify that VFCT contains the
-                iGPU entry but
-                <br>
-                     with a stale PCIBus from BIOS POST that mismatches
-                the runtime bus
-                <br>
-                     number assigned by pci=realloc,assign-busses. 
-                Explain that the VBIOS
-                <br>
-                     image data is valid and document the dd extraction
-                command and byte
-                <br>
-                     offsets.  Note that the UEFI GOP driver initialises
-                the iGPU
-                <br>
-                     successfully, confirming the hardware is
-                functional.
-                <br>
-                <br>
-                  drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 23
-                +++++++++++++++++++ ++++
-                <br>
-                  1 file changed, 23 insertions(+)
-                <br>
-                <br>
-                diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-                b/drivers/ gpu/ drm/amd/amdgpu/amdgpu_bios.c
-                <br>
-                index aa039e148a5e..86064c753b09 100644
-                <br>
-                --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-                <br>
-                +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-                <br>
-                @@ -26,6 +26,7 @@
-                <br>
-                   *          Jerome Glisse
-                <br>
-                   */
-                <br>
-                  +#include &lt;linux/firmware.h&gt;
-                <br>
-                  #include "amdgpu.h"
-                <br>
-                  #include "atom.h"
-                <br>
-                  @@ -457,6 +458,28 @@ static bool
-                amdgpu_get_bios_apu(struct amdgpu_device *adev)
-                <br>
-                          goto success;
-                <br>
-                      }
-                <br>
-                  +    {
-                <br>
-                +        const struct firmware *fw;
-                <br>
-                +        char fw_name[32];
-                <br>
-                +        size_t fw_size;
-                <br>
-                +
-                <br>
-                +        snprintf(fw_name, sizeof(fw_name),
-                "amdgpu/%04x_%04x.bin",
-                <br>
-                +             adev-&gt;pdev-&gt;vendor,
-                adev-&gt;pdev-&gt;device);
-                <br>
-                +        if (request_firmware(&amp;fw, fw_name,
-                adev-&gt;dev) == 0) {
-                <br>
-                +            adev-&gt;bios = kmemdup(fw-&gt;data,
-                fw-&gt;size, GFP_KERNEL);
-                <br>
-                +            fw_size = fw-&gt;size;
-                <br>
-                +            release_firmware(fw);
-                <br>
-                +            if (!adev-&gt;bios ||
-                !check_atom_bios(adev, fw_size)) {
-                <br>
-                +                amdgpu_bios_release(adev);
-                <br>
-                +            } else {
-                <br>
-                +                adev-&gt;bios_size = fw_size;
-                <br>
-                +                dev_info(adev-&gt;dev, "Fetched VBIOS
-                from firmware file %s\n",
-                <br>
-                +                     fw_name);
-                <br>
-                +                goto success;
-                <br>
-                +            }
-                <br>
-                +        }
-                <br>
-                +    }
-                <br>
-                +
-                <br>
-                      dev_err(adev-&gt;dev, "Unable to locate a BIOS
-                ROM\n");
-                <br>
-                      return false;
-                <br>
-              </blockquote>
-              <br>
-            </blockquote>
-          </blockquote>
-        </blockquote>
-      </blockquote>
-      <br>
-    </blockquote>
-  </body>
-  <lt-container></lt-container>
-</html>
-
---------------CCDUz4vjeoeh1Zq5hUI00ac0--
