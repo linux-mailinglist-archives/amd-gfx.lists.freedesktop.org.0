@@ -2,25 +2,25 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id X5FLJfCoTmp+RgIAu9opvQ
+	id Q4iLGO6oTmp7RgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:45:52 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:45:50 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 403B3729F6A
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:45:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F0EA729F5F
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:45:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=iV0GCco7;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=VGGRIanN;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none);
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67CF410F284;
-	Wed,  8 Jul 2026 19:45:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD0F10F286;
+	Wed,  8 Jul 2026 19:45:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DB5810F294;
- Wed,  8 Jul 2026 19:45:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A93210F284;
+ Wed,  8 Jul 2026 19:45:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -28,16 +28,16 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=1eajwanCzQP22dO6kO19c6VsSelTh4Sp1K+DcHgzFCs=; b=iV0GCco7uH4vFlf4JVg1sdB8fr
- bMiR+uAS6bYU4zIhTQgxgBtJjCsba1WcumEZHaGAPb33uS5aiOQ50I3y+tRkBrMhUWf9fdx+Dwaue
- PkN5K/mvYMtab3KsNSb29au7nG5+RAM290hyHsb155Oa/EyiQY9YxE/rTGrqUOLN3vxFzR2m4n1Ad
- LMtnfMFXBjnpW5ElHYlH4Zfq+MzH2ThorlPtdZQGPx7xHyAOaHI9CiUguO8blxvq8ucQA2CK2578y
- mgrxFgVBkvGwOX2toebz9xu2Ax/Zgaif7nrvHYebj5CSzcMMpT2foTdqEJ3JJ6JBZC3ezWzl2qR6W
- nvRQcGPQ==;
+ bh=1G8Yif0NUrcpYFcd4ErxYC9+UbSI3kZtSc/C9BTGURQ=; b=VGGRIanNQhpWrmqXwct6+nCDeU
+ 6pZZEhngBe7SIYwCmmANJnUwsfkYNv0WeNLVMRI/pqE4BBAPC0ldUT02Ys2DZFss6E7Tufh6oNVym
+ hyHtsVwJSMruW7GEPlId4ffiijMFL+kOX8asLt5y9WJ6XsjvrQS3t34+AvyXae/XL9p0gQv4wvZtb
+ ZhE3LM87qx1KtNyGAv9uHe/p4ZYkdgSgka1uAz6mBGtt4HcSlIiCQ9osq+q0M293TxZCFBQzJGQYV
+ iyekv7yqKyMnjtRXoIUg192RnUZ0Gq8z4TGXxdIu5sK25HQJDjoM0Ukv2KXP62taFvj08HYhYKnIk
+ XA9GgYAg==;
 Received: from 100.red-79-144-92.dynamicip.rima-tde.net ([79.144.92.100]
  helo=killbill) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1whYD5-00BtrH-A7; Wed, 08 Jul 2026 21:45:31 +0200
+ id 1whYD6-00BtrH-G8; Wed, 08 Jul 2026 21:45:32 +0200
 From: Melissa Wen <mwen@igalia.com>
 To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
  harry.wentland@amd.com, maarten.lankhorst@linux.intel.com,
@@ -52,10 +52,10 @@ Cc: Ariel DAlessandro <ariel.dalessandro@collabora.com>,
  Pekka Paalanen <pekka.paalanen@collabora.com>,
  John Harrison <John.Harrison@Igalia.com>, amd-gfx@lists.freedesktop.org,
  kernel-dev@igalia.com, dri-devel@lists.freedesktop.org
-Subject: [RFC PATCH 18/19] drm/amd/display: move CRTC CTM color mgmt prop to
- check helper
-Date: Wed,  8 Jul 2026 21:37:33 +0200
-Message-ID: <20260708194343.2578387-19-mwen@igalia.com>
+Subject: [RFC PATCH 19/19] drm/amd/display: enable post-blend colorop
+ properties
+Date: Wed,  8 Jul 2026 21:37:34 +0200
+Message-ID: <20260708194343.2578387-20-mwen@igalia.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260708194343.2578387-1-mwen@igalia.com>
 References: <20260708194343.2578387-1-mwen@igalia.com>
@@ -103,110 +103,45 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:from_mime,igalia.com:email,igalia.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 403B3729F6A
-
-Move legacy CRTC CTM color mgmt handlers to AMD atomic check helper to
-centralize legacy properties in a single place, so that we can reuse the
-callers to these helpers for colorop setup.
+X-Rspamd-Queue-Id: 2F0EA729F5F
 
 Signed-off-by: Melissa Wen <mwen@igalia.com>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 66 +++++++++----------
- 1 file changed, 32 insertions(+), 34 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c | 5 +++++
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c  | 4 ++++
+ 2 files changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-index 67a9ec48836d..9e5da58f26f8 100644
+index 9e5da58f26f8..cb4e3e5652bd 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-@@ -1385,6 +1385,7 @@ int amdgpu_dm_check_crtc_color_mgmt(struct dm_crtc_state *crtc,
- 	uint32_t degamma_size, regamma_size;
- 	bool has_regamma, has_degamma;
- 	enum dc_transfer_func_predefined tf = TRANSFER_FUNCTION_LINEAR;
-+	struct drm_color_ctm *ctm = NULL;
+@@ -1389,6 +1389,11 @@ int amdgpu_dm_check_crtc_color_mgmt(struct dm_crtc_state *crtc,
  	bool is_legacy;
  	int r;
  
-@@ -1454,10 +1455,38 @@ int amdgpu_dm_check_crtc_color_mgmt(struct dm_crtc_state *crtc,
- 	 * have to place the CTM in the OCSC in that case.
- 	 */
- 	crtc->cm_has_degamma = has_degamma;
--	if (check_only)
-+	if (check_only) {
- 		kvfree(out_tf);
++	if (crtc->base.color_pipeline_enabled) {
++		r = amdgpu_dm_crtc_set_colorop_properties(&crtc->base, stream, check_only);
 +		return r;
 +	}
++
+ 	tf = amdgpu_tf_to_dc_tf(crtc->regamma_tf);
  
--	return r;
-+	if (r)
-+		return r;
-+
-+	/* Setup CRTC CTM. */
-+	if (crtc->base.ctm) {
-+		ctm = (struct drm_color_ctm *)crtc->base.ctm->data;
-+
-+		/*
-+		 * Gamut remapping must be used for gamma correction
-+		 * since it comes before the regamma correction.
-+		 *
-+		 * OCSC could be used for gamma correction, but we'd need to
-+		 * blend the adjustments together with the required output
-+		 * conversion matrix - so just use the gamut remap block
-+		 * for now.
-+		 */
-+		__drm_ctm_to_dc_matrix(ctm, stream->gamut_remap_matrix.matrix);
-+
-+		stream->gamut_remap_matrix.enable_remap = true;
-+		stream->csc_color_matrix.enable_adjustment = false;
-+	} else {
-+		/* Bypass CTM. */
-+		stream->gamut_remap_matrix.enable_remap = false;
-+		stream->csc_color_matrix.enable_adjustment = false;
-+	}
-+
-+	return 0;
- }
+ 	r = amdgpu_dm_verify_lut_sizes(&crtc->base);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+index 6226c9ba5fce..33b3e66f6941 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_crtc.c
+@@ -804,6 +804,10 @@ int amdgpu_dm_crtc_init(struct amdgpu_display_manager *dm,
  
- /**
-@@ -1484,38 +1513,7 @@ int amdgpu_dm_check_crtc_color_mgmt(struct dm_crtc_state *crtc,
-  */
- int amdgpu_dm_update_crtc_color_mgmt(struct dm_crtc_state *crtc)
- {
--	struct dc_stream_state *stream = crtc->stream;
--	struct drm_color_ctm *ctm = NULL;
--	int ret;
--
--	ret = amdgpu_dm_check_crtc_color_mgmt(crtc, false);
--	if (ret)
--		return ret;
--
--	/* Setup CRTC CTM. */
--	if (crtc->base.ctm) {
--		ctm = (struct drm_color_ctm *)crtc->base.ctm->data;
--
--		/*
--		 * Gamut remapping must be used for gamma correction
--		 * since it comes before the regamma correction.
--		 *
--		 * OCSC could be used for gamma correction, but we'd need to
--		 * blend the adjustments together with the required output
--		 * conversion matrix - so just use the gamut remap block
--		 * for now.
--		 */
--		__drm_ctm_to_dc_matrix(ctm, stream->gamut_remap_matrix.matrix);
--
--		stream->gamut_remap_matrix.enable_remap = true;
--		stream->csc_color_matrix.enable_adjustment = false;
--	} else {
--		/* Bypass CTM. */
--		stream->gamut_remap_matrix.enable_remap = false;
--		stream->csc_color_matrix.enable_adjustment = false;
--	}
--
--	return 0;
-+	return amdgpu_dm_check_crtc_color_mgmt(crtc, false);
- }
+ #ifdef AMD_PRIVATE_COLOR
+ 	dm_crtc_additional_color_mgmt(&acrtc->base);
++#else
++	res = dm_crtc_init_colorops(&acrtc->base);
++	if (res)
++		return res;
+ #endif
+ 	return 0;
  
- static int
 -- 
 2.53.0
 
