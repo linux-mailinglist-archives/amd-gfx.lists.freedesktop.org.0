@@ -2,87 +2,110 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LIyFGKpMTmqoKQIAu9opvQ
+	id CyvoHqZMTmqhKQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 15:12:10 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 15:12:06 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D9B0726A98
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 15:12:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85041726A86
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 15:12:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=usp.br header.s=usp-google header.b=HaEE3nPf;
-	dmarc=pass (policy=quarantine) header.from=usp.br;
+	dkim=pass header.d=ibm.com header.s=pp1 header.b=rUy27V8D;
+	dmarc=pass (policy=none) header.from=ibm.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D51A10E5E7;
-	Wed,  8 Jul 2026 13:12:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF32A10F119;
+	Wed,  8 Jul 2026 13:12:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
- [209.85.215.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6BF510E522
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Jul 2026 23:42:56 +0000 (UTC)
-Received: by mail-pg1-f177.google.com with SMTP id
- 41be03b00d2f7-c9d1fc053e0so25621a12.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 07 Jul 2026 16:42:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=usp.br; s=usp-google; t=1783467776; x=1784072576; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=NTsYOw6uHozsquujsNCqPDcOi1VuziUuLK4jzy115/c=;
- b=HaEE3nPfzYK8A6we1C/cLxDaf9Zr0uwk6MuGIRVZUfKUPwwld3UUyPHnA5GzTOD9qp
- iFNU8+tAtNxgILnApH8EiHyVZj15V89UshCtZFa8MHk7bl4w2+/mx+Jf2g4wY9QK18C7
- r4FckETGKGPhMw6pg1ktQMvJV6C/tNFwqCSL+JHCa77fLmuLd9A2stRJg1dijnFuWRyu
- FEC49nSq8xsck3XiANMLRbyB7pfE3MIq+d3ZfABqsyLlWHf4VU2pBGFGpeED4KJBAuve
- aj6idYJ6/qIxoC3nKywnZ8uf3ECgwGGfo9z6OPu1FGG8tqm3gsvsthXMcYTgdU7W1AIX
- 7gXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783467776; x=1784072576;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to:content-type;
- bh=NTsYOw6uHozsquujsNCqPDcOi1VuziUuLK4jzy115/c=;
- b=kSBRON/pWkvxqC9rjRkPxdinnvLT6854TH+yWj7O0ChoGw1AoC+9wpgQxMgFCPelWf
- gq73/WCFIOZlAgkLpQnWyXQhsEEEKmUgjPlgef5tWbg1PzRvgLDwVj4c1YZsv5W4Ve3G
- EtcL17ibUx0qH/+VZz20X7niG2yoqvdDZte9bX5Zc3Qy+OkB9g1jZjQSv1puO1vdOD3B
- 8St/A4ytsSO+1UMbrmDsfwWsFe0ZpwvXCvSBtd7RDuJBLrSmS944IL2jH+iSIBSZXQmP
- aZEP8UHMYSFIkmFrzfk2ol5cK3iggDVb/jz+ivkTAh4oq1JNt/IN1rh4qd2xTCwR52c0
- Ujlg==
-X-Forwarded-Encrypted: i=1;
- AHgh+RqAOilXZMhw3O3thmoFGiubZJqKAKNzC3RbpITNKEj0vJ3HTbRMdSepttajnkBlZAQKw/oy/kuI@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyDvwrVdd+nPm1Fw+M9HqyA5nAQz/k7JvynsCZSQuk8yUvF1ASc
- AqyZ9jkzbBBhYXpbbx3Kmu2GIjcO6J3zhiBNaJNb7iXGp1P+auN4EP+H1g0VBsbC1lo=
-X-Gm-Gg: AfdE7cll1/DMBUN6oUO7I8H797P0xJrGV/l25BSyzx+GXGr0lGv+1AVx7nys9t3RLcu
- wa0CCcTVqSlg1LVaQiXVvWXHIlguUCJEDIAIUO6bb/ItAkxA3x7a6mF+7edQSm3cBjfN4clYt1j
- HbWGYJ53zpbsh+68ezoMjXMT54RPs8wnTEIsIpHCduWBKsTHfw6avEU3dZUN3p34k3DsTAL2Lu4
- Xz0dxC9y0dPU6YFb3fwWj21x5yFWARwF2mYf/yHaqvb4AzBjm8ELqcZ4tTOcjK/2KlYEMFf9mGI
- OVvpbViYLZutC5RTdyG5H4VZBB2FuyHtbkBckzFPPqglp2IGT/mqYLwvYt6FuoGzUcKTjQZ5th8
- tbU38jUc6R/8MpDSUciL9HtzPtF0rfxRxofEObw8PyIL4z/11MQG70jSdS2KeaqpU7OQERj2r8o
- k=
-X-Received: by 2002:a05:6a21:684:b0:3b5:6b5a:4f29 with SMTP id
- adf61e73a8af0-3c08ee38980mr7590280637.30.1783467775848; 
- Tue, 07 Jul 2026 16:42:55 -0700 (PDT)
-Received: from arch-ideapad ([2804:7f0:3df:3dbf:fd10:7260:dc20:84b7])
- by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-31174ae6cd9sm13637822eec.31.2026.07.07.16.42.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Jul 2026 16:42:55 -0700 (PDT)
-From: Ryan Oliveira <ryan.oliveiraf@usp.br>
-X-Google-Original-From: Ryan Oliveira
-To: ryan.oliveiraf@usp.br
-Cc: airlied@gmail.com, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
- dri-devel@lists.freedesktop.org, kaikycintra@usp.br, simona@ffwll.ch
-Subject: Re: [PATCH RESEND] drm/amdgpu: Unify vm_fault_interrupt_state logic
- for gmc v10 and v12_0
-Date: Tue,  7 Jul 2026 20:42:21 -0300
-Message-ID: <20260707234221.34738-1-ryan.oliveiraf@usp.br>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260616184209.18014-1-ryan.oliveiraf@usp.br>
-References: <20260616184209.18014-1-ryan.oliveiraf@usp.br>
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71ABD10E549;
+ Wed,  8 Jul 2026 05:05:24 +0000 (UTC)
+Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 667Mn2SQ1238976; Wed, 8 Jul 2026 05:05:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:message-id
+ :mime-version:subject:to; s=pp1; bh=MhldLM9QD9GuE5p3/DJ9u6OdZWb/
+ 6XIIA3VNSVKn6sU=; b=rUy27V8DZ6AzXiG0CnEiKb1CPLWgpxXQhAx0Q/zTKn3F
+ G6R0liofXi9do9o6LXs2gZ0t/+2YvoDiu2u5uwxSQawsYrzMVTkX2zL+mtZXg3hN
+ wqlGgv+q3AuCs25KD/qa1Bo2DJbG9cj2p4DM70xruoJ68K0oqbrz/TZUq+QIOJp4
+ 6FK/Lgkoib+h0YOgP5xOUpfUEmB4NgjTDo+SITUKqF3hzYS2zM7pV5hGUfyBFuaJ
+ yUQ0ijPSdkRHrtOAaI92a7f/8biMqUjyxtAm8PqeT8gl/2BRdlABQS+avQDW0YHm
+ 75/r3qRW5uRbilEQ5SqmFYDe+Dru/+V+nx3b6OWarw==
+Received: from ppma21.wdc07v.mail.ibm.com
+ (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4f6suqtde4-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 08 Jul 2026 05:05:21 +0000 (GMT)
+Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
+ by ppma21.wdc07v.mail.ibm.com (8.18.1.7/8.18.1.7) with ESMTP id 66854exs023111;
+ Wed, 8 Jul 2026 05:05:20 GMT
+Received: from smtprelay07.wdc07v.mail.ibm.com ([172.16.1.74])
+ by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4f7dgk61ny-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 08 Jul 2026 05:05:20 +0000 (GMT)
+Received: from smtpav02.wdc07v.mail.ibm.com (smtpav02.wdc07v.mail.ibm.com
+ [10.39.53.229])
+ by smtprelay07.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 66855KL921693032
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Wed, 8 Jul 2026 05:05:20 GMT
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 299E058058;
+ Wed,  8 Jul 2026 05:05:20 +0000 (GMT)
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id EC33758059;
+ Wed,  8 Jul 2026 05:05:15 +0000 (GMT)
+Received: from [9.123.5.126] (unknown [9.123.5.126])
+ by smtpav02.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+ Wed,  8 Jul 2026 05:05:15 +0000 (GMT)
+Message-ID: <fde3656e-9e22-4e4c-937f-7e8cb918da6b@linux.ibm.com>
+Date: Wed, 8 Jul 2026 10:35:14 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Content-Language: en-GB
+From: Venkat Rao Bagalkote <venkat88@linux.ibm.com>
+Subject: [REGRESSION] drm/amd/display: amdgpu_dm_plane_test.ko fails to build
+ due to modpost "too long symbol"
+To: amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, alexander.deucher@amd.com,
+ george.zhang@amd.com, bhawanpreet.lakha@amd.com,
+ LKML <linux-kernel@vger.kernel.org>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>, christian.koenig@amd.com,
+ harry.wentland@amd.com, sunpeng.li@amd.com, broonie@kernel.org,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzA4MDA0MyBTYWx0ZWRfXx0A8A3/+wMdh
+ IGdNB9frgkFd3+ogfITlwXCSCg8smE9KU0aP9Mcz8FYKF5xPV4lXqZZyMP7IXCNQYONZ/FABaxf
+ 1nxq3j13A8aSGRweRtRFj5gIoTdkFcU=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzA4MDA0MyBTYWx0ZWRfXyCO6cjikT03N
+ dlETvzl2Esw47FNH6CR8c8CBUNjhM9SvQWqcjy4+e41kug+OFrfYRooP4PnhQwGtFKYoIeMygcK
+ bOi3mk3wmrRoKgwKHJGrG2BoQLOf5L5NdKU8Oiy7XNvaCCZtTuUXbYqC6ETvD0XpdtgjtEgKXnE
+ DHakvO+emWk6lIpJqwN6zqcxISltPUCuxnDPe9O3uqAOtqzKKTzaf820kGIxAp8qIbuhDdI1E9a
+ HpIkqPA4ddiMSvh4peKwzlpJXAJmA7ypMX4pOsZBPkfONaBDjqwn2vXHq4X9MdE19vkGLVmLBYx
+ hr5gj6/wHb9Zdl0izx40S5dslC+WRNlPbcbf/+I+tTUACJCuh4nQmCVgGsBdRuLqcmNSQNsIa0T
+ YWxRmKo1Mr8s/ISkQ1Ym5kK+rb6rdDkQbfE9mfzwzcxbYe3rsLTck/ESuO2twrwCcqsL4g/cc2y
+ EpQ6MlJA6/rlXcFD2iw==
+X-Proofpoint-GUID: ECAVD29mq7Ou5idDAiIdvd5zYB28nI21
+X-Authority-Analysis: v=2.4 cv=Oot/DS/t c=1 sm=1 tr=0 ts=6a4dda91 cx=c_pps
+ a=GFwsV6G8L6GxiO2Y/PsHdQ==:117 a=GFwsV6G8L6GxiO2Y/PsHdQ==:17
+ a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=uAbxVGIbfxUO_5tXvNgY:22 a=VnNF1IyMAAAA:8
+ a=vszvPysokf05iRVejT4A:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: ECAVD29mq7Ou5idDAiIdvd5zYB28nI21
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-07_06,2026-07-06_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 lowpriorityscore=0 clxscore=1011 impostorscore=0 phishscore=0
+ malwarescore=0 suspectscore=0 spamscore=0 adultscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607080043
 X-Mailman-Approved-At: Wed, 08 Jul 2026 13:12:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,44 +121,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[usp.br,quarantine];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[usp.br:s=usp-google];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,amd.com,lists.freedesktop.org,usp.br,ffwll.ch];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:ryan.oliveiraf@usp.br,m:airlied@gmail.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:dri-devel@lists.freedesktop.org,m:kaikycintra@usp.br,m:simona@ffwll.ch,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[ryan.oliveiraf@usp.br,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ryan.oliveiraf@usp.br,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[usp.br:+];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	FROM_HAS_DN(0.00)[]
+	DKIM_TRACE(0.00)[ibm.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[venkat88@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ARC_NA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2D9B0726A98
+X-Rspamd-Queue-Id: 85041726A86
 
-Hi everyone,
+Greetings!!!
 
-Just a quick ping on this patch. Let me know if you need any changes or if there is anything I can do to help here.
+linux-next is failing to build for me with:
 
-Best regards,
-Ryan O.
+ERROR: modpost: too long symbol
+"amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers"
+[drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/tests/amdgpu_dm_plane_test.ko]
+
+make[2]: *** [scripts/Makefile.modpost:147: Module.symvers] Error 1
+make[1]: *** [Makefile:2165: modpost] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+
+The failure occurs during modpost while building:
+
+drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.ko
+
+This appears to be a regression in the AMD display KUnit test code.
+
+Could someone please take a look?
+
+
+If you happen to fix this, please add below tag.
+
+Reported-by: Venkat Rao Bagalkote <venkat88@linux.ibm.com>
+
+
+
+Regards,
+
+Venkat.
+
+
