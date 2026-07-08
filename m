@@ -2,51 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bO3bHY6mTmrIRQIAu9opvQ
+	id hgO3OJOmTmrLRQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:35:42 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:35:47 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ABE5729E49
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:35:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8373A729E54
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:35:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=wzF88wyI;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=vuPdhkXf;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F45E10F25A;
-	Wed,  8 Jul 2026 19:35:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAAD110F25F;
+	Wed,  8 Jul 2026 19:35:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010022.outbound.protection.outlook.com [52.101.46.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A04E10F257
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jul 2026 19:35:39 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011014.outbound.protection.outlook.com [52.101.52.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D996510F25C
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jul 2026 19:35:43 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=T5ZXP4MtrNNrivfCEtO8mNMeW4vPKLtAQegOXm7K13VOXdbBpMa4n5ZNytNK8NcnRTxY3hYJnd0ybV2V/NddAjRYFoJO6OjjdncRKn/tzzug80QVAPOVTfT5brT+zOoXLLu5KwPnY24n3Xz9OGtQd2w6raQKpc2Tu1ZRF55aY21jGf01U8b/NerB74I9JASeSjJcQWc4rVcEiZ2wyM6aCf6h9ylAlPJ3+5GDkGwhdNNl0FhgRbvlE9wbW8YD3sgpAJb5ijqw55GW4tNthA03CSdWyI0bIe465MIvY+xT/UGfwzSlO/wCoaRcl80ZqfuCrp0VlMM68Cgi3eyaLYluxA==
+ b=QnPg7KJdT3zSp4HBwaJ+33tpd2/T3PBs9/grJOXl6v4mGf8jIIoOHB86vOU2fFyzjL17rjv8zjbF6DLS2ow9ruPDRydHRaIk16Voh/f5b5Qv3Q0X8BdN9JAsG+v5JrHQhvshq7m4eOtP85s46ad797QGncQAullVd98uQH0nisoB6+Xs32IxT/d8SnZ1H6cf0OAANe1SnSMcXPv6R7zSKQko/bjjqLMqoMQQMcQU+e9pZXqm1NxCUuwX+PFyBscTwkrFZ6BYFJCLl9rUPhdYeFOZvVedtG9q8yer67WXyrU1Z9NCGNCYEjbgjU+nXzICpIHi8OdDQPA4UyT6fbW6Ew==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5cD8XSkyonIYIfiTzkFAc/tqRVFjKFotEgyF7gNw6bw=;
- b=rXDkzXRwbJVe1LtnB0+sl1GCJQGSoTVka4uWITflUFv+OIupF4LGGGOirXdakeFhxL0L6Y3GOe1/j1PyoLk2EA/IHrYb3VClil0ik9Xz+fpus4PB10PIv7K/415Uj4BkiXZSKK2qt+YsTk07aHvGeq2cPuZnwTAYRKQI+m+B6zzUzqw4D8BHPzFMAS8M3KKvcsn5UyizRWL1u2LQo1g49tgFM8xGEAfP+SDoLRUSrWyLhhhHNjWDsMWAjjCZdJE+Z1QhiTimgRm5kwSK6xBr7O4ft2lzavFH4XvH1rtIbwQI9DVxgRCiApnkZH1Nf7/3Xt5F7yMfETVKQo9yPS0sCA==
+ bh=cpQaePybtaxiDQ6GPUGTSWmpZgQKIgLREntIP9D/gxo=;
+ b=QK1FODmK/q0SWyJodEka4sxIHbrcPQwLIbBvPjCmHr8hwo6offeKA43P+5S8EoKP1jW3n+CVyexwvfwCR7KeGvGMWkQV4IbJ2UoeaG7DBrUyFHVy9gRloJLQMMfYurB8mxLqE1IE7fmqIEnff/ZDaltxGcuekmNPWtUs9tE0f42DMWEulfoG62Mb2EtbQAMKhCzjH4Fg9eb+63Isn++shbp8j6QTKpkA+0kojkf2wNfy3Wd+2MUzBtPrpl5Ges/UsmgdNyBkIuk5+T9pKHa9H0r/WRzMdeA5yxUtkehXXmcr3Ti0ST6WbzYrDtHwGJWRQ7xN3DeEeSCRw9glfbZZgw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5cD8XSkyonIYIfiTzkFAc/tqRVFjKFotEgyF7gNw6bw=;
- b=wzF88wyI+6zzWfjBwL7Y/a9XVBqDm97S1HT73BaIXJXiEaKww3KY5XBzljtaTxteW5/P5BM9OAyqzQWJ1xW5VKNjPTs05oPyyebU8vcAZaXQNu+xSzEme9zzXNMgz7GY7I/9i07YPQko/VH1o5hbpMjfVrjELdUwhZH85FFw8q0=
-Received: from BL1PR13CA0206.namprd13.prod.outlook.com (2603:10b6:208:2be::31)
- by SJ0PR12MB7457.namprd12.prod.outlook.com (2603:10b6:a03:48d::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Wed, 8 Jul 2026
- 19:35:34 +0000
-Received: from BN3PEPF0000B076.namprd04.prod.outlook.com
- (2603:10b6:208:2be:cafe::1b) by BL1PR13CA0206.outlook.office365.com
- (2603:10b6:208:2be::31) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.9 via Frontend Transport; Wed, 8
+ bh=cpQaePybtaxiDQ6GPUGTSWmpZgQKIgLREntIP9D/gxo=;
+ b=vuPdhkXfr2ZlSJCb5QxMAtwJtxgYVS4n1uwssuRIW3yZcbnbM/3dXERqI/EhtcKk01V7F4PwvqIdrkTGrtjpZDrgCxTxyGkRYpuWx5UMEBGunkMIJJyj6h06RcFUtokrWH4uV3TEfhktjpCT7dphJYBpmOYMaOEVo8seiNhIWqI=
+Received: from BN9PR03CA0914.namprd03.prod.outlook.com (2603:10b6:408:107::19)
+ by CY5PR12MB6084.namprd12.prod.outlook.com (2603:10b6:930:28::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Wed, 8 Jul
+ 2026 19:35:34 +0000
+Received: from BN3PEPF0000B075.namprd04.prod.outlook.com
+ (2603:10b6:408:107:cafe::25) by BN9PR03CA0914.outlook.office365.com
+ (2603:10b6:408:107::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.10 via Frontend Transport; Wed, 8
  Jul 2026 19:35:34 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -55,20 +55,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BN3PEPF0000B076.mail.protection.outlook.com (10.167.243.121) with Microsoft
+ BN3PEPF0000B075.mail.protection.outlook.com (10.167.243.120) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Wed, 8 Jul 2026 19:35:33 +0000
+ 15.21.181.6 via Frontend Transport; Wed, 8 Jul 2026 19:35:34 +0000
 Received: from ausmlimonci-lx1.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 8 Jul
- 2026 14:35:30 -0500
+ 2026 14:35:31 -0500
 From: Mario Limonciello <mario.limonciello@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Mario Limonciello <mario.limonciello@amd.com>, Oz Tiram
  <oz@shift-computing.de>
-Subject: [PATCH 4/5] drm/radeon: Fix VFCT bus number matching with soft filter
-Date: Wed, 8 Jul 2026 14:35:17 -0500
-Message-ID: <20260708193518.702584-5-mario.limonciello@amd.com>
+Subject: [PATCH 5/5] drm/radeon: Validate VBIOS signature in VFCT path
+Date: Wed, 8 Jul 2026 14:35:18 -0500
+Message-ID: <20260708193518.702584-6-mario.limonciello@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260708193518.702584-1-mario.limonciello@amd.com>
 References: <20260708193518.702584-1-mario.limonciello@amd.com>
@@ -80,29 +80,29 @@ X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B076:EE_|SJ0PR12MB7457:EE_
-X-MS-Office365-Filtering-Correlation-Id: b2b69b1a-74d4-46cb-5f8b-08dedd28142b
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B075:EE_|CY5PR12MB6084:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3450d869-bb86-4587-30d3-08dedd28143c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|36860700016|376014|23010399003|11063799006|56012099006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: lk3QoUfXImXw7l95IOLFW6CWw4xSXqiMeLhRR1i18Ey5ifVgnwxiO4092YXtCj9MOBmZsvy6JxPeEuNrkS5FPVljNVIjadukPlZKaQ0i/f51SRpVWv63oaHn++WXIwTx2cWxZm3OgZuDGD9PDTMRIyejudh5zxlgCMSLArBAkquR8ZN54C/tVBc01qTvKr0RyjPq3Ii1L79RKtj1ri4HtRyZzzpkXpDguIKT8WlVrFV1sn6HC3bnZCEtAy2bOlwH6sXNoR6pBotoBkyIOmaPulGvM3I4YotQ14J2N8md0g63cNQKLvd4TVri5TIgj+dYWQyxj2qO+OqnG6q3T5fU/EOC3vQ3sqjMN/6MRlGd2RiaNHZ3jWiB1FZbH9AMvbEHMC4y514mpj1yv7EQdQ0TC5LoWXIJDQzQaMMNH9LGTBdryq9OZ2RlXttcV26/3GPVsdDXyXzJ3YjahNZ+c+qasaKOGjYriC+bgZJLHkHQX7L4c1aGS0EvMkfZ5reCVuNEWWV92wvHfER7Ny2tTjVklPRioUh59Fy9rxeXPmtThE7r3UqEqRVapTdpZVZCBUjH5wPHvHcVLzJyYe58esA13m65q6rZWDMqcDKMdQ3GK8HGyoqDDA1M/vZlfgeWFO/Un39ChX0uyi3AyOXgM09CvUVJP7yEWVkiuwQ++ZIwEcfdxHXCIypoESrwpPz5aCQ3nknh3Mqa/XbPb4+IVnt2Ag==
+ ARA:13230040|376014|36860700016|82310400026|1800799024|23010399003|56012099006|11063799006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: gP+SjANp/2W7314STBXFL6N0x3UNYdEAqQvrvWUcEugGhJofHXas/mN2X3QCbZijxo6lVFfoWzq/aMcARswRU1D9HhkJJg2N5rH1jWNeHW8XC5aFvTWs9ZagUC1MIY0IGcaecyhA3A2JU16Qf+ZqybcIOmr3AH9eQjc838+tcPR8V+08cgVvVIXiyww4X4SEOjX2eQZXFO0RWnM9Ick9Jhpc+uKSjRRq7WJIE3zY3dIANgeNXMnn1cEh+WTSIOJSSyXMnz/lc6YUx0+U2HTp16Dq9ekZh2vc0jLPjZVrXxL3y3lk1sD4fgBiTlWrfMb8XmE6cnPrzcFcKVicc0TD3+60uIwY4XIs0nOm0qg6PdUq7Hhm2ZbcrofulsNsTmr5damARJ3y4sIel6MuyvFwGDmS+0Rskgl586kMhYCEKv4klOS075PHpXjchTeIwCiNNdO6AFqJnt8QWiDuWHyZ9fAo4/GCmSMoUeW+FnAKTdUcamdtv08R/ukZnPKNfsX+u4Z364jbkxErtstAS6hKDIiDZKZoME+Qbl2KKxVISbc1q22vIRUyA3ctwnkFWPEcabm7ozQX5r3Ny7hyXNdIZewWbzIZRLywu5o+tK1jYTUxo4RJd0llA3bWi4BAkVxB/rFUyFeE9mqMbRepmDqyWtC4G4dVXnbD2DbNZyzHTjdEWugEuvK/pBcKGB5q7y/rxqCP7C5PEtU4nGYXaC3mZg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(23010399003)(11063799006)(56012099006)(22082099003)(18002099003);
+ SFS:(13230040)(376014)(36860700016)(82310400026)(1800799024)(23010399003)(56012099006)(11063799006)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: u4YIZihrGcfx+ItPauuInoRtpB2F8/8zwh1HXsTlUD6Ih7I6s5RrBPi71aJ2UNf2QjygezIpvs72dHwh8wiN3jRTgQEl/Paq+0hvoSxIqHITFBNPxeaIkBq5YSKy+iimjD/OJ5yucx6b93oZmRmS4FO3Lms7LqpVhsELsRc8cFmg62tFCdr6CkGhW/zB/xdn71rRyBFj+KUi3ZaVv+Qm/6pnhWJsZQsMyPmWUP8qLUtuD21PghUi1PYkGEfaPVxWjkPeDLoeJ/5v+9Wy01I34+zQecg/9DJQkKA336K/Azuyz3wZgZ0ZF1QI0Uf5EK5zmQIo1vkQwsjdxajm0cLoyp121zh3ASEix3kGWTs9tHJBf3FUYN6FRSGCS83ia6U+2WZAAzJLR5LloNaxI5VS/Tkz8ytRTeEm4C+3yLulSyiQdxi2/t499i61xfJnFzq5
+X-MS-Exchange-AntiSpam-MessageData-0: j2DOJM7Hlpt2d6UkcunJ/h1D6R+6fMxx7EAy5wKORq8it0z5ldNkF5bFMmRsNU4nTX0AjZee+9aLbjPlc2vpd/cPIzp3+DGdtinX7KSSbq2uAi/93GV4lI49vCqn1KtMYFHgs1olIHh1K6vXHZpMAurNbp4ggUrpw/BKnhoK8FpG3tv8vPJTe7RslJfG6NIZZ0TNHkY6Synld8TLwQeXG1nM6FwizTipyl12VQwuytEBhS+Zi7mubMcVxrG/xd1tLc8TnwJuPIANT2rHXIheTrRiunCfaCopvrwq8WXv7hIP9XcHNJ36IvHlvpC6JyZmuJGmVw6XSvyRdpCPH/DxnBxQBw8lIwR31gTegyUUFbOG7TEX0iGZGMGfuOpZO3dIgHMiX4r0z1EujLsts4pkatnGoURRdEqECB1AqFlg0ltxemZ/4X3lRRb7ck7evJXR
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 19:35:33.9581 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b2b69b1a-74d4-46cb-5f8b-08dedd28142b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 19:35:34.0687 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3450d869-bb86-4587-30d3-08dedd28143c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B076.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B075.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB7457
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6084
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,92 +144,46 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1ABE5729E49
+X-Rspamd-Queue-Id: 8373A729E54
 
-On systems where PCI bus renumbering occurs (e.g. pci=realloc,
-resource conflicts), the runtime bus number may differ from the
-BIOS POST bus number recorded in the VFCT table. This causes
-radeon_acpi_vfct_bios() to fail finding the VBIOS even though
-the correct device entry exists.
+The VFCT path accepted whatever kmemdup() returned without checking
+that the copied image is a valid VBIOS. Every other radeon BIOS
+fetch path verifies the 0x55 0xaa signature before trusting the
+image; the VFCT path is the odd one out.
 
-Introduce radeon_acpi_vfct_match() which treats the bus number
-as a soft filter: vendor/device/function identity is the hard
-requirement, while exact bus match is the preferred path. When
-bus numbers disagree but device identity matches, accept the
-VFCT entry and log a dev_notice for diagnostics. This mirrors the
-equivalent amdgpu change.
+Check the signature after copying the image and reject it (freeing
+the buffer) if it does not match, matching the amdgpu VFCT path
+which validates via check_atom_bios().
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
 Cc: Oz Tiram <oz@shift-computing.de>
- drivers/gpu/drm/radeon/radeon_bios.c | 45 ++++++++++++++++++++++++----
- 1 file changed, 40 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/radeon/radeon_bios.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/radeon/radeon_bios.c b/drivers/gpu/drm/radeon/radeon_bios.c
-index c6df799c3cf4a..cc10880af096b 100644
+index cc10880af096b..215e47c94d29e 100644
 --- a/drivers/gpu/drm/radeon/radeon_bios.c
 +++ b/drivers/gpu/drm/radeon/radeon_bios.c
-@@ -596,6 +596,45 @@ static bool radeon_read_disabled_bios(struct radeon_device *rdev)
- 		return legacy_read_disabled_bios(rdev);
- }
- 
-+/**
-+ * radeon_acpi_vfct_match() - Check if a VFCT entry matches the device
-+ * @rdev: Radeon device
-+ * @vhdr: VFCT image header to check
-+ *
-+ * VFCT entries contain the PCI bus number as recorded during BIOS POST.
-+ * On systems where the kernel renumbers PCI buses (e.g. pci=realloc or
-+ * resource conflicts), the runtime bus number may differ from the POST
-+ * value.  Match by device identity (vendor + device + function) and use
-+ * the bus number as a preference: exact bus match is preferred, but when
-+ * the bus numbers disagree we accept the entry if the device identity
-+ * matches.
-+ *
-+ * Returns: 0 on match, -ENODEV on no match
-+ */
-+static int radeon_acpi_vfct_match(struct radeon_device *rdev,
-+				  VFCT_IMAGE_HEADER *vhdr)
-+{
-+	/* Vendor and device IDs must always match */
-+	if (vhdr->VendorID != rdev->pdev->vendor ||
-+	    vhdr->DeviceID != rdev->pdev->device)
-+		return -ENODEV;
-+
-+	if (vhdr->PCIDevice != PCI_SLOT(rdev->pdev->devfn) ||
-+	    vhdr->PCIFunction != PCI_FUNC(rdev->pdev->devfn))
-+		return -ENODEV;
-+
-+	/* Exact bus number match - preferred */
-+	if (vhdr->PCIBus == rdev->pdev->bus->number)
-+		return 0;
-+
-+	/* Bus mismatch but device identity matches (PCI renumbering case) */
-+	dev_notice(&rdev->pdev->dev,
-+		   "VFCT bus number mismatch: table %u != runtime %u, matching by device identity (vendor 0x%04x device 0x%04x)\n",
-+		   vhdr->PCIBus, rdev->pdev->bus->number,
-+		   rdev->pdev->vendor, rdev->pdev->device);
-+	return 0;
-+}
-+
- #ifdef CONFIG_ACPI
- static bool radeon_acpi_vfct_bios(struct radeon_device *rdev)
- {
-@@ -633,11 +672,7 @@ static bool radeon_acpi_vfct_bios(struct radeon_device *rdev)
- 		}
- 
- 		if (vhdr->ImageLength &&
--		    vhdr->PCIBus == rdev->pdev->bus->number &&
--		    vhdr->PCIDevice == PCI_SLOT(rdev->pdev->devfn) &&
--		    vhdr->PCIFunction == PCI_FUNC(rdev->pdev->devfn) &&
--		    vhdr->VendorID == rdev->pdev->vendor &&
--		    vhdr->DeviceID == rdev->pdev->device) {
-+		    !radeon_acpi_vfct_match(rdev, vhdr)) {
+@@ -676,9 +676,14 @@ static bool radeon_acpi_vfct_bios(struct radeon_device *rdev)
  			rdev->bios = kmemdup(&vbios->VbiosContent,
  					     vhdr->ImageLength,
  					     GFP_KERNEL);
+-			if (rdev->bios)
+-				r = true;
+ 
++			if (!rdev->bios ||
++			    rdev->bios[0] != 0x55 || rdev->bios[1] != 0xaa) {
++				kfree(rdev->bios);
++				rdev->bios = NULL;
++				goto out;
++			}
++			r = true;
+ 			goto out;
+ 		}
+ 	}
 -- 
 2.43.0
 
