@@ -2,94 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id P2z8GapMTmqpKQIAu9opvQ
+	id pEFxBtIKTmqkCAIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 15:12:10 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 10:31:14 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E88EE726A97
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 15:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48B357232F7
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 10:31:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=I+50Nq60;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=amd.com header.s=selector1 header.b=XM21+iWi;
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 690E310E5DF;
-	Wed,  8 Jul 2026 13:12:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8ACA010F04B;
+	Wed,  8 Jul 2026 08:31:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
- [209.85.214.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E757010E586
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jul 2026 07:32:54 +0000 (UTC)
-Received: by mail-pl1-f182.google.com with SMTP id
- d9443c01a7336-2cad225673bso3264375ad.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 08 Jul 2026 00:32:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783495974; x=1784100774; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=Keeefd38WvRLYS9r2pdjAYV6V+Tg/ODVFYOu8UceE3I=;
- b=I+50Nq60qzntlBtWH5t/v5IZYeuNJSqu55QbT0HtFnbAhD7HsjioOf85tBnxMUMSOo
- K40zVz5qdlvvhBWnKOmh9lSqdKt04/gLSXGWgzV2fiUJtu9irzfKCfR5NmEb0meq/AMW
- Sa6tn99rR9pW/voljiRhRtHvuEAxggPNtNbRhtR4zjH5WEzj+jbkcLnpybhVggtDSj18
- ExyuCNTFWJWgPznH9/IMhjcuZn/GxntONVUHFj6b0PEKfPe20EV1n26eWcGZK9cPbsOc
- aCoN0uV7BYP16O4flUvT/9bhtTFazR0qEge7kk/5Tn3/+qsb0P9rBP3AL7118NZdp+Zm
- 5qdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783495974; x=1784100774;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=Keeefd38WvRLYS9r2pdjAYV6V+Tg/ODVFYOu8UceE3I=;
- b=Y1VsxgvENxqtwh/rQe2xvlud/ZBsxjZLtYXnHTZAfU6Lc55zDKM4q8tdAtForlmbEN
- MrAMjSgXoL94lVJdy36wxKKC70012OtAFmJWdko6bS569l6PMEGsouiYMbD/sky0evUO
- 4ONRuUPWCcGwlYXKoLGCnrkiQkdPQu5Vcu79ZSjdMF1EjEUhW80ZT2+V2+pXut0CgqRR
- RlcEZnP9XdPmLebBbZ6Rl3IDBOUgtzeVkiVLRJ5hGCkyo7TZPEyJ4n5WxU4ou7zi/SQi
- 3v60kaEIrcZlafzRPASOcdkE/MWj3uzVLc/1I3h/ylvJVSpvYyAlky3N2fBAa5no0tyI
- MeJA==
-X-Forwarded-Encrypted: i=1;
- AHgh+RrTPM/KKsFcuYL2boM/eGsnQh1QY0aVck4SD5fmXu8xKkmnCAq8tEL0Uk70nK0UmIXU06lr1URi@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzS2qUntbp7ZbIzrEHU6TqmvNlDghUOG13dPXu0M49Be6TYQsaH
- K/3jtRngkcDFyVGN053bpW4DbNxZTgEaQNlQbYA2t9xbS+P2+Zg5OHV/
-X-Gm-Gg: AfdE7cndevjL2d3waqDM076jtAVExxZRoJyx9uGiowf/QAJh/ZHUI9AKHR7Br4msWWD
- k4xlWV4Prb7x1/uFGDM6sCI5x3kmRC6Cos8zmzHFUyHL/0TgY6H4AG5/IQzJhE/p/iw04jbmIMJ
- Hsuc5SWjE/FeKyxKC51LntbeODQ/lchxA+Na7nXavUajL1NU9OkVD39kRyFEw0W+ACpQFW42juw
- Xy6G/tWePP/Z/tDHWBzdWGvWnKSI6FxhTOsM0uWIPVgs2qv4S09tLFKRO8B1i6ADwp2VQxw5BSV
- ysXZ92VVvyonM2MFgFMelUKSmdC23fhcqmdu4zYfwCNl3YLTnTH/yzrOScZt2ZncXXm9hnyo728
- evqCxagS07gKK+SXPQSR7mRNimOdf0gX/ejRKfW1gBH0yTwLAgS3cdlMocBM9ek/MfNb5KkA=
-X-Received: by 2002:a17:903:b86:b0:2ca:bb6:e7c6 with SMTP id
- d9443c01a7336-2ccea36e129mr14778595ad.37.1783495974343; 
- Wed, 08 Jul 2026 00:32:54 -0700 (PDT)
-Received: from lgs.. ([2001:250:5800:1000::f280])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2ccc9d3d2efsm23314995ad.64.2026.07.08.00.32.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Jul 2026 00:32:53 -0700 (PDT)
-From: Guangshuo Li <lgs201920130244@gmail.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Alex Hung <alex.hung@amd.com>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Ivan Lipski <ivan.lipski@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, Ray Wu <ray.wu@amd.com>,
- Chenyu Chen <chen-yu.chen@amd.com>, Maxime Ripard <mripard@kernel.org>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Guangshuo Li <lgs201920130244@gmail.com>
-Subject: [PATCH] drm/amd/display: move connector state dereference after NULL
- check
-Date: Wed,  8 Jul 2026 15:27:51 +0800
-Message-ID: <20260708072751.724400-1-lgs201920130244@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013046.outbound.protection.outlook.com
+ [40.93.201.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABAFD10F042
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jul 2026 08:31:09 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AKLkwB1hkUXbxHXeKPJ62zR9eULJLzjl2OISbvPxZ4kkB9qIjgPBk9s88LcphBAIhXywFU4qAoIxGJ6NARLs3pHU5+LdM2VKbEvbpJmnJ0edk3WxRJjwG1StPUh/qRvfQ+VW9DCBLUcmw3nHGTJZFH3/kVnRAoOFWIFDCKC3CTX2Xp2bOKbtBCSIYC67u4hObFktXDAe3bQLufc2QO2T1EgyTG4XbR2ZmWG7gz2aiJLSq6gzUR6cCtCEHQ42LWaV26LE0aqTojAX4Fpsf7nISW+xMThAASzrTs4/RIXPKHOPueub+B0jthps24LbIvzY8jGRWlz2MuDQMOR7TVnoPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=X9WcmI2kKSptBJiwXOwCWoq6PDeRt9gqei1eX5XvFUU=;
+ b=p9OE+jAuP5UlYiE3+CEdEWwJFqICiI/1Ifgf2az6mzI1h0CU7TXdtfAq8jZp5B7Ozijs0AGyxIbQTX83h15Vr/pJJaQgO5VWBZqB3NluH+KSM+1CclZyqzwMPV2AEoAsOS4iYVX20y3RU49RihRUN91QvMI8R7OQ4tRCZP1Irbp1CQd6b4zKXcau2riyqYWjpBTGk/kHm3FmiPNaWCQWLHAAMtFlr/eOXAPfW6uwulXS1ovN8S5Olh+cwiHCNS8c1gPwbhFxgLN1u1ntJ3w0AjRWQK6aGkEQ18yBnueMe6hbiEmdkfoRA2lH+VUBNV3uxVQ2cUk15okOlFnXGbDQ/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=X9WcmI2kKSptBJiwXOwCWoq6PDeRt9gqei1eX5XvFUU=;
+ b=XM21+iWi/GTK0RqsDUb7lLsD2ZLIT4Jsvg+C7N4EQpSTxZQvwGmz9Yudvp4V48LZA2r+4AdnT3Eg10fElLWITzQmu47NSFDNslvU6PHnEwDKtGjQc/yO5qtX9Pz9U+VqRKy+d7Rx5NS6RK4McSDKqWmvJehZl7sthG8/aYBvf2I=
+Received: from DS7PR03CA0103.namprd03.prod.outlook.com (2603:10b6:5:3b7::18)
+ by SJ1PR12MB6121.namprd12.prod.outlook.com (2603:10b6:a03:45c::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Wed, 8 Jul
+ 2026 08:30:57 +0000
+Received: from DS2PEPF00003448.namprd04.prod.outlook.com
+ (2603:10b6:5:3b7:cafe::1f) by DS7PR03CA0103.outlook.office365.com
+ (2603:10b6:5:3b7::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.10 via Frontend Transport; Wed, 8
+ Jul 2026 08:30:56 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ DS2PEPF00003448.mail.protection.outlook.com (10.167.17.75) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Wed, 8 Jul 2026 08:30:56 +0000
+Received: from chonglidebug.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Wed, 8 Jul
+ 2026 03:30:53 -0500
+From: chong li <chongli2@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <christian.koenig@amd.com>, <Emily.Deng@amd.com>, <HaiJun.Chang@amd.com>, 
+ <Victor.Skvortsov@amd.com>, <Lijo.Lazar@amd.com>, chong li
+ <chongli2@amd.com>, Cursor <cursoragent@cursor.com>
+Subject: [PATCH] drm/amdgpu: improve the amdgpu device init progress in sriov
+ mode
+Date: Wed, 8 Jul 2026 16:25:04 +0800
+Message-ID: <20260708083035.186400-1-chongli2@amd.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="Y"
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 08 Jul 2026 13:12:03 +0000
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003448:EE_|SJ1PR12MB6121:EE_
+X-MS-Office365-Filtering-Correlation-Id: 54cca6f0-c72c-4eeb-40d7-08dedccb3b35
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|1800799024|36860700016|376014|23010399003|11063799006|6133799003|56012099006|18002099003;
+X-Microsoft-Antispam-Message-Info: qe2vwBXK16ZUynL64G3IDDSBzDgv5h6J/TAH63Bovo6GnSttSwiNRyqv0qdytm4J/8GaMTKs28+o06FtODoaqXBo1sOdy+1LuuQdXlWOm3VHIN7E+bNWBR+YQaHnTq1AtOMJZN3qwwqFV+DFm3ojh//wvzU+GrcFVPxGlrcBO1o8D1Ac0d4X3b3JqiThvE5p+s9as+7QOyZBDkKWDd7JhGJNUfx6isRgwb7OkdR2dvzCbwi2mictKsqppMSm9Z7M7Uw5B1huW4N2E4l9o87LVSQRK8hN3SXLMYFF7ZSgAlfmyiC5l4+UB5zLEOEhOHxFXTcbAUb0DtKdGlWWzVWfNCETTz9+H9JV8voq5sX+o3GeWOmBoayMpYqbbKwQEJZT/8Oe780D3xXzZgSzRQQqnHSvLF7fbiYEmA0wmjhuL+fzZhl68/PIBP+UjUIGSujJGs5TZncEGBaijnmkWgWmCvGAHmAimRy4u3eU+Nc2ayyVCv6Y+q1/H7guUhIrSyj8GEdirvGjtkVzUppXwuDMwCx73G7VxCx7n/PP5D//Sjl887FVS/WY1VNK4pk5YO/ZPwnzGG1NKOv4YVzsmZNv2LGV7rRdeH4MBiQkx3PrIk2hz2+Qw+bzJCkxeRCVl/woWA+JyQjVtKt9/PtK1xv3LbU0DC1stNqy7NA/DlaRQ9sEtTQFkthLi1UJ/sr2xOMDtjmnN4s6JLUsT1eDCcIGrA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(36860700016)(376014)(23010399003)(11063799006)(6133799003)(56012099006)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: CGRJ2q9Y2JR3DJdhcjcg6qR6qz0Mp0glFvNWCH1S6PlqejwzEKMeUHuDto91F+ZILFqr6b8yLnAjrcDHDeLte+dSvXXzWQjsPubcJfhgPnH82KT7g9l6yXiYCQxiD5x32kB1hzn922kacC9dKXLIuwvttf2uDdAeDezmiJ6ZclMPSz1TLieV96LrfUrVpNviTB4UUfUAHgAf4/hBXyGu01DpVyEkQZaNxacmWbjiCtqGYyHlmL21p5ic9kox8LQ5Mycd0n8LEa+yytPCsF6Ku8b4oZLuUoUptdwidCTWTRmuzzVqrDwl7GbeD2oxCVw6jti68mX6BDQc0GxTeulJMZDImQ/IUmFSmkD7+3XJ/tahGUcsXlj4h4R8zDk0wvbclb7abYmLfID+sUq0vrg1SM3N1ovdQoUpPhguW/hx7uxZvw/ix+mmiMjJtzrRApw8
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jul 2026 08:30:56.2322 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54cca6f0-c72c-4eeb-40d7-08dedccb3b35
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF00003448.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6121
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,82 +118,302 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:mario.limonciello@amd.com,m:alex.hung@amd.com,m:superm1@kernel.org,m:timur.kristof@gmail.com,m:ivan.lipski@amd.com,m:aurabindo.pillai@amd.com,m:ray.wu@amd.com,m:chen-yu.chen@amd.com,m:mripard@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:lgs201920130244@gmail.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,kernel.org,lists.freedesktop.org,vger.kernel.org];
-	FORGED_SENDER(0.00)[lgs201920130244@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	ALIAS_RESOLVED(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lgs201920130244@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[]
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[chongli2@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	HAS_XOIP(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim,cursor.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E88EE726A97
+X-Rspamd-Queue-Id: 48B357232F7
 
-amdgpu_dm_connector_atomic_check() checks whether the old or new
-connector state returned by the atomic helpers is NULL before using
-those pointers.
+v2:
+Some legacy ASICs do not send amdgpu_virt_request_init_data().
+Only keep the full GPU access request early when request_init_data is not sent.
 
-However, new_con_state is already dereferenced while initializing crtc,
-before the NULL check is reached. If
-drm_atomic_get_new_connector_state() returns NULL, the function can
-dereference the NULL pointer before the WARN_ON() check can handle it.
+v1:
+Move the initialization of non-GPU resources out of the full GPU access
+region during AMDGPU device initialization.
 
-Declare crtc first and initialize it only after the NULL check has
-succeeded.
+Background:
+In SR-IOV, the guest sends GPU_INIT_DATA, then the host enables VF_FB_EN
+and places early initialization data, such as IP discovery, VBIOS, and
+PF-VF exchange data, in the VF FB. The guest should then be able to read
+this data before requesting full GPU access.
 
-Fixes: 1e5e8d672fec ("drm/amd/display: Avoid a NULL pointer dereference")
-Signed-off-by: Guangshuo Li <lgs201920130244@gmail.com>
+Before this patch, the VF still requested full GPU access in
+amdgpu_device_ip_early_init(). At that point TTM is not initialized yet, so
+the normal VRAM aperture mapping is unavailable and the guest falls back to
+MM_INDEX/MM_DATA register access. That register path requires full GPU
+access.
+
+Use the BAR0 framebuffer read path, amdgpu_device_read_fb_via_bar0(), for
+the early init-data copy instead of MM_INDEX/MM_DATA. This lets the driver
+delay the full GPU access request until after the early init data has been
+copied.
+
+Signed-off-by: chong li <chongli2@amd.com>
+Co-authored-by: Cursor <cursoragent@cursor.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 21 +++++++++++++++++----
+ drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c      |  4 ++--
+ 2 files changed, 19 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index d3a8d681227a..7b040fd7e3fb 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -8640,13 +8640,14 @@ amdgpu_dm_connector_atomic_check(struct drm_connector *conn,
- 		drm_atomic_get_new_connector_state(state, conn);
- 	struct drm_connector_state *old_con_state =
- 		drm_atomic_get_old_connector_state(state, conn);
--	struct drm_crtc *crtc = new_con_state->crtc;
-+	struct drm_crtc *crtc;
- 	struct drm_crtc_state *new_crtc_state;
- 	struct amdgpu_dm_connector *aconn = to_amdgpu_dm_connector(conn);
- 	int ret;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 610d82b79de3..ac66796e8634 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -38,6 +38,10 @@
+ #include <linux/apple-gmux.h>
+ #include <linux/nospec.h>
  
- 	if (WARN_ON(unlikely(!old_con_state || !new_con_state)))
- 		return -EINVAL;
-+	crtc = new_con_state->crtc;
++#ifdef CONFIG_X86
++#include <asm/hypervisor.h>
++#endif
++
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_client_event.h>
+ #include <drm/drm_crtc_helper.h>
+@@ -1987,16 +1991,19 @@ static int amdgpu_device_ip_early_init(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_ip_block *ip_block;
+ 	struct pci_dev *parent;
+-	bool total, skip_bios;
++	bool total, skip_bios, early_full_gpu_access = false;
+ 	uint32_t bios_flags;
+ 	int i, r;
  
- 	trace_amdgpu_dm_connector_atomic_check(new_con_state);
+ 	amdgpu_device_enable_virtual_display(adev);
  
+ 	if (amdgpu_sriov_vf(adev)) {
+-		r = amdgpu_virt_request_full_gpu(adev, true);
+-		if (r)
+-			return r;
++		early_full_gpu_access = (adev->virt.req_init_data_ver == 0);
++		if (early_full_gpu_access) {
++			r = amdgpu_virt_request_full_gpu(adev, true);
++			if (r)
++				return r;
++		}
+ 
+ 		r = amdgpu_virt_init_critical_region(adev);
+ 		if (r)
+@@ -2159,6 +2166,12 @@ static int amdgpu_device_ip_early_init(struct amdgpu_device *adev)
+ 	if (!total)
+ 		return -ENODEV;
+ 
++	if (amdgpu_sriov_vf(adev) && !early_full_gpu_access) {
++		r = amdgpu_virt_request_full_gpu(adev, true);
++		if (r)
++			return r;
++	}
++
+ 	if (adev->gmc.xgmi.supported)
+ 		amdgpu_xgmi_early_init(adev);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c b/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
+index 9a40107a0869..340703d89d6b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
++++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
+@@ -185,8 +185,8 @@ static int xgpu_ai_send_access_requests(struct amdgpu_device *adev,
+ 	} else if (req == IDH_REQ_GPU_INIT_DATA){
+ 		/* Dummy REQ_GPU_INIT_DATA handling */
+ 		r = xgpu_ai_poll_msg(adev, IDH_REQ_GPU_INIT_DATA_READY);
+-		/* version set to 0 since dummy */
+-		adev->virt.req_init_data_ver = 0;	
++		/* Version is set to 1 since GPU_CRIT_REGION_V1 */
++		adev->virt.req_init_data_ver = GPU_CRIT_REGION_V1;
+ 	}
+ 
+ 	return 0;
 -- 
-2.43.0
+2.48.1
+
+Hi, Christian and Lijo.
+
+Sorry, I made a mistake.
+Host access to the VF FB is not platform-dependent. After the host driver
+sets VF_FB_EN in response to GPU_INIT_DATA, the host can access the VF FB.
+
+I borrowed an ESXi server and tested this patch there. 
+The amdgpu driver works normally.
+
+I rewrote the background. Is anything still unclear?
+
+
+
+
+>On 07-Jul-26 5:25 PM, Christian König wrote:
+>> On 7/7/26 13:30, chong li wrote:
+>>> v2:
+>>> Some legacy ASICs do not support amdgpu_virt_request_init_data().
+>>> On platform ESXi, the PF can access VF VRAM only after the VF enters 
+>>> full gpu access mode.
+>>> Only move the full access request later when the required conditions 
+>>> are met
+>> 
+>> This is adjusting the driver to the hypervisor and not the hypervisor to the driver.
+>> 
+>> If the existing init order doesn't work on ESXi then that is an ESXi problem and needs to be fixed there.
+>> 
+>> So still absolutely clear NAK.
+>> 
+>>>
+>>> v1:
+>>> Move the initialization of non-GPU resources out of the full GPU 
+>>> access region during AMDGPU device initialization
+>>>
+>>> background:
+>>>
+>>> After the amdgpu driver sends GPU_INIT_DATA to the host SR-IOV 
+>>> driver, the host dumps the IP discovery/VBIOS/PF-VF exchange data into the VF FB.
+>>> The VF can then read these data blocks without requesting full GPU access.
+>>> This is the purpose of the GPU_INIT_DATA event in the SR-IOV init flow.
+>>>
+>>> However, during ip_early_init, TTM is not initialized yet.
+>>> The current amdgpu driver therefore falls back to reading these data 
+>>> through MM_INDEX/MM_DATA. That path requires register access, which 
+>>> still needs full GPU access.
+>>>
+>>> As a result, even though amdgpu sends GPU_INIT_DATA and the host 
+>>> prepares the init data early, the full GPU access window is not 
+>>> reduced because the guest still needs full GPU access to copy the 
+>>> data.
+>>>
+>>> To fix this, use amdgpu_device_read_fb_via_bar0() to copy the init 
+>>> data from VF FB before TTM is ready.
+>>> For this early copy, the guest no longer needs full GPU access so the 
+>>> full GPU access request can be moved later.
+>> 
+>> You are just explaining the chicken and egg problem here instead of giving an actual justification.
+>> 
+>
+>I guess there is no other technical reason to disallow accessing FB using visible BAR range. The only reason of going through HDP indirect path could be because the offsets could be outside of visible range. In SRIOV case, if host driver guarantees discovery offsets in visible FB range, there is no reason to disallow that.
+>
+>Thanks,
+>Lijo
+>
+>
+>> Regards,
+>> Christian.
+>> 
+>>>
+>>> Signed-off-by: chong li <chongli2@amd.com>
+>>> Co-authored-by: Cursor <cursoragent@cursor.com>
+>>> ---
+>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 32 +++++++++++++++++++---
+>>>   drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c      |  4 +--
+>>>   2 files changed, 30 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c 
+>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>> index 610d82b79de3..ec353f4dd0d2 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>> @@ -38,6 +38,10 @@
+>>>   #include <linux/apple-gmux.h>
+>>>   #include <linux/nospec.h>
+>>>   
+>>> +#ifdef CONFIG_X86
+>>> +#include <asm/hypervisor.h>
+>>> +#endif
+>>> +
+>>>   #include <drm/drm_atomic_helper.h>
+>>>   #include <drm/drm_client_event.h>
+>>>   #include <drm/drm_crtc_helper.h>
+>>> @@ -1973,6 +1977,17 @@ static struct pci_dev *amdgpu_device_find_parent(struct amdgpu_device *adev)
+>>>   	return parent;
+>>>   }
+>>>   
+>>> +static bool amdgpu_device_delay_full_gpu_access(struct amdgpu_device 
+>>> +*adev) { #ifdef CONFIG_X86
+>>> +	return adev->virt.req_init_data_ver > 0 &&
+>>> +		(hypervisor_is_type(X86_HYPER_VMWARE) ||
+>>> +		hypervisor_is_type(X86_HYPER_MS_HYPERV));
+>>> +#else
+>>> +	return false;
+>>> +#endif
+>>> +}
+>>> +
+>>>   /**
+>>>    * amdgpu_device_ip_early_init - run early init for hardware IPs
+>>>    *
+>>> @@ -1987,16 +2002,19 @@ static int amdgpu_device_ip_early_init(struct amdgpu_device *adev)
+>>>   {
+>>>   	struct amdgpu_ip_block *ip_block;
+>>>   	struct pci_dev *parent;
+>>> -	bool total, skip_bios;
+>>> +	bool total, skip_bios, delay_full_gpu_access = false;
+>>>   	uint32_t bios_flags;
+>>>   	int i, r;
+>>>   
+>>>   	amdgpu_device_enable_virtual_display(adev);
+>>>   
+>>>   	if (amdgpu_sriov_vf(adev)) {
+>>> -		r = amdgpu_virt_request_full_gpu(adev, true);
+>>> -		if (r)
+>>> -			return r;
+>>> +		delay_full_gpu_access = amdgpu_device_delay_full_gpu_access(adev);
+>>> +		if (!delay_full_gpu_access) {
+>>> +			r = amdgpu_virt_request_full_gpu(adev, true);
+>>> +			if (r)
+>>> +				return r;
+>>> +		}
+>>>   
+>>>   		r = amdgpu_virt_init_critical_region(adev);
+>>>   		if (r)
+>>> @@ -2159,6 +2177,12 @@ static int amdgpu_device_ip_early_init(struct amdgpu_device *adev)
+>>>   	if (!total)
+>>>   		return -ENODEV;
+>>>   
+>>> +	if (amdgpu_sriov_vf(adev) && delay_full_gpu_access) {
+>>> +		r = amdgpu_virt_request_full_gpu(adev, true);
+>>> +		if (r)
+>>> +			return r;
+>>> +	}
+>>> +
+>>>   	if (adev->gmc.xgmi.supported)
+>>>   		amdgpu_xgmi_early_init(adev);
+>>>   
+>>> diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c 
+>>> b/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
+>>> index 9a40107a0869..340703d89d6b 100644
+>>> --- a/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
+>>> +++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
+>>> @@ -185,8 +185,8 @@ static int xgpu_ai_send_access_requests(struct amdgpu_device *adev,
+>>>   	} else if (req == IDH_REQ_GPU_INIT_DATA){
+>>>   		/* Dummy REQ_GPU_INIT_DATA handling */
+>>>   		r = xgpu_ai_poll_msg(adev, IDH_REQ_GPU_INIT_DATA_READY);
+>>> -		/* version set to 0 since dummy */
+>>> -		adev->virt.req_init_data_ver = 0;	
+>>> +		/* Version is set to 1 since GPU_CRIT_REGION_V1 */
+>>> +		adev->virt.req_init_data_ver = GPU_CRIT_REGION_V1;
+>>>   	}
+>>>   
+>>>   	return 0;
+>> 
+
+
+
 
