@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id nXSaCKaoTmpVRgIAu9opvQ
+	id fvGcLbioTmpmRgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:44:38 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:44:56 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E27EF729F08
-	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:44:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71531729F2B
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 21:44:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=IJCd08MZ;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=OSlxjLkG;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none);
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B45A10F272;
-	Wed,  8 Jul 2026 19:44:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E42A310F280;
+	Wed,  8 Jul 2026 19:44:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DA2F10F27E;
- Wed,  8 Jul 2026 19:44:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF94610F271;
+ Wed,  8 Jul 2026 19:44:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=b3l281+Jm1AKS6Qg9eGQ12J1cB0+K8ejD+iPwx5sAz4=; b=IJCd08MZb3AKCrDYEPavXbcA0/
- G8+V2iGeKmH/MAwO2pbp4X4E2sZlsAjJe9v1Z0//i0VQ3fMDk9lF1pTrRRyxKrwGIjGFfQXTBAbD7
- yH5QMQYRb8n/MYrR0Ux3g1zsikyHy+3L/jy+ditM3XAqRL9XtoiInslounDcmrFPspvqE9FqvhhTs
- nPfJhgSF48MAn3aoz1obfNTI8WrTmTjkG+OCEY6mef8Fr7+Gxtm1Yi89vHDcN4UOzC/hPEH1Ygter
- lce9tiIQoWW9nFSSKUQmis081RJLOuuN1lqLwNASXUY/w8EvjdtscD/oY3cVbS6sQ+VVVt7QItllH
- GWpmqjUA==;
+ bh=Z7nNq9lLK+w9Z+e1sxK+eA5MYoTrZRPzvFVVcsZGLaE=; b=OSlxjLkG/lC3PKpLdPszyne2dl
+ /hvjzkouCw2FvZloZjsKLtqBRtublX6lRlfalslM+GxQF8rR481A/wA9S+81otF1odH88H5axCGwB
+ onFLGEOcuZbW+gY4PijnHLI2gxuXjmsBP5JyP527pzp+M/uB98Jnzmp9gmrbw9vZLWjxmKqFhnPP0
+ 1aIhwPuJkupvOzlrbzzqfsZ8vQICJcXdjZYT5NH2VJUUfGdjyhLObHFTSd8eGeAxx+Pa9q5cYI2yL
+ dc3DGvgtNnKWgJVcgrDta3Lx7PcIIMGJl9tUnUCwhqSk/z3gQw7a7Ml8ZUndPz3MzEdrJljGFLrXo
+ KsBLxZmQ==;
 Received: from 100.red-79-144-92.dynamicip.rima-tde.net ([79.144.92.100]
  helo=killbill) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1whYBm-00BtrH-OS; Wed, 08 Jul 2026 21:44:11 +0200
+ id 1whYBy-00BtrH-JF; Wed, 08 Jul 2026 21:44:24 +0200
 From: Melissa Wen <mwen@igalia.com>
 To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
  harry.wentland@amd.com, maarten.lankhorst@linux.intel.com,
@@ -51,17 +51,15 @@ Cc: Ariel DAlessandro <ariel.dalessandro@collabora.com>,
  Robert Mader <robert.mader@collabora.com>, Xaver Hugl <xaver.hugl@kde.org>,
  Pekka Paalanen <pekka.paalanen@collabora.com>,
  John Harrison <John.Harrison@Igalia.com>, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com, Louis Chauvet <louis.chauvet@bootlin.com>,
- dri-devel@lists.freedesktop.org
-Subject: [RFC PATCH 10/19] drm/crtc: Track crtc color pipeline client cap in
- drm_crtc_state
-Date: Wed,  8 Jul 2026 21:37:25 +0200
-Message-ID: <20260708194343.2578387-11-mwen@igalia.com>
+ kernel-dev@igalia.com, dri-devel@lists.freedesktop.org
+Subject: [RFC PATCH 11/19] drm: Add helper to extract a 3x4 matrix from any
+ CTM matrix dimensions
+Date: Wed,  8 Jul 2026 21:37:26 +0200
+Message-ID: <20260708194343.2578387-12-mwen@igalia.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260708194343.2578387-1-mwen@igalia.com>
 References: <20260708194343.2578387-1-mwen@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -77,85 +75,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.49 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+X-Spamd-Result: default: False [1.99 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com,linux.intel.com,kernel.org,ffwll.ch,igalia.com,suse.de];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,amd.com,linux.intel.com,kernel.org,ffwll.ch,igalia.com,suse.de];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[igalia.com:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:mid,igalia.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,bootlin.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:mid,igalia.com:from_mime,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,collabora.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E27EF729F08
+X-Rspamd-Queue-Id: 71531729F2B
 
-From: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
 
-Some drivers, like VKMS, only have access to the drm_crtc_state but not
-the drm_atomic_state during composition of the output framebuffer. Store
-the state of the CRTC (post-blend) color pipeline client cap in the
-drm_crtc_state so those drivers can decide whether to look at the color
-pipeline or the legacy properties for the color management settings to
-apply.
+Add a common helper to ease the conversion from both 3x3 or 3x4 matrices
+to a CTM 3x4 matrix. This is handy for code that needs to handle both
+dimensions.
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-Co-developed-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
 Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 ---
- drivers/gpu/drm/drm_atomic.c | 1 +
- include/drm/drm_crtc.h       | 8 ++++++++
- 2 files changed, 9 insertions(+)
+ include/drm/drm_color_mgmt.h | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-index 76c7665b3c4c..8bb0e5d124f8 100644
---- a/drivers/gpu/drm/drm_atomic.c
-+++ b/drivers/gpu/drm/drm_atomic.c
-@@ -468,6 +468,7 @@ drm_atomic_get_crtc_state(struct drm_atomic_commit *state,
- 	state->crtcs[index].new_state = crtc_state;
- 	state->crtcs[index].ptr = crtc;
- 	crtc_state->state = state;
-+	crtc_state->color_pipeline_enabled = state->crtc_color_pipeline;
+diff --git a/include/drm/drm_color_mgmt.h b/include/drm/drm_color_mgmt.h
+index 5140691f476a..51279267ed3f 100644
+--- a/include/drm/drm_color_mgmt.h
++++ b/include/drm/drm_color_mgmt.h
+@@ -66,6 +66,40 @@ static inline u32 drm_color_lut32_extract(u32 user_input, int bit_precision)
+ 				     (1ULL << 32) - 1);
+ }
  
- 	drm_dbg_atomic(state->dev, "Added [CRTC:%d:%s] %p state to %p\n",
- 		       crtc->base.id, crtc->name, crtc_state, state);
-diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-index 5852b506c614..bd36acf902e8 100644
---- a/include/drm/drm_crtc.h
-+++ b/include/drm/drm_crtc.h
-@@ -282,6 +282,14 @@ struct drm_crtc_state {
- 	 */
- 	struct drm_colorop *color_pipeline;
- 
-+	/**
-+	 * @color_pipeline_enabled:
-+	 *
-+	 * Whether color management should be done based on the &color_pipeline
-+	 * or the legacy color properties (&ctm, &gamma_lut and &degamma_lut).
-+	 */
-+	bool color_pipeline_enabled;
++/**
++ * drm_color_ctm_to_ctm_3x4 - Copy CTM matrix contents to 3x4 dimensions matrix
++ *
++ * @dest: The destination CTM 3x4 dimensions matrix
++ * @src: The source CTM matrix (3x3 or 3x4 dimensions depending on @ctm_3x4)
++ * @ctm_3x4: Boolean indicating the source CTM matrix dimensions
++ *
++ * Copy the contents of a CTM matrix from @src, to a CTM 3x4 dimensions matrix.
++ * The source matrix can be 3x3 or 3x4 dimensions depending on the @ctm_3x4
++ * boolean argument.
++ */
++static inline void drm_color_ctm_to_ctm_3x4(struct drm_color_ctm_3x4 *dest,
++					    void *src, bool ctm_3x4)
++{
++	if (ctm_3x4) {
++		*dest = *(struct drm_color_ctm_3x4 *)src;
++	} else {
++		struct drm_color_ctm *ctm = (struct drm_color_ctm *)src;
 +
- 	/**
- 	 * @background_color:
- 	 *
++		dest->matrix[0] = ctm->matrix[0];
++		dest->matrix[1] = ctm->matrix[1];
++		dest->matrix[2] = ctm->matrix[2];
++		dest->matrix[3] = 0;
++		dest->matrix[4] = ctm->matrix[3];
++		dest->matrix[5] = ctm->matrix[4];
++		dest->matrix[6] = ctm->matrix[5];
++		dest->matrix[7] = 0;
++		dest->matrix[8] = ctm->matrix[6];
++		dest->matrix[9] = ctm->matrix[7];
++		dest->matrix[10] = ctm->matrix[8];
++		dest->matrix[11] = 0;
++	}
++}
++
+ u64 drm_color_ctm_s31_32_to_qm_n(u64 user_input, u32 m, u32 n);
+ 
+ void drm_crtc_enable_color_mgmt(struct drm_crtc *crtc,
 -- 
 2.53.0
 
