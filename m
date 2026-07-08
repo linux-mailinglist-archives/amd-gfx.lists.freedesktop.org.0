@@ -2,81 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LG8ECFFNT2q9dwIAu9opvQ
+	id ytvBFmh8TmrWNgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 09:27:13 +0200
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 18:35:52 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9772D72DAD7
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 09:27:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04416728C54
+	for <lists+amd-gfx@lfdr.de>; Wed, 08 Jul 2026 18:35:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=ky+fqACu;
-	dmarc=pass (policy=none) header.from=gmail.com;
+	dkim=pass header.d=shift-computing.de header.s=dkim header.b=rxMxeUoH;
+	dmarc=pass (policy=reject) header.from=shift-computing.de;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E60C10F40F;
-	Thu,  9 Jul 2026 07:26:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E18510F203;
+	Wed,  8 Jul 2026 16:35:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj2-f1.google.com (mail-pj2-f1.google.com [74.125.227.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BC3A10E610
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Jul 2026 16:30:46 +0000 (UTC)
-Received: by mail-pj2-f1.google.com with SMTP id
- 98e67ed59e1d1-3821a6fbcdbso921323a91.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 08 Jul 2026 09:30:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783528246; x=1784133046; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=HZ3tnpLmuxVn6RG46V9wPX6GdF132bX99ersePpQd08=;
- b=ky+fqACuNOzkciRdtmWZ0qGqoM/dpWTNN7NysmSRjQV+3a7NLPY0aa877xUySwRNBM
- jAb9Aj8lkZBlE2UC8THutURSjJZtDsgzRE1RCtpPQ/lDpdvv1RiGO1lOCnifiGdBpZ9s
- xiOWNzjnlYOrt70ao6/YjuNdFN6vdPjE58PRW3s+Z+rzYS030sk1PIuYh44ub9e7A/IX
- BeYjmyjp6cO+o5ucNrha7601USLj8VQGWVkvsCyUjBwlvrNGfGCnHk00zPymcJZQUBYb
- jo2PX0XsoFb/vxg20RQGzzSbyU13wWD8DtDHDM782O4hOOAJf90MJqyuRw8fGUrwwLrm
- RbZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783528246; x=1784133046;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=HZ3tnpLmuxVn6RG46V9wPX6GdF132bX99ersePpQd08=;
- b=aiqL26sX5dXEI7NImlctH5Y6+Se/gwNUGOGVMixGWOA3QX1fyz1j1sNyRbG0dZll21
- CJUSUt+xlNX/uu0eNaoMb2jZMIktmpSmxDnqiXef6k8CfxRMorU7JTUjQDcvaDulVQB7
- Uyham5n9BN5VKshnqs5745DQsy/T/oD9H3/xySNS36MBAI3trjEAOE2V++8AEXE5iobh
- X1LzRAiWIIAnvFg1QJhKkGsgyLI/Uy8zL0BX9Jx5cifwe7G2yxUJkJg3oVg1LCphiy0+
- NJTS1nOfjsOiQ/VzUAZvApy81EcebZWhKfGaKkYz/Azm3cLSncU+DIAbSLwmo73DNF1M
- 01lg==
-X-Gm-Message-State: AOJu0YwcA1r47hKMyhp0vazeFKK/cn1K1v731hrSfG8qA01KOBGnm9Cd
- YyejBTUHJHjzf1F39KjywcVdRVnQryTYwSJ2B0WGaV41ylwWAWzORQgqQ66qFInn
-X-Gm-Gg: AfdE7cmQrpTZuvJi42NBqOmDW9FbBOkOdEiHGys0vkuxq2Gbcy1Fmh7xWnRkVcFkdrQ
- 3AjaSr2xe6v9/WwmTlrfBkOaWauPYc8x8qstesSG4qpMkIH+oD4ApfSd7EVdJNCou1MEqkTpyZ0
- 16ocOFfAJd2Q8+e8sVQ/5P2mFH87ObS8c3AkLbLGZE0uJ7ctsfqsMlaSeGNrIJ3+8Tq7u5vhmyW
- Yjc1CnfNs0a/IaQ+yMPYilPi+gOLEvM9kskaHpx9eqtX5f92kG1qGQLCAdpTgDNW0jhAbAx+bLB
- 9FAhz3qzVH6jywVcSi5+m57UH093Z575JAgoj1tfor+dyxOinf7hU6WqY0zWjwx7g6PVymjPG+0
- jZNkkkozhx92Up3iy+WAufgGuIkHTM9+VuGSCepS5rPphRv2cy7bzLROppZ4T+tq3JSMWrjWrOc
- Y5ESm0vhUgHGWO7eJyV61watq2gUmA67eSbu/tdbR/S5g=
-X-Received: by 2002:a17:90b:2ccd:b0:381:528a:808a with SMTP id
- 98e67ed59e1d1-38941cc5987mr3015296a91.27.1783528245829; 
- Wed, 08 Jul 2026 09:30:45 -0700 (PDT)
-Received: from andrel-LOQ.semfio.usp.br (nat.ime.usp.br. [143.107.45.1])
- by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-3118ee6091dsm12654063eec.14.2026.07.08.09.30.43
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Jul 2026 09:30:45 -0700 (PDT)
-From: Andre Luiz Batista Bueno <andrebueno.mac@gmail.com>
-To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch
-Cc: Andre Luiz Batista Bueno <andrebueno.mac@gmail.com>,
- Enzo Furegatti Spinella <enzo.spinella@usp.br>,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH V2] drm/amdgpu: deduplicate JPEG v5.0 interrupt routine
-Date: Wed,  8 Jul 2026 13:28:50 -0300
-Message-ID: <20260708163013.221986-1-andrebueno.mac@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mail.teamster.cloud (mail.teamster.cloud [213.136.73.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A02B10F1D9;
+ Wed,  8 Jul 2026 16:35:45 +0000 (UTC)
+Message-ID: <6e2eaccf-823b-4db2-a4f3-451e5753af8d@shift-computing.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shift-computing.de;
+ s=dkim; t=1783528542;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=pV2+qtej/6qX2+I9Czp7vJYm6uG7Fc3wjClepBg6pAA=;
+ b=rxMxeUoHAGkwUNLLVoElsoEgd5SjGqxpacz7eUqvdL9k8Tq9oxHGqUWREvLbSgcjG3rqvC
+ g8j11T8E/3adSnlg5PgNuAWktcV9ln+6QkgNnWdrP8XhvJmfnJRkqucCfh53IeL8n+PMXS
+ 2IkWZxlJ4BTi9WpRwLxu0dqLi49hEPHSfBmWBQcbfgZyVartr3i5ivpLUa1jS0a9JYenGi
+ vQlr+GNDKaJb5gtdzCgFcnVKTUVhrcjpDFQNkMRtH2MmwAH8e7xN6VuqNAkVypz82CvYxO
+ 4nbrXR0tY1YmnYyMGtQXSELNO+APvQjH+/QdpJAv9teQFb42KGHGw0NKdbSZcg==
+Date: Wed, 8 Jul 2026 18:35:21 +0200
 MIME-Version: 1.0
+Subject: Re: [PATCH v2] drm/amd/amdgpu: add firmware file fallback for APU
+ VBIOS discovery
+Content-Language: en-US
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@gmail.com,
+ simona@ffwll.ch, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <716a31c5-0484-4ef9-b49e-b71310f92d86@amd.com>
+ <20260705100436.6877-1-oz@shift-computing.de>
+ <a8339282-e3ef-4a4f-a135-968f94855e76@amd.com>
+ <42e07bbb-9384-4871-a345-e0fd6c00a772@shift-computing.de>
+ <bd1f1632-f53d-4bfd-9d28-5b66e466366c@amd.com>
+ <80f34509-9781-421e-b60f-1b8c772a01a9@shift-computing.de>
+ <8dd56d76-e46d-43b6-831d-27e66fa2879a@amd.com>
+ <cc849fb3-224e-43c0-bc50-67fd025009e7@shift-computing.de>
+ <0478bdcd-dc55-4eeb-b7a3-6c5e625ac5c1@amd.com>
+From: Oz Tiram <oz@shift-computing.de>
+In-Reply-To: <0478bdcd-dc55-4eeb-b7a3-6c5e625ac5c1@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 09 Jul 2026 07:26:29 +0000
+X-Spamd-Bar: ---
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,178 +72,296 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[shift-computing.de,reject];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[shift-computing.de:s=dkim];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[gmail.com,usp.br,lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,gmail.com,ffwll.ch];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrebuenomac@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[shift-computing.de:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[oz@shift-computing.de,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,usp.br:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[shift-computing.de:from_mime,shift-computing.de:email,shift-computing.de:mid,shift-computing.de:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9772D72DAD7
+X-Rspamd-Queue-Id: 04416728C54
 
-Both jpeg_v5_0_1.c and jpeg_v5_0_2.c implement identical
-interrupt processing routines. To avoid code duplication,
-make the implementation in jpeg_v5_0_1.c non-static and
-call it directly from jpeg_v5_0_2.c.
+Hi Mario,
 
-Signed-off-by: Andre Luiz Batista Bueno <andrebueno.mac@gmail.com>
-Co-developed-by: Enzo Furegatti Spinella <enzo.spinella@usp.br>
-Signed-off-by: Enzo Furegatti Spinella <enzo.spinella@usp.br>
----
+The GPU is internal. It's an AMD RADEON PRO W7800 48GB.
+The kernel is built from gentoo-sources-6.18.35.
 
-v2:
- - Dropped the new jpeg_v5_0_interrupt.c/h files and Makefile changes.
- - Kept the interrupt routine in jpeg_v5_0_1.c but removed the 'static' modifier.
- - Declared the function prototype in jpeg_v5_0_1.h and included it in jpeg_v5_0_2.c to call it directly, as suggested by Alex Deucher.
+I will test the latest sys-kernel/vanilla-sources (7.1.3) and let you know.
 
- drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c |  2 +-
- drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.h |  8 +++
- drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c | 63 ++----------------------
- 3 files changed, 12 insertions(+), 61 deletions(-)
+Best regards,
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
-index edecbfe66c79..46bcbecd89e8 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.c
-@@ -755,7 +755,7 @@ static int jpeg_v5_0_1_set_ras_interrupt_state(struct amdgpu_device *adev,
- 
- 
- 
--static int jpeg_v5_0_1_process_interrupt(struct amdgpu_device *adev,
-+int jpeg_v5_0_1_process_interrupt(struct amdgpu_device *adev,
- 					 struct amdgpu_irq_src *source,
- 					 struct amdgpu_iv_entry *entry)
- {
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.h b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.h
-index a7e58d5fb246..67346faecb47 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.h
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_1.h
-@@ -108,4 +108,12 @@ enum amdgpu_jpeg_v5_0_1_sub_block {
- 	AMDGPU_JPEG_V5_0_1_MAX_SUB_BLOCK,
- };
- 
-+struct amdgpu_irq_src;
-+struct amdgpu_iv_entry;
-+struct amdgpu_device;
-+
-+int jpeg_v5_0_1_process_interrupt(struct amdgpu_device *adev,
-+					struct amdgpu_irq_src *source,
-+					struct amdgpu_iv_entry *entry);
-+
- #endif /* __JPEG_V5_0_1_H__ */
-diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c
-index 285c459379c4..250e7f849037 100644
---- a/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c
-+++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v5_0_2.c
-@@ -34,6 +34,8 @@
- #include "vcn/vcn_5_0_0_sh_mask.h"
- #include "ivsrcid/vcn/irqsrcs_vcn_5_0.h"
- 
-+#include "jpeg_v5_0_1.h"
-+
- static void jpeg_v5_0_2_set_dec_ring_funcs(struct amdgpu_device *adev);
- static void jpeg_v5_0_2_set_irq_funcs(struct amdgpu_device *adev);
- static int jpeg_v5_0_2_set_powergating_state(struct amdgpu_ip_block *ip_block,
-@@ -583,65 +585,6 @@ static int jpeg_v5_0_2_set_interrupt_state(struct amdgpu_device *adev,
- 	return 0;
- }
- 
--static int jpeg_v5_0_2_process_interrupt(struct amdgpu_device *adev,
--					 struct amdgpu_irq_src *source,
--					 struct amdgpu_iv_entry *entry)
--{
--	u32 i, inst;
--
--	i = node_id_to_phys_map[entry->node_id];
--	DRM_DEV_DEBUG(adev->dev, "IH: JPEG TRAP\n");
--
--	for (inst = 0; inst < adev->jpeg.num_jpeg_inst; ++inst)
--		if (adev->jpeg.inst[inst].aid_id == i)
--			break;
--
--	if (inst >= adev->jpeg.num_jpeg_inst) {
--		dev_WARN_ONCE(adev->dev, 1,
--			      "Interrupt received for unknown JPEG instance %d",
--			      entry->node_id);
--		return 0;
--	}
--
--	switch (entry->src_id) {
--	case VCN_5_0__SRCID__JPEG_DECODE:
--		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[0]);
--		break;
--	case VCN_5_0__SRCID__JPEG1_DECODE:
--		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[1]);
--		break;
--	case VCN_5_0__SRCID__JPEG2_DECODE:
--		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[2]);
--		break;
--	case VCN_5_0__SRCID__JPEG3_DECODE:
--		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[3]);
--		break;
--	case VCN_5_0__SRCID__JPEG4_DECODE:
--		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[4]);
--		break;
--	case VCN_5_0__SRCID__JPEG5_DECODE:
--		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[5]);
--		break;
--	case VCN_5_0__SRCID__JPEG6_DECODE:
--		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[6]);
--		break;
--	case VCN_5_0__SRCID__JPEG7_DECODE:
--		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[7]);
--		break;
--	case VCN_5_0__SRCID__JPEG8_DECODE:
--		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[8]);
--		break;
--	case VCN_5_0__SRCID__JPEG9_DECODE:
--		amdgpu_fence_process(&adev->jpeg.inst[inst].ring_dec[9]);
--		break;
--	default:
--		DRM_DEV_ERROR(adev->dev, "Unhandled interrupt: %d %d\n",
--			      entry->src_id, entry->src_data[0]);
--		break;
--	}
--
--	return 0;
--}
- 
- static void jpeg_v5_0_2_core_stall_reset(struct amdgpu_ring *ring)
- {
-@@ -749,7 +692,7 @@ static void jpeg_v5_0_2_set_dec_ring_funcs(struct amdgpu_device *adev)
- 
- static const struct amdgpu_irq_src_funcs jpeg_v5_0_2_irq_funcs = {
- 	.set = jpeg_v5_0_2_set_interrupt_state,
--	.process = jpeg_v5_0_2_process_interrupt,
-+	.process = jpeg_v5_0_1_process_interrupt,
- };
- 
- static void jpeg_v5_0_2_set_irq_funcs(struct amdgpu_device *adev)
--- 
-2.43.0
+Oz
 
+On 7/8/26 15:13, Mario Limonciello wrote:
+>
+> On 7/8/26 08:10, Oz Tiram wrote:
+>> Hi Mario,
+>>
+>>  > If you drop that - does this notice still come up?
+>>
+>> No, the notice does not appear without pci=realloc,assign-busses. The 
+>> iGPU  stays at its POST bus (0x6A = 106), VFCT matches directly, and 
+>> it fetches the VBIOS without any mismatch.
+>>
+>> However, dropping the kernel argument is not an option on this machine:
+>> without it the discrete GPU (0x7449) fails to probe entirely:
+>>
+>>    amdgpu 0000:03:00.0: amdgpu: Fatal error during GPU init
+>>    amdgpu 0000:03:00.0: probe with driver amdgpu failed with error -12
+>>
+>> The firmware BARs cannot be mapped without resource reallocation, so
+>> pci=realloc,assign-busses is required for the dGPU, which in turn 
+>> reassigns
+>> the iGPU to bus 0x0B and triggers the mismatch your patch resolves.
+>
+> Got it; thanks for clarifying.  I would like to dig a little bit 
+> futher into that though.  What kernel are you finding this behavior 
+> and can it still reproduce with 7.2-rc2 if it's older? There was a 
+> bunch of pci/realloc changes that happened in the last cycle that 
+> might have helped this.
+>
+> Also; is it an eGPU (external) or dGPU (internal)?
+>
+> If it's an dGPU IMO this is arguably a BIOS issue that not enough 
+> resources were applied in the first place.
+>
+> Thanks,
+>
+>>
+>>
+>> Thank you,
+>>
+>> Oz
+>>
+>>
+>> On 7/8/26 14:55, Mario Limonciello wrote:
+>>> Hi Oz,
+>>>
+>>> On 7/8/26 07:36, Oz Tiram wrote:
+>>>> Hi Mario,
+>>>>
+>>>> Tested on a Morefine MNAS X1 AI Workstation (AMD Ryzen 7 Pro 8845HS 
+>>>> / Radeon 780M iGPU) with pci=realloc,assign-busses.
+>>>>
+>>>> The VFCT entry for the iGPU has PCIBus=106 (0x6A, recorded at POST) 
+>>>> while the
+>>>> runtime bus is 11 (0x0B). Your patch fires exactly as expected:
+>>>>
+>>>>    amdgpu 0000:0b:00.0: amdgpu: VFCT bus number mismatch: table 106 
+>>>> ! = runtime 11,
+>>>>        matching by device identity (vendor 0x1002 device 0x1900)
+>>>>    amdgpu 0000:0b:00.0: amdgpu: Fetched VBIOS from VFCT
+>>>>
+>>>> The iGPU initialises fully and drives the framebuffer.
+>>>>
+>>>> One minor nit: the dev_notice format string ends with \\n (two 
+>>>> characters) rather
+>>>> than \n. The resulting kernel message has a literal "\n" at the 
+>>>> end. Same issue
+>>>> exists in the nearby "too short #2" dev_info -- not introduced by 
+>>>> your patch, but
+>>>> might be worth cleaning up.
+>>>>
+>>>> Tested-by: Oz Tiram <oz@shift-computing.de>
+>>>>
+>>>
+>>> Thanks for confirming.  Before I split up this patch and post it in 
+>>> smaller logical pieces can you confirm my proposed root cause is 
+>>> right that this issue happens because "pci=realloc,assign-busses" 
+>>> was on your kernel command line?
+>>>
+>>> If you drop that - does this notice still come up?
+>>>
+>>> Thanks,
+>>>
+>>>> On 7/6/26 02:56, Mario Limonciello wrote:
+>>>>>
+>>>>>
+>>>>> On 7/5/26 14:10, Oz Tiram wrote:
+>>>>>> Hi Mario,
+>>>>>>
+>>>>>>    To make sure I understand correctly: are you suggesting that 
+>>>>>> the bus
+>>>>>>    number in the VFCT was legitimate at BIOS POST time, and that
+>>>>>>    pci=realloc,assign-busses is what changes it at runtime, 
+>>>>>> causing the
+>>>>>>    mismatch?
+>>>>>
+>>>>> That's what it sounds like right now.  You can easily drop all the 
+>>>>> superfluous kernel command line optiosn and see.
+>>>>>
+>>>>>>
+>>>>>>    I'm not familiar enough with the PCI subsystem to know the 
+>>>>>> right way to
+>>>>>>    implement that — could you point me in the right direction?
+>>>>>
+>>>>> Well there's a variety of ways to do it.  But how about we start 
+>>>>> here - if we make that specific busnr match optional and instead 
+>>>>> make a VID/DID match.
+>>>>>
+>>>>> See if the attached patch helps.
+>>>>>
+>>>>>>
+>>>>>>    Oz
+>>>>>>
+>>>>>> On 7/5/26 20:37, Mario Limonciello wrote:
+>>>>>>>
+>>>>>>>
+>>>>>>> On 7/5/26 05:04, Oz Tiram wrote:
+>>>>>>>> APUs (e.g. AMD Radeon 780M / HawkPoint, PCI 1002:1900) have no
+>>>>>>>> dedicated VBIOS ROM chip.  amdgpu_get_bios_apu() attempts four 
+>>>>>>>> paths
+>>>>>>>> before giving up:
+>>>>>>>>
+>>>>>>>>    1. ACPI VFCT table
+>>>>>>>>    2. VRAM BAR read
+>>>>>>>>    3. ROM BAR read
+>>>>>>>>    4. platform BIOS
+>>>>>>>>
+>>>>>>>> On some systems all four fail.  The specific case motivating 
+>>>>>>>> this patch
+>>>>>>>> is a hybrid graphics machine (dGPU + APU) where:
+>>>>>>>>
+>>>>>>>>    - The VFCT table contains the iGPU entry but with a stale 
+>>>>>>>> PCIBus value
+>>>>>>>>      from BIOS POST time (0x6A).  When the kernel boots with
+>>>>>>>>      pci=realloc,assign-busses, PCI bus numbers are reassigned 
+>>>>>>>> dynamically
+>>>>>>>>      and the iGPU lands on bus 0x0B at runtime. 
+>>>>>>>> amdgpu_acpi_vfct_bios()
+>>>>>>>>      matches entries by bus number, so the entry is never found.
+>>>>>>>>    - The VRAM BAR is unmapped at probe time.
+>>>>>>>>    - The ROM BAR is zero (PCI firmware did not assign it).
+>>>>>>>>    - No platform BIOS mapping exists.
+>>>>>>>>
+>>>>>>>> The UEFI GOP driver initialises the iGPU successfully for early 
+>>>>>>>> display,
+>>>>>>>> confirming the hardware is functional.  The VBIOS image data 
+>>>>>>>> embedded in
+>>>>>>>> the VFCT is also valid; only the PCIBus metadata is wrong.
+>>>>>>>
+>>>>>>> So the BIOS on this machine is actually totally fine; it's just 
+>>>>>>> when the kernel is booted to reassign busses there is a problem?
+>>>>>>>
+>>>>>>> In that case; why not detect the kernel was booted this way and 
+>>>>>>> keep track of the original bus number when reassigned to avoid 
+>>>>>>> the issue?
+>>>>>>>
+>>>>>>>> The firmware
+>>>>>>>> file can be extracted directly from the VFCT using dd:
+>>>>>>>>
+>>>>>>>>    dd if=/sys/firmware/acpi/tables/VFCT bs=1 skip=$((0x68)) 
+>>>>>>>> count=16896 \
+>>>>>>>>       of=/lib/firmware/amdgpu/1002_1900.bin
+>>>>>>>>
+>>>>>>>> (0x68 is the byte offset of the VBIOS image after the ACPI 
+>>>>>>>> table header
+>>>>>>>> and VFCT_IMAGE_HEADER; the image length 16896 comes from the 
+>>>>>>>> ImageLength
+>>>>>>>> field in VFCT_IMAGE_HEADER.)
+>>>>>>>>
+>>>>>>>> The driver then prints "Unable to locate a BIOS ROM" and 
+>>>>>>>> refuses to
+>>>>>>>> bind, leaving the APU completely unusable under Linux.
+>>>>>>>>
+>>>>>>>> Add a fifth fallback: request a firmware file named
+>>>>>>>> "amdgpu/<vendor>_<device>.bin" (e.g. "amdgpu/1002_1900.bin") via
+>>>>>>>> request_firmware().  This allows a VBIOS image extracted as 
+>>>>>>>> above to be
+>>>>>>>> placed in /lib/firmware/ and makes the binding succeed without 
+>>>>>>>> patching
+>>>>>>>> ACPI tables or BIOS.
+>>>>>>>>
+>>>>>>>> The fallback is only reached if all existing paths have already 
+>>>>>>>> failed,
+>>>>>>>> so there is no regression risk for boards where VFCT or ROM BAR 
+>>>>>>>> work.
+>>>>>>>
+>>>>>>> What happens if the VBIOS changes in another way one boot to 
+>>>>>>> another? You might have some other stateful information that 
+>>>>>>> isn't updated.
+>>>>>>>
+>>>>>>> The whole thing to me feels like a hack for a behavior we can 
+>>>>>>> control in the kernel when doing reassignments.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Oz Tiram <oz@shift-computing.de>
+>>>>>>>> ---
+>>>>>>>> v2: Fix commit message: clarify that VFCT contains the iGPU 
+>>>>>>>> entry but
+>>>>>>>>      with a stale PCIBus from BIOS POST that mismatches the 
+>>>>>>>> runtime bus
+>>>>>>>>      number assigned by pci=realloc,assign-busses. Explain that 
+>>>>>>>> the VBIOS
+>>>>>>>>      image data is valid and document the dd extraction command 
+>>>>>>>> and byte
+>>>>>>>>      offsets.  Note that the UEFI GOP driver initialises the iGPU
+>>>>>>>>      successfully, confirming the hardware is functional.
+>>>>>>>>
+>>>>>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 23 
+>>>>>>>> +++++++++++++++++ ++ ++++
+>>>>>>>>   1 file changed, 23 insertions(+)
+>>>>>>>>
+>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c 
+>>>>>>>> b/drivers/ gpu/ drm/amd/amdgpu/amdgpu_bios.c
+>>>>>>>> index aa039e148a5e..86064c753b09 100644
+>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
+>>>>>>>> @@ -26,6 +26,7 @@
+>>>>>>>>    *          Jerome Glisse
+>>>>>>>>    */
+>>>>>>>>   +#include <linux/firmware.h>
+>>>>>>>>   #include "amdgpu.h"
+>>>>>>>>   #include "atom.h"
+>>>>>>>>   @@ -457,6 +458,28 @@ static bool amdgpu_get_bios_apu(struct 
+>>>>>>>> amdgpu_device *adev)
+>>>>>>>>           goto success;
+>>>>>>>>       }
+>>>>>>>>   +    {
+>>>>>>>> +        const struct firmware *fw;
+>>>>>>>> +        char fw_name[32];
+>>>>>>>> +        size_t fw_size;
+>>>>>>>> +
+>>>>>>>> +        snprintf(fw_name, sizeof(fw_name), 
+>>>>>>>> "amdgpu/%04x_%04x.bin",
+>>>>>>>> +             adev->pdev->vendor, adev->pdev->device);
+>>>>>>>> +        if (request_firmware(&fw, fw_name, adev->dev) == 0) {
+>>>>>>>> +            adev->bios = kmemdup(fw->data, fw->size, GFP_KERNEL);
+>>>>>>>> +            fw_size = fw->size;
+>>>>>>>> +            release_firmware(fw);
+>>>>>>>> +            if (!adev->bios || !check_atom_bios(adev, fw_size)) {
+>>>>>>>> +                amdgpu_bios_release(adev);
+>>>>>>>> +            } else {
+>>>>>>>> +                adev->bios_size = fw_size;
+>>>>>>>> +                dev_info(adev->dev, "Fetched VBIOS from 
+>>>>>>>> firmware file %s\n",
+>>>>>>>> +                     fw_name);
+>>>>>>>> +                goto success;
+>>>>>>>> +            }
+>>>>>>>> +        }
+>>>>>>>> +    }
+>>>>>>>> +
+>>>>>>>>       dev_err(adev->dev, "Unable to locate a BIOS ROM\n");
+>>>>>>>>       return false;
+>>>>>>>
+>>>
+>
