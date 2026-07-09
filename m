@@ -2,51 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MC9PFWQMUGoEsgIAu9opvQ
+	id xMr0BG4MUGoSsgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:28 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:38 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE48E735A85
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A97735AB5
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=5iqUVhHm;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=3g25nfZ2;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F07B10F6D7;
-	Thu,  9 Jul 2026 21:02:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7492610F6E7;
+	Thu,  9 Jul 2026 21:02:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010024.outbound.protection.outlook.com [52.101.46.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 312D610F6D5
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:25 +0000 (UTC)
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012038.outbound.protection.outlook.com [52.101.48.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D407E10F6DC
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pkbvHydNuVMIdjA07xlQykQty6+8u53/MZNXuvPOAqRzoKPArB28motJDYcgOyvFm67Or8nEicl4YBkszPYw6e+f5s0R8vb87IIJryn0320qN53x6k/g856s1EegCNB07b4YpPdMvuP1gHA4OFFtCT7LNp1Z3j9vUSuolI8t6370f/FGAnSWiP1VRNTSd5cKEEK6xZhJxxvn4qGkezA+AZuFhrVTuD8whs1UusykfSEpyvrKP12jlM9/eHXnlqjkG1/W9BVH3oE9fHmGCA861Z/UEXfCIhPuLfbs3D8MEMBnpTHRQl55x5BtvjmJaUBpF9+FR+hzQR7iuiQOZtc1Qw==
+ b=wMqDZecqa8A7P1GynYITS24uUkVQdM1zd8cnyq96Shuqj8k/Zr/lbwWr3rVlVzyNcDvJfVOgaAhRW7csAhVDn4aqfk0z6Hm1gSf8PkqbI3V80pKi+n9psK4XAjEwcLo4r4hK4OMIihm/EM/Lin7ZgYOkfKbR5fApt959Ah3VH81YejSKxDTzj8o8WF9q77z3rxbiAo/05RZGmN/4YkxvmM9lCUvmRYS8MOntiXGRADTi6OAbOmHMzTKzjdXMzLLhQsrQM277rbE/t/UDXrMU/sUi0zA/buTOFH6I4dsKg/MEwImkbpyIDfjN5X2yEFor9fgyAbuYw9CWStkU/e1iog==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=44Z3zMAiTuFhLA1O6MgfhIUhlusvoQq6KgTRb4X6gBI=;
- b=gJOpMy/jk0cJzGyt7sLss83J0FEDtoWIrfoFFoRZlpMnA0wBRbw/ba+PFd8xkiz/n6jP3tQIBs1g5Us2YREOeMkbgYK/8dScHTPcExJn7eN5XfF9jz418yLtEYcnw6DusWrP59FjCZP1EwnPrwYmvr2duCHiJTcFuQmoZaKbH6qMXnXnqitP3oKu0jPEyGnzn0b2rtgOk6yYzbRRLgZwtOSG4HUBb+cn/Rxqrn5Dp2JzlkiRFlFW3RXyvU9jMQVz89FF4/1wvVSiJze4cq5FZTBR0CSzIMdSnfbru4QHofkC/wBJFaAGrleaiegN9MDfoNKn4zLo7s8JJ/KkEBLJiA==
+ bh=UqzOuaei6ysPvr0iyFayTx6PGe9I+rYxSbnesr/S67w=;
+ b=ZmBg1lVELVkiFVPfZ4KKBzg9g/wobTOw1ATaoOh2+QK8WHQOICUxAn7RjbLiEd7+OEEFdnPB6CoSJx1X905gQmRuK3vH7LXxA8tAqRqde2HBvClKeWMTaqsulZjJa9ENRJrpKVCcvKCRJLtd67GZv4eh72R/3+mM0zf0rzbDDlWuIhSQwixo7XdsfESH/G8vDGZ7G1vePGVkanvx8lUdF1YgBbmTYKX6Vvjr9197OGkGsFs8m2Hn8VJY6Qz7OCmdD04N+Csd/p7HM71biGwiDfejMPgMZK7gO4ABfH4qTuULfa33bBByVGkkTTTvH5URtJZRMmMBUnljQIZ6l/Q9CQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=44Z3zMAiTuFhLA1O6MgfhIUhlusvoQq6KgTRb4X6gBI=;
- b=5iqUVhHmPTeTUMMbMQASTVUekPhC3x75Sk3IRzgbtXS7Zw/EZUdcvDfEtA23mRBrlAicRwu18B9L+8M4VxT9+5tsIUvzwPq4bSBcs5z3RibMNbIbY+JltM3IozdQKP8KhHrrvsNGBmPh3c5WHaCKNmUvCzSEYFl9L3hqJKIJj7s=
-Received: from MN0PR04CA0019.namprd04.prod.outlook.com (2603:10b6:208:52d::33)
- by SA3PR12MB8801.namprd12.prod.outlook.com (2603:10b6:806:312::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
+ bh=UqzOuaei6ysPvr0iyFayTx6PGe9I+rYxSbnesr/S67w=;
+ b=3g25nfZ2jGQWJ0StzZ/q5wOHM8+VcpqDDjnNQ/7z1VvWzuu1dgvpSlCfm2mjktFZvfi+HaZhWjA5sJOdUZXiodw9tjebAZTy0uWaTeKA7xUW+/+CAKsbBqwd6Vwa95FEKryeJZEAIva03LZjwRh0fMY2dVLr6XRa8Huko4tCYsU=
+Received: from BL1P223CA0033.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:5b6::8)
+ by DS5PPFEAC589ED8.namprd12.prod.outlook.com (2603:10b6:f:fc00::667) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.14; Thu, 9 Jul
  2026 21:02:17 +0000
-Received: from BL02EPF0001A100.namprd03.prod.outlook.com
- (2603:10b6:208:52d:cafe::22) by MN0PR04CA0019.outlook.office365.com
- (2603:10b6:208:52d::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.11 via Frontend Transport; Thu, 9
+Received: from BL02EPF0001A0FB.namprd03.prod.outlook.com
+ (2603:10b6:208:5b6:cafe::87) by BL1P223CA0033.outlook.office365.com
+ (2603:10b6:208:5b6::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.12 via Frontend Transport; Thu, 9
  Jul 2026 21:02:17 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -55,13 +55,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A100.mail.protection.outlook.com (10.167.242.107) with Microsoft
+ BL02EPF0001A0FB.mail.protection.outlook.com (10.167.242.102) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:17 +0000
 Received: from georzhanmkm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
- 2026 16:01:55 -0500
+ 2026 16:01:56 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -72,9 +72,9 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
  "George Zhang" <george.zhang@amd.com>
-Subject: [PATCH 25/80] drm/amd/display: Test DPCD AUX and Synaptics helpers
-Date: Thu, 9 Jul 2026 16:47:53 -0400
-Message-ID: <20260709205936.5719-26-george.zhang@amd.com>
+Subject: [PATCH 26/80] drm/amd/display: Test MST start/stop and panel settings
+Date: Thu, 9 Jul 2026 16:47:54 -0400
+Message-ID: <20260709205936.5719-27-george.zhang@amd.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260709205936.5719-1-george.zhang@amd.com>
 References: <20260709205936.5719-1-george.zhang@amd.com>
@@ -86,29 +86,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A100:EE_|SA3PR12MB8801:EE_
-X-MS-Office365-Filtering-Correlation-Id: d3b5fecc-95ff-4ddc-f437-08deddfd5bd7
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FB:EE_|DS5PPFEAC589ED8:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6bff441d-def5-4997-bdf4-08deddfd5c4d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|1800799024|36860700016|23010399003|11063799006|6133799003|22082099003|56012099006|18002099003|3023799007;
-X-Microsoft-Antispam-Message-Info: oMKYCVq0j0ALcbZ4W44KtuPMuPtdS1NzU05DLYiq3CrUopGhnGgVd5qY4CbRxDRsH38yveEJvI1c/d61izjxE5LvaXPR3/9WhQTn0eh8I891qkLdywarndpjHW56PG3gnzlqRN+yJZslL0QM1PXVkIcqAq1BfPBz6d+7ct1jjKPVYY9D06GSce3fyeRgksdl+kWbXbuN7wroWxA68bKEXJ7vZ9UGMot/jLKVyR/oqXqIXDTNxCDcKBzjTrurBQwh2YPzauFtsYcXGuSkfwfvqK7jEnJW3+Bvu1BmuGvQtK3v3nXK/1w2Z78Lt4YG/uG0TuGAqpZKQooCpth3oa2iBG2+z9Jb8oB+94SaaQ6iUHxPb53SviN+mqVq6s45stjoq4Lxh/2LrS+EjybGtyHJs6GgOB6E23+8VGik/RnueNoua9xumnCokOqxxVqXqDFElA72LTiFYyqI9ajQGiEsjSmwTtWu/neAD0mvQB4oElk8y7RpR5ahAOMAe53x3JkcIU74yhZxJSygzXlsTKSGO32LLg7xhcJUMRlDTAhKnCmmwKwtGV+hMeXuXsh+u0GL8J9op94/GxHvnY9RedV6Pm0mzs1f+meJsL7os2sG6vGDxAqSfEk11VTHWdfl39ETSGckcCntKvC9eIFJdlOIFc1B+CwAwtZUnRpuJRH+CERt06lPgOpJ+0D/mqxYAIEuiuSruPF4Ks2IgGWXs2Ypxg==
+ ARA:13230040|82310400026|36860700016|23010399003|1800799024|376014|11063799006|56012099006|3023799007|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: WJpQPZik52Ijx7MDrNC6TN7VR2Q5WHkWf+yIqkOpfBwZMOWPkoB2oyIbqdw8JS+AtuF9bCc2fKWLfDwjvjoMJAx4+g/w5GECIlDTxEu7NJN6pze5sTygER5jXTEbmLclMSRvaNJXdaddQwzLRipgWcY4OSdUkei2xbuJ7mhBbCTyOycYSmMOPsYXAqw7ULrBltXhIdx8J59XvjCbC6aMyZMoXwtLUfeSPuiZJYywzNp8Y/O4zbYTVgMSihbfEZ2XQHlT6vWcdFKfuTdm+NPlU1/Raow2BWwz+wbWty93STrE6GhhXx3+tlpgpqeXVrvY1Uprml4oOzcC26dshiEzOf4pmkc4IH2ga99rASf9p9EQfovkskHXIQ8yFri67qc6YYaIc+aguYcKsvuT4jqd0ujt3cdlULNsE6AAaJl9EuVvlJH4C7aeq9BgJPKIIDYbVgcp/6tgDkYYXimGtmCO30SyujU7sjXlrQeiF7/170siGUZHWLp6ystl3RUBtdUee3PN/cG5isT1U/HKi+MScsFJ30Fg08U7Q6zvwJ/D/E0OBqJSnI+O3h1DXq6lBxJIm2Px4qmGQotmH2vqJ6gjiVqTAvcFxYV0KAJEmaXsigBC6mJNXhEKGvQT8ehIcNeZ/MCuyi7PjDWDfG+qUglpK0QFiscI64CADrV4Ji9X5Q6MazURnCSS9WRjpcI072++/pJWIiSrvnDsFir6k3hFzg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(1800799024)(36860700016)(23010399003)(11063799006)(6133799003)(22082099003)(56012099006)(18002099003)(3023799007);
+ SFS:(13230040)(82310400026)(36860700016)(23010399003)(1800799024)(376014)(11063799006)(56012099006)(3023799007)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: cqmcxIXuGA0oPVSPUsP3PbHHH+nXd6fIG2dZTsUGIsc6IUA8ppgC10LEkzkfrGcbA4djxW/uOrI7YleM+stmP+m5L+W7TtWM8XqcPRO8jwjNXn86yW8XNWR1RcPDvVaRiOPuEm8JiaiSvGORnS3SAAu60bCqZ5yDxiy3LyYl8j1li8mRI9OP1c/OAuidzu522mMXJuVpsjx7yHPJ/o+gVJT6/e9oahReKvbJpA5u93NtucCJk8ShvjIhpQgrTSyDBogklWXFhtzP8yCGhf777bdhzeOlxPFKrIa3qQGSxNgTN3sA6NGaPk62D2DPs9vCTw6R2Va1e2cjEI8tDnPtn6q/bJ4+y7YHSSbrSnJifvaQUS/bit9vaZpBhBGksCCDZTZWaz95OmNSWeRM2y65u1iCRW0Dy70xFRBSryw3zgnv4CAvsE44VX6knmzkd4dn
+X-MS-Exchange-AntiSpam-MessageData-0: iMBIgjXlBBqid+stuP/C9ZrHE2CCdY7xlTROiDwPDld6SRYxLdDITJ7mNduYLZO7mPlsLhS+Hh121hyxfDTMCzQW3122K4G6IPG+rAN8fZB9h6DTXJ7SR5p41nV9/De+XpZsjrEIo0r6wEsoUumxfF/CGjaQbcRWGqYyIpti650nbAhWFmr308QtTrzSdmIDw/bI4k2jNCs64viWbPpbQd4u9Zw4GigUYk8iKT6z1MmpCbFUTRPVZHfWt1Zp9c2dPuRr4jTLorDpzkl0NZbZQhZcFx4L/NQNLKw0aw2i6qS816EueO4aNPI39yOTygSfTzMSSwlKWe/a7Sa6IHN7M5WqYajZwupYWsnmBhgc2sKliZ+LLvYzhPQF9k5AyQn0SqCGSkfQPybNufMBdBtDcEdqjlEsMuy0oyBNnGxtqFRrPwPk05C0y+rSUsVbtfjk
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:17.0105 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d3b5fecc-95ff-4ddc-f437-08deddfd5bd7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:17.7812 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6bff441d-def5-4997-bdf4-08deddfd5c4d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A100.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FB.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8801
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPFEAC589ED8
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,616 +152,413 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EE48E735A85
+X-Rspamd-Queue-Id: 87A97735AB5
 
 From: Alex Hung <alex.hung@amd.com>
 
 [WHAT]
-Add KUnit coverage for DTN logging, DPCD read/write, fused IO and the
-Synaptics DSC workaround helpers execute_synaptics_rc_command,
-apply_synaptics_fifo_reset_wa,
-write_dsc_enable_synaptics_non_virtual_dpcd_mst and
-dm_helpers_dp_write_dsc_enable.
+Add KUnit coverage for dm_helpers_dp_mst_start_top_mgr and
+dm_helpers_dp_mst_stop_top_mgr, dm_helpers_dp_write_hblank_reduction,
+get_dsc_max_slices, dm_helpers_init_panel_settings,
+dm_helpers_override_panel_settings and
+fill_dc_mst_payload_table_from_drm.
 
 Assisted-by: Copilot:Claude-Opus-4.8
 Reviewed-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 Signed-off-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  11 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.h |  13 +
- .../amdgpu_dm/tests/amdgpu_dm_helpers_test.c  | 485 ++++++++++++++++++
- 3 files changed, 506 insertions(+), 3 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |   8 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.h |   5 +
+ .../amdgpu_dm/tests/amdgpu_dm_helpers_test.c  | 295 ++++++++++++++++++
+ 3 files changed, 306 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index 881518a861d5..804a95a19acf 100644
+index 804a95a19acf..aa4bd99528a3 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@ -719,8 +719,9 @@ bool dm_helpers_execute_fused_io(
-
- 	return amdgpu_dm_execute_fused_io(dev, link, commands, count, timeout_us);
+@@ -240,7 +240,7 @@ enum dc_edid_status dm_helpers_parse_edid_caps(
  }
-+EXPORT_IF_KUNIT(dm_helpers_execute_fused_io);
+ EXPORT_IF_KUNIT(dm_helpers_parse_edid_caps);
 
--static bool execute_synaptics_rc_command(struct drm_dp_aux *aux,
-+STATIC_IFN_KUNIT bool execute_synaptics_rc_command(struct drm_dp_aux *aux,
- 		bool is_write_cmd,
- 		unsigned char cmd,
- 		unsigned int length,
-@@ -792,8 +793,9 @@ static bool execute_synaptics_rc_command(struct drm_dp_aux *aux,
- 	DRM_ERROR("%s: write cmd ..., err = %d\n",  __func__, ret);
- 	return false;
+-static void
++STATIC_IFN_KUNIT void
+ fill_dc_mst_payload_table_from_drm(struct dc_link *link,
+ 				   bool enable,
+ 				   struct drm_dp_mst_atomic_payload *target_payload,
+@@ -290,6 +290,7 @@ fill_dc_mst_payload_table_from_drm(struct dc_link *link,
+ 	/* Overwrite the old table */
+ 	*table = new_table;
  }
-+EXPORT_IF_KUNIT(execute_synaptics_rc_command);
++EXPORT_IF_KUNIT(fill_dc_mst_payload_table_from_drm);
 
--static void apply_synaptics_fifo_reset_wa(struct drm_dp_aux *aux)
-+STATIC_IFN_KUNIT void apply_synaptics_fifo_reset_wa(struct drm_dp_aux *aux)
+ void dm_helpers_dp_update_branch_info(
+ 	struct dc_context *ctx,
+@@ -1149,7 +1150,7 @@ STATIC_IFN_KUNIT uint8_t get_max_frl_rate(uint8_t max_lanes, uint8_t max_rate_pe
+ }
+ EXPORT_IF_KUNIT(get_max_frl_rate);
+
+-static uint8_t get_dsc_max_slices(uint8_t max_slices, int clk_per_slice)
++STATIC_IFN_KUNIT uint8_t get_dsc_max_slices(uint8_t max_slices, int clk_per_slice)
  {
- 	unsigned char data[16] = {0};
+ 	uint8_t dsc_max_slices;
 
-@@ -857,11 +859,12 @@ static void apply_synaptics_fifo_reset_wa(struct drm_dp_aux *aux)
+@@ -1172,6 +1173,7 @@ static uint8_t get_dsc_max_slices(uint8_t max_slices, int clk_per_slice)
 
- 	drm_dbg_dp(aux->drm_dev, "Done\n");
+ 	return dsc_max_slices;
  }
-+EXPORT_IF_KUNIT(apply_synaptics_fifo_reset_wa);
++EXPORT_IF_KUNIT(get_dsc_max_slices);
 
- /* MST Dock */
- static const uint8_t SYNAPTICS_DEVICE_ID[] = "SYNA";
-
--static uint8_t write_dsc_enable_synaptics_non_virtual_dpcd_mst(
-+STATIC_IFN_KUNIT uint8_t write_dsc_enable_synaptics_non_virtual_dpcd_mst(
- 		struct drm_dp_aux *aux,
- 		const struct dc_stream_state *stream,
- 		bool enable)
-@@ -897,6 +900,7 @@ static uint8_t write_dsc_enable_synaptics_non_virtual_dpcd_mst(
-
- 	return ret;
+ void populate_hdmi_info_from_connector(bool enable_frl, struct drm_hdmi_info *hdmi, struct dc_edid_caps *edid_caps)
+ {
+@@ -1354,6 +1356,7 @@ void dm_helpers_init_panel_settings(
+ 	panel_config->dsc.disable_dsc_edp = false;
+ 	panel_config->dsc.force_dsc_edp_policy = 0;
  }
-+EXPORT_IF_KUNIT(write_dsc_enable_synaptics_non_virtual_dpcd_mst);
++EXPORT_IF_KUNIT(dm_helpers_init_panel_settings);
 
- bool dm_helpers_dp_write_dsc_enable(
+ void dm_helpers_override_panel_settings(
+ 	struct dc_context *ctx,
+@@ -1371,6 +1374,7 @@ void dm_helpers_override_panel_settings(
+ 		link->panel_config.psr.disallow_replay = true;
+ 	}
+ }
++EXPORT_IF_KUNIT(dm_helpers_override_panel_settings);
+
+ void *dm_helpers_allocate_gpu_mem(
  		struct dc_context *ctx,
-@@ -980,6 +984,7 @@ bool dm_helpers_dp_write_dsc_enable(
-
- 	return ret;
- }
-+EXPORT_IF_KUNIT(dm_helpers_dp_write_dsc_enable);
-
- #if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
- uint dm_helpers_get_dc_debug_mask(void)
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.h
-index e5cbcd425847..343650b50707 100644
+index 343650b50707..e256e1e12422 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.h
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.h
-@@ -28,12 +28,25 @@ uint8_t get_max_frl_rate(uint8_t max_lanes, uint8_t max_rate_per_lane);
+@@ -25,9 +25,14 @@ u32 edid_extract_panel_id(struct edid *edid);
+ void apply_edid_quirks(struct dc_link *link, struct edid *edid,
+ 		       struct dc_edid_caps *edid_caps);
+ uint8_t get_max_frl_rate(uint8_t max_lanes, uint8_t max_rate_per_lane);
++uint8_t get_dsc_max_slices(uint8_t max_slices, int clk_per_slice);
  bool dm_is_freesync_pcon_whitelist(const uint32_t branch_dev_id);
  extern const uint32_t dm_freesync_pcon_whitelist[];
  uint32_t dm_freesync_pcon_whitelist_count(void);
-+bool dm_helpers_dp_write_dsc_enable(struct dc_context *ctx,
-+				    const struct dc_stream_state *stream,
-+				    bool enable);
- uint dm_helpers_get_dc_debug_mask(void);
- void dm_helpers_set_dc_debug_mask(uint debug_mask);
- int dm_helpers_probe_acpi_edid(void *data, u8 *buf, unsigned int block, size_t len);
- const struct drm_edid *dm_helpers_read_acpi_edid(struct amdgpu_dm_connector *aconnector);
- const struct drm_edid *dm_helpers_read_vbios_hardcoded_edid(struct dc_link *link,
- 							    struct amdgpu_dm_connector *aconnector);
-+bool execute_synaptics_rc_command(struct drm_dp_aux *aux,
-+				  bool is_write_cmd,
-+				  unsigned char cmd,
-+				  unsigned int length,
-+				  unsigned int offset,
-+				  unsigned char *data);
-+void apply_synaptics_fifo_reset_wa(struct drm_dp_aux *aux);
-+uint8_t write_dsc_enable_synaptics_non_virtual_dpcd_mst(struct drm_dp_aux *aux,
-+							const struct dc_stream_state *stream,
-+							bool enable);
- #endif /* CONFIG_DRM_AMD_DC_KUNIT_TEST */
-
- #endif /* __AMDGPU_DM_HELPERS_H__ */
++void fill_dc_mst_payload_table_from_drm(struct dc_link *link,
++					 bool enable,
++					 struct drm_dp_mst_atomic_payload *target_payload,
++					 struct dc_dp_mst_stream_allocation_table *table);
+ bool dm_helpers_dp_write_dsc_enable(struct dc_context *ctx,
+ 				    const struct dc_stream_state *stream,
+ 				    bool enable);
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_helpers_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_helpers_test.c
-index 3766d8d211e4..eed941a889e9 100644
+index eed941a889e9..599de8240bee 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_helpers_test.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_helpers_test.c
-@@ -1211,6 +1211,475 @@ static void dm_test_dp_write_dpcd_null_priv(struct kunit *test)
- 			   dm_helpers_dp_write_dpcd(NULL, link, 0, &data, sizeof(data)));
+@@ -1746,6 +1746,282 @@ static void dm_test_dp_write_hblank_reduction_false(struct kunit *test)
+ 	KUNIT_EXPECT_FALSE(test, dm_helpers_dp_write_hblank_reduction(NULL, NULL));
  }
 
-+/*
-+ * Stub AUX transfer that ACKs every transaction (zero-filling reads), so
-+ * drm_dp_dpcd_read()/drm_dp_dpcd_write() report the full transfer size.
++/* Tests for get_dsc_max_slices() */
++
++/**
++ * dm_test_get_dsc_max_slices_1_340 - Test 1 slice at 340 MHz
++ * @test: The KUnit test context
 + */
-+static ssize_t dm_test_dpcd_ack_transfer(struct drm_dp_aux *aux,
-+					 struct drm_dp_aux_msg *msg)
++static void dm_test_get_dsc_max_slices_1_340(struct kunit *test)
 +{
-+	if ((msg->request & ~DP_AUX_I2C_MOT) == DP_AUX_NATIVE_READ)
-+		memset(msg->buffer, 0, msg->size);
-+	msg->reply = DP_AUX_NATIVE_REPLY_ACK;
-+	return msg->size;
-+}
-+
-+/*
-+ * Wire a connector-backed link with a working AUX channel so the DPCD
-+ * read/write helpers can complete a real transaction.
-+ */
-+static struct dc_link *dm_test_dpcd_link(struct kunit *test)
-+{
-+	struct amdgpu_dm_connector *aconnector;
-+	struct amdgpu_device *adev;
-+	struct dc_link *link;
-+
-+	adev = dm_kunit_alloc_adev(test);
-+	KUNIT_ASSERT_NOT_NULL(test, adev);
-+
-+	link = dm_kunit_alloc_link(test);
-+	aconnector = dm_kunit_alloc_connector(test, adev, NULL);
-+
-+	aconnector->dm_dp_aux.aux.drm_dev = &adev->ddev;
-+	aconnector->dm_dp_aux.aux.transfer = dm_test_dpcd_ack_transfer;
-+	drm_dp_aux_init(&aconnector->dm_dp_aux.aux);
-+
-+	link->priv = aconnector;
-+
-+	return link;
++	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(1, 340), 1);
 +}
 +
 +/**
-+ * dm_test_dp_read_dpcd_success - Test DPCD read returns true on ACKed transfer
++ * dm_test_get_dsc_max_slices_2_340 - Test 2 slices at 340 MHz
 + * @test: The KUnit test context
 + */
-+static void dm_test_dp_read_dpcd_success(struct kunit *test)
++static void dm_test_get_dsc_max_slices_2_340(struct kunit *test)
 +{
-+	struct dc_link *link = dm_test_dpcd_link(test);
-+	uint8_t data = 0;
-+
-+	KUNIT_EXPECT_TRUE(test,
-+			  dm_helpers_dp_read_dpcd(NULL, link, 0, &data, sizeof(data)));
++	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(2, 340), 2);
 +}
 +
 +/**
-+ * dm_test_dp_write_dpcd_success - Test DPCD write returns true on ACKed transfer
++ * dm_test_get_dsc_max_slices_4_340 - Test 4 slices at 340 MHz
 + * @test: The KUnit test context
 + */
-+static void dm_test_dp_write_dpcd_success(struct kunit *test)
++static void dm_test_get_dsc_max_slices_4_340(struct kunit *test)
 +{
-+	struct dc_link *link = dm_test_dpcd_link(test);
-+	uint8_t data = 0;
-+
-+	KUNIT_EXPECT_TRUE(test,
-+			  dm_helpers_dp_write_dpcd(NULL, link, 0, &data, sizeof(data)));
++	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(4, 340), 3);
 +}
 +
-+/* Tests for dm_helpers_execute_fused_io() */
-+
 +/**
-+ * dm_test_execute_fused_io_null_dmub_srv - Test fused IO fails without DMUB service
++ * dm_test_get_dsc_max_slices_8_340 - Test 8 slices at 340 MHz
 + * @test: The KUnit test context
 + */
-+static void dm_test_execute_fused_io_null_dmub_srv(struct kunit *test)
++static void dm_test_get_dsc_max_slices_8_340(struct kunit *test)
 +{
-+	struct amdgpu_device *adev;
++	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(8, 340), 4);
++}
++
++/**
++ * dm_test_get_dsc_max_slices_8_400 - Test 8 slices at 400 MHz
++ * @test: The KUnit test context
++ */
++static void dm_test_get_dsc_max_slices_8_400(struct kunit *test)
++{
++	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(8, 400), 5);
++}
++
++/**
++ * dm_test_get_dsc_max_slices_12_400 - Test 12 slices at 400 MHz
++ * @test: The KUnit test context
++ */
++static void dm_test_get_dsc_max_slices_12_400(struct kunit *test)
++{
++	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(12, 400), 6);
++}
++
++/**
++ * dm_test_get_dsc_max_slices_16_400 - Test 16 slices at 400 MHz
++ * @test: The KUnit test context
++ */
++static void dm_test_get_dsc_max_slices_16_400(struct kunit *test)
++{
++	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(16, 400), 7);
++}
++
++/**
++ * dm_test_get_dsc_max_slices_unknown - Test unknown combination returns 0
++ * @test: The KUnit test context
++ */
++static void dm_test_get_dsc_max_slices_unknown(struct kunit *test)
++{
++	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(3, 340), 0);
++	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(1, 400), 0);
++}
++
++/* Tests for dm_helpers_init_panel_settings() */
++
++/**
++ * dm_test_init_panel_settings_pps - Test panel power sequence settings init
++ * @test: The KUnit test context
++ */
++static void dm_test_init_panel_settings_pps(struct kunit *test)
++{
++	struct dc_panel_config panel_config = {0};
++	struct dc_sink *sink;
++
++	sink = kunit_kzalloc(test, sizeof(*sink), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, sink);
++
++	sink->edid_caps.panel_patch.extra_t3_ms = 100;
++	sink->edid_caps.panel_patch.extra_t7_ms = 200;
++	sink->edid_caps.panel_patch.extra_delay_backlight_off = 50;
++	sink->edid_caps.panel_patch.extra_t12_ms = 300;
++
++	dm_helpers_init_panel_settings(NULL, &panel_config, sink);
++
++	KUNIT_EXPECT_EQ(test, panel_config.pps.extra_t3_ms, 100U);
++	KUNIT_EXPECT_EQ(test, panel_config.pps.extra_t7_ms, 200U);
++	KUNIT_EXPECT_EQ(test, panel_config.pps.extra_delay_backlight_off, 50U);
++	KUNIT_EXPECT_EQ(test, panel_config.pps.extra_post_t7_ms, 0U);
++	KUNIT_EXPECT_EQ(test, panel_config.pps.extra_pre_t11_ms, 0U);
++	KUNIT_EXPECT_EQ(test, panel_config.pps.extra_t12_ms, 300U);
++	KUNIT_EXPECT_EQ(test, panel_config.pps.extra_post_OUI_ms, 0U);
++}
++
++/**
++ * dm_test_init_panel_settings_dsc - Test DSC defaults in panel settings init
++ * @test: The KUnit test context
++ */
++static void dm_test_init_panel_settings_dsc(struct kunit *test)
++{
++	struct dc_panel_config panel_config;
++	struct dc_sink *sink;
++
++	memset(&panel_config, 0xFF, sizeof(panel_config));
++
++	sink = kunit_kzalloc(test, sizeof(*sink), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, sink);
++
++	dm_helpers_init_panel_settings(NULL, &panel_config, sink);
++
++	KUNIT_EXPECT_FALSE(test, panel_config.dsc.disable_dsc_edp);
++	KUNIT_EXPECT_EQ(test, panel_config.dsc.force_dsc_edp_policy, 0U);
++}
++
++/* Tests for dm_helpers_override_panel_settings() */
++
++/**
++ * dm_test_override_panel_settings_debug_mask_disables_dsc - Test DSC mask
++ * @test: The KUnit test context
++ */
++static void dm_test_override_panel_settings_debug_mask_disables_dsc(struct kunit *test)
++{
 +	struct dc_context *ctx;
 +	struct dc_link *link;
-+	union dmub_rb_cmd *commands;
-+
-+	adev = dm_kunit_alloc_adev(test);
-+	KUNIT_ASSERT_NOT_NULL(test, adev);
-+	mutex_init(&adev->dm.dpia_aux_lock);
-+	spin_lock_init(&adev->dm.dmub_lock);
++	struct dc *dc;
++	uint old_debug_mask;
 +
 +	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
 +	KUNIT_ASSERT_NOT_NULL(test, ctx);
++	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, dc);
++	link = dm_kunit_alloc_link(test);
++	ctx->dc = dc;
++	link->connector_signal = SIGNAL_TYPE_DISPLAY_PORT;
++
++	old_debug_mask = dm_helpers_get_dc_debug_mask();
++	dm_helpers_set_dc_debug_mask(old_debug_mask | DC_DISABLE_DSC);
++	dm_helpers_override_panel_settings(ctx, link);
++	dm_helpers_set_dc_debug_mask(old_debug_mask);
++
++	KUNIT_EXPECT_TRUE(test, link->panel_config.dsc.disable_dsc_edp);
++}
++
++/**
++ * dm_test_override_panel_settings_second_edp_disables_psr - Test eDP index 1
++ * @test: The KUnit test context
++ */
++static void dm_test_override_panel_settings_second_edp_disables_psr(struct kunit *test)
++{
++	struct dc_context *ctx;
++	struct dc_link *first_link;
++	struct dc_link *second_link;
++	struct dc *dc;
++
++	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx);
++	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, dc);
++	first_link = dm_kunit_alloc_link(test);
++	second_link = dm_kunit_alloc_link(test);
++
++	ctx->dc = dc;
++	dc->link_count = 2;
++	dc->links[0] = first_link;
++	dc->links[1] = second_link;
++	first_link->connector_signal = SIGNAL_TYPE_EDP;
++	second_link->connector_signal = SIGNAL_TYPE_EDP;
++
++	dm_helpers_override_panel_settings(ctx, second_link);
++
++	KUNIT_EXPECT_TRUE(test, second_link->panel_config.psr.disable_psr);
++	KUNIT_EXPECT_TRUE(test, second_link->panel_config.psr.disallow_psrsu);
++	KUNIT_EXPECT_TRUE(test, second_link->panel_config.psr.disallow_replay);
++}
++
++/* Tests for fill_dc_mst_payload_table_from_drm() */
++
++/**
++ * dm_test_fill_mst_payload_table_enable - Test payload table fill on enable
++ * @test: The KUnit test context
++ */
++static void dm_test_fill_mst_payload_table_enable(struct kunit *test)
++{
++	struct dc_link *link;
++	struct drm_dp_mst_atomic_payload payload = {0};
++	struct dc_dp_mst_stream_allocation_table table = {0};
++
 +	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
 +	KUNIT_ASSERT_NOT_NULL(test, link);
-+	commands = kunit_kzalloc(test, sizeof(*commands), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, commands);
 +
-+	ctx->driver_context = adev;
-+	link->ctx = ctx;
-+	commands[0].fused_io.request.u.aux.ddc_line = 0;
++	/* Pre-existing allocation in the link table */
++	link->mst_stream_alloc_table.stream_count = 1;
++	link->mst_stream_alloc_table.stream_allocations[0].vcp_id = 1;
++	link->mst_stream_alloc_table.stream_allocations[0].slot_count = 4;
 +
-+	KUNIT_EXPECT_FALSE(test, dm_helpers_execute_fused_io(ctx, link, commands, 1, 1));
-+}
++	/* New payload to add */
++	payload.vcpi = 2;
++	payload.time_slots = 8;
 +
-+struct dm_test_synaptics_aux {
-+	struct drm_dp_aux aux;
-+	u32 fail_address;
-+	u32 last_dpcd_write_address;
-+	u8 rc_result;
-+	u8 dpcd_read_value;
-+	u8 dpcd_write_value;
-+	u8 last_rc_data[16];
-+	u8 read_rc_data[16];
-+	u8 last_rc_command;
-+	u8 rc_commands[32];
-+	u8 dsc_enable_values[8];
-+	u32 last_rc_offset;
-+	u32 last_rc_length;
-+	unsigned int rc_data_writes;
-+	unsigned int rc_data_reads;
-+	unsigned int rc_command_reads;
-+	unsigned int rc_result_reads;
-+	unsigned int rc_command_count;
-+	unsigned int downspread_reads;
-+	unsigned int downspread_writes;
-+	unsigned int dsc_enable_writes;
-+};
++	fill_dc_mst_payload_table_from_drm(link, true, &payload, &table);
 +
-+static ssize_t dm_test_synaptics_aux_transfer(struct drm_dp_aux *aux,
-+					      struct drm_dp_aux_msg *msg)
-+{
-+	struct dm_test_synaptics_aux *fixture;
-+	u8 request;
-+	u8 *buffer;
-+	size_t copy_size;
-+	unsigned int index;
-+
-+	fixture = container_of(aux, struct dm_test_synaptics_aux, aux);
-+	request = msg->request & ~DP_AUX_I2C_MOT;
-+	buffer = msg->buffer;
-+
-+	if (fixture->fail_address == msg->address)
-+		return -EIO;
-+
-+	if (request == DP_AUX_NATIVE_WRITE) {
-+		switch (msg->address) {
-+		case DP_DOWNSPREAD_CTRL:
-+			fixture->last_dpcd_write_address = msg->address;
-+			if (msg->size)
-+				fixture->dpcd_write_value = buffer[0];
-+			fixture->downspread_writes++;
-+			break;
-+		case SYNAPTICS_RC_DATA:
-+			copy_size = min_t(size_t, msg->size, sizeof(fixture->last_rc_data));
-+			memset(fixture->last_rc_data, 0, sizeof(fixture->last_rc_data));
-+			memcpy(fixture->last_rc_data, buffer, copy_size);
-+			fixture->rc_data_writes++;
-+			break;
-+		case SYNAPTICS_RC_OFFSET:
-+			if (msg->size >= 4)
-+				fixture->last_rc_offset = buffer[0] | buffer[1] << 8 |
-+							  buffer[2] << 16 | buffer[3] << 24;
-+			break;
-+		case SYNAPTICS_RC_LENGTH:
-+			if (msg->size >= 2)
-+				fixture->last_rc_length = buffer[0] | buffer[1] << 8;
-+			break;
-+		case SYNAPTICS_RC_COMMAND:
-+			fixture->last_rc_command = buffer[0];
-+			if (fixture->rc_command_count < ARRAY_SIZE(fixture->rc_commands)) {
-+				fixture->rc_commands[fixture->rc_command_count] = buffer[0] & 0x7f;
-+				fixture->rc_command_count++;
-+			}
-+			break;
-+		case DP_DSC_ENABLE:
-+			if (fixture->dsc_enable_writes < ARRAY_SIZE(fixture->dsc_enable_values)) {
-+				fixture->dsc_enable_values[fixture->dsc_enable_writes] = buffer[0];
-+				fixture->dsc_enable_writes++;
-+			}
-+			break;
-+		}
-+		msg->reply = DP_AUX_NATIVE_REPLY_ACK;
-+		return msg->size;
-+	}
-+
-+	if (request == DP_AUX_NATIVE_READ) {
-+		memset(buffer, 0, msg->size);
-+		switch (msg->address) {
-+		case DP_DOWNSPREAD_CTRL:
-+			if (msg->size)
-+				buffer[0] = fixture->dpcd_read_value;
-+			fixture->downspread_reads++;
-+			break;
-+		case SYNAPTICS_RC_COMMAND:
-+			if (msg->size)
-+				buffer[0] = fixture->last_rc_command & 0x7f;
-+			fixture->rc_command_reads++;
-+			break;
-+		case SYNAPTICS_RC_RESULT:
-+			if (msg->size)
-+				buffer[0] = fixture->rc_result;
-+			fixture->rc_result_reads++;
-+			break;
-+		case SYNAPTICS_RC_DATA:
-+			copy_size = min_t(size_t, msg->size, sizeof(fixture->read_rc_data));
-+			for (index = 0; index < copy_size; index++)
-+				buffer[index] = fixture->read_rc_data[index];
-+			fixture->rc_data_reads++;
-+			break;
-+		}
-+		msg->reply = DP_AUX_NATIVE_REPLY_ACK;
-+		return msg->size;
-+	}
-+
-+	msg->reply = DP_AUX_NATIVE_REPLY_ACK;
-+	return msg->size;
-+}
-+
-+static struct dm_test_synaptics_aux *dm_test_alloc_synaptics_aux_with_dev(struct kunit *test,
-+								 struct drm_device *drm_dev)
-+{
-+	struct dm_test_synaptics_aux *fixture;
-+	unsigned int index;
-+
-+	fixture = kunit_kzalloc(test, sizeof(*fixture), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, fixture);
-+
-+	for (index = 0; index < ARRAY_SIZE(fixture->read_rc_data); index++)
-+		fixture->read_rc_data[index] = 0x03;
-+
-+	fixture->rc_result = 0;
-+	fixture->aux.drm_dev = drm_dev;
-+	fixture->aux.transfer = dm_test_synaptics_aux_transfer;
-+	drm_dp_aux_init(&fixture->aux);
-+
-+	return fixture;
-+}
-+
-+static struct dm_test_synaptics_aux *dm_test_alloc_synaptics_aux(struct kunit *test)
-+{
-+	struct amdgpu_device *adev;
-+
-+	adev = dm_kunit_alloc_adev(test);
-+	KUNIT_ASSERT_NOT_NULL(test, adev);
-+
-+	return dm_test_alloc_synaptics_aux_with_dev(test, &adev->ddev);
-+}
-+
-+static void dm_test_expect_synaptics_commands(struct kunit *test,
-+					      struct dm_test_synaptics_aux *fixture,
-+					      const u8 *expected_commands,
-+					      unsigned int expected_count)
-+{
-+	unsigned int index;
-+
-+	KUNIT_ASSERT_EQ(test, fixture->rc_command_count, expected_count);
-+
-+	for (index = 0; index < expected_count; index++)
-+		KUNIT_EXPECT_EQ(test, fixture->rc_commands[index], expected_commands[index]);
-+}
-+
-+static void dm_test_setup_synaptics_stream(struct dc_stream_state *stream,
-+						  struct dc_link *link)
-+{
-+	stream->link = link;
-+	stream->signal = SIGNAL_TYPE_DISPLAY_PORT_MST;
-+	link->dpcd_caps.branch_dev_id = DP_BRANCH_DEVICE_ID_90CC24;
-+	link->dpcd_caps.dpcd_rev.raw = DP_DPCD_REV_14;
-+	link->dpcd_caps.sink_count.bits.SINK_COUNT = 2;
-+	memcpy(link->dpcd_caps.branch_dev_name, "SYNA", 4);
++	/* Should contain both the pre-existing and new allocation */
++	KUNIT_EXPECT_EQ(test, table.stream_count, 2);
++	KUNIT_EXPECT_EQ(test, table.stream_allocations[0].vcp_id, 1);
++	KUNIT_EXPECT_EQ(test, table.stream_allocations[0].slot_count, 4);
++	KUNIT_EXPECT_EQ(test, table.stream_allocations[1].vcp_id, 2);
++	KUNIT_EXPECT_EQ(test, table.stream_allocations[1].slot_count, 8);
 +}
 +
 +/**
-+ * dm_test_execute_synaptics_rc_command_write_success - Test RC write success
++ * dm_test_fill_mst_payload_table_disable - Test payload table fill on disable
 + * @test: The KUnit test context
 + */
-+static void dm_test_execute_synaptics_rc_command_write_success(struct kunit *test)
++static void dm_test_fill_mst_payload_table_disable(struct kunit *test)
 +{
-+	struct dm_test_synaptics_aux *fixture;
-+	u8 data[5] = { 'P', 'R', 'I', 'U', 'S' };
-+
-+	fixture = dm_test_alloc_synaptics_aux(test);
-+
-+	KUNIT_EXPECT_TRUE(test, execute_synaptics_rc_command(&fixture->aux, true,
-+							     0x01, sizeof(data), 0x123456,
-+							     data));
-+	KUNIT_EXPECT_EQ(test, memcmp(fixture->last_rc_data, data, sizeof(data)), 0);
-+	KUNIT_EXPECT_EQ(test, fixture->last_rc_offset, 0x123456U);
-+	KUNIT_EXPECT_EQ(test, fixture->last_rc_length, (u32)sizeof(data));
-+	KUNIT_EXPECT_EQ(test, fixture->last_rc_command, (u8)0x81);
-+	KUNIT_EXPECT_EQ(test, fixture->rc_command_reads, 1U);
-+	KUNIT_EXPECT_EQ(test, fixture->rc_result_reads, 1U);
-+}
-+
-+/**
-+ * dm_test_execute_synaptics_rc_command_read_success - Test RC read success
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_execute_synaptics_rc_command_read_success(struct kunit *test)
-+{
-+	struct dm_test_synaptics_aux *fixture;
-+	u8 data[4] = { 0 };
-+	u8 expected[4] = { 0xa5, 0x5a, 0xc3, 0x3c };
-+
-+	fixture = dm_test_alloc_synaptics_aux(test);
-+	memcpy(fixture->read_rc_data, expected, sizeof(expected));
-+
-+	KUNIT_EXPECT_TRUE(test, execute_synaptics_rc_command(&fixture->aux, false,
-+							     0x31, sizeof(data), 0x220998,
-+							     data));
-+	KUNIT_EXPECT_EQ(test, memcmp(data, expected, sizeof(expected)), 0);
-+	KUNIT_EXPECT_EQ(test, fixture->rc_data_writes, 0U);
-+	KUNIT_EXPECT_EQ(test, fixture->rc_data_reads, 1U);
-+	KUNIT_EXPECT_EQ(test, fixture->last_rc_offset, 0x220998U);
-+	KUNIT_EXPECT_EQ(test, fixture->last_rc_length, (u32)sizeof(data));
-+}
-+
-+/**
-+ * dm_test_execute_synaptics_rc_command_write_fail - Test RC write failure
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_execute_synaptics_rc_command_write_fail(struct kunit *test)
-+{
-+	struct dm_test_synaptics_aux *fixture;
-+	u8 data = 0;
-+
-+	fixture = dm_test_alloc_synaptics_aux(test);
-+	fixture->fail_address = SYNAPTICS_RC_LENGTH;
-+
-+	KUNIT_EXPECT_FALSE(test, execute_synaptics_rc_command(&fixture->aux, true,
-+							      0x01, sizeof(data), 0, &data));
-+	KUNIT_EXPECT_EQ(test, fixture->rc_command_count, 0U);
-+}
-+
-+/**
-+ * dm_test_apply_synaptics_fifo_reset_wa_full - Test full FIFO reset sequence
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_apply_synaptics_fifo_reset_wa_full(struct kunit *test)
-+{
-+	static const u8 expected_commands[] = {
-+		0x01, 0x31, 0x21, 0x31, 0x21, 0x31, 0x21,
-+		0x31, 0x21, 0x31, 0x31, 0x21, 0x02,
-+	};
-+	struct dm_test_synaptics_aux *fixture;
-+
-+	fixture = dm_test_alloc_synaptics_aux(test);
-+
-+	apply_synaptics_fifo_reset_wa(&fixture->aux);
-+
-+	dm_test_expect_synaptics_commands(test, fixture, expected_commands,
-+					  ARRAY_SIZE(expected_commands));
-+	KUNIT_EXPECT_EQ(test, fixture->rc_result_reads, (unsigned int)ARRAY_SIZE(expected_commands));
-+}
-+
-+/**
-+ * dm_test_apply_synaptics_fifo_reset_wa_first_fail - Test FIFO reset early exit
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_apply_synaptics_fifo_reset_wa_first_fail(struct kunit *test)
-+{
-+	struct dm_test_synaptics_aux *fixture;
-+
-+	fixture = dm_test_alloc_synaptics_aux(test);
-+	fixture->rc_result = 0xff;
-+
-+	apply_synaptics_fifo_reset_wa(&fixture->aux);
-+
-+	KUNIT_EXPECT_EQ(test, fixture->rc_command_count, 1U);
-+	KUNIT_EXPECT_EQ(test, fixture->rc_commands[0], (u8)0x01);
-+}
-+
-+static void dm_test_write_dsc_enable_synaptics(struct kunit *test,
-+					       bool link_active,
-+					       bool enable,
-+					       bool synaptics_branch,
-+					       unsigned int expected_dsc_writes,
-+					       unsigned int expected_rc_commands)
-+{
-+	struct dm_test_synaptics_aux *fixture;
-+	struct dc_stream_state *stream;
 +	struct dc_link *link;
-+	u8 ret;
++	struct drm_dp_mst_atomic_payload payload = {0};
++	struct dc_dp_mst_stream_allocation_table table = {0};
 +
-+	fixture = dm_test_alloc_synaptics_aux(test);
-+	stream = kunit_kzalloc(test, sizeof(*stream), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, stream);
-+	link = dm_kunit_alloc_link(test);
++	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, link);
 +
-+	dm_test_setup_synaptics_stream(stream, link);
-+	link->link_status.link_active = link_active;
-+	if (!synaptics_branch)
-+		memcpy(link->dpcd_caps.branch_dev_name, "ABCD", 4);
++	/* Two existing allocations in the link table */
++	link->mst_stream_alloc_table.stream_count = 2;
++	link->mst_stream_alloc_table.stream_allocations[0].vcp_id = 1;
++	link->mst_stream_alloc_table.stream_allocations[0].slot_count = 4;
++	link->mst_stream_alloc_table.stream_allocations[1].vcp_id = 2;
++	link->mst_stream_alloc_table.stream_allocations[1].slot_count = 8;
 +
-+	ret = write_dsc_enable_synaptics_non_virtual_dpcd_mst(&fixture->aux, stream, enable);
++	/* Remove vcp_id 1 */
++	payload.vcpi = 1;
++	payload.time_slots = 4;
 +
-+	KUNIT_EXPECT_EQ(test, ret, expected_dsc_writes ? 1 : 0);
-+	KUNIT_EXPECT_EQ(test, fixture->dsc_enable_writes, expected_dsc_writes);
-+	KUNIT_EXPECT_EQ(test, fixture->rc_command_count, expected_rc_commands);
-+	if (expected_dsc_writes)
-+		KUNIT_EXPECT_EQ(test, fixture->dsc_enable_values[0], enable ? 1 : 0);
++	fill_dc_mst_payload_table_from_drm(link, false, &payload, &table);
++
++	/* Only vcp_id 2 should remain */
++	KUNIT_EXPECT_EQ(test, table.stream_count, 1);
++	KUNIT_EXPECT_EQ(test, table.stream_allocations[0].vcp_id, 2);
++	KUNIT_EXPECT_EQ(test, table.stream_allocations[0].slot_count, 8);
 +}
 +
 +/**
-+ * dm_test_write_dsc_enable_synaptics_enable_inactive - Test enable plus FIFO reset
++ * dm_test_fill_mst_payload_table_empty - Test payload table fill when empty
 + * @test: The KUnit test context
 + */
-+static void dm_test_write_dsc_enable_synaptics_enable_inactive(struct kunit *test)
++static void dm_test_fill_mst_payload_table_empty(struct kunit *test)
 +{
-+	dm_test_write_dsc_enable_synaptics(test, false, true, true, 1, 13);
-+}
-+
-+/**
-+ * dm_test_write_dsc_enable_synaptics_enable_active - Test enable skips FIFO reset
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_write_dsc_enable_synaptics_enable_active(struct kunit *test)
-+{
-+	dm_test_write_dsc_enable_synaptics(test, true, true, true, 1, 0);
-+}
-+
-+/**
-+ * dm_test_write_dsc_enable_synaptics_disable_inactive - Test inactive disable writes DPCD
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_write_dsc_enable_synaptics_disable_inactive(struct kunit *test)
-+{
-+	dm_test_write_dsc_enable_synaptics(test, false, false, true, 1, 0);
-+}
-+
-+/**
-+ * dm_test_write_dsc_enable_synaptics_disable_active - Test active disable skips DPCD
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_write_dsc_enable_synaptics_disable_active(struct kunit *test)
-+{
-+	dm_test_write_dsc_enable_synaptics(test, true, false, true, 0, 0);
-+}
-+
-+/**
-+ * dm_test_write_dsc_enable_synaptics_enable_non_synaptics - Test non-Synaptics enable
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_write_dsc_enable_synaptics_enable_non_synaptics(struct kunit *test)
-+{
-+	dm_test_write_dsc_enable_synaptics(test, false, true, false, 1, 0);
-+}
-+
-+/**
-+ * dm_test_dp_write_dsc_enable_routes_synaptics - Test public DSC helper workaround route
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_dp_write_dsc_enable_routes_synaptics(struct kunit *test)
-+{
-+	struct dm_test_synaptics_aux *fixture;
-+	struct amdgpu_dm_connector *aconnector;
-+	struct dc_stream_state *stream;
 +	struct dc_link *link;
++	struct drm_dp_mst_atomic_payload payload = {0};
++	struct dc_dp_mst_stream_allocation_table table = {0};
 +
-+	fixture = dm_test_alloc_synaptics_aux(test);
-+	aconnector = kunit_kzalloc(test, sizeof(*aconnector), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, aconnector);
-+	stream = kunit_kzalloc(test, sizeof(*stream), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, stream);
-+	link = dm_kunit_alloc_link(test);
++	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, link);
 +
-+	dm_test_setup_synaptics_stream(stream, link);
-+	stream->dm_stream_context = aconnector;
-+	aconnector->dc_link = link;
-+	aconnector->dsc_aux = &fixture->aux;
++	/* Enable on an empty table */
++	payload.vcpi = 5;
++	payload.time_slots = 12;
 +
-+	KUNIT_EXPECT_TRUE(test, dm_helpers_dp_write_dsc_enable(NULL, stream, true));
-+	KUNIT_EXPECT_EQ(test, fixture->dsc_enable_writes, 1U);
-+	KUNIT_EXPECT_EQ(test, fixture->dsc_enable_values[0], (u8)1);
-+	KUNIT_EXPECT_EQ(test, fixture->rc_command_count, 13U);
++	fill_dc_mst_payload_table_from_drm(link, true, &payload, &table);
++
++	KUNIT_EXPECT_EQ(test, table.stream_count, 1);
++	KUNIT_EXPECT_EQ(test, table.stream_allocations[0].vcp_id, 5);
++	KUNIT_EXPECT_EQ(test, table.stream_allocations[0].slot_count, 12);
 +}
 +
- /* Tests for dm_helpers_dp_mst_start_top_mgr() / dm_helpers_dp_mst_stop_top_mgr() */
+ static struct kunit_case amdgpu_dm_helpers_test_cases[] = {
+ 	/* edid_extract_panel_id */
+ 	KUNIT_CASE(dm_test_edid_extract_panel_id_basic),
+@@ -1832,6 +2108,25 @@ static struct kunit_case amdgpu_dm_helpers_test_cases[] = {
+ 	KUNIT_CASE(dm_test_mst_start_top_mgr_boot),
+ 	/* dm_helpers_dp_write_hblank_reduction */
+ 	KUNIT_CASE(dm_test_dp_write_hblank_reduction_false),
++	/* get_dsc_max_slices */
++	KUNIT_CASE(dm_test_get_dsc_max_slices_1_340),
++	KUNIT_CASE(dm_test_get_dsc_max_slices_2_340),
++	KUNIT_CASE(dm_test_get_dsc_max_slices_4_340),
++	KUNIT_CASE(dm_test_get_dsc_max_slices_8_340),
++	KUNIT_CASE(dm_test_get_dsc_max_slices_8_400),
++	KUNIT_CASE(dm_test_get_dsc_max_slices_12_400),
++	KUNIT_CASE(dm_test_get_dsc_max_slices_16_400),
++	KUNIT_CASE(dm_test_get_dsc_max_slices_unknown),
++	/* dm_helpers_init_panel_settings */
++	KUNIT_CASE(dm_test_init_panel_settings_pps),
++	KUNIT_CASE(dm_test_init_panel_settings_dsc),
++	/* dm_helpers_override_panel_settings */
++	KUNIT_CASE(dm_test_override_panel_settings_debug_mask_disables_dsc),
++	KUNIT_CASE(dm_test_override_panel_settings_second_edp_disables_psr),
++	/* fill_dc_mst_payload_table_from_drm */
++	KUNIT_CASE(dm_test_fill_mst_payload_table_enable),
++	KUNIT_CASE(dm_test_fill_mst_payload_table_disable),
++	KUNIT_CASE(dm_test_fill_mst_payload_table_empty),
+ 	{}
+ };
 
- /**
-@@ -1341,6 +1810,22 @@ static struct kunit_case amdgpu_dm_helpers_test_cases[] = {
- 	/* dm_helpers_dp_read_dpcd / dm_helpers_dp_write_dpcd */
- 	KUNIT_CASE(dm_test_dp_read_dpcd_null_priv),
- 	KUNIT_CASE(dm_test_dp_write_dpcd_null_priv),
-+	KUNIT_CASE(dm_test_dp_read_dpcd_success),
-+	KUNIT_CASE(dm_test_dp_write_dpcd_success),
-+	/* dm_helpers_execute_fused_io */
-+	KUNIT_CASE(dm_test_execute_fused_io_null_dmub_srv),
-+	/* Synaptics RC/FIFO/DSC helpers */
-+	KUNIT_CASE(dm_test_execute_synaptics_rc_command_write_success),
-+	KUNIT_CASE(dm_test_execute_synaptics_rc_command_read_success),
-+	KUNIT_CASE(dm_test_execute_synaptics_rc_command_write_fail),
-+	KUNIT_CASE(dm_test_apply_synaptics_fifo_reset_wa_full),
-+	KUNIT_CASE(dm_test_apply_synaptics_fifo_reset_wa_first_fail),
-+	KUNIT_CASE(dm_test_write_dsc_enable_synaptics_enable_inactive),
-+	KUNIT_CASE(dm_test_write_dsc_enable_synaptics_enable_active),
-+	KUNIT_CASE(dm_test_write_dsc_enable_synaptics_disable_inactive),
-+	KUNIT_CASE(dm_test_write_dsc_enable_synaptics_disable_active),
-+	KUNIT_CASE(dm_test_write_dsc_enable_synaptics_enable_non_synaptics),
-+	KUNIT_CASE(dm_test_dp_write_dsc_enable_routes_synaptics),
- 	/* dm_helpers_dp_mst_start_top_mgr / dm_helpers_dp_mst_stop_top_mgr */
- 	KUNIT_CASE(dm_test_mst_start_top_mgr_null_priv),
- 	KUNIT_CASE(dm_test_mst_stop_top_mgr_null_priv),
 --
 2.55.0
 
