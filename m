@@ -2,52 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ANHPJVwMUGr6sQIAu9opvQ
+	id eiRPN2QMUGoGsgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:20 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:28 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FA5E735A61
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88537735A8B
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=DjCrXlVZ;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=nHtHSTX1;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FA1810F6C5;
-	Thu,  9 Jul 2026 21:02:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF83B10F6DB;
+	Thu,  9 Jul 2026 21:02:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH0PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11011019.outbound.protection.outlook.com [40.107.208.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ABD510F6C9
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:17 +0000 (UTC)
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010017.outbound.protection.outlook.com
+ [52.101.193.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3265C10F6D6
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rs56j8F4XoOJHC5HPb/0AgUOvDiDzXvumbPmoAYNS29JJ9HiuataE/xJjbBVJr1XLHUKVW1oIkSN4wQfqV9HbWTHFHgkdeUDjOBGhnN1EbaKZp3xCfimqD2FUZEPVV8z51Xz+35Tbbp1vga90UyDyZxBgcEV929/CBOW4lEpRLZv65KMGHDyQidtZDfllBF1GVsKmjlbz/6YqnmXDMzHa0+Ublgsqz3DcTW5PrwaFAl4/c+nlZVu2siljCBTUttW6h86eqXQWL5Hy5nr8tjNSA7DzHCkbyV5xRJEpD5bw9xv3YtEWKywHQ9hl4mX0Pl13DpzTqpBjQSyJxqJ9jta+g==
+ b=PHrFH2sZhI/3MIIicKiWG9qn3F4Vj8/t2o7CLZzuou8/iAXMep2nCRV8bemn3Kvw1YQVKbHYV6WEiGwNa+Xz2u6VuNK6kjhVXZRAWe7Y/KESHShl0uJUlMA0c0mJ3pCWhimky4GJfbk76C2UijKep69Q4tP2AJe4aDG2zclU8Tc3GFsUs2dfSgDuaPKxpTzYwR53HMOuMSrPtrX5nroBokFIL9OFXFNS6e/HPMxABlPX8VMlTLMEjaL9A73lZLa712n1STorBh0cpbHJq7vBbJZBylliNC8ac8Gl4xKZ3DKv6B1VskUVmiNWcHVZaBe+6aJlFcpAi5A2pePHsfl6QQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p9M2Fjc4lD7mG7P+P2vgIaQ/nhJ32/en9GCE5qENAqo=;
- b=KHAtsMRixQezT9oHuu6qqLgkuXoH3dH1YAwfcbXog17zSHSfsDJwETN5cQBRHALqzmcHQaVPuNu25zjyMvHgEqXH5lfH2xqYVO7cxZHmz4NioafRbqsJJ/NvRRoEs4ss0J2IvMaf1U1UruYI53qzuCpsGOTtr6ZrZgtNQ3s3njDSav6AM5z3/KWlJc/GHVHd8LVjs+4Jyb24xDDjkPSO0d8J47rP7wBQfMVekcbAauiKgkeeAMeE9eQMqRkPJK1ttLRm73O1qZev3g6nt9KpM9FhBgxUDD3UGON2QVJpt+EkkBhgVc/0M7spFhMKC3zn7UMVMK7CHpq1vGTQ8KIhdg==
+ bh=7WbLtEGAUZfsy86tBRg3ERai5BPmzwxaY+YIR/ZA2YU=;
+ b=NaXSYATTvJ0AYYrZV3g7RJvG8foZXD46tNmtw2I/3liCWfLTDxIUVXLHtcBxkMaG/RHTymsWT6yKaUblgiT4WfyhyeObobFMnxl761yhzqNxEJx2wGKsAiu5sgsSxr3Jvj5fD/ef4Ps5rD1ONAzS4c2O+AKV6R8u+hgSThvRgoSRN1JLBkFK8UPvvHD3rAP6mdbnG5PFA8vmFqMTyeP91iXopIzJ646FNg87qLsTuXQISK9eSOFQWhxcC5ZCPKEmk+VZ5zsHkFw+jOTKtkfXvIR3FhexQ4OLh+FynGEQBZih4ZL1aPSE26WOqqn7tk6OjzMGOv/dCzFQ+QK6kcdtZQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p9M2Fjc4lD7mG7P+P2vgIaQ/nhJ32/en9GCE5qENAqo=;
- b=DjCrXlVZ9INXmJIgFtYrcy3FBfPUkKqK1EQLJhNge+FwTjCa7jWq7lncXz7/QzU3HgbrqYVP4y8mri2mU/TyYCFfKkqDKN2B+6MCKzzh1Oy3CWJDrWhUzvzcZI4TlHTsPWmgFZWWFXaPbkcXfEeYJ8tQs8Ci7+mucYUnarBD+ag=
-Received: from MN2PR07CA0004.namprd07.prod.outlook.com (2603:10b6:208:1a0::14)
- by DS7PR12MB8231.namprd12.prod.outlook.com (2603:10b6:8:db::14) with
+ bh=7WbLtEGAUZfsy86tBRg3ERai5BPmzwxaY+YIR/ZA2YU=;
+ b=nHtHSTX1bWUqQInejn0fkiX9gARJ6gbDCL89LZUeiZMZjAMTzD3+iSQArA9RKY/BEiDGJe1iseyAubkqs0zZXIFSugRNe5hkC9ROdQBlSpt1ZPytr/WcWaiwhejXbrfIPmnusdg9cOthTcBMi91JUmH6bBXzIjfG8H1r//aclys=
+Received: from BL1P223CA0033.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:5b6::8)
+ by SJ0PR12MB5661.namprd12.prod.outlook.com (2603:10b6:a03:422::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.16; Thu, 9 Jul
- 2026 21:02:14 +0000
-Received: from BL02EPF0001A0FC.namprd03.prod.outlook.com
- (2603:10b6:208:1a0:cafe::39) by MN2PR07CA0004.outlook.office365.com
- (2603:10b6:208:1a0::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.10 via Frontend Transport; Thu, 9
- Jul 2026 21:02:14 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
+ 2026 21:02:16 +0000
+Received: from BL02EPF0001A0FB.namprd03.prod.outlook.com
+ (2603:10b6:208:5b6:cafe::6e) by BL1P223CA0033.outlook.office365.com
+ (2603:10b6:208:5b6::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.12 via Frontend Transport; Thu, 9
+ Jul 2026 21:02:15 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,13 +56,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A0FC.mail.protection.outlook.com (10.167.242.103) with Microsoft
+ BL02EPF0001A0FB.mail.protection.outlook.com (10.167.242.102) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:14 +0000
+ 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:15 +0000
 Received: from georzhanmkm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
- 2026 16:01:52 -0500
+ 2026 16:01:53 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -70,12 +71,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Charlene Liu <Charlene.Liu@amd.com>, Leo Chen
- <leo.chen@amd.com>, George Zhang <george.zhang@amd.com>
-Subject: [PATCH 22/80] drm/amd/display: ensure dtbclk clk_src selected before
- hdmistream_clk_en
-Date: Thu, 9 Jul 2026 16:47:50 -0400
-Message-ID: <20260709205936.5719-23-george.zhang@amd.com>
+ <Chen-Yu.Chen@amd.com>, George Zhang <george.zhang@amd.com>
+Subject: [PATCH 23/80] drm/amd/display: Re-evaluate cursor mode on plane
+ position/size change
+Date: Thu, 9 Jul 2026 16:47:51 -0400
+Message-ID: <20260709205936.5719-24-george.zhang@amd.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260709205936.5719-1-george.zhang@amd.com>
 References: <20260709205936.5719-1-george.zhang@amd.com>
@@ -87,29 +87,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FC:EE_|DS7PR12MB8231:EE_
-X-MS-Office365-Filtering-Correlation-Id: a552b7f6-cfc0-4196-f575-08deddfd5a7b
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FB:EE_|SJ0PR12MB5661:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5dad8e52-a8d0-4ab3-0bfc-08deddfd5adc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|23010399003|376014|1800799024|82310400026|11063799006|56012099006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: HpcnCLxNipFSwdGWGkrQ3ark57WATcq/XNUGqDAqtabRE7lOdundFY+vY/ARri8MI3SN4Hs72pRvW1SH/pnXbS4b41uRe9Ztj8dXCuFeE640O216nH3h2XCT02i/hJar8HUZMpTDnaQz4K+jktWSP1Pv7B2uERqPKv0HhWvUWaYNGhfYphMuc0ggcomQq7S9BD2N8pvR6+xQBqfTkDcHjjGo46ej5rSXzmeyYC2b8g31+nz6vgHQs0AO2yv8/KKZ+ydNQ7O2MS0Ne/J8Q5fU9PCYhx60FMUxOKywzGMWOv90p+Q6oHweKWSr/zdrWYucrMIGWHpT6nOaycU9LWoZJKJvid5DbYni+86sZHS4TU5yUWjHB9n70E2qIE+Up/UnoYrJIguB75VqJFjRtgys/dk3AwuQzEtrQX2ZJ9Cc7qNXmxDbDx3TkRB/eRt2tDZxzedPCwnZy6xHaYJuF6SHC4Pog6gU71jvgLaXniA5OOup0+4D4Pfd9c7ZymCKOJhM37b1EHcHoAMDKVpvtsahgv44PjaZ4rZEEDvVg9jFYOHFueXYzo3dCxAcpl7RcibOFoCMIg83VtjR0+BWPkjA/BcqtG1UN/lGrU4WCtxqI9DnA3ZwZ5fsHNRC4oSfgEPQoo3EPoJqJgg6uAfdZeNCkMirsd6EkohbvwPZYEw0hqu37wdMl1KnRkcjBRWcpigw39bvJwDJXL2VFMXd1ANIog==
+ ARA:13230040|376014|1800799024|36860700016|23010399003|82310400026|18002099003|22082099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: 2qERU9ZygQDr6ImkBStIvjUfaYm+jkgtLL2bvKblAd/hOYD/UsMOs/nT1dILEcLh8kq9Umq203ijpZrTsiKmiYY6QX6BSd6AN4HssIsMsZN32shh1nJmx3DBSKBxuJerYOLZK2fIquOIgHXNpMQ6D92yvYcKWsSHeqJXtWRftsn/DiPET5ITFt4eZczLU7ibGz/Ld0IrrMBsVM1nutFilg1T8af+vuHMN24GX9SZalOfGDOZOx0GK0RhqsGKjFuq7xADu+0zcJX6cVh0o06LVXlKXnXONNprOcuam22m9GMe2Klt9PCM+jL3bNP/FH9j0SE+h9T6jbwhNZmBCeEJbET2eLCmwgrPplLn4j3u7FCeGsk4z3N8NOX4OY0FSKo5hObqcjLQ/dTR8z8qiDNKulsGUe7VgFWrDmVIcgZPQmhpnA5qkvg6zUPCWK4KXdzowt3F7Yc4rstId0P3wMVhquiSMasrWu+tr6HLBNjbvnuq5rU40AIA6jitKEsfAroC2h3pSXGta1Diq+vG0wboUMS6nTJ1jOhMNh9bJEQAm488W8KG86LyasesWuxEOCaCH+jpAQjhQmdIx4Nahkn7/tQq0ZsY9IGaG8cDifaXY6v+SY47vw64pYQzHj09ao1RqNwnR22NGX7atHqTBklmjSL67jL2JyGesBpivX7b0drX6t3XOB9wagViRmVzuEtC8QJpYqUwyuJeWB0+0jzpsA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(23010399003)(376014)(1800799024)(82310400026)(11063799006)(56012099006)(18002099003)(22082099003);
+ SFS:(13230040)(376014)(1800799024)(36860700016)(23010399003)(82310400026)(18002099003)(22082099003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: gqYXLHm0nQEY+Pv2/acIOm2dFjnhIWgQ1l6jzwN3mZMOprcYc82dSfFOxCMhP0kXm5hIk6qisKX5qVngzZsFxI55W3Ear3v6Q8TOV9YVDBrHkPs6pHJrRVmF6YbJQaCfDwHSXGPOPPUcIVFpRSXeqJqek5iex1/HbHY356VlpTLqYDEdPIXKLrDDiZVhT1F8El9hAkUrrNHBELk7HgvlUpS7G11bWiffwM4cNRM4U+483Db5IZ0o+9ZrVpkeo7gsrlhb8fi+rUt54lTxP3eRNVD6tr5pKoEvrKBv2Sy2LqkCg+M0k6miNmCuLCLG5OYVe5b3gPOtuj+lwhU0mTJ7/wGT/RYx5FkAD2UqvMqmxQZMlUNpNpOGiadF8vTQvELP+qcihJFNYptT5OEs/n7JFjhw1xW+Gykvayqwb/6NgEgkZfWxUnkoeIphpFOo3fAW
+X-MS-Exchange-AntiSpam-MessageData-0: i//NV6pfi6tQAs9hNnVkCHiXvjh4HT53plopQW8XUxIfS9O8d8AjFkqK0Cx7KrTB14FbdTC3SNljw+hwa0+gCBkwfTxURmwLK/gEWry9b8nnhh69E+D+q38zql41U22m8tVi3YV00zSwXhGnkvziI6ffJL5EA9D0kD9Tfk3DTylXVccTzV323sxz50BBifMHTUn+c/6B9TAlBpMQ3jvR13KZR/TWsxzWqLbCqnKubvcg0yYwyX7bEKx/JiCDb9xZ+UO+A7GASmlq8IoK9rDJyGK7C+6j5uRV/WhvB0Q4Foh6Vs5njq4yWR1UCt6TvmCo3pmmHhbqzE4sIXHZ8f+Hcy4jLimb2oQJ2wTw9GGauyCAuZll8H79mPslSjF+aGacrjRslGam5N17OreUV9UhxpT7nnz+3LBpdIBjr/MkRq5jW2Ep08N7HLBC//0MlgVM
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:14.7297 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a552b7f6-cfc0-4196-f575-08deddfd5a7b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:15.3552 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5dad8e52-a8d0-4ab3-0bfc-08deddfd5adc
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FC.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FB.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8231
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5661
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,7 +136,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -153,63 +153,63 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2FA5E735A61
+X-Rspamd-Queue-Id: 88537735A8B
 
-From: Charlene Liu <Charlene.Liu@amd.com>
+From: James Lin <PingLei.Lin@amd.com>
 
-[why]
-correct a sequence issue by switching to dcn35's dccg sequence:
-to make sure select dtbclk src first before programming hdmistream_clk_en.
+[Why]
+dm_crtc_get_cursor_mode() only re-evaluates the required cursor mode
+(native vs overlay) when a top plane changes its scale, pixel format,
+enable state, or zpos/color pipeline. It does not re-evaluate when a
+plane changes only its destination rectangle (crtc_x, crtc_y, crtc_w,
+crtc_h) at a constant scale. A pure move/resize can create or remove a
+hole under the cursor, which changes whether the native cursor is valid.
+When a primary plane shrinks and no longer covers the cursor region, the
+cursor mode stays NATIVE and the cursor is not rendered over the
+uncovered area, so it becomes invisible there. This is caught by
+igt@amdgpu/amd_cursor_overlay@non-full, where the test CRC was a constant
+black value across all cursor positions instead of tracking the
+reference.
 
-Reviewed-by: Leo Chen <leo.chen@amd.com>
-Signed-off-by: Charlene Liu <Charlene.Liu@amd.com>
+[How]
+In the per-plane loop of dm_crtc_get_cursor_mode(), set
+consider_mode_change when any of crtc_x, crtc_y, crtc_w or crtc_h differs
+between the old and new plane state, so a plane move/resize forces
+re-evaluation of the cursor mode. The driver then correctly promotes the
+cursor to OVERLAY mode when the primary stops covering the cursor region.
+
+Reviewed-by: ChiaHsuan (Tom) Chung <chiahsuan.chung@amd.com>
+Signed-off-by: James Lin <PingLei.Lin@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c | 2 +-
- drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.h | 5 ++++-
- drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c | 2 +-
- 3 files changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c b/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c
-index 83589777f1ca..85da247139c3 100644
---- a/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c
-+++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c
-@@ -1654,7 +1654,7 @@ void dccg35_set_dpstreamclk_root_clock_gating(struct dccg *dccg, int dp_hpo_inst
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index b97ceabe6173..d67dcaa3fa8f 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -6647,6 +6647,20 @@ static int dm_crtc_get_cursor_mode(struct amdgpu_device *adev,
+ 			break;
+ 		}
 
-
-
--static void dccg35_set_hdmistreamclk(
-+void dccg35_set_hdmistreamclk(
- 		struct dccg *dccg,
- 		enum streamclk_source src,
- 		uint32_t otg_inst)
-diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.h b/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.h
-index 554700287c1a..58f4c1e998b3 100644
---- a/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.h
-+++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.h
-@@ -269,5 +269,8 @@ void dccg35_disable_dscclk(struct dccg *dccg, int inst);
-
- void dccg35_enable_symclk_se(struct dccg *dccg, uint32_t stream_enc_inst, uint32_t link_enc_inst);
- void dccg35_disable_symclk_se(struct dccg *dccg, uint32_t stream_enc_inst, uint32_t link_enc_inst);
--
-+void dccg35_set_hdmistreamclk(
-+		struct dccg *dccg,
-+		enum streamclk_source src,
-+		uint32_t otg_inst);
- #endif //__DCN35_DCCG_H__
-diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c b/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c
-index 616a896f0782..3b03b152da22 100644
---- a/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c
-+++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c
-@@ -313,7 +313,7 @@ static void dccg42_init(struct dccg *dccg)
- static const struct dccg_funcs dccg42_funcs = {
- 	.enable_hdmicharclk = dccg401_enable_hdmicharclk,
- 	.disable_hdmicharclk = dccg42_disable_hdmicharclk,
--	.set_hdmistreamclk = dccg401_set_hdmistreamclk,
-+	.set_hdmistreamclk = dccg35_set_hdmistreamclk,
- 	.set_hdmistreamclk_root_clock_gating = dccg35_set_hdmistreamclk_root_clock_gating,
- 	.update_dpp_dto = dccg35_update_dpp_dto,
- 	.dpp_root_clock_control = dccg35_dpp_root_clock_control,
++		/*
++		 * A plane moving or resizing (without a scale change) changes how
++		 * much of the CRTC it covers. This can create/remove holes under
++		 * the cursor and thus flip the required cursor mode (native vs
++		 * overlay), so the destination rect must be re-evaluated too.
++		 */
++		if (old_plane_state->crtc_x != plane_state->crtc_x ||
++		    old_plane_state->crtc_y != plane_state->crtc_y ||
++		    old_plane_state->crtc_w != plane_state->crtc_w ||
++		    old_plane_state->crtc_h != plane_state->crtc_h) {
++			consider_mode_change = true;
++			break;
++		}
++
+ 		if (dm_plane_color_pipeline_active(state, plane, true) !=
+ 		    dm_plane_color_pipeline_active(state, plane, false)) {
+ 			consider_mode_change = true;
 --
 2.55.0
 
