@@ -2,52 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id TqCVA3cMUGopsgIAu9opvQ
+	id cLdOCm0MUGoOsgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:47 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:37 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8C3B735B01
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C722C735AAF
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=OeeEoXu0;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=nbTNW5wI;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B40C810F6F9;
-	Thu,  9 Jul 2026 21:02:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58E0110F6DF;
+	Thu,  9 Jul 2026 21:02:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010027.outbound.protection.outlook.com [52.101.201.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C213310F6EA
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:36 +0000 (UTC)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012007.outbound.protection.outlook.com [52.101.43.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91EFE10F6D8
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=A2iox1lDIJH4xFJOFguIF7azQq9++84eAznUTYuq5krEmhjQGyiNu6AWwZeS7kEQhdPffMqWLG+I3saaSxOf7Ve/wu+0p549tRnuaUWNuI27hawgeRSCO1pUGbtqz5IRiHvOD7yzbU0Nft4qgUGsu2NdHC2EQUYdZeeV++LGnTQdkv/AEP5r5DDqe0kMttOBILI1wOGAvueAjytNRS2Khu6WV9j7/XsikjNNvt1ULvStk+W0x2oRPrkpEaxX3qYOgX8FrmAVIzHXQY0EJDfS1IY5U3C33B2J4z6hZSDQ+m9eIAa8YNoDbAgwkFTUcxBLJadR5jDxKCeB9lrArf/0sw==
+ b=tvIh+r7RLcpRJaeWLH2b5W9UyjIE7RPhlKZQ/P9xkp4aonvv0L9EFFpOTNrvpAgtrpJHmj6bsgQiwhMI1Tk4Q3ZwAXvnLy+U8PsyVpP9wVzbNFuBnv9i81NIoHLz88KBQfa7smEftBE0SDk5xRk5wpq+lz+GYh7rIf9G7tyROUzwYZ1S+lh8Yp6B6KUKir6y8orRXe+pPOVrsCusDMAQQbUdWr16y/7cVEqaqeYBv1bcLuh3n/qG0K88E/DMdgkGpQLkHpGmImW5KqBy1Bf+VD7y/L5/D7HVB1uLgERVzINZD87dqc9mX349qkCnNe4QDt39cBr2ZpKIEv/4M+8uRA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g8L+j7YCk+r6eu9GH2tMbBrNje6pwgxL+RL8kaN6DBQ=;
- b=YcJJREWcTYRJJC4W0+BIMACGNmQsQ8yc0Q9yKwuV2zgO84/lcxYuFzpVqAJq+sAvcmuo2wUOBkJJKsdIU9sdhO2r+8q2Fpzlzh+b7UFychzmMIDwb5wgtClCzR7HRDAB1UK/nP2BE6cJ2sV7Cx0STmd0JgYY3tj2UH/+esaZ5sO0+74dMRp5rEb3YKQMbW9iqfFI0/FpyvM2dmdcD2cpi3EyxdnjkqoiMShf2qhhkiSbEpHWzUMvw4ygec0HwVqT049V0Ctzn84KzCCvILJr7ygFdJptblgT5l6L9iMjaDc5oZpoWs4MpMedK8yvtYb7oUOhXRoDEJCUAJiOIoqa2w==
+ bh=hbxa+dALE9Qt71VZp5hbWwWAAuIRPg9QG5Jzuz6PSYk=;
+ b=FaftSjc+skqSEObB9qOOZul13zceKXGyH33mayM41BerKQW7y6Ce0U20VREdS+k+4irNnq4BsLARk3g2TSXmBrhvn3MlyST/YSEQOklvbR6hqOulPHwMarO/S8/d3Xp2l+MkMFVbp2f22sYVLFNu9aOBuj77qrNj3efEbVFYLae3IhIkXcRyk01iMzOTTX6NPoFsO7J9zLYAEXQ2cjD8aOenWtA3IDsf2DcotzcgbgnlmXMBaSj1lM8bLrYWIN2yuic0ksFFTgD2pikC/DiyJRwzZULG5/9dm/SOPkctI5EYMPLGNaCy+jn7ZxZvQWyrn68Y2HUVRkwd/QiL6EmuGA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g8L+j7YCk+r6eu9GH2tMbBrNje6pwgxL+RL8kaN6DBQ=;
- b=OeeEoXu0QHRBd1PrPTBNOPlia1DC+Xv8pqnEXRyKrjVCDgo9OgXytcEmp8cqQFAoHbHUg5uIhrnEMmrZ0NiPtDWRveHqETk+v1ubIQm29m2HEdUs+R1a55It9USrTIN7HlBUpjAZfWbtta6Ou0HQxPgWEzueowCCoxe0JSt1SOY=
-Received: from BLAPR03CA0097.namprd03.prod.outlook.com (2603:10b6:208:32a::12)
- by DM4PR12MB5868.namprd12.prod.outlook.com (2603:10b6:8:67::17) with
+ bh=hbxa+dALE9Qt71VZp5hbWwWAAuIRPg9QG5Jzuz6PSYk=;
+ b=nbTNW5wI155LlGbHt9XrUufeEVYRN/HQY7kjMjkE4Zgfn/m8PcSt+sezUJPZrNZkKIbfILWHhE/R/lgShlyv5srZCwkqWeMsBs77MnedkiLYehWmAydD5m08xJpRuZ6vKSA1zp3QL4GrSfmWjNJIbEk0u5QhyAWTKc6c6Y6C+C0=
+Received: from BL1P223CA0033.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:5b6::8)
+ by DS0PR12MB8070.namprd12.prod.outlook.com (2603:10b6:8:dc::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Thu, 9 Jul 2026
- 21:02:27 +0000
-Received: from BL02EPF0001A0F9.namprd03.prod.outlook.com
- (2603:10b6:208:32a:cafe::24) by BLAPR03CA0097.outlook.office365.com
- (2603:10b6:208:32a::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.11 via Frontend Transport; Thu, 9
- Jul 2026 21:02:27 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
+ 2026 21:02:28 +0000
+Received: from BL02EPF0001A0FB.namprd03.prod.outlook.com
+ (2603:10b6:208:5b6:cafe::18) by BL1P223CA0033.outlook.office365.com
+ (2603:10b6:208:5b6::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.12 via Frontend Transport; Thu, 9
+ Jul 2026 21:02:28 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,13 +55,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A0F9.mail.protection.outlook.com (10.167.242.100) with Microsoft
+ BL02EPF0001A0FB.mail.protection.outlook.com (10.167.242.102) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:27 +0000
+ 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:28 +0000
 Received: from georzhanmkm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
- 2026 16:02:07 -0500
+ 2026 16:02:08 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -72,44 +72,43 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
  "George Zhang" <george.zhang@amd.com>
-Subject: [PATCH 42/80] drm/amd/display: Add subconnector property tests for
- connector
-Date: Thu, 9 Jul 2026 16:48:10 -0400
-Message-ID: <20260709205936.5719-43-george.zhang@amd.com>
+Subject: [PATCH 43/80] drm/amd/display: Add FBC init tests for connector
+Date: Thu, 9 Jul 2026 16:48:11 -0400
+Message-ID: <20260709205936.5719-44-george.zhang@amd.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260709205936.5719-1-george.zhang@amd.com>
 References: <20260709205936.5719-1-george.zhang@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0F9:EE_|DM4PR12MB5868:EE_
-X-MS-Office365-Filtering-Correlation-Id: 84ab65c4-407f-401b-ae33-08deddfd61ef
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FB:EE_|DS0PR12MB8070:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0454c62a-0cd3-4b3c-d6a6-08deddfd626c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|23010399003|36860700016|1800799024|3023799007|18002099003|22082099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: bhe3U2nY+Gd7+IE0ppCLi2mi+RZTzfD0DpKxpFu51gPM/dCzaWb8yagrL/hm3nEMHnRUhCOFeCQ9VxJZuTA9O5e3JYZ3vkfL+PATNJcWkF3zaKksalOq1ooVPmhIHnv7CnoGLEE+vv1Fsc1nN7MRJ9x6bo0ID4EmiTw2Jy9uvp4gokFEmjj81M8QRsSy4deKDOx2Ji3g4AqTjlISAulNDt0pb6m4kH8fbSeSlESvTWqDKAh3c5s8pEj16OqA/VnSFD671aNM4ZIcxe6Y43Vl8En+NW6nY298eAeJJWmI0eGbkx4ya/9s1Az/Ukry+mSveyZUrriHr7LPQj47KXMSVOouNR/dKiCxhur8xX7eqSsYhGYsvODc4Lm/FlZtgpgr26+wSRLP/G3KgT4v1teSfCy196tm3v683HEpFfXtYHhTpoYdS6kvLWYEYw+luA3g/yhjmFkL/CvKrMsFW7ZqkN56Kk2ae0c7AQKeRkOJE20gywltG7W3/bblNPOX8VevnyajuM9giqwVHnPq9rEmEZCUag3iZwsO74X4AmZJoWvJ3i6LR7Bbsm3Yi+kxQ0vuN+T7WBFyKhwFhOvIght0GZmfZ/WYtsXpemtee57GkJM7n13afJ1I38qgpZFVhtlsCnjGlE5/Iq8JGnNijRerv6wQQxmsXTScr/bK8NghseBIiuGDaZtqJbYRcVY1ms0cSPWse6OlrA1Q+cJygwl9/A==
+ ARA:13230040|23010399003|36860700016|376014|1800799024|82310400026|3023799007|11063799006|56012099006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: JlUZPuG2QP7tUTUWmWSGBWr3tTUJuLFGJH9/6rtiH4REs7zok6vFsK8PfWO5NJQSA+5YdeBDSO5QKrYBFIkDDlwMO5nOARmoM5Cwrobmx9XNuw0sBVuGJM57c0YolAmYcNwS+CkvJ4GAOByxTM3dWNa0bbz96wCloMNDBVUkwb4GJLOJ9tNXhOB083I5Wx1P8PowJJcLwRrL18WqCtGrXfvlPHNAN0jlb1s95qTM3hjQi9mdM7zr1jXJHQx9D+Fm2Ip5vk0Xl3g/lvbZ3kv09pZGOBAepUVkTsAby31cFpBT83kRfomhyVvzfxVECaQKuV31SSLu6n5Nxi5Q3CgUnR+FnW0fxWiuWotquAnfjffdHYIp6n+x2vXOQCMUdmyIKTifGvNgKPs7T9uEuI45oXR4X3yng5PpTW6Pvj3y2DZQv58dtakfYb7xJ2+6VYxpqN/UNc98aFbEafxN5hzB4UG0vqb5htissvKspPF4FPFzYj9hMUnDDJUPhv6PARFxIdzHkmK/x1QLqI/6Vw23mq9n8NhE4PUSfyJEvm6v84hRLZD3kGiH3D9J7UTaLrzjY41QGtKAmkEcaFvEEXLmgszaa9yKQruUwfngcucjYEmt0pN2ZnF1BzYYqWQIbcN5FwKtxOmjJ2ZUtKb8Ih9uGvarWmb21eE7pc/ZFfMQJ4/g5S43euHZmi1eL+5uWW5U+iuLy+MuQiQGm6ZJBvisXg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(23010399003)(36860700016)(1800799024)(3023799007)(18002099003)(22082099003)(11063799006)(56012099006);
+ SFS:(13230040)(23010399003)(36860700016)(376014)(1800799024)(82310400026)(3023799007)(11063799006)(56012099006)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: bQhnvHuwk9MYmTisOrvuRLx6h1IBig7gu3cS/Gh4ZVOFj+GHAT5bkjJcZMBuEG6anrspbs3y4EG4kSMmdEjF6Jy3E9xTR9z1+1ORCBDgHPPdOeQ/Zpf1tYcJf+JsWTlmNtV6oFYaz72P9TjJHff0g3ep9FixX8u226H29TYf5a7q3ApBsvJ13/GAGS73/JDwDQ7Lm73DVP0qULKp59tYWA4AY6iMYb0grXmkHblIhM49sM4yEbH2I2093gc4m5MbfumRT5wnjx8jLT64QGrf0emUulNKvt2Eld/8uL2QQuN0gG9Nvk1x7q52RsCnsaktUv46MqrgibFDqFR8Gtx2fAs5IGWm4UqYsuMdsVGz0ADwaCHG9W9rs3IG1qP5z4iIuo2ggHbceykAsR4PQ7AiZJ0QNg4FJ6VaM6Zo4V8vBD9APCXdftEAhxr5GkLutcVz
+X-MS-Exchange-AntiSpam-MessageData-0: m1S5AgM4471Zj8lJ4hlJHMKVUHm/PA+ci5v7OFbpODwYsGrbEQv93KMCKRM9sXF1tWvy1Q5uy2wzrvIj8kZBZbemiKy6HwwT9EszCgRdVr65IujIeeHyR912MRFPdmkC4Yw7eApNm7LXGpK7r6G/vCoPHb8pmC89YqQs3SWkP+lmXpmWiOFmBsROsNucvSXXrk+QwUdwb8a2eqwLDUh5TrNtf5qChI1GfeR5/K+8NkzINHOo4+YmEQI5tUmm5RCOD+cIjyPYqcs3mQLdiFEjZHAffpU3CJS5Nlm3zOnWLOHVmlZtCZft7JmUv2k/FHHfUZlTCHUBlsgO8P4GjSpktjlbHOZsjMHmyBzTRcqzf5gjwhJRqAW0S4Bsm4Qltp4e5G9UVLy59yQg4uDBbvc3UCX/QzZQajpFHdgwvbhmGwEidyOB9dQDxn+XWb5nf9V7
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:27.2397 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84ab65c4-407f-401b-ae33-08deddfd61ef
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:28.0500 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0454c62a-0cd3-4b3c-d6a6-08deddfd626c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0F9.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FB.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5868
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8070
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,10 +123,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
@@ -135,37 +133,34 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[george.zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[george.zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
+	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A8C3B735B01
+X-Rspamd-Queue-Id: C722C735AAF
 
 From: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 
-Add KUnit coverage for update_subconnector_property() on the
-amdgpu_dm_connector suite:
+Add KUnit coverage for amdgpu_dm_fbc_init() on the
+amdgpu_dm_connector tests:
 
-- DP connector with a sink: subconnector property is resolved from
-  the dongle type (VGA converter -> VGA).
-- DP connector without a sink: dongle type is ignored and the
-  property stays Unknown.
-- Non-DP connector: function early-returns and leaves a pre-seeded
-  property value untouched.
+- No FBC present
+- Non-eDP link
+- Buffer already allocated
 
 Assisted-by: Copilot:Claude-Opus-4.8
 Reviewed-by: Alex Hung <alex.hung@amd.com>
@@ -174,202 +169,172 @@ Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
  .../display/amdgpu_dm/amdgpu_dm_connector.c   |   3 +-
  .../display/amdgpu_dm/amdgpu_dm_connector.h   |   1 +
- .../tests/amdgpu_dm_connector_test.c          | 142 ++++++++++++++++++
- 3 files changed, 145 insertions(+), 1 deletion(-)
+ .../tests/amdgpu_dm_connector_test.c          | 112 ++++++++++++++++++
+ 3 files changed, 115 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
-index 96f7bf446570..4ae58d5c5264 100644
+index 4ae58d5c5264..e018cf639909 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.c
-@@ -235,7 +235,7 @@ STATIC_IFN_KUNIT enum drm_mode_subconnector get_subconnector_type(struct dc_link
- }
- EXPORT_IF_KUNIT(get_subconnector_type);
- 
--static void update_subconnector_property(struct amdgpu_dm_connector *aconnector)
-+STATIC_IFN_KUNIT void update_subconnector_property(struct amdgpu_dm_connector *aconnector)
- {
- 	struct dc_link *link = aconnector->dc_link;
- 	struct drm_connector *connector = &aconnector->base;
-@@ -251,6 +251,7 @@ static void update_subconnector_property(struct amdgpu_dm_connector *aconnector)
- 			connector->dev->mode_config.dp_subconnector_property,
- 			subconnector);
- }
-+EXPORT_IF_KUNIT(update_subconnector_property);
+@@ -255,7 +255,7 @@ EXPORT_IF_KUNIT(update_subconnector_property);
  
  static int amdgpu_dm_connector_get_modes(struct drm_connector *connector);
  
+-static void amdgpu_dm_fbc_init(struct drm_connector *connector)
++STATIC_IFN_KUNIT void amdgpu_dm_fbc_init(struct drm_connector *connector)
+ {
+ 	struct amdgpu_device *adev = drm_to_adev(connector->dev);
+ 	struct dm_compressor_info *compressor = &adev->dm.compressor;
+@@ -293,6 +293,7 @@ static void amdgpu_dm_fbc_init(struct drm_connector *connector)
+ 	}
+ 
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_fbc_init);
+ 
+ 
+ int amdgpu_dm_detect_mst_link_for_all_connectors(struct drm_device *dev)
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.h
-index e9ee4a4ad30e..10fe0bf48c02 100644
+index 10fe0bf48c02..707308c02820 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.h
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_connector.h
-@@ -147,6 +147,7 @@ int amdgpu_dm_encoder_init(struct drm_device *dev,
- 
+@@ -148,6 +148,7 @@ int amdgpu_dm_encoder_init(struct drm_device *dev,
  #if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
  enum drm_mode_subconnector get_subconnector_type(struct dc_link *link);
-+void update_subconnector_property(struct amdgpu_dm_connector *aconnector);
+ void update_subconnector_property(struct amdgpu_dm_connector *aconnector);
++void amdgpu_dm_fbc_init(struct drm_connector *connector);
  enum display_content_type
  get_output_content_type(const struct drm_connector_state *connector_state);
  bool adjust_colour_depth_from_display_info(struct dc_crtc_timing *timing_out,
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
-index 91f9543dd7bb..782a22e4f074 100644
+index 782a22e4f074..aa274f5e4b84 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_connector_test.c
-@@ -2527,6 +2527,144 @@ static void dm_test_set_panel_type_defaults_to_lcd(struct kunit *test)
- 			(int)PANEL_TYPE_LCD);
+@@ -2665,6 +2665,113 @@ static void dm_test_update_subconnector_non_dp_noop(struct kunit *test)
+ 	KUNIT_EXPECT_EQ(test, (int)val, (int)DRM_MODE_SUBCONNECTOR_VGA);
  }
  
-+/* Tests for update_subconnector_property() */
++/* Tests for amdgpu_dm_fbc_init() */
 +
-+/**
-+ * dm_test_update_subconnector_dp_with_sink - Test subconnector property is set
-+ * from the dongle type for a DisplayPort connector with a sink
-+ * @test: The KUnit test context
++/*
++ * Build an amdgpu_dm_connector wired to a kunit-allocated amdgpu_device so
++ * that drm_to_adev() and to_amdgpu_dm_connector() resolve correctly, with a
++ * dc, dc_link and an empty modes list ready for amdgpu_dm_fbc_init().
 + */
-+static void dm_test_update_subconnector_dp_with_sink(struct kunit *test)
-+{
-+	struct device *dev;
-+	struct drm_device *drm;
++struct dm_test_fbc_ctx {
++	struct amdgpu_device *adev;
 +	struct amdgpu_dm_connector *aconnector;
++	struct dc *dc;
 +	struct dc_link *link;
-+	uint64_t val = 0;
++};
 +
-+	dev = drm_kunit_helper_alloc_device(test);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
++static struct dm_test_fbc_ctx *dm_test_fbc_ctx_alloc(struct kunit *test)
++{
++	struct dm_test_fbc_ctx *ctx;
 +
-+	drm = __drm_kunit_helper_alloc_drm_device(test, dev,
-+						   sizeof(*drm), 0,
-+						   DRIVER_MODESET);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, drm);
++	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx);
 +
-+	aconnector = kunit_kzalloc(test, sizeof(*aconnector), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, aconnector);
-+	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, link);
++	ctx->adev = kunit_kzalloc(test, sizeof(*ctx->adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx->adev);
++	ctx->aconnector = kunit_kzalloc(test, sizeof(*ctx->aconnector), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx->aconnector);
++	ctx->dc = kunit_kzalloc(test, sizeof(*ctx->dc), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx->dc);
++	ctx->link = kunit_kzalloc(test, sizeof(*ctx->link), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx->link);
 +
-+	drmm_connector_init(drm, &aconnector->base, &dm_test_connector_funcs,
-+			    DRM_MODE_CONNECTOR_DisplayPort, NULL);
-+	drm_connector_attach_dp_subconnector_property(&aconnector->base);
++	ctx->aconnector->base.dev = &ctx->adev->ddev;
++	INIT_LIST_HEAD(&ctx->aconnector->base.modes);
++	ctx->adev->dm.dc = ctx->dc;
++	ctx->aconnector->dc_link = ctx->link;
 +
-+	link->dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_VGA_CONVERTER;
-+	aconnector->dc_link = link;
-+	/* Any non-NULL sink enables dongle-type resolution */
-+	aconnector->dc_sink = kunit_kzalloc(test, sizeof(*aconnector->dc_sink), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, aconnector->dc_sink);
++	/* Default to the fully-enabled path so each test only flips one knob */
++	ctx->link->connector_signal = SIGNAL_TYPE_EDP;
++	ctx->dc->fbc_compressor =
++		(struct compressor *)kunit_kzalloc(test, sizeof(void *), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx->dc->fbc_compressor);
 +
-+	update_subconnector_property(aconnector);
-+
-+	KUNIT_EXPECT_EQ(test, drm_object_property_get_value(&aconnector->base.base,
-+				aconnector->base.dev->mode_config.dp_subconnector_property,
-+				&val), 0);
-+	KUNIT_EXPECT_EQ(test, (int)val, (int)DRM_MODE_SUBCONNECTOR_VGA);
++	return ctx;
 +}
 +
 +/**
-+ * dm_test_update_subconnector_dp_no_sink - Test subconnector property stays
-+ * unknown for a DisplayPort connector without a sink
++ * dm_test_fbc_init_no_compressor - Test fbc_init is a no-op without a compressor
 + * @test: The KUnit test context
 + */
-+static void dm_test_update_subconnector_dp_no_sink(struct kunit *test)
++static void dm_test_fbc_init_no_compressor(struct kunit *test)
 +{
-+	struct device *dev;
-+	struct drm_device *drm;
-+	struct amdgpu_dm_connector *aconnector;
-+	struct dc_link *link;
-+	uint64_t val = 0;
++	struct dm_test_fbc_ctx *ctx = dm_test_fbc_ctx_alloc(test);
 +
-+	dev = drm_kunit_helper_alloc_device(test);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
++	ctx->dc->fbc_compressor = NULL;
 +
-+	drm = __drm_kunit_helper_alloc_drm_device(test, dev,
-+						   sizeof(*drm), 0,
-+						   DRIVER_MODESET);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, drm);
++	amdgpu_dm_fbc_init(&ctx->aconnector->base);
 +
-+	aconnector = kunit_kzalloc(test, sizeof(*aconnector), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, aconnector);
-+	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, link);
-+
-+	drmm_connector_init(drm, &aconnector->base, &dm_test_connector_funcs,
-+			    DRM_MODE_CONNECTOR_DisplayPort, NULL);
-+	drm_connector_attach_dp_subconnector_property(&aconnector->base);
-+
-+	/* Dongle type is set, but no sink means it must not be consulted */
-+	link->dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_HDMI_CONVERTER;
-+	aconnector->dc_link = link;
-+	aconnector->dc_sink = NULL;
-+
-+	update_subconnector_property(aconnector);
-+
-+	KUNIT_EXPECT_EQ(test, drm_object_property_get_value(&aconnector->base.base,
-+				aconnector->base.dev->mode_config.dp_subconnector_property,
-+				&val), 0);
-+	KUNIT_EXPECT_EQ(test, (int)val, (int)DRM_MODE_SUBCONNECTOR_Unknown);
++	KUNIT_EXPECT_NULL(test, ctx->adev->dm.compressor.bo_ptr);
 +}
 +
 +/**
-+ * dm_test_update_subconnector_non_dp_noop - Test non-DisplayPort connector is
-+ * left untouched (early return)
++ * dm_test_fbc_init_non_edp - Test fbc_init is a no-op for non-eDP links
 + * @test: The KUnit test context
 + */
-+static void dm_test_update_subconnector_non_dp_noop(struct kunit *test)
++static void dm_test_fbc_init_non_edp(struct kunit *test)
 +{
-+	struct device *dev;
-+	struct drm_device *drm;
-+	struct amdgpu_dm_connector *aconnector;
-+	struct dc_link *link;
-+	uint64_t val = 0;
++	struct dm_test_fbc_ctx *ctx = dm_test_fbc_ctx_alloc(test);
 +
-+	dev = drm_kunit_helper_alloc_device(test);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
++	ctx->link->connector_signal = SIGNAL_TYPE_DISPLAY_PORT;
 +
-+	drm = __drm_kunit_helper_alloc_drm_device(test, dev,
-+						   sizeof(*drm), 0,
-+						   DRIVER_MODESET);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, drm);
++	amdgpu_dm_fbc_init(&ctx->aconnector->base);
 +
-+	aconnector = kunit_kzalloc(test, sizeof(*aconnector), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, aconnector);
-+	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, link);
++	KUNIT_EXPECT_NULL(test, ctx->adev->dm.compressor.bo_ptr);
++}
 +
-+	drmm_connector_init(drm, &aconnector->base, &dm_test_connector_funcs,
-+			    DRM_MODE_CONNECTOR_HDMIA, NULL);
-+	drm_connector_attach_dp_subconnector_property(&aconnector->base);
++/**
++ * dm_test_fbc_init_already_allocated - Test fbc_init keeps an existing buffer
++ * @test: The KUnit test context
++ */
++static void dm_test_fbc_init_already_allocated(struct kunit *test)
++{
++	struct dm_test_fbc_ctx *ctx = dm_test_fbc_ctx_alloc(test);
++	struct amdgpu_bo *existing;
 +
-+	/* Pre-seed the property to a non-default value */
-+	drm_object_property_set_value(&aconnector->base.base,
-+			aconnector->base.dev->mode_config.dp_subconnector_property,
-+			DRM_MODE_SUBCONNECTOR_VGA);
++	existing = kunit_kzalloc(test, sizeof(void *), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, existing);
++	ctx->adev->dm.compressor.bo_ptr = existing;
 +
-+	link->dpcd_caps.dongle_type = DISPLAY_DONGLE_DP_HDMI_CONVERTER;
-+	aconnector->dc_link = link;
-+	aconnector->dc_sink = kunit_kzalloc(test, sizeof(*aconnector->dc_sink), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, aconnector->dc_sink);
++	amdgpu_dm_fbc_init(&ctx->aconnector->base);
 +
-+	update_subconnector_property(aconnector);
++	/* Buffer already present → left untouched, no reallocation */
++	KUNIT_EXPECT_PTR_EQ(test, ctx->adev->dm.compressor.bo_ptr, existing);
++}
 +
-+	/* Non-DP connector: value must remain what we seeded */
-+	KUNIT_EXPECT_EQ(test, drm_object_property_get_value(&aconnector->base.base,
-+				aconnector->base.dev->mode_config.dp_subconnector_property,
-+				&val), 0);
-+	KUNIT_EXPECT_EQ(test, (int)val, (int)DRM_MODE_SUBCONNECTOR_VGA);
++/**
++ * dm_test_fbc_init_no_modes - Test fbc_init skips allocation with no modes
++ * @test: The KUnit test context
++ */
++static void dm_test_fbc_init_no_modes(struct kunit *test)
++{
++	struct dm_test_fbc_ctx *ctx = dm_test_fbc_ctx_alloc(test);
++
++	/* All prerequisites met but the modes list is empty → max_size 0 */
++	amdgpu_dm_fbc_init(&ctx->aconnector->base);
++
++	KUNIT_EXPECT_NULL(test, ctx->adev->dm.compressor.bo_ptr);
 +}
 +
  static struct kunit_case amdgpu_dm_connector_tests[] = {
  	/* get_subconnector_type */
  	KUNIT_CASE(dm_test_subconnector_type_none),
-@@ -2664,6 +2802,10 @@ static struct kunit_case amdgpu_dm_connector_tests[] = {
- 	KUNIT_CASE(dm_test_is_freesync_video_mode_null_mode),
- 	KUNIT_CASE(dm_test_is_freesync_video_mode_match),
- 	KUNIT_CASE(dm_test_is_freesync_video_mode_no_match),
-+	/* update_subconnector_property */
-+	KUNIT_CASE(dm_test_update_subconnector_dp_with_sink),
-+	KUNIT_CASE(dm_test_update_subconnector_dp_no_sink),
-+	KUNIT_CASE(dm_test_update_subconnector_non_dp_noop),
- 	/* amdgpu_dm_update_cacp_caps */
- 	KUNIT_CASE(dm_test_cacp_caps_unsupported_ip),
- 	KUNIT_CASE(dm_test_cacp_caps_excluded_ip_316),
+@@ -2822,6 +2929,11 @@ static struct kunit_case amdgpu_dm_connector_tests[] = {
+ 	KUNIT_CASE(dm_test_set_panel_type_did_lcd),
+ 	KUNIT_CASE(dm_test_set_panel_type_vendor_lum_heuristic),
+ 	KUNIT_CASE(dm_test_set_panel_type_defaults_to_lcd),
++	/* amdgpu_dm_fbc_init */
++	KUNIT_CASE(dm_test_fbc_init_no_compressor),
++	KUNIT_CASE(dm_test_fbc_init_non_edp),
++	KUNIT_CASE(dm_test_fbc_init_already_allocated),
++	KUNIT_CASE(dm_test_fbc_init_no_modes),
+ 	{}
+ };
+ 
 -- 
 2.55.0
 
