@@ -2,108 +2,143 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id j9leDzZ7T2pwhwIAu9opvQ
+	id RPWxLsSAT2o7iQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 12:43:02 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 13:06:44 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6DFC72FC69
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 12:43:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF5C7300B6
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 13:06:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=FRQfoJZN;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=f60aQLP9;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D45110EABC;
-	Thu,  9 Jul 2026 10:43:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8840110E087;
+	Thu,  9 Jul 2026 11:06:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011017.outbound.protection.outlook.com [52.101.57.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4D0010EABC
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 10:42:58 +0000 (UTC)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012002.outbound.protection.outlook.com [52.101.43.2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13F3C10E087
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 11:06:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lwEaC1jQY4AFO4smRnofOJYfVW+SV/r0TiDxglb688b0TiADutku0mtNza92fdLfed2YrAx9pUsixhpiFEWQywKRpcm2fAAKlzjS4CUDNYnjzbKkLWDrDDkhAEfWBwPF8ialyGxuDmztMWOsXluBDdairc94CWFmuZyVPkpXlSAoRvvfs/PeWwGlQFKptds5De3/D1kglwnm8pBNxM4vzHkdI7ZvTjJmSqaZk0uyHEqYjWAgbcEF2ODNt/AvT4vnAfzY7gIg6pOpSIku/7pw1ccUR9cFCPk8acGKJDcIK9f7tCQlMUV89IlCDLATq0ctAGuf3rNJvbB9X02l6/sodA==
+ b=IKzkYbrfitzwmaGgveS1+06wysIBbegYZQYXY81TOHVOzjfkVXZkqk/153Vow05wU3RfE7YbJoAroDqq2BtXkI0vii2gxDi/ugZlczZDwQzPxMrPtxhp7fJbLwzTSXiDydpLG/YTTJTrC6NSb57WLr58JxjZgfkmjyAWzdKnkvk4w3FMuvtktMmP6xk7gdoFQ06sLY1RfrfPT1YZenK0ATXnflusnCeQtdf/M884mQk0RZmIpSgcD4bGgf7bJfFQgMhrTFZQve+6xqgOx6XNkFTtML5uMEiaxf5B7jBJudMsszTEyeasMFPymcnH6cKCfp9UpEgrv4Rvr/JMamlL1Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ms3aNVBpuPzval376aTPogqSbgko37bCaI+aDqSl4A8=;
- b=qNc7FV7a/+GOZOzwIKQTh+b00SG6aIcKNWmNbMyP5tYADJ0kq2F4wAjzxaTnnD7XkTjUNZ9eWBKCrm+BjQJc7gqrv4S55Cbk6j/MfJxZ/61IgHyVy8cr1Fid2ha6Mcc4wuatsIqnSS7o85xHIa3LJF4VoXTYksWfNTgSMivQCZAVDjk5sLDy2DT8cic7/N/CLHIOhl36j0N/Zj1YtLgysKQd0I9dh7ViUiWIab2VIr8QuNkcJznw4FzdDqpS0jgEZoAbn9wneFJMnsi9EsqaD9YrcPc+RUf2zObR5sqazKuxAuUZCOKWAwZ3qKDB8hbL/E5WFDawZaXak3VTlJx/JA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
+ bh=bsYcC6VPALp66CYbF2YvfCWZk4dDRgCn4h/o7NnQif0=;
+ b=qDV6HwPnJ9eDY3B8Klyuhbix1tnRImGmzF3khjwn0Ot3/fqFJFooEoPyBBdwq4uTa5eylcgFVULDTWWjx9ATGmefg11Cozwv8afQ0oyiQRKUHvUWnFV3iByMSteS3vZDx7PLmLi7gn1mOAgLSY7SzgR1G9tmfm90KrD70Qp3raVjoGmqBj8Q+4+yPIsW62bKseh21z9eWCjRBfq7Q2+i+MKp3vEc5DjxwygiECp1OW812aJnEbsbS1py+OELd0Z5RwMD/u+g0w75wevZXPb5e3T8le65fXhhWjufodFa3rweN2ihb2yQTyb3vc5ONY3iJ7LVKuOBrYB86XJBdMTEMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ms3aNVBpuPzval376aTPogqSbgko37bCaI+aDqSl4A8=;
- b=FRQfoJZNa6qQxEsd0qZCrzEta/OBzYYK1Xz7QtEjFi8QNENIjig9VqKKB+Dp/muNchIgBttCzRaumFPhafr0XlNYdTyMhCyka2ONHosVQxQwj3U7NtybafrnSNVNkr8xzK6jVxMjqtW5gA0yZRAobC0k6yS39YSOGWLkpECYy30=
-Received: from DM6PR04CA0012.namprd04.prod.outlook.com (2603:10b6:5:334::17)
- by MN2PR12MB4063.namprd12.prod.outlook.com (2603:10b6:208:1dc::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
- 2026 10:42:54 +0000
-Received: from DS2PEPF000061C8.namprd02.prod.outlook.com
- (2603:10b6:5:334:cafe::1d) by DM6PR04CA0012.outlook.office365.com
- (2603:10b6:5:334::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.11 via Frontend Transport; Thu, 9
- Jul 2026 10:42:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- DS2PEPF000061C8.mail.protection.outlook.com (10.167.23.75) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 10:42:53 +0000
-Received: from asad-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
- 2026 05:42:50 -0500
-From: Asad Kamal <asad.kamal@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <lijo.lazar@amd.com>, <hawking.zhang@amd.com>, <le.ma@amd.com>,
- <shiwu.zhang@amd.com>, <alexander.deucher@amd.com>, <kevinyang.wang@amd.com>, 
- <asad.kamal@amd.com>
-Subject: [PATCH 2/2] drm/amd/pm: Update smu_v15_0_8 gpu metrics
-Date: Thu, 9 Jul 2026 18:42:26 +0800
-Message-ID: <20260709104226.1768300-2-asad.kamal@amd.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20260709104226.1768300-1-asad.kamal@amd.com>
-References: <20260709104226.1768300-1-asad.kamal@amd.com>
-MIME-Version: 1.0
+ bh=bsYcC6VPALp66CYbF2YvfCWZk4dDRgCn4h/o7NnQif0=;
+ b=f60aQLP9C7DMe8nZLIIFK6A+AQdqDZCVxGh4hBsnvWg79cCusYiQSpkHEmL3qFB4RI2SYxNDzx1JDNDuN+9d3Tj+YwEI34S8zeEncNbV5Tgo5ye5/S8xSgC+1K0P1IE04nEpPo3E7+mxyT42hZzJQbIyqAxD4J5HcIbqlm8fjWA=
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com (2603:10b6:806:2d5::17)
+ by SJ2PR12MB7991.namprd12.prod.outlook.com (2603:10b6:a03:4d1::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Thu, 9 Jul
+ 2026 11:06:36 +0000
+Received: from SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc]) by SA0PR12MB7091.namprd12.prod.outlook.com
+ ([fe80::ec33:1213:cfd8:63bc%6]) with mapi id 15.21.0181.014; Thu, 9 Jul 2026
+ 11:06:36 +0000
+Message-ID: <943aad96-a8a3-4a3b-a086-6a33365a0a92@amd.com>
+Date: Thu, 9 Jul 2026 16:36:30 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/amdgpu: improve the amdgpu device init progress in
+ sriov mode
+To: "Li, Chong(Alan)" <Chong.Li@amd.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: "Deng, Emily" <Emily.Deng@amd.com>, "Chang, HaiJun"
+ <HaiJun.Chang@amd.com>, "Skvortsov, Victor" <Victor.Skvortsov@amd.com>
+References: <20260708083035.186400-1-chongli2@amd.com>
+ <d3ffa862-8fff-40cb-8779-97d3bb4a429b@amd.com>
+ <DS7PR12MB5768E74BF2292A0F8F87E0CE9BFF2@DS7PR12MB5768.namprd12.prod.outlook.com>
+ <3ac3c6d5-8fad-4b0e-933d-42fa71a43657@amd.com>
+ <49ba42a4-b661-4673-95a0-c218ec1482e3@amd.com>
+ <de530731-21de-4470-9316-dccb767c87ac@amd.com>
+ <DS7PR12MB5768E211043CC584F05A16569BFF2@DS7PR12MB5768.namprd12.prod.outlook.com>
+ <989fc4ae-cbac-4f17-94cd-5be270845081@amd.com>
+ <c963d1df-e1a3-4fa6-8514-3c4ab204088f@amd.com>
+ <DS7PR12MB576870FE38FFB13002872F529BFF2@DS7PR12MB5768.namprd12.prod.outlook.com>
+ <2d96166c-b192-41be-83d1-19eb64d7306f@amd.com>
+ <DS7PR12MB57684EB76694DC4EB12791A09BFE2@DS7PR12MB5768.namprd12.prod.outlook.com>
+Content-Language: en-US
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+In-Reply-To: <DS7PR12MB57684EB76694DC4EB12791A09BFE2@DS7PR12MB5768.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: PN2PR01CA0187.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:e8::14) To SA0PR12MB7091.namprd12.prod.outlook.com
+ (2603:10b6:806:2d5::17)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF000061C8:EE_|MN2PR12MB4063:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3caf9333-1608-4d59-7afd-08dedda6d490
+X-MS-TrafficTypeDiagnostic: SA0PR12MB7091:EE_|SJ2PR12MB7991:EE_
+X-MS-Office365-Filtering-Correlation-Id: 39e64c59-473e-497d-c3e8-08deddaa248a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|23010399003|36860700016|82310400026|1800799024|11063799006|56012099006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: FBdJQymBRrIn0QtyqpuEmF2becU/83YlKwYwoGGJv2ySyMZLEbTaNgP58Nao3+BvK05SUihE4ISrs5tH5DmkmoV8zfD2zkfJMS4P8yB2Xu0yJDqsaaP7t4XtBe4krWww6bxGTc4c9ngZ77clg1rVc+stiAHI94s/OWymPfGh4upkwOn76br6pcor7Yb/q546yZK/awGCxZSOlGUnUldQJC5USxrifvInmRB2wCPt7E8l6L00rDyaYXTvUTJtc3+OdD1aQikaffSppZuOZ3kJNTBp/xp5+DNQePemSE2WgTD63DKXiZ+OiUpUYRqjDtE+Ir+OJaLZmB7QxyRhaUMlFYyBiK6THEWSrqh88lOCALnPJl8Pek9MwSpp56i0GsNAtW1GpUDD/eX10cTEEGa7N9W1VdKB+qHBV2IqXZjYeENEbc21RXtgtb8I/T96w5U8ufJFoAkujK/nq5Rc1/xtaHdMURpZntPA1vbVXacOGlISq2PEmCBP06Q4+YxBO1YfoeX9k1npV+nMECZXeWfo1RW3TeQvYzbC5dAUz5w3tgkboSGKJRqf2S/EpkKgzlIRzNF5jepmNiLl+QE/ew8ku9q6suUCvFfZ+QGitfbQSz1uNFZ9+fas+Vu5SG0hs/+GH3uP4pAH8egYMF0g5ZLbYP1uKQmdeAddCtfAEYJA62AqzOKgB9YvDSQCjWaNjgyJZUAUF6qo1nOFcWIetMNteQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(36860700016)(82310400026)(1800799024)(11063799006)(56012099006)(22082099003)(18002099003);
+ ARA:13230040|376014|366016|1800799024|23010399003|22082099003|18002099003|5023799004|11063799006|4143699003|56012099006|6133799003|3023799007;
+X-Microsoft-Antispam-Message-Info: AQlPHEVYng1W3nQVPNhXXPakHHxHqxuAzugmqNQcGloj+lslg5rjnXNejKpNMq0bo0G26mUZcv75BL5AU5LFoCxJ3ScvReXJ8yRrsWglhsxeRu258i5JnX/C6LlwEwKEc+TywBqiWoZEegyduVpE82Nrd2WTcCv7zCrSVLX6A+HuxyFqHrKEQRawa0dNZ4Gdhux0gqexONujqciPFdzlXOn0dFUnrtyzNR3UtW8e6R0aqJlwPERdufhf6IIsVdNfVubrGCh2QOSOpsL+uhgwsiKpdq99YyQp9vx1cebECA95BGxWItTaEc1m0/JiCdayI7jBWrzjLAoysgiFNIOhKeLJkoL4aQnMhesbVqPB3kwbaWEn1xVANUliN7TiVjFUlCdbZat33ZLlteQn3oejJSef+pH0KX7aqubCu4uULpBbOuJ/0Rll5k8YikdeKZgEDmwlyP+91ikZLz6qPkIddufzDohfUxKBcgzKVtXGIFO9m6cuAdmrDxa1IvrXDIq7B3kaY/t/Y1ITnm2pg1NQ2zSpF5IMykSkvjvbkAsTu3TmHigysxX2sFA3TWMD4K1i4D+EZuR9UUZNyHTiMGsti5XPxKTDG0OE8+qo+aZIy+LLhJuUDLvcsX9hF05TSJvyHRrPBzUzJYJp7v6UapW167KOnORZOwZ9NGZswksKNiY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA0PR12MB7091.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(23010399003)(22082099003)(18002099003)(5023799004)(11063799006)(4143699003)(56012099006)(6133799003)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 2WO1XnWx5/GOZkQhuG6SdPE+thlg9C+s6ZiF2ycYiP0UOaI9ru0AQPE4kHcEcTkEvPtU+MFiNr7jLCcADPKas3e58lXG97hTgPb9q+sFAXu9gKPZWXFZXn5FNpzsKlbixjNdzg31IwubMipzmEl1w1V5YzwvR4kpcFpcocyhgr+jFtFXPZcakFCKbppmlIigxrlq78vWrts8gXaZXExft9YVfGYgHGRLC95nL9ACvdZXOWXt8RfiezHJDcYGgyKOMLkLrA0u8Qg2d88L6Wbwti9qUhGivo5P2VYlMiXpgGYVClMI9Z5e9XdlGiTv091aHMPIwtpQ3l+44XLIYSzJmBYKY23f3jf+3PLbIZUHPbAhpw5LFqq9mw9tDGl302/0hQ4i0kyTN6IFVcOVOo15En+kyBrrgeJpUdmwRoaoUHeKmzcSyZBUQNFkfr5dWD/V
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OGExbzMvRjFBVW0wYXAxOERKOUZoNTI0SnpnUkRYNVAxM2w2MkE2aXdua3Jt?=
+ =?utf-8?B?Z1VuUlBYMGY0T0EyT0V4VVA5YW1xOTJIZ2FseVpaRWNSZGIvbnRXeUp6ZFVr?=
+ =?utf-8?B?YUNXSlUzZzYxUjhuM1V5SThEWjROUWM1TUhyYTBRZFVIMGxkTUVXWUJNK1ho?=
+ =?utf-8?B?U21kNjdVdHJGQ0R2M3l2WjRZSHlFckxjNDZsYnhHTEhFdFhZa3hEbzJ3c1FE?=
+ =?utf-8?B?cFdXaDE2OFZEQ0VMWFRlN3Q0YVJRMllMcDluaXFLcHE1RWYxaXpTelNPaVVh?=
+ =?utf-8?B?eWlTK0ZiWnZRa0NhMjd1MjFabEZYeVhUOVhWclUyekFXRVYrUTEwdWxQaGpW?=
+ =?utf-8?B?cnpQK25uT3BVTzhKTGV3R3Zhd1M2NEZKR1N6VjRNZUlnd0h0bmxXV1VKTlRj?=
+ =?utf-8?B?aWxiQ0RFNmsrWk9EMTRQaFlWU3g1QWF6em82cU1Ta2JST3haUVNYWTBIa1hW?=
+ =?utf-8?B?OUdkRmVBT1c2dHVEK1l3SlY3NmtHSUs4bHgwMXFTOWlQK2VLYm5BaHBkcUNx?=
+ =?utf-8?B?ZnZPMzlDc0ZibVFtQ0E5dVJ1TXFRMDNBMGtGdUlzMTdmTmI0WkpoWFZxUWNL?=
+ =?utf-8?B?ZFZpMUtIQy9LT0x1aVRYeitJUnNqbzV4dVoxcXJnaXlJWC9xZFd1cUdkalQz?=
+ =?utf-8?B?ZmhDRFNWdFVHZEM2ZjhWNVF1TnJQZzZxc1RLZW5yNTlIZ1R0UFBIWEcvLzV1?=
+ =?utf-8?B?dWgyOUdRQlhlZWduSENvbFJHSlZLTlVPMHQzcHVLYUFyc0g4aFlEcFJNRGpo?=
+ =?utf-8?B?Y3FXS0hEeThmSTRvWWZ2RENUV1crTmhocHFaQVk2VnoweGNiUTF2cisyYjdn?=
+ =?utf-8?B?Y1YwQUhhaHU5bkpGLy9MQ3pTbTA0aC9zY0hIdlIxTzVaajByL012ME8wN0hR?=
+ =?utf-8?B?WFBTLzFhUHlEUFhBOE4zajFUcnZNNHZ2c05jeWpoaFRzK3JTTmFscXlwSk1G?=
+ =?utf-8?B?cmhhQVFJU3puZmJySENoMFdsRTVubTFRVXRxRi9yY05YWW5qenZHNTR4dGFV?=
+ =?utf-8?B?cHlWV3dKQTZCTG5zMGpySWtRaFJJWE1wSWxIVWRaSUJicmNKK1VZdGFjUzlv?=
+ =?utf-8?B?ejc2bllvdXU1bjU3QzdCd0NLa2dsZGFOa2ZOUm82b2ZXbkxPZXNTSUQ2Umk0?=
+ =?utf-8?B?OExVMWZWSzBIbzVzZlp2MDlvWHZmUHYzbjkycE5iTVhlejlKVlJac1l3REli?=
+ =?utf-8?B?NjR3angxakFOVlJqMlAyVVY5QTRFSUFjY1kzUjVhUzlmRGNJK0RQVzhBbkpp?=
+ =?utf-8?B?ckNMZEpJcDRacm9jTzZ3TWlZbE9VNVZlc0xPbzZoTVBBTkdXVjNtMzF1QzQy?=
+ =?utf-8?B?U2pJN29qV1htbkkrODVoWlJCMVJmVjFJdHdDQ3ZmTUxhKzdmdGNVZG1PU01k?=
+ =?utf-8?B?dFBtNFI2V2I1OUJhSlY3NmlzUnRoUWhiWUJLejZvM0NXS3gwTksrd240RFZN?=
+ =?utf-8?B?c2VTMjFVaTgwYXkwamtKUjI3OTNCVlZvOTlTRTdtNi9zSjkzSFpKTEVqQjlr?=
+ =?utf-8?B?Ui9oR1U2YmRZQjI0VWtQOG1IL2dIb1JVcS8yZkdDdm5FM1lkUWFOZGZQdEZD?=
+ =?utf-8?B?Q3ZSeWxYZXlzcUluSlNnTHNibGxMTDAreHZPbkRXeUhPeXlyMFBkWEdlNDJa?=
+ =?utf-8?B?SUhPdTkrSjN1YThaWDgrR2JSL05TY2V1ancrbEUxVlJJNnhxbEJSa09aeSs1?=
+ =?utf-8?B?cmlJVm1qb1RFZzZVMnFtMUw5U05KZzhZQmxJdmJyV3Q3ZDBGWmRraVVFbFg4?=
+ =?utf-8?B?TGVNK2k0anozT0djbzQrYVdheSszY1p0OHpPbThpZVdqcGowbWZQcUpxdVhu?=
+ =?utf-8?B?WXFmZDNaRWNMZWdkWUoxWjAxWXhFY1BNb2NOa2tGemZVTUJmazBlT3hmaXNJ?=
+ =?utf-8?B?YWF1aUN6aGdNS2dhb0t4eWdiODltK0pBdGJaaVcyQUJSNktZcnJlZlU3eXpW?=
+ =?utf-8?B?TmppbGJOWTFCd3ZteGR6aWMrdytYNmZTcHVGcmpYSFdRalVOV1hjcC9ZclVJ?=
+ =?utf-8?B?a2c2NHhWenhOQTJYOFdINDdRMmxNYlV2NnNqU1FVWk9YS0dBSzR3QVpDdi9H?=
+ =?utf-8?B?TFNuYXRkZmQ5V2ZQTU5pbmpDc1Vka3hrZytwajVtWEIrdU1jTkxmNCtPdWFZ?=
+ =?utf-8?B?RU1NdXpsOWpXYnN5aHJpMGJjWEQ4ODVZSHI4SWNzc3FBNzN3ZVlzbHhGbFlx?=
+ =?utf-8?B?STBaT2dIczE2QnN0c213MEQwbFlhOTZCWEhpcmdDVGZVWGg2dzdQMUp6N2Nt?=
+ =?utf-8?B?SWdrWFJ1WG1LWHkrNVZ3VlgvT21TdkxmOWQzUGRNMThIUEZRU0p1Wlp6WTg2?=
+ =?utf-8?Q?n6um2B8yUe/kic0U9D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 10:42:53.3006 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3caf9333-1608-4d59-7afd-08dedda6d490
+X-MS-Exchange-CrossTenant-Network-Message-Id: 39e64c59-473e-497d-c3e8-08deddaa248a
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB7091.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 11:06:36.1736 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF000061C8.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4063
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5q30j038w97Iefa3MGeWQgfmYt7q5nPlQGttgQtipo58GZaeRPAlX2fZGu6fvOBr
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7991
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,93 +153,400 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[asad.kamal@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Chong.Li@amd.com,m:Christian.Koenig@amd.com,m:Emily.Deng@amd.com,m:HaiJun.Chang@amd.com,m:Victor.Skvortsov@amd.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	DKIM_TRACE(0.00)[amd.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FORGED_SENDER(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lijo.lazar@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	TO_DN_NONE(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,cursor.com:email,lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A6DFC72FC69
+X-Rspamd-Queue-Id: 0FF5C7300B6
 
-Update two classes of inconsistencies in the smu_v15_0_8 GPU metrics
-definition relative to smu_v13_0_6:
 
-Correct missing unit annotations for accumulated activity fields
-that represent percentage-based utilization. These were incorrectly
-marked as NONE instead of PERCENT
 
-Widen pcie_bandwidth_inst from U32 to U64 to be consistent with
-the smu_v13_0_6 definition.
+On 09-Jul-26 4:05 PM, Li, Chong(Alan) wrote:
+> AMD General
+> 
+> Hi, Lijo.
+> 
+> Yes, the current GIM driver ensures the early init data is placed within the VF’s visible BAR0 aperture.
+> 
+> 
 
-Signed-off-by: Asad Kamal <asad.kamal@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.h | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Not just for current, is this also applicable for old host driver? 
+Otherwise, this breaks on old host driver.
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.h b/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.h
-index 4dfc40aaffcb..cebe1fba932b 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu15/smu_v15_0_8_ppt.h
-@@ -118,14 +118,14 @@ typedef struct {
- 		   SMU_MTYPE(U16), xgmi_link_width);                           \
- 	SMU_SCALAR(SMU_MATTR(XGMI_LINK_SPEED), SMU_MUNIT(SPEED_1),             \
- 		   SMU_MTYPE(U16), xgmi_link_speed);                           \
--	SMU_SCALAR(SMU_MATTR(GFX_ACTIVITY_ACC), SMU_MUNIT(NONE),               \
-+	SMU_SCALAR(SMU_MATTR(GFX_ACTIVITY_ACC), SMU_MUNIT(PERCENT),               \
- 		   SMU_MTYPE(U64), gfx_activity_acc);                          \
--	SMU_SCALAR(SMU_MATTR(MEM_ACTIVITY_ACC), SMU_MUNIT(NONE),               \
-+	SMU_SCALAR(SMU_MATTR(MEM_ACTIVITY_ACC), SMU_MUNIT(PERCENT),               \
- 		   SMU_MTYPE(U64), mem_activity_acc);                          \
--	SMU_ARRAY(SMU_MATTR(PCIE_BANDWIDTH_ACC), SMU_MUNIT(NONE),              \
-+	SMU_ARRAY(SMU_MATTR(PCIE_BANDWIDTH_ACC), SMU_MUNIT(PERCENT),              \
- 		  SMU_MTYPE(U64), pcie_bandwidth_acc, SMU_15_0_8_MAX_MID);     \
- 	SMU_ARRAY(SMU_MATTR(PCIE_BANDWIDTH_INST), SMU_MUNIT(BW_1),             \
--		  SMU_MTYPE(U32), pcie_bandwidth_inst, SMU_15_0_8_MAX_MID);    \
-+		  SMU_MTYPE(U64), pcie_bandwidth_inst, SMU_15_0_8_MAX_MID);    \
- 	SMU_SCALAR(SMU_MATTR(PCIE_L0_TO_RECOV_COUNT_ACC), SMU_MUNIT(NONE),     \
- 		   SMU_MTYPE(U64), pcie_l0_to_recov_count_acc);                \
- 	SMU_SCALAR(SMU_MATTR(PCIE_REPLAY_COUNT_ACC), SMU_MUNIT(NONE),          \
-@@ -164,7 +164,7 @@ typedef struct {
- 		  jpeg_busy, SMU_15_0_8_MAX_JPEG);                             \
- 	SMU_ARRAY(SMU_MATTR(VCN_BUSY), SMU_MUNIT(PERCENT), SMU_MTYPE(U16),     \
- 		  vcn_busy, SMU_15_0_8_MAX_VCN);                               \
--	SMU_ARRAY(SMU_MATTR(GFX_BUSY_ACC), SMU_MUNIT(NONE), SMU_MTYPE(U64),    \
-+	SMU_ARRAY(SMU_MATTR(GFX_BUSY_ACC), SMU_MUNIT(PERCENT), SMU_MTYPE(U64),    \
- 		  gfx_busy_acc, SMU_15_0_8_MAX_XCC);                           \
- 	SMU_ARRAY(SMU_MATTR(GFX_BELOW_HOST_LIMIT_PPT_ACC), SMU_MUNIT(NONE),    \
- 		  SMU_MTYPE(U64), gfx_below_host_limit_ppt_acc,                \
-@@ -322,7 +322,7 @@ DECLARE_SMU_METRICS_CLASS(smu_v15_0_8_baseboard_temp_metrics,
- 		  jpeg_busy, SMU_15_0_8_MAX_JPEG);                             \
- 	SMU_ARRAY(SMU_MATTR(VCN_BUSY), SMU_MUNIT(PERCENT), SMU_MTYPE(U8),     \
- 		  vcn_busy, SMU_15_0_8_MAX_VCN);                               \
--	SMU_ARRAY(SMU_MATTR(GFX_BUSY_ACC), SMU_MUNIT(NONE), SMU_MTYPE(U64),    \
-+	SMU_ARRAY(SMU_MATTR(GFX_BUSY_ACC), SMU_MUNIT(PERCENT), SMU_MTYPE(U64),    \
- 		  gfx_busy_acc, SMU_15_0_8_MAX_XCC);                           \
- 	SMU_ARRAY(SMU_MATTR(GFX_BELOW_HOST_LIMIT_PPT_ACC), SMU_MUNIT(NONE),    \
- 		  SMU_MTYPE(U64), gfx_below_host_limit_ppt_acc,                \
--- 
-2.46.0
+Thanks,
+Lijo
+
+> Thanks,
+> Chong.
+> 
+> -----Original Message-----
+> From: Lazar, Lijo <Lijo.Lazar@amd.com>
+> Sent: Thursday, July 9, 2026 3:56 PM
+> To: Li, Chong(Alan) <Chong.Li@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>; amd-gfx@lists.freedesktop.org
+> Cc: Deng, Emily <Emily.Deng@amd.com>; Chang, HaiJun <HaiJun.Chang@amd.com>; Skvortsov, Victor <Victor.Skvortsov@amd.com>; Cursor <cursoragent@cursor.com>
+> Subject: Re: [PATCH] drm/amdgpu: improve the amdgpu device init progress in sriov mode
+> 
+> 
+> 
+> On 08-Jul-26 6:12 PM, Li, Chong(Alan) wrote:
+>> AMD General
+>>
+>> Hi, Lijo.
+>>
+>> " In this commit, the statement is different."
+>> " It says FB access is enabled if init_data request is sent."
+>>
+>> Yes, VF FB access is enabled if init_data request is sent.
+>>
+>> However, without full GPU access, the guest cannot access the MM_INDEX/MM_DATA registers.
+>>
+>> With the legacy/existing read path, VF_FB_EN must be enabled so the
+>> host can dump early init data into the VF FB, and full GPU access is required so the guest can copy that data through the MM_INDEX/MM_DATA registers.
+>>
+>> I submitted patch " [PATCH 1/2] drm/amdgpu: read FB through BAR0 when
+>> aperture is unavailable " , With the new
+>> amdgpu_device_read_fb_via_bar0() path, the guest can read the VF FB
+>> without full GPU access
+>>
+> 
+> Yes, I saw that one. One other question - does host driver guarantee that discovery data will always be copied to visible BAR aperture of VF?
+> If not, it will still require mmindex/data regardless of FB access enablement.
+> 
+> Thanks,
+> Lijo
+> 
+>>
+>> Thanks,
+>> Chong.
+>>
+>>
+>> -----Original Message-----
+>> From: Lazar, Lijo <Lijo.Lazar@amd.com>
+>> Sent: Wednesday, July 8, 2026 7:18 PM
+>> To: Koenig, Christian <Christian.Koenig@amd.com>; Li, Chong(Alan)
+>> <Chong.Li@amd.com>; amd-gfx@lists.freedesktop.org
+>> Cc: Deng, Emily <Emily.Deng@amd.com>; Chang, HaiJun
+>> <HaiJun.Chang@amd.com>; Skvortsov, Victor <Victor.Skvortsov@amd.com>;
+>> Cursor <cursoragent@cursor.com>
+>> Subject: Re: [PATCH] drm/amdgpu: improve the amdgpu device init
+>> progress in sriov mode
+>>
+>>
+>>
+>> On 08-Jul-26 4:18 PM, Christian König wrote:
+>>> Hi Chong,
+>>>
+>>> On 7/8/26 12:25, Li, Chong(Alan) wrote:
+>>>> AMD General
+>>>>
+>>>> Hi, Christian.
+>>>>
+>>>> The code " early_full_gpu_access = (adev->virt.req_init_data_ver == 0);" is related to the ASIC type, not the host platform:
+>>>>
+>>>>
+>>>> adev->virt.req_init_data_ver is initialized by amdgpu_virt_request_init_data().
+>>>>
+>>>> Some legacy ASICs, such as CHIP_VEGA20 and CHIP_ALDEBARAN, do not send amdgpu_virt_request_init_data() to the host.
+>>>>
+>>>> For those ASICs, the host dumps the early init data only after the guest requests full GPU access.
+>>>> Therefore, those ASICs still need to request full GPU access before the guest driver can read the early init data from the VF FB.
+>>>
+>>> No, exactly that is not the case as far as I can see. See the commit I mentioned below.
+>>>
+>>> According to that starting from SIENNA_CICHLID the full GPU access is mandatory for reading the discovery table.
+>>>
+>>
+>> It could also be because the legacy/existing way used mmindex/data, and that required full access including mmio register access.
+>>
+>> In this commit, the statement is different.
+>>
+>> "In SR-IOV, the guest sends GPU_INIT_DATA, then the host enables VF_FB_EN and places early initialization data, such as IP discovery, VBIOS, and PF-VF exchange data, in the VF FB"
+>>
+>> It says FB access is enabled if init_data request is sent.
+>>
+>> Thanks
+>> Lijo
+>>
+>>> So I absolutely clearly have to reject your patch here.
+>>>
+>>> As far as I can see this is a hack for ESXi and that is not going to fly.
+>>>
+>>> Regards,
+>>> Christian.
+>>>
+>>>>
+>>>>
+>>>>
+>>>>            static bool amdgpu_virt_init_req_data(struct amdgpu_device *adev, u32 reg)
+>>>>            {
+>>>>                    ...
+>>>>                    case CHIP_VEGA20:
+>>>>                    case CHIP_ARCTURUS:
+>>>>                    case CHIP_ALDEBARAN:
+>>>>                            soc15_set_virt_ops(adev);
+>>>>                            break;
+>>>>                    case CHIP_NAVI10:
+>>>>                    case CHIP_NAVI12:
+>>>>                    case CHIP_SIENNA_CICHLID:
+>>>>                    case CHIP_IP_DISCOVERY:
+>>>>                            nv_set_virt_ops(adev);
+>>>>                            /* try send GPU_INIT_DATA request to host */
+>>>>                            amdgpu_virt_request_init_data(adev);
+>>>>                            break;
+>>>>                    ...
+>>>>            }
+>>>>
+>>>> Thanks,
+>>>> Chong.
+>>>>
+>>>> -----Original Message-----
+>>>> From: Koenig, Christian <Christian.Koenig@amd.com>
+>>>> Sent: Wednesday, July 8, 2026 6:24 PM
+>>>> To: Lazar, Lijo <Lijo.Lazar@amd.com>; Li, Chong(Alan)
+>>>> <Chong.Li@amd.com>; amd-gfx@lists.freedesktop.org
+>>>> Cc: Deng, Emily <Emily.Deng@amd.com>; Chang, HaiJun
+>>>> <HaiJun.Chang@amd.com>; Skvortsov, Victor
+>>>> <Victor.Skvortsov@amd.com>; Cursor <cursoragent@cursor.com>
+>>>> Subject: Re: [PATCH] drm/amdgpu: improve the amdgpu device init
+>>>> progress in sriov mode
+>>>>
+>>>> On 7/8/26 12:03, Lazar, Lijo wrote:
+>>>>>
+>>>>>
+>>>>> On 08-Jul-26 3:23 PM, Christian König wrote:
+>>>>>> On 7/8/26 11:35, Li, Chong(Alan) wrote:
+>>>>>>> AMD General
+>>>>>>>
+>>>>>>> Hi, Christian.
+>>>>>>>
+>>>>>>> This version of the patch is not host-platform dependent; all host platforms follow the same path.
+>>>>>>>
+>>>>>>> I verified this patch with KVM in my local environment and with ESXi on a borrowed server.
+>>>>>>>
+>>>>>>> Distinguishing the host platform was a mistake, and I have
+>>>>>>> explained the situation at the end of the patch email.
+>>>>>>>
+>>>>>>> I have pasted the content below:
+>>>>>>>
+>>>>>>>             Hi, Christian and Lijo.
+>>>>>>>
+>>>>>>>             Sorry, I made a mistake.
+>>>>>>>             Host access to the VF FB is not platform-dependent. After the host driver sets VF_FB_EN in response to GPU_INIT_DATA, the host can access the VF FB.
+>>>>>>>
+>>>>>>>             I borrowed an ESXi server and tested this patch there.
+>>>>>>>             The amdgpu driver works normally.
+>>>>>>>
+>>>>>>>             I rewrote the background. Is anything still unclear?
+>>>>>>
+>>>>>> You still have this check here in the code: "early_full_gpu_access = (adev->virt.req_init_data_ver == 0);".
+>>>>>>
+>>>>>> As far as I can see that is Hypervisor specific and a NO-GO.
+>>>>>>
+>>>>>
+>>>>> I think this should be seen as a policy set by host driver on when a guest operation is allowed. Host driver could do it based on other conditions also, not specific to hypervisor environment.
+>>>>
+>>>> No, this was intentionally changed in 2020 because of a new feature. See this commit here:
+>>>>
+>>>> commit 00a979f3d69e0c275e88c741b854dbe0d5238ae0
+>>>> Author: Wenhui Sheng <Wenhui.Sheng@amd.com>
+>>>> Date:   Tue Jun 23 13:43:49 2020 +0800
+>>>>
+>>>>        drm/amdgpu: invoke req full access early enough
+>>>>
+>>>>        From SIENNA_CICHLID, HW introduce a new protection
+>>>>        feature which can control the FB, doorbell and MMIO
+>>>>        write access for VF, so guest driver should request
+>>>>        full access before ip discovery, or we couldn't access
+>>>>        ip discovery data in FB.
+>>>>
+>>>>        Signed-off-by: Wenhui Sheng <Wenhui.Sheng@amd.com>
+>>>>        Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+>>>>        Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+>>>>
+>>>> So as far as I can see this change here will break older hypervisor versions and that is absolutely clear reason to NAK it.
+>>>>
+>>>> Regards,
+>>>> Christian.
+>>>>
+>>>>>
+>>>>> Thanks,
+>>>>> Lijo
+>>>>>
+>>>>>> Regards,
+>>>>>> Christian.
+>>>>>>
+>>>>>>>
+>>>>>>> Thanks,
+>>>>>>> Chong.
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>> -----Original Message-----
+>>>>>>> From: Koenig, Christian <Christian.Koenig@amd.com>
+>>>>>>> Sent: Wednesday, July 8, 2026 5:05 PM
+>>>>>>> To: Li, Chong(Alan) <Chong.Li@amd.com>;
+>>>>>>> amd-gfx@lists.freedesktop.org
+>>>>>>> Cc: Deng, Emily <Emily.Deng@amd.com>; Chang, HaiJun
+>>>>>>> <HaiJun.Chang@amd.com>; Skvortsov, Victor
+>>>>>>> <Victor.Skvortsov@amd.com>; Lazar, Lijo <Lijo.Lazar@amd.com>;
+>>>>>>> Cursor <cursoragent@cursor.com>
+>>>>>>> Subject: Re: [PATCH] drm/amdgpu: improve the amdgpu device init
+>>>>>>> progress in sriov mode
+>>>>>>>
+>>>>>>> On 7/8/26 10:25, chong li wrote:
+>>>>>>>> v2:
+>>>>>>>> Some legacy ASICs do not send amdgpu_virt_request_init_data().
+>>>>>>>> Only keep the full GPU access request early when request_init_data is not sent.
+>>>>>>>>
+>>>>>>>> v1:
+>>>>>>>> Move the initialization of non-GPU resources out of the full GPU
+>>>>>>>> access region during AMDGPU device initialization.
+>>>>>>>>
+>>>>>>>> Background:
+>>>>>>>> In SR-IOV, the guest sends GPU_INIT_DATA, then the host enables
+>>>>>>>> VF_FB_EN and places early initialization data, such as IP
+>>>>>>>> discovery, VBIOS, and PF-VF exchange data, in the VF FB. The
+>>>>>>>> guest should then be able to read this data before requesting full GPU access.
+>>>>>>>>
+>>>>>>>> Before this patch, the VF still requested full GPU access in
+>>>>>>>> amdgpu_device_ip_early_init(). At that point TTM is not
+>>>>>>>> initialized yet, so the normal VRAM aperture mapping is
+>>>>>>>> unavailable and the guest falls back to MM_INDEX/MM_DATA
+>>>>>>>> register access. That register path requires full GPU access.
+>>>>>>>>
+>>>>>>>> Use the BAR0 framebuffer read path,
+>>>>>>>> amdgpu_device_read_fb_via_bar0(), for the early init-data copy
+>>>>>>>> instead of MM_INDEX/MM_DATA. This lets the driver delay the full
+>>>>>>>> GPU access request until after the early init data has been copied.
+>>>>>>>
+>>>>>>> That looks like it goes into the right direction, but as far as I can see it is still an ESXi specific change.
+>>>>>>>
+>>>>>>> So once more: We can't adjust the driver to the hypervisor!
+>>>>>>>
+>>>>>>> Either this works on all hypervisors or I have to reject the change.
+>>>>>>>
+>>>>>>> Regards,
+>>>>>>> Christian.
+>>>>>>>
+>>>>>>>>
+>>>>>>>> Signed-off-by: chong li <chongli2@amd.com>
+>>>>>>>> Co-authored-by: Cursor <cursoragent@cursor.com>
+>>>>>>>> ---
+>>>>>>>>      drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 21
+>>>>>>>> +++++++++++++++++----
+>>>>>>>>      drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c      |  4 ++--
+>>>>>>>>      2 files changed, 19 insertions(+), 6 deletions(-)
+>>>>>>>>
+>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>>>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>>>>>> index 610d82b79de3..ac66796e8634 100644
+>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>>>>>> @@ -38,6 +38,10 @@
+>>>>>>>>      #include <linux/apple-gmux.h>
+>>>>>>>>      #include <linux/nospec.h>
+>>>>>>>>
+>>>>>>>> +#ifdef CONFIG_X86
+>>>>>>>> +#include <asm/hypervisor.h>
+>>>>>>>> +#endif
+>>>>>>>> +
+>>>>>>>>      #include <drm/drm_atomic_helper.h>
+>>>>>>>>      #include <drm/drm_client_event.h>
+>>>>>>>>      #include <drm/drm_crtc_helper.h> @@ -1987,16 +1991,19 @@
+>>>>>>>> static int amdgpu_device_ip_early_init(struct
+>>>>>>>> amdgpu_device *adev)  {
+>>>>>>>>           struct amdgpu_ip_block *ip_block;
+>>>>>>>>           struct pci_dev *parent;
+>>>>>>>> -     bool total, skip_bios;
+>>>>>>>> +     bool total, skip_bios, early_full_gpu_access = false;
+>>>>>>>>           uint32_t bios_flags;
+>>>>>>>>           int i, r;
+>>>>>>>>
+>>>>>>>>           amdgpu_device_enable_virtual_display(adev);
+>>>>>>>>
+>>>>>>>>           if (amdgpu_sriov_vf(adev)) {
+>>>>>>>> -             r = amdgpu_virt_request_full_gpu(adev, true);
+>>>>>>>> -             if (r)
+>>>>>>>> -                     return r;
+>>>>>>>> +             early_full_gpu_access =
+>>>>>>>> +(adev->virt.req_init_data_ver == 0);
+>>>>>>>> +             if (early_full_gpu_access) {
+>>>>>>>> +                     r = amdgpu_virt_request_full_gpu(adev, true);
+>>>>>>>> +                     if (r)
+>>>>>>>> +                             return r;
+>>>>>>>> +             }
+>>>>>>>>
+>>>>>>>>                   r = amdgpu_virt_init_critical_region(adev);
+>>>>>>>>                   if (r)
+>>>>>>>> @@ -2159,6 +2166,12 @@ static int
+>>>>>>>> amdgpu_device_ip_early_init(struct amdgpu_device *adev)
+>>>>>>>>           if (!total)
+>>>>>>>>                   return -ENODEV;
+>>>>>>>>
+>>>>>>>> +     if (amdgpu_sriov_vf(adev) && !early_full_gpu_access) {
+>>>>>>>> +             r = amdgpu_virt_request_full_gpu(adev, true);
+>>>>>>>> +             if (r)
+>>>>>>>> +                     return r;
+>>>>>>>> +     }
+>>>>>>>> +
+>>>>>>>>           if (adev->gmc.xgmi.supported)
+>>>>>>>>                   amdgpu_xgmi_early_init(adev);
+>>>>>>>>
+>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
+>>>>>>>> b/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
+>>>>>>>> index 9a40107a0869..340703d89d6b 100644
+>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
+>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
+>>>>>>>> @@ -185,8 +185,8 @@ static int
+>>>>>>>> xgpu_ai_send_access_requests(struct
+>>>>>>>> amdgpu_device *adev,
+>>>>>>>>           } else if (req == IDH_REQ_GPU_INIT_DATA){
+>>>>>>>>                   /* Dummy REQ_GPU_INIT_DATA handling */
+>>>>>>>>                   r = xgpu_ai_poll_msg(adev,
+>>>>>>>> IDH_REQ_GPU_INIT_DATA_READY);
+>>>>>>>> -             /* version set to 0 since dummy */
+>>>>>>>> -             adev->virt.req_init_data_ver = 0;
+>>>>>>>> +             /* Version is set to 1 since GPU_CRIT_REGION_V1 */
+>>>>>>>> +             adev->virt.req_init_data_ver = GPU_CRIT_REGION_V1;
+>>>>>>>>           }
+>>>>>>>>
+>>>>>>>>           return 0;
+>>>>>>>
+>>>>>>
+>>>>>
+>>>>
+>>>
+>>
+> 
 
