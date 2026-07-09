@@ -2,52 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1MlmDHsMUGo5sgIAu9opvQ
+	id 9XpFIHEMUGocsgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:51 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:41 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7720735B24
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CF51735ACE
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=DRI0zHz5;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=vI1KqbCV;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C82F210F70A;
-	Thu,  9 Jul 2026 21:02:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DDE710F6EE;
+	Thu,  9 Jul 2026 21:02:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010021.outbound.protection.outlook.com [52.101.61.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0DE610F6D8
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:40 +0000 (UTC)
+Received: from PH8PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11012056.outbound.protection.outlook.com [40.107.209.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0B8F10F6D8
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=B/zYkdnrEFa1lmunfxBGPQJeeMclEclT8v2i2zCuzFEvKfAsfnDwoYsaZpwCa7xB0og5O78I7KOcGbNLBmKgzXe9mKWumktE6RG0AQgSubxgK6256oQl7CSlZAKn7kYtFpoDOcmYsptm4FvFYkNUJ/KwRSB53fjVb8x8w1CFmJgC8Q4B0JFQ23suOZbvUvr73pIpxVnMO53pTzSD+auhA8uZNvaTaKnybAleicRfe9fn0/0cdt1e2YZBocazMoCNN2Cita7/L92/UQYoPMeYGFpoo4kh+mIHSJIbetXaNyPYam69ecym2N6eht7zoKIWMtqPjQDk6B9mQ+wHGJzwLQ==
+ b=EtS5YRC0qM4R5lA0YQEsvqkBTBtEa9aujVjR4SWKRTfm6TVm2+jtylNeK6z8vVLsBAiAIwhuYTVfDc4/VNRzhYxQPUx3rION13DGa5a+Vzx7Qm64Lb2lH/GlyoK8PJuewo6S6JB2rrodJu3cbRa7TRA7Ayh4z4DVU/TuxjcYYgHUgfw4eNG9SsxRrx2ru/Jcl4FraYpUSFB6u5ALvWy0bS6fX9hj7n9Sh+qPHZpYWC1yUTGdg0bGDp/QZ9w6xZvtWN5AqE1sP+orHJSQuJK3844X2Ifet3715xAgYY+6ghWsakMvZzVm91oHMxCaKC+w/d84Tg+lORojetyKQRv2Ww==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YnG4163+vffGxgHUY9wyO6HF88zhEmqOs1HBp8Me4zE=;
- b=b+bLHf6DPdDx4duI+++jraYyO30Y2a/zbdNzk5lcEHwXzykSCDQ4XfeKwYuBw3j2YLPKEHnrXrUO0otBWITKxgx7Vbh724Ye0cf1315Y7IPuZRUhQYgETAD0bWPN7AI2Ng2TGuCTc/i9OEBk9OYJetSrjF1Kqrrc+sUYiPMju1HNwbKTs69peLiMzYmFJe5pEA1EOwWd1PUw+L7v9BsPjWgKd26xbf+MbslnsHry26rpbeRvW1Ig73EmFuo2ndAxERz7JPG+68cihrX3+3usS5yU1olEHCcBaegZ38hoTyFlW8cMxP8Z1pcwwpm04JZeT4Fq3ylh/6w11Q4xZS6Fjw==
+ bh=RYuF/1QSRRJFBVEdLHaJxwPJfhnIoX2sjDOXe8KRg6A=;
+ b=IpJTRwuTRtkK2sTeGp+ayTSarrGV7fju60rN2gsMnzjgmZNTdCHauwKATgKUnBLYtT8xHIRiwDpkuKmcVjz3MwWxtZxS3qpyluoBTz5b/GHP0dEbgAaxFCGTYTCdkNDFhKkJ0QCGZ8TXItKwHnqMTDWoE6FluROceC/vtcLTlI1RQeJ/ho7WtT5y4MjKOqf1oW2+lodYrIsEVzOSycAzjhEmRF0ZMCXj6aUiWQqNtcLcaZYBVKkFV7xRS0ZtQMk6K1RFF3ZFDbqVeFNQ+kDPakZGxOouZfpx4QZVOEEoxzAwt2wlJ7XVseOuYgZgArIelcrEx18/PnZi4gei6htf5Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YnG4163+vffGxgHUY9wyO6HF88zhEmqOs1HBp8Me4zE=;
- b=DRI0zHz5/KhX3ESPDzvRcdw1hJ24ZoBvrEYlgPwQE0mAn5UI3EiM8XcF1v6o2pZXBVWvAv9LcChbSYsVInyX2ojFf5XIbQoXogfIjMfGWioiBbKx1VDZ0iJB5ZY0s+zTLOcJAS4U7uITJZuqTwELu2p+i4thticdlQsGOdg3e1I=
-Received: from BLAPR03CA0112.namprd03.prod.outlook.com (2603:10b6:208:32a::27)
- by SN7PR12MB7836.namprd12.prod.outlook.com (2603:10b6:806:34e::9)
+ bh=RYuF/1QSRRJFBVEdLHaJxwPJfhnIoX2sjDOXe8KRg6A=;
+ b=vI1KqbCV945DsEFbzyjTYupOGRdOwsJ+A0m/fnByvtmyL3gIU14oaN5z9zLnPCSTT6E4muFX3GiB8/NHrsGCnB1klcoZZ3JqDOMggZz/VD77oLrIy3Oxa2va1Seyrr3uLFcCWCksbbIGVCA1ul2jIfn5rRovP0KxXnzTBml9JRc=
+Received: from BLAPR03CA0113.namprd03.prod.outlook.com (2603:10b6:208:32a::28)
+ by MW3PR12MB4395.namprd12.prod.outlook.com (2603:10b6:303:5c::23)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.16; Thu, 9 Jul
- 2026 21:02:32 +0000
+ 2026 21:02:33 +0000
 Received: from BL02EPF0001A0F9.namprd03.prod.outlook.com
- (2603:10b6:208:32a:cafe::1a) by BLAPR03CA0112.outlook.office365.com
- (2603:10b6:208:32a::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.10 via Frontend Transport; Thu, 9
- Jul 2026 21:02:31 +0000
+ (2603:10b6:208:32a:cafe::68) by BLAPR03CA0113.outlook.office365.com
+ (2603:10b6:208:32a::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.11 via Frontend Transport; Thu, 9
+ Jul 2026 21:02:32 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -57,11 +57,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  BL02EPF0001A0F9.mail.protection.outlook.com (10.167.242.100) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:31 +0000
+ 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:32 +0000
 Received: from georzhanmkm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
- 2026 16:02:13 -0500
+ 2026 16:02:14 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -72,9 +72,9 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
  "George Zhang" <george.zhang@amd.com>
-Subject: [PATCH 49/80] drm/amd/display: Test GFX9 DCC plane attributes
-Date: Thu, 9 Jul 2026 16:48:17 -0400
-Message-ID: <20260709205936.5719-50-george.zhang@amd.com>
+Subject: [PATCH 50/80] drm/amd/display: Test GFX12 DCC plane attributes
+Date: Thu, 9 Jul 2026 16:48:18 -0400
+Message-ID: <20260709205936.5719-51-george.zhang@amd.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260709205936.5719-1-george.zhang@amd.com>
 References: <20260709205936.5719-1-george.zhang@amd.com>
@@ -86,29 +86,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0F9:EE_|SN7PR12MB7836:EE_
-X-MS-Office365-Filtering-Correlation-Id: 31b9ae2b-431f-4ec1-30ac-08deddfd64ab
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0F9:EE_|MW3PR12MB4395:EE_
+X-MS-Office365-Filtering-Correlation-Id: bf9cac9e-4075-433a-c132-08deddfd64fa
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|36860700016|82310400026|1800799024|376014|3023799007|56012099006|5023799004|11063799006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 7Om8un+/sXlgRw+7hBEyzoCKPMDFV10zHmOCjIWqC24Q2bQLrKGmnqWkOgW5T+M6Yg/QR/awMm36bXGm9DSz0yvUXKfREUUar1nEbtvO5J0r0ci0YMScu5ybbZ9f8rXLj18CZbrF5A3xnoHBaEFG7nNAmUDHuEZtwmvPO/1j8QJkV96r6XODcQYg0z4I0/p136a456MZYJIzB0oeDu4SJ81nJsZUrcH1hYRzHgelpdgnAO/vw5wExa0kwlJXWd7zeyefNh2ReJau1s3w5LcIkNnN6gLy6mKEBQHUcbn+mb2894wJ6WzxBIbJY0Xi9OAHlmQKRfJiwX8Sn0UQlh/O+WgYwOofGUyMW5FAtPDT3L8YoGZESMvAG7jdLkGpabgapti4lHBN9AvitD+xPbm+NtVbARamZV38iVPABGrwuUvEAxLHTM6ouMgDDdPRTv+Dr580uY0H6FOlo8IKAur8xJZk3WclBGWcBgTJqEtqsyYGzaoVAkEaU/0WL6a/W/Eln9wWL1Vlas0iCtEr3e3GyLpRHd/jmYP+hcL3p9xKA0vnwJCaM2ndxNndo1q3tf7Uula8M7cCaKUrpvgE3xFcgf7Tq/fyszYzSOQ+7I9PSL1cCW/lK4JRn77FHKG5VBQ/3FXsVedC7AYgIiFUTGW+eAJZ/vXhq69vVB2gciSGZpIrQDtaNjNfqee4a+Op8qUU2RgggB/3qpzlHwBYqCMnPw==
+ ARA:13230040|1800799024|36860700016|23010399003|376014|82310400026|18002099003|22082099003|5023799004|11063799006|56012099006|3023799007;
+X-Microsoft-Antispam-Message-Info: Tcfex7wlxy30zUFnB+m+rARlDX9B/eV2mRaq9yuPeYl5UceVzhW0Bve8w+1YWKUS8DtiD5hZdc351AFSAEDEfWfNgedWpKw4t3SO9sbIILFDNw5IPLI7B+7gfS0DzZs0yAfseZCDBHXU/G5qlDGcbGN01HLqq9TBeV75RtAfzWM5COcFYwsdb5UDDLhYtUim3sdpHc0PuV1IrCtfBjrxZ8yhfbsQVT5CgyHn0j8R2pM3LekBwUtjZ3CA2eTWAMc+NygI0POLhcr6WRpXZbR0vnK08sYOeaDl+y1McIJIp34bGm2ajup/C+7jLPhyTcfnjw0cWdmvmHMAxgNnt5H1QfOeKvk4GiWLa5hod/TkPsx6cWcFwnPje4agMjK+1UOIF/Y4reBGyzq/UdnFHuWnjJRf07WUSaVUCcLkUarkBdVmhHk+wRlNtUv4EGaN0JQCqikMgOSnk/ggI+TCjMlqAc1E41v0kr9phKELJqyMeDZcDyrsS3eHVOHyunqsuvCl5+49mN2oDbrHLZE0Cw5HtcpMkmnGmdUinEi+V//pSLMQw6phYnLctLncy3XzXFVSDsFS7fTrfN5ZFJewxwwL8WJGdjE+QUXJdPyU3119mP7ui1Rtu4rJ2nbzH5lS7bzm2fOuc5jFJy/DeoVwHGyi9vJAjILa0cXu3PZKkd5UBdjI35Ocws2ZaDZS716gguSrmBpcYu2It58TVslYvXNTIw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(23010399003)(36860700016)(82310400026)(1800799024)(376014)(3023799007)(56012099006)(5023799004)(11063799006)(18002099003)(22082099003);
+ SFS:(13230040)(1800799024)(36860700016)(23010399003)(376014)(82310400026)(18002099003)(22082099003)(5023799004)(11063799006)(56012099006)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: E62O/qEJGM72z1IvxdO74CLTxG+ppqF6oy5850H4nHBS40UjvV+tppk4te8E2MWn++U9t3N2Sf5HOs1ALQtPS8niZi1CGFg4dpFTDMp4eyPsmnnkstU+eM1NVH+rzT7LBNYoqyEeOpHqrI6gBNQXV6pgRMuppMdpa023VEr23Zxd5oF1hQ1jrYzJQmkHjjReUBe034ZPdQpQaQgHFsJTxtpJnzqr+XQiUYygQXdIAZLfYSX719IKWQAu+MK5nIAHpotf59xjrRRcC8w3NQXI8QEpOzjhpzV68HsL+XIqKC6wANf9k3ueVNzyRB+74uP1KEgKRr19+WenKLlB+Okilra8noYmQJDUy8NeZq5zmjlTl5AeUKIFIwqY88BPXRYN6avxnKiSg+DyOd3IZ698yIm/G/3ULTqfDuCF0msI9EjYnz5DVXU2uxS8ItzOrMrW
+X-MS-Exchange-AntiSpam-MessageData-0: oUB4FbuMosq5kg7Ly9vcjKnFo/1E3xW7vwcr7kx7hLlURLAqSQ11k8iVMyz300omrcXmlZaYy/9Sw9SLIBy7YUJOAPnWJQXrgpNZg2JhAlMko/kJ09xhWMVOdv6tlzn2mCXR+wn91mIyp8fFxbS71q4bOLRL4PfWbZZ+idFxdZ3MuSxJ+mKPPFhi68UsYLM/P8WgBxyynIEI7eRbRPSwx+GJuGCgaWkPFAdOj21MGuVznopPMlNAbToMlHwSlfF5zbUznxVp8bEKzt7vWfQy5G9xpmSJK5nDUZx+/gKuRlnqnboJY5FwO2Q+CgKgqwP5liTFC2G5ENg51TNIuhmdli74SOpSHSmdpIcI6SfvOupSSItfTZNwCcgdjJt7fPIcaDqhhL162HDGqqyJjMBJT43AupkFeGAvoa5YEYeZzA3GeU1G2/AJn2T8mGKVf9yq
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:31.8210 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31b9ae2b-431f-4ec1-30ac-08deddfd64ab
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:32.3454 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf9cac9e-4075-433a-c132-08deddfd64fa
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0F9.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7836
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4395
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,43 +152,41 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B7720735B24
+X-Rspamd-Queue-Id: 2CF51735ACE
 
 From: Alex Hung <alex.hung@amd.com>
 
 [WHAT]
 Add KUnit tests for
-amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers() covering
-DCC enablement, validation failure, and the RB+ 64B/128B and GFX9
-64B/unconstrained block modes.
+amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers() covering
+the block0, unconstrained-block and validation-failure cases.
 
-Add the dm_test_gfx9_attrs(), dm_test_setup_gfx9_dcc_device() and
-dm_test_gfx9_dcc_modifier() helpers used to build the GFX9 DCC inputs.
+Add the dm_test_gfx12_attrs() helper used to build the GFX12 inputs.
 
 Assisted-by: Copilot:Claude-Opus-4.8 GPT-5.5
 Reviewed-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 Signed-off-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../amdgpu_dm/tests/amdgpu_dm_plane_test.c    | 351 ++++++++++++++++++
- 1 file changed, 351 insertions(+)
+ .../amdgpu_dm/tests/amdgpu_dm_plane_test.c    | 162 ++++++++++++++++++
+ 1 file changed, 162 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
-index e05c9f71d451..4b7d9a2f798d 100644
+index 4b7d9a2f798d..47da180cf3a0 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
-@@ -1301,6 +1301,18 @@ static u64 *dm_test_get_primary_mods(struct kunit *test, struct amdgpu_device *a
- 	return mods;
+@@ -1313,6 +1313,18 @@ static int dm_test_gfx9_attrs(struct amdgpu_device *adev,
+ 		plane_size, tiling_info, dcc, address);
  }
  
-+static int dm_test_gfx9_attrs(struct amdgpu_device *adev,
-+			      const struct amdgpu_framebuffer *afb,
-+				      const struct plane_size *plane_size,
-+				      struct dc_tiling_info *tiling_info,
-+				      struct dc_plane_dcc_param *dcc,
-+				      struct dc_plane_address *address)
++static int dm_test_gfx12_attrs(struct amdgpu_device *adev,
++			       const struct amdgpu_framebuffer *afb,
++				       const struct plane_size *plane_size,
++				       struct dc_tiling_info *tiling_info,
++				       struct dc_plane_dcc_param *dcc,
++				       struct dc_plane_address *address)
 +{
-+	return amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers(adev,
++	return amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers(adev,
 +		afb, SURFACE_PIXEL_FORMAT_GRPH_ARGB8888, ROTATION_ANGLE_0,
 +		plane_size, tiling_info, dcc, address);
 +}
@@ -196,53 +194,18 @@ index e05c9f71d451..4b7d9a2f798d 100644
  static int dm_test_plane_attrs(struct amdgpu_device *adev,
  			       const struct amdgpu_framebuffer *afb,
  			       enum surface_pixel_format format,
-@@ -1336,6 +1348,34 @@ static int dm_test_graphics_attrs(struct amdgpu_device *adev,
- 		tiling_info, plane_size, dcc, address);
- }
- 
-+static void dm_test_setup_gfx9_dcc_device(struct amdgpu_device *adev,
-+					  struct dc *dc,
-+					  struct dm_test_dcc_cap_ctx *ctx,
-+					  bool output_independent_64b_blks)
-+{
-+	adev->family = AMDGPU_FAMILY_NV;
-+	adev->dm.dc = dc;
-+	adev->gfx.config.gb_addr_config_fields.num_pipes = 2;
-+	adev->gfx.config.gb_addr_config_fields.num_pkrs = 2;
-+	adev->ip_versions[GC_HWIP][0] = IP_VERSION(10, 3, 0);
-+	dc->cap_funcs.get_dcc_compression_cap = dm_test_get_dcc_compression_cap;
-+	ctx->callback_ret = true;
-+	ctx->capable = true;
-+	ctx->output_independent_64b_blks = output_independent_64b_blks;
-+	dm_test_dcc_ctx = ctx;
-+}
-+
-+static u64 dm_test_gfx9_dcc_modifier(u64 tile_version, bool independent_64b_blks,
-+				     bool independent_128b_blks)
-+{
-+	return AMD_FMT_MOD |
-+	       AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_S_X) |
-+	       AMD_FMT_MOD_SET(TILE_VERSION, tile_version) |
-+	       AMD_FMT_MOD_SET(DCC, 1) |
-+	       AMD_FMT_MOD_SET(DCC_INDEPENDENT_64B, independent_64b_blks) |
-+	       AMD_FMT_MOD_SET(DCC_INDEPENDENT_128B, independent_128b_blks);
-+}
-+
- static void dm_test_setup_gfx11_device(struct amdgpu_device *adev,
- 				       struct dm_test_gfx11_reg_ctx *ctx,
- 				       u32 num_pkrs_log2, u32 num_pipes_log2)
-@@ -1677,6 +1717,310 @@ static void dm_test_get_plane_modifiers_gfx12(struct kunit *test)
- 	dm_test_expect_mods_terminated(test, adev);
+@@ -2021,6 +2033,153 @@ static void dm_test_fill_gfx9_plane_attributes_dcc_gfx9_unconstrained(struct kun
+ 	dm_test_dcc_ctx = NULL;
  }
  
 +/**
-+ * dm_test_fill_gfx9_plane_attributes_dcc() - Verify GFX9 DCC modifier path.
++ * dm_test_fill_gfx12_plane_attributes_block0() - Verify GFX12 64B max-compressed-block path.
 + * @test: KUnit test context.
 + *
-+ * Verify if a GFX10-RBPLUS DCC modifier enables DCC and selects the 64B
-+ * independent block mode.
++ * Verify if a zero max-compressed-block modifier selects the 64B independent
++ * block mode on GFX12.
 + */
-+static void dm_test_fill_gfx9_plane_attributes_dcc(struct kunit *test)
++static void dm_test_fill_gfx12_plane_attributes_block0(struct kunit *test)
 +{
 +	struct amdgpu_device *adev;
 +	struct dc *dc;
@@ -254,7 +217,7 @@ index e05c9f71d451..4b7d9a2f798d 100644
 +	struct dm_test_dcc_cap_ctx ctx = {
 +		.callback_ret = true,
 +		.capable = true,
-+		.output_independent_64b_blks = true,
++		.output_independent_64b_blks = false,
 +	};
 +	int ret;
 +
@@ -265,42 +228,37 @@ index e05c9f71d451..4b7d9a2f798d 100644
 +	KUNIT_ASSERT_NOT_NULL(test, dc);
 +	KUNIT_ASSERT_NOT_NULL(test, afb);
 +
-+	adev->family = AMDGPU_FAMILY_NV;
++	adev->family = AMDGPU_FAMILY_GC_12_0_0;
 +	adev->dm.dc = dc;
-+	adev->gfx.config.gb_addr_config_fields.num_pipes = 2;
-+	adev->gfx.config.gb_addr_config_fields.num_pkrs = 2;
-+	adev->ip_versions[GC_HWIP][0] = IP_VERSION(10, 3, 0);
 +	dc->cap_funcs.get_dcc_compression_cap = dm_test_get_dcc_compression_cap;
 +	dm_test_dcc_ctx = &ctx;
 +
-+	afb->base.pitches[1] = 256;
 +	afb->base.modifier = AMD_FMT_MOD |
-+			     AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_S_X) |
-+			     AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX10_RBPLUS) |
++			     AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_64K_2D) |
++			     AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX12) |
 +			     AMD_FMT_MOD_SET(DCC, 1) |
-+			     AMD_FMT_MOD_SET(DCC_INDEPENDENT_64B, 1);
++			     AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, 0);
 +	plane_size.surface_size.width = 1920;
 +	plane_size.surface_size.height = 1080;
 +
-+	ret = dm_test_gfx9_attrs(adev, afb, &plane_size, &tiling_info, &dcc,
-+				 &address);
++	ret = dm_test_gfx12_attrs(adev, afb, &plane_size, &tiling_info, &dcc,
++				  &address);
 +	KUNIT_EXPECT_EQ(test, ret, 0);
-+	KUNIT_EXPECT_EQ(test, (int)tiling_info.gfxversion, (int)DcGfxVersion9);
 +	KUNIT_EXPECT_TRUE(test, dcc.enable);
++	KUNIT_EXPECT_TRUE(test, dcc.independent_64b_blks);
 +	KUNIT_EXPECT_EQ(test, (int)dcc.dcc_ind_blk, (int)hubp_ind_block_64b);
-+	KUNIT_EXPECT_EQ(test, dcc.meta_pitch, 256U);
 +
 +	dm_test_dcc_ctx = NULL;
 +}
 +
 +/**
-+ * dm_test_fill_gfx9_plane_attributes_validate_fails() - Verify GFX9 error path.
++ * dm_test_fill_gfx12_plane_attributes_block_unconstrained() - Verify block path.
 + * @test: KUnit test context.
 + *
-+ * Verify if GFX9 modifier parsing returns validation errors from the shared DCC
-+ * validation helper.
++ * Verify if a max-compressed-block value above one selects the unconstrained
++ * independent block mode on GFX12.
 + */
-+static void dm_test_fill_gfx9_plane_attributes_validate_fails(struct kunit *test)
++static void dm_test_fill_gfx12_plane_attributes_block_unconstrained(struct kunit *test)
 +{
 +	struct amdgpu_device *adev;
 +	struct dc *dc;
@@ -309,7 +267,11 @@ index e05c9f71d451..4b7d9a2f798d 100644
 +	struct dc_tiling_info tiling_info = {0};
 +	struct dc_plane_dcc_param dcc = {0};
 +	struct dc_plane_address address = {0};
-+	u64 tile_version = AMD_FMT_MOD_TILE_VER_GFX10_RBPLUS;
++	struct dm_test_dcc_cap_ctx ctx = {
++		.callback_ret = true,
++		.capable = true,
++		.output_independent_64b_blks = false,
++	};
 +	int ret;
 +
 +	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
@@ -319,243 +281,83 @@ index e05c9f71d451..4b7d9a2f798d 100644
 +	KUNIT_ASSERT_NOT_NULL(test, dc);
 +	KUNIT_ASSERT_NOT_NULL(test, afb);
 +
-+	adev->family = AMDGPU_FAMILY_NV;
++	adev->family = AMDGPU_FAMILY_GC_12_0_0;
 +	adev->dm.dc = dc;
-+	adev->ip_versions[GC_HWIP][0] = IP_VERSION(10, 3, 0);
-+	afb->base.modifier = dm_test_gfx9_dcc_modifier(tile_version, true, false);
++	dc->cap_funcs.get_dcc_compression_cap = dm_test_get_dcc_compression_cap;
++	dm_test_dcc_ctx = &ctx;
++
++	afb->base.modifier = AMD_FMT_MOD |
++			     AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_64K_2D) |
++			     AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX12) |
++			     AMD_FMT_MOD_SET(DCC, 1) |
++			     AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, 2);
 +	plane_size.surface_size.width = 1920;
 +	plane_size.surface_size.height = 1080;
 +
-+	ret = dm_test_gfx9_attrs(adev, afb, &plane_size, &tiling_info, &dcc,
-+				 &address);
++	ret = dm_test_gfx12_attrs(adev, afb, &plane_size, &tiling_info, &dcc,
++				  &address);
++	KUNIT_EXPECT_EQ(test, ret, 0);
++	KUNIT_EXPECT_TRUE(test, dcc.enable);
++	KUNIT_EXPECT_FALSE(test, dcc.independent_64b_blks);
++	KUNIT_EXPECT_EQ(test, (int)dcc.dcc_ind_blk,
++			(int)hubp_ind_block_unconstrained);
++
++	dm_test_dcc_ctx = NULL;
++}
++
++/**
++ * dm_test_fill_gfx12_plane_attributes_validate_fails() - Verify GFX12 error path.
++ * @test: KUnit test context.
++ *
++ * Verify if GFX12 modifier parsing returns validation errors from the shared
++ * DCC validation helper.
++ */
++static void dm_test_fill_gfx12_plane_attributes_validate_fails(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct dc *dc;
++	struct amdgpu_framebuffer *afb;
++	struct plane_size plane_size = {0};
++	struct dc_tiling_info tiling_info = {0};
++	struct dc_plane_dcc_param dcc = {0};
++	struct dc_plane_address address = {0};
++	int ret;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
++	afb = kunit_kzalloc(test, sizeof(*afb), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, adev);
++	KUNIT_ASSERT_NOT_NULL(test, dc);
++	KUNIT_ASSERT_NOT_NULL(test, afb);
++
++	adev->family = AMDGPU_FAMILY_GC_12_0_0;
++	adev->dm.dc = dc;
++	afb->base.modifier = AMD_FMT_MOD |
++			     AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_64K_2D) |
++			     AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX12) |
++			     AMD_FMT_MOD_SET(DCC, 1) |
++			     AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, 1);
++	plane_size.surface_size.width = 1920;
++	plane_size.surface_size.height = 1080;
++
++	ret = dm_test_gfx12_attrs(adev, afb, &plane_size, &tiling_info, &dcc,
++				  &address);
 +	KUNIT_EXPECT_EQ(test, ret, -EINVAL);
-+}
-+
-+/**
-+ * dm_test_fill_gfx9_plane_attributes_dcc_rbplus_64b_no_128bcl() - Verify block mode.
-+ * @test: KUnit test context.
-+ *
-+ * Verify if a GFX10-RBPLUS modifier with both 64B and 128B independent block
-+ * bits selects the 64B-no-128BCL block mode.
-+ */
-+static void dm_test_fill_gfx9_plane_attributes_dcc_rbplus_64b_no_128bcl(struct kunit *test)
-+{
-+	struct amdgpu_device *adev;
-+	struct dc *dc;
-+	struct amdgpu_framebuffer *afb;
-+	struct plane_size plane_size = {0};
-+	struct dc_tiling_info tiling_info = {0};
-+	struct dc_plane_dcc_param dcc = {0};
-+	struct dc_plane_address address = {0};
-+	struct dm_test_dcc_cap_ctx ctx = {0};
-+	u64 tile_version = AMD_FMT_MOD_TILE_VER_GFX10_RBPLUS;
-+	int ret;
-+
-+	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	afb = kunit_kzalloc(test, sizeof(*afb), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, adev);
-+	KUNIT_ASSERT_NOT_NULL(test, dc);
-+	KUNIT_ASSERT_NOT_NULL(test, afb);
-+
-+	dm_test_setup_gfx9_dcc_device(adev, dc, &ctx, true);
-+	afb->base.modifier = dm_test_gfx9_dcc_modifier(tile_version, true, true);
-+	plane_size.surface_size.width = 1920;
-+	plane_size.surface_size.height = 1080;
-+
-+	ret = dm_test_gfx9_attrs(adev, afb, &plane_size, &tiling_info, &dcc,
-+				 &address);
-+	KUNIT_EXPECT_EQ(test, ret, 0);
-+	KUNIT_EXPECT_TRUE(test, dcc.enable);
-+	KUNIT_EXPECT_EQ(test, (int)dcc.dcc_ind_blk,
-+			(int)hubp_ind_block_64b_no_128bcl);
-+
-+	dm_test_dcc_ctx = NULL;
-+}
-+
-+/**
-+ * dm_test_fill_gfx9_plane_attributes_dcc_rbplus_128b() - Verify 128B block mode.
-+ * @test: KUnit test context.
-+ *
-+ * Verify if a GFX10-RBPLUS modifier with only the 128B independent block bit
-+ * selects the 128B block mode.
-+ */
-+static void dm_test_fill_gfx9_plane_attributes_dcc_rbplus_128b(struct kunit *test)
-+{
-+	struct amdgpu_device *adev;
-+	struct dc *dc;
-+	struct amdgpu_framebuffer *afb;
-+	struct plane_size plane_size = {0};
-+	struct dc_tiling_info tiling_info = {0};
-+	struct dc_plane_dcc_param dcc = {0};
-+	struct dc_plane_address address = {0};
-+	struct dm_test_dcc_cap_ctx ctx = {0};
-+	u64 tile_version = AMD_FMT_MOD_TILE_VER_GFX10_RBPLUS;
-+	int ret;
-+
-+	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	afb = kunit_kzalloc(test, sizeof(*afb), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, adev);
-+	KUNIT_ASSERT_NOT_NULL(test, dc);
-+	KUNIT_ASSERT_NOT_NULL(test, afb);
-+
-+	dm_test_setup_gfx9_dcc_device(adev, dc, &ctx, false);
-+	afb->base.modifier = dm_test_gfx9_dcc_modifier(tile_version, false, true);
-+	plane_size.surface_size.width = 1920;
-+	plane_size.surface_size.height = 1080;
-+
-+	ret = dm_test_gfx9_attrs(adev, afb, &plane_size, &tiling_info, &dcc,
-+				 &address);
-+	KUNIT_EXPECT_EQ(test, ret, 0);
-+	KUNIT_EXPECT_TRUE(test, dcc.enable);
-+	KUNIT_EXPECT_EQ(test, (int)dcc.dcc_ind_blk, (int)hubp_ind_block_128b);
-+
-+	dm_test_dcc_ctx = NULL;
-+}
-+
-+/**
-+ * dm_test_fill_gfx9_plane_attributes_dcc_rbplus_unconstrained() - Verify block mode.
-+ * @test: KUnit test context.
-+ *
-+ * Verify if a GFX10-RBPLUS modifier without independent block bits selects the
-+ * unconstrained block mode.
-+ */
-+static void dm_test_fill_gfx9_plane_attributes_dcc_rbplus_unconstrained(struct kunit *test)
-+{
-+	struct amdgpu_device *adev;
-+	struct dc *dc;
-+	struct amdgpu_framebuffer *afb;
-+	struct plane_size plane_size = {0};
-+	struct dc_tiling_info tiling_info = {0};
-+	struct dc_plane_dcc_param dcc = {0};
-+	struct dc_plane_address address = {0};
-+	struct dm_test_dcc_cap_ctx ctx = {0};
-+	u64 tile_version = AMD_FMT_MOD_TILE_VER_GFX10_RBPLUS;
-+	int ret;
-+
-+	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	afb = kunit_kzalloc(test, sizeof(*afb), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, adev);
-+	KUNIT_ASSERT_NOT_NULL(test, dc);
-+	KUNIT_ASSERT_NOT_NULL(test, afb);
-+
-+	dm_test_setup_gfx9_dcc_device(adev, dc, &ctx, false);
-+	afb->base.modifier = dm_test_gfx9_dcc_modifier(tile_version, false, false);
-+	plane_size.surface_size.width = 1920;
-+	plane_size.surface_size.height = 1080;
-+
-+	ret = dm_test_gfx9_attrs(adev, afb, &plane_size, &tiling_info, &dcc,
-+				 &address);
-+	KUNIT_EXPECT_EQ(test, ret, 0);
-+	KUNIT_EXPECT_TRUE(test, dcc.enable);
-+	KUNIT_EXPECT_EQ(test, (int)dcc.dcc_ind_blk,
-+			(int)hubp_ind_block_unconstrained);
-+
-+	dm_test_dcc_ctx = NULL;
-+}
-+
-+/**
-+ * dm_test_fill_gfx9_plane_attributes_dcc_gfx9_64b() - Verify legacy 64B mode.
-+ * @test: KUnit test context.
-+ *
-+ * Verify if a pre-RBPLUS GFX9 modifier with the 64B independent block bit
-+ * selects the 64B block mode.
-+ */
-+static void dm_test_fill_gfx9_plane_attributes_dcc_gfx9_64b(struct kunit *test)
-+{
-+	struct amdgpu_device *adev;
-+	struct dc *dc;
-+	struct amdgpu_framebuffer *afb;
-+	struct plane_size plane_size = {0};
-+	struct dc_tiling_info tiling_info = {0};
-+	struct dc_plane_dcc_param dcc = {0};
-+	struct dc_plane_address address = {0};
-+	struct dm_test_dcc_cap_ctx ctx = {0};
-+	int ret;
-+
-+	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	afb = kunit_kzalloc(test, sizeof(*afb), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, adev);
-+	KUNIT_ASSERT_NOT_NULL(test, dc);
-+	KUNIT_ASSERT_NOT_NULL(test, afb);
-+
-+	dm_test_setup_gfx9_dcc_device(adev, dc, &ctx, true);
-+	afb->base.modifier = dm_test_gfx9_dcc_modifier(AMD_FMT_MOD_TILE_VER_GFX9,
-+						       true, false);
-+	plane_size.surface_size.width = 1920;
-+	plane_size.surface_size.height = 1080;
-+
-+	ret = dm_test_gfx9_attrs(adev, afb, &plane_size, &tiling_info, &dcc,
-+				 &address);
-+	KUNIT_EXPECT_EQ(test, ret, 0);
-+	KUNIT_EXPECT_TRUE(test, dcc.enable);
-+	KUNIT_EXPECT_EQ(test, (int)dcc.dcc_ind_blk, (int)hubp_ind_block_64b);
-+
-+	dm_test_dcc_ctx = NULL;
-+}
-+
-+/**
-+ * dm_test_fill_gfx9_plane_attributes_dcc_gfx9_unconstrained() - Verify legacy mode.
-+ * @test: KUnit test context.
-+ *
-+ * Verify if a pre-RBPLUS GFX9 modifier without the 64B independent block bit
-+ * selects the unconstrained block mode.
-+ */
-+static void dm_test_fill_gfx9_plane_attributes_dcc_gfx9_unconstrained(struct kunit *test)
-+{
-+	struct amdgpu_device *adev;
-+	struct dc *dc;
-+	struct amdgpu_framebuffer *afb;
-+	struct plane_size plane_size = {0};
-+	struct dc_tiling_info tiling_info = {0};
-+	struct dc_plane_dcc_param dcc = {0};
-+	struct dc_plane_address address = {0};
-+	struct dm_test_dcc_cap_ctx ctx = {0};
-+	int ret;
-+
-+	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	afb = kunit_kzalloc(test, sizeof(*afb), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, adev);
-+	KUNIT_ASSERT_NOT_NULL(test, dc);
-+	KUNIT_ASSERT_NOT_NULL(test, afb);
-+
-+	dm_test_setup_gfx9_dcc_device(adev, dc, &ctx, false);
-+	afb->base.modifier = dm_test_gfx9_dcc_modifier(AMD_FMT_MOD_TILE_VER_GFX9,
-+						       false, false);
-+	plane_size.surface_size.width = 1920;
-+	plane_size.surface_size.height = 1080;
-+
-+	ret = dm_test_gfx9_attrs(adev, afb, &plane_size, &tiling_info, &dcc,
-+				 &address);
-+	KUNIT_EXPECT_EQ(test, ret, 0);
-+	KUNIT_EXPECT_TRUE(test, dcc.enable);
-+	KUNIT_EXPECT_EQ(test, (int)dcc.dcc_ind_blk,
-+			(int)hubp_ind_block_unconstrained);
-+
-+	dm_test_dcc_ctx = NULL;
 +}
 +
  /**
   * dm_test_fill_plane_buffer_attributes_video() - Verify NV12 attributes.
   * @test: KUnit test context.
-@@ -1976,6 +2320,13 @@ static struct kunit_case amdgpu_dm_plane_test_cases[] = {
+@@ -2318,6 +2477,9 @@ static struct kunit_case amdgpu_dm_plane_test_cases[] = {
+ 	KUNIT_CASE(dm_test_format_mod_supported_d_swizzle_reject),
+ 	/* amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers() */
  	KUNIT_CASE(dm_test_fill_gfx12_plane_attributes_from_modifiers),
++	KUNIT_CASE(dm_test_fill_gfx12_plane_attributes_block0),
++	KUNIT_CASE(dm_test_fill_gfx12_plane_attributes_block_unconstrained),
++	KUNIT_CASE(dm_test_fill_gfx12_plane_attributes_validate_fails),
  	/* amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers() */
  	KUNIT_CASE(dm_test_fill_gfx9_plane_attributes_from_modifiers),
-+	KUNIT_CASE(dm_test_fill_gfx9_plane_attributes_dcc),
-+	KUNIT_CASE(dm_test_fill_gfx9_plane_attributes_validate_fails),
-+	KUNIT_CASE(dm_test_fill_gfx9_plane_attributes_dcc_rbplus_64b_no_128bcl),
-+	KUNIT_CASE(dm_test_fill_gfx9_plane_attributes_dcc_rbplus_128b),
-+	KUNIT_CASE(dm_test_fill_gfx9_plane_attributes_dcc_rbplus_unconstrained),
-+	KUNIT_CASE(dm_test_fill_gfx9_plane_attributes_dcc_gfx9_64b),
-+	KUNIT_CASE(dm_test_fill_gfx9_plane_attributes_dcc_gfx9_unconstrained),
- 	/* amdgpu_dm_plane_helper_check_state() */
- 	KUNIT_CASE(dm_test_helper_check_state_viewport_reject),
- 	/* amdgpu_dm_plane_add_modifier() */
+ 	KUNIT_CASE(dm_test_fill_gfx9_plane_attributes_dcc),
 -- 
 2.55.0
 
