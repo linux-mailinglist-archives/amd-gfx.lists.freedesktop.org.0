@@ -2,101 +2,143 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JmUcAWFoT2qzgAIAu9opvQ
+	id 1BZvM6VwT2oLgwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 11:22:41 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 11:57:57 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A053372EE03
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 11:22:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1642572F382
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 11:57:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=efeOr88G;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=iS0kW0MX;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=efeOr88G;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=iS0kW0MX;
-	dmarc=pass (policy=none) header.from=suse.de;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=amd.com header.s=selector1 header.b=yQ9FN1cQ;
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54DBC10F493;
-	Thu,  9 Jul 2026 09:22:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 144B010F4AD;
+	Thu,  9 Jul 2026 09:57:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 424F010F492
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 09:22:36 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 7CA27760B8;
- Thu,  9 Jul 2026 09:22:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783588945; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=THxQs3avqOGdD8iUhPjo+TCcdB4M5SSExs3S0bxU1Gg=;
- b=efeOr88GTwKxp095zlshZ5OOCF81coC1huEVp2GqSKeg7D6JGuK3n1nbHVEbFUo4c2w7wy
- LN7+gFwzxegmPsdfjC5kt+hT6bIQeG4XWr2Gx4NmibJ80/OOGU/753J1E5V6nOQGF3M4JU
- 1HmcJhPI3GJboPJjCNcHIBXSkROSV+Y=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783588945;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=THxQs3avqOGdD8iUhPjo+TCcdB4M5SSExs3S0bxU1Gg=;
- b=iS0kW0MXWVNsrHUI+Pfmv6d1TLMO1mr1Ekvhh39Umow2q1F50LvL9tzwaVT8z4SYrdKDnl
- vpeJTa+rcFZw4EBA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783588945; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=THxQs3avqOGdD8iUhPjo+TCcdB4M5SSExs3S0bxU1Gg=;
- b=efeOr88GTwKxp095zlshZ5OOCF81coC1huEVp2GqSKeg7D6JGuK3n1nbHVEbFUo4c2w7wy
- LN7+gFwzxegmPsdfjC5kt+hT6bIQeG4XWr2Gx4NmibJ80/OOGU/753J1E5V6nOQGF3M4JU
- 1HmcJhPI3GJboPJjCNcHIBXSkROSV+Y=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783588945;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=THxQs3avqOGdD8iUhPjo+TCcdB4M5SSExs3S0bxU1Gg=;
- b=iS0kW0MXWVNsrHUI+Pfmv6d1TLMO1mr1Ekvhh39Umow2q1F50LvL9tzwaVT8z4SYrdKDnl
- vpeJTa+rcFZw4EBA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id EAC99779AC;
- Thu,  9 Jul 2026 09:22:24 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id mCMWOFBoT2q6OQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 09 Jul 2026 09:22:24 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: lukas@wunner.de, jfalempe@redhat.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, lyude@redhat.com,
- dakr@kernel.org, deller@gmx.de
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org, sashiko-reviews@lists.linux.dev,
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 7/7] vga-switcheroo: Remove unused interfaces
-Date: Thu,  9 Jul 2026 11:16:03 +0200
-Message-ID: <20260709092215.168172-8-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260709092215.168172-1-tzimmermann@suse.de>
-References: <20260709092215.168172-1-tzimmermann@suse.de>
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010031.outbound.protection.outlook.com [52.101.61.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2B5310F4AD
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 09:57:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xeFJt0z3REWonAPLrcb3cIbKZ2jYpSwh+QblXljFGLMKMfxCDMQu+hiFUuKRvxROpXfbzR1l2LmoG4raeAN9SxyYTM7xRcu6IboZNk0F6nHAw06+HOMK2lJLExdV1ZwYD4MG7Ig82+TEut0Ys0VUD1l74BXNizTq1IlHnZwO9n8fupU0QU45cYndnLAapr7GOh4qgTfDLHZtDtpoNyXjxOgCaTWZ/k8cSWFBQ9ZSBJ5NPTQCluyLjK+Qj8AceeZiekAn2zPfY+lh0zA8NuDpsLvk+2v6qlAaOKrghgBJDkME3/lzG5taMLDn8M2+tKI/A4son/mNfMkQcXCT590YKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=70NnmBEjOcBHOjnRLVT0lGkCQSxVvTIRJoducUvF+48=;
+ b=aZdDUgyGZ3sekj6w5fW7WzISaKTvdq3IIb7LiTfbu85og838lAVS1J6G6k/8V6sMGGr5F4pDOQczbR9pmNaPnKDmZ7p/JcHn6hpl4UU2AjPTCxBwVJzJr2KeiU7MAd/S4375h2a7Ue3rfX3s5gF4hivgzQwD21sKdHtJbp4xo6FcOQJKVyrEg5flG03oo1MhPaMmOjO/izw2BKUdKtW8K/SJQE3tVWtOPHdSarW1OZA4L9xWdT4qcTWof0cSDDryK7v1wRDorET0/XfM04DcgEHH08l/CC4fbDUtiJQzqp9oWf6UQitvPbQJW4KVMp/6pTV4f97QP2SMU2EtR0JolQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=70NnmBEjOcBHOjnRLVT0lGkCQSxVvTIRJoducUvF+48=;
+ b=yQ9FN1cQj2EUmgN7csHwTygvFOr6qI/TXe84VeDsBMaZkzHGcY0e3KWnnsaUY4XiOeCx4mLHYo0x0jnt5Dr4FomaK/dHJoTzuxdb+WA2+/zpI9ilH6kB1lxo5ArXTXCl5j03PwaWHGO+zQpU09G4a/0ypyBo0gyB6aTn1fMhTok=
+Received: from DM4PR12MB5748.namprd12.prod.outlook.com (2603:10b6:8:5f::19) by
+ MN2PR12MB4126.namprd12.prod.outlook.com (2603:10b6:208:199::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.16; Thu, 9 Jul
+ 2026 09:57:49 +0000
+Received: from DM4PR12MB5748.namprd12.prod.outlook.com
+ ([fe80::6c62:e99c:480d:2729]) by DM4PR12MB5748.namprd12.prod.outlook.com
+ ([fe80::6c62:e99c:480d:2729%2]) with mapi id 15.21.0181.014; Thu, 9 Jul 2026
+ 09:57:49 +0000
+From: "Kamal, Asad" <Asad.Kamal@amd.com>
+To: Alex Deucher <alexdeucher@gmail.com>, John Olender <john.olender@gmail.com>
+CC: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Feng,
+ Kenneth" <Kenneth.Feng@amd.com>, "Deucher, Alexander"
+ <Alexander.Deucher@amd.com>, "Lazar, Lijo" <Lijo.Lazar@amd.com>, "Zhang,
+ Hawking" <Hawking.Zhang@amd.com>, "Wang, Yang(Kevin)"
+ <KevinYang.Wang@amd.com>
+Subject: RE: [PATCH] drm/amd/pm: Remove vbios bounds check from
+ pp_entries_max()
+Thread-Topic: [PATCH] drm/amd/pm: Remove vbios bounds check from
+ pp_entries_max()
+Thread-Index: AQHdC52ZpVyGCwlSn0y4D/0mrYcqe7Zj2PoAgAEh3vA=
+Date: Thu, 9 Jul 2026 09:57:48 +0000
+Message-ID: <DM4PR12MB5748B149AA0BB0C5CE58BD3B8EFE2@DM4PR12MB5748.namprd12.prod.outlook.com>
+References: <20260704101120.674980-1-john.olender@gmail.com>
+ <CADnq5_ODf=T4VD9_RptQaEtJr5Zinsom8jW8GJL56GN6shvJsQ@mail.gmail.com>
+In-Reply-To: <CADnq5_ODf=T4VD9_RptQaEtJr5Zinsom8jW8GJL56GN6shvJsQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-Mentions: john.olender@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Enabled=True;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_SetDate=2026-07-09T09:55:13.0000000Z;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Name=AMD General
+ v26; MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_ContentBits=3;
+ MSIP_Label_198e8dea-a4f3-4850-b16a-fd6d2b1302b4_Method=Standard
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR12MB5748:EE_|MN2PR12MB4126:EE_
+x-ms-office365-filtering-correlation-id: 22f9f13f-bc85-49b5-a14b-08dedda0889a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|23010399003|366016|22082099003|18002099003|38070700021|3023799007|4143699003|11063799006|56012099006;
+x-microsoft-antispam-message-info: E9Sn8egS6EvL0IcHgcdFZFGQFQSFFr+YwPpK+LMaM2a1lUGCr9HBp+2HjdEmjwqkjH3S8kpuXeRODFYIUnUAU9kqtGaEkL8WWeGhLe8pgbhw7dEnrh10j22a+uKPmSB4VdxEMhds1JW7Au2sgDgq3mkoQD8zTZ3sidB0BKAmVxqji0eW1k7K8oP8Xo1VvjmCmvg0SEVwyTMBqfMNtUXasI+lUl74BS0I2GRrt8Y5bhPlqc1vPWuGZa0zzR0Ey8CiTcJOQwFSKoxsdXYn9JcUQ+usQgDPjimN+eMKniuEXyG8RvY9WVnGDSZqrtNvP8tMvet8eqlIedPmUO9WnVwBgmZabYgGiuYPEAk2ZbD8XZYyz3VAMWAQ9xrJOhU7y70tmp3SBiVVN4lchQRGyQ8D9Fs7myS6JnVOVXmwvPzyCuM26ouYZvzgTfZKu+O+llcSovR8BKNqTYwScA3T/y7HdsFTCWNfopZd4d3xMrjYHoMXiZhXhimW7NBMLsNmijOI/ubcPdlphQKZAVTRCK9ukNQOAaDwwFJu9OHryUp/McXmC97BTelDu1G4tTgdAMtQ8GLXZlsvLQEcmgH5nmCfdWQp0NtPQCJJyWDqj63P7qx+66qhL+hv5Zxagr4PcgcgOOTbTBlPagi5O+206tIaUJa8vkXBVI6ZX5qL0/vmUkxy1gqIPqzqO7QfZ3Bj4DciL7jfRd7gLnYoiGUKczDJ8ldkyIqh8JLeM2bbh98uuVQ=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5748.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(22082099003)(18002099003)(38070700021)(3023799007)(4143699003)(11063799006)(56012099006);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Q0ZFVXBUTjBpS1ZoRk02SExzVndkUzdIZm9BY1JSVXhETEY3UG1MaHJobnlR?=
+ =?utf-8?B?dmpxcmJEd05tS0FvUWNDbnNBSUZOamN4WDdrVHlGYzJsZkJ6MUtXOEI0RHFG?=
+ =?utf-8?B?SSsxUFN1YVZRc2xtTnlRaTZzSndKRk9LTWJYMG96WHNCWnNROWJQSHkvZVND?=
+ =?utf-8?B?SzZKVGZaK1l6dzBMMGQycW9hVlVYMXovZUIxR3JxL3V4NXJ2cGk3cktneFhF?=
+ =?utf-8?B?WXNhZ1NWK1I2eS9GQzVNTksxN1hoSFliMStKOHQ0VU4ySkNxV2F2d2k4RG9T?=
+ =?utf-8?B?RTJLMFhFOVMwbGVpMkdER1E5R3QvSTRXanFOMDFWUUN5SWpTOGN6bUxIV3g1?=
+ =?utf-8?B?cG5GYW94bGwyZ3EzTXlHUnZ6QUtiSEtrcnpCY0RYb0tWU0ZBUHlGeVpKdytE?=
+ =?utf-8?B?RnNXSis0bktraEhXeCtKYWxRWDJESXJoSm14Qnh0N0twdWFYNHJremNjVEJZ?=
+ =?utf-8?B?UVhjNnB3enZiWDU2VGRpL1NwUDJCMS9ISEFHVTZGQml1RVo5cjBtZ3RVU2tx?=
+ =?utf-8?B?SU1MREd5UjR5aW1DblZHMDdFdm1UcVJZaTVsNno5OG5aSHA3OEZNMzREU0Rp?=
+ =?utf-8?B?cUZRR3BrWktySUJnMFJKN1JDTFVHb2Jpak5qdzRwRkVyY2JXQkdJMzBheHBP?=
+ =?utf-8?B?dG9oUklwTEJqd3Z4WXhnSmYwNFo5d29ZQ2gxbENNeGZaUVN3YWJrNmFTU3la?=
+ =?utf-8?B?L2Y5aWViMXVTdC9FWUtTZXFRWHR0b0pMc1QyQ3VHVGJNL3hpQk4rQUVrT2ZE?=
+ =?utf-8?B?U1ErNTkzWStVbHdWVVBXUk13SkQ1cG5iK21mSFZPUSt4d1R4VWhUTDBjc3Jm?=
+ =?utf-8?B?ZGFJQVg4WUZVdHhwWGluQW45SWlqZzg0eTY0ZWVsY2d1NGk2blhKdGoxSmxZ?=
+ =?utf-8?B?WU5FaHBPL1ExVnBCaXUvTzR2UitnVFFGSTdLV3BRc1lZdGdBYjNnTFVvZFNV?=
+ =?utf-8?B?WGZTMjBaMlNoaDNjMlNYUC9sTWx1QlNHSTUzMk44dFdDb0I5ZFg2Vm04am9C?=
+ =?utf-8?B?VGNPbXFydTUyMjd0STR1MDRrWmhicDZWRWZEa3ZVUFdGS1IyWiszdWpSRklP?=
+ =?utf-8?B?T3puTi9OZFo1MUU4YkVVYmQyYVFQTTI2RkJlK1dIKy9LL3pqYTB2bFhoaDhy?=
+ =?utf-8?B?RG9MRlNzUVdQZzRvcDN6Z2kzNEJNMHpxU1VUa29VVzhMK0ZMMkJqeEsrSXJH?=
+ =?utf-8?B?YXJIR25FNXB1cmtBSEl3RXA4VmVTN2pjVzZxYWJjR0lQMFZ1SUIrVkdraVA4?=
+ =?utf-8?B?WUdqZWFKZURzalh5YmRyNnhIOTU5Ky83ck41S2xUNnVuMGZhUHpXWkQ3UEhB?=
+ =?utf-8?B?VlJGbzRTNERKdjhEdk1jMCtsb0hhZmkzMVIrV3k5aVRnRStaRy8vQlJ6UXp5?=
+ =?utf-8?B?MVUzSGFNOVcyamo5dVp1SVdxOWVoZm1VM2thajZtYloydGh6ajY4WWNVYXZZ?=
+ =?utf-8?B?NmI1R21wdDJCMEhoak5iM2ZiWWV6Um16SkxKZlhRbWxGWGVQSDc1ck5sZmlC?=
+ =?utf-8?B?RTdDcFRUTXhVQlVqNnREKzYzdm44eXl6cFhOZWR0L0ZLN3VCSnJaTGQrQXV1?=
+ =?utf-8?B?WDBqNVRhY2ZJaXlwTDUrLy9walhDczBqQ0JiMGhsVzlkWHZyaXRURlA1TXRz?=
+ =?utf-8?B?MjNGUkxOTFkrMTF1RDg5N2c3eHQwV0RpVGpNMlNYZHdwT01DQzJLeEhBM0NW?=
+ =?utf-8?B?aVNLU250Qml4TXFlV3BZZm9uMllsKzI2NjByYmtZZVpla0IyK1FxdFNRQUd5?=
+ =?utf-8?B?ZTFXT1d1WEVrOXNZUTdLZTY5NUNBM2FxOE9EYm03R3ErTnIyaTVWU2phMzkr?=
+ =?utf-8?B?N1FNQlpKMHZsamtjSEFVSG1pZ21LeTIzMm1KM2puN08xTUE5eSsyMXB6K1Bs?=
+ =?utf-8?B?WXJkUnJrVENHeHlmdEE3S1FnRmZpTmRBTHVnYVBCN1M4QlFrMUU3V1l4TzZl?=
+ =?utf-8?B?akozSDJUajNwc2lkcTVIbEgyaWVienNmaVdUMVlpdjMxUzJKbDFGbXFyMy9a?=
+ =?utf-8?B?ck5EaHo0OHhEWm9ySHBzemlRM3BMcjQzRDVaNjMwQXBOUUZVRlhqcFhNaXM1?=
+ =?utf-8?B?dy81UzFyZXJPTHVZdnFQM3ZHZjRKSituZ01ZTWcwendhNitPUXVBRmJKVEky?=
+ =?utf-8?B?R1ZBQnlCM00vbnZLenZrQjRIM0x5VDI5M1VqVEI3QTZjTnZxb2taWDZDUTV2?=
+ =?utf-8?B?VGdqZVVDenBBMENRWFNEWWIyd1ZPUHNwOW40U283dHpXVmI0UTRZdDk3SmVt?=
+ =?utf-8?B?REtHZFkrV0d2ZGpoNkdwU1k0SWtVUUI5MXl3N3prUGxXdUtyN3dLTC81UHJw?=
+ =?utf-8?Q?dy+4cP6QhkDXvZvjf6?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Flag: NO
-X-Spam-Score: -2.80
-X-Spam-Level: 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5748.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22f9f13f-bc85-49b5-a14b-08dedda0889a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jul 2026 09:57:48.8985 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Cgt/gIgwyqf6xQy3l2LYnFv55302tAt5Lv/xY73cMh1cMwNtZKQwVeMWiOAxkSbMYz/+VW0NDeBRMUbz1bxwRQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4126
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,199 +153,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.21 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:lukas@wunner.de,m:jfalempe@redhat.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:lyude@redhat.com,m:dakr@kernel.org,m:deller@gmx.de,m:dri-devel@lists.freedesktop.org,m:intel-gfx@lists.freedesktop.org,m:nouveau@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:sashiko-reviews@lists.linux.dev,m:tzimmermann@suse.de,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[wunner.de,redhat.com,amd.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,intel.com,ursulin.net,gmx.de];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FORGED_SENDER(0.00)[tzimmermann@suse.de,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:alexdeucher@gmail.com,m:john.olender@gmail.com,m:Kenneth.Feng@amd.com,m:Alexander.Deucher@amd.com,m:Lijo.Lazar@amd.com,m:Hawking.Zhang@amd.com,m:KevinYang.Wang@amd.com,m:johnolender@gmail.com,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[Asad.Kamal@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[suse.de:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Asad.Kamal@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:from_mime,suse.de:email,suse.de:mid,suse.de:dkim,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:from_mime,amd.com:email,amd.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,DM4PR12MB5748.namprd12.prod.outlook.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A053372EE03
+X-Rspamd-Queue-Id: 1642572F382
 
-Remove all unused interfaces that used to implement the functionality
-of pre_switch and post_switch.
-
-For pre_switch, remove vga_switcheroo_client_fb_set(). This further
-allows for removing all symbols and data structures that refer to
-fbdev; such as fb_info and fb_switch_outputs().
-
-For post_switch, remove the reprobe callback from the client ops.
-
-v2:
-- move changes to fbcon and drivers into other patches
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/vga/vga_switcheroo.c | 37 ++++----------------------------
- include/linux/vga_switcheroo.h   | 12 +++++------
- 2 files changed, 9 insertions(+), 40 deletions(-)
-
-diff --git a/drivers/gpu/vga/vga_switcheroo.c b/drivers/gpu/vga/vga_switcheroo.c
-index 7b0af4a8aa7d..9431d83b38a9 100644
---- a/drivers/gpu/vga/vga_switcheroo.c
-+++ b/drivers/gpu/vga/vga_switcheroo.c
-@@ -32,9 +32,9 @@
- 
- #include <linux/apple-gmux.h>
- #include <linux/debugfs.h>
--#include <linux/fb.h>
-+#include <linux/export.h>
- #include <linux/fs.h>
--#include <linux/module.h>
-+#include <linux/mutex.h>
- #include <linux/pci.h>
- #include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
-@@ -90,7 +90,6 @@
- /**
-  * struct vga_switcheroo_client - registered client
-  * @pdev: client pci device
-- * @fb_info: framebuffer to which console is remapped on switching
-  * @pwr_state: current power state if manual power control is used.
-  *	For driver power control, call vga_switcheroo_pwr_state().
-  * @ops: client callbacks
-@@ -105,12 +104,11 @@
-  * @vga_dev: pci device, indicate which GPU is bound to current audio client
-  *
-  * Registered client. A client can be either a GPU or an audio device on a GPU.
-- * For audio clients, the @fb_info and @active members are bogus. For GPU
-- * clients, the @vga_dev is bogus.
-+ * For audio clients, the @active member is bogus. For GPU clients, the @vga_dev
-+ * is bogus.
-  */
- struct vga_switcheroo_client {
- 	struct pci_dev *pdev;
--	struct fb_info *fb_info;
- 	enum vga_switcheroo_state pwr_state;
- 	const struct vga_switcheroo_client_ops *ops;
- 	enum vga_switcheroo_client_id id;
-@@ -514,27 +512,6 @@ void vga_switcheroo_unregister_client(struct pci_dev *pdev)
- }
- EXPORT_SYMBOL(vga_switcheroo_unregister_client);
- 
--/**
-- * vga_switcheroo_client_fb_set() - set framebuffer of a given client
-- * @pdev: client pci device
-- * @info: framebuffer
-- *
-- * Set framebuffer of a given client. The console will be remapped to this
-- * on switching.
-- */
--void vga_switcheroo_client_fb_set(struct pci_dev *pdev,
--				 struct fb_info *info)
--{
--	struct vga_switcheroo_client *client;
--
--	mutex_lock(&vgasr_mutex);
--	client = find_client_from_pci(&vgasr_priv.clients, pdev);
--	if (client)
--		client->fb_info = info;
--	mutex_unlock(&vgasr_mutex);
--}
--EXPORT_SYMBOL(vga_switcheroo_client_fb_set);
--
- /**
-  * vga_switcheroo_lock_ddc() - temporarily switch DDC lines to a given client
-  * @pdev: client pci device
-@@ -735,10 +712,6 @@ static int vga_switchto_stage2(struct vga_switcheroo_client *new_client)
- 
- 	if (new_client->ops->pre_switch)
- 		new_client->ops->pre_switch(new_client->pdev);
--#if defined(CONFIG_FB)
--	else if (new_client->fb_info)
--		fb_switch_outputs(new_client->fb_info);
--#endif
- 
- 	mutex_lock(&vgasr_priv.mux_hw_lock);
- 	ret = vgasr_priv.handler->switchto(new_client->id);
-@@ -748,8 +721,6 @@ static int vga_switchto_stage2(struct vga_switcheroo_client *new_client)
- 
- 	if (new_client->ops->post_switch)
- 		new_client->ops->post_switch(new_client->pdev);
--	else if (new_client->ops->reprobe)
--		new_client->ops->reprobe(new_client->pdev);
- 
- 	if (vga_switcheroo_pwr_state(active) == VGA_SWITCHEROO_ON)
- 		vga_switchoff(active);
-diff --git a/include/linux/vga_switcheroo.h b/include/linux/vga_switcheroo.h
-index 51851831d4c1..d7eee65664ab 100644
---- a/include/linux/vga_switcheroo.h
-+++ b/include/linux/vga_switcheroo.h
-@@ -31,8 +31,12 @@
- #ifndef _LINUX_VGA_SWITCHEROO_H_
- #define _LINUX_VGA_SWITCHEROO_H_
- 
--#include <linux/fb.h>
-+#include <linux/errno.h>
-+#include <linux/types.h>
- 
-+struct device;
-+struct dev_pm_domain;
-+struct fb_info;
- struct pci_dev;
- 
- /**
-@@ -127,7 +131,6 @@ struct vga_switcheroo_handler {
-  * @set_gpu_state: do the equivalent of suspend/resume for the card.
-  * 	Mandatory. This should not cut power to the discrete GPU,
-  * 	which is the job of the handler
-- * @reprobe: deprecated
-  * @can_switch: check if the device is in a position to switch now.
-  * 	Mandatory. The client should return false if a user space process
-  * 	has one of its device files open
-@@ -147,7 +150,6 @@ struct vga_switcheroo_handler {
-  */
- struct vga_switcheroo_client_ops {
- 	void (*set_gpu_state)(struct pci_dev *dev, enum vga_switcheroo_state);
--	void (*reprobe)(struct pci_dev *dev);
- 	bool (*can_switch)(struct pci_dev *dev);
- 	void (*pre_switch)(struct pci_dev *dev);
- 	void (*post_switch)(struct pci_dev *dev);
-@@ -163,9 +165,6 @@ int vga_switcheroo_register_audio_client(struct pci_dev *pdev,
- 					 const struct vga_switcheroo_client_ops *ops,
- 					 struct pci_dev *vga_dev);
- 
--void vga_switcheroo_client_fb_set(struct pci_dev *dev,
--				  struct fb_info *info);
--
- int vga_switcheroo_register_handler(const struct vga_switcheroo_handler *handler,
- 				    enum vga_switcheroo_handler_flags_t handler_flags);
- void vga_switcheroo_unregister_handler(void);
-@@ -185,7 +184,6 @@ void vga_switcheroo_fini_domain_pm_ops(struct device *dev);
- static inline void vga_switcheroo_unregister_client(struct pci_dev *dev) {}
- static inline int vga_switcheroo_register_client(struct pci_dev *dev,
- 		const struct vga_switcheroo_client_ops *ops, bool driver_power_control) { return 0; }
--static inline void vga_switcheroo_client_fb_set(struct pci_dev *dev, struct fb_info *info) {}
- static inline int vga_switcheroo_register_handler(const struct vga_switcheroo_handler *handler,
- 		enum vga_switcheroo_handler_flags_t handler_flags) { return 0; }
- static inline int vga_switcheroo_register_audio_client(struct pci_dev *pdev,
--- 
-2.54.0
-
+QU1EIEdlbmVyYWwNCg0KSGkgQEpvaG4gT2xlbmRlciwNCg0KR29vZCBjYXRjaC4gSG93ZXZlciwg
+IGFzIEFsZXggcG9pbnRzIG91dCwgcmVtb3ZpbmcgdGhlIGNoZWNrIGVudGlyZWx5IGRyb3BzIHBy
+b3RlY3Rpb24gZm9yIFZCSU9TLXNvdXJjZWQgdGFibGVzLg0KDQpJbnN0ZWFkIG9mIHJlbW92aW5n
+IHRoZSBjaGVjaywgY291bGQgeW91IGNvbmRpdGlvbiBpdCBvbiBoYXJkY29kZV9wcF90YWJsZT8g
+V2hlbiBpdCBpcyBOVUxMIHdlIGFyZSBvbiB0aGUgVkJJT1MgcGF0aCBhbmQgdGhlIGJpb3NfZW5k
+IGNoZWNrIHNob3VsZCBzdGF5LiBXaGVuIGl0IGlzIG5vbi1OVUxMIGEgY3VzdG9tIHRhYmxlIHdh
+cyB1cGxvYWRlZCB2aWEgc3lzZnMgYW5kIHRoZSBjaGVjayBjYW4gYmUgc2tpcHBlZCDigJQgc29m
+dF9wcF90YWJsZV9zaXplIGlzIGFscmVhZHkgc2V0IHRvIHRoZSBrZXJuZWwtc3VwcGxpZWQgdXBs
+b2FkIHNpemUuDQoNCmlmICghaHdtZ3ItPmhhcmRjb2RlX3BwX3RhYmxlKSB7DQogICAgICAgIGNv
+bnN0IGNoYXIgKmJpb3NfZW5kID0gKGNvbnN0IGNoYXIgKilhZGV2LT5iaW9zICsgYWRldi0+Ymlv
+c19zaXplOw0KICAgICAgICBpZiAocHBfZW5kID4gYmlvc19lbmQpDQogICAgICAgICAgICAgICAg
+cmV0dXJuIDA7DQp9DQoNClRoaXMgZml4ZXMgeW91ciByZWdyZXNzaW9uIHdoaWxlIGtlZXBpbmcg
+QWxleCdzIGNvbmNlcm4gYWRkcmVzc2VkLiBQbGVhc2UgbGV0IG1lIGtub3cgaWYgaXQgb2sgd2l0
+aCB5b3UuDQoNClRoYW5rcyAmIFJlZ2FyZHMNCkFzYWQNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0t
+LS0tDQpGcm9tOiBhbWQtZ2Z4IDxhbWQtZ2Z4LWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+PiBPbiBCZWhhbGYgT2YgQWxleCBEZXVjaGVyDQpTZW50OiBXZWRuZXNkYXksIEp1bHkgOCwgMjAy
+NiAxMDowOCBQTQ0KVG86IEpvaG4gT2xlbmRlciA8am9obi5vbGVuZGVyQGdtYWlsLmNvbT4NCkNj
+OiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgRmVuZywgS2VubmV0aCA8S2VubmV0aC5G
+ZW5nQGFtZC5jb20+OyBEZXVjaGVyLCBBbGV4YW5kZXIgPEFsZXhhbmRlci5EZXVjaGVyQGFtZC5j
+b20+OyBLYW1hbCwgQXNhZCA8QXNhZC5LYW1hbEBhbWQuY29tPjsgTGF6YXIsIExpam8gPExpam8u
+TGF6YXJAYW1kLmNvbT47IFpoYW5nLCBIYXdraW5nIDxIYXdraW5nLlpoYW5nQGFtZC5jb20+OyBX
+YW5nLCBZYW5nKEtldmluKSA8S2V2aW5ZYW5nLldhbmdAYW1kLmNvbT4NClN1YmplY3Q6IFJlOiBb
+UEFUQ0hdIGRybS9hbWQvcG06IFJlbW92ZSB2YmlvcyBib3VuZHMgY2hlY2sgZnJvbSBwcF9lbnRy
+aWVzX21heCgpDQoNCk9uIFNhdCwgSnVsIDQsIDIwMjYgYXQgNjoxOeKAr0FNIEpvaG4gT2xlbmRl
+ciA8am9obi5vbGVuZGVyQGdtYWlsLmNvbT4gd3JvdGU6DQo+DQo+IFRoZSBzb2Z0X3BwX3RhYmxl
+IGlzIG5vdCBjb250YWluZWQgd2l0aGluIHRoZSB2YmlvcyB3aGVuIHVzaW5nIGENCj4gcHBfdGFi
+bGUgb3ZlcnJpZGUgc2luY2UgY29tbWl0IDNjZmU0MzM2MzA1MDggKCJkcm0vYW1kL3BtOiBVc2UN
+Cj4gdXBsb2FkZWQgc2l6ZSBmb3IgbGVnYWN5IGN1c3RvbSBQUFRhYmxlIikuDQo+DQo+IEZpeGVz
+OiBlMzBiM2UzYWI1MWFkICgiZHJtL2FtZGdwdS9wbTogYWRkIHBwX2VudHJpZXNfbWF4KCkgaGVs
+cGVyIikNCj4gU2lnbmVkLW9mZi1ieTogSm9obiBPbGVuZGVyIDxqb2huLm9sZW5kZXJAZ21haWwu
+Y29tPg0KDQpSZW1vdmluZyB0aGlzIHdpbGwgZWZmZWN0aXZlbHkgcmVtb3ZlIHRoZSBib3VuZHMg
+Y2hlY2sgZnJvbSB0YWJsZXMgcmVhZCBmcm9tIHRoZSBiaW9zLiAgSSBkb24ndCB0aGluayB3ZSB3
+YW50IHRvIGRvIHRoYXQuDQoNCkFsZXgNCg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQv
+cG0vcG93ZXJwbGF5L2luYy9od21nci5oIHwgNCAtLS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgNCBk
+ZWxldGlvbnMoLSkNCj4NCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvcG0vcG93
+ZXJwbGF5L2luYy9od21nci5oDQo+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wbS9wb3dlcnBsYXkv
+aW5jL2h3bWdyLmgNCj4gaW5kZXggN2ViYzEzNDQwMjNmZi4uMTkwMjNhODUwZTg4MiAxMDA2NDQN
+Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9wbS9wb3dlcnBsYXkvaW5jL2h3bWdyLmgNCj4g
+KysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9wbS9wb3dlcnBsYXkvaW5jL2h3bWdyLmgNCj4gQEAg
+LTgzMywxNCArODMzLDEwIEBAIHN0YXRpYyBpbmxpbmUgdWludDMyX3QgcHBfZW50cmllc19tYXgo
+Y29uc3Qgc3RydWN0IHBwX2h3bWdyICpod21nciwNCj4gICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICBjb25zdCB2b2lkICpzdWJfdGFibGUsDQo+ICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgc2l6ZV90IGhkcl9zaXplLCBzaXplX3QNCj4gcmVjX3NpemUp
+ICB7DQo+IC0gICAgICAgc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYgPSAoc3RydWN0IGFtZGdw
+dV9kZXZpY2UgKilod21nci0+YWRldjsNCj4gLSAgICAgICBjb25zdCBjaGFyICpiaW9zX2VuZCA9
+IChjb25zdCBjaGFyICopYWRldi0+YmlvcyArIGFkZXYtPmJpb3Nfc2l6ZTsNCj4gICAgICAgICBj
+b25zdCBjaGFyICpwcF9lbmQgICA9IChjb25zdCBjaGFyICopaHdtZ3ItPnNvZnRfcHBfdGFibGUN
+Cj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICsgaHdtZ3ItPnNvZnRfcHBfdGFibGVf
+c2l6ZTsNCj4gICAgICAgICBjb25zdCBjaGFyICplbnRyaWVzICA9IChjb25zdCBjaGFyICopc3Vi
+X3RhYmxlICsgaGRyX3NpemU7DQo+DQo+IC0gICAgICAgaWYgKHBwX2VuZCA+IGJpb3NfZW5kKQ0K
+PiAtICAgICAgICAgICAgICAgcmV0dXJuIDA7DQo+ICAgICAgICAgaWYgKCFyZWNfc2l6ZSB8fCBl
+bnRyaWVzID49IHBwX2VuZCkNCj4gICAgICAgICAgICAgICAgIHJldHVybiAwOw0KPiAgICAgICAg
+IHJldHVybiAodWludDMyX3QpKChwcF9lbmQgLSBlbnRyaWVzKSAvIHJlY19zaXplKTsNCj4NCj4g
+YmFzZS1jb21taXQ6IGUzY2M4YzEwOGY5YTkxNzI4ZjlmZjZlMjRjYmYzYjQxYzU4YjhmOGINCj4g
+LS0NCj4gMi40Ny4zDQo+DQo=
