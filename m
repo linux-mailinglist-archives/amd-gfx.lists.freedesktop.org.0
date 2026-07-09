@@ -2,49 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ab+oI10MUGr7sQIAu9opvQ
+	id ANHPJVwMUGr6sQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:21 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:20 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 047FA735A68
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FA5E735A61
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=hz+KtBTq;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=DjCrXlVZ;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DAA210F6CF;
-	Thu,  9 Jul 2026 21:02:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FA1810F6C5;
+	Thu,  9 Jul 2026 21:02:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010021.outbound.protection.outlook.com [52.101.201.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1DDC10F6C5
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:16 +0000 (UTC)
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011019.outbound.protection.outlook.com [40.107.208.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ABD510F6C9
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PIUH0cJuqcl7iJu1+svHNVrlNyIIDSapeaGuWqwY/6YNZ+h/ptQf5qNPk1rnDFMLfsp4RoppNyipdYneBRLIfsWpNtXkflA5AyYDsbY7u4L6+Y+HevVjgvJgt4u4wGWX69MMLjnGh1ISeowfXn1iz5wFjvHxCsXGS+TBf4k4MsaaFrovM7RGDTXAkjCNfWNnmRznUEF+zQ3tEuCkE36GiG8xze+SxWsRBaCzTHX41yyLqqNesvonaepQtfrVR8ptelHoX/9FaQuLhy2FRRXzCtEpV1VB5qCT81jECP7/A6RjBGEOcBlzvF6LpxQ3H2NzEZUaFqbMZZt4Ji0z6uP+BA==
+ b=rs56j8F4XoOJHC5HPb/0AgUOvDiDzXvumbPmoAYNS29JJ9HiuataE/xJjbBVJr1XLHUKVW1oIkSN4wQfqV9HbWTHFHgkdeUDjOBGhnN1EbaKZp3xCfimqD2FUZEPVV8z51Xz+35Tbbp1vga90UyDyZxBgcEV929/CBOW4lEpRLZv65KMGHDyQidtZDfllBF1GVsKmjlbz/6YqnmXDMzHa0+Ublgsqz3DcTW5PrwaFAl4/c+nlZVu2siljCBTUttW6h86eqXQWL5Hy5nr8tjNSA7DzHCkbyV5xRJEpD5bw9xv3YtEWKywHQ9hl4mX0Pl13DpzTqpBjQSyJxqJ9jta+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TUPh/4bbyYXafIhGK9/G0C2DGzKz+jOKmKfK+ZI6/n0=;
- b=uy244XSGjt3ZJ1+qTpbm7uYQ8jSU38DOFUBbo0yAZIZOCLN388wJgm0tf6bcKnPzNckcOyDtKg+vy0520hNwI8ZuKBAI644+JqbFAEW2tY/TSSX5Sgi7R49P6lXW8gYsDXBT7hHdJCrgXSmJUXNXqy+gbz9p671xhCdUjMK1eYjG09OE8JQHhfOnQaeebrO4O+R05S+YBKh3VVI/sKmshDuQeMTahbKnjJs0p0D1qaR4Vl8OnVzK48paplzwGnhtWlSyIa7vkgZhkFsVYCuzLajLf4joZB+gOYc+CkH7E7R0wzUEtpsiIaZRlZq34IWtiES+pj+246Q556cPmAsmgw==
+ bh=p9M2Fjc4lD7mG7P+P2vgIaQ/nhJ32/en9GCE5qENAqo=;
+ b=KHAtsMRixQezT9oHuu6qqLgkuXoH3dH1YAwfcbXog17zSHSfsDJwETN5cQBRHALqzmcHQaVPuNu25zjyMvHgEqXH5lfH2xqYVO7cxZHmz4NioafRbqsJJ/NvRRoEs4ss0J2IvMaf1U1UruYI53qzuCpsGOTtr6ZrZgtNQ3s3njDSav6AM5z3/KWlJc/GHVHd8LVjs+4Jyb24xDDjkPSO0d8J47rP7wBQfMVekcbAauiKgkeeAMeE9eQMqRkPJK1ttLRm73O1qZev3g6nt9KpM9FhBgxUDD3UGON2QVJpt+EkkBhgVc/0M7spFhMKC3zn7UMVMK7CHpq1vGTQ8KIhdg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TUPh/4bbyYXafIhGK9/G0C2DGzKz+jOKmKfK+ZI6/n0=;
- b=hz+KtBTqziondyH6FtuaYQkkncBmVasOIcw37CSjgVX8XQoTJh8ZAnpxysU9KIwTFqA/zGpcMrpNdDUBnX295sCvvFl2mnN5aFoHU+ajvgh+ZkDX6tBCWzWQveP+UIaoEMXrCm3OS82aSL1ofCiIWJ0CBMs6vKRSUDYWfNiQeSk=
+ bh=p9M2Fjc4lD7mG7P+P2vgIaQ/nhJ32/en9GCE5qENAqo=;
+ b=DjCrXlVZ9INXmJIgFtYrcy3FBfPUkKqK1EQLJhNge+FwTjCa7jWq7lncXz7/QzU3HgbrqYVP4y8mri2mU/TyYCFfKkqDKN2B+6MCKzzh1Oy3CWJDrWhUzvzcZI4TlHTsPWmgFZWWFXaPbkcXfEeYJ8tQs8Ci7+mucYUnarBD+ag=
 Received: from MN2PR07CA0004.namprd07.prod.outlook.com (2603:10b6:208:1a0::14)
- by SJ2PR12MB7991.namprd12.prod.outlook.com (2603:10b6:a03:4d1::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
+ by DS7PR12MB8231.namprd12.prod.outlook.com (2603:10b6:8:db::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.16; Thu, 9 Jul
  2026 21:02:14 +0000
 Received: from BL02EPF0001A0FC.namprd03.prod.outlook.com
- (2603:10b6:208:1a0:cafe::77) by MN2PR07CA0004.outlook.office365.com
+ (2603:10b6:208:1a0:cafe::39) by MN2PR07CA0004.outlook.office365.com
  (2603:10b6:208:1a0::14) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.10 via Frontend Transport; Thu, 9
  Jul 2026 21:02:14 +0000
@@ -70,11 +70,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Dominik Kaszewski <dominik.kaszewski@amd.com>,
- Wenjing Liu <wenjing.liu@amd.com>, George Zhang <george.zhang@amd.com>
-Subject: [PATCH 21/80] drm/amd/display: Fix indenting of dpms on
-Date: Thu, 9 Jul 2026 16:47:49 -0400
-Message-ID: <20260709205936.5719-22-george.zhang@amd.com>
+ <Chen-Yu.Chen@amd.com>, Charlene Liu <Charlene.Liu@amd.com>, Leo Chen
+ <leo.chen@amd.com>, George Zhang <george.zhang@amd.com>
+Subject: [PATCH 22/80] drm/amd/display: ensure dtbclk clk_src selected before
+ hdmistream_clk_en
+Date: Thu, 9 Jul 2026 16:47:50 -0400
+Message-ID: <20260709205936.5719-23-george.zhang@amd.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260709205936.5719-1-george.zhang@amd.com>
 References: <20260709205936.5719-1-george.zhang@amd.com>
@@ -86,29 +87,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FC:EE_|SJ2PR12MB7991:EE_
-X-MS-Office365-Filtering-Correlation-Id: b21b90c5-5b79-4706-d895-08deddfd5a3a
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FC:EE_|DS7PR12MB8231:EE_
+X-MS-Office365-Filtering-Correlation-Id: a552b7f6-cfc0-4196-f575-08deddfd5a7b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700016|23010399003|376014|82310400026|22082099003|18002099003|11063799006|56012099006|6133799003;
-X-Microsoft-Antispam-Message-Info: 27pQ3XfXDm0vWqBuWWA21r6GOLTTo2ZNuZko6epUBhPkZTg5JuvKNH0xnA0tN/4dXUi7N+xSoX6hVoyzqV5kPCYJMpu6jH4X14AxgM5UGJwJYwnSZdf9voi9c85Dl8oKgiDa60kjstJJw5n3Nfrq8MqIf7CJIx7GUD0S2wFEgkfHQEK9s9mlDr/8Ba7Bhj2l1OfdKkgNXe7DVVJ9TljnTOFvvVTKLGH0n+cW+72a4LpceDck1ewE/yO3ygJ3aYkUfJtQICKJ7nhhu6q9HhsigitBaTHBBOxxb5p8G26yAOwBT+5pJFr8xxibMqUCKg2Lo8lH7Cbos9I6sHFntbwew6AzgnJ3SUtSOtf5w6EOG7ru3wBDmWMLVoNTNPjJYGtu/2vFVOaHAy3pqDXUjRPq+IMQ+caAsQkZ176Je+RYG73B4cq8vqmC6xzbfKqeg5bBspXTfGtoS263VjTEDQOyFfje4npSW+W6VdHIw6B6mMKOlPb14o9cqrHfnL5eyKd/6poG7LwaZHZupgLgotxWpBYghDctoFo7iLDUYWU5Q0NL21Aq4692iPMEBd9esOOvlWVomZRs31xjbg94BMLNO1LKct17JFS5UthTjoIO8L7Whot/tr1Yl4MIQSwukWtr/av44EGSYoLgCbonajdVa2XXj83lPJ1V7Td8WKM8Uhq98y2+J+WdTMupIZBqOLdG6/RYZIID73QPd8/j3TC4iQ==
+ ARA:13230040|36860700016|23010399003|376014|1800799024|82310400026|11063799006|56012099006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: HpcnCLxNipFSwdGWGkrQ3ark57WATcq/XNUGqDAqtabRE7lOdundFY+vY/ARri8MI3SN4Hs72pRvW1SH/pnXbS4b41uRe9Ztj8dXCuFeE640O216nH3h2XCT02i/hJar8HUZMpTDnaQz4K+jktWSP1Pv7B2uERqPKv0HhWvUWaYNGhfYphMuc0ggcomQq7S9BD2N8pvR6+xQBqfTkDcHjjGo46ej5rSXzmeyYC2b8g31+nz6vgHQs0AO2yv8/KKZ+ydNQ7O2MS0Ne/J8Q5fU9PCYhx60FMUxOKywzGMWOv90p+Q6oHweKWSr/zdrWYucrMIGWHpT6nOaycU9LWoZJKJvid5DbYni+86sZHS4TU5yUWjHB9n70E2qIE+Up/UnoYrJIguB75VqJFjRtgys/dk3AwuQzEtrQX2ZJ9Cc7qNXmxDbDx3TkRB/eRt2tDZxzedPCwnZy6xHaYJuF6SHC4Pog6gU71jvgLaXniA5OOup0+4D4Pfd9c7ZymCKOJhM37b1EHcHoAMDKVpvtsahgv44PjaZ4rZEEDvVg9jFYOHFueXYzo3dCxAcpl7RcibOFoCMIg83VtjR0+BWPkjA/BcqtG1UN/lGrU4WCtxqI9DnA3ZwZ5fsHNRC4oSfgEPQoo3EPoJqJgg6uAfdZeNCkMirsd6EkohbvwPZYEw0hqu37wdMl1KnRkcjBRWcpigw39bvJwDJXL2VFMXd1ANIog==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700016)(23010399003)(376014)(82310400026)(22082099003)(18002099003)(11063799006)(56012099006)(6133799003);
+ SFS:(13230040)(36860700016)(23010399003)(376014)(1800799024)(82310400026)(11063799006)(56012099006)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: ayS7N5ub7HYhzFLjyk8m+i+YiKUGMY5re5Qv+UHdZkEIjYeg6QHe17slObgDrAyKAxssQuqiDuTA6Y3CuIAH9M7zru4AJTKDaenA3YGskjCJ4u8dpIpJ7rYX6qjKDI0JEFN67w9nGmYnpAjcDdT9xUaLRt4Wbz3BZvIQoN4NThZKbvSLGtHhFgDt+u7fOsJQ5iKZqY6UvAH2Q1i2MrPPDRM9u/8jdXUmDuSpZ6de6cCdS0SISwp1siPvxBkkzVFEaZTpn66M9D6VPXzO9d1b8PsS7zFmz5rTboevk+H7a8qJ3WggNP6DZDqMRHxWfcdldArPYOcHE9iNWUi61AvPfoXxOeLc/SvGtr5R1/S3LwTxg4s8Yj0Fe/8j8EJzlqrtTncTLX5lsJxTaQ9xhPZNTGdkxd8Q/SGD2/nXICkiWICQzAJSjWjcyjlicfYP7eRI
+X-MS-Exchange-AntiSpam-MessageData-0: gqYXLHm0nQEY+Pv2/acIOm2dFjnhIWgQ1l6jzwN3mZMOprcYc82dSfFOxCMhP0kXm5hIk6qisKX5qVngzZsFxI55W3Ear3v6Q8TOV9YVDBrHkPs6pHJrRVmF6YbJQaCfDwHSXGPOPPUcIVFpRSXeqJqek5iex1/HbHY356VlpTLqYDEdPIXKLrDDiZVhT1F8El9hAkUrrNHBELk7HgvlUpS7G11bWiffwM4cNRM4U+483Db5IZ0o+9ZrVpkeo7gsrlhb8fi+rUt54lTxP3eRNVD6tr5pKoEvrKBv2Sy2LqkCg+M0k6miNmCuLCLG5OYVe5b3gPOtuj+lwhU0mTJ7/wGT/RYx5FkAD2UqvMqmxQZMlUNpNpOGiadF8vTQvELP+qcihJFNYptT5OEs/n7JFjhw1xW+Gykvayqwb/6NgEgkZfWxUnkoeIphpFOo3fAW
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:14.3025 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b21b90c5-5b79-4706-d895-08deddfd5a3a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:14.7297 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a552b7f6-cfc0-4196-f575-08deddfd5a7b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FC.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7991
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8231
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,78 +153,63 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 047FA735A68
+X-Rspamd-Queue-Id: 2FA5E735A61
 
-From: Dominik Kaszewski <dominik.kaszewski@amd.com>
+From: Charlene Liu <Charlene.Liu@amd.com>
 
-[Why & How]
-Cleanup for future refactors.
+[why]
+correct a sequence issue by switching to dcn35's dccg sequence:
+to make sure select dtbclk src first before programming hdmistream_clk_en.
 
-Reviewed-by: Wenjing Liu <wenjing.liu@amd.com>
-Signed-off-by: Dominik Kaszewski <dominik.kaszewski@amd.com>
+Reviewed-by: Leo Chen <leo.chen@amd.com>
+Signed-off-by: Charlene Liu <Charlene.Liu@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../gpu/drm/amd/display/dc/link/link_dpms.c    | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.h | 5 ++++-
+ drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c | 2 +-
+ 3 files changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-index 479a8fbfdc5d..335ae952ef60 100644
---- a/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-+++ b/drivers/gpu/drm/amd/display/dc/link/link_dpms.c
-@@ -2610,13 +2610,14 @@ void link_set_dpms_on(
- 	 */
- 	if (stream->timing.flags.DSC) {
- 		if (dc_is_dp_signal(stream->signal) ||
--		    dc_is_virtual_signal(stream->signal))
-+			dc_is_virtual_signal(stream->signal))
- 			link_set_dsc_enable(pipe_ctx, true);
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c b/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c
+index 83589777f1ca..85da247139c3 100644
+--- a/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c
++++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.c
+@@ -1654,7 +1654,7 @@ void dccg35_set_dpstreamclk_root_clock_gating(struct dccg *dccg, int dp_hpo_inst
 
- 	if (link->replay_settings.config.replay_supported && !dc_is_embedded_signal(link->connector_signal))
- 		dp_setup_replay(link, stream);
 
-+	// TODO: Split DPMS-on into 3 functions at this point
- 	status = enable_link(state, pipe_ctx);
 
- 	if (status != DC_OK) {
-@@ -2629,9 +2630,9 @@ void link_set_dpms_on(
- 		 * show the stream anyway. But MST displays can't proceed
- 		 * without link training.
- 		 */
--			if ((status != DC_FAIL_DP_LINK_TRAINING &&
--					status != DC_FAIL_HDMI_FRL_LINK_TRAINING) ||
--					stream->signal == SIGNAL_TYPE_DISPLAY_PORT_MST) {
-+		if ((status != DC_FAIL_DP_LINK_TRAINING &&
-+				status != DC_FAIL_HDMI_FRL_LINK_TRAINING) ||
-+				stream->signal == SIGNAL_TYPE_DISPLAY_PORT_MST) {
- 			if (false == link->link_status.link_active)
- 				disable_link(link, &pipe_ctx->link_res,
- 						stream->signal);
-@@ -2639,6 +2640,7 @@ void link_set_dpms_on(
- 			return;
- 		}
- 	}
-+	// TODO: Split DPMS-on into 3 functions at this point
+-static void dccg35_set_hdmistreamclk(
++void dccg35_set_hdmistreamclk(
+ 		struct dccg *dccg,
+ 		enum streamclk_source src,
+ 		uint32_t otg_inst)
+diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.h b/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.h
+index 554700287c1a..58f4c1e998b3 100644
+--- a/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.h
++++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn35/dcn35_dccg.h
+@@ -269,5 +269,8 @@ void dccg35_disable_dscclk(struct dccg *dccg, int inst);
 
- 	if (stream->timing.flags.DSC && dc_is_hdmi_frl_signal(stream->signal))
- 		//TODO: bring HDMI FRL in line with DP
-@@ -2657,13 +2659,11 @@ void link_set_dpms_on(
- 	if (!(dc_is_virtual_signal(stream->signal) ||
- 			dc_is_hdmi_frl_signal(stream->signal) ||
- 			dp_is_128b_132b_signal(pipe_ctx))) {
+ void dccg35_enable_symclk_se(struct dccg *dccg, uint32_t stream_enc_inst, uint32_t link_enc_inst);
+ void dccg35_disable_symclk_se(struct dccg *dccg, uint32_t stream_enc_inst, uint32_t link_enc_inst);
 -
--			if (link_enc)
--				link_enc->funcs->setup(
-+		if (link_enc)
-+			link_enc->funcs->setup(
- 					link_enc,
- 					stream->signal);
--
--		}
-+	}
-
- 	dc->hwss.enable_stream(pipe_ctx);
-
++void dccg35_set_hdmistreamclk(
++		struct dccg *dccg,
++		enum streamclk_source src,
++		uint32_t otg_inst);
+ #endif //__DCN35_DCCG_H__
+diff --git a/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c b/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c
+index 616a896f0782..3b03b152da22 100644
+--- a/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c
++++ b/drivers/gpu/drm/amd/display/dc/dccg/dcn42/dcn42_dccg.c
+@@ -313,7 +313,7 @@ static void dccg42_init(struct dccg *dccg)
+ static const struct dccg_funcs dccg42_funcs = {
+ 	.enable_hdmicharclk = dccg401_enable_hdmicharclk,
+ 	.disable_hdmicharclk = dccg42_disable_hdmicharclk,
+-	.set_hdmistreamclk = dccg401_set_hdmistreamclk,
++	.set_hdmistreamclk = dccg35_set_hdmistreamclk,
+ 	.set_hdmistreamclk_root_clock_gating = dccg35_set_hdmistreamclk_root_clock_gating,
+ 	.update_dpp_dto = dccg35_update_dpp_dto,
+ 	.dpp_root_clock_control = dccg35_dpp_root_clock_control,
 --
 2.55.0
 
