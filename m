@@ -2,53 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mRAFHYoMUGpSsgIAu9opvQ
+	id ibB7AnoMUGo2sgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:03:06 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:50 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00C08735B68
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:03:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E028735B15
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=Y6OxzGyp;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=iMPATrEU;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DD1710F702;
-	Thu,  9 Jul 2026 21:03:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36F4610F6FA;
+	Thu,  9 Jul 2026 21:02:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010045.outbound.protection.outlook.com
- [40.93.198.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6316110F6F3
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:42 +0000 (UTC)
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013064.outbound.protection.outlook.com
+ [40.93.201.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B771510F6F6
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BUAZpigvZIbNuV7dg+Cr1Th+EZ/TatuPV/0n5FT7kX2eXXX3bySXIOz3XkXL45aQN6GiRw2a+7Twd5Cgt6bYktSFQOP81wJ3Npi6V1CWPf5ADk7b1dDSdlwfwd7RVJVWWpmmZ3dD1oB+CKC6z/vrD+ZHbNKqsMMVYbOr/7cstMOpA9DMgRvqIHwd0iENLT301F4O1Y8IcQvjlvUz8aN732nS3sggvINM3SW1EcKMHa0D49d6rD5I/EG8Sfjm/j5mmqms0y4Ptwzbc4+PTeGNDToFjmsCjN1Ynmyxe2PI9aRoY8RmdFLOeR/EkVF4TN/tVChK6KaRPsCu5h880uFLAw==
+ b=Bq8eg7LfLdU99cUt/d/4s+2bH4wBWYKiiCRqCp0/YWtQjwIoio05hkQt3OZ678tmY53j87qHgxlyLf3xiSMZ34AD4sbce7KxmQWHgPHuyjT5v7t0y/RIGVQUggggV9XzvdV5NsYJrCoeaJt/EgDlQ1qTO/VMC2zmnqH+gTVfNlYIb2h3Ar+JxwmJl9bNOWkCHjzEWJYKaonHfNQ86bsRs+T8BCvrNFmmH8vaFQVx6fYOU6yLCnd13/ept44X5JUsnJpNdvGlAGAXG0V7ZiJf0fLqP+i6OADZI1LTisAiDmESubLWXXNO9nw8x7TQV0Irpnf7sbET3owtJwBOs9AjmQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=88oXVeYYXU62zHRnGxZQFK0eWez/eMzFM16G4nhRtOQ=;
- b=gKS+qQEfh9e1g14IzABNOsNQEI35PD/67NTQ1Xfy+oQaatmA0EE9YEyoPad6haj/LZoL/DoYyMndSpgCkTXwyB0rkLsB7EE/M8iAZ5wQb6En++CaB63xJ4BrM4Tr6dx0yEKUTXEuO4p5uAiN4O7tfpdKDLSHuYM2mP0+MHZl8eD6E81PvEPYQ9OtgS9RDWgqEGgKp0iRqcnBRm01ktY6c2+fBbTEkN14j6uylJRBs6rZUSlj4X+8Tsm5xx8Gwgv84+d2iX6RBNwMXD4fi/WyItlRt4idTKqFgpQfNwrX8jz52Vkx5y1Ej+qyGnsOtJcZ+sa4h2NQGIB/oJu+BDk3Ag==
+ bh=lDFVvFeb6GSCEciupCHCY4QXZDdPRkViN43aIHZGKeA=;
+ b=dIm6BCo/drICd6VBX5GE1EzGPoD1oPzPYzrdce2jn5JneagV9T+5THLKvM3pHBAbOW//FQNVs1S91NCQIcFROwFYAyEeyZ594skDFfrJKXZr4zioBGZLqd64Ad8EMNFUHeajciQXVIGMYTeiMazOTxdPMxTkog7DMwC0knzRoOdXCJgGLI4GIWl5JwyNkabLKw8/qoh62Cnsee/T4G6lCGxRFmkbE8tx62vmikNZmVRobUOSykMHPQlxyfTY4hB1b4wnY75aLRB2fn4d5hYxp3Zj8iiD7XPUN6dLL5J+eBdsBBA2cRlJLtyccpfMdLaATE4cNMD9i4lq76wVhcUQmg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=88oXVeYYXU62zHRnGxZQFK0eWez/eMzFM16G4nhRtOQ=;
- b=Y6OxzGypyQjz0CtKfptoAeUtqhLlcFrdkMv9JfbnvkAgPUBSwWdFUPYiSnCbmbgootI1cMdOSvvpY/m4ppoVZ2ePEpAivaSPSFjZDhI6ngWtiNn5ACgkoF6hMBRpY87QpyvXVmsSUJ40nel9h6ngo/xBZvX4rEO1zs4f6oL2VcE=
-Received: from MN0PR04CA0010.namprd04.prod.outlook.com (2603:10b6:208:52d::25)
- by MN0PR12MB5980.namprd12.prod.outlook.com (2603:10b6:208:37f::18)
+ bh=lDFVvFeb6GSCEciupCHCY4QXZDdPRkViN43aIHZGKeA=;
+ b=iMPATrEUREDe1hz4Xx0VdsTCY8tgDbZLwU7nAbDUpi8tl6qB+L+z4m3QB1QNYACTXLg2NpmlkdiUrMx3xriJVSnKGOnox2OWILFlCeK/2EjlRbllHBoRmgDLbDJ6D3+8Qdujxu85sqWzUdeJJXpkKEzpIVkNnA2Xqb12cm94SxM=
+Received: from BLAPR03CA0164.namprd03.prod.outlook.com (2603:10b6:208:32f::20)
+ by SJ0PR12MB8137.namprd12.prod.outlook.com (2603:10b6:a03:4e5::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Thu, 9 Jul
- 2026 21:02:38 +0000
-Received: from BL02EPF0001A100.namprd03.prod.outlook.com
- (2603:10b6:208:52d:cafe::4) by MN0PR04CA0010.outlook.office365.com
- (2603:10b6:208:52d::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.12 via Frontend Transport; Thu, 9
- Jul 2026 21:02:38 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
+ 2026 21:02:39 +0000
+Received: from BL02EPF0001A0FD.namprd03.prod.outlook.com
+ (2603:10b6:208:32f:cafe::7) by BLAPR03CA0164.outlook.office365.com
+ (2603:10b6:208:32f::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.11 via Frontend Transport; Thu, 9
+ Jul 2026 21:02:39 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,9 +56,9 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A100.mail.protection.outlook.com (10.167.242.107) with Microsoft
+ BL02EPF0001A0FD.mail.protection.outlook.com (10.167.242.104) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:38 +0000
+ 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:39 +0000
 Received: from georzhanmkm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
@@ -71,12 +71,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Karthi Kandasamy <karthi.kandasamy@amd.com>, Aric Cyr
- <aric.cyr@amd.com>, George Zhang <george.zhang@amd.com>
-Subject: [PATCH 73/80] drm/amd/display: Fix DMSS not triggering for HDR to SDR
- transition
-Date: Thu, 9 Jul 2026 16:48:41 -0400
-Message-ID: <20260709205936.5719-74-george.zhang@amd.com>
+ <Chen-Yu.Chen@amd.com>, Dmytro Laktyushkin <dmytro.laktyushkin@amd.com>,
+ Taimur Hassan <syed.hassan@amd.com>, George Zhang <george.zhang@amd.com>
+Subject: [PATCH 74/80] drm/amd/display: fix dcn42 det allocation order
+Date: Thu, 9 Jul 2026 16:48:42 -0400
+Message-ID: <20260709205936.5719-75-george.zhang@amd.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260709205936.5719-1-george.zhang@amd.com>
 References: <20260709205936.5719-1-george.zhang@amd.com>
@@ -88,29 +87,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A100:EE_|MN0PR12MB5980:EE_
-X-MS-Office365-Filtering-Correlation-Id: 52a9f153-0635-4094-c3e5-08deddfd68a6
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FD:EE_|SJ0PR12MB8137:EE_
+X-MS-Office365-Filtering-Correlation-Id: a95032da-9044-4d2a-1fb6-08deddfd68f5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|82310400026|376014|23010399003|1800799024|3023799007|22082099003|6133799003|18002099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: gP4ZEokM3OKkyNUiMcjzfjnsFHSuk5OqvAgaNgUMr5ppMeFTKQoewpSB03MmBcYfXkddZEO+uP/GZ16Rz8EAK9BTgjbj6EgGrBolfbvLIHHolf3sOckMYtCo/jjFBTRp2HVqPglZN/04e4GGjJI07ZfMLPp62j0Z4Zq7HNZJcTTuNYHVOcjNrosMEz62/c8Et36LUPQ4i2eR0rv3F+hNtciDiKjmgx4QLRHJl4fz6+CqoRUPYB846SKFGYuXSdadvUoKthvBSgkIgwzrAmohc1IdR+mcwRmCK5S0SDqdG2y8mW9w+vww7kp1zZo9i+eUWaM5cQD48o6L4MZJuDbFlKahDt594vzkEfXRVba4U2PnwbLOMymvSMpbxO76z0QZTHPVUVOvDgFGe+pPsJH0ykfTKng3L0Nv+mu17oNCZOoV7QxPLsEd0AZuWZgkZ5OLF4EcZLjsF59WytPbo+P5xyZ/PaOPlxvPFmmkiM/yMoHErqnwAmp0bxY2YiHyc4DivMPTcXu5OPsvvRy77QrVc3AiUY6bPEw2VHlMXN071o8lQrhnF/VU6LjRFqdkLuKD4fgr6Gcs7sFZ+auVCJZGiQK7MdMeabxZHG44Yvnv5sDXmlXGiC6Np/9WrazCpj/VQfTcb46HWyBI0i6m7Pg7MYjU3JDfeF+g6IaNK912dzKlUQkrPBo1Sp4jkQsRaQEqBdLynfEMH04AepHLukw4iA==
+ ARA:13230040|36860700016|376014|23010399003|82310400026|1800799024|18002099003|22082099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: xHze0+NjvGUhllAQ0ROSnUG5UySoNQSarux7nS4hVndMWM8n09lZ2iBQiV6OovUEZyHgNIqQUQgKNLP6m6hCWKs8Fln4xCjU/6C5JI1z3htfPAN0AN/WfXPXTb0sB0Uqch6ymK4+3PLkZBsLiqYLIzLPmGT+W/3AX3xEA5IoHrEbw2pmyLNNwcFD1dz6ORw2yQVkIy/WnzRYfAQ/895QwhEOkede9hQunHMnfyDxfsACDRqpBPhcmiHYKwOiBTtMC0FfSxzFL6eMn+K/a3sS8/VtsqUn0vN4YWzBEAm9OFhk4qtj6f930ZloWD4TG7aWNhnpC1DOJst2fo3pRbISNxMJgfGWBBOmnRhPz9TdsHprsH0xDb21KXR/8B6TSHEpazRJZ6zwptCdEG2iZ+2lolvY0WBfbsKk2v0WrZZt5DdCLLcdXuh5xoSQFZpJ4V1HUJnc5aC9T1SDyZwOY85AFnRJGY0BPezG+yGTLhFnyg33Fxf1Glq/M4WUIoWiYJLCDyhiTREHnEHNnLBPh+zI1Y0YIe8FH2D+TKNvqGonb3yM4zt0RUsSpPycJgl+EHcb1NLtllZ5dbOuGBpOxHguZYIklhvaUzvRXBXwBtY/A9hgGzv9hhNZVi2vDD9c81Ad1Wni2JWnT8vwI+mQoFdrJZH8lgmy/aPJDCsndtLEOW2vxDaIYSR8lhbVTPrBZr28gJyhm0fEP48VoBRsGG4Ocw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(82310400026)(376014)(23010399003)(1800799024)(3023799007)(22082099003)(6133799003)(18002099003)(11063799006)(56012099006);
+ SFS:(13230040)(36860700016)(376014)(23010399003)(82310400026)(1800799024)(18002099003)(22082099003)(56012099006)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 3C20H3fDe0AEXZH3pmM7hZQhm7+2jMqrloq62lqULdnsSb5MR6ePNSRwt/sW6QrKlwzSrmayO0ENzrKCHeP9BJdMdFIhErCKi8m8hn6TYDtAME+5hJclfPyZW3N7Cb84z44cZlBV82+81KmG9uXxvhbMU+AD4FY6v9mArNqg0bogb0NCKLnKpIXDqukCE0rWHaQgRvhXf1QIoJT4IUwGpedHJ97m+/8nNV+o8Rb1HwgskL72wGPoGDoVn54C/HxcVqq78Evt7tJYOVNgue/Ino3q99onxbcuRe2u2v2IKf6EinylYL8Azazyo/HQu93nCVY6M0kBJX3IcO1C1kSFyD5QCrEYBfvBu0Li4rPGz4m5RxIuVk3ah29XVvQJ+7ZnNqbRlquzmsnPz/iOfXuuOJCH1szXPWSdhTVIzFS3kXbFDaLo8lwmGNJxZg/eKxT7
+X-MS-Exchange-AntiSpam-MessageData-0: BjVocf1C/+FQEjaresbbAsWnGVyG5v/T+tM3WsGx9IJXViuxeMKS2E2zwaQAdNySn06rhiR4wnkNMlzyb+yzRdh6yhLpwVHiYQij/AytpnI8t3K8KkfQ42QoFTnlXrIVncfm4wPr/5le7Lz+EpSb5kHTAKBdZceas32xMRzrjdGSrv1uxEtPJCx8vK3flB6JhnpWsOqTuehLXO24lWsNDdIQCL0P/BRL9hFlKZ+tAUojDsCNq5cUiM18hMcDZNaUr7Al+AgqpajUK2p+omiOz1S1Y2noAPtlpBV31d6SD4A8BBwHMDv9JDc8ESjZXu0t4oeoJMUlKr4SABQ0Mn2U+3ptytueQJk5Zkuk9dNI36xTQL+sbpri8TcLU9O9rtN5u0LHTOVGR+g03ag941EdV4YJ+a9MYW8sQYtXVpMtOrXRSv036V6f4GoqZgQCqma3
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:38.5050 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 52a9f153-0635-4094-c3e5-08deddfd68a6
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:39.0094 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a95032da-9044-4d2a-1fb6-08deddfd68f5
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A100.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FD.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5980
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB8137
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,229 +153,32 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 00C08735B68
+X-Rspamd-Queue-Id: 8E028735B15
 
-From: Karthi Kandasamy <karthi.kandasamy@amd.com>
+From: Dmytro Laktyushkin <dmytro.laktyushkin@amd.com>
 
-Why:
-DMSS feature was not getting triggered during HDR to SDR transitions,
-and no DPCD write was observed. Root cause analysis revealed that
-incorrect panel capabilities were being reported for PSR SU panels.
-Due to the wrong capabilities, the OS was not invoking the DMSS API,
-resulting in no DPCD communication and also gate eDP teardown across
-DMSS hold
+set_pipe_unlock_order needs to be set to true for the pipes to be unlocked
+in correct order to avoid det overallocation
 
-How:
-Fixed by setting the correct power panel capabilities for PSR SU panels.
-This ensures the OS receives accurate panel capability information and
-triggers the DMSS API as expected, restoring proper DPCD writes during
-HDR to SDR transitions.
-The DC commit sequence,was tearing the eDP down anyway -- backlight off, ABM disable,
-DPMS off, PSR/Replay feature_enabled cleared, PHY TX off, OTG/OPTC off
-all these actions are blocked now with the skip_implict_edp_power_control
-
-Reviewed-by: Aric Cyr <aric.cyr@amd.com>
-Signed-off-by: Karthi Kandasamy <karthi.kandasamy@amd.com>
+Reviewed-by: Taimur Hassan <syed.hassan@amd.com>
+Signed-off-by: Dmytro Laktyushkin <dmytro.laktyushkin@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../amd/display/dc/hwss/dce110/dce110_hwseq.c | 12 +++++++---
- .../amd/display/dc/hwss/dcn31/dcn31_hwseq.c   | 21 ++++++++++++-----
- .../amd/display/dc/hwss/dcn35/dcn35_hwseq.c   |  7 ++++--
- .../amd/display/dc/hwss/dcn401/dcn401_hwseq.c | 23 ++++++++++++++-----
- .../drm/amd/display/modules/power/power_psr.c |  7 ++++++
- .../amd/display/modules/power/power_replay.c  |  7 ++++++
- 6 files changed, 60 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-index c9691974bf72..cce4f3065575 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dce110/dce110_hwseq.c
-@@ -1287,7 +1287,9 @@ void dce110_blank_stream(struct pipe_ctx *pipe_ctx)
- 		return;
- 
- 	if (link->local_sink && link->local_sink->sink_signal == SIGNAL_TYPE_EDP) {
--		if (!link->skip_implict_edp_power_control && hws)
-+		if (link->skip_implict_edp_power_control)
-+			return;
-+		if (hws)
- 			hws->funcs.edp_backlight_control(link, false);
- 		link->dc->hwss.set_abm_immediate_disable(pipe_ctx);
- 	}
-@@ -1793,7 +1795,9 @@ enum dc_status dce110_apply_single_controller_ctx_to_hw(
- 			dc->link_srv->set_dsc_enable(pipe_ctx, true);
- 	}
- 
--	if (!stream->dpms_off)
-+	if (!stream->dpms_off &&
-+	    !(link->connector_signal == SIGNAL_TYPE_EDP &&
-+	      link->skip_implict_edp_power_control))
- 		dc->link_srv->set_dpms_on(context, pipe_ctx);
- 
- 	/* DCN3.1 FPGA Workaround
-@@ -1812,7 +1816,9 @@ enum dc_status dce110_apply_single_controller_ctx_to_hw(
- 	 * is constructed with the same sink). Make sure not to override
- 	 * and link programming on the main.
- 	 */
--	if (dc_state_get_pipe_subvp_type(context, pipe_ctx) != SUBVP_PHANTOM) {
-+	if (dc_state_get_pipe_subvp_type(context, pipe_ctx) != SUBVP_PHANTOM &&
-+	    !(link->connector_signal == SIGNAL_TYPE_EDP &&
-+	      link->skip_implict_edp_power_control)) {
- 		pipe_ctx->stream->link->psr_settings.psr_feature_enabled = false;
- 		pipe_ctx->stream->link->replay_settings.replay_feature_enabled = false;
- 	}
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
-index b6f3c0480ab6..6f1ad651ed2c 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn31/dcn31_hwseq.c
-@@ -537,10 +537,12 @@ static void dcn31_reset_back_end_for_pipe(
- 	}
- 	ASSERT(!pipe_ctx->top_pipe);
- 
--	dc->hwss.set_abm_immediate_disable(pipe_ctx);
--
- 	link = pipe_ctx->stream->link;
- 
-+	if (!(link->connector_signal == SIGNAL_TYPE_EDP &&
-+	      link->skip_implict_edp_power_control))
-+		dc->hwss.set_abm_immediate_disable(pipe_ctx);
-+
- 	if (dc->hwseq)
- 		dc->hwseq->wa_state.skip_blank_stream = false;
- 
-@@ -555,9 +557,11 @@ static void dcn31_reset_back_end_for_pipe(
- 			pipe_ctx->stream_res.tg,
- 			OPTC_DSC_DISABLED, 0, 0);
- 
--	pipe_ctx->stream_res.tg->funcs->disable_crtc(pipe_ctx->stream_res.tg);
--
--	pipe_ctx->stream_res.tg->funcs->enable_optc_clock(pipe_ctx->stream_res.tg, false);
-+	if (!(link->connector_signal == SIGNAL_TYPE_EDP &&
-+	      link->skip_implict_edp_power_control)) {
-+		pipe_ctx->stream_res.tg->funcs->disable_crtc(pipe_ctx->stream_res.tg);
-+		pipe_ctx->stream_res.tg->funcs->enable_optc_clock(pipe_ctx->stream_res.tg, false);
-+	}
- 	if (pipe_ctx->stream_res.tg->funcs->set_odm_bypass)
- 		pipe_ctx->stream_res.tg->funcs->set_odm_bypass(
- 				pipe_ctx->stream_res.tg, &pipe_ctx->stream->timing);
-@@ -586,7 +590,12 @@ static void dcn31_reset_back_end_for_pipe(
- 	 * screen only, the dpms_off would be true but
- 	 * VBIOS lit up eDP, so check link status too.
- 	 */
--	if (!pipe_ctx->stream->dpms_off || link->link_status.link_active)
-+	if (link->connector_signal == SIGNAL_TYPE_EDP &&
-+	    link->skip_implict_edp_power_control) {
-+		/* DMSS is holding the panel across the commit; skip dpms-off. */
-+		if (pipe_ctx->stream_res.audio)
-+			dc->hwss.disable_audio_stream(pipe_ctx);
-+	} else if (!pipe_ctx->stream->dpms_off || link->link_status.link_active)
- 		dc->link_srv->set_dpms_off(pipe_ctx);
- 	else if (pipe_ctx->stream_res.audio)
- 		dc->hwss.disable_audio_stream(pipe_ctx);
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-index f14c39a643da..4ed7480d1efa 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn35/dcn35_hwseq.c
-@@ -1818,8 +1818,11 @@ void dcn35_disable_link_output(struct dc_link *link,
- 		disable_link_output_symclk_on_tx_off(link, DP_UNKNOWN_ENCODING);
- 		link->phy_state.symclk_state = SYMCLK_ON_TX_OFF;
- 	} else {
--		link_hwss->disable_link_output(link, link_res, signal);
--		link->phy_state.symclk_state = SYMCLK_OFF_TX_OFF;
-+		if (!(signal == SIGNAL_TYPE_EDP &&
-+		      link->skip_implict_edp_power_control)) {
-+			link_hwss->disable_link_output(link, link_res, signal);
-+			link->phy_state.symclk_state = SYMCLK_OFF_TX_OFF;
-+		}
- 	}
- 	/*
- 	 * Add the logic to extract BOTH power up and power down sequences
-diff --git a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-index 632f183fe755..1862670ea042 100644
---- a/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/hwss/dcn401/dcn401_hwseq.c
-@@ -1101,8 +1101,11 @@ void dcn401_disable_link_output(struct dc_link *link,
- 		disable_link_output_symclk_on_tx_off(link, DP_UNKNOWN_ENCODING);
- 		link->phy_state.symclk_state = SYMCLK_ON_TX_OFF;
- 	} else {
--		link_hwss->disable_link_output(link, link_res, signal);
--		link->phy_state.symclk_state = SYMCLK_OFF_TX_OFF;
-+		if (!(signal == SIGNAL_TYPE_EDP &&
-+		      link->skip_implict_edp_power_control)) {
-+			link_hwss->disable_link_output(link, link_res, signal);
-+			link->phy_state.symclk_state = SYMCLK_OFF_TX_OFF;
-+		}
- 	}
- 
- 	if (signal == SIGNAL_TYPE_EDP &&
-@@ -2150,7 +2153,12 @@ void dcn401_reset_back_end_for_pipe(
- 	 * screen only, the dpms_off would be true but
- 	 * VBIOS lit up eDP, so check link status too.
- 	 */
--	if (!pipe_ctx->stream->dpms_off || link->link_status.link_active)
-+	if (link->connector_signal == SIGNAL_TYPE_EDP &&
-+	    link->skip_implict_edp_power_control) {
-+		/* DMSS is holding the panel across the commit; skip dpms-off. */
-+		if (pipe_ctx->stream_res.audio)
-+			dc->hwss.disable_audio_stream(pipe_ctx);
-+	} else if (!pipe_ctx->stream->dpms_off || link->link_status.link_active)
- 		dc->link_srv->set_dpms_off(pipe_ctx);
- 	else if (pipe_ctx->stream_res.audio)
- 		dc->hwss.disable_audio_stream(pipe_ctx);
-@@ -2175,12 +2183,15 @@ void dcn401_reset_back_end_for_pipe(
- 	 * parent pipe.
- 	 */
- 	if (pipe_ctx->top_pipe == NULL) {
-+		if (!(link->connector_signal == SIGNAL_TYPE_EDP &&
-+		      link->skip_implict_edp_power_control)) {
- 
--		dc->hwss.set_abm_immediate_disable(pipe_ctx);
-+			dc->hwss.set_abm_immediate_disable(pipe_ctx);
- 
--		pipe_ctx->stream_res.tg->funcs->disable_crtc(pipe_ctx->stream_res.tg);
-+			pipe_ctx->stream_res.tg->funcs->disable_crtc(pipe_ctx->stream_res.tg);
- 
--		pipe_ctx->stream_res.tg->funcs->enable_optc_clock(pipe_ctx->stream_res.tg, false);
-+			pipe_ctx->stream_res.tg->funcs->enable_optc_clock(pipe_ctx->stream_res.tg, false);
-+		}
- 		if (pipe_ctx->stream_res.tg->funcs->set_odm_bypass)
- 			pipe_ctx->stream_res.tg->funcs->set_odm_bypass(
- 					pipe_ctx->stream_res.tg, &pipe_ctx->stream->timing);
-diff --git a/drivers/gpu/drm/amd/display/modules/power/power_psr.c b/drivers/gpu/drm/amd/display/modules/power/power_psr.c
-index 5ecb570c204e..0ad4c4924696 100644
---- a/drivers/gpu/drm/amd/display/modules/power/power_psr.c
-+++ b/drivers/gpu/drm/amd/display/modules/power/power_psr.c
-@@ -58,6 +58,13 @@ bool mod_power_psr_notify_mode_change(struct mod_power *mod_power,
- 	// stream_index is passed as validated parameter
- 	active_psr_events = core_power->map[stream_index].psr_events;
- 
-+	/* DMSS holds the panel in a forced PSR freeze (e.g. during HDR/SDR toggle).
-+	 * Re-running edp_setup_psr would reprogram DPCD 0x170 and disturb the freeze,
-+	 * so skip the PSR re-setup until DMSS releases the override.
-+	 */
-+	if (active_psr_events & psr_event_os_override_hold)
-+		return false;
-+
- 	/* Calculate PSR configurations */
- 	mod_power_calc_psr_configs(&psr_config, link, stream);
- 
-diff --git a/drivers/gpu/drm/amd/display/modules/power/power_replay.c b/drivers/gpu/drm/amd/display/modules/power/power_replay.c
-index e782501442c4..1ad2ee01d560 100644
---- a/drivers/gpu/drm/amd/display/modules/power/power_replay.c
-+++ b/drivers/gpu/drm/amd/display/modules/power/power_replay.c
-@@ -805,6 +805,13 @@ void mod_power_replay_notify_mode_change(struct mod_power *mod_power,
- 	core_power = MOD_POWER_TO_CORE(mod_power);
- 	active_replay_events = core_power->map[stream_index].replay_events;
- 
-+	/* DMSS holds the panel in a forced freeze (e.g. during HDR/SDR toggle).
-+	 * Re-running dp_setup_replay would reprogram DPCD 0x37B and disturb the
-+	 * freeze, so skip the replay re-setup until DMSS releases the override.
-+	 */
-+	if (active_replay_events & replay_event_os_override_hold)
-+		return;
-+
- 	link->replay_settings.replay_smu_opt_enable =
- 		(link->replay_settings.config.replay_smu_opt_supported &&
- 		mod_power_only_edp(dc->current_state, stream));
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
+index 640a5a422f90..e40e246bcc82 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn42/dcn42_resource.c
+@@ -2145,6 +2145,7 @@ static bool dcn42_resource_construct(
+ 	dc->config.use_pipe_ctx_sync_logic = true;
+ 	dc->config.dc_mode_clk_limit_support = false;
+ 	dc->config.enable_windowed_mpo_odm = true;
++	dc->config.set_pipe_unlock_order = true; /* Need to ensure DET gets freed before allocating */
+ 	/* Use psp mailbox to enable assr */
+ 	dc->config.use_assr_psp_message = true;
+ 	/* dcn42 and afterward always support external panel replay */
 -- 
 2.55.0
 
