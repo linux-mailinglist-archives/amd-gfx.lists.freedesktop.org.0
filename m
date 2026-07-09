@@ -2,52 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Mio9HFgMUGr3sQIAu9opvQ
+	id gUmgHl8MUGr8sQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:16 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:23 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF3B4735A57
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C973735A6D
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=4kU3x2Zb;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=kUofGQgv;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31B2710F6BD;
-	Thu,  9 Jul 2026 21:02:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 518BA10F6D0;
+	Thu,  9 Jul 2026 21:02:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012058.outbound.protection.outlook.com [52.101.43.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC9A610F6BD
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:13 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010063.outbound.protection.outlook.com [52.101.56.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A90D210F6CF
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:18 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LfQALMLkDMcWPfmjFXrXNxEE/MRI6am8DvBi24JhNz7aLmlohppbrx8nxnY+UgxEGP1oawZAP5nJsaQLCR+E3g490SZ4QoFWQLCvRFMa/+jklVaikvYOyE0NHZx/r1UD7P/STa/wPiM9C80C+cXrZbpYeMNnfi0iscOVxvJR5oCdkTEXsVakyiqvtSTK7K4YL1zer8dxieG6bIaSvsIESsUK4OMIHNyouRj5/fgYze06Q9oRGpwTZCDtoEmtwPEmHVVehlOA5Ff+pO4KIbv0hU2TRMZAbMCsFR/vMOEJtQQz1WGipZ5MDmmtMmX/k2o6LgtvMtd1TasOtBmXoh5ZPA==
+ b=PoBfztR8Sn86vmh/c3K0kf9JDoaSs3fVaGb2Fyh245226ICEx7c2lQdLGO6L1RO0zKxaIamtX6q+EP8jL3ss+Q31yNpPR8vM2KPIReZ3nXyvWq7pCO87b5JJN1YoSHcHQHy5saXnFiq4WFWNx5DmZdgiEIQOeOsxfU2YIphE++dtrBs3Jx63QVmRm1Se9bQuNjjNosHu+gwshTC9YyEK2WHTI5wWel8JmAINnTZrF3qv1BZPl2sANSgmw12Sn9S1RBP5wgaxhr+gSrXoLc/tqM7apzISa/0z3p0DyppVY5FFr0pX/KgEKNgTgJZlQsSQP5tu3JfR/ulc5fHd4zv9tg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4KRDdjV1VvTaS4Ac79c7OiLTFKi1bZtYRKyQrviccaY=;
- b=AVWSc/wUwL7w0N7IEnxki5x+Axbos8eLu7ae3VGpanGwrBfgWhfjaiFEUWPip3qTYCab1oUacKSFL+ffaiAl1q7dGuZg6JSr4I6fcJUBn+X9YWOzaXmDpdP2+/b268xC9XscIRO2sWDkZoFvgCdRbaRxmt5e6qf5CIW64oTGq4gtyKNo2SBWSwO/wjdukqjPrMaEwl1W2di/VWgv45tIVy/0XasUBfe3BGxL9WXe68WBcJAUvM0LYahg/+8ShGPIUXK/QrY0LtYKfXLONTeqGBtXAIdWTw6pNAmpK4cXLfREd7b8iiCuIyWRdJMyNjqzwUtFkm7F71sNnEUETefbmg==
+ bh=8v7z3ky/StrIrt9kLXFw36IFiXbW1SdNasjG5tXiGkQ=;
+ b=C1SW/yo51JNU9rDkVc56RaKfp+modOXm7eBHcOBP3XiNpjzmm4tpWW/6LiJe9LJWyiUjFcA+PloC0pqgzPSkjyOSsSTX8VFT5aL4/I4/vYeXcJp1vSIpiexx8o5ojN36I0FcSn7NtA3QWyxKS1fBPa9nZQ0jN6KzXfMXOJmolacgfEW1/0TfrJQyXJRhfzI81S5uD/J5lIxqT9NA0/TPF3DNTelhD2VABMfxDQlW3Hn1KgZUNgzURQBSqzqASCfNxBrAqLBSL8pcz8AkYc6lgoKatmJkWYi07EAjGCby6QnMZ41cHchEJLUw0uekWmmZWEOI2CsvGerdGp9Ia3HouA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4KRDdjV1VvTaS4Ac79c7OiLTFKi1bZtYRKyQrviccaY=;
- b=4kU3x2ZbzCmUmAKRunxM/A9L0bGviV9kf/0Tpm/AZgMZ/Mf+EZv2MGhV51S8VH4u/yIswKzp11EDoAUh2Q7W1ePexySNo8nS/1lXNortPquGwvZ2Pboq0sWowjjefXhHkteRaAcd8GIwQQKlpqajrTY58ElhJSXsEQc3KyfNySQ=
-Received: from BL1P223CA0038.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:5b6::7)
- by IA0PR12MB7752.namprd12.prod.outlook.com (2603:10b6:208:442::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.16; Thu, 9 Jul
- 2026 21:02:07 +0000
-Received: from BL02EPF0001A0FB.namprd03.prod.outlook.com
- (2603:10b6:208:5b6:cafe::9a) by BL1P223CA0038.outlook.office365.com
- (2603:10b6:208:5b6::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.11 via Frontend Transport; Thu, 9
- Jul 2026 21:02:07 +0000
+ bh=8v7z3ky/StrIrt9kLXFw36IFiXbW1SdNasjG5tXiGkQ=;
+ b=kUofGQgvsUWdVdw2jTpCf+tFiVp2Lr+T8mpoAWM4BeEhXLiER9yd0qTZ2/ScmatUSkk0gdAenf8zvNHcnx3uYgWUDcI5VlUJcK+lAetgsuWRJZ+8OVUN1gNk0u9mOLhhhiCioep+vg2F0FuCR/Na9nA66693n3mCp0/uams8ekk=
+Received: from MN0PR04CA0025.namprd04.prod.outlook.com (2603:10b6:208:52d::24)
+ by LV9PR12MB9759.namprd12.prod.outlook.com (2603:10b6:408:2ea::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Thu, 9 Jul
+ 2026 21:02:10 +0000
+Received: from BL02EPF0001A100.namprd03.prod.outlook.com
+ (2603:10b6:208:52d:cafe::d) by MN0PR04CA0025.outlook.office365.com
+ (2603:10b6:208:52d::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.12 via Frontend Transport; Thu, 9
+ Jul 2026 21:02:10 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,13 +55,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A0FB.mail.protection.outlook.com (10.167.242.102) with Microsoft
+ BL02EPF0001A100.mail.protection.outlook.com (10.167.242.107) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:07 +0000
+ 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:10 +0000
 Received: from georzhanmkm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
- 2026 16:01:47 -0500
+ 2026 16:01:48 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -70,47 +70,45 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Bhuvanachandra Pinninti
- <BhuvanaChandra.Pinninti@amd.com>, Ilya Bakoulin <ilya.bakoulin@amd.com>,
- George Zhang <george.zhang@amd.com>
-Subject: [PATCH 16/80] drm/amd/display: Fix dc_stream_remove_writeback
- dropping wrong writeback entries.
-Date: Thu, 9 Jul 2026 16:47:44 -0400
-Message-ID: <20260709205936.5719-17-george.zhang@amd.com>
+ <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
+ "George Zhang" <george.zhang@amd.com>
+Subject: [PATCH 17/80] drm/amd/display: Add KUnit tests for ism
+Date: Thu, 9 Jul 2026 16:47:45 -0400
+Message-ID: <20260709205936.5719-18-george.zhang@amd.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260709205936.5719-1-george.zhang@amd.com>
 References: <20260709205936.5719-1-george.zhang@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FB:EE_|IA0PR12MB7752:EE_
-X-MS-Office365-Filtering-Correlation-Id: 87b548a5-0ccb-4345-fc08-08deddfd55ec
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A100:EE_|LV9PR12MB9759:EE_
+X-MS-Office365-Filtering-Correlation-Id: b3e02227-99eb-4074-4966-08deddfd5820
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700016|1800799024|23010399003|376014|22082099003|18002099003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: aoJQSjlUuDJEvHL6sA4TfWtQ8BHT/ejGvFRDSpCKjIAwS+f+EZq+K1XVWnPhyu1JgkwiebOD4Qw27mhgAt2j7NFzyEaasc8fannNFC7sWNgPdAVsSUdnTsIngnBUjJwJ7/dSVChNp1FOpcP+3tYame0qJsrpn7nMlpqFnmjEHk0dSYYGN8JzStrXW7CBtz3mBmtue5puz2DbEOmD9NfCd1CTcbn2B8qPxGDt/iKtIoRLMak7rNp0wgQCGhFADDhlQGbuLfv/leiNbLN3dB/LUu5X+COaModliBbkSQ3CQWuGWCEefrMmVQC2iyTb0ZQ5o6jWRFJyB4Cj9UIbMEWn9El2cQwONItVfeEbOih1a6EmLk8kA2wKsIBRvgWBwcBqkeOpTECC2WhBacgKoTHza1Z1vqwHZokX/jyaR+TXRaLP8gyMapRSSr19z2VGjrVU5Fndcaf3rY5K6nNRzwluF86eYnJJPFuBhXLzpISDRZzCwbGRjC7Oi86XpV2j36HT6zjGtef9stheuAgoXVLg38NbL5PM3bsdKEOE4Y8wxCF+XoeoemtIwaMhawIeJESzYQ71jQmFgH8Ed9P7Ue86GpagPQ1AleZda448rseaL3httoZAmbwf3GAw+Zr5YzcXQVQocN2KIwdZWoryafFA1tiRr7N2uSUQyrxctbzbjD5MbpM+1TbKF/fy2VUrW56g7cM9XxzeNgbm2qru1pkQwA==
+ ARA:13230040|23010399003|1800799024|376014|82310400026|36860700016|5023799004|11063799006|22082099003|18002099003|6133799003|56012099006;
+X-Microsoft-Antispam-Message-Info: k7APTp7FgqB5raxibODQj+cX9N/QtjNRfi3g5jtH8Pg2x9+RxgHFuTb9YpjTTw8w8FAYmqUaJrNGpgtXeHfMrE70bdni3QpTCOXWELzHL38fN8uaoFROAlcf4V1HwAtnCaI5U1w9ZWlnfwpJzTOPOcPwQHNNZOhnstsGtNZqxoB12mu6XcTwsPkWptrCgg1rKpa0LtydyH3BJKZQ89K9JPLe5ZyXzHSvRURXg074Bz1cNf+9WqCcezU9/wsVM09q/Xci8xC4NVvm+0OAgp00NaHRzpfVaOWYoIRithOQZ9yWlfEt6ZWTpSGZX8pGK2NdXPg6BYSdWjzbBe4q/t5Vc3ztJhEAQnSyZq5/nfKIXOHwhTvKgoBUL488cd0/TQH7NiuTnxDlOu6MAhHCniul9KiW0YYlZDAjcZQaK9KfvbBv+I0un/J0QRf6Y5aeK69lj+y+40ckYRGeGjw5H1hFXnUuvuHSnCNXk1T+obr7RxKKPW41flPOClMqTc+ThYCk5ukINnVmBMWlmZmN0ml0fm3vFIBYxnyRtoN8nHnO8zEXmfpCKGpu0+JqK08Bnl2MRseySl3cNYoxGx0vwtCDVyLXt6bMPxGrL9j3erQweXDtkTLX+1wW00sls9J7GkJoyKKFhZhPLmaokgndOcZERC6c0zmRpgg+Y3ilQ3FbpqQDl0GrqH1j7aZEKkPJ3i1C+x1thDvrTrEi6FIZDqEL0Q==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700016)(1800799024)(23010399003)(376014)(22082099003)(18002099003)(56012099006)(11063799006);
+ SFS:(13230040)(23010399003)(1800799024)(376014)(82310400026)(36860700016)(5023799004)(11063799006)(22082099003)(18002099003)(6133799003)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: iWfVjw+MtwrRGP0oaM3FL1mNd/q+vXmfCyL20g2YJEqUIzbkCSibXhE85nd5unlcE5SgKAnYKoV33u7v7usgwI2zRsECNUZBHG6UCKWGw/SIpUb/5VSu+xHfpkWm96N0qgbF6/ab+dX9mWf5uXj3O7kEn1RTWufC1NFvE+hRTcduD8I/sSCtYg/W8yJyHucsbT2vcNrV9b6A9SrSoUe9gz0pM5at5SNb/N+B1KhsEQy73ENePHzNjQK7HTLOoisSABOd6XIypFGaCPaj8dBAkXuUch/VuNkBWtZIucpk5+p/o+V4rOcIkq/XJTc/MaOaLBX85MPG8fc94NsuZJZxc775Aox0w4GhE1gLmUq0VmV0azUiPNCfwe6Yy4s5jPU7ve00PBSoDq7QCy9OpLNsJUgPcKTctm7bocB1NIWq1whXoLMlfo7HDkJNfHJ0S2b8
+X-MS-Exchange-AntiSpam-MessageData-0: bXcDugMkGsQWm1TBEE8qqrU4liZbklKw6VZewekFzWe0OFSPDr5TUclZxHyQeIFDk/VU3dPfXcRDClg5NEQoSuP0mmQ/vwnqmV8WOdl4gSJJNAWckZ0JYOswefCKzGLrTerkUE2sYImUmO0cTs9dZwiR3aM13rNuS/RmimslHWN5cPYyQjfszCU+aHF/wgoeF4NDpe3oa5bQoVLYCkR5s2eJEUN2Lcgi/aBgu+2yRtkMMt/WEd7OGYwZwJRGx1SMas9q2r0mhUA4/Vr5mfidO6C4KKlijMQfF4AytJqaqG6eo5MHSOqYDOY0xcySIiTRWJ76vUbDjgf11mFuv5PrrS82Yh6/XXe9IKbKHdBb338Kxm361c+41ip6ifuZq27henyXILplKUE1kuhfhyVQT/STfB2g17OfNR9C7S3KQJcVpPy3zIQVOUtM5nBauiLH
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:07.0816 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 87b548a5-0ccb-4345-fc08-08deddfd55ec
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:10.7847 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b3e02227-99eb-4074-4966-08deddfd5820
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FB.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A100.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7752
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV9PR12MB9759
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,10 +123,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
@@ -136,77 +133,465 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[george.zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[george.zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
+	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DF3B4735A57
+X-Rspamd-Queue-Id: 0C973735A6D
 
-From: Bhuvanachandra Pinninti <BhuvanaChandra.Pinninti@amd.com>
+From: Alex Hung <alex.hung@amd.com>
 
-[why]
-The matching entry was disabled but still copied during compaction, so a
-removed pipe could survive and overwrite a valid entry, leaving num_wb_info
-wrong.
+Add KUnit coverage for the following ISM functions:
 
-[how]
-Skip every entry matching dwb_pipe_inst and compact only survivors. Covered
-by test_dc_stream_writeback_drc_and_remove.And added new test cases for coverage.
+- dm_ism_next_state(): state transitions for running, busy,
+  hysteresis-wait, optimized-idle, and aborted states
+- dm_ism_get_sso_delay(): null stream, zero frames, 1080p60 3-frame,
+  and 4k60 1-frame calculations
+- dm_ism_get_idle_allow_delay(): null stream, zero filter/entry/delay
+  frames, short-idle filtering, wrap-around, old history cutoff,
+  mixed durations, and entry count exceeding history size
+- amdgpu_dm_ism_init(): initial state setup
+- amdgpu_dm_ism_fini(): cleanup after init
+- dm_ism_set_last_idle_ts(): timestamp update
+- dm_ism_insert_record(): basic insert and wrap-around
+- dm_ism_trigger_event(): valid and invalid transitions
 
-Reviewed-by: Ilya Bakoulin <ilya.bakoulin@amd.com>
-Signed-off-by: Bhuvanachandra Pinninti <BhuvanaChandra.Pinninti@amd.com>
+Assisted-by: Copilot:Claude-Opus-4.8
+Reviewed-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
+Signed-off-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_stream.c   | 21 ++++++++-----------
- 1 file changed, 9 insertions(+), 12 deletions(-)
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c |   4 +
+ .../amdgpu_dm/tests/amdgpu_dm_ism_test.c      | 353 ++++++++++++++++++
+ 2 files changed, 357 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-index 1b2c22545be3..ce045ef6347c 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-@@ -720,20 +720,17 @@ bool dc_stream_remove_writeback(struct dc *dc,
- 		return false;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+index 32391b56097e..a9575bf25fc2 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_ism.c
+@@ -502,6 +502,7 @@ void amdgpu_dm_ism_commit_event(struct amdgpu_dm_ism *ism,
+
+ 	} while (next_event < DM_ISM_NUM_EVENTS);
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_ism_commit_event);
+
+
+ static void dm_ism_delayed_work_func(struct work_struct *work)
+@@ -568,6 +569,7 @@ void amdgpu_dm_ism_disable(struct amdgpu_display_manager *dm)
+ 		disable_delayed_work_sync(&ism->sso_delayed_work);
  	}
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_ism_disable);
 
--	/* remove writeback info for disabled writeback pipes from stream */
-+	/* remove writeback info for the requested writeback pipe from stream */
- 	for (i = 0, j = 0; i < stream->num_wb_info; i++) {
--		if (stream->writeback_info[i].wb_enabled) {
--
--			if (stream->writeback_info[i].dwb_pipe_inst == dwb_pipe_inst)
--				stream->writeback_info[i].wb_enabled = false;
-+		/* drop every entry that targets the pipe being removed */
-+		if (stream->writeback_info[i].dwb_pipe_inst == dwb_pipe_inst)
-+			continue;
-
--			/* trim the array */
--			if (j < i) {
--				memcpy(&stream->writeback_info[j], &stream->writeback_info[i],
--						sizeof(struct dc_writeback_info));
--				j++;
--			}
--		}
-+		/* keep this entry, compacting it down when earlier entries were removed */
-+		if (j != i)
-+			memcpy(&stream->writeback_info[j], &stream->writeback_info[i],
-+					sizeof(struct dc_writeback_info));
-+		j++;
+ /**
+  * amdgpu_dm_ism_force_full_power - Force every CRTC's ISM FSM to FULL_POWER
+@@ -603,6 +605,7 @@ void amdgpu_dm_ism_force_full_power(struct amdgpu_display_manager *dm)
+ 					   DM_ISM_EVENT_EXIT_IDLE_REQUESTED);
  	}
- 	stream->num_wb_info = j;
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_ism_force_full_power);
+
+ /**
+  * amdgpu_dm_ism_enable - enable the ISM
+@@ -626,6 +629,7 @@ void amdgpu_dm_ism_enable(struct amdgpu_display_manager *dm)
+ 		enable_delayed_work(&ism->sso_delayed_work);
+ 	}
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_ism_enable);
+
+ void amdgpu_dm_ism_init(struct amdgpu_dm_ism *ism,
+ 			struct amdgpu_dm_ism_config *config)
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_ism_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_ism_test.c
+index 7dfb3b351d20..6394b967ac3a 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_ism_test.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_ism_test.c
+@@ -8,6 +8,9 @@
+ #include <kunit/test.h>
+
+ #include "dc.h"
++#include "amdgpu.h"
++#include "amdgpu_mode.h"
++#include "amdgpu_dm.h"
+ #include "amdgpu_dm_ism.h"
+ #include "amdgpu_dm_kunit_test_helpers.h"
+
+@@ -848,6 +851,345 @@ static void dm_test_dispatch_next_event_no_action_state(struct kunit *test)
+ 	KUNIT_EXPECT_EQ(test, (int)result, (int)DM_ISM_NUM_EVENTS);
+ }
+
++/*
++ * Helper: allocate an amdgpu_crtc (which embeds the ISM) wired up to a
++ * minimally-populated amdgpu_device so that the container_of()/drm_to_adev()
++ * lookups inside the ISM event machinery resolve correctly.
++ *
++ * The amdgpu_device is large, so it must be heap-allocated via kunit_kzalloc.
++ * acrtc->base.dev points at the embedded &adev->ddev, which is what
++ * drm_to_adev() expects (it is a container_of of ddev).
++ */
++static struct amdgpu_crtc *alloc_test_acrtc(struct kunit *test,
++					    struct amdgpu_device **adev_out)
++{
++	struct amdgpu_device *adev;
++	struct amdgpu_crtc *acrtc;
++	struct dc *dc;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, adev);
++
++	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, dc);
++
++	acrtc = kunit_kzalloc(test, sizeof(*acrtc), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, acrtc);
++
++	adev->dm.dc = dc;
++	adev->dm.ddev = &adev->ddev;
++	mutex_init(&adev->dm.dc_lock);
++
++	acrtc->base.dev = &adev->ddev;
++
++	if (adev_out)
++		*adev_out = adev;
++
++	return acrtc;
++}
++
++/*
++ * Helper: register an already-allocated amdgpu_crtc into the DRM device's
++ * crtc_list so that drm_for_each_crtc() iterates it. Only the list linkage is
++ * required for the ISM enable/disable/force-full-power helpers.
++ */
++static void register_test_acrtc(struct amdgpu_device *adev,
++				struct amdgpu_crtc *acrtc)
++{
++	INIT_LIST_HEAD(&adev->ddev.mode_config.crtc_list);
++	INIT_LIST_HEAD(&acrtc->base.head);
++	list_add_tail(&acrtc->base.head, &adev->ddev.mode_config.crtc_list);
++}
++
++/* ===== Tests for amdgpu_dm_ism_commit_event ===== */
++
++/**
++ * dm_test_ism_commit_event_no_state - commit_event returns early without a crtc state
++ * @test: KUnit test context
++ *
++ * When the CRTC has no atomic state (base.state == NULL) the function takes
++ * the NO_STATE early-return path and the FSM is left untouched.
++ */
++static void dm_test_ism_commit_event_no_state(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct amdgpu_crtc *acrtc = alloc_test_acrtc(test, &adev);
++	struct amdgpu_dm_ism_config config = { 0 };
++
++	amdgpu_dm_ism_init(&acrtc->ism, &config);
++	acrtc->base.state = NULL;
++
++	guard(mutex)(&adev->dm.dc_lock);
++	amdgpu_dm_ism_commit_event(&acrtc->ism,
++				   DM_ISM_EVENT_BEGIN_CURSOR_UPDATE);
++
++	KUNIT_EXPECT_EQ(test, (int)acrtc->ism.current_state,
++			(int)DM_ISM_STATE_FULL_POWER_RUNNING);
++
++	amdgpu_dm_ism_fini(&acrtc->ism);
++}
++
++/**
++ * dm_test_ism_commit_event_cursor_transition - cursor begin/end drive FSM without DC work
++ * @test: KUnit test context
++ *
++ * BEGIN_CURSOR_UPDATE then END_CURSOR_UPDATE from FULL_POWER_RUNNING traverse
++ * the FULL_POWER_BUSY state. Neither transition reaches the idle-optimization
++ * commit path, so no DC hardware access occurs and the FSM returns to
++ * FULL_POWER_RUNNING.
++ */
++static void dm_test_ism_commit_event_cursor_transition(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct amdgpu_crtc *acrtc = alloc_test_acrtc(test, &adev);
++	struct dm_crtc_state *dm_state;
++	struct amdgpu_dm_ism_config config = { 0 };
++
++	dm_state = kunit_kzalloc(test, sizeof(*dm_state), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, dm_state);
++
++	amdgpu_dm_ism_init(&acrtc->ism, &config);
++	acrtc->base.state = &dm_state->base;
++
++	guard(mutex)(&adev->dm.dc_lock);
++	amdgpu_dm_ism_commit_event(&acrtc->ism,
++				   DM_ISM_EVENT_BEGIN_CURSOR_UPDATE);
++	KUNIT_EXPECT_EQ(test, (int)acrtc->ism.current_state,
++			(int)DM_ISM_STATE_FULL_POWER_BUSY);
++
++	amdgpu_dm_ism_commit_event(&acrtc->ism,
++				   DM_ISM_EVENT_END_CURSOR_UPDATE);
++	KUNIT_EXPECT_EQ(test, (int)acrtc->ism.current_state,
++			(int)DM_ISM_STATE_FULL_POWER_RUNNING);
++
++	amdgpu_dm_ism_fini(&acrtc->ism);
++}
++
++/**
++ * dm_test_ism_commit_event_invalid_event - invalid event leaves FSM unchanged
++ * @test: KUnit test context
++ *
++ * EXIT_IDLE_REQUESTED is not a valid event from FULL_POWER_RUNNING, so the
++ * FSM does not transition and no power-state dispatch occurs.
++ */
++static void dm_test_ism_commit_event_invalid_event(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct amdgpu_crtc *acrtc = alloc_test_acrtc(test, &adev);
++	struct dm_crtc_state *dm_state;
++	struct amdgpu_dm_ism_config config = { 0 };
++
++	dm_state = kunit_kzalloc(test, sizeof(*dm_state), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, dm_state);
++
++	amdgpu_dm_ism_init(&acrtc->ism, &config);
++	acrtc->base.state = &dm_state->base;
++
++	guard(mutex)(&adev->dm.dc_lock);
++	amdgpu_dm_ism_commit_event(&acrtc->ism,
++				   DM_ISM_EVENT_EXIT_IDLE_REQUESTED);
++
++	KUNIT_EXPECT_EQ(test, (int)acrtc->ism.current_state,
++			(int)DM_ISM_STATE_FULL_POWER_RUNNING);
++
++	amdgpu_dm_ism_fini(&acrtc->ism);
++}
++
++/* ===== Tests for amdgpu_dm_ism_force_full_power ===== */
++
++/**
++ * dm_test_ism_force_full_power - force-full-power sends EXIT_IDLE to every CRTC
++ * @test: KUnit test context
++ *
++ * From the initial FULL_POWER_RUNNING state EXIT_IDLE_REQUESTED is a no-op, so
++ * the FSM remains in FULL_POWER_RUNNING and no DC work is scheduled.
++ */
++static void dm_test_ism_force_full_power(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct amdgpu_crtc *acrtc = alloc_test_acrtc(test, &adev);
++	struct dm_crtc_state *dm_state;
++	struct amdgpu_dm_ism_config config = { 0 };
++
++	dm_state = kunit_kzalloc(test, sizeof(*dm_state), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, dm_state);
++
++	amdgpu_dm_ism_init(&acrtc->ism, &config);
++	acrtc->base.state = &dm_state->base;
++	register_test_acrtc(adev, acrtc);
++
++	guard(mutex)(&adev->dm.dc_lock);
++	amdgpu_dm_ism_force_full_power(&adev->dm);
++
++	KUNIT_EXPECT_EQ(test, (int)acrtc->ism.current_state,
++			(int)DM_ISM_STATE_FULL_POWER_RUNNING);
++
++	amdgpu_dm_ism_fini(&acrtc->ism);
++}
++
++/* ===== Tests for amdgpu_dm_ism_disable / amdgpu_dm_ism_enable ===== */
++
++/**
++ * dm_test_ism_disable_enable_cycle - disable then enable quiesces and re-arms work
++ * @test: KUnit test context
++ *
++ * Walks every CRTC's ISM, disabling its delayed work (synchronously) and then
++ * re-enabling it. With no work ever scheduled both calls complete without
++ * touching the FSM state. disable must be called without dc_lock held.
++ */
++static void dm_test_ism_disable_enable_cycle(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct amdgpu_crtc *acrtc = alloc_test_acrtc(test, &adev);
++	struct amdgpu_dm_ism_config config = { 0 };
++
++	amdgpu_dm_ism_init(&acrtc->ism, &config);
++	register_test_acrtc(adev, acrtc);
++
++	amdgpu_dm_ism_disable(&adev->dm);
++	amdgpu_dm_ism_enable(&adev->dm);
++
++	KUNIT_EXPECT_EQ(test, (int)acrtc->ism.current_state,
++			(int)DM_ISM_STATE_FULL_POWER_RUNNING);
++
++	amdgpu_dm_ism_fini(&acrtc->ism);
++}
++
++/* ===== Tests for dm_ism_dispatch_power_state (via commit_event) ===== */
++
++/*
++ * Build a config + history that makes dm_ism_get_idle_allow_delay() return a
++ * non-zero hysteresis delay. A non-zero delay keeps the FSM parked in
++ * HYSTERESIS_WAITING (the dispatcher returns DM_ISM_NUM_EVENTS instead of an
++ * immediate follow-up event), preventing the cascade into the DC-dependent
++ * OPTIMIZED_IDLE / *_SSO states.
++ */
++static void setup_idle_delay_history(struct amdgpu_dm_ism *ism,
++				     struct dc_stream_state *stream)
++{
++	uint64_t one_frame_ns;
++
++	stream->timing.v_total = 1125;
++	stream->timing.h_total = 2200;
++	stream->timing.pix_clk_100hz = 1485000;
++
++	one_frame_ns = div64_u64((uint64_t)1125 * 2200 * 10000000ULL, 1485000);
++
++	for (int i = 0; i < 8; i++) {
++		ism->records[i].duration_ns = one_frame_ns;
++		ism->records[i].timestamp_ns = 0;
++	}
++	ism->next_record_idx = 8;
++}
++
++/**
++ * dm_test_ism_dispatch_hysteresis_schedule_and_cancel - cover the HYSTERESIS_WAITING dispatch arms
++ * @test: KUnit test context
++ *
++ * ENTER_IDLE_REQUESTED moves FULL_POWER_RUNNING -> HYSTERESIS_WAITING. The
++ * current-state arm of dm_ism_dispatch_power_state() then records the idle
++ * timestamp, computes a (non-zero) idle-allow delay and schedules the delayed
++ * worker. A subsequent BEGIN_CURSOR_UPDATE (-> HYSTERESIS_BUSY) exercises the
++ * previous-state arm that cancels that pending worker. Neither arm reaches the
++ * DC-dependent idle-optimization commit path.
++ */
++static void dm_test_ism_dispatch_hysteresis_schedule_and_cancel(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct amdgpu_crtc *acrtc = alloc_test_acrtc(test, &adev);
++	struct dm_crtc_state *dm_state;
++	struct dc_stream_state *stream;
++	struct amdgpu_dm_ism_config config = {
++		.filter_num_frames = 5,
++		.filter_entry_count = 3,
++		.activation_num_delay_frames = 10,
++		.filter_history_size = 8,
++		.filter_old_history_threshold = 0,
++		.sso_num_frames = 0,
++	};
++
++	dm_state = kunit_kzalloc(test, sizeof(*dm_state), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, dm_state);
++	stream = dm_kunit_alloc_stream(test, NULL);
++
++	amdgpu_dm_ism_init(&acrtc->ism, &config);
++	setup_idle_delay_history(&acrtc->ism, stream);
++	dm_state->stream = stream;
++	acrtc->base.state = &dm_state->base;
++
++	scoped_guard(mutex, &adev->dm.dc_lock) {
++		/* Enter HYSTERESIS_WAITING: schedules the idle-allow worker. */
++		amdgpu_dm_ism_commit_event(&acrtc->ism,
++					   DM_ISM_EVENT_ENTER_IDLE_REQUESTED);
++		KUNIT_EXPECT_EQ(test, (int)acrtc->ism.current_state,
++				(int)DM_ISM_STATE_HYSTERESIS_WAITING);
++
++		/* Cursor update cancels the pending worker (prev-state arm). */
++		amdgpu_dm_ism_commit_event(&acrtc->ism,
++					   DM_ISM_EVENT_BEGIN_CURSOR_UPDATE);
++		KUNIT_EXPECT_EQ(test, (int)acrtc->ism.current_state,
++				(int)DM_ISM_STATE_HYSTERESIS_BUSY);
++	}
++
++	amdgpu_dm_ism_fini(&acrtc->ism);
++}
++
++/**
++ * dm_test_ism_dispatch_optimized_idle_defers_sso - cover OPTIMIZED_IDLE dispatch without DC
++ * @test: KUnit test context
++ *
++ * With sso_num_frames < filter_num_frames the OPTIMIZED_IDLE current-state arm
++ * skips the idle-optimization commit and only schedules the SSO worker. Driving
++ * HYSTERESIS_WAITING -> OPTIMIZED_IDLE via TIMER_ELAPSED exercises that arm
++ * (get_sso_delay + the skip branch + mod_delayed_work) without any DC access.
++ */
++static void dm_test_ism_dispatch_optimized_idle_defers_sso(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct amdgpu_crtc *acrtc = alloc_test_acrtc(test, &adev);
++	struct dm_crtc_state *dm_state;
++	struct dc_stream_state *stream;
++	struct amdgpu_dm_ism_config config = {
++		.filter_num_frames = 5,
++		.filter_entry_count = 3,
++		.activation_num_delay_frames = 10,
++		.filter_history_size = 8,
++		.filter_old_history_threshold = 0,
++		.sso_num_frames = 2,
++	};
++
++	dm_state = kunit_kzalloc(test, sizeof(*dm_state), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, dm_state);
++	stream = dm_kunit_alloc_stream(test, NULL);
++
++	amdgpu_dm_ism_init(&acrtc->ism, &config);
++	setup_idle_delay_history(&acrtc->ism, stream);
++	dm_state->stream = stream;
++	acrtc->base.state = &dm_state->base;
++
++	scoped_guard(mutex, &adev->dm.dc_lock) {
++		amdgpu_dm_ism_commit_event(&acrtc->ism,
++					   DM_ISM_EVENT_ENTER_IDLE_REQUESTED);
++		KUNIT_EXPECT_EQ(test, (int)acrtc->ism.current_state,
++				(int)DM_ISM_STATE_HYSTERESIS_WAITING);
++
++		/*
++		 * Timer fires: HYSTERESIS_WAITING -> OPTIMIZED_IDLE. sso_delay
++		 * is non-zero and sso_num_frames < filter_num_frames, so the
++		 * commit is deferred to the SSO worker and the FSM parks here.
++		 */
++		amdgpu_dm_ism_commit_event(&acrtc->ism,
++					   DM_ISM_EVENT_TIMER_ELAPSED);
++		KUNIT_EXPECT_EQ(test, (int)acrtc->ism.current_state,
++				(int)DM_ISM_STATE_OPTIMIZED_IDLE);
++
++		/* Cancel the scheduled SSO worker while still holding dc_lock. */
++		cancel_delayed_work(&acrtc->ism.sso_delayed_work);
++	}
++
++	amdgpu_dm_ism_fini(&acrtc->ism);
++}
++
+ static struct kunit_case dm_ism_test_cases[] = {
+ 	/* dm_ism_next_state — FULL_POWER_RUNNING */
+ 	KUNIT_CASE(dm_test_ism_next_state_running_enter_idle),
+@@ -910,6 +1252,17 @@ static struct kunit_case dm_ism_test_cases[] = {
+ 	KUNIT_CASE(dm_test_dispatch_next_event_opt_idle_with_sso_delay),
+ 	KUNIT_CASE(dm_test_dispatch_next_event_timer_aborted),
+ 	KUNIT_CASE(dm_test_dispatch_next_event_no_action_state),
++	/* amdgpu_dm_ism_commit_event */
++	KUNIT_CASE(dm_test_ism_commit_event_no_state),
++	KUNIT_CASE(dm_test_ism_commit_event_cursor_transition),
++	KUNIT_CASE(dm_test_ism_commit_event_invalid_event),
++	/* amdgpu_dm_ism_force_full_power */
++	KUNIT_CASE(dm_test_ism_force_full_power),
++	/* amdgpu_dm_ism_disable / amdgpu_dm_ism_enable */
++	KUNIT_CASE(dm_test_ism_disable_enable_cycle),
++	/* dm_ism_dispatch_power_state (via commit_event) */
++	KUNIT_CASE(dm_test_ism_dispatch_hysteresis_schedule_and_cancel),
++	KUNIT_CASE(dm_test_ism_dispatch_optimized_idle_defers_sso),
+ 	{}
+ };
 
 --
 2.55.0
