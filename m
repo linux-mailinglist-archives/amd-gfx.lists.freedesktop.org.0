@@ -2,76 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id OO2JLJeCT2qtiQIAu9opvQ
+	id OyD/GvicUGq52QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 13:14:31 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 09:19:20 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9ACE730199
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 13:14:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39A65737FE0
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 09:19:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=zohomail header.b=NUb4xyuv;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	arc=pass ("zohomail.com:s=zohoarc:i=1")
+	dkim=pass header.d=yandex.ru header.s=mail header.b="E3/7oeAM";
+	dmarc=pass (policy=none) header.from=yandex.ru;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A16F10E013;
-	Thu,  9 Jul 2026 11:14:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9130C10F7D9;
+	Fri, 10 Jul 2026 07:19:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sender4-op-o11.zoho.com (sender4-op-o11.zoho.com
- [136.143.188.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2079D10E013;
- Thu,  9 Jul 2026 11:14:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1783595660; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=KNcqOPV908wS/IFidXvtJ3W/tTwK9fEQk92s28HHlHQyVPJ8vDqnkBYevag7hL2mCUbN0HeSoxqCrlc6AWQlXlhACfmcnuTWJfcIYps42HGmGt/KSbihAj77Yq3JIQvSF9BGEMeCh7ERj84qPNZJmZShpWNX+F15hqH4BW3xfxI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1783595660;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=9aocsOpowH+ZsBOhN77TCgYYBcPmRbX7RXXs+joV1Gw=; 
- b=VL4p18jXQIzw3KeXR9ZUuUT0xbLzz3Jzubs4+7S6g87rQlwsToXdMhcsDqcBjlqWdA40HlyKcWidbnABbv26knP8fCgVs3T/2u+D62reMEKr31OBQZPE+B/SepqJ92KkC8DcWpCr2J3EFfO8aOxI2pZDAWyO5NH74sPjJCoF1ns=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=robert.mader@collabora.com;
- dmarc=pass header.from=<robert.mader@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1783595660; 
- s=zohomail; d=collabora.com; i=robert.mader@collabora.com;
- h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
- bh=9aocsOpowH+ZsBOhN77TCgYYBcPmRbX7RXXs+joV1Gw=;
- b=NUb4xyuvRJ1x3cCc1/J0Uv8Lv2bWQwyPXIoYviH9KlZCnqxVnp9Q75FkV5AV+gvZ
- AS9mlmIcSujlIhxzOVdiydiDrN2DRRd7ZvuGpAnpMmJ5eW9mDcFgQzDnCltNZ8WsAMi
- fkmG998SA/g41RNWDZuRPchLWCdqI3aUO1qArUZs=
-Received: by mx.zohomail.com with SMTPS id 17835956579351020.4396036820058;
- Thu, 9 Jul 2026 04:14:17 -0700 (PDT)
-Message-ID: <361dfc91-94e8-4289-9b3e-5280803d9257@collabora.com>
-Date: Thu, 9 Jul 2026 13:14:11 +0200
+Received: from forward102d.mail.yandex.net (forward102d.mail.yandex.net
+ [178.154.239.213])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD74910E6C6;
+ Thu,  9 Jul 2026 11:29:14 +0000 (UTC)
+Received: from mail-nwsmtp-smtp-production-main-57.klg.yp-c.yandex.net
+ (mail-nwsmtp-smtp-production-main-57.klg.yp-c.yandex.net
+ [IPv6:2a02:6b8:c42:494f:0:640:ed81:0])
+ by forward102d.mail.yandex.net (postfix) with ESMTPS id BBEFCC1F26;
+ Thu, 09 Jul 2026 14:29:11 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-57.klg.yp-c.yandex.net (smtp)
+ with ESMTPSA id eSI9Ue8f8qM0-mcSpXkng; 
+ Thu, 09 Jul 2026 14:29:11 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
+ t=1783596551; bh=Q7tT8J42CoYO2uJ3oGsfu4z5NpqrMLW6Jo0gnDOw0q0=;
+ h=Message-ID:Date:Cc:Subject:To:From;
+ b=E3/7oeAMBpKeD//WLixRrsMZjJvjlz6pHufS0fZTLdoaUlqWBbCNdSNI0xbSBxKQx
+ mFROXodS95MX/x0qZtrcUoquMEYALMDY7t3usTTmkq8RnxjZ9+CCD9kPTTTtW8D2MT
+ Be2NmggJN4xksa2pcbwyfTXxxA9pN+xcajFUNoNo=
+From: Evgenii Burenchev <evg28bur@yandex.ru>
+To: stable@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Evgenii Burenchev <evg28bur@yandex.ru>, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@gmail.com,
+ daniel@ffwll.ch, Jack.Xiao@amd.com, Hawking.Zhang@amd.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org
+Subject: [PATCH 6.1] drm/amdgpu: Use scnprintf() in amdgpu_mes_add_ring()
+Date: Thu,  9 Jul 2026 14:28:24 +0300
+Message-ID: <20260709112825.40016-1-evg28bur@yandex.ru>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm: Guard DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- dri-devel@lists.freedesktop.org
-Cc: Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>, Daniel Stone
- <daniels@collabora.com>, Uma Shankar <uma.shankar@intel.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>, Melissa Wen <mwen@igalia.com>,
- Simon Ser <contact@emersion.fr>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Leandro Ribeiro <leandro.ribeiro@collabora.com>
-References: <20260703073230.19982-1-robert.mader@collabora.com>
- <6d8806b8-fc71-4699-82c4-7189a0ea2284@intel.com>
- <bb5918f5-a6da-4908-9332-18e0df39c005@linux.intel.com>
- <7d58b289-eabe-4d68-9080-c7202b0f60a0@intel.com>
- <d42d5750-f3c5-4e2b-baa3-514b87e59e86@linux.intel.com>
-Content-Language: en-US, de-DE
-From: Robert Mader <robert.mader@collabora.com>
-In-Reply-To: <d42d5750-f3c5-4e2b-baa3-514b87e59e86@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 10 Jul 2026 07:19:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,87 +66,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[yandex.ru,none];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[yandex.ru:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[yandex.ru,amd.com,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,linuxtesting.org];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[yandex.ru];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_CC(0.00)[kernel.org,suse.de,gmail.com,ffwll.ch,vger.kernel.org,lists.freedesktop.org,amd.com,collabora.com,intel.com,bootlin.com,igalia.com,emersion.fr];
+	DKIM_TRACE(0.00)[yandex.ru:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[evg28bur@yandex.ru,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robert.mader@collabora.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:from_mime,collabora.com:dkim,collabora.com:mid,lists.freedesktop.org:from_smtp]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,linuxtesting.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E9ACE730199
+X-Rspamd-Queue-Id: 39A65737FE0
 
-Hi,
+Replace sprintf() with scnprintf() to prevent a potential buffer overflow
+when writing to ring->name. The buffer size is 16 bytes. For compute rings,
+the string format "compute_%d.%d.%d" can exceed this limit when the total
+number of digits in the three numbers is greater than 5 (e.g., pasid=1234,
+gang_id=0, queue_id=0). This can lead to memory corruption.
 
-On 09.07.26 12:02, Maarten Lankhorst wrote:
-> Hey,
->
-> On 7/9/26 08:44, Borah, Chaitanya Kumar wrote:
->>
->> On 7/7/2026 6:31 PM, Maarten Lankhorst wrote:
->>> Hey,
->>>
->>> On 7/7/26 10:03, Borah, Chaitanya Kumar wrote:
->>>> On 7/3/2026 1:02 PM, Robert Mader wrote:
->>>>> The client cap is currently advertised unconditionally, even for drivers
->>>>> that do not support plane color pipelines. If clients supporting the later,
->>>> s/later/latter
->>>>
->>>>> like Wayland compositors or tools like drm_info, enable the client cap on
->>>>> such drivers they will be left without both color pipeline and the legacy
->>>>> properties COLOR_ENCODING and COLOR_RANGE, effectively breaking YUV->RGB
->>>>> conversion support.
->>>>>
->>>>> Prevent that by only marking the cap supported if there are actually planes
->>>>> with color pipelines.
->>>>>
->>>>> Note: while the color pipeline replacement for the legacy properties is
->>>>> still under review (1), we can assume that it will work as a drop-in
->>>>> replacement.
->>>> This change will but a driver can also choose to export colorops like programmable CTM_3x4 to achieve the same.
->>>>
->>>> We should also perhaps document this somewhere that if a driver supports LEGACY properties, it is imperative to implement some version of it with the color pipeline line property.
->>> Would this be doable inside drm core? Implement the color pipeline properties, get the fixed pipeline for free?
->> Right now, the Bypass(default) pipeline is automatically created when we call drm_plane_create_color_pipeline_property(), we could come up with a similar helper that could also create a pipeline that replaces the legacy properties.
->>
->> But this can't replace the existing helper entirely because some HW (though unlikely) might not support YUV buffers.
-> No need to do this for free, but a cheaper way for drivers to implement legacy
-> properties by only implementing the pipeline would be nice, similar to how
-> atomic also implements legacy modesetting and universal planes.
+Using scnprintf() guarantees that the buffer is not overflowed, even if the
+string is truncated. This is a minimal fix for the issue; the BUG() for
+unknown queue types is left unchanged to avoid additional risk.
 
-I really like this idea - should we take it to the corresponding series, 
-https://lore.kernel.org/dri-devel/20260623164812.81110-1-harry.wentland@amd.com/ 
-so the initial implementations for AMD and VKMS directly do so?
+This code is only present in LTS kernels v6.12, v6.6, and v6.1, as it was
+completely refactored in upstream. Therefore, this patch is specifically
+intended for stable trees.
 
-Regards
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
 
->
-> Kind regards,
-> ~Maarten Lankhorst
+Fixes: d0c423b64765 ("drm/amdgpu/mes: use ring for kernel queue submission")
+Signed-off-by: Evgenii Burenchev <evg28bur@yandex.ru>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+index 3feb792c210d..6208967f0e6c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
+@@ -1057,13 +1057,14 @@ int amdgpu_mes_add_ring(struct amdgpu_device *adev, int gang_id,
+ 	ring->doorbell_index = qprops.doorbell_off;
+ 
+ 	if (queue_type == AMDGPU_RING_TYPE_GFX)
+-		sprintf(ring->name, "gfx_%d.%d.%d", pasid, gang_id, queue_id);
++		scnprintf(ring->name, sizeof(ring->name), "gfx_%d.%d.%d",
++			pasid, gang_id, queue_id);
+ 	else if (queue_type == AMDGPU_RING_TYPE_COMPUTE)
+-		sprintf(ring->name, "compute_%d.%d.%d", pasid, gang_id,
+-			queue_id);
++		scnprintf(ring->name, sizeof(ring->name), "compute_%d.%d.%d",
++			pasid, gang_id, queue_id);
+ 	else if (queue_type == AMDGPU_RING_TYPE_SDMA)
+-		sprintf(ring->name, "sdma_%d.%d.%d", pasid, gang_id,
+-			queue_id);
++		scnprintf(ring->name, sizeof(ring->name), "sdma_%d.%d.%d",
++			pasid, gang_id, queue_id);
+ 	else
+ 		BUG();
+ 
 -- 
-Robert Mader
-Consultant Software Developer
-
-Collabora Ltd.
-Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
-Registered in England & Wales, no. 5513718
+2.43.0
 
