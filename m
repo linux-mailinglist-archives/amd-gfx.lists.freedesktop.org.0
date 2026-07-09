@@ -2,50 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9XpFIHEMUGocsgIAu9opvQ
+	id HkEaKHYMUGonsgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:41 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:46 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CF51735ACE
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 307BA735AFD
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=vI1KqbCV;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=nQ16shPd;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DDE710F6EE;
-	Thu,  9 Jul 2026 21:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A906610F6F8;
+	Thu,  9 Jul 2026 21:02:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012056.outbound.protection.outlook.com [40.107.209.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0B8F10F6D8
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:36 +0000 (UTC)
+Received: from BN8PR05CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11011045.outbound.protection.outlook.com [52.101.57.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A9F310F6D8
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EtS5YRC0qM4R5lA0YQEsvqkBTBtEa9aujVjR4SWKRTfm6TVm2+jtylNeK6z8vVLsBAiAIwhuYTVfDc4/VNRzhYxQPUx3rION13DGa5a+Vzx7Qm64Lb2lH/GlyoK8PJuewo6S6JB2rrodJu3cbRa7TRA7Ayh4z4DVU/TuxjcYYgHUgfw4eNG9SsxRrx2ru/Jcl4FraYpUSFB6u5ALvWy0bS6fX9hj7n9Sh+qPHZpYWC1yUTGdg0bGDp/QZ9w6xZvtWN5AqE1sP+orHJSQuJK3844X2Ifet3715xAgYY+6ghWsakMvZzVm91oHMxCaKC+w/d84Tg+lORojetyKQRv2Ww==
+ b=OxLRfG8yrYpd1bOYe6BC0fHeZouwB7PCtGjZYl96oA/ZIBQ4YnTtIGaNXWQPonTWU2sfTxGLuGsqJKOvmMhRZFjH0dL24gvYRlnTonM9UaLEQ4noUVxCyD+2JlysLTaIxhSqRi0D7Cp4sIWOglBj5wJhR5gc64nl4afiuJRFD6YzptPAuW7K80UXKkeWRonNCE9ejaNPEVMInZjgmfI8+tc08waaPDpVEdjkxDSS6CQhryPPWAxMvunMWVxojxKt67y87xHu2Md3PAhgk+hS9eqyfChhRCdiiGWL+krm5pfGzj75KM2jFyviD5oONinR4kuo+ofldN9RyJaWNNvWFw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RYuF/1QSRRJFBVEdLHaJxwPJfhnIoX2sjDOXe8KRg6A=;
- b=IpJTRwuTRtkK2sTeGp+ayTSarrGV7fju60rN2gsMnzjgmZNTdCHauwKATgKUnBLYtT8xHIRiwDpkuKmcVjz3MwWxtZxS3qpyluoBTz5b/GHP0dEbgAaxFCGTYTCdkNDFhKkJ0QCGZ8TXItKwHnqMTDWoE6FluROceC/vtcLTlI1RQeJ/ho7WtT5y4MjKOqf1oW2+lodYrIsEVzOSycAzjhEmRF0ZMCXj6aUiWQqNtcLcaZYBVKkFV7xRS0ZtQMk6K1RFF3ZFDbqVeFNQ+kDPakZGxOouZfpx4QZVOEEoxzAwt2wlJ7XVseOuYgZgArIelcrEx18/PnZi4gei6htf5Q==
+ bh=j7l0RW4/WBiOPWg9FLdN38J+AOw/EigntlMV0ia8B1E=;
+ b=h5sdEOTj3vIQzAmQHC0a5vNf0mApUvoL0DzzXCb2v1adil2q8p5cg9iGZVKyvGGPs7QyJ9Srz8GUv2xme6XwkgrrP/ouF9j6WYeTnUmQU61XR6xVuajjwpXK6RfLJwldQkdJOC+QstAQtItjVYAMwUcXHaMICC9b/lP2Eypwsr9oGYdMychMKXlPU0+JuWWUGapwQW1i7Szq+jbgerYJDaibssLsVgDC7ehFu21LlYC/EZ664ca3A0QD1tfe6d7RMqJ2xANqQdUUVCC2QISdJI1gsgWsheE57cylPVS8gK7llgZhpD2lWHlmQORv25fCBoMF9xZ+BETXysnwFfqrrw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RYuF/1QSRRJFBVEdLHaJxwPJfhnIoX2sjDOXe8KRg6A=;
- b=vI1KqbCV945DsEFbzyjTYupOGRdOwsJ+A0m/fnByvtmyL3gIU14oaN5z9zLnPCSTT6E4muFX3GiB8/NHrsGCnB1klcoZZ3JqDOMggZz/VD77oLrIy3Oxa2va1Seyrr3uLFcCWCksbbIGVCA1ul2jIfn5rRovP0KxXnzTBml9JRc=
-Received: from BLAPR03CA0113.namprd03.prod.outlook.com (2603:10b6:208:32a::28)
- by MW3PR12MB4395.namprd12.prod.outlook.com (2603:10b6:303:5c::23)
+ bh=j7l0RW4/WBiOPWg9FLdN38J+AOw/EigntlMV0ia8B1E=;
+ b=nQ16shPd+u6ueQh76lz0269H0kw3NYwaPZdQM8TyWcFCi5HCZMS3y8SDcWOdWNz/BTl24TDtbPtyDTRrNA7pZqwONXV8poyqCYte7tk2D+04ijGKN6Uy7Gvh/2fRkS7jjO6MJdSYPCmUJQA+Su5cM78LvButn63xeSFZOA7NKrk=
+Received: from MN0PR04CA0020.namprd04.prod.outlook.com (2603:10b6:208:52d::19)
+ by IA1PR12MB6306.namprd12.prod.outlook.com (2603:10b6:208:3e6::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.16; Thu, 9 Jul
- 2026 21:02:33 +0000
-Received: from BL02EPF0001A0F9.namprd03.prod.outlook.com
- (2603:10b6:208:32a:cafe::68) by BLAPR03CA0113.outlook.office365.com
- (2603:10b6:208:32a::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
+ 2026 21:02:32 +0000
+Received: from BL02EPF0001A100.namprd03.prod.outlook.com
+ (2603:10b6:208:52d:cafe::8) by MN0PR04CA0020.outlook.office365.com
+ (2603:10b6:208:52d::19) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.11 via Frontend Transport; Thu, 9
  Jul 2026 21:02:32 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -55,7 +55,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A0F9.mail.protection.outlook.com (10.167.242.100) with Microsoft
+ BL02EPF0001A100.mail.protection.outlook.com (10.167.242.107) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:32 +0000
 Received: from georzhanmkm.amd.com (10.180.168.240) by satlexmb07.amd.com
@@ -72,9 +72,9 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
  "George Zhang" <george.zhang@amd.com>
-Subject: [PATCH 50/80] drm/amd/display: Test GFX12 DCC plane attributes
-Date: Thu, 9 Jul 2026 16:48:18 -0400
-Message-ID: <20260709205936.5719-51-george.zhang@amd.com>
+Subject: [PATCH 51/80] drm/amd/display: Test DCC and cursor edge cases
+Date: Thu, 9 Jul 2026 16:48:19 -0400
+Message-ID: <20260709205936.5719-52-george.zhang@amd.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260709205936.5719-1-george.zhang@amd.com>
 References: <20260709205936.5719-1-george.zhang@amd.com>
@@ -86,29 +86,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0F9:EE_|MW3PR12MB4395:EE_
-X-MS-Office365-Filtering-Correlation-Id: bf9cac9e-4075-433a-c132-08deddfd64fa
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A100:EE_|IA1PR12MB6306:EE_
+X-MS-Office365-Filtering-Correlation-Id: f9660cbf-2a47-4c6a-71b6-08deddfd6544
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700016|23010399003|376014|82310400026|18002099003|22082099003|5023799004|11063799006|56012099006|3023799007;
-X-Microsoft-Antispam-Message-Info: Tcfex7wlxy30zUFnB+m+rARlDX9B/eV2mRaq9yuPeYl5UceVzhW0Bve8w+1YWKUS8DtiD5hZdc351AFSAEDEfWfNgedWpKw4t3SO9sbIILFDNw5IPLI7B+7gfS0DzZs0yAfseZCDBHXU/G5qlDGcbGN01HLqq9TBeV75RtAfzWM5COcFYwsdb5UDDLhYtUim3sdpHc0PuV1IrCtfBjrxZ8yhfbsQVT5CgyHn0j8R2pM3LekBwUtjZ3CA2eTWAMc+NygI0POLhcr6WRpXZbR0vnK08sYOeaDl+y1McIJIp34bGm2ajup/C+7jLPhyTcfnjw0cWdmvmHMAxgNnt5H1QfOeKvk4GiWLa5hod/TkPsx6cWcFwnPje4agMjK+1UOIF/Y4reBGyzq/UdnFHuWnjJRf07WUSaVUCcLkUarkBdVmhHk+wRlNtUv4EGaN0JQCqikMgOSnk/ggI+TCjMlqAc1E41v0kr9phKELJqyMeDZcDyrsS3eHVOHyunqsuvCl5+49mN2oDbrHLZE0Cw5HtcpMkmnGmdUinEi+V//pSLMQw6phYnLctLncy3XzXFVSDsFS7fTrfN5ZFJewxwwL8WJGdjE+QUXJdPyU3119mP7ui1Rtu4rJ2nbzH5lS7bzm2fOuc5jFJy/DeoVwHGyi9vJAjILa0cXu3PZKkd5UBdjI35Ocws2ZaDZS716gguSrmBpcYu2It58TVslYvXNTIw==
+ ARA:13230040|82310400026|376014|1800799024|36860700016|23010399003|11063799006|5023799004|22082099003|56012099006|18002099003|3023799007;
+X-Microsoft-Antispam-Message-Info: MAXLr9wrlK3ilshCSgJMgncx6SxRtEzvAZdh52wxPP1i/E3Mf+/flINwv27qPjm0Y9tbTCyQcfK/1AqhZE4zeCA7Gu5HmxL+CgAFMH7eTr2ua7yAqwAovCcHnooMadYiZWXPl0eihyCCas2KD8wRqIKIJ6pTGtIal6f3vKjpvwwXisEBvOTfQibEjzbVun7boKBjXZzO3vF58C+M8rfRxPOhTx8gJ3UzI+WTTgW53Q4/+DKlIZxc8LmBKbbqF0BcdOPWEYykNUsc8cEVort5cH0d9xpuzRSU8XjeB9ShjP41ijabyh1QgkBXlW+c3WL+es8mP0L4EC43+6DuIsDHq8wO6B3Q13FfHALJxlYulgZgCmNHFyUkREhgK3CnweJc7Rz76Pzmqb+f28i2r5K8cQ7npw8jfzq6lkoJBjivUlanw4tLA/u+ZqdDZv8sofyVuSGrsIP4ZhbPyM0iWatjShVFpj+nRFqSwCoptZWlQuR9IdY3Rtei5LXoGGnvEUmIdnPdU/PihjRaLX3MCNs6jCgDPv7qi4jjCLMpo42R+4yaQhXvMfrm0R8CVTZOEgRJ8935d6Lritk0bkXjBrym+wL9dgdXoQPiAkw96/1UL83jVFMJegSjf3MqePEukc0ZlT+s3DoXZR6xP12BzyG64KiWeoVMv407GnaBip9WsPN4PSlyK6rsCffbpfxw17EYvOsafxT1yOd3uf94jXpAag==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700016)(23010399003)(376014)(82310400026)(18002099003)(22082099003)(5023799004)(11063799006)(56012099006)(3023799007);
+ SFS:(13230040)(82310400026)(376014)(1800799024)(36860700016)(23010399003)(11063799006)(5023799004)(22082099003)(56012099006)(18002099003)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: oUB4FbuMosq5kg7Ly9vcjKnFo/1E3xW7vwcr7kx7hLlURLAqSQ11k8iVMyz300omrcXmlZaYy/9Sw9SLIBy7YUJOAPnWJQXrgpNZg2JhAlMko/kJ09xhWMVOdv6tlzn2mCXR+wn91mIyp8fFxbS71q4bOLRL4PfWbZZ+idFxdZ3MuSxJ+mKPPFhi68UsYLM/P8WgBxyynIEI7eRbRPSwx+GJuGCgaWkPFAdOj21MGuVznopPMlNAbToMlHwSlfF5zbUznxVp8bEKzt7vWfQy5G9xpmSJK5nDUZx+/gKuRlnqnboJY5FwO2Q+CgKgqwP5liTFC2G5ENg51TNIuhmdli74SOpSHSmdpIcI6SfvOupSSItfTZNwCcgdjJt7fPIcaDqhhL162HDGqqyJjMBJT43AupkFeGAvoa5YEYeZzA3GeU1G2/AJn2T8mGKVf9yq
+X-MS-Exchange-AntiSpam-MessageData-0: lZSZ8Gxrv8UTwVXWqybf2iTG8lvM2oeBaDs8Rnv+if+TAwbznhaZBq22V0N9sOMJg+lqhwrf0iFbA8+YjJNL7DqfCH1CvlgOBxGUt1NCUvfYUQqTStFxeRWKSuxaNivOpnRaOyhqcOAI/A+1a2u4GKziZFZykq+6LvXgGm4CbdEE94pwqhpjicL2j4NBh21Gvjttgj3LHIHFlqWZWowTqpcF+CHsAme926YsBqMHOQBHZSgCu+SzLkX3lWry8emAQEk/YKz9mLdWhKhq20EHpL4QNUK/dIuxRufuslR7oyGl9R6rE9r/8+rCJTX73QJ3EDMHXjsvbp/U/InIcNv9gB71WjuEOv+oT23vGOYKph3kPZZwrMPxZHVSwJlwtC3zQtZ4Oh67AsoCU9yLlpQ3MpQQ1zS452jQaAEPkUHYms6J7ZkMqCt0FizU/CaCTq9/
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:32.3454 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf9cac9e-4075-433a-c132-08deddfd64fa
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:32.8274 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f9660cbf-2a47-4c6a-71b6-08deddfd6544
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0F9.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A100.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4395
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6306
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,212 +152,168 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2CF51735ACE
+X-Rspamd-Queue-Id: 307BA735AFD
 
 From: Alex Hung <alex.hung@amd.com>
 
 [WHAT]
-Add KUnit tests for
-amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers() covering
-the block0, unconstrained-block and validation-failure cases.
-
-Add the dm_test_gfx12_attrs() helper used to build the GFX12 inputs.
+Add KUnit tests for the capability-callback-failure and not-capable
+paths of amdgpu_dm_plane_validate_dcc(), and for the bad-size path of
+amdgpu_dm_plane_get_cursor_position().
 
 Assisted-by: Copilot:Claude-Opus-4.8 GPT-5.5
 Reviewed-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 Signed-off-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../amdgpu_dm/tests/amdgpu_dm_plane_test.c    | 162 ++++++++++++++++++
- 1 file changed, 162 insertions(+)
+ .../amdgpu_dm/tests/amdgpu_dm_plane_test.c    | 113 ++++++++++++++++++
+ 1 file changed, 113 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
-index 4b7d9a2f798d..47da180cf3a0 100644
+index 47da180cf3a0..e1841a30fc32 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
-@@ -1313,6 +1313,18 @@ static int dm_test_gfx9_attrs(struct amdgpu_device *adev,
- 		plane_size, tiling_info, dcc, address);
- }
- 
-+static int dm_test_gfx12_attrs(struct amdgpu_device *adev,
-+			       const struct amdgpu_framebuffer *afb,
-+				       const struct plane_size *plane_size,
-+				       struct dc_tiling_info *tiling_info,
-+				       struct dc_plane_dcc_param *dcc,
-+				       struct dc_plane_address *address)
-+{
-+	return amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers(adev,
-+		afb, SURFACE_PIXEL_FORMAT_GRPH_ARGB8888, ROTATION_ANGLE_0,
-+		plane_size, tiling_info, dcc, address);
-+}
-+
- static int dm_test_plane_attrs(struct amdgpu_device *adev,
- 			       const struct amdgpu_framebuffer *afb,
- 			       enum surface_pixel_format format,
-@@ -2021,6 +2033,153 @@ static void dm_test_fill_gfx9_plane_attributes_dcc_gfx9_unconstrained(struct kun
- 	dm_test_dcc_ctx = NULL;
+@@ -785,6 +785,77 @@ static void dm_test_validate_dcc_missing_cap_func_fails(struct kunit *test)
+ 			-EINVAL);
  }
  
 +/**
-+ * dm_test_fill_gfx12_plane_attributes_block0() - Verify GFX12 64B max-compressed-block path.
++ * dm_test_validate_dcc_cap_callback_fails() - Verify callback failure path.
 + * @test: KUnit test context.
 + *
-+ * Verify if a zero max-compressed-block modifier selects the 64B independent
-+ * block mode on GFX12.
++ * Verify if validation fails when the DCC capability callback returns false.
 + */
-+static void dm_test_fill_gfx12_plane_attributes_block0(struct kunit *test)
++static void dm_test_validate_dcc_cap_callback_fails(struct kunit *test)
 +{
 +	struct amdgpu_device *adev;
 +	struct dc *dc;
-+	struct amdgpu_framebuffer *afb;
-+	struct plane_size plane_size = {0};
 +	struct dc_tiling_info tiling_info = {0};
 +	struct dc_plane_dcc_param dcc = {0};
 +	struct dc_plane_address address = {0};
++	struct plane_size plane_size = {0};
++	enum surface_pixel_format format = SURFACE_PIXEL_FORMAT_GRPH_ARGB8888;
++	enum dc_rotation_angle rotation = ROTATION_ANGLE_0;
 +	struct dm_test_dcc_cap_ctx ctx = {
-+		.callback_ret = true,
++		.callback_ret = false,
 +		.capable = true,
-+		.output_independent_64b_blks = false,
 +	};
 +	int ret;
 +
-+	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	afb = kunit_kzalloc(test, sizeof(*afb), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, adev);
-+	KUNIT_ASSERT_NOT_NULL(test, dc);
-+	KUNIT_ASSERT_NOT_NULL(test, afb);
-+
-+	adev->family = AMDGPU_FAMILY_GC_12_0_0;
-+	adev->dm.dc = dc;
++	dm_test_init_validate_dcc_inputs(&adev, &dc, &tiling_info, &dcc, &address,
++					 &plane_size, test);
 +	dc->cap_funcs.get_dcc_compression_cap = dm_test_get_dcc_compression_cap;
 +	dm_test_dcc_ctx = &ctx;
 +
-+	afb->base.modifier = AMD_FMT_MOD |
-+			     AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_64K_2D) |
-+			     AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX12) |
-+			     AMD_FMT_MOD_SET(DCC, 1) |
-+			     AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, 0);
-+	plane_size.surface_size.width = 1920;
-+	plane_size.surface_size.height = 1080;
-+
-+	ret = dm_test_gfx12_attrs(adev, afb, &plane_size, &tiling_info, &dcc,
-+				  &address);
-+	KUNIT_EXPECT_EQ(test, ret, 0);
-+	KUNIT_EXPECT_TRUE(test, dcc.enable);
-+	KUNIT_EXPECT_TRUE(test, dcc.independent_64b_blks);
-+	KUNIT_EXPECT_EQ(test, (int)dcc.dcc_ind_blk, (int)hubp_ind_block_64b);
-+
-+	dm_test_dcc_ctx = NULL;
-+}
-+
-+/**
-+ * dm_test_fill_gfx12_plane_attributes_block_unconstrained() - Verify block path.
-+ * @test: KUnit test context.
-+ *
-+ * Verify if a max-compressed-block value above one selects the unconstrained
-+ * independent block mode on GFX12.
-+ */
-+static void dm_test_fill_gfx12_plane_attributes_block_unconstrained(struct kunit *test)
-+{
-+	struct amdgpu_device *adev;
-+	struct dc *dc;
-+	struct amdgpu_framebuffer *afb;
-+	struct plane_size plane_size = {0};
-+	struct dc_tiling_info tiling_info = {0};
-+	struct dc_plane_dcc_param dcc = {0};
-+	struct dc_plane_address address = {0};
-+	struct dm_test_dcc_cap_ctx ctx = {
-+		.callback_ret = true,
-+		.capable = true,
-+		.output_independent_64b_blks = false,
-+	};
-+	int ret;
-+
-+	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	afb = kunit_kzalloc(test, sizeof(*afb), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, adev);
-+	KUNIT_ASSERT_NOT_NULL(test, dc);
-+	KUNIT_ASSERT_NOT_NULL(test, afb);
-+
-+	adev->family = AMDGPU_FAMILY_GC_12_0_0;
-+	adev->dm.dc = dc;
-+	dc->cap_funcs.get_dcc_compression_cap = dm_test_get_dcc_compression_cap;
-+	dm_test_dcc_ctx = &ctx;
-+
-+	afb->base.modifier = AMD_FMT_MOD |
-+			     AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_64K_2D) |
-+			     AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX12) |
-+			     AMD_FMT_MOD_SET(DCC, 1) |
-+			     AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, 2);
-+	plane_size.surface_size.width = 1920;
-+	plane_size.surface_size.height = 1080;
-+
-+	ret = dm_test_gfx12_attrs(adev, afb, &plane_size, &tiling_info, &dcc,
-+				  &address);
-+	KUNIT_EXPECT_EQ(test, ret, 0);
-+	KUNIT_EXPECT_TRUE(test, dcc.enable);
-+	KUNIT_EXPECT_FALSE(test, dcc.independent_64b_blks);
-+	KUNIT_EXPECT_EQ(test, (int)dcc.dcc_ind_blk,
-+			(int)hubp_ind_block_unconstrained);
-+
-+	dm_test_dcc_ctx = NULL;
-+}
-+
-+/**
-+ * dm_test_fill_gfx12_plane_attributes_validate_fails() - Verify GFX12 error path.
-+ * @test: KUnit test context.
-+ *
-+ * Verify if GFX12 modifier parsing returns validation errors from the shared
-+ * DCC validation helper.
-+ */
-+static void dm_test_fill_gfx12_plane_attributes_validate_fails(struct kunit *test)
-+{
-+	struct amdgpu_device *adev;
-+	struct dc *dc;
-+	struct amdgpu_framebuffer *afb;
-+	struct plane_size plane_size = {0};
-+	struct dc_tiling_info tiling_info = {0};
-+	struct dc_plane_dcc_param dcc = {0};
-+	struct dc_plane_address address = {0};
-+	int ret;
-+
-+	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	afb = kunit_kzalloc(test, sizeof(*afb), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, adev);
-+	KUNIT_ASSERT_NOT_NULL(test, dc);
-+	KUNIT_ASSERT_NOT_NULL(test, afb);
-+
-+	adev->family = AMDGPU_FAMILY_GC_12_0_0;
-+	adev->dm.dc = dc;
-+	afb->base.modifier = AMD_FMT_MOD |
-+			     AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX12_64K_2D) |
-+			     AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX12) |
-+			     AMD_FMT_MOD_SET(DCC, 1) |
-+			     AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, 1);
-+	plane_size.surface_size.width = 1920;
-+	plane_size.surface_size.height = 1080;
-+
-+	ret = dm_test_gfx12_attrs(adev, afb, &plane_size, &tiling_info, &dcc,
-+				  &address);
++	ret = amdgpu_dm_plane_validate_dcc(adev, format, rotation, &tiling_info,
++					   &dcc, &address, &plane_size);
 +	KUNIT_EXPECT_EQ(test, ret, -EINVAL);
++	KUNIT_EXPECT_TRUE(test, ctx.called);
++
++	dm_test_dcc_ctx = NULL;
++}
++
++/**
++ * dm_test_validate_dcc_not_capable_fails() - Verify not-capable callback output.
++ * @test: KUnit test context.
++ *
++ * Verify if validation fails when the DCC capability callback reports that the
++ * surface is not DCC capable.
++ */
++static void dm_test_validate_dcc_not_capable_fails(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct dc *dc;
++	struct dc_tiling_info tiling_info = {0};
++	struct dc_plane_dcc_param dcc = {0};
++	struct dc_plane_address address = {0};
++	struct plane_size plane_size = {0};
++	enum surface_pixel_format format = SURFACE_PIXEL_FORMAT_GRPH_ARGB8888;
++	enum dc_rotation_angle rotation = ROTATION_ANGLE_0;
++	struct dm_test_dcc_cap_ctx ctx = {
++		.callback_ret = true,
++		.capable = false,
++	};
++	int ret;
++
++	dm_test_init_validate_dcc_inputs(&adev, &dc, &tiling_info, &dcc, &address,
++					 &plane_size, test);
++	dc->cap_funcs.get_dcc_compression_cap = dm_test_get_dcc_compression_cap;
++	dm_test_dcc_ctx = &ctx;
++
++	ret = amdgpu_dm_plane_validate_dcc(adev, format, rotation, &tiling_info,
++					   &dcc, &address, &plane_size);
++	KUNIT_EXPECT_EQ(test, ret, -EINVAL);
++	KUNIT_EXPECT_TRUE(test, ctx.called);
++
++	dm_test_dcc_ctx = NULL;
 +}
 +
  /**
-  * dm_test_fill_plane_buffer_attributes_video() - Verify NV12 attributes.
+  * dm_test_validate_dcc_success_and_scan_mapping() - Verify success path and rotation-to-scan mapping.
   * @test: KUnit test context.
-@@ -2318,6 +2477,9 @@ static struct kunit_case amdgpu_dm_plane_test_cases[] = {
+@@ -2400,6 +2471,45 @@ static void dm_test_fill_dc_scaling_info_plane_caps(struct kunit *test)
+ 			0);
+ }
+ 
++/**
++ * dm_test_get_cursor_position_bad_size() - Verify oversized cursor rejection.
++ * @test: KUnit test context.
++ *
++ * Verify if a cursor larger than the CRTC maximum is rejected.
++ */
++static void dm_test_get_cursor_position_bad_size(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct amdgpu_crtc *amdgpu_crtc;
++	struct drm_plane *plane;
++	struct drm_plane_state *state;
++	struct drm_framebuffer *fb;
++	struct dc_cursor_position position = {0};
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	amdgpu_crtc = kunit_kzalloc(test, sizeof(*amdgpu_crtc), GFP_KERNEL);
++	plane = kunit_kzalloc(test, sizeof(*plane), GFP_KERNEL);
++	state = kunit_kzalloc(test, sizeof(*state), GFP_KERNEL);
++	fb = kunit_kzalloc(test, sizeof(*fb), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, adev);
++	KUNIT_ASSERT_NOT_NULL(test, amdgpu_crtc);
++	KUNIT_ASSERT_NOT_NULL(test, plane);
++	KUNIT_ASSERT_NOT_NULL(test, state);
++	KUNIT_ASSERT_NOT_NULL(test, fb);
++
++	amdgpu_crtc->max_cursor_width = 64;
++	amdgpu_crtc->max_cursor_height = 64;
++	plane->dev = &adev->ddev;
++	plane->state = state;
++	state->fb = fb;
++	state->crtc_w = 128;
++	state->crtc_h = 32;
++
++	KUNIT_EXPECT_EQ(test,
++			amdgpu_dm_plane_get_cursor_position(plane, &amdgpu_crtc->base, &position),
++			-EINVAL);
++}
++
+ /**
+  * dm_test_format_mod_supported_d_swizzle_reject() - Verify D swizzle rejection.
+  * @test: KUnit test context.
+@@ -2472,6 +2582,7 @@ static struct kunit_case amdgpu_dm_plane_test_cases[] = {
+ 	KUNIT_CASE(dm_test_fill_plane_buffer_attributes_gfx12),
+ 	/* amdgpu_dm_plane_get_cursor_position() */
+ 	KUNIT_CASE(dm_test_get_cursor_position),
++	KUNIT_CASE(dm_test_get_cursor_position_bad_size),
+ 	/* amdgpu_dm_plane_format_mod_supported() */
+ 	KUNIT_CASE(dm_test_format_mod_supported),
  	KUNIT_CASE(dm_test_format_mod_supported_d_swizzle_reject),
- 	/* amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers() */
- 	KUNIT_CASE(dm_test_fill_gfx12_plane_attributes_from_modifiers),
-+	KUNIT_CASE(dm_test_fill_gfx12_plane_attributes_block0),
-+	KUNIT_CASE(dm_test_fill_gfx12_plane_attributes_block_unconstrained),
-+	KUNIT_CASE(dm_test_fill_gfx12_plane_attributes_validate_fails),
- 	/* amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers() */
- 	KUNIT_CASE(dm_test_fill_gfx9_plane_attributes_from_modifiers),
- 	KUNIT_CASE(dm_test_fill_gfx9_plane_attributes_dcc),
+@@ -2510,6 +2621,8 @@ static struct kunit_case amdgpu_dm_plane_test_cases[] = {
+ 	KUNIT_CASE(dm_test_validate_dcc_disabled_returns_success),
+ 	KUNIT_CASE(dm_test_validate_dcc_video_non_gfx12_fails),
+ 	KUNIT_CASE(dm_test_validate_dcc_missing_cap_func_fails),
++	KUNIT_CASE(dm_test_validate_dcc_cap_callback_fails),
++	KUNIT_CASE(dm_test_validate_dcc_not_capable_fails),
+ 	KUNIT_CASE(dm_test_validate_dcc_success_and_scan_mapping),
+ 	KUNIT_CASE(dm_test_validate_dcc_independent_64b_mismatch_fails),
+ 	{}
 -- 
 2.55.0
 
