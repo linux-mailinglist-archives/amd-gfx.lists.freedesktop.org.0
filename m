@@ -2,52 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ctAWOnQMUGoisgIAu9opvQ
+	id bng+OGcMUGoJsgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:44 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:31 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F10735AEA
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CC3E735A9A
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=fJhgl4d0;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=Q1v5IxxG;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E495510F6EF;
-	Thu,  9 Jul 2026 21:02:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E19C310F6E2;
+	Thu,  9 Jul 2026 21:02:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011011.outbound.protection.outlook.com [52.101.57.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 433A110F6E1
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:33 +0000 (UTC)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012001.outbound.protection.outlook.com [52.101.43.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98E2310F6DC
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ud9+kIhFHMJ+VZNdss3vIDAn8gwo5GKtiVodaKXdwo7O79N2YWceO2fCVpRCs5lLnevaq/hxUbEsC4J/xu7POauBrthVOBE86vtsIMXq7IQKr8CSjPh6zq6vjMJipRqrgqvHBnfRYfjmzq7zquOIc0Z1e8T+Hxs9UR3LjihE8MAfXhyJ4O1QFBLt/ukgxZ+T4S0vrRCdHyKVfNAHlPLOJ+BeBHwBibicnY359XvZTGDSGWqfcWiqowTrKVawLHD3mI9MG9/aoTHP+hMzdiKq7ABOCuonnrw30pR4Xm9uhtTcYdquOOhegRmorRAQ8xz0WpMS3+Kf4v3VXQLKW9Yztg==
+ b=hTRUaJDdnWZaQtIo03jt3RTtm9cwTNtHrWWE22kQ5vFougvYsLhS/Je2iEM71ulWw9D2iNJdGT8E+3qEHEC/x1SgHHuy5gKo4Cab7l3tZg/a0Kzg2vyOJmNut37HkPA3W+L/MKDeqap9gJu96hI9xw4l8U0Kg51VwqQlz2vuPzrSsdbc2SATF/2BLbrG+IlMlbc/gtIueKOGX28WHjF1+SYTUlKRGD16vzUei0oR854IAk/TgmuEZLNXKNi/pIOZNjQwaSlZVmEQKExhbuo7fXsaS6RPyM7NSQKmO6mkG2R3qHnVBlTV/vaXbIK08hMYxfVd1ChCJ5+brTxFH9e3QA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VBQnPlL7k9J1XJaeaNzY45Qk80U83EjpxsjxoqymMXU=;
- b=bMKPupvHmaJawbZyObIvm7M68VI+9I0UjVvoH/w/eVXYRhNxMnqJHw60bID+z6Y/VJwTyAMgpBdo4JZH+EK9hbKXAubvm6vOfFSvx0WD+VQY9mHOljT3SSLITLt1SAGwlBC6P35GWPjLsdLO+t9rAOdPCyLWRTzFMNp4St50d8MTjwCkdH9iZfm/lazDa0rafQ0GYx2+VMLdl7I27ZyBtr0myooG+R/xu8N8W22FnvWO5QxX+1ObT19PJj+77+DZHl0jzZLS3jEVd3AypyC6PD5Eil+gLuVW7tLpbcK/RPb7mMFKWJm5rKOJmv63h3Y5WFGFac2OhV7bRxcqnF5EXw==
+ bh=327WRLM2fUIQE6L3yt0KVFJDYLZZtxKtqkwwdXTmLVU=;
+ b=wrwJwflWRdfPzlQwjZTjW359akjJixtwJeIU97KxNIaGVmsz8DygRsekpwLu+wA6uG16D6HOykKY4VcFKn/Gtvz+tvy7uE7UfOdz+slMFns7jP+c302MUVsoDsJpenjKidFufdgk+J1UrMaUyeGq5j6tX3E/DuS1AWXsyCkBXfwPZN+YpSnscFl39PSBc4Cf1qlv9RytLsXpCCzWRVoL6j1kZ2bVoYWicOXZ08oVMfvMnIH4jZYgJokRZARWGUWw0IguZ2FvfWrQqWs8YplbofdCb4ha7OISXi/+JMVCKyosgBJLtRLqpb7lEeRhla6CFbYbTf9OjAZabC3app+27w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VBQnPlL7k9J1XJaeaNzY45Qk80U83EjpxsjxoqymMXU=;
- b=fJhgl4d0nXxBwXjHoanVDpkloIfO9iFS8/9sDTw9WcK4mFfXTZiBbMFgnNSj9g7Bgh/LCNpgmeVxgbpsl8UAkRIWcUYsFxxDP39aEuZnAJjh7qcJx9/nmqh08aEwHKKRr01N27UZee7PGFJlEMQqkcKN6jpHUsV9HL3syXGDDjM=
-Received: from BL1P223CA0032.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:5b6::15)
- by MN0PR12MB5932.namprd12.prod.outlook.com (2603:10b6:208:37f::9)
+ bh=327WRLM2fUIQE6L3yt0KVFJDYLZZtxKtqkwwdXTmLVU=;
+ b=Q1v5IxxGFxbcR08YcNVL6Cazm4NYjIEAmBt4kXSBE/7cUTfjcRTlW7Qhgt35EJUSEFP5zVQJgC0kp9/qD4Q7GyoL9E4MiZDyxMWPLQ5VHMPUUtn/QuM1dNgDKVeOwwV7aEiLlb2zeCXJdF6knEhM4/PMeJqQ1WFDAHWvgm18D80=
+Received: from MN0PR04CA0023.namprd04.prod.outlook.com (2603:10b6:208:52d::28)
+ by LV2PR12MB5845.namprd12.prod.outlook.com (2603:10b6:408:176::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Thu, 9 Jul
- 2026 21:02:19 +0000
-Received: from BL02EPF0001A0FB.namprd03.prod.outlook.com
- (2603:10b6:208:5b6:cafe::92) by BL1P223CA0032.outlook.office365.com
- (2603:10b6:208:5b6::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
+ 2026 21:02:20 +0000
+Received: from BL02EPF0001A0FF.namprd03.prod.outlook.com
+ (2603:10b6:208:52d:cafe::4b) by MN0PR04CA0023.outlook.office365.com
+ (2603:10b6:208:52d::28) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.12 via Frontend Transport; Thu, 9
- Jul 2026 21:02:19 +0000
+ Jul 2026 21:02:20 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,13 +55,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A0FB.mail.protection.outlook.com (10.167.242.102) with Microsoft
+ BL02EPF0001A0FF.mail.protection.outlook.com (10.167.242.106) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:19 +0000
+ 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:20 +0000
 Received: from georzhanmkm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
- 2026 16:01:58 -0500
+ 2026 16:01:59 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -72,9 +72,9 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
  "George Zhang" <george.zhang@amd.com>
-Subject: [PATCH 30/80] drm/amd/display: Test irq funcs/suspend/workqueue
-Date: Thu, 9 Jul 2026 16:47:58 -0400
-Message-ID: <20260709205936.5719-31-george.zhang@amd.com>
+Subject: [PATCH 31/80] drm/amd/display: Test irq state setters and work
+Date: Thu, 9 Jul 2026 16:47:59 -0400
+Message-ID: <20260709205936.5719-32-george.zhang@amd.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260709205936.5719-1-george.zhang@amd.com>
 References: <20260709205936.5719-1-george.zhang@amd.com>
@@ -86,29 +86,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FB:EE_|MN0PR12MB5932:EE_
-X-MS-Office365-Filtering-Correlation-Id: 247f6e1a-c259-4501-6b91-08deddfd5d7c
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FF:EE_|LV2PR12MB5845:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7f39e598-40d8-4264-5943-08deddfd5dc9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|82310400026|376014|36860700016|18002099003|11063799006|22082099003|56012099006;
-X-Microsoft-Antispam-Message-Info: pm29A9wVlPVc3DwMTN0rbqycjm/CdRtos2s8tqKOxIElbqO8HjsHt8uQqicSIsGhNmNLrooPr2aRvIhRicyBy3WZTsuQ6HUGVnLwXPiYU1qd/6vRxBigrHaDcsyIwLfsZ6dKG6Hinx5W1baOY92W36q0w7it5/H7479WCTKsTCiplWkKklxZmP/OmprI7V3F1HcODOmYUS4EC+iUaR3rWQvi1dPg1tbgndTjVhwXLV2c47oe1ecYmVtaf4FSh9nssUN6stzRwVl+2IYbBqnH+L47K0fnP1o7qtBXhS5oBIvUajBo00wklNaemBo3MkCHgVi6crJ7EM0aaskL5Fwx3XjorL05cDI3EuW8xlF61XJH3PPJ3uv8lq/uZcTmNwMCHRLEY7EGwbkLNf0F11h/ehHQb0bWZe6oyAbJRBDLMsGaaZzTlY6/fMlgd1ZupoPJRCkB751872gp6+p60mkM2ZWAkqHsYTfJn8kreC/POafz/dYgBfVSShKnlsJSqJBNuo+53YVvW70dvkuj8ivoSqkq3TbNzOsHtlJwa8vZJAmcp2KQIHn+yKDPfm93dZso+M2GEbcwFmKJL1sohneWyawTbDMz73/BaiaMi5NVXGGgslKlm1OdOjTR+6CISsvcxQGv+eFA49k0aQuBkgWD3mjpU1JZa3FfvHCan7Aj7ZHVtY02d4iUMVNKzWQRC1xJURr6G+vyN64d9flPaYnOPA==
+ ARA:13230040|376014|82310400026|1800799024|23010399003|36860700016|56012099006|5023799004|11063799006|6133799003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: T3JNTA8jCgQCQMLp7Fgbi7ok8tx9TiATebAsm5vSJ+hFqa/ePFKA2fUdRkA4jiJDncfyT5inWbuUmzjLSibYmV5mSKfENEVkrT031R88eQ8BxTZkpUZf0+oDWVIXB5+hWW72EnBX9V9YVsRMmV4LJXmMwNVKSpfMyRHp9xy+1U75s81vaCepShXoPPfKdU2sG4t+L3WInR9PahjxUndbCd+ZhDNFpxHvw4ftZGW6tPj5nvsRs9r4jCHhdpwi/fZrXNh4EHhaw6qxLupzrF+4aL1SIyG47wMSvFsMYq/rjvANAtG9ErAtIeSo2G4riNimWATBpzR8DPDlAAX2Xte7Bp21WuQE9ZNEe/bcAf6aa8rE0WPCtuD8yxLSh0XGctxJE+uQinnHzKTRVIAEdihHHUoCh/nLpSkQ3k7vk+D9AE2pJrSehHeAU4WYpCRSlMWQY7GWX2QNjFyy7PWz+CyvpWc00T0tnHf7bYkFGtl0pb+O4UAQJhu4kjJS28SWFzbi48LICCOtQ/vC4gZxKzPHeq7dAc2LYpkIj1jcQm6ajvSFr/Rg04zIlnZUC/ulrelAKkvrxS/F/I42CcG5IF+LQoCsVuHoBO4pOTHJNUpLQM3fT/TnIWuwolTjWDF/MWpzMYXtCq8xpyIxzaxz0YffJw44/kUsBVIUKVDrRXm/Ml7NHKf6A1TCuUGTrELILsxwlMGRxYlk35kMvsqt01ssdQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(82310400026)(376014)(36860700016)(18002099003)(11063799006)(22082099003)(56012099006);
+ SFS:(13230040)(376014)(82310400026)(1800799024)(23010399003)(36860700016)(56012099006)(5023799004)(11063799006)(6133799003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: PtciNzWj6aHhHKZvHmQz2YZdq1k341IY4QIu0qH9uhHgTTBh5m78e+K8AY8czjNeHqQhE38HCrGh8pswApTP0uVNl5oP3p+k0bDEm9bGpu17Z3ybb1zTmtuuTqT0/+UIKWdA8+sHFyXe6B21+UR1EhFme2hqlG1ZS6QbbC5LDfV8LQSOJRWjwhvDgnNZrcY3Pgz6pbT0SIauBnODS++9yDRi71O7axGUbs4Kdk1qhrGHYVzb730AjKolnaMBW3OuhM2vhyhcq54E+xQh7hT8kSyND5speJqPg1kOovzeil3xGxYsYbKXx1Q7/Z0MqQHuIlUoeMhWvgr2mmPZFP4sSA4HbZPWCg6By0CWoVh0/tJd8UkqO7ByhshrRu5gOrpm1c/1IPEI43wYj7VCYJDx6XN1PTCwWpZWH9bsxbor2+CgUuN0HPgywv6Bumf4CIPO
+X-MS-Exchange-AntiSpam-MessageData-0: Zn+wa8mqfV17AJDep6rhvuj+wCkvSvL5r2qQpWIvsXqTuhQYmgTXMEoop7Yj0r9JHCZiB0i7Bagsab4ML1PGNQutIvvPkDwf8AFGGSeZeNLkjribUhSoasDXcK7CS4Hc+nTSrAqDffHb+QaIvj4oAB3HInBZPHgQDZ4mZaUYajABVayyZBczB66rOgRYBzmB2bKnlWFDOIe9jFWY5567JFqovyMHNiPwEp/I04TFKkoCBxESbi5jRMGWzsm6Q3ajmo+8a9qR8kfih+EbhLOO6gu6ZJQg3qPd19Rl3EIBnRsIIPQzcwEUkVtt8cGQXsiELzNjW3MBKl7xR+bX/z/aRhpG5mGkuFqPJJiA80S1tZIqHRFGCw4VQDuP2Zv1RgMVxX4wNSxA4IkkLlDeaZIW/T/tjvTYuWH+I8zxkuApgNc3+rbO86Yfz80mQOTSHX6p
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:19.7616 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 247f6e1a-c259-4501-6b91-08deddfd5d7c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:20.2745 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f39e598-40d8-4264-5943-08deddfd5dc9
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FB.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FF.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5932
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5845
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,467 +152,811 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 76F10735AEA
+X-Rspamd-Queue-Id: 5CC3E735A9A
 
 From: Alex Hung <alex.hung@amd.com>
 
 [WHAT]
-Expand the amdgpu_dm_irq KUnit suite with the first batch of tests
-covering IRQ source-function setup, suspend/resume of the IRQ
-clients, and the HPD RX offload workqueue lifecycle.
+Add KUnit tests for the per-source IRQ state callbacks (HPD, pflip,
+CRTC, vline0, vupdate, dmub outbox/trace), the immediate and scheduled
+IRQ work paths, and amdgpu_dm_outbox_init.
 
 Assisted-by: Copilot:Claude-Opus-4.8
 Reviewed-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 Signed-off-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c |   7 +
- .../amdgpu_dm/tests/amdgpu_dm_irq_test.c      | 353 ++++++++++++++++++
- 2 files changed, 360 insertions(+)
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c |  28 +-
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h |  35 ++
+ .../amdgpu_dm/tests/amdgpu_dm_irq_test.c      | 582 ++++++++++++++++++
+ 3 files changed, 636 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-index c5467f34c51f..ee74b212aebf 100644
+index ee74b212aebf..5af7f0bebdb8 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-@@ -537,6 +537,7 @@ void amdgpu_dm_irq_suspend(struct amdgpu_device *adev)
- 	if (dev->mode_config.poll_enabled)
- 		drm_kms_helper_poll_disable(dev);
- }
-+EXPORT_IF_KUNIT(amdgpu_dm_irq_suspend);
-
- void amdgpu_dm_irq_resume_early(struct amdgpu_device *adev)
+@@ -594,7 +594,7 @@ EXPORT_IF_KUNIT(amdgpu_dm_irq_resume_late);
+  * amdgpu_dm_irq_schedule_work - schedule all work items registered for the
+  * "irq_source".
+  */
+-static void amdgpu_dm_irq_schedule_work(struct amdgpu_device *adev,
++STATIC_IFN_KUNIT void amdgpu_dm_irq_schedule_work(struct amdgpu_device *adev,
+ 					enum dc_irq_source irq_source)
  {
-@@ -558,6 +559,7 @@ void amdgpu_dm_irq_resume_early(struct amdgpu_device *adev)
+ 	struct  list_head *handler_list = &adev->dm.irq_handler_list_low_tab[irq_source];
+@@ -643,12 +643,13 @@ static void amdgpu_dm_irq_schedule_work(struct amdgpu_device *adev,
+ 				  irq_source);
+ 	}
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_irq_schedule_work);
+
+ /*
+  * amdgpu_dm_irq_immediate_work
+  * Callback high irq work immediately, don't send to work queue
+  */
+-static void amdgpu_dm_irq_immediate_work(struct amdgpu_device *adev,
++STATIC_IFN_KUNIT void amdgpu_dm_irq_immediate_work(struct amdgpu_device *adev,
+ 					 enum dc_irq_source irq_source)
+ {
+ 	struct amdgpu_dm_irq_handler_data *handler_data;
+@@ -667,6 +668,7 @@ static void amdgpu_dm_irq_immediate_work(struct amdgpu_device *adev,
 
  	DM_IRQ_TABLE_UNLOCK(adev, irq_table_flags);
  }
-+EXPORT_IF_KUNIT(amdgpu_dm_irq_resume_early);
-
- void amdgpu_dm_irq_resume_late(struct amdgpu_device *adev)
- {
-@@ -586,6 +588,7 @@ void amdgpu_dm_irq_resume_late(struct amdgpu_device *adev)
- 	if (dev->mode_config.poll_enabled)
- 		drm_kms_helper_poll_enable(dev);
- }
-+EXPORT_IF_KUNIT(amdgpu_dm_irq_resume_late);
-
- /*
-  * amdgpu_dm_irq_schedule_work - schedule all work items registered for the
-@@ -900,6 +903,8 @@ void amdgpu_dm_set_irq_funcs(struct amdgpu_device *adev)
- 	adev->hpd_irq.num_types = adev->mode_info.num_hpd;
- 	adev->hpd_irq.funcs = &dm_hpd_irq_funcs;
- }
-+EXPORT_IF_KUNIT(amdgpu_dm_set_irq_funcs);
-+
- void amdgpu_dm_outbox_init(struct amdgpu_device *adev)
- {
- 	dc_interrupt_set(adev->dm.dc,
-@@ -1187,6 +1192,7 @@ struct hpd_rx_irq_offload_work_queue *amdgpu_dm_hpd_rx_irq_create_workqueue(stru
- 	kfree(hpd_rx_offload_wq);
- 	return NULL;
- }
-+EXPORT_IF_KUNIT(amdgpu_dm_hpd_rx_irq_create_workqueue);
-
- void amdgpu_dm_hpd_rx_irq_work_suspend(struct amdgpu_display_manager *dm)
- {
-@@ -1197,6 +1203,7 @@ void amdgpu_dm_hpd_rx_irq_work_suspend(struct amdgpu_display_manager *dm)
- 			flush_workqueue(dm->hpd_rx_offload_wq[i].wq);
- 	}
- }
-+EXPORT_IF_KUNIT(amdgpu_dm_hpd_rx_irq_work_suspend);
-
- STATIC_IFN_KUNIT bool are_sinks_equal(const struct dc_sink *sink1, const struct dc_sink *sink2)
- {
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c
-index a73a6dd146d6..7ea6f93ca998 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c
-@@ -7,14 +7,23 @@
-
- #include <kunit/test.h>
- #include <drm/drm_kunit_helpers.h>
-+#include <drm/drm_atomic_helper.h>
-+#include <drm/drm_probe_helper.h>
-
- #include "dc.h"
-+#include "inc/core_types.h"
-+#include "irq/irq_service.h"
- #include "amdgpu.h"
- #include "amdgpu_mode.h"
- #include "amdgpu_dm.h"
- #include "amdgpu_dm_irq.h"
- #include "amdgpu_dm_kunit_test_helpers.h"
-+#include "dc_dmub_srv.h"
-+#include "ivsrcid/ivsrcid_vislands30.h"
-+#include "ivsrcid/dcn/irqsrcs_dcn_1_0.h"
-+#include "link_service.h"
- #include "dmub/dmub_srv.h"
-+#include "dal_asic_id.h"
-
- static void dm_test_irq_handler(void *arg)
- {
-@@ -31,6 +40,22 @@ static void dm_test_crtc_list_del(void *data)
- 	list_del_init(&acrtc->base.head);
- }
-
-+struct dm_test_hpd_rx_wq_ctx {
-+	struct hpd_rx_irq_offload_work_queue *wq;
-+	int count;
-+};
-+
-+static void dm_test_destroy_hpd_rx_wq(void *data)
-+{
-+	struct dm_test_hpd_rx_wq_ctx *ctx = data;
-+	int i;
-+
-+	for (i = 0; i < ctx->count; i++)
-+		if (ctx->wq[i].wq)
-+			destroy_workqueue(ctx->wq[i].wq);
-+	kfree(ctx->wq);
-+}
-+
- /* Tests for amdgpu_dm_hpd_to_dal_irq_source() */
++EXPORT_IF_KUNIT(amdgpu_dm_irq_immediate_work);
 
  /**
-@@ -842,6 +867,318 @@ static void dm_test_get_crtc_by_otg_inst_empty_list(struct kunit *test)
- 	KUNIT_EXPECT_NULL(test, amdgpu_dm_get_crtc_by_otg_inst(adev, 0));
+  * amdgpu_dm_irq_handler - Generic DM IRQ handler
+@@ -719,7 +721,7 @@ STATIC_IFN_KUNIT enum dc_irq_source amdgpu_dm_hpd_to_dal_irq_source(unsigned int
+ }
+ EXPORT_IF_KUNIT(amdgpu_dm_hpd_to_dal_irq_source);
+
+-static int amdgpu_dm_set_hpd_irq_state(struct amdgpu_device *adev,
++STATIC_IFN_KUNIT int amdgpu_dm_set_hpd_irq_state(struct amdgpu_device *adev,
+ 				       struct amdgpu_irq_src *source,
+ 				       unsigned int type,
+ 				       enum amdgpu_interrupt_state state)
+@@ -730,6 +732,7 @@ static int amdgpu_dm_set_hpd_irq_state(struct amdgpu_device *adev,
+ 	dc_interrupt_set(adev->dm.dc, src, st);
+ 	return 0;
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_set_hpd_irq_state);
+
+ static inline int dm_irq_state(struct amdgpu_device *adev,
+ 			       struct amdgpu_irq_src *source,
+@@ -765,7 +768,7 @@ static inline int dm_irq_state(struct amdgpu_device *adev,
+ 	return 0;
  }
 
-+/* Tests for amdgpu_dm_set_irq_funcs() */
+-static int amdgpu_dm_set_pflip_irq_state(struct amdgpu_device *adev,
++STATIC_IFN_KUNIT int amdgpu_dm_set_pflip_irq_state(struct amdgpu_device *adev,
+ 					 struct amdgpu_irq_src *source,
+ 					 unsigned int crtc_id,
+ 					 enum amdgpu_interrupt_state state)
+@@ -778,8 +781,9 @@ static int amdgpu_dm_set_pflip_irq_state(struct amdgpu_device *adev,
+ 		IRQ_TYPE_PFLIP,
+ 		__func__);
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_set_pflip_irq_state);
+
+-static int amdgpu_dm_set_crtc_irq_state(struct amdgpu_device *adev,
++STATIC_IFN_KUNIT int amdgpu_dm_set_crtc_irq_state(struct amdgpu_device *adev,
+ 					struct amdgpu_irq_src *source,
+ 					unsigned int crtc_id,
+ 					enum amdgpu_interrupt_state state)
+@@ -792,8 +796,9 @@ static int amdgpu_dm_set_crtc_irq_state(struct amdgpu_device *adev,
+ 		IRQ_TYPE_VBLANK,
+ 		__func__);
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_set_crtc_irq_state);
+
+-static int amdgpu_dm_set_vline0_irq_state(struct amdgpu_device *adev,
++STATIC_IFN_KUNIT int amdgpu_dm_set_vline0_irq_state(struct amdgpu_device *adev,
+ 					struct amdgpu_irq_src *source,
+ 					unsigned int crtc_id,
+ 					enum amdgpu_interrupt_state state)
+@@ -806,8 +811,9 @@ static int amdgpu_dm_set_vline0_irq_state(struct amdgpu_device *adev,
+ 		IRQ_TYPE_VLINE0,
+ 		__func__);
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_set_vline0_irq_state);
+
+-static int amdgpu_dm_set_dmub_outbox_irq_state(struct amdgpu_device *adev,
++STATIC_IFN_KUNIT int amdgpu_dm_set_dmub_outbox_irq_state(struct amdgpu_device *adev,
+ 					struct amdgpu_irq_src *source,
+ 					unsigned int crtc_id,
+ 					enum amdgpu_interrupt_state state)
+@@ -818,8 +824,9 @@ static int amdgpu_dm_set_dmub_outbox_irq_state(struct amdgpu_device *adev,
+ 	dc_interrupt_set(adev->dm.dc, irq_source, st);
+ 	return 0;
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_set_dmub_outbox_irq_state);
+
+-static int amdgpu_dm_set_vupdate_irq_state(struct amdgpu_device *adev,
++STATIC_IFN_KUNIT int amdgpu_dm_set_vupdate_irq_state(struct amdgpu_device *adev,
+ 					   struct amdgpu_irq_src *source,
+ 					   unsigned int crtc_id,
+ 					   enum amdgpu_interrupt_state state)
+@@ -832,8 +839,9 @@ static int amdgpu_dm_set_vupdate_irq_state(struct amdgpu_device *adev,
+ 		IRQ_TYPE_VUPDATE,
+ 		__func__);
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_set_vupdate_irq_state);
+
+-static int amdgpu_dm_set_dmub_trace_irq_state(struct amdgpu_device *adev,
++STATIC_IFN_KUNIT int amdgpu_dm_set_dmub_trace_irq_state(struct amdgpu_device *adev,
+ 					   struct amdgpu_irq_src *source,
+ 					   unsigned int type,
+ 					   enum amdgpu_interrupt_state state)
+@@ -844,6 +852,7 @@ static int amdgpu_dm_set_dmub_trace_irq_state(struct amdgpu_device *adev,
+ 	dc_interrupt_set(adev->dm.dc, irq_source, st);
+ 	return 0;
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_set_dmub_trace_irq_state);
+
+ static const struct amdgpu_irq_src_funcs dm_crtc_irq_funcs = {
+ 	.set = amdgpu_dm_set_crtc_irq_state,
+@@ -911,6 +920,7 @@ void amdgpu_dm_outbox_init(struct amdgpu_device *adev)
+ 		DC_IRQ_SOURCE_DMCUB_OUTBOX,
+ 		true);
+ }
++EXPORT_IF_KUNIT(amdgpu_dm_outbox_init);
+
+ /**
+  * amdgpu_dm_hpd_init - hpd setup callback.
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h
+index bccb5d354a9f..15e024947970 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.h
+@@ -123,9 +123,44 @@ int amdgpu_dm_dcn10_register_irq_handlers(struct amdgpu_device *adev);
+ int amdgpu_dm_register_outbox_irq_handlers(struct amdgpu_device *adev);
+
+ #if IS_ENABLED(CONFIG_DRM_AMD_DC_KUNIT_TEST)
++struct amdgpu_irq_src;
++enum amdgpu_interrupt_state;
++
+ enum dc_irq_source amdgpu_dm_hpd_to_dal_irq_source(unsigned int type);
+ bool are_sinks_equal(const struct dc_sink *sink1, const struct dc_sink *sink2);
+ const char *dmub_notification_type_str(enum dmub_notification_type e);
++int amdgpu_dm_set_hpd_irq_state(struct amdgpu_device *adev,
++				struct amdgpu_irq_src *source,
++				unsigned int type,
++				enum amdgpu_interrupt_state state);
++int amdgpu_dm_set_dmub_outbox_irq_state(struct amdgpu_device *adev,
++					struct amdgpu_irq_src *source,
++					unsigned int crtc_id,
++					enum amdgpu_interrupt_state state);
++int amdgpu_dm_set_dmub_trace_irq_state(struct amdgpu_device *adev,
++				       struct amdgpu_irq_src *source,
++				       unsigned int type,
++				       enum amdgpu_interrupt_state state);
++int amdgpu_dm_set_pflip_irq_state(struct amdgpu_device *adev,
++				  struct amdgpu_irq_src *source,
++				  unsigned int crtc_id,
++				  enum amdgpu_interrupt_state state);
++int amdgpu_dm_set_crtc_irq_state(struct amdgpu_device *adev,
++				 struct amdgpu_irq_src *source,
++				 unsigned int crtc_id,
++				 enum amdgpu_interrupt_state state);
++int amdgpu_dm_set_vline0_irq_state(struct amdgpu_device *adev,
++				   struct amdgpu_irq_src *source,
++				   unsigned int crtc_id,
++				   enum amdgpu_interrupt_state state);
++int amdgpu_dm_set_vupdate_irq_state(struct amdgpu_device *adev,
++				    struct amdgpu_irq_src *source,
++				    unsigned int crtc_id,
++				    enum amdgpu_interrupt_state state);
++void amdgpu_dm_irq_schedule_work(struct amdgpu_device *adev,
++				 enum dc_irq_source irq_source);
++void amdgpu_dm_irq_immediate_work(struct amdgpu_device *adev,
++				  enum dc_irq_source irq_source);
+ #endif
+
+ #endif /* __AMDGPU_DM_IRQ_H__ */
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c
+index 7ea6f93ca998..7537d30cd983 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_irq_test.c
+@@ -33,6 +33,104 @@ static void dm_test_irq_handler_alt(void *arg)
+ {
+ }
+
++static void dm_test_irq_handler_count(void *arg)
++{
++	int *count = arg;
++
++	if (count)
++		(*count)++;
++}
++
++static struct dc *dm_test_alloc_dc_with_ctx(struct kunit *test)
++{
++	struct dc_context *ctx;
++	struct dc *dc;
++
++	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dc);
++	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, ctx);
++
++	dc->ctx = ctx;
++	ctx->dc = dc;
++
++	return dc;
++}
++
++static enum dc_irq_source dm_test_to_dal_irq_source_dcn10(
++		struct irq_service *irq_service,
++		uint32_t src_id,
++		uint32_t ext_id)
++{
++	switch (src_id) {
++	case DCN_1_0__SRCID__DC_D1_OTG_VSTARTUP:
++		return DC_IRQ_SOURCE_VBLANK1;
++	case DCN_1_0__SRCID__OTG0_IHC_V_UPDATE_NO_LOCK_INTERRUPT:
++		return DC_IRQ_SOURCE_VUPDATE1;
++	case DCN_1_0__SRCID__HUBP0_FLIP_INTERRUPT:
++		return DC_IRQ_SOURCE_PFLIP1;
++	case DCN_1_0__SRCID__DMCUB_OUTBOX_LOW_PRIORITY_READY_INT:
++		return DC_IRQ_SOURCE_DMCUB_OUTBOX;
++	default:
++		return DC_IRQ_SOURCE_INVALID;
++	}
++}
++
++static const struct irq_service_funcs dm_test_irq_service_funcs_dcn10 = {
++	.to_dal_irq_source = dm_test_to_dal_irq_source_dcn10
++};
++
++static bool dm_test_irq_src_set(struct irq_service *irq_service,
++				const struct irq_source_info *info, bool enable)
++{
++	return true;
++}
++
++static bool dm_test_irq_src_ack(struct irq_service *irq_service,
++				const struct irq_source_info *info)
++{
++	return true;
++}
++
++/* Per-source funcs let dc_interrupt_set() succeed without register access. */
++static struct irq_source_info_funcs dm_test_irq_src_funcs = {
++	.set = dm_test_irq_src_set,
++	.ack = dm_test_irq_src_ack,
++};
++
++static struct dc *dm_test_alloc_dc_with_irq_service(struct kunit *test,
++						    const struct irq_service_funcs *funcs)
++{
++	struct irq_source_info *info;
++	struct resource_pool *res_pool;
++	struct irq_service *irqs;
++	struct dc *dc;
++	int i;
++
++	dc = dm_test_alloc_dc_with_ctx(test);
++	res_pool = kunit_kzalloc(test, sizeof(*res_pool), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, res_pool);
++	irqs = kunit_kzalloc(test, sizeof(*irqs), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, irqs);
++
++	/*
++	 * Populate the per-source info table so dc_interrupt_set()/_ack()
++	 * succeed without touching hardware registers.
++	 */
++	info = kunit_kzalloc(test, sizeof(*info) * DAL_IRQ_SOURCES_NUMBER,
++			     GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, info);
++	for (i = 0; i < DAL_IRQ_SOURCES_NUMBER; i++)
++		info[i].funcs = &dm_test_irq_src_funcs;
++
++	irqs->funcs = funcs;
++	irqs->info = info;
++	res_pool->irqs = irqs;
++	dc->res_pool = res_pool;
++
++	return dc;
++}
++
+ static void dm_test_crtc_list_del(void *data)
+ {
+ 	struct amdgpu_crtc *acrtc = data;
+@@ -1179,6 +1277,462 @@ static void dm_test_hpd_rx_irq_work_suspend_flushes(struct kunit *test)
+ 	amdgpu_dm_hpd_rx_irq_work_suspend(&adev->dm);
+ }
+
++/* Tests for CRTC-based irq state callbacks (no-CRTC early return) */
 +
 +/**
-+ * dm_test_set_irq_funcs - Test irq src funcs and counts are populated
++ * dm_test_set_crtc_irq_state_no_crtc - Test crtc irq state with missing CRTC
 + * @test: The KUnit test context
 + */
-+static void dm_test_set_irq_funcs(struct kunit *test)
++static void dm_test_set_crtc_irq_state_no_crtc(struct kunit *test)
 +{
 +	struct amdgpu_device *adev;
 +
 +	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
 +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
 +
-+	adev->mode_info.num_crtc = 6;
-+	adev->mode_info.num_hpd = 4;
-+
-+	amdgpu_dm_set_irq_funcs(adev);
-+
-+	KUNIT_EXPECT_EQ(test, adev->crtc_irq.num_types, 6);
-+	KUNIT_EXPECT_EQ(test, adev->vline0_irq.num_types, 6);
-+	KUNIT_EXPECT_EQ(test, adev->vupdate_irq.num_types, 6);
-+	KUNIT_EXPECT_EQ(test, adev->pageflip_irq.num_types, 6);
-+	KUNIT_EXPECT_EQ(test, adev->dmub_outbox_irq.num_types, 1);
-+	KUNIT_EXPECT_EQ(test, adev->dmub_trace_irq.num_types, 1);
-+	KUNIT_EXPECT_EQ(test, adev->hpd_irq.num_types, 4);
-+
-+	KUNIT_EXPECT_TRUE(test, adev->crtc_irq.funcs != NULL);
-+	KUNIT_EXPECT_TRUE(test, adev->vline0_irq.funcs != NULL);
-+	KUNIT_EXPECT_TRUE(test, adev->dmub_outbox_irq.funcs != NULL);
-+	KUNIT_EXPECT_TRUE(test, adev->vupdate_irq.funcs != NULL);
-+	KUNIT_EXPECT_TRUE(test, adev->dmub_trace_irq.funcs != NULL);
-+	KUNIT_EXPECT_TRUE(test, adev->pageflip_irq.funcs != NULL);
-+	KUNIT_EXPECT_TRUE(test, adev->hpd_irq.funcs != NULL);
++	/* mode_info.crtcs[0] is NULL -> returns 0 without dereferencing DC. */
++	KUNIT_EXPECT_EQ(test,
++			amdgpu_dm_set_crtc_irq_state(adev, NULL, 0, AMDGPU_IRQ_STATE_ENABLE), 0);
 +}
 +
-+/* Tests for amdgpu_dm_irq_suspend()/resume_early()/resume_late() */
-+
 +/**
-+ * dm_test_irq_suspend_empty - Test suspend walks empty handler tables safely
++ * dm_test_set_pflip_irq_state_no_crtc - Test pflip irq state with missing CRTC
 + * @test: The KUnit test context
 + */
-+static void dm_test_irq_suspend_empty(struct kunit *test)
++static void dm_test_set_pflip_irq_state_no_crtc(struct kunit *test)
 +{
 +	struct amdgpu_device *adev;
-+	int src;
 +
-+	adev = dm_kunit_alloc_adev(test);
-+	KUNIT_ASSERT_EQ(test, amdgpu_dm_irq_init(adev), 0);
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++
++	KUNIT_EXPECT_EQ(test,
++			amdgpu_dm_set_pflip_irq_state(adev, NULL, 0, AMDGPU_IRQ_STATE_DISABLE), 0);
++}
++
++/**
++ * dm_test_set_vline0_irq_state_no_crtc - Test vline0 irq state with missing CRTC
++ * @test: The KUnit test context
++ */
++static void dm_test_set_vline0_irq_state_no_crtc(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++
++	KUNIT_EXPECT_EQ(test,
++			amdgpu_dm_set_vline0_irq_state(adev, NULL, 0, AMDGPU_IRQ_STATE_ENABLE), 0);
++}
++
++/**
++ * dm_test_set_vupdate_irq_state_no_crtc - Test vupdate irq state with missing CRTC
++ * @test: The KUnit test context
++ */
++static void dm_test_set_vupdate_irq_state_no_crtc(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++
++	KUNIT_EXPECT_EQ(test,
++			amdgpu_dm_set_vupdate_irq_state(adev, NULL, 0, AMDGPU_IRQ_STATE_ENABLE), 0);
++}
++
++/* Tests for CRTC-based irq state callbacks (dm_irq_state happy path) */
++
++/**
++ * dm_test_set_crtc_irq_state_otg_disabled - Test crtc irq state with disabled OTG
++ * @test: The KUnit test context
++ */
++static void dm_test_set_crtc_irq_state_otg_disabled(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct amdgpu_crtc *acrtc;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++	acrtc = kunit_kzalloc(test, sizeof(*acrtc), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, acrtc);
++
++	/* otg_inst == -1 short-circuits before computing the irq source. */
++	acrtc->otg_inst = -1;
++	adev->mode_info.crtcs[0] = acrtc;
++
++	KUNIT_EXPECT_EQ(test,
++			amdgpu_dm_set_crtc_irq_state(adev, NULL, 0, AMDGPU_IRQ_STATE_ENABLE), 0);
++}
++
++/**
++ * dm_test_set_crtc_irq_state_enable - Test crtc irq state reaches DC (enable)
++ * @test: The KUnit test context
++ */
++static void dm_test_set_crtc_irq_state_enable(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct amdgpu_crtc *acrtc;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++	acrtc = kunit_kzalloc(test, sizeof(*acrtc), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, acrtc);
 +
 +	/*
-+	 * With no registered handlers the HW dc_interrupt_set() calls are
-+	 * skipped, so suspend must complete without touching the (absent) DC.
++	 * otg_inst >= 0 computes the irq source and reaches the NULL-safe
++	 * dc_interrupt_set(); the ips_support branch is skipped (dc == NULL).
 +	 */
-+	amdgpu_dm_irq_suspend(adev);
++	acrtc->otg_inst = 3;
++	adev->mode_info.crtcs[0] = acrtc;
 +
-+	for (src = 0; src < DAL_IRQ_SOURCES_NUMBER; src++) {
-+		KUNIT_EXPECT_TRUE(test, list_empty(&adev->dm.irq_handler_list_low_tab[src]));
-+		KUNIT_EXPECT_TRUE(test, list_empty(&adev->dm.irq_handler_list_high_tab[src]));
-+	}
++	KUNIT_EXPECT_EQ(test,
++			amdgpu_dm_set_crtc_irq_state(adev, NULL, 0, AMDGPU_IRQ_STATE_ENABLE), 0);
 +}
 +
 +/**
-+ * dm_test_irq_resume_early_empty - Test early resume walks empty tables safely
++ * dm_test_set_pflip_irq_state_disable - Test pflip irq state reaches DC (disable)
 + * @test: The KUnit test context
 + */
-+static void dm_test_irq_resume_early_empty(struct kunit *test)
++static void dm_test_set_pflip_irq_state_disable(struct kunit *test)
 +{
 +	struct amdgpu_device *adev;
-+	int src;
++	struct amdgpu_crtc *acrtc;
 +
-+	adev = dm_kunit_alloc_adev(test);
-+	KUNIT_ASSERT_EQ(test, amdgpu_dm_irq_init(adev), 0);
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++	acrtc = kunit_kzalloc(test, sizeof(*acrtc), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, acrtc);
 +
-+	amdgpu_dm_irq_resume_early(adev);
++	/* The disable state exercises the st == false path. */
++	acrtc->otg_inst = 1;
++	adev->mode_info.crtcs[0] = acrtc;
 +
-+	for (src = 0; src < DAL_IRQ_SOURCES_NUMBER; src++)
-+		KUNIT_EXPECT_TRUE(test, list_empty(&adev->dm.irq_handler_list_high_tab[src]));
++	KUNIT_EXPECT_EQ(test,
++			amdgpu_dm_set_pflip_irq_state(adev, NULL, 0, AMDGPU_IRQ_STATE_DISABLE), 0);
 +}
 +
 +/**
-+ * dm_test_irq_resume_late_empty - Test late resume walks empty tables safely
++ * dm_test_set_vline0_irq_state_enable - Test vline0 irq state reaches DC (enable)
 + * @test: The KUnit test context
 + */
-+static void dm_test_irq_resume_late_empty(struct kunit *test)
++static void dm_test_set_vline0_irq_state_enable(struct kunit *test)
 +{
 +	struct amdgpu_device *adev;
-+	int src;
++	struct amdgpu_crtc *acrtc;
 +
-+	adev = dm_kunit_alloc_adev(test);
-+	KUNIT_ASSERT_EQ(test, amdgpu_dm_irq_init(adev), 0);
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++	acrtc = kunit_kzalloc(test, sizeof(*acrtc), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, acrtc);
 +
-+	amdgpu_dm_irq_resume_late(adev);
++	acrtc->otg_inst = 0;
++	adev->mode_info.crtcs[0] = acrtc;
 +
-+	for (src = 0; src < DAL_IRQ_SOURCES_NUMBER; src++)
-+		KUNIT_EXPECT_TRUE(test, list_empty(&adev->dm.irq_handler_list_low_tab[src]));
++	KUNIT_EXPECT_EQ(test,
++			amdgpu_dm_set_vline0_irq_state(adev, NULL, 0, AMDGPU_IRQ_STATE_ENABLE), 0);
 +}
 +
 +/**
-+ * dm_test_irq_suspend_registered - Test suspend reaches the dc_interrupt_set path
++ * dm_test_set_vupdate_irq_state_enable - Test vupdate irq state reaches DC (enable)
++ * @test: The KUnit test context
++ */
++static void dm_test_set_vupdate_irq_state_enable(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct amdgpu_crtc *acrtc;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++	acrtc = kunit_kzalloc(test, sizeof(*acrtc), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, acrtc);
++
++	acrtc->otg_inst = 2;
++	adev->mode_info.crtcs[0] = acrtc;
++
++	KUNIT_EXPECT_EQ(test,
++			amdgpu_dm_set_vupdate_irq_state(adev, NULL, 0, AMDGPU_IRQ_STATE_ENABLE), 0);
++}
++
++/**
++ * dm_test_set_crtc_irq_state_allows_idle - Test the idle-optimization branch
 + * @test: The KUnit test context
 + *
-+ * Registers a low-context HPD handler so the handler list is non-empty,
-+ * forcing amdgpu_dm_irq_suspend() to call dc_interrupt_set() (NULL-safe with
-+ * no DC) and flush_work() on the registered handler.
++ * With a non-NULL DC that advertises IPS support and currently allows idle
++ * optimizations, dm_irq_state() must call dc_allow_idle_optimizations() before
++ * dc_interrupt_set(). disable_idle_power_optimizations makes that call a safe
++ * early return, and per-source stub funcs let dc_interrupt_set() succeed.
 + */
-+static void dm_test_irq_suspend_registered(struct kunit *test)
++static void dm_test_set_crtc_irq_state_allows_idle(struct kunit *test)
 +{
-+	struct dc_interrupt_params int_params = { 0 };
 +	struct amdgpu_device *adev;
-+	void *handler;
++	struct amdgpu_crtc *acrtc;
++	struct dal_logger *logger;
++	struct dc *dc;
 +
 +	adev = dm_kunit_alloc_adev(test);
++	acrtc = kunit_kzalloc(test, sizeof(*acrtc), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, acrtc);
++
++	dc = dm_test_alloc_dc_with_irq_service(test, &dm_test_irq_service_funcs_dcn10);
++
++	/* DC_LOG_* dereferences ctx->logger->dev, so wire a real drm device. */
++	logger = kunit_kzalloc(test, sizeof(*logger), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, logger);
++	logger->dev = &adev->ddev;
++	dc->ctx->logger = logger;
++
++	dc->caps.ips_support = true;
++	dc->idle_optimizations_allowed = true;
++	/* Keep dc_allow_idle_optimizations() a safe early return. */
++	dc->debug.disable_idle_power_optimizations = true;
++	adev->dm.dc = dc;
++
++	acrtc->otg_inst = 0;
++	adev->mode_info.crtcs[0] = acrtc;
++
++	KUNIT_EXPECT_EQ(test,
++			amdgpu_dm_set_crtc_irq_state(adev, NULL, 0, AMDGPU_IRQ_STATE_ENABLE), 0);
++}
++
++/* Tests for amdgpu_dm_irq_immediate_work() */
++
++/**
++ * dm_test_irq_immediate_work_empty - Test immediate work on empty high table
++ * @test: The KUnit test context
++ */
++static void dm_test_irq_immediate_work_empty(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++	KUNIT_ASSERT_EQ(test, amdgpu_dm_irq_init(adev), 0);
++
++	/* No registered high-context handlers: must be a safe no-op. */
++	amdgpu_dm_irq_immediate_work(adev, DC_IRQ_SOURCE_HPD1);
++}
++
++/**
++ * dm_test_irq_immediate_work_invokes_handler - Test immediate work calls handler
++ * @test: The KUnit test context
++ */
++static void dm_test_irq_immediate_work_invokes_handler(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct dc_interrupt_params int_params = { 0 };
++	int count = 0;
++	void *handler;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++	KUNIT_ASSERT_EQ(test, amdgpu_dm_irq_init(adev), 0);
++
++	int_params.int_context = INTERRUPT_HIGH_IRQ_CONTEXT;
++	int_params.irq_source = DC_IRQ_SOURCE_HPD1;
++	handler = amdgpu_dm_irq_register_interrupt(adev, &int_params,
++						   dm_test_irq_handler_count, &count);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, handler);
++
++	/* High-context handlers are invoked synchronously, in-place. */
++	amdgpu_dm_irq_immediate_work(adev, DC_IRQ_SOURCE_HPD1);
++	KUNIT_EXPECT_EQ(test, count, 1);
++
++	amdgpu_dm_irq_unregister_interrupt(adev, DC_IRQ_SOURCE_HPD1, dm_test_irq_handler_count);
++}
++
++/**
++ * dm_test_irq_immediate_work_invokes_all - Test immediate work calls all handlers
++ * @test: The KUnit test context
++ */
++static void dm_test_irq_immediate_work_invokes_all(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct dc_interrupt_params int_params = { 0 };
++	int count = 0;
++	void *handler;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++	KUNIT_ASSERT_EQ(test, amdgpu_dm_irq_init(adev), 0);
++
++	int_params.int_context = INTERRUPT_HIGH_IRQ_CONTEXT;
++	int_params.irq_source = DC_IRQ_SOURCE_HPD2;
++	handler = amdgpu_dm_irq_register_interrupt(adev, &int_params,
++						   dm_test_irq_handler_count, &count);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, handler);
++	handler = amdgpu_dm_irq_register_interrupt(adev, &int_params,
++						   dm_test_irq_handler_count, &count);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, handler);
++
++	/* Both registered high-context handlers must run. */
++	amdgpu_dm_irq_immediate_work(adev, DC_IRQ_SOURCE_HPD2);
++	KUNIT_EXPECT_EQ(test, count, 2);
++
++	amdgpu_dm_irq_unregister_interrupt(adev, DC_IRQ_SOURCE_HPD2, dm_test_irq_handler_count);
++	amdgpu_dm_irq_unregister_interrupt(adev, DC_IRQ_SOURCE_HPD2, dm_test_irq_handler_count);
++}
++
++/* Tests for amdgpu_dm_irq_schedule_work() */
++
++/**
++ * dm_test_irq_schedule_work_empty - Test schedule work on empty low table
++ * @test: The KUnit test context
++ */
++static void dm_test_irq_schedule_work_empty(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++	KUNIT_ASSERT_EQ(test, amdgpu_dm_irq_init(adev), 0);
++
++	/* Empty handler list: schedule_work returns immediately. */
++	amdgpu_dm_irq_schedule_work(adev, DC_IRQ_SOURCE_HPD1);
++}
++
++/**
++ * dm_test_irq_schedule_work_queues_handler - Test schedule work runs handler
++ * @test: The KUnit test context
++ */
++static void dm_test_irq_schedule_work_queues_handler(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct dc_interrupt_params int_params = { 0 };
++	int count = 0;
++	void *handler;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
 +	KUNIT_ASSERT_EQ(test, amdgpu_dm_irq_init(adev), 0);
 +
 +	int_params.int_context = INTERRUPT_LOW_IRQ_CONTEXT;
 +	int_params.irq_source = DC_IRQ_SOURCE_HPD1;
 +	handler = amdgpu_dm_irq_register_interrupt(adev, &int_params,
-+						   dm_test_irq_handler, adev);
++						   dm_test_irq_handler_count, &count);
 +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, handler);
 +
-+	amdgpu_dm_irq_suspend(adev);
++	amdgpu_dm_irq_schedule_work(adev, DC_IRQ_SOURCE_HPD1);
 +
-+	amdgpu_dm_irq_unregister_interrupt(adev, DC_IRQ_SOURCE_HPD1,
-+					   dm_test_irq_handler);
++	/*
++	 * Low-context work runs asynchronously on system_highpri_wq.
++	 * amdgpu_dm_irq_fini() flushes each pending work item before freeing
++	 * the handlers, so the handler is guaranteed to have run afterwards.
++	 */
++	amdgpu_dm_irq_fini(adev);
++	KUNIT_EXPECT_EQ(test, count, 1);
 +}
 +
 +/**
-+ * dm_test_irq_suspend_disables_polling - Test suspend disables KMS polling
++ * dm_test_irq_schedule_work_requeue_fallback - Test the re-queue fallback path
 + * @test: The KUnit test context
 + *
-+ * With KMS polling active, suspend must take the poll-disable branch.
-+ * drm_kms_helper_poll_disable() only cancels the poll work; it leaves the
-+ * poll_enabled flag set (cleared later by drm_kms_helper_poll_fini()).
++ * The first schedule queues the handler's work item. Issuing a second
++ * schedule before the work has run makes queue_work() fail for the
++ * still-pending item, forcing amdgpu_dm_irq_schedule_work() into the fallback
++ * that allocates and queues a fresh handler copy. Both work items run when
++ * amdgpu_dm_irq_fini() flushes the queue, so the handler fires twice.
 + */
-+static void dm_test_irq_suspend_disables_polling(struct kunit *test)
-+{
-+	struct amdgpu_device *adev;
-+
-+	adev = dm_kunit_alloc_adev(test);
-+	KUNIT_ASSERT_EQ(test, amdgpu_dm_irq_init(adev), 0);
-+
-+	/* Enable KMS polling so suspend takes the poll-disable branch. */
-+	drm_kms_helper_poll_init(&adev->ddev);
-+	KUNIT_ASSERT_TRUE(test, adev->ddev.mode_config.poll_enabled);
-+
-+	amdgpu_dm_irq_suspend(adev);
-+
-+	KUNIT_EXPECT_TRUE(test, adev->ddev.mode_config.poll_enabled);
-+
-+	drm_kms_helper_poll_fini(&adev->ddev);
-+}
-+
-+/**
-+ * dm_test_irq_resume_early_registered - Test early resume reaches dc_interrupt_set
-+ * @test: The KUnit test context
-+ *
-+ * Registers a low-context HPD RX handler so early resume calls
-+ * dc_interrupt_set() for the short-pulse interrupt source.
-+ */
-+static void dm_test_irq_resume_early_registered(struct kunit *test)
++static void dm_test_irq_schedule_work_requeue_fallback(struct kunit *test)
 +{
 +	struct dc_interrupt_params int_params = { 0 };
 +	struct amdgpu_device *adev;
++	int count = 0;
 +	void *handler;
 +
-+	adev = dm_kunit_alloc_adev(test);
-+	KUNIT_ASSERT_EQ(test, amdgpu_dm_irq_init(adev), 0);
-+
-+	int_params.int_context = INTERRUPT_LOW_IRQ_CONTEXT;
-+	int_params.irq_source = DC_IRQ_SOURCE_HPD1RX;
-+	handler = amdgpu_dm_irq_register_interrupt(adev, &int_params,
-+						   dm_test_irq_handler, adev);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, handler);
-+
-+	amdgpu_dm_irq_resume_early(adev);
-+
-+	amdgpu_dm_irq_unregister_interrupt(adev, DC_IRQ_SOURCE_HPD1RX,
-+					   dm_test_irq_handler);
-+}
-+
-+/**
-+ * dm_test_irq_resume_late_registered - Test late resume reaches dc_interrupt_set
-+ * @test: The KUnit test context
-+ *
-+ * Registers a low-context HPD handler so late resume calls dc_interrupt_set()
-+ * for the HPD interrupt source.
-+ */
-+static void dm_test_irq_resume_late_registered(struct kunit *test)
-+{
-+	struct dc_interrupt_params int_params = { 0 };
-+	struct amdgpu_device *adev;
-+	void *handler;
-+
-+	adev = dm_kunit_alloc_adev(test);
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
 +	KUNIT_ASSERT_EQ(test, amdgpu_dm_irq_init(adev), 0);
 +
 +	int_params.int_context = INTERRUPT_LOW_IRQ_CONTEXT;
 +	int_params.irq_source = DC_IRQ_SOURCE_HPD1;
 +	handler = amdgpu_dm_irq_register_interrupt(adev, &int_params,
-+						   dm_test_irq_handler, adev);
++						   dm_test_irq_handler_count, &count);
 +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, handler);
 +
-+	amdgpu_dm_irq_resume_late(adev);
++	amdgpu_dm_irq_schedule_work(adev, DC_IRQ_SOURCE_HPD1);
++	amdgpu_dm_irq_schedule_work(adev, DC_IRQ_SOURCE_HPD1);
 +
-+	amdgpu_dm_irq_unregister_interrupt(adev, DC_IRQ_SOURCE_HPD1,
-+					   dm_test_irq_handler);
++	amdgpu_dm_irq_fini(adev);
++	KUNIT_EXPECT_EQ(test, count, 2);
 +}
 +
++/* Tests for amdgpu_dm_set_hpd_irq_state() */
++
 +/**
-+ * dm_test_irq_resume_late_enables_polling - Test late resume re-enables polling
++ * dm_test_set_hpd_irq_state_null_dc - Test HPD irq state with no DC
 + * @test: The KUnit test context
-+ *
-+ * With KMS polling active, late resume must take the poll-enable branch and
-+ * leave polling enabled.
 + */
-+static void dm_test_irq_resume_late_enables_polling(struct kunit *test)
++static void dm_test_set_hpd_irq_state_null_dc(struct kunit *test)
 +{
 +	struct amdgpu_device *adev;
 +
-+	adev = dm_kunit_alloc_adev(test);
-+	KUNIT_ASSERT_EQ(test, amdgpu_dm_irq_init(adev), 0);
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
 +
-+	/* Enable KMS polling so resume_late takes the poll-enable branch. */
-+	drm_kms_helper_poll_init(&adev->ddev);
-+	KUNIT_ASSERT_TRUE(test, adev->ddev.mode_config.poll_enabled);
-+
-+	amdgpu_dm_irq_resume_late(adev);
-+
-+	KUNIT_EXPECT_TRUE(test, adev->ddev.mode_config.poll_enabled);
-+
-+	drm_kms_helper_poll_fini(&adev->ddev);
++	/* dc_interrupt_set() is a no-op when dc is NULL, so both states
++	 * return 0 without dereferencing the (absent) DC.
++	 */
++	KUNIT_EXPECT_EQ(test, amdgpu_dm_set_hpd_irq_state(adev, NULL, AMDGPU_HPD_1,
++							  AMDGPU_IRQ_STATE_ENABLE), 0);
++	KUNIT_EXPECT_EQ(test, amdgpu_dm_set_hpd_irq_state(adev, NULL, AMDGPU_HPD_1,
++							  AMDGPU_IRQ_STATE_DISABLE), 0);
 +}
 +
-+/* Tests for amdgpu_dm_hpd_rx_irq_create_workqueue() */
++/* Tests for amdgpu_dm_set_dmub_outbox_irq_state() */
 +
 +/**
-+ * dm_test_hpd_rx_irq_create_workqueue - Test workqueue array creation
++ * dm_test_set_dmub_outbox_irq_state_null_dc - Test outbox irq state with no DC
 + * @test: The KUnit test context
 + */
-+static void dm_test_hpd_rx_irq_create_workqueue(struct kunit *test)
++static void dm_test_set_dmub_outbox_irq_state_null_dc(struct kunit *test)
 +{
-+	struct dm_test_hpd_rx_wq_ctx *ctx;
 +	struct amdgpu_device *adev;
-+	struct dc *dc;
-+	int i;
 +
-+	adev = dm_kunit_alloc_adev(test);
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
 +
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dc);
-+	dc->caps.max_links = 4;
-+	adev->dm.dc = dc;
-+
-+	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, ctx);
-+
-+	ctx->wq = amdgpu_dm_hpd_rx_irq_create_workqueue(adev);
-+	KUNIT_ASSERT_NOT_NULL(test, ctx->wq);
-+	ctx->count = dc->caps.max_links;
-+	KUNIT_ASSERT_EQ(test, kunit_add_action_or_reset(test, dm_test_destroy_hpd_rx_wq, ctx), 0);
-+
-+	for (i = 0; i < dc->caps.max_links; i++)
-+		KUNIT_EXPECT_TRUE(test, ctx->wq[i].wq != NULL);
++	KUNIT_EXPECT_EQ(test, amdgpu_dm_set_dmub_outbox_irq_state(adev, NULL, 0,
++								  AMDGPU_IRQ_STATE_ENABLE), 0);
++	KUNIT_EXPECT_EQ(test, amdgpu_dm_set_dmub_outbox_irq_state(adev, NULL, 0,
++								  AMDGPU_IRQ_STATE_DISABLE), 0);
 +}
 +
-+/* Tests for amdgpu_dm_hpd_rx_irq_work_suspend() */
++/* Tests for amdgpu_dm_set_dmub_trace_irq_state() */
 +
 +/**
-+ * dm_test_hpd_rx_irq_work_suspend_null - Test suspend with no work queue
++ * dm_test_set_dmub_trace_irq_state_null_dc - Test trace irq state with no DC
 + * @test: The KUnit test context
 + */
-+static void dm_test_hpd_rx_irq_work_suspend_null(struct kunit *test)
++static void dm_test_set_dmub_trace_irq_state_null_dc(struct kunit *test)
 +{
-+	struct amdgpu_display_manager *dm;
-+
-+	dm = kunit_kzalloc(test, sizeof(*dm), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dm);
-+
-+	/* A NULL hpd_rx_offload_wq must be a safe no-op (DC untouched). */
-+	amdgpu_dm_hpd_rx_irq_work_suspend(dm);
-+}
-+
-+/**
-+ * dm_test_hpd_rx_irq_work_suspend_flushes - Test suspend flushes queues
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_hpd_rx_irq_work_suspend_flushes(struct kunit *test)
-+{
-+	struct dm_test_hpd_rx_wq_ctx *ctx;
 +	struct amdgpu_device *adev;
-+	struct dc *dc;
 +
-+	adev = dm_kunit_alloc_adev(test);
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
 +
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dc);
-+	dc->caps.max_links = 2;
-+	adev->dm.dc = dc;
++	KUNIT_EXPECT_EQ(test, amdgpu_dm_set_dmub_trace_irq_state(adev, NULL, 0,
++								 AMDGPU_IRQ_STATE_ENABLE), 0);
++	KUNIT_EXPECT_EQ(test, amdgpu_dm_set_dmub_trace_irq_state(adev, NULL, 0,
++								 AMDGPU_IRQ_STATE_DISABLE), 0);
++}
 +
-+	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, ctx);
++/* Tests for amdgpu_dm_outbox_init() */
 +
-+	ctx->wq = amdgpu_dm_hpd_rx_irq_create_workqueue(adev);
-+	KUNIT_ASSERT_NOT_NULL(test, ctx->wq);
-+	ctx->count = dc->caps.max_links;
-+	KUNIT_ASSERT_EQ(test, kunit_add_action_or_reset(test, dm_test_destroy_hpd_rx_wq, ctx), 0);
++/**
++ * dm_test_outbox_init_null_dc - Test outbox init is a safe no-op with no DC
++ * @test: The KUnit test context
++ */
++static void dm_test_outbox_init_null_dc(struct kunit *test)
++{
++	struct amdgpu_device *adev;
 +
-+	adev->dm.hpd_rx_offload_wq = ctx->wq;
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
 +
-+	amdgpu_dm_hpd_rx_irq_work_suspend(&adev->dm);
++	/* Single dc_interrupt_set() call must be skipped when dc is NULL. */
++	amdgpu_dm_outbox_init(adev);
 +}
 +
  static struct kunit_case amdgpu_dm_irq_tests[] = {
  	/* amdgpu_dm_hpd_to_dal_irq_source */
  	KUNIT_CASE(dm_test_hpd_to_dal_irq_source_hpd1),
-@@ -894,6 +1231,22 @@ static struct kunit_case amdgpu_dm_irq_tests[] = {
- 	KUNIT_CASE(dm_test_get_crtc_by_otg_inst_returns_match),
- 	KUNIT_CASE(dm_test_get_crtc_by_otg_inst_returns_null),
- 	KUNIT_CASE(dm_test_get_crtc_by_otg_inst_empty_list),
-+	/* amdgpu_dm_set_irq_funcs */
-+	KUNIT_CASE(dm_test_set_irq_funcs),
-+	/* amdgpu_dm_irq_suspend/resume_early/resume_late */
-+	KUNIT_CASE(dm_test_irq_suspend_empty),
-+	KUNIT_CASE(dm_test_irq_resume_early_empty),
-+	KUNIT_CASE(dm_test_irq_resume_late_empty),
-+	KUNIT_CASE(dm_test_irq_suspend_registered),
-+	KUNIT_CASE(dm_test_irq_suspend_disables_polling),
-+	KUNIT_CASE(dm_test_irq_resume_early_registered),
-+	KUNIT_CASE(dm_test_irq_resume_late_registered),
-+	KUNIT_CASE(dm_test_irq_resume_late_enables_polling),
-+	/* amdgpu_dm_hpd_rx_irq_create_workqueue */
-+	KUNIT_CASE(dm_test_hpd_rx_irq_create_workqueue),
-+	/* amdgpu_dm_hpd_rx_irq_work_suspend */
-+	KUNIT_CASE(dm_test_hpd_rx_irq_work_suspend_null),
-+	KUNIT_CASE(dm_test_hpd_rx_irq_work_suspend_flushes),
+@@ -1247,6 +1801,34 @@ static struct kunit_case amdgpu_dm_irq_tests[] = {
+ 	/* amdgpu_dm_hpd_rx_irq_work_suspend */
+ 	KUNIT_CASE(dm_test_hpd_rx_irq_work_suspend_null),
+ 	KUNIT_CASE(dm_test_hpd_rx_irq_work_suspend_flushes),
++	/* CRTC-based irq state callbacks (no-CRTC early return) */
++	KUNIT_CASE(dm_test_set_crtc_irq_state_no_crtc),
++	KUNIT_CASE(dm_test_set_pflip_irq_state_no_crtc),
++	KUNIT_CASE(dm_test_set_vline0_irq_state_no_crtc),
++	KUNIT_CASE(dm_test_set_vupdate_irq_state_no_crtc),
++	/* CRTC-based irq state callbacks (dm_irq_state happy path) */
++	KUNIT_CASE(dm_test_set_crtc_irq_state_otg_disabled),
++	KUNIT_CASE(dm_test_set_crtc_irq_state_enable),
++	KUNIT_CASE(dm_test_set_pflip_irq_state_disable),
++	KUNIT_CASE(dm_test_set_vline0_irq_state_enable),
++	KUNIT_CASE(dm_test_set_vupdate_irq_state_enable),
++	KUNIT_CASE(dm_test_set_crtc_irq_state_allows_idle),
++	/* amdgpu_dm_irq_immediate_work */
++	KUNIT_CASE(dm_test_irq_immediate_work_empty),
++	KUNIT_CASE(dm_test_irq_immediate_work_invokes_handler),
++	KUNIT_CASE(dm_test_irq_immediate_work_invokes_all),
++	/* amdgpu_dm_irq_schedule_work */
++	KUNIT_CASE(dm_test_irq_schedule_work_empty),
++	KUNIT_CASE(dm_test_irq_schedule_work_queues_handler),
++	KUNIT_CASE(dm_test_irq_schedule_work_requeue_fallback),
++	/* amdgpu_dm_set_hpd_irq_state */
++	KUNIT_CASE(dm_test_set_hpd_irq_state_null_dc),
++	/* amdgpu_dm_set_dmub_outbox_irq_state */
++	KUNIT_CASE(dm_test_set_dmub_outbox_irq_state_null_dc),
++	/* amdgpu_dm_set_dmub_trace_irq_state */
++	KUNIT_CASE(dm_test_set_dmub_trace_irq_state_null_dc),
++	/* amdgpu_dm_outbox_init */
++	KUNIT_CASE(dm_test_outbox_init_null_dc),
  	{}
  };
 
