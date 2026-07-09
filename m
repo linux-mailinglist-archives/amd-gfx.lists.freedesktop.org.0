@@ -2,52 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2tyfAnwMUGo9sgIAu9opvQ
+	id 31nYAWsMUGoMsgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:52 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:35 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ECB4735B2C
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4552735AA6
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=mQcom0xP;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=5QTshGey;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3539910F709;
-	Thu,  9 Jul 2026 21:02:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AF4310F6E0;
+	Thu,  9 Jul 2026 21:02:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011051.outbound.protection.outlook.com [52.101.52.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42D4510F6EC
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:40 +0000 (UTC)
+Received: from PH8PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11012071.outbound.protection.outlook.com [40.107.209.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA7F110F6E0
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NJw/zrWQb5drLsGtEEGGTLBf9zI7oCyjYZ/ect6NGPePllxU6MJa4XWqzRIJDLolfL+qeh3Jvzu8iFUK9/Qsec7HQJW6lDrMgF+45a3x7U1z96vpca5Nf4MNALURjUdkS9MlSU8Y5alL3feI1OJynWmSeBytteS0wA/l/CaeIXRpxdusVMROqunmxWs7B4JlLCz7FBw2PCkqsLr1L4k8oK36GGAktlWb4QsSLwXQMXB/7PcUbRLobfzeVZBDh8aLF7dI8y+qNCBpoIqaYdnflUK6Um4kM8NWraRkeZ8sTwVwubmzdlV7ssEKEqjUAJXn9zjK2AGv/c1WxZ+mFi5jSA==
+ b=pQWxgLHCPk3McoLjiQa2+Sf4jds0H2gx3ZmlnTyd6AJ66gyEN+jFoyoWogUMUgfrV4zj35EGpjamg4wJEO0rCLH8ZCswQxZdSJ1GR5ww26YzNlxiMVCmcxgv8rNyzknvMy2iI/RcHVjaXZF8Mc1N81WSxcQvX0xY0pRVdfkZopZaFL9FE60cgeaicstjk0Em7g4F8ReBtIYMQ+2Id3vtwlDDNXi+vZkTYbNVDRqPTU9/OXVDM/IUwEbT5JtV/ojWhXD3J/r9fjNa8bvMWo9+JjkktzzJ4R5HJ+CRPGbfa3zbzHXCVhnVS0SGhrOPF2A9Owifr64WBg3Bag6ra0/WfQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ihkfTeWdmLtaPwuufag5AzRcxk7XI2yz6UraLLKvUag=;
- b=ql2jTaVH2/SokfJT6mfwfXdHtu9UaNztcaPlgUuxTO3V1D0ofU+2MaVRGNFh28Sl1PfsIUMqplDnI9aDLhUc47v4XqKgkDPmgFoCtrXvb4A6P5W3vhJaftRa6wl0fGBVdZNq/k4g/SOrYjBEkdomo9jlBBrlNqKhzavxGnZer25NE0zA9D8Llsa38dAFKcL10J3cmnHtd2zztfRPbvBa3u1aXTxjVdIFHizIapJGC1WFgdiXjBhPyE91JPnAN7R4/R7Dn55eDw7wJmdaKkPBEKTZlSUM0X2pNzf+MRvGDnt1YrPknWmcO/jrjricqF8eqS7BRygQLnVRGjQrw6vnfg==
+ bh=/7/RqB5bskTvV6VdE4fxL7AzTwjBQBoAqvjHiWjUMB4=;
+ b=RCDeFtaBUxocYlWACsy/m+kPphQCe6BDXF+ikkHaxuYuYZ5tX9Ah+lR5mE2bc0c0EYXlf2CGLaMP0n2uFHQZemzD+S/UdMoY5UJINKffJidzt1enrVqVIjPYYArVpOvWy/aFOwrSOy7+JltWXiYul8OxXPZd2+xFkAb6Jtc3eTrQN+JUSiiiivKZP64iEPNRl0bO6bEQqHUpyNZSFUY9WeaFSLcjuuHT4pccp/sB0igBaPD7r+YuSxft43egBYtDKrOLiK8dnf9mLf6WbzAVmLArDt3dvpwUM7Re/hXpGa9NkZxhGFHjrRxeItw+91nHWaJKIpkSr2qFhVfWP6cl3Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ihkfTeWdmLtaPwuufag5AzRcxk7XI2yz6UraLLKvUag=;
- b=mQcom0xPO1/6kONfouP2QRIfLSoIj+DHzi5zb6rIo7z3Uot7IWzhn8MIPsZnkR+15vy27TEPSDHvfFQUMOewWXNHhFoUgidQrzJ1MHhYGr6o742/b8KkxdkAGhr/XPKM5Kzfjvon7LU9VHOAnk5sLtm8GwuruyrLYPN8xq+VCkM=
-Received: from MN2PR07CA0003.namprd07.prod.outlook.com (2603:10b6:208:1a0::13)
- by PH7PR12MB6561.namprd12.prod.outlook.com (2603:10b6:510:213::12)
+ bh=/7/RqB5bskTvV6VdE4fxL7AzTwjBQBoAqvjHiWjUMB4=;
+ b=5QTshGeygJMC4VaRKz4THaI5Oudct69ZsoUd6NR7fEefAuEPnuHPHnZv9lwK58fWo5/kDktfeW16fj8dmYRNxEm/6pSuwvu6JidwV30PLx6hByAsn7Q9ZfkznNLEVgkOOsgWzq0Bq5NKp8/rIxXOmNdXw+n4efx1eabHpEy8vi0=
+Received: from MN0PR04CA0006.namprd04.prod.outlook.com (2603:10b6:208:52d::23)
+ by PH7PR12MB5832.namprd12.prod.outlook.com (2603:10b6:510:1d7::6)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Thu, 9 Jul 2026
- 21:02:25 +0000
-Received: from BL02EPF0001A0FC.namprd03.prod.outlook.com
- (2603:10b6:208:1a0:cafe::91) by MN2PR07CA0003.outlook.office365.com
- (2603:10b6:208:1a0::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
+ 2026 21:02:26 +0000
+Received: from BL02EPF0001A100.namprd03.prod.outlook.com
+ (2603:10b6:208:52d:cafe::a6) by MN0PR04CA0006.outlook.office365.com
+ (2603:10b6:208:52d::23) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.11 via Frontend Transport; Thu, 9
- Jul 2026 21:02:25 +0000
+ Jul 2026 21:02:26 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,13 +55,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A0FC.mail.protection.outlook.com (10.167.242.103) with Microsoft
+ BL02EPF0001A100.mail.protection.outlook.com (10.167.242.107) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:25 +0000
+ 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:26 +0000
 Received: from georzhanmkm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
- 2026 16:02:05 -0500
+ 2026 16:02:06 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -72,9 +72,9 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
  "George Zhang" <george.zhang@amd.com>
-Subject: [PATCH 39/80] drm/amd/display: Add more tests for HDCP
-Date: Thu, 9 Jul 2026 16:48:07 -0400
-Message-ID: <20260709205936.5719-40-george.zhang@amd.com>
+Subject: [PATCH 40/80] drm/amd/display: More Kunit tests for audio
+Date: Thu, 9 Jul 2026 16:48:08 -0400
+Message-ID: <20260709205936.5719-41-george.zhang@amd.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260709205936.5719-1-george.zhang@amd.com>
 References: <20260709205936.5719-1-george.zhang@amd.com>
@@ -86,29 +86,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FC:EE_|PH7PR12MB6561:EE_
-X-MS-Office365-Filtering-Correlation-Id: d65aea47-82d2-4ec4-9c91-08deddfd60ff
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A100:EE_|PH7PR12MB5832:EE_
+X-MS-Office365-Filtering-Correlation-Id: 66da1bba-bcbd-470e-6630-08deddfd613e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|82310400026|36860700016|376014|56012099006|11063799006|22082099003|3023799007|18002099003;
-X-Microsoft-Antispam-Message-Info: zemI73l+j/2w1h6dzlUTb97+D4854KzSAYW44geTruuS9+Eqr0uBi4C4fWCAdxfipLRE2E2UuV7HGq5tWaSbmY8vMZitcsuWwuQ4RrimBeqkXVGAfwRdWNN1vTIZyHeSaJ9jb7BHvOLAp4yKDGPlIY1IPo8GlLBbYhZfPjURuat+X1K7uD/txGMMkjTc//Vvy8utc8JrEI/DhVbh6BKOqReDKQoAl2oaAZGdZDmVvjmxS7RZCZ/XVRU08R+qT3S6xslzYY1VpqzWH/w43ywM0a6JMm/pYVv0Tl4na9+TbBsBT19dDXgZlsKLxgHbaujasuY3pXU8ERS7ylsEEwHD3f+/OKJ7Wom8Hevoty24d5ugZS+t5uhw815X1wEg4L5OtHiqpqY6pnelByHeSjoHE7g7FTma8+KCri8Tae0Esafv9kYHSLHLxxhgWmVhOD3t9/aXu/CL9HITCuh7G0j7vFqhnI0NTmHIukXv3KlPceLPV/Lz6etHn0yKcGQbWWIl+rSXZY79WMhGkrzidFj+C3+Xq6cNq4v46/h7rhy85iU1o1fUJvksqccH/1qGQVchDSu2ctnwK1PG0ANp158L9mwyOiz7SU7T1RpXulPL/wZ5v3GODIbC76pksJIRH8PBN3YU+dyqxRe8I9YvhEFya3OHIA8cpKX8QizdV3SIOKrBtfTN+GZi7pIBNYv2mX5wBbzMaNQ6INwA7t1GT2hAtg==
+ ARA:13230040|36860700016|23010399003|376014|1800799024|82310400026|6133799003|11063799006|56012099006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: j4mW7HJP//7pMeYOW6u/7NLM1lZkMO1M+fJlaMmiMEcl3XUN9DnU9KZ+O5Wv0uuCmJrqjobujwlfW6ME0I8Qx4PbSjbXUytkuN+JtgnypjbXleCxmHV0pM2RnQHxYbWcgrsgrE/J4oGn3KF674zrH1KWJUjZkK7OXRb+ADGmy+bgzycZydCGtpMHx6PxM5fMXVHT0cYIQ0lHRDtIst/O9m3V/vpc13sAgYRn4VU+qMNscRWoAzt6KVRioL4mvoGECZdZOGs0GqCVhlvj57/T6RyEP0rV7RNLwHwJHzEu9wsGNErFhpaUWp0GQ+rHde/4GUxaH7uhL+hb7kB5coJkmPECrxwfuhO8FWGmpaNMMs8lbyeeCWx7Ge/S5UHfzvINm3IeEGqTS4T/jNXUvvvVusJNZ2Pjs8NRcEzROsXu+sVp+IerjZNkmuwhl7B8ojln64N9d/5r1q887hPKWq0Kjjz7pPVAM1pHO7uz0PUuUHQMLHNJTkQwLK16lzpB41U0BhcbkXbl6FsIJJShby4Q1OH0ZktApfmf7XpzHWv1OK7lz+TZC9iaqLJhwi7qv+qvot+6ojXFuGqDd6JuaDkCQymTWQqUnm+wNIFQJOyFVMqtptEaguPhup/cyBZX0NHbZRBuDF5L+NQ/aUL4vl1ZsqmbBQr98PHqoIZlZy2gCmYKTe10G7OVH/sIDMmWLkhGVO5eCUHxu5/30/neIlfJQg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(82310400026)(36860700016)(376014)(56012099006)(11063799006)(22082099003)(3023799007)(18002099003);
+ SFS:(13230040)(36860700016)(23010399003)(376014)(1800799024)(82310400026)(6133799003)(11063799006)(56012099006)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 9lSBNv39aw27LTjHVL1uagdSgRjxusANgFoDPrvudrFSP/+snSJOkhoboSauXrb+lQHNNM93AO441PEuVNanMYTkZqDl1qlgnZswA37BII8sUPEv+hlQreuHJhl8Z6HQivuXNAgD9YE3aWoVfxExvIcOGcHzPmSczXteF40vNIkmca3RbbL3nMANW5N8zhPYfwTu0vh5RItQLtjpDgLrZD9G5WpvHGigea8jyo4mOoCf1Vme1ZMxIDR6TPbzb2+C/6eij3srLMjBoU0H+Ojk1TQu1igoq2kuvsCDzaIqsM0+CXtQhrbn/mE3RnIlD5ehrtTyD1M1qlIuvtlj+NWkj4bsC/NGY4uAtGj5EvqriE4sAsk3M2w+bHq2EQJMU5QNsWjpph67kv3lJgazVuioDJ4GPVcUHqeE0JVq1ItxlCFM7PXGhMO50Jzq9x+2mYlt
+X-MS-Exchange-AntiSpam-MessageData-0: 4jW2804W+IuJW/gVUCBYfoCC5L1M3qjPYp/DL50FZVfoBuUPqep9Cg8OYvz1aKW6yaYQFA3Mw+fCa646ijg/lbte5LlzOHfXHzpfagGR62tlM3DF2hAsSTNZbLC2DQXfKg7n4eS2kCeaGc36S7yqgMBKSd15JOLro28GdcRl2XAaFFwlKm06M7jdJmUr0hVDJluXi6oFHi+CWrEBvYViPTRC/S/JG6D5++429ihlwl7j2dq/zIszVSSv9Mmff/3VYIFogP63Gl6rg+MqNgyFeCHsJ0C6MD1kzB955OIiFyADbwZU8Wel96vOHCpNFefuSFzok2fiucB0EOZmCEWbirmjRhD53+Qn7yf1/2QtgP0uNN9zHas0uS9qH42vDIbkcA/owQLm4DVPgob84b/wo57mvAz4XBBdAp8M6ZUp/QjZU1Tmbkmo3s1R05pdWmh6
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:25.6580 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d65aea47-82d2-4ec4-9c91-08deddfd60ff
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:26.0768 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66da1bba-bcbd-470e-6630-08deddfd613e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FC.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A100.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6561
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5832
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,398 +152,245 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8ECB4735B2C
+X-Rspamd-Queue-Id: A4552735AA6
 
 From: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 
-Adds a few more test cases to the hdcp code
+Split audio init to make the initialization modular
 
-  - process_output(): make sure work gets requeued when callback and
-    watchdog are stopped but also asked to run again
-  - event_property_update(): bail out when the connector is NULL
-  - hdcp_handle_cpirq(): schedules the work and picks the right link
-  - hdcp_update_display(): schedules property validation on enable,
-    resets status and cancels validation on disable
-  - hdcp_create_workqueue(): returns NULL when max links is zero
+Test the audio pin initialization
 
 Assisted-by: Copilot:Claude-Opus-4.8
 Reviewed-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.c    |  48 ++--
- .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.h    |   5 +
- .../amdgpu_dm/tests/amdgpu_dm_hdcp_test.c     | 240 ++++++++++++++++++
- 3 files changed, 276 insertions(+), 17 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_audio.c   |  36 ++++--
+ .../amd/display/amdgpu_dm/amdgpu_dm_audio.h   |   2 +
+ .../amdgpu_dm/tests/amdgpu_dm_audio_test.c    | 118 ++++++++++++++++++
+ 3 files changed, 145 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-index 039f6516085c..8f7585d3efa4 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
-@@ -258,6 +258,30 @@ static void link_lock(struct hdcp_workqueue *work, bool lock)
- 	}
- }
-
-+STATIC_IFN_KUNIT
-+void hdcp_update_display_encryption_control(struct hdcp_workqueue *hdcp_work,
-+					    struct hdcp_workqueue *hdcp_w,
-+					    unsigned int conn_index,
-+					    bool enable_encryption)
-+{
-+	if (enable_encryption) {
-+		/* Explicitly set the saved SRM as sysfs call will be after we already enabled hdcp
-+		 * (s3 resume case)
-+		 */
-+		if (hdcp_work->srm_size > 0)
-+			psp_set_srm(hdcp_work->hdcp.config.psp.handle, hdcp_work->srm,
-+				    hdcp_work->srm_size,
-+				    &hdcp_work->srm_version);
-+
-+		schedule_delayed_work(&hdcp_w->property_validate_dwork,
-+				      msecs_to_jiffies(DRM_HDCP_CHECK_PERIOD_MS));
-+	} else {
-+		hdcp_w->encryption_status[conn_index] = MOD_HDCP_ENCRYPTION_STATUS_HDCP_OFF;
-+		cancel_delayed_work(&hdcp_w->property_validate_dwork);
-+	}
-+}
-+EXPORT_IF_KUNIT(hdcp_update_display_encryption_control);
-+
- void hdcp_update_display(struct hdcp_workqueue *hdcp_work,
- 			 unsigned int link_index,
- 			 struct amdgpu_dm_connector *aconnector,
-@@ -281,22 +305,8 @@ void hdcp_update_display(struct hdcp_workqueue *hdcp_work,
- 			dc->debug.hdcp_lc_force_fw_enable,
- 			dc->debug.hdcp_lc_enable_sw_fallback,
- 			&link_adjust, &display_adjust);
--
--	if (enable_encryption) {
--		/* Explicitly set the saved SRM as sysfs call will be after we already enabled hdcp
--		 * (s3 resume case)
--		 */
--		if (hdcp_work->srm_size > 0)
--			psp_set_srm(hdcp_work->hdcp.config.psp.handle, hdcp_work->srm,
--				    hdcp_work->srm_size,
--				    &hdcp_work->srm_version);
--
--		schedule_delayed_work(&hdcp_w->property_validate_dwork,
--				      msecs_to_jiffies(DRM_HDCP_CHECK_PERIOD_MS));
--	} else {
--		hdcp_w->encryption_status[conn_index] = MOD_HDCP_ENCRYPTION_STATUS_HDCP_OFF;
--		cancel_delayed_work(&hdcp_w->property_validate_dwork);
--	}
-+	hdcp_update_display_encryption_control(hdcp_work, hdcp_w, conn_index,
-+					      enable_encryption);
-
- 	mod_hdcp_update_display(&hdcp_w->hdcp, conn_index, &link_adjust, &display_adjust, &hdcp_w->output);
-
-@@ -363,6 +373,7 @@ void hdcp_handle_cpirq(struct hdcp_workqueue *hdcp_work, unsigned int link_index
-
- 	schedule_work(&hdcp_w->cpirq_work);
- }
-+EXPORT_IF_KUNIT(hdcp_handle_cpirq);
-
- static void event_callback(struct work_struct *work)
- {
-@@ -381,7 +392,8 @@ static void event_callback(struct work_struct *work)
- 	process_output(hdcp_work);
- }
-
--static void event_property_update(struct work_struct *work)
-+STATIC_IFN_KUNIT
-+void event_property_update(struct work_struct *work)
- {
- 	struct hdcp_workqueue *hdcp_work = container_of(work, struct hdcp_workqueue,
- 							property_update_work);
-@@ -440,6 +452,7 @@ static void event_property_update(struct work_struct *work)
- 		drm_modeset_unlock(&dev->mode_config.connection_mutex);
- 	}
- }
-+EXPORT_IF_KUNIT(event_property_update);
-
- static void event_property_validate(struct work_struct *work)
- {
-@@ -872,4 +885,5 @@ struct hdcp_workqueue *hdcp_create_workqueue(struct amdgpu_device *adev,
-
- 	return NULL;
- }
-+EXPORT_IF_KUNIT(hdcp_create_workqueue);
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
-index 3ba5823aed9f..a82a20b80518 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.h
-@@ -108,6 +108,11 @@ void hdcp_get_link_display_adjustments(
- 	bool hdcp_lc_enable_sw_fallback,
- 	struct mod_hdcp_link_adjustment *link_adjust,
- 	struct mod_hdcp_display_adjustment *display_adjust);
-+void hdcp_update_display_encryption_control(struct hdcp_workqueue *hdcp_work,
-+					    struct hdcp_workqueue *hdcp_w,
-+					    unsigned int conn_index,
-+					    bool enable_encryption);
-+void event_property_update(struct work_struct *work);
- #endif
-
- #endif /* AMDGPU_DM_AMDGPU_DM_HDCP_H_ */
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_hdcp_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_hdcp_test.c
-index 619b4a80c82b..dbcff92672e6 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_hdcp_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_hdcp_test.c
-@@ -402,8 +402,236 @@ static void dm_test_process_output_callback_and_watchdog_needed(struct kunit *te
- 	cancel_delayed_work_sync(&work->watchdog_timer_dwork);
- 	cancel_delayed_work_sync(&work->property_validate_dwork);
- }
-+
-+/**
-+ * dm_test_process_output_callback_stop_and_needed_requeues - stop+needed requeues callback work
-+ * @test: KUnit test context
-+ *
-+ * When callback_stop and callback_needed are both set, process_output()
-+ * should cancel the previous callback_dwork and queue it again.
-+ */
-+static void dm_test_process_output_callback_stop_and_needed_requeues(struct kunit *test)
-+{
-+	struct hdcp_workqueue *work = alloc_test_workqueue(test);
-+
-+	schedule_delayed_work(&work->callback_dwork, msecs_to_jiffies(10000));
-+	KUNIT_ASSERT_TRUE(test, delayed_work_pending(&work->callback_dwork));
-+
-+	work->output.callback_stop = true;
-+	work->output.callback_needed = true;
-+	work->output.callback_delay = 300;
-+
-+	process_output(work);
-+
-+	KUNIT_EXPECT_TRUE(test, delayed_work_pending(&work->callback_dwork));
-+
-+	cancel_delayed_work_sync(&work->callback_dwork);
-+	cancel_delayed_work_sync(&work->property_validate_dwork);
-+}
-+
-+/**
-+ * dm_test_process_output_watchdog_stop_and_needed_requeues - stop+needed requeues watchdog work
-+ * @test: KUnit test context
-+ *
-+ * When watchdog_timer_stop and watchdog_timer_needed are both set,
-+ * process_output() should cancel previous watchdog work and queue it again.
-+ */
-+static void dm_test_process_output_watchdog_stop_and_needed_requeues(struct kunit *test)
-+{
-+	struct hdcp_workqueue *work = alloc_test_workqueue(test);
-+
-+	schedule_delayed_work(&work->watchdog_timer_dwork, msecs_to_jiffies(10000));
-+	KUNIT_ASSERT_TRUE(test, delayed_work_pending(&work->watchdog_timer_dwork));
-+
-+	work->output.watchdog_timer_stop = true;
-+	work->output.watchdog_timer_needed = true;
-+	work->output.watchdog_timer_delay = 700;
-+
-+	process_output(work);
-+
-+	KUNIT_EXPECT_TRUE(test, delayed_work_pending(&work->watchdog_timer_dwork));
-+
-+	cancel_delayed_work_sync(&work->watchdog_timer_dwork);
-+	cancel_delayed_work_sync(&work->property_validate_dwork);
-+}
- /* End of tests for process_output() */
-
-+/* Tests for event_property_update() */
-+
-+/**
-+ * alloc_test_workqueue_for_property_update - allocate minimal workqueue for callback tests
-+ * @test: KUnit test context for managed allocation
-+ *
-+ * Allocates a minimal hdcp_workqueue with property_update_work initialised
-+ * so event_property_update() can resolve container_of() safely.
-+ */
-+static struct hdcp_workqueue *alloc_test_workqueue_for_property_update(struct kunit *test)
-+{
-+	struct hdcp_workqueue *work;
-+
-+	work = kunit_kzalloc(test, sizeof(*work), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, work);
-+
-+	INIT_WORK(&work->property_update_work, dummy_work_fn);
-+
-+	return work;
-+}
-+
-+/**
-+ * dm_test_event_property_update_skips_null_connector - null connector is ignored
-+ * @test: KUnit test context
-+ *
-+ * If aconnector entry is NULL, event_property_update() should skip it
-+ * without modifying encryption_status.
-+ */
-+static void dm_test_event_property_update_skips_null_connector(struct kunit *test)
-+{
-+	struct hdcp_workqueue *work = alloc_test_workqueue_for_property_update(test);
-+	enum mod_hdcp_encryption_status before;
-+
-+	work->encryption_status[0] = MOD_HDCP_ENCRYPTION_STATUS_HDCP2_TYPE0_ON;
-+	before = work->encryption_status[0];
-+
-+	event_property_update(&work->property_update_work);
-+
-+	KUNIT_EXPECT_EQ(test, work->encryption_status[0], before);
-+}
-+
-+/* End of tests for event_property_update() */
-+
-+/* Tests for hdcp_handle_cpirq() */
-+
-+/**
-+ * dm_test_hdcp_handle_cpirq_schedules_work - cpirq handler queues cpirq_work
-+ * @test: KUnit test context
-+ *
-+ * hdcp_handle_cpirq() should schedule cpirq_work for the selected link.
-+ */
-+static void dm_test_hdcp_handle_cpirq_schedules_work(struct kunit *test)
-+{
-+	struct hdcp_workqueue *work;
-+
-+	work = kunit_kzalloc(test, sizeof(*work), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, work);
-+
-+	INIT_WORK(&work->cpirq_work, dummy_work_fn);
-+
-+	hdcp_handle_cpirq(work, 0);
-+
-+	KUNIT_EXPECT_TRUE(test, work_pending(&work->cpirq_work));
-+
-+	cancel_work_sync(&work->cpirq_work);
-+}
-+
-+/**
-+ * dm_test_hdcp_handle_cpirq_selects_link_index - only selected link work is queued
-+ * @test: KUnit test context
-+ *
-+ * hdcp_handle_cpirq() should schedule cpirq_work for the selected index
-+ * and not queue unrelated links.
-+ */
-+static void dm_test_hdcp_handle_cpirq_selects_link_index(struct kunit *test)
-+{
-+	struct hdcp_workqueue *work;
-+
-+	work = kunit_kcalloc(test, 2, sizeof(*work), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, work);
-+
-+	INIT_WORK(&work[0].cpirq_work, dummy_work_fn);
-+	INIT_WORK(&work[1].cpirq_work, dummy_work_fn);
-+
-+	hdcp_handle_cpirq(work, 1);
-+
-+	KUNIT_EXPECT_FALSE(test, work_pending(&work[0].cpirq_work));
-+	KUNIT_EXPECT_TRUE(test, work_pending(&work[1].cpirq_work));
-+
-+	cancel_work_sync(&work[1].cpirq_work);
-+}
-+
-+/* End of tests for hdcp_handle_cpirq() */
-+
-+/* Tests for hdcp_update_display() helper logic */
-+
-+/**
-+ * dm_test_hdcp_update_display_enable_schedules_property_validate - enable path queues validate work
-+ * @test: KUnit test context
-+ *
-+ * hdcp_update_display() should schedule property_validate_dwork when
-+ * encryption is enabled.
-+ */
-+static void dm_test_hdcp_update_display_enable_schedules_property_validate(struct kunit *test)
-+{
-+	struct hdcp_workqueue *work;
-+
-+	work = kunit_kzalloc(test, sizeof(*work), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, work);
-+
-+	INIT_DELAYED_WORK(&work->property_validate_dwork, dummy_work_fn);
-+	work->srm_size = 0;
-+
-+	hdcp_update_display_encryption_control(work, work, 0, true);
-+
-+	KUNIT_EXPECT_TRUE(test, delayed_work_pending(&work->property_validate_dwork));
-+
-+	cancel_delayed_work_sync(&work->property_validate_dwork);
-+}
-+
-+/**
-+ * dm_test_hdcp_update_display_disable_resets_status_and_cancels_validate - disable path state update
-+ * @test: KUnit test context
-+ *
-+ * hdcp_update_display() should set encryption_status to HDCP_OFF and
-+ * cancel property_validate_dwork when encryption is disabled.
-+ */
-+static void dm_test_hdcp_update_display_disable_resets_status_and_cancels_validate(struct kunit *test)
-+{
-+	struct hdcp_workqueue *work;
-+
-+	work = kunit_kzalloc(test, sizeof(*work), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, work);
-+
-+	INIT_DELAYED_WORK(&work->property_validate_dwork, dummy_work_fn);
-+	schedule_delayed_work(&work->property_validate_dwork, msecs_to_jiffies(10000));
-+	KUNIT_ASSERT_TRUE(test, delayed_work_pending(&work->property_validate_dwork));
-+
-+	work->encryption_status[3] = MOD_HDCP_ENCRYPTION_STATUS_HDCP2_TYPE1_ON;
-+
-+	hdcp_update_display_encryption_control(work, work, 3, false);
-+
-+	KUNIT_EXPECT_EQ(test, work->encryption_status[3],
-+			MOD_HDCP_ENCRYPTION_STATUS_HDCP_OFF);
-+	KUNIT_EXPECT_FALSE(test, delayed_work_pending(&work->property_validate_dwork));
-+}
-+
-+/* End of tests for hdcp_update_display() helper logic */
-+
-+/* Tests for hdcp_create_workqueue() */
-+
-+/**
-+ * dm_test_hdcp_create_workqueue_zero_max_links_returns_null - zero-link creation fails early
-+ * @test: KUnit test context
-+ *
-+ * When dc->caps.max_links is zero, hdcp_create_workqueue() should fail
-+ * the initial allocation path and return NULL.
-+ */
-+static void dm_test_hdcp_create_workqueue_zero_max_links_returns_null(struct kunit *test)
-+{
-+	struct cp_psp cp_psp = {0};
-+	struct dc *dc;
-+	struct hdcp_workqueue *work;
-+
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, dc);
-+
-+	dc->caps.max_links = 0;
-+
-+	work = hdcp_create_workqueue(NULL, &cp_psp, dc);
-+
-+	KUNIT_EXPECT_PTR_EQ(test, work, NULL);
-+}
-+
-+/* End of tests for hdcp_create_workqueue() */
-+
- static struct kunit_case dm_hdcp_test_cases[] = {
- 	/* hdcp_get_content_protection_from_status() */
- 	KUNIT_CASE(dm_test_hdcp_get_cp_disabled_returns_desired),
-@@ -423,6 +651,18 @@ static struct kunit_case dm_hdcp_test_cases[] = {
- 	KUNIT_CASE(dm_test_process_output_watchdog_needed),
- 	KUNIT_CASE(dm_test_process_output_watchdog_stop),
- 	KUNIT_CASE(dm_test_process_output_callback_and_watchdog_needed),
-+	KUNIT_CASE(dm_test_process_output_callback_stop_and_needed_requeues),
-+	KUNIT_CASE(dm_test_process_output_watchdog_stop_and_needed_requeues),
-+	/* event_property_update() */
-+	KUNIT_CASE(dm_test_event_property_update_skips_null_connector),
-+	/* hdcp_handle_cpirq() */
-+	KUNIT_CASE(dm_test_hdcp_handle_cpirq_schedules_work),
-+	KUNIT_CASE(dm_test_hdcp_handle_cpirq_selects_link_index),
-+	/* hdcp_update_display() helper logic */
-+	KUNIT_CASE(dm_test_hdcp_update_display_enable_schedules_property_validate),
-+	KUNIT_CASE(dm_test_hdcp_update_display_disable_resets_status_and_cancels_validate),
-+	/* hdcp_create_workqueue() */
-+	KUNIT_CASE(dm_test_hdcp_create_workqueue_zero_max_links_returns_null),
- 	{}
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c
+index 1ae121387297..7bba82ce2182 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.c
+@@ -116,28 +116,42 @@ static const struct component_ops amdgpu_dm_audio_component_bind_ops = {
+ 	.unbind	= amdgpu_dm_audio_component_unbind,
  };
-
---
+ 
+-int amdgpu_dm_audio_init(struct amdgpu_device *adev)
++STATIC_IFN_KUNIT
++void amdgpu_dm_audio_init_pins(struct amdgpu_device *adev, int audio_count,
++			       const unsigned int *inst_array)
+ {
+-	int i, ret;
++	int i;
+ 
+-	if (!amdgpu_audio)
+-		return 0;
++	adev->mode_info.audio.num_pins = audio_count;
+ 
+-	adev->mode_info.audio.enabled = true;
+-
+-	adev->mode_info.audio.num_pins = adev->dm.dc->res_pool->audio_count;
+-
+-	for (i = 0; i < adev->mode_info.audio.num_pins; i++) {
++	for (i = 0; i < audio_count; i++) {
+ 		adev->mode_info.audio.pin[i].channels = -1;
+ 		adev->mode_info.audio.pin[i].rate = -1;
+ 		adev->mode_info.audio.pin[i].bits_per_sample = -1;
+ 		adev->mode_info.audio.pin[i].status_bits = 0;
+ 		adev->mode_info.audio.pin[i].category_code = 0;
+ 		adev->mode_info.audio.pin[i].connected = false;
+-		adev->mode_info.audio.pin[i].id =
+-			adev->dm.dc->res_pool->audios[i]->inst;
++		adev->mode_info.audio.pin[i].id = inst_array[i];
+ 		adev->mode_info.audio.pin[i].offset = 0;
+ 	}
++}
++EXPORT_IF_KUNIT(amdgpu_dm_audio_init_pins);
++
++int amdgpu_dm_audio_init(struct amdgpu_device *adev)
++{
++	unsigned int inst_array[MAX_AUDIOS];
++	int audio_count;
++	int i, ret;
++
++	if (!amdgpu_audio)
++		return 0;
++
++	adev->mode_info.audio.enabled = true;
++
++	audio_count = adev->dm.dc->res_pool->audio_count;
++	for (i = 0; i < audio_count; i++)
++		inst_array[i] = adev->dm.dc->res_pool->audios[i]->inst;
++	amdgpu_dm_audio_init_pins(adev, audio_count, inst_array);
+ 
+ 	ret = component_add(adev->dev, &amdgpu_dm_audio_component_bind_ops);
+ 	if (ret < 0)
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.h
+index 48391305c3c2..761808b42f3d 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_audio.h
+@@ -51,6 +51,8 @@ void amdgpu_dm_audio_component_unbind(struct device *kdev,
+ void amdgpu_dm_audio_eld_notify(struct amdgpu_device *adev, int pin);
+ int amdgpu_dm_audio_get_param(void);
+ void amdgpu_dm_audio_set_param(int val);
++void amdgpu_dm_audio_init_pins(struct amdgpu_device *adev, int audio_count,
++			       const unsigned int *inst_array);
+ #endif
+ 
+ #endif /* __AMDGPU_DM_AUDIO_H__ */
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_audio_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_audio_test.c
+index 79ff5d9b3fa5..3f0108e9a951 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_audio_test.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_audio_test.c
+@@ -6,10 +6,13 @@
+  */
+ 
+ #include <kunit/test.h>
++#include <linux/device.h>
+ 
+ #include <drm/drm_audio_component.h>
+ 
+ #include "dc.h"
++#include "dc/inc/core_types.h"
++#include "dc/inc/hw/audio.h"
+ #include "amdgpu.h"
+ #include "amdgpu_mode.h"
+ #include "amdgpu_dm.h"
+@@ -38,6 +41,57 @@ static void dm_test_audio_init_disabled(struct kunit *test)
+ 	amdgpu_dm_audio_set_param(saved_audio);
+ }
+ 
++/**
++ * dm_test_audio_init_enabled_success - Test init deeper path when audio is enabled
++ * @test: The KUnit test context
++ */
++static void dm_test_audio_init_enabled_success(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	struct dc *dc;
++	struct resource_pool *res_pool;
++	struct audio *audio0;
++	struct audio *audio1;
++	struct device *dev;
++	int saved_audio = amdgpu_dm_audio_get_param();
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
++	res_pool = kunit_kzalloc(test, sizeof(*res_pool), GFP_KERNEL);
++	audio0 = kunit_kzalloc(test, sizeof(*audio0), GFP_KERNEL);
++	audio1 = kunit_kzalloc(test, sizeof(*audio1), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dc);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, res_pool);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, audio0);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, audio1);
++
++	dev = root_device_register("kunit-dm-audio-init");
++	KUNIT_ASSERT_FALSE(test, IS_ERR(dev));
++
++	audio0->inst = 2;
++	audio1->inst = 6;
++	res_pool->audio_count = 2;
++	res_pool->audios[0] = audio0;
++	res_pool->audios[1] = audio1;
++	dc->res_pool = res_pool;
++	adev->dm.dc = dc;
++	adev->dev = dev;
++
++	amdgpu_dm_audio_set_param(1);
++
++	KUNIT_EXPECT_EQ(test, amdgpu_dm_audio_init(adev), 0);
++	KUNIT_EXPECT_TRUE(test, adev->mode_info.audio.enabled);
++	KUNIT_EXPECT_TRUE(test, adev->dm.audio_registered);
++	KUNIT_EXPECT_EQ(test, adev->mode_info.audio.num_pins, 2);
++	KUNIT_EXPECT_EQ(test, adev->mode_info.audio.pin[0].id, 2U);
++	KUNIT_EXPECT_EQ(test, adev->mode_info.audio.pin[1].id, 6U);
++
++	amdgpu_dm_audio_fini(adev);
++	root_device_unregister(dev);
++	amdgpu_dm_audio_set_param(saved_audio);
++}
++
+ /* Tests for amdgpu_dm_audio_fini() */
+ 
+ /**
+@@ -455,9 +509,73 @@ static void dm_test_eld_notify_null_callback(struct kunit *test)
+ 	KUNIT_EXPECT_EQ(test, dm_test_eld_notify_count, 0);
+ }
+ 
++/* Tests for amdgpu_dm_audio_init_pins() */
++
++/**
++ * dm_test_audio_init_pins_sets_defaults - pin entries are initialised to default values
++ * @test: The KUnit test context
++ *
++ * amdgpu_dm_audio_init_pins() must set num_pins from audio_count, reset every
++ * pin to the sentinel defaults (-1 for rate/channels/bits, 0 for the rest)
++ * and copy each pin's hardware instance index from res_pool->audios[i]->inst.
++ */
++static void dm_test_audio_init_pins_sets_defaults(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++	const unsigned int inst_array[] = {3, 7};
++	int i;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++
++	amdgpu_dm_audio_init_pins(adev, 2, inst_array);
++
++	KUNIT_EXPECT_EQ(test, adev->mode_info.audio.num_pins, 2);
++
++	for (i = 0; i < 2; i++) {
++		KUNIT_EXPECT_EQ(test, adev->mode_info.audio.pin[i].channels, -1);
++		KUNIT_EXPECT_EQ(test, adev->mode_info.audio.pin[i].rate, -1);
++		KUNIT_EXPECT_EQ(test, adev->mode_info.audio.pin[i].bits_per_sample, -1);
++		KUNIT_EXPECT_EQ(test, adev->mode_info.audio.pin[i].status_bits, 0);
++		KUNIT_EXPECT_EQ(test, adev->mode_info.audio.pin[i].category_code, 0);
++		KUNIT_EXPECT_FALSE(test, adev->mode_info.audio.pin[i].connected);
++		KUNIT_EXPECT_EQ(test, adev->mode_info.audio.pin[i].offset, 0);
++	}
++	KUNIT_EXPECT_EQ(test, adev->mode_info.audio.pin[0].id, 3U);
++	KUNIT_EXPECT_EQ(test, adev->mode_info.audio.pin[1].id, 7U);
++}
++
++/**
++ * dm_test_audio_init_pins_zero_count - zero audio_count leaves num_pins at zero
++ * @test: The KUnit test context
++ *
++ * When res_pool->audio_count is 0, num_pins must be 0 and no pins touched.
++ */
++static void dm_test_audio_init_pins_zero_count(struct kunit *test)
++{
++	struct amdgpu_device *adev;
++
++	adev = kunit_kzalloc(test, sizeof(*adev), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, adev);
++
++	/* Pre-fill a sentinel so we can confirm the loop never ran. */
++	adev->mode_info.audio.pin[0].channels = 99;
++
++	amdgpu_dm_audio_init_pins(adev, 0, NULL);
++
++	KUNIT_EXPECT_EQ(test, adev->mode_info.audio.num_pins, 0);
++	KUNIT_EXPECT_EQ(test, adev->mode_info.audio.pin[0].channels, 99);
++}
++
++/* End of tests for amdgpu_dm_audio_init_pins() */
++
+ static struct kunit_case dm_audio_test_cases[] = {
+ 	/* amdgpu_dm_audio_init */
+ 	KUNIT_CASE(dm_test_audio_init_disabled),
++	KUNIT_CASE(dm_test_audio_init_enabled_success),
++	/* amdgpu_dm_audio_init_pins */
++	KUNIT_CASE(dm_test_audio_init_pins_sets_defaults),
++	KUNIT_CASE(dm_test_audio_init_pins_zero_count),
+ 	/* amdgpu_dm_audio_fini */
+ 	KUNIT_CASE(dm_test_audio_fini_without_enabled_audio),
+ 	/* amdgpu_dm_fill_audio_info */
+-- 
 2.55.0
 
