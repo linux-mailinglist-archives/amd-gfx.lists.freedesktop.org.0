@@ -2,143 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6NQPMCLbT2r/pAIAu9opvQ
+	id MkMvL/mcUGq/2QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 19:32:18 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 09:19:21 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15707733D82
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 19:32:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A5AE737FF1
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 09:19:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=GG7I4FOw;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
+	dkim=fail ("body hash did not verify") header.d=gmail.com header.s=20251104 header.b=Kt7UasVB;
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=gmail.com (policy=none);
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	arc=reject ("signature check failed: fail, {[1] = sig:google.com:reject}")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E14B10E0A0;
-	Thu,  9 Jul 2026 17:32:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2858110F7EA;
+	Fri, 10 Jul 2026 07:19:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011061.outbound.protection.outlook.com [52.101.52.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FDC410E0A0
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 17:32:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mn3Pp3dbyLOQgLif3bqZ7WgVPK5cFTc3c7WmY9ihk1w7Q6hliTutRpQwqvz7p9FLdqIs8XSVdLqs9+1Og1lhSBl6ZkeZZ8I0GIuPaB89kb72fViprScgcS+fivEKI1o0c/1WJrxj0N1RJ9FNkLhEkF3cPZB729ULPN5U+ct97k9rvGUuhK6g6hJ13w4s3BAOlOqE2GB9V/7IA+hDm1JIudi3qVLe63CDtHTE4HYwRa6tT3pbvKkp6VCr7FTj4MRrkPm0CALz2x7CyC6LRbnWYonXvVDjOUyLh20CqSpYHxEh4AO6tzAwoYO59/XmZxJ5H7EPp5DiBUn3dfpmASOOSQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0LaRSRFjomzAUTePqhZ2jZsOQv1DAYTVBuFMN+varFI=;
- b=dGPB/PsoTal/RAMS6HFlaA4PUzkesn2CuSnKKRgqUDOix6bwGwyTAeuJVrJyDCHfWZO7BQjILJH6NHpXCE/3DUyejcmSL1TXWspaEtBjb8YoHYMBi4Efa2cMH3DLbFUA8dMoL6wB/rdQ3kW6F/uNKvFlwni0NOhmfQUI/jKjT5KOmoIIKqEIm3OWaiDiCcgsAvBljqnEQpEdqO2/WKltrolSOnjjbr4+F3Q5OyheefC2hWPwBtC2K4SrpRAunc4URJKOvWPFqKBRJigC2IAx+RDsgHcZ8PNuudUHnhEA6Fh62uQDKPoqpS0bbc8Yg0879MX+F243RlfXhCqoV0wgAA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0LaRSRFjomzAUTePqhZ2jZsOQv1DAYTVBuFMN+varFI=;
- b=GG7I4FOwNPNqSa7dzh5Z1PuqBmK+C4dvgPlMF/E1nyUEAB/nFOneIBcJ9rzpkpUqk7b1dq4nvh49XoT8mXpf3XIFxoMitAi3PFB2ru0FO+T47e86HU/T4qzWBZUrM46MbNhf5//p+gR9ffPvQeN9UMbpO2FIGiPT30xlfuoMhmM=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA3PR12MB8048.namprd12.prod.outlook.com (2603:10b6:806:31e::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Thu, 9 Jul
- 2026 17:32:06 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0181.008; Thu, 9 Jul 2026
- 17:32:05 +0000
-Message-ID: <42ed9967-7eb3-41c6-9f7a-c43b93833589@amd.com>
-Date: Thu, 9 Jul 2026 19:32:01 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu: improve the amdgpu device init progress in
- sriov mode
-To: "Li, Chong(Alan)" <Chong.Li@amd.com>, "Lazar, Lijo" <Lijo.Lazar@amd.com>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Cc: "Deng, Emily" <Emily.Deng@amd.com>, "Chang, HaiJun"
- <HaiJun.Chang@amd.com>, "Skvortsov, Victor" <Victor.Skvortsov@amd.com>,
- Cursor <cursoragent@cursor.com>
-References: <20260708083035.186400-1-chongli2@amd.com>
- <d3ffa862-8fff-40cb-8779-97d3bb4a429b@amd.com>
- <DS7PR12MB5768E74BF2292A0F8F87E0CE9BFF2@DS7PR12MB5768.namprd12.prod.outlook.com>
- <3ac3c6d5-8fad-4b0e-933d-42fa71a43657@amd.com>
- <49ba42a4-b661-4673-95a0-c218ec1482e3@amd.com>
- <de530731-21de-4470-9316-dccb767c87ac@amd.com>
- <DS7PR12MB5768E211043CC584F05A16569BFF2@DS7PR12MB5768.namprd12.prod.outlook.com>
- <989fc4ae-cbac-4f17-94cd-5be270845081@amd.com>
- <c963d1df-e1a3-4fa6-8514-3c4ab204088f@amd.com>
- <DS7PR12MB576870FE38FFB13002872F529BFF2@DS7PR12MB5768.namprd12.prod.outlook.com>
- <2d96166c-b192-41be-83d1-19eb64d7306f@amd.com>
- <DS7PR12MB57684EB76694DC4EB12791A09BFE2@DS7PR12MB5768.namprd12.prod.outlook.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <DS7PR12MB57684EB76694DC4EB12791A09BFE2@DS7PR12MB5768.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR0P281CA0013.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:15::18) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com
+ [209.85.217.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96C9E10E2A5
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 17:34:54 +0000 (UTC)
+Received: by mail-vs1-f43.google.com with SMTP id
+ ada2fe7eead31-738a5cc517eso55508137.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 09 Jul 2026 10:34:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1783618493; cv=none;
+ d=google.com; s=arc-20260327;
+ b=k9D2ZbHw/Woe9lmPs83pJp/n9pVS3D3LnFgMQXqjLdyPlWHe0+/sL1qDvYJa6LfR+b
+ XCOSvam//b8pikeTFAuc3WJhS7OrJd04GN8VdaKja7uJhKfiZfcR5HS8PzqmYX4dUAPa
+ HI9tuRyoay8004RATjGPWrXQEbxK6hRzbox9IhcmSvzKlVhM+TRGC/ZrNcn3tH/QSj/b
+ VzuMo0P7a3DBTN6iI1ESrKFIrPmRANJgXvtCtdJIMHLEXDRl3EvxbNxOkDYzCEMsR5b/
+ +2oc7l/Nuo+bH7xoQJj/hEZPT1qkyTYjR0nSjWCLVBmraOrfNr2NySG01BERzN8DRNZ0
+ AnyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+ bh=HoTls+/3jNNwhhK7JPnNWelIETxDTsvMuGQrUxLI1QU=;
+ fh=aDVewn9wtm+aWJrQRWZE0+nBOMbKT1ntYn7AxGKz7vM=;
+ b=JrGHXTfqvm1NnXYifVMmkVgxFpr26IFe1euxWMp4hS2a/V1lKd9FFRKApDtVWyH+QK
+ oZtwyHvyKZhS0hn/jPFROJY0qkNxoDXg1Irq7Pa2VHOc4V8WXOJAZTKk6Y6AfrPstw3I
+ lT69/Y2dc78/L5Wtm4CSxO7X/VFqymufkiOKbxpBkv3mzlhLwJYI+5AqMU1TsWahw0Z8
+ 0GXbi+oPqdUsLHtCkRm+z+ET1uCBY+KVgz/cQ7cbRV9TLKJ86agq+8kS4qoBIIUSTD7r
+ 2g6U0Ftp3BAKs28ZBFhSRlwN3PW+nHluXCs1jEWBdJZ6ns+D+OekB4pealKkQdo3Lc+T
+ Oc1w==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1783618493; x=1784223293; darn=lists.freedesktop.org;
+ h=content-type:cc:to:subject:message-id:date:from:mime-version:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=HoTls+/3jNNwhhK7JPnNWelIETxDTsvMuGQrUxLI1QU=;
+ b=Kt7UasVBySdaVfkKSyfOJxvKjrzZ9dBUiMvrXIrTo6ee1RbDI0yu6o5ilk703zT6fI
+ xcoMYm21FYXCvBktg6mRiNyKqTZd99DvV8jIAy1zwEWAdAkh5zrRGUMp9VQrHRRpxMal
+ Z5Qx6ogftSkCA58zAlrNTBOeGxTBfBMlX6uJi1IZpK9PSCCP4BsTd4pK7qUtNE8S7WVS
+ X5GE7N4RyRoSFmjnx4E3ku8yoqXSxsUzZhY03gExG6FvQxcAokDsiDyz2/NNdlgQmWxC
+ NwXjvVEcjgvrruOK+fyH/1SYPov8ILZhKpPWGjPGKjT+i8kh2xep/k/VR6UU16z23wf1
+ mr/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1783618493; x=1784223293;
+ h=content-type:cc:to:subject:message-id:date:from:mime-version
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to:content-type;
+ bh=HoTls+/3jNNwhhK7JPnNWelIETxDTsvMuGQrUxLI1QU=;
+ b=EXGBTlPEbDNTpCrQzEeeeTWxnlV3ZhgRFHaQayF2X/Ht0awfqC4n80lhCOKB14uNg6
+ pRmxgdY7gWUSOMflpDf8EbP1vS+SFWSx0Skh3ugfcwBuJoCTjWGNxzLMBpTXN9/Acb0E
+ HMb9Wbuzm2P8tdZbWiOuaEe7hrFVLvSYDLJmuzKRcxSzQl+ufIc/iOPGoqiTGTPcckpC
+ NGRD10frK0WfAaS3Ytbtb08/YVRGR5urOkEipiN4vLYgyjtN+wHW4eDmyDneux+NeTbk
+ Adu+07bVkkgZT1L1029soTakaJvLxNHhUY4cT4Zo+2xDsvcPJcKHzBop8Oxv1N88NSFI
+ CBQw==
+X-Gm-Message-State: AOJu0YxjWXl1AI54PExJP+Rug6W/j5ympTk66csbA5HJ70gUVDHCmk3K
+ 7E/JEFD98RtBW50KiJQRDxZ+WSREWNbqCntCZyYUx2Rbg5lOoc75aen+vQoSqCMjVPnr5yRmAu1
+ eG3GSnfc9hWCCdpsFAUAhf/EGdV84Omv1+CABCY8=
+X-Gm-Gg: AfdE7cmZH9f6RLgOGJyJEOb0WVXEUw0UOOFF5jDs97jZY3i8TunE7hBemWBFUKxWiqN
+ X+9O+h7Z5AZBuq9G2FrS1LXKDBM6ANrga5QAs2bCFXFbl6tbVeccb/TxQFCJqXnuNi4LgONVjSN
+ Ju5jDXSqUGk0dt5QmJPwKKCLpV1NLnNJtWZfGcJ2uRs8G65ve6Xo+8VTNWhbFZjwaVW/zK85zZF
+ wNkDrGt2SO6d6hfcO+Dp8jm43JvVOhrATTFw9u5F2sRKpfpcA0vZtT0hsvo7GvnT2Jb1Gtqqw==
+X-Received: by 2002:a05:6102:424c:b0:726:e81f:f3f9 with SMTP id
+ ada2fe7eead31-744e0367abamr4896967137.15.1783618493480; Thu, 09 Jul 2026
+ 10:34:53 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA3PR12MB8048:EE_
-X-MS-Office365-Filtering-Correlation-Id: 13dfbeb1-7ece-4c43-33a0-08dedddffea3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|23010399003|4143699003|11063799006|3023799007|5023799004|22082099003|18002099003|56012099006|6133799003;
-X-Microsoft-Antispam-Message-Info: tT7uD0CSMbFF7FMtDdaDUxYqXrPvazZE2WhAYHl/kDr6/Pe3fyanvbLSgluuxRlUC5F3w3lk/Bf4fYVpX+U47TnYBB7T+9wlzxyW6J1+ka/pGyASTEG8XeOYh28yhbLbXPXziYvBnv/0aKR2lXSnZc2kBQ6mxLbWdSmVoXRnx6UVQY2+mGvQECffY2OhnFDiCcUt45MlxdzLeWNq+YKnGb5C4f49oyfYYju6GhbdJprQQhS5N0/x+xTyMsesRvBXsnTSM8xSZULLg0vnjVpm0RuLOhq8BQxHtVzKzgNPa6LS0MoAHtcGagg90nlxkaG/5wQweCep/rg9wdTtvR0e8fX8mXd4Ns9O28vmDdXOXtFhcRgSpeQ7KhCZi6RI1mPBgJO47+HiPddl+4EGTxK3MdgfWG1Fjy30xAeh02uQjxd0/GpPX7T/UF8PNN2aLFY/3ffp0bKQSo2enm1MLWfTGgXAt9EoRVwhpIWulVU/d7gE4QHlZEQoVajLHPqFbluhQ2pOuKv5VaEvdv+wDq+oYUYU+xjS+qsYsZhHWhqPSsN40QkQ/fB68Xsdc2f5sPmWMcUadWZmO7Bt0v6Pn6A1LwoAJcqN8pT7sjlXidavM19g8Ax+psGK6MUSfz9JYlC2G6vH3xyNHuXUl0tBlcxVu+YXPayGTCJnAkSZXyLkFNU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(23010399003)(4143699003)(11063799006)(3023799007)(5023799004)(22082099003)(18002099003)(56012099006)(6133799003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TlFCbkgwb3BIZjM2SzE2RjQ4UUZaVzE2b2pTQjgyZEhUVmk3akU4OXhaamZB?=
- =?utf-8?B?Y1d6MVd1Y2JBZ1o0dVdUVkdpY29jK010ZW00QmlIVFRJaW1ydTlJWFI3SWc4?=
- =?utf-8?B?aU9zOHYxampiQW9aTEc5aVBMWHBXRmkxM2o2VEY1dEVIWVBIbEpmem5SZEt4?=
- =?utf-8?B?ajBNelpiUEtheWNkUWs3UkFIWVA0VzJoRHo3enpvRm9QUURmejhXbjBlU1Zk?=
- =?utf-8?B?QkVOWDhWVDJqZW1RRFFIZkFVellTak1QSkRKZ1JFYkJmQS91RjZ4NVp4Tmxu?=
- =?utf-8?B?WkJMUHdEamo5QzE3Yk9LbzduaFUwRHpEOGpHQnRUSVFvMUhXQmhTM2Q1a0Np?=
- =?utf-8?B?cTJSb3QwWVBYdHVWREdSZDJZbVRoUlhBWjk3c0FVa28wQ3lBK0pBRERqYmVT?=
- =?utf-8?B?OURpa2tuNENJc0xuSzZqTVFtZEtlemtLd0hPcmJIalVHMEFoZ3QwMG5kNjd2?=
- =?utf-8?B?aGp3dHlMOHA3OGZSUXRDdzk0VlE4SFUyazVNK0dnZm9EcnhtUjRSRHIrRkNE?=
- =?utf-8?B?TjRSV3ZaTW1vSy9OdVZJTlcxL0RUNDVJREFSZE1NTzFKQTdrekR4WGZYYTRx?=
- =?utf-8?B?WFB1N1FYMDJ5OFMvRzloQjA3SzlBQXAzY3NPaFU0MldXcWY4K29NejVOZ1FO?=
- =?utf-8?B?aFFxZ0JxNkZrVTVCUU00WFNRcEZmbmJHUVFiOUo2TmRES2F0OXkwN1dyMVhV?=
- =?utf-8?B?d2V5WlVoQm12MjROdWZkVDVOUFM0aThGcG1IR3Q0aFFJeVhUWTJucU9RbHB1?=
- =?utf-8?B?Wk40UExERTJNcWVFQUV1WmdVS20reVdUNjhvR3FvaTFBelowbmJRWUtUVTE3?=
- =?utf-8?B?eEU5SVpSdmNtVHMzS3IzQ2d3ZExNUGJSVlpsbmErWlVMWjdFQVZNc2RjQWpH?=
- =?utf-8?B?QkkvMnV6YXJ0aURITlhEbDhjVitncHhxdHVoUnJvUjZ5SzVsN2U4cjF6YXRE?=
- =?utf-8?B?UGxBWTRoaWlpV3R0NHZCNlBTZjVPY21JQllIbjBFMnFnc0gvVVlKQWdMNGZK?=
- =?utf-8?B?Mk5rZytaa3M1WDFWa1R3Mk9TNmVaaU9saG9BU2dGRVZKc09vNW1XUXBZRTJV?=
- =?utf-8?B?bWVpYjBpZmdJNndYZkFjK204c1RwTFBkRnBmVnN6dElzUTROb0Q1K2JTUXNV?=
- =?utf-8?B?czJub00wS0FwdFdTNTdHS2pSVklOakk1a1A3STlMSnhUZU5HcldhTVNuY1Ji?=
- =?utf-8?B?Rkx5enI1eGNDZm9vTTdYN1ZxMWYwNzZCNUpKaU5SbUJLVFUvRkRrZ0hRWFpT?=
- =?utf-8?B?eDI2WXIrbnpXWjRJVE9tME95ck96NlJmSEdzenJLVEloYmIvZXhLVmx5RVR0?=
- =?utf-8?B?bDlmOTVvc1JrYUVWT3ZSNEFUNUxuWjhwRjdZYjdVS0hEanMydms0NytXSzVD?=
- =?utf-8?B?R1BMTENabDlnVERPOTZveThCcm14cDkrU2JpNURKNGhicExXNnlvZGNoRHJL?=
- =?utf-8?B?MmZyZjJKR2hiaXMwT0xueFZTZHE0bTZNTVJ0QW9jRzBhTW9ObjA3d2Yyd1FY?=
- =?utf-8?B?aEVWbEgxVHlUdFhNZFB3dUFmUDlGRXVERVhhWGR5azdKUTNzRWpMY3o4NEJH?=
- =?utf-8?B?Rk1yVjJXSDBQVnlHTjRjd1pwNFhOejdMVUQzU2ZjMEtJcnQrYXp5ZThXdTJ6?=
- =?utf-8?B?WE9MaWEvNzROSE9xMk9uRW92bTJ2TGh4V1BBL0MwME5MN1hmTERWaGh5ZWhL?=
- =?utf-8?B?VXhveC9pcmxFbTJUVnBRZDBLZ2lLdWVWaUdPaHBEeXg3eC8zdVpWWWpBaCs0?=
- =?utf-8?B?Q0dteU90YVJuUWM5TXExdllBTmg2am1lT1M2VXRKWmF3aVpJcXJYY2lWSXEw?=
- =?utf-8?B?cjl5WWN2RkpOVXBFQ1VNWGNoNGxyOUQ4ZHFvT2ZucGltM3lmeGFVRjNaTzMz?=
- =?utf-8?B?Zy9MQ2gxa2VxSEN4WTdscXY3WHFncHJRckdUZDlXdWlMSjg1RnBVb2ZXQUFB?=
- =?utf-8?B?YnpoVjNYVUhNcmJ0bHYwY0JLSmZReUtvUjM0WTRJT0ppZUZjbFlpTDcrZE8x?=
- =?utf-8?B?YXN4VGd3UDBnRXFpK3ZhS3RnVmlCYThmRzJWSFJEdlh1UEoxYXdudVU0WENZ?=
- =?utf-8?B?MlNrM21KUTBzYi9MRmdrWnk3MSsyMktzWnF4RVN6MThYLzBncjVhSE04eG1l?=
- =?utf-8?B?bkRFVG9kQUxsV1dKbDZDWVgraEZTdHR3cnNBdlhBcytpRll2OWRyUDRFTDhG?=
- =?utf-8?B?Vlp5Tk93ZWhGeGVlODNYSENmVEhCVnZMMjl2ZEhDVmdxSzdEM2xyQUVGalFV?=
- =?utf-8?B?L3FaTWw5UTlZTEJaU3A3cklCY0hJVno1WjZINWtEUmVid3hNZm1pRlU3MUxo?=
- =?utf-8?Q?XI4E6LB0swbvsDQKjW?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 13dfbeb1-7ece-4c43-33a0-08dedddffea3
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 17:32:05.6134 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uCAZYeuDOHDzHzCe9BcZxaq5dSHuum669mv8J8zLYxgfTFOuKGFMCKZBX/rsvnJN
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB8048
+From: Andriy Korud <a.korud@gmail.com>
+Date: Thu, 9 Jul 2026 19:34:41 +0200
+X-Gm-Features: AUfX_mxcky_ruoxBYkY3q96T0DwdPSRMhA5FTxEHqjS75bvh7qTH869YkOzzMag
+Message-ID: <CAOidqQCv-M7oHt9jMMGo2LvhGyXDfNwjfeP+2tASOvg+yRF9mg@mail.gmail.com>
+Subject: [PATCH drm-amd] drm/amd/display: dce100: skip non-DP stream encoders
+ for DP MST
+To: amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, mario.limonciello@amd.com
+Content-Type: multipart/mixed; boundary="000000000000b81cc10656310ae3"
+X-Mailman-Approved-At: Fri, 10 Jul 2026 07:19:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,406 +104,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [2.59 / 15.00];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	R_DKIM_REJECT(1.00)[gmail.com:s=20251104];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:google.com:reject}];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[multipart/mixed,multipart/alternative,text/plain,text/x-patch];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:Chong.Li@amd.com,m:Lijo.Lazar@amd.com,m:Emily.Deng@amd.com,m:HaiJun.Chang@amd.com,m:Victor.Skvortsov@amd.com,m:cursoragent@cursor.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+,1:+,2:+,3:~,4:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_ATTACHMENT(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akorud@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:-];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,cursor.com:email]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_THREE(0.00)[3];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 15707733D82
+X-Rspamd-Queue-Id: 4A5AE737FF1
 
-Hi all,
+--000000000000b81cc10656310ae3
+Content-Type: multipart/alternative; boundary="000000000000b81cc00656310ae1"
 
-I've discussed the issue with Alex today.
+--000000000000b81cc00656310ae1
+Content-Type: text/plain; charset="UTF-8"
 
-The current approach of keeping full GPU access while discovery has been intentionally added this way over 6 years ago after some back and forth discussion.
+Hi,
+On DCE8-class ASICs (e.g. Bonaire), the resource pool contains digital DIG
+stream encoders plus one analog DAC encoder. When assigning a stream
+encoder for a second DisplayPort MST stream, if the preferred digital
+encoder is already acquired,
+dce100_find_first_free_match_stream_enc_for_link() falls back to the first
+free pool entry. That entry may be the analog encoder, whose funcs table
+lacks DP hooks such as dp_set_stream_attribute. The subsequent atomic
+commit then dereferences NULL function pointers in link_set_dpms_on() and
+crashes.
 
-So that has been working reliable for quite a while and we don't see any justification to change that.
+Skip encoders without dp_set_stream_attribute when the stream uses a DP
+signal (including MST). Use dc_is_dp_signal(stream->signal) for the MST
+fallback path instead of checking only the link connector signal.
 
-If the ESXi hypervisor has a problem with this then that needs to be handled on the hypervisor side.
+Tested on:
+- GPU: AMD Radeon R7 260X (Bonaire / DCE8)
+- Board: Supermicro C9X299-PG300
+- Setup: DP MST daisy chain, either hotplug second monitor or have it
+connected on boot
+- Kernel: 7.1.3 (issue observed since 6.19)
+- Result: kernel oops without patch; dual monitors stable with patch
 
-This patch is rejected.
+Thanks,
+Andriy Korud
 
-Regards,
-Christian.
+--000000000000b81cc00656310ae1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 7/9/26 12:35, Li, Chong(Alan) wrote:
-> AMD General
-> 
-> Hi, Lijo.
-> 
-> Yes, the current GIM driver ensures the early init data is placed within the VF’s visible BAR0 aperture.
-> 
-> 
-> Thanks,
-> Chong.
-> 
-> -----Original Message-----
-> From: Lazar, Lijo <Lijo.Lazar@amd.com>
-> Sent: Thursday, July 9, 2026 3:56 PM
-> To: Li, Chong(Alan) <Chong.Li@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>; amd-gfx@lists.freedesktop.org
-> Cc: Deng, Emily <Emily.Deng@amd.com>; Chang, HaiJun <HaiJun.Chang@amd.com>; Skvortsov, Victor <Victor.Skvortsov@amd.com>; Cursor <cursoragent@cursor.com>
-> Subject: Re: [PATCH] drm/amdgpu: improve the amdgpu device init progress in sriov mode
-> 
-> 
-> 
-> On 08-Jul-26 6:12 PM, Li, Chong(Alan) wrote:
->> AMD General
->>
->> Hi, Lijo.
->>
->> " In this commit, the statement is different."
->> " It says FB access is enabled if init_data request is sent."
->>
->> Yes, VF FB access is enabled if init_data request is sent.
->>
->> However, without full GPU access, the guest cannot access the MM_INDEX/MM_DATA registers.
->>
->> With the legacy/existing read path, VF_FB_EN must be enabled so the
->> host can dump early init data into the VF FB, and full GPU access is required so the guest can copy that data through the MM_INDEX/MM_DATA registers.
->>
->> I submitted patch " [PATCH 1/2] drm/amdgpu: read FB through BAR0 when
->> aperture is unavailable " , With the new
->> amdgpu_device_read_fb_via_bar0() path, the guest can read the VF FB
->> without full GPU access
->>
-> 
-> Yes, I saw that one. One other question - does host driver guarantee that discovery data will always be copied to visible BAR aperture of VF?
-> If not, it will still require mmindex/data regardless of FB access enablement.
-> 
-> Thanks,
-> Lijo
-> 
->>
->> Thanks,
->> Chong.
->>
->>
->> -----Original Message-----
->> From: Lazar, Lijo <Lijo.Lazar@amd.com>
->> Sent: Wednesday, July 8, 2026 7:18 PM
->> To: Koenig, Christian <Christian.Koenig@amd.com>; Li, Chong(Alan)
->> <Chong.Li@amd.com>; amd-gfx@lists.freedesktop.org
->> Cc: Deng, Emily <Emily.Deng@amd.com>; Chang, HaiJun
->> <HaiJun.Chang@amd.com>; Skvortsov, Victor <Victor.Skvortsov@amd.com>;
->> Cursor <cursoragent@cursor.com>
->> Subject: Re: [PATCH] drm/amdgpu: improve the amdgpu device init
->> progress in sriov mode
->>
->>
->>
->> On 08-Jul-26 4:18 PM, Christian König wrote:
->>> Hi Chong,
->>>
->>> On 7/8/26 12:25, Li, Chong(Alan) wrote:
->>>> AMD General
->>>>
->>>> Hi, Christian.
->>>>
->>>> The code " early_full_gpu_access = (adev->virt.req_init_data_ver == 0);" is related to the ASIC type, not the host platform:
->>>>
->>>>
->>>> adev->virt.req_init_data_ver is initialized by amdgpu_virt_request_init_data().
->>>>
->>>> Some legacy ASICs, such as CHIP_VEGA20 and CHIP_ALDEBARAN, do not send amdgpu_virt_request_init_data() to the host.
->>>>
->>>> For those ASICs, the host dumps the early init data only after the guest requests full GPU access.
->>>> Therefore, those ASICs still need to request full GPU access before the guest driver can read the early init data from the VF FB.
->>>
->>> No, exactly that is not the case as far as I can see. See the commit I mentioned below.
->>>
->>> According to that starting from SIENNA_CICHLID the full GPU access is mandatory for reading the discovery table.
->>>
->>
->> It could also be because the legacy/existing way used mmindex/data, and that required full access including mmio register access.
->>
->> In this commit, the statement is different.
->>
->> "In SR-IOV, the guest sends GPU_INIT_DATA, then the host enables VF_FB_EN and places early initialization data, such as IP discovery, VBIOS, and PF-VF exchange data, in the VF FB"
->>
->> It says FB access is enabled if init_data request is sent.
->>
->> Thanks
->> Lijo
->>
->>> So I absolutely clearly have to reject your patch here.
->>>
->>> As far as I can see this is a hack for ESXi and that is not going to fly.
->>>
->>> Regards,
->>> Christian.
->>>
->>>>
->>>>
->>>>
->>>>           static bool amdgpu_virt_init_req_data(struct amdgpu_device *adev, u32 reg)
->>>>           {
->>>>                   ...
->>>>                   case CHIP_VEGA20:
->>>>                   case CHIP_ARCTURUS:
->>>>                   case CHIP_ALDEBARAN:
->>>>                           soc15_set_virt_ops(adev);
->>>>                           break;
->>>>                   case CHIP_NAVI10:
->>>>                   case CHIP_NAVI12:
->>>>                   case CHIP_SIENNA_CICHLID:
->>>>                   case CHIP_IP_DISCOVERY:
->>>>                           nv_set_virt_ops(adev);
->>>>                           /* try send GPU_INIT_DATA request to host */
->>>>                           amdgpu_virt_request_init_data(adev);
->>>>                           break;
->>>>                   ...
->>>>           }
->>>>
->>>> Thanks,
->>>> Chong.
->>>>
->>>> -----Original Message-----
->>>> From: Koenig, Christian <Christian.Koenig@amd.com>
->>>> Sent: Wednesday, July 8, 2026 6:24 PM
->>>> To: Lazar, Lijo <Lijo.Lazar@amd.com>; Li, Chong(Alan)
->>>> <Chong.Li@amd.com>; amd-gfx@lists.freedesktop.org
->>>> Cc: Deng, Emily <Emily.Deng@amd.com>; Chang, HaiJun
->>>> <HaiJun.Chang@amd.com>; Skvortsov, Victor
->>>> <Victor.Skvortsov@amd.com>; Cursor <cursoragent@cursor.com>
->>>> Subject: Re: [PATCH] drm/amdgpu: improve the amdgpu device init
->>>> progress in sriov mode
->>>>
->>>> On 7/8/26 12:03, Lazar, Lijo wrote:
->>>>>
->>>>>
->>>>> On 08-Jul-26 3:23 PM, Christian König wrote:
->>>>>> On 7/8/26 11:35, Li, Chong(Alan) wrote:
->>>>>>> AMD General
->>>>>>>
->>>>>>> Hi, Christian.
->>>>>>>
->>>>>>> This version of the patch is not host-platform dependent; all host platforms follow the same path.
->>>>>>>
->>>>>>> I verified this patch with KVM in my local environment and with ESXi on a borrowed server.
->>>>>>>
->>>>>>> Distinguishing the host platform was a mistake, and I have
->>>>>>> explained the situation at the end of the patch email.
->>>>>>>
->>>>>>> I have pasted the content below:
->>>>>>>
->>>>>>>            Hi, Christian and Lijo.
->>>>>>>
->>>>>>>            Sorry, I made a mistake.
->>>>>>>            Host access to the VF FB is not platform-dependent. After the host driver sets VF_FB_EN in response to GPU_INIT_DATA, the host can access the VF FB.
->>>>>>>
->>>>>>>            I borrowed an ESXi server and tested this patch there.
->>>>>>>            The amdgpu driver works normally.
->>>>>>>
->>>>>>>            I rewrote the background. Is anything still unclear?
->>>>>>
->>>>>> You still have this check here in the code: "early_full_gpu_access = (adev->virt.req_init_data_ver == 0);".
->>>>>>
->>>>>> As far as I can see that is Hypervisor specific and a NO-GO.
->>>>>>
->>>>>
->>>>> I think this should be seen as a policy set by host driver on when a guest operation is allowed. Host driver could do it based on other conditions also, not specific to hypervisor environment.
->>>>
->>>> No, this was intentionally changed in 2020 because of a new feature. See this commit here:
->>>>
->>>> commit 00a979f3d69e0c275e88c741b854dbe0d5238ae0
->>>> Author: Wenhui Sheng <Wenhui.Sheng@amd.com>
->>>> Date:   Tue Jun 23 13:43:49 2020 +0800
->>>>
->>>>       drm/amdgpu: invoke req full access early enough
->>>>
->>>>       From SIENNA_CICHLID, HW introduce a new protection
->>>>       feature which can control the FB, doorbell and MMIO
->>>>       write access for VF, so guest driver should request
->>>>       full access before ip discovery, or we couldn't access
->>>>       ip discovery data in FB.
->>>>
->>>>       Signed-off-by: Wenhui Sheng <Wenhui.Sheng@amd.com>
->>>>       Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
->>>>       Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
->>>>
->>>> So as far as I can see this change here will break older hypervisor versions and that is absolutely clear reason to NAK it.
->>>>
->>>> Regards,
->>>> Christian.
->>>>
->>>>>
->>>>> Thanks,
->>>>> Lijo
->>>>>
->>>>>> Regards,
->>>>>> Christian.
->>>>>>
->>>>>>>
->>>>>>> Thanks,
->>>>>>> Chong.
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>> -----Original Message-----
->>>>>>> From: Koenig, Christian <Christian.Koenig@amd.com>
->>>>>>> Sent: Wednesday, July 8, 2026 5:05 PM
->>>>>>> To: Li, Chong(Alan) <Chong.Li@amd.com>;
->>>>>>> amd-gfx@lists.freedesktop.org
->>>>>>> Cc: Deng, Emily <Emily.Deng@amd.com>; Chang, HaiJun
->>>>>>> <HaiJun.Chang@amd.com>; Skvortsov, Victor
->>>>>>> <Victor.Skvortsov@amd.com>; Lazar, Lijo <Lijo.Lazar@amd.com>;
->>>>>>> Cursor <cursoragent@cursor.com>
->>>>>>> Subject: Re: [PATCH] drm/amdgpu: improve the amdgpu device init
->>>>>>> progress in sriov mode
->>>>>>>
->>>>>>> On 7/8/26 10:25, chong li wrote:
->>>>>>>> v2:
->>>>>>>> Some legacy ASICs do not send amdgpu_virt_request_init_data().
->>>>>>>> Only keep the full GPU access request early when request_init_data is not sent.
->>>>>>>>
->>>>>>>> v1:
->>>>>>>> Move the initialization of non-GPU resources out of the full GPU
->>>>>>>> access region during AMDGPU device initialization.
->>>>>>>>
->>>>>>>> Background:
->>>>>>>> In SR-IOV, the guest sends GPU_INIT_DATA, then the host enables
->>>>>>>> VF_FB_EN and places early initialization data, such as IP
->>>>>>>> discovery, VBIOS, and PF-VF exchange data, in the VF FB. The
->>>>>>>> guest should then be able to read this data before requesting full GPU access.
->>>>>>>>
->>>>>>>> Before this patch, the VF still requested full GPU access in
->>>>>>>> amdgpu_device_ip_early_init(). At that point TTM is not
->>>>>>>> initialized yet, so the normal VRAM aperture mapping is
->>>>>>>> unavailable and the guest falls back to MM_INDEX/MM_DATA
->>>>>>>> register access. That register path requires full GPU access.
->>>>>>>>
->>>>>>>> Use the BAR0 framebuffer read path,
->>>>>>>> amdgpu_device_read_fb_via_bar0(), for the early init-data copy
->>>>>>>> instead of MM_INDEX/MM_DATA. This lets the driver delay the full
->>>>>>>> GPU access request until after the early init data has been copied.
->>>>>>>
->>>>>>> That looks like it goes into the right direction, but as far as I can see it is still an ESXi specific change.
->>>>>>>
->>>>>>> So once more: We can't adjust the driver to the hypervisor!
->>>>>>>
->>>>>>> Either this works on all hypervisors or I have to reject the change.
->>>>>>>
->>>>>>> Regards,
->>>>>>> Christian.
->>>>>>>
->>>>>>>>
->>>>>>>> Signed-off-by: chong li <chongli2@amd.com>
->>>>>>>> Co-authored-by: Cursor <cursoragent@cursor.com>
->>>>>>>> ---
->>>>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 21
->>>>>>>> +++++++++++++++++----
->>>>>>>>     drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c      |  4 ++--
->>>>>>>>     2 files changed, 19 insertions(+), 6 deletions(-)
->>>>>>>>
->>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>>>>> index 610d82b79de3..ac66796e8634 100644
->>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>>>>> @@ -38,6 +38,10 @@
->>>>>>>>     #include <linux/apple-gmux.h>
->>>>>>>>     #include <linux/nospec.h>
->>>>>>>>
->>>>>>>> +#ifdef CONFIG_X86
->>>>>>>> +#include <asm/hypervisor.h>
->>>>>>>> +#endif
->>>>>>>> +
->>>>>>>>     #include <drm/drm_atomic_helper.h>
->>>>>>>>     #include <drm/drm_client_event.h>
->>>>>>>>     #include <drm/drm_crtc_helper.h> @@ -1987,16 +1991,19 @@
->>>>>>>> static int amdgpu_device_ip_early_init(struct
->>>>>>>> amdgpu_device *adev)  {
->>>>>>>>          struct amdgpu_ip_block *ip_block;
->>>>>>>>          struct pci_dev *parent;
->>>>>>>> -     bool total, skip_bios;
->>>>>>>> +     bool total, skip_bios, early_full_gpu_access = false;
->>>>>>>>          uint32_t bios_flags;
->>>>>>>>          int i, r;
->>>>>>>>
->>>>>>>>          amdgpu_device_enable_virtual_display(adev);
->>>>>>>>
->>>>>>>>          if (amdgpu_sriov_vf(adev)) {
->>>>>>>> -             r = amdgpu_virt_request_full_gpu(adev, true);
->>>>>>>> -             if (r)
->>>>>>>> -                     return r;
->>>>>>>> +             early_full_gpu_access =
->>>>>>>> +(adev->virt.req_init_data_ver == 0);
->>>>>>>> +             if (early_full_gpu_access) {
->>>>>>>> +                     r = amdgpu_virt_request_full_gpu(adev, true);
->>>>>>>> +                     if (r)
->>>>>>>> +                             return r;
->>>>>>>> +             }
->>>>>>>>
->>>>>>>>                  r = amdgpu_virt_init_critical_region(adev);
->>>>>>>>                  if (r)
->>>>>>>> @@ -2159,6 +2166,12 @@ static int
->>>>>>>> amdgpu_device_ip_early_init(struct amdgpu_device *adev)
->>>>>>>>          if (!total)
->>>>>>>>                  return -ENODEV;
->>>>>>>>
->>>>>>>> +     if (amdgpu_sriov_vf(adev) && !early_full_gpu_access) {
->>>>>>>> +             r = amdgpu_virt_request_full_gpu(adev, true);
->>>>>>>> +             if (r)
->>>>>>>> +                     return r;
->>>>>>>> +     }
->>>>>>>> +
->>>>>>>>          if (adev->gmc.xgmi.supported)
->>>>>>>>                  amdgpu_xgmi_early_init(adev);
->>>>>>>>
->>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
->>>>>>>> b/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
->>>>>>>> index 9a40107a0869..340703d89d6b 100644
->>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
->>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
->>>>>>>> @@ -185,8 +185,8 @@ static int
->>>>>>>> xgpu_ai_send_access_requests(struct
->>>>>>>> amdgpu_device *adev,
->>>>>>>>          } else if (req == IDH_REQ_GPU_INIT_DATA){
->>>>>>>>                  /* Dummy REQ_GPU_INIT_DATA handling */
->>>>>>>>                  r = xgpu_ai_poll_msg(adev,
->>>>>>>> IDH_REQ_GPU_INIT_DATA_READY);
->>>>>>>> -             /* version set to 0 since dummy */
->>>>>>>> -             adev->virt.req_init_data_ver = 0;
->>>>>>>> +             /* Version is set to 1 since GPU_CRIT_REGION_V1 */
->>>>>>>> +             adev->virt.req_init_data_ver = GPU_CRIT_REGION_V1;
->>>>>>>>          }
->>>>>>>>
->>>>>>>>          return 0;
->>>>>>>
->>>>>>
->>>>>
->>>>
->>>
->>
-> 
+<div dir=3D"ltr">Hi,<br>On DCE8-class ASICs (e.g. Bonaire), the resource po=
+ol contains digital DIG stream encoders plus one analog DAC encoder. When a=
+ssigning a stream encoder for a second DisplayPort MST stream, if the prefe=
+rred digital encoder is already acquired, dce100_find_first_free_match_stre=
+am_enc_for_link() falls back to the first free pool entry. That entry may b=
+e the analog encoder, whose funcs table lacks DP hooks such as dp_set_strea=
+m_attribute. The subsequent atomic commit then dereferences NULL function p=
+ointers in link_set_dpms_on() and crashes.<div><br></div>Skip encoders with=
+out dp_set_stream_attribute when the stream uses a DP signal (including MST=
+). Use dc_is_dp_signal(stream-&gt;signal) for the MST fallback path instead=
+ of checking only the link connector signal.<br><div><br></div><div>Tested =
+on:</div>- GPU: AMD Radeon R7 260X (Bonaire / DCE8)<br>- Board: Supermicro =
+C9X299-PG300<br>- Setup: DP MST daisy chain, either hotplug second monitor =
+or have it connected on boot<br>- Kernel: 7.1.3 (issue observed since 6.19)=
+<br>- Result: kernel oops without patch; dual monitors stable with patch<br=
+><div><br></div><div>Thanks,</div>Andriy Korud</div>
 
+--000000000000b81cc00656310ae1--
+
+--000000000000b81cc10656310ae3
+Content-Type: text/x-patch; charset="US-ASCII"; 
+	name="0001-drm-amd-display-dce100-skip-non-DP-stream-encoders-f.patch"
+Content-Disposition: attachment; 
+	filename="0001-drm-amd-display-dce100-skip-non-DP-stream-encoders-f.patch"
+Content-Transfer-Encoding: base64
+Content-ID: <f_mrds9t8b0>
+X-Attachment-Id: f_mrds9t8b0
+
+RnJvbSBkNzcxNzhmZTZmMmNiZjU0ZjZiZThjMWUzYzQ5MTA4ODQ5ZTUzZWJhIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBBbmRyaXkgS29ydWQgPGEua29ydWRAZ21haWwuY29tPgpEYXRl
+OiBUaHUsIDkgSnVsIDIwMjYgMTk6Mjc6MzQgKzAyMDAKU3ViamVjdDogW1BBVENIIGRybS1hbWRd
+IGRybS9hbWQvZGlzcGxheTogZGNlMTAwOiBza2lwIG5vbi1EUCBzdHJlYW0gZW5jb2RlcnMKIGZv
+ciBEUCBNU1QgT24gRENFOC1jbGFzcyBBU0lDcyAoZS5nLiBCb25haXJlKSwgdGhlIHJlc291cmNl
+IHBvb2wgY29udGFpbnMKIGRpZ2l0YWwgRElHIHN0cmVhbSBlbmNvZGVycyBwbHVzIG9uZSBhbmFs
+b2cgREFDIGVuY29kZXIuIFdoZW4gYXNzaWduaW5nIGFuCiBlbmNvZGVyIGZvciBhIHNlY29uZCBE
+aXNwbGF5UG9ydCBNU1Qgc3RyZWFtLCBpZiB0aGUgcHJlZmVycmVkIGRpZ2l0YWwgZW5jb2Rlcgog
+aXMgYWxyZWFkeSBhY3F1aXJlZCwgZGNlMTAwX2ZpbmRfZmlyc3RfZnJlZV9tYXRjaF9zdHJlYW1f
+ZW5jX2Zvcl9saW5rKCkgZmFsbHMKIGJhY2sgdG8gdGhlIGZpcnN0IGZyZWUgcG9vbCBlbnRyeS4g
+VGhhdCBlbnRyeSBtYXkgYmUgdGhlIGFuYWxvZyBlbmNvZGVyLAogd2hvc2UgZnVuY3MgdGFibGUg
+bGFja3MgRFAgaG9va3MgKGRwX3NldF9zdHJlYW1fYXR0cmlidXRlLCBldGMuKS4gVGhlCiBzdWJz
+ZXF1ZW50IGF0b21pYyBjb21taXQgdGhlbiBkZXJlZmVyZW5jZXMgTlVMTCBmdW5jdGlvbiBwb2lu
+dGVycyBpbgogbGlua19zZXRfZHBtc19vbigpIGFuZCBjcmFzaGVzLiBTa2lwIGVuY29kZXJzIHdp
+dGhvdXQgZHBfc2V0X3N0cmVhbV9hdHRyaWJ1dGUKIHdoZW4gdGhlIHN0cmVhbSB1c2VzIGEgRFAg
+c2lnbmFsIChpbmNsdWRpbmcgTVNUKS4gVXNlCiBkY19pc19kcF9zaWduYWwoc3RyZWFtLT5zaWdu
+YWwpIGZvciB0aGUgTVNUIGZhbGxiYWNrIHBhdGggaW5zdGVhZCBvZiBjaGVja2luZwogb25seSB0
+aGUgbGluayBjb25uZWN0b3Igc2lnbmFsLiBSZXByb2R1Y2VkIG9uIFJhZGVvbiBSNyAyNjBYIChC
+b25haXJlKSB3aXRoCiBEUCBNU1QgaG90cGx1ZyBvZiBhIHNlY29uZCBtb25pdG9yIG9uIExpbnV4
+IDYuMTkrLgoKU2lnbmVkLW9mZi1ieTogQW5kcml5IEtvcnVkIDxhLmtvcnVkQGZhbGNvbnZzeXN0
+ZW1zLmNvbT4KLS0tCiAuLi4vZHJtL2FtZC9kaXNwbGF5L2RjL3Jlc291cmNlL2RjZTEwMC9kY2Ux
+MDBfcmVzb3VyY2UuYyB8IDkgKysrKysrKystCiAxIGZpbGUgY2hhbmdlZCwgOCBpbnNlcnRpb25z
+KCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNw
+bGF5L2RjL3Jlc291cmNlL2RjZTEwMC9kY2UxMDBfcmVzb3VyY2UuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9hbWQvZGlzcGxheS9kYy9yZXNvdXJjZS9kY2UxMDAvZGNlMTAwX3Jlc291cmNlLmMKaW5kZXgg
+YjkyZDRmMzc4ZDYwLi5iZWFmMmU2NTQ2NzIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9h
+bWQvZGlzcGxheS9kYy9yZXNvdXJjZS9kY2UxMDAvZGNlMTAwX3Jlc291cmNlLmMKKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2RjL3Jlc291cmNlL2RjZTEwMC9kY2UxMDBfcmVzb3Vy
+Y2UuYwpAQCAtMjksNiArMjksNyBAQAogI2luY2x1ZGUgInN0cmVhbV9lbmNvZGVyLmgiCiAKICNp
+bmNsdWRlICJyZXNvdXJjZS5oIgorI2luY2x1ZGUgInNpZ25hbF90eXBlcy5oIgogI2luY2x1ZGUg
+ImNsa19tZ3IuaCIKICNpbmNsdWRlICJpbmNsdWRlL2lycV9zZXJ2aWNlX2ludGVyZmFjZS5oIgog
+I2luY2x1ZGUgImRpby92aXJ0dWFsL3ZpcnR1YWxfc3RyZWFtX2VuY29kZXIuaCIKQEAgLTk5Miw2
+ICs5OTMsMTIgQEAgc3RydWN0IHN0cmVhbV9lbmNvZGVyICpkY2UxMDBfZmluZF9maXJzdF9mcmVl
+X21hdGNoX3N0cmVhbV9lbmNfZm9yX2xpbmsoCiAJZm9yIChpID0gMDsgaSA8IHBvb2wtPnN0cmVh
+bV9lbmNfY291bnQ7IGkrKykgewogCQlpZiAoIXJlc19jdHgtPmlzX3N0cmVhbV9lbmNfYWNxdWly
+ZWRbaV0gJiYKIAkJCQlwb29sLT5zdHJlYW1fZW5jW2ldKSB7CisJCQkvKiBEUC9NU1QgbmVlZHMg
+YSBkaWdpdGFsIGVuY29kZXI7IHNraXAgYW5hbG9nL25vLURQIGVuY29kZXJzICovCisJCQlpZiAo
+ZGNfaXNfZHBfc2lnbmFsKHN0cmVhbS0+c2lnbmFsKSAmJgorCQkJICAgICghcG9vbC0+c3RyZWFt
+X2VuY1tpXS0+ZnVuY3MgfHwKKwkJCSAgICAgIXBvb2wtPnN0cmVhbV9lbmNbaV0tPmZ1bmNzLT5k
+cF9zZXRfc3RyZWFtX2F0dHJpYnV0ZSkpCisJCQkJY29udGludWU7CisKIAkJCS8qIFN0b3JlIGZp
+cnN0IGF2YWlsYWJsZSBmb3IgTVNUIHNlY29uZCBkaXNwbGF5CiAJCQkgKiBpbiBkYWlzeSBjaGFp
+biB1c2UgY2FzZQogCQkJICovCkBAIC0xMDE0LDcgKzEwMjEsNyBAQCBzdHJ1Y3Qgc3RyZWFtX2Vu
+Y29kZXIgKmRjZTEwMF9maW5kX2ZpcnN0X2ZyZWVfbWF0Y2hfc3RyZWFtX2VuY19mb3JfbGluaygK
+IAkgKiByZXF1aXJlZCBmb3Igbm9uIERQIGNvbm5lY3RvcnMuCiAJICovCiAKLQlpZiAoaiA+PSAw
+ICYmIGxpbmstPmNvbm5lY3Rvcl9zaWduYWwgPT0gU0lHTkFMX1RZUEVfRElTUExBWV9QT1JUKQor
+CWlmIChqID49IDAgJiYgZGNfaXNfZHBfc2lnbmFsKHN0cmVhbS0+c2lnbmFsKSkKIAkJcmV0dXJu
+IHBvb2wtPnN0cmVhbV9lbmNbal07CiAKIAlyZXR1cm4gTlVMTDsKLS0gCjIuNTUuMAoK
+--000000000000b81cc10656310ae3--
