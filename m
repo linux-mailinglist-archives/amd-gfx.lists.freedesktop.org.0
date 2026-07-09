@@ -2,52 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id YKKVF8lGT2qIdQIAu9opvQ
+	id z2YHLspGT2qLdQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 08:59:21 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 08:59:22 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9BD272D6CE
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 08:59:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 652E072D6D6
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 08:59:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=3Db26PAw;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=bjCTr+vW;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC8BC10F3D2;
-	Thu,  9 Jul 2026 06:59:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB94810E028;
+	Thu,  9 Jul 2026 06:59:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010016.outbound.protection.outlook.com [52.101.46.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93F3B10F3CD
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 06:59:17 +0000 (UTC)
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012070.outbound.protection.outlook.com [52.101.48.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9965610F3CE
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 06:59:18 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wt6SBRwTqPJ+A01Z//Bfygn/sqL1DgpCaWy16k0/Ajd8477+l3gR9Fv8Zq4bOXrVhkHLYzjV/VBv1Cawv/Y2KpRhiQ2+T1TYofOr3GCVN3VV17IP+Y7D6FF2PPwjedJbxLvI6LosZKklzo8gMcLwW4hvVD4Ygpvo07+1go0r7UbcD3UzGM8oGC0cs/ibX57ntswRSSNDSNxFa8nt27Ffx8qXgamwA/qntE9XICjZEbMulGtQor0XN8DjTSLkm6gbjTKxhRge7HvoWNmo3fMFVg9B+ccp7DRWwVe3UvstnU2NAYeTXlpZSYcgemEObKqmbe00h8a5Fww2eDSfp1uSLw==
+ b=oEfXvkX2N27CMGFJ4U4cKxiYtarDE45sDA3VztTsiAM7d1Tg4ByZLZsk83GM23kQX+KIzqtiuq5pTNcERbE3TjRsrrB2yd7GTrIAQGUtTzGFDQKL3vTrfwhhNcZcM6Ua9Q2euEUbTEtlU4y93bfSc3UlBwJa6MxSqTmB31D/NRMY8iMzHs+MuZc8tUq7ryDT5xVQ+jEv1qLP1LYdKG4UD07TkUaBSRMX1DYieZ0BOWbB0pYQaP60bos/0sW0MqZ1qgn/30D9Y6nldby11Tp1beD9AhXuoYYxTR8kIHokI7d89Lc54laSFlrMvxwzbo08ws8n6NgZKaSH2gIX34LtKA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kEMyNOlVU8phaLKWNQJCx1LYXXFBeMcLjDc3HFE+cN8=;
- b=uXdshviAJq+7H5jWw+op6+fNbNmfFiUilLdUhsOnyHGJ880MG9788wQECk1eGDEv4HD6y1hSKn+Jf8ZgW79k5GiyBh2ghOx0dpmENsCGHXtywUzXsQvKzJ4rfp3/T8Xm3U9fUokODHlljansvJGaFeGsYklwlAbwpvGJ5T86p8S07K0wv9Md/nK9Dangj6dHKdJDQA4MZXn5aBEj374b3QtY1nhqg9p71y8cDo4Bs3ynbhRaIxl4dXEOsei1HKig6LCCAGwXR4aI2RlDkFflTJ/WVfaxv4JvjUwytLHopUHVRk3WFr+7XsroKvmAIMSTLIgcyzlXuQeUFNJQwxqLFQ==
+ bh=Kr/k31jv5FfasurR6Hc3FeDBCutRnZ4jr3lSIgHE3g4=;
+ b=Pbj0quaQMQSCYL99ng+kyhfmhKg5gPYeGpZdPcq4CWer2CEcnN4EROd4wmwQt4GsFrnNiy4jUG2FgPF+BZZtxYTbVwWX88WgLp/DnvU4CiIZubx0Y/AmKXBC9Uk2GJos890iLw1MbSOOmZLaCicemavOTWG3Zo0HOfMVmxByDhna0u5SZknVjYoinX1nI6ULFx+k3yAO4jzBxIeZB5sHzZIGm9EptmfN1rkRuitC+IbJ8PspHslwVUV4VxNLVFi/kjJeMNLNdV2eRi20+inS6THNv/Prqb5aMsTWl9DbL+q4NbJfXuDDvY4YZOldG0nVcc4ppJMATMgRGO6relqbAw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kEMyNOlVU8phaLKWNQJCx1LYXXFBeMcLjDc3HFE+cN8=;
- b=3Db26PAwT3THzDSZMDwZdSg3SW98f4oUI0IyoT5iFPg7gUOl+VPdVVZIuy2BF0s1byNx5BqDQKaUNwZZo65sXnmwKZoCmq4pKdkXWOh7oXC89YdI9ct08JacDkx/S7uVuWDZpIY40TDJCcu0wj7sWNC77VtQBD9T2I4a9J8ZlPQ=
+ bh=Kr/k31jv5FfasurR6Hc3FeDBCutRnZ4jr3lSIgHE3g4=;
+ b=bjCTr+vWuJFqXewQf+I4VXKT/e2rzWAE4P7IYIm9nTPRyj3pBbZS6ieo4wyFt1lmq0ViPec7S8ydRRpY+XcfpvgewzoPCh98k0WxOOI/6Ws3k/oS1Swah9XwMHsdpWsXKkR136ctvfoRthvmtwYzLoPP/Okh8vMxTbHCCOm7dz4=
 Received: from MW4PR04CA0064.namprd04.prod.outlook.com (2603:10b6:303:6b::9)
- by SA1PR12MB999251.namprd12.prod.outlook.com (2603:10b6:806:4dd::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.19; Thu, 9 Jul
- 2026 06:59:13 +0000
+ by DS7PR12MB5936.namprd12.prod.outlook.com (2603:10b6:8:7f::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.15; Thu, 9 Jul 2026 06:59:14 +0000
 Received: from SJ5PEPF000001C8.namprd05.prod.outlook.com
  (2603:10b6:303:6b:cafe::3f) by MW4PR04CA0064.outlook.office365.com
  (2603:10b6:303:6b::9) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.10 via Frontend Transport; Thu, 9
- Jul 2026 06:59:13 +0000
+ Jul 2026 06:59:14 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -57,18 +56,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  SJ5PEPF000001C8.mail.protection.outlook.com (10.167.242.36) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 06:59:13 +0000
+ 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 06:59:14 +0000
 Received: from prike-code-pc.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
- 2026 01:59:09 -0500
+ 2026 01:59:11 -0500
 From: Prike Liang <Prike.Liang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Alexander.Deucher@amd.com>, <christian.koenig@amd.com>,
  <Michael.Chen@amd.com>, Prike Liang <Prike.Liang@amd.com>
-Subject: [PATCH 4/6] drm/amdgpu: add mes process context alloc/free
-Date: Thu, 9 Jul 2026 14:58:54 +0800
-Message-ID: <20260709065856.472296-4-Prike.Liang@amd.com>
+Subject: [PATCH 5/6] drm/amdgpu: add mes gang contex alloc/free helper
+Date: Thu, 9 Jul 2026 14:58:55 +0800
+Message-ID: <20260709065856.472296-5-Prike.Liang@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260709065856.472296-1-Prike.Liang@amd.com>
 References: <20260709065856.472296-1-Prike.Liang@amd.com>
@@ -80,29 +79,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001C8:EE_|SA1PR12MB999251:EE_
-X-MS-Office365-Filtering-Correlation-Id: a7b49802-c3be-4569-50aa-08dedd879573
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001C8:EE_|DS7PR12MB5936:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4f85da15-544d-4704-cb68-08dedd879621
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|82310400026|23010399003|1800799024|376014|18002099003|22082099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: Dn3Y5eu4LT3XCjPFyQxwH8r7xYqhS1jJzsLjVGv/NsI3e9ZMmUvZWk++228shYyvovLXyvC1iCuGhLa5tH8uBfLMGLVtY40Ln67eFxdRNREEs0Y/j3lGxiRm5ayELSjfmLGSFQPRkJutRe01VDpPzt2TgM7NmI/PJr8xzJifRsqKp/gSqrTC0EYT5S8y2w96MxuGiahF9XQaaQLjH2AVaN6BzmE2uCxohduRMUSDQdoNDWyiMucI3heb+VnsyeUyjlSdrmP9VTi0s7Qe4ylDNZws/Dok5IBxQY7bWDdikv7Z6l5GvP1mmS9ecEsqaOmuhUO4UOTyuTeOfZ6gupfsSmTNPFG1VzZ13WZ1Os0SP1lbTybFcZjE9k8eb0euNYtMLAivflrjF6rScg02kdrdEe3qyW9NvYI+9VklSXeSd9bxBfihCmi/T20dXD+CBJbq3FXtUVNxGUaqD05YQr1c6DE8Cx+mihOPyQPcL0aT0wFoX1ek7j/AzRcB6IJuLmppY0pWfjzWOAQh0G5LeM6KXlgeILmE4+C8yN5JtY9lZ5wp9m/6fRJpEKinwBEFhtcHMEFZoSZkniNweu0xI+2HSFlw79SZOh/J5hlgwpS/tXqhJu6fox/mUAmuLQKgHfNAdiHBjbF25bkxbHIShG9psSJ6KtFcgo5b8oE8Fyu3CPuk4WyW/ihreLaL/gsdOJIRaOU2nsKkp3cjoeUqU6l8Ew==
+ ARA:13230040|36860700016|23010399003|376014|1800799024|82310400026|18002099003|22082099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: lv0jT8JplD2X8ORoxvZuS0J29HZHMkgV3d884bZkLn1TUi3BsZvCvC+Xd/UYrzekJicuvSvBSIZyfBZideeCndS/5x3BovXppjYg9val+VEchfJCZPDktIAgFhowRyEfXUyQnLkQNHC9NQ+8tBtqlebkMDsJuSCaBeyrkGrLOhc2+84P1rCG1fuxZ5/miF7IbAvAdy2zzJ5zEkKvAoNVUow3DPLKGYYRFkEhyygRo9G6wprleCY1V/KoOD1r9m7bJluKiwrAn6CZ+0h0pb56CkwE0lHo0+k1vt6UDaFfrwSy89Qlz4EF5tRdZ9DQrN/E4W7DuMT+b42u8A5M3bTnjmp7wAaGk2UTDsuNhugFdoyFrzMwlTMjErJfIRk4aEEG19Qse1qljpqskNgTJamsxkld40iHippU15lVmJRY8jeD4ii4x97ifnfqYrEn+y5aOGKXvTlyDXFY5ADpGej6jy8nwUgf1FY+FWWHTd9AEt9zko4f6jrN+myhiiDqnN6zu59rYzsRvwK5pwFTp7DihsHRBAvshqZs/W6NHQ2Wr4ZXpFPWzX4Ah96WbCHkkpfNfSyWPqNp227o2fmjkT2YcTRITn9aj2nqaf7sEpnMFRi2ISz18vAy3U/2iBppNb1t0Nn8WvjcWhhNjs8XoVLAOylc8b+rLr4rdO+xUa83AAnQ2lupev+fVHi31tCtzJ6suGbmnPP4mMrsnbrBiNw7Og==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(82310400026)(23010399003)(1800799024)(376014)(18002099003)(22082099003)(11063799006)(56012099006);
+ SFS:(13230040)(36860700016)(23010399003)(376014)(1800799024)(82310400026)(18002099003)(22082099003)(56012099006)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: gHSRpE8cRCxQE0T7JJBfVZCGs0i92MuyLtTCaj20RaiYRUlbeiiLDlwebOuPfJoBJJwGi+QmJTSY4qLW47RlZtzFeOzehFuz4rfNx7yhjUCc4LZ2oSB1Xt6ls0CL/qg1TIV5bgHLsjLYg2GCQ/NTbxDmsLZgxo4hkvu1VEPQiJWMy4ZauLkluqzWYnNssUDRTxF2nVSmIII1JbPKmS+ZkdFM4WZ1D1YZ2LPAJi4njJhIw4A2ZijKaa0JZBCjVDSvEql69XT7qtKwuO4S5ApsuvBHF7T9aiFxpVeu6W24q0kPZTPXysm1Ii++o6jSDrck3x21oxDjW0G15xBAm6hTzEKo26Y/L9hXM56T6O4F9VW2NOq79On/IPHfHwI6LaqoKfb5TLNDLPomuFsnIVX7r7VvOtY1KPpKcW/4wWydDjpbmmvuMlqtYvgJ87dxqxQt
+X-MS-Exchange-AntiSpam-MessageData-0: 5z2X7roV4JGOuDmO/u/baPVeBDIJweWl7G1ZMR3pabZUKegRlbyVnDXIGRy09mMDonEyeqf8semsYH/b6Pbp+UPQJcbuF2bLkva8YJAlc55LZj2hBSVTzrwkAEi39kq4snZHVAEXhkCknAQrPr1+toG6OOjd74oLHj/RTbn0lff1WJbpON3fAaZ86RpqKmS5AxdRX2A20XX7ucbUt4jzTlzRk9Cisa36g6whXIrDiQalrnhO3+NLWCxf7zIMpQpBc/wNPRJcj8Db3G20MD5vzUjCpb4Lcr6oFdSH5Zek4PfDBOxe7as17By7Tmwf3NuNR9kke3Mj6NVA/vJBM2003nHfjNgq72SDnc3jkXghboLVkRkUyp9SNeVj11lAtIdzzu79P10odg94d72mnXqEc5JW6vJr3ubSbDAKTI7GISc5oCEAkyIePPJ8lfXK7trI
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 06:59:13.0177 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7b49802-c3be-4569-50aa-08dedd879573
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 06:59:14.1031 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f85da15-544d-4704-cb68-08dedd879621
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001C8.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB999251
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5936
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,71 +145,66 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B9BD272D6CE
+X-Rspamd-Queue-Id: 652E072D6D6
 
-Those helpers allocates/frees slots from bitmaps for
-process_context_array_index processed by MES firmware.
+Implement the MES gang contex alloc and free heplers.
 
 Signed-off-by: Prike Liang <Prike.Liang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c    | 46 ++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h    |  5 +++
- drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h  |  2 +
- drivers/gpu/drm/amd/amdgpu/mes_userqueue.c |  9 ++++-
- drivers/gpu/drm/amd/amdgpu/mes_v11_0.c     |  1 +
- 5 files changed, 62 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c       | 41 +++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h       |  7 ++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h     |  1 +
+ drivers/gpu/drm/amd/amdgpu/mes_userqueue.c    |  7 +++-
+ drivers/gpu/drm/amd/amdgpu/mes_v11_0.c        |  2 +
+ drivers/gpu/drm/amd/include/mes_v11_api_def.h |  1 +
+ 6 files changed, 58 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-index f65f2a30154d..db9c46ece2a0 100644
+index db9c46ece2a0..56671f98b052 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.c
-@@ -1035,6 +1035,52 @@ int amdgpu_mes_rs64mem_setup_bitmaps(struct amdgpu_mes *mes)
- 	return 0;
+@@ -1081,6 +1081,47 @@ void amdgpu_mes_free_proc_ctx_index(struct amdgpu_mes *mes,
+ 	amdgpu_mes_unlock(mes);
  }
  
 +/**
-+ * amdgpu_mes_alloc_proc_ctx_index - allocate a process context slot
-+ *
-+ * @mes: MES instance
-+ *
-+ * Returns 0 on success, -ENOSPC if all slots are used (caller should
-+ * fall back to system memory path).
++ * amdgpu_mes_alloc_gang_ctx_index - allocate a gang context slot
 + */
-+int amdgpu_mes_alloc_proc_ctx_index(struct amdgpu_mes *mes,
++int amdgpu_mes_alloc_gang_ctx_index(struct amdgpu_mes *mes,
 +				    struct amdgpu_usermode_queue *queue)
 +{
 +	unsigned long bit;
 +
-+	if (!mes->use_rs64mem || !mes->proc_ctx_bitmap)
++	if (!mes->use_rs64mem || !mes->gang_ctx_bitmap)
 +		return -EOPNOTSUPP;
 +
 +	amdgpu_mes_lock(mes);
-+	bit = find_first_zero_bit(mes->proc_ctx_bitmap,
-+				  mes->proc_ctx_array_size);
-+	if (bit >= mes->proc_ctx_array_size) {
++	bit = find_first_zero_bit(mes->gang_ctx_bitmap,
++				  mes->gang_ctx_array_size);
++	if (bit >= mes->gang_ctx_array_size) {
 +		amdgpu_mes_unlock(mes);
 +		return -ENOSPC;
 +	}
-+	set_bit(bit, mes->proc_ctx_bitmap);
-+	queue->proc_ctx_array_index = (uint32_t)bit;
++	set_bit(bit, mes->gang_ctx_bitmap);
++	queue->gang_ctx_array_index = bit;
 +	amdgpu_mes_unlock(mes);
 +
 +	return 0;
 +}
 +
 +/**
-+ * amdgpu_mes_free_proc_ctx_index - free a process context slot
++ * amdgpu_mes_free_gang_ctx_index - free a gang context slot
 + */
-+void amdgpu_mes_free_proc_ctx_index(struct amdgpu_mes *mes,
++void amdgpu_mes_free_gang_ctx_index(struct amdgpu_mes *mes,
 +				    struct amdgpu_usermode_queue *queue)
 +{
-+	if (!mes->use_rs64mem || !mes->proc_ctx_bitmap)
++	if (!mes->use_rs64mem || !mes->gang_ctx_bitmap)
 +		return;
-+	if (queue->proc_ctx_array_index >= mes->proc_ctx_array_size)
++	if (queue->gang_ctx_array_index >= mes->gang_ctx_array_size)
 +		return;
 +
 +	amdgpu_mes_lock(mes);
-+	clear_bit(queue->proc_ctx_array_index, mes->proc_ctx_bitmap);
++	clear_bit(queue->gang_ctx_array_index, mes->gang_ctx_bitmap);
 +	amdgpu_mes_unlock(mes);
 +}
 +
@@ -218,92 +212,119 @@ index f65f2a30154d..db9c46ece2a0 100644
  
  static int amdgpu_debugfs_mes_event_log_show(struct seq_file *m, void *unused)
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-index 5c50bc9616b7..33a426f58e72 100644
+index 33a426f58e72..c67db2d6e122 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mes.h
-@@ -279,6 +279,7 @@ struct mes_add_queue_input {
- 	uint32_t	exclusively_scheduled;
+@@ -181,6 +181,7 @@ struct amdgpu_mes {
+ 	uint32_t			proc_ctx_array_size;
+ 	unsigned long			*proc_ctx_bitmap;
+ 	uint32_t			gang_ctx_array_size;
++	uint32_t			gang_ctx_array_index;
+ 	unsigned long			*gang_ctx_bitmap;
+ };
+ 
+@@ -280,6 +281,7 @@ struct mes_add_queue_input {
  	uint32_t	sh_mem_config_data;
  	uint32_t	vm_cntx_cntl;
-+	uint32_t	process_context_array_index;
+ 	uint32_t	process_context_array_index;
++	uint32_t	gang_context_array_index;
  };
  
  struct mes_remove_queue_input {
-@@ -631,4 +632,8 @@ int amdgpu_mes_update_enforce_isolation(struct amdgpu_device *adev);
- int amdgpu_mes_rs64mem_init(struct amdgpu_mes *mes);
- void amdgpu_mes_rs64mem_fini(struct amdgpu_mes *mes);
- int amdgpu_mes_rs64mem_setup_bitmaps(struct amdgpu_mes *mes);
-+int amdgpu_mes_alloc_proc_ctx_index(struct amdgpu_mes *mes,
+@@ -288,6 +290,7 @@ struct mes_remove_queue_input {
+ 	uint64_t	gang_context_addr;
+ 	uint32_t	queue_type;
+ 	bool		remove_queue_after_reset;
++	uint32_t	gang_context_array_index;
+ };
+ 
+ struct mes_map_legacy_queue_input {
+@@ -636,4 +639,8 @@ int amdgpu_mes_alloc_proc_ctx_index(struct amdgpu_mes *mes,
+ 				    struct amdgpu_usermode_queue *queue);
+ void amdgpu_mes_free_proc_ctx_index(struct amdgpu_mes *mes,
+ 				    struct amdgpu_usermode_queue *queue);
++int amdgpu_mes_alloc_gang_ctx_index(struct amdgpu_mes *mes,
 +				    struct amdgpu_usermode_queue *queue);
-+void amdgpu_mes_free_proc_ctx_index(struct amdgpu_mes *mes,
++void amdgpu_mes_free_gang_ctx_index(struct amdgpu_mes *mes,
 +				    struct amdgpu_usermode_queue *queue);
  #endif /* __AMDGPU_MES_H__ */
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-index 61e5f8a06eb2..8bb0d3213abf 100644
+index 8bb0d3213abf..8333bab537d4 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.h
-@@ -100,6 +100,8 @@ struct amdgpu_usermode_queue {
- 		} va;
- 		u64 va_array[6];
+@@ -102,6 +102,7 @@ struct amdgpu_usermode_queue {
  	} userq_vas;
-+
-+	uint32_t	proc_ctx_array_index;
+ 
+ 	uint32_t	proc_ctx_array_index;
++	uint32_t	gang_ctx_array_index;
  };
  
  struct amdgpu_userq_funcs {
 diff --git a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-index 0bcc5afc9e84..e1ff0f22a6e1 100644
+index e1ff0f22a6e1..0dc10553dcef 100644
 --- a/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
 +++ b/drivers/gpu/drm/amd/amdgpu/mes_userqueue.c
-@@ -121,6 +121,7 @@ static int mes_userq_map(struct amdgpu_usermode_queue *queue)
- 	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
- 	struct amdgpu_mqd_prop *userq_props = queue->userq_prop;
- 	struct mes_add_queue_input queue_input;
-+	struct amdgpu_mes *mes = &adev->mes;
- 	int r;
- 
- 	memset(&queue_input, 0x0, sizeof(struct mes_add_queue_input));
-@@ -146,7 +147,10 @@ static int mes_userq_map(struct amdgpu_usermode_queue *queue)
- 	queue_input.doorbell_offset = userq_props->doorbell_index;
- 	queue_input.page_table_base_addr = amdgpu_gmc_pd_addr(queue->vm->root.bo);
- 	queue_input.wptr_mc_addr = queue->wptr_obj.gpu_addr;
--
-+	if (mes->use_rs64mem) {
-+		amdgpu_mes_alloc_proc_ctx_index(mes, queue);
-+		queue_input.process_context_array_index = queue->proc_ctx_array_index;
-+	}
+@@ -150,6 +150,8 @@ static int mes_userq_map(struct amdgpu_usermode_queue *queue)
+ 	if (mes->use_rs64mem) {
+ 		amdgpu_mes_alloc_proc_ctx_index(mes, queue);
+ 		queue_input.process_context_array_index = queue->proc_ctx_array_index;
++		amdgpu_mes_alloc_gang_ctx_index(mes, queue);
++		queue_input.gang_context_array_index = queue->gang_ctx_array_index;
+ 	}
  	amdgpu_mes_lock(&adev->mes);
  	r = adev->mes.funcs->add_hw_queue(&adev->mes, &queue_input);
- 	amdgpu_mes_unlock(&adev->mes);
-@@ -165,6 +169,7 @@ static int mes_userq_unmap(struct amdgpu_usermode_queue *queue)
- 	struct amdgpu_device *adev = uq_mgr->adev;
- 	struct mes_remove_queue_input queue_input;
- 	struct amdgpu_userq_obj *ctx = &queue->fw_obj;
-+	struct amdgpu_mes *mes = &adev->mes;
+@@ -173,6 +175,7 @@ static int mes_userq_unmap(struct amdgpu_usermode_queue *queue)
  	int r;
  
  	memset(&queue_input, 0x0, sizeof(struct mes_remove_queue_input));
-@@ -175,6 +180,8 @@ static int mes_userq_unmap(struct amdgpu_usermode_queue *queue)
++	queue_input.gang_context_array_index = queue->gang_ctx_array_index;
+ 	queue_input.doorbell_offset = queue->doorbell_index;
+ 	queue_input.gang_context_addr = ctx->gpu_addr;
+ 	queue_input.queue_type = queue->queue_type;
+@@ -180,8 +183,10 @@ static int mes_userq_unmap(struct amdgpu_usermode_queue *queue)
  	amdgpu_mes_lock(&adev->mes);
  	r = adev->mes.funcs->remove_hw_queue(&adev->mes, &queue_input);
  	amdgpu_mes_unlock(&adev->mes);
-+	if (mes->use_rs64mem)
-+		amdgpu_mes_free_proc_ctx_index(mes, queue);
+-	if (mes->use_rs64mem)
++	if (mes->use_rs64mem) {
+ 		amdgpu_mes_free_proc_ctx_index(mes, queue);
++		amdgpu_mes_free_gang_ctx_index(mes, queue);
++	}
  	if (r)
  		DRM_ERROR("Failed to unmap queue in HW, err (%d)\n", r);
  	return r;
 diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-index 195dc3b4058d..db09f63ec1ad 100644
+index db09f63ec1ad..c2129ea6614b 100644
 --- a/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/mes_v11_0.c
-@@ -335,6 +335,7 @@ static int mes_v11_0_add_hw_queue(struct amdgpu_mes *mes,
- 	mes_add_queue_pkt.process_va_end = input->process_va_end;
- 	mes_add_queue_pkt.process_quantum = input->process_quantum;
- 	mes_add_queue_pkt.process_context_addr = input->process_context_addr;
-+	mes_add_queue_pkt.process_context_array_index = input->process_context_array_index;
+@@ -338,6 +338,7 @@ static int mes_v11_0_add_hw_queue(struct amdgpu_mes *mes,
+ 	mes_add_queue_pkt.process_context_array_index = input->process_context_array_index;
  	mes_add_queue_pkt.gang_quantum = input->gang_quantum;
  	mes_add_queue_pkt.gang_context_addr = input->gang_context_addr;
++	mes_add_queue_pkt.gang_context_array_index = input->gang_context_array_index;
  	mes_add_queue_pkt.inprocess_gang_priority =
+ 		convert_to_mes_priority_level(input->inprocess_gang_priority);
+ 	mes_add_queue_pkt.gang_global_priority_level =
+@@ -388,6 +389,7 @@ static int mes_v11_0_remove_hw_queue(struct amdgpu_mes *mes,
+ 
+ 	mes_remove_queue_pkt.doorbell_offset = input->doorbell_offset;
+ 	mes_remove_queue_pkt.gang_context_addr = input->gang_context_addr;
++	mes_remove_queue_pkt.gang_context_array_index = input->gang_context_array_index;
+ 	mes_remove_queue_pkt.queue_type =
+ 		convert_to_mes_queue_type(input->queue_type);
+ 
+diff --git a/drivers/gpu/drm/amd/include/mes_v11_api_def.h b/drivers/gpu/drm/amd/include/mes_v11_api_def.h
+index dfc27be4454d..04005a03987a 100644
+--- a/drivers/gpu/drm/amd/include/mes_v11_api_def.h
++++ b/drivers/gpu/drm/amd/include/mes_v11_api_def.h
+@@ -360,6 +360,7 @@ union MESAPI__REMOVE_QUEUE {
+ 
+ 		enum MES_QUEUE_TYPE         queue_type;
+ 		uint64_t                    timestamp;
++		uint32_t                    gang_context_array_index;
+ 	};
+ 
+ 	uint32_t	max_dwords_in_api[API_FRAME_SIZE_IN_DWORDS];
 -- 
 2.34.1
 
