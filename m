@@ -2,53 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mforIVwMUGr5sQIAu9opvQ
+	id qMswCFsMUGr4sQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:20 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:19 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DD20735A60
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84869735A5C
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=ahfKItmY;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=Uodpb5ZJ;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 823F210F6CC;
-	Thu,  9 Jul 2026 21:02:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB0710F6CA;
+	Thu,  9 Jul 2026 21:02:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012000.outbound.protection.outlook.com
- [40.93.195.0])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BBF610F6C5
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:17 +0000 (UTC)
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013058.outbound.protection.outlook.com
+ [40.93.196.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39EBD10F6C5
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:16 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jersloydP8L4fZbKOy8xuJ67en4gJVCOZmHgstZAojrAZZaqUilJU1PbSgRBFOCMbusc8pkUHzhB0oBIuL8PgHnWdn+EiMh6cnj/+c5D2uIxGYqlgY4T4/x9/0GSlSQ6b5tfHO/kX9nJ5h67cjzyyKGCZ16eLnCeyHnf4YxSsNnCDrVOrJcpCH8Uc5EufEbKHZICUyRuP+0qnlNUU3vwQkLMdQs0SnTdDu6xOGYCJzARfUh0H7GB2ZwyBZMNSQkFzT4d1cNVfkv3/pWzNgK5w2hHNFegTqhANU6KGqUwbUenh25a98xMA0b1rvr2wPnI6NFgfgqUu68Q3mOH+QVRfQ==
+ b=pKlDcF7w7I/dsp0Gh1CU+xva49HUkfhbh+g9sbNQhP0Y5ROwwtSmD9D02F/3x/BIGxXh2jNLPAtl7vu76GN99SZjr+dTFBAX920CgsdUpJRLrt5j7cuzXlm3zZJtI+hj1aDC9gPEOSdgJq/w1Uk84goJaq+FuYwnZl3GMAZ/uVhak1mzVKjAM/5Q++2Hg+rC+qcFsxAOwglEiOFR5TzBQuNorOI6TK9+mxFtffnCHyVPcNzQoPddJ2lh+qZ1Z6j6vfpYaXoLKkETp3GMF1EJBEFdM1wsFkryXb/G+pCjzLBXmBXTsIbLCij5N3cHIXQjdRJp1qsxWJR2rg0jX/N6Qw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SS51OGYF63c0D/iy4jhrWNB0JzkR5mV/AKTm1ig6eZ4=;
- b=QSfbQeCSF0VfnxVtD/X5SANNLJ0Bemt8iH9lLIH/byxD2dXNDIpwt5aA5/ZIxQfq6f1/OX5eUGXfj4xsLy+6tF6U4TyMhOqTwKfDxCRCOYfbdenMcJIwUTCSSLXuHzN77NFsBauxI/R3HAV5KrPxXyUKid0ZpvN+nE6LaDyIMtuZoqGk/IVLP4ziQ73VeIX9a7/xbBxFD6KPnMPf4PAyHUj3onUIcPNIRQ3SwYHkWkWlD1GfcdFqqao+n+WqikyK/YWZGJHvNWzdLBmTgKaU1fIwDCIzb+3lwhswAyAKgaZWO7wS+HUr1lnJbESx6qgrIavf7euct/Jxhq0UuuwWsA==
+ bh=BbnZqobqx7wDI9NbL4XjabPm11W84ChG/98hMhmogk8=;
+ b=jT7n0l8b/X/sJBonXgAKJWoBoG1O2Pvj3BO1BUpEIU62T+WxR5dEPNju0O1LHS7pVAfWiurzdF916E2azNhg2x0gAL+O7HrJaTitwrU1tfgQwU9ld+335mu1oLhF6jLCJObWjEOKLmGMGcAvCCLA3TEWABwTbXxuzjhO6WpysjAE+lWKjoDc51+sTOVKvyXMqjOoKRD6AykDExWhScqaQ+b0Rl3Ls+syWyW+t5GhZ7lHTQLcWQaFPPCGEfmrWCMB5oNEPhaFcpwti3/gL9IUKQpO7ZKNuo0nBpZ0Fw/TTn01jZAFbVAz20yORmTnoP6p5d6MZYJZ4Lk/FA0CXbMUeQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SS51OGYF63c0D/iy4jhrWNB0JzkR5mV/AKTm1ig6eZ4=;
- b=ahfKItmY5QxyKPaDJGrQZidBmxfaVVrmkbiHprSMWkgcY7rkexHrfo9JE7iA9aVQgiGca+rAiGStnV4F1Q8qS5EnGnu9dA+0/4Cj+GCzTgEunfIsb3LGPZyZdrxsl/4IC1ie4LT4LZ5oax+oIR8i8EUcvzIsMJAbJtGnVipFU5M=
-Received: from MN0PR04CA0026.namprd04.prod.outlook.com (2603:10b6:208:52d::17)
- by MN2PR12MB4285.namprd12.prod.outlook.com (2603:10b6:208:1d7::12)
+ bh=BbnZqobqx7wDI9NbL4XjabPm11W84ChG/98hMhmogk8=;
+ b=Uodpb5ZJ/+22qAnqNcNjOKC267ta0iV6tH4J190nOoDvV6Mxhd3Op6GhcPpSpnmk8IeiClVAcDAE39gyNCXrxL3j6oxqjise+9YkKP35q2uIyQh+bl/7H3ef0LrwnNLsksTi2dKLALbN9EedRIJeup6TRZqNpGq7Pos0oNbbPe0=
+Received: from MN2PR07CA0011.namprd07.prod.outlook.com (2603:10b6:208:1a0::21)
+ by LV1PR12MB999280.namprd12.prod.outlook.com (2603:10b6:408:3f5::12)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.16; Thu, 9 Jul
- 2026 21:02:11 +0000
-Received: from BL02EPF0001A0FF.namprd03.prod.outlook.com
- (2603:10b6:208:52d:cafe::56) by MN0PR04CA0026.outlook.office365.com
- (2603:10b6:208:52d::17) with Microsoft SMTP Server (version=TLS1_3,
+ 2026 21:02:12 +0000
+Received: from BL02EPF0001A0FC.namprd03.prod.outlook.com
+ (2603:10b6:208:1a0:cafe::78) by MN2PR07CA0011.outlook.office365.com
+ (2603:10b6:208:1a0::21) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.11 via Frontend Transport; Thu, 9
- Jul 2026 21:02:11 +0000
+ Jul 2026 21:02:12 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,13 +56,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A0FF.mail.protection.outlook.com (10.167.242.106) with Microsoft
+ BL02EPF0001A0FC.mail.protection.outlook.com (10.167.242.103) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:11 +0000
+ 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:12 +0000
 Received: from georzhanmkm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
- 2026 16:01:49 -0500
+ 2026 16:01:50 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -71,11 +71,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Charlene Liu <Charlene.Liu@amd.com>, Gabe Teeger
- <gabe.teeger@amd.com>, George Zhang <george.zhang@amd.com>
-Subject: [PATCH 18/80] drm/amd/display: add null pointer access check
-Date: Thu, 9 Jul 2026 16:47:46 -0400
-Message-ID: <20260709205936.5719-19-george.zhang@amd.com>
+ <Chen-Yu.Chen@amd.com>, Matthew Stewart <Matthew.Stewart2@amd.com>, "George
+ Zhang" <george.zhang@amd.com>
+Subject: [PATCH 19/80] drm/amd/display: Add DCN42B VID_CRC_CONTROL and
+ HBLANK_CONTROL registers
+Date: Thu, 9 Jul 2026 16:47:47 -0400
+Message-ID: <20260709205936.5719-20-george.zhang@amd.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260709205936.5719-1-george.zhang@amd.com>
 References: <20260709205936.5719-1-george.zhang@amd.com>
@@ -87,29 +88,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FF:EE_|MN2PR12MB4285:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1af895db-39cd-4b2c-c696-08deddfd588d
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FC:EE_|LV1PR12MB999280:EE_
+X-MS-Office365-Filtering-Correlation-Id: ee424ecf-6046-4123-df8d-08deddfd595d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|376014|23010399003|1800799024|82310400026|6133799003|56012099006|11063799006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: jQrQMdSTHqnDRrLqcUuiYYxTNqLiypjOjL0cMuSOrLdlqqoAGRK+O03ttYHmOXapK9nxjcret8bchspYUjpsyXymFAOftCC5fhQmBXzLrBpSdyqqPfG1Ud/dmB6uzZ0B/koaq9VwZuU3LjGJqy72Jn3n5vm9apAAfrkzg5KQhgU8f9+oYhUphwxYx20TENJGBK9F1YYQ78AzJLENG9TmIZaL3SN6E+idXpE49VBid4YsGJu15jmVyuhxF3Bx08sOChi9CDpwuA2jpQC3a7SJOLbB7sxHdvGYBf+oJ00j5IzfaYjCN05IpWBShFkHQLUpBTOGfbgXeu1P3cFDZmUIIAQ07EDxICBH3oPyZEYkApxcD1BphZhU3MIYdWEbvCiYi3K3wc6pwIfWprd2O/Y5/tHAkuYlVuPcDe+ddeB+GKTQbcezjIrItfxmrArR241Z0UUi3OyW24bMa4KSJ2Sqw0eFfZS2BhHwjzwlem/NJNZ73VWeCyTRLmEjZIJtGvikFMZyLQTrRqhn+1frC1OWKgfTBMDd5v85GtQ7hGW8KyY8XQ4qGsvrp5FUagvs0qZAWdSexdfFfILxlzcSTQt6eUt3FGHhNFbEvGAUJznYC6aTYbi+E9J6fJlFnqUnjE21npnze3rhVvsw3lwacYFGQWXi/AgPKBwipl4zNUjAPEgRGu7Tjp2EmYYx0pXQtPO5oF5k4MfkTn1CQ8ai+c4C6w==
+ ARA:13230040|376014|1800799024|82310400026|23010399003|36860700016|11063799006|56012099006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: XqCQByx1a+9YdkBO6azwf4sDieAeXalnD4wqlQqG9kYsJfxtHgfeKxJHc3lZY4hOFUTCoTKFXawTY/ujx4JsCKgzrwCzzvi216VgW4weji/P7x9HGjTwUgp41DAqNjRCTAwdeYBQFjlBSOgic3cF74HLSff2RT3Fwav6RMdxvfAH1x8eBo3mANbNc3h4q4yYkGAQtohDgI6HlGcGw+ba5WcYUOvFPUhhPnvgBE6QAcKf948jb8jhg+rYhv4Hys8j5wDyyinMYoqofKXuD0xoeI4klnJr9vMmcLTfsgWV4VXJV9qEPweTwf626bA9VlncUTEkrxD7eqvcMGSa3rqGnltxcTFYQk538wvWuhGwR0uoQj1OPMNTCAS7Pz2zgv61FDI2X4tp5HSXTOo84aptqGDZ8xxW2AF3nL6Jbf9lZhn1GO6T1pGLdKTmEMfvikAnGp7OtB2cGLyENmJJK7W0O5NWivWDPdnbDiQAI/ruQD4zj5gV0MhJ2EEdB03ecz8NWQ1/hKi65ZPk7dZl7B8VOz2sLv8UHraTK8pgEs/Df+T7Z41fYBG0KLas8XRSZf26nI4bayUnK9EtUDBzbQ2pEY/4dMb9uEdY6vok8Yw9OeKaQ4XyfFQxkjGnTaNEDUU/juPTCOOtFytoLkghRKnyFSieAdmsDHnKNfyER4qLJLR0sqoLWJbG/sbcqTMYbVt8+r3OJUxQY9iLNB5F7oTP3Q==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(376014)(23010399003)(1800799024)(82310400026)(6133799003)(56012099006)(11063799006)(18002099003)(22082099003);
+ SFS:(13230040)(376014)(1800799024)(82310400026)(23010399003)(36860700016)(11063799006)(56012099006)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: x+GTl6n6BxRlCLejXHdHuPJip7Cry04Jma7vSICdeY1x3egW9lte4VcOeGgAheuQ9LqkPKSaJz3F15u/wQ+qaHfqP7C7uc3SrM+Mnx+fc+kC9lmNwpYQvWMVsrkOAQ4Bc17FYyu4Rczxi7Aeyfvs1UyszxGOzTNAfpOLYQMUfqXcNKr3FoyIuq/D5NfMo+XJV5nvg0j2z4aSvRx+VzB3jYbiFPGrJ3r/xaS41Rl3qPOGAnMV4+kb7Kx4zfvCUHXyI/QcvnlFjdzJuVst1qtsEkxHE4zEqqVsLtHxvLAvy4WdT/FC5Ll2QiVF9AiI8bfMvxeUuPPXvjHL/MrLR2eB/T9Bvq83omBBaqsCdudLI4cVVjYXKbjDAWYhtodMu1L7R8mYKMe8UWJdDtZHnP/MQ0p9KZMXKEsvavxAXtmhIWSO8ttkFVGF/j63fzT3RQRn
+X-MS-Exchange-AntiSpam-MessageData-0: PLSKTd4Mh4P276Pb3Mc2PgCTB0X2cAMYebeN0aHdlpj6NcvRGEcCTbWUTN1QtEQ3IT9/+H4OBI3QXXt80Li0gIY+qZp8aM6Z1fbXY+baEyax5oPLs1x3AfhkXZ6uEkFv/1Q4scA/I6GtJm0pKRxGlXgvP/mqeXvqNBu8GVtEGks3M9ywKA4fI86RNxxQllC1oDmUovahyhYdPKmUUOtTIe4BQuzSt1yFERckZZH3dAKJMN5cykFyIs7cMI3P4KrlpbSKdqqXmkEW0FV3Jxo0sGpcnSkCkE6OF75MT+im39eKEHbfxnJ0EOTeUwdgXWextCKqLfHonDiDshzvi1saW2g0Qmn4cFpzj6PgX/2X7sSf3U936BStCHmhxr7VkJ1NzMLcNsrKP3YGRKNfN80BCMJ4WhAnEJoDr48yLsuRBIcLfL1XT7DR0rWdB5ikBf6V
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:11.4999 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1af895db-39cd-4b2c-c696-08deddfd588d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:12.8544 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ee424ecf-6046-4123-df8d-08deddfd595d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FF.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FC.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4285
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV1PR12MB999280
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,7 +137,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -153,48 +154,113 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0DD20735A60
+X-Rspamd-Queue-Id: 84869735A5C
 
-From: Charlene Liu <Charlene.Liu@amd.com>
+From: Matthew Stewart <Matthew.Stewart2@amd.com>
 
 [why]
-need to add null pointer access check
 
-Reviewed-by: Gabe Teeger <gabe.teeger@amd.com>
-Signed-off-by: Charlene Liu <Charlene.Liu@amd.com>
+These registers are needed by our existing code.
+
+[how]
+
+Add the missing register defines to dcn42b_resource.c.
+
+Remove DCN42B variant of HP_DP_STREAM_ENC_REG_LIST_RI as it is now the
+same as the DCN42B one, when these registers are included.
+
+Reviewed-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Signed-off-by: Matthew Stewart <Matthew.Stewart2@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../drm/amd/display/dc/dio/dcn10/dcn10_link_encoder.c  | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ .../dc/resource/dcn42b/dcn42b_resource.c      | 15 ++++++-
+ .../dc/resource/dcn42b/dcn42b_resource.h      | 40 -------------------
+ 2 files changed, 14 insertions(+), 41 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_link_encoder.c
-index 4b36c01a9e7a..00e82d627d91 100644
---- a/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_link_encoder.c
-+++ b/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_link_encoder.c
-@@ -1189,8 +1189,9 @@ void dcn10_link_encoder_dp_set_phy_pattern(
- 		set_dp_phy_pattern_prbs7(enc10);
- 		break;
- 	case DP_TEST_PATTERN_80BIT_CUSTOM:
--		set_dp_phy_pattern_80bit_custom(
--			enc10, param->custom_pattern);
-+		if (param)
-+			set_dp_phy_pattern_80bit_custom(
-+				enc10, param->custom_pattern);
- 		break;
- 	case DP_TEST_PATTERN_CP2520_1:
- 		set_dp_phy_pattern_hbr2_compliance_cp2520_2(enc10, 1);
-@@ -1202,8 +1203,9 @@ void dcn10_link_encoder_dp_set_phy_pattern(
- 		set_dp_phy_pattern_hbr2_compliance_cp2520_2(enc10, 3);
- 		break;
- 	case DP_TEST_PATTERN_VIDEO_MODE: {
--		set_dp_phy_pattern_passthrough_mode(
--			enc10, param->dp_panel_mode);
-+		if (param)
-+			set_dp_phy_pattern_passthrough_mode(
-+				enc10, param->dp_panel_mode);
- 		break;
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn42b/dcn42b_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn42b/dcn42b_resource.c
+index 172836dfd679..c555be6e541d 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn42b/dcn42b_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn42b/dcn42b_resource.c
+@@ -134,6 +134,19 @@
+ #define regHUBP3_HUBPREQ_DEBUG                0x088d
+ #define regHUBP3_HUBPREQ_DEBUG_BASE_IDX       2
 
++#define regDP_SYM32_ENC0_DP_SYM32_ENC_VID_CRC_CONTROL                                                   0x3687
++#define regDP_SYM32_ENC0_DP_SYM32_ENC_VID_CRC_CONTROL_BASE_IDX                                          2
++#define regDP_SYM32_ENC1_DP_SYM32_ENC_VID_CRC_CONTROL                                                   0x375b
++#define regDP_SYM32_ENC1_DP_SYM32_ENC_VID_CRC_CONTROL_BASE_IDX                                          2
++#define regDP_SYM32_ENC2_DP_SYM32_ENC_VID_CRC_CONTROL                                                   0x382f
++#define regDP_SYM32_ENC2_DP_SYM32_ENC_VID_CRC_CONTROL_BASE_IDX                                          2
++#define regDP_SYM32_ENC0_DP_SYM32_ENC_HBLANK_CONTROL                                                    0x366b
++#define regDP_SYM32_ENC0_DP_SYM32_ENC_HBLANK_CONTROL_BASE_IDX                                           2
++#define regDP_SYM32_ENC1_DP_SYM32_ENC_HBLANK_CONTROL                                                    0x373f
++#define regDP_SYM32_ENC1_DP_SYM32_ENC_HBLANK_CONTROL_BASE_IDX                                           2
++#define regDP_SYM32_ENC2_DP_SYM32_ENC_HBLANK_CONTROL                                                    0x3813
++#define regDP_SYM32_ENC2_DP_SYM32_ENC_HBLANK_CONTROL_BASE_IDX                                           2
++
+ enum dcn401_clk_src_array_id {
+ 	DCN401_CLK_SRC_PLL0,
+ 	DCN401_CLK_SRC_PLL1,
+@@ -351,7 +364,7 @@ static const struct dcn10_link_enc_mask le_mask = {
+ 	LINK_ENCODER_MASK_SH_LIST_DCN42B(_MASK)};
+
+ #define hpo_dp_stream_encoder_reg_init(id) \
+-	DCN42B_HPO_DP_STREAM_ENC_REG_LIST_RI(id)
++	DCN42_HPO_DP_STREAM_ENC_REG_LIST_RI(id)
+
+ static struct dcn31_hpo_dp_stream_encoder_registers hpo_dp_stream_enc_regs[4];
+
+diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn42b/dcn42b_resource.h b/drivers/gpu/drm/amd/display/dc/resource/dcn42b/dcn42b_resource.h
+index 1a6e0e7be0fa..484ba1455468 100644
+--- a/drivers/gpu/drm/amd/display/dc/resource/dcn42b/dcn42b_resource.h
++++ b/drivers/gpu/drm/amd/display/dc/resource/dcn42b/dcn42b_resource.h
+@@ -254,46 +254,6 @@
+ 		SRI_ARR(STREAM_MAPPER_CONTROL, DIG, id),\
+ 		SRI_ARR(DIG_FE_AUDIO_CNTL, DIG, id)
+
+-/* HPO DP stream encoder */
+-/* Not in DCN42B:
+- * SRI_ARR(DP_SYM32_ENC_VID_CRC_CONTROL, DP_SYM32_ENC, id),
+- * SRI_ARR(DP_SYM32_ENC_HBLANK_CONTROL, DP_SYM32_ENC, id),
+- */
+-#define DCN42B_HPO_DP_STREAM_ENC_REG_LIST_RI(id)                                             \
+-	SR_ARR(DP_STREAM_MAPPER_CONTROL0, id),                                                  \
+-		SR_ARR(DP_STREAM_MAPPER_CONTROL1, id),                                              \
+-		SR_ARR(DP_STREAM_MAPPER_CONTROL2, id),                                              \
+-		SR_ARR(DP_STREAM_MAPPER_CONTROL3, id),                                              \
+-		SRI_ARR(DP_STREAM_ENC_CLOCK_CONTROL, DP_STREAM_ENC, id),                            \
+-		SRI_ARR(DP_STREAM_ENC_INPUT_MUX_CONTROL, DP_STREAM_ENC, id),                        \
+-		SRI_ARR(DP_STREAM_ENC_AUDIO_CONTROL, DP_STREAM_ENC, id),                            \
+-		SRI_ARR(DP_STREAM_ENC_CLOCK_RAMP_ADJUSTER_FIFO_STATUS_CONTROL0, DP_STREAM_ENC, id), \
+-		SRI_ARR(DP_SYM32_ENC_CONTROL, DP_SYM32_ENC, id),                                    \
+-		SRI_ARR(DP_SYM32_ENC_VID_PIXEL_FORMAT, DP_SYM32_ENC, id),                           \
+-		SRI_ARR(DP_SYM32_ENC_VID_PIXEL_FORMAT_DOUBLE_BUFFER_CONTROL, DP_SYM32_ENC, id),     \
+-		SRI_ARR(DP_SYM32_ENC_VID_MSA0, DP_SYM32_ENC, id),                                   \
+-		SRI_ARR(DP_SYM32_ENC_VID_MSA1, DP_SYM32_ENC, id),                                   \
+-		SRI_ARR(DP_SYM32_ENC_VID_MSA2, DP_SYM32_ENC, id),                                   \
+-		SRI_ARR(DP_SYM32_ENC_VID_MSA3, DP_SYM32_ENC, id),                                   \
+-		SRI_ARR(DP_SYM32_ENC_VID_MSA4, DP_SYM32_ENC, id),                                   \
+-		SRI_ARR(DP_SYM32_ENC_VID_MSA5, DP_SYM32_ENC, id),                                   \
+-		SRI_ARR(DP_SYM32_ENC_VID_MSA6, DP_SYM32_ENC, id),                                   \
+-		SRI_ARR(DP_SYM32_ENC_VID_MSA7, DP_SYM32_ENC, id),                                   \
+-		SRI_ARR(DP_SYM32_ENC_VID_MSA8, DP_SYM32_ENC, id),                                   \
+-		SRI_ARR(DP_SYM32_ENC_VID_MSA_CONTROL, DP_SYM32_ENC, id),                            \
+-		SRI_ARR(DP_SYM32_ENC_VID_MSA_DOUBLE_BUFFER_CONTROL, DP_SYM32_ENC, id),              \
+-		SRI_ARR(DP_SYM32_ENC_VID_FIFO_CONTROL, DP_SYM32_ENC, id),                           \
+-		SRI_ARR(DP_SYM32_ENC_VID_STREAM_CONTROL, DP_SYM32_ENC, id),                         \
+-		SRI_ARR(DP_SYM32_ENC_VID_VBID_CONTROL, DP_SYM32_ENC, id),                           \
+-		SRI_ARR(DP_SYM32_ENC_SDP_CONTROL, DP_SYM32_ENC, id),                                \
+-		SRI_ARR(DP_SYM32_ENC_SDP_GSP_CONTROL0, DP_SYM32_ENC, id),                           \
+-		SRI_ARR(DP_SYM32_ENC_SDP_GSP_CONTROL2, DP_SYM32_ENC, id),                           \
+-		SRI_ARR(DP_SYM32_ENC_SDP_GSP_CONTROL3, DP_SYM32_ENC, id),                           \
+-		SRI_ARR(DP_SYM32_ENC_SDP_GSP_CONTROL5, DP_SYM32_ENC, id),                           \
+-		SRI_ARR(DP_SYM32_ENC_SDP_GSP_CONTROL11, DP_SYM32_ENC, id),                          \
+-		SRI_ARR(DP_SYM32_ENC_SDP_METADATA_PACKET_CONTROL, DP_SYM32_ENC, id),                \
+-		SRI_ARR(DP_SYM32_ENC_SDP_AUDIO_CONTROL0, DP_SYM32_ENC, id)
+-
+ /*HPO DP link encoder regs */
+ #define DCN42B_HPO_DP_LINK_ENC_REG_LIST_RI(id)                    \
+ 	SRI_ARR(DP_LINK_ENC_CLOCK_CONTROL, DP_LINK_ENC, id),         \
 --
 2.55.0
 
