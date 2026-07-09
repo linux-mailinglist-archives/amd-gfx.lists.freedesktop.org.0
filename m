@@ -2,53 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ipZ0DkYMUGrusQIAu9opvQ
+	id 3h5NJl8MUGr9sQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:01:58 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:23 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1CCA735A3A
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:01:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 285D5735A6E
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=S7Y6LcZf;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=StGJgFoL;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FAC110F6BC;
-	Thu,  9 Jul 2026 21:01:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD45910F6D1;
+	Thu,  9 Jul 2026 21:02:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012041.outbound.protection.outlook.com
- [40.93.195.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FADC10F6B7
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:01:54 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012004.outbound.protection.outlook.com
+ [40.107.200.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A38D10F6D0
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LP1T2+71op5eAtN99Bqk12UYn/ekC5OvHBtbZ/uVOt7JwjxQ6vARCnOSXlbr1xh0G9+A8EUQMGtzMnQ5cLIXDTyLVkkaz0A3p9mhVqPPLzuzU1H2HTtZi2RCoY6DBRXReYVADM2izmqbfgFjHV+TLzv1AoqoAmgFI8tloMcWb/2GGFQiudvYr6tNV2EosT+Fj3tpKLN85nM4odHhGw3MIFIXDJfp+vpayxFdBTAm9EVgX7sNyQBxe35TURbGIk9ix3U/HpN53JtjPhgtliACac2KwbJWdj7X3cZYo6uCpZ3Om896pfZRVa0u6wL7nPGa1mTYrJne0ZjeEqlYqJSanA==
+ b=pzO2GTsZvelSTlXXNxLzr8H1DwdHuOmEjKMVGg3yOPmdUFJFkDptoyZiwMu60mRVQEu7LcAngcAgibjQ8EsEoG71Mc/c9VsuP9gRFU7EKHeKnGXlvc65R8xkgB+nfmNiDOTejgqdPpPHO5xt7WZRHQO4NUMR+rhmoQGIHV9ozyIRp7KR6yQ4EDnloEU7hr4oxKU1VDgk+E8TIhMwU7SqWyGCAmYpACH7QTNH2KuljSSw+U03VDiIbg+cwTBF9Q+HZgtp0GDxDwyQEXHbZP5r8Cl9E72nLmKZasa73Gz1OPl8T4w4bn0VTq7tsAe//WUPjo/5X7/c1m3wzwkNs57f4A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vrNKEuH+HepJSM9mVJsjlQEtzGfRn+WNnNncnhhjVh8=;
- b=Gw2IFRoQ08SIY0GZ7uQQM74f07hOdwWFq45n8APujVkHorHUVJ0J5WffJCUk955+NsUJ/RKapnHxfxlrdKczjM0m9waWaCIME7ySKPh67a/67x3Kl5rH3xehQm9xHlZ/hWfSecS371eKEqz9OqfNWcR+rADfbETpvuGQq8aReQE8NFzfoXtGgZ/Dii4SR5uOHfzGb0Dv0qgV0EVEcduBYlN9xVQmDqu+mKtu5yTiYbP4f8nA+niSN+8LCNPZDIzlrlkA2rv4lNjuT46HOKLHzdNxa8uorF2d/G9mhffKM1tZ11eenHTe8pv4eL41xTseBlbGGNAqCzMJ5NDkvHKKfw==
+ bh=YchxyocbQd+dJPB9foq17gREtZphNLbp0OEkNUUpbeU=;
+ b=ub1NLsIUtOkMXUNSOYF4Bf61pUwOhv5xqtLxOoWAKcc9Cc9artD1Ud6oBTo6N9MzImYMYxVwjvuV9+2qaDl3xNC2FNdO93FMOTP4KkuEHBGyfQEk8ciA+geNPJFc1xqbQu9evBibcUq/yZUkl0Xn1n5xmRYf04odupFx/XA+lBW8FJzW40mwMtGyhK7iiH0HHB/H88VDSowN74ax89RJRk5Uvb1USYxhIGz3xIXKMY1NX7wCxoxQ6keksLaAgPLDo45C7dEpL4tyTOpARnP0B+slk66SvevO1TtOX+rAl0szDe4XEkYE0S2lEqZVgO9UCQZybqXalI/eOi4rBN7BmA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vrNKEuH+HepJSM9mVJsjlQEtzGfRn+WNnNncnhhjVh8=;
- b=S7Y6LcZf4C4SFmDvWnhgm16Q542yMaaqR4udjuHVL73fD0ujB5pqHa/EzhUR9q0NlBAUDUEJAVs8nCCAjYzVK9vuQ+2pD4mhrTnTUE6wpAx8h0GMWOJRC5WjyjLpHPO4pKTvKxcecKGj2Z7FMIARbO74PYyYVzXXBjbgatMdE2M=
-Received: from PH7PR10CA0009.namprd10.prod.outlook.com (2603:10b6:510:23d::29)
- by DS0PR12MB6605.namprd12.prod.outlook.com (2603:10b6:8:d3::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.16; Thu, 9 Jul
- 2026 21:01:49 +0000
-Received: from SA2PEPF00003F66.namprd04.prod.outlook.com
- (2603:10b6:510:23d:cafe::96) by PH7PR10CA0009.outlook.office365.com
- (2603:10b6:510:23d::29) with Microsoft SMTP Server (version=TLS1_3,
+ bh=YchxyocbQd+dJPB9foq17gREtZphNLbp0OEkNUUpbeU=;
+ b=StGJgFoLkRKN05+vjpRi5Locr/2V6vVBJkL2QidSqin5qInKT7R7pCQqDzWq4+DsWMiKwP4IP9fm64dpam8Lb8Yx3uhQVBoVekTECCFekuLUDK0UCm/GZFsC6MQnd7eNxc/JbV5+wuukKcH5np6IGc7m10D4qmJ12qyYxZIh+lY=
+Received: from MN0PR04CA0009.namprd04.prod.outlook.com (2603:10b6:208:52d::30)
+ by PH7PR12MB8594.namprd12.prod.outlook.com (2603:10b6:510:1b3::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Thu, 9 Jul
+ 2026 21:02:06 +0000
+Received: from BL02EPF0001A0FF.namprd03.prod.outlook.com
+ (2603:10b6:208:52d:cafe::95) by MN0PR04CA0009.outlook.office365.com
+ (2603:10b6:208:52d::30) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.11 via Frontend Transport; Thu, 9
- Jul 2026 21:01:49 +0000
+ Jul 2026 21:02:06 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -56,13 +56,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- SA2PEPF00003F66.mail.protection.outlook.com (10.167.248.41) with Microsoft
+ BL02EPF0001A0FF.mail.protection.outlook.com (10.167.242.106) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:01:48 +0000
+ 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:06 +0000
 Received: from georzhanmkm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
- 2026 16:01:45 -0500
+ 2026 16:01:46 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -71,12 +71,12 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Austin Zheng <Austin.Zheng@amd.com>, Dillon Varone
- <dillon.varone@amd.com>, George Zhang <george.zhang@amd.com>
-Subject: [PATCH 14/80] drm/amd/display: Add Debug Option To Enable Per-DPM
- De-rate Usage
-Date: Thu, 9 Jul 2026 16:47:42 -0400
-Message-ID: <20260709205936.5719-15-george.zhang@amd.com>
+ <Chen-Yu.Chen@amd.com>, Dmytro Laktyushkin <dmytro.laktyushkin@amd.com>,
+ Charlene Liu <charlene.liu@amd.com>, George Zhang <george.zhang@amd.com>
+Subject: [PATCH 15/80] drm/amd/display: update memclk clock table read for
+ dcn42
+Date: Thu, 9 Jul 2026 16:47:43 -0400
+Message-ID: <20260709205936.5719-16-george.zhang@amd.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260709205936.5719-1-george.zhang@amd.com>
 References: <20260709205936.5719-1-george.zhang@amd.com>
@@ -88,29 +88,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003F66:EE_|DS0PR12MB6605:EE_
-X-MS-Office365-Filtering-Correlation-Id: 36d2436c-ee21-4d97-f2d2-08deddfd4b28
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FF:EE_|PH7PR12MB8594:EE_
+X-MS-Office365-Filtering-Correlation-Id: 571f6888-417e-491d-8edb-08deddfd5565
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700016|376014|23010399003|1800799024|82310400026|18002099003|22082099003|56012099006|11063799006|6133799003|3023799007;
-X-Microsoft-Antispam-Message-Info: SD37ZnbmVbUeo4HSJRESc3YMo88ZrvAuJP5Ndc/eMLoERRZbesxh4h69MXX+GaE0jPzkPe2MM+VZxGQrJKRTsf1JOE0jZgO7ujg03IOWzlpjyvQTtXybHVhwi/mwGI170nazsz8zJZKjOKyUHdSuHVvXpgDlkfvJ5JAfi3zIZiDtKfgjUw6G7GmK+wh+PLTguBsyKd6fandnYTbb3RRTI/+9R7rOk7UIYqUp9j2STlTlt2dQDIHI5u8qo4/63wJiPbrkdG2AoDOhteN+V7QKEfopvmtUDvA/J1xHRfHEMC3GSAjXqJq2Svm6ahHcZNDoc034nfLvq7skSw4utOFUZYb1KglQ7548ZccHRqk1MeB5Pl3/o5SFI/qzuf9qnOsCxyKlSfFsC/uQTmfXlmmVSExASi8HNKyzAKuqQWnW70h4rNS1fl545RRrNMzsATM5ZMoLzT8LG4S/t8wu/gZ8fiaPhB1S7zZSl2NjOC6BSnSjDpHEXktBj5HKchi+bFYmdAjSyXsZkez/T5oRQ4zyZwvrezlJLokpQv0Et9jIFLOkQPvd5Eu2Drtp3pXR7WKQ1X0U2b9+nJwrI0l5snJ4o9h2xuFp6/glGme8nRmDipxqv9g/gMcstlzpM6Qwh7F5DUWZ/zyXqVmAsAp+mPNfrNM8UC8gBVCZzhARg7MkFhb1iUHW9+zy5SaZIIzMaJX59BV3zWrfBh8F9V5XSOpQOA==
+ ARA:13230040|23010399003|36860700016|376014|1800799024|82310400026|22082099003|18002099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: PMWJk8KFZ/nfww3JCrzMbK9Hym+ynQKG76VxNGy+S/Om3dZdHtQQVlx8T/pPSYMwlSSVvEwmmYAGwUVgZNZNuAxywQhHi1DdpIeqD9AeBl4awrEJLYw7woEPpIuTc7PiX3UOK/tfAwDjYPUxeWG/NWAVS5IV8NcPlwnepV8bc1f7ABxhBlQu+FA3bVU1p64kf6fT143N523NKXP29S5bCp2Y3/RoDurR3BpcUrB3pB5vkFqmaS7UzXXVqC3qBE+mRe6vHAgtipq87c4nr8czHqo6eEmgORbQoQblUZaIYD6PTuZ+oBn7aBObYd3zOeQbkKr0fTx+7r1upgfgJoXRIzqxXshfHcfdYgulWw0VImlq3Em4OuCRoDCaQnXjSMc+SL7+4wkVvTJGnwgB9GO/1EDag8aWYplocC9H9GQECLx19Uv5iEKw7O/ddd4jiKhyW47APBqjWzgwYSGIPjwSC2tycQ5bgAYyNEyqyIzoQnrzZ/KpDiprJQ+bwAFQHN0P2wf8OFJhd9O8NtxL3MJ2Bhn1amchqIJLeaAkmFe1W2BpUJTP4Ii/mxjtfHvgv3o3xLqzUn0DMXpifdGSJsLTJxGHy7njgEDKLgM2sVnuJJHsrWfE42cPH/sfWu19XgGUQgL+zV/QJDIsho8b7wDRiHL/EnvD5Kf7pwbdUX0GOTYqDtkDsBuxcZp061fIeJCtTO8eDz4C97rdI1Zy0x74cA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(36860700016)(376014)(23010399003)(1800799024)(82310400026)(18002099003)(22082099003)(56012099006)(11063799006)(6133799003)(3023799007);
+ SFS:(13230040)(23010399003)(36860700016)(376014)(1800799024)(82310400026)(22082099003)(18002099003)(56012099006)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: l18BoZeYht6fDJRWwRsFInVxXiLsY7ALeQKy8q3tSEVEH9H/LP4+MQSj0K2MykK6qt5cuRsPh/FUku1DZqY8ri8fgPs8SVid8VaNdAUlWkM0duRI0OSHc4hpJN71o4OgVic6ETXOgmKFflrAeaP8Gi6tq9VOMq3ONTxU8iUeT7lzr5nCHt0Rb4g89Y3Z8YjNEaGVDjkBlafUpg+XWIV2xo4QNN26mJ5uuZ8AWIz/f79sTEY8JplR9YQz0IA8frGuTUmBHtXObDKyc/BxxJI4mJ+RT6+FjAEC5rfW1dkTB4oFr4mxsktyoI3o/dQHoNyy3f495XhMYAUOLYojG4qf2zSnW4w/0SB2VtGMZ4pffAUzQzQ0+K0iM2ukFhnwPxq4eEe8v3qtdu1nZrh2hiOqwSe0qYhXwH+psnXjlyRVTm/lyLtjyLdQUVQZ5Sds3Fj7
+X-MS-Exchange-AntiSpam-MessageData-0: 4q2uJIrahF7omyePT62UZisQyGpqwLgPOkMuWAdR35MITc75ydQkV7u2k0WPALBBQGIKCs2b46WJvqP8rqyaAg/UDqIOWkcyLEf6dr1oz7Hegt1626rI8e30rUpEYetTrNQQwzAYRVp+aOlAbWc56+YTkzTN6klq0L+MFg0l6xcRkmqNCA2ASYGpj31eN7X+lQ+QsCT5RMVDc0wXe+z6EJJ8yt5WrzRzfJERc7AzgFAVUxABl7y2j/u4Y5OH9LNpNa33vObkyUbM055YDS35NQE4KbiMHuWoA24VR3CoSVPUXBZE4hUtbHBpjmsAfRpAkUum6QlSq8rAfYVXrIYfYgTg1nWeJIAndPIW4w04EaJqZkzbd0Hknb8KOMPQW8ityJ6KXTKd74Pp7QQ2E5kzaThSbhu4sW7ua2prRCn6h5D6eFytXDXGQr3fSY/2DXVS
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:01:48.8354 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36d2436c-ee21-4d97-f2d2-08deddfd4b28
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:06.1982 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 571f6888-417e-491d-8edb-08deddfd5565
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F66.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FF.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6605
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8594
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,78 +152,53 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D1CCA735A3A
+X-Rspamd-Queue-Id: 285D5735A6E
 
-From: Austin Zheng <Austin.Zheng@amd.com>
+From: Dmytro Laktyushkin <dmytro.laktyushkin@amd.com>
 
-[Why]
-DML has been updated to use per-DPM derates when provided but per-DPM de-rates have not been finalized.
-Need to validate to see what values should be stored in the bounding box.
+Change memclk table to match dcfclk size to avoid fine grained mapping
+in dml2.1
 
-[How]
-Add debug options to set custom derates per DPM (starting at DPM0) and their values
-
-Each entry in the custom derate expects the derates to be stored in the following format:
-bits 0-7: dram_derate_percent_pixel
-bits 8-15: fclk_derate_percent
-bits 16-23: dcfclk_derate_percent
-bits 24-31 are unused.
-
-e.g. Using the value 0x414020 will set the following derates for DPM0
-DPM0: 0x20, 0x40, 0x41 for dram, fclk, and dcfclk respectively
-
-Note that global derate value will be used if the per-DPM derate is 0.
-
-Reviewed-by: Dillon Varone <dillon.varone@amd.com>
-Signed-off-by: Austin Zheng <Austin.Zheng@amd.com>
+Reviewed-by: Charlene Liu <charlene.liu@amd.com>
+Signed-off-by: Dmytro Laktyushkin <dmytro.laktyushkin@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h              |  2 ++
- .../dcn401/dcn401_soc_and_ip_translator.c        | 16 ++++++++++++++++
- 2 files changed, 18 insertions(+)
+ .../amd/display/dc/clk_mgr/dcn42/dcn42_clk_mgr.c | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 2b59a0e9ca38..c78fdfc0ef4b 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -1289,6 +1289,8 @@ struct dc_debug_options {
- 	bool enable_replay_esd_recovery;
- 	uint8_t iommu_mismatch_temp_wka;
- 	bool disable_dynamic_expansion_for_test_pattern;
-+	uint32_t dml21_custom_derate_num_dpms;
-+	uint32_t dml21_custom_derate_at_dpm[DML2_MAX_NUM_DPM_LVL];
- };
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn42/dcn42_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn42/dcn42_clk_mgr.c
+index d01e5969a670..3baac7fa313a 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn42/dcn42_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn42/dcn42_clk_mgr.c
+@@ -999,15 +999,21 @@ void dcn42_get_smu_clocks(struct clk_mgr_internal *clk_mgr_int)
+ 			clk_mgr_base->bw_params->clk_table.num_entries_per_clk.num_fclk_levels = dpm_clks->NumFclkLevelsEnabled;
+ 			clk_mgr_base->bw_params->clk_table.num_entries = dpm_clks->NumFclkLevelsEnabled;
 
-
-diff --git a/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn401/dcn401_soc_and_ip_translator.c b/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn401/dcn401_soc_and_ip_translator.c
-index 89f7ccd7f81f..0c8e652c3532 100644
---- a/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn401/dcn401_soc_and_ip_translator.c
-+++ b/drivers/gpu/drm/amd/display/dc/soc_and_ip_translator/dcn401/dcn401_soc_and_ip_translator.c
-@@ -269,6 +269,22 @@ void dcn401_update_soc_bb_with_values_from_software_policy(struct dml2_soc_bb *s
- 	if (dc->bb_overrides.sr_enter_plus_exit_z8_time_ns)
- 		soc_bb->power_management_parameters.z8_stutter_enter_plus_exit_latency_us =
- 				dc->bb_overrides.sr_enter_plus_exit_z8_time_ns / 1000.0;
+-			/* Memory Pstate table is in reverse order*/
++			/* Memory Pstate table is in reverse order for dcn42. Proper way to map this is for pmfw to provide an fclk indexed uclk key since we consume fclk matched pairs.*/
+ 			ASSERT(dpm_clks->NumMemPstatesEnabled <= NUM_MEM_PSTATE_LEVELS);
+ 			if (dpm_clks->NumMemPstatesEnabled > NUM_MEM_PSTATE_LEVELS)
+ 				dpm_clks->NumMemPstatesEnabled = NUM_MEM_PSTATE_LEVELS;
+-			for (i = 0; i < dpm_clks->NumMemPstatesEnabled; i++) {
+-				clk_mgr_base->bw_params->clk_table.entries[dpm_clks->NumMemPstatesEnabled - 1 - i].memclk_mhz = dpm_clks->MemPstateTable[i].MemClk;
+-				clk_mgr_base->bw_params->clk_table.entries[dpm_clks->NumMemPstatesEnabled - 1 - i].wck_ratio = dcn42_convert_wck_ratio(dpm_clks->MemPstateTable[i].WckRatio)	;
++			for (i = 0; i < dpm_clks->NumDcfClkLevelsEnabled; i++) {
++				if (i < dpm_clks->NumMemPstatesEnabled) {
++					clk_mgr_base->bw_params->clk_table.entries[dpm_clks->NumMemPstatesEnabled - 1 - i].memclk_mhz = dpm_clks->MemPstateTable[i].MemClk;
++					clk_mgr_base->bw_params->clk_table.entries[dpm_clks->NumMemPstatesEnabled - 1 - i].wck_ratio = dcn42_convert_wck_ratio(dpm_clks->MemPstateTable[i].WckRatio);
++				} else {
++					clk_mgr_base->bw_params->clk_table.entries[i].memclk_mhz = dpm_clks->MemPstateTable[0].MemClk;
++					clk_mgr_base->bw_params->clk_table.entries[i].wck_ratio = dcn42_convert_wck_ratio(dpm_clks->MemPstateTable[0].WckRatio);
++				}
+ 			}
+-			clk_mgr_base->bw_params->clk_table.num_entries_per_clk.num_memclk_levels = dpm_clks->NumMemPstatesEnabled;
 +
-+	/* Override per-dpm derates based on a custom derate table.
-+	 * Global derate value will be used for derates that aren't populated
-+	 * 3 derates for a single DPM level:
-+	 *  bits 0-7: dram_derate_percent_pixel
-+	 *  bits 8-15: fclk_derate_percent
-+	 *  bits 16-23: dcfclk_derate_percent
-+	 */
-+	for (unsigned int i = 0; i < dc->debug.dml21_custom_derate_num_dpms; i++) {
-+		soc_bb->qos_parameters.derate_table_per_dpm.system_active_derates_per_dpm.dram_derate_percent_pixel[i]
-+			= dc->debug.dml21_custom_derate_at_dpm[i] & 0xFF;
-+		soc_bb->qos_parameters.derate_table_per_dpm.system_active_derates_per_dpm.fclk_derate_percent[i]
-+			= (dc->debug.dml21_custom_derate_at_dpm[i] >> 8) & 0xFF;
-+		soc_bb->qos_parameters.derate_table_per_dpm.system_active_derates_per_dpm.dcfclk_derate_percent[i]
-+			= (dc->debug.dml21_custom_derate_at_dpm[i] >> 16) & 0xFF;
-+	}
- }
++			clk_mgr_base->bw_params->clk_table.num_entries_per_clk.num_memclk_levels = dpm_clks->NumDcfClkLevelsEnabled;
 
- static void apply_soc_bb_updates(struct dml2_soc_bb *soc_bb, const struct dc *dc, const struct dml2_configuration_options *config)
+ 			/* DTBCLK*/
+ 			clk_mgr_base->bw_params->clk_table.entries[0].dtbclk_mhz = 600; /* Fixed on platform */
 --
 2.55.0
 
