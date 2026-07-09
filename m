@@ -2,85 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rl8+AlJNT2q/dwIAu9opvQ
+	id flLHNLE+T2oWcwIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 09:27:14 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 08:24:49 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5BCC72DADD
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 09:27:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 356EA72D180
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 08:24:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=sN0ZmdrL;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=amd.com header.s=selector1 header.b=fcljtq6u;
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEA3510F435;
-	Thu,  9 Jul 2026 07:26:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7E5910E58B;
+	Thu,  9 Jul 2026 06:24:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
- [209.85.210.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2927610E698
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 06:23:03 +0000 (UTC)
-Received: by mail-pf1-f173.google.com with SMTP id
- d2e1a72fcca58-847e6f03df8so1773346b3a.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 08 Jul 2026 23:23:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783578183; x=1784182983; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=4ntJpwww9AG144NhiF2fIApoT06Qh+39umHvBh4GnFU=;
- b=sN0ZmdrLs3/C/uWYawWBCuN2EApBrVtqBQSI+oQiS3dVSQ8fg/gKIRljPtJ/8TH+RJ
- 2A0DGMprtSpQLtLVPfCCUoi+OojhsUS0jdXuJOTn6DEcfW2J5jiTo+I1S/ADdje8r3QK
- ra6Nspkr3yygxaOwU0zaMg1ip6aBEF8iSyw0XoVw7o2IYk+7yGYeeNWRcGdbdDtaOL+u
- WXHua97QZsBaSxDEKHZVHhqrLY7cNElc5wFLNragC6gK17czYukyUZWRt1zG5AsJmar+
- QWd0qRWWEBr6eB65pBENqeAOAaJ+Ozt3PqlCnu2sP7dkgqPWTFYPLk2tDsSHOfufIL8B
- Ukxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783578183; x=1784182983;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=4ntJpwww9AG144NhiF2fIApoT06Qh+39umHvBh4GnFU=;
- b=iZNNAUJBg4R6XItKvm+eq8cWVszmcko1Ft8diCJpyDM9On/dgY/sBTnqVRKmlEFcx+
- YEpHi8720IQi62fun7LFSFQzbFixhCJ7O/BFKOkpGIXDutaYRMfYEUXhQ8FZsLmo5ZZf
- PL6v/S6zRd9oJgG0ypzl4/FSxsLAEwdoaSDLJDjo0ADTYD/xheaZwPjOAASOdnqNsnnU
- cLxcCB/uzfrM715XaFWuMfdQ6nxXzp/KucyHdn/WIj5zpqr6PtVqLVxWTGn+BuuLYreR
- jv7UZri+iNIUAmNEQ1ihPb8Gg8b+gHLFe3Jq+NjoDDGonH33Lb8sdhik4NKUR4aElV9j
- uSxg==
-X-Forwarded-Encrypted: i=1;
- AHgh+RrR5BvRs5rBnE+xrOyH10Lw2kbpYzIVdDS79/7k80JYaMrw3JpaEieNOm76FqUSEUhk+vMsFs6R@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyw7Xm5EFqE8lrFLIbn44gznmxtSGBlacFHvMWCrrOk7/M7kZgo
- yQ4Yu4LsXTTqCnyON58sHMWr+ItfMBS6w2m/4p34B/Nx101c/DdizPkYiOA1QU2zOYk=
-X-Gm-Gg: AfdE7clflEAVSnikAdE77lKSOIVVCRnvrDQxMFwuxJBqQmwNBJ1JNDApVmiNv9HngdE
- DXioIpusTwF+PXXo8HzORVZOBbkR4eC+zAeNMqvY3SzHiqeWhmGYNP8Vx1akej+FMkNZFHyh1G8
- IxAgRdn27l4KGGKqwuJuVBPwNGfkP8B1qjSTHkDH36OarEsBYorEYUTXrras+TcU3rQlv5GKhLo
- Qll/nboiHwkWYujoRFbWz8Y8V7KsFI9hZ1zqMOhjb615NuQL0XMVNSuePYMPtrSaDl/5J6HkOFq
- 29EhOeF5M/KkokuaQKyRQMFV3qHZXxsOkgIZKfE/qoj+/6ZHgDYvMAViAXz4Rwb8f9Gr8Kza7Ny
- XylbrZFrcwn+Gj9XYzvEmO7lQcoBuYYii/ulx2l50tAqREGXiOtje47vFXNA2NqEVwsR96wQVsy
- 33s0LVQS53TL9i6kNIkp/4zwE3o7dpJhh2rZr934jvb1U=
-X-Received: by 2002:a05:6a21:4591:b0:3bf:95f4:dad7 with SMTP id
- adf61e73a8af0-3c0bd1aba77mr6910775637.41.1783578182556; 
- Wed, 08 Jul 2026 23:23:02 -0700 (PDT)
-Received: from haichao.tail057a43.ts.net
- ([2001:da8:e000:1206:ea9b:46f2:6d0c:46c7])
- by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-ca5b3a2e42bsm3298012a12.30.2026.07.08.23.22.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Jul 2026 23:23:02 -0700 (PDT)
-From: Ruoyu Wang <ruoyuw560@gmail.com>
-To: ogabbay@kernel.org,
-	quic_jhugo@quicinc.com,
-	joro@8bytes.org
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Ruoyu Wang <ruoyuw560@gmail.com>
-Subject: [PATCH] accel/amdxdna: Clear mailbox channel after create failure
-Date: Thu,  9 Jul 2026 14:22:56 +0800
-Message-ID: <20260709062256.4166833-1-ruoyuw560@gmail.com>
-X-Mailer: git-send-email 2.51.0
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010058.outbound.protection.outlook.com
+ [52.101.193.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E95710E58B
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 06:24:46 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=R1orKG7TxhyYKwz2jbrqzettFRvkrU3sjXmxnHcaVK18MpMfZUDDlAX0q/Ylkd8ZUXf54F29mGW21cptOtRyMfOk92Nnj6H2Ur6JTMtHhOOVPFKL4h6Ko2NonPPEsz72lu2rt7jG/iRgyMgO26eNe1rxG72d2iftI7oaAeXXKHMrWzXOtHhvIvQn+HiTGoibcSWKKxsE2NwhIVzD3z7W+p3KpnegplZbmp9d5zPsCSurhzpC4ueCGeoA67GLpUf4/yp1IVI8t4zbrBtnpRqJzhu+zPVGt/v3zh9XQPVUahgYv3revyr97aHqR9Tw0ETIigyJRHBDwvuKD+v5AapKFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YKNcr4prjhOU/knQ9pt19qpmD/4v9WDetVHj691ERPw=;
+ b=O4+3LSAyvI7CqwxawpO2QCzF1z5y1XAb2P5CvaIJHDMhG0gxg3VlU/654ZTgp/8DewT3rVDuA4h3mEZ4n8t1KOMTPV+EGF7EJPqjpbColUApwzy987ZcsAR9MzY3D9Ts+hvThuQBveG/e1zKprk+LRsWx4kdQh6N9xBw6t8usk2yxpxvvpMC/LW1DNiIgdEVc+PmSOJVaFFXQeLy4N6e6NGVMvDiFIwexHi6U0Y6WJhp3MubnnfGgZJl6fvV/mcNKDc15d9GXB1yfSwWoTvO0YeQgNsw1Kb1dL41hORGYUh4K86oowMqFvvYDjHAW6bKDoQYABfO3weGSZlBWtjKdw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YKNcr4prjhOU/knQ9pt19qpmD/4v9WDetVHj691ERPw=;
+ b=fcljtq6uvXb8HAIVyeaOZsAwWURSCMyr1CEApnnIvKGVRKlMqqqcsdM4UZtouHwkR9sj7RR2l2+tqBvPbR3cbctiKsg2EdSEa2M11FND9F2+WZ+j8013maYW4Mvpc8F9OCuGNt8r0Ek2Ny3pzwu74wtgG74uu6GWx2QAQSYy4bg=
+Received: from PH1PEPF00013306.namprd07.prod.outlook.com (2603:10b6:518:1::13)
+ by SA1PR12MB8967.namprd12.prod.outlook.com (2603:10b6:806:38b::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Thu, 9 Jul
+ 2026 06:24:41 +0000
+Received: from CY4PEPF0000E9CE.namprd03.prod.outlook.com
+ (2a01:111:f403:f912::4) by PH1PEPF00013306.outlook.office365.com
+ (2603:1036:903:47::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.10 via Frontend Transport; Thu, 9
+ Jul 2026 06:24:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CY4PEPF0000E9CE.mail.protection.outlook.com (10.167.241.133) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 06:24:40 +0000
+Received: from sunce-mlse-vm.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
+ 2026 01:24:38 -0500
+From: Ce Sun <cesun102@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Hawking.Zhang@amd.com>, <YiPeng.Chai@amd.com>, <Tao.Zhou1@amd.com>,
+ <Stanley.Yang@amd.com>, Ce Sun <cesun102@amd.com>
+Subject: [PATCH] drm/amdgpu: use IP version check in sysfs creation
+ conditional logic
+Date: Thu, 9 Jul 2026 14:24:29 +0800
+Message-ID: <20260709062429.1036266-1-cesun102@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 09 Jul 2026 07:26:29 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9CE:EE_|SA1PR12MB8967:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0d49032a-f484-4d66-4995-08dedd82c26f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700016|376014|82310400026|23010399003|18002099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: xN9Hne5dO26LRPq5TM4fpF6G1KpeAGFbgk28Ic6DGGgYKKCr7e0n+pMdUApx1DdL/TI5jN/ehvs1b4yCRaJJEG1yqGMIjGvIThFPWPNbrDh61Inp2l4lC7z+hOR1jUx2AJaaG+6cq++mYCWSrRb5zX3Hk66PYPUHB0PyMFg7EEGTy8M+xKoaFb5uPZtGmMAYlUHALG94hT3kXTEoh4sJm54n+90FOZnb1F7iWVYxF1bYgfvAINA8AXer5uBc5a8ljEnxeYpNLwkeuRgBWC6UhCuL1Qh6JQPAE0UruIpXlAjL0IEd6RQ3zDMzJDLd8C9Vvbv2Ys2y/kYn0buABcVesP8m1aqG1WVOpCFthE1EKQ7wghhFSGvPupmaP0EnGQIAUPrIsfAiY08gPI5sAsyQci5MQjFO9aP832KKaKEER5LYNXKLPLoog6JaXRMza4U9gQgpH5kNzRiVhAvCMcqpGMfhRJ5VV6p+qUcZKbVbD7HrJJxuAblDRsrHLOhr2vS1ZExgNy1U23JLPVOgDjva4ZZ53dAeH8qic44LEuo9v2UXk0wjm46W1K67OIMzz159TN0z1Eu8JZIiQUvHavxKEWfyPKRGqFs7EjACIr38eBY3f64QtguSTCA9vsZN1m1MFFLhz9aIA8ackDDt3NHTm0jLdBty4MCPMDE+V90KE8OiflB0FWDVb+9IIPAGTTFn2Txwqn4iELXfQd5kImOEEQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700016)(376014)(82310400026)(23010399003)(18002099003)(11063799006)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 1cbGJriFrSAItDYTF53q19EKS3hl/jHPKD9y8iYT1Qvlr72XF2I+ORnWtjMS90TzDLLROyF+3UP83EOhuOt1oaoXTMEMg8sTmMzLzEThY8bekIeYNfEH6jyzAj3xNhn3xF2uNcGKxMFh5Ba+heepS8fLvUHl7qXtPMelXUtY7Zdrw+KzsuIIDawGof7up37+iv4Vw8exFzDFgfPvd1l6DKHS7ietDOdbXX8Q2UDVHbLGHZsAgufZtZBlnPiVD+Tcc2AJWkngLuYx8M10j9W3rYlOyNJOQHNOwOUDCBfUt8O+mbseO8Q0Uz984jUXlzpgcdLgnQHVJuH9fmcJHlYptGqAApNkEf9kW3V64naiutX5oZztvyF4htwTE5BQ28J9bM5oE9oK2zatrmliO8Wc7sFLXpUgJ/DICRqVh/T8C20wSOWda+wnc+fXceiSr5Ov
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 06:24:40.9882 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d49032a-f484-4d66-4995-08dedd82c26f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9CE.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB8967
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,76 +117,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:ogabbay@kernel.org,m:quic_jhugo@quicinc.com,m:joro@8bytes.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:ruoyuw560@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[ruoyuw560@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[ruoyuw560@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[cesun102@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A5BCC72DADD
+X-Rspamd-Queue-Id: 356EA72D180
 
-aie2_create_context() stores the allocated mailbox channel in
-hwctx->priv->mbox_chann before starting the channel. If
-xdna_mailbox_start_channel() fails, the error path frees the channel but
-leaves the saved pointer intact.
+avoid sysfs node creation faults when performing NPS mode switching
 
-A later context cleanup only checks whether hwctx->priv->mbox_chann is
-NULL before stopping and freeing it. Leaving the freed channel pointer
-there can therefore make cleanup operate on stale memory.
-
-Clear hwctx->priv->mbox_chann after freeing the channel on the create
-failure path so later cleanup sees that no mailbox channel is owned.
-
-A static analysis checker reported the stale ownership state, and manual
-source review confirmed the error path.
-
-Fixes: d5b8b0347fa8 ("accel/amdxdna: Split mailbox channel create function")
-Signed-off-by: Ruoyu Wang <ruoyuw560@gmail.com>
+Signed-off-by: Ce Sun <cesun102@amd.com>
 ---
- drivers/accel/amdxdna/aie2_message.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/accel/amdxdna/aie2_message.c b/drivers/accel/amdxdna/aie2_message.c
-index c4b364801cc04..a22d025794598 100644
---- a/drivers/accel/amdxdna/aie2_message.c
-+++ b/drivers/accel/amdxdna/aie2_message.c
-@@ -277,6 +277,7 @@ int aie2_create_context(struct amdxdna_dev_hdl *ndev, struct amdxdna_hwctx *hwct
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index 0183b2622d50..631afb5c10b4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -3788,9 +3788,11 @@ int amdgpu_ras_block_late_init(struct amdgpu_device *adev,
+ 			goto cleanup;
+ 	}
  
- free_channel:
- 	xdna_mailbox_free_channel(hwctx->priv->mbox_chann);
-+	hwctx->priv->mbox_chann = NULL;
- del_ctx_req:
- 	aie2_destroy_context_req(ndev, hwctx->fw_ctx_id);
- 	return ret;
+-	if (amdgpu_uniras_enabled(adev) || (ras_obj->hw_ops &&
+-	    (ras_obj->hw_ops->query_ras_error_count ||
+-	     ras_obj->hw_ops->query_ras_error_status))) {
++	if ((ras_obj->hw_ops && (ras_obj->hw_ops->query_ras_error_count ||
++	     ras_obj->hw_ops->query_ras_error_status)) ||
++	     amdgpu_ip_version(adev, MP0_HWIP, 0) == IP_VERSION(13, 0, 14) ||
++	     amdgpu_ip_version(adev, MP0_HWIP, 0) == IP_VERSION(13, 0, 12) ||
++	     amdgpu_ip_version(adev, MP0_HWIP, 0) == IP_VERSION(13, 0, 6)) {
+ 		r = amdgpu_ras_sysfs_create(adev, ras_block);
+ 		if (r)
+ 			goto interrupt;
 -- 
-2.51.0
+2.34.1
 
