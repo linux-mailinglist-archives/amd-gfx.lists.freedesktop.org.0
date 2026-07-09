@@ -2,52 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xMr0BG4MUGoSsgIAu9opvQ
+	id i2lbL2YMUGoHsgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:38 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:30 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87A97735AB5
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27B42735A92
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:02:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=3g25nfZ2;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=ySllyAzA;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7492610F6E7;
-	Thu,  9 Jul 2026 21:02:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD9B810F6DE;
+	Thu,  9 Jul 2026 21:02:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012038.outbound.protection.outlook.com [52.101.48.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D407E10F6DC
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:28 +0000 (UTC)
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010039.outbound.protection.outlook.com
+ [52.101.193.39])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A514110F6D5
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wMqDZecqa8A7P1GynYITS24uUkVQdM1zd8cnyq96Shuqj8k/Zr/lbwWr3rVlVzyNcDvJfVOgaAhRW7csAhVDn4aqfk0z6Hm1gSf8PkqbI3V80pKi+n9psK4XAjEwcLo4r4hK4OMIihm/EM/Lin7ZgYOkfKbR5fApt959Ah3VH81YejSKxDTzj8o8WF9q77z3rxbiAo/05RZGmN/4YkxvmM9lCUvmRYS8MOntiXGRADTi6OAbOmHMzTKzjdXMzLLhQsrQM277rbE/t/UDXrMU/sUi0zA/buTOFH6I4dsKg/MEwImkbpyIDfjN5X2yEFor9fgyAbuYw9CWStkU/e1iog==
+ b=YS2fifwM7F9IbNorRUM0mNZE9KurXW7AoF31Ast+l0vkKFDXSIpOn2cqALP1rYaXyHKjPnzvcO8W/rEUOPO0JBxweqMFypVg5Y0z9oCkjgk1ybIo6thohoQvh//QCGTanaYYnmuj3cr1cP20xzjSvLWNb0oJw+mMQRzAQR8giQCPGlqGbm0ZSSLBHJYye2+0H/JLJZmHwfzlgm8DTQVTsFIBkZ0HJpzt1h6CnKzTsSbcDlcRGg3OsC0vGrEdO2YbuyAcNNo0c0aa5n9NbAZspHFEHU/AmN3PGhYe29k68Wld0rBbqv4bo7VWmBdLnqst0nfTLUUp0NXX35quTMLc/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UqzOuaei6ysPvr0iyFayTx6PGe9I+rYxSbnesr/S67w=;
- b=ZmBg1lVELVkiFVPfZ4KKBzg9g/wobTOw1ATaoOh2+QK8WHQOICUxAn7RjbLiEd7+OEEFdnPB6CoSJx1X905gQmRuK3vH7LXxA8tAqRqde2HBvClKeWMTaqsulZjJa9ENRJrpKVCcvKCRJLtd67GZv4eh72R/3+mM0zf0rzbDDlWuIhSQwixo7XdsfESH/G8vDGZ7G1vePGVkanvx8lUdF1YgBbmTYKX6Vvjr9197OGkGsFs8m2Hn8VJY6Qz7OCmdD04N+Csd/p7HM71biGwiDfejMPgMZK7gO4ABfH4qTuULfa33bBByVGkkTTTvH5URtJZRMmMBUnljQIZ6l/Q9CQ==
+ bh=eHp7txY0EtLDylShbt2u6hoXAXsJRx0Mb7rmI12dlCo=;
+ b=AFw/jetRbm8uHU0Gi9jHki7395PqBUxK3JdRA8mbHuJChBF0kODIi92tm6BWftnTQLNMqUWnIFgcesunfIsfxdZmPm8Xt9mjjBxcgYk5TxXdw8sl18c1J9OosynFtSzkMnpD7AfPe/m2+TT6VFvQa2N6gBKeeZ067SIsr6X92QgniSUGDmvT3tgDvvFzCmD15KtmNDswSv2ZMOC//jwUeX3Uk7Vwe39yP48PBr/gfxWNicFcsVdlhTOY/AfeR1C7wyCgM18pKyAUcs4Ampze+I7oaVPgVG6JJsqXdaSuIZLZiYPfHHk519xiDYb0su7FAGWET8dsV1LlPl2qqNEZkg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UqzOuaei6ysPvr0iyFayTx6PGe9I+rYxSbnesr/S67w=;
- b=3g25nfZ2jGQWJ0StzZ/q5wOHM8+VcpqDDjnNQ/7z1VvWzuu1dgvpSlCfm2mjktFZvfi+HaZhWjA5sJOdUZXiodw9tjebAZTy0uWaTeKA7xUW+/+CAKsbBqwd6Vwa95FEKryeJZEAIva03LZjwRh0fMY2dVLr6XRa8Huko4tCYsU=
-Received: from BL1P223CA0033.NAMP223.PROD.OUTLOOK.COM (2603:10b6:208:5b6::8)
- by DS5PPFEAC589ED8.namprd12.prod.outlook.com (2603:10b6:f:fc00::667) with
+ bh=eHp7txY0EtLDylShbt2u6hoXAXsJRx0Mb7rmI12dlCo=;
+ b=ySllyAzAF9GbFCGFF0iTVHYsNaBNU3aipikJjEv0WZwOxz6b1b7eKdPPL1zBJ6jMNYlpE+tYsLPUACyzqV/Yq4qvD62e7kJBjLPOVn50ytrvLzN5RssT6nFUST21FPFp3nq/gWQ/q1YyHPpeUiguS52g2o6MeInkGBLEjtigdrc=
+Received: from MN2PR07CA0023.namprd07.prod.outlook.com (2603:10b6:208:1a0::33)
+ by DS0PR12MB7632.namprd12.prod.outlook.com (2603:10b6:8:11f::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.14; Thu, 9 Jul
- 2026 21:02:17 +0000
-Received: from BL02EPF0001A0FB.namprd03.prod.outlook.com
- (2603:10b6:208:5b6:cafe::87) by BL1P223CA0033.outlook.office365.com
- (2603:10b6:208:5b6::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.12 via Frontend Transport; Thu, 9
- Jul 2026 21:02:17 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.16; Thu, 9 Jul
+ 2026 21:02:18 +0000
+Received: from BL02EPF0001A0FC.namprd03.prod.outlook.com
+ (2603:10b6:208:1a0:cafe::a) by MN2PR07CA0023.outlook.office365.com
+ (2603:10b6:208:1a0::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.10 via Frontend Transport; Thu, 9
+ Jul 2026 21:02:18 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -55,9 +56,9 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A0FB.mail.protection.outlook.com (10.167.242.102) with Microsoft
+ BL02EPF0001A0FC.mail.protection.outlook.com (10.167.242.103) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:17 +0000
+ 15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:18 +0000
 Received: from georzhanmkm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
@@ -72,43 +73,43 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
  <Chen-Yu.Chen@amd.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
  "George Zhang" <george.zhang@amd.com>
-Subject: [PATCH 26/80] drm/amd/display: Test MST start/stop and panel settings
-Date: Thu, 9 Jul 2026 16:47:54 -0400
-Message-ID: <20260709205936.5719-27-george.zhang@amd.com>
+Subject: [PATCH 27/80] drm/amd/display: Test I2C, stubs and MST early returns
+Date: Thu, 9 Jul 2026 16:47:55 -0400
+Message-ID: <20260709205936.5719-28-george.zhang@amd.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260709205936.5719-1-george.zhang@amd.com>
 References: <20260709205936.5719-1-george.zhang@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FB:EE_|DS5PPFEAC589ED8:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6bff441d-def5-4997-bdf4-08deddfd5c4d
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FC:EE_|DS0PR12MB7632:EE_
+X-MS-Office365-Filtering-Correlation-Id: ed7ac64e-5f86-42b1-e4ec-08deddfd5c8e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700016|23010399003|1800799024|376014|11063799006|56012099006|3023799007|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: WJpQPZik52Ijx7MDrNC6TN7VR2Q5WHkWf+yIqkOpfBwZMOWPkoB2oyIbqdw8JS+AtuF9bCc2fKWLfDwjvjoMJAx4+g/w5GECIlDTxEu7NJN6pze5sTygER5jXTEbmLclMSRvaNJXdaddQwzLRipgWcY4OSdUkei2xbuJ7mhBbCTyOycYSmMOPsYXAqw7ULrBltXhIdx8J59XvjCbC6aMyZMoXwtLUfeSPuiZJYywzNp8Y/O4zbYTVgMSihbfEZ2XQHlT6vWcdFKfuTdm+NPlU1/Raow2BWwz+wbWty93STrE6GhhXx3+tlpgpqeXVrvY1Uprml4oOzcC26dshiEzOf4pmkc4IH2ga99rASf9p9EQfovkskHXIQ8yFri67qc6YYaIc+aguYcKsvuT4jqd0ujt3cdlULNsE6AAaJl9EuVvlJH4C7aeq9BgJPKIIDYbVgcp/6tgDkYYXimGtmCO30SyujU7sjXlrQeiF7/170siGUZHWLp6ystl3RUBtdUee3PN/cG5isT1U/HKi+MScsFJ30Fg08U7Q6zvwJ/D/E0OBqJSnI+O3h1DXq6lBxJIm2Px4qmGQotmH2vqJ6gjiVqTAvcFxYV0KAJEmaXsigBC6mJNXhEKGvQT8ehIcNeZ/MCuyi7PjDWDfG+qUglpK0QFiscI64CADrV4Ji9X5Q6MazURnCSS9WRjpcI072++/pJWIiSrvnDsFir6k3hFzg==
+ ARA:13230040|1800799024|376014|82310400026|36860700016|23010399003|22082099003|18002099003|11063799006|6133799003|56012099006;
+X-Microsoft-Antispam-Message-Info: J+iR5G4dhhAP73yzTshBxmcSWWz9JWH2rx6iocqOYI03X59L8k/a8Msuja/Zts1D8SlS+XRjn4Dd42Hgk8z/rc47WFb3nwD3TAFYM+0hwShH5qsGTWQ8jNtGRApaXs0C5HekYVpFpx5rfwrZOJnbQZLuGIeG05XS5u78s+r7xRm/lnV43OsGdiaZg/+ysnHJEGc34DiEU9rMJt9iEzi1zJBUtQXRFC1qN9yJiyvrplKLKmQOvcANUUa7BCrHBsfcrcg4R+0z4mM4kju1VcKJdwe70CXSY19I7ZaIT/j3MixfYlIHG8Wivw70ddR9dYMyelHu3jp4sEAA7HYpVzJlcfMLuYlxa9FswqjMerWTal0VdUkTk3b6wp1CxIXi+WdPp/8gusIiMhlXJtbI81n7qcuE2gCpRPIK2MREplmou3wQwdKriSPO1ERMLy2UzhBtx7qJgwPY8g9JljIOdJEc1UTzI/0Uakc2keEPovq5UHteeYjclYd019uqkHzqycK6FwRDmZpRaCEnWomujNKBiH9QkNqOpEEm8zZCTl9PSWBZNZN3srVAwjyQAVXTuwzdzBfA2eg0aI3PRf7a8dKIu/5/QzpmgYCA1IDOmIJd2oag15XOW3kCfbW06ZES4VGWG2eFuyEO1yCtrhJnTbx1t/TvztEyuLIPK+t7G6GhFPw9mMwfgDzGBH7QGpE10jRRUD3oRLGAmIAofe3S4spg0w==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700016)(23010399003)(1800799024)(376014)(11063799006)(56012099006)(3023799007)(18002099003)(22082099003);
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700016)(23010399003)(22082099003)(18002099003)(11063799006)(6133799003)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: iMBIgjXlBBqid+stuP/C9ZrHE2CCdY7xlTROiDwPDld6SRYxLdDITJ7mNduYLZO7mPlsLhS+Hh121hyxfDTMCzQW3122K4G6IPG+rAN8fZB9h6DTXJ7SR5p41nV9/De+XpZsjrEIo0r6wEsoUumxfF/CGjaQbcRWGqYyIpti650nbAhWFmr308QtTrzSdmIDw/bI4k2jNCs64viWbPpbQd4u9Zw4GigUYk8iKT6z1MmpCbFUTRPVZHfWt1Zp9c2dPuRr4jTLorDpzkl0NZbZQhZcFx4L/NQNLKw0aw2i6qS816EueO4aNPI39yOTygSfTzMSSwlKWe/a7Sa6IHN7M5WqYajZwupYWsnmBhgc2sKliZ+LLvYzhPQF9k5AyQn0SqCGSkfQPybNufMBdBtDcEdqjlEsMuy0oyBNnGxtqFRrPwPk05C0y+rSUsVbtfjk
+X-MS-Exchange-AntiSpam-MessageData-0: hRULcO9ObN9Eeo/Lc/5ZaaoxIpjEnSgyXUVOS9FqQjA7ygYTZaTxFXpgD0zgF/gu2xmcHKv2mAI48HgbXR924go/oBnWh+ccBldlAE1XK2sxY+xrbgUYZYgwa3Eess+nBNwlYBawYALaYKFaBWiBX2lvNflDfqgbKmMuY8Ha52cGbZyHiRQjdzlLtdDo9H1TsmQXtufAN/oK2FCdOLhYuiOYdi1N8JQHP+Q8pstRP6Zhh4+LV9rdUWHoVXBIeD2dwtW2sPWNjF5qRJpE5bCzfT2wqwyv9gZxAfpIzed+ASzazSu9/fAMAV8qmA+T+YUS9nPPekFtLAKuvei5SzeQALc8s2Fwqgyz/ysNY5EjpZvb53pq/uYhiduMNlBBq7mC0zfNiOWfs8JvwXmbzyGS0I4EEt5GyrtKIdQ8sf1fbdbDw2rN+Xd+Hmn5j3fJxbAO
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:17.7812 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6bff441d-def5-4997-bdf4-08deddfd5c4d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:18.2055 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed7ac64e-5f86-42b1-e4ec-08deddfd5c8e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FB.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FC.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPFEAC589ED8
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7632
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,10 +124,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
@@ -134,428 +134,753 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[george.zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[george.zhang@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
+	ALIAS_RESOLVED(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim,base.work:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 87A97735AB5
+X-Rspamd-Queue-Id: 27B42735A92
 
 From: Alex Hung <alex.hung@amd.com>
 
 [WHAT]
-Add KUnit coverage for dm_helpers_dp_mst_start_top_mgr and
-dm_helpers_dp_mst_stop_top_mgr, dm_helpers_dp_write_hblank_reduction,
-get_dsc_max_slices, dm_helpers_init_panel_settings,
-dm_helpers_override_panel_settings and
-fill_dc_mst_payload_table_from_drm.
+Add KUnit coverage for dm_helpers_submit_i2c,
+dm_helper_dmub_aux_transfer_sync, the empty stub helpers, the MST
+null-connector early returns, dm_helpers_dmub_outbox_interrupt_control,
+dm_helpers_mst_enable_stream_features and
+dm_helpers_enable_periodic_detection.
 
 Assisted-by: Copilot:Claude-Opus-4.8
 Reviewed-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
 Signed-off-by: Alex Hung <alex.hung@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |   8 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.h |   5 +
- .../amdgpu_dm/tests/amdgpu_dm_helpers_test.c  | 295 ++++++++++++++++++
- 3 files changed, 306 insertions(+), 2 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  18 +
+ .../amdgpu_dm/tests/amdgpu_dm_helpers_test.c  | 541 ++++++++++++++++++
+ 2 files changed, 559 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index 804a95a19acf..aa4bd99528a3 100644
+index aa4bd99528a3..04e3c34b9e50 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@ -240,7 +240,7 @@ enum dc_edid_status dm_helpers_parse_edid_caps(
- }
- EXPORT_IF_KUNIT(dm_helpers_parse_edid_caps);
-
--static void
-+STATIC_IFN_KUNIT void
- fill_dc_mst_payload_table_from_drm(struct dc_link *link,
- 				   bool enable,
- 				   struct drm_dp_mst_atomic_payload *target_payload,
-@@ -290,6 +290,7 @@ fill_dc_mst_payload_table_from_drm(struct dc_link *link,
- 	/* Overwrite the old table */
- 	*table = new_table;
- }
-+EXPORT_IF_KUNIT(fill_dc_mst_payload_table_from_drm);
-
- void dm_helpers_dp_update_branch_info(
+@@ -296,6 +296,7 @@ void dm_helpers_dp_update_branch_info(
  	struct dc_context *ctx,
-@@ -1149,7 +1150,7 @@ STATIC_IFN_KUNIT uint8_t get_max_frl_rate(uint8_t max_lanes, uint8_t max_rate_pe
+ 	const struct dc_link *link)
+ {}
++EXPORT_IF_KUNIT(dm_helpers_dp_update_branch_info);
+
+ static void dm_helpers_construct_old_payload(
+ 			struct drm_dp_mst_topology_mgr *mgr,
+@@ -380,6 +381,7 @@ bool dm_helpers_dp_mst_write_payload_allocation_table(
+
+ 	return true;
  }
- EXPORT_IF_KUNIT(get_max_frl_rate);
++EXPORT_IF_KUNIT(dm_helpers_dp_mst_write_payload_allocation_table);
 
--static uint8_t get_dsc_max_slices(uint8_t max_slices, int clk_per_slice)
-+STATIC_IFN_KUNIT uint8_t get_dsc_max_slices(uint8_t max_slices, int clk_per_slice)
- {
- 	uint8_t dsc_max_slices;
-
-@@ -1172,6 +1173,7 @@ static uint8_t get_dsc_max_slices(uint8_t max_slices, int clk_per_slice)
-
- 	return dsc_max_slices;
- }
-+EXPORT_IF_KUNIT(get_dsc_max_slices);
-
- void populate_hdmi_info_from_connector(bool enable_frl, struct drm_hdmi_info *hdmi, struct dc_edid_caps *edid_caps)
- {
-@@ -1354,6 +1356,7 @@ void dm_helpers_init_panel_settings(
- 	panel_config->dsc.disable_dsc_edp = false;
- 	panel_config->dsc.force_dsc_edp_policy = 0;
- }
-+EXPORT_IF_KUNIT(dm_helpers_init_panel_settings);
-
- void dm_helpers_override_panel_settings(
+ /*
+  * poll pending down reply
+@@ -388,6 +390,7 @@ void dm_helpers_dp_mst_poll_pending_down_reply(
  	struct dc_context *ctx,
-@@ -1371,6 +1374,7 @@ void dm_helpers_override_panel_settings(
- 		link->panel_config.psr.disallow_replay = true;
+ 	const struct dc_link *link)
+ {}
++EXPORT_IF_KUNIT(dm_helpers_dp_mst_poll_pending_down_reply);
+
+ /*
+  * Clear payload allocation table before enable MST DP link.
+@@ -396,6 +399,7 @@ void dm_helpers_dp_mst_clear_payload_allocation_table(
+ 	struct dc_context *ctx,
+ 	const struct dc_link *link)
+ {}
++EXPORT_IF_KUNIT(dm_helpers_dp_mst_clear_payload_allocation_table);
+
+ /*
+  * Polls for ACT (allocation change trigger) handled and sends
+@@ -426,6 +430,7 @@ enum act_return_status dm_helpers_dp_mst_poll_for_allocation_change_trigger(
+
+ 	return ACT_SUCCESS;
+ }
++EXPORT_IF_KUNIT(dm_helpers_dp_mst_poll_for_allocation_change_trigger);
+
+ void dm_helpers_dp_mst_send_payload_allocation(
+ 		struct dc_context *ctx,
+@@ -460,6 +465,7 @@ void dm_helpers_dp_mst_send_payload_allocation(
+ 			clr_flag, false);
  	}
  }
-+EXPORT_IF_KUNIT(dm_helpers_override_panel_settings);
++EXPORT_IF_KUNIT(dm_helpers_dp_mst_send_payload_allocation);
 
- void *dm_helpers_allocate_gpu_mem(
+ void dm_helpers_dp_mst_update_mst_mgr_for_deallocation(
  		struct dc_context *ctx,
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.h
-index 343650b50707..e256e1e12422 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.h
-@@ -25,9 +25,14 @@ u32 edid_extract_panel_id(struct edid *edid);
- void apply_edid_quirks(struct dc_link *link, struct edid *edid,
- 		       struct dc_edid_caps *edid_caps);
- uint8_t get_max_frl_rate(uint8_t max_lanes, uint8_t max_rate_per_lane);
-+uint8_t get_dsc_max_slices(uint8_t max_slices, int clk_per_slice);
- bool dm_is_freesync_pcon_whitelist(const uint32_t branch_dev_id);
- extern const uint32_t dm_freesync_pcon_whitelist[];
- uint32_t dm_freesync_pcon_whitelist_count(void);
-+void fill_dc_mst_payload_table_from_drm(struct dc_link *link,
-+					 bool enable,
-+					 struct drm_dp_mst_atomic_payload *target_payload,
-+					 struct dc_dp_mst_stream_allocation_table *table);
- bool dm_helpers_dp_write_dsc_enable(struct dc_context *ctx,
- 				    const struct dc_stream_state *stream,
- 				    bool enable);
+@@ -488,6 +494,7 @@ void dm_helpers_dp_mst_update_mst_mgr_for_deallocation(
+ 	amdgpu_dm_set_mst_status(&aconnector->mst_status, set_flag, true);
+ 	amdgpu_dm_set_mst_status(&aconnector->mst_status, clr_flag, false);
+  }
++EXPORT_IF_KUNIT(dm_helpers_dp_mst_update_mst_mgr_for_deallocation);
+
+ void dm_dtn_log_begin(struct dc_context *ctx,
+ 	struct dc_log_buffer_ctx *log_ctx)
+@@ -707,6 +714,7 @@ bool dm_helpers_submit_i2c(
+
+ 	return result;
+ }
++EXPORT_IF_KUNIT(dm_helpers_submit_i2c);
+
+ bool dm_helpers_execute_fused_io(
+ 		struct dc_context *ctx,
+@@ -1023,6 +1031,7 @@ bool dm_helpers_is_dp_sink_present(struct dc_link *link)
+ 	mutex_unlock(&aconnector->dm_dp_aux.aux.hw_mutex);
+ 	return dp_sink_present;
+ }
++EXPORT_IF_KUNIT(dm_helpers_is_dp_sink_present);
+
+ STATIC_IFN_KUNIT int
+ dm_helpers_probe_acpi_edid(void *data, u8 *buf, unsigned int block, size_t len)
+@@ -1312,6 +1321,7 @@ int dm_helper_dmub_aux_transfer_sync(
+ 	return amdgpu_dm_process_dmub_aux_transfer_sync(ctx, link->link_index, payload,
+ 			operation_result);
+ }
++EXPORT_IF_KUNIT(dm_helper_dmub_aux_transfer_sync);
+
+ int dm_helpers_dmub_set_config_sync(struct dc_context *ctx,
+ 		const struct dc_link *link,
+@@ -1326,18 +1336,21 @@ void dm_set_dcn_clocks(struct dc_context *ctx, struct dc_clocks *clks)
+ {
+ 	/* TODO: something */
+ }
++EXPORT_IF_KUNIT(dm_set_dcn_clocks);
+
+ void dm_helpers_dmu_timeout(struct dc_context *ctx)
+ {
+ 	// TODO:
+ 	//amdgpu_device_gpu_recover(dc_context->driver-context, NULL);
+ }
++EXPORT_IF_KUNIT(dm_helpers_dmu_timeout);
+
+ void dm_helpers_smu_timeout(struct dc_context *ctx, unsigned int msg_id, unsigned int param, unsigned int timeout_us)
+ {
+ 	// TODO:
+ 	//amdgpu_device_gpu_recover(dc_context->driver-context, NULL);
+ }
++EXPORT_IF_KUNIT(dm_helpers_smu_timeout);
+
+ void dm_helpers_init_panel_settings(
+ 	struct dc_context *ctx,
+@@ -1410,6 +1423,7 @@ bool dm_helpers_dmub_outbox_interrupt_control(struct dc_context *ctx, bool enabl
+ 			 enable ? "en" : "dis", ret);
+ 	return ret;
+ }
++EXPORT_IF_KUNIT(dm_helpers_dmub_outbox_interrupt_control);
+
+ void dm_helpers_mst_enable_stream_features(const struct dc_stream_state *stream)
+ {
+@@ -1435,6 +1449,7 @@ void dm_helpers_mst_enable_stream_features(const struct dc_stream_state *stream)
+ 					 &new_downspread.raw,
+ 					 sizeof(new_downspread));
+ }
++EXPORT_IF_KUNIT(dm_helpers_mst_enable_stream_features);
+
+ bool dm_helpers_dp_handle_test_pattern_request(
+ 		struct dc_context *ctx,
+@@ -1578,6 +1593,7 @@ void dm_set_phyd32clk(struct dc_context *ctx, int freq_khz)
+ {
+        // TODO
+ }
++EXPORT_IF_KUNIT(dm_set_phyd32clk);
+
+ void dm_helpers_enable_periodic_detection(struct dc_context *ctx, bool enable)
+ {
+@@ -1589,6 +1605,7 @@ void dm_helpers_enable_periodic_detection(struct dc_context *ctx, bool enable)
+ 			schedule_work(&adev->dm.idle_workqueue->work);
+ 	}
+ }
++EXPORT_IF_KUNIT(dm_helpers_enable_periodic_detection);
+
+ void dm_helpers_dp_mst_update_branch_bandwidth(
+ 		struct dc_context *ctx,
+@@ -1596,6 +1613,7 @@ void dm_helpers_dp_mst_update_branch_bandwidth(
+ {
+ 	// TODO
+ }
++EXPORT_IF_KUNIT(dm_helpers_dp_mst_update_branch_bandwidth);
+
+ STATIC_IFN_KUNIT const uint32_t dm_freesync_pcon_whitelist[] = {
+ 	DP_BRANCH_DEVICE_ID_0060AD,
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_helpers_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_helpers_test.c
-index eed941a889e9..599de8240bee 100644
+index 599de8240bee..29feb8c3940b 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_helpers_test.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_helpers_test.c
-@@ -1746,6 +1746,282 @@ static void dm_test_dp_write_hblank_reduction_false(struct kunit *test)
- 	KUNIT_EXPECT_FALSE(test, dm_helpers_dp_write_hblank_reduction(NULL, NULL));
+@@ -1421,6 +1421,14 @@ static ssize_t dm_test_synaptics_aux_transfer(struct drm_dp_aux *aux,
+ 	return msg->size;
  }
 
-+/* Tests for get_dsc_max_slices() */
++static struct dm_test_synaptics_aux *dm_test_current_aux_recorder;
++
++static ssize_t dm_test_current_aux_transfer(struct drm_dp_aux *aux,
++					    struct drm_dp_aux_msg *msg)
++{
++	return dm_test_synaptics_aux_transfer(&dm_test_current_aux_recorder->aux, msg);
++}
++
+ static struct dm_test_synaptics_aux *dm_test_alloc_synaptics_aux_with_dev(struct kunit *test,
+ 								 struct drm_device *drm_dev)
+ {
+@@ -2022,6 +2030,507 @@ static void dm_test_fill_mst_payload_table_empty(struct kunit *test)
+ 	KUNIT_EXPECT_EQ(test, table.stream_allocations[0].slot_count, 12);
+ }
+
++/* Tests for dm_helpers_submit_i2c() */
 +
 +/**
-+ * dm_test_get_dsc_max_slices_1_340 - Test 1 slice at 340 MHz
++ * dm_test_submit_i2c_null_priv - Test i2c submit returns false without connector
 + * @test: The KUnit test context
 + */
-+static void dm_test_get_dsc_max_slices_1_340(struct kunit *test)
++static void dm_test_submit_i2c_null_priv(struct kunit *test)
 +{
-+	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(1, 340), 1);
++	struct dc_link *link;
++	struct i2c_command cmd = {0};
++
++	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, link);
++
++	KUNIT_EXPECT_FALSE(test, dm_helpers_submit_i2c(NULL, link, &cmd));
++}
++
++struct dm_test_i2c_adapter {
++	struct i2c_adapter base;
++	struct kunit *test;
++	struct i2c_payload *expected_payloads;
++	int expected_num;
++	int ret;
++	int calls;
++};
++
++static void dm_test_i2c_lock_bus(struct i2c_adapter *adapter,
++					 unsigned int flags)
++{
++	rt_mutex_lock(&adapter->bus_lock);
++}
++
++static int dm_test_i2c_trylock_bus(struct i2c_adapter *adapter,
++					   unsigned int flags)
++{
++	return rt_mutex_trylock(&adapter->bus_lock);
++}
++
++static void dm_test_i2c_unlock_bus(struct i2c_adapter *adapter,
++					   unsigned int flags)
++{
++	rt_mutex_unlock(&adapter->bus_lock);
++}
++
++static const struct i2c_lock_operations dm_test_i2c_lock_ops = {
++	.lock_bus = dm_test_i2c_lock_bus,
++	.trylock_bus = dm_test_i2c_trylock_bus,
++	.unlock_bus = dm_test_i2c_unlock_bus,
++};
++
++static int dm_test_i2c_master_xfer(struct i2c_adapter *adapter,
++					   struct i2c_msg *msgs,
++					   int num)
++{
++	struct dm_test_i2c_adapter *fake;
++	int i;
++
++	fake = container_of(adapter, struct dm_test_i2c_adapter, base);
++	fake->calls++;
++
++	KUNIT_EXPECT_EQ(fake->test, num, fake->expected_num);
++
++	for (i = 0; i < num; i++) {
++		KUNIT_EXPECT_EQ(fake->test, msgs[i].flags,
++				 fake->expected_payloads[i].write ? 0 : I2C_M_RD);
++		KUNIT_EXPECT_EQ(fake->test, msgs[i].addr,
++				 (u16)fake->expected_payloads[i].address);
++		KUNIT_EXPECT_EQ(fake->test, msgs[i].len,
++				 (u16)fake->expected_payloads[i].length);
++		KUNIT_EXPECT_PTR_EQ(fake->test, msgs[i].buf,
++				    fake->expected_payloads[i].data);
++	}
++
++	return fake->ret;
++}
++
++static const struct i2c_algorithm dm_test_i2c_algorithm = {
++	.master_xfer = dm_test_i2c_master_xfer,
++};
++
++static void dm_test_submit_i2c_transfer(struct kunit *test,
++					bool full_transfer)
++{
++	struct amdgpu_dm_connector *aconnector;
++	struct dm_test_i2c_adapter *fake;
++	struct dc_link *link;
++	u8 write_data[2] = { 0x12, 0x34 };
++	u8 read_data[3] = { 0 };
++	struct i2c_payload payloads[] = {
++		{ true, 0x50, sizeof(write_data), write_data },
++		{ false, 0x51, sizeof(read_data), read_data },
++	};
++	struct i2c_command cmd = {
++		.payloads = payloads,
++		.number_of_payloads = ARRAY_SIZE(payloads),
++	};
++
++	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, link);
++	aconnector = kunit_kzalloc(test, sizeof(*aconnector), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, aconnector);
++	fake = kunit_kzalloc(test, sizeof(*fake), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, fake);
++
++	fake->test = test;
++	fake->expected_payloads = payloads;
++	fake->expected_num = ARRAY_SIZE(payloads);
++	fake->ret = full_transfer ? ARRAY_SIZE(payloads) : 1;
++	fake->base.algo = &dm_test_i2c_algorithm;
++	fake->base.lock_ops = &dm_test_i2c_lock_ops;
++	rt_mutex_init(&fake->base.bus_lock);
++	rt_mutex_init(&fake->base.mux_lock);
++
++	aconnector->i2c = (struct amdgpu_i2c_adapter *)fake;
++	link->priv = aconnector;
++
++	KUNIT_EXPECT_EQ(test, dm_helpers_submit_i2c(NULL, link, &cmd), full_transfer);
++	KUNIT_EXPECT_EQ(test, fake->calls, 1);
 +}
 +
 +/**
-+ * dm_test_get_dsc_max_slices_2_340 - Test 2 slices at 340 MHz
++ * dm_test_submit_i2c_success - Test payloads are mapped to i2c_msg array
 + * @test: The KUnit test context
 + */
-+static void dm_test_get_dsc_max_slices_2_340(struct kunit *test)
++static void dm_test_submit_i2c_success(struct kunit *test)
 +{
-+	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(2, 340), 2);
++	dm_test_submit_i2c_transfer(test, true);
 +}
 +
 +/**
-+ * dm_test_get_dsc_max_slices_4_340 - Test 4 slices at 340 MHz
++ * dm_test_submit_i2c_partial_transfer - Test short i2c transfer returns false
 + * @test: The KUnit test context
 + */
-+static void dm_test_get_dsc_max_slices_4_340(struct kunit *test)
++static void dm_test_submit_i2c_partial_transfer(struct kunit *test)
 +{
-+	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(4, 340), 3);
++	dm_test_submit_i2c_transfer(test, false);
++}
++
++/* Tests for dm_helper_dmub_aux_transfer_sync() */
++
++/**
++ * dm_test_dmub_aux_transfer_sync_hpd_discon - Test aux transfer with HPD disconnected
++ * @test: The KUnit test context
++ */
++static void dm_test_dmub_aux_transfer_sync_hpd_discon(struct kunit *test)
++{
++	struct dc_link *link;
++	struct dc_context *ctx;
++	struct aux_payload payload = {0};
++	enum aux_return_code_type result = AUX_RET_SUCCESS;
++	int ret;
++
++	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, link);
++	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx);
++
++	link->hpd_status = false;
++
++	ret = dm_helper_dmub_aux_transfer_sync(ctx, link, &payload, &result);
++
++	KUNIT_EXPECT_EQ(test, ret, -1);
++	KUNIT_EXPECT_EQ(test, (int)result, (int)AUX_RET_ERROR_HPD_DISCON);
++}
++
++/* Tests for empty stub functions (must not crash) */
++
++/**
++ * dm_test_dp_update_branch_info_no_crash - Test empty stub does not crash
++ * @test: The KUnit test context
++ */
++static void dm_test_dp_update_branch_info_no_crash(struct kunit *test)
++{
++	dm_helpers_dp_update_branch_info(NULL, NULL);
++	KUNIT_EXPECT_TRUE(test, true);
 +}
 +
 +/**
-+ * dm_test_get_dsc_max_slices_8_340 - Test 8 slices at 340 MHz
++ * dm_test_mst_poll_pending_down_reply_no_crash - Test empty stub does not crash
 + * @test: The KUnit test context
 + */
-+static void dm_test_get_dsc_max_slices_8_340(struct kunit *test)
++static void dm_test_mst_poll_pending_down_reply_no_crash(struct kunit *test)
 +{
-+	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(8, 340), 4);
++	dm_helpers_dp_mst_poll_pending_down_reply(NULL, NULL);
++	KUNIT_EXPECT_TRUE(test, true);
 +}
 +
 +/**
-+ * dm_test_get_dsc_max_slices_8_400 - Test 8 slices at 400 MHz
++ * dm_test_mst_clear_payload_alloc_table_no_crash - Test empty stub does not crash
 + * @test: The KUnit test context
 + */
-+static void dm_test_get_dsc_max_slices_8_400(struct kunit *test)
++static void dm_test_mst_clear_payload_alloc_table_no_crash(struct kunit *test)
 +{
-+	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(8, 400), 5);
++	dm_helpers_dp_mst_clear_payload_allocation_table(NULL, NULL);
++	KUNIT_EXPECT_TRUE(test, true);
 +}
 +
 +/**
-+ * dm_test_get_dsc_max_slices_12_400 - Test 12 slices at 400 MHz
++ * dm_test_set_dcn_clocks_no_crash - Test empty stub does not crash
 + * @test: The KUnit test context
 + */
-+static void dm_test_get_dsc_max_slices_12_400(struct kunit *test)
++static void dm_test_set_dcn_clocks_no_crash(struct kunit *test)
 +{
-+	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(12, 400), 6);
++	dm_set_dcn_clocks(NULL, NULL);
++	KUNIT_EXPECT_TRUE(test, true);
 +}
 +
 +/**
-+ * dm_test_get_dsc_max_slices_16_400 - Test 16 slices at 400 MHz
++ * dm_test_dmu_timeout_no_crash - Test empty stub does not crash
 + * @test: The KUnit test context
 + */
-+static void dm_test_get_dsc_max_slices_16_400(struct kunit *test)
++static void dm_test_dmu_timeout_no_crash(struct kunit *test)
 +{
-+	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(16, 400), 7);
++	dm_helpers_dmu_timeout(NULL);
++	KUNIT_EXPECT_TRUE(test, true);
 +}
 +
 +/**
-+ * dm_test_get_dsc_max_slices_unknown - Test unknown combination returns 0
++ * dm_test_smu_timeout_no_crash - Test empty stub does not crash
 + * @test: The KUnit test context
 + */
-+static void dm_test_get_dsc_max_slices_unknown(struct kunit *test)
++static void dm_test_smu_timeout_no_crash(struct kunit *test)
 +{
-+	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(3, 340), 0);
-+	KUNIT_EXPECT_EQ(test, get_dsc_max_slices(1, 400), 0);
-+}
-+
-+/* Tests for dm_helpers_init_panel_settings() */
-+
-+/**
-+ * dm_test_init_panel_settings_pps - Test panel power sequence settings init
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_init_panel_settings_pps(struct kunit *test)
-+{
-+	struct dc_panel_config panel_config = {0};
-+	struct dc_sink *sink;
-+
-+	sink = kunit_kzalloc(test, sizeof(*sink), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, sink);
-+
-+	sink->edid_caps.panel_patch.extra_t3_ms = 100;
-+	sink->edid_caps.panel_patch.extra_t7_ms = 200;
-+	sink->edid_caps.panel_patch.extra_delay_backlight_off = 50;
-+	sink->edid_caps.panel_patch.extra_t12_ms = 300;
-+
-+	dm_helpers_init_panel_settings(NULL, &panel_config, sink);
-+
-+	KUNIT_EXPECT_EQ(test, panel_config.pps.extra_t3_ms, 100U);
-+	KUNIT_EXPECT_EQ(test, panel_config.pps.extra_t7_ms, 200U);
-+	KUNIT_EXPECT_EQ(test, panel_config.pps.extra_delay_backlight_off, 50U);
-+	KUNIT_EXPECT_EQ(test, panel_config.pps.extra_post_t7_ms, 0U);
-+	KUNIT_EXPECT_EQ(test, panel_config.pps.extra_pre_t11_ms, 0U);
-+	KUNIT_EXPECT_EQ(test, panel_config.pps.extra_t12_ms, 300U);
-+	KUNIT_EXPECT_EQ(test, panel_config.pps.extra_post_OUI_ms, 0U);
++	dm_helpers_smu_timeout(NULL, 0, 0, 0);
++	KUNIT_EXPECT_TRUE(test, true);
 +}
 +
 +/**
-+ * dm_test_init_panel_settings_dsc - Test DSC defaults in panel settings init
++ * dm_test_set_phyd32clk_no_crash - Test empty stub does not crash
 + * @test: The KUnit test context
 + */
-+static void dm_test_init_panel_settings_dsc(struct kunit *test)
++static void dm_test_set_phyd32clk_no_crash(struct kunit *test)
 +{
-+	struct dc_panel_config panel_config;
-+	struct dc_sink *sink;
-+
-+	memset(&panel_config, 0xFF, sizeof(panel_config));
-+
-+	sink = kunit_kzalloc(test, sizeof(*sink), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, sink);
-+
-+	dm_helpers_init_panel_settings(NULL, &panel_config, sink);
-+
-+	KUNIT_EXPECT_FALSE(test, panel_config.dsc.disable_dsc_edp);
-+	KUNIT_EXPECT_EQ(test, panel_config.dsc.force_dsc_edp_policy, 0U);
++	dm_set_phyd32clk(NULL, 0);
++	KUNIT_EXPECT_TRUE(test, true);
 +}
 +
-+/* Tests for dm_helpers_override_panel_settings() */
-+
 +/**
-+ * dm_test_override_panel_settings_debug_mask_disables_dsc - Test DSC mask
++ * dm_test_mst_update_branch_bandwidth_no_crash - Test empty stub does not crash
 + * @test: The KUnit test context
 + */
-+static void dm_test_override_panel_settings_debug_mask_disables_dsc(struct kunit *test)
++static void dm_test_mst_update_branch_bandwidth_no_crash(struct kunit *test)
++{
++	dm_helpers_dp_mst_update_branch_bandwidth(NULL, NULL);
++	KUNIT_EXPECT_TRUE(test, true);
++}
++
++/* Tests for MST functions null-connector early returns */
++
++/**
++ * dm_test_mst_write_payload_alloc_table_null_ctx - Test null connector returns false
++ * @test: The KUnit test context
++ */
++static void dm_test_mst_write_payload_alloc_table_null_ctx(struct kunit *test)
++{
++	struct dc_stream_state *stream;
++
++	stream = kunit_kzalloc(test, sizeof(*stream), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, stream);
++
++	/* dm_stream_context is NULL → aconnector is NULL → return false */
++	KUNIT_EXPECT_FALSE(test,
++			   dm_helpers_dp_mst_write_payload_allocation_table(NULL, stream, NULL, true));
++}
++
++/**
++ * dm_test_mst_poll_for_act_null_ctx - Test null connector returns ACT_FAILED
++ * @test: The KUnit test context
++ */
++static void dm_test_mst_poll_for_act_null_ctx(struct kunit *test)
++{
++	struct dc_stream_state *stream;
++
++	stream = kunit_kzalloc(test, sizeof(*stream), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, stream);
++
++	KUNIT_EXPECT_EQ(test,
++			(int)dm_helpers_dp_mst_poll_for_allocation_change_trigger(NULL, stream),
++			(int)ACT_FAILED);
++}
++
++/**
++ * dm_test_mst_send_payload_alloc_null_ctx - Test null connector does not crash
++ * @test: The KUnit test context
++ */
++static void dm_test_mst_send_payload_alloc_null_ctx(struct kunit *test)
++{
++	struct dc_stream_state *stream;
++
++	stream = kunit_kzalloc(test, sizeof(*stream), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, stream);
++
++	/* Should early-return without crash */
++	dm_helpers_dp_mst_send_payload_allocation(NULL, stream);
++	KUNIT_EXPECT_TRUE(test, true);
++}
++
++/**
++ * dm_test_mst_update_mgr_dealloc_null_ctx - Test null connector does not crash
++ * @test: The KUnit test context
++ */
++static void dm_test_mst_update_mgr_dealloc_null_ctx(struct kunit *test)
++{
++	struct dc_stream_state *stream;
++
++	stream = kunit_kzalloc(test, sizeof(*stream), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, stream);
++
++	dm_helpers_dp_mst_update_mst_mgr_for_deallocation(NULL, stream);
++	KUNIT_EXPECT_TRUE(test, true);
++}
++
++/**
++ * dm_test_is_dp_sink_present_null_priv - Test null connector returns true
++ * @test: The KUnit test context
++ */
++static void dm_test_is_dp_sink_present_null_priv(struct kunit *test)
++{
++	struct dc_link *link;
++
++	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, link);
++
++	/* NULL priv → DRM_ERROR + return true */
++	KUNIT_EXPECT_TRUE(test, dm_helpers_is_dp_sink_present(link));
++}
++
++/* Tests for dm_helpers_dmub_outbox_interrupt_control() */
++
++/**
++ * dm_test_dmub_outbox_interrupt_control_null_dc - Test outbox irq control with NULL dc
++ * @test: The KUnit test context
++ *
++ * dc_interrupt_set() is NULL-safe and returns false when dc is NULL, so the
++ * helper returns false without touching real interrupt hardware.
++ */
++static void dm_test_dmub_outbox_interrupt_control_null_dc(struct kunit *test)
 +{
 +	struct dc_context *ctx;
-+	struct dc_link *link;
-+	struct dc *dc;
-+	uint old_debug_mask;
 +
 +	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
 +	KUNIT_ASSERT_NOT_NULL(test, ctx);
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, dc);
++
++	/* ctx->dc is NULL → dc_interrupt_set returns false */
++	KUNIT_EXPECT_FALSE(test, dm_helpers_dmub_outbox_interrupt_control(ctx, true));
++	KUNIT_EXPECT_FALSE(test, dm_helpers_dmub_outbox_interrupt_control(ctx, false));
++}
++
++/* Tests for dm_helpers_mst_enable_stream_features() */
++
++/**
++ * dm_test_mst_enable_stream_features_aux_disabled - Test early return when aux disabled
++ * @test: The KUnit test context
++ */
++static void dm_test_mst_enable_stream_features_aux_disabled(struct kunit *test)
++{
++	struct dc_stream_state *stream;
++	struct dc_link *link;
++
++	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, link);
++	stream = kunit_kzalloc(test, sizeof(*stream), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, stream);
++
++	stream->link = link;
++	link->aux_access_disabled = true;
++
++	/* aux_access_disabled → early return without DPCD access */
++	dm_helpers_mst_enable_stream_features(stream);
++	KUNIT_EXPECT_TRUE(test, true);
++}
++
++/**
++ * dm_test_mst_enable_stream_features_writes_downspread - Test MSA ignore write
++ * @test: The KUnit test context
++ */
++static void dm_test_mst_enable_stream_features_writes_downspread(struct kunit *test)
++{
++	struct dm_test_synaptics_aux *fixture;
++	struct amdgpu_dm_connector *aconnector;
++	struct dc_stream_state *stream;
++	struct amdgpu_device *adev;
++	struct dc_link *link;
++
++	adev = dm_kunit_alloc_adev(test);
++	fixture = dm_test_alloc_synaptics_aux_with_dev(test, &adev->ddev);
++	aconnector = dm_kunit_alloc_connector(test, adev, NULL);
 +	link = dm_kunit_alloc_link(test);
-+	ctx->dc = dc;
-+	link->connector_signal = SIGNAL_TYPE_DISPLAY_PORT;
++	stream = kunit_kzalloc(test, sizeof(*stream), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, stream);
 +
-+	old_debug_mask = dm_helpers_get_dc_debug_mask();
-+	dm_helpers_set_dc_debug_mask(old_debug_mask | DC_DISABLE_DSC);
-+	dm_helpers_override_panel_settings(ctx, link);
-+	dm_helpers_set_dc_debug_mask(old_debug_mask);
++	dm_test_current_aux_recorder = fixture;
++	aconnector->dm_dp_aux.aux.drm_dev = &adev->ddev;
++	aconnector->dm_dp_aux.aux.transfer = dm_test_current_aux_transfer;
++	drm_dp_aux_init(&aconnector->dm_dp_aux.aux);
++	link->priv = aconnector;
++	stream->link = link;
++	stream->ignore_msa_timing_param = true;
 +
-+	KUNIT_EXPECT_TRUE(test, link->panel_config.dsc.disable_dsc_edp);
++	dm_helpers_mst_enable_stream_features(stream);
++
++	KUNIT_EXPECT_EQ(test, fixture->downspread_reads, 1U);
++	KUNIT_EXPECT_EQ(test, fixture->downspread_writes, 1U);
++	KUNIT_EXPECT_EQ(test, fixture->last_dpcd_write_address,
++			 DP_DOWNSPREAD_CTRL);
++	KUNIT_EXPECT_EQ(test, fixture->dpcd_write_value, (u8)BIT(7));
++}
++
++/* Tests for dm_helpers_enable_periodic_detection() */
++
++struct dm_test_idle_work {
++	struct idle_workqueue base;
++	bool ran;
++};
++
++static void dm_test_idle_work_func(struct work_struct *work)
++{
++	struct dm_test_idle_work *idle_work;
++
++	idle_work = container_of(work, struct dm_test_idle_work, base.work);
++	idle_work->ran = true;
 +}
 +
 +/**
-+ * dm_test_override_panel_settings_second_edp_disables_psr - Test eDP index 1
++ * dm_test_enable_periodic_detection_no_workqueue - Test no-op without idle workqueue
 + * @test: The KUnit test context
 + */
-+static void dm_test_override_panel_settings_second_edp_disables_psr(struct kunit *test)
++static void dm_test_enable_periodic_detection_no_workqueue(struct kunit *test)
 +{
++	struct amdgpu_device *adev;
 +	struct dc_context *ctx;
-+	struct dc_link *first_link;
-+	struct dc_link *second_link;
-+	struct dc *dc;
++
++	adev = dm_kunit_alloc_adev(test);
 +
 +	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
 +	KUNIT_ASSERT_NOT_NULL(test, ctx);
-+	dc = kunit_kzalloc(test, sizeof(*dc), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, dc);
-+	first_link = dm_kunit_alloc_link(test);
-+	second_link = dm_kunit_alloc_link(test);
++	ctx->driver_context = adev;
 +
-+	ctx->dc = dc;
-+	dc->link_count = 2;
-+	dc->links[0] = first_link;
-+	dc->links[1] = second_link;
-+	first_link->connector_signal = SIGNAL_TYPE_EDP;
-+	second_link->connector_signal = SIGNAL_TYPE_EDP;
-+
-+	dm_helpers_override_panel_settings(ctx, second_link);
-+
-+	KUNIT_EXPECT_TRUE(test, second_link->panel_config.psr.disable_psr);
-+	KUNIT_EXPECT_TRUE(test, second_link->panel_config.psr.disallow_psrsu);
-+	KUNIT_EXPECT_TRUE(test, second_link->panel_config.psr.disallow_replay);
-+}
-+
-+/* Tests for fill_dc_mst_payload_table_from_drm() */
-+
-+/**
-+ * dm_test_fill_mst_payload_table_enable - Test payload table fill on enable
-+ * @test: The KUnit test context
-+ */
-+static void dm_test_fill_mst_payload_table_enable(struct kunit *test)
-+{
-+	struct dc_link *link;
-+	struct drm_dp_mst_atomic_payload payload = {0};
-+	struct dc_dp_mst_stream_allocation_table table = {0};
-+
-+	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, link);
-+
-+	/* Pre-existing allocation in the link table */
-+	link->mst_stream_alloc_table.stream_count = 1;
-+	link->mst_stream_alloc_table.stream_allocations[0].vcp_id = 1;
-+	link->mst_stream_alloc_table.stream_allocations[0].slot_count = 4;
-+
-+	/* New payload to add */
-+	payload.vcpi = 2;
-+	payload.time_slots = 8;
-+
-+	fill_dc_mst_payload_table_from_drm(link, true, &payload, &table);
-+
-+	/* Should contain both the pre-existing and new allocation */
-+	KUNIT_EXPECT_EQ(test, table.stream_count, 2);
-+	KUNIT_EXPECT_EQ(test, table.stream_allocations[0].vcp_id, 1);
-+	KUNIT_EXPECT_EQ(test, table.stream_allocations[0].slot_count, 4);
-+	KUNIT_EXPECT_EQ(test, table.stream_allocations[1].vcp_id, 2);
-+	KUNIT_EXPECT_EQ(test, table.stream_allocations[1].slot_count, 8);
++	/* adev->dm.idle_workqueue is NULL → no-op, no crash */
++	dm_helpers_enable_periodic_detection(ctx, true);
++	KUNIT_EXPECT_TRUE(test, true);
 +}
 +
 +/**
-+ * dm_test_fill_mst_payload_table_disable - Test payload table fill on disable
++ * dm_test_enable_periodic_detection_updates_enable - Test idle work enable flag
 + * @test: The KUnit test context
++ *
++ * Keeps idle_workqueue->running set so the helper only updates the enable flag
++ * and does not queue the idle worker.
 + */
-+static void dm_test_fill_mst_payload_table_disable(struct kunit *test)
++static void dm_test_enable_periodic_detection_updates_enable(struct kunit *test)
 +{
-+	struct dc_link *link;
-+	struct drm_dp_mst_atomic_payload payload = {0};
-+	struct dc_dp_mst_stream_allocation_table table = {0};
++	struct idle_workqueue *idle_work;
++	struct amdgpu_device *adev;
++	struct dc_context *ctx;
 +
-+	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, link);
++	adev = dm_kunit_alloc_adev(test);
++	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx);
++	idle_work = kunit_kzalloc(test, sizeof(*idle_work), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, idle_work);
 +
-+	/* Two existing allocations in the link table */
-+	link->mst_stream_alloc_table.stream_count = 2;
-+	link->mst_stream_alloc_table.stream_allocations[0].vcp_id = 1;
-+	link->mst_stream_alloc_table.stream_allocations[0].slot_count = 4;
-+	link->mst_stream_alloc_table.stream_allocations[1].vcp_id = 2;
-+	link->mst_stream_alloc_table.stream_allocations[1].slot_count = 8;
++	ctx->driver_context = adev;
++	adev->dm.idle_workqueue = idle_work;
++	idle_work->running = true;
 +
-+	/* Remove vcp_id 1 */
-+	payload.vcpi = 1;
-+	payload.time_slots = 4;
++	dm_helpers_enable_periodic_detection(ctx, true);
++	KUNIT_EXPECT_TRUE(test, idle_work->enable);
 +
-+	fill_dc_mst_payload_table_from_drm(link, false, &payload, &table);
-+
-+	/* Only vcp_id 2 should remain */
-+	KUNIT_EXPECT_EQ(test, table.stream_count, 1);
-+	KUNIT_EXPECT_EQ(test, table.stream_allocations[0].vcp_id, 2);
-+	KUNIT_EXPECT_EQ(test, table.stream_allocations[0].slot_count, 8);
++	dm_helpers_enable_periodic_detection(ctx, false);
++	KUNIT_EXPECT_FALSE(test, idle_work->enable);
 +}
 +
 +/**
-+ * dm_test_fill_mst_payload_table_empty - Test payload table fill when empty
++ * dm_test_enable_periodic_detection_schedules_work - Test headless schedule path
 + * @test: The KUnit test context
 + */
-+static void dm_test_fill_mst_payload_table_empty(struct kunit *test)
++static void dm_test_enable_periodic_detection_schedules_work(struct kunit *test)
 +{
-+	struct dc_link *link;
-+	struct drm_dp_mst_atomic_payload payload = {0};
-+	struct dc_dp_mst_stream_allocation_table table = {0};
++	struct dm_test_idle_work *idle_work;
++	struct amdgpu_device *adev;
++	struct dc_context *ctx;
 +
-+	link = kunit_kzalloc(test, sizeof(*link), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, link);
++	adev = dm_kunit_alloc_adev(test);
++	ctx = kunit_kzalloc(test, sizeof(*ctx), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, ctx);
++	idle_work = kunit_kzalloc(test, sizeof(*idle_work), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, idle_work);
 +
-+	/* Enable on an empty table */
-+	payload.vcpi = 5;
-+	payload.time_slots = 12;
++	ctx->driver_context = adev;
++	adev->dm.ddev = &adev->ddev;
++	adev->dm.idle_workqueue = &idle_work->base;
++	INIT_WORK(&idle_work->base.work, dm_test_idle_work_func);
 +
-+	fill_dc_mst_payload_table_from_drm(link, true, &payload, &table);
++	dm_helpers_enable_periodic_detection(ctx, true);
++	flush_work(&idle_work->base.work);
 +
-+	KUNIT_EXPECT_EQ(test, table.stream_count, 1);
-+	KUNIT_EXPECT_EQ(test, table.stream_allocations[0].vcp_id, 5);
-+	KUNIT_EXPECT_EQ(test, table.stream_allocations[0].slot_count, 12);
++	KUNIT_EXPECT_TRUE(test, idle_work->base.enable);
++	KUNIT_EXPECT_TRUE(test, idle_work->ran);
 +}
 +
  static struct kunit_case amdgpu_dm_helpers_test_cases[] = {
  	/* edid_extract_panel_id */
  	KUNIT_CASE(dm_test_edid_extract_panel_id_basic),
-@@ -1832,6 +2108,25 @@ static struct kunit_case amdgpu_dm_helpers_test_cases[] = {
- 	KUNIT_CASE(dm_test_mst_start_top_mgr_boot),
- 	/* dm_helpers_dp_write_hblank_reduction */
- 	KUNIT_CASE(dm_test_dp_write_hblank_reduction_false),
-+	/* get_dsc_max_slices */
-+	KUNIT_CASE(dm_test_get_dsc_max_slices_1_340),
-+	KUNIT_CASE(dm_test_get_dsc_max_slices_2_340),
-+	KUNIT_CASE(dm_test_get_dsc_max_slices_4_340),
-+	KUNIT_CASE(dm_test_get_dsc_max_slices_8_340),
-+	KUNIT_CASE(dm_test_get_dsc_max_slices_8_400),
-+	KUNIT_CASE(dm_test_get_dsc_max_slices_12_400),
-+	KUNIT_CASE(dm_test_get_dsc_max_slices_16_400),
-+	KUNIT_CASE(dm_test_get_dsc_max_slices_unknown),
-+	/* dm_helpers_init_panel_settings */
-+	KUNIT_CASE(dm_test_init_panel_settings_pps),
-+	KUNIT_CASE(dm_test_init_panel_settings_dsc),
-+	/* dm_helpers_override_panel_settings */
-+	KUNIT_CASE(dm_test_override_panel_settings_debug_mask_disables_dsc),
-+	KUNIT_CASE(dm_test_override_panel_settings_second_edp_disables_psr),
-+	/* fill_dc_mst_payload_table_from_drm */
-+	KUNIT_CASE(dm_test_fill_mst_payload_table_enable),
-+	KUNIT_CASE(dm_test_fill_mst_payload_table_disable),
-+	KUNIT_CASE(dm_test_fill_mst_payload_table_empty),
+@@ -2127,6 +2636,38 @@ static struct kunit_case amdgpu_dm_helpers_test_cases[] = {
+ 	KUNIT_CASE(dm_test_fill_mst_payload_table_enable),
+ 	KUNIT_CASE(dm_test_fill_mst_payload_table_disable),
+ 	KUNIT_CASE(dm_test_fill_mst_payload_table_empty),
++	/* dm_helpers_submit_i2c */
++	KUNIT_CASE(dm_test_submit_i2c_null_priv),
++	KUNIT_CASE(dm_test_submit_i2c_success),
++	KUNIT_CASE(dm_test_submit_i2c_partial_transfer),
++	/* dm_helper_dmub_aux_transfer_sync */
++	KUNIT_CASE(dm_test_dmub_aux_transfer_sync_hpd_discon),
++	/* Empty stub functions */
++	KUNIT_CASE(dm_test_dp_update_branch_info_no_crash),
++	KUNIT_CASE(dm_test_mst_poll_pending_down_reply_no_crash),
++	KUNIT_CASE(dm_test_mst_clear_payload_alloc_table_no_crash),
++	KUNIT_CASE(dm_test_set_dcn_clocks_no_crash),
++	KUNIT_CASE(dm_test_dmu_timeout_no_crash),
++	KUNIT_CASE(dm_test_smu_timeout_no_crash),
++	KUNIT_CASE(dm_test_set_phyd32clk_no_crash),
++	KUNIT_CASE(dm_test_mst_update_branch_bandwidth_no_crash),
++	/* MST null-connector early returns */
++	KUNIT_CASE(dm_test_mst_write_payload_alloc_table_null_ctx),
++	KUNIT_CASE(dm_test_mst_poll_for_act_null_ctx),
++	/* dm_helpers_dp_mst_poll_for_allocation_change_trigger success/fail */
++	KUNIT_CASE(dm_test_mst_send_payload_alloc_null_ctx),
++	KUNIT_CASE(dm_test_mst_update_mgr_dealloc_null_ctx),
++	/* dm_helpers_is_dp_sink_present */
++	KUNIT_CASE(dm_test_is_dp_sink_present_null_priv),
++	/* dm_helpers_dmub_outbox_interrupt_control */
++	KUNIT_CASE(dm_test_dmub_outbox_interrupt_control_null_dc),
++	/* dm_helpers_mst_enable_stream_features */
++	KUNIT_CASE(dm_test_mst_enable_stream_features_aux_disabled),
++	KUNIT_CASE(dm_test_mst_enable_stream_features_writes_downspread),
++	/* dm_helpers_enable_periodic_detection */
++	KUNIT_CASE(dm_test_enable_periodic_detection_no_workqueue),
++	KUNIT_CASE(dm_test_enable_periodic_detection_updates_enable),
++	KUNIT_CASE(dm_test_enable_periodic_detection_schedules_work),
  	{}
  };
 
