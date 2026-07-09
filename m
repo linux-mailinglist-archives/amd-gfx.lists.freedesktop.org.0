@@ -2,51 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fwIOFoUMUGpMsgIAu9opvQ
+	id SJghNoYMUGpPsgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:03:01 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:03:02 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C636F735B4C
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:03:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84ED3735B59
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 23:03:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=mRJTr88f;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=uDobtnJQ;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 032FF10F70E;
-	Thu,  9 Jul 2026 21:02:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9D9610F713;
+	Thu,  9 Jul 2026 21:03:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012003.outbound.protection.outlook.com [52.101.53.3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A0F310F70C
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:49 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010014.outbound.protection.outlook.com [52.101.61.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B76410F6F3
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Jul 2026 21:02:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nDNRdcOejT0G+wzZ9478GZFgfNPQqn9N5XV7VnpGRfZDfk7+B9q0AkXh9euxckYBwnjX++jS+t8XJ2IV1dXo5sG7hezoxzsodGYq9K4erywPoZB9FRExx+eoPXvTvn44LyTDLo9DIu2bXflHRfPx6La4i6zniHdLRBDQ+xEoo35QM3YHOgqN6/vatok3G6mLjDIQ45De6lcFXtumiSBUZc5FJ06pPbYb80mNKGy5vylSWpMNxnBhKw+WJkd3Amyb+9R2Wcq7q6hdmH/Dcb+vw3+5eJFu4h+vUUzrp4SKC0qo2uvI5M1b85Yu+/7S/JQGiMbxE5I/21j/h5mRJ8HCXQ==
+ b=ZrTWC3itQfTEpDnNjoyUGgNlV9Kz9xLdukx1zOyJtajpSJk3Ex0LEjMUpkFS/4v2oyZF+zuzWDGnnnuXMsaFRkb9QL/4YiqwvLR3KXFfHIEpoZFi4X2h7OtMpxjO6I6lTanCSrWOBsQqDpVBeSiV6yDFV15ALE5mdYYqh6wpBKCU5zTF9t7y74b+qzlRniX+c5CAzLpoIv0RJirsOmo9oG/6sLptR2Q/FchPXbW6DV45HPXnOIxXP+X8Qaa1ibtruRm/mU2xw+JRpGMxf9Ayfq+MyE1T8pntn3eA/9UvCzd8Wml3gy58VbCnqgJcqhra1LH3Mw4e3SruxNjhYcTU/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S9m8cF/BoIABSBLDVq+ORcsJ2AgWSXxKn+1bHg9mkXk=;
- b=qN83bYmqPEgtFmCdOe4pX2SoywifLFN5ksheNmPE91q9SPDyBJ7IP4NZywqmoNTDHanxlw35HlwCFAdt9AVIKkP0e+EqcmWig5IX3uo4kWI9QFyOg+IJUQhfphbt/XagK/52UUI0PGFZ+IHC6IH/WOJL2ngKDiCMUQdDjO6wxvtxkznr8vM/qWqlb7XhB8Z68S4G+iru/n9GEff13sFhJT+j5/pQjMsFIrwADCSufm701gq8FuJRUekMzNaKxRi56A4+ZDFMBWHvaOJN8Cc+jhel07Pzhio71DVa5AtozApJCE1iP/VC78t/7lLLWevrzwt7ViIj6dMAIuY2Jajb0g==
+ bh=rYzAq9asAzIiRphOJ7vIlLtUnhvqcEBklk4dsgT7iCo=;
+ b=rSmkivMdlh8gq7wtrGlmaHy+XW4kxOQbBKsXEVhKezykY0XEmMI2UU7TySz2hi+yVDywqPuWfwpj/aYxKuWrUBvIezc2JsIbjOs/tq5ljZCKqlasU/wd8xAgzNR98vjHXFqNwuQXVR686+DlLomPEH2rjisQCqYOQ7Xulh6Fp+J5ayikMkTYQpxaN7SS6t2kVBsy0qBfyxGkwwb/jC2vaGGlVmYp02VKvFaWM4bSyB35DmW6+HuVjwAGHEkzw7Lbc2uq2Pb379x6ACBMmpXQZ/WxDhr5Hs/O6TEydByHC3pB9x2UDC1uxdjkCd4MYA8it3S0lCb7naGhqF1fZEx9HQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S9m8cF/BoIABSBLDVq+ORcsJ2AgWSXxKn+1bHg9mkXk=;
- b=mRJTr88fr9+7raFVGHv66BpVHcrdTIvgpExbdNlQdm7MNeYAqfDNn16LYSwg+8W8zAnTGipfnYTfuljrM8/ejN9y+ZOqa4UKVFYmrMGIbH77JyKzYUODKv1q7XbaKAmxg4ccg56EG2e/PBJyGNz972A+1MSxZFd5CBE9EGm+RHM=
-Received: from MN0PR04CA0004.namprd04.prod.outlook.com (2603:10b6:208:52d::6)
- by SJ2PR12MB7845.namprd12.prod.outlook.com (2603:10b6:a03:4ce::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Thu, 9 Jul
- 2026 21:02:42 +0000
-Received: from BL02EPF0001A100.namprd03.prod.outlook.com
- (2603:10b6:208:52d:cafe::3f) by MN0PR04CA0004.outlook.office365.com
- (2603:10b6:208:52d::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.11 via Frontend Transport; Thu, 9
+ bh=rYzAq9asAzIiRphOJ7vIlLtUnhvqcEBklk4dsgT7iCo=;
+ b=uDobtnJQ6fxJQR/7jzHtLX343cwmR+WbqdyaDdjK0X6cMkQPBU5d/5cagwOHIbPrK0OOtDB+A1JxlVv0AFv3h4+YRrOb+Wi73XeCSn6lTqvuGiqaUzzwtL7ZSvod1+lCDvcNx6RU9QHk5n0WUEhYR1HI247VcH120ahw1YWs/Fs=
+Received: from MN2PR01CA0038.prod.exchangelabs.com (2603:10b6:208:23f::7) by
+ SJ2PR12MB8649.namprd12.prod.outlook.com (2603:10b6:a03:53c::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.9; Thu, 9 Jul 2026
+ 21:02:41 +0000
+Received: from BL02EPF0001A0FE.namprd03.prod.outlook.com
+ (2603:10b6:208:23f:cafe::51) by MN2PR01CA0038.outlook.office365.com
+ (2603:10b6:208:23f::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.10 via Frontend Transport; Thu, 9
  Jul 2026 21:02:40 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -55,13 +55,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
 Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A100.mail.protection.outlook.com (10.167.242.107) with Microsoft
+ BL02EPF0001A0FE.mail.protection.outlook.com (10.167.242.105) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.21.181.6 via Frontend Transport; Thu, 9 Jul 2026 21:02:40 +0000
 Received: from georzhanmkm.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
- 2026 16:02:35 -0500
+ 2026 16:02:36 -0500
 From: George Zhang <george.zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -70,12 +70,11 @@ CC: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Zuo" <jerry.zuo@amd.com>, Dan Wheeler <daniel.wheeler@amd.com>, Ray Wu
  <Ray.Wu@amd.com>, Ivan Lipski <ivan.lipski@amd.com>, Alex Hung
  <alex.hung@amd.com>, James Lin <PingLei.Lin@amd.com>, Chenyu Chen
- <Chen-Yu.Chen@amd.com>, Charlene Liu <Charlene.Liu@amd.com>, Aric Cyr
- <aric.cyr@amd.com>, George Zhang <george.zhang@amd.com>
-Subject: [PATCH 78/80] drm/amd/display: add DST_Y_DELTA_DRQ_LIMIT hw
- programming
-Date: Thu, 9 Jul 2026 16:48:46 -0400
-Message-ID: <20260709205936.5719-79-george.zhang@amd.com>
+ <Chen-Yu.Chen@amd.com>, George Zhang <george.zhang@amd.com>
+Subject: [PATCH 79/80] drm/amd/display: don't re-evaluate cursor mode on
+ cursor plane movement
+Date: Thu, 9 Jul 2026 16:48:47 -0400
+Message-ID: <20260709205936.5719-80-george.zhang@amd.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260709205936.5719-1-george.zhang@amd.com>
 References: <20260709205936.5719-1-george.zhang@amd.com>
@@ -87,29 +86,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A100:EE_|SJ2PR12MB7845:EE_
-X-MS-Office365-Filtering-Correlation-Id: 01b363ba-3383-4b4b-eeba-08deddfd6994
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FE:EE_|SJ2PR12MB8649:EE_
+X-MS-Office365-Filtering-Correlation-Id: a37c8a40-2565-4eb1-a080-08deddfd69be
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|36860700016|23010399003|376014|3023799007|22082099003|18002099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: TTCiMAlXRiBThXXo5VY8OD+Er8To92hAKZFbg3fDrzIqnN89hkJrtKXfs9nbthL7SGQRWNZetU2wA6BqastAK3Wfzt5bPITPBIoL8ShbWylbwomg1EMvhl7zrCnKn0z1Rd5uBkfSKxXZ64xBlbbhsVcnheNyWIJCVe/3NXg4I0LVDXSztAFSgwAPJp2pJgxLSFTxbG+eScD36oPN5Al++zY+BbF6Cyo/5vSPp8wN+vgNswCsVnDu+LX1LxVRCpy6plX+0/RbGMisWlAbCnTmmiI1KqQlMesPcx4cEojKrIN5ToLbNV5JLurWxL3XqqD07sP1uH+zqxlz/9fCyaJ1geXjC0FdEvGpLOt3uxvqMJhbvGpoywlgSyeAPP9VtEVJgPRuz6Av3M2PDfZhnbpV+bhUuos8ys6RbjDsay/A/13Lkrq8S7GmJ6Ys+HDQHPNrbdJ5pR7VTW3xI11Kh97AwW4Us8hXP9KP6ujEPRJUA6ypIYSLsWr6mTkoXBc2676CBb/3lB5zPhg9ffuj86O1zzwWD0SFFIvSVYJEqdTQ57EwTXMr9cqRxlZF2aI8iwYvjslhjh9yaDENkU2iYh2tp+XPs+Z6rKK7FoUAINOOvNqpjrFZJ80AoytXdmnip5PfgnlTHJV1oc3DTCjCFdKKsaYOq3KyStIv/Xw1ptPCBZHp1kZb1+q3UlWUGq4KfBkVZvH+0EQVCKSdt5AjRchggg==
+ ARA:13230040|1800799024|36860700016|23010399003|82310400026|376014|18002099003|6133799003|22082099003|11063799006|5023799004|56012099006;
+X-Microsoft-Antispam-Message-Info: iG1ud4SWVN0fiSU2Smypbz/AZQVoLyDEkDV3LbpGtq/svcT/Y7EXprPDK0gmFBuhnIKBWuOIXLoPUFOBzfTRZrcF2YiHY8dJyFLOzKk1tOyXnDm+DQwSW1lbad5kZhcYONXn6AROHwKln2OKrla4XR/v6XOl/ZuT2sbfs5RHjgSxQD/aRPM3Zf0o99iW4T6hv+khHr/TDmXIdcBomM/JWuJWH8czpIcQG8z23J0D96joRBwslAdlTrTW2QyFStDpTjv0WBPWh3DaLL1oRSTO9sNfT1lYWNfDZmjcRS+jJnw0SV2QWV1Waz+LANx+eWOOOBRq+d77C17fQRChkfBoaPFIgRhxhFSl5nvoucXSUd9ybXeK/QVki/eiI6NGfMOT8ffCAOCr/80ZF2c4Ir4zZksH1GFr9623sJyPwUiroFiim+FcG1XIwUo6NMvzPSq0gSk6Ao3HEur+YcJXob2BGsxRQQ5MksDXm+CgDP5pLY8ayjFGNuP+lSwwri4+Aic4I3OFLi/5eKO343UNL5bOIElmutvVYp8hcuZS3sa5e/O4GDpCIFGp8Pp9QWw34r/Ufqfmzl7KuOCR1olrAfGGvVWDDLmUgpeqFyM1Mif9GUJ8e7JhwMyN1SKPSDs6uwhyvM+CWwygR9rCmKf5NCnJDkHi4YCRRKwRb+K2Qedi/z2HYMhC6SWVMg0BDACDcZJNhmxHZOXgvT9KplVG63P7eg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(36860700016)(23010399003)(376014)(3023799007)(22082099003)(18002099003)(11063799006)(56012099006);
+ SFS:(13230040)(1800799024)(36860700016)(23010399003)(82310400026)(376014)(18002099003)(6133799003)(22082099003)(11063799006)(5023799004)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: F9htOAnBVeol0ntddRiXQEptw/Fkw2eYIPLiooDub/yXt2A1+K+uGu7nrLHnDHqc/JK8zHLLIVc3sD3TxsCOt6nYPzexQ5octGt6Nyb0+tgDWRpF5IhU0WDBB+QG/tUqx7plptM+uHT3RxDiBA1bO4Gy/KWL91Fw+T2o6EOcCLe5XmdvCplHO+bR7RNmTgkPx9jKWqYCOllndgKFpdrj2zHbnznXJjP4Jv1eAFMkDCoxp8EFWKGaTYl4+aLySjjN2KES7dmA7e7cjGiKbSu9ZNligcJOD/yOFXI70KfoBRCoNNNNDuD208EfqKBcC9Ee+6CUmDPspTtkb+Ny7N/qTAFptrYshH+Owc4o5t7UTaQX8BiyU/dB52JxmxlcXeVONBY00/qRMjhwhM7UmdcaZupWCLINJuFS+Ve+kfpJRe8+k3IP1JIoUEvXID8TP81v
+X-MS-Exchange-AntiSpam-MessageData-0: zVuA9XhH/GYM6VTjrbmXFMF+9KqLpT7EBnd7bIIkWuXN4Uv6A5+5c6SzSvlskr2cJVf5ae7NPcDpuvqNkhfms/XtpKkFmm6sl56WXMR+oNZDL6/avC5K6iovpPXufLBKEYjq4/v6bj4XHjokhn2ISYEVxe2Gqhk3gW6lno7kYtcPTPK3FXrnOrdx3h4sSImsTFj17HyxOWGRejOJfhKHxbubSUSXWfwXnZ+HpRXLAVpC9cTQxvJgbQoUjV5r3n8hXQ4Sx1DFNF8nTmDv7vovuNR+1n4aWnj4JF/kiOLTH85Ey6+xthApfjYN4tsGdg3KlOQ1XibuiKKaoEHS4jkyMXHjf+lx4dHVsj5YM+mzi9chvVA1PD482g+qw/FvkzQVSeZsHQPrK3DW2ZWzlfCfQ8j20GElLAGrOMArkS5gmZBkVIpFMCFCDB4Vw2jWMznS
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:40.0657 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 01b363ba-3383-4b4b-eeba-08deddfd6994
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2026 21:02:40.3319 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a37c8a40-2565-4eb1-a080-08deddfd69be
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A100.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FE.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7845
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8649
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,7 +135,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -153,103 +152,91 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C636F735B4C
+X-Rspamd-Queue-Id: 84ED3735B59
 
-From: Charlene Liu <Charlene.Liu@amd.com>
+From: James Lin <PingLei.Lin@amd.com>
 
-[why]
-dchubp needs to program DST_Y_DELTA_DRQ_LIMIT  based on dml2.x
+[Why]
+The cursor-mode re-evaluation added to dm_crtc_get_cursor_mode() also
+checks the cursor plane's own destination rectangle. The crtc_x/y/w/h
+check lives in the per-plane loop, which only flags the cursor plane via
+cursor_changed and does not skip it, so the check fires whenever the
+cursor itself moves.
 
-Reviewed-by: Aric Cyr <aric.cyr@amd.com>
-Signed-off-by: Charlene Liu <Charlene.Liu@amd.com>
+flip-vs-cursor-legacy (kms_cursor_legacy) issues a stream of legacy
+cursor moves and requires each to land on the fast path within a single
+vblank. With the position check, every cursor move now sets
+consider_mode_change and defeats the early return, forcing the full
+cursor-mode evaluation. A legacy cursor move is a cursor-only commit:
+the underlying planes are not in the atomic state, so the coverage loop
+(for_each_oldnew_plane_in_descending_zpos walks only planes in the
+state) sees nothing covering the CRTC, evaluates entire_crtc_covered as
+false, and misclassifies the cursor mode as OVERLAY on a fully-covered
+screen.
+
+That spurious NATIVE->OVERLAY transition makes should_reset_plane()
+return true (lock_and_validation_needed), pulls all CRTC planes into the
+commit, and - because amdgpu_dm_plane_atomic_async_check() rejects async
+updates in overlay mode - permanently knocks later cursor updates off the
+async fast path. Each cursor move becomes a full atomic commit with DC
+global validation, serialized against the page flip, so cursor updates no
+longer fit in one vblank and flip-vs-cursor-legacy fails / times out
+
+[How]
+The cursor mode is a function of the underlying planes' coverage and
+properties, not of the cursor's position, so cursor movement can never
+change the correct mode. Restrict the destination-rectangle check to
+non-cursor planes. A move/resize of an underlying plane (the case the
+original change targets, e.g. amd_cursor_overlay@non-full) still
+re-evaluates the mode correctly, while pure cursor movement returns to
+the fast path.
+
+Reviewed-by: ChiaHsuan (Tom) Chung <chiahsuan.chung@amd.com>
+Signed-off-by: James Lin <PingLei.Lin@amd.com>
 Signed-off-by: George Zhang <george.zhang@amd.com>
 ---
- .../amd/display/dc/hubp/dcn42/dcn42_hubp.c    | 51 ++++++++++++++++++-
- .../amd/display/dc/hubp/dcn42/dcn42_hubp.h    |  3 ++
- 2 files changed, 53 insertions(+), 1 deletion(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 27 +++++++++++++------
+ 1 file changed, 19 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.c b/drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.c
-index 57de98444f6c..94730f3cff42 100644
---- a/drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.c
-+++ b/drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.c
-@@ -580,7 +580,56 @@ static bool hubp42_program_surface_flip_and_addr(
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index d184cc4de693..2cdc297e6cab 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -6656,15 +6656,26 @@ static int dm_crtc_get_cursor_mode(struct amdgpu_device *adev,
+ 		}
  
- 	return true;
- }
-+void hubp42_setup_interdependent(
-+		struct hubp *hubp,
-+		struct dml2_dchub_per_pipe_register_set *pipe_regs)
-+{
-+	struct dcn20_hubp *hubp2 = TO_DCN20_HUBP(hubp);
-+
-+	REG_SET_2(PREFETCH_SETTINGS, 0,
-+			DST_Y_PREFETCH, pipe_regs->dlg_regs.dst_y_prefetch,
-+			VRATIO_PREFETCH, pipe_regs->dlg_regs.vratio_prefetch);
-+
-+	REG_SET(PREFETCH_SETTINGS_C, 0,
-+			VRATIO_PREFETCH_C, pipe_regs->dlg_regs.vratio_prefetch_c);
-+
-+	REG_SET_2(VBLANK_PARAMETERS_0, 0,
-+		DST_Y_PER_VM_VBLANK, pipe_regs->dlg_regs.dst_y_per_vm_vblank,
-+		DST_Y_PER_ROW_VBLANK, pipe_regs->dlg_regs.dst_y_per_row_vblank);
-+
-+	REG_SET_2(FLIP_PARAMETERS_0, 0,
-+		DST_Y_PER_VM_FLIP, pipe_regs->dlg_regs.dst_y_per_vm_flip,
-+		DST_Y_PER_ROW_FLIP, pipe_regs->dlg_regs.dst_y_per_row_flip);
- 
-+	REG_SET(VBLANK_PARAMETERS_3, 0,
-+		REFCYC_PER_META_CHUNK_VBLANK_L, pipe_regs->dlg_regs.refcyc_per_meta_chunk_vblank_l);
-+
-+	REG_SET(VBLANK_PARAMETERS_4, 0,
-+		REFCYC_PER_META_CHUNK_VBLANK_C, pipe_regs->dlg_regs.refcyc_per_meta_chunk_vblank_c);
-+
-+	REG_SET(FLIP_PARAMETERS_2, 0,
-+		REFCYC_PER_META_CHUNK_FLIP_L, pipe_regs->dlg_regs.refcyc_per_meta_chunk_flip_l);
-+
-+	REG_SET_2(PER_LINE_DELIVERY_PRE, 0,
-+		REFCYC_PER_LINE_DELIVERY_PRE_L, pipe_regs->dlg_regs.refcyc_per_line_delivery_pre_l,
-+		REFCYC_PER_LINE_DELIVERY_PRE_C, pipe_regs->dlg_regs.refcyc_per_line_delivery_pre_c);
-+
-+	REG_SET(DCN_SURF0_TTU_CNTL1, 0,
-+		REFCYC_PER_REQ_DELIVERY_PRE,
-+		pipe_regs->ttu_regs.refcyc_per_req_delivery_pre_l);
-+	REG_SET(DCN_SURF1_TTU_CNTL1, 0,
-+		REFCYC_PER_REQ_DELIVERY_PRE,
-+		pipe_regs->ttu_regs.refcyc_per_req_delivery_pre_c);
-+	REG_SET(DCN_CUR0_TTU_CNTL1, 0,
-+		REFCYC_PER_REQ_DELIVERY_PRE, pipe_regs->ttu_regs.refcyc_per_req_delivery_pre_cur0);
-+
-+	REG_SET_2(DCN_GLOBAL_TTU_CNTL, 0,
-+		MIN_TTU_VBLANK, pipe_regs->ttu_regs.min_ttu_vblank,
-+		QoS_LEVEL_FLIP, pipe_regs->ttu_regs.qos_level_flip);
-+
-+	REG_SET(DST_Y_DELTA_DRQ_LIMIT, 0,
-+		DST_Y_DELTA_DRQ_LIMIT, pipe_regs->dlg_regs.dst_y_delta_drq_limit);
-+}
- struct hubp_funcs dcn42_hubp_funcs = {
- 	.hubp_enable_tripleBuffer = hubp2_enable_triplebuffer,
- 	.hubp_is_triplebuffer_enabled = hubp2_is_triplebuffer_enabled,
-@@ -588,7 +637,7 @@ struct hubp_funcs dcn42_hubp_funcs = {
- 	.hubp_program_surface_config = hubp42_program_surface_config,
- 	.hubp_is_flip_pending = hubp2_is_flip_pending,
- 	.hubp_setup2 = hubp42_setup,
--	.hubp_setup_interdependent2 = hubp401_setup_interdependent,
-+	.hubp_setup_interdependent2 = hubp42_setup_interdependent,
- 	.hubp_set_vm_system_aperture_settings = hubp3_set_vm_system_aperture_settings,
- 	.set_blank = hubp2_set_blank,
- 	.set_blank_regs = hubp2_set_blank_regs,
-diff --git a/drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.h b/drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.h
-index 27528f82058c..ba4a58c353dd 100644
---- a/drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.h
-+++ b/drivers/gpu/drm/amd/display/dc/hubp/dcn42/dcn42_hubp.h
-@@ -97,4 +97,7 @@ void hubp42_setup(
- 		union dml2_global_sync_programming *pipe_global_sync,
- 		struct dc_crtc_timing *timing);
- 
-+void hubp42_setup_interdependent(
-+		struct hubp *hubp,
-+		struct dml2_dchub_per_pipe_register_set *pipe_regs);
- #endif /* __DC_HUBP_DCN42_H__ */
+ 		/*
+-		 * A plane moving or resizing (without a scale change) changes how
+-		 * much of the CRTC it covers. This can create/remove holes under
+-		 * the cursor and thus flip the required cursor mode (native vs
+-		 * overlay), so the destination rect must be re-evaluated too.
++		 * A non-cursor plane moving or resizing (without a scale change)
++		 * changes how much of the CRTC it covers. This can create or
++		 * remove a hole under the cursor and thus flip the required
++		 * cursor mode (native vs overlay), so its destination rect must
++		 * be re-evaluated too.
++		 *
++		 * The cursor plane itself is deliberately excluded: the cursor
++		 * mode depends on the underlying planes' coverage, not on the
++		 * cursor's position (see the entire_crtc_covered logic below).
++		 * Triggering on cursor movement would force every legacy cursor
++		 * update off its fast path, and in a cursor-only commit - where
++		 * the underlying planes are not part of the state - the coverage
++		 * loop would see no covering plane and misevaluate the mode as
++		 * overlay, regressing flip-vs-cursor-legacy.
+ 		 */
+-		if (old_plane_state->crtc_x != plane_state->crtc_x ||
+-		    old_plane_state->crtc_y != plane_state->crtc_y ||
+-		    old_plane_state->crtc_w != plane_state->crtc_w ||
+-		    old_plane_state->crtc_h != plane_state->crtc_h) {
++		if (plane->type != DRM_PLANE_TYPE_CURSOR &&
++		    (old_plane_state->crtc_x != plane_state->crtc_x ||
++		     old_plane_state->crtc_y != plane_state->crtc_y ||
++		     old_plane_state->crtc_w != plane_state->crtc_w ||
++		     old_plane_state->crtc_h != plane_state->crtc_h)) {
+ 			consider_mode_change = true;
+ 			break;
+ 		}
 -- 
 2.55.0
 
