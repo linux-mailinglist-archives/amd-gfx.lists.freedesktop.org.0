@@ -2,47 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mfiGCUmLT2o+jQIAu9opvQ
+	id +bOLL4aLT2pojQIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 13:51:37 +0200
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 13:52:38 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3DA77309EA
-	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 13:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49EF2730A74
+	for <lists+amd-gfx@lfdr.de>; Thu, 09 Jul 2026 13:52:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=KF83OFlc;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=h6zkElMs;
 	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B91910F52A;
-	Thu,  9 Jul 2026 11:51:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD6DE10F54F;
+	Thu,  9 Jul 2026 11:52:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2048010F52D;
- Thu,  9 Jul 2026 11:51:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 012B510F550;
+ Thu,  9 Jul 2026 11:52:36 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 0A4334198E;
- Thu,  9 Jul 2026 11:51:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A0EC1F000E9;
- Thu,  9 Jul 2026 11:51:33 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id DE9F5439E5;
+ Thu,  9 Jul 2026 11:52:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ABDE1F00A3A;
+ Thu,  9 Jul 2026 11:52:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1783597893;
- bh=oWMwdI40bkVcoA450+n7B9NPlb45mGSGW4PW6X9fmm4=;
+ s=k20260515; t=1783597955;
+ bh=KSmGKK3B1+3AzlrUpBRUrQ+BOWiZ8RlwKkA4OqXEYQ4=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=KF83OFlcZEXKC7D2ZnIvdzWTiYiXE3RWRIZklb5vdzfKQ9REno5yehaoCMaGt5OK4
- zuf9m5KUzYypcEHlN1JI6yiWDJV2jz3czO8Kml34YqkEInecg0OvObS/iKRM3B41Il
- BHVDgQ/mLQtrYppmDDXHoZtWU7mul9DFl2lKlTHygAeJrnAP5Mh9biioBMVa4pOB6R
- vVpwrk2Fhes1m54yPSMRfNE3GSGXHd50pI2vJawYMzDmCusoG5bRQFmkE1Qa0Xlb1l
- kwLnRZJ5ioBiTj/6qL4TvOLBjRfmCcSSMjmkCLsQ25KaLsQ8+ptKyjqePcTtV9ZCRm
- wCTuNx065sGxw==
+ b=h6zkElMs8OfPWkzpP9IDztporVta/wJyj3cYWkojm79pvnnJRLH98vd3kpVOPJIC0
+ iNBX1QfPtJxnlGBnR8vUsLMIVU+z79Yx2wptgGXwpIsISovFmGcqNMhYtl2FWPf7li
+ ukQJ4BDuSZg778H1JrHrHZzcjUOBDqwhcbRZjGH4etxSnFYHtQNzmOnkd5LqU7FKDl
+ XfBDs08g+J3+ZKlTF+P3A9kZZBgtfr5xE1VeRiXSXlfU6cZEz+2dHO/e7P6QxAPukh
+ cUTNj9kiLLsPJBjzmLG70nkFPbUFSNbOO+2CyiBnJej3XjHwvmh1ckW3OiQOZUvmWX
+ 9ZNyUEsk6f7cw==
 From: Maxime Ripard <mripard@kernel.org>
-Date: Thu, 09 Jul 2026 13:50:39 +0200
-Subject: [PATCH 13/60] drm/amdgpu: Convert to atomic_create_state
+Date: Thu, 09 Jul 2026 13:51:05 +0200
+Subject: [PATCH 39/60] drm/amdgpu_dm: Convert to atomic_create_state
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260709-drm-no-more-plane-reset-v1-13-302d986fe5f0@kernel.org>
+Message-Id: <20260709-drm-no-more-plane-reset-v1-39-302d986fe5f0@kernel.org>
 References: <20260709-drm-no-more-plane-reset-v1-0-302d986fe5f0@kernel.org>
 In-Reply-To: <20260709-drm-no-more-plane-reset-v1-0-302d986fe5f0@kernel.org>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -50,14 +50,15 @@ To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Simona Vetter <simona@ffwll.ch>
 Cc: dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>, 
  alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org, 
- christian.koenig@amd.com
+ christian.koenig@amd.com, harry.wentland@amd.com, siqueira@igalia.com, 
+ sunpeng.li@amd.com
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6064; i=mripard@kernel.org;
- h=from:subject:message-id; bh=GI9bqyYsOUr69R5f0NvKo2K7E/4WoU2g1hp1pDJqxEM=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFn+3fxMQgY5J2Zbc9XuCevnMd/1vvTfnrX8KRsi0qW/d
- LoX1S3rmMrCIMzJICumyPJEJuz08vbFVQ72K3/AzGFlAhnCwMUpABOZ/pGxms3g7eGTcxIa3hh8
- rZ6sF8xboqGvGFv/+/Bb69PcPI08Ec2a948q9XrNmn9gTthhl84GxjqFDtf1/3urV+/OSd9uqn5
- eJcJfJ9LTXbtxf9EOngMiNhdnfNmovWndkW/6v4OtNLmTBQA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7988; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=YnPa1VSYBaXq431BAn7Pg2e1Ida/FjFpETrDoQYveCw=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFn+3VImU2tFJz5q2LHz+SyZlyuKCtoK3nwV1rlUZmwTo
+ j6tO2Zax1QWBmFOBlkxRZYnMmGnl7cvrnKwX/kDZg4rE8gQBi5OAZiIDCdjvVPgwv0COw7X/dV4
+ dp0trt9S2fl7uX2Qm8Kdldps9erLfOJ3/TG4GCtt0b+Yv3WutMtZxobpzBqHWKUOPp88NWSmsEi
+ ocVxS/LdZW2KeVZgxpv70z/IperLrq5zTSalDC5ydfq+17wUA
 X-Developer-Key: i=mripard@kernel.org; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -76,36 +77,37 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,igalia.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,lists.freedesktop.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A3DA77309EA
+X-Rspamd-Queue-Id: 49EF2730A74
 
-The plane only initializes a pristine state in its reset hook
-using drm_atomic_helper_plane_reset(), which is equivalent to what
-atomic_create_state expects. Convert to it.
+The plane reset implementation creates a custom state
+subclass, but only initializes a pristine state without resetting any
+hardware. This is equivalent to what atomic_create_state expects.
+Convert to it.
 
 The conversion was done using the following Coccinelle semantic patch:
 
@@ -372,27 +374,77 @@ Signed-off-by: Maxime Ripard <mripard@kernel.org>
 Cc: alexander.deucher@amd.com
 Cc: amd-gfx@lists.freedesktop.org
 Cc: christian.koenig@amd.com
+Cc: harry.wentland@amd.com
+Cc: siqueira@igalia.com
+Cc: sunpeng.li@amd.com
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 17 ++++++++---------
+ 1 file changed, 8 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
-index 170adaf7e76a..9628239855d2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
-@@ -142,11 +142,11 @@ static const struct drm_connector_helper_funcs amdgpu_vkms_conn_helper_funcs = {
- 
- static const struct drm_plane_funcs amdgpu_vkms_plane_funcs = {
- 	.update_plane		= drm_atomic_helper_update_plane,
- 	.disable_plane		= drm_atomic_helper_disable_plane,
- 	.destroy		= drm_plane_cleanup,
--	.reset			= drm_atomic_helper_plane_reset,
-+	.atomic_create_state = drm_atomic_helper_plane_create_state,
- 	.atomic_duplicate_state = drm_atomic_helper_plane_duplicate_state,
- 	.atomic_destroy_state	= drm_atomic_helper_plane_destroy_state,
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+index 1b564cfe2120..64647f4a4290 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+@@ -1513,26 +1513,25 @@ static const struct drm_plane_helper_funcs dm_primary_plane_helper_funcs = {
+ 	.atomic_async_update = amdgpu_dm_plane_atomic_async_update,
+ 	.get_scanout_buffer = amdgpu_display_get_scanout_buffer,
+ 	.panic_flush = amdgpu_dm_plane_panic_flush,
  };
  
- static void amdgpu_vkms_plane_atomic_update(struct drm_plane *plane,
+-static void amdgpu_dm_plane_drm_plane_reset(struct drm_plane *plane)
++static struct drm_plane_state *amdgpu_dm_plane_drm_plane_create_state(struct drm_plane *plane)
+ {
+ 	struct dm_plane_state *amdgpu_state;
+ 
+ 	amdgpu_state = kzalloc_obj(*amdgpu_state);
+ 	if (!amdgpu_state)
+-		return;
++		return ERR_PTR(-ENOMEM);
+ 
+-	if (plane->state)
+-		plane->funcs->atomic_destroy_state(plane, plane->state);
+-
+-	__drm_atomic_helper_plane_reset(plane, &amdgpu_state->base);
++	__drm_atomic_helper_plane_state_init(&amdgpu_state->base, plane);
+ 	amdgpu_state->degamma_tf = AMDGPU_TRANSFER_FUNCTION_DEFAULT;
+ 	amdgpu_state->hdr_mult = AMDGPU_HDR_MULT_DEFAULT;
+ 	amdgpu_state->shaper_tf = AMDGPU_TRANSFER_FUNCTION_DEFAULT;
+ 	amdgpu_state->blend_tf = AMDGPU_TRANSFER_FUNCTION_DEFAULT;
++
++	return &amdgpu_state->base;
+ }
+ 
+ static struct drm_plane_state *amdgpu_dm_plane_drm_plane_duplicate_state(struct drm_plane *plane)
+ {
+ 	struct dm_plane_state *dm_plane_state, *old_dm_plane_state;
+@@ -1881,11 +1880,11 @@ dm_plane_init_colorops(struct drm_plane *plane)
+ 
+ static const struct drm_plane_funcs dm_plane_funcs = {
+ 	.update_plane	= drm_atomic_helper_update_plane,
+ 	.disable_plane	= drm_atomic_helper_disable_plane,
+ 	.destroy	= drm_plane_helper_destroy,
+-	.reset = amdgpu_dm_plane_drm_plane_reset,
++	.atomic_create_state = amdgpu_dm_plane_drm_plane_create_state,
+ 	.atomic_duplicate_state = amdgpu_dm_plane_drm_plane_duplicate_state,
+ 	.atomic_destroy_state = amdgpu_dm_plane_drm_plane_destroy_state,
+ 	.format_mod_supported = amdgpu_dm_plane_format_mod_supported,
+ 	.format_mod_supported_async = amdgpu_dm_plane_format_mod_supported,
+ #ifdef AMD_PRIVATE_COLOR
+@@ -1992,12 +1991,12 @@ int amdgpu_dm_plane_init(struct amdgpu_display_manager *dm,
+ 	if (res)
+ 		return res;
+ #endif
+ 
+ 	/* Create (reset) the plane state */
+-	if (plane->funcs->reset)
+-		plane->funcs->reset(plane);
++	if (plane->funcs->atomic_create_state)
++		plane->funcs->atomic_create_state(plane);
+ 
+ 	return 0;
+ }
+ 
+ bool amdgpu_dm_plane_is_video_format(uint32_t format)
 
 -- 
 2.54.0
