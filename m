@@ -2,129 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1VXHDCrEUGoO4wIAu9opvQ
+	id Kr66GU6xU2r4dgMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 12:06:34 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 17:22:54 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F237739701
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 12:06:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B22D74527E
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 17:22:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=i8A7m0g4;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dkim=pass header.d=leemhuis.info header.s=key2 header.b="Wiz/oAZB";
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 2610:10:20:722:a800:ff:fe36:1795 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F73710F7DC;
-	Fri, 10 Jul 2026 10:06:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79B6D10E4AE;
+	Sun, 12 Jul 2026 15:22:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010056.outbound.protection.outlook.com [52.101.201.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CCF910F7DC
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 10:06:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=u0usf9g8GNanGnXP9/t31n+ZNXlJb3bPVL1VxuOMAVY738+mcOqaolnoczblFKXa8uXIF0ezBlfqMm2bsdKcaVczUIHHkNyyg7hQ7n4O6FSVY7+WFGakndNnXBN2/BfGaCOFklLiRkf+zmkUeXlnIfC6Kl/iAoeNfxzsfFlrxq2Cs/pTHVv9akkwJHqKO2zTxcqjNG1EUhpG1GWO5hFkOv57IPCTLINp5vuiVM0lbS6W5ibNTFrQKzIwioLIQlMiNbRbAugtrPIw7/1GDUQa4DGC+UN0MYi7DZDDTPmjSHxlNdaqI7FdLHvdUvk6dgufI8/fgqZSkg7rhVZiGgusJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eT4o1ThotPS4rNXELxHxc70mNVPRJxW6D0jOkKX3uYs=;
- b=D+sg3JTAKx+OuxIADWkEjszwHyQaUAQpJp29NUd5GueCML0Cgmx0rkx3URZYMYF5w6YZbF5vmmfgCnyJRHSNTnt5TNunGmeygWXhVtMzV6Ruxamhr1ysDvJA09d0S0Hr5hVbk2ts+mr0/Xl22CkVzYYxjqgY8g8Tek+kpjyQyoU8L/fuApbenDF930VdIIsQ058vlKc1NnYK3FYs4rOlwwgGd+kez4DOj9dRMoM1YrDtqqATQPD4AGA/1QJrxbtY/1nS458ICHDTc9DnEBJIflwhJK68aIPpiPnwl0ywN7l1306DHvmiKqijdc0P7vMcPmcILgelXIQbqbWMdj4T7w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eT4o1ThotPS4rNXELxHxc70mNVPRJxW6D0jOkKX3uYs=;
- b=i8A7m0g4IwEode3NGujfzII4hUK91I1lxCYYGuJGMz0K/xasFq0K4XS9viEh6jzfYEd6O6ssZeIzcRe9onrUOebU321wwRhcYMr9madUreRAgCzLob+sr5H9H3q8QHZu8g9wj7YaO80SxTvNLhm/vPe6G3FqML24gexYPsS/xCo=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SJ0PR12MB6688.namprd12.prod.outlook.com (2603:10b6:a03:47d::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.10; Fri, 10 Jul
- 2026 10:06:25 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0181.008; Fri, 10 Jul 2026
- 10:06:25 +0000
-Message-ID: <7b8ad7e8-27c7-4af1-9df7-fdb8474be2ee@amd.com>
-Date: Fri, 10 Jul 2026 12:06:21 +0200
+X-Greylist: delayed 396 seconds by postgrey-1.36 at gabe;
+ Fri, 10 Jul 2026 10:34:14 UTC
+Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
+ [188.68.63.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 610E210E18B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 10:34:14 +0000 (UTC)
+Received: from mors-relay8204.netcup.net (localhost [127.0.0.1])
+ by mors-relay8204.netcup.net (Postfix) with ESMTPS id 4gxSh73ws7z8hl1;
+ Fri, 10 Jul 2026 10:27:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
+ s=key2; t=1783679255;
+ bh=iK3A+pXxHffwBxrMsgSUnMftvOpU370XE/+2mwxUKHE=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=Wiz/oAZBCxQwnuXiGxqL/444nEKrs3mQKVsZ2Nfgck+sEysAjFIylnHIlLDqfgxPJ
+ /u8/mMLNTu6V0pSlDv5vKW7v6bxgAe3SHh6Dq6BSOs9CElQTU4uyzIrtxsXMp/lqVz
+ hrWlrtnZnj2UmWPfjJZf08HZqku0j7OWOMp9sZcm+0oZLEeinR0pxgsFolk0neac50
+ CTPiIR4zni7JSiqeUUB27tMf7R9UpszS2KBRD32DNGW0BOPEcrpJRnN7odgcKZ+E9R
+ M9pbY7gatAEUiNpCmy7BVEg8NcaNQbS6sUoL8nOmiNQHBe5UcANzQCO9QQcdmjI0Ge
+ BU8QZ/qOmByXw==
+Received: from policy02-mors.netcup.net (unknown [46.38.225.35])
+ by mors-relay8204.netcup.net (Postfix) with ESMTPS id 4gxSh73Cwfz8hky;
+ Fri, 10 Jul 2026 10:27:35 +0000 (UTC)
+Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by policy02-mors.netcup.net (Postfix) with ESMTPS id 4gxSh65Kq3z8sgw;
+ Fri, 10 Jul 2026 12:27:34 +0200 (CEST)
+Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
+ [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
+ by mxe9fb.netcup.net (Postfix) with ESMTPSA id 0AAF260320;
+ Fri, 10 Jul 2026 12:27:34 +0200 (CEST)
+Received-SPF: pass (mxe9fb: connection is authenticated)
+Message-ID: <f7290509-684d-4512-a7ed-74e97bcbb4e9@leemhuis.info>
+Date: Fri, 10 Jul 2026 12:27:28 +0200
+MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/amdgpu/userq: fix indefinite fence wait during GPU
- reset
-To: Jesse Zhang <Jesse.Zhang@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: Alexander.Deucher@amd.com, Prike Liang <Prike.Liang@amd.com>
-References: <20260710100151.2849385-1-Jesse.Zhang@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260710100151.2849385-1-Jesse.Zhang@amd.com>
+Subject: Re: [REGRESSION?] hibernation soft lockup in migration/0 at
+ multi_cpu_stop after image creation
+To: Hlib Wondertan <hlibwondertan@gmail.com>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ regressions@lists.linux.dev,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+References: <CAFdGzA6y6MfGg_aR-+2hV15nNpVzpWfVVBgr08pcKZwSrszmMw@mail.gmail.com>
+ <6eeb9cf8-3efe-49f9-a608-05924b9a75bf@leemhuis.info>
+ <CAFdGzA6zQd9+1bqgpLgZJxbxh-krLo--J8q4yC_ODN9vdW+Tew@mail.gmail.com>
+ <CAFdGzA67J-RBmY_zePXKpVbuJ1nFB1poNouNvP65fYot1k0LZQ@mail.gmail.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+Content-Language: de-DE, en-US
+In-Reply-To: <CAFdGzA67J-RBmY_zePXKpVbuJ1nFB1poNouNvP65fYot1k0LZQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR2P281CA0186.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9f::20) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SJ0PR12MB6688:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2702472b-1f27-4744-32d4-08dede6ae67e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|376014|366016|11063799006|22082099003|18002099003|56012099006;
-X-Microsoft-Antispam-Message-Info: BKVdlyvGwtCujFyrcd1j8aMQCXVJTg1p+BSeg2j3mg1XMSI4g72fN6BDWF12G/gc/z7aWEQPBtd8hMcPRFBL4GB/bmWqIgi0Ikx5rMeTzfcNBwrWJa8/mn6szHZchbCwv4p6l3HNGhtbeKiduHGKDx0xp4CyuZ8K049LvQuBcFElB5fA3xOtnMnCvRP3eXqvLtrr8m5RDvRMm7LA6MTWxJszYsKMaYW8gFOB5eluCbA+ynGnYRFXaIsdQO6Fx981y0jhJZUN7mSgVLHRksP9rt8Sn0VNVxMwmMjo0SmqzeZ5F/EoafoQUKBxeRjmtWDGprAqDgIJq8Wvf9WFMGSw/kGTd94JDbe5bKhP9XgVUAh/ZbvmPZy1Tg5QFOs6sEvixQcNzKmTPsQFjz4j+I8GvFUF7KgZLOQEw06LKB21nYJHZGeGr0oOH58zoter3+6uD0fNd/FXRKpY3e2kx/+YZKDY3tDNqOqQEyaOwKnHeklHsZLEdIEFjSeg9Azr8Jl5sA3Qekf1PTs/eDPxMjdBSDQty36i1uIlPPpVClK6AswsecsNn/dUj0P+i8V2LocP7tS2JeHiRvVxNV9cfyilGaOuc0NK7buKkMv4V3P73E6OpvdX2Ta034Cb1F2IitgniJOmUJk1am++xdFgfRx9MgAobjS/Bh2gTqBd3FgRAjo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(11063799006)(22082099003)(18002099003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NWtOK3p3a3I0b3F4QWpMa203RkgycTF0bDg2WFVEcEsvZFJJSlR4K09kU1VN?=
- =?utf-8?B?NTI2VWJUS01GU2pBY3pWaVJYR0IrMnVCQmxGbkRldk5ZNmx3SEcrclg4SVc5?=
- =?utf-8?B?N3IzVmtPWDYrMDFyUWt2MnJMTmZOcnNhRXhnY0NzaW1QSlkvQ3BXSE1ZdU5Q?=
- =?utf-8?B?RkxIam9yOE1VclJ6WkNrcEhWZ1kralZsRTdWOXBOMlpWcUdGdjI3ZExKelhZ?=
- =?utf-8?B?R05ydHVZdklVOEliNWpHK0txVWdkekhSTXVmODJFZ0tYVStMaVd3bW9lOVE2?=
- =?utf-8?B?VXFndXgrY1JJaFhjVjVNOUFTMnlibCtkSitlZk1aQ3ozd1UwSHFheC9raUdF?=
- =?utf-8?B?YmpoK1ErQUV6RE5wcVJ1cWpmQjVCUnBwQUpuRmQwdm9LY2NXL3JuMjFmYnZO?=
- =?utf-8?B?QjlvOGVVeWEzbThoSWpLdFpTS1d5MmZYQ00xYldoR2hsQkxpdmEyb3dzK0dB?=
- =?utf-8?B?Uy9jeHZYeUxwWENYNERoSUpnVVIwQlJXZ1c1UkpsaTFJWkp2eCt2Z2Z3TmtU?=
- =?utf-8?B?VGxZV1hVT0tSOG5BYlJPMTNRWU9ZdGF3NjczNlNmdzBMbjBHZmpyUWNycnFi?=
- =?utf-8?B?SUpBREcyYmJDbW8zSWlhWExZSkZIWHZCQU9jQUhxQ0s0aGgzM2Y3VHFlcldu?=
- =?utf-8?B?ZTFwVGlkTi9MRmZqRDZXMjFvOWNFeUdWN3RhZFhadU9mc2tIV21acmFrMGRx?=
- =?utf-8?B?QldRK3BVSWhaOWg4cytxOHk0SEcrZXc3MVRvQlRXOW1uNG02aExkc1FnV2RP?=
- =?utf-8?B?Z24xTWRuVzBnVjlUVElXazBmcjh5Smc2UFN0YnpuQldxWlFKUnVSczRSaHkr?=
- =?utf-8?B?RXBwK25NZ0xQUE9XMjZRQ0VzM0N1QVJuR0srWndpSG45TmFaQ3RmMk9CanpP?=
- =?utf-8?B?TmFEYXh3Y1YrdEpSMXRHQlk3ZVBZQTQ4R0Z6VW5SaWhxdGxiY0wxbkNKeVhn?=
- =?utf-8?B?VDAwRkxnMXArWjJNaFlkdTlubks1SXRzaWdQR3d6bEg2M1orN1Vqdy82cnJo?=
- =?utf-8?B?ZDdXZEJWOGxLU1M5NWxjR0FmMjNZSlJpRjgxdmZjdzN0VFdBb01Tamw1cmVM?=
- =?utf-8?B?YVhaS0NPTHZKYm1lc3o1aTBJaWRObzR1blpJSjR0ckhuOEtBSG5oUXhoYTFI?=
- =?utf-8?B?Q0Ywdm9oNjl3R3BQYzFZSzl5NFRnTTF1Skc3STVoVjJkaFkxaUVsQTN1SmNt?=
- =?utf-8?B?OXQzdWZJNUNUSEsyN28xY0hZY1JKU1pMVlZmNzRFdW1zT1oxcGJjRVhPMStj?=
- =?utf-8?B?NWdJclJjc1ZlWVR6M3RRVzd1WE5DN0VrQk4xV0dTeTU1SzlzeW9GejN4eWo2?=
- =?utf-8?B?dkZpMTFLcHhDcmRjMURMOTZtY2ZVZXNaaEZFalF5OUtrTERmbFJGbWFpNTho?=
- =?utf-8?B?dktpWHRQRDBpbWllRjIyc0dMVXh5bm4rclo4M1g3K2cvMDZGa3pFWFFDc2RP?=
- =?utf-8?B?RCtKb0VHQXF5Snp3UjF2T1Q4VkhIcXQ1SjdRREVBMWZxQ0xVUkkwREhsbEpn?=
- =?utf-8?B?SWVvSHAwcnI2K1dOV2pxMDB6NlFqc0x3Y0R6R3hnMC9EeXdnZjRDVlZwNi9h?=
- =?utf-8?B?S01qa0xWVXY0L3c5NG5CK3R0dTA5TUh2ZnpHeDhGbHE1c3QwVFNnQVJ4V2cz?=
- =?utf-8?B?YWplVkNBTGRsaEVYZXpIVlRCSFFha2czK2hvOWk4eENBYTUxdkdDWWZYbzk0?=
- =?utf-8?B?TFpRVGVkcG5DTWRJaXFWRjYrSzhlbkpNZ0V1d21kcEszcTMvTDVUVE41Ti85?=
- =?utf-8?B?UHN0S0cvQzBwbEtPN2srNzFKRnZhaTlMUSt6M2UrOWM5RStFcnYwS2t1YlMz?=
- =?utf-8?B?Y1c4VFFkSTBXTVV5MUJhNUFObEtFbytQdjRKM3NGT00vWENhQTF3U0EyUitj?=
- =?utf-8?B?Smxwbnd2L3hOYXpKVmdoaUdVdnA5UDhrV2NHaURsQUJ1aFJMY1BTRDNkaVBi?=
- =?utf-8?B?dUxUVTR4dFB0R3RWZkpZNGt6dWtUb3IxUmZ5Tkd6c1lPeGRLWWRyem9CQU5N?=
- =?utf-8?B?QlJpcGJ6NExBNUhqRm1Ra29Hci9xWkE1WSswSVN6RWUxMGcra0RYMkJWaXht?=
- =?utf-8?B?eVZ3TW1vdUNGWXBuNWtBUmZNU1V0elVhRkM0ZUt4d2VsN080aUV5SmVqcWRE?=
- =?utf-8?B?Y3JRRlJsaEtBdmt3bmw0SnRpSXRtazErL3YrZzJqd1g2QnNFRWZGWEU4Qnl5?=
- =?utf-8?B?TkoyWUd3TTdaQno2N2N0RWVkV1BSVHBXdzFEZ0hUU1d0OS94TG5qeWtLUFlq?=
- =?utf-8?B?UzJTVDVlRnB0MzJueW92RHlOMHM2cTdvdmNxZ1QydzhtNHA0S1Rxc21QRkhV?=
- =?utf-8?Q?ZM3sbUUuFnIPoY+TUc?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2702472b-1f27-4744-32d4-08dede6ae67e
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2026 10:06:24.9609 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Bwg9u/8ijB5O0WjYbFx/yVzSCsbRjlTDGb+XGLItn4VpyNTAijvmPphteEXwcuqG
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6688
+X-PPP-Message-ID: <178367925444.1888472.18289276614021858312@mxe9fb.netcup.net>
+X-NC-CID: 60sjEpCsWhETPSUk74hzmPyE5kUG8G+7jeB1hnwU9WBxRrUdzik=
+X-Mailman-Approved-At: Sun, 12 Jul 2026 15:22:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,102 +89,253 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [0.29 / 15.00];
+	DATE_IN_PAST(1.00)[52];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
 	MIME_GOOD(-0.10)[text/plain];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[leemhuis.info];
+	FORGED_RECIPIENTS(0.00)[m:hlibwondertan@gmail.com,m:linux-pm@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:regressions@lists.linux.dev,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:Jesse.Zhang@amd.com,m:Alexander.Deucher@amd.com,m:Prike.Liang@amd.com,s:lists@lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,leemhuis.info:from_mime,leemhuis.info:email,leemhuis.info:mid,leemhuis.info:dkim];
+	FREEMAIL_TO(0.00)[gmail.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[leemhuis.info:+];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim]
+	SUBJECT_HAS_QUESTION(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7F237739701
+X-Rspamd-Queue-Id: 9B22D74527E
 
-On 7/10/26 12:01, Jesse Zhang wrote:
-> pre_reset only force-completes fences of MAPPED queues. A queue in any
-> other state (e.g. mid-eviction) keeps its last_fence pending; after a
-> GPU reset that fence never signals, so the eviction/suspend worker and
-> process teardown (amdgpu_evf_mgr_flush_suspend) wait on it forever and
-> wedge the machine:
-> 
->   INFO: task kworker/6:28 blocked for more than 120 seconds.
->   Workqueue: events amdgpu_eviction_fence_suspend_worker [amdgpu]
->   Call Trace:
->    dma_fence_wait_timeout+0x7e/0x130
->    amdgpu_userq_evict+0x67/0x140 [amdgpu]
->    amdgpu_eviction_fence_suspend_worker+0xd8/0x160 [amdgpu]
->    process_scheduled_works+0xa6/0x420
-> 
-> Force-complete every queue's fence regardless of state. The unmap and
-> mark-hung step stays gated on MAPPED, since unmapping a queue that is
-> not mapped is invalid.
-> 
-> Fixes: 290f46cf5726 ("drm/amdgpu: Implement user queue reset functionality")
-> Signed-off-by: Jesse Zhang <Jesse.Zhang@amd.com>
+[Sending this with a amdgpu list and maintainers in CC to ensure they
+know about this. Note, looks a bit like this is another variant of
+https://gitlab.freedesktop.org/drm/amd/-/work_items/5387 ]
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
-
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c | 25 +++++++++++++----------
->  1 file changed, 14 insertions(+), 11 deletions(-)
+On 7/10/26 11:07, Hlib Wondertan wrote:
+> Last known actually working: unknown. I do not currently have a kernel version where hibernation was known to work reliably on this machine.
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> index aa5cc5642e87..6aa75da27f91 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq.c
-> @@ -1424,18 +1424,21 @@ void amdgpu_userq_pre_reset(struct amdgpu_device *adev)
->  
->  	/* TODO: We probably need a new lock for the queue state */
->  	xa_for_each(&adev->userq_doorbell_xa, queue_id, queue) {
-> -		if (queue->state != AMDGPU_USERQ_STATE_MAPPED)
-> -			continue;
-> -
-> -		trace_amdgpu_userq_state_start(queue);
-> -		userq_funcs = adev->userq_funcs[queue->queue_type];
-> -		userq_funcs->unmap(queue);
-> -		/* just mark all queues as hung at this point.
-> -		 * if unmap succeeds, we could map again
-> -		 * in amdgpu_userq_post_reset() if vram is not lost
-> +		if (queue->state == AMDGPU_USERQ_STATE_MAPPED) {
-> +			trace_amdgpu_userq_state_start(queue);
-> +			userq_funcs = adev->userq_funcs[queue->queue_type];
-> +			userq_funcs->unmap(queue);
-> +			/* just mark all queues as hung at this point.
-> +			 * if unmap succeeds, we could map again
-> +			 * in amdgpu_userq_post_reset() if vram is not lost
-> +			 */
-> +			trace_amdgpu_userq_state_changed(queue, AMDGPU_USERQ_STATE_HUNG);
-> +			queue->state = AMDGPU_USERQ_STATE_HUNG;
-> +		}
-> +		/* Force-complete any pending fence regardless of queue state so
-> +		 * that eviction/suspend and queue teardown waiters don't block
-> +		 * forever on a fence that will never signal after the reset.
->  		 */
-> -		trace_amdgpu_userq_state_changed(queue, AMDGPU_USERQ_STATE_HUNG);
-> -		queue->state = AMDGPU_USERQ_STATE_HUNG;
->  		amdgpu_userq_fence_driver_force_completion(queue);
->  	}
->  }
+> For this exact `migration/0` soft-lockup signature, however, I only remember seeing it after updating to `7.1.2-arch3-1`. I do not have pstore evidence of this soft-lockup on the earlier 7.0.x kernels and I've logged every failure while staying on 7. Therefore, there is a chance this is a regression.
+> 
+> What I have locally is:
+> 
+> 7.0.11-arch1-1: hibernate/image-not-found failure with pstore pointing at amdgpu/ttm, but not this soft-lockup
+> 7.0.12/7.0.13/7.0.14: other hibernate/resume failures, not always with useful pstore, and no captured migration/0 soft-lockup
+> 7.1.2-arch3-1: current pstore captures show the soft-lockup in migration/0 after image creation
+> 
+> 
+> So yes, this may be related to the drm/amd issue you linked: https://gitlab.freedesktop.org/drm/amd/-/work_items/5387 <https://gitlab.freedesktop.org/drm/amd/-/work_items/5387>
+> 
+> 
+> I have seen the 5387-style TTM/amdgpu issue quite often on this machine before 7.1 and also on 7.1, and I have been reporting those reproductions in that GitLab issue as well. The reason I filed this separately is that the visible pstore signature changed from the TTM/amdgpu oops path to a hibernation `migration/0` soft-lockup after image creation.
+> 
+> Mainline 7.2-rc: not tested yet. The only currently installed/running kernel here is `7.1.2-arch3-1`.
+> 
+> I can test a mainline/vanilla 7.2-rc kernel next and report whether it is still affected. If it still reproduces, I can then work on finding a real good/bad range for a bisect; right now I do not have a trustworthy last-good baseline.
+> 
+> 
+> 
+> On Fri, 10 Jul 2026 at 12:54, Hlib Wondertan <hlibwondertan@gmail.com
+> <mailto:hlibwondertan@gmail.com>> wrote:
+> 
+> 
+>     Last known actually working: unknown. I do not currently have a kernel version where hibernation was known to work reliably on this machine.
+> 
+>     For this exact `migration/0` soft-lockup signature, however, I only remember seeing it after updating to `7.1.2-arch3-1`. I do not have pstore evidence of this soft-lockup on the earlier 7.0.x kernels and I've logged every failure while staying on 7. Therefore, there is a chance this is a regression.
+> 
+>     What I have locally is:
+> 
+>     ```text
+>     7.0.11-arch1-1: hibernate/image-not-found failure with pstore pointing at amdgpu/ttm, but not this soft-lockup
+>     7.0.12/7.0.13/7.0.14: other hibernate/resume failures, not always with useful pstore, and no captured migration/0 soft-lockup
+>     7.1.2-arch3-1: current pstore captures show the soft-lockup in migration/0 after image creation
+>     ```
+> 
+>     So yes, this may be related to the drm/amd issue you linked:
+> 
+>     ```text
+>     https://gitlab.freedesktop.org/drm/amd/-/work_items/5387 <https://gitlab.freedesktop.org/drm/amd/-/work_items/5387>
+>     ```
+> 
+>     I have seen the 5387-style TTM/amdgpu issue quite often on this machine before 7.1 and also on 7.1, and I have been reporting those reproductions in that GitLab issue as well. The reason I filed this separately is that the visible pstore signature changed from the TTM/amdgpu oops path to a hibernation `migration/0` soft-lockup after image creation.
+> 
+>     Mainline 7.2-rc: not tested yet. The only currently installed/running kernel here is `7.1.2-arch3-1`.
+> 
+>     I can test a mainline/vanilla 7.2-rc kernel next and report whether it is still affected. If it still reproduces, I can then work on finding a real good/bad range for a bisect; right now I do not have a trustworthy last-good baseline.
+> 
+> 
+> 
+>     On Fri, 10 Jul 2026 at 11:19, Thorsten Leemhuis
+>     <regressions@leemhuis.info <mailto:regressions@leemhuis.info>> wrote:
+> 
+>         Hi!
+> 
+>         On 7/9/26 20:38, Hlib Wondertan wrote:
+>         >
+>         > I am seeing hibernation failures on a Framework Laptop 16 AMD
+>         Ryzen
+>         > AI 300 Series. The best capture I have is from EFI pstore: the
+>         kernel
+>         > creates the hibernation image, then CPU0 soft-locks in the CPU
+>         stopper
+>         > thread and panics.
+> 
+>         Thx for the report. You CCed the regression list, which leads to a
+>         questions: what was the last version this was working?
+> 
+>         Furthermore: Is mainline (7.2-rc) still affected?
+> 
+>         And FWIW, if we are lucky some developer will show up in the
+>         next few
+>         days with an idea what's wrong. But I doubt this will happen in this
+>         case. So you most likely will have to bisect this to get this
+>         resolved:
+> 
+>         https://docs.kernel.org/admin-guide/verify-bugs-and-bisect-
+>         regressions.html <https://docs.kernel.org/admin-guide/verify-
+>         bugs-and-bisect-regressions.html>
+>         https://docs.kernel.org/admin-guide/bug-bisect.html <https://
+>         docs.kernel.org/admin-guide/bug-bisect.html>
+> 
+>         Ciao, Thorsten
+>         P.S.: Wild guess, but I wonder if this is related to (also
+>         waiting for
+>         somebody to bisect):
+>         https://gitlab.freedesktop.org/drm/amd/-/work_items/5387
+>         <https://gitlab.freedesktop.org/drm/amd/-/work_items/5387>
+> 
+>         > Impact: the machine powers/reboots instead of resuming the
+>         previous
+>         > session. The next boot reported no valid hibernation image.
+>         >
+>         > System:
+>         >
+>         > ```text
+>         > Machine: Framework Laptop 16 (AMD Ryzen AI 300 Series)
+>         > DMI board: FRANMHCP09
+>         > BIOS: 03.06, 2026-04-23
+>         > Kernel: 7.1.2-arch3-1
+>         > Arch Linux
+>         > ```
+>         >
+>         > Kernel config has the debug options requested for this class
+>         of issue:
+>         >
+>         > ```text
+>         > CONFIG_HIBERNATION=y
+>         > CONFIG_PM_DEBUG=y
+>         > CONFIG_PM_SLEEP_DEBUG=y
+>         > CONFIG_SLUB_DEBUG=y
+>         > CONFIG_PAGE_POISONING=y
+>         > CONFIG_STACKTRACE=y
+>         > ```
+>         >
+>         > Relevant command line, with the root UUID elided:
+>         >
+>         > ```text
+>         > root=/dev/mapper/root rootfstype=btrfs rootflags=subvol=@ rw
+>         > resume=/dev/mapper/root resume_offset=4728064
+>         > rtc_cmos.use_acpi_alarm=1 drm.debug=0x1df log_buf_len=32M
+>         > ignore_loglevel printk.devkmsg=on slub_debug=UFPZ
+>         > ```
+>         >
+>         > The hibernate attempt was triggered by upowerd at low battery.
+>         A systemd sleep hook ran before hibernation and captured:
+>         >
+>         > ```text
+>         > phase=pre
+>         > operation=hibernate
+>         > date=2026-07-09T17:45:04+04:00
+>         > uname=Linux Wonderframe 7.1.2-arch3-1 #1 SMP PREEMPT_DYNAMIC
+>         Fri, 03 Jul 2026 23:25:36 +0000 x86_64 GNU/Linux
+>         > pm_test=[none] core processors platform devices freezer
+>         > disk=platform [shutdown] reboot suspend test_resume
+>         > panic_on_oops=1
+>         > hardlockup_panic=1
+>         > softlockup_panic=1
+>         >
+>         > BAT1 status=Discharging
+>         > BAT1 capacity=4
+>         > MemAvailable:   18303436 kB
+>         > SwapTotal:      48212748 kB
+>         > SwapFree:       48212748 kB
+>         > HardwareCorrupted:     0 kB
+>         > ```
+>         >
+>         > Relevant GPUs:
+>         >
+>         > ```text
+>         > amdgpu 0000:c4:00.0 PCI_ID=1002:7480
+>         > amdgpu 0000:c5:00.0 PCI_ID=1002:150E
+>         > ```
+>         >
+>         > pstore excerpt from the failed hibernate:
+>         >
+>         > ```text
+>         > [17199.818113] PM: hibernation: Creating image
+>         > [17200.075162] PM: hibernation: Need to copy 3578614 pages
+>         > [17200.075167] PM: hibernation: Normal pages needed: 3578614 +
+>         1024, available pages: 4622595
+>         > [17223.501212] PM: hibernation: Image created (2866538 pages
+>         copied, 712076 zero pages)
+>         > [17224.160864] watchdog: BUG: soft lockup - CPU#0 stuck for
+>         26s! [migration/0:20]
+>         > [17224.160965] CPU: 0 UID: 0 PID: 20 Comm: migration/0 Not
+>         tainted 7.1.2-arch3-1 #1 PREEMPT(full) 
+>         914ec70c9fc54a99dc91d290948a1dd1bb226c49
+>         > [17224.160969] Hardware name: Framework Laptop 16 (AMD Ryzen
+>         AI 300 Series)/FRANMHCP09, BIOS 03.06 04/23/2026
+>         > [17224.160970] Stopper: multi_cpu_stop+0x0/0x140 <-
+>         __stop_cpus.constprop.0+0x6d/0xb0
+>         > [17224.160980] RIP: 0010:multi_cpu_stop+0x87/0x140
+>         > [17224.161015] Kernel panic - not syncing: softlockup: hung tasks
+>         > [17224.161017] CPU: 0 UID: 0 PID: 20 Comm: migration/0
+>         Tainted: G             L      7.1.2-arch3-1 #1 PREEMPT(full) 
+>         914ec70c9fc54a99dc91d290948a1dd1bb226c49
+>         > [17224.161019] Tainted: [L]=SOFTLOCKUP
+>         > [17224.161020] Hardware name: Framework Laptop 16 (AMD Ryzen
+>         AI 300 Series)/FRANMHCP09, BIOS 03.06 04/23/2026
+>         > [17224.161020] Stopper: multi_cpu_stop+0x0/0x140 <-
+>         __stop_cpus.constprop.0+0x6d/0xb0
+>         > [17224.161063] RIP: 0010:multi_cpu_stop+0x87/0x140
+>         > ```
+>         >
+>         > There were no SLUB/page-poison corruption messages in the
+>         pstore chunks, despite `slub_debug=UFPZ`.
+>         >
+>         > An earlier hibernation pstore capture on the same kernel
+>         showed the same broad failure class, also in `migration/0`, but
+>         with `RIP: stop_machine_yield+0x6/0x10`.
+>         >
+>         > I have attached:
+>         >
+>         > ```text
+>         > pstore-20260709-1748.tar.gz
+>         > hibernate-pre-20260709-174504.log
+>         > ```
+>         >
+>         > Please let me know what additional data would be useful. I can
+>         keep the debug boot parameters enabled and retest with a
+>         proposed patch or additional PM/debug options.
+>         >
+>         >
+> 
 
