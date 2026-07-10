@@ -2,79 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id aFb7AEqxU2rgdgMAu9opvQ
+	id 0QxXNxqhUGqQ2gIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 17:22:50 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 09:36:58 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FBB374526C
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 17:22:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D81B738187
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 09:36:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=PV5cbjPT;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=YfVnM561;
 	dmarc=pass (policy=none) header.from=gmail.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7069210E4AD;
-	Sun, 12 Jul 2026 15:22:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8124210F7D8;
+	Fri, 10 Jul 2026 07:36:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com
- [209.85.160.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E48110F7C8
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 07:15:58 +0000 (UTC)
-Received: by mail-oa1-f42.google.com with SMTP id
- 586e51a60fabf-4472500e25fso311980fac.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 00:15:58 -0700 (PDT)
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
+ [209.85.221.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71CAB10F7D8
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 07:36:54 +0000 (UTC)
+Received: by mail-wr1-f46.google.com with SMTP id
+ ffacd0b85a97d-47defd0c1c5so365132f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 00:36:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783667757; x=1784272557; darn=lists.freedesktop.org;
- h=content-disposition:content-type:mime-version:message-id:subject:cc
- :to:from:date:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=+fIDApUl8o/a7RJvsO5rejRSVTDoHitdTXQIKacb5pA=;
- b=PV5cbjPT+3skrJxe+tJ4CtDXYyq+Vku1vot6gVI81L9uTkjTRYTKJuZa2ExdN1jGKX
- 1VKB+AJ65yqM1o+awsmzXXR+Xz9R78QWK7++FNeb/05NEpS6nPtLHfEVr+Fn91hiz1WH
- PW7JmWaWXl1/plOd8IgbdEM7gMFSYr4+JU8pQcxrpxcD9VBv3KL1Zww/E+d4oXADgFnU
- RENLwvKIFXCW+rXpJqgQC0qpBfzAA0KQf7xbZx3/RJQoOSK17jvp/g+NVVtZfKX2a/l2
- f+bUJzc9HH1CW8PwVQgBEYJ1EDEBhAxQD0LCbVx1dUoAr3gIXt4D8ey+VTovQn4jG9kq
- EEBQ==
+ d=gmail.com; s=20251104; t=1783669013; x=1784273813; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:mime-version:message-id:date
+ :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=g4QjwxTAZcWMoicPC20mhju2EmWcZ333WEUscBQo9zs=;
+ b=YfVnM561lr5+friUpbyHunYmsQprF+Ixe3nXjnsE0lW5LuQKQPuZwP3e2xSDu/vMh4
+ qJu6futJFxCoTt7IAjWdXJfB810+8+85qPmQgvyW5BqKQCEGIVOUeD6Ikb5kef1FGMih
+ mRtmVEDPCFyUbc9tv8OyBHXFK5I4sDhcMm4FSF7U/F6TIvxfYvCKtEfodosSqmzYz68k
+ 78YGUxhLQ8ZM/rPXCIqRvfILvnLOecKOSiwUPP0jRYP+qx7o07xsNTAs/rrc7XkzeEGJ
+ hkAMunZbz+sJHkcAXxDglMwoLoLWK17kf+7adgfI9xbgCwUl4oA2PhI+9j3qwL2561xl
+ hvlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783667757; x=1784272557;
- h=content-disposition:content-type:mime-version:message-id:subject:cc
- :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=+fIDApUl8o/a7RJvsO5rejRSVTDoHitdTXQIKacb5pA=;
- b=EEm5v0c+mXA8tgYtyxP6lZS8uMYSeX2XrtI8UeO5JROcZJlGtEGEdEdWD4FY3zy5LP
- vZk+rYM3zg3Hjm1sDpNtdN5O1inbEZTqUbJ59XffKRiiXQmEz52sl8sHetQlPfstvSgs
- DheTGl7Q2+/WCC5/gf6W+GySNS8zsfuu+U+Sp1O4PiA50RMvmFk8eASqYjxVzd8uKMb0
- AGtzeIUNzeropCngbvGXKow6IHFPM9zxCTOuznChdgCibcaA/gl1MA7r1vGkmaoeiKDA
- 3HakBd3mpxMr+xi+KO7yPjDe/rFOn5fopQTWWm+IT8miIej/a4rEvJjWq5U/npZqQyNz
- k4Yw==
-X-Gm-Message-State: AOJu0YwkcCvDe6Lz4PdKkVR3u0yA8KKVKQWd/MsB0V0ZYtl6RyE8Sio2
- b68MbMBvfPtCMTxdLS9qvLpIAo2g+EU2A0PpfxkGGsQn9LEgyBs0Z+YV
-X-Gm-Gg: AfdE7cnzaOmnnfwCpM/5xjfyVpc2E7u4N0OYT0uQVQM7inEwK+EDbV0ZOy/j/IfoaMg
- Qohvz4ZwVbMyaVWP6SpN6NAmKI0UScXnSM6tuhhpa6QB6dSQxk6F1T6wox0u2NDMVIraVeb9ZSN
- SVf2ifdGUXRMsQ4eLEJ0Gkma0JB4Dk0ptPZpKpaW9+BaDd5MgLm7ZZJ2uzDWOudOmnHKr3YfFlZ
- ufg50kEb1XFFuBYKx4kSvTWDNNx5icpWt7kB+KKsmklii6O9aFzmgenbFTs2GxLLzxhxYVsO6fR
- ng0CaBMvrFF128JYuae54lVlrKgBFhvAwGqfHOKwlzEbiCENLM+wM4bZqQONm+UA59eVLoiJlUZ
- MUDZfMSt2k8LoVvw8Llz5o0vjGYlGKfyx7d0u1vHPIRqRqDftjCw+hVpH7jpuhyRIU4K1Ua1IAE
- lRfHsC
-X-Received: by 2002:a05:6808:c2fb:b0:495:97ef:b41e with SMTP id
- 5614622812f47-4a2048e36cdmr7147858b6e.34.1783667757265; 
- Fri, 10 Jul 2026 00:15:57 -0700 (PDT)
-Received: from localhost ([74.80.182.70]) by smtp.gmail.com with ESMTPSA id
- 5614622812f47-4a41f5b69bfsm39967b6e.17.2026.07.10.00.15.54
+ d=1e100.net; s=20251104; t=1783669013; x=1784273813;
+ h=content-transfer-encoding:content-type:mime-version:message-id:date
+ :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=g4QjwxTAZcWMoicPC20mhju2EmWcZ333WEUscBQo9zs=;
+ b=rVSKaZ+S90lKA0hcF4PTKA9TSH8rrX8+CzN9T2JXXO2A2/t5/FQg3WzR+nraWJWGSs
+ yZ70u2ruSUCKgK1OMhF9VSdlb+aHFDV0R0cgg5Ofh7SpGG9jjV3KS0bPVr7L5A3kOMTE
+ lNUnm8xI+CEIVwAl0KkLy3H+00tsTC6kce6VZlaYqHwTVvnldYg6riXDuwp8vDVscBx8
+ 74BGHcMfQfGnzniapH1EGlq/VDvXIcgrV3N+HmacRuGfdpBYD3HDvfZqBX2iThr7smGK
+ eHgWcxC22aDpSQoEjKmws3kQIvqOqtLcJqLF5GG2WQr8bi46bxAgEcH8MNbrHAj1g9JN
+ UAKQ==
+X-Gm-Message-State: AOJu0Yy1f6ChlV6PThpG6vwV/oSi5RrB5/uhV27gbS+WyTO52cP0hCxE
+ U4Yr/tQHZmhB7oXQgbNe1/6gBUycgg9TwYVlo9wLJH5x+SaHIJd4lkBYiLS0ig==
+X-Gm-Gg: AfdE7ck1o/kfGzHmUVWBgJFo8C5fXkPObuafR6wtia9BCpwXJuG6hdZyGd+W4eqgvab
+ Kn+ewdyHhDRr5KbxMz8ji4za8YuPkQc8YDtdmwTIGEKF/0c4aKGyuQmrIHMAF8PKdMVA8V3Dio1
+ PkxV3z8KuiIcRxYO/KmD7DYPxY+gbpgxUW38TjM9Otm7KJ7ansYDtsG6dYQn4IgZAjI5Q1HyGTx
+ GSSrc1T/sYwCyFLNnu3ziGQoxfPIx3sjieVD8ghFeZ434Z4cAy3g9KrhRHiMpTdO1E5BYDBRmfv
+ Ka2kcD0MY+lDuYppel0T4W9PSMKKtvMzLT6D1o89mYZiB4GGmUlHpparfr4WKzb062LkTd80cIO
+ Wmgm0sGP1GnyB8wpo17waMZyPnz+bjUJFogH+CJWWFiCvLzTNiBDZGqzEQ6qtfqGWs3EfqxdwEF
+ 6VamGw3MhzBWQBHeLkVplMYSAB9FU0pWwjdFBe7ahLsGav1pINjND6kWJMvQhIXUCMyMmA6fZHu
+ TdnB2j9E1U=
+X-Received: by 2002:a05:600c:1c18:b0:492:7101:3d88 with SMTP id
+ 5b1f17b1804b1-493e68c4ab4mr104543865e9.24.1783669012722; 
+ Fri, 10 Jul 2026 00:36:52 -0700 (PDT)
+Received: from Timur-Max.home
+ (20014C4E24E4950000951480CE1AD54B.dsl.pool.telekom.hu.
+ [2001:4c4e:24e4:9500:95:1480:ce1a:d54b])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-493f49755f9sm24652325e9.8.2026.07.10.00.36.51
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Jul 2026 00:15:56 -0700 (PDT)
-Date: Fri, 10 Jul 2026 10:15:50 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: amd-gfx@lists.freedesktop.org,
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
-Subject: [bug report] drm/amdgpu: Implement "color format" DRM property
-Message-ID: <alCcJmDeIYEE94Eh@stanley.mountain>
+ Fri, 10 Jul 2026 00:36:52 -0700 (PDT)
+From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
+ Natalie Vock <natalie.vock@gmx.de>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Dan Carpenter <error27@gmail.com>
+Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ kernel test robot <lkp@intel.com>
+Subject: [PATCH] drm/amdgpu: Fix IP block NULL check during soft reset
+Date: Fri, 10 Jul 2026 09:36:48 +0200
+Message-ID: <20260710073648.41408-1-timur.kristof@gmail.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Sun, 12 Jul 2026 15:22:44 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,133 +96,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	DATE_IN_PAST(1.00)[56];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:SRINIVASAN.SHANMUGAM@amd.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,gmx.de,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,intel.com];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,stanley.mountain:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9FBB374526C
+X-Rspamd-Queue-Id: 3D81B738187
 
-Hello Nicolas Frattaroli,
+We can't print the IP block name when the IP block is NULL.
 
-Commit 8a0343b03b98 ("drm/amdgpu: Implement "color format" DRM
-property") from Jun 9, 2026 (linux-next), leads to the following
-Smatch static checker warning:
+Note that it should never be NULL, the only way that
+can happen is when amdgpu_ip_from_ring() is missing the
+given ring type. The check is just there to be sure.
 
-	drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_connector.c:857 fill_stream_properties_from_drm_display_mode()
-	warn: duplicate zero check 'connector_state->color_format' (previous on line 848)
+Reported-by: kernel test robot <lkp@intel.com>
+Reported-by: Dan Carpenter <error27@gmail.com>
+Closes: https://lore.kernel.org/r/202607031711.yLwFhGfp-lkp@intel.com/
+Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ip.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm_connector.c
-    801 static void fill_stream_properties_from_drm_display_mode(
-    802         struct dc_stream_state *stream,
-    803         const struct drm_display_mode *mode_in,
-    804         const struct drm_connector *connector,
-    805         const struct drm_connector_state *connector_state,
-    806         const struct dc_stream_state *old_stream,
-    807         int requested_bpc)
-    808 {
-    809         bool is_dp_or_hdmi = dc_is_hdmi_signal(stream->signal) || dc_is_dp_signal(stream->signal);
-    810         struct dc_crtc_timing *timing_out = &stream->timing;
-    811         const struct drm_display_info *info = &connector->display_info;
-    812         struct amdgpu_dm_connector *aconnector = NULL;
-    813         struct hdmi_vendor_infoframe hv_frame;
-    814         struct hdmi_avi_infoframe avi_frame;
-    815         bool want_420;
-    816         bool want_422;
-    817         ssize_t err;
-    818 
-    819         if (connector->connector_type != DRM_MODE_CONNECTOR_WRITEBACK)
-    820                 aconnector = to_amdgpu_dm_connector(connector);
-    821 
-    822         memset(&hv_frame, 0, sizeof(hv_frame));
-    823         memset(&avi_frame, 0, sizeof(avi_frame));
-    824 
-    825         timing_out->h_border_left = 0;
-    826         timing_out->h_border_right = 0;
-    827         timing_out->v_border_top = 0;
-    828         timing_out->v_border_bottom = 0;
-    829 
-    830         want_420 = (aconnector && aconnector->force_yuv_pixel_format == PIXEL_ENCODING_YCBCR420) ||
-    831                    (connector_state->color_format == DRM_CONNECTOR_COLOR_FORMAT_YCBCR420);
-    832         want_422 = (aconnector && aconnector->force_yuv_pixel_format == PIXEL_ENCODING_YCBCR422) ||
-    833                    (connector_state->color_format == DRM_CONNECTOR_COLOR_FORMAT_YCBCR422);
-    834 
-    835         if (drm_mode_is_420_only(info, mode_in) &&
-    836             (want_420 || connector_state->color_format == DRM_CONNECTOR_COLOR_FORMAT_AUTO)) {
-    837                 timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
-    838         } else if (drm_mode_is_420_also(info, mode_in) && want_420) {
-    839                 timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
-    840         } else if ((info->color_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422)) &&
-    841                    want_422 && is_dp_or_hdmi) {
-    842                 timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR422;
-    843         } else if (connector_state->color_format == DRM_CONNECTOR_COLOR_FORMAT_YCBCR444 &&
-    844                    (info->color_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444)) &&
-    845                    is_dp_or_hdmi) {
-    846                 timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR444;
-    847         } else if (connector_state->color_format == DRM_CONNECTOR_COLOR_FORMAT_RGB444 ||
-    848                    connector_state->color_format == DRM_CONNECTOR_COLOR_FORMAT_AUTO) {
-                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AUTO is handled here.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ip.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ip.c
+index 33a04113ed74..922f4b15619d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ip.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ip.c
+@@ -489,7 +489,13 @@ int amdgpu_device_ip_soft_reset(struct amdgpu_ring *guilty_ring,
+ 	ip_type = amdgpu_ip_from_ring(guilty_ring->funcs->type);
+ 	ip_block = amdgpu_device_ip_get_ip_block(adev, ip_type);
+ 
+-	if (!ip_block || !ip_block->version->funcs->soft_reset) {
++	if (unlikely(!ip_block)) {
++		dev_warn(adev->dev, "IP block not found for ring %s\n",
++			 guilty_ring->name);
++		return -EOPNOTSUPP;
++	}
++
++	if (!ip_block->version->funcs->soft_reset) {
+ 		dev_warn(adev->dev, "IP block soft reset not supported on %s\n",
+ 			 ip_block->version->funcs->name);
+ 		return -EOPNOTSUPP;
+-- 
+2.54.0
 
-    849                 timing_out->pixel_encoding = PIXEL_ENCODING_RGB;
-    850         } else {
-    851                 /*
-    852                  * If a format was explicitly requested but the requested format
-    853                  * can't be satisfied, set it to an invalid value so that an
-    854                  * error bubbles up to userspace. This way, userspace knows it
-    855                  * needs to make a better choice.
-    856                  */
---> 857                 if (connector_state->color_format != DRM_CONNECTOR_COLOR_FORMAT_AUTO)
-    858                         timing_out->pixel_encoding = PIXEL_ENCODING_UNDEFINED;
-
-So we know this is true and the else if else is dead code.
-
-    859                 else if (drm_mode_is_420_only(info, mode_in))
-    860                         timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
-    861                 else
-    862                         timing_out->pixel_encoding = PIXEL_ENCODING_RGB;
-    863         }
-    864 
-    865         timing_out->timing_3d_format = TIMING_3D_FORMAT_NONE;
-    866         timing_out->display_color_depth = amdgpu_dm_convert_color_depth_from_display_info(
-    867                 connector,
-    868                 (timing_out->pixel_encoding == PIXEL_ENCODING_YCBCR420),
-    869                 requested_bpc);
-    870         timing_out->scan_type = SCANNING_TYPE_NODATA;
-    871         timing_out->hdmi_vic = 0;
-    872 
-
-This email is a free service from the Smatch-CI project [smatch.sf.net].
-
-regards,
-dan carpenter
