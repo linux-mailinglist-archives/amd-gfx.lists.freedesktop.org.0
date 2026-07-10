@@ -2,119 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id TjZPFE+xU2r7dgMAu9opvQ
+	id myu1Gnu4UGr93wIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 17:22:55 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 11:16:43 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3F29745295
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 17:22:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B36FF738EF9
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 11:16:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ibm.com header.s=pp1 header.b=CLSLGV7x;
-	dmarc=pass (policy=none) header.from=ibm.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 2610:10:20:722:a800:ff:fe36:1795 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=amd.com header.s=selector1 header.b=BT3EJKZg;
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA80010E4C3;
-	Sun, 12 Jul 2026 15:22:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7FA510E15F;
+	Fri, 10 Jul 2026 09:16:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAA1310E148;
- Fri, 10 Jul 2026 08:53:16 +0000 (UTC)
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 66A7mOc13742657; Fri, 10 Jul 2026 08:53:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=pp1; bh=QoVB7H
- 0Vi426jnnJBhDnt9PbnGYwcTmaO05P4gqHVuM=; b=CLSLGV7xVpM2L6QlQvkSSK
- CkIPf9E/hD6pTYrM2Z7r5c5Dmz0ExNJ5IIQDuIl2zVxo0Y/N4XpqXtypWstj17vd
- euzJw2laSXOGOCo92VQ9I5hgAHGhzLZmRPymcIhW0zhDn5dvpL/bjVoorkafqhBZ
- z63CEa04ACsk4KlT0o0NStB9OaSLFDLJEhSV1IO9dsaMZhdI0cIo6BkfOJNFyKDQ
- e7BA3ErMIHQioaERBbgCdA416cfzbz4k1+gzLUCf5p19t6lzDp4hPglgU8ZLUGir
- j+WpiaV1S87MefKeRXu17BI+jTlKiEEIp4A/eskw8zGK0V0SAotVhz+kAsdV3mvQ
- ==
-Received: from ppma21.wdc07v.mail.ibm.com
- (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4f6stt617w-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 10 Jul 2026 08:53:07 +0000 (GMT)
-Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
- by ppma21.wdc07v.mail.ibm.com (8.18.1.7/8.18.1.7) with ESMTP id 66A8nt4i030106;
- Fri, 10 Jul 2026 08:53:06 GMT
-Received: from smtprelay01.wdc07v.mail.ibm.com ([172.16.1.68])
- by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4f7dgkh6w2-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 10 Jul 2026 08:53:06 +0000 (GMT)
-Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com
- [10.39.53.232])
- by smtprelay01.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 66A8r6fC525202
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 10 Jul 2026 08:53:06 GMT
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 25B3058067;
- Fri, 10 Jul 2026 08:53:06 +0000 (GMT)
-Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 5DE2B5805D;
- Fri, 10 Jul 2026 08:53:01 +0000 (GMT)
-Received: from [9.61.248.61] (unknown [9.61.248.61])
- by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
- Fri, 10 Jul 2026 08:53:01 +0000 (GMT)
-Message-ID: <4ccaca42-03c0-40aa-9a4e-9b0514735b45@linux.ibm.com>
-Date: Fri, 10 Jul 2026 14:22:59 +0530
+Received: from PH8PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11012051.outbound.protection.outlook.com [40.107.209.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40CEA10E15F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 09:16:39 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rWopGoWwu4E1ss6iQxh6Jn1TQgGCT3k61UsmOn4UZ5xxpIISNOdM0SDX6F5fih44lRrtxCZY9cZL47erQCZFHlcimxOCsrQ9UgnVDIBYN2Oaq7aRaVd03ngwDc8XJ64VTro6Bj5JZ5DxhoTG81tflZxaWtQSgdexXGS1mtCdm6rz42IJDCgZdbX7m6Iwn6ZwNCt/aZvvc6TgE7XCNXJ/AQBmhNHYS0JK/HablcMWXU9VzDhOQkI5lbgpKma4IOCh6mZYUqtunI3xkqJMADsIJoLmYL4CVCMzgYIe+FtF2MJqmjtUtsTQtQ8Vgu14sGdLk7nTT3HZG/uPFnvVOQIJPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8C+7MURGSEfcdlPvGH32itgYMx5slb3FNhodFoP1THs=;
+ b=g1mcNTtQycWYdlPy1iLJ6JUof0IDVfBHO2YMciipFyxnFOlJnAKpHibMXmksO+Q8nFbicNEYJP+Fl2VpJi6kOmNGpnsOWg/qT2QsTOzxz6hjO0kZyIbqAw+Ue66jXig6gPhpjSS/cyHyNCs/eQl70ZBEShcdyJ8TW1RCS88aTaJIHljh4AlpMsQVmWm92RT92CyGK7H9l9AxgMWtBoHAb8df2ECIqTEoDHzD2QnEnbUKHGpsOMH8Ld5m2YPABZQtt/7OSVHJu5UOD/DLR9fprv4ur0+g5gyqd0+OjVvXkm26LQSZ+CSm80OXcc/ltO6QV/LQpnPiT7s+9ntcM33Dbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8C+7MURGSEfcdlPvGH32itgYMx5slb3FNhodFoP1THs=;
+ b=BT3EJKZgCjfzAWs1jvuGQNop9HVnhw5Z4XA5WxO3p/ArgSuoeVjyQikCfYi07aRRoKtekmnVxQ3OCGxBqqz36bTF6tyVus9vacqjsXx0xOR0y3a1jvRrXSuZzs7ztTNlcGEjL3eslAzvvF/FeTSPZ45JCLhr455u7AKue5jVglo=
+Received: from DM6PR04CA0015.namprd04.prod.outlook.com (2603:10b6:5:334::20)
+ by DS0PR12MB7702.namprd12.prod.outlook.com (2603:10b6:8:130::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.18; Fri, 10 Jul
+ 2026 09:16:35 +0000
+Received: from SN1PEPF0002BA4E.namprd03.prod.outlook.com
+ (2603:10b6:5:334:cafe::63) by DM6PR04CA0015.outlook.office365.com
+ (2603:10b6:5:334::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.13 via Frontend Transport; Fri,
+ 10 Jul 2026 09:16:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SN1PEPF0002BA4E.mail.protection.outlook.com (10.167.242.71) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Fri, 10 Jul 2026 09:16:34 +0000
+Received: from fedora.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Fri, 10 Jul
+ 2026 04:16:32 -0500
+From: Zhu Lingshan <lingshan.zhu@amd.com>
+To: <Alexander.Deucher@amd.com>, <Christian.Koenig@amd.com>
+CC: <amd-gfx@lists.freedesktop.org>, <Ray.Huang@amd.com>, Zhu Lingshan
+ <lingshan.zhu@amd.com>
+Subject: [PATCH] drm/amdgpu: fix bo->pin leaking in amdgpu_bo_create_reserved
+Date: Fri, 10 Jul 2026 17:16:17 +0800
+Message-ID: <20260710091617.156343-1-lingshan.zhu@amd.com>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [REGRESSION] drm/amd/display: amdgpu_dm_plane_test.ko fails to
- build due to modpost "too long symbol"
-Content-Language: en-GB
-From: Venkat Rao Bagalkote <venkat88@linux.ibm.com>
-To: Randy Dunlap <rdunlap@infradead.org>, amd-gfx@lists.freedesktop.org,
- bhawanpreet.lakha@amd.com
-Cc: dri-devel@lists.freedesktop.org, alexander.deucher@amd.com,
- george.zhang@amd.com, LKML <linux-kernel@vger.kernel.org>,
- Madhavan Srinivasan <maddy@linux.ibm.com>, christian.koenig@amd.com,
- harry.wentland@amd.com, sunpeng.li@amd.com, broonie@kernel.org,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>, alex.hung@amd.com
-References: <fde3656e-9e22-4e4c-937f-7e8cb918da6b@linux.ibm.com>
- <54f6efe8-cab8-4fc8-bf00-f012b3224e54@infradead.org>
- <85931e07-60eb-4df2-bc52-773c63f27f6c@linux.ibm.com>
- <14e618d3-34ea-4bc9-b9a8-3783e2b61e0a@linux.ibm.com>
-In-Reply-To: <14e618d3-34ea-4bc9-b9a8-3783e2b61e0a@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: Qb0xBA1kJlG2Z_uKa0KliLMcMWpqA4n4
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzEwMDA4NSBTYWx0ZWRfX/FgFQsiNEoMB
- 1mzPxXw1TZYIaO1cPphM/Mh9JWybMzqu/f0xtsTwgHLIWAt2SpBpRbaiK+KrDeDH3wAwGuzcMTg
- grUdPNn2vO5Fbfi6XECTB+XylshudGE=
-X-Authority-Analysis: v=2.4 cv=DKW/JSNb c=1 sm=1 tr=0 ts=6a50b2f3 cx=c_pps
- a=GFwsV6G8L6GxiO2Y/PsHdQ==:117 a=GFwsV6G8L6GxiO2Y/PsHdQ==:17
- a=IkcTkHD0fZMA:10 a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=RzCfie-kr_QcCd8fBx8p:22 a=VwQbUJbxAAAA:8
- a=e5mUnYsNAAAA:8 a=VnNF1IyMAAAA:8 a=zd2uoN0lAAAA:8 a=pimU7x52omh38VAsaFAA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=Vxmtnl_E_bksehYqCbjh:22
-X-Proofpoint-GUID: Qb0xBA1kJlG2Z_uKa0KliLMcMWpqA4n4
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzEwMDA4NSBTYWx0ZWRfX/488vXlM6EHc
- RUyY/oyk96C366YZjgHv8USEbXuuRjXXhjEpzqpkinQQZysp+9j469M2Y2+l4NM2fS6yoVI5DV5
- nuHOhSzu0Vjwo03ma4+SsctKWct+lIAsm2PsUcrA0V2MBzi2QtrDZsgVsP0bT/8DRD8FU15N88R
- 86exxYF9FTFdojqwijl877G0zd/B0PK1Xm8H3aw00pMJvUGGHykdWJWaWpSEnH5qOQCRdXZT2qd
- jexcPOu6FFwHtunvznYzXFUD5pApEcCL8Al/5i1fuVWnzkD2wRmesD2rr4DrQMi2s+uADOxfOZ0
- +js2VDqll6F8ubIW27KvU2mw9On7JzlsETTw9NQ6t2nqUV784HyEynQBJJyTNYmJuNJ73LOf56B
- mQvf9UYJDx0Sp3vpv8tRX5rmG9q14he6UXFWktUrBGf58ridI90Tx28qBefXiKOQozGmsGNQM/a
- kSmsLFIellP2/zpyjhQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-10_02,2026-07-09_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 bulkscore=0 clxscore=1015 phishscore=0 impostorscore=0
- priorityscore=1501 adultscore=0 lowpriorityscore=0 suspectscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2606150000
- definitions=main-2607100085
-X-Mailman-Approved-At: Sun, 12 Jul 2026 15:22:44 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4E:EE_|DS0PR12MB7702:EE_
+X-MS-Office365-Filtering-Correlation-Id: ba6467af-5ce5-4c94-aa47-08dede63f065
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|376014|1800799024|82310400026|36860700016|18002099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: wNgAA2W8NXsUSYl/OF9v6/6bksExM8mD8TXPiz1Oumtt814MddFYAd3jY3MPRHz8A5FAqRTKu1PRp7TfXFNAe5eMKupInA4+wYnJRpfU9RfQIL0A076nu9fRRpVL3LCNJUoGOoTTOfyWUlhDCPqKKnTDXso0dM5Y6XrN46oBS5tg2YkH25hLpp4NYS6qeRL96Z7w2fZYQWv8DB9dvLpnS3OzJ/tPxMSaJk8PaEr1k+r0Scnzkc5fr/qXaZvjLCmcfUUl2mpb6ml3CYKSQVU7uOCANmmWVHclPe9Eexfg+9nnOpiF7pJVT27gCpru9PF/BZNCYe0WGKKhHXWWFuFVmNGkrU2EYzeTbbzhwjMxbiGnpRWzBu9ukwc70MnpaiVvv2K5xy5PDv+wYLpk1g2DjiZts6aaR8YybpAx5fGnXZu5bH/9n4D+Q69uWt8ECEMgybD75t5l2SAU+m51fLXdhDsWjSQEMiuZmpQRqzYDdTdn0Q7Wj3OUiDPYO6CEPBGeJ7xEIBzM20TUc+DUl5t7oc66VIUK/pZuLjTS2+dWqa2bnroqRGe7ZmxKkcogPrWuAC9q/vrSGlYDf3uxrhAvkva9gp8beFSvwDqP8NBWBYTZ8tqBPr4/PKS9Ur1hxRRev9wU3qfCG099BwUs4BrI0sGS3zf0nBIan8q5u1oR/EMLsrTwlAuWAfHzsapIV9mNxs+1kwfAse10/X6EQzYTDA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(1800799024)(82310400026)(36860700016)(18002099003)(11063799006)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: n07RH99dO7WBjwo8/URoMib6cytoXGuEz2oIuvIA5pH/jFuDDzkK6ncEjBeiJGruEiUEOXDe5nNUM2+3RrF7pAE364pd8mUlX+w8VOE8T5AWaANXqxVJ0az90drnfnkMLKxvb9hxB7CZRTP7PxkE8pqNMYr2p/vxW9847BX8Ak1tHIQ+4IYwHd8155ltcXUJfp2uqlE7+fY4lLAmzDodPXauUOnbcf4dRsQe37O/34AT+ORGLBwwiceo2hcX4NHmFC7QLZh+qvbjploeAcJXoDMvlyXLSkhiJdh17QPNjbjc8HeicnNoVqbOxgvX6OJHY1usi3FGn863X+0rrJbWSYz7B+o9bDfeHWL84Et94ZPny8Ha942NIbnGQxZtbNAgMVHkNMV4ubAx5NLHPGkBcdwxd3X6+2UBR6mxnm7Po9/7cMNf0fTCM8IcX9sNDRFf
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2026 09:16:34.9149 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ba6467af-5ce5-4c94-aa47-08dede63f065
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA4E.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7702
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,341 +115,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.21 / 15.00];
-	DATE_IN_PAST(1.00)[54];
-	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,linux.ibm.com:mid,linux.ibm.com:from_mime];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[10];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[venkat88@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
 	RCVD_TLS_LAST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:Alexander.Deucher@amd.com,m:Christian.Koenig@amd.com,m:Ray.Huang@amd.com,m:lingshan.zhu@amd.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[lingshan.zhu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[lingshan.zhu@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
-	DKIM_TRACE(0.00)[ibm.com:+]
+	RCPT_COUNT_FIVE(0.00)[5];
+	HAS_XOIP(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E3F29745295
+X-Rspamd-Queue-Id: B36FF738EF9
 
+amdgpu_bo_create_reserved() only allocates a new BO when
+*bo_ptr (struct amdgpu_bo **bo_ptr as input parameter) is
+NULL, it simply skips creation when *bo_ptr is non-NULL.
+But it unconditionally reserves, pins, gart allocates
+and maps the BO afterwards.
 
-On 10/07/26 1:31 pm, Venkat Rao Bagalkote wrote:
->
-> On 10/07/26 10:45 am, Venkat Rao Bagalkote wrote:
->>
->> On 09/07/26 11:53 pm, Randy Dunlap wrote:
->>>
->>> On 7/7/26 10:05 PM, Venkat Rao Bagalkote wrote:
->>>> Greetings!!!
->>>>
->>>> linux-next is failing to build for me with:
->>>>
->>>> ERROR: modpost: too long symbol
->>>> "amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers"
->>>> [drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/tests/amdgpu_dm_plane_test.ko] 
->>>>
->>>>
->>>> make[2]: *** [scripts/Makefile.modpost:147: Module.symvers] Error 1
->>>> make[1]: *** [Makefile:2165: modpost] Error 2
->>>> make: *** [Makefile:248: __sub-make] Error 2
->>>>
->>>> The failure occurs during modpost while building:
->>>>
->>>> drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.ko
->>>>
->>>> This appears to be a regression in the AMD display KUnit test code.
->>>>
->>>> Could someone please take a look?
->>>>
->>>>
->>>> If you happen to fix this, please add below tag.
->>>>
->>>> Reported-by: Venkat Rao Bagalkote <venkat88@linux.ibm.com>
->>> Hi,
->>> I cannot reproduce this when using gcc v15.3.0.
->>>
->>> Which compiler & version are you using?
->>>
->> Hello,
->>
->> I am seeing this across below mentioned gcc version.
->>
->>
->> gcc (GCC) 14.3.1 20251022 (Red Hat 14.3.1-4)
->> gcc (GCC) 11.5.0 20240719 (Red Hat 11.5.0-11)
->> gcc (GCC) 12.2.1 20221121 (Red Hat 12.2.1-7)
->>
->>
->> Attched is the .config file.
->
-> Git bisect is pointing to below commit as first bad commit.
->
->
-> # git bisect bad
-> 2b147895be109e0860269a7a72c697cdf049a885 is the first bad commit
-> commit 2b147895be109e0860269a7a72c697cdf049a885 (HEAD)
-> Author: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
-> Date:   Fri Jun 12 16:12:21 2026 -0400
->
->     drm/amd/display: Add kunit tests for amdgpu_dm_plane
->
->     Add kunit tests for some functions in amdgpu_dm_plane.
->
->     Assisted-by: Copilot:Claude-Opus-4.8
->     Reviewed-by: Alex Hung <alex.hung@amd.com>
->     Signed-off-by: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
->     Signed-off-by: George Zhang <george.zhang@amd.com>
->     Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
->
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  115 
-> ++++++-----
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h   |   51 +++++
->  drivers/gpu/drm/amd/display/amdgpu_dm/tests/Makefile  |    2 +
->  drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c | 
-> 1204 
-> +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
->  4 files changed, 1325 insertions(+), 47 deletions(-)
->  create mode 100644 
-> drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
->
+When the same non-NULL BO pointer is passed in again,
+for example firmware buffers that live in adev and are
+re-loaded on every resume / cp_resume / start
+under AMDGPU_FW_LOAD_DIRECT, amdgpu_bo_pin() just increases
+pin_count unconditionally, however the matching teardown only unpins
+once, so pin_count never drops to zero, so TTM is not able
+to move, swap or evict a BO, causing BO leaks.
 
+This commit fixes this issue by only pinning the bo
+once at creation, and repeated calls no longer
+take additional pin references.
 
-Hi,
+Signed-off-by: Zhu Lingshan <lingshan.zhu@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
-I bisected this build failure and found that it is caused by the exported
-KUnit symbols:
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+index 4dd7c712b8c3..7ac3b8fd963a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+@@ -276,10 +276,12 @@ int amdgpu_bo_create_reserved(struct amdgpu_device *adev,
+ 		goto error_free;
+ 	}
+ 
+-	r = amdgpu_bo_pin(*bo_ptr, domain);
+-	if (r) {
+-		dev_err(adev->dev, "(%d) kernel bo pin failed\n", r);
+-		goto error_unreserve;
++	if (free) {
++		r = amdgpu_bo_pin(*bo_ptr, domain);
++		if (r) {
++			dev_err(adev->dev, "(%d) kernel bo pin failed\n", r);
++			goto error_unreserve;
++		}
+ 	}
+ 
+ 	r = amdgpu_ttm_alloc_gart(&(*bo_ptr)->tbo);
+@@ -302,7 +304,8 @@ int amdgpu_bo_create_reserved(struct amdgpu_device *adev,
+ 	return 0;
+ 
+ error_unpin:
+-	amdgpu_bo_unpin(*bo_ptr);
++	if (free)
++		amdgpu_bo_unpin(*bo_ptr);
+ error_unreserve:
+ 	amdgpu_bo_unreserve(*bo_ptr);
+ 
+-- 
+2.55.0
 
-   amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers()
-   amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers()
-
-modpost rejects the resulting exported symbol name with:
-
-   ERROR: modpost: too long symbol
-   "amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers"
-
-I tested the following approach locally, which simply shortens the helper
-names to:
-
-   amdgpu_dm_plane_fill_gfx9_attrs_from_modifiers()
-   amdgpu_dm_plane_fill_gfx12_attrs_from_modifiers()
-
-and updated all corresponding users and KUnit references. This resolves the
-build issue for me and does not appear to introduce any functional changes.
-
-Does this look like an acceptable fix?
-
-If so, I'll prepare and send a formal patch with proper changelog.
-
-
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c 
-b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-index 1b564cfe2120..b58225338bc4 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
-@@ -328,7 +328,7 @@ STATIC_IFN_KUNIT int 
-amdgpu_dm_plane_validate_dcc(struct amdgpu_device *adev,
-  }
-  EXPORT_IF_KUNIT(amdgpu_dm_plane_validate_dcc);
-
--STATIC_IFN_KUNIT int 
-amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers(struct 
-amdgpu_device *adev,
-+STATIC_IFN_KUNIT int 
-amdgpu_dm_plane_fill_gfx9_attrs_from_modifiers(struct amdgpu_device *adev,
-              const struct amdgpu_framebuffer *afb,
-              const enum surface_pixel_format format,
-              const enum dc_rotation_angle rotation,
-@@ -378,9 +378,9 @@ STATIC_IFN_KUNIT int 
-amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers(s
-
-         return ret;
-  }
--EXPORT_IF_KUNIT(amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers);
-+EXPORT_IF_KUNIT(amdgpu_dm_plane_fill_gfx9_attrs_from_modifiers);
-
--STATIC_IFN_KUNIT int 
-amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers(struct 
-amdgpu_device *adev,
-+STATIC_IFN_KUNIT int 
-amdgpu_dm_plane_fill_gfx12_attrs_from_modifiers(struct amdgpu_device *adev,
-               const struct amdgpu_framebuffer *afb,
-               const enum surface_pixel_format format,
-               const enum dc_rotation_angle rotation,
-@@ -419,7 +419,7 @@ STATIC_IFN_KUNIT int 
-amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers(
-
-         return ret;
-  }
--EXPORT_IF_KUNIT(amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers);
-+EXPORT_IF_KUNIT(amdgpu_dm_plane_fill_gfx12_attrs_from_modifiers);
-
-  static void amdgpu_dm_plane_add_gfx10_1_modifiers(const struct 
-amdgpu_device *adev,
-                                                   uint64_t **mods,
-@@ -927,14 +927,14 @@ int 
-amdgpu_dm_plane_fill_plane_buffer_attributes(struct amdgpu_device *adev,
-         }
-
-         if (adev->family == AMDGPU_FAMILY_GC_12_0_0) {
--               ret = 
-amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers(adev, afb, 
-format,
-+               ret = 
-amdgpu_dm_plane_fill_gfx12_attrs_from_modifiers(adev, afb, format,
-                rotation, plane_size,
-                tiling_info, dcc,
-                address);
-                 if (ret)
-                         return ret;
-         } else if (adev->family >= AMDGPU_FAMILY_AI) {
--               ret = 
-amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers(adev, afb, format,
-+               ret = 
-amdgpu_dm_plane_fill_gfx9_attrs_from_modifiers(adev, afb, format,
-               rotation, plane_size,
-               tiling_info, dcc,
-               address);
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h 
-b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
-index 911fb2d73e22..55c33e051aee 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
-@@ -92,7 +92,7 @@ int amdgpu_dm_plane_get_plane_modifiers(struct 
-amdgpu_device *adev,
-  int amdgpu_dm_plane_get_plane_formats(const struct drm_plane *plane,
-                                       const struct dc_plane_cap *plane_cap,
-                                       uint32_t *formats, int max_formats);
--int amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers(struct 
-amdgpu_device *adev,
-+int amdgpu_dm_plane_fill_gfx9_attrs_from_modifiers(struct amdgpu_device 
-*adev,
-const struct amdgpu_framebuffer *afb,
-const enum surface_pixel_format format,
-const enum dc_rotation_angle rotation,
-@@ -100,7 +100,7 @@ int 
-amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers(struct amdgpu_devi
-struct dc_tiling_info *tiling_info,
-struct dc_plane_dcc_param *dcc,
-struct dc_plane_address *address);
--int amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers(struct 
-amdgpu_device *adev,
-+int amdgpu_dm_plane_fill_gfx12_attrs_from_modifiers(struct 
-amdgpu_device *adev,
-  const struct amdgpu_framebuffer *afb,
-  const enum surface_pixel_format format,
-  const enum dc_rotation_angle rotation,
-diff --git 
-a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c 
-b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
-index 46c9af432e37..fc84f5a08596 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
-@@ -579,7 +579,7 @@ static void 
-dm_test_fill_gfx12_plane_attributes_from_modifiers(struct kunit *tes
-         plane_size.surface_size.height = 1080;
-
-         KUNIT_EXPECT_EQ(test,
--  amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers(
-+  amdgpu_dm_plane_fill_gfx12_attrs_from_modifiers(
-                         adev, afb, SURFACE_PIXEL_FORMAT_GRPH_ARGB8888,
-                         ROTATION_ANGLE_0, &plane_size, &tiling_info, 
-&dcc, &address),
-                         0);
-@@ -623,7 +623,7 @@ static void 
-dm_test_fill_gfx9_plane_attributes_from_modifiers(struct kunit *test
-         afb->base.modifier = DRM_FORMAT_MOD_LINEAR;
-
-         KUNIT_EXPECT_EQ(test,
--  amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers(
-+  amdgpu_dm_plane_fill_gfx9_attrs_from_modifiers(
-                         adev, afb, SURFACE_PIXEL_FORMAT_GRPH_ARGB8888,
-                         ROTATION_ANGLE_0, &plane_size, &tiling_info, 
-&dcc, &address),
-                         0);
-@@ -1187,9 +1187,9 @@ static struct kunit_case 
-amdgpu_dm_plane_test_cases[] = {
-         KUNIT_CASE(dm_test_get_cursor_position),
-         /* amdgpu_dm_plane_format_mod_supported() */
-         KUNIT_CASE(dm_test_format_mod_supported),
--       /* amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers() */
-+       /* amdgpu_dm_plane_fill_gfx12_attrs_from_modifiers() */
-KUNIT_CASE(dm_test_fill_gfx12_plane_attributes_from_modifiers),
--       /* amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers() */
-+       /* amdgpu_dm_plane_fill_gfx9_attrs_from_modifiers() */
-KUNIT_CASE(dm_test_fill_gfx9_plane_attributes_from_modifiers),
-         /* amdgpu_dm_plane_helper_check_state() */
-         KUNIT_CASE(dm_test_helper_check_state_viewport_reject),
-(END)
-
-
-Regards,
-
-Venkat.
-
->
-> # git bisect log
-> git bisect start
-> # status: waiting for both good and bad commits
-> # bad: [5c73cd9f0819c1c44e373e3dabb68318b1de1a12] Add linux-next 
-> specific files for 20260707
-> git bisect bad 5c73cd9f0819c1c44e373e3dabb68318b1de1a12
-> # good: [8cdeaa50eae8dad34885515f62559ee83e7e8dda] Linux 7.2-rc2
-> git bisect good 8cdeaa50eae8dad34885515f62559ee83e7e8dda
-> # good: [aac7863446a8e0cf380f4a5087bc3cdc9b8c14c0] Merge branch 
-> 'master' of 
-> https://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git
-> git bisect good aac7863446a8e0cf380f4a5087bc3cdc9b8c14c0
-> # bad: [fe28d02cde5372d7f71cc6132ccdef37a98ac750] Merge branch 
-> 'for-linux-next' of https://gitlab.freedesktop.org/drm/i915/kernel.git
-> git bisect bad fe28d02cde5372d7f71cc6132ccdef37a98ac750
-> # good: [0639cb26862afe4e35a689a8b5df8b9117c19f52] Merge tag 
-> 'drm-xe-next-2026-07-03' of 
-> https://gitlab.freedesktop.org/drm/xe/kernel into drm-next
-> git bisect good 0639cb26862afe4e35a689a8b5df8b9117c19f52
-> # good: [4e9c8a9c322427055c4892183d266ba391af1bc8] drm/amdkfd: drop 
-> struct kfd_signal_page wrapper
-> git bisect good 4e9c8a9c322427055c4892183d266ba391af1bc8
-> # bad: [ea33aa1545535fdb4c1a208b7bfd63314c3a4aa2] drm/amdgpu: Drop 
-> legacy ACA log RAS error data code
-> git bisect bad ea33aa1545535fdb4c1a208b7bfd63314c3a4aa2
-> # good: [a17e79d01f22182a9fcbe79fcbe2ad1477d43e0f] drm/amd/pm: 
-> Validate pp_table header before reading size
-> git bisect good a17e79d01f22182a9fcbe79fcbe2ad1477d43e0f
-> # bad: [7a561c2b1b63abcffb55f625c0d0adb68ab2961a] drm/amd/display: 
-> Simplify boolean checks
-> git bisect bad 7a561c2b1b63abcffb55f625c0d0adb68ab2961a
-> # good: [53ef33c084c5778cc2dcd1efff25e31b6e231141] drm/amd/pm: 
-> Validate Tonga PPTable subtable bounds
-> git bisect good 53ef33c084c5778cc2dcd1efff25e31b6e231141
-> # good: [fe5966d4fdcbed91e6b3478ea6c89d9915d6ed4a] drm/amdkfd: move 
-> TBA/TMA from system to device memory
-> git bisect good fe5966d4fdcbed91e6b3478ea6c89d9915d6ed4a
-> # good: [7a39b1c3b2e6b27f4230a20ccf9ac5a2737fa8b0] drm/amd/display: 
-> Replace repeated no-native-i2c checks with force_i2c_over_aux field
-> git bisect good 7a39b1c3b2e6b27f4230a20ccf9ac5a2737fa8b0
-> # good: [88ae862060f05cd8279e764832f04eafafa505d8] drm/amd/display: 
-> Add more KUnit tests for amdgpu_dm_colorop
-> git bisect good 88ae862060f05cd8279e764832f04eafafa505d8
-> # bad: [2b147895be109e0860269a7a72c697cdf049a885] drm/amd/display: Add 
-> kunit tests for amdgpu_dm_plane
-> git bisect bad 2b147895be109e0860269a7a72c697cdf049a885
-> # first bad commit: [2b147895be109e0860269a7a72c697cdf049a885] 
-> drm/amd/display: Add kunit tests for amdgpu_dm_plane
->
->>
->>
->> Regards,
->>
->> Venkat.
->
