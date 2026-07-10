@@ -2,80 +2,104 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id kHQuCEmxU2rddgMAu9opvQ
+	id z9zeC4r0UGoe9AIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 17:22:49 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 15:32:58 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0B1B745269
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 17:22:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E43C73B48D
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 15:32:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=ADjVwhNa;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=qDPpAz4N;
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	arc=pass ("google.com:s=arc-20260327:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68C8D10E4A8;
-	Sun, 12 Jul 2026 15:22:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6255110F8DB;
+	Fri, 10 Jul 2026 13:32:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCBDA10F8DB
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 13:31:12 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id
- 5b1f17b1804b1-493c52cde9eso7902295e9.3
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 06:31:12 -0700 (PDT)
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com
+ [209.85.216.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCC9710F8DB
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 13:32:54 +0000 (UTC)
+Received: by mail-pj1-f46.google.com with SMTP id
+ 98e67ed59e1d1-383fff6e8b6so80173a91.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 06:32:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1783690374; cv=none;
+ d=google.com; s=arc-20260327;
+ b=C0J3SHHZFoZa98TT6sRwFaXtYq0Z7UTljacvST6Wi3eILibL6Ad0U6/RZWKwlZXDHV
+ r9bq1eL1H4S9osKtnDS9nSqPq0l3czlV9YlTgrB9BohcJ1axzPqyacB28AxJP4cIkQIw
+ IGNfq4TeUqwA3T8kzK1i66rQrCT+UeAbmhomsWdBV7xd/JSgPxyfnspyz9xBX3lX7HzU
+ Oo4EoMbzLx5ydSDBWU4uuNhq3iOgZyUx6ZEdfYpSeil/zQ9b6XKD3GzdpICx2vOrehhX
+ LewuA6/L1erlFbGb8KL0uVhd/QmkixIjJpPQhxV9mOdOEGjR2Nr5/UoIygZ7xowcn3fa
+ CDsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=m5SrBdJz51UnTf3Icv1UxkGSbrtyHFHTUabrOwepNZI=;
+ fh=tYbzEOBut+TtYwEwlV5qsbDNjRL30b58tMXY7hHTrbQ=;
+ b=lKOfaGR/qH0/o42JUIKtA8deDtXv4pxfQq+6hUmt7Q1+78RXvNIgcOqxr7jyAV2nnv
+ EJdrvT+NSFGLR5UhNpLAN3oJ5cBs8fEQFGuEbSoPis1PIUBbqzjhv0TsIr/RKOTK7jvj
+ 8rWLEmEaE8M4MuLYJtuawtJiK/KO6AEJBAW18B4jVsQHuv/w7JWBrsdTi1OPbRgzfgAP
+ d9c7lsugdFhGl9SlgjcZg19iGK3yxB2Cd3vDMMGda2ajezdrZs9DFNFaVOPyC8UgXHgf
+ lZYIz0UfRmvnBo/vm2gGGQ0RU2dB/Wnwliautql/bKwBUaAZPphbx8CV3Noj/k5b0f/Q
+ bCsw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783690271; x=1784295071; darn=lists.freedesktop.org;
- h=content-disposition:content-type:mime-version:message-id:subject:cc
- :to:from:date:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=B49BYydG0G+SVwT1ct2zU4r2nKnTZkCjB+W66DADfQM=;
- b=ADjVwhNawWj+BOMtNJxzuSct9ofWryxTvp37apBW3lBeRVQYZ2XGT1hQi0TOlKKTnK
- 7F0g3wKiiMZ2/C72U33wHBIlj0MQ2irjvbOcs50PZkpgrdtfVrRjvUfADhKwv6DjshVH
- Jy/QNP+eFlbrxWP2B+szpwteGZDWAB/8ZsZDjOoFDl8g6X8ScHPyV1GdDq1/7db813uG
- TIq2ttnj9mAv5TdRliM65z8bAmH5xbWIdbwjH+Wr+ac8yLIL8TWQBOL88u/Yhw8MQRvP
- rt8bZpFfbiUp2ZC3LCkhHlgcZg1JbwI50jcv8JuqmhDEekxmf3DuLcosVDcTSpesAmCc
- iqhw==
+ d=gmail.com; s=20251104; t=1783690374; x=1784295174; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=m5SrBdJz51UnTf3Icv1UxkGSbrtyHFHTUabrOwepNZI=;
+ b=qDPpAz4N84GT8hKZdII4ynGS2LKVG7JFncu5O/fsyjj4tYc7Jt5a4xyHvR/0SFKp5s
+ 9JGJkNF77r43PvkptNKSKMLg7sA+ajXbi2XNHk+8A0LRyiXL0bTuoQoiciouoyOPr2WN
+ w0dL5pyhGKs5P0XjFhudRdJkyPJlRowSbfhxd4VjaUiprjZZ35SNppdUXlwzbXKoBGUF
+ EK58c5E8kDm61uhgt713xN65k8zweTFz0lIA3ENnEsxJSoi9+POhwIVReCjUAOV+u/Pe
+ rphWSwkMBip416rbvIu3KlNDOqcN06lSlmdfcOGp8GG1oVF4smdQB5jHKjJpMyT6J+9/
+ wkzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783690271; x=1784295071;
- h=content-disposition:content-type:mime-version:message-id:subject:cc
- :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=B49BYydG0G+SVwT1ct2zU4r2nKnTZkCjB+W66DADfQM=;
- b=ob+HRQNc9o+dOmc0gvQIF/Cw8roCJcKdpcOEKp2a3eFIlkyrZFulayLWbj4OMv1bxy
- N7zVIyaxmrI//q0weCner+uGdS9sTgjpBTZoq0M2PM/CWpquLlYPSRLI/g0ia/qR+oqU
- 3blWyYeZGda/F9vhZgxmcRE87lZZLos780vX1OVDkfzOZQfai2PJKO9xCNp7iAVH0JQA
- qICDKTDPB7mcc60BH3GQmbY42bZciElHHsve8In6K6LGfuC00trylHL5A24XGsnJ6jJl
- 2xxXy9gkpaqog0xuW944vldV5kpU7w3ONiACs7DQPvX4VcZnYui0P5dUOq9h1DTm4UvP
- J3Lg==
-X-Gm-Message-State: AOJu0YzE7woa8nS8WhqFeGcAPifrzhBIK6jwRkjPj4VkRRDxS3EZp/fZ
- aS6UX/aYVGVTlYJ0EQw1v7Gq4cXmbHFnUbLHUDNrIrkrGMvrmQzMIOf7
-X-Gm-Gg: AfdE7cnJ527hw7aNRr/uvSyudYJYBoBrWBeehlfeyzzTRrZcv6I0zw6589CDjSQqs8a
- ulQMz1Ba6p+WR02K4/8R9ISz0qN4gU8UopYFRFLLXlPH3UYyeNozHxYELezLEGG2TSFlN5ImvG+
- ScO6ImkVmWMjgIxxAHehwoTqEJ/iXeHFGy2UYwd/iOFrwniEVHAIsMdu3HlGQinG8TCcphmww+Q
- y9GioGof/j1C31pRbrrwHlwgrH0iEZb3oqRMipBBLstdwMk/SAYxZ2d3O4rEL+xbyT2zotN4WRu
- cPts75saFqrupaVBk2/7DbmTWA4T05MWgDJwrhOpbnaTxOJATogqD0PLprQuvEsTI/AqX6Kewb1
- 2dMa9YMz/SEXoaJaHeuNzxkHxM0DVadAeac6OYfFSEa3qt4/EK/P5YwzkVAdLR/5lzJPzGNJR++
- ZvQuaYKpva
-X-Received: by 2002:a05:600c:6206:b0:490:b8c0:d470 with SMTP id
- 5b1f17b1804b1-493e68c8063mr123645755e9.19.1783690270616; 
- Fri, 10 Jul 2026 06:31:10 -0700 (PDT)
-Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-493f744e8d7sm10990725e9.15.2026.07.10.06.31.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Jul 2026 06:31:10 -0700 (PDT)
-Date: Fri, 10 Jul 2026 16:31:06 +0300
-From: Dan Carpenter <error27@gmail.com>
-To: Alex Hung <alex.hung@amd.com>
-Cc: amd-gfx@lists.freedesktop.org,
- "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
-Subject: [bug report] drm/amd/display: Add KUnit tests for mst_types
-Message-ID: <alD0Gp71kK2Cn6w3@stanley.mountain>
+ d=1e100.net; s=20251104; t=1783690374; x=1784295174;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=m5SrBdJz51UnTf3Icv1UxkGSbrtyHFHTUabrOwepNZI=;
+ b=m9eo0XLKsWjVxVaZGyIxK3KFxnz4gK/ArSTxARou1XCUull7oirXH/BlbOU6NBZ3xW
+ 98IdiYMweKALPen0ZsaDZiCBA0itU31jObUQHcY+BSyqfkhzmrumbOHoEeZKNlLIl9h6
+ eGmNCpuCCHz7/XYaEbcYlZ5zfaxV+chJAnQt4uCSdw3ybZztiCswwIxZpCUb/dGMze/w
+ hegqqZqrzIS8psdZyvJQjzzNfjPNUntLy6h8Uaw90sDJaneMyQVDuaCFs1v5/CDxPK1e
+ rO2Z1OIpg0YJK9YcprSsXkhiP1TSHC3EVi4TeosAnDdMGQo1K4Z6TvhKns5ERWSugdBT
+ cZOg==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RpNw4TJAhLOeC1dorBIoMSE82NbdOLSseXhu9cd49xdcUI+GQ6GdRpQJOzP+GfLl9YBX1tdacIl@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzZrh7q0MwcIf9yOzA07XUQpnouP34ZZ2imzSVCQySguOSs5YBx
+ /FQ1p4l1g1cTyiI2nd4vIlwXsADsoHZ/zPinHK151KPZP82IPIjHI749h16HhsApawv6y6O1oTX
+ 3bNl7u9DXBGHyUv3Ss2/Gaa6Xel9bxLU=
+X-Gm-Gg: AfdE7ckUc+PDdlYcSMhZ/1EYfHls0ZHPEHJSsYpJwM+Pgi222bBCmLGXWqUwwV17YQN
+ NbN9egPWH6WcuKCAgvFzc53eDdpoop1Oy6J9nO6+HWnJc/FOJs93lmh3W1TjCgXQIoEwpG0Lk8q
+ G9pfRWK2n3oJPaTfkyTlzN+yZGPVs94lunXg8D3Hu8a+zTtPt5x9S0PSCil5ZyZNMSUn9f28r7t
+ p9JUHYXwvJ+cyqD9DbiSeI/iGkWQ8Y4Ucx8bkiSu5hBXqBS2x0joQX51wU/yLPZ14vB7JSaUEQw
+ e7/6Is81QW9rRAwGXqSocMCpX7AJ0DaYHT3AMFmJekIwaTseYWAMjMkYykot4W2ouxOouA==
+X-Received: by 2002:a17:90b:58e6:b0:381:fa5:5217 with SMTP id
+ 98e67ed59e1d1-38a2170a4acmr7165869a91.7.1783690374160; Fri, 10 Jul 2026
+ 06:32:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Sun, 12 Jul 2026 15:22:44 +0000
+References: <20260710110531.3222353-1-srinivasan.shanmugam@amd.com>
+In-Reply-To: <20260710110531.3222353-1-srinivasan.shanmugam@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 10 Jul 2026 09:32:41 -0400
+X-Gm-Features: AVVi8Ce1j1eRPWhVSbzBtnoOoF92DZbkvfedMy6b-GFLFJh38MW1MGHvDMgj6no
+Message-ID: <CADnq5_Ny=OdigN_R+PKhnH9n-zzg_513+SYo9aokuorRg-9RNg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu/gfx9.4.3: Fix MEC rollback loop in EOP IRQ
+ setup
+To: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ Dan Carpenter <error27@gmail.com>, Kent Russell <kent.russell@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,63 +114,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	DATE_IN_PAST(1.00)[49];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:srinivasan.shanmugam@amd.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:error27@gmail.com,m:kent.russell@amd.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:alex.hung@amd.com,m:SRINIVASAN.SHANMUGAM@amd.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[amd.com,lists.freedesktop.org,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,stanley.mountain:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,amd.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E0B1B745269
+X-Rspamd-Queue-Id: 1E43C73B48D
 
-Hello Alex Hung,
+On Fri, Jul 10, 2026 at 7:24=E2=80=AFAM Srinivasan Shanmugam
+<srinivasan.shanmugam@amd.com> wrote:
+>
+> Fix the error cleanup path in gfx_v9_4_3_set_userq_eop_interrupts() by
+> using the correct loop condition. This ensures all previously enabled
+> EOP IRQs are released if setup fails.
+>
+> Fixes: 832f0aa050ff ("drm/amdgpu/gfx9.4.3: add support for disabling kern=
+el queues")
+> Reported-by: Dan Carpenter <error27@gmail.com>
+> Cc: Kent Russell <kent.russell@amd.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 
-Commit 04bed7922fa9 ("drm/amd/display: Add KUnit tests for
-mst_types") from Jun 17, 2026 (linux-next), leads to the following
-Smatch static checker warning:
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-	drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c:1027 dm_mst_test_fp_guarded_public_stubs()
-	error: NULL dereference inside function
-
-drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c
-    1025 static void dm_mst_test_fp_guarded_public_stubs(struct kunit *test)
-    1026 {
---> 1027         KUNIT_EXPECT_EQ(test, dm_dp_mst_is_port_support_mode(NULL, NULL),
-                                                                      ^^^^  ^^^^
-Passing a NULL here will just crash right away.
-
-    1028                         (enum dc_status)DC_OK);
-    1029 }
-
-This email is a free service from the Smatch-CI project [smatch.sf.net].
-
-regards,
-dan carpenter
+> ---
+>  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c b/drivers/gpu/drm/am=
+d/amdgpu/gfx_v9_4_3.c
+> index 44d38b76cb4f..9512fef81d84 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_3.c
+> @@ -2331,7 +2331,7 @@ static int gfx_v9_4_3_set_userq_eop_interrupts(stru=
+ct amdgpu_device *adev,
+>                 }
+>         }
+>         for (xcc_id--; xcc_id >=3D 0; xcc_id--) {
+> -               for (m =3D adev->gfx.mec.num_mec - 1; m <=3D 0; m--) {
+> +               for (m =3D adev->gfx.mec.num_mec - 1; m >=3D 0; m--) {
+>                         for (p =3D adev->gfx.mec.num_pipe_per_mec - 1; p =
+>=3D 0; p--) {
+>                                 irq_type =3D AMDGPU_CP_IRQ_COMPUTE_MEC1_P=
+IPE0_EOP
+>                                         + (m * adev->gfx.mec.num_pipe_per=
+_mec) + p;
+> --
+> 2.34.1
+>
