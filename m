@@ -2,67 +2,110 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CuHlG/KcUGqv2QIAu9opvQ
+	id 7tWxN4FeUGpGxgIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 09:19:14 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 04:52:49 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E108A737FC8
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 09:19:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CC28736CAB
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 04:52:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=qq.com header.s=s201512 header.b=bn0Ti9II;
-	dmarc=pass (policy=quarantine) header.from=qq.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=amd.com header.s=selector1 header.b=QY8aeCrr;
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78FAE10E12A;
-	Fri, 10 Jul 2026 07:19:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F04AA10E114;
+	Fri, 10 Jul 2026 02:52:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1447 seconds by postgrey-1.36 at gabe;
- Fri, 10 Jul 2026 01:55:58 UTC
-Received: from xmbghk7.mail.qq.com (xmbghk7.mail.qq.com [43.163.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9445E10E10D
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 01:55:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
- t=1783648556; bh=5EOkqBZUqrb39d1Nm8dwkAhCq6ui/t2PEv4lF3ANjGY=;
- h=From:To:Cc:Subject:Date;
- b=bn0Ti9IItIKsHNd6yXuJUHYATo54raOXAM4pMwHWsrJYaAjn1x4LPw5+rWuZ6Za4h
- 7El4lypqjUr89H4yhgV2hGiqRAq1GmbIstfjpxAS181aCJ94oROdwFbr1tQyC5SF+F
- pHxoAlrvdS0mokTXrO0/gb9jtbnkbx3Dz+3R22cU=
-Received: from localhost.localdomain ([116.128.244.169])
- by newxmesmtplogicsvrszb51-0.qq.com (NewEsmtp) with SMTP
- id 62218093; Fri, 10 Jul 2026 09:24:34 +0800
-X-QQ-mid: xmsmtpt1783646674thp1vxobr
-Message-ID: <tencent_C3A258C2204BBB82CD35C736076BFC07F806@qq.com>
-X-QQ-XMAILINFO: N/WmRbclY25Ge55ZC1eeD+B1t0ILvuY8k7EVBFtToFrl+v2/ZCUVMrc6eb8+Vc
- gUUkoOtn827NNxUw7XsviOjuB+bcARXGcZDzS/2YJ4jvg7jUk5W8vcyPJbtRav2AFfQvxdIQXVfQ
- yOwuM0rU2hhQpa8yzDJYvmcfezUynrSrKRrn3SdWi9DIKv9V4vn517tDEv1bgFM+gCGeByGwDcPN
- SqV4pQKa75bapLIo7Kviz5PpD7Roaz+UnxPjxXPUVj05vGYza7e2CxvVQ3z6e9AiDFGSZ2gE+IYZ
- M1eQwsDT+F6W3Eaxkbler3UA/h1DWP4h4EAT7N4Gjc/5Es3NLpqkY87cMfJ/xJLps0W+cZ0SC2R1
- Xn3EG42HXksQxttkOP2M4dDAhP5MwTQOI/qzb0zoy+SbVhO5mKgnSazEoHouEizGk2luuy7gs9QL
- ESQtGi1fgoZ0kX1wj67MUjDT4Vy1nzM4QJHU4eYmyFXe5NJzBObWb7/cqdutVBHDBmK86pk+vWgW
- MTZCgZdL9bqwwwnjz9iuy2L1oppkkDbLUIWoYcHw2/KT7UyefpnH66aUCBR8FLEMUlAstK00Nl0i
- 9V5a3kDQ3jj5dEDC2ymVOoTICJ5EZcZlV/l7Em85OzfMSZzqerklY3Q7s313/1Gu3lM4axOTSxEs
- XBpjHcroXv4uRUNxKWo4QyXMA5U3kEzS7p/eB5/CkzXgi4q8O/vHYWViDtiq0HG1/tTAtRdBiUQ2
- RX46BJA+lA4SQd+TDQXBsdecj9ZY/9MmbKCQc4BIv3Dfy52P2NnLUUfjb+DKt65JYgY85jyuMzEs
- 1I5YpMIh6XiybzdqBZ+BOAV8V+QmAk0UpFPU1zB6E2PR12sTApO17iOnRdCia9s3wrDI675Jnwqf
- qMrCkZeeyZ1tESYM6wbLM9459UN4Qv/1oOz8RDg4yyxy0YX/F5HrCeGpToYteb+7nB3EBleBhq3D
- 1ePCc+uN4iOErhY5/ipnf+SWHJPB9vGe7txQbxpaPWu2YUp+LC6vFD37JE35c0SxPJy3f5ABHfma
- GfyZAcjDbXXtsF3wvcYjfiES7+542VzLK7E5egxGR1RaiNxD9LyT6L1xsaIRs=
-X-QQ-XMRINFO: OWPUhxQsoeAVwkVaQIEGSKwwgKCxK/fD5g==
-From: 2681643870@qq.com
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, oushixiong@kylinos.cn,
- yanglinlin <yanglinlin@kylinos.cn>
-Subject: [PATCH] drm/amd/display: fix __udivdi3 link error
-Date: Fri, 10 Jul 2026 09:24:23 +0800
-X-OQ-MSGID: <20260710012423.61550-1-2681643870@qq.com>
-X-Mailer: git-send-email 2.25.1
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012048.outbound.protection.outlook.com [52.101.43.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97A4210E114
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 02:52:45 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=otsb/3RiKWNbgZao4FzMpBjc1P6JgXXLXiPxOC0kmO9SVdm780Q7i8Hm+k0yMDNASR/2M4zbssLW4SklaxQcTMse6HiQuRzmNVzNv4ibqVsOXb9EjMeJIN6e3S4vciEZFLvyypn7Y0cZoQt5DbzhBxb94f9/t7xOciJjKI0+R52V/OMd6gGI8PfidjR1INbIuEt1wHc0TxfthSlyQiEDs1wuOf658uQOx9Al1Vz8eHRT8/eD66jm3a9xkqnxgDzFko9XbNIwOSFAeTN6AoLVvLq09wRIpDMqvb2RfwAcqanslcFt1JtELF99MOqc8qndNtYwtgfK8dfsjwFDCCI+Hg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SvP//dTJIukyd1EVWavWs+utFm+GqdMjKd87F56FZW8=;
+ b=ag3tFfFyo6O/tzfnYS8fcly24HI4c4UMZBFVEzHtDpqoyzBa1RSCsn2VrUaHK1MwLbEt6rq7Ck4zWIUAt7OHsxim5pjnKBcCvXTWqX1KxskhdhHm1ClRO2tGhtsCkKbjwuntaICxdNyU+z54TBVOTh+sF1BY30Un6PE2Et1LzsfB6FmPjOv+O5x3aTbZznXbqK+UwVDKstei77Zbr38lbKv6UsrHOVlWQT9KhPzBl/1dLoLgQIVOMTxIGcV+HyUxTrkkYgF9TpanC8jXit2C+VVvD2tuQ81tDsZiyzW4+l3VjGfAMjYqoJNOAIiN0oUI3dBdZk0MAZj+WAj4ORfdzg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SvP//dTJIukyd1EVWavWs+utFm+GqdMjKd87F56FZW8=;
+ b=QY8aeCrrOaa6po5vQnumQO4L9J2w6n2cz3m0VpQUEMSRM5M5S7A6M68AQzqGzOyViNaHjJiyGI9JlfCWt5gBnBQDFNsfHfAr4zb7bVcsAM2l8XHrEDVDazpjHwy9yKrQ6hLv+xkAY9q7EX8BBe6zaKu/KK/NG1sY0YfxvhME2fI=
+Received: from SA0PR11CA0153.namprd11.prod.outlook.com (2603:10b6:806:1bb::8)
+ by SA3PR12MB7921.namprd12.prod.outlook.com (2603:10b6:806:320::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.16; Fri, 10 Jul
+ 2026 02:52:40 +0000
+Received: from SN1PEPF00036F42.namprd05.prod.outlook.com
+ (2603:10b6:806:1bb:cafe::2a) by SA0PR11CA0153.outlook.office365.com
+ (2603:10b6:806:1bb::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.11 via Frontend Transport; Fri,
+ 10 Jul 2026 02:52:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SN1PEPF00036F42.mail.protection.outlook.com (10.167.248.26) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.181.6 via Frontend Transport; Fri, 10 Jul 2026 02:52:40 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
+ 2026 21:52:39 -0500
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Thu, 9 Jul
+ 2026 19:52:39 -0700
+Received: from AB350-desktop.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
+ Transport; Thu, 9 Jul 2026 21:52:39 -0500
+From: <vitaly.prosyak@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Vitaly Prosyak <vitaly.prosyak@amd.com>, Michael Gavrilov
+ <mikhail.v.gavrilov@gmail.com>, =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH] drm/amdgpu: Fix lockdep false positive in amdgpu_lockdep_init
+Date: Thu, 9 Jul 2026 22:50:35 -0400
+Message-ID: <20260710025232.208861-1-vitaly.prosyak@amd.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 10 Jul 2026 07:19:09 +0000
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF00036F42:EE_|SA3PR12MB7921:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8818838b-5316-4ba1-c2fa-08dede2e4ebb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|1800799024|36860700016|23010399003|376014|18002099003|56012099006|11063799006|6133799003;
+X-Microsoft-Antispam-Message-Info: C5QY7YPYmVnXUce4GJ1Rw6w9LavoF/EjoKF18zzPSnZsz19YuiYCeiaX2URMn/q24GBSWdEkaQ5jiaFk/0oZi55B8yGqpHkvRavfOcpSMLs/gdO4B0h5SjaXgpn6osLXwbiPeYPRlzxCc2s7zQbqItcxBW9o+Jvm7psleWkYg4nIPPmawwEQWT+ucggI8zr211n/4Q2Vxqc9OYy7UeUmix8KCIEh3JGnkX8WVuLKK4pqv7m/A0vkq3M5JKT14O2P4Mi0kjer9SVPglrJASXjrQToU3Dgi3Ruk8kpKPTck1L8QYodi6RvEGBnRPYv4Mwo7FclHl99mN3SrPqO1DDDOjDZVxFka8MGVq+8/soq8zFwRQHxvreSDlOsOcu9m2qq6+Z0RWFgKOKJAgroFcdCmQdCwG1oq2RRnY/oyrSUkMxgRDCC4PEyQ2J0MZmnOZd4YQM6opdUdWCB8XcwhjrlnLWdszWCM5vrUAN0Qbc3mLyCZZ6MjeI4MsYhU4Rmogze/YXSGFO0uoZZQRfkviOq51FGn9bT8m6mMltVrok3m0J9n0cv1LgpduJhEPq20qZ2KhSrYNuPlwi53E3tKaNFW/60xg08plt1ciCkt8vGka28zF1iHAWMtKei9Rm2P/A++U/NjXD6y3VWGc7v8srd2Erc8W5NE/MX/3fUvLAnpzJWxklIt6su9TUGXDRC8W2Ulm47PiRN3fEhp+uq9tDIxQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(1800799024)(36860700016)(23010399003)(376014)(18002099003)(56012099006)(11063799006)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: yPLwBOUKoCABOb7N53ZQQeJw3KuUKNauEabjJsVy9QC2KoMvs6bJYzYjW7t92YO1T1yfwe7r9b5ulIJHfOaoaGWKAZQ6tG5kxJ74N6SgcvWVWj7xeUQzr/Ys9LdyAno2IcH9HK6j/lxHzdC1S+0z7TIAZa8yO5a/U0sVc4MQ1l9NUDcF8hjM//bg9HgvFbiOumQP7xH6pqHZ46Ms9t3jBH8S+aY/elRO0OVgaQINtLtoQQDGo670S81DtUHYbFkaV1rvVpjT/iVENk3IoSxZeiyz/3fiwAXGCqoTTPmhxKbSmC08PRzFpxEtExt/cQqz5nIqqMSODhKNuJ/0vW+Ok0I1rWGSqTh8e48lsi2jm5uBlZmtbowTCjNs+JKKAo60dG3h8uySgyM5vCnW29ZyZvUkPQX8fFwAATyaBlimiUzcls1ffPp1Xg0mVBqJWvf4
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2026 02:52:40.3375 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8818838b-5316-4ba1-c2fa-08dede2e4ebb
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00036F42.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7921
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,92 +120,256 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qq.com,quarantine];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[qq.com:s=s201512];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:oushixiong@kylinos.cn,m:yanglinlin@kylinos.cn,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[qq.com];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[2681643870@qq.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:from_mime,amd.com:email,amd.com:mid,amd.com:dkim,lists.freedesktop.org:from_smtp];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[vitaly.prosyak@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[2681643870@qq.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[qq.com:+];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NO_DN(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,kylinos.cn:email,lists.freedesktop.org:from_smtp,qq.com:from_mime,qq.com:dkim,qq.com:mid]
+	TAGGED_RCPT(0.00)[amd-gfx];
+	FROM_NO_DN(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E108A737FC8
+X-Rspamd-Queue-Id: 0CC28736CAB
 
-From: yanglinlin <yanglinlin@kylinos.cn>
+From: Vitaly Prosyak <vitaly.prosyak@amd.com>
 
-When compiling the AMDGPU display driver for 32-bit architectures,
-the linker reports undefined reference to `__udivdi3` in functions
-get_dp_dto_frequency_100hz() and dcn401_get_dp_dto_frequency_100hz().
+Move fs_reclaim_acquire() to before all lock acquisitions to teach
+lockdep the correct dependency order and eliminate false positive
+circular locking dependency warning.
 
-This is because the code uses 64-bit division (/) on 32-bit systems,
-which GCC cannot handle directly and instead tries to call the missing
-__udivdi3 helper function.
+PROBLEM:
 
-Replace the raw division with div_u64(), the kernel's standard 64-bit
-division helper, to avoid the link error.
+amdgpu_lockdep_init() trains lockdep by acquiring locks in sequence
+while calling fs_reclaim_acquire() in the middle. The fs_reclaim call
+was placed while notifier_lock was held, teaching lockdep:
 
-Signed-off-by: yanglinlin <yanglinlin@kylinos.cn>
+    notifier_lock -> fs_reclaim
+
+However, at runtime, MMU notifier callbacks run from inside memory
+reclaim, establishing the opposite dependency:
+
+    fs_reclaim -> mmu_notifier -> notifier_lock
+
+These form a false cycle that lockdep reports when reclaim unmaps a
+page covered by an amdgpu userptr notifier.
+
+LOCKDEP WARNING EXAMPLE (BEFORE FIX):
+
+    WARNING: possible circular locking dependency detected
+    6.19.0+ #48 Not tainted
+    amd_lockdep/3762 is trying to acquire lock:
+    ffff8881756f3c30 (&amdgpu_notifier_lock_key), at: amdgpu_hmm_invalidate_gfx
+
+    but task is already holding lock:
+    ffffffff92e4b5c0 (mmu_notifier_invalidate_range_start), at: try_to_unmap_one
+
+    Chain exists of:
+      &amdgpu_notifier_lock_key --> fs_reclaim --> mmu_notifier_invalidate_range_start
+
+    Possible unsafe locking scenario:
+          CPU0                    CPU1
+          ----                    ----
+     lock(mmu_notifier_invalidate_range_start);
+                                  lock(fs_reclaim);
+                                  lock(mmu_notifier_invalidate_range_start);
+     lock(&amdgpu_notifier_lock_key);
+
+     *** DEADLOCK ***
+
+The dependency chain shows:
+  -> #5 (fs_reclaim):
+       amdgpu_lockdep_init+0x61e/0x730 [amdgpu]  <- FALSE EDGE
+  -> #0 (&amdgpu_notifier_lock_key):
+       amdgpu_hmm_invalidate_gfx+0x77/0x110 [amdgpu]  <- RUNTIME PATH
+
+SOLUTION:
+
+Move fs_reclaim_acquire/release to BEFORE all lock acquisitions.
+This teaches lockdep that fs_reclaim is outermost, matching runtime
+where reclaim calls MMU notifiers which then take notifier_lock.
+
+VERIFICATION (AFTER FIX):
+
+Test reproducer (based on Michael Gavrilov's standalone test case)
+creates a 64MB GPU userptr memory buffer, then repeatedly forces the
+kernel to reclaim it by moving pages to disk (simulating memory
+pressure). Each reclaim cycle triggers the MMU notifier callback path.
+
+The test would be available as an IGT subtest:
+  tests/amdgpu/amd_lockdep.c::notifier-reclaim-splat
+
+Results:
+  Before fix: Lockdep false positive warning on first reclaim attempt
+  After fix:  Completed 8 reclaim cycles with no lockdep warnings
+
+dmesg after fix shows only test success messages, no circular dependency
+warnings. The fix is minimal (relocate 2 lines) with no runtime overhead,
+only corrects lockdep's static analysis model.
+
+Reported-by: Michael Gavrilov <mikhail.v.gavrilov@gmail.com>
+Analyzed-by: Michael Gavrilov <mikhail.v.gavrilov@gmail.com>
+Test-case-by: Michael Gavrilov <mikhail.v.gavrilov@gmail.com>
+Suggested-by: Christian König <christian.koenig@amd.com>
+Tested-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Vitaly Prosyak <vitaly.prosyak@amd.com>
+Change-Id: I584f833aaeac39d7eb777980f49ee503e70eb058
 ---
- drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_lockdep.c | 47 +++++++++++++++------
+ 1 file changed, 34 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
-index 7c293917e6fd..9dfb6f132136 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
-@@ -1229,9 +1229,9 @@ static bool get_dp_dto_frequency_100hz(
- 			 */
- 			modulo_hz = REG_READ(MODULO[inst]);
- 			if (modulo_hz) {
--				temp = div_u64((uint64_t)clock_hz * dp_dto_ref_khz * 10, modulo_hz);
--				ASSERT(temp / 100 <= 0xFFFFFFFFUL);
--				*pixel_clk_100hz = (unsigned int)(temp / 100);
-+				temp = clock_hz * dp_dto_ref_khz * 10;
-+				ASSERT(temp <= INT_MAX * modulo_hz * 100);
-+				*pixel_clk_100hz = div_u64(temp, modulo_hz * 100);
- 			} else
- 				*pixel_clk_100hz = 0;
- 		} else {
-@@ -1285,13 +1285,12 @@ static bool dcn401_get_dp_dto_frequency_100hz(const struct clock_source *clock_s
- 		 *     - target pix_clk_hz = (DPDTO INTEGER * DPDTO MODULO + DPDTO PHASE)
- 		 */
- 		temp = (unsigned long long)dp_dto_integer * modulo_hz + phase_hz;
--
--		if (temp / 100 > 0xFFFFFFFFUL) {
-+		if (temp > (UINT_MAX * 100ULL)) {
- 			/* pixel rate 100hz should never be this high, if it is, throw an assert and return 0  */
- 			BREAK_TO_DEBUGGER();
- 			*pixel_clk_100hz = 0;
- 		} else {
--			*pixel_clk_100hz = (unsigned int)(temp / 100);
-+			*pixel_clk_100hz = div_u64(temp, 100);
- 		}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_lockdep.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_lockdep.c
+index 61450af539a6..718411f724f3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_lockdep.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_lockdep.c
+@@ -18,6 +18,7 @@
  
- 		return true;
+ struct amdgpu_lockdep_dummy_locks {
+ 	struct mutex reset_lock;
++	struct mutex filelist_mutex;
+ 	struct mutex userq_sch_mutex;
+ 	struct mutex userq_mutex;
+ 	struct mutex notifier_lock;
+@@ -34,6 +35,7 @@ static struct lock_class_key amdgpu_notifier_lock_key;
+ static struct lock_class_key amdgpu_vram_lock_key;
+ static struct lock_class_key amdgpu_reset_sem_key;
+ static struct lock_class_key amdgpu_reset_lock_key;
++static struct lock_class_key amdgpu_filelist_mutex_key;
+ static struct lock_class_key amdgpu_srbm_lock_key;
+ static struct lock_class_key amdgpu_grbm_lock_key;
+ static struct lock_class_key amdgpu_mmio_lock_key;
+@@ -57,6 +59,9 @@ void amdgpu_lockdep_set_class(struct amdgpu_device *adev)
+ 	if (adev->reset_domain)
+ 		lockdep_set_class(&adev->reset_domain->sem,
+ 				  &amdgpu_reset_sem_key);
++
++	lockdep_set_class(&adev_to_drm(adev)->filelist_mutex,
++			  &amdgpu_filelist_mutex_key);
+ }
+ 
+ /**
+@@ -74,9 +79,10 @@ void amdgpu_lockdep_set_class(struct amdgpu_device *adev)
+  * 4. vram_lock           - VRAM allocator lock
+  * 5. reset_domain->sem   - GPU reset synchronization
+  * 6. reset_lock          - Reset control lock
+- * 7. srbm_mutex          - SRBM register access
+- * 8. grbm_idx_mutex      - GRBM index access
+- * 9. mmio_idx_lock       - MMIO index access (spinlock)
++ * 7. filelist_mutex      - DRM file list iteration (ddev->filelist_mutex)
++ * 8. srbm_mutex          - SRBM register access
++ * 9. grbm_idx_mutex      - GRBM index access
++ * 10. mmio_idx_lock      - MMIO index access (spinlock)
+  *
+  * Evidence:
+  * - userq_sch_mutex -> userq_mutex: amdgpu_gfx_kfd_sch_ctrl() calls
+@@ -88,6 +94,9 @@ void amdgpu_lockdep_set_class(struct amdgpu_device *adev)
+  *   must be outer to reset_domain->sem
+  * - vram_lock -> reset_domain->sem: VRAM management paths may need to
+  *   wait for ongoing reset to complete
++ * - reset_domain->sem -> filelist_mutex: GPU reset path
++ *   (amdgpu_device_gpu_recover) holds reset_domain->sem and calls
++ *   amdgpu_device_eventfd_signal_gpu_reset() which takes filelist_mutex
+  *
+  * Note: mmap_lock ordering relative to GPU locks is already taught
+  * by dma-resv (drivers/dma-buf/dma-resv.c).
+@@ -117,6 +126,7 @@ int amdgpu_lockdep_init(void)
+ 	mutex_init(&locks->notifier_lock);
+ 	mutex_init(&locks->vram_lock);
+ 	mutex_init(&locks->reset_lock);
++	mutex_init(&locks->filelist_mutex);
+ 	mutex_init(&locks->srbm_mutex);
+ 	mutex_init(&locks->grbm_idx_mutex);
+ 	spin_lock_init(&locks->mmio_idx_lock);
+@@ -132,6 +142,7 @@ int amdgpu_lockdep_init(void)
+ 	lockdep_set_class(&locks->vram_lock, &amdgpu_vram_lock_key);
+ 	lockdep_set_class(&reset_domain->sem, &amdgpu_reset_sem_key);
+ 	lockdep_set_class(&locks->reset_lock, &amdgpu_reset_lock_key);
++	lockdep_set_class(&locks->filelist_mutex, &amdgpu_filelist_mutex_key);
+ 	lockdep_set_class(&locks->srbm_mutex, &amdgpu_srbm_lock_key);
+ 	lockdep_set_class(&locks->grbm_idx_mutex, &amdgpu_grbm_lock_key);
+ 	lockdep_set_class(&locks->mmio_idx_lock, &amdgpu_mmio_lock_key);
+@@ -139,6 +150,18 @@ int amdgpu_lockdep_init(void)
+ 	 * Take locks in the correct order to train lockdep.
+ 	 * This establishes the dependency chain.
+ 	 */
++	/*
++	 * Train fs_reclaim FIRST, before taking any locks.
++	 * This teaches lockdep that fs_reclaim is the OUTERMOST context.
++	 * When memory reclaim later calls MMU notifiers (which take notifier_lock),
++	 * lockdep will see: fs_reclaim -> notifier_lock (correct runtime edge).
++	 *
++	 * Bug fix: Previously fs_reclaim_acquire() was called while holding
++	 * notifier_lock, teaching lockdep the FALSE edge: notifier_lock -> fs_reclaim.
++	 * This caused false positive circular dependency warnings.
++	 */
++	fs_reclaim_acquire(GFP_KERNEL);
++	fs_reclaim_release(GFP_KERNEL);
+ 
+ 	/* Level 1: Global userq scheduler mutex (outermost) */
+ 	mutex_lock(&locks->userq_sch_mutex);
+@@ -154,18 +177,16 @@ int amdgpu_lockdep_init(void)
+ 
+ 	/* Level 6: Reset control lock */
+ 	mutex_lock(&locks->reset_lock);
+-	/*
+-	 * Mark potential memory reclaim boundary.
+-	 * GPU operations might trigger memory allocation/reclaim.
+-	 */
+-	fs_reclaim_acquire(GFP_KERNEL);
+ 
+-	/* Level 7: SRBM register access */
++	/* Level 7: DRM file list mutex */
++	mutex_lock(&locks->filelist_mutex);
++
++	/* Level 8: SRBM register access */
+ 	mutex_lock(&locks->srbm_mutex);
+-	/* Level 8: GRBM index access */
++	/* Level 9: GRBM index access */
+ 	mutex_lock(&locks->grbm_idx_mutex);
+ 
+-	/* Level 9: MMIO index access (innermost lock, spinlock) */
++	/* Level 10: MMIO index access (innermost lock, spinlock) */
+ 	spin_lock_irqsave(&locks->mmio_idx_lock, flags);
+ 	/*
+ 	 * All locks acquired in order.
+@@ -176,8 +197,8 @@ int amdgpu_lockdep_init(void)
+ 	spin_unlock_irqrestore(&locks->mmio_idx_lock, flags);
+ 	mutex_unlock(&locks->grbm_idx_mutex);
+ 	mutex_unlock(&locks->srbm_mutex);
+-	fs_reclaim_release(GFP_KERNEL);
+ 
++	mutex_unlock(&locks->filelist_mutex);
+ 	mutex_unlock(&locks->reset_lock);
+ 	up_read(&reset_domain->sem);
+ 
+@@ -190,7 +211,7 @@ int amdgpu_lockdep_init(void)
+ 	amdgpu_reset_put_reset_domain(reset_domain);
+ 
+ 	kfree(locks);
+-	pr_info("AMDGPU: Lockdep annotations initialized (9 lock levels)\n");
++	pr_info("AMDGPU: Lockdep annotations initialized (10 lock levels)\n");
+ 
+ 	return 0;
+ }
 -- 
-2.25.1
+2.54.0
 
