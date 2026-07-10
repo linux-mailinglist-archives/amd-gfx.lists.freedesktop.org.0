@@ -2,109 +2,80 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WndVGkzzUGrh8wIAu9opvQ
+	id kHQuCEmxU2rddgMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 15:27:40 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 17:22:49 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA2BE73B3E2
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 15:27:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0B1B745269
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 17:22:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=QiOegJAu;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ADjVwhNa;
 	dmarc=pass (policy=none) header.from=gmail.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	arc=pass ("google.com:s=arc-20260327:i=1")
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0F3F10F8F4;
-	Fri, 10 Jul 2026 13:27:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68C8D10E4A8;
+	Sun, 12 Jul 2026 15:22:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com
- [209.85.216.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9D3310F8E5
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 13:27:36 +0000 (UTC)
-Received: by mail-pj1-f50.google.com with SMTP id
- 98e67ed59e1d1-381f03d7be0so182535a91.1
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 06:27:36 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1783690056; cv=none;
- d=google.com; s=arc-20260327;
- b=n1k6RXx5YOwyAaW1TzXP/6phNBftcyPM+jLeaX5taMympEU4ClN0Un8XXB0W+c+TAU
- 1OxUgg4R9Byp3BwAyC1yDM3MnxxiHynQIz17cJpUS/35KCz/A1Wan+Vy975GGhkIrUO0
- SUOtn3C2wzxCHyHc9SED2iYs7qeQ81qe31QVSQztvkP+NA3n47yzHfNIlfEhNO1tdBwZ
- dWSwC9iCks71TBL50kmV5oly0wccwgpyWKT/p87CgI7WFADNEezBevTbLbn/lO/N1Gfh
- pro2htmkUqTBMd14g4w7W5MJOQVuQ0C70yCXzsAIcFNs1TdOMO1L7TY854WLP2HG6cgu
- NKPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=8Xz8mAiIS9bhxJSnBlNVStU7ycoiUswNHhwr3rObZng=;
- fh=0IqcFP2YQzd+mxFvBoYD0Xi98xsG4fWtoE4jyMuKKvw=;
- b=gYj7Sa9Bdr2FOYwFoSiuYbc6sSvmqme9HNTECOndj8fOS/npuZT8fDuB9dsnJzU7zy
- RdE7oI7GxUf13aNi6bdBx56w011RozS/4R6IfFY4cFCsgNmlCKzAgrdUp1+5LSqk2Vpj
- Ng+7T/aaSv6lv+i8t018euJTiUdO2mBvXMuzSv0tPrZJfyL/bLj5YM9ignQwdth5dgXS
- QLsmH+Aor7voxz97AyaTAroxap6DjMdZzVfChsgXZayiauN5qreg1G6xdlLhAACNJDZ9
- b1EqcL1tX1x/j1USY/R5JFhPMb6gNRp2ezwRZwg08aduD5ARfaUqeoLFRypRhX771hyg
- eH+Q==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCBDA10F8DB
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 13:31:12 +0000 (UTC)
+Received: by mail-wm1-f41.google.com with SMTP id
+ 5b1f17b1804b1-493c52cde9eso7902295e9.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 06:31:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783690056; x=1784294856; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=8Xz8mAiIS9bhxJSnBlNVStU7ycoiUswNHhwr3rObZng=;
- b=QiOegJAu0Dati0+Qo2es+1AYTiX16oEq7iaiLSu1D7zDZwRkJnhG9TBcMNRnFS0D39
- 2cBTI8XcKO0CEJWAtP5tgUt0fmDninA3ge3AlcqyC4awgo4yDXqQo601XnlqkTBv9uHX
- rjeCj3GxuchqHtJoxzWthwKPxnJ23RWBbX75dByjy9Y5ahFor9BGhVtM8NF4RjUk6nvh
- 2g3zWrYcY734NAGfqKEZuNG6l23qnEUu7BbDssgKsP62miB4hSiCW/R0hbAhjcIT/dZw
- cRMN+vqL7HmEDPtv0OhQtek/nMAWh9RswNemljl4HnHhEVdtX2LseQlTzsqWzRukEUFq
- N42Q==
+ d=gmail.com; s=20251104; t=1783690271; x=1784295071; darn=lists.freedesktop.org;
+ h=content-disposition:content-type:mime-version:message-id:subject:cc
+ :to:from:date:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=B49BYydG0G+SVwT1ct2zU4r2nKnTZkCjB+W66DADfQM=;
+ b=ADjVwhNawWj+BOMtNJxzuSct9ofWryxTvp37apBW3lBeRVQYZ2XGT1hQi0TOlKKTnK
+ 7F0g3wKiiMZ2/C72U33wHBIlj0MQ2irjvbOcs50PZkpgrdtfVrRjvUfADhKwv6DjshVH
+ Jy/QNP+eFlbrxWP2B+szpwteGZDWAB/8ZsZDjOoFDl8g6X8ScHPyV1GdDq1/7db813uG
+ TIq2ttnj9mAv5TdRliM65z8bAmH5xbWIdbwjH+Wr+ac8yLIL8TWQBOL88u/Yhw8MQRvP
+ rt8bZpFfbiUp2ZC3LCkhHlgcZg1JbwI50jcv8JuqmhDEekxmf3DuLcosVDcTSpesAmCc
+ iqhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783690056; x=1784294856;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=8Xz8mAiIS9bhxJSnBlNVStU7ycoiUswNHhwr3rObZng=;
- b=ecWLu8P+k+5Gq0fEDzudKZamLMrvapviS6sHzCCipweNNnfGMu3ZqbZm+wdA2LULgp
- a3VBqqDGOmxTQacF/vVDowuc/JZGCZkWqqYZZGiMyRJ//Y/0Qv1jeMB9vjSTIzKR9lb8
- e0zqmCtxA/hF9e0y73y9wXATSBUZ4zGwN2bwbX56+3FQqGZIPmJDtswfad4eF7SgQSVk
- o5n6ARh3PN+PtmuvOR1XSybPmaKDb+S3CQOjWp+oADyysqNuRENBAEBKyTRS5KR7j2sS
- vUbU0/LwJOuY6Xum1h9SXC9N6+m5vOKkm4VdBCNPz8lSAaU9kPePFm3gk1g7BUG6pT8s
- 5eRg==
-X-Forwarded-Encrypted: i=1;
- AHgh+RrlpFnnDeSOnS1dXkRsKzlzU9WMrgYn4I8mOXNhDlWCe9lmQVqtypk4GmnKmLzPrS8Lnaez+cfe@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw5/78Aqi20L4Wkx2j088pR99lKNGY7K5+FMOS2pwjm/wohz78q
- KILKm9+vWgDulTzyG80WyLsY6etIcP04Bos9uVp8FlDsLtl+Pk7E2fXq9M/lau1wff3LkGTaMWa
- QZ/WjnYiL2uXZRo8q+aJM3zP1pkdAjlw=
-X-Gm-Gg: AfdE7cnl108na9CrTnaIRn9FtL6eAlt+Pwo55xkVn+xfljufWsMU3n2lChbmw/v3HOU
- Z0+Rayj+SAXu3epzKs4bqpJ4CC/hG1VCFo7NIs8RzCGV3DehzglNBGT4PGjV8tnEt6qsD1CUf1j
- 3U5vTwqUntnTOgxrOnf97JFUl8Pc1NBsnt/FEjRCaraohVuT4oVlHDqk2FRITfTBjcWnTOVIiBs
- 4P9FGqXP6WzyoucZX2V5a40pFhBSA8A5PUPC8dAdPVPTukcSExv5HMHoOHVRSY4Dmz9CbhQbU4A
- xErsw/zt5WKa8eJm6ftQSnl6kql/6MHmSDza1mbdriyENtgt4watj4Q+nTzDRdjlHxnuXQ==
-X-Received: by 2002:a17:90b:390e:b0:381:77cd:38ca with SMTP id
- 98e67ed59e1d1-38a20c48ce0mr6963500a91.4.1783690056153; Fri, 10 Jul 2026
- 06:27:36 -0700 (PDT)
+ d=1e100.net; s=20251104; t=1783690271; x=1784295071;
+ h=content-disposition:content-type:mime-version:message-id:subject:cc
+ :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=B49BYydG0G+SVwT1ct2zU4r2nKnTZkCjB+W66DADfQM=;
+ b=ob+HRQNc9o+dOmc0gvQIF/Cw8roCJcKdpcOEKp2a3eFIlkyrZFulayLWbj4OMv1bxy
+ N7zVIyaxmrI//q0weCner+uGdS9sTgjpBTZoq0M2PM/CWpquLlYPSRLI/g0ia/qR+oqU
+ 3blWyYeZGda/F9vhZgxmcRE87lZZLos780vX1OVDkfzOZQfai2PJKO9xCNp7iAVH0JQA
+ qICDKTDPB7mcc60BH3GQmbY42bZciElHHsve8In6K6LGfuC00trylHL5A24XGsnJ6jJl
+ 2xxXy9gkpaqog0xuW944vldV5kpU7w3ONiACs7DQPvX4VcZnYui0P5dUOq9h1DTm4UvP
+ J3Lg==
+X-Gm-Message-State: AOJu0YzE7woa8nS8WhqFeGcAPifrzhBIK6jwRkjPj4VkRRDxS3EZp/fZ
+ aS6UX/aYVGVTlYJ0EQw1v7Gq4cXmbHFnUbLHUDNrIrkrGMvrmQzMIOf7
+X-Gm-Gg: AfdE7cnJ527hw7aNRr/uvSyudYJYBoBrWBeehlfeyzzTRrZcv6I0zw6589CDjSQqs8a
+ ulQMz1Ba6p+WR02K4/8R9ISz0qN4gU8UopYFRFLLXlPH3UYyeNozHxYELezLEGG2TSFlN5ImvG+
+ ScO6ImkVmWMjgIxxAHehwoTqEJ/iXeHFGy2UYwd/iOFrwniEVHAIsMdu3HlGQinG8TCcphmww+Q
+ y9GioGof/j1C31pRbrrwHlwgrH0iEZb3oqRMipBBLstdwMk/SAYxZ2d3O4rEL+xbyT2zotN4WRu
+ cPts75saFqrupaVBk2/7DbmTWA4T05MWgDJwrhOpbnaTxOJATogqD0PLprQuvEsTI/AqX6Kewb1
+ 2dMa9YMz/SEXoaJaHeuNzxkHxM0DVadAeac6OYfFSEa3qt4/EK/P5YwzkVAdLR/5lzJPzGNJR++
+ ZvQuaYKpva
+X-Received: by 2002:a05:600c:6206:b0:490:b8c0:d470 with SMTP id
+ 5b1f17b1804b1-493e68c8063mr123645755e9.19.1783690270616; 
+ Fri, 10 Jul 2026 06:31:10 -0700 (PDT)
+Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-493f744e8d7sm10990725e9.15.2026.07.10.06.31.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 10 Jul 2026 06:31:10 -0700 (PDT)
+Date: Fri, 10 Jul 2026 16:31:06 +0300
+From: Dan Carpenter <error27@gmail.com>
+To: Alex Hung <alex.hung@amd.com>
+Cc: amd-gfx@lists.freedesktop.org,
+ "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>
+Subject: [bug report] drm/amd/display: Add KUnit tests for mst_types
+Message-ID: <alD0Gp71kK2Cn6w3@stanley.mountain>
 MIME-Version: 1.0
-References: <20260708222035.7324-1-nico.antinori.7@gmail.com>
- <fd5ecc7b-b9b5-4653-b7ad-72bdcd0b8518@suse.de>
-In-Reply-To: <fd5ecc7b-b9b5-4653-b7ad-72bdcd0b8518@suse.de>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 10 Jul 2026 09:27:24 -0400
-X-Gm-Features: AVVi8CfC8WMQvuOOX9IbEu4pHDNwlbHNhnBztQ4WqIxX3gf9mAdHkuUx5nllMac
-Message-ID: <CADnq5_OBYXSz2HG7SCA2eK5_z1J0SmJCwCW2RkGJ5d1-tAVC6g@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Inline drm_simple_encoder_init()
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: =?UTF-8?Q?Nicol=C3=A1s_Antinori?= <nico.antinori.7@gmail.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>,
- Brigham Campbell <me@brighamcampbell.com>, 
- David Airlie <airlied@gmail.com>, Shuah Khan <skhan@linuxfoundation.org>, 
- Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org, 
- linux-kernel-mentees@lists.linux.dev, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailman-Approved-At: Sun, 12 Jul 2026 15:22:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,115 +90,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20260327:i=1];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	DATE_IN_PAST(1.00)[49];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:tzimmermann@suse.de,m:nico.antinori.7@gmail.com,m:christian.koenig@amd.com,m:alexander.deucher@amd.com,m:me@brighamcampbell.com,m:airlied@gmail.com,m:skhan@linuxfoundation.org,m:simona@ffwll.ch,m:linux-kernel@vger.kernel.org,m:linux-kernel-mentees@lists.linux.dev,m:dri-devel@lists.freedesktop.org,m:nicoantinori7@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:alex.hung@amd.com,m:SRINIVASAN.SHANMUGAM@amd.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
 	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexdeucher@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[gmail.com,amd.com,brighamcampbell.com,linuxfoundation.org,ffwll.ch,vger.kernel.org,lists.linux.dev,lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[error27@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,mail.gmail.com:mid,suse.de:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,stanley.mountain:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AA2BE73B3E2
+X-Rspamd-Queue-Id: E0B1B745269
 
-Applied.  Thanks!
+Hello Alex Hung,
 
-On Thu, Jul 9, 2026 at 3:17=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse.=
-de> wrote:
->
->
->
-> Am 09.07.26 um 00:20 schrieb Nicol=C3=A1s Antinori:
-> > Simple KMS helpers are deprecated because they introduce an unnecessary
-> > intermediate layer between atomic modesetting and the DRM driver.
-> >
-> > Inline the functionality of drm_simple_encoder_init() to remove
-> > dependencies on these deprecated helpers.
-> >
-> > Signed-off-by: Nicol=C3=A1s Antinori <nico.antinori.7@gmail.com>
->
-> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
->
-> > ---
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c | 10 ++++++++--
-> >   1 file changed, 8 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_vkms.c
-> > index 170adaf7e76a..d5b0692fe860 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
-> > @@ -2,7 +2,7 @@
-> >
-> >   #include <drm/drm_atomic_helper.h>
-> >   #include <drm/drm_edid.h>
-> > -#include <drm/drm_simple_kms_helper.h>
-> > +#include <drm/drm_encoder.h>
-> >   #include <drm/drm_gem_framebuffer_helper.h>
-> >   #include <drm/drm_vblank.h>
-> >   #include <drm/drm_vblank_helper.h>
-> > @@ -316,6 +316,10 @@ static struct drm_plane *amdgpu_vkms_plane_init(st=
-ruct drm_device *dev,
-> >       return plane;
-> >   }
-> >
-> > +static const struct drm_encoder_funcs drm_encoder_funcs_cleanup =3D {
-> > +     .destroy =3D drm_encoder_cleanup,
-> > +};
-> > +
-> >   static int amdgpu_vkms_output_init(struct drm_device *dev, struct
-> >                                  amdgpu_vkms_output *output, int index)
-> >   {
-> > @@ -342,7 +346,9 @@ static int amdgpu_vkms_output_init(struct drm_devic=
-e *dev, struct
-> >
-> >       drm_connector_helper_add(connector, &amdgpu_vkms_conn_helper_func=
-s);
-> >
-> > -     ret =3D drm_simple_encoder_init(dev, encoder, DRM_MODE_ENCODER_VI=
-RTUAL);
-> > +     ret =3D drm_encoder_init(dev, encoder,
-> > +                            &drm_encoder_funcs_cleanup,
-> > +                            DRM_MODE_ENCODER_VIRTUAL, NULL);
-> >       if (ret) {
-> >               DRM_ERROR("Failed to init encoder\n");
-> >               goto err_encoder;
-> > --
-> > 2.47.3
-> >
->
-> --
-> --
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Frankenstr. 146, 90461 N=C3=BCrnberg, Germany, www.suse.com
-> GF: Jochen Jaser, Andrew McDonald, (HRB 36809, AG N=C3=BCrnberg)
->
->
+Commit 04bed7922fa9 ("drm/amd/display: Add KUnit tests for
+mst_types") from Jun 17, 2026 (linux-next), leads to the following
+Smatch static checker warning:
+
+	drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c:1027 dm_mst_test_fp_guarded_public_stubs()
+	error: NULL dereference inside function
+
+drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/tests/amdgpu_dm_mst_types_test.c
+    1025 static void dm_mst_test_fp_guarded_public_stubs(struct kunit *test)
+    1026 {
+--> 1027         KUNIT_EXPECT_EQ(test, dm_dp_mst_is_port_support_mode(NULL, NULL),
+                                                                      ^^^^  ^^^^
+Passing a NULL here will just crash right away.
+
+    1028                         (enum dc_status)DC_OK);
+    1029 }
+
+This email is a free service from the Smatch-CI project [smatch.sf.net].
+
+regards,
+dan carpenter
