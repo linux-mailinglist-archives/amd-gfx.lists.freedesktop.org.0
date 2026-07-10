@@ -2,130 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id kVd+JUdGUGq6vwIAu9opvQ
+	id CuHlG/KcUGqv2QIAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 03:09:27 +0200
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 09:19:14 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F8D736792
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 03:09:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E108A737FC8
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Jul 2026 09:19:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=qqyxJwBw;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dkim=pass header.d=qq.com header.s=s201512 header.b=bn0Ti9II;
+	dmarc=pass (policy=quarantine) header.from=qq.com;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C67A710E04B;
-	Fri, 10 Jul 2026 01:09:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78FAE10E12A;
+	Fri, 10 Jul 2026 07:19:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010021.outbound.protection.outlook.com
- [52.101.193.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9ADA210E04B
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 01:09:23 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Cz009mURG1+WDNGzu97ed1Bt2K/I2AKdEyfU1lq6wzDetwaHbNud6fFcLJq6SCulgO2qS1J9qIEWhaif39tYWKdOxUKz1w2VcTFSNCRc6tmkVgVtwLkXwS7q9QD7EDe6owpwj360MWKMw4fNMFavfEDX9gaH2wBVJkv4ZWz9/zf11fUZspr2i8NqRc59XfXFPsLiLFR/PQn8Ul3l50slLKeahg42NcRDm259HPgIEV0kMSaPCH+YHuFIN/QdO/5c0uv9aA45Pg1NObz6s1FpoSiDlNqxFTiZob4coElEUgXGN3OpJf6UzO9hX9S+dAkeDBvvdbi9sVMKC93ynHw6GA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hCP7VCtkhXE3w4dSAsYxmM5gCWF6WlqPeystDunhziA=;
- b=fB0CMLiir6sNddI4OnWgc2x2czWTTzy3COnba4QNSgNE+nXOQxt5wcGQjWPFLgygorIhVBzh0G1PpeF2XPuQBiTOZqevosiqeLfYnpRVK4U8p85oHFrJj70XsyvMZns6ag3Ol0mtJGaBQeunCZqi/h96F9Iv9PsVew6ahl3qoZYteCVXogXPTPde0QWUSiBLJR6+rSRkkzueIuucb9VcvIN3SpaRrlacVUUifZSsta/Cz212oi5hWho7XKM0X3D8bDwk4ssuzOTdtx8ko7t7oc7lgUq9F1ZQHScgAxaBc8L2QLbdYsYuF1m1InVHX2++/aHhbcLNtnrLZ98m7J1C7w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hCP7VCtkhXE3w4dSAsYxmM5gCWF6WlqPeystDunhziA=;
- b=qqyxJwBwjpy7c6IczKhGpK6Er2YfWxbFKHPECRA1hBNlixQ9tD7bdGO+XD8JM7r9UydPA/lEqNxiFgbvFB2yJFZv6L9H4bc2PhcqV6hxKsg1Bs6QKSshR00TDGLlzhLKLLHpnju5zHKuMERuYv5+i7z5HlLmVeb7SEso5HZ91/k=
-Received: from PH8PR12MB6914.namprd12.prod.outlook.com (2603:10b6:510:1cb::21)
- by BL1PR12MB5996.namprd12.prod.outlook.com (2603:10b6:208:39c::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.15; Fri, 10 Jul
- 2026 01:09:20 +0000
-Received: from PH8PR12MB6914.namprd12.prod.outlook.com
- ([fe80::2893:177a:72b0:6000]) by PH8PR12MB6914.namprd12.prod.outlook.com
- ([fe80::2893:177a:72b0:6000%6]) with mapi id 15.21.0181.016; Fri, 10 Jul 2026
- 01:09:19 +0000
-Message-ID: <e31394d3-6658-4d99-84d0-1927b7dfa80e@amd.com>
-Date: Thu, 9 Jul 2026 20:09:17 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH drm-amd] drm/amd/display: dce100: skip non-DP stream
- encoders for DP MST
-Content-Language: en-US
-To: Andriy Korud <a.korud@gmail.com>, amd-gfx@lists.freedesktop.org
-Cc: alexander.deucher@amd.com
-References: <CAOidqQCv-M7oHt9jMMGo2LvhGyXDfNwjfeP+2tASOvg+yRF9mg@mail.gmail.com>
-From: Mario Limonciello <mario.limonciello@amd.com>
-In-Reply-To: <CAOidqQCv-M7oHt9jMMGo2LvhGyXDfNwjfeP+2tASOvg+yRF9mg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SA0PR11CA0071.namprd11.prod.outlook.com
- (2603:10b6:806:d2::16) To PH8PR12MB6914.namprd12.prod.outlook.com
- (2603:10b6:510:1cb::21)
+X-Greylist: delayed 1447 seconds by postgrey-1.36 at gabe;
+ Fri, 10 Jul 2026 01:55:58 UTC
+Received: from xmbghk7.mail.qq.com (xmbghk7.mail.qq.com [43.163.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9445E10E10D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Jul 2026 01:55:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+ t=1783648556; bh=5EOkqBZUqrb39d1Nm8dwkAhCq6ui/t2PEv4lF3ANjGY=;
+ h=From:To:Cc:Subject:Date;
+ b=bn0Ti9IItIKsHNd6yXuJUHYATo54raOXAM4pMwHWsrJYaAjn1x4LPw5+rWuZ6Za4h
+ 7El4lypqjUr89H4yhgV2hGiqRAq1GmbIstfjpxAS181aCJ94oROdwFbr1tQyC5SF+F
+ pHxoAlrvdS0mokTXrO0/gb9jtbnkbx3Dz+3R22cU=
+Received: from localhost.localdomain ([116.128.244.169])
+ by newxmesmtplogicsvrszb51-0.qq.com (NewEsmtp) with SMTP
+ id 62218093; Fri, 10 Jul 2026 09:24:34 +0800
+X-QQ-mid: xmsmtpt1783646674thp1vxobr
+Message-ID: <tencent_C3A258C2204BBB82CD35C736076BFC07F806@qq.com>
+X-QQ-XMAILINFO: N/WmRbclY25Ge55ZC1eeD+B1t0ILvuY8k7EVBFtToFrl+v2/ZCUVMrc6eb8+Vc
+ gUUkoOtn827NNxUw7XsviOjuB+bcARXGcZDzS/2YJ4jvg7jUk5W8vcyPJbtRav2AFfQvxdIQXVfQ
+ yOwuM0rU2hhQpa8yzDJYvmcfezUynrSrKRrn3SdWi9DIKv9V4vn517tDEv1bgFM+gCGeByGwDcPN
+ SqV4pQKa75bapLIo7Kviz5PpD7Roaz+UnxPjxXPUVj05vGYza7e2CxvVQ3z6e9AiDFGSZ2gE+IYZ
+ M1eQwsDT+F6W3Eaxkbler3UA/h1DWP4h4EAT7N4Gjc/5Es3NLpqkY87cMfJ/xJLps0W+cZ0SC2R1
+ Xn3EG42HXksQxttkOP2M4dDAhP5MwTQOI/qzb0zoy+SbVhO5mKgnSazEoHouEizGk2luuy7gs9QL
+ ESQtGi1fgoZ0kX1wj67MUjDT4Vy1nzM4QJHU4eYmyFXe5NJzBObWb7/cqdutVBHDBmK86pk+vWgW
+ MTZCgZdL9bqwwwnjz9iuy2L1oppkkDbLUIWoYcHw2/KT7UyefpnH66aUCBR8FLEMUlAstK00Nl0i
+ 9V5a3kDQ3jj5dEDC2ymVOoTICJ5EZcZlV/l7Em85OzfMSZzqerklY3Q7s313/1Gu3lM4axOTSxEs
+ XBpjHcroXv4uRUNxKWo4QyXMA5U3kEzS7p/eB5/CkzXgi4q8O/vHYWViDtiq0HG1/tTAtRdBiUQ2
+ RX46BJA+lA4SQd+TDQXBsdecj9ZY/9MmbKCQc4BIv3Dfy52P2NnLUUfjb+DKt65JYgY85jyuMzEs
+ 1I5YpMIh6XiybzdqBZ+BOAV8V+QmAk0UpFPU1zB6E2PR12sTApO17iOnRdCia9s3wrDI675Jnwqf
+ qMrCkZeeyZ1tESYM6wbLM9459UN4Qv/1oOz8RDg4yyxy0YX/F5HrCeGpToYteb+7nB3EBleBhq3D
+ 1ePCc+uN4iOErhY5/ipnf+SWHJPB9vGe7txQbxpaPWu2YUp+LC6vFD37JE35c0SxPJy3f5ABHfma
+ GfyZAcjDbXXtsF3wvcYjfiES7+542VzLK7E5egxGR1RaiNxD9LyT6L1xsaIRs=
+X-QQ-XMRINFO: OWPUhxQsoeAVwkVaQIEGSKwwgKCxK/fD5g==
+From: 2681643870@qq.com
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, oushixiong@kylinos.cn,
+ yanglinlin <yanglinlin@kylinos.cn>
+Subject: [PATCH] drm/amd/display: fix __udivdi3 link error
+Date: Fri, 10 Jul 2026 09:24:23 +0800
+X-OQ-MSGID: <20260710012423.61550-1-2681643870@qq.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR12MB6914:EE_|BL1PR12MB5996:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9582b5d3-3c09-4bb0-9bd6-08dede1fdea3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|376014|1800799024|22082099003|18002099003|56012099006|11063799006|5023799004|6133799003;
-X-Microsoft-Antispam-Message-Info: ZzSSL2E1iUGqxWBuU4V+tvcoWHDTFCoTyDZ8lZmzXm6EWoZEMEY7PZ4TimpYPuEAAoFBDqcvC+rfWO+TnASb5DqG1XY8eO8Uhk5I8ABdUGCsjHHj8t3N0cnbjxPEfTD1ACsTfxUskMiFs8yPKN4uu5iFG6+K9YaPrYsQB7lMpD7SYThgRGJ15hmpiAVlCSt+CtAiFm/bvIHSL5yzqBke5Nn3yC8+6//hIfwv7DK2nCVR5Dy2MZIHMWbIOzQ8iOV+NkZyqtG3nvY6qVgaxqoUR3AuurRtT1psCbUi2rTADVfEaujSZhv/eqqKbIUrMyOUlLZLo94ViQTlZIYtlhkb+fgsmJkClepGqzbuKSU8qiZhUKQYe+0mN3jgIweFFYjW8Rg47TMYTxjN9TmxpoKrA3xZ2jPSTUmxjBJfwMQcajXG94aSZraYs/eDyu33XYAsO+0OXGZALJhxQ98US9yYrYc/NKuZP7GoRZwkC7OE7N0RtHwgKr+nhalzZRk2TI/fnU8eiToEWjaE4N0w9uPgfwsvgzaMs0ehPhzGSgfCCd4vgVWhfFcgUSB0euWcpcvdpz7WtxkCboGn76pew9CO66lfuCNXAwCfuoEjXVWPhFLXT7Q+8GMjrshftyctF0cQ8zckjmnxuSyykqBgkZW0IcXMza9O4CP3LZt6jvhVYHs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR12MB6914.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(22082099003)(18002099003)(56012099006)(11063799006)(5023799004)(6133799003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RFZKc2dFUEFpUEVMYXlaby9lVXZSUHE3TzdpVmpTUWtDamFodkowTnlIdXZR?=
- =?utf-8?B?OVNtejBQK2FLVStDb1UySWVyVmp2Zm9ZeUZmSzRHSUZ5N0k1cGQrazZqVndM?=
- =?utf-8?B?cTNLZmZXbFcrVFNYcVNkTXNucVRHVENGeEU2YTZmSkg0cThSa0JiZDRvWUJB?=
- =?utf-8?B?WEo4QzFQYVNNcGdoWEE3dExvZ09US2UvR0Uxa2ZqcFVhWWdaeFU0Q3dKVWx4?=
- =?utf-8?B?S1I2ODdva2Izc2tPUm9TVW5KS2FiR1B3TnNLNE5lcnVQZ3ltYklsaDVKQWxU?=
- =?utf-8?B?Vmg0ckdkSFJnOFBjbzVvSzQ2V0c0d2l5amhnL0tMOU0vVms5VEdNelJOTGxs?=
- =?utf-8?B?WnBtRDFQbHkxeEJBeU95bFlxZUtYM1plOW51VzN5bUYxY2dDK2p2NGZhMjBk?=
- =?utf-8?B?SGQ1MjFBMEdoM0dtK3BnRUVwdTVBQm1rN0NzcGNIN014bExZbjAvTmNiWnAx?=
- =?utf-8?B?U21qbloyL2dVODhld2QvR2syY1c2MGh4a1V4TFhrakZVQ0NNR2xhMWJYeTRo?=
- =?utf-8?B?R2RlOXZ1Q1BvTGI4aEM5aEVHZjlYUExDZTM3TGJ6RlBkeGpxWGJVNlprRzZC?=
- =?utf-8?B?S2tKRVYwUi9KSW9BL01ZZnNDc0U3OXpMSEw1RUVrRTNNVEtXQWZGWStjT2Qy?=
- =?utf-8?B?OFdxUytrR1pDdW15QWl0UmZZYUhEYS9XdmorK2dGY1hRMzhyd3lKU3JkODZx?=
- =?utf-8?B?aXozY0ZLaTdxZ3Bxd3VHM2kybEphUUVBRStycW0wRDlXaWk1dWxwcWRIdnND?=
- =?utf-8?B?bnl3RUhjeFp0QTBZU0tqd09scVBYYlRtbUtxYUg1d0djV1hjRTh5NnY3c0Y3?=
- =?utf-8?B?empYWVlNdm5BZ1AxcElNb0k4TjMxa09QWitwdUhLci9SWXpYa2FrMk9icFBK?=
- =?utf-8?B?c2RhSll4RHFBODZONjBrTlk5VlIxMFV0S3JsVFB5eGtNY1cxNDFtSjMrdUZZ?=
- =?utf-8?B?M2RaTjB5ekFrVURpUEZCZmgwcm5VMDNyQVAxTUJKcTJ1V05CMWUyamViVUV3?=
- =?utf-8?B?Q3BSRDVFZzk0R1ZFai8vdnRocC9icmtCMW13NjRRenpCVHdCZVAwK2xJcnBz?=
- =?utf-8?B?MGR1N085MVZ0TkttR0FPMjF4aVk2SFB1UjVGaUpxZjFyMnR5TUpDNXBFbG56?=
- =?utf-8?B?VVRJazQwR21MdW5pWTFyeGc2ZFF3M3pveGIzSndJdjllcFJScW10S3o4MjNl?=
- =?utf-8?B?d2JtZTVQUlR4RUlQcUk0UnpOZXBTT2prRUplenMwSVFWMWQ4RlFzcjRqRGg2?=
- =?utf-8?B?bXY5Wi80RUM4ZExLZEVYZkFVQ0tmQW9xRHhiWHpwMjE3MElnQjgxYysyQWVD?=
- =?utf-8?B?cmNpMUxTRjBSOHY1ay9kWi9BUVZGTjlPS2lyZ0t1QnpvSnVYQVI2ODVXVS94?=
- =?utf-8?B?OExIQTlkamlPQ1U2aVJFWVR2dk95WmloOGlaNlpWKzIzbjUyOXppOFR5OXgx?=
- =?utf-8?B?RjBtY2RoZXRuVkFiYzB5TFRxYkcvYkE0L2Q3b2ZhNFJ0TC8yaVZHUXY1OW0r?=
- =?utf-8?B?SWR1YjhtTGxGV2NSaXNzbnRRcHpnUUFRQlhJcVdTSmtCT3lWZmh2TDk1d0sz?=
- =?utf-8?B?Z2JOQmdQUHQxRzl1ZFVXd3JnRkg4ZCthQlNySDExN1RGNm5XN0E2Mm9QOWQ3?=
- =?utf-8?B?K1BvbGhyQUNKd3hLbkcycGErM1RqMEpVSlN0NTZiYXkrZ0dxQXBNL29CREdN?=
- =?utf-8?B?VHhzeThIeGE4T25wOXZBUm44TG9XQTRYRFpYRzRHZlptcHBueGtQUzRicm0y?=
- =?utf-8?B?WTdXRG9XYy8zTmF4S1l3UzJOTzJKbE5XVEhJUFBGR2VucTZuaytncnV5dmlM?=
- =?utf-8?B?UnRUYXB3Tm9ReU1nRlVrZjBSZmRnMjB3elNOMzNTNm16QW02U2RQWFFYdnJt?=
- =?utf-8?B?QkVLeEhWbHMyMk80OG9hdTFEdW1IcXExcm90L0dyOFpaK0RIUUZ1UDBQVFV0?=
- =?utf-8?B?M0hnMVk2c2JIckE5YWN1bXlnSUpiL0E2WXBUdjZmS0RsMmQwaDJmSmxieEc0?=
- =?utf-8?B?Q2YveEtTY0pwclR4QkFybXExdlFDcHlLZEZPT2s1MnJPL1ZweWRuOHJkeGJ1?=
- =?utf-8?B?ZnlvYlZxQVk2M2ZZVkh4QWU3c3hXN2lCd2NXTjdneitsQjRFNmJRa1NJd0ZC?=
- =?utf-8?B?cit5czMrSUJZdW9WWHg4elhqR09wOGtCMzlrbnZhWGRlblRVUktUL25tanJj?=
- =?utf-8?B?RWtBdjJWalJ0RzRvcjhIUmRVTUxrSVpmZ01BR1lTR0JWek0yRisyVldqVlNQ?=
- =?utf-8?B?MDFvVkw2SGRlSlFTQlM1OEFTcjVNU0dUU0plWVJmbnVZUGxtUCtzT2R3RVpM?=
- =?utf-8?Q?qXvr9RrT2zMgFD1YDW?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9582b5d3-3c09-4bb0-9bd6-08dede1fdea3
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB6914.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2026 01:09:19.6062 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QrE/C/EEwL37x+OLtdtrZHLlSGIsU85X8jHRqgONLdcaThwVhyu3Prc96MkqD48FGBFmhbplI1QJFghCQqj8ag==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5996
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 10 Jul 2026 07:19:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,70 +77,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qq.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[qq.com:s=s201512];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:oushixiong@kylinos.cn,m:yanglinlin@kylinos.cn,s:lists@lfdr.de];
+	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org];
-	FORGED_SENDER(0.00)[mario.limonciello@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:a.korud@gmail.com,m:alexander.deucher@amd.com,m:akorud@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	FREEMAIL_FROM(0.00)[qq.com];
 	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[2681643870@qq.com,amd-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mario.limonciello@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[2681643870@qq.com,amd-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[qq.com:+];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NO_DN(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[amd-gfx];
-	TO_DN_SOME(0.00)[]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,kylinos.cn:email,lists.freedesktop.org:from_smtp,qq.com:from_mime,qq.com:dkim,qq.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D1F8D736792
+X-Rspamd-Queue-Id: E108A737FC8
 
+From: yanglinlin <yanglinlin@kylinos.cn>
 
+When compiling the AMDGPU display driver for 32-bit architectures,
+the linker reports undefined reference to `__udivdi3` in functions
+get_dp_dto_frequency_100hz() and dcn401_get_dp_dto_frequency_100hz().
 
-On 7/9/26 12:34, Andriy Korud wrote:
-> Hi,
-> On DCE8-class ASICs (e.g. Bonaire), the resource pool contains digital 
-> DIG stream encoders plus one analog DAC encoder. When assigning a stream 
-> encoder for a second DisplayPort MST stream, if the preferred digital 
-> encoder is already acquired, 
-> dce100_find_first_free_match_stream_enc_for_link() falls back to the 
-> first free pool entry. That entry may be the analog encoder, whose funcs 
-> table lacks DP hooks such as dp_set_stream_attribute. The subsequent 
-> atomic commit then dereferences NULL function pointers in 
-> link_set_dpms_on() and crashes.
-> 
-> Skip encoders without dp_set_stream_attribute when the stream uses a DP 
-> signal (including MST). Use dc_is_dp_signal(stream->signal) for the MST 
-> fallback path instead of checking only the link connector signal.
-> 
-> Tested on:
-> - GPU: AMD Radeon R7 260X (Bonaire / DCE8)
-> - Board: Supermicro C9X299-PG300
-> - Setup: DP MST daisy chain, either hotplug second monitor or have it 
-> connected on boot
-> - Kernel: 7.1.3 (issue observed since 6.19)
-> - Result: kernel oops without patch; dual monitors stable with patch
-> 
-> Thanks,
-> Andriy Korud
+This is because the code uses 64-bit division (/) on 32-bit systems,
+which GCC cannot handle directly and instead tries to call the missing
+__udivdi3 helper function.
 
-Can you restructure your submission against kernel guidelines?
+Replace the raw division with div_u64(), the kernel's standard 64-bit
+division helper, to avoid the link error.
 
-https://www.kernel.org/doc/html/v7.2-rc2/process/submitting-patches.html
+Signed-off-by: yanglinlin <yanglinlin@kylinos.cn>
+---
+ drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
 
-This should be a cover letter + patch or just a patch (not an attachment)
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
+index 7c293917e6fd..9dfb6f132136 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
+@@ -1229,9 +1229,9 @@ static bool get_dp_dto_frequency_100hz(
+ 			 */
+ 			modulo_hz = REG_READ(MODULO[inst]);
+ 			if (modulo_hz) {
+-				temp = div_u64((uint64_t)clock_hz * dp_dto_ref_khz * 10, modulo_hz);
+-				ASSERT(temp / 100 <= 0xFFFFFFFFUL);
+-				*pixel_clk_100hz = (unsigned int)(temp / 100);
++				temp = clock_hz * dp_dto_ref_khz * 10;
++				ASSERT(temp <= INT_MAX * modulo_hz * 100);
++				*pixel_clk_100hz = div_u64(temp, modulo_hz * 100);
+ 			} else
+ 				*pixel_clk_100hz = 0;
+ 		} else {
+@@ -1285,13 +1285,12 @@ static bool dcn401_get_dp_dto_frequency_100hz(const struct clock_source *clock_s
+ 		 *     - target pix_clk_hz = (DPDTO INTEGER * DPDTO MODULO + DPDTO PHASE)
+ 		 */
+ 		temp = (unsigned long long)dp_dto_integer * modulo_hz + phase_hz;
+-
+-		if (temp / 100 > 0xFFFFFFFFUL) {
++		if (temp > (UINT_MAX * 100ULL)) {
+ 			/* pixel rate 100hz should never be this high, if it is, throw an assert and return 0  */
+ 			BREAK_TO_DEBUGGER();
+ 			*pixel_clk_100hz = 0;
+ 		} else {
+-			*pixel_clk_100hz = (unsigned int)(temp / 100);
++			*pixel_clk_100hz = div_u64(temp, 100);
+ 		}
+ 
+ 		return true;
+-- 
+2.25.1
+
