@@ -2,73 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WOk9C/ywUWrKHQMAu9opvQ
+	id nnJXFUexU2radgMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sat, 11 Jul 2026 04:57:00 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 17:22:47 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B34EA74017A
-	for <lists+amd-gfx@lfdr.de>; Sat, 11 Jul 2026 04:56:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F2E74525C
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 17:22:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=W4MaPTNC;
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=ibm.com header.s=pp1 header.b=kGqj0aNh;
+	dmarc=pass (policy=none) header.from=ibm.com;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50F5D10F9DA;
-	Sat, 11 Jul 2026 02:56:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37EC710E4A2;
+	Sun, 12 Jul 2026 15:22:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40E8410F99C;
- Sat, 11 Jul 2026 02:56:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783738596; x=1815274596;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=723hgQuYp6+klCitA20qFbAHw/sHfZeFjtk6GW7S5qg=;
- b=W4MaPTNCqr3OVTePeVFn/o2WdGGrEvoKV6P08D3waMie4oSn+LQnVgYF
- DV/owYOMDwZ/UrjBS6eG1BWnX3Nh1eI2cnXJaGoK4NzHd0yFgSrqIQMzq
- 1ZyD2f0oerAbGIhAVusjkM/cWrOI0mAGYUimaa9BAU8BLRcGxrCALM0lv
- nJGWDVdQuRBwAmSKUbhubMEvB0aDSV1lehsBzqucvQL1xLDFP1UHFTO1L
- /Bs/Y0WDGk/+TybOXiKpiRlOmsKl8+6Rw6tWnukWHeTprEt3NeBF093g0
- tUjKgyjEHZhhf0KNvsseVL0yO63uYqwSzmC8e1edmaS96Du+TIBxjpZOC A==;
-X-CSE-ConnectionGUID: Iv1ilmcPTZeAS8k2r8lUcw==
-X-CSE-MsgGUID: a01nq2eKR5yXZTye/aDgJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11841"; a="101986414"
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="101986414"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 19:56:35 -0700
-X-CSE-ConnectionGUID: bjvhYcKQSgqkk1IahRSoJA==
-X-CSE-MsgGUID: OXnJNkgmTva2e4toU5M4fA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,154,1779174000"; d="scan'208";a="256987806"
-Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jul 2026 19:56:34 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v3 33/33] drm/amdgpu: Preallocate system BO pages outside the
- reservation lock
-Date: Fri, 10 Jul 2026 19:56:19 -0700
-Message-Id: <20260711025619.2540575-34-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260711025619.2540575-1-matthew.brost@intel.com>
-References: <20260711025619.2540575-1-matthew.brost@intel.com>
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A874410E719;
+ Sat, 11 Jul 2026 03:30:22 +0000 (UTC)
+Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 66B3IGEJ2701577; Sat, 11 Jul 2026 03:30:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:date:from:message-id:mime-version
+ :subject:to; s=pp1; bh=xqCBfEpl/mAyGJ405WEpHV5wVbpJ5wX0tabdzGuhw
+ Zs=; b=kGqj0aNhjWh2aJtRwtqZmJcwJzlgq2gBmCHk8fVxKDpUz4jUc/7nCl5dj
+ 53pXEp0dnzxs973tZ84H+AKnYCZ2BXuG7l8k/6MAHIHNdClJ3EOQtmki4jF1Rjdc
+ 1BL+Iy6HprljPMQRUbcTALph312u+2j7VPvnmaXBRCh56o9XzGvcVhBZ/yFC4ydz
+ igXkPlRZtkEDuHZTbamp6TRqdf6x9245XHK3EpRc6t7l1UFGGc7dnqrtTrL+gywE
+ LPDHCRqtv62JqiMzNPyqScvglmWq8V5NZJuDKj8Vt3HAxFRDKa6iliU9LHGUGHvG
+ 6GxDrD/YOT1C9lfo1lgicPRvl9XfA==
+Received: from ppma13.dal12v.mail.ibm.com
+ (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4fbdj58274-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Sat, 11 Jul 2026 03:30:15 +0000 (GMT)
+Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
+ by ppma13.dal12v.mail.ibm.com (8.18.1.7/8.18.1.7) with ESMTP id 66B34fB1001487;
+ Sat, 11 Jul 2026 03:30:14 GMT
+Received: from smtprelay03.fra02v.mail.ibm.com ([9.218.2.224])
+ by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4f7eqgmsjx-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Sat, 11 Jul 2026 03:30:14 +0000 (GMT)
+Received: from smtpav03.fra02v.mail.ibm.com (smtpav03.fra02v.mail.ibm.com
+ [10.20.54.102])
+ by smtprelay03.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 66B3UApt36241800
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Sat, 11 Jul 2026 03:30:10 GMT
+Received: from smtpav03.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 8E64F20043;
+ Sat, 11 Jul 2026 03:30:10 +0000 (GMT)
+Received: from smtpav03.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 6769A2004B;
+ Sat, 11 Jul 2026 03:30:04 +0000 (GMT)
+Received: from localhost.localdomain (unknown [9.61.249.103])
+ by smtpav03.fra02v.mail.ibm.com (Postfix) with ESMTP;
+ Sat, 11 Jul 2026 03:30:03 +0000 (GMT)
+From: Venkat Rao Bagalkote <venkat88@linux.ibm.com>
+To: alexander.deucher@amd.com
+Cc: chleroy@kernel.org, alex.hung@amd.com, maddy@linux.ibm.com,
+ linuxppc-dev@lists.ozlabs.org, harry.wentland@amd.com,
+ sunpeng.li@amd.com, christian.koenig@amd.com, siqueira@igalia.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Venkat Rao Bagalkote <venkat88@linux.ibm.com>
+Subject: [PATCH] drm/amd/display: Shorten KUnit exported symbol names
+Date: Sat, 11 Jul 2026 08:59:56 +0530
+Message-ID: <20260711032956.87948-1-venkat88@linux.ibm.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Spam-Info: AW1haW4tMjYwNzExMDAyOSBTYWx0ZWRfX2EnfL07x0eJ+
+ RR9UGxvx1ExkzEZvUo9rhtRa4gQwRjjEovnBMYwIOQN6heBpGVKsKf6PVQnGBoQkQPjuAYdOdY7
+ tsa/Jgjz6HsrRNnlbCsDaSDwKUrrciE=
+X-Proofpoint-ORIG-GUID: KoJ7HB6QAXyF77kB1iiWZTD9rvr05PHm
+X-Authority-Analysis: v=2.4 cv=Et7iaycA c=1 sm=1 tr=0 ts=6a51b8c7 cx=c_pps
+ a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17
+ a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22 a=RnoormkPH1_aCDwRdu11:22
+ a=U7nrCbtTmkRpXpFmAIza:22 a=VwQbUJbxAAAA:8 a=VnNF1IyMAAAA:8
+ a=r9Pw27tAvqG1vXbKDuMA:9
+X-Proofpoint-GUID: KoJ7HB6QAXyF77kB1iiWZTD9rvr05PHm
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzExMDAyOSBTYWx0ZWRfX2zVl6VlAcUVZ
+ V1klAT2bMHVRfRV5Cnc59EjzNn9jiIQdzY1AgFpI2ODtZOUzgD4mWQCt08mv+otL8v0fX7nn1m9
+ rWVOdF3DsSMIzy2OETJD8qkSOt85d8zZ3KIkV3t8+n74jq3oHrIpB7u4fzaEB3UdmtTuDyegV28
+ 3tEkEGtHbZY9JJP4nebijbsqkN/8QafWqqL6L5ZGp6CjYPsZqs50xTpoDo3hpsbp62XjbcV2rxY
+ DS4gXjNq8SKtqBypeMbdHAKs094S3vzaW54SmVa2IyGYTTD0BxTz7VcpVlyTu8YUyeXdLZlSDsK
+ nwm3pxn7IlMDmW+Y2qdumy7EUcPSIUMZ8iK5HXUdnLTajZCCP2ZcTfzjAI0HKy44ieHKLvC0JAo
+ o49xKsd7p4W74E1q63qEH7vEROfpCpbJzYLk6u942jN4PVkwyrAhV6ECVsungcb145XFohRt1qB
+ wpvIr0AFNmfCHFlO5Yg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-07-11_01,2026-07-10_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 lowpriorityscore=0 adultscore=0 priorityscore=1501 phishscore=0
+ spamscore=0 clxscore=1011 impostorscore=0 suspectscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607110029
+X-Mailman-Approved-At: Sun, 12 Jul 2026 15:22:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,420 +116,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [1.19 / 15.00];
+	DATE_IN_PAST(1.00)[35];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[matthew.brost@intel.com,amd-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,intel.com,google.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,vger.kernel.org];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.ibm.com:mid,linux.ibm.com:from_mime];
+	FROM_NEQ_ENVFROM(0.00)[venkat88@linux.ibm.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ibm.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[amd-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DKIM_TRACE(0.00)[intel.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B34EA74017A
+X-Rspamd-Queue-Id: B4F2E74525C
 
-Populating a GTT (system) buffer object under the reservation lock can
-stall in reclaim and compaction while trying to satisfy beneficial-order
-allocations, holding the lock for the duration.
+The KUnit exported helpers
 
-Mirror the Xe out-of-lock preallocation for pure system BOs: when a
-gem_create request targets AMDGPU_GEM_DOMAIN_GTT only, fill the full page
-backing up front via ttm_pool_prealloc_fill_full() before taking the
-reservation lock. The populate under the lock then simply installs these
-pages instead of reclaiming and compacting in the critical section. The
-fill is best-effort - a short fill falls back to the normal in-lock
-allocation for the remaining pages, and any leftover pages are released
-by ttm_pool_prealloc_fini() on all exit paths.
+  amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers()
+  amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers()
 
-Unlike Xe, amdgpu has no background defragmenter, so the higher-order
-reclaim backoff is left disabled (normal reclaim). If the pool uses
-dma-alloc (swiotlb), the fill bails and the feature is a silent no-op.
+exceed MODULE_NAME_LEN and cause modpost to fail with:
 
-Factor the tt pool selection into amdgpu_ttm_tt_pool_id() and
-amdgpu_ttm_pool() so the preallocation targets the exact pool the
-populate will consume, and thread an optional prealloc bag through
-amdgpu_gem_object_create() and amdgpu_bo_param into the populate ctx.
+  ERROR: modpost: too long symbol
+  "amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers"
 
-Cc: amd-gfx@lists.freedesktop.org
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Carlos Santa <carlos.santa@intel.com>
-Cc: Ryan Neph <ryanneph@google.com>
-Cc: Christian Koenig <christian.koenig@amd.com>
-Cc: Huang Rui <ray.huang@amd.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Assisted-by: GitHub_Copilot:claude-opus-4.8
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Shorten the helper names while preserving their functionality.
 
+Reported-by: Venkat Rao Bagalkote <venkat88@linux.ibm.com>
+Link: https://lore.kernel.org/all/fde3656e-9e22-4e4c-937f-7e8cb918da6b@linux.ibm.com/
+Signed-off-by: Venkat Rao Bagalkote <venkat88@linux.ibm.com>
 ---
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c  | 12 ++++++------
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h  |  4 ++--
+ .../display/amdgpu_dm/tests/amdgpu_dm_plane_test.c   |  8 ++++----
+ 3 files changed, 12 insertions(+), 12 deletions(-)
 
-v3:
- - Keep WC caching only when USWC is supported and bound the
-   preallocation to available GTT space (Sashiko)
----
- .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  |  4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c   |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c       | 73 +++++++++++++++++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h       |  5 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c    |  3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.h    |  4 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       | 39 +++++++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h       |  3 +
- 8 files changed, 108 insertions(+), 25 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-index 20831dbebc31..940f58848a97 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-@@ -345,7 +345,7 @@ create_dmamap_sg_bo(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+index 1b564cfe2120..b58225338bc4 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+@@ -328,7 +328,7 @@ STATIC_IFN_KUNIT int amdgpu_dm_plane_validate_dcc(struct amdgpu_device *adev,
+ }
+ EXPORT_IF_KUNIT(amdgpu_dm_plane_validate_dcc);
  
- 	ret = amdgpu_gem_object_create(adev, mem->bo->tbo.base.size, 1,
- 			AMDGPU_GEM_DOMAIN_CPU, AMDGPU_GEM_CREATE_PREEMPTIBLE | flags,
--			ttm_bo_type_sg, mem->bo->tbo.base.resv, &gem_obj, 0);
-+			ttm_bo_type_sg, mem->bo->tbo.base.resv, &gem_obj, 0, NULL);
+-STATIC_IFN_KUNIT int amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers(struct amdgpu_device *adev,
++STATIC_IFN_KUNIT int amdgpu_dm_plane_fill_gfx9_attrs_from_modifiers(struct amdgpu_device *adev,
+ 									       const struct amdgpu_framebuffer *afb,
+ 									       const enum surface_pixel_format format,
+ 									       const enum dc_rotation_angle rotation,
+@@ -378,9 +378,9 @@ STATIC_IFN_KUNIT int amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers(s
  
- 	amdgpu_bo_unreserve(mem->bo);
+ 	return ret;
+ }
+-EXPORT_IF_KUNIT(amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers);
++EXPORT_IF_KUNIT(amdgpu_dm_plane_fill_gfx9_attrs_from_modifiers);
  
-@@ -1811,7 +1811,7 @@ int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
- 		 domain_string(alloc_domain), xcp_id);
+-STATIC_IFN_KUNIT int amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers(struct amdgpu_device *adev,
++STATIC_IFN_KUNIT int amdgpu_dm_plane_fill_gfx12_attrs_from_modifiers(struct amdgpu_device *adev,
+ 										const struct amdgpu_framebuffer *afb,
+ 										const enum surface_pixel_format format,
+ 										const enum dc_rotation_angle rotation,
+@@ -419,7 +419,7 @@ STATIC_IFN_KUNIT int amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers(
  
- 	ret = amdgpu_gem_object_create(adev, aligned_size, 1, alloc_domain, alloc_flags,
--				       bo_type, NULL, &gobj, xcp_id + 1);
-+				       bo_type, NULL, &gobj, xcp_id + 1, NULL);
- 	if (ret) {
- 		pr_debug("Failed to create BO on domain %s. ret %d\n",
- 			 domain_string(alloc_domain), ret);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-index b33c300e26e2..51510e831129 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
-@@ -435,7 +435,7 @@ amdgpu_dma_buf_create_obj(struct drm_device *dev, struct dma_buf *dma_buf)
+ 	return ret;
+ }
+-EXPORT_IF_KUNIT(amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers);
++EXPORT_IF_KUNIT(amdgpu_dm_plane_fill_gfx12_attrs_from_modifiers);
  
- 	ret = amdgpu_gem_object_create(adev, dma_buf->size, PAGE_SIZE,
- 				       AMDGPU_GEM_DOMAIN_CPU, flags,
--				       ttm_bo_type_sg, resv, &gobj, 0);
-+				       ttm_bo_type_sg, resv, &gobj, 0, NULL);
- 	if (ret)
- 		goto error;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-index 6a0699746fbc..e8b732218e7d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.c
-@@ -39,6 +39,7 @@
- #include <drm/drm_exec.h>
- #include <drm/drm_gem_ttm_helper.h>
- #include <drm/ttm/ttm_tt.h>
-+#include <drm/ttm/ttm_pool.h>
- #include <drm/drm_syncobj.h>
- 
- #include "amdgpu.h"
-@@ -168,7 +169,8 @@ int amdgpu_gem_object_create(struct amdgpu_device *adev, unsigned long size,
- 			     int alignment, u32 initial_domain,
- 			     u64 flags, enum ttm_bo_type type,
- 			     struct dma_resv *resv,
--			     struct drm_gem_object **obj, int8_t xcp_id_plus1)
-+			     struct drm_gem_object **obj, int8_t xcp_id_plus1,
-+			     struct ttm_pool_prealloc *prealloc)
- {
- 	struct amdgpu_bo *bo;
- 	struct amdgpu_bo_user *ubo;
-@@ -188,6 +190,7 @@ int amdgpu_gem_object_create(struct amdgpu_device *adev, unsigned long size,
- 	bp.domain = initial_domain;
- 	bp.bo_ptr_size = sizeof(struct amdgpu_bo);
- 	bp.xcp_id_plus1 = xcp_id_plus1;
-+	bp.prealloc = prealloc;
- 
- 	r = amdgpu_bo_create_user(adev, &bp, &ubo);
- 	if (r)
-@@ -412,6 +415,8 @@ int amdgpu_gem_create_ioctl(struct drm_device *dev, void *data,
- 	struct dma_resv *resv = NULL;
- 	struct drm_gem_object *gobj;
- 	uint32_t handle, initial_domain;
-+	struct ttm_pool_prealloc prealloc = {};
-+	struct ttm_pool *prealloc_pool = NULL;
- 	int r;
- 
- 	/* reject invalid gem flags */
-@@ -443,10 +448,57 @@ int amdgpu_gem_create_ioctl(struct drm_device *dev, void *data,
- 		flags |= AMDGPU_GEM_CREATE_NO_CPU_ACCESS;
+ static void amdgpu_dm_plane_add_gfx10_1_modifiers(const struct amdgpu_device *adev,
+ 						  uint64_t **mods,
+@@ -927,14 +927,14 @@ int amdgpu_dm_plane_fill_plane_buffer_attributes(struct amdgpu_device *adev,
  	}
  
-+	/*
-+	 * For system-only (pure GTT) BOs, preallocate the whole page backing
-+	 * up front, outside the reservation lock. Populate under the lock then
-+	 * just installs these pages instead of reclaiming/compacting in the
-+	 * critical section. Best-effort: a short fill falls back to the normal
-+	 * in-lock allocation for the missing pages.
-+	 */
-+	if (args->in.domains == AMDGPU_GEM_DOMAIN_GTT) {
-+		struct ttm_resource_manager *gtt_man =
-+			ttm_manager_type(&adev->mman.bdev, TTM_PL_TT);
-+		int32_t xcp_id = adev->gmc.mem_partitions ? fpriv->xcp_id : 0;
-+		int32_t pool_id = amdgpu_ttm_tt_pool_id(adev, xcp_id);
-+		/*
-+		 * Mirror the USWC handling in amdgpu_bo_create(): the flag is
-+		 * stripped when the platform can't do write-combining, in which
-+		 * case the tt is created ttm_cached. The prealloc caching must
-+		 * match the final tt caching exactly, otherwise ttm_pool_free()
-+		 * would restore the wrong PAT state on these pages (PAT aliasing
-+		 * / leak of WC pages into the cached allocator).
-+		 */
-+		bool uswc = (flags & AMDGPU_GEM_CREATE_CPU_GTT_USWC) &&
-+			amdgpu_bo_support_uswc(flags);
-+		enum ttm_caching caching =
-+			uswc ? ttm_write_combined : ttm_cached;
-+
-+		/*
-+		 * Only prealloc when the request fits the currently-available
-+		 * GTT (total manager size minus current usage). This mirrors the
-+		 * amdgpu_bo_validate_size() bound applied later in
-+		 * amdgpu_bo_create() while also skipping the up-front reclaim /
-+		 * compaction when GTT is already near full or the user-controlled
-+		 * size is over-large (the creation path handles those anyway).
-+		 */
-+		if (gtt_man) {
-+			u64 used = ttm_resource_manager_usage(gtt_man);
-+			u64 avail = gtt_man->size > used ?
-+				gtt_man->size - used : 0;
-+
-+			if (size <= avail) {
-+				prealloc_pool = amdgpu_ttm_pool(adev, pool_id);
-+				ttm_pool_prealloc_fill_full(prealloc_pool,
-+							    caching, &prealloc,
-+							    PFN_UP(size), false);
-+			}
-+		}
-+	}
-+
- 	if (flags & AMDGPU_GEM_CREATE_VM_ALWAYS_VALID) {
- 		r = amdgpu_bo_reserve(vm->root.bo, false);
- 		if (r)
--			return r;
-+			goto out_prealloc;
+ 	if (adev->family == AMDGPU_FAMILY_GC_12_0_0) {
+-		ret = amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers(adev, afb, format,
++		ret = amdgpu_dm_plane_fill_gfx12_attrs_from_modifiers(adev, afb, format,
+ 										 rotation, plane_size,
+ 										 tiling_info, dcc,
+ 										 address);
+ 		if (ret)
+ 			return ret;
+ 	} else if (adev->family >= AMDGPU_FAMILY_AI) {
+-		ret = amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers(adev, afb, format,
++		ret = amdgpu_dm_plane_fill_gfx9_attrs_from_modifiers(adev, afb, format,
+ 										rotation, plane_size,
+ 										tiling_info, dcc,
+ 										address);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
+index 911fb2d73e22..55c33e051aee 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.h
+@@ -92,7 +92,7 @@ int amdgpu_dm_plane_get_plane_modifiers(struct amdgpu_device *adev,
+ int amdgpu_dm_plane_get_plane_formats(const struct drm_plane *plane,
+ 				      const struct dc_plane_cap *plane_cap,
+ 				      uint32_t *formats, int max_formats);
+-int amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers(struct amdgpu_device *adev,
++int amdgpu_dm_plane_fill_gfx9_attrs_from_modifiers(struct amdgpu_device *adev,
+ 							      const struct amdgpu_framebuffer *afb,
+ 							      const enum surface_pixel_format format,
+ 							      const enum dc_rotation_angle rotation,
+@@ -100,7 +100,7 @@ int amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers(struct amdgpu_devi
+ 							      struct dc_tiling_info *tiling_info,
+ 							      struct dc_plane_dcc_param *dcc,
+ 							      struct dc_plane_address *address);
+-int amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers(struct amdgpu_device *adev,
++int amdgpu_dm_plane_fill_gfx12_attrs_from_modifiers(struct amdgpu_device *adev,
+ 							       const struct amdgpu_framebuffer *afb,
+ 							       const enum surface_pixel_format format,
+ 							       const enum dc_rotation_angle rotation,
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
+index 46c9af432e37..fc84f5a08596 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_plane_test.c
+@@ -579,7 +579,7 @@ static void dm_test_fill_gfx12_plane_attributes_from_modifiers(struct kunit *tes
+ 	plane_size.surface_size.height = 1080;
  
- 		resv = vm->root.bo->tbo.base.resv;
- 	}
-@@ -455,7 +507,8 @@ int amdgpu_gem_create_ioctl(struct drm_device *dev, void *data,
- retry:
- 	r = amdgpu_gem_object_create(adev, size, args->in.alignment,
- 				     initial_domain,
--				     flags, ttm_bo_type_device, resv, &gobj, fpriv->xcp_id + 1);
-+				     flags, ttm_bo_type_device, resv, &gobj,
-+				     fpriv->xcp_id + 1, prealloc_pool ? &prealloc : NULL);
- 	if (r && r != -ERESTARTSYS) {
- 		if (flags & AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED) {
- 			flags &= ~AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED;
-@@ -479,17 +532,21 @@ int amdgpu_gem_create_ioctl(struct drm_device *dev, void *data,
- 		amdgpu_bo_unreserve(vm->root.bo);
- 	}
- 	if (r)
--		return r;
-+		goto out_prealloc;
+ 	KUNIT_EXPECT_EQ(test,
+-			amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers(
++			amdgpu_dm_plane_fill_gfx12_attrs_from_modifiers(
+ 			adev, afb, SURFACE_PIXEL_FORMAT_GRPH_ARGB8888,
+ 			ROTATION_ANGLE_0, &plane_size, &tiling_info, &dcc, &address),
+ 			0);
+@@ -623,7 +623,7 @@ static void dm_test_fill_gfx9_plane_attributes_from_modifiers(struct kunit *test
+ 	afb->base.modifier = DRM_FORMAT_MOD_LINEAR;
  
- 	r = drm_gem_handle_create(filp, gobj, &handle);
- 	/* drop reference from allocate - handle holds it now */
- 	drm_gem_object_put(gobj);
- 	if (r)
--		return r;
-+		goto out_prealloc;
- 
- 	memset(args, 0, sizeof(*args));
- 	args->out.handle = handle;
--	return 0;
-+
-+out_prealloc:
-+	if (prealloc_pool)
-+		ttm_pool_prealloc_fini(prealloc_pool, &prealloc);
-+	return r;
- }
- 
- int amdgpu_gem_userptr_ioctl(struct drm_device *dev, void *data,
-@@ -528,7 +585,7 @@ int amdgpu_gem_userptr_ioctl(struct drm_device *dev, void *data,
- 
- 	/* create a gem object to contain this object in */
- 	r = amdgpu_gem_object_create(adev, args->size, 0, AMDGPU_GEM_DOMAIN_CPU,
--				     0, ttm_bo_type_device, NULL, &gobj, fpriv->xcp_id + 1);
-+				     0, ttm_bo_type_device, NULL, &gobj, fpriv->xcp_id + 1, NULL);
- 	if (r)
- 		return r;
- 
-@@ -1298,7 +1355,7 @@ int amdgpu_mode_dumb_create(struct drm_file *file_priv,
- 	domain = amdgpu_bo_get_preferred_domain(adev,
- 				amdgpu_display_supported_domains(adev, flags));
- 	r = amdgpu_gem_object_create(adev, args->size, 0, domain, flags,
--				     ttm_bo_type_device, NULL, &gobj, fpriv->xcp_id + 1);
-+				     ttm_bo_type_device, NULL, &gobj, fpriv->xcp_id + 1, NULL);
- 	if (r)
- 		return -ENOMEM;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
-index b558336bc4c6..706aeca011f1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gem.h
-@@ -35,6 +35,8 @@
- 
- extern const struct drm_gem_object_funcs amdgpu_gem_object_funcs;
- 
-+struct ttm_pool_prealloc;
-+
- unsigned long amdgpu_gem_timeout(uint64_t timeout_ns);
- 
- /*
-@@ -45,7 +47,8 @@ int amdgpu_gem_object_create(struct amdgpu_device *adev, unsigned long size,
- 			     int alignment, u32 initial_domain,
- 			     u64 flags, enum ttm_bo_type type,
- 			     struct dma_resv *resv,
--			     struct drm_gem_object **obj, int8_t xcp_id_plus1);
-+			     struct drm_gem_object **obj, int8_t xcp_id_plus1,
-+			     struct ttm_pool_prealloc *prealloc);
- int amdgpu_mode_dumb_create(struct drm_file *file_priv,
- 			    struct drm_device *dev,
- 			    struct drm_mode_create_dumb *args);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index f98bfba59a2c..18c4cf3f35a5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -632,7 +632,8 @@ int amdgpu_bo_create(struct amdgpu_device *adev,
- 		/* We opt to avoid OOM on system pages allocations */
- 		.gfp_retry_mayfail = true,
- 		.allow_res_evict = bp->type != ttm_bo_type_kernel,
--		.resv = bp->resv
-+		.resv = bp->resv,
-+		.prealloc = bp->prealloc,
- 	};
- 	struct amdgpu_bo *bo;
- 	unsigned long page_align, size = bp->size;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-index ff11a0903499..11f1d403f152 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
-@@ -45,6 +45,8 @@
- #define to_amdgpu_bo_user(abo) container_of((abo), struct amdgpu_bo_user, bo)
- #define to_amdgpu_bo_vm(abo) container_of((abo), struct amdgpu_bo_vm, bo)
- 
-+struct ttm_pool_prealloc;
-+
- struct amdgpu_bo_param {
- 	unsigned long			size;
- 	int				byte_align;
-@@ -58,6 +60,8 @@ struct amdgpu_bo_param {
- 	void				(*destroy)(struct ttm_buffer_object *bo);
- 	/* xcp partition number plus 1, 0 means any partition */
- 	int8_t				xcp_id_plus1;
-+	/* optional out-of-lock preallocated backing (system/GTT only) */
-+	struct ttm_pool_prealloc	*prealloc;
- };
- 
- /* bo virtual addresses in a vm */
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index b10b0878df37..c9cd4714f515 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1173,6 +1173,30 @@ void amdgpu_ttm_mmio_remap_free_sgt(struct device *dev,
- 	kfree(sgt);
- }
- 
-+/*
-+ * amdgpu_ttm_tt_pool_id - compute the ttm pool id backing a given xcp
-+ *
-+ * Mirrors the mapping used when creating the gtt ttm_tt, so callers that only
-+ * have an xcp id (e.g. an out-of-lock preallocation before the bo exists) pick
-+ * the same pool the populate will use.
-+ */
-+int32_t amdgpu_ttm_tt_pool_id(struct amdgpu_device *adev, int32_t xcp_id)
-+{
-+	if (adev->gmc.mem_partitions && xcp_id >= 0)
-+		return KFD_XCP_MEM_ID(adev, xcp_id);
-+
-+	return xcp_id;
-+}
-+
-+/* amdgpu_ttm_pool - select the ttm pool for a given pool id */
-+struct ttm_pool *amdgpu_ttm_pool(struct amdgpu_device *adev, int32_t pool_id)
-+{
-+	if (adev->mman.ttm_pools && pool_id >= 0)
-+		return &adev->mman.ttm_pools[pool_id];
-+
-+	return &adev->mman.bdev.pool;
-+}
-+
- /**
-  * amdgpu_ttm_tt_create - Create a ttm_tt object for a given BO
-  *
-@@ -1194,10 +1218,7 @@ static struct ttm_tt *amdgpu_ttm_tt_create(struct ttm_buffer_object *bo,
- 		return NULL;
- 
- 	gtt->gobj = &bo->base;
--	if (adev->gmc.mem_partitions && abo->xcp_id >= 0)
--		gtt->pool_id = KFD_XCP_MEM_ID(adev, abo->xcp_id);
--	else
--		gtt->pool_id = abo->xcp_id;
-+	gtt->pool_id = amdgpu_ttm_tt_pool_id(adev, abo->xcp_id);
- 
- 	if (abo->flags & AMDGPU_GEM_CREATE_CPU_GTT_USWC)
- 		caching = ttm_write_combined;
-@@ -1239,10 +1260,7 @@ static int amdgpu_ttm_tt_populate(struct ttm_device *bdev,
- 	if (ttm->page_flags & TTM_TT_FLAG_EXTERNAL)
- 		return 0;
- 
--	if (adev->mman.ttm_pools && gtt->pool_id >= 0)
--		pool = &adev->mman.ttm_pools[gtt->pool_id];
--	else
--		pool = &adev->mman.bdev.pool;
-+	pool = amdgpu_ttm_pool(adev, gtt->pool_id);
- 	ret = ttm_pool_alloc(pool, ttm, ctx);
- 	if (ret)
- 		return ret;
-@@ -1284,10 +1302,7 @@ static void amdgpu_ttm_tt_unpopulate(struct ttm_device *bdev,
- 
- 	adev = amdgpu_ttm_adev(bdev);
- 
--	if (adev->mman.ttm_pools && gtt->pool_id >= 0)
--		pool = &adev->mman.ttm_pools[gtt->pool_id];
--	else
--		pool = &adev->mman.bdev.pool;
-+	pool = amdgpu_ttm_pool(adev, gtt->pool_id);
- 
- 	return ttm_pool_free(pool, ttm);
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-index ff9e2e346609..f90844937b73 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-@@ -207,6 +207,9 @@ int amdgpu_ttm_alloc_gart(struct ttm_buffer_object *bo);
- void amdgpu_ttm_recover_gart(struct ttm_buffer_object *tbo);
- uint64_t amdgpu_ttm_domain_start(struct amdgpu_device *adev, uint32_t type);
- 
-+int32_t amdgpu_ttm_tt_pool_id(struct amdgpu_device *adev, int32_t xcp_id);
-+struct ttm_pool *amdgpu_ttm_pool(struct amdgpu_device *adev, int32_t pool_id);
-+
- #if IS_ENABLED(CONFIG_DRM_AMDGPU_USERPTR)
- int amdgpu_ttm_tt_get_user_pages(struct amdgpu_bo *bo,
- 				 struct amdgpu_hmm_range *range);
+ 	KUNIT_EXPECT_EQ(test,
+-			amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers(
++			amdgpu_dm_plane_fill_gfx9_attrs_from_modifiers(
+ 			adev, afb, SURFACE_PIXEL_FORMAT_GRPH_ARGB8888,
+ 			ROTATION_ANGLE_0, &plane_size, &tiling_info, &dcc, &address),
+ 			0);
+@@ -1187,9 +1187,9 @@ static struct kunit_case amdgpu_dm_plane_test_cases[] = {
+ 	KUNIT_CASE(dm_test_get_cursor_position),
+ 	/* amdgpu_dm_plane_format_mod_supported() */
+ 	KUNIT_CASE(dm_test_format_mod_supported),
+-	/* amdgpu_dm_plane_fill_gfx12_plane_attributes_from_modifiers() */
++	/* amdgpu_dm_plane_fill_gfx12_attrs_from_modifiers() */
+ 	KUNIT_CASE(dm_test_fill_gfx12_plane_attributes_from_modifiers),
+-	/* amdgpu_dm_plane_fill_gfx9_plane_attributes_from_modifiers() */
++	/* amdgpu_dm_plane_fill_gfx9_attrs_from_modifiers() */
+ 	KUNIT_CASE(dm_test_fill_gfx9_plane_attributes_from_modifiers),
+ 	/* amdgpu_dm_plane_helper_check_state() */
+ 	KUNIT_CASE(dm_test_helper_check_state_viewport_reject),
 -- 
-2.34.1
+2.45.2
 
