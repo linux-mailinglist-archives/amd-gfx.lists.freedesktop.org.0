@@ -2,75 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MmfgB1GxU2r+dgMAu9opvQ
+	id Cae2A1rRU2oXfQMAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 17:22:57 +0200
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 19:39:38 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (unknown [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F5FF7452A0
-	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 17:22:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67EE874581A
+	for <lists+amd-gfx@lfdr.de>; Sun, 12 Jul 2026 19:39:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=murena.io header.s=mail3 header.b=2lJg0bz7;
-	dmarc=pass (policy=reject) header.from=murena.io;
-	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 2610:10:20:722:a800:ff:fe36:1795 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
-	arc=pass ("murena.io:s=mail3:i=1")
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=p1R092zw;
+	dmarc=pass (policy=none) header.from=gmail.com;
+	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9C7B10E4C5;
-	Sun, 12 Jul 2026 15:22:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B1B510E4CD;
+	Sun, 12 Jul 2026 17:39:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 469 seconds by postgrey-1.36 at gabe;
- Sat, 11 Jul 2026 19:43:03 UTC
-Received: from mail3.ecloud.global (mail3.ecloud.global [135.181.139.185])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B86910E0A3
- for <amd-gfx@lists.freedesktop.org>; Sat, 11 Jul 2026 19:43:02 +0000 (UTC)
-Received: from authenticated-user (mail3.ecloud.global [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mail3.ecloud.global (Postfix) with ESMTPSA id 994B6883824;
- Sat, 11 Jul 2026 19:35:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=murena.io; s=mail3;
- t=1783798511;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=QJ78cX5XhC2JGOtn0+rOIAZ6Qt08IpVtPC1zY7SfI3o=;
- b=2lJg0bz78nUSBHePrHSlMDhb2Z9iv+zrFvBV0qEtKoZeNvkpwfv5lzzA8mX8uhMC3o2AxF
- Xk8UPS8QJabfJYiQrjR9St2WFU+E/GiZ3R/dxMGekptYyIH/6HOP7fO04og8NVhJOclEB3
- Q5GyNPj0cVgPlDw71Y4U+qG8HSMwU/s=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=murena.io;
- s=mail3; t=1783798511;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=QJ78cX5XhC2JGOtn0+rOIAZ6Qt08IpVtPC1zY7SfI3o=;
- b=kWWI4e0tpln3TX7uPy/nctgHS64TM2QROzUARQYbiCZE+eYtc/XNWVZ1/TK3JWTO3ARrvm
- t4zOaXa0qvDjcfYfzgls7yu0FupGnxodSom/L/ci0EHAf+AR2X3b4oHCo0CwdfZJsQCJ7x
- HeR20LU+5bL3rDc34YfRXd0WI0bc+p0=
-ARC-Authentication-Results: i=1; mail3.ecloud.global;
- auth=pass smtp.mailfrom=lionso@murena.io
-ARC-Seal: i=1; s=mail3; d=murena.io; t=1783798511; a=rsa-sha256; cv=none;
- b=A2fc5yr+2syBcEqMvEu7oMqfEnB0Vnfuonrh7F2+Q1zIi/Rt9jjUeEfqIdOMzi0QW6WcID
- etqRafpnGavM3j7fkgMio0y/WPTrN1PMYMXaf3rpUqn2MrVABIYI9iWSNy+rb3WYvt1CWu
- oPyoHZA++J5T9hL+Pqy/L2PzagklngU=
-From: Lionso Alejandro Pacheco Vacacela <lionso@murena.io>
-To: Timur =?utf-8?q?Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, regressions@lists.linux.dev,
- Fangzhi Zuo <Jerry.Zuo@amd.com>, Chuanyu Tseng <Chuanyu.Tseng@amd.com>,
- Wenjing Liu <wenjing.liu@amd.com>
-Subject: Re: [PATCH 1/2] drm/amd/display: Fix preferred link rate for NUTMEG
-In-Reply-To: <20260529090909.13206-1-timur.kristof@gmail.com>
-References: <20260529090909.13206-1-timur.kristof@gmail.com>
-Date: Sat, 11 Jul 2026 14:35:07 -0500
-Message-ID: <178379850751.8410.12007342378134020217@murena.io>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+ [209.85.128.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBBE510E49F
+ for <amd-gfx@lists.freedesktop.org>; Sun, 12 Jul 2026 17:39:33 +0000 (UTC)
+Received: by mail-wm1-f50.google.com with SMTP id
+ 5b1f17b1804b1-493f45e206dso10665635e9.1
+ for <amd-gfx@lists.freedesktop.org>; Sun, 12 Jul 2026 10:39:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1783877972; x=1784482772; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:mime-version:message-id:date
+ :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=Phq0P0Bl4raEjuM9bthxJSkhMvlaTT5a2ePjPoRYxnU=;
+ b=p1R092zweLIMtvM/C61UmTfUuBkPOJeh1nr58jZQ/d3dhfF8v0DqELxYSd1aOcJY6Z
+ +3L+Uvvujbv2swRC4meatGjxoC390Q9s5i94CNQbO45+/5wYEjQBVIS3mvckssqCD2/H
+ D8Ibl3A25P9QeLKmz6+EkyqTI+jNeUU/Dx27XFhjvhambv3L4xJ4vklcf7l6bHlX9oP2
+ HLqGJYPTefmoiBX5NnFeuhv/Qm5mlfPbAJkNbFeL+fR7ZBbyTz76RyrVGtzfyyluE0+5
+ Yafi5L6kWw/Zi5b5E5VctXR0cRpsldrbMzdVZxn/ddaVzMMgbpGqRlXWCaAvmdXbVp2p
+ YRbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1783877972; x=1784482772;
+ h=content-transfer-encoding:content-type:mime-version:message-id:date
+ :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=Phq0P0Bl4raEjuM9bthxJSkhMvlaTT5a2ePjPoRYxnU=;
+ b=aLA9NdnEZTECpTV5AK03E2N3jdv1gsbnCzLM/NWWOqarPLoEhUahzrFoQel776+PhW
+ U8TFah+necrKdKhg72kjc2Zd9IBUeoTBlXBCiW+VZdYc9qw+m6cC6+RMCno92KB+leos
+ sUOGlJvnQ4fjob4f+pdWYHLDc9IgSa1Plo71srPaL3BGAVb5xqYpD90o4NMJKtm/j1g1
+ TqLphiyuRkEM7EoiPMUhv2vex7jnMlCCbq4MdzCEhLuC2yfBF3C3s9bmjdwaoDlpRZY2
+ U0Gfk5I8WmGXYNtbchgwlnRk8tDBk0f14Ibud+fCyIz/N+Lv0T7ncFcT2ZmQpLjqjnLA
+ 9Z5A==
+X-Gm-Message-State: AOJu0YyaoSxCJQxOR/EhQ50Zww53uTIgqlLzuXwd3+AEBwRMWcdMJeZJ
+ +A9iGXl9cyNhWKe9JLGCk1xmUiX7jY9Pc6OhteAjD9PAgPg+0G1tvESSaPxiSw==
+X-Gm-Gg: AfdE7cmKlL9m7quuvfT6BhmiVNcfjltEDQSWeNJivo9WCYcRmnTGqtHihfrJ6fsmPmq
+ /TRO+PTjH6I6btJZZMtfGpRGuYFwlzw3GBOTqZWLb3Wjvcj1TtOINclENmE+WUAqlkC4uUXn+I3
+ ETNQb32q/TeT8BXab3tUDT8SX9o5R0LUdJU5m0mNhNCYlA7RSHDTL/Sa3pk7JOu0xtX6p1I12wS
+ oGvCFvFSCBiNWVi2R/6KPo3QvMjucdcRlqNSmCDTm5UVF97In34cr6gGd6+EUPygp6nSdlLa3oa
+ hpSsX+IEf2tgkRb9BrYn9DlLLz3+HR8j0S7DsSmBwjvc4fHAQ07pH4m+fLS0KFyhNaqa+2XPmob
+ pS1ec7Q9q9h250nViXalVJw6WpCiBD6uskORjuMIC5C9QQxP43tTGnSlNY7jUvXFjIMH+d1jSUH
+ GIla7/V7F8VoWxLyAm02B8T9jzy/fk6Rh+YZ9a7z3xUC9ECfvLZ7Lk81R+Ev1e7YiAfgKanrenR
+ p1qdwkhxTw=
+X-Received: by 2002:a05:600c:37cc:b0:493:e542:ffd5 with SMTP id
+ 5b1f17b1804b1-493f8884bb7mr61094745e9.5.1783877972079; 
+ Sun, 12 Jul 2026 10:39:32 -0700 (PDT)
+Received: from Timur-Max.home
+ (20014C4E24E4950000951480CE1AD54B.dsl.pool.telekom.hu.
+ [2001:4c4e:24e4:9500:95:1480:ce1a:d54b])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-493fbae1cdbsm119128965e9.10.2026.07.12.10.39.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 12 Jul 2026 10:39:31 -0700 (PDT)
+From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+To: amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
+ Natalie Vock <natalie.vock@gmx.de>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
+Subject: [PATCH 1/3] drm/amd/pm/si: Don't schedule thermal work when queue
+ isn't initialized
+Date: Sun, 12 Jul 2026 19:39:26 +0200
+Message-ID: <20260712173928.259701-1-timur.kristof@gmail.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-X-Mailman-Approved-At: Sun, 12 Jul 2026 15:22:44 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,73 +96,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.71 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[murena.io:s=mail3:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[murena.io,reject];
-	R_DKIM_ALLOW(-0.20)[murena.io:s=mail3];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip6:2610:10:20:722:a800:ff:fe36:1795:c];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[lists.freedesktop.org,amd.com,gmx.de,ursulin.net];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:timur.kristof@gmail.com,m:alexander.deucher@amd.com,m:regressions@lists.linux.dev,m:Jerry.Zuo@amd.com,m:Chuanyu.Tseng@amd.com,m:wenjing.liu@amd.com,m:timurkristof@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com];
-	FORGED_SENDER(0.00)[lionso@murena.io,amd-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORWARDED(0.00)[amd-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[murena.io:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lionso@murena.io,amd-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	TAGGED_RCPT(0.00)[amd-gfx];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	ALIAS_RESOLVED(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:2610:10::/32, country:US];
+	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[timurkristof@gmail.com,amd-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com];
+	TAGGED_RCPT(0.00)[amd-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,murena.io:from_mime,murena.io:email,murena.io:mid,murena.io:dkim]
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8F5FF7452A0
+X-Rspamd-Queue-Id: 67EE874581A
 
-Hi,
+When DPM is turned off with the amdgpu.dpm=0 module parameter,
+the thermal work queue isn't initialized so we shouldn't
+schedule any work on it.
 
-I independently hit this regression on a desktop Kaveri system and can
-confirm this patch fixes it:
+Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
+---
+ drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-  - AMD A10-7850K (Kaveri, DCE 8.1), MSI A68HM-E33, VGA monitor on the
-    onboard output (NUTMEG DP-to-VGA bridge)
-  - Debian kernel 7.1.3 (amdgpu.cik_support=1): VGA monitor receives no
-    signal from KMS takeover on; dmesg shows
-    "[drm] enabling link 2 failed: 15" (DC_FAIL_DP_LINK_TRAINING).
-  - Applying just this patch (1/2) on top of v7.1.3 restores VGA output
-    with DC enabled: the link trains, the CRTC comes up at 1360x768@60,
-    and the fix survived three consecutive reboots.
+diff --git a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+index 832953941266..6a54566d1a68 100644
+--- a/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
++++ b/drivers/gpu/drm/amd/pm/legacy-dpm/si_dpm.c
+@@ -7692,7 +7692,7 @@ static int si_dpm_process_interrupt(struct amdgpu_device *adev,
+ 		break;
+ 	}
+ 
+-	if (queue_thermal)
++	if (queue_thermal && amdgpu_dpm)
+ 		schedule_work(&adev->pm.dpm.thermal.work);
+ 
+ 	return 0;
+-- 
+2.54.0
 
-Tested-by: Lionso Alejandro Pacheco Vacacela <lionso@murena.io>
-
-Two notes:
-
-1. The Fixes: tag references b74322eea36b, but that hash does not exist
-   in mainline — it looks like an amd-staging-internal id. In Linus'
-   tree the offending commit is:
-
-     a62346043a89 ("drm/amd/display: Fix coding style issue")
-
-   It would be good to correct this before the patch is pushed so the
-   stable tooling can resolve the dependency.
-
-2. Since the offending commit shipped in v7.1, could this be annotated
-   Cc: stable@vger.kernel.org # 7.1.x (or nominated for 7.1.y once it
-   lands in mainline)? Every Kaveri/Kabini/Mullins system with a VGA
-   monitor loses display output on release kernels.
-
-Thanks,
-Lionso
