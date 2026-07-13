@@ -2,80 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uLdkBg3hVGpIgQAAu9opvQ
+	id S2ZWAg/hVGpKgQAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 14:58:53 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 14:58:55 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9256C74B2E8
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 14:58:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A73E774B2F4
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 14:58:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=C0Fiaurh;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=Sx9YFJhb;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2764410E62F;
-	Mon, 13 Jul 2026 12:58:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41C4D10E965;
+	Mon, 13 Jul 2026 12:58:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
- [209.85.221.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A520810E62F
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 12:58:50 +0000 (UTC)
-Received: by mail-wr1-f41.google.com with SMTP id
- ffacd0b85a97d-47df6a5202bso1833782f8f.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 05:58:50 -0700 (PDT)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
+ [209.85.221.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 962BC10E965
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 12:58:52 +0000 (UTC)
+Received: by mail-wr1-f43.google.com with SMTP id
+ ffacd0b85a97d-47d6c634f45so1627931f8f.3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 05:58:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1783947529; x=1784552329; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1783947531; x=1784552331; darn=lists.freedesktop.org;
  h=content-transfer-encoding:content-type:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
  :date:message-id:reply-to:content-type;
- bh=/uTxEj2yTuZ36HP7TyCebyqbOFU6Rhjg6uBnVAfIYuQ=;
- b=C0FiaurhJzA7F+hQhGLbX/W6tdHue38IuKbmst2ltSBW/mci5xQ0gJUfCnbJA3a5Yp
- nFpxJk3JvdXsyU/MWPX5YXhi/L3Ho3xia5kXuYMLSDR6iONrj3pUwk10kntwkyeYyUiF
- iaMXnK/6y1lbmnoBXs7SnQ8wB0nQopYHGy2crIrdm86LonSV7bKYjzTEdTUsNg4ejHJB
- gcpk26BwE3D0fozzuUN7f8KykJd6YzpFQcqpNfOp8lhM+Ds2X+eaE6sxtA+nz6hJSP0H
- 8yaYwLTujPe1d1xHbJLbhQbpXxIevwvDzj9AAmoIbmgAkx2A3QsjiWVSiUtl2RKt3wKq
- k7Hw==
+ bh=eEz+EYVz9J++diS0Srd2Kz1MvSYb3U+TurhJtOTC0+U=;
+ b=Sx9YFJhbFiJ9OfAAASfDIZofCP0vN6PKgLiCwTbnmkypLN5M8cD2FKs3VUacS5rRpY
+ Uv1eZv3Gr3h3v7SHAxX2ZrihzmtQF8ntC7/J9+ONlEH3Vytpl6VVVlm7QeV8jCV/dizj
+ q0ymkdfLLoA3MxKYCbdNBzEhDdcBBPWw24eucRP2lBrupJiIo9VfzM4j7Z3K1cKI5bwc
+ +zbHVVOe+GxSh8b5cEPr64ciXkLyq6oCcfVEHTRrEHm93SwEWOSPTHv7dBSw80s0rpOM
+ oI3U6a8nu4rDuVBqaLsr6l9TtqyPyhqZt+NrID9Zs46oxVaVNdz5CcxLGvlfcSL0JgLZ
+ hNZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1783947529; x=1784552329;
+ d=1e100.net; s=20251104; t=1783947531; x=1784552331;
  h=content-transfer-encoding:content-type:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=/uTxEj2yTuZ36HP7TyCebyqbOFU6Rhjg6uBnVAfIYuQ=;
- b=M8XKUYRFCP9rnOkaLWIgNoBeHcZnNke9hRmnccoiDyi0tIt7jDy7hVf21MYUnOcprb
- IdNMSWjdOdy8rkGAw3hscZvATTNC3BJswV1vHP+7VASLjz0Yh9hY6bO0PE18JWLCHbLr
- jq4z2oNmLuxkIpHLBOiiYZT8A0qxjENCCNDwtmTJhQOYpSHRydUHwg4dXdA085QwoUJY
- 7FoODPnw2sX+utAQm9duapBE/2LwexPEKb8RltBhpiegCEY0IFjMC4YFmzB4l/6SOzOD
- EvHgrZ0I11cm7UbljOxCIQQhGfn30EX8lCmVdd1GUOhvhsyEhKd5/Hk3Armi36Hgd554
- gE9Q==
-X-Gm-Message-State: AOJu0YzSwJPaYVvr5uo7sYDpWNfwjnEn44uakEWFXN+v+FZDm7h6II1l
- 51TX3vL5rmiv8KiZKUXaW+MrUcY8XeiCniI/mjrIiFwqDFyHj/ELkCdt3p3qdw==
-X-Gm-Gg: AfdE7ckQC1cCX1lEqOH+x19DTuQR0u+ZfUYWojBpsqbxJ5MFqhuBZ1n+06HXQJdP0sr
- n5qm9nlRsgamdsbDQ25yHhFGnU8zW/WTx+tD1ZYm44BLBz6Qu1uF2lTPATgxAobETCT+JAw9y2N
- 1Sq3+RWOi3o7zi2126AMxaonziA+tHHp6pTDVko9SbudrNun+aXAUWCIWVQDe9CiZAjHmb7TJPb
- eC7g0tEU6uM0e/1tfoH+iBSmgZEpeRviRxmgL8sVuCgUwi+svHOmYRhPD4AIWudUsyo2wdeDX43
- 9QkD5RKEaGwDZ0amtxmIf2TXCSr1x9yHIEua7TbwP/o0vUITQ1mmA+UG1blqBVwxGbDTLc0UBB4
- Y+xpTKYR3rDtMxoLgenZzvdtlmVhoR7z4myGKh3nhX7Nd06cplkNdO7+AhcvNGG4iDBL/9tkHfw
- j2Qary86STkfABEkjsZmDurlQ8zh1oXc4Sql9OL/+jMIjUxWopeCxk01893cnfebha
-X-Received: by 2002:a05:6000:400a:b0:46f:7d90:8114 with SMTP id
- ffacd0b85a97d-47f2dcb50e7mr10284805f8f.14.1783947528958; 
- Mon, 13 Jul 2026 05:58:48 -0700 (PDT)
+ bh=eEz+EYVz9J++diS0Srd2Kz1MvSYb3U+TurhJtOTC0+U=;
+ b=PTrttapLUq3ZQDgxFD69KP0clZQVj7XrzNVDLeVwKMY1cUS2ZFOcI7/9Yw4cM0bzkX
+ susBKxX+18ERE2o7W+Lrp0bR/+Q9gTIBe094ZLKRjIOrSRhlXSvxmHiHYkr5wCe6q/1+
+ uOvwGrD3b9ametC1RkfoMKI5mfXve3YTWMto8hx+/+aHbLySySBRobnuiDT32T32pvhh
+ tOQNJQpS92uvZdVHwzVfBR8y3vtD+W8CyT4sDCxMJVmo6fNzuBNJirxHjbrwrjHqqm69
+ md75yurMd9BdoW2CinvnTIeQEUy97FcNM7GiQbB5eieQ4nb/zbpl3V8TZCKLTKVb0oLb
+ H8wA==
+X-Gm-Message-State: AOJu0YwOTQIZrO6lGj1s5epsJd7qYmRdCglPlQcK26oYXwSWYFfuQCv6
+ ImWQ/NG5AyzSvGHEQqjVk7bgpuugvl5bdQ4U41PyojbRbVRxjTSvOB+Dz/CRcQ==
+X-Gm-Gg: AfdE7clES12iHaCs0jX4P+GpZ2iP1v3zG8PkQXfEUQR52GaDM2WQLtrw8S61w8ivZ84
+ IGxB0SXXycwkPE4NuochxmiRZT8JrwriA0Iopd2mf7p/22nnj/muUgz29AJeUKosO/1lsM+8VLN
+ PCqBsAnCVEU7P5yveFZildHVfaI2XHdf9qy/Sy4ljvH/dudAxHbaoHQz25ktuN4YaQimrVS52pd
+ 7gsB7KC/p7TTgTTKpurB8z+2WcyqO3NE9Cq0OS7+zE9fbF8w6oHlvyO+jkROAnpJ5nLk66s5Xww
+ DfaDfVfxx5AK/qjm7XymUPp5ziGCNLqHjg7DgdFdiEN0AP6NeLnOATJhFUIGaWc2ax71PCCK+nj
+ YY6rqDBJeBGmmJ/vtEnVJfui1l2t8Kabm4Fs9nDRb9haYuakjcIWsiBKyH19vgBM5rFfCs5Oelu
+ Kw1E86xMsjIIqvTQU2Hew1KLw+VPCQobVZx1HdPmtq/nQPT9vHwOZIcgN/CDw9MyTy
+X-Received: by 2002:a5d:5c84:0:b0:46e:27ed:6d0d with SMTP id
+ ffacd0b85a97d-47f2dc7d213mr9932670f8f.8.1783947530861; 
+ Mon, 13 Jul 2026 05:58:50 -0700 (PDT)
 Received: from Timur-Hyperion.home (54001386.dsl.pool.telekom.hu.
  [84.0.19.134]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-47a9e4d6e4csm80456918f8f.10.2026.07.13.05.58.47
+ ffacd0b85a97d-47a9e4d6e4csm80456918f8f.10.2026.07.13.05.58.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 13 Jul 2026 05:58:48 -0700 (PDT)
+ Mon, 13 Jul 2026 05:58:49 -0700 (PDT)
 From: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
 To: amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
  christian.koenig@amd.com, Tvrtko Ursulin <tursulin@ursulin.net>,
  pierre-eric.pelloux-prayer@amd.com, Natalie Vock <natalie.vock@gmx.de>
 Cc: =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>
-Subject: [PATCH 4/9] drm/amdgpu/gfx7: Return error code when failing to start
- GFX ring
-Date: Mon, 13 Jul 2026 14:58:33 +0200
-Message-ID: <20260713125838.30607-5-timur.kristof@gmail.com>
+Subject: [PATCH 5/9] drm/amdgpu/gfx7: Fixup emitting SWITCH_BUFFER packets
+Date: Mon, 13 Jul 2026 14:58:34 +0200
+Message-ID: <20260713125838.30607-6-timur.kristof@gmail.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260713125838.30607-1-timur.kristof@gmail.com>
 References: <20260713125838.30607-1-timur.kristof@gmail.com>
@@ -127,31 +126,99 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9256C74B2E8
+X-Rspamd-Queue-Id: A73E774B2F4
 
-Return an error code instead of silently failing.
+Implement the emit_switch_buffer() function instead of emitting
+them duing emit_ib, emit_pipeline_sync and emit_vm_flush.
+
+Note that it isn't necessary to emit these in both
+emit_pipeline_sync() and emit_vm_flush() because
+amdgpu_vm_flush() already calls these when calling
+either of those functions.
 
 Signed-off-by: Timur Kristóf <timur.kristof@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c | 32 +++++++++------------------
+ 1 file changed, 10 insertions(+), 22 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-index a1a9f3fc4567..0ceadb107d26 100644
+index 0ceadb107d26..a93cc02c3400 100644
 --- a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
-@@ -2576,7 +2576,10 @@ static int gfx_v7_0_cp_gfx_resume(struct amdgpu_device *adev)
- 	WREG32(mmCP_RB0_BASE_HI, upper_32_bits(rb_addr));
+@@ -2201,12 +2201,6 @@ static void gfx_v7_0_ring_emit_ib_gfx(struct amdgpu_ring *ring,
+ 	unsigned vmid = AMDGPU_JOB_GET_VMID(job);
+ 	u32 header, control = 0;
  
- 	/* start the ring */
--	gfx_v7_0_cp_gfx_start(adev);
-+	r = gfx_v7_0_cp_gfx_start(adev);
-+	if (r)
-+		return r;
+-	/* insert SWITCH_BUFFER packet before first IB in the ring frame */
+-	if (flags & AMDGPU_HAVE_CTX_SWITCH) {
+-		amdgpu_ring_write(ring, PACKET3(PACKET3_SWITCH_BUFFER, 0));
+-		amdgpu_ring_write(ring, 0);
+-	}
+-
+ 	if (ib->flags & AMDGPU_IB_FLAG_CE)
+ 		header = PACKET3(PACKET3_INDIRECT_BUFFER_CONST, 2);
+ 	else
+@@ -2258,6 +2252,12 @@ static void gfx_v7_0_ring_emit_ib_compute(struct amdgpu_ring *ring,
+ 	amdgpu_ring_write(ring, control);
+ }
+ 
++static void gfx_v7_0_ring_emit_sb(struct amdgpu_ring *ring)
++{
++	amdgpu_ring_write(ring, PACKET3(PACKET3_SWITCH_BUFFER, 0));
++	amdgpu_ring_write(ring, 0);
++}
 +
- 	r = amdgpu_ring_test_helper(ring);
- 	if (r)
- 		return r;
+ static void gfx_v7_ring_emit_cntxcntl(struct amdgpu_ring *ring, uint32_t flags)
+ {
+ 	uint32_t dw2 = 0;
+@@ -3111,14 +3111,6 @@ static void gfx_v7_0_ring_emit_pipeline_sync(struct amdgpu_ring *ring)
+ 	amdgpu_ring_write(ring, seq);
+ 	amdgpu_ring_write(ring, 0xffffffff);
+ 	amdgpu_ring_write(ring, 4); /* poll interval */
+-
+-	if (usepfp) {
+-		/* sync CE with ME to prevent CE fetch CEIB before context switch done */
+-		amdgpu_ring_write(ring, PACKET3(PACKET3_SWITCH_BUFFER, 0));
+-		amdgpu_ring_write(ring, 0);
+-		amdgpu_ring_write(ring, PACKET3(PACKET3_SWITCH_BUFFER, 0));
+-		amdgpu_ring_write(ring, 0);
+-	}
+ }
+ 
+ /*
+@@ -3160,12 +3152,6 @@ static void gfx_v7_0_ring_emit_vm_flush(struct amdgpu_ring *ring,
+ 		/* sync PFP to ME, otherwise we might get invalid PFP reads */
+ 		amdgpu_ring_write(ring, PACKET3(PACKET3_PFP_SYNC_ME, 0));
+ 		amdgpu_ring_write(ring, 0x0);
+-
+-		/* synce CE with ME to prevent CE fetch CEIB before context switch done */
+-		amdgpu_ring_write(ring, PACKET3(PACKET3_SWITCH_BUFFER, 0));
+-		amdgpu_ring_write(ring, 0);
+-		amdgpu_ring_write(ring, PACKET3(PACKET3_SWITCH_BUFFER, 0));
+-		amdgpu_ring_write(ring, 0);
+ 	}
+ }
+ 
+@@ -4954,8 +4940,9 @@ static const struct amdgpu_ring_funcs gfx_v7_0_ring_funcs_gfx = {
+ 		7 + /* gfx_v7_0_ring_emit_hdp_flush */
+ 		5 + /* hdp invalidate */
+ 		12 + 12 + 12 + /* gfx_v7_0_ring_emit_fence_gfx x3 for user fence, vm fence */
+-		7 + 4 + /* gfx_v7_0_ring_emit_pipeline_sync */
+-		CIK_FLUSH_GPU_TLB_NUM_WREG * 5 + 7 + 6 + /* gfx_v7_0_ring_emit_vm_flush */
++		7 + /* gfx_v7_0_ring_emit_pipeline_sync */
++		CIK_FLUSH_GPU_TLB_NUM_WREG * 5 + 7 + 2 + /* gfx_v7_0_ring_emit_vm_flush */
++		3 * 2 + /* gfx_v7_0_ring_emit_sb x3 (from amdgpu_vm_flush, amdgpu_ib_schedule) */
+ 		3 + 4 + /* gfx_v7_ring_emit_cntxcntl including vgt flush*/
+ 		5, /* SURFACE_SYNC */
+ 	.emit_ib_size = 4, /* gfx_v7_0_ring_emit_ib_gfx */
+@@ -4969,6 +4956,7 @@ static const struct amdgpu_ring_funcs gfx_v7_0_ring_funcs_gfx = {
+ 	.test_ib = gfx_v7_0_ring_test_ib,
+ 	.insert_nop = amdgpu_ring_insert_nop,
+ 	.pad_ib = amdgpu_ring_generic_pad_ib,
++	.emit_switch_buffer = gfx_v7_0_ring_emit_sb,
+ 	.emit_cntxcntl = gfx_v7_ring_emit_cntxcntl,
+ 	.emit_wreg = gfx_v7_0_ring_emit_wreg,
+ 	.soft_recovery = gfx_v7_0_ring_soft_recovery,
 -- 
 2.55.0
 
