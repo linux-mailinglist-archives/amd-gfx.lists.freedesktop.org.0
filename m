@@ -2,106 +2,110 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id RwIJC2YfVWrjkAAAu9opvQ
+	id RiB6F3AtVWrLkwAAu9opvQ
 	(envelope-from <amd-gfx-bounces@lists.freedesktop.org>)
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 19:24:54 +0200
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 20:24:48 +0200
 X-Original-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E3BD74DFBD
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 19:24:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0665374E730
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Jul 2026 20:24:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=PpjM1NSb;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=NUt13fii;
 	spf=pass (mail.lfdr.de: domain of amd-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=amd-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=amd.com;
 	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 188FF10E618;
-	Mon, 13 Jul 2026 17:24:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E22C10E629;
+	Mon, 13 Jul 2026 18:24:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011034.outbound.protection.outlook.com
- [40.93.194.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EB5B10E618
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 17:24:49 +0000 (UTC)
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013026.outbound.protection.outlook.com
+ [40.93.196.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AA5110E0FF
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Jul 2026 18:24:43 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YCCccoeRkARaHk6mNh3oPIBiWfqmm/+ExRgLtzONYRcknrALDuZfILJk2dyKfSEZvwteIn5ga/BLJlEEBLwbUJeuZDy3oPHwjhnQPx7YZN9wkVPdVe9GbRDV4yW2yRT3PnfRDg9bGhJrsRQwqGlqZ8DwS7BqpawiEhEfsEcr/hGAXAMBzHAJw55MvKFi4yswu49x3wHmLApT9X5VrPJGkGaPKintO3QHBpglmMNsHb0pozU/cglnOwR1Fr7ACIy8PmPJBIxhXlfEr/Oa7Cqmwn8XHKWfBsBCkZKsCRWLp2FNUi+hrfywDyWjC/HWRT5ApH4H+jJ80aInO2VeizAw2Q==
+ b=qruSJD50K9AsZdz0KjZ6fqdDCvoDw/cueycBX+SPbDfBDFIvZT4GtnWuujd9CO3Jljib9xn3ozwmqKwfkrHTS9M5Gi0rjV5MtJwNXFpE94C7+uVfDslak6b362zPtAtQsZ7lj1FKDhH2D2qXIZnjILNBjpDzZqaszuLSeWb78lmVFvGcvMrlJ+7SrgikUDt5wLaUPY/DBzj0p4WKnBH0QlYvCO0J7JRyyT0G0V9OqVBxaJzN0jj/K0AA5OiNPQT/6mw5hhhzULefsnhWMnzxVDRAefmD1hUNLVioiQPEErejf9RkCbdgZjfjMgKQBE2sbtGzXYuRXt6l+VK9ahGkrw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y+ARr65fQlhnLsS5MvDOEIdukg9ZaeZ6llsV1aDZKWI=;
- b=yMuh+WA03mejoglfrPMiJHX0madLi2pcYs0vkUqeeYVTfClOPWt08Bt3l+uTxcteNttjxaNoL4wshKetd3h4ue1l0+NepQM5POF1XOIBNaBWx5tvFRTt2Pl/O9Wik2ygDyGCReb0RmLfDgJJAEto6auNa1vaoc3+3X6AosEM5/2FHPvS3kxgCPuSYD8V2lr9USMUrh7opFH9rk4LTjX1aEZq0uAx+2qIIjwDm8ftIelnUoXv9KIHE6qXGV6DFUROd2xtGtNhc+UzLHI1ocLi8XltPnUnUrPub3WXEYYaPjH6GrcqGXfQGJQvYyF/lxvynW6LnuZ+CL3ZI9pI/dR4Ig==
+ bh=aFL+zugvfBnr8BY41wMGkpLAvwIQWqj0+RZ9E+Phiuo=;
+ b=Wp3E3QXwaWKweuyvGUG/QhKaE+Ky8sh+FeZFNwGWWDWB0toS0vEjRNRxSLWU9sl0ywnfi+hXPVl5Db4RK7M9rT9gzwpvO3HyYUYUMtUA9moRk9PsN5EKT901/OdJRYWEgwJnd+eY1TxDJK36urOcaVsJKoUEhO/QgQw7u7+5QowCMa9qk2XtglwY5jT0De8FuC10eM269k012H5ojib48mTstPH8asAuSMlj2fZ+lEFjPpZBHPo0MEvUk2Q6uV6hnZwnivij97Z69Dm8VlVwJKyb+vhrqhbTkfqb2p2M/nYskMQDPCelYczlFLcoTVYVFvElWs3BE+ukzTzhGpkKWA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=y+ARr65fQlhnLsS5MvDOEIdukg9ZaeZ6llsV1aDZKWI=;
- b=PpjM1NSb/ek7PDBZuIDd8IcF9Uy8sgzTFrVnzWb0x46QGuLpgLYhuMUxL7I3D3pxYim5UmTXBqYYFXY6l0OVH9z6RrCI2bn3yLvyMKs6ypdb40rgOkZk7uZ30OSO0nXKpfl3A1feYpgBzwix3YBvO2F3d5a8tsv6aUkTvXNimTk=
-Received: from SN7PR04CA0224.namprd04.prod.outlook.com (2603:10b6:806:127::19)
- by LV8PR12MB9358.namprd12.prod.outlook.com (2603:10b6:408:201::12)
+ bh=aFL+zugvfBnr8BY41wMGkpLAvwIQWqj0+RZ9E+Phiuo=;
+ b=NUt13fiiVyBBBML99IUC/feW9aoG1anG5+SHZx40ruI11DXYOszdiBoxgvVpWa84Eqrbw5HCS5ReVy5L5QdDKKklZz1EYWQKk8lvzvfeM03FOk/vVIa8UUNK2nk9aIXfyRwdxEvbIua3T8r9aD+cTkFjPMRVXL3SJ7FyY5JUGfM=
+Received: from SN7PR04CA0229.namprd04.prod.outlook.com (2603:10b6:806:127::24)
+ by SN7PR12MB7347.namprd12.prod.outlook.com (2603:10b6:806:29a::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.18; Mon, 13 Jul
- 2026 17:24:43 +0000
-Received: from SA2PEPF00003F67.namprd04.prod.outlook.com
- (2603:10b6:806:127:cafe::13) by SN7PR04CA0224.outlook.office365.com
- (2603:10b6:806:127::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.202.19; Mon, 13 Jul
+ 2026 18:24:38 +0000
+Received: from SA2PEPF00003AE7.namprd02.prod.outlook.com
+ (2603:10b6:806:127:cafe::a0) by SN7PR04CA0229.outlook.office365.com
+ (2603:10b6:806:127::24) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.202.19 via Frontend Transport; Mon,
- 13 Jul 2026 17:24:43 +0000
+ 13 Jul 2026 18:24:37 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SA2PEPF00003F67.mail.protection.outlook.com (10.167.248.42) with Microsoft
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ SA2PEPF00003AE7.mail.protection.outlook.com (10.167.248.7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.223.9 via Frontend Transport; Mon, 13 Jul 2026 17:24:43 +0000
-Received: from ausmlimonci-lx1.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.223.9 via Frontend Transport; Mon, 13 Jul 2026 18:24:36 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Mon, 13 Jul
- 2026 12:24:42 -0500
-From: Mario Limonciello <mario.limonciello@amd.com>
+ 2026 13:24:36 -0500
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Mon, 13 Jul
+ 2026 11:24:36 -0700
+Received: from p8.amd.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.41 via Frontend
+ Transport; Mon, 13 Jul 2026 13:24:35 -0500
+From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Mario Limonciello <mario.limonciello@amd.com>
-Subject: [PATCH] drm/amd: Move dynamic PCIe switching quirks to X86_MATCH_*
- macros
-Date: Mon, 13 Jul 2026 12:24:31 -0500
-Message-ID: <20260713172431.1599801-1-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.43.0
+CC: Alex Deucher <alexander.deucher@amd.com>, <timur.kristof@gmail.com>,
+ <christian.koenig@amd.com>
+Subject: [PATCH 1/3] drm/amdgpu: always emit the job vm fence
+Date: Mon, 13 Jul 2026 14:24:12 -0400
+Message-ID: <20260713182414.630372-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
- (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003F67:EE_|LV8PR12MB9358:EE_
-X-MS-Office365-Filtering-Correlation-Id: 59cb280b-2bb6-4767-814b-08dee103a0ec
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003AE7:EE_|SN7PR12MB7347:EE_
+X-MS-Office365-Filtering-Correlation-Id: 89fd675a-f78a-42d4-1cc4-08dee10bfeb3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700016|82310400026|23010399003|376014|18002099003|56012099006|11063799006|13003099007;
-X-Microsoft-Antispam-Message-Info: x956VwOOFnPRFo/Yt36k21s+mxMqGRG56MqVcY2P90c45fpopKDhbW+xwyQJxP71Zb/62m2H1zofTuHC/SqTWekw9GLzOAt/XURmnZHBAg0b7YpNY2Qnqk4mqbM9my00WQ8yeLNh79OOAv7s9dD61RySZWlvTGSYHVRTwZSBiDXHy2N8sdTzDhLkSAtpLtpQ+o+hP0Yf1326typk7i6JFMo8xE4MubgWIdUHaXwPMqkphlJh9Xl8KUqrGO7uOR9zRTEZAbdQ9zQVupP95x6eTQ2nvFirTostR01jN3T+gMC+zMch3wYuyfrXJiZrpVbDBIObd1EZpRtvCATHBu4ytfaBZhVuKJHg5ztOLGApyo2d0XQbQlD1+rGcuhWnFuHbiec+vklLuFX5cSLrx4JEGwe7X4qOy0r/QIxhfB5LIhwqyQATO/OQnkpDjgeENcwsuMPez98Rg/6lDor/hVUMOHEJNRUNt8LEzpV5OALlZke3c7cMXclgB6jXe+I+vpeDrjQeC8zKRjtPvmOWaD6SvDaoE3Cm0ZIkDm/PBBN6l4nLmrG+m8HRwAM2n1/f8qBtVW+XhO80y+KdwryxjdVWduzUfIF82WWQOtbsA8jy6Ar1Pzrd5MLrjr+t4s/NLzjlUaPMwcSUsdJJWLk3UtLPPA==
+ ARA:13230040|82310400026|23010399003|1800799024|376014|36860700016|6133799003|11063799006|56012099006|18002099003;
+X-Microsoft-Antispam-Message-Info: dwv7YfO4Iz9f+oOp+2kz08TxcPyfnPZhbVYQhOeApFodIQUDbjDrwNrlD76PQ0h8M2/HtyQEpAi0lFtOcdoRvcFYzcQE6AYcaY5ST3S5UNyhNdMC15z3zY2AvhSbtvICybPX8yaCJLf8SDYnpcuhlIQxMNZrroJXw3MnTiaA42EKZp3LuTISETdHx4tI8T3FXWw0qZRfOXHLZoC+/PqbyfSMczvG+riipvXPdTwH1vbwuZ9qAXwOk4NDxi70HW40PaGcyMRbUCscri9Zr6FaYP0zYMVu5/OS327V/0vqbnUl03NMMuypdl94iT3r6DEKAZe6whhCXjCdmdBOI8VXgH2AZ69o7SNK+7E+qcox+bOk1UAQx5AgznuJqSbWOt7cLQYOVpLRwom43QXAwoWPCgNCDZTRWBhjuAlmKag4orR1xVOlAJ1vAsLmPiZhRhqADqXM4UxoqPXz6DkmPxRHWhETlgQpf7ohwszBcBOSX8Bk96d70qycsgzLGG3T5wXbp8wliiBXil/IwW9S1BhmEx+048WEFTYHHF6AzHPABE7EJiFruhx6blh4xQ2z2uOzjl1JN4IgMnKPBJXHXkE33BcKmtzFNp4OLbMVlWy2OwZ7ssor/ryIX06uhX8hqkjH3gUpsTP/bgYXum5OMmslS+wpM4HpHCF+e9bibBWaSgAmfjmZEVGloSx207CnMdW10nLgsq8DMpFEw2LypvwGGQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700016)(82310400026)(23010399003)(376014)(18002099003)(56012099006)(11063799006)(13003099007);
+ IPV:NLI; SFV:NSPM; H:satlexmb08.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(23010399003)(1800799024)(376014)(36860700016)(6133799003)(11063799006)(56012099006)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: G6T52HeoekRTLRwxM6/6ZPGEWG430WduAc3jsdP486HhixQrv+fa6pYe1psgI0Na+up3uVDU1D5ce36Rs0vvktKJyzxFBKLecJO76GzsNUYa6pw0qWwnfv8GL7yTUTv01z8Y+KpG4k9IzRc6aC0uy3yOQY0WMHfZfKRcziH7zYcovmyTGtdZMwmEp2QoCmX6siobaqpNy/wbKoymAPZGrEZf0C6a9ui2wSMt2QVeJGxCEGlcgMAggiH9woK/b81mSGh1scZcrGq9N2/7OyJm+cGhTuwNTtqucJuBL7ydIonJnw/n2M0JJOrdMUP8hlarAe7tQTSEuzPQLNl5XG9fVP10J7p+zCUqWCjeuNVYXFge4bbQH1CTvzrUdFtycIPzrzf0VnAFrxZbXuwNnw7PbFUCOwKSXyA1Q+gsrm1eeHYj8pRb6z7t9Z/Xw9dkpnmo
+X-MS-Exchange-AntiSpam-MessageData-0: /2B6cBnhlIhVwnUr9ugQOQAgXnA7yU5DPjc01EJIA3H+oa9KvDEVVD0R6xVVkIt1BgDNIB7vSEncjXu5V3qvYdKH7vjcIcCowFCfIvr5ATutEntUS3QoTI6VjoWmlM5L1Bi51yQ3TWy8JCKKIUlq+yJDhxay0Ftt5PkUhU+rluC3+6qnEY51NKUzph3z5YB+JlP0HRNtcYnO5I0irNGDC0NpI/oszZncRyIpBB2O9hWKatnnvQO8bRWGxIYDLVUy+Buok5JTkl2kuiBo0OhHxbGIyiuRwsS/IWI4NTh2HnylG8DkCodBSbsjrsg2Zqs0Byql4EYGqn3YwwdHg2ioeX8l9iGgV+OGxj5/J7SuTAYwvCB+o2A395/yhcG9OqAl7EITq3XmH80cgEAWG7feTVYesaLlzCmmyWAGk1MLhkQddPErD5zk52IuveSlQQhT
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2026 17:24:43.3538 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59cb280b-2bb6-4767-814b-08dee103a0ec
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jul 2026 18:24:36.6608 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 89fd675a-f78a-42d4-1cc4-08dee10bfeb3
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F67.namprd04.prod.outlook.com
+ Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003AE7.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9358
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7347
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,115 +120,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[mario.limonciello@amd.com,amd-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[amd.com,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:from_mime,amd.com:mid,amd.com:email,amd.com:dkim];
+	RCPT_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.deucher@amd.com,amd-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+];
 	PREVIOUSLY_DELIVERED(0.00)[amd-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
 	TAGGED_RCPT(0.00)[amd-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:url,amd.com:from_mime,amd.com:mid,amd.com:email,amd.com:dkim,lists.freedesktop.org:from_smtp]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5E3BD74DFBD
+X-Rspamd-Queue-Id: 0665374E730
 
-Use the X86_MATCH_VENDOR_FAM() and X86_MATCH_VENDOR_FAM_MODEL() macros
-to make the quirks for dynamic speed switching more scalable.
+We need the fence to reemit the gds switch or spm update
+after a queue reset.
 
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+Fixes: a17ef941212b ("drm/amdgpu: rework ring reset backup and reemit v9")
+Cc: timur.kristof@gmail.com
+Cc: christian.koenig@amd.com
+Reviewed-by: Timur Kristóf <timur.kristof@gmail.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 49 ++++++++++++----------
- 1 file changed, 28 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index a4c8702fbf5a7..128a285e2bf4d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -1304,37 +1304,44 @@ bool amdgpu_device_seamless_boot_supported(struct amdgpu_device *adev)
- 	return amdgpu_ip_version(adev, DCE_HWIP, 0) >= IP_VERSION(3, 0, 0);
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index 180d694323e82..0affcb9e6d34e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -855,12 +855,10 @@ void amdgpu_vm_flush(struct amdgpu_ring *ring, struct amdgpu_job *job,
+ 					    job->oa_size);
+ 	}
  
--/*
-- * Intel hosts such as Rocket Lake, Alder Lake, Raptor Lake and Sapphire Rapids
-- * don't support dynamic speed switching. Until we have confirmation from Intel
-- * that a specific host supports it, it's safer that we keep it disabled for all.
-- *
-- * https://edc.intel.com/content/www/us/en/design/products/platforms/details/raptor-lake-s/13th-generation-core-processors-datasheet-volume-1-of-2/005/pci-express-support/
-- * https://gitlab.freedesktop.org/drm/amd/-/issues/2663
-- */
--static bool amdgpu_device_pcie_dynamic_switching_supported(struct amdgpu_device *adev)
--{
- #if IS_ENABLED(CONFIG_X86)
--	struct cpuinfo_x86 *c = &cpu_data(0);
-+static const struct x86_cpu_id amdgpu_pcie_dynamic_switching_quirks[] = {
-+	/*
-+	 * Intel hosts such as Rocket Lake, Alder Lake, Raptor Lake and Sapphire Rapids
-+	 * don't support dynamic speed switching. Until we have confirmation from Intel
-+	 * that a specific host supports it, it's safer that we keep it disabled for all.
-+	 *
-+	 * https://edc.intel.com/content/www/us/en/design/products/platforms/details/raptor-lake-s/13th-generation-core-processors-datasheet-volume-1-of-2/005/pci-express-support/
-+	 * https://gitlab.freedesktop.org/drm/amd/-/issues/2663
-+	 */
-+	X86_MATCH_VENDOR_FAM(INTEL, X86_FAMILY_ANY, NULL),
-+	/*
-+	 * AMD Ryzen Pinnacle Ridge (Zen+, family 0x17 model 0x08) CPUs don't
-+	 * support PCIe dynamic speed switching.
-+	 * https://gitlab.freedesktop.org/drm/amd/-/work_items/5436
-+	 */
-+	X86_MATCH_VENDOR_FAM_MODEL(AMD, 0x17, 0x08, NULL),
-+	{}
-+};
+-	if (vm_flush_needed || pasid_mapping_needed || cleaner_shader_needed) {
+-		amdgpu_fence_emit(ring, job->hw_vm_fence, 0);
+-		fence = &job->hw_vm_fence->base;
+-		/* get a ref for the job */
+-		dma_fence_get(fence);
+-	}
++	amdgpu_fence_emit(ring, job->hw_vm_fence, 0);
++	fence = &job->hw_vm_fence->base;
++	/* get a ref for the job */
++	dma_fence_get(fence);
  
-+static bool amdgpu_device_pcie_dynamic_switching_supported(struct amdgpu_device *adev)
-+{
- 	/* eGPU change speeds based on USB4 fabric conditions */
- 	if (dev_is_removable(adev->dev))
- 		return true;
- 
--	if (c->x86_vendor == X86_VENDOR_INTEL)
-+	/* Hosts have problems with dynamic speed switching */
-+	if (x86_match_cpu(amdgpu_pcie_dynamic_switching_quirks))
- 		return false;
- 
--	/*
--	 * AMD Ryzen Pinnacle Ridge (Zen+, family 0x17 model 0x08) CPUs don't
--	 * support PCIe dynamic speed switching.
--	 * https://gitlab.freedesktop.org/drm/amd/-/work_items/5436
--	 */
--	if (c->x86_vendor == X86_VENDOR_AMD && c->x86 == 0x17 &&
--	    c->x86_model == 0x08)
--		return false;
--#endif
- 	return true;
- }
-+#else
-+static inline bool amdgpu_device_pcie_dynamic_switching_supported(struct amdgpu_device *adev)
-+{
-+	return true;
-+}
-+#endif
- 
- static bool amdgpu_device_aspm_support_quirk(struct amdgpu_device *adev)
- {
+ 	if (vm_flush_needed) {
+ 		mutex_lock(&id_mgr->lock);
 -- 
-2.43.0
+2.55.0
 
